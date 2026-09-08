@@ -1,0 +1,246 @@
+from __future__ import annotations
+
+from dataclasses import dataclass
+from collections import deque
+from typing import Mapping, Sequence
+
+Letter = int
+Word = tuple[Letter, ...]
+State = tuple[Word, Word]
+Substitution = Mapping[Letter, Word]
+
+
+@dataclass(frozen=True)
+class BoundaryHit:
+    """A synchronizing boundary witness inside an inflated balanced pair."""
+
+    state: State
+    iterate: int
+    boundary: int
+    side: str  # "right" or "left"
+    pair: tuple[Letter, Letter]
+    sync_after: int
+    letter: Letter
+
+
+def alphabet_size(sigma: Substitution) -> int:
+    return max(sigma.keys())
+
+
+def parikh(word: Sequence[Letter], size: int | None = None) -> tuple[int, ...]:
+    if size is None:
+        size = max(word, default=0)
+    counts = [0] * size
+    for a in word:
+        if a < 1 or a > size:
+            raise ValueError(f"letter {a!r} outside alphabet 1..{size}")
+        counts[a - 1] += 1
+    return tuple(counts)
+
+
+def apply_substitution(sigma: Substitution, word: Sequence[Letter]) -> Word:
+    out: list[Letter] = []
+    for a in word:
+        out.extend(sigma[a])
+    return tuple(out)
+
+
+def apply_substitution_n(sigma: Substitution, word: Sequence[Letter], n: int) -> Word:
+    result = tuple(word)
+    for _ in range(n):
+        result = apply_substitution(sigma, result)
+    return result
+
+
+def normalize_state(state: State) -> State:
+    u, v = state
+    return (u, v) if u <= v else (v, u)
+
+
+def coincidence_boundaries(u: Sequence[Letter], v: Sequence[Letter], size: int | None = None) -> list[int]:
+    if len(u) != len(v):
+        raise ValueError("coincidence_boundaries expects equal-length words")
+    if size is None:
+        size = max(max(u, default=0), max(v, default=0))
+    pu = [0] * size
+    pv = [0] * size
+    out = [0]
+    for i, (a, b) in enumerate(zip(u, v), start=1):
+        pu[a - 1] += 1
+        pv[b - 1] += 1
+        if pu == pv:
+            out.append(i)
+    return out
+
+
+def decompose_pair(u: Sequence[Letter], v: Sequence[Letter], size: int | None = None) -> list[State]:
+    bdys = coincidence_boundaries(u, v, size)
+    return [(tuple(u[bdys[i] : bdys[i + 1]]), tuple(v[bdys[i] : bdys[i + 1]])) for i in range(len(bdys) - 1)]
+
+
+def children(sigma: Substitution, state: State) -> list[State]:
+    size = alphabet_size(sigma)
+    u, v = state
+    su = apply_substitution(sigma, u)
+    sv = apply_substitution(sigma, v)
+    return [normalize_state(child) for child in decompose_pair(su, sv, size)]
+
+
+def seed_states(size: int) -> list[State]:
+    return [((a, b), (b, a)) for a in range(1, size + 1) for b in range(a + 1, size + 1)]
+
+
+def build_bpa(sigma: Substitution, max_states: int = 10000) -> dict[State, list[State]]:
+    """Build the reachable balanced-pair graph from all seeds (ab, ba)."""
+    size = alphabet_size(sigma)
+    graph: dict[State, list[State]] = {}
+    queue: deque[State] = deque(normalize_state(s) for s in seed_states(size))
+
+    while queue:
+        state = queue.popleft()
+        if state in graph:
+            continue
+        if len(graph) >= max_states:
+            raise RuntimeError(f"BPA exceeded max_states={max_states}")
+        u, v = state
+        if u == v:
+            graph[state] = []
+            continue
+        cs = children(sigma, state)
+        graph[state] = cs
+        for c in cs:
+            if c not in graph:
+                queue.append(c)
+    return graph
+
+
+def _tarjan(graph: Mapping[State, Sequence[State]]) -> list[list[State]]:
+    index = 0
+    stack: list[State] = []
+    indices: dict[State, int] = {}
+    low: dict[State, int] = {}
+    on_stack: set[State] = set()
+    sccs: list[list[State]] = []
+
+    def strongconnect(v: State) -> None:
+        nonlocal index
+        indices[v] = index
+        low[v] = index
+        index += 1
+        stack.append(v)
+        on_stack.add(v)
+        for w in graph.get(v, []):
+            if w not in indices:
+                strongconnect(w)
+                low[v] = min(low[v], low[w])
+            elif w in on_stack:
+                low[v] = min(low[v], indices[w])
+        if low[v] == indices[v]:
+            comp: list[State] = []
+            while True:
+                w = stack.pop()
+                on_stack.remove(w)
+                comp.append(w)
+                if w == v:
+                    break
+            sccs.append(comp)
+
+    for v in graph:
+        if v not in indices:
+            strongconnect(v)
+    return sccs
+
+
+def recurrent_noncoincident_sccs(graph: Mapping[State, Sequence[State]]) -> list[list[State]]:
+    out: list[list[State]] = []
+    for comp in _tarjan(graph):
+        comp_set = set(comp)
+        has_cycle = len(comp) > 1 or any(w == comp[0] for w in graph.get(comp[0], []))
+        if not has_cycle:
+            continue
+        if not all(u != v for (u, v) in comp):
+            continue
+        if any(w in comp_set for s in comp for w in graph.get(s, [])):
+            out.append(comp)
+    return out
+
+
+def scc_is_closed(graph: Mapping[State, Sequence[State]], comp: Sequence[State]) -> bool:
+    comp_set = set(comp)
+    for s in comp:
+        for child in graph.get(s, []):
+            u, v = child
+            if u != v and child not in comp_set:
+                return False
+    return True
+
+
+def scc_is_productive(sigma: Substitution, comp: Sequence[State], max_iterate: int = 1) -> bool:
+    """Whether some state in comp produces a single-tile coincidence sibling by max_iterate."""
+    size = alphabet_size(sigma)
+    for state in comp:
+        u, v = state
+        for n in range(1, max_iterate + 1):
+            su = apply_substitution_n(sigma, u, n)
+            sv = apply_substitution_n(sigma, v, n)
+            for cu, cv in decompose_pair(su, sv, size):
+                if len(cu) == 1 and cu == cv:
+                    return True
+    return False
+
+
+def endpoint_maps(sigma: Substitution) -> tuple[dict[Letter, Letter], dict[Letter, Letter]]:
+    return ({a: sigma[a][0] for a in sigma}, {a: sigma[a][-1] for a in sigma})
+
+
+def sync_pairs(h: Mapping[Letter, Letter]) -> dict[tuple[Letter, Letter], tuple[int, Letter]]:
+    """Return pairs that coalesce under iterates of a finite map.
+
+    Values are (least_m_observed, common_letter). The bound 2|A|+1 is sufficient for
+    finite maps: if two synchronized orbits have not met by then, they never will.
+    """
+    letters = sorted(h)
+    bound = 2 * len(letters) + 1
+    out: dict[tuple[Letter, Letter], tuple[int, Letter]] = {}
+    for a in letters:
+        for b in letters:
+            x, y = a, b
+            for m in range(bound + 1):
+                if x == y:
+                    out[(a, b)] = (m, x)
+                    break
+                x, y = h[x], h[y]
+    return out
+
+
+def boundary_sync_hits(
+    sigma: Substitution,
+    comp: Sequence[State],
+    max_iterate: int = 3,
+) -> list[BoundaryHit]:
+    """Find boundary-synchronization witnesses for a recurrent noncoincident SCC."""
+    size = alphabet_size(sigma)
+    sigma_plus, sigma_minus = endpoint_maps(sigma)
+    sync_plus = sync_pairs(sigma_plus)
+    sync_minus = sync_pairs(sigma_minus)
+    hits: list[BoundaryHit] = []
+
+    for state in comp:
+        u, v = state
+        for n in range(max_iterate + 1):
+            su = apply_substitution_n(sigma, u, n)
+            sv = apply_substitution_n(sigma, v, n)
+            if len(su) != len(sv):
+                continue
+            for k in coincidence_boundaries(su, sv, size):
+                if k < len(su):
+                    pair = (su[k], sv[k])
+                    if pair in sync_plus:
+                        m, c = sync_plus[pair]
+                        hits.append(BoundaryHit(state, n, k, "right", pair, m, c))
+                if k > 0:
+                    pair = (su[k - 1], sv[k - 1])
+                    if pair in sync_minus:
+                        m, c = sync_minus[pair]
+                        hits.append(BoundaryHit(state, n, k, "left", pair, m, c))
+    return hits
