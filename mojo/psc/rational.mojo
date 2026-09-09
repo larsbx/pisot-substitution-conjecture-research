@@ -23,9 +23,7 @@ struct Rat(ImplicitlyCopyable, Copyable, Movable, Writable, Equatable):
 
     def __init__(out self, num: Int, den: Int = 1):
         if den == 0:
-            self.num = 0
-            self.den = 1
-            return
+            abort("Rat denominator must be nonzero")
         var s = 1 if den > 0 else -1
         var g = igcd(num, den)
         if g == 0:
@@ -45,6 +43,8 @@ struct Rat(ImplicitlyCopyable, Copyable, Movable, Writable, Equatable):
         return Rat(self.num * o.num, self.den * o.den)
 
     def __truediv__(self, o: Rat) -> Rat:
+        if o.num == 0:
+            abort("division by zero rational")
         return Rat(self.num * o.den, self.den * o.num)
 
     def __neg__(self) -> Rat:
