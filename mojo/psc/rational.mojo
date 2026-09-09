@@ -4,6 +4,8 @@ Every linear-algebra fact in the Spectral module certificate is a statement
 over Q about integer data, so the kernel needs no floating point anywhere.
 """
 
+from std.os import abort
+
 
 def igcd(a: Int, b: Int) -> Int:
     var x = abs(a)
