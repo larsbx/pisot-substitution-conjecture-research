@@ -69,7 +69,7 @@ a Boundary Synchronization Lemma witness. The right-end statement is the same
 argument with `sigma_-` at the terminal zero-return boundary. Either case would
 make `T` productive. QED.
 
-## 3. At most nine signatures
+## 3. At most nine signatures, with type-specific bounds
 
 For a quotient with `q` classes, the number of unordered distinct class pairs is
 `binom(q,2)`. In the counterexample regime `q<=3`, so each side has at most
@@ -86,6 +86,19 @@ For a two-class endpoint quotient there is only one unordered nonsynchronizing
 pair. In particular types C and F have no residual pair-label choice at that
 side; their difference survives only in the quotient permutation acting on
 individual classes, not in the unordered outer-pair label itself.
+
+Hence the sharper bound depends only on whether each endpoint type has quotient
+size 2 (`C,F`) or 3 (`D,E,G`):
+
+| endpoint-type regime | left labels | right labels | max combined signatures |
+|---|---:|---:|---:|
+| `{C,F}` x `{C,F}` | 1 | 1 | **1** |
+| `{C,F}` x `{D,E,G}` | 1 | 3 | **3** |
+| `{D,E,G}` x `{C,F}` | 3 | 1 | **3** |
+| `{D,E,G}` x `{D,E,G}` | 3 | 3 | **9** |
+
+Thus many endpoint-type pairs collapse C4-C to a one-state or three-state
+projected template before any substitution-specific argument is used.
 
 ## 4. Inherited-boundary phase
 
@@ -117,24 +130,25 @@ Form the directed **signature graph** `G_sig(C)`:
 - draw `Sig(T) -> Sig(U)` whenever `U` is a child block of `T` and both lie in
   `C`.
 
-By Lemma 2 every vertex is one of the at most nine nonsynchronizing signatures.
+By Lemma 2 every vertex is one of the finite nonsynchronizing signatures above.
 Because `C` is recurrent, there is an infinite path in `C`; its signature
 projection is an infinite path in this finite graph. Hence:
 
 ### Proposition — short signature recurrence
 
 Every closed nonproductive recurrent SCC contains a projected endpoint-signature
-cycle of length at most **9**.
+cycle of length at most **9**. More sharply, the cycle length is at most **1**,
+**3**, or **9** according to the endpoint-type regimes in the table above.
 
 This is only a cycle of endpoint signatures; it does not assert that the full
-balanced-pair state repeats within nine steps.
+balanced-pair state repeats within that number of steps.
 
 ## 6. Reduced C4-C target
 
 C4-C therefore need not search arbitrary endpoint histories. A hypothetical
 counterexample yields a finite periodic template consisting of:
 
-1. a signature cycle of length at most 9;
+1. a signature cycle of length at most 1, 3, or 9 according to endpoint types;
 2. for each transition, a one-step child block inside the closed SCC;
 3. the newborn zero-return cuts that separate the child blocks;
 4. the requirement that every adjacent endpoint pair at those cuts belongs to
