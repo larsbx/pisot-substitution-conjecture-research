@@ -45,6 +45,20 @@ def test_k2_signed_intertwiner_on_negative_control():
     )
 
 
+def test_unsigned_normalized_interface_fails_but_signed_interface_holds():
+    data = build_k2_intertwiner(NEGATIVE, negative_component())
+    q2 = data.defect_matrix
+    phi2_q2 = matmul(data.exterior_square, q2)
+
+    # The normalized unsigned SCC incidence forgets that a swapped raw child
+    # contributes -K2. This is the orientation bug in the archived quotient
+    # interface: Q2*N is not the substituted defect.
+    assert matmul(q2, data.orientation.unsigned) != phi2_q2
+
+    # The exact relation uses S=A-B.
+    assert matmul(q2, data.orientation.signed) == phi2_q2
+
+
 def test_negative_control_first_defect_is_degree_two():
     assert lowest_nonzero_defect_degree(negative_component()) == 2
 
