@@ -216,21 +216,114 @@ In the unimodular extremal case:
 
 This is a finite list of rational representation types.
 
-## 8. Why this matters for the remaining proof
+## 8. Minimal three-state normal form through degree four
+
+The Parikh-intertwiner theorem gives `|C|>=3`. Suppose the minimum is attained: `|C|=3`. Then `P_C` is invertible and
+
+`N_C = P_C^{-1} M P_C`,
+
+so `N_C` is primitive and has the same irreducible cubic characteristic polynomial as `M`.
+
+The earlier defect reductions then sharpen as follows.
+
+### Degree two
+
+If `Q_2 != 0`, irreducibility of `Lambda^2 M` forces `rank Q_2=3`; hence
+
+`S = Q_2^{-1} (Lambda^2 M) Q_2`
+
+and
+
+`rho(S)<beta`.
+
+Thus a three-state first-degree-two obstruction is necessarily in the strict odd-contraction case.
+
+### Degree three
+
+If `K_2=0`, the signed degree-3 theorem forces
+
+`im Q_3 subset W_det`,
+
+and `Phi_3` acts on `W_det` by the rational scalar `d=det M`.
+
+If orientation were Perron-extremal, primitivity of `N_C` would make
+
+`S` diagonally similar to `+N_C` or `-N_C`.
+
+But `+N_C` and `-N_C` both have irreducible cubic characteristic polynomial and therefore no rational eigenvalue. The relation
+
+`Q_3 S = d Q_3`
+
+would make every nonzero row of `Q_3` a rational left eigenvector of `S` with rational eigenvalue `d`, impossible. Hence `Q_3` must vanish in the extremal phase-coherent cases.
+
+Therefore a genuine three-state first-degree-three obstruction also forces
+
+`rho(S)<beta`.
+
+### Degree four
+
+A degree-four obstruction cannot have `rho(S)<beta` by Corollary B. Hence a three-state degree-four obstruction must be Perron-extremal and unimodular.
+
+Write the orientation phase as `zeta=+1` in the gauge case and `zeta=-1` in the anti-gauge case. Then
+
+`S` is similar to `zeta M`.
+
+A nonzero degree-4 image is three-dimensional because `S` itself has an irreducible cubic characteristic polynomial. Family A is unavailable by spectral radius. Family B, when it has radius `beta`, has root-modulus multiset
+
+`{beta, beta, beta^{-2}}`
+
+in the unimodular complex-pair case, while `zeta M` has modulus multiset
+
+`{beta, beta^{-1/2}, beta^{-1/2}}`.
+
+Since `beta>1`, these cannot be similar. Thus the only possible three-state image is family C, whose operator is `d M`.
+
+Similarity of `zeta M` and `d M` forces equality of determinants. Since `d,zeta in {+1,-1}`,
+
+`det(zeta M)=zeta d`,
+
+while
+
+`det(d M)=d^4=1`.
+
+Therefore
+
+`zeta=d`.
+
+So the only minimal three-state degree-4 survivor has the exact phase match:
+
+- `det M=+1` with trivial gauge, or
+- `det M=-1` with anti-gauge.
+
+After squaring the substitution/derived substitution, both reduce to the orientation-trivial, determinant-`+1` case.
+
+### Three-state summary
+
+For a hypothetical three-state strict PIP counterexample:
+
+- first defect degree 2 => strict odd contraction;
+- first defect degree 3 => strict odd contraction;
+- first defect degree 4 => only the unimodular phase-matched family-C case survives;
+- if `|det M|>1`, a three-state counterexample must have first defect degree at least 5.
+
+This is a structural theorem, not corpus evidence.
+
+## 9. Why this matters for the remaining proof
 
 The previous frontier was simply “first defect degree `>=4`.” Degree four is now reduced to a narrow arithmetic/monodromy corner:
 
 - non-unimodular PIP: degree four eliminated;
 - any strict orientation contraction: degree four eliminated;
 - only unimodular phase-coherent orientation survives;
-- its possible defect image lies in explicitly identified cubic factors.
+- its possible defect image lies in explicitly identified cubic factors;
+- at minimal SCC size, only the phase-matched family-C cubic survives.
 
 The next two tasks are therefore:
 
 1. test the exact 4554-substitution PIP corpus for the size of this unimodular survivor regime, separated into real-root and complex-pair cubics;
 2. attack the unimodular gauge/anti-gauge word-realization case, where the defect module has the same Perron modulus as the base but lives in one of the explicit family-B/C cubic representations.
 
-## 9. Guardrails
+## 10. Guardrails
 
 This note does not assume unimodularity globally. It proves that unimodularity is **forced only for a hypothetical first-degree-four obstruction**.
 
