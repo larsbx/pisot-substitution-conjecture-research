@@ -35,7 +35,7 @@ The open step is not cycle exclusion. The correct target is:
 
 > **SCC Producer Theorem.** Every recurrent noncoincident SCC of `B_sigma` produces a coincidence sibling at some inflation step.
 
-Equivalent mass-leakage form:
+Equivalent mass-leakage form in a finite BPA:
 
 > No recurrent noncoincident SCC is closed nonproductive.
 
@@ -43,12 +43,58 @@ Spectral form:
 
 > For every recurrent noncoincident SCC `C`, `PF(N_C) < beta` unless `C` leaks no mass and has no escape.
 
-Boundary normal form:
+### Proved graph reduction: only sink nonproductive SCCs matter
 
-> No recurrent noncoincident SCC is a nonsynchronizing zero-return trap.
+Let `NP` be the set of states from which no coincidence state is reachable.
+If `v in NP`, every child of `v` is also in `NP`; otherwise a productive child
+would make `v` productive. Thus `NP` is forward-closed.
+
+If `B_sigma` is finite and `NP` is nonempty, the condensation DAG of the
+induced graph on `NP` has a sink SCC `C`. Because `NP` is forward-closed and
+`C` is a sink in its condensation, every child of every state of `C` remains in
+`C`. Hence `C` is recurrent, noncoincident, closed, and nonproductive.
+
+Therefore, under G1, proving C1 reduces to ruling out **closed/sink
+nonproductive recurrent SCCs**. One does not need boundary synchronization on
+every recurrent SCC. See `docs/sink-scc-reduction.md`.
+
+### Boundary route after the reduction
+
+Boundary Synchronization Lemma:
+
+> A synchronizing zero-return boundary produces a coincidence sibling after a
+> finite number of further endpoint-map iterates.
+
+Hence a closed nonproductive SCC cannot contain a synchronizing boundary.
+Conversely, to kill a hypothetical counterexample it is enough to force one
+synchronizing boundary in a sink nonproductive SCC.
+
+`docs/c3-locality-reduction.md` further proves that any higher-inflation newborn
+synchronizing cut localizes to a **one-step** newborn synchronizing cut from an
+irreducible state of the same closed SCC. Thus the current load-bearing target
+is finite and local:
+
+> **C3-local.** Every closed nonproductive recurrent noncoincident PIP SCC
+> contains a state `T` such that `sigma(T)` has an interior zero-return cut with
+> a synchronizing adjacent endpoint pair.
+
+Exact corpus evidence (`mojo/c3_census.mojo`) over 4554 alphabet-3 PIP
+substitutions with image lengths `<= 3`:
+
+- 5022 recurrent noncoincident SCCs, 369486 states;
+- 4962 SCCs have one-step newborn synchronization;
+- 60 have neither inherited nor newborn synchronization;
+- all 60 residual SCCs are singleton SCCs with a noncoincident exit;
+- 0 residual SCCs are closed/no-direct-coincidence candidates.
+
+So every local boundary-test failure in the corpus lies outside the sink
+counterexample class. This is evidence, not proof.
 
 ## Retired routes
 
 - Cycle exclusion via `delta != 0` on noncoincident cycles: false.
 - Mossé desubstitution descent: blocked because desubstitution can stay inside the same SCC.
 - Pure algebra on `N_C`: insufficient because `(N_C, P) = (M_sigma^T, I)` is a synthetic solution.
+- Universal synchronization of every recurrent SCC: unnecessary. Escaping SCCs
+  may fail the local boundary test; only closed/sink nonproductive SCCs are
+  load-bearing for C1.
