@@ -14,3 +14,11 @@ __pycache__/
 build/
 dist/
 *.egg-info/
+
+# Mojo / pixi
+mojo/.pixi/
+mojo/.magic/
+*.mojopkg
+
+# Lean / lake
+PscVerif/.lake/
