@@ -56,9 +56,9 @@ def test_transient_nonsynchronizing_pairs_are_not_in_recurrent_core():
 
 
 def test_canonicalization_is_invariant_under_relabeling():
-    # 0 <-> 1 with 2 flowing into 0 is conjugate to 1 <-> 2 with 0 flowing into 1.
+    # 0 <-> 1 with 2 flowing into 0; the second map is a relabeling of it.
     assert canonical_map((1, 0, 0)) == (1, 0, 0)
-    assert canonical_map((1, 2, 2)) == (1, 0, 0)
+    assert canonical_map((2, 2, 1)) == (1, 0, 0)
 
 
 def test_functional_cycle_lengths_distinguish_core_cycle_shapes():
