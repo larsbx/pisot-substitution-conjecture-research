@@ -20,9 +20,6 @@ from psc.mat3 import Mat3
 from psc.pisot import is_pip
 
 
-alias HORIZON = 3
-
-
 def image_words() -> List[List[Int]]:
     """Every word over {0,1,2} of length 1, 2 or 3, in deterministic order."""
     var out = List[List[Int]]()
@@ -42,6 +39,7 @@ def image_words() -> List[List[Int]]:
 
 
 def main() raises:
+    var horizon = 3
     var words = image_words()
     var n_pip = 0
     var n_capped = 0
@@ -56,9 +54,9 @@ def main() raises:
     var n_without_newborn = 0
     var n_clean_newborn = 0
 
-    # Index 0 is unused; histogram entries 1..HORIZON are SCC counts.
+    # Index 0 is unused; histogram entries 1..horizon are SCC counts.
     var newborn_hist = List[Int]()
-    for _ in range(HORIZON + 1):
+    for _ in range(horizon + 1):
         newborn_hist.append(0)
 
     for i in range(len(words)):
@@ -88,15 +86,15 @@ def main() raises:
                     n_scc += 1
                     n_states += len(comp)
 
-                    var first_inherited = HORIZON + 1
-                    var first_newborn = HORIZON + 1
-                    var first_clean_newborn = HORIZON + 1
+                    var first_inherited = horizon + 1
+                    var first_newborn = horizon + 1
+                    var first_clean_newborn = horizon + 1
 
                     for si in range(len(comp)):
                         var p = a.states[comp[si]].copy()
                         var inherited_clean = True
 
-                        for n in range(1, HORIZON + 1):
+                        for n in range(1, horizon + 1):
                             var inherited_hits = inherited_sync_positions(sigma, p)
                             var newborn_hits = newborn_sync_positions(sigma, p)
 
@@ -113,7 +111,7 @@ def main() raises:
 
                             p = inflate_pair(sigma, p)
 
-                    if first_newborn <= HORIZON:
+                    if first_newborn <= horizon:
                         n_with_newborn += 1
                         newborn_hist[first_newborn] += 1
                     else:
@@ -122,17 +120,17 @@ def main() raises:
                             "NO_NEWBORN_JSON {\"type\":\"no_newborn\",\"i\":",
                             i, ",\"j\":", j, ",\"k\":", k,
                             ",\"scc\":", ci, ",\"size\":", len(comp),
-                            ",\"horizon\":", HORIZON, "}"
+                            ",\"horizon\":", horizon, "}"
                         )
 
-                    if first_clean_newborn <= HORIZON:
+                    if first_clean_newborn <= horizon:
                         n_clean_newborn += 1
 
                     if first_newborn < first_inherited:
                         n_newborn_first += 1
                     elif first_inherited < first_newborn:
                         n_inherited_first += 1
-                    elif first_newborn <= HORIZON:
+                    elif first_newborn <= horizon:
                         n_tie += 1
                     else:
                         n_no_witness += 1
@@ -140,10 +138,10 @@ def main() raises:
                             "NO_WITNESS_JSON {\"type\":\"no_witness\",\"i\":",
                             i, ",\"j\":", j, ",\"k\":", k,
                             ",\"scc\":", ci, ",\"size\":", len(comp),
-                            ",\"horizon\":", HORIZON, "}"
+                            ",\"horizon\":", horizon, "}"
                         )
 
-    print("C3 finite horizon:", HORIZON)
+    print("C3 finite horizon:", horizon)
     print("PIP specimens:", n_pip, " capped:", n_capped)
     print("recurrent noncoincident SCCs:", n_scc, " states:", n_states)
     print("first witness newborn:", n_newborn_first)
@@ -153,5 +151,5 @@ def main() raises:
     print("SCCs with newborn synchronization:", n_with_newborn)
     print("SCCs without newborn synchronization:", n_without_newborn)
     print("SCCs with clean-newborn path:", n_clean_newborn)
-    for n in range(1, HORIZON + 1):
+    for n in range(1, horizon + 1):
         print("newborn first-horizon", n, ":", newborn_hist[n])
