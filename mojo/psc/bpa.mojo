@@ -6,6 +6,11 @@ coincidence boundary. Seeds are the length-2 pairs `(ab, ba)`, `a < b`.
 Hypothesis G1 (finiteness of `B_sigma`) is *not* proved here: `build` returns a
 `capped` flag and callers must treat a capped run as inconclusive, never as a
 counterexample or a proof.
+
+The boundary-lineage helpers instrument conjecture C3. They distinguish a
+zero-return boundary inherited from the previous inflation from a genuinely
+newborn boundary, and test synchronization through the finite prefix/suffix
+endpoint maps. These are exact finite diagnostics, not a proof of C3.
 """
 
 from psc.words import Pair, parikh
@@ -20,6 +25,11 @@ def apply_substitution(sigma: List[List[Int]], w: List[Int]) -> List[Int]:
     return out^
 
 
+def inflate_pair(sigma: List[List[Int]], p: Pair) -> Pair:
+    """Inflate both sides without cutting into irreducible balanced blocks."""
+    return Pair(apply_substitution(sigma, p.u), apply_substitution(sigma, p.v))
+
+
 def coincidence_boundaries(u: List[Int], v: List[Int]) -> List[Int]:
     """Positions `0 = k_0 < ... < k_m = |u|` where the Parikh prefixes agree."""
     var out: List[Int] = [0]
@@ -31,6 +41,122 @@ def coincidence_boundaries(u: List[Int], v: List[Int]) -> List[Int]:
         if pu == pv:
             out.append(i + 1)
     return out^
+
+
+def _contains_int(xs: List[Int], x: Int) -> Bool:
+    for i in range(len(xs)):
+        if xs[i] == x:
+            return True
+    return False
+
+
+def image_prefix_lengths(sigma: List[List[Int]], w: List[Int]) -> List[Int]:
+    """Image length of every prefix `w[:k]`, for `0 <= k <= |w|`."""
+    var out: List[Int] = [0]
+    for i in range(len(w)):
+        out.append(out[len(out) - 1] + len(sigma[w[i]]))
+    return out^
+
+
+def inherited_boundary_positions(
+    sigma: List[List[Int]], u: List[Int], v: List[Int]
+) -> List[Int]:
+    """Next-step zero-return positions inherited from current zero-return cuts."""
+    var old = coincidence_boundaries(u, v)
+    var upos = image_prefix_lengths(sigma, u)
+    var vpos = image_prefix_lengths(sigma, v)
+    var out = List[Int]()
+    for i in range(len(old)):
+        var k = old[i]
+        # Balanced prefixes have the same Parikh vector, hence equal image length.
+        if upos[k] != vpos[k]:
+            print("INTERNAL ERROR: inherited boundary image lengths disagree")
+            return List[Int]()
+        out.append(upos[k])
+    return out^
+
+
+def newborn_boundary_positions(sigma: List[List[Int]], p: Pair) -> List[Int]:
+    """Zero-return cuts created by one inflation rather than inherited."""
+    var q = inflate_pair(sigma, p)
+    var current = coincidence_boundaries(q.u, q.v)
+    var inherited = inherited_boundary_positions(sigma, p.u, p.v)
+    var out = List[Int]()
+    for i in range(len(current)):
+        if not _contains_int(inherited, current[i]):
+            out.append(current[i])
+    return out^
+
+
+def prefix_endpoint_map(sigma: List[List[Int]]) -> List[Int]:
+    """`sigma_+(a)`: first letter of `sigma(a)`."""
+    var out = List[Int]()
+    for a in range(len(sigma)):
+        out.append(sigma[a][0])
+    return out^
+
+
+def suffix_endpoint_map(sigma: List[List[Int]]) -> List[Int]:
+    """`sigma_-(a)`: last letter of `sigma(a)`."""
+    var out = List[Int]()
+    for a in range(len(sigma)):
+        out.append(sigma[a][len(sigma[a]) - 1])
+    return out^
+
+
+def sync_after(h: List[Int], a: Int, b: Int) -> Int:
+    """Least endpoint-map iterate at which `a,b` coalesce, or -1 if never.
+
+    For a finite map on `n` letters, `2n+1` transitions are enough to decide
+    whether two forward orbits ever meet.
+    """
+    var x = a
+    var y = b
+    var bound = 2 * len(h) + 1
+    for m in range(bound + 1):
+        if x == y:
+            return m
+        x = h[x]
+        y = h[y]
+    return -1
+
+
+def synchronizing_boundary_positions(
+    sigma: List[List[Int]], u: List[Int], v: List[Int], positions: List[Int]
+) -> List[Int]:
+    """Subset of zero-return positions caught by prefix/suffix synchronization."""
+    var plus = prefix_endpoint_map(sigma)
+    var minus = suffix_endpoint_map(sigma)
+    var out = List[Int]()
+    for i in range(len(positions)):
+        var k = positions[i]
+        var hit = False
+        if k < len(u) and sync_after(plus, u[k], v[k]) >= 0:
+            hit = True
+        if k > 0 and sync_after(minus, u[k - 1], v[k - 1]) >= 0:
+            hit = True
+        if hit:
+            out.append(k)
+    return out^
+
+
+def newborn_sync_positions(sigma: List[List[Int]], p: Pair) -> List[Int]:
+    """Newborn zero-return cuts whose adjacent endpoint pair synchronizes."""
+    var q = inflate_pair(sigma, p)
+    var newborn = newborn_boundary_positions(sigma, p)
+    return synchronizing_boundary_positions(sigma, q.u, q.v, newborn)
+
+
+def inherited_sync_positions(sigma: List[List[Int]], p: Pair) -> List[Int]:
+    """Inherited zero-return cuts whose adjacent endpoint pair synchronizes."""
+    var q = inflate_pair(sigma, p)
+    var current = coincidence_boundaries(q.u, q.v)
+    var inherited = inherited_boundary_positions(sigma, p.u, p.v)
+    var inherited_current = List[Int]()
+    for i in range(len(current)):
+        if _contains_int(inherited, current[i]):
+            inherited_current.append(current[i])
+    return synchronizing_boundary_positions(sigma, q.u, q.v, inherited_current)
 
 
 def _slice(w: List[Int], lo: Int, hi: Int) -> List[Int]:
