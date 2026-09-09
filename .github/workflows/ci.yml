@@ -36,9 +36,9 @@ jobs:
           set -o pipefail
           out=$(pixi run mojo run -I . census.mojo 2>&1)
           printf '%s\n' "$out"
-          grep -Eq 'PIP specimens \(images of length <= 3\):[[:space:]]+4554' <<<"$out"
-          grep -Eq 'B_sigma construction terminated:[[:space:]]+4554.*capped:[[:space:]]+0' <<<"$out"
-          grep -Eq 'productive:[[:space:]]+4554.*non-productive:[[:space:]]+0' <<<"$out"
+          grep -Eq '^PIP specimens \(images of length <= 3\):[[:space:]]+4554$' <<<"$out"
+          grep -Eq '^[[:space:]]*B_sigma construction terminated:[[:space:]]+4554[[:space:]]+capped:[[:space:]]+0$' <<<"$out"
+          grep -Eq '^[[:space:]]*productive:[[:space:]]+4554[[:space:]]+non-productive:[[:space:]]+0$' <<<"$out"
 
   c3-census:
     runs-on: ubuntu-latest
@@ -54,21 +54,21 @@ jobs:
           set -o pipefail
           out=$(pixi run mojo run -I . c3_census.mojo 2>&1)
           printf '%s\n' "$out"
-          grep -Eq 'PIP specimens:[[:space:]]+4554[[:space:]]+capped:[[:space:]]+0' <<<"$out"
-          grep -Eq 'recurrent noncoincident SCCs:[[:space:]]+5022[[:space:]]+states:[[:space:]]+369486' <<<"$out"
-          grep -Eq 'SCCs with newborn synchronization:[[:space:]]+4962' <<<"$out"
-          grep -Eq 'SCCs without newborn synchronization:[[:space:]]+60' <<<"$out"
-          grep -Eq 'SCCs with inherited synchronization:[[:space:]]+4614' <<<"$out"
-          grep -Eq 'SCCs with both lineages synchronizing:[[:space:]]+4614' <<<"$out"
-          grep -Eq 'SCCs with neither lineage synchronizing:[[:space:]]+60' <<<"$out"
-          grep -Eq 'SCCs with clean-newborn state:[[:space:]]+1614' <<<"$out"
-          grep -Eq 'states with newborn synchronization:[[:space:]]+305730' <<<"$out"
-          grep -Eq 'states with inherited synchronization:[[:space:]]+171948' <<<"$out"
-          grep -Eq 'states with clean-newborn synchronization:[[:space:]]+141684' <<<"$out"
-          grep -Eq 'no-sync SCCs that are singleton:[[:space:]]+60' <<<"$out"
-          grep -Eq 'no-sync SCCs with direct coincidence sibling:[[:space:]]+0' <<<"$out"
-          grep -Eq 'no-sync SCCs with noncoincident exit:[[:space:]]+60' <<<"$out"
-          grep -Eq 'no-sync closed/no-direct-coincidence candidates:[[:space:]]+0' <<<"$out"
+          grep -Eq '^PIP specimens:[[:space:]]+4554[[:space:]]+capped:[[:space:]]+0$' <<<"$out"
+          grep -Eq '^recurrent noncoincident SCCs:[[:space:]]+5022[[:space:]]+states:[[:space:]]+369486$' <<<"$out"
+          grep -Eq '^SCCs with newborn synchronization:[[:space:]]+4962$' <<<"$out"
+          grep -Eq '^SCCs without newborn synchronization:[[:space:]]+60$' <<<"$out"
+          grep -Eq '^SCCs with inherited synchronization:[[:space:]]+4614$' <<<"$out"
+          grep -Eq '^SCCs with both lineages synchronizing:[[:space:]]+4614$' <<<"$out"
+          grep -Eq '^SCCs with neither lineage synchronizing:[[:space:]]+60$' <<<"$out"
+          grep -Eq '^SCCs with clean-newborn state:[[:space:]]+1614$' <<<"$out"
+          grep -Eq '^states with newborn synchronization:[[:space:]]+305730$' <<<"$out"
+          grep -Eq '^states with inherited synchronization:[[:space:]]+171948$' <<<"$out"
+          grep -Eq '^states with clean-newborn synchronization:[[:space:]]+141684$' <<<"$out"
+          grep -Eq '^no-sync SCCs that are singleton:[[:space:]]+60$' <<<"$out"
+          grep -Eq '^no-sync SCCs with direct coincidence sibling:[[:space:]]+0$' <<<"$out"
+          grep -Eq '^no-sync SCCs with noncoincident exit:[[:space:]]+60$' <<<"$out"
+          grep -Eq '^no-sync closed/no-direct-coincidence candidates:[[:space:]]+0$' <<<"$out"
 
   tla-models:
     runs-on: ubuntu-latest
