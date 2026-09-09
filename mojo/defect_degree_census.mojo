@@ -1,14 +1,14 @@
 """Exact first scattered-subword defect census over the 4554 PIP corpus.
 
-Every noncoincident balanced-pair state has K1=0.  This census computes K2,
+Every noncoincident balanced-pair state has K1=0. This census computes K2,
 K3 and K4 with streaming exact integer recurrences and classifies the first
-nonzero defect as degree 2, 3, 4, or >=5.  Counts are separated into:
+nonzero defect as degree 2, 3, 4, or >=5. Counts are separated into:
 
 - every reachable noncoincident BPA state;
 - recurrent noncoincident SCC states;
 - states belonging to noncoincident sink SCCs.
 
-The census is finite evidence only.  It does not prove a degree bound for PIP
+The census is finite evidence only. It does not prove a degree bound for PIP
 balanced-pair states and does not prove G1, C1, C4, or PSC.
 """
 
@@ -126,13 +126,13 @@ def print_counts(prefix: String, counts: List[Int]):
 
 def main() raises:
     var words = image_words()
-    var reachable = List[Int>()
-    var recurrent = List[Int]()
-    var sink = List[Int>()
+    var reachable_counts = List[Int]()
+    var recurrent_counts = List[Int]()
+    var sink_counts = List[Int]()
     for _ in range(6):
-        reachable.append(0)
-        recurrent.append(0)
-        sink.append(0)
+        reachable_counts.append(0)
+        recurrent_counts.append(0)
+        sink_counts.append(0)
 
     var n_pip = 0
     var n_capped = 0
@@ -198,7 +198,7 @@ def main() raises:
 
                     total_noncoincident += 1
                     var degree = first_defect_degree(p)
-                    increment(reachable, degree)
+                    increment(reachable_counts, degree)
 
                     if degree >= 4:
                         specimen_reachable_d4plus = True
@@ -222,12 +222,12 @@ def main() raises:
 
                     if recurrent_flag[state_index]:
                         total_recurrent += 1
-                        increment(recurrent, degree)
+                        increment(recurrent_counts, degree)
                         if degree >= 4:
                             specimen_recurrent_d4plus = True
                     if sink_flag[state_index]:
                         total_sink += 1
-                        increment(sink, degree)
+                        increment(sink_counts, degree)
                         if degree >= 4:
                             specimen_sink_d4plus = True
 
@@ -241,11 +241,11 @@ def main() raises:
     print("C4 first-defect-degree census")
     print("PIP specimens:", n_pip, " capped:", n_capped)
     print("reachable noncoincident states:", total_noncoincident)
-    print_counts("reachable", reachable)
+    print_counts("reachable", reachable_counts)
     print("recurrent noncoincident states:", total_recurrent)
-    print_counts("recurrent", recurrent)
+    print_counts("recurrent", recurrent_counts)
     print("sink noncoincident states:", total_sink)
-    print_counts("sink", sink)
+    print_counts("sink", sink_counts)
     print("PIP with reachable degree4plus state:", specimens_reachable_d4plus)
     print("PIP with recurrent degree4plus state:", specimens_recurrent_d4plus)
     print("PIP with sink degree4plus state:", specimens_sink_d4plus)
