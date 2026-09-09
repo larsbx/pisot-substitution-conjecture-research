@@ -40,6 +40,15 @@ def contains_index(comp: List[Int], x: Int) -> Bool:
     return False
 
 
+def counts_csv(counts: List[Int]) -> String:
+    var out = String("")
+    for i in range(len(counts)):
+        if i > 0:
+            out += ","
+        out += String(counts[i])
+    return out
+
+
 def main() raises:
     var words = image_words()
     var pip_pair_counts = List[Int]()
@@ -58,6 +67,11 @@ def main() raises:
     var n_sink_inherited = 0
     var n_sink_any_sync = 0
     var n_sink_no_sync = 0
+
+    var n_pip_zero_sink = 0
+    var n_pip_one_sink = 0
+    var n_pip_multi_sink = 0
+    var max_sink_per_pip = 0
 
     for i in range(len(words)):
         for j in range(len(words)):
@@ -80,6 +94,7 @@ def main() raises:
                     n_capped += 1
                     continue
 
+                var specimen_sink_count = 0
                 var comps = recurrent_noncoincident_sccs(a)
                 for ci in range(len(comps)):
                     ref comp = comps[ci]
@@ -101,6 +116,7 @@ def main() raises:
                     if noncoincident_exit:
                         continue
 
+                    specimen_sink_count += 1
                     n_sink += 1
                     sink_pair_counts[7 * plus_type + minus_type] += 1
 
@@ -141,16 +157,36 @@ def main() raises:
                             "\",\"minus\":\"", endpoint_type_name(minus_type), "\"}"
                         )
 
+                if specimen_sink_count == 0:
+                    n_pip_zero_sink += 1
+                    print("PIP_ZERO_SINK_JSON {\"i\":", i, ",\"j\":", j, ",\"k\":", k, "}")
+                elif specimen_sink_count == 1:
+                    n_pip_one_sink += 1
+                else:
+                    n_pip_multi_sink += 1
+                    print(
+                        "PIP_MULTI_SINK_JSON {\"i\":", i, ",\"j\":", j,
+                        ",\"k\":", k, ",\"count\":", specimen_sink_count, "}"
+                    )
+                if specimen_sink_count > max_sink_per_pip:
+                    max_sink_per_pip = specimen_sink_count
+
     print("C4 endpoint-type sink-SCC census")
     print("PIP specimens:", n_pip, " capped:", n_capped)
     print("recurrent noncoincident SCCs:", n_recurrent)
     print("noncoincident sink SCCs:", n_sink)
+    print("uncapped PIP with zero sink SCCs:", n_pip_zero_sink)
+    print("uncapped PIP with exactly one sink SCC:", n_pip_one_sink)
+    print("uncapped PIP with multiple sink SCCs:", n_pip_multi_sink)
+    print("maximum sink SCCs per uncapped PIP:", max_sink_per_pip)
     print("sink SCCs with direct coincidence child:", n_sink_direct_coincidence)
     print("sink SCCs without direct coincidence child:", n_sink_no_direct_coincidence)
     print("sink SCCs with newborn synchronization:", n_sink_newborn)
     print("sink SCCs with inherited synchronization:", n_sink_inherited)
     print("sink SCCs with any boundary synchronization:", n_sink_any_sync)
     print("sink SCCs with no boundary synchronization:", n_sink_no_sync)
+    print("PIP_TYPE_MATRIX " + counts_csv(pip_pair_counts))
+    print("SINK_TYPE_MATRIX " + counts_csv(sink_pair_counts))
 
     for plus_type in range(7):
         for minus_type in range(7):
