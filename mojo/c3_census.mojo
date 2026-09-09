@@ -15,6 +15,11 @@ appear as a one-step newborn escape from some state of that SCC. This program
 therefore scans every state of every recurrent noncoincident SCC once, instead
 of inflating whole pairs exponentially.
 
+For SCCs with no boundary-synchronization witness of either lineage, the census
+also distinguishes a direct coincidence sibling, a noncoincident escape edge,
+and a genuinely closed/no-direct-coincidence obstruction candidate. Only the
+last class is relevant to the closed-nonproductive counterexample regime.
+
 The scan is finite evidence and a diagnostic for the locality reduction. It is
 not a proof of G1, C1, C2, C3, or PSC.
 """
@@ -42,6 +47,13 @@ def image_words() -> List[List[Int]]:
     return out^
 
 
+def contains_int(xs: List[Int], x: Int) -> Bool:
+    for i in range(len(xs)):
+        if xs[i] == x:
+            return True
+    return False
+
+
 def main() raises:
     var words = image_words()
     var n_pip = 0
@@ -59,6 +71,12 @@ def main() raises:
     var states_with_newborn = 0
     var states_with_inherited = 0
     var states_with_clean_newborn = 0
+
+    # Audit the no-synchronization residual class.
+    var no_sync_singleton = 0
+    var no_sync_with_direct_coincidence = 0
+    var no_sync_with_noncoincident_exit = 0
+    var no_sync_closed_candidate = 0
 
     for i in range(len(words)):
         for j in range(len(words)):
@@ -122,10 +140,34 @@ def main() raises:
                         scc_with_both += 1
                     if not has_newborn and not has_inherited:
                         scc_with_neither += 1
+
+                        var has_direct_coincidence = False
+                        var has_noncoincident_exit = False
+                        for si in range(len(comp)):
+                            var v = comp[si]
+                            for ei in range(len(a.adj[v])):
+                                var w = a.adj[v][ei]
+                                if a.states[w].is_coincidence():
+                                    has_direct_coincidence = True
+                                elif not contains_int(comp, w):
+                                    has_noncoincident_exit = True
+
+                        if len(comp) == 1:
+                            no_sync_singleton += 1
+                        if has_direct_coincidence:
+                            no_sync_with_direct_coincidence += 1
+                        if has_noncoincident_exit:
+                            no_sync_with_noncoincident_exit += 1
+                        if not has_direct_coincidence and not has_noncoincident_exit:
+                            no_sync_closed_candidate += 1
+
                         print(
                             "NO_SYNC_JSON {\"type\":\"no_sync\",\"i\":",
                             i, ",\"j\":", j, ",\"k\":", k,
-                            ",\"scc\":", ci, ",\"size\":", len(comp), "}"
+                            ",\"scc\":", ci, ",\"size\":", len(comp),
+                            ",\"direct_coincidence\":", 1 if has_direct_coincidence else 0,
+                            ",\"noncoincident_exit\":", 1 if has_noncoincident_exit else 0,
+                            ",\"state\":\"", a.states[comp[0]].key(), "\"}"
                         )
                     if has_clean_newborn:
                         scc_with_clean_newborn += 1
@@ -142,3 +184,7 @@ def main() raises:
     print("states with newborn synchronization:", states_with_newborn)
     print("states with inherited synchronization:", states_with_inherited)
     print("states with clean-newborn synchronization:", states_with_clean_newborn)
+    print("no-sync SCCs that are singleton:", no_sync_singleton)
+    print("no-sync SCCs with direct coincidence sibling:", no_sync_with_direct_coincidence)
+    print("no-sync SCCs with noncoincident exit:", no_sync_with_noncoincident_exit)
+    print("no-sync closed/no-direct-coincidence candidates:", no_sync_closed_candidate)
