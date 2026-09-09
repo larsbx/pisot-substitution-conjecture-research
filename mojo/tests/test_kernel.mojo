@@ -49,6 +49,15 @@ def test_certificate_basis_spans_w3() raises:
     assert_true(spans_same_space(certificate_w3_basis(), w3_basis()))
 
 
+def test_w3_invariant_basis_on_tribonacci() raises:
+    var e: List[Int] = [1, 1, 1, 1, 0, 0, 0, 1, 0]
+    var m = Mat3(e)
+    var basis = certificate_w3_basis()
+    assert_equal(len(basis), 8)
+    for k in range(len(basis)):
+        assert_true(in_w3(tensor_cube_apply(m, basis[k])))
+
+
 def test_seeds_are_k2_zero_of_length_seven() raises:
     var seeds = length7_seeds()
     assert_equal(len(seeds), 6)
@@ -158,6 +167,9 @@ def main() raises:
     test_certificate_basis_spans_w3()
     n += 1
     print("[PASS]", "test_certificate_basis_spans_w3")
+    test_w3_invariant_basis_on_tribonacci()
+    n += 1
+    print("[PASS]", "test_w3_invariant_basis_on_tribonacci")
     test_seeds_are_k2_zero_of_length_seven()
     n += 1
     print("[PASS]", "test_seeds_are_k2_zero_of_length_seven")
