@@ -85,6 +85,11 @@ jobs:
           out=$(pixi run mojo run -I . c4_census.mojo 2>&1)
           printf '%s\n' "$out"
           grep -Fx 'PIP specimens: 4554  capped: 0' <<<"$out"
+          grep -Fx 'degree4 unimodular PIP: 2628' <<<"$out"
+          grep -Fx 'degree4 nonunimodular PIP: 1926' <<<"$out"
+          grep -Fx 'degree4 unimodular three-real-root PIP: 648' <<<"$out"
+          grep -Fx 'degree4 unimodular complex-pair PIP: 1980' <<<"$out"
+          grep -Fx 'PIP cubics with zero discriminant: 0' <<<"$out"
           grep -Fx 'recurrent noncoincident SCCs: 5022' <<<"$out"
           grep -Fx 'noncoincident sink SCCs: 4554' <<<"$out"
           grep -Fx 'uncapped PIP with zero sink SCCs: 0' <<<"$out"

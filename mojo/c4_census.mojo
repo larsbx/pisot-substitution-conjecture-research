@@ -1,11 +1,12 @@
-"""Exact C4-B calibration over the established alphabet-3 PIP corpus.
+"""Exact C4 calibration over the established alphabet-3 PIP corpus.
 
 For every primitive irreducible Pisot substitution with image lengths <= 3,
 classify the prefix/suffix endpoint maps into the seven C4-A types A..G. Then
-inspect every recurrent noncoincident SCC and isolate noncoincident sink SCCs:
-SCCs with no noncoincident child outside the component. A productive sink SCC
-may still have a direct coincidence child; a hypothetical nonproductive sink
-counterexample would not.
+inspect every recurrent noncoincident SCC and isolate noncoincident sink SCCs.
+
+The census also records the degree-4 first-defect arithmetic survivor regime:
+`|det M|=1` versus `|det M|>1`, with unimodular specimens split by cubic
+discriminant into three-real-root and one-real/two-complex-root cases.
 
 The output is finite evidence only. It does not prove C4, C1, G1, or PSC.
 """
@@ -49,6 +50,20 @@ def counts_csv(counts: List[Int]) -> String:
     return out
 
 
+def cubic_discriminant(poly: List[Int]) -> Int:
+    """Discriminant of monic cubic c0 + c1*x + c2*x^2 + x^3."""
+    var c = poly[0]
+    var b = poly[1]
+    var a = poly[2]
+    return (
+        a * a * b * b
+        - 4 * b * b * b
+        - 4 * a * a * a * c
+        - 27 * c * c
+        + 18 * a * b * c
+    )
+
+
 def main() raises:
     var words = image_words()
     var pip_pair_counts = List[Int]()
@@ -73,6 +88,12 @@ def main() raises:
     var n_pip_multi_sink = 0
     var max_sink_per_pip = 0
 
+    var n_unimodular = 0
+    var n_nonunimodular = 0
+    var n_unimodular_real = 0
+    var n_unimodular_complex = 0
+    var n_zero_discriminant = 0
+
     for i in range(len(words)):
         for j in range(len(words)):
             for k in range(len(words)):
@@ -81,9 +102,24 @@ def main() raises:
                 sigma.append(words[j].copy())
                 sigma.append(words[k].copy())
 
-                if not is_pip(Mat3(substitution_incidence(sigma))):
+                var m = Mat3(substitution_incidence(sigma))
+                if not is_pip(m):
                     continue
                 n_pip += 1
+
+                var det_abs = abs(m.det())
+                if det_abs == 1:
+                    n_unimodular += 1
+                    var disc = cubic_discriminant(m.charpoly())
+                    if disc < 0:
+                        n_unimodular_complex += 1
+                    elif disc > 0:
+                        n_unimodular_real += 1
+                    else:
+                        n_zero_discriminant += 1
+                        print("PIP_ZERO_DISCRIMINANT_JSON {\"i\":", i, ",\"j\":", j, ",\"k\":", k, "}")
+                else:
+                    n_nonunimodular += 1
 
                 var plus_type = endpoint_type(prefix_endpoint_map(sigma))
                 var minus_type = endpoint_type(suffix_endpoint_map(sigma))
@@ -102,8 +138,6 @@ def main() raises:
                     var noncoincident_exit = False
                     var direct_coincidence = False
 
-                    # First decide the graph-theoretic sink condition. Boundary
-                    # signatures are only load-bearing after this test passes.
                     for si in range(len(comp)):
                         var state_index = comp[si]
                         for ei in range(len(a.adj[state_index])):
@@ -173,6 +207,11 @@ def main() raises:
 
     print("C4 endpoint-type sink-SCC census")
     print("PIP specimens:", n_pip, " capped:", n_capped)
+    print("degree4 unimodular PIP:", n_unimodular)
+    print("degree4 nonunimodular PIP:", n_nonunimodular)
+    print("degree4 unimodular three-real-root PIP:", n_unimodular_real)
+    print("degree4 unimodular complex-pair PIP:", n_unimodular_complex)
+    print("PIP cubics with zero discriminant:", n_zero_discriminant)
     print("recurrent noncoincident SCCs:", n_recurrent)
     print("noncoincident sink SCCs:", n_sink)
     print("uncapped PIP with zero sink SCCs:", n_pip_zero_sink)
