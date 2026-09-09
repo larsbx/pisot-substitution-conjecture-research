@@ -126,7 +126,6 @@ def run_all(corpus_bound: Int = 2) -> List[Check]:
     # -- 10: the Theta intertwining identity, over the PIP corpus --------------
     var corpus = pip_corpus(corpus_bound)
     var inter = True
-    var invar = True
     for i in range(len(corpus)):
         var m = corpus[i].copy()
         var d = m.det()
@@ -136,11 +135,19 @@ def run_all(corpus_bound: Int = 2) -> List[Check]:
             # Theta(M^{(x)3} x) . M == det(M) . M . Theta(x)   (inverse cleared)
             if theta(y) * m != (m * theta(x)).scale(d):
                 inter = False
-            if not in_w3(y):
-                invar = False
     checks.append(Check("C7  Theta(M^{(x)3} x) M = det(M) M Theta(x) on the PIP corpus",
                         inter, String(len(corpus)) + " PIP matrices x 6 seeds"))
-    checks.append(Check("C8  W_3 is M^{(x)3}-invariant on the PIP corpus", invar, ""))
+
+    # C8 certifies invariance of all of W_3, so test an actual 8-vector basis,
+    # not merely the six K_3 seed tensors (whose span has dimension 3).
+    var invar = True
+    for i in range(len(corpus)):
+        var m = corpus[i].copy()
+        for k in range(len(cb)):
+            if not in_w3(tensor_cube_apply(m, cb[k])):
+                invar = False
+    checks.append(Check("C8  W_3 is M^{(x)3}-invariant on the PIP corpus", invar,
+                        String(len(corpus)) + " PIP matrices x 8 basis vectors"))
 
     # -- Section 7: PIP-Locus Target 1, verified on the corpus -----------------
     var t1 = True
