@@ -39,6 +39,9 @@ jobs:
           grep -Eq 'PIP specimens \(images of length <= 3\):[[:space:]]+4554' <<<"$out"
           grep -Eq 'B_sigma construction terminated:[[:space:]]+4554.*capped:[[:space:]]+0' <<<"$out"
           grep -Eq 'productive:[[:space:]]+4554.*non-productive:[[:space:]]+0' <<<"$out"
+      - name: C3 exact census exploratory
+        working-directory: mojo
+        run: pixi run mojo run -I . c3_census.mojo
 
   tla-models:
     runs-on: ubuntu-latest
