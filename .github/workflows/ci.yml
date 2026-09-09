@@ -48,9 +48,23 @@ jobs:
         run: |
           curl -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
-      - name: C3 exact horizon-3 census
+      - name: C3 exact local census
         working-directory: mojo
-        run: pixi run mojo run -I . c3_census.mojo
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . c3_census.mojo 2>&1)
+          printf '%s\n' "$out"
+          grep -Eq 'PIP specimens:[[:space:]]+4554[[:space:]]+capped:[[:space:]]+0' <<<"$out"
+          grep -Eq 'recurrent noncoincident SCCs:[[:space:]]+5022[[:space:]]+states:[[:space:]]+369486' <<<"$out"
+          grep -Eq 'SCCs with newborn synchronization:[[:space:]]+4962' <<<"$out"
+          grep -Eq 'SCCs without newborn synchronization:[[:space:]]+60' <<<"$out"
+          grep -Eq 'SCCs with inherited synchronization:[[:space:]]+4614' <<<"$out"
+          grep -Eq 'SCCs with both lineages synchronizing:[[:space:]]+4614' <<<"$out"
+          grep -Eq 'SCCs with neither lineage synchronizing:[[:space:]]+60' <<<"$out"
+          grep -Eq 'SCCs with clean-newborn state:[[:space:]]+1614' <<<"$out"
+          grep -Eq 'states with newborn synchronization:[[:space:]]+305730' <<<"$out"
+          grep -Eq 'states with inherited synchronization:[[:space:]]+171948' <<<"$out"
+          grep -Eq 'states with clean-newborn synchronization:[[:space:]]+141684' <<<"$out"
 
   tla-models:
     runs-on: ubuntu-latest
