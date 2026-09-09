@@ -128,7 +128,8 @@ For every self-map `h` of a three-letter alphabet and every ordered pair
 
 1. the pair synchronizes; or
 2. the pair already belongs to `Core(h)`; or
-3. after **one** application of `h x h`, the pair belongs to `Core(h)`.
+3. the pair does not initially belong to `Core(h)`, and after **one** application
+   of `h x h` it enters `Core(h)` for the first time.
 
 In particular, there is no nonsynchronizing transient of length greater than
 one.
@@ -151,7 +152,20 @@ The property is invariant under relabeling. QED.
 `tests/test_endpoint_core.py` also checks this proposition exhaustively over all
 27 maps and every ordered distinct pair.
 
-## 4. Consequence for a hypothetical nonproductive sink SCC
+## 4. Synchronization quotient
+
+Define `a ~_h b` when the forward orbits of `a` and `b` eventually coalesce at
+the same iterate. This is an equivalence relation. Because `a ~_h b` iff
+`h(a) ~_h h(b)`, the map `h` induces a bijection on the quotient classes.
+Consequently nonsynchronization is equivalent to lying in distinct quotient
+classes, and the quotient-class phase is periodic from the start.
+
+For three letters, the quotient has size at most three, so its induced
+permutation has order at most three. This gives a cleaner normal form than
+tracking transient letters individually: all persistent endpoint obstruction
+data is a finite quotient class together with a phase modulo 1, 2, or 3.
+
+## 5. Consequence for a hypothetical nonproductive sink SCC
 
 The Boundary Synchronization Lemma says that a boundary adjacent pair that
 synchronizes under `sigma_+` or `sigma_-` yields a coincidence sibling after a
@@ -160,7 +174,8 @@ boundary lineage must remain in `NSync`.
 
 Proposition 3 sharpens this on three letters: after at most one endpoint-map
 step, every such lineage lies in one of the periodic cores C--G and thereafter
-has period 1, 2, or 3.
+has period 1, 2, or 3. Equivalently, in the synchronization quotient it is
+periodic from the start.
 
 So C4 does **not** need to reason about arbitrary endpoint transients. The
 remaining counterexample normal form can assume periodic endpoint-core data
@@ -170,7 +185,7 @@ This does not by itself prove that the relevant boundary lineage recurs inside
 a closed balanced-pair SCC, nor does it prove that an interior newborn boundary
 must occur. Those are the next steps.
 
-## 5. Reduced C4 program
+## 6. Reduced C4 program
 
 The remaining work is now:
 
@@ -181,7 +196,7 @@ boundary-signature transition system whose records include:
 
 - the balanced-pair state/type;
 - left and right adjacent endpoint pairs at inherited and newborn cuts;
-- their C--G core type and phase;
+- their C--G core type / quotient class and phase;
 - which child block in `C` inherits each boundary.
 
 Because all endpoint-core phases have period at most three, any repeated SCC
@@ -205,11 +220,11 @@ Attempt eliminators in increasing strength:
 Any surviving template is an explicit open obstruction candidate and must be
 preserved rather than silently discarded.
 
-## 6. Executable reference
+## 7. Executable reference
 
-- `src/psc_research/endpoint_core.py` — exact classification and product-core
-  dynamics;
-- `scripts/classify_endpoint_cores.py` — deterministic human/JSON report;
+- `src/psc_research/endpoint_core.py` — exact classification, synchronization
+  quotient, and product-core dynamics;
+- `scripts/classify_endpoint_cores.py` — deterministic human/JSONL report;
 - `tests/test_endpoint_core.py` — exhaustive three-letter regressions.
 
 This finite-map layer has no floating point and no substitution-specific
