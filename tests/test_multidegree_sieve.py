@@ -1,3 +1,5 @@
+from psc_research import coincidence_boundaries
+from psc_research.defect_intertwiner import lowest_nonzero_defect_degree
 from psc_research.multidegree_sieve import (
     candidate_families,
     dimension_from_multidegrees,
@@ -7,6 +9,16 @@ from psc_research.multidegree_sieve import (
     multidegree_multiplicity,
     sorted_weights,
     witt_dimension,
+)
+
+
+# Exact ternary calibration found by exhaustive enumeration at length 12.
+# It is an irreducible balanced-pair state with K1=K2=K3=0 and K4!=0,
+# showing that the higher-degree frontier is real and cannot be discarded from
+# the length<=11 pattern.
+DEGREE4_STATE = (
+    (1, 2, 2, 3, 3, 1, 2, 1, 1, 2, 2, 3),
+    (2, 3, 1, 1, 2, 1, 2, 2, 3, 3, 1, 2),
 )
 
 
@@ -84,3 +96,9 @@ def test_candidate_operator_types_follow_mod_three_pattern():
     assert [(f.label, f.operator_type) for f in candidate_families(8)] == [
         ("dual_twist", "det^m tensor Lambda^2(V)"),
     ]
+
+
+def test_irreducible_balanced_pair_can_genuinely_first_differ_in_degree_four():
+    u, v = DEGREE4_STATE
+    assert coincidence_boundaries(u, v, 3) == [0, 12]
+    assert lowest_nonzero_defect_degree((DEGREE4_STATE,)) == 4
