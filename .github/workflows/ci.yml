@@ -127,7 +127,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install elan
         run: |
-          curl -fsSL https://raw.githubusercontent.com/leanpro/elan/master/elan-init.sh -o elan.sh
+          curl -fsSL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o elan.sh
           sh elan.sh -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Fetch Mathlib cache
