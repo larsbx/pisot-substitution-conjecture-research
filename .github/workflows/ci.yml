@@ -65,6 +65,10 @@ jobs:
           grep -Eq 'states with newborn synchronization:[[:space:]]+305730' <<<"$out"
           grep -Eq 'states with inherited synchronization:[[:space:]]+171948' <<<"$out"
           grep -Eq 'states with clean-newborn synchronization:[[:space:]]+141684' <<<"$out"
+          grep -Eq 'no-sync SCCs that are singleton:[[:space:]]+60' <<<"$out"
+          grep -Eq 'no-sync SCCs with direct coincidence sibling:[[:space:]]+0' <<<"$out"
+          grep -Eq 'no-sync SCCs with noncoincident exit:[[:space:]]+60' <<<"$out"
+          grep -Eq 'no-sync closed/no-direct-coincidence candidates:[[:space:]]+0' <<<"$out"
 
   tla-models:
     runs-on: ubuntu-latest
