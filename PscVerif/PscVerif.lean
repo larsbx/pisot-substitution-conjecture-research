@@ -1,3 +1,6 @@
--- This module serves as the root of the `PscVerif` library.
--- Import modules here that should be built as part of the library.
 import PscVerif.Basic
+import PscVerif.Shuffle
+import PscVerif.Seeds
+import PscVerif.Centralizer
+import PscVerif.TraceLemma
+import PscVerif.Spectral
