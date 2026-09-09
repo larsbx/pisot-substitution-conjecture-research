@@ -1,14 +1,14 @@
 """Exact finite-map classification for the C4 endpoint-core program.
 
 The boundary synchronization mechanism depends only on the endpoint maps
-``sigma_+`` and ``sigma_-``.  For a three-letter alphabet each endpoint map is
-one of only ``3^3 = 27`` functions.  This module classifies those functions up
+``sigma_+`` and ``sigma_-``. For a three-letter alphabet each endpoint map is
+one of only ``3^3 = 27`` functions. This module classifies those functions up
 to alphabet relabeling and computes the recurrent off-diagonal core of the
 product map ``h x h``.
 
 A pair ``(a,b)`` is synchronizing when the two forward orbits eventually meet.
 A recurrent nonsynchronizing pair is an off-diagonal periodic point of
-``h x h``.  These finite cores are the obstruction templates used by C4; the
+``h x h``. These finite cores are the obstruction templates used by C4; the
 module proves no Pisot-specific existence or exclusion theorem by itself.
 """
 
@@ -16,7 +16,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from itertools import permutations, product
-from typing import Iterable, Iterator, Sequence
+from typing import Iterator, Sequence
 
 FiniteMap = tuple[int, ...]
 Pair = tuple[int, int]
@@ -86,7 +86,7 @@ def synchronizes(h: Sequence[int], a: int, b: int) -> bool:
     """Whether the two forward orbits of ``a`` and ``b`` ever meet.
 
     The decision is exact: iterate the product map until reaching the diagonal
-    or repeating an ordered pair.  Repetition off the diagonal proves that the
+    or repeating an ordered pair. Repetition off the diagonal proves that the
     two deterministic forward orbits will never meet.
     """
     h = validate_map(h)
@@ -120,23 +120,21 @@ def is_recurrent_pair(h: Sequence[int], pair: Pair) -> bool:
     """Whether ``pair`` is periodic under ``h x h`` and stays off diagonal."""
     h = validate_map(h)
     a, b = pair
-    if a == b or synchronizes(h, a, b):
+    n = len(h)
+    if not (0 <= a < n and 0 <= b < n):
+        raise ValueError("pair lies outside the map domain")
+    if a == b:
         return False
+
     start = (a, b)
-    x, y = h[a], h[b]
-    while (x, y) != start:
-        # A deterministic finite orbit that repeats somewhere other than the
-        # start has entered a cycle not containing the start, so the start is
-        # transient rather than recurrent.
+    seen: set[Pair] = set()
+    x, y = start
+    while (x, y) not in seen:
         if x == y:
             return False
+        seen.add((x, y))
         x, y = h[x], h[y]
-        # At most n^2 product states exist.  The synchronizes check above has
-        # already established an off-diagonal eventual cycle, so termination
-        # is guaranteed.
-        if (x, y) == start:
-            break
-    return True
+    return (x, y) == start
 
 
 def recurrent_nonsynchronizing_core(h: Sequence[int]) -> tuple[Pair, ...]:
@@ -169,10 +167,9 @@ def class_of(h: Sequence[int]) -> EndpointMapClass:
     """Return the conjugacy class descriptor containing ``h``."""
     h = validate_map(h)
     representative = canonical_map(h)
-    members = conjugacy_orbit(h)
     return EndpointMapClass(
         representative=representative,
-        members=members,
+        members=conjugacy_orbit(h),
         nonsynchronizing_pairs=nonsynchronizing_pairs(representative),
         recurrent_core=recurrent_nonsynchronizing_core(representative),
     )
@@ -181,12 +178,11 @@ def class_of(h: Sequence[int]) -> EndpointMapClass:
 def functional_cycle_lengths(h: Sequence[int]) -> tuple[int, ...]:
     """Sorted cycle lengths of the functional graph of ``h``.
 
-    This is a readable invariant for reports.  It is not used as the canonical
+    This is a readable invariant for reports. It is not used as the canonical
     classifier because distinct rooted-tree attachments can share cycle data.
     """
     h = validate_map(h)
     n = len(h)
-    cycle_nodes: set[int] = set()
     lengths: list[int] = []
     globally_seen: set[int] = set()
 
@@ -202,7 +198,5 @@ def functional_cycle_lengths(h: Sequence[int]) -> tuple[int, ...]:
             x = h[x]
         globally_seen.update(path)
         if x in position:
-            cycle = path[position[x] :]
-            cycle_nodes.update(cycle)
-            lengths.append(len(cycle))
+            lengths.append(len(path[position[x] :]))
     return tuple(sorted(lengths))
