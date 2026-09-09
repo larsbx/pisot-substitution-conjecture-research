@@ -227,3 +227,46 @@ def recurrent_noncoincident_sccs(a: Automaton) -> List[List[Int]]:
         if has_cycle(a, all[i]) and is_noncoincident(a, all[i]):
             out.append(all[i].copy())
     return out^
+
+
+def nonproductive_states(a: Automaton) -> List[Int]:
+    """Indices of states from which no coincidence pair is reachable.
+
+    Emptiness of this list is the SCC Producer property (`conj:producer`) for
+    the reachable part of `B_sigma`. It is a conjecture in general: an empty
+    result for one sigma eliminates counterexamples, it does not prove the
+    conjecture.
+    """
+    var n = a.size()
+    var good = List[Bool]()
+    for i in range(n):
+        good.append(a.states[i].is_coincidence())
+    # backwards closure over the reverse graph, to a fixpoint
+    var changed = True
+    while changed:
+        changed = False
+        for i in range(n):
+            if good[i]:
+                continue
+            for j in range(len(a.adj[i])):
+                if good[a.adj[i][j]]:
+                    good[i] = True
+                    changed = True
+    var out = List[Int]()
+    for i in range(n):
+        if not good[i]:
+            out.append(i)
+    return out^
+
+
+def substitution_incidence(sigma: List[List[Int]]) -> List[Int]:
+    """`M[i][j]` = number of occurrences of letter `i` in `sigma(j)`, row-major."""
+    var e = List[Int]()
+    for i in range(3):
+        for j in range(3):
+            var c = 0
+            for p in range(len(sigma[j])):
+                if sigma[j][p] == i:
+                    c += 1
+            e.append(c)
+    return e^

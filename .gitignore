@@ -22,3 +22,8 @@ mojo/.magic/
 
 # Lean / lake
 PscVerif/.lake/
+
+# TLC scratch
+tla/states/
+tla/*.jar
+tla/MC*.out
