@@ -1,10 +1,12 @@
 from psc_research.endpoint_core import (
+    all_maps,
     canonical_map,
     classify_maps,
     functional_cycle_lengths,
     is_recurrent_pair,
     nonsynchronizing_pairs,
     recurrent_nonsynchronizing_core,
+    steps_to_recurrent_core,
     synchronizes,
 )
 
@@ -53,6 +55,22 @@ def test_transient_nonsynchronizing_pairs_are_not_in_recurrent_core():
     assert not is_recurrent_pair(h, (1, 2))
     assert is_recurrent_pair(h, (0, 2))
     assert recurrent_nonsynchronizing_core(h) == ((0, 2), (2, 0))
+    assert steps_to_recurrent_core(h, 1, 2) == 1
+    assert steps_to_recurrent_core(h, 0, 2) == 0
+
+
+def test_every_three_letter_nonsynchronizing_pair_enters_core_within_one_step():
+    observed = set()
+    for h in all_maps(3):
+        for a in range(3):
+            for b in range(3):
+                if a == b:
+                    continue
+                steps = steps_to_recurrent_core(h, a, b)
+                if steps is not None:
+                    assert steps <= 1
+                    observed.add(steps)
+    assert observed == {0, 1}
 
 
 def test_canonicalization_is_invariant_under_relabeling():
