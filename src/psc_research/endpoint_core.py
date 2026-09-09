@@ -143,6 +143,34 @@ def recurrent_nonsynchronizing_core(h: Sequence[int]) -> tuple[Pair, ...]:
     return tuple(pair for pair in nonsynchronizing_pairs(h) if is_recurrent_pair(h, pair))
 
 
+def steps_to_recurrent_core(h: Sequence[int], a: int, b: int) -> int | None:
+    """Steps until a nonsynchronizing pair first enters the recurrent core.
+
+    Returns ``None`` when the pair synchronizes. For a nonsynchronizing pair,
+    deterministic finiteness guarantees eventual entry into an off-diagonal
+    periodic orbit.
+    """
+    h = validate_map(h)
+    n = len(h)
+    if not (0 <= a < n and 0 <= b < n):
+        raise ValueError("pair lies outside the map domain")
+    if synchronizes(h, a, b):
+        return None
+
+    core = set(recurrent_nonsynchronizing_core(h))
+    seen: set[Pair] = set()
+    x, y = a, b
+    steps = 0
+    while (x, y) not in core:
+        pair = (x, y)
+        if pair in seen:
+            raise AssertionError("nonsynchronizing orbit repeated before recurrent core")
+        seen.add(pair)
+        x, y = h[x], h[y]
+        steps += 1
+    return steps
+
+
 def classify_maps(size: int = 3) -> tuple[EndpointMapClass, ...]:
     """Classify all self-maps of ``size`` letters up to conjugacy."""
     groups: dict[FiniteMap, list[FiniteMap]] = {}
