@@ -33,37 +33,79 @@ TLA+ invariant `Productive` holds on Tribonacci, flipped Tribonacci and a
 Smith-type substitution. `MCNonProductive` shows the invariant is not vacuous:
 it fails for a primitive but non-Pisot substitution.
 
-**Equivalent formulations in this program.**
+**Equivalent formulations in the finite-BPA regime.**
 
 - No closed nonproductive recurrent noncoincident SCC exists.
-- No diagonal-free zero-return system exists.
-- No nonsynchronizing zero-return trap exists.
+- No sink SCC of the nonproductive subgraph exists.
+- No closed diagonal-free zero-return system exists.
 
-## C2 — Nonsynchronizing-core escape
+The sink-SCC reduction is elementary but important: if any state is
+nonproductive, the set of nonproductive states is forward-closed. In a finite
+BPA its condensation DAG therefore contains a sink SCC, and that SCC is closed,
+recurrent, noncoincident, and nonproductive. Thus C1 only needs a contradiction
+on sink/closed nonproductive SCCs; synchronization of every recurrent SCC is
+unnecessary. See `docs/sink-scc-reduction.md`.
 
-**Statement.** Every recurrent noncoincident SCC eventually has a zero-return boundary whose right adjacent pair lies in `Sync_+` or whose left adjacent pair lies in `Sync_-`.
+## C2 — sink-SCC boundary escape
 
-**Status.** Boundary normal form for C1 when all iterates are allowed. Useful because it localizes the obstruction to finite endpoint-map dynamics.
+**Statement.** Every closed nonproductive recurrent noncoincident SCC `C` has,
+at some inflation step, a zero-return boundary whose right adjacent pair lies
+in `Sync_+` or whose left adjacent pair lies in `Sync_-`.
 
-## C3 — Newborn synchronizing boundary
+**Status.** Open. This is the boundary normal form needed for C1 in the actual
+counterexample regime. It deliberately does **not** require synchronization on
+every recurrent SCC: SCCs with noncoincident exits may fail the local boundary
+test yet still be productive through the condensation graph.
 
-**Statement.** If all inherited zero-return boundaries remain nonsynchronizing under further inflation, some higher inflation creates a newborn zero-return boundary whose right adjacent pair lies in `Sync_+` or whose left adjacent pair lies in `Sync_-`.
+A synchronizing boundary contradicts nonproductivity by the Boundary
+Synchronization Lemma. With G1, the sink-SCC reduction shows that C2 is
+sufficient for C1.
 
-**Status.** Active next target. This is more tactical than C1/C2 because inherited boundaries are controlled by finite maps `sigma_+` and `sigma_-`.
+## C3 — one-step newborn escape on a closed counterexample SCC
 
-**Executable diagnostics.** The Python reference kernel now tracks boundary
-lineage exactly from one inflation to the next: an inherited cut is the image
-of a previous zero-return cut, and every other zero-return cut is classified as
-newborn. `newborn_boundary_sync_hits` and `inherited_boundary_sync_hits` test the
-two lineages separately. A Smith-type regression witness has nonsynchronizing
-inherited endpoints at the first inflation while newborn cuts at positions 3
-and 4 synchronize. This is finite evidence for the C3 mechanism, not a proof of
-C3. The next computational obligation is to port this lineage classification
-to the exact Mojo PIP census rather than rely on named examples or
-primitive-like random sweeps.
+**Statement.** For every closed nonproductive recurrent noncoincident SCC `C`
+of a primitive irreducible Pisot substitution, there exists a state `T in C`
+such that `sigma(T)` has an interior zero-return cut whose right adjacent pair
+lies in `Sync_+` or whose left adjacent pair lies in `Sync_-`.
 
-## C4 — finite-pigeon lift
+**Status.** Active next target. `docs/c3-locality-reduction.md` proves that any
+higher-inflation newborn synchronizing cut localizes to a one-step newborn cut
+inside an irreducible balanced block. Because a closed nonproductive SCC keeps
+all such noncoincident blocks inside the SCC, the horizon problem is removed:
+C3 is now a one-step existence problem on states of a hypothetical sink SCC.
 
-**Statement.** Finite recurrence of boundary types, combined with primitivity, forces newborn boundary escape from the nonsynchronizing cores.
+For an irreducible state, inherited cuts are only the endpoints. In a
+nonproductive SCC those endpoint pairs cannot synchronize, since the Boundary
+Synchronization Lemma would already give productivity. Thus any synchronizing
+interior cut in `sigma(T)` is precisely the needed newborn escape.
 
-**Status.** Programmatic. The common-cut recurrence notes provide an analogue of the finite-pigeon component, but not this theorem.
+**Exact corpus evidence, not proof.** `mojo/c3_census.mojo` scans all 5022
+recurrent noncoincident SCCs (369486 states) arising from the exact 4554-member
+alphabet-3 PIP corpus with image lengths `<= 3`:
+
+- 4962/5022 SCCs have one-step newborn synchronization;
+- 4614 have inherited synchronization;
+- 1614 contain a state with newborn synchronization but no inherited hit at
+  that state;
+- the remaining 60 SCCs have neither lineage synchronizing;
+- all 60 residual SCCs are singleton SCCs with a noncoincident exit;
+- none has a direct coincidence child, and **0** is closed with no direct
+  coincidence.
+
+Therefore every failure of the local boundary test in this exact corpus lies
+outside the closed/sink counterexample class. The census is now pinned in CI.
+This is finite elimination only; it does not prove C3.
+
+## C4 — finite-pigeon lift on a sink SCC
+
+**Statement.** In a hypothetical closed nonproductive PIP SCC, finite
+recurrence of irreducible balanced-pair types together with primitivity/Pisot
+structure forces a one-step newborn boundary to leave the nonsynchronizing
+endpoint cores.
+
+**Status.** Programmatic. The common-cut recurrence notes provide an analogue
+of the finite-pigeon component, but not this theorem. After the sink-SCC and
+newborn-locality reductions, this is the main structural route: assume every
+interior newborn boundary remains in the finite nonsynchronizing cores and use
+recurrence inside one closed SCC to derive a contradiction with the PIP
+hypotheses.
