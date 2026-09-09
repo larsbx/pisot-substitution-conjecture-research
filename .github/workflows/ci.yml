@@ -30,6 +30,15 @@ jobs:
       - name: Certificate checks
         working-directory: mojo
         run: pixi run mojo run -I . verify.mojo
+      - name: Alphabet-3 census regression
+        working-directory: mojo
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . census.mojo 2>&1)
+          printf '%s\n' "$out"
+          grep -Eq 'PIP specimens \(images of length <= 3\):[[:space:]]+4554' <<<"$out"
+          grep -Eq 'B_sigma construction terminated:[[:space:]]+4554.*capped:[[:space:]]+0' <<<"$out"
+          grep -Eq 'productive:[[:space:]]+4554.*non-productive:[[:space:]]+0' <<<"$out"
 
   tla-models:
     runs-on: ubuntu-latest
