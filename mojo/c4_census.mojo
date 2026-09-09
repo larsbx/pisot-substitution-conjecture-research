@@ -1,13 +1,13 @@
 """Exact C4-B calibration over the established alphabet-3 PIP corpus.
 
 For every primitive irreducible Pisot substitution with image lengths <= 3,
-classify the prefix/suffix endpoint maps into the seven C4-A types A..G.  Then
+classify the prefix/suffix endpoint maps into the seven C4-A types A..G. Then
 inspect every recurrent noncoincident SCC and isolate noncoincident sink SCCs:
-SCCs with no noncoincident child outside the component.  A productive sink SCC
+SCCs with no noncoincident child outside the component. A productive sink SCC
 may still have a direct coincidence child; a hypothetical nonproductive sink
 counterexample would not.
 
-The output is finite evidence only.  It does not prove C4, C1, G1, or PSC.
+The output is finite evidence only. It does not prove C4, C1, G1, or PSC.
 """
 
 from psc.bpa import build, recurrent_noncoincident_sccs, substitution_incidence, inherited_sync_positions, newborn_sync_positions
@@ -153,11 +153,11 @@ def main() raises:
             var idx = 7 * plus_type + minus_type
             if pip_pair_counts[idx] > 0:
                 print(
-                    "PIP_TYPE_PAIR ", endpoint_type_name(plus_type), " ",
-                    endpoint_type_name(minus_type), " ", pip_pair_counts[idx], sep=""
+                    "PIP_TYPE_PAIR " + endpoint_type_name(plus_type) + " " +
+                    endpoint_type_name(minus_type) + " " + String(pip_pair_counts[idx])
                 )
             if sink_pair_counts[idx] > 0:
                 print(
-                    "SINK_TYPE_PAIR ", endpoint_type_name(plus_type), " ",
-                    endpoint_type_name(minus_type), " ", sink_pair_counts[idx], sep=""
+                    "SINK_TYPE_PAIR " + endpoint_type_name(plus_type) + " " +
+                    endpoint_type_name(minus_type) + " " + String(sink_pair_counts[idx])
                 )
