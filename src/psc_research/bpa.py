@@ -23,6 +23,16 @@ class BoundaryHit:
     letter: Letter
 
 
+@dataclass(frozen=True)
+class BoundaryLineage:
+    """One zero-return boundary classified relative to the previous inflation."""
+
+    state: State
+    iterate: int
+    boundary: int
+    inherited: bool
+
+
 def alphabet_size(sigma: Substitution) -> int:
     return max(sigma.keys())
 
@@ -71,6 +81,70 @@ def coincidence_boundaries(u: Sequence[Letter], v: Sequence[Letter], size: int |
         if pu == pv:
             out.append(i)
     return out
+
+
+def _image_prefix_lengths(sigma: Substitution, word: Sequence[Letter]) -> list[int]:
+    out = [0]
+    for a in word:
+        out.append(out[-1] + len(sigma[a]))
+    return out
+
+
+def inherited_boundary_positions(
+    sigma: Substitution,
+    u: Sequence[Letter],
+    v: Sequence[Letter],
+) -> set[int]:
+    """Positions at the next inflation inherited from current zero-return cuts.
+
+    If `k` is a zero-return boundary of `(u,v)`, the Parikh vectors of the two
+    prefixes agree. Hence their substituted prefixes have the same length and
+    determine a canonical boundary in `(sigma(u), sigma(v))`.
+    """
+    size = alphabet_size(sigma)
+    old_boundaries = coincidence_boundaries(u, v, size)
+    upos = _image_prefix_lengths(sigma, u)
+    vpos = _image_prefix_lengths(sigma, v)
+    inherited: set[int] = set()
+    for k in old_boundaries:
+        if upos[k] != vpos[k]:
+            raise AssertionError("balanced prefixes mapped to unequal image lengths")
+        inherited.add(upos[k])
+    return inherited
+
+
+def boundary_lineage(
+    sigma: Substitution,
+    state: State,
+    iterate: int,
+) -> list[BoundaryLineage]:
+    """Classify zero-return boundaries at `iterate >= 1` as inherited/newborn.
+
+    This is a finite diagnostic for conjecture C3 (Newborn Synchronizing
+    Boundary). It does not assert that a newborn boundary must synchronize.
+    """
+    if iterate < 1:
+        raise ValueError("boundary_lineage requires iterate >= 1")
+    size = alphabet_size(sigma)
+    u, v = state
+    prev_u = apply_substitution_n(sigma, u, iterate - 1)
+    prev_v = apply_substitution_n(sigma, v, iterate - 1)
+    cur_u = apply_substitution(sigma, prev_u)
+    cur_v = apply_substitution(sigma, prev_v)
+    inherited = inherited_boundary_positions(sigma, prev_u, prev_v)
+    return [
+        BoundaryLineage(state, iterate, k, k in inherited)
+        for k in coincidence_boundaries(cur_u, cur_v, size)
+    ]
+
+
+def newborn_boundary_positions(
+    sigma: Substitution,
+    state: State,
+    iterate: int,
+) -> list[int]:
+    """Zero-return cuts created at this inflation rather than inherited."""
+    return [item.boundary for item in boundary_lineage(sigma, state, iterate) if not item.inherited]
 
 
 def decompose_pair(u: Sequence[Letter], v: Sequence[Letter], size: int | None = None) -> list[State]:
@@ -213,6 +287,30 @@ def sync_pairs(h: Mapping[Letter, Letter]) -> dict[tuple[Letter, Letter], tuple[
     return out
 
 
+def _sync_hits_for_positions(
+    state: State,
+    iterate: int,
+    u: Sequence[Letter],
+    v: Sequence[Letter],
+    positions: Sequence[int],
+    sync_plus: Mapping[tuple[Letter, Letter], tuple[int, Letter]],
+    sync_minus: Mapping[tuple[Letter, Letter], tuple[int, Letter]],
+) -> list[BoundaryHit]:
+    hits: list[BoundaryHit] = []
+    for k in positions:
+        if k < len(u):
+            pair = (u[k], v[k])
+            if pair in sync_plus:
+                m, c = sync_plus[pair]
+                hits.append(BoundaryHit(state, iterate, k, "right", pair, m, c))
+        if k > 0:
+            pair = (u[k - 1], v[k - 1])
+            if pair in sync_minus:
+                m, c = sync_minus[pair]
+                hits.append(BoundaryHit(state, iterate, k, "left", pair, m, c))
+    return hits
+
+
 def boundary_sync_hits(
     sigma: Substitution,
     comp: Sequence[State],
@@ -232,15 +330,64 @@ def boundary_sync_hits(
             sv = apply_substitution_n(sigma, v, n)
             if len(su) != len(sv):
                 continue
-            for k in coincidence_boundaries(su, sv, size):
-                if k < len(su):
-                    pair = (su[k], sv[k])
-                    if pair in sync_plus:
-                        m, c = sync_plus[pair]
-                        hits.append(BoundaryHit(state, n, k, "right", pair, m, c))
-                if k > 0:
-                    pair = (su[k - 1], sv[k - 1])
-                    if pair in sync_minus:
-                        m, c = sync_minus[pair]
-                        hits.append(BoundaryHit(state, n, k, "left", pair, m, c))
+            positions = coincidence_boundaries(su, sv, size)
+            hits.extend(_sync_hits_for_positions(state, n, su, sv, positions, sync_plus, sync_minus))
+    return hits
+
+
+def newborn_boundary_sync_hits(
+    sigma: Substitution,
+    comp: Sequence[State],
+    max_iterate: int = 3,
+) -> list[BoundaryHit]:
+    """Synchronizing witnesses supported only on newborn zero-return cuts.
+
+    This directly instruments the mechanism conjectured in C3. A hit is
+    evidence for the mechanism on a finite instance, not a proof of C3.
+    """
+    size = alphabet_size(sigma)
+    sigma_plus, sigma_minus = endpoint_maps(sigma)
+    sync_plus = sync_pairs(sigma_plus)
+    sync_minus = sync_pairs(sigma_minus)
+    hits: list[BoundaryHit] = []
+
+    for state in comp:
+        prev_u, prev_v = state
+        for n in range(1, max_iterate + 1):
+            cur_u = apply_substitution(sigma, prev_u)
+            cur_v = apply_substitution(sigma, prev_v)
+            inherited = inherited_boundary_positions(sigma, prev_u, prev_v)
+            positions = [
+                k for k in coincidence_boundaries(cur_u, cur_v, size)
+                if k not in inherited
+            ]
+            hits.extend(_sync_hits_for_positions(state, n, cur_u, cur_v, positions, sync_plus, sync_minus))
+            prev_u, prev_v = cur_u, cur_v
+    return hits
+
+
+def inherited_boundary_sync_hits(
+    sigma: Substitution,
+    comp: Sequence[State],
+    max_iterate: int = 3,
+) -> list[BoundaryHit]:
+    """Synchronizing witnesses supported on inherited zero-return cuts only."""
+    size = alphabet_size(sigma)
+    sigma_plus, sigma_minus = endpoint_maps(sigma)
+    sync_plus = sync_pairs(sigma_plus)
+    sync_minus = sync_pairs(sigma_minus)
+    hits: list[BoundaryHit] = []
+
+    for state in comp:
+        prev_u, prev_v = state
+        for n in range(1, max_iterate + 1):
+            cur_u = apply_substitution(sigma, prev_u)
+            cur_v = apply_substitution(sigma, prev_v)
+            inherited = inherited_boundary_positions(sigma, prev_u, prev_v)
+            positions = [
+                k for k in coincidence_boundaries(cur_u, cur_v, size)
+                if k in inherited
+            ]
+            hits.extend(_sync_hits_for_positions(state, n, cur_u, cur_v, positions, sync_plus, sync_minus))
+            prev_u, prev_v = cur_u, cur_v
     return hits

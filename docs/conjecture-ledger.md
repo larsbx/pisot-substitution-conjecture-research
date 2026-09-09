@@ -51,6 +51,17 @@ it fails for a primitive but non-Pisot substitution.
 
 **Status.** Active next target. This is more tactical than C1/C2 because inherited boundaries are controlled by finite maps `sigma_+` and `sigma_-`.
 
+**Executable diagnostics.** The Python reference kernel now tracks boundary
+lineage exactly from one inflation to the next: an inherited cut is the image
+of a previous zero-return cut, and every other zero-return cut is classified as
+newborn. `newborn_boundary_sync_hits` and `inherited_boundary_sync_hits` test the
+two lineages separately. A Smith-type regression witness has nonsynchronizing
+inherited endpoints at the first inflation while newborn cuts at positions 3
+and 4 synchronize. This is finite evidence for the C3 mechanism, not a proof of
+C3. The next computational obligation is to port this lineage classification
+to the exact Mojo PIP census rather than rely on named examples or
+primitive-like random sweeps.
+
 ## C4 — finite-pigeon lift
 
 **Statement.** Finite recurrence of boundary types, combined with primitivity, forces newborn boundary escape from the nonsynchronizing cores.
