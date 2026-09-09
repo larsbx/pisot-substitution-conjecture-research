@@ -1,10 +1,37 @@
 # Conjecture ledger
 
+The machine-checked form of this ledger is `tla/Ledger.tla`; `tla/check.sh`
+verifies mechanically which claims are reachable from which hypotheses.
+
+## G1 — finiteness of the balanced-pair automaton
+
+**Statement.** For every primitive irreducible Pisot substitution on a 3-letter
+alphabet, `B_sigma` is finite.
+
+**Status.** Open, and it is a *hypothesis*, not a theorem. The
+predecessor-contraction proof of PSC_PROOF_v5 Theorem 5.1 is **withdrawn**:
+`beta * L(s') <= L(s) + D` is false, worst observed ratio 8.0, excess unbounded.
+Finiteness is unconditional only for `|A| = 2` and for verified families.
+
+**Evidence, not proof.** The exhaustive alphabet-3 census over images of length
+`<= 3` terminates on 4554/4554 specimens with 0 caps (`mojo/census.mojo`;
+reproduces the documented figure). That is elimination over a finite corpus.
+
+**What depends on it.** The v34 Load-Bearing SCC Theorem, and — together with
+C1 — the boxed main result. Neither is reachable without it; see
+`MCArchitectureOpen` and `MCArchitectureG1Bound` in `tla/`.
+
 ## C1 — SCC Producer Theorem
 
 **Statement.** For every primitive irreducible Pisot substitution, every recurrent noncoincident SCC of `B_sigma` produces a coincidence sibling at some inflation step.
 
 **Status.** Open in general. Settled for two-letter case through Hollander--Solomyak. Known for beta-substitution and special families.
+
+**Evidence, not proof.** Every reachable balanced pair reaches a coincidence on
+all 4554 alphabet-3 PIP specimens of the census (`mojo/census.mojo`), and the
+TLA+ invariant `Productive` holds on Tribonacci, flipped Tribonacci and a
+Smith-type substitution. `MCNonProductive` shows the invariant is not vacuous:
+it fails for a primitive but non-Pisot substitution.
 
 **Equivalent formulations in this program.**
 

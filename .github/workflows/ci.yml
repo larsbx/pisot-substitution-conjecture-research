@@ -15,3 +15,54 @@ jobs:
       - run: python -m pip install -U pip
       - run: pip install -e .[dev]
       - run: pytest
+
+  mojo-kernel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          curl -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Kernel regression tests
+        working-directory: mojo
+        run: pixi run mojo run -I . tests/test_kernel.mojo
+      - name: Certificate checks
+        working-directory: mojo
+        run: pixi run mojo run -I . verify.mojo
+
+  tla-models:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Fetch TLA+ tools
+        run: |
+          curl -fsSL -o tla/tla2tools.jar \
+            https://github.com/tlaplus/tlaplus/releases/latest/download/tla2tools.jar
+      - name: Check all models
+        run: ./tla/check.sh
+
+  lean-proofs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o elan.sh
+          sh elan.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch Mathlib cache
+        working-directory: PscVerif
+        run: lake exe cache get
+      - name: Build and audit axioms
+        working-directory: PscVerif
+        run: |
+          set -o pipefail
+          lake build PscVerif 2>&1 | tee build.log
+          if grep -q sorryAx build.log; then
+            echo "sorryAx found in axiom audit"; exit 1
+          fi
