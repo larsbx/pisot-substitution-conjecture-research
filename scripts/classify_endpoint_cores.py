@@ -38,7 +38,8 @@ def main() -> None:
                 sep="",
             )
 
-    print(f"classes={len(classes)} maps={sum(item.size for item in classes)}")
+    if not args.json:
+        print(f"classes={len(classes)} maps={sum(item.size for item in classes)}")
 
 
 if __name__ == "__main__":
