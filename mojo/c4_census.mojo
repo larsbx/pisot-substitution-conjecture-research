@@ -86,17 +86,11 @@ def main() raises:
                     n_recurrent += 1
                     var noncoincident_exit = False
                     var direct_coincidence = False
-                    var has_newborn = False
-                    var has_inherited = False
 
+                    # First decide the graph-theoretic sink condition. Boundary
+                    # signatures are only load-bearing after this test passes.
                     for si in range(len(comp)):
                         var state_index = comp[si]
-                        ref p = a.states[state_index]
-                        if len(newborn_sync_positions(sigma, p)) > 0:
-                            has_newborn = True
-                        if len(inherited_sync_positions(sigma, p)) > 0:
-                            has_inherited = True
-
                         for ei in range(len(a.adj[state_index])):
                             var child = a.adj[state_index][ei]
                             if a.states[child].is_coincidence():
@@ -109,6 +103,16 @@ def main() raises:
 
                     n_sink += 1
                     sink_pair_counts[7 * plus_type + minus_type] += 1
+
+                    var has_newborn = False
+                    var has_inherited = False
+                    for si in range(len(comp)):
+                        ref p = a.states[comp[si]]
+                        if len(newborn_sync_positions(sigma, p)) > 0:
+                            has_newborn = True
+                        if len(inherited_sync_positions(sigma, p)) > 0:
+                            has_inherited = True
+
                     if direct_coincidence:
                         n_sink_direct_coincidence += 1
                     else:
