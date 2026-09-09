@@ -3,13 +3,14 @@
 The boundary synchronization mechanism depends only on the endpoint maps
 ``sigma_+`` and ``sigma_-``. For a three-letter alphabet each endpoint map is
 one of only ``3^3 = 27`` functions. This module classifies those functions up
-to alphabet relabeling and computes the recurrent off-diagonal core of the
-product map ``h x h``.
+to alphabet relabeling and computes both the synchronization quotient and the
+recurrent off-diagonal core of the product map ``h x h``.
 
-A pair ``(a,b)`` is synchronizing when the two forward orbits eventually meet.
-A recurrent nonsynchronizing pair is an off-diagonal periodic point of
-``h x h``. These finite cores are the obstruction templates used by C4; the
-module proves no Pisot-specific existence or exclusion theorem by itself.
+The central quotient is defined by ``a ~ b`` iff the forward orbits of ``a``
+and ``b`` eventually coalesce at the same iterate. This is an equivalence
+relation, and ``h`` induces a permutation on its quotient classes. Thus a
+nonsynchronizing endpoint pair is simply a pair in two distinct quotient
+classes; on a three-letter alphabet its quotient phase has period at most 3.
 """
 
 from __future__ import annotations
@@ -20,6 +21,7 @@ from typing import Iterator, Sequence
 
 FiniteMap = tuple[int, ...]
 Pair = tuple[int, int]
+Partition = tuple[tuple[int, ...], ...]
 
 
 @dataclass(frozen=True)
@@ -102,6 +104,46 @@ def synchronizes(h: Sequence[int], a: int, b: int) -> bool:
         seen.add(pair)
         x, y = h[x], h[y]
     return True
+
+
+def synchronization_partition(h: Sequence[int]) -> Partition:
+    """Partition letters by eventual same-time coalescence under ``h``."""
+    h = validate_map(h)
+    blocks: list[list[int]] = []
+    for a in range(len(h)):
+        for block in blocks:
+            if synchronizes(h, a, block[0]):
+                block.append(a)
+                break
+        else:
+            blocks.append([a])
+    return tuple(tuple(block) for block in blocks)
+
+
+def synchronization_quotient_permutation(h: Sequence[int]) -> FiniteMap:
+    """Permutation induced by ``h`` on synchronization-equivalence classes.
+
+    If ``a ~ b`` then ``h(a) ~ h(b)``, so the quotient map is well-defined.
+    Conversely, if ``h(a) ~ h(b)`` then ``a ~ b`` one iterate earlier; hence
+    the quotient map is injective and, on a finite quotient, a permutation.
+    """
+    h = validate_map(h)
+    partition = synchronization_partition(h)
+    class_of_letter: dict[int, int] = {}
+    for i, block in enumerate(partition):
+        for a in block:
+            class_of_letter[a] = i
+
+    quotient: list[int] = []
+    for block in partition:
+        targets = {class_of_letter[h[a]] for a in block}
+        if len(targets) != 1:
+            raise AssertionError("synchronization quotient is not well-defined")
+        quotient.append(next(iter(targets)))
+
+    if sorted(quotient) != list(range(len(partition))):
+        raise AssertionError("synchronization quotient is not a permutation")
+    return tuple(quotient)
 
 
 def nonsynchronizing_pairs(h: Sequence[int]) -> tuple[Pair, ...]:
