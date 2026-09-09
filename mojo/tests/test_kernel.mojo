@@ -7,6 +7,7 @@ from std.testing import assert_equal, assert_true, assert_false
 
 from psc.bpa import build, recurrent_noncoincident_sccs, sccs, coincidence_boundaries, inherited_boundary_positions, newborn_boundary_positions, inherited_sync_positions, newborn_sync_positions
 from psc.certificate import run_all, q_target1, pip_corpus
+from psc.endpoint_core import endpoint_type
 from psc.mat3 import Mat3, identity3, has_rational_root
 from psc.pisot import is_pip, is_primitive, is_irreducible_cubic, is_pisot_charpoly
 from psc.qlinalg import nullspace, rank, in_span
@@ -169,6 +170,23 @@ def test_smith_newborn_boundary_lineage() raises:
     assert_equal(newborn_sync[1], 4)
 
 
+def test_endpoint_map_types() raises:
+    var a: List[Int] = [0, 0, 0]
+    var b: List[Int] = [0, 0, 1]
+    var c: List[Int] = [0, 0, 2]
+    var d: List[Int] = [0, 1, 2]
+    var e: List[Int] = [0, 2, 1]
+    var f: List[Int] = [1, 0, 0]
+    var g: List[Int] = [1, 2, 0]
+    assert_equal(endpoint_type(a), 0)
+    assert_equal(endpoint_type(b), 1)
+    assert_equal(endpoint_type(c), 2)
+    assert_equal(endpoint_type(d), 3)
+    assert_equal(endpoint_type(e), 4)
+    assert_equal(endpoint_type(f), 5)
+    assert_equal(endpoint_type(g), 6)
+
+
 def test_full_certificate_passes() raises:
     var checks = run_all(2)
     assert_equal(len(checks), 10)
@@ -229,6 +247,9 @@ def main() raises:
     test_smith_newborn_boundary_lineage()
     n += 1
     print("[PASS]", "test_smith_newborn_boundary_lineage")
+    test_endpoint_map_types()
+    n += 1
+    print("[PASS]", "test_endpoint_map_types")
     test_full_certificate_passes()
     n += 1
     print("[PASS]", "test_full_certificate_passes")

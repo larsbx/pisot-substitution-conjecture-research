@@ -70,6 +70,37 @@ jobs:
           grep -Eq '^no-sync SCCs with noncoincident exit:[[:space:]]+60$' <<<"$out"
           grep -Eq '^no-sync closed/no-direct-coincidence candidates:[[:space:]]+0$' <<<"$out"
 
+  c4-census:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          curl -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: C4 exact endpoint-type sink-SCC census
+        working-directory: mojo
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . c4_census.mojo 2>&1)
+          printf '%s\n' "$out"
+          grep -Fx 'PIP specimens: 4554  capped: 0' <<<"$out"
+          grep -Fx 'recurrent noncoincident SCCs: 5022' <<<"$out"
+          grep -Fx 'noncoincident sink SCCs: 4554' <<<"$out"
+          grep -Fx 'uncapped PIP with zero sink SCCs: 0' <<<"$out"
+          grep -Fx 'uncapped PIP with exactly one sink SCC: 4554' <<<"$out"
+          grep -Fx 'uncapped PIP with multiple sink SCCs: 0' <<<"$out"
+          grep -Fx 'maximum sink SCCs per uncapped PIP: 1' <<<"$out"
+          grep -Fx 'sink SCCs with direct coincidence child: 4554' <<<"$out"
+          grep -Fx 'sink SCCs without direct coincidence child: 0' <<<"$out"
+          grep -Fx 'sink SCCs with newborn synchronization: 4554' <<<"$out"
+          grep -Fx 'sink SCCs with inherited synchronization: 4278' <<<"$out"
+          grep -Fx 'sink SCCs with any boundary synchronization: 4554' <<<"$out"
+          grep -Fx 'sink SCCs with no boundary synchronization: 0' <<<"$out"
+          matrix='48,192,72,6,24,84,150,192,348,198,6,120,318,138,72,198,30,0,30,228,222,6,6,0,0,0,24,24,24,120,30,0,12,42,66,84,318,228,24,42,48,90,150,138,222,24,66,90,0'
+          grep -Fx "PIP_TYPE_MATRIX $matrix" <<<"$out"
+          grep -Fx "SINK_TYPE_MATRIX $matrix" <<<"$out"
+
   tla-models:
     runs-on: ubuntu-latest
     steps:
