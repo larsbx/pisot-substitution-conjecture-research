@@ -34,6 +34,16 @@ if command -v pixi >/dev/null 2>&1; then
     else
         bad "certificate checks (verify.mojo)"
     fi
+
+    census_out=$(pixi run mojo run -I . census.mojo 2>&1)
+    if grep -Eq 'PIP specimens \(images of length <= 3\):[[:space:]]+4554' <<<"$census_out" \
+       && grep -Eq 'B_sigma construction terminated:[[:space:]]+4554.*capped:[[:space:]]+0' <<<"$census_out" \
+       && grep -Eq 'productive:[[:space:]]+4554.*non-productive:[[:space:]]+0' <<<"$census_out"; then
+        ok "alphabet-3 census (4554 PIP; 0 capped; 0 nonproductive)"
+    else
+        bad "alphabet-3 census regression"
+        tail -20 <<<"$census_out"
+    fi
     cd "$ROOT"
 else
     skip "Mojo layer" "pixi not installed; curl -fsSL https://pixi.sh/install.sh | bash"
