@@ -1,15 +1,20 @@
 """Finite relative hierarchy-offset state for asynchronous C4 cut ancestry.
 
-This is the canonical Mojo implementation.  The hot representation is compact:
+This is the canonical Mojo implementation. The hot representation is compact:
 - the strict derived component is already interned to Int state IDs;
 - ancestry defect/correction are fixed three-scalar vectors;
 - orientation is a single +/-1 bit;
 - derived contexts are packed Int symbols with one sentinel value.
 
-Absolute block indices are discarded.  Their difference is bounded by the
-physical cut displacement, which equals the sum of the Parikh defect.  In the
+Absolute block indices are discarded. Their difference is bounded by the
+physical cut displacement, which equals the sum of the Parikh defect. In the
 PIP strict regime the ancestry defect comes from the finite alphabet proved by
 PR #30, so the resulting relative state space is finite at fixed context radius.
+
+The primary constructor consumes an already-certified ancestry defect. This is
+the intended hot path: callers walking an ancestry tower already have that
+defect and should not re-expand sigma^k(u), sigma^k(v) merely to recompute it.
+A slower verification wrapper remains available for independent cross-checks.
 """
 
 from psc.derived_system import (
@@ -133,38 +138,32 @@ def prefix_difference3(
     return Vec3(x, y, z)
 
 
-def relative_hierarchy_offset(
-    sigma: List[List[Int]],
+def relative_hierarchy_offset_from_defect(
     system: DerivedSystem,
     parent_id: Int,
     source_depth: Int,
     top_cut: Int,
     bottom_cut: Int,
+    defect: Vec3,
     correction: Vec3,
     radius: Int,
     parent_sign: Int = 1,
 ) raises -> RelativeHierarchyOffset:
-    """Construct one depth-free relative state from two asynchronous source cuts."""
+    """Hot constructor from ancestry data already certified by the cut walk.
+
+    This path deliberately does not materialize sigma^k(u) or sigma^k(v). It
+    uses only the derived component, the two physical cut coordinates, and the
+    defect/correction already produced by ancestry descent.
+    """
     if parent_id < 0 or parent_id >= system.size():
         raise Error("parent state ID lies outside derived system")
     if source_depth < 0 or radius < 0:
         raise Error("source depth and radius must be nonnegative")
     if parent_sign != 1 and parent_sign != -1:
         raise Error("parent orientation must be +/-1")
+    if top_cut < 0 or bottom_cut < 0:
+        raise Error("asynchronous source cuts must be nonnegative")
 
-    var parent = system.states[parent_id].copy()
-    var top_base = parent.u.copy()
-    var bottom_base = parent.v.copy()
-    if parent_sign == -1:
-        top_base = parent.v.copy()
-        bottom_base = parent.u.copy()
-
-    var top = apply_substitution_n(sigma, top_base, source_depth)
-    var bottom = apply_substitution_n(sigma, bottom_base, source_depth)
-    if top_cut < 0 or top_cut > len(top) or bottom_cut < 0 or bottom_cut > len(bottom):
-        raise Error("asynchronous source cut lies outside an iterated side")
-
-    var defect = prefix_difference3(top, bottom, top_cut, bottom_cut)
     var cut_delta = top_cut - bottom_cut
     if defect.total() != cut_delta:
         raise Error("cut displacement does not equal total Parikh defect")
@@ -173,8 +172,8 @@ def relative_hierarchy_offset(
         system, parent_id, source_depth, parent_sign
     )
     var reconstructed_length = physical_length(system, derived)
-    if reconstructed_length != len(top) or reconstructed_length != len(bottom):
-        raise Error("derived block lengths do not reconstruct physical iterates")
+    if top_cut > reconstructed_length or bottom_cut > reconstructed_length:
+        raise Error("asynchronous source cut lies outside the derived word")
 
     var top_pos = locate_physical_cut(system, derived, top_cut)
     var bottom_pos = locate_physical_cut(system, derived, bottom_cut)
@@ -202,6 +201,51 @@ def relative_hierarchy_offset(
         bottom_pos.sign,
         top_context,
         bottom_context,
+    )
+
+
+def relative_hierarchy_offset(
+    sigma: List[List[Int]],
+    system: DerivedSystem,
+    parent_id: Int,
+    source_depth: Int,
+    top_cut: Int,
+    bottom_cut: Int,
+    correction: Vec3,
+    radius: Int,
+    parent_sign: Int = 1,
+) raises -> RelativeHierarchyOffset:
+    """Verification wrapper that independently recomputes the ancestry defect."""
+    if parent_id < 0 or parent_id >= system.size():
+        raise Error("parent state ID lies outside derived system")
+    if source_depth < 0 or radius < 0:
+        raise Error("source depth and radius must be nonnegative")
+    if parent_sign != 1 and parent_sign != -1:
+        raise Error("parent orientation must be +/-1")
+
+    var parent = system.states[parent_id].copy()
+    var top_base = parent.u.copy()
+    var bottom_base = parent.v.copy()
+    if parent_sign == -1:
+        top_base = parent.v.copy()
+        bottom_base = parent.u.copy()
+
+    var top = apply_substitution_n(sigma, top_base, source_depth)
+    var bottom = apply_substitution_n(sigma, bottom_base, source_depth)
+    if top_cut < 0 or top_cut > len(top) or bottom_cut < 0 or bottom_cut > len(bottom):
+        raise Error("asynchronous source cut lies outside an iterated side")
+
+    var defect = prefix_difference3(top, bottom, top_cut, bottom_cut)
+    return relative_hierarchy_offset_from_defect(
+        system,
+        parent_id,
+        source_depth,
+        top_cut,
+        bottom_cut,
+        defect,
+        correction,
+        radius,
+        parent_sign,
     )
 
 
