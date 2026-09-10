@@ -2,6 +2,8 @@
 
 from std.testing import assert_equal, assert_false, assert_true
 from psc.bd_endpoint import (
+    avoids_good_pair_and_contains_hub,
+    complementary_hub_letter,
     pair_orbit_coalesces,
     pair_orbit_mask,
     strict_pip_endpoint_type_admissible,
@@ -79,6 +81,21 @@ def test_surviving_types_have_a_proper_noncoalescing_pair_orbit() raises:
         assert_true(found)
 
 
+def test_one_good_pair_forces_a_common_hub_on_every_other_edge() raises:
+    for good_a in range(3):
+        for good_b in range(good_a + 1, 3):
+            var hub = complementary_hub_letter(good_a, good_b)
+            assert_true(hub != good_a and hub != good_b)
+            var allowed = 0
+            for x in range(3):
+                for y in range(x + 1, 3):
+                    if avoids_good_pair_and_contains_hub(good_a, good_b, x, y):
+                        assert_true(x == hub or y == hub)
+                        allowed += 1
+            assert_equal(allowed, 2)
+            assert_false(avoids_good_pair_and_contains_hub(good_a, good_b, good_a, good_b))
+
+
 def main() raises:
     test_type_g_cycles_all_three_unordered_pairs()
     print("[PASS] test_type_g_cycles_all_three_unordered_pairs")
@@ -88,4 +105,6 @@ def main() raises:
     print("[PASS] test_all_27_maps_match_type_level_filter")
     test_surviving_types_have_a_proper_noncoalescing_pair_orbit()
     print("[PASS] test_surviving_types_have_a_proper_noncoalescing_pair_orbit")
-    print("4 Barge-Diamond endpoint tests passed.")
+    test_one_good_pair_forces_a_common_hub_on_every_other_edge()
+    print("[PASS] test_one_good_pair_forces_a_common_hub_on_every_other_edge")
+    print("5 Barge-Diamond endpoint tests passed.")
