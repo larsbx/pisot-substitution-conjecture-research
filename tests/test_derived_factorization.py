@@ -15,6 +15,7 @@ SIGMA = {1: (2,), 2: (1, 2, 3), 3: (2,)}
 A = ((1, 2), (2, 1))
 B = ((2, 3), (3, 2))
 COMP = (A, B)
+REDUCIBLE = ((1, 2, 2, 3), (2, 1, 3, 2))
 
 
 def test_strict_component_defines_exact_ordered_derived_substitution():
@@ -68,3 +69,16 @@ def test_strict_derived_substitution_rejects_missing_children():
         assert "outside the component" in str(exc)
     else:
         raise AssertionError("missing strict child was accepted")
+
+
+def test_strict_derived_substitution_rejects_reducible_balanced_state():
+    # REDUCIBLE is the concatenation of the two irreducible states A and B.
+    # Treating it as one derived letter would already break the depth-0
+    # identity: direct factorization returns (A,B), not (REDUCIBLE,).
+    assert direct_normalized_factorization(SIGMA, REDUCIBLE, 0) == (A, B)
+    try:
+        strict_derived_substitution(SIGMA, (REDUCIBLE, A, B))
+    except ValueError as exc:
+        assert "reducible balanced state" in str(exc)
+    else:
+        raise AssertionError("reducible balanced state was accepted")
