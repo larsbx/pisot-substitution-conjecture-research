@@ -11,13 +11,15 @@ while N_C=A+B and S_C=A-B for nonnegative integer A,B. Hence for every k>=1
       = 2 * sum_{words with odd B-count} tr(word(A,B)) >= 0.
 
 For k=2 the difference is exactly 4 tr(A B), hence divisible by four.
-This finite census first applies the mod-2 three-state parity sieve, then tests
-these exact trace conditions on the established 4554 PIP corpus.
+This finite census first applies the mod-2 three-state parity sieve, then the
+proved global-endpoint synchronization eliminator (types A/B), then tests the
+trace conditions on the established 4554 PIP corpus.
 
 Finite evidence only: surviving/absent specimens do not prove a general theorem.
 """
 
 from psc.bpa import substitution_incidence
+from psc.endpoint_core import endpoint_type, prefix_endpoint_map, suffix_endpoint_map
 from psc.mat3 import Mat3
 from psc.pisot import is_pip
 
@@ -56,6 +58,14 @@ def parity_allows_three_states(t: Int, u: Int, d: Int) -> Bool:
     return dp == 1
 
 
+def endpoints_can_be_counterexample(sigma: List[List[Int]]) -> Bool:
+    """Both endpoint maps must be non-globally-synchronizing (types C..G)."""
+    return (
+        endpoint_type(prefix_endpoint_map(sigma)) >= 2
+        and endpoint_type(suffix_endpoint_map(sigma)) >= 2
+    )
+
+
 def traces_standard(t: Int, u: Int, d: Int, max_k: Int) -> List[Int]:
     """Power sums of roots of x^3 - t x^2 + u x - d."""
     var p = List[Int]()
@@ -90,6 +100,8 @@ def main() raises:
     var words = image_words()
     var n_pip = 0
     var parity_survivors = 0
+    var parity_endpoint_survivors = 0
+    var endpoint_trace12_survivors = 0
     var trace1_survivors = 0
     var trace2_survivors = 0
     var trace3_survivors = 0
@@ -100,6 +112,7 @@ def main() raises:
         first_trace_failure.append(0)
 
     var printed_survivor = False
+    var printed_endpoint_survivor = False
 
     for i in range(len(words)):
         for j in range(len(words)):
@@ -120,6 +133,9 @@ def main() raises:
                 if not parity_allows_three_states(t, u, d):
                     continue
                 parity_survivors += 1
+                var endpoint_ok = endpoints_can_be_counterexample(sigma)
+                if endpoint_ok:
+                    parity_endpoint_survivors += 1
 
                 var p = traces_standard(t, u, d, 12)
                 var q = traces_exterior(t, u, d, 12)
@@ -154,6 +170,14 @@ def main() raises:
                     trace6_survivors += 1
                 if first_fail == 0:
                     trace12_survivors += 1
+                    if endpoint_ok:
+                        endpoint_trace12_survivors += 1
+                        if not printed_endpoint_survivor:
+                            print("ENDPOINT_TRACE12_SURVIVOR_JSON {\"i\":", i, ",\"j\":", j, ",\"k\":", k,
+                                  ",\"T\":", t, ",\"U\":", u, ",\"d\":", d,
+                                  ",\"plus\":", endpoint_type(prefix_endpoint_map(sigma)),
+                                  ",\"minus\":", endpoint_type(suffix_endpoint_map(sigma)), "}")
+                            printed_endpoint_survivor = True
                     if not printed_survivor:
                         print("TRACE12_SURVIVOR_JSON {\"i\":", i, ",\"j\":", j, ",\"k\":", k,
                               ",\"T\":", t, ",\"U\":", u, ",\"d\":", d, "}")
@@ -164,11 +188,13 @@ def main() raises:
     print("C4 degree-2 three-state necessary-condition census")
     print("PIP specimens:", n_pip)
     print("three-state parity survivors:", parity_survivors)
+    print("parity survivors with both endpoint maps nonsynchronizing:", parity_endpoint_survivors)
     print("survive trace k<=1:", trace1_survivors)
     print("survive trace k<=2 plus mod4:", trace2_survivors)
     print("survive trace k<=3:", trace3_survivors)
     print("survive trace k<=6:", trace6_survivors)
     print("survive trace k<=12:", trace12_survivors)
+    print("survive parity + nonsync endpoints + trace k<=12:", endpoint_trace12_survivors)
     for power in range(1, 13):
         if first_trace_failure[power] > 0:
             print("first failure at k=" + String(power) + ": " + String(first_trace_failure[power]))
