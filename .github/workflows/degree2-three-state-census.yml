@@ -15,4 +15,17 @@ jobs:
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact three-state degree2 necessary-condition census
         working-directory: mojo
-        run: pixi run mojo run -I . degree2_three_state_census.mojo
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . degree2_three_state_census.mojo 2>&1)
+          printf '%s\n' "$out"
+          grep -Fx 'PIP specimens: 4554' <<<"$out"
+          grep -Fx 'three-state parity survivors: 1716' <<<"$out"
+          grep -Fx 'survive trace k<=1: 1716' <<<"$out"
+          grep -Fx 'survive trace k<=2 plus mod4: 1716' <<<"$out"
+          grep -Fx 'survive trace k<=3: 1662' <<<"$out"
+          grep -Fx 'survive trace k<=6: 1662' <<<"$out"
+          grep -Fx 'survive trace k<=12: 1554' <<<"$out"
+          grep -Fx 'first failure at k=3: 54' <<<"$out"
+          grep -Fx 'first failure at k=7: 108' <<<"$out"
+          grep -F '"T": 1 ,"U": -1 ,"d": 1' <<<"$out"
