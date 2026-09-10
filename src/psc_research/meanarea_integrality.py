@@ -4,19 +4,19 @@ For a proposed three-state strict degree-2 component, write
 
     area(w) = (N12-N21, N13-N31, N23-N32)
 
-and J(T)=(area(u_T)+area(v_T))/2.  The order-sensitive factorization identity
+and J(T)=(area(u_T)+area(v_T))/2. The order-sensitive factorization identity
 becomes the integer Sylvester equation
 
     (Lambda^2 M) J - J N = Omega_tau - C_sigma P.
 
 When |C|=3, the Parikh intertwiner forces N to have the same irreducible cubic
-characteristic polynomial as M.  The spectra of M and Lambda^2 M are disjoint,
+characteristic polynomial as M. The spectra of M and Lambda^2 M are disjoint,
 so the Sylvester operator is invertible over Q and the ordered child words force
-one unique rational J.  Actual balanced words require that J be integral and
+one unique rational J. Actual balanced words require that J be integral and
 that J +/- Q satisfy elementary word-area parity and magnitude constraints.
 
 The (Parikh, area) multiplication law is the antisymmetric degree-2 truncation
-of the Magnus/subword signature.  With this integer normalization the central
+of the Magnus/subword signature. With this integer normalization the central
 commutator coordinate is doubled relative to a common Mal'cev normalization;
 we therefore use the central-extension interpretation over Q without silently
 identifying the integral lattices.
@@ -78,11 +78,13 @@ def k2_matrix(states: Sequence[State]) -> IntMatrix:
 
 
 def actual_meanarea_matrix(states: Sequence[State]) -> IntMatrix:
-    """Return J=H/2 for actual balanced states, rejecting parity violations."""
+    """Return J=H/2 for actual balanced states, rejecting malformed inputs."""
     if len(states) != 3:
         raise ValueError("three-state sieve requires exactly three states")
     cols = []
     for state in states:
+        if parikh(state[0], 3) != parikh(state[1], 3):
+            raise ValueError("every state must be balanced")
         h = state_midarea(state)
         if any(x % 2 for x in h):
             raise AssertionError("balanced-state mid-area is not even")
@@ -206,7 +208,7 @@ def integral_solution(solution: RatMatrix) -> IntMatrix:
 def side_area_columns(
     meanarea: IntMatrix,
     q: IntMatrix,
-) -> tuple[tuple[tuple[int, ...], ...], tuple[tuple[int, ...], ...]]:
+) -> tuple[tuple[tuple[int, ...], ...], tuple[tuple[tuple[int, ...], ...]]]:
     """Return area(u)=J+Q and area(v)=J-Q as column tuples."""
     if len(meanarea) != 3 or len(q) != 3:
         raise ValueError("three-row matrices required")
@@ -215,7 +217,7 @@ def side_area_columns(
     for j in range(3):
         left.append(tuple(meanarea[i][j] + q[i][j] for i in range(3)))
         right.append(tuple(meanarea[i][j] - q[i][j] for i in range(3)))
-    return tuple(left), tuple(right)
+    return tuple(left), tuple(right)  # type: ignore[return-value]
 
 
 def area_vector_passes_parikh_bounds(area: Sequence[int], p: Sequence[int]) -> bool:
