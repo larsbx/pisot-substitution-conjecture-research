@@ -7,7 +7,11 @@ from psc.derived_system import (
     context_around_block,
     oriented_derived_word,
 )
-from psc.hierarchy_offset import Vec3, relative_hierarchy_offset
+from psc.hierarchy_offset import (
+    Vec3,
+    relative_hierarchy_offset,
+    relative_hierarchy_offset_from_defect,
+)
 from psc.words import Pair
 
 
@@ -78,6 +82,41 @@ def test_relative_offset_is_compact_and_bounded() raises:
     assert_true(abs(state.block_index_delta) <= abs(state.cut_delta))
 
 
+def test_hot_constructor_matches_verification_wrapper() raises:
+    var system = build_derived_system(sigma(), component())
+    var checked = relative_hierarchy_offset(
+        sigma(),
+        system,
+        0,
+        1,
+        1,
+        2,
+        Vec3(0, 0, 0),
+        1,
+    )
+    var hot = relative_hierarchy_offset_from_defect(
+        system,
+        0,
+        1,
+        1,
+        2,
+        Vec3(-1, 0, 0),
+        Vec3(0, 0, 0),
+        1,
+    )
+    assert_equal(hot.defect, checked.defect)
+    assert_equal(hot.cut_delta, checked.cut_delta)
+    assert_equal(hot.block_index_delta, checked.block_index_delta)
+    assert_equal(hot.top_block_offset, checked.top_block_offset)
+    assert_equal(hot.bottom_block_offset, checked.bottom_block_offset)
+    assert_equal(hot.top_state_id, checked.top_state_id)
+    assert_equal(hot.bottom_state_id, checked.bottom_state_id)
+    assert_equal(hot.top_orientation, checked.top_orientation)
+    assert_equal(hot.bottom_orientation, checked.bottom_orientation)
+    assert_equal(hot.top_context, checked.top_context)
+    assert_equal(hot.bottom_context, checked.bottom_context)
+
+
 def test_reversed_parent_swaps_physical_sides_and_orientation() raises:
     var system = build_derived_system(sigma(), component())
     var state = relative_hierarchy_offset(
@@ -112,8 +151,10 @@ def main() raises:
     print("[PASS] test_derived_system_interns_once_and_tracks_orientation")
     test_relative_offset_is_compact_and_bounded()
     print("[PASS] test_relative_offset_is_compact_and_bounded")
+    test_hot_constructor_matches_verification_wrapper()
+    print("[PASS] test_hot_constructor_matches_verification_wrapper")
     test_reversed_parent_swaps_physical_sides_and_orientation()
     print("[PASS] test_reversed_parent_swaps_physical_sides_and_orientation")
     test_context_packing_uses_one_sentinel()
     print("[PASS] test_context_packing_uses_one_sentinel")
-    print("4 hierarchy-offset Mojo tests passed.")
+    print("5 hierarchy-offset Mojo tests passed.")
