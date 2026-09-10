@@ -2,9 +2,9 @@
 (***************************************************************************)
 (* Live proof-dependency ledger for the PSC balanced-pair program.          *)
 (*                                                                         *)
-(* A named result can itself be a conditional theorem: e.g.                *)
-(* ParikhIntertwiner means "for every finite closed nonproductive SCC,     *)
-(* P N = M P ...". Such a theorem does not require global G1 merely        *)
+(* A named result can itself be a conditional theorem. For example,        *)
+(* ParikhIntertwiner means: for every finite closed nonproductive SCC,      *)
+(* P N = M P ... . Such a theorem does not require global G1 merely        *)
 (* because its premise mentions a finite closed SCC. G1 is required at the *)
 (* separate SinkSCCReduction step that extracts such an SCC from global     *)
 (* nonproductivity.                                                         *)
@@ -94,7 +94,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "LoadBearingSCC"           -> {"G1", "DominantK2Source", "InterBlockCancellation"}
       [] r = "QuotientTransfer"         -> {"SpectralBlackBox"}
 
-      \* Conditional-on-FCS structural theorems carry that premise inside
+      (* Conditional-on-FCS structural theorems carry that premise inside
          their mathematical statement; they do not require global G1 here. *)
       [] r = "SinkSCCReduction"         -> {"G1"}
       [] r = "C3Locality"               -> {}
@@ -113,7 +113,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "MeanAreaLift"             -> {"MidArea", "ParikhIntertwiner"}
       [] r = "LatticeLift"              -> {"MeanAreaLift"}
 
-      \* C4 is open. If granted, the proved reduction chain discharges C1. *)
+      (* C4 is open. If granted, the proved reduction chain discharges C1. *)
       [] r = "C4"                       -> {}
       [] r = "C3Local"                  -> {"C4", "C3Locality"}
       [] r = "C2"                       -> {"C3Local"}
@@ -121,7 +121,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "SCCProducer"              -> {"G1", "SinkSCCReduction", "C2"}
       [] r = "PDS"                      -> {"G1", "SCCProducer"}
 
-      \* Literature theorem and repository-side seed-union lemma are proved
+      (* Literature theorem and repository-side seed-union lemma are proved
          separately. The final PDS=>repo-G1 bridge remains open pending the
          seedwise termination/reachability implication. *)
       [] r = "StandardBPAEquivalence"   -> {}
@@ -144,7 +144,7 @@ ProvedDef == {
     "Degree4Floor", "Mod3Sieve", "ParitySieve", "MidArea",
     "MeanAreaLift", "LatticeLift",
 
-    \* These are proved conditional reductions. C4 itself is deliberately
+    (* These are proved conditional reductions. C4 itself is deliberately
        absent, so C3Local/C2/SCCProducer remain unreachable unless C4 is
        explicitly assumed. *)
     "C3Local", "C2", "SCCProducer", "PDS",
