@@ -16,3 +16,15 @@ jobs:
       - name: Exact first-defect-degree census
         working-directory: mojo
         run: pixi run mojo run -I . defect_degree_census.mojo
+
+  degree3-catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          curl -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Exact degree-3 state catalogue
+        working-directory: mojo
+        run: pixi run mojo run -I . degree3_catalog.mojo
