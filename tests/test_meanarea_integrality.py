@@ -39,6 +39,12 @@ def test_balanced_states_have_integral_actual_meanarea():
     assert all(isinstance(x, int) for row in j for x in row)
 
 
+def test_actual_meanarea_rejects_unbalanced_states_even_if_area_sum_is_even():
+    malformed = (((1,), (2,)),) * 3
+    with pytest.raises(ValueError, match="balanced"):
+        actual_meanarea_matrix(malformed)
+
+
 def test_synthetic_child_order_forces_half_integral_meanarea():
     solution = forced_meanarea_solution(SIGMA, STATES, proposed_child_words())
     assert solution == (
