@@ -1,22 +1,26 @@
 """Exact prefix-difference calculus for balanced-pair factorization.
 
 This module keeps the object that actually determines BPA child boundaries:
-the Parikh difference of aligned prefixes.  It separates an inflated cut into
+the Parikh difference of aligned prefixes. It separates an inflated cut into
 completed source letters plus within-image offsets and proves the exact affine
 identity
 
     D_{sigma(T)}(t) = M E_T(i,j) + c_sigma(i,r;j,s).
 
-At a zero return the left side vanishes.  Since det(M) != 0 in the standing
-regime, the asynchronous source defect E is therefore determined by one of a
-finite set of local image-prefix corrections.  In particular the source-index
+At a zero return the left side vanishes. Since det(M) != 0 in the standing
+regime, the asynchronous source defect E is determined by one of a finite set
+of local image-prefix corrections. In particular the source-index
 misalignment i-j of any inflated zero return is uniformly bounded by sigma.
+
+A zero return whose within-image offsets are both zero is exactly an inherited
+balanced cut. Hence every interior zero return of the image of an irreducible
+parent is misaligned with at least one level-1 source-image boundary.
 
 For a finite strict child-closed component C, recursive factorization gives a
 second exact fact: all iterates sigma^n(T) have zero-return gaps bounded by the
 maximum state length in C, independently of n.
 
-No Pisot contraction is used here.  These are the finite-return and finite-
+No Pisot contraction is used here. These are the finite-return and finite-
 offset inputs for the next recognizability/contraction step.
 """
 
@@ -63,6 +67,10 @@ class InflatedPrefixLift:
     def is_zero_return(self) -> bool:
         return all(x == 0 for x in self.inflated_difference)
 
+    @property
+    def source_aligned_on_both_sides(self) -> bool:
+        return self.top_offset == 0 and self.bottom_offset == 0
+
 
 def _sub_vectors(a: Sequence[int], b: Sequence[int]) -> Vector:
     if len(a) != len(b):
@@ -80,6 +88,15 @@ def _matvec(matrix: Sequence[Sequence[int]], vector: Sequence[int]) -> Vector:
     if any(len(row) != len(vector) for row in matrix):
         raise ValueError("matrix/vector dimensions differ")
     return tuple(sum(row[j] * vector[j] for j in range(len(vector))) for row in matrix)
+
+
+def _det3(matrix: Sequence[Sequence[int]]) -> int:
+    if len(matrix) != 3 or any(len(row) != 3 for row in matrix):
+        raise ValueError("det3 expects a 3x3 matrix")
+    a, b, c = matrix[0]
+    d, e, f = matrix[1]
+    g, h, i = matrix[2]
+    return a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g)
 
 
 def prefix_difference(
@@ -127,7 +144,7 @@ def locate_inflated_cut(
     """Return (completed source letters, offset into the next image).
 
     At an exact source-letter boundary the offset is zero and the source index
-    is the number of completed letters.  At the terminal boundary the source
+    is the number of completed letters. At the terminal boundary the source
     index is len(word) and the offset is zero.
     """
     positions = image_prefix_lengths(sigma, word)
@@ -170,10 +187,12 @@ def inflated_prefix_lift(
     """Decompose an aligned cut in (sigma(u),sigma(v)) exactly."""
     size = alphabet_size(sigma)
     u, v = state
+    if parikh(u, size) != parikh(v, size):
+        raise ValueError("prefix lift requires a balanced state")
     su = apply_substitution(sigma, u)
     sv = apply_substitution(sigma, v)
     if len(su) != len(sv):
-        raise ValueError("balanced-state images must have equal total length")
+        raise AssertionError("balanced-state images have unequal total length")
     if output_cut < 0 or output_cut > len(su):
         raise ValueError("output cut outside inflated state")
 
@@ -198,6 +217,33 @@ def inflated_prefix_lift(
         local_difference=local,
         inflated_difference=direct,
     )
+
+
+def aligned_zero_return_source_cut(
+    sigma: Substitution,
+    state: State,
+    output_cut: int,
+) -> int | None:
+    """Return the inherited source cut iff a zero return is source-aligned twice.
+
+    Under det(M)!=0, if a zero return of sigma(state) has offset zero on both
+    sides, then M*E=0, so E=0. Hence its source indices agree and that common
+    index is an old balanced cut. Conversely every old balanced cut maps to
+    exactly such a doubly source-aligned zero return.
+    """
+    m = substitution_incidence(sigma)
+    if len(m) != 3 or any(len(row) != 3 for row in m):
+        raise ValueError("aligned-cut characterization currently requires three letters")
+    if _det3(m) == 0:
+        raise ValueError("aligned-cut characterization requires det(M) != 0")
+    lift = inflated_prefix_lift(sigma, state, output_cut)
+    if not lift.is_zero_return or not lift.source_aligned_on_both_sides:
+        return None
+    if any(lift.source_difference):
+        raise AssertionError("invertible M allowed a nonzero aligned zero-return source defect")
+    if lift.top_source_index != lift.bottom_source_index:
+        raise AssertionError("zero Parikh source defect has unequal source lengths")
+    return lift.top_source_index
 
 
 def zero_return_lifts(sigma: Substitution, state: State) -> tuple[InflatedPrefixLift, ...]:
@@ -249,13 +295,8 @@ def source_offset_bound_from_corrections(sigma: Substitution) -> int:
     """Exact sigma-only bound on |i-j| for any inflated zero return.
 
     We enumerate the finite local correction alphabet and retain precisely those
-    c for which M E = -c has an integer solution E.  A dependency-free rational
-    elimination would duplicate existing linear algebra, so here the bound is
-    obtained by enumerating all one-letter image-prefix configurations through
-    the adjugate identity for a 3x3 incidence matrix only.
-
-    For non-three-letter alphabets use zero_return_lifts directly until a
-    general exact integer solver is added.
+    c for which M E = -c has an integer solution E. For the three-letter case
+    this is computed through the adjugate identity.
     """
     if alphabet_size(sigma) != 3:
         raise ValueError("sigma-only source-offset bound currently requires three letters")
