@@ -13,6 +13,7 @@ newborn boundary, and test synchronization through the finite prefix/suffix
 endpoint maps. These are exact finite diagnostics, not a proof of C3.
 """
 
+from std.os import abort
 from psc.words import Pair, parikh
 
 
@@ -69,9 +70,10 @@ def inherited_boundary_positions(
     for i in range(len(old)):
         var k = old[i]
         # Balanced prefixes have the same Parikh vector, hence equal image length.
+        # If this ever fails, lineage classification is internally inconsistent;
+        # returning an empty list would falsely relabel inherited cuts as newborn.
         if upos[k] != vpos[k]:
-            print("INTERNAL ERROR: inherited boundary image lengths disagree")
-            return List[Int]()
+            abort("inherited boundary image lengths disagree")
         out.append(upos[k])
     return out^
 
