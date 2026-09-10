@@ -322,11 +322,12 @@ def source_offset_bound_from_corrections(sigma: Substitution) -> int:
 
 
 def strict_child_closed(sigma: Substitution, comp: Sequence[State]) -> bool:
-    """Every state is noncoincident and every normalized child stays in comp."""
+    """Every state is balanced/noncoincident and every normalized child stays in comp."""
     comp_set = {normalize_state(state) for state in comp}
     if not comp_set:
         return False
-    if any(u == v for u, v in comp_set):
+    size = alphabet_size(sigma)
+    if any(u == v or parikh(u, size) != parikh(v, size) for u, v in comp_set):
         return False
     return all(child in comp_set for state in comp_set for child in children(sigma, state))
 
@@ -366,7 +367,7 @@ def verify_uniform_return_gap(
     if max_depth < 0:
         raise ValueError("max_depth must be nonnegative")
     if not strict_child_closed(sigma, comp):
-        raise ValueError("component must be strict and child-closed")
+        raise ValueError("component must be strict, balanced, and child-closed")
     bound = component_block_bound(comp)
     return all(
         iterated_zero_return_max_gap(sigma, state, depth) <= bound
