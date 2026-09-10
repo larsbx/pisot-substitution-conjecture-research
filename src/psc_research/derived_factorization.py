@@ -1,16 +1,16 @@
 """Derived substitution carried by a strict balanced-pair component.
 
 If C is a finite strict child-closed set of normalized irreducible balanced
-states, each state T has an ordered normalized child word tau_C(T).  Recursive
+states, each state T has an ordered normalized child word tau_C(T). Recursive
 balanced-pair factorization then gives exactly
 
     factor_states(sigma^n(T)) = tau_C^n(T)
 
-for every n.  This module makes that word-level statement executable and gives
+for every n. This module makes that word-level statement executable and gives
 zero-return boundaries canonical addresses in the derived substitution word.
 
 Side-swap orientation is intentionally omitted here: swapping a raw child does
-not change its normalized state label or its physical block length.  The Z/2
+not change its normalized state label or its physical block length. The Z/2
 orientation cocycle remains a separate decoration when raw word identities are
 needed.
 """
@@ -65,6 +65,8 @@ def strict_derived_substitution(
             raise ValueError("strict component contains a coincidence state")
         if parikh(u, size) != parikh(v, size):
             raise ValueError("strict component contains an unbalanced state")
+        if coincidence_boundaries(u, v, size) != [0, len(u)]:
+            raise ValueError("strict component contains a reducible balanced state")
         cs = tuple(children(sigma, state))
         if not cs:
             raise ValueError("strict state has no balanced child factorization")
@@ -199,7 +201,7 @@ def inherited_derived_boundary_indices(
 
     These are exactly the boundaries between the words tau(S) for consecutive
     letters S of tau^(depth-1)(parent), expressed as block indices in the depth
-    word.  All other interior block boundaries are newborn at this derived
+    word. All other interior block boundaries are newborn at this derived
     level.
     """
     if depth < 1:
