@@ -14,22 +14,15 @@ ok()      { printf '  \033[32mPASS\033[0m  %s\n' "$1"; ran=$((ran+1)); }
 bad()     { printf '  \033[31mFAIL\033[0m  %s\n' "$1"; status=1; ran=$((ran+1)); }
 skip()    { printf '  \033[33mSKIP\033[0m  %s (%s)\n' "$1" "$2"; skipped=$((skipped+1)); }
 
-section "Python reference implementation"
-if command -v pytest >/dev/null 2>&1; then
-    if pytest -q >/dev/null 2>&1; then ok "pytest"; else bad "pytest"; fi
-else
-    skip "pytest" "not installed; pip install -e .[dev]"
-fi
-
-section "Mojo exact kernel"
+section "Mojo canonical exact implementation"
 if command -v pixi >/dev/null 2>&1; then
     cd "$ROOT/mojo"
-    if pixi run mojo run -I . tests/test_kernel.mojo 2>&1 | tail -1 | grep -q "tests passed"; then
-        ok "kernel regression tests"
+    if pixi run test; then
+        ok "canonical Mojo regression tests"
     else
-        bad "kernel regression tests"
+        bad "canonical Mojo regression tests"
     fi
-    if pixi run mojo run -I . verify.mojo 2>&1 | tail -1 | grep -q "checks passed"; then
+    if pixi run verify; then
         ok "certificate checks (verify.mojo)"
     else
         bad "certificate checks (verify.mojo)"
@@ -47,6 +40,13 @@ if command -v pixi >/dev/null 2>&1; then
     cd "$ROOT"
 else
     skip "Mojo layer" "pixi not installed; curl -fsSL https://pixi.sh/install.sh | bash"
+fi
+
+section "Python secondary reference/oracle"
+if command -v pytest >/dev/null 2>&1; then
+    if pytest -q >/dev/null 2>&1; then ok "pytest oracle regressions"; else bad "pytest oracle regressions"; fi
+else
+    skip "pytest oracle" "not installed; pip install -e .[dev]"
 fi
 
 section "TLA+ models"

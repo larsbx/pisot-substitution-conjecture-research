@@ -2,6 +2,12 @@
 
 Automated research workspace for the balanced-pair route to the Pisot Substitution Conjecture (PSC), with emphasis on reproducible experiments, conjecture tracking, manuscript hygiene, and theorem-audit automation.
 
+## Implementation default
+
+**Mojo is the canonical implementation language for executable research code in this repository.** New algorithms, exact finite-state machinery, census code, and performance-sensitive proof instrumentation should land in `mojo/` first and should use Mojo-native algorithm/data-layout optimizations rather than Python-shaped implementations translated mechanically.
+
+Python under `src/psc_research/` is a secondary reference/oracle and prototyping layer. It may independently cross-check Mojo, preserve legacy regressions, or explore a contract before it stabilizes, but once a Mojo implementation exists the Mojo module is the executable source of truth. See `AGENTS.md` for the detailed optimization and review policy.
+
 ## Current mathematical state
 
 Canonical archived manuscript: `archive/2026-09-08/manuscripts/PSC_PROOF_v15.tex`. Read `archive/2026-09-08/README_READ_FIRST_2026_09_08.md` first. The live proof state is newer than that manuscript and is recorded in `docs/conjecture-ledger.md`, `docs/proof-ladder.md`, and the C4 notes.
@@ -28,14 +34,14 @@ This repository is for automated research support, not for hiding conjectural st
 
 ## Verification layers
 
-| Layer | Tool | Scope |
-|---|---|---|
-| `mojo/` | Mojo | Exact integer/rational kernel: seed algebra, PIP decision, BPA construction, endpoint/C3/C4 and first-defect finite censuses. |
-| `tla/` | TLA+ / TLC | BPA state-machine models and the machine-checked proof-dependency ledger. |
-| `PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
-| `src/psc_research/` + `tests/` | Python | Exact structural prototypes and regression certificates for SCC, endpoint, orientation, defect, factorization, and lattice reductions. |
+| Priority | Layer | Tool | Scope |
+|---|---|---|---|
+| **Canonical executable** | `mojo/` | Mojo | Source-of-truth exact implementation: integer/rational kernel, PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. |
+| Formal state/dependency | `tla/` | TLA+ / TLC | BPA state-machine models and the machine-checked proof-dependency ledger. |
+| Deductive finite algebra | `PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
+| Secondary oracle | `src/psc_research/` + `tests/` | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |
 
-`docs/verification-architecture.md` states what each layer does and does not establish and records four known source/interface discrepancies, including the signed-vs-unsigned SCC transfer correction.
+`docs/verification-architecture.md` states what each layer does and does not establish and records known source/interface discrepancies, including the signed-vs-unsigned SCC transfer correction.
 
 Run everything:
 
@@ -49,19 +55,32 @@ Each layer is skipped with a notice if its toolchain is absent, so a partial env
 
 ```text
 .
+├── AGENTS.md                   # Mojo-first implementation and optimization policy
 ├── archive/2026-09-08/        # preserved source corpus: manuscripts, notes, instruments
-├── docs/                      # live proof architecture, audits, conjecture ledger
-├── mojo/                      # exact computational kernel and finite censuses
-├── tla/                       # TLA+ BPA models and proof-dependency ledger
-├── PscVerif/                  # Lean 4 + Mathlib finite-algebra proofs
-├── src/psc_research/          # reusable exact structural tooling (Python)
-├── tests/                     # Python regression tests
-├── scripts/verify_all.sh      # run every verification layer
-├── .github/workflows/         # automated checks and exact censuses
-└── pyproject.toml             # Python project metadata
+├── docs/                       # live proof architecture, audits, conjecture ledger
+├── mojo/                       # canonical exact implementation + finite censuses
+│   ├── psc/                    # reusable Mojo research kernel
+│   └── tests/                  # canonical executable regressions
+├── tla/                        # TLA+ BPA models and proof-dependency ledger
+├── PscVerif/                   # Lean 4 + Mathlib finite-algebra proofs
+├── src/psc_research/           # secondary Python reference/oracle layer
+├── tests/                      # Python oracle/regression tests
+├── scripts/verify_all.sh       # run every verification layer
+├── .github/workflows/          # automated checks and exact censuses
+└── pyproject.toml              # secondary Python oracle metadata
 ```
 
-## Quick start
+## Quick start — Mojo
+
+```bash
+cd mojo
+pixi run test
+pixi run verify
+```
+
+Run the exact census drivers from `mojo/` as needed; they share the canonical `psc` kernel. Issue #2 tracks the remaining work to make the exact PIP screen the single documented reproducible corpus-export interface with deterministic JSONL output.
+
+Python remains available as an independent oracle when a cross-check is useful:
 
 ```bash
 python -m venv .venv
@@ -70,13 +89,7 @@ pip install -e .[dev]
 pytest
 ```
 
-Run the boundary-sync demo:
-
-```bash
-python -m psc_research.examples
-```
-
-The exact finite PIP corpus screen is implemented in Mojo. Issue #2 tracks the remaining work to make that screen the single documented reproducible corpus-export interface with deterministic JSONL output.
+but new executable research logic should not default to Python.
 
 ## Standing regime
 
@@ -95,3 +108,5 @@ Unless a note says otherwise:
 4. Keep G1 separate from statements conditional only on a given finite closed SCC.
 5. Treat `C4 => C3-local => C2 => C1` as a one-way sufficiency chain unless a converse is separately proved.
 6. Do not stack additional fixed-size sieves without a credible uniform completeness statement.
+7. **Default executable work to Mojo.** Python-only theorem-support implementations require an explicit temporary rationale and a planned Mojo port.
+8. **Optimize for Mojo.** Prefer fixed-dimension exact arithmetic, streaming accumulators, precomputed substitution-local data, compact index-based graph kernels, reused storage, and fail-closed invariants over Python-style dynamic/object-heavy hot loops.
