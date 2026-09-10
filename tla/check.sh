@@ -11,7 +11,9 @@ if [ ! -f "$JAR" ]; then
     exit 2
 fi
 
-# model : expected  (HOLD = no violation, or the name of the invariant that must be violated)
+# model : expected
+# HOLD means no invariant violation. Otherwise the named invariant must be
+# violated, so TLC's counterexample trace demonstrates the positive derivation.
 MODELS=(
     "MCTribonacci:HOLD"
     "MCFlippedTribonacci:HOLD"
@@ -22,6 +24,7 @@ MODELS=(
     "MCArchitectureConditional:MainResultIsConditional"
     "MCArchitectureG1Bound:LoadBearingSCCIsConditional"
     "MCArchitectureG1Main:HOLD"
+    "MCArchitectureC4Main:MainResultIsConditional"
 )
 
 fail=0

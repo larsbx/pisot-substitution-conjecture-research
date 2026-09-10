@@ -1,180 +1,126 @@
 # Verification architecture
 
-Three layers, each doing what it is actually good at. Nothing is claimed by more
-than one of them, and every layer states its own scope.
+The repository uses several complementary verification layers. No layer is allowed to claim more than it actually checks.
 
-| Layer | Tool | Question it answers | Where |
+| Layer | Tool | Question it answers | Scope |
 |---|---|---|---|
-| Computational kernel | Mojo | *Is the finite arithmetic right?* Exact integer and rational computation over the seed data, `W₃`, `Θ`, `Φ₃`, the PIP corpus, and `B_σ`. | `mojo/` |
-| State machine | TLA+ / TLC | *Does the automaton behave as claimed, and what depends on what?* `B_σ` as a transition system; the proof-dependency ledger. | `tla/` |
-| Deductive core | Lean 4 + Mathlib | *Do the theorems follow?* Machine-checked proofs of the finite algebra, with an axiom audit. | `PscVerif/` |
+| Exact computational kernel | Mojo | Is the finite arithmetic/corpus computation correct? | exact PIP decision, BPA construction, C3/C4/defect censuses, finite algebra |
+| Structural regression layer | Python | Do exact structural identities and counter-calibrations behave as claimed? | SCC, endpoint, orientation, defect, ordered factorization, mean-area/lattice prototypes |
+| State/dependency model | TLA+ / TLC | Does the finite automaton/model behave as claimed, and which proof conclusions are reachable from which assumptions? | BPA model checks and proof-dependency ledger |
+| Deductive finite algebra | Lean 4 + Mathlib | Do the formalized finite-algebra theorems follow? | seed/spectral algebra and axiom audit |
 
-Run everything with `scripts/verify_all.sh`.
+Run the available layers with `scripts/verify_all.sh`. A missing toolchain must be reported as skipped, never converted into a vacuous pass.
 
-## Why this split
+## 1. What is proved versus computed
 
-The Spectral module of `PROOF_CERTIFICATE.md` is finite algebra over `ℤ` and `ℚ`.
-That part is fully mechanisable and is mechanised twice: computed exactly in Mojo
-and proved in Lean. The open part of the program is not algebra at all — hypothesis
-G1 (finiteness of `B_σ`) and the SCC Producer conjecture are statements about a
-transition system, which is what TLA+ is for. And the failure mode this project
-actually experienced — a certificate carrying an "unconditional" claim for four
-months while resting on a withdrawn theorem — is a *dependency* error, which is
-why the ledger itself is machine-checked.
+The exact 4,554-substitution corpus is a **finite calibration**, not a proof of G1, C1, C4, or PSC. Mojo verifies that the chosen finite parameter space was screened exactly and that the reported BPA/census statistics are reproducible.
 
-## Layer 1 — Mojo kernel (`mojo/`)
+The Python layer contains theorem-level integer identities where the proof is elementary and explicit—for example the endpoint quotient, Parikh/orientation intertwiners, ordered mid-area identity, and exact lattice certificates—but Python execution is still a regression check, not a formal proof assistant.
 
-Exact arithmetic only; no floating point anywhere in the kernel.
+Lean currently formalizes the older finite spectral core, not the full C4 stack. TLA+ checks dependency reachability and selected finite-state models; it does not prove the mathematical C4 lemmas merely by naming them in a ledger.
 
+## 2. Mojo kernel
+
+The Mojo kernel uses exact integer/rational operations for:
+
+- incidence and characteristic-polynomial arithmetic;
+- primitive / irreducible / Pisot screening;
+- balanced-pair factorization and SCC construction;
+- seed `K2/K3/W3` certificate computations;
+- endpoint/C3/C4 finite censuses;
+- the exact first-defect census.
+
+The established finite alphabet-3 corpus has 4,554 PIP substitutions with image lengths `<=3`. All BPA constructions terminate below the configured cap in this corpus; every observed sink is productive. This is finite evidence only.
+
+Issue #2 tracks the remaining infrastructure step: make this exact screen the canonical documented corpus-export interface with deterministic machine-readable JSONL.
+
+## 3. Python structural layer
+
+`src/psc_research/` and `tests/` now carry exact regression implementations for the live C4 reduction stack, including:
+
+- sink-SCC and boundary-lineage tooling;
+- seven endpoint-map types and synchronization quotients;
+- Parikh/child-incidence intertwiners;
+- orientation cocycle, even/odd incidence, and spectral phase cases;
+- signed `K2/K3` first-defect intertwiners;
+- degree-4 and generalized-Witt multidegree sieves;
+- mod-2 degree-2 size obstruction;
+- synthetic G/F factorization negative control;
+- ordered degree-2 mid-area identity;
+- three-state mean-area and integral-image calibration.
+
+The strong G/F synthetic artifact is important precisely because it prevents overclaiming: it satisfies the real PIP substitution, endpoint phases, incidence, Parikh and `K2` data, and actual irreducible state columns, yet fails the true zero-return child factorization.
+
+## 4. TLA+ proof-dependency layer
+
+`ProofArchitecture.tla` is a generic dependency state machine. A result can be discharged only when all prerequisites are already established; withdrawn results can never be discharged. `Ledger.tla` supplies the current mathematical dependency graph.
+
+The dependency graph must encode **sufficiency**, not converse implications. In particular the current route is
+
+```text
+C4 => C3-local => C2 => SCCProducer,
+G1 + SCCProducer => PDS.
 ```
-psc/rational    exact Q arithmetic
-psc/qlinalg     RREF, rank, nullspace, span membership over Q
-psc/mat3        3x3 integer matrices, adjugate, characteristic polynomial
-psc/tensor3     V^(x)3 lex coordinates, the shuffle functional, M^(x)3, Theta
-psc/words       scattered-subword counts N_i, N_ij, N_ijk and K_1, K_2, K_3
-psc/w3          the shuffle-kernel sector, derived as ker S
-psc/seeds       the six length-7 K_2-zero seed words
-psc/pisot       exact PIP decision procedure
-psc/bpa         balanced-pair automaton, Tarjan SCCs, productivity
-psc/certificate the section 13 checklist as ten derived checks
+
+G1 is used to extract a finite sink SCC from global nonproductivity. Structural statements conditional on an already-given finite closed SCC should not all be made to depend on G1 in the ledger.
+
+The literature relation between PDS and standard BPA termination is tracked separately. Until the repository's normalized all-seed graph is explicitly bridged to the literature algorithm, the ledger must not silently add `PDS => G1`.
+
+## 5. Lean layer
+
+The Lean development proves the formalized finite spectral algebra and audits axioms. It does **not** currently formalize:
+
+- G1 or SCC Producer;
+- sink-SCC extraction;
+- endpoint synchronization quotients;
+- the general first-defect free-Lie statement;
+- C4's prefix-difference/recognizability route;
+- the ordered mid-area or mean-area lattice identities.
+
+Those omissions should remain visible rather than being implied away by passing computational tests.
+
+## 6. Source/interface discrepancies
+
+Four discrepancies are now canonical.
+
+### D1 — printed shuffle map is transposed
+
+The archived certificate's displayed basis-action form of the shuffle map is transposed relative to the coordinate map used by the rest of the certificate. The coordinate convention is the one implemented in Mojo and Lean and is the one under which the printed basis and seed `K3` vectors lie in the intended kernel.
+
+### D2 — the degree-3 shuffle argument needs lower-degree corrections
+
+The naive degree-3 shuffle identity is false on diagonal indices because scattered-subword multiplication is the infiltration product, not pure shuffle. The correction terms have degree two and cancel when `K2=0`; the intended conclusion remains valid. Lean proves the corrected instance used by the seed calculation.
+
+### D3 — archived v34 status table still contradicts the withdrawal
+
+The archived `V34_CLOSURE.md` contains stale prose saying alphabet-3 finiteness was proved by the withdrawn v5 theorem and that the Load-Bearing SCC theorem was unconditional. The live ledger is authoritative instead; the archived file remains preserved as historical source.
+
+### D4 — archived normalized SCC transfer omits orientation signs
+
+The archived `PROOF_CERTIFICATE.md` degree-3 SCC interface uses
+
+```text
+L_C N_C = Phi_3 L_C.
 ```
 
-**Derived, not transcribed.** The seed matrices `A_k`, their characteristic
-polynomials, traces, eigenvectors and `dim W₃` are all recomputed from the seed
-*words* and the definitions. The certificate's printed tables (§3 basis, §6
-matrices) are kept only as independent cross-check targets, and the checks
-compare the two.
+For normalized balanced-pair states this is not correct in general: when a raw child appears reversed relative to its normalized representative, the odd scattered-subword defect changes sign. The exact normalized relation is
 
-**The PIP decision procedure** (`psc/pisot`) decides the standing regime exactly:
-primitivity by Wielandt's bound, irreducibility of the characteristic cubic by
-rational-root enumeration, and the Pisot condition by Sturm sequences over `ℚ`
-(three-real-root case) together with the exact identity `β·|β₂|² = det M`
-(complex-pair case). It was cross-validated against a floating-point root finder
-on all `3⁹ = 19683` matrices with entries in `0..2`: exact agreement, 2442 PIP
-matrices.
+```text
+Q_3 S = Phi_3 Q_3,
+S=A-B,
+```
 
-`mojo/verify.mojo` runs ten checks, all passing:
+and similarly `Q2 S=(Lambda^2 M)Q2` at degree two.
 
-| Check | Content |
-|---|---|
-| C1 | `dim W₃ = 8`, derived as `ker S` |
-| C2 | the certificate's printed basis `b₁…b₈` spans `ker S` |
-| C3 | the six seeds are balanced of length 7 with `K₁ = K₂ = 0` |
-| C4 | `K₃(s_k) ∈ W₃` |
-| C5 | `Θ(K₃(s_k))` equals the tabulated `A_k` |
-| C6 | `A_k` nonzero, traceless, rank 3, `tr(A_k²) = 6`, `A_k(1,1,1)ᵀ = λ_k(1,1,1)ᵀ` |
-| C7 | the `Θ`-intertwining identity on the PIP corpus (2442 × 6 instances) |
-| C8 | `W₃` is `M^{⊗3}`-invariant on the PIP corpus |
-| C9 | **Target 1**: `(Φ₃ − det M)² K₃(s_k) ≠ 0` on 14652 instances |
-| C10 | no PIP incidence matrix has all row sums equal |
+This correction does **not** invalidate the seed-level finite Spectral Black Box. It corrects the SCC-level transfer interface. The older v34 norm/path-counting argument that takes norms before using unsigned counts is a separate statement and is not changed merely by D4.
 
-`mojo/census.mojo` runs the exhaustive alphabet-3 census (images of length ≤ 3)
-and reproduces the documented figures: **4554 PIP specimens, `B_σ` construction
-terminating 4554/4554 with 0 caps, largest `|B_σ| = 1502`, and 4554/4554
-productive**, in about a minute.
+## 7. Current verification gap
 
-That census is *elimination over a finite corpus*, not a proof. G1 and SCC
-Producer remain open.
+The machine/prose record is being updated to include the C4 stack, but the deepest current mathematical gap is not a missing test. It is a uniform theorem about actual factorization:
 
-## Layer 2 — TLA+ (`tla/`)
+- the prefix-difference walk determines balanced child return times;
+- finite closed SCC recurrence produces many bounded-gap returns under inflation;
+- Pisot contraction should constrain those return vectors;
+- recognizability should constrain recurrent child cuts relative to supertile boundaries.
 
-`BPA.tla` specifies the construction of `B_σ` as a breadth-first state machine
-over balanced pairs. Invariants: `TypeOK`, `AllBalanced` (the `K₁ = 0` statement),
-`NormalIdempotent`, `CuttingPreservesLength`, `NoOverflow`, `TerminatesInBound`
-and `Productive`.
-
-Termination is stated as the bounded-rounds safety property `TerminatesInBound`
-rather than as `<>(frontier = {})`. `Step` is a deterministic function of the
-state and is enabled exactly while the frontier is non-empty, so the spec has a
-single behaviour; a safety bound on the number of rounds is therefore equally
-precise, and it keeps the check inside TLC's model-checking mode.
-
-`Productive` is the SCC Producer conjecture restricted to the reachable part of
-`B_σ` for one `σ`. **`MCNonProductive` is a negative control** — a primitive but
-non-Pisot substitution where `Productive` is violated — so the passing runs are
-not vacuous.
-
-`ProofArchitecture.tla` makes the dependency ledger executable: a result becomes
-establishable only when every prerequisite is, and a withdrawn result never does.
-`Ledger.tla` encodes the v15/v34 ledger. Machine-checked outcomes:
-
-| Assumed | Result |
-|---|---|
-| nothing | `PDS` unreachable, `LoadBearingSCC` unreachable, nothing depends on the withdrawn v5 Thm 5.1 |
-| nothing | the §14 Spectral Black Box **is** reachable — it needs no hypothesis |
-| `G1` | `LoadBearingSCC` reachable, `PDS` still not |
-| `G1`, `SCCProducer` | `PDS` reachable |
-
-That last pair is the boxed conditional of `PSC_PROOF_v15`, checked mechanically
-rather than asserted in prose.
-
-`tla/check.sh` runs all nine models and asserts each expected outcome, including
-the three that must fail.
-
-## Layer 3 — Lean 4 (`PscVerif/`)
-
-Proved, with `#print axioms` reporting only `propext`, `Classical.choice` and
-`Quot.sound` — no `sorry`:
-
-- `N_mul_N`, `N_mul_N₂` — the degree-2 and degree-3 shuffle identities on words.
-- `BalancedPair.K₃_shuffle_zero` — §3's "certified fact 3".
-- `seed_K₂_zero`, `seed_length`, `seed_K₃_mem_W₃` — §4's seed list.
-- `theta_seed` — §6's table, derived from the seed words.
-- `trace_A`, `trace_sq_A`, `det_A_ne_zero`, `A_ne_zero` — §6 properties 1, 2, 3, 7.
-- `Aq_mulVec_ones`, `Aq_eigenspace` — §6 property 6, both halves.
-- `no_commuting_of_no_eigenvalue` — the centralizer contradiction, over any field.
-- `target1` — **PIP-Locus Target 1** in contradiction form.
-- `no_equal_row_sums` — §7's concrete corollary.
-- `trace_sq_cyclicPlus/Minus`, `Aq_not_conj_cyclicPlus/Minus` — §9's trace
-  obstruction and the Dominant Cubic Capture step.
-
-Not formalised, and said so in `PscVerif/Spectral.lean`: the `Θ`-intertwining
-polynomial identity in `ℤ[m_ij]` (verified exactly by the Mojo kernel instead),
-semisimplicity of `Φ₃`, the Galois-transitivity arguments of §8–§9, the passage
-from a nonzero dominant projection to a spectral-radius bound, G1, SCC Producer,
-and everything in §12.
-
-## Discrepancies found
-
-Three, from mechanising the certificate. None changes a conclusion.
-
-### D1 — the shuffle map in §3 is written transposed
-
-§3 defines the shuffle map by its action on basis vectors,
-
-> `S(e_a ⊗ e_b ⊗ e_c) = e_{abc} + e_{bac} + e_{bca}`.
-
-Read literally, the printed basis `b₁…b₈` does **not** lie in `ker S`, and neither
-does any `K₃(s_k)`. Read coordinatewise — `(Sx)_{abc} = x_{abc} + x_{bac} + x_{bca}`,
-the transpose — the printed basis spans `ker S` exactly, and all six seeds lie in
-it. The coordinate form is the one the rest of the certificate uses, and it is
-what the kernel and the Lean development implement.
-
-### D2 — §3's "certified fact 3" needs correction terms
-
-The identity behind `K₂(s) = 0 ⟹ K₃(s) ∈ W₃` is not the naive shuffle product
-`a ⧢ bc = abc + bac + bca`. When letters coincide a position can be shared between
-the two factors:
-
-> `N_a · N_{bc} = N_{abc} + N_{bac} + N_{bca} + ⟦a = b⟧·N_{ac} + ⟦a = c⟧·N_{ba}`
-
-(proved in `PscVerif/Shuffle.lean` as `N_mul_N₂`; the naive form fails on diagonal
-indices). The corrections are degree-2 counts, so they cancel exactly when
-`K₂ = 0` — the certificate's conclusion is correct, its stated reason is
-incomplete.
-
-### D3 — `V34_CLOSURE.md`'s status table contradicts its own patched header
-
-The header of `certificates_patched/V34_CLOSURE.md` correctly says the
-Load-Bearing SCC Theorem is *conditional on finite `B_σ` (G1)*, and step 1 of the
-proof spine marks v5 Thm 5.1 withdrawn. But the status table further down still
-reads
-
-> `| Finite B_σ for PIP σ on alphabet 3 | Proved (PSC_PROOF_v5 Thm 5.1) |`
-> `| **Load-Bearing SCC Theorem** | **Unconditional** |`
-
-and the file list still cites `PSC_PROOF_v5.pdf — Theorem 5.1 (Finiteness of B_σ)`.
-This is the exact claim the September remediation was meant to remove. The archived
-file is left unedited; `tla/Ledger.tla` encodes the corrected dependency, and
-`MCArchitectureOpen` checks mechanically that `LoadBearingSCC` is *not* reachable
-without assuming G1.
+That alignment/return-density step is the next proof target. No amount of additional fixed-size regression filtering is a substitute for it.
