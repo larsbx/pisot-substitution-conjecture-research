@@ -64,13 +64,47 @@ The two substitution classes are exchanged by reversing every substitution image
 
 The six certified length-7 seed pairs form one six-element alphabet-relabeling orbit. **None** of the 24 live degree-3 occurrences lies in that seed orbit.
 
-## 4. Consequence for the proof program
+## 4. Spectral normal form of the 24 states
+
+The catalogue analyzer reconstructs each substitution incidence matrix and each `A=Theta(K3)` exactly from the emitted state words.
+
+All 12 substitutions carrying degree-3 states have
+
+```text
+det M = 1,
+chi_M(t) = t^3 - 2 t^2 - 1.
+```
+
+For every one of the 24 degree-3 state occurrences:
+
+- `|det Theta(K3)| = 2`;
+- `tr(Theta(K3)^2) = 6`;
+- `Theta(K3)` **does not commute with** the corresponding `M`.
+
+Hence none of the finite-corpus degree-3 defects lies in the determinant/centralizer eigenspace `W_det`.
+
+This is exactly the condition the general signed degree-3 theorem says a hypothetical **strict closed nonproductive** SCC would have to satisfy: because `Q3 S = Phi3 Q3` and `rho(S)<=beta`, its entire degree-3 defect image must lie in `W_det`. The live finite-corpus states violate that necessary closed-counterexample condition.
+
+## 5. Exact leakage pattern
+
+The same analyzer independently reconstructs balanced-pair cutting from the substitution words. The 24 occurrences follow one transition pattern up to relabeling/reversal:
+
+- each of the 12 length-9 degree-3 states inflates to **one** irreducible child;
+- that unique child is the corresponding length-19 degree-3 state;
+- each length-19 degree-3 state inflates to **five** irreducible children;
+- exactly **one** of those five is a direct coincidence pair.
+
+Therefore every finite-corpus degree-3 state reaches a coincidence within at most **two** inflations.
+
+The spectral and graph pictures line up: the rare `K2=0` states are noncentralizer and cannot remain inside a strict closed counterexample; concretely, they leak to a coincidence after the 9 -> 19 transition.
+
+## 6. Consequence for the proof program
 
 The general signed first-defect theorem remains necessary because degree four exists abstractly. However, within the exact 4,554-PIP reachability corpus, every noncoincident state is already controlled by the degree-2 or degree-3 representation layers:
 
 1. degree 2: `Q2 S = (Lambda^2 M) Q2`;
 2. degree 3: `Q3 S = Phi3 Q3` in `W3`.
 
-For a hypothetical **strict closed nonproductive** degree-3 SCC, the orientation bound `rho(S)<=beta` and the rational factorization of `Phi3|W3` force the whole `K3` image into the two-dimensional determinant/centralizer eigenspace. The 24 productive finite-corpus occurrences should therefore be audited against that centralizer condition and their coincidence leakage; that is the next exact diagnostic.
+Moreover, every live degree-3 occurrence is explicitly excluded from the strict closed-counterexample normal form by the centralizer test and visibly leaks to coincidence. Thus the finite corpus's only large unresolved *structural* population is degree 2.
 
-This finite classification does not prove that a general PIP BPA has no degree-4 state, nor that every degree-3 state belongs to the four classes above. It only says those statements hold exhaustively in the stated 4,554-substitution corpus.
+This does **not** prove that a general PIP BPA has no degree-4 state, that every degree-3 state belongs to the four classes above, or that degree-2 recurrent SCCs must leak. Those remain general proof obligations. It only says the statements above hold exhaustively in the stated 4,554-substitution corpus.
