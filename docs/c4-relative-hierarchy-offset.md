@@ -28,6 +28,8 @@ At construction time it:
 
 String state keys are used only at this one-time interning boundary. Repeated derived expansion uses integer state IDs and one orientation bit only.
 
+The primary constructor is `relative_hierarchy_offset_from_defect`. It consumes the exact ancestry defect already carried by the prefix-difference descent and therefore does **not** re-expand both `sigma^k` side words just to recompute that defect. The slower `relative_hierarchy_offset` wrapper independently reconstructs the physical side words and is retained as a verification oracle. Canonical Mojo regressions require both paths to agree on the calibration.
+
 This is deliberately different from the Python prototype: the hot representation is designed for Mojo rather than translating tuple/dictionary objects mechanically.
 
 ## 3. Relative state
