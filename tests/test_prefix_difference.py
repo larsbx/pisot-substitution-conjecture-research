@@ -98,6 +98,14 @@ def test_nonpisot_negative_control_is_strict_child_closed():
     assert component_block_bound(STRICT_COMPONENT) == 2
 
 
+def test_strict_child_closed_rejects_unbalanced_vacuous_component():
+    sigma = {1: (1, 1), 2: (2, 1)}
+    comp = [((1, 1, 2), (2, 1, 2))]
+    assert not strict_child_closed(sigma, comp)
+    with pytest.raises(ValueError, match="balanced"):
+        verify_uniform_return_gap(sigma, comp, max_depth=1)
+
+
 def test_strict_component_has_uniform_zero_return_gap_across_iterates():
     # The theorem is not Pisot-specific. This negative-control component is
     # genuinely closed and nonproductive, so it is a good calibration that
