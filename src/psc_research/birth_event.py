@@ -1,36 +1,28 @@
 """Finite one-step birth-event types for newborn balanced boundaries.
 
 For a finite strict component C, every interior boundary of ``tau_C(T)`` is a
-newborn zero return inside ``sigma(T)``.  Because every newborn boundary at an
+newborn zero return inside ``sigma(T)``. Because every newborn boundary at an
 arbitrary derived depth lies inside one occurrence of some one-step word
 ``tau_C(T)``, these finitely many parent/split types form a complete birth-event
 alphabet.
 
-The event records exactly the data needed by the next hierarchy-offset step:
-- parent and split position in the derived substitution;
-- adjacent normalized children and their raw orientation signs;
-- the sigma-side source defect, correction digit, and within-image offsets;
-- the adjacent left/right endpoint letter pairs and whether those pairs
-  synchronize under the endpoint maps.
-
-In a genuinely strict child-closed component every descendant remains
-noncoincident.  Hence a boundary-synchronizing birth event is incompatible with
-strictness: the boundary synchronization lemma would eventually create a
-coincidence descendant.  The executable helper below checks this necessary
-condition but does not claim that endpoint nonsynchronization is sufficient for
-C4.
+The catalog is stored in the canonical normalized orientation of each parent.
+Deep occurrences additionally carry the accumulated Z/2 parent orientation.
+When an occurrence is reversed, its physical source defect/correction are
+negated, top/bottom source data and endpoint-pair coordinates are swapped, and
+all child occurrence signs are reversed. This distinction is essential: the
+normalized derived word alone does not remember physical top/bottom data.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from typing import Sequence
 
-from .bpa import State, Substitution, apply_substitution, endpoint_maps, sync_pairs
+from .bpa import State, Substitution, apply_substitution, endpoint_maps, normalize_state, sync_pairs
 from .derived_factorization import (
     DerivedSubstitution,
     derived_block_boundaries,
-    iterate_derived,
     newborn_derived_boundary_indices,
     strict_derived_substitution,
 )
@@ -40,7 +32,7 @@ from .prefix_difference import Vector, inflated_prefix_lift
 
 @dataclass(frozen=True)
 class NewbornBirthEvent:
-    """One internal split of ``tau_C(parent)`` with its sigma-side birth data."""
+    """One canonical internal split of ``tau_C(parent)`` with sigma-side data."""
 
     parent: State
     split_index: int
@@ -75,26 +67,26 @@ class NewbornBirthEvent:
 
 @dataclass(frozen=True)
 class NewbornOccurrence:
-    """Occurrence of a one-step birth-event type in ``tau_C^depth(parent)``."""
+    """Physical occurrence of a one-step event in ``tau_C^depth(parent)``."""
 
     depth: int
     source_block_index: int
     source_state: State
+    parent_orientation: int
     split_index: int
     derived_boundary_index: int
     event: NewbornBirthEvent
+
+    def __post_init__(self) -> None:
+        if self.parent_orientation not in (-1, 1):
+            raise ValueError("parent orientation must be +/-1")
 
 
 def strict_birth_event_catalog(
     sigma: Substitution,
     comp: Sequence[State],
 ) -> tuple[NewbornBirthEvent, ...]:
-    """Return every one-step newborn split type of a strict component.
-
-    The catalog is complete for newborn boundaries at every derived depth by
-    substitution recursion: a depth-n newborn boundary is internal to exactly
-    one occurrence of ``tau_C(T)`` for a letter T of ``tau_C^(n-1)(parent)``.
-    """
+    """Return every canonical one-step newborn split type of a strict component."""
     tau = strict_derived_substitution(sigma, comp)
     plus, minus = endpoint_maps(sigma)
     plus_sync = sync_pairs(plus)
@@ -159,20 +151,79 @@ def event_by_key(catalog: Sequence[NewbornBirthEvent]) -> dict[tuple[State, int]
     return out
 
 
+def orient_birth_event(event: NewbornBirthEvent, parent_orientation: int) -> NewbornBirthEvent:
+    """Transform a canonical event into the physical orientation of an occurrence."""
+    if parent_orientation not in (-1, 1):
+        raise ValueError("parent orientation must be +/-1")
+    if parent_orientation == 1:
+        return event
+    return replace(
+        event,
+        left_orientation_sign=-event.left_orientation_sign,
+        right_orientation_sign=-event.right_orientation_sign,
+        source_difference=tuple(-x for x in event.source_difference),
+        correction=tuple(-x for x in event.correction),
+        top_source_index=event.bottom_source_index,
+        bottom_source_index=event.top_source_index,
+        top_offset=event.bottom_offset,
+        bottom_offset=event.top_offset,
+        left_endpoint_pair=(event.left_endpoint_pair[1], event.left_endpoint_pair[0]),
+        right_endpoint_pair=(event.right_endpoint_pair[1], event.right_endpoint_pair[0]),
+    )
+
+
+def oriented_derived_word(
+    sigma: Substitution,
+    tau: DerivedSubstitution,
+    parent: State,
+    depth: int,
+    *,
+    parent_orientation: int = 1,
+) -> tuple[tuple[State, int], ...]:
+    """Expand normalized derived letters while retaining accumulated orientation."""
+    if depth < 0:
+        raise ValueError("depth must be nonnegative")
+    if parent_orientation not in (-1, 1):
+        raise ValueError("parent orientation must be +/-1")
+    normalized_parent = normalize_state(parent)
+    if normalized_parent not in tau:
+        raise ValueError("parent lies outside derived substitution")
+
+    word: tuple[tuple[State, int], ...] = ((normalized_parent, parent_orientation),)
+    for _ in range(depth):
+        expanded: list[tuple[State, int]] = []
+        for state, orientation in word:
+            signed = oriented_children(sigma, state)
+            if tuple(child for child, _sign in signed) != tau[state]:
+                raise AssertionError("signed children disagree with derived substitution")
+            expanded.extend((child, orientation * sign) for child, sign in signed)
+        word = tuple(expanded)
+    return word
+
+
 def newborn_occurrences(
+    sigma: Substitution,
     tau: DerivedSubstitution,
     parent: State,
     depth: int,
     catalog: Sequence[NewbornBirthEvent],
+    *,
+    parent_orientation: int = 1,
 ) -> tuple[NewbornOccurrence, ...]:
-    """Expand every depth-n newborn boundary into its one-step event type."""
+    """Expand every depth-n newborn boundary with its physical orientation data."""
     if depth < 1:
         raise ValueError("newborn occurrences require depth >= 1")
     events = event_by_key(catalog)
-    source_word = iterate_derived(tau, parent, depth - 1)
+    source_word = oriented_derived_word(
+        sigma,
+        tau,
+        parent,
+        depth - 1,
+        parent_orientation=parent_orientation,
+    )
     output_index = 0
     out: list[NewbornOccurrence] = []
-    for source_index, state in enumerate(source_word):
+    for source_index, (state, orientation) in enumerate(source_word):
         image = tau[state]
         for split in range(1, len(image)):
             key = (state, split)
@@ -183,9 +234,10 @@ def newborn_occurrences(
                     depth=depth,
                     source_block_index=source_index,
                     source_state=state,
+                    parent_orientation=orientation,
                     split_index=split,
                     derived_boundary_index=output_index + split,
-                    event=events[key],
+                    event=orient_birth_event(events[key], orientation),
                 )
             )
         output_index += len(image)
@@ -201,5 +253,9 @@ def strict_catalog_is_endpoint_nonsynchronizing(
     sigma: Substitution,
     comp: Sequence[State],
 ) -> bool:
-    """Necessary endpoint condition for a strict child-closed component."""
+    """Necessary endpoint condition for a strict child-closed component.
+
+    Synchronization is symmetric under swapping the two sides, so it is enough
+    to check the canonical catalog even though deep occurrences may be reversed.
+    """
     return all(event.endpoint_nonsynchronizing for event in strict_birth_event_catalog(sigma, comp))
