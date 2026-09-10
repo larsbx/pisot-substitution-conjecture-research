@@ -15,7 +15,29 @@ jobs:
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact first-defect-degree census
         working-directory: mojo
-        run: pixi run mojo run -I . defect_degree_census.mojo
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . defect_degree_census.mojo 2>&1)
+          printf '%s\n' "$out"
+          grep -Fx 'PIP specimens: 4554  capped: 0' <<<"$out"
+          grep -Fx 'reachable noncoincident states: 385926' <<<"$out"
+          grep -Fx 'reachable degree2: 385902' <<<"$out"
+          grep -Fx 'reachable degree3: 24' <<<"$out"
+          grep -Fx 'reachable degree4: 0' <<<"$out"
+          grep -Fx 'reachable degree5plus: 0' <<<"$out"
+          grep -Fx 'recurrent noncoincident states: 369486' <<<"$out"
+          grep -Fx 'recurrent degree2: 369462' <<<"$out"
+          grep -Fx 'recurrent degree3: 24' <<<"$out"
+          grep -Fx 'recurrent degree4: 0' <<<"$out"
+          grep -Fx 'recurrent degree5plus: 0' <<<"$out"
+          grep -Fx 'sink noncoincident states: 368610' <<<"$out"
+          grep -Fx 'sink degree2: 368586' <<<"$out"
+          grep -Fx 'sink degree3: 24' <<<"$out"
+          grep -Fx 'sink degree4: 0' <<<"$out"
+          grep -Fx 'sink degree5plus: 0' <<<"$out"
+          grep -Fx 'PIP with reachable degree4plus state: 0' <<<"$out"
+          grep -Fx 'PIP with recurrent degree4plus state: 0' <<<"$out"
+          grep -Fx 'PIP with sink degree4plus state: 0' <<<"$out"
 
   degree3-catalog:
     runs-on: ubuntu-latest
@@ -27,4 +49,21 @@ jobs:
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact degree-3 state catalogue
         working-directory: mojo
-        run: pixi run mojo run -I . degree3_catalog.mojo
+        run: |
+          set -o pipefail
+          pixi run mojo run -I . degree3_catalog.mojo 2>&1 | tee degree3.log
+          summary=$(python ../scripts/analyze_degree3_catalog.py < degree3.log)
+          printf '%s\n' "$summary"
+          grep -Fx 'DEGREE3_OCCURRENCES 24' <<<"$summary"
+          grep -Fx 'DEGREE3_STATE_RELABEL_CLASSES 4' <<<"$summary"
+          grep -Fx 'DEGREE3_SUBSTITUTION_CONJUGACY_CLASSES 2' <<<"$summary"
+          grep -Fx 'DEGREE3_LENGTHS 9,19' <<<"$summary"
+          grep -Fx 'DEGREE3_SEED_ORBIT_MATCHES 0' <<<"$summary"
+          grep -Fx 'DEGREE3_STATE_REVERSAL_CLOSED 1' <<<"$summary"
+          grep -Fx 'DEGREE3_SIGMA_REVERSAL_CLOSED 1' <<<"$summary"
+          grep -Fx 'DEGREE3_STATE_CLASS 0011202220010011202|2001001120212022001' <<<"$summary"
+          grep -Fx 'DEGREE3_STATE_CLASS 0102211211000102211|2110010201022112110' <<<"$summary"
+          grep -Fx 'DEGREE3_STATE_CLASS 011202001|120001120' <<<"$summary"
+          grep -Fx 'DEGREE3_STATE_CLASS 011212001|120011120' <<<"$summary"
+          grep -Fx 'DEGREE3_SIGMA_CLASS 011/2/120' <<<"$summary"
+          grep -Fx 'DEGREE3_SIGMA_CLASS 1/210/002' <<<"$summary"
