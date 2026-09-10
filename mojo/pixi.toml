@@ -12,5 +12,5 @@ modular = ">=26.6.0.dev2026090805,<27"
 verify = "mojo run -I . verify.mojo"
 kernel = "mojo run -I . tests/test_kernel.mojo"
 words = "mojo run -I . tests/test_words_streaming.mojo"
-test = { depends-on = ["kernel", "words"] }
-check = { depends-on = ["test", "verify"] }
+test = "mojo run -I . tests/test_kernel.mojo && mojo run -I . tests/test_words_streaming.mojo"
+check = "mojo run -I . tests/test_kernel.mojo && mojo run -I . tests/test_words_streaming.mojo && mojo run -I . verify.mojo"
