@@ -114,7 +114,27 @@ The nominal endpoint-type counterexample space drops from the previous `5 x 5` C
 
 This is a necessary condition only. Types C–F are not asserted realizable by strict PIP components.
 
-## 7. Canonical Mojo support
+## 7. Hub-letter corollary
+
+Choose one Barge-Diamond eventually-coincident pair `{a,b}` and let `c` be the third letter.
+
+By Section 2, a strict zero-return boundary can never have adjacent pair `{a,b}`. Since an alphabet of three letters has only three unordered distinct pairs, every remaining strict boundary pair is one of
+
+```text
+{a,c}, {b,c}.
+```
+
+Hence:
+
+> **Hub-letter normal form.** Once one Barge-Diamond-good pair is fixed, there is a single complementary letter `c` that occurs on at least one side of **every** distinct right-adjacent zero-return boundary in a strict nonproductive regime.
+
+Thus the right-boundary pair alphabet collapses to a two-edge star centered at `c`. In an oriented state one may record a binary **hub-side bit** indicating whether the top or bottom side carries `c`; normalization/orientation then acts on this bit by an explicit `F_2` flip.
+
+This is a structural consequence only. It does not yet identify the hub-side cocycle with the orientation signing from `mojo/psc/signing.mojo`; that requires a separate child-occurrence compatibility proof.
+
+The same statement applies to left-adjacent boundaries after reversing the substitution.
+
+## 8. Canonical Mojo support
 
 `mojo/psc/bd_endpoint.mojo` contains only the finite part of the argument:
 
@@ -122,16 +142,17 @@ This is a necessary condition only. Types C–F are not asserted realizable by s
 - endpoint-pair orbit masks;
 - coalescence detection;
 - verification that every type-G map acts transitively on all three unordered distinct pairs;
+- complementary hub-letter and two-edge-star checks;
 - the combined A/B/G type filter.
 
-`mojo/tests/test_bd_endpoint.mojo` exhausts all 27 self-maps of the three-letter alphabet. In particular it pins that there are two type-G maps and both have full pair-orbit mask `0b111` from every distinct pair.
+`mojo/tests/test_bd_endpoint.mojo` exhausts all 27 self-maps of the three-letter alphabet. It pins that there are two type-G maps and both have full pair-orbit mask `0b111` from every distinct pair, and it checks the two-edge hub normal form for each possible choice of good pair.
 
 The Barge-Diamond existence theorem itself is a cited mathematical input, not something the finite Mojo test claims to prove.
 
-## 8. Consequence for the active C4 route
+## 9. Consequence for the active C4 route
 
-The hierarchy-offset/recognizability state from PR #37 should no longer spend effort on type-G endpoint regimes. A recurrent strict offset cycle, if one exists, must live entirely in the C/D/E/F endpoint normal form.
+The hierarchy-offset/recognizability state from PR #37 should no longer spend effort on type-G endpoint regimes. A recurrent strict offset cycle, if one exists, must live entirely in the C/D/E/F endpoint normal form and, after fixing a Barge-Diamond-good pair, in a two-edge hub-star boundary alphabet.
 
-The next useful question is now sharper: can the remaining C–F endpoint dynamics support a recurrent legal hierarchy-offset cycle while avoiding the **global eventual-coincidence relation**, not merely the weaker endpoint-synchronization relation?
+The next useful question is now sharper: can the remaining C–F endpoint dynamics support a recurrent legal hierarchy-offset cycle while preserving the hub-star constraint and avoiding the **global eventual-coincidence relation**, not merely the weaker endpoint-synchronization relation?
 
-This suggests enriching the finite offset state by the Barge-Diamond eventual-coincidence class of its adjacent letter pair, or proving that the C–F first/last pair support must meet an eventually-coincident class. That is a stronger target than recognizability alone and directly exploits a theorem known for every Pisot substitution.
+A promising finite refinement is therefore the hub-side bit along actual child occurrences. The next proof obligation is to relate that bit to the existing `Z/2` child orientation/signing cocycle without assuming they coincide.
