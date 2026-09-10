@@ -2,7 +2,7 @@
 
 Construction validates the mathematical contract once, interns normalized
 balanced states once, and then stores every derived child as an integer state ID
-plus one orientation bit.  Hot derived-word expansion therefore avoids string
+plus one orientation bit. Hot derived-word expansion therefore avoids string
 keys and Pair copies; strings are confined to the one-time interning boundary.
 """
 
@@ -10,7 +10,7 @@ from psc.bpa import apply_substitution, coincidence_boundaries, decompose, norma
 from psc.words import Pair
 
 
-struct OrientedSymbol(Copyable, Movable, Equatable):
+struct OrientedSymbol(Copyable, Movable, Equatable, Writable):
     var state_id: Int
     var sign: Int
 
@@ -23,6 +23,9 @@ struct OrientedSymbol(Copyable, Movable, Equatable):
 
     def __ne__(self, other: OrientedSymbol) -> Bool:
         return not (self == other)
+
+    def write_to[W: Writer](self, mut w: W):
+        w.write("(", self.state_id, ",", self.sign, ")")
 
 
 struct BlockPosition(Copyable, Movable, Equatable):
@@ -92,7 +95,7 @@ def build_derived_system(
     var lengths = List[Int]()
     var index = Dict[String, Int]()
 
-    # One-time normalization/interning boundary.  Downstream hot loops use Int IDs.
+    # One-time normalization/interning boundary. Downstream hot loops use Int IDs.
     for i in range(len(comp)):
         var state = normalise(comp[i])
         if not state.is_balanced():
@@ -219,7 +222,7 @@ def context_around_block(
 ) raises -> List[Int]:
     """Pack left then right radius-R derived contexts into one compact Int list.
 
-    Sentinel value `2*system.size()` marks exterior positions.  The result has
+    Sentinel value `2*system.size()` marks exterior positions. The result has
     fixed length `2*radius`, suitable for a future compact state key.
     """
     if radius < 0:
