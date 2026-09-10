@@ -2,10 +2,18 @@
 
 The repository uses several complementary verification layers. No layer is allowed to claim more than it actually checks.
 
+## 0. Canonical executable language
+
+**Mojo is the canonical executable implementation layer.** New algorithms, exact finite-state machinery, census drivers, and performance-sensitive theorem-support code should be implemented in `mojo/` first. Python is retained as an independent reference/oracle and prototyping layer, not as the default implementation surface.
+
+This is also an optimization policy: hot kernels should be redesigned around Mojo's strengths rather than mechanically translated from Python. In the standing alphabet-3 regime, prefer fixed-dimension exact arithmetic, streaming prefix accumulators, precomputed substitution-local tables, compact integer-index graph representations, iterative traversals, and storage reuse. Diagnostic string serialization and Python-style dynamic object graphs should stay out of inner loops where an exact compact representation is available.
+
+The detailed agent/review rules are in `AGENTS.md`.
+
 | Layer | Tool | Question it answers | Scope |
 |---|---|---|---|
-| Exact computational kernel | Mojo | Is the finite arithmetic/corpus computation correct? | exact PIP decision, BPA construction, C3/C4/defect censuses, finite algebra |
-| Structural regression layer | Python | Do exact structural identities and counter-calibrations behave as claimed? | SCC, endpoint, orientation, defect, ordered factorization, mean-area/lattice prototypes |
+| **Canonical exact implementation** | Mojo | Is the executable finite arithmetic/automaton computation correct? | exact PIP decision, BPA construction, structural C4 machinery, C3/C4/defect censuses, finite algebra, optimized corpus instrumentation |
+| Secondary structural oracle | Python | Does an independently written reference reproduce structural identities/counter-calibrations? | reference SCC/endpoint/orientation/defect/factorization/lattice models during Mojo migration |
 | State/dependency model | TLA+ / TLC | Does the finite automaton/model behave as claimed, and which proof conclusions are reachable from which assumptions? | BPA model checks and proof-dependency ledger |
 | Deductive finite algebra | Lean 4 + Mathlib | Do the formalized finite-algebra theorems follow? | seed/spectral algebra and axiom audit |
 
@@ -15,11 +23,11 @@ Run the available layers with `scripts/verify_all.sh`. A missing toolchain must 
 
 The exact 4,554-substitution corpus is a **finite calibration**, not a proof of G1, C1, C4, or PSC. Mojo verifies that the chosen finite parameter space was screened exactly and that the reported BPA/census statistics are reproducible.
 
-The Python layer contains theorem-level integer identities where the proof is elementary and explicit—for example the endpoint quotient, Parikh/orientation intertwiners, ordered mid-area identity, and exact lattice certificates—but Python execution is still a regression check, not a formal proof assistant.
+Executable identities in Mojo or Python are still regression/certificate computations, not proof-assistant theorems merely because they are exact. The architectural preference for Mojo changes the source-of-truth implementation, not the epistemic status of computation.
 
 Lean currently formalizes the older finite spectral core, not the full C4 stack. TLA+ checks dependency reachability and selected finite-state models; it does not prove the mathematical C4 lemmas merely by naming them in a ledger.
 
-## 2. Mojo kernel
+## 2. Mojo kernel and optimization policy
 
 The Mojo kernel uses exact integer/rational operations for:
 
@@ -28,15 +36,31 @@ The Mojo kernel uses exact integer/rational operations for:
 - balanced-pair factorization and SCC construction;
 - seed `K2/K3/W3` certificate computations;
 - endpoint/C3/C4 finite censuses;
-- the exact first-defect census.
+- the exact first-defect census;
+- new C4 structural machinery as it is migrated from the Python oracle layer.
+
+For new work, the preferred optimization order is:
+
+1. exploit known fixed dimensions before introducing generic containers;
+2. replace combinatorial enumeration with exact streaming recurrences when possible;
+3. precompute data depending only on a substitution/specimen;
+4. intern states once and use integer indices in graph algorithms;
+5. reuse scratch storage and avoid temporary strings/lists in hot loops;
+6. keep SCC/reachability algorithms iterative;
+7. fuse repeated exact passes only when doing so preserves auditability;
+8. fail closed on impossible invariants;
+9. never trade exact arithmetic for floating heuristics on proof-relevant predicates;
+10. accompany material hot-kernel changes with deterministic correctness regressions and complexity/benchmark notes where practical.
+
+The `N2/N3` word counters are a canonical example: in a three-letter alphabet they should use one-pass prefix accumulators rather than `O(n^2)` / `O(n^3)` tuple enumeration.
 
 The established finite alphabet-3 corpus has 4,554 PIP substitutions with image lengths `<=3`. All BPA constructions terminate below the configured cap in this corpus; every observed sink is productive. This is finite evidence only.
 
 Issue #2 tracks the remaining infrastructure step: make this exact screen the canonical documented corpus-export interface with deterministic machine-readable JSONL.
 
-## 3. Python structural layer
+## 3. Python reference/oracle layer
 
-`src/psc_research/` and `tests/` now carry exact regression implementations for the live C4 reduction stack, including:
+`src/psc_research/` and `tests/` contain exact reference implementations for much of the live C4 reduction stack, including:
 
 - sink-SCC and boundary-lineage tooling;
 - seven endpoint-map types and synchronization quotients;
@@ -47,7 +71,10 @@ Issue #2 tracks the remaining infrastructure step: make this exact screen the ca
 - mod-2 degree-2 size obstruction;
 - synthetic G/F factorization negative control;
 - ordered degree-2 mid-area identity;
-- three-state mean-area and integral-image calibration.
+- three-state mean-area and integral-image calibration;
+- recent recognizability/prefix-ancestry prototypes while their Mojo ports are being completed.
+
+These files remain valuable because an independently written oracle can catch mistakes in the canonical Mojo path. They should not become the default location for new theorem-support code. A Python-only new module is temporary unless an explicit blocker makes a Mojo implementation impractical.
 
 The strong G/F synthetic artifact is important precisely because it prevents overclaiming: it satisfies the real PIP substitution, endpoint phases, incidence, Parikh and `K2` data, and actual irreducible state columns, yet fails the true zero-return child factorization.
 
@@ -114,13 +141,14 @@ and similarly `Q2 S=(Lambda^2 M)Q2` at degree two.
 
 This correction does **not** invalidate the seed-level finite Spectral Black Box. It corrects the SCC-level transfer interface. The older v34 norm/path-counting argument that takes norms before using unsigned counts is a separate statement and is not changed merely by D4.
 
-## 7. Current verification gap
+## 7. Current verification and implementation gap
 
-The machine/prose record is being updated to include the C4 stack, but the deepest current mathematical gap is not a missing test. It is a uniform theorem about actual factorization:
+The deepest current mathematical gap remains a uniform theorem about actual factorization and recognizability:
 
 - the prefix-difference walk determines balanced child return times;
 - finite closed SCC recurrence produces many bounded-gap returns under inflation;
-- Pisot contraction should constrain those return vectors;
-- recognizability should constrain recurrent child cuts relative to supertile boundaries.
+- Pisot contraction constrains multi-level ancestry defects;
+- recognizability constrains recurrent child cuts relative to supertile boundaries;
+- the remaining object is the relative hierarchy-offset/address state.
 
-That alignment/return-density step is the next proof target. No amount of additional fixed-size regression filtering is a substitute for it.
+The implementation gap is now explicit too: recent Python structural prototypes on this route must be migrated into canonical Mojo modules, beginning with multi-level prefix ancestry/legal towers and the relative hierarchy-offset state. New work on this path should be Mojo-first.
