@@ -22,18 +22,22 @@ next parity/cocycle stage.
 from psc.endpoint_core import endpoint_type
 
 
+def _validate_letter(a: Int) raises:
+    if a < 0 or a >= 3:
+        raise Error("letter lies outside 0..2")
+
+
 def _validate_endpoint_map(h: List[Int]) raises:
     if len(h) != 3:
         raise Error("endpoint map must have exactly three letters")
     for i in range(3):
-        if h[i] < 0 or h[i] >= 3:
-            raise Error("endpoint map value lies outside 0..2")
+        _validate_letter(h[i])
 
 
 def unordered_pair_id(a: Int, b: Int) raises -> Int:
     """Encode {0,1},{0,2},{1,2} as 0,1,2."""
-    if a < 0 or a >= 3 or b < 0 or b >= 3:
-        raise Error("letter lies outside 0..2")
+    _validate_letter(a)
+    _validate_letter(b)
     if a == b:
         raise Error("unordered pair requires distinct letters")
     var lo = a
@@ -79,6 +83,8 @@ def pair_orbit_mask(h: List[Int], a: Int, b: Int) raises -> Int:
     three unordered pairs; a repeated pair has entered its eventual cycle.
     """
     _validate_endpoint_map(h)
+    _validate_letter(a)
+    _validate_letter(b)
     if a == b:
         return 0
     var x = a
@@ -99,6 +105,8 @@ def pair_orbit_mask(h: List[Int], a: Int, b: Int) raises -> Int:
 def pair_orbit_coalesces(h: List[Int], a: Int, b: Int) raises -> Bool:
     """Whether the endpoint-map orbits of a,b meet."""
     _validate_endpoint_map(h)
+    _validate_letter(a)
+    _validate_letter(b)
     var x = a
     var y = b
     for _ in range(8):
