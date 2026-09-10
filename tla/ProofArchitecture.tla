@@ -8,6 +8,11 @@
 (*                                                                         *)
 (* Requires encodes one-way proof sufficiency/dependency. It must not be     *)
 (* read as a converse mathematical implication.                              *)
+(*                                                                         *)
+(* All currently ready results are discharged in one batch. This computes   *)
+(* the same least dependency closure as arbitrary one-at-a-time discharge,   *)
+(* but avoids exploring factorially many equivalent proof orders as the      *)
+(* ledger grows. Each non-stuttering step advances one dependency layer.     *)
 (***************************************************************************)
 EXTENDS FiniteSets
 
@@ -31,13 +36,13 @@ vars == <<established>>
 
 Init == established = Assumed
 
-Discharge(r) ==
-    /\ r \notin established
-    /\ r \in Proved
-    /\ Requires[r] \subseteq established
-    /\ established' = established \cup {r}
+Ready == {
+    r \in (Proved \ established) : Requires[r] \subseteq established
+}
 
-Next == \E r \in Results : Discharge(r)
+Next ==
+    /\ Ready # {}
+    /\ established' = established \cup Ready
 
 Spec == Init /\ [][Next]_vars /\ WF_vars(Next)
 
