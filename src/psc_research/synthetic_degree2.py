@@ -1,78 +1,84 @@
 """A near-realizable three-state degree-2 obstruction template.
 
-This module deliberately constructs an abstract signed derived substitution that
-passes the current linear-algebra, orientation, endpoint-signature, and
-per-state balanced-word tests for the Tribonacci cubic.  It then exposes the
-missing constraint: no ordering of the actual substitution images with that
-incidence matrix realizes two nonsynchronizing endpoint maps.
+The template deliberately passes the current linear-algebra, orientation,
+endpoint-signature, actual-substitution-endpoint, and per-state balanced-word
+tests. It fails only when the chosen substitution is required to factor each
+inflated balanced pair into the proposed signed child states.
 
-The object is a falsification artifact for proof strategies, not a PSC
-counterexample.
+This is a falsification artifact for proof strategies, not a PSC counterexample.
 """
 
 from __future__ import annotations
 
-from itertools import permutations
-
-from .bpa import State, Substitution, endpoint_maps, normalize_state, parikh
+from .bpa import (
+    State,
+    Substitution,
+    apply_substitution,
+    decompose_pair,
+    endpoint_maps,
+    normalize_state,
+    parikh,
+)
 from .defect_intertwiner import exterior_square, k2_wedge
 from .endpoint_core import class_of, synchronizes
 from .intertwiner import IntMatrix, matmul, substitution_incidence
 
 
+SIGMA: Substitution = {
+    1: (2,),
+    2: (3,),
+    3: (1, 3, 2),
+}
+
 N: IntMatrix = (
-    (1, 1, 1),
-    (1, 0, 0),
-    (0, 1, 0),
+    (0, 0, 1),
+    (1, 0, 1),
+    (0, 1, 1),
 )
 
 S: IntMatrix = (
-    (-1, -1, -1),
-    (1, 0, 0),
-    (0, -1, 0),
+    (0, 0, -1),
+    (1, 0, 1),
+    (0, -1, -1),
 )
 
 A: IntMatrix = (
     (0, 0, 0),
-    (1, 0, 0),
+    (1, 0, 1),
     (0, 0, 0),
 )
 
 B: IntMatrix = (
-    (1, 1, 1),
+    (0, 0, 1),
     (0, 0, 0),
-    (0, 1, 0),
+    (0, 1, 1),
 )
 
 P: IntMatrix = (
-    (3, 3, 2),
-    (2, 1, 1),
-    (1, 1, 0),
+    (1, 1, 2),
+    (1, 2, 3),
+    (1, 2, 4),
 )
 
 Q: IntMatrix = (
-    (2, 2, 2),
-    (-2, 2, 0),
-    (-2, 0, 0),
+    (1, -1, 1),
+    (1, 1, 3),
+    (-1, 3, 3),
 )
 
 STATES: tuple[State, ...] = (
-    ((1, 3, 1, 2, 1, 2), (2, 1, 1, 1, 2, 3)),
-    ((1, 1, 2, 1, 3), (2, 1, 3, 1, 1)),
-    ((1, 1, 2), (2, 1, 1)),
+    ((1, 3, 2), (2, 3, 1)),
+    ((2, 1, 2, 3, 3), (3, 1, 2, 3, 2)),
+    ((1, 2, 2, 3, 1, 3, 3, 3, 2), (3, 1, 2, 3, 3, 2, 2, 1, 3)),
 )
 
 # Ordered signed child words for the abstract derived substitution.
 # Each pair is (child_index, orientation_sign).
 SIGNED_CHILDREN: tuple[tuple[tuple[int, int], ...], ...] = (
-    ((0, -1), (1, 1)),
-    ((0, -1), (2, -1)),
-    ((0, -1),),
+    ((1, 1),),
+    ((2, -1),),
+    ((0, -1), (1, 1), (2, -1)),
 )
-
-# Zero-based endpoint maps used only by the abstract template.
-PLUS_F = (1, 0, 0)
-MINUS_G = (1, 2, 0)
 
 
 def _add(a: IntMatrix, b: IntMatrix) -> IntMatrix:
@@ -81,14 +87,6 @@ def _add(a: IntMatrix, b: IntMatrix) -> IntMatrix:
 
 def _sub(a: IntMatrix, b: IntMatrix) -> IntMatrix:
     return tuple(tuple(x - y for x, y in zip(ra, rb)) for ra, rb in zip(a, b))
-
-
-def _scale2(a: IntMatrix) -> IntMatrix:
-    return tuple(tuple(2 * x for x in row) for row in a)
-
-
-def _columns(matrix: IntMatrix) -> tuple[tuple[int, ...], ...]:
-    return tuple(tuple(matrix[i][j] for i in range(len(matrix))) for j in range(len(matrix[0])))
 
 
 def state_parikh_matrix() -> IntMatrix:
@@ -125,17 +123,28 @@ def signed_counts_from_words() -> tuple[IntMatrix, IntMatrix]:
     )
 
 
-def abstract_endpoint_constraints_hold() -> bool:
-    """The F/G endpoint quotient phases fit the synthetic child selectors."""
-    # first-letter pairs are all {0,1}; F keeps that unordered pair off-diagonal
-    plus_pairs = tuple((state[0][0] - 1, state[1][0] - 1) for state in STATES)
-    if any(synchronizes(PLUS_F, a, b) for a, b in plus_pairs):
-        return False
-    if len({frozenset(pair) for pair in plus_pairs}) != 1:
-        return False
+def endpoint_maps_zero_based() -> tuple[tuple[int, ...], tuple[int, ...]]:
+    plus, minus = endpoint_maps(SIGMA)
+    return (
+        tuple(plus[a] - 1 for a in sorted(plus)),
+        tuple(minus[a] - 1 for a in sorted(minus)),
+    )
 
+
+def endpoint_type_pair() -> tuple[tuple[int, ...], tuple[int, ...]]:
+    plus, minus = endpoint_maps_zero_based()
+    return class_of(plus).representative, class_of(minus).representative
+
+
+def endpoint_constraints_hold() -> bool:
+    """Actual G/F endpoint maps fit the synthetic child selectors exactly."""
+    plus, minus = endpoint_maps_zero_based()
+    plus_pairs = tuple((state[0][0] - 1, state[1][0] - 1) for state in STATES)
     minus_pairs = tuple((state[0][-1] - 1, state[1][-1] - 1) for state in STATES)
-    if any(synchronizes(MINUS_G, a, b) for a, b in minus_pairs):
+
+    if any(synchronizes(plus, a, b) for a, b in plus_pairs):
+        return False
+    if any(synchronizes(minus, a, b) for a, b in minus_pairs):
         return False
 
     first_child = tuple(word[0][0] for word in SIGNED_CHILDREN)
@@ -143,50 +152,48 @@ def abstract_endpoint_constraints_hold() -> bool:
 
     for parent in range(3):
         a, b = plus_pairs[parent]
-        target_pair = frozenset((PLUS_F[a], PLUS_F[b]))
-        if target_pair != frozenset(plus_pairs[first_child[parent]]):
+        if frozenset((plus[a], plus[b])) != frozenset(plus_pairs[first_child[parent]]):
             return False
-
         a, b = minus_pairs[parent]
-        target_pair = frozenset((MINUS_G[a], MINUS_G[b]))
-        if target_pair != frozenset(minus_pairs[last_child[parent]]):
+        if frozenset((minus[a], minus[b])) != frozenset(minus_pairs[last_child[parent]]):
             return False
     return True
 
 
-def tribonacci_incidence_variants() -> tuple[Substitution, ...]:
-    """All word orderings with incidence N.
-
-    Column 1 has letters {1,2}, column 2 has {1,3}, and column 3 is the
-    singleton letter 1, so there are exactly four substitutions.
-    """
-    out: list[Substitution] = []
-    for image1 in permutations((1, 2)):
-        for image2 in permutations((1, 3)):
-            sigma: Substitution = {1: tuple(image1), 2: tuple(image2), 3: (1,)}
-            if substitution_incidence(sigma) != N:
-                raise AssertionError("incidence variant does not recover N")
-            out.append(sigma)
+def actual_signed_children(state: State) -> tuple[tuple[State, int], ...]:
+    u, v = state
+    raw = decompose_pair(apply_substitution(SIGMA, u), apply_substitution(SIGMA, v), 3)
+    out: list[tuple[State, int]] = []
+    for child in raw:
+        normalized = normalize_state(child)
+        sign = 1 if child == normalized else -1
+        out.append((normalized, sign))
     return tuple(out)
 
 
-def endpoint_type_pair(sigma: Substitution) -> tuple[tuple[int, ...], tuple[int, ...]]:
-    plus, minus = endpoint_maps(sigma)
-    plus0 = tuple(plus[a] - 1 for a in sorted(plus))
-    minus0 = tuple(minus[a] - 1 for a in sorted(minus))
-    return class_of(plus0).representative, class_of(minus0).representative
+def proposed_signed_children_as_states(parent: int) -> tuple[tuple[State, int], ...]:
+    return tuple((STATES[child], sign) for child, sign in SIGNED_CHILDREN[parent])
 
 
-def every_incidence_variant_has_global_endpoint_sync() -> bool:
-    for sigma in tribonacci_incidence_variants():
-        plus, minus = endpoint_type_pair(sigma)
-        if not (class_of(plus).globally_synchronizing or class_of(minus).globally_synchronizing):
-            return False
-    return True
+def factorization_realizes_template() -> bool:
+    return all(
+        actual_signed_children(STATES[parent]) == proposed_signed_children_as_states(parent)
+        for parent in range(3)
+    )
+
+
+def actual_factorization_has_coincidence() -> bool:
+    return any(
+        child[0] == child[1]
+        for state in STATES
+        for child, _sign in actual_signed_children(state)
+    )
 
 
 def verify_synthetic_template() -> bool:
-    """Check every algebraic/per-state constraint claimed by this artifact."""
+    """Check every constraint claimed before the deliberate factorization failure."""
+    if substitution_incidence(SIGMA) != N:
+        return False
     if _add(A, B) != N or _sub(A, B) != S:
         return False
     pos, neg = signed_counts_from_words()
@@ -200,6 +207,8 @@ def verify_synthetic_template() -> bool:
         return False
     if matmul(Q, S) != matmul(exterior_square(N), Q):
         return False
-    if not abstract_endpoint_constraints_hold():
+    if endpoint_type_pair() != ((1, 2, 0), (1, 0, 0)):
         return False
-    return every_incidence_variant_has_global_endpoint_sync()
+    if not endpoint_constraints_hold():
+        return False
+    return not factorization_realizes_template() and actual_factorization_has_coincidence()
