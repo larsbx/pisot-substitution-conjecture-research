@@ -19,7 +19,7 @@ optimized for the standing three-letter regime:
 """
 
 from psc.bpa import apply_substitution, coincidence_boundaries
-from psc.words import Pair, parikh
+from psc.words import Pair
 
 
 struct CutLocation(Copyable, Movable):
@@ -82,7 +82,7 @@ def image_lengths_at_depth(sigma: List[List[Int]], depth: Int) raises -> List[In
             for j in range(len(sigma[a])):
                 total += lengths[sigma[a][j]]
             next[a] = total
-        lengths = next
+        lengths = next^
     return lengths^
 
 
@@ -217,7 +217,7 @@ def tower_source_cuts(
         top_pos = top_loc.source_index
         bottom_pos = bottom_loc.source_index
         var pair: List[Int] = [top_pos, bottom_pos]
-        out.append(pair)
+        out.append(pair^)
     return out^
 
 
