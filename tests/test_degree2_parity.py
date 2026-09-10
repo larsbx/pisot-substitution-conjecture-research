@@ -52,3 +52,59 @@ def test_polynomial_gcd_examples():
     p = characteristic_cubic_mod2(1, 1, 0)
     q = exterior_characteristic_cubic_mod2(1, 1, 0)
     assert gcd_mod2(p, q) == 0b10
+
+
+def _parikh(word):
+    return tuple(word.count(a) for a in range(3))
+
+
+def _irreducible_balanced(u, v):
+    if _parikh(u) != _parikh(v):
+        return False
+    pu = [0, 0, 0]
+    pv = [0, 0, 0]
+    for index, (a, b) in enumerate(zip(u, v), start=1):
+        pu[a] += 1
+        pv[b] += 1
+        if index < len(u) and pu == pv:
+            return False
+    return True
+
+
+def _k2_wedge(u, v):
+    def counts(word):
+        seen = [0, 0, 0]
+        out = [0] * 9
+        for b in word:
+            for a in range(3):
+                out[3 * a + b] += seen[a]
+            seen[b] += 1
+        return out
+
+    left = counts(u)
+    right = counts(v)
+    diff = [x - y for x, y in zip(left, right)]
+    return (diff[1], diff[2], diff[5])
+
+
+def test_swapped_endpoint_k2_halfspace_route_has_exact_length9_counterexample():
+    witnesses = (
+        ((0, 2, 1, 0, 2, 0, 0, 0, 1), (1, 0, 0, 0, 0, 2, 1, 2, 0)),
+        ((0, 1, 0, 1, 1, 2, 0, 2, 1), (1, 2, 0, 0, 2, 1, 1, 1, 0)),
+        ((0, 1, 1, 1, 0, 0, 0, 2, 1), (1, 2, 0, 0, 0, 1, 1, 1, 0)),
+        ((0, 2, 2, 2, 1, 1, 0, 0, 1), (1, 0, 0, 1, 1, 2, 2, 2, 0)),
+    )
+    expected = ((2, -5, -2), (2, 3, 4), (-2, 4, 2), (1, -3, -9))
+    coefficients = (50, 8, 61, 6)
+
+    vectors = []
+    for (u, v), q in zip(witnesses, expected):
+        assert u[0] == 0 and v[0] == 1 and u[-1] == 1 and v[-1] == 0
+        assert _irreducible_balanced(u, v)
+        assert _k2_wedge(u, v) == q
+        vectors.append(q)
+
+    assert tuple(
+        sum(coefficients[k] * vectors[k][coordinate] for k in range(4))
+        for coordinate in range(3)
+    ) == (0, 0, 0)
