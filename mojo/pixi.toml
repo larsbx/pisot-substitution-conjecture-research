@@ -1,7 +1,7 @@
 [workspace]
 name = "psc-mojo"
 version = "0.1.0"
-description = "Exact computational kernel for the alphabet-3 Spectral module of the PSC balanced-pair program"
+description = "Canonical exact Mojo implementation for the PSC balanced-pair research program"
 channels = ["https://conda.modular.com/max-nightly/", "conda-forge"]
 platforms = ["linux-64", "osx-arm64"]
 
@@ -9,5 +9,8 @@ platforms = ["linux-64", "osx-arm64"]
 modular = ">=26.6.0.dev2026090805,<27"
 
 [tasks]
-verify = "mojo run verify.mojo"
-test = "mojo run -I . tests/test_kernel.mojo"
+verify = "mojo run -I . verify.mojo"
+kernel = "mojo run -I . tests/test_kernel.mojo"
+words = "mojo run -I . tests/test_words_streaming.mojo"
+test = { depends-on = ["kernel", "words"] }
+check = { depends-on = ["test", "verify"] }
