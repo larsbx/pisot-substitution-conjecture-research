@@ -79,8 +79,8 @@ struct RelativeHierarchyOffset(Copyable, Movable):
         top_context: List[Int],
         bottom_context: List[Int],
     ):
-        self.defect = defect
-        self.correction = correction
+        self.defect = defect.copy()
+        self.correction = correction.copy()
         self.cut_delta = cut_delta
         self.block_index_delta = block_index_delta
         self.top_block_offset = top_block_offset
@@ -102,7 +102,7 @@ struct RelativeHierarchyOffset(Copyable, Movable):
         return self.cut_delta == 0
 
 
-fn _abs(x: Int) -> Int:
+def _abs(x: Int) -> Int:
     if x < 0:
         return -x
     return x
