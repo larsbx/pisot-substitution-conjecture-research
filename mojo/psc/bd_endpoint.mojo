@@ -12,6 +12,11 @@ letter pairs, so one bad pair would force all three pairs to be bad, contradicti
 Barge-Diamond.  Types A/B are already excluded by the globally synchronizing
 endpoint theorem.  Thus only C/D/E/F remain admissible on either side; the
 suffix statement is the prefix statement for the reversed substitution.
+
+Choosing any one Barge-Diamond-good pair also gives a fixed hub letter: every
+strict right-boundary pair must contain the third letter complementary to that
+good pair.  The helpers below expose this finite star-shaped normal form for the
+next parity/cocycle stage.
 """
 
 from psc.endpoint_core import endpoint_type
@@ -42,6 +47,29 @@ def unordered_pair_id(a: Int, b: Int) raises -> Int:
     if lo == 0 and hi == 2:
         return 1
     return 2
+
+
+def complementary_hub_letter(good_a: Int, good_b: Int) raises -> Int:
+    """Third letter outside one distinct Barge-Diamond-good pair."""
+    _ = unordered_pair_id(good_a, good_b)
+    return 3 - good_a - good_b
+
+
+def avoids_good_pair_and_contains_hub(
+    good_a: Int, good_b: Int, x: Int, y: Int
+) raises -> Bool:
+    """Finite star condition for a distinct strict boundary pair.
+
+    If {good_a,good_b} is eventually coincident, a strict boundary pair must
+    avoid that edge.  On three letters every other distinct edge contains the
+    complementary hub letter.
+    """
+    var good_id = unordered_pair_id(good_a, good_b)
+    var pair_id = unordered_pair_id(x, y)
+    if pair_id == good_id:
+        return False
+    var hub = complementary_hub_letter(good_a, good_b)
+    return x == hub or y == hub
 
 
 def pair_orbit_mask(h: List[Int], a: Int, b: Int) raises -> Int:
