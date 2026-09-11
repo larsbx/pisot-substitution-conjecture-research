@@ -136,6 +136,7 @@ def strict_star_selector_phase(h: List[Int], good_a: Int, good_b: Int) raises ->
 
 def cdef_phase_is_uniform(h: List[Int], good_a: Int, good_b: Int) raises -> Bool:
     """Exact finite normal-form assertion for endpoint types C/D/E/F."""
+    _validate_map(h)
     var t = endpoint_type(h)
     if t < 2 or t > 5:
         return False
