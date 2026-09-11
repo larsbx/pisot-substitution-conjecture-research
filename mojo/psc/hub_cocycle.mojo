@@ -37,6 +37,68 @@ def _validate_hub(hub: Int) raises:
         raise Error("hub letter lies outside 0..2")
 
 
+def support_is_strongly_connected(system: DerivedSystem) raises -> Bool:
+    """Exact SCC check on the derived support graph.
+
+    `DerivedSystem` validates strict child closure, but its public constructor
+    can represent a non-SCC support. Perron phase is only a component-level
+    invariant, so callers must not silently feed a reducible support to the
+    signing solver.
+    """
+    var n = system.size()
+    if n <= 0:
+        raise Error("derived support must be nonempty")
+    if len(system.images) != n or len(system.child_signs) != n:
+        raise Error("derived support arrays disagree with state count")
+
+    var seen = List[Bool]()
+    for _ in range(n):
+        seen.append(False)
+    var queue = List[Int]()
+    seen[0] = True
+    queue.append(0)
+    var head = 0
+    while head < len(queue):
+        var src = queue[head]
+        head += 1
+        if len(system.images[src]) != len(system.child_signs[src]):
+            raise Error("derived child/sign arrays disagree")
+        for j in range(len(system.images[src])):
+            var dst = system.images[src][j]
+            if dst < 0 or dst >= n:
+                raise Error("derived child state ID out of range")
+            if not seen[dst]:
+                seen[dst] = True
+                queue.append(dst)
+    for v in range(n):
+        if not seen[v]:
+            return False
+
+    # Reverse reachability from 0. A fixed-point scan avoids allocating a
+    # second adjacency structure; this path runs once per phase check, not in
+    # the hot ancestry loop.
+    var reverse_seen = List[Bool]()
+    for _ in range(n):
+        reverse_seen.append(False)
+    reverse_seen[0] = True
+    var changed = True
+    while changed:
+        changed = False
+        for src in range(n):
+            if reverse_seen[src]:
+                continue
+            for j in range(len(system.images[src])):
+                var dst = system.images[src][j]
+                if reverse_seen[dst]:
+                    reverse_seen[src] = True
+                    changed = True
+                    break
+    for v in range(n):
+        if not reverse_seen[v]:
+            return False
+    return True
+
+
 def canonical_hub_side(system: DerivedSystem, state_id: Int, hub: Int) raises -> Int:
     """0=top, 1=bottom for the normalized state's first-letter hub occurrence."""
     _validate_hub(hub)
@@ -114,13 +176,16 @@ def orientation_signed_edges(system: DerivedSystem) raises -> List[SignedEdge]:
         if len(system.images[src]) != len(system.child_signs[src]):
             raise Error("derived child/sign arrays disagree")
         for j in range(len(system.images[src])):
+            var dst = system.images[src][j]
+            if dst < 0 or dst >= system.size():
+                raise Error("derived child state ID out of range")
             var sign = system.child_signs[src][j]
             var b = 0
             if sign == -1:
                 b = 1
             elif sign != 1:
                 raise Error("derived child orientation must be +/-1")
-            out.append(SignedEdge(src, system.images[src][j], b))
+            out.append(SignedEdge(src, dst, b))
     return out^
 
 
@@ -133,14 +198,17 @@ def hub_residual_edges(system: DerivedSystem, cocycle: HubCocycle) raises -> Lis
         if len(cocycle.residual_bits[src]) != len(system.images[src]):
             raise Error("hub residual/image lengths disagree")
         for j in range(len(system.images[src])):
-            out.append(
-                SignedEdge(src, system.images[src][j], cocycle.residual_bits[src][j])
-            )
+            var dst = system.images[src][j]
+            if dst < 0 or dst >= system.size():
+                raise Error("derived child state ID out of range")
+            out.append(SignedEdge(src, dst, cocycle.residual_bits[src][j]))
     return out^
 
 
 def hub_gauge_preserves_perron_phase(system: DerivedSystem, hub: Int) raises -> Bool:
-    """Exact finite verification of phase invariance under the hub-side gauge."""
+    """Exact phase invariance on one strongly connected derived support."""
+    if not support_is_strongly_connected(system):
+        raise Error("Perron phase requires one strongly connected derived support")
     var cocycle = build_hub_cocycle(system, hub)
     var original = orientation_signed_edges(system)
     var gauged = hub_residual_edges(system, cocycle)
