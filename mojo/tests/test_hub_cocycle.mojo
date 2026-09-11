@@ -1,12 +1,13 @@
 """Canonical Mojo regressions for the Barge-Diamond hub-side cocycle."""
 
-from std.testing import assert_equal, assert_true
+from std.testing import assert_equal, assert_false, assert_true
 from psc.derived_system import build_derived_system
 from psc.hub_cocycle import (
     build_hub_cocycle,
     hub_gauge_preserves_perron_phase,
     hub_residual_edges,
     orientation_signed_edges,
+    support_is_strongly_connected,
 )
 from psc.signing import perron_phase
 from psc.words import Pair
@@ -56,12 +57,26 @@ def test_hub_residual_is_orientation_sign_after_vertex_gauge() raises:
 
 def test_hub_gauge_preserves_perron_phase() raises:
     var system = build_derived_system(sigma(), component())
+    assert_true(support_is_strongly_connected(system))
     var original = orientation_signed_edges(system)
     var hc = build_hub_cocycle(system, 1)
     var gauged = hub_residual_edges(system, hc)
     assert_equal(perron_phase(system.size(), original), 1)
     assert_equal(perron_phase(system.size(), gauged), 1)
     assert_true(hub_gauge_preserves_perron_phase(system, 1))
+
+
+def test_scc_precondition_detects_disconnected_support() raises:
+    var system = build_derived_system(sigma(), component())
+    var self0: List[Int] = [0]
+    var self1: List[Int] = [1]
+    var sign0: List[Int] = [1]
+    var sign1: List[Int] = [1]
+    system.images[0] = self0^
+    system.images[1] = self1^
+    system.child_signs[0] = sign0^
+    system.child_signs[1] = sign1^
+    assert_false(support_is_strongly_connected(system))
 
 
 def main() raises:
@@ -71,4 +86,6 @@ def main() raises:
     print("[PASS] test_hub_residual_is_orientation_sign_after_vertex_gauge")
     test_hub_gauge_preserves_perron_phase()
     print("[PASS] test_hub_gauge_preserves_perron_phase")
-    print("3 hub-cocycle Mojo tests passed.")
+    test_scc_precondition_detects_disconnected_support()
+    print("[PASS] test_scc_precondition_detects_disconnected_support")
+    print("4 hub-cocycle Mojo tests passed.")
