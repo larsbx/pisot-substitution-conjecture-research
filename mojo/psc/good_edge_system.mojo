@@ -1,7 +1,7 @@
 """System-level Barge-Diamond good-edge compatibility for strict components.
 
 This module bridges the endpoint-only first-child phase classifier to an actual
-integer-indexed `DerivedSystem`.  For each of the three possible unordered good
+integer-indexed `DerivedSystem`. For each of the three possible unordered good
 edges G it checks two necessary conditions for a strict PIP component:
 
 1. every normalized state's first-letter pair is viable under the deterministic
@@ -10,8 +10,8 @@ edges G it checks two necessary conditions for a strict PIP component:
    hub-residual bit as the endpoint-only selector phase q_+(h,G).
 
 Barge-Diamond guarantees that a genuine strict PIP component has at least one
-actual eventually-coincident letter pair.  Therefore its candidate-good-edge
-mask computed here must be nonzero.  The finite kernel itself does not assert
+actual eventually-coincident letter pair. Therefore its candidate-good-edge
+mask computed here must be nonzero. The finite kernel itself does not assert
 that a surviving candidate is genuinely eventually coincident.
 """
 
@@ -59,10 +59,10 @@ def candidate_good_edge_phase(
     if phase < 0 or phase > 1:
         return -1
 
-    var hub = complementary_hub_letter(good[0], good[1])
-    # This also checks that every state first pair contains the hub exactly once.
-    var cocycle = build_hub_cocycle(system, hub)
-
+    # Reject endpoint-incompatible candidates before constructing the hub gauge.
+    # Otherwise a state using the proposed good edge would fail the hub-presence
+    # invariant with an exception instead of being classified as a rejected
+    # candidate.
     for src in range(system.size()):
         ref state = system.states[src]
         if state.length() <= 0:
@@ -73,6 +73,11 @@ def candidate_good_edge_phase(
             return -1
         if len(system.images[src]) == 0:
             raise Error("strict state has no derived children")
+
+    var hub = complementary_hub_letter(good[0], good[1])
+    var cocycle = build_hub_cocycle(system, hub)
+
+    for src in range(system.size()):
         if len(cocycle.residual_bits[src]) != len(system.images[src]):
             raise Error("hub residual/image lengths disagree")
         if cocycle.residual_bits[src][0] != phase:
