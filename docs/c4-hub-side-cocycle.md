@@ -34,9 +34,9 @@ Thus `r_c` is exactly the child-orientation cochain after the vertex gauge `x_c`
 
 This is the desired finite bridge: the abstract orientation sign now has a direct boundary interpretation. `r_c(e)=0` means the physical child carries the hub on the same side as the canonical parent; `r_c(e)=1` means the opposite side.
 
-## 3. Perron phase is unchanged
+## 3. Perron phase is unchanged on one SCC
 
-PR #38 classifies a signed support graph by the cohomology class
+PR #38 classifies a signed strongly connected support graph by the cohomology class
 
 ```text
 b(e) = z(src)+z(dst)+q lambda(e) mod 2.
@@ -50,7 +50,9 @@ r_c(e)=b(e)+x_c(src)+x_c(dst)
 
 is a vertex gauge transformation. Hence the existence and value of the Perron phase `q` are unchanged.
 
-The canonical Mojo implementation verifies this equality exactly by running the existing signing solver on both edge lists. This is a finite computation supporting an elementary `F_2` identity; it is not a spectral proof by itself.
+This comparison is an **SCC-level statement**. A `DerivedSystem` can be constructed directly with a reducible support even though the strict-component builder normally supplies an SCC. The canonical Mojo helper therefore checks strong connectivity explicitly and fails closed before invoking the signing solver when the support is not one SCC.
+
+The canonical Mojo implementation verifies phase equality exactly by running the existing signing solver on both edge lists. This is a finite computation supporting an elementary `F_2` identity; it is not a spectral proof by itself.
 
 ## 4. Mojo-first implementation
 
@@ -60,9 +62,10 @@ The canonical Mojo implementation verifies this equality exactly by running the 
 - stores one canonical hub-side bit per state;
 - computes the physical hub side of every raw child occurrence from the child state ID and orientation bit;
 - computes the gauge residual `r_c`;
+- checks that Perron-phase comparisons are made on one strongly connected support;
 - converts both the original and hub-gauged cochains to `SignedEdge` lists for the PR #38 Perron-phase solver.
 
-No string state keys or Python object graphs enter the hot path.
+No string state keys or Python object graphs enter the hot path. The SCC predicate is a one-time validation path, not part of ancestry enumeration.
 
 ## 5. Calibration
 
@@ -85,6 +88,8 @@ x(A)=1, x(B)=0.
 ```
 
 Both physical children of `A` carry the hub on top and both physical children of `B` carry it on bottom. Consequently all four hub residual bits are `1`. The original sign cochain and the hub residual both have Perron phase `q=1`.
+
+A second regression rewrites the same two-state data into two disconnected self-loops and verifies that the support is rejected as non-SCC before a Perron-phase comparison is permitted.
 
 This is a negative control, not a PIP witness.
 
