@@ -90,6 +90,22 @@ def test_window_requirement_staircase_on_bounded_seed_corpus() raises:
             assert_equal(coarse[coarse_audit.first_right].cut, 19)
 
 
+def test_interned_audit_ignores_duplicate_observation_records() raises:
+    var samples = samples_through_depth(
+        nonunimodular_pisot_sigma(), seed_pair(), 0, 3, 2, 1
+    )
+    var baseline = audit_projection(samples)
+    assert_equal(baseline.collision_pair_count, 3)
+
+    # A repeated copy of the exact same specimen/depth/cut is not a new
+    # observation and must not create extra mathematical collision pairs.
+    samples.append(samples[0].copy())
+    var repeated = audit_projection(samples)
+    assert_equal(repeated.collision_pair_count, 3)
+    assert_equal(repeated.first_left, baseline.first_left)
+    assert_equal(repeated.first_right, baseline.first_right)
+
+
 def test_persistent_right_edge_collisions_are_regular_loop_extensions() raises:
     var sigma = nonunimodular_pisot_sigma()
     var pair = seed_pair()
@@ -146,8 +162,10 @@ def main() raises:
     print("[PASS] test_zero_return_oracle_pins_depth_four_seed_cuts")
     test_window_requirement_staircase_on_bounded_seed_corpus()
     print("[PASS] test_window_requirement_staircase_on_bounded_seed_corpus")
+    test_interned_audit_ignores_duplicate_observation_records()
+    print("[PASS] test_interned_audit_ignores_duplicate_observation_records")
     test_persistent_right_edge_collisions_are_regular_loop_extensions()
     print("[PASS] test_persistent_right_edge_collisions_are_regular_loop_extensions")
     test_loop_classifier_rejects_different_insertion_levels()
     print("[PASS] test_loop_classifier_rejects_different_insertion_levels")
-    print("4 joint-local-census Mojo tests passed.")
+    print("5 joint-local-census Mojo tests passed.")
