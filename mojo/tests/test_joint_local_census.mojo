@@ -31,6 +31,17 @@ def nonunimodular_pisot_sigma() -> List[List[Int]]:
     return sigma^
 
 
+def identity_sigma() -> List[List[Int]]:
+    var a0: List[Int] = [0]
+    var a1: List[Int] = [1]
+    var a2: List[Int] = [2]
+    var sigma = List[List[Int]]()
+    sigma.append(a0^)
+    sigma.append(a1^)
+    sigma.append(a2^)
+    return sigma^
+
+
 def seed_pair() -> Pair:
     var u: List[Int] = [0, 1]
     var v: List[Int] = [1, 0]
@@ -43,6 +54,29 @@ def test_zero_return_oracle_pins_depth_four_seed_cuts() raises:
     assert_equal(cuts[len(cuts) - 3], 47)
     assert_equal(cuts[len(cuts) - 2], 48)
     assert_equal(cuts[len(cuts) - 1], 49)
+
+
+def test_invalid_bounds_fail_before_empty_cut_enumeration() raises:
+    # Under the identity substitution, the strict first-return pair (01,10)
+    # still has no interior zero return. Invalid projection parameters must
+    # therefore fail before cut enumeration rather than masquerading as an
+    # empty, separated census.
+    var cuts = zero_return_cuts(identity_sigma(), seed_pair(), 1)
+    assert_equal(len(cuts), 0)
+
+    var caught_radius = False
+    try:
+        _ = samples_through_depth(identity_sigma(), seed_pair(), 0, 1, -1, 0)
+    except:
+        caught_radius = True
+    assert_true(caught_radius)
+
+    var caught_window = False
+    try:
+        _ = samples_through_depth(identity_sigma(), seed_pair(), 0, 1, 0, -1)
+    except:
+        caught_window = True
+    assert_true(caught_window)
 
 
 def test_window_requirement_staircase_on_bounded_seed_corpus() raises:
@@ -192,6 +226,8 @@ def test_loop_classifier_rejects_different_insertion_levels() raises:
 def main() raises:
     test_zero_return_oracle_pins_depth_four_seed_cuts()
     print("[PASS] test_zero_return_oracle_pins_depth_four_seed_cuts")
+    test_invalid_bounds_fail_before_empty_cut_enumeration()
+    print("[PASS] test_invalid_bounds_fail_before_empty_cut_enumeration")
     test_window_requirement_staircase_on_bounded_seed_corpus()
     print("[PASS] test_window_requirement_staircase_on_bounded_seed_corpus")
     test_interned_audit_ignores_duplicate_observation_records()
@@ -202,4 +238,4 @@ def main() raises:
     print("[PASS] test_persistent_right_edge_collisions_are_regular_loop_extensions")
     test_loop_classifier_rejects_different_insertion_levels()
     print("[PASS] test_loop_classifier_rejects_different_insertion_levels")
-    print("6 joint-local-census Mojo tests passed.")
+    print("7 joint-local-census Mojo tests passed.")
