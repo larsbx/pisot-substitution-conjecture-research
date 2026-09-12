@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Verify Issue 45 source snapshots
-        run: sha256sum -c docs/source-imports/issue-45/SHA256SUMS
+        run: ./scripts/verify_all.sh provenance
 
   python-tests:
     runs-on: ubuntu-latest

@@ -37,7 +37,7 @@ The two files under `docs/source-imports/issue-45/` are source snapshots importe
 - `p1a-concentration-aux-b-program.md` from branch `research/p1a-concentration-aux-b`, commit `af46a0eb4c3bd70ae02686a0974cade152e4be85`, original path `docs/p1a-concentration-aux-b-program.md`;
 - `p1a-v34-concentration-audit.md` from the same branch, commit `1297174db56e9d3aa5d0334e25783c58323b5794`, original path `docs/p1a-v34-concentration-audit.md`.
 
-A default or single-branch checkout need not contain those side-branch commits. Provenance is therefore independently checkable from the imported files themselves:
+A default or single-branch checkout need not contain those side-branch commits. The original full-index `git format-patch` records are therefore preserved as `0001-Seed-P1-A-concentration-program.patch` and `0002-Audit-v34-against-the-concentration-gate.patch`. Their `From` lines identify commits `af46a0eb4c3bd70ae02686a0974cade152e4be85` and `1297174db56e9d3aa5d0334e25783c58323b5794`; their diffs independently reconstruct the original source files rather than deriving provenance only from the imported snapshots.
 
 | Repository-contained file | Git blob on `main` | SHA-256 of file bytes |
 | --- | --- | --- |
@@ -46,9 +46,9 @@ A default or single-branch checkout need not contain those side-branch commits. 
 | `archive/2026-09-08/manuscripts/PSC_PROOF_v15.tex` | `36f810d3540ee5cf677f7b704429f15d679b24c2` | `0b28c23aa8f4d006e6de3823b1c953626dad20ce58c77afa76717bd91abee6df` |
 | `archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md` | `88ef54c8b3a67cb7dc4c5110f369d815c1c5f4a7` | `c318edd7b55aacddf4a3f980eea22b183b7161249dbc0ff42d74ef93faf13b3e` |
 
-The full source commit identifiers above are historical locators. The repository-contained paths and hashes are the durable verification basis and remain valid even if a side branch is later deleted.
+The full source commit identifiers above are historical locators and object identities. The full-index patch records are the durable verification anchor for these two source additions: they remain sufficient to reconstruct and inspect the original file bytes even if the side branch is later deleted.
 
-The checksums are committed in `docs/source-imports/issue-45/SHA256SUMS`. They are enforced by `scripts/verify_all.sh` and the `source-provenance` CI job, so later edits to an imported snapshot or its cited archive inputs fail explicitly.
+The checksums are committed in `docs/source-imports/issue-45/SHA256SUMS`. `scripts/verify_all.sh` and the `source-provenance` CI job also apply the preserved patch series in an empty temporary repository and compare the reconstructed bytes to the imported snapshots. Thus changing a snapshot together with its checksum manifest still fails unless it matches the independently preserved source record.
 
 The new manuscript `manuscripts/PSC_PROOF_next_source_audit.tex` is derived from the archived v15 source and therefore is not represented as the missing v16 manuscript. Its front-page notice identifies that fact and freezes the four source boundaries above.
 
