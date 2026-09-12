@@ -2,7 +2,9 @@
 
 from std.testing import assert_equal, assert_false, assert_true
 from psc.loop_quotient_census import (
+    AddressedJointLocalSample,
     addressed_samples_through_depth,
+    append_addressed_samples_at_depth,
     audit_projection_modulo_loop,
     audit_projection_modulo_synchronous_extensions,
     audit_synchronous_residual_scaled_defect_residue,
@@ -83,6 +85,37 @@ def test_loop_quotient_rejects_mixed_projection_bounds() raises:
     except:
         caught = True
     assert_true(caught)
+
+
+def test_loop_quotient_does_not_cross_specimen_provenance() raises:
+    # The canonical coarse projection has three depth-2/depth-3 staircase
+    # collisions. Assign the two depths to different specimen provenance IDs.
+    # Their address digit encodings remain syntactically related, but the audit
+    # must not infer a recurrence edge across provenance domains.
+    var samples = List[AddressedJointLocalSample]()
+    append_addressed_samples_at_depth(
+        samples,
+        nonunimodular_pisot_sigma(),
+        seed_pair(),
+        0,
+        2,
+        2,
+        1,
+    )
+    append_addressed_samples_at_depth(
+        samples,
+        nonunimodular_pisot_sigma(),
+        seed_pair(),
+        1,
+        3,
+        2,
+        1,
+    )
+    var audit = audit_projection_modulo_synchronous_extensions(samples)
+    assert_equal(audit.projection_collision_pair_count, 3)
+    assert_equal(audit.direct_extension_edge_count, 0)
+    assert_equal(audit.quotiented_collision_pair_count, 0)
+    assert_equal(audit.residual_collision_pair_count, 3)
 
 
 def test_any_synchronous_extension_allows_distinct_side_digits() raises:
@@ -259,10 +292,12 @@ def main() raises:
     print("[PASS] test_wrong_loop_label_preserves_known_residuals")
     test_loop_quotient_rejects_mixed_projection_bounds()
     print("[PASS] test_loop_quotient_rejects_mixed_projection_bounds")
+    test_loop_quotient_does_not_cross_specimen_provenance()
+    print("[PASS] test_loop_quotient_does_not_cross_specimen_provenance")
     test_any_synchronous_extension_allows_distinct_side_digits()
     print("[PASS] test_any_synchronous_extension_allows_distinct_side_digits")
     test_fixed_window_diagnostic_preserves_accounting()
     print("[PASS] test_fixed_window_diagnostic_preserves_accounting")
     test_residue_modulus_one_is_rejected()
     print("[PASS] test_residue_modulus_one_is_rejected")
-    print("6 loop-quotient-census Mojo tests passed.")
+    print("7 loop-quotient-census Mojo tests passed.")
