@@ -91,6 +91,32 @@ def test_inherited_level_two_certificate() raises:
     assert_true(address.certificate_closes())
 
 
+def test_nonzero_source_displacement_certificate() raises:
+    var sigma = nonunimodular_pisot_sigma()
+    var u: List[Int] = [0, 1]
+    var v: List[Int] = [1, 0]
+
+    # At depth two, position 6 is a zero return.  It descends to source index 1
+    # on top and source index 0 on bottom, so this pins the genuinely
+    # asynchronous ancestry case rather than only source-aligned cuts.
+    var address = renewal_cut_address(sigma, Pair(u, v), 2, 6)
+    assert_equal(address.source_index_delta, 1)
+    assert_equal(address.source_defect.x, 1)
+    assert_equal(address.source_defect.y, 0)
+    assert_equal(address.source_defect.z, 0)
+    assert_equal(address.top_source_letter, 1)
+    assert_equal(address.bottom_source_letter, 1)
+    assert_equal(address.top_digits, [1, 1, 2, 2])
+    assert_equal(address.bottom_digits, [1, 2, 1, 2])
+    assert_equal(address.scaled_defect.x, 1)
+    assert_equal(address.scaled_defect.y, 1)
+    assert_equal(address.scaled_defect.z, 1)
+    assert_equal(address.correction.x, -1)
+    assert_equal(address.correction.y, -1)
+    assert_equal(address.correction.z, -1)
+    assert_true(address.certificate_closes())
+
+
 def test_nonreturn_cut_fails_closed() raises:
     var caught = False
     try:
@@ -133,10 +159,12 @@ def main() raises:
     print("[PASS] test_nonunimodular_level_one_certificate")
     test_inherited_level_two_certificate()
     print("[PASS] test_inherited_level_two_certificate")
+    test_nonzero_source_displacement_certificate()
+    print("[PASS] test_nonzero_source_displacement_certificate")
     test_nonreturn_cut_fails_closed()
     print("[PASS] test_nonreturn_cut_fails_closed")
     test_source_pair_must_be_strict_first_return()
     print("[PASS] test_source_pair_must_be_strict_first_return")
     test_relative_address_does_not_replace_labels()
     print("[PASS] test_relative_address_does_not_replace_labels")
-    print("5 renewal-address Mojo tests passed.")
+    print("6 renewal-address Mojo tests passed.")
