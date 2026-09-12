@@ -96,12 +96,15 @@ def test_interned_audit_ignores_duplicate_observation_records() raises:
         nonunimodular_pisot_sigma(), seed_pair(), 0, 3, 2, 1
     )
     var baseline = audit_projection(samples)
+    assert_equal(baseline.sample_count, 16)
     assert_equal(baseline.collision_pair_count, 3)
 
     # A repeated copy of the exact same specimen/depth/cut is not a new
-    # observation and must not create extra mathematical collision pairs.
+    # observation and must not create extra mathematical collision pairs or
+    # inflate the audited population count.
     samples.append(samples[0].copy())
     var repeated = audit_projection(samples)
+    assert_equal(repeated.sample_count, baseline.sample_count)
     assert_equal(repeated.collision_pair_count, 3)
     assert_equal(repeated.first_left, baseline.first_left)
     assert_equal(repeated.first_right, baseline.first_right)
