@@ -66,6 +66,19 @@ struct ProjectionAudit(Copyable, Movable):
         return self.collision_pair_count > 0
 
 
+struct ObservationKey(Copyable, Movable, Equatable, Hashable):
+    """Compact exact identity for one corpus observation."""
+
+    var specimen_id: Int
+    var depth: Int
+    var cut: Int
+
+    def __init__(out self, specimen_id: Int, depth: Int, cut: Int):
+        self.specimen_id = specimen_id
+        self.depth = depth
+        self.cut = cut
+
+
 def zero_return_cuts(
     sigma: List[List[Int]], pair: Pair, depth: Int
 ) raises -> List[Int]:
@@ -161,24 +174,92 @@ def samples_through_depth(
     return out^
 
 
+def _rotate_hash(x: UInt64) -> UInt64:
+    return (x << 7) | (x >> 57)
+
+
+def _mix_hash(state: UInt64, value: UInt64) -> UInt64:
+    return _rotate_hash(state) ^ value
+
+
+def _projection_fingerprint(projection: JointLocalType) -> UInt64:
+    """Fast bucket fingerprint; full equality always resolves hash collisions."""
+    var h = hash(projection.source_radius)
+    h = _mix_hash(h, hash(projection.digit_window))
+    h = _mix_hash(h, hash(projection.source_index_delta))
+    h = _mix_hash(h, hash(projection.source_defect.x))
+    h = _mix_hash(h, hash(projection.source_defect.y))
+    h = _mix_hash(h, hash(projection.source_defect.z))
+    h = _mix_hash(h, hash(projection.top_source_letter))
+    h = _mix_hash(h, hash(projection.bottom_source_letter))
+    h = _mix_hash(h, hash(projection.source_context))
+    h = _mix_hash(h, hash(projection.top_head))
+    h = _mix_hash(h, hash(projection.top_tail))
+    h = _mix_hash(h, hash(projection.bottom_head))
+    h = _mix_hash(h, hash(projection.bottom_tail))
+    return h
+
+
 def audit_projection(samples: List[JointLocalSample]) -> ProjectionAudit:
-    """Count exact projection collisions and retain the first witness pair."""
+    """Count exact collisions with near-linear expected-time state interning.
+
+    A `UInt64` fingerprint only chooses a hash bucket. Each bucket is a linked
+    list of interned representative sample indices, and `same_joint_local_type`
+    resolves every candidate match exactly. Hash collisions therefore affect
+    performance only, never the mathematical collision count.
+
+    Repeated copies of the same `(specimen_id, depth, cut)` observation are
+    ignored through a separate compact exact `ObservationKey` dictionary.
+    """
     var collisions = 0
     var first_left = -1
     var first_right = -1
+
+    var heads = Dict[UInt64, Int](capacity=len(samples))
+    var representatives = List[Int]()
+    var counts = List[Int]()
+    var next_group = List[Int]()
+    var seen = Dict[ObservationKey, Bool](capacity=len(samples))
+
     for i in range(len(samples)):
-        for j in range(i + 1, len(samples)):
-            if (
-                samples[i].specimen_id == samples[j].specimen_id
-                and samples[i].depth == samples[j].depth
-                and samples[i].cut == samples[j].cut
+        var observation = ObservationKey(
+            samples[i].specimen_id, samples[i].depth, samples[i].cut
+        )
+        if observation in seen:
+            continue
+        seen[observation] = True
+
+        var fingerprint = _projection_fingerprint(samples[i].projection)
+        var group = -1
+        if fingerprint in heads:
+            group = heads[fingerprint]
+
+        var matched_group = -1
+        while group >= 0:
+            var representative = representatives[group]
+            if same_joint_local_type(
+                samples[i].projection, samples[representative].projection
             ):
-                continue
-            if same_joint_local_type(samples[i].projection, samples[j].projection):
-                collisions += 1
-                if first_left < 0:
-                    first_left = i
-                    first_right = j
+                matched_group = group
+                break
+            group = next_group[group]
+
+        if matched_group >= 0:
+            collisions += counts[matched_group]
+            if first_left < 0:
+                first_left = representatives[matched_group]
+                first_right = i
+            counts[matched_group] += 1
+        else:
+            var new_group = len(representatives)
+            representatives.append(i)
+            counts.append(1)
+            if fingerprint in heads:
+                next_group.append(heads[fingerprint])
+            else:
+                next_group.append(-1)
+            heads[fingerprint] = new_group
+
     return ProjectionAudit(len(samples), collisions, first_left, first_right)
 
 
