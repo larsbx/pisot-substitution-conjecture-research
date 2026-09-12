@@ -4,6 +4,8 @@ from std.testing import assert_equal, assert_true
 from psc.affine_ancestry_trace import affine_ancestry_trace, common_terminal_trace_length, first_repeated_affine_state, is_affine_pump_extension, same_affine_state
 from psc.joint_local_type import same_joint_local_type
 from psc.loop_quotient_census import addressed_samples_through_depth
+from psc.renewal import Diff3
+from psc.renewal_address import RelativeRenewalAddress
 from psc.words import Pair
 
 
@@ -62,9 +64,38 @@ def test_exact_sidewise_survivor_has_order_sensitive_trace() raises:
     assert_true(is_affine_pump_extension(longer, shorter))
 
 
+def test_stale_stored_certificate_fails_closed() raises:
+    var substitution = sigma()
+    var samples = addressed_samples_through_depth(substitution, seed_pair(), 0, 2, 2, 1)
+    var stale_correction = Diff3(
+        samples[0].address.correction.x + 1,
+        samples[0].address.correction.y,
+        samples[0].address.correction.z,
+    )
+    var stale = RelativeRenewalAddress(
+        samples[0].address.level,
+        samples[0].address.source_index_delta,
+        samples[0].address.source_defect,
+        samples[0].address.top_source_letter,
+        samples[0].address.bottom_source_letter,
+        samples[0].address.top_digits,
+        samples[0].address.bottom_digits,
+        samples[0].address.scaled_defect,
+        stale_correction,
+    )
+    var caught = False
+    try:
+        _ = affine_ancestry_trace(substitution, stale)
+    except:
+        caught = True
+    assert_true(caught)
+
+
 def main() raises:
     test_every_canonical_trace_closes()
     print("[PASS] test_every_canonical_trace_closes")
     test_exact_sidewise_survivor_has_order_sensitive_trace()
     print("[PASS] test_exact_sidewise_survivor_has_order_sensitive_trace")
-    print("2 affine-ancestry-trace Mojo tests passed.")
+    test_stale_stored_certificate_fails_closed()
+    print("[PASS] test_stale_stored_certificate_fails_closed")
+    print("3 affine-ancestry-trace Mojo tests passed.")

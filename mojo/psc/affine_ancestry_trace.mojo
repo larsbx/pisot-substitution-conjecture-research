@@ -96,6 +96,10 @@ def affine_ancestry_trace(sigma: List[List[Int]], address: RelativeRenewalAddres
     var top = address.top_source_letter
     var bottom = address.bottom_source_letter
     var x = address.source_defect.copy()
+    if x.x + x.y + x.z != address.source_index_delta:
+        raise Error("affine-trace source displacement/defect identity failed")
+    var scaled = address.source_defect.copy()
+    var correction = Diff3(0, 0, 0)
     top_letters.append(top)
     bottom_letters.append(bottom)
     defects.append(x.x)
@@ -110,6 +114,11 @@ def affine_ancestry_trace(sigma: List[List[Int]], address: RelativeRenewalAddres
             raise Error("affine-trace digits do not follow substitution paths")
         var tp = _prefix_parikh(sigma, top_parent, top_index)
         var bp = _prefix_parikh(sigma, bottom_parent, bottom_index)
+        scaled = _incidence_action(sigma, scaled)
+        correction = _incidence_action(sigma, correction)
+        correction.x += tp.x - bp.x
+        correction.y += tp.y - bp.y
+        correction.z += tp.z - bp.z
         var next = _incidence_action(sigma, x)
         next.x += tp.x - bp.x
         next.y += tp.y - bp.y
@@ -122,6 +131,10 @@ def affine_ancestry_trace(sigma: List[List[Int]], address: RelativeRenewalAddres
         defects.append(x.x)
         defects.append(x.y)
         defects.append(x.z)
+    if scaled != address.scaled_defect:
+        raise Error("affine trace disagrees with stored scaled defect")
+    if correction != address.correction:
+        raise Error("affine trace disagrees with stored correction")
     var trace = AffineAncestryTrace(top_letters, bottom_letters, defects)
     if not trace.closes():
         raise Error("affine ancestry recurrence does not close at the renewal cut")
