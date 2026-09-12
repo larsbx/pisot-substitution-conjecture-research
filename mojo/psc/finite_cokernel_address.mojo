@@ -204,7 +204,7 @@ def _side_prefix_from_digits(
         current = tables.sigma[parent][child_index]
         level -= 1
 
-    return prefix
+    return prefix^
 
 
 def sidewise_prefix_translation(
