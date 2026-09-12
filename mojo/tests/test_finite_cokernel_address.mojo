@@ -89,36 +89,60 @@ def test_fixed_window_sidewise_cokernel_staircase() raises:
         assert_equal(audit.cokernel_separated_pair_count, expected_separated[level - 1])
         assert_equal(audit.same_depth_cokernel_surviving_pair_count, expected_same_depth[level - 1])
         assert_equal(audit.exact_sidewise_surviving_pair_count, 1)
-        assert_equal(audit.cokernel_surviving_pair_count + audit.cokernel_separated_pair_count, audit.residual_pair_count)
+        assert_equal(
+            audit.cokernel_surviving_pair_count + audit.cokernel_separated_pair_count,
+            audit.residual_pair_count,
+        )
         assert_true(audit.cokernel_surviving_pair_count <= previous_survivors)
         assert_true(audit.same_depth_cokernel_surviving_pair_count <= previous_same_depth)
         previous_survivors = audit.cokernel_surviving_pair_count
         previous_same_depth = audit.same_depth_cokernel_surviving_pair_count
-        print("finite-cokernel level:", level)
-        print("finite-cokernel surviving residual pairs:", audit.cokernel_surviving_pair_count)
-        print("finite-cokernel same-depth surviving pairs:", audit.same_depth_cokernel_surviving_pair_count)
-        if level == 10:
-            assert_equal(audit.first_cokernel_survivor_left, 255)
-            assert_equal(audit.first_cokernel_survivor_right, 43)
 
 
 def test_exact_sidewise_countercalibration_is_present() raises:
     var sigma = nonunimodular_pisot_sigma()
     var samples = addressed_samples_through_depth(sigma, seed_pair(), 0, 7, 2, 1)
     var tables = build_renewal_address_tables(sigma, 7)
-    var left = 255
-    var right = 43
+    var left = -1
+    var right = -1
+    for i in range(len(samples)):
+        if samples[i].depth == 7 and samples[i].cut == 14:
+            left = i
+        elif samples[i].depth == 5 and samples[i].cut == 14:
+            right = i
+    assert_true(left >= 0)
+    assert_true(right >= 0)
     assert_true(same_joint_local_type(samples[left].projection, samples[right].projection))
     var left_translation = sidewise_prefix_translation(tables, samples[left].address)
     var right_translation = sidewise_prefix_translation(tables, samples[right].address)
     assert_true(left_translation.top == right_translation.top)
     assert_true(left_translation.bottom == right_translation.bottom)
-    print("exact-sidewise left depth:", samples[left].depth)
-    print("exact-sidewise left cut:", samples[left].cut)
-    print("exact-sidewise right depth:", samples[right].depth)
-    print("exact-sidewise right cut:", samples[right].cut)
-    print("exact-sidewise top translation:", left_translation.top.x, left_translation.top.y, left_translation.top.z)
-    print("exact-sidewise bottom translation:", left_translation.bottom.x, left_translation.bottom.y, left_translation.bottom.z)
+    assert_equal(left_translation.top.x, 5)
+    assert_equal(left_translation.top.y, 6)
+    assert_equal(left_translation.top.z, 3)
+    assert_equal(left_translation.bottom.x, 5)
+    assert_equal(left_translation.bottom.y, 6)
+    assert_equal(left_translation.bottom.z, 3)
+
+    var level_ten = audit_sidewise_cokernel(samples, sigma, 10)
+    assert_equal(level_ten.cokernel_surviving_pair_count, 1)
+    var a = level_ten.first_cokernel_survivor_left
+    var b = level_ten.first_cokernel_survivor_right
+    assert_true(a >= 0)
+    assert_true(b >= 0)
+    var forward = (
+        samples[a].depth == 7
+        and samples[a].cut == 14
+        and samples[b].depth == 5
+        and samples[b].cut == 14
+    )
+    var reverse = (
+        samples[b].depth == 7
+        and samples[b].cut == 14
+        and samples[a].depth == 5
+        and samples[a].cut == 14
+    )
+    assert_true(forward or reverse)
 
 
 def test_cokernel_audit_rejects_invalid_level_and_mixed_specimens() raises:
