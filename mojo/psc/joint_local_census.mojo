@@ -200,7 +200,7 @@ def _projection_fingerprint(projection: JointLocalType) -> UInt64:
     return h
 
 
-def audit_projection(samples: List[JointLocalSample]) -> ProjectionAudit:
+def audit_projection(samples: List[JointLocalSample]) raises -> ProjectionAudit:
     """Count exact collisions with near-linear expected-time state interning.
 
     A `UInt64` fingerprint only chooses a hash bucket. Each bucket is a linked
@@ -227,7 +227,7 @@ def audit_projection(samples: List[JointLocalSample]) -> ProjectionAudit:
         )
         if observation in seen:
             continue
-        seen[observation] = True
+        seen[observation.copy()] = True
 
         var fingerprint = _projection_fingerprint(samples[i].projection)
         var group = -1
