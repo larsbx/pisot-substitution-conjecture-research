@@ -211,11 +211,13 @@ def audit_projection(samples: List[JointLocalSample]) raises -> ProjectionAudit:
     Repeated copies of one `(specimen_id, depth, cut)` observation are ignored
     only after their projections are checked for exact equality. A duplicate
     identity carrying a different projection is contradictory corpus evidence
-    and fails closed.
+    and fails closed. `sample_count` reports the deduplicated audited population,
+    not the number of raw input records.
     """
     var collisions = 0
     var first_left = -1
     var first_right = -1
+    var unique_count = 0
 
     var heads = Dict[UInt64, Int](capacity=len(samples))
     var representatives = List[Int]()
@@ -237,6 +239,7 @@ def audit_projection(samples: List[JointLocalSample]) raises -> ProjectionAudit:
                 )
             continue
         seen[observation.copy()] = i
+        unique_count += 1
 
         var fingerprint = _projection_fingerprint(samples[i].projection)
         var group = -1
@@ -269,7 +272,7 @@ def audit_projection(samples: List[JointLocalSample]) raises -> ProjectionAudit:
                 next_group.append(-1)
             heads[fingerprint] = new_group
 
-    return ProjectionAudit(len(samples), collisions, first_left, first_right)
+    return ProjectionAudit(unique_count, collisions, first_left, first_right)
 
 
 def digit_pair_insertion_at(
