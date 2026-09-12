@@ -1,6 +1,6 @@
 # P1-B — labelled renewal program for G1b-2
 
-**Status:** executable support program for the open renewal-finiteness gate. The labelled-word layer and the level-scaled address layer below do **not** prove G1b-2 or G1.
+**Status:** executable support program for the open renewal-finiteness gate. The labelled-word, level-scaled address, and bounded joint-local layers below do **not** prove G1b-2 or G1.
 
 ## 1. Why the cumulative difference walk is insufficient
 
@@ -84,6 +84,13 @@ M^d delta + c = 0.
 ```
 
 This identity is the current executable meaning of a **level-scaled address**. It uses no inverse of `M` and no choice of Archimedean/non-Archimedean completion.
+
+For census use, the implementation has two reusable preparation layers:
+
+- `RenewalAddressTables` precomputes image lengths and image Parikh columns once for a substitution/depth;
+- `RenewalPairCensusState` validates one labelled first return and caches source-supertiling boundaries and prefix Parikh vectors once.
+
+Per-cut queries then use binary source lookup plus the level-linear digit descent rather than re-expanding words or rebuilding labelled paths.
 
 ## 5. Explicit non-unimodular regression
 
@@ -172,9 +179,61 @@ bounded discrepancy
 => a uniform-discreteness / finite-local-return statement across all levels.
 ```
 
-The executable program should next census **joint labelled-address local types**, retain counterexamples to proposed identifications, and identify which additional arithmetic coordinate is required in the non-unimodular case. A profinite valuation/residue coordinate is admissible; replacing it by an unjustified Euclidean lattice is not.
+The executable program should census **joint labelled-address local types**, retain counterexamples to proposed identifications, and identify which additional arithmetic coordinate is required in the non-unimodular case. A profinite valuation/residue coordinate is admissible; replacing it by an unjustified Euclidean lattice is not.
 
-## 9. Acceptance criteria for the current support layers
+## 9. Bounded joint-local falsification layer
+
+`mojo/psc/joint_local_type.mojo` tests candidate finite local projections rather than assuming one is complete. For fixed source radius `r` and digit-window size `w`, it retains:
+
+- relative source-index displacement;
+- exact source prefix defect;
+- the two selected source letters;
+- radius-`r` source-letter context on both sides, with one exterior sentinel;
+- the first `w` and last `w` symbolic digit pairs on both sides.
+
+It intentionally omits absolute indices, total inflated length, substitution depth, `M^d delta`, the correction vector, and the middle of a long digit path. For fixed `r,w` the stored context/window size is depth-independent, making this a legitimate candidate finite local type once the already-bounded defect alphabet is supplied.
+
+The canonical tests record two opposite facts.
+
+### 9.1 Full level-one address can still be too coarse
+
+For
+
+```text
+A = (001,100), cut 4
+B = (021,120), cut 6,
+```
+
+under the determinant-2 Pisot substitution above, the **entire** level-one relative address agrees. With source radius `0`, the selected source letters also agree, so the joint projection collides even with `w=1`, which at depth one retains the full digit path.
+
+Radius `1` separates this particular collision because it sees the preceding source letters
+
+```text
+A: 0/0
+B: 2/2.
+```
+
+This proves only that immediate source context repairs this example. It does not prove radius one sufficient in general.
+
+### 9.2 One-level head/tail windows can miss middle ancestry
+
+For the strict pair
+
+```text
+(01,10)
+```
+
+at substitution depth `4`, the certified zero returns at cuts `35` and `40` have different full symbolic addresses. However:
+
+- the source pair and selected source positions are the same;
+- radius `2` already exposes the complete two-letter source words plus sentinels;
+- the first one and last one digit pairs on both sides agree.
+
+Thus the `(r=2,w=1)` joint projection still collides even though the full addresses differ. A two-level head/tail window separates this particular pair of cuts.
+
+Again, this is a falsification/calibration result, not a universal bound. The required window could grow, or a different arithmetic coordinate could be necessary.
+
+## 10. Acceptance criteria for the current support layers
 
 - exact labels survive collisions of the cumulative difference path;
 - strict first-return input validation fails closed, including the empty word;
@@ -183,5 +242,7 @@ The executable program should next census **joint labelled-address local types**
 - the integer certificate `M^d delta + c = 0` is verified exactly;
 - a determinant-2 Pisot substitution is a canonical regression;
 - relative-address collisions do not erase labelled distinctions;
-- neither module makes a finiteness claim;
-- further work extends the joint labelled/address representation rather than falling back to an unlabelled difference graph or a unimodular-only Rauzy model.
+- bounded joint-local projections retain explicit collision counterexamples;
+- positive refinements are recorded only as example-level separations, never as completeness claims;
+- no current module makes a finiteness claim;
+- further work must prove a uniform finite-local-return/discreteness statement or identify the missing non-Archimedean coordinate rather than infer finiteness from a bounded empirical window.
