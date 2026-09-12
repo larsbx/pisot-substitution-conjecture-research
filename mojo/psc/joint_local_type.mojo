@@ -11,16 +11,16 @@ omits absolute source indices, total inflated length, substitution level,
 `M^d delta`, and the full digit path. These omissions are intentional: the
 object is a candidate finite local type, not a complete address.
 
-The public constructor accepts only `(prepared state, cut, bounds)` and derives
-the certified renewal address internally. There is deliberately no public API
-that combines an independently supplied address with a cut, preventing hybrid
-local types assembled from individually valid but unrelated inputs.
+The public constructor accepts only `(prepared state, cut, bounds)` and obtains
+one atomic certified-cut record from the address layer. The same source
+locations are therefore used for address certification and context extraction;
+there is no independent-address composition path and no repeated source lookup.
 """
 
 from psc.renewal import Diff3
 from psc.renewal_address import (
     RenewalPairCensusState,
-    renewal_cut_address_from_state,
+    certified_renewal_cut_from_state,
 )
 
 
@@ -64,23 +64,6 @@ struct JointLocalType(Copyable, Movable):
         self.top_tail = top_tail.copy()
         self.bottom_head = bottom_head.copy()
         self.bottom_tail = bottom_tail.copy()
-
-
-def _source_index(boundaries: List[Int], source_length: Int, cut: Int) raises -> Int:
-    if source_length <= 0 or len(boundaries) != source_length + 1:
-        raise Error("joint-local source metadata is malformed")
-    if cut < 0 or cut >= boundaries[len(boundaries) - 1]:
-        raise Error("joint-local cut lies outside the prepared source side")
-
-    var lo = 0
-    var hi = source_length
-    while lo < hi:
-        var mid = (lo + hi) // 2
-        if boundaries[mid + 1] <= cut:
-            lo = mid + 1
-        else:
-            hi = mid
-    return lo
 
 
 def _append_context(
@@ -133,17 +116,12 @@ def joint_local_type(
     if cut <= 0 or cut >= state.inflated_length:
         raise Error("joint-local cut must be interior")
 
-    # The address is derived from the exact same state/cut used for source
-    # context. Do not expose an independent-address composition path: otherwise
-    # a caller could create a hybrid projection from unrelated valid inputs.
-    var address = renewal_cut_address_from_state(state, cut)
-
-    var top_index = _source_index(
-        state.top.boundaries, state.top.source_length(), cut
-    )
-    var bottom_index = _source_index(
-        state.bottom.boundaries, state.bottom.source_length(), cut
-    )
+    # One atomic certification pass supplies both the relative address and the
+    # exact source locations used to create it. This prevents hybrid evidence
+    # and avoids repeating the binary source searches for local context.
+    var certified = certified_renewal_cut_from_state(state, cut)
+    var top_index = certified.top_source_index
+    var bottom_index = certified.bottom_source_index
 
     var context = List[Int]()
     _append_context(context, state.top.letters, top_index, source_radius)
@@ -152,15 +130,15 @@ def joint_local_type(
     return JointLocalType(
         source_radius,
         digit_window,
-        address.source_index_delta,
-        address.source_defect,
-        address.top_source_letter,
-        address.bottom_source_letter,
+        certified.address.source_index_delta,
+        certified.address.source_defect,
+        certified.address.top_source_letter,
+        certified.address.bottom_source_letter,
         context,
-        _digit_head(address.top_digits, digit_window),
-        _digit_tail(address.top_digits, digit_window),
-        _digit_head(address.bottom_digits, digit_window),
-        _digit_tail(address.bottom_digits, digit_window),
+        _digit_head(certified.address.top_digits, digit_window),
+        _digit_tail(certified.address.top_digits, digit_window),
+        _digit_head(certified.address.bottom_digits, digit_window),
+        _digit_tail(certified.address.bottom_digits, digit_window),
     )
 
 
