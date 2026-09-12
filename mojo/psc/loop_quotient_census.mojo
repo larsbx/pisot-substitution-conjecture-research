@@ -9,14 +9,17 @@ Two exact symbolic relations are available. The first uses one nominated digit
 pair on both sides, preserving the original `(1,2)` regression. The second
 admits any one-level extension in which top and bottom each insert one digit
 pair at the same ancestry position; the two inserted side-digits need not
-agree.
+agree. Recurrence edges are always restricted to one `specimen_id`: symbolic
+digits from distinct substitution/source specimens are never identified merely
+because their integer encodings happen to agree.
 
 After forming the symbolic quotient, an optional finite arithmetic diagnostic
 asks how many residual pairs still agree on the exact level-scaled certificate
 `M^d delta` modulo a supplied integer. For the determinant-2 regression we probe
 powers of two. This is evidence about a possible profinite coordinate only; the
 residue is not assumed to be a recurrence invariant and is not promoted to a
-state quotient or theorem.
+state quotient or theorem. Cross-specimen pairs are conservatively retained as
+residue survivors rather than claimed separated by incomparable arithmetic.
 
 The quotient is deliberately empirical and corpus-relative. It does not delete
 arbitrary digits from an address and does not invent a global normal form. Only
@@ -32,21 +35,20 @@ from psc.joint_local_census import (
 )
 from psc.joint_local_type import (
     JointLocalType,
-    joint_local_type_from_certified,
+    certified_joint_local_observation,
     same_joint_local_type,
 )
 from psc.renewal_address import (
     RelativeRenewalAddress,
     build_renewal_address_tables,
     build_renewal_pair_census_state,
-    certified_renewal_cut_from_state,
     same_relative_address,
 )
 from psc.words import Pair
 
 
 struct AddressedJointLocalSample(Copyable, Movable):
-    """One certified bounded projection together with its exact full address."""
+    """One certified observation in one caller-assigned specimen provenance."""
 
     var specimen_id: Int
     var depth: Int
@@ -138,7 +140,7 @@ def append_addressed_samples_at_depth(
     source_radius: Int,
     digit_window: Int,
 ) raises:
-    """Append every certified zero return with one shared certification pass."""
+    """Append every certified zero return with one atomic state/cut certification."""
     if depth <= 0:
         raise Error("loop-quotient sample depth must be positive")
     _validate_projection_bounds(source_radius, digit_window)
@@ -148,17 +150,16 @@ def append_addressed_samples_at_depth(
     var cuts = zero_return_cuts(sigma, pair, depth)
     for i in range(len(cuts)):
         var cut = cuts[i]
-        var certified = certified_renewal_cut_from_state(state, cut)
-        var projection = joint_local_type_from_certified(
-            state, certified, source_radius, digit_window
+        var observation = certified_joint_local_observation(
+            state, cut, source_radius, digit_window
         )
         out.append(
             AddressedJointLocalSample(
                 specimen_id,
                 depth,
                 cut,
-                projection,
-                certified.address,
+                observation.projection,
+                observation.address,
             )
         )
 
@@ -281,6 +282,8 @@ def _related(
     parent_letter: Int,
     child_index: Int,
 ) -> Bool:
+    if a.specimen_id != b.specimen_id:
+        return False
     if a.address.level + 1 == b.address.level:
         if relation_mode == 0:
             return address_is_one_loop_extension(
@@ -466,7 +469,12 @@ def _audit_projection_with_relation(
                         first_residual_left = left
                         first_residual_right = right
                     if residue_modulus > 0:
-                        if _same_scaled_defect_residue(
+                        if samples[left].specimen_id != samples[right].specimen_id:
+                            residue_survivors += 1
+                            if first_residue_surviving_left < 0:
+                                first_residue_surviving_left = left
+                                first_residue_surviving_right = right
+                        elif _same_scaled_defect_residue(
                             samples[left].address,
                             samples[right].address,
                             residue_modulus,
@@ -521,10 +529,10 @@ def audit_synchronous_residual_scaled_defect_residue(
     samples: List[AddressedJointLocalSample],
     modulus: Int,
 ) raises -> LoopQuotientAudit:
-    """Probe `M^d delta mod modulus` only on residual symbolic collisions.
+    """Probe `M^d delta mod modulus` only on residual same-specimen arithmetic.
 
     The symbolic connected components are formed first. The residue then only
-    measures which unresolved pairs a finite arithmetic coordinate would
-    separate; it does not itself generate recurrence identifications.
+    measures which unresolved same-specimen pairs a finite arithmetic coordinate
+    would separate. Cross-specimen pairs are conservatively retained unresolved.
     """
     return _audit_projection_with_relation(samples, 1, 0, 0, modulus)
