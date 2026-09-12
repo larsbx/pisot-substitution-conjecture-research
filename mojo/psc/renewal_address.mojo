@@ -2,29 +2,28 @@
 
 This module augments the labelled first-return representation with exact
 substitution ancestry for an interior zero-return cut of sigma^depth(pair).
-It deliberately stays in integer/symbolic coordinates.  No inverse incidence
+It deliberately stays in integer/symbolic coordinates. No inverse incidence
 matrix, Euclidean stable projection, lattice assumption, or unit determinant is
 used.
 
 For a selected zero-return cut, desubstitution gives a prefix defect delta at
-the source level plus two finite substitution-digit paths.  Their partial-image
+the source level plus two finite substitution-digit paths. Their partial-image
 correction c satisfies the exact certificate
 
     M^depth delta + c = 0.
 
 The record stores only the *relative* source-index displacement, source defect,
-source letters, and digit paths.  Absolute source indices and inflated word
-length are not part of the address.  The address is auxiliary data and must be
+source letters, and digit paths. Absolute source indices and inflated word
+length are not part of the address. The address is auxiliary data and must be
 retained together with the labelled return word: distinct labelled returns can
 share the same relative address.
 
-Inflated words are never materialized.  Image lengths and full-image Parikh
-vectors are obtained by three-coordinate dynamic/matrix recurrences, while the
-selected cut is descended through one substitution image at each level.
+Inflated words are never materialized. `RenewalAddressTables` precomputes all
+three image lengths and image Parikh columns for levels `0..depth` in O(depth)
+once. A census can reuse that table across every cut at the same substitution
+and depth; each address then performs only the linear symbolic digit descent.
 """
 
-from psc.bpa import substitution_incidence
-from psc.legal_tower import image_lengths_at_depth
 from psc.renewal import Diff3, strict_first_return_word
 from psc.words import Pair
 
@@ -49,11 +48,55 @@ struct _SideAddress(Copyable, Movable):
         self.prefix = prefix.copy()
 
 
+struct RenewalAddressTables(Copyable, Movable):
+    """Reusable substitution-local tables through one requested depth.
+
+    `lengths[3*level+a] = |sigma^level(a)|`.
+    `parikhs[9*level+3*a+i]` is coordinate `i` of
+    `Parikh(sigma^level(a))`, equivalently column `a` of `M^level`.
+
+    The ordered substitution itself is retained because digit descent depends
+    on child order, not merely on the incidence matrix.
+    """
+
+    var sigma: List[List[Int]]
+    var depth: Int
+    var lengths: List[Int]
+    var parikhs: List[Int]
+
+    def __init__(
+        out self,
+        sigma: List[List[Int]],
+        depth: Int,
+        lengths: List[Int],
+        parikhs: List[Int],
+    ):
+        self.sigma = sigma.copy()
+        self.depth = depth
+        self.lengths = lengths.copy()
+        self.parikhs = parikhs.copy()
+
+    def image_length(self, level: Int, letter: Int) raises -> Int:
+        if level < 0 or level > self.depth:
+            raise Error("renewal-address table level lies outside 0..depth")
+        if letter < 0 or letter >= 3:
+            raise Error("renewal-address table letter lies outside 0..2")
+        return self.lengths[3 * level + letter]
+
+    def image_parikh(self, level: Int, letter: Int) raises -> Diff3:
+        if level < 0 or level > self.depth:
+            raise Error("renewal-address table level lies outside 0..depth")
+        if letter < 0 or letter >= 3:
+            raise Error("renewal-address table letter lies outside 0..2")
+        var k = 9 * level + 3 * letter
+        return Diff3(self.parikhs[k], self.parikhs[k + 1], self.parikhs[k + 2])
+
+
 struct RelativeRenewalAddress(Copyable, Movable):
     """Relative symbolic address of one inflated interior renewal cut.
 
     `top_digits` and `bottom_digits` are flat `(parent_letter, child_index)`
-    pairs, one pair per substitution level.  Child letters are determined by
+    pairs, one pair per substitution level. Child letters are determined by
     sigma and are therefore not duplicated in the record.
     """
 
@@ -111,16 +154,6 @@ def _validate_sigma(sigma: List[List[Int]]) raises:
                 raise Error("renewal-address substitution letter lies outside 0..2")
 
 
-def _unit(a: Int) raises -> Diff3:
-    if a == 0:
-        return Diff3(1, 0, 0)
-    if a == 1:
-        return Diff3(0, 1, 0)
-    if a == 2:
-        return Diff3(0, 0, 1)
-    raise Error("renewal-address source letter lies outside 0..2")
-
-
 def _add(a: Diff3, b: Diff3) -> Diff3:
     return Diff3(a.x + b.x, a.y + b.y, a.z + b.z)
 
@@ -129,23 +162,37 @@ def _sub(a: Diff3, b: Diff3) -> Diff3:
     return Diff3(a.x - b.x, a.y - b.y, a.z - b.z)
 
 
-def _matrix_apply(m: List[Int], v: Diff3) raises -> Diff3:
-    if len(m) != 9:
-        raise Error("renewal-address incidence matrix must be 3x3")
-    return Diff3(
-        m[0] * v.x + m[1] * v.y + m[2] * v.z,
-        m[3] * v.x + m[4] * v.y + m[5] * v.z,
-        m[6] * v.x + m[7] * v.y + m[8] * v.z,
-    )
-
-
-def _matrix_apply_n(m: List[Int], v: Diff3, depth: Int) raises -> Diff3:
+def build_renewal_address_tables(
+    sigma: List[List[Int]], depth: Int
+) raises -> RenewalAddressTables:
+    """Precompute image lengths and Parikh columns once for `0..depth`."""
+    _validate_sigma(sigma)
     if depth < 0:
         raise Error("renewal-address depth must be nonnegative")
-    var out = v.copy()
+
+    var current_lengths: List[Int] = [1, 1, 1]
+    var current_parikhs: List[Int] = [1, 0, 0, 0, 1, 0, 0, 0, 1]
+    var all_lengths = current_lengths.copy()
+    var all_parikhs = current_parikhs.copy()
+
     for _ in range(depth):
-        out = _matrix_apply(m, out)
-    return out^
+        var next_lengths: List[Int] = [0, 0, 0]
+        var next_parikhs: List[Int] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        for a in range(3):
+            for j in range(len(sigma[a])):
+                var child = sigma[a][j]
+                next_lengths[a] += current_lengths[child]
+                next_parikhs[3 * a] += current_parikhs[3 * child]
+                next_parikhs[3 * a + 1] += current_parikhs[3 * child + 1]
+                next_parikhs[3 * a + 2] += current_parikhs[3 * child + 2]
+        for a in range(3):
+            all_lengths.append(next_lengths[a])
+        for k in range(9):
+            all_parikhs.append(next_parikhs[k])
+        current_lengths = next_lengths^
+        current_parikhs = next_parikhs^
+
+    return RenewalAddressTables(sigma, depth, all_lengths, all_parikhs)
 
 
 def _prefix_defect(pair: Pair, top_cut: Int, bottom_cut: Int) raises -> Diff3:
@@ -182,33 +229,27 @@ def _prefix_defect(pair: Pair, top_cut: Int, bottom_cut: Int) raises -> Diff3:
     return Diff3(x, y, z)
 
 
-def _word_image_length(
-    sigma: List[List[Int]], word: List[Int], depth: Int
-) raises -> Int:
-    var lengths = image_lengths_at_depth(sigma, depth)
+def _word_image_length(word: List[Int], tables: RenewalAddressTables) raises -> Int:
     var total = 0
     for i in range(len(word)):
         var a = word[i]
         if a < 0 or a >= 3:
             raise Error("renewal-address word letter lies outside 0..2")
-        total += lengths[a]
+        total += tables.image_length(tables.depth, a)
     return total
 
 
 def _locate_source(
-    sigma: List[List[Int]], word: List[Int], depth: Int, cut: Int
+    word: List[Int], cut: Int, tables: RenewalAddressTables
 ) raises -> _SourceLocation:
-    var lengths = image_lengths_at_depth(sigma, depth)
-    var total = 0
-    for i in range(len(word)):
-        total += lengths[word[i]]
+    var total = _word_image_length(word, tables)
     if cut < 0 or cut >= total:
         raise Error("renewal-address cut must select a source supertile")
 
     var cursor = 0
     for i in range(len(word)):
         var a = word[i]
-        var next = cursor + lengths[a]
+        var next = cursor + tables.image_length(tables.depth, a)
         if cut < next:
             return _SourceLocation(i, a, cut - cursor)
         cursor = next
@@ -216,32 +257,28 @@ def _locate_source(
 
 
 def _prefix_inside_source_letter(
-    sigma: List[List[Int]],
-    incidence: List[Int],
+    tables: RenewalAddressTables,
     source_letter: Int,
-    depth: Int,
     offset: Int,
 ) raises -> _SideAddress:
-    """Descend one cut through sigma^depth(source_letter) without expanding it."""
-    if depth <= 0:
+    """Descend one cut through sigma^depth(source_letter) using cached tables."""
+    if tables.depth <= 0:
         raise Error("renewal-address symbolic path requires positive depth")
-    var full_lengths = image_lengths_at_depth(sigma, depth)
-    if offset < 0 or offset >= full_lengths[source_letter]:
+    if offset < 0 or offset >= tables.image_length(tables.depth, source_letter):
         raise Error("renewal-address within-supertile offset is out of range")
 
     var digits = List[Int]()
     var prefix = Diff3(0, 0, 0)
     var current_letter = source_letter
     var residual = offset
-    var level = depth
+    var level = tables.depth
 
     while level > 0:
-        var child_lengths = image_lengths_at_depth(sigma, level - 1)
         var child_start = 0
         var found = False
-        for j in range(len(sigma[current_letter])):
-            var child = sigma[current_letter][j]
-            var block_length = child_lengths[child]
+        for j in range(len(tables.sigma[current_letter])):
+            var child = tables.sigma[current_letter][j]
+            var block_length = tables.image_length(level - 1, child)
             if residual < child_start + block_length:
                 digits.append(current_letter)
                 digits.append(j)
@@ -249,8 +286,7 @@ def _prefix_inside_source_letter(
                 current_letter = child
                 found = True
                 break
-            var complete = _matrix_apply_n(incidence, _unit(child), level - 1)
-            prefix = _add(prefix, complete)
+            prefix = _add(prefix, tables.image_parikh(level - 1, child))
             child_start += block_length
         if not found:
             raise Error("renewal-address digit descent failed to select a child")
@@ -259,6 +295,17 @@ def _prefix_inside_source_letter(
     if residual != 0:
         raise Error("renewal-address leaf residual must vanish")
     return _SideAddress(digits, prefix)
+
+
+def _scale_defect(tables: RenewalAddressTables, defect: Diff3) raises -> Diff3:
+    var c0 = tables.image_parikh(tables.depth, 0)
+    var c1 = tables.image_parikh(tables.depth, 1)
+    var c2 = tables.image_parikh(tables.depth, 2)
+    return Diff3(
+        defect.x * c0.x + defect.y * c1.x + defect.z * c2.x,
+        defect.x * c0.y + defect.y * c1.y + defect.z * c2.y,
+        defect.x * c0.z + defect.y * c1.z + defect.z * c2.z,
+    )
 
 
 def same_relative_address(a: RelativeRenewalAddress, b: RelativeRenewalAddress) -> Bool:
@@ -275,56 +322,46 @@ def same_relative_address(a: RelativeRenewalAddress, b: RelativeRenewalAddress) 
     )
 
 
-def renewal_cut_address(
-    sigma: List[List[Int]], pair: Pair, depth: Int, cut: Int
+def renewal_cut_address_with_tables(
+    tables: RenewalAddressTables, pair: Pair, cut: Int
 ) raises -> RelativeRenewalAddress:
-    """Return the exact relative address of an interior zero return.
+    """Address one cut using reusable substitution/depth tables.
 
-    `pair` itself must be a strict labelled first return. `cut` is an aligned
-    physical position in `sigma^depth(pair.u)` and `sigma^depth(pair.v)` whose
-    prefix Parikh vectors agree.  The implementation verifies the zero-return
-    property through the integer certificate rather than materializing either
-    inflated word.
+    A joint-address census should build `RenewalAddressTables` once and call
+    this function for every candidate cut at the same depth.
     """
-    _validate_sigma(sigma)
-    if depth <= 0:
+    if tables.depth <= 0:
         raise Error("renewal-address depth must be positive")
 
-    # Reuse the canonical strict contract from the labelled-renewal layer.
     var checked = strict_first_return_word(pair)
     if not checked.first_return:
         raise Error("renewal-address source pair is not a first return")
 
-    var top_length = _word_image_length(sigma, pair.u, depth)
-    var bottom_length = _word_image_length(sigma, pair.v, depth)
+    var top_length = _word_image_length(pair.u, tables)
+    var bottom_length = _word_image_length(pair.v, tables)
     if top_length != bottom_length:
         raise Error("balanced renewal pair has unequal inflated side lengths")
     if cut <= 0 or cut >= top_length:
         raise Error("renewal-address cut must be interior")
 
-    var incidence = substitution_incidence(sigma)
-    var top = _locate_source(sigma, pair.u, depth, cut)
-    var bottom = _locate_source(sigma, pair.v, depth, cut)
-    var top_side = _prefix_inside_source_letter(
-        sigma, incidence, top.letter, depth, top.offset
-    )
-    var bottom_side = _prefix_inside_source_letter(
-        sigma, incidence, bottom.letter, depth, bottom.offset
-    )
+    var top = _locate_source(pair.u, cut, tables)
+    var bottom = _locate_source(pair.v, cut, tables)
+    var top_side = _prefix_inside_source_letter(tables, top.letter, top.offset)
+    var bottom_side = _prefix_inside_source_letter(tables, bottom.letter, bottom.offset)
 
     var defect = _prefix_defect(pair, top.index, bottom.index)
     var source_index_delta = top.index - bottom.index
     if defect.x + defect.y + defect.z != source_index_delta:
         raise Error("renewal-address source displacement/defect identity failed")
 
-    var scaled = _matrix_apply_n(incidence, defect, depth)
+    var scaled = _scale_defect(tables, defect)
     var correction = _sub(top_side.prefix, bottom_side.prefix)
     var closure = _add(scaled, correction)
     if not closure.is_zero():
         raise Error("renewal-address cut is not a zero return")
 
     return RelativeRenewalAddress(
-        depth,
+        tables.depth,
         source_index_delta,
         defect,
         top.letter,
@@ -334,3 +371,11 @@ def renewal_cut_address(
         scaled,
         correction,
     )
+
+
+def renewal_cut_address(
+    sigma: List[List[Int]], pair: Pair, depth: Int, cut: Int
+) raises -> RelativeRenewalAddress:
+    """Convenience wrapper for one address; batch callers should reuse tables."""
+    var tables = build_renewal_address_tables(sigma, depth)
+    return renewal_cut_address_with_tables(tables, pair, cut)
