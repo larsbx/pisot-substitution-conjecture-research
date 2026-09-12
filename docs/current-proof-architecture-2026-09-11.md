@@ -1,6 +1,6 @@
 # Current PSC proof architecture — 2026-09-11
 
-**Status:** canonical project-status ledger for the current research program. This file records the present proof architecture and priorities. Where a theorem-grade result is known from the current v16/later research track but its detailed proof source is not yet present on `main`, that provenance gap is stated explicitly rather than hidden.
+**Status:** canonical project-status ledger for the current research program. This file records the present proof architecture and priorities. Where a theorem-grade result is known from the current v16/later research track but its detailed proof source is not yet present on `main`, that provenance gap is stated explicitly rather than hidden. The dated weekly ledger `docs/completion-ledger-2026-09-11.md` carries the full evidence tables and a per-item repository cross-check.
 
 ## Executive status
 

@@ -10,7 +10,7 @@ Python under `src/psc_research/` is a secondary reference/oracle and prototyping
 
 ## Current mathematical state
 
-Canonical archived manuscript: `archive/2026-09-08/manuscripts/PSC_PROOF_v15.tex`. Read `archive/2026-09-08/README_READ_FIRST_2026_09_08.md` first. The live proof state is newer than that manuscript and is recorded in `docs/conjecture-ledger.md`, `docs/proof-ladder.md`, and the C4 notes.
+Canonical archived manuscript: `archive/2026-09-08/manuscripts/PSC_PROOF_v15.tex`. Read `archive/2026-09-08/README_READ_FIRST_2026_09_08.md` first. The live proof state is newer than that manuscript and is recorded in `docs/conjecture-ledger.md`, `docs/proof-ladder.md`, the dated weekly ledger `docs/completion-ledger-2026-09-11.md`, and the C4 notes.
 
 - **Level 2:** unique decodability is proved. The withdrawn predecessor-contraction argument does **not** prove finiteness of the balanced-pair automaton `B_sigma`; global finiteness remains hypothesis **G1** in the repository proof architecture.
 - **Finite-obstruction reduction:** if `B_sigma` is finite and a nonproductive state exists, the nonproductive subgraph contains a closed/sink recurrent noncoincident SCC. G1 is used at this extraction step. Once a finite closed SCC is given, most subsequent C4 structural lemmas do not separately require global BPA finiteness.
