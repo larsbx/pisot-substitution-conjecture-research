@@ -1,7 +1,7 @@
 """Canonical Mojo regressions for the system-level good-edge bridge."""
 
-from std.testing import assert_equal
-from psc.derived_system import build_derived_system
+from std.testing import assert_equal, assert_true
+from psc.derived_system import DerivedSystem, build_derived_system
 from psc.good_edge_system import (
     candidate_good_edge_count,
     candidate_good_edge_mask,
@@ -31,6 +31,21 @@ def component() -> List[Pair]:
     return out^
 
 
+def malformed_empty_child_system() -> DerivedSystem:
+    """Public-constructor negative control: valid-looking state, no child word."""
+    var states = List[Pair]()
+    var au: List[Int] = [0, 1]
+    var av: List[Int] = [1, 0]
+    states.append(Pair(au, av))
+
+    var images = List[List[Int]]()
+    images.append(List[Int]())
+    var signs = List[List[Int]]()
+    signs.append(List[Int]())
+    var lengths: List[Int] = [2]
+    return DerivedSystem(states, images, signs, lengths)
+
+
 def test_nonpisot_control_has_one_finite_compatible_good_edge() raises:
     var system = build_derived_system(sigma(), component())
     var h = prefix_map()
@@ -58,9 +73,24 @@ def test_actual_first_child_residual_is_part_of_the_contract() raises:
     assert_equal(unique_candidate_hub(system, h), -1)
 
 
+def test_malformed_system_fails_before_endpoint_early_rejection() raises:
+    var system = malformed_empty_child_system()
+    # Type G has no admissible selector phase, so the old implementation returned
+    # mask 0 before ever noticing that the derived child word was malformed.
+    var type_g: List[Int] = [1, 2, 0]
+    var caught = False
+    try:
+        _ = candidate_good_edge_mask(system, type_g)
+    except:
+        caught = True
+    assert_true(caught)
+
+
 def main() raises:
     test_nonpisot_control_has_one_finite_compatible_good_edge()
     print("[PASS] test_nonpisot_control_has_one_finite_compatible_good_edge")
     test_actual_first_child_residual_is_part_of_the_contract()
     print("[PASS] test_actual_first_child_residual_is_part_of_the_contract")
-    print("2 system good-edge Mojo tests passed.")
+    test_malformed_system_fails_before_endpoint_early_rejection()
+    print("[PASS] test_malformed_system_fails_before_endpoint_early_rejection")
+    print("3 system good-edge Mojo tests passed.")
