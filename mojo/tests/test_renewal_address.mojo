@@ -15,9 +15,9 @@ def nonunimodular_pisot_sigma() -> List[List[Int]]:
     var a1: List[Int] = [0, 2, 1]
     var a2: List[Int] = [0, 0, 1]
     var sigma = List[List[Int]]()
-    sigma.append(a0)
-    sigma.append(a1)
-    sigma.append(a2)
+    sigma.append(a0^)
+    sigma.append(a1^)
+    sigma.append(a2^)
     return sigma^
 
 
