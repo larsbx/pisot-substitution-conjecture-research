@@ -6,16 +6,20 @@ symbolic renewal address and is intended to *falsify* insufficient finite-state
 proposals before they are promoted into a theorem.
 
 For fixed `source_radius` and `digit_window`, the stored source context and digit
-windows have bounded size independent of substitution depth.  The projection
+windows have bounded size independent of substitution depth. The projection
 omits absolute source indices, total inflated length, substitution level,
-`M^d delta`, and the full digit path.  These omissions are intentional: the
+`M^d delta`, and the full digit path. These omissions are intentional: the
 object is a candidate finite local type, not a complete address.
+
+The public constructor accepts only `(prepared state, cut, bounds)` and derives
+the certified renewal address internally. There is deliberately no public API
+that combines an independently supplied address with a cut, preventing hybrid
+local types assembled from individually valid but unrelated inputs.
 """
 
 from psc.renewal import Diff3
 from psc.renewal_address import (
     RenewalPairCensusState,
-    RelativeRenewalAddress,
     renewal_cut_address_from_state,
 )
 
@@ -117,18 +121,22 @@ def _digit_tail(digits: List[Int], window: Int) raises -> List[Int]:
     return out^
 
 
-def joint_local_type_from_address(
+def joint_local_type(
     state: RenewalPairCensusState,
     cut: Int,
-    address: RelativeRenewalAddress,
     source_radius: Int,
     digit_window: Int,
 ) raises -> JointLocalType:
-    """Project one certified address to bounded source/digit context."""
+    """Project one certified `(state, cut)` to bounded source/digit context."""
     if source_radius < 0 or digit_window < 0:
         raise Error("joint-local radius and digit window must be nonnegative")
     if cut <= 0 or cut >= state.inflated_length:
         raise Error("joint-local cut must be interior")
+
+    # The address is derived from the exact same state/cut used for source
+    # context. Do not expose an independent-address composition path: otherwise
+    # a caller could create a hybrid projection from unrelated valid inputs.
+    var address = renewal_cut_address_from_state(state, cut)
 
     var top_index = _source_index(
         state.top.boundaries, state.top.source_length(), cut
@@ -153,18 +161,6 @@ def joint_local_type_from_address(
         _digit_tail(address.top_digits, digit_window),
         _digit_head(address.bottom_digits, digit_window),
         _digit_tail(address.bottom_digits, digit_window),
-    )
-
-
-def joint_local_type(
-    state: RenewalPairCensusState,
-    cut: Int,
-    source_radius: Int,
-    digit_window: Int,
-) raises -> JointLocalType:
-    var address = renewal_cut_address_from_state(state, cut)
-    return joint_local_type_from_address(
-        state, cut, address, source_radius, digit_window
     )
 
 
