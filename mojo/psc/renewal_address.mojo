@@ -19,9 +19,11 @@ retained together with the labelled return word: distinct labelled returns can
 share the same relative address.
 
 Inflated words are never materialized. `RenewalAddressTables` precomputes all
-three image lengths and image Parikh columns for levels `0..depth` in O(depth)
-once. A census can reuse that table across every cut at the same substitution
-and depth; each address then performs only the linear symbolic digit descent.
+three image lengths and image Parikh columns for levels `0..depth` once.
+`RenewalPairCensusState` then validates one labelled first return once and
+caches its source-supertiling boundaries and prefix Parikh vectors. A census can
+reuse both layers across every candidate cut: each cut needs only logarithmic
+source lookup plus the level-linear symbolic digit descent.
 """
 
 from psc.renewal import Diff3, strict_first_return_word
@@ -90,6 +92,72 @@ struct RenewalAddressTables(Copyable, Movable):
             raise Error("renewal-address table letter lies outside 0..2")
         var k = 9 * level + 3 * letter
         return Diff3(self.parikhs[k], self.parikhs[k + 1], self.parikhs[k + 2])
+
+
+struct _PreparedSourceSide(Copyable, Movable):
+    """One source word with cached inflated boundaries and prefix Parikh data."""
+
+    var letters: List[Int]
+    var boundaries: List[Int]
+    var prefixes: List[Int]
+
+    def __init__(
+        out self,
+        letters: List[Int],
+        boundaries: List[Int],
+        prefixes: List[Int],
+    ):
+        self.letters = letters.copy()
+        self.boundaries = boundaries.copy()
+        self.prefixes = prefixes.copy()
+
+    def source_length(self) -> Int:
+        return len(self.letters)
+
+    def inflated_length(self) -> Int:
+        return self.boundaries[len(self.boundaries) - 1]
+
+    def prefix_at(self, index: Int) raises -> Diff3:
+        if index < 0 or index > self.source_length():
+            raise Error("renewal-address source prefix index is out of range")
+        var k = 3 * index
+        return Diff3(self.prefixes[k], self.prefixes[k + 1], self.prefixes[k + 2])
+
+
+struct RenewalPairCensusState(Copyable, Movable):
+    """Reusable source-pair metadata for a many-cut renewal census.
+
+    Construction validates the strict labelled first-return contract once,
+    prepares both source sides once, and binds them to one substitution/depth
+    table. No `LabelledReturnWord` is rebuilt by per-cut address queries.
+    """
+
+    var tables: RenewalAddressTables
+    var top: _PreparedSourceSide
+    var bottom: _PreparedSourceSide
+    var inflated_length: Int
+
+    def __init__(
+        out self,
+        tables: RenewalAddressTables,
+        top: _PreparedSourceSide,
+        bottom: _PreparedSourceSide,
+        inflated_length: Int,
+    ):
+        self.tables = RenewalAddressTables(
+            tables.sigma,
+            tables.depth,
+            tables.lengths,
+            tables.parikhs,
+        )
+        self.top = _PreparedSourceSide(top.letters, top.boundaries, top.prefixes)
+        self.bottom = _PreparedSourceSide(
+            bottom.letters, bottom.boundaries, bottom.prefixes
+        )
+        self.inflated_length = inflated_length
+
+    def source_length(self) -> Int:
+        return self.top.source_length()
 
 
 struct RelativeRenewalAddress(Copyable, Movable):
@@ -162,6 +230,12 @@ def _sub(a: Diff3, b: Diff3) -> Diff3:
     return Diff3(a.x - b.x, a.y - b.y, a.z - b.z)
 
 
+def _append_diff(mut out: List[Int], x: Int, y: Int, z: Int):
+    out.append(x)
+    out.append(y)
+    out.append(z)
+
+
 def build_renewal_address_tables(
     sigma: List[List[Int]], depth: Int
 ) raises -> RenewalAddressTables:
@@ -195,65 +269,78 @@ def build_renewal_address_tables(
     return RenewalAddressTables(sigma, depth, all_lengths, all_parikhs)
 
 
-def _prefix_defect(pair: Pair, top_cut: Int, bottom_cut: Int) raises -> Diff3:
-    if (
-        top_cut < 0
-        or top_cut > len(pair.u)
-        or bottom_cut < 0
-        or bottom_cut > len(pair.v)
-    ):
-        raise Error("renewal-address source prefix lies outside the pair")
+def _prepare_source_side(
+    word: List[Int], tables: RenewalAddressTables
+) raises -> _PreparedSourceSide:
+    var boundaries = List[Int]()
+    var prefixes = List[Int]()
+    boundaries.append(0)
+    _append_diff(prefixes, 0, 0, 0)
+
+    var cursor = 0
     var x = 0
     var y = 0
     var z = 0
-    for i in range(top_cut):
-        var a = pair.u[i]
-        if a == 0:
-            x += 1
-        elif a == 1:
-            y += 1
-        elif a == 2:
-            z += 1
-        else:
-            raise Error("renewal-address pair letter lies outside 0..2")
-    for i in range(bottom_cut):
-        var a = pair.v[i]
-        if a == 0:
-            x -= 1
-        elif a == 1:
-            y -= 1
-        elif a == 2:
-            z -= 1
-        else:
-            raise Error("renewal-address pair letter lies outside 0..2")
-    return Diff3(x, y, z)
-
-
-def _word_image_length(word: List[Int], tables: RenewalAddressTables) raises -> Int:
-    var total = 0
     for i in range(len(word)):
         var a = word[i]
         if a < 0 or a >= 3:
             raise Error("renewal-address word letter lies outside 0..2")
-        total += tables.image_length(tables.depth, a)
-    return total
+        cursor += tables.image_length(tables.depth, a)
+        boundaries.append(cursor)
+        if a == 0:
+            x += 1
+        elif a == 1:
+            y += 1
+        else:
+            z += 1
+        _append_diff(prefixes, x, y, z)
+
+    return _PreparedSourceSide(word, boundaries, prefixes)
 
 
-def _locate_source(
-    word: List[Int], cut: Int, tables: RenewalAddressTables
+def build_renewal_pair_census_state(
+    tables: RenewalAddressTables, pair: Pair
+) raises -> RenewalPairCensusState:
+    """Validate and prepare one source pair once for many cut queries."""
+    if tables.depth <= 0:
+        raise Error("renewal-address depth must be positive")
+
+    var checked = strict_first_return_word(pair)
+    if not checked.first_return:
+        raise Error("renewal-address source pair is not a first return")
+
+    var top = _prepare_source_side(pair.u, tables)
+    var bottom = _prepare_source_side(pair.v, tables)
+    var top_length = top.inflated_length()
+    var bottom_length = bottom.inflated_length()
+    if top_length != bottom_length:
+        raise Error("balanced renewal pair has unequal inflated side lengths")
+
+    return RenewalPairCensusState(tables, top, bottom, top_length)
+
+
+def _locate_prepared_source(
+    side: _PreparedSourceSide, cut: Int
 ) raises -> _SourceLocation:
-    var total = _word_image_length(word, tables)
-    if cut < 0 or cut >= total:
+    if cut < 0 or cut >= side.inflated_length():
         raise Error("renewal-address cut must select a source supertile")
 
-    var cursor = 0
-    for i in range(len(word)):
-        var a = word[i]
-        var next = cursor + tables.image_length(tables.depth, a)
-        if cut < next:
-            return _SourceLocation(i, a, cut - cursor)
-        cursor = next
-    raise Error("renewal-address source location was not found")
+    # First source index i with boundary[i+1] > cut. Exact source boundaries
+    # therefore select the supertile beginning at that boundary with offset 0.
+    var lo = 0
+    var hi = side.source_length()
+    while lo < hi:
+        var mid = (lo + hi) // 2
+        if side.boundaries[mid + 1] <= cut:
+            lo = mid + 1
+        else:
+            hi = mid
+    var index = lo
+    return _SourceLocation(
+        index,
+        side.letters[index],
+        cut - side.boundaries[index],
+    )
 
 
 def _prefix_inside_source_letter(
@@ -322,46 +409,37 @@ def same_relative_address(a: RelativeRenewalAddress, b: RelativeRenewalAddress) 
     )
 
 
-def renewal_cut_address_with_tables(
-    tables: RenewalAddressTables, pair: Pair, cut: Int
+def renewal_cut_address_from_state(
+    state: RenewalPairCensusState, cut: Int
 ) raises -> RelativeRenewalAddress:
-    """Address one cut using reusable substitution/depth tables.
-
-    A joint-address census should build `RenewalAddressTables` once and call
-    this function for every candidate cut at the same depth.
-    """
-    if tables.depth <= 0:
-        raise Error("renewal-address depth must be positive")
-
-    var checked = strict_first_return_word(pair)
-    if not checked.first_return:
-        raise Error("renewal-address source pair is not a first return")
-
-    var top_length = _word_image_length(pair.u, tables)
-    var bottom_length = _word_image_length(pair.v, tables)
-    if top_length != bottom_length:
-        raise Error("balanced renewal pair has unequal inflated side lengths")
-    if cut <= 0 or cut >= top_length:
+    """Address one cut without rebuilding source-pair metadata."""
+    if cut <= 0 or cut >= state.inflated_length:
         raise Error("renewal-address cut must be interior")
 
-    var top = _locate_source(pair.u, cut, tables)
-    var bottom = _locate_source(pair.v, cut, tables)
-    var top_side = _prefix_inside_source_letter(tables, top.letter, top.offset)
-    var bottom_side = _prefix_inside_source_letter(tables, bottom.letter, bottom.offset)
+    var top = _locate_prepared_source(state.top, cut)
+    var bottom = _locate_prepared_source(state.bottom, cut)
+    var top_side = _prefix_inside_source_letter(
+        state.tables, top.letter, top.offset
+    )
+    var bottom_side = _prefix_inside_source_letter(
+        state.tables, bottom.letter, bottom.offset
+    )
 
-    var defect = _prefix_defect(pair, top.index, bottom.index)
+    var top_prefix = state.top.prefix_at(top.index)
+    var bottom_prefix = state.bottom.prefix_at(bottom.index)
+    var defect = _sub(top_prefix, bottom_prefix)
     var source_index_delta = top.index - bottom.index
     if defect.x + defect.y + defect.z != source_index_delta:
         raise Error("renewal-address source displacement/defect identity failed")
 
-    var scaled = _scale_defect(tables, defect)
+    var scaled = _scale_defect(state.tables, defect)
     var correction = _sub(top_side.prefix, bottom_side.prefix)
     var closure = _add(scaled, correction)
     if not closure.is_zero():
         raise Error("renewal-address cut is not a zero return")
 
     return RelativeRenewalAddress(
-        tables.depth,
+        state.tables.depth,
         source_index_delta,
         defect,
         top.letter,
@@ -373,9 +451,22 @@ def renewal_cut_address_with_tables(
     )
 
 
+def renewal_cut_address_with_tables(
+    tables: RenewalAddressTables, pair: Pair, cut: Int
+) raises -> RelativeRenewalAddress:
+    """One-off address using precomputed substitution tables.
+
+    Many-cut callers should additionally build `RenewalPairCensusState` once
+    and use `renewal_cut_address_from_state` for each candidate cut.
+    """
+    var state = build_renewal_pair_census_state(tables, pair)
+    return renewal_cut_address_from_state(state, cut)
+
+
 def renewal_cut_address(
     sigma: List[List[Int]], pair: Pair, depth: Int, cut: Int
 ) raises -> RelativeRenewalAddress:
-    """Convenience wrapper for one address; batch callers should reuse tables."""
+    """Convenience wrapper for one address; census callers should prepare state."""
     var tables = build_renewal_address_tables(sigma, depth)
-    return renewal_cut_address_with_tables(tables, pair, cut)
+    var state = build_renewal_pair_census_state(tables, pair)
+    return renewal_cut_address_from_state(state, cut)
