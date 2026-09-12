@@ -66,28 +66,6 @@ struct ProjectionAudit(Copyable, Movable):
         return self.collision_pair_count > 0
 
 
-def _update_top(letter: Int, mut x: Int, mut y: Int, mut z: Int) raises:
-    if letter == 0:
-        x += 1
-    elif letter == 1:
-        y += 1
-    elif letter == 2:
-        z += 1
-    else:
-        raise Error("joint-local census requires letters in 0..2")
-
-
-def _update_bottom(letter: Int, mut x: Int, mut y: Int, mut z: Int) raises:
-    if letter == 0:
-        x -= 1
-    elif letter == 1:
-        y -= 1
-    elif letter == 2:
-        z -= 1
-    else:
-        raise Error("joint-local census requires letters in 0..2")
-
-
 def zero_return_cuts(
     sigma: List[List[Int]], pair: Pair, depth: Int
 ) raises -> List[Int]:
@@ -107,8 +85,26 @@ def zero_return_cuts(
     var y = 0
     var z = 0
     for i in range(len(top)):
-        _update_top(top[i], x, y, z)
-        _update_bottom(bottom[i], x, y, z)
+        var a = top[i]
+        if a == 0:
+            x += 1
+        elif a == 1:
+            y += 1
+        elif a == 2:
+            z += 1
+        else:
+            raise Error("joint-local census requires letters in 0..2")
+
+        var b = bottom[i]
+        if b == 0:
+            x -= 1
+        elif b == 1:
+            y -= 1
+        elif b == 2:
+            z -= 1
+        else:
+            raise Error("joint-local census requires letters in 0..2")
+
         var cut = i + 1
         if cut < len(top) and x == 0 and y == 0 and z == 0:
             out.append(cut)
