@@ -5,6 +5,7 @@ from psc.joint_local_census import (
     address_is_one_loop_extension,
     audit_projection,
     samples_through_depth,
+    synchronous_digit_pair_insertion,
     zero_return_cuts,
 )
 from psc.joint_local_type import joint_local_type, same_joint_local_type
@@ -96,8 +97,8 @@ def test_persistent_right_edge_collisions_are_regular_loop_extensions() raises:
     # For each tested depth d, compare the three right-edge cuts at d-1 and d.
     # Their bounded projection collides at window d-2, but the full addresses
     # differ by exactly one additional (parent=1, child-index=2) digit on each
-    # side. This classifies the witnesses as a regular recurrence candidate
-    # rather than silently treating every collision as a distinct obstruction.
+    # side at one common ancestry level. This classifies the witnesses as a
+    # synchronous regular recurrence candidate.
     for depth in range(3, 8):
         var short_tables = build_renewal_address_tables(sigma, depth - 1)
         var long_tables = build_renewal_address_tables(sigma, depth)
@@ -120,6 +121,26 @@ def test_persistent_right_edge_collisions_are_regular_loop_extensions() raises:
             assert_true(same_joint_local_type(short_type, long_type))
 
 
+def test_loop_classifier_rejects_different_insertion_levels() raises:
+    # Each side separately gains exactly one (1,2) digit, but at different
+    # ancestry levels. Independent existential insertion checks would accept
+    # this false pump; the synchronous classifier must reject it.
+    var top_short: List[Int] = [0, 0, 2, 0]
+    var top_long: List[Int] = [1, 2, 0, 0, 2, 0]
+    var bottom_short: List[Int] = [0, 0, 2, 0]
+    var bottom_long: List[Int] = [0, 0, 1, 2, 2, 0]
+    assert_false(
+        synchronous_digit_pair_insertion(
+            top_short,
+            top_long,
+            bottom_short,
+            bottom_long,
+            1,
+            2,
+        )
+    )
+
+
 def main() raises:
     test_zero_return_oracle_pins_depth_four_seed_cuts()
     print("[PASS] test_zero_return_oracle_pins_depth_four_seed_cuts")
@@ -127,4 +148,6 @@ def main() raises:
     print("[PASS] test_window_requirement_staircase_on_bounded_seed_corpus")
     test_persistent_right_edge_collisions_are_regular_loop_extensions()
     print("[PASS] test_persistent_right_edge_collisions_are_regular_loop_extensions")
-    print("3 joint-local-census Mojo tests passed.")
+    test_loop_classifier_rejects_different_insertion_levels()
+    print("[PASS] test_loop_classifier_rejects_different_insertion_levels")
+    print("4 joint-local-census Mojo tests passed.")
