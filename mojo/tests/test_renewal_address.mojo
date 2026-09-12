@@ -3,7 +3,12 @@
 from std.testing import assert_equal, assert_false, assert_true
 from psc.bpa import substitution_incidence
 from psc.renewal import same_labelled_return, strict_first_return_word
-from psc.renewal_address import renewal_cut_address, same_relative_address
+from psc.renewal_address import (
+    build_renewal_address_tables,
+    renewal_cut_address,
+    renewal_cut_address_with_tables,
+    same_relative_address,
+)
 from psc.words import Pair
 
 
@@ -39,6 +44,24 @@ def det3(m: List[Int]) -> Int:
         - m[1] * (m[3] * m[8] - m[5] * m[6])
         + m[2] * (m[3] * m[7] - m[4] * m[6])
     )
+
+
+def test_precomputed_tables_are_exact_and_reusable() raises:
+    var sigma = nonunimodular_pisot_sigma()
+    var tables = build_renewal_address_tables(sigma, 2)
+    assert_equal(tables.depth, 2)
+    assert_equal(tables.image_length(0, 0), 1)
+    assert_equal(tables.image_length(1, 0), 1)
+    assert_equal(tables.image_length(1, 1), 3)
+    assert_equal(tables.image_length(1, 2), 3)
+    assert_equal(tables.image_length(2, 0), 3)
+    assert_equal(tables.image_length(2, 1), 7)
+    assert_equal(tables.image_length(2, 2), 5)
+
+    var p = tables.image_parikh(2, 0)
+    assert_equal(p.x, 1)
+    assert_equal(p.y, 1)
+    assert_equal(p.z, 1)
 
 
 def test_nonunimodular_level_one_certificate() raises:
@@ -96,7 +119,7 @@ def test_nonzero_source_displacement_certificate() raises:
     var u: List[Int] = [0, 1]
     var v: List[Int] = [1, 0]
 
-    # At depth two, position 6 is a zero return.  It descends to source index 1
+    # At depth two, position 6 is a zero return. It descends to source index 1
     # on top and source index 0 on bottom, so this pins the genuinely
     # asynchronous ancestry case rather than only source-aligned cuts.
     var address = renewal_cut_address(sigma, Pair(u, v), 2, 6)
@@ -146,15 +169,18 @@ def test_relative_address_does_not_replace_labels() raises:
     assert_false(same_labelled_return(a_word, b_word))
 
     # A has its first inflated interior zero return at 4; B has the analogous
-    # return at 6.  Their relative level-one address is the same even though the
-    # labelled first-return words differ.  Therefore this coordinate augments,
-    # and never quotients away, the merged labelled-renewal representation.
-    var a_address = renewal_cut_address(sigma, collision_pair_a(), 1, 4)
-    var b_address = renewal_cut_address(sigma, collision_pair_b(), 1, 6)
+    # return at 6. Their relative level-one address is the same even though the
+    # labelled first-return words differ. Build the substitution table once and
+    # reuse it for both cuts, as the planned census will do.
+    var tables = build_renewal_address_tables(sigma, 1)
+    var a_address = renewal_cut_address_with_tables(tables, collision_pair_a(), 4)
+    var b_address = renewal_cut_address_with_tables(tables, collision_pair_b(), 6)
     assert_true(same_relative_address(a_address, b_address))
 
 
 def main() raises:
+    test_precomputed_tables_are_exact_and_reusable()
+    print("[PASS] test_precomputed_tables_are_exact_and_reusable")
     test_nonunimodular_level_one_certificate()
     print("[PASS] test_nonunimodular_level_one_certificate")
     test_inherited_level_two_certificate()
@@ -167,4 +193,4 @@ def main() raises:
     print("[PASS] test_source_pair_must_be_strict_first_return")
     test_relative_address_does_not_replace_labels()
     print("[PASS] test_relative_address_does_not_replace_labels")
-    print("6 renewal-address Mojo tests passed.")
+    print("7 renewal-address Mojo tests passed.")
