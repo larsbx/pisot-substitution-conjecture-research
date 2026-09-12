@@ -127,6 +127,11 @@ def zero_return_cuts(
     return out^
 
 
+def _validate_projection_bounds(source_radius: Int, digit_window: Int) raises:
+    if source_radius < 0 or digit_window < 0:
+        raise Error("joint-local census radius and digit window must be nonnegative")
+
+
 def append_samples_at_depth(
     mut out: List[JointLocalSample],
     sigma: List[List[Int]],
@@ -139,6 +144,7 @@ def append_samples_at_depth(
     """Append every oracle zero return at one depth, re-certifying each cut."""
     if depth <= 0:
         raise Error("joint-local sample depth must be positive")
+    _validate_projection_bounds(source_radius, digit_window)
     var tables = build_renewal_address_tables(sigma, depth)
     var state = build_renewal_pair_census_state(tables, pair)
     var cuts = zero_return_cuts(sigma, pair, depth)
@@ -160,6 +166,7 @@ def samples_through_depth(
 ) raises -> List[JointLocalSample]:
     if max_depth <= 0:
         raise Error("joint-local census max_depth must be positive")
+    _validate_projection_bounds(source_radius, digit_window)
     var out = List[JointLocalSample]()
     for depth in range(1, max_depth + 1):
         append_samples_at_depth(
