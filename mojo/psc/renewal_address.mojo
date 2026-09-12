@@ -26,7 +26,8 @@ reuse both layers across every candidate cut: each cut needs only logarithmic
 source lookup plus the level-linear symbolic digit descent. Consumers that also
 need source-local context can use `certified_renewal_cut_from_state` so the two
 source locations found during address certification are reused rather than
-searched a second time.
+searched a second time. The certified wrapper takes and returns address
+ownership without copying depth-growing digit paths.
 """
 
 from psc.renewal import Diff3, strict_first_return_word
@@ -220,6 +221,7 @@ struct CertifiedRenewalCut(Copyable, Movable):
     Absolute source indices are deliberately kept outside
     `RelativeRenewalAddress`; they are plumbing for consumers that need local
     source context and are not part of the relative mathematical address.
+    The address is transferred into this wrapper rather than copied.
     """
 
     var address: RelativeRenewalAddress
@@ -228,11 +230,11 @@ struct CertifiedRenewalCut(Copyable, Movable):
 
     def __init__(
         out self,
-        address: RelativeRenewalAddress,
+        var address: RelativeRenewalAddress,
         top_source_index: Int,
         bottom_source_index: Int,
     ):
-        self.address = address.copy()
+        self.address = address^
         self.top_source_index = top_source_index
         self.bottom_source_index = bottom_source_index
 
@@ -475,7 +477,7 @@ def certified_renewal_cut_from_state(
         scaled,
         correction,
     )
-    return CertifiedRenewalCut(address, top.index, bottom.index)
+    return CertifiedRenewalCut(address^, top.index, bottom.index)
 
 
 def renewal_cut_address_from_state(
@@ -483,7 +485,7 @@ def renewal_cut_address_from_state(
 ) raises -> RelativeRenewalAddress:
     """Address one cut without rebuilding source-pair metadata."""
     var certified = certified_renewal_cut_from_state(state, cut)
-    return certified.address.copy()
+    return certified.address^
 
 
 def renewal_cut_address_with_tables(
