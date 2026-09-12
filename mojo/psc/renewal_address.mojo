@@ -24,10 +24,11 @@ three image lengths and image Parikh columns for levels `0..depth` once.
 caches its source-supertiling boundaries and prefix Parikh vectors. A census can
 reuse both layers across every candidate cut: each cut needs only logarithmic
 source lookup plus the level-linear symbolic digit descent. Consumers that also
-need source-local context can use `certified_renewal_cut_from_state` so the two
-source locations found during address certification are reused rather than
-searched a second time. The certified wrapper is built directly from address
-components, avoiding an additional copy of the depth-growing digit paths.
+need source-local context can use `certified_renewal_cut_from_state`, which
+returns the relative address together with the source locations found during
+that same certification pass. The address-only API performs one independent
+certification pass rather than extracting a nontrivial field from a live
+aggregate, which this Mojo version forbids.
 """
 
 from psc.renewal import Diff3, strict_first_return_word
@@ -222,7 +223,7 @@ struct CertifiedRenewalCut(Copyable, Movable):
     `RelativeRenewalAddress`; they are plumbing for consumers that need local
     source context and are not part of the relative mathematical address.
     The wrapper constructs the address directly from its components, so there
-    is no extra whole-address copy in the many-cut path.
+    is no additional whole-address copy in the joint-census path.
     """
 
     var address: RelativeRenewalAddress
@@ -372,8 +373,6 @@ def _locate_prepared_source(
     if cut < 0 or cut >= side.inflated_length():
         raise Error("renewal-address cut must select a source supertile")
 
-    # First source index i with boundary[i+1] > cut. Exact source boundaries
-    # therefore select the supertile beginning at that boundary with offset 0.
     var lo = 0
     var hi = side.source_length()
     while lo < hi:
@@ -456,17 +455,10 @@ def same_relative_address(a: RelativeRenewalAddress, b: RelativeRenewalAddress) 
     )
 
 
-def _certified_parts(
+def certified_renewal_cut_from_state(
     state: RenewalPairCensusState, cut: Int
-) raises -> Tuple[
-    _SourceLocation,
-    _SourceLocation,
-    _SideAddress,
-    _SideAddress,
-    Diff3,
-    Diff3,
-    Diff3,
-]:
+) raises -> CertifiedRenewalCut:
+    """Certify one cut and retain source locations from that same pass."""
     if cut <= 0 or cut >= state.inflated_length:
         raise Error("renewal-address cut must be interior")
 
@@ -492,24 +484,9 @@ def _certified_parts(
     if not closure.is_zero():
         raise Error("renewal-address cut is not a zero return")
 
-    return (top, bottom, top_side, bottom_side, defect, scaled, correction)
-
-
-def certified_renewal_cut_from_state(
-    state: RenewalPairCensusState, cut: Int
-) raises -> CertifiedRenewalCut:
-    """Certify one cut and retain source locations from that same pass."""
-    var parts = _certified_parts(state, cut)
-    var top = parts[0]
-    var bottom = parts[1]
-    var top_side = parts[2]
-    var bottom_side = parts[3]
-    var defect = parts[4]
-    var scaled = parts[5]
-    var correction = parts[6]
     return CertifiedRenewalCut(
         state.tables.depth,
-        top.index - bottom.index,
+        source_index_delta,
         defect,
         top.letter,
         bottom.letter,
@@ -525,18 +502,40 @@ def certified_renewal_cut_from_state(
 def renewal_cut_address_from_state(
     state: RenewalPairCensusState, cut: Int
 ) raises -> RelativeRenewalAddress:
-    """Address one cut without rebuilding source-pair metadata."""
-    var parts = _certified_parts(state, cut)
-    var top = parts[0]
-    var bottom = parts[1]
-    var top_side = parts[2]
-    var bottom_side = parts[3]
-    var defect = parts[4]
-    var scaled = parts[5]
-    var correction = parts[6]
+    """Address one cut without rebuilding source-pair metadata.
+
+    This intentionally performs its own single certification pass rather than
+    extracting `address` from `CertifiedRenewalCut`: moving a nontrivial field
+    out of a live aggregate is not legal in the pinned Mojo toolchain.
+    """
+    if cut <= 0 or cut >= state.inflated_length:
+        raise Error("renewal-address cut must be interior")
+
+    var top = _locate_prepared_source(state.top, cut)
+    var bottom = _locate_prepared_source(state.bottom, cut)
+    var top_side = _prefix_inside_source_letter(
+        state.tables, top.letter, top.offset
+    )
+    var bottom_side = _prefix_inside_source_letter(
+        state.tables, bottom.letter, bottom.offset
+    )
+
+    var top_prefix = state.top.prefix_at(top.index)
+    var bottom_prefix = state.bottom.prefix_at(bottom.index)
+    var defect = _sub(top_prefix, bottom_prefix)
+    var source_index_delta = top.index - bottom.index
+    if defect.x + defect.y + defect.z != source_index_delta:
+        raise Error("renewal-address source displacement/defect identity failed")
+
+    var scaled = _scale_defect(state.tables, defect)
+    var correction = _sub(top_side.prefix, bottom_side.prefix)
+    var closure = _add(scaled, correction)
+    if not closure.is_zero():
+        raise Error("renewal-address cut is not a zero return")
+
     return RelativeRenewalAddress(
         state.tables.depth,
-        top.index - bottom.index,
+        source_index_delta,
         defect,
         top.letter,
         bottom.letter,
