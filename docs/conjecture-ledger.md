@@ -7,7 +7,7 @@ The machine-checked dependency form is `tla/Ledger.tla`. This prose ledger disti
 - open proof gates;
 - finite computational evidence.
 
-The current completion architecture is summarized in `docs/current-proof-architecture-2026-09-11.md`.
+The current completion architecture is summarized in `docs/current-proof-architecture-2026-09-11.md`. The dated weekly completion ledger, with the repository cross-check of which reported results and figures are verifiable on `main`, is `docs/completion-ledger-2026-09-11.md`.
 
 ## Executive status — two independent gates
 
