@@ -49,12 +49,10 @@ def test_cokernel_membership_is_exact() raises:
 
     for level in range(1, 4):
         var lattice = build_cokernel_lattice(tables, level)
-        # Every column of M^level is zero in Z^3 / M^level Z^3.
         assert_true(same_cokernel_class(lattice, lattice.c0, zero))
         assert_true(same_cokernel_class(lattice, lattice.c1, zero))
         assert_true(same_cokernel_class(lattice, lattice.c2, zero))
 
-    # e0 is not in M Z^3 for the canonical determinant-two matrix.
     var level_one = build_cokernel_lattice(tables, 1)
     assert_false(same_cokernel_class(level_one, e0, zero))
 
@@ -67,7 +65,7 @@ def test_sidewise_prefix_reconstruction_matches_correction() raises:
 
     for i in range(len(samples)):
         var translations = sidewise_prefix_translation(tables, samples[i].address)
-        var correction = samples[i].address.correction
+        var correction = samples[i].address.correction.copy()
         assert_equal(translations.top.x - translations.bottom.x, correction.x)
         assert_equal(translations.top.y - translations.bottom.y, correction.y)
         assert_equal(translations.top.z - translations.bottom.z, correction.z)
