@@ -178,9 +178,11 @@ def test_fixed_window_diagnostic_preserves_accounting() raises:
         print("fixed-window first residual right bottom digits:", samples[right].address.bottom_digits)
 
     # Since det(M)=2, probe finite 2-primary residues of the exact scaled defect
-    # only after the symbolic quotient. Equality modulo 2^(k+1) implies equality
-    # modulo 2^k, so surviving residual counts must be monotone nonincreasing.
-    var moduli: List[Int] = [2, 4, 8]
+    # only after the symbolic quotient. These exact bounded-corpus counts are
+    # pinned as regression data, not promoted to a completeness statement.
+    var moduli: List[Int] = [2, 4, 8, 16, 32]
+    var expected_survivors: List[Int] = [11520, 10944, 6694, 4652, 4652]
+    var expected_separated: List[Int] = [0, 576, 4826, 6868, 6868]
     var previous_survivors = synchronous.residual_collision_pair_count
     for q in range(len(moduli)):
         var modulus = moduli[q]
@@ -195,6 +197,14 @@ def test_fixed_window_diagnostic_preserves_accounting() raises:
             residue.residue_surviving_residual_pair_count
             + residue.residue_separated_residual_pair_count,
             residue.residual_collision_pair_count,
+        )
+        assert_equal(
+            residue.residue_surviving_residual_pair_count,
+            expected_survivors[q],
+        )
+        assert_equal(
+            residue.residue_separated_residual_pair_count,
+            expected_separated[q],
         )
         assert_true(
             residue.residue_surviving_residual_pair_count <= previous_survivors
