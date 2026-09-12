@@ -1,10 +1,14 @@
 """Exact regressions for the G1b-2 affine prefix-suffix trace diagnostic."""
 
 from std.testing import assert_equal, assert_false, assert_true
-from psc.loop_quotient_census import addressed_samples_through_depth
+from psc.loop_quotient_census import (
+    AddressedJointLocalSample,
+    addressed_samples_through_depth,
+)
 from psc.renewal_affine_trace import (
     affine_path_from_address,
     build_affine_trace,
+    delete_proper_affine_cycle,
     first_proper_affine_repeat,
     reduce_first_proper_affine_cycle,
     same_affine_path,
@@ -34,7 +38,9 @@ def seed_pair() -> Pair:
     return Pair(u, v)
 
 
-def _find_observation(samples, depth: Int, cut: Int) -> Int:
+def _find_observation(
+    samples: List[AddressedJointLocalSample], depth: Int, cut: Int
+) -> Int:
     for i in range(len(samples)):
         if samples[i].depth == depth and samples[i].cut == cut:
             return i
@@ -123,7 +129,7 @@ def test_nonrepeat_cycle_deletion_fails_closed() raises:
     # endpoints must fail rather than inventing a pump relation.
     var caught = False
     try:
-        _ = psc.renewal_affine_trace.delete_proper_affine_cycle(tables, path, 1, 2)
+        _ = delete_proper_affine_cycle(tables, path, 1, 2)
     except:
         caught = True
     assert_true(caught)
