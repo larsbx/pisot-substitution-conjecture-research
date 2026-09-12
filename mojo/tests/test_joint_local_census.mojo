@@ -79,6 +79,41 @@ def test_invalid_bounds_fail_before_empty_cut_enumeration() raises:
     assert_true(caught_window)
 
 
+def test_audit_rejects_mixed_projection_bounds() raises:
+    # Results computed under different local projection configurations are not
+    # comparable evidence. Concatenating them must fail closed instead of
+    # making cross-configuration observations appear automatically separated.
+    var radius_two = samples_through_depth(
+        nonunimodular_pisot_sigma(), seed_pair(), 0, 2, 2, 1
+    )
+    var radius_one = samples_through_depth(
+        nonunimodular_pisot_sigma(), seed_pair(), 1, 2, 1, 1
+    )
+    radius_two.append(radius_one[0].copy())
+
+    var caught_radius = False
+    try:
+        _ = audit_projection(radius_two)
+    except:
+        caught_radius = True
+    assert_true(caught_radius)
+
+    var window_one = samples_through_depth(
+        nonunimodular_pisot_sigma(), seed_pair(), 0, 2, 2, 1
+    )
+    var window_two = samples_through_depth(
+        nonunimodular_pisot_sigma(), seed_pair(), 1, 2, 2, 2
+    )
+    window_one.append(window_two[0].copy())
+
+    var caught_window = False
+    try:
+        _ = audit_projection(window_one)
+    except:
+        caught_window = True
+    assert_true(caught_window)
+
+
 def test_window_requirement_staircase_on_bounded_seed_corpus() raises:
     # Radius two already exposes the entire two-letter source pair (plus
     # sentinels). Increasing the depth cap from D-1 to D reintroduces exactly
@@ -228,6 +263,8 @@ def main() raises:
     print("[PASS] test_zero_return_oracle_pins_depth_four_seed_cuts")
     test_invalid_bounds_fail_before_empty_cut_enumeration()
     print("[PASS] test_invalid_bounds_fail_before_empty_cut_enumeration")
+    test_audit_rejects_mixed_projection_bounds()
+    print("[PASS] test_audit_rejects_mixed_projection_bounds")
     test_window_requirement_staircase_on_bounded_seed_corpus()
     print("[PASS] test_window_requirement_staircase_on_bounded_seed_corpus")
     test_interned_audit_ignores_duplicate_observation_records()
@@ -238,4 +275,4 @@ def main() raises:
     print("[PASS] test_persistent_right_edge_collisions_are_regular_loop_extensions")
     test_loop_classifier_rejects_different_insertion_levels()
     print("[PASS] test_loop_classifier_rejects_different_insertion_levels")
-    print("7 joint-local-census Mojo tests passed.")
+    print("8 joint-local-census Mojo tests passed.")
