@@ -23,7 +23,10 @@ three image lengths and image Parikh columns for levels `0..depth` once.
 `RenewalPairCensusState` then validates one labelled first return once and
 caches its source-supertiling boundaries and prefix Parikh vectors. A census can
 reuse both layers across every candidate cut: each cut needs only logarithmic
-source lookup plus the level-linear symbolic digit descent.
+source lookup plus the level-linear symbolic digit descent. Consumers that also
+need source-local context can use `certified_renewal_cut_from_state` so the two
+source locations found during address certification are reused rather than
+searched a second time.
 """
 
 from psc.renewal import Diff3, strict_first_return_word
@@ -209,6 +212,29 @@ struct RelativeRenewalAddress(Copyable, Movable):
             and self.scaled_defect.y + self.correction.y == 0
             and self.scaled_defect.z + self.correction.z == 0
         )
+
+
+struct CertifiedRenewalCut(Copyable, Movable):
+    """Certified address plus the two source locations used to construct it.
+
+    Absolute source indices are deliberately kept outside
+    `RelativeRenewalAddress`; they are plumbing for consumers that need local
+    source context and are not part of the relative mathematical address.
+    """
+
+    var address: RelativeRenewalAddress
+    var top_source_index: Int
+    var bottom_source_index: Int
+
+    def __init__(
+        out self,
+        address: RelativeRenewalAddress,
+        top_source_index: Int,
+        bottom_source_index: Int,
+    ):
+        self.address = address.copy()
+        self.top_source_index = top_source_index
+        self.bottom_source_index = bottom_source_index
 
 
 def _validate_sigma(sigma: List[List[Int]]) raises:
@@ -409,10 +435,10 @@ def same_relative_address(a: RelativeRenewalAddress, b: RelativeRenewalAddress) 
     )
 
 
-def renewal_cut_address_from_state(
+def certified_renewal_cut_from_state(
     state: RenewalPairCensusState, cut: Int
-) raises -> RelativeRenewalAddress:
-    """Address one cut without rebuilding source-pair metadata."""
+) raises -> CertifiedRenewalCut:
+    """Certify one cut and return the source locations found in that same pass."""
     if cut <= 0 or cut >= state.inflated_length:
         raise Error("renewal-address cut must be interior")
 
@@ -438,7 +464,7 @@ def renewal_cut_address_from_state(
     if not closure.is_zero():
         raise Error("renewal-address cut is not a zero return")
 
-    return RelativeRenewalAddress(
+    var address = RelativeRenewalAddress(
         state.tables.depth,
         source_index_delta,
         defect,
@@ -449,6 +475,15 @@ def renewal_cut_address_from_state(
         scaled,
         correction,
     )
+    return CertifiedRenewalCut(address, top.index, bottom.index)
+
+
+def renewal_cut_address_from_state(
+    state: RenewalPairCensusState, cut: Int
+) raises -> RelativeRenewalAddress:
+    """Address one cut without rebuilding source-pair metadata."""
+    var certified = certified_renewal_cut_from_state(state, cut)
+    return certified.address.copy()
 
 
 def renewal_cut_address_with_tables(
