@@ -210,6 +210,10 @@ def _projection_fingerprint(projection: JointLocalType) -> UInt64:
 def audit_projection(samples: List[JointLocalSample]) raises -> ProjectionAudit:
     """Count exact collisions with near-linear expected-time state interning.
 
+    All accepted samples must use one common `(source_radius, digit_window)`
+    configuration; mixed-bound corpora are incomparable evidence and fail
+    closed before interning.
+
     A `UInt64` fingerprint only chooses a hash bucket. Each bucket is a linked
     list of interned representative sample indices, and `same_joint_local_type`
     resolves every candidate match exactly. Hash collisions therefore affect
@@ -221,6 +225,16 @@ def audit_projection(samples: List[JointLocalSample]) raises -> ProjectionAudit:
     and fails closed. `sample_count` reports the deduplicated audited population,
     not the number of raw input records.
     """
+    if len(samples) > 0:
+        var source_radius = samples[0].projection.source_radius
+        var digit_window = samples[0].projection.digit_window
+        for i in range(1, len(samples)):
+            if (
+                samples[i].projection.source_radius != source_radius
+                or samples[i].projection.digit_window != digit_window
+            ):
+                raise Error("joint-local audit cannot mix projection bounds")
+
     var collisions = 0
     var first_left = -1
     var first_right = -1
