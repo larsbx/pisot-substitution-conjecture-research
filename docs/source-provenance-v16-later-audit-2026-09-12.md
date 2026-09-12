@@ -15,7 +15,7 @@ The audit examined all 68 named remote branches (69 remote refs including `origi
 - commit messages, additions, and deletion history;
 - Issue #45, PR #47, the two-gate audit branches, the P1-A branch, and the preserved 2026-09-08 archive.
 
-No reachable branch or commit contains a `PSC_PROOF_v16` (or later) source, and no deletion record identifies such a file. The first reachable occurrence of “v16” is a status/provenance report, not a manuscript: commit `1009dccba6bd802c80e989ace1508572c06bfdda`.
+No reachable branch or commit contains a `PSC_PROOF_v16` (or later) source, and no deletion record identifies such a file. Commit `013fbedc3b799934fc9eca9ef8b64c0e680ed26b`, an ancestor of `main`, already imports the 2026-09-08 audit's references to the purported v16 and explicitly records that the file was not found. Commit `1009dccba6bd802c80e989ace1508572c06bfdda` is the later status ledger that attaches the reported v16-track theorem statuses to G1b-1, Galois propagation, aux-B, and realization/rank. It is not the first textual occurrence of “v16” and is not a detailed proof source.
 
 This is a negative result about the accessible repository record, not a claim that no source ever existed outside GitHub.
 
@@ -24,18 +24,31 @@ This is a negative result about the accessible repository record, not a claim th
 | Claim or obligation | Reachable authoritative material | Imported location | Audit status |
 | --- | --- | --- | --- |
 | G1b-1 bounded discrepancy | The 2026-09-11 ledger at `1009dcc` records the estimate `Disc(sigma w) <= c Disc(w) + 2 E_sigma`, but supplies no detailed proof; v15 predates this rung | ledger remains at `docs/completion-ledger-2026-09-11.md` | **SOURCE-PENDING**; do not mark repository-proved |
-| Galois wedge-nonvanishing propagation | The preserved v34 certificate at `25ed126` contains related Galois-transitivity arguments for rational wedge factors; the later carrier-level propagation theorem first appears only as a status assertion at `1009dcc` | `archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md` | **PARTIAL PREDECESSOR SOURCE ONLY**; exact later theorem remains source-pending |
+| Galois wedge-nonvanishing propagation | The preserved v34 certificate on `main` from `013fbedc3b799934fc9eca9ef8b64c0e680ed26b` contains related Galois-transitivity arguments for rational wedge factors; the later carrier-level propagation theorem appears only as a status assertion at `1009dccba6bd802c80e989ace1508572c06bfdda` | `archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md` | **PARTIAL PREDECESSOR SOURCE ONLY**; exact later theorem remains source-pending |
 | concentration / aux-B | Exact research target introduced at `af46a0e`; sharpened v34 inheritance/escape audit at `1297174` | `docs/source-imports/issue-45/p1a-concentration-aux-b-program.md`; `docs/source-imports/issue-45/p1a-v34-concentration-audit.md` | **OPEN CONJECTURAL GATE**; formulation imported, no proof claimed |
 | realization / coincidence-rank equivalence | The equivalence first occurs in reachable history as a status-level assertion at `1009dcc`; no detailed proof source occurs on any reachable ref | ledger and corrected source-audit manuscript | **SOURCE-PENDING**; formal recurrence, global realization, and collar evidence remain distinct |
-| v15 theorem/citation baseline | Preserved verbatim by remediation commit `25ed126`; archive provenance identifies v15 as the last imported canonical manuscript | `archive/2026-09-08/manuscripts/PSC_PROOF_v15.tex` | historical baseline; known P0 defects retained only in the immutable archive |
+| v15 theorem/citation baseline | Preserved on `main` by commit `013fbedc3b799934fc9eca9ef8b64c0e680ed26b`; archive provenance identifies v15 as the last imported canonical manuscript | `archive/2026-09-08/manuscripts/PSC_PROOF_v15.tex` | historical baseline; known P0 defects retained only in the immutable archive |
 | P0 corrections | Checklist introduced at `cb2de9f`, incorporated in the two-gate ledger at `1009dcc` | `docs/manuscript-p0-corrections-2026-09-11.md`; `manuscripts/PSC_PROOF_next_source_audit.tex` | repaired in the new working manuscript without theorem promotion |
 
 ## File-level provenance
 
-The two files under `docs/source-imports/issue-45/` are byte-for-byte source imports:
+The two files under `docs/source-imports/issue-45/` are source snapshots imported byte-for-byte:
 
-- `p1a-concentration-aux-b-program.md` from commit `af46a0e`, path `docs/p1a-concentration-aux-b-program.md`;
-- `p1a-v34-concentration-audit.md` from commit `1297174`, path `docs/p1a-v34-concentration-audit.md`.
+- `p1a-concentration-aux-b-program.md` from branch `research/p1a-concentration-aux-b`, commit `af46a0eb4c3bd70ae02686a0974cade152e4be85`, original path `docs/p1a-concentration-aux-b-program.md`;
+- `p1a-v34-concentration-audit.md` from the same branch, commit `1297174db56e9d3aa5d0334e25783c58323b5794`, original path `docs/p1a-v34-concentration-audit.md`.
+
+A default or single-branch checkout need not contain those side-branch commits. Provenance is therefore independently checkable from the imported files themselves:
+
+| Repository-contained file | Git blob on `main` | SHA-256 of file bytes |
+| --- | --- | --- |
+| `docs/source-imports/issue-45/p1a-concentration-aux-b-program.md` | `63661af49a272ff3ed4a4eaa164d1d745c374226` | `13ddaac5950e9fc85849bbdd74f19b6995bbc55c3602320e68f40262b831cdf6` |
+| `docs/source-imports/issue-45/p1a-v34-concentration-audit.md` | `3c425352378885ae3af734d524e393cf3bb8f191` | `a4316dec77d5912d02c9e861055e06776527a13ab5c42cdb789f221013ca2de1` |
+| `archive/2026-09-08/manuscripts/PSC_PROOF_v15.tex` | `36f810d3540ee5cf677f7b704429f15d679b24c2` | `0b28c23aa8f4d006e6de3823b1c953626dad20ce58c77afa76717bd91abee6df` |
+| `archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md` | `88ef54c8b3a67cb7dc4c5110f369d815c1c5f4a7` | `c318edd7b55aacddf4a3f980eea22b183b7161249dbc0ff42d74ef93faf13b3e` |
+
+The full source commit identifiers above are historical locators. The repository-contained paths and hashes are the durable verification basis and remain valid even if a side branch is later deleted.
+
+The checksums are committed in `docs/source-imports/issue-45/SHA256SUMS`. They are enforced by `scripts/verify_all.sh` and the `source-provenance` CI job, so later edits to an imported snapshot or its cited archive inputs fail explicitly.
 
 The new manuscript `manuscripts/PSC_PROOF_next_source_audit.tex` is derived from the archived v15 source and therefore is not represented as the missing v16 manuscript. Its front-page notice identifies that fact and freezes the four source boundaries above.
 

@@ -5,6 +5,13 @@ on:
   pull_request:
 
 jobs:
+  source-provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify Issue 45 source snapshots
+        run: sha256sum -c docs/source-imports/issue-45/SHA256SUMS
+
   python-tests:
     runs-on: ubuntu-latest
     steps:

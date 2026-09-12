@@ -14,6 +14,13 @@ ok()      { printf '  \033[32mPASS\033[0m  %s\n' "$1"; ran=$((ran+1)); }
 bad()     { printf '  \033[31mFAIL\033[0m  %s\n' "$1"; status=1; ran=$((ran+1)); }
 skip()    { printf '  \033[33mSKIP\033[0m  %s (%s)\n' "$1" "$2"; skipped=$((skipped+1)); }
 
+section "Source provenance"
+if sha256sum -c docs/source-imports/issue-45/SHA256SUMS; then
+    ok "Issue #45 imported-source hashes"
+else
+    bad "Issue #45 imported-source hashes"
+fi
+
 section "Mojo canonical exact implementation"
 if command -v pixi >/dev/null 2>&1; then
     cd "$ROOT/mojo"
