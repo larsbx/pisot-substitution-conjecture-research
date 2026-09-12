@@ -67,9 +67,18 @@ SpectralBlackBoxNotYetDerived == "SpectralBlackBox" \notin established
 
 LoadBearingSCCIsConditional == "LoadBearingSCC" \notin established
 
-(* The current C4 route is not unconditional: without assumptions C4 is not  *)
-(* established and therefore SCCProducer must remain unreachable.            *)
+(* The supporting C4 route is not unconditional: without assumptions C4 is  *)
+(* not established and therefore boundary-route SCCProducer is unreachable. *)
 SCCProducerIsConditional == "SCCProducer" \notin established
+
+(* The 2026-09-11 two-gate architecture must stay visibly open on main. *)
+RenewalFinitenessRemainsOpen == "G1b2RenewalFiniteness" \notin established
+ConcentrationRemainsOpen == "ConcentrationAuxB" \notin established
+
+(* The Galois propagation result is reported theorem-grade in the v16/later
+   track, but its detailed proof source is not yet imported to main. Keeping
+   this invariant true prevents status prose from becoming machine proof. *)
+GaloisSourceImportPending == "GaloisWedgePropagation" \notin established
 
 (* The literature theorem and the repo seed-union lemma are recorded, but    *)
 (* the final seedwise PDS=>repo-G1 implication is deliberately still open.   *)
