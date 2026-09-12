@@ -5,6 +5,7 @@ from psc.loop_quotient_census import (
     addressed_samples_through_depth,
     audit_projection_modulo_loop,
     audit_projection_modulo_synchronous_extensions,
+    audit_synchronous_residual_scaled_defect_residue,
     synchronous_any_digit_pair_insertion,
 )
 from psc.words import Pair
@@ -176,6 +177,70 @@ def test_fixed_window_diagnostic_preserves_accounting() raises:
         print("fixed-window first residual right top digits:", samples[right].address.top_digits)
         print("fixed-window first residual right bottom digits:", samples[right].address.bottom_digits)
 
+    # Since det(M)=2, probe finite 2-primary residues of the exact scaled defect
+    # only after the symbolic quotient. Equality modulo 2^(k+1) implies equality
+    # modulo 2^k, so surviving residual counts must be monotone nonincreasing.
+    var moduli: List[Int] = [2, 4, 8]
+    var previous_survivors = synchronous.residual_collision_pair_count
+    for q in range(len(moduli)):
+        var modulus = moduli[q]
+        var residue = audit_synchronous_residual_scaled_defect_residue(
+            samples, modulus
+        )
+        assert_equal(
+            residue.residual_collision_pair_count,
+            synchronous.residual_collision_pair_count,
+        )
+        assert_equal(
+            residue.residue_surviving_residual_pair_count
+            + residue.residue_separated_residual_pair_count,
+            residue.residual_collision_pair_count,
+        )
+        assert_true(
+            residue.residue_surviving_residual_pair_count <= previous_survivors
+        )
+        previous_survivors = residue.residue_surviving_residual_pair_count
+        print("scaled-defect residue modulus:", modulus)
+        print(
+            "scaled-defect residue surviving residual pairs:",
+            residue.residue_surviving_residual_pair_count,
+        )
+        print(
+            "scaled-defect residue separated residual pairs:",
+            residue.residue_separated_residual_pair_count,
+        )
+        if residue.has_residue_survivor():
+            var rleft = residue.first_residue_surviving_left
+            var rright = residue.first_residue_surviving_right
+            print("scaled-defect first survivor left depth:", samples[rleft].depth)
+            print("scaled-defect first survivor left cut:", samples[rleft].cut)
+            print("scaled-defect first survivor right depth:", samples[rright].depth)
+            print("scaled-defect first survivor right cut:", samples[rright].cut)
+            print(
+                "scaled-defect first survivor left vector:",
+                samples[rleft].address.scaled_defect.x,
+                samples[rleft].address.scaled_defect.y,
+                samples[rleft].address.scaled_defect.z,
+            )
+            print(
+                "scaled-defect first survivor right vector:",
+                samples[rright].address.scaled_defect.x,
+                samples[rright].address.scaled_defect.y,
+                samples[rright].address.scaled_defect.z,
+            )
+
+
+def test_residue_modulus_one_is_rejected() raises:
+    var samples = addressed_samples_through_depth(
+        nonunimodular_pisot_sigma(), seed_pair(), 0, 3, 2, 1
+    )
+    var caught = False
+    try:
+        _ = audit_synchronous_residual_scaled_defect_residue(samples, 1)
+    except:
+        caught = True
+    assert_true(caught)
+
 
 def main() raises:
     test_known_loop_quotient_removes_staircase_collisions()
@@ -188,4 +253,6 @@ def main() raises:
     print("[PASS] test_any_synchronous_extension_allows_distinct_side_digits")
     test_fixed_window_diagnostic_preserves_accounting()
     print("[PASS] test_fixed_window_diagnostic_preserves_accounting")
-    print("5 loop-quotient-census Mojo tests passed.")
+    test_residue_modulus_one_is_rejected()
+    print("[PASS] test_residue_modulus_one_is_rejected")
+    print("6 loop-quotient-census Mojo tests passed.")
