@@ -208,8 +208,10 @@ def audit_projection(samples: List[JointLocalSample]) raises -> ProjectionAudit:
     resolves every candidate match exactly. Hash collisions therefore affect
     performance only, never the mathematical collision count.
 
-    Repeated copies of the same `(specimen_id, depth, cut)` observation are
-    ignored through a separate compact exact `ObservationKey` dictionary.
+    Repeated copies of one `(specimen_id, depth, cut)` observation are ignored
+    only after their projections are checked for exact equality. A duplicate
+    identity carrying a different projection is contradictory corpus evidence
+    and fails closed.
     """
     var collisions = 0
     var first_left = -1
@@ -219,15 +221,22 @@ def audit_projection(samples: List[JointLocalSample]) raises -> ProjectionAudit:
     var representatives = List[Int]()
     var counts = List[Int]()
     var next_group = List[Int]()
-    var seen = Dict[ObservationKey, Bool](capacity=len(samples))
+    var seen = Dict[ObservationKey, Int](capacity=len(samples))
 
     for i in range(len(samples)):
         var observation = ObservationKey(
             samples[i].specimen_id, samples[i].depth, samples[i].cut
         )
         if observation in seen:
+            var prior = seen[observation]
+            if not same_joint_local_type(
+                samples[i].projection, samples[prior].projection
+            ):
+                raise Error(
+                    "duplicate joint-local observation identity has conflicting projection"
+                )
             continue
-        seen[observation.copy()] = True
+        seen[observation.copy()] = i
 
         var fingerprint = _projection_fingerprint(samples[i].projection)
         var group = -1
