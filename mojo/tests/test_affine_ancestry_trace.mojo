@@ -51,7 +51,9 @@ def test_exact_sidewise_survivor_has_order_sensitive_trace() raises:
     var shorter = affine_ancestry_trace(substitution, samples[right].address)
     assert_equal(longer.depth(), 7)
     assert_equal(shorter.depth(), 5)
-    assert_true(not same_affine_state(longer, 0, shorter, 0))
+    # The prior abelian collision also shares its source affine state; only the
+    # ordered intermediate trace can distinguish or expose a pump relation.
+    assert_true(same_affine_state(longer, 0, shorter, 0))
     var terminal = common_terminal_trace_length(longer, shorter)
     print("[CALIBRATION] hard survivor common terminal affine states:", terminal)
     var repeated = first_repeated_affine_state(longer)
