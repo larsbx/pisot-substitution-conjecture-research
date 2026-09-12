@@ -2,6 +2,7 @@
 
 from std.testing import assert_equal, assert_false, assert_true
 from psc.joint_local_census import (
+    JointLocalSample,
     address_is_one_loop_extension,
     audit_projection,
     samples_through_depth,
@@ -106,6 +107,34 @@ def test_interned_audit_ignores_duplicate_observation_records() raises:
     assert_equal(repeated.first_right, baseline.first_right)
 
 
+def test_interned_audit_rejects_conflicting_duplicate_observation() raises:
+    # Window two separates the depth-three corpus, so these first two
+    # projections are distinct. Reusing the first observation identity with the
+    # second projection is contradictory provenance and must fail closed rather
+    # than silently suppressing one record.
+    var samples = samples_through_depth(
+        nonunimodular_pisot_sigma(), seed_pair(), 0, 3, 2, 2
+    )
+    assert_false(
+        same_joint_local_type(samples[0].projection, samples[1].projection)
+    )
+    samples.append(
+        JointLocalSample(
+            samples[0].specimen_id,
+            samples[0].depth,
+            samples[0].cut,
+            samples[1].projection,
+        )
+    )
+
+    var caught = False
+    try:
+        _ = audit_projection(samples)
+    except:
+        caught = True
+    assert_true(caught)
+
+
 def test_persistent_right_edge_collisions_are_regular_loop_extensions() raises:
     var sigma = nonunimodular_pisot_sigma()
     var pair = seed_pair()
@@ -164,8 +193,10 @@ def main() raises:
     print("[PASS] test_window_requirement_staircase_on_bounded_seed_corpus")
     test_interned_audit_ignores_duplicate_observation_records()
     print("[PASS] test_interned_audit_ignores_duplicate_observation_records")
+    test_interned_audit_rejects_conflicting_duplicate_observation()
+    print("[PASS] test_interned_audit_rejects_conflicting_duplicate_observation")
     test_persistent_right_edge_collisions_are_regular_loop_extensions()
     print("[PASS] test_persistent_right_edge_collisions_are_regular_loop_extensions")
     test_loop_classifier_rejects_different_insertion_levels()
     print("[PASS] test_loop_classifier_rejects_different_insertion_levels")
-    print("5 joint-local-census Mojo tests passed.")
+    print("6 joint-local-census Mojo tests passed.")
