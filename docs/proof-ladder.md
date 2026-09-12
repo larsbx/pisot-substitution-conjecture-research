@@ -1,163 +1,242 @@
 # Proof ladder
 
-## Stable Level 2 — unique decodability
+The current completion architecture has **two independent open gates**. The detailed status is also recorded in `docs/current-proof-architecture-2026-09-11.md`.
 
-Proved:
+## Stable base — incidence rank and unique decodability
 
-1. `det M_sigma != 0` gives letter injectivity.
+Established in the project:
+
+1. `det M_sigma != 0` gives full incidence rank / letter injectivity.
 2. The defect theorem gives unique decodability of the image code `{sigma(a)}`.
-3. Unique decodability for powers gives a unique supertile hierarchy inside supertiles.
+3. Unique decodability propagates to powers because `det M_{sigma^r}=(det M_sigma)^r != 0`.
 
-Not proved:
+UD is therefore a theorem, not an independent standing hypothesis.
 
-4. ~~Pisot growth gives predecessor contraction and hence finite `B_sigma`.~~ **Withdrawn.** The inequality `beta * L(s') <= L(s) + D` is false; the observed worst ratio is 8.0 and the excess is unbounded. Global BPA finiteness remains G1 in the repository architecture.
-
-## Level 3 — current proof architecture
-
-The global open theorem remains:
-
-> **C1 / SCC Producer.** Every recurrent noncoincident SCC of `B_sigma` is productive.
-
-The useful finite graph normal form is narrower.
-
-### Sink-SCC reduction
-
-Let `NP` be the states from which no coincidence is reachable. `NP` is forward-closed. If `B_sigma` is finite and `NP` is nonempty, the condensation DAG of the induced nonproductive graph has a sink SCC. That SCC is closed, recurrent, noncoincident, and nonproductive.
-
-Therefore G1 is used to extract a finite strict counterexample component. One does **not** need synchronization of every recurrent SCC.
-
-### Boundary/locality sufficiency chain
-
-The Boundary Synchronization Lemma says that a synchronizing zero-return boundary yields a coincidence after finitely many endpoint-map iterates. `docs/c3-locality-reduction.md` proves that higher-inflation newborn synchronization localizes to a one-step newborn cut in an irreducible state of the same closed SCC.
-
-The present one-way proof route is therefore
+The old predecessor-contraction claim is withdrawn permanently. The false estimate
 
 ```text
-C4 => C3-local => C2 => C1.
+beta * L(s') <= L(s) + D
 ```
 
-These are sufficiency arrows. No converse is claimed.
+cannot be used to deduce BPA finiteness.
 
-## Proved C4 structure on a finite closed counterexample component
+# Gate A — Level 2 / G1 finiteness
 
-Assume a finite closed nonproductive recurrent noncoincident SCC `C` is given. Write `N=N_C` for unsigned child incidence.
+The current intended Level-2 ladder is
 
-### Endpoint quotient
+```text
+PIP
+=> unique decodability
+=> quotient contraction
+=> bounded discrepancy (G1b-1)
+=> [OPEN] renewal finiteness (G1b-2)
+=> finite BPA (G1).
+```
 
-- The 27 endpoint self-maps on three letters have seven conjugacy types A–G.
-- A/B are globally synchronizing.
-- If either `sigma_+` or `sigma_-` is globally synchronizing, every balanced pair is productive; this theorem needs neither Pisot nor G1.
-- Eventual endpoint synchronization is an equivalence relation and the induced map on quotient classes is a permutation.
-- The projected endpoint state signature has at most 1, 3, or 9 values depending on the two quotient sizes.
+## G1b-1 — bounded discrepancy
 
-### Parikh quotient and exact Perron equality
+**Status in the current research program:** theorem-grade in the v16 track, but its detailed proof source has not yet been imported to `main`. Source import/audit is required before the repository is self-contained at this rung.
 
-Let `P_C` have state Parikh vectors as columns. Then
+The intended Lyapunov estimate is
+
+```text
+Disc(sigma w) <= c Disc(w) + 2 E_sigma,   c < 1.
+```
+
+It controls discrepancy height only.
+
+## G1b-2 — renewal finiteness
+
+**OPEN and load-bearing.**
+
+For fixed discrepancy radius `R0`, prove that there are only finitely many **realizable** reduced interior-zero-free balanced pairs with `R(s)<=R0`.
+
+A bounded difference alphabet does not suffice. Long labelled first-return words can revisit the same nonzero difference vertices indefinitely.
+
+The proof target is therefore structural:
+
+```text
+realizable labelled first-return words
+=> level-scaled contracting/Rauzy address
+=> finite-return / uniform-discreteness theorem
+=> G1b-2.
+```
+
+The construction must remain valid in the non-unimodular case. In particular:
+
+- do not assume `|det M|=1`;
+- do not assume a purely Euclidean internal space;
+- do not treat `pi_s(Z^A)` as a lattice.
+
+## Retired Level-2 shortcuts
+
+The following are not valid completion arguments:
+
+- UD implies bounded total padding;
+- bounded discrepancy implies finite BPA;
+- naive zero-sum-hyperplane contraction;
+- every long state has a uniformly short core;
+- two-letter renewal is trivial;
+- the unlabelled cumulative difference walk determines the balanced state.
+
+# Gate B — Level 3 / productivity under G1
+
+Assume G1. Then the nonproductive set has a finite closed recurrent noncoincident sink SCC by `docs/sink-scc-reduction.md`.
+
+The strongest current spectral route is
+
+```text
+closed recurrent carrier
+=> [OPEN] concentration / aux-B
+=> dominant wedge functional is nonzero
+=> Galois propagation of nonvanishing
+=> full wedge span / span-rich carrier
+=> productivity
+=> SCC Producer.
+```
+
+## Concentration / aux-B
+
+**OPEN and the highest-leverage reachable Level-3 lemma.**
+
+Prove that expanding wedge mass generated by recurrent behavior has nonzero projection inside a closed recurrent carrier.
+
+The later v16/later Galois result reportedly collapses the former three separate nonvanishing obligations to this one dominant nonvanishing statement. Its detailed source is not yet on `main`, so the repository must import/audit that proof before treating the rung as self-contained.
+
+## Independence of the gates
+
+Gate A and Gate B are not two formulations of one eigenvalue theorem.
+
+- G1b-2 is a renewal/discreteness problem on the contracting side.
+- concentration is a nonvanishing/carrier problem after a finite closed recurrent obstruction exists.
+
+Both must be closed for the full theorem.
+
+# Supporting Level-3 structure already on `main`
+
+The C4/endpoint/recognizability program remains theoremically useful, but it is now a supporting route rather than the sole headline architecture.
+
+## Finite-graph and endpoint reductions
+
+- Nonproductivity in finite BPA reduces to a closed/sink SCC.
+- Endpoint types A/B are globally synchronizing and hence productive.
+- Barge-Diamond eliminates endpoint type G in a strict PIP regime.
+- Fixing one Barge-Diamond-good edge yields a two-edge hub-star normal form.
+- The first-child hub phase is classified exactly for C/D/E/F.
+- The system-level good-edge bridge tests candidate good edges against the actual integer-indexed `DerivedSystem`; any strict PIP component must have a nonempty candidate mask.
+
+## Closed-carrier algebra
+
+For a finite closed strict component `C`:
 
 ```text
 P_C N_C = M_sigma P_C.
 ```
 
-For irreducible cubic `chi_M`, the nonzero rational image of `P_C` is all of `Q^3`. Hence
+In the irreducible cubic regime:
 
 ```text
 rank P_C = 3,
 |C| >= 3,
 chi_M divides chi_N,
-rho(N_C) >= beta.
+rho(N_C)=beta.
 ```
 
-Because the component is **closed**, its child counts account for the entire substituted mass. The positive Perron left eigenvector of `M_sigma`, pulled back through `P_C`, gives a positive left eigenvector of `N_C` with eigenvalue `beta`; therefore
-
-> **For a strict closed nonproductive component, `rho(N_C)=beta` exactly.**
-
-This supersedes the old v34 lower-bound emphasis in this counterexample regime. The v34 estimate remains useful for other closed/leaking configurations but is not the sharp statement here.
-
-### Orientation and signed defects
-
-Normalizing `(u,v)~(v,u)` hides a `Z/2` orientation cocycle. If `A` and `B` count positive and reversed child occurrences,
+Normalization hides a `Z/2` orientation cocycle. If `A,B` count positive/reversed child occurrences,
 
 ```text
 N=A+B,
-S=A-B.
+S=A-B,
+rho(S)<=beta.
 ```
 
-The oriented double-cover incidence splits into deck-even `N` and deck-odd `S`, so `rho(S)<=beta`. Equality is rigid (gauge/anti-gauge in the primitive case).
+The hub-side gauge gives a concrete boundary interpretation of this signing without changing its Perron phase.
 
-At the first nonzero scattered-subword defect degree `r`, the defect columns satisfy a signed intertwiner
+## Signed first-defect hierarchy
+
+At the first nonzero scattered-subword defect degree,
 
 ```text
 Q_r S = Phi_r Q_r.
 ```
 
-In particular:
+Important cases already encoded/documented on `main` include:
 
-- degree 2: `Q2 S=(Lambda^2 M)Q2`; if nonzero in a strict component, the exterior-square cubic occurs in the odd sector;
-- degree 3 with `K2=0`: `Q3 S=Phi3 Q3`, and low growth forces the image into the two-dimensional determinant/centralizer sector;
-- degree 4: every rational free-Lie factor has spectral radius at least `beta`, with equality only in specified unimodular/extremal cases;
-- arbitrary degree: the generalized-Witt/mod-3 sieve leaves only near-balanced Galois weight families as possible low-growth sectors.
+- degree 2: `Q2 S=(Lambda^2 M)Q2`;
+- degree 3 with `K2=0`: low growth forces the image into the determinant/centralizer sector;
+- degree 4: free-Lie spectral floor;
+- arbitrary degree: generalized-Witt/mod-3 near-balanced sieve.
 
-### Degree-2 arithmetic and factorization layers
+The old unsigned SCC transfer at degree 3 is retired; the normalized transfer is signed.
 
-Since `N congruent S (mod 2)`, the characteristic polynomial of a degree-2 strict component over `F2` must contain both the reduced cubic of `M` and that of `Lambda^2 M`. This gives the exact SCC-size lower-bound table `{3,4,5,6}` recorded in `docs/c4-degree2-parity-sieve.md`.
+## Ordered factorization information
 
-The fixed-endpoint `K2` half-space route is retired: explicit same-endpoint irreducible states positively span the origin.
-
-The next genuinely new information is **ordered child factorization**. For word area
+The degree-2 mid-area identity
 
 ```text
-a(w)=(N12-N21, N13-N31, N23-N32)
+(Lambda^2 M) H + 2 C_sigma P = H N + 2 Omega_tau
 ```
 
-and state mid-area `H(T)=a(u)+a(v)`, every actual ordered zero-return factorization satisfies
+retains child order. Three-state Sylvester/integrality/Cramer filters are exact calibration tools, not the main completion strategy.
+
+## Uniform return / recognizability machinery
+
+The repository also contains:
+
+- bounded-gap zero-return calculus;
+- finite Pisot ancestry-state theorem;
+- legal ancestry towers of arbitrary fixed height;
+- derived substitution addresses and recognizability after cyclic decomposition;
+- newborn birth-event catalogue;
+- finite relative hierarchy-offset state.
+
+These remain available for an alternative Level-3 contradiction or for realization/collar completeness work.
+
+# Boundary synchronization sufficiency route
+
+The one-way route
 
 ```text
-(Lambda^2 M)H + 2 C_sigma P = HN + 2 Omega_tau.
+C4 => C3-local => C2 => C1
 ```
 
-`Omega_tau` depends on child order, so this identity detects synthetic signed templates that every preceding incidence/spectral/endpoint invariant accepts.
+remains mathematically valid as a sufficiency chain. It is no longer presented as the only shortest route to completion because G1b-2 remains independently open and the concentration/Galois route may close Level 3 more directly.
 
-For `|C|=3`, writing `H=2J` gives a nonsingular Sylvester equation with a unique rational `J`; integrality and Cramer image-lattice tests are exact calibration filters. These fixed-size layers are now intentionally capped: they are not the main proof spine.
+# Realization / MEF route
 
-## Exact finite calibration
+Under finiteness, the realization track uses the normal form
 
-Over the 4,554 alphabet-3 PIP substitutions with image lengths `<=3`:
+```text
+coincidence rank > 1
+<=> non-eventually-coincident tilings in one MEF fibre
+<=> a recurrent producer-free BPA component is globally realized.
+```
 
-- all BPA builds terminate below the cap;
-- each has one noncoincident sink SCC and every such sink is productive;
+This is a parallel certificate/reformulation route. Formal recurrent cycles and global realization must not be conflated; finite collar death is evidence until a completeness theorem is proved.
+
+# Exact finite calibration
+
+Across the established 4,554 PIP substitutions with short images:
+
+- all computed BPA builds terminate below the cap;
+- every noncoincident sink is productive;
 - 385,926 reachable noncoincident states occur;
 - 385,902 have first defect degree 2;
 - 24 have first defect degree 3;
 - none has first defect degree `>=4`;
-- all 24 degree-3 occurrences are noncentralizer and leak to coincidence within at most two inflations;
-- among the 546 substitutions surviving the three-state parity + endpoint + trace filters, none realizes an actual recurrent or sink SCC of size 3; the minimum observed size is 4.
+- all 24 degree-3 occurrences leak to coincidence within at most two inflations;
+- among the 546 substitutions surviving the three-state arithmetic/endpoint diagnostics, no actual recurrent or sink SCC of size 3 occurs.
 
-This is evidence only.
+This remains finite evidence only.
 
-## Active next theorem — uniform return/alignment
+# Completion order
 
-The next proof obligation must be uniform in `|C|`.
+The shortest honest completion program is:
 
-### Prefix-difference route
+1. **P0:** repair manuscript hypotheses/attributions and import the missing v16/later proof sources.
+2. **P1-A:** prove concentration / aux-B.
+3. **P1-B:** prove G1b-2 renewal finiteness with a non-unimodular-safe contracting address.
+4. **P3:** assemble SCC Producer from finite graph reduction + closed-carrier productivity.
+5. **P5:** audit the final pure-discrete-spectrum bridge with exact hypotheses.
 
-For a balanced state `T=(u,v)`, define
-
-```text
-D_T(k)=Parikh(u[:k])-Parikh(v[:k]).
-```
-
-Irreducibility means no interior zero. Under substitution the ordered images expand this to a piecewise lattice walk. Zero returns are exactly balanced child boundaries. In a finite closed SCC, child-state lengths are bounded while total substituted length grows like `beta^n`, so iterates contain a linearly growing number of bounded-gap returns. The target is to couple this return density to contraction in the stable Pisot directions.
-
-### Recognizability route
-
-In the gauge-trivial orientation case, the SCC yields two Parikh-equal word morphisms intertwining the same derived substitution with `sigma`. The missing theorem is an alignment statement: recurrent balanced-child cuts must eventually align with `sigma`-supertile boundaries, or else recognizability is contradicted. This is where the proved unique hierarchy should finally enter Level 3.
-
-## Retired or demoted routes
-
-- predecessor contraction for G1: false;
-- displacement/cycle exclusion: false target;
-- Mossé desubstitution alone: can remain in the same SCC;
-- pure algebra on `N_C`: synthetic solutions exist;
-- universal recurrent-SCC synchronization: unnecessary;
-- fixed-endpoint `K2` cone: false;
-- indefinite `|C|=3` sieve refinement: calibration only unless paired with a uniform completeness theorem.
+No amount of additional fixed-size C4 sieving closes the theorem while either P1-A or P1-B remains open.
