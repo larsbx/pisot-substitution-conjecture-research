@@ -1,0 +1,239 @@
+"""Exact bounded collision censuses for the G1b-2 joint-local program.
+
+This module audits a finite corpus of *certified* renewal cuts. It does not
+promote corpus separation to a theorem. A collision means two distinct observed
+cuts have the same bounded `JointLocalType`; the witness is retained so the
+identification can be classified as harmful, benign recurrence, or unresolved.
+
+Candidate cuts are generated independently by materializing the requested
+finite inflation and streaming the aligned Parikh-difference walk. Every
+reported zero return is then re-certified by `joint_local_type`, so disagreement
+between the oracle and the address layer fails closed rather than being skipped.
+"""
+
+from psc.joint_local_type import JointLocalType, joint_local_type, same_joint_local_type
+from psc.legal_tower import apply_substitution_n
+from psc.renewal_address import (
+    RelativeRenewalAddress,
+    build_renewal_address_tables,
+    build_renewal_pair_census_state,
+)
+from psc.words import Pair
+
+
+struct JointLocalSample(Copyable, Movable):
+    """One certified corpus observation and its bounded projection."""
+
+    var specimen_id: Int
+    var depth: Int
+    var cut: Int
+    var projection: JointLocalType
+
+    def __init__(
+        out self,
+        specimen_id: Int,
+        depth: Int,
+        cut: Int,
+        projection: JointLocalType,
+    ):
+        self.specimen_id = specimen_id
+        self.depth = depth
+        self.cut = cut
+        self.projection = projection.copy()
+
+
+struct ProjectionAudit(Copyable, Movable):
+    """Pairwise collision summary retaining the first exact witness indices."""
+
+    var sample_count: Int
+    var collision_pair_count: Int
+    var first_left: Int
+    var first_right: Int
+
+    def __init__(
+        out self,
+        sample_count: Int,
+        collision_pair_count: Int,
+        first_left: Int,
+        first_right: Int,
+    ):
+        self.sample_count = sample_count
+        self.collision_pair_count = collision_pair_count
+        self.first_left = first_left
+        self.first_right = first_right
+
+    def has_collision(self) -> Bool:
+        return self.collision_pair_count > 0
+
+
+def _update_top(letter: Int, mut x: Int, mut y: Int, mut z: Int) raises:
+    if letter == 0:
+        x += 1
+    elif letter == 1:
+        y += 1
+    elif letter == 2:
+        z += 1
+    else:
+        raise Error("joint-local census requires letters in 0..2")
+
+
+def _update_bottom(letter: Int, mut x: Int, mut y: Int, mut z: Int) raises:
+    if letter == 0:
+        x -= 1
+    elif letter == 1:
+        y -= 1
+    elif letter == 2:
+        z -= 1
+    else:
+        raise Error("joint-local census requires letters in 0..2")
+
+
+def zero_return_cuts(
+    sigma: List[List[Int]], pair: Pair, depth: Int
+) raises -> List[Int]:
+    """Independent finite oracle for interior aligned zero-return positions."""
+    if depth < 0:
+        raise Error("joint-local census depth must be nonnegative")
+    if not pair.is_balanced():
+        raise Error("joint-local census source pair must be balanced")
+
+    var top = apply_substitution_n(sigma, pair.u, depth)
+    var bottom = apply_substitution_n(sigma, pair.v, depth)
+    if len(top) != len(bottom):
+        raise Error("balanced pair inflated to unequal side lengths")
+
+    var out = List[Int]()
+    var x = 0
+    var y = 0
+    var z = 0
+    for i in range(len(top)):
+        _update_top(top[i], x, y, z)
+        _update_bottom(bottom[i], x, y, z)
+        var cut = i + 1
+        if cut < len(top) and x == 0 and y == 0 and z == 0:
+            out.append(cut)
+
+    if x != 0 or y != 0 or z != 0:
+        raise Error("inflated census pair failed final balance check")
+    return out^
+
+
+def append_samples_at_depth(
+    mut out: List[JointLocalSample],
+    sigma: List[List[Int]],
+    pair: Pair,
+    specimen_id: Int,
+    depth: Int,
+    source_radius: Int,
+    digit_window: Int,
+) raises:
+    """Append every oracle zero return at one depth, re-certifying each cut."""
+    if depth <= 0:
+        raise Error("joint-local sample depth must be positive")
+    var tables = build_renewal_address_tables(sigma, depth)
+    var state = build_renewal_pair_census_state(tables, pair)
+    var cuts = zero_return_cuts(sigma, pair, depth)
+    for i in range(len(cuts)):
+        var cut = cuts[i]
+        var projection = joint_local_type(
+            state, cut, source_radius, digit_window
+        )
+        out.append(JointLocalSample(specimen_id, depth, cut, projection))
+
+
+def samples_through_depth(
+    sigma: List[List[Int]],
+    pair: Pair,
+    specimen_id: Int,
+    max_depth: Int,
+    source_radius: Int,
+    digit_window: Int,
+) raises -> List[JointLocalSample]:
+    if max_depth <= 0:
+        raise Error("joint-local census max_depth must be positive")
+    var out = List[JointLocalSample]()
+    for depth in range(1, max_depth + 1):
+        append_samples_at_depth(
+            out,
+            sigma,
+            pair,
+            specimen_id,
+            depth,
+            source_radius,
+            digit_window,
+        )
+    return out^
+
+
+def audit_projection(samples: List[JointLocalSample]) -> ProjectionAudit:
+    """Count exact projection collisions and retain the first witness pair."""
+    var collisions = 0
+    var first_left = -1
+    var first_right = -1
+    for i in range(len(samples)):
+        for j in range(i + 1, len(samples)):
+            if (
+                samples[i].specimen_id == samples[j].specimen_id
+                and samples[i].depth == samples[j].depth
+                and samples[i].cut == samples[j].cut
+            ):
+                continue
+            if same_joint_local_type(samples[i].projection, samples[j].projection):
+                collisions += 1
+                if first_left < 0:
+                    first_left = i
+                    first_right = j
+    return ProjectionAudit(len(samples), collisions, first_left, first_right)
+
+
+def one_digit_pair_insertion(
+    shorter: List[Int], longer: List[Int], parent: Int, child_index: Int
+) -> Bool:
+    """Whether `longer` is `shorter` with one exact digit pair inserted."""
+    if len(shorter) % 2 != 0 or len(longer) != len(shorter) + 2:
+        return False
+
+    for pos in range(0, len(longer), 2):
+        if longer[pos] != parent or longer[pos + 1] != child_index:
+            continue
+        var same = True
+        for k in range(pos):
+            if longer[k] != shorter[k]:
+                same = False
+                break
+        if not same:
+            continue
+        for k in range(pos, len(shorter)):
+            if longer[k + 2] != shorter[k]:
+                same = False
+                break
+        if same:
+            return True
+    return False
+
+
+def address_is_one_loop_extension(
+    shorter: RelativeRenewalAddress,
+    longer: RelativeRenewalAddress,
+    parent: Int,
+    child_index: Int,
+) -> Bool:
+    """Classify one regular cross-level address recurrence.
+
+    Scaled defect/correction are intentionally not equated: they live at
+    different substitution levels. The invariant source data must match, and
+    each symbolic side must acquire exactly one copy of the nominated digit.
+    """
+    return (
+        longer.level == shorter.level + 1
+        and longer.source_index_delta == shorter.source_index_delta
+        and longer.source_defect == shorter.source_defect
+        and longer.top_source_letter == shorter.top_source_letter
+        and longer.bottom_source_letter == shorter.bottom_source_letter
+        and one_digit_pair_insertion(
+            shorter.top_digits, longer.top_digits, parent, child_index
+        )
+        and one_digit_pair_insertion(
+            shorter.bottom_digits, longer.bottom_digits, parent, child_index
+        )
+    )
