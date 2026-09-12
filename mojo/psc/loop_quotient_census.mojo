@@ -342,12 +342,12 @@ def _audit_projection_with_relation(
     child_index: Int,
     residue_modulus: Int,
 ) raises -> LoopQuotientAudit:
-    if len(samples) == 0:
-        return LoopQuotientAudit(0, 0, 0, 0, 0, -1, -1, residue_modulus, 0, 0, -1, -1)
     if relation_mode < 0 or relation_mode > 1:
         raise Error("unknown loop-quotient relation mode")
     if residue_modulus == 1 or residue_modulus < 0:
         raise Error("residue modulus must be zero (disabled) or at least two")
+    if len(samples) == 0:
+        return LoopQuotientAudit(0, 0, 0, 0, 0, -1, -1, residue_modulus, 0, 0, -1, -1)
 
     var source_radius = samples[0].projection.source_radius
     var digit_window = samples[0].projection.digit_window

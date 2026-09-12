@@ -285,6 +285,24 @@ def test_residue_modulus_one_is_rejected() raises:
     assert_true(caught)
 
 
+def test_invalid_residue_modulus_is_rejected_on_empty_corpus() raises:
+    var empty = List[AddressedJointLocalSample]()
+
+    var caught_one = False
+    try:
+        _ = audit_synchronous_residual_scaled_defect_residue(empty, 1)
+    except:
+        caught_one = True
+    assert_true(caught_one)
+
+    var caught_negative = False
+    try:
+        _ = audit_synchronous_residual_scaled_defect_residue(empty, -2)
+    except:
+        caught_negative = True
+    assert_true(caught_negative)
+
+
 def main() raises:
     test_known_loop_quotient_removes_staircase_collisions()
     print("[PASS] test_known_loop_quotient_removes_staircase_collisions")
@@ -300,4 +318,6 @@ def main() raises:
     print("[PASS] test_fixed_window_diagnostic_preserves_accounting")
     test_residue_modulus_one_is_rejected()
     print("[PASS] test_residue_modulus_one_is_rejected")
-    print("7 loop-quotient-census Mojo tests passed.")
+    test_invalid_residue_modulus_is_rejected_on_empty_corpus()
+    print("[PASS] test_invalid_residue_modulus_is_rejected_on_empty_corpus")
+    print("8 loop-quotient-census Mojo tests passed.")
