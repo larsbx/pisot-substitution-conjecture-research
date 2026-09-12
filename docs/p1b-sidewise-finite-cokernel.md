@@ -68,7 +68,7 @@ The exact corpus through depth `7` contains:
 - `11,520` residual pairs after that symbolic quotient;
 - `4,645` of those residual pairs at equal substitution depth.
 
-The paired sidewise finite-cokernel survivor staircase is:
+The canonical Mojo survivor staircase is:
 
 | `k` | cokernel order | all residual survivors | same-depth survivors | separated |
 |---:|---:|---:|---:|---:|
@@ -77,32 +77,32 @@ The paired sidewise finite-cokernel survivor staircase is:
 | 3 | 8 | 6,897 | 2,773 | 4,623 |
 | 4 | 16 | 3,538 | 1,453 | 7,982 |
 | 5 | 32 | 1,540 | 674 | 9,980 |
-| 6 | 64 | 700 | 317 | 10,820 |
-| 7 | 128 | 252 | 99 | 11,268 |
-| 8 | 256 | 50 | 22 | 11,470 |
-| 9 | 512 | 4 | 0 | 11,516 |
+| 6 | 64 | 500 | 262 | 11,020 |
+| 7 | 128 | 83 | 82 | 11,437 |
+| 8 | 256 | 56 | 55 | 11,464 |
+| 9 | 512 | 26 | 25 | 11,494 |
 | 10 | 1,024 | 1 | 0 | 11,519 |
 
-These are finite-corpus facts only.
+These are finite-corpus facts only. The values at levels `6` through `10` were calibrated and then pinned from the canonical Mojo implementation; an earlier extrapolation was rejected by CI and is not part of the result.
 
 ## 5. Hard counter-calibration for abelian sidewise coordinates
 
 Exactly one residual collision pair in this corpus already has **equal exact sidewise prefix translations**, not merely equal finite-cokernel classes:
 
 ```text
-depth 7, cut 588
+depth 7, cut 14
 versus
-depth 5, cut 82.
+depth 5, cut 14.
 ```
 
 For both observations,
 
 ```text
-p_top    = (33,38,17)
-p_bottom = (46,53,24).
+p_top    = (5,6,3)
+p_bottom = (5,6,3).
 ```
 
-They also have the same bounded joint-local projection. Consequently, no deeper quotient built solely from these abelian sidewise prefix translations can separate this pair: exact equality has already occurred before quotienting.
+They also have the same bounded joint-local projection. By cokernel level `10`, this is the only residual pair left. Consequently, no deeper quotient built solely from these same abelian sidewise prefix translations can separate this pair: exact equality has already occurred before quotienting.
 
 This does **not** disprove G1b-2. It falsifies only the candidate completeness claim
 
@@ -114,6 +114,21 @@ bounded joint-local type
 
 ## 6. Sharpened next target
 
-The remaining obstruction is genuinely order-sensitive middle ancestry. The next executable candidate should therefore retain information that is lost under Parikh/abelianization, for example an exact finite prefix-suffix automaton state or another finite noncommutative ancestry invariant, and should be tested against the retained depth-7/cut-588 versus depth-5/cut-82 witness first.
+The retained obstruction is order-sensitive middle ancestry. The depth-7 and depth-5 observations have the same cut, the same bounded local projection, and the same exact sidewise abelian translations, while their symbolic substitution histories have different lengths. The next executable candidate must therefore retain order information erased by Parikh abelianization.
 
-Any future positive result must still bridge from such a finite executable state to a **uniform** theorem over all realizable bounded-discrepancy first returns. Finite separation on this corpus is not that theorem.
+A natural next test is an exact prefix-suffix affine trace. For a paired top/bottom edge at ancestry level `t`, let `q_t` be the difference of the proper-prefix Parikh vectors and evolve
+
+```text
+x_0 = delta,
+x_{t+1} = M x_t + q_t.
+```
+
+A candidate order-sensitive state is
+
+```text
+(top_current_letter, bottom_current_letter, x_t).
+```
+
+Repeated exact states can be tested as certified symbolic pump cycles. This is still only a candidate normalization mechanism: deleting repeated affine-state cycles would establish a symbolic path quotient, not renewal finiteness by itself.
+
+Any future positive result must still bridge from such a finite executable state to a **uniform** theorem over all realizable bounded-discrepancy first returns. Finite separation on this corpus is not that theorem. G1b-2 remains open.
