@@ -7,6 +7,7 @@ from psc.finite_cokernel_address import (
     same_cokernel_class,
     sidewise_prefix_translation,
 )
+from psc.joint_local_type import same_joint_local_type
 from psc.loop_quotient_census import (
     AddressedJointLocalSample,
     addressed_samples_through_depth,
@@ -125,6 +126,27 @@ def test_fixed_window_sidewise_cokernel_staircase() raises:
         previous_survivors = audit.cokernel_surviving_pair_count
         previous_same_depth_survivors = audit.same_depth_cokernel_surviving_pair_count
 
+        if level == 10:
+            # Level 10 leaves exactly one finite-cokernel survivor. Pin it to
+            # the explicit exact-sidewise witness, independently of list order.
+            var a = audit.first_cokernel_survivor_left
+            var b = audit.first_cokernel_survivor_right
+            assert_true(a >= 0)
+            assert_true(b >= 0)
+            var forward = (
+                samples[a].depth == 7
+                and samples[a].cut == 588
+                and samples[b].depth == 5
+                and samples[b].cut == 82
+            )
+            var reverse = (
+                samples[b].depth == 7
+                and samples[b].cut == 588
+                and samples[a].depth == 5
+                and samples[a].cut == 82
+            )
+            assert_true(forward or reverse)
+
         print("finite-cokernel level:", level)
         print("finite-cokernel order:", audit.cokernel_order)
         print("finite-cokernel residual pairs:", audit.residual_pair_count)
@@ -162,6 +184,7 @@ def test_exact_sidewise_countercalibration_is_present() raises:
             right = i
     assert_true(left >= 0)
     assert_true(right >= 0)
+    assert_true(same_joint_local_type(samples[left].projection, samples[right].projection))
 
     var left_translation = sidewise_prefix_translation(tables, samples[left].address)
     var right_translation = sidewise_prefix_translation(tables, samples[right].address)
