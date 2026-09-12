@@ -11,6 +11,21 @@ from psc.renewal import Diff3
 from psc.renewal_address import RelativeRenewalAddress
 
 
+struct AffineTraceTables(Copyable, Movable):
+    """Substitution-local incidence and proper-prefix Parikh tables."""
+
+    var sigma: List[List[Int]]
+    var incidence: List[Int]
+    var prefix_offsets: List[Int]
+    var prefix_parikhs: List[Int]
+
+    def __init__(out self, sigma: List[List[Int]], incidence: List[Int], prefix_offsets: List[Int], prefix_parikhs: List[Int]):
+        self.sigma = sigma.copy()
+        self.incidence = incidence.copy()
+        self.prefix_offsets = prefix_offsets.copy()
+        self.prefix_parikhs = prefix_parikhs.copy()
+
+
 struct AffineAncestryTrace(Copyable, Movable):
     var top_letters: List[Int]
     var bottom_letters: List[Int]
@@ -48,44 +63,49 @@ def _validate_sigma(sigma: List[List[Int]]) raises:
                 raise Error("affine-trace substitution letter lies outside 0..2")
 
 
-def _incidence_action(sigma: List[List[Int]], x: Diff3) -> Diff3:
-    var out = Diff3(0, 0, 0)
-    for a in range(3):
-        var coefficient = x.x
-        if a == 1:
-            coefficient = x.y
-        elif a == 2:
-            coefficient = x.z
-        for j in range(len(sigma[a])):
-            var b = sigma[a][j]
-            if b == 0:
-                out.x += coefficient
-            elif b == 1:
-                out.y += coefficient
+def build_affine_trace_tables(sigma: List[List[Int]]) raises -> AffineTraceTables:
+    _validate_sigma(sigma)
+    var incidence: List[Int] = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    var offsets: List[Int] = [0]
+    var prefixes = List[Int]()
+    for parent in range(3):
+        var x = 0
+        var y = 0
+        var z = 0
+        for j in range(len(sigma[parent])):
+            prefixes.append(x)
+            prefixes.append(y)
+            prefixes.append(z)
+            var child = sigma[parent][j]
+            incidence[3 * child + parent] += 1
+            if child == 0:
+                x += 1
+            elif child == 1:
+                y += 1
             else:
-                out.z += coefficient
-    return out^
+                z += 1
+        offsets.append(len(prefixes) // 3)
+    return AffineTraceTables(sigma, incidence, offsets, prefixes)
 
 
-def _prefix_parikh(sigma: List[List[Int]], parent: Int, child_index: Int) raises -> Diff3:
+def _incidence_action(tables: AffineTraceTables, x: Diff3) -> Diff3:
+    return Diff3(
+        tables.incidence[0] * x.x + tables.incidence[1] * x.y + tables.incidence[2] * x.z,
+        tables.incidence[3] * x.x + tables.incidence[4] * x.y + tables.incidence[5] * x.z,
+        tables.incidence[6] * x.x + tables.incidence[7] * x.y + tables.incidence[8] * x.z,
+    )
+
+
+def _prefix_parikh(tables: AffineTraceTables, parent: Int, child_index: Int) raises -> Diff3:
     if parent < 0 or parent >= 3:
         raise Error("affine-trace parent letter lies outside 0..2")
-    if child_index < 0 or child_index >= len(sigma[parent]):
+    if child_index < 0 or child_index >= len(tables.sigma[parent]):
         raise Error("affine-trace child index lies outside parent image")
-    var out = Diff3(0, 0, 0)
-    for j in range(child_index):
-        var a = sigma[parent][j]
-        if a == 0:
-            out.x += 1
-        elif a == 1:
-            out.y += 1
-        else:
-            out.z += 1
-    return out^
+    var k = 3 * (tables.prefix_offsets[parent] + child_index)
+    return Diff3(tables.prefix_parikhs[k], tables.prefix_parikhs[k + 1], tables.prefix_parikhs[k + 2])
 
 
-def affine_ancestry_trace(sigma: List[List[Int]], address: RelativeRenewalAddress) raises -> AffineAncestryTrace:
-    _validate_sigma(sigma)
+def affine_ancestry_trace_with_tables(tables: AffineTraceTables, address: RelativeRenewalAddress) raises -> AffineAncestryTrace:
     if address.level <= 0:
         raise Error("affine trace requires a positive address level")
     if len(address.top_digits) != 2 * address.level or len(address.bottom_digits) != 2 * address.level:
@@ -112,19 +132,19 @@ def affine_ancestry_trace(sigma: List[List[Int]], address: RelativeRenewalAddres
         var bottom_index = address.bottom_digits[2 * t + 1]
         if top_parent != top or bottom_parent != bottom:
             raise Error("affine-trace digits do not follow substitution paths")
-        var tp = _prefix_parikh(sigma, top_parent, top_index)
-        var bp = _prefix_parikh(sigma, bottom_parent, bottom_index)
-        scaled = _incidence_action(sigma, scaled)
-        correction = _incidence_action(sigma, correction)
+        var tp = _prefix_parikh(tables, top_parent, top_index)
+        var bp = _prefix_parikh(tables, bottom_parent, bottom_index)
+        scaled = _incidence_action(tables, scaled)
+        correction = _incidence_action(tables, correction)
         correction.x += tp.x - bp.x
         correction.y += tp.y - bp.y
         correction.z += tp.z - bp.z
-        var next = _incidence_action(sigma, x)
+        var next = _incidence_action(tables, x)
         next.x += tp.x - bp.x
         next.y += tp.y - bp.y
         next.z += tp.z - bp.z
-        top = sigma[top_parent][top_index]
-        bottom = sigma[bottom_parent][bottom_index]
+        top = tables.sigma[top_parent][top_index]
+        bottom = tables.sigma[bottom_parent][bottom_index]
         x = next.copy()
         top_letters.append(top)
         bottom_letters.append(bottom)
@@ -139,6 +159,12 @@ def affine_ancestry_trace(sigma: List[List[Int]], address: RelativeRenewalAddres
     if not trace.closes():
         raise Error("affine ancestry recurrence does not close at the renewal cut")
     return trace^
+
+
+def affine_ancestry_trace(sigma: List[List[Int]], address: RelativeRenewalAddress) raises -> AffineAncestryTrace:
+    """Convenience wrapper; census callers should reuse precomputed tables."""
+    var tables = build_affine_trace_tables(sigma)
+    return affine_ancestry_trace_with_tables(tables, address)
 
 
 def same_affine_state(a: AffineAncestryTrace, ai: Int, b: AffineAncestryTrace, bi: Int) raises -> Bool:

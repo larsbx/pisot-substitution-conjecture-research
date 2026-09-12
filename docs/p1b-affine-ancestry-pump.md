@@ -17,7 +17,7 @@ It retains the paired current letters together with `x_t` at every level. Direct
 x_d = M^d source_defect + sum_(t=0)^(d-1) M^(d-1-t) q_t = 0,
 ```
 
-which is the existing exact zero-return certificate written level by level. All `601` certified observations in the canonical determinant-two, single-seed, depth-at-most-seven corpus close under this recurrence.
+which is the existing exact zero-return certificate written level by level. Incidence and proper-prefix data are precomputed once per substitution, leaving only fixed-size integer arithmetic and indexed lookups in each trace step. All `601` certified observations in the canonical determinant-two, single-seed, depth-at-most-seven corpus close under this recurrence.
 
 ## Resolution of the unique sidewise-abelian survivor
 

@@ -1,7 +1,7 @@
 """Exact regressions for order-sensitive affine renewal ancestry."""
 
 from std.testing import assert_equal, assert_true
-from psc.affine_ancestry_trace import affine_ancestry_trace, common_terminal_trace_length, first_repeated_affine_state, is_affine_pump_extension, same_affine_state
+from psc.affine_ancestry_trace import affine_ancestry_trace, affine_ancestry_trace_with_tables, build_affine_trace_tables, common_terminal_trace_length, first_repeated_affine_state, is_affine_pump_extension, same_affine_state
 from psc.joint_local_type import same_joint_local_type
 from psc.loop_quotient_census import addressed_samples_through_depth
 from psc.renewal import Diff3
@@ -29,9 +29,10 @@ def seed_pair() -> Pair:
 def test_every_canonical_trace_closes() raises:
     var substitution = sigma()
     var samples = addressed_samples_through_depth(substitution, seed_pair(), 0, 7, 2, 1)
+    var tables = build_affine_trace_tables(substitution)
     assert_equal(len(samples), 601)
     for i in range(len(samples)):
-        var trace = affine_ancestry_trace(substitution, samples[i].address)
+        var trace = affine_ancestry_trace_with_tables(tables, samples[i].address)
         assert_equal(trace.depth(), samples[i].depth)
         assert_true(trace.closes())
 
@@ -39,6 +40,7 @@ def test_every_canonical_trace_closes() raises:
 def test_exact_sidewise_survivor_has_order_sensitive_trace() raises:
     var substitution = sigma()
     var samples = addressed_samples_through_depth(substitution, seed_pair(), 0, 7, 2, 1)
+    var tables = build_affine_trace_tables(substitution)
     var left = -1
     var right = -1
     for i in range(len(samples)):
@@ -49,8 +51,8 @@ def test_exact_sidewise_survivor_has_order_sensitive_trace() raises:
     assert_true(left >= 0)
     assert_true(right >= 0)
     assert_true(same_joint_local_type(samples[left].projection, samples[right].projection))
-    var longer = affine_ancestry_trace(substitution, samples[left].address)
-    var shorter = affine_ancestry_trace(substitution, samples[right].address)
+    var longer = affine_ancestry_trace_with_tables(tables, samples[left].address)
+    var shorter = affine_ancestry_trace_with_tables(tables, samples[right].address)
     assert_equal(longer.depth(), 7)
     assert_equal(shorter.depth(), 5)
     # The prior abelian collision also shares its source affine state; only the
