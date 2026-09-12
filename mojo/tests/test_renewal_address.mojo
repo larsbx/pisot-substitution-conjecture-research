@@ -5,7 +5,9 @@ from psc.bpa import substitution_incidence
 from psc.renewal import same_labelled_return, strict_first_return_word
 from psc.renewal_address import (
     build_renewal_address_tables,
+    build_renewal_pair_census_state,
     renewal_cut_address,
+    renewal_cut_address_from_state,
     renewal_cut_address_with_tables,
     same_relative_address,
 )
@@ -62,6 +64,36 @@ def test_precomputed_tables_are_exact_and_reusable() raises:
     assert_equal(p.x, 1)
     assert_equal(p.y, 1)
     assert_equal(p.z, 1)
+
+
+def test_pair_census_state_reuses_source_metadata() raises:
+    var sigma = nonunimodular_pisot_sigma()
+    var tables = build_renewal_address_tables(sigma, 2)
+    var state = build_renewal_pair_census_state(tables, collision_pair_a())
+    assert_equal(state.source_length(), 3)
+    assert_equal(state.inflated_length, 13)
+
+    # Depth two has several interior zero returns. Query two through one
+    # prepared source state so validation, supertile boundaries, and prefix
+    # Parikh vectors are not rebuilt per cut.
+    var at9 = renewal_cut_address_from_state(state, 9)
+    var at10 = renewal_cut_address_from_state(state, 10)
+    assert_true(at9.certificate_closes())
+    assert_true(at10.certificate_closes())
+
+    # cut 9 is asynchronous at the source level: top has entered source index
+    # 2 while bottom is still in source index 1.
+    assert_equal(at9.source_index_delta, 1)
+    assert_equal(at9.source_defect.x, 2)
+    assert_equal(at9.source_defect.y, -1)
+    assert_equal(at9.source_defect.z, 0)
+
+    # cut 10 advances the bottom source index and recovers the inherited
+    # (1,-1,0) source defect pinned independently below.
+    assert_equal(at10.source_index_delta, 0)
+    assert_equal(at10.source_defect.x, 1)
+    assert_equal(at10.source_defect.y, -1)
+    assert_equal(at10.source_defect.z, 0)
 
 
 def test_nonunimodular_level_one_certificate() raises:
@@ -171,7 +203,7 @@ def test_relative_address_does_not_replace_labels() raises:
     # A has its first inflated interior zero return at 4; B has the analogous
     # return at 6. Their relative level-one address is the same even though the
     # labelled first-return words differ. Build the substitution table once and
-    # reuse it for both cuts, as the planned census will do.
+    # reuse it for both pairs.
     var tables = build_renewal_address_tables(sigma, 1)
     var a_address = renewal_cut_address_with_tables(tables, collision_pair_a(), 4)
     var b_address = renewal_cut_address_with_tables(tables, collision_pair_b(), 6)
@@ -181,6 +213,8 @@ def test_relative_address_does_not_replace_labels() raises:
 def main() raises:
     test_precomputed_tables_are_exact_and_reusable()
     print("[PASS] test_precomputed_tables_are_exact_and_reusable")
+    test_pair_census_state_reuses_source_metadata()
+    print("[PASS] test_pair_census_state_reuses_source_metadata")
     test_nonunimodular_level_one_certificate()
     print("[PASS] test_nonunimodular_level_one_certificate")
     test_inherited_level_two_certificate()
@@ -193,4 +227,4 @@ def main() raises:
     print("[PASS] test_source_pair_must_be_strict_first_return")
     test_relative_address_does_not_replace_labels()
     print("[PASS] test_relative_address_does_not_replace_labels")
-    print("7 renewal-address Mojo tests passed.")
+    print("8 renewal-address Mojo tests passed.")
