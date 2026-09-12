@@ -182,28 +182,77 @@ def audit_projection(samples: List[JointLocalSample]) -> ProjectionAudit:
     return ProjectionAudit(len(samples), collisions, first_left, first_right)
 
 
+def digit_pair_insertion_at(
+    shorter: List[Int],
+    longer: List[Int],
+    parent: Int,
+    child_index: Int,
+    pair_position: Int,
+) -> Bool:
+    """Check one exact insertion at a nominated substitution-level position."""
+    if len(shorter) % 2 != 0 or len(longer) != len(shorter) + 2:
+        return False
+    var levels = len(shorter) // 2
+    if pair_position < 0 or pair_position > levels:
+        return False
+    var pos = 2 * pair_position
+    if longer[pos] != parent or longer[pos + 1] != child_index:
+        return False
+    for k in range(pos):
+        if longer[k] != shorter[k]:
+            return False
+    for k in range(pos, len(shorter)):
+        if longer[k + 2] != shorter[k]:
+            return False
+    return True
+
+
 def one_digit_pair_insertion(
     shorter: List[Int], longer: List[Int], parent: Int, child_index: Int
 ) -> Bool:
     """Whether `longer` is `shorter` with one exact digit pair inserted."""
     if len(shorter) % 2 != 0 or len(longer) != len(shorter) + 2:
         return False
+    for pair_position in range(len(shorter) // 2 + 1):
+        if digit_pair_insertion_at(
+            shorter, longer, parent, child_index, pair_position
+        ):
+            return True
+    return False
 
-    for pos in range(0, len(longer), 2):
-        if longer[pos] != parent or longer[pos + 1] != child_index:
-            continue
-        var same = True
-        for k in range(pos):
-            if longer[k] != shorter[k]:
-                same = False
-                break
-        if not same:
-            continue
-        for k in range(pos, len(shorter)):
-            if longer[k + 2] != shorter[k]:
-                same = False
-                break
-        if same:
+
+def synchronous_digit_pair_insertion(
+    top_shorter: List[Int],
+    top_longer: List[Int],
+    bottom_shorter: List[Int],
+    bottom_longer: List[Int],
+    parent: Int,
+    child_index: Int,
+) -> Bool:
+    """Require the same loop digit to be inserted at the same ancestry level."""
+    if len(top_shorter) != len(bottom_shorter):
+        return False
+    if len(top_longer) != len(bottom_longer):
+        return False
+    if len(top_shorter) % 2 != 0:
+        return False
+    for pair_position in range(len(top_shorter) // 2 + 1):
+        if (
+            digit_pair_insertion_at(
+                top_shorter,
+                top_longer,
+                parent,
+                child_index,
+                pair_position,
+            )
+            and digit_pair_insertion_at(
+                bottom_shorter,
+                bottom_longer,
+                parent,
+                child_index,
+                pair_position,
+            )
+        ):
             return True
     return False
 
@@ -214,11 +263,12 @@ def address_is_one_loop_extension(
     parent: Int,
     child_index: Int,
 ) -> Bool:
-    """Classify one regular cross-level address recurrence.
+    """Classify one synchronous regular cross-level address recurrence.
 
     Scaled defect/correction are intentionally not equated: they live at
     different substitution levels. The invariant source data must match, and
-    each symbolic side must acquire exactly one copy of the nominated digit.
+    both symbolic sides must acquire the nominated digit at one common
+    substitution-level position.
     """
     return (
         longer.level == shorter.level + 1
@@ -226,10 +276,12 @@ def address_is_one_loop_extension(
         and longer.source_defect == shorter.source_defect
         and longer.top_source_letter == shorter.top_source_letter
         and longer.bottom_source_letter == shorter.bottom_source_letter
-        and one_digit_pair_insertion(
-            shorter.top_digits, longer.top_digits, parent, child_index
-        )
-        and one_digit_pair_insertion(
-            shorter.bottom_digits, longer.bottom_digits, parent, child_index
+        and synchronous_digit_pair_insertion(
+            shorter.top_digits,
+            longer.top_digits,
+            shorter.bottom_digits,
+            longer.bottom_digits,
+            parent,
+            child_index,
         )
     )
