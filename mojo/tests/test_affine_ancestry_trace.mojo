@@ -1,7 +1,7 @@
 """Exact regressions for order-sensitive affine renewal ancestry."""
 
 from std.testing import assert_equal, assert_true
-from psc.affine_ancestry_trace import affine_ancestry_trace, common_terminal_trace_length, first_repeated_affine_state, same_affine_state
+from psc.affine_ancestry_trace import affine_ancestry_trace, common_terminal_trace_length, first_repeated_affine_state, is_affine_pump_extension, same_affine_state
 from psc.joint_local_type import same_joint_local_type
 from psc.loop_quotient_census import addressed_samples_through_depth
 from psc.words import Pair
@@ -55,9 +55,11 @@ def test_exact_sidewise_survivor_has_order_sensitive_trace() raises:
     # ordered intermediate trace can distinguish or expose a pump relation.
     assert_true(same_affine_state(longer, 0, shorter, 0))
     var terminal = common_terminal_trace_length(longer, shorter)
-    print("[CALIBRATION] hard survivor common terminal affine states:", terminal)
+    assert_equal(terminal, 6)
     var repeated = first_repeated_affine_state(longer)
-    print("[CALIBRATION] longer trace first repeated affine state:", repeated[0], repeated[1])
+    assert_equal(repeated[0], 0)
+    assert_equal(repeated[1], 2)
+    assert_true(is_affine_pump_extension(longer, shorter))
 
 
 def main() raises:

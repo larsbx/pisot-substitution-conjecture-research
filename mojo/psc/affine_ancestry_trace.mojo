@@ -145,6 +145,27 @@ def common_terminal_trace_length(a: AffineAncestryTrace, b: AffineAncestryTrace)
     return count
 
 
+def is_affine_pump_extension(
+    longer: AffineAncestryTrace, shorter: AffineAncestryTrace
+) raises -> Bool:
+    """Whether deleting an initial exact state loop gives `shorter`.
+
+    This certifies equality of the entire retained paired-state suffix.  It
+    does not by itself prove that deletion preserves global realizability.
+    """
+    var excess = longer.depth() - shorter.depth()
+    if excess <= 0:
+        return False
+    if not same_affine_state(longer, 0, longer, excess):
+        return False
+    if shorter.state_count() != longer.state_count() - excess:
+        return False
+    for i in range(shorter.state_count()):
+        if not same_affine_state(longer, excess + i, shorter, i):
+            return False
+    return True
+
+
 def first_repeated_affine_state(trace: AffineAncestryTrace) raises -> Tuple[Int, Int]:
     for right in range(1, trace.state_count()):
         for left in range(right):
