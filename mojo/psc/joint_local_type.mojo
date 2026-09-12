@@ -11,16 +11,16 @@ omits absolute source indices, total inflated length, substitution level,
 `M^d delta`, and the full digit path. These omissions are intentional: the
 object is a candidate finite local type, not a complete address.
 
-The public cut constructor accepts only `(prepared state, cut, bounds)` and
-obtains one atomic certified-cut record from the address layer. Consumers that
-already hold that exact certification may call `joint_local_type_from_certified`
-so projection and full-address diagnostics share one certification pass. There
-is no independent-address composition path.
+Public construction is bound to `(prepared state, cut, bounds)`. Diagnostics
+that need both the full certified address and bounded projection use the atomic
+`CertifiedJointLocalObservation`; callers cannot supply an unrelated
+`CertifiedRenewalCut` and combine it with context from another state.
 """
 
 from psc.renewal import Diff3
 from psc.renewal_address import (
     CertifiedRenewalCut,
+    RelativeRenewalAddress,
     RenewalPairCensusState,
     certified_renewal_cut_from_state,
 )
@@ -68,6 +68,21 @@ struct JointLocalType(Copyable, Movable):
         self.bottom_tail = bottom_tail.copy()
 
 
+struct CertifiedJointLocalObservation(Copyable, Movable):
+    """One atomically certified full address plus its bounded projection."""
+
+    var projection: JointLocalType
+    var address: RelativeRenewalAddress
+
+    def __init__(
+        out self,
+        projection: JointLocalType,
+        address: RelativeRenewalAddress,
+    ):
+        self.projection = projection.copy()
+        self.address = address.copy()
+
+
 def _append_context(
     mut out: List[Int], letters: List[Int], index: Int, radius: Int
 ):
@@ -106,22 +121,13 @@ def _digit_tail(digits: List[Int], window: Int) raises -> List[Int]:
     return out^
 
 
-def joint_local_type_from_certified(
+def _joint_local_type_from_certified(
     state: RenewalPairCensusState,
     certified: CertifiedRenewalCut,
     source_radius: Int,
     digit_window: Int,
 ) raises -> JointLocalType:
-    """Project an already-certified cut without repeating source lookup."""
-    if source_radius < 0 or digit_window < 0:
-        raise Error("joint-local radius and digit window must be nonnegative")
-    if certified.address.level != state.tables.depth:
-        raise Error("joint-local certified cut/state depth mismatch")
-    if certified.top_source_index < 0 or certified.top_source_index >= state.source_length():
-        raise Error("joint-local certified top source index is out of range")
-    if certified.bottom_source_index < 0 or certified.bottom_source_index >= state.source_length():
-        raise Error("joint-local certified bottom source index is out of range")
-
+    """Internal projection of the certificate created from this same state/cut."""
     var context = List[Int]()
     _append_context(
         context, state.top.letters, certified.top_source_index, source_radius
@@ -145,6 +151,33 @@ def joint_local_type_from_certified(
     )
 
 
+def _validate_joint_local_request(
+    state: RenewalPairCensusState,
+    cut: Int,
+    source_radius: Int,
+    digit_window: Int,
+) raises:
+    if source_radius < 0 or digit_window < 0:
+        raise Error("joint-local radius and digit window must be nonnegative")
+    if cut <= 0 or cut >= state.inflated_length:
+        raise Error("joint-local cut must be interior")
+
+
+def certified_joint_local_observation(
+    state: RenewalPairCensusState,
+    cut: Int,
+    source_radius: Int,
+    digit_window: Int,
+) raises -> CertifiedJointLocalObservation:
+    """Certify `(state,cut)` once and return its full address plus projection."""
+    _validate_joint_local_request(state, cut, source_radius, digit_window)
+    var certified = certified_renewal_cut_from_state(state, cut)
+    var projection = _joint_local_type_from_certified(
+        state, certified, source_radius, digit_window
+    )
+    return CertifiedJointLocalObservation(projection, certified.address)
+
+
 def joint_local_type(
     state: RenewalPairCensusState,
     cut: Int,
@@ -152,13 +185,9 @@ def joint_local_type(
     digit_window: Int,
 ) raises -> JointLocalType:
     """Project one certified `(state, cut)` to bounded source/digit context."""
-    if source_radius < 0 or digit_window < 0:
-        raise Error("joint-local radius and digit window must be nonnegative")
-    if cut <= 0 or cut >= state.inflated_length:
-        raise Error("joint-local cut must be interior")
-
+    _validate_joint_local_request(state, cut, source_radius, digit_window)
     var certified = certified_renewal_cut_from_state(state, cut)
-    return joint_local_type_from_certified(
+    return _joint_local_type_from_certified(
         state, certified, source_radius, digit_window
     )
 
