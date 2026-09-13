@@ -14,7 +14,7 @@ We thank the referee for a careful reading. All seven findings are accepted. Two
 | 4 | P3 | f(−2) = −10, not −8 | Accepted and corrected | Example 4.8 |
 | 5 | P2 | "Exhaustive enumeration at length 12" was not documented | Accepted. The word "exhaustive" and the minimality implication are removed; only the directly checkable witness is kept | Computational Proposition 6.3, limitation paragraph |
 | 6 | P2 | K₂ was used both as a vector in Z^{d²} and as an element of Λ²Z³ | Accepted. The antisymmetry of K₂ on balanced pairs and the identification with (K₁₂,K₁₃,K₂₃) are stated before first use and recalled where the area identity is used | §5.5 (after the definition of K_r); Proposition 5.19(iii) |
-| 7 | P2 | Placeholder citation for the Wielandt equality case | Accepted. Replaced by Horn–Johnson, *Matrix Analysis*, Thm 8.4.5; the equality-case argument now spells out |S| = N, the diagonal unitary similarity, the cycle-phase argument, and the reduction of the phases to ±1 | Proposition 5.13 proof; bibliography |
+| 7 | P2 | Placeholder citation for the Wielandt equality case | Accepted. Replaced by Horn–Johnson, *Matrix Analysis*, Thm 8.4.5; the equality-case argument now spells out the entrywise equality of the absolute value of S with N, the diagonal unitary similarity, the cycle-phase argument, and the reduction of the phases to ±1 | Proposition 5.13 proof; bibliography |
 
 ## Detailed responses
 
@@ -55,3 +55,20 @@ Before the review was received we corrected one sentence in Example 7.1: the per
 ## Items not changed
 
 No finding requested changes to the imported theorems, the computational propositions other than Finding 5, or the status statements for G1b-2 and the Pisot substitution conjecture; these are unchanged.
+
+## Second round (re-review of `03d085a`)
+
+The referee re-reviewed the revised head and posted two further findings; both are accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 8 | P2 | The new equivalence "closed SCC nonproductive iff no coincidence child" fails for a coincidence singleton, which is closed, has no coincidence child, and is productive | Accepted. The equivalence is restricted to closed *noncoincident* SCCs, and the coincidence-singleton case is noted explicitly | Definition 2.11 |
+| 9 | P3 | Unescaped bars in the Finding 7 table row of this document broke the Markdown table | Accepted. The cell is reworded without literal bars | This document, first table, row 7 |
+
+### Finding 8 (P2)
+
+Accepted. Under Definition 2.11 a reachable coincidence block $(a,a)$ is a terminal singleton SCC that is closed (it has no noncoincident children) and has no coincidence child, yet is productive by the empty path. The sentence now reads: a closed *noncoincident* SCC is nonproductive if and only if no state in it has a coincidence child, with the singleton case noted in parentheses. Every later use of the equivalence (Theorem 5.1, Section 5.2, Proposition 5.20, Proposition 5.21) already carried the noncoincidence hypothesis, so no other statement changes.
+
+### Finding 9 (P3)
+
+Accepted; the table cell is reworded.

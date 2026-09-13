@@ -66,3 +66,24 @@
 Within Finding 1 the reviewer states: "The headline statements that G1b-2 and the Pisot substitution conjecture remain open are accurate."
 
 No finding contests the correctness of Lemma 2.4, Theorem 2.8, Theorem 3.1, Theorem 4.13, Theorem 5.1, Theorem 5.2, Lemma 5.4, Theorem 5.5, Theorem 5.12, Theorem 5.15, Theorem 5.16, Propositions 5.19–5.21, Theorems 5.24–5.25, Proposition 5.27, or Proposition 4.9, the imported citations, or the statement of the computational propositions beyond Finding 5.
+
+---
+
+# Second round: re-review of the revised manuscript
+
+**Reviewed commit:** `03d085ac8f214e9ff45d7b93506225b8d3e604cc` (revision after the first report).
+**Review posted:** 2026-09-13T03:23:25Z, one review with two inline comments. Reproduced verbatim.
+
+## Finding 8 (P2) — `PSC_balanced_pair_state_2026-09-13.tex`, line 177
+
+> **Restrict the equivalence to noncoincident SCCs**
+>
+> When a coincidence block `(a,a)` is reachable, it is itself a terminal singleton SCC: it is closed and has no coincidence child, but it is productive via the length-zero path to itself under the preceding definition. Thus the new “if and only if” is false as stated; qualify it with “closed noncoincident SCC” (as the subsequent uses already do).
+
+## Finding 9 (P3) — `response-to-reviewers-2026-09-13.md`, line 17
+
+> **Escape the matrix-norm bars in the response table**
+>
+> In Markdown table rendering, the unescaped bars in `|S| = N` are interpreted as column separators, so the Finding 7 row has more cells than the five-column header and the action/location mapping is rendered incorrectly. Escape these bars or express the equality without literal unescaped pipes inside the table cell.
+
+No other findings were posted in the second round.
