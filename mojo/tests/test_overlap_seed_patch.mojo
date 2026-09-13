@@ -90,6 +90,19 @@ def test_non_pip_substitution_is_rejected() raises:
     assert_true(caught)
 
 
+def test_large_incidence_is_rejected_before_unchecked_pip_arithmetic() raises:
+    # This primitive PIP family has characteristic polynomial x^3-n*x^2-1.
+    # A large n would overflow the legacy fixed-width primitivity/charpoly
+    # predicates.  The overlap kernel must reject it before calling them.
+    var large = Mat3([0, 0, 1, 1, 0, 0, 0, 1, Int.MAX])
+    var caught = False
+    try:
+        _ = build_perron_field3(large)
+    except:
+        caught = True
+    assert_true(caught)
+
+
 def main() raises:
     test_perron_order_is_exact_on_basic_elements()
     print("[PASS] test_perron_order_is_exact_on_basic_elements")
@@ -99,4 +112,6 @@ def main() raises:
     print("[PASS] test_capped_productivity_query_fails_closed")
     test_non_pip_substitution_is_rejected()
     print("[PASS] test_non_pip_substitution_is_rejected")
-    print("4 seed-patch-overlap Mojo tests passed.")
+    test_large_incidence_is_rejected_before_unchecked_pip_arithmetic()
+    print("[PASS] test_large_incidence_is_rejected_before_unchecked_pip_arithmetic")
+    print("5 seed-patch-overlap Mojo tests passed.")
