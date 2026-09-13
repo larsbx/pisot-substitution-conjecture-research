@@ -139,9 +139,10 @@ RequiresDef == [r \in ResultSet |->
       [] r = "G1FromRenewal"             -> {"G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"}
       [] r = "G1"                        -> {"G1FromRenewal"}
 
-      (* Strongest current Level-3 route. Concentration is open. Galois
-         propagation is reported theorem-grade in the v16/later track but is
-         not repository-proved until its source is imported. *)
+      (* Historical name retained for compatibility. The carrier span result
+         is now repository-proved by the wedge dichotomy; it needs no separate
+         source-pending Galois theorem. Concentration and productivity remain
+         open and separate. *)
       [] r = "ConcentrationAuxB"         -> {"G1", "SinkSCCReduction"}
       [] r = "GaloisWedgePropagation"   -> {}
       [] r = "SpanRichProductivity"     -> {"ConcentrationAuxB", "GaloisWedgePropagation"}
@@ -177,6 +178,10 @@ ProvedDef == {
     "Degree4Floor", "Mod3Sieve", "ParitySieve", "MidArea",
     "MeanAreaLift", "LatticeLift",
 
+    (* Independently reconstructed as the wedge dichotomy: nonzero K2 on a
+       closed nonproductive carrier spans the full rational wedge space. *)
+    "GaloisWedgePropagation",
+
     (* Conditional assembly theorem: once both Level-2 gates are supplied,
        G1 follows. The two gate inputs themselves are intentionally absent. *)
     "G1FromRenewal", "G1",
@@ -198,8 +203,7 @@ G1AndProducer == {"G1", "SCCProducer"}
 G1Only == {"G1"}
 G1AndC4 == {"G1", "C4"}
 
-(* Explicit hypothetical completion assumptions for future model checks. The
-   source-pending Galois theorem remains separate from open concentration. *)
+(* Explicit hypothetical completion assumptions for future model checks. *)
 RenewalGateAssumed == {"G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"}
-SpectralGateAssumed == {"G1", "ConcentrationAuxB", "GaloisWedgePropagation", "SpanRichProductivity", "SpectralSCCProducer"}
+SpectralGateAssumed == {"G1", "ConcentrationAuxB", "SpanRichProductivity", "SpectralSCCProducer"}
 =============================================================================
