@@ -41,6 +41,12 @@ refinement, inverse incidence matrix, Euclidean stable-space lattice, or
 unimodularity assumption is used. Arithmetic overflow fails closed and makes a
 finite run inconclusive.
 
+The current PIP-validation boundary is deliberately restricted to the audited
+repository census domain: non-erasing three-letter substitutions with every
+image length at most three. This finite precondition is checked before calling
+the older fixed-width PIP predicate. Larger incidence matrices are rejected as
+unsupported rather than risk overflow and false classification.
+
 For an oriented overlap state
 
 ```text
@@ -139,6 +145,8 @@ For a controlled PIP specimen, the Mojo diagnostic must:
 - construct positive Perron tile lengths exactly;
 - enumerate seed-patch overlaps without floating point;
 - fail closed on malformed/non-PIP input;
+- reject substitutions outside the audited image-length-at-most-three input
+  domain before invoking the legacy fixed-width PIP validator;
 - terminate below the state cap or report inconclusive;
 - retain exact coincidence reachability;
 - compare its finite productivity verdict with the repository BPA without asserting equivalence.
