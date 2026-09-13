@@ -43,6 +43,11 @@ def test_perron_order_is_exact_on_basic_elements() raises:
     assert_equal(sign_at_perron(field, CubicElt(-1, 0, 0)), -1)
     assert_equal(sign_at_perron(field, CubicElt(-1, 1, 0)), 1)  # beta - 1
 
+    # Codex review found that rational midpoint isolation could overflow before
+    # resolving this near-Perron linear form. The Sturm--Tarski implementation
+    # must classify it exactly without denominator growth.
+    assert_equal(sign_at_perron(field, CubicElt(-152138, 67035, 0)), -1)
+
 
 def test_canonical_seed_overlap_graph_is_productive() raises:
     var sigma = determinant_two_sigma()
@@ -55,7 +60,7 @@ def test_canonical_seed_overlap_graph_is_productive() raises:
     assert_true(graph.size() > 0)
     assert_equal(len(nonproductive_overlap_states(graph)), 0)
 
-    # Compare only the finite productivity verdict.  Equality of the two graph
+    # Compare only the finite productivity verdict. Equality of the two graph
     # constructions is not yet a theorem or asserted by this test.
     var bpa = build(sigma, 20000)
     assert_false(bpa.capped)
@@ -63,6 +68,17 @@ def test_canonical_seed_overlap_graph_is_productive() raises:
 
     print("canonical seed-overlap initial states:", len(seeds))
     print("canonical seed-overlap graph states:", graph.size())
+
+
+def test_capped_productivity_query_fails_closed() raises:
+    var graph = build_seed_overlap_graph(determinant_two_sigma(), 1)
+    assert_true(graph.capped)
+    var caught = False
+    try:
+        _ = nonproductive_overlap_states(graph)
+    except:
+        caught = True
+    assert_true(caught)
 
 
 def test_non_pip_substitution_is_rejected() raises:
@@ -79,6 +95,8 @@ def main() raises:
     print("[PASS] test_perron_order_is_exact_on_basic_elements")
     test_canonical_seed_overlap_graph_is_productive()
     print("[PASS] test_canonical_seed_overlap_graph_is_productive")
+    test_capped_productivity_query_fails_closed()
+    print("[PASS] test_capped_productivity_query_fails_closed")
     test_non_pip_substitution_is_rejected()
     print("[PASS] test_non_pip_substitution_is_rejected")
-    print("3 seed-patch-overlap Mojo tests passed.")
+    print("4 seed-patch-overlap Mojo tests passed.")
