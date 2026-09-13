@@ -28,10 +28,19 @@ def discrepancy(state: State, size: int) -> int:
     u, v = state
     diff = [0] * size
     best = 0
+
+    # Optimization: Instead of recalculating max(abs(c)) over the entire diff array (O(size))
+    # on every iteration, we only check the two values that actually changed.
+    # We also skip identical characters since they don't affect the difference vector.
     for x, y in zip(u, v):
+        if x == y:
+            continue
+
         diff[x - 1] += 1
         diff[y - 1] -= 1
-        best = max(best, max(abs(c) for c in diff))
+
+        best = max(best, abs(diff[x - 1]), abs(diff[y - 1]))
+
     return best
 
 
