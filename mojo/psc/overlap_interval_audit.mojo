@@ -12,7 +12,7 @@ balanced pairs.
 """
 
 from psc.overlap_seed_patch import build_seed_overlap_graph, build_seed_overlap_tables
-from psc.perron_field3 import cubic_add_checked, cubic_sub_checked, sign_at_perron
+from psc.perron_field3 import CubicElt, cubic_add_checked, cubic_sub_checked, sign_at_perron
 from psc.perron_interval import cubic_perron_interval
 from psc.rational_interval import CheckedRat
 
@@ -80,7 +80,7 @@ def audit_seed_overlap_interval_margins(
         var left_margin = cubic_sub_checked(
             tables.lengths.at(state.top), state.shift
         )
-        var margins: List = [right_margin, left_margin]
+        var margins: List[CubicElt] = [right_margin, left_margin]
         for j in range(2):
             var margin = margins[j]
             var box = cubic_perron_interval(tables.field, margin, refinements)
