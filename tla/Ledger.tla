@@ -78,6 +78,12 @@ ResultSet == {
     "G1b2RenewalFiniteness",
     "G1FromRenewal",
 
+    \* --- 2026-09-13 overlap route (finite graph, no G1) -----------------
+    "SwapOverlapFiniteness",
+    "OverlapProductivity",
+    "AllStatesProductiveViaOverlaps",
+    "PDSOverlapRoute",
+
     \* --- 2026-09-11 strongest Level-3 spectral route ---------------------
     "ConcentrationAuxB",
     "GaloisWedgePropagation",
@@ -152,6 +158,18 @@ RequiresDef == [r \in ResultSet |->
       [] r = "G1FromRenewal"             -> {"G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"}
       [] r = "G1"                        -> {"G1FromRenewal"}
 
+      (* Overlap route (docs/overlap-finiteness-and-coincidence-density-
+         2026-09-13.md; manuscript Theorem 4.22 and Theorem 5.32). The seed-patch overlap graph is finite by bounded
+         discrepancy. OverlapProductivity is the open Level-3 statement in
+         G1-free form; it implies productivity of every reachable state
+         (AllStatesProductiveViaOverlaps) with no finiteness hypothesis, and
+         PDS still needs G1 through the imported termination theorem (the
+         density bridge is a separate open question, not encoded). *)
+      [] r = "SwapOverlapFiniteness"      -> {"G1b1BoundedDiscrepancy"}
+      [] r = "OverlapProductivity"        -> {}
+      [] r = "AllStatesProductiveViaOverlaps" -> {"OverlapProductivity", "SwapOverlapFiniteness"}
+      [] r = "PDSOverlapRoute"            -> {"G1", "AllStatesProductiveViaOverlaps"}
+
       (* Historical name retained for compatibility. The carrier span result
          is now repository-proved by the wedge dichotomy; it needs no separate
          source-pending Galois theorem. Concentration and productivity remain
@@ -200,6 +218,10 @@ ProvedDef == {
        absent, so G1 stays unreachable without assumptions. *)
     "G1b1BoundedDiscrepancy", "G1FromRenewal", "G1",
 
+    (* Overlap route: finiteness and the density theorem are proved; the
+       gate input OverlapProductivity is intentionally absent. *)
+    "SwapOverlapFiniteness", "AllStatesProductiveViaOverlaps", "PDSOverlapRoute",
+
     (* Boundary route conditional reductions remain proved. C4 itself is absent. *)
     "C3Local", "C2", "SCCProducer", "PDS",
 
@@ -220,4 +242,5 @@ G1AndC4 == {"G1", "C4"}
 (* Explicit hypothetical completion assumptions for future model checks. *)
 RenewalGateAssumed == {"G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"}
 SpectralGateAssumed == {"G1", "ConcentrationAuxB", "SpanRichProductivity", "SpectralSCCProducer"}
+OverlapGateAssumed == {"OverlapProductivity"}
 =============================================================================

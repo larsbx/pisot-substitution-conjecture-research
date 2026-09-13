@@ -1,7 +1,7 @@
 # Realization / coincidence-rank equivalence — audit of the unreconstructed gaps
 
 **Status:** audit only. Nothing here is proved. The reported v16/later
-equivalence stays a conjectural bridge (Section 5.9 of
+equivalence stays a conjectural bridge (Section 5.10 of
 `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`) and must stay outside
 `ProvedDef`.
 
@@ -40,7 +40,7 @@ underlying sequences `x`, `y`. A proof would need, in order:
 
 None of (a)–(d) has a proof on `main`. (a) is the content of Conjecture 4.21
 (relative density of simultaneous boundaries); (d) is the seed-family question
-(Open Problem 4.23 and Section 4.8 of the manuscript); (b) and (c) have not
+(Open Problem 4.24 and Section 4.8 of the manuscript); (b) and (c) have not
 been written down anywhere in reachable history.
 
 **Backward direction** (a globally realized nonproductive recurrent component
@@ -84,6 +84,6 @@ so there is nothing to recover).
 - Keep the realization firewall: a formal recurrent cycle of `B_sigma` is not
   a pair of tilings; finite collar death is not a completeness theorem.
 - The only theorem-grade content in this area is the seed-union proposition
-  (Proposition 4.22) and the literature equivalence for a single seed cited in
-  Section 4.8 of the manuscript, which is exactly why Open Problem 4.23 is the
+  (Proposition 4.23) and the literature equivalence for a single seed cited in
+  Section 4.8 of the manuscript, which is exactly why Open Problem 4.24 is the
   precise obstruction.

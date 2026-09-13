@@ -1,6 +1,6 @@
 # P1-B — balanced-pair to overlap realization bridge
 
-**Status:** theorem-facing program and exact finite diagnostic for the open G1b-2 gate. This note does **not** identify the repository seed-patch overlap graph with the complete overlap graph of the literature, does not prove relative density of simultaneous boundaries, and does not prove G1b-2.
+**Status:** theorem-facing program and exact finite diagnostic for the open G1b-2 gate. *Update 2026-09-13:* item 5 below (finiteness of the seed-patch overlap graph) is now an unconditional theorem, proved from bounded discrepancy without finite-local-complexity or Meyer hypotheses, and the corpus census shows the cap never binds; see `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md` (manuscript Theorem 4.22). Items 1–4 (the realization dictionary) remain open. This note does **not** identify the repository seed-patch overlap graph with the complete overlap graph of the literature, does not prove relative density of simultaneous boundaries, and does not prove G1b-2.
 
 ## 1. Why this route is being tested
 

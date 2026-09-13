@@ -55,3 +55,21 @@ def swap_walk_profile(sigma: Substitution, levels: Iterable[int]) -> dict[int, i
 def max_reachable_discrepancy(graph: Mapping[State, object], size: int) -> int:
     """Largest discrepancy over the vertices of a balanced-pair graph."""
     return max((discrepancy(s, size) for s in graph), default=0)
+
+
+def common_tile_count(sigma: Substitution, a: int, b: int, level: int) -> tuple[int, int]:
+    """(number of common tiles, number of tiles) of the level-`level` swap pair.
+
+    A common tile is a position with equal letters on both sides and equal
+    prefix Parikh vectors before it (a coincidence block of the reduction)."""
+    u = apply_substitution_n(sigma, (a, b), level)
+    v = apply_substitution_n(sigma, (b, a), level)
+    size = alphabet_size(sigma)
+    diff = [0] * size
+    common = 0
+    for x, y in zip(u, v):
+        if x == y and not any(diff):
+            common += 1
+        diff[x - 1] += 1
+        diff[y - 1] -= 1
+    return common, len(u)

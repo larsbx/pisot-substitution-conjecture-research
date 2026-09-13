@@ -37,3 +37,22 @@ def test_reachable_discrepancy_matches_exact_census_values():
 
 def test_swap_walk_profile_is_flat_on_tribonacci():
     assert set(swap_walk_profile(EXAMPLES["tribonacci"], range(0, 16)).values()) == {1}
+
+
+def test_common_tile_fractions_pin_exact_values():
+    from psc_research.swap_discrepancy import common_tile_count
+
+    trib = [common_tile_count(EXAMPLES["tribonacci"], 1, 2, n) for n in range(0, 6)]
+    assert trib == [(0, 2), (1, 4), (3, 7), (7, 13), (16, 24), (33, 44)]
+    tau = [common_tile_count(TAU, 1, 2, n) for n in range(0, 6)]
+    assert tau == [(0, 2), (1, 4), (4, 10), (11, 22), (26, 50), (62, 114)]
+
+
+def test_overlap_graph_oracle_reproduces_canonical_counts():
+    from psc_research.overlap_graph import OverlapGraph
+
+    g = OverlapGraph(TAU)
+    assert len(g.seeds()) == 9 and len(g.states) == 628 and not g.capped
+    assert g.nonproductive() == []
+    t = OverlapGraph(EXAMPLES["tribonacci"])
+    assert len(t.states) == 29 and t.nonproductive() == []

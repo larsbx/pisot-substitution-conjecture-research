@@ -85,3 +85,23 @@ def max_state_length(a: Automaton) -> Int:
         if n > best:
             best = n
     return best
+
+
+def common_tile_count(sigma: List[List[Int]], a: Int, b: Int, level: Int) -> List[Int]:
+    """[common tiles, all tiles] of the level-`level` swap pair `(ab, ba)`.
+
+    A common tile is a position with equal letters on both sides and a zero
+    prefix difference before it (a coincidence block of the reduction)."""
+    var ab: List[Int] = [a, b]
+    var ba: List[Int] = [b, a]
+    var u = iterate(sigma, ab, level)
+    var v = iterate(sigma, ba, level)
+    var diff: List[Int] = [0, 0, 0]
+    var common = 0
+    for i in range(len(u)):
+        if u[i] == v[i] and diff[0] == 0 and diff[1] == 0 and diff[2] == 0:
+            common += 1
+        diff[u[i]] = diff[u[i]] + 1
+        diff[v[i]] = diff[v[i]] - 1
+    var out: List[Int] = [common, len(u)]
+    return out^
