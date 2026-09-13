@@ -52,6 +52,13 @@ jobs:
         run: |
           set -o pipefail
           pixi run mojo run -I . degree3_catalog.mojo 2>&1 | tee degree3.log
+          grep -Fx 'degree3 noncentralizer states: 24' degree3.log
+          grep -Fx 'degree3 productive within two: 24' degree3.log
+          grep -Fx 'strict first-degree3 components: 0' degree3.log
+          if grep -q '^D3_COUNTERMODEL_BEGIN ' degree3.log; then
+            echo 'unexpected strict degree-three component; replay record retained above' >&2
+            exit 1
+          fi
           summary=$(python ../scripts/analyze_degree3_catalog.py < degree3.log)
           printf '%s\n' "$summary"
           grep -Fx 'DEGREE3_OCCURRENCES 24' <<<"$summary"
