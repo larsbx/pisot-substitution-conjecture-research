@@ -94,7 +94,13 @@ Theorem 5.1.
 This appended v34 language is not part of the valid six-seed certificate and
 does not discharge G1. The correct separation is:
 
-- Sections 1–14: restricted degree-three seed certificate;
+- Sections 8–10 and the seed-level Spectral Black Box in Section 14:
+  restricted six-seed degree-three theorem;
+- Section 11: quarantined—the unsigned SCC transfer
+  `L_C N_C = Phi_3 L_C` is false for normalized reversed children; use the
+  corrected signed first-defect relation documented in
+  `docs/verification-architecture.md` and
+  `docs/c4-w3-low-growth-and-interface-correction.md`;
 - v34 dominant-source lemma: proved;
 - v34 recurrent-SCC capture and load-bearing conclusion: conditional on G1;
 - no carrier-level concentration or productivity conclusion.
@@ -103,7 +109,7 @@ does not discharge G1. The correct separation is:
 
 These files remain immutable historical evidence. Do not repair them in place.
 
-- Cite `PROOF_CERTIFICATE.md` only for the six-seed degree-three theorem; disregard its appended unconditional v34 summary.
+- Cite `PROOF_CERTIFICATE.md` only for the six-seed degree-three theorem in §§8–10/14; do not cite §11's unsigned SCC transfer, and disregard the appended unconditional v34 summary.
 - Cite the dominant-source lemma separately from the G1-conditional SCC
   transfer.
 - Never quote the unconditional rows of `V34_CLOSURE.md` as current status.
