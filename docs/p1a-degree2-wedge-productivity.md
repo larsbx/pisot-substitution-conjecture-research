@@ -58,7 +58,7 @@ This certificate does not prove:
 - G1 or G1b-2;
 - the `K2 == 0` concentration case outside the bounded corpus;
 - SCC Producer or the Pisot substitution conjecture;
-- any source-pending Galois-propagation or aux-B statement.
+- the historical degree-three Galois certificate or the open concentration/aux-B gate.
 
 Together with the bounded degree-three result, it excludes strict components
 of first defect degree two or three only inside the stated corpus. Removing
