@@ -142,7 +142,8 @@ def perron_sign_decision(
     evidence.
     """
     if x.is_zero():
-        return PerronIntervalDecision(0, True)
+        # Exact coefficient equality proves zero; no strict interval excludes it.
+        return PerronIntervalDecision(0, False)
     var boxed_sign = 0
     try:
         boxed_sign = interval_sign_at_perron(field, x, refinements)
