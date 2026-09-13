@@ -34,7 +34,12 @@ The canonical Mojo kernel represents every length and displacement exactly in
 Z[beta] = {a0 + a1 beta + a2 beta^2 : ai in Z}
 ```
 
-modulo the monic characteristic polynomial. Order comparisons are made at the distinguished Perron embedding by exact Sturm isolation. No floating point, inverse incidence matrix, Euclidean stable-space lattice, or unimodularity assumption is used.
+modulo the monic characteristic polynomial. Order comparisons are made at the
+distinguished Perron embedding by a specialized Sturm--Tarski signed-remainder
+query with checked fixed-width integer arithmetic. No floating point, rational
+refinement, inverse incidence matrix, Euclidean stable-space lattice, or
+unimodularity assumption is used. Arithmetic overflow fails closed and makes a
+finite run inconclusive.
 
 For an oriented overlap state
 
