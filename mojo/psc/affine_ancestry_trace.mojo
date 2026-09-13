@@ -211,3 +211,58 @@ def first_repeated_affine_state(trace: AffineAncestryTrace) raises -> Tuple[Int,
             if same_affine_state(trace, left, trace, right):
                 return (left, right)
     return (-1, -1)
+
+
+def first_proper_repeated_affine_state(
+    trace: AffineAncestryTrace
+) raises -> Tuple[Int, Int]:
+    """First repeat with both endpoints strictly inside the trace."""
+    for right in range(2, trace.depth()):
+        for left in range(1, right):
+            if same_affine_state(trace, left, trace, right):
+                return (left, right)
+    return (-1, -1)
+
+
+def proper_affine_splice_matches_certified_address(
+    tables: AffineTraceTables,
+    longer: RelativeRenewalAddress,
+    shorter: RelativeRenewalAddress,
+    start: Int,
+    end: Int,
+) raises -> Bool:
+    """Check a proper repeated-state deletion against a certified address.
+
+    Both input traces and all their stored certificates are independently
+    validated first. Equality includes source data and every retained ordered
+    top/bottom digit. This certifies an exact symbolic address splice; it does
+    not assert that arbitrary splices preserve global occurrence context.
+    """
+    var long_trace = affine_ancestry_trace_with_tables(tables, longer)
+    _ = affine_ancestry_trace_with_tables(tables, shorter)
+    if start <= 0 or end <= start or end >= long_trace.depth():
+        return False
+    if not same_affine_state(long_trace, start, long_trace, end):
+        return False
+    if shorter.level != longer.level - (end - start):
+        return False
+    if (
+        shorter.source_index_delta != longer.source_index_delta
+        or shorter.source_defect != longer.source_defect
+        or shorter.top_source_letter != longer.top_source_letter
+        or shorter.bottom_source_letter != longer.bottom_source_letter
+    ):
+        return False
+    var short_level = 0
+    for long_level in range(longer.level):
+        if long_level >= start and long_level < end:
+            continue
+        if (
+            shorter.top_digits[2 * short_level] != longer.top_digits[2 * long_level]
+            or shorter.top_digits[2 * short_level + 1] != longer.top_digits[2 * long_level + 1]
+            or shorter.bottom_digits[2 * short_level] != longer.bottom_digits[2 * long_level]
+            or shorter.bottom_digits[2 * short_level + 1] != longer.bottom_digits[2 * long_level + 1]
+        ):
+            return False
+        short_level += 1
+    return short_level == shorter.level
