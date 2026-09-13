@@ -67,12 +67,15 @@ outright, since no theorem converts collar survival into a pair of tilings.
 | (G2) window existence and density | fibre-mates are not shown to admit balanced windows, let alone relatively dense ones | open (= Conjecture 4.21) |
 | (G3) cofinal coverage | the windows realizing a component must cover every position of the pair for coincidence-freeness of windows to give coincidence-freeness of the tilings; no definition on `main` includes this | undefined |
 | (G4) collar completeness | no theorem bounds the collar radius at which every unrealizable formal cycle must die; the finite collar experiments are therefore not a decision procedure | open (ledger item P4) |
+| (G5) transfer of non-coincidence | requirement (b): that non-coincidence of two fibre-mates forces the reductions of a balanced window, and of its inflations (windows of *other* fibre-mates), to avoid coincidence blocks; not written down anywhere in reachable history | open |
+| (G6) recurrence | requirement (c): that infinitely many coincidence-free windows at increasing levels force the descent relation on nonproductive pairs into a recurrent component, under G1; not written down anywhere in reachable history | open |
 
-With (G0)–(G4) open, the reported equivalence is not a theorem, not a
+With (G0)–(G6) open, the reported equivalence is not a theorem, not a
 reduction, and not source-pending in any useful sense: there is no missing
-file whose recovery would close (G1)–(G4), since each is an independently
-recorded open problem of the program (G3 is a definitional requirement, not a
-theorem to recover).
+file whose recovery would close (G1)–(G6), since each is an independently
+recorded open problem of the program (G0 and G3 are definitional requirements, not
+theorems to recover; G5 and G6 have never been stated in reachable history,
+so there is nothing to recover).
 
 ## 4. Recommendation
 

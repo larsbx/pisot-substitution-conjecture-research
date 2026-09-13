@@ -96,3 +96,17 @@ Accepted. The kernel now exists in the canonical layer with a fixed three-coordi
 ### Finding 12 (P2)
 
 Accepted. Coincidence-freeness of windows implies coincidence-freeness of the tilings only when the windows cover every position of the pair. The audit now states the backward direction with cofinal coverage as a hypothesis, records it as gap (G3), renumbers collar completeness to (G4), and keeps the conclusion that the equivalence is a conjectural bridge.
+
+---
+
+## Fourth round (pull request #69)
+
+One further finding on the realization audit; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 13 | P2 | The gap inventory omitted two forward-direction requirements named in the same note (transfer of non-coincidence to reductions; recurrence under G1), so the gap count was inconsistent | Accepted. Entries (G5) transfer of non-coincidence and (G6) recurrence added; conclusion now refers to (G0)–(G6); README and provenance summary synchronized to the seven obligations | `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`, section 3; `README.md`; `docs/source-provenance-v16-later-audit-2026-09-12.md` |
+
+### Finding 13 (P2)
+
+Accepted. The two requirements were stated in section 2 as (b) and (c) but not carried into the table, so the "with (G0)–(G4) open" conclusion under-counted. They are now (G5) and (G6), both marked open with the note that neither has ever been written down in reachable history, so there is nothing to recover; the downstream summaries say seven obligations G0–G6.

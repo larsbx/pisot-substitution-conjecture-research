@@ -118,3 +118,18 @@ No other findings were posted in the second round.
 > The proposed definition only says that a fibre pair has windows at every level reducing into the component; it does not require those windows to be nested, exhaustive, or relatively dense. A pair can therefore satisfy the stated condition in one persistent noncoincident region while still sharing coincident tiles elsewhere, so “the two tilings never coincide” does not follow and the implication to `cr(sigma) > 1` is not definitional. The realization audit should record cofinal coverage as an additional hypothesis/gap rather than declaring this direction automatic.
 
 No finding contests Theorem 4.4, Lemmas 4.5–4.8, or Proposition 4.11 of the manuscript.
+
+---
+
+# Fourth round: re-review of the round-three revision (pull request #69)
+
+**Reviewed commit:** `6024fcd5ccf2a3a1fbf3e8aefe9d7dca64d355ea`.
+**Review posted:** 2026-09-13T12:40:45Z, one review with one inline comment. Reproduced verbatim.
+
+## Finding 13 (P2) — `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`, lines 65–69
+
+> **Add the missing forward-direction gaps**
+>
+> Section 2 explicitly identifies transfer of non-coincidence and recurrence as separate unproved requirements (lines 30–44), but the supposedly complete G0–G4 inventory contains neither: G1 covers reachability and G2 only window existence/density. Consequently the conclusion that G0–G4 are the outstanding gaps drops two obligations needed for the forward implication and leaves downstream summaries with an inconsistent gap count. Add explicit entries for requirements (b) and (c), then synchronize the README and provenance summary.
+
+No other findings were posted in the fourth round.
