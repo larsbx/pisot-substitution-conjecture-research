@@ -121,34 +121,38 @@ def test_interval_first_perron_sign_certifies_easy_and_falls_back_near_root() ra
 
 
 def test_canonical_overlap_margin_interval_calibration() raises:
-    # This is a calibration pass, not yet a pinned interval-count theorem.
-    # The graph size is already canonical from the seed-patch regression; here
-    # we audit how much of its strict geometry one fixed rational beta box
-    # certifies before the algebraic fallback is needed.
+    # Finite canonical calibration only: these constants describe this one
+    # seed-patch graph and this fixed ten-refinement Perron enclosure.
     var audit = audit_seed_overlap_interval_margins(
         determinant_two_sigma(), 10, 20000
     )
     assert_equal(audit.state_count, 628)
     assert_equal(audit.margin_count, 1256)
-    assert_equal(
-        audit.interval_certified_count + audit.fallback_count,
-        audit.margin_count,
+    assert_equal(audit.interval_certified_count, 1256)
+    assert_equal(audit.fallback_count, 0)
+    assert_true(audit.has_uniform_interval_lower_margin)
+    assert_true(
+        audit.minimum_interval_lower_margin == CheckedRat(231, 16384)
     )
-    assert_true(audit.interval_certified_count > 0)
-    if audit.fallback_count > 0:
-        assert_false(audit.has_uniform_interval_lower_margin)
-        assert_true(audit.minimum_interval_lower_margin == CheckedRat(0, 1))
-    else:
-        assert_true(audit.has_uniform_interval_lower_margin)
-        assert_true(audit.minimum_interval_lower_margin.sign() > 0)
     print("canonical overlap margins:", audit.margin_count)
     print("interval-certified margins:", audit.interval_certified_count)
     print("algebraic-fallback margins:", audit.fallback_count)
-    if audit.has_uniform_interval_lower_margin:
-        print(
-            "minimum certified rational overlap margin:",
-            audit.minimum_interval_lower_margin,
-        )
+    print(
+        "minimum certified rational overlap margin:",
+        audit.minimum_interval_lower_margin,
+    )
+
+
+def test_coarse_overlap_audit_withholds_partial_minimum() raises:
+    # A deliberately coarse Perron enclosure exercises the mixed path. Exact
+    # fallback preserves positivity, but a subset minimum is not exposed.
+    var audit = audit_seed_overlap_interval_margins(
+        determinant_two_sigma(), 0, 20000
+    )
+    assert_true(audit.interval_certified_count > 0)
+    assert_true(audit.fallback_count > 0)
+    assert_false(audit.has_uniform_interval_lower_margin)
+    assert_true(audit.minimum_interval_lower_margin == CheckedRat(0, 1))
 
 
 def main() raises:
@@ -168,4 +172,6 @@ def main() raises:
     print("[PASS] test_interval_first_perron_sign_certifies_easy_and_falls_back_near_root")
     test_canonical_overlap_margin_interval_calibration()
     print("[PASS] test_canonical_overlap_margin_interval_calibration")
-    print("8 rational-interval Mojo tests passed.")
+    test_coarse_overlap_audit_withholds_partial_minimum()
+    print("[PASS] test_coarse_overlap_audit_withholds_partial_minimum")
+    print("9 rational-interval Mojo tests passed.")
