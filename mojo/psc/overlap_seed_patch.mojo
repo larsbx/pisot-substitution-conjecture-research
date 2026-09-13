@@ -23,8 +23,8 @@ from psc.perron_field3 import (
     cubic_mul_beta,
     cubic_sub_checked,
     left_perron_tile_lengths,
-    sign_at_perron,
 )
+from psc.perron_interval import sign_at_perron_interval_first
 
 
 struct OverlapState(ImplicitlyCopyable, Copyable, Movable, Equatable, Hashable, Writable):
@@ -134,7 +134,9 @@ def _cached_sign(
 ) raises -> Int:
     if x in cache:
         return cache[x]
-    var s = sign_at_perron(tables.field, x)
+    # Rational intervals are the first enclosure/certificate layer. Ambiguous
+    # or unrepresentable boxes fall back internally to exact Sturm--Tarski.
+    var s = sign_at_perron_interval_first(tables.field, x)
     cache[x] = s
     return s
 
