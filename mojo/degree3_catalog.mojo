@@ -129,7 +129,7 @@ def main() raises:
                 var automaton = build(sigma, 20000)
                 if automaton.capped:
                     print("INCONCLUSIVE_CAPPED", i, j, k)
-                    continue
+                    raise Error("degree-3 catalogue is incomplete: state cap reached")
 
                 var recurrent_flag = List[Bool]()
                 var sink_flag = List[Bool]()
