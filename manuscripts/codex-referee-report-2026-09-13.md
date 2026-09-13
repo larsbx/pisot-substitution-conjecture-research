@@ -192,3 +192,14 @@ No findings were posted in the sixth round.
 > AGENTS.md reference: AGENTS.md:L49-L55
 
 No other findings were posted in the seventh round.
+
+---
+
+# Eighth round: re-review of the round-seven revision (pull request #72)
+
+**Reviewed commit:** `5275b4568a83818cf9fc56971d52f5e6adf6edcf`.
+**Review posted:** 2026-09-13T15:22:38Z. Reproduced verbatim.
+
+> Codex Review: Didn't find any major issues. Delightful!
+
+No findings were posted in the eighth round.

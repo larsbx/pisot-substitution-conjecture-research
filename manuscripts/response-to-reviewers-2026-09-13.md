@@ -154,3 +154,9 @@ Accepted. The referee's Tribonacci example is exact: the coincidence `(1,1,0)` h
 ### Finding 17 (P1)
 
 Accepted. The inference reversed an implication that is used in one direction only and ignored the seedwise question; it is withdrawn everywhere it appeared.
+
+---
+
+## Eighth round (pull request #72)
+
+The referee re-reviewed the revised head and posted no findings. Findings 16–17 are addressed; the record for the overlap-route revision (Theorem 4.22, Lemmas 5.30–5.31, Theorem 5.32, Corollary 5.33, Open Problems 5.34–5.35) is complete.
