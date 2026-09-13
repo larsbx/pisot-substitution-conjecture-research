@@ -89,6 +89,14 @@ def test_perron_root_has_exact_rational_bracket() raises:
     assert_true(flo != fhi)
 
 
+def test_symbolic_zero_is_not_a_strict_interval_certificate() raises:
+    var sigma = determinant_two_sigma()
+    var field = build_perron_field3(Mat3(substitution_incidence(sigma)))
+    var zero = perron_sign_decision(field, CubicElt(), 6)
+    assert_equal(zero.sign, 0)
+    assert_false(zero.interval_certified)
+
+
 def test_interval_first_perron_sign_certifies_easy_and_falls_back_near_root() raises:
     var sigma = determinant_two_sigma()
     var field = build_perron_field3(Mat3(substitution_incidence(sigma)))
@@ -148,8 +156,10 @@ def main() raises:
     print("[PASS] test_checked_interval_overflow_fails_closed")
     test_perron_root_has_exact_rational_bracket()
     print("[PASS] test_perron_root_has_exact_rational_bracket")
+    test_symbolic_zero_is_not_a_strict_interval_certificate()
+    print("[PASS] test_symbolic_zero_is_not_a_strict_interval_certificate")
     test_interval_first_perron_sign_certifies_easy_and_falls_back_near_root()
     print("[PASS] test_interval_first_perron_sign_certifies_easy_and_falls_back_near_root")
     test_canonical_overlap_margin_interval_calibration()
     print("[PASS] test_canonical_overlap_margin_interval_calibration")
-    print("7 rational-interval Mojo tests passed.")
+    print("8 rational-interval Mojo tests passed.")
