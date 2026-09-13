@@ -34,7 +34,9 @@ The exact affine traces show:
 - deleting its first two transitions leaves six states;
 - those six states agree exactly with the complete depth-five trace.
 
-Thus the longer observation is an exact two-level affine pump extension of the shorter one. The apparent hard survivor is explained by a repeatable symbolic ancestry loop once order is retained.
+There is also a proper internal repeat at levels `1` and `3`. Deleting those two ordered top/bottom edges yields exactly the independently certified depth-five address, digit for digit. Thus the longer observation is an exact two-level affine pump extension of the shorter one without relying only on a boundary repeat. The apparent hard survivor is explained by a repeatable symbolic ancestry loop once order is retained.
+
+The same canonical predicate recovers the previously known three right-edge recurrence witnesses: each depth-four address has a proper one-edge repeat at levels `1` and `2`, and deletion produces the independently certified depth-three address exactly.
 
 ## What remains open
 

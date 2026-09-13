@@ -1,11 +1,11 @@
 """Exact regressions for order-sensitive affine renewal ancestry."""
 
-from std.testing import assert_equal, assert_true
-from psc.affine_ancestry_trace import affine_ancestry_trace, affine_ancestry_trace_with_tables, build_affine_trace_tables, common_terminal_trace_length, first_repeated_affine_state, is_affine_pump_extension, same_affine_state
+from std.testing import assert_equal, assert_false, assert_true
+from psc.affine_ancestry_trace import affine_ancestry_trace, affine_ancestry_trace_with_tables, build_affine_trace_tables, common_terminal_trace_length, first_proper_repeated_affine_state, first_repeated_affine_state, is_affine_pump_extension, proper_affine_splice_matches_certified_address, same_affine_state
 from psc.joint_local_type import same_joint_local_type
 from psc.loop_quotient_census import addressed_samples_through_depth
 from psc.renewal import Diff3
-from psc.renewal_address import RelativeRenewalAddress
+from psc.renewal_address import RelativeRenewalAddress, build_renewal_address_tables, build_renewal_pair_census_state, renewal_cut_address_from_state
 from psc.words import Pair
 
 
@@ -64,6 +64,62 @@ def test_exact_sidewise_survivor_has_order_sensitive_trace() raises:
     assert_equal(repeated[0], 0)
     assert_equal(repeated[1], 2)
     assert_true(is_affine_pump_extension(longer, shorter))
+    var proper = first_proper_repeated_affine_state(longer)
+    assert_equal(proper[0], 1)
+    assert_equal(proper[1], 3)
+    assert_true(
+        proper_affine_splice_matches_certified_address(
+            tables,
+            samples[left].address,
+            samples[right].address,
+            proper[0],
+            proper[1],
+        )
+    )
+
+
+def test_right_edge_affine_loops_splice_to_certified_addresses() raises:
+    var substitution = sigma()
+    var pair = seed_pair()
+    var short_tables = build_renewal_address_tables(substitution, 3)
+    var long_tables = build_renewal_address_tables(substitution, 4)
+    var short_state = build_renewal_pair_census_state(short_tables, pair)
+    var long_state = build_renewal_pair_census_state(long_tables, pair)
+    var affine_tables = build_affine_trace_tables(substitution)
+    for j in range(3):
+        var short_cut = short_state.inflated_length - 3 + j
+        var long_cut = long_state.inflated_length - 3 + j
+        var short_address = renewal_cut_address_from_state(short_state, short_cut)
+        var long_address = renewal_cut_address_from_state(long_state, long_cut)
+        var trace = affine_ancestry_trace_with_tables(affine_tables, long_address)
+        var proper = first_proper_repeated_affine_state(trace)
+        assert_equal(proper[0], 1)
+        assert_equal(proper[1], 2)
+        assert_true(
+            proper_affine_splice_matches_certified_address(
+                affine_tables, long_address, short_address, proper[0], proper[1]
+            )
+        )
+
+
+def test_nonrepeat_splice_fails_closed() raises:
+    var substitution = sigma()
+    var samples = addressed_samples_through_depth(substitution, seed_pair(), 0, 5, 2, 1)
+    var index = -1
+    for i in range(len(samples)):
+        if samples[i].depth == 5 and samples[i].cut == 14:
+            index = i
+    assert_true(index >= 0)
+    var tables = build_affine_trace_tables(substitution)
+    var trace = affine_ancestry_trace_with_tables(tables, samples[index].address)
+    var proper = first_proper_repeated_affine_state(trace)
+    assert_equal(proper[0], -1)
+    assert_equal(proper[1], -1)
+    assert_false(
+        proper_affine_splice_matches_certified_address(
+            tables, samples[index].address, samples[index].address, 1, 2
+        )
+    )
 
 
 def test_stale_stored_certificate_fails_closed() raises:
@@ -100,4 +156,8 @@ def main() raises:
     print("[PASS] test_exact_sidewise_survivor_has_order_sensitive_trace")
     test_stale_stored_certificate_fails_closed()
     print("[PASS] test_stale_stored_certificate_fails_closed")
-    print("3 affine-ancestry-trace Mojo tests passed.")
+    test_right_edge_affine_loops_splice_to_certified_addresses()
+    print("[PASS] test_right_edge_affine_loops_splice_to_certified_addresses")
+    test_nonrepeat_splice_fails_closed()
+    print("[PASS] test_nonrepeat_splice_fails_closed")
+    print("5 affine-ancestry-trace Mojo tests passed.")
