@@ -1,14 +1,15 @@
 """Exact one-dimensional seed-patch overlap graph for G1b-2 diagnostics.
 
 The graph starts from the same two-letter seed superpositions ``(ab, ba)`` used
-by the repository balanced-pair automaton.  A state records two tile types and
+by the repository balanced-pair automaton. A state records two tile types and
 the exact displacement of the bottom tile start from the top tile start as an
-element of ``Z[beta]``.  Inflation is exact in the cubic Perron field.
+element of ``Z[beta]``. Inflation is exact in the cubic Perron field.
 
-This is intentionally called a *seed-patch overlap graph*.  It is not yet
+This is intentionally called a *seed-patch overlap graph*. It is not yet
 identified with the complete realized-overlap graph appearing in the general
 overlap-coincidence literature; that realization/dictionary statement remains
-a theorem target.  Capped construction is inconclusive.
+a theorem target. Capped construction and arithmetic overflow are inconclusive
+and fail closed.
 """
 
 from psc.bpa import substitution_incidence
@@ -18,7 +19,9 @@ from psc.perron_field3 import (
     PerronField3,
     TileLengths3,
     build_perron_field3,
+    cubic_add_checked,
     cubic_mul_beta,
+    cubic_sub_checked,
     left_perron_tile_lengths,
     sign_at_perron,
 )
@@ -117,7 +120,7 @@ def build_seed_overlap_tables(sigma: List[List[Int]]) raises -> SeedOverlapTable
         var cursor = CubicElt()
         for j in range(len(sigma[parent])):
             positions.append(cursor)
-            cursor = cursor + lengths.at(sigma[parent][j])
+            cursor = cubic_add_checked(cursor, lengths.at(sigma[parent][j]))
         if cursor != cubic_mul_beta(field, lengths.at(parent)):
             raise Error("substitution image length disagrees with Perron scaling")
         starts.append(len(positions))
@@ -144,8 +147,12 @@ def _interior_overlap_cached(
     if state.top < 0 or state.top >= 3 or state.bottom < 0 or state.bottom >= 3:
         raise Error("overlap state tile type lies outside 0..2")
     # Top interval [0,l_top], bottom [shift, shift+l_bottom].
-    var right_of_top_start = state.shift + tables.lengths.at(state.bottom)
-    var left_of_top_end = state.shift - tables.lengths.at(state.top)
+    var right_of_top_start = cubic_add_checked(
+        state.shift, tables.lengths.at(state.bottom)
+    )
+    var left_of_top_end = cubic_sub_checked(
+        state.shift, tables.lengths.at(state.top)
+    )
     return (
         _cached_sign(tables, cache, right_of_top_start) > 0
         and _cached_sign(tables, cache, left_of_top_end) < 0
@@ -172,7 +179,7 @@ def _seed_states_with_cache(
                     var state = OverlapState(
                         top_types[i],
                         bottom_types[j],
-                        bottom_starts[j] - top_starts[i],
+                        cubic_sub_checked(bottom_starts[j], top_starts[i]),
                     )
                     if _interior_overlap_cached(tables, cache, state):
                         out.append(state)
@@ -199,10 +206,11 @@ def _children_with_cache(
         for j in range(len(tables.sigma[state.bottom])):
             var bottom_child = tables.sigma[state.bottom][j]
             var bottom_prefix = tables.prefix(state.bottom, j)
+            var shifted = cubic_add_checked(scaled_shift, bottom_prefix)
             var child = OverlapState(
                 top_child,
                 bottom_child,
-                scaled_shift + bottom_prefix - top_prefix,
+                cubic_sub_checked(shifted, top_prefix),
             )
             if _interior_overlap_cached(tables, cache, child):
                 out.append(child)
@@ -262,8 +270,15 @@ def build_seed_overlap_graph(
     return SeedOverlapAutomaton(states, adj, False)
 
 
-def nonproductive_overlap_states(a: SeedOverlapAutomaton) -> List[Int]:
-    """States from which no exact tile coincidence is reachable."""
+def nonproductive_overlap_states(a: SeedOverlapAutomaton) raises -> List[Int]:
+    """States from which no exact tile coincidence is reachable.
+
+    A capped automaton is an incomplete prefix of the graph. Productivity is
+    undefined there, so the query fails closed instead of turning an
+    inconclusive cap into false nonproductivity evidence.
+    """
+    if a.capped:
+        raise Error("overlap productivity is undefined for a capped partial graph")
     var good = List[Bool]()
     for i in range(a.size()):
         good.append(a.states[i].is_coincidence())
