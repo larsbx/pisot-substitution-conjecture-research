@@ -140,6 +140,18 @@ For a controlled PIP specimen, the Mojo diagnostic must:
 
 Only after these regressions are pinned should the same comparison be run over the full 4,554-specimen finite corpus.
 
+The canonical Mojo run for the determinant-two calibration produces exactly
+
+```text
+initial seed-overlap states: 9
+reachable seed-overlap states: 628
+nonproductive reachable states: 0
+```
+
+These three finite counts are pinned in regression coverage. They apply only to
+the stated seed-patch construction for this specimen; they do not identify it
+with the complete realized-overlap graph or establish any uniform bound.
+
 ## 7. Theorem boundary
 
 A clean finite corpus would not prove any of the following:
