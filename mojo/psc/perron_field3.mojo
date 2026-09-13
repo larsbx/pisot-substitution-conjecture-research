@@ -172,7 +172,34 @@ def cubic_scale_checked(x: CubicElt, n: Int) raises -> CubicElt:
     )
 
 
+def _validate_bounded_incidence_domain(m: Mat3) raises:
+    """Restrict the legacy PIP predicate to its audited finite input domain.
+
+    The repository census enumerates non-erasing three-letter substitutions
+    whose image lengths are at most three.  Hence every incidence-matrix
+    column has sum in ``1..3``.  On this domain the unchecked legacy
+    primitivity and cubic predicates have bounded intermediates; inputs
+    outside it must not reach them through this exact overlap kernel.
+    """
+    if len(m.e) != 9:
+        raise Error("cubic Perron field requires a 3x3 incidence matrix")
+    for col in range(3):
+        var column_sum = 0
+        for row in range(3):
+            var entry = m.at(row, col)
+            if entry < 0 or entry > 3:
+                raise Error(
+                    "cubic Perron PIP validation is certified only for image lengths at most three"
+                )
+            column_sum += entry
+        if column_sum <= 0 or column_sum > 3:
+            raise Error(
+                "cubic Perron PIP validation is certified only for non-erasing image lengths at most three"
+            )
+
+
 def build_perron_field3(m: Mat3) raises -> PerronField3:
+    _validate_bounded_incidence_domain(m)
     if not is_pip(m):
         raise Error("cubic Perron field requires a primitive irreducible Pisot matrix")
     var chi = m.charpoly()
