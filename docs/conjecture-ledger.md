@@ -125,6 +125,14 @@ This is a finite-domain theorem, recorded in
 G1b-2. Its general spectral input is the in-repository first-defect intertwiner,
 not the source-pending Galois step.
 
+**Degree-two partial result (bounded corpus only).** The same exact corpus
+contains no closed nonproductive recurrent component with nonzero `K2`.
+The canonical Mojo driver checks the component predicates directly, fails
+closed on incomplete automata, and emits any survivor as a replayable exact
+countermodel. This is a finite-domain wedge-productivity theorem, not the
+general `K2 != 0` implication; see
+`docs/p1a-degree2-wedge-productivity.md`.
+
 ### Independence from G1b-2
 
 Do not conflate the two gates:

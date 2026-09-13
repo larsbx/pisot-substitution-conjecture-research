@@ -92,3 +92,37 @@ jobs:
           grep -Fx 'DEGREE3_STATE_CLASS 011212001|120011120' <<<"$summary"
           grep -Fx 'DEGREE3_SIGMA_CLASS 011/2/120' <<<"$summary"
           grep -Fx 'DEGREE3_SIGMA_CLASS 1/210/002' <<<"$summary"
+
+
+  wedge-productivity-catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          curl -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Exact bounded K2-nonzero carrier catalogue
+        working-directory: mojo
+        run: |
+          set -o pipefail
+          set +e
+          pixi run mojo run -I . wedge_productivity_catalog.mojo 2>&1 | tee wedge-productivity.log
+          catalog_status=${PIPESTATUS[0]}
+          set -e
+          if grep -q '^WEDGE_INCONCLUSIVE_CAPPED ' wedge-productivity.log; then
+            echo 'incomplete wedge-productivity catalogue: capped specimen retained above' >&2
+            exit 1
+          fi
+          if (( catalog_status != 0 )); then
+            exit "$catalog_status"
+          fi
+          grep -Fx 'CALIBRATION strict K2-nonzero component detected: 1' wedge-productivity.log
+          grep -Fx 'CALIBRATION coincidence-producing component rejected: 1' wedge-productivity.log
+          grep -Fx 'PIP specimens: 4554' wedge-productivity.log
+          grep -Fx 'closed nonproductive components: 0' wedge-productivity.log
+          grep -Fx 'strict K2-nonzero components: 0' wedge-productivity.log
+          if grep -q '^D2_COUNTERMODEL_BEGIN ' wedge-productivity.log; then
+            echo 'unexpected strict K2-nonzero component; replay record retained above' >&2
+            exit 1
+          fi
