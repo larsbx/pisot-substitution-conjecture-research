@@ -85,8 +85,11 @@ closed recurrent carrier
 => nonzero dominant wedge functional
 => Galois conjugacy forces all wedge eigenfunctionals nonzero
 => full wedge span / span-rich
+=> [OPEN] wedge productivity
 => productivity.
 ```
+
+Both bracketed arrows are open (2026-09-13): concentration is equivalent to `no strict component with K2 == 0`, wedge productivity to `no strict component with K2 != 0`; proving either alone does not close Level 3.
 
 ### Concentration / aux-B
 
@@ -177,7 +180,7 @@ The next manuscript revision must fix:
 2. **P1-A — Level-3 closed-carrier obligations.** Concentration / aux-B (`K2 == 0` case) and wedge productivity (`K2 != 0` case); both are needed, and the finite evidence points to the `K2 != 0` case as the main one.
 3. **P1-B — G1b-2 renewal finiteness.** Unavoidable Level-2 theorem; main long-horizon effort.
 4. **P2 — non-unimodular firewall for G1b-2.** Build the contracting address in the correct Euclidean/profinite setting when required.
-5. **P3 — SCC Producer assembly.** Once G1 and concentration are available, write the finite-graph assembly explicitly.
+5. **P3 — SCC Producer assembly.** Once G1, concentration, and wedge productivity are all available, write the finite-graph assembly explicitly.
 6. **P4 — realization/collar completeness.** Parallel certification route.
 7. **P5 — final PDS bridge audit.** Check exact hypotheses of the selected literature bridge against the final BPA formulation.
 8. **P6 — machine-checkable certificates.** Continue converting finite evidence into reproducible Mojo certificates without upgrading evidence to theorem status.

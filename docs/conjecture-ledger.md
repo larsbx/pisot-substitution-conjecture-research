@@ -91,8 +91,11 @@ closed recurrent carrier
 => phi_dom != 0
 => Galois conjugacy forces the remaining wedge eigenfunctionals nonzero
 => full wedge span / span-rich
+=> [OPEN] wedge productivity
 => productivity.
 ```
+
+Two arrows are open: concentration (equivalent to `no strict component with K2 == 0`) and wedge productivity (equivalent to `no strict component with K2 != 0`). Neither implies the other; see the 2026-09-13 clarification below.
 
 #### Concentration / aux-B
 
@@ -114,7 +117,7 @@ Both statements remain **OPEN**. Together they are exactly the nonexistence of s
 
 Do not conflate the two gates:
 
-- concentration is an algebraic/nonvanishing problem after a finite closed carrier exists;
+- concentration and wedge productivity are two algebraic/combinatorial problems on a finite closed carrier once it exists, split by first defect degree;
 - G1b-2 is the renewal/discreteness theorem needed to prove finite BPA existence.
 
 Neither gate discharges the other.
@@ -204,7 +207,7 @@ Status 2026-09-13: items 1–5 are implemented in the merged manuscript `manuscr
 - **P1-A:** the two Level-3 closed-carrier obligations: concentration / aux-B (no strict component with `K2 == 0`) and wedge productivity (no strict component with `K2 != 0`). Proving one does not close Level 3.
 - **P1-B:** G1b-2 renewal finiteness.
 - **P2:** non-unimodular contracting-address design constraint.
-- **P3:** final SCC Producer assembly once G1 + concentration are available.
+- **P3:** final SCC Producer assembly once G1, concentration, and wedge productivity are all available.
 - **P4:** realization/collar completeness as parallel certification.
 - **P5:** final pure-discrete-spectrum bridge audit.
 - **P6:** certificate-producing Mojo experiments without promoting finite evidence to universal theorem.

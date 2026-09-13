@@ -91,9 +91,12 @@ closed recurrent carrier
 => dominant wedge functional is nonzero
 => Galois propagation of nonvanishing
 => full wedge span / span-rich carrier
+=> [OPEN] wedge productivity
 => productivity
 => SCC Producer.
 ```
+
+Both bracketed arrows are open; see the subsection below.
 
 ## Concentration / aux-B and wedge productivity
 
@@ -238,7 +241,7 @@ The shortest honest completion program is:
 1. **P0:** repair manuscript hypotheses/attributions and import the missing v16/later proof sources.
 2. **P1-A:** prove the two Level-3 obligations, concentration / aux-B and wedge productivity.
 3. **P1-B:** prove G1b-2 renewal finiteness with a non-unimodular-safe contracting address.
-4. **P3:** assemble SCC Producer from finite graph reduction + closed-carrier productivity.
+4. **P3:** assemble SCC Producer from finite graph reduction + closed-carrier productivity, once both concentration and wedge productivity are proved.
 5. **P5:** audit the final pure-discrete-spectrum bridge with exact hypotheses.
 
 No amount of additional fixed-size C4 sieving closes the theorem while either P1-A or P1-B remains open.
