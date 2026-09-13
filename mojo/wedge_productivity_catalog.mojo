@@ -10,7 +10,7 @@ This is a finite-domain certificate, not a proof of general wedge productivity.
 from psc.bpa import Automaton, build, recurrent_noncoincident_sccs, substitution_incidence
 from psc.mat3 import Mat3
 from psc.pisot import is_pip
-from psc.words import is_zero
+from psc.words import Pair, is_zero
 
 
 def image_words() -> List[List[Int]]:
@@ -79,7 +79,61 @@ def emit_countermodel(
     print("D2_COUNTERMODEL_END")
 
 
+def run_predicate_calibration() raises:
+    """Positive strict-carrier control plus a negative leaking control."""
+    # One-based 1->2, 2->123, 3->2. This substitution is primitive but not
+    # Pisot and has a known reachable two-state strict component.
+    var strict_sigma = List[List[Int]]()
+    var strict_0: List[Int] = [1]
+    var strict_1: List[Int] = [0, 1, 2]
+    var strict_2: List[Int] = [1]
+    strict_sigma.append(strict_0^)
+    strict_sigma.append(strict_1^)
+    strict_sigma.append(strict_2^)
+    var strict_automaton = build(strict_sigma, 20000)
+    if strict_automaton.capped:
+        raise Error("strict calibration unexpectedly reached the state cap")
+
+    var detected_strict = False
+    var strict_comps = recurrent_noncoincident_sccs(strict_automaton)
+    for ci in range(len(strict_comps)):
+        ref comp = strict_comps[ci]
+        if (
+            len(comp) == 2
+            and is_closed_nonproductive(strict_automaton, comp)
+            and has_nonzero_k2(strict_automaton, comp)
+        ):
+            detected_strict = True
+    if not detected_strict:
+        raise Error("strict K2-nonzero calibration component was not detected")
+
+    # Directly calibrate rejection of a noncoincident K2-nonzero carrier
+    # candidate that produces a coincidence child.
+    var leaking_states = List[Pair]()
+    var source_u: List[Int] = [0, 1]
+    var source_v: List[Int] = [1, 0]
+    leaking_states.append(Pair(source_u^, source_v^))
+    var coincidence_u: List[Int] = [0]
+    var coincidence_v: List[Int] = [0]
+    leaking_states.append(Pair(coincidence_u^, coincidence_v^))
+    var leaking_adj = List[List[Int]]()
+    var source_edges: List[Int] = [0, 1]
+    var coincidence_edges = List[Int]()
+    leaking_adj.append(source_edges^)
+    leaking_adj.append(coincidence_edges^)
+    var leaking_automaton = Automaton(leaking_states, leaking_adj, False)
+    var leaking_comp: List[Int] = [0]
+    if not has_nonzero_k2(leaking_automaton, leaking_comp):
+        raise Error("leaking K2-nonzero calibration lost its wedge defect")
+    if is_closed_nonproductive(leaking_automaton, leaking_comp):
+        raise Error("coincidence-producing calibration was misclassified as strict")
+
+    print("CALIBRATION strict K2-nonzero component detected: 1")
+    print("CALIBRATION coincidence-producing component rejected: 1")
+
+
 def main() raises:
+    run_predicate_calibration()
     var words = image_words()
     var n_pip = 0
     var n_recurrent_components = 0
