@@ -118,8 +118,13 @@ def audit_seed_overlap_interval_margins(
     if interval_certified + fallback != margin_count:
         raise Error("overlap interval margin accounting failed")
     var uniform = fallback == 0 and has_minimum
-    if uniform and minimum.sign() <= 0:
-        raise Error("uniform rational interval lower margin is not positive")
+    if uniform:
+        if minimum.sign() <= 0:
+            raise Error("uniform rational interval lower margin is not positive")
+    else:
+        # Fail closed: never expose the minimum of only the certified subset as
+        # though it bounded every retained overlap margin.
+        minimum = CheckedRat(0, 1)
     return OverlapIntervalMarginAudit(
         graph.size(),
         margin_count,
