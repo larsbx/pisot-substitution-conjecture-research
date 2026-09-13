@@ -13,7 +13,7 @@ G1-free form; a clean corpus is finite evidence only.
 from psc.bpa import substitution_incidence
 from psc.mat3 import Mat3
 from psc.pisot import is_pip
-from psc.overlap_seed_patch import build_seed_overlap_graph, nonproductive_overlap_states
+from psc.overlap_seed_patch import build_seed_overlap_graph, first_coincidence_depths, nonproductive_overlap_states
 
 
 def image_words() -> List[List[Int]]:
@@ -43,6 +43,10 @@ def main() raises:
     var n_nonproductive_specimens = 0
     var largest = 0
     var total_states = 0
+    var max_depth = 0
+    var depth_histogram = List[Int]()
+    for _ in range(128):
+        depth_histogram.append(0)
 
     for i in range(len(words)):
         for j in range(len(words)):
@@ -65,6 +69,16 @@ def main() raises:
                     if g.size() > largest:
                         largest = g.size()
                     var bad = len(nonproductive_overlap_states(g))
+                    var depths = first_coincidence_depths(g)
+                    var worst = 0
+                    for d in range(len(depths)):
+                        if depths[d] > worst:
+                            worst = depths[d]
+                    if worst >= len(depth_histogram):
+                        raise Error("first-coincidence depth exceeds histogram range")
+                    depth_histogram[worst] = depth_histogram[worst] + 1
+                    if worst > max_depth:
+                        max_depth = worst
                     if bad > 0:
                         n_nonproductive_specimens += 1
                         n_nonproductive_states += bad
@@ -80,3 +94,9 @@ def main() raises:
     print("largest seed-patch overlap graph:", largest)
     print("total seed-patch overlap states:", total_states)
     print("nonproductive overlap specimens:", n_nonproductive_specimens, " states:", n_nonproductive_states)
+    print("maximum first-coincidence depth:", max_depth)
+    var line = String("specimens by maximal first-coincidence depth:")
+    for d in range(len(depth_histogram)):
+        if depth_histogram[d] > 0:
+            line += " " + String(d) + ":" + String(depth_histogram[d])
+    print(line)

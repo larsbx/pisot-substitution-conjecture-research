@@ -151,6 +151,8 @@ jobs:
           grep -Fx 'largest seed-patch overlap graph: 2640' <<<"$out"
           grep -Fx 'total seed-patch overlap states: 1118850' <<<"$out"
           grep -Fx 'nonproductive overlap specimens: 0  states: 0' <<<"$out"
+          grep -Fx 'maximum first-coincidence depth: 18' <<<"$out"
+          grep -Fx 'specimens by maximal first-coincidence depth: 3:402 4:828 5:696 6:648 7:444 8:396 9:276 10:300 11:168 12:84 13:36 14:24 15:108 16:84 17:36 18:24' <<<"$out"
 
   tla-models:
     runs-on: ubuntu-latest

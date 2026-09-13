@@ -168,6 +168,6 @@ overlap productivity are proved.
 
 The realization thread has no remaining local dictionary sublemmas.
 The only G1-free spectral bridge still open is the global seed-to-OA
-productivity transfer of Section 3. Until it is proved, Open Problem 5.35
+productivity transfer of Section 3. Until it is proved, Open Problem 5.36
 must remain open and the exact 4,554-substitution overlap census must remain
 finite evidence.

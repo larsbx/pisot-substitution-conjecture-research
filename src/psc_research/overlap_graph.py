@@ -234,3 +234,27 @@ class OverlapGraph:
                     good[k] = True
                     changed = True
         return [k for k in range(len(self.states)) if not good[k]]
+
+
+def first_coincidence_depths(g: "OverlapGraph") -> list[int]:
+    """Shortest number of inflations from each vertex to a coincidence (-1 if none)."""
+    from collections import deque as _dq
+
+    n = len(g.states)
+    dist = [-1] * n
+    parents: list[list[int]] = [[] for _ in range(n)]
+    for k in range(n):
+        for c in g.adj[k]:
+            parents[c].append(k)
+    q = _dq()
+    for k, s in enumerate(g.states):
+        if g.is_coincidence(s):
+            dist[k] = 0
+            q.append(k)
+    while q:
+        k = q.popleft()
+        for p in parents[k]:
+            if dist[p] < 0:
+                dist[p] = dist[k] + 1
+                q.append(p)
+    return dist

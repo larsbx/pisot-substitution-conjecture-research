@@ -79,6 +79,7 @@ ResultSet == {
 
     \* --- 2026-09-13 overlap route (finite graph, no G1) -----------------
     "SwapOverlapFiniteness",
+    "OverlapFullRank",
     "OverlapProductivity",
     "CoincidenceDensityOne",
     "AllStatesProductiveViaOverlaps",
@@ -168,6 +169,10 @@ RequiresDef == [r \in ResultSet |->
          DensityToPDSBridge is the separate open input for the genuinely
          G1-free PDS route. *)
       [] r = "SwapOverlapFiniteness"      -> {"G1b1BoundedDiscrepancy"}
+      (* Manuscript Corollary 5.34: a child-closed set of non-coincidence
+         overlaps has full-rank intersection vectors, so spec(M) lies in the
+         spectrum of its child-count matrix. A constraint, not an exclusion. *)
+      [] r = "OverlapFullRank"            -> {}
       [] r = "OverlapProductivity"        -> {}
       [] r = "CoincidenceDensityOne"      -> {"OverlapProductivity", "SwapOverlapFiniteness"}
       [] r = "AllStatesProductiveViaOverlaps" -> {"OverlapProductivity", "SwapOverlapFiniteness"}
@@ -223,7 +228,7 @@ ProvedDef == {
 
     (* Overlap route: graph finiteness and the conditional assembly theorems
        are proved. OverlapProductivity and DensityToPDSBridge are absent. *)
-    "SwapOverlapFiniteness", "CoincidenceDensityOne",
+    "SwapOverlapFiniteness", "OverlapFullRank", "CoincidenceDensityOne",
     "AllStatesProductiveViaOverlaps", "PDSOverlapRoute",
 
     (* Boundary route conditional reductions remain proved. C4 itself is absent. *)

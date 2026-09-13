@@ -300,3 +300,36 @@ def nonproductive_overlap_states(a: SeedOverlapAutomaton) raises -> List[Int]:
         if not good[i]:
             out.append(i)
     return out^
+
+def first_coincidence_depths(a: SeedOverlapAutomaton) raises -> List[Int]:
+    """Shortest number of inflations from each vertex to a coincidence, `-1` if none.
+
+    Reverse breadth-first search from the coincidence vertices; fails closed
+    on a capped graph like `nonproductive_overlap_states`."""
+    if a.capped:
+        raise Error("first-coincidence depth is undefined for a capped partial graph")
+    var n = a.size()
+    var parents = List[List[Int]]()
+    for _ in range(n):
+        parents.append(List[Int]())
+    for i in range(n):
+        for j in range(len(a.adj[i])):
+            parents[a.adj[i][j]].append(i)
+    var dist = List[Int]()
+    var queue = List[Int]()
+    for i in range(n):
+        if a.states[i].is_coincidence():
+            dist.append(0)
+            queue.append(i)
+        else:
+            dist.append(-1)
+    var head = 0
+    while head < len(queue):
+        var k = queue[head]
+        head += 1
+        for j in range(len(parents[k])):
+            var p = parents[k][j]
+            if dist[p] < 0:
+                dist[p] = dist[k] + 1
+                queue.append(p)
+    return dist^
