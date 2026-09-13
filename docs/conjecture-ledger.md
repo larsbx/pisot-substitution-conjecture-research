@@ -7,7 +7,7 @@ The machine-checked dependency form is `tla/Ledger.tla`. This prose ledger disti
 - open proof gates;
 - finite computational evidence.
 
-The current completion architecture is summarized in `docs/current-proof-architecture-2026-09-11.md`. The dated weekly completion ledger, with the repository cross-check of which reported results and figures are verifiable on `main`, is `docs/completion-ledger-2026-09-11.md`.
+The authoritative prose account of the mathematics, with every statement status-tagged, is the merged manuscript `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` (referee report: `manuscripts/codex-referee-report-2026-09-13.md`; response: `manuscripts/response-to-reviewers-2026-09-13.md`). The current completion architecture is summarized in `docs/current-proof-architecture-2026-09-11.md`. The dated weekly completion ledger, with the repository cross-check of which reported results and figures are verifiable on `main`, is `docs/completion-ledger-2026-09-11.md`.
 
 ## Executive status — two independent gates
 
@@ -16,7 +16,7 @@ The proof is not complete. The remaining work separates into two independent obl
 | Gate | Status | Load-bearing statement |
 | --- | --- | --- |
 | **Level 2 / G1** | **OPEN** | G1b-2 renewal finiteness |
-| **Level 3 / SCC Producer under G1** | **OPEN only at concentration in the strongest current spectral route** | concentration / aux-B |
+| **Level 3 / SCC Producer under G1** | **OPEN at two independent obligations** in the strongest current spectral route | concentration / aux-B (`K2 == 0` case) **and** wedge productivity (`K2 != 0` case); see the 2026-09-13 clarification below |
 
 Unique decodability is already a theorem from full incidence rank and is not an independent hypothesis.
 
@@ -29,32 +29,35 @@ Unique decodability is already a theorem from full incidence rank and is not an 
 The predecessor-contraction proof is permanently withdrawn. The current Level-2 decomposition is:
 
 ```text
-PIP
-=> det M_sigma != 0
-=> unique decodability
-=> quotient contraction
-=> bounded discrepancy (G1b-1)
-=> [OPEN] renewal finiteness (G1b-2)
+primitive + Pisot spectrum
+=> bounded discrepancy (G1b-1)   [THEOREM, reconstructed 2026-09-13]
+=> [OPEN] renewal finiteness (G1b-2)   (now equivalent to G1)
 => finite BPA.
+
+Unique decodability (a consequence of det M_sigma != 0) is a theorem but plays no role in this chain.
 ```
 
 ### G1b-1 — bounded discrepancy
 
-**Project status.** Reported theorem-grade in the v16 track. Its detailed proof source is not currently present on `main`, so repository self-containment is pending source import/audit.
-
-The intended estimate has the form
+**Status. THEOREM (repository-proved, 2026-09-13).** Independently reconstructed, with a complete proof, in `docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md`; stated as Theorem 4.4 of `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`. Every reachable state `T` of `B_sigma` satisfies
 
 ```text
-Disc(sigma w) <= c Disc(w) + 2 E_sigma,    c < 1.
+Disc(T) <= D_sigma := 4 (|A| + 1) C_sigma,
 ```
 
-This bounds discrepancy height. It does **not** bound reduced-state length.
+with `C_sigma` an explicit constant from the contracting part of `M_sigma`. The proof uses only primitivity and the Pisot spectrum (every non-Perron eigenvalue inside the unit circle); it does not use unimodularity, unique decodability, or legality of seeds. It is a global bound on the prefix-difference walk of every inflated swap seed, not a child-versus-parent contraction: the reported estimate
+
+```text
+Disc(sigma w) <= c Disc(w) + 2 E_sigma,    c < 1
+```
+
+was not reconstructed and is not needed. Bounded discrepancy bounds the difference walk, not the state length; exact census: maximum discrepancy `14` and a reachable state of length `48,020` over the `4,554`-member corpus.
 
 ### G1b-2 — renewal finiteness
 
-**Status. OPEN. This is the exact Level-2 bottleneck.**
+**Status. OPEN. This is the exact Level-2 bottleneck, and since G1b-1 is proved it is equivalent to G1 (manuscript Proposition 4.11).**
 
-For fixed discrepancy radius `R0`, prove that only finitely many reduced interior-zero-free balanced pairs with `R(s) <= R0` are realizable.
+Prove that only finitely many reachable irreducible balanced pairs have `Disc(s) <= D_sigma`. (For any `R0 >= D_sigma` the corresponding statement is G1 itself; for `R0 < D_sigma` it follows from G1.)
 
 Bounded discrepancy alone is insufficient: a labelled first-return walk may remain forever inside a finite nonzero difference box while accumulating arbitrarily long return data.
 
@@ -91,8 +94,11 @@ closed recurrent carrier
 => phi_dom != 0
 => Galois conjugacy forces the remaining wedge eigenfunctionals nonzero
 => full wedge span / span-rich
+=> [OPEN] wedge productivity
 => productivity.
 ```
+
+Two arrows are open: concentration (equivalent to `no strict component with K2 == 0`) and wedge productivity (equivalent to `no strict component with K2 != 0`). Neither implies the other; see the 2026-09-13 clarification below.
 
 #### Concentration / aux-B
 
@@ -101,6 +107,14 @@ closed recurrent carrier
 Prove from first principles that expanding wedge mass generated by recurrent behavior has nonzero projection inside a closed recurrent carrier.
 
 The later Galois step reportedly removes the older separate subdominant-nonvanishing obligations. However, the detailed v16/later proof source for that step and the exact aux-B formulation are not yet imported to `main`; source import and audit are mandatory before the repository claims a self-contained theorem.
+
+**Clarification (2026-09-13, manuscript Proposition 5.20, wedge dichotomy).** For a closed nonproductive SCC `C` on three letters, `span_Q{K2(T) : T in C}` is `Lambda^2 M`-invariant, hence equals `0` or `Lambda^2 Q^3` by irreducibility of `chi_{Lambda^2 M}`. Consequently:
+
+- concentration (`phi_dom != 0` on the carrier) is **equivalent** to `K2 !≡ 0` on `C`, i.e. to the statement *no strict component has first defect degree >= 3* (manuscript Open Problem "Concentration");
+- once concentration holds, the "span-rich" step is automatic, with no Galois argument;
+- the final step "span-rich => productive" is equivalent to *no strict component has first defect degree 2* (manuscript Open Problem "Wedge productivity").
+
+Both statements remain **OPEN**. Together they are exactly the nonexistence of strict components split by first defect degree, so the spectral route contains no proved implication from wedge data to productivity. The higher-degree sieves constrain the first case without closing it. This does not change the status table above.
 
 **Degree-three partial result (bounded corpus only).** The exact 4,554-member
 image-length-at-most-three corpus contains no strict component with `K2=0` and
@@ -115,7 +129,7 @@ not the source-pending Galois step.
 
 Do not conflate the two gates:
 
-- concentration is an algebraic/nonvanishing problem after a finite closed carrier exists;
+- concentration and wedge productivity are two algebraic/combinatorial problems on a finite closed carrier once it exists, split by first defect degree;
 - G1b-2 is the renewal/discreteness theorem needed to prove finite BPA existence.
 
 Neither gate discharges the other.
@@ -197,15 +211,17 @@ Before the next manuscript is treated as authoritative:
 5. **Span-rich claims:** anything using dominant-eigenspace concentration stays conditional until aux-B is proved.
 6. **Source provenance:** import and audit the v16/later detailed proofs currently absent from `main`.
 
+Status 2026-09-13: items 1–5 are implemented in the merged manuscript `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` (aperiodicity is derived in Lemma 2.4; Mossé recognizability is imported under primitive + aperiodic; Barge–Diamond, Hollander–Solomyak and Sirvent–Solomyak are cited for their exact statements; mass-balance statements say closed nonproductive; concentration-dependent conclusions are stated as open problems). Item 6 remains pending.
+
 ## Priorities
 
 - **P0:** manuscript/source corrections and v16/later source import.
-- **P1-A:** concentration / aux-B.
+- **P1-A:** the two Level-3 closed-carrier obligations: concentration / aux-B (no strict component with `K2 == 0`) and wedge productivity (no strict component with `K2 != 0`). Proving one does not close Level 3.
 - **P1-B:** G1b-2 renewal finiteness.
 - **P2:** non-unimodular contracting-address design constraint.
-- **P3:** final SCC Producer assembly once G1 + concentration are available.
+- **P3:** final SCC Producer assembly once G1, concentration, and wedge productivity are all available.
 - **P4:** realization/collar completeness as parallel certification.
 - **P5:** final pure-discrete-spectrum bridge audit.
 - **P6:** certificate-producing Mojo experiments without promoting finite evidence to universal theorem.
 
-The shortest honest path to completion is now: close **concentration**, close **G1b-2**, then assemble the finite-graph coincidence argument and audit the final spectral/PDS bridge.
+The shortest honest path to completion is now: close **both Level-3 obligations** (concentration and wedge productivity, i.e. no strict component of any first defect degree), close **G1b-2**, then assemble the finite-graph coincidence argument and audit the final spectral/PDS bridge.
