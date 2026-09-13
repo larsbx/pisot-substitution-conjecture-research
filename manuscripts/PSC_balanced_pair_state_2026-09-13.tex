@@ -684,7 +684,7 @@ Across $\mathcal S$: no run reached the cap; every noncoincident sink is product
 \section{Obstructions, counterexamples, and retired routes}\label{sec:obstructions}
 
 \begin{example}[Cycle exclusion is false; \Status{Finite computation}]\label{ex:flipped}
-For the flipped Tribonacci substitution $1\mapsto21$, $2\mapsto31$, $3\mapsto1$ (PIP, $\chi_M=x^3-x^2-x-1$), $\B_\sigma$ contains the closed recurrent noncoincident SCC $\{(12,21),(13,31),(213,312),(1213,3121)\}$ with a directed cycle of period $3$ on the first three states in which every child taken is the leftmost one, so the cycle displacement vanishes. The component is productive: each inflation produces the coincidence block $(1,1)$. Hence ``no recurrent noncoincident cycle'' and ``noncoincident cycles have nonzero displacement'' are false as general statements, and productivity, not exclusion, is the correct target.
+For the flipped Tribonacci substitution $1\mapsto21$, $2\mapsto31$, $3\mapsto1$ (PIP, $\chi_M=x^3-x^2-x-1$), $\B_\sigma$ contains the closed recurrent noncoincident SCC $\{(12,21),(13,31),(213,312),(1213,3121)\}$ with the directed cycle $(12,21)\to(213,312)\to(1213,3121)\to(12,21)$ of period $3$ in which every child taken is the leftmost one, so the cycle displacement vanishes (the state $(13,31)$ has the single noncoincident child $(12,21)$). The component is productive: each inflation of each of its states produces the coincidence block $(1,1)$. Hence ``no recurrent noncoincident cycle'' and ``noncoincident cycles have nonzero displacement'' are false as general statements, and productivity, not exclusion, is the correct target.
 \end{example}
 
 \begin{example}[Non-Pisot strict component; \Status{Finite computation}]\label{ex:nonpisot}
