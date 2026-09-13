@@ -110,6 +110,13 @@ The later v16/later Galois result reportedly collapses the former three separate
 
 **Wedge dichotomy (manuscript Proposition 5.20, proved).** On a closed nonproductive three-letter SCC the `K2` vectors span either `0` or all of `Lambda^2 Q^3`. So concentration is equivalent to `no strict component with K2 == 0`, span-richness then follows without Galois input, and `span-rich => productive` is equivalent to `no strict component with K2 != 0`. Both halves are open; the rung is not closed, only reformulated.
 
+The degree-three slice now has one exact bounded-corpus theorem: among the
+4,554 image-length-at-most-three PIP substitutions, no strict component has
+`K2=0` and first defect `K3`. This uses the proved signed first-defect
+intertwiner and exact Mojo component diagnostics, not the source-pending Galois
+claim. It is evidence and a finite-domain exclusion, not a new rung in the
+general proof ladder; see `docs/p1a-degree3-partial-theorem.md`.
+
 ## Independence of the gates
 
 Gate A and Gate B are not two formulations of one eigenvalue theorem.

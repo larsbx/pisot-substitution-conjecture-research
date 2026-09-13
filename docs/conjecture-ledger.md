@@ -116,6 +116,15 @@ The later Galois step reportedly removes the older separate subdominant-nonvanis
 
 Both statements remain **OPEN**. Together they are exactly the nonexistence of strict components split by first defect degree, so the spectral route contains no proved implication from wedge data to productivity. The higher-degree sieves constrain the first case without closing it. This does not change the status table above.
 
+**Degree-three partial result (bounded corpus only).** The exact 4,554-member
+image-length-at-most-three corpus contains no strict component with `K2=0` and
+first nonzero defect `K3`. The canonical Mojo computation checks the
+component-level hypotheses and emits any survivor as a replayable countermodel.
+This is a finite-domain theorem, recorded in
+`docs/p1a-degree3-partial-theorem.md`; it does not promote concentration, G1, or
+G1b-2. Its general spectral input is the in-repository first-defect intertwiner,
+not the source-pending Galois step.
+
 ### Independence from G1b-2
 
 Do not conflate the two gates:
