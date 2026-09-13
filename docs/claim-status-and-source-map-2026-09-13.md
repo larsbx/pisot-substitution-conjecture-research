@@ -1,7 +1,7 @@
 # Claim status and source map
 
 **Status date:** 2026-09-13  
-**Repository baseline:** `main@db5b217b6737c369170bb04ae6e3e7f05f638be8`
+**Repository baseline:** `main@e69b4029a08973b97e985d2cf62c71cf3acac6ca`
 
 This is the short authoritative index for deciding whether a mathematical
 statement is proved, imported, computationally certified on a finite domain,
@@ -69,6 +69,10 @@ from bounded contracting components of inflated swap-seed prefixes. Therefore
 the mathematical claim is repository-proved even though the reported
 historical derivation remains unavailable.
 
+### Archive identity and residual v34 warning
+
+The uploaded `PSC_PROJECT_UPLOAD_2026_09_08.tar.gz` has SHA-256 `6fe1831a7701d054b7d726f1810e28f137e3edf162eed2fb56afe7fdfc6aadd4` and adds no source absent from the repository archive. Its `V34_CLOSURE.md` and `DOMINANT_K2_SOURCE_V34.md` retain contradictory unconditional closing language despite correct G1-conditional headlines. Cite the live interpretation in `docs/archive-tarball-audit-2026-09-13.md`; do not promote the contradictory historical rows.
+
 ### Degree-two Galois propagation
 
 The live carrier implication does not depend on recovery of a v16 manuscript.
@@ -133,7 +137,7 @@ obligations, not automatically promoted.
   load-bearing reconstructed arguments.
 - Cite PR and merge identifiers for provenance, not as mathematical proof.
 - Cite the archived certificate only with its seed-specific degree-three scope.
-- Label all 4,554-corpus statements as finite-domain theorems.
+- Label the two named, exhaustively certified 4,554-corpus exclusions as finite-domain theorems. Other observations over that corpus—including overlap productivity and absence of higher first defects—remain finite evidence unless their own completeness contract is proved.
 - Never describe concentration, general wedge productivity, G1b-2, the
   realization bridge, SCC Producer, or PSC as proved.
 - When a status changes, update this map, `docs/conjecture-ledger.md`,
