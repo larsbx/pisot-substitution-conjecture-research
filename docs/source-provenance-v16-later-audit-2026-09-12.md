@@ -58,7 +58,7 @@ The new manuscript `manuscripts/PSC_PROOF_next_source_audit.tex` is derived from
 2. The v34 Galois calculations may be cited only for their exact degree-three seed rational-factor/transitivity statements. The carrier-level degree-two span implication is now sourced instead to the merged manuscript's self-contained wedge dichotomy.
 3. Concentration/aux-B is an open implication from a closed recurrent nonproductive carrier to nonzero dominant wedge projection.
 4. Span-rich/productivity conclusions that use concentration remain explicitly conditional.
-5. The realization/coincidence-rank chain remains a source-pending reformulation under the finiteness hypothesis; a formal BPA cycle, a globally realized component, and finite collar survival are not interchangeable.
+5. The realization/coincidence-rank chain is a **conjectural bridge**, not a source-pending theorem: `docs/source-imports/issue-45/realization-coincidence-rank-audit.md` records seven open obligations G0–G6, none of which a recovered file would close. A formal BPA cycle, a globally realized component, and finite collar survival are not interchangeable.
 6. G1b-1 remains distinct from G1b-2: bounded discrepancy does not imply finite BPA state space.
 7. No source here assumes unimodularity, finite injectivity, or discreteness of `pi_s(Z^A)`.
 

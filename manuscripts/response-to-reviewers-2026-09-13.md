@@ -110,3 +110,22 @@ One further finding on the realization audit; accepted.
 ### Finding 13 (P2)
 
 Accepted. The two requirements were stated in section 2 as (b) and (c) but not carried into the table, so the "with (G0)–(G4) open" conclusion under-counted. They are now (G5) and (G6), both marked open with the note that neither has ever been written down in reachable history, so there is nothing to recover; the downstream summaries say seven obligations G0–G6.
+
+---
+
+## Fifth round (pull request #69)
+
+Two further findings; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 14 | P2 | The limitation paragraph of the discrepancy census called the level profile of the non-unimodular example "still increasing", although the exact computation shows the profile is bounded by the reachable maximum 5 and attains it at level 15 | Accepted. The paragraph now states the sharp fact (a swap walk splits at its zero returns into reachable states, so the level supremum never exceeds the reachable maximum, attained at level 15) and contrasts it with the far larger analytic constant, whose slow convergence is the only thing the second eigenvalue's modulus explains | Computation 6.3, limitation; proof note, section 6 |
+| 15 | P2 | Claim-status rule 5 of the provenance audit still called the realization equivalence source-pending, contradicting the table row | Accepted. Rule 5 now classifies it as a conjectural bridge with the seven open obligations G0–G6 | `docs/source-provenance-v16-later-audit-2026-09-12.md`, rule 5 |
+
+### Finding 14 (P2)
+
+Accepted. The referee's argument is exactly the reduction step of the proof of Theorem 4.4 read in the other direction: the level-`n` supremum of a swap walk is the largest discrepancy among the depth-`n` descendants of the seed, all of which are reachable states, so for a finite automaton the profile is bounded by the maximal reachable discrepancy and, for the example in question, reaches it at level 15. The earlier sentence conflated the sharp value with the slow convergence of the analytic bound; they are now separated.
+
+### Finding 15 (P2)
+
+Accepted; rule 5 is rewritten to match the table and the audit note.

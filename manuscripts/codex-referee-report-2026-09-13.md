@@ -133,3 +133,26 @@ No finding contests Theorem 4.4, Lemmas 4.5–4.8, or Proposition 4.11 of the ma
 > Section 2 explicitly identifies transfer of non-coincidence and recurrence as separate unproved requirements (lines 30–44), but the supposedly complete G0–G4 inventory contains neither: G1 covers reachability and G2 only window existence/density. Consequently the conclusion that G0–G4 are the outstanding gaps drops two obligations needed for the forward implication and leaves downstream summaries with an inconsistent gap count. Add explicit entries for requirements (b) and (c), then synchronize the README and provenance summary.
 
 No other findings were posted in the fourth round.
+
+---
+
+# Fifth round: re-review of the round-four revision (pull request #69)
+
+**Reviewed commit:** `31516caded547a255277c08598f9b4f58ac8416e`.
+**Review posted:** 2026-09-13T12:49:24Z, one review with two inline comments. Reproduced verbatim.
+
+## Finding 14 (P2) — `PSC_balanced_pair_state_2026-09-13.tex`, line 705
+
+> **Correct τ's already-attained profile maximum**
+>
+> The profile is not merely “still increasing” with an unknown attainment point: `test_tau_profile_and_reachable_maximum` builds τ's complete uncapped automaton and establishes that every reachable state's discrepancy is at most 5, while the displayed profile reaches 5 at level 15. Because every inflated swap walk decomposes at zero returns into reachable states and resets to zero between blocks, its supremum can never exceed that reachable maximum at later levels. This sentence therefore contradicts the exact computation and should state that the profile attains 5 by level 15, while distinguishing that sharp value from the much larger analytic `D_sigma`.
+>
+> AGENTS.md reference: AGENTS.md:L55-L55
+
+## Finding 15 (P2) — `docs/source-provenance-v16-later-audit-2026-09-12.md`, line 29
+
+> **Synchronize the remaining realization status rule**
+>
+> Fresh evidence after `31516ca` is the unchanged claim-status rule at line 61 of this same audit: the new table declares the realization equivalence “NOT SOURCE-PENDING,” while that rule still says it “remains a source-pending reformulation.” These mutually exclusive classifications leave the provenance policy ambiguous for downstream ledgers and manuscript updates; update rule 5 to classify it as the conjectural bridge established by the new audit.
+
+No other findings were posted in the fifth round.

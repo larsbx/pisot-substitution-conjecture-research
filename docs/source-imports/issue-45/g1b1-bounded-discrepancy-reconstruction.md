@@ -218,12 +218,17 @@ The value `14` agrees with the per-state imbalance bound reported in the
 | flipped Tribonacci `1->21, 2->31, 3->1` | `1` at every level |
 | `tau: 1->2, 2->132, 3->112` | `1,1,2,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5` |
 
-For `tau` the second eigenvalue has modulus `sqrt(2/beta) ~ 0.94`, so the
-series of Lemma 1 converges slowly and the profile is still climbing at level
-`18`; the theorem asserts the limit is finite, not that it is reached early.
-Floating-point evaluation of the constants (not a certificate) gives
-`C_sigma ~ 6.6`, `D_sigma ~ 105` for Tribonacci and `C_sigma ~ 48`,
-`D_sigma ~ 763` for `tau`, against observed maxima `1` and `5`.
+A swap walk splits at its zero returns into reachable states (Section 4), so
+the level-`n` supremum is the largest discrepancy of a depth-`n` descendant
+and can never exceed the maximum over the automaton. For `tau`, whose
+automaton is finite with maximal reachable discrepancy `5`, the profile
+attains `5` at level `15` and stays at or below `5` forever; the exact test
+`test_tau_profile_and_reachable_maximum` pins both facts. The sharp value is
+far below the analytic constant: floating-point evaluation (not a
+certificate) gives `C_sigma ~ 6.6`, `D_sigma ~ 105` for Tribonacci and
+`C_sigma ~ 48`, `D_sigma ~ 763` for `tau`, against sharp maxima `1` and `5`;
+for `tau` the series of Lemma 1 converges slowly because the second
+eigenvalue has modulus `sqrt(2/beta) ~ 0.94`.
 
 The canonical exact implementation is the Mojo kernel
 `mojo/psc/swap_discrepancy.mojo` with census driver
