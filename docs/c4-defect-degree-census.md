@@ -39,7 +39,10 @@ Thus the live degree-3 phenomenon in this finite corpus is **not** the length-7 
 
 ## 3. Relabeling/reversal normal form
 
-`scripts/analyze_degree3_catalog.py` quotients the exact catalogue by alphabet relabeling and checks reversal symmetry.
+The Mojo catalogue performs the theorem-relevant exact checks (centralizer
+membership, two-step coincidence leakage, and strict-component detection).
+`scripts/analyze_degree3_catalog.py` remains an independent Python oracle and
+adds the relabeling and reversal classification.
 
 There are exactly **four normalized state relabeling classes** (Mojo uses zero-based letters):
 
@@ -108,3 +111,32 @@ The general signed first-defect theorem remains necessary because degree four ex
 Moreover, every live degree-3 occurrence is explicitly excluded from the strict closed-counterexample normal form by the centralizer test and visibly leaks to coincidence. Thus the finite corpus's only large unresolved *structural* population is degree 2.
 
 This does **not** prove that a general PIP BPA has no degree-4 state, that every degree-3 state belongs to the four classes above, or that degree-2 recurrent SCCs must leak. Those remain general proof obligations. It only says the statements above hold exhaustively in the stated 4,554-substitution corpus.
+
+## 7. Finite-corpus degree-three exclusion theorem
+
+**Proposition (bounded PIP corpus).** Among the 4,554 primitive ternary
+substitutions with irreducible Pisot characteristic polynomial and nonempty
+images of length at most three, no fully constructed reachable balanced-pair
+automaton contains a strict recurrent component whose first nonzero
+scattered-subword defect has degree three.
+
+This is an exhaustive finite theorem with an explicit domain, not a theorem for
+arbitrary PIP substitutions and not a finiteness theorem for balanced-pair
+automata. The computation fails closed if the state cap is reached. For every
+candidate recurrent component it checks directly that every noncoincident child
+stays in the component, that no coincidence child occurs, that `K2` vanishes on
+every state, and that `K3` is nonzero somewhere.
+
+If a future corpus or implementation change produces a survivor,
+`mojo/degree3_catalog.mojo` prints a `D3_COUNTERMODEL_BEGIN` record followed by
+every exact state word and child edge before CI rejects the changed zero-count.
+This makes the obstruction replayable and prevents the regression gate from
+discarding counterevidence.
+
+The proof uses neither G1b-2 nor the source-pending Galois-propagation claim.
+The general input is only the proved first-defect result: a hypothetical strict
+component with first defect degree three must have its `K3` image in the
+determinant eigenspace, equivalently its `Theta(K3)` matrices commute with the
+incidence matrix. In the bounded corpus all 24 reachable degree-three states
+fail this necessary condition and, independently, all reach a coincidence in
+at most two inflations.
