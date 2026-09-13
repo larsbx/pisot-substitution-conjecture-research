@@ -28,7 +28,17 @@ every graph vertex has a path to an overlap-coincidence; finiteness of the
 graph is automatic in their Pisot setting.
 
 For a prefix `W` of a substitution fixed point they take
-`x(W)` to be its geometric length. Their Section 5 identifies the
+`x(W)` to be its geometric length. A standing substitution need not itself
+have a one-sided fixed point: its first-letter map may have a nontrivial
+cycle. Choose a letter on such a cycle and a multiple `q` of the cycle length;
+then `sigma^q` is prolongable on that letter and has a one-sided fixed point
+`u`. Passing to `sigma^q` does not change the substitution tiling hull or its
+translation spectrum. It also does not change overlap productivity: a
+coincidence reached after `k` one-step inflations persists, so further
+inflation reaches a coincidence at a multiple of `q`, while every
+`sigma^q` path is already a `sigma` path.
+
+For this powered presentation, Sirvent--Solomyak Section 5 identifies the
 balanced-pair algorithm for the infinite pair `(u, shift^{|W|}u)` with
 `oa-x(W)`. This is not the same initial object as a finite swapped patch.
 Legality of `ab` alone does not identify the two.
@@ -73,12 +83,13 @@ the inflated finite swapped patches.
 
 The weakest sufficient statement is the following.
 
-**Seed-to-OA productivity transfer.** For every standing PIP substitution
-there exist a legal swapped seed `(ab,ba)` and a fixed-point prefix `W`
+**Seed-to-OA productivity transfer.** For every standing PIP substitution,
+choose a prolongable power `tau = sigma^q` as above. There exist a legal
+swapped seed `(ab,ba)` for `tau` and a prefix `W` of the resulting fixed point
 such that
 
 ```text
-every overlap reachable from (ab,ba) is productive
+every tau-overlap reachable from (ab,ba) is productive
     =>
 every vertex of G_O(T,x(W)) is productive.
 ```
