@@ -1,6 +1,6 @@
 # P1-B — balanced-pair to overlap realization bridge
 
-**Status:** theorem-facing program and exact finite diagnostic for the open G1b-2 gate. *Update 2026-09-13:* item 5 below (finiteness of the seed-patch overlap graph) is now an unconditional theorem, proved from bounded discrepancy without finite-local-complexity or Meyer hypotheses, and the corpus census shows the cap never binds; see `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md` (manuscript Theorem 4.22). Items 1–4 (the realization dictionary) remain open. This note does **not** identify the repository seed-patch overlap graph with the complete overlap graph of the literature, does not prove relative density of simultaneous boundaries, and does not prove G1b-2.
+**Status:** completed local realization interface plus one open global coverage bridge. *Update 2026-09-13:* `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md` proves the seed-patch overlap graph finite (Theorem 2.1 / manuscript Theorem 4.22), proves the path-valued realization, cut, and coincidence dictionary (Lemmas 1.1, 3.1, 3.2 and Theorem 4.1), and supplies the exact finite census. The remaining obligation is not a local dictionary lemma: it is to transfer productivity from the finite swapped-patch graph to every overlap class in a complete literature overlap algorithm for one fixed translation. This note does **not** prove that coverage transfer, G1b-2, overlap productivity, or PDS. See `docs/seed-patch-to-literature-overlap-audit-2026-09-13.md`.
 
 ## 1. Why this route is being tested
 
@@ -164,15 +164,15 @@ covering the common geometric interval between its two simultaneous boundaries.
 
 This corrects an overstrong possible interpretation of the cross-program audit: the desired correspondence is not a graph isomorphism between BPA vertices and overlap vertices.
 
-The theorem-facing commutative diagram should instead establish:
+The local commutative diagram is now proved:
 
-1. **realization:** every realizable reduced balanced pair determines such a finite overlap chain;
-2. **inflation compatibility:** inflating the balanced pair and refining its overlap chain give the same child geometry;
-3. **cut compatibility:** common Parikh-prefix returns are exactly the simultaneous-boundary cuts of that realized chain;
-4. **coincidence compatibility:** a balanced-pair coincidence corresponds to a full-tile coincidence in the chain;
-5. **finite-type consequence:** under the exact literature hypotheses, the relevant realized overlap classes are finite, and a uniform bound on chain length between simultaneous boundaries yields G1b-2.
+1. **realization:** each occurring reduced balanced pair determines a finite ordered overlap chain;
+2. **inflation compatibility:** substitution of the pair and refinement of its overlap chain have the same children;
+3. **cut compatibility:** common Parikh-prefix returns are exactly simultaneous-boundary cuts;
+4. **coincidence compatibility:** a letter coincidence is exactly a common full tile;
+5. **finite seed type:** all overlap types occurring in inflated swapped patches belong to an explicitly bounded finite set.
 
-Items 1--5 are theorem targets. The executable graph tests only finite instances of the local geometry.
+These facts are Lemmas 1.1, 3.1, 3.2 and Theorems 2.1, 4.1 of the overlap note. They do not make the finite seed-patch graph the complete overlap graph of Sirvent--Solomyak. The exact remaining theorem target is the **coverage transfer** stated in `docs/seed-patch-to-literature-overlap-audit-2026-09-13.md`: for one prefix translation `x(W)`, productivity of the relevant seed-patch vertices must force productivity of every class in `G_O(T,x(W))`. Once that is proved, Sirvent--Solomyak Theorem 4.1(b) gives PDS. A uniform bound on chains between simultaneous boundaries is a separate, stronger G1b-2 target.
 
 ## 5. Relation to the affine pump program
 
@@ -226,12 +226,6 @@ These three finite counts are pinned in regression coverage. They apply only to 
 
 ## 7. Theorem boundary
 
-A clean finite corpus would not prove any of the following:
+A clean finite corpus does not prove the seed-to-literature coverage transfer, uniform relative density of simultaneous boundaries, bounded overlap-chain length, G1b-2, G1, general overlap productivity, or PDS.
 
-- that the seed-patch graph equals the complete realized-overlap graph;
-- that every formal BPA state is globally realizable;
-- that simultaneous boundaries are relatively dense in every relevant fibre pair;
-- that overlap-chain lengths are uniformly bounded;
-- G1b-2 or G1.
-
-The current objective is to turn the realization gap into an exact, falsifiable geometric interface in which rational interval boxes are first-class finite certificates and exact algebraic queries settle only the unresolved boundary cases. G1b-2 remains open.
+The local realization interface is complete. The next mathematical question is now singular and falsifiable: can a nonproductive class in the complete graph `G_O(T,x(W))` exist while every overlap generated by the finite swapped patch is productive? Either a proof excludes this, or an exact realized class supplies a countermodel to the proposed transfer. The finite Mojo graph remains a fail-closed diagnostic; it is not a certificate for the complete literature graph.

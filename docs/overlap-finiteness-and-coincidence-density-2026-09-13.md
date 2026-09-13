@@ -258,12 +258,14 @@ outside the corpus.
    > reachable from the seed overlaps of `(ab, ba)`) imply pure discrete
    > spectrum, without assuming that `B_sigma` is finite?
 
-   The natural sources are the overlap-coincidence criterion of Solomyak
-   (`Solomyak97`, with Akiyama–Lee `AL`) and the coincidence-density
-   formulations of Sirvent–Solomyak `SS` and Barge–Kwapisz; the missing step
-   is the identification of the seed-patch overlaps with realized overlaps of
-   two tilings (items 1–4 of `docs/p1b-overlap-realization-bridge.md`), which
-   this note does not supply. If Question 6.1 has a positive answer then PDS
+   The exact source audit is
+   `docs/seed-patch-to-literature-overlap-audit-2026-09-13.md`. The local
+   path-valued realization, inflation, cut, and coincidence dictionary is
+   supplied by Lemmas 1.1, 3.1, 3.2 and this theorem. The remaining step is
+   global coverage: productivity in the finite swapped-patch graph must force
+   productivity of every overlap class in the complete Sirvent–Solomyak graph
+   `G_O(T,x(W))` for one prefix translation. This note does not supply that
+   transfer. If Question 6.1 has a positive answer then PDS
    follows from Level 3' for one legal seed with no finiteness hypothesis.
    That would not settle G1: the converse of Imported Theorem 2.16 (PDS
    implies termination for a legal seed) is only recorded in the literature
