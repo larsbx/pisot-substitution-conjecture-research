@@ -16,7 +16,7 @@ The proof is not complete. The remaining work separates into two independent obl
 | Gate | Status | Load-bearing statement |
 | --- | --- | --- |
 | **Level 2 / G1** | **OPEN** | G1b-2 renewal finiteness |
-| **Level 3 / SCC Producer under G1** | **OPEN only at concentration in the strongest current spectral route** | concentration / aux-B |
+| **Level 3 / SCC Producer under G1** | **OPEN at two independent obligations** in the strongest current spectral route | concentration / aux-B (`K2 == 0` case) **and** wedge productivity (`K2 != 0` case); see the 2026-09-13 clarification below |
 
 Unique decodability is already a theorem from full incidence rank and is not an independent hypothesis.
 
@@ -201,7 +201,7 @@ Status 2026-09-13: items 1–5 are implemented in the merged manuscript `manuscr
 ## Priorities
 
 - **P0:** manuscript/source corrections and v16/later source import.
-- **P1-A:** concentration / aux-B.
+- **P1-A:** the two Level-3 closed-carrier obligations: concentration / aux-B (no strict component with `K2 == 0`) and wedge productivity (no strict component with `K2 != 0`). Proving one does not close Level 3.
 - **P1-B:** G1b-2 renewal finiteness.
 - **P2:** non-unimodular contracting-address design constraint.
 - **P3:** final SCC Producer assembly once G1 + concentration are available.
@@ -209,4 +209,4 @@ Status 2026-09-13: items 1–5 are implemented in the merged manuscript `manuscr
 - **P5:** final pure-discrete-spectrum bridge audit.
 - **P6:** certificate-producing Mojo experiments without promoting finite evidence to universal theorem.
 
-The shortest honest path to completion is now: close **concentration**, close **G1b-2**, then assemble the finite-graph coincidence argument and audit the final spectral/PDS bridge.
+The shortest honest path to completion is now: close **both Level-3 obligations** (concentration and wedge productivity, i.e. no strict component of any first defect degree), close **G1b-2**, then assemble the finite-graph coincidence argument and audit the final spectral/PDS bridge.

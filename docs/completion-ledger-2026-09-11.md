@@ -11,7 +11,7 @@ There are two genuinely independent proof gates.
 | Gate | Status | What remains |
 | --- | --- | --- |
 | Level 2 / G1: finiteness of the balanced-pair automaton | **OPEN** | G1b-2 renewal finiteness |
-| Level 3 / SCC Producer | **CLOSED MODULO one concentration lemma** in the strongest current attack | show dominant wedge growth concentrates in a closed recurrent carrier; then the Galois/span-rich machinery applies |
+| Level 3 / SCC Producer | **CLOSED MODULO one concentration lemma** in the strongest current attack (*superseded 2026-09-13*: the merged manuscript's wedge dichotomy shows the route has two independent open obligations, concentration for the `K2 == 0` case and wedge productivity for the `K2 != 0` case; see `docs/conjecture-ledger.md`) | show dominant wedge growth concentrates in a closed recurrent carrier; then the Galois/span-rich machinery applies |
 
 The important correction from earlier versions: unique decodability (UD) is no longer an open issue, but **UD does not prove Level-2 finiteness**. The former padding argument silently crossed that gap. The v16 track explicitly retracts that inference.
 
