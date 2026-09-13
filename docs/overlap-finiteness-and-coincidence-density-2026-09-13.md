@@ -201,6 +201,20 @@ children, the child-count matrix
 `rho(N_S) = beta`, and `N_S V_S = V_S M^T` for the matrix `V_S` with rows
 `v(O)^T`. This is the overlap analogue of the manuscript's Theorem 5.2.
 
+**Corollary 4.2' (full rank on closed overlap sets).** Let `S` be a nonempty
+set of non-coincidence overlaps closed under children. Then the row space of
+`V_S` is an `M`-invariant rational subspace (each `M v(O)` is a sum of rows),
+nonzero because `lambda(O) > 0`; irreducibility of `chi_M` forces it to be
+`Q^d`. Hence `rank V_S = d`, `|S| >= d`, and `spec(M) subset of spec(N_S)`:
+every Galois conjugate of `beta` is an eigenvalue of the nonnegative integer
+matrix `N_S`. This is the overlap analogue of the manuscript's Theorem 5.2
+(Parikh intertwiner) and, like it, gives no contradiction by itself. (My
+earlier suggestion that a closed nonproductive set forces a rank-*deficient*
+`V_S` was wrong for exactly this reason.) Boundary synchronization also
+transfers: an overlap `(c, c', 0)` has `(sigma_+^m(c), sigma_+^m(c'), 0)` among
+its depth-`m` descendants, so it is productive whenever `(c, c')` is
+`sigma_+`-synchronizing, and symmetrically for right-aligned overlaps.
+
 **Corollary 4.3 (sink reduction on overlaps).** Since `O_sigma` is finite,
 some overlap is nonproductive iff `O_sigma` contains a closed nonproductive
 strongly connected component (the manuscript's Theorem 5.1 applied verbatim
@@ -221,8 +235,12 @@ certified interval refinement):
 | largest seed-patch overlap graph | 2,640 vertices |
 | total vertices over the corpus | 1,118,850 |
 | specimens with a nonproductive overlap | 0 |
+| largest first-coincidence depth over all vertices | 18 |
+| specimens by maximal first-coincidence depth `3..18` | 402, 828, 696, 648, 444, 396, 276, 300, 168, 84, 36, 24, 108, 84, 36, 24 |
 
-By Theorem 4.1(5) and the automaton census (every `B_sigma` in the corpus is
+The first-coincidence depth is the uniform `K` of Theorem 4.1(3) computed
+exactly per specimen; it is the quantity a uniform local-coincidence theorem
+would have to bound. By Theorem 4.1(5) and the automaton census (every `B_sigma` in the corpus is
 finite and productive), `delta(s) = 1` for every seed of every specimen, so
 by Theorem 4.1(3) every overlap must be productive; the census confirms this
 independently. Exact common fractions (common tiles over all tiles, a
@@ -273,6 +291,45 @@ outside the corpus.
    manuscript's Open Problem 4.24). The bridge would change the role of G1
    in the route to PDS, not its status.
 
-In the manuscript these results are Theorem 4.22 (finiteness), Lemmas 5.30–5.31, Theorem 5.32 (coincidence density), Corollary 5.33, and Open Problems 5.34 (overlap productivity) and 5.35 (density bridge).
+In the manuscript these results are Theorem 4.22 (finiteness), Lemmas 5.30–5.31, Theorem 5.32 (coincidence density), Corollary 5.33, Corollary 5.34 (full rank on closed overlap sets), and Open Problems 5.35 (overlap productivity) and 5.36 (density bridge).
+
+## 7. The transfer as a type-inclusion question (exploratory data)
+
+`docs/seed-patch-to-literature-overlap-audit-2026-09-13.md` reduces the
+density bridge to one transfer: for a prolongable power `tau = sigma^q` with
+one-sided fixed point `u` and a prefix `W` of `u`, productivity of every
+overlap of the Sirvent–Solomyak family `(T, T - beta^{qn} g(W))`, `n >= 0`
+(their graph `G_O(T, x(W))`), gives PDS by their Theorem 4.1(b). Because the
+children of an overlap depend only on its type, the transfer holds for `W`
+whenever
+
+```text
+every non-coincidence type of G_O(T, x(W)) is a vertex type of O_sigma.   (TI_W)
+```
+
+`(TI_W)` is a finite question for each `sigma` and `W`: both type sets are
+finite (Theorem 2.1 for `O_sigma`; `G_O` is finite in the Pisot setting).
+
+**Exploratory computation (not a certificate; Python only;
+`scripts/oa_type_inclusion_explore.py`).** The level-0 types of
+`(u, S^{|W|} u)` were read off a prefix of `u` of length at least 6,000
+(an uncertified factor set), closed under exact inflation, and compared with
+the vertex types of `O_sigma`, for `W = u[:k]`, `k = 1, ..., 8`, on every
+tenth specimen of the corpus (456 specimens), with `u` the fixed point of the
+least prolongable power at the least letter on a first-letter cycle.
+
+| least `k` with `(TI_W)` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | none up to 8 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| specimens | 256 | 109 | 41 | 8 | 12 | 6 | 1 | 1 | 22 |
+
+Every `G_O` type encountered was productive (as it must be on this corpus,
+where PDS is certified by termination). For Tribonacci `(TI_W)` holds with
+`W = 1` and the two type sets coincide (29 types); for the non-unimodular
+example `tau`, `W = 1` misses two non-coincidence types and `W = 13` gives
+inclusion. The 22 failures show that `(TI_W)` with a short prefix of one
+fixed point is not a uniform mechanism; a proof of the transfer will need
+either longer prefixes, other fixed points, or the collar/occurrence
+argument described in the audit. No conclusion about the bridge for
+substitutions outside the corpus follows from this table.
 
 Nothing in this note proves Level 3', G1, or PSC.

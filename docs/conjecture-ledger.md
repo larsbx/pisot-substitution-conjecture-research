@@ -176,7 +176,7 @@ No converse is claimed, and synchronization of every recurrent SCC is not requir
 
 **Theorem (repository-proved).** The seed-patch overlap graph `O_sigma` of the swap pairs is finite for every primitive Pisot-spectrum substitution, with an explicit bound from bounded discrepancy (manuscript Theorem 4.22; `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md`). Productivity of every vertex of `O_sigma` is equivalent to coincidence density one for every seed and implies productivity of every reachable state of `B_sigma` with no finiteness hypothesis (Theorem 5.32); under G1 it is equivalent to SCC Producer.
 
-**Open.** Overlap productivity itself (Open Problem 5.34), and the density bridge (Open Problem 5.35: does coincidence density one for a legal seed give PDS without finiteness?). A positive bridge would remove G1 from the route to PDS; it would not prove G1, which also needs the seedwise bridge (Open Problem 4.24). Exact census over the 4,554 corpus: all overlap graphs finite (largest 2,640 vertices), all 1,118,850 vertices productive; finite evidence only.
+**Open.** Overlap productivity itself (Open Problem 5.35), and the density bridge (Open Problem 5.36: does coincidence density one for a legal seed give PDS without finiteness?). A positive bridge would remove G1 from the route to PDS; it would not prove G1, which also needs the seedwise bridge (Open Problem 4.24). Exact census over the 4,554 corpus: all overlap graphs finite (largest 2,640 vertices), all 1,118,850 vertices productive; finite evidence only.
 
 ## Realization / MEF route
 

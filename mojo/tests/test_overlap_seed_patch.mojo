@@ -5,6 +5,7 @@ from psc.bpa import build, nonproductive_states, substitution_incidence
 from psc.mat3 import Mat3
 from psc.overlap_seed_patch import (
     build_seed_overlap_graph,
+    first_coincidence_depths,
     build_seed_overlap_tables,
     nonproductive_overlap_states,
     seed_overlap_states,
@@ -103,6 +104,22 @@ def test_large_incidence_is_rejected_before_unchecked_pip_arithmetic() raises:
     assert_true(caught)
 
 
+def test_first_coincidence_depths_pin_exact_values() raises:
+    var graph = build_seed_overlap_graph(determinant_two_sigma(), 20000)
+    var depths = first_coincidence_depths(graph)
+    assert_equal(len(depths), 628)
+    var worst = 0
+    var zeros = 0
+    for i in range(len(depths)):
+        assert_true(depths[i] >= 0)
+        if depths[i] > worst:
+            worst = depths[i]
+        if depths[i] == 0:
+            zeros += 1
+    assert_equal(worst, 16)
+    assert_equal(zeros, 2)
+
+
 def main() raises:
     test_perron_order_is_exact_on_basic_elements()
     print("[PASS] test_perron_order_is_exact_on_basic_elements")
@@ -114,4 +131,6 @@ def main() raises:
     print("[PASS] test_non_pip_substitution_is_rejected")
     test_large_incidence_is_rejected_before_unchecked_pip_arithmetic()
     print("[PASS] test_large_incidence_is_rejected_before_unchecked_pip_arithmetic")
-    print("5 seed-patch-overlap Mojo tests passed.")
+    test_first_coincidence_depths_pin_exact_values()
+    print("[PASS] test_first_coincidence_depths_pin_exact_values")
+    print("6 seed-patch-overlap Mojo tests passed.")

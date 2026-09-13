@@ -56,3 +56,12 @@ def test_overlap_graph_oracle_reproduces_canonical_counts():
     assert g.nonproductive() == []
     t = OverlapGraph(EXAMPLES["tribonacci"])
     assert len(t.states) == 29 and t.nonproductive() == []
+
+
+def test_first_coincidence_depths_pin_exact_values():
+    from psc_research.overlap_graph import OverlapGraph, first_coincidence_depths
+
+    t = first_coincidence_depths(OverlapGraph(EXAMPLES["tribonacci"]))
+    assert min(t) == 0 and max(t) == 4 and len(t) == 29
+    d = first_coincidence_depths(OverlapGraph(TAU))
+    assert min(d) == 0 and max(d) == 16 and len(d) == 628
