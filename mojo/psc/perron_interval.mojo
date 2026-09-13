@@ -1,11 +1,11 @@
 """Rational-interval enclosure layer for the cubic Perron embedding.
 
-This module is intentionally separate from the Sturm--Tarski oracle.  It first
+This module is intentionally separate from the Sturm--Tarski oracle. It first
 isolates the distinguished Perron root inside a checked rational interval, then
-uses the natural interval extension of ``a0 + a1 X + a2 X^2``.  A strict sign
-is returned only when the enclosure excludes zero.  Ambiguous or unsafe
-interval work falls back to ``sign_at_perron``; it is never interpreted as a
-zero or a negative mathematical result.
+uses the natural interval extension of ``a0 + a1 X + a2 X^2``. A strict sign
+is returned only when the enclosure excludes zero. Ambiguous or unsafe interval
+work falls back to ``sign_at_perron``; it is never interpreted as a zero or a
+negative mathematical result.
 """
 
 from psc.perron_field3 import CubicElt, PerronField3, sign_at_perron
@@ -64,7 +64,7 @@ def perron_root_interval(
 
     The initial bracket is located between consecutive integers in ``(1,B]``.
     It is then bisected a bounded number of times with checked rational
-    arithmetic.  Overflow raises and therefore cannot silently corrupt the box.
+    arithmetic. Overflow raises and therefore cannot silently corrupt the box.
     """
     if refinements < 0:
         raise Error("Perron interval refinement count must be nonnegative")
@@ -136,13 +136,12 @@ def perron_sign_decision(
 ) raises -> PerronIntervalDecision:
     """Interval-first sign decision with exact Sturm--Tarski fallback.
 
-    Interval arithmetic is an accelerator/certificate layer.  If it is
-    ambiguous or cannot be represented safely, the independent algebraic oracle
-    decides the sign.  Therefore interval failure is never mathematical
-    evidence.
+    ``interval_certified`` means specifically that a strict nonzero sign was
+    proved because the entire rational enclosure excluded zero. Symbolic zero
+    is exact but is not a strict interval sign certificate.
     """
     if x.is_zero():
-        return PerronIntervalDecision(0, True)
+        return PerronIntervalDecision(0, False)
     var boxed_sign = 0
     try:
         boxed_sign = interval_sign_at_perron(field, x, refinements)
