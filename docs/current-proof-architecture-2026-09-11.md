@@ -1,6 +1,6 @@
 # Current PSC proof architecture — 2026-09-11
 
-**Status:** canonical project-status ledger for the current research program. This file records the present proof architecture and priorities. Where a theorem-grade result is known from the current v16/later research track but its detailed proof source is not yet present on `main`, that provenance gap is stated explicitly rather than hidden. The dated weekly ledger `docs/completion-ledger-2026-09-11.md` carries the full evidence tables and a per-item repository cross-check.
+**Status:** canonical project-status ledger for the current research program. **Update 2026-09-13:** the merged manuscript `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` is the authoritative status-tagged prose account; its Proposition 5.20 (wedge dichotomy) shows that the concentration step below is equivalent to excluding strict components with `K2 == 0`, and that the final spectral step is equivalent to excluding those with `K2 != 0`; both remain open (see `docs/conjecture-ledger.md`). This file records the present proof architecture and priorities. Where a theorem-grade result is known from the current v16/later research track but its detailed proof source is not yet present on `main`, that provenance gap is stated explicitly rather than hidden. The dated weekly ledger `docs/completion-ledger-2026-09-11.md` carries the full evidence tables and a per-item repository cross-check.
 
 ## Executive status
 
