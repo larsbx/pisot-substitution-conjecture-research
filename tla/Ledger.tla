@@ -53,7 +53,6 @@ ResultSet == {
     "InterBlockCancellation",
     "DominantK2Source",
     "LoadBearingSCC",
-    "QuotientTransfer",
 
     \* --- live graph / C3-C4 reductions ----------------------------------
     "SinkSCCReduction",
@@ -129,7 +128,6 @@ RequiresDef == [r \in ResultSet |->
       [] r = "InterBlockCancellation"   -> {}
       [] r = "DominantK2Source"         -> {}
       [] r = "LoadBearingSCC"           -> {"G1", "DominantK2Source", "InterBlockCancellation"}
-      [] r = "QuotientTransfer"         -> {"SpectralBlackBox"}
 
       (* Conditional-on-FCS structural theorems carry that premise inside
          their mathematical statement; they do not require global G1 here. *)
@@ -207,7 +205,6 @@ ProvedDef == {
     "WedgeBound", "PhiSemisimplicity", "ThetaIntertwining", "SeedCentralizer",
     "Target1", "DominantCubicCapture", "SpectralBlackBox",
     "InterBlockCancellation", "DominantK2Source", "LoadBearingSCC",
-    "QuotientTransfer",
 
     "SinkSCCReduction", "C3Locality", "EndpointCore", "GlobalEndpointSync",
     "SignatureReduction", "ParikhIntertwiner", "OrientationMonodromy",
