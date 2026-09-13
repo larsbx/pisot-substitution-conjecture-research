@@ -117,6 +117,13 @@ intertwiner and exact Mojo component diagnostics, not the source-pending Galois
 claim. It is evidence and a finite-domain exclusion, not a new rung in the
 general proof ladder; see `docs/p1a-degree3-partial-theorem.md`.
 
+The complementary bounded-corpus computation finds no closed nonproductive
+recurrent component with nonzero `K2`. Its exact Mojo certificate fails closed
+on capped automata and retains any survivor as a replayable state/edge record.
+This proves the degree-two wedge-productivity exclusion only for the same
+4,554-member corpus; it does not close the general `K2 != 0` obligation. See
+`docs/p1a-degree2-wedge-productivity.md`.
+
 ## Independence of the gates
 
 Gate A and Gate B are not two formulations of one eigenvalue theorem.
