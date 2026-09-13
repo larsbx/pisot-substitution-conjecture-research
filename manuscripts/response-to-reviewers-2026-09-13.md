@@ -129,3 +129,9 @@ Accepted. The referee's argument is exactly the reduction step of the proof of T
 ### Finding 15 (P2)
 
 Accepted; rule 5 is rewritten to match the table and the audit note.
+
+---
+
+## Sixth round (pull request #69)
+
+The referee re-reviewed the revised head and posted no findings. Findings 1–15 across the six rounds are all accepted and addressed; the review record above is complete for this revision.

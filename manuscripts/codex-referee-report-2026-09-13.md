@@ -156,3 +156,14 @@ No other findings were posted in the fourth round.
 > Fresh evidence after `31516ca` is the unchanged claim-status rule at line 61 of this same audit: the new table declares the realization equivalence “NOT SOURCE-PENDING,” while that rule still says it “remains a source-pending reformulation.” These mutually exclusive classifications leave the provenance policy ambiguous for downstream ledgers and manuscript updates; update rule 5 to classify it as the conjectural bridge established by the new audit.
 
 No other findings were posted in the fifth round.
+
+---
+
+# Sixth round: re-review of the round-five revision (pull request #69)
+
+**Reviewed commit:** `96af25700158e65c736be1d35d431a3ebe228540`.
+**Review posted:** 2026-09-13T12:55:33Z. Reproduced verbatim.
+
+> Codex Review: Didn't find any major issues. Can't wait for the next one!
+
+No findings were posted in the sixth round.
