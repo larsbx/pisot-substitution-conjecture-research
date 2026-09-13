@@ -293,4 +293,43 @@ outside the corpus.
 
 In the manuscript these results are Theorem 4.22 (finiteness), Lemmas 5.30–5.31, Theorem 5.32 (coincidence density), Corollary 5.33, Corollary 5.34 (full rank on closed overlap sets), and Open Problems 5.35 (overlap productivity) and 5.36 (density bridge).
 
+## 7. The transfer as a type-inclusion question (exploratory data)
+
+`docs/seed-patch-to-literature-overlap-audit-2026-09-13.md` reduces the
+density bridge to one transfer: for a prolongable power `tau = sigma^q` with
+one-sided fixed point `u` and a prefix `W` of `u`, productivity of every
+overlap of the Sirvent–Solomyak family `(T, T - beta^{qn} g(W))`, `n >= 0`
+(their graph `G_O(T, x(W))`), gives PDS by their Theorem 4.1(b). Because the
+children of an overlap depend only on its type, the transfer holds for `W`
+whenever
+
+```text
+every non-coincidence type of G_O(T, x(W)) is a vertex type of O_sigma.   (TI_W)
+```
+
+`(TI_W)` is a finite question for each `sigma` and `W`: both type sets are
+finite (Theorem 2.1 for `O_sigma`; `G_O` is finite in the Pisot setting).
+
+**Exploratory computation (not a certificate; Python only;
+`scripts/oa_type_inclusion_explore.py`).** The level-0 types of
+`(u, S^{|W|} u)` were read off a prefix of `u` of length at least 6,000
+(an uncertified factor set), closed under exact inflation, and compared with
+the vertex types of `O_sigma`, for `W = u[:k]`, `k = 1, ..., 8`, on every
+tenth specimen of the corpus (456 specimens), with `u` the fixed point of the
+least prolongable power at the least letter on a first-letter cycle.
+
+| least `k` with `(TI_W)` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | none up to 8 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| specimens | 256 | 109 | 41 | 8 | 12 | 6 | 1 | 1 | 22 |
+
+Every `G_O` type encountered was productive (as it must be on this corpus,
+where PDS is certified by termination). For Tribonacci `(TI_W)` holds with
+`W = 1` and the two type sets coincide (29 types); for the non-unimodular
+example `tau`, `W = 1` misses two non-coincidence types and `W = 13` gives
+inclusion. The 22 failures show that `(TI_W)` with a short prefix of one
+fixed point is not a uniform mechanism; a proof of the transfer will need
+either longer prefixes, other fixed points, or the collar/occurrence
+argument described in the audit. No conclusion about the bridge for
+substitutions outside the corpus follows from this table.
+
 Nothing in this note proves Level 3', G1, or PSC.
