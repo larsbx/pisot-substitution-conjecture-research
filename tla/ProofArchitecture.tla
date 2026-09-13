@@ -75,6 +75,10 @@ SCCProducerIsConditional == "SCCProducer" \notin established
 RenewalFinitenessRemainsOpen == "G1b2RenewalFiniteness" \notin established
 ConcentrationRemainsOpen == "ConcentrationAuxB" \notin established
 
+(* The G1-free form of Level 3 (productivity of the finite seed-patch overlap
+   graph) is open; only its consequences are theorems. *)
+OverlapProductivityRemainsOpen == "OverlapProductivity" \notin established
+
 (* The literature theorem and the repo seed-union lemma are recorded, but    *)
 (* the final seedwise PDS=>repo-G1 implication is deliberately still open.   *)
 RepoG1BridgeRemainsOpen == "PDSImpliesRepoG1" \notin established

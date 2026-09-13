@@ -167,3 +167,39 @@ No other findings were posted in the fifth round.
 > Codex Review: Didn't find any major issues. Can't wait for the next one!
 
 No findings were posted in the sixth round.
+
+---
+
+# Seventh round: review of the overlap-route revision (pull request #72)
+
+**Reviewed commit:** `01b5281cd033c1006318dad0e8545a29634469d4` (finiteness of the seed-patch overlap graph, coincidence density, Level 3 without G1).
+**Review posted:** 2026-09-13T15:10:10Z, one review with two inline comments. Reproduced verbatim.
+
+## Finding 16 (P1) — `PSC_balanced_pair_state_2026-09-13.tex`, line 411
+
+> **Preserve descendants of coincidence vertices**
+>
+> Declaring coincidences terminal contradicts the claim later in this same line that the graph contains every overlap type occurring at every level, and it invalidates Corollary 5.33's child-mass identity for sets containing a coincidence: for Tribonacci, `(1,1,0)` is reachable, but inflating it produces the occurring coincidence `(2,2,0)`, which the terminal traversal omits; its graph row is therefore zero rather than having child mass `beta*lambda`. Either retain the geometric children of coincidence vertices (and update the census counts) or weaken the occurrence statement and restrict the mass identity to noncoincident child-closed sets.
+>
+> AGENTS.md reference: AGENTS.md:L49-L55
+
+## Finding 17 (P1) — `PSC_balanced_pair_state_2026-09-13.tex`, line 760
+
+> **Do not infer G1 from the density bridge**
+>
+> Even if Open Problem 5.35 is answered positively, it supplies only `delta=1 => PDS`, while Imported Theorem 2.16 supplies `termination => PDS`; neither implication can be reversed to obtain termination from PDS. In particular, G1 concerns the union over every seed, including illegal seeds, and lines 433–437 explicitly leave that seedwise implication open. The claim that G1 would become a consequence of PDS—also repeated in the README and the new note—therefore still requires Open Problem 4.24 and should not be attributed to the density bridge.
+>
+> AGENTS.md reference: AGENTS.md:L49-L55
+
+No other findings were posted in the seventh round.
+
+---
+
+# Eighth round: re-review of the round-seven revision (pull request #72)
+
+**Reviewed commit:** `5275b4568a83818cf9fc56971d52f5e6adf6edcf`.
+**Review posted:** 2026-09-13T15:22:38Z. Reproduced verbatim.
+
+> Codex Review: Didn't find any major issues. Delightful!
+
+No findings were posted in the eighth round.
