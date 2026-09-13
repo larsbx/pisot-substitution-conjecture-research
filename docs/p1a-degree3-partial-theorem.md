@@ -2,7 +2,7 @@
 
 **Status:** proved only for the exact bounded corpus specified below. The
 general concentration problem remains open. This result does not use the
-source-pending Galois-propagation material.
+the historical seed-specific Galois certificate or the open concentration gate.
 
 ## Statement
 
@@ -67,7 +67,7 @@ This proposition does not establish any of the following:
 - exclusion of first defect degree four or higher outside the bounded corpus;
 - G1 or G1b-2;
 - productivity of components with nonzero `K2`;
-- the reported Galois nonvanishing theorem or the old aux-B formulation.
+- the historical six-seed Galois theorem or the open concentration/aux-B gate.
 
 For the general concentration gate, the surviving obligation is still to rule
 out strict components with `K2` identically zero, including degree three and

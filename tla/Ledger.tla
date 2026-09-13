@@ -14,9 +14,9 @@
 (*   reconstructed and proved on 2026-09-13, so G1 <=> G1b-2), and          *)
 (*   concentration / aux-B and wedge productivity (Level 3 under G1);      *)
 (*   the latter is the final step inside SpanRichProductivity below.       *)
-(* Results reported theorem-grade in the v16/later track but whose detailed *)
-(* source is not yet present on main are named below but deliberately NOT   *)
-(* included in ProvedDef until that source is imported and audited.         *)
+(* Former v16/later status claims are resolved claim by claim: reconstructed *)
+(* theorems are included in ProvedDef, while concentration and realization   *)
+(* obligations remain open inputs. Missing-v16 status is provenance metadata. *)
 (*                                                                         *)
 (* 2026-09-13: the merged manuscript                                        *)
 (*   manuscripts/PSC_balanced_pair_state_2026-09-13.tex                     *)
@@ -82,6 +82,7 @@ ResultSet == {
     "SwapOverlapFiniteness",
     "OverlapProductivity",
     "AllStatesProductiveViaOverlaps",
+    "DensityToPDSBridge",
     "PDSOverlapRoute",
 
     \* --- 2026-09-11 strongest Level-3 spectral route ---------------------
@@ -163,12 +164,13 @@ RequiresDef == [r \in ResultSet |->
          discrepancy. OverlapProductivity is the open Level-3 statement in
          G1-free form; it implies productivity of every reachable state
          (AllStatesProductiveViaOverlaps) with no finiteness hypothesis, and
-         PDS still needs G1 through the imported termination theorem (the
-         density bridge is a separate open question, not encoded). *)
+         a G1-based PDS assembly remains available. DensityToPDSBridge is
+         the separate open input for the genuinely G1-free PDS route. *)
       [] r = "SwapOverlapFiniteness"      -> {"G1b1BoundedDiscrepancy"}
       [] r = "OverlapProductivity"        -> {}
       [] r = "AllStatesProductiveViaOverlaps" -> {"OverlapProductivity", "SwapOverlapFiniteness"}
-      [] r = "PDSOverlapRoute"            -> {"G1", "AllStatesProductiveViaOverlaps"}
+      [] r = "DensityToPDSBridge"         -> {}
+      [] r = "PDSOverlapRoute"            -> {"AllStatesProductiveViaOverlaps", "DensityToPDSBridge"}
 
       (* Historical name retained for compatibility. The carrier span result
          is now repository-proved by the wedge dichotomy; it needs no separate
@@ -218,15 +220,15 @@ ProvedDef == {
        absent, so G1 stays unreachable without assumptions. *)
     "G1b1BoundedDiscrepancy", "G1FromRenewal", "G1",
 
-    (* Overlap route: finiteness and the density theorem are proved; the
-       gate input OverlapProductivity is intentionally absent. *)
+    (* Overlap route: graph finiteness and the conditional assembly theorems
+       are proved. OverlapProductivity and DensityToPDSBridge are absent. *)
     "SwapOverlapFiniteness", "AllStatesProductiveViaOverlaps", "PDSOverlapRoute",
 
     (* Boundary route conditional reductions remain proved. C4 itself is absent. *)
     "C3Local", "C2", "SCCProducer", "PDS",
 
-    (* PDSSpectralRoute is a conditional assembly statement, but the source-
-       pending/open spectral carrier inputs keep it unreachable on main. *)
+    (* PDSSpectralRoute is a conditional assembly statement, but the open
+       spectral carrier inputs keep it unreachable on main. *)
     "PDSSpectralRoute",
 
     "StandardBPAEquivalence", "RepoSeedUnionBridge"
@@ -242,5 +244,5 @@ G1AndC4 == {"G1", "C4"}
 (* Explicit hypothetical completion assumptions for future model checks. *)
 RenewalGateAssumed == {"G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"}
 SpectralGateAssumed == {"G1", "ConcentrationAuxB", "SpanRichProductivity", "SpectralSCCProducer"}
-OverlapGateAssumed == {"OverlapProductivity"}
+OverlapGateAssumed == {"OverlapProductivity", "DensityToPDSBridge"}
 =============================================================================

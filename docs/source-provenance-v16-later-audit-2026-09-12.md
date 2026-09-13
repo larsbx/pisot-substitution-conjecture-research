@@ -1,6 +1,6 @@
 # v16/later source-provenance audit — issue #45
 
-**Status:** authoritative repository audit of reachable Git history as of 2026-09-12. This record imports the surviving sources without upgrading source-pending claims.
+**Status:** authoritative repository audit of reachable Git history as of 2026-09-12, with claim-status resolution updated through 2026-09-13. This record imports surviving sources and distinguishes reconstructed theorems, historical restricted results, and open mathematical obligations. The current summary is `docs/claim-status-and-source-map-2026-09-13.md`.
 
 ## Audit scope and method
 
@@ -75,11 +75,17 @@ The new working manuscript:
 - retracts the phase-state-to-total-padding inference;
 - preserves the non-unimodular and realization/computational-completeness firewalls.
 
-## What is still required to clear the source-pending tags
+## Residual historical-source status
 
-For each source-pending result, import either:
+No reachable `PSC_PROOF_v16` file has been found. That negative provenance
+finding remains valid, but it no longer blocks the current proof architecture:
 
-- the original detailed manuscript/note with its original version identity and authorship metadata; or
-- a fresh self-contained proof, separately audited and clearly identified as a reconstruction rather than the missing historical source.
+- G1b-1 is repository-proved by the independent reconstruction merged in PR #69;
+- the degree-two carrier-span implication is repository-proved by the self-contained wedge dichotomy resolved in PR #68;
+- concentration/aux-B is an open conjectural gate, not a theorem waiting for a source;
+- realization/coincidence-rank is an open bridge decomposed into G0–G6, not a theorem waiting for a source;
+- the historical degree-three seed theorem is already preserved and remains restricted to its six explicit seeds.
 
-Until then, the prose and TLA ledgers must continue to encode these nodes as unavailable to the no-assumption proof path.
+If a v16 document is later recovered, preserve its version identity and authorship metadata, compare every theorem against the reconstructed statements and present hypotheses, and archive the result. Do not automatically upgrade any live claim merely because the file exists.
+
+Current status vocabulary and maintenance rules are centralized in `docs/claim-status-and-source-map-2026-09-13.md`.
