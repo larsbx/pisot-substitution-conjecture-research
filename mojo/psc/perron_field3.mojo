@@ -50,7 +50,7 @@ struct CubicElt(ImplicitlyCopyable, Copyable, Movable, Equatable, Hashable, Writ
         w.write("(", self.a0, ",", self.a1, ",", self.a2, ")")
 
 
-struct PerronField3(Copyable, Movable):
+struct PerronField3(ImplicitlyCopyable, Copyable, Movable):
     """One irreducible cubic field with a distinguished Pisot Perron root."""
 
     var chi0: Int
@@ -66,7 +66,7 @@ struct PerronField3(Copyable, Movable):
         return [self.chi0, self.chi1, self.chi2, 1]
 
 
-struct TileLengths3(Copyable, Movable):
+struct TileLengths3(ImplicitlyCopyable, Copyable, Movable):
     """Positive left-Perron tile lengths, up to one common positive scale."""
 
     var l0: CubicElt
