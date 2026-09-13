@@ -2,8 +2,8 @@
 
 The audit is deliberately downstream of exact graph construction. It asks how
 much of the retained geometry can be certified by one fixed rational enclosure
-of the Perron root, while checking every ambiguous margin against the exact
-Sturm--Tarski oracle.
+of the Perron root, while checking every ambiguous or unrepresentable interval
+margin against the exact Sturm--Tarski oracle.
 
 A reported positive lower margin is global for the audited finite graph only
 when *every* retained overlap margin is interval-certified. No finite margin is
@@ -56,9 +56,10 @@ def audit_seed_overlap_interval_margins(
     ell_i - t > 0.
     ```
 
-    Each expression is first evaluated by rational interval extension. If the
-    interval does not prove positivity, the exact Perron sign oracle must still
-    prove positivity or the graph/audit is internally inconsistent.
+    Each expression is first evaluated by rational interval extension. A box
+    counts as an interval certificate only if it is successfully represented
+    and proves strict positivity. A zero-containing or overflowed interval is
+    unresolved and delegates to the exact Perron sign oracle.
     """
     if refinements < 0:
         raise Error("overlap interval audit refinement count must be nonnegative")
@@ -83,15 +84,30 @@ def audit_seed_overlap_interval_margins(
         var margins: List[CubicElt] = [right_margin, left_margin]
         for j in range(2):
             var margin = margins[j]
-            var box = cubic_perron_interval(tables.field, margin, refinements)
-            var boxed_sign = box.strict_sign()
-            if boxed_sign > 0:
-                interval_certified += 1
-                if not has_minimum or box.lo.compare(minimum) < 0:
-                    minimum = box.lo
-                    has_minimum = True
-            elif boxed_sign < 0:
+            var interval_proved = False
+            var interval_contradicted = False
+            var lower = CheckedRat(0, 1)
+            try:
+                var box = cubic_perron_interval(tables.field, margin, refinements)
+                var boxed_sign = box.strict_sign()
+                if boxed_sign > 0:
+                    interval_proved = True
+                    lower = box.lo
+                elif boxed_sign < 0:
+                    interval_contradicted = True
+            except:
+                # Fixed-width interval arithmetic is an optional certificate
+                # layer. Unsafe/unrepresentable boxes become exact fallback,
+                # never mathematical evidence.
+                interval_proved = False
+
+            if interval_contradicted:
                 raise Error("rational interval contradicts retained overlap positivity")
+            if interval_proved:
+                interval_certified += 1
+                if not has_minimum or lower.compare(minimum) < 0:
+                    minimum = lower
+                    has_minimum = True
             else:
                 var exact_sign = sign_at_perron(tables.field, margin)
                 if exact_sign <= 0:
