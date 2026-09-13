@@ -135,3 +135,22 @@ Accepted; rule 5 is rewritten to match the table and the audit note.
 ## Sixth round (pull request #69)
 
 The referee re-reviewed the revised head and posted no findings. Findings 1–15 across the six rounds are all accepted and addressed; the review record above is complete for this revision.
+
+---
+
+## Seventh round (pull request #72, overlap route)
+
+Two findings; both accepted. Neither concerns Theorem 4.22, Lemmas 5.30–5.31, or parts (i)–(v) of Theorem 5.32.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 16 | P1 | With coincidences terminal, the vertex set of the overlap graph is not "every occurring type", and the child-mass identity fails on sets containing a coincidence | Accepted. The occurrence statement is weakened to what is true: every vertex is an occurring type, every occurring non-coincidence type is a vertex, and the omitted occurring coincidences are exactly the descendants of coincidences. Corollary 5.33 now states the mass identity over the geometric children and restricts the closed-set consequence to sets of non-coincidence overlaps; the finiteness bound is restated for occurring types, which bounds the vertex count. Census counts are unchanged since the graph definition is unchanged | Section 4.7 (definition paragraph, Theorem 4.22), Corollary 5.33 and its proof; note Lemma 1.1, Theorem 2.1, Corollary 4.2 |
+| 17 | P1 | "G1 becomes a consequence of PDS" does not follow from the density bridge: the imported theorem gives termination ⇒ PDS only, and G1 also involves illegal seeds | Accepted. All such sentences are replaced: a positive bridge would let PDS follow from overlap productivity for one legal seed without finiteness, but would not settle G1, whose status also depends on Open Problem 4.24 and on the unused converse of Imported Theorem 2.16 | Section 5.9 closing paragraph, headline status bullet, Section 8 item, Section 9 discussion; note section 6; README; conjecture ledger; proof ladder; pull-request description |
+
+### Finding 16 (P1)
+
+Accepted. The referee's Tribonacci example is exact: the coincidence `(1,1,0)` has geometric children that are the coincidences of the inflated tile, and the graph does not form them. The definition of the graph is kept (coincidences terminal, as for the balanced-pair automaton), and the statements are now those the definition supports.
+
+### Finding 17 (P1)
+
+Accepted. The inference reversed an implication that is used in one direction only and ignored the seedwise question; it is withdrawn everywhere it appeared.

@@ -32,14 +32,19 @@ canonical implementation `mojo/psc/overlap_seed_patch.mojo`) is the graph on
 the types reachable from the level-0 overlaps of the three seeds under the
 child relation.
 
-**Lemma 1.1 (occurrence).** The vertex set of `O_sigma` is exactly the set of
-types of overlaps occurring at some level of some swap pair.
+**Lemma 1.1 (occurrence).** Every vertex of `O_sigma` is the type of an
+overlap occurring at some level of some swap pair, and every occurring
+non-coincidence overlap type is a vertex. (The occurring coincidences that
+`O_sigma` omits are exactly the descendants of coincidences, since
+coincidences are terminal and every descendant of a coincidence is a
+coincidence.)
 
 *Proof.* Level-0 overlaps are the seeds. If an overlap occurs at level `N`,
 its children are overlaps at level `N+1` (they are pairs of sub-tiles of the
-two inflated tiles). Conversely an overlap at level `N+1` has as parents the
-level-`N` supertiles containing its two tiles, which overlap because their
-sub-tiles do; so every occurring overlap descends from a seed. ∎
+two inflated tiles). Conversely an overlap at level `N+1` has as parent the
+overlap of the level-`N` supertiles containing its two tiles, which overlap
+because their sub-tiles do; if the overlap is not a coincidence, neither is
+any ancestor, so it descends from a seed through non-coincidence vertices. ∎
 
 ## 2. Finiteness
 
@@ -52,8 +57,9 @@ primitive with every non-Perron eigenvalue of `M` inside the unit circle
 ||w||_inf <= B_sigma := D_sigma + (l_max + ||l||_1 D_sigma) / l_min .
 ```
 
-Consequently `O_sigma` has at most `d^2 (2 B_sigma + 1)^d` vertices, for every
-such `sigma`, with no finiteness hypothesis.
+Consequently there are at most `d^2 (2 B_sigma + 1)^d` occurring types, and
+`O_sigma` has at most that many vertices, for every such `sigma`, with no
+finiteness hypothesis.
 
 *Proof.* Let the overlap consist of the top tile starting at `x = g(U[i])`
 (the `i`-th vertex of the `U`-tiling) and the bottom tile starting at
@@ -186,9 +192,11 @@ by definition, finiteness plus productivity of all reachable states. ∎
 `(i, j, t)`, `t = <l, w>`, the intersection length is `lambda(O) = <l, v(O)>`
 with `v(O) in {e_i, e_j, e_j + w, e_i - w}` (top inside bottom, bottom inside
 top, bottom starts before the top, top starts before the bottom). The
-children of `O` partition the inflated intersection, so
-`sum_children v(child) = M v(O)` (by `Q`-independence). Hence for any
-nonempty set `S` of overlaps closed under children, the child-count matrix
+geometric children of `O` (all overlapping pairs of sub-tiles; for a
+non-coincidence these are its children in `O_sigma`) partition the inflated
+intersection, so `sum v(child) = M v(O)` over them (by `Q`-independence).
+Hence for any nonempty set `S` of non-coincidence overlaps closed under
+children, the child-count matrix
 `N_S` satisfies `N_S lambda_S = beta lambda_S` with `lambda_S > 0`, so
 `rho(N_S) = beta`, and `N_S V_S = V_S M^T` for the matrix `V_S` with rows
 `v(O)^T`. This is the overlap analogue of the manuscript's Theorem 5.2.
@@ -255,9 +263,13 @@ outside the corpus.
    formulations of Sirvent–Solomyak `SS` and Barge–Kwapisz; the missing step
    is the identification of the seed-patch overlaps with realized overlaps of
    two tilings (items 1–4 of `docs/p1b-overlap-realization-bridge.md`), which
-   this note does not supply. If Question 6.1 has a positive answer then PSC
-   is equivalent to Level 3' for legal seeds, and G1 becomes a *consequence*
-   of PDS (via Imported Theorem 2.16) rather than a hypothesis.
+   this note does not supply. If Question 6.1 has a positive answer then PDS
+   follows from Level 3' for one legal seed with no finiteness hypothesis.
+   That would not settle G1: the converse of Imported Theorem 2.16 (PDS
+   implies termination for a legal seed) is only recorded in the literature
+   and not used here, and G1 concerns all seeds, legal or not (the
+   manuscript's Open Problem 4.24). The bridge would change the role of G1
+   in the route to PDS, not its status.
 
 In the manuscript these results are Theorem 4.22 (finiteness), Lemmas 5.30–5.31, Theorem 5.32 (coincidence density), Corollary 5.33, and Open Problems 5.34 (overlap productivity) and 5.35 (density bridge).
 
