@@ -4,12 +4,13 @@
 
 ## Executive status
 
-The proof is not complete. The remaining work is best separated into two genuinely independent gates.
+The proof is not complete. The original finite-BPA assembly has two genuinely independent gates. A later overlap/density architecture supplies a second, potentially G1-free route to PDS; its two open inputs are recorded separately below.
 
 | Gate | Status | Remaining obligation |
 | --- | --- | --- |
 | Level 2 / G1: finiteness of the balanced-pair automaton | **OPEN** | G1b-2 renewal finiteness |
 | Level 3 / SCC Producer | **OPEN at two independent obligations** in the strongest current spectral attack (updated 2026-09-13) | concentration (no strict component with `K2 == 0`) **and** wedge productivity (no strict component with `K2 != 0`); proving concentration alone does not close Level 3 |
+| G1-free overlap route to PDS | **OPEN at two inputs** | productivity of every seed-patch overlap **and** the coincidence-density-one-to-PDS bridge; overlap-graph finiteness and the transfer to all BPA states are proved |
 
 Unique decodability is not an open hypothesis. It is a theorem from `det M_sigma != 0` and must remain downstream of irreducibility/full incidence rank rather than being assumed independently.
 
@@ -112,6 +113,37 @@ Do not unify the two open gates artificially.
 
 Progress on one does not discharge the other.
 
+## G1-free overlap/density route
+
+Bounded discrepancy also produces a finite seed-patch overlap graph
+`O_sigma` without assuming G1 (manuscript Theorem 4.22;
+`docs/overlap-finiteness-and-coincidence-density-2026-09-13.md`).
+Productivity of every overlap is equivalent to coincidence density one for
+every swap seed and implies productivity of every reachable balanced-pair
+state without a finiteness hypothesis (Theorem 5.32).
+
+This yields the alternative assembly
+
+```text
+bounded discrepancy
+=> finite seed-patch overlap graph                   [PROVED]
+=> every overlap productive                          [OPEN]
+=> every reachable BPA state productive              [PROVED implication]
+=> coincidence density one gives PDS                 [OPEN bridge]
+=> PDS.
+```
+
+This route can bypass G1 in a proof of PDS if both open inputs are established.
+It does not prove G1 itself. The exact census finds all 1,118,850 overlap
+vertices productive over the 4,554-member corpus, with largest graph size
+2,640; those productivity counts remain finite evidence, not a general
+overlap-productivity theorem.
+
+The older finite-BPA route remains independently useful: G1b-2 is still exactly
+the unresolved finiteness theorem, and under G1 the overlap formulation,
+SCC Producer, and closed-carrier obstruction can be compared on a finite
+graph.
+
 ## Supporting C4 / endpoint / recognizability machinery
 
 The substantial C4 program on `main` remains valuable and theorem-grade where its individual notes say so. It supplies:
@@ -180,7 +212,7 @@ The audited 2026-09-13 manuscript implements:
 
 1. **P0 — status and reference synchronization.** Keep the manuscript, claim/source map, prose and TLA ledgers, and citations aligned. Preserve the missing-v16 fact as historical metadata; it is not a live proof prerequisite.
 2. **P1-A — Level-3 closed-carrier obligations.** Concentration / aux-B (`K2 == 0` case) and wedge productivity (`K2 != 0` case); both are needed, and the finite evidence points to the `K2 != 0` case as the main one.
-3. **P1-B — G1b-2 renewal finiteness.** Unavoidable Level-2 theorem; main long-horizon effort.
+3. **P1-B — G1b-2 renewal finiteness.** Unavoidable for proving G1 and for the finite-BPA assembly; potentially bypassed only on the separate overlap/density route to PDS.
 4. **P2 — non-unimodular firewall for G1b-2.** Build the contracting address in the correct Euclidean/profinite setting when required.
 5. **P3 — SCC Producer assembly.** Once G1, concentration, and wedge productivity are all available, write the finite-graph assembly explicitly.
 6. **P4 — realization/collar completeness.** Parallel certification route.
@@ -192,6 +224,7 @@ The audited 2026-09-13 manuscript implements:
 Work asymmetrically:
 
 - attack the **Level-3 closed-carrier obligations** (concentration and wedge productivity); neither alone closes the route, and the `K2 != 0` case is the one realized by essentially all reachable states in the exact corpus;
-- in parallel, devote the main long-horizon program to **G1b-2**, specifically realizable first-return words and a level-scaled non-unimodular contracting address.
+- attack **overlap productivity** and the **density-to-PDS bridge** as the finite, G1-free alternative;
+- in parallel, continue **G1b-2** for the stronger BPA-finiteness theorem, specifically realizable first-return words and a level-scaled non-unimodular contracting address.
 
-The UD layer is finished. The proof is complete only when both independent gates are closed and the final PDS bridge is audited.
+The UD layer is finished. PDS can be completed either through the finite-BPA carrier assembly (G1 plus both Level-3 obligations and the final literature interface) or through the G1-free overlap assembly (general overlap productivity plus the density-to-PDS bridge). Neither route is complete.
