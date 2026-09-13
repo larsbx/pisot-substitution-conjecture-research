@@ -3,6 +3,7 @@
 from std.testing import assert_equal, assert_false, assert_true
 from psc.bpa import substitution_incidence
 from psc.mat3 import Mat3
+from psc.overlap_interval_audit import audit_seed_overlap_interval_margins
 from psc.perron_field3 import CubicElt, build_perron_field3
 from psc.perron_interval import (
     cubic_perron_interval,
@@ -111,6 +112,31 @@ def test_interval_first_perron_sign_certifies_easy_and_falls_back_near_root() ra
     assert_true(enclosure.contains_zero())
 
 
+def test_canonical_overlap_margin_interval_calibration() raises:
+    # This is a calibration pass, not yet a pinned interval-count theorem.
+    # The graph size is already canonical from the seed-patch regression; here
+    # we audit how much of its strict geometry one fixed rational beta box
+    # certifies before the algebraic fallback is needed.
+    var audit = audit_seed_overlap_interval_margins(
+        determinant_two_sigma(), 10, 20000
+    )
+    assert_equal(audit.state_count, 628)
+    assert_equal(audit.margin_count, 1256)
+    assert_equal(
+        audit.interval_certified_count + audit.fallback_count,
+        audit.margin_count,
+    )
+    assert_true(audit.interval_certified_count > 0)
+    print("canonical overlap margins:", audit.margin_count)
+    print("interval-certified margins:", audit.interval_certified_count)
+    print("algebraic-fallback margins:", audit.fallback_count)
+    if audit.has_uniform_interval_lower_margin:
+        print(
+            "minimum certified rational overlap margin:",
+            audit.minimum_interval_lower_margin,
+        )
+
+
 def main() raises:
     test_checked_rational_normalization_and_order()
     print("[PASS] test_checked_rational_normalization_and_order")
@@ -124,4 +150,6 @@ def main() raises:
     print("[PASS] test_perron_root_has_exact_rational_bracket")
     test_interval_first_perron_sign_certifies_easy_and_falls_back_near_root()
     print("[PASS] test_interval_first_perron_sign_certifies_easy_and_falls_back_near_root")
-    print("6 rational-interval Mojo tests passed.")
+    test_canonical_overlap_margin_interval_calibration()
+    print("[PASS] test_canonical_overlap_margin_interval_calibration")
+    print("7 rational-interval Mojo tests passed.")
