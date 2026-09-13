@@ -87,3 +87,34 @@ No finding contests the correctness of Lemma 2.4, Theorem 2.8, Theorem 3.1, Theo
 > In Markdown table rendering, the unescaped bars in `|S| = N` are interpreted as column separators, so the Finding 7 row has more cells than the five-column header and the action/location mapping is rendered incorrectly. Escape these bars or express the equality without literal unescaped pipes inside the table cell.
 
 No other findings were posted in the second round.
+
+---
+
+# Third round: review of the G1b-1 reconstruction (pull request #69)
+
+**Reviewed commit:** `f0de05fcde21abcbf458edd12004e246f91435fc` (bounded-discrepancy theorem, realization audit, ledger and TLA changes).
+**Review posted:** 2026-09-13T12:25:55Z, one review with three inline comments. Reproduced verbatim.
+
+## Finding 10 (P1) — `scripts/swap_discrepancy_census.py`, lines 53–58
+
+> **Use exact Pisot screening for the claimed exact census**
+>
+> The new discrepancy census is presented in the manuscript and proof note as an exhaustive exact computation, but corpus membership is decided from floating-point Cardano/Newton roots with an arbitrary `1e-9` margin. For a polynomial whose conjugate is close to the unit circle, numerical error or the tolerance can include or exclude substitutions and invalidate the reported corpus size and discrepancy histogram. Use the repository's exact Pisot/root-isolation machinery, or provide an exact separation certificate for every screened characteristic polynomial.
+>
+> AGENTS.md reference: AGENTS.md:L31-L32
+
+## Finding 11 (P1) — `src/psc_research/swap_discrepancy.py`, line 28
+
+> **Add the canonical Mojo discrepancy implementation**
+>
+> The new swap-walk algorithm, corpus driver, and theorem-contract regressions are Python-only; a repository-wide search for swap-discrepancy code found no Mojo counterpart or documented blocker. This leaves the proof-support computation in the secondary oracle layer rather than the repository's canonical executable layer, so the PR does not satisfy the Mojo-first review gate. Implement the discrepancy kernel and deterministic regression in `mojo/` first, retaining this module only as an independent oracle if useful.
+>
+> AGENTS.md reference: AGENTS.md:L16-L16
+
+## Finding 12 (P2) — `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`, lines 47–50
+
+> **Require cofinal realized windows for the reverse implication**
+>
+> The proposed definition only says that a fibre pair has windows at every level reducing into the component; it does not require those windows to be nested, exhaustive, or relatively dense. A pair can therefore satisfy the stated condition in one persistent noncoincident region while still sharing coincident tiles elsewhere, so “the two tilings never coincide” does not follow and the implication to `cr(sigma) > 1` is not definitional. The realization audit should record cofinal coverage as an additional hypothesis/gap rather than declaring this direction automatic.
+
+No finding contests Theorem 4.4, Lemmas 4.5–4.8, or Proposition 4.11 of the manuscript.

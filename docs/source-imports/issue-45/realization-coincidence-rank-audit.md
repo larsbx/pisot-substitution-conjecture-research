@@ -44,12 +44,19 @@ None of (a)–(d) has a proof on `main`. (a) is the content of Conjecture 4.21
 been written down anywhere in reachable history.
 
 **Backward direction** (a globally realized nonproductive recurrent component
-gives `cr(sigma) > 1`). If "globally realized" is defined as *some pair of
-tilings in one fibre whose windows at every level reduce into the component*,
-then the two tilings never coincide and the direction reduces to the
-definition. With any weaker definition (a formal cycle surviving legal collars
-of every finite radius) the direction is open, since no theorem converts
-collar survival into a pair of tilings.
+gives `cr(sigma) > 1`). Suppose some pair of tilings in one fibre has, at
+every level, a window whose reduction lies in the component. Inside such a
+window the two sequences never share a letter at a position of equal prefix
+Parikh content (that would be a coincidence block), so the window is
+coincidence-free. This gives "never coincide" only if the windows are
+*cofinal*: every position of the pair lies in some window at some level (for
+instance nested exhaustive windows, or windows of relatively dense
+occurrence covering the whole line). Windows confined to one persistent
+noncoincident region say nothing about coincident tiles elsewhere. So even
+with the strongest available definition the backward direction needs cofinal
+coverage as an explicit hypothesis; with the weaker definition in the ledger
+(a formal cycle surviving legal collars of every finite radius) it is open
+outright, since no theorem converts collar survival into a pair of tilings.
 
 ## 3. The gaps
 
@@ -58,12 +65,14 @@ collar survival into a pair of tilings.
 | (G0) definition | "globally realized" has no definition on `main` that is independent of the conclusion; the working definitions in the ledger (formal cycle surviving legal collars of every radius) and in the certificate framework (pair of fibre-mates with confined reductions) are not shown equivalent | undefined |
 | (G1) reachability | realized nonproductive pairs are not shown to be reachable from swap seeds | open (= seed-family question) |
 | (G2) window existence and density | fibre-mates are not shown to admit balanced windows, let alone relatively dense ones | open (= Conjecture 4.21) |
-| (G3) collar completeness | no theorem bounds the collar radius at which every unrealizable formal cycle must die; the finite collar experiments are therefore not a decision procedure | open (ledger item P4) |
+| (G3) cofinal coverage | the windows realizing a component must cover every position of the pair for coincidence-freeness of windows to give coincidence-freeness of the tilings; no definition on `main` includes this | undefined |
+| (G4) collar completeness | no theorem bounds the collar radius at which every unrealizable formal cycle must die; the finite collar experiments are therefore not a decision procedure | open (ledger item P4) |
 
-With (G0)–(G3) open, the reported equivalence is not a theorem, not a
+With (G0)–(G4) open, the reported equivalence is not a theorem, not a
 reduction, and not source-pending in any useful sense: there is no missing
-file whose recovery would close (G1)–(G3), since each is an independently
-recorded open problem of the program.
+file whose recovery would close (G1)–(G4), since each is an independently
+recorded open problem of the program (G3 is a definitional requirement, not a
+theorem to recover).
 
 ## 4. Recommendation
 

@@ -225,10 +225,16 @@ Floating-point evaluation of the constants (not a certificate) gives
 `C_sigma ~ 6.6`, `D_sigma ~ 105` for Tribonacci and `C_sigma ~ 48`,
 `D_sigma ~ 763` for `tau`, against observed maxima `1` and `5`.
 
-The exact evaluation of the swap-walk supremum and of `Disc` over a reachable
-graph is implemented in `src/psc_research/swap_discrepancy.py`; the census
-script is `scripts/swap_discrepancy_census.py`; the reduction step is
-exercised by `tests/test_swap_discrepancy.py`.
+The canonical exact implementation is the Mojo kernel
+`mojo/psc/swap_discrepancy.mojo` with census driver
+`mojo/swap_discrepancy_census.mojo` (PIP screening by the repository's exact
+Sturm-sequence procedure in `mojo/psc/pisot.mojo`; no floating point anywhere)
+and regression `mojo/tests/test_swap_discrepancy.mojo`, which pins the
+reduction step and the example values above. `src/psc_research/swap_discrepancy.py`,
+`scripts/swap_discrepancy_census.py` (exact screening by rational-root test
+and Sturm sequences over `Q`) and `tests/test_swap_discrepancy.py` are the
+independent Python oracle; both layers report the same corpus size and the
+same discrepancy statistics.
 
 ## 7. Ledger consequences
 

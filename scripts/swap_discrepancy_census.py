@@ -1,12 +1,17 @@
 """Exact swap-discrepancy census.
 
 Screens all 3-letter substitutions (letters 1..3) with image lengths <= 3 for
-primitivity, irreducibility and the Pisot property, builds the reachable
+primitivity, irreducibility and the Pisot property (all exact: integer
+matrix powers, rational-root test, Sturm sequences over Q; no floating point),
+builds the reachable
 balanced-pair graph from the three swap seeds (cap 20000 states), and reports
-the maximum discrepancy over reachable states.  Finite evidence only; see
+the maximum discrepancy over reachable states.  Independent Python oracle for
+the canonical Mojo kernel mojo/swap_discrepancy_census.mojo.  Finite evidence
+only; see
 docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md.
 """
-import itertools, sys, time, cmath
+import itertools, sys, time
+from fractions import Fraction
 sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[1] / 'src'))
 from psc_research.bpa import build_bpa
 
@@ -26,36 +31,59 @@ def charpoly(M):  # x^3 - T x^2 + U x - D
     D=(M[0][0]*(M[1][1]*M[2][2]-M[1][2]*M[2][1])-M[0][1]*(M[1][0]*M[2][2]-M[1][2]*M[2][0])+M[0][2]*(M[1][0]*M[2][1]-M[1][1]*M[2][0]))
     return T,U,D
 def irreducible(T,U,D):
+    """Monic integer cubic: irreducible over Q iff no integer root dividing D."""
     if D==0: return False
     f=lambda x: x**3-T*x**2+U*x-D
     for r in range(1,abs(D)+1):
         if D%r==0 and (f(r)==0 or f(-r)==0): return False
     return True
-def roots(T,U,D):
-    # monic cubic x^3 + a x^2 + b x + c with a=-T, b=U, c=-D (Cardano, then Newton polish)
-    a,b,c=-T,U,-D
-    p=b-a*a/3; q=2*a**3/27-a*b/3+c
-    disc=(q/2)**2+(p/3)**3
-    w=cmath.exp(2j*cmath.pi/3)
-    s=cmath.sqrt(disc)
-    A=(-q/2+s)**(1/3) if (-q/2+s)!=0 else 0
-    B=(-p/3/A) if A!=0 else (-q)**(1/3)
-    rs=[A*w**k+B*w**(-k)-a/3 for k in range(3)]
-    f=lambda x: x**3+a*x*x+b*x+c; df=lambda x: 3*x*x+2*a*x+b
-    out=[]
-    for r in rs:
-        for _ in range(60):
-            d=df(r)
-            if d==0: break
-            r=r-f(r)/d
-        out.append(r)
-    return out
+
+# --- exact Pisot test by Sturm sequences over Q (mirrors mojo/psc/pisot.mojo) ---
+def _deg(p):
+    for i in range(len(p)-1,-1,-1):
+        if p[i]!=0: return i
+    return -1
+def _eval(p,x):
+    acc=Fraction(0)
+    for c in reversed(p): acc=acc*x+c
+    return acc
+def _rem(a,b):
+    r=list(a); db=_deg(b)
+    while _deg(r)>=db:
+        dr=_deg(r); f=r[dr]/b[db]
+        for i in range(db+1): r[dr-db+i]-=f*b[i]
+        r[dr]=Fraction(0)
+    return r
+def _sturm(p):
+    chain=[list(p),[i*p[i] for i in range(1,len(p))]]
+    while _deg(chain[-1])>0:
+        neg=[-c for c in _rem(chain[-2],chain[-1])]
+        if _deg(neg)<0: break
+        chain.append(neg)
+    return chain
+def _changes(chain,x):
+    last=0; n=0
+    for q in chain:
+        v=_eval(q,x)
+        if v==0: continue
+        sgn=1 if v>0 else -1
+        if last and sgn!=last: n+=1
+        last=sgn
+    return n
+def _roots_in(p,a,b):
+    """Distinct real roots of p in (a,b]."""
+    ch=_sturm(p); return _changes(ch,a)-_changes(ch,b)
 def pisot(T,U,D):
-    rs=roots(T,U,D)
-    beta=max(rs,key=lambda z:z.real)
-    if abs(beta.imag)>1e-9 or beta.real<=1: return False
-    others=[z for z in rs if z is not beta]
-    return all(abs(z)<1-1e-9 for z in others)
+    """Exactly one root outside the closed unit disc, real and > 1.
+    Three real roots: Sturm counting. One real root: beta*|beta2|^2 = D, so
+    |beta2| < 1 iff D < beta iff f(D) < 0 (beta the only real root)."""
+    p=[Fraction(-D),Fraction(U),Fraction(-T),Fraction(1)]   # low-degree first
+    B=Fraction(2+max(abs(T),abs(U),abs(D)))
+    nreal=_roots_in(p,-B,B)
+    if _roots_in(p,Fraction(1),B)!=1: return False
+    if nreal==3: return _roots_in(p,Fraction(-1),Fraction(1))==2
+    if nreal!=1: return False
+    return D>0 and _eval(p,Fraction(D))<0
 
 words=[w for L in (1,2,3) for w in itertools.product((1,2,3),repeat=L)]
 corpus=[]

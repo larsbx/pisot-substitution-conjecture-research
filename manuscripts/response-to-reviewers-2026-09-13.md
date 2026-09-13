@@ -72,3 +72,27 @@ Accepted. Under Definition 2.11 a reachable coincidence block $(a,a)$ is a termi
 ### Finding 9 (P3)
 
 Accepted; the table cell is reworded.
+
+---
+
+## Third round (pull request #69, G1b-1 reconstruction)
+
+The referee reviewed the bounded-discrepancy import and posted three findings; all are accepted. None concerns the mathematics of Theorem 4.4 or Proposition 4.11.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 10 | P1 | The Python census screened the corpus with floating-point roots and a tolerance, so "exact" was overstated | Accepted. Screening is now exact: rational-root test for irreducibility and Sturm sequences over the rationals for the Pisot property, mirroring the repository's exact procedure; the corpus size and every reported statistic are unchanged | `scripts/swap_discrepancy_census.py` |
+| 11 | P1 | Proof-support computation was Python-only, against the Mojo-first policy | Accepted. Canonical Mojo kernel, census driver and deterministic regression added; the Python layer is retained as the independent oracle and both layers agree | `mojo/psc/swap_discrepancy.mojo`, `mojo/swap_discrepancy_census.mojo`, `mojo/tests/test_swap_discrepancy.mojo`; proof note, section 6 |
+| 12 | P2 | The backward direction of the realization equivalence needs the realizing windows to be cofinal; it is not definitional | Accepted. The backward direction is restated with cofinal coverage as an explicit hypothesis and a new gap (G3) records it; the gap count in the conclusion is updated | `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`, sections 2–3 |
+
+### Finding 10 (P1)
+
+Accepted. The floating-point Cardano/Newton screen with a `1e-9` margin is replaced by the exact criterion used by the canonical kernel: a monic integer cubic is irreducible iff it has no integer root dividing its constant term; it is Pisot iff Sturm counting over the rationals finds exactly one root above one and, in the three-real-root case, two roots in the open unit interval, while in the one-real-root case `beta |beta_2|^2 = det` reduces the condition to `chi(det) < 0`. The exact screen reproduces the corpus of 4,554 and the same maximum discrepancy, longest state and histogram.
+
+### Finding 11 (P1)
+
+Accepted. The kernel now exists in the canonical layer with a fixed three-coordinate accumulator and no floating point, and the regression pins the reduction step (blocks of an inflated seed inherit the swap-walk bound) and the example values (Tribonacci flat at 1; the level profile of the non-unimodular example up to level 18; reachable maxima 1 and 5). The Python module is kept as an independent oracle, as the policy allows, and the proof note names the Mojo implementation as canonical.
+
+### Finding 12 (P2)
+
+Accepted. Coincidence-freeness of windows implies coincidence-freeness of the tilings only when the windows cover every position of the pair. The audit now states the backward direction with cofinal coverage as a hypothesis, records it as gap (G3), renumbers collar completeness to (G4), and keeps the conclusion that the equivalence is a conjectural bridge.
