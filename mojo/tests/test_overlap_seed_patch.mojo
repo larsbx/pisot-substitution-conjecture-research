@@ -53,11 +53,11 @@ def test_canonical_seed_overlap_graph_is_productive() raises:
     var sigma = determinant_two_sigma()
     var tables = build_seed_overlap_tables(sigma)
     var seeds = seed_overlap_states(tables)
-    assert_true(len(seeds) > 0)
+    assert_equal(len(seeds), 9)
 
     var graph = build_seed_overlap_graph(sigma, 20000)
     assert_false(graph.capped)
-    assert_true(graph.size() > 0)
+    assert_equal(graph.size(), 628)
     assert_equal(len(nonproductive_overlap_states(graph)), 0)
 
     # Compare only the finite productivity verdict. Equality of the two graph
