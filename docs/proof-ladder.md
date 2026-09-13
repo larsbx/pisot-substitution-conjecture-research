@@ -25,31 +25,33 @@ cannot be used to deduce BPA finiteness.
 The current intended Level-2 ladder is
 
 ```text
-PIP
-=> unique decodability
-=> quotient contraction
-=> bounded discrepancy (G1b-1)
-=> [OPEN] renewal finiteness (G1b-2)
+primitive + Pisot spectrum
+=> bounded discrepancy (G1b-1)   [THEOREM, reconstructed 2026-09-13]
+=> [OPEN] renewal finiteness (G1b-2)   (now equivalent to G1)
 => finite BPA (G1).
 ```
 
 ## G1b-1 — bounded discrepancy
 
-**Status in the current research program:** theorem-grade in the v16 track, but its detailed proof source has not yet been imported to `main`. Source import/audit is required before the repository is self-contained at this rung.
-
-The intended Lyapunov estimate is
+**Status. THEOREM (repository-proved, 2026-09-13).** Independently reconstructed, with a complete proof, in `docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md`; stated as Theorem 4.4 of `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`. Every reachable state `T` of `B_sigma` satisfies
 
 ```text
-Disc(sigma w) <= c Disc(w) + 2 E_sigma,   c < 1.
+Disc(T) <= D_sigma := 4 (|A| + 1) C_sigma,
 ```
 
-It controls discrepancy height only.
+with `C_sigma` an explicit constant from the contracting part of `M_sigma`. The proof uses only primitivity and the Pisot spectrum (every non-Perron eigenvalue inside the unit circle); it does not use unimodularity, unique decodability, or legality of seeds. It is a global bound on the prefix-difference walk of every inflated swap seed, not a child-versus-parent contraction: the reported estimate
+
+```text
+Disc(sigma w) <= c Disc(w) + 2 E_sigma,    c < 1
+```
+
+was not reconstructed and is not needed. Bounded discrepancy bounds the difference walk, not the state length; exact census: maximum discrepancy `14` and a reachable state of length `48,020` over the `4,554`-member corpus.
 
 ## G1b-2 — renewal finiteness
 
-**OPEN and load-bearing.**
+**OPEN and load-bearing; equivalent to G1 now that G1b-1 is proved (manuscript Proposition 4.11).**
 
-For fixed discrepancy radius `R0`, prove that there are only finitely many **realizable** reduced interior-zero-free balanced pairs with `R(s)<=R0`.
+Prove that there are only finitely many reachable irreducible balanced pairs with `Disc(s) <= D_sigma`.
 
 A bounded difference alphabet does not suffice. Long labelled first-return words can revisit the same nonzero difference vertices indefinitely.
 

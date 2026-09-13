@@ -29,32 +29,35 @@ Unique decodability is already a theorem from full incidence rank and is not an 
 The predecessor-contraction proof is permanently withdrawn. The current Level-2 decomposition is:
 
 ```text
-PIP
-=> det M_sigma != 0
-=> unique decodability
-=> quotient contraction
-=> bounded discrepancy (G1b-1)
-=> [OPEN] renewal finiteness (G1b-2)
+primitive + Pisot spectrum
+=> bounded discrepancy (G1b-1)   [THEOREM, reconstructed 2026-09-13]
+=> [OPEN] renewal finiteness (G1b-2)   (now equivalent to G1)
 => finite BPA.
+
+Unique decodability (a consequence of det M_sigma != 0) is a theorem but plays no role in this chain.
 ```
 
 ### G1b-1 — bounded discrepancy
 
-**Project status.** Reported theorem-grade in the v16 track. Its detailed proof source is not currently present on `main`, so repository self-containment is pending source import/audit.
-
-The intended estimate has the form
+**Status. THEOREM (repository-proved, 2026-09-13).** Independently reconstructed, with a complete proof, in `docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md`; stated as Theorem 4.4 of `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`. Every reachable state `T` of `B_sigma` satisfies
 
 ```text
-Disc(sigma w) <= c Disc(w) + 2 E_sigma,    c < 1.
+Disc(T) <= D_sigma := 4 (|A| + 1) C_sigma,
 ```
 
-This bounds discrepancy height. It does **not** bound reduced-state length.
+with `C_sigma` an explicit constant from the contracting part of `M_sigma`. The proof uses only primitivity and the Pisot spectrum (every non-Perron eigenvalue inside the unit circle); it does not use unimodularity, unique decodability, or legality of seeds. It is a global bound on the prefix-difference walk of every inflated swap seed, not a child-versus-parent contraction: the reported estimate
+
+```text
+Disc(sigma w) <= c Disc(w) + 2 E_sigma,    c < 1
+```
+
+was not reconstructed and is not needed. Bounded discrepancy bounds the difference walk, not the state length; exact census: maximum discrepancy `14` and a reachable state of length `48,020` over the `4,554`-member corpus.
 
 ### G1b-2 — renewal finiteness
 
-**Status. OPEN. This is the exact Level-2 bottleneck.**
+**Status. OPEN. This is the exact Level-2 bottleneck, and since G1b-1 is proved it is equivalent to G1 (manuscript Proposition 4.11).**
 
-For fixed discrepancy radius `R0`, prove that only finitely many reduced interior-zero-free balanced pairs with `R(s) <= R0` are realizable.
+Prove that only finitely many reachable irreducible balanced pairs have `Disc(s) <= D_sigma`. (For any `R0 >= D_sigma` the corresponding statement is G1 itself; for `R0 < D_sigma` it follows from G1.)
 
 Bounded discrepancy alone is insufficient: a labelled first-return walk may remain forever inside a finite nonzero difference box while accumulating arbitrarily long return data.
 

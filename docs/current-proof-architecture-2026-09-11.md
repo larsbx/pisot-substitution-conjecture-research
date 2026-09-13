@@ -20,32 +20,33 @@ The realization/MEF track is a parallel reformulation/certificate route, not a t
 The current intended chain is
 
 ```text
-primitive irreducible Pisot
-=> det M_sigma != 0
-=> unique decodability
-=> quotient contraction
-=> bounded discrepancy (G1b-1)
-=> [OPEN] renewal finiteness (G1b-2)
+primitive + Pisot spectrum
+=> bounded discrepancy (G1b-1)   [THEOREM, reconstructed 2026-09-13]
+=> [OPEN] renewal finiteness (G1b-2)   (now equivalent to G1)
 => |B_sigma| < infinity.
 ```
 
 ### G1b-1 — bounded discrepancy
 
-**Project status:** theorem-grade in the v16 track; detailed proof source is not yet imported into `main` and must be migrated/audited before the repository can claim self-contained closure.
-
-The adapted Lyapunov norm gives a contraction estimate of the form
+**Status. THEOREM (repository-proved, 2026-09-13).** Independently reconstructed, with a complete proof, in `docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md`; stated as Theorem 4.4 of `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`. Every reachable state `T` of `B_sigma` satisfies
 
 ```text
-Disc(sigma w) <= c Disc(w) + 2 E_sigma,   c < 1.
+Disc(T) <= D_sigma := 4 (|A| + 1) C_sigma,
 ```
 
-This bounds discrepancy height.
+with `C_sigma` an explicit constant from the contracting part of `M_sigma`. The proof uses only primitivity and the Pisot spectrum (every non-Perron eigenvalue inside the unit circle); it does not use unimodularity, unique decodability, or legality of seeds. It is a global bound on the prefix-difference walk of every inflated swap seed, not a child-versus-parent contraction: the reported estimate
+
+```text
+Disc(sigma w) <= c Disc(w) + 2 E_sigma,    c < 1
+```
+
+was not reconstructed and is not needed. Bounded discrepancy bounds the difference walk, not the state length; exact census: maximum discrepancy `14` and a reachable state of length `48,020` over the `4,554`-member corpus.
 
 ### G1b-2 — renewal finiteness
 
-**Status: OPEN.** This is the exact Level-2 bottleneck.
+**Status: OPEN.** This is the exact Level-2 bottleneck, and with G1b-1 proved it is equivalent to G1 (manuscript Proposition 4.11).
 
-Required statement: for every fixed discrepancy bound `R0`, only finitely many reduced, interior-zero-free balanced pairs with `R(s) <= R0` are actually realizable.
+Required statement: only finitely many reachable irreducible balanced pairs have `Disc(s) <= D_sigma`.
 
 Bounded discrepancy alone is insufficient: a reduced difference walk can remain in a finite nonzero lattice box while having arbitrarily long first-return data.
 

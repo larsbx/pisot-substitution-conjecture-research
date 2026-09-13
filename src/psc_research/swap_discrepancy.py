@@ -1,0 +1,57 @@
+"""Discrepancy of inflated swap seeds and of reachable balanced-pair states.
+
+For a seed (ab, ba) and a level n, the *swap walk* is the prefix-difference
+walk of the balanced pair (sigma^n(ab), sigma^n(ba)):
+
+    Delta_n(j) = parikh(sigma^n(ab)[:j]) - parikh(sigma^n(ba)[:j]).
+
+Every state of B_sigma is a block of the reduction of some (sigma^n(ab),
+sigma^n(ba)) cut at a zero return, so its own prefix-difference walk is a
+segment of a swap walk starting at 0.  Hence
+
+    Disc(T) <= max_j ||Delta_n(j)||_inf
+
+for every state T at depth n below the seed (ab, ba).  The bound
+``swap_walk_sup`` is what the bounded-discrepancy theorem
+(docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md)
+proves to be uniformly bounded in n; this module only evaluates it exactly.
+"""
+from __future__ import annotations
+
+from collections.abc import Iterable, Mapping
+
+from .bpa import State, Substitution, alphabet_size, apply_substitution_n, seed_states
+
+
+def discrepancy(state: State, size: int) -> int:
+    """max_k ||parikh(u[:k]) - parikh(v[:k])||_inf over the prefixes of a balanced pair."""
+    u, v = state
+    diff = [0] * size
+    best = 0
+    for x, y in zip(u, v):
+        diff[x - 1] += 1
+        diff[y - 1] -= 1
+        best = max(best, max(abs(c) for c in diff))
+    return best
+
+
+def swap_walk_sup(sigma: Substitution, a: int, b: int, level: int) -> int:
+    """max_j ||Delta_level(j)||_inf for the seed (ab, ba)."""
+    size = alphabet_size(sigma)
+    u = apply_substitution_n(sigma, (a, b), level)
+    v = apply_substitution_n(sigma, (b, a), level)
+    return discrepancy((u, v), size)
+
+
+def swap_walk_profile(sigma: Substitution, levels: Iterable[int]) -> dict[int, int]:
+    """Level -> max over all seeds of the swap-walk supremum."""
+    size = alphabet_size(sigma)
+    return {
+        n: max(swap_walk_sup(sigma, a, b, n) for (a, b), _ in seed_states(size))
+        for n in levels
+    }
+
+
+def max_reachable_discrepancy(graph: Mapping[State, object], size: int) -> int:
+    """Largest discrepancy over the vertices of a balanced-pair graph."""
+    return max((discrepancy(s, size) for s in graph), default=0)

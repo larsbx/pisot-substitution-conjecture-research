@@ -10,7 +10,8 @@
 (* nonproductivity.                                                         *)
 (*                                                                         *)
 (* The 2026-09-11 architecture has two independent open gates:             *)
-(*   G1b-2 renewal finiteness (Level 2), and                                *)
+(*   G1b-2 renewal finiteness (Level 2; G1b-1 bounded discrepancy was       *)
+(*   reconstructed and proved on 2026-09-13, so G1 <=> G1b-2), and          *)
 (*   concentration / aux-B and wedge productivity (Level 3 under G1);      *)
 (*   the latter is the final step inside SpanRichProductivity below.       *)
 (* Results reported theorem-grade in the v16/later track but whose detailed *)
@@ -141,9 +142,12 @@ RequiresDef == [r \in ResultSet |->
       [] r = "MeanAreaLift"             -> {"MidArea", "ParikhIntertwiner"}
       [] r = "LatticeLift"              -> {"MeanAreaLift"}
 
-      (* Level 2: G1b1 and G1b2 are named open/source-pending inputs. The
+      (* Level 2: G1b1 is repository-proved by the independent reconstruction
+         docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md
+         (manuscript Theorem 4.4); it uses only primitivity and the Pisot
+         spectrum, not UniqueDecodability. G1b2 is the open input. The
          assembly G1FromRenewal and G1 itself are conditional theorems. *)
-      [] r = "G1b1BoundedDiscrepancy"    -> {"UniqueDecodability"}
+      [] r = "G1b1BoundedDiscrepancy"    -> {}
       [] r = "G1b2RenewalFiniteness"     -> {"G1b1BoundedDiscrepancy"}
       [] r = "G1FromRenewal"             -> {"G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"}
       [] r = "G1"                        -> {"G1FromRenewal"}
@@ -186,9 +190,10 @@ ProvedDef == {
     "Degree4Floor", "Mod3Sieve", "ParitySieve", "MidArea",
     "MeanAreaLift", "LatticeLift",
 
-    (* Conditional assembly theorem: once both Level-2 gates are supplied,
-       G1 follows. The two gate inputs themselves are intentionally absent. *)
-    "G1FromRenewal", "G1",
+    (* G1b1 is proved (2026-09-13 reconstruction). G1FromRenewal is the
+       assembly theorem; G1b2, the remaining gate input, is intentionally
+       absent, so G1 stays unreachable without assumptions. *)
+    "G1b1BoundedDiscrepancy", "G1FromRenewal", "G1",
 
     (* Boundary route conditional reductions remain proved. C4 itself is absent. *)
     "C3Local", "C2", "SCCProducer", "PDS",
