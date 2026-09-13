@@ -117,6 +117,8 @@ jobs:
           if (( catalog_status != 0 )); then
             exit "$catalog_status"
           fi
+          grep -Fx 'CALIBRATION strict K2-nonzero component detected: 1' wedge-productivity.log
+          grep -Fx 'CALIBRATION coincidence-producing component rejected: 1' wedge-productivity.log
           grep -Fx 'PIP specimens: 4554' wedge-productivity.log
           grep -Fx 'closed nonproductive components: 0' wedge-productivity.log
           grep -Fx 'strict K2-nonzero components: 0' wedge-productivity.log
