@@ -135,6 +135,12 @@ def test_canonical_overlap_margin_interval_calibration() raises:
         audit.margin_count,
     )
     assert_true(audit.interval_certified_count > 0)
+    if audit.fallback_count > 0:
+        assert_false(audit.has_uniform_interval_lower_margin)
+        assert_true(audit.minimum_interval_lower_margin == CheckedRat(0, 1))
+    else:
+        assert_true(audit.has_uniform_interval_lower_margin)
+        assert_true(audit.minimum_interval_lower_margin.sign() > 0)
     print("canonical overlap margins:", audit.margin_count)
     print("interval-certified margins:", audit.interval_certified_count)
     print("algebraic-fallback margins:", audit.fallback_count)
