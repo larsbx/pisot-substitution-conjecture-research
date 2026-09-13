@@ -90,7 +90,7 @@ The power-iterated version is available because
 det M_{sigma^r} = (det M_sigma)^r != 0.
 ```
 
-**G1b-1 is closed in the v16 track.** Bounded discrepancy and the norm-conversion seam are proved there; the tests report no soundness violations in the corpus. Its detailed source is not yet on `main` (section X).
+**G1b-1 is closed in the v16 track.** Bounded discrepancy and the norm-conversion seam are proved there; the tests report no soundness violations in the corpus. Its detailed source is not yet on `main` (section X). *[2026-09-13: superseded; G1b-1 was independently reconstructed and proved without the contraction estimate, see `docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md`.]*
 
 ### Open
 
