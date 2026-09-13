@@ -72,3 +72,66 @@ Accepted. Under Definition 2.11 a reachable coincidence block $(a,a)$ is a termi
 ### Finding 9 (P3)
 
 Accepted; the table cell is reworded.
+
+---
+
+## Third round (pull request #69, G1b-1 reconstruction)
+
+The referee reviewed the bounded-discrepancy import and posted three findings; all are accepted. None concerns the mathematics of Theorem 4.4 or Proposition 4.11.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 10 | P1 | The Python census screened the corpus with floating-point roots and a tolerance, so "exact" was overstated | Accepted. Screening is now exact: rational-root test for irreducibility and Sturm sequences over the rationals for the Pisot property, mirroring the repository's exact procedure; the corpus size and every reported statistic are unchanged | `scripts/swap_discrepancy_census.py` |
+| 11 | P1 | Proof-support computation was Python-only, against the Mojo-first policy | Accepted. Canonical Mojo kernel, census driver and deterministic regression added; the Python layer is retained as the independent oracle and both layers agree | `mojo/psc/swap_discrepancy.mojo`, `mojo/swap_discrepancy_census.mojo`, `mojo/tests/test_swap_discrepancy.mojo`; proof note, section 6 |
+| 12 | P2 | The backward direction of the realization equivalence needs the realizing windows to be cofinal; it is not definitional | Accepted. The backward direction is restated with cofinal coverage as an explicit hypothesis and a new gap (G3) records it; the gap count in the conclusion is updated | `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`, sections 2–3 |
+
+### Finding 10 (P1)
+
+Accepted. The floating-point Cardano/Newton screen with a `1e-9` margin is replaced by the exact criterion used by the canonical kernel: a monic integer cubic is irreducible iff it has no integer root dividing its constant term; it is Pisot iff Sturm counting over the rationals finds exactly one root above one and, in the three-real-root case, two roots in the open unit interval, while in the one-real-root case `beta |beta_2|^2 = det` reduces the condition to `chi(det) < 0`. The exact screen reproduces the corpus of 4,554 and the same maximum discrepancy, longest state and histogram.
+
+### Finding 11 (P1)
+
+Accepted. The kernel now exists in the canonical layer with a fixed three-coordinate accumulator and no floating point, and the regression pins the reduction step (blocks of an inflated seed inherit the swap-walk bound) and the example values (Tribonacci flat at 1; the level profile of the non-unimodular example up to level 18; reachable maxima 1 and 5). The Python module is kept as an independent oracle, as the policy allows, and the proof note names the Mojo implementation as canonical.
+
+### Finding 12 (P2)
+
+Accepted. Coincidence-freeness of windows implies coincidence-freeness of the tilings only when the windows cover every position of the pair. The audit now states the backward direction with cofinal coverage as a hypothesis, records it as gap (G3), renumbers collar completeness to (G4), and keeps the conclusion that the equivalence is a conjectural bridge.
+
+---
+
+## Fourth round (pull request #69)
+
+One further finding on the realization audit; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 13 | P2 | The gap inventory omitted two forward-direction requirements named in the same note (transfer of non-coincidence to reductions; recurrence under G1), so the gap count was inconsistent | Accepted. Entries (G5) transfer of non-coincidence and (G6) recurrence added; conclusion now refers to (G0)–(G6); README and provenance summary synchronized to the seven obligations | `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`, section 3; `README.md`; `docs/source-provenance-v16-later-audit-2026-09-12.md` |
+
+### Finding 13 (P2)
+
+Accepted. The two requirements were stated in section 2 as (b) and (c) but not carried into the table, so the "with (G0)–(G4) open" conclusion under-counted. They are now (G5) and (G6), both marked open with the note that neither has ever been written down in reachable history, so there is nothing to recover; the downstream summaries say seven obligations G0–G6.
+
+---
+
+## Fifth round (pull request #69)
+
+Two further findings; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 14 | P2 | The limitation paragraph of the discrepancy census called the level profile of the non-unimodular example "still increasing", although the exact computation shows the profile is bounded by the reachable maximum 5 and attains it at level 15 | Accepted. The paragraph now states the sharp fact (a swap walk splits at its zero returns into reachable states, so the level supremum never exceeds the reachable maximum, attained at level 15) and contrasts it with the far larger analytic constant, whose slow convergence is the only thing the second eigenvalue's modulus explains | Computation 6.3, limitation; proof note, section 6 |
+| 15 | P2 | Claim-status rule 5 of the provenance audit still called the realization equivalence source-pending, contradicting the table row | Accepted. Rule 5 now classifies it as a conjectural bridge with the seven open obligations G0–G6 | `docs/source-provenance-v16-later-audit-2026-09-12.md`, rule 5 |
+
+### Finding 14 (P2)
+
+Accepted. The referee's argument is exactly the reduction step of the proof of Theorem 4.4 read in the other direction: the level-`n` supremum of a swap walk is the largest discrepancy among the depth-`n` descendants of the seed, all of which are reachable states, so for a finite automaton the profile is bounded by the maximal reachable discrepancy and, for the example in question, reaches it at level 15. The earlier sentence conflated the sharp value with the slow convergence of the analytic bound; they are now separated.
+
+### Finding 15 (P2)
+
+Accepted; rule 5 is rewritten to match the table and the audit note.
+
+---
+
+## Sixth round (pull request #69)
+
+The referee re-reviewed the revised head and posted no findings. Findings 1–15 across the six rounds are all accepted and addressed; the review record above is complete for this revision.

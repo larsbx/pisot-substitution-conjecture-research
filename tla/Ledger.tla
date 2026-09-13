@@ -10,11 +10,21 @@
 (* nonproductivity.                                                         *)
 (*                                                                         *)
 (* The 2026-09-11 architecture has two independent open gates:             *)
-(*   G1b-2 renewal finiteness (Level 2), and                                *)
-(*   concentration / aux-B (Level 3 under G1).                             *)
+(*   G1b-2 renewal finiteness (Level 2; G1b-1 bounded discrepancy was       *)
+(*   reconstructed and proved on 2026-09-13, so G1 <=> G1b-2), and          *)
+(*   concentration / aux-B and wedge productivity (Level 3 under G1);      *)
+(*   the latter is the final step inside SpanRichProductivity below.       *)
 (* Results reported theorem-grade in the v16/later track but whose detailed *)
 (* source is not yet present on main are named below but deliberately NOT   *)
 (* included in ProvedDef until that source is imported and audited.         *)
+(*                                                                         *)
+(* 2026-09-13: the merged manuscript                                        *)
+(*   manuscripts/PSC_balanced_pair_state_2026-09-13.tex                     *)
+(* proves a wedge dichotomy (its Proposition 5.20) under which              *)
+(* ConcentrationAuxB is equivalent to "no strict component with K2 = 0"     *)
+(* and SpanRichProductivity's final step is equivalent to "no strict        *)
+(* component with K2 /= 0". Both stay outside ProvedDef; the dependency     *)
+(* graph below is unchanged.                                                *)
 (*                                                                         *)
 (* C4 -> C3Local -> C2 -> SCCProducer remains encoded only as one           *)
 (* sufficiency route. No converse implication is asserted.                  *)
@@ -132,16 +142,20 @@ RequiresDef == [r \in ResultSet |->
       [] r = "MeanAreaLift"             -> {"MidArea", "ParikhIntertwiner"}
       [] r = "LatticeLift"              -> {"MeanAreaLift"}
 
-      (* Level 2: G1b1 and G1b2 are named open/source-pending inputs. The
+      (* Level 2: G1b1 is repository-proved by the independent reconstruction
+         docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md
+         (manuscript Theorem 4.4); it uses only primitivity and the Pisot
+         spectrum, not UniqueDecodability. G1b2 is the open input. The
          assembly G1FromRenewal and G1 itself are conditional theorems. *)
-      [] r = "G1b1BoundedDiscrepancy"    -> {"UniqueDecodability"}
+      [] r = "G1b1BoundedDiscrepancy"    -> {}
       [] r = "G1b2RenewalFiniteness"     -> {"G1b1BoundedDiscrepancy"}
       [] r = "G1FromRenewal"             -> {"G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"}
       [] r = "G1"                        -> {"G1FromRenewal"}
 
-      (* Strongest current Level-3 route. Concentration is open. Galois
-         propagation is reported theorem-grade in the v16/later track but is
-         not repository-proved until its source is imported. *)
+      (* Historical name retained for compatibility. The carrier span result
+         is now repository-proved by the wedge dichotomy; it needs no separate
+         source-pending Galois theorem. Concentration and productivity remain
+         open and separate. *)
       [] r = "ConcentrationAuxB"         -> {"G1", "SinkSCCReduction"}
       [] r = "GaloisWedgePropagation"   -> {}
       [] r = "SpanRichProductivity"     -> {"ConcentrationAuxB", "GaloisWedgePropagation"}
@@ -177,9 +191,14 @@ ProvedDef == {
     "Degree4Floor", "Mod3Sieve", "ParitySieve", "MidArea",
     "MeanAreaLift", "LatticeLift",
 
-    (* Conditional assembly theorem: once both Level-2 gates are supplied,
-       G1 follows. The two gate inputs themselves are intentionally absent. *)
-    "G1FromRenewal", "G1",
+    (* Independently reconstructed as the wedge dichotomy: nonzero K2 on a
+       closed nonproductive carrier spans the full rational wedge space. *)
+    "GaloisWedgePropagation",
+
+    (* G1b1 is proved (2026-09-13 reconstruction). G1FromRenewal is the
+       assembly theorem; G1b2, the remaining gate input, is intentionally
+       absent, so G1 stays unreachable without assumptions. *)
+    "G1b1BoundedDiscrepancy", "G1FromRenewal", "G1",
 
     (* Boundary route conditional reductions remain proved. C4 itself is absent. *)
     "C3Local", "C2", "SCCProducer", "PDS",
@@ -198,8 +217,7 @@ G1AndProducer == {"G1", "SCCProducer"}
 G1Only == {"G1"}
 G1AndC4 == {"G1", "C4"}
 
-(* Explicit hypothetical completion assumptions for future model checks. The
-   source-pending Galois theorem remains separate from open concentration. *)
+(* Explicit hypothetical completion assumptions for future model checks. *)
 RenewalGateAssumed == {"G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"}
-SpectralGateAssumed == {"G1", "ConcentrationAuxB", "GaloisWedgePropagation", "SpanRichProductivity", "SpectralSCCProducer"}
+SpectralGateAssumed == {"G1", "ConcentrationAuxB", "SpanRichProductivity", "SpectralSCCProducer"}
 =============================================================================

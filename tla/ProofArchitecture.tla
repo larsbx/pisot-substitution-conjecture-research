@@ -75,11 +75,6 @@ SCCProducerIsConditional == "SCCProducer" \notin established
 RenewalFinitenessRemainsOpen == "G1b2RenewalFiniteness" \notin established
 ConcentrationRemainsOpen == "ConcentrationAuxB" \notin established
 
-(* The Galois propagation result is reported theorem-grade in the v16/later
-   track, but its detailed proof source is not yet imported to main. Keeping
-   this invariant true prevents status prose from becoming machine proof. *)
-GaloisSourceImportPending == "GaloisWedgePropagation" \notin established
-
 (* The literature theorem and the repo seed-union lemma are recorded, but    *)
 (* the final seedwise PDS=>repo-G1 implication is deliberately still open.   *)
 RepoG1BridgeRemainsOpen == "PDSImpliesRepoG1" \notin established

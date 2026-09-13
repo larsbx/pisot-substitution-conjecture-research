@@ -54,7 +54,7 @@
 \begin{document}
 
 \begin{abstract}
-We give a self-contained account of the balanced-pair approach to the Pisot substitution conjecture for primitive substitutions with irreducible characteristic polynomial and Pisot dilation, without any unimodularity assumption. The approach reduces \PDS{} of the associated tiling flow to two statements about the balanced-pair automaton $\B_\sigma$: finiteness of $\B_\sigma$ (G1) and productivity of every recurrent noncoincident strongly connected component (SCC Producer). We prove the reduction and then analyse both statements. On the finiteness side we show that unique decodability of the image code follows from $\det M_\sigma\neq 0$ alone, we record why it does not imply finiteness, and we isolate the remaining obligation as a renewal-finiteness statement (G1b-2) that is open; we prove a uniform finiteness theorem for multi-level cut ancestries under the Pisot hypothesis and identify, by explicit examples, which finite invariants of return words cannot be injective. On the coincidence side we prove a sink-SCC reduction, an exact intertwining $P_\cC N_\cC=M_\sigma P_\cC$ forcing $\rho(N_\cC)=\beta$ and $|\cC|\ge|\A|$ for any finite closed nonproductive component, an unconditional endpoint-synchronization eliminator, a Barge--Diamond eliminator for three letters, a $\Z/2$ orientation cocycle with signed first-defect intertwiners $Q_rS=\Phi_rQ_r$, and spectral sieves on the first nonzero scattered-subword defect. We prove a wedge dichotomy for closed nonproductive components which shows that the ``concentration'' step of the spectral route is equivalent to the statement that no such component has vanishing degree-two defect, and that the remaining step of that route is equivalent to the statement that no such component has nonvanishing degree-two defect; both statements remain open, and together they are the coincidence problem itself. Exhaustive exact computations on all $4{,}554$ primitive irreducible Pisot substitutions on three letters with image lengths at most three are reported as finite evidence with their exact hypotheses. The Pisot substitution conjecture remains open; G1 and G1b-2 remain open; no finite computation reported here is a finiteness theorem.
+We give a self-contained account of the balanced-pair approach to the Pisot substitution conjecture for primitive substitutions with irreducible characteristic polynomial and Pisot dilation, without any unimodularity assumption. The approach reduces \PDS{} of the associated tiling flow to two statements about the balanced-pair automaton $\B_\sigma$: finiteness of $\B_\sigma$ (G1) and productivity of every recurrent noncoincident strongly connected component (SCC Producer). We prove the reduction and then analyse both statements. On the finiteness side we show that unique decodability of the image code follows from $\det M_\sigma\neq 0$ alone, we record why it does not imply finiteness, we prove that the discrepancy of every reachable state is bounded by an explicit constant depending only on $\sigma$ (bounded discrepancy, G1b-1), so that finiteness is equivalent to a renewal-finiteness statement (G1b-2) that is open; we prove a uniform finiteness theorem for multi-level cut ancestries under the Pisot hypothesis and identify, by explicit examples, which finite invariants of return words cannot be injective. On the coincidence side we prove a sink-SCC reduction, an exact intertwining $P_\cC N_\cC=M_\sigma P_\cC$ forcing $\rho(N_\cC)=\beta$ and $|\cC|\ge|\A|$ for any finite closed nonproductive component, an unconditional endpoint-synchronization eliminator, a Barge--Diamond eliminator for three letters, a $\Z/2$ orientation cocycle with signed first-defect intertwiners $Q_rS=\Phi_rQ_r$, and spectral sieves on the first nonzero scattered-subword defect. We prove a wedge dichotomy for closed nonproductive components which shows that the ``concentration'' step of the spectral route is equivalent to the statement that no such component has vanishing degree-two defect, and that the remaining step of that route is equivalent to the statement that no such component has nonvanishing degree-two defect; both statements remain open, and together they are the coincidence problem itself. Exhaustive exact computations on all $4{,}554$ primitive irreducible Pisot substitutions on three letters with image lengths at most three are reported as finite evidence with their exact hypotheses. The Pisot substitution conjecture remains open; G1 and G1b-2 remain open; no finite computation reported here is a finiteness theorem.
 \end{abstract}
 
 \maketitle
@@ -88,7 +88,7 @@ We are deliberately conservative about novelty. Several of the structural result
 \subsection{Explicit status of the two headline questions}\label{sec:headline-status}
 \begin{itemize}[leftmargin=*]
 \item \textbf{The Pisot substitution conjecture is open.} Theorem~\ref{thm:main-conditional} proves \PDS{} only under the two hypotheses G1 (finiteness of $\B_\sigma$) and SCC Producer. Neither is proved for general $|\A|\ge 3$. Nothing in this paper reduces either hypothesis to a proved statement.
-\item \textbf{G1b-2 (renewal finiteness, Open Problem~\ref{prob:G1b2}) is open.} It is the exact remaining obligation on the finiteness side once bounded discrepancy (Hypothesis~\ref{hyp:G1b1}, itself open) is granted. No bounded-norm argument can close it (Section~\ref{sec:retired-level2}); the exact computations of Section~\ref{sec:finite-level2} show why, and prove nothing about it.
+\item \textbf{G1b-2 (renewal finiteness, Open Problem~\ref{prob:G1b2}) is open.} Bounded discrepancy (Theorem~\ref{thm:G1b1}) is proved, and with it G1b-2 is \emph{equivalent} to G1 (Proposition~\ref{lem:G1-assembly}); it is the exact remaining obligation on the finiteness side. No bounded-norm argument can close it (Section~\ref{sec:retired-level2}); the exact computations of Section~\ref{sec:finite-level2} show why, and prove nothing about it.
 \item \textbf{The strongest spectral route to SCC Producer contains no proved implication from wedge data to productivity.} We show (Proposition~\ref{prop:wedge-dichotomy}) that its ``concentration'' step is equivalent to excluding closed nonproductive components with $K_2\equiv0$ (Open Problem~\ref{prob:concentration}), and that its final step is equivalent to excluding those with $K_2\not\equiv0$ (Open Problem~\ref{prob:wedge-productivity}). Neither is proved; the higher-degree sieves of Section~\ref{sec:orientation} constrain the first case but do not close it.
 \end{itemize}
 
@@ -252,28 +252,75 @@ $\sigma^n(\tau)=\sigma^k(\sigma^{n-k}(\tau))$ is a concatenation of elements of 
 An earlier version of this program claimed that Theorem~\ref{thm:UD} bounds the total coincidence ``padding'' inside an inflated balanced pair and hence that the geometric length of a child $s$ of a state $s'$ satisfies $\beta L(s')\le L(s)+D$ for a constant $D$, from which backward contraction would give finiteness. \emph{Both claims are withdrawn.} Unique decodability excludes only coincidence runs whose phase pattern is a legally repeatable complete-cutting cycle; runs recurring at a nonzero within-image offset are not excluded, and long coincidence runs do occur. More decisively, inflation of $s'$ may split into many noncoincident children none of which carries most of $\beta L(s')$; on the corpus of Section~\ref{sec:finite} the ratio $\beta L(s')/L(s)$ over child edges exceeds $8$ and grows with state length. No form of this argument is used below.
 \end{remark}
 
-\subsection{Discrepancy and the two-gate decomposition}
+\subsection{Discrepancy: the bounded part and the open part}\label{sec:disc}
 
 \begin{definition}\label{def:disc}
 The \emph{discrepancy} of a balanced pair $s=(u,v)$ of length $n$ is $\Disc(s):=\max_{0\le k\le n}\|D_s(k)\|_\infty$. A state is \emph{reachable} if it is a vertex of $\B_\sigma$.
 \end{definition}
 
-\begin{hypothesis}[G1b-1, bounded discrepancy; \Status{Open}]\label{hyp:G1b1}
-$\sup\{\Disc(T):T\text{ reachable}\}<\infty$.
-\end{hypothesis}
+\begin{theorem}[G1b-1, bounded discrepancy; \Status{Theorem}]\label{thm:G1b1}
+Let $\sigma$ be primitive and suppose that every eigenvalue of $M=M_\sigma$ other than $\beta$ has modulus less than one (as is the case for PIP $\sigma$). Then $\Disc(T)\le D_\sigma:=4(d+1)C_\sigma$ for every reachable state $T$, where $C_\sigma$ is the explicit constant of \eqref{eq:Csigma}.
+\end{theorem}
 
-\begin{problem}[G1b-2, renewal finiteness; \Status{Open}]\label{prob:G1b2}
-For every $R_0$, prove that only finitely many reachable irreducible states $T$ satisfy $\Disc(T)\le R_0$.
-\end{problem}
+Throughout this subsection $r>0$ and $\ell>0$ are the right and left Perron eigenvectors of $M$, normalized by $\langle\ell,r\rangle=1$; $P_u:=r\ell^{\mathsf T}$ is the spectral projection onto $E_u:=\R r$, it commutes with $M$, and $P_s:=I-P_u$ is the projection onto $E_s:=\ker\ell^{\mathsf T}$ along $E_u$. $E_s$ is $M$-invariant and $\spec(M|_{E_s})=\spec(M)\setminus\{\beta\}$, so under the hypothesis of the theorem $\rho(M|_{E_s})<1$. Norms are $\|\cdot\|_\infty$ and the induced operator norm; $\mathbf 1$ is the all-ones vector, so $\langle\mathbf 1,\pi(w)\rangle=|w|$. Unimodularity, unique decodability and irreducibility of $\chi_M$ are not used; irreducibility enters only through the hypothesis on the eigenvalues, which Adamczewski~\cite{Adam} shows cannot be dropped in general.
 
-\begin{lemma}[\Status{Conditional}]\label{lem:G1-assembly}
-Hypothesis~\ref{hyp:G1b1} together with a positive solution of Open Problem~\ref{prob:G1b2} implies Hypothesis~\ref{hyp:G1}.
+\begin{lemma}[Summable decay]\label{lem:decay}
+$\kappa_i:=\|M^iP_s\|$ satisfies $K_\sigma:=\sum_{i\ge0}\kappa_i<\infty$.
 \end{lemma}
 \begin{proof}
-Take $R_0$ to be the supremum in Hypothesis~\ref{hyp:G1b1}.
+$M^iP_s=(MP_s)^i$ for $i\ge1$, and $\spec(MP_s)=\spec(M|_{E_s})\cup\{0\}$, so $\rho(MP_s)<1$ and Gelfand's formula gives $\kappa_i\le c\mu^i$ for some $\mu<1$.
 \end{proof}
 
-A contraction estimate of the form $\Disc(\sigma\text{-child})\le c\,\Disc(\text{parent})+E$ with $c<1$, in a norm adapted to $M_\sigma$, has been asserted in unpublished working notes of this program; we have not been able to reconstruct a proof, and we treat Hypothesis~\ref{hyp:G1b1} as open. We stress that even granting it, Open Problem~\ref{prob:G1b2} is a separate statement: the prefix-difference walk of an irreducible balanced pair is a first return to $0$ of a walk in $\Z^d$ that avoids $0$, and a bounded box contains arbitrarily long such walks. Finiteness must come from the substitutive structure of which walks actually occur.
+\begin{lemma}[Prefix decomposition]\label{lem:prefix-decomp}
+Let $n\ge0$, $a\in\A$, and let $p$ be a prefix of $\sigma^n(a)$. There are letters $c_0,\dots,c_n$ with $c_n=a$, words $p_0,\dots,p_{n-1}$ such that $p_ic_i$ is a prefix of $\sigma(c_{i+1})$, and $e\in\{\varepsilon,c_0\}$, with
+\[p=\sigma^{n-1}(p_{n-1})\,\sigma^{n-2}(p_{n-2})\cdots\sigma^0(p_0)\,e.\]
+\end{lemma}
+\begin{proof}
+Induction on $n$; for $n=0$ take $e=p\in\{\varepsilon,a\}$. For $n\ge1$ write $\sigma(a)=b_1\cdots b_m$, so $\sigma^n(a)=\sigma^{n-1}(b_1)\cdots\sigma^{n-1}(b_m)$; let $t\le m-1$ be maximal with $|\sigma^{n-1}(b_1\cdots b_t)|\le|p|$. Then $p=\sigma^{n-1}(b_1\cdots b_t)\,p'$ with $p'$ a prefix of $\sigma^{n-1}(b_{t+1})$ (if $p=\sigma^n(a)$ then $t=m-1$ and $p'=\sigma^{n-1}(b_m)$). Put $p_{n-1}=b_1\cdots b_t$, $c_{n-1}=b_{t+1}$ and apply the induction hypothesis to $p'$.
+\end{proof}
+
+\begin{lemma}[Bounded contracting component]\label{lem:rauzy-bounded}
+Let
+\begin{equation}\label{eq:Csigma}
+B_\sigma:=\max\bigl\{\|P_s\pi(q)\|,\ \|P_se_c\|: c\in\A,\ q\text{ a prefix of }\sigma(c)\bigr\},\qquad C_\sigma:=B_\sigma(1+K_\sigma).
+\end{equation}
+Then $\|P_s\pi(p)\|\le C_\sigma$ for every $n\ge0$, every $a\in\A$ and every prefix $p$ of $\sigma^n(a)$.
+\end{lemma}
+\begin{proof}
+By Lemma~\ref{lem:prefix-decomp}, $\pi(\sigma^i(w))=M^i\pi(w)$ and $P_sM=MP_s$, $P_s\pi(p)=\sum_{i=0}^{n-1}M^iP_s\pi(p_i)+P_s\pi(e)$, and each term is bounded by $\kappa_iB_\sigma$, resp.\ $B_\sigma$.
+\end{proof}
+
+Lemma~\ref{lem:rauzy-bounded} is the boundedness of the Rauzy fractal, equivalently Adamczewski's theorem~\cite{Adam} that fixed points of primitive substitutions whose second eigenvalue has modulus less than one are balanced; we include the argument so that the hypotheses used are visible.
+
+\begin{lemma}[Zero symbolic length controls the Perron component]\label{lem:zero-length}
+If $x\in\R^d$ and $\langle\mathbf 1,x\rangle=0$ then $\|x\|\le(d+1)\|P_sx\|$.
+\end{lemma}
+\begin{proof}
+$x=\langle\ell,x\rangle r+P_sx$; applying $\langle\mathbf 1,\cdot\rangle$ gives $|\langle\ell,x\rangle|\le d\|P_sx\|/\langle\mathbf 1,r\rangle$, and $\|r\|\le\langle\mathbf 1,r\rangle$ since $r>0$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:G1b1}]
+Fix a seed $(ab,ba)$ and $n\ge0$; put $U=\sigma^n(ab)$, $V=\sigma^n(ba)$ and $\Delta(j):=\pi(U[j])-\pi(V[j])$ for $0\le j\le|U|$. The prefix $U[j]$ is either a prefix of $\sigma^n(a)$ or $\sigma^n(a)$ followed by a prefix of $\sigma^n(b)$, so $\|P_s\pi(U[j])\|\le2C_\sigma$ by Lemma~\ref{lem:rauzy-bounded}; likewise for $V[j]$; hence $\|P_s\Delta(j)\|\le4C_\sigma$. (Legality of $ab$ is not needed.) Both prefixes have $j$ letters, so $\langle\mathbf 1,\Delta(j)\rangle=0$ and Lemma~\ref{lem:zero-length} gives $\|\Delta(j)\|\le4(d+1)C_\sigma=D_\sigma$ for all $j$ and $n$.
+
+Now let $T$ be reachable. By Lemma~\ref{lem:descendants} applied to a seed, $T$ is, up to side swap, a block $(U[i..i'),V[i..i'))$ of $\red(U,V)$ for some seed and some $n$, with $i<i'$ consecutive zero returns of $(U,V)$. Then $D_T(k)=\Delta(i+k)-\Delta(i)=\Delta(i+k)$, so $\Disc(T)\le\max_j\|\Delta(j)\|\le D_\sigma$; side swap negates $D_T$ and preserves $\Disc$.
+\end{proof}
+
+\begin{remark}\label{rem:no-contraction}
+The proof is global, not recursive: no inequality between $\Disc$ of a child and of its parent is proved or used, and route~(iii) of Section~\ref{sec:retired-level2} (the zero-sum hyperplane does not contract under $M$ in a fixed norm) is untouched; Lemma~\ref{lem:zero-length} separates the Perron and contracting components of a zero-length vector instead. A contraction estimate of the form $\Disc(\sigma\text{-child})\le c\,\Disc(\text{parent})+E$ with $c<1$ was asserted in unpublished working notes of this program; we have not reconstructed it and do not need it.
+\end{remark}
+
+\begin{problem}[G1b-2, renewal finiteness; \Status{Open}]\label{prob:G1b2}
+Prove that only finitely many reachable irreducible states $T$ satisfy $\Disc(T)\le D_\sigma$.
+\end{problem}
+
+\begin{proposition}[\Status{Theorem}]\label{lem:G1-assembly}
+Under the hypotheses of Theorem~\ref{thm:G1b1}, Hypothesis~\ref{hyp:G1} holds if and only if Open Problem~\ref{prob:G1b2} has a positive answer. More precisely, for $R_0\ge D_\sigma$ the statement ``only finitely many reachable irreducible states have $\Disc\le R_0$'' is Hypothesis~\ref{hyp:G1}, and for $R_0<D_\sigma$ it is implied by it.
+\end{proposition}
+\begin{proof}
+Every state of $\B_\sigma$ is an irreducible balanced pair (a seed, or a block of a reduction), and by Theorem~\ref{thm:G1b1} every one has $\Disc\le D_\sigma$.
+\end{proof}
+
+Theorem~\ref{thm:G1b1} gives a box, not finiteness: the difference walk of every reachable state takes values in the finite set $\{x\in\Z^d:\|x\|_\infty\le D_\sigma,\ \langle\mathbf 1,x\rangle=0\}$, but the walk of an irreducible balanced pair is a first return to $0$ of a walk avoiding $0$, and a bounded box contains arbitrarily long such walks; Computation~\ref{comp:disc} exhibits reachable states of length $48{,}020$ with discrepancy at most $14$. Finiteness must come from the substitutive structure of which labelled walks actually occur.
 
 \subsection{Labelled first returns and the information-loss example}\label{sec:labelled}
 
@@ -329,7 +376,7 @@ Iterating the descent gives, for a zero return $t$ at level $n$ (in $(\sigma^n(u
 Let $\sigma$ be PIP, and let $F,D\subset\Z^d$ be finite. There is a finite set $A=A(M,F,D)\subset\Z^d$ containing every term of every sequence $x_0,\dots,x_n\in\Z^d$ (any $n$) with $x_0\in F$, $x_n=0$, and $x_{k+1}=Mx_k+d_{k+1}$, $d_{k+1}\in D$.
 \end{theorem}
 \begin{proof}
-Let $\R^d=E_u\oplus E_s$ where $E_u$ is the Perron eigenline and $E_s$ the $M$-invariant real complement spanned by the generalized eigenspaces of $\beta_2,\dots,\beta_d$; $\rho(M|_{E_s})<1$, so $\|M^m\pi_sz\|\le K q^m\|\pi_sz\|$ for constants $K$, $0<q<1$. Forward iteration gives $\pi_sx_k=M^k\pi_sx_0+\sum_{j\le k}M^{k-j}\pi_sd_j$, bounded uniformly in $k$ by $K(\max_F\|\pi_s\|+\max_D\|\pi_s\|/(1-q))$. On $E_u$ the recurrence is $\pi_ux_{k+1}=\beta\pi_ux_k+\pi_ud_{k+1}$; solving backward from $x_n=0$, $\pi_ux_k=-\sum_{j>k}\beta^{k-j}\pi_ud_j$, bounded by $\max_D\|\pi_u\|/(\beta-1)$. So all $x_k$ lie in a fixed bounded region of $\R^d$, which meets $\Z^d$ in a finite set.
+Let $\R^d=E_u\oplus E_s$ be the splitting of Section~\ref{sec:disc}, with projections $\pi_u=P_u$, $\pi_s=P_s$; $\rho(M|_{E_s})<1$, so $\|M^m\pi_sz\|\le K q^m\|\pi_sz\|$ for constants $K$, $0<q<1$. Forward iteration gives $\pi_sx_k=M^k\pi_sx_0+\sum_{j\le k}M^{k-j}\pi_sd_j$, bounded uniformly in $k$ by $K(\max_F\|\pi_s\|+\max_D\|\pi_s\|/(1-q))$. On $E_u$ the recurrence is $\pi_ux_{k+1}=\beta\pi_ux_k+\pi_ud_{k+1}$; solving backward from $x_n=0$, $\pi_ux_k=-\sum_{j>k}\beta^{k-j}\pi_ud_j$, bounded by $\max_D\|\pi_u\|/(\beta-1)$. So all $x_k$ lie in a fixed bounded region of $\R^d$, which meets $\Z^d$ in a finite set.
 \end{proof}
 
 \begin{remark}
@@ -341,7 +388,7 @@ Theorem~\ref{thm:ancestry} is the matrix-radix analogue of the finiteness of dig
 Retaining, at each level $k$ of a descent, the pair of source letters $(a_k,b_k)$ containing the two cuts together with $x_k$ gives the \emph{affine trace} $\bigl((a_k,b_k,x_k)\bigr)_{0\le k\le n}$ of a zero return. For a fixed PIP $\sigma$ and a fixed finite closed set of states, the affine states range over a finite set (Theorem~\ref{thm:ancestry}), so every sufficiently deep zero return has a repeated affine state, i.e.\ a \emph{loop} in its trace.
 
 \begin{problem}[Affine pump normalization; \Status{Open}]\label{prob:pump}
-Prove (or refute): for a PIP substitution and a bound $R_0$, every reachable state with $\Disc\le R_0$ whose ancestry trace contains a loop can be shortened along the loop to another reachable state with the same labelled local data, and the loop-free traces form a finite set. Either clause, proved uniformly, would resolve Open Problem~\ref{prob:G1b2} in the presence of Hypothesis~\ref{hyp:G1b1}.
+Prove (or refute): for a PIP substitution and a bound $R_0$, every reachable state with $\Disc\le R_0$ whose ancestry trace contains a loop can be shortened along the loop to another reachable state with the same labelled local data, and the loop-free traces form a finite set. Either clause, proved uniformly, would resolve Open Problem~\ref{prob:G1b2}, hence G1 (Proposition~\ref{lem:G1-assembly}).
 \end{problem}
 
 The finite computations of Section~\ref{sec:finite-level2} show that, for $\tau$ of Example~\ref{ex:tau}, every collision of a natural finite projection observed through depth seven is explained by such a loop. That is evidence for the shape of the statement, not for its truth.
@@ -376,7 +423,7 @@ Determine whether, for irreducible Pisot $\sigma$ with \PDS{}, the balanced-pair
 The statement in~\cite[Thm.~5.3]{ABBLS} is that termination with coincidence is equivalent to \PDS{} and that a seed of the form $(ij,ji)$ suffices; we have not verified from the proofs in~\cite{SS,HS} that the equivalence holds for an arbitrary chosen seed, nor for seeds outside the language. Until this is settled we do not assert ``\PDS{} implies G1'' for the all-seed automaton. If the seedwise implication holds, then G1 is a \emph{necessary} condition for \PDS{} and Theorem~\ref{thm:main-conditional} is not merely one sufficient route.
 
 \subsection{Retired finiteness arguments}\label{sec:retired-level2}
-The following are not valid routes to G1 and are recorded so that they are not reattempted: (i) unique decodability implies bounded total coincidence padding (Remark~\ref{rem:UD-not-finiteness}); (ii) bounded discrepancy implies finitely many states; (iii) the zero-sum hyperplane contracts under $M$ in a fixed norm (false: the Perron component of a nonzero difference vector expands); (iv) every long state contains a uniformly short irreducible core; (v) the two-letter case is a trivial one-dimensional walk (the known two-letter proof~\cite{BD,HS} uses genuine substitutive structure); (vi) the unlabelled difference path determines the state (Example~\ref{ex:collision}).
+The following are not valid routes to G1 and are recorded so that they are not reattempted: (i) unique decodability implies bounded total coincidence padding (Remark~\ref{rem:UD-not-finiteness}); (ii) bounded discrepancy (now Theorem~\ref{thm:G1b1}) implies finitely many states; (iii) the zero-sum hyperplane contracts under $M$ in a fixed norm (false: the Perron component of a nonzero difference vector expands); (iv) every long state contains a uniformly short irreducible core; (v) the two-letter case is a trivial one-dimensional walk (the known two-letter proof~\cite{BD,HS} uses genuine substitutive structure); (vi) the unlabelled difference path determines the state (Example~\ref{ex:collision}).
 
 \section{Level 3: coincidence}\label{sec:level3}
 
@@ -651,6 +698,12 @@ The \emph{corpus} $\mathcal S$ is the set of substitutions $\sigma$ on $\A=\{0,1
 $|\mathcal S|=4{,}554$, of which $2{,}628$ are unimodular and $1{,}926$ are not; among the unimodular ones $648$ have three real roots and $1{,}980$ a complex pair; no $\chi_M$ has zero discriminant. For every $\sigma\in\mathcal S$ the construction of $\B_\sigma$ terminated below the cap. Over $\mathcal S$ there are $5{,}022$ recurrent noncoincident SCCs containing $369{,}486$ states; each $\sigma$ has exactly one noncoincident SCC with no noncoincident exit (a \emph{noncoincident sink}), and every one of the $4{,}554$ sinks has a coincidence block among its children, hence is productive. Every sink also has a state with a one-step newborn synchronizing zero return, and $4{,}278$ sinks have an inherited synchronizing boundary. Exactly $60$ of the $5{,}022$ recurrent noncoincident SCCs have neither a newborn nor an inherited synchronizing boundary among their states; all $60$ are singletons, none has a coincidence child, and every one has a noncoincident exit. There is no closed nonproductive SCC in the corpus.
 \end{computation}
 
+\begin{computation}[Discrepancy census; \Status{Finite computation}]\label{comp:disc}
+Over $\mathcal S$, with $\B_\sigma$ built from all three seeds under a cap of $20{,}000$ states (never reached), the maximum of $\Disc(T)$ over all reachable states of all $4{,}554$ automata is $14$, and the longest reachable state has $48{,}020$ letters. The number of $\sigma\in\mathcal S$ whose maximal reachable discrepancy is $1,2,\dots,12,14$ is $1554,1356,474,330,240,240,84,108,36,60,24,36,12$ respectively (no $\sigma$ attains $13$). For the three seeds of $\tau$ (Example~\ref{ex:tau}) the quantity $\max_j\|\Delta(j)\|_\infty$ of the proof of Theorem~\ref{thm:G1b1} at levels $n=0,\dots,18$ is $1,1,2,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5$; for Tribonacci and flipped Tribonacci it is $1$ at every level.
+\end{computation}
+
+\emph{Meaning.} The values are consistent with Theorem~\ref{thm:G1b1} and illustrate its remark that a bounded box contains long reachable states. \emph{Limitation.} No computation verifies $D_\sigma$. Since a swap walk splits at its zero returns into reachable states (proof of Theorem~\ref{thm:G1b1}), $\max_j\|\Delta(j)\|_\infty$ at any level is the largest discrepancy of a depth-$n$ descendant, so for $\tau$, whose automaton is finite with maximal reachable discrepancy $5$, the profile attains $5$ at level $15$ and can never exceed it; the sharp value $5$ is to be contrasted with the analytic constant $D_\tau$, which is far larger (a floating-point evaluation, not a certificate, gives $D_\tau\approx7.6\times10^2$, the series of Lemma~\ref{lem:decay} converging slowly because the second eigenvalue has modulus $(2/\beta)^{1/2}\approx0.94$).
+
 \emph{Meaning.} For each $\sigma\in\mathcal S$ the run certifies that $\B_\sigma$ is finite and that every reachable state is productive; under Imported Theorem~\ref{thm:bridge} this is a proof of \PDS{} for that particular $\sigma$ (the seed-family question of Section~\ref{sec:literature-bridge} does not affect this direction). \emph{Limitation.} It says nothing about substitutions with longer images or larger alphabets, and finiteness of $4{,}554$ particular automata is not evidence of a uniform mechanism.
 
 \begin{computation}[First-defect census; \Status{Finite computation}]\label{comp:defect}
@@ -719,8 +772,7 @@ For reference we collect the open statements with their exact form and dependenc
 
 \begin{enumerate}[leftmargin=*]
 \item \textbf{G1} (Hypothesis~\ref{hyp:G1}): $\B_\sigma$ finite. Open for general $|\A|\ge3$; known for $|\A|=2$~\cite{BD,HS} and for the verified families; certified for each $\sigma\in\mathcal S$.
-\item \textbf{G1b-1} (Hypothesis~\ref{hyp:G1b1}): bounded discrepancy over reachable states. Open; asserted in unavailable notes; not used anywhere below.
-\item \textbf{G1b-2} (Open Problem~\ref{prob:G1b2}): finitely many reachable irreducible states of bounded discrepancy. Open; with G1b-1 implies G1. Candidate mechanisms: Open Problem~\ref{prob:pump} (symbolic) and Conjecture~\ref{conj:density} (geometric), the latter requiring also that reachable states be realized.
+\item \textbf{G1b-2} (Open Problem~\ref{prob:G1b2}): finitely many reachable irreducible states of discrepancy at most $D_\sigma$. Open; equivalent to G1 by Theorem~\ref{thm:G1b1} (bounded discrepancy, G1b-1, which is proved). Candidate mechanisms: Open Problem~\ref{prob:pump} (symbolic) and Conjecture~\ref{conj:density} (geometric), the latter requiring also that reachable states be realized.
 \item \textbf{Seedwise bridge} (Open Problem~\ref{prob:seedwise}): whether \PDS{} forces termination from every seed, including illegal ones. Determines whether G1 is necessary for \PDS{}.
 \item \textbf{SCC Producer} (Conjecture~\ref{conj:producer}); under G1 equivalent to nonexistence of strict components (Theorem~\ref{thm:sink}).
 \item \textbf{Concentration} (Open Problem~\ref{prob:concentration}): no strict component with $K_2\equiv0$ ($d=3$). By Proposition~\ref{prop:wedge-dichotomy} this is the ``concentration / aux-B'' step of the spectral route, and the ``span-rich'' step then follows from it. Open.
@@ -732,7 +784,7 @@ For reference we collect the open statements with their exact form and dependenc
 
 \section{Discussion}\label{sec:discussion}
 
-The balanced-pair route converts the Pisot substitution conjecture into two statements about a finite graph, and this paper has tried to say exactly what is known about each. On the finiteness side the situation is uncomfortable: unique decodability is a five-line consequence of $\det M\ne0$ and is irrelevant to finiteness; the natural bounded-norm statements are either open (Hypothesis~\ref{hyp:G1b1}) or insufficient (Open Problem~\ref{prob:G1b2}); and the only uniform finiteness theorem we can prove (Theorem~\ref{thm:ancestry}) concerns ancestry defects, which are known to admit nonzero cycles. The finite computations show what a proof must do, namely control which labelled return words are realized by the substitutive hierarchy across all levels, and they show that bounded windows of any fixed size cannot do it. The geometric twin of G1, finiteness of realized overlaps, is a theorem in the overlap algorithm~\cite{Solomyak97,AL,LS}; the gap between the two is the relative density of simultaneous boundaries (Conjecture~\ref{conj:density}) together with the realization of formal states, and we think this is where a proof of G1b-2 should be sought, in an internal space that includes the non-Archimedean factor when $|\det M|>1$~\cite{MT}.
+The balanced-pair route converts the Pisot substitution conjecture into two statements about a finite graph, and this paper has tried to say exactly what is known about each. On the finiteness side the situation is uncomfortable: unique decodability is a five-line consequence of $\det M\ne0$ and is irrelevant to finiteness; bounded discrepancy (Theorem~\ref{thm:G1b1}) is a short consequence of the Pisot hypothesis and is, as it must be, insufficient, so that G1 is exactly Open Problem~\ref{prob:G1b2}; and the only uniform finiteness theorem we can prove (Theorem~\ref{thm:ancestry}) concerns ancestry defects, which are known to admit nonzero cycles. The finite computations show what a proof must do, namely control which labelled return words are realized by the substitutive hierarchy across all levels, and they show that bounded windows of any fixed size cannot do it. The geometric twin of G1, finiteness of realized overlaps, is a theorem in the overlap algorithm~\cite{Solomyak97,AL,LS}; the gap between the two is the relative density of simultaneous boundaries (Conjecture~\ref{conj:density}) together with the realization of formal states, and we think this is where a proof of G1b-2 should be sought, in an internal space that includes the non-Archimedean factor when $|\det M|>1$~\cite{MT}.
 
 On the coincidence side the reductions are substantial but do not close: a strict component must be a no-leakage block substitution at the Perron rate, with full Parikh rank and at least $|\A|$ states, with both endpoint maps non-synchronizing and (for three letters) not $3$-cycles, with a signed derived incidence of spectral radius at most $\beta$, with a first defect lying in a free Lie component subject to the sieves of Theorems~\ref{thm:deg23}--\ref{thm:sieve}, and with locally recognizable hierarchies on both sides. Two independent-looking routes, the spectral one and the boundary one, funnel into the same question: the spectral route splits it by first defect degree into Open Problems~\ref{prob:concentration} and~\ref{prob:wedge-productivity}, the boundary route poses it as Open Problem~\ref{prob:C4}; we regard the identification of the concentration step with the higher-degree case as a clarification, not as progress, and we keep it in the list of unresolved statements. What is missing is an argument that uses the actual ordered factorization of inflated states, not an invariant of it; the synthetic template of Section~\ref{sec:synthetic} shows how much a hypothetical component can satisfy before it fails, and it fails only at the factorization itself.
 
@@ -742,6 +794,8 @@ We end by restating the status. The Pisot substitution conjecture is open. Hypot
 The exact computations of Section~\ref{sec:finite} were carried out with independently written implementations and cross-checked against each other; the author thanks the reviewers of earlier versions of this program for insisting on the withdrawal recorded in Remark~\ref{rem:UD-not-finiteness}.
 
 \begin{thebibliography}{99}
+
+\bibitem{Adam} B.~Adamczewski, \emph{Balances for fixed points of primitive substitutions}, Theoret.\ Comput.\ Sci.\ \textbf{307} (2003), 47--75.
 
 \bibitem{ABBLS} S.~Akiyama, M.~Barge, V.~Berth\'e, J.-Y.~Lee, A.~Siegel, \emph{On the Pisot substitution conjecture}, in: Mathematics of Aperiodic Order, Progr.\ Math.\ \textbf{309}, Birkh\"auser, 2015, 33--72.
 

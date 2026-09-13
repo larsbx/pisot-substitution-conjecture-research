@@ -1,6 +1,6 @@
 # Current PSC proof architecture — 2026-09-11
 
-**Status:** canonical project-status ledger for the current research program. This file records the present proof architecture and priorities. Where a theorem-grade result is known from the current v16/later research track but its detailed proof source is not yet present on `main`, that provenance gap is stated explicitly rather than hidden. The dated weekly ledger `docs/completion-ledger-2026-09-11.md` carries the full evidence tables and a per-item repository cross-check.
+**Status:** canonical project-status ledger for the current research program. **Update 2026-09-13:** the merged manuscript `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` is the authoritative status-tagged prose account; its Proposition 5.20 (wedge dichotomy) shows that the concentration step below is equivalent to excluding strict components with `K2 == 0`, and that the final spectral step is equivalent to excluding those with `K2 != 0`; both remain open (see `docs/conjecture-ledger.md`). This file records the present proof architecture and priorities. Where a theorem-grade result is known from the current v16/later research track but its detailed proof source is not yet present on `main`, that provenance gap is stated explicitly rather than hidden. The dated weekly ledger `docs/completion-ledger-2026-09-11.md` carries the full evidence tables and a per-item repository cross-check.
 
 ## Executive status
 
@@ -9,7 +9,7 @@ The proof is not complete. The remaining work is best separated into two genuine
 | Gate | Status | Remaining obligation |
 | --- | --- | --- |
 | Level 2 / G1: finiteness of the balanced-pair automaton | **OPEN** | G1b-2 renewal finiteness |
-| Level 3 / SCC Producer | **CLOSED MODULO concentration** in the strongest current spectral attack | prove dominant wedge growth concentrates in a closed recurrent carrier |
+| Level 3 / SCC Producer | **OPEN at two independent obligations** in the strongest current spectral attack (updated 2026-09-13) | concentration (no strict component with `K2 == 0`) **and** wedge productivity (no strict component with `K2 != 0`); proving concentration alone does not close Level 3 |
 
 Unique decodability is not an open hypothesis. It is a theorem from `det M_sigma != 0` and must remain downstream of irreducibility/full incidence rank rather than being assumed independently.
 
@@ -20,32 +20,33 @@ The realization/MEF track is a parallel reformulation/certificate route, not a t
 The current intended chain is
 
 ```text
-primitive irreducible Pisot
-=> det M_sigma != 0
-=> unique decodability
-=> quotient contraction
-=> bounded discrepancy (G1b-1)
-=> [OPEN] renewal finiteness (G1b-2)
+primitive + Pisot spectrum
+=> bounded discrepancy (G1b-1)   [THEOREM, reconstructed 2026-09-13]
+=> [OPEN] renewal finiteness (G1b-2)   (now equivalent to G1)
 => |B_sigma| < infinity.
 ```
 
 ### G1b-1 — bounded discrepancy
 
-**Project status:** theorem-grade in the v16 track; detailed proof source is not yet imported into `main` and must be migrated/audited before the repository can claim self-contained closure.
-
-The adapted Lyapunov norm gives a contraction estimate of the form
+**Status. THEOREM (repository-proved, 2026-09-13).** Independently reconstructed, with a complete proof, in `docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md`; stated as Theorem 4.4 of `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`. Every reachable state `T` of `B_sigma` satisfies
 
 ```text
-Disc(sigma w) <= c Disc(w) + 2 E_sigma,   c < 1.
+Disc(T) <= D_sigma := 4 (|A| + 1) C_sigma,
 ```
 
-This bounds discrepancy height.
+with `C_sigma` an explicit constant from the contracting part of `M_sigma`. The proof uses only primitivity and the Pisot spectrum (every non-Perron eigenvalue inside the unit circle); it does not use unimodularity, unique decodability, or legality of seeds. It is a global bound on the prefix-difference walk of every inflated swap seed, not a child-versus-parent contraction: the reported estimate
+
+```text
+Disc(sigma w) <= c Disc(w) + 2 E_sigma,    c < 1
+```
+
+was not reconstructed and is not needed. Bounded discrepancy bounds the difference walk, not the state length; exact census: maximum discrepancy `14` and a reachable state of length `48,020` over the `4,554`-member corpus.
 
 ### G1b-2 — renewal finiteness
 
-**Status: OPEN.** This is the exact Level-2 bottleneck.
+**Status: OPEN.** This is the exact Level-2 bottleneck, and with G1b-1 proved it is equivalent to G1 (manuscript Proposition 4.11).
 
-Required statement: for every fixed discrepancy bound `R0`, only finitely many reduced, interior-zero-free balanced pairs with `R(s) <= R0` are actually realizable.
+Required statement: only finitely many reachable irreducible balanced pairs have `Disc(s) <= D_sigma`.
 
 Bounded discrepancy alone is insufficient: a reduced difference walk can remain in a finite nonzero lattice box while having arbitrarily long first-return data.
 
@@ -85,8 +86,11 @@ closed recurrent carrier
 => nonzero dominant wedge functional
 => Galois conjugacy forces all wedge eigenfunctionals nonzero
 => full wedge span / span-rich
+=> [OPEN] wedge productivity
 => productivity.
 ```
+
+Both bracketed arrows are open (2026-09-13): concentration is equivalent to `no strict component with K2 == 0`, wedge productivity to `no strict component with K2 != 0`; proving either alone does not close Level 3.
 
 ### Concentration / aux-B
 
@@ -174,10 +178,10 @@ The next manuscript revision must fix:
 ## Prioritized completion ledger
 
 1. **P0 — manuscript/source corrections.** Fix the hypothesis and attribution defects above and import the missing v16/later source material into the repository.
-2. **P1-A — concentration / aux-B.** Highest-leverage reachable Level-3 lemma.
+2. **P1-A — Level-3 closed-carrier obligations.** Concentration / aux-B (`K2 == 0` case) and wedge productivity (`K2 != 0` case); both are needed, and the finite evidence points to the `K2 != 0` case as the main one.
 3. **P1-B — G1b-2 renewal finiteness.** Unavoidable Level-2 theorem; main long-horizon effort.
 4. **P2 — non-unimodular firewall for G1b-2.** Build the contracting address in the correct Euclidean/profinite setting when required.
-5. **P3 — SCC Producer assembly.** Once G1 and concentration are available, write the finite-graph assembly explicitly.
+5. **P3 — SCC Producer assembly.** Once G1, concentration, and wedge productivity are all available, write the finite-graph assembly explicitly.
 6. **P4 — realization/collar completeness.** Parallel certification route.
 7. **P5 — final PDS bridge audit.** Check exact hypotheses of the selected literature bridge against the final BPA formulation.
 8. **P6 — machine-checkable certificates.** Continue converting finite evidence into reproducible Mojo certificates without upgrading evidence to theorem status.
@@ -186,7 +190,7 @@ The next manuscript revision must fix:
 
 Work asymmetrically:
 
-- attack **concentration** first because one narrow lemma may close the strongest current Level-3 route;
+- attack the **Level-3 closed-carrier obligations** (concentration and wedge productivity); neither alone closes the route, and the `K2 != 0` case is the one realized by essentially all reachable states in the exact corpus;
 - in parallel, devote the main long-horizon program to **G1b-2**, specifically realizable first-return words and a level-scaled non-unimodular contracting address.
 
 The UD layer is finished. The proof is complete only when both independent gates are closed and the final PDS bridge is audited.
