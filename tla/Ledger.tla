@@ -81,6 +81,7 @@ ResultSet == {
     \* --- 2026-09-13 overlap route (finite graph, no G1) -----------------
     "SwapOverlapFiniteness",
     "OverlapProductivity",
+    "CoincidenceDensityOne",
     "AllStatesProductiveViaOverlaps",
     "DensityToPDSBridge",
     "PDSOverlapRoute",
@@ -164,13 +165,16 @@ RequiresDef == [r \in ResultSet |->
          discrepancy. OverlapProductivity is the open Level-3 statement in
          G1-free form; it implies productivity of every reachable state
          (AllStatesProductiveViaOverlaps) with no finiteness hypothesis, and
-         a G1-based PDS assembly remains available. DensityToPDSBridge is
-         the separate open input for the genuinely G1-free PDS route. *)
+         a G1-based PDS assembly remains available. CoincidenceDensityOne
+         records the proved overlap-productivity equivalence, while
+         DensityToPDSBridge is the separate open input for the genuinely
+         G1-free PDS route. *)
       [] r = "SwapOverlapFiniteness"      -> {"G1b1BoundedDiscrepancy"}
       [] r = "OverlapProductivity"        -> {}
+      [] r = "CoincidenceDensityOne"      -> {"OverlapProductivity", "SwapOverlapFiniteness"}
       [] r = "AllStatesProductiveViaOverlaps" -> {"OverlapProductivity", "SwapOverlapFiniteness"}
       [] r = "DensityToPDSBridge"         -> {}
-      [] r = "PDSOverlapRoute"            -> {"AllStatesProductiveViaOverlaps", "DensityToPDSBridge"}
+      [] r = "PDSOverlapRoute"            -> {"CoincidenceDensityOne", "DensityToPDSBridge"}
 
       (* Historical name retained for compatibility. The carrier span result
          is now repository-proved by the wedge dichotomy; it needs no separate
@@ -222,7 +226,8 @@ ProvedDef == {
 
     (* Overlap route: graph finiteness and the conditional assembly theorems
        are proved. OverlapProductivity and DensityToPDSBridge are absent. *)
-    "SwapOverlapFiniteness", "AllStatesProductiveViaOverlaps", "PDSOverlapRoute",
+    "SwapOverlapFiniteness", "CoincidenceDensityOne",
+    "AllStatesProductiveViaOverlaps", "PDSOverlapRoute",
 
     (* Boundary route conditional reductions remain proved. C4 itself is absent. *)
     "C3Local", "C2", "SCCProducer", "PDS",
