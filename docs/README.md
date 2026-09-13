@@ -11,8 +11,7 @@ the section matching the question you are asking.
 2. `conjecture-ledger.md` — live prose dependency ledger.
 3. `proof-ladder.md` — shortest honest path from established results to the
    remaining theorem.
-4. `current-proof-architecture-2026-09-11.md` — detailed two-gate
-   architecture, updated beyond its filename date.
+4. `current-proof-architecture-2026-09-11.md` — detailed architecture, including the original two-gate assembly and the later G1-free overlap/density alternative; updated beyond its filename date.
 5. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
    state-of-program exposition.
 
@@ -22,6 +21,7 @@ then repair all status surfaces together.
 
 ## Source provenance
 
+- `archive-tarball-audit-2026-09-13.md` — uploaded archive digest, identity check, and warning about contradictory v34 closing status language.
 - `source-provenance-v16-later-audit-2026-09-12.md` — exhaustive reachable
   Git-history audit and imported-source checksums.
 - `galois-aux-b-source-resolution-2026-09-13.md` — separates the historical
