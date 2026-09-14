@@ -197,4 +197,4 @@ Accepted. The referee's example is exact: for `1 → 2, 2 → 3, 3 → 133` the 
 
 ## Eleventh round (pull request #79)
 
-The referee reviewed the exact-window restatement of the Section 7 figures and posted no findings. Findings 18–23 are addressed; the record for the density-import revision (Lemma 5.36, Imported Theorem 5.37, Theorem 5.38, and the exploratory tooling) is complete.
+The automated Codex review of commit `90663fb3af9c1f87f8cea7c5040e4afc90d75ecd`, containing the substantive exact-window restatement of the Section 7 figures, posted no findings. Findings 18–23 are recorded as addressed.
