@@ -1,3 +1,5 @@
+import pytest
+
 from psc_research.bpa import apply_substitution_n, build_bpa, decompose_pair, seed_states
 from psc_research.examples import EXAMPLES
 from psc_research.swap_discrepancy import (
@@ -12,6 +14,20 @@ TAU = {1: (2,), 2: (1, 3, 2), 3: (1, 1, 2)}
 
 def test_discrepancy_of_swap_seed_is_one():
     assert discrepancy(((1, 2), (2, 1)), 3) == 1
+
+
+@pytest.mark.parametrize(
+    "state",
+    [
+        ((0,), (0,)),
+        ((4,), (4,)),
+        ((0,), (1,)),
+        ((1,), (4,)),
+    ],
+)
+def test_discrepancy_rejects_labels_outside_alphabet(state):
+    with pytest.raises(ValueError, match=r"outside 1\.\.3"):
+        discrepancy(state, 3)
 
 
 def test_level_zero_swap_walk_is_the_seed():
