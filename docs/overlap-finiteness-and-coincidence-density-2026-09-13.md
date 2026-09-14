@@ -267,9 +267,10 @@ outside the corpus.
    that only finitely many *chains* occur, i.e. that common vertices are
    uniformly relatively dense in every swap pair (the swap-pair form of the
    manuscript's Conjecture 4.21).
-3. **The bridge.** The manuscript's Imported Theorem 2.16 gives PDS from
-   *termination* (finiteness plus productivity) for a legal seed. The open
-   question that would remove G1 from the route to PDS is:
+3. **The bridge (resolved on 2026-09-14 by import; see Section 8).** The
+   manuscript's Imported Theorem 2.16 gives PDS from *termination*
+   (finiteness plus productivity). The question below, as originally posed,
+   is answered positively by Barge–Štimac–Williams Theorem 3.1:
 
    > **Question 6.1.** Let `sigma` be PIP and `ab` a legal factor. Does
    > `delta((ab, ba)) = 1` (equivalently, productivity of every overlap
@@ -277,26 +278,27 @@ outside the corpus.
    > spectrum, without assuming that `B_sigma` is finite?
 
    The exact source audit is
-   `docs/seed-patch-to-literature-overlap-audit-2026-09-13.md`. The local
-   path-valued realization, inflation, cut, and coincidence dictionary is
-   supplied by Lemmas 1.1, 3.1, 3.2 and this theorem. The remaining step is
-   global coverage: productivity in the finite swapped-patch graph must force
-   productivity of every overlap class in the complete Sirvent–Solomyak graph
-   `G_O(T,x(W))` for one prefix translation. This note does not supply that
-   transfer. If Question 6.1 has a positive answer then PDS
-   follows from Level 3' for one legal seed with no finiteness hypothesis.
-   That would not settle G1: the converse of Imported Theorem 2.16 (PDS
-   implies termination for a legal seed) is only recorded in the literature
-   and not used here, and G1 concerns all seeds, legal or not (the
-   manuscript's Open Problem 4.24). The bridge would change the role of G1
-   in the route to PDS, not its status.
+   `docs/seed-patch-to-literature-overlap-audit-2026-09-13.md`; it posed as
+   the remaining step a global transfer of productivity from the finite
+   swapped-patch graph to the complete Sirvent–Solomyak graph
+   `G_O(T,x(W))` for one prefix translation. That transfer is not supplied
+   here and is no longer needed for sufficiency: the periodic-patch form of
+   Barge–Štimac–Williams Theorem 3.1 applies to the swap pair directly
+   (Section 8), so PDS follows from Level 3' for one legal seed with no
+   finiteness hypothesis. This does not settle G1: the converse of Imported
+   Theorem 2.16 (PDS implies termination for a legal seed) is only recorded
+   in the literature and not used here, and G1 concerns all seeds, legal or
+   not (the manuscript's Open Problem 4.24). The bridge changes the role of
+   G1 in the route to PDS, not its status.
 
-In the manuscript these results are Theorem 4.22 (finiteness), Lemmas 5.30–5.31, Theorem 5.32 (coincidence density), Corollary 5.33, Corollary 5.34 (full rank on closed overlap sets), and Open Problems 5.35 (overlap productivity) and 5.36 (density bridge).
+In the manuscript these results are Theorem 4.22 (finiteness), Lemmas 5.30–5.31, Theorem 5.32 (coincidence density), Corollary 5.33, Corollary 5.34 (full rank on closed overlap sets), Open Problem 5.35 (overlap productivity), Lemma 5.36 (three forms of the density condition), Imported Theorem 5.37 and Theorem 5.38 (Section 8).
 
 ## 7. The transfer as a type-inclusion question (exploratory data)
 
-`docs/seed-patch-to-literature-overlap-audit-2026-09-13.md` reduces the
-density bridge to one transfer: for a prolongable power `tau = sigma^q` with
+Before the import of Section 8,
+`docs/seed-patch-to-literature-overlap-audit-2026-09-13.md` reduced the
+density bridge to one transfer, which is now superseded for sufficiency and
+recorded here only as data: for a prolongable power `tau = sigma^q` with
 one-sided fixed point `u` and a prefix `W` of `u`, productivity of every
 overlap of the Sirvent–Solomyak family `(T, T - beta^{qn} g(W))`, `n >= 0`
 (their graph `G_O(T, x(W))`), gives PDS by their Theorem 4.1(b). Because the
@@ -331,5 +333,94 @@ fixed point is not a uniform mechanism; a proof of the transfer will need
 either longer prefixes, other fixed points, or the collar/occurrence
 argument described in the audit. No conclusion about the bridge for
 substitutions outside the corpus follows from this table.
+
+**Addendum (2026-09-14; exploratory, not a certificate; Python only;
+`scripts/oa_failures_probe.py`).** For the 22 failures above, every
+prolongable pair `(q, c)` (power `q <= 3`, letter `c` with
+`sigma^q(c)` beginning with `c`) was tried with the fixed point of `sigma^q`
+at `c` and prefixes `W = u[:k]`, `k = 1, ..., 24` (level-0 types read off a
+prefix of length at least 6,000, closed under exact inflation). Inclusion
+`(TI_W)` was found for 9 of the 22 (least witnesses `(q, c, k)`: `(1,3,2)`
+twice, `(2,1,6)`, `(1,1,9)`, `(1,2,9)`, `(1,2,16)` twice, `(1,3,16)`,
+`(1,2,19)`) and for none of the other 13. The union over all probed families
+of non-coincidence types has 58 to 132 elements against 15 to 48 seed-patch
+vertex types, with 43 to 85 types outside `O_sigma` and 0 to 15 seed-patch
+types not met by any probed family; every type in every union is
+productive. The transfer by type inclusion is therefore not uniform even
+with long prefixes and all fixed points of low powers; since the bridge is
+now a theorem (Section 8) this is recorded as data only.
+
+## 8. The density bridge is a theorem (Barge–Štimac–Williams)
+
+For a seed `s = (ab, ba)` let `G_m(s)` be the union of the interiors of the
+intervals `beta^{-m} I`, `I` a common tile of the level-`m` pair, and
+`G(s) = union_m G_m(s)` the *good set*: points at which the two tilings are,
+after some inflations, covered by a common tile. `G_m(s)` is open of
+measure `C_m(s)/beta^m`. The sets are not nested: a common tile at level
+`m` inflates to common tiles at level `m+1` whose interiors cover the
+rescaled parent interior except at the finitely many subdivision points, so
+`G_m(s) \ G_{m'}(s)` is finite for every `m' >= m`.
+
+**Lemma 8.1 (three forms; manuscript Lemma 5.36).** For PIP `sigma` and a
+seed `s` the following are equivalent: (a) every vertex of `O_sigma`
+reachable from the seed overlaps of `s` is productive; (b) `delta(s) = 1`;
+(c) `G(s)` is dense.
+
+*Proof.* (a) iff (b) is Theorem 4.1(3). (b) => (c): `G(s)` contains every
+`G_m(s)`, so it is open of full measure, and its complement has empty
+interior. (c) => (a): an overlap at level `N` reachable from `s` has an
+intersection `J` of positive length; the nonempty open set
+`U = beta^{-N} J°` meets some `G_m(s)`, `U ∩ G_m(s)` is open and nonempty,
+hence infinite, and `G_m(s) \ G_{m'}(s)` is finite for `m' = max(m, N)`, so
+`U` meets `G_{m'}(s)` at a point `t`. The level-`m'` tiles of both tilings
+whose interiors contain `beta^{m'} t` are one common tile; since
+`beta^{m'} t` lies in `beta^{m'-N} J°` and the level-`m'` tilings refine the
+`(m'-N)`-fold inflations of the level-`N` tilings, that tile lies inside both
+inflated tiles of the overlap, hence is a coincidence descending from it. ∎
+
+**Imported theorem (Barge–Štimac–Williams, *Pure discrete spectrum in
+substitution tiling spaces*, arXiv:1107.3598, Theorem 3.1 and the proof of
+Theorem 3.2).** Let `Phi` be a substitution of Pisot family type (standing
+assumptions: primitive, aperiodic, finite local complexity), `Q` a finite
+patch (not necessarily allowed) whose translates by a lattice `L` tile
+`R^n`, and `v` completely rationally independent of `L`. If the periodic
+tiling `Q̄` and `Q̄ - v` are *densely eventually coincident* (eventually
+coincident at a dense set of points, where "eventually coincident at `x`"
+means that for some `k` the tiles containing `0` of `Phi^k(Q̄ - x)` and of
+`Phi^k(Q̄ - v - x)` agree), then the `R^n`-action on `Omega_Phi` has pure
+discrete spectrum. Their Theorem 3.2 is the one-dimensional case `Q = uv`,
+`L = (g(u) + g(v)) Z`, `v = g(u)` with `g(u), g(v)` linearly independent
+over `Q`, where dense eventual coincidence is obtained from termination of
+the balanced-pair algorithm for `(uv, vu)`; their Corollary 3.3 is the
+letter case `u = a`, `v = b` for irreducible Pisot `sigma`, any `a != b`.
+
+For PIP `sigma` and letters `a != b`: `l_a, l_b` are `Q`-independent
+(manuscript Lemma 2.3), aperiodicity is Lemma 2.4, finite local complexity
+is automatic. `Q̄ - l_a` is the periodic tiling by `ba` with a vertex at `0`,
+so on each period the pair `(Q̄, Q̄ - l_a)` is the swap pair `(ab, ba)` and
+`Phi^k` of it is `(sigma^k(ab), sigma^k(ba))` repeated; hence
+`(Q̄, Q̄ - l_a)` is eventually coincident at every `x` whose residue modulo
+`l_a + l_b` lies in `G((ab, ba))`. Therefore:
+
+**Theorem 8.2 (manuscript Theorem 5.38, main theorem without finiteness).**
+Let `sigma` be PIP and `a != b`. If every vertex of `O_sigma` reachable from
+the seed overlaps of `(ab, ba)` is productive (equivalently `delta = 1`,
+equivalently `G((ab, ba))` dense), then `(Omega_sigma, R)` has pure discrete
+spectrum. No finiteness hypothesis is used. The manuscript's conditional
+main theorem (G1 plus SCC Producer) is the special case in which `B_sigma` is
+finite and every state is productive (Theorem 4.1(5)).
+
+**Consequences.** Level 3' (Open Problem 5.35) for one seed implies PDS;
+PSC would follow from overlap productivity for all PIP substitutions; the
+finiteness hypothesis G1 has left the sufficiency route entirely. G1's own
+status is unchanged (open), as is Open Problem 4.24 (whether PDS forces
+termination from every seed). The seed-to-literature transfer of Section 7
+is no longer needed for sufficiency; the exploratory data there stand as
+evidence that a type-inclusion proof of that transfer would not have been
+uniform. For unimodular `sigma` a converse (PDS implies productivity of every
+vertex of `O_sigma`) can be read off Barge–Kwapisz Corollary 9.4 and
+Proposition 17.2, whose proofs do not pass through their Theorem 16.3 (the
+result Barge–Štimac–Williams report as gapped); it is not used and not
+recorded as imported.
 
 Nothing in this note proves Level 3', G1, or PSC.

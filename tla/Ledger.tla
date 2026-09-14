@@ -162,12 +162,14 @@ RequiresDef == [r \in ResultSet |->
       (* Overlap route (docs/overlap-finiteness-and-coincidence-density-
          2026-09-13.md; manuscript Theorem 4.22 and Theorem 5.32). The seed-patch overlap graph is finite by bounded
          discrepancy. OverlapProductivity is the open Level-3 statement in
-         G1-free form; it implies productivity of every reachable state
+         G1-free form and the only open input of this route; it implies
+         productivity of every reachable state
          (AllStatesProductiveViaOverlaps) with no finiteness hypothesis, and
          a G1-based PDS assembly remains available. CoincidenceDensityOne
-         records the proved overlap-productivity equivalence, while
-         DensityToPDSBridge is the separate open input for the genuinely
-         G1-free PDS route. *)
+         records the proved overlap-productivity equivalence, and
+         DensityToPDSBridge is the imported Barge-Stimac-Williams theorem
+         (proved), so PDSOverlapRoute is conditional on OverlapProductivity
+         alone. *)
       [] r = "SwapOverlapFiniteness"      -> {"G1b1BoundedDiscrepancy"}
       (* Manuscript Corollary 5.34: a child-closed set of non-coincidence
          overlaps has full-rank intersection vectors, so spec(M) lies in the
@@ -176,6 +178,9 @@ RequiresDef == [r \in ResultSet |->
       [] r = "OverlapProductivity"        -> {}
       [] r = "CoincidenceDensityOne"      -> {"OverlapProductivity", "SwapOverlapFiniteness"}
       [] r = "AllStatesProductiveViaOverlaps" -> {"OverlapProductivity", "SwapOverlapFiniteness"}
+      (* Imported: Barge-Stimac-Williams Theorem 3.1 (density-one -> dense
+         good set -> PDS; manuscript Lemma 5.36, Imported Theorem 5.37,
+         Theorem 5.38). No finiteness hypothesis. *)
       [] r = "DensityToPDSBridge"         -> {}
       [] r = "PDSOverlapRoute"            -> {"CoincidenceDensityOne", "DensityToPDSBridge"}
 
@@ -227,9 +232,10 @@ ProvedDef == {
     "G1b1BoundedDiscrepancy", "G1FromRenewal", "G1",
 
     (* Overlap route: graph finiteness and the conditional assembly theorems
-       are proved. OverlapProductivity and DensityToPDSBridge are absent. *)
+       are proved, and the density-to-PDS bridge is imported. OverlapProductivity
+       is the only absent input, so PDS stays unreachable without assumptions. *)
     "SwapOverlapFiniteness", "OverlapFullRank", "CoincidenceDensityOne",
-    "AllStatesProductiveViaOverlaps", "PDSOverlapRoute",
+    "AllStatesProductiveViaOverlaps", "DensityToPDSBridge", "PDSOverlapRoute",
 
     (* Boundary route conditional reductions remain proved. C4 itself is absent. *)
     "C3Local", "C2", "SCCProducer", "PDS",
@@ -251,5 +257,5 @@ G1AndC4 == {"G1", "C4"}
 (* Explicit hypothetical completion assumptions for future model checks. *)
 RenewalGateAssumed == {"G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"}
 SpectralGateAssumed == {"G1", "ConcentrationAuxB", "SpanRichProductivity", "SpectralSCCProducer"}
-OverlapGateAssumed == {"OverlapProductivity", "DensityToPDSBridge"}
+OverlapGateAssumed == {"OverlapProductivity"}
 =============================================================================

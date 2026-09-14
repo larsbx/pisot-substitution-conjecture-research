@@ -203,3 +203,59 @@ No other findings were posted in the seventh round.
 > Codex Review: Didn't find any major issues. Delightful!
 
 No findings were posted in the eighth round.
+
+---
+
+# Ninth round: review of the density-import revision (pull request #77)
+
+**Reviewed commit:** `930f817e1a38a7c921fc13ce499df688b7bab8c2` (Lemma 5.36, Imported Theorem 5.37, Theorem 5.38: main theorem without finiteness).
+**Review posted:** 2026-09-14T04:55:34Z, one review with four inline comments. Reproduced verbatim.
+
+## Finding 18 (P1) — `PSC_balanced_pair_state_2026-09-13.tex`, line 767
+
+> **Repair the claimed nesting of the good sets**
+>
+> With `G_m` defined as a union of individual tile interiors, `G_m \subseteq G_{m+1}` is generally false: if a common tile inflates to two or more common tiles, every new internal subdivision boundary belongs to the rescaled parent interior in `G_m` but to no child interior in `G_{m+1}`. This also leaves the proof of Lemma 5.36 without its stated justification for choosing the witnessing level `m >= N`. The argument can likely be repaired by treating boundary points separately and proving that every tail union is dense, but the current pointwise nesting claim and proof are not valid as written.
+
+## Finding 19 (P2) — `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md`, line 273
+
+> **Finish propagating the resolved bridge status through the notes**
+>
+> Although this heading now declares the bridge resolved, lines 283–295 still call the Sirvent–Solomyak coverage transfer the remaining step and list density bridge as Open Problem 5.36, while the Section 7 introduction repeats that reduction. The same stale conclusion remains in `docs/seed-patch-to-literature-overlap-audit-2026-09-13.md` lines 169–173 and the completion program in `docs/claim-status-and-source-map-2026-09-13.md` lines 125–126. These are active status/roadmap documents, so leaving the former bridge marked as an open proof obligation contradicts the status introduced by this commit.
+
+## Finding 20 (P2) — `PSC_balanced_pair_state_2026-09-13.tex`, line 785
+
+> **Remove the opposite conclusion preceding Theorem 5.38**
+>
+> Immediately before this new theorem, line 765 still says that overlap productivity does not by itself give PDS because the older bridge needs finiteness. That is the exact conclusion Theorem 5.38 now reverses via the imported dense-eventual-coincidence theorem, so the manuscript presents contradictory mathematical status within the same subsection.
+
+## Finding 21 (P3) — `tla/Ledger.tla`, line 181
+
+> **Update the stale open-input description in the TLA ledger**
+>
+> The new comment records `DensityToPDSBridge` as imported, but the route description at lines 162–170 still explicitly calls it the separate open input for the G1-free route. This contradicts both `ProvedDef` and the reduced `OverlapGateAssumed`, making the ledger's explanatory dependency documentation disagree with the model it describes.
+
+No other findings were posted in the ninth round.
+
+---
+
+# Tenth round: re-review of the round-nine revision (pull request #77)
+
+**Reviewed commit:** `5a876aec40fce9b3f980b4ea651438fb4b7f591a`.
+**Review posted:** 2026-09-14T05:05:14Z, one review with two inline comments. Reproduced verbatim.
+
+## Finding 22 (P2) — `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md`, line 343
+
+> **Apply the good-set correction to the companion note**
+>
+> Although the manuscript was corrected, this newly added companion proof still calls the sets `G_m(s)` increasing. A common tile's internal subdivision points belong to its rescaled interior at level `m` but to no child interior at level `m+1`, so this assertion is false; consequently, lines 351–354 still cannot assume that the arbitrary witnessing level is at least the overlap level `N`. Replace the nesting assertion and abridged proof with the manuscript's finite-difference argument so this active proof note actually supports Lemma 5.36.
+
+## Finding 23 (P2) — `scripts/oa_failures_probe.py`, line 36
+
+> **Compute a valid overlap-enumeration window**
+>
+> For inputs where tile lengths have a sufficiently large ratio, `14 + k` violates `oa_types`' documented requirement that `window` exceed `(g(W) + l_max) / l_min`. For example, the corpus substitution `{1:(2,), 2:(3,), 3:(1,3,3)}` at `k=24` needs a bound of about 86.6 while this passes 38. The enumeration may therefore omit valid level-zero overlap types and falsely report `first_inclusion_(q,c,k)` or `union_all_productive`; derive and verify the geometric bound instead of using this heuristic without failing closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L32
+
+No other findings were posted in the tenth round.

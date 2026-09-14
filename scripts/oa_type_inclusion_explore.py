@@ -18,7 +18,7 @@ t0 = time.time(); hist = {}; none = []
 for idx, sigma in enumerate(sample):
     found = None
     for k in range(1, kmax + 1):
-        r = type_inclusion_report(sigma, k=k, prefix_len=6000, window=14)
+        r = type_inclusion_report(sigma, k=k, prefix_len=6000)
         assert r["oa_all_productive"], ("nonproductive G_O type", sigma, k)
         if r["oa_minus_seed_noncoincidence"] == 0:
             found = k

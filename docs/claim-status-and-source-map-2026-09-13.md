@@ -47,7 +47,7 @@ conjectural obligation rather than a theorem awaiting recovery.
 | Bounded degree-two wedge productivity | **Finite-domain theorem** | `docs/p1a-degree2-wedge-productivity.md`; canonical Mojo certificate; PR #71, merge `db5b217` | Same 4,554-member domain. The certificate fails closed on capped catalogues and retains replayable countermodels. |
 | Seed-patch overlap graph finiteness | **Repository-proved** | `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md`; manuscript Theorem 4.22 | Finite from bounded discrepancy; this does not prove that every overlap is productive. |
 | Overlap productivity / coincidence density one | **Open conjectural gate** | Manuscript Open Problem 5.35 | Exact 4,554-corpus productivity is finite evidence only. |
-| Density-to-PDS bridge | **Open bridge** | Manuscript Open Problem 5.36 | A positive result could bypass G1 on the PDS route but would not prove G1. |
+| Density-to-PDS bridge | **Imported theorem** (Barge–Štimac–Williams Thm 3.1/3.2) plus repository Lemma 5.36 | Manuscript Imported Theorem 5.37 and Theorem 5.38 | A positive result could bypass G1 on the PDS route but would not prove G1. |
 | SCC Producer / C1 | **Open theorem target** | `docs/conjecture-ledger.md`; manuscript unresolved statements | Conditional reductions and bounded exclusions do not prove it generally. |
 | Realization / coincidence-rank chain | **Open bridge, not source-pending** | `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`; PR #69 | Seven obligations G0–G6 remain; formal SCC recurrence, global realization, and collar survival are distinct. |
 | Finite collar death | **Empirical evidence** | Realization/collar notes and census artifacts | Requires an independent collar-completeness bound before theorem use. |
@@ -122,8 +122,10 @@ The shortest honest completion program now has two possible assembly routes:
 3. prove general wedge productivity for the `K2!=0` case;
 4. assemble SCC Producer from the finite-graph reduction and the two carrier
    exclusions;
-5. alternatively, prove overlap productivity and the density-to-PDS bridge to
-   obtain a G1-free PDS route;
+5. alternatively, prove overlap productivity (Open Problem 5.35) for one
+   swap seed: the density-to-PDS bridge is the imported Theorem 5.37
+   (Barge–Štimac–Williams), so this alone gives the G1-free PDS route
+   (Theorem 5.38);
 6. audit the exact interface from the repository's normalized BPA to the
    literature's pure-discrete-spectrum criterion.
 
