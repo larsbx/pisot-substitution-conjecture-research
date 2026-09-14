@@ -19,6 +19,15 @@ When these disagree, do not choose the strongest wording. Check the latest
 merged commit, the claim/source map, the proof note, and `tla/Ledger.tla`,
 then repair all status surfaces together.
 
+## Cross-program engineering
+
+- `library-extraction-candidates-2026-09-14.md` — ranked audit of code that
+  could move into shared libraries with NLAP-JT (exact arithmetic,
+  substitution kernel, intervals, linear algebra, proof records, audits);
+  engineering only, no claim status changes.
+- `cross-program-bridge-psc-nlapjt-2026-09-12.md` — structural comparison
+  with the NLAP-JT finite Mandelbrot program.
+
 ## Source provenance
 
 - `archive-tarball-audit-2026-09-13.md` — uploaded archive digest, identity check, and warning about contradictory v34 closing status language.
