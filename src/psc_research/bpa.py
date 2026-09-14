@@ -72,6 +72,13 @@ def coincidence_boundaries(u: Sequence[Letter], v: Sequence[Letter], size: int |
         raise ValueError("coincidence_boundaries expects equal-length words")
     if size is None:
         size = max(max(u, default=0), max(v, default=0))
+    if (
+        min(u, default=1) < 1
+        or max(u, default=0) > size
+        or min(v, default=1) < 1
+        or max(v, default=0) > size
+    ):
+        raise ValueError(f"letter lies outside alphabet 1..{size}")
     if not size:
         return [0]
 
