@@ -236,8 +236,8 @@ class OverlapGraph:
         return [k for k in range(len(self.states)) if not good[k]]
 
 
-def first_coincidence_depths(g: "OverlapGraph") -> list[int]:
-    """Shortest number of inflations from each vertex to a coincidence (-1 if none)."""
+def first_depths(g: "OverlapGraph", is_target) -> list[int]:
+    """Shortest number of inflations from each vertex to a target vertex (-1 if none)."""
     from collections import deque as _dq
 
     n = len(g.states)
@@ -248,7 +248,7 @@ def first_coincidence_depths(g: "OverlapGraph") -> list[int]:
             parents[c].append(k)
     q = _dq()
     for k, s in enumerate(g.states):
-        if g.is_coincidence(s):
+        if is_target(s):
             dist[k] = 0
             q.append(k)
     while q:
@@ -258,3 +258,39 @@ def first_coincidence_depths(g: "OverlapGraph") -> list[int]:
                 dist[p] = dist[k] + 1
                 q.append(p)
     return dist
+
+
+def first_coincidence_depths(g: "OverlapGraph") -> list[int]:
+    """Shortest number of inflations from each vertex to a coincidence (-1 if none)."""
+    return first_depths(g, g.is_coincidence)
+
+
+def is_left_aligned(s: tuple[int, int, Elt]) -> bool:
+    """Offset zero: the two tiles share their left endpoint (coincidences included)."""
+    return not any(s[2])
+
+
+def is_right_aligned(g: "OverlapGraph", s: tuple[int, int, Elt]) -> bool:
+    """The two tiles share their right endpoint: t = l_i - l_j (coincidences included)."""
+    return g.F.eq(s[2], g.F.sub(g.l[s[0] - 1], g.l[s[1] - 1]))
+
+
+def first_left_aligned_depths(g: "OverlapGraph") -> list[int]:
+    """Least m such that a vertex has a level-m descendant of offset zero.
+
+    By the boundary-coincidence criterion this is the least m at which a tile
+    boundary of the inflated top tile (other than its right endpoint) is a
+    boundary of the inflated bottom tile."""
+    return first_depths(g, is_left_aligned)
+
+
+def strong_coincidence_depths(g: "OverlapGraph", suffix: bool = False) -> dict[tuple[int, int], int]:
+    """First-coincidence depth of every endpoint-aligned non-coincidence vertex.
+
+    Left-aligned vertices (i, j, 0) are productive iff the pair {i, j} is
+    eventually coincident (prefix strong coincidence); right-aligned ones iff
+    it is eventually coincident for the reversed substitution.  -1 if never."""
+    depth = first_coincidence_depths(g)
+    aligned = (lambda s: is_right_aligned(g, s)) if suffix else is_left_aligned
+    return {(s[0], s[1]): depth[k] for k, s in enumerate(g.states)
+            if aligned(s) and not g.is_coincidence(s)}

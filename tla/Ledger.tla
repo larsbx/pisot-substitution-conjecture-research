@@ -85,6 +85,8 @@ ResultSet == {
     "AllStatesProductiveViaOverlaps",
     "DensityToPDSBridge",
     "PDSOverlapRoute",
+    "AlignedOverlapsAreStrongCoincidence",
+    "BoundaryCoincidenceCriterion",
 
     \* --- 2026-09-11 strongest Level-3 spectral route ---------------------
     "ConcentrationAuxB",
@@ -183,6 +185,17 @@ RequiresDef == [r \in ResultSet |->
          Theorem 5.38). No finiteness hypothesis. *)
       [] r = "DensityToPDSBridge"         -> {}
       [] r = "PDSOverlapRoute"            -> {"CoincidenceDensityOne", "DensityToPDSBridge"}
+      (* Manuscript Proposition 5.39: the offset-zero and right-aligned
+         overlaps are seed overlaps, productive iff the letter pair is
+         eventually coincident (prefix / suffix); so OverlapProductivity
+         contains the two-sided strong coincidence condition (open, d >= 3).
+         Proposition 5.40 / Corollary 5.41: boundary coincidence at level m
+         iff M^m w is a difference of proper-prefix Parikh vectors iff an
+         offset-zero descendant exists; under strong coincidence
+         OverlapProductivity is this hitting statement. Both are
+         unconditional theorems and constrain, not close, the gate. *)
+      [] r = "AlignedOverlapsAreStrongCoincidence" -> {}
+      [] r = "BoundaryCoincidenceCriterion" -> {}
 
       (* Historical name retained for compatibility. The carrier span result
          is now repository-proved by the wedge dichotomy; it needs no separate
@@ -235,6 +248,7 @@ ProvedDef == {
        are proved, and the density-to-PDS bridge is imported. OverlapProductivity
        is the only absent input, so PDS stays unreachable without assumptions. *)
     "SwapOverlapFiniteness", "OverlapFullRank", "CoincidenceDensityOne",
+    "AlignedOverlapsAreStrongCoincidence", "BoundaryCoincidenceCriterion",
     "AllStatesProductiveViaOverlaps", "DensityToPDSBridge", "PDSOverlapRoute",
 
     (* Boundary route conditional reductions remain proved. C4 itself is absent. *)

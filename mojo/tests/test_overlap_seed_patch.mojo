@@ -6,9 +6,11 @@ from psc.mat3 import Mat3
 from psc.overlap_seed_patch import (
     build_seed_overlap_graph,
     first_coincidence_depths,
+    first_left_aligned_depths,
     build_seed_overlap_tables,
     nonproductive_overlap_states,
     seed_overlap_states,
+    strong_coincidence_depth,
 )
 from psc.perron_field3 import CubicElt, build_perron_field3, sign_at_perron
 
@@ -120,6 +122,32 @@ def test_first_coincidence_depths_pin_exact_values() raises:
     assert_equal(zeros, 2)
 
 
+def test_left_aligned_and_strong_coincidence_depths_pin_exact_values() raises:
+    var sigma = determinant_two_sigma()
+    var graph = build_seed_overlap_graph(sigma, 20000)
+    var tables = build_seed_overlap_tables(sigma)
+    var left = first_left_aligned_depths(graph)
+    var coinc = first_coincidence_depths(graph)
+    assert_equal(len(left), 628)
+    var worst = 0
+    var zeros = 0
+    for i in range(len(left)):
+        assert_true(left[i] >= 0)
+        assert_true(left[i] <= coinc[i])
+        if left[i] > worst:
+            worst = left[i]
+        if left[i] == 0:
+            zeros += 1
+    assert_equal(worst, 15)
+    assert_equal(zeros, 7)
+    var prefix = strong_coincidence_depth(graph, tables, False)
+    var suffix = strong_coincidence_depth(graph, tables, True)
+    assert_equal(prefix, 6)
+    assert_equal(suffix, 1)
+    for i in range(len(coinc)):
+        assert_true(coinc[i] <= left[i] + prefix)
+
+
 def main() raises:
     test_perron_order_is_exact_on_basic_elements()
     print("[PASS] test_perron_order_is_exact_on_basic_elements")
@@ -133,4 +161,6 @@ def main() raises:
     print("[PASS] test_large_incidence_is_rejected_before_unchecked_pip_arithmetic")
     test_first_coincidence_depths_pin_exact_values()
     print("[PASS] test_first_coincidence_depths_pin_exact_values")
-    print("6 seed-patch-overlap Mojo tests passed.")
+    test_left_aligned_and_strong_coincidence_depths_pin_exact_values()
+    print("[PASS] test_left_aligned_and_strong_coincidence_depths_pin_exact_values")
+    print("7 seed-patch-overlap Mojo tests passed.")

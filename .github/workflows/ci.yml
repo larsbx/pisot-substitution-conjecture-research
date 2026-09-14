@@ -153,6 +153,12 @@ jobs:
           grep -Fx 'nonproductive overlap specimens: 0  states: 0' <<<"$out"
           grep -Fx 'maximum first-coincidence depth: 18' <<<"$out"
           grep -Fx 'specimens by maximal first-coincidence depth: 3:402 4:828 5:696 6:648 7:444 8:396 9:276 10:300 11:168 12:84 13:36 14:24 15:108 16:84 17:36 18:24' <<<"$out"
+          grep -Fx 'maximum first left-aligned depth: 17' <<<"$out"
+          grep -Fx 'specimens by maximal first left-aligned depth: 2:300 3:996 4:870 5:594 6:312 7:300 8:414 9:288 10:132 11:60 12:36 13:48 14:84 15:72 16:36 17:12' <<<"$out"
+          grep -Fx 'maximum prefix strong-coincidence depth: 15' <<<"$out"
+          grep -Fx 'specimens by prefix strong-coincidence depth: 1:576 2:1416 3:654 4:858 5:666 6:252 7:102 8:18 14:6 15:6' <<<"$out"
+          grep -Fx 'maximum suffix strong-coincidence depth: 15' <<<"$out"
+          grep -Fx 'specimens by suffix strong-coincidence depth: 1:576 2:1416 3:654 4:858 5:666 6:252 7:102 8:18 14:6 15:6' <<<"$out"
 
   tla-models:
     runs-on: ubuntu-latest

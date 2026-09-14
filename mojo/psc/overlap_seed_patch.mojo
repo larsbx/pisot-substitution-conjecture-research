@@ -301,14 +301,16 @@ def nonproductive_overlap_states(a: SeedOverlapAutomaton) raises -> List[Int]:
             out.append(i)
     return out^
 
-def first_coincidence_depths(a: SeedOverlapAutomaton) raises -> List[Int]:
-    """Shortest number of inflations from each vertex to a coincidence, `-1` if none.
+def _first_depths(a: SeedOverlapAutomaton, target: List[Bool]) raises -> List[Int]:
+    """Shortest number of inflations from each vertex to a target vertex, `-1` if none.
 
-    Reverse breadth-first search from the coincidence vertices; fails closed
-    on a capped graph like `nonproductive_overlap_states`."""
+    Reverse breadth-first search from the target vertices; fails closed on a
+    capped graph like `nonproductive_overlap_states`."""
     if a.capped:
-        raise Error("first-coincidence depth is undefined for a capped partial graph")
+        raise Error("first-target depth is undefined for a capped partial graph")
     var n = a.size()
+    if len(target) != n:
+        raise Error("target mask length disagrees with the overlap graph size")
     var parents = List[List[Int]]()
     for _ in range(n):
         parents.append(List[Int]())
@@ -318,7 +320,7 @@ def first_coincidence_depths(a: SeedOverlapAutomaton) raises -> List[Int]:
     var dist = List[Int]()
     var queue = List[Int]()
     for i in range(n):
-        if a.states[i].is_coincidence():
+        if target[i]:
             dist.append(0)
             queue.append(i)
         else:
@@ -333,3 +335,56 @@ def first_coincidence_depths(a: SeedOverlapAutomaton) raises -> List[Int]:
                 dist[p] = dist[k] + 1
                 queue.append(p)
     return dist^
+
+
+def first_coincidence_depths(a: SeedOverlapAutomaton) raises -> List[Int]:
+    """Shortest number of inflations from each vertex to a coincidence, `-1` if none."""
+    var target = List[Bool]()
+    for i in range(a.size()):
+        target.append(a.states[i].is_coincidence())
+    return _first_depths(a, target)
+
+
+def first_left_aligned_depths(a: SeedOverlapAutomaton) raises -> List[Int]:
+    """Least number of inflations after which a vertex has an offset-zero descendant.
+
+    Offset zero (coincidences included) is a boundary coincidence: a tile
+    boundary of the inflated top tile, other than its right endpoint, is a
+    boundary of the inflated bottom tile.  `-1` if no descendant is ever
+    left-aligned."""
+    var target = List[Bool]()
+    for i in range(a.size()):
+        target.append(a.states[i].shift.is_zero())
+    return _first_depths(a, target)
+
+
+def strong_coincidence_depth(
+    a: SeedOverlapAutomaton, tables: SeedOverlapTables, suffix: Bool
+) raises -> Int:
+    """Largest first-coincidence depth over the endpoint-aligned non-coincidence vertices.
+
+    Left-aligned vertices `(i, j, 0)` (prefix form, `suffix == False`) are
+    productive iff the pair is eventually coincident in the sense of Barge and
+    Diamond; right-aligned vertices `(i, j, l_i - l_j)` iff the pair is
+    eventually coincident for the reversed substitution.  Returns `-1` if some
+    aligned vertex is nonproductive, and raises if there is no aligned vertex."""
+    var depths = first_coincidence_depths(a)
+    var worst = -2
+    for i in range(a.size()):
+        var st = a.states[i]
+        if st.is_coincidence():
+            continue
+        var aligned: Bool
+        if suffix:
+            aligned = st.shift == tables.lengths.at(st.top) - tables.lengths.at(st.bottom)
+        else:
+            aligned = st.shift.is_zero()
+        if not aligned:
+            continue
+        if depths[i] < 0:
+            return -1
+        if depths[i] > worst:
+            worst = depths[i]
+    if worst < 0:
+        raise Error("no endpoint-aligned overlap vertex found")
+    return worst

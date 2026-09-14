@@ -13,7 +13,14 @@ G1-free form; a clean corpus is finite evidence only.
 from psc.bpa import substitution_incidence
 from psc.mat3 import Mat3
 from psc.pisot import is_pip
-from psc.overlap_seed_patch import build_seed_overlap_graph, first_coincidence_depths, nonproductive_overlap_states
+from psc.overlap_seed_patch import (
+    build_seed_overlap_graph,
+    build_seed_overlap_tables,
+    first_coincidence_depths,
+    first_left_aligned_depths,
+    nonproductive_overlap_states,
+    strong_coincidence_depth,
+)
 
 
 def image_words() -> List[List[Int]]:
@@ -45,8 +52,17 @@ def main() raises:
     var total_states = 0
     var max_depth = 0
     var depth_histogram = List[Int]()
+    var max_left = 0
+    var left_histogram = List[Int]()
+    var max_prefix_scc = 0
+    var max_suffix_scc = 0
+    var prefix_scc_histogram = List[Int]()
+    var suffix_scc_histogram = List[Int]()
     for _ in range(128):
         depth_histogram.append(0)
+        left_histogram.append(0)
+        prefix_scc_histogram.append(0)
+        suffix_scc_histogram.append(0)
 
     for i in range(len(words)):
         for j in range(len(words)):
@@ -79,6 +95,34 @@ def main() raises:
                     depth_histogram[worst] = depth_histogram[worst] + 1
                     if worst > max_depth:
                         max_depth = worst
+                    var left = first_left_aligned_depths(g)
+                    var worst_left = 0
+                    for d in range(len(left)):
+                        if left[d] < 0 or left[d] > depths[d]:
+                            raise Error("left-aligned depth must be defined and at most the coincidence depth")
+                        if left[d] > worst_left:
+                            worst_left = left[d]
+                    if worst_left >= len(left_histogram):
+                        raise Error("first left-aligned depth exceeds histogram range")
+                    left_histogram[worst_left] = left_histogram[worst_left] + 1
+                    if worst_left > max_left:
+                        max_left = worst_left
+                    var tables = build_seed_overlap_tables(sigma)
+                    var prefix_scc = strong_coincidence_depth(g, tables, False)
+                    var suffix_scc = strong_coincidence_depth(g, tables, True)
+                    if prefix_scc < 0 or suffix_scc < 0:
+                        raise Error("endpoint-aligned overlap without coincidence on a productive graph")
+                    for d in range(len(depths)):
+                        if depths[d] > left[d] + prefix_scc:
+                            raise Error("coincidence depth exceeds left-aligned depth plus prefix strong-coincidence depth")
+                    if prefix_scc >= len(prefix_scc_histogram) or suffix_scc >= len(suffix_scc_histogram):
+                        raise Error("strong-coincidence depth exceeds histogram range")
+                    prefix_scc_histogram[prefix_scc] = prefix_scc_histogram[prefix_scc] + 1
+                    suffix_scc_histogram[suffix_scc] = suffix_scc_histogram[suffix_scc] + 1
+                    if prefix_scc > max_prefix_scc:
+                        max_prefix_scc = prefix_scc
+                    if suffix_scc > max_suffix_scc:
+                        max_suffix_scc = suffix_scc
                     if bad > 0:
                         n_nonproductive_specimens += 1
                         n_nonproductive_states += bad
@@ -100,3 +144,21 @@ def main() raises:
         if depth_histogram[d] > 0:
             line += " " + String(d) + ":" + String(depth_histogram[d])
     print(line)
+    print("maximum first left-aligned depth:", max_left)
+    var left_line = String("specimens by maximal first left-aligned depth:")
+    for d in range(len(left_histogram)):
+        if left_histogram[d] > 0:
+            left_line += " " + String(d) + ":" + String(left_histogram[d])
+    print(left_line)
+    print("maximum prefix strong-coincidence depth:", max_prefix_scc)
+    var prefix_line = String("specimens by prefix strong-coincidence depth:")
+    for d in range(len(prefix_scc_histogram)):
+        if prefix_scc_histogram[d] > 0:
+            prefix_line += " " + String(d) + ":" + String(prefix_scc_histogram[d])
+    print(prefix_line)
+    print("maximum suffix strong-coincidence depth:", max_suffix_scc)
+    var suffix_line = String("specimens by suffix strong-coincidence depth:")
+    for d in range(len(suffix_scc_histogram)):
+        if suffix_scc_histogram[d] > 0:
+            suffix_line += " " + String(d) + ":" + String(suffix_scc_histogram[d])
+    print(suffix_line)

@@ -430,3 +430,62 @@ result Barge–Štimac–Williams report as gapped); it is not used and not
 recorded as imported.
 
 Nothing in this note proves Level 3', G1, or PSC.
+
+## 9. Endpoint-aligned overlaps are strong coincidence; the hitting form (2026-09-14)
+
+Call a pair of distinct letters `{i, j}` *eventually coincident* if
+`sigma^n(i) = p c s`, `sigma^n(j) = p' c s'` with `pi(p) = pi(p')` for some
+`n` (the manuscript's Imported Theorem 2.x of Barge–Diamond); the strong
+coincidence condition of Arnoux–Ito is that every pair is eventually
+coincident. The reversed substitution gives the suffix form.
+
+**Proposition 9.1 (manuscript Proposition 5.39).** For `i != j`, `(i, j, 0)`
+and `(j, i, l_j - l_i)` are seed overlaps of `(ij, ji)`; the first is
+productive iff `{i, j}` is eventually coincident, the second iff it is
+eventually coincident for the reversal (reflection sends `(a, b, t)` to
+`(a, b, l_a - l_b - t)` and commutes with inflation). Hence Open Problem 5.35
+implies the two-sided strong coincidence condition, which is open for
+`d >= 3`.
+
+**Proposition 9.2 (manuscript Proposition 5.40).** Write the offset as
+`t = <w, l>`, `w` in `Z^d`, and let `P_m(a)` be the Parikh vectors of the
+proper prefixes of `sigma^m(a)`. For an overlap `O = (i, j, t)` and `m >= 0`
+the following are equivalent: `M^m w` lies in `P_m(i) - P_m(j)`; a boundary
+of the level-`m` tiling of the top tile (other than its right endpoint) is a
+boundary of the level-`m` tiling of the bottom tile; `O` has a level-`m`
+descendant of offset zero. Consequently a productive overlap satisfies the
+hitting condition at some level; under strong coincidence the converse
+holds (the offset-zero descendant is a coincidence or productive by 9.1);
+and in a closed nonproductive set every boundary coincidence produces an
+offset-zero member whose letters are a non-eventually-coincident pair.
+
+**Corollary 9.3 (manuscript Corollary 5.41).** Under strong coincidence:
+every noncoincident state of `B_sigma` is productive (a common first letter
+would split off; otherwise eventual coincidence of the first letters gives a
+zero return followed by a coincidence block), so G1 alone gives PDS (the
+two-letter argument of Hollander–Solomyak with Barge–Diamond); Open Problem
+5.35 is equivalent to the hitting statement for every vertex; and a closed
+nonproductive set never has a boundary coincidence at any level.
+
+**Exact census (Mojo canonical, Python oracle agrees; asserted in CI).**
+Over the 4,554-specimen corpus, with exact `Q(beta)` signs: the largest
+first left-aligned depth (least `m` with an offset-zero descendant) over all
+vertices of all graphs is 17 (specimens by maximum:
+2:300 3:996 4:870 5:594 6:312 7:300 8:414 9:288 10:132 11:60 12:36 13:48
+14:84 15:72 16:36 17:12); the largest strong-coincidence depth of a letter
+pair is 15 for the prefix form and 15 for the suffix form (specimens by
+value, identical for the two forms because the corpus is closed under
+reversal: 1:576 2:1416 3:654 4:858 5:666 6:252 7:102 8:18 14:6 15:6). For
+every vertex of every graph the first-coincidence depth is at most the first
+left-aligned depth plus the largest prefix strong-coincidence depth of the
+substitution, as Corollary 9.3 predicts. Every corpus specimen satisfies
+two-sided strong coincidence; this is finite evidence for nothing beyond
+the corpus.
+
+**What this changes.** Open Problem 5.35 now has a known lower bound in
+difficulty (it contains strong coincidence) and, under strong coincidence,
+a purely combinatorial form: for every vertex `(i, j, w)` some `M^m w` is a
+difference of proper-prefix Parikh vectors of `sigma^m(i)` and `sigma^m(j)`.
+In the contracting embedding this is the meeting of Rauzy-fractal pieces at
+the prescribed expanding offset, the geometric coincidence problem of
+Ito–Rao, Barge–Kwapisz and Minervino–Thuswaldner; nothing here resolves it.

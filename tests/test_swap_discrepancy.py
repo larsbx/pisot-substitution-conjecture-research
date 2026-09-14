@@ -81,3 +81,27 @@ def test_first_coincidence_depths_pin_exact_values():
     assert min(t) == 0 and max(t) == 4 and len(t) == 29
     d = first_coincidence_depths(OverlapGraph(TAU))
     assert min(d) == 0 and max(d) == 16 and len(d) == 628
+
+
+def test_left_aligned_and_strong_coincidence_depths_pin_exact_values():
+    from psc_research.overlap_graph import (
+        OverlapGraph,
+        first_coincidence_depths,
+        first_left_aligned_depths,
+        is_left_aligned,
+        strong_coincidence_depths,
+    )
+
+    for sigma, n, max_left, zeros, prefix, suffix in (
+        (EXAMPLES["tribonacci"], 29, 3, 7, {1}, {3, 4}),
+        (TAU, 628, 15, 7, {1, 5, 6}, {1}),
+    ):
+        g = OverlapGraph(sigma)
+        left, coinc = first_left_aligned_depths(g), first_coincidence_depths(g)
+        assert len(left) == n and max(left) == max_left
+        assert sum(1 for s in g.states if is_left_aligned(s)) == zeros == left.count(0)
+        assert all(0 <= b <= c for b, c in zip(left, coinc))
+        pre, suf = strong_coincidence_depths(g), strong_coincidence_depths(g, suffix=True)
+        assert set(pre.values()) == prefix and set(suf.values()) == suffix
+        # a coincidence is reached through the first offset-zero descendant
+        assert all(c <= b + max(pre.values()) for b, c in zip(left, coinc))
