@@ -270,3 +270,93 @@ No other findings were posted in the tenth round.
 > Codex Review: Didn't find any major issues. :rocket:
 
 The automated Codex review of the substantive exact-window restatement posted no findings.
+
+---
+
+# Twelfth round: review of the strong-coincidence revision (pull request #82)
+
+**Reviewed commit:** `68a392abcbccb0a874e7b090718a6d9233dab2af` (Propositions 5.39–5.40, Corollary 5.41, depth census).
+**Review posted:** 2026-09-14T21:58:22Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 24 (P2) — `PSC_balanced_pair_state_2026-09-13.tex`, line 810
+
+> **Match the ordered-pair claim to the graph's seed orientation**
+>
+> This is not true for every ordered `i≠j` in the canonical graph being censused: `_seed_states_with_cache` constructs only the `a<b` presentation, while overlap states are oriented and are not normalized under swapping top and bottom. For the tested substitution `1→2, 2→132, 3→112`, the exact graph contains `(2,3,0)` but not `(3,2,0)`, contradicting this sentence when `i=3,j=2`. One canonical orientation per unordered pair is sufficient for the strong-coincidence consequence, but the proposition and depth API must either restrict to that orientation, normalize overlap states, or seed both presentations.
+>
+> AGENTS.md reference: AGENTS.md:L49-L55
+
+## Finding 25 (P2) — `PSC_balanced_pair_state_2026-09-13.tex`, line 816
+
+> **Exclude the bottom right endpoint from boundary coincidences**
+>
+> When the bottom tile's right endpoint lands on an internal top boundary, (b) is true as written, but no bottom subtile starts there, so (c) is false and the proof's strict inequality for the bottom tile fails. For the PIP substitution `1→2, 2→3, 3→12`, the overlap graph contains `O=(3,3,-1)`; at level 1, `x=1` is an internal top boundary and the bottom right endpoint, whereas `P_1(3)={0,e_1}`, `w=-e_1`, and `Mw=-e_2` is not in `P_1(3)-P_1(3)`. Thus the code's `first_left_aligned_depths` measures common boundaries that are proper on both sides, while the manuscript, propagated docs, and TLA ledger assert the broader false equivalence; (b) should exclude the right endpoints of both inflated tiles.
+>
+> AGENTS.md reference: AGENTS.md:L55-L55
+
+No other findings were posted in the twelfth round.
+
+---
+
+# Thirteenth round: re-review of the round-twelve revision (pull request #82)
+
+**Reviewed commit:** `310f06c06bdf757745cdb9c19f4e0411d20a9cd5`.
+**Review posted:** 2026-09-14T22:06:17Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 26 (P2) — `src/psc_research/overlap_graph.py`, line 240
+
+> **Reject capped graphs before computing target depths**
+>
+> When `OverlapGraph` reaches `max_states`, `_build()` leaves a partial graph whose adjacency lists are empty, but this helper still computes apparently meaningful depths. For example, `OverlapGraph(TAU, max_states=1)` is capped while `first_left_aligned_depths` returns `[0]` and `strong_coincidence_depths` reports `{(1, 2): -1}`, potentially misclassifying an inconclusive truncation as mathematical evidence. Add the same capped-graph rejection used by the canonical Mojo `_first_depths` and `nonproductive()`.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirteenth round.
+
+---
+
+# Fourteenth round: re-review of the round-thirteen revision (pull request #82)
+
+**Reviewed commit:** `3dc397856ab8ceaf0298c34c3e1df8855e612f10`.
+**Review posted:** 2026-09-14T22:20:51Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 27 (P2) — `mojo/swap_overlap_census.mojo`, line 102
+
+> **Record nonproductive graphs before validating depths**
+>
+> When a graph contains any nonproductive state, its coincidence depth is `-1`; its left-aligned depth is either also `-1` (triggering the first clause here) or nonnegative (triggering `left[d] > depths[d]`). Thus every nonproductive specimen throws before the counters at lines 126–129 are updated, causing a mathematical counterexample to be reported only as `FAILED` while the advertised nonproductive count remains zero. Record `bad` before these validations or omit the depth histograms for nonproductive graphs.
+
+## Finding 28 (P2) — `mojo/swap_overlap_census.mojo`, line 112
+
+> **Reuse the already-computed coincidence depths**
+>
+> On every specimen, each of these calls invokes `first_coincidence_depths`, rebuilding the reverse adjacency and running another full BFS even though line 88 already computed the same depth vector. Across the reported 1,118,850 vertices this performs the coincidence traversal three times per graph; pass the existing depths into the endpoint scan or compute both prefix and suffix maxima together.
+>
+> AGENTS.md reference: AGENTS.md:L30-L30
+
+No other findings were posted in the fourteenth round.
+
+---
+
+# Fifteenth round: re-review of the round-fourteen revision (pull request #82)
+
+**Reviewed commit:** `2288163613668619be3185e97b1474ca059f3dc2`.
+**Review posted:** 2026-09-14T22:27:01Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 29 (P2) — `mojo/psc/overlap_seed_patch.mojo`, line 384
+
+> **Reject capped automata in the reused-depth helper**
+>
+> When the newly added reuse API is called directly with a capped `SeedOverlapAutomaton` and any vector matching the truncated state count, this length check passes and the helper returns an apparently valid strong-coincidence depth from a partial graph. Unlike `strong_coincidence_depth`, this path bypasses `_first_depths` and its cap guard, so the inconclusive construction can be misclassified as mathematical evidence; check `a.capped` before consuming the supplied depths. This new Mojo `_from` overload is the fresh path not covered by the addressed Python cap fix.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 30 (P2) — `mojo/swap_overlap_census.mojo`, line 118
+
+> **Reuse substitution tables across graph and depth scans**
+>
+> In the checked `swap_overlap_census.mojo` path, every PIP specimen already calls `build_seed_overlap_graph` at line 78, which internally calls `build_seed_overlap_tables`; this added line rebuilds the exact Perron field, tile lengths, and prefix positions for the same `sigma` solely for the endpoint scan. That repeats substitution-local exact setup across all 4,554 specimens despite the repository's explicit once-per-specimen rule; build the tables once and pass them into graph construction and the strong-coincidence scans.
+>
+> AGENTS.md reference: AGENTS.md:L26-L26
+
+No other findings were posted in the fifteenth round.
