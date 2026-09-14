@@ -192,3 +192,9 @@ Two findings; both accepted. Neither concerns the manuscript.
 ### Finding 23 (P2)
 
 Accepted. The referee's example is exact: for `1 → 2, 2 → 3, 3 → 133` the bound at `k = 24` is 87 against the 38 passed. Since a too-small window can only omit level-0 types, the earlier figures could over-report inclusion; they were withdrawn pending the exact-window rerun, which reproduced them exactly; they are restated with the exact method, still labelled exploratory and uncertified.
+
+---
+
+## Eleventh round (pull request #79)
+
+The referee reviewed the exact-window restatement of the Section 7 figures and posted no findings. Findings 18–23 are addressed; the record for the density-import revision (Lemma 5.36, Imported Theorem 5.37, Theorem 5.38, and the exploratory tooling) is complete.
