@@ -41,7 +41,7 @@ This repository is for automated research support, not for hiding conjectural st
 
 | Priority | Layer | Tool | Scope |
 |---|---|---|---|
-| **Canonical executable** | `mojo/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. Integer, rational, and rational-interval arithmetic come from `mojo/finite_exact/`, vendored byte-for-byte from `larsbx/NLAP-JT` (see `mojo/finite_exact/UPSTREAM.md`). |
+| **Canonical executable** | `mojo/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. Integer, rational, and rational-interval arithmetic come from `mojo/finite_exact/`, vendored from `larsbx/NLAP-JT` and identical to the upstream sources up to package-qualified import lines (see `mojo/finite_exact/UPSTREAM.md`). |
 | Formal state/dependency | `tla/` | TLA+ / TLC | BPA state-machine models and the machine-checked proof-dependency ledger. |
 | Deductive finite algebra | `PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
 | Secondary oracle | `src/psc_research/` + `tests/` | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |

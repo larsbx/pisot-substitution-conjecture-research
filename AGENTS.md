@@ -35,10 +35,13 @@ Performance-sensitive code must be designed for Mojo rather than transliterated 
 ## Exact arithmetic authority
 
 Integer, rational, and rational-interval arithmetic is **not** implemented in
-this repository. `mojo/finite_exact/` is a byte-for-byte vendored copy of
+this repository. `mojo/finite_exact/` is a vendored copy of
 `src/bigint_z.mojo`, `src/rat_q.mojo`, and `src/interval_q.mojo` from
-`larsbx/NLAP-JT`, pinned in `mojo/finite_exact/UPSTREAM.md` and enforced by
-`scripts/check_finite_exact_sync.py` in CI. Do not add a second rational type,
+`larsbx/NLAP-JT`, identical to the upstream sources except for the
+package-qualified intra-package import lines, pinned in
+`mojo/finite_exact/UPSTREAM.md`, and enforced by
+`scripts/check_finite_exact_sync.py` in CI (which reverses the import rewrite
+before comparing digests). Do not add a second rational type,
 patch the vendored files, or reintroduce fixed-width rational arithmetic:
 change upstream, then re-vendor. PSC-specific conventions over that package
 (raise or abort on a rejected value, integer lifts, Horner helpers, diagnostic

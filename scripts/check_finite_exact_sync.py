@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check that mojo/finite_exact/ is byte-identical to its pinned upstream.
+"""Check that mojo/finite_exact/ matches its pinned upstream up to the import rewrite.
 
 The vendored files differ from larsbx/NLAP-JT only by the package-qualified
 import lines recorded in mojo/finite_exact/UPSTREAM.md. This script reverses
