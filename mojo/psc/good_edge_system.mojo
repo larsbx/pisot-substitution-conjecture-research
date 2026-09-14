@@ -22,6 +22,7 @@ mathematical obstruction.
 
 from psc.bd_endpoint import complementary_hub_letter
 from psc.bpa import coincidence_boundaries
+from psc.words import is_balanced
 from psc.derived_system import DerivedSystem
 from psc.hub_cocycle import build_hub_cocycle
 from psc.hub_selector import strict_star_pair_viable, strict_star_selector_phase
@@ -61,7 +62,7 @@ def _validate_strict_derived_system(system: DerivedSystem) raises:
         ref state = system.states[src]
         if state.length() <= 0:
             raise Error("strict state must be nonempty")
-        if not state.is_balanced():
+        if not is_balanced(state):
             raise Error("strict derived system contains an unbalanced state")
         if state.is_coincidence():
             raise Error("strict derived system contains a coincidence state")

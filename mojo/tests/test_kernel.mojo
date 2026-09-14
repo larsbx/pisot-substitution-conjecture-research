@@ -16,7 +16,7 @@ from psc.exact import q_is_zero, q_vec
 from psc.seeds import length7_seeds, certificate_seed_matrices
 from psc.tensor3 import shuffle_matrix, shuffle_image, theta, idx3, zeros27, is_zero27, tensor_cube_apply, levi_civita
 from psc.w3 import w3_basis, certificate_w3_basis, in_w3, spans_same_space
-from psc.words import Pair, parikh, is_zero
+from psc.words import Pair, parikh, is_zero, is_balanced, k1, k2, k3
 
 
 def test_rational_normalisation() raises:
@@ -67,24 +67,24 @@ def test_seeds_are_k2_zero_of_length_seven() raises:
     assert_equal(len(seeds), 6)
     for k in range(len(seeds)):
         assert_equal(seeds[k].length(), 7)
-        assert_true(seeds[k].is_balanced())
-        assert_true(is_zero(seeds[k].k1()))
-        assert_true(is_zero(seeds[k].k2()))
-        assert_true(in_w3(seeds[k].k3()))
+        assert_true(is_balanced(seeds[k]))
+        assert_true(is_zero(k1(seeds[k])))
+        assert_true(is_zero(k2(seeds[k])))
+        assert_true(in_w3(k3(seeds[k])))
 
 
 def test_seed_matrices_match_certificate() raises:
     var seeds = length7_seeds()
     var certA = certificate_seed_matrices()
     for k in range(len(seeds)):
-        assert_true(theta(seeds[k].k3()) == Mat3(certA[k]))
+        assert_true(theta(k3(seeds[k])) == Mat3(certA[k]))
 
 
 def test_seed_matrix_invariants() raises:
     var seeds = length7_seeds()
     var ones: List[Int] = [1, 1, 1]
     for k in range(len(seeds)):
-        var a = theta(seeds[k].k3())
+        var a = theta(k3(seeds[k]))
         assert_false(a.is_zero())
         assert_equal(a.trace(), 0)
         assert_equal((a * a).trace(), 6)
@@ -127,7 +127,7 @@ def test_target1_on_tribonacci() raises:
     var m = Mat3(e)
     var seeds = length7_seeds()
     for k in range(len(seeds)):
-        assert_false(is_zero27(q_target1(m, seeds[k].k3())))
+        assert_false(is_zero27(q_target1(m, k3(seeds[k]))))
 
 
 def test_bpa_tribonacci() raises:
