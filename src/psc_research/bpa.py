@@ -72,13 +72,32 @@ def coincidence_boundaries(u: Sequence[Letter], v: Sequence[Letter], size: int |
         raise ValueError("coincidence_boundaries expects equal-length words")
     if size is None:
         size = max(max(u, default=0), max(v, default=0))
-    pu = [0] * size
-    pv = [0] * size
+    if not size:
+        return [0]
+
+    diff = [0] * size
     out = [0]
+    non_zero = 0
+
     for i, (a, b) in enumerate(zip(u, v), start=1):
-        pu[a - 1] += 1
-        pv[b - 1] += 1
-        if pu == pv:
+        if a != b:
+            idx_a = a - 1
+            val_a = diff[idx_a] + 1
+            diff[idx_a] = val_a
+            if val_a == 1:
+                non_zero += 1
+            elif val_a == 0:
+                non_zero -= 1
+
+            idx_b = b - 1
+            val_b = diff[idx_b] - 1
+            diff[idx_b] = val_b
+            if val_b == -1:
+                non_zero += 1
+            elif val_b == 0:
+                non_zero -= 1
+
+        if non_zero == 0:
             out.append(i)
     return out
 
