@@ -54,7 +54,10 @@ def require_iq(x: IQ, what: StringLiteral) raises -> IQ:
 
 
 def q_is_zero(x: Q) -> Bool:
-    return x.accepted() and x.num.is_zero()
+    """Zero test of an accepted value; a rejected operand aborts (rule 8)."""
+    if x.rejected:
+        abort("zero test of a rejected exact rational")
+    return x.num.is_zero()
 
 
 def q_sign(x: Q) -> Int:

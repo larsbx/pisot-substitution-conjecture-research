@@ -26,6 +26,7 @@ def test_rational_normalisation() raises:
     assert_true(Q(1, 3).add(Q(1, 6)).eq(Q(1, 2)))
     assert_true(Q(2, 3).mul(Q(3, 2)).eq(Q(1, 1)))
     assert_true(Q(1, 0).rejected)
+    assert_true(Q(1, 2).div(Q.zero()).rejected)
 
 
 def test_exact_nullspace() raises:
