@@ -38,13 +38,13 @@ modulo the monic characteristic polynomial.
 
 ### 2.1 Rational interval arithmetic is the first enclosure layer
 
-The Perron root is first enclosed in an exact checked rational interval
+The Perron root is first enclosed in an exact rational interval (endpoints are the unbounded `finite_exact` rationals of `mojo/finite_exact/`)
 
 ```text
 beta in [p/q, r/s].
 ```
 
-The box is obtained from an integer sign-change bracket and a bounded number of exact rational bisections. Every endpoint operation is normalized and checked against fixed-width overflow. If an endpoint or intermediate cannot be represented safely, interval refinement fails closed rather than widening silently or wrapping.
+The box is obtained from an integer sign-change bracket and a bounded number of exact rational bisections, computed once per substitution (`PerronEnclosure`). Every endpoint operation is normalized; there is no magnitude bound, so refinement depth is limited by cost only. A rejected endpoint or interval (an invalid enclosure) fails closed rather than widening silently.
 
 For any cubic-field element
 
@@ -76,16 +76,16 @@ An interval containing zero is never interpreted as equality, failure, or a nega
 
 ### 2.2 Exact algebraic fallback
 
-When the rational enclosure straddles zero, or interval arithmetic itself cannot proceed safely within fixed-width integers, the kernel delegates to the independent specialized Sturm--Tarski signed-remainder query. That fallback uses checked integer arithmetic and no rational refinement.
+When the rational enclosure straddles zero, or the enclosure is rejected as invalid, the kernel delegates to the independent specialized Sturm--Tarski signed-remainder query. That fallback uses checked integer arithmetic and no rational refinement.
 
 Thus the order-decision architecture is
 
 ```text
-checked rational interval enclosure
+exact rational interval enclosure
         |
         +-- strict sign certified --> accept sign
         |
-        +-- zero contained / unsafe --> exact Sturm--Tarski fallback
+        +-- zero contained / rejected --> exact Sturm--Tarski fallback
 ```
 
 The Codex near-Perron counter-calibration
@@ -96,9 +96,9 @@ The Codex near-Perron counter-calibration
 
 is intentionally retained: a modest rational interval remains ambiguous, while the algebraic fallback resolves the sign exactly. This prevents the interval layer from being mistaken for a completeness oracle.
 
-No floating point, inverse incidence matrix, Euclidean stable-space lattice, or unimodularity assumption is used. Arithmetic overflow fails closed and makes a finite run inconclusive.
+No floating point, inverse incidence matrix, Euclidean stable-space lattice, or unimodularity assumption is used. Rational arithmetic is unbounded; the integer-width Sturm--Tarski oracle and the cubic-field arithmetic remain overflow-checked and fail closed, making a finite run inconclusive rather than wrong.
 
-The current PIP-validation boundary is deliberately restricted to the audited repository census domain: non-erasing three-letter substitutions with every image length at most three. This finite precondition is checked before calling the older fixed-width PIP predicate. Larger incidence matrices are rejected as unsupported rather than risk overflow and false classification.
+The current PIP-validation boundary is deliberately restricted to the audited repository census domain: non-erasing three-letter substitutions with every image length at most three. This finite precondition is checked before calling the PIP predicate and the checked integer cubic-field arithmetic. Larger incidence matrices are rejected as unsupported rather than risk overflow in that cubic-field layer and false classification.
 
 For an oriented overlap state
 
@@ -113,7 +113,7 @@ t < ell_i,
 t + ell_j > 0.
 ```
 
-These two inequalities are now routed through the rational-interval-first sign path above. If the interval box certifies the sign, the box itself is finite evidence; if not, the exact algebraic fallback decides the comparison.
+Graph construction decides these two inequalities with the exact Sturm--Tarski oracle directly: only the sign is needed, both paths are exact, and the integer-width oracle is cheaper than interval arithmetic over unbounded rationals. The rational-interval-first path above is used where interval certification is itself the reported result, in the margin audit of `psc.overlap_interval_audit`: if the box certifies the sign, the box is finite evidence; if not, the exact fallback decides the comparison and the margin is counted as fallback, not certified.
 
 If the selected top and bottom children have geometric prefix translations `p` and `q`, inflation sends the displacement to
 
@@ -199,14 +199,14 @@ Neither implication is assumed. A future proof should make the compatibility exp
 For a controlled PIP specimen, the Mojo diagnostic must:
 
 - construct positive Perron tile lengths exactly;
-- construct a checked rational interval enclosing the Perron root;
+- construct an exact rational interval enclosing the Perron root;
 - implement natural rational interval extension for integer polynomials;
 - certify a sign only when the complete rational enclosure excludes zero;
 - retain a near-boundary regression where interval arithmetic is intentionally inconclusive and exact algebraic fallback is required;
-- fail closed on rational endpoint overflow and interval division across zero;
+- fail closed on a rejected enclosure and on interval division across zero;
 - enumerate seed-patch overlaps without floating point;
 - fail closed on malformed/non-PIP input;
-- reject substitutions outside the audited image-length-at-most-three input domain before invoking the legacy fixed-width PIP validator;
+- reject substitutions outside the audited image-length-at-most-three input domain before invoking the PIP validator and the checked cubic-field arithmetic;
 - terminate below the state cap or report inconclusive;
 - reject productivity queries on capped partial graphs;
 - retain exact coincidence reachability;
