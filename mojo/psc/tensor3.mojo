@@ -6,7 +6,8 @@ Index convention: slot `9*a + 3*b + c` carries `e_a (x) e_b (x) e_c`, `a,b,c` in
 """
 
 from psc.mat3 import Mat3
-from psc.rational import Rat, rat_zero, rat_one, rat_vec
+from finite_exact.rat_q import Q
+from psc.exact import q_int
 
 
 def idx3(a: Int, b: Int, c: Int) -> Int:
@@ -40,17 +41,17 @@ def shuffle_image(x: List[Int]) -> List[Int]:
     return out^
 
 
-def shuffle_matrix() -> List[List[Rat]]:
+def shuffle_matrix() -> List[List[Q]]:
     """`S` as a 27x27 rational matrix, derived from `shuffle_image`."""
-    var rows = List[List[Rat]]()
+    var rows = List[List[Q]]()
     for _ in range(27):
-        rows.append(List[Rat]())
+        rows.append(List[Q]())
     for col in range(27):
         var e = zeros27()
         e[col] = 1
         var img = shuffle_image(e)
         for row in range(27):
-            rows[row].append(Rat(img[row], 1))
+            rows[row].append(q_int(img[row]))
     return rows^
 
 

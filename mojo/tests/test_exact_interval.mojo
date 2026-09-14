@@ -1,4 +1,4 @@
-"""Regressions for checked rational interval arithmetic and Perron enclosures."""
+"""Regressions for the PSC exact-interval layer over `finite_exact` and the Perron enclosures."""
 
 from std.testing import assert_equal, assert_false, assert_true
 from psc.bpa import substitution_incidence
@@ -11,13 +11,10 @@ from psc.perron_interval import (
     perron_root_interval,
     perron_sign_decision,
 )
-from psc.rational_interval import (
-    CheckedRat,
-    RatInterval,
-    eval_int_poly_at_rat,
-    integer_interval,
-    interval_horner_int,
-)
+from finite_exact.bigint_z import bigz_add, bigz_from_i64
+from finite_exact.interval_q import IQ
+from finite_exact.rat_q import Q, q_from_bigz
+from psc.exact import contains_zero, eval_int_poly_at_q, integer_interval, interval_horner_int, q_sign, q_string, strict_sign
 
 
 def determinant_two_sigma() -> List[List[Int]]:
@@ -31,12 +28,12 @@ def determinant_two_sigma() -> List[List[Int]]:
     return sigma^
 
 
-def test_checked_rational_normalization_and_order() raises:
-    assert_true(CheckedRat(2, 4) == CheckedRat(1, 2))
-    assert_true(CheckedRat(1, -2) == CheckedRat(-1, 2))
-    assert_equal(CheckedRat(2, 3).compare(CheckedRat(3, 4)), -1)
-    assert_true(CheckedRat(1, 3).add(CheckedRat(1, 6)) == CheckedRat(1, 2))
-    assert_true(CheckedRat(2, 3).mul(CheckedRat(9, 4)) == CheckedRat(3, 2))
+def test_exact_rational_normalization_and_order() raises:
+    assert_true(Q(2, 4).eq(Q(1, 2)))
+    assert_true(Q(1, -2).eq(Q(-1, 2)))
+    assert_true(Q(2, 3).lt(Q(3, 4)))
+    assert_true(Q(1, 3).add(Q(1, 6)).eq(Q(1, 2)))
+    assert_true(Q(2, 3).mul(Q(9, 4)).eq(Q(3, 2)))
 
 
 def test_natural_interval_extension_contains_point_values() raises:
@@ -44,46 +41,50 @@ def test_natural_interval_extension_contains_point_values() raises:
     var x = integer_interval(1, 2)
     var coeffs: List[Int] = [-2, 0, 1]
     var box = interval_horner_int(coeffs, x)
-    assert_true(box.lo == CheckedRat(-1, 1))
-    assert_true(box.hi == CheckedRat(2, 1))
-    assert_true(box.contains_zero())
-    assert_equal(box.strict_sign(), 0)
+    assert_true(box.lo.eq(Q(-1, 1)))
+    assert_true(box.hi.eq(Q(2, 1)))
+    assert_true(contains_zero(box))
+    assert_equal(strict_sign(box), 0)
 
     var positive_coeffs: List[Int] = [1, 1]
     var positive = interval_horner_int(positive_coeffs, x)
-    assert_equal(positive.strict_sign(), 1)
+    assert_equal(strict_sign(positive), 1)
 
 
 def test_interval_division_across_zero_fails_closed() raises:
     var numerator = integer_interval(1, 2)
-    var denominator = RatInterval(CheckedRat(-1, 1), CheckedRat(1, 1))
+    var denominator = IQ(Q(-1, 1), Q(1, 1))
+    var quotient = numerator.mul(denominator.reciprocal())
+    assert_true(denominator.reciprocal().rejected)
+    assert_true(quotient.rejected)
     var caught = False
     try:
-        _ = numerator.div(denominator)
+        _ = strict_sign(quotient)
     except:
         caught = True
     assert_true(caught)
 
 
-def test_checked_interval_overflow_fails_closed() raises:
-    var caught = False
-    try:
-        _ = CheckedRat(Int.MAX, 1).add(CheckedRat(1, 1))
-    except:
-        caught = True
-    assert_true(caught)
+def test_unbounded_rational_arithmetic_does_not_overflow() raises:
+    # The retired fixed-width layer raised here; finite_exact carries the value.
+    var beyond = q_from_bigz(bigz_add(bigz_from_i64(Int64.MAX), bigz_from_i64(1)), bigz_from_i64(1))
+    var total = Q(Int64.MAX, 1).add(Q(1, 1))
+    assert_true(total.accepted())
+    assert_true(total.eq(beyond))
+    assert_true(Q(Int64.MAX, 1).lt(total))
+    assert_true(Q(Int64.MAX, 1).mul(Q(1, Int64.MAX)).eq(Q.one()))
 
 
 def test_perron_root_has_exact_rational_bracket() raises:
     var sigma = determinant_two_sigma()
     var field = build_perron_field3(Mat3(substitution_incidence(sigma)))
     var box = perron_root_interval(field, 10)
-    assert_true(box.lo.compare(CheckedRat(2, 1)) > 0)
-    assert_true(box.hi.compare(CheckedRat(3, 1)) < 0)
+    assert_true(Q(2, 1).lt(box.lo))
+    assert_true(box.hi.lt(Q(3, 1)))
 
     var chi: List[Int] = [field.chi0, field.chi1, field.chi2, 1]
-    var flo = eval_int_poly_at_rat(chi, box.lo).sign()
-    var fhi = eval_int_poly_at_rat(chi, box.hi).sign()
+    var flo = q_sign(eval_int_poly_at_q(chi, box.lo))
+    var fhi = q_sign(eval_int_poly_at_q(chi, box.hi))
     assert_true(flo != 0)
     assert_true(fhi != 0)
     assert_true(flo != fhi)
@@ -117,7 +118,7 @@ def test_interval_first_perron_sign_certifies_easy_and_falls_back_near_root() ra
     assert_false(decided.interval_certified)
 
     var enclosure = cubic_perron_interval(field, near, 10)
-    assert_true(enclosure.contains_zero())
+    assert_true(contains_zero(enclosure))
 
 
 def test_canonical_overlap_margin_interval_calibration() raises:
@@ -132,15 +133,18 @@ def test_canonical_overlap_margin_interval_calibration() raises:
     assert_equal(audit.fallback_count, 0)
     assert_true(audit.has_uniform_interval_lower_margin)
     assert_true(
-        audit.minimum_interval_lower_margin == CheckedRat(231, 16384)
+        audit.minimum_interval_lower_margin.eq(Q(231, 16384))
     )
     print("canonical overlap margins:", audit.margin_count)
     print("interval-certified margins:", audit.interval_certified_count)
     print("algebraic-fallback margins:", audit.fallback_count)
     print(
         "minimum certified rational overlap margin:",
-        audit.minimum_interval_lower_margin,
+        q_string(audit.minimum_interval_lower_margin),
     )
+    assert_equal(q_string(audit.minimum_interval_lower_margin), "231/16384")
+    assert_equal(q_string(Q(-1000000001, 1)), "-1000000001")
+    assert_equal(q_string(Q(1, 0)), "rejected")
 
 
 def test_coarse_overlap_audit_withholds_partial_minimum() raises:
@@ -152,18 +156,18 @@ def test_coarse_overlap_audit_withholds_partial_minimum() raises:
     assert_true(audit.interval_certified_count > 0)
     assert_true(audit.fallback_count > 0)
     assert_false(audit.has_uniform_interval_lower_margin)
-    assert_true(audit.minimum_interval_lower_margin == CheckedRat(0, 1))
+    assert_true(audit.minimum_interval_lower_margin.eq(Q.zero()))
 
 
 def main() raises:
-    test_checked_rational_normalization_and_order()
-    print("[PASS] test_checked_rational_normalization_and_order")
+    test_exact_rational_normalization_and_order()
+    print("[PASS] test_exact_rational_normalization_and_order")
     test_natural_interval_extension_contains_point_values()
     print("[PASS] test_natural_interval_extension_contains_point_values")
     test_interval_division_across_zero_fails_closed()
     print("[PASS] test_interval_division_across_zero_fails_closed")
-    test_checked_interval_overflow_fails_closed()
-    print("[PASS] test_checked_interval_overflow_fails_closed")
+    test_unbounded_rational_arithmetic_does_not_overflow()
+    print("[PASS] test_unbounded_rational_arithmetic_does_not_overflow")
     test_perron_root_has_exact_rational_bracket()
     print("[PASS] test_perron_root_has_exact_rational_bracket")
     test_symbolic_zero_is_not_a_strict_interval_certificate()
@@ -174,4 +178,4 @@ def main() raises:
     print("[PASS] test_canonical_overlap_margin_interval_calibration")
     test_coarse_overlap_audit_withholds_partial_minimum()
     print("[PASS] test_coarse_overlap_audit_withholds_partial_minimum")
-    print("9 rational-interval Mojo tests passed.")
+    print("9 exact-interval Mojo tests passed.")

@@ -29,6 +29,11 @@ if sha256sum -c docs/source-imports/issue-45/SHA256SUMS \
 else
     bad "Issue #45 source provenance"
 fi
+if python3 scripts/check_finite_exact_sync.py; then
+    ok "mojo/finite_exact matches its pinned NLAP-JT upstream"
+else
+    bad "mojo/finite_exact vendoring drift"
+fi
 if [[ ${1:-} == provenance ]]; then
     exit "$status"
 fi

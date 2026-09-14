@@ -32,6 +32,18 @@ Performance-sensitive code must be designed for Mojo rather than transliterated 
 9. **Exactness before speed.** Do not replace integer/rational predicates with floating approximations for PIP screening, equality, factorization, rank, or certificate decisions. Optimize the exact algorithm instead.
 10. **Benchmark material optimizations.** When changing a hot kernel, add a deterministic correctness regression and, where practical, record the before/after algorithmic complexity or benchmark on a representative corpus slice.
 
+## Exact arithmetic authority
+
+Integer, rational, and rational-interval arithmetic is **not** implemented in
+this repository. `mojo/finite_exact/` is a byte-for-byte vendored copy of
+`src/bigint_z.mojo`, `src/rat_q.mojo`, and `src/interval_q.mojo` from
+`larsbx/NLAP-JT`, pinned in `mojo/finite_exact/UPSTREAM.md` and enforced by
+`scripts/check_finite_exact_sync.py` in CI. Do not add a second rational type,
+patch the vendored files, or reintroduce fixed-width rational arithmetic:
+change upstream, then re-vendor. PSC-specific conventions over that package
+(raise or abort on a rejected value, integer lifts, Horner helpers, diagnostic
+rendering) live in `mojo/psc/exact.mojo` and nowhere else.
+
 ## Porting order for the live C4 program
 
 The current C4 recognizability/factorization work is being migrated to this policy. The preferred order is:

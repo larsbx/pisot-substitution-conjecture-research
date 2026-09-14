@@ -14,16 +14,17 @@ pairs.
 from psc.overlap_seed_patch import build_seed_overlap_graph, build_seed_overlap_tables
 from psc.perron_field3 import CubicElt, cubic_add_checked, cubic_sub_checked, sign_at_perron
 from psc.perron_interval import cubic_perron_interval
-from psc.rational_interval import CheckedRat
+from finite_exact.rat_q import Q
+from psc.exact import q_sign, strict_sign
 
 
-struct OverlapIntervalMarginAudit(ImplicitlyCopyable, Copyable, Movable):
+struct OverlapIntervalMarginAudit(Copyable, Movable):
     var state_count: Int
     var margin_count: Int
     var interval_certified_count: Int
     var fallback_count: Int
     var has_uniform_interval_lower_margin: Bool
-    var minimum_interval_lower_margin: CheckedRat
+    var minimum_interval_lower_margin: Q
 
     def __init__(
         out self,
@@ -32,14 +33,14 @@ struct OverlapIntervalMarginAudit(ImplicitlyCopyable, Copyable, Movable):
         interval_certified_count: Int,
         fallback_count: Int,
         has_uniform_interval_lower_margin: Bool,
-        minimum_interval_lower_margin: CheckedRat,
+        minimum_interval_lower_margin: Q,
     ):
         self.state_count = state_count
         self.margin_count = margin_count
         self.interval_certified_count = interval_certified_count
         self.fallback_count = fallback_count
         self.has_uniform_interval_lower_margin = has_uniform_interval_lower_margin
-        self.minimum_interval_lower_margin = minimum_interval_lower_margin
+        self.minimum_interval_lower_margin = minimum_interval_lower_margin.copy()
 
 
 def audit_seed_overlap_interval_margins(
@@ -57,9 +58,9 @@ def audit_seed_overlap_interval_margins(
     ```
 
     Each expression is first evaluated by rational interval extension. A box
-    counts as an interval certificate only if it is successfully represented
-    and proves strict positivity. A zero-containing or overflowed interval is
-    unresolved and delegates to the exact Perron sign oracle.
+    counts as an interval certificate only if it is accepted and proves strict
+    positivity. A zero-containing or rejected interval is unresolved and
+    delegates to the exact Perron sign oracle.
     """
     if refinements < 0:
         raise Error("overlap interval audit refinement count must be nonnegative")
@@ -71,7 +72,7 @@ def audit_seed_overlap_interval_margins(
     var interval_certified = 0
     var fallback = 0
     var has_minimum = False
-    var minimum = CheckedRat(0, 1)
+    var minimum = Q.zero()
 
     for i in range(graph.size()):
         var state = graph.states[i]
@@ -86,27 +87,27 @@ def audit_seed_overlap_interval_margins(
             var margin = margins[j]
             var interval_proved = False
             var interval_contradicted = False
-            var lower = CheckedRat(0, 1)
+            var lower = Q.zero()
             try:
                 var box = cubic_perron_interval(tables.field, margin, refinements)
-                var boxed_sign = box.strict_sign()
+                var boxed_sign = strict_sign(box)
                 if boxed_sign > 0:
                     interval_proved = True
-                    lower = box.lo
+                    lower = box.lo.copy()
                 elif boxed_sign < 0:
                     interval_contradicted = True
             except:
-                # Fixed-width interval arithmetic is an optional certificate
-                # layer. Unsafe/unrepresentable boxes become exact fallback,
-                # never mathematical evidence.
+                # Interval arithmetic is an optional certificate layer. A
+                # rejected (invalid) enclosure becomes exact fallback, never
+                # mathematical evidence.
                 interval_proved = False
 
             if interval_contradicted:
                 raise Error("rational interval contradicts retained overlap positivity")
             if interval_proved:
                 interval_certified += 1
-                if not has_minimum or lower.compare(minimum) < 0:
-                    minimum = lower
+                if not has_minimum or lower.lt(minimum):
+                    minimum = lower.copy()
                     has_minimum = True
             else:
                 var exact_sign = sign_at_perron(tables.field, margin)
@@ -119,12 +120,12 @@ def audit_seed_overlap_interval_margins(
         raise Error("overlap interval margin accounting failed")
     var uniform = fallback == 0 and has_minimum
     if uniform:
-        if minimum.sign() <= 0:
+        if q_sign(minimum) <= 0:
             raise Error("uniform rational interval lower margin is not positive")
     else:
         # Fail closed: never expose the minimum of only the certified subset as
         # though it bounded every retained overlap margin.
-        minimum = CheckedRat(0, 1)
+        minimum = Q.zero()
     return OverlapIntervalMarginAudit(
         graph.size(),
         margin_count,
