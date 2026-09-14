@@ -262,11 +262,11 @@ No other findings were posted in the tenth round.
 
 ---
 
-# Eleventh round: review of the exact-window restatement (pull request #79)
+# Eleventh round: automated review of the exact-window restatement (pull request #79)
 
 **Reviewed commit:** `90663fb3af9c1f87f8cea7c5040e4afc90d75ecd`.
 **Review posted:** 2026-09-14T17:34:10Z. Reproduced verbatim.
 
 > Codex Review: Didn't find any major issues. :rocket:
 
-No findings were posted in the eleventh round.
+The automated Codex review of the substantive exact-window restatement posted no findings.
