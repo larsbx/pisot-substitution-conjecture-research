@@ -334,6 +334,22 @@ either longer prefixes, other fixed points, or the collar/occurrence
 argument described in the audit. No conclusion about the bridge for
 substitutions outside the corpus follows from this table.
 
+**Addendum (2026-09-14; exploratory, not a certificate; Python only;
+`scripts/oa_failures_probe.py`).** For the 22 failures above, every
+prolongable pair `(q, c)` (power `q <= 3`, letter `c` with
+`sigma^q(c)` beginning with `c`) was tried with the fixed point of `sigma^q`
+at `c` and prefixes `W = u[:k]`, `k = 1, ..., 24` (level-0 types read off a
+prefix of length at least 6,000, closed under exact inflation). Inclusion
+`(TI_W)` was found for 9 of the 22 (least witnesses `(q, c, k)`: `(1,3,2)`
+twice, `(2,1,6)`, `(1,1,9)`, `(1,2,9)`, `(1,2,16)` twice, `(1,3,16)`,
+`(1,2,19)`) and for none of the other 13. The union over all probed families
+of non-coincidence types has 58 to 132 elements against 15 to 48 seed-patch
+vertex types, with 43 to 85 types outside `O_sigma` and 0 to 15 seed-patch
+types not met by any probed family; every type in every union is
+productive. The transfer by type inclusion is therefore not uniform even
+with long prefixes and all fixed points of low powers; since the bridge is
+now a theorem (Section 8) this is recorded as data only.
+
 ## 8. The density bridge is a theorem (Barge–Štimac–Williams)
 
 For a seed `s = (ab, ba)` let `G_m(s)` be the union of the interiors of the
