@@ -114,4 +114,5 @@ Unless a note says otherwise:
 5. Treat `C4 => C3-local => C2 => C1` as a one-way sufficiency chain unless a converse is separately proved.
 6. Do not stack additional fixed-size sieves without a credible uniform completeness statement.
 7. **Default executable work to Mojo.** Python-only theorem-support implementations require an explicit temporary rationale and a planned Mojo port.
-8. **Optimize for Mojo.** Prefer fixed-dimension exact arithmetic, streaming accumulators, precomputed substitution-local data, compact index-based graph kernels, reused storage, and fail-closed invariants over Python-style dynamic/object-heavy hot loops.
+8. **Exact arithmetic only.** Rational and interval kernels follow `docs/rational-interval-arithmetic-spec.md` (mirrored verbatim in NLAP-JT); `scripts/audit_exact_arithmetic.py` keeps floating point out of `mojo/`.
+9. **Optimize for Mojo.** Prefer fixed-dimension exact arithmetic, streaming accumulators, precomputed substitution-local data, compact index-based graph kernels, reused storage, and fail-closed invariants over Python-style dynamic/object-heavy hot loops.

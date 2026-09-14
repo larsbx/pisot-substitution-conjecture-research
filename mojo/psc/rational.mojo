@@ -1,5 +1,7 @@
 """Exact rational arithmetic over Z, normalised (denominator > 0, gcd 1).
 
+Specification: docs/rational-interval-arithmetic-spec.md (binding 6.1).
+
 Every linear-algebra fact in the Spectral module certificate is a statement
 over Q about integer data, so the kernel needs no floating point anywhere.
 """

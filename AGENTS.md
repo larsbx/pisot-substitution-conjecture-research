@@ -29,7 +29,7 @@ Performance-sensitive code must be designed for Mojo rather than transliterated 
 6. **Iterative graph kernels.** Keep SCC, reachability, and closure routines iterative and index-based to avoid recursion overhead and recursion-depth limits.
 7. **Fuse passes when it preserves auditability.** For exact censuses, avoid recomputing inflation, factorization, endpoint maps, or Parikh data in independent passes when one verified pass can expose all required outputs.
 8. **Fail closed.** Impossible invariant states must abort/raise rather than silently returning empty structures that could be misclassified as mathematical evidence.
-9. **Exactness before speed.** Do not replace integer/rational predicates with floating approximations for PIP screening, equality, factorization, rank, or certificate decisions. Optimize the exact algorithm instead.
+9. **Exactness before speed.** Do not replace integer/rational predicates with floating approximations for PIP screening, equality, factorization, rank, or certificate decisions. Optimize the exact algorithm instead. The arithmetic contract is `docs/rational-interval-arithmetic-spec.md`: normalized `Q` for equality and order, rational-endpoint intervals with three-valued signs for enclosure, filter-then-exact fallback, no floating point in kernel scope. `scripts/audit_exact_arithmetic.py` enforces it.
 10. **Benchmark material optimizations.** When changing a hot kernel, add a deterministic correctness regression and, where practical, record the before/after algorithmic complexity or benchmark on a representative corpus slice.
 
 ## Porting order for the live C4 program
@@ -51,5 +51,6 @@ For new executable mathematical machinery, a PR should normally contain or depen
 - a canonical Mojo implementation;
 - Mojo regression coverage for the theorem/invariant contract;
 - explicit counter-calibrations for known overstrong variants;
+- conformance to `docs/rational-interval-arithmetic-spec.md` for any new rational or interval kernel, with its row added to the binding table;
 - Python oracle coverage only when it adds independent value;
 - no claim beyond what the exact executable or formal proof actually establishes.

@@ -4,7 +4,7 @@ from std.testing import assert_equal, assert_false, assert_true
 from psc.bpa import substitution_incidence
 from psc.mat3 import Mat3
 from psc.overlap_interval_audit import audit_seed_overlap_interval_margins
-from psc.perron_field3 import CubicElt, build_perron_field3
+from psc.perron_field3 import CubicElt, build_perron_field3, sign_at_perron
 from psc.perron_interval import (
     cubic_perron_interval,
     interval_sign_at_perron,
@@ -37,6 +37,66 @@ def test_checked_rational_normalization_and_order() raises:
     assert_equal(CheckedRat(2, 3).compare(CheckedRat(3, 4)), -1)
     assert_true(CheckedRat(1, 3).add(CheckedRat(1, 6)) == CheckedRat(1, 2))
     assert_true(CheckedRat(2, 3).mul(CheckedRat(9, 4)) == CheckedRat(3, 2))
+
+
+def test_rational_field_laws_are_exact() raises:
+    # docs/rational-interval-arithmetic-spec.md section 1.3: decidable
+    # equality, associativity, distributivity, lossless cancellation.
+    assert_true(CheckedRat(1, 10).add(CheckedRat(2, 10)) == CheckedRat(3, 10))
+    var a = CheckedRat(1, 3)
+    var b = CheckedRat(1, 7)
+    var c = CheckedRat(-2, 9)
+    assert_true(a.add(b).add(c) == a.add(b.add(c)))
+    assert_true(a.mul(b.add(c)) == a.mul(b).add(a.mul(c)))
+    assert_true(a.add(b).sub(b) == a)
+    assert_true(a.div(b).mul(b) == a)
+
+
+def test_interval_dependency_and_subdistributivity() raises:
+    # docs/rational-interval-arithmetic-spec.md section 2.5: X - X is not
+    # [0,0], and X(Y+Z) is only contained in XY + XZ.
+    var x = integer_interval(1, 3)
+    var y = integer_interval(-1, 2)
+    var z = integer_interval(2, 5)
+    var d = x.sub(x)
+    assert_true(d.lo == CheckedRat(-2, 1))
+    assert_true(d.hi == CheckedRat(2, 1))
+    assert_true(d.contains_zero())
+    assert_equal(d.strict_sign(), 0)
+    var lhs = x.mul(y.add(z))
+    var rhs = x.mul(y).add(x.mul(z))
+    assert_true(rhs.lo.compare(lhs.lo) <= 0)
+    assert_true(lhs.hi.compare(rhs.hi) <= 0)
+
+
+def test_reversed_interval_fails_closed() raises:
+    # docs/rational-interval-arithmetic-spec.md invariant J1.
+    var caught = False
+    try:
+        _ = RatInterval(CheckedRat(2, 1), CheckedRat(1, 1))
+    except:
+        caught = True
+    assert_true(caught)
+
+
+def test_filter_never_contradicts_exact_oracle() raises:
+    # docs/rational-interval-arithmetic-spec.md section 3.2, rules R1/R2:
+    # the interval filter agrees with Sturm--Tarski whenever it certifies,
+    # and every certified answer is a strict interval sign.
+    var sigma = determinant_two_sigma()
+    var field = build_perron_field3(Mat3(substitution_incidence(sigma)))
+    var certified = 0
+    for a0 in range(-3, 4):
+        for a1 in range(-2, 3):
+            for a2 in range(-1, 2):
+                var x = CubicElt(a0, a1, a2)
+                var decision = perron_sign_decision(field, x, 6)
+                assert_equal(decision.sign, sign_at_perron(field, x))
+                if decision.interval_certified:
+                    certified += 1
+                    assert_equal(interval_sign_at_perron(field, x, 6), decision.sign)
+                    assert_true(decision.sign != 0)
+    assert_true(certified > 0)
 
 
 def test_natural_interval_extension_contains_point_values() raises:
@@ -158,6 +218,14 @@ def test_coarse_overlap_audit_withholds_partial_minimum() raises:
 def main() raises:
     test_checked_rational_normalization_and_order()
     print("[PASS] test_checked_rational_normalization_and_order")
+    test_rational_field_laws_are_exact()
+    print("[PASS] test_rational_field_laws_are_exact")
+    test_interval_dependency_and_subdistributivity()
+    print("[PASS] test_interval_dependency_and_subdistributivity")
+    test_reversed_interval_fails_closed()
+    print("[PASS] test_reversed_interval_fails_closed")
+    test_filter_never_contradicts_exact_oracle()
+    print("[PASS] test_filter_never_contradicts_exact_oracle")
     test_natural_interval_extension_contains_point_values()
     print("[PASS] test_natural_interval_extension_contains_point_values")
     test_interval_division_across_zero_fails_closed()
@@ -174,4 +242,4 @@ def main() raises:
     print("[PASS] test_canonical_overlap_margin_interval_calibration")
     test_coarse_overlap_audit_withholds_partial_minimum()
     print("[PASS] test_coarse_overlap_audit_withholds_partial_minimum")
-    print("9 rational-interval Mojo tests passed.")
+    print("13 rational-interval Mojo tests passed.")

@@ -97,6 +97,10 @@ the current ledgers rather than rewriting the archive.
 - `verification-architecture.md` describes the responsibilities and limits of
   Mojo, TLA+, Lean, and Python.
 - `../AGENTS.md` is the implementation policy.
+- `rational-interval-arithmetic-spec.md` is the arithmetic contract for every
+  rational and interval kernel (exact `Q`, rational-endpoint intervals,
+  filter-then-exact); mirrored verbatim in NLAP-JT and enforced by
+  `../scripts/audit_exact_arithmetic.py`.
 - Mojo is canonical for executable research.
 - TLA+ records dependency/state-machine claims.
 - Lean checks deductive finite algebra.

@@ -52,6 +52,8 @@ For new work, the preferred optimization order is:
 9. never trade exact arithmetic for floating heuristics on proof-relevant predicates;
 10. accompany material hot-kernel changes with deterministic correctness regressions and complexity/benchmark notes where practical.
 
+The rational and interval kernels (`psc/rational.mojo`, `psc/rational_interval.mojo`, `psc/perron_interval.mojo`, `psc/overlap_interval_audit.mojo`) are bound by `docs/rational-interval-arithmetic-spec.md`, which fixes what exact `Q`, rational-endpoint enclosure, and filter-then-exact fallback are allowed to conclude. The spec is mirrored verbatim in NLAP-JT; `scripts/audit_exact_arithmetic.py` checks the binding table and rejects floating point under `mojo/`.
+
 The `N2/N3` word counters are a canonical example: in a three-letter alphabet they should use one-pass prefix accumulators rather than `O(n^2)` / `O(n^3)` tuple enumeration.
 
 The established finite alphabet-3 corpus has 4,554 PIP substitutions with image lengths `<=3`. All BPA constructions terminate below the configured cap in this corpus; every observed sink is productive. This is finite evidence only.

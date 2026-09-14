@@ -61,6 +61,13 @@ else
     skip "Mojo layer" "pixi not installed; curl -fsSL https://pixi.sh/install.sh | bash"
 fi
 
+section "Exact arithmetic hook"
+if python3 scripts/audit_exact_arithmetic.py >/dev/null 2>&1; then
+    ok "docs/rational-interval-arithmetic-spec.md binding and float-free kernel"
+else
+    bad "exact arithmetic audit (run python3 scripts/audit_exact_arithmetic.py)"
+fi
+
 section "Python secondary reference/oracle"
 if command -v pytest >/dev/null 2>&1; then
     if pytest -q >/dev/null 2>&1; then ok "pytest oracle regressions"; else bad "pytest oracle regressions"; fi

@@ -1,5 +1,7 @@
 """Rational-interval margin audit for the finite seed-patch overlap graph.
 
+Specification: docs/rational-interval-arithmetic-spec.md (binding 6.1).
+
 The audit is deliberately downstream of exact graph construction. It asks how
 much of the retained geometry can be certified by one fixed rational enclosure
 of the Perron root, while checking every ambiguous or unrepresentable interval

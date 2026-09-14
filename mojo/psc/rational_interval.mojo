@@ -1,5 +1,7 @@
 """Checked exact rational interval arithmetic for finite certificate kernels.
 
+Specification: docs/rational-interval-arithmetic-spec.md (binding 6.1).
+
 Intervals are closed rational boxes with normalized exact endpoints.  Every
 integer operation is checked against Mojo ``Int`` overflow.  An operation that
 cannot be represented safely raises rather than widening, wrapping, or guessing.

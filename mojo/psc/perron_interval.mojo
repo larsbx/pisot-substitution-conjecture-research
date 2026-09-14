@@ -1,5 +1,7 @@
 """Rational-interval enclosure layer for the cubic Perron embedding.
 
+Specification: docs/rational-interval-arithmetic-spec.md (binding 6.1).
+
 This module is intentionally separate from the Sturm--Tarski oracle. It first
 isolates the distinguished Perron root inside a checked rational interval, then
 uses the natural interval extension of ``a0 + a1 X + a2 X^2``. A strict sign
