@@ -14,7 +14,7 @@ from psc.bpa import substitution_incidence
 from psc.mat3 import Mat3
 from psc.pisot import is_pip
 from psc.overlap_seed_patch import (
-    build_seed_overlap_graph,
+    build_seed_overlap_graph_from_tables,
     build_seed_overlap_tables,
     first_coincidence_depths,
     first_left_aligned_depths,
@@ -75,7 +75,8 @@ def main() raises:
                     continue
                 n_pip += 1
                 try:
-                    var g = build_seed_overlap_graph(sigma, 20000)
+                    var tables = build_seed_overlap_tables(sigma)
+                    var g = build_seed_overlap_graph_from_tables(tables, 20000)
                     if g.capped:
                         n_capped += 1
                         print("CAPPED specimen:", i, j, k)
@@ -115,7 +116,6 @@ def main() raises:
                     left_histogram[worst_left] = left_histogram[worst_left] + 1
                     if worst_left > max_left:
                         max_left = worst_left
-                    var tables = build_seed_overlap_tables(sigma)
                     var prefix_scc = strong_coincidence_depth_from(depths, g, tables, False)
                     var suffix_scc = strong_coincidence_depth_from(depths, g, tables, True)
                     if prefix_scc < 0 or suffix_scc < 0:

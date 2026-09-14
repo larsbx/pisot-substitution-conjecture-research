@@ -335,3 +335,28 @@ No other findings were posted in the thirteenth round.
 > AGENTS.md reference: AGENTS.md:L30-L30
 
 No other findings were posted in the fourteenth round.
+
+---
+
+# Fifteenth round: re-review of the round-fourteen revision (pull request #82)
+
+**Reviewed commit:** `2288163613668619be3185e97b1474ca059f3dc2`.
+**Review posted:** 2026-09-14T22:27:01Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 29 (P2) — `mojo/psc/overlap_seed_patch.mojo`, line 384
+
+> **Reject capped automata in the reused-depth helper**
+>
+> When the newly added reuse API is called directly with a capped `SeedOverlapAutomaton` and any vector matching the truncated state count, this length check passes and the helper returns an apparently valid strong-coincidence depth from a partial graph. Unlike `strong_coincidence_depth`, this path bypasses `_first_depths` and its cap guard, so the inconclusive construction can be misclassified as mathematical evidence; check `a.capped` before consuming the supplied depths. This new Mojo `_from` overload is the fresh path not covered by the addressed Python cap fix.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 30 (P2) — `mojo/swap_overlap_census.mojo`, line 118
+
+> **Reuse substitution tables across graph and depth scans**
+>
+> In the checked `swap_overlap_census.mojo` path, every PIP specimen already calls `build_seed_overlap_graph` at line 78, which internally calls `build_seed_overlap_tables`; this added line rebuilds the exact Perron field, tile lengths, and prefix positions for the same `sigma` solely for the endpoint scan. That repeats substitution-local exact setup across all 4,554 specimens despite the repository's explicit once-per-specimen rule; build the tables once and pass them into graph construction and the strong-coincidence scans.
+>
+> AGENTS.md reference: AGENTS.md:L26-L26
+
+No other findings were posted in the fifteenth round.

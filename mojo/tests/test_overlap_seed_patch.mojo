@@ -5,6 +5,7 @@ from psc.bpa import build, nonproductive_states, substitution_incidence
 from psc.mat3 import Mat3
 from psc.overlap_seed_patch import (
     build_seed_overlap_graph,
+    build_seed_overlap_graph_from_tables,
     first_coincidence_depths,
     first_left_aligned_depths,
     build_seed_overlap_tables,
@@ -147,6 +148,17 @@ def test_left_aligned_and_strong_coincidence_depths_pin_exact_values() raises:
     assert_equal(suffix, 1)
     assert_equal(strong_coincidence_depth_from(coinc, graph, tables, False), 6)
     assert_equal(strong_coincidence_depth_from(coinc, graph, tables, True), 1)
+    var from_tables = build_seed_overlap_graph_from_tables(tables, 20000)
+    assert_equal(from_tables.size(), graph.size())
+    var capped = build_seed_overlap_graph_from_tables(tables, 1)
+    assert_true(capped.capped)
+    var fake: List[Int] = [0]
+    var caught = False
+    try:
+        _ = strong_coincidence_depth_from(fake, capped, tables, False)
+    except:
+        caught = True
+    assert_true(caught)
     for i in range(len(coinc)):
         assert_true(coinc[i] <= left[i] + prefix)
 

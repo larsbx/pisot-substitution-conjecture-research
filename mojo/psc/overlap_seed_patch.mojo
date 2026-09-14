@@ -234,9 +234,19 @@ def overlap_children(
 def build_seed_overlap_graph(
     sigma: List[List[Int]], max_states: Int = 20000
 ) raises -> SeedOverlapAutomaton:
+    """`build_seed_overlap_graph_from_tables` with the exact tables built here."""
+    return build_seed_overlap_graph_from_tables(build_seed_overlap_tables(sigma), max_states)
+
+
+def build_seed_overlap_graph_from_tables(
+    tables: SeedOverlapTables, max_states: Int = 20000
+) raises -> SeedOverlapAutomaton:
+    """Breadth-first closure of the swap-seed overlaps under inflation.
+
+    Takes the substitution's exact tables so a census builds them once per
+    specimen and shares them with the endpoint scans."""
     if max_states <= 0:
         raise Error("seed-patch overlap state cap must be positive")
-    var tables = build_seed_overlap_tables(sigma)
     var sign_cache = Dict[CubicElt, Int]()
     var seeds = _seed_states_with_cache(tables, sign_cache)
     var states = List[OverlapState]()
@@ -385,6 +395,8 @@ def strong_coincidence_depth_from(
     preserves depths, so each pair is counted in the orientation that occurs.
     Returns `-1` if some aligned vertex is nonproductive, and raises if there
     is no aligned vertex."""
+    if a.capped:
+        raise Error("strong-coincidence depth is undefined for a capped partial graph")
     if len(depths) != a.size():
         raise Error("coincidence depth vector length disagrees with the overlap graph size")
     var worst = -2

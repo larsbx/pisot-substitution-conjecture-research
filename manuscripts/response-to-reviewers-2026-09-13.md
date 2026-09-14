@@ -234,3 +234,14 @@ Two findings from the automated Codex review of commit `3dc397856ab8ceaf0298c34c
 | --- | --- | --- | --- | --- |
 | 27 | P2 | A nonproductive graph would raise in the depth validations before being counted, so a counterexample would surface as `FAILED` with the nonproductive count still zero | Accepted. The driver now records and prints a nonproductive specimen immediately after the productivity check and skips the depth statistics for it, which are undefined on such a graph | `mojo/swap_overlap_census.mojo` |
 | 28 | P2 | The prefix and suffix strong-coincidence scans each recomputed the coincidence depths, three reverse searches per graph | Accepted. `strong_coincidence_depth_from(depths, ...)` takes the precomputed vector (length-checked); `strong_coincidence_depth` wraps it; the census passes the one vector it already holds. The Python oracle takes an optional `depths` argument likewise. Census lines unchanged | `mojo/psc/overlap_seed_patch.mojo`, `mojo/swap_overlap_census.mojo`, `mojo/tests/test_overlap_seed_patch.mojo`, `src/psc_research/overlap_graph.py`, `scripts/overlap_depth_census_oracle.py` |
+
+---
+
+## Fifteenth round (pull request #82)
+
+Two findings from the automated Codex review of commit `2288163613668619be3185e97b1474ca059f3dc2`; both accepted. Both concern the Mojo census path; no census value changes.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 29 | P2 | `strong_coincidence_depth_from` accepted a capped automaton with a length-matching vector | Accepted. It now raises on a capped automaton before consuming the depths, like `_first_depths`; regression test with a capped graph | `mojo/psc/overlap_seed_patch.mojo`, `mojo/tests/test_overlap_seed_patch.mojo` |
+| 30 | P2 | The census rebuilt the exact tables for the endpoint scans after `build_seed_overlap_graph` had built them | Accepted. `build_seed_overlap_graph_from_tables(tables, cap)` is the builder; `build_seed_overlap_graph(sigma, cap)` wraps it; the census builds the tables once per specimen and passes them to the graph construction and both scans | `mojo/psc/overlap_seed_patch.mojo`, `mojo/swap_overlap_census.mojo` |
