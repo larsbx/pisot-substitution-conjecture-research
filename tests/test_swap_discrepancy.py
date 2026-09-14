@@ -105,3 +105,18 @@ def test_left_aligned_and_strong_coincidence_depths_pin_exact_values():
         assert set(pre.values()) == prefix and set(suf.values()) == suffix
         # a coincidence is reached through the first offset-zero descendant
         assert all(c <= b + max(pre.values()) for b, c in zip(left, coinc))
+
+
+def test_depths_fail_closed_on_capped_graph():
+    from psc_research.overlap_graph import (
+        OverlapGraph,
+        first_coincidence_depths,
+        first_left_aligned_depths,
+        strong_coincidence_depths,
+    )
+
+    g = OverlapGraph(TAU, max_states=1)
+    assert g.capped
+    for f in (first_coincidence_depths, first_left_aligned_depths, strong_coincidence_depths):
+        with pytest.raises(RuntimeError):
+            f(g)

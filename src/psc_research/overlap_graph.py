@@ -237,9 +237,13 @@ class OverlapGraph:
 
 
 def first_depths(g: "OverlapGraph", is_target) -> list[int]:
-    """Shortest number of inflations from each vertex to a target vertex (-1 if none)."""
+    """Shortest number of inflations from each vertex to a target vertex (-1 if none).
+
+    Fails closed on a capped partial graph, like the canonical Mojo kernel."""
     from collections import deque as _dq
 
+    if g.capped:
+        raise RuntimeError("first-target depths are undefined on a capped graph")
     n = len(g.states)
     dist = [-1] * n
     parents: list[list[int]] = [[] for _ in range(n)]

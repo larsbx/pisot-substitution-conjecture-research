@@ -213,3 +213,13 @@ Two findings from the automated Codex review of commit `68a392abcbccb0a874e7b090
 ### Finding 25 (P2)
 
 Accepted. The referee's example is exact: at level 1 the bottom tile `[−1, 1]` of `(3,3,−1)` ends at the internal top boundary `1`, no bottom sub-tile starts there, and `M w = −e_2` is not a difference of proper-prefix Parikh vectors. The equivalence (a)⇔(c) was never in doubt; (b) was the wrong paraphrase of it, and the census function measured (c).
+
+---
+
+## Thirteenth round (pull request #82)
+
+One finding from the automated Codex review of commit `310f06c06bdf757745cdb9c19f4e0411d20a9cd5`; accepted. It concerns the Python oracle only.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 26 | P2 | The Python depth helper returned depths on a capped partial graph, unlike the canonical Mojo kernel | Accepted. `first_depths` now raises on a capped graph (so do the coincidence, left-aligned and strong-coincidence wrappers), matching `_first_depths` and `nonproductive`; regression test on `τ` with `max_states = 1` | `src/psc_research/overlap_graph.py`; `tests/test_swap_discrepancy.py` |

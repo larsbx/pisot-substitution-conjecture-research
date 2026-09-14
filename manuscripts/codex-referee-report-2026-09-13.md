@@ -295,3 +295,20 @@ The automated Codex review of the substantive exact-window restatement posted no
 > AGENTS.md reference: AGENTS.md:L55-L55
 
 No other findings were posted in the twelfth round.
+
+---
+
+# Thirteenth round: re-review of the round-twelve revision (pull request #82)
+
+**Reviewed commit:** `310f06c06bdf757745cdb9c19f4e0411d20a9cd5`.
+**Review posted:** 2026-09-14T22:06:17Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 26 (P2) — `src/psc_research/overlap_graph.py`, line 240
+
+> **Reject capped graphs before computing target depths**
+>
+> When `OverlapGraph` reaches `max_states`, `_build()` leaves a partial graph whose adjacency lists are empty, but this helper still computes apparently meaningful depths. For example, `OverlapGraph(TAU, max_states=1)` is capped while `first_left_aligned_depths` returns `[0]` and `strong_coincidence_depths` reports `{(1, 2): -1}`, potentially misclassifying an inconclusive truncation as mathematical evidence. Add the same capped-graph rejection used by the canonical Mojo `_first_depths` and `nonproductive()`.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirteenth round.
