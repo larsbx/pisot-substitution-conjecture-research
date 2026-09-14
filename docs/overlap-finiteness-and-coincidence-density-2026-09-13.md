@@ -355,19 +355,28 @@ now a theorem (Section 8) this is recorded as data only.
 For a seed `s = (ab, ba)` let `G_m(s)` be the union of the interiors of the
 intervals `beta^{-m} I`, `I` a common tile of the level-`m` pair, and
 `G(s) = union_m G_m(s)` the *good set*: points at which the two tilings are,
-after some inflations, covered by a common tile. `G_m(s)` is open,
-increasing in `m`, of measure `C_m(s)/beta^m`.
+after some inflations, covered by a common tile. `G_m(s)` is open of
+measure `C_m(s)/beta^m`. The sets are not nested: a common tile at level
+`m` inflates to common tiles at level `m+1` whose interiors cover the
+rescaled parent interior except at the finitely many subdivision points, so
+`G_m(s) \ G_{m'}(s)` is finite for every `m' >= m`.
 
 **Lemma 8.1 (three forms; manuscript Lemma 5.36).** For PIP `sigma` and a
 seed `s` the following are equivalent: (a) every vertex of `O_sigma`
 reachable from the seed overlaps of `s` is productive; (b) `delta(s) = 1`;
 (c) `G(s)` is dense.
 
-*Proof.* (a) iff (b) is Theorem 4.1(3). (b) => (c): `G(s)` is open of full
-measure. (c) => (a): a nonproductive overlap at level `N` has an intersection
-`J` of positive length; `beta^{-N} J` meets some `G_m(s)` at a point `t`, and
-the common tile over `beta^m t` lies inside both inflated tiles of the
-overlap, hence is a coincidence descending from it. ∎
+*Proof.* (a) iff (b) is Theorem 4.1(3). (b) => (c): `G(s)` contains every
+`G_m(s)`, so it is open of full measure, and its complement has empty
+interior. (c) => (a): an overlap at level `N` reachable from `s` has an
+intersection `J` of positive length; the nonempty open set
+`U = beta^{-N} J°` meets some `G_m(s)`, `U ∩ G_m(s)` is open and nonempty,
+hence infinite, and `G_m(s) \ G_{m'}(s)` is finite for `m' = max(m, N)`, so
+`U` meets `G_{m'}(s)` at a point `t`. The level-`m'` tiles of both tilings
+whose interiors contain `beta^{m'} t` are one common tile; since
+`beta^{m'} t` lies in `beta^{m'-N} J°` and the level-`m'` tilings refine the
+`(m'-N)`-fold inflations of the level-`N` tilings, that tile lies inside both
+inflated tiles of the overlap, hence is a coincidence descending from it. ∎
 
 **Imported theorem (Barge–Štimac–Williams, *Pure discrete spectrum in
 substitution tiling spaces*, arXiv:1107.3598, Theorem 3.1 and the proof of

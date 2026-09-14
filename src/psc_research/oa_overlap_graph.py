@@ -38,18 +38,53 @@ def fixed_point_prefix(sigma, q: int, c: int, min_len: int) -> tuple[int, ...]:
     return u
 
 
-def oa_types(g: OverlapGraph, u: tuple[int, ...], k: int, window: int) -> set[tuple[int, int, Elt]]:
+def _extremal(F, xs, larger: bool):
+    best = xs[0]
+    for x in xs[1:]:
+        if (F.sign(F.sub(x, best)) > 0) == larger:
+            best = x
+    return best
+
+
+def oa_window(g: OverlapGraph, u: tuple[int, ...], k: int) -> int:
+    """Least integer n with n * l_min > g(u[:k]) + l_max, decided exactly in Q(beta).
+
+    Tiles of (u, S^k u) more than n letters apart cannot overlap: any n
+    consecutive tiles span at least n * l_min, and two overlapping tiles are
+    within g(W) + l_max of each other."""
+    F = g.F
+    l_min = _extremal(F, g.l, larger=False)
+    l_max = _extremal(F, g.l, larger=True)
+    bound = l_max
+    for a in u[:k]:
+        bound = F.add(bound, g.l[a - 1])
+    n, acc = 1, l_min
+    while F.sign(F.sub(acc, bound)) <= 0:
+        n, acc = n + 1, F.add(acc, l_min)
+    return n
+
+
+def oa_types(g: OverlapGraph, u: tuple[int, ...], k: int, window: int | None = None) -> set[tuple[int, int, Elt]]:
     """Closure under inflation of the level-0 overlap types of (u, S^k u).
 
     Level 0: top tile i (letter u[i]) at g(u[:i]); bottom tile m (letter u[m])
     at g(u[:m]) - g(u[:k]); the offset is <l, w> with the integer vector
     w = pi(u[i:m]) - pi(W) (m >= i) or -pi(u[m:i]) - pi(W) (m < i).  Only tiles
-    within `window` letters of each other can overlap; `window` must exceed
-    (g(W) + l_max)/l_min.  Distinct integer keys (a, b, w) are collected first
-    with prefix sums, so the exact sign tests run once per key."""
+    within `window` letters of each other can overlap; the window defaults to
+    `oa_window(g, u, k)` and a smaller explicit window is rejected (fail
+    closed), as is a prefix too short for the window.  Distinct integer keys
+    (a, b, w) are collected first with prefix sums, so the exact sign tests
+    run once per key."""
     F = g.F
     d = 3
     n = len(u)
+    needed = oa_window(g, u, k)
+    if window is None:
+        window = needed
+    if window < needed:
+        raise ValueError(f"window {window} below the exact bound {needed}")
+    if 2 * window >= n:
+        raise ValueError(f"prefix of length {n} too short for window {window}")
     pref = [[0] * d]
     for a in u:
         row = pref[-1][:]
@@ -83,7 +118,7 @@ def oa_types(g: OverlapGraph, u: tuple[int, ...], k: int, window: int) -> set[tu
     return types
 
 
-def type_inclusion_report(sigma, k: int = 1, prefix_len: int = 20000, window: int = 12):
+def type_inclusion_report(sigma, k: int = 1, prefix_len: int = 20000, window: int | None = None):
     q, c = prolongable_power(sigma)
     u = fixed_point_prefix(sigma, q, c, prefix_len)
     g = OverlapGraph(sigma)

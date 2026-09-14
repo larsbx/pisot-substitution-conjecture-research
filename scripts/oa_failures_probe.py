@@ -33,7 +33,7 @@ for sigma in specs:
     for (q, c) in all_prolongable(sigma):
         u = fixed_point_prefix(sigma, q, c, 6000)
         for k in range(1, kmax + 1):
-            oa = {s for s in oa_types(g, u, k, 14 + k) if not OverlapGraph.is_coincidence(s)}
+            oa = {s for s in oa_types(g, u, k) if not OverlapGraph.is_coincidence(s)}
             union |= oa
             miss = len(oa - seed)
             if miss == 0 and best is None:

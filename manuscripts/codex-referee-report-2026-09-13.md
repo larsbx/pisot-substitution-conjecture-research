@@ -236,3 +236,26 @@ No findings were posted in the eighth round.
 > The new comment records `DensityToPDSBridge` as imported, but the route description at lines 162–170 still explicitly calls it the separate open input for the G1-free route. This contradicts both `ProvedDef` and the reduced `OverlapGateAssumed`, making the ledger's explanatory dependency documentation disagree with the model it describes.
 
 No other findings were posted in the ninth round.
+
+---
+
+# Tenth round: re-review of the round-nine revision (pull request #77)
+
+**Reviewed commit:** `5a876aec40fce9b3f980b4ea651438fb4b7f591a`.
+**Review posted:** 2026-09-14T05:05:14Z, one review with two inline comments. Reproduced verbatim.
+
+## Finding 22 (P2) — `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md`, line 343
+
+> **Apply the good-set correction to the companion note**
+>
+> Although the manuscript was corrected, this newly added companion proof still calls the sets `G_m(s)` increasing. A common tile's internal subdivision points belong to its rescaled interior at level `m` but to no child interior at level `m+1`, so this assertion is false; consequently, lines 351–354 still cannot assume that the arbitrary witnessing level is at least the overlap level `N`. Replace the nesting assertion and abridged proof with the manuscript's finite-difference argument so this active proof note actually supports Lemma 5.36.
+
+## Finding 23 (P2) — `scripts/oa_failures_probe.py`, line 36
+
+> **Compute a valid overlap-enumeration window**
+>
+> For inputs where tile lengths have a sufficiently large ratio, `14 + k` violates `oa_types`' documented requirement that `window` exceed `(g(W) + l_max) / l_min`. For example, the corpus substitution `{1:(2,), 2:(3,), 3:(1,3,3)}` at `k=24` needs a bound of about 86.6 while this passes 38. The enumeration may therefore omit valid level-zero overlap types and falsely report `first_inclusion_(q,c,k)` or `union_all_productive`; derive and verify the geometric bound instead of using this heuristic without failing closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L32
+
+No other findings were posted in the tenth round.
