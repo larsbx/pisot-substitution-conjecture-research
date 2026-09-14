@@ -56,7 +56,7 @@ closed on caps and retain a replayable record for every survivor.
 
 - G1b-1 bounded discrepancy: repository-proved.
 - Seed-patch overlap-graph finiteness: repository-proved from bounded discrepancy.
-- Overlap productivity and the density-to-PDS bridge remain open.
+- Overlap productivity remains open; the density-to-PDS bridge is an imported theorem (Barge–Štimac–Williams), so overlap productivity for one seed already implies PDS (manuscript Theorem 5.38).
 - G1b-2 renewal finiteness: open and now equivalent to G1.
 - `bpa-literature-bridge.md`: interface audit between literature algorithms
   and the normalized all-seed repository graph.

@@ -224,7 +224,7 @@ The audited 2026-09-13 manuscript implements:
 Work asymmetrically:
 
 - attack the **Level-3 closed-carrier obligations** (concentration and wedge productivity); neither alone closes the route, and the `K2 != 0` case is the one realized by essentially all reachable states in the exact corpus;
-- attack **overlap productivity** and the **density-to-PDS bridge** as the finite, G1-free alternative;
+- attack **overlap productivity** as the finite, G1-free alternative (the density-to-PDS bridge is now an imported theorem: manuscript Imported Theorem 5.37 and Theorem 5.38);
 - in parallel, continue **G1b-2** for the stronger BPA-finiteness theorem, specifically realizable first-return words and a level-scaled non-unimodular contracting address.
 
 The UD layer is finished. PDS can be completed either through the finite-BPA carrier assembly (G1 plus both Level-3 obligations and the final literature interface) or through the G1-free overlap assembly (general overlap productivity plus the density-to-PDS bridge). Neither route is complete.
