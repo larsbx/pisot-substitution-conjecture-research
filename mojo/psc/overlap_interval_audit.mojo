@@ -13,7 +13,7 @@ pairs.
 
 from psc.overlap_seed_patch import build_seed_overlap_graph, build_seed_overlap_tables
 from psc.perron_field3 import CubicElt, cubic_add_checked, cubic_sub_checked, sign_at_perron
-from psc.perron_interval import cubic_perron_interval
+from psc.perron_interval import PerronEnclosure
 from finite_exact.rat_q import Q
 from psc.exact import q_sign, strict_sign
 
@@ -68,6 +68,7 @@ def audit_seed_overlap_interval_margins(
     if graph.capped:
         raise Error("overlap interval margin audit is undefined for a capped graph")
     var tables = build_seed_overlap_tables(sigma)
+    var enclosure = PerronEnclosure(tables.field, refinements)
 
     var interval_certified = 0
     var fallback = 0
@@ -89,7 +90,7 @@ def audit_seed_overlap_interval_margins(
             var interval_contradicted = False
             var lower = Q.zero()
             try:
-                var box = cubic_perron_interval(tables.field, margin, refinements)
+                var box = enclosure.interval(margin)
                 var boxed_sign = strict_sign(box)
                 if boxed_sign > 0:
                     interval_proved = True
