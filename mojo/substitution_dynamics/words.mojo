@@ -80,6 +80,12 @@ def is_zero(v: List[Int]) -> Bool:
     return True
 
 
+def _letter_token(a: Int) -> String:
+    if a >= 0 and a <= 9:
+        return String(a)
+    return "[" + String(a) + "]"
+
+
 struct Pair(Copyable, Movable, Writable, Equatable):
     """A pair of words `(u, v)`; balance is decided relative to an alphabet."""
 
@@ -103,13 +109,18 @@ struct Pair(Copyable, Movable, Writable, Equatable):
         return self.u == self.v
 
     def key(self) -> String:
-        """A canonical, collision-free string key for dictionaries and sets."""
+        """A canonical, injective string key for dictionaries and sets.
+
+        Letters `0..9` are written as one digit each; a letter `10` or larger
+        is written as `[n]`, so keys stay unambiguous on every alphabet while
+        alphabets of at most ten letters keep the compact digit form.
+        """
         var s = String("")
         for i in range(len(self.u)):
-            s += String(self.u[i])
+            s += _letter_token(self.u[i])
         s += "|"
         for i in range(len(self.v)):
-            s += String(self.v[i])
+            s += _letter_token(self.v[i])
         return s
 
     def write_to[W: Writer](self, mut w: W):

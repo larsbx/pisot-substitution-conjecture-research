@@ -168,6 +168,44 @@ def test_capped_build_is_flagged_not_answered() raises:
     var a = build(four_letter(), 4)
     assert_true(a.capped)
     assert_true(a.size() <= 4)
+    # A capped prefix has no edges; productivity and components are undefined.
+    var caught = False
+    try:
+        _ = nonproductive_states(a)
+    except:
+        caught = True
+    assert_true(caught)
+    caught = False
+    try:
+        _ = recurrent_noncoincident_sccs(a)
+    except:
+        caught = True
+    assert_true(caught)
+
+
+def test_keys_are_injective_on_large_alphabets() raises:
+    # Over 13 letters, digit concatenation would confuse these two pairs.
+    var a = Pair([0, 12], [12, 0])
+    var b = Pair([0, 1, 2], [1, 2, 0])
+    assert_true(a.key() != b.key())
+    assert_equal(a.key(), "0[12]|[12]0")
+    assert_equal(b.key(), "012|120")
+    # The confusable pair is reachable: sigma(0)=0, sigma(1)=12 over 13 letters.
+    var images = List[List[Int]]()
+    images.append([0])
+    images.append([1, 2])
+    for a2 in range(2, 13):
+        images.append([a2 - 1])
+    var s = Substitution.checked(images)
+    var kids = children(s, Pair([0, 1], [1, 0]))
+    assert_equal(len(kids), 1)
+    assert_equal(kids[0].key(), "012|120")
+    assert_true(kids[0] == b)
+    # Interning by key keeps the two pairs apart.
+    var index = Dict[String, Int]()
+    index[a.key()] = 0
+    index[kids[0].key()] = 1
+    assert_equal(len(index), 2)
 
 
 def main() raises:
@@ -189,4 +227,6 @@ def main() raises:
     print("[PASS] test_tribonacci_agrees_with_the_alphabet3_kernel")
     test_capped_build_is_flagged_not_answered()
     print("[PASS] test_capped_build_is_flagged_not_answered")
-    print("9 substitution-dynamics Mojo tests passed.")
+    test_keys_are_injective_on_large_alphabets()
+    print("[PASS] test_keys_are_injective_on_large_alphabets")
+    print("10 substitution-dynamics Mojo tests passed.")

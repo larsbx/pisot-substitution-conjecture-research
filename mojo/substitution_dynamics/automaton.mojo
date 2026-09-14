@@ -1,9 +1,10 @@
 """The balanced-pair automaton `B_sigma`: reachable states and components.
 
 `build` explores breadth-first from the swap seeds. It stops at `max_states`
-and returns `capped = True`; a capped automaton is inconclusive and must not
-be read as a counterexample or a proof of anything. Component routines are
-iterative and index-based.
+and returns `capped = True` with no edges; a capped automaton is an
+incomplete prefix of the graph, so `sccs`, `recurrent_noncoincident_sccs`,
+and `nonproductive_states` raise on it instead of turning the cap into
+evidence. Component routines are iterative and index-based.
 """
 
 from substitution_dynamics.balanced_pairs import children, normalise, seed_states
@@ -74,8 +75,15 @@ def build(sigma: Substitution, max_states: Int = 20000) raises -> Automaton:
     return Automaton(states, adj, False, sigma.size)
 
 
-def sccs(a: Automaton) -> List[List[Int]]:
+def require_complete(a: Automaton) raises:
+    """Component and productivity queries are undefined on a capped prefix."""
+    if a.capped:
+        raise Error("automaton is capped: components and productivity are undefined on a partial graph")
+
+
+def sccs(a: Automaton) raises -> List[List[Int]]:
     """Tarjan's algorithm, iterative (no recursion-depth limit)."""
+    require_complete(a)
     var n = a.size()
     var idx = List[Int]()
     var low = List[Int]()
@@ -154,7 +162,7 @@ def is_noncoincident(a: Automaton, comp: List[Int]) -> Bool:
     return True
 
 
-def recurrent_noncoincident_sccs(a: Automaton) -> List[List[Int]]:
+def recurrent_noncoincident_sccs(a: Automaton) raises -> List[List[Int]]:
     var all = sccs(a)
     var out = List[List[Int]]()
     for i in range(len(all)):
@@ -163,12 +171,13 @@ def recurrent_noncoincident_sccs(a: Automaton) -> List[List[Int]]:
     return out^
 
 
-def nonproductive_states(a: Automaton) -> List[Int]:
+def nonproductive_states(a: Automaton) raises -> List[Int]:
     """Indices of states from which no coincidence pair is reachable.
 
     An empty result for one substitution eliminates counterexamples for that
-    substitution; it proves nothing in general.
+    substitution; it proves nothing in general. Raises on a capped automaton.
     """
+    require_complete(a)
     var n = a.size()
     var good = List[Bool]()
     for i in range(n):

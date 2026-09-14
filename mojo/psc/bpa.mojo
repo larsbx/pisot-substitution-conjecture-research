@@ -4,7 +4,7 @@ Substitutions enter as `List[List[Int]]` over `{0,1,2}` and are validated on
 every call by `sigma3`; the automaton and component routines are the package
 routines. `build` returns a `capped` flag and callers must treat a capped run
 as inconclusive, never as a counterexample or a proof (hypothesis G1 is not
-proved here).
+proved here); the component and productivity queries raise on a capped graph.
 
 The boundary-lineage helpers instrument conjecture C3. They distinguish a
 zero-return boundary inherited from the previous inflation from a genuinely
@@ -15,7 +15,7 @@ endpoint maps. These are exact finite diagnostics, not a proof of C3.
 from std.os import abort
 
 from substitution_dynamics import balanced_pairs as sd
-from substitution_dynamics.automaton import Automaton, build as sd_build, has_cycle, is_noncoincident, nonproductive_states, recurrent_noncoincident_sccs, sccs
+from substitution_dynamics.automaton import Automaton, build as sd_build, has_cycle, is_noncoincident, nonproductive_states, recurrent_noncoincident_sccs, require_complete, sccs
 from substitution_dynamics.balanced_pairs import normalise, sync_after
 from substitution_dynamics.substitution import Substitution
 from psc.words import ALPHABET, Pair

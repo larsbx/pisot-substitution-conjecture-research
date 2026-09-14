@@ -24,8 +24,13 @@ producer, or renewal), no fixed alphabet, and no theorem claims.
   an erasing image, or an empty alphabet. Below that boundary the kernels index
   without checks; the plain `Substitution(images, size)` constructor is the
   documented trusted path for callers that validated upstream.
-- **Cap means inconclusive.** `build` returns `capped = True` when it stops at
-  `max_states`. A capped automaton is never a counterexample or a proof.
+- **Cap means inconclusive.** `build` returns `capped = True` (and no edges)
+  when it stops at `max_states`. A capped automaton is never a counterexample
+  or a proof; `sccs`, `recurrent_noncoincident_sccs`, and
+  `nonproductive_states` raise on it.
+- **Keys are injective.** `Pair.key()` writes letters `0..9` as one digit and
+  larger letters as `[n]`, so interning is collision-free on every alphabet and
+  unchanged on alphabets of at most ten letters.
 - **Invariant violations abort.** `inherited_boundary_positions` aborts if
   balanced prefixes ever have different image lengths; that is an impossible
   state, not a negative answer.
