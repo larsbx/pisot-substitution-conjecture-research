@@ -33,6 +33,8 @@ def discrepancy(state: State, size: int) -> int:
     # on every iteration, we only check the two values that actually changed.
     # We also skip identical characters since they don't affect the difference vector.
     for x, y in zip(u, v):
+        if not (1 <= x <= size and 1 <= y <= size):
+            raise ValueError(f"state label lies outside 1..{size}: {(x, y)!r}")
         if x == y:
             continue
 
