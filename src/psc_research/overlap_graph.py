@@ -278,9 +278,9 @@ def is_right_aligned(g: "OverlapGraph", s: tuple[int, int, Elt]) -> bool:
 def first_left_aligned_depths(g: "OverlapGraph") -> list[int]:
     """Least m such that a vertex has a level-m descendant of offset zero.
 
-    By the boundary-coincidence criterion this is the least m at which a tile
-    boundary of the inflated top tile (other than its right endpoint) is a
-    boundary of the inflated bottom tile."""
+    By the boundary-coincidence criterion this is the least m at which a
+    sub-tile of the inflated top tile and a sub-tile of the inflated bottom
+    tile have the same left endpoint."""
     return first_depths(g, is_left_aligned)
 
 
@@ -289,7 +289,10 @@ def strong_coincidence_depths(g: "OverlapGraph", suffix: bool = False) -> dict[t
 
     Left-aligned vertices (i, j, 0) are productive iff the pair {i, j} is
     eventually coincident (prefix strong coincidence); right-aligned ones iff
-    it is eventually coincident for the reversed substitution.  -1 if never."""
+    it is eventually coincident for the reversed substitution.  The graph is
+    seeded with one orientation per unordered pair, and exchanging the two
+    tilings preserves depths, so each pair is reported in whichever
+    orientation occurs.  -1 if never."""
     depth = first_coincidence_depths(g)
     aligned = (lambda s: is_right_aligned(g, s)) if suffix else is_left_aligned
     return {(s[0], s[1]): depth[k] for k, s in enumerate(g.states)

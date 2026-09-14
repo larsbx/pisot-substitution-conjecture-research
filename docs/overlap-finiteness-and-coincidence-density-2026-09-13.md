@@ -439,20 +439,25 @@ Call a pair of distinct letters `{i, j}` *eventually coincident* if
 coincidence condition of Arnoux–Ito is that every pair is eventually
 coincident. The reversed substitution gives the suffix form.
 
-**Proposition 9.1 (manuscript Proposition 5.39).** For `i != j`, `(i, j, 0)`
-and `(j, i, l_j - l_i)` are seed overlaps of `(ij, ji)`; the first is
-productive iff `{i, j}` is eventually coincident, the second iff it is
-eventually coincident for the reversal (reflection sends `(a, b, t)` to
-`(a, b, l_a - l_b - t)` and commutes with inflation). Hence Open Problem 5.35
+**Proposition 9.1 (manuscript Proposition 5.39).** Exchanging the two
+tilings sends `(a, b, t)` to `(b, a, -t)`, commutes with inflation and
+preserves coincidences, so the graph is generated from one orientation of
+each unordered pair (the canonical graph uses `a < b`). For `i != j`,
+`(i, j, 0)` and `(j, i, l_j - l_i)` are seed overlaps of `(ij, ji)`; the
+first is productive iff `{i, j}` is eventually coincident (and so is
+`(j, i, 0)`), the second iff it is eventually coincident for the reversal
+(reflection sends `(a, b, t)` to `(a, b, l_a - l_b - t)` and commutes with
+inflation). Hence Open Problem 5.35
 implies the two-sided strong coincidence condition, which is open for
 `d >= 3`.
 
 **Proposition 9.2 (manuscript Proposition 5.40).** Write the offset as
 `t = <w, l>`, `w` in `Z^d`, and let `P_m(a)` be the Parikh vectors of the
 proper prefixes of `sigma^m(a)`. For an overlap `O = (i, j, t)` and `m >= 0`
-the following are equivalent: `M^m w` lies in `P_m(i) - P_m(j)`; a boundary
-of the level-`m` tiling of the top tile (other than its right endpoint) is a
-boundary of the level-`m` tiling of the bottom tile; `O` has a level-`m`
+the following are equivalent: `M^m w` lies in `P_m(i) - P_m(j)`; a sub-tile
+of the level-`m` tiling of the top tile and a sub-tile of the level-`m`
+tiling of the bottom tile have the same left endpoint (a common boundary
+other than the right endpoint of either inflated tile); `O` has a level-`m`
 descendant of offset zero. Consequently a productive overlap satisfies the
 hitting condition at some level; under strong coincidence the converse
 holds (the offset-zero descendant is a coincidence or productive by 9.1);
@@ -464,8 +469,9 @@ every noncoincident state of `B_sigma` is productive (a common first letter
 would split off; otherwise eventual coincidence of the first letters gives a
 zero return followed by a coincidence block), so G1 alone gives PDS (the
 two-letter argument of Hollander–Solomyak with Barge–Diamond); Open Problem
-5.35 is equivalent to the hitting statement for every vertex; and a closed
-nonproductive set never has a boundary coincidence at any level.
+5.35 is equivalent to the hitting statement for every vertex; and in a closed
+nonproductive set no sub-tile of the top tile ever starts where a sub-tile
+of the bottom tile starts, at any level.
 
 **Exact census (Mojo canonical, Python oracle agrees; asserted in CI).**
 Over the 4,554-specimen corpus, with exact `Q(beta)` signs: the largest
@@ -475,7 +481,7 @@ vertices of all graphs is 17 (specimens by maximum:
 14:84 15:72 16:36 17:12); the largest strong-coincidence depth of a letter
 pair is 15 for the prefix form and 15 for the suffix form (specimens by
 value, identical for the two forms because the corpus is closed under
-reversal: 1:576 2:1416 3:654 4:858 5:666 6:252 7:102 8:18 14:6 15:6). For
+reversal; the depth of a pair is the same for its two orientations: 1:576 2:1416 3:654 4:858 5:666 6:252 7:102 8:18 14:6 15:6). For
 every vertex of every graph the first-coincidence depth is at most the first
 left-aligned depth plus the largest prefix strong-coincidence depth of the
 substitution, as Corollary 9.3 predicts. Every corpus specimen satisfies

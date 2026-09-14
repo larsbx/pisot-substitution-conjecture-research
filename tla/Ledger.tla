@@ -189,9 +189,9 @@ RequiresDef == [r \in ResultSet |->
          overlaps are seed overlaps, productive iff the letter pair is
          eventually coincident (prefix / suffix); so OverlapProductivity
          contains the two-sided strong coincidence condition (open, d >= 3).
-         Proposition 5.40 / Corollary 5.41: boundary coincidence at level m
-         iff M^m w is a difference of proper-prefix Parikh vectors iff an
-         offset-zero descendant exists; under strong coincidence
+         Proposition 5.40 / Corollary 5.41: a common sub-tile left endpoint
+         at level m iff M^m w is a difference of proper-prefix Parikh vectors
+         iff an offset-zero descendant exists; under strong coincidence
          OverlapProductivity is this hitting statement. Both are
          unconditional theorems and constrain, not close, the gate. *)
       [] r = "AlignedOverlapsAreStrongCoincidence" -> {}

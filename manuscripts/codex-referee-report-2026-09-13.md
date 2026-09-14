@@ -270,3 +270,28 @@ No other findings were posted in the tenth round.
 > Codex Review: Didn't find any major issues. :rocket:
 
 The automated Codex review of the substantive exact-window restatement posted no findings.
+
+---
+
+# Twelfth round: review of the strong-coincidence revision (pull request #82)
+
+**Reviewed commit:** `68a392abcbccb0a874e7b090718a6d9233dab2af` (Propositions 5.39–5.40, Corollary 5.41, depth census).
+**Review posted:** 2026-09-14T21:58:22Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 24 (P2) — `PSC_balanced_pair_state_2026-09-13.tex`, line 810
+
+> **Match the ordered-pair claim to the graph's seed orientation**
+>
+> This is not true for every ordered `i≠j` in the canonical graph being censused: `_seed_states_with_cache` constructs only the `a<b` presentation, while overlap states are oriented and are not normalized under swapping top and bottom. For the tested substitution `1→2, 2→132, 3→112`, the exact graph contains `(2,3,0)` but not `(3,2,0)`, contradicting this sentence when `i=3,j=2`. One canonical orientation per unordered pair is sufficient for the strong-coincidence consequence, but the proposition and depth API must either restrict to that orientation, normalize overlap states, or seed both presentations.
+>
+> AGENTS.md reference: AGENTS.md:L49-L55
+
+## Finding 25 (P2) — `PSC_balanced_pair_state_2026-09-13.tex`, line 816
+
+> **Exclude the bottom right endpoint from boundary coincidences**
+>
+> When the bottom tile's right endpoint lands on an internal top boundary, (b) is true as written, but no bottom subtile starts there, so (c) is false and the proof's strict inequality for the bottom tile fails. For the PIP substitution `1→2, 2→3, 3→12`, the overlap graph contains `O=(3,3,-1)`; at level 1, `x=1` is an internal top boundary and the bottom right endpoint, whereas `P_1(3)={0,e_1}`, `w=-e_1`, and `Mw=-e_2` is not in `P_1(3)-P_1(3)`. Thus the code's `first_left_aligned_depths` measures common boundaries that are proper on both sides, while the manuscript, propagated docs, and TLA ledger assert the broader false equivalence; (b) should exclude the right endpoints of both inflated tiles.
+>
+> AGENTS.md reference: AGENTS.md:L55-L55
+
+No other findings were posted in the twelfth round.

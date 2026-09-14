@@ -348,10 +348,9 @@ def first_coincidence_depths(a: SeedOverlapAutomaton) raises -> List[Int]:
 def first_left_aligned_depths(a: SeedOverlapAutomaton) raises -> List[Int]:
     """Least number of inflations after which a vertex has an offset-zero descendant.
 
-    Offset zero (coincidences included) is a boundary coincidence: a tile
-    boundary of the inflated top tile, other than its right endpoint, is a
-    boundary of the inflated bottom tile.  `-1` if no descendant is ever
-    left-aligned."""
+    Offset zero (coincidences included) is a boundary coincidence: a sub-tile
+    of the inflated top tile and a sub-tile of the inflated bottom tile have
+    the same left endpoint.  `-1` if no descendant is ever left-aligned."""
     var target = List[Bool]()
     for i in range(a.size()):
         target.append(a.states[i].shift.is_zero())
@@ -366,8 +365,11 @@ def strong_coincidence_depth(
     Left-aligned vertices `(i, j, 0)` (prefix form, `suffix == False`) are
     productive iff the pair is eventually coincident in the sense of Barge and
     Diamond; right-aligned vertices `(i, j, l_i - l_j)` iff the pair is
-    eventually coincident for the reversed substitution.  Returns `-1` if some
-    aligned vertex is nonproductive, and raises if there is no aligned vertex."""
+    eventually coincident for the reversed substitution.  The graph is seeded
+    with one orientation per unordered pair and exchanging the two tilings
+    preserves depths, so each pair is counted in the orientation that occurs.
+    Returns `-1` if some aligned vertex is nonproductive, and raises if there
+    is no aligned vertex."""
     var depths = first_coincidence_depths(a)
     var worst = -2
     for i in range(a.size()):
