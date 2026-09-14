@@ -1,7 +1,6 @@
 """3x3 integer matrices: the incidence matrices M_sigma and the sl_3 seed
 matrices A_k both live here. All arithmetic is exact over Z."""
 
-from psc.rational import Rat
 
 struct Mat3(Copyable, Movable, Writable, Equatable):
     """Row-major 3x3 integer matrix; `e[3*i + j]` is the (i, j) entry."""

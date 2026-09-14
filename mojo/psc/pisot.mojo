@@ -7,38 +7,40 @@ is Pisot (all other conjugates in the open unit disc).
 
 Every test here is exact: rational-root enumeration for irreducibility, Sturm
 sequences over Q for real-root location, and an exact determinant identity for
-the complex-conjugate case. No floating point is used anywhere.
+the complex-conjugate case. No floating point is used anywhere; rationals are
+the unbounded `finite_exact` values, so no coefficient growth can overflow.
 """
 
-from psc.rational import Rat, rat_zero, rat_one
+from finite_exact.rat_q import Q
+from psc.exact import q_floor_abs, q_int, q_is_zero, q_poly, q_sign
 from psc.mat3 import Mat3, has_rational_root
 
 
-def poly_eval(p: List[Rat], x: Rat) -> Rat:
+def poly_eval(p: List[Q], x: Q) -> Q:
     """Horner evaluation; `p` is low-degree-first."""
-    var acc = rat_zero()
+    var acc = Q.zero()
     for i in range(len(p) - 1, -1, -1):
-        acc = acc * x + p[i]
-    return acc
+        acc = acc.mul(x).add(p[i])
+    return acc^
 
 
-def poly_degree(p: List[Rat]) -> Int:
+def poly_degree(p: List[Q]) -> Int:
     for i in range(len(p) - 1, -1, -1):
-        if not p[i].is_zero():
+        if not q_is_zero(p[i]):
             return i
     return -1
 
 
-def poly_derivative(p: List[Rat]) -> List[Rat]:
-    var out = List[Rat]()
+def poly_derivative(p: List[Q]) -> List[Q]:
+    var out = List[Q]()
     for i in range(1, len(p)):
-        out.append(p[i] * Rat(i, 1))
+        out.append(p[i].mul(q_int(i)))
     if len(out) == 0:
-        out.append(rat_zero())
+        out.append(Q.zero())
     return out^
 
 
-def poly_rem(a: List[Rat], b: List[Rat]) -> List[Rat]:
+def poly_rem(a: List[Q], b: List[Q]) -> List[Q]:
     """Remainder of `a` on division by `b` over Q."""
     var r = a.copy()
     var db = poly_degree(b)
@@ -48,66 +50,56 @@ def poly_rem(a: List[Rat], b: List[Rat]) -> List[Rat]:
         var dr = poly_degree(r)
         if dr < db:
             return r^
-        var f = r[dr] / b[db]
+        var f = r[dr].div(b[db])
         for i in range(db + 1):
-            r[dr - db + i] = r[dr - db + i] - f * b[i]
-        r[dr] = rat_zero()
+            r[dr - db + i] = r[dr - db + i].sub(f.mul(b[i]))
+        r[dr] = Q.zero()
 
 
-def sturm_chain(p: List[Rat]) -> List[List[Rat]]:
+def sturm_chain(p: List[Q]) -> List[List[Q]]:
     """`p_0 = p`, `p_1 = p'`, `p_{k+1} = -rem(p_{k-1}, p_k)`."""
-    var chain = List[List[Rat]]()
+    var chain = List[List[Q]]()
     chain.append(p.copy())
     chain.append(poly_derivative(p))
     while poly_degree(chain[len(chain) - 1]) > 0:
         var r = poly_rem(chain[len(chain) - 2], chain[len(chain) - 1])
-        var neg = List[Rat]()
+        var neg = List[Q]()
         for i in range(len(r)):
-            neg.append(-r[i])
+            neg.append(r[i].neg())
         if poly_degree(neg) < 0:
             break
         chain.append(neg^)
     return chain^
 
 
-def _sign_changes(chain: List[List[Rat]], x: Rat) -> Int:
+def _sign_changes(chain: List[List[Q]], x: Q) -> Int:
     var last = 0
     var count = 0
     for i in range(len(chain)):
-        var v = poly_eval(chain[i], x)
-        if v.is_zero():
+        var s = q_sign(poly_eval(chain[i], x))
+        if s == 0:
             continue
-        var s = 1 if v.num > 0 else -1
         if last != 0 and s != last:
             count += 1
         last = s
     return count
 
 
-def count_roots_in(p: List[Rat], a: Rat, b: Rat) -> Int:
+def count_roots_in(p: List[Q], a: Q, b: Q) -> Int:
     """Number of distinct real roots of `p` in the half-open interval `(a, b]`."""
     var chain = sturm_chain(p)
     return _sign_changes(chain, a) - _sign_changes(chain, b)
 
 
-def cauchy_bound(p: List[Rat]) -> Rat:
+def cauchy_bound(p: List[Q]) -> Q:
     """A rational `B` with every real root of monic `p` strictly inside `(-B, B)`."""
     var d = poly_degree(p)
-    var m = 0
+    var m = Q.zero()
     for i in range(d):
-        var c = p[i] / p[d]
-        var a = c.num if c.num >= 0 else -c.num
-        var q = a // c.den + 1
-        if q > m:
-            m = q
-    return Rat(m + 2, 1)
-
-
-def rat_poly(coeffs: List[Int]) -> List[Rat]:
-    var out = List[Rat]()
-    for i in range(len(coeffs)):
-        out.append(Rat(coeffs[i], 1))
-    return out^
+        var q = q_floor_abs(p[i].div(p[d])).add(Q.one())
+        if m.lt(q):
+            m = q^
+    return m.add(q_int(2))
 
 
 def is_irreducible_cubic(coeffs: List[Int]) -> Bool:
@@ -147,11 +139,11 @@ def is_pisot_charpoly(coeffs: List[Int]) -> Bool:
     `|beta_2| < 1` iff `det < beta`, and since `beta` is the only real root that
     is equivalent to `chi(det) < 0`.
     """
-    var p = rat_poly(coeffs)
+    var p = q_poly(coeffs)
     var b = cauchy_bound(p)
-    var one = rat_one()
-    var minus_one = -one
-    var nreal = count_roots_in(p, -b, b)
+    var one = Q.one()
+    var minus_one = one.neg()
+    var nreal = count_roots_in(p, b.neg(), b)
     var above_one = count_roots_in(p, one, b)
     if above_one != 1:
         return False
@@ -163,7 +155,7 @@ def is_pisot_charpoly(coeffs: List[Int]) -> Bool:
     var det = -coeffs[0]
     if det <= 0:
         return False
-    return poly_eval(p, Rat(det, 1)).num < 0
+    return q_sign(poly_eval(p, q_int(det))) < 0
 
 
 def is_pip(m: Mat3) -> Bool:

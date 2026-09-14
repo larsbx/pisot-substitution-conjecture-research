@@ -11,7 +11,8 @@ from psc.endpoint_core import endpoint_type
 from psc.mat3 import Mat3, identity3, has_rational_root
 from psc.pisot import is_pip, is_primitive, is_irreducible_cubic, is_pisot_charpoly
 from psc.qlinalg import nullspace, rank, in_span
-from psc.rational import Rat, rat_vec
+from finite_exact.rat_q import Q
+from psc.exact import q_is_zero, q_vec
 from psc.seeds import length7_seeds, certificate_seed_matrices
 from psc.tensor3 import shuffle_matrix, shuffle_image, theta, idx3, zeros27, is_zero27, tensor_cube_apply, levi_civita
 from psc.w3 import w3_basis, certificate_w3_basis, in_w3, spans_same_space
@@ -19,19 +20,21 @@ from psc.words import Pair, parikh, is_zero
 
 
 def test_rational_normalisation() raises:
-    assert_true(Rat(2, 4) == Rat(1, 2))
-    assert_true(Rat(1, -2) == Rat(-1, 2))
-    assert_true(Rat(0, 7).is_zero())
-    assert_true(Rat(1, 3) + Rat(1, 6) == Rat(1, 2))
-    assert_true(Rat(2, 3) * Rat(3, 2) == Rat(1, 1))
+    assert_true(Q(2, 4).eq(Q(1, 2)))
+    assert_true(Q(1, -2).eq(Q(-1, 2)))
+    assert_true(q_is_zero(Q(0, 7)))
+    assert_true(Q(1, 3).add(Q(1, 6)).eq(Q(1, 2)))
+    assert_true(Q(2, 3).mul(Q(3, 2)).eq(Q(1, 1)))
+    assert_true(Q(1, 0).rejected)
+    assert_true(Q(1, 2).div(Q.zero()).rejected)
 
 
 def test_exact_nullspace() raises:
-    var m = List[List[Rat]]()
+    var m = List[List[Q]]()
     var r0: List[Int] = [1, 2, 3]
     var r1: List[Int] = [2, 4, 6]
-    m.append(rat_vec(r0))
-    m.append(rat_vec(r1))
+    m.append(q_vec(r0))
+    m.append(q_vec(r1))
     assert_equal(rank(m), 1)
     assert_equal(len(nullspace(m, 3)), 2)
 

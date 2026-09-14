@@ -2,14 +2,16 @@
 
 Used to *derive* — never to transcribe — the shuffle-kernel sector W_3 and to
 decide the membership statements of the Spectral module certificate.
+Scalars are the unbounded rationals of the vendored `finite_exact` package.
 """
 
-from psc.rational import Rat, rat_zero, rat_one, rat_vec
+from finite_exact.rat_q import Q
+from psc.exact import q_is_zero
 
 
-def rref(m: List[List[Rat]]) -> Tuple[List[List[Rat]], List[Int]]:
+def rref(m: List[List[Q]]) -> Tuple[List[List[Q]], List[Int]]:
     """Reduced row echelon form. Returns `(R, pivot_columns)`."""
-    var r = List[List[Rat]]()
+    var r = List[List[Q]]()
     for i in range(len(m)):
         r.append(m[i].copy())
     var pivots = List[Int]()
@@ -22,31 +24,31 @@ def rref(m: List[List[Rat]]) -> Tuple[List[List[Rat]], List[Int]]:
             break
         var p = -1
         for i in range(row, len(r)):
-            if not r[i][c].is_zero():
+            if not q_is_zero(r[i][c]):
                 p = i
                 break
         if p < 0:
             continue
         r.swap_elements(row, p)
-        var inv = r[row][c]
+        var inv = r[row][c].copy()
         for j in range(ncols):
-            r[row][j] = r[row][j] / inv
+            r[row][j] = r[row][j].div(inv)
         for i in range(len(r)):
-            if i != row and not r[i][c].is_zero():
-                var f = r[i][c]
+            if i != row and not q_is_zero(r[i][c]):
+                var f = r[i][c].copy()
                 for j in range(ncols):
-                    r[i][j] = r[i][j] - f * r[row][j]
+                    r[i][j] = r[i][j].sub(f.mul(r[row][j]))
         pivots.append(c)
         row += 1
     return (r^, pivots^)
 
 
-def rank(m: List[List[Rat]]) -> Int:
+def rank(m: List[List[Q]]) -> Int:
     var res = rref(m)
     return len(res[1])
 
 
-def nullspace(m: List[List[Rat]], ncols: Int) -> List[List[Rat]]:
+def nullspace(m: List[List[Q]], ncols: Int) -> List[List[Q]]:
     """Basis of `{x in Q^ncols : m . x = 0}`, one vector per free column."""
     var res = rref(m)
     ref r = res[0]
@@ -57,23 +59,23 @@ def nullspace(m: List[List[Rat]], ncols: Int) -> List[List[Rat]]:
     for i in range(len(pivots)):
         is_pivot[pivots[i]] = True
 
-    var basis = List[List[Rat]]()
+    var basis = List[List[Q]]()
     for f in range(ncols):
         if is_pivot[f]:
             continue
-        var v = List[Rat]()
+        var v = List[Q]()
         for _ in range(ncols):
-            v.append(rat_zero())
-        v[f] = rat_one()
+            v.append(Q.zero())
+        v[f] = Q.one()
         for i in range(len(pivots)):
-            v[pivots[i]] = -r[i][f]
+            v[pivots[i]] = r[i][f].neg()
         basis.append(v^)
     return basis^
 
 
-def in_span(basis: List[List[Rat]], v: List[Rat]) -> Bool:
+def in_span(basis: List[List[Q]], v: List[Q]) -> Bool:
     """Whether `v` lies in the Q-span of `basis` (row vectors of equal length)."""
-    var withv = List[List[Rat]]()
+    var withv = List[List[Q]]()
     for i in range(len(basis)):
         withv.append(basis[i].copy())
     var base_rank = rank(withv)
@@ -81,18 +83,18 @@ def in_span(basis: List[List[Rat]], v: List[Rat]) -> Bool:
     return rank(withv) == base_rank
 
 
-def matvec(m: List[List[Rat]], v: List[Rat]) -> List[Rat]:
-    var out = List[Rat]()
+def matvec(m: List[List[Q]], v: List[Q]) -> List[Q]:
+    var out = List[Q]()
     for i in range(len(m)):
-        var s = rat_zero()
+        var s = Q.zero()
         for j in range(len(v)):
-            s = s + m[i][j] * v[j]
-        out.append(s)
+            s = s.add(m[i][j].mul(v[j]))
+        out.append(s^)
     return out^
 
 
-def is_zero_vec(v: List[Rat]) -> Bool:
+def is_zero_vec(v: List[Q]) -> Bool:
     for i in range(len(v)):
-        if not v[i].is_zero():
+        if not q_is_zero(v[i]):
             return False
     return True
