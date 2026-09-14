@@ -840,6 +840,25 @@ Suppose every pair of distinct letters of $\sigma$ is eventually coincident. The
 (i) A noncoincident irreducible state $(u,v)$ has $u_1\ne v_1$, since a common first letter would split off the coincidence block $(u_1,u_1)$. Eventual coincidence of $\{u_1,v_1\}$ at level $n$ gives $\sigma^n(u)=pc\cdots$, $\sigma^n(v)=p'c\cdots$ with $\pi(p)=\pi(p')$, so the position $|p|$ is a zero return of $\sigma^n(u,v)$ followed by the coincidence block $(c,c)$; this is the first sentence of the proof of Theorem~\ref{thm:BD-eliminator}. (ii) is Proposition~\ref{prop:boundary-coincidence}(ii) applied to every vertex. (iii) By Proposition~\ref{prop:boundary-coincidence}(iii) a boundary coincidence would produce a pair of letters that is not eventually coincident.
 \end{proof}
 
+The hitting level is bounded below by the size of the offset in the contracting directions. Let $F\subset\Q(\beta)$ be the finite set of offset increments $q-p$ of a single inflation (over all letters $a,b$ and all sub-tiles of $\sigma(a)$, $\sigma(b)$), so that the children of $(a,b,t)$ have offsets $\beta t+c$ with $c\in F$. A \emph{contracting embedding} is a field embedding $\varsigma\colon\Q(\beta)\to\C$ with $|\varsigma(\beta)|<1$; there are $d-1$ of them, and for $d=3$ they are either a complex conjugate pair or two real embeddings.
+
+\begin{proposition}[Contracting lower bound; \Status{Theorem}]\label{prop:contracting-bound}
+Let $O=(i,j,t)$ be an overlap with a level-$m$ descendant of offset $0$, $m\ge1$. Then $t=-\sum_{s=0}^{m-1}\beta^{-(s+1)}c_s$ with $c_s\in F$, and for every contracting embedding $\varsigma$, with $\beta'=\varsigma(\beta)$ and $C_\varsigma:=\max_{c\in F}|\varsigma(c)|$,
+\[
+|\varsigma(t)|\ \le\ C_\varsigma\sum_{s=1}^{m}|\beta'|^{-s}.
+\]
+Hence the first boundary-coincidence depth of $O$ is at least $m_0(t)$, the least $m$ for which these inequalities hold for all contracting $\varsigma$. If the contracting conjugates form a complex pair, then $D>0$, $|\varsigma(t)|^2=N(t)/t$ is the value at $\beta$ of an element of $\Q(\beta)$, and a hit at level $m$ forces
+\[
+\frac{N(t)}{t}\ \le\ K\,m\sum_{s=1}^{m}\Bigl(\frac{\beta}{D}\Bigr)^{s},\qquad K:=\max_{c\in F}\frac{N(c)}{c},
+\]
+a condition decided by an exact sign test at $\beta$.
+\end{proposition}
+\begin{proof}
+By induction on the level, a level-$m$ descendant of $O$ has offset $t_m=\beta^mt+\sum_{s=0}^{m-1}\beta^{m-1-s}c_s$ with $c_s\in F$; $t_m=0$ gives the expansion of $t$. Applying $\varsigma$ and the triangle inequality gives the displayed bound, since $|\varsigma(\beta)^{-(s+1)}|=|\beta'|^{-(s+1)}$ and $|\varsigma(c_s)|\le C_\varsigma$. For a complex pair $\varsigma,\bar\varsigma$ one has $N(t)=t\,\varsigma(t)\overline{\varsigma(t)}$, so $|\varsigma(t)|^2=N(t)/t$, and likewise $|\beta'|^2=D/\beta$, which forces $D>0$; squaring the bound and using $(\sum_{s\le m}r^s)^2\le m\sum_{s\le m}r^{2s}$ with $r=|\beta'|^{-1}$ gives the second display with $K=C_\varsigma^2=\max_{c\in F}N(c)/c$.
+\end{proof}
+
+The bound says that an overlap whose offset is large in the contracting directions cannot hit early: the memory of the offset decays like $|\beta'|^m$ and must be erased before a common sub-tile left endpoint is possible. Computation~\ref{comp:overlap} compares $m_0$ with the observed first boundary-coincidence depths over $\mathcal S$.
+
 Under strong coincidence, therefore, the balanced-pair side of the coincidence problem is trivial and the whole difficulty is either G1 or, without G1, the hitting problem of Corollary~\ref{cor:scc-reduction}(ii); for $d=2$ both are settled~\cite{BD,HS}. In the contracting embedding the condition $M^mw\in P_m(i)-P_m(j)$ asks that the projected prefix sets of the two inflated tiles, which accumulate on the Rauzy fractal pieces, meet at the required expanding offset; this is the geometric form of the coincidence problem studied in~\cite{IR,BK,MT}, and we do not pursue it here. What is gained is a separation: under strong coincidence an overlap reaches a coincidence by first reaching a boundary coincidence and then using the eventual coincidence of the letters found there, so its first-coincidence depth is at most its first boundary-coincidence depth plus the largest strong-coincidence depth of a letter pair (Computation~\ref{comp:overlap}).
 
 \subsection{Formal recurrence versus realization}\label{sec:realization}

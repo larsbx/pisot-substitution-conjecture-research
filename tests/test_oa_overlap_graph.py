@@ -43,3 +43,20 @@ def test_tribonacci_level_zero_types_included_in_seed_graph():
     seed = set(g.states)
     oa = oa_types(g, u, 1)
     assert oa and all(s in seed for s in oa if not OverlapGraph.is_coincidence(s))
+
+
+def test_contracting_lower_bound_is_below_left_aligned_depth():
+    from psc_research.overlap_contracting import ContractingBound, discriminant, field_norm
+    from psc_research.overlap_graph import first_left_aligned_depths
+
+    real = {1: (2,), 2: (1, 3), 3: (1, 3, 3)}
+    for sigma, complex_pair, max_m0 in ((TRIB, True, 2), ({1: (2,), 2: (1, 3, 2), 3: (1, 1, 2)}, True, 4), (real, False, 2)):
+        g = OverlapGraph(sigma)
+        cb = ContractingBound(g)
+        assert cb.complex == complex_pair == (discriminant(g.F) < 0)
+        assert field_norm(g.F, g.F.beta) == g.F.D  # N(beta) = D
+        b = first_left_aligned_depths(g)
+        m0 = [cb.least_level(s[2]) for s in g.states]
+        assert all(0 <= m <= bb for m, bb in zip(m0, b))
+        assert max(m0) == max_m0
+        assert all((m == 0) == (not any(s[2])) for m, s in zip(m0, g.states))
