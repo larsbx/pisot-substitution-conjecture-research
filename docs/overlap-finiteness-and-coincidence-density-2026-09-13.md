@@ -278,26 +278,27 @@ outside the corpus.
    > spectrum, without assuming that `B_sigma` is finite?
 
    The exact source audit is
-   `docs/seed-patch-to-literature-overlap-audit-2026-09-13.md`. The local
-   path-valued realization, inflation, cut, and coincidence dictionary is
-   supplied by Lemmas 1.1, 3.1, 3.2 and this theorem. The remaining step is
-   global coverage: productivity in the finite swapped-patch graph must force
-   productivity of every overlap class in the complete Sirvent–Solomyak graph
-   `G_O(T,x(W))` for one prefix translation. This note does not supply that
-   transfer. If Question 6.1 has a positive answer then PDS
-   follows from Level 3' for one legal seed with no finiteness hypothesis.
-   That would not settle G1: the converse of Imported Theorem 2.16 (PDS
-   implies termination for a legal seed) is only recorded in the literature
-   and not used here, and G1 concerns all seeds, legal or not (the
-   manuscript's Open Problem 4.24). The bridge would change the role of G1
-   in the route to PDS, not its status.
+   `docs/seed-patch-to-literature-overlap-audit-2026-09-13.md`; it posed as
+   the remaining step a global transfer of productivity from the finite
+   swapped-patch graph to the complete Sirvent–Solomyak graph
+   `G_O(T,x(W))` for one prefix translation. That transfer is not supplied
+   here and is no longer needed for sufficiency: the periodic-patch form of
+   Barge–Štimac–Williams Theorem 3.1 applies to the swap pair directly
+   (Section 8), so PDS follows from Level 3' for one legal seed with no
+   finiteness hypothesis. This does not settle G1: the converse of Imported
+   Theorem 2.16 (PDS implies termination for a legal seed) is only recorded
+   in the literature and not used here, and G1 concerns all seeds, legal or
+   not (the manuscript's Open Problem 4.24). The bridge changes the role of
+   G1 in the route to PDS, not its status.
 
-In the manuscript these results are Theorem 4.22 (finiteness), Lemmas 5.30–5.31, Theorem 5.32 (coincidence density), Corollary 5.33, Corollary 5.34 (full rank on closed overlap sets), and Open Problems 5.35 (overlap productivity) and 5.36 (density bridge).
+In the manuscript these results are Theorem 4.22 (finiteness), Lemmas 5.30–5.31, Theorem 5.32 (coincidence density), Corollary 5.33, Corollary 5.34 (full rank on closed overlap sets), Open Problem 5.35 (overlap productivity), Lemma 5.36 (three forms of the density condition), Imported Theorem 5.37 and Theorem 5.38 (Section 8).
 
 ## 7. The transfer as a type-inclusion question (exploratory data)
 
-`docs/seed-patch-to-literature-overlap-audit-2026-09-13.md` reduces the
-density bridge to one transfer: for a prolongable power `tau = sigma^q` with
+Before the import of Section 8,
+`docs/seed-patch-to-literature-overlap-audit-2026-09-13.md` reduced the
+density bridge to one transfer, which is now superseded for sufficiency and
+recorded here only as data: for a prolongable power `tau = sigma^q` with
 one-sided fixed point `u` and a prefix `W` of `u`, productivity of every
 overlap of the Sirvent–Solomyak family `(T, T - beta^{qn} g(W))`, `n >= 0`
 (their graph `G_O(T, x(W))`), gives PDS by their Theorem 4.1(b). Because the

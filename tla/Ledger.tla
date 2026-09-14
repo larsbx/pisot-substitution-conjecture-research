@@ -162,12 +162,14 @@ RequiresDef == [r \in ResultSet |->
       (* Overlap route (docs/overlap-finiteness-and-coincidence-density-
          2026-09-13.md; manuscript Theorem 4.22 and Theorem 5.32). The seed-patch overlap graph is finite by bounded
          discrepancy. OverlapProductivity is the open Level-3 statement in
-         G1-free form; it implies productivity of every reachable state
+         G1-free form and the only open input of this route; it implies
+         productivity of every reachable state
          (AllStatesProductiveViaOverlaps) with no finiteness hypothesis, and
          a G1-based PDS assembly remains available. CoincidenceDensityOne
-         records the proved overlap-productivity equivalence, while
-         DensityToPDSBridge is the separate open input for the genuinely
-         G1-free PDS route. *)
+         records the proved overlap-productivity equivalence, and
+         DensityToPDSBridge is the imported Barge-Stimac-Williams theorem
+         (proved), so PDSOverlapRoute is conditional on OverlapProductivity
+         alone. *)
       [] r = "SwapOverlapFiniteness"      -> {"G1b1BoundedDiscrepancy"}
       (* Manuscript Corollary 5.34: a child-closed set of non-coincidence
          overlaps has full-rank intersection vectors, so spec(M) lies in the

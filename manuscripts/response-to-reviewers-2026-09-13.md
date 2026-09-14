@@ -160,3 +160,20 @@ Accepted. The inference reversed an implication that is used in one direction on
 ## Eighth round (pull request #72)
 
 The referee re-reviewed the revised head and posted no findings. Findings 16–17 are addressed; the record for the overlap-route revision (Theorem 4.22, Lemmas 5.30–5.31, Theorem 5.32, Corollary 5.33, Open Problems 5.34–5.35) is complete.
+
+---
+
+## Ninth round (pull request #77, density import)
+
+Four findings; all accepted. None concerns Imported Theorem 5.37 or the hypothesis check preceding Theorem 5.38.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 18 | P1 | `G_m ⊆ G_{m+1}` is false as stated: subdivision points of an inflated common tile lie in the parent interior but in no child interior, and the proof of Lemma 5.36 (c)⇒(a) relied on it to pick a level `m ≥ N` | Accepted. The nesting claim is replaced by the true statement: `G_m \ G_{m'}` is finite for every `m' ≥ m` (finitely many subdivision points per level). The proof of (c)⇒(a) now picks any level `m` with `U ∩ G_m ≠ ∅`, notes that this open set is infinite, and passes to `m' = max(m, N)` by finiteness of the difference; the refinement of the inflated level-`N` tiles by the level-`m'` tilings is made explicit. (b)⇒(c) used only `G(s) ⊇ G_m(s)` and is unchanged | Section 5.9, good-set paragraph and proof of Lemma 5.36 |
+| 19 | P2 | Note item 6.3, note Section 7 introduction, audit Section 7 and claim-map item 5 still call the transfer the remaining step and list a density-bridge open problem | Accepted. All four passages are rewritten: the transfer is unproved but not needed for sufficiency, the density bridge is the imported theorem, and the only open input of the route is Open Problem 5.35 | Note Sections 6 and 7; audit Section 7; claim map completion program item 5 |
+| 20 | P2 | The sentence before the new material still says a positive answer to Open Problem 5.35 does not give PDS | Accepted. Replaced by: Imported Theorem 2.16 alone does not, since it needs termination; Theorem 5.38 supplies the bridge that does | Section 5.9, paragraph after Open Problem 5.35 |
+| 21 | P3 | Ledger route comment still calls `DensityToPDSBridge` the separate open input | Accepted. Comment rewritten: `DensityToPDSBridge` is the imported theorem (proved) and `PDSOverlapRoute` is conditional on `OverlapProductivity` alone; TLC 10/10 PASS | `tla/Ledger.tla` overlap-route comment |
+
+### Finding 18 (P1)
+
+Accepted. The referee is right that the sets of interiors are not nested; a common tile with two or more children loses its subdivision points at the next level. What the argument needs is weaker and true: each `G_m` differs from every later `G_{m'}` by finitely many points, so an open set meeting `G_m` meets `G_{m'}`. The lemma statement is unchanged.

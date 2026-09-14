@@ -122,8 +122,10 @@ The shortest honest completion program now has two possible assembly routes:
 3. prove general wedge productivity for the `K2!=0` case;
 4. assemble SCC Producer from the finite-graph reduction and the two carrier
    exclusions;
-5. alternatively, prove overlap productivity and the density-to-PDS bridge to
-   obtain a G1-free PDS route;
+5. alternatively, prove overlap productivity (Open Problem 5.35) for one
+   swap seed: the density-to-PDS bridge is the imported Theorem 5.37
+   (Barge–Štimac–Williams), so this alone gives the G1-free PDS route
+   (Theorem 5.38);
 6. audit the exact interface from the repository's normalized BPA to the
    literature's pure-discrete-spectrum criterion.
 

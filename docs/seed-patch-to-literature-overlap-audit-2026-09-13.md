@@ -167,7 +167,10 @@ overlap productivity are proved.
 ## 7. Closed research conclusion
 
 The realization thread has no remaining local dictionary sublemmas.
-The only G1-free spectral bridge still open is the global seed-to-OA
-productivity transfer of Section 3. Until it is proved, Open Problem 5.36
-must remain open and the exact 4,554-substitution overlap census must remain
-finite evidence.
+The global seed-to-OA productivity transfer of Section 3 remains unproved,
+but since 2026-09-14 it is not needed for sufficiency: the G1-free spectral
+bridge is supplied by Barge–Štimac–Williams Theorem 3.1 applied to the
+periodic swap patch (manuscript Lemma 5.36, Imported Theorem 5.37, Theorem
+5.38), and the former density-bridge open problem is retired. Overlap
+productivity (Open Problem 5.35) remains open and the exact
+4,554-substitution overlap census remains finite evidence.
