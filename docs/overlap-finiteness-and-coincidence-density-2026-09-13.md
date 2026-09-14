@@ -315,10 +315,14 @@ finite (Theorem 2.1 for `O_sigma`; `G_O` is finite in the Pisot setting).
 **Exploratory computation (not a certificate; Python only;
 `scripts/oa_type_inclusion_explore.py`).** The level-0 types of
 `(u, S^{|W|} u)` were read off a prefix of `u` of length at least 6,000
-(an uncertified factor set), closed under exact inflation, and compared with
-the vertex types of `O_sigma`, for `W = u[:k]`, `k = 1, ..., 8`, on every
-tenth specimen of the corpus (456 specimens), with `u` the fixed point of the
-least prolongable power at the least letter on a first-letter cycle.
+(an uncertified factor set) with the exact enumeration window (the least
+`n` with `n * l_min > g(W) + l_max`, decided in `Q(beta)`; a first run with
+a fixed heuristic window was withdrawn after referee finding 23 and
+recomputed, which reproduced the figures below exactly), closed under exact
+inflation, and compared with the vertex types of `O_sigma`, for
+`W = u[:k]`, `k = 1, ..., 8`, on every tenth specimen of the corpus (456
+specimens), with `u` the fixed point of the least prolongable power at the
+least letter on a first-letter cycle.
 
 | least `k` with `(TI_W)` | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | none up to 8 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -339,7 +343,9 @@ substitutions outside the corpus follows from this table.
 prolongable pair `(q, c)` (power `q <= 3`, letter `c` with
 `sigma^q(c)` beginning with `c`) was tried with the fixed point of `sigma^q`
 at `c` and prefixes `W = u[:k]`, `k = 1, ..., 24` (level-0 types read off a
-prefix of length at least 6,000, closed under exact inflation). Inclusion
+prefix of length at least 6,000 with the exact enumeration window, closed
+under exact inflation; the recomputation after finding 23 reproduced the
+figures of the heuristic-window run exactly). Inclusion
 `(TI_W)` was found for 9 of the 22 (least witnesses `(q, c, k)`: `(1,3,2)`
 twice, `(2,1,6)`, `(1,1,9)`, `(1,2,9)`, `(1,2,16)` twice, `(1,3,16)`,
 `(1,2,19)`) and for none of the other 13. The union over all probed families
