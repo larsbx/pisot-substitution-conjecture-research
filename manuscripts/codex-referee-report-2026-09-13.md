@@ -312,3 +312,26 @@ No other findings were posted in the twelfth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the thirteenth round.
+
+---
+
+# Fourteenth round: re-review of the round-thirteen revision (pull request #82)
+
+**Reviewed commit:** `3dc397856ab8ceaf0298c34c3e1df8855e612f10`.
+**Review posted:** 2026-09-14T22:20:51Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 27 (P2) — `mojo/swap_overlap_census.mojo`, line 102
+
+> **Record nonproductive graphs before validating depths**
+>
+> When a graph contains any nonproductive state, its coincidence depth is `-1`; its left-aligned depth is either also `-1` (triggering the first clause here) or nonnegative (triggering `left[d] > depths[d]`). Thus every nonproductive specimen throws before the counters at lines 126–129 are updated, causing a mathematical counterexample to be reported only as `FAILED` while the advertised nonproductive count remains zero. Record `bad` before these validations or omit the depth histograms for nonproductive graphs.
+
+## Finding 28 (P2) — `mojo/swap_overlap_census.mojo`, line 112
+
+> **Reuse the already-computed coincidence depths**
+>
+> On every specimen, each of these calls invokes `first_coincidence_depths`, rebuilding the reverse adjacency and running another full BFS even though line 88 already computed the same depth vector. Across the reported 1,118,850 vertices this performs the coincidence traversal three times per graph; pass the existing depths into the endpoint scan or compute both prefix and suffix maxima together.
+>
+> AGENTS.md reference: AGENTS.md:L30-L30
+
+No other findings were posted in the fourteenth round.

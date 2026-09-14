@@ -360,7 +360,17 @@ def first_left_aligned_depths(a: SeedOverlapAutomaton) raises -> List[Int]:
 def strong_coincidence_depth(
     a: SeedOverlapAutomaton, tables: SeedOverlapTables, suffix: Bool
 ) raises -> Int:
+    """`strong_coincidence_depth_from` with the coincidence depths computed here."""
+    return strong_coincidence_depth_from(first_coincidence_depths(a), a, tables, suffix)
+
+
+def strong_coincidence_depth_from(
+    depths: List[Int], a: SeedOverlapAutomaton, tables: SeedOverlapTables, suffix: Bool
+) raises -> Int:
     """Largest first-coincidence depth over the endpoint-aligned non-coincidence vertices.
+
+    `depths` must be `first_coincidence_depths(a)`; passing it in lets a census
+    reuse one reverse search for the prefix and suffix scans.
 
     Left-aligned vertices `(i, j, 0)` (prefix form, `suffix == False`) are
     productive iff the pair is eventually coincident in the sense of Barge and
@@ -370,7 +380,8 @@ def strong_coincidence_depth(
     preserves depths, so each pair is counted in the orientation that occurs.
     Returns `-1` if some aligned vertex is nonproductive, and raises if there
     is no aligned vertex."""
-    var depths = first_coincidence_depths(a)
+    if len(depths) != a.size():
+        raise Error("coincidence depth vector length disagrees with the overlap graph size")
     var worst = -2
     for i in range(a.size()):
         var st = a.states[i]

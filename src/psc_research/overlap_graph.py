@@ -288,7 +288,9 @@ def first_left_aligned_depths(g: "OverlapGraph") -> list[int]:
     return first_depths(g, is_left_aligned)
 
 
-def strong_coincidence_depths(g: "OverlapGraph", suffix: bool = False) -> dict[tuple[int, int], int]:
+def strong_coincidence_depths(
+    g: "OverlapGraph", suffix: bool = False, depths: list[int] | None = None
+) -> dict[tuple[int, int], int]:
     """First-coincidence depth of every endpoint-aligned non-coincidence vertex.
 
     Left-aligned vertices (i, j, 0) are productive iff the pair {i, j} is
@@ -296,8 +298,11 @@ def strong_coincidence_depths(g: "OverlapGraph", suffix: bool = False) -> dict[t
     it is eventually coincident for the reversed substitution.  The graph is
     seeded with one orientation per unordered pair, and exchanging the two
     tilings preserves depths, so each pair is reported in whichever
-    orientation occurs.  -1 if never."""
-    depth = first_coincidence_depths(g)
+    orientation occurs.  -1 if never.  `depths`, if given, must be
+    `first_coincidence_depths(g)` (fails closed on a capped graph either way)."""
+    depth = first_coincidence_depths(g) if depths is None else depths
+    if g.capped or len(depth) != len(g.states):
+        raise RuntimeError("strong-coincidence depths need the full coincidence depth vector")
     aligned = (lambda s: is_right_aligned(g, s)) if suffix else is_left_aligned
     return {(s[0], s[1]): depth[k] for k, s in enumerate(g.states)
             if aligned(s) and not g.is_coincidence(s)}

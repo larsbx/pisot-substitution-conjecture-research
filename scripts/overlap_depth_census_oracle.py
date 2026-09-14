@@ -14,7 +14,7 @@ t0 = time.time()
 for idx, sigma in enumerate(pip_corpus()):
     g = OverlapGraph(sigma)
     c, b = first_coincidence_depths(g), first_left_aligned_depths(g)
-    pre, suf = strong_coincidence_depths(g), strong_coincidence_depths(g, suffix=True)
+    pre, suf = strong_coincidence_depths(g, depths=c), strong_coincidence_depths(g, suffix=True, depths=c)
     assert all(0 <= bb <= cc for bb, cc in zip(b, c)) and min(pre.values()) >= 0 and min(suf.values()) >= 0
     assert all(cc <= bb + max(pre.values()) for bb, cc in zip(b, c))
     for k, v in (("coinc", max(c)), ("left", max(b)), ("prefix", max(pre.values())), ("suffix", max(suf.values()))):

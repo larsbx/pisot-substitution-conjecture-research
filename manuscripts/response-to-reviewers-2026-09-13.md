@@ -223,3 +223,14 @@ One finding from the automated Codex review of commit `310f06c06bdf757745cdb9c19
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 26 | P2 | The Python depth helper returned depths on a capped partial graph, unlike the canonical Mojo kernel | Accepted. `first_depths` now raises on a capped graph (so do the coincidence, left-aligned and strong-coincidence wrappers), matching `_first_depths` and `nonproductive`; regression test on `τ` with `max_states = 1` | `src/psc_research/overlap_graph.py`; `tests/test_swap_discrepancy.py` |
+
+---
+
+## Fourteenth round (pull request #82)
+
+Two findings from the automated Codex review of commit `3dc397856ab8ceaf0298c34c3e1df8855e612f10`; both accepted. Both concern the census driver; no census value changes.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 27 | P2 | A nonproductive graph would raise in the depth validations before being counted, so a counterexample would surface as `FAILED` with the nonproductive count still zero | Accepted. The driver now records and prints a nonproductive specimen immediately after the productivity check and skips the depth statistics for it, which are undefined on such a graph | `mojo/swap_overlap_census.mojo` |
+| 28 | P2 | The prefix and suffix strong-coincidence scans each recomputed the coincidence depths, three reverse searches per graph | Accepted. `strong_coincidence_depth_from(depths, ...)` takes the precomputed vector (length-checked); `strong_coincidence_depth` wraps it; the census passes the one vector it already holds. The Python oracle takes an optional `depths` argument likewise. Census lines unchanged | `mojo/psc/overlap_seed_patch.mojo`, `mojo/swap_overlap_census.mojo`, `mojo/tests/test_overlap_seed_patch.mojo`, `src/psc_research/overlap_graph.py`, `scripts/overlap_depth_census_oracle.py` |

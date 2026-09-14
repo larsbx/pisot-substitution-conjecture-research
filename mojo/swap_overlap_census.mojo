@@ -19,7 +19,7 @@ from psc.overlap_seed_patch import (
     first_coincidence_depths,
     first_left_aligned_depths,
     nonproductive_overlap_states,
-    strong_coincidence_depth,
+    strong_coincidence_depth_from,
 )
 
 
@@ -85,6 +85,14 @@ def main() raises:
                     if g.size() > largest:
                         largest = g.size()
                     var bad = len(nonproductive_overlap_states(g))
+                    if bad > 0:
+                        # A nonproductive graph is the mathematical event this
+                        # census exists to detect; record it before any depth
+                        # statistic, which is undefined on such a graph.
+                        n_nonproductive_specimens += 1
+                        n_nonproductive_states += bad
+                        print("NONPRODUCTIVE overlap specimen:", i, j, k, " states:", bad)
+                        continue
                     var depths = first_coincidence_depths(g)
                     var worst = 0
                     for d in range(len(depths)):
@@ -108,8 +116,8 @@ def main() raises:
                     if worst_left > max_left:
                         max_left = worst_left
                     var tables = build_seed_overlap_tables(sigma)
-                    var prefix_scc = strong_coincidence_depth(g, tables, False)
-                    var suffix_scc = strong_coincidence_depth(g, tables, True)
+                    var prefix_scc = strong_coincidence_depth_from(depths, g, tables, False)
+                    var suffix_scc = strong_coincidence_depth_from(depths, g, tables, True)
                     if prefix_scc < 0 or suffix_scc < 0:
                         raise Error("endpoint-aligned overlap without coincidence on a productive graph")
                     for d in range(len(depths)):
@@ -123,10 +131,6 @@ def main() raises:
                         max_prefix_scc = prefix_scc
                     if suffix_scc > max_suffix_scc:
                         max_suffix_scc = suffix_scc
-                    if bad > 0:
-                        n_nonproductive_specimens += 1
-                        n_nonproductive_states += bad
-                        print("NONPRODUCTIVE overlap specimen:", i, j, k, " states:", bad)
                 except e:
                     n_failed += 1
                     print("FAILED specimen:", i, j, k, " ", e)

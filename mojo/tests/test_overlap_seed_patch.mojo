@@ -11,6 +11,7 @@ from psc.overlap_seed_patch import (
     nonproductive_overlap_states,
     seed_overlap_states,
     strong_coincidence_depth,
+    strong_coincidence_depth_from,
 )
 from psc.perron_field3 import CubicElt, build_perron_field3, sign_at_perron
 
@@ -144,6 +145,8 @@ def test_left_aligned_and_strong_coincidence_depths_pin_exact_values() raises:
     var suffix = strong_coincidence_depth(graph, tables, True)
     assert_equal(prefix, 6)
     assert_equal(suffix, 1)
+    assert_equal(strong_coincidence_depth_from(coinc, graph, tables, False), 6)
+    assert_equal(strong_coincidence_depth_from(coinc, graph, tables, True), 1)
     for i in range(len(coinc)):
         assert_true(coinc[i] <= left[i] + prefix)
 
