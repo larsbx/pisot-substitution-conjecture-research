@@ -47,7 +47,7 @@ def classic_pdf(objs=None, extra_trailer=b"", edit=None, lead=b""):
     return edit(out) if edit else out
 
 
-def xref_pdf(rows=None, dict_extra=b"", predictor=False, compress=True, gen_bytes=1, xref_num=3):
+def xref_pdf(rows=None, dict_extra=b"", predictor=False, compress=True, gen_bytes=1, xref_num=3, eol=b"\n"):
     """A complete PDF whose cross-reference is a stream (object ``xref_num``, written where
     object 3 is listed; catalog, one-page tree; page is object 4), with ``/W [1 2 gen_bytes]``."""
     import zlib
@@ -74,7 +74,7 @@ def xref_pdf(rows=None, dict_extra=b"", predictor=False, compress=True, gen_byte
         body = zlib.compress(b"".join(table)) if compress else b"".join(table)
     flt = b"/Filter /FlateDecode " if (compress or predictor) else b""
     out += b"%d 0 obj\n<< /Type /XRef /Size 5 /W [1 2 %d] /Root 1 0 R " % (xref_num, gen_bytes) + flt + dict_extra + b"/Length %d >>\nstream\n" % len(body)
-    out += body + b"\nendstream\nendobj\nstartxref\n%d\n%%%%EOF\n" % o3
+    out += body + eol + b"endstream\nendobj\nstartxref\n%d\n%%%%EOF\n" % o3
     return out
 
 
@@ -110,11 +110,10 @@ def test_commented_document_sentinels_fail(copy):
 
 def test_endstream_needs_a_preceding_line_ending(copy):
     pdf = next(copy.glob("*.pdf"))
-    for raw, message in ((superseded_pdf(flate_stream(b"x")), "not closed by endstream and endobj"),
-                         (xref_pdf(), "cross-reference stream body does not match /Length or is not closed by endstream"),
-                         (objstm_pdf(), "not closed by endstream and endobj")):
-        assert b"\nendstream" in raw
-        pdf.write_bytes(raw.replace(b"\nendstream", b" endstream", 1))  # same length, no line ending before the keyword
+    for raw, message in ((superseded_pdf(flate_stream(b"x").replace(b"\nendstream", b"endstream")), "not closed by endstream and endobj"),
+                         (xref_pdf(eol=b""), "cross-reference stream body does not match /Length or is not closed by endstream"),
+                         (objstm_pdf(eol=b""), "not closed by endstream and endobj")):
+        pdf.write_bytes(raw)  # the line ending between the data and endstream deleted
         code, out = run(copy)
         assert code == 1 and message in out, out
 
@@ -190,11 +189,14 @@ def test_entryless_classic_table_fails(copy):
 
 def test_empty_xref_stream_fails(copy):
     pdf = next(copy.glob("*.pdf"))
-    pdf.write_bytes(
+    pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 2 /W [1 2 1] /Root 1 0 R /Length 0 >>", b""))
+    code, out = run(copy)
+    assert code == 1 and "not a positive multiple" in out
+    pdf.write_bytes(  # without the line ending that must precede endstream it fails earlier
         b"%PDF-1.5\n1 0 obj\n<< /Type /XRef /Size 2 /W [1 2 1] /Root 1 0 R /Length 0 >>\nstream\nendstream\nendobj\nstartxref\n9\n%%EOF\n"
     )
     code, out = run(copy)
-    assert code == 1 and "not a positive multiple" in out
+    assert code == 1 and "not closed by endstream" in out
 
 
 def test_corrupted_flate_payload_fails(copy):
@@ -617,7 +619,7 @@ def test_filter_names_are_parsed_whole(copy):
     assert run(copy)[0] == 0
 
 
-def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=None, predictor=None, row5=None, png=None):
+def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=None, predictor=None, row5=None, png=None, eol=b"\n"):
     """Objects 1-3 as usual, object 4 an uncompressed object stream whose header lists
     ``members`` (default one member, ``member``, at offset 0) before ``body``, object 6
     the cross-reference stream; object 5's row names ``container`` at ``index``, any
@@ -648,7 +650,7 @@ def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=Non
         payload = zlib.compress(bytes([data[0]] + [(data[i] - data[i - 1]) & 0xFF for i in range(1, len(data))]))
         extra = b"/Filter /FlateDecode /DecodeParms << /Predictor 2 /Columns %d >> " % len(data)
     offs[4] = len(out)
-    out += b"4 0 obj\n<< /Type /ObjStm /N %d /First %d " % (len(members), len(header)) + extra + b"/Length %d >>\nstream\n" % len(payload) + payload + b"\nendstream\nendobj\n"
+    out += b"4 0 obj\n<< /Type /ObjStm /N %d /First %d " % (len(members), len(header)) + extra + b"/Length %d >>\nstream\n" % len(payload) + payload + eol + b"endstream\nendobj\n"
     offs[6] = len(out)
     extra = {num: k for k, (num, _) in enumerate(members) if num not in (0, 1, 2, 3, 4, 5, 6)}
     size = max([7] + [num + 1 for num in extra])
