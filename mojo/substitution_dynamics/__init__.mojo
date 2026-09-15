@@ -8,4 +8,4 @@
 # alphabet, and no theorem claims. Every symbol is validated once at the
 # boundary (`Substitution.checked`, `checked_pair`, `validate_word`); the
 # kernels below that boundary trust their inputs. A capped automaton build is
-# inconclusive, never evidence. See README.md in this directory.
+# inconclusive, never evidence. See README.md at the repository root.

@@ -6,9 +6,9 @@ with substitution indices and recurrent/sink flags.  Finite evidence only.
 """
 
 from psc.bpa import Automaton, build, recurrent_noncoincident_sccs, substitution_incidence
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from psc.pisot import is_pip
-from psc.tensor3 import theta
+from finite_linear_algebra.tensor3 import theta
 from psc.words import Pair, is_zero, k2, k3
 
 

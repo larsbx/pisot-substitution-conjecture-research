@@ -13,7 +13,7 @@ balanced-pair states and does not prove G1, C1, C4, or PSC.
 """
 
 from psc.bpa import build, recurrent_noncoincident_sccs, substitution_incidence
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from psc.pisot import is_pip
 from psc.words import Pair
 

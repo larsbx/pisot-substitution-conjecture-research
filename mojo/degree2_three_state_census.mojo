@@ -21,7 +21,7 @@ Finite evidence only: surviving/absent specimens do not prove a general theorem.
 
 from psc.bpa import build, recurrent_noncoincident_sccs, substitution_incidence
 from psc.endpoint_core import endpoint_type, prefix_endpoint_map, suffix_endpoint_map
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from psc.pisot import is_pip
 
 

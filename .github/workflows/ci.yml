@@ -21,7 +21,7 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -U pip
       - run: pip install -e .[dev]
-      - run: python scripts/check_finite_exact_sync.py
+      - run: python scripts/check_vendored_sync.py
       - run: pytest
 
   mojo-kernel:

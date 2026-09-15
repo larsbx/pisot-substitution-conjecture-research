@@ -1,18 +1,13 @@
-"""The shuffle-kernel sector W_3 = ker(S) subset V^{(x)3}.
+"""The printed W_3 basis of the spectral certificate.
 
-`w3_basis()` is *derived* from the shuffle functional. The certificate's printed
-basis (§3) is reproduced separately so the two can be compared.
+`w3_basis`, `in_w3`, and `spans_same_space` are the general shuffle-kernel
+mechanics of the vendored `finite_linear_algebra` package and are re-exported
+here for the certificate and its tests. The certificate's printed basis (§3)
+is reproduced below so the two can be compared.
 """
 
-from finite_exact.rat_q import Q
-from psc.exact import q_vec
-from psc.qlinalg import nullspace, in_span, rank
-from psc.tensor3 import shuffle_matrix, shuffle_image, idx3, zeros27, is_zero27
-
-
-def w3_basis() -> List[List[Q]]:
-    """A Q-basis of `ker(S)`, computed by exact nullspace elimination."""
-    return nullspace(shuffle_matrix(), 27)
+from finite_linear_algebra.tensor3 import idx3, zeros27
+from finite_linear_algebra.w3 import in_w3, spans_same_space, w3_basis
 
 
 def _vec(entries: List[Int]) -> List[Int]:
@@ -45,21 +40,3 @@ def certificate_w3_basis() -> List[List[Int]]:
     out.append(_vec(b7))
     out.append(_vec(b8))
     return out^
-
-
-def in_w3(x: List[Int]) -> Bool:
-    """Membership in `W_3`, decided directly by the defining relations."""
-    return is_zero27(shuffle_image(x))
-
-
-def spans_same_space(intbasis: List[List[Int]], qbasis: List[List[Q]]) -> Bool:
-    """Whether an integer family and a rational family span the same subspace."""
-    var lifted = List[List[Q]]()
-    for i in range(len(intbasis)):
-        lifted.append(q_vec(intbasis[i]))
-    if rank(lifted) != len(qbasis):
-        return False
-    for i in range(len(qbasis)):
-        if not in_span(lifted, qbasis[i]):
-            return False
-    return True

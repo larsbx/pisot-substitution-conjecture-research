@@ -1,6 +1,6 @@
-"""PSC-side conventions over the vendored `finite_exact` package.
+"""PSC-side conventions over the vendored `finite_exact` and `interval_q` packages.
 
-`finite_exact` (see `finite_exact/UPSTREAM.md`) reports invalid arithmetic
+`finite_exact` (pinned in `vendored.toml`) reports invalid arithmetic
 through a `rejected` flag on every carrier and never raises. The PSC kernels
 fail closed, so this module is the single place where a rejected exact value
 becomes an `Error` (interval enclosures, where rejection is a legitimate
@@ -20,20 +20,9 @@ Rational-interval semantics (unchanged from the retired checked layer):
 from std.os import abort
 
 from finite_exact.bigint_z import BIGZ_BASE, BigZ, bigz_divmod, bigz_from_i64
-from finite_exact.interval_q import IQ
 from finite_exact.rat_q import Q, q_abs, q_from_bigz
-
-
-def q_int(n: Int) -> Q:
-    return Q.from_int(Int64(n))
-
-
-def q_vec(v: List[Int]) -> List[Q]:
-    """Lift an integer vector into Q^n."""
-    var out = List[Q]()
-    for i in range(len(v)):
-        out.append(q_int(v[i]))
-    return out^
+from finite_linear_algebra.scalar import q_int, q_is_zero, q_vec
+from interval_q.closed_q import IQ
 
 
 def q_poly(coeffs: List[Int]) -> List[Q]:
@@ -51,13 +40,6 @@ def require_iq(x: IQ, what: StringLiteral) raises -> IQ:
     if x.rejected:
         raise Error(String(what) + ": rejected rational interval")
     return x.copy()
-
-
-def q_is_zero(x: Q) -> Bool:
-    """Zero test of an accepted value; a rejected operand aborts (rule 8)."""
-    if x.rejected:
-        abort("zero test of a rejected exact rational")
-    return x.num.is_zero()
 
 
 def q_sign(x: Q) -> Int:

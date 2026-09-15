@@ -10,11 +10,11 @@ not establish the SCC-level statements of §12, and they do not establish
 hypothesis G1 (finiteness of `B_sigma`). See docs/verification-architecture.md.
 """
 
-from psc.mat3 import Mat3, identity3, has_rational_root
+from finite_linear_algebra.mat3 import Mat3, identity3, has_rational_root
 from psc.pisot import is_pip, has_equal_row_sums
-from psc.qlinalg import rank, in_span
+from finite_linear_algebra.qlinalg import rank, in_span
 from psc.seeds import length7_seeds, certificate_seed_matrices
-from psc.tensor3 import tensor_cube_apply, theta, is_zero27, zeros27, idx3
+from finite_linear_algebra.tensor3 import tensor_cube_apply, theta, is_zero27, zeros27, idx3
 from psc.w3 import w3_basis, certificate_w3_basis, in_w3, spans_same_space
 from psc.words import Pair, is_zero, is_balanced, k1, k2, k3
 

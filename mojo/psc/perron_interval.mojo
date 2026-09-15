@@ -9,7 +9,7 @@ negative mathematical result. Endpoints are unbounded ``finite_exact``
 rationals, so refinement depth is limited by cost only, never by overflow.
 """
 
-from finite_exact.interval_q import IQ
+from interval_q.closed_q import IQ
 from finite_exact.rat_q import Q
 from psc.exact import eval_int_poly_at_q, interval_horner_int, midpoint, q_int, q_sign, require_iq, strict_sign
 from psc.perron_field3 import CubicElt, PerronField3, sign_at_perron

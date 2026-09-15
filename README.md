@@ -152,12 +152,12 @@ Issue #45 is therefore closed as a completed status/source reconciliation task. 
 
 | Priority | Layer | Tool | Scope |
 |---|---|---|---|
-| **Canonical executable** | `mojo/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. Words, balanced pairs, and the balanced-pair automaton come from `mojo/substitution_dynamics/` (alphabet-generic; `psc/` binds alphabet 3). Integer, rational, and rational-interval arithmetic come from `mojo/finite_exact/`, vendored from `larsbx/NLAP-JT` and identical to the upstream sources up to package-qualified import lines (see `mojo/finite_exact/UPSTREAM.md`). |
+| **Canonical executable** | `mojo/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. Words, balanced pairs, and the balanced-pair automaton come from `mojo/substitution_dynamics/` (alphabet-generic; `psc/` binds alphabet 3); exact arithmetic from `mojo/finite_exact/` and `mojo/interval_q/`; exact linear algebra and rank-three tensors from `mojo/finite_linear_algebra/`. All four are vendored byte-for-byte from their own repositories and pinned by commit and digest in `vendored.toml`. |
 | Formal state/dependency | `tla/` | TLA+ / TLC | BPA state-machine models and the machine-checked proof-dependency ledger. |
 | Deductive finite algebra | `PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
 | Secondary oracle | `src/psc_research/` + `tests/` | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |
 
-Exact arithmetic lives in `mojo/finite_exact/`, vendored from `larsbx/NLAP-JT` with a pinned sync check.
+The vendored packages (`larsbx/finite_exact`, `larsbx/interval_q`, `larsbx/substitution_dynamics`, `larsbx/finite_linear_algebra`) are checked against `vendored.toml` by `scripts/check_vendored_sync.py` in CI.
 
 Run everything:
 
@@ -176,8 +176,10 @@ Unavailable toolchains are reported as skipped; a skip is not a passing proof.
 ├── docs/                       # live proof architecture, audits, conjecture ledger
 ├── manuscripts/                # publication drafts and referee records
 ├── mojo/                       # canonical exact implementation + finite censuses
-│   ├── finite_exact/           # exact arithmetic, vendored from NLAP-JT (pinned)
-│   ├── substitution_dynamics/  # alphabet-generic words, balanced pairs, automaton
+│   ├── finite_exact/           # BigZ and Q, vendored from larsbx/finite_exact (pinned)
+│   ├── interval_q/             # closed rational intervals, vendored from larsbx/interval_q
+│   ├── substitution_dynamics/  # words, balanced pairs, automaton, vendored (alphabet-generic)
+│   ├── finite_linear_algebra/  # Mat3, RREF, rank-three tensors, W_3, vendored
 │   ├── psc/                    # reusable Mojo research kernel
 │   └── tests/                  # canonical executable regressions
 ├── tla/                        # TLA+ BPA models and proof-dependency ledger
@@ -185,6 +187,7 @@ Unavailable toolchains are reported as skipped; a skip is not a passing proof.
 ├── src/psc_research/           # secondary Python reference/oracle layer
 ├── tests/                      # Python oracle/regression tests
 ├── scripts/verify_all.sh       # run every verification layer
+├── vendored.toml               # commit and digest pins of the four vendored Mojo packages
 ├── .github/workflows/          # automated checks and exact censuses
 └── pyproject.toml              # secondary Python oracle metadata
 ```

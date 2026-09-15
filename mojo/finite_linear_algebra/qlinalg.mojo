@@ -2,11 +2,12 @@
 
 Used to *derive* — never to transcribe — the shuffle-kernel sector W_3 and to
 decide the membership statements of the Spectral module certificate.
-Scalars are the unbounded rationals of the vendored `finite_exact` package.
+Scalars are the unbounded rationals of the vendored `finite_exact` package;
+`q_is_zero` aborts on a rejected scalar (an impossible state, not a pivot).
 """
 
 from finite_exact.rat_q import Q
-from psc.exact import q_is_zero
+from finite_linear_algebra.scalar import q_is_zero
 
 
 def rref(m: List[List[Q]]) -> Tuple[List[List[Q]], List[Int]]:

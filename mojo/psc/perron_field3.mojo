@@ -13,7 +13,7 @@ successful finite run is exact; failure is inconclusive, not mathematical
 evidence.
 """
 
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from psc.pisot import is_pip
 
 

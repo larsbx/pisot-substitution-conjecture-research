@@ -8,7 +8,7 @@ This is a finite-domain certificate, not a proof of general wedge productivity.
 """
 
 from psc.bpa import Automaton, build, recurrent_noncoincident_sccs, substitution_incidence
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from psc.pisot import is_pip
 from psc.words import ALPHABET, Pair, is_zero, k2
 

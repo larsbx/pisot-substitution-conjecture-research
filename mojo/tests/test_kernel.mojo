@@ -8,13 +8,13 @@ from std.testing import assert_equal, assert_true, assert_false
 from psc.bpa import build, recurrent_noncoincident_sccs, sccs, coincidence_boundaries, inherited_boundary_positions, newborn_boundary_positions, inherited_sync_positions, newborn_sync_positions
 from psc.certificate import run_all, q_target1, pip_corpus
 from psc.endpoint_core import endpoint_type
-from psc.mat3 import Mat3, identity3, has_rational_root
+from finite_linear_algebra.mat3 import Mat3, identity3, has_rational_root
 from psc.pisot import is_pip, is_primitive, is_irreducible_cubic, is_pisot_charpoly
-from psc.qlinalg import nullspace, rank, in_span
+from finite_linear_algebra.qlinalg import nullspace, rank, in_span
 from finite_exact.rat_q import Q
 from psc.exact import q_is_zero, q_vec
 from psc.seeds import length7_seeds, certificate_seed_matrices
-from psc.tensor3 import shuffle_matrix, shuffle_image, theta, idx3, zeros27, is_zero27, tensor_cube_apply, levi_civita
+from finite_linear_algebra.tensor3 import shuffle_matrix, shuffle_image, theta, idx3, zeros27, is_zero27, tensor_cube_apply, levi_civita
 from psc.w3 import w3_basis, certificate_w3_basis, in_w3, spans_same_space
 from psc.words import Pair, parikh, is_zero, is_balanced, k1, k2, k3
 

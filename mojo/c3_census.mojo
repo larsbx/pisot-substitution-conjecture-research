@@ -25,7 +25,7 @@ not a proof of G1, C1, C2, C3, or PSC.
 """
 
 from psc.bpa import build, recurrent_noncoincident_sccs, substitution_incidence, inherited_sync_positions, newborn_sync_positions
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from psc.pisot import is_pip
 
 

@@ -13,7 +13,7 @@ The output is finite evidence only. It does not prove C4, C1, G1, or PSC.
 
 from psc.bpa import build, recurrent_noncoincident_sccs, substitution_incidence, inherited_sync_positions, newborn_sync_positions
 from psc.endpoint_core import endpoint_type, endpoint_type_name, prefix_endpoint_map, suffix_endpoint_map
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from psc.pisot import is_pip
 
 

@@ -13,7 +13,7 @@ the unbounded `finite_exact` values, so no coefficient growth can overflow.
 
 from finite_exact.rat_q import Q
 from psc.exact import q_floor_abs, q_int, q_is_zero, q_poly, q_sign
-from psc.mat3 import Mat3, has_rational_root
+from finite_linear_algebra.mat3 import Mat3, has_rational_root
 
 
 def poly_eval(p: List[Q], x: Q) -> Q:

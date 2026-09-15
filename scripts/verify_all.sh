@@ -29,10 +29,10 @@ if sha256sum -c docs/source-imports/issue-45/SHA256SUMS \
 else
     bad "Issue #45 source provenance"
 fi
-if python3 scripts/check_finite_exact_sync.py; then
-    ok "mojo/finite_exact matches its pinned NLAP-JT upstream"
+if python3 scripts/check_vendored_sync.py; then
+    ok "vendored Mojo packages match the commits pinned in vendored.toml"
 else
-    bad "mojo/finite_exact vendoring drift"
+    bad "vendored package drift (vendored.toml)"
 fi
 if python3 scripts/check_manuscript_source.py; then
     ok "manuscript sources are intact LaTeX and PDF"
