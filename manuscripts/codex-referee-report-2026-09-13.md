@@ -1198,3 +1198,37 @@ No other findings were posted in the forty-fifth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the forty-sixth round.
+
+
+---
+
+# Forty-seventh round: review of the chronology revision (pull request #95)
+
+**Reviewed commit:** `caf7c77d0d` (findings 97–99).
+**Review posted:** 2026-09-15T19:09:48Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 100 (P2) — `scripts/check_manuscript_source.py`, line 693
+
+> **Validate the companion stream's /Prev**
+>
+> When a classic trailer uses `/XRefStm`, this merge discards `companion[2]`, so a `/Prev` in the companion stream can point to itself, forward, or to a non-xref object without reaching the new backwards-link check at line 684. Since pypdf follows the classic trailer's chain, it also does not expose this malformed companion link during the full parse; validate the companion's `/Prev` and its consistency with the classic trailer before discarding it.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 101 (P2) — `scripts/check_manuscript_source.py`, line 602
+
+> **Reject duplicate object-stream member numbers**
+>
+> When an object stream declares a header such as `5 0 5 13`, both member bodies can parse and the type-2 row for object 5 can select index 0, leaving the duplicate member at index 1 unexamined by `_object_streams`; pypdf likewise dereferences only the indexed member. The guard consequently accepts two declarations of the same compressed object, so require the object numbers in `pairs` to be unique.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 102 (P2) — `scripts/check_manuscript_source.py`, line 667
+
+> **Validate each historical catalog's page tree**
+>
+> When an older root object is a `/Catalog` whose `/Pages` reference is missing or invalid and a later revision replaces that catalog with a valid one, this type-only check accepts the historical root while the final pypdf pass reads only the replacement's page tree. For example, an old catalog containing `/Pages 9 0 R` followed by an update restoring `/Pages 2 0 R` passes the replay, so resolve and walk `/Pages` against each revision's effective table before treating that historical revision as intact.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-seventh round.

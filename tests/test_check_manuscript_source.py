@@ -433,13 +433,13 @@ def test_matching_compression_bomb_hits_the_row_ceiling(copy):
     assert code == 1 and "above the ceiling" in out, out
 
 
-def hybrid_pdf(free5=b"\x00\x00\x00\x00"):
+def hybrid_pdf(free5=b"\x00\x00\x00\x00", companion_extra=b""):
     """A classic table for objects 0-3 whose trailer names a companion /XRefStm stream
     (object 4) describing itself and a free object 5; /Size 6."""
     raw = classic_pdf()
     o4 = len(raw)
     rows = b"\x00\x00\x00\xff" + b"\x01" + o4.to_bytes(2, "big") + b"\x00" + free5
-    raw += (b"4 0 obj\n<< /Type /XRef /Size 6 /Index [0 1 4 2] /W [1 2 1] /Root 1 0 R /Length %d >>\nstream\n" % len(rows)
+    raw += (b"4 0 obj\n<< /Type /XRef /Size 6 /Index [0 1 4 2] /W [1 2 1] /Root 1 0 R " + companion_extra + b"/Length %d >>\nstream\n" % len(rows)
             + rows + b"\nendstream\nendobj\n")
     xref = len(raw)
     raw += (b"xref\n0 4\n0000000000 65535 f \n" + b"".join(b"%010d 00000 n \n" % int(m) for m in re.findall(rb"(\d{10}) 00000 n", classic_pdf()))
@@ -784,6 +784,37 @@ def test_overlapping_classic_subsections_fail(copy):
     assert code == 1 and "overlaps an earlier subsection" in out, out
 
 
+def test_companion_prev_is_validated(copy):
+    pdf = next(copy.glob("*.pdf"))
+    for extra in (b"/Prev 999999 ", b"/Prev 0 "):
+        pdf.write_bytes(hybrid_pdf(companion_extra=extra))
+        code, out = run(copy)
+        assert code == 1 and "not the trailer's earlier /Prev" in out, (extra, out)
+
+
+def test_object_stream_member_numbers_must_be_unique(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(objstm_pdf(members=[(5, 0), (5, 13)], body=b"<< /Foo 1 >> << /Bar 2 >>"))
+    code, out = run(copy)
+    assert code == 1 and "repeats an object number" in out, out
+
+
+def test_historical_page_tree_is_walked(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pages, page = b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>", b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>"
+    for catalog, message in ((b"<< /Type /Catalog /Pages 9 0 R >>", "page tree: object 9 0 R is not in use"),
+                             (b"<< /Type /Catalog /Pages 3 0 R >>", "is a /Page rather than /Pages"),
+                             (b"<< /Type /Catalog >>", "lacks a /Pages reference")):
+        raw = classic_pdf(objs=[catalog, pages, page])
+        pdf.write_bytes(classic_update(raw, 1, b"<< /Type /Catalog /Pages 2 0 R >>", 4))  # pypdf reads only the repaired catalog
+        code, out = run(copy)
+        assert code == 1 and message in out, (catalog, out)
+    raw = classic_pdf(objs=[b"<< /Type /Catalog /Pages 2 0 R >>", b"<< /Type /Pages /Kids [3 0 R] /Count 2 >>", page])
+    pdf.write_bytes(classic_update(raw, 2, pages, 4))
+    code, out = run(copy)
+    assert code == 1 and "declares /Count 2 but holds 1" in out, out
+
+
 def test_superseded_dictionary_is_parsed_structurally(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.write_bytes(superseded_pdf(b"<< /A [1 2 R] /B << /C (x) >> /D <41> /E true /F#20G null >>"))
@@ -797,7 +828,7 @@ def test_superseded_dictionary_is_parsed_structurally(copy):
 def test_historical_trailer_root_is_resolved(copy):
     pdf = next(copy.glob("*.pdf"))
     raw = superseded_pdf(flate_stream(b"x"))
-    for root, message in ((b"/Root 9 0 R", "does not name an object in use"), (b"/Root 2 0 R", "top-level /Type is /Catalog"),
+    for root, message in ((b"/Root 9 0 R", "is not in use"), (b"/Root 2 0 R", "top-level /Type is /Catalog"),
                           (b"/Root 1 1 R", "has generation 0")):
         pdf.write_bytes(raw.replace(b"/Root 1 0 R", root, 1))
         code, out = run(copy)

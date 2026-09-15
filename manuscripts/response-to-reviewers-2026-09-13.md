@@ -612,3 +612,16 @@ Three findings from the automated Codex review of commit `b084115186`; all accep
 | 97 | P2 | A repeated dictionary key kept the last value | Accepted. The dictionary parser rejects a repeated decoded key, so every dictionary the guard inspects fails closed on duplicates. Test: a superseded stream with two `/Length` keys | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 98 | P2 | A forward `/Prev` inverted the replay chronology | Accepted. A section's `/Prev` and `/XRefStm` must point before the section itself; a forward or self-pointing link is rejected before it is followed. Test: the final `startxref` names section A whose `/Prev` points forward at section B; the earlier bogus and self-pointing `/Prev` cases now fail at this check | same |
 | 99 | P2 | Overlapping classic subsections overwrote rows | Accepted. Each subsection is checked against the accumulated ranges before its entries are decoded. Test: a `1 1` subsection appended to a table that already covers object 1 | same |
+
+
+---
+
+## Forty-seventh round (pull request #95, chronology revision)
+
+Three findings from the automated Codex review of commit `caf7c77d0d`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 100 | P2 | The hybrid companion's own `/Prev` was discarded unchecked | Accepted. A companion's `/Prev`, if present, must be the classic trailer's own earlier `/Prev`; anything else (forward, self-pointing, or inconsistent with the trailer) fails. Tests: companions carrying `/Prev 999999` and `/Prev 0` under a trailer without `/Prev` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 101 | P2 | An object stream could declare the same object twice | Accepted. The header's object numbers must be unique. Test: header `5 0 5 13` | same |
+| 102 | P2 | A historical catalog was accepted on its type alone | Accepted. Every section's root is now resolved through a reference resolver over that revision's effective table (in-use objects at their offsets with matching generation, compressed objects as decoded members), and its `/Pages` reference must head a consistent, nonempty page tree: the root a `/Pages` node, every node's `/Kids` an array of references each naming the node as `/Parent`, every `/Count` equal to the pages beneath, no cycles and at most 64 levels. Tests: historical catalogs with `/Pages 9 0 R`, with `/Pages` naming a page rather than the root node, and without `/Pages`, each later repaired by an update, all fail; a `/Count 2` over one page later repaired fails. The repository PDF's own tree of 36 pages walks cleanly | same |

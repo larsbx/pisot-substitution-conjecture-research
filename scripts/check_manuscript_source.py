@@ -604,6 +604,8 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
                         result = f"object stream {container}, whose header offsets leave the data"
                     elif any(b <= a for a, b in zip(starts, starts[1:])):
                         result = f"object stream {container}, whose member offsets are not strictly increasing"
+                    elif len({n for n, _ in pairs}) != len(pairs):
+                        result = f"object stream {container}, whose header repeats an object number"
                     else:
                         members = []
                         for k, st in enumerate(starts):
@@ -638,33 +640,92 @@ def _object_streams(raw: bytes, table: dict[int, Entry], cache: dict) -> str | N
     return None
 
 
-def _catalog(raw: bytes, root: tuple[int, int], table: dict[int, Entry], cache: dict) -> str | None:
-    """A trailer's ``/Root`` must resolve, in that revision's effective ``table``, to an
-    object whose dictionary is ``/Type /Catalog`` (finding 88: pypdf reads only the final
-    trailer's root)."""
-    num, gen = root
+def _ref_value(value: bytes) -> tuple[int, int] | None:
+    m = re.fullmatch(rb"(\d+)\s+(\d+)\s+R", value)
+    return (int(m.group(1)), int(m.group(2))) if m else None
+
+
+def _refs_value(value: bytes) -> list[tuple[int, int]] | None:
+    """``value`` as a list of indirect references if it is an array of nothing else."""
+    m = re.fullmatch(rb"\[\s*((?:\d+\s+\d+\s+R\s*)*)\]", value)
+    return [(int(a), int(b)) for a, b in re.findall(rb"(\d+)\s+(\d+)\s+R", m.group(1))] if m else None
+
+
+def _resolve(raw: bytes, table: dict[int, Entry], ref: tuple[int, int], cache: dict) -> dict[bytes, bytes] | str:
+    """Top-level items of the dictionary object ``ref`` names in a revision's effective
+    ``table``: an in-use object at its offset (its generation must match) or a member of a
+    decoded object stream (generation 0).  A problem is returned as a string."""
+    num, gen = ref
     entry = table.get(num)
     if entry is None or entry[0] == 0:
-        return f"trailer /Root {num} {gen} R does not name an object in use"
+        return f"object {num} {gen} R is not in use"
     if entry[0] == 1:
         if entry[2] != gen:
-            return f"trailer /Root {num} {gen} R names generation {gen}, but object {num} has generation {entry[2]}"
+            return f"object {num} {gen} R names generation {gen}, but object {num} has generation {entry[2]}"
         at = raw[entry[1]:]
-        head = re.match(rb"\d+\s+\d+\s+obj\s*", at)
-        items = _dict_items(at, head.end())
+        items = _dict_items(at, re.match(rb"\d+\s+\d+\s+obj\s*", at).end())
     else:
         if gen != 0:
-            return f"trailer /Root {num} {gen} R names a compressed object with a nonzero generation"
+            return f"object {num} {gen} R names a compressed object with a nonzero generation"
         stm = _objstm(raw, table, entry[1], cache)
         if isinstance(stm, str):
-            return f"trailer /Root {num} {gen} R names a member of {stm}"
+            return f"object {num} is a member of {stm}"
         pairs, data, first, members = stm
         if entry[2] >= len(pairs) or pairs[entry[2]][0] != num or members[entry[2]]:
-            return f"trailer /Root {num} {gen} R is not a well-formed member {entry[2]} of object stream {entry[1]}"
+            return f"object {num} is not a well-formed member {entry[2]} of object stream {entry[1]}"
         items = _dict_items(data, first + pairs[entry[2]][1])
-    if items is None or _name_value(items.get(b"Type", b"")) != b"Catalog":
-        return f"trailer /Root {num} {gen} R does not resolve to a dictionary whose top-level /Type is /Catalog"
-    return None
+    return items if items is not None else f"object {num} {gen} R is not a dictionary"
+
+
+def _page_tree(raw: bytes, table: dict[int, Entry], ref: tuple[int, int], cache: dict,
+               parent: tuple[int, int] | None = None, seen: set | None = None, depth: int = 0) -> int | str:
+    """The number of pages under node ``ref`` of a revision's page tree: a ``/Page`` is a
+    leaf; a ``/Pages`` node must hold ``/Kids`` (an array of references, each a node naming
+    this one as ``/Parent``) and a ``/Count`` equal to the pages beneath it.  Cycles and
+    nesting beyond 64 levels fail.  A problem is returned as a string."""
+    seen = set() if seen is None else seen
+    if ref in seen or depth > 64:
+        return f"page tree revisits object {ref[0]} or nests too deeply"
+    seen.add(ref)
+    items = _resolve(raw, table, ref, cache)
+    if isinstance(items, str):
+        return f"page tree: {items}"
+    if parent is not None and _ref_value(items.get(b"Parent", b"")) != parent:
+        return f"page tree node {ref[0]} does not name its parent {parent[0]}"
+    kind = _name_value(items.get(b"Type", b""))
+    if kind == b"Page":
+        return 1 if parent is not None else f"the root of the page tree, object {ref[0]}, is a /Page rather than /Pages"
+    if kind != b"Pages":
+        return f"page tree node {ref[0]} is neither /Pages nor /Page"
+    kids, count = _refs_value(items.get(b"Kids", b"")), _int_value(items.get(b"Count", b""))
+    if kids is None or count is None:
+        return f"page tree node {ref[0]} lacks a /Kids array of references or a whole-integer /Count"
+    total = 0
+    for kid in kids:
+        below = _page_tree(raw, table, kid, cache, ref, seen, depth + 1)
+        if isinstance(below, str):
+            return below
+        total += below
+    return total if total == count else f"page tree node {ref[0]} declares /Count {count} but holds {total} pages"
+
+
+def _catalog(raw: bytes, root: tuple[int, int], table: dict[int, Entry], cache: dict) -> str | None:
+    """A trailer's ``/Root`` must resolve, in that revision's effective ``table``, to a
+    dictionary whose top-level ``/Type`` is ``/Catalog`` and whose ``/Pages`` reference
+    heads a consistent, nonempty page tree (findings 88, 90 and 102: pypdf reads only the
+    final trailer's root and page tree)."""
+    items = _resolve(raw, table, root, cache)
+    if isinstance(items, str):
+        return f"trailer /Root {root[0]} {root[1]} R: {items}"
+    if _name_value(items.get(b"Type", b"")) != b"Catalog":
+        return f"trailer /Root {root[0]} {root[1]} R does not resolve to a dictionary whose top-level /Type is /Catalog"
+    pages = _ref_value(items.get(b"Pages", b""))
+    if pages is None:
+        return f"catalog {root[0]} lacks a /Pages reference"
+    total = _page_tree(raw, table, pages, cache)
+    if isinstance(total, str):
+        return total
+    return None if total > 0 else f"catalog {root[0]} has an empty page tree"
 
 
 def _xref_chain(raw: bytes, off: int) -> str | int:
@@ -689,6 +750,8 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
             companion = _section_at(raw, xrefstm, seen)
             if isinstance(companion, str):
                 return f"/XRefStm: {companion}"
+            if companion[2] is not None and (companion[2] >= xrefstm or companion[2] != prev):
+                return f"/XRefStm companion at offset {xrefstm} carries /Prev {companion[2]}, which is not the trailer's earlier /Prev"
             # the table's own entries take precedence; both /Size and /Root values must hold
             entries, sizes, roots = {**companion[0], **entries}, (size, companion[1]), (root, companion[5])
         sections.append((entries, sizes, roots, classic))
