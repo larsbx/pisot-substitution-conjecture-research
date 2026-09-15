@@ -1350,3 +1350,18 @@ No other findings were posted in the fifty-first round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the fifty-second round.
+
+# Fifty-third round: review of the companion-precedence revision (pull request #95)
+
+**Reviewed commit:** `8c4ad88fb2` (finding 112).
+**Review posted:** 2026-09-15T20:02:54Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 113 (P2) — `scripts/check_manuscript_source.py`, line 86
+
+> **Treat NUL as PDF whitespace in object tokens**
+>
+> When a superseded direct object contains a NUL between name characters, such as `/Bad\x00Name`, Python's `\s` does not include NUL even though PDF classifies byte 0 as whitespace, so `_NAME` and `_TOKEN` consume this as one valid name. `_superseded_streams` consequently accepts the malformed historical object while the final pypdf pass sees only its replacement; use the explicit PDF whitespace byte set throughout the lexer.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-third round.

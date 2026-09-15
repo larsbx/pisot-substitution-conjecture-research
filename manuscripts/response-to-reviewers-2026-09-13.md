@@ -673,3 +673,11 @@ One finding from the automated Codex review of commit `98d583269e`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 112 | P2 | A classic table could free or move the `/XRefStm` companion stream it names | Accepted. After the table's entries take precedence over the companion's, the effective entry for the companion's object must still be in use at the companion's offset with its generation. The scenario (companion listing itself, table freeing object 4 with the free list 0 → 4 → 0) was confirmed to pass the previous revision. Test: that scenario | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-third round (pull request #95, companion-precedence revision)
+
+One finding from the automated Codex review of commit `8c4ad88fb2`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 113 | P2 | The lexer used Python's white-space class, which omits NUL and admits vertical tab | Accepted. Every pattern and every byte-string strip or split in the guard now spells out the six PDF white-space bytes (NUL, tab, line feed, form feed, carriage return, space); a test asserts the generic class no longer occurs in the source. The scenario (`/Bad\x00Name` in a superseded object) was confirmed to pass the previous revision. Tests: that object (fails), NUL and form feed as separators with vertical tab inside a name (passes), vertical tab glued to a number (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

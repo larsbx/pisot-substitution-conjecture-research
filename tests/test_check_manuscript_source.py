@@ -927,6 +927,19 @@ def test_malformed_predictor_values_fail(copy):
         assert code == 1 and "malformed predictor parameter value" in out, (parms, out)
 
 
+def test_lexer_uses_the_pdf_white_space_set(copy):
+    assert b"\\s" not in SCRIPT.read_bytes()  # every pattern spells out the six PDF white-space bytes
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(superseded_pdf(b"<< /Bad\x00Name 1 >>"))  # NUL is white space: /Bad, then a bare word
+    code, out = run(copy)
+    assert code == 1 and "not one complete object" in out, out
+    pdf.write_bytes(superseded_pdf(b"<<\x00/A\x001\x0c/B\x0b 2 >>"))  # NUL and form feed separate; vertical tab is a name byte
+    assert run(copy)[0] == 0
+    pdf.write_bytes(superseded_pdf(b"<< /A 1\x0b >>"))  # 1\x0b is not a number
+    code, out = run(copy)
+    assert code == 1 and "not one complete object" in out, out
+
+
 def test_superseded_non_dictionary_object_is_parsed(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.write_bytes(superseded_pdf(b"[1 2 R (a (nested) string) /Name#20x 3.5 <414243> true null]"))

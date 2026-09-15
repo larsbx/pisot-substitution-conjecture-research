@@ -61,7 +61,7 @@ def _trailer_keys(items: dict[bytes, bytes], what: str) -> str | tuple[int, tupl
     a trailer or cross-reference stream dictionary's top-level items; a present ``/Prev``
     or ``/XRefStm`` must be a whole integer."""
     size = _int_value(items.get(b"Size", b""))
-    root = re.fullmatch(rb"(\d+)\s+(\d+)\s+R", items.get(b"Root", b""))
+    root = re.fullmatch(rb"(\d+)[\x00\t\n\x0c\r ]+(\d+)[\x00\t\n\x0c\r ]+R", items.get(b"Root", b""))
     if size is None or not root:
         return f"{what} lacks /Size or /Root"
     links = [_int_value(items[k]) if k in items else None for k in (b"Prev", b"XRefStm")]
@@ -82,8 +82,12 @@ Section = tuple[dict[int, Entry], int, int | None, int | None, int, tuple[int, i
 offset just past the section, /Root as (object number, generation))``."""
 
 
-_DELIM = rb"[\s/\[\]<>(){}%]"
-_NAME = rb"/((?:[^\s/\[\]<>(){}%#]|#[0-9A-Fa-f]{2})*)(?=" + _DELIM + rb"|$)"
+# PDF white space is exactly NUL, tab, line feed, form feed, carriage return and space (ISO 32000-1,
+# 7.2.2): the regex class for white space would admit vertical tab and omit NUL, and bytes.strip()/split() likewise, so
+# every pattern and strip below spells the six bytes out.
+_WSB = b"\x00\t\n\x0c\r "
+_DELIM = rb"[\x00\t\n\x0c\r /\[\]<>(){}%]"
+_NAME = rb"/((?:[^\x00\t\n\x0c\r /\[\]<>(){}%#]|#[0-9A-Fa-f]{2})*)(?=" + _DELIM + rb"|$)"
 
 
 def _unescape(name: bytes) -> bytes:
@@ -108,7 +112,7 @@ def _names_of(value: bytes) -> list[bytes] | None:
         return [single] if single is not None else None
     names, pos = [], 1
     while True:
-        pos += len(value[pos:]) - len(value[pos:].lstrip())
+        pos += len(value[pos:]) - len(value[pos:].lstrip(_WSB))
         if value[pos:pos + 1] == b"]":
             return names if pos + 1 == len(value) else None
         m = re.match(_NAME, value[pos:])
@@ -156,13 +160,13 @@ def _classic_table(raw: bytes, off: int) -> str | Section:
                 return f"xref entry for object {num} has generation {gen} > 65535"
             if e.group(3) == b"n":
                 # an in-use entry must point at the header of its own object
-                if field >= len(raw) or not re.match(rb"%d\s+%d\s+obj\b" % (num, gen), raw[field:field + 40]):
+                if field >= len(raw) or not re.match(rb"%d[\x00\t\n\x0c\r ]+%d[\x00\t\n\x0c\r ]+obj\b" % (num, gen), raw[field:field + 40]):
                     return f"xref entry for object {num} does not point at '{num} {gen} obj'"
             table[num] = (0 if e.group(3) == b"f" else 1, field, gen, True)
         pos, entries = pos + 20 * count, entries + count
     if entries == 0:
         return "xref table has no entries"
-    t = re.match(rb"trailer\s*", at[pos:pos + 32])
+    t = re.match(rb"trailer[\x00\t\n\x0c\r ]*", at[pos:pos + 32])
     if not t:
         return "xref table not followed by trailer"
     parsed = _dict_parse(at, pos + t.end())
@@ -222,7 +226,7 @@ def _xref_rows(raw: bytes, rows: bytes, widths: list[int], numbers: list[int], s
             if f2 >= size:
                 return f"cross-reference stream free entry for object {num} points at object {f2} beyond /Size"
         elif kind == 1:
-            if f2 >= len(raw) or not re.match(rb"%d\s+%d\s+obj\b" % (num, f3), raw[f2:f2 + 40]):
+            if f2 >= len(raw) or not re.match(rb"%d[\x00\t\n\x0c\r ]+%d[\x00\t\n\x0c\r ]+obj\b" % (num, f3), raw[f2:f2 + 40]):
                 return f"cross-reference stream entry for object {num} does not point at '{num} {f3} obj'"
         elif kind == 2:
             if f2 >= size:
@@ -237,7 +241,7 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
     """The cross-reference stream object at ``raw[off:]``: a problem, or its section
     (type-0 rows included).  Every key is read from the dictionary's top-level items."""
     at = raw[off:]
-    m = re.match(rb"(\d+)\s+(\d+)\s+obj\s*", at)
+    m = re.match(rb"(\d+)[\x00\t\n\x0c\r ]+(\d+)[\x00\t\n\x0c\r ]+obj[\x00\t\n\x0c\r ]*", at)
     if not m:
         return "not an object"
     num, gen = int(m.group(1)), int(m.group(2))
@@ -251,10 +255,10 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
     if isinstance(keys, str):
         return keys
     size, root, prev, _ = keys
-    w = re.fullmatch(rb"\[\s*((?:\d+\s*)+)\]", items.get(b"W", b""))
+    w = re.fullmatch(rb"\[[\x00\t\n\x0c\r ]*((?:\d+[\x00\t\n\x0c\r ]*)+)\]", items.get(b"W", b""))
     if not w:
         return "cross-reference stream lacks /W"
-    widths = [int(x) for x in w.group(1).split()]
+    widths = [int(x) for x in re.findall(rb"\d+", w.group(1))]
     if len(widths) != 3:
         return f"cross-reference stream /W must have exactly three fields, has {len(widths)}"
     row, parms = sum(widths), None
@@ -271,12 +275,12 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
         return "cross-reference stream lacks /Length"
     n = _int_value(items[b"Length"])
     if n is None:
-        if re.fullmatch(rb"\d+\s+\d+\s+R", items[b"Length"]):
+        if re.fullmatch(rb"\d+[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+R", items[b"Length"]):
             return "cross-reference stream /Length is an indirect reference, not a direct integer"
         return "cross-reference stream lacks /Length"
     if b"Index" in items:
-        index = re.fullmatch(rb"\[\s*((?:\d+\s*)*)\]", items[b"Index"])
-        values = [int(x) for x in index.group(1).split()] if index else []
+        index = re.fullmatch(rb"\[[\x00\t\n\x0c\r ]*((?:\d+[\x00\t\n\x0c\r ]*)*)\]", items[b"Index"])
+        values = [int(x) for x in re.findall(rb"\d+", index.group(1))] if index else []
         if not values or len(values) % 2:
             return "cross-reference stream /Index is not an array of start/count pairs"
         pairs = list(zip(values[::2], values[1::2]))
@@ -291,12 +295,12 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
         return f"cross-reference stream declares {expected_rows} rows, above the ceiling of {MAX_XREF_ROWS}"
     if expected_rows * row > MAX_STREAM_BYTES:
         return f"cross-reference stream declares {expected_rows * row} decoded bytes, above the ceiling of {MAX_STREAM_BYTES}"
-    body = re.match(rb"\s*stream(?:\r\n|\n)", at[dend:dend + 16])
+    body = re.match(rb"[\x00\t\n\x0c\r ]*stream(?:\r\n|\n)", at[dend:dend + 16])
     if not body:
         return "cross-reference stream has no stream body"
     data_start = dend + body.end()
     data = at[data_start:data_start + n]
-    tail = re.match(rb"(?:\r\n|\r|\n)?endstream\s*endobj\b", at[data_start + n:data_start + n + 32])
+    tail = re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj\b", at[data_start + n:data_start + n + 32])
     if len(data) < n or not tail:
         return "cross-reference stream body does not match /Length or is not closed by endstream and endobj"
     filters = _names_of(items[b"Filter"]) if b"Filter" in items else []
@@ -367,7 +371,7 @@ def _section_at(raw: bytes, off: int, seen: list[int]) -> str | Section:
     at = raw[off:]
     if at.startswith(b"xref"):
         section = _classic_table(raw, off)
-    elif re.match(rb"\d+\s+\d+\s+obj\b", at[:32]):
+    elif re.match(rb"\d+[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+obj\b", at[:32]):
         section = _xref_stream(raw, off)
     else:
         section = "offset does not point at an xref table or object"
@@ -397,7 +401,7 @@ def _parms(value: bytes) -> tuple[int, int, int, int] | str:
     integers, ``/Predictor`` 1, 2 or 10-15 with positive geometry, TIFF prediction at 8 bits
     per component only; or a problem."""
     if value.startswith(b"["):  # a one-element array holding the dictionary
-        inner = re.fullmatch(rb"\[\s*(<<.*>>)\s*\]", value, re.S)
+        inner = re.fullmatch(rb"\[[\x00\t\n\x0c\r ]*(<<.*>>)[\x00\t\n\x0c\r ]*\]", value, re.S)
         value = inner.group(1) if inner else b""
     parms = _dict_items(value, 0)
     if parms is None or _dict_end(value, 0) != len(value):
@@ -447,7 +451,7 @@ def _unfilter(d: bytes, out: bytes) -> bytes | str:
     return parms if isinstance(parms, str) else _undo_predictor(out, *parms)
 
 
-_TOKEN = rb"(?:/(?:[^\s/\[\]<>(){}%#]|#[0-9A-Fa-f]{2})*|[+-]?(?:\d+\.?\d*|\.\d+)|true|false|null)(?=" + _DELIM + rb"|$)"
+_TOKEN = rb"(?:/(?:[^\x00\t\n\x0c\r /\[\]<>(){}%#]|#[0-9A-Fa-f]{2})*|[+-]?(?:\d+\.?\d*|\.\d+)|true|false|null)(?=" + _DELIM + rb"|$)"
 
 
 def _dict_parse(buf: bytes, i: int) -> tuple[dict[bytes, bytes], int] | None:
@@ -458,7 +462,7 @@ def _dict_parse(buf: bytes, i: int) -> tuple[dict[bytes, bytes], int] | None:
         return None
     items, j = {}, i + 2
     while True:
-        j += len(buf[j:]) - len(buf[j:].lstrip())
+        j += len(buf[j:]) - len(buf[j:].lstrip(_WSB))
         if buf.startswith(b">>", j):
             return items, j + 2
         key = re.match(_NAME, buf[j:])
@@ -467,7 +471,7 @@ def _dict_parse(buf: bytes, i: int) -> tuple[dict[bytes, bytes], int] | None:
         start = j + key.end()
         if (j := _object_end(buf, start)) is None or _unescape(key.group(1)) in items:  # a repeated key is malformed
             return None
-        items[_unescape(key.group(1))] = buf[start:j].strip()
+        items[_unescape(key.group(1))] = buf[start:j].strip(_WSB)
 
 
 def _dict_end(buf: bytes, i: int) -> int | None:
@@ -477,7 +481,7 @@ def _dict_end(buf: bytes, i: int) -> int | None:
 
 def _dict_items(buf: bytes, i: int) -> dict[bytes, bytes] | None:
     """Top-level items of the dictionary at ``buf[i:]`` (after leading whitespace), or None."""
-    i += len(buf[i:]) - len(buf[i:].lstrip())
+    i += len(buf[i:]) - len(buf[i:].lstrip(_WSB))
     parsed = _dict_parse(buf, i)
     return None if parsed is None else parsed[0]
 
@@ -486,11 +490,11 @@ def _object_end(buf: bytes, i: int) -> int | None:
     """The index just past one complete direct object (dictionary, array, string, name,
     number, boolean, null, or indirect reference) starting at or after ``i``; None if the
     bytes there are not one."""
-    i += len(buf[i:]) - len(buf[i:].lstrip())
+    i += len(buf[i:]) - len(buf[i:].lstrip(_WSB))
     if buf.startswith(b"<<", i):
         return _dict_end(buf, i)
     if buf.startswith(b"<", i):
-        m = re.match(rb"<[0-9A-Fa-f\s]*>", buf[i:])
+        m = re.match(rb"<[0-9A-Fa-f\x00\t\n\x0c\r ]*>", buf[i:])
         return i + m.end() if m else None
     if buf.startswith(b"(", i):
         depth, j = 0, i
@@ -506,7 +510,7 @@ def _object_end(buf: bytes, i: int) -> int | None:
     if buf.startswith(b"[", i):
         j = i + 1
         while True:
-            j += len(buf[j:]) - len(buf[j:].lstrip())
+            j += len(buf[j:]) - len(buf[j:].lstrip(_WSB))
             if buf.startswith(b"]", j):
                 return j + 1
             if (j := _object_end(buf, j)) is None:
@@ -514,7 +518,7 @@ def _object_end(buf: bytes, i: int) -> int | None:
     m = re.match(_TOKEN, buf[i:])
     if not m:
         return None
-    ref = re.match(rb"\s+\d+\s+R(?=" + _DELIM + rb"|$)", buf[i + m.end():]) if re.fullmatch(rb"\d+", m.group(0)) else None
+    ref = re.match(rb"[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+R(?=" + _DELIM + rb"|$)", buf[i + m.end():]) if re.fullmatch(rb"\d+", m.group(0)) else None
     return i + m.end() + (ref.end() if ref else 0)
 
 
@@ -529,13 +533,13 @@ def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) ->
             if entry[0] != 1 or merged.get(num) == entry:
                 continue
             at = raw[entry[1]:]
-            head = re.match(rb"\d+\s+\d+\s+obj\s*", at)
+            head = re.match(rb"\d+[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+obj[\x00\t\n\x0c\r ]*", at)
             end = _object_end(at, head.end())
             if end is None:
                 return f"superseded object {num} is not one complete object"
-            body = re.match(rb"\s*stream(?:\r\n|\n)", at[end:end + 16]) if at.startswith(b"<<", head.end()) else None
+            body = re.match(rb"[\x00\t\n\x0c\r ]*stream(?:\r\n|\n)", at[end:end + 16]) if at.startswith(b"<<", head.end()) else None
             if not body:
-                if re.match(rb"\s*endobj\b", at[end:end + 16]):
+                if re.match(rb"[\x00\t\n\x0c\r ]*endobj\b", at[end:end + 16]):
                     continue
                 return f"superseded object {num} is not one complete object closed by endobj"
             d = at[head.end():end]
@@ -544,7 +548,7 @@ def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) ->
                 return f"superseded stream object {num} lacks a direct /Length"
             start = end + body.end()
             data = at[start:start + length]
-            if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)?endstream\s*endobj\b", at[start + len(data):start + len(data) + 32]):
+            if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj\b", at[start + len(data):start + len(data) + 32]):
                 return f"superseded stream object {num} does not match its /Length or is not closed by endstream and endobj"
             names = _filter_names(d)
             if names is None:
@@ -582,11 +586,11 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
     if holder[1] in cache:
         return cache[holder[1]]
     at = raw[holder[1]:]
-    head = re.match(rb"\d+\s+\d+\s+obj\s*", at)
+    head = re.match(rb"\d+[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+obj[\x00\t\n\x0c\r ]*", at)
     parsed = _dict_parse(at, head.end())
     items, end = parsed if parsed else ({}, head.end())
     fields = [_int_value(items.get(k, b"")) for k in (b"N", b"First", b"Length")]
-    body = re.match(rb"\s*stream(?:\r\n|\n)", at[end:end + 16]) if parsed else None
+    body = re.match(rb"[\x00\t\n\x0c\r ]*stream(?:\r\n|\n)", at[end:end + 16]) if parsed else None
     if not parsed or _name_value(items.get(b"Type", b"")) != b"ObjStm" or None in fields or not body:
         result: ObjStm | str = f"object {container}, which is not an object stream with whole-integer /N, /First and /Length"
     else:
@@ -594,7 +598,7 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
         start = end + body.end()
         data = at[start:start + length]
         names = _names_of(items[b"Filter"]) if b"Filter" in items else []
-        if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)?endstream\s*endobj\b", at[start + length:start + length + 32]):
+        if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj\b", at[start + length:start + length + 32]):
             result = f"object stream {container}, whose body does not match its /Length or is not closed by endstream and endobj"
         elif names is None or names not in ([], [b"FlateDecode"]):
             result = f"object stream {container}, whose filter chain is unparsable or unsupported"
@@ -614,7 +618,7 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
             elif isinstance(data, str):
                 result = f"object stream {container}: {data}"
             else:
-                tokens = data[:first].split()
+                tokens = [t for t in re.split(rb"[\x00\t\n\x0c\r ]+", data[:first]) if t]
                 if len(tokens) != 2 * n or not all(t.isdigit() for t in tokens):
                     result = f"object stream {container}, whose header is not /N pairs of integers"
                 else:
@@ -631,7 +635,7 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
                         for k, st in enumerate(starts):
                             bound = min([x for x in starts if x > st] + [len(data)])
                             e = _object_end(data, st)
-                            members.append(None if e is not None and e <= bound and re.fullmatch(rb"\s*", data[e:bound])
+                            members.append(None if e is not None and e <= bound and re.fullmatch(rb"[\x00\t\n\x0c\r ]*", data[e:bound])
                                            else f"member {k} of object stream {container} is not one complete object within its bounds")
                         result = (pairs, data, first, members)
     cache[holder[1]] = result
@@ -663,7 +667,7 @@ def _object_streams(raw: bytes, table: dict[int, Entry], cache: dict, introduced
         if holder[0] != 1:
             continue
         at = raw[holder[1]:]
-        items = _dict_items(at, re.match(rb"\d+\s+\d+\s+obj\s*", at).end())
+        items = _dict_items(at, re.match(rb"\d+[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+obj[\x00\t\n\x0c\r ]*", at).end())
         if items is not None and _name_value(items.get(b"Type", b"")) == b"ObjStm":
             stm = _objstm(raw, table, container, cache)  # decoded whether or not any type-2 entry names it
             if isinstance(stm, str):
@@ -676,14 +680,14 @@ def _object_streams(raw: bytes, table: dict[int, Entry], cache: dict, introduced
 
 
 def _ref_value(value: bytes) -> tuple[int, int] | None:
-    m = re.fullmatch(rb"(\d+)\s+(\d+)\s+R", value)
+    m = re.fullmatch(rb"(\d+)[\x00\t\n\x0c\r ]+(\d+)[\x00\t\n\x0c\r ]+R", value)
     return (int(m.group(1)), int(m.group(2))) if m else None
 
 
 def _refs_value(value: bytes) -> list[tuple[int, int]] | None:
     """``value`` as a list of indirect references if it is an array of nothing else."""
-    m = re.fullmatch(rb"\[\s*((?:\d+\s+\d+\s+R\s*)*)\]", value)
-    return [(int(a), int(b)) for a, b in re.findall(rb"(\d+)\s+(\d+)\s+R", m.group(1))] if m else None
+    m = re.fullmatch(rb"\[[\x00\t\n\x0c\r ]*((?:\d+[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+R[\x00\t\n\x0c\r ]*)*)\]", value)
+    return [(int(a), int(b)) for a, b in re.findall(rb"(\d+)[\x00\t\n\x0c\r ]+(\d+)[\x00\t\n\x0c\r ]+R", m.group(1))] if m else None
 
 
 def _resolve(raw: bytes, table: dict[int, Entry], ref: tuple[int, int], cache: dict) -> dict[bytes, bytes] | str:
@@ -698,10 +702,10 @@ def _resolve(raw: bytes, table: dict[int, Entry], ref: tuple[int, int], cache: d
         if entry[2] != gen:
             return f"object {num} {gen} R names generation {gen}, but object {num} has generation {entry[2]}"
         at = raw[entry[1]:]
-        parsed = _dict_parse(at, re.match(rb"\d+\s+\d+\s+obj\s*", at).end())
+        parsed = _dict_parse(at, re.match(rb"\d+[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+obj[\x00\t\n\x0c\r ]*", at).end())
         if parsed is None:
             return f"object {num} {gen} R is not a dictionary"
-        if not re.match(rb"\s*endobj\b", at[parsed[1]:parsed[1] + 16]):
+        if not re.match(rb"[\x00\t\n\x0c\r ]*endobj\b", at[parsed[1]:parsed[1] + 16]):
             return f"object {num} {gen} R is a stream or is not closed by endobj, so it cannot serve as a dictionary node"
         items = parsed[0]
     else:
@@ -786,7 +790,7 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
         here = seen[-1]
         if any(link is not None and link >= here for link in (prev, xrefstm)):
             return f"cross-reference section at offset {here} links forward (/Prev or /XRefStm {prev if prev is not None and prev >= here else xrefstm}); earlier revisions precede it"
-        term = re.match(rb"\s*startxref\s+(\d+)\s*%%EOF(?:\r\n|\r|\n|$)", raw[section[4]:section[4] + 64])
+        term = re.match(rb"[\x00\t\n\x0c\r ]*startxref[\x00\t\n\x0c\r ]+(\d+)[\x00\t\n\x0c\r ]*%%EOF(?:\r\n|\r|\n|$)", raw[section[4]:section[4] + 64])
         if not term or int(term.group(1)) != here:
             return f"cross-reference section at offset {here} is not followed by 'startxref {here}' and %%EOF, so its revision was never a complete file"
         off = prev
@@ -799,7 +803,7 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
                 return f"/XRefStm companion at offset {xrefstm} carries /Prev {companion[2]}, which is not the trailer's earlier /Prev"
             # the table's own entries take precedence; both /Size and /Root values must hold
             entries, sizes, roots = {**companion[0], **entries}, (size, companion[1]), (root, companion[5])
-            num, gen = (int(x) for x in re.match(rb"(\d+)\s+(\d+)\s+obj", raw[xrefstm:]).groups())
+            num, gen = (int(x) for x in re.match(rb"(\d+)[\x00\t\n\x0c\r ]+(\d+)[\x00\t\n\x0c\r ]+obj", raw[xrefstm:]).groups())
             if entries.get(num, (None,))[:3] != (1, xrefstm, gen):  # the table must not free or move the companion it names
                 return f"/XRefStm companion object {num} {gen} at offset {xrefstm} is not an in-use entry at that offset once the classic table's entries take precedence"
         sections.append((entries, sizes, roots, classic))
@@ -885,7 +889,7 @@ def check_pdf(path: Path) -> list[str]:
     sx = tail.rfind(b"startxref", 0, eof)
     if sx < 0:
         return [f"{path}: no startxref before the final %%EOF"]
-    m = re.fullmatch(rb"startxref\s+(\d+)\s*", tail[sx:eof])
+    m = re.fullmatch(rb"startxref[\x00\t\n\x0c\r ]+(\d+)[\x00\t\n\x0c\r ]*", tail[sx:eof])
     if not m:
         return [f"{path}: malformed startxref before the final %%EOF"]
     off = int(m.group(1))
