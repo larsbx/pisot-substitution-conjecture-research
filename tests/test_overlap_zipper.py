@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import pytest
+
 from psc_research.overlap_graph import OverlapGraph
 from psc_research.overlap_obstruction import common_child_start_count
+from psc_research.overlap_recurrence import zero_shift_free_recurrent_sccs
 from psc_research.overlap_zipper import (
     is_strict_zipper,
     ordered_child_occurrences,
@@ -42,3 +45,32 @@ def test_ordered_occurrences_preserve_all_child_occurrences() -> None:
     # boundary/zipper dictionary.
     assert saw_strict
     assert saw_boundary_tie
+
+
+class _Graph:
+    def __init__(self, states, adj, capped: bool = False):
+        self.states = states
+        self.adj = adj
+        self.capped = capped
+
+    @staticmethod
+    def is_coincidence(state) -> bool:
+        return state[0] == state[1] and not any(state[2])
+
+
+def test_zero_shift_free_recurrence_is_one_sided_and_fail_closed() -> None:
+    z = (0, 0, 0)
+    one = (1, 0, 0)
+    two = (2, 0, 0)
+    states = [
+        (1, 1, z),   # coincidence, removed
+        (1, 2, one), # nonzero-shift self-cycle, retained
+        (2, 3, z),   # zero-shift self-cycle, removed
+        (3, 1, two), # feeds the removed zero-shift state
+    ]
+    g = _Graph(states, [[], [1], [2], [2]])
+    comps = zero_shift_free_recurrent_sccs(g)
+    assert [set(comp) for comp in comps] == [{1}]
+
+    with pytest.raises(RuntimeError):
+        zero_shift_free_recurrent_sccs(_Graph(states, [[], [1], [2], [2]], capped=True))
