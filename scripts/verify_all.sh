@@ -34,6 +34,11 @@ if python3 scripts/check_finite_exact_sync.py; then
 else
     bad "mojo/finite_exact vendoring drift"
 fi
+if python3 scripts/check_manuscript_source.py; then
+    ok "manuscript sources are intact LaTeX and PDF"
+else
+    bad "manuscript source integrity"
+fi
 if [[ ${1:-} == provenance ]]; then
     exit "$status"
 fi
