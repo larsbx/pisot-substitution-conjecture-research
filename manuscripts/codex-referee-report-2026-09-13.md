@@ -505,3 +505,30 @@ No other findings were posted in the twenty-first round.
 
 No other findings were posted in the twenty-third round.
 
+
+
+---
+
+# Twenty-fourth round: review of the hardened guard (pull request #95)
+
+**Reviewed commit:** `be9dfc3abf` (findings 39–40, rebased onto `main`).
+**Review posted:** 2026-09-15T15:38:04Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 41 (P2) — `manuscripts/MANIFEST`, line 1
+
+> **Include every tracked manuscript source in the manifest**
+>
+> Add `PSC_PROOF_next_source_audit.tex` to this inventory. It is a tracked 745-line manuscript described in `docs/source-provenance-v16-later-audit-2026-09-12.md` as the new manuscript, but deleting it still makes this guard exit successfully because only manifest entries are required and only files that remain are inspected. This leaves the missing-source failure mode that the manifest is intended to close.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 42 (P2) — `scripts/check_manuscript_source.py`, line 63
+
+> **Verify that an object is an XRef stream**
+>
+> When a corrupted in-range `startxref` happens to point at any ordinary indirect object, this branch accepts the PDF because it checks only the generic `N N obj` header. For example, rewriting the repository PDF's offset to its ordinary `/Producer` object at byte 523231 makes `check_pdf` return no problems even though the pointer no longer identifies a cross-reference section. Require the referenced object's dictionary to identify a cross-reference stream (such as `/Type /XRef`) rather than accepting every object.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-fourth round.
+\n

@@ -1,4 +1,6 @@
 """The manuscript-source guard fails closed on missing, mangled, and truncated files."""
+import re
+import re
 import shutil
 import subprocess
 import sys
@@ -62,6 +64,15 @@ def test_pdf_with_bad_startxref_fails(copy):
     pdf.write_bytes(raw[: raw.rfind(b"startxref")] + b"startxref\n999999999\n%%EOF\n")
     code, out = run(copy)
     assert code == 1 and "startxref" in out
+
+
+def test_pdf_startxref_at_ordinary_object_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = pdf.read_bytes()
+    ordinary = next(m for m in re.finditer(rb"\d+\s+\d+\s+obj\b", raw) if b"/XRef" not in raw[m.start(): m.start() + 4096])
+    pdf.write_bytes(raw[: raw.rfind(b"startxref")] + b"startxref\n%d\n%%%%EOF\n" % ordinary.start())
+    code, out = run(copy)
+    assert code == 1 and "not a cross-reference stream" in out
 
 
 def test_missing_required_file_fails(copy):

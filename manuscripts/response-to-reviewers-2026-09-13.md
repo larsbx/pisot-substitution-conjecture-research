@@ -322,3 +322,16 @@ Two findings from the automated Codex review of commit `d2adbb9b97`; both accept
 | 39 | P2 | A PDF truncated after its `%PDF-` header passed the guard | Accepted. The guard now requires `%%EOF` within the last 1024 bytes, a `startxref` offset before the final `%%EOF`, and that the offset lies inside the file and points at an `xref` table or a cross-reference stream object; tests cover a header-only PDF and a bad `startxref` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 40 | P2 | Missing or renamed manuscript files passed silently; an empty directory reported success | Accepted. `manuscripts/MANIFEST` lists the required files; the guard fails on a missing manifest, an empty manifest, any listed file that is absent, and a manifest without a `.tex` and a `.pdf`; tests cover a deleted PDF and an empty directory | `manuscripts/MANIFEST`, `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 
+
+
+---
+
+## Twenty-fourth round (pull request #95, hardened guard)
+
+Two findings from the automated Codex review of commit `be9dfc3abf`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 41 | P2 | `PSC_PROOF_next_source_audit.tex` is tracked but was absent from the manifest, so deleting it passed | Accepted. Added to `manuscripts/MANIFEST` | `manuscripts/MANIFEST` |
+| 42 | P2 | An in-range `startxref` pointing at any ordinary object passed | Accepted. When the offset points at an object, its dictionary must contain `/Type /XRef`; a test rewrites the offset to an ordinary object and expects failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+\n
