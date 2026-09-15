@@ -152,7 +152,7 @@ def first_zero_shift_free_affine_pump(
         var found = False
         for i in range(len(candidates)):
             if member[candidates[i].child_index]:
-                edges.append(candidates[i])
+                edges.append(candidates[i].copy())
                 current = candidates[i].child_index
                 found = True
                 break
@@ -164,7 +164,7 @@ def first_zero_shift_free_affine_pump(
     var cycle_edges = List[AffineOccurrenceEdge]()
     for i in range(start, len(states)):
         cycle_states.append(states[i])
-        cycle_edges.append(edges[i])
+        cycle_edges.append(edges[i].copy())
     var out = List[AffinePumpCertificate]()
     out.append(AffinePumpCertificate(cycle_states, cycle_edges))
     return out^
@@ -185,13 +185,13 @@ def verify_affine_pump(
     for k in range(n):
         var parent_index = certificate.state_indices[k]
         var child_index = certificate.state_indices[(k + 1) % n]
-        var edge = certificate.edges[k]
+        var edge = certificate.edges[k].copy()
         if edge.parent_index != parent_index or edge.child_index != child_index:
             return False
         var actual = occurrence_edges(tables, a, parent_index)
         if edge.occurrence_ordinal < 0 or edge.occurrence_ordinal >= len(actual):
             return False
-        var replay = actual[edge.occurrence_ordinal]
+        var replay = actual[edge.occurrence_ordinal].copy()
         if (
             replay.child_index != edge.child_index
             or replay.top_child_index != edge.top_child_index
