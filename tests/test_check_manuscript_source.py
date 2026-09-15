@@ -74,6 +74,21 @@ def test_pdf_startxref_at_ordinary_object_fails(copy):
     assert code == 1 and "not a cross-reference stream" in out
 
 
+def test_pdf_last_trailer_is_the_one_checked(copy):
+    # an incremental update whose newest trailer is corrupt, with the old valid trailer still in the window
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(pdf.read_bytes() + b"\nstartxref\n999999999\n%%EOF\n")
+    code, out = run(copy)
+    assert code == 1 and "beyond end of file" in out
+
+
+def test_pdf_xref_object_without_stream_body_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(b"%PDF-1.5\n1 0 obj\n<< /Type /XRef /Size 2 >>\nendobj\nstartxref\n9\n%%EOF\n")
+    code, out = run(copy)
+    assert code == 1 and "no stream body" in out
+
+
 def test_missing_required_file_fails(copy):
     next(copy.glob("*.pdf")).unlink()
     code, out = run(copy)

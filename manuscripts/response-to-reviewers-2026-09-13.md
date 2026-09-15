@@ -334,4 +334,16 @@ Two findings from the automated Codex review of commit `be9dfc3abf`; both accept
 | --- | --- | --- | --- | --- |
 | 41 | P2 | `PSC_PROOF_next_source_audit.tex` is tracked but was absent from the manifest, so deleting it passed | Accepted. Added to `manuscripts/MANIFEST` | `manuscripts/MANIFEST` |
 | 42 | P2 | An in-range `startxref` pointing at any ordinary object passed | Accepted. When the offset points at an object, its dictionary must contain `/Type /XRef`; a test rewrites the offset to an ordinary object and expects failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+
+---
+
+## Twenty-fifth round (pull request #95, manifest and XRef revision)
+
+Two findings from the automated Codex review of commit `ea83b495c5`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 43 | P2 | With several trailers in the last 1024 bytes the guard validated the first, not the one before the final `%%EOF` | Accepted. The guard locates the final `%%EOF`, takes the last `startxref` before it, and requires the text between them to be exactly the offset; a test appends a corrupt trailer after the valid one and expects failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 44 | P2 | An XRef-typed object without a stream body passed | Accepted. An object-pointing offset must lead to a dictionary containing `/Type /XRef` followed by a `stream` keyword and a later `endstream`; a classic `xref` table must be followed by `trailer`; a test builds a PDF whose only object is XRef-typed with no stream and expects failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 \n

@@ -531,4 +531,30 @@ No other findings were posted in the twenty-third round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the twenty-fourth round.
+
+
+---
+
+# Twenty-fifth round: review of the manifest and XRef revision (pull request #95)
+
+**Reviewed commit:** `ea83b495c5` (findings 41–42).
+**Review posted:** 2026-09-15T15:43:06Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 43 (P2) — `scripts/check_manuscript_source.py`, line 55
+
+> **Select the startxref preceding the final EOF**
+>
+> When an incrementally updated PDF has multiple trailers within the last 1024 bytes, `re.search` selects the first matching `startxref ... %%EOF`, not the trailer preceding the final EOF. If the newest trailer contains a corrupt offset while the prior trailer remains in the window, the guard validates the old offset and returns success. Fresh evidence beyond finding 39 is that a tail containing a valid `startxref 9` followed by a final `startxref 999999` produces no problems; select and validate the last trailer instead.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 44 (P2) — `scripts/check_manuscript_source.py`, line 68
+
+> **Require an actual stream in XRef objects**
+>
+> When a cross-reference stream loses its `stream` keyword and data while retaining the object dictionary and final trailer, this branch treats the entire 4096-byte window as the dictionary and accepts `/Type /XRef`; it never requires an actual stream body. Consequently a malformed file containing only an XRef-typed object and `startxref`/`%%EOF` returns success. Fresh evidence beyond finding 42 is this type-only-object path; validate the stream structure rather than only its type marker.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-fifth round.
 \n

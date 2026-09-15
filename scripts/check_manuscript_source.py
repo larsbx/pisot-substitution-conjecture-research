@@ -6,7 +6,7 @@ file must exist; every ``.tex`` in the directory must be valid UTF-8 with no
 control bytes other than tab and newline, a ``\\documentclass`` first line,
 ``\\begin{document}`` before ``\\end{document}``, and at least MIN_LINES lines;
 every ``.pdf`` must carry the ``%PDF-`` header, a ``startxref`` offset that
-points at an ``xref`` table or at an object whose dictionary is ``/Type /XRef``, and ``%%EOF``
+(the last one before the final ``%%EOF``) that points at an ``xref`` table with a trailer or at a\n``/Type /XRef`` object with a stream body, and ``%%EOF``
 within the last 1024 bytes.  Exit status 1 names every failure, so a missing,
 byte-mangled or truncated file never passes.
 
@@ -48,28 +48,35 @@ def check_pdf(path: Path) -> list[str]:
     raw = path.read_bytes()
     if not raw.startswith(b"%PDF-"):
         return [f"{path}: missing %PDF- signature (got {raw[:5]!r})"]
-    problems = []
-    tail = raw[-1024:]
-    if b"%%EOF" not in tail:
-        problems.append(f"{path}: no %%EOF in the last 1024 bytes (truncated?)")
-    m = re.search(rb"startxref\s+(\d+)\s*%%EOF", tail)
+    tail_start = max(0, len(raw) - 1024)
+    tail = raw[tail_start:]
+    eof = tail.rfind(b"%%EOF")
+    if eof < 0:
+        return [f"{path}: no %%EOF in the last 1024 bytes (truncated?)"]
+    # the trailer that counts is the last startxref before the final %%EOF
+    sx = tail.rfind(b"startxref", 0, eof)
+    if sx < 0:
+        return [f"{path}: no startxref before the final %%EOF"]
+    m = re.fullmatch(rb"startxref\s+(\d+)\s*", tail[sx:eof])
     if not m:
-        problems.append(f"{path}: no startxref offset before the final %%EOF")
-        return problems
+        return [f"{path}: malformed startxref before the final %%EOF"]
     off = int(m.group(1))
     if off >= len(raw):
-        problems.append(f"{path}: startxref offset {off} beyond end of file ({len(raw)} bytes)")
-    elif re.match(rb"xref\b", raw[off:off + 8]):
-        pass
-    elif re.match(rb"\d+\s+\d+\s+obj\b", raw[off:off + 32]):
-        # a cross-reference stream: the object's dictionary must say so
-        head = raw[off:off + 4096]
-        dictionary = head[: head.find(b"stream")] if b"stream" in head else head
-        if not re.search(rb"/Type\s*/XRef\b", dictionary):
-            problems.append(f"{path}: startxref offset {off} points at an object that is not a cross-reference stream")
-    else:
-        problems.append(f"{path}: startxref offset {off} does not point at an xref table or object")
-    return problems
+        return [f"{path}: startxref offset {off} beyond end of file ({len(raw)} bytes)"]
+    at = raw[off:]
+    if re.match(rb"xref\s", at[:8]):
+        if b"trailer" not in at:
+            return [f"{path}: xref table at {off} has no trailer"]
+        return []
+    if re.match(rb"\d+\s+\d+\s+obj\b", at[:32]):
+        # a cross-reference stream: dictionary, then a stream body, then endstream
+        body = at.find(b"stream")
+        if body < 0 or b"endstream" not in at[body:]:
+            return [f"{path}: object at {off} has no stream body (not a cross-reference stream)"]
+        if not re.search(rb"/Type\s*/XRef\b", at[:body]):
+            return [f"{path}: startxref offset {off} points at an object that is not a cross-reference stream"]
+        return []
+    return [f"{path}: startxref offset {off} does not point at an xref table or object"]
 
 
 def main(argv: list[str]) -> int:
