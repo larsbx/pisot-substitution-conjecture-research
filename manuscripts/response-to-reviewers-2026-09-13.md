@@ -509,3 +509,16 @@ Two findings from the automated Codex review of commit `273d95fb7d`; both accept
 | --- | --- | --- | --- | --- |
 | 75 | P2 | A stream superseded by a later revision was never decoded | Accepted. After the replay, every in-use entry that the effective table supersedes is inspected structurally: if its object is a stream, the body must have a direct `/Length`, be closed by `endstream`, carry no filter or exactly `/FlateDecode`, and inflate strictly within the 64 MiB ceiling. Test: an original revision whose content stream is replaced by an update passes intact and fails with "superseded stream object 4 does not inflate" once a byte of the old body is flipped | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 76 | P2 | A historical entry could point into its own trailer region | Accepted. An in-use entry must now point before its own cross-reference section (a cross-reference stream may point at its own object), since objects precede the section that lists them. Test: the original section's entry for object 3 is redirected to a `3 0 obj` text embedded in that section's trailer while a later update supersedes object 3; it fails "not before its cross-reference section" | same |
+
+
+---
+
+## Thirty-ninth round (pull request #95, superseded-stream revision)
+
+Three findings from the automated Codex review of commit `bb3f62c23f`; all accepted. All three concern the superseded-stream inspection added in the previous round, which now applies the same discipline as the cross-reference stream parser.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 77 | P2 | An unparsable `/Filter` on a superseded stream counted as no filter | Accepted. A present `/Filter` that is not a name or an array of names fails ("unparsable /Filter"). Test: `/Filter 9 0 R` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 78 | P2 | `/DecodeParms` on a superseded stream were not validated | Accepted. `/DecodeParms` must be a direct dictionary (or a one-element array of one) with `/Predictor` 1, 2 or 10–15 and positive geometry; for a PNG predictor the inflated length must be a whole number of rows of the declared width, each carrying a known row filter. Tests: `/Predictor 12 /Columns 4` on a matching payload passes; `/Predictor 99`, `/Predictor 12 /Columns 999` and an indirect `/DecodeParms 7 0 R` fail | same |
+| 79 | P2 | A superseded stream needed only `endstream` | Accepted. The body must be closed by `endstream` followed by `endobj`. Test: the superseded object's `endobj` token altered | same |

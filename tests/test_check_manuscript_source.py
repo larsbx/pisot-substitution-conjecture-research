@@ -500,18 +500,27 @@ def test_classic_entry_cannot_point_into_its_own_trailer(copy):
     assert code == 1 and "not before its cross-reference section" in out, out
 
 
-def test_superseded_stream_is_still_decoded(copy):
+def flate_stream(payload: bytes, extra: bytes = b"") -> bytes:
     import zlib
-    pdf = next(copy.glob("*.pdf"))
-    content = zlib.compress(b"0 0 m 10 10 l S")
-    stream = b"<< /Length %d /Filter /FlateDecode >>\nstream\n" % len(content) + content + b"\nendstream"
+    content = zlib.compress(payload)
+    return b"<< /Length %d /Filter /FlateDecode " % len(content) + extra + b">>\nstream\n" + content + b"\nendstream"
+
+
+def superseded_pdf(old: bytes) -> bytes:
+    """Object 4 is the stream ``old`` in the original revision and a sound content stream in
+    an update, so pypdf reads only the update while the guard must still inspect ``old``."""
     raw = classic_pdf(objs=[b"<< /Type /Catalog /Pages 2 0 R >>", b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
-                            b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] /Contents 4 0 R >>", stream])
+                            b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] /Contents 4 0 R >>", old])
     old_xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
     new_o4 = len(raw)
-    raw += b"4 0 obj\n" + stream + b"\nendobj\n"
+    raw += b"4 0 obj\n" + flate_stream(b"0 0 m 10 10 l S") + b"\nendobj\n"
     new_xref = len(raw)
-    raw += b"xref\n4 1\n%010d 00000 n \ntrailer\n<< /Size 5 /Root 1 0 R /Prev %d >>\nstartxref\n%d\n%%%%EOF\n" % (new_o4, old_xref, new_xref)
+    return raw + b"xref\n4 1\n%010d 00000 n \ntrailer\n<< /Size 5 /Root 1 0 R /Prev %d >>\nstartxref\n%d\n%%%%EOF\n" % (new_o4, old_xref, new_xref)
+
+
+def test_superseded_stream_is_still_decoded(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = superseded_pdf(flate_stream(b"0 0 m 10 10 l S"))
     pdf.write_bytes(raw)
     assert run(copy)[0] == 0
     # flip a byte inside the superseded copy of the stream (the first one in the file)
@@ -519,6 +528,32 @@ def test_superseded_stream_is_still_decoded(copy):
     pdf.write_bytes(raw[:i] + bytes([raw[i] ^ 0xFF]) + raw[i + 1:])
     code, out = run(copy)
     assert code == 1 and "superseded stream object 4 does not inflate" in out, out
+
+
+def test_superseded_stream_filter_must_parse(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(superseded_pdf(flate_stream(b"x").replace(b"/Filter /FlateDecode", b"/Filter 9 0 R")))
+    code, out = run(copy)
+    assert code == 1 and "unparsable /Filter" in out, out
+
+
+def test_superseded_stream_decode_parms_are_validated(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(superseded_pdf(flate_stream(b"\x00abcd", b"/DecodeParms << /Predictor 12 /Columns 4 >> ")))
+    assert run(copy)[0] == 0
+    for parms, message in ((b"/DecodeParms << /Predictor 99 >> ", "unsupported /Predictor 99"),
+                           (b"/DecodeParms << /Predictor 12 /Columns 999 >> ", "not a multiple of the predicted row width"),
+                           (b"/DecodeParms 7 0 R ", "not a direct dictionary")):
+        pdf.write_bytes(superseded_pdf(flate_stream(b"\x00abcd", parms)))
+        code, out = run(copy)
+        assert code == 1 and message in out, (parms, out)
+
+
+def test_superseded_stream_must_end_with_endobj(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(superseded_pdf(flate_stream(b"x")).replace(b"endstream\nendobj", b"endstream\nendobX", 1))
+    code, out = run(copy)
+    assert code == 1 and "not closed by endstream and endobj" in out, out
 
 
 def test_decoded_byte_ceiling_applies_before_inflation(copy):

@@ -936,3 +936,37 @@ No other findings were posted in the thirty-seventh round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the thirty-eighth round.
+
+
+---
+
+# Thirty-ninth round: review of the superseded-stream revision (pull request #95)
+
+**Reviewed commit:** `bb3f62c23f` (findings 75–76).
+**Review posted:** 2026-09-15T17:51:10Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 77 (P2) — `scripts/check_manuscript_source.py`, line 350
+
+> **Reject unparsable filters on superseded streams**
+>
+> When a superseded stream contains a `/Filter` key whose value does not match this regex, such as `/Filter 9 0 R` or a malformed array, `flt` becomes `None` and the stream is treated as unfiltered. Corrupt encoded bytes can therefore pass because pypdf only inspects the effective newer object. Fresh evidence beyond the earlier filter findings is this newly added historical-stream path; fail whenever `/Filter` is present but cannot be parsed as the supported chain.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 78 (P2) — `scripts/check_manuscript_source.py`, line 354
+
+> **Validate decode parameters on superseded streams**
+>
+> For a superseded `/FlateDecode` stream, this only inflates the raw deflate member and never validates or applies `/DecodeParms`; a zlib-valid stream with `/Predictor 99` or inconsistent `/Columns` therefore passes, while pypdf never opens that historical object. Fresh evidence beyond the earlier predictor finding is the new `_superseded_streams` path, which needs the same decode-parameter validation as effective streams.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 79 (P2) — `scripts/check_manuscript_source.py`, line 348
+
+> **Require superseded stream objects to end with endobj**
+>
+> When a historical stream is superseded, replacing or deleting its `endobj` token leaves this check successful because it requires only `endstream`; the final pypdf pass reads only the newer effective object. Fresh evidence beyond the earlier XRef-object termination finding is this newly inspected superseded-stream path, which should require `endstream` followed by `endobj` before accepting the historical revision.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-ninth round.

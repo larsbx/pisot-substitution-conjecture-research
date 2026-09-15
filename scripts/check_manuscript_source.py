@@ -325,10 +325,39 @@ def _section_at(raw: bytes, off: int, seen: list[int]) -> str | Section:
     return section
 
 
+def _decode_parms(d: bytes, out: bytes) -> str | None:
+    """Validate a Flate stream's ``/DecodeParms`` against its inflated bytes: a direct
+    dictionary (or one-element array of one), a supported ``/Predictor`` (1, 2 or 10-15)
+    with positive geometry, and for PNG predictors a decoded length that is a whole number
+    of rows carrying known row filters."""
+    key = d.find(b"/DecodeParms")
+    if key < 0:
+        return None
+    m = re.match(rb"/DecodeParms\s*(\[\s*)?", d[key:])
+    parms = _dict_at(d, key + m.end())
+    if parms is None or (m.group(1) and not re.match(rb"\s*\]", d[key + m.end() + len(parms):])):
+        return "/DecodeParms is not a direct dictionary"
+    field = lambda name, default: int(f.group(1)) if (f := re.search(rb"/" + name + rb"\s+(\d+)", parms)) else default
+    pred, cols, colors, bpc = field(b"Predictor", 1), field(b"Columns", 1), field(b"Colors", 1), field(b"BitsPerComponent", 8)
+    if pred not in (1, 2, *range(10, 16)):
+        return f"unsupported /Predictor {pred}"
+    if cols < 1 or colors < 1 or bpc not in (1, 2, 4, 8, 16):
+        return "invalid predictor geometry"
+    if pred >= 10:
+        row = (cols * colors * bpc + 7) // 8 + 1
+        if len(out) % row:
+            return f"decoded length {len(out)} is not a multiple of the predicted row width {row}"
+        if _unpredict(out, row) is None:
+            return "unknown PNG row filter"
+    return None
+
+
 def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) -> str | None:
     """pypdf exposes only the effective entry of each object, so an in-use entry that a
     later revision supersedes is inspected here: if its object is a stream, the body must
-    have a direct ``/Length``, be closed by ``endstream``, and inflate strictly."""
+    have a direct ``/Length``, be closed by ``endstream`` and ``endobj``, carry a parsable
+    filter chain that is empty or exactly ``/FlateDecode``, inflate strictly, and satisfy
+    its ``/DecodeParms``."""
     for entries, _, _ in sections:
         for num, entry in entries.items():
             if entry[0] != 1 or merged.get(num) == entry:
@@ -344,10 +373,14 @@ def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) ->
                 return f"superseded stream object {num} lacks a direct /Length"
             start = head.end() + len(d) + body.end()
             data = at[start:start + int(length.group(1))]
-            if len(data) < int(length.group(1)) or not re.match(rb"(?:\r\n|\r|\n)?endstream\b", at[start + len(data):start + len(data) + 16]):
-                return f"superseded stream object {num} does not match its /Length or lacks endstream"
-            flt = re.search(rb"/Filter\s*(?:/(\w+)|\[\s*((?:/\w+\s*)*)\])", d)
-            names = ([flt.group(1)] if flt.group(1) else re.findall(rb"/(\w+)", flt.group(2))) if flt else []
+            if len(data) < int(length.group(1)) or not re.match(rb"(?:\r\n|\r|\n)?endstream\s*endobj\b", at[start + len(data):start + len(data) + 32]):
+                return f"superseded stream object {num} does not match its /Length or is not closed by endstream and endobj"
+            names = []
+            if b"/Filter" in d:
+                flt = re.search(rb"/Filter\s*(?:/(\w+)|\[\s*((?:/\w+\s*)*)\])", d)
+                if not flt:
+                    return f"superseded stream object {num} has an unparsable /Filter"
+                names = [flt.group(1)] if flt.group(1) else re.findall(rb"/(\w+)", flt.group(2))
             if names not in ([], [b"FlateDecode"]):
                 return f"superseded stream object {num} has an unsupported filter chain"
             if names:
@@ -358,6 +391,8 @@ def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) ->
                     return f"superseded stream object {num} does not inflate ({e})"
                 if len(out) > MAX_STREAM_BYTES or not inflater.eof or inflater.unused_data:
                     return f"superseded stream object {num} does not inflate to a complete deflate member within the ceiling"
+                if problem := _decode_parms(d, out):
+                    return f"superseded stream object {num}: {problem}"
     return None
 
 
