@@ -746,3 +746,19 @@ No other findings were posted in the thirtieth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the thirty-first round.
+
+
+---
+
+# Thirty-second round: review of the exact-extent and stream-decoding revision (pull request #95)
+
+**Reviewed commit:** `7d557ac9f8` (findings 59–60).
+**Review posted:** 2026-09-15T16:48:33Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 61 (P2) — `scripts/check_manuscript_source.py`, line 285
+
+> **Include free entries when validating /Size**
+>
+> For a valid PDF whose highest-numbered cross-reference entry is free, `reader.xref`/`xref_objStm` contains only dereferenceable type-1/type-2 objects, so `top` is lower than `/Size - 1` and this check rejects the file. For example, a classic table with objects 1–3 in use, object 4 free, and `/Size 5` has the required exact extent but is reported inconsistent. Derive the maximum from all cross-reference entries, including type-0/free entries, while still rejecting a `/Size` that merely has no corresponding entry.
+
+No other findings were posted in the thirty-second round.

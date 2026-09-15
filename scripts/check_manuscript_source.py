@@ -65,8 +65,14 @@ def _dict_at(buf: bytes, i: int) -> bytes | None:
     return None
 
 
-def _classic_table(raw: bytes, off: int) -> str | None:
-    """Problem with the classic ``xref`` table at ``raw[off:]``, or None."""
+def _prev_of(d: bytes) -> int | None:
+    m = re.search(rb"/Prev\s+(\d+)", d)
+    return int(m.group(1)) if m else None
+
+
+def _classic_table(raw: bytes, off: int) -> str | tuple[int, int | None]:
+    """The classic ``xref`` table at ``raw[off:]``: a problem, or ``(highest object number
+    among all entries, free ones included, /Prev offset or None)``."""
     at = raw[off:]
     m = re.match(rb"xref[ \t]*(?:\r\n|\r|\n)", at)
     if not m:
@@ -104,7 +110,7 @@ def _classic_table(raw: bytes, off: int) -> str | None:
         return "trailer dictionary lacks /Size or /Root"
     if any(st + c > int(size.group(1)) for st, c in ranges):
         return f"xref subsection exceeds the trailer /Size {int(size.group(1))}"
-    return None
+    return max(st + c - 1 for st, c in ranges), _prev_of(d)
 
 
 def _unpredict(payload: bytes, row: int) -> bytes | None:
@@ -156,8 +162,9 @@ def _xref_rows(raw: bytes, rows: bytes, widths: list[int], numbers: list[int], s
     return None
 
 
-def _xref_stream(raw: bytes, off: int) -> str | None:
-    """Problem with the cross-reference stream object at ``raw[off:]``, or None."""
+def _xref_stream(raw: bytes, off: int) -> str | tuple[int, int | None]:
+    """The cross-reference stream object at ``raw[off:]``: a problem, or ``(highest object
+    number among all rows, type-0 rows included, /Prev offset or None)``."""
     at = raw[off:]
     m = re.match(rb"\d+\s+\d+\s+obj\s*", at)
     if not m:
@@ -233,7 +240,31 @@ def _xref_stream(raw: bytes, off: int) -> str | None:
         payload = _unpredict(payload, row)
         if payload is None:
             return "cross-reference stream uses an unknown PNG row filter"
-    return _xref_rows(raw, payload, widths, numbers, size)
+    return _xref_rows(raw, payload, widths, numbers, size) or (max(numbers), _prev_of(d))
+
+
+def _xref_chain(raw: bytes, off: int) -> str | int:
+    """Walk the cross-reference sections from ``off`` along ``/Prev``; a problem, or the
+    highest object number over every entry of every section."""
+    seen, top = [], -1
+    while True:
+        if off >= len(raw):
+            return f"cross-reference offset {off} beyond end of file ({len(raw)} bytes)"
+        if off in seen:
+            return f"/Prev chain revisits offset {off}"
+        seen.append(off)
+        at = raw[off:]
+        if at.startswith(b"xref"):
+            section = _classic_table(raw, off)
+        elif re.match(rb"\d+\s+\d+\s+obj\b", at[:32]):
+            section = _xref_stream(raw, off)
+        else:
+            section = "offset does not point at an xref table or object"
+        if isinstance(section, str):
+            return f"at cross-reference offset {off}: {section}"
+        top, off = max(top, section[0]), section[1]
+        if off is None:
+            return top
 
 
 def _inflate_strictly(obj) -> str | None:
@@ -256,14 +287,16 @@ def _inflate_strictly(obj) -> str | None:
     return None
 
 
-def _full_parse(path: Path) -> str | None:
+def _full_parse(path: Path, top: int) -> str | None:
     """Parse the whole file with pypdf in strict mode, dereference and decode every object.
 
     This covers what the structural checks above do not model: ``/Prev`` chains,
     object streams and their members, filter and predictor parameters, the body of
     every stream, and the page tree.  ``/Size`` must be one more than the highest
-    object number reachable through the whole cross-reference chain.  A missing or
-    broken parser is a failure, never a skip.
+    object number in the whole cross-reference chain: ``top`` from the structural walk
+    counts free entries, which pypdf does not record, and pypdf's in-use entries cover
+    any hybrid ``/XRefStm`` section.  A missing or broken parser is a failure, never a
+    skip.
     """
     try:
         from pypdf import PdfReader
@@ -281,7 +314,7 @@ def _full_parse(path: Path) -> str | None:
         pages = len(reader.pages)
     except Exception as e:  # noqa: BLE001 - any parser failure is a guard failure
         return f"full parse failed ({type(e).__name__}: {str(e)[:120]})"
-    top = max((i for i, _ in ids), default=-1)
+    top = max(top, *(i for i, _ in ids)) if ids else top
     if not ids or size != top + 1 or pages == 0:
         return f"full parse inconsistent: /Size {size} against highest object number {top}, {len(ids)} objects, {pages} pages"
     return None
@@ -305,16 +338,10 @@ def check_pdf(path: Path) -> list[str]:
     off = int(m.group(1))
     if off >= len(raw):
         return [f"{path}: startxref offset {off} beyond end of file ({len(raw)} bytes)"]
-    at = raw[off:]
-    if at.startswith(b"xref"):
-        problem = _classic_table(raw, off)
-    elif re.match(rb"\d+\s+\d+\s+obj\b", at[:32]):
-        problem = _xref_stream(raw, off)
-    else:
-        problem = "startxref offset does not point at an xref table or object"
-    if problem:
-        return [f"{path}: at startxref offset {off}: {problem}"]
-    problem = _full_parse(path)
+    chain = _xref_chain(raw, off)
+    if isinstance(chain, str):
+        return [f"{path}: {chain}"]
+    problem = _full_parse(path, chain)
     return [f"{path}: {problem}"] if problem else []
 
 

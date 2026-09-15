@@ -287,7 +287,46 @@ def test_bogus_prev_chain_fails(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.write_bytes(classic_pdf(extra_trailer=b"/Prev 999999 "))
     code, out = run(copy)
-    assert code == 1 and "full parse failed" in out
+    assert code == 1 and "offset 999999 beyond end of file" in out, out
+
+
+def test_cyclic_prev_chain_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = classic_pdf(extra_trailer=b"/Prev 000000 ")
+    xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
+    pdf.write_bytes(raw.replace(b"/Prev 000000 ", b"/Prev %06d " % xref))
+    code, out = run(copy)
+    assert code == 1 and "revisits offset" in out, out
+
+
+def test_incremental_update_extent_comes_from_prev_section(copy):
+    # an update section rewriting only object 1; /Size 4 is justified by the original section
+    pdf = next(copy.glob("*.pdf"))
+    raw = classic_pdf()
+    old_xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
+    o1 = len(raw)
+    raw += b"1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n"
+    new_xref = len(raw)
+    raw += b"xref\n1 1\n%010d 00000 n \ntrailer\n<< /Size 4 /Root 1 0 R /Prev %d >>\nstartxref\n%d\n%%%%EOF\n" % (o1, old_xref, new_xref)
+    pdf.write_bytes(raw)
+    code, out = run(copy)
+    assert code == 0, out
+
+
+def test_free_top_entry_passes_classic(copy):
+    # objects 1-3 in use, object 4 free, /Size 5: the extent counts the free entry
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(classic_pdf(edit=lambda b: b.replace(b"xref\n0 4\n", b"xref\n0 5\n")
+                                .replace(b"trailer", b"0000000000 00000 f \ntrailer").replace(b"/Size 4 ", b"/Size 5 ")))
+    code, out = run(copy)
+    assert code == 0, out
+
+
+def test_free_top_entry_passes_xref_stream(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(xref_pdf(rows=lambda t, o1, o2, o3: [*t, b"\x00\x00\x00\x00"]).replace(b"/Size 5 ", b"/Size 6 "))
+    code, out = run(copy)
+    assert code == 0, out
 
 
 def test_type2_entry_to_non_object_stream_fails(copy):

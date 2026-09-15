@@ -423,3 +423,14 @@ Two findings from the automated Codex review of commit `22716cd7a0`; both accept
 | --- | --- | --- | --- | --- |
 | 59 | P2 | An oversized `/Size` was accepted | Accepted. `/Size` must equal one more than the highest object number reachable through the whole cross-reference chain (type-1 and type-2 entries alike); tests inflate `/Size` to 99 on a complete classic PDF and on a cross-reference stream with a consistent `/Index` and expect failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 60 | P2 | Ordinary streams were dereferenced but not decoded | Accepted. Every stream object is decoded: the filter chain must be empty or exactly `/FlateDecode`, a Flate body must inflate with zlib to the end of the deflate member with no trailing bytes, and pypdf's decode (with predictors) is then applied; test flips one byte in the first content stream of the repository PDF, leaving offsets and lengths intact, and expects failure | same |
+
+
+---
+
+## Thirty-second round (pull request #95, exact-extent and stream-decoding revision)
+
+One finding from the automated Codex review of commit `7d557ac9f8`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 61 | P2 | A free highest-numbered entry made a valid file fail the `/Size` check | Accepted. The structural stage now walks the whole cross-reference chain along `/Prev` (an out-of-file offset or a revisited offset fails) and returns the highest object number over every entry of every section, free entries and type-0 rows included; the full-parse stage compares `/Size` with one more than the larger of that extent and pypdf's in-use maximum, so an oversized `/Size` still fails. Tests: a classic table with objects 1–3 in use, object 4 free and `/Size 5` passes; a cross-reference stream with a trailing type-0 row and `/Size 6` passes; a cyclic `/Prev` fails; an incremental update rewriting only object 1, whose `/Size 4` is justified by the original section, passes | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
