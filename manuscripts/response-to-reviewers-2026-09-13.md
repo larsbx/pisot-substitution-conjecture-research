@@ -639,3 +639,13 @@ Four findings from the automated Codex review of commit `bddda784b3`; all accept
 | 104 | P2 | Older revisions were not required to end with their own terminator | Accepted. Every non-companion section must be followed by `startxref` naming that section's offset and `%%EOF`, so each replayed prefix was a complete file. Test: an incremental update whose original revision lost its `startxref` and `%%EOF` | same |
 | 105 | P2 | A page-tree root could carry a `/Parent` | Accepted. The root node must have no `/Parent`. Test: a root `/Pages` with `/Parent 1 0 R`, later repaired; a page used as the root now fails on this rule first | same |
 | 106 | P2 | A stream object could pose as a catalog or page node | Accepted. A resolved in-use node must be a dictionary object closed by `endobj`; a stream body fails. Test: a catalog written as a stream, later repaired | same |
+
+## Forty-ninth round (pull request #95, member-mapping revision)
+
+Three findings from the automated Codex review of commit `8df488e563`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 107 | P2 | An introduced object stream with no type-2 entry was never decoded | Accepted. Every in-use object introduced by a section whose top-level `/Type` is `/ObjStm` is now decoded whether or not any type-2 entry names it, and each header member must still map to a type-2 entry for that container and index. Test: the reviewer's example, object 5's row changed from type 2 to free | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 108 | P2 | A manifest entry could escape the manuscript directory and bypass the format check | Accepted. Manifest entries must be bare file names (no absolute paths, no directory components); every required `.tex`/`.pdf` file is now checked directly rather than through a directory listing. Test: entries `../archive/...pdf`, `/etc/hostname`, `sub/dir.pdf` | same |
+| 109 | P2 | `%%EOFX` was accepted as a historical `%%EOF` | Accepted. Each revision's `%%EOF` must end at a line boundary (or the end of file); the final marker must end the file up to trailing newlines. Test: an original revision ending in `%%EOFX` followed by a valid update; a file with a trailing byte after the final marker | same |

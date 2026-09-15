@@ -1274,3 +1274,34 @@ No other findings were posted in the forty-seventh round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the forty-eighth round.
+
+# Forty-ninth round: review of the member-mapping revision (pull request #95)
+
+**Reviewed commit:** `8df488e563` (findings 103–106).
+**Review posted:** 2026-09-15T19:27:51Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 107 (P2) — `scripts/check_manuscript_source.py`, line 644
+
+> **Decode object streams even when no type-2 row references them**
+>
+> Fresh evidence after the claimed reverse-mapping fix is an introduced `/ObjStm` with no effective type-2 entries at all: the first loop never calls `_objstm`, so its offset is absent from `cache` and this branch silently skips every declared member. For example, changing object 5's row in `objstm_pdf()` from type 2 to a free row leaves the stream header declaring object 5 while `_xref_chain` returns success; pypdf also discovers compressed members from the type-2 table and will not inspect this hidden member. Decode each introduced in-use object stream before performing the reverse check rather than relying on a cache populated by forward references.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 108 (P2) — `scripts/check_manuscript_source.py`, line 884
+
+> **Restrict manifest entries to files that are actually checked**
+>
+> A manifest entry may escape the manuscript directory, and existence is the only validation applied to that resolved path. For example, after removing the required manuscript PDF, replacing its entry with `../archive/2026-09-08/README_READ_FIRST_2026_09_08.pdf` satisfies both `is_file()` and the required `.pdf` suffix, while `present` contains no PDF and the external file is never passed to `check_pdf`; the integrity command consequently succeeds without checking any manuscript PDF. Reject absolute or parent-traversing entries and run the format check on every required file directly.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 109 (P2) — `scripts/check_manuscript_source.py`, line 765
+
+> **Require a boundary after each historical EOF marker**
+>
+> Fresh evidence after the revision-terminator fix is that this regex accepts `%%EOFX` as `%%EOF` because it does not require a token or line boundary after the marker. An incremental file built from an older revision ending in `%%EOFX` followed by a valid update therefore makes `_xref_chain` succeed even though that historical revision never had its own valid EOF marker. Require the marker to end at a valid line boundary before accepting the revision.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-ninth round.

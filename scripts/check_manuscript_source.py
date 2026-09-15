@@ -640,8 +640,14 @@ def _object_streams(raw: bytes, table: dict[int, Entry], cache: dict, introduced
         if members[index]:
             return f"type-2 entry for object {num}: {members[index]}"
     for container, holder in introduced.items():
-        stm = cache.get(holder[1]) if holder[0] == 1 else None
-        if isinstance(stm, tuple):
+        if holder[0] != 1:
+            continue
+        at = raw[holder[1]:]
+        items = _dict_items(at, re.match(rb"\d+\s+\d+\s+obj\s*", at).end())
+        if items is not None and _name_value(items.get(b"Type", b"")) == b"ObjStm":
+            stm = _objstm(raw, table, container, cache)  # decoded whether or not any type-2 entry names it
+            if isinstance(stm, str):
+                return f"object stream introduced by this section: {stm}"
             for k, (num, _) in enumerate(stm[0]):
                 row = table.get(num)
                 if row is None or row[0] != 2 or row[1] != container or row[2] != k:
@@ -760,7 +766,7 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
         here = seen[-1]
         if any(link is not None and link >= here for link in (prev, xrefstm)):
             return f"cross-reference section at offset {here} links forward (/Prev or /XRefStm {prev if prev is not None and prev >= here else xrefstm}); earlier revisions precede it"
-        term = re.match(rb"\s*startxref\s+(\d+)\s*%%EOF", raw[section[4]:section[4] + 64])
+        term = re.match(rb"\s*startxref\s+(\d+)\s*%%EOF(?:\r\n|\r|\n|$)", raw[section[4]:section[4] + 64])
         if not term or int(term.group(1)) != here:
             return f"cross-reference section at offset {here} is not followed by 'startxref {here}' and %%EOF, so its revision was never a complete file"
         off = prev
@@ -848,9 +854,10 @@ def check_pdf(path: Path) -> list[str]:
     if not raw.startswith(b"%PDF-"):
         return [f"{path}: missing %PDF- signature (got {raw[:5]!r})"]
     tail = raw[-1024:]
-    eof = tail.rfind(b"%%EOF")
-    if eof < 0:
-        return [f"{path}: no %%EOF in the last 1024 bytes (truncated?)"]
+    final = re.search(rb"%%EOF[ \t]*(?:\r\n|\r|\n)*$", tail)
+    if not final:
+        return [f"{path}: the file does not end with %%EOF (truncated or trailing bytes?)"]
+    eof = final.start()
     # the trailer that counts is the last startxref before the final %%EOF
     sx = tail.rfind(b"startxref", 0, eof)
     if sx < 0:
@@ -876,13 +883,16 @@ def main(argv: list[str]) -> int:
         problems.append(f"{manifest}: missing manifest of required files")
         required = []
     else:
-        required = [directory / l.strip() for l in manifest.read_text().splitlines() if l.strip()]
-        if not required:
+        names = [l.strip() for l in manifest.read_text().splitlines() if l.strip()]
+        escaping = [n for n in names if Path(n).is_absolute() or Path(n).name != n]
+        problems += [f"{manifest}: entry {n!r} is not a bare file name inside the manuscripts directory" for n in escaping]
+        required = [directory / n for n in names if n not in escaping]
+        if not names:
             problems.append(f"{manifest}: empty manifest")
     for p in required:
         if not p.is_file():
             problems.append(f"{p}: required by the manifest but missing")
-    present = sorted(directory.glob("*.tex")) + sorted(directory.glob("*.pdf")) if directory.is_dir() else []
+    present = sorted(set(directory.glob("*.tex")) | set(directory.glob("*.pdf")) | {p for p in required if p.is_file() and p.suffix in (".tex", ".pdf")}) if directory.is_dir() else []
     checked = 0
     for p in present:
         problems += check_tex(p) if p.suffix == ".tex" else check_pdf(p)

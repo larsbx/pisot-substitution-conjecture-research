@@ -581,7 +581,7 @@ def test_filter_names_are_parsed_whole(copy):
     assert run(copy)[0] == 0
 
 
-def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=None, predictor=None):
+def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=None, predictor=None, row5=None):
     """Objects 1-3 as usual, object 4 an uncompressed object stream whose header lists
     ``members`` (default one member, ``member``, at offset 0) before ``body``, object 6
     the cross-reference stream; object 5's row names ``container`` at ``index``, any
@@ -617,7 +617,7 @@ def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=Non
         elif num in offs:
             rows += row(1, offs[num], 0)
         elif num == 5:
-            rows += row(2, container, index)
+            rows += row5 if row5 is not None else row(2, container, index)
         elif num in extra:
             rows += row(2, 4, extra[num])
         else:
@@ -852,6 +852,35 @@ def test_stream_objects_cannot_serve_as_tree_nodes(copy):
     pdf.write_bytes(classic_update(raw, 1, b"<< /Type /Catalog /Pages 2 0 R >>", 4))
     code, out = run(copy)
     assert code == 1 and "is a stream or is not closed by endobj" in out, out
+
+
+def test_unreferenced_object_streams_are_still_decoded(copy):
+    # object 5's row becomes a free entry, so nothing names object stream 4, whose header still declares object 5
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(objstm_pdf(row5=b"\x00\x00\x00\x00"))
+    code, out = run(copy)
+    assert code == 1 and "no matching type-2 entry" in out, out
+
+
+def test_manifest_entries_must_be_bare_names(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.unlink()
+    manifest = copy / "MANIFEST"
+    lines = manifest.read_text().splitlines()
+    for entry in ("../archive/2026-09-08/README_READ_FIRST_2026_09_08.pdf", "/etc/hostname", "sub/dir.pdf"):
+        manifest.write_text("\n".join(l if not l.endswith(".pdf") else entry for l in lines) + "\n")
+        code, out = run(copy)
+        assert code == 1 and "not a bare file name" in out, (entry, out)
+
+
+def test_eof_marker_needs_a_line_boundary(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(classic_update(classic_pdf().replace(b"%%EOF\n", b"%%EOFX\n"), 3, b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 20 20] >>", 4))
+    code, out = run(copy)
+    assert code == 1 and "never a complete file" in out, out
+    pdf.write_bytes(classic_pdf() + b"X")
+    code, out = run(copy)
+    assert code == 1 and "does not end with %%EOF" in out, out
 
 
 def test_superseded_dictionary_is_parsed_structurally(copy):
