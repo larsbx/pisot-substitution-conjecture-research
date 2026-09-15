@@ -35,6 +35,13 @@ _TEX_IFS = frozenset("if ifcat ifnum ifdim ifodd ifvmode ifhmode ifmmode ifinner
                      "ifpdfabsnum ifpdfabsdim".split())
 
 
+# Control words that end the input, read other files, construct control sequences or change how
+# the rest of the source is read: the guard cannot follow any of them, so one before the closing
+# sentinel (at any depth, since a macro body or a skipped branch cannot be told apart) fails.
+_TEX_STOPS = frozenset("endinput csname catcode scantokens lowercase uppercase directlua input include "
+                       "InputIfFileExists @input openin stop dump".split())
+
+
 def check_tex(path: Path) -> list[str]:
     raw = path.read_bytes()
     try:
@@ -78,9 +85,10 @@ def check_tex(path: Path) -> list[str]:
         return -1
 
     b, e = sentinel("begin"), sentinel("end")
-    stop = re.search(r"(?<!\\)(?:\\\\)*\\endinput(?![a-zA-Z])", active)  # TeX stops reading here; a token inside a
-    if stop and (e < 0 or stop.start() < e):  # macro body or a skipped branch cannot be told apart, so any one counts
-        problems.append(f"{path}: \\endinput on line {active.count(chr(10), 0, stop.start()) + 1} precedes \\end{{document}}")
+    stop = re.search(r"(?<!\\)(?:\\\\)*\\(" + "|".join(sorted(_TEX_STOPS)) + r")(?![a-zA-Z@])", active)
+    if stop and (e < 0 or stop.start() < e):
+        problems.append(f"{path}: \\{stop.group(1)} on line {active.count(chr(10), 0, stop.start()) + 1} precedes "
+                        "\\end{document}; the guard cannot follow it")
     if b < 0 or e < b:
         problems.append(f"{path}: missing or misordered \\begin{{document}} / \\end{{document}} as standalone uncommented top-level lines outside conditionals")
     if len(lines) < MIN_LINES:

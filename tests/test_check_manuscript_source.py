@@ -158,9 +158,15 @@ def test_commented_document_sentinels_fail(copy):
     tex.write_text(text.replace("\\begin{document}", "\\endinput\n\\begin{document}", 1))  # TeX stops before the sentinels
     code, out = run(copy)
     assert code == 1 and "\\endinput on line" in out and "precedes" in out, out
-    tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\stop}{\\endinput}\n\\begin{document}", 1))  # even inside a macro body
+    tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\halt}{\\endinput}\n\\begin{document}", 1))  # even inside a macro body
     code, out = run(copy)
     assert code == 1 and "\\endinput on line" in out, out
+    for word in ("\\csname endinput\\endcsname", "\\input{other}", "\\catcode`\\%=12", "\\scantokens{x}"):  # constructions the guard cannot follow
+        tex.write_text(text.replace("\\begin{document}", word + "\n\\begin{document}", 1))
+        code, out = run(copy)
+        assert code == 1 and "precedes \\end{document}; the guard cannot follow it" in out, (word, out)
+    tex.write_text(text.replace("\\begin{document}", "\\inputencoding{utf8} \\csnamex\n\\begin{document}", 1))  # longer control words differ
+    assert run(copy)[0] == 0
     tex.write_text(text[:i + len("\\end{document}")] + "\n\\endinput" + text[i + len("\\end{document}"):])  # after the document is fine
     assert run(copy)[0] == 0
 

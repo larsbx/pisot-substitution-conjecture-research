@@ -1644,3 +1644,18 @@ No other findings were posted in the seventieth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the seventy-first round.
+
+# Seventy-second round: review of the endinput revision (pull request #95)
+
+**Reviewed commit:** `fb9d9910f9` (finding 135).
+**Review posted:** 2026-09-15T22:19:55Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 136 (P2) — `scripts/check_manuscript_source.py`, line 81
+
+> **Detect dynamically constructed endinput controls**
+>
+> Fresh evidence beyond the literal-control-word fix: when a source places `\csname endinput\endcsname` before the standalone document sentinels, TeX constructs and executes `\endinput`, so it stops before reaching either sentinel, but this regex sees no literal `\endinput` and `check_tex` returns no problems. Reject this executable construction (or fail closed on relevant `\csname` use before the closing sentinel) so a source with no executable document environment cannot pass.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-second round.

@@ -829,3 +829,11 @@ One finding from the automated Codex review of commit `3360c47049`; accepted, on
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 135 | P2 | An `\endinput` before the sentinels left them counted although TeX never reads them | Accepted. Any `\endinput` control word in the comment-stripped text that precedes the closing sentinel now fails the source, at any depth, since one inside a macro body or a skipped branch cannot be told apart from an executed one. The scenario was confirmed to pass the previous revision. Tests: `\endinput` before the sentinels and inside a macro body before them (fail), `\endinput` after `\end{document}` (passes); the repository sources contain none | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-second round (pull request #95, endinput revision)
+
+One finding from the automated Codex review of commit `fb9d9910f9`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 136 | P2 | `\csname endinput\endcsname` constructs `\endinput` without the literal control word | Accepted. The `\endinput` rule is generalised to a fixed set of control words the guard cannot follow, since they end the input, read other files, construct control sequences or change how the rest of the source is read: `\endinput`, `\csname`, `\catcode`, `\scantokens`, `\lowercase`, `\uppercase`, `\directlua`, `\input`, `\include`, `\InputIfFileExists`, `\@input`, `\openin`, `\stop`, `\dump`; any of them before the closing sentinel, at any depth, fails the source. The repository sources use none. The scenario was confirmed to pass the previous revision. Tests: `\csname endinput\endcsname`, `\input{other}`, a `\catcode` change and `\scantokens{x}` before the sentinels (fail); longer control words such as `\inputencoding` (pass) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
