@@ -917,9 +917,10 @@ def check_pdf(path: Path) -> list[str]:
 
 
 def _regular(p: Path, directory: Path) -> str | None:
-    """A problem unless ``p`` is a regular file (no symbolic link at any step) that lives in
+    """A problem unless ``p`` is a regular file, not a symbolic link, that lives in
     ``directory`` itself once both are resolved: a same-named link could otherwise point the
-    check at a file that is not the manuscript source."""
+    check at a file that is not the manuscript source.  The directory itself is checked
+    once by ``main``, since a linked directory makes every child look regular."""
     if not p.is_file():
         return "missing"
     if p.is_symlink() or p.resolve().parent != directory.resolve():
@@ -931,6 +932,9 @@ def main(argv: list[str]) -> int:
     directory = Path(argv[0]) if argv else ROOT / "manuscripts"
     manifest = directory / "MANIFEST"
     problems = []
+    if directory.is_symlink():
+        print("FAIL", f"{directory}: the manuscripts directory is a symbolic link, so its contents are not the manuscript sources")
+        return 1
     if (why := _regular(manifest, directory)) is not None:
         problems.append(f"{manifest}: missing manifest of required files" if why == "missing" else f"{manifest}: manifest of required files is {why}")
         required = []

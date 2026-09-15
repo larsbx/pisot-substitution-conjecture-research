@@ -698,3 +698,11 @@ One finding from the automated Codex review of commit `426c06dd38`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 116 | P2 | A same-named symbolic link could stand in for a required manuscript source | Accepted. The manifest, every required file and every `.tex`/`.pdf` present must be regular files (no symbolic link) whose resolved parent is the resolved manuscripts directory; anything else fails. The scenario (the required PDF replaced by a same-named link to a PDF outside the directory) was confirmed to pass the previous revision. Tests: that scenario, a link inside the directory, and a linked manifest | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-sixth round (pull request #95, symbolic-link revision)
+
+One finding from the automated Codex review of commit `156822e056`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 117 | P2 | The manuscripts directory itself could be a symbolic link | Accepted. A linked directory now fails before its manifest or children are read; the helper's contract is restated accordingly. The scenario was confirmed to pass the previous revision. Test: a link to the directory (fails) while the real directory passes | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

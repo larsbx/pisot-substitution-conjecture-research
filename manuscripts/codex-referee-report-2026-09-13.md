@@ -1403,3 +1403,18 @@ No other findings were posted in the fifty-fourth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the fifty-fifth round.
+
+# Fifty-sixth round: review of the symbolic-link revision (pull request #95)
+
+**Reviewed commit:** `156822e056` (finding 116).
+**Review posted:** 2026-09-15T20:30:04Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 117 (P2) — `scripts/check_manuscript_source.py`, line 925
+
+> **Reject a symlinked manuscripts directory**
+>
+> When the `manuscripts` directory itself is replaced by a symlink, each child reports `p.is_symlink() == False`, while `p.resolve().parent == directory.resolve()` remains true by construction. The guard therefore validates the symlink target and can succeed even though the entire canonical manuscript source directory has been replaced, contrary to this helper's stated “no symbolic link at any step” contract; reject a symlinked directory before accepting its manifest or children.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-sixth round.

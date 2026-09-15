@@ -897,6 +897,14 @@ def test_symbolic_links_are_rejected(copy):
     assert code == 1 and "manifest of required files is a symbolic link" in out, out
 
 
+def test_symbolic_link_to_the_directory_is_rejected(copy):
+    link = copy.parent / "linked"
+    link.symlink_to(copy)
+    code, out = run(link)
+    assert code == 1 and "the manuscripts directory is a symbolic link" in out, out
+    assert run(copy)[0] == 0  # the real directory still passes
+
+
 def test_manifest_entries_must_be_bare_names(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.unlink()
