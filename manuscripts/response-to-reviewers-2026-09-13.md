@@ -411,3 +411,15 @@ Three findings from the automated Codex review of commit `f158aab509`; all accep
 | 57 | P2 | A type-2 entry was accepted on the numeric bound alone | Accepted. The full parse resolves every object-stream member; test points object 1 at the page-tree object as its container and expects failure | same |
 | 58 | P2 | Predictor parameters were not validated | Accepted. The full parse validates the predictor and its geometry; tests with `/Predictor 99` and `/Columns 999` expect failure, and a correct predictor-12 stream passes | same |
 \n
+
+
+---
+
+## Thirty-first round (pull request #95, full-parse revision)
+
+Two findings from the automated Codex review of commit `22716cd7a0`; both accepted. Both were verified before the fix: on the repository PDF the highest object number is 1132 against `/Size 1133`, and pypdf's decoder returns empty data, without raising, on a Flate payload with one flipped byte.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 59 | P2 | An oversized `/Size` was accepted | Accepted. `/Size` must equal one more than the highest object number reachable through the whole cross-reference chain (type-1 and type-2 entries alike); tests inflate `/Size` to 99 on a complete classic PDF and on a cross-reference stream with a consistent `/Index` and expect failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 60 | P2 | Ordinary streams were dereferenced but not decoded | Accepted. Every stream object is decoded: the filter chain must be empty or exactly `/FlateDecode`, a Flate body must inflate with zlib to the end of the deflate member with no trailing bytes, and pypdf's decode (with predictors) is then applied; test flips one byte in the first content stream of the repository PDF, leaving offsets and lengths intact, and expects failure | same |

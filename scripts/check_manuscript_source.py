@@ -236,34 +236,54 @@ def _xref_stream(raw: bytes, off: int) -> str | None:
     return _xref_rows(raw, payload, widths, numbers, size)
 
 
+def _inflate_strictly(obj) -> str | None:
+    """Every stream must carry no filter or exactly ``/FlateDecode``, and a Flate body must
+    inflate to end of stream with no trailing bytes.  pypdf's own decoder returns partial or
+    empty data on a corrupt payload instead of raising, so the inflate is done here."""
+    filters = obj.get("/Filter")
+    names = [] if filters is None else [str(f) for f in (filters if isinstance(filters, list) else [filters])]
+    if names not in ([], ["/FlateDecode"]):
+        return f"unsupported stream filter chain {names}"
+    if names:
+        d = zlib.decompressobj()
+        try:
+            d.decompress(obj._data)
+        except zlib.error as e:
+            return f"stream does not inflate ({e})"
+        if not d.eof or d.unused_data:
+            return "stream does not inflate to a complete deflate member"
+    obj.get_data()
+    return None
+
+
 def _full_parse(path: Path) -> str | None:
-    """Parse the whole file with pypdf in strict mode and dereference every object.
+    """Parse the whole file with pypdf in strict mode, dereference and decode every object.
 
     This covers what the structural checks above do not model: ``/Prev`` chains,
-    object streams and their members, filter and predictor parameters, and the
-    page tree.  A missing or broken parser is a failure, never a skip.
+    object streams and their members, filter and predictor parameters, the body of
+    every stream, and the page tree.  ``/Size`` must be one more than the highest
+    object number reachable through the whole cross-reference chain.  A missing or
+    broken parser is a failure, never a skip.
     """
     try:
         from pypdf import PdfReader
-        from pypdf.generic import IndirectObject
+        from pypdf.generic import IndirectObject, StreamObject
     except BaseException as e:  # noqa: BLE001 - a broken parser install must fail closed
         return f"pypdf is not importable ({type(e).__name__}); install the pinned dev dependency"
     try:
         reader = PdfReader(str(path), strict=True)
         size = int(reader.trailer["/Size"])
-        seen = 0
-        for gen, table in reader.xref.items():
-            for idnum in table:
-                reader.get_object(IndirectObject(idnum, gen, reader))
-                seen += 1
-        for idnum in reader.xref_objStm:
-            reader.get_object(IndirectObject(idnum, 0, reader))
-            seen += 1
+        ids = [(i, g) for g, table in reader.xref.items() for i in table] + [(i, 0) for i in reader.xref_objStm]
+        for idnum, gen in ids:
+            obj = reader.get_object(IndirectObject(idnum, gen, reader))
+            if isinstance(obj, StreamObject) and (err := _inflate_strictly(obj)):
+                return f"object {idnum}: {err}"
         pages = len(reader.pages)
     except Exception as e:  # noqa: BLE001 - any parser failure is a guard failure
         return f"full parse failed ({type(e).__name__}: {str(e)[:120]})"
-    if seen == 0 or seen >= size or pages == 0:
-        return f"full parse inconsistent: {seen} objects dereferenced against /Size {size}, {pages} pages"
+    top = max((i for i, _ in ids), default=-1)
+    if not ids or size != top + 1 or pages == 0:
+        return f"full parse inconsistent: /Size {size} against highest object number {top}, {len(ids)} objects, {pages} pages"
     return None
 
 

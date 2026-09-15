@@ -720,3 +720,29 @@ No other findings were posted in the twenty-ninth round.
 
 No other findings were posted in the thirtieth round.
 \n
+
+
+---
+
+# Thirty-first round: review of the full-parse revision (pull request #95)
+
+**Reviewed commit:** `22716cd7a0` (findings 56–58).
+**Review posted:** 2026-09-15T16:41:20Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 59 (P2) — `scripts/check_manuscript_source.py`, line 266
+
+> **Reject an inflated trailer size**
+>
+> When `/Size` is increased without changing the cross-reference rows, this condition accepts the file because it only rejects `seen >= size`. For example, changing the repository XRef stream from `/Size 1133` to `/Size 9999` while retaining `/Index [0 1133]` leaves its length, offsets, and decoded rows intact, passes the structural upper-bound check, and leaves `seen < size`, even though `/Size` no longer equals one greater than the highest object number. Fresh evidence beyond finding 54 is this oversized rather than undersized `/Size` path; validate the exact object-number extent across the cross-reference chain.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 60 (P2) — `scripts/check_manuscript_source.py`, line 257
+
+> **Decode ordinary streams while dereferencing objects**
+>
+> When an ordinary encoded stream is corrupted, `get_object` only constructs the stream object and retains its encoded bytes; pypdf does not apply `/Filter` decoding until `get_data()` is called. Consequently, flipping a byte in a non-object-stream `/FlateDecode` payload such as object 177 in the repository PDF leaves all offsets and lengths unchanged, and this loop plus `len(reader.pages)` can still report success. Decode every encountered stream so malformed content, font, and image payloads fail the claimed full-file integrity check.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-first round.

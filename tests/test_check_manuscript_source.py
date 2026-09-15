@@ -315,3 +315,31 @@ def test_missing_required_file_fails(copy):
 def test_empty_directory_fails(tmp_path):
     code, out = run(tmp_path)
     assert code == 1 and "missing manifest" in out
+
+
+def test_inflated_classic_size_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    # /Size 99 keeps every subsection within bound, but the highest object number is 3
+    pdf.write_bytes(classic_pdf(edit=lambda b: b.replace(b"/Size 4 ", b"/Size 99 ")))
+    code, out = run(copy)
+    assert code == 1 and "highest object number 3" in out, out
+
+
+def test_inflated_xref_stream_size_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    # /Index keeps the row count consistent while /Size overstates the object-number extent
+    pdf.write_bytes(xref_pdf(dict_extra=b"/Index [0 5] ").replace(b"/Size 5 ", b"/Size 99 "))
+    code, out = run(copy)
+    assert code == 1 and "highest object number 4" in out, out
+
+
+def test_corrupted_ordinary_stream_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = bytearray(pdf.read_bytes())
+    # the first content stream (a /Length-then-/Filter dictionary with no /Type); its offsets and
+    # lengths are untouched, so only decoding the body can detect the flipped byte
+    m = re.search(rb"\d+ 0 obj\n<<\n/Length \d+\s*\n/Filter /FlateDecode\n>>\nstream\n", bytes(raw))
+    raw[m.end() + 40] ^= 0xFF
+    pdf.write_bytes(bytes(raw))
+    code, out = run(copy)
+    assert code == 1 and "does not inflate" in out, out
