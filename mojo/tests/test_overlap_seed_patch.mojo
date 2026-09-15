@@ -3,7 +3,10 @@
 from std.testing import assert_equal, assert_false, assert_true
 from psc.bpa import build, nonproductive_states, substitution_incidence
 from psc.mat3 import Mat3
+from psc.overlap_obstruction import nonproductive_sink_sccs
 from psc.overlap_seed_patch import (
+    OverlapState,
+    SeedOverlapAutomaton,
     build_seed_overlap_graph,
     build_seed_overlap_graph_from_tables,
     first_coincidence_depths,
@@ -39,6 +42,13 @@ def identity_sigma() -> List[List[Int]]:
     return sigma^
 
 
+def _contains_int(xs: List[Int], x: Int) -> Bool:
+    for i in range(len(xs)):
+        if xs[i] == x:
+            return True
+    return False
+
+
 def test_perron_order_is_exact_on_basic_elements() raises:
     var sigma = determinant_two_sigma()
     var m = Mat3(substitution_incidence(sigma))
@@ -64,6 +74,7 @@ def test_canonical_seed_overlap_graph_is_productive() raises:
     assert_false(graph.capped)
     assert_equal(graph.size(), 628)
     assert_equal(len(nonproductive_overlap_states(graph)), 0)
+    assert_equal(len(nonproductive_sink_sccs(graph)), 0)
 
     # Compare only the finite productivity verdict. Equality of the two graph
     # constructions is not yet a theorem or asserted by this test.
@@ -163,6 +174,52 @@ def test_left_aligned_and_strong_coincidence_depths_pin_exact_values() raises:
         assert_true(coinc[i] <= left[i] + prefix)
 
 
+def test_nonproductive_sink_obstruction_is_extracted_exactly() raises:
+    # Synthetic complete graph: 0 is a coincidence, 1 reaches it, 2 feeds the
+    # closed bad SCC {3,4}.  The obstruction extractor must discard the
+    # transient bad vertex 2 and return the recurrent child-closed core.
+    var states = List[OverlapState]()
+    states.append(OverlapState(0, 0, CubicElt()))
+    states.append(OverlapState(0, 1, CubicElt(1, 0, 0)))
+    states.append(OverlapState(1, 2, CubicElt(2, 0, 0)))
+    states.append(OverlapState(1, 2, CubicElt(3, 0, 0)))
+    states.append(OverlapState(2, 0, CubicElt(4, 0, 0)))
+
+    var adj = List[List[Int]]()
+    var a0 = List[Int]()
+    var a1: List[Int] = [0]
+    var a2: List[Int] = [3]
+    var a3: List[Int] = [4]
+    var a4: List[Int] = [3]
+    adj.append(a0^)
+    adj.append(a1^)
+    adj.append(a2^)
+    adj.append(a3^)
+    adj.append(a4^)
+
+    var graph = SeedOverlapAutomaton(states, adj, False)
+    var bad = nonproductive_overlap_states(graph)
+    assert_equal(len(bad), 3)
+    assert_true(_contains_int(bad, 2))
+    assert_true(_contains_int(bad, 3))
+    assert_true(_contains_int(bad, 4))
+
+    var sinks = nonproductive_sink_sccs(graph)
+    assert_equal(len(sinks), 1)
+    assert_equal(len(sinks[0]), 2)
+    assert_true(_contains_int(sinks[0], 3))
+    assert_true(_contains_int(sinks[0], 4))
+    assert_false(_contains_int(sinks[0], 2))
+
+    var capped = SeedOverlapAutomaton(states, adj, True)
+    var caught = False
+    try:
+        _ = nonproductive_sink_sccs(capped)
+    except:
+        caught = True
+    assert_true(caught)
+
+
 def main() raises:
     test_perron_order_is_exact_on_basic_elements()
     print("[PASS] test_perron_order_is_exact_on_basic_elements")
@@ -178,4 +235,6 @@ def main() raises:
     print("[PASS] test_first_coincidence_depths_pin_exact_values")
     test_left_aligned_and_strong_coincidence_depths_pin_exact_values()
     print("[PASS] test_left_aligned_and_strong_coincidence_depths_pin_exact_values")
-    print("7 seed-patch-overlap Mojo tests passed.")
+    test_nonproductive_sink_obstruction_is_extracted_exactly()
+    print("[PASS] test_nonproductive_sink_obstruction_is_extracted_exactly")
+    print("8 seed-patch-overlap Mojo tests passed.")
