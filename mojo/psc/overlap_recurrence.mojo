@@ -1,10 +1,14 @@
 """Exact recurrence diagnostics for the overlap-productivity zipper branch.
 
-An alignment-free bad obstruction from issue #84 would contain a directed
-cycle avoiding coincidences and every offset-zero overlap.  This module asks
-for precisely that finite signature by deleting those vertices and taking SCCs
-of the induced graph.  It is a diagnostic constraint, not a proof that every
-such cycle can occur in a closed nonproductive component.
+A strict left-boundary zipper obstruction from issue #84 would contain a
+directed cycle avoiding coincidences and every offset-zero overlap.  This
+module asks for precisely that finite signature by deleting those vertices and
+taking SCCs of the induced graph.  It does not delete right-aligned overlaps:
+the suffix boundary case is a distinct obstruction and must not be silently
+conflated with zero-shift avoidance.
+
+This is a diagnostic constraint, not a proof that every such cycle can occur
+in a closed nonproductive component.
 """
 
 from psc.overlap_obstruction import overlap_sccs
@@ -23,12 +27,16 @@ def _has_cycle(a: SeedOverlapAutomaton, comp: List[Int]) -> Bool:
     return False
 
 
-def alignment_free_recurrent_sccs(
+def zero_shift_free_recurrent_sccs(
     a: SeedOverlapAutomaton
 ) raises -> List[List[Int]]:
-    """Cycles in the induced graph after deleting coincidences and shift-zero states."""
+    """Cycles after deleting coincidences and offset-zero overlap states.
+
+    "Zero-shift-free" is deliberately one-sided terminology.  A retained state
+    may still be right-aligned; suffix alignment is not removed by this query.
+    """
     if a.capped:
-        raise Error("alignment-free recurrence is undefined for a capped partial graph")
+        raise Error("zero-shift-free recurrence is undefined for a capped partial graph")
 
     var kept = List[Bool]()
     for i in range(a.size()):
