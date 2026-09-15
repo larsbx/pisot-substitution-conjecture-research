@@ -1614,3 +1614,18 @@ No other findings were posted in the sixty-eighth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the sixty-ninth round.
+
+# Seventieth round: review of the macro-body revision (pull request #95)
+
+**Reviewed commit:** `e4a69e56aa` (finding 133).
+**Review posted:** 2026-09-15T22:08:19Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 134 (P2) — `scripts/check_manuscript_source.py`, line 67
+
+> **Track conditionals inside executed brace groups**
+>
+> When a conditional opener occurs inside an ordinary TeX group, this brace-depth filter treats it like an unexecuted macro-body token even though TeX executes it. For example, `{\iffalse}` followed by standalone document sentinels and then `\else`, `}`, `\fi` is balanced at runtime but skips both sentinels; `check_tex` currently returns success because the opener is discarded and the lexically early `}` makes both sentinels appear top-level. Distinguish macro definitions from executed groups rather than ignoring every conditional at nonzero brace depth.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventieth round.

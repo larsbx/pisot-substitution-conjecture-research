@@ -813,3 +813,11 @@ One finding from the automated Codex review of commit `5510b474cb`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 133 | P2 | A `\fi` inside a macro body cancelled a real conditional opener | Accepted. Conditional tokens now count only at brace depth zero, since a token inside a brace body is not executed. The scenario was confirmed to pass the previous revision. Tests: `\newcommand{\fake}{\fi}` before an `\iffalse` around the sentinels (fails), `\newcommand{\fake}{\iffalse}` before a real sentinel (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventieth round (pull request #95, macro-body revision)
+
+One finding from the automated Codex review of commit `e4a69e56aa`; accepted, with the resolution chosen on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 134 | P2 | A conditional opener inside an executed group was discarded like a macro-body token | Accepted. The guard cannot tell an executed group from a macro body without interpreting TeX, so a conditional token at nonzero brace depth is now a problem in itself and the source fails; conditional tokens at the top level are counted as before. The scenario was confirmed to pass the previous revision. Tests: `{\iffalse}` around the sentinels closed by `\else`, `}`, `\fi`, a `\fi` in a macro body, and an `\iffalse` in a macro body (all fail); the repository sources contain no conditionals | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
