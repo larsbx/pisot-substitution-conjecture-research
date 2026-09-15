@@ -161,18 +161,35 @@ zero nonproductive overlap vertices, so its obstruction list is empty.  The
 purpose of the extractor is countermodel retention and normalization if a
 future conjectured invariant fails.
 
-## 6. Literature alignment
+## 6. Literature alignment and provenance
 
-This normal form is consistent with the established separation between strong
-coincidence and overlap coincidence.  Akiyama--Lee show overlap coincidence
-implies an appropriate strong-coincidence condition when the height group is
-trivial, and Akiyama later gives converse statements for sufficiently many
-control-point choices under additional topological hypotheses.  Those results
+The **graph-theoretic part** of Proposition 2.1 is not claimed as novel.
+Potential-overlap algorithms standardly reduce failure of overlap coincidence
+to recurrent noncoincidence components and compare their Perron growth with
+the expansion; Akiyama--Lee (2011) is the primary algorithmic reference in the
+self-affine setting.  What is specific to the present seed-patch programme is
+the combination of that standard finite obstruction normalization with:
+
+- unconditional finiteness of the swap-seed overlap graph from bounded
+  discrepancy;
+- the in-repository full-rank intertwiner of Corollary 5.34;
+- the exact endpoint/boundary-hitting criterion of PR #82; and
+- a canonical fail-closed extractor that preserves a finite countermodel for
+  subsequent conjectures.
+
+The strong-coincidence literature also clarifies what the boundary part does
+and does not buy.  Akiyama--Lee (2014) show overlap coincidence implies an
+appropriate strong-coincidence condition under the height-group hypothesis,
+and Akiyama (2016) gives converse statements for sufficiently many
+control-point choices under additional topological hypotheses.  These results
 explain why endpoint coincidence is a necessary boundary signal but do not
-supply Open Problem 5.35 from the single seed-patch graph used here.
+supply Open Problem 5.35 for the single seed-patch graph used here.
 
 References:
 
+- S. Akiyama and J.-Y. Lee, *Algorithm for determining pure pointedness of
+  self-affine tilings*, Adv. Math. 226 (2011), 2855--2883,
+  DOI 10.1016/j.aim.2010.07.019, arXiv:1003.2898.
 - S. Akiyama and J.-Y. Lee, *Overlap coincidence to strong coincidence in
   substitution tiling dynamics*, European J. Combin. 39 (2014), 233--243,
   DOI 10.1016/j.ejc.2014.01.009, arXiv:1403.0377.
