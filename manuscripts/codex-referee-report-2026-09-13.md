@@ -842,3 +842,37 @@ No other findings were posted in the thirty-fourth round.
 > Fresh evidence beyond finding 65 is the type-1 path: the 65535 bound is applied only to free rows, so a `/W` field encoding generation 65536 is accepted whenever the target header is also `num 65536 obj`; the subsequent strict parse uses that integer as the object's generation rather than supplying the missing range check. Generation numbers are limited to 65535 for in-use objects as well, so apply the bound before branching on the row type.
 
 No other findings were posted in the thirty-fifth round.
+
+
+---
+
+# Thirty-sixth round: review of the per-section revision (pull request #95)
+
+**Reviewed commit:** `f89f2b61d7` (findings 66–68).
+**Review posted:** 2026-09-15T17:23:51Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 69 (P2) — `scripts/check_manuscript_source.py`, line 248
+
+> **Cap decoded xref rows independently of declarations**
+>
+> Fresh evidence beyond finding 67 is a compressed payload that actually matches a hostile declaration: `/Size 1000000000` with four billion highly compressible row bytes permits this call to allocate toward the entire attacker-controlled `expected_rows * row` limit, after which line 260 also materializes a billion object numbers. The small-payload regression fails quickly, but a matching compression bomb can still exhaust the provenance runner instead of producing a guarded failure; impose a repository-appropriate absolute row/decoded-byte ceiling before inflation.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 70 (P2) — `scripts/check_manuscript_source.py`, line 128
+
+> **Walk companion /XRefStm sections structurally**
+>
+> When a classic trailer describes a hybrid-reference PDF, this return retains `/Prev` but discards `/XRefStm`, so the companion cross-reference stream never reaches `_xref_stream` or the effective-table checks. The pypdf fallback cannot close that gap because `reader.xref` and `xref_objStm` expose in-use and compressed entries but not type-0/free rows; therefore a malformed free pointer or free-list row in the companion stream can still be accepted. Parse and merge the `/XRefStm` section alongside the classic table.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 71 (P2) — `scripts/check_manuscript_source.py`, line 320
+
+> **Validate /Size for every historical section**
+>
+> In an incremental PDF, only the final merged extent is compared with the final trailer's `/Size`; each replayed historical section is checked only for its free list. Consequently, an older revision with objects 0–3 and a corrupt `/Size 5` passes if a later revision introduces object 4 and also declares `/Size 5`, because the later entry masks the older trailer's inflated extent. Carry each section's `/Size` into this replay and compare it with that prefix's effective table before applying the next update.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-sixth round.

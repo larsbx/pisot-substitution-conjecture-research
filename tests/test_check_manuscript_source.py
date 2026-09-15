@@ -423,6 +423,55 @@ def test_in_use_generation_is_bounded(copy):
     assert code == 1 and "generation 65536 > 65535" in out, out
 
 
+def test_matching_compression_bomb_hits_the_row_ceiling(copy):
+    import zlib
+    pdf = next(copy.glob("*.pdf"))
+    # two million all-zero rows agree with the declaration and compress to a few kilobytes
+    body = zlib.compress(bytes(4 * 2_000_000))
+    pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 2000000 /W [1 2 1] /Root 1 0 R /Filter /FlateDecode /Length %d >>" % len(body), body))
+    code, out = run(copy)
+    assert code == 1 and "above the ceiling" in out, out
+
+
+def hybrid_pdf(free5=b"\x00\x00\x00\x00"):
+    """A classic table for objects 0-3 whose trailer names a companion /XRefStm stream
+    (object 4) describing itself and a free object 5; /Size 6."""
+    raw = classic_pdf()
+    o4 = len(raw)
+    rows = b"\x00\x00\x00\xff" + b"\x01" + o4.to_bytes(2, "big") + b"\x00" + free5
+    raw += (b"4 0 obj\n<< /Type /XRef /Size 6 /Index [0 1 4 2] /W [1 2 1] /Root 1 0 R /Length %d >>\nstream\n" % len(rows)
+            + rows + b"\nendstream\nendobj\n")
+    xref = len(raw)
+    raw += (b"xref\n0 4\n0000000000 65535 f \n" + b"".join(b"%010d 00000 n \n" % int(m) for m in re.findall(rb"(\d{10}) 00000 n", classic_pdf()))
+            + b"trailer\n<< /Size 6 /Root 1 0 R /XRefStm %d >>\nstartxref\n%d\n%%%%EOF\n" % (o4, xref))
+    return raw
+
+
+def test_hybrid_companion_stream_is_walked(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(hybrid_pdf())
+    code, out = run(copy)
+    assert code == 0, out
+    # the companion's free row for object 5 points beyond /Size
+    pdf.write_bytes(hybrid_pdf(free5=b"\x00\x00\x63\x00"))
+    code, out = run(copy)
+    assert code == 1 and "/XRefStm" in out and "beyond /Size" in out, out
+
+
+def test_size_is_checked_at_every_section(copy):
+    # the original section covers objects 0-3 but declares /Size 5; a later update adds object 4
+    pdf = next(copy.glob("*.pdf"))
+    raw = classic_pdf(edit=lambda b: b.replace(b"/Size 4 ", b"/Size 5 "))
+    old_xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
+    o4 = len(raw)
+    raw += b"4 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>\nendobj\n"
+    new_xref = len(raw)
+    raw += b"xref\n4 1\n%010d 00000 n \ntrailer\n<< /Size 5 /Root 1 0 R /Prev %d >>\nstartxref\n%d\n%%%%EOF\n" % (o4, old_xref, new_xref)
+    pdf.write_bytes(raw)
+    code, out = run(copy)
+    assert code == 1 and "/Size 5 is not one more than the highest object number 3" in out, out
+
+
 def test_zero_count_subsection_fails(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.write_bytes(classic_pdf(edit=lambda b: b.replace(b"trailer", b"9999 0\ntrailer").replace(b"/Size 4 ", b"/Size 9999 ")))
