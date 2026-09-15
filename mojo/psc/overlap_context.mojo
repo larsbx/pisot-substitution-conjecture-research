@@ -106,10 +106,10 @@ def occurrence_context(
         parent.bottom,
         edge.top_child_index,
         edge.bottom_child_index,
-        top_parts.get[0](),
-        top_parts.get[1](),
-        bottom_parts.get[0](),
-        bottom_parts.get[1](),
+        top_parts[0],
+        top_parts[1],
+        bottom_parts[0],
+        bottom_parts[1],
     )
 
 
