@@ -1365,3 +1365,26 @@ No other findings were posted in the fifty-second round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the fifty-third round.
+
+# Fifty-fourth round: review of the white-space revision (pull request #95)
+
+**Reviewed commit:** `c2a67ae3c9` (finding 113).
+**Review posted:** 2026-09-15T20:11:20Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 114 (P2) — `scripts/check_manuscript_source.py`, line 537
+
+> **Bound superseded objects to their historical revision**
+>
+> When an older in-use object begins before its xref section but remains unterminated until bytes appended after that revision's `%%EOF`, `_object_end` scans across the xref, trailer, and later bytes and accepts the eventual closure. A later update can then replace the object, so the final pypdf pass sees only the replacement and `_xref_chain` accepts a revision that was never a complete PDF; bound parsing to the historical section offset rather than the entire file.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 115 (P2) — `scripts/check_manuscript_source.py`, line 542
+
+> **Require a PDF token boundary after endobj**
+>
+> When a superseded direct object ends with `endobj\x0b`, this `\b` succeeds because Python treats vertical tab as a non-word byte, although vertical tab is neither PDF whitespace nor a delimiter. The historical object is therefore accepted as closed while pypdf reads only its later replacement; use the explicit PDF whitespace/delimiter boundary here as well.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-fourth round.

@@ -160,7 +160,7 @@ def _classic_table(raw: bytes, off: int) -> str | Section:
                 return f"xref entry for object {num} has generation {gen} > 65535"
             if e.group(3) == b"n":
                 # an in-use entry must point at the header of its own object
-                if field >= len(raw) or not re.match(rb"%d[\x00\t\n\x0c\r ]+%d[\x00\t\n\x0c\r ]+obj\b" % (num, gen), raw[field:field + 40]):
+                if field >= len(raw) or not re.match(rb"%d[\x00\t\n\x0c\r ]+%d[\x00\t\n\x0c\r ]+obj(?=[\x00\t\n\x0c\r /\[\]<>(){}%%]|$)" % (num, gen), raw[field:field + 40]):
                     return f"xref entry for object {num} does not point at '{num} {gen} obj'"
             table[num] = (0 if e.group(3) == b"f" else 1, field, gen, True)
         pos, entries = pos + 20 * count, entries + count
@@ -226,7 +226,7 @@ def _xref_rows(raw: bytes, rows: bytes, widths: list[int], numbers: list[int], s
             if f2 >= size:
                 return f"cross-reference stream free entry for object {num} points at object {f2} beyond /Size"
         elif kind == 1:
-            if f2 >= len(raw) or not re.match(rb"%d[\x00\t\n\x0c\r ]+%d[\x00\t\n\x0c\r ]+obj\b" % (num, f3), raw[f2:f2 + 40]):
+            if f2 >= len(raw) or not re.match(rb"%d[\x00\t\n\x0c\r ]+%d[\x00\t\n\x0c\r ]+obj(?=[\x00\t\n\x0c\r /\[\]<>(){}%%]|$)" % (num, f3), raw[f2:f2 + 40]):
                 return f"cross-reference stream entry for object {num} does not point at '{num} {f3} obj'"
         elif kind == 2:
             if f2 >= size:
@@ -300,7 +300,7 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
         return "cross-reference stream has no stream body"
     data_start = dend + body.end()
     data = at[data_start:data_start + n]
-    tail = re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj\b", at[data_start + n:data_start + n + 32])
+    tail = re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[data_start + n:data_start + n + 32])
     if len(data) < n or not tail:
         return "cross-reference stream body does not match /Length or is not closed by endstream and endobj"
     filters = _names_of(items[b"Filter"]) if b"Filter" in items else []
@@ -371,7 +371,7 @@ def _section_at(raw: bytes, off: int, seen: list[int]) -> str | Section:
     at = raw[off:]
     if at.startswith(b"xref"):
         section = _classic_table(raw, off)
-    elif re.match(rb"\d+[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+obj\b", at[:32]):
+    elif re.match(rb"\d+[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+obj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[:32]):
         section = _xref_stream(raw, off)
     else:
         section = "offset does not point at an xref table or object"
@@ -381,6 +381,9 @@ def _section_at(raw: bytes, off: int, seen: list[int]) -> str | Section:
     late = [(n, f) for n, (k, f, *_) in section[0].items() if k == 1 and f >= limit]
     if late:
         return f"entry for object {late[0][0]} points at offset {late[0][1]}, not before its cross-reference section at {off}"
+    for n, (k, f, *_) in section[0].items():  # every listed object closes before the section; the stream itself was parsed whole
+        if k == 1 and f != off and isinstance(problem := _whole_object(raw[f:off], n), str):
+            return f"{problem} within the bytes before its cross-reference section at {off}"
     return section
 
 
@@ -522,34 +525,45 @@ def _object_end(buf: bytes, i: int) -> int | None:
     return i + m.end() + (ref.end() if ref else 0)
 
 
+def _whole_object(at: bytes, num: int) -> str | tuple[bytes | None, bytes | None]:
+    """``at`` must begin with one complete indirect object ``num``: its header, one direct
+    object and ``endobj``, or a dictionary and a stream of its direct ``/Length`` closed by
+    ``endstream`` and ``endobj``.  ``(dictionary, stream data)`` (None where absent), or a
+    problem.  Nothing past the end of ``at`` is consulted, so the caller bounds the parse."""
+    head = re.match(rb"\d+[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+obj[\x00\t\n\x0c\r ]*", at)
+    end = _object_end(at, head.end()) if head else None
+    if end is None:
+        return f"object {num} is not one complete object"
+    body = re.match(rb"[\x00\t\n\x0c\r ]*stream(?:\r\n|\n)", at[end:end + 16]) if at.startswith(b"<<", head.end()) else None
+    if not body:
+        closed = re.match(rb"[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[end:end + 16])
+        return (None, None) if closed else f"object {num} is not one complete object closed by endobj"
+    d = at[head.end():end]
+    length = _int_value(_dict_items(d, 0).get(b"Length", b""))
+    if length is None:
+        return f"stream object {num} lacks a direct /Length"
+    start = end + body.end()
+    data = at[start:start + length]
+    if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[start + length:start + length + 32]):
+        return f"stream object {num} does not match its /Length or is not closed by endstream and endobj"
+    return d, data
+
+
 def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) -> str | None:
-    """pypdf exposes only the effective entry of each object, so an in-use entry that a
-    later revision supersedes is inspected here: its bytes must be one complete object
-    closed by ``endobj``; a stream must have a direct ``/Length``, be closed by
-    ``endstream`` and ``endobj``, carry a parsable filter chain that is empty or exactly
-    ``/FlateDecode``, inflate strictly, and satisfy its ``/DecodeParms``."""
-    for entries, *_ in sections:
+    """pypdf exposes only the effective entry of each object, so a stream that a later
+    revision supersedes is decoded here: within the bytes before its own section it must
+    carry a parsable filter chain that is empty or exactly ``/FlateDecode``, inflate
+    strictly, and satisfy its ``/DecodeParms``."""
+    for entries, _, _, _, bound in sections:
         for num, entry in entries.items():
-            if entry[0] != 1 or merged.get(num) == entry:
+            if entry[0] != 1 or entry[1] == bound or merged.get(num) == entry:
                 continue
-            at = raw[entry[1]:]
-            head = re.match(rb"\d+[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+obj[\x00\t\n\x0c\r ]*", at)
-            end = _object_end(at, head.end())
-            if end is None:
-                return f"superseded object {num} is not one complete object"
-            body = re.match(rb"[\x00\t\n\x0c\r ]*stream(?:\r\n|\n)", at[end:end + 16]) if at.startswith(b"<<", head.end()) else None
-            if not body:
-                if re.match(rb"[\x00\t\n\x0c\r ]*endobj\b", at[end:end + 16]):
-                    continue
-                return f"superseded object {num} is not one complete object closed by endobj"
-            d = at[head.end():end]
-            length = _int_value(_dict_items(d, 0).get(b"Length", b""))
-            if length is None:
-                return f"superseded stream object {num} lacks a direct /Length"
-            start = end + body.end()
-            data = at[start:start + length]
-            if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj\b", at[start + len(data):start + len(data) + 32]):
-                return f"superseded stream object {num} does not match its /Length or is not closed by endstream and endobj"
+            parsed = _whole_object(raw[entry[1]:bound], num)
+            if isinstance(parsed, str):
+                return f"superseded {parsed}"
+            d, data = parsed
+            if d is None or data is None:
+                continue
             names = _filter_names(d)
             if names is None:
                 return f"superseded stream object {num} has an unparsable /Filter"
@@ -598,7 +612,7 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
         start = end + body.end()
         data = at[start:start + length]
         names = _names_of(items[b"Filter"]) if b"Filter" in items else []
-        if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj\b", at[start + length:start + length + 32]):
+        if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[start + length:start + length + 32]):
             result = f"object stream {container}, whose body does not match its /Length or is not closed by endstream and endobj"
         elif names is None or names not in ([], [b"FlateDecode"]):
             result = f"object stream {container}, whose filter chain is unparsable or unsupported"
@@ -705,7 +719,7 @@ def _resolve(raw: bytes, table: dict[int, Entry], ref: tuple[int, int], cache: d
         parsed = _dict_parse(at, re.match(rb"\d+[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+obj[\x00\t\n\x0c\r ]*", at).end())
         if parsed is None:
             return f"object {num} {gen} R is not a dictionary"
-        if not re.match(rb"[\x00\t\n\x0c\r ]*endobj\b", at[parsed[1]:parsed[1] + 16]):
+        if not re.match(rb"[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[parsed[1]:parsed[1] + 16]):
             return f"object {num} {gen} R is a stream or is not closed by endobj, so it cannot serve as a dictionary node"
         items = parsed[0]
     else:
@@ -806,9 +820,9 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
             num, gen = (int(x) for x in re.match(rb"(\d+)[\x00\t\n\x0c\r ]+(\d+)[\x00\t\n\x0c\r ]+obj", raw[xrefstm:]).groups())
             if entries.get(num, (None,))[:3] != (1, xrefstm, gen):  # the table must not free or move the companion it names
                 return f"/XRefStm companion object {num} {gen} at offset {xrefstm} is not an in-use entry at that offset once the classic table's entries take precedence"
-        sections.append((entries, sizes, roots, classic))
+        sections.append((entries, sizes, roots, classic, here))
     merged, cache = {}, {}
-    for entries, sizes, roots, classic in reversed(sections):
+    for entries, sizes, roots, classic, _ in reversed(sections):
         merged = {**merged, **entries}  # newer sections win
         if problem := _free_list(merged, classic) or _object_streams(raw, merged, cache, entries):
             return problem

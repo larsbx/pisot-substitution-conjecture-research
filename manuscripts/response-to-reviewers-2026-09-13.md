@@ -681,3 +681,12 @@ One finding from the automated Codex review of commit `8c4ad88fb2`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 113 | P2 | The lexer used Python's white-space class, which omits NUL and admits vertical tab | Accepted. Every pattern and every byte-string strip or split in the guard now spells out the six PDF white-space bytes (NUL, tab, line feed, form feed, carriage return, space); a test asserts the generic class no longer occurs in the source. The scenario (`/Bad\x00Name` in a superseded object) was confirmed to pass the previous revision. Tests: that object (fails), NUL and form feed as separators with vertical tab inside a name (passes), vertical tab glued to a number (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-fourth round (pull request #95, white-space revision)
+
+Two findings from the automated Codex review of commit `c2a67ae3c9`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 114 | P2 | A historical object could close only through bytes appended after its revision | Accepted. Every in-use entry of a section is now parsed as one complete object (a direct object closed by `endobj`, or a dictionary with a stream of its direct `/Length` closed by `endstream` and `endobj`) within the bytes before that section, at the point where the section is read; the superseded-stream pass reuses the same parser under the same bound and keeps only the content checks. The scenario (an unterminated string closed by a comment appended after the update) was confirmed to pass the previous revision. Test: that scenario | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 115 | P2 | `endobj` and `obj` were bounded by a word boundary, which vertical tab satisfies | Accepted. Every `obj`/`endobj` keyword must be followed by a PDF white-space or delimiter byte or the end of the buffer. The scenario (`endobj` followed by a vertical tab) was confirmed to pass the previous revision. Test: that scenario | same |

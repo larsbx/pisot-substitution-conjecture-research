@@ -952,6 +952,29 @@ def test_superseded_non_dictionary_object_is_parsed(copy):
     assert code == 1 and "not one complete object" in out, out
 
 
+def test_historical_objects_close_before_their_section(copy):
+    pdf = next(copy.glob("*.pdf"))
+    # the original object 4 is an unterminated string; the only closing parenthesis, and an
+    # endobj, sit in a comment appended after the update's own object, past the original %%EOF
+    raw = superseded_pdf(b"(open")
+    marker = b"\nendobj\nxref\n4 1\n"
+    patched = raw.replace(marker, b"\nendobj\n% ) endobj\nxref\n4 1\n")
+    old_xref = int(re.findall(rb"startxref\n(\d+)", raw)[-1])
+    patched = patched.replace(b"startxref\n%d\n" % old_xref, b"startxref\n%d\n" % (old_xref + len(b"% ) endobj\n")))
+    pdf.write_bytes(patched)
+    code, out = run(copy)
+    assert code == 1 and "object 4 is not one complete object" in out and "before its cross-reference section" in out, out
+
+
+def test_endobj_needs_a_token_boundary(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = superseded_pdf(b"<< /Marker 1 >>")
+    assert raw.count(b"/Marker 1 >>\nendobj\n") == 1
+    pdf.write_bytes(raw.replace(b"/Marker 1 >>\nendobj\n", b"/Marker 1 >>\nendobj\x0b"))  # vertical tab is a regular byte
+    code, out = run(copy)
+    assert code == 1 and "not one complete object closed by endobj" in out, out
+
+
 def test_superseded_stream_must_end_with_endobj(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.write_bytes(superseded_pdf(flate_stream(b"x")).replace(b"endstream\nendobj", b"endstream\nendobX", 1))
