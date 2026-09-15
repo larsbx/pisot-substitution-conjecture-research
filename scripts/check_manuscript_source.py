@@ -42,10 +42,16 @@ def check_tex(path: Path) -> list[str]:
     if not first.startswith("\\documentclass"):
         problems.append(f"{path}: first line is not \\documentclass")
     # a TeX comment runs from a % preceded by an even run of backslashes (\\ is a control sequence,
-    # \% an escaped percent) to the line end; the document must begin before the first end sentinel
-    # that remains, since TeX stops at the first one it reaches
+    # \% an escaped percent) to the line end; a sentinel counts only when its own backslash follows
+    # an even run of backslashes (\\begin{document} is the \\ control sequence and a word); the
+    # document must begin before the first end sentinel that remains, since TeX stops at the first
     active = "\n".join(re.sub(r"(?<!\\)((?:\\\\)*)%.*", r"\1", l) for l in lines)
-    b, e = active.find("\\begin{document}"), active.find("\\end{document}")
+
+    def sentinel(name: str) -> int:
+        m = re.search(r"(?<!\\)(?:\\\\)*(\\" + name + r"\{document\})", active)
+        return m.start(1) if m else -1
+
+    b, e = sentinel("begin"), sentinel("end")
     if b < 0 or e < b:
         problems.append(f"{path}: missing or misordered \\begin{{document}} / \\end{{document}} on uncommented lines")
     if len(lines) < MIN_LINES:

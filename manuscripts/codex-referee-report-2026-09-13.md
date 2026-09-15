@@ -1539,3 +1539,18 @@ No other findings were posted in the sixty-third round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the sixty-fourth round.
+
+# Sixty-fifth round: review of the first-end-sentinel revision (pull request #95)
+
+**Reviewed commit:** `319b7f7f53` (finding 128).
+**Review posted:** 2026-09-15T21:34:51Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 129 (P2) — `scripts/check_manuscript_source.py`, line 48
+
+> **Reject escaped document sentinels**
+>
+> When the only sentinels are written as `\\begin{document}` and `\\end{document}`, each `find` matches starting at the second backslash and `check_tex` returns success. TeX instead consumes the paired backslashes as the `\\` control sequence, so neither document-environment command is executed; account for the parity of the consecutive backslash run before each sentinel, as is already done for comment markers, so a source without a real document body fails closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-fifth round.

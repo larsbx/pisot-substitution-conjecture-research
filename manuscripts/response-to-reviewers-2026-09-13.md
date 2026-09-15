@@ -773,3 +773,11 @@ One finding from the automated Codex review of commit `873ff91650`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 128 | P2 | An active `\end{document}` before the opening sentinel was masked by a later one | Accepted. The opening sentinel must now precede the first active `\end{document}`, since TeX stops at the first one it reaches. The scenario was confirmed to pass the previous revision. Test: an early `\end{document}` before an otherwise valid pair (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Sixty-fifth round (pull request #95, first-end-sentinel revision)
+
+One finding from the automated Codex review of commit `319b7f7f53`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 129 | P2 | `\\begin{document}` and `\\end{document}` were accepted as sentinels | Accepted. A sentinel now counts only when its own backslash follows an even run of backslashes, the same parity rule as for comment markers. The scenario was confirmed to pass the previous revision. Tests: both sentinels escaped (fails), `\\` immediately before a real sentinel (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

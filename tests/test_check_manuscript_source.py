@@ -118,6 +118,11 @@ def test_commented_document_sentinels_fail(copy):
     tex.write_text(text.replace("\\begin{document}", "\\end{document}\n\\begin{document}", 1))  # an early end before a valid pair
     code, out = run(copy)
     assert code == 1 and "on uncommented lines" in out, out
+    tex.write_text(text.replace("\\begin{document}", "\\\\begin{document}", 1)[:i] + "\\" + text[i:])  # \\ then a bare word, twice
+    code, out = run(copy)
+    assert code == 1 and "on uncommented lines" in out, out
+    tex.write_text(text.replace("\\begin{document}", "\\\\\\begin{document}", 1))  # \\ then the real sentinel
+    assert run(copy)[0] == 0
 
 
 def test_endstream_needs_a_preceding_line_ending(copy):
