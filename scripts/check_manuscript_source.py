@@ -77,28 +77,45 @@ _DELIM = rb"[\s/\[\]<>(){}%]"
 _NAME = rb"/((?:[^\s/\[\]<>(){}%#]|#[0-9A-Fa-f]{2})*)(?=" + _DELIM + rb"|$)"
 
 
-def _filter_names(d: bytes) -> list[bytes] | None:
-    """The ``/Filter`` value of dictionary ``d`` as a list of names with ``#xx`` escapes
-    decoded: ``[]`` without a ``/Filter`` key, ``None`` when the value is neither a whole
-    name nor an array of whole names."""
-    key = re.search(rb"/Filter(?=" + _DELIM + rb")\s*", d)
-    if not key:
-        return []
-    unescape = lambda n: re.sub(rb"#([0-9A-Fa-f]{2})", lambda m: bytes([int(m.group(1), 16)]), n)
-    rest = d[key.end():]
-    if not rest.startswith(b"["):
-        single = re.match(_NAME, rest)
-        return [unescape(single.group(1))] if single else None
+def _unescape(name: bytes) -> bytes:
+    return re.sub(rb"#([0-9A-Fa-f]{2})", lambda m: bytes([int(m.group(1), 16)]), name)
+
+
+def _name_value(value: bytes) -> bytes | None:
+    """The decoded name if ``value`` is exactly one name token, else None."""
+    m = re.fullmatch(_NAME, value)
+    return _unescape(m.group(1)) if m else None
+
+
+def _int_value(value: bytes) -> int | None:
+    """The integer if ``value`` is exactly one whole nonnegative integer, else None."""
+    return int(value) if re.fullmatch(rb"\d+", value) else None
+
+
+def _names_of(value: bytes) -> list[bytes] | None:
+    """``value`` as a list of decoded names: one name, or an array of names; else None."""
+    if not value.startswith(b"["):
+        single = _name_value(value)
+        return [single] if single is not None else None
     names, pos = [], 1
     while True:
-        pos += len(rest[pos:]) - len(rest[pos:].lstrip())
-        if rest[pos:pos + 1] == b"]":
-            return names
-        m = re.match(_NAME, rest[pos:])
+        pos += len(value[pos:]) - len(value[pos:].lstrip())
+        if value[pos:pos + 1] == b"]":
+            return names if pos + 1 == len(value) else None
+        m = re.match(_NAME, value[pos:])
         if not m:
             return None
-        names.append(unescape(m.group(1)))
+        names.append(_unescape(m.group(1)))
         pos += m.end()
+
+
+def _filter_names(d: bytes) -> list[bytes] | None:
+    """The top-level ``/Filter`` value of dictionary bytes ``d`` as a list of names: ``[]``
+    without the key, ``None`` when the dictionary or the value does not parse."""
+    items = _dict_items(d, 0)
+    if items is None:
+        return None
+    return _names_of(items[b"Filter"]) if b"Filter" in items else []
 
 
 def _classic_table(raw: bytes, off: int) -> str | Section:
@@ -349,20 +366,19 @@ def _decode_parms(d: bytes, out: bytes) -> str | None:
     integers, a supported ``/Predictor`` (1, 2 or 10-15) with positive geometry, and for a
     predictor a decoded length that is a whole number of rows (PNG rows carrying known row
     filters)."""
-    key = d.find(b"/DecodeParms")
-    if key < 0:
+    items = _dict_items(d, 0)
+    if items is None or b"DecodeParms" not in items:
         return None
-    m = re.match(rb"/DecodeParms\s*(\[\s*)?", d[key:])
-    parms = _dict_at(d, key + m.end())
-    if parms is None or (m.group(1) and not re.match(rb"\s*\]", d[key + m.end() + len(parms):])):
+    value = items[b"DecodeParms"]
+    if value.startswith(b"["):  # a one-element array holding the dictionary
+        inner = re.fullmatch(rb"\[\s*(<<.*>>)\s*\]", value, re.S)
+        value = inner.group(1) if inner else b""
+    parms = _dict_items(value, 0)
+    if parms is None or _dict_end(value, 0) != len(value):
         return "/DecodeParms is not a direct dictionary"
 
     def field(name: bytes, default: int) -> int | None:
-        k = re.search(rb"/" + name + rb"(?=" + _DELIM + rb")\s*", parms)
-        if not k:
-            return default
-        v = re.match(rb"(\d+)(?=" + _DELIM + rb"|$)", parms[k.end():])
-        return int(v.group(1)) if v else None  # present but not a whole nonnegative integer
+        return default if name not in parms else _int_value(parms[name])  # present but malformed -> None
 
     pred, cols, colors, bpc = (field(n, v) for n, v in ((b"Predictor", 1), (b"Columns", 1), (b"Colors", 1), (b"BitsPerComponent", 8)))
     if None in (pred, cols, colors, bpc):
@@ -383,21 +399,36 @@ def _decode_parms(d: bytes, out: bytes) -> str | None:
 _TOKEN = rb"(?:/(?:[^\s/\[\]<>(){}%#]|#[0-9A-Fa-f]{2})*|[+-]?(?:\d+\.?\d*|\.\d+)|true|false|null)(?=" + _DELIM + rb"|$)"
 
 
-def _dict_end(buf: bytes, i: int) -> int | None:
-    """The index just past the dictionary at ``buf[i:]``: ``<<``, then name keys each
-    followed by one complete direct value, then ``>>``; None if the bytes are not that."""
+def _dict_parse(buf: bytes, i: int) -> tuple[dict[bytes, bytes], int] | None:
+    """The dictionary at ``buf[i:]`` (``<<``, name keys each followed by one complete
+    direct value, ``>>``) as ``(top-level items: decoded key -> raw value bytes, index just
+    past it)``; None if the bytes are not that."""
     if not buf.startswith(b"<<", i):
         return None
-    j = i + 2
+    items, j = {}, i + 2
     while True:
         j += len(buf[j:]) - len(buf[j:].lstrip())
         if buf.startswith(b">>", j):
-            return j + 2
+            return items, j + 2
         key = re.match(_NAME, buf[j:])
         if not key:
             return None
-        if (j := _object_end(buf, j + key.end())) is None:
+        start = j + key.end()
+        if (j := _object_end(buf, start)) is None:
             return None
+        items[_unescape(key.group(1))] = buf[start:j].strip()
+
+
+def _dict_end(buf: bytes, i: int) -> int | None:
+    parsed = _dict_parse(buf, i)
+    return None if parsed is None else parsed[1]
+
+
+def _dict_items(buf: bytes, i: int) -> dict[bytes, bytes] | None:
+    """Top-level items of the dictionary at ``buf[i:]`` (after leading whitespace), or None."""
+    i += len(buf[i:]) - len(buf[i:].lstrip())
+    parsed = _dict_parse(buf, i)
+    return None if parsed is None else parsed[0]
 
 
 def _object_end(buf: bytes, i: int) -> int | None:
@@ -482,16 +513,18 @@ def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) ->
     return None
 
 
-ObjStm = tuple[list[tuple[int, int]], bytes, int]
-"""A decoded object stream: ``(header pairs (object number, offset), decoded data, /First)``."""
+ObjStm = tuple[list[tuple[int, int]], bytes, int, list[str | None]]
+"""A decoded object stream: ``(header pairs (object number, offset), decoded data, /First,
+per-member problem or None)``."""
 
 
 def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int, ObjStm | str]) -> ObjStm | str:
     """Decode the object stream that ``container`` names in ``table`` (cached by its byte
-    offset): an in-use ``/Type /ObjStm`` object with direct ``/N``, ``/First`` and
-    ``/Length``, a Flate or unfiltered body that inflates strictly and satisfies its
-    ``/DecodeParms``, and a header of exactly ``/N`` (object number, offset) pairs whose
-    offsets lie inside the data.  A problem is returned as a string."""
+    offset): an in-use object whose top-level ``/Type`` is ``/ObjStm`` with whole-integer
+    ``/N``, ``/First`` and ``/Length``, a Flate or unfiltered body that inflates strictly
+    and satisfies its ``/DecodeParms``, a header of exactly ``/N`` (object number, offset)
+    pairs whose offsets lie inside the data, and every member parsed as one complete
+    object ending before the next member.  A problem is returned as a string."""
     holder = table.get(container)
     if holder is None or holder[0] != 1:
         return f"object {container}, which is not an in-use object"
@@ -499,16 +532,17 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
         return cache[holder[1]]
     at = raw[holder[1]:]
     head = re.match(rb"\d+\s+\d+\s+obj\s*", at)
-    d = _dict_at(at, head.end())
-    fields = {name: re.search(rb"/" + name + rb"(?=" + _DELIM + rb")\s*(\d+)(?=" + _DELIM + rb"|$)", d) for name in (b"N", b"First", b"Length")} if d else {}
-    body = re.match(rb"\s*stream(?:\r\n|\n)", at[head.end() + len(d):head.end() + len(d) + 16]) if d else None
-    if d is None or not re.search(rb"/Type(?=" + _DELIM + rb")\s*/ObjStm(?=" + _DELIM + rb"|$)", d) or not all(fields.values()) or not body:
-        result: ObjStm | str = f"object {container}, which is not an object stream with direct /N, /First and /Length"
+    parsed = _dict_parse(at, head.end())
+    items, end = parsed if parsed else ({}, head.end())
+    fields = [_int_value(items.get(k, b"")) for k in (b"N", b"First", b"Length")]
+    body = re.match(rb"\s*stream(?:\r\n|\n)", at[end:end + 16]) if parsed else None
+    if not parsed or _name_value(items.get(b"Type", b"")) != b"ObjStm" or None in fields or not body:
+        result: ObjStm | str = f"object {container}, which is not an object stream with whole-integer /N, /First and /Length"
     else:
-        n, first, length = (int(fields[k].group(1)) for k in (b"N", b"First", b"Length"))
-        start = head.end() + len(d) + body.end()
+        n, first, length = fields
+        start = end + body.end()
         data = at[start:start + length]
-        names = _filter_names(d)
+        names = _names_of(items[b"Filter"]) if b"Filter" in items else []
         if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)?endstream\s*endobj\b", at[start + length:start + length + 32]):
             result = f"object stream {container}, whose body does not match its /Length or is not closed by endstream and endobj"
         elif names is None or names not in ([], [b"FlateDecode"]):
@@ -524,7 +558,7 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
                     data = None
             if data is None:
                 result = f"object stream {container}, whose body does not inflate to a complete deflate member within the ceiling"
-            elif names and (problem := _decode_parms(d, data)):
+            elif names and (problem := _decode_parms(at[head.end():end], data)):
                 result = f"object stream {container}: {problem}"
             else:
                 tokens = data[:first].split()
@@ -532,26 +566,40 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
                     result = f"object stream {container}, whose header is not /N pairs of integers"
                 else:
                     pairs = [(int(tokens[2 * k]), int(tokens[2 * k + 1])) for k in range(n)]
-                    result = (pairs, data, first) if all(first + o < len(data) for _, o in pairs) else f"object stream {container}, whose header offsets leave the data"
+                    starts = [first + o for _, o in pairs]
+                    if not all(st < len(data) for st in starts):
+                        result = f"object stream {container}, whose header offsets leave the data"
+                    else:
+                        members = []
+                        for k, st in enumerate(starts):
+                            bound = min([x for x in starts if x > st] + [len(data)])
+                            e = _object_end(data, st)
+                            members.append(None if e is not None and e <= bound and re.fullmatch(rb"\s*", data[e:bound])
+                                           else f"member {k} of object stream {container} is not one complete object within its bounds")
+                        result = (pairs, data, first, members)
     cache[holder[1]] = result
     return result
 
 
-def _object_streams(raw: bytes, entries: dict[int, Entry], table: dict[int, Entry], cache: dict) -> str | None:
-    """Every type-2 entry of a section must name, in that revision's effective ``table``,
-    an object stream whose indexed header member is the entry's own object number
-    (findings 83 and 87: pypdf resolves only the effective entries)."""
-    for num, (kind, container, index, _) in entries.items():
+def _object_streams(raw: bytes, table: dict[int, Entry], cache: dict) -> str | None:
+    """Every effective type-2 entry of a revision must name, in its effective ``table``,
+    an object stream whose indexed header member is the entry's own object number and
+    parses as one complete object (findings 83, 87, 89 and 91: pypdf resolves only the
+    final effective entries, and an inherited row must still hold after its container is
+    replaced)."""
+    for num, (kind, container, index, _) in table.items():
         if kind != 2:
             continue
         stm = _objstm(raw, table, container, cache)
         if isinstance(stm, str):
             return f"type-2 entry for object {num} names {stm}"
-        pairs = stm[0]
+        pairs, _, _, members = stm
         if index >= len(pairs):
             return f"type-2 entry for object {num} has index {index} beyond /N {len(pairs)} of object stream {container}"
         if pairs[index][0] != num:
             return f"type-2 entry for object {num} has index {index}, but member {index} of object stream {container} is object {pairs[index][0]}"
+        if members[index]:
+            return f"type-2 entry for object {num}: {members[index]}"
     return None
 
 
@@ -568,20 +616,19 @@ def _catalog(raw: bytes, root: tuple[int, int], table: dict[int, Entry], cache: 
             return f"trailer /Root {num} {gen} R names generation {gen}, but object {num} has generation {entry[2]}"
         at = raw[entry[1]:]
         head = re.match(rb"\d+\s+\d+\s+obj\s*", at)
-        d = _dict_at(at, head.end())
+        items = _dict_items(at, head.end())
     else:
         if gen != 0:
             return f"trailer /Root {num} {gen} R names a compressed object with a nonzero generation"
         stm = _objstm(raw, table, entry[1], cache)
         if isinstance(stm, str):
             return f"trailer /Root {num} {gen} R names a member of {stm}"
-        pairs, data, first = stm
-        if entry[2] >= len(pairs) or pairs[entry[2]][0] != num:
-            return f"trailer /Root {num} {gen} R is not member {entry[2]} of object stream {entry[1]}"
-        start = first + pairs[entry[2]][1]
-        d = _dict_at(data, start + len(data[start:]) - len(data[start:].lstrip()))
-    if d is None or not re.search(rb"/Type(?=" + _DELIM + rb")\s*/Catalog(?=" + _DELIM + rb"|$)", d):
-        return f"trailer /Root {num} {gen} R does not resolve to a /Type /Catalog dictionary"
+        pairs, data, first, members = stm
+        if entry[2] >= len(pairs) or pairs[entry[2]][0] != num or members[entry[2]]:
+            return f"trailer /Root {num} {gen} R is not a well-formed member {entry[2]} of object stream {entry[1]}"
+        items = _dict_items(data, first + pairs[entry[2]][1])
+    if items is None or _name_value(items.get(b"Type", b"")) != b"Catalog":
+        return f"trailer /Root {num} {gen} R does not resolve to a dictionary whose top-level /Type is /Catalog"
     return None
 
 
@@ -609,7 +656,7 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
     merged, cache = {}, {}
     for entries, sizes, roots, classic in reversed(sections):
         merged = {**merged, **entries}  # newer sections win
-        if problem := _free_list(merged, classic) or _object_streams(raw, entries, merged, cache):
+        if problem := _free_list(merged, classic) or _object_streams(raw, merged, cache):
             return problem
         for size in sizes:  # the trailer's /Size and, in a hybrid section, the companion stream's
             if size != max(merged) + 1:

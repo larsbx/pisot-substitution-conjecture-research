@@ -581,18 +581,18 @@ def test_filter_names_are_parsed_whole(copy):
     assert run(copy)[0] == 0
 
 
-def objstm_pdf(container=4, index=0, member=5):
+def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>"):
     """Objects 1-3 as usual, object 4 an uncompressed object stream holding object 5
     (``<< /Foo 1 >>``), object 6 the cross-reference stream; object 5's row names
     ``container`` at ``index``; /Size 7."""
     out = b"%PDF-1.5\n"
     offs = {}
-    for n, body in ((1, b"<< /Type /Catalog /Pages 2 0 R >>"), (2, b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>"),
-                    (3, b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>")):
+    for n, obj in ((1, b"<< /Type /Catalog /Pages 2 0 R >>"), (2, b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>"),
+                   (3, b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>")):
         offs[n] = len(out)
-        out += b"%d 0 obj\n%s\nendobj\n" % (n, body)
+        out += b"%d 0 obj\n%s\nendobj\n" % (n, obj)
     member = b"%d 0 " % member
-    data = member + b"<< /Foo 1 >>"
+    data = member + body
     offs[4] = len(out)
     out += b"4 0 obj\n<< /Type /ObjStm /N 1 /First %d /Length %d >>\nstream\n" % (len(member), len(data)) + data + b"\nendstream\nendobj\n"
     offs[6] = len(out)
@@ -640,6 +640,48 @@ def test_type2_member_must_be_the_referenced_object(copy):
     assert code == 1 and "member 0 of object stream 4 is object 9" in out, out
 
 
+def classic_update(raw: bytes, num: int, body: bytes, size: int) -> bytes:
+    """Append a classic incremental update that supplies object ``num`` with ``body``."""
+    old_xref = int(re.findall(rb"startxref\n(\d+)", raw)[-1])
+    off = len(raw)
+    raw += b"%d 0 obj\n%s\nendobj\n" % (num, body)
+    new_xref = len(raw)
+    return raw + b"xref\n%d 1\n%010d 00000 n \ntrailer\n<< /Size %d /Root 1 0 R /Prev %d >>\nstartxref\n%d\n%%%%EOF\n" % (num, off, size, old_xref, new_xref)
+
+
+def test_compressed_members_are_parsed(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = objstm_pdf(body=b"not-a-object")
+    pdf.write_bytes(raw)
+    code, out = run(copy)
+    assert code == 1 and "member 0 of object stream 4 is not one complete object" in out, out
+    pdf.write_bytes(classic_update(raw, 5, b"<< /Foo 2 >>", 7))
+    code, out = run(copy)
+    assert code == 1 and "member 0 of object stream 4 is not one complete object" in out, out
+
+
+def test_catalog_type_must_be_top_level(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = classic_pdf(objs=[b"<< /Pages 2 0 R /Foo << /Type /Catalog >> >>", b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+                            b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>"])
+    pdf.write_bytes(classic_update(raw, 1, b"<< /Type /Catalog /Pages 2 0 R >>", 4))
+    code, out = run(copy)
+    assert code == 1 and "top-level /Type is /Catalog" in out, out
+
+
+def test_inherited_type2_rows_are_revalidated_after_container_replacement(copy):
+    pdf = next(copy.glob("*.pdf"))
+    data = b"9 0 << /Foo 3 >>"
+    replacement = b"<< /Type /ObjStm /N 1 /First 4 /Length %d >>\nstream\n" % len(data) + data + b"\nendstream"
+    raw = classic_update(objstm_pdf(), 4, replacement, 7)  # object 5's inherited row now indexes a member that is object 9
+    pdf.write_bytes(raw)
+    code, out = run(copy)
+    assert code == 1 and "member 0 of object stream 4 is object 9" in out, out
+    pdf.write_bytes(classic_update(raw, 5, b"<< /Foo 2 >>", 7))  # a third revision supplies object 5 directly
+    code, out = run(copy)
+    assert code == 1 and "member 0 of object stream 4 is object 9" in out, out
+
+
 def test_superseded_dictionary_is_parsed_structurally(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.write_bytes(superseded_pdf(b"<< /A [1 2 R] /B << /C (x) >> /D <41> /E true /F#20G null >>"))
@@ -653,7 +695,7 @@ def test_superseded_dictionary_is_parsed_structurally(copy):
 def test_historical_trailer_root_is_resolved(copy):
     pdf = next(copy.glob("*.pdf"))
     raw = superseded_pdf(flate_stream(b"x"))
-    for root, message in ((b"/Root 9 0 R", "does not name an object in use"), (b"/Root 2 0 R", "does not resolve to a /Type /Catalog"),
+    for root, message in ((b"/Root 9 0 R", "does not name an object in use"), (b"/Root 2 0 R", "top-level /Type is /Catalog"),
                           (b"/Root 1 1 R", "has generation 0")):
         pdf.write_bytes(raw.replace(b"/Root 1 0 R", root, 1))
         code, out = run(copy)

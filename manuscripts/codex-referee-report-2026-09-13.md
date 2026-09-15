@@ -1072,3 +1072,37 @@ No other findings were posted in the forty-first round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the forty-second round.
+
+
+---
+
+# Forty-third round: review of the structural-dictionary revision (pull request #95)
+
+**Reviewed commit:** `b4a3799157` (findings 86–88).
+**Review posted:** 2026-09-15T18:27:33Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 89 (P2) — `scripts/check_manuscript_source.py`, line 554
+
+> **Parse compressed members before accepting type-2 entries**
+>
+> Fresh evidence beyond finding 87 is a malformed member body: this check verifies only that the indexed header pair names `num`, without parsing the bytes at that member offset as one complete PDF object bounded by the next member. If an older object stream contains `5 0 not-a-object` and a later revision replaces object 5, `_xref_chain` succeeds; pypdf sees only the replacement and decoding the still-effective container does not parse its unused member. Parse every referenced historical member before accepting the entry.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 90 (P2) — `scripts/check_manuscript_source.py`, line 583
+
+> **Require a top-level /Type on historical catalogs**
+>
+> Fresh evidence beyond finding 88 is that this regex scans the complete serialized dictionary, including nested values and strings, so `<< /Pages 2 0 R /Foo << /Type /Catalog >> >>` is accepted as a catalog even though its top-level dictionary has no `/Type`. If a later revision replaces that root object with a valid catalog, pypdf reads only the replacement and the malformed historical root passes the guard. Inspect the structurally parsed top-level key/value entries rather than searching the raw dictionary bytes.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 91 (P2) — `scripts/check_manuscript_source.py`, line 612
+
+> **Revalidate inherited type-2 entries after container updates**
+>
+> When an incremental revision replaces an object-stream container but inherits its members' type-2 rows, `_object_streams` receives only the current section's `entries`, so those inherited rows are never checked against the replacement container in that historical revision. A subsequent revision can replace the member itself, leaving pypdf only the final direct object; a middle revision where inherited object 5 now points to a replacement container whose indexed member is object 9 therefore passes. Revalidate all effective type-2 rows after each merge, or at least every inherited row whose container changed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-third round.
