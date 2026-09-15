@@ -10,7 +10,7 @@ This is a finite-domain certificate, not a proof of general wedge productivity.
 from psc.bpa import Automaton, build, recurrent_noncoincident_sccs, substitution_incidence
 from psc.mat3 import Mat3
 from psc.pisot import is_pip
-from psc.words import Pair, is_zero
+from psc.words import ALPHABET, Pair, is_zero, k2
 
 
 def image_words() -> List[List[Int]]:
@@ -52,7 +52,7 @@ def is_closed_nonproductive(automaton: Automaton, comp: List[Int]) -> Bool:
 
 def has_nonzero_k2(automaton: Automaton, comp: List[Int]) -> Bool:
     for si in range(len(comp)):
-        if not is_zero(automaton.states[comp[si]].k2()):
+        if not is_zero(k2(automaton.states[comp[si]])):
             return True
     return False
 
@@ -121,7 +121,7 @@ def run_predicate_calibration() raises:
     var coincidence_edges = List[Int]()
     leaking_adj.append(source_edges^)
     leaking_adj.append(coincidence_edges^)
-    var leaking_automaton = Automaton(leaking_states, leaking_adj, False)
+    var leaking_automaton = Automaton(leaking_states, leaking_adj, False, ALPHABET)
     var leaking_comp: List[Int] = [0]
     if not has_nonzero_k2(leaking_automaton, leaking_comp):
         raise Error("leaking K2-nonzero calibration lost its wedge defect")
