@@ -1452,7 +1452,7 @@ No other findings were posted in the fifty-eighth round.
 # Fifty-ninth round: review of the separator-comment revision (pull request #95)
 
 **Reviewed commit:** `d4ce42bb76` (finding 119).
-**Review posted:** 2026-09-15T20:50:59Z, one automated Codex review with one inline comment. Reproduced verbatim.
+**Review posted:** 2026-09-15T20:50:58Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
 ## Finding 120 (P2) — `scripts/check_manuscript_source.py`, line 827
 

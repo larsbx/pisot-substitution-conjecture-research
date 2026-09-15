@@ -1005,7 +1005,7 @@ def test_revision_terminators_are_line_delimited(copy):
     pdf.write_bytes(one_line)
     code, out = run(copy)
     assert code == 1 and "on separate lines" in out, out
-    pdf.write_bytes(updated.replace(b"startxref\n%d\n%%%%EOF\n" % xref, b"startxref\r%d\r\n%%%%EOF\r" % xref, 1))  # other line endings
+    pdf.write_bytes(updated.replace(b"startxref\n%d\n%%%%EOF\n" % xref, b"startxref\r%d\r%%%%EOF\r" % xref, 1))  # CR endings, same length
     assert run(copy)[0] == 0
     pdf.write_bytes(raw.replace(b"startxref\n%d\n%%%%EOF\n" % xref, b"startxref %d\n%%%%EOF\n" % xref))  # the final terminator too
     code, out = run(copy)
