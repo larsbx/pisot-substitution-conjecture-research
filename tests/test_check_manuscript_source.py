@@ -581,24 +581,39 @@ def test_filter_names_are_parsed_whole(copy):
     assert run(copy)[0] == 0
 
 
-def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>"):
-    """Objects 1-3 as usual, object 4 an uncompressed object stream holding object 5
-    (``<< /Foo 1 >>``), object 6 the cross-reference stream; object 5's row names
-    ``container`` at ``index``; /Size 7."""
+def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=None):
+    """Objects 1-3 as usual, object 4 an uncompressed object stream whose header lists
+    ``members`` (default one member, ``member``, at offset 0) before ``body``, object 6
+    the cross-reference stream; object 5's row names ``container`` at ``index``, any
+    further member object number gets a type-2 row into object 4; /Size covers them."""
     out = b"%PDF-1.5\n"
     offs = {}
     for n, obj in ((1, b"<< /Type /Catalog /Pages 2 0 R >>"), (2, b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>"),
                    (3, b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>")):
         offs[n] = len(out)
         out += b"%d 0 obj\n%s\nendobj\n" % (n, obj)
-    member = b"%d 0 " % member
-    data = member + body
+    members = members or [(member, 0)]
+    header = b"".join(b"%d %d " % pair for pair in members)
+    data = header + body
     offs[4] = len(out)
-    out += b"4 0 obj\n<< /Type /ObjStm /N 1 /First %d /Length %d >>\nstream\n" % (len(member), len(data)) + data + b"\nendstream\nendobj\n"
+    out += b"4 0 obj\n<< /Type /ObjStm /N %d /First %d /Length %d >>\nstream\n" % (len(members), len(header), len(data)) + data + b"\nendstream\nendobj\n"
     offs[6] = len(out)
+    extra = {num: k for k, (num, _) in enumerate(members) if num not in (0, 1, 2, 3, 4, 5, 6)}
+    size = max([7] + [num + 1 for num in extra])
     row = lambda kind, a, b: bytes([kind]) + a.to_bytes(2, "big") + bytes([b])
-    rows = row(0, 0, 255) + b"".join(row(1, offs[n], 0) for n in (1, 2, 3, 4)) + row(2, container, index) + row(1, offs[6], 0)
-    out += b"6 0 obj\n<< /Type /XRef /Size 7 /W [1 2 1] /Root 1 0 R /Length %d >>\nstream\n" % len(rows) + rows
+    rows = b""
+    for num in range(size):
+        if num == 0:
+            rows += row(0, 0, 255)
+        elif num in offs:
+            rows += row(1, offs[num], 0)
+        elif num == 5:
+            rows += row(2, container, index)
+        elif num in extra:
+            rows += row(2, 4, extra[num])
+        else:
+            rows += row(0, 0, 0)
+    out += b"6 0 obj\n<< /Type /XRef /Size %d /W [1 2 1] /Root 1 0 R /Length %d >>\nstream\n" % (size, len(rows)) + rows
     return out + b"\nendstream\nendobj\nstartxref\n%d\n%%%%EOF\n" % offs[6]
 
 
@@ -680,6 +695,26 @@ def test_inherited_type2_rows_are_revalidated_after_container_replacement(copy):
     pdf.write_bytes(classic_update(raw, 5, b"<< /Foo 2 >>", 7))  # a third revision supplies object 5 directly
     code, out = run(copy)
     assert code == 1 and "member 0 of object stream 4 is object 9" in out, out
+
+
+def test_trailer_keys_are_read_from_the_top_level(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = classic_pdf(edit=lambda b: b.replace(b"/Root 1 0 R ", b"/Foo << /Root 1 0 R >> "))
+    pdf.write_bytes(classic_update(raw, 3, b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>", 4))
+    code, out = run(copy)
+    assert code == 1 and "trailer dictionary lacks /Size or /Root" in out, out
+    pdf.write_bytes(xref_pdf().replace(b"/Root 1 0 R ", b"/Foo << /Root 1 0 R >> "))
+    code, out = run(copy)
+    assert code == 1 and "cross-reference stream lacks /Size or /Root" in out, out
+
+
+def test_object_stream_member_offsets_must_increase(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(objstm_pdf(members=[(5, 0), (7, 13)], body=b"<< /Foo 1 >> << /Bar 2 >>"))
+    assert run(copy)[0] == 0
+    pdf.write_bytes(objstm_pdf(members=[(5, 0), (7, 0)]))
+    code, out = run(copy)
+    assert code == 1 and "member offsets are not strictly increasing" in out, out
 
 
 def test_superseded_dictionary_is_parsed_structurally(copy):

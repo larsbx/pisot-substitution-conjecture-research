@@ -574,3 +574,15 @@ Three findings from the automated Codex review of commit `b4a3799157`; all accep
 | 89 | P2 | Compressed members were located but not parsed | Accepted. When an object stream is decoded, every member is parsed as one complete direct object that ends, up to whitespace, before the next member offset or the end of the data; a type-2 entry (or a compressed root) whose member fails this is rejected. Test: a member body `not-a-object` fails, and still fails when a later revision supplies the member directly | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 90 | P2 | The catalog and object-stream type checks scanned raw dictionary bytes | Accepted. Dictionaries are parsed into their top-level items (decoded key to raw value), and `/Type`, `/N`, `/First`, `/Length`, `/Filter` and `/DecodeParms` are read from those items; a nested `/Type /Catalog` no longer counts. Test: the reviewer's root `<< /Pages 2 0 R /Foo << /Type /Catalog >> >>`, later replaced by a valid catalog, fails | same |
 | 91 | P2 | Inherited type-2 rows were not revalidated after their container was replaced | Accepted. At every section of the replay all effective type-2 rows are resolved against that revision's table, and object streams are cached by byte offset so a replaced container is decoded anew. Test: a three-revision chain in which the second revision replaces the container with one whose member is object 9 fails at that revision, and still fails after a third revision supplies object 5 directly | same |
+
+
+---
+
+## Forty-fourth round (pull request #95, member-parse revision)
+
+Two findings from the automated Codex review of commit `b961e70914`; both accepted. Finding 92 was applied to the cross-reference stream dictionary as well as the classic trailer, so both section parsers now read every key from top-level items.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 92 | P2 | Trailer keys were found by scanning the serialized dictionary | Accepted. `/Size`, `/Root`, `/Prev` and `/XRefStm` of a classic trailer, and `/Type`, `/Size`, `/Root`, `/Prev`, `/W`, `/Index`, `/Length`, `/Filter` and `/DecodeParms` of a cross-reference stream, are read from the dictionary's top-level items; a present `/Prev` or `/XRefStm` must be a whole integer. Tests: the reviewer's trailer `<< /Size 4 /Foo << /Root 1 0 R >> >>` followed by a valid update fails, and the same nesting in a cross-reference stream dictionary fails | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 93 | P2 | Overlapping member offsets let one object count as two members | Accepted. Member offsets must be strictly increasing before the members are parsed against their bounds. Tests: a header `5 0 7 13` over two objects passes; `5 0 7 0` fails | same |

@@ -1106,3 +1106,29 @@ No other findings were posted in the forty-second round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the forty-third round.
+
+
+---
+
+# Forty-fourth round: review of the member-parse revision (pull request #95)
+
+**Reviewed commit:** `b961e70914` (findings 89–91).
+**Review posted:** 2026-09-15T18:38:05Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 92 (P2) — `scripts/check_manuscript_source.py`, line 161
+
+> **Read classic trailer keys only from the top level**
+>
+> Fresh evidence beyond finding 90 is the classic-trailer path: when an older revision contains `<< /Size 4 /Foo << /Root 1 0 R >> >>` but no top-level `/Root`, these searches accept the nested reference and replay validates it as the historical root; a later trailer with a valid top-level root then lets the malformed historical revision pass. Extract `/Size`, `/Root`, `/Prev`, and `/XRefStm` from `_dict_items` instead of scanning the serialized dictionary recursively.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 93 (P2) — `scripts/check_manuscript_source.py`, line 577
+
+> **Reject overlapping object-stream member offsets**
+>
+> Fresh evidence beyond finding 89 is an object-stream header such as `5 0 6 0`: because the bound is chosen only from strictly greater offsets, both members are parsed against the same body bytes and effective type-2 rows for indices 0 and 1 are accepted. This treats one serialized object as two declared members, so require member offsets to be distinct and ordered before parsing their bounded bodies.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-fourth round.

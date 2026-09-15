@@ -56,9 +56,18 @@ def _dict_at(buf: bytes, i: int) -> bytes | None:
     return None if end is None else buf[i:end]
 
 
-def _prev_of(d: bytes) -> int | None:
-    m = re.search(rb"/Prev\s+(\d+)", d)
-    return int(m.group(1)) if m else None
+def _trailer_keys(items: dict[bytes, bytes], what: str) -> str | tuple[int, tuple[int, int], int | None, int | None]:
+    """``(/Size, /Root as (number, generation), /Prev or None, /XRefStm or None)`` read from
+    a trailer or cross-reference stream dictionary's top-level items; a present ``/Prev``
+    or ``/XRefStm`` must be a whole integer."""
+    size = _int_value(items.get(b"Size", b""))
+    root = re.fullmatch(rb"(\d+)\s+(\d+)\s+R", items.get(b"Root", b""))
+    if size is None or not root:
+        return f"{what} lacks /Size or /Root"
+    links = [_int_value(items[k]) if k in items else None for k in (b"Prev", b"XRefStm")]
+    if any(k in items and v is None for k, v in zip((b"Prev", b"XRefStm"), links)):
+        return f"{what} /Prev or /XRefStm is not a whole integer"
+    return size, (int(root.group(1)), int(root.group(2))), links[0], links[1]
 
 
 Entry = tuple[int, int, int, bool]
@@ -154,21 +163,19 @@ def _classic_table(raw: bytes, off: int) -> str | Section:
     t = re.match(rb"trailer\s*", at[pos:pos + 32])
     if not t:
         return "xref table not followed by trailer"
-    d = _dict_at(at, pos + t.end())
-    if d is None:
+    parsed = _dict_parse(at, pos + t.end())
+    if parsed is None:
         return "trailer has no dictionary"
-    size = re.search(rb"/Size\s+(\d+)", d)
-    if not size or not re.search(rb"/Root\s+\d+\s+\d+\s+R", d):
-        return "trailer dictionary lacks /Size or /Root"
-    if any(st + c > int(size.group(1)) for st, c in ranges):
-        return f"xref subsection exceeds the trailer /Size {int(size.group(1))}"
-    stray = [n for n, (k, f, *_) in table.items() if k == 0 and f >= int(size.group(1))]
+    keys = _trailer_keys(parsed[0], "trailer dictionary")
+    if isinstance(keys, str):
+        return keys
+    size, root, prev, xrefstm = keys
+    if any(st + c > size for st, c in ranges):
+        return f"xref subsection exceeds the trailer /Size {size}"
+    stray = [n for n, (k, f, *_) in table.items() if k == 0 and f >= size]
     if stray:
         return f"free entry for object {stray[0]} points at object {table[stray[0]][1]} beyond /Size"
-    xrefstm = re.search(rb"/XRefStm\s+(\d+)", d)
-    root = re.search(rb"/Root\s+(\d+)\s+(\d+)\s+R", d)
-    return (table, int(size.group(1)), _prev_of(d), int(xrefstm.group(1)) if xrefstm else None,
-            off + pos + t.end() + len(d), (int(root.group(1)), int(root.group(2))))
+    return table, size, prev, xrefstm, off + parsed[1], root
 
 
 def _unpredict(payload: bytes, row: int) -> bytes | None:
@@ -226,40 +233,47 @@ def _xref_rows(raw: bytes, rows: bytes, widths: list[int], numbers: list[int], s
 
 def _xref_stream(raw: bytes, off: int) -> str | Section:
     """The cross-reference stream object at ``raw[off:]``: a problem, or its section
-    (type-0 rows included)."""
+    (type-0 rows included).  Every key is read from the dictionary's top-level items."""
     at = raw[off:]
     m = re.match(rb"\d+\s+\d+\s+obj\s*", at)
     if not m:
         return "not an object"
-    d = _dict_at(at, m.end())
-    if d is None:
+    parsed = _dict_parse(at, m.end())
+    if parsed is None:
         return "object has no dictionary"
-    if not re.search(rb"/Type\s*/XRef\b", d):
+    items, dend = parsed
+    if _name_value(items.get(b"Type", b"")) != b"XRef":
         return "object is not a cross-reference stream"
-    if not re.search(rb"/Size\s+\d+", d) or not re.search(rb"/Root\s+\d+\s+\d+\s+R", d):
-        return "cross-reference stream lacks /Size or /Root"
-    w = re.search(rb"/W\s*\[([\d\s]+)\]", d)
+    keys = _trailer_keys(items, "cross-reference stream")
+    if isinstance(keys, str):
+        return keys
+    size, root, prev, _ = keys
+    w = re.fullmatch(rb"\[\s*((?:\d+\s*)+)\]", items.get(b"W", b""))
     if not w:
         return "cross-reference stream lacks /W"
     widths = [int(x) for x in w.group(1).split()]
     if len(widths) != 3:
         return f"cross-reference stream /W must have exactly three fields, has {len(widths)}"
-    row = sum(widths)
-    pred = re.search(rb"/Predictor\s+(\d+)", d)
-    predicted = bool(pred and int(pred.group(1)) >= 10)
+    row, predicted = sum(widths), False
+    if b"DecodeParms" in items:
+        parms = _dict_items(items[b"DecodeParms"], 0)
+        pred = _int_value(parms.get(b"Predictor", b"1")) if parms is not None else None
+        if pred is None:
+            return "cross-reference stream /DecodeParms is not a direct dictionary with a whole-integer /Predictor"
+        predicted = pred >= 10
     if predicted:
         row += 1
     if row == 0:
         return "cross-reference stream has zero row width"
-    length = re.search(rb"/Length\s+(\d+)(\s+\d+\s+R)?", d)
-    if not length:
+    if b"Length" not in items:
         return "cross-reference stream lacks /Length"
-    if length.group(2):
-        return "cross-reference stream /Length is an indirect reference, not a direct integer"
-    n = int(length.group(1))
-    size = int(re.search(rb"/Size\s+(\d+)", d).group(1))
-    if b"/Index" in d:
-        index = re.search(rb"/Index\s*\[([\d\s]+)\]", d)
+    n = _int_value(items[b"Length"])
+    if n is None:
+        if re.fullmatch(rb"\d+\s+\d+\s+R", items[b"Length"]):
+            return "cross-reference stream /Length is an indirect reference, not a direct integer"
+        return "cross-reference stream lacks /Length"
+    if b"Index" in items:
+        index = re.fullmatch(rb"\[\s*((?:\d+\s*)*)\]", items[b"Index"])
         values = [int(x) for x in index.group(1).split()] if index else []
         if not values or len(values) % 2:
             return "cross-reference stream /Index is not an array of start/count pairs"
@@ -273,15 +287,15 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
         return f"cross-reference stream declares {expected_rows} rows, above the ceiling of {MAX_XREF_ROWS}"
     if expected_rows * row > MAX_STREAM_BYTES:
         return f"cross-reference stream declares {expected_rows * row} decoded bytes, above the ceiling of {MAX_STREAM_BYTES}"
-    body = re.match(rb"\s*stream(?:\r\n|\n)", at[m.end() + len(d):m.end() + len(d) + 16])
+    body = re.match(rb"\s*stream(?:\r\n|\n)", at[dend:dend + 16])
     if not body:
         return "cross-reference stream has no stream body"
-    data_start = m.end() + len(d) + body.end()
+    data_start = dend + body.end()
     data = at[data_start:data_start + n]
     tail = re.match(rb"(?:\r\n|\r|\n)?endstream\s*endobj\b", at[data_start + n:data_start + n + 32])
     if len(data) < n or not tail:
         return "cross-reference stream body does not match /Length or is not closed by endstream and endobj"
-    filters = _filter_names(d)
+    filters = _names_of(items[b"Filter"]) if b"Filter" in items else []
     if filters is None:
         return "cross-reference stream /Filter is not a name or an array of names"
     if filters and filters != [b"FlateDecode"]:
@@ -307,9 +321,7 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
         if payload is None:
             return "cross-reference stream uses an unknown PNG row filter"
     table = _xref_rows(raw, payload, widths, numbers, size)
-    root = re.search(rb"/Root\s+(\d+)\s+(\d+)\s+R", d)
-    return table if isinstance(table, str) else (table, size, _prev_of(d), None, off + data_start + n + tail.end(),
-                                                 (int(root.group(1)), int(root.group(2))))
+    return table if isinstance(table, str) else (table, size, prev, None, off + data_start + n + tail.end(), root)
 
 
 def _free_list(table: dict[int, Entry], classic: bool) -> str | None:
@@ -569,6 +581,8 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
                     starts = [first + o for _, o in pairs]
                     if not all(st < len(data) for st in starts):
                         result = f"object stream {container}, whose header offsets leave the data"
+                    elif any(b <= a for a, b in zip(starts, starts[1:])):
+                        result = f"object stream {container}, whose member offsets are not strictly increasing"
                     else:
                         members = []
                         for k, st in enumerate(starts):
