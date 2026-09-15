@@ -269,9 +269,10 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
         parms = _parms(items[b"DecodeParms"])
         if isinstance(parms, str):
             return f"cross-reference stream {parms}"
-        if parms[0] != 1 and _row_width(1, *parms[1:]) != row:
-            return f"cross-reference stream predictor geometry gives rows of {_row_width(1, *parms[1:])} bytes but /W gives {row}"
-        row = _row_width(*parms)
+        if parms[0] != 1:  # predictor 1 predicts nothing, so its geometry never changes the /W row width
+            if _row_width(1, *parms[1:]) != row:
+                return f"cross-reference stream predictor geometry gives rows of {_row_width(1, *parms[1:])} bytes but /W gives {row}"
+            row = _row_width(*parms)
     if row == 0:
         return "cross-reference stream has zero row width"
     if b"Length" not in items:
@@ -661,7 +662,11 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
                 else:
                     pairs = [(int(tokens[2 * k]), int(tokens[2 * k + 1])) for k in range(n)]
                     starts = [first + o for _, o in pairs]
-                    if not all(st < len(data) for st in starts):
+                    if first > len(data):
+                        result = f"object stream {container}, whose /First lies outside the data"
+                    elif n == 0 and not re.fullmatch(rb"[\x00\t\n\x0c\r ]*", data[first:]):
+                        result = f"object stream {container}, which declares no members but carries data"
+                    elif not all(st < len(data) for st in starts):
                         result = f"object stream {container}, whose header offsets leave the data"
                     elif any(b <= a for a, b in zip(starts, starts[1:])):
                         result = f"object stream {container}, whose member offsets are not strictly increasing"

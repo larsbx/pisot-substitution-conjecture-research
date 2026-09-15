@@ -639,7 +639,7 @@ def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=Non
                    (3, b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>")):
         offs[n] = len(out)
         out += b"%d 0 obj\n%s\nendobj\n" % (n, obj)
-    members = members or [(member, 0)]
+    members = [(member, 0)] if members is None else members
     header = b"".join(b"%d %d " % pair for pair in members)
     data = header + body
     payload, extra = data, b""
@@ -1144,6 +1144,29 @@ def test_xref_stream_must_list_itself(copy):
     pdf.write_bytes(xref_pdf(rows=lambda t, *o: t[:3] + [b"\x00\x00\x00\x00"] + t[4:]))
     code, out = run(copy)
     assert code == 1 and "object 3 0" in out and "not listed by its own section" in out, out
+
+
+def test_predictor_one_keeps_the_w_row_width(copy):
+    pdf = next(copy.glob("*.pdf"))
+    # five real four-byte rows followed by twenty arbitrary bytes under /Predictor 1 /Columns 8
+    pdf.write_bytes(xref_pdf(rows=lambda t, *o: t + [b"\xff" * 4] * 5, dict_extra=b"/DecodeParms << /Predictor 1 /Columns 8 >> "))
+    code, out = run(copy)
+    assert code == 1 and "inflates past the declared row count" in out, out  # the /W width bounds the inflation first
+    pdf.write_bytes(xref_pdf(dict_extra=b"/DecodeParms << /Predictor 1 /Columns 8 >> "))  # no surplus: geometry is irrelevant
+    assert run(copy)[0] == 0
+
+
+def test_zero_member_object_streams_carry_no_data(copy):
+    pdf = next(copy.glob("*.pdf"))
+    free5 = b"\x00\x00\x00\x00"
+    pdf.write_bytes(objstm_pdf(members=[], body=b"hidden payload", row5=free5))  # /N 0 /First 0 over a nonempty body
+    code, out = run(copy)
+    assert code == 1 and "declares no members but carries data" in out, out
+    pdf.write_bytes(objstm_pdf(members=[], body=b"\n", row5=free5))  # white space only
+    assert run(copy)[0] == 0
+    pdf.write_bytes(objstm_pdf(members=[], body=b"", row5=free5).replace(b"/N 0 /First 0", b"/N 0 /First 9"))  # /First beyond the data
+    code, out = run(copy)
+    assert code == 1 and "/First lies outside the data" in out, out
 
 
 def test_png_predictors_use_the_declared_pixel_width(copy):

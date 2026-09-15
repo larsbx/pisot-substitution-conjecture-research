@@ -1486,3 +1486,26 @@ No other findings were posted in the fifty-ninth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the sixty-first round.
+
+# Sixty-second round: review of the parity revision (pull request #95)
+
+**Reviewed commit:** `b8ea3754c5` (findings 123–124).
+**Review posted:** 2026-09-15T21:16:16Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 125 (P2) — `scripts/check_manuscript_source.py`, line 274
+
+> **Keep the /W width when Predictor is 1**
+>
+> When `/DecodeParms` specifies `/Predictor 1` with geometry different from `sum(/W)`, this assignment changes the row width even though predictor 1 performs no prediction. For example, a five-entry `/W [1 2 1]` stream with `/Predictor 1 /Columns 8` can contain the 20 real entry bytes followed by 20 arbitrary bytes: `_xref_chain` counts five eight-byte rows, but `_xref_rows` consumes only the first five four-byte rows, so the surplus data is never validated. Keep the `/W` width for predictor 1.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 126 (P2) — `scripts/check_manuscript_source.py`, line 660
+
+> **Reject data in zero-member object streams**
+>
+> When an introduced `/ObjStm` declares `/N 0 /First 0`, `data[:first]` yields no tokens and the subsequent pair, offset, and member checks are all vacuous, so a nonempty arbitrary stream body is accepted when no type-2 row references it. The full parse treats that container as an ordinary stream and likewise never parses the hidden payload; require `/First` to be in bounds and the bytes following it to be only permitted padding when `/N` is zero.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-second round.
