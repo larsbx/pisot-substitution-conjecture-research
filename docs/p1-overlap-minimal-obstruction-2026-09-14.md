@@ -1,6 +1,6 @@
 # P1 overlap productivity — minimal bad-overlap normal form
 
-**Status:** proved structural reduction plus exact fail-closed extraction.  This
+**Status:** proved structural reductions plus exact fail-closed extraction.  This
 note does **not** prove overlap productivity, strong coincidence, or PSC.
 
 Primary target: issue #84 / manuscript Open Problem 5.35.
@@ -47,7 +47,7 @@ counterexample to issue #84 can always be assumed simultaneously **finite,
 recurrent, child-closed, PF-critical, and full-rank**.  Future arguments should
 attack this normal form rather than an arbitrary nonproductive vertex.
 
-## 3. Boundary-avoidance constraints inherited from PR #82
+## 3. Boundary-avoidance and zipper dichotomy
 
 For a state `O=(i,j,<w,l>)`, Proposition 5.40 gives the exact boundary-hitting
 criterion
@@ -82,13 +82,43 @@ letter pair, so a bad `S` contains no endpoint-aligned state at all.  More
 generally, any boundary hit along a bad orbit must land on a letter pair that
 is itself not eventually coincident in the corresponding direction.
 
-This separates two possible contradiction mechanisms:
+### Proposition 3.1 (boundary obstruction or strict zipper)
 
-1. **boundary-hitting:** force an endpoint-aligned descendant in a good pair;
-2. **interior rigidity:** rule out a finite full-rank child-closed component
-   that avoids all such good boundary hits forever.
+Let `S` be an obstruction supplied by Proposition 2.1.  Exactly one of the
+following research cases occurs.
 
-The second is the genuinely interior case left after PR #82.
+1. **Aligned obstruction.** `S` contains `(i,j,0)`.  Since every state of `S`
+   is nonproductive, `{i,j}` is not eventually coincident in the prefix sense.
+   Thus the component already exposes a strong-coincidence obstruction.
+2. **Alignment-free obstruction.** `S` contains no offset-zero state.  Then
+   for every `O=(i,j,t)` in `S`, no substituted top child start `p_r` equals a
+   shifted bottom child start `beta*t+q_s`.  Equivalently every immediate
+   child decomposition has no simultaneous top/bottom boundary start.  The
+   common refinement therefore advances one side at a time: its ordered cells
+   form a strict monotone prefix-grid **zipper path**, with no diagonal step.
+
+**Proof.**  For a parent state `O`, the child beginning at top child `r` and
+bottom child `s` has shift
+
+```text
+(beta*t + q_s) - p_r.
+```
+
+Hence `p_r = beta*t + q_s` iff that child has shift zero.  Because `S` is
+child-closed, any such equality for a state in `S` creates an offset-zero state
+in `S`.  If no offset-zero state belongs to `S`, no equality occurs.  Between
+successive distinct subdivision starts only the top index or only the bottom
+index can change, giving the zipper path.  In the other branch, Proposition
+5.39 turns nonproductivity of `(i,j,0)` into failure of eventual coincidence
+for that pair.  ∎
+
+This dichotomy is useful because it does **not** assume strong coincidence.
+A future proof may attack the two branches separately:
+
+- eliminate aligned obstructions by strengthening/propagating known
+  eventually-coincident pairs;
+- eliminate the genuinely interior strict-zipper system using ordered child
+  geometry, recognizability, or Pisot arithmetic.
 
 ## 4. Stronger subtargets worth testing
 
@@ -114,16 +144,16 @@ they must meet the Barge--Diamond good-pair set (and, after reversal, the
 suffix good-pair set).  This is now an exact finite invariant of any proposed
 countermodel.
 
-### 4.3 Interior-only obstruction
+### 4.3 Interior-only zipper obstruction
 
-If neither boundary mechanism can be forced, the remaining object is sharply
-specified:
+If the aligned branch is absent, the remaining object is sharply specified:
 
 ```text
 finite + strongly connected + child-closed
-+ no coincidence
++ no coincidence + no zero-shift state
 + PF(N_S)=beta
 + rank(V_S)=d and spec(M) subset spec(N_S)
++ every child factorization is a strict prefix-grid zipper
 + avoids every productive endpoint-aligned pair at every depth.
 ```
 
@@ -148,6 +178,17 @@ returns all closed recurrent SCCs inside the nonproductive set.  It fails
 closed on capped graphs.  The regression constructs a synthetic graph with a
 transient bad vertex feeding a two-state closed bad SCC and verifies that only
 the recurrent core is returned.
+
+The same module exposes
+
+```text
+common_child_start_count(tables, state)
+```
+
+which checks the exact equalities `p_r = beta*t + q_s`.  On the canonical
+628-state regression graph the test verifies, state by state, that this count
+is exactly the number of zero-shift overlap children.  This pins the executable
+boundary/zipper dictionary rather than inferring it from floating geometry.
 
 Independent Python oracle:
 
@@ -212,12 +253,14 @@ The immediate next step for #84 should use the extractor only as a normalizer,
 not as an end in itself:
 
 1. assume an obstruction `S` from Proposition 2.1;
-2. compute/track its exact aligned-pair sets `A_+(S), A_-(S)` and ordered child
-   boundary events;
-3. prove that full rank plus the child factorization forces a good boundary
-   hit, **or** emit the smallest exact interior-only pattern that evades the
-   proposed invariant;
-4. keep any surviving pattern as a replayable countermodel instead of
+2. if it has an aligned state, attack propagation/coverage of the resulting
+   non-eventually-coincident pair;
+3. otherwise use the strict zipper path to retain **ordered** boundary-source
+   data through inflation, rather than collapsing to the child-count matrix;
+4. prove that full rank plus this ordered factorization forces a good boundary
+   hit, **or** emit the smallest exact interior-only zipper pattern that evades
+   the proposed invariant;
+5. keep any surviving pattern as a replayable countermodel instead of
    weakening the theorem silently.
 
 That is the smallest next slice that can make mathematical progress on the
