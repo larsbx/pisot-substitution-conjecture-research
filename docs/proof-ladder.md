@@ -1,61 +1,108 @@
 # Proof ladder
 
-The current completion architecture has **two independent open gates**. The detailed status is also recorded in `docs/current-proof-architecture-2026-09-11.md`; the authoritative status-tagged prose account is the merged manuscript `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
+The current shortest route to the Pisot Substitution Conjecture in the standing regime has **one open mathematical premise**: seedwise overlap productivity. The finite-BPA/G1 and closed-carrier programmes remain important stronger structural routes, but they are no longer prerequisites of the shortest PDS sufficiency theorem.
 
-## Stable base — incidence rank and unique decodability
+For detailed claim status use `docs/claim-status-and-source-map-2026-09-13.md`; for the current weekly snapshot use `docs/completion-ledger-2026-09-14.md`; theorem statements and imported hypotheses are in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
 
-Established in the project:
+# Stable base — incidence rank, UD, and bounded discrepancy
+
+Established on `main`:
 
 1. `det M_sigma != 0` gives full incidence rank / letter injectivity.
 2. The defect theorem gives unique decodability of the image code `{sigma(a)}`.
-3. Unique decodability propagates to powers because `det M_{sigma^r}=(det M_sigma)^r != 0`.
+3. UD propagates to powers because `det M_{sigma^r}=(det M_sigma)^r != 0`.
+4. G1b-1 bounded discrepancy is repository-proved by the independent reconstruction merged in PR #69.
 
-UD is therefore a theorem, not an independent standing hypothesis.
+UD is therefore a theorem, not an independent standing hypothesis. Bounded discrepancy bounds the prefix-difference walk, not balanced-state length.
 
-The old predecessor-contraction claim is withdrawn permanently. The false estimate
+The old predecessor-contraction claim and the inference `UD => bounded total padding => finite BPA` are withdrawn permanently.
+
+# Primary completion ladder — finite seed-patch overlaps, no G1
+
+The current shortest honest chain is
 
 ```text
-beta * L(s') <= L(s) + D
+primitive irreducible Pisot
+=> bounded discrepancy                                  [PROVED]
+=> finite seed-patch overlap graph                      [PROVED]
+=> one swap seed has only productive reachable overlaps [OPEN]
+=> coincidence density one / dense good set             [PROVED equivalence]
+=> pure discrete spectrum                               [IMPORTED theorem]
 ```
 
-cannot be used to deduce BPA finiteness.
+The two-letter periodic swap patch uses distinct tile types; `ab` need not be a legal factor of the substitution language.
 
-# Gate A — Level 2 / G1 finiteness
+## Finite seed-patch overlap graph
 
-The current intended Level-2 ladder is
+**Repository-proved.** Manuscript Theorem 4.22 / PR #72 shows that every exact overlap type reachable from a swap seed lies in an explicitly bounded integer-coordinate set derived from G1b-1. This graph is finite without assuming finite BPA, Meyer structure, or unimodularity.
+
+## Overlap productivity — the current critical gate
+
+**OPEN (Open Problem 5.35).** For every PIP substitution it is enough to prove existence of distinct letters `a != b` such that every overlap reachable from the seed overlaps of `(ab,ba)` is productive.
+
+Proving productivity for every seed or every vertex in the union graph is stronger than necessary for manuscript Theorem 5.38.
+
+The current obstruction normal form combines PRs #76, #82 and #88. If the gate fails, we may pass to a finite child-closed irreducible nonproductive SCC `S` with
+
+```text
+PF(N_S) = beta,
+N_S V_S = V_S M^T,
+rank_Q(V_S) = |A|,
+spec(M) subset spec(N_S).
+```
+
+Thus a bad set is algebraically **full rank**, not rank-deficient.
+
+PR #88 further gives an exact dichotomy:
+
+```text
+bad S
+=> contains an offset-zero state (i,j,0)
+   and therefore exposes a non-eventually-coincident pair {i,j}
+OR
+=> contains no zero-shift state
+   and every child factorization is a strict no-tie prefix-grid zipper.
+```
+
+The second branch preserves information erased by the child-count matrix: the ordered sequence of top/bottom subdivision boundary events. The next contradiction should use that order together with full rank and exact prefix-Parikh geometry.
+
+Generic spectral growth is not enough. A residual graph containing a genuine noncoincident real overlap may itself carry the full expansion spectral radius, so `PF(N_S)=beta` is the hard residual case rather than a contradiction.
+
+## Coincidence density and PDS bridge
+
+**Repository-proved:** Lemma 5.36 identifies seedwise overlap productivity with coincidence density one and density of the eventual-coincidence good set. The proof does not assume that the finite-stage good sets are nested; the corrected argument uses the finite subdivision-point difference between stages.
+
+**Imported theorem:** Barge–Štimac–Williams supplies the dense-eventual-coincidence-to-PDS implication in the precise one-dimensional Pisot-family setting checked in manuscript Imported Theorem 5.37. Hence Theorem 5.38 has no G1 hypothesis.
+
+## Endpoint-aligned boundary case
+
+PR #82 proves:
+
+- swapping tiling sides preserves productivity;
+- offset-zero and right-aligned seed overlaps are productive exactly in the prefix/suffix strong-coincidence cases;
+- an overlap reaches an offset-zero descendant at level `m` exactly when `M^m w` is a difference of proper-prefix Parikh vectors, equivalently when inflated subtiles have a common left endpoint;
+- under strong coincidence, productivity reduces to this boundary-hitting statement.
+
+PR #88 turns this into the aligned-versus-zipper case split above without assuming strong coincidence globally.
+
+# Stronger route A — Level 2 / finite BPA
+
+The stronger Level-2 ladder remains
 
 ```text
 primitive + Pisot spectrum
-=> bounded discrepancy (G1b-1)   [THEOREM, reconstructed 2026-09-13]
-=> [OPEN] renewal finiteness (G1b-2)   (now equivalent to G1)
+=> bounded discrepancy (G1b-1)       [PROVED]
+=> renewal finiteness (G1b-2)         [OPEN]
 => finite BPA (G1).
 ```
 
-## G1b-1 — bounded discrepancy
-
-**Status. THEOREM (repository-proved, 2026-09-13).** Independently reconstructed, with a complete proof, in `docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md`; stated as Theorem 4.4 of `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`. Every reachable state `T` of `B_sigma` satisfies
-
-```text
-Disc(T) <= D_sigma := 4 (|A| + 1) C_sigma,
-```
-
-with `C_sigma` an explicit constant from the contracting part of `M_sigma`. The proof uses only primitivity and the Pisot spectrum (every non-Perron eigenvalue inside the unit circle); it does not use unimodularity, unique decodability, or legality of seeds. It is a global bound on the prefix-difference walk of every inflated swap seed, not a child-versus-parent contraction: the reported estimate
-
-```text
-Disc(sigma w) <= c Disc(w) + 2 E_sigma,    c < 1
-```
-
-was not reconstructed and is not needed. Bounded discrepancy bounds the difference walk, not the state length; exact census: maximum discrepancy `14` and a reachable state of length `48,020` over the `4,554`-member corpus.
-
 ## G1b-2 — renewal finiteness
 
-**OPEN and load-bearing; equivalent to G1 now that G1b-1 is proved (manuscript Proposition 4.11).**
+**OPEN; equivalent to G1 after G1b-1. Not required by Theorem 5.38.**
 
-Prove that there are only finitely many reachable irreducible balanced pairs with `Disc(s) <= D_sigma`.
+Prove that only finitely many reachable irreducible balanced pairs occur inside the established discrepancy bound. A bounded difference alphabet does not suffice because labelled first-return words can revisit the same nonzero difference vertices indefinitely.
 
-A bounded difference alphabet does not suffice. Long labelled first-return words can revisit the same nonzero difference vertices indefinitely.
-
-The proof target is therefore structural:
+The structural target is
 
 ```text
 realizable labelled first-return words
@@ -64,210 +111,129 @@ realizable labelled first-return words
 => G1b-2.
 ```
 
-The construction must remain valid in the non-unimodular case. In particular:
+The proof must remain non-unimodular-safe:
 
-- do not assume `|det M|=1`;
-- do not assume a purely Euclidean internal space;
-- do not treat `pi_s(Z^A)` as a lattice.
+- no `|det M|=1` assumption;
+- no purely Euclidean internal-space assumption where a profinite/non-Archimedean factor is required;
+- no claim that `pi_s(Z^A)` is a lattice;
+- preserve label/order data lost by cumulative difference walks.
 
-## Retired Level-2 shortcuts
+### Retired Level-2 shortcuts
 
-The following are not valid completion arguments:
+Do not use:
 
 - UD implies bounded total padding;
 - bounded discrepancy implies finite BPA;
 - naive zero-sum-hyperplane contraction;
 - every long state has a uniformly short core;
 - two-letter renewal is trivial;
-- the unlabelled cumulative difference walk determines the balanced state.
+- unlabelled cumulative difference walk determines a balanced state.
 
-# Gate B — Level 3 / productivity under G1
+# Stronger route B — SCC Producer under G1
 
-Assume G1. Then the nonproductive set has a finite closed recurrent noncoincident sink SCC by `docs/sink-scc-reduction.md`.
+Assume G1. Nonproductivity then reduces to a finite closed/sink recurrent noncoincident carrier.
 
-The strongest current spectral route is
+The current spectral split is
 
 ```text
 closed recurrent carrier
-=> split by K2 == 0 or K2 != 0
+=> K2 == 0 or K2 != 0
 => [OPEN] concentration or [OPEN] wedge productivity
 => productivity
 => SCC Producer.
 ```
 
-The algebraic carrier-span step between nonzero `K2` and full rational wedge
-span is repository-proved; it is not a remaining Galois-source dependency.
-The two displayed productivity obligations themselves remain open. See
-`docs/claim-status-and-source-map-2026-09-13.md` for the claim taxonomy and
-exact sources.
+## Concentration / aux-B
 
-## Concentration / aux-B and wedge productivity
+**OPEN.** Equivalent in the current cubic wedge dichotomy to excluding strict components with `K2 == 0`.
 
-**Both OPEN; together they are the Level-3 obligation.** Concentration is the statement that no strict component has `K2 == 0`; wedge productivity is the statement that no strict component has `K2 != 0` (manuscript Open Problems "Concentration" and "Wedge productivity"). Proving concentration alone leaves the `K2 != 0` case, which is the case realized by almost every reachable state in the exact corpus.
+The archived degree-three theorem applies only to its explicit seeds. The live degree-two carrier-span statement is independently repository-proved; no missing v16 source is required.
 
-Prove that expanding wedge mass generated by recurrent behavior has nonzero projection inside a closed recurrent carrier.
+## Wedge productivity
 
-The degree-two carrier propagation is self-contained on `main`: irreducibility of the exterior-square characteristic polynomial forces every nonzero invariant rational `K2` span to equal `Lambda^2 Q^3`. The missing historical v16 file is therefore not a dependency of this rung. The archived degree-three Galois certificate remains restricted to six explicit seed defects and does not prove concentration.
+**OPEN.** Equivalent to excluding strict components with `K2 != 0`. Full rational wedge span is a classification constraint, not a productivity theorem.
 
-**Wedge dichotomy (manuscript Proposition 5.20, proved).** On a closed nonproductive three-letter SCC the `K2` vectors span either `0` or all of `Lambda^2 Q^3`. So concentration is equivalent to `no strict component with K2 == 0`, span-richness then follows without Galois input, and `span-rich => productive` is equivalent to `no strict component with K2 != 0`. Both halves are open; the rung is not closed, only reformulated.
+The exact 4,554-member corpus has fail-closed finite-domain certificates excluding both first-defect branches in their stated domains. Those certificates are not uniform theorems.
 
-The degree-three slice now has one exact bounded-corpus theorem: among the
-4,554 image-length-at-most-three PIP substitutions, no strict component has
-`K2=0` and first defect `K3`. This uses the proved signed first-defect
-intertwiner and exact Mojo component diagnostics, not the historical seed-specific Galois
-certificate. It is evidence and a finite-domain exclusion, not a new rung in the
-general proof ladder; see `docs/p1a-degree3-partial-theorem.md`.
+## Relation to the overlap route
 
-The complementary bounded-corpus computation finds no closed nonproductive
-recurrent component with nonzero `K2`. Its exact Mojo certificate fails closed
-on capped automata and retains any survivor as a replayable state/edge record.
-This proves the degree-two wedge-productivity exclusion only for the same
-4,554-member corpus; it does not close the general `K2 != 0` obligation. See
-`docs/p1a-degree2-wedge-productivity.md`.
+A proof of general overlap productivity is stronger than needed to bypass G1 and, under G1, supplies productivity of all reachable BPA states. Therefore the overlap theorem can feed SCC Producer, but the finite-BPA carrier route is not required to prove Theorem 5.38.
 
-## Independence of the gates
+# Supporting structural machinery
 
-Gate A and Gate B are not two formulations of one eigenvalue theorem.
+The following remain theoremically useful where their individual notes mark them theorem-grade:
 
-- G1b-2 is a renewal/discreteness problem on the contracting side.
-- concentration is a nonvanishing/carrier problem after a finite closed recurrent obstruction exists.
-
-Both must be closed for the full theorem.
-
-# Supporting Level-3 structure already on `main`
-
-The C4/endpoint/recognizability program remains theoremically useful, but it is now a supporting route rather than the sole headline architecture.
-
-## Finite-graph and endpoint reductions
-
-- Nonproductivity in finite BPA reduces to a closed/sink SCC.
-- Endpoint types A/B are globally synchronizing and hence productive.
-- Barge-Diamond eliminates endpoint type G in a strict PIP regime.
-- Fixing one Barge-Diamond-good edge yields a two-edge hub-star normal form.
-- The first-child hub phase is classified exactly for C/D/E/F.
-- The system-level good-edge bridge tests candidate good edges against the actual integer-indexed `DerivedSystem`; any strict PIP component must have a nonempty candidate mask.
-
-## Closed-carrier algebra
-
-For a finite closed strict component `C`:
-
-```text
-P_C N_C = M_sigma P_C.
-```
-
-In the irreducible cubic regime:
-
-```text
-rank P_C = 3,
-|C| >= 3,
-chi_M divides chi_N,
-rho(N_C)=beta.
-```
-
-Normalization hides a `Z/2` orientation cocycle. If `A,B` count positive/reversed child occurrences,
-
-```text
-N=A+B,
-S=A-B,
-rho(S)<=beta.
-```
-
-The hub-side gauge gives a concrete boundary interpretation of this signing without changing its Perron phase.
-
-## Signed first-defect hierarchy
-
-At the first nonzero scattered-subword defect degree,
-
-```text
-Q_r S = Phi_r Q_r.
-```
-
-Important cases already encoded/documented on `main` include:
-
-- degree 2: `Q2 S=(Lambda^2 M)Q2`;
-- degree 3 with `K2=0`: low growth forces the image into the determinant/centralizer sector;
-- degree 4: free-Lie spectral floor;
-- arbitrary degree: generalized-Witt/mod-3 near-balanced sieve.
-
-The old unsigned SCC transfer at degree 3 is retired; the normalized transfer is signed.
-
-## Ordered factorization information
-
-The degree-2 mid-area identity
-
-```text
-(Lambda^2 M) H + 2 C_sigma P = H N + 2 Omega_tau
-```
-
-retains child order. Three-state Sylvester/integrality/Cramer filters are exact calibration tools, not the main completion strategy.
-
-## Uniform return / recognizability machinery
-
-The repository also contains:
-
+- bad-overlap closed-SCC normal form and aligned/strict-zipper dichotomy (PR #88);
+- sink-SCC reduction under G1;
+- endpoint synchronization quotient and A/B eliminator;
+- Barge–Diamond type-G eliminator and hub-star normal form;
+- Parikh intertwiner `P_C N_C = M_sigma P_C`;
+- orientation monodromy and signed child-count matrices;
+- signed first-defect intertwiners;
+- degree-3, degree-4 and generalized-Witt spectral sieves;
+- ordered degree-2 mid-area factorization and integral filters;
 - bounded-gap zero-return calculus;
-- finite Pisot ancestry-state theorem;
-- legal ancestry towers of arbitrary fixed height;
-- derived substitution addresses and recognizability after cyclic decomposition;
-- newborn birth-event catalogue;
-- finite relative hierarchy-offset state.
+- finite Pisot ancestry states and legal ancestry towers;
+- derived recognizability and relative hierarchy-offset states.
 
-These remain available for an alternative Level-3 contradiction or for realization/collar completeness work.
-
-# Boundary synchronization sufficiency route
-
-The one-way route
+The C4 chain
 
 ```text
 C4 => C3-local => C2 => C1
 ```
 
-remains mathematically valid as a sufficiency chain. It is no longer presented as the only shortest route to completion because G1b-2 remains independently open and the concentration/Galois route may close Level 3 more directly.
+remains a valid one-way sufficiency route. It is not the headline completion ladder.
 
 # Realization / MEF route
 
-Under finiteness, the realization track uses the normal form
+The realization programme remains an open bridge / certificate route. Its audited interface has obligations G0–G6. Do not identify:
 
 ```text
-coincidence rank > 1
-<=> non-eventually-coincident tilings in one MEF fibre
-<=> a recurrent producer-free BPA component is globally realized.
+formal producer-free recurrence
+= global realization
+= survival to a finite collar bound.
 ```
 
-This is a parallel certificate/reformulation route. Formal recurrent cycles and global realization must not be conflated; finite collar death is evidence until a completeness theorem is proved.
+Finite collar death is evidence until an independent completeness theorem is available.
 
 # Exact finite calibration
 
-Across the established 4,554 PIP substitutions with short images:
+Across the exact 4,554 short-image ternary PIP corpus:
 
-- all computed BPA builds terminate below the cap;
-- every noncoincident sink is productive;
-- 385,926 reachable noncoincident states occur;
-- 385,902 have first defect degree 2;
-- 24 have first defect degree 3;
-- none has first defect degree `>=4`;
-- all 24 degree-3 occurrences leak to coincidence within at most two inflations;
-- among the 546 substitutions surviving the three-state arithmetic/endpoint diagnostics, no actual recurrent or sink SCC of size 3 occurs.
+- G1b-1 cross-check: maximum reachable discrepancy `14`, with reachable state length at least `48,020`;
+- every BPA build used by the finite certificates terminates below its fail-closed cap;
+- seed-patch overlap graphs: `4,554 / 0 / 0` built/capped/failed;
+- total overlap vertices: `1,118,850`;
+- largest overlap graph: `2,640`;
+- specimens containing a nonproductive overlap: `0`;
+- maximum first-coincidence depth: `18`;
+- maximum first left-aligned depth: `17`;
+- maximum prefix and suffix strong-coincidence depths: `15`;
+- all specimens satisfy the tested two-sided strong-coincidence condition;
+- the degree-two and degree-three finite carrier certificates have zero survivors in their stated domains.
 
-This remains finite evidence only.
+These are exact finite-domain results/evidence according to their individual completeness contracts. They do not prove the general conjecture.
+
+# Hypothesis firewall
+
+Every proposed completion proof must preserve:
+
+1. **Swap-patch legality is not assumed.** The two-letter periodic seed in Theorem 5.38 need not be a legal substitution-language factor.
+2. **Tile-length independence is derived.** Do not add rational/integer independence as a separate PSC hypothesis when irreducibility supplies it.
+3. **UD is derived.** Do not make unique decodability a standing assumption.
+4. **FI/boundary injectivity is extra.** Do not silently restrict to permutation/injective boundary maps.
+5. **No unimodularity leak.** Unit-only converse theorems or Euclidean-only Rauzy constructions remain restricted unless separately generalized.
+6. **No false stable lattice.** `pi_s(Z^A)` is generally not a discrete lattice.
+7. **No realization shortcut.** Formal recurrence does not imply global realization.
+8. **No computational self-certification.** Finite corpus/collar bounds require an independent completeness theorem before universal use.
 
 # Completion order
 
-The shortest honest completion program is:
+1. **P0 — synchronization.** Keep manuscript, claim/source map, conjecture ledger, proof ladder, README and TLA dependency comments aligned.
+2. **P1 — overlap productivity.** Prove the one-seed form of Open Problem 5.35. This is the only open premise on the current shortest PDS route.
+3. **P2 — aligned/zipper obstruction.** Use PR #88's normal form: eliminate the exposed bad letter pair or rule out the strict ordered zipper using full rank and exact prefix geometry.
+4. **P3 — G1b-2.** Continue as a stronger independent theorem on BPA finiteness, with the non-unimodular firewall intact.
+5. **P4 — concentration and wedge productivity.** Continue as the alternative finite-BPA/SCC route.
+6. **P5 — realization bridge.** Discharge G0–G6 only if pursuing the coincidence-rank/collar certification route.
 
-1. **P0:** keep the manuscript, claim map, proof ladder, TLA ledger, and provenance notes synchronized. The historical v16 file remains unrecovered metadata, not a live proof prerequisite.
-2. **P1-A:** prove the two Level-3 obligations, concentration / aux-B and wedge productivity.
-3. **P1-B:** prove G1b-2 renewal finiteness with a non-unimodular-safe contracting address.
-4. **P3:** assemble SCC Producer from finite graph reduction + closed-carrier productivity, once both concentration and wedge productivity are proved.
-5. **P5:** audit the final pure-discrete-spectrum bridge with exact hypotheses.
-
-No amount of additional fixed-size C4 sieving closes the theorem while either P1-A or P1-B remains open.
-
-## Overlap route (G1-free form of Level 3, 2026-09-13)
-
-**Theorem (repository-proved).** The seed-patch overlap graph `O_sigma` of the swap pairs is finite for every primitive Pisot-spectrum substitution, with an explicit bound from bounded discrepancy (manuscript Theorem 4.22; `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md`). Productivity of every vertex of `O_sigma` is equivalent to coincidence density one for every seed and implies productivity of every reachable state of `B_sigma` with no finiteness hypothesis (Theorem 5.32); under G1 it is equivalent to SCC Producer.
-
-**Density bridge (imported, 2026-09-14).** Barge–Štimac–Williams Theorem 3.1 (with the argument of their Theorem 3.2) gives PDS from a dense set of eventually coincident points of the periodic swap patch and its translate, for any primitive Pisot substitution and any letters; with Lemma 5.36 (three forms of the density condition) this is manuscript Imported Theorem 5.37 and Theorem 5.38 (main theorem without finiteness): productivity of the overlaps reachable from one swap seed implies PDS, with no finiteness hypothesis. G1 is no longer a hypothesis of the sufficiency route; its own status is unchanged (open).
-
-**Open.** Overlap productivity itself (Open Problem 5.35). Nothing here proves it, G1, or PSC. Exact census over the 4,554 corpus: all overlap graphs finite (largest 2,640 vertices), all 1,118,850 vertices productive; finite evidence only.
-
+No additional fixed-size SCC sieve should displace P1 unless it supplies a credible uniform theorem feeding the overlap gate.

@@ -198,3 +198,50 @@ Accepted. The referee's example is exact: for `1 → 2, 2 → 3, 3 → 133` the 
 ## Eleventh round (pull request #79)
 
 The automated Codex review of commit `90663fb3af9c1f87f8cea7c5040e4afc90d75ecd`, containing the substantive exact-window restatement of the Section 7 figures, posted no findings. Findings 18–23 are recorded as addressed.
+
+---
+
+## Twelfth round (pull request #82, strong-coincidence revision)
+
+Two findings from the automated Codex review of commit `68a392abcbccb0a874e7b090718a6d9233dab2af`; both accepted. Neither affects the identification of endpoint-aligned productivity with eventual coincidence, the hitting criterion (a)⇔(c), or the census values.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 24 | P2 | "For every ordered `i ≠ j`, `(i, j, 0)` is a seed overlap" does not match a graph seeded with one orientation per unordered pair; `(3,2,0)` is absent for `τ` | Accepted. Proposition 5.39 now states the top/bottom exchange `(a, b, t) ↦ (b, a, −t)` (commutes with inflation, preserves coincidences), fixes `(ij, ji)` as the seed of the unordered pair in the orientation used to generate the graph, and states the ordered claims for both orientations as consequences; (iii) is phrased per unordered pair. The depth API docstrings say that each pair is counted in the orientation that occurs and that the depth is orientation-independent; Computation 6.7 says so too | Proposition 5.39 and proof; Computation 6.7; `overlap_graph.py`, `overlap_seed_patch.mojo` docstrings; note Section 9 |
+| 25 | P2 | Condition (b) admitted the bottom tile's right endpoint as a "boundary coincidence", where (c) fails; the example `1→2, 2→3, 3→12`, `O = (3,3,−1)`, level 1 is exact | Accepted. (b) now reads: some sub-tile of the inflated top tile and some sub-tile of the inflated bottom tile have the same left endpoint (a common boundary other than the right endpoint of either inflated tile); the proof of (a)⇔(b) is restated in terms of sub-tile left endpoints, and Corollary 5.41(iii) is restated accordingly. The propagated statements in the note, both ledgers, and the TLA ledger comment are corrected; the code measured the corrected notion already | Proposition 5.40 statement and proof; Corollary 5.41(iii); note Section 9; `docs/conjecture-ledger.md`, `docs/proof-ladder.md`; `tla/Ledger.tla` comment |
+
+### Finding 25 (P2)
+
+Accepted. The referee's example is exact: at level 1 the bottom tile `[−1, 1]` of `(3,3,−1)` ends at the internal top boundary `1`, no bottom sub-tile starts there, and `M w = −e_2` is not a difference of proper-prefix Parikh vectors. The equivalence (a)⇔(c) was never in doubt; (b) was the wrong paraphrase of it, and the census function measured (c).
+
+---
+
+## Thirteenth round (pull request #82)
+
+One finding from the automated Codex review of commit `310f06c06bdf757745cdb9c19f4e0411d20a9cd5`; accepted. It concerns the Python oracle only.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 26 | P2 | The Python depth helper returned depths on a capped partial graph, unlike the canonical Mojo kernel | Accepted. `first_depths` now raises on a capped graph (so do the coincidence, left-aligned and strong-coincidence wrappers), matching `_first_depths` and `nonproductive`; regression test on `τ` with `max_states = 1` | `src/psc_research/overlap_graph.py`; `tests/test_swap_discrepancy.py` |
+
+---
+
+## Fourteenth round (pull request #82)
+
+Two findings from the automated Codex review of commit `3dc397856ab8ceaf0298c34c3e1df8855e612f10`; both accepted. Both concern the census driver; no census value changes.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 27 | P2 | A nonproductive graph would raise in the depth validations before being counted, so a counterexample would surface as `FAILED` with the nonproductive count still zero | Accepted. The driver now records and prints a nonproductive specimen immediately after the productivity check and skips the depth statistics for it, which are undefined on such a graph | `mojo/swap_overlap_census.mojo` |
+| 28 | P2 | The prefix and suffix strong-coincidence scans each recomputed the coincidence depths, three reverse searches per graph | Accepted. `strong_coincidence_depth_from(depths, ...)` takes the precomputed vector (length-checked); `strong_coincidence_depth` wraps it; the census passes the one vector it already holds. The Python oracle takes an optional `depths` argument likewise. Census lines unchanged | `mojo/psc/overlap_seed_patch.mojo`, `mojo/swap_overlap_census.mojo`, `mojo/tests/test_overlap_seed_patch.mojo`, `src/psc_research/overlap_graph.py`, `scripts/overlap_depth_census_oracle.py` |
+
+---
+
+## Fifteenth round (pull request #82)
+
+Two findings from the automated Codex review of commit `2288163613668619be3185e97b1474ca059f3dc2`; both accepted. Both concern the Mojo census path; no census value changes.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 29 | P2 | `strong_coincidence_depth_from` accepted a capped automaton with a length-matching vector | Accepted. It now raises on a capped automaton before consuming the depths, like `_first_depths`; regression test with a capped graph | `mojo/psc/overlap_seed_patch.mojo`, `mojo/tests/test_overlap_seed_patch.mojo` |
+| 30 | P2 | The census rebuilt the exact tables for the endpoint scans after `build_seed_overlap_graph` had built them | Accepted. `build_seed_overlap_graph_from_tables(tables, cap)` is the builder; `build_seed_overlap_graph(sigma, cap)` wraps it; the census builds the tables once per specimen and passes them to the graph construction and both scans | `mojo/psc/overlap_seed_patch.mojo`, `mojo/swap_overlap_census.mojo` |
