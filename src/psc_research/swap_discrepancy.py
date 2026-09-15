@@ -16,6 +16,7 @@ for every state T at depth n below the seed (ab, ba).  The bound
 (docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md)
 proves to be uniformly bounded in n; this module only evaluates it exactly.
 """
+
 from __future__ import annotations
 
 from collections.abc import Iterable, Mapping
@@ -68,7 +69,9 @@ def max_reachable_discrepancy(graph: Mapping[State, object], size: int) -> int:
     return max((discrepancy(s, size) for s in graph), default=0)
 
 
-def common_tile_count(sigma: Substitution, a: int, b: int, level: int) -> tuple[int, int]:
+def common_tile_count(
+    sigma: Substitution, a: int, b: int, level: int
+) -> tuple[int, int]:
     """(number of common tiles, number of tiles) of the level-`level` swap pair.
 
     A common tile is a position with equal letters on both sides and equal
@@ -78,9 +81,30 @@ def common_tile_count(sigma: Substitution, a: int, b: int, level: int) -> tuple[
     size = alphabet_size(sigma)
     diff = [0] * size
     common = 0
+    non_zero = 0
+
     for x, y in zip(u, v):
-        if x == y and not any(diff):
-            common += 1
-        diff[x - 1] += 1
-        diff[y - 1] -= 1
+        if x == y:
+            if non_zero == 0:
+                common += 1
+            # When letters are identical, their Parikh vector difference is unchanged.
+            continue
+
+        # Optimization: Track non_zero count instead of using any(diff) which is O(size).
+        idx_x = x - 1
+        val_x = diff[idx_x] + 1
+        diff[idx_x] = val_x
+        if val_x == 1:
+            non_zero += 1
+        elif val_x == 0:
+            non_zero -= 1
+
+        idx_y = y - 1
+        val_y = diff[idx_y] - 1
+        diff[idx_y] = val_y
+        if val_y == -1:
+            non_zero += 1
+        elif val_y == 0:
+            non_zero -= 1
+
     return common, len(u)
