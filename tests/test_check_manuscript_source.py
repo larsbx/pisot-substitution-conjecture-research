@@ -58,7 +58,8 @@ def xref_pdf(rows=None, dict_extra=b"", predictor=False, compress=True):
     o4 = len(out)
     out += b"4 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>\nendobj\n"
     o3 = len(out)
-    table = [b"\x00\x00\x00\x00"] + [b"\x01" + o.to_bytes(2, "big") + b"\x00" for o in (o1, o2, o3, o4)]
+    # object 0: free, next free 0, generation saturated in the one-byte column (stands for 65535)
+    table = [b"\x00\x00\x00\xff"] + [b"\x01" + o.to_bytes(2, "big") + b"\x00" for o in (o1, o2, o3, o4)]
     if rows is not None:
         table = rows(table, o1, o2, o3)
     if predictor:
@@ -313,20 +314,61 @@ def test_incremental_update_extent_comes_from_prev_section(copy):
     assert code == 0, out
 
 
+def classic_with_free_4(head=b"0000000004 65535 f ", tail=b"0000000000 00000 f "):
+    """objects 1-3 in use, object 4 free and linked from object 0, /Size 5."""
+    return classic_pdf(edit=lambda b: b.replace(b"xref\n0 4\n0000000000 65535 f ", b"xref\n0 5\n" + head)
+                       .replace(b"trailer", tail + b"\ntrailer").replace(b"/Size 4 ", b"/Size 5 "))
+
+
 def test_free_top_entry_passes_classic(copy):
-    # objects 1-3 in use, object 4 free, /Size 5: the extent counts the free entry
     pdf = next(copy.glob("*.pdf"))
-    pdf.write_bytes(classic_pdf(edit=lambda b: b.replace(b"xref\n0 4\n", b"xref\n0 5\n")
-                                .replace(b"trailer", b"0000000000 00000 f \ntrailer").replace(b"/Size 4 ", b"/Size 5 ")))
+    pdf.write_bytes(classic_with_free_4())
     code, out = run(copy)
     assert code == 0, out
 
 
 def test_free_top_entry_passes_xref_stream(copy):
     pdf = next(copy.glob("*.pdf"))
-    pdf.write_bytes(xref_pdf(rows=lambda t, o1, o2, o3: [*t, b"\x00\x00\x00\x00"]).replace(b"/Size 5 ", b"/Size 6 "))
+    rows = lambda t, o1, o2, o3: [b"\x00\x00\x05\xff", *t[1:], b"\x00\x00\x00\x00"]
+    pdf.write_bytes(xref_pdf(rows=rows).replace(b"/Size 5 ", b"/Size 6 "))
     code, out = run(copy)
     assert code == 0, out
+
+
+def test_free_entry_pointer_must_be_below_size(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(classic_pdf(edit=lambda b: b.replace(b"0000000000 65535 f", b"9999999999 65535 f")))
+    code, out = run(copy)
+    assert code == 1 and "beyond /Size" in out, out
+    pdf.write_bytes(xref_pdf(rows=lambda t, o1, o2, o3: [b"\x00\x00\x63\xff", *t[1:]]))
+    code, out = run(copy)
+    assert code == 1 and "beyond /Size" in out, out
+
+
+def test_object_zero_must_be_free_with_generation_65535(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(classic_pdf(edit=lambda b: b.replace(b"0000000000 65535 f", b"0000000000 00000 f")))
+    code, out = run(copy)
+    assert code == 1 and "generation 65535" in out, out
+
+
+def test_free_entries_must_form_the_free_list(copy):
+    pdf = next(copy.glob("*.pdf"))
+    # object 4 free but object 0 still points at 0: object 4 is off the list
+    pdf.write_bytes(classic_with_free_4(head=b"0000000000 65535 f "))
+    code, out = run(copy)
+    assert code == 1 and "not on the free list" in out, out
+    # object 0 points at the in-use object 2
+    pdf.write_bytes(classic_with_free_4(head=b"0000000002 65535 f "))
+    code, out = run(copy)
+    assert code == 1 and "not an unvisited free entry" in out, out
+
+
+def test_zero_count_subsection_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(classic_pdf(edit=lambda b: b.replace(b"trailer", b"9999 0\ntrailer").replace(b"/Size 4 ", b"/Size 9999 ")))
+    code, out = run(copy)
+    assert code == 1 and "empty xref subsection" in out, out
 
 
 def test_type2_entry_to_non_object_stream_fails(copy):

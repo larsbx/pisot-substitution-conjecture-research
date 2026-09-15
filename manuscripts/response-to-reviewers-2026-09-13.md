@@ -434,3 +434,15 @@ One finding from the automated Codex review of commit `7d557ac9f8`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 61 | P2 | A free highest-numbered entry made a valid file fail the `/Size` check | Accepted. The structural stage now walks the whole cross-reference chain along `/Prev` (an out-of-file offset or a revisited offset fails) and returns the highest object number over every entry of every section, free entries and type-0 rows included; the full-parse stage compares `/Size` with one more than the larger of that extent and pypdf's in-use maximum, so an oversized `/Size` still fails. Tests: a classic table with objects 1–3 in use, object 4 free and `/Size 5` passes; a cross-reference stream with a trailing type-0 row and `/Size 6` passes; a cyclic `/Prev` fails; an incremental update rewriting only object 1, whose `/Size 4` is justified by the original section, passes | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+
+---
+
+## Thirty-third round (pull request #95, chain-extent revision)
+
+Two findings from the automated Codex review of commit `7ec39a90c0`; both accepted. The section parsers now return their entry tables instead of a bare extent, and the chain walk merges the sections newest-first before checking invariants that span the whole table.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 62 | P2 | Free entries were checked for shape only | Accepted. A free entry's pointer must be an object number below `/Size` and its generation at most 65535 (classic tables and type-0 rows alike; a saturated narrow generation column in a stream stands for 65535, as in the repository PDF's one-byte column). On the merged table, object 0 must be free with generation 65535 and head a chain of free entries that returns to object 0 and covers every free entry. Tests: an out-of-range pointer on a classic table and on a stream row; object 0 with generation 0; a free object 4 that object 0 does not link; object 0 pointing at an in-use object; the passing free-top fixtures now link object 4 from object 0 | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 63 | P2 | A zero-count subsection inflated the extent | Accepted. A zero-count subsection fails ("empty xref subsection"), and the extent is now the highest key of the merged entry table, so no phantom object number can enter it; test appends `9999 0` with `/Size 9999` and expects failure | same |

@@ -762,3 +762,29 @@ No other findings were posted in the thirty-first round.
 > For a valid PDF whose highest-numbered cross-reference entry is free, `reader.xref`/`xref_objStm` contains only dereferenceable type-1/type-2 objects, so `top` is lower than `/Size - 1` and this check rejects the file. For example, a classic table with objects 1–3 in use, object 4 free, and `/Size 5` has the required exact extent but is reported inconsistent. Derive the maximum from all cross-reference entries, including type-0/free entries, while still rejecting a `/Size` that merely has no corresponding entry.
 
 No other findings were posted in the thirty-second round.
+
+
+---
+
+# Thirty-third round: review of the chain-extent revision (pull request #95)
+
+**Reviewed commit:** `7ec39a90c0` (finding 61).
+**Review posted:** 2026-09-15T16:57:25Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 62 (P2) — `scripts/check_manuscript_source.py`, line 94
+
+> **Validate classic xref free entries**
+>
+> When an `f` entry is corrupted, this branch validates only its textual shape and skips its free-list pointer and generation fields; the full-parse stage cannot recover this because pypdf does not retain free entries. For example, changing object 0's pointer from `0000000000` to the out-of-range `9999999999` leaves the extent unchanged and is reported as intact, despite producing an invalid cross-reference free list. Validate free-entry bounds and required free-list invariants before accepting the table.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 63 (P2) — `scripts/check_manuscript_source.py`, line 85
+
+> **Reject empty classic xref subsections**
+>
+> A zero-count subsection contributes no cross-reference entries, but it is still added to `ranges` and the return expression treats `start - 1` as an actual object number. Thus an otherwise valid four-entry table can append `9999 0` and declare `/Size 9999`; the structural walk reports object 9998 as present, and the later exact-size comparison succeeds even though no such entry exists. Reject zero counts or exclude them from the computed extent.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-third round.
