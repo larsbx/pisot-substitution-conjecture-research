@@ -84,7 +84,9 @@ def test_pdf_last_trailer_is_the_one_checked(copy):
 
 def test_pdf_xref_object_without_stream_body_fails(copy):
     pdf = next(copy.glob("*.pdf"))
-    pdf.write_bytes(b"%PDF-1.5\n1 0 obj\n<< /Type /XRef /Size 2 >>\nendobj\nstartxref\n9\n%%EOF\n")
+    pdf.write_bytes(
+        b"%PDF-1.5\n1 0 obj\n<< /Type /XRef /Size 2 /W [1 2 1] /Root 1 0 R /Length 4 >>\nendobj\nstartxref\n9\n%%EOF\n"
+    )
     code, out = run(copy)
     assert code == 1 and "no stream body" in out
 
@@ -92,14 +94,14 @@ def test_pdf_xref_object_without_stream_body_fails(copy):
 MINIMAL_CLASSIC = (
     b"%PDF-1.4\n1 0 obj\n<< /Type /Catalog >>\nendobj\n"
     b"xref\n0 2\n0000000000 65535 f \n0000000009 00000 n \n"
-    b"trailer\n<< /Size 2 /Root 1 0 R >>\nstartxref\n41\n%%EOF\n"
+    b"trailer\n<< /Size 2 /Root 1 0 R >>\nstartxref\n45\n%%EOF\n"
 )
 
 
 def test_minimal_classic_table_passes(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.write_bytes(MINIMAL_CLASSIC)
-    assert MINIMAL_CLASSIC[41:45] == b"xref"
+    assert MINIMAL_CLASSIC[45:49] == b"xref" and MINIMAL_CLASSIC[9:16] == b"1 0 obj"
     code, out = run(copy)
     assert code == 0, out
 
