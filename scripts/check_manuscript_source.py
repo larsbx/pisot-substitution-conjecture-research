@@ -9,8 +9,9 @@ listed file must exist; every ``.tex`` in the directory must be valid UTF-8 with
 no control bytes other than tab and newline, a ``\\documentclass`` first line,
 ``\\begin{document}`` before ``\\end{document}``, only allowed control words and
 in-order macro parameters before the closing sentinel, and at least MIN_LINES
-lines; the directory may hold no TeX input file (``.sty``, ``.cls``, ...) that a
-source could load in place of the installed one;
+lines; the directory may hold no subdirectory and no TeX input file (``.sty``,
+``.cls``, ...) that a source could load in place of the installed one, and every
+package or class loader must name plain names rather than paths;
 every ``.pdf`` must carry the ``%PDF-`` header, a ``startxref`` offset that
 (the last one before the final ``%%EOF``) that points at a classic ``xref`` table\n(subsections of 20-byte entries, then a ``trailer`` dictionary with ``/Size`` and\n``/Root``) or at a ``/Type /XRef`` stream object whose body matches its direct\n``/Length``, inflates if Flate-encoded, and has a positive multiple of the ``/W``\nrow width, and ``%%EOF``; finally pypdf parses the whole file in strict mode and
 every object, including object-stream members, is dereferenced and the page
@@ -55,9 +56,12 @@ _TEX_STOPS = frozenset("endinput csname catcode scantokens lowercase uppercase d
                        "everyvbox everycr everyeof everyjob output errhelp".split())
 
 # File suffixes LaTeX loads by name from a source (\\documentclass, \\usepackage and their
-# kin): a file with one of these in the manuscripts directory would shadow the installed one,
-# and the guard does not read it.
+# kin): a file with one of these in the manuscripts directory, or in a subdirectory a source
+# could name, would shadow the installed one, and the guard does not read it.
 _TEX_INPUTS = frozenset(".sty .cls .clo .def .cfg .fd .ltx .dtx .ins".split())
+# The control words that load such a file: each must name plain package or class names, so no
+# path can reach a file outside the installed tree.
+_TEX_LOADERS = frozenset("documentclass usepackage RequirePackage LoadClass RequirePackageWithOptions LoadClassWithOptions".split())
 
 
 def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
@@ -127,6 +131,14 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
                             "order; the guard cannot follow it")
             break
         order[group] = digit
+    # a package or class loader must name plain names (letters, digits, - and _, comma-separated
+    # after an optional [options] group), never a path
+    loaders = [m for m in re.finditer(r"(?<!\\)(?:\\\\)*\\(" + "|".join(sorted(_TEX_LOADERS)) + r")(?![a-zA-Z@])"
+                                      r"(?![ \t\n]*(?:\[[^\]]*\][ \t\n]*)?\{[ \t\n]*[a-zA-Z0-9_-]+(?:[ \t\n]*,[ \t\n]*[a-zA-Z0-9_-]+)*[ \t\n]*\})", active)
+               if e < 0 or m.start() < e]
+    if loaders:
+        problems.append(f"{path}: \\{loaders[0].group(1)} on line {active.count(chr(10), 0, loaders[0].start()) + 1} does not name plain package or "
+                        "class names; a path could load a file the guard does not read")
     # every other \\begin{document} or \\end{document} before the closing sentinel, in a macro body
     # or beside other text, could be executed by a macro or a group and end or restart the document
     # in ways the guard cannot follow
@@ -1114,8 +1126,8 @@ def main(argv: list[str]) -> int:
             problems.append(f"{words}: {', '.join(chr(92) + w for w in banned)} cannot be allowed; the guard cannot follow them")
         else:
             allowed = frozenset(entries)
-    inputs = sorted(p for p in directory.iterdir() if p.suffix in _TEX_INPUTS) if directory.is_dir() else []
-    problems += [f"{p}: a TeX input file that a source could load in place of the installed one" for p in inputs]
+    inputs = sorted(p for p in directory.iterdir() if p.suffix in _TEX_INPUTS or p.is_dir()) if directory.is_dir() else []
+    problems += [f"{p}: {'a subdirectory, from which a source could load a TeX input file the guard does not read' if p.is_dir() else 'a TeX input file that a source could load in place of the installed one'}" for p in inputs]
     present = sorted(set(directory.glob("*.tex")) | set(directory.glob("*.pdf")) | {p for p in required if p.suffix in (".tex", ".pdf")}) if directory.is_dir() else []
     checked = 0
     for p in present:

@@ -276,7 +276,25 @@ def test_tex_input_files_are_rejected(copy):
         code, out = run(copy)
         assert code == 1 and f"{name}: a TeX input file" in out, out
         (copy / name).unlink()
+    (copy / "sub").mkdir()
+    (copy / "sub" / "evil.sty").write_text("")  # a nested input file a source could name by path
+    code, out = run(copy)
+    assert code == 1 and "sub: a subdirectory" in out, out
+    shutil.rmtree(copy / "sub")
+    (copy / "empty").mkdir()  # any subdirectory, since one could be filled later
+    code, out = run(copy)
+    assert code == 1 and "empty: a subdirectory" in out, out
+    (copy / "empty").rmdir()
     assert run(copy)[0] == 0
+    tex = next(copy.glob("*.tex"))
+    text = tex.read_text()
+    for loader in ("\\usepackage{sub/evil}", "\\usepackage{../evil}", "\\usepackage{evil.sty}", "\\usepackage[a]{geometry, sub/x}", "\\documentclass{./article}",
+                   "\\usepackage{\\foo}", "\\usepackage"):
+        tex.write_text(text.replace("\\usepackage{enumitem}", loader + "\n\\usepackage{enumitem}", 1))  # loaders naming paths or nothing plain
+        code, out = run(copy)
+        assert code == 1 and "does not name plain package or class names" in out, (loader, out)
+    tex.write_text(text.replace("\\usepackage{enumitem}", "\\usepackage[margin=1in, a4paper]{geometry}\\usepackage{ amsmath , amssymb }\n\\usepackage\n[x]\n{enumitem}", 1))
+    assert run(copy)[0] == 0  # options, comma-separated names and line-broken arguments
 
 
 def test_truncated_tex_fails(copy):

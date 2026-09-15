@@ -1779,3 +1779,18 @@ No other findings were posted in the seventy-ninth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the eightieth round.
+
+# Eighty-first round: review of the stray-sentinel revision (pull request #95)
+
+**Reviewed commit:** `f1e1ee8fb3` (finding 144).
+**Review posted:** 2026-09-15T23:43:59Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 145 (P2) — `scripts/check_manuscript_source.py`, line 1118
+
+> **Reject TeX inputs in nested manuscript directories**
+>
+> When a source uses an allowed command such as `\usepackage{sub/evil}`, a `manuscripts/sub/evil.sty` file is loaded by LaTeX but is invisible to this non-recursive `iterdir()` check. Its unchecked definitions can redefine `\begin` or `\end`, allowing the textual document sentinels to pass even though they no longer have their expected meaning; reject nested TeX input files or reject subdirectories altogether.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the eighty-first round.
