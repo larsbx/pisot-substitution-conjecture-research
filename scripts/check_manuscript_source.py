@@ -618,12 +618,14 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
     return result
 
 
-def _object_streams(raw: bytes, table: dict[int, Entry], cache: dict) -> str | None:
+def _object_streams(raw: bytes, table: dict[int, Entry], cache: dict, introduced: dict[int, Entry]) -> str | None:
     """Every effective type-2 entry of a revision must name, in its effective ``table``,
     an object stream whose indexed header member is the entry's own object number and
     parses as one complete object (findings 83, 87, 89 and 91: pypdf resolves only the
     final effective entries, and an inherited row must still hold after its container is
-    replaced)."""
+    replaced).  Conversely, every member of an object stream that the section itself
+    ``introduced`` must be listed by a type-2 entry naming that container and index
+    (finding 103); a later revision may still replace a member by a direct object."""
     for num, (kind, container, index, _) in table.items():
         if kind != 2:
             continue
@@ -637,6 +639,13 @@ def _object_streams(raw: bytes, table: dict[int, Entry], cache: dict) -> str | N
             return f"type-2 entry for object {num} has index {index}, but member {index} of object stream {container} is object {pairs[index][0]}"
         if members[index]:
             return f"type-2 entry for object {num}: {members[index]}"
+    for container, holder in introduced.items():
+        stm = cache.get(holder[1]) if holder[0] == 1 else None
+        if isinstance(stm, tuple):
+            for k, (num, _) in enumerate(stm[0]):
+                row = table.get(num)
+                if row is None or row[0] != 2 or row[1] != container or row[2] != k:
+                    return f"member {k} of object stream {container} declares object {num}, which has no matching type-2 entry in this revision"
     return None
 
 
@@ -663,7 +672,12 @@ def _resolve(raw: bytes, table: dict[int, Entry], ref: tuple[int, int], cache: d
         if entry[2] != gen:
             return f"object {num} {gen} R names generation {gen}, but object {num} has generation {entry[2]}"
         at = raw[entry[1]:]
-        items = _dict_items(at, re.match(rb"\d+\s+\d+\s+obj\s*", at).end())
+        parsed = _dict_parse(at, re.match(rb"\d+\s+\d+\s+obj\s*", at).end())
+        if parsed is None:
+            return f"object {num} {gen} R is not a dictionary"
+        if not re.match(rb"\s*endobj\b", at[parsed[1]:parsed[1] + 16]):
+            return f"object {num} {gen} R is a stream or is not closed by endobj, so it cannot serve as a dictionary node"
+        items = parsed[0]
     else:
         if gen != 0:
             return f"object {num} {gen} R names a compressed object with a nonzero generation"
@@ -690,6 +704,8 @@ def _page_tree(raw: bytes, table: dict[int, Entry], ref: tuple[int, int], cache:
     items = _resolve(raw, table, ref, cache)
     if isinstance(items, str):
         return f"page tree: {items}"
+    if parent is None and b"Parent" in items:
+        return f"the root of the page tree, object {ref[0]}, carries a /Parent"
     if parent is not None and _ref_value(items.get(b"Parent", b"")) != parent:
         return f"page tree node {ref[0]} does not name its parent {parent[0]}"
     kind = _name_value(items.get(b"Type", b""))
@@ -744,6 +760,9 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
         here = seen[-1]
         if any(link is not None and link >= here for link in (prev, xrefstm)):
             return f"cross-reference section at offset {here} links forward (/Prev or /XRefStm {prev if prev is not None and prev >= here else xrefstm}); earlier revisions precede it"
+        term = re.match(rb"\s*startxref\s+(\d+)\s*%%EOF", raw[section[4]:section[4] + 64])
+        if not term or int(term.group(1)) != here:
+            return f"cross-reference section at offset {here} is not followed by 'startxref {here}' and %%EOF, so its revision was never a complete file"
         off = prev
         classic, sizes, roots = xrefstm is not None or raw.startswith(b"xref", here), (size,), (root,)
         if xrefstm is not None:
@@ -758,7 +777,7 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
     merged, cache = {}, {}
     for entries, sizes, roots, classic in reversed(sections):
         merged = {**merged, **entries}  # newer sections win
-        if problem := _free_list(merged, classic) or _object_streams(raw, merged, cache):
+        if problem := _free_list(merged, classic) or _object_streams(raw, merged, cache, entries):
             return problem
         for size in sizes:  # the trailer's /Size and, in a hybrid section, the companion stream's
             if size != max(merged) + 1:

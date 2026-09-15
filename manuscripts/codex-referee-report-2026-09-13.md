@@ -1232,3 +1232,45 @@ No other findings were posted in the forty-sixth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the forty-seventh round.
+
+
+---
+
+# Forty-eighth round: review of the page-tree revision (pull request #95)
+
+**Reviewed commit:** `bddda784b3` (findings 100–102).
+**Review posted:** 2026-09-15T19:19:29Z, one automated Codex review with four inline comments. Reproduced verbatim.
+
+## Finding 103 (P2) — `scripts/check_manuscript_source.py`, line 608
+
+> **Match every object-stream member to an xref entry**
+>
+> When an object stream declares an otherwise valid, uniquely numbered member that has no matching effective type-2 row—for example, a second member numbered 4 while object 4 remains the direct stream container—this check accepts it and `_object_streams` only visits the referenced member. Pypdf likewise enumerates compressed objects from `xref_objStm`, so the hidden member is never dereferenced even though the guard promises to inspect every object; verify the reverse mapping from every header pair to the effective `(container, index)` entry.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 104 (P2) — `scripts/check_manuscript_source.py`, line 743
+
+> **Validate terminators for every historical revision**
+>
+> When an incremental PDF's older `startxref` or `%%EOF` marker is removed or corrupted, the historical xref section still parses because its end offset is discarded here; replay follows `/Prev` directly, and the final pypdf pass only requires the newest terminator. This accepts a revision that was never a complete PDF despite the replay contract, so require each non-companion section to be followed by a `startxref` pointing back to that section and an `%%EOF` before the next revision.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 105 (P2) — `scripts/check_manuscript_source.py`, line 694
+
+> **Reject a /Parent on the page-tree root**
+>
+> When a historical root `/Pages` node carries a `/Parent` entry, this condition skips validation because `parent` is `None`; if a later revision replaces that node, pypdf only walks the repaired tree and the malformed historical tree passes. The root of a page tree must not have a parent, so explicitly reject a top-level `/Parent` instead of checking only non-root nodes.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 106 (P2) — `scripts/check_manuscript_source.py`, line 666
+
+> **Reject streams used as historical page-tree dictionaries**
+>
+> When a superseded historical catalog or page-tree node is a valid stream whose dictionary contains `/Type /Catalog`, `/Pages`, or `/Type /Page[s]`, `_resolve` returns its dictionary items without noticing the following `stream` body. `_superseded_streams` then accepts the stream structurally and pypdf sees only the later replacement, so an invalid stream object is treated as a catalog/page node; require resolved in-use nodes to be dictionary objects followed by `endobj`, not stream objects.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-eighth round.

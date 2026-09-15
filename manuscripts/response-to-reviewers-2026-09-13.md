@@ -625,3 +625,17 @@ Three findings from the automated Codex review of commit `caf7c77d0d`; all accep
 | 100 | P2 | The hybrid companion's own `/Prev` was discarded unchecked | Accepted. A companion's `/Prev`, if present, must be the classic trailer's own earlier `/Prev`; anything else (forward, self-pointing, or inconsistent with the trailer) fails. Tests: companions carrying `/Prev 999999` and `/Prev 0` under a trailer without `/Prev` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 101 | P2 | An object stream could declare the same object twice | Accepted. The header's object numbers must be unique. Test: header `5 0 5 13` | same |
 | 102 | P2 | A historical catalog was accepted on its type alone | Accepted. Every section's root is now resolved through a reference resolver over that revision's effective table (in-use objects at their offsets with matching generation, compressed objects as decoded members), and its `/Pages` reference must head a consistent, nonempty page tree: the root a `/Pages` node, every node's `/Kids` an array of references each naming the node as `/Parent`, every `/Count` equal to the pages beneath, no cycles and at most 64 levels. Tests: historical catalogs with `/Pages 9 0 R`, with `/Pages` naming a page rather than the root node, and without `/Pages`, each later repaired by an update, all fail; a `/Count 2` over one page later repaired fails. The repository PDF's own tree of 36 pages walks cleanly | same |
+
+
+---
+
+## Forty-eighth round (pull request #95, page-tree revision)
+
+Four findings from the automated Codex review of commit `bddda784b3`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 103 | P2 | An object-stream member with no type-2 row went unexamined | Accepted. For every object stream that a section itself introduces, each header member must be listed by a type-2 entry naming that container and index in the section's revision; a later revision may still replace a member by a direct object, which is the legitimate incremental-update pattern. Test: the reviewer's second member numbered 4 while object 4 is the container | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 104 | P2 | Older revisions were not required to end with their own terminator | Accepted. Every non-companion section must be followed by `startxref` naming that section's offset and `%%EOF`, so each replayed prefix was a complete file. Test: an incremental update whose original revision lost its `startxref` and `%%EOF` | same |
+| 105 | P2 | A page-tree root could carry a `/Parent` | Accepted. The root node must have no `/Parent`. Test: a root `/Pages` with `/Parent 1 0 R`, later repaired; a page used as the root now fails on this rule first | same |
+| 106 | P2 | A stream object could pose as a catalog or page node | Accepted. A resolved in-use node must be a dictionary object closed by `endobj`; a stream body fails. Test: a catalog written as a stream, later repaired | same |

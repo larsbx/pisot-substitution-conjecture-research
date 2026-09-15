@@ -803,7 +803,7 @@ def test_historical_page_tree_is_walked(copy):
     pdf = next(copy.glob("*.pdf"))
     pages, page = b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>", b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>"
     for catalog, message in ((b"<< /Type /Catalog /Pages 9 0 R >>", "page tree: object 9 0 R is not in use"),
-                             (b"<< /Type /Catalog /Pages 3 0 R >>", "is a /Page rather than /Pages"),
+                             (b"<< /Type /Catalog /Pages 3 0 R >>", "carries a /Parent"),
                              (b"<< /Type /Catalog >>", "lacks a /Pages reference")):
         raw = classic_pdf(objs=[catalog, pages, page])
         pdf.write_bytes(classic_update(raw, 1, b"<< /Type /Catalog /Pages 2 0 R >>", 4))  # pypdf reads only the repaired catalog
@@ -813,6 +813,45 @@ def test_historical_page_tree_is_walked(copy):
     pdf.write_bytes(classic_update(raw, 2, pages, 4))
     code, out = run(copy)
     assert code == 1 and "declares /Count 2 but holds 1" in out, out
+
+
+def test_every_object_stream_member_needs_a_type2_entry(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(objstm_pdf(members=[(5, 0), (4, 13)], body=b"<< /Foo 1 >> << /Bar 2 >>"))
+    code, out = run(copy)
+    assert code == 1 and "no matching type-2 entry" in out, out
+
+
+def test_every_revision_must_end_with_its_terminator(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = classic_pdf()
+    old_xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
+    raw = raw[:raw.rfind(b"startxref")]  # the original revision loses its startxref and %%EOF
+    o3 = len(raw)
+    raw += b"3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 20 20] >>\nendobj\n"
+    new_xref = len(raw)
+    raw += b"xref\n3 1\n%010d 00000 n \ntrailer\n<< /Size 4 /Root 1 0 R /Prev %d >>\nstartxref\n%d\n%%%%EOF\n" % (o3, old_xref, new_xref)
+    pdf.write_bytes(raw)
+    code, out = run(copy)
+    assert code == 1 and "never a complete file" in out, out
+
+
+def test_page_tree_root_carries_no_parent(copy):
+    pdf = next(copy.glob("*.pdf"))
+    page = b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>"
+    raw = classic_pdf(objs=[b"<< /Type /Catalog /Pages 2 0 R >>", b"<< /Type /Pages /Kids [3 0 R] /Count 1 /Parent 1 0 R >>", page])
+    pdf.write_bytes(classic_update(raw, 2, b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>", 4))
+    code, out = run(copy)
+    assert code == 1 and "carries a /Parent" in out, out
+
+
+def test_stream_objects_cannot_serve_as_tree_nodes(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = classic_pdf(objs=[b"<< /Type /Catalog /Pages 2 0 R /Length 1 >>\nstream\nx\nendstream", b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+                            b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>"])
+    pdf.write_bytes(classic_update(raw, 1, b"<< /Type /Catalog /Pages 2 0 R >>", 4))
+    code, out = run(copy)
+    assert code == 1 and "is a stream or is not closed by endobj" in out, out
 
 
 def test_superseded_dictionary_is_parsed_structurally(copy):
