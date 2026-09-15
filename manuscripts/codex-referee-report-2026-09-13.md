@@ -1764,3 +1764,18 @@ No other findings were posted in the seventy-eighth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the seventy-ninth round.
+
+# Eightieth round: review of the allowlist revision (pull request #95)
+
+**Reviewed commit:** `e22297f7b7` (finding 143).
+**Review posted:** 2026-09-15T23:30:16Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 144 (P2) — `scripts/check_manuscript_source.py`, line 104
+
+> **Reject macro-wrapped document sentinels**
+>
+> When an allowlisted macro wraps a document sentinel and is invoked before the textual pair, this top-level-only filter silently ignores the executable sentinel. For example, `\newcommand{\foo}{\end{document}}` followed by `\foo` before the real `\begin{document}` returns no problems once `foo` is listed in `TEX_CONTROL_WORDS`, although LaTeX executes the premature end command and fails before reaching a valid document environment. Reject pre-closing `\begin{document}`/`\end{document}` occurrences inside callable macro bodies, or otherwise account for their expansion.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the eightieth round.

@@ -99,9 +99,9 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
                         "cannot be classified as executed or not; keep conditionals at the top level")
 
     def sentinel(name: str) -> int:
-        for m in re.finditer(r"^[ \t]*\\" + name + r"\{document\}[ \t]*$", active, re.M):
+        for m in re.finditer(r"^[ \t]*(\\" + name + r"\{document\})[ \t]*$", active, re.M):
             if depth(braces, m.start()) == 0 and depth(conditionals, m.start()) == 0:
-                return m.start()
+                return m.start(1)
         return -1
 
     b, e = sentinel("begin"), sentinel("end")
@@ -127,8 +127,17 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
                             "order; the guard cannot follow it")
             break
         order[group] = digit
+    # every other \\begin{document} or \\end{document} before the closing sentinel, in a macro body
+    # or beside other text, could be executed by a macro or a group and end or restart the document
+    # in ways the guard cannot follow
+    stray = [m for m in re.finditer(r"(?<!\\)(?:\\\\)*(\\(begin|end)[ \t]*\{document\})", active)
+             if m.start(1) != (b if m.group(2) == "begin" else e) and (e < 0 or m.start(1) < e)]
+    if stray:
+        problems.append(f"{path}: \\{stray[0].group(2)}{{document}} on line {active.count(chr(10), 0, stray[0].start()) + 1} is not the standalone "
+                        "sentinel; a macro or group could execute it, which the guard cannot follow")
     # the sentinels mean what LaTeX defines only while \\begin, \\end and the document environment keep
-    # their definitions: \\begin and \\end may occur only as environment uses followed by {, never as the
+    # their definitions: \\begin and \\end may occur only as environment uses followed by {name} with a
+    # plain name (a name assembled from a macro parameter could spell document), never as the
     # target of a definer (\\def and its variants, \\let, \\futurelet, a prefix such as \\global, or any
     # ...command... macro), the internal \\document and \\enddocument may not occur, and no
     # environment-defining command may target document, begin or end.  TeX skips the white space after a control
@@ -140,7 +149,7 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
     # target as a control word right there, followed by its body or argument count, since a target
     # reaching it through a macro parameter or another macro's body (a wrapper around the definer)
     # cannot be followed
-    tampering = (re.search(r"(?<!\\)(?:\\\\)*\\(begin|end)(?![a-zA-Z@])(?![ \t]*\{)", active)
+    tampering = (re.search(r"(?<!\\)(?:\\\\)*\\(begin|end)(?![a-zA-Z@])(?![ \t]*\{[a-zA-Z0-9*]+\})", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\([gex]?def|let|futurelet|global|long|outer|protected|[a-zA-Z@]*[cC]ommand[a-zA-Z@]*"
                               r"|Declare[a-zA-Z@]*|new(?:count|dimen|skip|muskip|box|read|write|language|insert|fam|marks|attribute))"
                               r"[ \t\n]*\*?[ \t\n]*\{?[ \t\n]*\\(?:begin|end|document|enddocument)(?![a-zA-Z@])", active)

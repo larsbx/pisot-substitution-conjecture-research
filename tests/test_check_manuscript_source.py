@@ -191,7 +191,8 @@ def test_commented_document_sentinels_fail(copy):
                          "\\DeclareTextSymbol\\begin{OT1}{65}", "\\newcount\\begin{}",  # other macros that target a control word
                          "\\newcommand{\\d}[1]{\\renewcommand#1{}}\n\\d\\begin{}", "\\newcommand\\d{\\renewcommand}\n\\d\\begin{}",  # wrappers
                          "\\renewcommand{#1}{}", "\\newcommand", "\\newcommand\\foo\\bar", "\\NewCommandCopy\\foo\\bar",  # a definer whose target is not a control word right there, followed by a body
-                         "\\renewenvironment{begin}{}{}", "\\newenvironment*{ end }{}{}"):  # environment definers naming a sentinel word
+                         "\\renewenvironment{begin}{}{}", "\\newenvironment*{ end }{}{}",  # environment definers naming a sentinel word
+                         "\\newcommand{\\foo}[1]{\\begin{docu#1}}", "\\newcommand{\\foo}[1]{\\end{#1}}", "\\begin{ center }\\end{ center }"):  # environment names that are not plain
         tex.write_text(text.replace("\\begin{document}", redefinition + "\n\\begin{document}", 1))
         code, out = run(copy)
         assert code == 1 and "can change what the document sentinels mean" in out, (redefinition, out)
@@ -201,6 +202,12 @@ def test_commented_document_sentinels_fail(copy):
     assert run(copy)[0] == 0  # a line-broken definer whose target is not a sentinel, and another environment
     tex.write_text(text.replace("\\begin{document}", "\\renewcommand*{\\foo}{\\begin{center}}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # a starred definer with another target
+    for wrapper in ("\\newcommand{\\foo}{\\end{document}}\n\\foo", "\\newcommand{\\foo}{\\begin{document}}", "x \\end{document}"):
+        tex.write_text(text.replace("\\begin{document}", wrapper + "\n\\begin{document}", 1))  # a sentinel a macro or group could execute
+        code, out = run(copy)
+        assert code == 1 and "is not the standalone sentinel" in out, (wrapper, out)
+    tex.write_text(text.replace("\\begin{document}", "\\begin{align*}\\end{align*}\n\\begin{document}", 1))
+    assert run(copy)[0] == 0  # a starred environment name is plain
     tex.write_text(text.replace("\\begin{document}", "\\DeclareMathOperator{\\Tr}{Tr}\\DeclareGraphicsExtensions{.pdf}\\newcounter{foo}\\newlength{\\len}\\newdimen\\dim\n"
                                 "\\newcommand\\foo{}\\newcommand*{ \\bar }[1]{#1}\\providecommand{\\baz}{\\bar{x}}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # Declare... macros, allocators and ...command... definers naming their targets
