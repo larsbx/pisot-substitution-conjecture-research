@@ -21,7 +21,7 @@ Markers: `[V]` was checked in this session by reading or executing the repositor
 | 4. Separate exact linear algebra from certificate logic | done | `larsbx/finite_linear_algebra` (`mat3`, `qlinalg`, `tensor3`, general `w3`, `scalar`); `psc/w3.mojo` keeps the printed certificate basis |
 | interval layer (section 3) | done | `larsbx/interval_q`, on `finite_exact` |
 | 5. Specify `finite_proof_records` | specification and Python reference model done; Mojo implementation pending | `larsbx/finite_proof_records` |
-| 6. Extract the audit tooling with per-repository policy | not started | NLAP-JT `tools/audit_*.py` |
+| 6. Extract the audit tooling with per-repository policy | done | `larsbx/claim_governance_tools` (terminology, claims, promotion, numerics, consistency checks over a per-repository `claim_governance.toml`); PSC is the first consumer: claim ledger with status surfaces, exact-kernel float ban, run by CI, `pytest`, and `verify_all.sh`; NLAP-JT's policy expresses its no-trigonometry, no-points, rank-2, and C1-scoped vocabulary rules beside its existing `tools/audit_*.py` |
 
 Vendoring is by byte-identical copy, pinned per package by upstream commit and SHA-256 digest in `vendored.toml` and enforced by `scripts/check_vendored_sync.py` (shipped by `finite_exact`). The heads and paths quoted below are those of 2026-09-14 and are kept as the audit record.
 

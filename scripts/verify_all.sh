@@ -39,6 +39,11 @@ if python3 scripts/check_manuscript_source.py; then
 else
     bad "manuscript source integrity"
 fi
+if PYTHONPATH=tools python3 -m claim_governance.cli --root . >/dev/null; then
+    ok "status surfaces agree with the claim ledger (claim_governance.toml)"
+else
+    bad "claim governance audit (run: PYTHONPATH=tools python3 -m claim_governance.cli --root .)"
+fi
 if [[ ${1:-} == provenance ]]; then
     exit "$status"
 fi

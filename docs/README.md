@@ -23,7 +23,12 @@ the section matching the question you are asking.
 
 When these disagree, do not choose the strongest wording. Check the latest
 merged commit, the claim/source map, the proof note, and `tla/Ledger.tla`,
-then repair all status surfaces together.
+then repair all status surfaces together. The claim ledger in
+`claim_governance.toml` names every load-bearing claim, its status class, and
+the surfaces on which that status is spelled out; CI, `pytest`, and
+`scripts/verify_all.sh` run the vendored `tools/claim_governance` audit
+against it, so a surface that disagrees with the ledger fails the build.
+Change the ledger entry and every surface in the same commit.
 
 ## Cross-program engineering
 
@@ -35,6 +40,10 @@ then repair all status surfaces together.
 - `exact-arithmetic-binding.md` — this repository's binding rows for the
   arithmetic specification kept in `larsbx/finite_exact`, and the vendoring
   rule enforced by `vendored.toml`.
+- `../claim_governance.toml` — the claim-governance policy read by the
+  vendored `larsbx/claim_governance_tools` package: status vocabulary, claim
+  ledger with its status surfaces, promotion guard, and the floating-point
+  ban on the exact kernel.
 - `cross-program-bridge-psc-nlapjt-2026-09-12.md` — structural comparison
   with the NLAP-JT finite Mandelbrot program.
 

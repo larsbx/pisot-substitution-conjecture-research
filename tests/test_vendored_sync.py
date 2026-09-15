@@ -1,4 +1,4 @@
-"""Every vendored Mojo package matches the commit pinned in vendored.toml."""
+"""Every vendored package matches the commit pinned in vendored.toml."""
 
 from __future__ import annotations
 
@@ -10,33 +10,40 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 import check_vendored_sync as sync  # noqa: E402
 
-PACKAGES = {"finite_exact", "interval_q", "substitution_dynamics", "finite_linear_algebra"}
+PACKAGES = {
+    "finite_exact": ("larsbx/finite_exact", "mojo"),
+    "interval_q": ("larsbx/interval_q", "mojo"),
+    "substitution_dynamics": ("larsbx/substitution_dynamics", "mojo"),
+    "finite_linear_algebra": ("larsbx/finite_linear_algebra", "mojo"),
+    "claim_governance": ("larsbx/claim_governance_tools", "tools"),
+}
 
 
 def test_vendored_packages_match_their_pins():
     assert sync.check() == []
     packages = {p["name"]: p for p in sync.load()}
-    assert set(packages) == PACKAGES
+    assert {n: (p["repository"], p["root"]) for n, p in packages.items()} == PACKAGES
     for name, pkg in packages.items():
-        assert pkg["repository"] == f"larsbx/{name}" and pkg["root"] == "mojo"
         assert all(rel.startswith(name + "/") for rel in pkg["files"])
 
 
 def test_local_patch_is_detected(tmp_path, monkeypatch):
     for pkg in sync.load():
         for rel in pkg["files"]:
-            target = tmp_path / "mojo" / rel
+            target = tmp_path / pkg["root"] / rel
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_bytes((ROOT / "mojo" / rel).read_bytes())
+            target.write_bytes((ROOT / pkg["root"] / rel).read_bytes())
     manifest = tmp_path / "vendored.toml"
     manifest.write_text((ROOT / "vendored.toml").read_text(encoding="utf-8"), encoding="utf-8")
     assert sync.check(tmp_path, manifest) == []
     target = tmp_path / "mojo" / "finite_exact" / "rat_q.mojo"
     target.write_text(target.read_text(encoding="utf-8") + "\n# local patch\n", encoding="utf-8")
     (tmp_path / "mojo" / "interval_q" / "extra.mojo").write_text("", encoding="utf-8")
+    (tmp_path / "tools" / "claim_governance" / "local_rule.py").write_text("", encoding="utf-8")
     errors = sync.check(tmp_path, manifest)
     assert any("rat_q.mojo differs" in e for e in errors)
     assert any("interval_q/extra.mojo is not pinned" in e for e in errors)
+    assert any("claim_governance/local_rule.py is not pinned" in e for e in errors)
 
 
 def test_no_second_arithmetic_or_kernel_lives_beside_the_packages():

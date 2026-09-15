@@ -157,7 +157,7 @@ Issue #45 is therefore closed as a completed status/source reconciliation task. 
 | Deductive finite algebra | `PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
 | Secondary oracle | `src/psc_research/` + `tests/` | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |
 
-The vendored packages (`larsbx/finite_exact`, `larsbx/interval_q`, `larsbx/substitution_dynamics`, `larsbx/finite_linear_algebra`) are checked against `vendored.toml` by `scripts/check_vendored_sync.py` in CI.
+The vendored packages (`larsbx/finite_exact`, `larsbx/interval_q`, `larsbx/substitution_dynamics`, `larsbx/finite_linear_algebra`, and the Python `larsbx/claim_governance_tools` under `tools/claim_governance`) are checked against `vendored.toml` by `scripts/check_vendored_sync.py` in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit.
 
 Run everything:
 
