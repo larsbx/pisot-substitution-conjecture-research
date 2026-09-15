@@ -146,6 +146,11 @@ def test_commented_document_sentinels_fail(copy):
     tex.write_text(text.replace("\\begin{document}", "\\newif\\ifdraft\n\\ifdraft\n\\begin{document}", 1))  # a declared conditional left open
     code, out = run(copy)
     assert code == 1 and "outside conditionals" in out, out
+    tex.write_text(wrapped("\\newcommand{\\fake}{\\fi}\n\\iffalse\n", "", "", "\n\\fi"))  # a \\fi in a macro body closes nothing
+    code, out = run(copy)
+    assert code == 1 and "outside conditionals" in out, out
+    tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\fake}{\\iffalse}\n\\begin{document}", 1))  # nor does an \\if there open one
+    assert run(copy)[0] == 0
 
 
 def test_endstream_needs_a_preceding_line_ending(copy):

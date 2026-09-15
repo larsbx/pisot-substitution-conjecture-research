@@ -53,20 +53,22 @@ def check_tex(path: Path) -> list[str]:
     # \% an escaped percent) to the line end; a sentinel counts only as a standalone line of what
     # remains at brace depth zero (braces escaped by an odd run of backslashes do not nest) and
     # outside every conditional (an \\if... word from _TEX_IFS or declared by \\newif, closed by
-    # \\fi), since the guard cannot evaluate TeX; so an occurrence inside a macro body, a skipped
+    # \\fi, counted only at brace depth zero since a token inside a macro body is not executed),
+    # because the guard cannot evaluate TeX; so an occurrence inside a macro body, a skipped
     # branch, after \\, or beside other commands does not count.  The document must begin before
     # the first end sentinel, since TeX stops at the first.
     active = "\n".join(re.sub(r"(?<!\\)((?:\\\\)*)%.*", r"\1", l) for l in lines)
     braces = [(m.end() - 1, 1 if m.group(1) == "{" else -1) for m in re.finditer(r"(?<!\\)(?:\\\\)*([{}])", active)]
+    depth = lambda events, pos: sum(d for i, d in events if i < pos)
     ifs = _TEX_IFS | set(re.findall(r"(?<!\\)(?:\\\\)*\\newif[ \t]*\\(if[a-zA-Z]+)", active))
     declared_out = re.sub(r"(?<!\\)((?:\\\\)*)\\newif[ \t]*\\if[a-zA-Z]*", lambda m: m.group(1) + " " * (len(m.group()) - len(m.group(1))), active)
     conditionals = [(m.start(1), -1 if m.group(1) == "fi" else 1)
                     for m in re.finditer(r"(?<!\\)(?:\\\\)*\\(if[a-zA-Z]*|fi)(?![a-zA-Z])", declared_out)
-                    if m.group(1) == "fi" or m.group(1) in ifs]
+                    if (m.group(1) == "fi" or m.group(1) in ifs) and depth(braces, m.start(1)) == 0]
 
     def sentinel(name: str) -> int:
         for m in re.finditer(r"^[ \t]*\\" + name + r"\{document\}[ \t]*$", active, re.M):
-            if all(sum(d for i, d in events if i < m.start()) == 0 for events in (braces, conditionals)):
+            if depth(braces, m.start()) == 0 and depth(conditionals, m.start()) == 0:
                 return m.start()
         return -1
 

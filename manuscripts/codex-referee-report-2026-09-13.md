@@ -1599,3 +1599,18 @@ No other findings were posted in the sixty-seventh round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the sixty-eighth round.
+
+# Sixty-ninth round: review of the conditional-region revision (pull request #95)
+
+**Reviewed commit:** `5510b474cb` (finding 132).
+**Review posted:** 2026-09-15T22:03:18Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 133 (P2) — `scripts/check_manuscript_source.py`, line 65
+
+> **Ignore conditional tokens stored in macro bodies**
+>
+> When an unexpanded macro body contains `\fi`, this global event list treats it as an executed close and can cancel a real later conditional opener. For example, a 500-line source containing `\newcommand{\fake}{\fi}`, followed by `\iffalse`, standalone `\begin{document}` and `\end{document}`, and the real closing `\fi` returns no problems even though TeX skips both sentinels. Exclude conditional tokens occurring inside macro definitions/brace bodies when computing executable conditional depth so this guard continues to fail closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-ninth round.

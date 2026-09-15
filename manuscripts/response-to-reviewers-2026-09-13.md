@@ -805,3 +805,11 @@ One finding from the automated Codex review of commit `4f7ca64ce0`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 132 | P2 | Sentinels inside `\iffalse` … `\fi` still counted | Accepted. Since the guard cannot evaluate TeX, a sentinel now counts only outside every conditional region: an `\if…` control word among the TeX, e-TeX and pdfTeX primitives or declared by `\newif` in the source opens one and `\fi` closes it (`\iff` and brace-argument macros such as `\ifthenelse` do not). The scenario was confirmed to pass the previous revision. Tests: sentinels in an `\iffalse` branch and a declared conditional left open (fail); a balanced declared conditional, `\iff` and `\ifthenelse` before the sentinel (passes). Three sentinel-wrapping fixtures spliced the end sentinel with a stale index and were corrected | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Sixty-ninth round (pull request #95, conditional-region revision)
+
+One finding from the automated Codex review of commit `5510b474cb`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 133 | P2 | A `\fi` inside a macro body cancelled a real conditional opener | Accepted. Conditional tokens now count only at brace depth zero, since a token inside a brace body is not executed. The scenario was confirmed to pass the previous revision. Tests: `\newcommand{\fake}{\fi}` before an `\iffalse` around the sentinels (fails), `\newcommand{\fake}{\iffalse}` before a real sentinel (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
