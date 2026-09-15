@@ -77,7 +77,7 @@ def _state_index(
     for i in range(a.size()):
         if a.states[i] == state:
             return i
-    raise Error("ordered child occurrence is absent from the complete graph")
+    raise Error("ordered child occurrence is absent from the seed-patch graph")
 
 
 def occurrence_edges(

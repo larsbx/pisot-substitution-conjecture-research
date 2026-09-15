@@ -26,7 +26,10 @@ certificates. It is not a productivity theorem. The determinant-two golden
 regression contains a six-edge zero-shift-free cycle inside a productive graph,
 showing that recurrence alone cannot exclude the strict branch. The next open
 obligation is context-preserving recognizability plus separation in the full
-non-unimodular internal representation.
+non-unimodular internal representation. The first one-step prefix-suffix
+diagnostic already finds equal affine child states with unequal symbolic
+addresses, so affine-state equality alone cannot justify pump deletion; a
+depth-`k` periodic-patch collar remains open.
 
 This does **not** prove or obsolete the stronger structural problems:
 

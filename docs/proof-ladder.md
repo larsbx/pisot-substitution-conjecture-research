@@ -73,6 +73,11 @@ OR
 
 The second branch preserves information erased by the child-count matrix: the ordered sequence of top/bottom subdivision boundary events. The next contradiction should use that order together with full rank and exact prefix-Parikh geometry.
 
+The one-step context calibration shows that equal affine overlap states can
+carry unequal paired prefix-suffix addresses. The next executable rung is
+therefore a depth-`k` ancestry collar in the iterated periodic swap patch, not
+loop deletion from affine-state recurrence alone.
+
 Generic spectral growth is not enough. A residual graph containing a genuine noncoincident real overlap may itself carry the full expansion spectral radius, so `PF(N_S)=beta` is the hard residual case rather than a contradiction.
 
 ## Coincidence density and PDS bridge

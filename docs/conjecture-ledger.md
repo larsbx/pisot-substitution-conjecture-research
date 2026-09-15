@@ -62,6 +62,12 @@ six-edge zero-shift-free pump, so the open step must use child closure,
 nonproductivity, recognizability context, and the complete (possibly
 non-Archimedean) internal representation.
 
+The first context checkpoint is also finite and negative: one affine child
+state in the determinant-two regression has two unequal one-step paired
+prefix-suffix addresses. This rules out treating `(top,bottom,w)` as a
+complete symbolic pump state. It does not supply a recognizability radius or
+prove separation at arbitrary periodic-patch collar depth.
+
 ### Full-rank constraint on a bad set
 
 **Status: repository-proved (PR #76).** For a nonempty child-closed set `S` of noncoincidence overlaps, the intersection-vector row span is a nonzero rational `M_sigma`-invariant subspace. Irreducibility therefore forces full rank; the child-count matrix inherits the Galois spectrum of `M_sigma`.
