@@ -581,7 +581,7 @@ def test_filter_names_are_parsed_whole(copy):
     assert run(copy)[0] == 0
 
 
-def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=None):
+def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=None, predictor=None):
     """Objects 1-3 as usual, object 4 an uncompressed object stream whose header lists
     ``members`` (default one member, ``member``, at offset 0) before ``body``, object 6
     the cross-reference stream; object 5's row names ``container`` at ``index``, any
@@ -595,8 +595,17 @@ def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=Non
     members = members or [(member, 0)]
     header = b"".join(b"%d %d " % pair for pair in members)
     data = header + body
+    payload, extra = data, b""
+    if predictor == 12:  # one PNG row with the Up filter; the zero previous row leaves the bytes unchanged
+        import zlib
+        payload = zlib.compress(b"\x02" + data)
+        extra = b"/Filter /FlateDecode /DecodeParms << /Predictor 12 /Columns %d >> " % len(data)
+    elif predictor == 2:  # one TIFF row of horizontal differences
+        import zlib
+        payload = zlib.compress(bytes([data[0]] + [(data[i] - data[i - 1]) & 0xFF for i in range(1, len(data))]))
+        extra = b"/Filter /FlateDecode /DecodeParms << /Predictor 2 /Columns %d >> " % len(data)
     offs[4] = len(out)
-    out += b"4 0 obj\n<< /Type /ObjStm /N %d /First %d /Length %d >>\nstream\n" % (len(members), len(header), len(data)) + data + b"\nendstream\nendobj\n"
+    out += b"4 0 obj\n<< /Type /ObjStm /N %d /First %d " % (len(members), len(header)) + extra + b"/Length %d >>\nstream\n" % len(payload) + payload + b"\nendstream\nendobj\n"
     offs[6] = len(out)
     extra = {num: k for k, (num, _) in enumerate(members) if num not in (0, 1, 2, 3, 4, 5, 6)}
     size = max([7] + [num + 1 for num in extra])
@@ -715,6 +724,35 @@ def test_object_stream_member_offsets_must_increase(copy):
     pdf.write_bytes(objstm_pdf(members=[(5, 0), (7, 0)]))
     code, out = run(copy)
     assert code == 1 and "member offsets are not strictly increasing" in out, out
+
+
+def test_superseded_stream_length_is_read_from_the_top_level(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(superseded_pdf(b"<< /Foo << /Length 1 >> >>\nstream\nx\nendstream"))
+    code, out = run(copy)
+    assert code == 1 and "lacks a direct /Length" in out, out
+    import zlib
+    content = zlib.compress(b"x")
+    pdf.write_bytes(superseded_pdf(b"<< /Length 1.5 /Filter /FlateDecode >>\nstream\n" + content + b"\nendstream"))
+    code, out = run(copy)
+    assert code == 1 and "lacks a direct /Length" in out, out
+
+
+def test_predicted_object_streams_are_unpredicted_before_parsing(copy):
+    pdf = next(copy.glob("*.pdf"))
+    for predictor in (12, 2):
+        pdf.write_bytes(objstm_pdf(predictor=predictor))
+        code, out = run(copy)
+        assert code == 0, (predictor, out)
+
+
+def test_index_ranges_must_be_ordered_and_disjoint(copy):
+    pdf = next(copy.glob("*.pdf"))
+    rows = b"\x01\x00\x09\x00" * 4
+    for index in (b"[0 3 1 1]", b"[2 1 0 2]"):
+        pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 3 /Index " + index + b" /W [1 2 1] /Root 1 0 R /Length 16 >>", rows))
+        code, out = run(copy)
+        assert code == 1 and "overlap or are not in increasing order" in out, (index, out)
 
 
 def test_superseded_dictionary_is_parsed_structurally(copy):

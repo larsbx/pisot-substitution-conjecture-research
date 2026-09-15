@@ -586,3 +586,16 @@ Two findings from the automated Codex review of commit `b961e70914`; both accept
 | --- | --- | --- | --- | --- |
 | 92 | P2 | Trailer keys were found by scanning the serialized dictionary | Accepted. `/Size`, `/Root`, `/Prev` and `/XRefStm` of a classic trailer, and `/Type`, `/Size`, `/Root`, `/Prev`, `/W`, `/Index`, `/Length`, `/Filter` and `/DecodeParms` of a cross-reference stream, are read from the dictionary's top-level items; a present `/Prev` or `/XRefStm` must be a whole integer. Tests: the reviewer's trailer `<< /Size 4 /Foo << /Root 1 0 R >> >>` followed by a valid update fails, and the same nesting in a cross-reference stream dictionary fails | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 93 | P2 | Overlapping member offsets let one object count as two members | Accepted. Member offsets must be strictly increasing before the members are parsed against their bounds. Tests: a header `5 0 7 13` over two objects passes; `5 0 7 0` fails | same |
+
+
+---
+
+## Forty-fifth round (pull request #95, top-level-keys revision)
+
+Three findings from the automated Codex review of commit `dff1e3ac05`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 94 | P2 | A superseded stream's `/Length` was still found by a recursive regex | Accepted. It is read from the dictionary's top-level items and must be a whole nonnegative integer. Tests: a nested `/Length` and `/Length 1.5` both fail | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 95 | P2 | Predictors were validated but not undone before an object stream's header was parsed | Accepted. The decode-parameter validator now returns the unpredicted bytes (PNG predictors 10–15 via the row unfilter, TIFF predictor 2 by undoing horizontal differencing at 8 bits per component, other depths failing closed), and object streams read their header and members from those bytes. Tests: object streams predicted with `/Predictor 12` and with `/Predictor 2` pass end to end | same |
+| 96 | P2 | `/Index` ranges could overlap or descend | Accepted. Consecutive ranges must be in increasing order and disjoint. Tests: `[0 3 1 1]` and `[2 1 0 2]` fail | same |

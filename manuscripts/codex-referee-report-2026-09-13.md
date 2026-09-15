@@ -1132,3 +1132,35 @@ No other findings were posted in the forty-third round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the forty-fourth round.
+
+
+---
+
+# Forty-fifth round: review of the top-level-keys revision (pull request #95)
+
+**Reviewed commit:** `dff1e3ac05` (findings 92–93).
+**Review posted:** 2026-09-15T18:49:33Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 94 (P2) — `scripts/check_manuscript_source.py`, line 504
+
+> **Read superseded stream lengths from top-level items**
+>
+> Fresh evidence beyond the top-level-key fixes is the superseded-stream path: this regex still scans the serialized dictionary recursively and accepts integer prefixes, so a historical stream with only `<< /Foo << /Length 1 >> >>` or with `/Length 1.5` is treated as having direct length 1. When a later revision replaces that object, pypdf never checks the old stream and the malformed revision passes; obtain `Length` from `_dict_items(d, 0)` and require `_int_value` to succeed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 95 (P2) — `scripts/check_manuscript_source.py`, line 576
+
+> **Apply predictors before parsing object-stream members**
+>
+> Fresh evidence beyond the predictor-parameter validation is that `_decode_parms` only validates the inflated bytes and its result is discarded, after which the still predictor-encoded `data` is parsed as the object-stream header and members. For example, a valid Flate object stream using `/Predictor 12` with a PNG filter byte at the start of its row is rejected as not having `/N` integer pairs; TIFF prediction can likewise make the encoded bytes differ from the objects. Undo the declared predictor before applying `/First` and parsing the header and members.
+
+## Finding 96 (P2) — `scripts/check_manuscript_source.py`, line 282
+
+> **Reject overlapping or unordered /Index ranges**
+>
+> Fresh evidence beyond the earlier `/Index` validation is that each pair is checked only in isolation, so `/Index [0 3 1 1]` passes even though object 1 occurs twice; `_xref_rows` then silently overwrites its first row in the dictionary. Descending ranges are accepted similarly. This lets a malformed cross-reference stream pass the structural walk, so require the ranges to be strictly ordered and non-overlapping before decoding rows.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-fifth round.

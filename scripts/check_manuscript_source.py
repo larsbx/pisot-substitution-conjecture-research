@@ -280,6 +280,8 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
         pairs = list(zip(values[::2], values[1::2]))
         if any(c <= 0 or st + c > size for st, c in pairs):
             return "cross-reference stream /Index range is empty or exceeds /Size"
+        if any(s2 < s1 + c1 for (s1, c1), (s2, _) in zip(pairs, pairs[1:])):
+            return "cross-reference stream /Index ranges overlap or are not in increasing order"
     else:
         pairs = [(0, size)]
     expected_rows = sum(c for _, c in pairs)  # object numbers are materialized only once the payload agrees
@@ -372,15 +374,26 @@ def _section_at(raw: bytes, off: int, seen: list[int]) -> str | Section:
     return section
 
 
-def _decode_parms(d: bytes, out: bytes) -> str | None:
-    """Validate a Flate stream's ``/DecodeParms`` against its inflated bytes: a direct
+def _untiff(out: bytes, width: int, colors: int) -> bytes:
+    """Undo TIFF predictor 2 (horizontal differencing, 8 bits per component) row by row."""
+    rows = []
+    for i in range(0, len(out), width):
+        row = bytearray(out[i:i + width])
+        for j in range(colors, width):
+            row[j] = (row[j] + row[j - colors]) & 0xFF
+        rows.append(bytes(row))
+    return b"".join(rows)
+
+
+def _unfilter(d: bytes, out: bytes) -> bytes | str:
+    """The inflated bytes ``out`` of a Flate stream with dictionary ``d`` after undoing the
+    predictor its ``/DecodeParms`` declares, or a problem: the parameters must be a direct
     dictionary (or one-element array of one) whose present fields are whole nonnegative
-    integers, a supported ``/Predictor`` (1, 2 or 10-15) with positive geometry, and for a
-    predictor a decoded length that is a whole number of rows (PNG rows carrying known row
-    filters)."""
+    integers, ``/Predictor`` 1, 2 or 10-15 with positive geometry, and the inflated length
+    a whole number of rows (PNG rows carrying known row filters)."""
     items = _dict_items(d, 0)
     if items is None or b"DecodeParms" not in items:
-        return None
+        return out
     value = items[b"DecodeParms"]
     if value.startswith(b"["):  # a one-element array holding the dictionary
         inner = re.fullmatch(rb"\[\s*(<<.*>>)\s*\]", value, re.S)
@@ -399,13 +412,17 @@ def _decode_parms(d: bytes, out: bytes) -> str | None:
         return f"unsupported /Predictor {pred}"
     if cols < 1 or colors < 1 or bpc not in (1, 2, 4, 8, 16):
         return "invalid predictor geometry"
-    if pred >= 2:
-        row = (cols * colors * bpc + 7) // 8 + (pred >= 10)  # PNG rows carry a leading filter byte
-        if len(out) % row:
-            return f"decoded length {len(out)} is not a multiple of the predicted row width {row}"
-        if pred >= 10 and _unpredict(out, row) is None:
-            return "unknown PNG row filter"
-    return None
+    if pred == 1:
+        return out
+    row = (cols * colors * bpc + 7) // 8 + (pred >= 10)  # PNG rows carry a leading filter byte
+    if len(out) % row:
+        return f"decoded length {len(out)} is not a multiple of the predicted row width {row}"
+    if pred >= 10:
+        decoded = _unpredict(out, row)
+        return "unknown PNG row filter" if decoded is None else decoded
+    if bpc != 8:
+        return "TIFF prediction is supported for 8 bits per component only"
+    return _untiff(out, row, colors)
 
 
 _TOKEN = rb"(?:/(?:[^\s/\[\]<>(){}%#]|#[0-9A-Fa-f]{2})*|[+-]?(?:\d+\.?\d*|\.\d+)|true|false|null)(?=" + _DELIM + rb"|$)"
@@ -500,12 +517,12 @@ def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) ->
                     continue
                 return f"superseded object {num} is not one complete object closed by endobj"
             d = at[head.end():end]
-            length = re.search(rb"/Length\s+(\d+)(\s+\d+\s+R)?", d)
-            if not length or length.group(2):
+            length = _int_value(_dict_items(d, 0).get(b"Length", b""))
+            if length is None:
                 return f"superseded stream object {num} lacks a direct /Length"
             start = end + body.end()
-            data = at[start:start + int(length.group(1))]
-            if len(data) < int(length.group(1)) or not re.match(rb"(?:\r\n|\r|\n)?endstream\s*endobj\b", at[start + len(data):start + len(data) + 32]):
+            data = at[start:start + length]
+            if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)?endstream\s*endobj\b", at[start + len(data):start + len(data) + 32]):
                 return f"superseded stream object {num} does not match its /Length or is not closed by endstream and endobj"
             names = _filter_names(d)
             if names is None:
@@ -520,8 +537,8 @@ def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) ->
                     return f"superseded stream object {num} does not inflate ({e})"
                 if len(out) > MAX_STREAM_BYTES or not inflater.eof or inflater.unused_data:
                     return f"superseded stream object {num} does not inflate to a complete deflate member within the ceiling"
-                if problem := _decode_parms(d, out):
-                    return f"superseded stream object {num}: {problem}"
+                if isinstance(unfiltered := _unfilter(d, out), str):
+                    return f"superseded stream object {num}: {unfiltered}"
     return None
 
 
@@ -568,10 +585,12 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
                     data = None
                 if data is None or len(data) > MAX_STREAM_BYTES or not inflater.eof or inflater.unused_data:
                     data = None
+            if data is not None and names:
+                data = _unfilter(at[head.end():end], data)  # undo any declared predictor before reading the header
             if data is None:
                 result = f"object stream {container}, whose body does not inflate to a complete deflate member within the ceiling"
-            elif names and (problem := _decode_parms(at[head.end():end], data)):
-                result = f"object stream {container}: {problem}"
+            elif isinstance(data, str):
+                result = f"object stream {container}: {data}"
             else:
                 tokens = data[:first].split()
                 if len(tokens) != 2 * n or not all(t.isdigit() for t in tokens):
