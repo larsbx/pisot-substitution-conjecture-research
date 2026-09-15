@@ -6,7 +6,9 @@ file must exist; every ``.tex`` in the directory must be valid UTF-8 with no
 control bytes other than tab and newline, a ``\\documentclass`` first line,
 ``\\begin{document}`` before ``\\end{document}``, and at least MIN_LINES lines;
 every ``.pdf`` must carry the ``%PDF-`` header, a ``startxref`` offset that
-(the last one before the final ``%%EOF``) that points at a classic ``xref`` table\n(subsections of 20-byte entries, then a ``trailer`` dictionary with ``/Size`` and\n``/Root``) or at a ``/Type /XRef`` stream object whose body matches its direct\n``/Length``, inflates if Flate-encoded, and has a positive multiple of the ``/W``\nrow width, and ``%%EOF``
+(the last one before the final ``%%EOF``) that points at a classic ``xref`` table\n(subsections of 20-byte entries, then a ``trailer`` dictionary with ``/Size`` and\n``/Root``) or at a ``/Type /XRef`` stream object whose body matches its direct\n``/Length``, inflates if Flate-encoded, and has a positive multiple of the ``/W``\nrow width, and ``%%EOF``; finally pypdf parses the whole file in strict mode and
+every object, including object-stream members, is dereferenced and the page
+tree read
 within the last 1024 bytes.  Exit status 1 names every failure, so a missing,
 byte-mangled or truncated file never passes.
 
@@ -234,6 +236,37 @@ def _xref_stream(raw: bytes, off: int) -> str | None:
     return _xref_rows(raw, payload, widths, numbers, size)
 
 
+def _full_parse(path: Path) -> str | None:
+    """Parse the whole file with pypdf in strict mode and dereference every object.
+
+    This covers what the structural checks above do not model: ``/Prev`` chains,
+    object streams and their members, filter and predictor parameters, and the
+    page tree.  A missing or broken parser is a failure, never a skip.
+    """
+    try:
+        from pypdf import PdfReader
+        from pypdf.generic import IndirectObject
+    except BaseException as e:  # noqa: BLE001 - a broken parser install must fail closed
+        return f"pypdf is not importable ({type(e).__name__}); install the pinned dev dependency"
+    try:
+        reader = PdfReader(str(path), strict=True)
+        size = int(reader.trailer["/Size"])
+        seen = 0
+        for gen, table in reader.xref.items():
+            for idnum in table:
+                reader.get_object(IndirectObject(idnum, gen, reader))
+                seen += 1
+        for idnum in reader.xref_objStm:
+            reader.get_object(IndirectObject(idnum, 0, reader))
+            seen += 1
+        pages = len(reader.pages)
+    except Exception as e:  # noqa: BLE001 - any parser failure is a guard failure
+        return f"full parse failed ({type(e).__name__}: {str(e)[:120]})"
+    if seen == 0 or seen >= size or pages == 0:
+        return f"full parse inconsistent: {seen} objects dereferenced against /Size {size}, {pages} pages"
+    return None
+
+
 def check_pdf(path: Path) -> list[str]:
     raw = path.read_bytes()
     if not raw.startswith(b"%PDF-"):
@@ -259,7 +292,10 @@ def check_pdf(path: Path) -> list[str]:
         problem = _xref_stream(raw, off)
     else:
         problem = "startxref offset does not point at an xref table or object"
-    return [f"{path}: at startxref offset {off}: {problem}"] if problem else []
+    if problem:
+        return [f"{path}: at startxref offset {off}: {problem}"]
+    problem = _full_parse(path)
+    return [f"{path}: {problem}"] if problem else []
 
 
 def main(argv: list[str]) -> int:

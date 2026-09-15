@@ -27,6 +27,54 @@ def copy(tmp_path):
     return d
 
 
+
+def classic_pdf(objs=None, extra_trailer=b"", edit=None):
+    """A complete classic-table PDF (catalog, page tree, one page); `edit` mutates the bytes."""
+    objs = objs or [
+        b"<< /Type /Catalog /Pages 2 0 R >>",
+        b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+        b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>",
+    ]
+    out, offs = b"%PDF-1.4\n", []
+    for i, body in enumerate(objs, 1):
+        offs.append(len(out))
+        out += b"%d 0 obj\n%s\nendobj\n" % (i, body)
+    xref = len(out)
+    out += b"xref\n0 %d\n0000000000 65535 f \n" % (len(objs) + 1)
+    out += b"".join(b"%010d 00000 n \n" % o for o in offs)
+    out += b"trailer\n<< /Size %d /Root 1 0 R %s>>\nstartxref\n%d\n%%%%EOF\n" % (len(objs) + 1, extra_trailer, xref)
+    return edit(out) if edit else out
+
+
+def xref_pdf(rows=None, dict_extra=b"", predictor=False, compress=True):
+    """A complete PDF whose cross-reference is a stream (catalog, one-page tree; page is object 4)."""
+    import zlib
+
+    out = b"%PDF-1.5\n"
+    o1 = len(out)
+    out += b"1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n"
+    o2 = len(out)
+    out += b"2 0 obj\n<< /Type /Pages /Kids [4 0 R] /Count 1 >>\nendobj\n"
+    o4 = len(out)
+    out += b"4 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>\nendobj\n"
+    o3 = len(out)
+    table = [b"\x00\x00\x00\x00"] + [b"\x01" + o.to_bytes(2, "big") + b"\x00" for o in (o1, o2, o3, o4)]
+    if rows is not None:
+        table = rows(table, o1, o2, o3)
+    if predictor:
+        prev, enc = bytes(4), b""
+        for r in table:
+            enc += b"\x02" + bytes((a - b) & 0xFF for a, b in zip(r, prev))
+            prev = r
+        body = zlib.compress(enc)
+    else:
+        body = zlib.compress(b"".join(table)) if compress else b"".join(table)
+    flt = b"/Filter /FlateDecode " if (compress or predictor) else b""
+    out += b"3 0 obj\n<< /Type /XRef /Size 5 /W [1 2 1] /Root 1 0 R " + flt + dict_extra + b"/Length %d >>\nstream\n" % len(body)
+    out += body + b"\nendstream\nendobj\nstartxref\n%d\n%%%%EOF\n" % o3
+    return out
+
+
 def test_repository_manuscripts_pass():
     code, out = run(SRC)
     assert code == 0 and out.startswith("OK"), out
@@ -100,8 +148,7 @@ MINIMAL_CLASSIC = (
 
 def test_minimal_classic_table_passes(copy):
     pdf = next(copy.glob("*.pdf"))
-    pdf.write_bytes(MINIMAL_CLASSIC)
-    assert MINIMAL_CLASSIC[45:49] == b"xref" and MINIMAL_CLASSIC[9:16] == b"1 0 obj"
+    pdf.write_bytes(classic_pdf())
     code, out = run(copy)
     assert code == 0, out
 
@@ -157,9 +204,9 @@ def test_row_count_must_match_index(copy):
     assert code == 1 and "declares 3" in out
 
 
-def test_uncompressed_single_row_stream_passes(copy):
+def test_uncompressed_xref_stream_passes(copy):
     pdf = next(copy.glob("*.pdf"))
-    pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 2 /Index [1 1] /W [1 2 1] /Root 1 0 R /Length 4 >>", b"\x01\x00\x09\x00"))
+    pdf.write_bytes(xref_pdf(compress=False))
     code, out = run(copy)
     assert code == 0, out
 
@@ -169,9 +216,9 @@ def test_filter_array_form_is_inflated(copy):
 
     pdf = next(copy.glob("*.pdf"))
     body = zlib.compress(b"\x01\x00\x09\x00")
-    ok = xref_stream_pdf(b"<< /Type /XRef /Size 2 /Index [1 1] /W [1 2 1] /Root 1 0 R /Filter [/FlateDecode] /Length %d >>" % len(body), body)
-    pdf.write_bytes(ok)
-    assert run(copy)[0] == 0
+    pdf.write_bytes(xref_pdf().replace(b"/Filter /FlateDecode", b"/Filter [/FlateDecode]"))
+    code, out = run(copy)
+    assert code == 0, out
     bad = xref_stream_pdf(b"<< /Type /XRef /Size 1 /W [1 2 1] /Root 1 0 R /Filter [/LZWDecode] /Length %d >>" % len(body), body)
     pdf.write_bytes(bad)
     code, out = run(copy)
@@ -231,11 +278,32 @@ def test_predicted_xref_stream_is_unfiltered(copy):
 
     pdf = next(copy.glob("*.pdf"))
     # PNG Up predictor: one row, filter byte 2, row bytes are deltas against a zero previous row
-    body = zlib.compress(b"\x02\x01\x00\x09\x00")
-    head = b"<< /Type /XRef /Size 2 /Index [1 1] /W [1 2 1] /Root 1 0 R /Filter /FlateDecode /DecodeParms << /Columns 4 /Predictor 12 >> /Length %d >>" % len(body)
-    pdf.write_bytes(xref_stream_pdf(head, body))
+    pdf.write_bytes(xref_pdf(predictor=True, dict_extra=b"/DecodeParms << /Columns 4 /Predictor 12 >> "))
     code, out = run(copy)
     assert code == 0, out
+
+
+def test_bogus_prev_chain_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(classic_pdf(extra_trailer=b"/Prev 999999 "))
+    code, out = run(copy)
+    assert code == 1 and "full parse failed" in out
+
+
+def test_type2_entry_to_non_object_stream_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    # object 1 declared as member 0 of "object stream" 2, which is the page tree, not an object stream
+    pdf.write_bytes(xref_pdf(rows=lambda t, o1, o2, o3: [t[0], b"\x02\x00\x02\x00", *t[2:]]))
+    code, out = run(copy)
+    assert code == 1 and "full parse failed" in out
+
+
+def test_predictor_parameters_are_validated(copy):
+    pdf = next(copy.glob("*.pdf"))
+    for params in (b"/DecodeParms << /Columns 4 /Predictor 99 >> ", b"/DecodeParms << /Columns 999 /Predictor 12 >> "):
+        pdf.write_bytes(xref_pdf(predictor=True, dict_extra=params))
+        code, out = run(copy)
+        assert code == 1 and "full parse failed" in out, (params, out)
 
 
 def test_missing_required_file_fails(copy):

@@ -397,4 +397,17 @@ Two findings from the automated Codex review of commit `9256ace9d9`; both accept
 | --- | --- | --- | --- | --- |
 | 54 | P2 | A classic subsection could exceed the trailer's `/Size` | Accepted. `/Size` is parsed and every subsection must satisfy `start + count ≤ /Size`; test changes the minimal classic fixture's `/Size 2` to `/Size 1` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 55 | P2 | Cross-reference stream rows were counted but not decoded | Accepted. Every row is decoded per `/W` (type defaulting to 1 when the first field is absent); type-1 entries must point inside the file at the header `num gen obj` of their object, type-2 entries must name an object stream below `/Size`, other types fail; PNG row prediction (filters 0–4) is undone first, an unknown filter fails; tests cover an out-of-file offset, a wrong offset, an unknown type, an out-of-range object stream, and a predicted stream that decodes correctly; the passing fixtures now describe object 1 at its real offset | same |
+
+
+---
+
+## Thirtieth round (pull request #95, subsection-range and row-decoding revision)
+
+Three findings from the automated Codex review of commit `f158aab509`; all accepted. Each is another part of the cross-reference format that the hand-written structural checks did not model, so the guard now also parses the whole file with a real PDF parser (pypdf 6.1.3, strict mode, pinned as a dev dependency and installed in the provenance CI job), dereferences every object including object-stream members, and reads the page tree; the structural checks stay in front of it because the parser repairs some offset and `/Size` mangling silently. A missing parser is a failure, not a skip.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 56 | P2 | `/Prev` chains were not followed | Accepted. The full parse follows `/Prev`; test adds `/Prev 999999` to a complete classic PDF and expects failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py`, `pyproject.toml`, `.github/workflows/ci.yml` |
+| 57 | P2 | A type-2 entry was accepted on the numeric bound alone | Accepted. The full parse resolves every object-stream member; test points object 1 at the page-tree object as its container and expects failure | same |
+| 58 | P2 | Predictor parameters were not validated | Accepted. The full parse validates the predictor and its geometry; tests with `/Predictor 99` and `/Columns 999` expect failure, and a correct predictor-12 stream passes | same |
 \n

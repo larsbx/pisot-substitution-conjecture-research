@@ -685,4 +685,38 @@ No other findings were posted in the twenty-eighth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the twenty-ninth round.
+
+
+---
+
+# Thirtieth round: review of the subsection-range and row-decoding revision (pull request #95)
+
+**Reviewed commit:** `f158aab509` (findings 54–55).
+**Review posted:** 2026-09-15T16:30:06Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 56 (P2) — `scripts/check_manuscript_source.py`, line 105
+
+> **Validate classic trailer `/Prev` chains**
+>
+> When a classic trailer belongs to an incrementally updated PDF, this returns success without inspecting `/Prev`; adding `/Prev 999999` to the otherwise valid classic fixture still passes even though the earlier cross-reference section is unreachable. Follow each `/Prev` offset, reject out-of-range or cyclic links, and validate every referenced section before accepting the PDF.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 57 (P2) — `scripts/check_manuscript_source.py`, line 151
+
+> **Dereference in-range type-2 object-stream targets**
+>
+> Fresh evidence beyond finding 55 is that a type-2 row is accepted whenever its second field is numerically below `/Size`: a standalone `/Size 2 /Index [1 1]` stream whose object-1 row points to object stream 1 passes, although object 1 is the XRef object itself and no `/Type /ObjStm` exists. Resolve the named container through the cross-reference data, require it to be an object stream, and validate the third-field index rather than checking only the number bound.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 58 (P2) — `scripts/check_manuscript_source.py`, line 180
+
+> **Reject inconsistent PNG predictor parameters**
+>
+> When a Flate stream's decode parameters are mangled, this treats every `/Predictor` value greater than or equal to 10 identically and ignores `/Columns`, `/Colors`, and `/BitsPerComponent`; for example, the one-row fixture still passes with `/Predictor 99` or `/Predictor 12 /Columns 999`. Validate the supported predictor range and require the declared decode geometry to match the `/W` row width before undoing prediction, otherwise corrupted stream dictionaries are reported as intact.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirtieth round.
 \n
