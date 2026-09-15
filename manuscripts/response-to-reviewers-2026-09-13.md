@@ -295,3 +295,13 @@ One finding from the automated Codex review of commit `059c4c5536cc4f0f9252a55a6
 
 The automated Codex review of commit `eb0615f609` posted no findings. Findings 31–37 are recorded as addressed.
 
+---
+
+## Twenty-first round (pull request #92, obstruction normal form)
+
+One finding from the automated Codex review of commit `e61628428e`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 38 | P2 | Proposition 5.44(ii) called the forward-invariant aligned-pair sets "unions of cycles", which forward invariance does not give | Accepted. The statement now says that every orbit under the first-/last-letter map is eventually periodic and stays in the set, so a nonempty `A_±(S)` contains a cycle of pairs of distinct letters; the proof cites eventual periodicity of forward orbits under a self-map of a finite set together with forward invariance; the sentence after the proposition says the same | Proposition 5.44(ii) and proof; following paragraph |
+

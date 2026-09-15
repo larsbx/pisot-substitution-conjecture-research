@@ -458,3 +458,18 @@ No other findings were posted in the nineteenth round.
 **Reviewed commit:** `eb0615f609` (finding 37).
 **Review posted:** 2026-09-15T02:04:58Z. The automated Codex review of commit `eb0615f` posted no findings ("Didn't find any major issues").
 
+---
+
+# Twenty-first round: review of the obstruction normal form (pull request #92)
+
+**Reviewed commit:** `e61628428e` (Propositions 5.43–5.44, Lemma 5.45).
+**Review posted:** 2026-09-15T12:34:32Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 38 (P2) — `PSC_balanced_pair_state_2026-09-13.tex`, line 883
+
+> **Do not call forward-invariant pair sets unions of cycles**
+>
+> Closure under the first-/last-letter self-map does not imply that every element lies on a cycle: a finite self-map may have preperiodic pairs feeding into a cycle, and the preceding argument establishes neither injectivity nor surjectivity on `A_+(S)` or `A_-(S)`. The supported conclusion is only that every pair eventually enters a cycle (and therefore that each nonempty aligned-pair set contains a cycle); as written, Proposition 5.44 asserts a stronger, unproved structural property.
+
+No other findings were posted in the twenty-first round.
+
