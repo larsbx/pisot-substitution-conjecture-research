@@ -83,6 +83,26 @@ def test_bound_pins_exact_values() raises:
     check_bound(totally_real_sigma(), False, 2)
 
 
+def test_defining_inequality_not_its_relaxation() raises:
+    # Referee counter-calibration: for 0->1, 1->22, 2->102 the Cauchy-Schwarz
+    # relaxation of the complex-pair test returns 5 on the reachable scaled
+    # offset (-16, -4, 5); the defining inequality first holds at level 6.
+    var a0: List[Int] = [1]
+    var a1: List[Int] = [2, 2]
+    var a2: List[Int] = [1, 0, 2]
+    var tables = build_seed_overlap_tables(make_sigma(a0, a1, a2))
+    var graph = build_seed_overlap_graph_from_tables(tables, 20000)
+    var t = CubicElt(-16, -4, 5)
+    var reachable = False
+    for i in range(graph.size()):
+        if graph.states[i].shift == t:
+            reachable = True
+    assert_true(reachable)
+    var cb = ContractingBound(tables)
+    assert_true(cb.is_complex)
+    assert_equal(cb.least_level(graph, t), 6)
+
+
 def test_capped_graph_is_rejected() raises:
     var tables = build_seed_overlap_tables(tau_sigma())
     var capped = build_seed_overlap_graph_from_tables(tables, 1)
@@ -100,6 +120,8 @@ def main() raises:
     print("[PASS] test_sturm_tarski_counts_and_signs")
     test_bound_pins_exact_values()
     print("[PASS] test_bound_pins_exact_values")
+    test_defining_inequality_not_its_relaxation()
+    print("[PASS] test_defining_inequality_not_its_relaxation")
     test_capped_graph_is_rejected()
     print("[PASS] test_capped_graph_is_rejected")
-    print("3 contracting-bound Mojo tests passed.")
+    print("4 contracting-bound Mojo tests passed.")

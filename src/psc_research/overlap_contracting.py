@@ -7,10 +7,14 @@ increments q - p (prefix positions of sub-tiles).  Applying a contracting
 embedding sigma_k (|sigma_k(beta)| < 1) gives
     |sigma_k(t)| <= C_k * sum_{s=1}^{m} |sigma_k(beta)|^{-s},   C_k = max_F |sigma_k(c)|,
 so the first left-aligned depth b(O) is at least the least m for which this
-holds for every contracting embedding.  Complex pair: with rho(t) = N(t)/t =
-|sigma_2(t)|^2 and Chebyshev's sum inequality, rho(t) <= K m sum_{s=1}^{m}
-(beta/D)^s, K = max_F rho(c).  Two real conjugates: sign tests at each root.
-All comparisons are exact sign tests of elements of Q(beta) at a real root."""
+holds for every contracting embedding.  Complex pair: |sigma_2(t)|^2 = N(t)/t,
+|sigma_2(beta)|^{-2} = rho := beta/D, K := max_{F \\ {0}} N(c)/c = C^2, and with
+r = rho^{1/2}: (sum_{s=1}^m r^s)^2 = A_m + r B_m, A_m = sum_j n_{2j} rho^j,
+B_m = sum_j n_{2j+1} rho^j, n_k = min(k-1, 2m+1-k).  The defining inequality
+squared is N(t)/t <= K (A_m + r B_m), which holds iff N(t)/t <= K A_m or
+(N(t)/t - K A_m)^2 <= K^2 rho B_m^2: two exact sign tests at beta, no
+relaxation.  Two real conjugates: sign tests at each root.  All comparisons
+are exact sign tests of elements of Q(beta) at a real root."""
 from __future__ import annotations
 
 from fractions import Fraction
@@ -168,19 +172,11 @@ class ContractingBound:
                 if F.sign(lhs) > 0:
                     best, best_norm = ac, nc
             self.cstar, self.cstar_norm = best, best_norm
-            D = Fraction(F.D)
-            assert D > 0
-            # S_m = m * sum_{s=1}^m beta^s D^{m-s}
-            self.S = [F.zero]
-            beta_pow = [one]
+            assert F.D > 0
+            self.rho = F.mul(F.beta, (Fraction(1, F.D), 0, 0))  # |sigma_2(beta)|^{-2}
+            self.rho_pow = [one]
             for _ in range(max_level):
-                beta_pow.append(F.mul(beta_pow[-1], F.beta))
-            for m in range(1, max_level + 1):
-                acc = F.zero
-                for s in range(1, m + 1):
-                    acc = F.add(acc, F.mul(beta_pow[s], (D ** (m - s), 0, 0)))
-                self.S.append(F.mul((Fraction(m), 0, 0), acc))
-            self.Dpow = [D ** m for m in range(max_level + 1)]
+                self.rho_pow.append(F.mul(self.rho_pow[-1], self.rho))
         else:
             self.roots = contracting_real_roots(F)
             self.per_root = []
@@ -203,19 +199,38 @@ class ContractingBound:
                     bpow.append(F.mul(bpow[-1], F.beta))
                 self.per_root.append((r, cmax, G, bpow))
 
+    def _square_sum(self, m: int) -> tuple[Elt, Elt]:
+        """(sum_{s=1}^m r^s)^2 = A + r B with r^2 = rho: A, B in Q(beta)."""
+        F = self.F
+        A, B = F.zero, F.zero
+        for k in range(2, 2 * m + 1):
+            n = min(k - 1, 2 * m + 1 - k)
+            term = F.mul((Fraction(n), 0, 0), self.rho_pow[k // 2])
+            if k % 2 == 0:
+                A = F.add(A, term)
+            else:
+                B = F.add(B, term)
+        return A, B
+
     def least_level(self, t: Elt) -> int:
         F = self.F
         if not any(t):
             return 0
         if self.complex:
+            scale = lambda k, x: F.mul((Fraction(k), 0, 0), x)
             nt = abs(field_norm(F, t))
             at = _abs(F.sign, t)
-            lhs_const = F.mul((nt, 0, 0), self.cstar)  # |N(t)| |c*|
-            rhs_base = F.mul(at, (self.cstar_norm, 0, 0))  # |t| |N(c*)|
+            lhs = scale(nt, self.cstar)  # |N(t)| |c*|
+            at2 = scale(self.cstar_norm ** 2, F.mul(at, at))  # |N(c*)|^2 |t|^2
             for m in range(1, self.max_level + 1):
-                # |N(t)| D^m |c*| <= |t| |N(c*)| S_m
-                lhs = F.mul(lhs_const, (self.Dpow[m], 0, 0))
-                if F.sign(F.sub(F.mul(rhs_base, self.S[m]), lhs)) >= 0:
+                A, B = self._square_sum(m)
+                # X <= K (A + r B), X = |N(t)|/|t|, K = |N(c*)|/|c*|; times |t| |c*|:
+                E = F.sub(lhs, scale(self.cstar_norm, F.mul(A, at)))
+                if F.sign(E) <= 0:
+                    return m
+                # E > 0: E <= |N(c*)| r B |t|  <=>  E^2 <= |N(c*)|^2 rho B^2 |t|^2
+                rhs = F.mul(F.mul(at2, self.rho), F.mul(B, B))
+                if F.sign(F.sub(rhs, F.mul(E, E))) >= 0:
                     return m
             raise ArithmeticError("contracting bound exceeded the level cap")
         worst = 0

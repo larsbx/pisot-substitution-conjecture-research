@@ -393,3 +393,28 @@ No other findings were posted in the fifteenth round.
 > AGENTS.md reference: AGENTS.md:L64-L70
 
 No other findings were posted in the sixteenth round.
+
+---
+
+# Seventeenth round: review of the canonical-implementation revision (pull request #87)
+
+**Reviewed commit:** `7d74aa42c3ce138afe85b332b4964e30f58dacd2` (canonical Mojo contracting bound, zero case, wording).
+**Review posted:** 2026-09-15T00:53:39Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 34 (P1) — `mojo/psc/real_root_sign.mojo`, line 29
+
+> **Centralize the new Horner helper in exact.mojo**
+>
+> This newly introduced polynomial evaluator is a PSC-specific Horner helper over the vendored rational type, but the repository's exact-arithmetic authority requires such helpers to live in `mojo/psc/exact.mojo` and nowhere else. Keeping another implementation in `real_root_sign.mojo` splits the rejection/adapter conventions across modules; move this helper into the designated adapter and import it here.
+>
+> AGENTS.md reference: AGENTS.md:L44-L48
+
+## Finding 35 (P1) — `mojo/psc/overlap_contracting.mojo`, line 249
+
+> **Test the inequality that actually defines m0**
+>
+> For complex-pair inputs, this returns the least level satisfying the Cauchy–Schwarz relaxation, not `m_0` as defined in Proposition 5.42 by the original triangle-inequality bound: `(sum r^s)^2 <= m sum r^(2s)` is one-way, so passing this larger RHS does not imply that the defining inequality holds. For example, for `1→2, 2→33, 3→213`, the reachable Mojo-scaled shift `CubicElt(-16, -4, 5)` returns 5 here, while the original inequality first holds at level 6 (at level 5 the normalized left side is about 37.1156, versus 36.8236 for the original RHS and 37.1173 for this relaxed RHS). Thus the reported histograms are not a census of the manuscript's stated `m_0`; either compute the defining inequality or redefine and consistently relabel the weaker bound.
+>
+> AGENTS.md reference: AGENTS.md:L64-L70
+
+No other findings were posted in the seventeenth round.

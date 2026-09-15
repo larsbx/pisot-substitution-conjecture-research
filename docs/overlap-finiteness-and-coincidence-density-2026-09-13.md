@@ -507,33 +507,39 @@ contracting embedding `varsigma` (`|varsigma(beta)| < 1`)
 `C_varsigma = max_F |varsigma(c)|`. The first left-aligned depth is therefore
 at least `m_0(t)`, which is `0` for `t = 0` and otherwise the least `m >= 1`
 satisfying these inequalities. For a complex contracting pair and `t != 0`,
-`|varsigma(t)|^2 = N(t)/t` and `|varsigma(beta)|^2 = D/beta`, so the
-condition becomes `N(t)/t <= K m sum_{s=1}^{m} (beta/D)^s` with
-`K = max over F minus {0} of N(c)/c` (the zero increment contributes nothing),
-an exact sign test at `beta`; for two real contracting conjugates the test
-is a sign test at each isolated root.
+`|varsigma(t)|^2 = N(t)/t`, `|varsigma(beta)|^{-2} = rho := beta/D`, and
+`C^2 = K = max over F minus {0} of N(c)/c` (the zero increment contributes
+nothing). With `n_k = min(k-1, 2m+1-k)`, `A_m = sum_j n_{2j} rho^j` and
+`B_m = sum_j n_{2j+1} rho^j`, elements of `Q(beta)` positive at `beta`, the
+condition is equivalent to `N(t)/t <= K (A_m + rho^{1/2} B_m)`, which holds
+iff `N(t)/t <= K A_m`, or `N(t)/t > K A_m` and
+`(N(t)/t - K A_m)^2 <= K^2 rho B_m^2`: at most two exact sign tests at
+`beta`, no relaxation (an earlier draft tested the Cauchy–Schwarz relaxation
+`N(t)/t <= K m sum_{s<=m} rho^s`, which is one-way and undershoots `m_0`;
+the referee's example `1->2, 2->33, 3->213`, offset `(-8, -2, 5/2)`, has
+`m_0 = 6` while the relaxation gives `5`). For two real contracting
+conjugates the test is the defining inequality at each isolated root.
 
 **Exact census (Mojo canonical, `mojo/psc/overlap_contracting.mojo` with the
 Sturm–Tarski module `mojo/psc/real_root_sign.mojo` and the driver
 `mojo/overlap_contracting_census.mojo`, asserted line by line in CI; Python
 oracle `src/psc_research/overlap_contracting.py`,
-`scripts/overlap_contracting_census.py`, prints the same lines).** Over all
+`scripts/overlap_contracting_census.py`, prints the same nine summary lines, without the specimen-count header).** Over all
 1,118,850 vertices of the 4,554 corpus graphs, `m_0` never exceeds the first
-left-aligned depth `b`; the largest `m_0` is 7 (vertices by `m_0`:
-0:34702 1:338684 2:429708 3:205980 4:77832 5:26364 6:5076 7:504); the excess
-`b - m_0` reaches 14 (vertices by excess: 0:116530 1:144806 2:199552
-3:207580 4:174444 5:119590 6:77232 7:44652 8:21132 9:8952 10:2892 11:1008
+left-aligned depth `b`; the largest `m_0` is 8 (vertices by `m_0`:
+0:34702 1:338684 2:429036 3:206232 4:77748 5:26496 6:5424 7:516 8:12); the excess
+`b - m_0` reaches 14 (vertices by excess: 0:116542 1:144998 2:199672
+3:207832 4:174120 5:119662 6:77088 7:44568 8:21036 9:8988 10:2856 11:1008
 12:360 13:96 14:24; specimens by maximal excess: 1:378 2:990 3:912 4:612
 5:390 6:516 7:330 8:120 9:96 10:60 11:78 12:42 13:24 14:6). The 648
 specimens with two real contracting conjugates have `m_0 <= 2` and excess
 `<= 4`.
 
 **Reading (what the executable result supports).** This magnitude bound,
-built from the triangle inequality over the increments and, for a complex
-pair, a Cauchy–Schwarz step, accounts for at most 7 of the up to 17
-inflations before a common sub-tile left endpoint appears and leaves a gap
-of up to 14 inflations unexplained. The gap includes the slack of those
-inequalities; whether a sharper contracting-space argument (digit
+built from the triangle inequality over the increments, accounts for at
+most 8 of the up to 17 inflations before a common sub-tile left endpoint
+appears and leaves a gap of up to 14 inflations unexplained. The gap
+includes the slack of that inequality; whether a sharper contracting-space argument (digit
 correlations, the two embeddings jointly, cancellation among increments)
 explains part of it is not decided here, and no conclusion about what a
 proof of Open Problem 5.35 must or cannot use is drawn. Nothing here proves

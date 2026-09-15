@@ -12,7 +12,7 @@ real cubic Pisot field.  Every operation is exact; a rejected rational
 raises (AGENTS.md rules 8 and 9)."""
 
 from finite_exact.rat_q import Q
-from psc.exact import midpoint, q_int, q_is_zero, q_poly, q_sign, require_q
+from psc.exact import eval_q_poly_at_q, midpoint, q_int, q_is_zero, q_poly, q_sign, require_q
 
 
 def poly_trim(p: List[Q]) -> List[Q]:
@@ -20,13 +20,6 @@ def poly_trim(p: List[Q]) -> List[Q]:
     while len(out) > 0 and q_is_zero(out[len(out) - 1]):
         _ = out.pop()
     return out^
-
-
-def poly_eval(p: List[Q], x: Q) raises -> Q:
-    var acc = Q.zero()
-    for i in range(len(p) - 1, -1, -1):
-        acc = require_q(acc.mul(x).add(p[i]), "poly eval")
-    return acc^
 
 
 def poly_deriv(p: List[Q]) raises -> List[Q]:
@@ -69,7 +62,7 @@ def _variations(seq: List[List[Q]], x: Q) raises -> Int:
     var prev = 0
     var count = 0
     for i in range(len(seq)):
-        var s = q_sign(poly_eval(seq[i], x))
+        var s = q_sign(eval_q_poly_at_q(seq[i], x))
         if s == 0:
             continue
         if prev != 0 and s != prev:
@@ -85,7 +78,7 @@ def tarski_query(P: List[Q], Qp: List[Q], a: Q, b: Q) raises -> Int:
     var p0 = poly_trim(P)
     if len(p0) < 2:
         raise Error("Tarski query needs a nonconstant P")
-    if q_is_zero(poly_eval(p0, a)) or q_is_zero(poly_eval(p0, b)):
+    if q_is_zero(eval_q_poly_at_q(p0, a)) or q_is_zero(eval_q_poly_at_q(p0, b)):
         raise Error("Tarski query endpoint is a root of P")
     var seq = List[List[Q]]()
     seq.append(p0.copy())
@@ -131,7 +124,7 @@ def isolate_real_roots(P: List[Q], a: Q, b: Q, expected: Int) raises -> List[Lis
             out.append(box^)
             continue
         var mid = midpoint(box[0], box[1])
-        if q_is_zero(poly_eval(P, mid)):
+        if q_is_zero(eval_q_poly_at_q(P, mid)):
             raise Error("rational root during isolation")
         var left = List[Q]()
         left.append(box[0].copy())

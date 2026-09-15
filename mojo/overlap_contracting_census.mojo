@@ -7,7 +7,8 @@ of manuscript Proposition 5.42 (`psc.overlap_contracting`), checks `m_0 <= b`
 on every vertex and `m_0 = 0` exactly at offset zero, and reports the
 distributions of `m_0` and of the excess `b - m_0`.  A nonproductive graph is
 recorded before any depth statistic.  The Python oracle
-`scripts/overlap_contracting_census.py` prints the same lines.
+`scripts/overlap_contracting_census.py` prints the same summary lines (all
+but the specimen-count header).
 """
 
 from psc.bpa import substitution_incidence

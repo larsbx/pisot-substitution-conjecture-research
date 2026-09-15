@@ -1,4 +1,5 @@
 """Exploratory helper regressions: exact enumeration window for G_O types."""
+from fractions import Fraction
 import pytest
 
 from psc_research.oa_overlap_graph import fixed_point_prefix, oa_types, oa_window, prolongable_power
@@ -60,3 +61,9 @@ def test_contracting_lower_bound_is_below_left_aligned_depth():
         assert all(0 <= m <= bb for m, bb in zip(m0, b))
         assert max(m0) == max_m0
         assert all((m == 0) == (not any(s[2])) for m, s in zip(m0, g.states))
+    # Referee counter-calibration: the Cauchy-Schwarz relaxation of the complex-pair
+    # test returns 5 on this reachable offset; the defining inequality first holds at 6.
+    g = OverlapGraph({1: (2,), 2: (3, 3), 3: (2, 1, 3)})
+    t = (Fraction(-8), Fraction(-2), Fraction(5, 2))
+    assert any(s[2] == t for s in g.states)
+    assert ContractingBound(g).least_level(t) == 6

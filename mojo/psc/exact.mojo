@@ -126,6 +126,14 @@ def eval_int_poly_at_q(coeffs: List[Int], x: Q) raises -> Q:
     return require_q(acc, "exact Horner")
 
 
+def eval_q_poly_at_q(coeffs: List[Q], x: Q) raises -> Q:
+    """Exact Horner evaluation of a rational polynomial, low degree first."""
+    var acc = Q.zero()
+    for i in range(len(coeffs) - 1, -1, -1):
+        acc = require_q(acc.mul(x).add(coeffs[i]), "exact rational Horner")
+    return acc^
+
+
 def bigz_string(z: BigZ) -> String:
     """Decimal rendering for diagnostics (limbs are base 10^9, little-endian)."""
     if z.is_zero():

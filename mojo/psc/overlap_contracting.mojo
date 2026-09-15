@@ -8,11 +8,15 @@ contracting embedding `sigma_k` of Q(beta):
 `least_level(t)` is `0` for `t = 0` and otherwise the least `m >= 1` allowed
 by every contracting embedding.
 
-Complex contracting pair (`D > 0`): `|sigma(t)|^2 = N(t)/t` and
-`|sigma(beta)|^2 = D/beta`, and Chebyshev's sum inequality gives the exact
-Perron-root test `|N(t)| D^m |c*| <= |t| |N(c*)| m sum_{s=1}^{m} beta^s D^{m-s}`
-with `c*` maximising `|N(c)|/|c|` on `F \\ {0}`.  Two real contracting
-conjugates: the same comparison at each isolated conjugate root.
+Complex contracting pair (`D > 0`): `|sigma(t)|^2 = N(t)/t`,
+`|sigma(beta)|^{-2} = rho := beta/D`, `K := max_{F \\ {0}} N(c)/c = C^2`
+(attained at `c*`), and with `r = rho^{1/2}`:
+`(sum_{s=1}^m r^s)^2 = A_m + r B_m`, `A_m = sum_j n_{2j} rho^j`,
+`B_m = sum_j n_{2j+1} rho^j`, `n_k = min(k-1, 2m+1-k)`.  The defining
+inequality squared is `N(t)/t <= K (A_m + r B_m)`, which holds iff
+`N(t)/t <= K A_m` or `(N(t)/t - K A_m)^2 <= K^2 rho B_m^2`: two exact sign
+tests at the Perron root, no relaxation.  Two real contracting conjugates:
+the defining comparison at each isolated conjugate root.
 
 All field arithmetic is in `Q[x]/(chi)` over unbounded rationals and every
 sign is a Sturm--Tarski query (`real_root_sign`) at an isolated real root of
@@ -160,8 +164,9 @@ struct ContractingBound(Copyable, Movable):
     # isolating brackets: index 0 is the Perron root; 1, 2 the real conjugates (real case)
     var root_lo: List[Q]
     var root_hi: List[Q]
-    # complex pair: D, c* maximising |N(c)|/|c| on F \ {0}, and |N(c*)|
-    var D: Q
+    # complex pair: rho = beta/D and its powers, c* maximising |N(c)|/|c| on F \ {0}, |N(c*)|
+    var rho: List[Q]
+    var rho_pow: List[List[Q]]
     var cstar: List[Q]
     var cstar_norm: Q
     # two real conjugates (index r = 1, 2): |beta_r| as a field element, C_r
@@ -175,7 +180,8 @@ struct ContractingBound(Copyable, Movable):
         self.is_complex = discriminant(field) < 0
         self.root_lo = List[Q]()
         self.root_hi = List[Q]()
-        self.D = q_int(-field.chi0)
+        self.rho = List[Q]()
+        self.rho_pow = List[List[Q]]()
         self.cstar = List[Q]()
         self.cstar_norm = Q.zero()
         self.abs_beta = List[List[Q]]()
@@ -188,8 +194,13 @@ struct ContractingBound(Copyable, Movable):
         self.root_hi.append(perron[0][1].copy())
         var beta = q_poly([0, 1])
         if self.is_complex:
-            if q_sign(self.D) <= 0:
+            var D = q_int(-field.chi0)
+            if q_sign(D) <= 0:
                 raise Error("complex contracting pair requires D > 0")
+            self.rho = _fscale(beta, require_q(Q.one().div(D), "1/D"))
+            self.rho_pow.append(q_poly([1]))
+            for _ in range(max_level):
+                self.rho_pow.append(_fmul(self.chi, self.rho_pow[len(self.rho_pow) - 1], self.rho))
             var best = self._abs_at(0, lift(digits[0]))
             var best_norm = q_abs(self._norm(lift(digits[0])))
             for i in range(1, len(digits)):
@@ -226,6 +237,22 @@ struct ContractingBound(Copyable, Movable):
     def _norm(self, x: List[Q]) raises -> Q:
         return _fnorm(self.chi, x)
 
+    def _square_sum(self, m: Int) raises -> List[List[Q]]:
+        """(sum_{s=1}^m r^s)^2 = A + r B with r^2 = rho: returns [A, B]."""
+        var A = List[Q]()
+        var B = List[Q]()
+        for k in range(2, 2 * m + 1):
+            var n = k - 1 if k - 1 < 2 * m + 1 - k else 2 * m + 1 - k
+            var term = _fscale(self.rho_pow[k // 2], q_int(n))
+            if k % 2 == 0:
+                A = _fadd(A, term)
+            else:
+                B = _fadd(B, term)
+        var out = List[List[Q]]()
+        out.append(A^)
+        out.append(B^)
+        return out^
+
     def least_level(self, a: SeedOverlapAutomaton, t: CubicElt) raises -> Int:
         if a.capped:
             raise Error("contracting bound is undefined for a capped partial graph")
@@ -235,18 +262,18 @@ struct ContractingBound(Copyable, Movable):
         var one = q_poly([1])
         var beta = q_poly([0, 1])
         if self.is_complex:
-            var lhs_const = _fscale(self.cstar, q_abs(self._norm(x)))   # |N(t)| |c*|
-            var rhs_base = _fscale(self._abs_at(0, x), self.cstar_norm)  # |t| |N(c*)|
-            var dpow = Q.one()                                            # D^m
-            var bpow = one.copy()                                         # beta^m
-            var acc = List[Q]()                                           # sum_{s<=m} beta^s D^{m-s}
+            var at = self._abs_at(0, x)
+            var lhs = _fscale(self.cstar, q_abs(self._norm(x)))          # |N(t)| |c*|
+            var at2 = _fscale(_fmul(self.chi, at, at), require_q(self.cstar_norm.square(), "K^2"))  # |N(c*)|^2 |t|^2
             for m in range(1, self.max_level + 1):
-                dpow = require_q(dpow.mul(self.D), "D power")
-                bpow = _fmul(self.chi, bpow, beta)
-                acc = _fadd(_fscale(acc, self.D), bpow)
-                var lhs = _fscale(lhs_const, dpow)
-                var rhs = _fmul(self.chi, rhs_base, _fscale(acc, q_int(m)))
-                if self._sign_at(0, _fsub(rhs, lhs)) >= 0:
+                var ab = self._square_sum(m)
+                # X <= K (A + r B), X = |N(t)|/|t|, K = |N(c*)|/|c*|; times |t| |c*|:
+                var E = _fsub(lhs, _fscale(_fmul(self.chi, ab[0], at), self.cstar_norm))
+                if self._sign_at(0, E) <= 0:
+                    return m
+                # E > 0: E <= |N(c*)| r B |t|  <=>  E^2 <= |N(c*)|^2 rho B^2 |t|^2
+                var rhs = _fmul(self.chi, _fmul(self.chi, at2, self.rho), _fmul(self.chi, ab[1], ab[1]))
+                if self._sign_at(0, _fsub(rhs, _fmul(self.chi, E, E))) >= 0:
                     return m
             raise Error("contracting bound exceeded the level cap")
         var worst = 0
