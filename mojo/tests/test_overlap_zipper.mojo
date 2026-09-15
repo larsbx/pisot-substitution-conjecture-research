@@ -2,7 +2,10 @@
 
 from std.testing import assert_equal, assert_true
 from psc.overlap_obstruction import common_child_start_count
+from psc.overlap_recurrence import zero_shift_free_recurrent_sccs
 from psc.overlap_seed_patch import (
+    OverlapState,
+    SeedOverlapAutomaton,
     build_seed_overlap_graph_from_tables,
     build_seed_overlap_tables,
     overlap_children,
@@ -13,6 +16,7 @@ from psc.overlap_zipper import (
     zero_shift_occurrence_count,
     zipper_steps,
 )
+from psc.perron_field3 import CubicElt
 
 
 def determinant_two_sigma() -> List[List[Int]]:
@@ -24,6 +28,13 @@ def determinant_two_sigma() -> List[List[Int]]:
     sigma.append(a1^)
     sigma.append(a2^)
     return sigma^
+
+
+def _contains_int(xs: List[Int], x: Int) -> Bool:
+    for i in range(len(xs)):
+        if xs[i] == x:
+            return True
+    return False
 
 
 def test_ordered_occurrences_preserve_all_child_occurrences() raises:
@@ -62,7 +73,45 @@ def test_ordered_occurrences_preserve_all_child_occurrences() raises:
     assert_true(saw_boundary_tie)
 
 
+def test_zero_shift_free_recurrence_is_one_sided_and_fail_closed() raises:
+    # Vertex 0 is a coincidence. Vertex 1 is a nonzero-shift self-cycle and
+    # must survive. Vertex 2 has zero shift and is deleted even though it has a
+    # self-loop. Vertex 3 feeds only the deleted vertex and is not recurrent in
+    # the induced graph.
+    var states = List[OverlapState]()
+    states.append(OverlapState(0, 0, CubicElt()))
+    states.append(OverlapState(0, 1, CubicElt(1, 0, 0)))
+    states.append(OverlapState(1, 2, CubicElt()))
+    states.append(OverlapState(2, 0, CubicElt(2, 0, 0)))
+
+    var adj = List[List[Int]]()
+    var a0 = List[Int]()
+    var a1: List[Int] = [1]
+    var a2: List[Int] = [2]
+    var a3: List[Int] = [2]
+    adj.append(a0^)
+    adj.append(a1^)
+    adj.append(a2^)
+    adj.append(a3^)
+
+    var graph = SeedOverlapAutomaton(states, adj, False)
+    var comps = zero_shift_free_recurrent_sccs(graph)
+    assert_equal(len(comps), 1)
+    assert_equal(len(comps[0]), 1)
+    assert_true(_contains_int(comps[0], 1))
+
+    var capped = SeedOverlapAutomaton(states, adj, True)
+    var caught = False
+    try:
+        _ = zero_shift_free_recurrent_sccs(capped)
+    except:
+        caught = True
+    assert_true(caught)
+
+
 def main() raises:
     test_ordered_occurrences_preserve_all_child_occurrences()
     print("[PASS] test_ordered_occurrences_preserve_all_child_occurrences")
-    print("1 ordered-overlap-zipper Mojo test passed.")
+    test_zero_shift_free_recurrence_is_one_sided_and_fail_closed()
+    print("[PASS] test_zero_shift_free_recurrence_is_one_sided_and_fail_closed")
+    print("2 ordered-overlap-zipper Mojo tests passed.")
