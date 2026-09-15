@@ -164,14 +164,18 @@ struct ContractingBound(Copyable, Movable):
     # isolating brackets: index 0 is the Perron root; 1, 2 the real conjugates (real case)
     var root_lo: List[Q]
     var root_hi: List[Q]
-    # complex pair: rho = beta/D and its powers, c* maximising |N(c)|/|c| on F \ {0}, |N(c*)|
+    # complex pair: rho = beta/D, the level tables A_m, B_m (index m, entry 0 unused),
+    # c* maximising |N(c)|/|c| on F \ {0}, and |N(c*)|
     var rho: List[Q]
-    var rho_pow: List[List[Q]]
+    var A: List[List[Q]]
+    var B: List[List[Q]]
     var cstar: List[Q]
     var cstar_norm: Q
-    # two real conjugates (index r = 1, 2): |beta_r| as a field element, C_r
-    var abs_beta: List[List[Q]]
+    # two real conjugates (index r = 0, 1): C_r and the level table G_r[m] = sum_{s<m} |beta_r|^s
     var cmax: List[List[Q]]
+    var G: List[List[List[Q]]]
+    # beta^m (index m), used by the real branch
+    var beta_pow: List[List[Q]]
 
     def __init__(out self, tables: SeedOverlapTables, max_level: Int = 64) raises:
         var field = tables.field
@@ -181,11 +185,13 @@ struct ContractingBound(Copyable, Movable):
         self.root_lo = List[Q]()
         self.root_hi = List[Q]()
         self.rho = List[Q]()
-        self.rho_pow = List[List[Q]]()
+        self.A = List[List[Q]]()
+        self.B = List[List[Q]]()
         self.cstar = List[Q]()
         self.cstar_norm = Q.zero()
-        self.abs_beta = List[List[Q]]()
         self.cmax = List[List[Q]]()
+        self.G = List[List[List[Q]]]()
+        self.beta_pow = List[List[Q]]()
         var digits = digit_set(tables)
         if len(digits) == 0:
             raise Error("empty increment set")
@@ -198,9 +204,25 @@ struct ContractingBound(Copyable, Movable):
             if q_sign(D) <= 0:
                 raise Error("complex contracting pair requires D > 0")
             self.rho = _fscale(beta, require_q(Q.one().div(D), "1/D"))
-            self.rho_pow.append(q_poly([1]))
+            var rho_pow = List[List[Q]]()
+            rho_pow.append(q_poly([1]))
             for _ in range(max_level):
-                self.rho_pow.append(_fmul(self.chi, self.rho_pow[len(self.rho_pow) - 1], self.rho))
+                rho_pow.append(_fmul(self.chi, rho_pow[len(rho_pow) - 1], self.rho))
+            # (sum_{s=1}^m r^s)^2 = A_m + r B_m with r^2 = rho, n_k = min(k-1, 2m+1-k)
+            self.A.append(List[Q]())
+            self.B.append(List[Q]())
+            for m in range(1, max_level + 1):
+                var Am = List[Q]()
+                var Bm = List[Q]()
+                for k in range(2, 2 * m + 1):
+                    var n = k - 1 if k - 1 < 2 * m + 1 - k else 2 * m + 1 - k
+                    var term = _fscale(rho_pow[k // 2], q_int(n))
+                    if k % 2 == 0:
+                        Am = _fadd(Am, term)
+                    else:
+                        Bm = _fadd(Bm, term)
+                self.A.append(Am^)
+                self.B.append(Bm^)
             var best = self._abs_at(0, lift(digits[0]))
             var best_norm = q_abs(self._norm(lift(digits[0])))
             for i in range(1, len(digits)):
@@ -213,6 +235,9 @@ struct ContractingBound(Copyable, Movable):
             self.cstar = best^
             self.cstar_norm = best_norm^
         else:
+            self.beta_pow.append(q_poly([1]))
+            for _ in range(max_level):
+                self.beta_pow.append(_fmul(self.chi, self.beta_pow[len(self.beta_pow) - 1], beta))
             var boxes = isolate_real_roots(self.chi, q_int(-1), q_int(1), 2)
             for r in range(2):
                 self.root_lo.append(boxes[r][0].copy())
@@ -223,8 +248,15 @@ struct ContractingBound(Copyable, Movable):
                     var c = self._abs_at(r + 1, lift(digits[i]))
                     if self._sign_at(r + 1, _fsub(c, cm)) > 0:
                         cm = c^
-                self.abs_beta.append(eb^)
                 self.cmax.append(cm^)
+                # G_r[m] = sum_{s<m} |beta_r|^s
+                var Gr = List[List[Q]]()
+                Gr.append(List[Q]())
+                var pw = q_poly([1])
+                for _ in range(max_level):
+                    Gr.append(_fadd(Gr[len(Gr) - 1], pw))
+                    pw = _fmul(self.chi, pw, eb)
+                self.G.append(Gr^)
 
     def _sign_at(self, r: Int, x: List[Q]) raises -> Int:
         return sign_at_isolated_root(self.chi, x, self.root_lo[r], self.root_hi[r])
@@ -237,57 +269,32 @@ struct ContractingBound(Copyable, Movable):
     def _norm(self, x: List[Q]) raises -> Q:
         return _fnorm(self.chi, x)
 
-    def _square_sum(self, m: Int) raises -> List[List[Q]]:
-        """(sum_{s=1}^m r^s)^2 = A + r B with r^2 = rho: returns [A, B]."""
-        var A = List[Q]()
-        var B = List[Q]()
-        for k in range(2, 2 * m + 1):
-            var n = k - 1 if k - 1 < 2 * m + 1 - k else 2 * m + 1 - k
-            var term = _fscale(self.rho_pow[k // 2], q_int(n))
-            if k % 2 == 0:
-                A = _fadd(A, term)
-            else:
-                B = _fadd(B, term)
-        var out = List[List[Q]]()
-        out.append(A^)
-        out.append(B^)
-        return out^
-
     def least_level(self, a: SeedOverlapAutomaton, t: CubicElt) raises -> Int:
         if a.capped:
             raise Error("contracting bound is undefined for a capped partial graph")
         if t.is_zero():
             return 0
         var x = lift(t)
-        var one = q_poly([1])
-        var beta = q_poly([0, 1])
         if self.is_complex:
             var at = self._abs_at(0, x)
             var lhs = _fscale(self.cstar, q_abs(self._norm(x)))          # |N(t)| |c*|
             var at2 = _fscale(_fmul(self.chi, at, at), require_q(self.cstar_norm.square(), "K^2"))  # |N(c*)|^2 |t|^2
             for m in range(1, self.max_level + 1):
-                var ab = self._square_sum(m)
-                # X <= K (A + r B), X = |N(t)|/|t|, K = |N(c*)|/|c*|; times |t| |c*|:
-                var E = _fsub(lhs, _fscale(_fmul(self.chi, ab[0], at), self.cstar_norm))
+                # X <= K (A_m + r B_m), X = |N(t)|/|t|, K = |N(c*)|/|c*|; times |t| |c*|:
+                var E = _fsub(lhs, _fscale(_fmul(self.chi, self.A[m], at), self.cstar_norm))
                 if self._sign_at(0, E) <= 0:
                     return m
-                # E > 0: E <= |N(c*)| r B |t|  <=>  E^2 <= |N(c*)|^2 rho B^2 |t|^2
-                var rhs = _fmul(self.chi, _fmul(self.chi, at2, self.rho), _fmul(self.chi, ab[1], ab[1]))
+                # E > 0: E <= |N(c*)| r B_m |t|  <=>  E^2 <= |N(c*)|^2 rho B_m^2 |t|^2
+                var rhs = _fmul(self.chi, _fmul(self.chi, at2, self.rho), _fmul(self.chi, self.B[m], self.B[m]))
                 if self._sign_at(0, _fsub(rhs, _fmul(self.chi, E, E))) >= 0:
                     return m
             raise Error("contracting bound exceeded the level cap")
         var worst = 0
         for r in range(1, 3):
             var found = False
-            var bpow = one.copy()                                         # beta^m
-            var pw = one.copy()                                           # |beta_r|^{m-1}
-            var G = List[Q]()                                             # sum_{s<m} |beta_r|^s
             for m in range(1, self.max_level + 1):
-                bpow = _fmul(self.chi, bpow, beta)
-                G = _fadd(G, pw)
-                pw = _fmul(self.chi, pw, self.abs_beta[r - 1])
-                var tb = self._abs_at(r, _fmul(self.chi, x, bpow))
-                if self._sign_at(r, _fsub(_fmul(self.chi, self.cmax[r - 1], G), tb)) >= 0:
+                var tb = self._abs_at(r, _fmul(self.chi, x, self.beta_pow[m]))
+                if self._sign_at(r, _fsub(_fmul(self.chi, self.cmax[r - 1], self.G[r - 1][m]), tb)) >= 0:
                     if m > worst:
                         worst = m
                     found = True

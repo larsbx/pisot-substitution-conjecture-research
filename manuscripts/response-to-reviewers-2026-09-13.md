@@ -279,3 +279,13 @@ One finding from the automated Codex review of commit `0b989e0ccc07d5690d5413e16
 | --- | --- | --- | --- | --- |
 | 36 | P2 | `B_1 = 0`, so "`A_m` and `B_m` positive at `β`" is false for `m = 1` | Accepted. The statement now reads "`A_m > 0` and `B_m ≥ 0` at `β` (`B_1 = 0`)"; the proof already used only `ρ^{1/2} B_m ≥ 0`; the note says the same | Proposition 5.42 statement; note Section 10 |
 
+---
+
+## Nineteenth round (pull request #87, nonnegativity revision)
+
+One finding from the automated Codex review of commit `059c4c5536cc4f0f9252a55a628ca90e7ea0bdf4`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 37 | P1 | `least_level` rebuilt the level tables `A_m`, `B_m` (complex pair) and the β-powers and `G_m` (real conjugates) for every shift and level, although they depend only on the substitution | Accepted. The constructor now builds `A_m`, `B_m` for `m ≤ max_level` (complex pair) and `β^m`, `G_r[m]` (real conjugates) once per substitution; `least_level` indexes them. The Python oracle precomputes `A_m`, `B_m` the same way (its real branch already did). Census rerun: identical lines | `mojo/psc/overlap_contracting.mojo`, `src/psc_research/overlap_contracting.py` |
+

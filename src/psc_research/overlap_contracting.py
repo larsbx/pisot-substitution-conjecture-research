@@ -174,9 +174,21 @@ class ContractingBound:
             self.cstar, self.cstar_norm = best, best_norm
             assert F.D > 0
             self.rho = F.mul(F.beta, (Fraction(1, F.D), 0, 0))  # |sigma_2(beta)|^{-2}
-            self.rho_pow = [one]
+            rho_pow = [one]
             for _ in range(max_level):
-                self.rho_pow.append(F.mul(self.rho_pow[-1], self.rho))
+                rho_pow.append(F.mul(rho_pow[-1], self.rho))
+            # (sum_{s=1}^m r^s)^2 = A_m + r B_m with r^2 = rho, n_k = min(k-1, 2m+1-k)
+            self.A, self.B = [F.zero], [F.zero]
+            for m in range(1, max_level + 1):
+                A, B = F.zero, F.zero
+                for k in range(2, 2 * m + 1):
+                    term = F.mul((Fraction(min(k - 1, 2 * m + 1 - k)), 0, 0), rho_pow[k // 2])
+                    if k % 2 == 0:
+                        A = F.add(A, term)
+                    else:
+                        B = F.add(B, term)
+                self.A.append(A)
+                self.B.append(B)
         else:
             self.roots = contracting_real_roots(F)
             self.per_root = []
@@ -199,19 +211,6 @@ class ContractingBound:
                     bpow.append(F.mul(bpow[-1], F.beta))
                 self.per_root.append((r, cmax, G, bpow))
 
-    def _square_sum(self, m: int) -> tuple[Elt, Elt]:
-        """(sum_{s=1}^m r^s)^2 = A + r B with r^2 = rho: A, B in Q(beta)."""
-        F = self.F
-        A, B = F.zero, F.zero
-        for k in range(2, 2 * m + 1):
-            n = min(k - 1, 2 * m + 1 - k)
-            term = F.mul((Fraction(n), 0, 0), self.rho_pow[k // 2])
-            if k % 2 == 0:
-                A = F.add(A, term)
-            else:
-                B = F.add(B, term)
-        return A, B
-
     def least_level(self, t: Elt) -> int:
         F = self.F
         if not any(t):
@@ -223,7 +222,7 @@ class ContractingBound:
             lhs = scale(nt, self.cstar)  # |N(t)| |c*|
             at2 = scale(self.cstar_norm ** 2, F.mul(at, at))  # |N(c*)|^2 |t|^2
             for m in range(1, self.max_level + 1):
-                A, B = self._square_sum(m)
+                A, B = self.A[m], self.B[m]
                 # X <= K (A + r B), X = |N(t)|/|t|, K = |N(c*)|/|c*|; times |t| |c*|:
                 E = F.sub(lhs, scale(self.cstar_norm, F.mul(A, at)))
                 if F.sign(E) <= 0:

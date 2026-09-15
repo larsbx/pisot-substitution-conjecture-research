@@ -434,3 +434,20 @@ No other findings were posted in the seventeenth round.
 
 No other findings were posted in the eighteenth round.
 
+---
+
+# Nineteenth round: review of the nonnegativity revision (pull request #87)
+
+**Reviewed commit:** `059c4c5536cc4f0f9252a55a628ca90e7ea0bdf4` (finding 36 and the merge of `main`).
+**Review posted:** 2026-09-15T01:31:48Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 37 (P1) — `mojo/psc/overlap_contracting.mojo`, line 269
+
+> **Precompute level terms before scanning offsets**
+>
+> In the checked `mojo/overlap_contracting_census.mojo` path, every uncached shift calls `least_level`, but this line rebuilds the `A_m`/`B_m` tables from exact field operations for every attempted level and shift even though they depend only on the substitution and `max_level`; the real-conjugate branch similarly rebuilds `G` and the beta powers per shift. Across the 1,118,850-vertex census this causes substantial repeated allocation and exact arithmetic, so precompute both sets of level tables once in the constructor and index them here.
+>
+> AGENTS.md reference: AGENTS.md:L26-L27
+
+No other findings were posted in the nineteenth round.
+
