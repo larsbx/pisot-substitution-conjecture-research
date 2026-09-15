@@ -358,4 +358,17 @@ Two findings from the automated Codex review of commit `c6032e3dad`; both accept
 | --- | --- | --- | --- | --- |
 | 45 | P2 | A classic table was accepted from the bare `xref` and `trailer` keywords | Accepted. The table is parsed: `xref`, one or more `start count` subsections, exactly `count` entries of 20 bytes matching `nnnnnnnnnn ggggg n/f`, at least one entry in total, then `trailer` and a dictionary containing `/Size` and `/Root`; tests cover a minimal valid classic PDF and the entryless one | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 46 | P2 | An empty or corrupted cross-reference stream body was accepted | Accepted. The stream dictionary must contain `/Type /XRef`, `/Size`, `/Root`, `/W` and a direct `/Length`; the body must have exactly `/Length` bytes followed by `endstream`; a Flate body must inflate (other filters fail closed); the payload must be a positive multiple of the `/W` row width (plus one under a PNG predictor); tests cover an empty stream and a one-byte mutation of the repository PDF's compressed payload | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+
+---
+
+## Twenty-seventh round (pull request #95, structural parser)
+
+Three findings from the automated Codex review of commit `3a9d53ee10`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 47 | P2 | `/Length 4 0 R` was read as the direct length 4 | Accepted. The `/Length` token is parsed with an optional trailing `g R` group, and an indirect reference fails explicitly; test with `/Length 4 0 R` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 48 | P2 | Only divisibility of the payload by the row width was checked, not the declared row count | Accepted. The number of rows must equal the sum of the `/Index` subsection counts, or `/Size` without `/Index`; tests with `/Size 100` and `/Index [0 3]` against a one-row payload, and a passing one-row stream | same |
+| 49 | P2 | The array form `/Filter [/FlateDecode]` was not recognized | Accepted. `/Filter` is parsed as a name or an array of names; the chain must be exactly `[FlateDecode]`, any other form or chain fails closed; tests inflate an array-form Flate stream and reject `[/LZWDecode]` | same |
 \n

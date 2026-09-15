@@ -132,6 +132,52 @@ def test_corrupted_flate_payload_fails(copy):
     assert code == 1 and ("does not inflate" in out or "not a positive multiple" in out)
 
 
+def xref_stream_pdf(dictionary: bytes, body: bytes) -> bytes:
+    return b"%PDF-1.5\n1 0 obj\n" + dictionary + b"\nstream\n" + body + b"\nendstream\nendobj\nstartxref\n9\n%%EOF\n"
+
+
+def test_indirect_length_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 1 /W [1 2 1] /Root 1 0 R /Length 4 0 R >>", b"\x01\x00\x09\x00"))
+    code, out = run(copy)
+    assert code == 1 and "indirect reference" in out
+
+
+def test_row_count_must_match_size(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 100 /W [1 2 1] /Root 1 0 R /Length 4 >>", b"\x01\x00\x09\x00"))
+    code, out = run(copy)
+    assert code == 1 and "declares 100" in out
+
+
+def test_row_count_must_match_index(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 5 /Index [0 3] /W [1 2 1] /Root 1 0 R /Length 4 >>", b"\x01\x00\x09\x00"))
+    code, out = run(copy)
+    assert code == 1 and "declares 3" in out
+
+
+def test_uncompressed_single_row_stream_passes(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 1 /W [1 2 1] /Root 1 0 R /Length 4 >>", b"\x01\x00\x09\x00"))
+    code, out = run(copy)
+    assert code == 0, out
+
+
+def test_filter_array_form_is_inflated(copy):
+    import zlib
+
+    pdf = next(copy.glob("*.pdf"))
+    body = zlib.compress(b"\x01\x00\x09\x00")
+    ok = xref_stream_pdf(b"<< /Type /XRef /Size 1 /W [1 2 1] /Root 1 0 R /Filter [/FlateDecode] /Length %d >>" % len(body), body)
+    pdf.write_bytes(ok)
+    assert run(copy)[0] == 0
+    bad = xref_stream_pdf(b"<< /Type /XRef /Size 1 /W [1 2 1] /Root 1 0 R /Filter [/LZWDecode] /Length %d >>" % len(body), body)
+    pdf.write_bytes(bad)
+    code, out = run(copy)
+    assert code == 1 and "unsupported" in out
+
+
 def test_missing_required_file_fails(copy):
     next(copy.glob("*.pdf")).unlink()
     code, out = run(copy)

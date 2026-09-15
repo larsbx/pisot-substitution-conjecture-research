@@ -115,10 +115,18 @@ def _xref_stream(at: bytes) -> str | None:
         row += 1
     if row == 0:
         return "cross-reference stream has zero row width"
-    length = re.search(rb"/Length\s+(\d+)\s*(?!\d+\s+R)", d)
+    length = re.search(rb"/Length\s+(\d+)(\s+\d+\s+R)?", d)
     if not length:
-        return "cross-reference stream lacks a direct /Length"
+        return "cross-reference stream lacks /Length"
+    if length.group(2):
+        return "cross-reference stream /Length is an indirect reference, not a direct integer"
     n = int(length.group(1))
+    index = re.search(rb"/Index\s*\[([\d\s]+)\]", d)
+    if index:
+        counts = [int(x) for x in index.group(1).split()][1::2]
+        expected_rows = sum(counts)
+    else:
+        expected_rows = int(re.search(rb"/Size\s+(\d+)", d).group(1))
     body = re.match(rb"\s*stream(?:\r\n|\n)", at[m.end() + len(d):m.end() + len(d) + 16])
     if not body:
         return "cross-reference stream has no stream body"
@@ -126,10 +134,15 @@ def _xref_stream(at: bytes) -> str | None:
     data = at[data_start:data_start + n]
     if len(data) < n or not re.match(rb"(?:\r\n|\r|\n)?endstream\b", at[data_start + n:data_start + n + 12]):
         return "cross-reference stream body does not match /Length"
-    flt = re.search(rb"/Filter\s*/(\w+)", d)
-    if flt and flt.group(1) != b"FlateDecode":
-        return f"unsupported cross-reference stream filter {flt.group(1).decode()}"
-    if flt:
+    filters = None
+    if b"/Filter" in d:
+        flt = re.search(rb"/Filter\s*(?:/(\w+)|\[\s*((?:/\w+\s*)*)\])", d)
+        if not flt:
+            return "cross-reference stream /Filter is not a name or an array of names"
+        filters = [flt.group(1)] if flt.group(1) else re.findall(rb"/(\w+)", flt.group(2))
+        if filters != [b"FlateDecode"]:
+            return f"unsupported cross-reference stream filter chain {[f.decode() for f in filters]}"
+    if filters:
         try:
             payload = zlib.decompress(data)
         except zlib.error as e:
@@ -138,6 +151,9 @@ def _xref_stream(at: bytes) -> str | None:
         payload = data
     if len(payload) == 0 or len(payload) % row != 0:
         return f"cross-reference stream payload of {len(payload)} bytes is not a positive multiple of the row width {row}"
+    rows = len(payload) // row
+    if rows != expected_rows:
+        return f"cross-reference stream has {rows} rows but declares {expected_rows} (/Index or /Size)"
     return None
 
 

@@ -583,4 +583,38 @@ No other findings were posted in the twenty-fifth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the twenty-sixth round.
+
+
+---
+
+# Twenty-seventh round: review of the structural parser (pull request #95)
+
+**Reviewed commit:** `3a9d53ee10` (findings 45–46 and the test fixtures).
+**Review posted:** 2026-09-15T15:56:08Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 47 (P2) — `scripts/check_manuscript_source.py`, line 118
+
+> **Reject indirect references for direct /Length**
+>
+> Fresh evidence beyond finding 46 is that `/Length 4 0 R` is accepted as the direct length `4`: the `\s*` can backtrack to zero, leaving whitespace where the negative lookahead expects a digit. An XRef stream with a four-byte body therefore passes even though its declared length is an unresolved indirect reference, defeating the promised fail-closed direct-length check; parse the complete value token or explicitly reject a following generation/reference pair.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 48 (P2) — `scripts/check_manuscript_source.py`, line 140
+
+> **Enforce the XRef stream's declared row count**
+>
+> Fresh evidence beyond finding 46 is that, without `/Index`, `/Size 100 /W [1 2 1] /Length 4` and a single four-byte row passes this check. A stream without `/Index` must contain `/Size` rows, while one with `/Index` must contain the sum of its subsection counts; checking only divisibility therefore misses payloads truncated by one or more complete rows.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 49 (P2) — `scripts/check_manuscript_source.py`, line 129
+
+> **Handle filter arrays before validating payload bytes**
+>
+> Fresh evidence beyond finding 46 is an XRef stream using the valid array form `/Filter [/FlateDecode]`: this search finds no filter and validates the compressed bytes as though they were the decoded payload. If their byte count happens to be a multiple of the row width, even a corrupted compressed stream passes; otherwise an intact PDF is rejected. Parse supported filter arrays, or fail whenever a `/Filter` key is present in an unrecognized form.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-seventh round.
 \n
