@@ -1,3 +1,6 @@
+Warning: truncated output (original token count: 37252)
+Total output lines: 1048
+
 \documentclass[11pt]{amsart}
 \usepackage[margin=1.05in]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
@@ -479,210 +482,7 @@ Let $\sigma_+(a)$ and $\sigma_-(a)$ be the first and last letters of $\sigma(a)$
 If some zero return of $(\sigma^n(u),\sigma^n(v))$, for some $n\ge0$, has right pair in $\Sync_+$ or left pair in $\Sync_-$, then the state $(u,v)$ is productive.
 \end{lemma}
 \begin{proof}
-Let $K$ be the zero return and $(a,b)$ its right pair. After $m$ further inflations $K$ is inherited to a zero return $K_m$ (Lemma~\ref{lem:inherited}) whose right pair is $(\sigma_+^m(a),\sigma_+^m(b))$. If this is $(c,c)$, then $K_m+1$ is also a zero return and the block between them is $(c,c)$, a coincidence block among the depth-$(n+m)$ descendants of $(u,v)$ (Lemma~\ref{lem:descendants}). For the left pair, use $\sigma_-$ and subtract $e_c$ from the equal prefix vectors at $K_m$.
-\end{proof}
-
-\begin{theorem}[Global endpoint synchronization; \Status{Theorem}, no PIP hypothesis]\label{thm:global-sync}
-If $\sigma_+$ (or $\sigma_-$) is globally synchronizing, i.e.\ some iterate is constant, then every balanced pair is productive and Conjecture~\ref{conj:producer} holds for $\sigma$.
-\end{theorem}
-\begin{proof}
-Position $0$ (resp.\ $n$) is a zero return of every balanced pair, with right pair $(u_1,v_1)$ (resp.\ left pair $(u_n,v_n)$); apply Lemma~\ref{lem:boundary-sync}.
-\end{proof}
-
-\begin{lemma}[Newborn locality; \Status{Theorem}]\label{lem:locality}
-Let $k$ be a newborn zero return of $(\sigma(u),\sigma(v))$. There is a unique block $T_j$ of $\red(u,v)$ and an interior zero return $r$ of $\sigma(T_j)$ with $k=B_j+r$, $B_j$ the inherited image of the left end of $T_j$, and the left and right pairs of $k$ in $\sigma(u,v)$ equal those of $r$ in $\sigma(T_j)$.
-\end{lemma}
-\begin{proof}
-$k$ lies strictly between consecutive inherited returns $B_j<k<B_{j+1}$; subtracting the prefix equalities at $B_j$ and $k$ shows $r=k-B_j$ is a zero return of $\sigma(T_j)$, and adjacent letters are unchanged by translation.
-\end{proof}
-
-\begin{definition}[Synchronization targets]\label{def:C2C3}
-For a strict component $\cC$:
-\begin{itemize}[leftmargin=*]
-\item \textbf{C2}: some state $T\in\cC$ and some $n\ge1$ give a zero return of $\sigma^n(T)$ with right pair in $\Sync_+$ or left pair in $\Sync_-$.
-\item \textbf{C3-local}: some $T\in\cC$ gives an \emph{interior} zero return of $\sigma(T)$ with right pair in $\Sync_+$ or left pair in $\Sync_-$.
-\end{itemize}
-\end{definition}
-
-\begin{proposition}[One-way chain; \Status{Theorem}]\label{prop:chain}
-For every strict component, C3-local $\Rightarrow$ C2 $\Rightarrow$ contradiction with nonproductivity. Hence if C3-local holds for every hypothetical strict component of every PIP substitution with finite $\B_\sigma$, then Conjecture~\ref{conj:producer} holds for all of them. No converse is asserted.
-\end{proposition}
-\begin{proof}
-C3-local is the case $n=1$ of C2, and C2 contradicts nonproductivity by Lemma~\ref{lem:boundary-sync}. (Lemma~\ref{lem:locality} shows that a synchronizing newborn zero return at depth $n$ localizes to a one-step interior zero return of a depth-$(n-1)$ block, which lies in $\cC$ by closure; so for strict components C2 and C3-local are in fact equivalent, and the inherited case is covered by the boundary pairs of states of $\cC$.)
-\end{proof}
-
-The program of proving C3-local for every strict component is referred to below as the C4 program. It is open (Open Problem~\ref{prob:C4}).
-
-\subsection{Endpoint dynamics on three letters}\label{sec:endpoint}
-
-For $d=3$ the $27$ self-maps of $\A$ fall into seven conjugacy classes of functional graphs, listed with the recurrent nonsynchronizing ordered pairs of the product map $h\times h$:
-
-\begin{center}
-\begin{tabular}{@{}lllcc@{}}
-\toprule
-Type & Representative & Functional graph & Class size & Nonsync.\ core \\
-\midrule
-A & $(0,0,0)$ & fixed point with two leaves & 3 & $\emptyset$\\
-B & $(0,0,1)$ & fixed point with a tail of length two & 6 & $\emptyset$\\
-C & $(0,0,2)$ & two fixed points, one leaf & 6 & 2 pairs\\
-D & $(0,1,2)$ & identity & 1 & 6 pairs\\
-E & $(0,2,1)$ & fixed point and a $2$-cycle & 3 & 6 pairs\\
-F & $(1,0,0)$ & $2$-cycle with one leaf & 6 & 2 pairs\\
-G & $(1,2,0)$ & $3$-cycle & 2 & 6 pairs\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\begin{proposition}[\Status{Theorem}]\label{prop:endpoint-types}
-Every self-map of a three-letter alphabet is conjugate to exactly one of A--G. Types A and B are globally synchronizing. For every $h$ and every ordered pair $(a,b)$, either the pair synchronizes, or it lies in the recurrent core of $h\times h$, or it enters that core after exactly one step; recurrent cores have periods $1$, $2$ or $3$. Let $a\sim_hb$ iff $h^n(a)=h^n(b)$ for some $n$; $h$ induces a permutation of the quotient $Q_h=\A/{\sim_h}$, and $(a,b)$ synchronizes iff $a\sim_hb$.
-\end{proposition}
-\begin{proof}
-A functional graph on three vertices is a union of cycles with in-trees; enumerating cycle types $(1)$, $(1,1)$, $(1,1,1)$, $(1,2)$, $(2)$, $(3)$ and tree attachments gives exactly the seven rows, whose class sizes sum to $27$. The remaining assertions are checked on the representatives; both the exhaustive enumeration and the checks were also carried out mechanically.
-\end{proof}
-
-\begin{corollary}[Signature bound; \Status{Theorem}]\label{cor:signature}
-Let $\cC$ be a strict component, $d=3$. For $T=(u,v)\in\cC$ the unordered pairs $\{[u_1],[v_1]\}\subset Q_{\sigma_+}$ and $\{[u_n],[v_n]\}\subset Q_{\sigma_-}$ consist of two distinct classes. The number of such \emph{endpoint signatures} is at most $\binom{|Q_+|}{2}\binom{|Q_-|}{2}\le9$, and every strict component contains a cycle of states whose signatures repeat with period at most $1$, $3$ or $9$ according as the two quotient sizes are $(2,2)$, mixed, or $(3,3)$.
-\end{corollary}
-\begin{proof}
-Equal classes would make position $0$ (resp.\ $n$) a synchronizing zero return (Lemma~\ref{lem:boundary-sync}). The signature is invariant under side swap, hence well defined on states. Along an infinite path in the finite signature graph a signature repeats.
-\end{proof}
-
-\begin{importedtheorem}[Barge--Diamond~\cite{BD}; \Status{Imported}]\label{thm:BD}
-Let $\sigma$ be a substitution of Pisot type (primitive, irreducible characteristic polynomial, Pisot dilation) on $d\ge2$ letters. There exist letters $a\ne b$ and $n\ge1$ such that $\sigma^n(a)=pcs$, $\sigma^n(b)=p'cs'$ with $c\in\A$ and $\pi(p)=\pi(p')$ (the pair $\{a,b\}$ is \emph{eventually coincident}). For $d=2$ every pair of distinct letters is eventually coincident (strong coincidence).
-\end{importedtheorem}
-
-\begin{theorem}[Barge--Diamond eliminator; \Status{Theorem}, $d=3$]\label{thm:BD-eliminator}
-Let $\cC$ be a closed nonproductive set of states of a PIP substitution on three letters (finiteness not required). Then no zero return of any $\sigma^n(T)$, $T\in\cC$, has an eventually coincident right pair; consequently neither $\sigma_+$ nor $\sigma_-$ is of type G, and, fixing one eventually coincident pair $\{a,b\}$ with complementary letter $c$, every right pair at a zero return of every $\sigma^n(T)$ is $\{a,c\}$ or $\{b,c\}$.
-\end{theorem}
-\begin{proof}
-If a zero return $K$ has right pair $(a,b)$ eventually coincident at level $n$, then after $n$ inflations the blocks $\sigma^n(a)$ and $\sigma^n(b)$ start at the inherited zero return, and the position $|p|=|p'|$ after it is a zero return followed by $(c,c)$: a coincidence block, contradicting nonproductivity (Lemma~\ref{lem:descendants}). Now let $\{a,b\}$ be the pair of Theorem~\ref{thm:BD}. The first letters of any $T\in\cC$ are distinct and form the right pair of the zero return $0$; the first block of $\red(\sigma(T))$ has first letters $(\sigma_+(u_1),\sigma_+(v_1))$ and lies in $\cC$. Iterating, every pair $\{\sigma_+^k(u_1),\sigma_+^k(v_1)\}$ is a non-eventually-coincident pair. If $\sigma_+$ were a $3$-cycle, its action on the three unordered pairs would be transitive and $\{a,b\}$ would occur, a contradiction. The suffix statement follows by applying the same argument to the reversed substitution $a\mapsto\overline{\sigma(a)}$, which has the same incidence matrix and whose balanced-pair automaton is the image of $\B_\sigma$ under word reversal, with $\sigma_-$ as its prefix map. The last assertion holds because only three unordered pairs exist.
-\end{proof}
-
-Together with Theorem~\ref{thm:global-sync}, a strict component on three letters has both endpoint maps of type C, D, E or F. This is a necessary condition; it is not asserted that these types are realizable by strict components.
-
-\subsection{Orientation and signed first-defect intertwiners}\label{sec:orientation}
-
-Fix normalized representatives $T=(u_T,v_T)$ of the states of a strict component $\cC$. The blocks of $\red(\sigma(u_T),\sigma(v_T))$ are raw pairs $R_1,\dots,R_m$; each $R_i$ equals $(u_U,v_U)$ or $(v_U,u_U)$ for its state $U$, and we set $\epsilon(T\to U_i)=+1$ or $-1$ accordingly. Let $A_{ij}$, $B_{ij}$ count the occurrences with sign $+1$, $-1$ of $T_i$ among the children of $T_j$, so $N_\cC=A+B$; put $S=A-B$.
-
-\begin{proposition}[Orientation cocycle; \Status{Theorem}]\label{prop:cocycle}
-The signs form a $\Z/2$-cocycle on the child graph. A \emph{gauge} $g:\cC\to\{\pm1\}$ with $g(U)=g(T)\epsilon(T\to U)$ on every occurrence exists iff every closed walk has sign product $+1$; then, after reorienting each state by $g$, the two side words define morphisms $U,V:\cC^*\to\A^*$ with $\sigma\circ U=U\circ\tau_\cC$, $\sigma\circ V=V\circ\tau_\cC$, $\pi\circ U=\pi\circ V$, and $U(T)\ne V(T)$ for all $T$. If no gauge exists, the oriented double cover $\cC\times\{\pm1\}$ with lifted children $(T,o)\to(U,o\epsilon)$ is strongly connected and carries a single morphism $W$ with $\sigma\circ W=W\circ\tilde\tau_\cC$ commuting with the deck involution. In all cases $\rho(S)\le\beta$; if some parent--child pair occurs with both signs then $\rho(S)<\beta$; and if $N_\cC$ is primitive then $\rho(S)=\beta$ forces $S$ to be diagonally similar to $N_\cC$ (gauge case) or to $-N_\cC$ (anti-gauge case).
-\end{proposition}
-\begin{proof}
-Swapping a parent's sides swaps all its children's sides, so signs compose along paths and the gauge equation is the standard voltage-graph condition; the word identities follow because with a gauge every raw child appears in its chosen orientation. For the spectral statements: $|S|\le N_\cC$ entrywise, and for irreducible nonnegative $N_\cC$ the Wielandt comparison gives $|\lambda|\le\rho(N_\cC)=\beta$ (Theorem~\ref{thm:parikh}) for every eigenvalue $\lambda$ of $S$, strictly if $|S|\ne N_\cC$; in the equality case, if $\lambda=\beta e^{i\varphi}$ is an eigenvalue of $S$ of maximal modulus, Wielandt's theorem~\cite[Thm.~8.4.5]{HornJohnson} gives $|S|=N_\cC$ and $S=e^{i\varphi}DN_\cC D^{-1}$ for a diagonal unitary $D=\operatorname{diag}(d_i)$, so every edge sign is $e^{i\varphi}d_id_j^{-1}$ and the sign product around a directed cycle of length $L$ is $e^{i\varphi L}\in\{\pm1\}$. If $N_\cC$ is primitive the cycle lengths have greatest common divisor $1$, so $e^{2i\varphi}=1$ and $e^{i\varphi}=\pm1$; since $S$ and $\pm N_\cC$ are real with the same support and the graph is strongly connected, the $d_i$ may then be rescaled to lie in $\{\pm1\}$.
-\end{proof}
-
-For a word $w$ and $x=x_1\cdots x_r\in\A^r$ let $N_x(w)$ be the number of occurrences of $x$ as a scattered subword of $w$, and let $N_r(w)=(N_x(w))_{x\in\A^r}\in\Z^{d^r}$. For a balanced pair define the \emph{degree-$r$ defect} $K_r(u,v)=N_r(u)-N_r(v)$; $K_1\equiv0$ on balanced pairs, and $K_r(v,u)=-K_r(u,v)$. For $r=2$ and a balanced pair with $n_a=|u|_a=|v|_a$ one has $K_{aa}=\binom{n_a}2-\binom{n_a}2=0$ and $K_{ab}+K_{ba}=n_an_b-n_an_b=0$, so $K_2$ is antisymmetric; for $d=3$ we identify it throughout with the vector $(K_{12},K_{13},K_{23})\in\Lambda^2\Z^3$, so that $K_{ji}=-K_{ij}$ (this is the instance $\Lie_2=\Lambda^2$ of Theorem~\ref{thm:defect-intertwiner} below, and the identification is used in Sections~\ref{sec:midarea} and~\ref{sec:wedge}). For a strict component let $r(\cC)=\min\{r:K_r(T)\ne0\text{ for some }T\in\cC\}$, finite since distinct words of length $n$ have different $N_n$.
-
-\begin{lemma}[Concatenation and substitution; \Status{Theorem}]\label{lem:conc-subst}
-(i) $N_r(xy)=\sum_{k=0}^{r}N_k(x)\otimes N_{r-k}(y)$ (with $N_0=1$). (ii) $N_r(\sigma(w))=M^{\otimes r}N_r(w)+\Lambda_r(N_1(w),\dots,N_{r-1}(w))$ where $\Lambda_r$ is linear with coefficients depending only on $\sigma$. (iii) The functional $x\mapsto N_x(w)$ is a character of the shuffle algebra (Ree's theorem~\cite[Thm.~3.6]{Reutenauer}): $N_{x\shuffle y}(w)=N_x(w)N_y(w)$.
-\end{lemma}
-\begin{proof}
-(i) An occurrence splits into its parts in $x$ and in $y$. (ii) Group occurrences in $\sigma(w)$ by the multiset of source positions used; the occurrences using $r$ distinct source positions contribute $\sum_{y}\prod_jM_{x_jy_j}N_y(w)=(M^{\otimes r}N_r(w))_x$, and those using fewer source positions are linear in lower-degree counts of $w$ with coefficients given by scattered-subword counts inside the images $\sigma(a)$. (iii) is Ree's theorem.
-\end{proof}
-
-\begin{theorem}[First-defect intertwiner; \Status{Theorem}; part of Theorem~\ref{thm:defect-summary}]\label{thm:defect-intertwiner}
-Let $r=r(\cC)$ and let $Q_r$ have the vectors $K_r(T)$, $T\in\cC$, as columns. Then every $K_r(T)$ lies in the free Lie component $\Lie_r(\Q^d)\subset(\Q^d)^{\otimes r}$, and $Q_rS=\Phi_rQ_r$ with $\Phi_r=M^{\otimes r}|_{\Lie_r}$. In particular $\operatorname{im}Q_r$ is a nonzero rational $\Phi_r$-invariant subspace on which the induced action is a quotient of $S$, so $\rho(\Phi_r|_{\operatorname{im}Q_r})\le\beta$.
-\end{theorem}
-\begin{proof}
-For $T\in\cC$ all $K_k(T)$, $k<r$, vanish, so Lemma~\ref{lem:conc-subst}(ii) gives $K_r(\sigma(T))=M^{\otimes r}K_r(T)$, and (i) applied to $\sigma(u_T)=R_1\cdots R_m$ (top sides) and to the bottom sides, with all lower-degree cross terms equal on both sides, gives $K_r(\sigma(T))=\sum_i\epsilon_iK_r(U_i)$, which is $Q_rS$ column by column. By (iii), $K_r(T)$ annihilates every proper shuffle $x\shuffle y$ with $|x|,|y|\ge1$, $|x|+|y|=r$; the annihilator in degree $r$ of the proper shuffles is the space of primitive elements of the concatenation Hopf algebra, which is $\Lie_r$~\cite[Thm.~3.1]{Reutenauer}. Since $M^{\otimes r}$ is an algebra automorphism preserving $\Lie_r$, the identity restricts.
-\end{proof}
-
-\begin{theorem}[Degrees two and three, $d=3$; \Status{Theorem}]\label{thm:deg23}
-Let $d=3$ and $\cC$ strict.
-\begin{enumerate}[label=(\roman*)]
-\item $\chi_{\Lambda^2M}(x)=x^3-Ux^2+\det(M)\operatorname{tr}(M)x-\det(M)^2$, where $\chi_M=x^3-\operatorname{tr}(M)x^2+Ux-\det M$, is irreducible over $\Q$, and $\rho(\Lambda^2M)=\beta|\beta_2|<\beta$.
-\item If $r(\cC)=2$ then $\rank_\Q Q_2=3$, $\chi_{\Lambda^2M}\mid\chi_S$, and $|\cC|\ge\deg\operatorname{lcm}(\overline{\chi_M},\overline{\chi_{\Lambda^2M}})\in\{3,4,5,6\}$, the reductions being taken modulo $2$; the value is $6$ whenever $\det M$ is odd and $\operatorname{tr}M\not\equiv U\pmod2$.
-\item If $r(\cC)=3$ then $\operatorname{im}Q_3\subseteq\ker(\Phi_3-\det M)$, a two-dimensional space, so $\rank Q_3\le2$.
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-(i) The roots of $\chi_{\Lambda^2M}$ are $\beta_i\beta_j=\det M/\beta_k$; a rational one would make some $\beta_k$ rational. The moduli are $\beta|\beta_2|\ge\beta|\beta_3|$ and $|\beta_2\beta_3|<1<\beta|\beta_2|$ (as $|\det M|=\beta|\beta_2\beta_3|\ge1$), and $\beta|\beta_2|<\beta$. (ii) $\Lie_2=\Lambda^2$, so $\operatorname{im}Q_2$ is a nonzero $\Lambda^2M$-invariant rational subspace of $\Lambda^2\Q^3$, hence everything by irreducibility; then $\Lambda^2M$ is a quotient of $S$ and $\chi_{\Lambda^2M}\mid\chi_S$ in $\Z[x]$ (Gauss). Since $S\equiv N_\cC\pmod2$, $\chi_S\equiv\chi_{N_\cC}\pmod 2$ is divisible in $\F_2[x]$ by both reductions; the table of the eight parity classes is a direct computation in $\F_2[x]$, and when $\det M$ is odd the difference of the two reductions is $x(x+1)$ while neither vanishes at $0$ or $1$. (iii) For $d=3$, $\Lie_3(V)\cong S_{(2,1)}(V)$ has dimension $8$ and $\Phi_3$ has eigenvalues $\beta_i^2\beta_j$ ($i\ne j$) and $\det M$ with multiplicity two; $\Phi_3$ is semisimple since $\chi_M$ is. The Galois-stable rational constituents of the non-scalar part are one sextic factor or two cubic factors, each containing a weight of modulus $\beta^2|\beta_2|$ or $\beta^2|\beta_3|$; both exceed $\beta$ because $\beta|\beta_2|\ge\sqrt{|\det M|}\ge1$ and $\beta|\beta_3|=|\det M|/|\beta_2|>1$. A rational invariant subspace of spectral radius $\le\beta$ therefore has zero component in every non-scalar constituent, hence lies in the $\det M$-eigenspace; apply Theorem~\ref{thm:defect-intertwiner}.
-\end{proof}
-
-\begin{theorem}[Higher degrees, $d=3$; \Status{Theorem}]\label{thm:sieve}
-Let $d=3$, $\cC$ strict, $r=r(\cC)\ge4$. Every rational irreducible $\Phi_r$-constituent of $\Lie_r(\Q^3)$ is a Galois orbit of weights $\beta_1^{a}\beta_2^{b}\beta_3^{c}$ with $a+b+c=r$, and its spectral radius is at most $\beta$ only if, up to permutation, $(a,b,c)$ is one of: $(m,m,m)$ if $r=3m$; $(m+1,m,m)$, or $(m+1,m+1,m-1)$ in the case of complex conjugate $\beta_2,\beta_3$ with $|\det M|=1$, if $r=3m+1$; $(m+1,m+1,m)$ if $r=3m+2$. In particular, if $r=4$ then $|\det M|=1$ and $\rho(S)=\beta$. If moreover $|\cC|=3$: in the Perron-extremal case $\rho(S)=\beta$ one has $r\equiv1\pmod3$, $|\det M|=1$, and $\operatorname{im}Q_r$ is the constituent $\det(M)^m\otimes M$; in the case $\rho(S)<\beta$ one has $r\equiv0$ or $2\pmod3$.
-\end{theorem}
-\begin{proof}[Proof sketch]
-$\Lie_r(\Q^3)$ is a polynomial functor of $V=\Q^3$, so its weights under a semisimple $M$ with eigenvalues $\beta_i$ are the monomials $\prod\beta_i^{a_i}$ with multiplicities given by the generalized Witt formula $m(a,b,c)=\frac1r\sum_{t\mid\gcd(a,b,c)}\mu(t)\frac{(r/t)!}{(a/t)!(b/t)!(c/t)!}$~\cite[Cor.~4.15]{Reutenauer}. A rational invariant subspace is a sum of Galois orbits of weight spaces, and every orbit of an exponent vector contains an assignment with its largest exponent $a$ on $\beta$. With $x=\log\beta$, $y=-\log|\beta_2|$, $z=-\log|\beta_3|$, $\delta=\log|\det M|=x-y-z\ge0$, the logarithm of that weight's modulus relative to $\beta$ is $(a-1-b)y+(a-1-c)z+(a-1)\delta$ (or with $y,z$ exchanged), which is strictly positive unless the exponent vector has the listed shapes; the case analysis is elementary. For $r=4$ the shapes are $(2,1,1)$ (operator $\det(M)\cdot M$, spectral radius $|\det M|\beta$) and, only for complex stable roots with $|\det M|=1$, $(2,2,0)$; both have spectral radius $\ge\beta$, forcing $\rho(S)=\beta$ and $|\det M|=1$ through Theorem~\ref{thm:defect-intertwiner}. If $|\cC|=3$ then $N_\cC=P_\cC^{-1}MP_\cC$ (Theorem~\ref{thm:parikh}) is primitive, so in the extremal case $\rho(S)=\beta$ Proposition~\ref{prop:cocycle} makes $S$ diagonally similar to $\pm N_\cC$, with the irreducible cubic characteristic polynomial of $\pm M$; any nonzero $Q_r$ is then injective and its image is a three-dimensional constituent similar to $\pm M$, and comparing determinants and moduli excludes every shape except $(m+1,m,m)$ with $|\det M|=1$. In the non-extremal case $\rho(S)<\beta$, the shapes $(m+1,m,m)$ and $(m+1,m+1,m-1)$, whose spectral radius is at least $\beta$, are excluded, leaving $r\equiv0,2\pmod3$. We do not know whether a three-state strict component can have $\rho(S)<\beta$ with $r\in\{2,3\}$; Theorems~\ref{thm:deg23}(ii),(iii) constrain but do not exclude these cases.
-\end{proof}
-
-\begin{remark}
-Degree five is the first degree at which a genuinely sub-Perron higher constituent survives in the unimodular case (shape $(2,2,1)$, operator $\det(M)\Lambda^2M$, spectral radius $\beta|\beta_2|$). The sieves are necessary conditions on the algebra of a strict component; none of them, alone or jointly, has been shown inconsistent for every possible component. Their role is to shrink the hypothetical object and to calibrate the finite censuses of Section~\ref{sec:finite}.
-\end{remark}
-
-\subsection{Ordered factorization: the mid-area identity}\label{sec:midarea}
-
-For $w\in\A^*$ with $d=3$ let $\area(w)=(N_{12}-N_{21},N_{13}-N_{31},N_{23}-N_{32})(w)\in\Lambda^2\Z^3$ and let $C_\sigma$ have columns $\area(\sigma(a))$.
-
-\begin{proposition}[\Status{Theorem}]\label{prop:midarea}
-(i) $\area(\sigma(w))=(\Lambda^2M)\area(w)+C_\sigma\pi(w)$. (ii) $\area(x_1\cdots x_m)=\sum_r\area(x_r)+\sum_{r<s}\pi(x_r)\wedge\pi(x_s)$. (iii) For a balanced pair $T=(u,v)$ put $H(T)=\area(u)+\area(v)$; then, with the identification of $K_2$ with $(K_{12},K_{13},K_{23})\in\Lambda^2\Z^3$ of Section~\ref{sec:orientation}, $\area(u)-\area(v)=2K_2(T)$, $K_2(\sigma(T))=(\Lambda^2M)K_2(T)$, and if $\red(\sigma(T))=(R_1,\dots,R_m)$ then
-\[
-(\Lambda^2M)H(T)+2C_\sigma\pi(T)=\sum_rH(R_r)+2\sum_{r<s}\pi(R_r)\wedge\pi(R_s).
-\]
-\end{proposition}
-\begin{proof}
-(i) and (ii) count degree-two occurrences by whether both positions lie in one image, resp.\ one block. (iii) The cross terms in (ii) are the same on both sides since the blocks are balanced; subtracting gives block additivity of $K_2$ and, with (i), the push-forward; adding gives the displayed identity.
-\end{proof}
-
-The identity retains the \emph{order} of the children while forgetting their orientation. It is a necessary condition for a proposed derived substitution to be the actual factorization, and it is the first invariant in this paper that rejects the synthetic template of Section~\ref{sec:synthetic}. For $|\cC|=3$ the Sylvester operator $X\mapsto(\Lambda^2M)X-XN_\cC$ is invertible over $\Q$ (Theorems~\ref{thm:parikh} and~\ref{thm:deg23}(i) give $\spec N_\cC\cap\spec\Lambda^2M=\emptyset$, because $\beta_i=\beta_j\beta_k$ would force $\beta_i^2=\det M\in\Q$), so a prescribed ordered child system forces a unique rational $H$, which must be integral with $H\pm 2Q_2$ satisfying the elementary parity and magnitude bounds $|\area_{ij}(w)|\le n_in_j$, $\area_{ij}(w)\equiv n_in_j\pmod2$. We regard the three-state calculations as calibration only.
-
-\subsection{The wedge dichotomy and the spectral route}\label{sec:wedge}
-
-Let $d=3$. By Theorem~\ref{thm:deg23}(i), $\Lambda^2M$ is semisimple with a dominant eigenvalue of modulus $\beta|\beta_2|$ (simple, or a complex pair); let $\Pi_{\mathrm{dom}}$ be the corresponding real spectral projection.
-
-\begin{proposition}[Wedge dichotomy; \Status{Theorem}; Proposition~\ref{prop:wedge-summary}]\label{prop:wedge-dichotomy}
-Let $\cC$ be a closed nonproductive SCC (finite or not), $V_\cC=\operatorname{span}_\Q\{K_2(T):T\in\cC\}$. Then $(\Lambda^2M)V_\cC=V_\cC$, hence $V_\cC\in\{0,\Lambda^2\Q^3\}$. If $V_\cC\ne0$ then for every nonzero linear functional $\varphi$ on $\Lambda^2\R^3$ some $T\in\cC$ has $\varphi(K_2(T))\ne0$; in particular $\Pi_{\mathrm{dom}}K_2(T)\ne0$ for some $T\in\cC$, and the three eigencoordinates of $K_2(T)$, $T\in\cC$, are not all zero for any eigenvalue.
-\end{proposition}
-\begin{proof}
-By Proposition~\ref{prop:midarea}(iii), $(\Lambda^2M)K_2(T)=K_2(\sigma(T))=\sum_i\epsilon_iK_2(U_i)$ with $U_i\in\cC$ (closure and nonproductivity), so $(\Lambda^2M)V_\cC\subseteq V_\cC$, with equality since $\Lambda^2M$ is invertible. Irreducibility of $\chi_{\Lambda^2M}$ leaves only $0$ and $\Lambda^2\Q^3$. The rest is linear algebra.
-\end{proof}
-
-\begin{proposition}[Wedge growth in a finite closed component; \Status{Conditional} on finiteness of $\cC$]\label{prop:v34}
-Let $\cC$ be a finite closed recurrent noncoincident SCC (productive or not) and suppose $\Pi_{\mathrm{dom}}K_2(s)\ne0$ for some $s\in\cC$. Then $\rho(N_\cC)\ge\beta|\beta_2|$.
-\end{proposition}
-\begin{proof}
-By Proposition~\ref{prop:midarea}(iii) and Lemma~\ref{lem:descendants}, $(\Lambda^2M)^kK_2(s)=\sum_{c\in D_k}\pm K_2(c)$ over the depth-$k$ descendants of $s$; coincidence descendants contribute $0$, and by closure every noncoincident descendant lies in $\cC$. Since $\Pi_{\mathrm{dom}}$ commutes with $\Lambda^2M$ and the restriction of $\Lambda^2M$ to the dominant real eigenspace is $\beta|\beta_2|$ times an isometry in a suitable norm, $\|(\Lambda^2M)^kK_2(s)\|\ge c(\beta|\beta_2|)^k$. The left side is at most $\max_{T\in\cC}\|K_2(T)\|$ times the number $\|N_\cC^ke_s\|_1$ of noncoincident depth-$k$ descendants, which is $O(k^m\rho(N_\cC)^k)$.
-\end{proof}
-
-The spectral route to Conjecture~\ref{conj:producer} pursued in this program was: (a) a closed nonproductive carrier $\cC$ has some $\Pi_{\mathrm{dom}}K_2\ne0$ (``concentration''); (b) Galois conjugacy then makes all wedge eigenfunctionals nonzero on $\cC$ (``span-rich''); (c) a span-rich closed carrier is productive. Proposition~\ref{prop:wedge-dichotomy} shows that (a) is \emph{equivalent} to the statement that a closed nonproductive carrier cannot have $K_2\equiv0$, that (b) follows from (a) with no Galois argument, and that (c) is equivalent to the statement that a closed nonproductive carrier cannot have $K_2\not\equiv0$. Proposition~\ref{prop:v34} gives $\rho(N_\cC)\ge\beta|\beta_2|$, which is consistent with $\rho(N_\cC)=\beta$ (Theorem~\ref{thm:parikh}) and yields no contradiction. We have found no proof of (a) or of (c), and we formulate both as what they are:
-
-\begin{problem}[Concentration; \Status{Open}]\label{prob:concentration}
-Show that a strict component $\cC$ on three letters cannot have $K_2\equiv0$; equivalently, that every strict component has first defect degree two. Theorems~\ref{thm:deg23}(iii) and~\ref{thm:sieve} constrain the cases $r(\cC)\ge3$ but do not exclude them.
-\end{problem}
-
-\begin{problem}[Wedge productivity; \Status{Open}]\label{prob:wedge-productivity}
-Show that a strict component $\cC$ on three letters cannot have $K_2\not\equiv0$; equivalently, that every strict component has first defect degree at least three.
-\end{problem}
-
-Together, Open Problems~\ref{prob:concentration} and~\ref{prob:wedge-productivity} are exactly the nonexistence of strict components on three letters, split by first defect degree; the spectral route therefore contains no proved implication from wedge data to productivity, and we do not regard either problem as easier than the other. The exhaustive census of Section~\ref{sec:finite} finds that first defect degree two is the only case realized by reachable states except for $24$ states of degree three, so Open Problem~\ref{prob:wedge-productivity} is the case that the finite evidence points to as the main one; this is an empirical remark, not a reduction.
-
-\subsection{Uniform return and recognizability machinery}\label{sec:return-machinery}
-
-Let $\cC$ be a finite set of noncoincident irreducible states closed under children (a strict component qualifies) and $B_\cC=\max_{T\in\cC}|T|$.
-
-\begin{lemma}[Uniform return gaps; \Status{Theorem}, no Pisot hypothesis]\label{lem:return-gap}
-For every $T\in\cC$ and $n\ge0$, consecutive zero returns of $\sigma^n(T)$ are at distance at most $B_\cC$.
-\end{lemma}
-\begin{proof}
-By Lemma~\ref{lem:descendants} the zero returns of $\sigma^n(T)$ include the boundaries of the depth-$n$ descendant blocks, all of which lie in $\cC$ and have length $\le B_\cC$.
-\end{proof}
-
-\begin{theorem}[Legal ancestry towers; \Status{Theorem}]\label{thm:towers}
-Let $\sigma$ be PIP, $\cC$ as above, $R\ge0$ and $q\ge0$. For every $T\in\cC$ and all sufficiently large $n$ there is a zero return $t$ of $\sigma^n(T)$ such that $t$ and each of its first $q$ desubstituted source cuts have, on both sides, radius-$R$ contexts contained in the image of a single letter of the base word under the appropriate power of $\sigma$; in particular these contexts are factors of the language of $\sigma$ and Moss\'e's theorem applies at each of the $q+1$ levels.
-\end{theorem}
-\begin{proof}
-Put $\Lambda=\max_a|\sigma(a)|$ and $m_0=R$, $m_{j+1}=(m_j+1)\Lambda$. A cut at distance $\ge m_{j+1}$ from the ends of an image $\sigma^{n}(a)$ has source cut at distance $\ge m_j$ from the ends of $\sigma^{n-1}(a)$. The base words $u,v$ have $|u|+|v|+2$ letter boundaries, each of which forbids at most $2m_q+1$ output positions; this number is independent of $n$, whereas by Lemma~\ref{lem:return-gap} the number of zero returns of $\sigma^n(T)$ is at least $|\sigma^n(u)|/B_\cC$, which tends to infinity. Any factor of $\sigma^k(a)$ is in the language by primitivity.
-\end{proof}
-
-\begin{theorem}[Derived recognizability; \Status{Theorem}]\label{thm:derived-recog}
-Let $\cC$ be a strict component and $h$ the period of the irreducible matrix $N_\cC$. The cyclic classes $\cC_0,\dots,\cC_{h-1}$ are preserved by $\tau_\cC^h$, each restriction $\rho_j=\tau_\cC^h|_{\cC_j}$ is a primitive substitution with Perron eigenvalue $\beta^h$, its subshift is aperiodic, and Moss\'e's theorem applies to each $\rho_j$: there is a radius $R_\cC$ such that $\tau_\cC^h$-supertile boundaries in points of the derived subshifts are determined by radius-$R_\cC$ derived context.
-\end{theorem}
-\begin{proof}
-The cyclic decomposition of an irreducible matrix and the Perron root $\beta^h$ of the diagonal blocks of $N_\cC^h$ are standard~\cite{BermanPlemmons}. If some $\rho_j$ had a periodic subshift, the argument of Lemma~\ref{lem:aperiodic} would give $\beta^{hq}\in\Z$ for some $q$, and the conjugate $\beta_2$ would satisfy $|\beta_2|^{hq}\ge1$, a contradiction. Apply Theorem~\ref{thm:mosse}.
-\end{proof}
-
-\begin{remark}
-The Pisot hypothesis is essential: $A\mapsto B$, $B\mapsto AA$ has period $2$, Perron root $\sqrt2$, and its square restricted to a cyclic class is $A\mapsto AA$, which is periodic; the non-Pisot strict component of Example~\ref{ex:nonpisot} has derived substitution $A\mapsto AB$, $B\mapsto AB$, primitive with periodic subshift.
+Let $K$ be the zero return and $(a,b)$ its right pair. After $m$ further inflations $K$ is inherited to a zero return $K_m$ (Lemma~\ref{lem:inherited}) whose right pair is $(\sigma_+^m(a),\sigma_+^m(b))$. If this is $(c,c)$, then $K_m+1$ is also a zero retu…7252 tokens truncated…nonpisot} has derived substitution $A\mapsto AB$, $B\mapsto AB$, primitive with periodic subshift.
 \end{remark}
 
 \begin{proposition}[Finite relative hierarchy-offset state; \Status{Theorem}]\label{prop:offset}
@@ -827,6 +627,21 @@ The left endpoints of the sub-tiles of the level-$m$ tiling of the top tile are 
 
 (i) A coincidence descendant has offset $0$. (ii) By (c) and Proposition~\ref{prop:aligned-overlaps}(i), the offset-$0$ descendant is a coincidence or productive, so $O$ is productive; the converse is (i). (iii) The descendant lies in $\cC$ because $\cC$ is closed under children, it is nonproductive because $\cC$ is, and Proposition~\ref{prop:aligned-overlaps}(i) identifies its letters as a pair that is not eventually coincident.
 \end{proof}
+
+\begin{lemma}[Ordered affine overlap cycle; \Status{Theorem}]\label{lem:overlap-affine-cycle}
+Let $O_0\to O_1\to\cdots\to O_r=O_0$ be a cycle of actual child occurrences, with the occurrences retained in their prefix-grid order.  Write the offset coordinate of $O_k$ as $w_k\in\Z^d$, and let $p_k,q_k$ be the Parikh vectors of the proper prefixes preceding the chosen top and bottom children.  Then
+\[
+ w_{k+1}=Mw_k+q_k-p_k,
+ \qquad
+ (I-M^r)w_0=\sum_{k=0}^{r-1}M^{r-1-k}(q_k-p_k).
+\]
+The statement does not require $M$ to be unimodular.
+\end{lemma}
+\begin{proof}
+The chosen top child starts at $\langle p_k,\ell\rangle$ and the chosen bottom child at $\beta\langle w_k,\ell\rangle+\langle q_k,\ell\rangle=\langle Mw_k+q_k,\ell\rangle$.  Their difference is the next offset, and Lemma~\ref{lem:Zindep} gives the first identity. Iteration and $w_r=w_0$ give the second. No inverse of $M$ or stable-lattice assertion is used.
+\end{proof}
+
+Lemma~\ref{lem:overlap-affine-cycle} is only a recurrence identity. Exact computation on the determinant-two substitution $0\mapsto1$, $1\mapsto021$, $2\mapsto001$ gives a six-edge occurrence-labelled cycle avoiding offset zero, while the complete overlap graph is productive. Thus zero-shift-free recurrence alone cannot contradict the PIP hypotheses. To exclude the strict branch of a closed nonproductive component one must additionally use child closure and a context-preserving recognizability argument; in the non-unimodular case that argument must retain any non-Archimedean part of the internal representation rather than treating the Euclidean stable projection of $\Z^d$ as a lattice.
 
 \begin{corollary}[Reduction under strong coincidence; \Status{Theorem}]\label{cor:scc-reduction}
 Suppose every pair of distinct letters of $\sigma$ is eventually coincident. Then:
