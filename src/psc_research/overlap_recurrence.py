@@ -1,4 +1,4 @@
-"""Independent oracle for alignment-free recurrent overlap cycles."""
+"""Independent oracle for zero-shift-free recurrent overlap cycles."""
 from __future__ import annotations
 
 from typing import Any
@@ -12,10 +12,14 @@ def _has_cycle(g: Any, comp: list[int]) -> bool:
     return bool(comp) and comp[0] in g.adj[comp[0]]
 
 
-def alignment_free_recurrent_sccs(g: Any) -> list[list[int]]:
-    """Cycles after deleting coincidences and offset-zero overlap states."""
+def zero_shift_free_recurrent_sccs(g: Any) -> list[list[int]]:
+    """Cycles after deleting coincidences and offset-zero overlap states.
+
+    Right-aligned states are intentionally retained: this is the prefix/left
+    boundary diagnostic only, not a two-sided alignment-free query.
+    """
     if g.capped:
-        raise RuntimeError("alignment-free recurrence is undefined for a capped partial graph")
+        raise RuntimeError("zero-shift-free recurrence is undefined for a capped partial graph")
 
     kept = [not g.is_coincidence(state) and any(state[2]) for state in g.states]
     adj = [
