@@ -497,3 +497,15 @@ Three findings from the automated Codex review of commit `a76630a9ed`; all accep
 | 72 | P2 | The `/XRefStm` companion's own `/Size` was discarded | Accepted. A hybrid section carries both the trailer's `/Size` and the companion's, and the replay checks each against the section's effective table. Test: the hybrid fixture with the companion's `/Size` changed to 7 fails | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 73 | P2 | A historical in-use entry could point into a later revision | Accepted. Every section records the offset just past itself; its in-use entries must point before the `startxref` that closes its revision, since an object appended by a later update did not exist when the section was written. Test: the original section's entry for object 3 is redirected to the copy of object 3 that a later update appends (matching header, superseded in pypdf's view) and fails "beyond the end of its revision"; the same file with the entry intact passes | same |
 | 74 | P2 | The row ceiling did not bound decoded bytes | Accepted. The declared decoded size `rows × row width` must not exceed 64 MiB before zlib is called. Test: `/Size 1 /W [1 1000000000 1]` fails with "decoded bytes, above the ceiling" | same |
+
+
+---
+
+## Thirty-eighth round (pull request #95, revision-bound revision)
+
+Two findings from the automated Codex review of commit `273d95fb7d`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 75 | P2 | A stream superseded by a later revision was never decoded | Accepted. After the replay, every in-use entry that the effective table supersedes is inspected structurally: if its object is a stream, the body must have a direct `/Length`, be closed by `endstream`, carry no filter or exactly `/FlateDecode`, and inflate strictly within the 64 MiB ceiling. Test: an original revision whose content stream is replaced by an update passes intact and fails with "superseded stream object 4 does not inflate" once a byte of the old body is flipped | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 76 | P2 | A historical entry could point into its own trailer region | Accepted. An in-use entry must now point before its own cross-reference section (a cross-reference stream may point at its own object), since objects precede the section that lists them. Test: the original section's entry for object 3 is redirected to a `3 0 obj` text embedded in that section's trailer while a later update supersedes object 3; it fails "not before its cross-reference section" | same |

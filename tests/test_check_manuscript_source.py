@@ -480,7 +480,45 @@ def test_historical_entry_cannot_point_into_a_later_revision(copy):
     assert run(copy)[0] == 0
     pdf.write_bytes(raw.replace(old_o3 + b" 00000 n", b"%010d 00000 n" % new_o3, 1))
     code, out = run(copy)
-    assert code == 1 and "beyond the end of its revision" in out, out
+    assert code == 1 and "not before its cross-reference section" in out, out
+
+
+def test_classic_entry_cannot_point_into_its_own_trailer(copy):
+    # the trailer carries the text "3 0 obj"; the original entry for object 3 is redirected
+    # there, and a later update supersedes object 3 so pypdf never dereferences the old entry
+    pdf = next(copy.glob("*.pdf"))
+    raw = classic_pdf(extra_trailer=b"/Note (3 0 obj) ")
+    old_xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
+    old_o3 = re.findall(rb"(\d{10}) 00000 n", raw)[2]
+    embedded = raw.index(b"3 0 obj", old_xref)
+    new_o3 = len(raw)
+    raw += b"3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 20 20] >>\nendobj\n"
+    new_xref = len(raw)
+    raw += b"xref\n3 1\n%010d 00000 n \ntrailer\n<< /Size 4 /Root 1 0 R /Prev %d >>\nstartxref\n%d\n%%%%EOF\n" % (new_o3, old_xref, new_xref)
+    pdf.write_bytes(raw.replace(old_o3 + b" 00000 n", b"%010d 00000 n" % embedded, 1))
+    code, out = run(copy)
+    assert code == 1 and "not before its cross-reference section" in out, out
+
+
+def test_superseded_stream_is_still_decoded(copy):
+    import zlib
+    pdf = next(copy.glob("*.pdf"))
+    content = zlib.compress(b"0 0 m 10 10 l S")
+    stream = b"<< /Length %d /Filter /FlateDecode >>\nstream\n" % len(content) + content + b"\nendstream"
+    raw = classic_pdf(objs=[b"<< /Type /Catalog /Pages 2 0 R >>", b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
+                            b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] /Contents 4 0 R >>", stream])
+    old_xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
+    new_o4 = len(raw)
+    raw += b"4 0 obj\n" + stream + b"\nendobj\n"
+    new_xref = len(raw)
+    raw += b"xref\n4 1\n%010d 00000 n \ntrailer\n<< /Size 5 /Root 1 0 R /Prev %d >>\nstartxref\n%d\n%%%%EOF\n" % (new_o4, old_xref, new_xref)
+    pdf.write_bytes(raw)
+    assert run(copy)[0] == 0
+    # flip a byte inside the superseded copy of the stream (the first one in the file)
+    i = raw.index(b"stream\n") + len(b"stream\n") + 4
+    pdf.write_bytes(raw[:i] + bytes([raw[i] ^ 0xFF]) + raw[i + 1:])
+    code, out = run(copy)
+    assert code == 1 and "superseded stream object 4 does not inflate" in out, out
 
 
 def test_decoded_byte_ceiling_applies_before_inflation(copy):

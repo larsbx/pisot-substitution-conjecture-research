@@ -910,3 +910,29 @@ No other findings were posted in the thirty-sixth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the thirty-seventh round.
+
+
+---
+
+# Thirty-eighth round: review of the revision-bound revision (pull request #95)
+
+**Reviewed commit:** `273d95fb7d` (findings 72–74).
+**Review posted:** 2026-09-15T17:42:51Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 75 (P2) — `scripts/check_manuscript_source.py`, line 402
+
+> **Decode streams from superseded revisions**
+>
+> When an incremental update replaces a stream at the same object number and generation, pypdf's effective `reader.xref` mapping contains only the newest entry, so this list never includes the historical stream. `_xref_chain` retains no historical object offsets for the full-parse stage, meaning a flipped byte in the superseded Flate body is never passed to `_inflate_strictly` and the corrupted historical revision is reported intact. Fresh evidence beyond finding 60 is this superseded-object path; retain and decode in-use streams from each replayed revision.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 76 (P2) — `scripts/check_manuscript_source.py`, line 324
+
+> **Bound classic entry offsets before the xref section**
+>
+> When an older classic entry points to a matching `N G obj` sequence embedded in its own trailer, its offset remains below this following `startxref` limit and passes the structural check. If a later revision supersedes that object, pypdf ignores the bogus historical target and the malformed file is accepted. Fresh evidence beyond finding 73 is this same-revision target inside the classic xref/trailer region; classic in-use offsets must precede the xref table itself, not merely the revision's `startxref`.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-eighth round.

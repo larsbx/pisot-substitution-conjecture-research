@@ -301,9 +301,9 @@ def _free_list(table: dict[int, Entry], classic: bool) -> str | None:
 
 def _section_at(raw: bytes, off: int, seen: list[int]) -> str | Section:
     """Parse the section at ``off``, which must lie in the file and not have been visited.
-    Its in-use entries must point before the ``startxref`` that closes its revision: an
-    object introduced by a later incremental update did not exist when the section was
-    written."""
+    Its in-use entries must point before the section itself (a cross-reference stream may
+    point at its own object): objects precede the section that lists them, so a target in
+    the section's own trailer region or in a later incremental update is bogus."""
     if off >= len(raw):
         return f"cross-reference offset {off} beyond end of file ({len(raw)} bytes)"
     if off in seen:
@@ -318,13 +318,47 @@ def _section_at(raw: bytes, off: int, seen: list[int]) -> str | Section:
         section = "offset does not point at an xref table or object"
     if isinstance(section, str):
         return f"at cross-reference offset {off}: {section}"
-    limit = raw.find(b"startxref", section[4])
-    if limit < 0:
-        return f"cross-reference section at offset {off} is not followed by startxref"
+    limit = off + (0 if at.startswith(b"xref") else 1)
     late = [(n, f) for n, (k, f, *_) in section[0].items() if k == 1 and f >= limit]
     if late:
-        return f"entry for object {late[0][0]} points at offset {late[0][1]}, beyond the end of its revision at {limit}"
+        return f"entry for object {late[0][0]} points at offset {late[0][1]}, not before its cross-reference section at {off}"
     return section
+
+
+def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) -> str | None:
+    """pypdf exposes only the effective entry of each object, so an in-use entry that a
+    later revision supersedes is inspected here: if its object is a stream, the body must
+    have a direct ``/Length``, be closed by ``endstream``, and inflate strictly."""
+    for entries, _, _ in sections:
+        for num, entry in entries.items():
+            if entry[0] != 1 or merged.get(num) == entry:
+                continue
+            at = raw[entry[1]:]
+            head = re.match(rb"\d+\s+\d+\s+obj\s*", at)
+            d = _dict_at(at, head.end()) if head else None
+            body = re.match(rb"\s*stream(?:\r\n|\n)", at[head.end() + len(d):head.end() + len(d) + 16]) if d else None
+            if not body:
+                continue
+            length = re.search(rb"/Length\s+(\d+)(\s+\d+\s+R)?", d)
+            if not length or length.group(2):
+                return f"superseded stream object {num} lacks a direct /Length"
+            start = head.end() + len(d) + body.end()
+            data = at[start:start + int(length.group(1))]
+            if len(data) < int(length.group(1)) or not re.match(rb"(?:\r\n|\r|\n)?endstream\b", at[start + len(data):start + len(data) + 16]):
+                return f"superseded stream object {num} does not match its /Length or lacks endstream"
+            flt = re.search(rb"/Filter\s*(?:/(\w+)|\[\s*((?:/\w+\s*)*)\])", d)
+            names = ([flt.group(1)] if flt.group(1) else re.findall(rb"/(\w+)", flt.group(2))) if flt else []
+            if names not in ([], [b"FlateDecode"]):
+                return f"superseded stream object {num} has an unsupported filter chain"
+            if names:
+                inflater = zlib.decompressobj()
+                try:
+                    out = inflater.decompress(data, MAX_STREAM_BYTES + 1)
+                except zlib.error as e:
+                    return f"superseded stream object {num} does not inflate ({e})"
+                if len(out) > MAX_STREAM_BYTES or not inflater.eof or inflater.unused_data:
+                    return f"superseded stream object {num} does not inflate to a complete deflate member within the ceiling"
+    return None
 
 
 def _xref_chain(raw: bytes, off: int) -> str | int:
@@ -355,7 +389,7 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
         for size in sizes:  # the trailer's /Size and, in a hybrid section, the companion stream's
             if size != max(merged) + 1:
                 return f"trailer /Size {size} is not one more than the highest object number {max(merged)} of its section"
-    return max(merged)
+    return _superseded_streams(raw, sections, merged) or max(merged)
 
 
 def _inflate_strictly(obj) -> str | None:
