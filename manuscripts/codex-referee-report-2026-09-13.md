@@ -1433,3 +1433,18 @@ No other findings were posted in the fifty-sixth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the fifty-seventh round.
+
+# Fifty-eighth round: review of the coverage revision (pull request #95)
+
+**Reviewed commit:** `c472c2b3c8` (finding 118).
+**Review posted:** 2026-09-15T20:44:28Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 119 (P2) — `scripts/check_manuscript_source.py`, line 565
+
+> **Require separator comments to end before the next object**
+>
+> When a listed object's offset is immediately preceded on the same line by `%` (for example, `% hidden 1 0 obj`), this full match accepts `% hidden ` as a complete separator even though the PDF comment continues through the object's header until the next line ending. `_section_at` then parses from the cross-reference offset, so the guard can accept a revision whose apparent indirect-object declaration is actually commented out. Require each separator comment before an object or cross-reference section to include its terminating line ending.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-eighth round.

@@ -28,14 +28,15 @@ def copy(tmp_path):
 
 
 
-def classic_pdf(objs=None, extra_trailer=b"", edit=None):
-    """A complete classic-table PDF (catalog, page tree, one page); `edit` mutates the bytes."""
+def classic_pdf(objs=None, extra_trailer=b"", edit=None, lead=b""):
+    """A complete classic-table PDF (catalog, page tree, one page) with ``lead`` written
+    between the header line and the first object; `edit` mutates the bytes."""
     objs = objs or [
         b"<< /Type /Catalog /Pages 2 0 R >>",
         b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
         b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>",
     ]
-    out, offs = b"%PDF-1.4\n", []
+    out, offs = b"%PDF-1.4\n" + lead, []
     for i, body in enumerate(objs, 1):
         offs.append(len(out))
         out += b"%d 0 obj\n%s\nendobj\n" % (i, body)
@@ -1018,6 +1019,11 @@ def test_unlisted_objects_are_rejected(copy):
     code, out = run(copy)
     assert code == 1 and "not accounted for by any cross-reference entry" in out, out
     pdf.write_bytes(insert_before_xref(classic_pdf(), b"% a comment line\n\n"))  # comments and white space are fine
+    assert run(copy)[0] == 0
+    pdf.write_bytes(classic_pdf(lead=b"% hidden "))  # object 1's header sits inside an unterminated comment
+    code, out = run(copy)
+    assert code == 1 and "not accounted for by any cross-reference entry" in out, out
+    pdf.write_bytes(classic_pdf(lead=b"% a whole comment line\r\n"))
     assert run(copy)[0] == 0
 
 

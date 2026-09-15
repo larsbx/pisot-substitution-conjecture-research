@@ -553,16 +553,17 @@ def _whole_object(at: bytes, num: int) -> str | tuple[int, bytes | None, bytes |
 
 def _covered(raw: bytes, start: int, end: int, entries: dict[int, Entry]) -> str | None:
     """The revision body ``raw[start:end]`` must consist exactly of the in-use objects its
-    section lists there, separated only by white space and comments (the header line is
-    one): bytes no entry accounts for, such as an unlisted indirect object, are reached by
-    no cross-reference and would escape every check, so they fail."""
+    section lists there, separated only by white space and comment lines, each closed by
+    its line ending (the header line is one): bytes no entry accounts for, such as an
+    unlisted indirect object or an object header inside a comment, are reached by no
+    cross-reference and would escape every check, so they fail."""
     spans = sorted((f, f + _whole_object(raw[f:end], num)[0])  # validated by _section_at already
                    for num, (kind, f, *_) in entries.items() if kind == 1 and start <= f < end)
     pos = start
     for f, e in spans + [(end, end)]:
         if f < pos:
             return f"objects overlap at offset {f}"
-        if not re.fullmatch(rb"(?:[\x00\t\n\x0c\r ]|%[^\r\n]*)*", raw[pos:f]):
+        if not re.fullmatch(rb"(?:[\x00\t\n\x0c\r ]|%[^\r\n]*(?:\r\n|\r|\n))*", raw[pos:f]):
             return f"bytes at offsets {pos}-{f} are not accounted for by any cross-reference entry of the revision ending at {end}"
         pos = e
     return None
