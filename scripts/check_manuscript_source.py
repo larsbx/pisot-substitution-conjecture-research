@@ -69,12 +69,13 @@ def _classic_table(raw: bytes, off: int) -> str | None:
     m = re.match(rb"xref[ \t]*(?:\r\n|\r|\n)", at)
     if not m:
         return "malformed xref keyword"
-    pos, entries = m.end(), 0
+    pos, entries, ranges = m.end(), 0, []
     while True:
         sub = re.match(rb"(\d+)[ \t]+(\d+)[ \t]*(?:\r\n|\r|\n)", at[pos:pos + 64])
         if not sub:
             break
         pos, start, count = pos + sub.end(), int(sub.group(1)), int(sub.group(2))
+        ranges.append((start, count))
         block = at[pos:pos + 20 * count]
         if len(block) < 20 * count:
             return "truncated xref subsection"
@@ -96,13 +97,66 @@ def _classic_table(raw: bytes, off: int) -> str | None:
     d = _dict_at(at, pos + t.end())
     if d is None:
         return "trailer has no dictionary"
-    if not re.search(rb"/Size\s+\d+", d) or not re.search(rb"/Root\s+\d+\s+\d+\s+R", d):
+    size = re.search(rb"/Size\s+(\d+)", d)
+    if not size or not re.search(rb"/Root\s+\d+\s+\d+\s+R", d):
         return "trailer dictionary lacks /Size or /Root"
+    if any(st + c > int(size.group(1)) for st, c in ranges):
+        return f"xref subsection exceeds the trailer /Size {int(size.group(1))}"
     return None
 
 
-def _xref_stream(at: bytes) -> str | None:
-    """Problem with the cross-reference stream object at ``at[0:]``, or None."""
+def _unpredict(payload: bytes, row: int) -> bytes | None:
+    """Undo PNG row prediction (filter byte per row); None on an unknown filter."""
+    width, prev, out = row - 1, bytes(row - 1), []
+    for i in range(0, len(payload), row):
+        f, line = payload[i], bytearray(payload[i + 1:i + row])
+        for j in range(width):
+            a = line[j - 1] if j else 0
+            b, c = prev[j], (prev[j - 1] if j else 0)
+            if f == 0:
+                pred = 0
+            elif f == 1:
+                pred = a
+            elif f == 2:
+                pred = b
+            elif f == 3:
+                pred = (a + b) // 2
+            elif f == 4:
+                pa, pb, pc = abs(b - c), abs(a - c), abs(a + b - 2 * c)
+                pred = a if pa <= pb and pa <= pc else (b if pb <= pc else c)
+            else:
+                return None
+            line[j] = (line[j] + pred) & 0xFF
+        prev = bytes(line)
+        out.append(prev)
+    return b"".join(out)
+
+
+def _xref_rows(raw: bytes, rows: bytes, widths: list[int], numbers: list[int], size: int) -> str | None:
+    """Decode each row per ``/W`` and dereference in-use entries; None if all agree."""
+    w0, w1, w2 = widths
+    stride = sum(widths)
+    for i, num in enumerate(numbers):
+        r = rows[i * stride:(i + 1) * stride]
+        kind = int.from_bytes(r[:w0], "big") if w0 else 1
+        f2 = int.from_bytes(r[w0:w0 + w1], "big")
+        f3 = int.from_bytes(r[w0 + w1:], "big")
+        if kind == 0:
+            continue
+        if kind == 1:
+            if f2 >= len(raw) or not re.match(rb"%d\s+%d\s+obj\b" % (num, f3), raw[f2:f2 + 40]):
+                return f"cross-reference stream entry for object {num} does not point at '{num} {f3} obj'"
+        elif kind == 2:
+            if f2 >= size:
+                return f"cross-reference stream entry for object {num} names object stream {f2} beyond /Size"
+        else:
+            return f"cross-reference stream entry for object {num} has unknown type {kind}"
+    return None
+
+
+def _xref_stream(raw: bytes, off: int) -> str | None:
+    """Problem with the cross-reference stream object at ``raw[off:]``, or None."""
+    at = raw[off:]
     m = re.match(rb"\d+\s+\d+\s+obj\s*", at)
     if not m:
         return "not an object"
@@ -121,7 +175,8 @@ def _xref_stream(at: bytes) -> str | None:
         return f"cross-reference stream /W must have exactly three fields, has {len(widths)}"
     row = sum(widths)
     pred = re.search(rb"/Predictor\s+(\d+)", d)
-    if pred and int(pred.group(1)) >= 10:
+    predicted = bool(pred and int(pred.group(1)) >= 10)
+    if predicted:
         row += 1
     if row == 0:
         return "cross-reference stream has zero row width"
@@ -140,9 +195,10 @@ def _xref_stream(at: bytes) -> str | None:
         pairs = list(zip(values[::2], values[1::2]))
         if any(c <= 0 or st + c > size for st, c in pairs):
             return "cross-reference stream /Index range is empty or exceeds /Size"
-        expected_rows = sum(c for _, c in pairs)
+        numbers = [st + k for st, c in pairs for k in range(c)]
     else:
-        expected_rows = size
+        numbers = list(range(size))
+    expected_rows = len(numbers)
     body = re.match(rb"\s*stream(?:\r\n|\n)", at[m.end() + len(d):m.end() + len(d) + 16])
     if not body:
         return "cross-reference stream has no stream body"
@@ -171,7 +227,11 @@ def _xref_stream(at: bytes) -> str | None:
     rows = len(payload) // row
     if rows != expected_rows:
         return f"cross-reference stream has {rows} rows but declares {expected_rows} (/Index or /Size)"
-    return None
+    if predicted:
+        payload = _unpredict(payload, row)
+        if payload is None:
+            return "cross-reference stream uses an unknown PNG row filter"
+    return _xref_rows(raw, payload, widths, numbers, size)
 
 
 def check_pdf(path: Path) -> list[str]:
@@ -196,7 +256,7 @@ def check_pdf(path: Path) -> list[str]:
     if at.startswith(b"xref"):
         problem = _classic_table(raw, off)
     elif re.match(rb"\d+\s+\d+\s+obj\b", at[:32]):
-        problem = _xref_stream(at)
+        problem = _xref_stream(raw, off)
     else:
         problem = "startxref offset does not point at an xref table or object"
     return [f"{path}: at startxref offset {off}: {problem}"] if problem else []

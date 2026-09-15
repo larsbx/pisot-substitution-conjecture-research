@@ -659,4 +659,30 @@ No other findings were posted in the twenty-seventh round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the twenty-eighth round.
+
+
+---
+
+# Twenty-ninth round: review of the endobj, index, arity and entry revision (pull request #95)
+
+**Reviewed commit:** `9256ace9d9` (findings 50–53).
+**Review posted:** 2026-09-15T16:22:36Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 54 (P2) — `scripts/check_manuscript_source.py`, line 100
+
+> **Enforce classic subsection ranges against /Size**
+>
+> The trailer check only requires `/Size` to be present, so the minimal classic fixture still passes after changing `/Size 2` to `/Size 1`, even though its `0 2` subsection contains object 1 and therefore exceeds the declared object-number space. This allows a mangled `/Size` value to be reported as intact; parse the value and reject any subsection whose `start + count` exceeds it.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 55 (P2) — `scripts/check_manuscript_source.py`, line 174
+
+> **Validate XRef stream entry contents**
+>
+> Fresh evidence beyond finding 53 is that only classic-table entries are dereferenced: an uncompressed stream with `/Size 2 /Index [1 1] /W [1 2 1]` and the row `01 ff ff 00` passes because its row count is correct, even though the type-1 entry for object 1 points beyond the file instead of at the XRef object's header. Decode each row according to `/W` and reject invalid entry types or type-1 offsets that do not identify the declared object, as is already done for classic entries.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-ninth round.
 \n

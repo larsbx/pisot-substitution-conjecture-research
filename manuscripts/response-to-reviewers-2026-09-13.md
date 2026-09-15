@@ -385,4 +385,16 @@ Four findings from the automated Codex review of commit `a9242e36aa`; all accept
 | 51 | P2 | `/Index` start values and odd-length arrays were ignored | Accepted. `/Index` must be a nonempty array of start/count pairs with positive counts whose ranges lie within `/Size`; tests with `[999 1]`, `[0 1 2]`, `[0 0]` | same |
 | 52 | P2 | `/W [4]` was accepted as a row width | Accepted. `/W` must have exactly three fields; test with `/W [4]` | same |
 | 53 | P2 | Classic in-use entries were checked only for their textual shape | Accepted. Every `n` entry must point inside the file at the header `num gen obj` of its own object number (subsection start plus index) and generation; tests alter the offset to 8 and to 9999999999 and the generation to 1 | same |
+
+
+---
+
+## Twenty-ninth round (pull request #95, endobj, index, arity and entry revision)
+
+Two findings from the automated Codex review of commit `9256ace9d9`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 54 | P2 | A classic subsection could exceed the trailer's `/Size` | Accepted. `/Size` is parsed and every subsection must satisfy `start + count ≤ /Size`; test changes the minimal classic fixture's `/Size 2` to `/Size 1` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 55 | P2 | Cross-reference stream rows were counted but not decoded | Accepted. Every row is decoded per `/W` (type defaulting to 1 when the first field is absent); type-1 entries must point inside the file at the header `num gen obj` of their object, type-2 entries must name an object stream below `/Size`, other types fail; PNG row prediction (filters 0–4) is undone first, an unknown filter fails; tests cover an out-of-file offset, a wrong offset, an unknown type, an out-of-range object stream, and a predicted stream that decodes correctly; the passing fixtures now describe object 1 at its real offset | same |
 \n

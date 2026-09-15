@@ -159,7 +159,7 @@ def test_row_count_must_match_index(copy):
 
 def test_uncompressed_single_row_stream_passes(copy):
     pdf = next(copy.glob("*.pdf"))
-    pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 1 /W [1 2 1] /Root 1 0 R /Length 4 >>", b"\x01\x00\x09\x00"))
+    pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 2 /Index [1 1] /W [1 2 1] /Root 1 0 R /Length 4 >>", b"\x01\x00\x09\x00"))
     code, out = run(copy)
     assert code == 0, out
 
@@ -169,7 +169,7 @@ def test_filter_array_form_is_inflated(copy):
 
     pdf = next(copy.glob("*.pdf"))
     body = zlib.compress(b"\x01\x00\x09\x00")
-    ok = xref_stream_pdf(b"<< /Type /XRef /Size 1 /W [1 2 1] /Root 1 0 R /Filter [/FlateDecode] /Length %d >>" % len(body), body)
+    ok = xref_stream_pdf(b"<< /Type /XRef /Size 2 /Index [1 1] /W [1 2 1] /Root 1 0 R /Filter [/FlateDecode] /Length %d >>" % len(body), body)
     pdf.write_bytes(ok)
     assert run(copy)[0] == 0
     bad = xref_stream_pdf(b"<< /Type /XRef /Size 1 /W [1 2 1] /Root 1 0 R /Filter [/LZWDecode] /Length %d >>" % len(body), body)
@@ -207,6 +207,35 @@ def test_classic_entry_must_point_at_its_object(copy):
         pdf.write_bytes(MINIMAL_CLASSIC.replace(b"0000000009 00000 n", bad))
         code, out = run(copy)
         assert code == 1 and "does not point at" in out, (bad, out)
+
+
+def test_classic_subsection_must_fit_size(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(MINIMAL_CLASSIC.replace(b"/Size 2", b"/Size 1"))
+    code, out = run(copy)
+    assert code == 1 and "exceeds the trailer /Size" in out
+
+
+def test_xref_stream_entries_are_dereferenced(copy):
+    pdf = next(copy.glob("*.pdf"))
+    head = b"<< /Type /XRef /Size 2 /Index [1 1] /W [1 2 1] /Root 1 0 R /Length 4 >>"
+    for row, marker in ((b"\x01\xff\xff\x00", "does not point at"), (b"\x01\x00\x08\x00", "does not point at"),
+                        (b"\x07\x00\x09\x00", "unknown type"), (b"\x02\x00\x09\x00", "beyond /Size")):
+        pdf.write_bytes(xref_stream_pdf(head, row))
+        code, out = run(copy)
+        assert code == 1 and marker in out, (row, out)
+
+
+def test_predicted_xref_stream_is_unfiltered(copy):
+    import zlib
+
+    pdf = next(copy.glob("*.pdf"))
+    # PNG Up predictor: one row, filter byte 2, row bytes are deltas against a zero previous row
+    body = zlib.compress(b"\x02\x01\x00\x09\x00")
+    head = b"<< /Type /XRef /Size 2 /Index [1 1] /W [1 2 1] /Root 1 0 R /Filter /FlateDecode /DecodeParms << /Columns 4 /Predictor 12 >> /Length %d >>" % len(body)
+    pdf.write_bytes(xref_stream_pdf(head, body))
+    code, out = run(copy)
+    assert code == 0, out
 
 
 def test_missing_required_file_fails(copy):
