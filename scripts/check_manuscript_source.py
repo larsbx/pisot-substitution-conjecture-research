@@ -43,17 +43,21 @@ def check_tex(path: Path) -> list[str]:
         problems.append(f"{path}: first line is not \\documentclass")
     # a TeX comment runs from a % preceded by an even run of backslashes (\\ is a control sequence,
     # \% an escaped percent) to the line end; a sentinel counts only as a standalone line of what
-    # remains, so an occurrence inside a macro body, after \\, or beside other commands does not;
-    # the document must begin before the first end sentinel, since TeX stops at the first
+    # remains at brace depth zero (braces escaped by an odd run of backslashes do not nest), so an
+    # occurrence inside a macro body, after \\, or beside other commands does not; the document
+    # must begin before the first end sentinel, since TeX stops at the first
     active = "\n".join(re.sub(r"(?<!\\)((?:\\\\)*)%.*", r"\1", l) for l in lines)
+    braces = [(m.end() - 1, 1 if m.group(1) == "{" else -1) for m in re.finditer(r"(?<!\\)(?:\\\\)*([{}])", active)]
 
     def sentinel(name: str) -> int:
-        m = re.search(r"^[ \t]*\\" + name + r"\{document\}[ \t]*$", active, re.M)
-        return m.start() if m else -1
+        for m in re.finditer(r"^[ \t]*\\" + name + r"\{document\}[ \t]*$", active, re.M):
+            if sum(d for i, d in braces if i < m.start()) == 0:
+                return m.start()
+        return -1
 
     b, e = sentinel("begin"), sentinel("end")
     if b < 0 or e < b:
-        problems.append(f"{path}: missing or misordered \\begin{{document}} / \\end{{document}} as standalone uncommented lines")
+        problems.append(f"{path}: missing or misordered \\begin{{document}} / \\end{{document}} as standalone uncommented top-level lines")
     if len(lines) < MIN_LINES:
         problems.append(f"{path}: only {len(lines)} lines (< {MIN_LINES})")
     return problems

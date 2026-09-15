@@ -1569,3 +1569,18 @@ No other findings were posted in the sixty-fifth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the sixty-sixth round.
+
+# Sixty-seventh round: review of the standalone-sentinel revision (pull request #95)
+
+**Reviewed commit:** `174114be1e` (finding 130).
+**Review posted:** 2026-09-15T21:47:15Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 131 (P2) — `scripts/check_manuscript_source.py`, line 51
+
+> **Reject sentinels inside multiline macro definitions**
+>
+> Fresh evidence beyond finding 130 is that standalone-line matching still accepts sentinels stored in multiline macro bodies, such as `\newcommand{\fake}{` followed on the next line by `\begin{document}` and likewise for `\end{document}`. A 500-line source containing only those two uninvoked definitions makes `check_tex` return no problems even though neither document command executes, so the guard still does not fail closed on a source without a document environment; track brace/macro context or otherwise require top-level sentinels.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-seventh round.

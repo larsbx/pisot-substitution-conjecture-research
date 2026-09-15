@@ -789,3 +789,11 @@ One finding from the automated Codex review of commit `95d3a614f7`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 130 | P2 | Sentinels inside macro bodies counted as the document environment | Accepted. Each sentinel must now be a standalone line of the comment-stripped text (surrounding white space allowed), which also subsumes the backslash-parity rule; the two earlier same-line passing cases now put `\\` and `\%` on the line before. The scenario was confirmed to pass the previous revision. Tests: sentinels only inside `\newcommand` bodies (fails), a sentinel with surrounding white space (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Sixty-seventh round (pull request #95, standalone-sentinel revision)
+
+One finding from the automated Codex review of commit `174114be1e`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 131 | P2 | Sentinels on their own lines inside multiline macro bodies still counted | Accepted. A sentinel now counts only at brace depth zero of the comment-stripped text, braces escaped by an odd run of backslashes not nesting. The scenario was confirmed to pass the previous revision. Tests: sentinels inside multiline `\newcommand` bodies (fails), escaped braces before a real sentinel (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
