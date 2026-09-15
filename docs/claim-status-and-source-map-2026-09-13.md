@@ -1,7 +1,7 @@
 # Claim status and source map
 
 **Status date:** 2026-09-14  
-**Repository baseline audited for this update:** `main@020ce4fbb088bfb175c4b64ae054af2f6425acad` (through merged PR #82).
+**Repository baseline audited for this update:** `main@383a5e8b550c1538d0a9c32bec23df8d2cc9f70a` (through merged PR #86).
 
 This is the short authoritative index for deciding whether a mathematical statement is proved, imported, computationally certified on a finite domain, conditional, or open. It supplements the full exposition in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`, the dependency structure in `docs/proof-ladder.md`, and the current architecture in `docs/current-proof-architecture-2026-09-14.md`.
 
@@ -35,17 +35,19 @@ The absence of a historical file and the absence of a proof are different condit
 | Degree-two carrier span / wedge dichotomy | **Repository-proved by reconstruction** | Manuscript Proposition 5.20; `docs/galois-aux-b-source-resolution-2026-09-13.md`; PR #68 | Nonzero `K2` gives full rational wedge span; this does not prove productivity. |
 | Historical degree-three dominant capture | **Historical restricted theorem** | `archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md`, §§8–10 | Applies only to the explicitly certified seeds; SCC transfer remains restricted. |
 | Concentration / aux-B | **Open conjectural gate, not source-pending** | Manuscript open problem; issue #43 | Alternative finite-BPA route: exclusion of strict components with `K2=0`. Not required by Theorem 5.38. |
-| General wedge productivity | **Open conjectural gate, not source-pending** | Manuscript open problem and Proposition 5.20 discussion | Alternative finite-BPA route: exclusion of strict components with `K2!=0`. Full span alone is insufficient. |
+| General wedge productivity | **Open conjectural gate, not source-pending** | Manuscript open problem and Proposition 5.20 discussion; issue #85 | Alternative finite-BPA route: exclusion of strict components with `K2!=0`. Full span alone is insufficient. |
 | Bounded degree-three exclusion | **Finite-domain theorem** | `docs/p1a-degree3-partial-theorem.md`; canonical Mojo certificate; PR #67 | Only the exact 4,554 substitutions with three letters and image lengths at most three. |
 | Bounded degree-two wedge productivity | **Finite-domain theorem** | `docs/p1a-degree2-wedge-productivity.md`; canonical Mojo certificate; PR #71 | Same 4,554-member domain; fail-closed and replayable-countermodel boundary. |
 | Seed-patch overlap graph finiteness | **Repository-proved** | `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md`; manuscript Theorem 4.22; PR #72 | Finite from bounded discrepancy; no G1 assumption. |
 | Full-rank child-closed overlap constraint | **Repository-proved** | Manuscript Corollary 5.34; PR #76 | A nonempty child-closed noncoincidence set has full rational intersection-vector rank; this is a constraint, not an exclusion. |
+| Closed irreducible bad-overlap normal form | **Repository-proved supporting reduction** | `docs/p1-overlap-minimal-obstruction-2026-09-14.md`, Proposition 2.1; PR #88 | Failure of overlap productivity has a finite child-closed recurrent nonproductive SCC with `PF(N_S)=beta`, full-rank `V_S`, and `spec(M) subset spec(N_S)`. Standard residual-SCC graph extraction is not claimed as novel. |
+| Boundary obstruction / strict zipper dichotomy | **Repository-proved supporting reduction** | `docs/p1-overlap-minimal-obstruction-2026-09-14.md`, Proposition 3.1; exact Mojo/Python common-start checks; PR #88 | A bad SCC either contains an offset-zero non-eventually-coincident pair or all child factorizations are strict no-tie prefix-grid zippers. This constrains but does not close Open Problem 5.35. |
 | Coincidence density / dense-good-set equivalence | **Repository-proved** | Manuscript Lemma 5.36; PR #77 | Corrected proof does not assume finite-stage good sets are nested. |
 | Density-to-PDS bridge | **Imported theorem** | Barge–Štimac–Williams; manuscript Imported Theorem 5.37; PR #77 | Exact hypotheses checked in the standing PIP regime; no G1 hypothesis. |
 | One-seed overlap productivity implies PDS | **Conditional theorem** | Manuscript Theorem 5.38 | Only open premise is seedwise overlap productivity. |
 | Endpoint-aligned overlaps = strong-coincidence boundary cases | **Repository-proved** | Manuscript Proposition 5.39; PR #82 | Prefix/suffix boundary cases only; does not prove arbitrary interior overlap productivity. |
 | Boundary-hitting criterion | **Repository-proved** | Manuscript Proposition 5.40 / Corollary 5.41; PR #82 | Offset-zero descendant iff exact prefix-Parikh/common-left-endpoint hit. |
-| Seedwise overlap productivity / Open Problem 5.35 | **Open conjectural gate — current shortest-path gate** | Manuscript Open Problem 5.35; issue #84 | It suffices that one legal swap seed have only productive reachable overlaps. All-seed/all-vertex productivity is stronger. |
+| Seedwise overlap productivity / Open Problem 5.35 | **Open conjectural gate — current shortest-path gate** | Manuscript Open Problem 5.35; issue #84 | It suffices that one swap seed have only productive reachable overlaps. All-seed/all-vertex productivity is stronger. |
 | SCC Producer / C1 | **Open theorem target** | `docs/conjecture-ledger.md`; manuscript unresolved statements | Can be reached through the finite-BPA carrier route; stronger overlap productivity also implies productivity of reachable BPA states. |
 | Realization / coincidence-rank chain | **Open bridge, not source-pending** | `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`; PR #69 | Seven obligations G0–G6 remain; formal recurrence, global realization, and collar survival are distinct. |
 | Finite collar death | **Empirical evidence** | Realization/collar notes and census artifacts | Requires an independent collar-completeness bound before theorem use. |
@@ -66,9 +68,9 @@ G1b-1 bounded discrepancy                       [PROVED]
 
 Accordingly:
 
-1. **Primary proof target:** seedwise overlap productivity / minimal child-closed bad overlap set.
+1. **Primary proof target:** seedwise overlap productivity, now normalized to a closed irreducible bad-overlap SCC and split into aligned versus strict-zipper branches by PR #88.
 2. **Stronger parallel theorem:** G1b-2 renewal finiteness and finite BPA (issue #44).
-3. **Alternative finite-BPA coincidence route:** concentration and wedge productivity (issue #43 plus the complementary `K2!=0` problem).
+3. **Alternative finite-BPA coincidence route:** concentration and wedge productivity (issues #43 and #85).
 4. **Secondary certificate route:** realization/coincidence-rank bridge G0–G6.
 
 The historical v16 manuscript is not a prerequisite in this list.
@@ -130,7 +132,8 @@ Do not use:
 - naive zero-sum-hyperplane contraction;
 - unlabelled difference-walk injectivity;
 - rank-deficiency of a child-closed bad overlap set;
-- nesting of finite-stage good sets in the coincidence-density proof.
+- nesting of finite-stage good sets in the coincidence-density proof;
+- `rho(N_S)<beta` inferred merely from calling a residual real-overlap SCC a boundary system: Akiyama–Lee's residual graph can carry the full expansion spectral radius precisely when a genuine noncoincident overlap remains.
 
 ## Citation and maintenance rules
 
