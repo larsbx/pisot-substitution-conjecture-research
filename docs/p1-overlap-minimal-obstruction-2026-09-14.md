@@ -177,8 +177,18 @@ the combination of that standard finite obstruction normalization with:
 - a canonical fail-closed extractor that preserves a finite countermodel for
   subsequent conjectures.
 
-The strong-coincidence literature also clarifies what the boundary part does
-and does not buy.  Akiyama--Lee (2014) show overlap coincidence implies an
+Akiyama--Lee's spectral-radius criterion is also a **warning against a false
+shortcut**.  Their Theorem 4.1 identifies overlap coincidence with strict
+spectral dominance of the coincidence-leading graph over the residual graph.
+In the proof, a residual component containing a genuine real overlap can carry
+the full expansion growth.  That is exactly the situation encoded here by
+`rho(N_S)=beta`.  Therefore one may not argue that `S` is merely a boundary
+system and infer `rho(N_S)<beta`: boundary-smallness enters only after the real
+overlap obstruction has been removed.  Such an argument would assume the
+coincidence conclusion in another form.
+
+The strong-coincidence literature clarifies what the boundary part does and
+does not buy.  Akiyama--Lee (2014) show overlap coincidence implies an
 appropriate strong-coincidence condition under the height-group hypothesis,
 and Akiyama (2016) gives converse statements for sufficiently many
 control-point choices under additional topological hypotheses.  These results
