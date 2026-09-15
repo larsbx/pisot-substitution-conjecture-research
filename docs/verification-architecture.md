@@ -29,7 +29,7 @@ Lean currently formalizes the older finite spectral core, not the full C4 stack.
 
 ## 2. Mojo kernel and optimization policy
 
-The Mojo kernel uses exact integer/rational operations (unbounded `BigZ`-backed rationals from `mojo/finite_exact/` and closed rational intervals from `mojo/interval_q/`, vendored from `larsbx/finite_exact` and `larsbx/interval_q` and pinned in `vendored.toml`) for:
+The Mojo kernel uses exact integer/rational operations (unbounded `BigZ`-backed rationals and closed rational intervals from `mojo/finite_exact/`, vendored from one pinned `larsbx/finite-math-kernels` commit) for:
 
 - incidence and characteristic-polynomial arithmetic;
 - primitive / irreducible / Pisot screening;

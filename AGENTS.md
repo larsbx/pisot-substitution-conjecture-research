@@ -34,8 +34,9 @@ Performance-sensitive code must be designed for Mojo rather than transliterated 
 
 ## Vendored packages
 
-Four Mojo packages under `mojo/` are vendored byte-for-byte from their own
-repositories and pinned by commit and SHA-256 digest in `vendored.toml`;
+Three logical Mojo packages under `mojo/` are vendored byte-for-byte from the
+single `larsbx/finite-math-kernels` monorepo and pinned to one commit by
+SHA-256 digest in `vendored.toml`;
 `scripts/check_vendored_sync.py` enforces the pins in CI and in
 `scripts/verify_all.sh`. Do not patch a vendored file, add a file beside one,
 or reintroduce a local copy of what a package provides: change the package
@@ -44,10 +45,9 @@ COMMIT`).
 
 | Package | Upstream | Provides | PSC-side layer |
 | --- | --- | --- | --- |
-| `mojo/finite_exact/` | `larsbx/finite_exact` | unbounded `BigZ`, normalized `Q`, canonical bytes; rejection is a sticky flag, never an exception | `mojo/psc/exact.mojo`: a rejected enclosure raises, a rejected scalar in integer-seeded polynomial arithmetic aborts; Horner helpers, midpoint, diagnostic rendering |
-| `mojo/interval_q/` | `larsbx/interval_q` | closed rational intervals `IQ`, rank-2 boxes `ComplexIQ`, three-valued sign | same module; Perron-root enclosures and overlap margins in `psc/` |
-| `mojo/substitution_dynamics/` | `larsbx/substitution_dynamics` | words, substitutions, balanced pairs, automaton, discrepancy over an explicit alphabet, validated once at `Substitution.checked` | `mojo/psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` are thin alphabet-3 views and must stay thin: general mechanics go upstream, conjecture-specific predicates stay in `psc/` |
-| `mojo/finite_linear_algebra/` | `larsbx/finite_linear_algebra` | `Mat3`, generic RREF/rank/nullspace over `Q`, rank-three tensors, the shuffle kernel `W_3`, integer lifts | `mojo/psc/w3.mojo` keeps the printed certificate basis; `psc/exact.mojo` re-exports the lifts |
+| `mojo/finite_exact/` | `larsbx/finite-math-kernels` | unbounded `BigZ`, normalized `Q`, canonical bytes, closed rational intervals and rank-2 boxes; rejection is sticky | `mojo/psc/exact.mojo`: rejected consumer states raise/abort; Horner helpers, midpoint, diagnostic rendering |
+| `mojo/substitution_dynamics/` | `larsbx/finite-math-kernels` | words, substitutions, balanced pairs, automaton, discrepancy over an explicit alphabet | `mojo/psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` remain thin alphabet-3 views |
+| `mojo/finite_linear_algebra/` | `larsbx/finite-math-kernels` | `Mat3`, generic RREF/rank/nullspace over `Q`, rank-three tensors, `W_3`, integer lifts | `mojo/psc/w3.mojo` keeps the printed certificate basis; `psc/exact.mojo` re-exports lifts |
 
 Integer, rational, and rational-interval arithmetic is therefore **not**
 implemented in this repository. Do not add a second rational type or a

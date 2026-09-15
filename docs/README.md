@@ -33,7 +33,7 @@ then repair all status surfaces together.
   engineering only, no claim status changes. Its "Execution status" section
   records which steps have landed.
 - `exact-arithmetic-binding.md` — this repository's binding rows for the
-  arithmetic specification kept in `larsbx/finite_exact`, and the vendoring
+  arithmetic specification kept in `larsbx/finite-math-kernels`, and the vendoring
   rule enforced by `vendored.toml`.
 - `cross-program-bridge-psc-nlapjt-2026-09-12.md` — structural comparison
   with the NLAP-JT finite Mandelbrot program.
