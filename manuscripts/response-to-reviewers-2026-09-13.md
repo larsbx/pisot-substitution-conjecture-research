@@ -535,3 +535,16 @@ Three findings from the automated Codex review of commit `7394ee76d2`; all accep
 | 80 | P2 | TIFF predictor 2 skipped the geometry check | Accepted. For predictor 2 the inflated length must be a whole number of rows of `⌈Columns × Colors × BitsPerComponent / 8⌉` bytes; PNG predictors keep the extra filter byte per row. Tests: `/Predictor 2 /Columns 4` on eight bytes passes; `/Predictor 2 /Columns 999` on one byte fails | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 81 | P2 | A superseded object whose `stream` keyword was malformed counted as a non-stream | Accepted. A superseded object must be a dictionary followed by `stream` or by `endobj`, or a non-dictionary object closed by `endobj` before any other object header; anything else fails. Test: `stream` changed to `streaX` | same |
 | 82 | P2 | Filter names were matched as a prefix, ignoring `#xx` escapes and delimiters | Accepted. A shared name parser reads whole PDF names (any character other than whitespace, delimiters and `#`, or a `#xx` escape), decodes the escapes, and requires a delimiter after the name; the `/Filter` key itself must be delimited. Tests: `/FlateDecode#58` fails as unsupported in a superseded stream and in the cross-reference stream, `/FlateDecode#5` fails as unparsable, and `/Flate#44ecode` (an escaped `D`) passes | same |
+
+
+---
+
+## Forty-first round (pull request #95, whole-name revision)
+
+Three findings from the automated Codex review of commit `f427597e50`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 83 | P2 | Type-2 entries were bounded by `/Size` only, and superseded ones never resolved | Accepted. During the oldest-first replay every type-2 entry of a section is resolved against that revision's effective table: the container must be an in-use object whose dictionary is `/Type /ObjStm` with a direct `/N` above the entry's index. Tests: an uncompressed object stream holding one member passes; index 1 against `/N 1` fails; a container that is the page tree fails, and still fails when a later classic update supplies the member in use | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 84 | P2 | A malformed predictor field fell back to its default | Accepted. A present predictor field must be a whole nonnegative integer followed by a delimiter; anything else fails ("malformed predictor parameter value"). Tests: `/Predictor /Bogus` and `/Columns -1` | same |
+| 85 | P2 | A non-dictionary superseded object was accepted on `endobj` alone | Accepted. A small direct-object parser (dictionary, array, literal and hex strings, name, number, boolean, null, indirect reference) must consume exactly one complete object, which `endobj` must then close. Tests: a nested array of every primitive passes; `not-a-PDF-object` and an unclosed array fail | same |

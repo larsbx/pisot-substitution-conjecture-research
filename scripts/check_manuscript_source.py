@@ -352,9 +352,10 @@ def _section_at(raw: bytes, off: int, seen: list[int]) -> str | Section:
 
 def _decode_parms(d: bytes, out: bytes) -> str | None:
     """Validate a Flate stream's ``/DecodeParms`` against its inflated bytes: a direct
-    dictionary (or one-element array of one), a supported ``/Predictor`` (1, 2 or 10-15)
-    with positive geometry, and for PNG predictors a decoded length that is a whole number
-    of rows carrying known row filters."""
+    dictionary (or one-element array of one) whose present fields are whole nonnegative
+    integers, a supported ``/Predictor`` (1, 2 or 10-15) with positive geometry, and for a
+    predictor a decoded length that is a whole number of rows (PNG rows carrying known row
+    filters)."""
     key = d.find(b"/DecodeParms")
     if key < 0:
         return None
@@ -362,8 +363,17 @@ def _decode_parms(d: bytes, out: bytes) -> str | None:
     parms = _dict_at(d, key + m.end())
     if parms is None or (m.group(1) and not re.match(rb"\s*\]", d[key + m.end() + len(parms):])):
         return "/DecodeParms is not a direct dictionary"
-    field = lambda name, default: int(f.group(1)) if (f := re.search(rb"/" + name + rb"\s+(\d+)", parms)) else default
-    pred, cols, colors, bpc = field(b"Predictor", 1), field(b"Columns", 1), field(b"Colors", 1), field(b"BitsPerComponent", 8)
+
+    def field(name: bytes, default: int) -> int | None:
+        k = re.search(rb"/" + name + rb"(?=" + _DELIM + rb")\s*", parms)
+        if not k:
+            return default
+        v = re.match(rb"(\d+)(?=" + _DELIM + rb"|$)", parms[k.end():])
+        return int(v.group(1)) if v else None  # present but not a whole nonnegative integer
+
+    pred, cols, colors, bpc = (field(n, v) for n, v in ((b"Predictor", 1), (b"Columns", 1), (b"Colors", 1), (b"BitsPerComponent", 8)))
+    if None in (pred, cols, colors, bpc):
+        return "malformed predictor parameter value"
     if pred not in (1, 2, *range(10, 16)):
         return f"unsupported /Predictor {pred}"
     if cols < 1 or colors < 1 or bpc not in (1, 2, 4, 8, 16):
@@ -377,35 +387,71 @@ def _decode_parms(d: bytes, out: bytes) -> str | None:
     return None
 
 
+_TOKEN = rb"(?:/(?:[^\s/\[\]<>(){}%#]|#[0-9A-Fa-f]{2})*|[+-]?(?:\d+\.?\d*|\.\d+)|true|false|null)(?=" + _DELIM + rb"|$)"
+
+
+def _object_end(buf: bytes, i: int) -> int | None:
+    """The index just past one complete direct object (dictionary, array, string, name,
+    number, boolean, null, or indirect reference) starting at or after ``i``; None if the
+    bytes there are not one."""
+    i += len(buf[i:]) - len(buf[i:].lstrip())
+    if buf.startswith(b"<<", i):
+        d = _dict_at(buf, i)
+        return None if d is None else i + len(d)
+    if buf.startswith(b"<", i):
+        m = re.match(rb"<[0-9A-Fa-f\s]*>", buf[i:])
+        return i + m.end() if m else None
+    if buf.startswith(b"(", i):
+        depth, j = 0, i
+        while j < len(buf):
+            ch = buf[j:j + 1]
+            if ch == b"\\":
+                j += 2
+                continue
+            depth, j = depth + (ch == b"(") - (ch == b")"), j + 1
+            if depth == 0:
+                return j
+        return None
+    if buf.startswith(b"[", i):
+        j = i + 1
+        while True:
+            j += len(buf[j:]) - len(buf[j:].lstrip())
+            if buf.startswith(b"]", j):
+                return j + 1
+            if (j := _object_end(buf, j)) is None:
+                return None
+    m = re.match(_TOKEN, buf[i:])
+    if not m:
+        return None
+    ref = re.match(rb"\s+\d+\s+R(?=" + _DELIM + rb"|$)", buf[i + m.end():]) if re.fullmatch(rb"\d+", m.group(0)) else None
+    return i + m.end() + (ref.end() if ref else 0)
+
+
 def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) -> str | None:
     """pypdf exposes only the effective entry of each object, so an in-use entry that a
-    later revision supersedes is inspected here: if its object is a stream, the body must
-    have a direct ``/Length``, be closed by ``endstream`` and ``endobj``, carry a parsable
-    filter chain that is empty or exactly ``/FlateDecode``, inflate strictly, and satisfy
-    its ``/DecodeParms``."""
+    later revision supersedes is inspected here: its bytes must be one complete object
+    closed by ``endobj``; a stream must have a direct ``/Length``, be closed by
+    ``endstream`` and ``endobj``, carry a parsable filter chain that is empty or exactly
+    ``/FlateDecode``, inflate strictly, and satisfy its ``/DecodeParms``."""
     for entries, _, _ in sections:
         for num, entry in entries.items():
             if entry[0] != 1 or merged.get(num) == entry:
                 continue
             at = raw[entry[1]:]
             head = re.match(rb"\d+\s+\d+\s+obj\s*", at)
-            d = _dict_at(at, head.end())
-            if d is None:
-                # a non-dictionary object: its body must be closed by endobj before any other object header
-                close, nxt = at.find(b"endobj", head.end()), re.search(rb"\d+\s+\d+\s+obj\b", at[head.end():])
-                if close < 0 or (nxt and head.end() + nxt.start() < close):
-                    return f"superseded object {num} is not closed by endobj"
-                continue
-            after = at[head.end() + len(d):head.end() + len(d) + 16]
-            body = re.match(rb"\s*stream(?:\r\n|\n)", after)
+            end = _object_end(at, head.end())
+            if end is None:
+                return f"superseded object {num} is not one complete object"
+            body = re.match(rb"\s*stream(?:\r\n|\n)", at[end:end + 16]) if at.startswith(b"<<", head.end()) else None
             if not body:
-                if re.match(rb"\s*endobj\b", after):
+                if re.match(rb"\s*endobj\b", at[end:end + 16]):
                     continue
-                return f"superseded object {num} is not a dictionary followed by stream or endobj"
+                return f"superseded object {num} is not one complete object closed by endobj"
+            d = at[head.end():end]
             length = re.search(rb"/Length\s+(\d+)(\s+\d+\s+R)?", d)
             if not length or length.group(2):
                 return f"superseded stream object {num} lacks a direct /Length"
-            start = head.end() + len(d) + body.end()
+            start = end + body.end()
             data = at[start:start + int(length.group(1))]
             if len(data) < int(length.group(1)) or not re.match(rb"(?:\r\n|\r|\n)?endstream\s*endobj\b", at[start + len(data):start + len(data) + 32]):
                 return f"superseded stream object {num} does not match its /Length or is not closed by endstream and endobj"
@@ -424,6 +470,32 @@ def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) ->
                     return f"superseded stream object {num} does not inflate to a complete deflate member within the ceiling"
                 if problem := _decode_parms(d, out):
                     return f"superseded stream object {num}: {problem}"
+    return None
+
+
+def _object_streams(raw: bytes, entries: dict[int, Entry], table: dict[int, Entry]) -> str | None:
+    """Every type-2 entry of a section must name, in that revision's effective ``table``,
+    an in-use object whose dictionary is ``/Type /ObjStm`` with a direct ``/N`` above the
+    entry's index (finding 83: pypdf resolves only the effective entries)."""
+    counts: dict[int, int | str] = {}
+    for num, (kind, container, index, _) in entries.items():
+        if kind != 2:
+            continue
+        if container not in counts:
+            holder = table.get(container)
+            if holder is None or holder[0] != 1:
+                counts[container] = f"object {container}, which is not an in-use object"
+            else:
+                at = raw[holder[1]:]
+                head = re.match(rb"\d+\s+\d+\s+obj\s*", at)
+                d = _dict_at(at, head.end())
+                n = re.search(rb"/N(?=" + _DELIM + rb")\s*(\d+)(?=" + _DELIM + rb"|$)", d) if d else None
+                is_objstm = d is not None and re.search(rb"/Type(?=" + _DELIM + rb")\s*/ObjStm(?=" + _DELIM + rb"|$)", d)
+                counts[container] = int(n.group(1)) if is_objstm and n else f"object {container}, which is not an object stream with a direct /N"
+        if isinstance(counts[container], str):
+            return f"type-2 entry for object {num} names {counts[container]}"
+        if index >= counts[container]:
+            return f"type-2 entry for object {num} has index {index} beyond /N {counts[container]} of object stream {container}"
     return None
 
 
@@ -450,7 +522,7 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
     merged = {}
     for entries, sizes, classic in reversed(sections):
         merged = {**merged, **entries}  # newer sections win
-        if problem := _free_list(merged, classic):
+        if problem := _free_list(merged, classic) or _object_streams(raw, entries, merged):
             return problem
         for size in sizes:  # the trailer's /Size and, in a hybrid section, the companion stream's
             if size != max(merged) + 1:

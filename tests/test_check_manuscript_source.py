@@ -562,7 +562,7 @@ def test_superseded_object_with_malformed_stream_keyword_fails(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.write_bytes(superseded_pdf(flate_stream(b"x").replace(b">>\nstream\n", b">>\nstreaX\n")))
     code, out = run(copy)
-    assert code == 1 and "not a dictionary followed by stream or endobj" in out, out
+    assert code == 1 and "not one complete object closed by endobj" in out, out
 
 
 def test_filter_names_are_parsed_whole(copy):
@@ -579,6 +579,69 @@ def test_filter_names_are_parsed_whole(copy):
     assert code == 1 and "unsupported cross-reference stream filter chain" in out, out
     pdf.write_bytes(xref_pdf().replace(b"/Filter /FlateDecode", b"/Filter /Flate#44ecode"))
     assert run(copy)[0] == 0
+
+
+def objstm_pdf(container=4, index=0):
+    """Objects 1-3 as usual, object 4 an uncompressed object stream holding object 5
+    (``<< /Foo 1 >>``), object 6 the cross-reference stream; object 5's row names
+    ``container`` at ``index``; /Size 7."""
+    out = b"%PDF-1.5\n"
+    offs = {}
+    for n, body in ((1, b"<< /Type /Catalog /Pages 2 0 R >>"), (2, b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>"),
+                    (3, b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>")):
+        offs[n] = len(out)
+        out += b"%d 0 obj\n%s\nendobj\n" % (n, body)
+    member = b"5 0 "
+    data = member + b"<< /Foo 1 >>"
+    offs[4] = len(out)
+    out += b"4 0 obj\n<< /Type /ObjStm /N 1 /First %d /Length %d >>\nstream\n" % (len(member), len(data)) + data + b"\nendstream\nendobj\n"
+    offs[6] = len(out)
+    row = lambda kind, a, b: bytes([kind]) + a.to_bytes(2, "big") + bytes([b])
+    rows = row(0, 0, 255) + b"".join(row(1, offs[n], 0) for n in (1, 2, 3, 4)) + row(2, container, index) + row(1, offs[6], 0)
+    out += b"6 0 obj\n<< /Type /XRef /Size 7 /W [1 2 1] /Root 1 0 R /Length %d >>\nstream\n" % len(rows) + rows
+    return out + b"\nendstream\nendobj\nstartxref\n%d\n%%%%EOF\n" % offs[6]
+
+
+def test_type2_entries_resolve_against_their_revision(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(objstm_pdf())
+    assert run(copy)[0] == 0
+    pdf.write_bytes(objstm_pdf(index=1))
+    code, out = run(copy)
+    assert code == 1 and "index 1 beyond /N 1" in out, out
+    raw = objstm_pdf(container=2)
+    pdf.write_bytes(raw)
+    code, out = run(copy)
+    assert code == 1 and "not an object stream" in out, out
+    # a later classic update supplies object 5 in use, so pypdf never resolves the old row
+    old_xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
+    o5 = len(raw)
+    raw += b"5 0 obj\n<< /Foo 2 >>\nendobj\n"
+    new_xref = len(raw)
+    raw += b"xref\n5 1\n%010d 00000 n \ntrailer\n<< /Size 7 /Root 1 0 R /Prev %d >>\nstartxref\n%d\n%%%%EOF\n" % (o5, old_xref, new_xref)
+    pdf.write_bytes(raw)
+    code, out = run(copy)
+    assert code == 1 and "not an object stream" in out, out
+
+
+def test_malformed_predictor_values_fail(copy):
+    pdf = next(copy.glob("*.pdf"))
+    for parms in (b"/DecodeParms << /Predictor /Bogus >> ", b"/DecodeParms << /Predictor 2 /Columns -1 >> "):
+        pdf.write_bytes(superseded_pdf(flate_stream(b"x", parms)))
+        code, out = run(copy)
+        assert code == 1 and "malformed predictor parameter value" in out, (parms, out)
+
+
+def test_superseded_non_dictionary_object_is_parsed(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(superseded_pdf(b"[1 2 R (a (nested) string) /Name#20x 3.5 <414243> true null]"))
+    assert run(copy)[0] == 0
+    pdf.write_bytes(superseded_pdf(b"not-a-PDF-object"))
+    code, out = run(copy)
+    assert code == 1 and "not one complete object" in out, out
+    pdf.write_bytes(superseded_pdf(b"[1 2"))
+    code, out = run(copy)
+    assert code == 1 and "not one complete object" in out, out
 
 
 def test_superseded_stream_must_end_with_endobj(copy):
@@ -623,7 +686,7 @@ def test_type2_entry_to_non_object_stream_fails(copy):
     # object 1 declared as member 0 of "object stream" 2, which is the page tree, not an object stream
     pdf.write_bytes(xref_pdf(rows=lambda t, o1, o2, o3: [t[0], b"\x02\x00\x02\x00", *t[2:]]))
     code, out = run(copy)
-    assert code == 1 and "full parse failed" in out
+    assert code == 1 and "not an object stream" in out, out
 
 
 def test_predictor_parameters_are_validated(copy):

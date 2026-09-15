@@ -1004,3 +1004,37 @@ No other findings were posted in the thirty-ninth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the fortieth round.
+
+
+---
+
+# Forty-first round: review of the whole-name revision (pull request #95)
+
+**Reviewed commit:** `f427597e50` (findings 80–82).
+**Review posted:** 2026-09-15T18:07:43Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 83 (P2) — `scripts/check_manuscript_source.py`, line 212
+
+> **Resolve superseded type-2 cross-reference entries**
+>
+> When a later revision replaces an object that was type 2 in an older cross-reference stream, this branch only checks that the alleged object-stream number is below `/Size`; `_superseded_streams` skips the old non-type-1 entry and pypdf sees only the effective replacement. Fresh evidence beyond the addressed type-2 finding is that an old object-4 row `(2, 2, 0)` naming an ordinary page-tree object, followed by a classic update supplying object 4 in use, makes `_xref_chain` succeed. Resolve each historical type-2 row against that revision and validate the container type and member index.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 84 (P2) — `scripts/check_manuscript_source.py`, line 366
+
+> **Reject malformed predictor field values**
+>
+> When a superseded stream has a predictor field with the wrong PDF value type, this helper treats the field as absent and silently substitutes its default; `/Predictor /Bogus` becomes predictor 1, and `/Predictor 2 /Columns -1` becomes one column, so a zlib-valid historical stream passes because pypdf ignores its superseded object. Fresh evidence beyond the addressed decode-parameter finding is this malformed-value path; distinguish an absent key from a present value that is not a whole nonnegative integer.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 85 (P2) — `scripts/check_manuscript_source.py`, line 397
+
+> **Parse superseded non-dictionary object bodies**
+>
+> When a superseded object is not a dictionary, any bytes containing `endobj` before the next apparent header are accepted without parsing a PDF object; for example, replacing the historical body with `not-a-PDF-object\nendobj` still makes `_xref_chain` succeed, while pypdf reads only the newer replacement. Fresh evidence beyond the addressed malformed-marker finding is that closure alone does not reject an invalid primitive body, so parse exactly one complete historical object before accepting it.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-first round.
