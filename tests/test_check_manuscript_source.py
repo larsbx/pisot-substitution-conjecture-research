@@ -458,6 +458,40 @@ def test_hybrid_companion_stream_is_walked(copy):
     assert code == 1 and "/XRefStm" in out and "beyond /Size" in out, out
 
 
+def test_companion_stream_size_is_checked(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(hybrid_pdf().replace(b"/XRef /Size 6", b"/XRef /Size 7"))
+    code, out = run(copy)
+    assert code == 1 and "/Size 7 is not one more than the highest object number 5" in out, out
+
+
+def test_historical_entry_cannot_point_into_a_later_revision(copy):
+    # the original section's entry for object 3 is redirected to the copy of object 3 that
+    # a later update appends; the header matches, but that object postdates the section
+    pdf = next(copy.glob("*.pdf"))
+    raw = classic_pdf()
+    old_xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
+    old_o3 = re.findall(rb"(\d{10}) 00000 n", raw)[2]
+    new_o3 = len(raw)
+    raw += b"3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 20 20] >>\nendobj\n"
+    new_xref = len(raw)
+    raw += b"xref\n3 1\n%010d 00000 n \ntrailer\n<< /Size 4 /Root 1 0 R /Prev %d >>\nstartxref\n%d\n%%%%EOF\n" % (new_o3, old_xref, new_xref)
+    pdf.write_bytes(raw)
+    assert run(copy)[0] == 0
+    pdf.write_bytes(raw.replace(old_o3 + b" 00000 n", b"%010d 00000 n" % new_o3, 1))
+    code, out = run(copy)
+    assert code == 1 and "beyond the end of its revision" in out, out
+
+
+def test_decoded_byte_ceiling_applies_before_inflation(copy):
+    import zlib
+    pdf = next(copy.glob("*.pdf"))
+    body = zlib.compress(b"\x01\x00\x09\x00")
+    pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 1 /W [1 1000000000 1] /Root 1 0 R /Filter /FlateDecode /Length %d >>" % len(body), body))
+    code, out = run(copy)
+    assert code == 1 and "decoded bytes, above the ceiling" in out, out
+
+
 def test_size_is_checked_at_every_section(copy):
     # the original section covers objects 0-3 but declares /Size 5; a later update adds object 4
     pdf = next(copy.glob("*.pdf"))

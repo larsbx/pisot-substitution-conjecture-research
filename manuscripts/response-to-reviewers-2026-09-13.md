@@ -484,3 +484,16 @@ Three findings from the automated Codex review of commit `f89f2b61d7`; all accep
 | 69 | P2 | A matching compression bomb could still exhaust the runner | Accepted. A declared row count above 1 000 000 (the repository PDF has 1133 objects) fails before any inflation, and every stream decoded in the full-parse stage is inflated with a ceiling of 64 MiB (the largest decoded stream in the repository PDF is 34 KB). Test: two million all-zero rows, compressed to a few kilobytes, with a matching `/Size 2000000` fail with "above the ceiling" | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 70 | P2 | A classic trailer's `/XRefStm` companion stream was not walked | Accepted. A classic section names its `/XRefStm` offset; the companion stream is parsed as a section (in the file, not revisited) and merged beneath the table's own entries, and the combined section is validated under the classic rule with the per-entry provenance deciding which free entries must be linked. Tests: a hybrid file whose companion describes itself and an unlinked free object 5 passes; the same file with the companion's free row pointing beyond `/Size` fails, naming `/XRefStm` | same |
 | 71 | P2 | Only the final trailer's `/Size` was compared with the extent | Accepted. Every section carries its trailer `/Size`, and during the oldest-first replay each section's `/Size` must be one more than the highest object number of its effective table. Test: an original section covering objects 0–3 with `/Size 5`, followed by an update adding object 4 with `/Size 5`, fails at the original section | same |
+
+
+---
+
+## Thirty-seventh round (pull request #95, ceiling and hybrid revision)
+
+Three findings from the automated Codex review of commit `a76630a9ed`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 72 | P2 | The `/XRefStm` companion's own `/Size` was discarded | Accepted. A hybrid section carries both the trailer's `/Size` and the companion's, and the replay checks each against the section's effective table. Test: the hybrid fixture with the companion's `/Size` changed to 7 fails | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 73 | P2 | A historical in-use entry could point into a later revision | Accepted. Every section records the offset just past itself; its in-use entries must point before the `startxref` that closes its revision, since an object appended by a later update did not exist when the section was written. Test: the original section's entry for object 3 is redirected to the copy of object 3 that a later update appends (matching header, superseded in pypdf's view) and fails "beyond the end of its revision"; the same file with the entry intact passes | same |
+| 74 | P2 | The row ceiling did not bound decoded bytes | Accepted. The declared decoded size `rows × row width` must not exceed 64 MiB before zlib is called. Test: `/Size 1 /W [1 1000000000 1]` fails with "decoded bytes, above the ceiling" | same |

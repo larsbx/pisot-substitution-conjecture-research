@@ -79,8 +79,9 @@ generation slot = index); ``classic`` records whether the entry came from a clas
 whose free entries must be on the free list, rather than from a cross-reference stream."""
 
 
-Section = tuple[dict[int, Entry], int, int | None, int | None]
-"""``(entries by object number, trailer /Size, /Prev offset or None, /XRefStm offset or None)``."""
+Section = tuple[dict[int, Entry], int, int | None, int | None, int]
+"""``(entries by object number, trailer /Size, /Prev offset or None, /XRefStm offset or None,
+offset just past the section)``."""
 
 
 def _classic_table(raw: bytes, off: int) -> str | Section:
@@ -131,7 +132,7 @@ def _classic_table(raw: bytes, off: int) -> str | Section:
     if stray:
         return f"free entry for object {stray[0]} points at object {table[stray[0]][1]} beyond /Size"
     xrefstm = re.search(rb"/XRefStm\s+(\d+)", d)
-    return table, int(size.group(1)), _prev_of(d), int(xrefstm.group(1)) if xrefstm else None
+    return table, int(size.group(1)), _prev_of(d), int(xrefstm.group(1)) if xrefstm else None, off + pos + t.end() + len(d)
 
 
 def _unpredict(payload: bytes, row: int) -> bytes | None:
@@ -234,6 +235,8 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
     expected_rows = sum(c for _, c in pairs)  # object numbers are materialized only once the payload agrees
     if expected_rows > MAX_XREF_ROWS:
         return f"cross-reference stream declares {expected_rows} rows, above the ceiling of {MAX_XREF_ROWS}"
+    if expected_rows * row > MAX_STREAM_BYTES:
+        return f"cross-reference stream declares {expected_rows * row} decoded bytes, above the ceiling of {MAX_STREAM_BYTES}"
     body = re.match(rb"\s*stream(?:\r\n|\n)", at[m.end() + len(d):m.end() + len(d) + 16])
     if not body:
         return "cross-reference stream has no stream body"
@@ -271,7 +274,7 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
         if payload is None:
             return "cross-reference stream uses an unknown PNG row filter"
     table = _xref_rows(raw, payload, widths, numbers, size)
-    return table if isinstance(table, str) else (table, size, _prev_of(d), None)
+    return table if isinstance(table, str) else (table, size, _prev_of(d), None, off + data_start + n + tail.end())
 
 
 def _free_list(table: dict[int, Entry], classic: bool) -> str | None:
@@ -297,7 +300,10 @@ def _free_list(table: dict[int, Entry], classic: bool) -> str | None:
 
 
 def _section_at(raw: bytes, off: int, seen: list[int]) -> str | Section:
-    """Parse the section at ``off``, which must lie in the file and not have been visited."""
+    """Parse the section at ``off``, which must lie in the file and not have been visited.
+    Its in-use entries must point before the ``startxref`` that closes its revision: an
+    object introduced by a later incremental update did not exist when the section was
+    written."""
     if off >= len(raw):
         return f"cross-reference offset {off} beyond end of file ({len(raw)} bytes)"
     if off in seen:
@@ -310,7 +316,15 @@ def _section_at(raw: bytes, off: int, seen: list[int]) -> str | Section:
         section = _xref_stream(raw, off)
     else:
         section = "offset does not point at an xref table or object"
-    return f"at cross-reference offset {off}: {section}" if isinstance(section, str) else section
+    if isinstance(section, str):
+        return f"at cross-reference offset {off}: {section}"
+    limit = raw.find(b"startxref", section[4])
+    if limit < 0:
+        return f"cross-reference section at offset {off} is not followed by startxref"
+    late = [(n, f) for n, (k, f, *_) in section[0].items() if k == 1 and f >= limit]
+    if late:
+        return f"entry for object {late[0][0]} points at offset {late[0][1]}, beyond the end of its revision at {limit}"
+    return section
 
 
 def _xref_chain(raw: bytes, off: int) -> str | int:
@@ -325,21 +339,22 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
         section = _section_at(raw, off, seen)
         if isinstance(section, str):
             return section
-        entries, size, off, xrefstm = section
-        classic = xrefstm is not None or raw.startswith(b"xref", seen[-1])
+        entries, size, off, xrefstm, _ = section
+        classic, sizes = xrefstm is not None or raw.startswith(b"xref", seen[-1]), (size,)
         if xrefstm is not None:
             companion = _section_at(raw, xrefstm, seen)
             if isinstance(companion, str):
                 return f"/XRefStm: {companion}"
-            entries = {**companion[0], **entries}  # the table's own entries take precedence
-        sections.append((entries, size, classic))
+            entries, sizes = {**companion[0], **entries}, (size, companion[1])  # the table's own entries take precedence
+        sections.append((entries, sizes, classic))
     merged = {}
-    for entries, size, classic in reversed(sections):
+    for entries, sizes, classic in reversed(sections):
         merged = {**merged, **entries}  # newer sections win
         if problem := _free_list(merged, classic):
             return problem
-        if size != max(merged) + 1:
-            return f"trailer /Size {size} is not one more than the highest object number {max(merged)} of its section"
+        for size in sizes:  # the trailer's /Size and, in a hybrid section, the companion stream's
+            if size != max(merged) + 1:
+                return f"trailer /Size {size} is not one more than the highest object number {max(merged)} of its section"
     return max(merged)
 
 

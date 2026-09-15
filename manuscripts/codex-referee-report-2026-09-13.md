@@ -876,3 +876,37 @@ No other findings were posted in the thirty-fifth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the thirty-sixth round.
+
+
+---
+
+# Thirty-seventh round: review of the ceiling and hybrid revision (pull request #95)
+
+**Reviewed commit:** `a76630a9ed` (findings 69–71).
+**Review posted:** 2026-09-15T17:33:35Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 72 (P2) — `scripts/check_manuscript_source.py`, line 334
+
+> **Check the companion stream's own /Size**
+>
+> When a hybrid PDF's `/XRefStm` companion has a corrupt `/Size` but an explicit `/Index`, only `companion[0]` is retained here and the companion's size is discarded. For example, changing the companion in `hybrid_pdf()` from `/Size 6` to `/Size 7` leaves `_xref_chain` successful because replay checks only the classic trailer's `/Size 6`; the full-parse comparison likewise reads the final classic trailer. Fresh evidence beyond finding 71 is this companion-section path, so validate the companion's `/Size` against the same effective table before discarding its metadata.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 73 (P2) — `scripts/check_manuscript_source.py`, line 114
+
+> **Bound historical object offsets to their revision**
+>
+> When an older revision's in-use entry is corrupted to point at a matching object header introduced by a later incremental update, this global-file check accepts it even though that target did not exist in the historical revision. If the newer section also supersedes that object, pypdf exposes only the effective newer entry, so the malformed old offset is never dereferenced and the guard succeeds. Validate an entry against the byte boundary of the revision containing its cross-reference section, not merely against the final file.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 74 (P2) — `scripts/check_manuscript_source.py`, line 256
+
+> **Cap decoded xref bytes, not only row count**
+>
+> When an XRef stream keeps its row count below 1,000,000 but declares a very large `/W`, this limit remains attacker-controlled: for example, `/Size 1 /W [1 1000000000 1]` permits zlib to produce roughly 1 GB before the guard rejects anything. `MAX_STREAM_BYTES` is applied only during the later full parse, after this inflation. Fresh evidence beyond finding 69 is that the new row ceiling does not bound `expected_rows * row`; impose an absolute decoded-byte ceiling here before calling zlib.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-seventh round.
