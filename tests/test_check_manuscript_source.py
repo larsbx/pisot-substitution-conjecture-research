@@ -94,6 +94,31 @@ def test_mangled_tex_fails(copy):
     assert code == 1 and ("not valid UTF-8" in out or "\\documentclass" in out)
 
 
+def test_commented_document_sentinels_fail(copy):
+    tex = next(copy.glob("*.tex"))
+    text = tex.read_text()
+    i = text.rindex("\\end{document}")
+    tex.write_text(text[:i] + "%" + text[i:])  # the only \end{document} is now a comment
+    code, out = run(copy)
+    assert code == 1 and "on uncommented lines" in out, out
+    tex.write_text(text.replace("\\begin{document}", "%\\begin{document}", 1))
+    code, out = run(copy)
+    assert code == 1 and "on uncommented lines" in out, out
+    tex.write_text(text.replace("\\begin{document}", "\\begin{document} % 100\\% active", 1))  # an escaped % is not a comment
+    assert run(copy)[0] == 0
+
+
+def test_endstream_needs_a_preceding_line_ending(copy):
+    pdf = next(copy.glob("*.pdf"))
+    for raw, message in ((superseded_pdf(flate_stream(b"x")), "not closed by endstream and endobj"),
+                         (xref_pdf(), "cross-reference stream body does not match /Length or is not closed by endstream"),
+                         (objstm_pdf(), "not closed by endstream and endobj")):
+        assert b"\nendstream" in raw
+        pdf.write_bytes(raw.replace(b"\nendstream", b" endstream", 1))  # same length, no line ending before the keyword
+        code, out = run(copy)
+        assert code == 1 and message in out, out
+
+
 def test_truncated_tex_fails(copy):
     tex = next(copy.glob("*.tex"))
     tex.write_text("\\documentclass{article}\n\\begin{document}\nx\n\\end{document}\n")

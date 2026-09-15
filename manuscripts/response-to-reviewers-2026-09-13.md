@@ -730,3 +730,12 @@ One finding from the automated Codex review of commit `d4ce42bb76`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 120 | P2 | A revision terminator could put `startxref`, the offset and `%%EOF` on one line | Accepted. Every revision's terminator, the final one included, must now carry a line ending after `startxref` and after the offset, and `%%EOF` must end at a line boundary. The scenario (an original revision terminated on one line under a valid update) was confirmed to pass the previous revision. Tests: that scenario (fails), the same with CR and CRLF endings (passes), the final terminator on one line (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Sixtieth round (pull request #95, terminator revision)
+
+Two findings from the automated Codex review of commit `9bd427d395`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 121 | P2 | `\begin{document}` / `\end{document}` were accepted inside TeX comments | Accepted. The sentinels are now located on lines with their comments stripped (an unescaped `%` to the line end), so a commented sentinel does not count. The scenario was confirmed to pass the previous revision. Tests: the only `\end{document}` commented, the `\begin{document}` commented (both fail), an escaped `\%` after the sentinel (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 122 | P2 | The line ending before `endstream` was optional | Accepted. Every stream (superseded, cross-reference and object stream) must now have an end-of-line marker between its data and `endstream`. The scenario was confirmed to pass the previous revision. Tests: a superseded stream, a cross-reference stream and an object stream with a space in place of that line ending (all fail) | same |

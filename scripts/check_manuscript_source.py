@@ -41,9 +41,11 @@ def check_tex(path: Path) -> list[str]:
     first = next((l for l in lines if l.strip()), "")
     if not first.startswith("\\documentclass"):
         problems.append(f"{path}: first line is not \\documentclass")
-    b, e = text.find("\\begin{document}"), text.rfind("\\end{document}")
-    if b < 0 or e < 0 or e < b:
-        problems.append(f"{path}: missing or misordered \\begin{{document}} / \\end{{document}}")
+    active = [re.sub(r"(?<!\\)%.*", "", l) for l in lines]  # TeX comments run from an unescaped % to the line end
+    b = next((i for i, l in enumerate(active) if "\\begin{document}" in l), -1)
+    e = max((i for i, l in enumerate(active) if "\\end{document}" in l), default=-1)
+    if b < 0 or e < b:
+        problems.append(f"{path}: missing or misordered \\begin{{document}} / \\end{{document}} on uncommented lines")
     if len(lines) < MIN_LINES:
         problems.append(f"{path}: only {len(lines)} lines (< {MIN_LINES})")
     return problems
@@ -300,7 +302,7 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
         return "cross-reference stream has no stream body"
     data_start = dend + body.end()
     data = at[data_start:data_start + n]
-    tail = re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[data_start + n:data_start + n + 32])
+    tail = re.match(rb"(?:\r\n|\r|\n)endstream[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[data_start + n:data_start + n + 32])
     if len(data) < n or not tail:
         return "cross-reference stream body does not match /Length or is not closed by endstream and endobj"
     filters = _names_of(items[b"Filter"]) if b"Filter" in items else []
@@ -545,7 +547,7 @@ def _whole_object(at: bytes, num: int) -> str | tuple[int, bytes | None, bytes |
         return f"stream object {num} lacks a direct /Length"
     start = end + body.end()
     data = at[start:start + length]
-    tail = re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[start + length:start + length + 32])
+    tail = re.match(rb"(?:\r\n|\r|\n)endstream[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[start + length:start + length + 32])
     if len(data) < length or not tail:
         return f"stream object {num} does not match its /Length or is not closed by endstream and endobj"
     return start + length + tail.end(), d, data
@@ -632,7 +634,7 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
         start = end + body.end()
         data = at[start:start + length]
         names = _names_of(items[b"Filter"]) if b"Filter" in items else []
-        if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[start + length:start + length + 32]):
+        if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)endstream[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[start + length:start + length + 32]):
             result = f"object stream {container}, whose body does not match its /Length or is not closed by endstream and endobj"
         elif names is None or names not in ([], [b"FlateDecode"]):
             result = f"object stream {container}, whose filter chain is unparsable or unsupported"
