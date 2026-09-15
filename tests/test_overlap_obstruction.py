@@ -2,7 +2,12 @@ from __future__ import annotations
 
 import pytest
 
-from psc_research.overlap_obstruction import nonproductive_sink_sccs, sccs
+from psc_research.overlap_graph import OverlapGraph
+from psc_research.overlap_obstruction import (
+    common_child_start_count,
+    nonproductive_sink_sccs,
+    sccs,
+)
 
 
 class _Graph:
@@ -16,6 +21,21 @@ class _Graph:
         if self.capped:
             raise RuntimeError("productivity undefined on a capped graph")
         return list(self._bad)
+
+
+def _determinant_two_sigma() -> dict[int, tuple[int, ...]]:
+    # 1-based Python version of the canonical Mojo regression substitution.
+    return {1: (2,), 2: (1, 3, 2), 3: (1, 1, 2)}
+
+
+def test_common_child_starts_are_exactly_zero_shift_children() -> None:
+    g = OverlapGraph(_determinant_two_sigma())
+    assert not g.capped
+    for state in g.states:
+        if g.is_coincidence(state):
+            continue
+        zero_shift = sum(1 for child in g.children(state) if not any(child[2]))
+        assert common_child_start_count(g, state) == zero_shift
 
 
 def test_extracts_closed_recurrent_core_not_transient_bad_vertices() -> None:
