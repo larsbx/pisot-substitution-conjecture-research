@@ -38,7 +38,7 @@ Change the ledger entry and every surface in the same commit.
   engineering only, no claim status changes. Its "Execution status" section
   records which steps have landed.
 - `exact-arithmetic-binding.md` — this repository's binding rows for the
-  arithmetic specification kept in `larsbx/finite_exact`, and the vendoring
+  arithmetic specification kept in `larsbx/finite-math-kernels`, and the vendoring
   rule enforced by `vendored.toml`.
 - `../claim_governance.toml` — the claim-governance policy read by the
   vendored `larsbx/claim_governance_tools` package: status vocabulary, claim

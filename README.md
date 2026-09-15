@@ -152,12 +152,12 @@ Issue #45 is therefore closed as a completed status/source reconciliation task. 
 
 | Priority | Layer | Tool | Scope |
 |---|---|---|---|
-| **Canonical executable** | `mojo/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. Words, balanced pairs, and the balanced-pair automaton come from `mojo/substitution_dynamics/` (alphabet-generic; `psc/` binds alphabet 3); exact arithmetic from `mojo/finite_exact/` and `mojo/interval_q/`; exact linear algebra and rank-three tensors from `mojo/finite_linear_algebra/`. All four are vendored byte-for-byte from their own repositories and pinned by commit and digest in `vendored.toml`. |
+| **Canonical executable** | `mojo/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. The reusable kernels under `mojo/finite_exact/`, `mojo/substitution_dynamics/`, and `mojo/finite_linear_algebra/` are vendored from one pinned `larsbx/finite-math-kernels` commit. |
 | Formal state/dependency | `tla/` | TLA+ / TLC | BPA state-machine models and the machine-checked proof-dependency ledger. |
 | Deductive finite algebra | `PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
 | Secondary oracle | `src/psc_research/` + `tests/` | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |
 
-The vendored packages (`larsbx/finite_exact`, `larsbx/interval_q`, `larsbx/substitution_dynamics`, `larsbx/finite_linear_algebra`, and the Python `larsbx/claim_governance_tools` under `tools/claim_governance`) are checked against `vendored.toml` by `scripts/check_vendored_sync.py` in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit.
+The four logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `scripts/check_vendored_sync.py` in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under `tools/claim_governance`.
 
 Run everything:
 
@@ -176,8 +176,7 @@ Unavailable toolchains are reported as skipped; a skip is not a passing proof.
 ├── docs/                       # live proof architecture, audits, conjecture ledger
 ├── manuscripts/                # publication drafts and referee records
 ├── mojo/                       # canonical exact implementation + finite censuses
-│   ├── finite_exact/           # BigZ and Q, vendored from larsbx/finite_exact (pinned)
-│   ├── interval_q/             # closed rational intervals, vendored from larsbx/interval_q
+│   ├── finite_exact/           # BigZ, Q, and closed intervals from finite-math-kernels
 │   ├── substitution_dynamics/  # words, balanced pairs, automaton, vendored (alphabet-generic)
 │   ├── finite_linear_algebra/  # Mat3, RREF, rank-three tensors, W_3, vendored
 │   ├── psc/                    # reusable Mojo research kernel

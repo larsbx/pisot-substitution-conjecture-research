@@ -13,8 +13,12 @@ CHECK = "terminology"
 
 
 def _declaration_blocks(text: str, marker: str) -> list[tuple[int, str]]:
-    """(line, block text) for each declaration; a block runs to the next marker or heading."""
-    starts = [m.start() for m in re.finditer(re.escape(marker), text)]
+    """(line, block text) for each declaration; a block runs to the next marker or
+    heading.  A marker inside a heading line is a title, not a declaration."""
+    def in_heading(index: int) -> bool:
+        return text[text.rfind("\n", 0, index) + 1: index].lstrip().startswith("#")
+
+    starts = [m.start() for m in re.finditer(re.escape(marker), text) if not in_heading(m.start())]
     blocks: list[tuple[int, str]] = []
     for i, start in enumerate(starts):
         rest = text[start + len(marker):]

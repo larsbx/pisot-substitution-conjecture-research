@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 from fnmatch import fnmatch
 from pathlib import Path
 
-from claim_governance.lexing import mask_for
+from claim_governance.lexing import mask_comments_and_strings, mask_for
 
 
 @dataclass(frozen=True)
@@ -41,7 +41,12 @@ class Repo:
         return mask_for(Path(rel).suffix, self.text(rel))
 
     def surface(self, rel: str) -> str:
-        """Text for status surfaces: comments blanked, but Markdown code fences kept,
-        since dependency chains and status tables are often drawn inside them."""
+        """Text for status surfaces: comments blanked, but Markdown code fences and
+        source string literals kept, since dependency chains, status tables, and
+        ledger names live inside them."""
         suffix = Path(rel).suffix
-        return self.text(rel) if suffix == ".md" else mask_for(suffix, self.text(rel))
+        if suffix == ".md":
+            return self.text(rel)
+        if suffix in {".py", ".mojo"}:
+            return mask_comments_and_strings(self.text(rel), keep_strings=True)
+        return mask_for(suffix, self.text(rel))

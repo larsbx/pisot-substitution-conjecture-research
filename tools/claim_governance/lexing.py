@@ -12,8 +12,9 @@ from collections.abc import Iterator
 _STRING_QUOTES = {"'", '"'}
 
 
-def mask_comments_and_strings(source: str) -> str:
-    """Blank ``#`` comments and string literals in Python/Mojo source.
+def mask_comments_and_strings(source: str, *, keep_strings: bool = False) -> str:
+    """Blank ``#`` comments and (unless ``keep_strings``) string literals in
+    Python/Mojo source.
 
     Triple-quoted strings span lines; single-quoted strings end at a newline.
     Every replaced character becomes a space, so columns and lines survive.
@@ -33,11 +34,11 @@ def mask_comments_and_strings(source: str) -> str:
                 index += 1
                 continue
             if triple and source.startswith(quote * 3, index):
-                out.extend("   ")
+                out.extend(quote * 3 if keep_strings else "   ")
                 index += 3
                 quote, triple = None, False
                 continue
-            out.append(" ")
+            out.append(char if keep_strings else " ")
             if not triple:
                 if escaped:
                     escaped = False
@@ -57,7 +58,7 @@ def mask_comments_and_strings(source: str) -> str:
             triple = source.startswith(char * 3, index)
             quote = char
             width = 3 if triple else 1
-            out.extend(" " * width)
+            out.extend(source[index: index + width] if keep_strings else " " * width)
             index += width
             continue
         out.append(char)

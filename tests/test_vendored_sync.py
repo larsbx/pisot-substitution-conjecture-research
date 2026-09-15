@@ -11,11 +11,10 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import check_vendored_sync as sync  # noqa: E402
 
 PACKAGES = {
-    "finite_exact": ("larsbx/finite_exact", "mojo"),
-    "interval_q": ("larsbx/interval_q", "mojo"),
-    "substitution_dynamics": ("larsbx/substitution_dynamics", "mojo"),
-    "finite_linear_algebra": ("larsbx/finite_linear_algebra", "mojo"),
-    "claim_governance": ("larsbx/claim_governance_tools", "tools"),
+    "finite_exact": ("larsbx/finite-math-kernels", "mojo"),
+    "substitution_dynamics": ("larsbx/finite-math-kernels", "mojo"),
+    "finite_linear_algebra": ("larsbx/finite-math-kernels", "mojo"),
+    "claim_governance": ("larsbx/finite-math-kernels", "tools"),
 }
 
 
@@ -24,6 +23,8 @@ def test_vendored_packages_match_their_pins():
     packages = {p["name"]: p for p in sync.load()}
     assert {n: (p["repository"], p["root"]) for n, p in packages.items()} == PACKAGES
     for name, pkg in packages.items():
+        assert pkg["repository"] == "larsbx/finite-math-kernels"
+        assert pkg["commit"] == "807ae7ed5461af9fe07b1cbbca96f680a105e0e7"
         assert all(rel.startswith(name + "/") for rel in pkg["files"])
 
 
@@ -38,11 +39,11 @@ def test_local_patch_is_detected(tmp_path, monkeypatch):
     assert sync.check(tmp_path, manifest) == []
     target = tmp_path / "mojo" / "finite_exact" / "rat_q.mojo"
     target.write_text(target.read_text(encoding="utf-8") + "\n# local patch\n", encoding="utf-8")
-    (tmp_path / "mojo" / "interval_q" / "extra.mojo").write_text("", encoding="utf-8")
+    (tmp_path / "mojo" / "finite_exact" / "extra.mojo").write_text("", encoding="utf-8")
     (tmp_path / "tools" / "claim_governance" / "local_rule.py").write_text("", encoding="utf-8")
     errors = sync.check(tmp_path, manifest)
     assert any("rat_q.mojo differs" in e for e in errors)
-    assert any("interval_q/extra.mojo is not pinned" in e for e in errors)
+    assert any("finite_exact/extra.mojo is not pinned" in e for e in errors)
     assert any("claim_governance/local_rule.py is not pinned" in e for e in errors)
 
 

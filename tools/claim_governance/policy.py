@@ -141,12 +141,18 @@ class Promotion:
 
 @dataclass(frozen=True)
 class NumericsRule:
+    """``negating_context``: markers within ``radius`` characters of a match
+    that exempt it, for prose files that name a banned primitive in order to
+    forbid it."""
+
     name: str
     pattern: str
     paths: tuple[str, ...]
     message: str = ""
     allow_files: tuple[str, ...] = ()
     allow_lines: tuple[str, ...] = ()
+    negating_context: tuple[str, ...] = ()
+    radius: int = 140
 
     def regex(self) -> re.Pattern[str]:
         return re.compile(self.pattern)
@@ -268,7 +274,17 @@ def _numerics(table: Mapping[str, Any]) -> NumericsRule:
     return NumericsRule(
         name, pattern, _strs(table, "paths"), _str(table, "message", "") or "",
         _strs(table, "allow_files"), _strs(table, "allow_lines"),
+        _strs(table, "negating_context"), _int(table, "radius", 140),
     )
+
+
+def _numerics_rules(table: Any) -> tuple[NumericsRule, ...]:
+    if not isinstance(table, Mapping):
+        raise PolicyError("[numerics] must be a table")
+    rules = table.get("rule", [])
+    if not isinstance(rules, list) or any(not isinstance(rule, Mapping) for rule in rules):
+        raise PolicyError("numerics.rule must be a list of tables")
+    return tuple(_numerics(rule) for rule in rules)
 
 
 def policy_from_mapping(data: Mapping[str, Any]) -> Policy:
@@ -291,7 +307,7 @@ def policy_from_mapping(data: Mapping[str, Any]) -> Policy:
         ),
         ledger=ledger,
         promotion=_promotion(data.get("promotion", {}), status.classes),
-        numerics=tuple(_numerics(r) for r in data.get("numerics", {}).get("rule", [])),
+        numerics=_numerics_rules(data.get("numerics", {})),
     )
 
 
