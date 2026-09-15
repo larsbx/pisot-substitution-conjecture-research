@@ -39,7 +39,7 @@ _TEX_IFS = frozenset("if ifcat ifnum ifdim ifodd ifvmode ifhmode ifmmode ifinner
 # the rest of the source is read: the guard cannot follow any of them, so one before the closing
 # sentinel (at any depth, since a macro body or a skipped branch cannot be told apart) fails.
 _TEX_STOPS = frozenset("endinput csname catcode scantokens lowercase uppercase directlua input include "
-                       "InputIfFileExists @input openin stop dump".split())
+                       "InputIfFileExists @input openin stop dump ExplSyntaxOn".split())
 
 
 def check_tex(path: Path) -> list[str]:
@@ -93,10 +93,13 @@ def check_tex(path: Path) -> list[str]:
     # ...command... macro), the internal \\document and \\enddocument may not occur, and no
     # environment-defining command may target document.  TeX skips the white space after a control
     # word, a line ending included (a comment ends a line), so a definer, \\newif and an argument
-    # may be separated from what follows by line endings as well as by spaces
+    # may be separated from what follows by line endings as well as by spaces; a LaTeX definer may
+    # carry a * before its target; and a ...namedef... or ...namelet... macro defines the control
+    # word spelled by its brace argument without a \\csname in the source
     tampering = (re.search(r"(?<!\\)(?:\\\\)*\\(begin|end)(?![a-zA-Z@])(?![ \t]*\{)", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\([gex]?def|let|futurelet|global|long|outer|protected|[a-zA-Z@]*[cC]ommand[a-zA-Z@]*)"
-                              r"[ \t\n]*\{?[ \t\n]*\\(?:begin|end|document|enddocument)(?![a-zA-Z@])", active)
+                              r"[ \t\n]*\*?[ \t\n]*\{?[ \t\n]*\\(?:begin|end|document|enddocument)(?![a-zA-Z@])", active)
+                 or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*name(?:def|let)[a-zA-Z@]*)[ \t\n]*\{[ \t\n]*(?:begin|end|document|enddocument)[ \t\n]*\}", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\(document|enddocument)(?![a-zA-Z@])", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*[eE]nvironment)[ \t\n]*\*?[ \t\n]*\{[ \t\n]*document[ \t\n]*\}", active))
     if tampering:

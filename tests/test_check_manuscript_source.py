@@ -161,7 +161,7 @@ def test_commented_document_sentinels_fail(copy):
     tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\halt}{\\endinput}\n\\begin{document}", 1))  # even inside a macro body
     code, out = run(copy)
     assert code == 1 and "\\endinput on line" in out, out
-    for word in ("\\csname endinput\\endcsname", "\\input{other}", "\\catcode`\\%=12", "\\scantokens{x}"):  # constructions the guard cannot follow
+    for word in ("\\csname endinput\\endcsname", "\\input{other}", "\\catcode`\\%=12", "\\scantokens{x}", "\\ExplSyntaxOn"):  # constructions the guard cannot follow
         tex.write_text(text.replace("\\begin{document}", word + "\n\\begin{document}", 1))
         code, out = run(copy)
         assert code == 1 and "precedes \\end{document}; the guard cannot follow it" in out, (word, out)
@@ -174,7 +174,9 @@ def test_commented_document_sentinels_fail(copy):
                          "\\renewcommand\\begin{}", "\\global\\let\\end{}", "\\NewCommandCopy\\begin{\\relax}", "\\renewenvironment{document}{}{}",
                          "\\RenewDocumentEnvironment{document}{}{}{}", "\\let\\document\\relax", "\\let\\foo\\begin",
                          "\\def\n\\begin{}\n\\def\n\\end{}", "\\def%\n\\begin{}", "\\renewcommand\n{\\end}{}", "\\global\n\n\\let\n\\end{}",
-                         "\\renewenvironment\n{document}{}{}", "\\NewDocumentEnvironment\n*\n{ document }{}{}{}"):  # line endings after a control word are white space
+                         "\\renewenvironment\n{document}{}{}", "\\NewDocumentEnvironment\n*\n{ document }{}{}{}",  # line endings after a control word are white space
+                         "\\renewcommand*\\begin{}\n\\renewcommand*\\end{}", "\\newcommand*{\\end}{}", "\\DeclareRobustCommand*\n\\begin{}",  # starred definers
+                         "\\@namedef{begin}{}", "\\@namedef{ enddocument }{}", "\\@namelet\n{end}{relax}"):  # definers spelling their target as text
         tex.write_text(text.replace("\\begin{document}", redefinition + "\n\\begin{document}", 1))
         code, out = run(copy)
         assert code == 1 and "can change what the document sentinels mean" in out, (redefinition, out)
@@ -182,6 +184,8 @@ def test_commented_document_sentinels_fail(copy):
     assert run(copy)[0] == 0  # environment uses, longer control words and a macro body using \\begin{...} are fine
     tex.write_text(text.replace("\\begin{document}", "\\renewcommand{\\foo}\n{\\begin{center}}\n\\newenvironment\n{doc}{}{}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # a line-broken definer whose target is not a sentinel, and another environment
+    tex.write_text(text.replace("\\begin{document}", "\\renewcommand*{\\foo}{\\begin{center}}\n\\@namedef{beginfoo}{}\n\\begin{document}", 1))
+    assert run(copy)[0] == 0  # a starred definer with another target, and a spelled-out name that is not a sentinel
     tex.write_text(text.replace("\\begin{document}", "\\newif\n\\ifdraft\n\\ifdraft\n\\begin{document}", 1))  # a declared conditional across a line ending
     code, out = run(copy)
     assert code == 1 and "outside conditionals" in out, out

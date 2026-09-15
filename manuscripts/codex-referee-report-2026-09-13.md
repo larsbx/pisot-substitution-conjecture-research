@@ -1719,3 +1719,18 @@ No other findings were posted in the seventy-fifth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the seventy-sixth round.
+
+# Seventy-seventh round: review of the line-ending revision (pull request #95)
+
+**Reviewed commit:** `b51e7ebbbb` (finding 140).
+**Review posted:** 2026-09-15T22:50:02Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 141 (P2) — `scripts/check_manuscript_source.py`, line 99
+
+> **Reject starred command definers**
+>
+> Fresh evidence beyond the line-breaking fix is that LaTeX command definers may place `*` between the command name and its target, but this pattern allows only whitespace before the optional brace. A 500-line source containing `\renewcommand*\begin{}` and `\renewcommand*\end{}` before the standalone sentinels makes `check_tex` return no problems, although those definitions replace both commands and no document environment is opened; allow and reject the optional starred form here, as the environment-definer pattern already does.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-seventh round.
