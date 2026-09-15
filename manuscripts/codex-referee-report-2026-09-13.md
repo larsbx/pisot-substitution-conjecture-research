@@ -480,3 +480,28 @@ No other findings were posted in the twenty-first round.
 **Reviewed commit:** `4e68dcdc7d` (finding 38).
 **Review posted:** 2026-09-15T12:38:40Z. The automated Codex review of commit `4e68dcd` posted no findings ("Didn't find any major issues").
 
+---
+
+# Twenty-third round: review of the manuscript-source guard (pull request #92)
+
+**Reviewed commit:** `d2adbb9b97` (guard against byte-mangled manuscript sources).
+**Review posted:** 2026-09-15T15:32:16Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 39 (P2) — `scripts/check_manuscript_source.py`, line 45
+
+> **Reject PDFs truncated after their header**
+>
+> When a PDF is truncated or corrupted anywhere after its first five bytes while retaining `%PDF-`—even a file containing only those five bytes—`check_pdf` returns success, so the provenance section of `verify_all.sh` reports the artifact as intact despite the docstring promising that truncated files never pass. Validate at least the complete PDF trailer/xref structure, or invoke a parser, before accepting the file.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 40 (P2) — `scripts/check_manuscript_source.py`, line 50
+
+> **Require the expected manuscript inventory**
+>
+> When a canonical `.tex` or `.pdf` is deleted or renamed, this enumerates only artifacts that still exist and never compares them with an expected inventory; an empty directory even exits successfully with `0 files checked`. Consequently the fail-closed provenance check cannot distinguish intact sources from missing sources, so it should require the known manuscript files (or a checked-in manifest) before reporting success.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-third round.
+

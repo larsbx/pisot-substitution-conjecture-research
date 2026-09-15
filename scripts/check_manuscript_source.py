@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
-"""Fail closed if a manuscript source or PDF is not what it claims to be.
+"""Fail closed if a manuscript source or PDF is missing or not what it claims to be.
 
-Checks every ``manuscripts/*.tex``: valid UTF-8, no control bytes other than
-tab and newline, a ``\\documentclass`` first line, ``\\begin{document}`` and
-``\\end{document}`` present in that order, and at least MIN_LINES lines.
-Checks every ``manuscripts/*.pdf`` for the ``%PDF`` signature.  Exit status
-1 names every failure; a byte-mangled or truncated file never passes.
+``manuscripts/MANIFEST`` lists the required files, one per line.  Every listed
+file must exist; every ``.tex`` in the directory must be valid UTF-8 with no
+control bytes other than tab and newline, a ``\\documentclass`` first line,
+``\\begin{document}`` before ``\\end{document}``, and at least MIN_LINES lines;
+every ``.pdf`` must carry the ``%PDF-`` header, a ``startxref`` offset that
+points at an ``xref`` table or a cross-reference stream object, and ``%%EOF``
+within the last 1024 bytes.  Exit status 1 names every failure, so a missing,
+byte-mangled or truncated file never passes.
 
-Usage: check_manuscript_source.py [PATH ...]   (default: manuscripts/)
+Usage: check_manuscript_source.py [DIR]   (default: manuscripts/)
 """
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 
@@ -24,8 +28,8 @@ def check_tex(path: Path) -> list[str]:
         text = raw.decode("utf-8")
     except UnicodeDecodeError as e:
         return [f"{path}: not valid UTF-8 ({e})"]
-    bad = sorted({c for c in text if ord(c) < 32 and c not in "\n\t"})
     problems = []
+    bad = sorted({c for c in text if ord(c) < 32 and c not in "\n\t"})
     if bad:
         problems.append(f"{path}: control characters {[hex(ord(c)) for c in bad]}")
     lines = text.splitlines()
@@ -41,23 +45,50 @@ def check_tex(path: Path) -> list[str]:
 
 
 def check_pdf(path: Path) -> list[str]:
-    head = path.read_bytes()[:5]
-    return [] if head.startswith(b"%PDF-") else [f"{path}: missing %PDF signature (got {head!r})"]
+    raw = path.read_bytes()
+    if not raw.startswith(b"%PDF-"):
+        return [f"{path}: missing %PDF- signature (got {raw[:5]!r})"]
+    problems = []
+    tail = raw[-1024:]
+    if b"%%EOF" not in tail:
+        problems.append(f"{path}: no %%EOF in the last 1024 bytes (truncated?)")
+    m = re.search(rb"startxref\s+(\d+)\s*%%EOF", tail)
+    if not m:
+        problems.append(f"{path}: no startxref offset before the final %%EOF")
+        return problems
+    off = int(m.group(1))
+    if off >= len(raw):
+        problems.append(f"{path}: startxref offset {off} beyond end of file ({len(raw)} bytes)")
+    elif not re.match(rb"xref\b|\d+\s+\d+\s+obj\b", raw[off:off + 32]):
+        problems.append(f"{path}: startxref offset {off} does not point at an xref table or object")
+    return problems
 
 
 def main(argv: list[str]) -> int:
-    targets = [Path(a) for a in argv] or [ROOT / "manuscripts"]
-    files = [p for t in targets for p in (sorted(t.iterdir()) if t.is_dir() else [t])]
+    directory = Path(argv[0]) if argv else ROOT / "manuscripts"
+    manifest = directory / "MANIFEST"
     problems = []
-    for p in files:
-        if p.suffix == ".tex":
-            problems += check_tex(p)
-        elif p.suffix == ".pdf":
-            problems += check_pdf(p)
+    if not manifest.is_file():
+        problems.append(f"{manifest}: missing manifest of required files")
+        required = []
+    else:
+        required = [directory / l.strip() for l in manifest.read_text().splitlines() if l.strip()]
+        if not required:
+            problems.append(f"{manifest}: empty manifest")
+    for p in required:
+        if not p.is_file():
+            problems.append(f"{p}: required by the manifest but missing")
+    present = sorted(directory.glob("*.tex")) + sorted(directory.glob("*.pdf")) if directory.is_dir() else []
+    checked = 0
+    for p in present:
+        problems += check_tex(p) if p.suffix == ".tex" else check_pdf(p)
+        checked += 1
+    if not any(p.suffix == ".tex" for p in required) or not any(p.suffix == ".pdf" for p in required):
+        problems.append(f"{manifest}: must list at least one .tex and one .pdf")
     for m in problems:
         print("FAIL", m)
     if not problems:
-        print(f"OK manuscript sources: {sum(p.suffix in ('.tex', '.pdf') for p in files)} files checked")
+        print(f"OK manuscript sources: {len(required)} required files present, {checked} .tex/.pdf checked")
     return 1 if problems else 0
 
 

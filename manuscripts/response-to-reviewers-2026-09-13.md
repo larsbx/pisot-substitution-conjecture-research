@@ -311,3 +311,14 @@ One finding from the automated Codex review of commit `e61628428e`; accepted.
 
 The automated Codex review of commit `4e68dcdc7d` posted no findings. Finding 38 is recorded as addressed.
 
+---
+
+## Twenty-third round (pull request #92, manuscript-source guard)
+
+Two findings from the automated Codex review of commit `d2adbb9b97`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 39 | P2 | A PDF truncated after its `%PDF-` header passed the guard | Accepted. The guard now requires `%%EOF` within the last 1024 bytes, a `startxref` offset before the final `%%EOF`, and that the offset lies inside the file and points at an `xref` table or a cross-reference stream object; tests cover a header-only PDF and a bad `startxref` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 40 | P2 | Missing or renamed manuscript files passed silently; an empty directory reported success | Accepted. `manuscripts/MANIFEST` lists the required files; the guard fails on a missing manifest, an empty manifest, any listed file that is absent, and a manifest without a `.tex` and a `.pdf`; tests cover a deleted PDF and an empty directory | `manuscripts/MANIFEST`, `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
