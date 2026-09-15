@@ -20,7 +20,7 @@ Markers: `[V]` was checked in this session by reading or executing the repositor
 | 3. Extract `substitution_dynamics` | done | `larsbx/substitution_dynamics`; `mojo/substitution_dynamics/` is the vendored copy, `psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` the alphabet-3 views |
 | 4. Separate exact linear algebra from certificate logic | done | `larsbx/finite_linear_algebra` (`mat3`, `qlinalg`, `tensor3`, general `w3`, `scalar`); `psc/w3.mojo` keeps the printed certificate basis |
 | interval layer (section 3) | done | `larsbx/interval_q`, on `finite_exact` |
-| 5. Specify `finite_proof_records` | specification and Python reference model done; Mojo implementation pending | `larsbx/finite_proof_records` |
+| 5. Specify `finite_proof_records` | specification, Python reference model, and canonical Mojo implementation done (replays the shared vectors under the pinned toolchain); PSC has not yet written its ledger records or policy | `larsbx/finite_proof_records` |
 | 6. Extract the audit tooling with per-repository policy | not started | NLAP-JT `tools/audit_*.py` |
 
 Vendoring is by byte-identical copy, pinned per package by upstream commit and SHA-256 digest in `vendored.toml` and enforced by `scripts/check_vendored_sync.py` (shipped by `finite_exact`). The heads and paths quoted below are those of 2026-09-14 and are kept as the audit record.
