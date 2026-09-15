@@ -1,4 +1,5 @@
 """Exploratory helper regressions: exact enumeration window for G_O types."""
+from fractions import Fraction
 import pytest
 
 from psc_research.oa_overlap_graph import fixed_point_prefix, oa_types, oa_window, prolongable_power
@@ -43,3 +44,26 @@ def test_tribonacci_level_zero_types_included_in_seed_graph():
     seed = set(g.states)
     oa = oa_types(g, u, 1)
     assert oa and all(s in seed for s in oa if not OverlapGraph.is_coincidence(s))
+
+
+def test_contracting_lower_bound_is_below_left_aligned_depth():
+    from psc_research.overlap_contracting import ContractingBound, discriminant, field_norm
+    from psc_research.overlap_graph import first_left_aligned_depths
+
+    real = {1: (2,), 2: (1, 3), 3: (1, 3, 3)}
+    for sigma, complex_pair, max_m0 in ((TRIB, True, 2), ({1: (2,), 2: (1, 3, 2), 3: (1, 1, 2)}, True, 4), (real, False, 2)):
+        g = OverlapGraph(sigma)
+        cb = ContractingBound(g)
+        assert cb.complex == complex_pair == (discriminant(g.F) < 0)
+        assert field_norm(g.F, g.F.beta) == g.F.D  # N(beta) = D
+        b = first_left_aligned_depths(g)
+        m0 = [cb.least_level(s[2]) for s in g.states]
+        assert all(0 <= m <= bb for m, bb in zip(m0, b))
+        assert max(m0) == max_m0
+        assert all((m == 0) == (not any(s[2])) for m, s in zip(m0, g.states))
+    # Referee counter-calibration: the Cauchy-Schwarz relaxation of the complex-pair
+    # test returns 5 on this reachable offset; the defining inequality first holds at 6.
+    g = OverlapGraph({1: (2,), 2: (3, 3), 3: (2, 1, 3)})
+    t = (Fraction(-8), Fraction(-2), Fraction(5, 2))
+    assert any(s[2] == t for s in g.states)
+    assert ContractingBound(g).least_level(t) == 6

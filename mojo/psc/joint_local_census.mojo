@@ -18,7 +18,7 @@ from psc.renewal_address import (
     build_renewal_address_tables,
     build_renewal_pair_census_state,
 )
-from psc.words import Pair
+from psc.words import Pair, is_balanced
 
 
 struct JointLocalSample(Copyable, Movable):
@@ -85,7 +85,7 @@ def zero_return_cuts(
     """Independent finite oracle for interior aligned zero-return positions."""
     if depth < 0:
         raise Error("joint-local census depth must be nonnegative")
-    if not pair.is_balanced():
+    if not is_balanced(pair):
         raise Error("joint-local census source pair must be balanced")
 
     var top = apply_substitution_n(sigma, pair.u, depth)

@@ -7,7 +7,7 @@ keys and Pair copies; strings are confined to the one-time interning boundary.
 """
 
 from psc.bpa import apply_substitution, coincidence_boundaries, decompose, normalise
-from psc.words import Pair
+from psc.words import Pair, is_balanced
 
 
 struct OrientedSymbol(Copyable, Movable, Equatable, Writable):
@@ -98,7 +98,7 @@ def build_derived_system(
     # One-time normalization/interning boundary. Downstream hot loops use Int IDs.
     for i in range(len(comp)):
         var state = normalise(comp[i])
-        if not state.is_balanced():
+        if not is_balanced(state):
             raise Error("strict component contains an unbalanced state")
         if state.is_coincidence():
             raise Error("strict component contains a coincidence state")

@@ -80,9 +80,14 @@ closed on caps and retain a replayable record for every survivor.
 - Endpoint-aligned overlaps are the two-sided strong coincidence condition, and
   under strong coincidence productivity is the prefix-Parikh boundary-hitting
   statement of Propositions 5.39–5.40 / Corollary 5.41.
+- The contracting lower bound on the hitting level (Proposition 5.42, PR #87)
+  accounts for at most 8 of the up to 17 inflations observed, leaving a gap this
+  magnitude bound does not explain (note Section 10).
 - Exact finite evidence: all 1,118,850 overlap vertices in the 4,554-member corpus
   are productive; maximum first-coincidence depth 18, maximum first left-aligned
   depth 17, maximum prefix/suffix strong-coincidence depth 15.
+- Contracting lower bound on the hitting level: at most 8; excess of the
+  hitting depth over it at most 14.
 
 ## Stronger Level 2 programme: BPA finiteness
 

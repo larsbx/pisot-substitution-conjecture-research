@@ -47,6 +47,16 @@ change upstream, then re-vendor. PSC-specific conventions over that package
 (raise or abort on a rejected value, integer lifts, Horner helpers, diagnostic
 rendering) live in `mojo/psc/exact.mojo` and nowhere else.
 
+## Substitution-dynamics package
+
+Words, substitutions, balanced pairs, the balanced-pair automaton, and
+swap-walk discrepancy live in `mojo/substitution_dynamics/` over an explicit
+alphabet, validated once at `Substitution.checked`. `mojo/psc/words.mojo`,
+`mojo/psc/bpa.mojo`, and `mojo/psc/swap_discrepancy.mojo` are alphabet-3 views
+of that package and must stay thin: add general mechanics to the package and
+conjecture-specific predicates to `psc/`. Do not reintroduce a hard-coded
+three-letter kernel beside it. See `mojo/substitution_dynamics/README.md`.
+
 ## Porting order for the live C4 program
 
 The current C4 recognizability/factorization work is being migrated to this policy. The preferred order is:

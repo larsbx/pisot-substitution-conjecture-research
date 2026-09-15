@@ -56,6 +56,7 @@ This does **not** mean the stronger structural problems are solved:
 - **Coincidence density:** repository Lemma 5.36 identifies overlap productivity with coincidence density one / density of the eventual-coincidence good set.
 - **Density to PDS:** Barge–Štimac–Williams is imported with exact hypotheses audited in PR #77 / manuscript Imported Theorem 5.37.
 - **Endpoint-aligned structure:** PR #82 identifies offset-zero/right-aligned overlaps with prefix/suffix strong coincidence and proves the exact prefix-Parikh boundary-hitting criterion.
+- **Contracting lower bound:** PR #87 proves that a boundary hit at level `m` forces `|ς(t)| ≤ C_ς Σ_{s≤m} |ς(β)|^{-s}` for every contracting embedding (Proposition 5.42, decided exactly in `Q(β)`); on the corpus this lower bound is at most 8 while the hitting depth reaches 17, a gap of up to 14 inflations that this magnitude bound does not explain (the gap includes the slack of the bound; no further attribution is drawn).
 
 ### Current theorem target
 
@@ -84,6 +85,7 @@ On the exact 4,554-member ternary PIP short-image corpus:
 - maximum first-coincidence depth: `18`;
 - maximum first left-aligned depth: `17`;
 - maximum prefix/suffix strong-coincidence depth: `15`;
+- contracting lower bound on the hitting level (Proposition 5.42): at most `8`, excess of the hitting depth over it at most `14`;
 - every specimen satisfies the tested two-sided strong-coincidence condition.
 
 The degree-two and degree-three fail-closed carrier certificates also have zero survivors in their exact stated domains. These are finite-domain theorems/evidence according to their individual completeness contracts; none proves the general PSC.
@@ -148,10 +150,10 @@ Issue #45 is therefore closed as a completed status/source reconciliation task. 
 
 | Priority | Layer | Tool | Scope |
 |---|---|---|---|
-| **Canonical executable** | `mojo/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA/overlap construction, structural machinery, exact arithmetic, and finite censuses. |
-| Formal state/dependency | `tla/` | TLA+ / TLC | State-machine models and machine-checked proof-dependency ledger. |
-| Deductive finite algebra | `PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra with an axiom audit. |
-| Secondary oracle | `src/psc_research/` + `tests/` | Python | Independent reference implementations and regressions. |
+| **Canonical executable** | `mojo/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. Words, balanced pairs, and the balanced-pair automaton come from `mojo/substitution_dynamics/` (alphabet-generic; `psc/` binds alphabet 3). Integer, rational, and rational-interval arithmetic come from `mojo/finite_exact/`, vendored from `larsbx/NLAP-JT` and identical to the upstream sources up to package-qualified import lines (see `mojo/finite_exact/UPSTREAM.md`). |
+| Formal state/dependency | `tla/` | TLA+ / TLC | BPA state-machine models and the machine-checked proof-dependency ledger. |
+| Deductive finite algebra | `PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
+| Secondary oracle | `src/psc_research/` + `tests/` | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |
 
 Exact arithmetic lives in `mojo/finite_exact/`, vendored from `larsbx/NLAP-JT` with a pinned sync check.
 
@@ -167,20 +169,22 @@ Unavailable toolchains are reported as skipped; a skip is not a passing proof.
 
 ```text
 .
-├── AGENTS.md
-├── archive/2026-09-08/
-├── docs/
-├── manuscripts/
-├── mojo/
-│   ├── finite_exact/
-│   ├── psc/
-│   └── tests/
-├── tla/
-├── PscVerif/
-├── src/psc_research/
-├── tests/
-├── scripts/verify_all.sh
-└── .github/workflows/
+├── AGENTS.md                   # Mojo-first implementation and optimization policy
+├── archive/2026-09-08/        # preserved source corpus: manuscripts, notes, instruments
+├── docs/                       # live proof architecture, audits, conjecture ledger
+├── manuscripts/                # publication drafts and referee records
+├── mojo/                       # canonical exact implementation + finite censuses
+│   ├── finite_exact/           # exact arithmetic, vendored from NLAP-JT (pinned)
+│   ├── substitution_dynamics/  # alphabet-generic words, balanced pairs, automaton
+│   ├── psc/                    # reusable Mojo research kernel
+│   └── tests/                  # canonical executable regressions
+├── tla/                        # TLA+ BPA models and proof-dependency ledger
+├── PscVerif/                   # Lean 4 + Mathlib finite-algebra proofs
+├── src/psc_research/           # secondary Python reference/oracle layer
+├── tests/                      # Python oracle/regression tests
+├── scripts/verify_all.sh       # run every verification layer
+├── .github/workflows/          # automated checks and exact censuses
+└── pyproject.toml              # secondary Python oracle metadata
 ```
 
 ## Quick start — Mojo

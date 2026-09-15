@@ -19,7 +19,7 @@ optimized for the standing three-letter regime:
 """
 
 from psc.bpa import apply_substitution, coincidence_boundaries
-from psc.words import Pair
+from psc.words import Pair, is_balanced
 
 
 struct CutLocation(Copyable, Movable):
@@ -130,7 +130,7 @@ def single_supertile_zero_returns(
     """Interior zero returns radius-R deep inside one original-letter supertile per side."""
     if depth < 0 or radius < 0:
         raise Error("depth and radius must be nonnegative")
-    if not p.is_balanced():
+    if not is_balanced(p):
         raise Error("legal-context extraction requires a balanced pair")
 
     var top = apply_substitution_n(sigma, p.u, depth)
@@ -194,7 +194,7 @@ def tower_source_cuts(
     """
     if depth < 1 or descent_levels < 0 or descent_levels > depth:
         raise Error("invalid tower depth/descent_levels")
-    if not p.is_balanced():
+    if not is_balanced(p):
         raise Error("tower source cuts require a balanced pair")
 
     var top_levels = List[List[Int]]()

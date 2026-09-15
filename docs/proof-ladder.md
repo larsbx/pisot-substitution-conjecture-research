@@ -92,6 +92,8 @@ PR #82 proves:
 
 PR #88 turns this into the aligned-versus-zipper case split above without assuming strong coincidence globally.
 
+PR #87 adds the contracting lower bound (Proposition 5.42): a hit at level `m` forces `|varsigma(t)| <= C_varsigma sum_{s<=m} |varsigma(beta)|^{-s}` for every contracting embedding, decided exactly in `Q(beta)`; on the corpus this bound is at most 8 while the hitting depth reaches 17, leaving a gap of up to 14 inflations that this magnitude bound does not explain (the gap includes the slack of the bound; no further attribution is drawn).
+
 # Stronger route A — Level 2 / finite BPA
 
 The stronger Level-2 ladder remains

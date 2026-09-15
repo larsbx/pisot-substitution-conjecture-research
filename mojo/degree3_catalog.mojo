@@ -9,7 +9,7 @@ from psc.bpa import Automaton, build, recurrent_noncoincident_sccs, substitution
 from psc.mat3 import Mat3
 from psc.pisot import is_pip
 from psc.tensor3 import theta
-from psc.words import Pair, is_zero
+from psc.words import Pair, is_zero, k2, k3
 
 
 def image_words() -> List[List[Int]]:
@@ -37,7 +37,7 @@ def contains_index(comp: List[Int], x: Int) -> Bool:
 
 
 def is_degree3(p: Pair) -> Bool:
-    return is_zero(p.k2()) and not is_zero(p.k3())
+    return is_zero(k2(p)) and not is_zero(k3(p))
 
 
 def has_coincidence_child(automaton: Automaton, state_index: Int) -> Bool:
@@ -74,9 +74,9 @@ def is_first_degree3_component(automaton: Automaton, comp: List[Int]) -> Bool:
     var has_k3 = False
     for si in range(len(comp)):
         ref p = automaton.states[comp[si]]
-        if not is_zero(p.k2()):
+        if not is_zero(k2(p)):
             return False
-        if not is_zero(p.k3()):
+        if not is_zero(k3(p)):
             has_k3 = True
     return has_k3
 
@@ -170,7 +170,7 @@ def main() raises:
                     if p.length() > max_length:
                         max_length = p.length()
                     var m = Mat3(substitution_incidence(sigma))
-                    var a = theta(p.k3())
+                    var a = theta(k3(p))
                     var centralizer = m * a == a * m
                     if not centralizer:
                         n_noncentralizer += 1

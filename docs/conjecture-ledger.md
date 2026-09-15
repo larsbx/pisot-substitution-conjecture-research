@@ -95,6 +95,8 @@ Thus the open gate has two precise branches:
 
 Do not collapse the zipper immediately to the unordered child-count matrix: that discards exactly the order information not constrained by full rank.
 
+**Contracting lower bound (2026-09-15, PR #87, Proposition 5.42).** A hit at level `m` forces `|varsigma(t)| <= C_varsigma sum_{s<=m} |varsigma(beta)|^{-s}` for every contracting embedding, decided exactly in `Q(beta)`; on the corpus this bound is at most 8 while the hitting depth reaches 17, leaving a gap of up to 14 inflations that this magnitude bound does not explain (the gap includes the slack of the bound; no further attribution is drawn). It constrains the difficulty of the gate; it adds no dependency edge.
+
 ### Coincidence density and PDS
 
 **Status: repository-proved + imported theorem (PR #77).** Lemma 5.36 supplies the repository equivalence between overlap productivity, coincidence density one, and a dense good set. Barge–Štimac–Williams supplies the dense-eventual-coincidence-to-PDS implication. The finite-stage good sets are not nested; the corrected proof uses only finite subdivision-point losses between stages.
@@ -172,6 +174,7 @@ On the 4,554-member ternary PIP short-image corpus:
 - maximum first-coincidence depth: `18`;
 - maximum first left-aligned depth: `17`;
 - maximum prefix and suffix strong-coincidence depths: `15`;
+- contracting lower bound on the hitting level (Proposition 5.42): at most `8`, excess of the hitting depth over it at most `14`;
 - every specimen satisfies the tested two-sided strong-coincidence condition.
 
 These results strongly guide proof search but do not establish a universal image-length/alphabet-size completeness bound.
