@@ -155,6 +155,14 @@ def test_commented_document_sentinels_fail(copy):
     tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\fake}{\\iffalse}\n\\begin{document}", 1))  # neither can be told apart
     code, out = run(copy)
     assert code == 1 and "conditional token inside a brace group (line" in out, out
+    tex.write_text(text.replace("\\begin{document}", "\\endinput\n\\begin{document}", 1))  # TeX stops before the sentinels
+    code, out = run(copy)
+    assert code == 1 and "\\endinput on line" in out and "precedes" in out, out
+    tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\stop}{\\endinput}\n\\begin{document}", 1))  # even inside a macro body
+    code, out = run(copy)
+    assert code == 1 and "\\endinput on line" in out, out
+    tex.write_text(text[:i + len("\\end{document}")] + "\n\\endinput" + text[i + len("\\end{document}"):])  # after the document is fine
+    assert run(copy)[0] == 0
 
 
 def test_endstream_needs_a_preceding_line_ending(copy):

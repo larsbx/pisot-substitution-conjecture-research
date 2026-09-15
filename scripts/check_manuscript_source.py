@@ -78,6 +78,9 @@ def check_tex(path: Path) -> list[str]:
         return -1
 
     b, e = sentinel("begin"), sentinel("end")
+    stop = re.search(r"(?<!\\)(?:\\\\)*\\endinput(?![a-zA-Z])", active)  # TeX stops reading here; a token inside a
+    if stop and (e < 0 or stop.start() < e):  # macro body or a skipped branch cannot be told apart, so any one counts
+        problems.append(f"{path}: \\endinput on line {active.count(chr(10), 0, stop.start()) + 1} precedes \\end{{document}}")
     if b < 0 or e < b:
         problems.append(f"{path}: missing or misordered \\begin{{document}} / \\end{{document}} as standalone uncommented top-level lines outside conditionals")
     if len(lines) < MIN_LINES:

@@ -821,3 +821,11 @@ One finding from the automated Codex review of commit `e4a69e56aa`; accepted, wi
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 134 | P2 | A conditional opener inside an executed group was discarded like a macro-body token | Accepted. The guard cannot tell an executed group from a macro body without interpreting TeX, so a conditional token at nonzero brace depth is now a problem in itself and the source fails; conditional tokens at the top level are counted as before. The scenario was confirmed to pass the previous revision. Tests: `{\iffalse}` around the sentinels closed by `\else`, `}`, `\fi`, a `\fi` in a macro body, and an `\iffalse` in a macro body (all fail); the repository sources contain no conditionals | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-first round (pull request #95, brace-group revision)
+
+One finding from the automated Codex review of commit `3360c47049`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 135 | P2 | An `\endinput` before the sentinels left them counted although TeX never reads them | Accepted. Any `\endinput` control word in the comment-stripped text that precedes the closing sentinel now fails the source, at any depth, since one inside a macro body or a skipped branch cannot be told apart from an executed one. The scenario was confirmed to pass the previous revision. Tests: `\endinput` before the sentinels and inside a macro body before them (fail), `\endinput` after `\end{document}` (passes); the repository sources contain none | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

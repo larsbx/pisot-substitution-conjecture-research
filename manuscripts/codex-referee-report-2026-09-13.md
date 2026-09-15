@@ -1629,3 +1629,18 @@ No other findings were posted in the sixty-ninth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the seventieth round.
+
+# Seventy-first round: review of the brace-group revision (pull request #95)
+
+**Reviewed commit:** `3360c47049` (finding 134).
+**Review posted:** 2026-09-15T22:14:31Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 135 (P2) — `scripts/check_manuscript_source.py`, line 76
+
+> **Reject sentinels after an active `\endinput`**
+>
+> Fresh evidence beyond the prior standalone and conditional fixes is a 500-line source with an active `\endinput` immediately before standalone `\begin{document}` and `\end{document}` lines: TeX stops reading before either sentinel, but both still have brace and conditional depth zero here, so `check_tex` returns success. Reject a top-level `\endinput` that precedes either required sentinel so a source with no executable document environment cannot pass the fail-closed provenance guard.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-first round.
