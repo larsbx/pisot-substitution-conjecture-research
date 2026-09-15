@@ -89,6 +89,47 @@ def test_pdf_xref_object_without_stream_body_fails(copy):
     assert code == 1 and "no stream body" in out
 
 
+MINIMAL_CLASSIC = (
+    b"%PDF-1.4\n1 0 obj\n<< /Type /Catalog >>\nendobj\n"
+    b"xref\n0 2\n0000000000 65535 f \n0000000009 00000 n \n"
+    b"trailer\n<< /Size 2 /Root 1 0 R >>\nstartxref\n41\n%%EOF\n"
+)
+
+
+def test_minimal_classic_table_passes(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(MINIMAL_CLASSIC)
+    assert MINIMAL_CLASSIC[41:45] == b"xref"
+    code, out = run(copy)
+    assert code == 0, out
+
+
+def test_entryless_classic_table_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(b"%PDF-1.4\nxref\ntrailer\nstartxref\n9\n%%EOF\n")
+    code, out = run(copy)
+    assert code == 1 and "no entries" in out
+
+
+def test_empty_xref_stream_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(
+        b"%PDF-1.5\n1 0 obj\n<< /Type /XRef /Size 2 /W [1 2 1] /Root 1 0 R /Length 0 >>\nstream\nendstream\nendobj\nstartxref\n9\n%%EOF\n"
+    )
+    code, out = run(copy)
+    assert code == 1 and "not a positive multiple" in out
+
+
+def test_corrupted_flate_payload_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = bytearray(pdf.read_bytes())
+    i = raw.rfind(b"stream\n", 0, raw.rfind(b"endstream")) + len(b"stream\n") + 40
+    raw[i] ^= 0xFF
+    pdf.write_bytes(bytes(raw))
+    code, out = run(copy)
+    assert code == 1 and ("does not inflate" in out or "not a positive multiple" in out)
+
+
 def test_missing_required_file_fails(copy):
     next(copy.glob("*.pdf")).unlink()
     code, out = run(copy)

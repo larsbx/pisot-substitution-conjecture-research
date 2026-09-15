@@ -6,7 +6,7 @@ file must exist; every ``.tex`` in the directory must be valid UTF-8 with no
 control bytes other than tab and newline, a ``\\documentclass`` first line,
 ``\\begin{document}`` before ``\\end{document}``, and at least MIN_LINES lines;
 every ``.pdf`` must carry the ``%PDF-`` header, a ``startxref`` offset that
-(the last one before the final ``%%EOF``) that points at an ``xref`` table with a trailer or at a\n``/Type /XRef`` object with a stream body, and ``%%EOF``
+(the last one before the final ``%%EOF``) that points at a classic ``xref`` table\n(subsections of 20-byte entries, then a ``trailer`` dictionary with ``/Size`` and\n``/Root``) or at a ``/Type /XRef`` stream object whose body matches its direct\n``/Length``, inflates if Flate-encoded, and has a positive multiple of the ``/W``\nrow width, and ``%%EOF``
 within the last 1024 bytes.  Exit status 1 names every failure, so a missing,
 byte-mangled or truncated file never passes.
 
@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import re
 import sys
+import zlib
 from pathlib import Path
 
 MIN_LINES = 500
@@ -44,12 +45,107 @@ def check_tex(path: Path) -> list[str]:
     return problems
 
 
+def _dict_at(buf: bytes, i: int) -> bytes | None:
+    """The dictionary starting at ``buf[i:i+2] == b'<<'``, delimiters included."""
+    if buf[i:i + 2] != b"<<":
+        return None
+    depth, j = 0, i
+    while j < len(buf) - 1:
+        pair = buf[j:j + 2]
+        if pair == b"<<":
+            depth, j = depth + 1, j + 2
+        elif pair == b">>":
+            depth, j = depth - 1, j + 2
+            if depth == 0:
+                return buf[i:j]
+        else:
+            j += 1
+    return None
+
+
+def _classic_table(at: bytes) -> str | None:
+    """Problem with the classic ``xref`` table at ``at[0:]``, or None."""
+    m = re.match(rb"xref[ \t]*(?:\r\n|\r|\n)", at)
+    if not m:
+        return "malformed xref keyword"
+    pos, entries = m.end(), 0
+    while True:
+        sub = re.match(rb"(\d+)[ \t]+(\d+)[ \t]*(?:\r\n|\r|\n)", at[pos:pos + 64])
+        if not sub:
+            break
+        pos, count = pos + sub.end(), int(sub.group(2))
+        block = at[pos:pos + 20 * count]
+        if len(block) < 20 * count:
+            return "truncated xref subsection"
+        for k in range(count):
+            if not re.fullmatch(rb"\d{10} \d{5} [nf](?: \r| \n|\r\n)", block[20 * k:20 * k + 20]):
+                return f"malformed xref entry {entries + k}"
+        pos, entries = pos + 20 * count, entries + count
+    if entries == 0:
+        return "xref table has no entries"
+    t = re.match(rb"trailer\s*", at[pos:pos + 32])
+    if not t:
+        return "xref table not followed by trailer"
+    d = _dict_at(at, pos + t.end())
+    if d is None:
+        return "trailer has no dictionary"
+    if not re.search(rb"/Size\s+\d+", d) or not re.search(rb"/Root\s+\d+\s+\d+\s+R", d):
+        return "trailer dictionary lacks /Size or /Root"
+    return None
+
+
+def _xref_stream(at: bytes) -> str | None:
+    """Problem with the cross-reference stream object at ``at[0:]``, or None."""
+    m = re.match(rb"\d+\s+\d+\s+obj\s*", at)
+    if not m:
+        return "not an object"
+    d = _dict_at(at, m.end())
+    if d is None:
+        return "object has no dictionary"
+    if not re.search(rb"/Type\s*/XRef\b", d):
+        return "object is not a cross-reference stream"
+    if not re.search(rb"/Size\s+\d+", d) or not re.search(rb"/Root\s+\d+\s+\d+\s+R", d):
+        return "cross-reference stream lacks /Size or /Root"
+    w = re.search(rb"/W\s*\[([\d\s]+)\]", d)
+    if not w:
+        return "cross-reference stream lacks /W"
+    row = sum(int(x) for x in w.group(1).split())
+    pred = re.search(rb"/Predictor\s+(\d+)", d)
+    if pred and int(pred.group(1)) >= 10:
+        row += 1
+    if row == 0:
+        return "cross-reference stream has zero row width"
+    length = re.search(rb"/Length\s+(\d+)\s*(?!\d+\s+R)", d)
+    if not length:
+        return "cross-reference stream lacks a direct /Length"
+    n = int(length.group(1))
+    body = re.match(rb"\s*stream(?:\r\n|\n)", at[m.end() + len(d):m.end() + len(d) + 16])
+    if not body:
+        return "cross-reference stream has no stream body"
+    data_start = m.end() + len(d) + body.end()
+    data = at[data_start:data_start + n]
+    if len(data) < n or not re.match(rb"(?:\r\n|\r|\n)?endstream\b", at[data_start + n:data_start + n + 12]):
+        return "cross-reference stream body does not match /Length"
+    flt = re.search(rb"/Filter\s*/(\w+)", d)
+    if flt and flt.group(1) != b"FlateDecode":
+        return f"unsupported cross-reference stream filter {flt.group(1).decode()}"
+    if flt:
+        try:
+            payload = zlib.decompress(data)
+        except zlib.error as e:
+            return f"cross-reference stream payload does not inflate ({e})"
+    else:
+        payload = data
+    if len(payload) == 0 or len(payload) % row != 0:
+        return f"cross-reference stream payload of {len(payload)} bytes is not a positive multiple of the row width {row}"
+    return None
+
+
 def check_pdf(path: Path) -> list[str]:
     raw = path.read_bytes()
     if not raw.startswith(b"%PDF-"):
         return [f"{path}: missing %PDF- signature (got {raw[:5]!r})"]
-    tail_start = max(0, len(raw) - 1024)
-    tail = raw[tail_start:]
+    tail = raw[-1024:]
     eof = tail.rfind(b"%%EOF")
     if eof < 0:
         return [f"{path}: no %%EOF in the last 1024 bytes (truncated?)"]
@@ -64,19 +160,13 @@ def check_pdf(path: Path) -> list[str]:
     if off >= len(raw):
         return [f"{path}: startxref offset {off} beyond end of file ({len(raw)} bytes)"]
     at = raw[off:]
-    if re.match(rb"xref\s", at[:8]):
-        if b"trailer" not in at:
-            return [f"{path}: xref table at {off} has no trailer"]
-        return []
-    if re.match(rb"\d+\s+\d+\s+obj\b", at[:32]):
-        # a cross-reference stream: dictionary, then a stream body, then endstream
-        body = at.find(b"stream")
-        if body < 0 or b"endstream" not in at[body:]:
-            return [f"{path}: object at {off} has no stream body (not a cross-reference stream)"]
-        if not re.search(rb"/Type\s*/XRef\b", at[:body]):
-            return [f"{path}: startxref offset {off} points at an object that is not a cross-reference stream"]
-        return []
-    return [f"{path}: startxref offset {off} does not point at an xref table or object"]
+    if at.startswith(b"xref"):
+        problem = _classic_table(at)
+    elif re.match(rb"\d+\s+\d+\s+obj\b", at[:32]):
+        problem = _xref_stream(at)
+    else:
+        problem = "startxref offset does not point at an xref table or object"
+    return [f"{path}: at startxref offset {off}: {problem}"] if problem else []
 
 
 def main(argv: list[str]) -> int:

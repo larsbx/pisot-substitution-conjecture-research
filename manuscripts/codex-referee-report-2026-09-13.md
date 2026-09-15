@@ -557,4 +557,30 @@ No other findings were posted in the twenty-fourth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the twenty-fifth round.
+
+
+---
+
+# Twenty-sixth round: review of the trailer revision (pull request #95)
+
+**Reviewed commit:** `c6032e3dad` (findings 43–44).
+**Review posted:** 2026-09-15T15:48:39Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 45 (P2) — `scripts/check_manuscript_source.py`, line 70
+
+> **Validate the classic cross-reference table contents**
+>
+> When the final trailer uses a classic table, this accepts any bytes beginning with `xref` as long as the word `trailer` occurs later; for example, `%PDF-1.4\nxref\ntrailer\nstartxref\n9\n%%EOF\n` returns success despite containing no cross-reference subsection or trailer dictionary. Fresh evidence beyond finding 44 is this entryless classic-table path, so validate the table and trailer structure before reporting the PDF intact.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 46 (P2) — `scripts/check_manuscript_source.py`, line 74
+
+> **Validate data in the XRef stream body**
+>
+> When an XRef object contains the literal pair `stream\nendstream` but no stream data, this condition passes and the function returns success; it also accepts a corrupted Flate payload because neither `/Length` nor decoding is checked. Fresh evidence beyond finding 44 is that an empty `/Type /XRef` stream, or a one-byte mutation in the repository PDF's compressed XRef payload that makes zlib reject it, still produces no problems, so validate the stream payload rather than only its delimiter tokens.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-sixth round.
 \n

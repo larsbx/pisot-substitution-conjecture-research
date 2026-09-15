@@ -346,4 +346,16 @@ Two findings from the automated Codex review of commit `ea83b495c5`; both accept
 | --- | --- | --- | --- | --- |
 | 43 | P2 | With several trailers in the last 1024 bytes the guard validated the first, not the one before the final `%%EOF` | Accepted. The guard locates the final `%%EOF`, takes the last `startxref` before it, and requires the text between them to be exactly the offset; a test appends a corrupt trailer after the valid one and expects failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 44 | P2 | An XRef-typed object without a stream body passed | Accepted. An object-pointing offset must lead to a dictionary containing `/Type /XRef` followed by a `stream` keyword and a later `endstream`; a classic `xref` table must be followed by `trailer`; a test builds a PDF whose only object is XRef-typed with no stream and expects failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+
+---
+
+## Twenty-sixth round (pull request #95, trailer revision)
+
+Two findings from the automated Codex review of commit `c6032e3dad`; both accepted. The guard now parses the cross-reference structure instead of matching delimiter tokens.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 45 | P2 | A classic table was accepted from the bare `xref` and `trailer` keywords | Accepted. The table is parsed: `xref`, one or more `start count` subsections, exactly `count` entries of 20 bytes matching `nnnnnnnnnn ggggg n/f`, at least one entry in total, then `trailer` and a dictionary containing `/Size` and `/Root`; tests cover a minimal valid classic PDF and the entryless one | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 46 | P2 | An empty or corrupted cross-reference stream body was accepted | Accepted. The stream dictionary must contain `/Type /XRef`, `/Size`, `/Root`, `/W` and a direct `/Length`; the body must have exactly `/Length` bytes followed by `endstream`; a Flate body must inflate (other filters fail closed); the payload must be a positive multiple of the `/W` row width (plus one under a PNG predictor); tests cover an empty stream and a one-byte mutation of the repository PDF's compressed payload | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 \n
