@@ -10,6 +10,27 @@ from __future__ import annotations
 from typing import Any
 
 
+def common_child_start_count(g: Any, state: Any) -> int:
+    """Count top/bottom substituted child starts that agree exactly.
+
+    For an ``OverlapGraph`` state ``(top,bottom,t)``, top child ``i`` starts at
+    ``p_i`` and bottom child ``j`` at ``beta*t+q_j``.  Equality is exactly the
+    zero-shift condition for that child overlap.  This uses field equality,
+    not numerical approximation.
+    """
+    top, bottom, shift = state
+    F = g.F
+    scaled = F.mul(F.beta, shift)
+    count = 0
+    for i in range(len(g.sigma[top])):
+        p = g.prefix[(top, i)]
+        for j in range(len(g.sigma[bottom])):
+            q = F.add(scaled, g.prefix[(bottom, j)])
+            if p == q:
+                count += 1
+    return count
+
+
 def sccs(g: Any) -> list[list[int]]:
     """Strongly connected components of a complete directed overlap graph.
 
