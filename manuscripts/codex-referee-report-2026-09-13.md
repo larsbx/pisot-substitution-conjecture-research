@@ -1734,3 +1734,18 @@ No other findings were posted in the seventy-sixth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the seventy-seventh round.
+
+# Seventy-eighth round: review of the starred-definer revision (pull request #95)
+
+**Reviewed commit:** `d05f64b009` (finding 141).
+**Review posted:** 2026-09-15T22:57:31Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 142 (P2) — `scripts/check_manuscript_source.py`, line 101
+
+> **Reject definer targets assembled by expansion**
+>
+> When a definer's target is supplied through expansion, this regex never sees the protected control word adjacent to the definer. A 500-line source containing `\toks0={\begin{}}` followed by `\expandafter\def\the\toks0` (and the analogous two lines for `\end`) passes `check_tex`, but TeX expands these into `\def\begin{}` and `\def\end{}`, so the accepted standalone sentinels no longer open or close the document environment. Fail closed on expansion primitives capable of assembling definer targets before the closing sentinel.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-eighth round.

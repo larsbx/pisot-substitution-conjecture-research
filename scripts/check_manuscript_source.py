@@ -35,11 +35,18 @@ _TEX_IFS = frozenset("if ifcat ifnum ifdim ifodd ifvmode ifhmode ifmmode ifinner
                      "ifpdfabsnum ifpdfabsdim".split())
 
 
-# Control words that end the input, read other files, construct control sequences or change how
-# the rest of the source is read: the guard cannot follow any of them, so one before the closing
-# sentinel (at any depth, since a macro body or a skipped branch cannot be told apart) fails.
+# Control words that end the input, read other files, construct control sequences, change how the
+# rest of the source is read, or define, alias, prefix or assemble control words at the TeX level
+# (definers, register definers, \\font, \\read, expansion control, token registers TeX inserts
+# by itself): the guard cannot follow any of them, so one before the closing sentinel (at any
+# depth, since a macro body or a skipped branch cannot be told apart) fails.  The LaTeX-level
+# definers are handled by the tampering rules in check_tex instead.
 _TEX_STOPS = frozenset("endinput csname catcode scantokens lowercase uppercase directlua input include "
-                       "InputIfFileExists @input openin stop dump ExplSyntaxOn".split())
+                       "InputIfFileExists @input openin stop dump ExplSyntaxOn "
+                       "def gdef edef xdef let futurelet chardef mathchardef countdef dimendef skipdef toksdef "
+                       "muskipdef font read readline global long outer protected expandafter noexpand unexpanded "
+                       "the toks newtoks aftergroup afterassignment everypar everymath everydisplay everyhbox "
+                       "everyvbox everycr everyeof everyjob output errhelp".split())
 
 
 def check_tex(path: Path) -> list[str]:
@@ -94,11 +101,17 @@ def check_tex(path: Path) -> list[str]:
     # environment-defining command may target document.  TeX skips the white space after a control
     # word, a line ending included (a comment ends a line), so a definer, \\newif and an argument
     # may be separated from what follows by line endings as well as by spaces; a LaTeX definer may
-    # carry a * before its target; and a ...namedef... or ...namelet... macro defines the control
-    # word spelled by its brace argument without a \\csname in the source
+    # carry a * before its target; a ...namedef... or ...namelet... macro defines the control
+    # word spelled by its brace argument without a \\csname in the source; a Declare... macro or a
+    # register allocator may target a control word too; and a ...command... macro must name its
+    # target as a control word right there, since a target reaching it through a macro parameter
+    # or another macro's body (a wrapper around the definer) cannot be followed
     tampering = (re.search(r"(?<!\\)(?:\\\\)*\\(begin|end)(?![a-zA-Z@])(?![ \t]*\{)", active)
-                 or re.search(r"(?<!\\)(?:\\\\)*\\([gex]?def|let|futurelet|global|long|outer|protected|[a-zA-Z@]*[cC]ommand[a-zA-Z@]*)"
+                 or re.search(r"(?<!\\)(?:\\\\)*\\([gex]?def|let|futurelet|global|long|outer|protected|[a-zA-Z@]*[cC]ommand[a-zA-Z@]*"
+                              r"|Declare[a-zA-Z@]*|new(?:count|dimen|skip|muskip|box|read|write|language|insert|fam|marks|attribute))"
                               r"[ \t\n]*\*?[ \t\n]*\{?[ \t\n]*\\(?:begin|end|document|enddocument)(?![a-zA-Z@])", active)
+                 or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*[cC]ommand[a-zA-Z@]*)[ \t\n]*\*?[ \t\n]*"
+                              r"(?:\{[ \t\n]*(?![ \t\n])(?!\\[a-zA-Z@])|(?![ \t\n*{])(?!\\[a-zA-Z@]))", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*name(?:def|let)[a-zA-Z@]*)[ \t\n]*\{[ \t\n]*(?:begin|end|document|enddocument)[ \t\n]*\}", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\(document|enddocument)(?![a-zA-Z@])", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*[eE]nvironment)[ \t\n]*\*?[ \t\n]*\{[ \t\n]*document[ \t\n]*\}", active))

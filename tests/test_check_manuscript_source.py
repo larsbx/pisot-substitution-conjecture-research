@@ -161,7 +161,10 @@ def test_commented_document_sentinels_fail(copy):
     tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\halt}{\\endinput}\n\\begin{document}", 1))  # even inside a macro body
     code, out = run(copy)
     assert code == 1 and "\\endinput on line" in out, out
-    for word in ("\\csname endinput\\endcsname", "\\input{other}", "\\catcode`\\%=12", "\\scantokens{x}", "\\ExplSyntaxOn"):  # constructions the guard cannot follow
+    for word in ("\\csname endinput\\endcsname", "\\input{other}", "\\catcode`\\%=12", "\\scantokens{x}", "\\ExplSyntaxOn",
+                 "\\toks0={\\begin{}}\n\\expandafter\\def\\the\\toks0", "{\\aftergroup\\def}\\begin{}", "\\let\\d\\def\n\\d\\begin{}",
+                 "\\edef\\x{\\noexpand\\def\\noexpand\\begin{}}\\x", "\\everypar{\\renewcommand\\end{}}", "\\newtoks\\begin",
+                 "\\font\\end=cmr10", "\\read16 to \\begin"):  # constructions the guard cannot follow
         tex.write_text(text.replace("\\begin{document}", word + "\n\\begin{document}", 1))
         code, out = run(copy)
         assert code == 1 and "precedes \\end{document}; the guard cannot follow it" in out, (word, out)
@@ -176,7 +179,10 @@ def test_commented_document_sentinels_fail(copy):
                          "\\def\n\\begin{}\n\\def\n\\end{}", "\\def%\n\\begin{}", "\\renewcommand\n{\\end}{}", "\\global\n\n\\let\n\\end{}",
                          "\\renewenvironment\n{document}{}{}", "\\NewDocumentEnvironment\n*\n{ document }{}{}{}",  # line endings after a control word are white space
                          "\\renewcommand*\\begin{}\n\\renewcommand*\\end{}", "\\newcommand*{\\end}{}", "\\DeclareRobustCommand*\n\\begin{}",  # starred definers
-                         "\\@namedef{begin}{}", "\\@namedef{ enddocument }{}", "\\@namelet\n{end}{relax}"):  # definers spelling their target as text
+                         "\\@namedef{begin}{}", "\\@namedef{ enddocument }{}", "\\@namelet\n{end}{relax}",  # definers spelling their target as text
+                         "\\DeclareTextSymbol\\begin{OT1}{65}", "\\newcount\\begin{}",  # other macros that target a control word
+                         "\\newcommand{\\d}[1]{\\renewcommand#1{}}\n\\d\\begin{}", "\\newcommand\\d{\\renewcommand}\n\\d\\begin{}",  # wrappers
+                         "\\renewcommand{#1}{}", "\\newcommand"):  # a definer whose target is not a control word right there
         tex.write_text(text.replace("\\begin{document}", redefinition + "\n\\begin{document}", 1))
         code, out = run(copy)
         assert code == 1 and "can change what the document sentinels mean" in out, (redefinition, out)
@@ -186,6 +192,9 @@ def test_commented_document_sentinels_fail(copy):
     assert run(copy)[0] == 0  # a line-broken definer whose target is not a sentinel, and another environment
     tex.write_text(text.replace("\\begin{document}", "\\renewcommand*{\\foo}{\\begin{center}}\n\\@namedef{beginfoo}{}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # a starred definer with another target, and a spelled-out name that is not a sentinel
+    tex.write_text(text.replace("\\begin{document}", "\\DeclareMathOperator{\\Tr}{Tr}\\DeclareGraphicsExtensions{.pdf}\\newcounter{foo}\\newlength{\\len}\\newdimen\\dim\n"
+                                "\\newcommand\\foo{}\\newcommand*{ \\bar }[1]{#1}\\providecommand{\\baz}{\\bar{x}}\n\\begin{document}", 1))
+    assert run(copy)[0] == 0  # Declare... macros, allocators and ...command... definers naming their targets
     tex.write_text(text.replace("\\begin{document}", "\\newif\n\\ifdraft\n\\ifdraft\n\\begin{document}", 1))  # a declared conditional across a line ending
     code, out = run(copy)
     assert code == 1 and "outside conditionals" in out, out
