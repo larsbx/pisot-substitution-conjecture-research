@@ -418,3 +418,19 @@ No other findings were posted in the sixteenth round.
 > AGENTS.md reference: AGENTS.md:L64-L70
 
 No other findings were posted in the seventeenth round.
+
+---
+
+# Eighteenth round: review of the exact-test revision (pull request #87)
+
+**Reviewed commit:** `0b989e0ccc07d5690d5413e16fc8fe07484dd590` (exact complex-pair test, Horner helper in `exact.mojo`).
+**Review posted:** 2026-09-15T01:22:33Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 36 (P2) — `PSC_balanced_pair_state_2026-09-13.tex`, line 850
+
+> **Describe B_m as nonnegative**
+>
+> For the allowed case `m = 1`, the defining sum for `B_m` runs from `j = 1` to `m - 1` and is empty, so `B_1 = 0`; thus the statement that both `A_m` and `B_m` are positive is false. The proof correctly uses only `rho^{1/2} B_m >= 0`, so describe `B_m` as nonnegative (or qualify strict positivity by `m >= 2`) to make the proposition accurate.
+
+No other findings were posted in the eighteenth round.
+

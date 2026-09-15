@@ -510,8 +510,8 @@ satisfying these inequalities. For a complex contracting pair and `t != 0`,
 `|varsigma(t)|^2 = N(t)/t`, `|varsigma(beta)|^{-2} = rho := beta/D`, and
 `C^2 = K = max over F minus {0} of N(c)/c` (the zero increment contributes
 nothing). With `n_k = min(k-1, 2m+1-k)`, `A_m = sum_j n_{2j} rho^j` and
-`B_m = sum_j n_{2j+1} rho^j`, elements of `Q(beta)` positive at `beta`, the
-condition is equivalent to `N(t)/t <= K (A_m + rho^{1/2} B_m)`, which holds
+`B_m = sum_j n_{2j+1} rho^j`, elements of `Q(beta)` with `A_m > 0` and
+`B_m >= 0` at `beta` (`B_1 = 0`), the condition is equivalent to `N(t)/t <= K (A_m + rho^{1/2} B_m)`, which holds
 iff `N(t)/t <= K A_m`, or `N(t)/t > K A_m` and
 `(N(t)/t - K A_m)^2 <= K^2 rho B_m^2`: at most two exact sign tests at
 `beta`, no relaxation (an earlier draft tested the Cauchy–Schwarz relaxation

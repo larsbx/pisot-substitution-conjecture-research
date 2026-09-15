@@ -269,3 +269,13 @@ Two findings from the automated Codex review of commit `7d74aa42c3ce138afe85b332
 | 34 | P1 | The rational Horner evaluator lived in `real_root_sign.mojo` instead of the designated adapter | Accepted. `eval_q_poly_at_q` now lives in `mojo/psc/exact.mojo` next to the integer Horner helper; `real_root_sign.mojo` imports it and keeps only polynomial algebra (trim, derivative, product, remainder) and the Sturm–Tarski queries | `mojo/psc/exact.mojo`, `mojo/psc/real_root_sign.mojo` |
 | 35 | P1 | The complex-pair test decided the Cauchy–Schwarz relaxation `N(t)/t ≤ K m Σ ρ^s`, which is one-way, so the census was not a census of the stated `m_0` (example: `1→2, 2→33, 3→213`, offset `(−8, −2, 5/2)`: relaxation 5, defining inequality 6) | Accepted. Both implementations now decide the defining inequality exactly: with `ρ = β/D`, `(Σ_{s≤m} ρ^{s/2})² = A_m + ρ^{1/2} B_m` with `A_m, B_m ∈ Q(β)` (`n_k = min(k−1, 2m+1−k)` pairs), so `N(t)/t ≤ K(A_m + ρ^{1/2}B_m)` iff `N(t)/t ≤ K A_m`, or `N(t)/t > K A_m` and `(N(t)/t − K A_m)² ≤ K² ρ B_m²`: at most two sign tests at `β`, no relaxation. Proposition 5.42 and its proof state this formulation; every mention of Chebyshev or Cauchy–Schwarz is removed from statement, proof, "Meaning", note Section 10, and both implementations. The referee's example is pinned in both regression suites (`m_0 = 6`), and the census was rerun with the exact test in both implementations and repinned in CI, Computation 6.7, the note, the ledgers, and the READMEs (the largest `m_0` rises from 7 to 8, attained on 12 vertices of 6 substitutions; the largest excess stays 14; the totally real specimens are unchanged) | Proposition 5.42 statement and proof; Computation 6.7; note Section 10; `mojo/psc/overlap_contracting.mojo`, `src/psc_research/overlap_contracting.py`, `mojo/tests/test_overlap_contracting.mojo`, `tests/test_oa_overlap_graph.py`, `.github/workflows/ci.yml` |
 
+---
+
+## Eighteenth round (pull request #87, exact-test revision)
+
+One finding from the automated Codex review of commit `0b989e0ccc07d5690d5413e16fc8fe07484dd590`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 36 | P2 | `B_1 = 0`, so "`A_m` and `B_m` positive at `β`" is false for `m = 1` | Accepted. The statement now reads "`A_m > 0` and `B_m ≥ 0` at `β` (`B_1 = 0`)"; the proof already used only `ρ^{1/2} B_m ≥ 0`; the note says the same | Proposition 5.42 statement; note Section 10 |
+
