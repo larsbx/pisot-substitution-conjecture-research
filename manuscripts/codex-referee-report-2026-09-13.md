@@ -1584,3 +1584,18 @@ No other findings were posted in the sixty-sixth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the sixty-seventh round.
+
+# Sixty-eighth round: review of the brace-depth revision (pull request #95)
+
+**Reviewed commit:** `4f7ca64ce0` (finding 131).
+**Review posted:** 2026-09-15T21:53:53Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 132 (P2) — `scripts/check_manuscript_source.py`, line 54
+
+> **Ignore sentinels in inactive TeX conditionals**
+>
+> A 500-line source whose only standalone sentinels appear between `\iffalse` and `\fi` passes `check_tex`, because those lines remain at brace depth zero even though TeX skips both commands and never opens a document environment. Track inactive conditional regions (or otherwise verify that the commands are executable) before accepting these matches, so the provenance guard continues to fail closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-eighth round.

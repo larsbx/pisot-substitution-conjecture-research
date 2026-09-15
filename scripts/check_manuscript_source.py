@@ -27,6 +27,14 @@ MAX_STREAM_BYTES = 1 << 26  # the largest decoded stream in the repository PDF i
 ROOT = Path(__file__).resolve().parents[1]
 
 
+# TeX conditionals that a matching \\fi closes: the primitives of TeX, e-TeX and pdfTeX; the guard
+# adds the names a source declares with \\newif.  \\iff (a symbol) and brace-argument macros such
+# as \\ifthenelse are not conditionals in this sense.
+_TEX_IFS = frozenset("if ifcat ifnum ifdim ifodd ifvmode ifhmode ifmmode ifinner ifvoid ifhbox ifvbox ifx ifeof "
+                     "iftrue iffalse ifcase ifdefined ifcsname iffontchar ifincsname ifprimitive ifpdfprimitive "
+                     "ifpdfabsnum ifpdfabsdim".split())
+
+
 def check_tex(path: Path) -> list[str]:
     raw = path.read_bytes()
     try:
@@ -43,21 +51,28 @@ def check_tex(path: Path) -> list[str]:
         problems.append(f"{path}: first line is not \\documentclass")
     # a TeX comment runs from a % preceded by an even run of backslashes (\\ is a control sequence,
     # \% an escaped percent) to the line end; a sentinel counts only as a standalone line of what
-    # remains at brace depth zero (braces escaped by an odd run of backslashes do not nest), so an
-    # occurrence inside a macro body, after \\, or beside other commands does not; the document
-    # must begin before the first end sentinel, since TeX stops at the first
+    # remains at brace depth zero (braces escaped by an odd run of backslashes do not nest) and
+    # outside every conditional (an \\if... word from _TEX_IFS or declared by \\newif, closed by
+    # \\fi), since the guard cannot evaluate TeX; so an occurrence inside a macro body, a skipped
+    # branch, after \\, or beside other commands does not count.  The document must begin before
+    # the first end sentinel, since TeX stops at the first.
     active = "\n".join(re.sub(r"(?<!\\)((?:\\\\)*)%.*", r"\1", l) for l in lines)
     braces = [(m.end() - 1, 1 if m.group(1) == "{" else -1) for m in re.finditer(r"(?<!\\)(?:\\\\)*([{}])", active)]
+    ifs = _TEX_IFS | set(re.findall(r"(?<!\\)(?:\\\\)*\\newif[ \t]*\\(if[a-zA-Z]+)", active))
+    declared_out = re.sub(r"(?<!\\)((?:\\\\)*)\\newif[ \t]*\\if[a-zA-Z]*", lambda m: m.group(1) + " " * (len(m.group()) - len(m.group(1))), active)
+    conditionals = [(m.start(1), -1 if m.group(1) == "fi" else 1)
+                    for m in re.finditer(r"(?<!\\)(?:\\\\)*\\(if[a-zA-Z]*|fi)(?![a-zA-Z])", declared_out)
+                    if m.group(1) == "fi" or m.group(1) in ifs]
 
     def sentinel(name: str) -> int:
         for m in re.finditer(r"^[ \t]*\\" + name + r"\{document\}[ \t]*$", active, re.M):
-            if sum(d for i, d in braces if i < m.start()) == 0:
+            if all(sum(d for i, d in events if i < m.start()) == 0 for events in (braces, conditionals)):
                 return m.start()
         return -1
 
     b, e = sentinel("begin"), sentinel("end")
     if b < 0 or e < b:
-        problems.append(f"{path}: missing or misordered \\begin{{document}} / \\end{{document}} as standalone uncommented top-level lines")
+        problems.append(f"{path}: missing or misordered \\begin{{document}} / \\end{{document}} as standalone uncommented top-level lines outside conditionals")
     if len(lines) < MIN_LINES:
         problems.append(f"{path}: only {len(lines)} lines (< {MIN_LINES})")
     return problems
