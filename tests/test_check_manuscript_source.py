@@ -573,7 +573,7 @@ def test_filter_names_are_parsed_whole(copy):
     assert code == 1 and "unsupported filter chain" in out, out
     pdf.write_bytes(superseded_pdf(flate_stream(b"x").replace(b"/FlateDecode", b"/FlateDecode#5")))
     code, out = run(copy)
-    assert code == 1 and "unparsable /Filter" in out, out
+    assert code == 1 and "not one complete object" in out, out  # the truncated escape breaks the dictionary itself
     pdf.write_bytes(xref_pdf().replace(b"/Filter /FlateDecode", b"/Filter /FlateDecode#58"))
     code, out = run(copy)
     assert code == 1 and "unsupported cross-reference stream filter chain" in out, out
@@ -581,7 +581,7 @@ def test_filter_names_are_parsed_whole(copy):
     assert run(copy)[0] == 0
 
 
-def objstm_pdf(container=4, index=0):
+def objstm_pdf(container=4, index=0, member=5):
     """Objects 1-3 as usual, object 4 an uncompressed object stream holding object 5
     (``<< /Foo 1 >>``), object 6 the cross-reference stream; object 5's row names
     ``container`` at ``index``; /Size 7."""
@@ -591,7 +591,7 @@ def objstm_pdf(container=4, index=0):
                     (3, b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>")):
         offs[n] = len(out)
         out += b"%d 0 obj\n%s\nendobj\n" % (n, body)
-    member = b"5 0 "
+    member = b"%d 0 " % member
     data = member + b"<< /Foo 1 >>"
     offs[4] = len(out)
     out += b"4 0 obj\n<< /Type /ObjStm /N 1 /First %d /Length %d >>\nstream\n" % (len(member), len(data)) + data + b"\nendstream\nendobj\n"
@@ -622,6 +622,42 @@ def test_type2_entries_resolve_against_their_revision(copy):
     pdf.write_bytes(raw)
     code, out = run(copy)
     assert code == 1 and "not an object stream" in out, out
+
+
+def test_type2_member_must_be_the_referenced_object(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = objstm_pdf(member=9)
+    pdf.write_bytes(raw)
+    code, out = run(copy)
+    assert code == 1 and "member 0 of object stream 4 is object 9" in out, out
+    old_xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
+    o5 = len(raw)
+    raw += b"5 0 obj\n<< /Foo 2 >>\nendobj\n"
+    new_xref = len(raw)
+    raw += b"xref\n5 1\n%010d 00000 n \ntrailer\n<< /Size 7 /Root 1 0 R /Prev %d >>\nstartxref\n%d\n%%%%EOF\n" % (o5, old_xref, new_xref)
+    pdf.write_bytes(raw)
+    code, out = run(copy)
+    assert code == 1 and "member 0 of object stream 4 is object 9" in out, out
+
+
+def test_superseded_dictionary_is_parsed_structurally(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(superseded_pdf(b"<< /A [1 2 R] /B << /C (x) >> /D <41> /E true /F#20G null >>"))
+    assert run(copy)[0] == 0
+    for body in (b"<< /Type >>", b"<< garbage >>", b"<< /A 1 /B >>", b"<< 1 2 >>"):
+        pdf.write_bytes(superseded_pdf(body))
+        code, out = run(copy)
+        assert code == 1 and "not one complete object" in out, (body, out)
+
+
+def test_historical_trailer_root_is_resolved(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = superseded_pdf(flate_stream(b"x"))
+    for root, message in ((b"/Root 9 0 R", "does not name an object in use"), (b"/Root 2 0 R", "does not resolve to a /Type /Catalog"),
+                          (b"/Root 1 1 R", "has generation 0")):
+        pdf.write_bytes(raw.replace(b"/Root 1 0 R", root, 1))
+        code, out = run(copy)
+        assert code == 1 and message in out, (root, out)
 
 
 def test_malformed_predictor_values_fail(copy):

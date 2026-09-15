@@ -1038,3 +1038,37 @@ No other findings were posted in the fortieth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the forty-first round.
+
+
+---
+
+# Forty-second round: review of the one-object-parse revision (pull request #95)
+
+**Reviewed commit:** `026cdcd882` (findings 83–85).
+**Review posted:** 2026-09-15T18:15:08Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 86 (P2) — `scripts/check_manuscript_source.py`, line 400
+
+> **Parse superseded dictionaries structurally**
+>
+> Fresh evidence beyond finding 84 is that dictionary objects are still considered complete solely by balancing `<<` and `>>`, without parsing their key/value contents. A superseded body such as `<< /Type >>` or `<< garbage >>` therefore passes `_xref_chain`, while pypdf reads only the newer replacement. Parse the dictionary as a PDF object and reject missing values or non-name keys before accepting the historical revision.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 87 (P2) — `scripts/check_manuscript_source.py`, line 498
+
+> **Match type-2 entries to object-stream members**
+>
+> Fresh evidence beyond finding 83 is that the new check only proves `index < /N`; it never reads `/First` or verifies that the indexed object-stream header names the type-2 entry's object number. In an older revision, changing member header `5 0` to `9 0` while a later classic update supplies object 5 still makes `_xref_chain` succeed, and pypdf ignores the superseded type-2 entry. Parse the historical object stream's header and require the indexed member to be the referenced object.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 88 (P2) — `scripts/check_manuscript_source.py`, line 156
+
+> **Validate historical trailer roots**
+>
+> When an incremental PDF has a malformed `/Root` in an older trailer, this only checks that the value looks like an indirect reference and never verifies that it is within that revision's `/Size` or resolves to a catalog. For example, changing the first trailer in `superseded_pdf()` to `/Root 9 0 R` leaves `_xref_chain` successful because the latest trailer supplies the valid root that pypdf reads. Resolve each trailer's root against its historical effective table before accepting the revision.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-second round.

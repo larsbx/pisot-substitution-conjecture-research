@@ -50,21 +50,10 @@ def check_tex(path: Path) -> list[str]:
 
 
 def _dict_at(buf: bytes, i: int) -> bytes | None:
-    """The dictionary starting at ``buf[i:i+2] == b'<<'``, delimiters included."""
-    if buf[i:i + 2] != b"<<":
-        return None
-    depth, j = 0, i
-    while j < len(buf) - 1:
-        pair = buf[j:j + 2]
-        if pair == b"<<":
-            depth, j = depth + 1, j + 2
-        elif pair == b">>":
-            depth, j = depth - 1, j + 2
-            if depth == 0:
-                return buf[i:j]
-        else:
-            j += 1
-    return None
+    """The dictionary starting at ``buf[i:i+2] == b'<<'``, delimiters included, parsed as
+    a sequence of name keys each followed by one complete direct value; None otherwise."""
+    end = _dict_end(buf, i)
+    return None if end is None else buf[i:end]
 
 
 def _prev_of(d: bytes) -> int | None:
@@ -79,9 +68,9 @@ generation slot = index); ``classic`` records whether the entry came from a clas
 whose free entries must be on the free list, rather than from a cross-reference stream."""
 
 
-Section = tuple[dict[int, Entry], int, int | None, int | None, int]
+Section = tuple[dict[int, Entry], int, int | None, int | None, int, tuple[int, int]]
 """``(entries by object number, trailer /Size, /Prev offset or None, /XRefStm offset or None,
-offset just past the section)``."""
+offset just past the section, /Root as (object number, generation))``."""
 
 
 _DELIM = rb"[\s/\[\]<>(){}%]"
@@ -160,7 +149,9 @@ def _classic_table(raw: bytes, off: int) -> str | Section:
     if stray:
         return f"free entry for object {stray[0]} points at object {table[stray[0]][1]} beyond /Size"
     xrefstm = re.search(rb"/XRefStm\s+(\d+)", d)
-    return table, int(size.group(1)), _prev_of(d), int(xrefstm.group(1)) if xrefstm else None, off + pos + t.end() + len(d)
+    root = re.search(rb"/Root\s+(\d+)\s+(\d+)\s+R", d)
+    return (table, int(size.group(1)), _prev_of(d), int(xrefstm.group(1)) if xrefstm else None,
+            off + pos + t.end() + len(d), (int(root.group(1)), int(root.group(2))))
 
 
 def _unpredict(payload: bytes, row: int) -> bytes | None:
@@ -299,7 +290,9 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
         if payload is None:
             return "cross-reference stream uses an unknown PNG row filter"
     table = _xref_rows(raw, payload, widths, numbers, size)
-    return table if isinstance(table, str) else (table, size, _prev_of(d), None, off + data_start + n + tail.end())
+    root = re.search(rb"/Root\s+(\d+)\s+(\d+)\s+R", d)
+    return table if isinstance(table, str) else (table, size, _prev_of(d), None, off + data_start + n + tail.end(),
+                                                 (int(root.group(1)), int(root.group(2))))
 
 
 def _free_list(table: dict[int, Entry], classic: bool) -> str | None:
@@ -390,14 +383,30 @@ def _decode_parms(d: bytes, out: bytes) -> str | None:
 _TOKEN = rb"(?:/(?:[^\s/\[\]<>(){}%#]|#[0-9A-Fa-f]{2})*|[+-]?(?:\d+\.?\d*|\.\d+)|true|false|null)(?=" + _DELIM + rb"|$)"
 
 
+def _dict_end(buf: bytes, i: int) -> int | None:
+    """The index just past the dictionary at ``buf[i:]``: ``<<``, then name keys each
+    followed by one complete direct value, then ``>>``; None if the bytes are not that."""
+    if not buf.startswith(b"<<", i):
+        return None
+    j = i + 2
+    while True:
+        j += len(buf[j:]) - len(buf[j:].lstrip())
+        if buf.startswith(b">>", j):
+            return j + 2
+        key = re.match(_NAME, buf[j:])
+        if not key:
+            return None
+        if (j := _object_end(buf, j + key.end())) is None:
+            return None
+
+
 def _object_end(buf: bytes, i: int) -> int | None:
     """The index just past one complete direct object (dictionary, array, string, name,
     number, boolean, null, or indirect reference) starting at or after ``i``; None if the
     bytes there are not one."""
     i += len(buf[i:]) - len(buf[i:].lstrip())
     if buf.startswith(b"<<", i):
-        d = _dict_at(buf, i)
-        return None if d is None else i + len(d)
+        return _dict_end(buf, i)
     if buf.startswith(b"<", i):
         m = re.match(rb"<[0-9A-Fa-f\s]*>", buf[i:])
         return i + m.end() if m else None
@@ -433,7 +442,7 @@ def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) ->
     closed by ``endobj``; a stream must have a direct ``/Length``, be closed by
     ``endstream`` and ``endobj``, carry a parsable filter chain that is empty or exactly
     ``/FlateDecode``, inflate strictly, and satisfy its ``/DecodeParms``."""
-    for entries, _, _ in sections:
+    for entries, *_ in sections:
         for num, entry in entries.items():
             if entry[0] != 1 or merged.get(num) == entry:
                 continue
@@ -473,29 +482,106 @@ def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) ->
     return None
 
 
-def _object_streams(raw: bytes, entries: dict[int, Entry], table: dict[int, Entry]) -> str | None:
+ObjStm = tuple[list[tuple[int, int]], bytes, int]
+"""A decoded object stream: ``(header pairs (object number, offset), decoded data, /First)``."""
+
+
+def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int, ObjStm | str]) -> ObjStm | str:
+    """Decode the object stream that ``container`` names in ``table`` (cached by its byte
+    offset): an in-use ``/Type /ObjStm`` object with direct ``/N``, ``/First`` and
+    ``/Length``, a Flate or unfiltered body that inflates strictly and satisfies its
+    ``/DecodeParms``, and a header of exactly ``/N`` (object number, offset) pairs whose
+    offsets lie inside the data.  A problem is returned as a string."""
+    holder = table.get(container)
+    if holder is None or holder[0] != 1:
+        return f"object {container}, which is not an in-use object"
+    if holder[1] in cache:
+        return cache[holder[1]]
+    at = raw[holder[1]:]
+    head = re.match(rb"\d+\s+\d+\s+obj\s*", at)
+    d = _dict_at(at, head.end())
+    fields = {name: re.search(rb"/" + name + rb"(?=" + _DELIM + rb")\s*(\d+)(?=" + _DELIM + rb"|$)", d) for name in (b"N", b"First", b"Length")} if d else {}
+    body = re.match(rb"\s*stream(?:\r\n|\n)", at[head.end() + len(d):head.end() + len(d) + 16]) if d else None
+    if d is None or not re.search(rb"/Type(?=" + _DELIM + rb")\s*/ObjStm(?=" + _DELIM + rb"|$)", d) or not all(fields.values()) or not body:
+        result: ObjStm | str = f"object {container}, which is not an object stream with direct /N, /First and /Length"
+    else:
+        n, first, length = (int(fields[k].group(1)) for k in (b"N", b"First", b"Length"))
+        start = head.end() + len(d) + body.end()
+        data = at[start:start + length]
+        names = _filter_names(d)
+        if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)?endstream\s*endobj\b", at[start + length:start + length + 32]):
+            result = f"object stream {container}, whose body does not match its /Length or is not closed by endstream and endobj"
+        elif names is None or names not in ([], [b"FlateDecode"]):
+            result = f"object stream {container}, whose filter chain is unparsable or unsupported"
+        else:
+            if names:
+                inflater = zlib.decompressobj()
+                try:
+                    data = inflater.decompress(data, MAX_STREAM_BYTES + 1)
+                except zlib.error:
+                    data = None
+                if data is None or len(data) > MAX_STREAM_BYTES or not inflater.eof or inflater.unused_data:
+                    data = None
+            if data is None:
+                result = f"object stream {container}, whose body does not inflate to a complete deflate member within the ceiling"
+            elif names and (problem := _decode_parms(d, data)):
+                result = f"object stream {container}: {problem}"
+            else:
+                tokens = data[:first].split()
+                if len(tokens) != 2 * n or not all(t.isdigit() for t in tokens):
+                    result = f"object stream {container}, whose header is not /N pairs of integers"
+                else:
+                    pairs = [(int(tokens[2 * k]), int(tokens[2 * k + 1])) for k in range(n)]
+                    result = (pairs, data, first) if all(first + o < len(data) for _, o in pairs) else f"object stream {container}, whose header offsets leave the data"
+    cache[holder[1]] = result
+    return result
+
+
+def _object_streams(raw: bytes, entries: dict[int, Entry], table: dict[int, Entry], cache: dict) -> str | None:
     """Every type-2 entry of a section must name, in that revision's effective ``table``,
-    an in-use object whose dictionary is ``/Type /ObjStm`` with a direct ``/N`` above the
-    entry's index (finding 83: pypdf resolves only the effective entries)."""
-    counts: dict[int, int | str] = {}
+    an object stream whose indexed header member is the entry's own object number
+    (findings 83 and 87: pypdf resolves only the effective entries)."""
     for num, (kind, container, index, _) in entries.items():
         if kind != 2:
             continue
-        if container not in counts:
-            holder = table.get(container)
-            if holder is None or holder[0] != 1:
-                counts[container] = f"object {container}, which is not an in-use object"
-            else:
-                at = raw[holder[1]:]
-                head = re.match(rb"\d+\s+\d+\s+obj\s*", at)
-                d = _dict_at(at, head.end())
-                n = re.search(rb"/N(?=" + _DELIM + rb")\s*(\d+)(?=" + _DELIM + rb"|$)", d) if d else None
-                is_objstm = d is not None and re.search(rb"/Type(?=" + _DELIM + rb")\s*/ObjStm(?=" + _DELIM + rb"|$)", d)
-                counts[container] = int(n.group(1)) if is_objstm and n else f"object {container}, which is not an object stream with a direct /N"
-        if isinstance(counts[container], str):
-            return f"type-2 entry for object {num} names {counts[container]}"
-        if index >= counts[container]:
-            return f"type-2 entry for object {num} has index {index} beyond /N {counts[container]} of object stream {container}"
+        stm = _objstm(raw, table, container, cache)
+        if isinstance(stm, str):
+            return f"type-2 entry for object {num} names {stm}"
+        pairs = stm[0]
+        if index >= len(pairs):
+            return f"type-2 entry for object {num} has index {index} beyond /N {len(pairs)} of object stream {container}"
+        if pairs[index][0] != num:
+            return f"type-2 entry for object {num} has index {index}, but member {index} of object stream {container} is object {pairs[index][0]}"
+    return None
+
+
+def _catalog(raw: bytes, root: tuple[int, int], table: dict[int, Entry], cache: dict) -> str | None:
+    """A trailer's ``/Root`` must resolve, in that revision's effective ``table``, to an
+    object whose dictionary is ``/Type /Catalog`` (finding 88: pypdf reads only the final
+    trailer's root)."""
+    num, gen = root
+    entry = table.get(num)
+    if entry is None or entry[0] == 0:
+        return f"trailer /Root {num} {gen} R does not name an object in use"
+    if entry[0] == 1:
+        if entry[2] != gen:
+            return f"trailer /Root {num} {gen} R names generation {gen}, but object {num} has generation {entry[2]}"
+        at = raw[entry[1]:]
+        head = re.match(rb"\d+\s+\d+\s+obj\s*", at)
+        d = _dict_at(at, head.end())
+    else:
+        if gen != 0:
+            return f"trailer /Root {num} {gen} R names a compressed object with a nonzero generation"
+        stm = _objstm(raw, table, entry[1], cache)
+        if isinstance(stm, str):
+            return f"trailer /Root {num} {gen} R names a member of {stm}"
+        pairs, data, first = stm
+        if entry[2] >= len(pairs) or pairs[entry[2]][0] != num:
+            return f"trailer /Root {num} {gen} R is not member {entry[2]} of object stream {entry[1]}"
+        start = first + pairs[entry[2]][1]
+        d = _dict_at(data, start + len(data[start:]) - len(data[start:].lstrip()))
+    if d is None or not re.search(rb"/Type(?=" + _DELIM + rb")\s*/Catalog(?=" + _DELIM + rb"|$)", d):
+        return f"trailer /Root {num} {gen} R does not resolve to a /Type /Catalog dictionary"
     return None
 
 
@@ -511,22 +597,26 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
         section = _section_at(raw, off, seen)
         if isinstance(section, str):
             return section
-        entries, size, off, xrefstm, _ = section
-        classic, sizes = xrefstm is not None or raw.startswith(b"xref", seen[-1]), (size,)
+        entries, size, off, xrefstm, _, root = section
+        classic, sizes, roots = xrefstm is not None or raw.startswith(b"xref", seen[-1]), (size,), (root,)
         if xrefstm is not None:
             companion = _section_at(raw, xrefstm, seen)
             if isinstance(companion, str):
                 return f"/XRefStm: {companion}"
-            entries, sizes = {**companion[0], **entries}, (size, companion[1])  # the table's own entries take precedence
-        sections.append((entries, sizes, classic))
-    merged = {}
-    for entries, sizes, classic in reversed(sections):
+            # the table's own entries take precedence; both /Size and /Root values must hold
+            entries, sizes, roots = {**companion[0], **entries}, (size, companion[1]), (root, companion[5])
+        sections.append((entries, sizes, roots, classic))
+    merged, cache = {}, {}
+    for entries, sizes, roots, classic in reversed(sections):
         merged = {**merged, **entries}  # newer sections win
-        if problem := _free_list(merged, classic) or _object_streams(raw, entries, merged):
+        if problem := _free_list(merged, classic) or _object_streams(raw, entries, merged, cache):
             return problem
         for size in sizes:  # the trailer's /Size and, in a hybrid section, the companion stream's
             if size != max(merged) + 1:
                 return f"trailer /Size {size} is not one more than the highest object number {max(merged)} of its section"
+        for root in roots:
+            if problem := _catalog(raw, root, merged, cache):
+                return problem
     return _superseded_streams(raw, sections, merged) or max(merged)
 
 

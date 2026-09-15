@@ -548,3 +548,16 @@ Three findings from the automated Codex review of commit `f427597e50`; all accep
 | 83 | P2 | Type-2 entries were bounded by `/Size` only, and superseded ones never resolved | Accepted. During the oldest-first replay every type-2 entry of a section is resolved against that revision's effective table: the container must be an in-use object whose dictionary is `/Type /ObjStm` with a direct `/N` above the entry's index. Tests: an uncompressed object stream holding one member passes; index 1 against `/N 1` fails; a container that is the page tree fails, and still fails when a later classic update supplies the member in use | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 84 | P2 | A malformed predictor field fell back to its default | Accepted. A present predictor field must be a whole nonnegative integer followed by a delimiter; anything else fails ("malformed predictor parameter value"). Tests: `/Predictor /Bogus` and `/Columns -1` | same |
 | 85 | P2 | A non-dictionary superseded object was accepted on `endobj` alone | Accepted. A small direct-object parser (dictionary, array, literal and hex strings, name, number, boolean, null, indirect reference) must consume exactly one complete object, which `endobj` must then close. Tests: a nested array of every primitive passes; `not-a-PDF-object` and an unclosed array fail | same |
+
+
+---
+
+## Forty-second round (pull request #95, one-object-parse revision)
+
+Three findings from the automated Codex review of commit `026cdcd882`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 86 | P2 | Dictionaries were accepted on bracket balance alone | Accepted. Every dictionary the guard reads (trailers, cross-reference and object stream dictionaries, `/DecodeParms`, superseded objects) is now parsed as name keys each followed by one complete direct value. Tests: a dictionary holding an array, a nested dictionary, strings, a boolean, an escaped name and null passes; `<< /Type >>`, `<< garbage >>`, a key without a value and a non-name key fail. A `/Filter` name with a truncated escape now fails at the dictionary itself | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 87 | P2 | A type-2 entry was not matched to the object stream's header member | Accepted. Each object stream named by a type-2 entry is decoded once per byte offset (direct `/N`, `/First` and `/Length`, unfiltered or Flate body inflated strictly, `/DecodeParms` validated, header of exactly `/N` integer pairs with offsets inside the data), and the entry's index must select a member whose object number is the entry's own. Test: member header `9 0` for object 5 fails, and still fails when a later classic update supplies object 5 | same |
+| 88 | P2 | An older trailer's `/Root` was never resolved | Accepted. Every section's `/Root` (and a hybrid companion's) must resolve, in that revision's effective table, to an object in use with the referenced generation whose dictionary is `/Type /Catalog`, a compressed root being looked up in its decoded object stream. Tests: `/Root 9 0 R`, `/Root 2 0 R` (the page tree) and `/Root 1 1 R` in the original trailer fail. The repository PDF's own root, a compressed object, resolves | same |
