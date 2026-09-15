@@ -97,7 +97,7 @@ The determinant-two regression substitution
 
 has a certified six-edge zero-shift-free affine cycle.  This is a golden
 countermodel to the overstrong claim that PIP or non-unimodularity alone
-forbids zero-shift-free recurrence.  Its complete overlap graph is productive,
+forbids zero-shift-free recurrence.  Its seed-patch overlap graph is productive,
 so the cycle is **not** a closed nonproductive component and is not a
 counterexample to Open Problem 5.35.
 
