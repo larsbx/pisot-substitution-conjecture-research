@@ -1335,3 +1335,18 @@ No other findings were posted in the fiftieth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the fifty-first round.
+
+# Fifty-second round: review of the self-listing revision (pull request #95)
+
+**Reviewed commit:** `98d583269e` (finding 111).
+**Review posted:** 2026-09-15T19:55:27Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 112 (P2) — `scripts/check_manuscript_source.py`, line 801
+
+> **Revalidate the companion after applying table precedence**
+>
+> Fresh evidence beyond finding 111 is the hybrid-reference path: a companion stream can list its own object correctly and pass `_xref_stream`, but the classic table can list that object as free; this merge then replaces the companion's in-use row with the classic row without rechecking the invariant. With object 0's free-list link adjusted accordingly, `_xref_chain` accepts the revision, while pypdf can still open the companion directly through `/XRefStm`, so the full parse does not expose the inconsistency. After applying classic-table precedence, require the effective entry for the companion's object number to remain `(1, xrefstm, generation)`.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-second round.

@@ -799,6 +799,9 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
                 return f"/XRefStm companion at offset {xrefstm} carries /Prev {companion[2]}, which is not the trailer's earlier /Prev"
             # the table's own entries take precedence; both /Size and /Root values must hold
             entries, sizes, roots = {**companion[0], **entries}, (size, companion[1]), (root, companion[5])
+            num, gen = (int(x) for x in re.match(rb"(\d+)\s+(\d+)\s+obj", raw[xrefstm:]).groups())
+            if entries.get(num, (None,))[:3] != (1, xrefstm, gen):  # the table must not free or move the companion it names
+                return f"/XRefStm companion object {num} {gen} at offset {xrefstm} is not an in-use entry at that offset once the classic table's entries take precedence"
         sections.append((entries, sizes, roots, classic))
     merged, cache = {}, {}
     for entries, sizes, roots, classic in reversed(sections):

@@ -665,3 +665,11 @@ One finding from the automated Codex review of commit `998cf89ae0`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 111 | P2 | A cross-reference stream could omit its own object from its entries and from `/Size` | Accepted. A cross-reference stream is an object of its own revision, so its section must list it as an in-use entry at its own offset with its own generation; the existing `/Size` check then accounts for it. The repository PDF's stream (object 1132) lists itself. Tests: the reviewer's object `99 0 obj` under `/Size 5 /Index [0 3 4 1]`, and a stream whose own row is free | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-second round (pull request #95, self-listing revision)
+
+One finding from the automated Codex review of commit `98d583269e`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 112 | P2 | A classic table could free or move the `/XRefStm` companion stream it names | Accepted. After the table's entries take precedence over the companion's, the effective entry for the companion's object must still be in use at the companion's offset with its generation. The scenario (companion listing itself, table freeing object 4 with the free list 0 → 4 → 0) was confirmed to pass the previous revision. Test: that scenario | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

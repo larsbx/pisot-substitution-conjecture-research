@@ -433,16 +433,18 @@ def test_matching_compression_bomb_hits_the_row_ceiling(copy):
     assert code == 1 and "above the ceiling" in out, out
 
 
-def hybrid_pdf(free5=b"\x00\x00\x00\x00", companion_extra=b""):
+def hybrid_pdf(free5=b"\x00\x00\x00\x00", companion_extra=b"", free4=False):
     """A classic table for objects 0-3 whose trailer names a companion /XRefStm stream
-    (object 4) describing itself and a free object 5; /Size 6."""
+    (object 4) describing itself and a free object 5; /Size 6.  With ``free4`` the classic
+    table also lists object 4 as free (on the free list from object 0)."""
     raw = classic_pdf()
     o4 = len(raw)
     rows = b"\x00\x00\x00\xff" + b"\x01" + o4.to_bytes(2, "big") + b"\x00" + free5
     raw += (b"4 0 obj\n<< /Type /XRef /Size 6 /Index [0 1 4 2] /W [1 2 1] /Root 1 0 R " + companion_extra + b"/Length %d >>\nstream\n" % len(rows)
             + rows + b"\nendstream\nendobj\n")
     xref = len(raw)
-    raw += (b"xref\n0 4\n0000000000 65535 f \n" + b"".join(b"%010d 00000 n \n" % int(m) for m in re.findall(rb"(\d{10}) 00000 n", classic_pdf()))
+    head, tail = (b"0 5\n0000000004 65535 f \n", b"0000000000 00000 f \n") if free4 else (b"0 4\n0000000000 65535 f \n", b"")
+    raw += (b"xref\n" + head + b"".join(b"%010d 00000 n \n" % int(m) for m in re.findall(rb"(\d{10}) 00000 n", classic_pdf())) + tail
             + b"trailer\n<< /Size 6 /Root 1 0 R /XRefStm %d >>\nstartxref\n%d\n%%%%EOF\n" % (o4, xref))
     return raw
 
@@ -456,6 +458,13 @@ def test_hybrid_companion_stream_is_walked(copy):
     pdf.write_bytes(hybrid_pdf(free5=b"\x00\x00\x63\x00"))
     code, out = run(copy)
     assert code == 1 and "/XRefStm" in out and "beyond /Size" in out, out
+
+
+def test_classic_table_cannot_free_its_companion_stream(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(hybrid_pdf(free4=True))  # the companion lists itself, the table frees it, free list 0 -> 4 -> 0
+    code, out = run(copy)
+    assert code == 1 and "companion object 4 0" in out and "classic table's entries take precedence" in out, out
 
 
 def test_companion_stream_size_is_checked(copy):
