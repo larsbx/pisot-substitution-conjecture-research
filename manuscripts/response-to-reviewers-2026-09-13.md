@@ -289,3 +289,9 @@ One finding from the automated Codex review of commit `059c4c5536cc4f0f9252a55a6
 | --- | --- | --- | --- | --- |
 | 37 | P1 | `least_level` rebuilt the level tables `A_m`, `B_m` (complex pair) and the β-powers and `G_m` (real conjugates) for every shift and level, although they depend only on the substitution | Accepted. The constructor now builds `A_m`, `B_m` for `m ≤ max_level` (complex pair) and `β^m`, `G_r[m]` (real conjugates) once per substitution; `least_level` indexes them. The Python oracle precomputes `A_m`, `B_m` the same way (its real branch already did). Census rerun: identical lines | `mojo/psc/overlap_contracting.mojo`, `src/psc_research/overlap_contracting.py` |
 
+---
+
+## Twentieth round (pull request #87, level-table revision)
+
+The automated Codex review of commit `eb0615f609` posted no findings. Findings 31–37 are recorded as addressed.
+

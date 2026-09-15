@@ -451,3 +451,10 @@ No other findings were posted in the eighteenth round.
 
 No other findings were posted in the nineteenth round.
 
+---
+
+# Twentieth round: review of the level-table revision (pull request #87)
+
+**Reviewed commit:** `eb0615f609` (finding 37).
+**Review posted:** 2026-09-15T02:04:58Z. The automated Codex review of commit `eb0615f` posted no findings ("Didn't find any major issues").
+
