@@ -1,18 +1,11 @@
 # Claim status and source map
 
-**Status date:** 2026-09-13  
-**Repository baseline:** `main@e69b4029a08973b97e985d2cf62c71cf3acac6ca`
+**Status date:** 2026-09-14  
+**Repository baseline audited for this update:** `main@383a5e8b550c1538d0a9c32bec23df8d2cc9f70a` (through merged PR #86).
 
-This is the short authoritative index for deciding whether a mathematical
-statement is proved, imported, computationally certified on a finite domain,
-conditional, or open. It supplements the full exposition in
-`manuscripts/PSC_balanced_pair_state_2026-09-13.tex` and the dependency
-structure in `docs/proof-ladder.md`.
+This is the short authoritative index for deciding whether a mathematical statement is proved, imported, computationally certified on a finite domain, conditional, or open. It supplements the full exposition in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`, the dependency structure in `docs/proof-ladder.md`, and the current architecture in `docs/current-proof-architecture-2026-09-14.md`.
 
-The absence of a historical file and the absence of a proof are different
-conditions. A result can cease to be source-pending because it has been
-independently reconstructed, or because audit shows that it is an open
-conjectural obligation rather than a theorem awaiting recovery.
+The absence of a historical file and the absence of a proof are different conditions. A result can cease to be source-pending because it has been independently reconstructed, or because audit shows that it is an open conjectural obligation rather than a theorem awaiting recovery.
 
 ## Status vocabulary
 
@@ -35,24 +28,52 @@ conjectural obligation rather than a theorem awaiting recovery.
 | --- | --- | --- | --- |
 | Full incidence rank from `det M_sigma != 0` | **Repository-proved** | State-of-program manuscript, standing algebraic setup | Does not assume unimodularity. |
 | Unique decodability of substitution images and powers | **Repository-proved** | Manuscript Theorem 3.1 and power corollary | Derived from full incidence rank; not a standing hypothesis. |
-| G1b-1 bounded discrepancy | **Repository-proved by reconstruction** | `docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md`; manuscript Theorem 4.4; PR #69, merge `7fa20b6` | Bounds the prefix-difference walk, not state length; does not imply G1. |
-| G1b-2 renewal finiteness | **Open conjectural gate** | Manuscript Open Problem 4.10; `docs/proof-ladder.md` | Equivalent to G1 after G1b-1; must be non-unimodular-safe. |
-| Finite BPA, G1 | **Open conjectural gate** | Manuscript Proposition 4.11 and open-problem list | Bounded discrepancy alone is insufficient. |
-| Sink-SCC reduction under G1 | **Conditional theorem** | `docs/sink-scc-reduction.md`; manuscript Theorem 5.1 | Requires finite BPA to extract a finite recurrent obstruction. |
-| Degree-two carrier span / wedge dichotomy | **Repository-proved by reconstruction** | Manuscript Theorem 5.16(i) and Proposition 5.20; `docs/galois-aux-b-source-resolution-2026-09-13.md`; PR #68, merge `accda1a` | If a closed nonproductive carrier has nonzero `K2`, its rational span is all of `Lambda^2 Q^3`. This does not prove productivity. |
-| Historical degree-three dominant capture | **Historical restricted theorem** | `archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md`, §§8–10; import commit `013fbedc` | Applies to six explicit length-seven `K2=0` seed defects; SCC transfer remains conditional. |
-| Concentration / aux-B | **Open conjectural gate, not source-pending** | Manuscript open problem; formulation provenance `af46a0e`, `1297174`; PR #68 source resolution | Means exclusion of strict components with `K2=0`; the archived seed theorem does not prove it. |
-| General wedge productivity | **Open conjectural gate, not source-pending** | Manuscript open problem and Proposition 5.20 discussion | Means exclusion of strict components with `K2!=0`; full wedge span alone is insufficient. |
-| Bounded degree-three exclusion | **Finite-domain theorem** | `docs/p1a-degree3-partial-theorem.md`; canonical Mojo certificate; PR #67, merge `44e8ad9` | Only the exact 4,554 substitutions with three letters and image lengths at most three. |
-| Bounded degree-two wedge productivity | **Finite-domain theorem** | `docs/p1a-degree2-wedge-productivity.md`; canonical Mojo certificate; PR #71, merge `db5b217` | Same 4,554-member domain. The certificate fails closed on capped catalogues and retains replayable countermodels. |
-| Seed-patch overlap graph finiteness | **Repository-proved** | `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md`; manuscript Theorem 4.22 | Finite from bounded discrepancy; this does not prove that every overlap is productive. |
-| Overlap productivity / coincidence density one | **Open conjectural gate** | Manuscript Open Problem 5.35 | Exact 4,554-corpus productivity is finite evidence only. Contains the two-sided strong coincidence condition as its endpoint-aligned case (Proposition 5.39); under strong coincidence equivalent to the prefix-Parikh hitting statement (Corollary 5.41). |
-| Density-to-PDS bridge | **Imported theorem** (Barge–Štimac–Williams Thm 3.1/3.2) plus repository Lemma 5.36 | Manuscript Imported Theorem 5.37 and Theorem 5.38 | A positive result could bypass G1 on the PDS route but would not prove G1. |
-| SCC Producer / C1 | **Open theorem target** | `docs/conjecture-ledger.md`; manuscript unresolved statements | Conditional reductions and bounded exclusions do not prove it generally. |
-| Realization / coincidence-rank chain | **Open bridge, not source-pending** | `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`; PR #69 | Seven obligations G0–G6 remain; formal SCC recurrence, global realization, and collar survival are distinct. |
+| G1b-1 bounded discrepancy | **Repository-proved by reconstruction** | `docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md`; manuscript Theorem 4.4; PR #69 | Bounds the prefix-difference walk, not state length; does not imply G1. |
+| G1b-2 renewal finiteness | **Open conjectural gate** | Manuscript Level-2 open problem; issue #44 | Equivalent to G1 after G1b-1; must be non-unimodular-safe; **not required by Theorem 5.38**. |
+| Finite BPA, G1 | **Open conjectural gate** | Manuscript Proposition 4.11 and open-problem list | Stronger structural theorem; no longer a premise of the shortest PDS route. |
+| Sink-SCC reduction under G1 | **Conditional theorem** | `docs/sink-scc-reduction.md`; manuscript finite-carrier section | Requires finite BPA to extract a finite recurrent obstruction. |
+| Degree-two carrier span / wedge dichotomy | **Repository-proved by reconstruction** | Manuscript Proposition 5.20; `docs/galois-aux-b-source-resolution-2026-09-13.md`; PR #68 | Nonzero `K2` gives full rational wedge span; this does not prove productivity. |
+| Historical degree-three dominant capture | **Historical restricted theorem** | `archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md`, §§8–10 | Applies only to the explicitly certified seeds; SCC transfer remains restricted. |
+| Concentration / aux-B | **Open conjectural gate, not source-pending** | Manuscript open problem; issue #43 | Alternative finite-BPA route: exclusion of strict components with `K2=0`. Not required by Theorem 5.38. |
+| General wedge productivity | **Open conjectural gate, not source-pending** | Manuscript open problem and Proposition 5.20 discussion; issue #85 | Alternative finite-BPA route: exclusion of strict components with `K2!=0`. Full span alone is insufficient. |
+| Bounded degree-three exclusion | **Finite-domain theorem** | `docs/p1a-degree3-partial-theorem.md`; canonical Mojo certificate; PR #67 | Only the exact 4,554 substitutions with three letters and image lengths at most three. |
+| Bounded degree-two wedge productivity | **Finite-domain theorem** | `docs/p1a-degree2-wedge-productivity.md`; canonical Mojo certificate; PR #71 | Same 4,554-member domain; fail-closed and replayable-countermodel boundary. |
+| Seed-patch overlap graph finiteness | **Repository-proved** | `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md`; manuscript Theorem 4.22; PR #72 | Finite from bounded discrepancy; no G1 assumption. |
+| Full-rank child-closed overlap constraint | **Repository-proved** | Manuscript Corollary 5.34; PR #76 | A nonempty child-closed noncoincidence set has full rational intersection-vector rank; this is a constraint, not an exclusion. |
+| Closed irreducible bad-overlap normal form | **Repository-proved supporting reduction** | `docs/p1-overlap-minimal-obstruction-2026-09-14.md`, Proposition 2.1; PR #88 | Failure of overlap productivity has a finite child-closed recurrent nonproductive SCC with `PF(N_S)=beta`, full-rank `V_S`, and `spec(M) subset spec(N_S)`. Standard residual-SCC graph extraction is not claimed as novel. |
+| Boundary obstruction / strict zipper dichotomy | **Repository-proved supporting reduction** | `docs/p1-overlap-minimal-obstruction-2026-09-14.md`, Proposition 3.1; exact Mojo/Python common-start checks; PR #88 | A bad SCC either contains an offset-zero non-eventually-coincident pair or all child factorizations are strict no-tie prefix-grid zippers. This constrains but does not close Open Problem 5.35. |
+| Coincidence density / dense-good-set equivalence | **Repository-proved** | Manuscript Lemma 5.36; PR #77 | Corrected proof does not assume finite-stage good sets are nested. |
+| Density-to-PDS bridge | **Imported theorem** | Barge–Štimac–Williams; manuscript Imported Theorem 5.37; PR #77 | Exact hypotheses checked in the standing PIP regime; no G1 hypothesis. |
+| One-seed overlap productivity implies PDS | **Conditional theorem** | Manuscript Theorem 5.38 | Only open premise is seedwise overlap productivity. |
+| Endpoint-aligned overlaps = strong-coincidence boundary cases | **Repository-proved** | Manuscript Proposition 5.39; PR #82 | Prefix/suffix boundary cases only; does not prove arbitrary interior overlap productivity. |
+| Boundary-hitting criterion | **Repository-proved** | Manuscript Proposition 5.40 / Corollary 5.41; PR #82 | Offset-zero descendant iff exact prefix-Parikh/common-left-endpoint hit. |
+| Seedwise overlap productivity / Open Problem 5.35 | **Open conjectural gate — current shortest-path gate** | Manuscript Open Problem 5.35; issue #84 | It suffices that one swap seed have only productive reachable overlaps. All-seed/all-vertex productivity is stronger. |
+| SCC Producer / C1 | **Open theorem target** | `docs/conjecture-ledger.md`; manuscript unresolved statements | Can be reached through the finite-BPA carrier route; stronger overlap productivity also implies productivity of reachable BPA states. |
+| Realization / coincidence-rank chain | **Open bridge, not source-pending** | `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`; PR #69 | Seven obligations G0–G6 remain; formal recurrence, global realization, and collar survival are distinct. |
 | Finite collar death | **Empirical evidence** | Realization/collar notes and census artifacts | Requires an independent collar-completeness bound before theorem use. |
-| BPA termination / pure discrete spectrum bridge | **Imported theorem plus open repository-interface audit** | `docs/bpa-literature-bridge.md` and cited balanced-pair literature | The standard algorithm must not be silently identified with the normalized all-seed graph. |
-| Pisot substitution conjecture in the standing regime | **Open** | Manuscript abstract and unresolved-statements section | Neither finite census closes the general theorem. |
+| BPA termination / literature interface | **Imported theorem plus repository-interface audit** | `docs/bpa-literature-bridge.md` and cited literature | Do not silently identify the normalized all-seed graph with a literature algorithm. |
+| Pisot substitution conjecture in the standing regime | **Open** | Manuscript abstract / unresolved statements | Current shortest route has the single open seedwise-overlap-productivity premise. |
+
+## Current completion frontier
+
+The shortest no-G1 route is now:
+
+```text
+G1b-1 bounded discrepancy                       [PROVED]
+=> finite seed-patch overlap graph              [PROVED]
+=> one-seed overlap productivity                [OPEN: issue #84]
+=> coincidence density one / dense good set     [PROVED]
+=> PDS                                          [IMPORTED theorem].
+```
+
+Accordingly:
+
+1. **Primary proof target:** seedwise overlap productivity, now normalized to a closed irreducible bad-overlap SCC and split into aligned versus strict-zipper branches by PR #88.
+2. **Stronger parallel theorem:** G1b-2 renewal finiteness and finite BPA (issue #44).
+3. **Alternative finite-BPA coincidence route:** concentration and wedge productivity (issues #43 and #85).
+4. **Secondary certificate route:** realization/coincidence-rank bridge G0–G6.
+
+The historical v16 manuscript is not a prerequisite in this list.
 
 ## Source-resolution decisions
 
@@ -64,84 +85,61 @@ The reported historical contraction estimate
 Disc(sigma w) <= c Disc(w) + 2 E_sigma
 ```
 
-was not recovered and is not used. PR #69 supplied a different global proof
-from bounded contracting components of inflated swap-seed prefixes. Therefore
-the mathematical claim is repository-proved even though the reported
-historical derivation remains unavailable.
+was not recovered and is not used. PR #69 supplied a different global proof from bounded contracting components of inflated swap-seed prefixes. Therefore the mathematical claim is repository-proved even though the reported historical derivation remains unavailable.
 
-### Archive identity and residual v34 warning
+### Degree-two carrier propagation and aux-B
 
-The uploaded `PSC_PROJECT_UPLOAD_2026_09_08.tar.gz` has SHA-256 `6fe1831a7701d054b7d726f1810e28f137e3edf162eed2fb56afe7fdfc6aadd4` and adds no source absent from the repository archive. Its `V34_CLOSURE.md` and `DOMINANT_K2_SOURCE_V34.md` retain contradictory unconditional closing language despite correct G1-conditional headlines. Cite the live interpretation in `docs/archive-tarball-audit-2026-09-13.md`; do not promote the contradictory historical rows.
+The live carrier implication does not depend on recovery of a v16 manuscript. The degree-two rational carrier-span result is self-contained on `main`. The archived degree-three certificate is a different, restricted theorem.
 
-### Degree-two Galois propagation
-
-The live carrier implication does not depend on recovery of a v16 manuscript.
-The characteristic polynomial of `Lambda^2 M` is irreducible in the standing
-irreducible cubic regime. Hence a nonzero invariant rational carrier span must
-be the whole wedge space. This is the self-contained wedge dichotomy on
-`main`.
-
-The archived degree-three certificate is a different theorem and must not be
-used as a carrier-level proof.
-
-### Concentration and aux-B
-
-“Aux-B” previously sounded like a proved lemma with a missing source. The audit
-shows that the live content is the open assertion that a strict carrier cannot
-have identically zero `K2`. It has formulation provenance but no proof.
-Recovery of a historical file is not part of the current dependency plan.
+“Aux-B” is not a proved theorem waiting for source recovery. Its live content is the open concentration statement.
 
 ### Realization and coincidence rank
 
-The former status-level equivalence has been decomposed into obligations G0–G6.
-These are open transfer and completeness problems. The correct status is
-**open bridge**, not **source-pending theorem**.
+The former status-level equivalence has been decomposed into obligations G0–G6. The correct status is **open bridge**, not **source-pending theorem**.
+
+### P0 source/status issue
+
+Issue #45 is closed as completed at the status level: the missing v16 artifact remains historical provenance metadata, while all live claims have a current proof, an exact imported source, or an explicit open classification. Recovery of v16 would trigger archive comparison, not automatic theorem promotion.
 
 ## Finite-certificate boundary
 
-The degree-two and degree-three certificates jointly eliminate the two
-first-defect cases on the exact 4,554-member short-image corpus. They do not
-supply a uniform bound on substitution image length, component size, state
-length, collar radius, or first-defect degree. Accordingly:
+Finite-domain claims must preserve their exact domain and fail-closed semantics:
 
-1. every domain parameter must remain in the theorem statement;
-2. catalogue caps must fail closed;
-3. zero-survivor conclusions require positive and negative predicate
-   calibration;
-4. a surviving component must be emitted as a replayable state-and-edge
-   countermodel;
-5. absence of observed higher-degree states is empirical unless an independent
-   completeness theorem excludes them.
+1. every domain parameter remains in the theorem statement;
+2. catalogue caps fail closed;
+3. zero-survivor conclusions require predicate calibration;
+4. survivors are retained as replayable countermodels;
+5. absence of observed higher-degree states or bad overlaps is empirical unless an independent completeness theorem excludes them;
+6. the 4,554-member overlap census is extremely strong evidence for Open Problem 5.35 but not a universal theorem.
 
-## Current no-assumption frontier
+## Hypothesis / generality firewall
 
-The shortest honest completion program now has two possible assembly routes:
+- Tile-length rational/integer independence must be derived from irreducibility where used, not added as a standing assumption.
+- UD is derived from full incidence rank, not assumed.
+- FI, prefix/suffix permutation, or boundary-injectivity conditions are extra hypotheses unless derived.
+- Do not import unimodularity through a converse theorem or internal-space argument without restricting the statement.
+- Do not treat `pi_s(Z^A)` as a discrete lattice in general.
+- Do not identify formal recurrence with global realization.
+- Do not treat a finite corpus or collar radius as self-certifying completeness.
 
-1. prove G1b-2, equivalently G1 after the reconstructed G1b-1 theorem;
-2. prove general concentration for the `K2=0` case;
-3. prove general wedge productivity for the `K2!=0` case;
-4. assemble SCC Producer from the finite-graph reduction and the two carrier
-   exclusions;
-5. alternatively, prove overlap productivity (Open Problem 5.35) for one
-   swap seed: the density-to-PDS bridge is the imported Theorem 5.37
-   (Barge–Štimac–Williams), so this alone gives the G1-free PDS route
-   (Theorem 5.38);
-6. audit the exact interface from the repository's normalized BPA to the
-   literature's pure-discrete-spectrum criterion.
+## Retired / corrected routes
 
-The historical v16 manuscript is not a prerequisite in this list. If recovered,
-it should be archived and compared against the reconstructed proofs and open
-obligations, not automatically promoted.
+Do not use:
+
+- predecessor contraction as a proof of finite BPA;
+- `UD => bounded total padding`;
+- bounded discrepancy alone as finite-BPA proof;
+- naive zero-sum-hyperplane contraction;
+- unlabelled difference-walk injectivity;
+- rank-deficiency of a child-closed bad overlap set;
+- nesting of finite-stage good sets in the coincidence-density proof;
+- `rho(N_S)<beta` inferred merely from calling a residual real-overlap SCC a boundary system: Akiyama–Lee's residual graph can carry the full expansion spectral radius precisely when a genuine noncoincident overlap remains.
 
 ## Citation and maintenance rules
 
-- Cite the current manuscript for exposition and the underlying proof note for
-  load-bearing reconstructed arguments.
-- Cite PR and merge identifiers for provenance, not as mathematical proof.
+- Cite the current manuscript for exposition and the underlying proof note for load-bearing reconstructed arguments.
+- Cite PR/merge identifiers for provenance, not as mathematical proof.
 - Cite the archived certificate only with its seed-specific degree-three scope.
-- Label the two named, exhaustively certified 4,554-corpus exclusions as finite-domain theorems. Other observations over that corpus—including overlap productivity and absence of higher first defects—remain finite evidence unless their own completeness contract is proved.
-- Never describe concentration, general wedge productivity, G1b-2, the
-  realization bridge, SCC Producer, or PSC as proved.
-- When a status changes, update this map, `docs/conjecture-ledger.md`,
-  `docs/proof-ladder.md`, `docs/current-proof-architecture-2026-09-11.md`,
-  the manuscript status table, and `tla/Ledger.tla` in the same PR.
+- Label the two exhaustively certified 4,554-corpus carrier exclusions as finite-domain theorems; the overlap productivity census remains finite evidence for the general gate.
+- Never describe overlap productivity, G1b-2, concentration, general wedge productivity, realization G0–G6, SCC Producer, or PSC as proved.
+- When a status changes, update this map, `docs/conjecture-ledger.md`, `docs/proof-ladder.md`, `docs/current-proof-architecture-2026-09-14.md`, the manuscript status table, and `tla/Ledger.tla` as applicable.
