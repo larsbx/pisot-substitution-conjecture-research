@@ -13,6 +13,7 @@ G1-free form; a clean corpus is finite evidence only.
 from psc.bpa import substitution_incidence
 from psc.mat3 import Mat3
 from psc.pisot import is_pip
+from psc.overlap_recurrence import alignment_free_recurrent_sccs
 from psc.overlap_seed_patch import (
     build_seed_overlap_graph_from_tables,
     build_seed_overlap_tables,
@@ -48,6 +49,9 @@ def main() raises:
     var n_failed = 0
     var n_nonproductive_states = 0
     var n_nonproductive_specimens = 0
+    var n_alignment_free_cycle_specimens = 0
+    var n_alignment_free_cycle_sccs = 0
+    var max_alignment_free_cycle_size = 0
     var largest = 0
     var total_states = 0
     var max_depth = 0
@@ -85,6 +89,18 @@ def main() raises:
                     total_states += g.size()
                     if g.size() > largest:
                         largest = g.size()
+
+                    # Necessary finite signature of the strict-zipper branch:
+                    # after deleting coincidences and all offset-zero states,
+                    # does any directed recurrence remain?
+                    var zipper_sccs = alignment_free_recurrent_sccs(g)
+                    if len(zipper_sccs) > 0:
+                        n_alignment_free_cycle_specimens += 1
+                        n_alignment_free_cycle_sccs += len(zipper_sccs)
+                        for z in range(len(zipper_sccs)):
+                            if len(zipper_sccs[z]) > max_alignment_free_cycle_size:
+                                max_alignment_free_cycle_size = len(zipper_sccs[z])
+
                     var bad = len(nonproductive_overlap_states(g))
                     if bad > 0:
                         # A nonproductive graph is the mathematical event this
@@ -142,6 +158,14 @@ def main() raises:
     print("largest seed-patch overlap graph:", largest)
     print("total seed-patch overlap states:", total_states)
     print("nonproductive overlap specimens:", n_nonproductive_specimens, " states:", n_nonproductive_states)
+    print(
+        "alignment-free recurrent overlap cycles: specimens:",
+        n_alignment_free_cycle_specimens,
+        " sccs:",
+        n_alignment_free_cycle_sccs,
+        " largest-scc:",
+        max_alignment_free_cycle_size,
+    )
     print("maximum first-coincidence depth:", max_depth)
     var line = String("specimens by maximal first-coincidence depth:")
     for d in range(len(depth_histogram)):
