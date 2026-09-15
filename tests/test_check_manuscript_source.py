@@ -106,6 +106,15 @@ def test_commented_document_sentinels_fail(copy):
     assert code == 1 and "on uncommented lines" in out, out
     tex.write_text(text.replace("\\begin{document}", "\\begin{document} % 100\\% active", 1))  # an escaped % is not a comment
     assert run(copy)[0] == 0
+    tex.write_text(text[:i] + "\\\\%" + text[i:])  # \\ is a control sequence, so this % starts a comment
+    code, out = run(copy)
+    assert code == 1 and "on uncommented lines" in out, out
+    tex.write_text(text[:i] + "\\%" + text[i:])  # an escaped percent leaves the sentinel active
+    assert run(copy)[0] == 0
+    reversed_line = text.replace("\\begin{document}", "", 1)[:i] + "\\end{document} \\begin{document}" + text[i + len("\\end{document}"):]
+    tex.write_text(reversed_line)  # both sentinels on one line, in the wrong order
+    code, out = run(copy)
+    assert code == 1 and "on uncommented lines" in out, out
 
 
 def test_endstream_needs_a_preceding_line_ending(copy):

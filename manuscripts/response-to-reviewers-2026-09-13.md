@@ -739,3 +739,12 @@ Two findings from the automated Codex review of commit `9bd427d395`; both accept
 | --- | --- | --- | --- | --- |
 | 121 | P2 | `\begin{document}` / `\end{document}` were accepted inside TeX comments | Accepted. The sentinels are now located on lines with their comments stripped (an unescaped `%` to the line end), so a commented sentinel does not count. The scenario was confirmed to pass the previous revision. Tests: the only `\end{document}` commented, the `\begin{document}` commented (both fail), an escaped `\%` after the sentinel (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 122 | P2 | The line ending before `endstream` was optional | Accepted. Every stream (superseded, cross-reference and object stream) must now have an end-of-line marker between its data and `endstream`. The scenario was confirmed to pass the previous revision. Tests: a superseded stream, a cross-reference stream and an object stream with that line ending deleted (all fail) | same |
+
+## Sixty-first round (pull request #95, sentinel revision)
+
+Two findings from the automated Codex review of commit `e59444dfba`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 123 | P2 | A `%` after `\\` was treated as escaped rather than as a comment | Accepted. A comment now starts at a `%` preceded by an even run of backslashes (`\\` being a control sequence and `\%` an escaped percent). The scenario (`\\%\end{document}` as the only closing sentinel) was confirmed to pass the previous revision. Tests: that line (fails), `\%\end{document}` (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 124 | P2 | Reversed sentinels on one line compared equal line indices | Accepted. The sentinels are now ordered by character position in the comment-stripped text. The scenario (`\end{document} \begin{document}` as the only occurrences) was confirmed to pass the previous revision. Test: that line (fails) | same |

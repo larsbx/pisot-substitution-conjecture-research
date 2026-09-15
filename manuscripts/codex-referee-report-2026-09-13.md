@@ -1463,3 +1463,26 @@ No other findings were posted in the fifty-eighth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the fifty-ninth round.
+
+# Sixty-first round: review of the sentinel revision (pull request #95)
+
+**Reviewed commit:** `e59444dfba` (findings 121–122 and their tests).
+**Review posted:** 2026-09-15T21:08:22Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 123 (P2) — `scripts/check_manuscript_source.py`, line 44
+
+> **Count backslash parity before stripping TeX comments**
+>
+> Fresh evidence beyond the new single-escaped-`\%` test is a line such as `\\%\end{document}`: TeX reads `\\` as its own control sequence, so the following `%` starts a comment, but this negative lookbehind treats any immediately preceding backslash as escaping the percent and counts the commented sentinel as active. Determine whether the consecutive backslash run has odd parity before preserving `%`; otherwise a mangled source can still pass the fail-closed guard.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 124 (P2) — `scripts/check_manuscript_source.py`, line 47
+
+> **Preserve within-line ordering of document sentinels**
+>
+> When the only occurrences are on one line as `\end{document} \begin{document}`, both searches return the same line index, so `e < b` is false and the source passes despite the commands being reversed. Compare character positions in the comment-stripped text, or compare columns when the line indices match, so the advertised ordering invariant fails closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-first round.
