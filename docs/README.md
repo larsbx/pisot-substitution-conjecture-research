@@ -14,9 +14,10 @@ the section matching the question you are asking.
 3. `conjecture-ledger.md` — live prose dependency ledger.
 4. `proof-ladder.md` — shortest honest path from established results to the
    remaining theorem, plus the stronger parallel structural routes.
-5. `current-proof-architecture-2026-09-11.md` — detailed architecture; updated
-   beyond its filename date and now explicitly distinguishes the primary
-   overlap route from the finite-BPA and realization programmes.
+5. `current-proof-architecture-2026-09-14.md` — canonical detailed architecture,
+   explicitly distinguishing the primary overlap route from the finite-BPA and
+   realization programmes. The 2026-09-11 file is retained only as a superseded
+   historical pointer.
 6. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
    state-of-program exposition.
 
