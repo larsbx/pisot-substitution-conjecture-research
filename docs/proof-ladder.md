@@ -95,7 +95,7 @@ PR #82 proves:
 - an overlap reaches an offset-zero descendant at level `m` exactly when `M^m w` is a difference of proper-prefix Parikh vectors, equivalently when inflated subtiles have a common left endpoint;
 - under strong coincidence, productivity reduces to this boundary-hitting statement.
 
-PR #88 turns this into the aligned-versus-zipper case split above without assuming strong coincidence globally.
+PR #88 turns this into the aligned-versus-zipper case split above without assuming strong coincidence globally (manuscript Propositions 5.43–5.44). Manuscript Lemma 5.45 records the ordered cycle equation `(I - M^r) w_0 = sum_k M^{r-1-k} d_k`: every offset of a closed irreducible obstruction is determined by the ordered address of a cycle through it and has a purely periodic expansion in the increment set `F`, with no vanishing tail in the strict-zipper branch.
 
 PR #87 adds the contracting lower bound (Proposition 5.42): a hit at level `m` forces `|varsigma(t)| <= C_varsigma sum_{s<=m} |varsigma(beta)|^{-s}` for every contracting embedding, decided exactly in `Q(beta)`; on the corpus this bound is at most 8 while the hitting depth reaches 17, leaving a gap of up to 14 inflations that this magnitude bound does not explain (the gap includes the slack of the bound; no further attribution is drawn).
 
