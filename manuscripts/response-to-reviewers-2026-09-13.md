@@ -861,3 +861,11 @@ One finding from the automated Codex review of commit `9a48edeaad`; accepted, on
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 139 | P2 | `\def\begin{}` put the target before a brace and passed as an environment use | Accepted. A definer control word (`\def` and its variants, `\let`, `\futurelet`, a prefix such as `\global`, `\long`, `\outer` or `\protected`, or any control word containing `command`/`Command`) followed by `\begin`, `\end`, `\document` or `\enddocument` as its target now fails the source, in addition to the earlier rules. The scenario was confirmed to pass the previous revision. Tests: `\def\begin{}` with `\def\end{}`, `\renewcommand\begin{}`, `\global\let\end{}`, `\NewCommandCopy\begin{\relax}` and the alias `\let\foo\begin` (fail); a macro body using `\begin{center}` (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-sixth round (pull request #95, definer-target revision)
+
+One finding from the automated Codex review of commit `bc8d534802`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 140 | P2 | A definer's target on the next line evaded the definer rule | Accepted. TeX skips the white space after a control word, a line ending included, and a comment ends a line; so the definer rule, the environment-defining rule and the `\newif` declaration now allow line endings wherever they allowed spaces and tabs. The scenario, its comment-separated form, `\renewenvironment` with `{document}` on the next line and `\newif` with its name on the next line were all confirmed to pass the previous revision. Tests: `\def` then `\begin{}` on the next line (with `\end{}` alike), `\def%` then `\begin{}`, `\renewcommand` then `{\end}{}`, `\global` across a blank line then `\let` then `\end{}`, `\renewenvironment` then `{document}{}{}`, `\NewDocumentEnvironment` then `*` then `{ document }` (all fail); a line-broken definer with another target and a line-broken `\newenvironment{doc}` (pass); `\newif` then `\ifdraft` on the next line with the conditional left open (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

@@ -70,8 +70,8 @@ def check_tex(path: Path) -> list[str]:
     active = "\n".join(re.sub(r"(?<!\\)((?:\\\\)*)%.*", r"\1", l) for l in lines)
     braces = [(m.end() - 1, 1 if m.group(1) == "{" else -1) for m in re.finditer(r"(?<!\\)(?:\\\\)*([{}])", active)]
     depth = lambda events, pos: sum(d for i, d in events if i < pos)
-    ifs = _TEX_IFS | set(re.findall(r"(?<!\\)(?:\\\\)*\\newif[ \t]*\\(if[a-zA-Z]+)", active))
-    declared_out = re.sub(r"(?<!\\)((?:\\\\)*)\\newif[ \t]*\\if[a-zA-Z]*", lambda m: m.group(1) + " " * (len(m.group()) - len(m.group(1))), active)
+    ifs = _TEX_IFS | set(re.findall(r"(?<!\\)(?:\\\\)*\\newif[ \t\n]*\\(if[a-zA-Z]+)", active))
+    declared_out = re.sub(r"(?<!\\)((?:\\\\)*)\\newif[ \t\n]*\\if[a-zA-Z]*", lambda m: m.group(1) + " " * (len(m.group()) - len(m.group(1))), active)
     conditionals = [(m.start(1), -1 if m.group(1) == "fi" else 1)
                     for m in re.finditer(r"(?<!\\)(?:\\\\)*\\(if[a-zA-Z]*|fi)(?![a-zA-Z])", declared_out)
                     if m.group(1) == "fi" or m.group(1) in ifs]
@@ -91,12 +91,14 @@ def check_tex(path: Path) -> list[str]:
     # their definitions: \\begin and \\end may occur only as environment uses followed by {, never as the
     # target of a definer (\\def and its variants, \\let, \\futurelet, a prefix such as \\global, or any
     # ...command... macro), the internal \\document and \\enddocument may not occur, and no
-    # environment-defining command may target document
+    # environment-defining command may target document.  TeX skips the white space after a control
+    # word, a line ending included (a comment ends a line), so a definer, \\newif and an argument
+    # may be separated from what follows by line endings as well as by spaces
     tampering = (re.search(r"(?<!\\)(?:\\\\)*\\(begin|end)(?![a-zA-Z@])(?![ \t]*\{)", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\([gex]?def|let|futurelet|global|long|outer|protected|[a-zA-Z@]*[cC]ommand[a-zA-Z@]*)"
-                              r"[ \t]*\{?[ \t]*\\(?:begin|end|document|enddocument)(?![a-zA-Z@])", active)
+                              r"[ \t\n]*\{?[ \t\n]*\\(?:begin|end|document|enddocument)(?![a-zA-Z@])", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\(document|enddocument)(?![a-zA-Z@])", active)
-                 or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*[eE]nvironment)\*?[ \t]*\{[ \t]*document[ \t]*\}", active))
+                 or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*[eE]nvironment)[ \t\n]*\*?[ \t\n]*\{[ \t\n]*document[ \t\n]*\}", active))
     if tampering:
         problems.append(f"{path}: \\{tampering.group(1)} on line {active.count(chr(10), 0, tampering.start()) + 1} "
                         "can change what the document sentinels mean")

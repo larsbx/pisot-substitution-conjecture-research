@@ -172,12 +172,19 @@ def test_commented_document_sentinels_fail(copy):
     assert code == 1 and "TeX ^^ notation on line" in out, out
     for redefinition in ("\\def\\begin#1{}\n\\def\\end#1{}", "\\def\\begin{}\n\\def\\end{}", "\\let\\begin\\relax", "\\renewcommand{\\end}[1]{}",
                          "\\renewcommand\\begin{}", "\\global\\let\\end{}", "\\NewCommandCopy\\begin{\\relax}", "\\renewenvironment{document}{}{}",
-                         "\\RenewDocumentEnvironment{document}{}{}{}", "\\let\\document\\relax", "\\let\\foo\\begin"):
+                         "\\RenewDocumentEnvironment{document}{}{}{}", "\\let\\document\\relax", "\\let\\foo\\begin",
+                         "\\def\n\\begin{}\n\\def\n\\end{}", "\\def%\n\\begin{}", "\\renewcommand\n{\\end}{}", "\\global\n\n\\let\n\\end{}",
+                         "\\renewenvironment\n{document}{}{}", "\\NewDocumentEnvironment\n*\n{ document }{}{}{}"):  # line endings after a control word are white space
         tex.write_text(text.replace("\\begin{document}", redefinition + "\n\\begin{document}", 1))
         code, out = run(copy)
         assert code == 1 and "can change what the document sentinels mean" in out, (redefinition, out)
     tex.write_text(text.replace("\\begin{document}", "\\begingroup\\endgroup \\begin {center}\\end{center}\n\\newcommand{\\foo}{\\begin{center}}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # environment uses, longer control words and a macro body using \\begin{...} are fine
+    tex.write_text(text.replace("\\begin{document}", "\\renewcommand{\\foo}\n{\\begin{center}}\n\\newenvironment\n{doc}{}{}\n\\begin{document}", 1))
+    assert run(copy)[0] == 0  # a line-broken definer whose target is not a sentinel, and another environment
+    tex.write_text(text.replace("\\begin{document}", "\\newif\n\\ifdraft\n\\ifdraft\n\\begin{document}", 1))  # a declared conditional across a line ending
+    code, out = run(copy)
+    assert code == 1 and "outside conditionals" in out, out
     tex.write_text(text[:i + len("\\end{document}")] + "\n\\endinput" + text[i + len("\\end{document}"):])  # after the document is fine
     assert run(copy)[0] == 0
 

@@ -1704,3 +1704,18 @@ No other findings were posted in the seventy-fourth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the seventy-fifth round.
+
+# Seventy-sixth round: review of the definer-target revision (pull request #95)
+
+**Reviewed commit:** `bc8d534802` (finding 139).
+**Review posted:** 2026-09-15T22:42:40Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 140 (P2) — `scripts/check_manuscript_source.py`, line 97
+
+> **Scan definer targets across TeX line endings**
+>
+> Fresh evidence beyond finding 139 is that TeX permits a definer's target on the next line, but this pattern allows only spaces and tabs between them. A 500-line source containing `\def\n\begin{}` and `\def\n\end{}` before the standalone sentinels returns no problems, although TeX treats those newlines as the whitespace following the `\def` control word and redefines both commands, so the document environment is never opened or closed. Recognize TeX line-ending/comment separation here or fail closed on line-broken definers.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-sixth round.
