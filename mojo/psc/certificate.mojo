@@ -16,7 +16,7 @@ from psc.qlinalg import rank, in_span
 from psc.seeds import length7_seeds, certificate_seed_matrices
 from psc.tensor3 import tensor_cube_apply, theta, is_zero27, zeros27, idx3
 from psc.w3 import w3_basis, certificate_w3_basis, in_w3, spans_same_space
-from psc.words import Pair, is_zero
+from psc.words import Pair, is_zero, is_balanced, k1, k2, k3
 
 
 struct Check(Copyable, Movable, Writable):
@@ -85,8 +85,8 @@ def run_all(corpus_bound: Int = 2) -> List[Check]:
     # -- 3: seeds are balanced with K_1 = K_2 = 0 ------------------------------
     var ok = True
     for k in range(len(seeds)):
-        if not (seeds[k].is_balanced() and seeds[k].length() == 7
-                and is_zero(seeds[k].k1()) and is_zero(seeds[k].k2())):
+        if not (is_balanced(seeds[k]) and seeds[k].length() == 7
+                and is_zero(k1(seeds[k])) and is_zero(k2(seeds[k]))):
             ok = False
     checks.append(Check("C3  six length-7 seeds: balanced, K_1 = 0, K_2 = 0", ok,
                         String(len(seeds)) + " seeds"))
@@ -94,21 +94,21 @@ def run_all(corpus_bound: Int = 2) -> List[Check]:
     # -- 4 / 5: K_3(s_k) lands in W_3 -----------------------------------------
     ok = True
     for k in range(len(seeds)):
-        if not in_w3(seeds[k].k3()):
+        if not in_w3(k3(seeds[k])):
             ok = False
     checks.append(Check("C4  K_3(s_k) in W_3 for every seed", ok, ""))
 
     # -- 6 / 7: derived seed matrices agree with the certificate tables --------
     ok = True
     for k in range(len(seeds)):
-        if theta(seeds[k].k3()) != Mat3(certA[k]):
+        if theta(k3(seeds[k])) != Mat3(certA[k]):
             ok = False
     checks.append(Check("C5  Theta(K_3(s_k)) equals certificate A_k", ok, ""))
 
     var props = True
     var traces = String("")
     for k in range(len(seeds)):
-        var a = theta(seeds[k].k3())
+        var a = theta(k3(seeds[k]))
         var chi = a.charpoly()
         var ones: List[Int] = [1, 1, 1]
         var img = a.apply(ones)
@@ -129,7 +129,7 @@ def run_all(corpus_bound: Int = 2) -> List[Check]:
         var m = corpus[i].copy()
         var d = m.det()
         for k in range(len(seeds)):
-            var x = seeds[k].k3()
+            var x = k3(seeds[k])
             var y = tensor_cube_apply(m, x)
             # Theta(M^{(x)3} x) . M == det(M) . M . Theta(x)   (inverse cleared)
             if theta(y) * m != (m * theta(x)).scale(d):
@@ -152,7 +152,7 @@ def run_all(corpus_bound: Int = 2) -> List[Check]:
     var t1 = True
     for i in range(len(corpus)):
         for k in range(len(seeds)):
-            if is_zero27(q_target1(corpus[i], seeds[k].k3())):
+            if is_zero27(q_target1(corpus[i], k3(seeds[k]))):
                 t1 = False
     checks.append(Check("C9  Target 1: (Phi_3 - det M)^2 K_3(s_k) != 0 on the PIP corpus",
                         t1, String(len(corpus) * len(seeds)) + " instances"))

@@ -23,8 +23,8 @@ from psc.perron_field3 import (
     cubic_mul_beta,
     cubic_sub_checked,
     left_perron_tile_lengths,
+    sign_at_perron,
 )
-from psc.perron_interval import PerronEnclosure
 
 
 struct OverlapState(ImplicitlyCopyable, Copyable, Movable, Equatable, Hashable, Writable):
@@ -53,7 +53,6 @@ struct OverlapState(ImplicitlyCopyable, Copyable, Movable, Equatable, Hashable, 
 struct SeedOverlapTables(Copyable, Movable):
     var sigma: List[List[Int]]
     var field: PerronField3
-    var enclosure: PerronEnclosure
     var lengths: TileLengths3
     var prefix_starts: List[Int]
     var prefix_positions: List[CubicElt]
@@ -62,14 +61,12 @@ struct SeedOverlapTables(Copyable, Movable):
         out self,
         sigma: List[List[Int]],
         field: PerronField3,
-        enclosure: PerronEnclosure,
         lengths: TileLengths3,
         prefix_starts: List[Int],
         prefix_positions: List[CubicElt],
     ):
         self.sigma = sigma.copy()
         self.field = field
-        self.enclosure = enclosure.copy()
         self.lengths = lengths
         self.prefix_starts = prefix_starts.copy()
         self.prefix_positions = prefix_positions.copy()
@@ -116,7 +113,6 @@ def build_seed_overlap_tables(sigma: List[List[Int]]) raises -> SeedOverlapTable
     _validate_sigma(sigma)
     var m = Mat3(substitution_incidence(sigma))
     var field = build_perron_field3(m)
-    var enclosure = PerronEnclosure(field)
     var lengths = left_perron_tile_lengths(m)
     var starts: List[Int] = [0]
     var positions = List[CubicElt]()
@@ -128,7 +124,7 @@ def build_seed_overlap_tables(sigma: List[List[Int]]) raises -> SeedOverlapTable
         if cursor != cubic_mul_beta(field, lengths.at(parent)):
             raise Error("substitution image length disagrees with Perron scaling")
         starts.append(len(positions))
-    return SeedOverlapTables(sigma, field, enclosure, lengths, starts, positions)
+    return SeedOverlapTables(sigma, field, lengths, starts, positions)
 
 
 def _cached_sign(
@@ -138,10 +134,12 @@ def _cached_sign(
 ) raises -> Int:
     if x in cache:
         return cache[x]
-    # Rational intervals are the first enclosure/certificate layer, evaluated
-    # against the enclosure computed once per substitution. Ambiguous or
-    # rejected boxes fall back internally to exact Sturm--Tarski.
-    var s = tables.enclosure.sign_interval_first(x)
+    # Graph construction needs only the exact sign. The exact Sturm--Tarski
+    # oracle over machine integers is cheaper than a rational-interval
+    # enclosure over unbounded rationals, and both are exact, so the
+    # interval-first path is reserved for the margin audit, which reports
+    # interval certification (psc.overlap_interval_audit).
+    var s = sign_at_perron(tables.field, x)
     cache[x] = s
     return s
 
