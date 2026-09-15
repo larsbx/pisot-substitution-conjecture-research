@@ -1509,3 +1509,18 @@ No other findings were posted in the sixty-first round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the sixty-second round.
+
+# Sixty-third round: review of the predictor-one revision (pull request #95)
+
+**Reviewed commit:** `4967a92624` (findings 125–126).
+**Review posted:** 2026-09-15T21:24:29Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 127 (P2) — `scripts/check_manuscript_source.py`, line 661
+
+> **Require a token boundary at /First**
+>
+> When a historical object-stream member is later superseded, a payload such as `5 0true` with `/N 1 /First 3` passes because splitting the artificially truncated `data[:first]` treats `0` as a complete integer, while `_object_end` separately accepts `true` as the member. In the actual PDF byte stream, `0true` is one regular token because no whitespace or delimiter separates the final header integer from the member, so this malformed historical object stream escapes the fail-closed check; validate a real PDF token boundary at `/First` before accepting the header.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-third round.

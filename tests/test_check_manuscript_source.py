@@ -1169,6 +1169,17 @@ def test_zero_member_object_streams_carry_no_data(copy):
     assert code == 1 and "/First lies outside the data" in out, out
 
 
+def test_object_stream_header_ends_at_a_token_boundary(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = objstm_pdf(body=b"true")  # data "5 0 true", /First 4
+    assert raw.count(b"5 0 true") == 1 and raw.count(b"/First 4 ") == 1
+    pdf.write_bytes(raw.replace(b"5 0 true", b"5 0true ", 1).replace(b"/First 4 ", b"/First 3 ", 1))  # "0true" is one token
+    code, out = run(copy)
+    assert code == 1 and "does not end at a token boundary at /First" in out, out
+    pdf.write_bytes(raw.replace(b"5 0 true", b"5 0 (a) ", 1))  # a delimiter right at /First is a boundary
+    assert run(copy)[0] == 0
+
+
 def test_png_predictors_use_the_declared_pixel_width(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.write_bytes(objstm_pdf(png=(3, 3)))  # Sub filter over three-byte pixels, declared /Colors 3

@@ -757,3 +757,11 @@ Two findings from the automated Codex review of commit `b8ea3754c5`; both accept
 | --- | --- | --- | --- | --- |
 | 125 | P2 | `/Predictor 1` geometry changed the cross-reference row width | Accepted. Predictor 1 predicts nothing, so its geometry is ignored and the `/W` row width stands; the surplus bytes of the scenario now exceed the inflation ceiling. The scenario was confirmed to pass the previous revision. Tests: that scenario (fails), predictor 1 with irrelevant geometry and no surplus (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 126 | P2 | A zero-member object stream could carry arbitrary data | Accepted. `/First` must lie inside the data, and with `/N 0` the bytes from `/First` on must be white space only. The scenario was confirmed to pass the previous revision. Tests: `/N 0` over a nonempty body and `/First` beyond the data (fail), `/N 0` over white space (passes) | same |
+
+## Sixty-third round (pull request #95, predictor-one revision)
+
+One finding from the automated Codex review of commit `4967a92624`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 127 | P2 | The object-stream header could run into its first member without a token boundary | Accepted. The byte before `/First` must be white space or the byte at `/First` a white-space or delimiter byte, so the header's last integer cannot continue into the member. The scenario (`5 0true` with `/First 3`) was confirmed to pass the previous revision. Tests: that scenario (fails), a delimiter right at `/First` (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

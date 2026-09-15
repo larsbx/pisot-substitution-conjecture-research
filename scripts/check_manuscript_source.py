@@ -664,6 +664,8 @@ def _objstm(raw: bytes, table: dict[int, Entry], container: int, cache: dict[int
                     starts = [first + o for _, o in pairs]
                     if first > len(data):
                         result = f"object stream {container}, whose /First lies outside the data"
+                    elif 0 < first < len(data) and data[first - 1] not in _WSB and data[first] not in b"\x00\t\n\x0c\r /[]<>(){}%":
+                        result = f"object stream {container}, whose header does not end at a token boundary at /First"
                     elif n == 0 and not re.fullmatch(rb"[\x00\t\n\x0c\r ]*", data[first:]):
                         result = f"object stream {container}, which declares no members but carries data"
                     elif not all(st < len(data) for st in starts):
