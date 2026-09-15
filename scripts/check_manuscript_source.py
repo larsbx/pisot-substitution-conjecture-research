@@ -237,9 +237,10 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
     """The cross-reference stream object at ``raw[off:]``: a problem, or its section
     (type-0 rows included).  Every key is read from the dictionary's top-level items."""
     at = raw[off:]
-    m = re.match(rb"\d+\s+\d+\s+obj\s*", at)
+    m = re.match(rb"(\d+)\s+(\d+)\s+obj\s*", at)
     if not m:
         return "not an object"
+    num, gen = int(m.group(1)), int(m.group(2))
     parsed = _dict_parse(at, m.end())
     if parsed is None:
         return "object has no dictionary"
@@ -324,7 +325,11 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
         if isinstance(payload, str):
             return f"cross-reference stream {payload}"
     table = _xref_rows(raw, payload, widths, numbers, size)
-    return table if isinstance(table, str) else (table, size, prev, None, off + data_start + n + tail.end(), root)
+    if isinstance(table, str):
+        return table
+    if table.get(num, (None,))[:3] != (1, off, gen):  # the stream is an object of its own revision, so its section must list it
+        return f"cross-reference stream object {num} {gen} at offset {off} is not listed by its own section as an in-use entry at that offset, so /Size and the entries do not account for it"
+    return (table, size, prev, None, off + data_start + n + tail.end(), root)
 
 
 def _free_list(table: dict[int, Entry], classic: bool) -> str | None:

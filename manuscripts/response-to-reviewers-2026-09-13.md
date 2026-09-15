@@ -657,3 +657,11 @@ One finding from the automated Codex review of commit `621133b1e3`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 110 | P2 | PNG Sub, Average and Paeth prediction used the previous byte rather than the previous pixel | Accepted. The PNG row filters now predict from the previous pixel of `ceil(Colors × BitsPerComponent / 8)` bytes. The `/DecodeParms` validation is shared by object streams, superseded streams and the cross-reference stream, whose predicted row width must now equal the `/W` row width and whose TIFF predictor is now undone as well. Tests: an object stream Sub-encoded over three-byte pixels under `/Colors 3` (passes) and one encoded byte by byte under the same declaration (fails); a cross-reference stream with `/Columns 2 /Colors 2` over a four-byte `/W` (passes) and `/Columns 999` (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-first round (pull request #95, pixel-width revision)
+
+One finding from the automated Codex review of commit `998cf89ae0`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 111 | P2 | A cross-reference stream could omit its own object from its entries and from `/Size` | Accepted. A cross-reference stream is an object of its own revision, so its section must list it as an in-use entry at its own offset with its own generation; the existing `/Size` check then accounts for it. The repository PDF's stream (object 1132) lists itself. Tests: the reviewer's object `99 0 obj` under `/Size 5 /Index [0 3 4 1]`, and a stream whose own row is free | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

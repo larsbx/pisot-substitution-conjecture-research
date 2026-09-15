@@ -46,9 +46,9 @@ def classic_pdf(objs=None, extra_trailer=b"", edit=None):
     return edit(out) if edit else out
 
 
-def xref_pdf(rows=None, dict_extra=b"", predictor=False, compress=True, gen_bytes=1):
-    """A complete PDF whose cross-reference is a stream (catalog, one-page tree; page is
-    object 4), with ``/W [1 2 gen_bytes]``."""
+def xref_pdf(rows=None, dict_extra=b"", predictor=False, compress=True, gen_bytes=1, xref_num=3):
+    """A complete PDF whose cross-reference is a stream (object ``xref_num``, written where
+    object 3 is listed; catalog, one-page tree; page is object 4), with ``/W [1 2 gen_bytes]``."""
     import zlib
 
     out = b"%PDF-1.5\n"
@@ -72,7 +72,7 @@ def xref_pdf(rows=None, dict_extra=b"", predictor=False, compress=True, gen_byte
     else:
         body = zlib.compress(b"".join(table)) if compress else b"".join(table)
     flt = b"/Filter /FlateDecode " if (compress or predictor) else b""
-    out += b"3 0 obj\n<< /Type /XRef /Size 5 /W [1 2 %d] /Root 1 0 R " % gen_bytes + flt + dict_extra + b"/Length %d >>\nstream\n" % len(body)
+    out += b"%d 0 obj\n<< /Type /XRef /Size 5 /W [1 2 %d] /Root 1 0 R " % (xref_num, gen_bytes) + flt + dict_extra + b"/Length %d >>\nstream\n" % len(body)
     out += body + b"\nendstream\nendobj\nstartxref\n%d\n%%%%EOF\n" % o3
     return out
 
@@ -982,6 +982,18 @@ def test_predictor_parameters_are_validated(copy):
         pdf.write_bytes(xref_pdf(predictor=True, dict_extra=params))
         code, out = run(copy)
         assert code == 1 and message in out, (params, out)
+
+
+def test_xref_stream_must_list_itself(copy):
+    pdf = next(copy.glob("*.pdf"))
+    # the stream is object 99, /Size 5 and /Index [0 3 4 1] omit it, every listed row is valid
+    pdf.write_bytes(xref_pdf(xref_num=99, rows=lambda t, *o: t[:3] + t[4:], dict_extra=b"/Index [0 3 4 1] "))
+    code, out = run(copy)
+    assert code == 1 and "object 99 0" in out and "not listed by its own section" in out, out
+    # the stream is object 3 but its own row is free
+    pdf.write_bytes(xref_pdf(rows=lambda t, *o: t[:3] + [b"\x00\x00\x00\x00"] + t[4:]))
+    code, out = run(copy)
+    assert code == 1 and "object 3 0" in out and "not listed by its own section" in out, out
 
 
 def test_png_predictors_use_the_declared_pixel_width(copy):

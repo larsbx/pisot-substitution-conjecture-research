@@ -1320,3 +1320,18 @@ No other findings were posted in the forty-ninth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the fiftieth round.
+
+# Fifty-first round: review of the pixel-width revision (pull request #95)
+
+**Reviewed commit:** `998cf89ae0` (finding 110).
+**Review posted:** 2026-09-15T19:48:16Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 111 (P2) — `scripts/check_manuscript_source.py`, line 242
+
+> **Include the xref-stream object in /Size validation**
+>
+> When a cross-reference stream omits its own entry, this regex discards the indirect object's number, so the later `/Size` check considers only decoded rows. For example, an object `99 0 obj` with `/Size 5 /Index [0 3 4 1]` and valid rows for objects 0–2 and 4 makes `_xref_chain` return success even though `/Size` excludes object 99; pypdf can open the stream through `startxref` without adding the unlisted object to `reader.xref`, so the full-parse extent check also misses it. Capture the xref-stream object's number and require the revision's `/Size` and cross-reference entries to account for it.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-first round.
