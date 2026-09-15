@@ -6,13 +6,19 @@ the section matching the question you are asking.
 
 ## Current status
 
-1. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
+1. `completion-ledger-2026-09-14.md` — latest weekly completion ledger and
+   priority ordering. It records the current shortest route: one-seed overlap
+   productivity is the only open premise of the G1-free PDS theorem.
+2. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
-2. `conjecture-ledger.md` — live prose dependency ledger.
-3. `proof-ladder.md` — shortest honest path from established results to the
-   remaining theorem.
-4. `current-proof-architecture-2026-09-11.md` — detailed architecture, including the original two-gate assembly and the later G1-free overlap/density alternative; updated beyond its filename date.
-5. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
+3. `conjecture-ledger.md` — live prose dependency ledger.
+4. `proof-ladder.md` — shortest honest path from established results to the
+   remaining theorem, plus the stronger parallel structural routes.
+5. `current-proof-architecture-2026-09-14.md` — canonical detailed architecture,
+   explicitly distinguishing the primary overlap route from the finite-BPA and
+   realization programmes. The 2026-09-11 file is retained only as a superseded
+   historical pointer.
+6. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
    state-of-program exposition.
 
 When these disagree, do not choose the strongest wording. Check the latest
@@ -61,18 +67,34 @@ These are theorems over their enumerated finite domain. They are evidence, not
 general concentration or wedge-productivity theorems. Certificates must fail
 closed on caps and retain a replayable record for every survivor.
 
-## Level 2: finiteness
+## Primary completion route: finite seed-patch overlaps
 
 - G1b-1 bounded discrepancy: repository-proved.
 - Seed-patch overlap-graph finiteness: repository-proved from bounded discrepancy.
-- Overlap productivity remains open; the density-to-PDS bridge is an imported theorem (Barge–Štimac–Williams), so overlap productivity for one seed already implies PDS (manuscript Theorem 5.38). Its endpoint-aligned case is the two-sided strong coincidence condition of Arnoux–Ito, and under strong coincidence it is a hitting statement for prefix Parikh vectors (Propositions 5.39–5.40, Corollary 5.41; note Section 9).
-- G1b-2 renewal finiteness: open and now equivalent to G1.
+- Coincidence-density / dense-good-set equivalence: repository-proved.
+- Density-to-PDS: imported Barge–Štimac–Williams theorem, audited in the manuscript.
+- **Overlap productivity remains the only open premise on this shortest route.**
+  Productivity of the overlaps reachable from one legal swap seed already implies
+  PDS (manuscript Theorem 5.38); proving every seed or every vertex in the union
+  graph is stronger than necessary.
+- Endpoint-aligned overlaps are the two-sided strong coincidence condition, and
+  under strong coincidence productivity is the prefix-Parikh boundary-hitting
+  statement of Propositions 5.39–5.40 / Corollary 5.41.
+- Exact finite evidence: all 1,118,850 overlap vertices in the 4,554-member corpus
+  are productive; maximum first-coincidence depth 18, maximum first left-aligned
+  depth 17, maximum prefix/suffix strong-coincidence depth 15.
+
+## Stronger Level 2 programme: BPA finiteness
+
+- G1b-2 renewal finiteness remains open and is now equivalent to G1 after G1b-1.
+- It is **not required by manuscript Theorem 5.38**, but remains the exact theorem
+  needed to establish finite BPA in general.
 - `bpa-literature-bridge.md`: interface audit between literature algorithms
   and the normalized all-seed repository graph.
 - Renewal, address, and countermodel notes should preserve non-unimodularity
   and must not treat the projected integer module as a lattice.
 
-## Level 3: productivity
+## Alternative finite-BPA Level 3 programme
 
 - `sink-scc-reduction.md`: finite obstruction extraction under G1.
 - Endpoint, signing, first-defect, ordered-area, recognizability, and hierarchy
@@ -80,6 +102,8 @@ closed on caps and retain a replayable record for every survivor.
 - General concentration (`K2=0` branch) remains open.
 - General wedge productivity (`K2!=0` branch) remains open.
 - Full rational wedge span does not imply productivity.
+- These remain valuable structural theorems to pursue, but they are not
+  prerequisites of the current one-gate overlap route to PDS.
 
 ## Realization and collar experiments
 
