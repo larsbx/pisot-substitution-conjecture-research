@@ -3,7 +3,7 @@
 from std.testing import assert_equal, assert_false, assert_true
 from psc.bpa import build, nonproductive_states, substitution_incidence
 from psc.mat3 import Mat3
-from psc.overlap_obstruction import nonproductive_sink_sccs
+from psc.overlap_obstruction import common_child_start_count, nonproductive_sink_sccs
 from psc.overlap_seed_patch import (
     OverlapState,
     SeedOverlapAutomaton,
@@ -13,6 +13,7 @@ from psc.overlap_seed_patch import (
     first_left_aligned_depths,
     build_seed_overlap_tables,
     nonproductive_overlap_states,
+    overlap_children,
     seed_overlap_states,
     strong_coincidence_depth,
     strong_coincidence_depth_from,
@@ -174,6 +175,25 @@ def test_left_aligned_and_strong_coincidence_depths_pin_exact_values() raises:
         assert_true(coinc[i] <= left[i] + prefix)
 
 
+def test_common_child_starts_are_exactly_zero_shift_children() raises:
+    var sigma = determinant_two_sigma()
+    var tables = build_seed_overlap_tables(sigma)
+    var graph = build_seed_overlap_graph_from_tables(tables, 20000)
+    assert_false(graph.capped)
+
+    for i in range(graph.size()):
+        if graph.states[i].is_coincidence():
+            continue
+        var cs = overlap_children(tables, graph.states[i])
+        var zero_shift_children = 0
+        for j in range(len(cs)):
+            if cs[j].shift.is_zero():
+                zero_shift_children += 1
+        assert_equal(
+            common_child_start_count(tables, graph.states[i]), zero_shift_children
+        )
+
+
 def test_nonproductive_sink_obstruction_is_extracted_exactly() raises:
     # Synthetic complete graph: 0 is a coincidence, 1 reaches it, 2 feeds the
     # closed bad SCC {3,4}.  The obstruction extractor must discard the
@@ -235,6 +255,8 @@ def main() raises:
     print("[PASS] test_first_coincidence_depths_pin_exact_values")
     test_left_aligned_and_strong_coincidence_depths_pin_exact_values()
     print("[PASS] test_left_aligned_and_strong_coincidence_depths_pin_exact_values")
+    test_common_child_starts_are_exactly_zero_shift_children()
+    print("[PASS] test_common_child_starts_are_exactly_zero_shift_children")
     test_nonproductive_sink_obstruction_is_extracted_exactly()
     print("[PASS] test_nonproductive_sink_obstruction_is_extracted_exactly")
-    print("8 seed-patch-overlap Mojo tests passed.")
+    print("9 seed-patch-overlap Mojo tests passed.")
