@@ -2,7 +2,7 @@
 
 from std.testing import assert_equal, assert_false, assert_true
 from psc.bpa import substitution_incidence
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from psc.overlap_interval_audit import audit_seed_overlap_interval_margins
 from psc.perron_field3 import CubicElt, build_perron_field3
 from psc.perron_interval import (
@@ -12,7 +12,7 @@ from psc.perron_interval import (
     perron_sign_decision,
 )
 from finite_exact.bigint_z import bigz_add, bigz_from_i64
-from finite_exact.interval_q import IQ
+from interval_q.closed_q import IQ
 from finite_exact.rat_q import Q, q_from_bigz
 from psc.exact import contains_zero, eval_int_poly_at_q, integer_interval, interval_horner_int, q_sign, q_string, strict_sign
 

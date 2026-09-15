@@ -13,7 +13,7 @@ and fail closed.
 """
 
 from psc.bpa import substitution_incidence
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from psc.perron_field3 import (
     CubicElt,
     PerronField3,

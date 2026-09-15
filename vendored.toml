@@ -1,0 +1,51 @@
+# Vendored packages, checked by check_vendored_sync.py; re-pin with
+# `check_vendored_sync.py pin NAME COMMIT` after copying from upstream.
+
+[[package]]
+name = "finite_exact"
+repository = "larsbx/finite_exact"
+commit = "5c0763a2fb4fa868b4b6d8b39adfbd9fbf14b35f"
+root = "mojo"
+
+[package.files]
+"finite_exact/__init__.mojo" = "b7cdb9dafe62fd6fe2594446d5f90e5c596e8841635a72498269a31e9d10fa56"
+"finite_exact/bigint_z.mojo" = "d02a0c033042661161a24f0b31f1e89fbf3ed908ccc86e42b5b80b8df4240df1"
+"finite_exact/rat_q.mojo" = "d7f8cc3a3879d76bfc242304a13d4f2c9d4cf2cdeeba586fa4af95980a4b9fa6"
+
+[[package]]
+name = "interval_q"
+repository = "larsbx/interval_q"
+commit = "8a3366c37e55efd1f0150046fd94dba185180b06"
+root = "mojo"
+
+[package.files]
+"interval_q/__init__.mojo" = "c9a0b7a15d6226a05f901987d6f5ecea314f609827fe9e9c78e26239a488c8dd"
+"interval_q/closed_q.mojo" = "72f66b6ed05913b9055c3e44c8f3e32e27a6e2908a407eb29c8ef2d790f9b186"
+
+[[package]]
+name = "substitution_dynamics"
+repository = "larsbx/substitution_dynamics"
+commit = "778789ff2e12d3a9f8f9ec35599b7b2ac241fa05"
+root = "mojo"
+
+[package.files]
+"substitution_dynamics/__init__.mojo" = "309bb5b6b295476f7d75969f3ec2a8f6dd8dfa2c9820d216ffb0b68616959726"
+"substitution_dynamics/automaton.mojo" = "47ab28f88722405fb4b2460a5fb5879edafce34adfd6c549797ea885a7e93aea"
+"substitution_dynamics/balanced_pairs.mojo" = "8be78a124f6898bde665c4da38cd0110e843c16404f70804b0d700f385d37618"
+"substitution_dynamics/discrepancy.mojo" = "b98491ca26ad03fba62323123c3504c315bb3ce269ce6c6199001ca6646ed722"
+"substitution_dynamics/substitution.mojo" = "ffa0dafbd11abf612acad3cdd6e75f910ae91e6b24548cf979253372f1ffddde"
+"substitution_dynamics/words.mojo" = "59eb2caefe20138da2a7d410a2e38db5b8d30c144759570e26501a7ed521442d"
+
+[[package]]
+name = "finite_linear_algebra"
+repository = "larsbx/finite_linear_algebra"
+commit = "fe366a597a5c12ab6e62e2d226717cce646771f2"
+root = "mojo"
+
+[package.files]
+"finite_linear_algebra/__init__.mojo" = "b120372d34f83705535739236239c4d38ea8621645802760a237b2b1edd05e26"
+"finite_linear_algebra/mat3.mojo" = "497f0bd35806c094aedc454e23dcc87b2595684a78f3602afa2a5123d9421e21"
+"finite_linear_algebra/qlinalg.mojo" = "ceaae58a4cd14ef4cb24d1a3e5ef63fbab8c461d0328faf66fd8f99d1994c2e3"
+"finite_linear_algebra/scalar.mojo" = "0fbedf71be2dd5f8aebd59701feffa540f1b0fa248e8f232d533398ef038c52e"
+"finite_linear_algebra/tensor3.mojo" = "03020c917cdbeb336c23f1637932b31953b4a76a2145ed99f70e6ece8dd69238"
+"finite_linear_algebra/w3.mojo" = "fa1a97e85607dd022f205d1ad7bb89532a5ea4e83b6e0c4d3a1657c0287878ef"

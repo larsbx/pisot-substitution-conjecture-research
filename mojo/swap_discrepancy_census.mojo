@@ -10,7 +10,7 @@ computation verifies its constant `D_sigma`.
 """
 
 from psc.bpa import build, substitution_incidence
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from psc.pisot import is_pip
 from psc.swap_discrepancy import max_reachable_discrepancy, max_state_length
 

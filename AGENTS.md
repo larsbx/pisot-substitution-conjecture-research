@@ -32,30 +32,27 @@ Performance-sensitive code must be designed for Mojo rather than transliterated 
 9. **Exactness before speed.** Do not replace integer/rational predicates with floating approximations for PIP screening, equality, factorization, rank, or certificate decisions. Optimize the exact algorithm instead.
 10. **Benchmark material optimizations.** When changing a hot kernel, add a deterministic correctness regression and, where practical, record the before/after algorithmic complexity or benchmark on a representative corpus slice.
 
-## Exact arithmetic authority
+## Vendored packages
 
-Integer, rational, and rational-interval arithmetic is **not** implemented in
-this repository. `mojo/finite_exact/` is a vendored copy of
-`src/bigint_z.mojo`, `src/rat_q.mojo`, and `src/interval_q.mojo` from
-`larsbx/NLAP-JT`, identical to the upstream sources except for the
-package-qualified intra-package import lines, pinned in
-`mojo/finite_exact/UPSTREAM.md`, and enforced by
-`scripts/check_finite_exact_sync.py` in CI (which reverses the import rewrite
-before comparing digests). Do not add a second rational type,
-patch the vendored files, or reintroduce fixed-width rational arithmetic:
-change upstream, then re-vendor. PSC-specific conventions over that package
-(raise or abort on a rejected value, integer lifts, Horner helpers, diagnostic
-rendering) live in `mojo/psc/exact.mojo` and nowhere else.
+Four Mojo packages under `mojo/` are vendored byte-for-byte from their own
+repositories and pinned by commit and SHA-256 digest in `vendored.toml`;
+`scripts/check_vendored_sync.py` enforces the pins in CI and in
+`scripts/verify_all.sh`. Do not patch a vendored file, add a file beside one,
+or reintroduce a local copy of what a package provides: change the package
+upstream, re-vendor, and re-pin (`scripts/check_vendored_sync.py pin NAME
+COMMIT`).
 
-## Substitution-dynamics package
+| Package | Upstream | Provides | PSC-side layer |
+| --- | --- | --- | --- |
+| `mojo/finite_exact/` | `larsbx/finite_exact` | unbounded `BigZ`, normalized `Q`, canonical bytes; rejection is a sticky flag, never an exception | `mojo/psc/exact.mojo`: a rejected enclosure raises, a rejected scalar in integer-seeded polynomial arithmetic aborts; Horner helpers, midpoint, diagnostic rendering |
+| `mojo/interval_q/` | `larsbx/interval_q` | closed rational intervals `IQ`, rank-2 boxes `ComplexIQ`, three-valued sign | same module; Perron-root enclosures and overlap margins in `psc/` |
+| `mojo/substitution_dynamics/` | `larsbx/substitution_dynamics` | words, substitutions, balanced pairs, automaton, discrepancy over an explicit alphabet, validated once at `Substitution.checked` | `mojo/psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` are thin alphabet-3 views and must stay thin: general mechanics go upstream, conjecture-specific predicates stay in `psc/` |
+| `mojo/finite_linear_algebra/` | `larsbx/finite_linear_algebra` | `Mat3`, generic RREF/rank/nullspace over `Q`, rank-three tensors, the shuffle kernel `W_3`, integer lifts | `mojo/psc/w3.mojo` keeps the printed certificate basis; `psc/exact.mojo` re-exports the lifts |
 
-Words, substitutions, balanced pairs, the balanced-pair automaton, and
-swap-walk discrepancy live in `mojo/substitution_dynamics/` over an explicit
-alphabet, validated once at `Substitution.checked`. `mojo/psc/words.mojo`,
-`mojo/psc/bpa.mojo`, and `mojo/psc/swap_discrepancy.mojo` are alphabet-3 views
-of that package and must stay thin: add general mechanics to the package and
-conjecture-specific predicates to `psc/`. Do not reintroduce a hard-coded
-three-letter kernel beside it. See `mojo/substitution_dynamics/README.md`.
+Integer, rational, and rational-interval arithmetic is therefore **not**
+implemented in this repository. Do not add a second rational type or a
+hard-coded three-letter kernel beside the packages. The PSC binding rows of
+the arithmetic specification are in `docs/exact-arithmetic-binding.md`.
 
 ## Porting order for the live C4 program
 

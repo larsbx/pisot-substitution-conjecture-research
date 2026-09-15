@@ -11,7 +11,7 @@ finite corpus; G1 and SCC Producer both remain open for alphabet 3.
 """
 
 from psc.bpa import build, nonproductive_states, substitution_incidence
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from psc.pisot import is_pip
 
 

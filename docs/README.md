@@ -30,7 +30,11 @@ then repair all status surfaces together.
 - `library-extraction-candidates-2026-09-14.md` — ranked audit of code that
   could move into shared libraries with NLAP-JT (exact arithmetic,
   substitution kernel, intervals, linear algebra, proof records, audits);
-  engineering only, no claim status changes.
+  engineering only, no claim status changes. Its "Execution status" section
+  records which steps have landed.
+- `exact-arithmetic-binding.md` — this repository's binding rows for the
+  arithmetic specification kept in `larsbx/finite_exact`, and the vendoring
+  rule enforced by `vendored.toml`.
 - `cross-program-bridge-psc-nlapjt-2026-09-12.md` — structural comparison
   with the NLAP-JT finite Mandelbrot program.
 

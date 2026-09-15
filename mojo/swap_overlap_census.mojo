@@ -11,7 +11,7 @@ G1-free form; a clean corpus is finite evidence only.
 """
 
 from psc.bpa import substitution_incidence
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from psc.pisot import is_pip
 from psc.overlap_recurrence import zero_shift_free_recurrent_sccs
 from psc.overlap_seed_patch import (

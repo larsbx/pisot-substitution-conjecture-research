@@ -2,7 +2,7 @@
 
 from std.testing import assert_equal, assert_false, assert_true
 from psc.bpa import build, nonproductive_states, substitution_incidence
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from psc.overlap_obstruction import common_child_start_count, nonproductive_sink_sccs
 from psc.overlap_seed_patch import (
     OverlapState,

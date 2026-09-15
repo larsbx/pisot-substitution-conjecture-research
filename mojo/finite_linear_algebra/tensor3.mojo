@@ -5,9 +5,9 @@ Index convention: slot `9*a + 3*b + c` carries `e_a (x) e_b (x) e_c`, `a,b,c` in
 `(0,0,0), (0,0,1), ..., (2,2,2)` of the certificate.
 """
 
-from psc.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3
 from finite_exact.rat_q import Q
-from psc.exact import q_int
+from finite_linear_algebra.scalar import q_int
 
 
 def idx3(a: Int, b: Int, c: Int) -> Int:
