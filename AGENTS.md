@@ -61,6 +61,31 @@ Python copies may remain as independent reference oracles during migration, but 
 
 ## Review gate
 
+### Targeted literature stop/go check
+
+Before implementing a new theorem-facing diagnostic, testing a proposed
+universal invariant, or promoting a proof lemma, perform a small targeted
+literature review first. Its purpose is to avoid spending computation or proof
+effort on a known construction, a known counterexample, or a route whose
+hypotheses do not match the standing PIP regime.
+
+Keep the check proportional: normally inspect three to six primary sources
+covering (1) the closest known construction, (2) the strongest relevant
+theorem, and (3) known hypothesis/counterexample boundaries. Record a short
+stop/go note in `docs/` containing:
+
+- the exact proposed claim or experiment;
+- prior art and the terminology used in the field;
+- hypotheses that transfer and those that do not;
+- known negative controls or counterexamples;
+- the resulting decision: stop, redirect, or proceed with a narrowed target.
+
+Only after that decision should new theorem-facing tests or proof code be
+written. Pure regression repairs for an already reviewed contract do not need
+a new review. If the review shows that a proposed identity is standard, cite
+it and restrict novelty claims to the actual new specialization, certificate,
+or theorem.
+
 For new executable mathematical machinery, a PR should normally contain or depend on:
 
 - a canonical Mojo implementation;

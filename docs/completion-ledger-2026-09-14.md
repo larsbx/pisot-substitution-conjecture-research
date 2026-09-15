@@ -20,6 +20,14 @@ primitive irreducible Pisot
 
 Thus **overlap productivity for one swap seed is the only open premise on the current shortest PDS route** (manuscript Theorem 5.38 / Open Problem 5.35).
 
+The ordered affine-cycle identity is now a proved supporting lemma: actual
+prefix-grid occurrences satisfy `w'=Mw+q-p`, with exact replayable pump
+certificates. It is not a productivity theorem. The determinant-two golden
+regression contains a six-edge zero-shift-free cycle inside a productive graph,
+showing that recurrence alone cannot exclude the strict branch. The next open
+obligation is context-preserving recognizability plus separation in the full
+non-unimodular internal representation.
+
 This does **not** prove or obsolete the stronger structural problems:
 
 - G1b-2 renewal finiteness and hence finite BPA (G1) remain open;
