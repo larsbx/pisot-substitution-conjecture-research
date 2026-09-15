@@ -5,6 +5,8 @@ note does **not** prove overlap productivity, strong coincidence, or PSC.
 
 Primary target: issue #84 / manuscript Open Problem 5.35.
 
+Manuscript form: Proposition 2.1 below is manuscript Proposition 5.43, Proposition 3.1 is manuscript Proposition 5.44 (which also records that the aligned-pair sets `A_+(S)`, `A_-(S)` are closed under the first- and last-letter maps and meet no synchronizing pair), and the ordered cycle equation `(I - M^r) w_0 = sum_k M^{r-1-k} d_k` of issue #84's discussion is manuscript Lemma 5.45, with the purely periodic offset expansion and the no-vanishing-tail form of the strict-zipper branch.
+
 ## 1. Why isolate a recurrent obstruction
 
 For a PIP substitution the seed-patch overlap graph is finite by bounded

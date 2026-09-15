@@ -62,7 +62,7 @@ This corrects the former rank-deficiency heuristic. Full rank is a constraint, n
 
 ### Closed irreducible bad-overlap normal form
 
-**Status: repository-proved supporting reduction (PR #88).** If a reachable overlap is nonproductive, finiteness and forward closure of nonproductivity allow passage to a finite child-closed irreducible recurrent SCC `S`. Existing mass balance and the full-rank theorem then give
+**Status: repository-proved supporting reduction (PR #88; manuscript Proposition 5.43).** If a reachable overlap is nonproductive, finiteness and forward closure of nonproductivity allow passage to a finite child-closed irreducible recurrent SCC `S`. Existing mass balance and the full-rank theorem then give
 
 ```text
 PF(N_S) = beta,
@@ -75,7 +75,7 @@ The graph-theoretic residual-SCC extraction is standard overlap-algorithm machin
 
 ### Endpoint, boundary hitting, and the zipper dichotomy
 
-**Status: repository-proved supporting structure (PRs #82 and #88).** PR #82 proves the endpoint strong-coincidence dictionary and exact boundary-hitting criterion. PR #88 adds:
+**Status: repository-proved supporting structure (PRs #82 and #88; manuscript Propositions 5.39–5.41 and 5.44, Lemma 5.45).** PR #82 proves the endpoint strong-coincidence dictionary and exact boundary-hitting criterion. PR #88 adds:
 
 - if a bad SCC contains `(i,j,0)`, the pair `{i,j}` is explicitly not eventually coincident;
 - otherwise no top substituted child start ever equals a shifted bottom child start, and each child refinement is a strict monotone prefix-grid **zipper** in which only one side advances at each boundary.

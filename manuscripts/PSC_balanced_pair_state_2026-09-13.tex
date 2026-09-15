@@ -861,6 +861,65 @@ The bound says that an overlap whose offset is large in the contracting directio
 
 Under strong coincidence, therefore, the balanced-pair side of the coincidence problem is trivial and the whole difficulty is either G1 or, without G1, the hitting problem of Corollary~\ref{cor:scc-reduction}(ii); for $d=2$ both are settled~\cite{BD,HS}. In the contracting embedding the condition $M^mw\in P_m(i)-P_m(j)$ asks that the projected prefix sets of the two inflated tiles, which accumulate on the Rauzy fractal pieces, meet at the required expanding offset; this is the geometric form of the coincidence problem studied in~\cite{IR,BK,MT}, and we do not pursue it here. What is gained is a separation: under strong coincidence an overlap reaches a coincidence by first reaching a boundary coincidence and then using the eventual coincidence of the letters found there, so its first-coincidence depth is at most its first boundary-coincidence depth plus the largest strong-coincidence depth of a letter pair (Computation~\ref{comp:overlap}).
 
+\subsubsection*{Normal form of a nonproductive component}
+
+A failure of Open Problem~\ref{prob:overlap-productivity} can be normalized. Call a set $S$ of vertices of $\mathcal O_\sigma$ \emph{closed} if every child of every vertex of $S$ lies in $S$, and \emph{irreducible} if it is strongly connected in $\mathcal O_\sigma$ (every vertex of $S$ reaches every other by a path of children in $S$; a single vertex with a loop is allowed).
+
+\begin{proposition}[Closed irreducible obstruction; \Status{Theorem}]\label{prop:obstruction-normal-form}
+Let $\sigma$ be PIP and $O$ a nonproductive vertex of $\mathcal O_\sigma$. Then among the descendants of $O$ there is a nonempty closed irreducible set $S$ of nonproductive non-coincidence vertices, and every such $S$ satisfies: the child-count matrix $N_S$ is irreducible, $N_S\lambda_S=\beta\lambda_S$ with $\lambda_S>0$ and $\rho(N_S)=\beta$, $N_SV_S=V_SM^{\mathsf T}$, $\rank V_S=d$, $|S|\ge d$ and $\spec(M)\subseteq\spec(N_S)$.
+\end{proposition}
+\begin{proof}
+Let $B$ be the set of nonproductive descendants of $O$ (including $O$). It consists of non-coincidences, and it is closed: a productive child would make its parent productive. Every non-coincidence vertex has at least one child, since its children are the pairs of sub-tiles partitioning the inflated intersection, which has positive length (proof of Corollary~\ref{cor:overlap-mass}). The graph induced on the finite set $B$ therefore has every out-degree at least one, so its condensation has a terminal strongly connected component $S$; every child of a vertex of $S$ lies in $B$ by closedness of $B$ and in $S$ by terminality. Hence $S$ is closed and irreducible, and $N_S$ is irreducible because $S$ is strongly connected. The remaining properties are Corollaries~\ref{cor:overlap-mass} and~\ref{cor:overlap-rank} applied to $S$.
+\end{proof}
+
+Thus a counterexample to Open Problem~\ref{prob:overlap-productivity} may be assumed finite, recurrent, closed, Perron-critical and of full rank at the same time. The graph-theoretic reduction to a recurrent non-coincidence component is standard in the overlap-coincidence algorithm of~\cite{AL}; what is specific here is that $\mathcal O_\sigma$ is finite unconditionally (Theorem~\ref{thm:overlap-finite}) and that the rank statement is available. We stress, following~\cite[Thm.~4.1]{AL}, that $\rho(N_S)=\beta$ is the hard residual case of that algorithm and not a contradiction: a recurrent component containing a genuine overlap carries the full expansion, and an argument that $S$ is ``only a boundary system'' with $\rho(N_S)<\beta$ would assume the coincidence conclusion.
+
+For a closed set $S$ let $A_+(S)$ be the set of unordered pairs $\{i,j\}$ with $(i,j,0)\in S$ or $(j,i,0)\in S$, and $A_-(S)$ the set of pairs with $(i,j,\ell_i-\ell_j)\in S$ or $(j,i,\ell_j-\ell_i)\in S$: the left- and right-aligned vertices of $S$.
+
+\begin{proposition}[Aligned obstruction or strict zipper; \Status{Theorem}]\label{prop:zipper-dichotomy}
+Let $\sigma$ be PIP and $S$ a closed set of nonproductive non-coincidence vertices of $\mathcal O_\sigma$.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*]
+\item No pair in $A_+(S)$ is eventually coincident and no pair in $A_-(S)$ is eventually coincident for the reversal; in particular no pair in $A_+(S)$ is $\sigma_+$-synchronizing and no pair in $A_-(S)$ is $\sigma_-$-synchronizing.
+\item If $\{i,j\}\in A_+(S)$ then $\sigma_+(i)\ne\sigma_+(j)$ and $\{\sigma_+(i),\sigma_+(j)\}\in A_+(S)$; if $\{i,j\}\in A_-(S)$ then $\sigma_-(i)\ne\sigma_-(j)$ and $\{\sigma_-(i),\sigma_-(j)\}\in A_-(S)$. Hence $A_+(S)$ and $A_-(S)$ are unions of cycles of the first- and last-letter maps on pairs of distinct letters.
+\item Exactly one of the following holds. \textup{(a)} $A_+(S)\ne\emptyset$: $S$ exhibits a pair of distinct letters that is not eventually coincident. \textup{(b)} $S$ contains no vertex of offset $0$; then for every $O\in S$ and every $m\ge0$ no sub-tile of the level-$m$ tiling of the top tile of $O$ starts where a sub-tile of the level-$m$ tiling of the bottom tile starts, so the tile boundaries of the two tilings in the interior of the inflated intersection are pairwise distinct: the cells of their common refinement (the level-$m$ descendants of $O$) are separated by boundaries each of which belongs to exactly one of the two tilings.
+\item If every pair of distinct letters is eventually coincident for $\sigma$ and for $\tilde\sigma$, then $A_+(S)=A_-(S)=\emptyset$ and \textup{(b)} holds for every such $S$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(i) is Proposition~\ref{prop:aligned-overlaps}(i),(ii) together with nonproductivity of the vertices of $S$; a $\sigma_+$-synchronizing pair is eventually coincident, and a $\sigma_-$-synchronizing pair is eventually coincident for the reversal, with empty prefixes $p=p'$.
+
+(ii) The children of $(i,j,0)$ formed by the first sub-tiles of $\sigma(i)$ and $\sigma(j)$ both start at $0$, so $(\sigma_+(i),\sigma_+(j),0)$ is a child, hence lies in $S$; it is not a coincidence, so $\sigma_+(i)\ne\sigma_+(j)$. For $(i,j,\ell_i-\ell_j)$ the two inflated tiles end at $\beta\ell_i$, so the last sub-tiles, of letters $c=\sigma_-(i)$ and $c'=\sigma_-(j)$, start at $\beta\ell_i-\ell_c$ and $\beta\ell_i-\ell_{c'}$ and form the child $(c,c',\ell_c-\ell_{c'})$, which lies in $S$ and is not a coincidence. Vertices $(j,i,0)$ and $(j,i,\ell_j-\ell_i)$ are treated by exchanging the tilings (Proposition~\ref{prop:aligned-overlaps}). The last sentence holds because the maps are self-maps of a finite set.
+
+(iii) The alternatives are exclusive and exhaustive by definition. In case (b), an offset-$0$ descendant of $O\in S$ at level $m$ would lie in $S$ because $S$ is closed, so none exists, and Proposition~\ref{prop:boundary-coincidence} (c)$\Rightarrow$(b) excludes a common left endpoint of sub-tiles at every level. A tile boundary of either tiling in the interior of the inflated intersection is the left endpoint of a sub-tile of that tiling; a boundary common to both tilings would be a common left endpoint.
+
+(iv) By (i), $A_+(S)$ and $A_-(S)$ consist of pairs that are not eventually coincident, respectively not eventually coincident for the reversal; under the hypothesis there are none.
+\end{proof}
+
+The two cases separate the classical strong coincidence problem (case (a), a cycle of the first-letter map avoiding eventual coincidence) from a genuinely interior obstruction (case (b), a \emph{strict zipper}: at every level the two tilings advance one boundary at a time and never together). Under two-sided strong coincidence only case (b) remains, which is the hitting form of Corollary~\ref{cor:scc-reduction}(ii),(iii). In case (b) the order of the boundaries is information that the child-count matrix $N_S$ discards; the following lemma keeps it through a cycle of $S$ and shows that the offsets of $S$ are determined by ordered cycle data.
+
+\begin{lemma}[Ordered cycle equation; \Status{Theorem}]\label{lem:ordered-cycle}
+Let $\sigma$ be PIP and $O_0\to O_1\to\dots\to O_r=O_0$ ($r\ge1$) a cycle in $\mathcal O_\sigma$, where $O_{k+1}$ is the child of $O_k=(i_k,j_k,\langle w_k,\ell\rangle)$ formed by the sub-tile of $\sigma(i_k)$ with prefix Parikh vector $p_k\in P_1(i_k)$ and the sub-tile of $\sigma(j_k)$ with prefix Parikh vector $q_k\in P_1(j_k)$; put $d_k:=q_k-p_k\in\Z^d$ and $c_k:=\langle d_k,\ell\rangle\in F$. Then
+\[
+w_{k+1}=Mw_k+d_k\quad(0\le k<r),\qquad (I-M^r)\,w_0=\sum_{k=0}^{r-1}M^{\,r-1-k}d_k,
+\]
+and $I-M^r$ is invertible over $\Q$. Consequently:
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*]
+\item the offset of $O_0$ is determined by the ordered address $(d_0,\dots,d_{r-1})$ of the cycle, namely $w_0=(I-M^r)^{-1}\sum_kM^{r-1-k}d_k$, and an ordered address is the address of a cycle of $\mathcal O_\sigma$ only if this rational vector is integral;
+\item $\langle w_0,\ell\rangle=-\sum_{s\ge0}\beta^{-(s+1)}c_{s\bmod r}$ in $\R$: the offset has the purely periodic expansion in the digit set $F$ obtained by repeating the cycle; equivalently $(1-\beta^{-r})\langle w_0,\ell\rangle=-\sum_{k<r}\beta^{-(k+1)}c_k$ in $\Q(\beta)$, an identity preserved by every embedding;
+\item if the cycle lies in a closed nonproductive set $S$ of case \textup{(b)} of Proposition~\ref{prop:zipper-dichotomy}, then no tail of this series vanishes: $\sum_{s\ge m}\beta^{-(s+1)}c_{s\bmod r}\ne0$ for every $m\ge0$.
+\end{enumerate}
+In particular every vertex of a closed irreducible set $S$ lies on a cycle of $S$, so every offset occurring in $S$ has an expansion as in \textup{(ii)}, with period the length of a cycle of $S$ through the vertex.
+\end{lemma}
+\begin{proof}
+The child has offset $\beta\langle w_k,\ell\rangle+\langle q_k,\ell\rangle-\langle p_k,\ell\rangle=\langle Mw_k+d_k,\ell\rangle$ since $\ell M=\beta\ell$, and $w_{k+1}$ is determined by Lemma~\ref{lem:Zindep}. Iterating, $w_r=M^rw_0+\sum_kM^{r-1-k}d_k$, and $w_r=w_0$ because $O_r=O_0$. The eigenvalues of $M^r$ are $\beta^r>1$ and the $r$-th powers of the conjugates of $\beta$, of modulus less than one, so $1$ is not among them and $I-M^r$ is invertible; (i) follows, integrality because $w_0\in\Z^d$.
+
+(ii) Pairing the cycle equation with $\ell$ gives $(1-\beta^r)\langle w_0,\ell\rangle=\sum_{k<r}\beta^{r-1-k}c_k$ in $\Q(\beta)$, i.e.\ $(1-\beta^{-r})\langle w_0,\ell\rangle=-\sum_{k<r}\beta^{-(k+1)}c_k$; since $\beta>1$, dividing by $1-\beta^{-r}$ sums the geometric series $-\sum_{s\ge0}\beta^{-(s+1)}c_{s\bmod r}$ in $\R$.
+
+(iii) The truncation $-\sum_{s<m}\beta^{-(s+1)}c_{s\bmod r}$ equals $\langle w_0,\ell\rangle$ if and only if the level-$m$ descendant of $O_0$ along the cycle (repeated) has offset $0$, by the computation in the proof of Proposition~\ref{prop:contracting-bound}; in case (b) no descendant of a vertex of $S$ has offset $0$. The final assertion holds because a strongly connected set contains, for each of its vertices, a cycle through that vertex.
+\end{proof}
+
+The lemma turns a closed irreducible obstruction into a finite family of ordered cycle addresses $(d_0,\dots,d_{r-1})$, each determining its offset by an exact rational formula, subject to integrality and, in case (b), to the non-vanishing of every tail. Whether these constraints, together with the full rank of Corollary~\ref{cor:overlap-rank} and the bound of Proposition~\ref{prop:contracting-bound}, exclude case (b) is not decided here; Computation~\ref{comp:overlap} reports that over $\mathcal S$ every vertex of every seed-patch overlap graph is productive, so no obstruction of either kind occurs there.
+
 \subsection{Formal recurrence versus realization}\label{sec:realization}
 
 Under Hypothesis~\ref{hyp:G1} the coincidence rank of $\sigma$~\cite{BK,Barge2016} is greater than one if and only if some fibre of the maximal equicontinuous factor contains two tilings that never coincide, and a recurrent producer-free component of $\B_\sigma$ that is \emph{globally realized} by such a pair would witness this. The converse identification of nontrivial coincidence rank with a globally realized producer-free component has been asserted in working notes of this program; we have not reconstructed a proof and record it as a \Status{Conjectural bridge}. The distinction matters in both directions: seeds and states of $\B_\sigma$ need not be legal (Remark~\ref{rem:legality}), and a formal recurrent cycle in $\B_\sigma$ is not a pair of tilings. Finite experiments that extend formal producer-free cycles by legal collars and observe that all of them die at a small radius have been carried out in this program; since no theorem bounds the collar radius at which every unrealizable cycle must die, such experiments are not reported here as propositions.
