@@ -33,6 +33,12 @@ primitive irreducible Pisot
 
 The only open premise on this route is **seedwise overlap productivity (Open Problem 5.35, issue #84)**. Manuscript Theorem 5.38 therefore no longer requires finite BPA / G1.
 
+The current strict-zipper attack retains actual ordered child occurrences and
+certifies their exact affine recurrence `w'=Mw+q-p`. A productive
+determinant-two regression has a six-edge zero-shift-free affine cycle, so the
+next universal step is explicitly a child-closure plus
+recognizability/full-internal-space theorem, not a bare cycle exclusion.
+
 This does **not** mean the stronger structural problems are solved:
 
 - **G1b-2 renewal finiteness / finite BPA (G1)** remains open (issue #44), but is now a parallel stronger theorem rather than a prerequisite of Theorem 5.38.
@@ -52,6 +58,7 @@ This does **not** mean the stronger structural problems are solved:
 - **Endpoint-aligned structure:** PR #82 identifies offset-zero/right-aligned overlaps with prefix/suffix strong coincidence and proves the exact prefix-Parikh boundary-hitting criterion.
 - **Obstruction normal form in the manuscript:** Propositions 5.43–5.44 and Lemma 5.45 state and prove the closed irreducible obstruction, the aligned-versus-strict-zipper dichotomy (with first-/last-letter closure of the aligned pairs), and the ordered cycle equation with its purely periodic offset expansion.
 - **Contracting lower bound:** PR #87 proves that a boundary hit at level `m` forces `|ς(t)| ≤ C_ς Σ_{s≤m} |ς(β)|^{-s}` for every contracting embedding (Proposition 5.42, decided exactly in `Q(β)`); on the corpus this lower bound is at most 8 while the hitting depth reaches 17, a gap of up to 14 inflations that this magnitude bound does not explain (the gap includes the slack of the bound; no further attribution is drawn).
+- **Ordered affine/context boundary:** ordered occurrences satisfy the exact affine recurrence, but the determinant-two calibration reaches one affine child state through unequal one-step paired prefix-suffix addresses. Affine equality is therefore not a symbolic pump-deletion criterion; the depth-`k` periodic-patch context bridge remains open.
 
 ### Current theorem target
 
