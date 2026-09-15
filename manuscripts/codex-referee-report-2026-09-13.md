@@ -480,3 +480,1272 @@ No other findings were posted in the twenty-first round.
 **Reviewed commit:** `4e68dcdc7d` (finding 38).
 **Review posted:** 2026-09-15T12:38:40Z. The automated Codex review of commit `4e68dcd` posted no findings ("Didn't find any major issues").
 
+---
+
+# Twenty-third round: review of the manuscript-source guard (pull request #92)
+
+**Reviewed commit:** `d2adbb9b97` (guard against byte-mangled manuscript sources).
+**Review posted:** 2026-09-15T15:32:16Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 39 (P2) — `scripts/check_manuscript_source.py`, line 45
+
+> **Reject PDFs truncated after their header**
+>
+> When a PDF is truncated or corrupted anywhere after its first five bytes while retaining `%PDF-`—even a file containing only those five bytes—`check_pdf` returns success, so the provenance section of `verify_all.sh` reports the artifact as intact despite the docstring promising that truncated files never pass. Validate at least the complete PDF trailer/xref structure, or invoke a parser, before accepting the file.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 40 (P2) — `scripts/check_manuscript_source.py`, line 50
+
+> **Require the expected manuscript inventory**
+>
+> When a canonical `.tex` or `.pdf` is deleted or renamed, this enumerates only artifacts that still exist and never compares them with an expected inventory; an empty directory even exits successfully with `0 files checked`. Consequently the fail-closed provenance check cannot distinguish intact sources from missing sources, so it should require the known manuscript files (or a checked-in manifest) before reporting success.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-third round.
+
+
+
+---
+
+# Twenty-fourth round: review of the hardened guard (pull request #95)
+
+**Reviewed commit:** `be9dfc3abf` (findings 39–40, rebased onto `main`).
+**Review posted:** 2026-09-15T15:38:04Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 41 (P2) — `manuscripts/MANIFEST`, line 1
+
+> **Include every tracked manuscript source in the manifest**
+>
+> Add `PSC_PROOF_next_source_audit.tex` to this inventory. It is a tracked 745-line manuscript described in `docs/source-provenance-v16-later-audit-2026-09-12.md` as the new manuscript, but deleting it still makes this guard exit successfully because only manifest entries are required and only files that remain are inspected. This leaves the missing-source failure mode that the manifest is intended to close.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 42 (P2) — `scripts/check_manuscript_source.py`, line 63
+
+> **Verify that an object is an XRef stream**
+>
+> When a corrupted in-range `startxref` happens to point at any ordinary indirect object, this branch accepts the PDF because it checks only the generic `N N obj` header. For example, rewriting the repository PDF's offset to its ordinary `/Producer` object at byte 523231 makes `check_pdf` return no problems even though the pointer no longer identifies a cross-reference section. Require the referenced object's dictionary to identify a cross-reference stream (such as `/Type /XRef`) rather than accepting every object.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-fourth round.
+
+
+---
+
+# Twenty-fifth round: review of the manifest and XRef revision (pull request #95)
+
+**Reviewed commit:** `ea83b495c5` (findings 41–42).
+**Review posted:** 2026-09-15T15:43:06Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 43 (P2) — `scripts/check_manuscript_source.py`, line 55
+
+> **Select the startxref preceding the final EOF**
+>
+> When an incrementally updated PDF has multiple trailers within the last 1024 bytes, `re.search` selects the first matching `startxref ... %%EOF`, not the trailer preceding the final EOF. If the newest trailer contains a corrupt offset while the prior trailer remains in the window, the guard validates the old offset and returns success. Fresh evidence beyond finding 39 is that a tail containing a valid `startxref 9` followed by a final `startxref 999999` produces no problems; select and validate the last trailer instead.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 44 (P2) — `scripts/check_manuscript_source.py`, line 68
+
+> **Require an actual stream in XRef objects**
+>
+> When a cross-reference stream loses its `stream` keyword and data while retaining the object dictionary and final trailer, this branch treats the entire 4096-byte window as the dictionary and accepts `/Type /XRef`; it never requires an actual stream body. Consequently a malformed file containing only an XRef-typed object and `startxref`/`%%EOF` returns success. Fresh evidence beyond finding 42 is this type-only-object path; validate the stream structure rather than only its type marker.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-fifth round.
+
+
+---
+
+# Twenty-sixth round: review of the trailer revision (pull request #95)
+
+**Reviewed commit:** `c6032e3dad` (findings 43–44).
+**Review posted:** 2026-09-15T15:48:39Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 45 (P2) — `scripts/check_manuscript_source.py`, line 70
+
+> **Validate the classic cross-reference table contents**
+>
+> When the final trailer uses a classic table, this accepts any bytes beginning with `xref` as long as the word `trailer` occurs later; for example, `%PDF-1.4\nxref\ntrailer\nstartxref\n9\n%%EOF\n` returns success despite containing no cross-reference subsection or trailer dictionary. Fresh evidence beyond finding 44 is this entryless classic-table path, so validate the table and trailer structure before reporting the PDF intact.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 46 (P2) — `scripts/check_manuscript_source.py`, line 74
+
+> **Validate data in the XRef stream body**
+>
+> When an XRef object contains the literal pair `stream\nendstream` but no stream data, this condition passes and the function returns success; it also accepts a corrupted Flate payload because neither `/Length` nor decoding is checked. Fresh evidence beyond finding 44 is that an empty `/Type /XRef` stream, or a one-byte mutation in the repository PDF's compressed XRef payload that makes zlib reject it, still produces no problems, so validate the stream payload rather than only its delimiter tokens.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-sixth round.
+
+
+---
+
+# Twenty-seventh round: review of the structural parser (pull request #95)
+
+**Reviewed commit:** `3a9d53ee10` (findings 45–46 and the test fixtures).
+**Review posted:** 2026-09-15T15:56:08Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 47 (P2) — `scripts/check_manuscript_source.py`, line 118
+
+> **Reject indirect references for direct /Length**
+>
+> Fresh evidence beyond finding 46 is that `/Length 4 0 R` is accepted as the direct length `4`: the `\s*` can backtrack to zero, leaving whitespace where the negative lookahead expects a digit. An XRef stream with a four-byte body therefore passes even though its declared length is an unresolved indirect reference, defeating the promised fail-closed direct-length check; parse the complete value token or explicitly reject a following generation/reference pair.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 48 (P2) — `scripts/check_manuscript_source.py`, line 140
+
+> **Enforce the XRef stream's declared row count**
+>
+> Fresh evidence beyond finding 46 is that, without `/Index`, `/Size 100 /W [1 2 1] /Length 4` and a single four-byte row passes this check. A stream without `/Index` must contain `/Size` rows, while one with `/Index` must contain the sum of its subsection counts; checking only divisibility therefore misses payloads truncated by one or more complete rows.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 49 (P2) — `scripts/check_manuscript_source.py`, line 129
+
+> **Handle filter arrays before validating payload bytes**
+>
+> Fresh evidence beyond finding 46 is an XRef stream using the valid array form `/Filter [/FlateDecode]`: this search finds no filter and validates the compressed bytes as though they were the decoded payload. If their byte count happens to be a multiple of the row width, even a corrupted compressed stream passes; otherwise an intact PDF is rejected. Parse supported filter arrays, or fail whenever a `/Filter` key is present in an unrecognized form.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-seventh round.
+
+
+---
+
+# Twenty-eighth round: review of the length, row-count and filter revision (pull request #95)
+
+**Reviewed commit:** `a9242e36aa` (findings 47–49).
+**Review posted:** 2026-09-15T16:16:23Z, one automated Codex review with four inline comments. Reproduced verbatim.
+
+## Finding 50 (P2) — `scripts/check_manuscript_source.py`, line 136
+
+> **Require the XRef indirect object to terminate**
+>
+> When a PDF is truncated immediately after `endstream`, the body, row count, and trailer checks all succeed because nothing requires the XRef stream's indirect object to end with `endobj`. Such a truncated object is syntactically incomplete but `check_pdf` returns success, so validate the delimiter following `endstream` before accepting the stream.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 51 (P2) — `scripts/check_manuscript_source.py`, line 127
+
+> **Reject invalid /Index ranges**
+>
+> Fresh evidence beyond finding 48 is that `/Size 1 /Index [999 1]` with one decoded row passes: only the count fields are summed, while the starting object numbers are ignored. Odd-length arrays such as `[0 1 2]` also pass because the unmatched value is silently discarded. Require complete start/count pairs whose ranges fit within `/Size` before using their counts.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 52 (P2) — `scripts/check_manuscript_source.py`, line 112
+
+> **Require exactly three fields in /W**
+>
+> When an XRef stream declares `/W [4]`, this code treats it as a four-byte row width and accepts a matching one-row payload, even though `/W` must be an array of exactly three nonnegative integers describing the entry type, offset, and generation/index fields. Validate the array cardinality rather than accepting any nonempty list whose sum is positive.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 53 (P2) — `scripts/check_manuscript_source.py`, line 81
+
+> **Validate in-use classic xref offsets**
+>
+> For PDFs using a classic xref table, changing an in-use entry from offset `0000000009` to `0000000008` or even `9999999999` still passes because entries are checked only for their textual shape. The resulting entry no longer identifies its declared indirect object, so a byte-mangled cross-reference table is reported as intact; validate each `n` entry against the file bounds and the object number/generation at its referenced offset.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-eighth round.
+
+
+---
+
+# Twenty-ninth round: review of the endobj, index, arity and entry revision (pull request #95)
+
+**Reviewed commit:** `9256ace9d9` (findings 50–53).
+**Review posted:** 2026-09-15T16:22:36Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 54 (P2) — `scripts/check_manuscript_source.py`, line 100
+
+> **Enforce classic subsection ranges against /Size**
+>
+> The trailer check only requires `/Size` to be present, so the minimal classic fixture still passes after changing `/Size 2` to `/Size 1`, even though its `0 2` subsection contains object 1 and therefore exceeds the declared object-number space. This allows a mangled `/Size` value to be reported as intact; parse the value and reject any subsection whose `start + count` exceeds it.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 55 (P2) — `scripts/check_manuscript_source.py`, line 174
+
+> **Validate XRef stream entry contents**
+>
+> Fresh evidence beyond finding 53 is that only classic-table entries are dereferenced: an uncompressed stream with `/Size 2 /Index [1 1] /W [1 2 1]` and the row `01 ff ff 00` passes because its row count is correct, even though the type-1 entry for object 1 points beyond the file instead of at the XRef object's header. Decode each row according to `/W` and reject invalid entry types or type-1 offsets that do not identify the declared object, as is already done for classic entries.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-ninth round.
+
+
+---
+
+# Thirtieth round: review of the subsection-range and row-decoding revision (pull request #95)
+
+**Reviewed commit:** `f158aab509` (findings 54–55).
+**Review posted:** 2026-09-15T16:30:06Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 56 (P2) — `scripts/check_manuscript_source.py`, line 105
+
+> **Validate classic trailer `/Prev` chains**
+>
+> When a classic trailer belongs to an incrementally updated PDF, this returns success without inspecting `/Prev`; adding `/Prev 999999` to the otherwise valid classic fixture still passes even though the earlier cross-reference section is unreachable. Follow each `/Prev` offset, reject out-of-range or cyclic links, and validate every referenced section before accepting the PDF.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 57 (P2) — `scripts/check_manuscript_source.py`, line 151
+
+> **Dereference in-range type-2 object-stream targets**
+>
+> Fresh evidence beyond finding 55 is that a type-2 row is accepted whenever its second field is numerically below `/Size`: a standalone `/Size 2 /Index [1 1]` stream whose object-1 row points to object stream 1 passes, although object 1 is the XRef object itself and no `/Type /ObjStm` exists. Resolve the named container through the cross-reference data, require it to be an object stream, and validate the third-field index rather than checking only the number bound.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 58 (P2) — `scripts/check_manuscript_source.py`, line 180
+
+> **Reject inconsistent PNG predictor parameters**
+>
+> When a Flate stream's decode parameters are mangled, this treats every `/Predictor` value greater than or equal to 10 identically and ignores `/Columns`, `/Colors`, and `/BitsPerComponent`; for example, the one-row fixture still passes with `/Predictor 99` or `/Predictor 12 /Columns 999`. Validate the supported predictor range and require the declared decode geometry to match the `/W` row width before undoing prediction, otherwise corrupted stream dictionaries are reported as intact.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirtieth round.
+\n
+
+
+---
+
+# Thirty-first round: review of the full-parse revision (pull request #95)
+
+**Reviewed commit:** `22716cd7a0` (findings 56–58).
+**Review posted:** 2026-09-15T16:41:20Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 59 (P2) — `scripts/check_manuscript_source.py`, line 266
+
+> **Reject an inflated trailer size**
+>
+> When `/Size` is increased without changing the cross-reference rows, this condition accepts the file because it only rejects `seen >= size`. For example, changing the repository XRef stream from `/Size 1133` to `/Size 9999` while retaining `/Index [0 1133]` leaves its length, offsets, and decoded rows intact, passes the structural upper-bound check, and leaves `seen < size`, even though `/Size` no longer equals one greater than the highest object number. Fresh evidence beyond finding 54 is this oversized rather than undersized `/Size` path; validate the exact object-number extent across the cross-reference chain.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 60 (P2) — `scripts/check_manuscript_source.py`, line 257
+
+> **Decode ordinary streams while dereferencing objects**
+>
+> When an ordinary encoded stream is corrupted, `get_object` only constructs the stream object and retains its encoded bytes; pypdf does not apply `/Filter` decoding until `get_data()` is called. Consequently, flipping a byte in a non-object-stream `/FlateDecode` payload such as object 177 in the repository PDF leaves all offsets and lengths unchanged, and this loop plus `len(reader.pages)` can still report success. Decode every encountered stream so malformed content, font, and image payloads fail the claimed full-file integrity check.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-first round.
+
+
+---
+
+# Thirty-second round: review of the exact-extent and stream-decoding revision (pull request #95)
+
+**Reviewed commit:** `7d557ac9f8` (findings 59–60).
+**Review posted:** 2026-09-15T16:48:33Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 61 (P2) — `scripts/check_manuscript_source.py`, line 285
+
+> **Include free entries when validating /Size**
+>
+> For a valid PDF whose highest-numbered cross-reference entry is free, `reader.xref`/`xref_objStm` contains only dereferenceable type-1/type-2 objects, so `top` is lower than `/Size - 1` and this check rejects the file. For example, a classic table with objects 1–3 in use, object 4 free, and `/Size 5` has the required exact extent but is reported inconsistent. Derive the maximum from all cross-reference entries, including type-0/free entries, while still rejecting a `/Size` that merely has no corresponding entry.
+
+No other findings were posted in the thirty-second round.
+
+
+---
+
+# Thirty-third round: review of the chain-extent revision (pull request #95)
+
+**Reviewed commit:** `7ec39a90c0` (finding 61).
+**Review posted:** 2026-09-15T16:57:25Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 62 (P2) — `scripts/check_manuscript_source.py`, line 94
+
+> **Validate classic xref free entries**
+>
+> When an `f` entry is corrupted, this branch validates only its textual shape and skips its free-list pointer and generation fields; the full-parse stage cannot recover this because pypdf does not retain free entries. For example, changing object 0's pointer from `0000000000` to the out-of-range `9999999999` leaves the extent unchanged and is reported as intact, despite producing an invalid cross-reference free list. Validate free-entry bounds and required free-list invariants before accepting the table.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 63 (P2) — `scripts/check_manuscript_source.py`, line 85
+
+> **Reject empty classic xref subsections**
+>
+> A zero-count subsection contributes no cross-reference entries, but it is still added to `ranges` and the return expression treats `start - 1` as an actual object number. Thus an otherwise valid four-entry table can append `9999 0` and declare `/Size 9999`; the structural walk reports object 9998 as present, and the later exact-size comparison succeeds even though no such entry exists. Reject zero counts or exclude them from the computed extent.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-third round.
+
+
+---
+
+# Thirty-fourth round: review of the free-list revision (pull request #95)
+
+**Reviewed commit:** `30d16e00e8` (findings 62–63).
+**Review posted:** 2026-09-15T17:04:50Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 64 (P2) — `scripts/check_manuscript_source.py`, line 278
+
+> **Permit unlinked free entries in xref streams**
+>
+> When a valid cross-reference stream does not maintain the optional free-object linked list, its type-0 entries may use `0` as the next-free field. With more than one free object, this code rejects the file because only object 0 is walked and every other free entry is classified as stray; for example, appending a free object 5 with fields `(0, 0, 0)` to the existing `xref_pdf` fixture makes `_xref_chain` return `free entries [5] are not on the free list`. Track whether entries came from a classic table and enforce full-list coverage only where the list is required.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 65 (P2) — `scripts/check_manuscript_source.py`, line 170
+
+> **Preserve the encoded xref generation value**
+>
+> When the third `/W` field is one byte wide, an encoded value of `255` means generation 255, not a saturated representation of 65535. This conversion therefore lets a malformed object-0 entry pass the required-generation check; the default `xref_pdf` fixture itself encodes `ff` in a one-byte field and `_xref_chain` accepts it as generation 65535. Keep the decoded integer unchanged and encode 65535 using a sufficiently wide field in fixtures.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-fourth round.
+
+
+---
+
+# Thirty-fifth round: review of the provenance revision (pull request #95)
+
+**Reviewed commit:** `99cc3be753` (findings 64–65).
+**Review posted:** 2026-09-15T17:14:04Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 66 (P2) — `scripts/check_manuscript_source.py`, line 281
+
+> **Validate classic free lists before stream entries supersede them**
+>
+> Fresh evidence beyond finding 64 is a mixed incremental chain: when a newer cross-reference stream replaces object 0 with an unlinked `(0, 0, generation)` row and inherits a free object from the preceding classic table through `/Prev`, that older entry retains `classic=True` and is rejected here even though its classic section's original object-0 entry linked it correctly and stream free-list coverage is optional. Validate the classic list against the effective table at that historical section, rather than applying entry provenance after newer sections have overwritten its head.
+
+## Finding 67 (P2) — `scripts/check_manuscript_source.py`, line 228
+
+> **Bound xref row counts before materializing them**
+>
+> When a damaged cross-reference stream declares a very large `/Size` without `/Index`, this eagerly constructs that many Python integers before the code reads or compares the actual payload; `/Size 1000000000` can therefore exhaust the verifier process instead of returning a guarded failure. The `/Index` comprehension has the same problem for a huge count. Derive the available row count from the decoded payload first and reject inconsistent declarations before materializing object numbers.
+
+## Finding 68 (P2) — `scripts/check_manuscript_source.py`, line 173
+
+> **Reject oversized generations on in-use stream rows**
+>
+> Fresh evidence beyond finding 65 is the type-1 path: the 65535 bound is applied only to free rows, so a `/W` field encoding generation 65536 is accepted whenever the target header is also `num 65536 obj`; the subsequent strict parse uses that integer as the object's generation rather than supplying the missing range check. Generation numbers are limited to 65535 for in-use objects as well, so apply the bound before branching on the row type.
+
+No other findings were posted in the thirty-fifth round.
+
+
+---
+
+# Thirty-sixth round: review of the per-section revision (pull request #95)
+
+**Reviewed commit:** `f89f2b61d7` (findings 66–68).
+**Review posted:** 2026-09-15T17:23:51Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 69 (P2) — `scripts/check_manuscript_source.py`, line 248
+
+> **Cap decoded xref rows independently of declarations**
+>
+> Fresh evidence beyond finding 67 is a compressed payload that actually matches a hostile declaration: `/Size 1000000000` with four billion highly compressible row bytes permits this call to allocate toward the entire attacker-controlled `expected_rows * row` limit, after which line 260 also materializes a billion object numbers. The small-payload regression fails quickly, but a matching compression bomb can still exhaust the provenance runner instead of producing a guarded failure; impose a repository-appropriate absolute row/decoded-byte ceiling before inflation.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 70 (P2) — `scripts/check_manuscript_source.py`, line 128
+
+> **Walk companion /XRefStm sections structurally**
+>
+> When a classic trailer describes a hybrid-reference PDF, this return retains `/Prev` but discards `/XRefStm`, so the companion cross-reference stream never reaches `_xref_stream` or the effective-table checks. The pypdf fallback cannot close that gap because `reader.xref` and `xref_objStm` expose in-use and compressed entries but not type-0/free rows; therefore a malformed free pointer or free-list row in the companion stream can still be accepted. Parse and merge the `/XRefStm` section alongside the classic table.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 71 (P2) — `scripts/check_manuscript_source.py`, line 320
+
+> **Validate /Size for every historical section**
+>
+> In an incremental PDF, only the final merged extent is compared with the final trailer's `/Size`; each replayed historical section is checked only for its free list. Consequently, an older revision with objects 0–3 and a corrupt `/Size 5` passes if a later revision introduces object 4 and also declares `/Size 5`, because the later entry masks the older trailer's inflated extent. Carry each section's `/Size` into this replay and compare it with that prefix's effective table before applying the next update.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-sixth round.
+
+
+---
+
+# Thirty-seventh round: review of the ceiling and hybrid revision (pull request #95)
+
+**Reviewed commit:** `a76630a9ed` (findings 69–71).
+**Review posted:** 2026-09-15T17:33:35Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 72 (P2) — `scripts/check_manuscript_source.py`, line 334
+
+> **Check the companion stream's own /Size**
+>
+> When a hybrid PDF's `/XRefStm` companion has a corrupt `/Size` but an explicit `/Index`, only `companion[0]` is retained here and the companion's size is discarded. For example, changing the companion in `hybrid_pdf()` from `/Size 6` to `/Size 7` leaves `_xref_chain` successful because replay checks only the classic trailer's `/Size 6`; the full-parse comparison likewise reads the final classic trailer. Fresh evidence beyond finding 71 is this companion-section path, so validate the companion's `/Size` against the same effective table before discarding its metadata.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 73 (P2) — `scripts/check_manuscript_source.py`, line 114
+
+> **Bound historical object offsets to their revision**
+>
+> When an older revision's in-use entry is corrupted to point at a matching object header introduced by a later incremental update, this global-file check accepts it even though that target did not exist in the historical revision. If the newer section also supersedes that object, pypdf exposes only the effective newer entry, so the malformed old offset is never dereferenced and the guard succeeds. Validate an entry against the byte boundary of the revision containing its cross-reference section, not merely against the final file.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 74 (P2) — `scripts/check_manuscript_source.py`, line 256
+
+> **Cap decoded xref bytes, not only row count**
+>
+> When an XRef stream keeps its row count below 1,000,000 but declares a very large `/W`, this limit remains attacker-controlled: for example, `/Size 1 /W [1 1000000000 1]` permits zlib to produce roughly 1 GB before the guard rejects anything. `MAX_STREAM_BYTES` is applied only during the later full parse, after this inflation. Fresh evidence beyond finding 69 is that the new row ceiling does not bound `expected_rows * row`; impose an absolute decoded-byte ceiling here before calling zlib.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-seventh round.
+
+
+---
+
+# Thirty-eighth round: review of the revision-bound revision (pull request #95)
+
+**Reviewed commit:** `273d95fb7d` (findings 72–74).
+**Review posted:** 2026-09-15T17:42:51Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 75 (P2) — `scripts/check_manuscript_source.py`, line 402
+
+> **Decode streams from superseded revisions**
+>
+> When an incremental update replaces a stream at the same object number and generation, pypdf's effective `reader.xref` mapping contains only the newest entry, so this list never includes the historical stream. `_xref_chain` retains no historical object offsets for the full-parse stage, meaning a flipped byte in the superseded Flate body is never passed to `_inflate_strictly` and the corrupted historical revision is reported intact. Fresh evidence beyond finding 60 is this superseded-object path; retain and decode in-use streams from each replayed revision.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 76 (P2) — `scripts/check_manuscript_source.py`, line 324
+
+> **Bound classic entry offsets before the xref section**
+>
+> When an older classic entry points to a matching `N G obj` sequence embedded in its own trailer, its offset remains below this following `startxref` limit and passes the structural check. If a later revision supersedes that object, pypdf ignores the bogus historical target and the malformed file is accepted. Fresh evidence beyond finding 73 is this same-revision target inside the classic xref/trailer region; classic in-use offsets must precede the xref table itself, not merely the revision's `startxref`.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-eighth round.
+
+
+---
+
+# Thirty-ninth round: review of the superseded-stream revision (pull request #95)
+
+**Reviewed commit:** `bb3f62c23f` (findings 75–76).
+**Review posted:** 2026-09-15T17:51:10Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 77 (P2) — `scripts/check_manuscript_source.py`, line 350
+
+> **Reject unparsable filters on superseded streams**
+>
+> When a superseded stream contains a `/Filter` key whose value does not match this regex, such as `/Filter 9 0 R` or a malformed array, `flt` becomes `None` and the stream is treated as unfiltered. Corrupt encoded bytes can therefore pass because pypdf only inspects the effective newer object. Fresh evidence beyond the earlier filter findings is this newly added historical-stream path; fail whenever `/Filter` is present but cannot be parsed as the supported chain.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 78 (P2) — `scripts/check_manuscript_source.py`, line 354
+
+> **Validate decode parameters on superseded streams**
+>
+> For a superseded `/FlateDecode` stream, this only inflates the raw deflate member and never validates or applies `/DecodeParms`; a zlib-valid stream with `/Predictor 99` or inconsistent `/Columns` therefore passes, while pypdf never opens that historical object. Fresh evidence beyond the earlier predictor finding is the new `_superseded_streams` path, which needs the same decode-parameter validation as effective streams.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 79 (P2) — `scripts/check_manuscript_source.py`, line 348
+
+> **Require superseded stream objects to end with endobj**
+>
+> When a historical stream is superseded, replacing or deleting its `endobj` token leaves this check successful because it requires only `endstream`; the final pypdf pass reads only the newer effective object. Fresh evidence beyond the earlier XRef-object termination finding is this newly inspected superseded-stream path, which should require `endstream` followed by `endobj` before accepting the historical revision.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-ninth round.
+
+
+---
+
+# Fortieth round: review of the superseded-stream discipline revision (pull request #95)
+
+**Reviewed commit:** `7394ee76d2` (findings 77–79).
+**Review posted:** 2026-09-15T17:57:59Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 80 (P2) — `scripts/check_manuscript_source.py`, line 347
+
+> **Validate TIFF predictor row geometry**
+>
+> When a superseded Flate stream declares `/Predictor 2`, this condition skips all checks involving `/Columns`, `/Colors`, and `/BitsPerComponent`; for example, one inflated byte with `/Predictor 2 /Columns 999` is accepted even though it cannot contain a complete TIFF-predicted row. Since pypdf only sees the replacement object, require the inflated length to be a whole number of TIFF rows before accepting the historical stream.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 81 (P2) — `scripts/check_manuscript_source.py`, line 370
+
+> **Reject malformed superseded stream markers**
+>
+> Fresh evidence beyond finding 76 is that changing the historical object's `stream` keyword to `streaX` makes `body` false and this branch silently treats the malformed object as a non-stream. Because pypdf dereferences only the newer replacement, the corrupted historical revision still passes; structurally validate every superseded object through `endobj` rather than continuing when stream recognition fails.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 82 (P2) — `scripts/check_manuscript_source.py`, line 383
+
+> **Parse the entire superseded filter name**
+>
+> Fresh evidence beyond finding 77 is that this regex accepts only a prefix of a PDF name: `/Filter /FlateDecode#58` represents the unsupported name `/FlateDecodeX`, but the match stops before `#58`, records `FlateDecode`, and accepts a zlib-valid historical body. As pypdf never parses the superseded object, require a valid name delimiter after the match and handle PDF `#xx` name escapes before comparing the filter chain.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fortieth round.
+
+
+---
+
+# Forty-first round: review of the whole-name revision (pull request #95)
+
+**Reviewed commit:** `f427597e50` (findings 80–82).
+**Review posted:** 2026-09-15T18:07:43Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 83 (P2) — `scripts/check_manuscript_source.py`, line 212
+
+> **Resolve superseded type-2 cross-reference entries**
+>
+> When a later revision replaces an object that was type 2 in an older cross-reference stream, this branch only checks that the alleged object-stream number is below `/Size`; `_superseded_streams` skips the old non-type-1 entry and pypdf sees only the effective replacement. Fresh evidence beyond the addressed type-2 finding is that an old object-4 row `(2, 2, 0)` naming an ordinary page-tree object, followed by a classic update supplying object 4 in use, makes `_xref_chain` succeed. Resolve each historical type-2 row against that revision and validate the container type and member index.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 84 (P2) — `scripts/check_manuscript_source.py`, line 366
+
+> **Reject malformed predictor field values**
+>
+> When a superseded stream has a predictor field with the wrong PDF value type, this helper treats the field as absent and silently substitutes its default; `/Predictor /Bogus` becomes predictor 1, and `/Predictor 2 /Columns -1` becomes one column, so a zlib-valid historical stream passes because pypdf ignores its superseded object. Fresh evidence beyond the addressed decode-parameter finding is this malformed-value path; distinguish an absent key from a present value that is not a whole nonnegative integer.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 85 (P2) — `scripts/check_manuscript_source.py`, line 397
+
+> **Parse superseded non-dictionary object bodies**
+>
+> When a superseded object is not a dictionary, any bytes containing `endobj` before the next apparent header are accepted without parsing a PDF object; for example, replacing the historical body with `not-a-PDF-object\nendobj` still makes `_xref_chain` succeed, while pypdf reads only the newer replacement. Fresh evidence beyond the addressed malformed-marker finding is that closure alone does not reject an invalid primitive body, so parse exactly one complete historical object before accepting it.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-first round.
+
+
+---
+
+# Forty-second round: review of the one-object-parse revision (pull request #95)
+
+**Reviewed commit:** `026cdcd882` (findings 83–85).
+**Review posted:** 2026-09-15T18:15:08Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 86 (P2) — `scripts/check_manuscript_source.py`, line 400
+
+> **Parse superseded dictionaries structurally**
+>
+> Fresh evidence beyond finding 84 is that dictionary objects are still considered complete solely by balancing `<<` and `>>`, without parsing their key/value contents. A superseded body such as `<< /Type >>` or `<< garbage >>` therefore passes `_xref_chain`, while pypdf reads only the newer replacement. Parse the dictionary as a PDF object and reject missing values or non-name keys before accepting the historical revision.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 87 (P2) — `scripts/check_manuscript_source.py`, line 498
+
+> **Match type-2 entries to object-stream members**
+>
+> Fresh evidence beyond finding 83 is that the new check only proves `index < /N`; it never reads `/First` or verifies that the indexed object-stream header names the type-2 entry's object number. In an older revision, changing member header `5 0` to `9 0` while a later classic update supplies object 5 still makes `_xref_chain` succeed, and pypdf ignores the superseded type-2 entry. Parse the historical object stream's header and require the indexed member to be the referenced object.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 88 (P2) — `scripts/check_manuscript_source.py`, line 156
+
+> **Validate historical trailer roots**
+>
+> When an incremental PDF has a malformed `/Root` in an older trailer, this only checks that the value looks like an indirect reference and never verifies that it is within that revision's `/Size` or resolves to a catalog. For example, changing the first trailer in `superseded_pdf()` to `/Root 9 0 R` leaves `_xref_chain` successful because the latest trailer supplies the valid root that pypdf reads. Resolve each trailer's root against its historical effective table before accepting the revision.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-second round.
+
+
+---
+
+# Forty-third round: review of the structural-dictionary revision (pull request #95)
+
+**Reviewed commit:** `b4a3799157` (findings 86–88).
+**Review posted:** 2026-09-15T18:27:33Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 89 (P2) — `scripts/check_manuscript_source.py`, line 554
+
+> **Parse compressed members before accepting type-2 entries**
+>
+> Fresh evidence beyond finding 87 is a malformed member body: this check verifies only that the indexed header pair names `num`, without parsing the bytes at that member offset as one complete PDF object bounded by the next member. If an older object stream contains `5 0 not-a-object` and a later revision replaces object 5, `_xref_chain` succeeds; pypdf sees only the replacement and decoding the still-effective container does not parse its unused member. Parse every referenced historical member before accepting the entry.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 90 (P2) — `scripts/check_manuscript_source.py`, line 583
+
+> **Require a top-level /Type on historical catalogs**
+>
+> Fresh evidence beyond finding 88 is that this regex scans the complete serialized dictionary, including nested values and strings, so `<< /Pages 2 0 R /Foo << /Type /Catalog >> >>` is accepted as a catalog even though its top-level dictionary has no `/Type`. If a later revision replaces that root object with a valid catalog, pypdf reads only the replacement and the malformed historical root passes the guard. Inspect the structurally parsed top-level key/value entries rather than searching the raw dictionary bytes.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 91 (P2) — `scripts/check_manuscript_source.py`, line 612
+
+> **Revalidate inherited type-2 entries after container updates**
+>
+> When an incremental revision replaces an object-stream container but inherits its members' type-2 rows, `_object_streams` receives only the current section's `entries`, so those inherited rows are never checked against the replacement container in that historical revision. A subsequent revision can replace the member itself, leaving pypdf only the final direct object; a middle revision where inherited object 5 now points to a replacement container whose indexed member is object 9 therefore passes. Revalidate all effective type-2 rows after each merge, or at least every inherited row whose container changed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-third round.
+
+
+---
+
+# Forty-fourth round: review of the member-parse revision (pull request #95)
+
+**Reviewed commit:** `b961e70914` (findings 89–91).
+**Review posted:** 2026-09-15T18:38:05Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 92 (P2) — `scripts/check_manuscript_source.py`, line 161
+
+> **Read classic trailer keys only from the top level**
+>
+> Fresh evidence beyond finding 90 is the classic-trailer path: when an older revision contains `<< /Size 4 /Foo << /Root 1 0 R >> >>` but no top-level `/Root`, these searches accept the nested reference and replay validates it as the historical root; a later trailer with a valid top-level root then lets the malformed historical revision pass. Extract `/Size`, `/Root`, `/Prev`, and `/XRefStm` from `_dict_items` instead of scanning the serialized dictionary recursively.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 93 (P2) — `scripts/check_manuscript_source.py`, line 577
+
+> **Reject overlapping object-stream member offsets**
+>
+> Fresh evidence beyond finding 89 is an object-stream header such as `5 0 6 0`: because the bound is chosen only from strictly greater offsets, both members are parsed against the same body bytes and effective type-2 rows for indices 0 and 1 are accepted. This treats one serialized object as two declared members, so require member offsets to be distinct and ordered before parsing their bounded bodies.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-fourth round.
+
+
+---
+
+# Forty-fifth round: review of the top-level-keys revision (pull request #95)
+
+**Reviewed commit:** `dff1e3ac05` (findings 92–93).
+**Review posted:** 2026-09-15T18:49:33Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 94 (P2) — `scripts/check_manuscript_source.py`, line 504
+
+> **Read superseded stream lengths from top-level items**
+>
+> Fresh evidence beyond the top-level-key fixes is the superseded-stream path: this regex still scans the serialized dictionary recursively and accepts integer prefixes, so a historical stream with only `<< /Foo << /Length 1 >> >>` or with `/Length 1.5` is treated as having direct length 1. When a later revision replaces that object, pypdf never checks the old stream and the malformed revision passes; obtain `Length` from `_dict_items(d, 0)` and require `_int_value` to succeed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 95 (P2) — `scripts/check_manuscript_source.py`, line 576
+
+> **Apply predictors before parsing object-stream members**
+>
+> Fresh evidence beyond the predictor-parameter validation is that `_decode_parms` only validates the inflated bytes and its result is discarded, after which the still predictor-encoded `data` is parsed as the object-stream header and members. For example, a valid Flate object stream using `/Predictor 12` with a PNG filter byte at the start of its row is rejected as not having `/N` integer pairs; TIFF prediction can likewise make the encoded bytes differ from the objects. Undo the declared predictor before applying `/First` and parsing the header and members.
+
+## Finding 96 (P2) — `scripts/check_manuscript_source.py`, line 282
+
+> **Reject overlapping or unordered /Index ranges**
+>
+> Fresh evidence beyond the earlier `/Index` validation is that each pair is checked only in isolation, so `/Index [0 3 1 1]` passes even though object 1 occurs twice; `_xref_rows` then silently overwrites its first row in the dictionary. Descending ranges are accepted similarly. This lets a malformed cross-reference stream pass the structural walk, so require the ranges to be strictly ordered and non-overlapping before decoding rows.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-fifth round.
+
+
+---
+
+# Forty-sixth round: review of the predictor and index revision (pull request #95)
+
+**Reviewed commit:** `b084115186` (findings 94–96).
+**Review posted:** 2026-09-15T18:59:24Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 97 (P2) — `scripts/check_manuscript_source.py`, line 448
+
+> **Reject duplicate keys while parsing PDF dictionaries**
+>
+> When a dictionary repeats a key, assigning into `items` silently keeps the last value instead of rejecting the malformed dictionary. This is observable on a superseded stream: an old object containing duplicate `/Length` keys with the same usable value passes `_xref_chain`, while pypdf only parses its replacement and cannot catch the historical duplicate. Detect an already-present decoded key before assignment so every structurally inspected dictionary fails closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 98 (P2) — `scripts/check_manuscript_source.py`, line 680
+
+> **Require /Prev to point to an earlier section**
+>
+> When `/Prev` is greater than the current cross-reference offset, the loop follows it and later reverses the collected sections without validating their physical chronology. A file whose final `startxref` points at section A and whose A trailer points forward to section B therefore passes the structural walk with B treated as the older revision, defeating the premise that each replayed prefix was once a complete file. Reject any non-earlier `/Prev` before following it.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 99 (P2) — `scripts/check_manuscript_source.py`, line 162
+
+> **Reject overlapping classic xref subsections**
+>
+> When two classic subsections cover the same object number, this assignment silently replaces the first row in `table`. For example, appending a `1 1` subsection duplicating object 1 to the otherwise valid classic fixture makes `_xref_chain` return success, even though a cross-reference section must not contain competing entries for one object. Check each new subsection against the accumulated ranges before decoding it rather than accepting the overwritten table.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-sixth round.
+
+
+---
+
+# Forty-seventh round: review of the chronology revision (pull request #95)
+
+**Reviewed commit:** `caf7c77d0d` (findings 97–99).
+**Review posted:** 2026-09-15T19:09:48Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 100 (P2) — `scripts/check_manuscript_source.py`, line 693
+
+> **Validate the companion stream's /Prev**
+>
+> When a classic trailer uses `/XRefStm`, this merge discards `companion[2]`, so a `/Prev` in the companion stream can point to itself, forward, or to a non-xref object without reaching the new backwards-link check at line 684. Since pypdf follows the classic trailer's chain, it also does not expose this malformed companion link during the full parse; validate the companion's `/Prev` and its consistency with the classic trailer before discarding it.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 101 (P2) — `scripts/check_manuscript_source.py`, line 602
+
+> **Reject duplicate object-stream member numbers**
+>
+> When an object stream declares a header such as `5 0 5 13`, both member bodies can parse and the type-2 row for object 5 can select index 0, leaving the duplicate member at index 1 unexamined by `_object_streams`; pypdf likewise dereferences only the indexed member. The guard consequently accepts two declarations of the same compressed object, so require the object numbers in `pairs` to be unique.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 102 (P2) — `scripts/check_manuscript_source.py`, line 667
+
+> **Validate each historical catalog's page tree**
+>
+> When an older root object is a `/Catalog` whose `/Pages` reference is missing or invalid and a later revision replaces that catalog with a valid one, this type-only check accepts the historical root while the final pypdf pass reads only the replacement's page tree. For example, an old catalog containing `/Pages 9 0 R` followed by an update restoring `/Pages 2 0 R` passes the replay, so resolve and walk `/Pages` against each revision's effective table before treating that historical revision as intact.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-seventh round.
+
+
+---
+
+# Forty-eighth round: review of the page-tree revision (pull request #95)
+
+**Reviewed commit:** `bddda784b3` (findings 100–102).
+**Review posted:** 2026-09-15T19:19:29Z, one automated Codex review with four inline comments. Reproduced verbatim.
+
+## Finding 103 (P2) — `scripts/check_manuscript_source.py`, line 608
+
+> **Match every object-stream member to an xref entry**
+>
+> When an object stream declares an otherwise valid, uniquely numbered member that has no matching effective type-2 row—for example, a second member numbered 4 while object 4 remains the direct stream container—this check accepts it and `_object_streams` only visits the referenced member. Pypdf likewise enumerates compressed objects from `xref_objStm`, so the hidden member is never dereferenced even though the guard promises to inspect every object; verify the reverse mapping from every header pair to the effective `(container, index)` entry.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 104 (P2) — `scripts/check_manuscript_source.py`, line 743
+
+> **Validate terminators for every historical revision**
+>
+> When an incremental PDF's older `startxref` or `%%EOF` marker is removed or corrupted, the historical xref section still parses because its end offset is discarded here; replay follows `/Prev` directly, and the final pypdf pass only requires the newest terminator. This accepts a revision that was never a complete PDF despite the replay contract, so require each non-companion section to be followed by a `startxref` pointing back to that section and an `%%EOF` before the next revision.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 105 (P2) — `scripts/check_manuscript_source.py`, line 694
+
+> **Reject a /Parent on the page-tree root**
+>
+> When a historical root `/Pages` node carries a `/Parent` entry, this condition skips validation because `parent` is `None`; if a later revision replaces that node, pypdf only walks the repaired tree and the malformed historical tree passes. The root of a page tree must not have a parent, so explicitly reject a top-level `/Parent` instead of checking only non-root nodes.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 106 (P2) — `scripts/check_manuscript_source.py`, line 666
+
+> **Reject streams used as historical page-tree dictionaries**
+>
+> When a superseded historical catalog or page-tree node is a valid stream whose dictionary contains `/Type /Catalog`, `/Pages`, or `/Type /Page[s]`, `_resolve` returns its dictionary items without noticing the following `stream` body. `_superseded_streams` then accepts the stream structurally and pypdf sees only the later replacement, so an invalid stream object is treated as a catalog/page node; require resolved in-use nodes to be dictionary objects followed by `endobj`, not stream objects.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-eighth round.
+
+# Forty-ninth round: review of the member-mapping revision (pull request #95)
+
+**Reviewed commit:** `8df488e563` (findings 103–106).
+**Review posted:** 2026-09-15T19:27:51Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 107 (P2) — `scripts/check_manuscript_source.py`, line 644
+
+> **Decode object streams even when no type-2 row references them**
+>
+> Fresh evidence after the claimed reverse-mapping fix is an introduced `/ObjStm` with no effective type-2 entries at all: the first loop never calls `_objstm`, so its offset is absent from `cache` and this branch silently skips every declared member. For example, changing object 5's row in `objstm_pdf()` from type 2 to a free row leaves the stream header declaring object 5 while `_xref_chain` returns success; pypdf also discovers compressed members from the type-2 table and will not inspect this hidden member. Decode each introduced in-use object stream before performing the reverse check rather than relying on a cache populated by forward references.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 108 (P2) — `scripts/check_manuscript_source.py`, line 884
+
+> **Restrict manifest entries to files that are actually checked**
+>
+> A manifest entry may escape the manuscript directory, and existence is the only validation applied to that resolved path. For example, after removing the required manuscript PDF, replacing its entry with `../archive/2026-09-08/README_READ_FIRST_2026_09_08.pdf` satisfies both `is_file()` and the required `.pdf` suffix, while `present` contains no PDF and the external file is never passed to `check_pdf`; the integrity command consequently succeeds without checking any manuscript PDF. Reject absolute or parent-traversing entries and run the format check on every required file directly.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 109 (P2) — `scripts/check_manuscript_source.py`, line 765
+
+> **Require a boundary after each historical EOF marker**
+>
+> Fresh evidence after the revision-terminator fix is that this regex accepts `%%EOFX` as `%%EOF` because it does not require a token or line boundary after the marker. An incremental file built from an older revision ending in `%%EOFX` followed by a valid update therefore makes `_xref_chain` succeed even though that historical revision never had its own valid EOF marker. Require the marker to end at a valid line boundary before accepting the revision.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-ninth round.
+
+# Fiftieth round: review of the unreferenced-object-stream revision (pull request #95)
+
+**Reviewed commit:** `621133b1e3` (findings 107–109).
+**Review posted:** 2026-09-15T19:38:09Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 110 (P2) — `scripts/check_manuscript_source.py`, line 190
+
+> **Use the declared pixel width for PNG predictors**
+>
+> Fresh evidence beyond the prior predictor fix is that PNG Sub, Average, and Paeth prediction use the previous *pixel*, whose byte width is `ceil(Colors × BitsPerComponent / 8)`, but this implementation always uses the immediately preceding byte. With `/Colors 3 /BitsPerComponent 8`, a historical object stream can therefore be crafted to decode as valid header/member bytes only under this incorrect one-byte rule; after a later revision replaces the member, pypdf decodes the surviving stream but never parses that obsolete member, so the malformed historical revision can pass. Pass the declared bytes-per-pixel into `_unpredict` and use `j - bpp` for the left and upper-left samples.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fiftieth round.
+
+# Fifty-first round: review of the pixel-width revision (pull request #95)
+
+**Reviewed commit:** `998cf89ae0` (finding 110).
+**Review posted:** 2026-09-15T19:48:16Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 111 (P2) — `scripts/check_manuscript_source.py`, line 242
+
+> **Include the xref-stream object in /Size validation**
+>
+> When a cross-reference stream omits its own entry, this regex discards the indirect object's number, so the later `/Size` check considers only decoded rows. For example, an object `99 0 obj` with `/Size 5 /Index [0 3 4 1]` and valid rows for objects 0–2 and 4 makes `_xref_chain` return success even though `/Size` excludes object 99; pypdf can open the stream through `startxref` without adding the unlisted object to `reader.xref`, so the full-parse extent check also misses it. Capture the xref-stream object's number and require the revision's `/Size` and cross-reference entries to account for it.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-first round.
+
+# Fifty-second round: review of the self-listing revision (pull request #95)
+
+**Reviewed commit:** `98d583269e` (finding 111).
+**Review posted:** 2026-09-15T19:55:27Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 112 (P2) — `scripts/check_manuscript_source.py`, line 801
+
+> **Revalidate the companion after applying table precedence**
+>
+> Fresh evidence beyond finding 111 is the hybrid-reference path: a companion stream can list its own object correctly and pass `_xref_stream`, but the classic table can list that object as free; this merge then replaces the companion's in-use row with the classic row without rechecking the invariant. With object 0's free-list link adjusted accordingly, `_xref_chain` accepts the revision, while pypdf can still open the companion directly through `/XRefStm`, so the full parse does not expose the inconsistency. After applying classic-table precedence, require the effective entry for the companion's object number to remain `(1, xrefstm, generation)`.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-second round.
+
+# Fifty-third round: review of the companion-precedence revision (pull request #95)
+
+**Reviewed commit:** `8c4ad88fb2` (finding 112).
+**Review posted:** 2026-09-15T20:02:54Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 113 (P2) — `scripts/check_manuscript_source.py`, line 86
+
+> **Treat NUL as PDF whitespace in object tokens**
+>
+> When a superseded direct object contains a NUL between name characters, such as `/Bad\x00Name`, Python's `\s` does not include NUL even though PDF classifies byte 0 as whitespace, so `_NAME` and `_TOKEN` consume this as one valid name. `_superseded_streams` consequently accepts the malformed historical object while the final pypdf pass sees only its replacement; use the explicit PDF whitespace byte set throughout the lexer.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-third round.
+
+# Fifty-fourth round: review of the white-space revision (pull request #95)
+
+**Reviewed commit:** `c2a67ae3c9` (finding 113).
+**Review posted:** 2026-09-15T20:11:20Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 114 (P2) — `scripts/check_manuscript_source.py`, line 537
+
+> **Bound superseded objects to their historical revision**
+>
+> When an older in-use object begins before its xref section but remains unterminated until bytes appended after that revision's `%%EOF`, `_object_end` scans across the xref, trailer, and later bytes and accepts the eventual closure. A later update can then replace the object, so the final pypdf pass sees only the replacement and `_xref_chain` accepts a revision that was never a complete PDF; bound parsing to the historical section offset rather than the entire file.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 115 (P2) — `scripts/check_manuscript_source.py`, line 542
+
+> **Require a PDF token boundary after endobj**
+>
+> When a superseded direct object ends with `endobj\x0b`, this `\b` succeeds because Python treats vertical tab as a non-word byte, although vertical tab is neither PDF whitespace nor a delimiter. The historical object is therefore accepted as closed while pypdf reads only its later replacement; use the explicit PDF whitespace/delimiter boundary here as well.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-fourth round.
+
+# Fifty-fifth round: review of the object-extent revision (pull request #95)
+
+**Reviewed commit:** `426c06dd38` (findings 114–115).
+**Review posted:** 2026-09-15T20:23:00Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 116 (P2) — `scripts/check_manuscript_source.py`, line 930
+
+> **Reject manifest symlinks that escape manuscripts**
+>
+> Fresh evidence beyond finding 108 is that the bare-name check does not prevent the resulting path from being a symlink: replacing the required manuscript PDF with a same-named symlink to `../archive/2026-09-08/README_READ_FIRST_2026_09_08.pdf` makes `is_file()` succeed and causes `check_pdf` to validate the archive target, so the guard reports success although the required manuscript source is absent. Reject symlinks or require each resolved path's parent to remain the resolved manuscript directory.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-fifth round.
+
+# Fifty-sixth round: review of the symbolic-link revision (pull request #95)
+
+**Reviewed commit:** `156822e056` (finding 116).
+**Review posted:** 2026-09-15T20:30:04Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 117 (P2) — `scripts/check_manuscript_source.py`, line 925
+
+> **Reject a symlinked manuscripts directory**
+>
+> When the `manuscripts` directory itself is replaced by a symlink, each child reports `p.is_symlink() == False`, while `p.resolve().parent == directory.resolve()` remains true by construction. The guard therefore validates the symlink target and can succeed even though the entire canonical manuscript source directory has been replaced, contrary to this helper's stated “no symbolic link at any step” contract; reject a symlinked directory before accepting its manifest or children.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-sixth round.
+
+# Fifty-seventh round: review of the linked-directory revision (pull request #95)
+
+**Reviewed commit:** `ee3e4b8f3f` (finding 117).
+**Review posted:** 2026-09-15T20:36:37Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 118 (P2) — `scripts/check_manuscript_source.py`, line 384
+
+> **Reject indirect objects omitted from cross-reference sections**
+>
+> This loop examines only objects already listed in the section, so an unlisted indirect object is invisible to both structural validation and the later pypdf dereference loop. For example, inserting `99 0 obj\nnot-a-PDF-object\nendobj` immediately before the xref section of the valid classic fixture, while leaving `/Size 4` and its rows unchanged, makes `_xref_chain` return success; pypdf likewise has no object ID through which to inspect object 99. Reject indirect-object definitions that are not accounted for by the applicable cross-reference section, otherwise byte-mangled or malformed content can still pass the integrity guard.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-seventh round.
+
+# Fifty-eighth round: review of the coverage revision (pull request #95)
+
+**Reviewed commit:** `c472c2b3c8` (finding 118).
+**Review posted:** 2026-09-15T20:44:28Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 119 (P2) — `scripts/check_manuscript_source.py`, line 565
+
+> **Require separator comments to end before the next object**
+>
+> When a listed object's offset is immediately preceded on the same line by `%` (for example, `% hidden 1 0 obj`), this full match accepts `% hidden ` as a complete separator even though the PDF comment continues through the object's header until the next line ending. `_section_at` then parses from the cross-reference offset, so the guard can accept a revision whose apparent indirect-object declaration is actually commented out. Require each separator comment before an object or cross-reference section to include its terminating line ending.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-eighth round.
+
+# Fifty-ninth round: review of the separator-comment revision (pull request #95)
+
+**Reviewed commit:** `d4ce42bb76` (finding 119).
+**Review posted:** 2026-09-15T20:50:58Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 120 (P2) — `scripts/check_manuscript_source.py`, line 827
+
+> **Require line-delimited revision terminators**
+>
+> When an older revision writes `startxref 184 %%EOF\n` on one line, this regex accepts it because every separator is the unrestricted PDF-whitespace class, even though a complete PDF terminator requires `startxref`, its offset, and `%%EOF` on separate lines. A later valid incremental update can reference that section through `/Prev`; the structural walk succeeds and pypdf follows the xref chain without validating the superseded terminator, so a revision that was never properly terminated passes the guard. Require the appropriate line endings between all three components.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-ninth round.
+
+# Sixty-first round: review of the sentinel revision (pull request #95)
+
+**Reviewed commit:** `e59444dfba` (findings 121–122 and their tests).
+**Review posted:** 2026-09-15T21:08:22Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 123 (P2) — `scripts/check_manuscript_source.py`, line 44
+
+> **Count backslash parity before stripping TeX comments**
+>
+> Fresh evidence beyond the new single-escaped-`\%` test is a line such as `\\%\end{document}`: TeX reads `\\` as its own control sequence, so the following `%` starts a comment, but this negative lookbehind treats any immediately preceding backslash as escaping the percent and counts the commented sentinel as active. Determine whether the consecutive backslash run has odd parity before preserving `%`; otherwise a mangled source can still pass the fail-closed guard.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 124 (P2) — `scripts/check_manuscript_source.py`, line 47
+
+> **Preserve within-line ordering of document sentinels**
+>
+> When the only occurrences are on one line as `\end{document} \begin{document}`, both searches return the same line index, so `e < b` is false and the source passes despite the commands being reversed. Compare character positions in the comment-stripped text, or compare columns when the line indices match, so the advertised ordering invariant fails closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-first round.
+
+# Sixty-second round: review of the parity revision (pull request #95)
+
+**Reviewed commit:** `b8ea3754c5` (findings 123–124).
+**Review posted:** 2026-09-15T21:16:16Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 125 (P2) — `scripts/check_manuscript_source.py`, line 274
+
+> **Keep the /W width when Predictor is 1**
+>
+> When `/DecodeParms` specifies `/Predictor 1` with geometry different from `sum(/W)`, this assignment changes the row width even though predictor 1 performs no prediction. For example, a five-entry `/W [1 2 1]` stream with `/Predictor 1 /Columns 8` can contain the 20 real entry bytes followed by 20 arbitrary bytes: `_xref_chain` counts five eight-byte rows, but `_xref_rows` consumes only the first five four-byte rows, so the surplus data is never validated. Keep the `/W` width for predictor 1.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 126 (P2) — `scripts/check_manuscript_source.py`, line 660
+
+> **Reject data in zero-member object streams**
+>
+> When an introduced `/ObjStm` declares `/N 0 /First 0`, `data[:first]` yields no tokens and the subsequent pair, offset, and member checks are all vacuous, so a nonempty arbitrary stream body is accepted when no type-2 row references it. The full parse treats that container as an ordinary stream and likewise never parses the hidden payload; require `/First` to be in bounds and the bytes following it to be only permitted padding when `/N` is zero.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-second round.
+
+# Sixty-third round: review of the predictor-one revision (pull request #95)
+
+**Reviewed commit:** `4967a92624` (findings 125–126).
+**Review posted:** 2026-09-15T21:24:29Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 127 (P2) — `scripts/check_manuscript_source.py`, line 661
+
+> **Require a token boundary at /First**
+>
+> When a historical object-stream member is later superseded, a payload such as `5 0true` with `/N 1 /First 3` passes because splitting the artificially truncated `data[:first]` treats `0` as a complete integer, while `_object_end` separately accepts `true` as the member. In the actual PDF byte stream, `0true` is one regular token because no whitespace or delimiter separates the final header integer from the member, so this malformed historical object stream escapes the fail-closed check; validate a real PDF token boundary at `/First` before accepting the header.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-third round.
+
+# Sixty-fourth round: review of the token-boundary revision (pull request #95)
+
+**Reviewed commit:** `873ff91650` (finding 127).
+**Review posted:** 2026-09-15T21:30:19Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 128 (P2) — `scripts/check_manuscript_source.py`, line 47
+
+> **Reject an end sentinel before the document begins**
+>
+> Fresh evidence beyond the prior within-line ordering fix is a source containing an active `\end{document}` before an otherwise valid `\begin{document}`/`\end{document}` pair: `rfind` selects the final end sentinel, so `e < b` is false and the malformed source passes even though TeX reaches the earlier end first. Compare the begin position with the first active end sentinel, or explicitly reject any active end before the begin sentinel.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-fourth round.
+
+# Sixty-fifth round: review of the first-end-sentinel revision (pull request #95)
+
+**Reviewed commit:** `319b7f7f53` (finding 128).
+**Review posted:** 2026-09-15T21:34:51Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 129 (P2) — `scripts/check_manuscript_source.py`, line 48
+
+> **Reject escaped document sentinels**
+>
+> When the only sentinels are written as `\\begin{document}` and `\\end{document}`, each `find` matches starting at the second backslash and `check_tex` returns success. TeX instead consumes the paired backslashes as the `\\` control sequence, so neither document-environment command is executed; account for the parity of the consecutive backslash run before each sentinel, as is already done for comment markers, so a source without a real document body fails closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-fifth round.
+
+# Sixty-sixth round: review of the sentinel-parity revision (pull request #95)
+
+**Reviewed commit:** `95d3a614f7` (finding 129).
+**Review posted:** 2026-09-15T21:40:57Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 130 (P2) — `scripts/check_manuscript_source.py`, line 52
+
+> **Require executable document sentinels**
+>
+> When the only occurrences are stored in macro definitions, such as `\newcommand{\fake}{\begin{document}}` and `\newcommand{\stop}{\end{document}}`, these searches still make `check_tex` succeed even though LaTeX does not execute either replacement body and the source has no document environment. Fresh evidence beyond the backslash-parity fix is that a 500-line source using exactly those definitions returns no problems; require the sentinels to be actual top-level commands (for example, standalone uncommented lines) rather than arbitrary token occurrences.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-sixth round.
+
+# Sixty-seventh round: review of the standalone-sentinel revision (pull request #95)
+
+**Reviewed commit:** `174114be1e` (finding 130).
+**Review posted:** 2026-09-15T21:47:15Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 131 (P2) — `scripts/check_manuscript_source.py`, line 51
+
+> **Reject sentinels inside multiline macro definitions**
+>
+> Fresh evidence beyond finding 130 is that standalone-line matching still accepts sentinels stored in multiline macro bodies, such as `\newcommand{\fake}{` followed on the next line by `\begin{document}` and likewise for `\end{document}`. A 500-line source containing only those two uninvoked definitions makes `check_tex` return no problems even though neither document command executes, so the guard still does not fail closed on a source without a document environment; track brace/macro context or otherwise require top-level sentinels.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-seventh round.
+
+# Sixty-eighth round: review of the brace-depth revision (pull request #95)
+
+**Reviewed commit:** `4f7ca64ce0` (finding 131).
+**Review posted:** 2026-09-15T21:53:53Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 132 (P2) — `scripts/check_manuscript_source.py`, line 54
+
+> **Ignore sentinels in inactive TeX conditionals**
+>
+> A 500-line source whose only standalone sentinels appear between `\iffalse` and `\fi` passes `check_tex`, because those lines remain at brace depth zero even though TeX skips both commands and never opens a document environment. Track inactive conditional regions (or otherwise verify that the commands are executable) before accepting these matches, so the provenance guard continues to fail closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-eighth round.
+
+# Sixty-ninth round: review of the conditional-region revision (pull request #95)
+
+**Reviewed commit:** `5510b474cb` (finding 132).
+**Review posted:** 2026-09-15T22:03:18Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 133 (P2) — `scripts/check_manuscript_source.py`, line 65
+
+> **Ignore conditional tokens stored in macro bodies**
+>
+> When an unexpanded macro body contains `\fi`, this global event list treats it as an executed close and can cancel a real later conditional opener. For example, a 500-line source containing `\newcommand{\fake}{\fi}`, followed by `\iffalse`, standalone `\begin{document}` and `\end{document}`, and the real closing `\fi` returns no problems even though TeX skips both sentinels. Exclude conditional tokens occurring inside macro definitions/brace bodies when computing executable conditional depth so this guard continues to fail closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-ninth round.
+
+# Seventieth round: review of the macro-body revision (pull request #95)
+
+**Reviewed commit:** `e4a69e56aa` (finding 133).
+**Review posted:** 2026-09-15T22:08:19Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 134 (P2) — `scripts/check_manuscript_source.py`, line 67
+
+> **Track conditionals inside executed brace groups**
+>
+> When a conditional opener occurs inside an ordinary TeX group, this brace-depth filter treats it like an unexecuted macro-body token even though TeX executes it. For example, `{\iffalse}` followed by standalone document sentinels and then `\else`, `}`, `\fi` is balanced at runtime but skips both sentinels; `check_tex` currently returns success because the opener is discarded and the lexically early `}` makes both sentinels appear top-level. Distinguish macro definitions from executed groups rather than ignoring every conditional at nonzero brace depth.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventieth round.
+
+# Seventy-first round: review of the brace-group revision (pull request #95)
+
+**Reviewed commit:** `3360c47049` (finding 134).
+**Review posted:** 2026-09-15T22:14:31Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 135 (P2) — `scripts/check_manuscript_source.py`, line 76
+
+> **Reject sentinels after an active `\endinput`**
+>
+> Fresh evidence beyond the prior standalone and conditional fixes is a 500-line source with an active `\endinput` immediately before standalone `\begin{document}` and `\end{document}` lines: TeX stops reading before either sentinel, but both still have brace and conditional depth zero here, so `check_tex` returns success. Reject a top-level `\endinput` that precedes either required sentinel so a source with no executable document environment cannot pass the fail-closed provenance guard.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-first round.
+
+# Seventy-second round: review of the endinput revision (pull request #95)
+
+**Reviewed commit:** `fb9d9910f9` (finding 135).
+**Review posted:** 2026-09-15T22:19:55Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 136 (P2) — `scripts/check_manuscript_source.py`, line 81
+
+> **Detect dynamically constructed endinput controls**
+>
+> Fresh evidence beyond the literal-control-word fix: when a source places `\csname endinput\endcsname` before the standalone document sentinels, TeX constructs and executes `\endinput`, so it stops before reaching either sentinel, but this regex sees no literal `\endinput` and `check_tex` returns no problems. Reject this executable construction (or fail closed on relevant `\csname` use before the closing sentinel) so a source with no executable document environment cannot pass.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-second round.
+
+# Seventy-third round: review of the stop-control revision (pull request #95)
+
+**Reviewed commit:** `b6753bdd51` (finding 136).
+**Review posted:** 2026-09-15T22:25:16Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 137 (P2) — `scripts/check_manuscript_source.py`, line 88
+
+> **Reject TeX ^^ notation before scanning stop controls**
+>
+> A 500-line source with `\end^^69nput` immediately before otherwise valid standalone document sentinels returns no problems here, but TeX converts `^^69` to `i` during input processing and therefore executes `\endinput` before reaching either sentinel. Normalize or reject TeX `^^` notation before scanning comments, conditionals, sentinels, and stop controls so this fail-closed guard cannot be bypassed by an encoded control word.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-third round.
+
+# Seventy-fourth round: review of the caret-notation revision (pull request #95)
+
+**Reviewed commit:** `0ff3859a4b` (finding 137).
+**Review posted:** 2026-09-15T22:29:50Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 138 (P2) — `scripts/check_manuscript_source.py`, line 86
+
+> **Reject redefined document sentinels**
+>
+> When `\begin` or `\end` is redefined before these standalone lines, the guard still treats their textual occurrences as executable document sentinels. For example, a 500-line source containing `\def\begin#1{}` and `\def\end#1{}` before the two sentinel lines returns no problems, although TeX executes the replacement macros and never opens or closes the document environment. Fail closed on definitions or aliases that can change either sentinel before accepting the matches.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-fourth round.
+
+# Seventy-fifth round: review of the sentinel-redefinition revision (pull request #95)
+
+**Reviewed commit:** `9a48edeaad` (finding 138).
+**Review posted:** 2026-09-15T22:35:04Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 139 (P2) — `scripts/check_manuscript_source.py`, line 93
+
+> **Reject parameterless redefinitions of document sentinels**
+>
+> When the source uses `\def\begin{}` and `\def\end{}` before the standalone sentinel lines, each target control word is immediately followed by `{`, so this negative lookahead classifies the definitions as permitted environment uses and `check_tex` returns no problems. TeX instead replaces both commands with empty macros, so the later lines never open or close the document environment; distinguish command invocations from definition targets rather than relying only on the following brace.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-fifth round.
+
+# Seventy-sixth round: review of the definer-target revision (pull request #95)
+
+**Reviewed commit:** `bc8d534802` (finding 139).
+**Review posted:** 2026-09-15T22:42:40Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 140 (P2) — `scripts/check_manuscript_source.py`, line 97
+
+> **Scan definer targets across TeX line endings**
+>
+> Fresh evidence beyond finding 139 is that TeX permits a definer's target on the next line, but this pattern allows only spaces and tabs between them. A 500-line source containing `\def\n\begin{}` and `\def\n\end{}` before the standalone sentinels returns no problems, although TeX treats those newlines as the whitespace following the `\def` control word and redefines both commands, so the document environment is never opened or closed. Recognize TeX line-ending/comment separation here or fail closed on line-broken definers.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-sixth round.
+
+# Seventy-seventh round: review of the line-ending revision (pull request #95)
+
+**Reviewed commit:** `b51e7ebbbb` (finding 140).
+**Review posted:** 2026-09-15T22:50:02Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 141 (P2) — `scripts/check_manuscript_source.py`, line 99
+
+> **Reject starred command definers**
+>
+> Fresh evidence beyond the line-breaking fix is that LaTeX command definers may place `*` between the command name and its target, but this pattern allows only whitespace before the optional brace. A 500-line source containing `\renewcommand*\begin{}` and `\renewcommand*\end{}` before the standalone sentinels makes `check_tex` return no problems, although those definitions replace both commands and no document environment is opened; allow and reject the optional starred form here, as the environment-definer pattern already does.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-seventh round.
+
+# Seventy-eighth round: review of the starred-definer revision (pull request #95)
+
+**Reviewed commit:** `d05f64b009` (finding 141).
+**Review posted:** 2026-09-15T22:57:31Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 142 (P2) — `scripts/check_manuscript_source.py`, line 101
+
+> **Reject definer targets assembled by expansion**
+>
+> When a definer's target is supplied through expansion, this regex never sees the protected control word adjacent to the definer. A 500-line source containing `\toks0={\begin{}}` followed by `\expandafter\def\the\toks0` (and the analogous two lines for `\end`) passes `check_tex`, but TeX expands these into `\def\begin{}` and `\def\end{}`, so the accepted standalone sentinels no longer open or close the document environment. Fail closed on expansion primitives capable of assembling definer targets before the closing sentinel.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-eighth round.

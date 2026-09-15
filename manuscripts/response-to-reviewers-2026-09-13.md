@@ -311,3 +311,577 @@ One finding from the automated Codex review of commit `e61628428e`; accepted.
 
 The automated Codex review of commit `4e68dcdc7d` posted no findings. Finding 38 is recorded as addressed.
 
+---
+
+## Twenty-third round (pull request #92, manuscript-source guard)
+
+Two findings from the automated Codex review of commit `d2adbb9b97`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 39 | P2 | A PDF truncated after its `%PDF-` header passed the guard | Accepted. The guard now requires `%%EOF` within the last 1024 bytes, a `startxref` offset before the final `%%EOF`, and that the offset lies inside the file and points at an `xref` table or a cross-reference stream object; tests cover a header-only PDF and a bad `startxref` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 40 | P2 | Missing or renamed manuscript files passed silently; an empty directory reported success | Accepted. `manuscripts/MANIFEST` lists the required files; the guard fails on a missing manifest, an empty manifest, any listed file that is absent, and a manifest without a `.tex` and a `.pdf`; tests cover a deleted PDF and an empty directory | `manuscripts/MANIFEST`, `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+
+
+---
+
+## Twenty-fourth round (pull request #95, hardened guard)
+
+Two findings from the automated Codex review of commit `be9dfc3abf`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 41 | P2 | `PSC_PROOF_next_source_audit.tex` is tracked but was absent from the manifest, so deleting it passed | Accepted. Added to `manuscripts/MANIFEST` | `manuscripts/MANIFEST` |
+| 42 | P2 | An in-range `startxref` pointing at any ordinary object passed | Accepted. When the offset points at an object, its dictionary must contain `/Type /XRef`; a test rewrites the offset to an ordinary object and expects failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+
+---
+
+## Twenty-fifth round (pull request #95, manifest and XRef revision)
+
+Two findings from the automated Codex review of commit `ea83b495c5`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 43 | P2 | With several trailers in the last 1024 bytes the guard validated the first, not the one before the final `%%EOF` | Accepted. The guard locates the final `%%EOF`, takes the last `startxref` before it, and requires the text between them to be exactly the offset; a test appends a corrupt trailer after the valid one and expects failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 44 | P2 | An XRef-typed object without a stream body passed | Accepted. An object-pointing offset must lead to a dictionary containing `/Type /XRef` followed by a `stream` keyword and a later `endstream`; a classic `xref` table must be followed by `trailer`; a test builds a PDF whose only object is XRef-typed with no stream and expects failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+
+---
+
+## Twenty-sixth round (pull request #95, trailer revision)
+
+Two findings from the automated Codex review of commit `c6032e3dad`; both accepted. The guard now parses the cross-reference structure instead of matching delimiter tokens.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 45 | P2 | A classic table was accepted from the bare `xref` and `trailer` keywords | Accepted. The table is parsed: `xref`, one or more `start count` subsections, exactly `count` entries of 20 bytes matching `nnnnnnnnnn ggggg n/f`, at least one entry in total, then `trailer` and a dictionary containing `/Size` and `/Root`; tests cover a minimal valid classic PDF and the entryless one | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 46 | P2 | An empty or corrupted cross-reference stream body was accepted | Accepted. The stream dictionary must contain `/Type /XRef`, `/Size`, `/Root`, `/W` and a direct `/Length`; the body must have exactly `/Length` bytes followed by `endstream`; a Flate body must inflate (other filters fail closed); the payload must be a positive multiple of the `/W` row width (plus one under a PNG predictor); tests cover an empty stream and a one-byte mutation of the repository PDF's compressed payload | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+
+---
+
+## Twenty-seventh round (pull request #95, structural parser)
+
+Three findings from the automated Codex review of commit `3a9d53ee10`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 47 | P2 | `/Length 4 0 R` was read as the direct length 4 | Accepted. The `/Length` token is parsed with an optional trailing `g R` group, and an indirect reference fails explicitly; test with `/Length 4 0 R` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 48 | P2 | Only divisibility of the payload by the row width was checked, not the declared row count | Accepted. The number of rows must equal the sum of the `/Index` subsection counts, or `/Size` without `/Index`; tests with `/Size 100` and `/Index [0 3]` against a one-row payload, and a passing one-row stream | same |
+| 49 | P2 | The array form `/Filter [/FlateDecode]` was not recognized | Accepted. `/Filter` is parsed as a name or an array of names; the chain must be exactly `[FlateDecode]`, any other form or chain fails closed; tests inflate an array-form Flate stream and reject `[/LZWDecode]` | same |
+
+
+---
+
+## Twenty-eighth round (pull request #95, length, row-count and filter revision)
+
+Four findings from the automated Codex review of commit `a9242e36aa`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 50 | P2 | A file truncated right after `endstream` passed | Accepted. The stream must be closed by `endstream` followed by `endobj`; test truncates after `endstream` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 51 | P2 | `/Index` start values and odd-length arrays were ignored | Accepted. `/Index` must be a nonempty array of start/count pairs with positive counts whose ranges lie within `/Size`; tests with `[999 1]`, `[0 1 2]`, `[0 0]` | same |
+| 52 | P2 | `/W [4]` was accepted as a row width | Accepted. `/W` must have exactly three fields; test with `/W [4]` | same |
+| 53 | P2 | Classic in-use entries were checked only for their textual shape | Accepted. Every `n` entry must point inside the file at the header `num gen obj` of its own object number (subsection start plus index) and generation; tests alter the offset to 8 and to 9999999999 and the generation to 1 | same |
+
+
+---
+
+## Twenty-ninth round (pull request #95, endobj, index, arity and entry revision)
+
+Two findings from the automated Codex review of commit `9256ace9d9`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 54 | P2 | A classic subsection could exceed the trailer's `/Size` | Accepted. `/Size` is parsed and every subsection must satisfy `start + count ≤ /Size`; test changes the minimal classic fixture's `/Size 2` to `/Size 1` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 55 | P2 | Cross-reference stream rows were counted but not decoded | Accepted. Every row is decoded per `/W` (type defaulting to 1 when the first field is absent); type-1 entries must point inside the file at the header `num gen obj` of their object, type-2 entries must name an object stream below `/Size`, other types fail; PNG row prediction (filters 0–4) is undone first, an unknown filter fails; tests cover an out-of-file offset, a wrong offset, an unknown type, an out-of-range object stream, and a predicted stream that decodes correctly; the passing fixtures now describe object 1 at its real offset | same |
+
+
+---
+
+## Thirtieth round (pull request #95, subsection-range and row-decoding revision)
+
+Three findings from the automated Codex review of commit `f158aab509`; all accepted. Each is another part of the cross-reference format that the hand-written structural checks did not model, so the guard now also parses the whole file with a real PDF parser (pypdf 6.1.3, strict mode, pinned as a dev dependency and installed in the provenance CI job), dereferences every object including object-stream members, and reads the page tree; the structural checks stay in front of it because the parser repairs some offset and `/Size` mangling silently. A missing parser is a failure, not a skip.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 56 | P2 | `/Prev` chains were not followed | Accepted. The full parse follows `/Prev`; test adds `/Prev 999999` to a complete classic PDF and expects failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py`, `pyproject.toml`, `.github/workflows/ci.yml` |
+| 57 | P2 | A type-2 entry was accepted on the numeric bound alone | Accepted. The full parse resolves every object-stream member; test points object 1 at the page-tree object as its container and expects failure | same |
+| 58 | P2 | Predictor parameters were not validated | Accepted. The full parse validates the predictor and its geometry; tests with `/Predictor 99` and `/Columns 999` expect failure, and a correct predictor-12 stream passes | same |
+\n
+
+
+---
+
+## Thirty-first round (pull request #95, full-parse revision)
+
+Two findings from the automated Codex review of commit `22716cd7a0`; both accepted. Both were verified before the fix: on the repository PDF the highest object number is 1132 against `/Size 1133`, and pypdf's decoder returns empty data, without raising, on a Flate payload with one flipped byte.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 59 | P2 | An oversized `/Size` was accepted | Accepted. `/Size` must equal one more than the highest object number reachable through the whole cross-reference chain (type-1 and type-2 entries alike); tests inflate `/Size` to 99 on a complete classic PDF and on a cross-reference stream with a consistent `/Index` and expect failure | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 60 | P2 | Ordinary streams were dereferenced but not decoded | Accepted. Every stream object is decoded: the filter chain must be empty or exactly `/FlateDecode`, a Flate body must inflate with zlib to the end of the deflate member with no trailing bytes, and pypdf's decode (with predictors) is then applied; test flips one byte in the first content stream of the repository PDF, leaving offsets and lengths intact, and expects failure | same |
+
+
+---
+
+## Thirty-second round (pull request #95, exact-extent and stream-decoding revision)
+
+One finding from the automated Codex review of commit `7d557ac9f8`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 61 | P2 | A free highest-numbered entry made a valid file fail the `/Size` check | Accepted. The structural stage now walks the whole cross-reference chain along `/Prev` (an out-of-file offset or a revisited offset fails) and returns the highest object number over every entry of every section, free entries and type-0 rows included; the full-parse stage compares `/Size` with one more than the larger of that extent and pypdf's in-use maximum, so an oversized `/Size` still fails. Tests: a classic table with objects 1–3 in use, object 4 free and `/Size 5` passes; a cross-reference stream with a trailing type-0 row and `/Size 6` passes; a cyclic `/Prev` fails; an incremental update rewriting only object 1, whose `/Size 4` is justified by the original section, passes | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+
+---
+
+## Thirty-third round (pull request #95, chain-extent revision)
+
+Two findings from the automated Codex review of commit `7ec39a90c0`; both accepted. The section parsers now return their entry tables instead of a bare extent, and the chain walk merges the sections newest-first before checking invariants that span the whole table.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 62 | P2 | Free entries were checked for shape only | Accepted. A free entry's pointer must be an object number below `/Size` and its generation at most 65535 (classic tables and type-0 rows alike; a saturated narrow generation column in a stream stands for 65535, as in the repository PDF's one-byte column). On the merged table, object 0 must be free with generation 65535 and head a chain of free entries that returns to object 0 and covers every free entry. Tests: an out-of-range pointer on a classic table and on a stream row; object 0 with generation 0; a free object 4 that object 0 does not link; object 0 pointing at an in-use object; the passing free-top fixtures now link object 4 from object 0 | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 63 | P2 | A zero-count subsection inflated the extent | Accepted. A zero-count subsection fails ("empty xref subsection"), and the extent is now the highest key of the merged entry table, so no phantom object number can enter it; test appends `9999 0` with `/Size 9999` and expects failure | same |
+
+
+---
+
+## Thirty-fourth round (pull request #95, free-list revision)
+
+Two findings from the automated Codex review of commit `30d16e00e8`; both accepted, the second with one qualification grounded in the repository PDF itself. Every entry now records whether it came from a classic table or from a cross-reference stream.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 64 | P2 | Unlinked free entries in a cross-reference stream were rejected | Accepted. Full free-list coverage is required only of entries that came from a classic table; a stream type-0 entry may be unlinked provided its next-free field is 0, while an unlinked entry pointing elsewhere still fails. The chain from object 0 must still consist of unvisited free entries and return to 0. Tests: the reviewer's example (a free object 5 with fields `(0, 0, 0)`) passes; the same entry pointing at object 3 fails | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 65 | P2 | A saturated one-byte generation column was rescaled to 65535 | Accepted: the decoded generation is kept unchanged, and a stream free entry with generation above 65535 fails. Qualification: the requirement that object 0 carry generation 65535 is stated by the standard for classic tables only, and the repository PDF (pdfTeX, `/W [1 3 1]`) encodes object 0 as type 0 with a one-byte generation of 255, so the guard requires 65535 of object 0 only when its entry comes from a classic table. Tests: a two-byte column holding exactly 65535 passes; a three-byte column holding 65536 fails; a classic object 0 with generation 0 still fails | same |
+
+
+---
+
+## Thirty-fifth round (pull request #95, provenance revision)
+
+Three findings from the automated Codex review of commit `99cc3be753`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 66 | P2 | Free-list coverage was judged on the final merged table | Accepted. The chain walk now collects the sections and replays them oldest first, validating the free list on the effective table at each section, since every prefix of the chain was once a complete file. At a classic section every free entry must be on the chain from object 0; at a stream section a free entry off the chain may point at 0 or at another free entry but never at an object in use. Test: the reviewer's mixed chain (a classic table whose object 0 links a free object 4, then a stream section replacing object 0 with an unlinked row) passes | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 67 | P2 | A huge `/Size` or `/Index` count materialized object numbers before any comparison | Accepted. The declared row count is computed arithmetically, the Flate payload is inflated with a ceiling of one byte past the declared size and must end the deflate member exactly there, and object numbers are materialized only after the payload's row count equals the declaration. Test: `/Size 1000000000` and `/Index [0 1000000000]` against a one-row payload fail immediately with "declares 1000000000" | same |
+| 68 | P2 | The generation bound covered free rows only | Accepted. The bound of 65535 is applied before branching on the entry type, for classic entries and stream rows alike. Tests: an in-use classic entry with generation 65536 and an in-use stream row with a three-byte generation of 65536 both fail | same |
+
+
+---
+
+## Thirty-sixth round (pull request #95, per-section revision)
+
+Three findings from the automated Codex review of commit `f89f2b61d7`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 69 | P2 | A matching compression bomb could still exhaust the runner | Accepted. A declared row count above 1 000 000 (the repository PDF has 1133 objects) fails before any inflation, and every stream decoded in the full-parse stage is inflated with a ceiling of 64 MiB (the largest decoded stream in the repository PDF is 34 KB). Test: two million all-zero rows, compressed to a few kilobytes, with a matching `/Size 2000000` fail with "above the ceiling" | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 70 | P2 | A classic trailer's `/XRefStm` companion stream was not walked | Accepted. A classic section names its `/XRefStm` offset; the companion stream is parsed as a section (in the file, not revisited) and merged beneath the table's own entries, and the combined section is validated under the classic rule with the per-entry provenance deciding which free entries must be linked. Tests: a hybrid file whose companion describes itself and an unlinked free object 5 passes; the same file with the companion's free row pointing beyond `/Size` fails, naming `/XRefStm` | same |
+| 71 | P2 | Only the final trailer's `/Size` was compared with the extent | Accepted. Every section carries its trailer `/Size`, and during the oldest-first replay each section's `/Size` must be one more than the highest object number of its effective table. Test: an original section covering objects 0–3 with `/Size 5`, followed by an update adding object 4 with `/Size 5`, fails at the original section | same |
+
+
+---
+
+## Thirty-seventh round (pull request #95, ceiling and hybrid revision)
+
+Three findings from the automated Codex review of commit `a76630a9ed`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 72 | P2 | The `/XRefStm` companion's own `/Size` was discarded | Accepted. A hybrid section carries both the trailer's `/Size` and the companion's, and the replay checks each against the section's effective table. Test: the hybrid fixture with the companion's `/Size` changed to 7 fails | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 73 | P2 | A historical in-use entry could point into a later revision | Accepted. Every section records the offset just past itself; its in-use entries must point before the `startxref` that closes its revision, since an object appended by a later update did not exist when the section was written. Test: the original section's entry for object 3 is redirected to the copy of object 3 that a later update appends (matching header, superseded in pypdf's view) and fails "beyond the end of its revision"; the same file with the entry intact passes | same |
+| 74 | P2 | The row ceiling did not bound decoded bytes | Accepted. The declared decoded size `rows × row width` must not exceed 64 MiB before zlib is called. Test: `/Size 1 /W [1 1000000000 1]` fails with "decoded bytes, above the ceiling" | same |
+
+
+---
+
+## Thirty-eighth round (pull request #95, revision-bound revision)
+
+Two findings from the automated Codex review of commit `273d95fb7d`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 75 | P2 | A stream superseded by a later revision was never decoded | Accepted. After the replay, every in-use entry that the effective table supersedes is inspected structurally: if its object is a stream, the body must have a direct `/Length`, be closed by `endstream`, carry no filter or exactly `/FlateDecode`, and inflate strictly within the 64 MiB ceiling. Test: an original revision whose content stream is replaced by an update passes intact and fails with "superseded stream object 4 does not inflate" once a byte of the old body is flipped | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 76 | P2 | A historical entry could point into its own trailer region | Accepted. An in-use entry must now point before its own cross-reference section (a cross-reference stream may point at its own object), since objects precede the section that lists them. Test: the original section's entry for object 3 is redirected to a `3 0 obj` text embedded in that section's trailer while a later update supersedes object 3; it fails "not before its cross-reference section" | same |
+
+
+---
+
+## Thirty-ninth round (pull request #95, superseded-stream revision)
+
+Three findings from the automated Codex review of commit `bb3f62c23f`; all accepted. All three concern the superseded-stream inspection added in the previous round, which now applies the same discipline as the cross-reference stream parser.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 77 | P2 | An unparsable `/Filter` on a superseded stream counted as no filter | Accepted. A present `/Filter` that is not a name or an array of names fails ("unparsable /Filter"). Test: `/Filter 9 0 R` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 78 | P2 | `/DecodeParms` on a superseded stream were not validated | Accepted. `/DecodeParms` must be a direct dictionary (or a one-element array of one) with `/Predictor` 1, 2 or 10–15 and positive geometry; for a PNG predictor the inflated length must be a whole number of rows of the declared width, each carrying a known row filter. Tests: `/Predictor 12 /Columns 4` on a matching payload passes; `/Predictor 99`, `/Predictor 12 /Columns 999` and an indirect `/DecodeParms 7 0 R` fail | same |
+| 79 | P2 | A superseded stream needed only `endstream` | Accepted. The body must be closed by `endstream` followed by `endobj`. Test: the superseded object's `endobj` token altered | same |
+
+
+---
+
+## Fortieth round (pull request #95, superseded-stream discipline revision)
+
+Three findings from the automated Codex review of commit `7394ee76d2`; all accepted. Finding 82 also applied to the cross-reference stream parser, which used the same prefix match, so both now share one PDF name parser.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 80 | P2 | TIFF predictor 2 skipped the geometry check | Accepted. For predictor 2 the inflated length must be a whole number of rows of `⌈Columns × Colors × BitsPerComponent / 8⌉` bytes; PNG predictors keep the extra filter byte per row. Tests: `/Predictor 2 /Columns 4` on eight bytes passes; `/Predictor 2 /Columns 999` on one byte fails | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 81 | P2 | A superseded object whose `stream` keyword was malformed counted as a non-stream | Accepted. A superseded object must be a dictionary followed by `stream` or by `endobj`, or a non-dictionary object closed by `endobj` before any other object header; anything else fails. Test: `stream` changed to `streaX` | same |
+| 82 | P2 | Filter names were matched as a prefix, ignoring `#xx` escapes and delimiters | Accepted. A shared name parser reads whole PDF names (any character other than whitespace, delimiters and `#`, or a `#xx` escape), decodes the escapes, and requires a delimiter after the name; the `/Filter` key itself must be delimited. Tests: `/FlateDecode#58` fails as unsupported in a superseded stream and in the cross-reference stream, `/FlateDecode#5` fails as unparsable, and `/Flate#44ecode` (an escaped `D`) passes | same |
+
+
+---
+
+## Forty-first round (pull request #95, whole-name revision)
+
+Three findings from the automated Codex review of commit `f427597e50`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 83 | P2 | Type-2 entries were bounded by `/Size` only, and superseded ones never resolved | Accepted. During the oldest-first replay every type-2 entry of a section is resolved against that revision's effective table: the container must be an in-use object whose dictionary is `/Type /ObjStm` with a direct `/N` above the entry's index. Tests: an uncompressed object stream holding one member passes; index 1 against `/N 1` fails; a container that is the page tree fails, and still fails when a later classic update supplies the member in use | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 84 | P2 | A malformed predictor field fell back to its default | Accepted. A present predictor field must be a whole nonnegative integer followed by a delimiter; anything else fails ("malformed predictor parameter value"). Tests: `/Predictor /Bogus` and `/Columns -1` | same |
+| 85 | P2 | A non-dictionary superseded object was accepted on `endobj` alone | Accepted. A small direct-object parser (dictionary, array, literal and hex strings, name, number, boolean, null, indirect reference) must consume exactly one complete object, which `endobj` must then close. Tests: a nested array of every primitive passes; `not-a-PDF-object` and an unclosed array fail | same |
+
+
+---
+
+## Forty-second round (pull request #95, one-object-parse revision)
+
+Three findings from the automated Codex review of commit `026cdcd882`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 86 | P2 | Dictionaries were accepted on bracket balance alone | Accepted. Every dictionary the guard reads (trailers, cross-reference and object stream dictionaries, `/DecodeParms`, superseded objects) is now parsed as name keys each followed by one complete direct value. Tests: a dictionary holding an array, a nested dictionary, strings, a boolean, an escaped name and null passes; `<< /Type >>`, `<< garbage >>`, a key without a value and a non-name key fail. A `/Filter` name with a truncated escape now fails at the dictionary itself | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 87 | P2 | A type-2 entry was not matched to the object stream's header member | Accepted. Each object stream named by a type-2 entry is decoded once per byte offset (direct `/N`, `/First` and `/Length`, unfiltered or Flate body inflated strictly, `/DecodeParms` validated, header of exactly `/N` integer pairs with offsets inside the data), and the entry's index must select a member whose object number is the entry's own. Test: member header `9 0` for object 5 fails, and still fails when a later classic update supplies object 5 | same |
+| 88 | P2 | An older trailer's `/Root` was never resolved | Accepted. Every section's `/Root` (and a hybrid companion's) must resolve, in that revision's effective table, to an object in use with the referenced generation whose dictionary is `/Type /Catalog`, a compressed root being looked up in its decoded object stream. Tests: `/Root 9 0 R`, `/Root 2 0 R` (the page tree) and `/Root 1 1 R` in the original trailer fail. The repository PDF's own root, a compressed object, resolves | same |
+
+
+---
+
+## Forty-third round (pull request #95, structural-dictionary revision)
+
+Three findings from the automated Codex review of commit `b4a3799157`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 89 | P2 | Compressed members were located but not parsed | Accepted. When an object stream is decoded, every member is parsed as one complete direct object that ends, up to whitespace, before the next member offset or the end of the data; a type-2 entry (or a compressed root) whose member fails this is rejected. Test: a member body `not-a-object` fails, and still fails when a later revision supplies the member directly | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 90 | P2 | The catalog and object-stream type checks scanned raw dictionary bytes | Accepted. Dictionaries are parsed into their top-level items (decoded key to raw value), and `/Type`, `/N`, `/First`, `/Length`, `/Filter` and `/DecodeParms` are read from those items; a nested `/Type /Catalog` no longer counts. Test: the reviewer's root `<< /Pages 2 0 R /Foo << /Type /Catalog >> >>`, later replaced by a valid catalog, fails | same |
+| 91 | P2 | Inherited type-2 rows were not revalidated after their container was replaced | Accepted. At every section of the replay all effective type-2 rows are resolved against that revision's table, and object streams are cached by byte offset so a replaced container is decoded anew. Test: a three-revision chain in which the second revision replaces the container with one whose member is object 9 fails at that revision, and still fails after a third revision supplies object 5 directly | same |
+
+
+---
+
+## Forty-fourth round (pull request #95, member-parse revision)
+
+Two findings from the automated Codex review of commit `b961e70914`; both accepted. Finding 92 was applied to the cross-reference stream dictionary as well as the classic trailer, so both section parsers now read every key from top-level items.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 92 | P2 | Trailer keys were found by scanning the serialized dictionary | Accepted. `/Size`, `/Root`, `/Prev` and `/XRefStm` of a classic trailer, and `/Type`, `/Size`, `/Root`, `/Prev`, `/W`, `/Index`, `/Length`, `/Filter` and `/DecodeParms` of a cross-reference stream, are read from the dictionary's top-level items; a present `/Prev` or `/XRefStm` must be a whole integer. Tests: the reviewer's trailer `<< /Size 4 /Foo << /Root 1 0 R >> >>` followed by a valid update fails, and the same nesting in a cross-reference stream dictionary fails | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 93 | P2 | Overlapping member offsets let one object count as two members | Accepted. Member offsets must be strictly increasing before the members are parsed against their bounds. Tests: a header `5 0 7 13` over two objects passes; `5 0 7 0` fails | same |
+
+
+---
+
+## Forty-fifth round (pull request #95, top-level-keys revision)
+
+Three findings from the automated Codex review of commit `dff1e3ac05`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 94 | P2 | A superseded stream's `/Length` was still found by a recursive regex | Accepted. It is read from the dictionary's top-level items and must be a whole nonnegative integer. Tests: a nested `/Length` and `/Length 1.5` both fail | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 95 | P2 | Predictors were validated but not undone before an object stream's header was parsed | Accepted. The decode-parameter validator now returns the unpredicted bytes (PNG predictors 10–15 via the row unfilter, TIFF predictor 2 by undoing horizontal differencing at 8 bits per component, other depths failing closed), and object streams read their header and members from those bytes. Tests: object streams predicted with `/Predictor 12` and with `/Predictor 2` pass end to end | same |
+| 96 | P2 | `/Index` ranges could overlap or descend | Accepted. Consecutive ranges must be in increasing order and disjoint. Tests: `[0 3 1 1]` and `[2 1 0 2]` fail | same |
+
+
+---
+
+## Forty-sixth round (pull request #95, predictor and index revision)
+
+Three findings from the automated Codex review of commit `b084115186`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 97 | P2 | A repeated dictionary key kept the last value | Accepted. The dictionary parser rejects a repeated decoded key, so every dictionary the guard inspects fails closed on duplicates. Test: a superseded stream with two `/Length` keys | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 98 | P2 | A forward `/Prev` inverted the replay chronology | Accepted. A section's `/Prev` and `/XRefStm` must point before the section itself; a forward or self-pointing link is rejected before it is followed. Test: the final `startxref` names section A whose `/Prev` points forward at section B; the earlier bogus and self-pointing `/Prev` cases now fail at this check | same |
+| 99 | P2 | Overlapping classic subsections overwrote rows | Accepted. Each subsection is checked against the accumulated ranges before its entries are decoded. Test: a `1 1` subsection appended to a table that already covers object 1 | same |
+
+
+---
+
+## Forty-seventh round (pull request #95, chronology revision)
+
+Three findings from the automated Codex review of commit `caf7c77d0d`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 100 | P2 | The hybrid companion's own `/Prev` was discarded unchecked | Accepted. A companion's `/Prev`, if present, must be the classic trailer's own earlier `/Prev`; anything else (forward, self-pointing, or inconsistent with the trailer) fails. Tests: companions carrying `/Prev 999999` and `/Prev 0` under a trailer without `/Prev` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 101 | P2 | An object stream could declare the same object twice | Accepted. The header's object numbers must be unique. Test: header `5 0 5 13` | same |
+| 102 | P2 | A historical catalog was accepted on its type alone | Accepted. Every section's root is now resolved through a reference resolver over that revision's effective table (in-use objects at their offsets with matching generation, compressed objects as decoded members), and its `/Pages` reference must head a consistent, nonempty page tree: the root a `/Pages` node, every node's `/Kids` an array of references each naming the node as `/Parent`, every `/Count` equal to the pages beneath, no cycles and at most 64 levels. Tests: historical catalogs with `/Pages 9 0 R`, with `/Pages` naming a page rather than the root node, and without `/Pages`, each later repaired by an update, all fail; a `/Count 2` over one page later repaired fails. The repository PDF's own tree of 36 pages walks cleanly | same |
+
+
+---
+
+## Forty-eighth round (pull request #95, page-tree revision)
+
+Four findings from the automated Codex review of commit `bddda784b3`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 103 | P2 | An object-stream member with no type-2 row went unexamined | Accepted. For every object stream that a section itself introduces, each header member must be listed by a type-2 entry naming that container and index in the section's revision; a later revision may still replace a member by a direct object, which is the legitimate incremental-update pattern. Test: the reviewer's second member numbered 4 while object 4 is the container | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 104 | P2 | Older revisions were not required to end with their own terminator | Accepted. Every non-companion section must be followed by `startxref` naming that section's offset and `%%EOF`, so each replayed prefix was a complete file. Test: an incremental update whose original revision lost its `startxref` and `%%EOF` | same |
+| 105 | P2 | A page-tree root could carry a `/Parent` | Accepted. The root node must have no `/Parent`. Test: a root `/Pages` with `/Parent 1 0 R`, later repaired; a page used as the root now fails on this rule first | same |
+| 106 | P2 | A stream object could pose as a catalog or page node | Accepted. A resolved in-use node must be a dictionary object closed by `endobj`; a stream body fails. Test: a catalog written as a stream, later repaired | same |
+
+## Forty-ninth round (pull request #95, member-mapping revision)
+
+Three findings from the automated Codex review of commit `8df488e563`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 107 | P2 | An introduced object stream with no type-2 entry was never decoded | Accepted. Every in-use object introduced by a section whose top-level `/Type` is `/ObjStm` is now decoded whether or not any type-2 entry names it, and each header member must still map to a type-2 entry for that container and index. Test: the reviewer's example, object 5's row changed from type 2 to free | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 108 | P2 | A manifest entry could escape the manuscript directory and bypass the format check | Accepted. Manifest entries must be bare file names (no absolute paths, no directory components); every required `.tex`/`.pdf` file is now checked directly rather than through a directory listing. Test: entries `../archive/...pdf`, `/etc/hostname`, `sub/dir.pdf` | same |
+| 109 | P2 | `%%EOFX` was accepted as a historical `%%EOF` | Accepted. Each revision's `%%EOF` must end at a line boundary (or the end of file); the final marker must end the file up to trailing newlines. Test: an original revision ending in `%%EOFX` followed by a valid update; a file with a trailing byte after the final marker | same |
+
+## Fiftieth round (pull request #95, unreferenced-object-stream revision)
+
+One finding from the automated Codex review of commit `621133b1e3`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 110 | P2 | PNG Sub, Average and Paeth prediction used the previous byte rather than the previous pixel | Accepted. The PNG row filters now predict from the previous pixel of `ceil(Colors × BitsPerComponent / 8)` bytes. The `/DecodeParms` validation is shared by object streams, superseded streams and the cross-reference stream, whose predicted row width must now equal the `/W` row width and whose TIFF predictor is now undone as well. Tests: an object stream Sub-encoded over three-byte pixels under `/Colors 3` (passes) and one encoded byte by byte under the same declaration (fails); a cross-reference stream with `/Columns 2 /Colors 2` over a four-byte `/W` (passes) and `/Columns 999` (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-first round (pull request #95, pixel-width revision)
+
+One finding from the automated Codex review of commit `998cf89ae0`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 111 | P2 | A cross-reference stream could omit its own object from its entries and from `/Size` | Accepted. A cross-reference stream is an object of its own revision, so its section must list it as an in-use entry at its own offset with its own generation; the existing `/Size` check then accounts for it. The repository PDF's stream (object 1132) lists itself. Tests: the reviewer's object `99 0 obj` under `/Size 5 /Index [0 3 4 1]`, and a stream whose own row is free | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-second round (pull request #95, self-listing revision)
+
+One finding from the automated Codex review of commit `98d583269e`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 112 | P2 | A classic table could free or move the `/XRefStm` companion stream it names | Accepted. After the table's entries take precedence over the companion's, the effective entry for the companion's object must still be in use at the companion's offset with its generation. The scenario (companion listing itself, table freeing object 4 with the free list 0 → 4 → 0) was confirmed to pass the previous revision. Test: that scenario | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-third round (pull request #95, companion-precedence revision)
+
+One finding from the automated Codex review of commit `8c4ad88fb2`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 113 | P2 | The lexer used Python's white-space class, which omits NUL and admits vertical tab | Accepted. Every pattern and every byte-string strip or split in the guard now spells out the six PDF white-space bytes (NUL, tab, line feed, form feed, carriage return, space); a test asserts the generic class no longer occurs in the source. The scenario (`/Bad\x00Name` in a superseded object) was confirmed to pass the previous revision. Tests: that object (fails), NUL and form feed as separators with vertical tab inside a name (passes), vertical tab glued to a number (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-fourth round (pull request #95, white-space revision)
+
+Two findings from the automated Codex review of commit `c2a67ae3c9`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 114 | P2 | A historical object could close only through bytes appended after its revision | Accepted. Every in-use entry of a section is now parsed as one complete object (a direct object closed by `endobj`, or a dictionary with a stream of its direct `/Length` closed by `endstream` and `endobj`) within the bytes before that section, at the point where the section is read; the superseded-stream pass reuses the same parser under the same bound and keeps only the content checks. The scenario (an unterminated string closed by a comment appended after the update) was confirmed to pass the previous revision. Test: that scenario | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 115 | P2 | `endobj` and `obj` were bounded by a word boundary, which vertical tab satisfies | Accepted. Every `obj`/`endobj` keyword must be followed by a PDF white-space or delimiter byte or the end of the buffer. The scenario (`endobj` followed by a vertical tab) was confirmed to pass the previous revision. Test: that scenario | same |
+
+## Fifty-fifth round (pull request #95, object-extent revision)
+
+One finding from the automated Codex review of commit `426c06dd38`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 116 | P2 | A same-named symbolic link could stand in for a required manuscript source | Accepted. The manifest, every required file and every `.tex`/`.pdf` present must be regular files (no symbolic link) whose resolved parent is the resolved manuscripts directory; anything else fails. The scenario (the required PDF replaced by a same-named link to a PDF outside the directory) was confirmed to pass the previous revision. Tests: that scenario, a link inside the directory, and a linked manifest | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-sixth round (pull request #95, symbolic-link revision)
+
+One finding from the automated Codex review of commit `156822e056`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 117 | P2 | The manuscripts directory itself could be a symbolic link | Accepted. A linked directory now fails before its manifest or children are read; the helper's contract is restated accordingly. The scenario was confirmed to pass the previous revision. Test: a link to the directory (fails) while the real directory passes | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-seventh round (pull request #95, linked-directory revision)
+
+One finding from the automated Codex review of commit `ee3e4b8f3f`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 118 | P2 | An indirect object listed by no cross-reference entry escaped every check | Accepted. Every revision's body (from the end of the previous revision, or the start of the file, to its cross-reference section) must now consist exactly of the in-use objects its section lists there, separated only by white space and comment lines (the header line is one); any other bytes fail. The scenario was confirmed to pass the previous revision. Tests: the reviewer's unlisted object 99 and stray text (fail), a comment line (passes); the hybrid fixture no longer carries a stale table in its body | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-eighth round (pull request #95, coverage revision)
+
+One finding from the automated Codex review of commit `c472c2b3c8`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 119 | P2 | A separator comment could run into the header of the object it precedes | Accepted. Each comment between listed objects must now be closed by its line ending before the next object or section begins. The scenario (`% hidden 1 0 obj`) was confirmed to pass the previous revision. Tests: that scenario (fails), a whole comment line with a CRLF ending (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-ninth round (pull request #95, separator-comment revision)
+
+One finding from the automated Codex review of commit `d4ce42bb76`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 120 | P2 | A revision terminator could put `startxref`, the offset and `%%EOF` on one line | Accepted. Every revision's terminator, the final one included, must now carry a line ending after `startxref` and after the offset, and `%%EOF` must end at a line boundary. The scenario (an original revision terminated on one line under a valid update) was confirmed to pass the previous revision. Tests: that scenario (fails), the same with CR and CRLF endings (passes), the final terminator on one line (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Sixtieth round (pull request #95, terminator revision)
+
+Two findings from the automated Codex review of commit `9bd427d395`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 121 | P2 | `\begin{document}` / `\end{document}` were accepted inside TeX comments | Accepted. The sentinels are now located on lines with their comments stripped (an unescaped `%` to the line end), so a commented sentinel does not count. The scenario was confirmed to pass the previous revision. Tests: the only `\end{document}` commented, the `\begin{document}` commented (both fail), an escaped `\%` after the sentinel (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 122 | P2 | The line ending before `endstream` was optional | Accepted. Every stream (superseded, cross-reference and object stream) must now have an end-of-line marker between its data and `endstream`. The scenario was confirmed to pass the previous revision. Tests: a superseded stream, a cross-reference stream and an object stream with that line ending deleted (all fail) | same |
+
+## Sixty-first round (pull request #95, sentinel revision)
+
+Two findings from the automated Codex review of commit `e59444dfba`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 123 | P2 | A `%` after `\\` was treated as escaped rather than as a comment | Accepted. A comment now starts at a `%` preceded by an even run of backslashes (`\\` being a control sequence and `\%` an escaped percent). The scenario (`\\%\end{document}` as the only closing sentinel) was confirmed to pass the previous revision. Tests: that line (fails), `\%\end{document}` (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 124 | P2 | Reversed sentinels on one line compared equal line indices | Accepted. The sentinels are now ordered by character position in the comment-stripped text. The scenario (`\end{document} \begin{document}` as the only occurrences) was confirmed to pass the previous revision. Test: that line (fails) | same |
+
+## Sixty-second round (pull request #95, parity revision)
+
+Two findings from the automated Codex review of commit `b8ea3754c5`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 125 | P2 | `/Predictor 1` geometry changed the cross-reference row width | Accepted. Predictor 1 predicts nothing, so its geometry is ignored and the `/W` row width stands; the surplus bytes of the scenario now exceed the inflation ceiling. The scenario was confirmed to pass the previous revision. Tests: that scenario (fails), predictor 1 with irrelevant geometry and no surplus (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 126 | P2 | A zero-member object stream could carry arbitrary data | Accepted. `/First` must lie inside the data, and with `/N 0` the bytes from `/First` on must be white space only. The scenario was confirmed to pass the previous revision. Tests: `/N 0` over a nonempty body and `/First` beyond the data (fail), `/N 0` over white space (passes) | same |
+
+## Sixty-third round (pull request #95, predictor-one revision)
+
+One finding from the automated Codex review of commit `4967a92624`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 127 | P2 | The object-stream header could run into its first member without a token boundary | Accepted. The byte before `/First` must be white space or the byte at `/First` a white-space or delimiter byte, so the header's last integer cannot continue into the member. The scenario (`5 0true` with `/First 3`) was confirmed to pass the previous revision. Tests: that scenario (fails), a delimiter right at `/First` (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Sixty-fourth round (pull request #95, token-boundary revision)
+
+One finding from the automated Codex review of commit `873ff91650`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 128 | P2 | An active `\end{document}` before the opening sentinel was masked by a later one | Accepted. The opening sentinel must now precede the first active `\end{document}`, since TeX stops at the first one it reaches. The scenario was confirmed to pass the previous revision. Test: an early `\end{document}` before an otherwise valid pair (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Sixty-fifth round (pull request #95, first-end-sentinel revision)
+
+One finding from the automated Codex review of commit `319b7f7f53`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 129 | P2 | `\\begin{document}` and `\\end{document}` were accepted as sentinels | Accepted. A sentinel now counts only when its own backslash follows an even run of backslashes, the same parity rule as for comment markers. The scenario was confirmed to pass the previous revision. Tests: both sentinels escaped (fails), `\\` immediately before a real sentinel (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Sixty-sixth round (pull request #95, sentinel-parity revision)
+
+One finding from the automated Codex review of commit `95d3a614f7`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 130 | P2 | Sentinels inside macro bodies counted as the document environment | Accepted. Each sentinel must now be a standalone line of the comment-stripped text (surrounding white space allowed), which also subsumes the backslash-parity rule; the two earlier same-line passing cases now put `\\` and `\%` on the line before. The scenario was confirmed to pass the previous revision. Tests: sentinels only inside `\newcommand` bodies (fails), a sentinel with surrounding white space (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Sixty-seventh round (pull request #95, standalone-sentinel revision)
+
+One finding from the automated Codex review of commit `174114be1e`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 131 | P2 | Sentinels on their own lines inside multiline macro bodies still counted | Accepted. A sentinel now counts only at brace depth zero of the comment-stripped text, braces escaped by an odd run of backslashes not nesting. The scenario was confirmed to pass the previous revision. Tests: sentinels inside multiline `\newcommand` bodies (fails), escaped braces before a real sentinel (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Sixty-eighth round (pull request #95, brace-depth revision)
+
+One finding from the automated Codex review of commit `4f7ca64ce0`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 132 | P2 | Sentinels inside `\iffalse` … `\fi` still counted | Accepted. Since the guard cannot evaluate TeX, a sentinel now counts only outside every conditional region: an `\if…` control word among the TeX, e-TeX and pdfTeX primitives or declared by `\newif` in the source opens one and `\fi` closes it (`\iff` and brace-argument macros such as `\ifthenelse` do not). The scenario was confirmed to pass the previous revision. Tests: sentinels in an `\iffalse` branch and a declared conditional left open (fail); a balanced declared conditional, `\iff` and `\ifthenelse` before the sentinel (passes). Three sentinel-wrapping fixtures spliced the end sentinel with a stale index and were corrected | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Sixty-ninth round (pull request #95, conditional-region revision)
+
+One finding from the automated Codex review of commit `5510b474cb`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 133 | P2 | A `\fi` inside a macro body cancelled a real conditional opener | Accepted. Conditional tokens now count only at brace depth zero, since a token inside a brace body is not executed. The scenario was confirmed to pass the previous revision. Tests: `\newcommand{\fake}{\fi}` before an `\iffalse` around the sentinels (fails), `\newcommand{\fake}{\iffalse}` before a real sentinel (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventieth round (pull request #95, macro-body revision)
+
+One finding from the automated Codex review of commit `e4a69e56aa`; accepted, with the resolution chosen on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 134 | P2 | A conditional opener inside an executed group was discarded like a macro-body token | Accepted. The guard cannot tell an executed group from a macro body without interpreting TeX, so a conditional token at nonzero brace depth is now a problem in itself and the source fails; conditional tokens at the top level are counted as before. The scenario was confirmed to pass the previous revision. Tests: `{\iffalse}` around the sentinels closed by `\else`, `}`, `\fi`, a `\fi` in a macro body, and an `\iffalse` in a macro body (all fail); the repository sources contain no conditionals | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-first round (pull request #95, brace-group revision)
+
+One finding from the automated Codex review of commit `3360c47049`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 135 | P2 | An `\endinput` before the sentinels left them counted although TeX never reads them | Accepted. Any `\endinput` control word in the comment-stripped text that precedes the closing sentinel now fails the source, at any depth, since one inside a macro body or a skipped branch cannot be told apart from an executed one. The scenario was confirmed to pass the previous revision. Tests: `\endinput` before the sentinels and inside a macro body before them (fail), `\endinput` after `\end{document}` (passes); the repository sources contain none | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-second round (pull request #95, endinput revision)
+
+One finding from the automated Codex review of commit `fb9d9910f9`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 136 | P2 | `\csname endinput\endcsname` constructs `\endinput` without the literal control word | Accepted. The `\endinput` rule is generalised to a fixed set of control words the guard cannot follow, since they end the input, read other files, construct control sequences or change how the rest of the source is read: `\endinput`, `\csname`, `\catcode`, `\scantokens`, `\lowercase`, `\uppercase`, `\directlua`, `\input`, `\include`, `\InputIfFileExists`, `\@input`, `\openin`, `\stop`, `\dump`; any of them before the closing sentinel, at any depth, fails the source. The repository sources use none. The scenario was confirmed to pass the previous revision. Tests: `\csname endinput\endcsname`, `\input{other}`, a `\catcode` change and `\scantokens{x}` before the sentinels (fail); longer control words such as `\inputencoding` (pass) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-third round (pull request #95, stop-control revision)
+
+One finding from the automated Codex review of commit `b6753bdd51`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 137 | P2 | `^^` notation could encode a control word the guard scans for | Accepted. Any `^^` in the source now fails it before any other check, since the guard does not model TeX's input processor; the repository sources contain none. The scenario was confirmed to pass the previous revision. Test: `\end^^69nput` before the sentinels (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-fourth round (pull request #95, caret-notation revision)
+
+One finding from the automated Codex review of commit `0ff3859a4b`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 138 | P2 | `\begin` and `\end` could be redefined before the sentinels | Accepted. `\begin` and `\end` may now occur only as environment uses followed by `{`, the internal `\document` and `\enddocument` control words may not occur at all, and no environment-defining command may target `document`; any of these fails the source. The scenario was confirmed to pass the previous revision. Tests: `\def\begin#1{}` with `\def\end#1{}`, `\let\begin\relax`, `\renewcommand{\end}[1]{}`, `\renewenvironment{document}{}{}`, `\RenewDocumentEnvironment{document}{}{}{}` and `\let\document\relax` (all fail); `\begingroup`, `\endgroup` and `\begin {center}` (pass) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-fifth round (pull request #95, sentinel-redefinition revision)
+
+One finding from the automated Codex review of commit `9a48edeaad`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 139 | P2 | `\def\begin{}` put the target before a brace and passed as an environment use | Accepted. A definer control word (`\def` and its variants, `\let`, `\futurelet`, a prefix such as `\global`, `\long`, `\outer` or `\protected`, or any control word containing `command`/`Command`) followed by `\begin`, `\end`, `\document` or `\enddocument` as its target now fails the source, in addition to the earlier rules. The scenario was confirmed to pass the previous revision. Tests: `\def\begin{}` with `\def\end{}`, `\renewcommand\begin{}`, `\global\let\end{}`, `\NewCommandCopy\begin{\relax}` and the alias `\let\foo\begin` (fail); a macro body using `\begin{center}` (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-sixth round (pull request #95, definer-target revision)
+
+One finding from the automated Codex review of commit `bc8d534802`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 140 | P2 | A definer's target on the next line evaded the definer rule | Accepted. TeX skips the white space after a control word, a line ending included, and a comment ends a line; so the definer rule, the environment-defining rule and the `\newif` declaration now allow line endings wherever they allowed spaces and tabs. The scenario, its comment-separated form, `\renewenvironment` with `{document}` on the next line and `\newif` with its name on the next line were all confirmed to pass the previous revision. Tests: `\def` then `\begin{}` on the next line (with `\end{}` alike), `\def%` then `\begin{}`, `\renewcommand` then `{\end}{}`, `\global` across a blank line then `\let` then `\end{}`, `\renewenvironment` then `{document}{}{}`, `\NewDocumentEnvironment` then `*` then `{ document }` (all fail); a line-broken definer with another target and a line-broken `\newenvironment{doc}` (pass); `\newif` then `\ifdraft` on the next line with the conditional left open (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-seventh round (pull request #95, line-ending revision)
+
+One finding from the automated Codex review of commit `b51e7ebbbb`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 141 | P2 | A starred definer such as `\renewcommand*\begin{}` evaded the definer rule | Accepted. The definer rule now allows an optional `*` before the target, as the environment-defining rule already did. Two related gaps were closed in the same revision: a `...namedef...` or `...namelet...` macro (such as `\@namedef`) whose brace argument spells `begin`, `end`, `document` or `enddocument` fails the source, since it defines that control word without a `\csname` in the source; and `\ExplSyntaxOn` joins the control words the guard cannot follow, since it changes which characters form control words. The starred scenario, `\DeclareRobustCommand*` with its target on the next line, `\@namedef{begin}{}`, `\@namedef{ enddocument }{}` and `\ExplSyntaxOn` were all confirmed to pass the previous revision. Tests: `\renewcommand*\begin{}` with `\renewcommand*\end{}`, `\newcommand*{\end}{}`, `\DeclareRobustCommand*` then `\begin{}` on the next line, `\@namedef{begin}{}`, `\@namedef{ enddocument }{}`, `\@namelet` then `{end}{relax}` and `\ExplSyntaxOn` before the sentinels (all fail); `\renewcommand*{\foo}{\begin{center}}` and `\@namedef{beginfoo}{}` (pass) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-eighth round (pull request #95, starred-definer revision)
+
+One finding from the automated Codex review of commit `d05f64b009`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 142 | P2 | A definer target assembled by expansion (`\expandafter\def\the\toks0`) evaded the definer rule | Accepted, and resolved at the level of the TeX primitives rather than of this scenario. The control words the guard cannot follow now include every TeX-level definer, prefix, register definer and allocator that can clobber a control word (`\def`, `\gdef`, `\edef`, `\xdef`, `\let`, `\futurelet`, `\chardef`, `\mathchardef`, `\countdef`, `\dimendef`, `\skipdef`, `\toksdef`, `\muskipdef`, `\font`, `\read`, `\readline`, `\global`, `\long`, `\outer`, `\protected`, `\newtoks`), every expansion-control primitive (`\expandafter`, `\noexpand`, `\unexpanded`, `\the`, `\aftergroup`, `\afterassignment`) and every token register TeX inserts by itself (`\toks`, `\everypar`, `\everymath`, `\everydisplay`, `\everyhbox`, `\everyvbox`, `\everycr`, `\everyeof`, `\everyjob`, `\output`, `\errhelp`); any of them before the closing sentinel fails the source. The repository manuscripts use none of them (their only definer is `\newcommand`). For the LaTeX-level definers that remain, a `Declare...` macro or a register allocator (`\newcount`, `\newdimen`, `\newskip`, `\newmuskip`, `\newbox`, `\newread`, `\newwrite`, `\newlanguage`, `\newinsert`, `\newfam`, `\newmarks`, `\newattribute`) may not target a sentinel word either, and a `...command...` macro must name its target as a control word right there, so a target reaching it through a macro parameter or through another macro's body (a wrapper around the definer) fails the source. The reported scenario, `{\aftergroup\def}\begin{}`, `\let\d\def` with `\d\begin{}`, a `\noexpand` assembly, `\DeclareTextSymbol\begin{OT1}{65}`, `\newcount\begin{}` and the two wrappers were all confirmed to pass the previous revision. Tests: the reported scenario, the `\aftergroup`, `\let`, `\edef`/`\noexpand`, `\everypar`, `\newtoks`, `\font` and `\read` forms (all fail as constructions the guard cannot follow); `\DeclareTextSymbol\begin{OT1}{65}`, `\newcount\begin{}`, the two wrappers, `\renewcommand{#1}{}` and a bare `\newcommand` before the sentinel (all fail as sentinel tampering); `\DeclareMathOperator`, `\DeclareGraphicsExtensions`, `\newcounter`, `\newlength`, `\newdimen`, `\newcommand\foo{}`, `\newcommand*{ \bar }[1]{#1}` and `\providecommand` naming their targets (pass) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
