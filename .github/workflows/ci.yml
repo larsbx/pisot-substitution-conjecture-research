@@ -161,6 +161,31 @@ jobs:
           grep -Fx 'maximum suffix strong-coincidence depth: 15' <<<"$out"
           grep -Fx 'specimens by suffix strong-coincidence depth: 1:576 2:1416 3:654 4:858 5:666 6:252 7:102 8:18 14:6 15:6' <<<"$out"
 
+  overlap-contracting-census:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          curl -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Exact contracting-bound census (Proposition 5.42; finite evidence only)
+        working-directory: mojo
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . overlap_contracting_census.mojo 2>&1)
+          printf '%s\n' "$out"
+          grep -Fx 'PIP specimens: 4554  failed: 0  nonproductive: 0' <<<"$out"
+          grep -Fx 'vertices checked: 1118850' <<<"$out"
+          grep -Fx 'maximum contracting lower bound m0: 7' <<<"$out"
+          grep -Fx 'vertices by contracting lower bound m0: 0:34702 1:338684 2:429708 3:205980 4:77832 5:26364 6:5076 7:504' <<<"$out"
+          grep -Fx 'maximum excess b - m0: 14' <<<"$out"
+          grep -Fx 'vertices by excess b - m0: 0:116530 1:144806 2:199552 3:207580 4:174444 5:119590 6:77232 7:44652 8:21132 9:8952 10:2892 11:1008 12:360 13:96 14:24' <<<"$out"
+          grep -Fx 'specimens by maximal excess: 1:378 2:990 3:912 4:612 5:390 6:516 7:330 8:120 9:96 10:60 11:78 12:42 13:24 14:6' <<<"$out"
+          grep -Fx 'specimens by maximal m0: 1:1878 2:1608 3:744 4:198 5:72 6:30 7:24' <<<"$out"
+          grep -Fx 'complex-pair specimens: 3906  maximal m0: 7  maximal excess: 14' <<<"$out"
+          grep -Fx 'real-conjugate specimens: 648  maximal m0: 2  maximal excess: 4' <<<"$out"
+
   tla-models:
     runs-on: ubuntu-latest
     steps:

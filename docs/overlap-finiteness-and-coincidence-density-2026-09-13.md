@@ -505,14 +505,19 @@ an overlap `(i, j, t)` has a level-`m` descendant of offset zero then
 contracting embedding `varsigma` (`|varsigma(beta)| < 1`)
 `|varsigma(t)| <= C_varsigma * sum_{s=1}^{m} |varsigma(beta)|^{-s}`,
 `C_varsigma = max_F |varsigma(c)|`. The first left-aligned depth is therefore
-at least `m_0(t)`, the least `m` satisfying these inequalities. For a complex
-contracting pair, `|varsigma(t)|^2 = N(t)/t` and `|varsigma(beta)|^2 = D/beta`,
-so the condition becomes `N(t)/t <= K m sum_{s=1}^{m} (beta/D)^s` with
-`K = max_F N(c)/c`, an exact sign test at `beta`; for two real contracting
-conjugates the test is a sign test at each isolated root.
+at least `m_0(t)`, which is `0` for `t = 0` and otherwise the least `m >= 1`
+satisfying these inequalities. For a complex contracting pair and `t != 0`,
+`|varsigma(t)|^2 = N(t)/t` and `|varsigma(beta)|^2 = D/beta`, so the
+condition becomes `N(t)/t <= K m sum_{s=1}^{m} (beta/D)^s` with
+`K = max over F minus {0} of N(c)/c` (the zero increment contributes nothing),
+an exact sign test at `beta`; for two real contracting conjugates the test
+is a sign test at each isolated root.
 
-**Exact census (Python layer, `src/psc_research/overlap_contracting.py`,
-`scripts/overlap_contracting_census.py`; not asserted in CI).** Over all
+**Exact census (Mojo canonical, `mojo/psc/overlap_contracting.mojo` with the
+Sturm–Tarski module `mojo/psc/real_root_sign.mojo` and the driver
+`mojo/overlap_contracting_census.mojo`, asserted line by line in CI; Python
+oracle `src/psc_research/overlap_contracting.py`,
+`scripts/overlap_contracting_census.py`, prints the same lines).** Over all
 1,118,850 vertices of the 4,554 corpus graphs, `m_0` never exceeds the first
 left-aligned depth `b`; the largest `m_0` is 7 (vertices by `m_0`:
 0:34702 1:338684 2:429708 3:205980 4:77832 5:26364 6:5076 7:504); the excess
@@ -523,12 +528,13 @@ left-aligned depth `b`; the largest `m_0` is 7 (vertices by `m_0`:
 specimens with two real contracting conjugates have `m_0 <= 2` and excess
 `<= 4`.
 
-**Reading.** The contracting size of the offset explains at most 7 of the up
-to 17 inflations before a common sub-tile left endpoint appears; after the
-memory of the offset has decayed to the scale of one inflation step, up to
-14 further inflations may be needed. The hitting level of Corollary 9.3 is
-dominated by a scale-free combinatorial part. A proof of Open Problem 5.35
-cannot come from a contraction argument on the offset alone; it must control
-where the prefix Parikh vectors of the two inflated tiles land relative to
-each other, which is the geometric coincidence problem in the contracting
-embedding. Nothing here proves Level 3', G1, or PSC.
+**Reading (what the executable result supports).** This magnitude bound,
+built from the triangle inequality over the increments and, for a complex
+pair, a Cauchy–Schwarz step, accounts for at most 7 of the up to 17
+inflations before a common sub-tile left endpoint appears and leaves a gap
+of up to 14 inflations unexplained. The gap includes the slack of those
+inequalities; whether a sharper contracting-space argument (digit
+correlations, the two embeddings jointly, cancellation among increments)
+explains part of it is not decided here, and no conclusion about what a
+proof of Open Problem 5.35 must or cannot use is drawn. Nothing here proves
+Level 3', G1, or PSC.

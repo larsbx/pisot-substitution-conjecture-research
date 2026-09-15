@@ -1,4 +1,4 @@
-"""Exact census (Python layer): first left-aligned depth b(O) against the
+"""Python oracle for mojo/overlap_contracting_census.mojo: first left-aligned depth b(O) against the
 contracting lower bound m_0(O) of psc_research.overlap_contracting, over the
 alphabet-3 PIP corpus.  Verifies b >= m_0 on every vertex and reports the
 distribution of the excess b - m_0 and of m_0 itself."""
@@ -38,4 +38,6 @@ print("maximum excess b - m0:", max(hist["excess"]))
 print("vertices by excess b - m0:", fmt(hist["excess"]))
 print("specimens by maximal excess:", fmt(hist["max_excess"]))
 print("specimens by maximal m0:", fmt(hist["max_m0"]))
-print("by case:", by_case)
+c, r = by_case["complex"], by_case["real"]
+print(f"complex-pair specimens: {c['n']}  maximal m0: {c['max_m0']}  maximal excess: {c['max_excess']}")
+print(f"real-conjugate specimens: {r['n']}  maximal m0: {r['max_m0']}  maximal excess: {r['max_excess']}")

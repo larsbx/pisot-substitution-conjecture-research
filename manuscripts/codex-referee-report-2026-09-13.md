@@ -360,3 +360,36 @@ No other findings were posted in the fourteenth round.
 > AGENTS.md reference: AGENTS.md:L26-L26
 
 No other findings were posted in the fifteenth round.
+
+---
+
+# Sixteenth round: review of the contracting-bound revision (pull request #87)
+
+**Reviewed commit:** `3b8e6d42acfac4c1d9c23abe6f5190e6656e0ce8` (Proposition 5.42 and the census against the first left-aligned depth).
+**Review posted:** 2026-09-15T00:23:22Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 31 (P1) — `src/psc_research/overlap_contracting.py`, line 149
+
+> **Add the canonical Mojo contracting-bound implementation**
+>
+> This class is the new exact kernel supporting Proposition 5.42 and the reported 1,118,850-vertex census, but a repo-wide search finds no corresponding contracting-bound implementation or regression under `mojo/`, nor any documented blocker. Consequently the manuscript's new numerical result depends solely on the secondary Python layer, contrary to the repository's explicit requirement that new theorem-support algorithms and census drivers land in Mojo first.
+>
+> AGENTS.md reference: AGENTS.md:L5-L16
+
+## Finding 32 (P1) — `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md`, line 531
+
+> **Avoid attributing the residual depth to combinatorics**
+>
+> The census establishes only `b >= m_0`, where `m_0` comes from triangle and Cauchy–Schwarz upper bounds; therefore `b-m_0` also includes all slack in those inequalities and does not isolate a scale-free combinatorial contribution. A sharper contracting-space argument using actual digit correlations, joint embeddings, or cancellation could still explain the residual, so neither "dominated by" nor "cannot come from a contraction argument" follows from the executable result. State only that this particular magnitude bound leaves an unexplained gap.
+>
+> AGENTS.md reference: AGENTS.md:L64-L70
+
+## Finding 33 (P1) — `PSC_balanced_pair_state_2026-09-13.tex`, line 852
+
+> **Define the complex-pair formula at zero**
+>
+> The set `F` necessarily contains zero (for example, choose the first subtile on both sides, so `p=q=0`), and the overlap graph also contains offset-zero vertices, but this display forms both `N(c)/c` and `N(t)/t`; these are undefined in precisely those cases. The Python implementation silently repairs the discrepancy by removing zero digits and returning `m_0(0)=0`, so the stated theorem is not the theorem used by the census. Restrict the maximum to `F \setminus {0}`, state the complex formula only for `t != 0`, and define `m_0(0)=0` separately.
+>
+> AGENTS.md reference: AGENTS.md:L64-L70
+
+No other findings were posted in the sixteenth round.
