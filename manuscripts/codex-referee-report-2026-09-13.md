@@ -814,3 +814,31 @@ No other findings were posted in the thirty-third round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the thirty-fourth round.
+
+
+---
+
+# Thirty-fifth round: review of the provenance revision (pull request #95)
+
+**Reviewed commit:** `99cc3be753` (findings 64–65).
+**Review posted:** 2026-09-15T17:14:04Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 66 (P2) — `scripts/check_manuscript_source.py`, line 281
+
+> **Validate classic free lists before stream entries supersede them**
+>
+> Fresh evidence beyond finding 64 is a mixed incremental chain: when a newer cross-reference stream replaces object 0 with an unlinked `(0, 0, generation)` row and inherits a free object from the preceding classic table through `/Prev`, that older entry retains `classic=True` and is rejected here even though its classic section's original object-0 entry linked it correctly and stream free-list coverage is optional. Validate the classic list against the effective table at that historical section, rather than applying entry provenance after newer sections have overwritten its head.
+
+## Finding 67 (P2) — `scripts/check_manuscript_source.py`, line 228
+
+> **Bound xref row counts before materializing them**
+>
+> When a damaged cross-reference stream declares a very large `/Size` without `/Index`, this eagerly constructs that many Python integers before the code reads or compares the actual payload; `/Size 1000000000` can therefore exhaust the verifier process instead of returning a guarded failure. The `/Index` comprehension has the same problem for a huge count. Derive the available row count from the decoded payload first and reject inconsistent declarations before materializing object numbers.
+
+## Finding 68 (P2) — `scripts/check_manuscript_source.py`, line 173
+
+> **Reject oversized generations on in-use stream rows**
+>
+> Fresh evidence beyond finding 65 is the type-1 path: the 65535 bound is applied only to free rows, so a `/W` field encoding generation 65536 is accepted whenever the target header is also `num 65536 obj`; the subsequent strict parse uses that integer as the object's generation rather than supplying the missing range check. Generation numbers are limited to 65535 for in-use objects as well, so apply the bound before branching on the row type.
+
+No other findings were posted in the thirty-fifth round.

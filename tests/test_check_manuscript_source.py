@@ -388,6 +388,41 @@ def test_free_entries_must_form_the_free_list(copy):
     assert code == 1 and "not an unvisited free entry" in out, out
 
 
+def test_classic_free_list_is_judged_at_its_own_section(copy):
+    # a newer cross-reference stream replaces object 0 with an unlinked row and inherits the
+    # classic section's free object 4 through /Prev; the classic list was valid at its section
+    pdf = next(copy.glob("*.pdf"))
+    raw = classic_with_free_4()
+    old_xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
+    o5 = len(raw)
+    rows = b"\x00\x00\x00\xff" + b"\x01" + o5.to_bytes(2, "big") + b"\x00"
+    raw += (b"5 0 obj\n<< /Type /XRef /Size 6 /Index [0 1 5 1] /W [1 2 1] /Root 1 0 R /Prev %d /Length %d >>\nstream\n"
+            % (old_xref, len(rows)) + rows + b"\nendstream\nendobj\nstartxref\n%d\n%%%%EOF\n" % o5)
+    pdf.write_bytes(raw)
+    code, out = run(copy)
+    assert code == 0, out
+
+
+def test_huge_declared_row_count_fails_fast(copy):
+    pdf = next(copy.glob("*.pdf"))
+    for dictionary in (b"<< /Type /XRef /Size 1000000000 /W [1 2 1] /Root 1 0 R /Length 4 >>",
+                       b"<< /Type /XRef /Size 1000000001 /Index [0 1000000000] /W [1 2 1] /Root 1 0 R /Length 4 >>"):
+        pdf.write_bytes(xref_stream_pdf(dictionary, b"\x01\x00\x09\x00"))
+        code, out = run(copy)
+        assert code == 1 and "declares 1000000000" in out, out
+
+
+def test_in_use_generation_is_bounded(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(classic_pdf(edit=lambda b: b.replace(b"0000000009 00000 n", b"0000000009 65536 n")))
+    code, out = run(copy)
+    assert code == 1 and "generation 65536 > 65535" in out, out
+    row1 = lambda t, o1, o2, o3: [b"\x00\x00\x00\x00\xff\xff", b"\x01" + o1.to_bytes(2, "big") + b"\x01\x00\x00", *t[2:]]
+    pdf.write_bytes(xref_pdf(gen_bytes=3, rows=row1))
+    code, out = run(copy)
+    assert code == 1 and "generation 65536 > 65535" in out, out
+
+
 def test_zero_count_subsection_fails(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.write_bytes(classic_pdf(edit=lambda b: b.replace(b"trailer", b"9999 0\ntrailer").replace(b"/Size 4 ", b"/Size 9999 ")))

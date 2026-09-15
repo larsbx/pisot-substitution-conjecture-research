@@ -101,12 +101,12 @@ def _classic_table(raw: bytes, off: int) -> str | tuple[dict[int, Entry], int | 
             if not e:
                 return f"malformed xref entry {entries + k}"
             num, field, gen = start + k, int(e.group(1)), int(e.group(2))
+            if gen > 65535:
+                return f"xref entry for object {num} has generation {gen} > 65535"
             if e.group(3) == b"n":
                 # an in-use entry must point at the header of its own object
                 if field >= len(raw) or not re.match(rb"%d\s+%d\s+obj\b" % (num, gen), raw[field:field + 40]):
                     return f"xref entry for object {num} does not point at '{num} {gen} obj'"
-            elif gen > 65535:
-                return f"free entry for object {num} has generation {gen} > 65535"
             table[num] = (0 if e.group(3) == b"f" else 1, field, gen, True)
         pos, entries = pos + 20 * count, entries + count
     if entries == 0:
@@ -164,11 +164,11 @@ def _xref_rows(raw: bytes, rows: bytes, widths: list[int], numbers: list[int], s
         kind = int.from_bytes(r[:w0], "big") if w0 else 1
         f2 = int.from_bytes(r[w0:w0 + w1], "big")
         f3 = int.from_bytes(r[w0 + w1:], "big")
+        if kind in (0, 1) and f3 > 65535:
+            return f"cross-reference stream entry for object {num} has generation {f3} > 65535"
         if kind == 0:
             if f2 >= size:
                 return f"cross-reference stream free entry for object {num} points at object {f2} beyond /Size"
-            if f3 > 65535:
-                return f"cross-reference stream free entry for object {num} has generation {f3} > 65535"
         elif kind == 1:
             if f2 >= len(raw) or not re.match(rb"%d\s+%d\s+obj\b" % (num, f3), raw[f2:f2 + 40]):
                 return f"cross-reference stream entry for object {num} does not point at '{num} {f3} obj'"
@@ -223,10 +223,9 @@ def _xref_stream(raw: bytes, off: int) -> str | tuple[dict[int, Entry], int | No
         pairs = list(zip(values[::2], values[1::2]))
         if any(c <= 0 or st + c > size for st, c in pairs):
             return "cross-reference stream /Index range is empty or exceeds /Size"
-        numbers = [st + k for st, c in pairs for k in range(c)]
     else:
-        numbers = list(range(size))
-    expected_rows = len(numbers)
+        pairs = [(0, size)]
+    expected_rows = sum(c for _, c in pairs)  # object numbers are materialized only once the payload agrees
     body = re.match(rb"\s*stream(?:\r\n|\n)", at[m.end() + len(d):m.end() + len(d) + 16])
     if not body:
         return "cross-reference stream has no stream body"
@@ -244,10 +243,13 @@ def _xref_stream(raw: bytes, off: int) -> str | tuple[dict[int, Entry], int | No
         if filters != [b"FlateDecode"]:
             return f"unsupported cross-reference stream filter chain {[f.decode() for f in filters]}"
     if filters:
+        inflater = zlib.decompressobj()
         try:
-            payload = zlib.decompress(data)
+            payload = inflater.decompress(data, expected_rows * row + 1)  # never inflate past the declared size
         except zlib.error as e:
             return f"cross-reference stream payload does not inflate ({e})"
+        if not inflater.eof or inflater.unconsumed_tail or inflater.unused_data:
+            return "cross-reference stream payload inflates past the declared row count or is not a complete deflate member"
     else:
         payload = data
     if len(payload) == 0 or len(payload) % row != 0:
@@ -255,6 +257,7 @@ def _xref_stream(raw: bytes, off: int) -> str | tuple[dict[int, Entry], int | No
     rows = len(payload) // row
     if rows != expected_rows:
         return f"cross-reference stream has {rows} rows but declares {expected_rows} (/Index or /Size)"
+    numbers = [st + k for st, c in pairs for k in range(c)]
     if predicted:
         payload = _unpredict(payload, row)
         if payload is None:
@@ -263,10 +266,13 @@ def _xref_stream(raw: bytes, off: int) -> str | tuple[dict[int, Entry], int | No
     return table if isinstance(table, str) else (table, _prev_of(d))
 
 
-def _free_list(table: dict[int, Entry]) -> str | None:
-    """Object 0 is free (with generation 65535 when it comes from a classic table) and
-    heads a chain of free entries that returns to object 0.  A classic free entry must be
-    on that chain; a stream type-0 entry may instead be unlinked, with next-free field 0."""
+def _free_list(table: dict[int, Entry], classic: bool) -> str | None:
+    """Object 0 is free (with generation 65535 when its entry comes from a classic table)
+    and heads a chain of free entries that returns to object 0.  ``table`` is the effective
+    table at one section of the chain: at a classic section every free entry must be on
+    the chain; at a cross-reference stream section, whose free list is optional, a free
+    entry off the chain may point at 0 or at another free entry, but never at an object
+    in use."""
     head = table.get(0)
     if head is None or head[0] != 0:
         return "object 0 is not a free entry"
@@ -278,14 +284,16 @@ def _free_list(table: dict[int, Entry]) -> str | None:
             return f"free list reaches object {n}, which is not an unvisited free entry"
         walked.append(n)
         n = table[n][1]
-    stray = sorted(n for n in free - set(walked) if table[n][3] or table[n][1] != 0)
+    stray = sorted(n for n in free - set(walked) if classic or table[n][1] not in free | {0})
     return f"free entries {stray} are not on the free list" if stray else None
 
 
 def _xref_chain(raw: bytes, off: int) -> str | int:
-    """Walk the cross-reference sections from ``off`` along ``/Prev``, newest first; a
-    problem, or the highest object number over every entry of the merged table."""
-    seen, merged = [], {}
+    """Walk the cross-reference sections from ``off`` along ``/Prev``, then replay them
+    oldest first, validating the free list on the effective table at each section (every
+    prefix of the chain was once a complete file); a problem, or the highest object number
+    of the final merged table."""
+    seen, sections = [], []
     while True:
         if off >= len(raw):
             return f"cross-reference offset {off} beyond end of file ({len(raw)} bytes)"
@@ -301,9 +309,16 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
             section = "offset does not point at an xref table or object"
         if isinstance(section, str):
             return f"at cross-reference offset {off}: {section}"
-        merged, off = {**section[0], **merged}, section[1]  # newer sections win
+        sections.append((section[0], at.startswith(b"xref")))
+        off = section[1]
         if off is None:
-            return _free_list(merged) or max(merged)
+            break
+    merged = {}
+    for entries, classic in reversed(sections):
+        merged = {**merged, **entries}  # newer sections win
+        if problem := _free_list(merged, classic):
+            return problem
+    return max(merged)
 
 
 def _inflate_strictly(obj) -> str | None:

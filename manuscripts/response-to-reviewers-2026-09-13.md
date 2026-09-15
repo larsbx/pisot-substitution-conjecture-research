@@ -458,3 +458,16 @@ Two findings from the automated Codex review of commit `30d16e00e8`; both accept
 | --- | --- | --- | --- | --- |
 | 64 | P2 | Unlinked free entries in a cross-reference stream were rejected | Accepted. Full free-list coverage is required only of entries that came from a classic table; a stream type-0 entry may be unlinked provided its next-free field is 0, while an unlinked entry pointing elsewhere still fails. The chain from object 0 must still consist of unvisited free entries and return to 0. Tests: the reviewer's example (a free object 5 with fields `(0, 0, 0)`) passes; the same entry pointing at object 3 fails | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 65 | P2 | A saturated one-byte generation column was rescaled to 65535 | Accepted: the decoded generation is kept unchanged, and a stream free entry with generation above 65535 fails. Qualification: the requirement that object 0 carry generation 65535 is stated by the standard for classic tables only, and the repository PDF (pdfTeX, `/W [1 3 1]`) encodes object 0 as type 0 with a one-byte generation of 255, so the guard requires 65535 of object 0 only when its entry comes from a classic table. Tests: a two-byte column holding exactly 65535 passes; a three-byte column holding 65536 fails; a classic object 0 with generation 0 still fails | same |
+
+
+---
+
+## Thirty-fifth round (pull request #95, provenance revision)
+
+Three findings from the automated Codex review of commit `99cc3be753`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 66 | P2 | Free-list coverage was judged on the final merged table | Accepted. The chain walk now collects the sections and replays them oldest first, validating the free list on the effective table at each section, since every prefix of the chain was once a complete file. At a classic section every free entry must be on the chain from object 0; at a stream section a free entry off the chain may point at 0 or at another free entry but never at an object in use. Test: the reviewer's mixed chain (a classic table whose object 0 links a free object 4, then a stream section replacing object 0 with an unlinked row) passes | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 67 | P2 | A huge `/Size` or `/Index` count materialized object numbers before any comparison | Accepted. The declared row count is computed arithmetically, the Flate payload is inflated with a ceiling of one byte past the declared size and must end the deflate member exactly there, and object numbers are materialized only after the payload's row count equals the declaration. Test: `/Size 1000000000` and `/Index [0 1000000000]` against a one-row payload fail immediately with "declares 1000000000" | same |
+| 68 | P2 | The generation bound covered free rows only | Accepted. The bound of 65535 is applied before branching on the entry type, for classic entries and stream rows alike. Tests: an in-use classic entry with generation 65536 and an in-use stream row with a three-byte generation of 65536 both fail | same |
