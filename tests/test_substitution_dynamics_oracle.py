@@ -1,5 +1,5 @@
 """Oracle constants shared with tests/test_substitution_dynamics.mojo in
-larsbx/substitution_dynamics (vendored here as mojo/substitution_dynamics/).
+larsbx/finite-math-kernels (vendored here as mojo/substitution_dynamics/).
 
 The Mojo package is alphabet-generic; the Python oracle is the independent
 reference. Both must report the same automaton counts off the alphabet-3

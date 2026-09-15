@@ -12,7 +12,7 @@ from psc.perron_interval import (
     perron_sign_decision,
 )
 from finite_exact.bigint_z import bigz_add, bigz_from_i64
-from interval_q.closed_q import IQ
+from finite_exact.closed_interval import IQ
 from finite_exact.rat_q import Q, q_from_bigz
 from psc.exact import contains_zero, eval_int_poly_at_q, integer_interval, interval_horner_int, q_sign, q_string, strict_sign
 

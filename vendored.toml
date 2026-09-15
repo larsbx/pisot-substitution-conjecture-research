@@ -3,29 +3,22 @@
 
 [[package]]
 name = "finite_exact"
-repository = "larsbx/finite_exact"
-commit = "5c0763a2fb4fa868b4b6d8b39adfbd9fbf14b35f"
+repository = "larsbx/finite-math-kernels"
+commit = "807ae7ed5461af9fe07b1cbbca96f680a105e0e7"
 root = "mojo"
 
 [package.files]
 "finite_exact/__init__.mojo" = "b7cdb9dafe62fd6fe2594446d5f90e5c596e8841635a72498269a31e9d10fa56"
 "finite_exact/bigint_z.mojo" = "d02a0c033042661161a24f0b31f1e89fbf3ed908ccc86e42b5b80b8df4240df1"
+"finite_exact/closed_interval.mojo" = "6a276e8f6f0d1ebe2c2795a9ba590857aea4e5617807cbc0bfe3ff1f1b26bf08"
+"finite_exact/closed_q.mojo" = "72f66b6ed05913b9055c3e44c8f3e32e27a6e2908a407eb29c8ef2d790f9b186"
 "finite_exact/rat_q.mojo" = "d7f8cc3a3879d76bfc242304a13d4f2c9d4cf2cdeeba586fa4af95980a4b9fa6"
-
-[[package]]
-name = "interval_q"
-repository = "larsbx/interval_q"
-commit = "8a3366c37e55efd1f0150046fd94dba185180b06"
-root = "mojo"
-
-[package.files]
-"interval_q/__init__.mojo" = "c9a0b7a15d6226a05f901987d6f5ecea314f609827fe9e9c78e26239a488c8dd"
-"interval_q/closed_q.mojo" = "72f66b6ed05913b9055c3e44c8f3e32e27a6e2908a407eb29c8ef2d790f9b186"
+"finite_exact/rational.mojo" = "6d84b8f4c3b1699648eee2512f49c7736dd5d4c8f7236809585b09cf1b5631c0"
 
 [[package]]
 name = "substitution_dynamics"
-repository = "larsbx/substitution_dynamics"
-commit = "778789ff2e12d3a9f8f9ec35599b7b2ac241fa05"
+repository = "larsbx/finite-math-kernels"
+commit = "807ae7ed5461af9fe07b1cbbca96f680a105e0e7"
 root = "mojo"
 
 [package.files]
@@ -38,14 +31,17 @@ root = "mojo"
 
 [[package]]
 name = "finite_linear_algebra"
-repository = "larsbx/finite_linear_algebra"
-commit = "fe366a597a5c12ab6e62e2d226717cce646771f2"
+repository = "larsbx/finite-math-kernels"
+commit = "807ae7ed5461af9fe07b1cbbca96f680a105e0e7"
 root = "mojo"
 
 [package.files]
 "finite_linear_algebra/__init__.mojo" = "b120372d34f83705535739236239c4d38ea8621645802760a237b2b1edd05e26"
 "finite_linear_algebra/mat3.mojo" = "497f0bd35806c094aedc454e23dcc87b2595684a78f3602afa2a5123d9421e21"
+"finite_linear_algebra/matrix.mojo" = "7c12f8a5ed5834f7a4ce85a2536adef84efaf92ec7b5b9b60d9f80c081c83dfe"
+"finite_linear_algebra/matrix3.mojo" = "e439e9e00219b60b224eacbbe424247b0a38255c6f8ef19f4896082e5e4e95ca"
 "finite_linear_algebra/qlinalg.mojo" = "ceaae58a4cd14ef4cb24d1a3e5ef63fbab8c461d0328faf66fd8f99d1994c2e3"
+"finite_linear_algebra/rational_elimination.mojo" = "dd8e5d264cacfb229d40fcab7ef1b97e78c446032e84d7620c10a3e4706eb7c5"
 "finite_linear_algebra/scalar.mojo" = "0fbedf71be2dd5f8aebd59701feffa540f1b0fa248e8f232d533398ef038c52e"
 "finite_linear_algebra/tensor3.mojo" = "03020c917cdbeb336c23f1637932b31953b4a76a2145ed99f70e6ece8dd69238"
 "finite_linear_algebra/w3.mojo" = "fa1a97e85607dd022f205d1ad7bb89532a5ea4e83b6e0c4d3a1657c0287878ef"

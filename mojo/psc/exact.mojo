@@ -1,4 +1,4 @@
-"""PSC-side conventions over the vendored `finite_exact` and `interval_q` packages.
+"""PSC-side conventions over the vendored `finite_exact` package.
 
 `finite_exact` (pinned in `vendored.toml`) reports invalid arithmetic
 through a `rejected` flag on every carrier and never raises. The PSC kernels
@@ -22,7 +22,7 @@ from std.os import abort
 from finite_exact.bigint_z import BIGZ_BASE, BigZ, bigz_divmod, bigz_from_i64
 from finite_exact.rat_q import Q, q_abs, q_from_bigz
 from finite_linear_algebra.scalar import q_int, q_is_zero, q_vec
-from interval_q.closed_q import IQ
+from finite_exact.closed_interval import IQ
 
 
 def q_poly(coeffs: List[Int]) -> List[Q]:
