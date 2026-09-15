@@ -371,4 +371,18 @@ Three findings from the automated Codex review of commit `3a9d53ee10`; all accep
 | 47 | P2 | `/Length 4 0 R` was read as the direct length 4 | Accepted. The `/Length` token is parsed with an optional trailing `g R` group, and an indirect reference fails explicitly; test with `/Length 4 0 R` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 48 | P2 | Only divisibility of the payload by the row width was checked, not the declared row count | Accepted. The number of rows must equal the sum of the `/Index` subsection counts, or `/Size` without `/Index`; tests with `/Size 100` and `/Index [0 3]` against a one-row payload, and a passing one-row stream | same |
 | 49 | P2 | The array form `/Filter [/FlateDecode]` was not recognized | Accepted. `/Filter` is parsed as a name or an array of names; the chain must be exactly `[FlateDecode]`, any other form or chain fails closed; tests inflate an array-form Flate stream and reject `[/LZWDecode]` | same |
+
+
+---
+
+## Twenty-eighth round (pull request #95, length, row-count and filter revision)
+
+Four findings from the automated Codex review of commit `a9242e36aa`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 50 | P2 | A file truncated right after `endstream` passed | Accepted. The stream must be closed by `endstream` followed by `endobj`; test truncates after `endstream` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 51 | P2 | `/Index` start values and odd-length arrays were ignored | Accepted. `/Index` must be a nonempty array of start/count pairs with positive counts whose ranges lie within `/Size`; tests with `[999 1]`, `[0 1 2]`, `[0 0]` | same |
+| 52 | P2 | `/W [4]` was accepted as a row width | Accepted. `/W` must have exactly three fields; test with `/W [4]` | same |
+| 53 | P2 | Classic in-use entries were checked only for their textual shape | Accepted. Every `n` entry must point inside the file at the header `num gen obj` of its own object number (subsection start plus index) and generation; tests alter the offset to 8 and to 9999999999 and the generation to 1 | same |
 \n

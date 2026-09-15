@@ -63,8 +63,9 @@ def _dict_at(buf: bytes, i: int) -> bytes | None:
     return None
 
 
-def _classic_table(at: bytes) -> str | None:
-    """Problem with the classic ``xref`` table at ``at[0:]``, or None."""
+def _classic_table(raw: bytes, off: int) -> str | None:
+    """Problem with the classic ``xref`` table at ``raw[off:]``, or None."""
+    at = raw[off:]
     m = re.match(rb"xref[ \t]*(?:\r\n|\r|\n)", at)
     if not m:
         return "malformed xref keyword"
@@ -73,13 +74,19 @@ def _classic_table(at: bytes) -> str | None:
         sub = re.match(rb"(\d+)[ \t]+(\d+)[ \t]*(?:\r\n|\r|\n)", at[pos:pos + 64])
         if not sub:
             break
-        pos, count = pos + sub.end(), int(sub.group(2))
+        pos, start, count = pos + sub.end(), int(sub.group(1)), int(sub.group(2))
         block = at[pos:pos + 20 * count]
         if len(block) < 20 * count:
             return "truncated xref subsection"
         for k in range(count):
-            if not re.fullmatch(rb"\d{10} \d{5} [nf](?: \r| \n|\r\n)", block[20 * k:20 * k + 20]):
+            e = re.fullmatch(rb"(\d{10}) (\d{5}) ([nf])(?: \r| \n|\r\n)", block[20 * k:20 * k + 20])
+            if not e:
                 return f"malformed xref entry {entries + k}"
+            if e.group(3) == b"n":
+                # an in-use entry must point at the header of its own object
+                target, gen, num = int(e.group(1)), int(e.group(2)), start + k
+                if target >= len(raw) or not re.match(rb"%d\s+%d\s+obj\b" % (num, gen), raw[target:target + 40]):
+                    return f"xref entry for object {num} does not point at '{num} {gen} obj'"
         pos, entries = pos + 20 * count, entries + count
     if entries == 0:
         return "xref table has no entries"
@@ -109,7 +116,10 @@ def _xref_stream(at: bytes) -> str | None:
     w = re.search(rb"/W\s*\[([\d\s]+)\]", d)
     if not w:
         return "cross-reference stream lacks /W"
-    row = sum(int(x) for x in w.group(1).split())
+    widths = [int(x) for x in w.group(1).split()]
+    if len(widths) != 3:
+        return f"cross-reference stream /W must have exactly three fields, has {len(widths)}"
+    row = sum(widths)
     pred = re.search(rb"/Predictor\s+(\d+)", d)
     if pred and int(pred.group(1)) >= 10:
         row += 1
@@ -121,19 +131,26 @@ def _xref_stream(at: bytes) -> str | None:
     if length.group(2):
         return "cross-reference stream /Length is an indirect reference, not a direct integer"
     n = int(length.group(1))
-    index = re.search(rb"/Index\s*\[([\d\s]+)\]", d)
-    if index:
-        counts = [int(x) for x in index.group(1).split()][1::2]
-        expected_rows = sum(counts)
+    size = int(re.search(rb"/Size\s+(\d+)", d).group(1))
+    if b"/Index" in d:
+        index = re.search(rb"/Index\s*\[([\d\s]+)\]", d)
+        values = [int(x) for x in index.group(1).split()] if index else []
+        if not values or len(values) % 2:
+            return "cross-reference stream /Index is not an array of start/count pairs"
+        pairs = list(zip(values[::2], values[1::2]))
+        if any(c <= 0 or st + c > size for st, c in pairs):
+            return "cross-reference stream /Index range is empty or exceeds /Size"
+        expected_rows = sum(c for _, c in pairs)
     else:
-        expected_rows = int(re.search(rb"/Size\s+(\d+)", d).group(1))
+        expected_rows = size
     body = re.match(rb"\s*stream(?:\r\n|\n)", at[m.end() + len(d):m.end() + len(d) + 16])
     if not body:
         return "cross-reference stream has no stream body"
     data_start = m.end() + len(d) + body.end()
     data = at[data_start:data_start + n]
-    if len(data) < n or not re.match(rb"(?:\r\n|\r|\n)?endstream\b", at[data_start + n:data_start + n + 12]):
-        return "cross-reference stream body does not match /Length"
+    tail = re.match(rb"(?:\r\n|\r|\n)?endstream\s*endobj\b", at[data_start + n:data_start + n + 32])
+    if len(data) < n or not tail:
+        return "cross-reference stream body does not match /Length or is not closed by endstream and endobj"
     filters = None
     if b"/Filter" in d:
         flt = re.search(rb"/Filter\s*(?:/(\w+)|\[\s*((?:/\w+\s*)*)\])", d)
@@ -177,7 +194,7 @@ def check_pdf(path: Path) -> list[str]:
         return [f"{path}: startxref offset {off} beyond end of file ({len(raw)} bytes)"]
     at = raw[off:]
     if at.startswith(b"xref"):
-        problem = _classic_table(at)
+        problem = _classic_table(raw, off)
     elif re.match(rb"\d+\s+\d+\s+obj\b", at[:32]):
         problem = _xref_stream(at)
     else:

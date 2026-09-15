@@ -617,4 +617,46 @@ No other findings were posted in the twenty-sixth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the twenty-seventh round.
+
+
+---
+
+# Twenty-eighth round: review of the length, row-count and filter revision (pull request #95)
+
+**Reviewed commit:** `a9242e36aa` (findings 47–49).
+**Review posted:** 2026-09-15T16:16:23Z, one automated Codex review with four inline comments. Reproduced verbatim.
+
+## Finding 50 (P2) — `scripts/check_manuscript_source.py`, line 136
+
+> **Require the XRef indirect object to terminate**
+>
+> When a PDF is truncated immediately after `endstream`, the body, row count, and trailer checks all succeed because nothing requires the XRef stream's indirect object to end with `endobj`. Such a truncated object is syntactically incomplete but `check_pdf` returns success, so validate the delimiter following `endstream` before accepting the stream.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 51 (P2) — `scripts/check_manuscript_source.py`, line 127
+
+> **Reject invalid /Index ranges**
+>
+> Fresh evidence beyond finding 48 is that `/Size 1 /Index [999 1]` with one decoded row passes: only the count fields are summed, while the starting object numbers are ignored. Odd-length arrays such as `[0 1 2]` also pass because the unmatched value is silently discarded. Require complete start/count pairs whose ranges fit within `/Size` before using their counts.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 52 (P2) — `scripts/check_manuscript_source.py`, line 112
+
+> **Require exactly three fields in /W**
+>
+> When an XRef stream declares `/W [4]`, this code treats it as a four-byte row width and accepts a matching one-row payload, even though `/W` must be an array of exactly three nonnegative integers describing the entry type, offset, and generation/index fields. Validate the array cardinality rather than accepting any nonempty list whose sum is positive.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 53 (P2) — `scripts/check_manuscript_source.py`, line 81
+
+> **Validate in-use classic xref offsets**
+>
+> For PDFs using a classic xref table, changing an in-use entry from offset `0000000009` to `0000000008` or even `9999999999` still passes because entries are checked only for their textual shape. The resulting entry no longer identifies its declared indirect object, so a byte-mangled cross-reference table is reported as intact; validate each `n` entry against the file bounds and the object number/generation at its referenced offset.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the twenty-eighth round.
 \n

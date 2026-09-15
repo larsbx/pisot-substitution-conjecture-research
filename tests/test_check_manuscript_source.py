@@ -178,6 +178,37 @@ def test_filter_array_form_is_inflated(copy):
     assert code == 1 and "unsupported" in out
 
 
+def test_truncated_after_endstream_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = xref_stream_pdf(b"<< /Type /XRef /Size 1 /W [1 2 1] /Root 1 0 R /Length 4 >>", b"\x01\x00\x09\x00")
+    pdf.write_bytes(raw.replace(b"\nendobj\n", b"\n"))
+    code, out = run(copy)
+    assert code == 1 and "endobj" in out
+
+
+def test_index_ranges_must_fit_size(copy):
+    pdf = next(copy.glob("*.pdf"))
+    for index in (b"[999 1]", b"[0 1 2]", b"[0 0]"):
+        pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 1 /Index " + index + b" /W [1 2 1] /Root 1 0 R /Length 4 >>", b"\x01\x00\x09\x00"))
+        code, out = run(copy)
+        assert code == 1 and "/Index" in out, (index, out)
+
+
+def test_w_needs_three_fields(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 1 /W [4] /Root 1 0 R /Length 4 >>", b"\x01\x00\x09\x00"))
+    code, out = run(copy)
+    assert code == 1 and "exactly three fields" in out
+
+
+def test_classic_entry_must_point_at_its_object(copy):
+    pdf = next(copy.glob("*.pdf"))
+    for bad in (b"0000000008 00000 n", b"9999999999 00000 n", b"0000000009 00001 n"):
+        pdf.write_bytes(MINIMAL_CLASSIC.replace(b"0000000009 00000 n", bad))
+        code, out = run(copy)
+        assert code == 1 and "does not point at" in out, (bad, out)
+
+
 def test_missing_required_file_fails(copy):
     next(copy.glob("*.pdf")).unlink()
     code, out = run(copy)
