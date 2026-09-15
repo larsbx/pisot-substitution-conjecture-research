@@ -581,7 +581,7 @@ def test_filter_names_are_parsed_whole(copy):
     assert run(copy)[0] == 0
 
 
-def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=None, predictor=None, row5=None):
+def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=None, predictor=None, row5=None, png=None):
     """Objects 1-3 as usual, object 4 an uncompressed object stream whose header lists
     ``members`` (default one member, ``member``, at offset 0) before ``body``, object 6
     the cross-reference stream; object 5's row names ``container`` at ``index``, any
@@ -596,7 +596,14 @@ def objstm_pdf(container=4, index=0, member=5, body=b"<< /Foo 1 >>", members=Non
     header = b"".join(b"%d %d " % pair for pair in members)
     data = header + body
     payload, extra = data, b""
-    if predictor == 12:  # one PNG row with the Up filter; the zero previous row leaves the bytes unchanged
+    if png:  # one PNG row under the Sub filter, encoded with ``bpp`` bytes per pixel, declaring ``colors`` components
+        import zlib
+        bpp, colors = png
+        data += b" " * (-len(data) % colors)
+        enc = bytes((data[j] - (data[j - bpp] if j >= bpp else 0)) & 0xFF for j in range(len(data)))
+        payload = zlib.compress(b"\x01" + enc)
+        extra = b"/Filter /FlateDecode /DecodeParms << /Predictor 11 /Colors %d /Columns %d >> " % (colors, len(data) // colors)
+    elif predictor == 12:  # one PNG row with the Up filter; the zero previous row leaves the bytes unchanged
         import zlib
         payload = zlib.compress(b"\x02" + data)
         extra = b"/Filter /FlateDecode /DecodeParms << /Predictor 12 /Columns %d >> " % len(data)
@@ -970,10 +977,24 @@ def test_type2_entry_to_non_object_stream_fails(copy):
 
 def test_predictor_parameters_are_validated(copy):
     pdf = next(copy.glob("*.pdf"))
-    for params in (b"/DecodeParms << /Columns 4 /Predictor 99 >> ", b"/DecodeParms << /Columns 999 /Predictor 12 >> "):
+    for params, message in ((b"/DecodeParms << /Columns 4 /Predictor 99 >> ", "unsupported /Predictor 99"),
+                            (b"/DecodeParms << /Columns 999 /Predictor 12 >> ", "rows of 999 bytes but /W gives 4")):
         pdf.write_bytes(xref_pdf(predictor=True, dict_extra=params))
         code, out = run(copy)
-        assert code == 1 and "full parse failed" in out, (params, out)
+        assert code == 1 and message in out, (params, out)
+
+
+def test_png_predictors_use_the_declared_pixel_width(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(objstm_pdf(png=(3, 3)))  # Sub filter over three-byte pixels, declared /Colors 3
+    code, out = run(copy)
+    assert code == 0, out
+    pdf.write_bytes(objstm_pdf(png=(1, 3)))  # encoded byte-by-byte but declared /Colors 3: decodes to garbage
+    code, out = run(copy)
+    assert code == 1 and "object stream" in out, out
+    pdf.write_bytes(xref_pdf(predictor=True, dict_extra=b"/DecodeParms << /Columns 2 /Colors 2 /Predictor 12 >> "))
+    code, out = run(copy)
+    assert code == 0, out
 
 
 def test_missing_required_file_fails(copy):

@@ -649,3 +649,11 @@ Three findings from the automated Codex review of commit `8df488e563`; all accep
 | 107 | P2 | An introduced object stream with no type-2 entry was never decoded | Accepted. Every in-use object introduced by a section whose top-level `/Type` is `/ObjStm` is now decoded whether or not any type-2 entry names it, and each header member must still map to a type-2 entry for that container and index. Test: the reviewer's example, object 5's row changed from type 2 to free | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 108 | P2 | A manifest entry could escape the manuscript directory and bypass the format check | Accepted. Manifest entries must be bare file names (no absolute paths, no directory components); every required `.tex`/`.pdf` file is now checked directly rather than through a directory listing. Test: entries `../archive/...pdf`, `/etc/hostname`, `sub/dir.pdf` | same |
 | 109 | P2 | `%%EOFX` was accepted as a historical `%%EOF` | Accepted. Each revision's `%%EOF` must end at a line boundary (or the end of file); the final marker must end the file up to trailing newlines. Test: an original revision ending in `%%EOFX` followed by a valid update; a file with a trailing byte after the final marker | same |
+
+## Fiftieth round (pull request #95, unreferenced-object-stream revision)
+
+One finding from the automated Codex review of commit `621133b1e3`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 110 | P2 | PNG Sub, Average and Paeth prediction used the previous byte rather than the previous pixel | Accepted. The PNG row filters now predict from the previous pixel of `ceil(Colors × BitsPerComponent / 8)` bytes. The `/DecodeParms` validation is shared by object streams, superseded streams and the cross-reference stream, whose predicted row width must now equal the `/W` row width and whose TIFF predictor is now undone as well. Tests: an object stream Sub-encoded over three-byte pixels under `/Colors 3` (passes) and one encoded byte by byte under the same declaration (fails); a cross-reference stream with `/Columns 2 /Colors 2` over a four-byte `/W` (passes) and `/Columns 999` (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

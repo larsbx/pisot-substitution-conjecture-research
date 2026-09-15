@@ -1305,3 +1305,18 @@ No other findings were posted in the forty-eighth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the forty-ninth round.
+
+# Fiftieth round: review of the unreferenced-object-stream revision (pull request #95)
+
+**Reviewed commit:** `621133b1e3` (findings 107–109).
+**Review posted:** 2026-09-15T19:38:09Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 110 (P2) — `scripts/check_manuscript_source.py`, line 190
+
+> **Use the declared pixel width for PNG predictors**
+>
+> Fresh evidence beyond the prior predictor fix is that PNG Sub, Average, and Paeth prediction use the previous *pixel*, whose byte width is `ceil(Colors × BitsPerComponent / 8)`, but this implementation always uses the immediately preceding byte. With `/Colors 3 /BitsPerComponent 8`, a historical object stream can therefore be crafted to decode as valid header/member bytes only under this incorrect one-byte rule; after a later revision replaces the member, pypdf decodes the surviving stream but never parses that obsolete member, so the malformed historical revision can pass. Pass the declared bytes-per-pixel into `_unpredict` and use `j - bpp` for the left and upper-left samples.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fiftieth round.

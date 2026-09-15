@@ -180,14 +180,14 @@ def _classic_table(raw: bytes, off: int) -> str | Section:
     return table, size, prev, xrefstm, off + parsed[1], root
 
 
-def _unpredict(payload: bytes, row: int) -> bytes | None:
-    """Undo PNG row prediction (filter byte per row); None on an unknown filter."""
+def _unpredict(payload: bytes, row: int, bpp: int = 1) -> bytes | None:
+    """Undo PNG row prediction (filter byte per row, ``bpp`` bytes per pixel); None on an unknown filter."""
     width, prev, out = row - 1, bytes(row - 1), []
     for i in range(0, len(payload), row):
         f, line = payload[i], bytearray(payload[i + 1:i + row])
         for j in range(width):
-            a = line[j - 1] if j else 0
-            b, c = prev[j], (prev[j - 1] if j else 0)
+            a = line[j - bpp] if j >= bpp else 0
+            b, c = prev[j], (prev[j - bpp] if j >= bpp else 0)
             if f == 0:
                 pred = 0
             elif f == 1:
@@ -256,15 +256,14 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
     widths = [int(x) for x in w.group(1).split()]
     if len(widths) != 3:
         return f"cross-reference stream /W must have exactly three fields, has {len(widths)}"
-    row, predicted = sum(widths), False
+    row, parms = sum(widths), None
     if b"DecodeParms" in items:
-        parms = _dict_items(items[b"DecodeParms"], 0)
-        pred = _int_value(parms.get(b"Predictor", b"1")) if parms is not None else None
-        if pred is None:
-            return "cross-reference stream /DecodeParms is not a direct dictionary with a whole-integer /Predictor"
-        predicted = pred >= 10
-    if predicted:
-        row += 1
+        parms = _parms(items[b"DecodeParms"])
+        if isinstance(parms, str):
+            return f"cross-reference stream {parms}"
+        if parms[0] != 1 and _row_width(1, *parms[1:]) != row:
+            return f"cross-reference stream predictor geometry gives rows of {_row_width(1, *parms[1:])} bytes but /W gives {row}"
+        row = _row_width(*parms)
     if row == 0:
         return "cross-reference stream has zero row width"
     if b"Length" not in items:
@@ -320,10 +319,10 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
     if rows != expected_rows:
         return f"cross-reference stream has {rows} rows but declares {expected_rows} (/Index or /Size)"
     numbers = [st + k for st, c in pairs for k in range(c)]
-    if predicted:
-        payload = _unpredict(payload, row)
-        if payload is None:
-            return "cross-reference stream uses an unknown PNG row filter"
+    if parms is not None:
+        payload = _undo_predictor(payload, *parms)
+        if isinstance(payload, str):
+            return f"cross-reference stream {payload}"
     table = _xref_rows(raw, payload, widths, numbers, size)
     return table if isinstance(table, str) else (table, size, prev, None, off + data_start + n + tail.end(), root)
 
@@ -387,16 +386,11 @@ def _untiff(out: bytes, width: int, colors: int) -> bytes:
     return b"".join(rows)
 
 
-def _unfilter(d: bytes, out: bytes) -> bytes | str:
-    """The inflated bytes ``out`` of a Flate stream with dictionary ``d`` after undoing the
-    predictor its ``/DecodeParms`` declares, or a problem: the parameters must be a direct
+def _parms(value: bytes) -> tuple[int, int, int, int] | str:
+    """``(/Predictor, /Columns, /Colors, /BitsPerComponent)`` of a direct ``/DecodeParms``
     dictionary (or one-element array of one) whose present fields are whole nonnegative
-    integers, ``/Predictor`` 1, 2 or 10-15 with positive geometry, and the inflated length
-    a whole number of rows (PNG rows carrying known row filters)."""
-    items = _dict_items(d, 0)
-    if items is None or b"DecodeParms" not in items:
-        return out
-    value = items[b"DecodeParms"]
+    integers, ``/Predictor`` 1, 2 or 10-15 with positive geometry, TIFF prediction at 8 bits
+    per component only; or a problem."""
     if value.startswith(b"["):  # a one-element array holding the dictionary
         inner = re.fullmatch(rb"\[\s*(<<.*>>)\s*\]", value, re.S)
         value = inner.group(1) if inner else b""
@@ -414,17 +408,38 @@ def _unfilter(d: bytes, out: bytes) -> bytes | str:
         return f"unsupported /Predictor {pred}"
     if cols < 1 or colors < 1 or bpc not in (1, 2, 4, 8, 16):
         return "invalid predictor geometry"
+    if pred == 2 and bpc != 8:
+        return "TIFF prediction is supported for 8 bits per component only"
+    return pred, cols, colors, bpc
+
+
+def _row_width(pred: int, cols: int, colors: int, bpc: int) -> int:
+    """Bytes per predicted row: the packed samples, plus the filter byte of a PNG row."""
+    return (cols * colors * bpc + 7) // 8 + (pred >= 10)
+
+
+def _undo_predictor(out: bytes, pred: int, cols: int, colors: int, bpc: int) -> bytes | str:
+    """``out`` with predictor ``pred`` undone over rows of the declared geometry (PNG filters
+    predicting from the previous pixel of ``ceil(colors * bpc / 8)`` bytes), or a problem."""
     if pred == 1:
         return out
-    row = (cols * colors * bpc + 7) // 8 + (pred >= 10)  # PNG rows carry a leading filter byte
+    row = _row_width(pred, cols, colors, bpc)
     if len(out) % row:
         return f"decoded length {len(out)} is not a multiple of the predicted row width {row}"
     if pred >= 10:
-        decoded = _unpredict(out, row)
+        decoded = _unpredict(out, row, (colors * bpc + 7) // 8)
         return "unknown PNG row filter" if decoded is None else decoded
-    if bpc != 8:
-        return "TIFF prediction is supported for 8 bits per component only"
     return _untiff(out, row, colors)
+
+
+def _unfilter(d: bytes, out: bytes) -> bytes | str:
+    """The inflated bytes ``out`` of a Flate stream with dictionary ``d`` after undoing the
+    predictor its ``/DecodeParms`` declares (validated by ``_parms``), or a problem."""
+    items = _dict_items(d, 0)
+    if items is None or b"DecodeParms" not in items:
+        return out
+    parms = _parms(items[b"DecodeParms"])
+    return parms if isinstance(parms, str) else _undo_predictor(out, *parms)
 
 
 _TOKEN = rb"(?:/(?:[^\s/\[\]<>(){}%#]|#[0-9A-Fa-f]{2})*|[+-]?(?:\d+\.?\d*|\.\d+)|true|false|null)(?=" + _DELIM + rb"|$)"
