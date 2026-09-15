@@ -10,27 +10,36 @@ The shortest current route to pure discrete spectrum is G1-free and has one open
 PIP
 => G1b-1 bounded discrepancy                         [PROVED]
 => finite seed-patch overlap graph                   [PROVED]
-=> productive overlaps from one legal swap seed      [OPEN: Open Problem 5.35]
+=> productive overlaps from one swap seed            [OPEN: Open Problem 5.35]
 => coincidence density one / dense good set          [PROVED]
 => PDS                                                [IMPORTED: Barge–Štimac–Williams]
 ```
+
+The swap seed uses any two distinct tile types; no assumption that `ab` is a legal factor of the substitution language is part of Theorem 5.38.
 
 G1b-2, finite BPA, concentration, wedge productivity, SCC Producer, and the realization/rank bridge all remain open in their respective programmes. They are not hidden assumptions of manuscript Theorem 5.38.
 
 ## Primary gate — seedwise overlap productivity
 
-For every primitive irreducible Pisot substitution, prove that there is a legal pair `a != b` such that every exact overlap reachable from the seed overlaps of `(ab,ba)` is productive.
+For every primitive irreducible Pisot substitution, prove that there are distinct letters `a != b` such that every exact overlap reachable from the seed overlaps of `(ab,ba)` is productive.
 
-The graph on which this is asked is already finite. A hypothetical counterexample therefore contains a finite reachable child-closed nonproductive set `S`.
+The graph on which this is asked is already finite. PR #88 sharpens any hypothetical failure to a canonical obstruction rather than an arbitrary bad vertex.
 
-Current constraints on such an `S`:
+Current constraints on a bad obstruction `S`:
 
 1. **Full rank (PR #76).** The span of its intersection vectors is a nonzero rational `M_sigma`-invariant space; irreducibility forces full rank, and the child-count matrix inherits the Galois spectrum of `M_sigma`.
-2. **Endpoint alignment (PR #82).** Offset-zero and right-aligned seed overlaps are exactly the prefix/suffix strong-coincidence cases.
-3. **Boundary-hitting criterion (PR #82).** An overlap reaches offset zero at level `m` iff `M^m w` is a difference of proper-prefix Parikh vectors, equivalently iff inflated descendants have a common left endpoint.
-4. **Strong finite evidence.** In the exact 4,554-member corpus, all 1,118,850 overlap vertices are productive; largest graph 2,640; largest first-coincidence depth 18; first left-aligned depth at most 17; prefix/suffix strong-coincidence depth at most 15.
+2. **Closed recurrent normal form (PR #88).** A failure contains a finite child-closed irreducible nonproductive SCC `S`; its child-count matrix has `PF(N_S)=beta` and the full-rank intertwiner applies.
+3. **Endpoint alignment (PR #82).** Offset-zero and right-aligned seed overlaps are exactly the prefix/suffix strong-coincidence cases.
+4. **Boundary-hitting criterion (PR #82).** An overlap reaches offset zero at level `m` iff `M^m w` is a difference of proper-prefix Parikh vectors, equivalently iff inflated descendants have a common left endpoint.
+5. **Boundary/zipper dichotomy (PR #88).** Either `S` contains an offset-zero state, exposing a non-eventually-coincident letter pair, or no substituted top/bottom child starts ever tie and every child factorization in `S` is a strict monotone prefix-grid zipper.
+6. **Strong finite evidence.** In the exact 4,554-member corpus, all 1,118,850 overlap vertices are productive; largest graph 2,640; largest first-coincidence depth 18; first left-aligned depth at most 17; prefix/suffix strong-coincidence depth at most 15.
 
-The preferred next theorem is a minimal-bad-set contradiction combining full rank, ordered descendant structure, prefix-Parikh boundary avoidance, and Pisot contraction.
+The preferred next theorem now splits cleanly:
+
+- **aligned branch:** force the exposed non-eventually-coincident pair into the available strong-coincidence structure;
+- **strict-zipper branch:** retain ordered boundary-source data through inflation and use full rank plus exact prefix geometry to force a boundary hit or an impossible recurrent zipper.
+
+Generic Perron growth alone is insufficient: the residual real-overlap graph can carry the full expansion spectral radius. Do not infer `rho(N_S)<beta` merely by calling the bad component a boundary graph.
 
 ## Stable base
 
@@ -82,6 +91,7 @@ The realization/coincidence-rank chain is an audited open bridge with obligation
 
 A valid general PSC proof must not silently add any of the following:
 
+- legality of the two-letter periodic swap word as a substitution-language factor;
 - rational/integer tile-length independence as an independent hypothesis;
 - UD as an independent hypothesis;
 - finite injectivity or prefix/suffix permutation hypotheses;
@@ -93,7 +103,7 @@ A valid general PSC proof must not silently add any of the following:
 
 ## Priority order
 
-1. **Overlap productivity / minimal bad overlap set.** Current shortest-path gate.
+1. **Overlap productivity / bad-overlap normal form.** Current shortest-path gate; attack the aligned and strict-zipper branches from PR #88.
 2. **G1b-2 renewal finiteness.** Stronger independent BPA theorem.
 3. **Concentration and wedge productivity.** Alternative finite-BPA SCC route.
 4. **Realization bridge.** Secondary certificate route.
