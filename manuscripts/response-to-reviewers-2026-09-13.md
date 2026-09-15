@@ -722,3 +722,11 @@ One finding from the automated Codex review of commit `c472c2b3c8`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 119 | P2 | A separator comment could run into the header of the object it precedes | Accepted. Each comment between listed objects must now be closed by its line ending before the next object or section begins. The scenario (`% hidden 1 0 obj`) was confirmed to pass the previous revision. Tests: that scenario (fails), a whole comment line with a CRLF ending (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-ninth round (pull request #95, separator-comment revision)
+
+One finding from the automated Codex review of commit `d4ce42bb76`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 120 | P2 | A revision terminator could put `startxref`, the offset and `%%EOF` on one line | Accepted. Every revision's terminator, the final one included, must now carry a line ending after `startxref` and after the offset, and `%%EOF` must end at a line boundary. The scenario (an original revision terminated on one line under a valid update) was confirmed to pass the previous revision. Tests: that scenario (fails), the same with CR and CRLF endings (passes), the final terminator on one line (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

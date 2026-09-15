@@ -995,6 +995,23 @@ def test_historical_objects_close_before_their_section(copy):
     assert code == 1 and "object 4 is not one complete object" in out and "before its cross-reference section" in out, out
 
 
+def test_revision_terminators_are_line_delimited(copy):
+    pdf = next(copy.glob("*.pdf"))
+    raw = classic_pdf()
+    xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
+    updated = classic_update(raw, 3, b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 20 20] >>", 4)
+    one_line = updated.replace(b"startxref\n%d\n%%%%EOF\n" % xref, b"startxref %d %%%%EOF\n" % xref, 1)  # same length
+    assert one_line != updated
+    pdf.write_bytes(one_line)
+    code, out = run(copy)
+    assert code == 1 and "on separate lines" in out, out
+    pdf.write_bytes(updated.replace(b"startxref\n%d\n%%%%EOF\n" % xref, b"startxref\r%d\r\n%%%%EOF\r" % xref, 1))  # other line endings
+    assert run(copy)[0] == 0
+    pdf.write_bytes(raw.replace(b"startxref\n%d\n%%%%EOF\n" % xref, b"startxref %d\n%%%%EOF\n" % xref))  # the final terminator too
+    code, out = run(copy)
+    assert code == 1, out
+
+
 def test_endobj_needs_a_token_boundary(copy):
     pdf = next(copy.glob("*.pdf"))
     raw = superseded_pdf(b"<< /Marker 1 >>")

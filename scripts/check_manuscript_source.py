@@ -824,9 +824,9 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
         here = seen[-1]
         if any(link is not None and link >= here for link in (prev, xrefstm)):
             return f"cross-reference section at offset {here} links forward (/Prev or /XRefStm {prev if prev is not None and prev >= here else xrefstm}); earlier revisions precede it"
-        term = re.match(rb"[\x00\t\n\x0c\r ]*startxref[\x00\t\n\x0c\r ]+(\d+)[\x00\t\n\x0c\r ]*%%EOF(?:\r\n|\r|\n|$)", raw[section[4]:section[4] + 64])
+        term = re.match(rb"[\x00\t\n\x0c\r ]*startxref(?:\r\n|\r|\n)(\d+)(?:\r\n|\r|\n)%%EOF(?:\r\n|\r|\n|$)", raw[section[4]:section[4] + 64])
         if not term or int(term.group(1)) != here:
-            return f"cross-reference section at offset {here} is not followed by 'startxref {here}' and %%EOF, so its revision was never a complete file"
+            return f"cross-reference section at offset {here} is not followed by 'startxref', {here} and %%EOF on separate lines, so its revision was never a complete file"
         after = section[4] + term.end()  # where the next revision's body begins
         off = prev
         classic, sizes, roots = xrefstm is not None or raw.startswith(b"xref", here), (size,), (root,)
@@ -927,7 +927,7 @@ def check_pdf(path: Path) -> list[str]:
     sx = tail.rfind(b"startxref", 0, eof)
     if sx < 0:
         return [f"{path}: no startxref before the final %%EOF"]
-    m = re.fullmatch(rb"startxref[\x00\t\n\x0c\r ]+(\d+)[\x00\t\n\x0c\r ]*", tail[sx:eof])
+    m = re.fullmatch(rb"startxref(?:\r\n|\r|\n)(\d+)(?:\r\n|\r|\n)", tail[sx:eof])
     if not m:
         return [f"{path}: malformed startxref before the final %%EOF"]
     off = int(m.group(1))

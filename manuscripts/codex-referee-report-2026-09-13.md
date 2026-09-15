@@ -1448,3 +1448,18 @@ No other findings were posted in the fifty-seventh round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the fifty-eighth round.
+
+# Fifty-ninth round: review of the separator-comment revision (pull request #95)
+
+**Reviewed commit:** `d4ce42bb76` (finding 119).
+**Review posted:** 2026-09-15T20:50:59Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 120 (P2) — `scripts/check_manuscript_source.py`, line 827
+
+> **Require line-delimited revision terminators**
+>
+> When an older revision writes `startxref 184 %%EOF\n` on one line, this regex accepts it because every separator is the unrestricted PDF-whitespace class, even though a complete PDF terminator requires `startxref`, its offset, and `%%EOF` on separate lines. A later valid incremental update can reference that section through `/Prev`; the structural walk succeeds and pypdf follows the xref chain without validating the superseded terminator, so a revision that was never properly terminated passes the guard. Require the appropriate line endings between all three components.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-ninth round.
