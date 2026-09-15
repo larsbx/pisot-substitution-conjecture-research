@@ -37,7 +37,7 @@ def _state_index(g: Any, state: Any) -> int:
     try:
         return g.states.index(state)
     except ValueError as exc:
-        raise RuntimeError("ordered child occurrence is absent from the complete graph") from exc
+        raise RuntimeError("ordered child occurrence is absent from the seed-patch graph") from exc
 
 
 def occurrence_edges(g: Any, parent_index: int) -> list[AffineOccurrenceEdge]:
