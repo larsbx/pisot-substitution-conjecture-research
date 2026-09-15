@@ -1524,3 +1524,18 @@ No other findings were posted in the sixty-second round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the sixty-third round.
+
+# Sixty-fourth round: review of the token-boundary revision (pull request #95)
+
+**Reviewed commit:** `873ff91650` (finding 127).
+**Review posted:** 2026-09-15T21:30:19Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 128 (P2) — `scripts/check_manuscript_source.py`, line 47
+
+> **Reject an end sentinel before the document begins**
+>
+> Fresh evidence beyond the prior within-line ordering fix is a source containing an active `\end{document}` before an otherwise valid `\begin{document}`/`\end{document}` pair: `rfind` selects the final end sentinel, so `e < b` is false and the malformed source passes even though TeX reaches the earlier end first. Compare the begin position with the first active end sentinel, or explicitly reject any active end before the begin sentinel.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-fourth round.

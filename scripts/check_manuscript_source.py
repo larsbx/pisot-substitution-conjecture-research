@@ -42,9 +42,10 @@ def check_tex(path: Path) -> list[str]:
     if not first.startswith("\\documentclass"):
         problems.append(f"{path}: first line is not \\documentclass")
     # a TeX comment runs from a % preceded by an even run of backslashes (\\ is a control sequence,
-    # \% an escaped percent) to the line end; the sentinels are ordered by position in what remains
+    # \% an escaped percent) to the line end; the document must begin before the first end sentinel
+    # that remains, since TeX stops at the first one it reaches
     active = "\n".join(re.sub(r"(?<!\\)((?:\\\\)*)%.*", r"\1", l) for l in lines)
-    b, e = active.find("\\begin{document}"), active.rfind("\\end{document}")
+    b, e = active.find("\\begin{document}"), active.find("\\end{document}")
     if b < 0 or e < b:
         problems.append(f"{path}: missing or misordered \\begin{{document}} / \\end{{document}} on uncommented lines")
     if len(lines) < MIN_LINES:

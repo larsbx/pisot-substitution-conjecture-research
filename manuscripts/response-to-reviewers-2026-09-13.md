@@ -765,3 +765,11 @@ One finding from the automated Codex review of commit `4967a92624`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 127 | P2 | The object-stream header could run into its first member without a token boundary | Accepted. The byte before `/First` must be white space or the byte at `/First` a white-space or delimiter byte, so the header's last integer cannot continue into the member. The scenario (`5 0true` with `/First 3`) was confirmed to pass the previous revision. Tests: that scenario (fails), a delimiter right at `/First` (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Sixty-fourth round (pull request #95, token-boundary revision)
+
+One finding from the automated Codex review of commit `873ff91650`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 128 | P2 | An active `\end{document}` before the opening sentinel was masked by a later one | Accepted. The opening sentinel must now precede the first active `\end{document}`, since TeX stops at the first one it reaches. The scenario was confirmed to pass the previous revision. Test: an early `\end{document}` before an otherwise valid pair (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
