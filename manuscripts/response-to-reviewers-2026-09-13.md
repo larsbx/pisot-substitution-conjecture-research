@@ -853,3 +853,11 @@ One finding from the automated Codex review of commit `0ff3859a4b`; accepted, on
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 138 | P2 | `\begin` and `\end` could be redefined before the sentinels | Accepted. `\begin` and `\end` may now occur only as environment uses followed by `{`, the internal `\document` and `\enddocument` control words may not occur at all, and no environment-defining command may target `document`; any of these fails the source. The scenario was confirmed to pass the previous revision. Tests: `\def\begin#1{}` with `\def\end#1{}`, `\let\begin\relax`, `\renewcommand{\end}[1]{}`, `\renewenvironment{document}{}{}`, `\RenewDocumentEnvironment{document}{}{}{}` and `\let\document\relax` (all fail); `\begingroup`, `\endgroup` and `\begin {center}` (pass) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-fifth round (pull request #95, sentinel-redefinition revision)
+
+One finding from the automated Codex review of commit `9a48edeaad`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 139 | P2 | `\def\begin{}` put the target before a brace and passed as an environment use | Accepted. A definer control word (`\def` and its variants, `\let`, `\futurelet`, a prefix such as `\global`, `\long`, `\outer` or `\protected`, or any control word containing `command`/`Command`) followed by `\begin`, `\end`, `\document` or `\enddocument` as its target now fails the source, in addition to the earlier rules. The scenario was confirmed to pass the previous revision. Tests: `\def\begin{}` with `\def\end{}`, `\renewcommand\begin{}`, `\global\let\end{}`, `\NewCommandCopy\begin{\relax}` and the alias `\let\foo\begin` (fail); a macro body using `\begin{center}` (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

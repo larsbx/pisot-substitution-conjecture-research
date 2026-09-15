@@ -1689,3 +1689,18 @@ No other findings were posted in the seventy-third round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the seventy-fourth round.
+
+# Seventy-fifth round: review of the sentinel-redefinition revision (pull request #95)
+
+**Reviewed commit:** `9a48edeaad` (finding 138).
+**Review posted:** 2026-09-15T22:35:04Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 139 (P2) — `scripts/check_manuscript_source.py`, line 93
+
+> **Reject parameterless redefinitions of document sentinels**
+>
+> When the source uses `\def\begin{}` and `\def\end{}` before the standalone sentinel lines, each target control word is immediately followed by `{`, so this negative lookahead classifies the definitions as permitted environment uses and `check_tex` returns no problems. TeX instead replaces both commands with empty macros, so the later lines never open or close the document environment; distinguish command invocations from definition targets rather than relying only on the following brace.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-fifth round.

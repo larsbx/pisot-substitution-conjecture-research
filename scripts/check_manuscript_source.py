@@ -88,9 +88,13 @@ def check_tex(path: Path) -> list[str]:
 
     b, e = sentinel("begin"), sentinel("end")
     # the sentinels mean what LaTeX defines only while \\begin, \\end and the document environment keep
-    # their definitions: \\begin and \\end may occur only as environment uses followed by {, the internal
-    # \\document and \\enddocument may not occur, and no environment-defining command may target document
+    # their definitions: \\begin and \\end may occur only as environment uses followed by {, never as the
+    # target of a definer (\\def and its variants, \\let, \\futurelet, a prefix such as \\global, or any
+    # ...command... macro), the internal \\document and \\enddocument may not occur, and no
+    # environment-defining command may target document
     tampering = (re.search(r"(?<!\\)(?:\\\\)*\\(begin|end)(?![a-zA-Z@])(?![ \t]*\{)", active)
+                 or re.search(r"(?<!\\)(?:\\\\)*\\([gex]?def|let|futurelet|global|long|outer|protected|[a-zA-Z@]*[cC]ommand[a-zA-Z@]*)"
+                              r"[ \t]*\{?[ \t]*\\(?:begin|end|document|enddocument)(?![a-zA-Z@])", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\(document|enddocument)(?![a-zA-Z@])", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*[eE]nvironment)\*?[ \t]*\{[ \t]*document[ \t]*\}", active))
     if tampering:
