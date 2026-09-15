@@ -438,6 +438,7 @@ def hybrid_pdf(free5=b"\x00\x00\x00\x00", companion_extra=b"", free4=False):
     (object 4) describing itself and a free object 5; /Size 6.  With ``free4`` the classic
     table also lists object 4 as free (on the free list from object 0)."""
     raw = classic_pdf()
+    raw = raw[:int(re.search(rb"startxref\n(\d+)", raw).group(1))]  # the objects only: one revision, one table
     o4 = len(raw)
     rows = b"\x00\x00\x00\xff" + b"\x01" + o4.to_bytes(2, "big") + b"\x00" + free5
     raw += (b"4 0 obj\n<< /Type /XRef /Size 6 /Index [0 1 4 2] /W [1 2 1] /Root 1 0 R " + companion_extra + b"/Length %d >>\nstream\n" % len(rows)
@@ -1000,6 +1001,24 @@ def test_endobj_needs_a_token_boundary(copy):
     pdf.write_bytes(raw.replace(b"/Marker 1 >>\nendobj\n", b"/Marker 1 >>\nendobj\x0b"))  # vertical tab is a regular byte
     code, out = run(copy)
     assert code == 1 and "not one complete object closed by endobj" in out, out
+
+
+def insert_before_xref(raw: bytes, extra: bytes) -> bytes:
+    """``raw`` with ``extra`` inserted just before its (only) cross-reference section."""
+    xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
+    return raw[:xref] + extra + raw[xref:].replace(b"startxref\n%d\n" % xref, b"startxref\n%d\n" % (xref + len(extra)))
+
+
+def test_unlisted_objects_are_rejected(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(insert_before_xref(classic_pdf(), b"99 0 obj\nnot-a-PDF-object\nendobj\n"))  # /Size 4 and the rows unchanged
+    code, out = run(copy)
+    assert code == 1 and "not accounted for by any cross-reference entry" in out, out
+    pdf.write_bytes(insert_before_xref(classic_pdf(), b"garbage\n"))
+    code, out = run(copy)
+    assert code == 1 and "not accounted for by any cross-reference entry" in out, out
+    pdf.write_bytes(insert_before_xref(classic_pdf(), b"% a comment line\n\n"))  # comments and white space are fine
+    assert run(copy)[0] == 0
 
 
 def test_superseded_stream_must_end_with_endobj(copy):

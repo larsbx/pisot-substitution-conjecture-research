@@ -706,3 +706,11 @@ One finding from the automated Codex review of commit `156822e056`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 117 | P2 | The manuscripts directory itself could be a symbolic link | Accepted. A linked directory now fails before its manifest or children are read; the helper's contract is restated accordingly. The scenario was confirmed to pass the previous revision. Test: a link to the directory (fails) while the real directory passes | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Fifty-seventh round (pull request #95, linked-directory revision)
+
+One finding from the automated Codex review of commit `ee3e4b8f3f`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 118 | P2 | An indirect object listed by no cross-reference entry escaped every check | Accepted. Every revision's body (from the end of the previous revision, or the start of the file, to its cross-reference section) must now consist exactly of the in-use objects its section lists there, separated only by white space and comment lines (the header line is one); any other bytes fail. The scenario was confirmed to pass the previous revision. Tests: the reviewer's unlisted object 99 and stray text (fail), a comment line (passes); the hybrid fixture no longer carries a stale table in its body | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

@@ -1418,3 +1418,18 @@ No other findings were posted in the fifty-fifth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the fifty-sixth round.
+
+# Fifty-seventh round: review of the linked-directory revision (pull request #95)
+
+**Reviewed commit:** `ee3e4b8f3f` (finding 117).
+**Review posted:** 2026-09-15T20:36:37Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 118 (P2) — `scripts/check_manuscript_source.py`, line 384
+
+> **Reject indirect objects omitted from cross-reference sections**
+>
+> This loop examines only objects already listed in the section, so an unlisted indirect object is invisible to both structural validation and the later pypdf dereference loop. For example, inserting `99 0 obj\nnot-a-PDF-object\nendobj` immediately before the xref section of the valid classic fixture, while leaving `/Size 4` and its rows unchanged, makes `_xref_chain` return success; pypdf likewise has no object ID through which to inspect object 99. Reject indirect-object definitions that are not accounted for by the applicable cross-reference section, otherwise byte-mangled or malformed content can still pass the integrity guard.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-seventh round.

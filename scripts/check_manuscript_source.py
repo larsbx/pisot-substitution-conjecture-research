@@ -525,11 +525,12 @@ def _object_end(buf: bytes, i: int) -> int | None:
     return i + m.end() + (ref.end() if ref else 0)
 
 
-def _whole_object(at: bytes, num: int) -> str | tuple[bytes | None, bytes | None]:
+def _whole_object(at: bytes, num: int) -> str | tuple[int, bytes | None, bytes | None]:
     """``at`` must begin with one complete indirect object ``num``: its header, one direct
     object and ``endobj``, or a dictionary and a stream of its direct ``/Length`` closed by
-    ``endstream`` and ``endobj``.  ``(dictionary, stream data)`` (None where absent), or a
-    problem.  Nothing past the end of ``at`` is consulted, so the caller bounds the parse."""
+    ``endstream`` and ``endobj``.  ``(end offset, dictionary, stream data)`` (None where
+    absent), or a problem.  Nothing past the end of ``at`` is consulted, so the caller
+    bounds the parse."""
     head = re.match(rb"\d+[\x00\t\n\x0c\r ]+\d+[\x00\t\n\x0c\r ]+obj[\x00\t\n\x0c\r ]*", at)
     end = _object_end(at, head.end()) if head else None
     if end is None:
@@ -537,16 +538,34 @@ def _whole_object(at: bytes, num: int) -> str | tuple[bytes | None, bytes | None
     body = re.match(rb"[\x00\t\n\x0c\r ]*stream(?:\r\n|\n)", at[end:end + 16]) if at.startswith(b"<<", head.end()) else None
     if not body:
         closed = re.match(rb"[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[end:end + 16])
-        return (None, None) if closed else f"object {num} is not one complete object closed by endobj"
+        return (end + closed.end(), None, None) if closed else f"object {num} is not one complete object closed by endobj"
     d = at[head.end():end]
     length = _int_value(_dict_items(d, 0).get(b"Length", b""))
     if length is None:
         return f"stream object {num} lacks a direct /Length"
     start = end + body.end()
     data = at[start:start + length]
-    if len(data) < length or not re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[start + length:start + length + 32]):
+    tail = re.match(rb"(?:\r\n|\r|\n)?endstream[\x00\t\n\x0c\r ]*endobj(?=[\x00\t\n\x0c\r /\[\]<>(){}%]|$)", at[start + length:start + length + 32])
+    if len(data) < length or not tail:
         return f"stream object {num} does not match its /Length or is not closed by endstream and endobj"
-    return d, data
+    return start + length + tail.end(), d, data
+
+
+def _covered(raw: bytes, start: int, end: int, entries: dict[int, Entry]) -> str | None:
+    """The revision body ``raw[start:end]`` must consist exactly of the in-use objects its
+    section lists there, separated only by white space and comments (the header line is
+    one): bytes no entry accounts for, such as an unlisted indirect object, are reached by
+    no cross-reference and would escape every check, so they fail."""
+    spans = sorted((f, f + _whole_object(raw[f:end], num)[0])  # validated by _section_at already
+                   for num, (kind, f, *_) in entries.items() if kind == 1 and start <= f < end)
+    pos = start
+    for f, e in spans + [(end, end)]:
+        if f < pos:
+            return f"objects overlap at offset {f}"
+        if not re.fullmatch(rb"(?:[\x00\t\n\x0c\r ]|%[^\r\n]*)*", raw[pos:f]):
+            return f"bytes at offsets {pos}-{f} are not accounted for by any cross-reference entry of the revision ending at {end}"
+        pos = e
+    return None
 
 
 def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) -> str | None:
@@ -554,14 +573,14 @@ def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) ->
     revision supersedes is decoded here: within the bytes before its own section it must
     carry a parsable filter chain that is empty or exactly ``/FlateDecode``, inflate
     strictly, and satisfy its ``/DecodeParms``."""
-    for entries, _, _, _, bound in sections:
+    for entries, _, _, _, bound, _ in sections:
         for num, entry in entries.items():
             if entry[0] != 1 or entry[1] == bound or merged.get(num) == entry:
                 continue
             parsed = _whole_object(raw[entry[1]:bound], num)
             if isinstance(parsed, str):
                 return f"superseded {parsed}"
-            d, data = parsed
+            _, d, data = parsed
             if d is None or data is None:
                 continue
             names = _filter_names(d)
@@ -807,6 +826,7 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
         term = re.match(rb"[\x00\t\n\x0c\r ]*startxref[\x00\t\n\x0c\r ]+(\d+)[\x00\t\n\x0c\r ]*%%EOF(?:\r\n|\r|\n|$)", raw[section[4]:section[4] + 64])
         if not term or int(term.group(1)) != here:
             return f"cross-reference section at offset {here} is not followed by 'startxref {here}' and %%EOF, so its revision was never a complete file"
+        after = section[4] + term.end()  # where the next revision's body begins
         off = prev
         classic, sizes, roots = xrefstm is not None or raw.startswith(b"xref", here), (size,), (root,)
         if xrefstm is not None:
@@ -820,9 +840,9 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
             num, gen = (int(x) for x in re.match(rb"(\d+)[\x00\t\n\x0c\r ]+(\d+)[\x00\t\n\x0c\r ]+obj", raw[xrefstm:]).groups())
             if entries.get(num, (None,))[:3] != (1, xrefstm, gen):  # the table must not free or move the companion it names
                 return f"/XRefStm companion object {num} {gen} at offset {xrefstm} is not an in-use entry at that offset once the classic table's entries take precedence"
-        sections.append((entries, sizes, roots, classic, here))
+        sections.append((entries, sizes, roots, classic, here, after))
     merged, cache = {}, {}
-    for entries, sizes, roots, classic, _ in reversed(sections):
+    for entries, sizes, roots, classic, _, _ in reversed(sections):
         merged = {**merged, **entries}  # newer sections win
         if problem := _free_list(merged, classic) or _object_streams(raw, merged, cache, entries):
             return problem
@@ -832,6 +852,9 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
         for root in roots:
             if problem := _catalog(raw, root, merged, cache):
                 return problem
+    for i, (entries, _, _, _, here, _) in enumerate(sections):  # newest first; each body starts where the previous revision ended
+        if problem := _covered(raw, sections[i + 1][5] if i + 1 < len(sections) else 0, here, entries):
+            return problem
     return _superseded_streams(raw, sections, merged) or max(merged)
 
 
