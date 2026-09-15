@@ -1554,3 +1554,18 @@ No other findings were posted in the sixty-fourth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the sixty-fifth round.
+
+# Sixty-sixth round: review of the sentinel-parity revision (pull request #95)
+
+**Reviewed commit:** `95d3a614f7` (finding 129).
+**Review posted:** 2026-09-15T21:40:57Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 130 (P2) — `scripts/check_manuscript_source.py`, line 52
+
+> **Require executable document sentinels**
+>
+> When the only occurrences are stored in macro definitions, such as `\newcommand{\fake}{\begin{document}}` and `\newcommand{\stop}{\end{document}}`, these searches still make `check_tex` succeed even though LaTeX does not execute either replacement body and the source has no document environment. Fresh evidence beyond the backslash-parity fix is that a 500-line source using exactly those definitions returns no problems; require the sentinels to be actual top-level commands (for example, standalone uncommented lines) rather than arbitrary token occurrences.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the sixty-sixth round.

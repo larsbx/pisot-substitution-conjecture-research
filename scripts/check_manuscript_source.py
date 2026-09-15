@@ -42,18 +42,18 @@ def check_tex(path: Path) -> list[str]:
     if not first.startswith("\\documentclass"):
         problems.append(f"{path}: first line is not \\documentclass")
     # a TeX comment runs from a % preceded by an even run of backslashes (\\ is a control sequence,
-    # \% an escaped percent) to the line end; a sentinel counts only when its own backslash follows
-    # an even run of backslashes (\\begin{document} is the \\ control sequence and a word); the
-    # document must begin before the first end sentinel that remains, since TeX stops at the first
+    # \% an escaped percent) to the line end; a sentinel counts only as a standalone line of what
+    # remains, so an occurrence inside a macro body, after \\, or beside other commands does not;
+    # the document must begin before the first end sentinel, since TeX stops at the first
     active = "\n".join(re.sub(r"(?<!\\)((?:\\\\)*)%.*", r"\1", l) for l in lines)
 
     def sentinel(name: str) -> int:
-        m = re.search(r"(?<!\\)(?:\\\\)*(\\" + name + r"\{document\})", active)
-        return m.start(1) if m else -1
+        m = re.search(r"^[ \t]*\\" + name + r"\{document\}[ \t]*$", active, re.M)
+        return m.start() if m else -1
 
     b, e = sentinel("begin"), sentinel("end")
     if b < 0 or e < b:
-        problems.append(f"{path}: missing or misordered \\begin{{document}} / \\end{{document}} on uncommented lines")
+        problems.append(f"{path}: missing or misordered \\begin{{document}} / \\end{{document}} as standalone uncommented lines")
     if len(lines) < MIN_LINES:
         problems.append(f"{path}: only {len(lines)} lines (< {MIN_LINES})")
     return problems

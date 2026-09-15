@@ -100,28 +100,34 @@ def test_commented_document_sentinels_fail(copy):
     i = text.rindex("\\end{document}")
     tex.write_text(text[:i] + "%" + text[i:])  # the only \end{document} is now a comment
     code, out = run(copy)
-    assert code == 1 and "on uncommented lines" in out, out
+    assert code == 1 and "as standalone uncommented lines" in out, out
     tex.write_text(text.replace("\\begin{document}", "%\\begin{document}", 1))
     code, out = run(copy)
-    assert code == 1 and "on uncommented lines" in out, out
+    assert code == 1 and "as standalone uncommented lines" in out, out
     tex.write_text(text.replace("\\begin{document}", "\\begin{document} % 100\\% active", 1))  # an escaped % is not a comment
     assert run(copy)[0] == 0
     tex.write_text(text[:i] + "\\\\%" + text[i:])  # \\ is a control sequence, so this % starts a comment
     code, out = run(copy)
-    assert code == 1 and "on uncommented lines" in out, out
-    tex.write_text(text[:i] + "\\%" + text[i:])  # an escaped percent leaves the sentinel active
+    assert code == 1 and "as standalone uncommented lines" in out, out
+    tex.write_text(text[:i] + "\\% not a comment\n" + text[i:])  # an escaped percent on the line before
     assert run(copy)[0] == 0
     reversed_line = text.replace("\\begin{document}", "", 1)[:i] + "\\end{document} \\begin{document}" + text[i + len("\\end{document}"):]
     tex.write_text(reversed_line)  # both sentinels on one line, in the wrong order
     code, out = run(copy)
-    assert code == 1 and "on uncommented lines" in out, out
+    assert code == 1 and "as standalone uncommented lines" in out, out
     tex.write_text(text.replace("\\begin{document}", "\\end{document}\n\\begin{document}", 1))  # an early end before a valid pair
     code, out = run(copy)
-    assert code == 1 and "on uncommented lines" in out, out
+    assert code == 1 and "as standalone uncommented lines" in out, out
     tex.write_text(text.replace("\\begin{document}", "\\\\begin{document}", 1)[:i] + "\\" + text[i:])  # \\ then a bare word, twice
     code, out = run(copy)
-    assert code == 1 and "on uncommented lines" in out, out
-    tex.write_text(text.replace("\\begin{document}", "\\\\\\begin{document}", 1))  # \\ then the real sentinel
+    assert code == 1 and "as standalone uncommented lines" in out, out
+    tex.write_text(text.replace("\\begin{document}", "\\\\\n\\begin{document}", 1))  # \\ on the line before the real sentinel
+    assert run(copy)[0] == 0
+    tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\fake}{\\begin{document}}", 1)[:i]
+                   + "\\newcommand{\\stop}{" + text[i:i + len("\\end{document}")] + "}" + text[i + len("\\end{document}"):])  # macro bodies only
+    code, out = run(copy)
+    assert code == 1 and "as standalone uncommented lines" in out, out
+    tex.write_text(text.replace("\\begin{document}", "  \\begin{document}  \t", 1))  # surrounding white space is fine
     assert run(copy)[0] == 0
 
 

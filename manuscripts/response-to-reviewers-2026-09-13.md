@@ -781,3 +781,11 @@ One finding from the automated Codex review of commit `319b7f7f53`; accepted.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 129 | P2 | `\\begin{document}` and `\\end{document}` were accepted as sentinels | Accepted. A sentinel now counts only when its own backslash follows an even run of backslashes, the same parity rule as for comment markers. The scenario was confirmed to pass the previous revision. Tests: both sentinels escaped (fails), `\\` immediately before a real sentinel (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Sixty-sixth round (pull request #95, sentinel-parity revision)
+
+One finding from the automated Codex review of commit `95d3a614f7`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 130 | P2 | Sentinels inside macro bodies counted as the document environment | Accepted. Each sentinel must now be a standalone line of the comment-stripped text (surrounding white space allowed), which also subsumes the backslash-parity rule; the two earlier same-line passing cases now put `\\` and `\%` on the line before. The scenario was confirmed to pass the previous revision. Tests: sentinels only inside `\newcommand` bodies (fails), a sentinel with surrounding white space (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
