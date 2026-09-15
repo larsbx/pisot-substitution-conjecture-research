@@ -87,6 +87,15 @@ def check_tex(path: Path) -> list[str]:
         return -1
 
     b, e = sentinel("begin"), sentinel("end")
+    # the sentinels mean what LaTeX defines only while \\begin, \\end and the document environment keep
+    # their definitions: \\begin and \\end may occur only as environment uses followed by {, the internal
+    # \\document and \\enddocument may not occur, and no environment-defining command may target document
+    tampering = (re.search(r"(?<!\\)(?:\\\\)*\\(begin|end)(?![a-zA-Z@])(?![ \t]*\{)", active)
+                 or re.search(r"(?<!\\)(?:\\\\)*\\(document|enddocument)(?![a-zA-Z@])", active)
+                 or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*[eE]nvironment)\*?[ \t]*\{[ \t]*document[ \t]*\}", active))
+    if tampering:
+        problems.append(f"{path}: \\{tampering.group(1)} on line {active.count(chr(10), 0, tampering.start()) + 1} "
+                        "can change what the document sentinels mean")
     stop = re.search(r"(?<!\\)(?:\\\\)*\\(" + "|".join(sorted(_TEX_STOPS)) + r")(?![a-zA-Z@])", active)
     if stop and (e < 0 or stop.start() < e):
         problems.append(f"{path}: \\{stop.group(1)} on line {active.count(chr(10), 0, stop.start()) + 1} precedes "

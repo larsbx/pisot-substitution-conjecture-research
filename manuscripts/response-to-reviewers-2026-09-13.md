@@ -845,3 +845,11 @@ One finding from the automated Codex review of commit `b6753bdd51`; accepted, on
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 137 | P2 | `^^` notation could encode a control word the guard scans for | Accepted. Any `^^` in the source now fails it before any other check, since the guard does not model TeX's input processor; the repository sources contain none. The scenario was confirmed to pass the previous revision. Test: `\end^^69nput` before the sentinels (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-fourth round (pull request #95, caret-notation revision)
+
+One finding from the automated Codex review of commit `0ff3859a4b`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 138 | P2 | `\begin` and `\end` could be redefined before the sentinels | Accepted. `\begin` and `\end` may now occur only as environment uses followed by `{`, the internal `\document` and `\enddocument` control words may not occur at all, and no environment-defining command may target `document`; any of these fails the source. The scenario was confirmed to pass the previous revision. Tests: `\def\begin#1{}` with `\def\end#1{}`, `\let\begin\relax`, `\renewcommand{\end}[1]{}`, `\renewenvironment{document}{}{}`, `\RenewDocumentEnvironment{document}{}{}{}` and `\let\document\relax` (all fail); `\begingroup`, `\endgroup` and `\begin {center}` (pass) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

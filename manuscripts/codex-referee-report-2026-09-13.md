@@ -1674,3 +1674,18 @@ No other findings were posted in the seventy-second round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the seventy-third round.
+
+# Seventy-fourth round: review of the caret-notation revision (pull request #95)
+
+**Reviewed commit:** `0ff3859a4b` (finding 137).
+**Review posted:** 2026-09-15T22:29:50Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 138 (P2) — `scripts/check_manuscript_source.py`, line 86
+
+> **Reject redefined document sentinels**
+>
+> When `\begin` or `\end` is redefined before these standalone lines, the guard still treats their textual occurrences as executable document sentinels. For example, a 500-line source containing `\def\begin#1{}` and `\def\end#1{}` before the two sentinel lines returns no problems, although TeX executes the replacement macros and never opens or closes the document environment. Fail closed on definitions or aliases that can change either sentinel before accepting the matches.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-fourth round.

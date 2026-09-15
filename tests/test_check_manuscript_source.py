@@ -170,6 +170,13 @@ def test_commented_document_sentinels_fail(copy):
     tex.write_text(text.replace("\\begin{document}", "\\end^^69nput\n\\begin{document}", 1))  # ^^69 is i to TeX's input processor
     code, out = run(copy)
     assert code == 1 and "TeX ^^ notation on line" in out, out
+    for redefinition in ("\\def\\begin#1{}\n\\def\\end#1{}", "\\let\\begin\\relax", "\\renewcommand{\\end}[1]{}",
+                         "\\renewenvironment{document}{}{}", "\\RenewDocumentEnvironment{document}{}{}{}", "\\let\\document\\relax"):
+        tex.write_text(text.replace("\\begin{document}", redefinition + "\n\\begin{document}", 1))
+        code, out = run(copy)
+        assert code == 1 and "can change what the document sentinels mean" in out, (redefinition, out)
+    tex.write_text(text.replace("\\begin{document}", "\\begingroup\\endgroup \\begin {center}\\end{center}\n\\begin{document}", 1))
+    assert run(copy)[0] == 0  # environment uses and longer control words are fine
     tex.write_text(text[:i + len("\\end{document}")] + "\n\\endinput" + text[i + len("\\end{document}"):])  # after the document is fine
     assert run(copy)[0] == 0
 
