@@ -40,6 +40,13 @@ The two-letter periodic swap patch uses distinct tile types; `ab` need not be a 
 
 **OPEN (Open Problem 5.35).** For every PIP substitution it is enough to prove existence of distinct letters `a != b` such that every overlap reachable from the seed overlaps of `(ab,ba)` is productive.
 
+The ordered strict-zipper layer now has an exact finite affine-pump lemma:
+every actual child occurrence satisfies `w'=Mw+q-p`, and a replayed cycle
+satisfies the iterated cycle identity. This does not close the gate. A
+productive non-unimodular graph already supplies a six-edge zero-shift-free
+cycle, so the missing rung must use closed nonproductivity, occurrence context,
+recognizability, and any required non-Archimedean internal factors.
+
 Proving productivity for every seed or every vertex in the union graph is stronger than necessary for manuscript Theorem 5.38.
 
 The current obstruction normal form combines PRs #76, #82 and #88. If the gate fails, we may pass to a finite child-closed irreducible nonproductive SCC `S` with

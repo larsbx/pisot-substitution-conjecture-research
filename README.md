@@ -33,6 +33,12 @@ primitive irreducible Pisot
 
 The only open premise on this route is **seedwise overlap productivity (Open Problem 5.35, issue #84)**. Manuscript Theorem 5.38 therefore no longer requires finite BPA / G1.
 
+The current strict-zipper attack retains actual ordered child occurrences and
+certifies their exact affine recurrence `w'=Mw+q-p`. A productive
+determinant-two regression has a six-edge zero-shift-free affine cycle, so the
+next universal step is explicitly a child-closure plus
+recognizability/full-internal-space theorem, not a bare cycle exclusion.
+
 This does **not** mean the stronger structural problems are solved:
 
 - **G1b-2 renewal finiteness / finite BPA (G1)** remains open (issue #44), but is now a parallel stronger theorem rather than a prerequisite of Theorem 5.38.
