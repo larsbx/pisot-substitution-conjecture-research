@@ -549,6 +549,38 @@ def test_superseded_stream_decode_parms_are_validated(copy):
         assert code == 1 and message in out, (parms, out)
 
 
+def test_tiff_predictor_geometry_is_validated(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(superseded_pdf(flate_stream(b"abcdefgh", b"/DecodeParms << /Predictor 2 /Columns 4 >> ")))
+    assert run(copy)[0] == 0
+    pdf.write_bytes(superseded_pdf(flate_stream(b"x", b"/DecodeParms << /Predictor 2 /Columns 999 >> ")))
+    code, out = run(copy)
+    assert code == 1 and "not a multiple of the predicted row width 999" in out, out
+
+
+def test_superseded_object_with_malformed_stream_keyword_fails(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(superseded_pdf(flate_stream(b"x").replace(b">>\nstream\n", b">>\nstreaX\n")))
+    code, out = run(copy)
+    assert code == 1 and "not a dictionary followed by stream or endobj" in out, out
+
+
+def test_filter_names_are_parsed_whole(copy):
+    pdf = next(copy.glob("*.pdf"))
+    # /FlateDecode#58 is the name /FlateDecodeX; a truncated escape is not a name at all
+    pdf.write_bytes(superseded_pdf(flate_stream(b"x").replace(b"/FlateDecode", b"/FlateDecode#58")))
+    code, out = run(copy)
+    assert code == 1 and "unsupported filter chain" in out, out
+    pdf.write_bytes(superseded_pdf(flate_stream(b"x").replace(b"/FlateDecode", b"/FlateDecode#5")))
+    code, out = run(copy)
+    assert code == 1 and "unparsable /Filter" in out, out
+    pdf.write_bytes(xref_pdf().replace(b"/Filter /FlateDecode", b"/Filter /FlateDecode#58"))
+    code, out = run(copy)
+    assert code == 1 and "unsupported cross-reference stream filter chain" in out, out
+    pdf.write_bytes(xref_pdf().replace(b"/Filter /FlateDecode", b"/Filter /Flate#44ecode"))
+    assert run(copy)[0] == 0
+
+
 def test_superseded_stream_must_end_with_endobj(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.write_bytes(superseded_pdf(flate_stream(b"x")).replace(b"endstream\nendobj", b"endstream\nendobX", 1))

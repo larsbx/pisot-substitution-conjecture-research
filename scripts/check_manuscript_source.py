@@ -84,6 +84,34 @@ Section = tuple[dict[int, Entry], int, int | None, int | None, int]
 offset just past the section)``."""
 
 
+_DELIM = rb"[\s/\[\]<>(){}%]"
+_NAME = rb"/((?:[^\s/\[\]<>(){}%#]|#[0-9A-Fa-f]{2})*)(?=" + _DELIM + rb"|$)"
+
+
+def _filter_names(d: bytes) -> list[bytes] | None:
+    """The ``/Filter`` value of dictionary ``d`` as a list of names with ``#xx`` escapes
+    decoded: ``[]`` without a ``/Filter`` key, ``None`` when the value is neither a whole
+    name nor an array of whole names."""
+    key = re.search(rb"/Filter(?=" + _DELIM + rb")\s*", d)
+    if not key:
+        return []
+    unescape = lambda n: re.sub(rb"#([0-9A-Fa-f]{2})", lambda m: bytes([int(m.group(1), 16)]), n)
+    rest = d[key.end():]
+    if not rest.startswith(b"["):
+        single = re.match(_NAME, rest)
+        return [unescape(single.group(1))] if single else None
+    names, pos = [], 1
+    while True:
+        pos += len(rest[pos:]) - len(rest[pos:].lstrip())
+        if rest[pos:pos + 1] == b"]":
+            return names
+        m = re.match(_NAME, rest[pos:])
+        if not m:
+            return None
+        names.append(unescape(m.group(1)))
+        pos += m.end()
+
+
 def _classic_table(raw: bytes, off: int) -> str | Section:
     """The classic ``xref`` table at ``raw[off:]``: a problem, or its section."""
     at = raw[off:]
@@ -245,14 +273,11 @@ def _xref_stream(raw: bytes, off: int) -> str | Section:
     tail = re.match(rb"(?:\r\n|\r|\n)?endstream\s*endobj\b", at[data_start + n:data_start + n + 32])
     if len(data) < n or not tail:
         return "cross-reference stream body does not match /Length or is not closed by endstream and endobj"
-    filters = None
-    if b"/Filter" in d:
-        flt = re.search(rb"/Filter\s*(?:/(\w+)|\[\s*((?:/\w+\s*)*)\])", d)
-        if not flt:
-            return "cross-reference stream /Filter is not a name or an array of names"
-        filters = [flt.group(1)] if flt.group(1) else re.findall(rb"/(\w+)", flt.group(2))
-        if filters != [b"FlateDecode"]:
-            return f"unsupported cross-reference stream filter chain {[f.decode() for f in filters]}"
+    filters = _filter_names(d)
+    if filters is None:
+        return "cross-reference stream /Filter is not a name or an array of names"
+    if filters and filters != [b"FlateDecode"]:
+        return f"unsupported cross-reference stream filter chain {[f.decode(errors='replace') for f in filters]}"
     if filters:
         inflater = zlib.decompressobj()
         try:
@@ -343,11 +368,11 @@ def _decode_parms(d: bytes, out: bytes) -> str | None:
         return f"unsupported /Predictor {pred}"
     if cols < 1 or colors < 1 or bpc not in (1, 2, 4, 8, 16):
         return "invalid predictor geometry"
-    if pred >= 10:
-        row = (cols * colors * bpc + 7) // 8 + 1
+    if pred >= 2:
+        row = (cols * colors * bpc + 7) // 8 + (pred >= 10)  # PNG rows carry a leading filter byte
         if len(out) % row:
             return f"decoded length {len(out)} is not a multiple of the predicted row width {row}"
-        if _unpredict(out, row) is None:
+        if pred >= 10 and _unpredict(out, row) is None:
             return "unknown PNG row filter"
     return None
 
@@ -364,10 +389,19 @@ def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) ->
                 continue
             at = raw[entry[1]:]
             head = re.match(rb"\d+\s+\d+\s+obj\s*", at)
-            d = _dict_at(at, head.end()) if head else None
-            body = re.match(rb"\s*stream(?:\r\n|\n)", at[head.end() + len(d):head.end() + len(d) + 16]) if d else None
-            if not body:
+            d = _dict_at(at, head.end())
+            if d is None:
+                # a non-dictionary object: its body must be closed by endobj before any other object header
+                close, nxt = at.find(b"endobj", head.end()), re.search(rb"\d+\s+\d+\s+obj\b", at[head.end():])
+                if close < 0 or (nxt and head.end() + nxt.start() < close):
+                    return f"superseded object {num} is not closed by endobj"
                 continue
+            after = at[head.end() + len(d):head.end() + len(d) + 16]
+            body = re.match(rb"\s*stream(?:\r\n|\n)", after)
+            if not body:
+                if re.match(rb"\s*endobj\b", after):
+                    continue
+                return f"superseded object {num} is not a dictionary followed by stream or endobj"
             length = re.search(rb"/Length\s+(\d+)(\s+\d+\s+R)?", d)
             if not length or length.group(2):
                 return f"superseded stream object {num} lacks a direct /Length"
@@ -375,12 +409,9 @@ def _superseded_streams(raw: bytes, sections: list, merged: dict[int, Entry]) ->
             data = at[start:start + int(length.group(1))]
             if len(data) < int(length.group(1)) or not re.match(rb"(?:\r\n|\r|\n)?endstream\s*endobj\b", at[start + len(data):start + len(data) + 32]):
                 return f"superseded stream object {num} does not match its /Length or is not closed by endstream and endobj"
-            names = []
-            if b"/Filter" in d:
-                flt = re.search(rb"/Filter\s*(?:/(\w+)|\[\s*((?:/\w+\s*)*)\])", d)
-                if not flt:
-                    return f"superseded stream object {num} has an unparsable /Filter"
-                names = [flt.group(1)] if flt.group(1) else re.findall(rb"/(\w+)", flt.group(2))
+            names = _filter_names(d)
+            if names is None:
+                return f"superseded stream object {num} has an unparsable /Filter"
             if names not in ([], [b"FlateDecode"]):
                 return f"superseded stream object {num} has an unsupported filter chain"
             if names:

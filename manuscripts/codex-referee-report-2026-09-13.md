@@ -970,3 +970,37 @@ No other findings were posted in the thirty-eighth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the thirty-ninth round.
+
+
+---
+
+# Fortieth round: review of the superseded-stream discipline revision (pull request #95)
+
+**Reviewed commit:** `7394ee76d2` (findings 77–79).
+**Review posted:** 2026-09-15T17:57:59Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 80 (P2) — `scripts/check_manuscript_source.py`, line 347
+
+> **Validate TIFF predictor row geometry**
+>
+> When a superseded Flate stream declares `/Predictor 2`, this condition skips all checks involving `/Columns`, `/Colors`, and `/BitsPerComponent`; for example, one inflated byte with `/Predictor 2 /Columns 999` is accepted even though it cannot contain a complete TIFF-predicted row. Since pypdf only sees the replacement object, require the inflated length to be a whole number of TIFF rows before accepting the historical stream.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 81 (P2) — `scripts/check_manuscript_source.py`, line 370
+
+> **Reject malformed superseded stream markers**
+>
+> Fresh evidence beyond finding 76 is that changing the historical object's `stream` keyword to `streaX` makes `body` false and this branch silently treats the malformed object as a non-stream. Because pypdf dereferences only the newer replacement, the corrupted historical revision still passes; structurally validate every superseded object through `endobj` rather than continuing when stream recognition fails.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 82 (P2) — `scripts/check_manuscript_source.py`, line 383
+
+> **Parse the entire superseded filter name**
+>
+> Fresh evidence beyond finding 77 is that this regex accepts only a prefix of a PDF name: `/Filter /FlateDecode#58` represents the unsupported name `/FlateDecodeX`, but the match stops before `#58`, records `FlateDecode`, and accepts a zlib-valid historical body. As pypdf never parses the superseded object, require a valid name delimiter after the match and handle PDF `#xx` name escapes before comparing the filter chain.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fortieth round.

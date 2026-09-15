@@ -522,3 +522,16 @@ Three findings from the automated Codex review of commit `bb3f62c23f`; all accep
 | 77 | P2 | An unparsable `/Filter` on a superseded stream counted as no filter | Accepted. A present `/Filter` that is not a name or an array of names fails ("unparsable /Filter"). Test: `/Filter 9 0 R` | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 78 | P2 | `/DecodeParms` on a superseded stream were not validated | Accepted. `/DecodeParms` must be a direct dictionary (or a one-element array of one) with `/Predictor` 1, 2 or 10–15 and positive geometry; for a PNG predictor the inflated length must be a whole number of rows of the declared width, each carrying a known row filter. Tests: `/Predictor 12 /Columns 4` on a matching payload passes; `/Predictor 99`, `/Predictor 12 /Columns 999` and an indirect `/DecodeParms 7 0 R` fail | same |
 | 79 | P2 | A superseded stream needed only `endstream` | Accepted. The body must be closed by `endstream` followed by `endobj`. Test: the superseded object's `endobj` token altered | same |
+
+
+---
+
+## Fortieth round (pull request #95, superseded-stream discipline revision)
+
+Three findings from the automated Codex review of commit `7394ee76d2`; all accepted. Finding 82 also applied to the cross-reference stream parser, which used the same prefix match, so both now share one PDF name parser.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 80 | P2 | TIFF predictor 2 skipped the geometry check | Accepted. For predictor 2 the inflated length must be a whole number of rows of `⌈Columns × Colors × BitsPerComponent / 8⌉` bytes; PNG predictors keep the extra filter byte per row. Tests: `/Predictor 2 /Columns 4` on eight bytes passes; `/Predictor 2 /Columns 999` on one byte fails | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 81 | P2 | A superseded object whose `stream` keyword was malformed counted as a non-stream | Accepted. A superseded object must be a dictionary followed by `stream` or by `endobj`, or a non-dictionary object closed by `endobj` before any other object header; anything else fails. Test: `stream` changed to `streaX` | same |
+| 82 | P2 | Filter names were matched as a prefix, ignoring `#xx` escapes and delimiters | Accepted. A shared name parser reads whole PDF names (any character other than whitespace, delimiters and `#`, or a `#xx` escape), decodes the escapes, and requires a delimiter after the name; the `/Filter` key itself must be delimited. Tests: `/FlateDecode#58` fails as unsupported in a superseded stream and in the cross-reference stream, `/FlateDecode#5` fails as unparsable, and `/Flate#44ecode` (an escaped `D`) passes | same |
