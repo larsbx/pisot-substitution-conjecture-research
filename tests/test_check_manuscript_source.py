@@ -1,6 +1,5 @@
 """The manuscript-source guard fails closed on missing, mangled, and truncated files."""
 import re
-import re
 import shutil
 import subprocess
 import sys
