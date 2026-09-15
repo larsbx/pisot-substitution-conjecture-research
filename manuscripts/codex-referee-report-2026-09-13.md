@@ -1749,3 +1749,18 @@ No other findings were posted in the seventy-seventh round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the seventy-eighth round.
+
+# Seventy-ninth round: review of the primitive-stop revision (pull request #95)
+
+**Reviewed commit:** `c5fc74d300` (finding 142).
+**Review posted:** 2026-09-15T23:10:01Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 143 (P2) — `scripts/check_manuscript_source.py`, line 115
+
+> **Reject name-based definers beyond `namedef`**
+>
+> Fresh evidence beyond finding 142 is a source that loads `etoolbox` and executes `\csdef{begin}{}` and `\csdef{end}{}` before the standalone sentinels: these name-based definitions never spell `\begin` or `\end`, and `csdef` does not match the `name(?:def|let)` pattern, so `check_tex` returns success although the later lines no longer open or close the document environment. Fail closed on constructors such as `\csdef`/`\cslet` that define a control sequence from a bare name.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-ninth round.

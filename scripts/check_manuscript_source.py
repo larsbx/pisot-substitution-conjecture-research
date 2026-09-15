@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
 """Fail closed if a manuscript source or PDF is missing or not what it claims to be.
 
-``manuscripts/MANIFEST`` lists the required files, one per line.  Every listed
-file must exist; every ``.tex`` in the directory must be valid UTF-8 with no
-control bytes other than tab and newline, a ``\\documentclass`` first line,
-``\\begin{document}`` before ``\\end{document}``, and at least MIN_LINES lines;
+``manuscripts/MANIFEST`` lists the required files, one per line, and
+``manuscripts/TEX_CONTROL_WORDS`` the control words a source may use, one per
+line, sorted: the guard cannot evaluate TeX, so a control word it has not been
+told about (a name-based definer from a package, say) fails the source.  Every
+listed file must exist; every ``.tex`` in the directory must be valid UTF-8 with
+no control bytes other than tab and newline, a ``\\documentclass`` first line,
+``\\begin{document}`` before ``\\end{document}``, only allowed control words and
+in-order macro parameters before the closing sentinel, and at least MIN_LINES
+lines; the directory may hold no TeX input file (``.sty``, ``.cls``, ...) that a
+source could load in place of the installed one;
 every ``.pdf`` must carry the ``%PDF-`` header, a ``startxref`` offset that
 (the last one before the final ``%%EOF``) that points at a classic ``xref`` table\n(subsections of 20-byte entries, then a ``trailer`` dictionary with ``/Size`` and\n``/Root``) or at a ``/Type /XRef`` stream object whose body matches its direct\n``/Length``, inflates if Flate-encoded, and has a positive multiple of the ``/W``\nrow width, and ``%%EOF``; finally pypdf parses the whole file in strict mode and
 every object, including object-stream members, is dereferenced and the page
@@ -48,8 +54,13 @@ _TEX_STOPS = frozenset("endinput csname catcode scantokens lowercase uppercase d
                        "the toks newtoks aftergroup afterassignment everypar everymath everydisplay everyhbox "
                        "everyvbox everycr everyeof everyjob output errhelp".split())
 
+# File suffixes LaTeX loads by name from a source (\\documentclass, \\usepackage and their
+# kin): a file with one of these in the manuscripts directory would shadow the installed one,
+# and the guard does not read it.
+_TEX_INPUTS = frozenset(".sty .cls .clo .def .cfg .fd .ltx .dtx .ins".split())
 
-def check_tex(path: Path) -> list[str]:
+
+def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
     raw = path.read_bytes()
     try:
         text = raw.decode("utf-8")
@@ -94,27 +105,50 @@ def check_tex(path: Path) -> list[str]:
         return -1
 
     b, e = sentinel("begin"), sentinel("end")
+    # every control word before the closing sentinel must be one the guard has been told about;
+    # control symbols (a backslash and one non-letter) define nothing and are exempt
+    unknown = [m for m in re.finditer(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]+)", active) if m.group(1) not in allowed and (e < 0 or m.start(1) < e)]
+    if unknown:
+        problems.append(f"{path}: \\{unknown[0].group(1)} on line {active.count(chr(10), 0, unknown[0].start()) + 1} is not listed in "
+                        "TEX_CONTROL_WORDS; the guard cannot follow a control word it has not been told about")
+    # a macro parameter must be #1..#9 inside a brace group, and within one top-level group the
+    # parameters must appear in strictly increasing order: a body such as #2#1 would reorder the
+    # tokens around a definer in ways the guard cannot follow
+    starts, level = [], 0
+    for i, d in braces:
+        starts += [i] if level == 0 and d == 1 else []
+        level += d
+    params = [(max((s for s in starts if s < m.start(1)), default=-1), active[m.end(1):m.end(1) + 1], m.start(1))
+              for m in re.finditer(r"(?<!\\)(?:\\\\)*(#)", active) if e < 0 or m.start(1) < e]
+    order = {}
+    for group, digit, pos in params:
+        if group < 0 or depth(braces, pos) == 0 or digit not in "123456789" or (group in order and digit <= order[group]):
+            problems.append(f"{path}: macro parameter on line {active.count(chr(10), 0, pos) + 1} is outside a body, not #1..#9 or out of "
+                            "order; the guard cannot follow it")
+            break
+        order[group] = digit
     # the sentinels mean what LaTeX defines only while \\begin, \\end and the document environment keep
     # their definitions: \\begin and \\end may occur only as environment uses followed by {, never as the
     # target of a definer (\\def and its variants, \\let, \\futurelet, a prefix such as \\global, or any
     # ...command... macro), the internal \\document and \\enddocument may not occur, and no
-    # environment-defining command may target document.  TeX skips the white space after a control
+    # environment-defining command may target document, begin or end.  TeX skips the white space after a control
     # word, a line ending included (a comment ends a line), so a definer, \\newif and an argument
     # may be separated from what follows by line endings as well as by spaces; a LaTeX definer may
     # carry a * before its target; a ...namedef... or ...namelet... macro defines the control
     # word spelled by its brace argument without a \\csname in the source; a Declare... macro or a
     # register allocator may target a control word too; and a ...command... macro must name its
-    # target as a control word right there, since a target reaching it through a macro parameter
-    # or another macro's body (a wrapper around the definer) cannot be followed
+    # target as a control word right there, followed by its body or argument count, since a target
+    # reaching it through a macro parameter or another macro's body (a wrapper around the definer)
+    # cannot be followed
     tampering = (re.search(r"(?<!\\)(?:\\\\)*\\(begin|end)(?![a-zA-Z@])(?![ \t]*\{)", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\([gex]?def|let|futurelet|global|long|outer|protected|[a-zA-Z@]*[cC]ommand[a-zA-Z@]*"
                               r"|Declare[a-zA-Z@]*|new(?:count|dimen|skip|muskip|box|read|write|language|insert|fam|marks|attribute))"
                               r"[ \t\n]*\*?[ \t\n]*\{?[ \t\n]*\\(?:begin|end|document|enddocument)(?![a-zA-Z@])", active)
-                 or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*[cC]ommand[a-zA-Z@]*)[ \t\n]*\*?[ \t\n]*"
-                              r"(?:\{[ \t\n]*(?![ \t\n])(?!\\[a-zA-Z@])|(?![ \t\n*{])(?!\\[a-zA-Z@]))", active)
+                 or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*[cC]ommand[a-zA-Z@]*)[ \t\n]*\*?[ \t\n]*(?![ \t\n*])"
+                              r"(?!(?:\{[ \t\n]*\\[a-zA-Z@]+[ \t\n]*\}|\\[a-zA-Z@]+)[ \t\n]*[{\[])", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*name(?:def|let)[a-zA-Z@]*)[ \t\n]*\{[ \t\n]*(?:begin|end|document|enddocument)[ \t\n]*\}", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\(document|enddocument)(?![a-zA-Z@])", active)
-                 or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*[eE]nvironment)[ \t\n]*\*?[ \t\n]*\{[ \t\n]*document[ \t\n]*\}", active))
+                 or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*[eE]nvironment)[ \t\n]*\*?[ \t\n]*\{[ \t\n]*(?:document|begin|end|enddocument)[ \t\n]*\}", active))
     if tampering:
         problems.append(f"{path}: \\{tampering.group(1)} on line {active.count(chr(10), 0, tampering.start()) + 1} "
                         "can change what the document sentinels mean")
@@ -1059,13 +1093,27 @@ def main(argv: list[str]) -> int:
     for p in required:
         if (why := _regular(p, directory)) is not None:
             problems.append(f"{p}: required by the manifest but {why}")
+    words = directory / "TEX_CONTROL_WORDS"
+    allowed = frozenset()
+    if (why := _regular(words, directory)) is not None:
+        problems.append(f"{words}: {'missing list of allowed control words' if why == 'missing' else 'list of allowed control words is ' + why}")
+    else:
+        entries = words.read_text().splitlines()
+        if not entries or entries != sorted(set(entries)) or not all(re.fullmatch(r"[a-zA-Z@]+", w) for w in entries):
+            problems.append(f"{words}: must list one control word name per line, sorted and without repetition")
+        elif banned := sorted(set(entries) & _TEX_STOPS):
+            problems.append(f"{words}: {', '.join(chr(92) + w for w in banned)} cannot be allowed; the guard cannot follow them")
+        else:
+            allowed = frozenset(entries)
+    inputs = sorted(p for p in directory.iterdir() if p.suffix in _TEX_INPUTS) if directory.is_dir() else []
+    problems += [f"{p}: a TeX input file that a source could load in place of the installed one" for p in inputs]
     present = sorted(set(directory.glob("*.tex")) | set(directory.glob("*.pdf")) | {p for p in required if p.suffix in (".tex", ".pdf")}) if directory.is_dir() else []
     checked = 0
     for p in present:
         if (why := _regular(p, directory)) is not None:
             problems += [f"{p}: {why}"] if p not in required else []  # required files were reported above
             continue
-        problems += check_tex(p) if p.suffix == ".tex" else check_pdf(p)
+        problems += check_tex(p, allowed) if p.suffix == ".tex" else check_pdf(p)
         checked += 1
     if not any(p.suffix == ".tex" for p in required) or not any(p.suffix == ".pdf" for p in required):
         problems.append(f"{manifest}: must list at least one .tex and one .pdf")

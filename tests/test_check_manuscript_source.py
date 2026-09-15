@@ -27,6 +27,12 @@ def copy(tmp_path):
     return d
 
 
+def allow(directory: Path, words: str) -> None:
+    """Add ``words`` (space-separated) to the copied list of allowed control words."""
+    listed = directory / "TEX_CONTROL_WORDS"
+    listed.write_text("\n".join(sorted(set(listed.read_text().split()) | set(words.split()))) + "\n")
+
+
 
 def classic_pdf(objs=None, extra_trailer=b"", edit=None, lead=b""):
     """A complete classic-table PDF (catalog, page tree, one page) with ``lead`` written
@@ -97,6 +103,8 @@ def test_mangled_tex_fails(copy):
 def test_commented_document_sentinels_fail(copy):
     tex = next(copy.glob("*.tex"))
     text = tex.read_text()
+    allow(copy, "newif ifdraft else fi iff ifthenelse inputencoding csnamex begingroup endgroup foo renewcommand newenvironment "
+                "DeclareMathOperator Tr DeclareGraphicsExtensions newcounter newlength len newdimen dim bar baz providecommand")
     i = text.rindex("\\end{document}")
     tex.write_text(text[:i] + "%" + text[i:])  # the only \end{document} is now a comment
     code, out = run(copy)
@@ -182,7 +190,8 @@ def test_commented_document_sentinels_fail(copy):
                          "\\@namedef{begin}{}", "\\@namedef{ enddocument }{}", "\\@namelet\n{end}{relax}",  # definers spelling their target as text
                          "\\DeclareTextSymbol\\begin{OT1}{65}", "\\newcount\\begin{}",  # other macros that target a control word
                          "\\newcommand{\\d}[1]{\\renewcommand#1{}}\n\\d\\begin{}", "\\newcommand\\d{\\renewcommand}\n\\d\\begin{}",  # wrappers
-                         "\\renewcommand{#1}{}", "\\newcommand"):  # a definer whose target is not a control word right there
+                         "\\renewcommand{#1}{}", "\\newcommand", "\\newcommand\\foo\\bar", "\\NewCommandCopy\\foo\\bar",  # a definer whose target is not a control word right there, followed by a body
+                         "\\renewenvironment{begin}{}{}", "\\newenvironment*{ end }{}{}"):  # environment definers naming a sentinel word
         tex.write_text(text.replace("\\begin{document}", redefinition + "\n\\begin{document}", 1))
         code, out = run(copy)
         assert code == 1 and "can change what the document sentinels mean" in out, (redefinition, out)
@@ -190,8 +199,8 @@ def test_commented_document_sentinels_fail(copy):
     assert run(copy)[0] == 0  # environment uses, longer control words and a macro body using \\begin{...} are fine
     tex.write_text(text.replace("\\begin{document}", "\\renewcommand{\\foo}\n{\\begin{center}}\n\\newenvironment\n{doc}{}{}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # a line-broken definer whose target is not a sentinel, and another environment
-    tex.write_text(text.replace("\\begin{document}", "\\renewcommand*{\\foo}{\\begin{center}}\n\\@namedef{beginfoo}{}\n\\begin{document}", 1))
-    assert run(copy)[0] == 0  # a starred definer with another target, and a spelled-out name that is not a sentinel
+    tex.write_text(text.replace("\\begin{document}", "\\renewcommand*{\\foo}{\\begin{center}}\n\\begin{document}", 1))
+    assert run(copy)[0] == 0  # a starred definer with another target
     tex.write_text(text.replace("\\begin{document}", "\\DeclareMathOperator{\\Tr}{Tr}\\DeclareGraphicsExtensions{.pdf}\\newcounter{foo}\\newlength{\\len}\\newdimen\\dim\n"
                                 "\\newcommand\\foo{}\\newcommand*{ \\bar }[1]{#1}\\providecommand{\\baz}{\\bar{x}}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # Declare... macros, allocators and ...command... definers naming their targets
@@ -210,6 +219,57 @@ def test_endstream_needs_a_preceding_line_ending(copy):
         pdf.write_bytes(raw)  # the line ending between the data and endstream deleted
         code, out = run(copy)
         assert code == 1 and message in out, out
+
+
+def test_control_words_must_be_listed(copy):
+    tex = next(copy.glob("*.tex"))
+    text = tex.read_text()
+    listed = copy / "TEX_CONTROL_WORDS"
+    for source in ("\\csdef{begin}{}\n\\csdef{end}{}", "\\@namedef{beginfoo}{}", "\\newcommand{\\foo}{x}", "\\cslet{end}\\relax"):
+        tex.write_text(text.replace("\\begin{document}", source + "\n\\begin{document}", 1))  # words the guard has not been told about
+        code, out = run(copy)
+        assert code == 1 and "is not listed in TEX_CONTROL_WORDS" in out, (source, out)
+    tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\foo}{x}\n\\begin{document}", 1))
+    allow(copy, "foo")
+    assert run(copy)[0] == 0  # once listed
+    tex.write_text(text.replace("\\end{document}", "\\end{document}\n\\csdef{begin}{}", 1))
+    assert run(copy)[0] == 0  # after the document TeX has stopped
+    words = listed.read_text()
+    allow(copy, "def")  # a control word the guard can never follow
+    code, out = run(copy)
+    assert code == 1 and "\\def cannot be allowed" in out, out
+    for bad in (words + "A\n", "zeta\n" + words, words + "not a name\n", ""):  # unsorted, repeated, not a name, empty
+        listed.write_text(bad)
+        code, out = run(copy)
+        assert code == 1 and "sorted and without repetition" in out, (bad[-20:], out)
+    listed.write_text(words)
+    tex.write_text(text)
+    assert run(copy)[0] == 0
+    listed.unlink()
+    code, out = run(copy)
+    assert code == 1 and "missing list of allowed control words" in out, out
+
+
+def test_macro_parameters_stay_in_order(copy):
+    tex = next(copy.glob("*.tex"))
+    text = tex.read_text()
+    allow(copy, "e f")
+    for body in ("\\newcommand{\\e}[2]{#2#1}\n\\e{\\begin{}}\\newcommand\\f{}", "\\newcommand{\\e}[2]{#1#2#1}", "\\newcommand{\\e}[2]{\\f{#2}{#1}}",
+                 "#1", "\\newcommand{\\e}[1]{##1}", "\\newcommand{\\e}[1]{#a}"):
+        tex.write_text(text.replace("\\begin{document}", body + "\n\\begin{document}", 1))
+        code, out = run(copy)
+        assert code == 1 and "macro parameter on line" in out, (body, out)
+    tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\e}[2]{\\f{#1}{#2}}\\newcommand{\\f}[1]{#1}\n\\begin{document}", 1))
+    assert run(copy)[0] == 0  # in order, and one parameter per body; the source's own \\Status macro and escaped \\# pass alike
+
+
+def test_tex_input_files_are_rejected(copy):
+    for name in ("geometry.sty", "article.cls", "t1enc.def"):
+        (copy / name).write_text("")
+        code, out = run(copy)
+        assert code == 1 and f"{name}: a TeX input file" in out, out
+        (copy / name).unlink()
+    assert run(copy)[0] == 0
 
 
 def test_truncated_tex_fails(copy):
