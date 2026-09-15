@@ -5,11 +5,47 @@ productivity.  If productivity fails on a complete finite overlap graph, it
 extracts the closed recurrent noncoincidence SCCs in which any counterexample
 must eventually live.
 
+It also exposes the exact boundary event that separates an aligned obstruction
+from a genuinely interior one: equality of a top and bottom substituted child
+start is equivalent to an offset-zero child.
+
 All queries fail closed on a capped graph: a capped graph is an incomplete
 prefix and cannot certify either productivity or a recurrent obstruction.
 """
 
-from psc.overlap_seed_patch import SeedOverlapAutomaton, nonproductive_overlap_states
+from psc.overlap_seed_patch import (
+    OverlapState,
+    SeedOverlapAutomaton,
+    SeedOverlapTables,
+    nonproductive_overlap_states,
+)
+from psc.perron_field3 import cubic_add_checked, cubic_mul_beta
+
+
+def common_child_start_count(
+    tables: SeedOverlapTables, state: OverlapState
+) raises -> Int:
+    """Count exact top/bottom substituted child starts that coincide.
+
+    A top child ``i`` starts at ``p_i``.  A bottom child ``j`` starts at
+    ``beta*t + q_j`` for parent shift ``t``.  Equality is therefore exactly
+    the condition that the corresponding child overlap has shift zero.  Both
+    child intervals have positive length, so every equality is a genuine
+    interior overlap child, not a boundary-touching artefact.
+    """
+    if state.top < 0 or state.top >= 3 or state.bottom < 0 or state.bottom >= 3:
+        raise Error("overlap state tile type lies outside 0..2")
+    var scaled_shift = cubic_mul_beta(tables.field, state.shift)
+    var count = 0
+    for i in range(len(tables.sigma[state.top])):
+        var top_start = tables.prefix(state.top, i)
+        for j in range(len(tables.sigma[state.bottom])):
+            var bottom_start = cubic_add_checked(
+                scaled_shift, tables.prefix(state.bottom, j)
+            )
+            if top_start == bottom_start:
+                count += 1
+    return count
 
 
 def overlap_sccs(a: SeedOverlapAutomaton) raises -> List[List[Int]]:
