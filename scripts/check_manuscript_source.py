@@ -70,10 +70,11 @@ def _prev_of(d: bytes) -> int | None:
     return int(m.group(1)) if m else None
 
 
-Entry = tuple[int, int, int]
-"""``(kind, field, generation)``: kind 0 is free (field = next free object number), kind 1
-in use (field = byte offset), kind 2 compressed (field = object stream number, generation
-slot = index)."""
+Entry = tuple[int, int, int, bool]
+"""``(kind, field, generation, classic)``: kind 0 is free (field = next free object number),
+kind 1 in use (field = byte offset), kind 2 compressed (field = object stream number,
+generation slot = index); ``classic`` records whether the entry came from a classic table,
+whose free entries must be on the free list, rather than from a cross-reference stream."""
 
 
 def _classic_table(raw: bytes, off: int) -> str | tuple[dict[int, Entry], int | None]:
@@ -106,7 +107,7 @@ def _classic_table(raw: bytes, off: int) -> str | tuple[dict[int, Entry], int | 
                     return f"xref entry for object {num} does not point at '{num} {gen} obj'"
             elif gen > 65535:
                 return f"free entry for object {num} has generation {gen} > 65535"
-            table[num] = (0 if e.group(3) == b"f" else 1, field, gen)
+            table[num] = (0 if e.group(3) == b"f" else 1, field, gen, True)
         pos, entries = pos + 20 * count, entries + count
     if entries == 0:
         return "xref table has no entries"
@@ -121,7 +122,7 @@ def _classic_table(raw: bytes, off: int) -> str | tuple[dict[int, Entry], int | 
         return "trailer dictionary lacks /Size or /Root"
     if any(st + c > int(size.group(1)) for st, c in ranges):
         return f"xref subsection exceeds the trailer /Size {int(size.group(1))}"
-    stray = [n for n, (k, f, _) in table.items() if k == 0 and f >= int(size.group(1))]
+    stray = [n for n, (k, f, *_) in table.items() if k == 0 and f >= int(size.group(1))]
     if stray:
         return f"free entry for object {stray[0]} points at object {table[stray[0]][1]} beyond /Size"
     return table, _prev_of(d)
@@ -166,8 +167,8 @@ def _xref_rows(raw: bytes, rows: bytes, widths: list[int], numbers: list[int], s
         if kind == 0:
             if f2 >= size:
                 return f"cross-reference stream free entry for object {num} points at object {f2} beyond /Size"
-            # a saturated (or absent) generation column stands for 65535
-            f3 = 65535 if f3 == 256 ** w2 - 1 else f3
+            if f3 > 65535:
+                return f"cross-reference stream free entry for object {num} has generation {f3} > 65535"
         elif kind == 1:
             if f2 >= len(raw) or not re.match(rb"%d\s+%d\s+obj\b" % (num, f3), raw[f2:f2 + 40]):
                 return f"cross-reference stream entry for object {num} does not point at '{num} {f3} obj'"
@@ -176,7 +177,7 @@ def _xref_rows(raw: bytes, rows: bytes, widths: list[int], numbers: list[int], s
                 return f"cross-reference stream entry for object {num} names object stream {f2} beyond /Size"
         else:
             return f"cross-reference stream entry for object {num} has unknown type {kind}"
-        table[num] = (kind, f2, f3)
+        table[num] = (kind, f2, f3, False)
     return table
 
 
@@ -263,18 +264,21 @@ def _xref_stream(raw: bytes, off: int) -> str | tuple[dict[int, Entry], int | No
 
 
 def _free_list(table: dict[int, Entry]) -> str | None:
-    """Object 0 is free with generation 65535 and heads a chain of free entries that
-    returns to object 0 and covers every free entry."""
+    """Object 0 is free (with generation 65535 when it comes from a classic table) and
+    heads a chain of free entries that returns to object 0.  A classic free entry must be
+    on that chain; a stream type-0 entry may instead be unlinked, with next-free field 0."""
     head = table.get(0)
-    if head is None or head[0] != 0 or head[2] != 65535:
-        return "object 0 is not a free entry with generation 65535"
+    if head is None or head[0] != 0:
+        return "object 0 is not a free entry"
+    if head[3] and head[2] != 65535:
+        return f"object 0 in a classic table has generation {head[2]}, not 65535"
     free, walked, n = {k for k, v in table.items() if v[0] == 0}, [0], head[1]
     while n != 0:
         if n not in free or n in walked:
             return f"free list reaches object {n}, which is not an unvisited free entry"
         walked.append(n)
         n = table[n][1]
-    stray = sorted(free - set(walked))
+    stray = sorted(n for n in free - set(walked) if table[n][3] or table[n][1] != 0)
     return f"free entries {stray} are not on the free list" if stray else None
 
 

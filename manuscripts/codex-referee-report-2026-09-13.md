@@ -788,3 +788,29 @@ No other findings were posted in the thirty-second round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the thirty-third round.
+
+
+---
+
+# Thirty-fourth round: review of the free-list revision (pull request #95)
+
+**Reviewed commit:** `30d16e00e8` (findings 62–63).
+**Review posted:** 2026-09-15T17:04:50Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 64 (P2) — `scripts/check_manuscript_source.py`, line 278
+
+> **Permit unlinked free entries in xref streams**
+>
+> When a valid cross-reference stream does not maintain the optional free-object linked list, its type-0 entries may use `0` as the next-free field. With more than one free object, this code rejects the file because only object 0 is walked and every other free entry is classified as stray; for example, appending a free object 5 with fields `(0, 0, 0)` to the existing `xref_pdf` fixture makes `_xref_chain` return `free entries [5] are not on the free list`. Track whether entries came from a classic table and enforce full-list coverage only where the list is required.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 65 (P2) — `scripts/check_manuscript_source.py`, line 170
+
+> **Preserve the encoded xref generation value**
+>
+> When the third `/W` field is one byte wide, an encoded value of `255` means generation 255, not a saturated representation of 65535. This conversion therefore lets a malformed object-0 entry pass the required-generation check; the default `xref_pdf` fixture itself encodes `ff` in a one-byte field and `_xref_chain` accepts it as generation 65535. Keep the decoded integer unchanged and encode 65535 using a sufficiently wide field in fixtures.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the thirty-fourth round.

@@ -446,3 +446,15 @@ Two findings from the automated Codex review of commit `7ec39a90c0`; both accept
 | --- | --- | --- | --- | --- |
 | 62 | P2 | Free entries were checked for shape only | Accepted. A free entry's pointer must be an object number below `/Size` and its generation at most 65535 (classic tables and type-0 rows alike; a saturated narrow generation column in a stream stands for 65535, as in the repository PDF's one-byte column). On the merged table, object 0 must be free with generation 65535 and head a chain of free entries that returns to object 0 and covers every free entry. Tests: an out-of-range pointer on a classic table and on a stream row; object 0 with generation 0; a free object 4 that object 0 does not link; object 0 pointing at an in-use object; the passing free-top fixtures now link object 4 from object 0 | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 63 | P2 | A zero-count subsection inflated the extent | Accepted. A zero-count subsection fails ("empty xref subsection"), and the extent is now the highest key of the merged entry table, so no phantom object number can enter it; test appends `9999 0` with `/Size 9999` and expects failure | same |
+
+
+---
+
+## Thirty-fourth round (pull request #95, free-list revision)
+
+Two findings from the automated Codex review of commit `30d16e00e8`; both accepted, the second with one qualification grounded in the repository PDF itself. Every entry now records whether it came from a classic table or from a cross-reference stream.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 64 | P2 | Unlinked free entries in a cross-reference stream were rejected | Accepted. Full free-list coverage is required only of entries that came from a classic table; a stream type-0 entry may be unlinked provided its next-free field is 0, while an unlinked entry pointing elsewhere still fails. The chain from object 0 must still consist of unvisited free entries and return to 0. Tests: the reviewer's example (a free object 5 with fields `(0, 0, 0)`) passes; the same entry pointing at object 3 fails | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 65 | P2 | A saturated one-byte generation column was rescaled to 65535 | Accepted: the decoded generation is kept unchanged, and a stream free entry with generation above 65535 fails. Qualification: the requirement that object 0 carry generation 65535 is stated by the standard for classic tables only, and the repository PDF (pdfTeX, `/W [1 3 1]`) encodes object 0 as type 0 with a one-byte generation of 255, so the guard requires 65535 of object 0 only when its entry comes from a classic table. Tests: a two-byte column holding exactly 65535 passes; a three-byte column holding 65536 fails; a classic object 0 with generation 0 still fails | same |

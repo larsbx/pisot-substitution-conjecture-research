@@ -46,8 +46,9 @@ def classic_pdf(objs=None, extra_trailer=b"", edit=None):
     return edit(out) if edit else out
 
 
-def xref_pdf(rows=None, dict_extra=b"", predictor=False, compress=True):
-    """A complete PDF whose cross-reference is a stream (catalog, one-page tree; page is object 4)."""
+def xref_pdf(rows=None, dict_extra=b"", predictor=False, compress=True, gen_bytes=1):
+    """A complete PDF whose cross-reference is a stream (catalog, one-page tree; page is
+    object 4), with ``/W [1 2 gen_bytes]``."""
     import zlib
 
     out = b"%PDF-1.5\n"
@@ -58,12 +59,12 @@ def xref_pdf(rows=None, dict_extra=b"", predictor=False, compress=True):
     o4 = len(out)
     out += b"4 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 10 10] >>\nendobj\n"
     o3 = len(out)
-    # object 0: free, next free 0, generation saturated in the one-byte column (stands for 65535)
-    table = [b"\x00\x00\x00\xff"] + [b"\x01" + o.to_bytes(2, "big") + b"\x00" for o in (o1, o2, o3, o4)]
+    # object 0: free, next free 0, generation column saturated (as pdfTeX writes it in one byte)
+    table = [b"\x00\x00\x00" + b"\xff" * gen_bytes] + [b"\x01" + o.to_bytes(2, "big") + bytes(gen_bytes) for o in (o1, o2, o3, o4)]
     if rows is not None:
         table = rows(table, o1, o2, o3)
     if predictor:
-        prev, enc = bytes(4), b""
+        prev, enc = bytes(3 + gen_bytes), b""
         for r in table:
             enc += b"\x02" + bytes((a - b) & 0xFF for a, b in zip(r, prev))
             prev = r
@@ -71,7 +72,7 @@ def xref_pdf(rows=None, dict_extra=b"", predictor=False, compress=True):
     else:
         body = zlib.compress(b"".join(table)) if compress else b"".join(table)
     flt = b"/Filter /FlateDecode " if (compress or predictor) else b""
-    out += b"3 0 obj\n<< /Type /XRef /Size 5 /W [1 2 1] /Root 1 0 R " + flt + dict_extra + b"/Length %d >>\nstream\n" % len(body)
+    out += b"3 0 obj\n<< /Type /XRef /Size 5 /W [1 2 %d] /Root 1 0 R " % gen_bytes + flt + dict_extra + b"/Length %d >>\nstream\n" % len(body)
     out += body + b"\nendstream\nendobj\nstartxref\n%d\n%%%%EOF\n" % o3
     return out
 
@@ -349,7 +350,30 @@ def test_object_zero_must_be_free_with_generation_65535(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.write_bytes(classic_pdf(edit=lambda b: b.replace(b"0000000000 65535 f", b"0000000000 00000 f")))
     code, out = run(copy)
-    assert code == 1 and "generation 65535" in out, out
+    assert code == 1 and "not 65535" in out, out
+
+
+def test_stream_generation_is_taken_literally(copy):
+    pdf = next(copy.glob("*.pdf"))
+    # a two-byte column holding exactly 65535 passes; a three-byte column holding 65536 fails
+    pdf.write_bytes(xref_pdf(gen_bytes=2))
+    code, out = run(copy)
+    assert code == 0, out
+    pdf.write_bytes(xref_pdf(gen_bytes=3, rows=lambda t, o1, o2, o3: [b"\x00\x00\x00\x01\x00\x00", *t[1:]]))
+    code, out = run(copy)
+    assert code == 1 and "generation 65536 > 65535" in out, out
+
+
+def test_unlinked_stream_free_entry_passes(copy):
+    # object 5 free with next-free field 0 and not linked from object 0: allowed in a stream
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(xref_pdf(rows=lambda t, o1, o2, o3: [*t, b"\x00\x00\x00\x00"]).replace(b"/Size 5 ", b"/Size 6 "))
+    code, out = run(copy)
+    assert code == 0, out
+    # but an unlinked free entry pointing at object 3 dangles
+    pdf.write_bytes(xref_pdf(rows=lambda t, o1, o2, o3: [*t, b"\x00\x00\x03\x00"]).replace(b"/Size 5 ", b"/Size 6 "))
+    code, out = run(copy)
+    assert code == 1 and "not on the free list" in out, out
 
 
 def test_free_entries_must_form_the_free_list(copy):
