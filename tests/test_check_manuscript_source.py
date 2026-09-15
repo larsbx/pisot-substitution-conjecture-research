@@ -878,6 +878,25 @@ def test_unreferenced_object_streams_are_still_decoded(copy):
     assert code == 1 and "no matching type-2 entry" in out, out
 
 
+def test_symbolic_links_are_rejected(copy):
+    pdf = next(copy.glob("*.pdf"))
+    target = SRC / pdf.name  # the repository's own PDF, outside the checked directory
+    pdf.unlink()
+    pdf.symlink_to(target)
+    code, out = run(copy)
+    assert code == 1 and "required by the manifest but a symbolic link" in out, out
+    pdf.unlink()
+    shutil.copy(target, pdf)
+    (copy / "alias.pdf").symlink_to(pdf)  # a link inside the directory is not a source either
+    code, out = run(copy)
+    assert code == 1 and "alias.pdf: a symbolic link" in out, out
+    (copy / "alias.pdf").unlink()
+    (copy / "MANIFEST").rename(copy / "MANIFEST.real")
+    (copy / "MANIFEST").symlink_to(copy / "MANIFEST.real")
+    code, out = run(copy)
+    assert code == 1 and "manifest of required files is a symbolic link" in out, out
+
+
 def test_manifest_entries_must_be_bare_names(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.unlink()

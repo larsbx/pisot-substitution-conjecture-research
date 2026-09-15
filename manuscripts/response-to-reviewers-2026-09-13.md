@@ -690,3 +690,11 @@ Two findings from the automated Codex review of commit `c2a67ae3c9`; both accept
 | --- | --- | --- | --- | --- |
 | 114 | P2 | A historical object could close only through bytes appended after its revision | Accepted. Every in-use entry of a section is now parsed as one complete object (a direct object closed by `endobj`, or a dictionary with a stream of its direct `/Length` closed by `endstream` and `endobj`) within the bytes before that section, at the point where the section is read; the superseded-stream pass reuses the same parser under the same bound and keeps only the content checks. The scenario (an unterminated string closed by a comment appended after the update) was confirmed to pass the previous revision. Test: that scenario | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 115 | P2 | `endobj` and `obj` were bounded by a word boundary, which vertical tab satisfies | Accepted. Every `obj`/`endobj` keyword must be followed by a PDF white-space or delimiter byte or the end of the buffer. The scenario (`endobj` followed by a vertical tab) was confirmed to pass the previous revision. Test: that scenario | same |
+
+## Fifty-fifth round (pull request #95, object-extent revision)
+
+One finding from the automated Codex review of commit `426c06dd38`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 116 | P2 | A same-named symbolic link could stand in for a required manuscript source | Accepted. The manifest, every required file and every `.tex`/`.pdf` present must be regular files (no symbolic link) whose resolved parent is the resolved manuscripts directory; anything else fails. The scenario (the required PDF replaced by a same-named link to a PDF outside the directory) was confirmed to pass the previous revision. Tests: that scenario, a link inside the directory, and a linked manifest | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

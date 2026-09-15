@@ -1388,3 +1388,18 @@ No other findings were posted in the fifty-third round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the fifty-fourth round.
+
+# Fifty-fifth round: review of the object-extent revision (pull request #95)
+
+**Reviewed commit:** `426c06dd38` (findings 114–115).
+**Review posted:** 2026-09-15T20:23:00Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 116 (P2) — `scripts/check_manuscript_source.py`, line 930
+
+> **Reject manifest symlinks that escape manuscripts**
+>
+> Fresh evidence beyond finding 108 is that the bare-name check does not prevent the resulting path from being a symlink: replacing the required manuscript PDF with a same-named symlink to `../archive/2026-09-08/README_READ_FIRST_2026_09_08.pdf` makes `is_file()` succeed and causes `check_pdf` to validate the archive target, so the guard reports success although the required manuscript source is absent. Reject symlinks or require each resolved path's parent to remain the resolved manuscript directory.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the fifty-fifth round.

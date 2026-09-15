@@ -916,12 +916,23 @@ def check_pdf(path: Path) -> list[str]:
     return [f"{path}: {problem}"] if problem else []
 
 
+def _regular(p: Path, directory: Path) -> str | None:
+    """A problem unless ``p`` is a regular file (no symbolic link at any step) that lives in
+    ``directory`` itself once both are resolved: a same-named link could otherwise point the
+    check at a file that is not the manuscript source."""
+    if not p.is_file():
+        return "missing"
+    if p.is_symlink() or p.resolve().parent != directory.resolve():
+        return "a symbolic link or resolving outside the manuscripts directory"
+    return None
+
+
 def main(argv: list[str]) -> int:
     directory = Path(argv[0]) if argv else ROOT / "manuscripts"
     manifest = directory / "MANIFEST"
     problems = []
-    if not manifest.is_file():
-        problems.append(f"{manifest}: missing manifest of required files")
+    if (why := _regular(manifest, directory)) is not None:
+        problems.append(f"{manifest}: missing manifest of required files" if why == "missing" else f"{manifest}: manifest of required files is {why}")
         required = []
     else:
         names = [l.strip() for l in manifest.read_text().splitlines() if l.strip()]
@@ -931,11 +942,14 @@ def main(argv: list[str]) -> int:
         if not names:
             problems.append(f"{manifest}: empty manifest")
     for p in required:
-        if not p.is_file():
-            problems.append(f"{p}: required by the manifest but missing")
-    present = sorted(set(directory.glob("*.tex")) | set(directory.glob("*.pdf")) | {p for p in required if p.is_file() and p.suffix in (".tex", ".pdf")}) if directory.is_dir() else []
+        if (why := _regular(p, directory)) is not None:
+            problems.append(f"{p}: required by the manifest but {why}")
+    present = sorted(set(directory.glob("*.tex")) | set(directory.glob("*.pdf")) | {p for p in required if p.suffix in (".tex", ".pdf")}) if directory.is_dir() else []
     checked = 0
     for p in present:
+        if (why := _regular(p, directory)) is not None:
+            problems += [f"{p}: {why}"] if p not in required else []  # required files were reported above
+            continue
         problems += check_tex(p) if p.suffix == ".tex" else check_pdf(p)
         checked += 1
     if not any(p.suffix == ".tex" for p in required) or not any(p.suffix == ".pdf" for p in required):
