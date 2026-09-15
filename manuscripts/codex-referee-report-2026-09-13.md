@@ -473,3 +473,10 @@ No other findings were posted in the nineteenth round.
 
 No other findings were posted in the twenty-first round.
 
+---
+
+# Twenty-second round: review of the forward-invariance revision (pull request #92)
+
+**Reviewed commit:** `4e68dcdc7d` (finding 38).
+**Review posted:** 2026-09-15T12:38:40Z. The automated Codex review of commit `4e68dcd` posted no findings ("Didn't find any major issues").
+
