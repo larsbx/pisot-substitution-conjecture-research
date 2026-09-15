@@ -12,11 +12,11 @@ The **shortest current PDS sufficiency route** has one open premise:
 | --- | --- | --- |
 | G1b-1 bounded discrepancy | **Repository-proved** | all reachable swap-state prefix-difference walks are uniformly bounded |
 | Seed-patch overlap graph finiteness | **Repository-proved** | every swap seed has a finite exact overlap graph |
-| **Seedwise overlap productivity** | **OPEN — current critical gate** | for every PIP substitution, one legal swap seed has only productive reachable overlaps |
+| **Seedwise overlap productivity** | **OPEN — current critical gate** | for every PIP substitution, one swap seed on distinct tile types has only productive reachable overlaps |
 | Coincidence-density / dense-good-set equivalence | **Repository-proved** | productivity gives density one / dense eventual coincidence |
 | Dense eventual coincidence to PDS | **Imported theorem** | Barge–Štimac–Williams, hypotheses audited in the manuscript |
 
-Therefore manuscript Theorem 5.38 proves PDS from overlap productivity **without G1**.
+The periodic word `ab` used in this route need not be a legal substitution-language factor. Therefore manuscript Theorem 5.38 proves PDS from overlap productivity **without G1 and without a seed-legality hypothesis**.
 
 Three stronger programmes remain open in parallel:
 
@@ -50,7 +50,7 @@ Finite calibration over the 4,554-member corpus reports maximum discrepancy `14`
 
 **Status: OPEN.** It is sufficient to prove the one-seed form:
 
-> For every PIP substitution there exist letters `a != b` such that every exact overlap reachable from the seed overlaps of `(ab,ba)` is productive.
+> For every PIP substitution there exist distinct letters `a != b` such that every exact overlap reachable from the seed overlaps of `(ab,ba)` is productive.
 
 All-seed or all-vertex productivity is stronger than manuscript Theorem 5.38 requires.
 
@@ -60,11 +60,32 @@ All-seed or all-vertex productivity is stronger than manuscript Theorem 5.38 req
 
 This corrects the former rank-deficiency heuristic. Full rank is a constraint, not a contradiction.
 
-### Endpoint and boundary-hitting structure
+### Closed irreducible bad-overlap normal form
 
-**Status: repository-proved (PR #82).** Offset-zero and right-aligned seed overlaps are exactly the prefix/suffix strong-coincidence boundary cases. An overlap has an offset-zero descendant at level `m` iff `M^m w` is a difference of proper-prefix Parikh vectors, equivalently iff inflated descendants have a common left endpoint. Under strong coincidence, productivity reduces to this hitting condition.
+**Status: repository-proved supporting reduction (PR #88).** If a reachable overlap is nonproductive, finiteness and forward closure of nonproductivity allow passage to a finite child-closed irreducible recurrent SCC `S`. Existing mass balance and the full-rank theorem then give
 
-The remaining obstruction can therefore be assumed genuinely interior and boundary-avoiding.
+```text
+PF(N_S) = beta,
+N_S V_S = V_S M^T,
+rank_Q(V_S) = |A|,
+spec(M) subset spec(N_S).
+```
+
+The graph-theoretic residual-SCC extraction is standard overlap-algorithm machinery; the useful repository-specific normal form is its combination with unconditional swap-overlap finiteness and the full-rank/boundary constraints.
+
+### Endpoint, boundary hitting, and the zipper dichotomy
+
+**Status: repository-proved supporting structure (PRs #82 and #88).** PR #82 proves the endpoint strong-coincidence dictionary and exact boundary-hitting criterion. PR #88 adds:
+
+- if a bad SCC contains `(i,j,0)`, the pair `{i,j}` is explicitly not eventually coincident;
+- otherwise no top substituted child start ever equals a shifted bottom child start, and each child refinement is a strict monotone prefix-grid **zipper** in which only one side advances at each boundary.
+
+Thus the open gate has two precise branches:
+
+1. **aligned obstruction:** eliminate/propagate the exposed non-eventually-coincident pair;
+2. **strict-zipper obstruction:** use the ordered boundary-source sequence, full rank, and Pisot prefix geometry to force a hit or contradiction.
+
+Do not collapse the zipper immediately to the unordered child-count matrix: that discards exactly the order information not constrained by full rank.
 
 ### Coincidence density and PDS
 
@@ -151,6 +172,7 @@ These results strongly guide proof search but do not establish a universal image
 
 The final theorem must preserve all of the following.
 
+- **Swap-patch legality is not an assumption.** Do not require `ab` to occur in the substitution language merely because the periodic comparison patch uses tile types `a,b`.
 - **Tile-length independence is derived.** Do not add rational/integer independence as a separate assumption.
 - **UD is derived.** Do not make unique decodability a standing hypothesis.
 - **FI/boundary injectivity is extra.** It cannot enter the general proof silently.
@@ -171,7 +193,8 @@ Do not use as completion arguments:
 - trivial two-letter renewal;
 - unlabelled difference walks determining balanced states;
 - rank-deficiency of a child-closed bad overlap set;
-- nested finite-stage good sets in the coincidence-density proof.
+- nested finite-stage good sets in the coincidence-density proof;
+- generic boundary-smallness to infer `PF(N_S)<beta` for a residual real-overlap SCC: the full expansion spectral radius is precisely the hard noncoincidence case in the potential-overlap algorithm.
 
 ## J. Source/provenance status
 
@@ -187,7 +210,7 @@ The missing historical v16 manuscript remains provenance metadata, not a live pr
 
 1. **P0 — status synchronization.** Keep manuscript, claim/source map, proof ladder, this ledger, README and TLA comments consistent.
 2. **P1 — seedwise overlap productivity.** Current critical theorem target.
-3. **P2 — minimal bad overlap set contradiction.** Use full rank, inherited spectrum, ordered descendants and boundary-hitting/Pisot contraction.
+3. **P2 — aligned/strict-zipper contradiction.** Use PR #88's normal form with full rank, exact ordered boundaries, and prefix-Parikh/Pisot geometry.
 4. **P3 — G1b-2.** Stronger finite-BPA theorem; preserve non-unimodular generality.
 5. **P4 — concentration and wedge productivity.** Alternative finite-BPA SCC route.
 6. **P5 — realization bridge.** Secondary certificate route.

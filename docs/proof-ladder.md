@@ -30,33 +30,43 @@ primitive irreducible Pisot
 => pure discrete spectrum                               [IMPORTED theorem]
 ```
 
+The two-letter periodic swap patch uses distinct tile types; `ab` need not be a legal factor of the substitution language.
+
 ## Finite seed-patch overlap graph
 
 **Repository-proved.** Manuscript Theorem 4.22 / PR #72 shows that every exact overlap type reachable from a swap seed lies in an explicitly bounded integer-coordinate set derived from G1b-1. This graph is finite without assuming finite BPA, Meyer structure, or unimodularity.
 
 ## Overlap productivity — the current critical gate
 
-**OPEN (Open Problem 5.35).** For every PIP substitution it is enough to prove existence of one legal pair `a != b` such that every overlap reachable from the seed overlaps of `(ab,ba)` is productive.
+**OPEN (Open Problem 5.35).** For every PIP substitution it is enough to prove existence of distinct letters `a != b` such that every overlap reachable from the seed overlaps of `(ab,ba)` is productive.
 
 Proving productivity for every seed or every vertex in the union graph is stronger than necessary for manuscript Theorem 5.38.
 
-The strongest current algebraic reduction is Corollary 5.34 / PR #76. If `S` is a nonempty child-closed set of noncoincidence overlap types, then its intersection-vector span is a nonzero rational `M_sigma`-invariant subspace. Irreducibility forces
+The current obstruction normal form combines PRs #76, #82 and #88. If the gate fails, we may pass to a finite child-closed irreducible nonproductive SCC `S` with
 
 ```text
-rank V_S = |A|
+PF(N_S) = beta,
+N_S V_S = V_S M^T,
+rank_Q(V_S) = |A|,
+spec(M) subset spec(N_S).
 ```
 
-and the child-count matrix inherits every Galois conjugate of the Perron eigenvalue. A hypothetical bad set is therefore algebraically **full rank**, not rank-deficient.
+Thus a bad set is algebraically **full rank**, not rank-deficient.
 
-The best immediate contradiction target is a minimal reachable child-closed nonproductive set `S`:
+PR #88 further gives an exact dichotomy:
 
 ```text
-minimal bad S
-=> full rational intersection-vector rank
-=> inherited child-count spectrum
-=> ordered descendant / prefix-Parikh constraints
-=> boundary hit or contradiction.
+bad S
+=> contains an offset-zero state (i,j,0)
+   and therefore exposes a non-eventually-coincident pair {i,j}
+OR
+=> contains no zero-shift state
+   and every child factorization is a strict no-tie prefix-grid zipper.
 ```
+
+The second branch preserves information erased by the child-count matrix: the ordered sequence of top/bottom subdivision boundary events. The next contradiction should use that order together with full rank and exact prefix-Parikh geometry.
+
+Generic spectral growth is not enough. A residual graph containing a genuine noncoincident real overlap may itself carry the full expansion spectral radius, so `PF(N_S)=beta` is the hard residual case rather than a contradiction.
 
 ## Coincidence density and PDS bridge
 
@@ -73,7 +83,7 @@ PR #82 proves:
 - an overlap reaches an offset-zero descendant at level `m` exactly when `M^m w` is a difference of proper-prefix Parikh vectors, equivalently when inflated subtiles have a common left endpoint;
 - under strong coincidence, productivity reduces to this boundary-hitting statement.
 
-This sharpens Open Problem 5.35 but does not solve arbitrary interior overlaps.
+PR #88 turns this into the aligned-versus-zipper case split above without assuming strong coincidence globally.
 
 # Stronger route A — Level 2 / finite BPA
 
@@ -153,6 +163,7 @@ A proof of general overlap productivity is stronger than needed to bypass G1 and
 
 The following remain theoremically useful where their individual notes mark them theorem-grade:
 
+- bad-overlap closed-SCC normal form and aligned/strict-zipper dichotomy (PR #88);
 - sink-SCC reduction under G1;
 - endpoint synchronization quotient and A/B eliminator;
 - Barge–Diamond type-G eliminator and hub-star normal form;
@@ -207,19 +218,20 @@ These are exact finite-domain results/evidence according to their individual com
 
 Every proposed completion proof must preserve:
 
-1. **Tile-length independence is derived.** Do not add rational/integer independence as a separate PSC hypothesis when irreducibility supplies it.
-2. **UD is derived.** Do not make unique decodability a standing assumption.
-3. **FI/boundary injectivity is extra.** Do not silently restrict to permutation/injective boundary maps.
-4. **No unimodularity leak.** Unit-only converse theorems or Euclidean-only Rauzy constructions remain restricted unless separately generalized.
-5. **No false stable lattice.** `pi_s(Z^A)` is generally not a discrete lattice.
-6. **No realization shortcut.** Formal recurrence does not imply global realization.
-7. **No computational self-certification.** Finite corpus/collar bounds require an independent completeness theorem before universal use.
+1. **Swap-patch legality is not assumed.** The two-letter periodic seed in Theorem 5.38 need not be a legal substitution-language factor.
+2. **Tile-length independence is derived.** Do not add rational/integer independence as a separate PSC hypothesis when irreducibility supplies it.
+3. **UD is derived.** Do not make unique decodability a standing assumption.
+4. **FI/boundary injectivity is extra.** Do not silently restrict to permutation/injective boundary maps.
+5. **No unimodularity leak.** Unit-only converse theorems or Euclidean-only Rauzy constructions remain restricted unless separately generalized.
+6. **No false stable lattice.** `pi_s(Z^A)` is generally not a discrete lattice.
+7. **No realization shortcut.** Formal recurrence does not imply global realization.
+8. **No computational self-certification.** Finite corpus/collar bounds require an independent completeness theorem before universal use.
 
 # Completion order
 
 1. **P0 — synchronization.** Keep manuscript, claim/source map, conjecture ledger, proof ladder, README and TLA dependency comments aligned.
 2. **P1 — overlap productivity.** Prove the one-seed form of Open Problem 5.35. This is the only open premise on the current shortest PDS route.
-3. **P2 — minimal bad overlap set.** Combine full-rank child-closed algebra with ordered prefix-Parikh/boundary-hitting structure and Pisot contraction.
+3. **P2 — aligned/zipper obstruction.** Use PR #88's normal form: eliminate the exposed bad letter pair or rule out the strict ordered zipper using full rank and exact prefix geometry.
 4. **P3 — G1b-2.** Continue as a stronger independent theorem on BPA finiteness, with the non-unimodular firewall intact.
 5. **P4 — concentration and wedge productivity.** Continue as the alternative finite-BPA/SCC route.
 6. **P5 — realization bridge.** Discharge G0–G6 only if pursuing the coincidence-rank/collar certification route.
