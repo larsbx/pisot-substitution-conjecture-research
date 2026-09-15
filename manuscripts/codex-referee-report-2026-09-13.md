@@ -1659,3 +1659,18 @@ No other findings were posted in the seventy-first round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the seventy-second round.
+
+# Seventy-third round: review of the stop-control revision (pull request #95)
+
+**Reviewed commit:** `b6753bdd51` (finding 136).
+**Review posted:** 2026-09-15T22:25:16Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 137 (P2) — `scripts/check_manuscript_source.py`, line 88
+
+> **Reject TeX ^^ notation before scanning stop controls**
+>
+> A 500-line source with `\end^^69nput` immediately before otherwise valid standalone document sentinels returns no problems here, but TeX converts `^^69` to `i` during input processing and therefore executes `\endinput` before reaching either sentinel. Normalize or reject TeX `^^` notation before scanning comments, conditionals, sentinels, and stop controls so this fail-closed guard cannot be bypassed by an encoded control word.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the seventy-third round.

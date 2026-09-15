@@ -167,6 +167,9 @@ def test_commented_document_sentinels_fail(copy):
         assert code == 1 and "precedes \\end{document}; the guard cannot follow it" in out, (word, out)
     tex.write_text(text.replace("\\begin{document}", "\\inputencoding{utf8} \\csnamex\n\\begin{document}", 1))  # longer control words differ
     assert run(copy)[0] == 0
+    tex.write_text(text.replace("\\begin{document}", "\\end^^69nput\n\\begin{document}", 1))  # ^^69 is i to TeX's input processor
+    code, out = run(copy)
+    assert code == 1 and "TeX ^^ notation on line" in out, out
     tex.write_text(text[:i + len("\\end{document}")] + "\n\\endinput" + text[i + len("\\end{document}"):])  # after the document is fine
     assert run(copy)[0] == 0
 

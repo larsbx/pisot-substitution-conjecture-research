@@ -53,6 +53,8 @@ def check_tex(path: Path) -> list[str]:
     if bad:
         problems.append(f"{path}: control characters {[hex(ord(c)) for c in bad]}")
     lines = text.splitlines()
+    if (caret := text.find("^^")) >= 0:  # TeX's input processor rewrites ^^ notation before any token below is seen;
+        problems.append(f"{path}: TeX ^^ notation on line {text.count(chr(10), 0, caret) + 1} cannot be followed")  # the guard does not model it
     first = next((l for l in lines if l.strip()), "")
     if not first.startswith("\\documentclass"):
         problems.append(f"{path}: first line is not \\documentclass")

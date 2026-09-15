@@ -837,3 +837,11 @@ One finding from the automated Codex review of commit `fb9d9910f9`; accepted, on
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 136 | P2 | `\csname endinput\endcsname` constructs `\endinput` without the literal control word | Accepted. The `\endinput` rule is generalised to a fixed set of control words the guard cannot follow, since they end the input, read other files, construct control sequences or change how the rest of the source is read: `\endinput`, `\csname`, `\catcode`, `\scantokens`, `\lowercase`, `\uppercase`, `\directlua`, `\input`, `\include`, `\InputIfFileExists`, `\@input`, `\openin`, `\stop`, `\dump`; any of them before the closing sentinel, at any depth, fails the source. The repository sources use none. The scenario was confirmed to pass the previous revision. Tests: `\csname endinput\endcsname`, `\input{other}`, a `\catcode` change and `\scantokens{x}` before the sentinels (fail); longer control words such as `\inputencoding` (pass) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Seventy-third round (pull request #95, stop-control revision)
+
+One finding from the automated Codex review of commit `b6753bdd51`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 137 | P2 | `^^` notation could encode a control word the guard scans for | Accepted. Any `^^` in the source now fails it before any other check, since the guard does not model TeX's input processor; the repository sources contain none. The scenario was confirmed to pass the previous revision. Test: `\end^^69nput` before the sentinels (fails) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
