@@ -1164,3 +1164,37 @@ No other findings were posted in the forty-fourth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the forty-fifth round.
+
+
+---
+
+# Forty-sixth round: review of the predictor and index revision (pull request #95)
+
+**Reviewed commit:** `b084115186` (findings 94–96).
+**Review posted:** 2026-09-15T18:59:24Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 97 (P2) — `scripts/check_manuscript_source.py`, line 448
+
+> **Reject duplicate keys while parsing PDF dictionaries**
+>
+> When a dictionary repeats a key, assigning into `items` silently keeps the last value instead of rejecting the malformed dictionary. This is observable on a superseded stream: an old object containing duplicate `/Length` keys with the same usable value passes `_xref_chain`, while pypdf only parses its replacement and cannot catch the historical duplicate. Detect an already-present decoded key before assignment so every structurally inspected dictionary fails closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 98 (P2) — `scripts/check_manuscript_source.py`, line 680
+
+> **Require /Prev to point to an earlier section**
+>
+> When `/Prev` is greater than the current cross-reference offset, the loop follows it and later reverses the collected sections without validating their physical chronology. A file whose final `startxref` points at section A and whose A trailer points forward to section B therefore passes the structural walk with B treated as the older revision, defeating the premise that each replayed prefix was once a complete file. Reject any non-earlier `/Prev` before following it.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 99 (P2) — `scripts/check_manuscript_source.py`, line 162
+
+> **Reject overlapping classic xref subsections**
+>
+> When two classic subsections cover the same object number, this assignment silently replaces the first row in `table`. For example, appending a `1 1` subsection duplicating object 1 to the otherwise valid classic fixture makes `_xref_chain` return success, even though a cross-reference section must not contain competing entries for one object. Check each new subsection against the accumulated ranges before decoding it rather than accepting the overwritten table.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the forty-sixth round.

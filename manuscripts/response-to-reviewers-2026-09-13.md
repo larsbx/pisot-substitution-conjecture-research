@@ -599,3 +599,16 @@ Three findings from the automated Codex review of commit `dff1e3ac05`; all accep
 | 94 | P2 | A superseded stream's `/Length` was still found by a recursive regex | Accepted. It is read from the dictionary's top-level items and must be a whole nonnegative integer. Tests: a nested `/Length` and `/Length 1.5` both fail | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 95 | P2 | Predictors were validated but not undone before an object stream's header was parsed | Accepted. The decode-parameter validator now returns the unpredicted bytes (PNG predictors 10–15 via the row unfilter, TIFF predictor 2 by undoing horizontal differencing at 8 bits per component, other depths failing closed), and object streams read their header and members from those bytes. Tests: object streams predicted with `/Predictor 12` and with `/Predictor 2` pass end to end | same |
 | 96 | P2 | `/Index` ranges could overlap or descend | Accepted. Consecutive ranges must be in increasing order and disjoint. Tests: `[0 3 1 1]` and `[2 1 0 2]` fail | same |
+
+
+---
+
+## Forty-sixth round (pull request #95, predictor and index revision)
+
+Three findings from the automated Codex review of commit `b084115186`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 97 | P2 | A repeated dictionary key kept the last value | Accepted. The dictionary parser rejects a repeated decoded key, so every dictionary the guard inspects fails closed on duplicates. Test: a superseded stream with two `/Length` keys | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 98 | P2 | A forward `/Prev` inverted the replay chronology | Accepted. A section's `/Prev` and `/XRefStm` must point before the section itself; a forward or self-pointing link is rejected before it is followed. Test: the final `startxref` names section A whose `/Prev` points forward at section B; the earlier bogus and self-pointing `/Prev` cases now fail at this check | same |
+| 99 | P2 | Overlapping classic subsections overwrote rows | Accepted. Each subsection is checked against the accumulated ranges before its entries are decoded. Test: a `1 1` subsection appended to a table that already covers object 1 | same |

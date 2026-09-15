@@ -289,7 +289,7 @@ def test_bogus_prev_chain_fails(copy):
     pdf = next(copy.glob("*.pdf"))
     pdf.write_bytes(classic_pdf(extra_trailer=b"/Prev 999999 "))
     code, out = run(copy)
-    assert code == 1 and "offset 999999 beyond end of file" in out, out
+    assert code == 1 and "links forward" in out, out  # a forward /Prev is rejected before it is followed
 
 
 def test_cyclic_prev_chain_fails(copy):
@@ -298,7 +298,7 @@ def test_cyclic_prev_chain_fails(copy):
     xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
     pdf.write_bytes(raw.replace(b"/Prev 000000 ", b"/Prev %06d " % xref))
     code, out = run(copy)
-    assert code == 1 and "revisits offset" in out, out
+    assert code == 1 and "links forward" in out, out  # a self-pointing /Prev is not an earlier section
 
 
 def test_incremental_update_extent_comes_from_prev_section(copy):
@@ -753,6 +753,35 @@ def test_index_ranges_must_be_ordered_and_disjoint(copy):
         pdf.write_bytes(xref_stream_pdf(b"<< /Type /XRef /Size 3 /Index " + index + b" /W [1 2 1] /Root 1 0 R /Length 16 >>", rows))
         code, out = run(copy)
         assert code == 1 and "overlap or are not in increasing order" in out, (index, out)
+
+
+def test_duplicate_dictionary_keys_fail(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(superseded_pdf(b"<< /Length 1 /Length 1 >>\nstream\nx\nendstream"))
+    code, out = run(copy)
+    assert code == 1 and "not one complete object" in out, out
+
+
+def test_prev_must_point_backwards(copy):
+    # the final startxref names section A, whose /Prev points forward at section B
+    pdf = next(copy.glob("*.pdf"))
+    raw = classic_pdf(extra_trailer=b"/Prev 0000000000 ")
+    a_xref = int(re.search(rb"startxref\n(\d+)", raw).group(1))
+    raw = raw[:raw.rfind(b"startxref")]
+    o3 = len(raw)
+    raw += b"3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 20 20] >>\nendobj\n"
+    b_xref = len(raw)
+    raw += b"xref\n3 1\n%010d 00000 n \ntrailer\n<< /Size 4 /Root 1 0 R >>\nstartxref\n%d\n%%%%EOF\n" % (o3, a_xref)
+    pdf.write_bytes(raw.replace(b"/Prev 0000000000 ", b"/Prev %010d " % b_xref))
+    code, out = run(copy)
+    assert code == 1 and "links forward" in out, out
+
+
+def test_overlapping_classic_subsections_fail(copy):
+    pdf = next(copy.glob("*.pdf"))
+    pdf.write_bytes(classic_pdf(edit=lambda b: b.replace(b"trailer", b"1 1\n0000000009 00000 n \ntrailer")))
+    code, out = run(copy)
+    assert code == 1 and "overlaps an earlier subsection" in out, out
 
 
 def test_superseded_dictionary_is_parsed_structurally(copy):

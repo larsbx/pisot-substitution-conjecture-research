@@ -141,6 +141,8 @@ def _classic_table(raw: bytes, off: int) -> str | Section:
         pos, start, count = pos + sub.end(), int(sub.group(1)), int(sub.group(2))
         if count == 0:
             return f"empty xref subsection at object {start}"
+        if any(start < s0 + c0 and s0 < start + count for s0, c0 in ranges):
+            return f"xref subsection at object {start} overlaps an earlier subsection"
         ranges.append((start, count))
         block = at[pos:pos + 20 * count]
         if len(block) < 20 * count:
@@ -443,7 +445,7 @@ def _dict_parse(buf: bytes, i: int) -> tuple[dict[bytes, bytes], int] | None:
         if not key:
             return None
         start = j + key.end()
-        if (j := _object_end(buf, start)) is None:
+        if (j := _object_end(buf, start)) is None or _unescape(key.group(1)) in items:  # a repeated key is malformed
             return None
         items[_unescape(key.group(1))] = buf[start:j].strip()
 
@@ -677,8 +679,12 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
         section = _section_at(raw, off, seen)
         if isinstance(section, str):
             return section
-        entries, size, off, xrefstm, _, root = section
-        classic, sizes, roots = xrefstm is not None or raw.startswith(b"xref", seen[-1]), (size,), (root,)
+        entries, size, prev, xrefstm, _, root = section
+        here = seen[-1]
+        if any(link is not None and link >= here for link in (prev, xrefstm)):
+            return f"cross-reference section at offset {here} links forward (/Prev or /XRefStm {prev if prev is not None and prev >= here else xrefstm}); earlier revisions precede it"
+        off = prev
+        classic, sizes, roots = xrefstm is not None or raw.startswith(b"xref", here), (size,), (root,)
         if xrefstm is not None:
             companion = _section_at(raw, xrefstm, seen)
             if isinstance(companion, str):
