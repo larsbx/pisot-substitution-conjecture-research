@@ -245,3 +245,53 @@ Two findings from the automated Codex review of commit `2288163613668619be3185e9
 | --- | --- | --- | --- | --- |
 | 29 | P2 | `strong_coincidence_depth_from` accepted a capped automaton with a length-matching vector | Accepted. It now raises on a capped automaton before consuming the depths, like `_first_depths`; regression test with a capped graph | `mojo/psc/overlap_seed_patch.mojo`, `mojo/tests/test_overlap_seed_patch.mojo` |
 | 30 | P2 | The census rebuilt the exact tables for the endpoint scans after `build_seed_overlap_graph` had built them | Accepted. `build_seed_overlap_graph_from_tables(tables, cap)` is the builder; `build_seed_overlap_graph(sigma, cap)` wraps it; the census builds the tables once per specimen and passes them to the graph construction and both scans | `mojo/psc/overlap_seed_patch.mojo`, `mojo/swap_overlap_census.mojo` |
+
+---
+
+## Sixteenth round (pull request #87, contracting bound)
+
+Three findings from the automated Codex review of commit `3b8e6d42acfac4c1d9c23abe6f5190e6656e0ce8`; all accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 31 | P1 | The contracting-bound kernel and census existed only in the Python layer | Accepted. Canonical Mojo implementation: `mojo/psc/real_root_sign.mojo` (exact Sturm–Tarski queries over unbounded rationals: root counting, isolation, sign at an isolated root) and `mojo/psc/overlap_contracting.mojo` (field norm, discriminant, increment set, `ContractingBound.least_level`, capped graphs rejected; all field arithmetic in Q[x]/(χ) over unbounded rationals with every sign a Sturm–Tarski query at an isolated root, the Perron root included, since the fixed-width Perron oracle fails closed on the coefficient growth of the level tests); `mojo/tests/test_overlap_contracting.mojo` pins the same values as the Python oracle; `mojo/overlap_contracting_census.mojo` is the census driver, asserted line by line in CI; the Python module is the oracle and prints the same nine summary lines (without the specimen-count header) | `mojo/psc/real_root_sign.mojo`, `mojo/psc/overlap_contracting.mojo`, `mojo/tests/test_overlap_contracting.mojo`, `mojo/overlap_contracting_census.mojo`, `mojo/pixi.toml`, `.github/workflows/ci.yml` |
+| 32 | P1 | "Dominated by a scale-free combinatorial part" and "cannot come from a contraction argument" do not follow from `b ≥ m_0`, since the excess includes the slack of the triangle and Cauchy–Schwarz steps | Accepted. Every such sentence is replaced by the statement the executable result supports: this magnitude bound accounts for at most 7 of the up to 17 inflations and leaves a gap of up to 14, the gap includes the slack of the bound, and whether a sharper contracting-space argument explains part of it is not decided | Computation 6.7 "Meaning"; note Section 10; `docs/conjecture-ledger.md`, `docs/proof-ladder.md`, `README.md`, `docs/README.md`; pull-request description |
+| 33 | P1 | `N(c)/c` and `N(t)/t` are undefined at the zero increment and at offset-zero vertices, while the code excluded them silently | Accepted. Proposition 5.42 now defines `m_0(0) = 0` separately, states the complex-pair display for `t ≠ 0`, and takes `K` over `F \ {0}` (the zero increment contributes nothing to `C_ς`); the proof and the note say the same, and both implementations match the statement | Proposition 5.42 statement and proof; note Section 10 |
+
+---
+
+## Seventeenth round (pull request #87, canonical-implementation revision)
+
+Two findings from the automated Codex review of commit `7d74aa42c3ce138afe85b332b4964e30f58dacd2`; both accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 34 | P1 | The rational Horner evaluator lived in `real_root_sign.mojo` instead of the designated adapter | Accepted. `eval_q_poly_at_q` now lives in `mojo/psc/exact.mojo` next to the integer Horner helper; `real_root_sign.mojo` imports it and keeps only polynomial algebra (trim, derivative, product, remainder) and the Sturm–Tarski queries | `mojo/psc/exact.mojo`, `mojo/psc/real_root_sign.mojo` |
+| 35 | P1 | The complex-pair test decided the Cauchy–Schwarz relaxation `N(t)/t ≤ K m Σ ρ^s`, which is one-way, so the census was not a census of the stated `m_0` (example: `1→2, 2→33, 3→213`, offset `(−8, −2, 5/2)`: relaxation 5, defining inequality 6) | Accepted. Both implementations now decide the defining inequality exactly: with `ρ = β/D`, `(Σ_{s≤m} ρ^{s/2})² = A_m + ρ^{1/2} B_m` with `A_m, B_m ∈ Q(β)` (`n_k = min(k−1, 2m+1−k)` pairs), so `N(t)/t ≤ K(A_m + ρ^{1/2}B_m)` iff `N(t)/t ≤ K A_m`, or `N(t)/t > K A_m` and `(N(t)/t − K A_m)² ≤ K² ρ B_m²`: at most two sign tests at `β`, no relaxation. Proposition 5.42 and its proof state this formulation; every mention of Chebyshev or Cauchy–Schwarz is removed from statement, proof, "Meaning", note Section 10, and both implementations. The referee's example is pinned in both regression suites (`m_0 = 6`), and the census was rerun with the exact test in both implementations and repinned in CI, Computation 6.7, the note, the ledgers, and the READMEs (the largest `m_0` rises from 7 to 8, attained on 12 vertices of 6 substitutions; the largest excess stays 14; the totally real specimens are unchanged) | Proposition 5.42 statement and proof; Computation 6.7; note Section 10; `mojo/psc/overlap_contracting.mojo`, `src/psc_research/overlap_contracting.py`, `mojo/tests/test_overlap_contracting.mojo`, `tests/test_oa_overlap_graph.py`, `.github/workflows/ci.yml` |
+
+---
+
+## Eighteenth round (pull request #87, exact-test revision)
+
+One finding from the automated Codex review of commit `0b989e0ccc07d5690d5413e16fc8fe07484dd590`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 36 | P2 | `B_1 = 0`, so "`A_m` and `B_m` positive at `β`" is false for `m = 1` | Accepted. The statement now reads "`A_m > 0` and `B_m ≥ 0` at `β` (`B_1 = 0`)"; the proof already used only `ρ^{1/2} B_m ≥ 0`; the note says the same | Proposition 5.42 statement; note Section 10 |
+
+---
+
+## Nineteenth round (pull request #87, nonnegativity revision)
+
+One finding from the automated Codex review of commit `059c4c5536cc4f0f9252a55a628ca90e7ea0bdf4`; accepted.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 37 | P1 | `least_level` rebuilt the level tables `A_m`, `B_m` (complex pair) and the β-powers and `G_m` (real conjugates) for every shift and level, although they depend only on the substitution | Accepted. The constructor now builds `A_m`, `B_m` for `m ≤ max_level` (complex pair) and `β^m`, `G_r[m]` (real conjugates) once per substitution; `least_level` indexes them. The Python oracle precomputes `A_m`, `B_m` the same way (its real branch already did). Census rerun: identical lines | `mojo/psc/overlap_contracting.mojo`, `src/psc_research/overlap_contracting.py` |
+
+---
+
+## Twentieth round (pull request #87, level-table revision)
+
+The automated Codex review of commit `eb0615f609` posted no findings. Findings 31–37 are recorded as addressed.
+

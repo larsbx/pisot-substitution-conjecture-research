@@ -360,3 +360,101 @@ No other findings were posted in the fourteenth round.
 > AGENTS.md reference: AGENTS.md:L26-L26
 
 No other findings were posted in the fifteenth round.
+
+---
+
+# Sixteenth round: review of the contracting-bound revision (pull request #87)
+
+**Reviewed commit:** `3b8e6d42acfac4c1d9c23abe6f5190e6656e0ce8` (Proposition 5.42 and the census against the first left-aligned depth).
+**Review posted:** 2026-09-15T00:23:22Z, one automated Codex review with three inline comments. Reproduced verbatim.
+
+## Finding 31 (P1) — `src/psc_research/overlap_contracting.py`, line 149
+
+> **Add the canonical Mojo contracting-bound implementation**
+>
+> This class is the new exact kernel supporting Proposition 5.42 and the reported 1,118,850-vertex census, but a repo-wide search finds no corresponding contracting-bound implementation or regression under `mojo/`, nor any documented blocker. Consequently the manuscript's new numerical result depends solely on the secondary Python layer, contrary to the repository's explicit requirement that new theorem-support algorithms and census drivers land in Mojo first.
+>
+> AGENTS.md reference: AGENTS.md:L5-L16
+
+## Finding 32 (P1) — `docs/overlap-finiteness-and-coincidence-density-2026-09-13.md`, line 531
+
+> **Avoid attributing the residual depth to combinatorics**
+>
+> The census establishes only `b >= m_0`, where `m_0` comes from triangle and Cauchy–Schwarz upper bounds; therefore `b-m_0` also includes all slack in those inequalities and does not isolate a scale-free combinatorial contribution. A sharper contracting-space argument using actual digit correlations, joint embeddings, or cancellation could still explain the residual, so neither "dominated by" nor "cannot come from a contraction argument" follows from the executable result. State only that this particular magnitude bound leaves an unexplained gap.
+>
+> AGENTS.md reference: AGENTS.md:L64-L70
+
+## Finding 33 (P1) — `PSC_balanced_pair_state_2026-09-13.tex`, line 852
+
+> **Define the complex-pair formula at zero**
+>
+> The set `F` necessarily contains zero (for example, choose the first subtile on both sides, so `p=q=0`), and the overlap graph also contains offset-zero vertices, but this display forms both `N(c)/c` and `N(t)/t`; these are undefined in precisely those cases. The Python implementation silently repairs the discrepancy by removing zero digits and returning `m_0(0)=0`, so the stated theorem is not the theorem used by the census. Restrict the maximum to `F \setminus {0}`, state the complex formula only for `t != 0`, and define `m_0(0)=0` separately.
+>
+> AGENTS.md reference: AGENTS.md:L64-L70
+
+No other findings were posted in the sixteenth round.
+
+---
+
+# Seventeenth round: review of the canonical-implementation revision (pull request #87)
+
+**Reviewed commit:** `7d74aa42c3ce138afe85b332b4964e30f58dacd2` (canonical Mojo contracting bound, zero case, wording).
+**Review posted:** 2026-09-15T00:53:39Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 34 (P1) — `mojo/psc/real_root_sign.mojo`, line 29
+
+> **Centralize the new Horner helper in exact.mojo**
+>
+> This newly introduced polynomial evaluator is a PSC-specific Horner helper over the vendored rational type, but the repository's exact-arithmetic authority requires such helpers to live in `mojo/psc/exact.mojo` and nowhere else. Keeping another implementation in `real_root_sign.mojo` splits the rejection/adapter conventions across modules; move this helper into the designated adapter and import it here.
+>
+> AGENTS.md reference: AGENTS.md:L44-L48
+
+## Finding 35 (P1) — `mojo/psc/overlap_contracting.mojo`, line 249
+
+> **Test the inequality that actually defines m0**
+>
+> For complex-pair inputs, this returns the least level satisfying the Cauchy–Schwarz relaxation, not `m_0` as defined in Proposition 5.42 by the original triangle-inequality bound: `(sum r^s)^2 <= m sum r^(2s)` is one-way, so passing this larger RHS does not imply that the defining inequality holds. For example, for `1→2, 2→33, 3→213`, the reachable Mojo-scaled shift `CubicElt(-16, -4, 5)` returns 5 here, while the original inequality first holds at level 6 (at level 5 the normalized left side is about 37.1156, versus 36.8236 for the original RHS and 37.1173 for this relaxed RHS). Thus the reported histograms are not a census of the manuscript's stated `m_0`; either compute the defining inequality or redefine and consistently relabel the weaker bound.
+>
+> AGENTS.md reference: AGENTS.md:L64-L70
+
+No other findings were posted in the seventeenth round.
+
+---
+
+# Eighteenth round: review of the exact-test revision (pull request #87)
+
+**Reviewed commit:** `0b989e0ccc07d5690d5413e16fc8fe07484dd590` (exact complex-pair test, Horner helper in `exact.mojo`).
+**Review posted:** 2026-09-15T01:22:33Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 36 (P2) — `PSC_balanced_pair_state_2026-09-13.tex`, line 850
+
+> **Describe B_m as nonnegative**
+>
+> For the allowed case `m = 1`, the defining sum for `B_m` runs from `j = 1` to `m - 1` and is empty, so `B_1 = 0`; thus the statement that both `A_m` and `B_m` are positive is false. The proof correctly uses only `rho^{1/2} B_m >= 0`, so describe `B_m` as nonnegative (or qualify strict positivity by `m >= 2`) to make the proposition accurate.
+
+No other findings were posted in the eighteenth round.
+
+---
+
+# Nineteenth round: review of the nonnegativity revision (pull request #87)
+
+**Reviewed commit:** `059c4c5536cc4f0f9252a55a628ca90e7ea0bdf4` (finding 36 and the merge of `main`).
+**Review posted:** 2026-09-15T01:31:48Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 37 (P1) — `mojo/psc/overlap_contracting.mojo`, line 269
+
+> **Precompute level terms before scanning offsets**
+>
+> In the checked `mojo/overlap_contracting_census.mojo` path, every uncached shift calls `least_level`, but this line rebuilds the `A_m`/`B_m` tables from exact field operations for every attempted level and shift even though they depend only on the substitution and `max_level`; the real-conjugate branch similarly rebuilds `G` and the beta powers per shift. Across the 1,118,850-vertex census this causes substantial repeated allocation and exact arithmetic, so precompute both sets of level tables once in the constructor and index them here.
+>
+> AGENTS.md reference: AGENTS.md:L26-L27
+
+No other findings were posted in the nineteenth round.
+
+---
+
+# Twentieth round: review of the level-table revision (pull request #87)
+
+**Reviewed commit:** `eb0615f609` (finding 37).
+**Review posted:** 2026-09-15T02:04:58Z. The automated Codex review of commit `eb0615f` posted no findings ("Didn't find any major issues").
+

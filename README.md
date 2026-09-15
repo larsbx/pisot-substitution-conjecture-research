@@ -50,6 +50,7 @@ This does **not** mean the stronger structural problems are solved:
 - **Coincidence density:** repository Lemma 5.36 identifies overlap productivity with coincidence density one / density of the eventual-coincidence good set.
 - **Density to PDS:** Barge–Štimac–Williams is imported with exact hypotheses audited in PR #77 / manuscript Imported Theorem 5.37.
 - **Endpoint-aligned structure:** PR #82 identifies offset-zero/right-aligned overlaps with prefix/suffix strong coincidence and proves the exact prefix-Parikh boundary-hitting criterion.
+- **Contracting lower bound:** PR #87 proves that a boundary hit at level `m` forces `|ς(t)| ≤ C_ς Σ_{s≤m} |ς(β)|^{-s}` for every contracting embedding (Proposition 5.42, decided exactly in `Q(β)`); on the corpus this lower bound is at most 8 while the hitting depth reaches 17, a gap of up to 14 inflations that this magnitude bound does not explain (the gap includes the slack of the bound; no further attribution is drawn).
 
 ### Current theorem target
 
@@ -78,6 +79,7 @@ On the exact 4,554-member ternary PIP short-image corpus:
 - maximum first-coincidence depth: `18`;
 - maximum first left-aligned depth: `17`;
 - maximum prefix/suffix strong-coincidence depth: `15`;
+- contracting lower bound on the hitting level (Proposition 5.42): at most `8`, excess of the hitting depth over it at most `14`;
 - every specimen satisfies the tested two-sided strong-coincidence condition.
 
 The degree-two and degree-three fail-closed carrier certificates also have zero survivors in their exact stated domains. These are finite-domain theorems/evidence according to their individual completeness contracts; none proves the general PSC.
