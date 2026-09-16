@@ -1,6 +1,6 @@
 --------------------------- MODULE ProofArchitecture ---------------------------
 (***************************************************************************)
-(* Generic dependency state machine for the PSC research program.           *)
+(* Generic dependency state machine for a ledger of named proof records.    *)
 (*                                                                         *)
 (* A result is established only by explicit assumption or by discharging a  *)
 (* standing proved theorem after all of its prerequisites are established.   *)
@@ -58,29 +58,9 @@ NoWithdrawnDependency ==
     /\ \A r \in established : Requires[r] \cap Withdrawn = {}
 
 -----------------------------------------------------------------------------
-(* Configuration-specific observables. A model may assert one negatively so  *)
-(* that a TLC violation trace demonstrates the positive derivation.          *)
-
-MainResultIsConditional == "PDS" \notin established
-
-SpectralBlackBoxNotYetDerived == "SpectralBlackBox" \notin established
-
-LoadBearingSCCIsConditional == "LoadBearingSCC" \notin established
-
-(* The supporting C4 route is not unconditional: without assumptions C4 is  *)
-(* not established and therefore boundary-route SCCProducer is unreachable. *)
-SCCProducerIsConditional == "SCCProducer" \notin established
-
-(* The 2026-09-11 two-gate architecture must stay visibly open on main. *)
-RenewalFinitenessRemainsOpen == "G1b2RenewalFiniteness" \notin established
-ConcentrationRemainsOpen == "ConcentrationAuxB" \notin established
-
-(* The G1-free form of Level 3 (productivity of the finite seed-patch overlap
-   graph) is open; only its consequences are theorems. *)
-OverlapProductivityRemainsOpen == "OverlapProductivity" \notin established
-
-(* The literature theorem and the repo seed-union lemma are recorded, but    *)
-(* the final seedwise PDS=>repo-G1 implication is deliberately still open.   *)
-RepoG1BridgeRemainsOpen == "PDSImpliesRepoG1" \notin established
+(* Observables are configuration-specific and live in the generated ledger   *)
+(* module (proof_records/generate_ledgers.py): one `<Name>NotEstablished` per result. *)
+(* A model asserts them negatively for the results its assumptions leave      *)
+(* unreachable, so that a TLC violation trace demonstrates a derivation.      *)
 
 =============================================================================

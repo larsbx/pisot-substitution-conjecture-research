@@ -13,18 +13,27 @@ fi
 
 # model : expected
 # HOLD means no invariant violation. Otherwise the named invariant must be
-# violated, so TLC's counterexample trace demonstrates the positive derivation.
+# violated, so TLC's counterexample trace demonstrates the positive derivation
+# (BPA models only; the generated ledger models are all HOLD).
 MODELS=(
     "MCTribonacci:HOLD"
     "MCFlippedTribonacci:HOLD"
     "MCSmith:HOLD"
     "MCNonProductive:Productive"
-    "MCArchitectureOpen:HOLD"
-    "MCArchitectureSpectral:SpectralBlackBoxNotYetDerived"
-    "MCArchitectureConditional:MainResultIsConditional"
-    "MCArchitectureG1Bound:LoadBearingSCCIsConditional"
-    "MCArchitectureG1Main:HOLD"
-    "MCArchitectureC4Main:MainResultIsConditional"
+    # Generated proof-dependency models (scripts/make_ledger.py): every one must
+    # hold. Each asserts <Name>NotEstablished for the results its assumptions
+    # leave unreachable and the liveness property that its Reachable set is
+    # eventually established, so the positive derivations (PDS under G1 and
+    # SCC Producer, LoadBearingSCC under G1, SpectralBlackBox unconditionally)
+    # are read off the Reachable sets rather than off expected violations.
+    "MCLedgerOpen:HOLD"
+    "MCLedgerImports:HOLD"
+    "MCLedgerG1AndProducer:HOLD"
+    "MCLedgerG1Only:HOLD"
+    "MCLedgerG1AndC4:HOLD"
+    "MCLedgerRenewalGateAssumed:HOLD"
+    "MCLedgerSpectralGateAssumed:HOLD"
+    "MCLedgerOverlapGateAssumed:HOLD"
 )
 
 fail=0

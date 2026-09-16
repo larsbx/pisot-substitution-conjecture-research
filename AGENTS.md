@@ -34,9 +34,10 @@ Performance-sensitive code must be designed for Mojo rather than transliterated 
 
 ## Vendored packages
 
-Three logical Mojo packages under `mojo/` are vendored byte-for-byte from the
-single `larsbx/finite-math-kernels` monorepo and pinned to one commit by
-SHA-256 digest in `vendored.toml`;
+Three logical Mojo packages under `mojo/`, and the two Python packages under
+`tools/`, are vendored byte-for-byte from the single
+`larsbx/finite-math-kernels` monorepo and pinned to one commit by SHA-256
+digest in `vendored.toml`;
 `scripts/check_vendored_sync.py` enforces the pins in CI and in
 `scripts/verify_all.sh`. Do not patch a vendored file, add a file beside one,
 or reintroduce a local copy of what a package provides: change the package
@@ -46,8 +47,10 @@ COMMIT`).
 | Package | Upstream | Provides | PSC-side layer |
 | --- | --- | --- | --- |
 | `mojo/finite_exact/` | `larsbx/finite-math-kernels` | unbounded `BigZ`, normalized `Q`, canonical bytes, closed rational intervals and rank-2 boxes; rejection is sticky | `mojo/psc/exact.mojo`: rejected consumer states raise/abort; Horner helpers, midpoint, diagnostic rendering |
-| `mojo/substitution_dynamics/` | `larsbx/finite-math-kernels` | words, substitutions, balanced pairs, automaton, discrepancy over an explicit alphabet | `mojo/psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` remain thin alphabet-3 views |
+| `mojo/substitution_dynamics/` | `larsbx/finite-math-kernels` | words, substitutions, balanced pairs, automaton, discrepancy, tuning patterns, directive prefixes, and column coincidence over an explicit alphabet | `mojo/psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` remain thin alphabet-3 views |
 | `mojo/finite_linear_algebra/` | `larsbx/finite-math-kernels` | `Mat3`, generic RREF/rank/nullspace over `Q`, rank-three tensors, `W_3`, integer lifts | `mojo/psc/w3.mojo` keeps the printed certificate basis; `psc/exact.mojo` re-exports lifts |
+| `tools/claim_governance/` | `larsbx/finite-math-kernels` (`audit/`) | the status-surface, terminology, promotion, and numerics audit | `claim_governance.toml` is the policy |
+| `tools/proof_records/` | `larsbx/finite-math-kernels` | proof records (kinds, identity, dependency closure) and the ledger generator | `scripts/make_ledger.py` holds the record table; `tla/ledger.json`, `tla/Ledger.tla`, the `tla/MCLedger*` models, `docs/ledger-index.md`, and the generated `[[claim]]` block of `claim_governance.toml` are its outputs, never hand-edited |
 
 Integer, rational, and rational-interval arithmetic is therefore **not**
 implemented in this repository. Do not add a second rational type or a
