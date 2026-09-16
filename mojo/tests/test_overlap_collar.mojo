@@ -232,6 +232,22 @@ def test_fail_closed() raises:
     except:
         caught = True
     assert_true(caught)
+    caught = False
+    try:  # a negative radius must not yield an empty collar
+        _ = inflate_collar(sigma, seed_collar(0, 1, 1), 0, 0, -1)
+    except:
+        caught = True
+    assert_true(caught)
+    caught = False
+    try:  # a certificate from another graph has no starting fibre here
+        var other_tables = build_seed_overlap_tables(collapsing_sigma())
+        var other = build_seed_overlap_graph_from_tables(other_tables, 20000)
+        var certificates = first_zero_shift_free_affine_pump(other_tables, other)
+        assert_equal(len(certificates), 1)
+        _ = lift_affine_pump(build_collared_graph(tables, graph, 1), certificates[0])
+    except:
+        caught = True
+    assert_true(caught)
     var capped = SeedOverlapAutomaton(graph.states, graph.adj, True)
     caught = False
     try:

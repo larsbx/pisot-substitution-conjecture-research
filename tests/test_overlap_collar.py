@@ -106,6 +106,10 @@ def test_fail_closed(graph: OverlapGraph) -> None:
     with pytest.raises(RuntimeError):
         inflate_collar(SIGMA, seed_collar(1, 2, 1), 1, 1, 1)
     with pytest.raises(RuntimeError):
+        inflate_collar(SIGMA, seed_collar(1, 2, 1), 1, 0, -1)  # a negative radius must not yield an empty collar
+    with pytest.raises(RuntimeError):  # a certificate from another graph has no starting fibre here
+        lift_affine_pump(build_collared_graph(graph, 1), first_zero_shift_free_affine_pump(OverlapGraph({1: (2, 1, 3), 2: (3,), 3: (1, 3, 1)})))
+    with pytest.raises(RuntimeError):
         build_collared_graph(graph, 1, max_states=100)
     with pytest.raises(RuntimeError):
         separation_radius(graph, -1)  # an empty search must not read as a surviving collision

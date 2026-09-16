@@ -99,6 +99,8 @@ def inflate_collar(sigma: Any, collar: Collar, letter: int, child_index: int, ra
 
     Every image has at least one letter, so the inflated collar supplies the
     ``radius`` letters on each side however short the parent image is."""
+    if radius < 0:
+        raise RuntimeError("collar radius must be nonnegative")
     if not 0 <= child_index < len(sigma[letter]):
         raise RuntimeError("collar child index lies outside the parent image")
     left = _image(sigma, collar.left) + tuple(sigma[letter][:child_index])
@@ -194,7 +196,10 @@ def lift_affine_pump(cg: CollaredGraph, certificate: Any) -> tuple[LiftedOrbit, 
             k = traverse(k)
         return LiftedOrbit(start, seen[k], len(seen) - seen[k])
 
-    return tuple(orbit(k) for k in cg.fibre(certificate.state_indices[0]))
+    fibre = cg.fibre(certificate.state_indices[0])
+    if not fibre:
+        raise RuntimeError("affine pump certificate starts outside the collared graph")
+    return tuple(orbit(k) for k in fibre)
 
 
 def is_proper_power(word: Word) -> bool:

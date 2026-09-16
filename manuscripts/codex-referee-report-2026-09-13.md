@@ -2009,3 +2009,26 @@ No other findings were posted in the ninety-fourth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the ninety-fifth round.
+
+# Ninety-sixth round: review of the negative-cap revision (pull request #101)
+
+**Reviewed commit:** `d5be52f0f2` (finding 160).
+**Review posted:** 2026-09-16T03:58:23Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 161 (P2) — `mojo/psc/overlap_collar.mojo`, line 218
+
+> **Reject negative radii when inflating collars**
+>
+> When `inflate_collar` is called directly with a negative `radius`, this length check is false and the subsequent slices return empty collars instead of raising; the Python oracle likewise accepts the input. This lets an invalid mathematical parameter produce an apparently valid `Collar`, so add an explicit nonnegative-radius guard as `seed_collar` and `separation_radius` already do.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 162 (P2) — `mojo/psc/overlap_collar.mojo`, line 390
+
+> **Reject pump certificates with an absent starting fibre**
+>
+> When `certificate.state_indices[0]` is absent from `cg`—for example, because a certificate from another overlap graph is supplied—`cg.fibre` is empty and this function silently returns no orbits. Callers such as the census initialize the result as constant and only disprove that inside the orbit loop, so an empty lift can be recorded as successful evidence; validate that the starting fibre is nonempty before iterating.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the ninety-sixth round.

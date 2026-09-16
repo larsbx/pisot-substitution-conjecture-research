@@ -202,6 +202,8 @@ def inflate_collar(
 
     Every image has at least one letter, so the inflated collar supplies the
     `radius` letters on each side however short the parent image is."""
+    if radius < 0:
+        raise Error("collar radius must be nonnegative")
     if letter < 0 or letter >= len(sigma):
         raise Error("collar letter lies outside the alphabet")
     if child_index < 0 or child_index >= len(sigma[letter]):
@@ -386,6 +388,8 @@ def lift_affine_pump(
         raise Error("affine pump certificate is malformed")
     var out = List[LiftedOrbit]()
     var fibre = cg.fibre(certificate.state_indices[0])
+    if len(fibre) == 0:
+        raise Error("affine pump certificate starts outside the collared graph")
     for f in range(len(fibre)):
         var visit = Dict[Int, Int]()
         var current = fibre[f]

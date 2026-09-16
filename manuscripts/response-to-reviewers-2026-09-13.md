@@ -1016,3 +1016,12 @@ One finding from the automated Codex review of commit `c14afe4f2b`; accepted, on
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 160 | P2 | The oracle's separation-radius search returned None on a negative cap, which reads as a surviving collision | Accepted. The oracle now raises on a negative bound, as the canonical Mojo `separation_radius` already did; a test asserts the error, so an empty search can no longer be recorded as a survivor | `src/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
+
+## Ninety-sixth round (pull request #101, negative-cap revision)
+
+Two findings from the automated Codex review of commit `d5be52f0f2`; both accepted, on the fail-closed side, in the canonical implementation and the oracle alike.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 161 | P2 | `inflate_collar` with a negative radius returned empty collars instead of raising | Accepted. Both implementations now reject a negative radius before inflating; tests assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
+| 162 | P2 | A pump certificate whose first state has no fibre in the collared graph lifted to no orbits, which the census would read as a constant collar | Accepted. Both implementations now fail when the starting fibre is empty; tests lift the collapsing specimen's certificate against the determinant-two collared graph and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
