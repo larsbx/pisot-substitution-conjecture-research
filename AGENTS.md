@@ -46,7 +46,7 @@ COMMIT`).
 | Package | Upstream | Provides | PSC-side layer |
 | --- | --- | --- | --- |
 | `mojo/finite_exact/` | `larsbx/finite-math-kernels` | unbounded `BigZ`, normalized `Q`, canonical bytes, closed rational intervals and rank-2 boxes; rejection is sticky | `mojo/psc/exact.mojo`: rejected consumer states raise/abort; Horner helpers, midpoint, diagnostic rendering |
-| `mojo/substitution_dynamics/` | `larsbx/finite-math-kernels` | words, substitutions, balanced pairs, automaton, discrepancy over an explicit alphabet | `mojo/psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` remain thin alphabet-3 views |
+| `mojo/substitution_dynamics/` | `larsbx/finite-math-kernels` | words, substitutions, balanced pairs, automaton, discrepancy, tuning patterns, directive prefixes, and column coincidence over an explicit alphabet | `mojo/psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` remain thin alphabet-3 views |
 | `mojo/finite_linear_algebra/` | `larsbx/finite-math-kernels` | `Mat3`, generic RREF/rank/nullspace over `Q`, rank-three tensors, `W_3`, integer lifts | `mojo/psc/w3.mojo` keeps the printed certificate basis; `psc/exact.mojo` re-exports lifts |
 
 Integer, rational, and rational-interval arithmetic is therefore **not**
