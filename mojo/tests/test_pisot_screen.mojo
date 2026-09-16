@@ -108,7 +108,9 @@ def test_reciprocal_pisot_polynomials_are_not_refused() raises:
 
 def test_a_conjugate_on_the_unit_circle_is_not_pisot() raises:
     # The Routh count alone reports one root outside for a Salem polynomial and
-    # would call it Pisot; the unit-circle test is what refuses it. This is also
+    # would call it Pisot; the unit-circle test is what rejects it. Rejects, not
+    # refuses: the verdict here is SCREEN_NOT_PISOT, and SCREEN_REFUSED means
+    # something else entirely -- an array that did not resolve. This is also
     # what makes the strict-interior clause of the `screen` contract load-bearing:
     # a Salem polynomial has exactly one root outside the closed disc, real and
     # greater than one, and is still not Pisot.

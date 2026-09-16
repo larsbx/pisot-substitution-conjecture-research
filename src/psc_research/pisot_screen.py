@@ -263,8 +263,11 @@ def screen(coeffs: Sequence[int]) -> str:
     `PISOT` means exactly one root lies outside the closed unit disc, that root
     is real and greater than one, and every other root lies *strictly* inside
     the disc. The last clause is not redundant: a Salem polynomial meets the
-    first two and is refused by `has_root_on_unit_circle` precisely because its
-    remaining conjugates sit on the boundary.
+    first two and is still answered `NOT_PISOT`, on the strength of
+    `has_root_on_unit_circle`, precisely because its remaining conjugates sit on
+    the boundary. Note that this is a rejection and not a refusal: `REFUSED` is
+    reserved for an array that did not resolve, and the two must not be run
+    together in prose either.
 
     It is a statement about root location, not about irreducibility: use
     `irreducibility` for that, and note that a Pisot *number* is defined by its
