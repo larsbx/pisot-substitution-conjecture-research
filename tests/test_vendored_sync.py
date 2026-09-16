@@ -24,7 +24,7 @@ def test_vendored_packages_match_their_pins():
     assert {n: (p["repository"], p["root"]) for n, p in packages.items()} == PACKAGES
     for name, pkg in packages.items():
         assert pkg["repository"] == "larsbx/finite-math-kernels"
-        assert pkg["commit"] == "807ae7ed5461af9fe07b1cbbca96f680a105e0e7"
+        assert pkg["commit"] == "007e40f679f3b9be86dade148b3bf08c518de74a"
         assert all(rel.startswith(name + "/") for rel in pkg["files"])
 
 
