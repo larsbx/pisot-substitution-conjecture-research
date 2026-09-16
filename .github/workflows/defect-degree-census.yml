@@ -18,8 +18,9 @@ jobs:
         working-directory: mojo
         run: |
           set -o pipefail
-          out=$(pixi run mojo run -I . defect_degree_census.mojo 2>&1)
+          out=$(pixi run mojo run -I . defect_degree_census.mojo 2>&1) || status=$?
           printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
           grep -Fx 'PIP specimens: 4554  capped: 0' <<<"$out"
           grep -Fx 'reachable noncoincident states: 385926' <<<"$out"
           grep -Fx 'reachable degree2: 385902' <<<"$out"

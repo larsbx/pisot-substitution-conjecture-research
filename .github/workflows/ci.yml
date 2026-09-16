@@ -48,8 +48,9 @@ jobs:
         working-directory: mojo
         run: |
           set -o pipefail
-          out=$(pixi run mojo run -I . census.mojo 2>&1)
+          out=$(pixi run mojo run -I . census.mojo 2>&1) || status=$?
           printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
           grep -Eq '^PIP specimens \(images of length <= 3\):[[:space:]]+4554$' <<<"$out"
           grep -Eq '^[[:space:]]*B_sigma construction terminated:[[:space:]]+4554[[:space:]]+capped:[[:space:]]+0$' <<<"$out"
           grep -Eq '^[[:space:]]*productive:[[:space:]]+4554[[:space:]]+non-productive:[[:space:]]+0$' <<<"$out"
@@ -67,8 +68,9 @@ jobs:
         working-directory: mojo
         run: |
           set -o pipefail
-          out=$(pixi run mojo run -I . c3_census.mojo 2>&1)
+          out=$(pixi run mojo run -I . c3_census.mojo 2>&1) || status=$?
           printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
           grep -Eq '^PIP specimens:[[:space:]]+4554[[:space:]]+capped:[[:space:]]+0$' <<<"$out"
           grep -Eq '^recurrent noncoincident SCCs:[[:space:]]+5022[[:space:]]+states:[[:space:]]+369486$' <<<"$out"
           grep -Eq '^SCCs with newborn synchronization:[[:space:]]+4962$' <<<"$out"
@@ -98,8 +100,9 @@ jobs:
         working-directory: mojo
         run: |
           set -o pipefail
-          out=$(pixi run mojo run -I . c4_census.mojo 2>&1)
+          out=$(pixi run mojo run -I . c4_census.mojo 2>&1) || status=$?
           printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
           grep -Fx 'PIP specimens: 4554  capped: 0' <<<"$out"
           grep -Fx 'degree4 unimodular PIP: 2628' <<<"$out"
           grep -Fx 'degree4 nonunimodular PIP: 1926' <<<"$out"
@@ -135,8 +138,9 @@ jobs:
         working-directory: mojo
         run: |
           set -o pipefail
-          out=$(pixi run mojo run -I . swap_discrepancy_census.mojo 2>&1)
+          out=$(pixi run mojo run -I . swap_discrepancy_census.mojo 2>&1) || status=$?
           printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
           grep -Eq '^PIP specimens:[[:space:]]+4554[[:space:]]+capped:[[:space:]]+0$' <<<"$out"
           grep -Fx 'maximum reachable discrepancy: 14' <<<"$out"
           grep -Fx 'longest reachable state: 48020' <<<"$out"
@@ -155,8 +159,9 @@ jobs:
         working-directory: mojo
         run: |
           set -o pipefail
-          out=$(pixi run mojo run -I . swap_overlap_census.mojo 2>&1)
+          out=$(pixi run mojo run -I . swap_overlap_census.mojo 2>&1) || status=$?
           printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
           grep -Fx 'PIP specimens: 4554' <<<"$out"
           grep -Fx 'overlap graphs built: 4554  capped: 0  failed: 0' <<<"$out"
           grep -Fx 'largest seed-patch overlap graph: 2640' <<<"$out"
@@ -184,8 +189,9 @@ jobs:
         working-directory: mojo
         run: |
           set -o pipefail
-          out=$(pixi run mojo run -I . overlap_contracting_census.mojo 2>&1)
+          out=$(pixi run mojo run -I . overlap_contracting_census.mojo 2>&1) || status=$?
           printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
           grep -Fx 'PIP specimens: 4554  failed: 0  nonproductive: 0' <<<"$out"
           grep -Fx 'vertices checked: 1118850' <<<"$out"
           grep -Fx 'maximum contracting lower bound m0: 8' <<<"$out"
