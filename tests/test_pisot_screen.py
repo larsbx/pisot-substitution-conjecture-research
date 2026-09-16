@@ -80,7 +80,9 @@ def test_reciprocal_pisot_polynomials_are_not_refused():
 
 def test_a_conjugate_on_the_unit_circle_is_not_pisot():
     # The Routh count alone reports one root outside for a Salem polynomial and
-    # would call it Pisot; the unit-circle test is what refuses it.
+    # would call it Pisot; the unit-circle test is what rejects it. Rejects,
+    # not refuses: the verdict here is NOT_PISOT, and REFUSED means something
+    # else entirely -- an array that did not resolve.
     for coeffs in (SALEM, CYCLOTOMIC, [1, 0, 1], [-1, 0, 1]):
         assert ps.has_root_on_unit_circle(coeffs), coeffs
         assert ps.screen(coeffs) == ps.NOT_PISOT, coeffs
