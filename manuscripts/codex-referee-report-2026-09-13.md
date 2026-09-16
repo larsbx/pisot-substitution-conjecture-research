@@ -1967,3 +1967,30 @@ No other findings were posted in the ninety-first round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the ninety-second round.
+
+
+# Ninety-third round: review of the merged modelled-definer revision (pull request #95)
+
+**Reviewed commit:** \`80ac39d937\`.
+**Review posted:** 2026-09-16T02:58:48Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 158 (P2) — \`scripts/check_manuscript_source.py\`, line 308
+
+> **Separate known arity from known definition state**
+>
+> \`_TEX_ARITY\` is being used both as arity metadata and proof that a command is already defined. Those are not equivalent: with only \`article\` loaded, \`\mathbb\` has known table arity but is not defined. Consequently, \`\newcommand{\mathbb}[3]{}\` is wrongly treated as ineffective. The guard retains arity 1, allowing \`\mathbb a b\` to consume \`\begin{document}\` as its actual third argument. Track baseline/package definitions separately from arity metadata, or fail closed when a state-dependent definer targets a name whose definition state is uncertain.
+
+No other findings were posted in the ninety-third round.
+
+# Ninety-fourth round: review of the uncapped-lookback revision (pull request #100)
+
+**Reviewed commit:** \`bc0e0166a5\`.
+**Review posted:** 2026-09-16T03:10:01Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 159 (P2) — \`scripts/check_manuscript_source.py\`, line 128
+
+> **Avoid quadratic rescanning in the uncapped lookback**
+>
+> With a long unbroken alphabetic token at top level or inside a brace group, this uncapped loop makes \`_units_before\` quadratic: the backward scan walks to the beginning of the same plain-letter run on every iteration, while advancing by only one character. Tokenize the span in one pass or retain the previously discovered start of a plain-letter run before removing the cap.
+
+No other findings were posted in the ninety-fourth round.
