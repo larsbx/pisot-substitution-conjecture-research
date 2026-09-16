@@ -1067,3 +1067,7 @@ One finding from the automated Codex review of commit `938a1100fc`; accepted, at
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 169 | P2 | A certificate with corrupted prefix or forcing payload still lifted, since the collared edge retains no such fields | Accepted. Both lifts now take the seed-patch tables and graph and replay the certificate in full with `verify_affine_pump` (every field of every edge, and the exact cycle identity) before lifting, so only a verified affine pump is lifted; the census passes its tables through. Tests forge the forcing term of the golden certificate's first edge and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, `mojo/swap_overlap_census.mojo`, tests |
+
+## Hundred-and-second round (pull request #101, verified-lift revision)
+
+The automated Codex review of commit `fdeacddc6e` posted no findings. No change.
