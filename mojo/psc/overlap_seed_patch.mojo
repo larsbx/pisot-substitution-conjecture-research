@@ -127,7 +127,7 @@ def build_seed_overlap_tables(sigma: List[List[Int]]) raises -> SeedOverlapTable
     return SeedOverlapTables(sigma, field, lengths, starts, positions)
 
 
-def _cached_sign(
+def cached_sign(
     tables: SeedOverlapTables,
     mut cache: Dict[CubicElt, Int],
     x: CubicElt,
@@ -144,7 +144,7 @@ def _cached_sign(
     return s
 
 
-def _interior_overlap_cached(
+def interior_overlap_cached(
     tables: SeedOverlapTables,
     mut cache: Dict[CubicElt, Int],
     state: OverlapState,
@@ -159,17 +159,17 @@ def _interior_overlap_cached(
         state.shift, tables.lengths.at(state.top)
     )
     return (
-        _cached_sign(tables, cache, right_of_top_start) > 0
-        and _cached_sign(tables, cache, left_of_top_end) < 0
+        cached_sign(tables, cache, right_of_top_start) > 0
+        and cached_sign(tables, cache, left_of_top_end) < 0
     )
 
 
 def interior_overlap(tables: SeedOverlapTables, state: OverlapState) raises -> Bool:
     var cache = Dict[CubicElt, Int]()
-    return _interior_overlap_cached(tables, cache, state)
+    return interior_overlap_cached(tables, cache, state)
 
 
-def _seed_states_with_cache(
+def seed_overlap_states_cached(
     tables: SeedOverlapTables, mut cache: Dict[CubicElt, Int]
 ) raises -> List[OverlapState]:
     var out = List[OverlapState]()
@@ -186,22 +186,22 @@ def _seed_states_with_cache(
                         bottom_types[j],
                         cubic_sub_checked(bottom_starts[j], top_starts[i]),
                     )
-                    if _interior_overlap_cached(tables, cache, state):
+                    if interior_overlap_cached(tables, cache, state):
                         out.append(state)
     return out^
 
 
 def seed_overlap_states(tables: SeedOverlapTables) raises -> List[OverlapState]:
     var cache = Dict[CubicElt, Int]()
-    return _seed_states_with_cache(tables, cache)
+    return seed_overlap_states_cached(tables, cache)
 
 
-def _children_with_cache(
+def overlap_children_cached(
     tables: SeedOverlapTables,
     mut cache: Dict[CubicElt, Int],
     state: OverlapState,
 ) raises -> List[OverlapState]:
-    if not _interior_overlap_cached(tables, cache, state):
+    if not interior_overlap_cached(tables, cache, state):
         raise Error("cannot inflate a non-overlap state")
     var out = List[OverlapState]()
     var scaled_shift = cubic_mul_beta(tables.field, state.shift)
@@ -217,7 +217,7 @@ def _children_with_cache(
                 bottom_child,
                 cubic_sub_checked(shifted, top_prefix),
             )
-            if _interior_overlap_cached(tables, cache, child):
+            if interior_overlap_cached(tables, cache, child):
                 out.append(child)
     return out^
 
@@ -226,7 +226,7 @@ def overlap_children(
     tables: SeedOverlapTables, state: OverlapState
 ) raises -> List[OverlapState]:
     var cache = Dict[CubicElt, Int]()
-    return _children_with_cache(tables, cache, state)
+    return overlap_children_cached(tables, cache, state)
 
 
 def build_seed_overlap_graph(
@@ -243,10 +243,25 @@ def build_seed_overlap_graph_from_tables(
 
     Takes the substitution's exact tables so a census builds them once per
     specimen and shares them with the endpoint scans."""
+    var sign_cache = Dict[CubicElt, Int]()
+    var seeds = seed_overlap_states_cached(tables, sign_cache)
+    return build_overlap_graph_from_seeds(tables, seeds, sign_cache, max_states)
+
+
+def build_overlap_graph_from_seeds(
+    tables: SeedOverlapTables,
+    seeds: List[OverlapState],
+    mut sign_cache: Dict[CubicElt, Int],
+    max_states: Int = 20000,
+) raises -> SeedOverlapAutomaton:
+    """Breadth-first closure under inflation of an arbitrary set of overlaps.
+
+    The swap seeds give the seed-patch graph; a level-zero overlap set read off
+    a fixed-point prefix gives the corresponding Sirvent--Solomyak overlap
+    graph (`psc.oa_overlap_types`). Both closures are the same exact kernel, so
+    a type of one graph is a type of the other exactly when the states agree."""
     if max_states <= 0:
         raise Error("seed-patch overlap state cap must be positive")
-    var sign_cache = Dict[CubicElt, Int]()
-    var seeds = _seed_states_with_cache(tables, sign_cache)
     var states = List[OverlapState]()
     var adj = List[List[Int]]()
     var index = Dict[OverlapState, Int](capacity=max_states)
@@ -267,7 +282,7 @@ def build_seed_overlap_graph_from_tables(
         adj.append(List[Int]())
         if state.is_coincidence():
             continue
-        var cs = _children_with_cache(tables, sign_cache, state)
+        var cs = overlap_children_cached(tables, sign_cache, state)
         for i in range(len(cs)):
             queue.append(cs[i])
 
@@ -277,7 +292,7 @@ def build_seed_overlap_graph_from_tables(
     for i in range(len(states)):
         if states[i].is_coincidence():
             continue
-        var cs = _children_with_cache(tables, sign_cache, states[i])
+        var cs = overlap_children_cached(tables, sign_cache, states[i])
         for j in range(len(cs)):
             if cs[j] not in index:
                 raise Error("terminated overlap graph lost a reachable child")

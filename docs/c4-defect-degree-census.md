@@ -41,8 +41,11 @@ Thus the live degree-3 phenomenon in this finite corpus is **not** the length-7 
 
 The Mojo catalogue performs the theorem-relevant exact checks (centralizer
 membership, two-step coincidence leakage, and strict-component detection).
-`scripts/analyze_degree3_catalog.py` remains an independent Python oracle and
-adds the relabeling and reversal classification.
+`mojo/psc/degree3_taxonomy.mojo` adds the relabeling and reversal
+classification, printed by the catalogue itself as the `DEGREE3_*` lines that
+CI pins; `mojo/tests/test_census_library.mojo` regresses it against the known
+orbit. The former Python oracle `scripts/analyze_degree3_catalog.py` is
+retired: the taxonomy is canonical Mojo, like the census that produces it.
 
 There are exactly **four normalized state relabeling classes** (Mojo uses zero-based letters):
 

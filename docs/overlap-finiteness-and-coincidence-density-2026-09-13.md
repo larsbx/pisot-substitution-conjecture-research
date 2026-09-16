@@ -312,8 +312,10 @@ every non-coincidence type of G_O(T, x(W)) is a vertex type of O_sigma.   (TI_W)
 `(TI_W)` is a finite question for each `sigma` and `W`: both type sets are
 finite (Theorem 2.1 for `O_sigma`; `G_O` is finite in the Pisot setting).
 
-**Exploratory computation (not a certificate; Python only;
-`scripts/oa_type_inclusion_explore.py`).** The level-0 types of
+**Exploratory computation (not a certificate;
+`mojo/oa_type_inclusion_census.mojo`, canonical since 2026-09-16; the figures
+below were first produced by the retired Python explorer and are reproduced
+exactly by the Mojo driver, which CI pins).** The level-0 types of
 `(u, S^{|W|} u)` were read off a prefix of `u` of length at least 6,000
 (an uncertified factor set) with the exact enumeration window (the least
 `n` with `n * l_min > g(W) + l_max`, decided in `Q(beta)`; a first run with
@@ -338,8 +340,10 @@ either longer prefixes, other fixed points, or the collar/occurrence
 argument described in the audit. No conclusion about the bridge for
 substitutions outside the corpus follows from this table.
 
-**Addendum (2026-09-14; exploratory, not a certificate; Python only;
-`scripts/oa_failures_probe.py`).** For the 22 failures above, every
+**Addendum (2026-09-14; exploratory, not a certificate;
+`mojo/oa_failures_probe.mojo`, canonical since 2026-09-16; the Mojo driver
+reproduces every figure below, including all nine least witnesses, and CI
+pins them).** For the 22 failures above, every
 prolongable pair `(q, c)` (power `q <= 3`, letter `c` with
 `sigma^q(c)` beginning with `c`) was tried with the fixed point of `sigma^q`
 at `c` and prefixes `W = u[:k]`, `k = 1, ..., 24` (level-0 types read off a

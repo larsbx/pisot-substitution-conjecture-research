@@ -72,29 +72,30 @@ jobs:
             echo 'unexpected strict degree-three component; replay record retained above' >&2
             exit 1
           fi
-          summary=$(python ../scripts/analyze_degree3_catalog.py < degree3.log)
-          printf '%s\n' "$summary"
-          grep -Fx 'DEGREE3_OCCURRENCES 24' <<<"$summary"
-          grep -Fx 'DEGREE3_STATE_RELABEL_CLASSES 4' <<<"$summary"
-          grep -Fx 'DEGREE3_SUBSTITUTION_CONJUGACY_CLASSES 2' <<<"$summary"
-          grep -Fx 'DEGREE3_LENGTHS 9,19' <<<"$summary"
-          grep -Fx 'DEGREE3_SEED_ORBIT_MATCHES 0' <<<"$summary"
-          grep -Fx 'DEGREE3_STATE_REVERSAL_CLOSED 1' <<<"$summary"
-          grep -Fx 'DEGREE3_SIGMA_REVERSAL_CLOSED 1' <<<"$summary"
-          grep -Fx 'DEGREE3_SIGMA_DET_VALUES 1' <<<"$summary"
-          grep -Fx 'DEGREE3_SIGMA_CHARPOLYS -1,0,-2,1' <<<"$summary"
-          grep -Fx 'DEGREE3_CENTRALIZER_HITS 0' <<<"$summary"
-          grep -Fx 'DEGREE3_THETA_ABSDET2 24' <<<"$summary"
-          grep -Fx 'DEGREE3_THETA_TRACE_SQ6 24' <<<"$summary"
-          grep -Fx 'DEGREE3_LENGTH9_SINGLE_D3_SUCCESSOR 12' <<<"$summary"
-          grep -Fx 'DEGREE3_LENGTH19_FIVE_CHILD_ONE_COINCIDENCE 12' <<<"$summary"
-          grep -Fx 'DEGREE3_PRODUCTIVE_WITHIN_TWO 24' <<<"$summary"
-          grep -Fx 'DEGREE3_STATE_CLASS 0011202220010011202|2001001120212022001' <<<"$summary"
-          grep -Fx 'DEGREE3_STATE_CLASS 0102211211000102211|2110010201022112110' <<<"$summary"
-          grep -Fx 'DEGREE3_STATE_CLASS 011202001|120001120' <<<"$summary"
-          grep -Fx 'DEGREE3_STATE_CLASS 011212001|120011120' <<<"$summary"
-          grep -Fx 'DEGREE3_SIGMA_CLASS 011/2/120' <<<"$summary"
-          grep -Fx 'DEGREE3_SIGMA_CLASS 1/210/002' <<<"$summary"
+          # The catalogue prints its own taxonomy; the former Python oracle
+          # (scripts/analyze_degree3_catalog.py) is superseded by
+          # mojo/psc/degree3_taxonomy.mojo and its regression test.
+          grep -Fx 'DEGREE3_OCCURRENCES 24' degree3.log
+          grep -Fx 'DEGREE3_STATE_RELABEL_CLASSES 4' degree3.log
+          grep -Fx 'DEGREE3_SUBSTITUTION_CONJUGACY_CLASSES 2' degree3.log
+          grep -Fx 'DEGREE3_LENGTHS 9,19' degree3.log
+          grep -Fx 'DEGREE3_SEED_ORBIT_MATCHES 0' degree3.log
+          grep -Fx 'DEGREE3_STATE_REVERSAL_CLOSED 1' degree3.log
+          grep -Fx 'DEGREE3_SIGMA_REVERSAL_CLOSED 1' degree3.log
+          grep -Fx 'DEGREE3_SIGMA_DET_VALUES 1' degree3.log
+          grep -Fx 'DEGREE3_SIGMA_CHARPOLYS -1,0,-2,1' degree3.log
+          grep -Fx 'DEGREE3_CENTRALIZER_HITS 0' degree3.log
+          grep -Fx 'DEGREE3_THETA_ABSDET2 24' degree3.log
+          grep -Fx 'DEGREE3_THETA_TRACE_SQ6 24' degree3.log
+          grep -Fx 'DEGREE3_LENGTH9_SINGLE_D3_SUCCESSOR 12' degree3.log
+          grep -Fx 'DEGREE3_LENGTH19_FIVE_CHILD_ONE_COINCIDENCE 12' degree3.log
+          grep -Fx 'DEGREE3_PRODUCTIVE_WITHIN_TWO 24' degree3.log
+          grep -Fx 'DEGREE3_STATE_CLASS 0011202220010011202|2001001120212022001' degree3.log
+          grep -Fx 'DEGREE3_STATE_CLASS 0102211211000102211|2110010201022112110' degree3.log
+          grep -Fx 'DEGREE3_STATE_CLASS 011202001|120001120' degree3.log
+          grep -Fx 'DEGREE3_STATE_CLASS 011212001|120011120' degree3.log
+          grep -Fx 'DEGREE3_SIGMA_CLASS 011/2/120' degree3.log
+          grep -Fx 'DEGREE3_SIGMA_CLASS 1/210/002' degree3.log
 
 
   wedge-productivity-catalog:

@@ -13,236 +13,120 @@ while N_C=A+B and S_C=A-B for nonnegative integer A,B. Hence for every k>=1
 For k=2 the difference is exactly 4 tr(A B), hence divisible by four.
 This finite census first applies the mod-2 three-state parity sieve, then the
 proved global-endpoint synchronization eliminator (types A/B), then tests the
-trace conditions. For the surviving actual substitutions it also builds the BPA
-and records whether any recurrent or noncoincident-sink SCC really has size 3.
+trace conditions (`psc.degree2_sieve`). For the surviving actual substitutions
+it also builds the BPA and records whether any recurrent or noncoincident-sink
+SCC really has size 3.
 
 Finite evidence only: surviving/absent specimens do not prove a general theorem.
 """
 
-from psc.bpa import build, recurrent_noncoincident_sccs, substitution_incidence
+from psc.bpa import build, recurrent_noncoincident_sccs
+from psc.carrier import profile_component
+from psc.corpus import STATE_CAP, pip_corpus
+from psc.degree2_sieve import first_trace_failure, parity_allows_three_states, survives_through
 from psc.endpoint_core import endpoint_type, prefix_endpoint_map, suffix_endpoint_map
-from finite_linear_algebra.mat3 import Mat3
-from psc.pisot import is_pip
+from psc.histogram import Histogram, min_int
 
-
-def image_words() -> List[List[Int]]:
-    var out = List[List[Int]]()
-    for a in range(3):
-        var w1: List[Int] = [a]
-        out.append(w1^)
-    for a in range(3):
-        for b in range(3):
-            var w2: List[Int] = [a, b]
-            out.append(w2^)
-    for a in range(3):
-        for b in range(3):
-            for c in range(3):
-                var w3: List[Int] = [a, b, c]
-                out.append(w3^)
-    return out^
-
-
-def contains_index(comp: List[Int], x: Int) -> Bool:
-    for i in range(len(comp)):
-        if comp[i] == x:
-            return True
-    return False
-
-
-def mod2(x: Int) -> Int:
-    var r = x % 2
-    return r if r >= 0 else r + 2
-
-
-def parity_allows_three_states(t: Int, u: Int, d: Int) -> Bool:
-    """Exactly the lcm-degree-3 rows of the merged mod-2 sieve."""
-    var tp = mod2(t)
-    var up = mod2(u)
-    var dp = mod2(d)
-    if tp != up:
-        return False
-    if tp == 0:
-        return True
-    return dp == 1
+comptime MAX_POWER = 12
+comptime NONSYNCHRONIZING_TYPE = 2  # types C..G are not globally synchronizing
 
 
 def endpoints_can_be_counterexample(sigma: List[List[Int]]) -> Bool:
     """Both endpoint maps must be non-globally-synchronizing (types C..G)."""
     return (
-        endpoint_type(prefix_endpoint_map(sigma)) >= 2
-        and endpoint_type(suffix_endpoint_map(sigma)) >= 2
+        endpoint_type(prefix_endpoint_map(sigma)) >= NONSYNCHRONIZING_TYPE
+        and endpoint_type(suffix_endpoint_map(sigma)) >= NONSYNCHRONIZING_TYPE
     )
 
 
-def traces_standard(t: Int, u: Int, d: Int, max_k: Int) -> List[Int]:
-    var p = List[Int]()
-    p.append(3)
-    if max_k == 0:
-        return p^
-    p.append(t)
-    if max_k == 1:
-        return p^
-    p.append(t * t - 2 * u)
-    for k in range(3, max_k + 1):
-        p.append(t * p[k - 1] - u * p[k - 2] + d * p[k - 3])
-    return p^
-
-
-def traces_exterior(t: Int, u: Int, d: Int, max_k: Int) -> List[Int]:
-    var q = List[Int]()
-    q.append(3)
-    if max_k == 0:
-        return q^
-    q.append(u)
-    if max_k == 1:
-        return q^
-    q.append(u * u - 2 * d * t)
-    for k in range(3, max_k + 1):
-        q.append(u * q[k - 1] - d * t * q[k - 2] + d * d * q[k - 3])
-    return q^
+def survivors_through(failures: Histogram, k: Int) -> Int:
+    """Specimens whose first trace failure is absent or beyond power `k`."""
+    var n = 0
+    for f in range(len(failures.counts)):
+        if survives_through(f, k):
+            n += failures.count(f)
+    return n
 
 
 def main() raises:
-    var words = image_words()
-    var n_pip = 0
+    var corpus = pip_corpus()
     var parity_survivors = 0
     var parity_endpoint_survivors = 0
-    var endpoint_trace12_survivors = 0
-    var endpoint_trace12_capped = 0
-    var endpoint_trace12_with_recurrent_size3 = 0
-    var endpoint_trace12_with_sink_size3 = 0
+    var endpoint_trace_survivors = 0
+    var endpoint_trace_capped = 0
+    var with_recurrent_size3 = 0
+    var with_sink_size3 = 0
     var minimum_recurrent_size = 1000000
     var minimum_sink_size = 1000000
-    var trace1_survivors = 0
-    var trace2_survivors = 0
-    var trace3_survivors = 0
-    var trace6_survivors = 0
-    var trace12_survivors = 0
-    var first_trace_failure = List[Int]()
-    for _ in range(13):
-        first_trace_failure.append(0)
-
+    var trace_failures = Histogram(MAX_POWER + 1)
     var printed_survivor = False
     var printed_endpoint_survivor = False
 
-    for i in range(len(words)):
-        for j in range(len(words)):
-            for k in range(len(words)):
-                var sigma = List[List[Int]]()
-                sigma.append(words[i].copy())
-                sigma.append(words[j].copy())
-                sigma.append(words[k].copy())
-                var m = Mat3(substitution_incidence(sigma))
-                if not is_pip(m):
-                    continue
-                n_pip += 1
+    for s in range(len(corpus)):
+        ref spec = corpus[s]
+        var chi = spec.incidence.charpoly()
+        var t = -chi[2]
+        var u = chi[1]
+        var d = -chi[0]
+        if not parity_allows_three_states(t, u, d):
+            continue
+        parity_survivors += 1
+        var endpoint_ok = endpoints_can_be_counterexample(spec.sigma)
+        parity_endpoint_survivors += 1 if endpoint_ok else 0
 
-                var chi = m.charpoly()
-                var t = -chi[2]
-                var u = chi[1]
-                var d = -chi[0]
-                if not parity_allows_three_states(t, u, d):
-                    continue
-                parity_survivors += 1
-                var endpoint_ok = endpoints_can_be_counterexample(sigma)
-                if endpoint_ok:
-                    parity_endpoint_survivors += 1
+        var first_fail = first_trace_failure(t, u, d, MAX_POWER)
+        trace_failures.record(first_fail)
+        if first_fail != 0:
+            continue
 
-                var p = traces_standard(t, u, d, 12)
-                var q = traces_exterior(t, u, d, 12)
-                var first_fail = 0
-                for power in range(1, 13):
-                    if p[power] < q[power]:
-                        first_fail = power
-                        break
-                    if power == 2 and (p[2] - q[2]) % 4 != 0:
-                        first_fail = 2
-                        break
+        var cubic = "\"T\":" + String(t) + ",\"U\":" + String(u) + ",\"d\":" + String(d)
+        if not printed_survivor:
+            print("TRACE12_SURVIVOR_JSON {" + spec.json_fields() + "," + cubic + "}")
+            printed_survivor = True
+        if not endpoint_ok:
+            continue
 
-                if p[1] >= q[1]:
-                    trace1_survivors += 1
-                if p[1] >= q[1] and p[2] >= q[2] and (p[2] - q[2]) % 4 == 0:
-                    trace2_survivors += 1
-                var ok3 = True
-                for power in range(1, 4):
-                    if p[power] < q[power]:
-                        ok3 = False
-                    if power == 2 and (p[2] - q[2]) % 4 != 0:
-                        ok3 = False
-                if ok3:
-                    trace3_survivors += 1
-                var ok6 = True
-                for power in range(1, 7):
-                    if p[power] < q[power]:
-                        ok6 = False
-                    if power == 2 and (p[2] - q[2]) % 4 != 0:
-                        ok6 = False
-                if ok6:
-                    trace6_survivors += 1
+        endpoint_trace_survivors += 1
+        if not printed_endpoint_survivor:
+            print(
+                "ENDPOINT_TRACE12_SURVIVOR_JSON {" + spec.json_fields() + "," + cubic
+                + ",\"plus\":" + String(endpoint_type(prefix_endpoint_map(spec.sigma)))
+                + ",\"minus\":" + String(endpoint_type(suffix_endpoint_map(spec.sigma))) + "}"
+            )
+            printed_endpoint_survivor = True
 
-                if first_fail == 0:
-                    trace12_survivors += 1
-                    if endpoint_ok:
-                        endpoint_trace12_survivors += 1
-                        var automaton = build(sigma, 20000)
-                        if automaton.capped:
-                            endpoint_trace12_capped += 1
-                        else:
-                            var specimen_recurrent_size3 = False
-                            var specimen_sink_size3 = False
-                            var comps = recurrent_noncoincident_sccs(automaton)
-                            for ci in range(len(comps)):
-                                ref comp = comps[ci]
-                                if len(comp) < minimum_recurrent_size:
-                                    minimum_recurrent_size = len(comp)
-                                if len(comp) == 3:
-                                    specimen_recurrent_size3 = True
-
-                                var noncoincident_exit = False
-                                for si in range(len(comp)):
-                                    var state_index = comp[si]
-                                    for ei in range(len(automaton.adj[state_index])):
-                                        var child = automaton.adj[state_index][ei]
-                                        if not automaton.states[child].is_coincidence() and not contains_index(comp, child):
-                                            noncoincident_exit = True
-                                if not noncoincident_exit:
-                                    if len(comp) < minimum_sink_size:
-                                        minimum_sink_size = len(comp)
-                                    if len(comp) == 3:
-                                        specimen_sink_size3 = True
-                            if specimen_recurrent_size3:
-                                endpoint_trace12_with_recurrent_size3 += 1
-                            if specimen_sink_size3:
-                                endpoint_trace12_with_sink_size3 += 1
-
-                        if not printed_endpoint_survivor:
-                            print("ENDPOINT_TRACE12_SURVIVOR_JSON {\"i\":", i, ",\"j\":", j, ",\"k\":", k,
-                                  ",\"T\":", t, ",\"U\":", u, ",\"d\":", d,
-                                  ",\"plus\":", endpoint_type(prefix_endpoint_map(sigma)),
-                                  ",\"minus\":", endpoint_type(suffix_endpoint_map(sigma)), "}")
-                            printed_endpoint_survivor = True
-                    if not printed_survivor:
-                        print("TRACE12_SURVIVOR_JSON {\"i\":", i, ",\"j\":", j, ",\"k\":", k,
-                              ",\"T\":", t, ",\"U\":", u, ",\"d\":", d, "}")
-                        printed_survivor = True
-                else:
-                    first_trace_failure[first_fail] += 1
+        var a = build(spec.sigma, STATE_CAP)
+        if a.capped:
+            endpoint_trace_capped += 1
+            continue
+        var recurrent_size3 = False
+        var sink_size3 = False
+        var comps = recurrent_noncoincident_sccs(a)
+        for ci in range(len(comps)):
+            ref comp = comps[ci]
+            minimum_recurrent_size = min_int(minimum_recurrent_size, len(comp))
+            recurrent_size3 = recurrent_size3 or len(comp) == 3
+            if profile_component(a, comp).is_sink():
+                minimum_sink_size = min_int(minimum_sink_size, len(comp))
+                sink_size3 = sink_size3 or len(comp) == 3
+        with_recurrent_size3 += 1 if recurrent_size3 else 0
+        with_sink_size3 += 1 if sink_size3 else 0
 
     print("C4 degree-2 three-state necessary-condition census")
-    print("PIP specimens:", n_pip)
+    print("PIP specimens:", len(corpus))
     print("three-state parity survivors:", parity_survivors)
     print("parity survivors with both endpoint maps nonsynchronizing:", parity_endpoint_survivors)
-    print("survive trace k<=1:", trace1_survivors)
-    print("survive trace k<=2 plus mod4:", trace2_survivors)
-    print("survive trace k<=3:", trace3_survivors)
-    print("survive trace k<=6:", trace6_survivors)
-    print("survive trace k<=12:", trace12_survivors)
-    print("survive parity + nonsync endpoints + trace k<=12:", endpoint_trace12_survivors)
-    print("combined survivors with capped BPA:", endpoint_trace12_capped)
-    print("combined survivors with recurrent size-3 SCC:", endpoint_trace12_with_recurrent_size3)
-    print("combined survivors with sink size-3 SCC:", endpoint_trace12_with_sink_size3)
+    print("survive trace k<=1:", survivors_through(trace_failures, 1))
+    print("survive trace k<=2 plus mod4:", survivors_through(trace_failures, 2))
+    print("survive trace k<=3:", survivors_through(trace_failures, 3))
+    print("survive trace k<=6:", survivors_through(trace_failures, 6))
+    print("survive trace k<=12:", survivors_through(trace_failures, MAX_POWER))
+    print("survive parity + nonsync endpoints + trace k<=12:", endpoint_trace_survivors)
+    print("combined survivors with capped BPA:", endpoint_trace_capped)
+    print("combined survivors with recurrent size-3 SCC:", with_recurrent_size3)
+    print("combined survivors with sink size-3 SCC:", with_sink_size3)
     print("minimum recurrent SCC size among combined survivors:", minimum_recurrent_size)
     print("minimum sink SCC size among combined survivors:", minimum_sink_size)
-    for power in range(1, 13):
-        if first_trace_failure[power] > 0:
-            print("first failure at k=" + String(power) + ": " + String(first_trace_failure[power]))
+    for power in range(1, MAX_POWER + 1):
+        if trace_failures.count(power) > 0:
+            print("first failure at k=" + String(power) + ": " + String(trace_failures.count(power)))

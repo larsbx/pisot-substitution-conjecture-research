@@ -205,6 +205,83 @@ jobs:
           grep -Fx 'complex-pair specimens: 3906  maximal m0: 8  maximal excess: 14' <<<"$out"
           grep -Fx 'real-conjugate specimens: 648  maximal m0: 2  maximal excess: 4' <<<"$out"
 
+  finite-classification:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Exact endpoint-map conjugacy classification (finite maps; no substitution input)
+        working-directory: mojo
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . endpoint_core_catalog.mojo 2>&1) || status=$?
+          printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
+          grep -Fx 'finite maps: 27' <<<"$out"
+          grep -Fx 'conjugacy classes: 7' <<<"$out"
+          grep -Fx 'globally synchronizing classes: 2' <<<"$out"
+          grep -Fx 'classes with nonempty recurrent core: 5' <<<"$out"
+          grep -Fx 'nonsynchronizing ordered pairs: 84' <<<"$out"
+          grep -Fx 'maximum steps into the recurrent core: 1' <<<"$out"
+          grep -Fx 'pairs by steps into the recurrent core: 0:60 1:24' <<<"$out"
+      - name: Boundary-synchronization sweep (exploratory; reproducible from its seed)
+        working-directory: mojo
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . boundary_sync_sweep.mojo 2>&1) || status=$?
+          printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
+          grep -Fx 'trials drawn: 500' <<<"$out"
+          grep -Fx 'primitive specimens: 312' <<<"$out"
+          grep -Fx 'specimens inconclusive (state budget): 0' <<<"$out"
+          grep -Fx 'specimens inconclusive (length budget): 262' <<<"$out"
+          grep -Fx 'recurrent noncoincident SCCs: 60' <<<"$out"
+          grep -Fx 'productive SCCs: 58' <<<"$out"
+          grep -Fx 'boundary-synchronization caught SCCs: 59' <<<"$out"
+          grep -Fx 'productive but missed: 0' <<<"$out"
+
+  overlap-type-exploration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Sirvent-Solomyak type inclusion over every tenth specimen (exploratory)
+        working-directory: mojo
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . oa_type_inclusion_census.mojo 2>&1) || status=$?
+          printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
+          grep -Fx 'corpus: 4554  stride: 10  sampled: 456' <<<"$out"
+          grep -Fx 'specimens with type inclusion: 434' <<<"$out"
+          grep -Fx 'specimens without inclusion up to KMAX: 22' <<<"$out"
+          grep -Fx 'literature graphs with a nonproductive type: 0' <<<"$out"
+          grep -Fx 'specimens by least k with inclusion (9 = none): 1:256 2:109 3:41 4:8 5:12 6:6 7:1 8:1 9:22' <<<"$out"
+      - name: Inclusion-failure probe over longer prefixes and every fixed point (exploratory)
+        working-directory: mojo
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . oa_failures_probe.mojo 2>&1) || status=$?
+          printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
+          grep -Fx 'specimens without inclusion up to KMAX: 22' <<<"$out"
+          grep -Fx 'of those, inclusion found with a longer prefix or another fixed point: 9' <<<"$out"
+          grep -Fx 'of those, no inclusion up to the extended bound: 13' <<<"$out"
+          grep -Fx 'probed unions with a nonproductive type: 0' <<<"$out"
+          grep -Fx 'union noncoincidence types: 58 to 132' <<<"$out"
+          grep -Fx 'seed-patch noncoincidence vertex types: 15 to 48' <<<"$out"
+          grep -Fx 'union types outside the seed patch: 43 to 85' <<<"$out"
+          grep -Fx 'seed-patch types met by no probed family: 0 to 15' <<<"$out"
+          grep -Fx 'least extended witnesses (q,c,k): (1,0,9) (1,1,16) (1,1,16) (1,1,19) (1,1,9) (1,2,16) (1,2,2) (1,2,2) (2,0,6)' <<<"$out"
+
   tla-models:
     runs-on: ubuntu-latest
     steps:

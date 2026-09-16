@@ -32,6 +32,42 @@ Performance-sensitive code must be designed for Mojo rather than transliterated 
 9. **Exactness before speed.** Do not replace integer/rational predicates with floating approximations for PIP screening, equality, factorization, rank, or certificate decisions. Optimize the exact algorithm instead.
 10. **Benchmark material optimizations.** When changing a hot kernel, add a deterministic correctness regression and, where practical, record the before/after algorithmic complexity or benchmark on a representative corpus slice.
 
+## The census library
+
+Every exhaustive census and catalogue in `mojo/` surveys the same object: the
+4,554 primitive irreducible Pisot substitutions on `{0,1,2}` with images of
+length at most three. That corpus, and the vocabulary for reporting on it, are
+first-class modules rather than something each driver rebuilds:
+
+| Module | Provides |
+| --- | --- |
+| `mojo/psc/corpus.mojo` | `Specimen`, the deterministic `image_words` order, `pip_corpus`, the shared state cap, the arithmetic regime of the incidence cubic |
+| `mojo/psc/histogram.mojo` | bounded exact histogram over integer keys; a key outside its capacity raises |
+| `mojo/psc/carrier.mojo` | the two edge facts that classify a recurrent noncoincident SCC (sink, strict carrier), per-state flags, boundary-synchronization lineage, replayable countermodels |
+| `mojo/psc/symmetry.mojo` | relabelling and reversal normal forms for words, pairs and substitutions |
+| `mojo/psc/defect_degree.mojo` | streaming `N4` and the first scattered-subword defect degree |
+| `mojo/psc/degree2_sieve.mojo` | the parity and trace necessary conditions on the incidence cubic |
+| `mojo/psc/degree3_taxonomy.mojo` | the degree-3 catalogue taxonomy and its summary lines |
+
+A census driver is then a survey: it walks `pip_corpus()` and folds per-specimen
+facts into histograms and counters. A new census should be written that way. Do
+not re-enumerate the image words, re-screen the corpus, re-derive sink or strict
+-carrier membership by scanning component edges, or hand-roll a histogram line.
+
+The same rule governs scripts. An executable computation belongs in `mojo/` with
+a driver and a regression test, not in `scripts/`. What remains under `scripts/`
+is the provenance and governance tooling plus the Python census oracles that
+cross-check a Mojo census in an independently written language; those are
+sanctioned by the oracle policy above. A Python script that is the *only*
+implementation of a computation is a defect to be ported, and the ported script
+is then deleted rather than kept as a second source of truth.
+
+Exploratory searches are welcome but must be reproducible and must label
+themselves: a seeded generator (`mojo/psc/prng.mojo`) or a stated stride, an
+explicit resource budget, and output that distinguishes an exhausted budget from
+a mathematical verdict (`mojo/psc/bounded_bpa.mojo`). Randomness may never enter
+a certificate, a census, or proof-support code.
+
 ## Vendored packages
 
 Three logical Mojo packages under `mojo/` are vendored byte-for-byte from the
