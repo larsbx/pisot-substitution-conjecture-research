@@ -303,9 +303,17 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
     for m in re.finditer(r"(?<!\\)(?:\\\\)*\\(" + "|".join(sorted(_TEX_DEFINERS)) + r")(?![a-zA-Z])\*?[ \t\n]*\{?[ \t\n]*\\([a-zA-Z]+)[ \t\n]*\}?[ \t\n]*"
                          r"(?:\[(\d)\](?:[ \t\n]*\[([^\]]*)\])?)?", active):  # [n][default] makes the first of n arguments optional
         kind, name = _TEX_DEFINERS[m.group(1)], m.group(2)
-        defined = name in _TEX_ARITY or any(nm == name for _, nm, _ in declared)
-        if executable(m.start()) and (kind == "always" or defined == (kind == "renew")):
-            declared.append((m.start(), name, int(m.group(3) or 0) - (m.group(4) is not None) if m.group(1).endswith("ommand") else 0))
+        prior = any(nm == name for _, nm, _ in declared)
+        # Arity metadata is not proof that a package-independent definition exists:
+        # e.g. \\mathbb has known arity but is absent with the article class alone.
+        # A state-dependent definer aimed at such a name must therefore fail closed.
+        defined = True if prior else None if name in _TEX_ARITY else False
+        if executable(m.start()):
+            if kind == "always" or (defined is not None and defined == (kind == "renew")):
+                declared.append((m.start(), name, int(m.group(3) or 0) - (m.group(4) is not None) if m.group(1).endswith("ommand") else 0))
+            elif defined is None:
+                problems.append(f"{path}: \\{m.group(1)} targets \\{name} on line {active.count(chr(10), 0, m.start()) + 1}, "
+                                "whose current definition state the guard cannot determine")
     declared.sort()
     arity = lambda name, pos: next((n for d, nm, n in reversed(declared) if nm == name and d < pos), _TEX_ARITY.get(name))
     openers, open_stack = {}, []
