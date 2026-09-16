@@ -208,6 +208,12 @@ def test_a_collision_surviving_every_radius_comes_from_a_collapsing_patch() rais
     except:
         caught = True
     assert_true(caught)
+    caught = False
+    try:  # (a, a) is not a swap seed, and sigma(a)sigma(a) is always a power
+        _ = patch_power_level(sigma, 1, 1, 6)
+    except:
+        caught = True
+    assert_true(caught)
 
 
 def test_fail_closed() raises:
@@ -235,6 +241,14 @@ def test_fail_closed() raises:
     caught = False
     try:  # a negative radius must not yield an empty collar
         _ = inflate_collar(sigma, seed_collar(0, 1, 1), 0, 0, -1)
+    except:
+        caught = True
+    assert_true(caught)
+    caught = False
+    try:  # radius-1 neighbours with length-one images cannot supply radius 2
+        var short_left: List[Int] = [0]
+        var short_right: List[Int] = [0]
+        _ = inflate_collar(sigma, Collar(short_left, short_right), 0, 0, 2)
     except:
         caught = True
     assert_true(caught)

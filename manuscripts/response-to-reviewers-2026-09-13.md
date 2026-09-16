@@ -1025,3 +1025,12 @@ Two findings from the automated Codex review of commit `d5be52f0f2`; both accept
 | --- | --- | --- | --- | --- |
 | 161 | P2 | `inflate_collar` with a negative radius returned empty collars instead of raising | Accepted. Both implementations now reject a negative radius before inflating; tests assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
 | 162 | P2 | A pump certificate whose first state has no fibre in the collared graph lifted to no orbits, which the census would read as a constant collar | Accepted. Both implementations now fail when the starting fibre is empty; tests lift the collapsing specimen's certificate against the determinant-two collared graph and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
+
+## Ninety-seventh round (pull request #101, invalid-input revision)
+
+Two findings from the automated Codex review of commit `5b06d74b19`; both accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 163 | P2 | `patch_power_level` with equal letters reported level 1 for every substitution, since `sigma(a)sigma(a)` is always a power | Accepted. Both implementations reject equal endpoints, as a swap seed needs two distinct letters; tests assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
+| 164 | P2 | The oracle's `inflate_collar` returned sides shorter than the radius when the input collar was undersized, where the canonical implementation raises | Accepted. The oracle now carries the same post-inflation length check; both test files inflate a radius-1 collar at radius 2 under a length-one image and assert the error | `src/psc_research/overlap_collar.py`, tests |

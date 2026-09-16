@@ -98,6 +98,8 @@ def test_a_collision_surviving_every_radius_comes_from_a_collapsing_patch() -> N
     assert collapsing_seed_pairs(OverlapGraph(SIGMA), 6) == ()  # the golden graph: separation radius 1, no collapse
     with pytest.raises(RuntimeError):
         patch_power_level(sigma, 1, 2, 0)
+    with pytest.raises(RuntimeError):
+        patch_power_level(sigma, 2, 2, 6)  # (a, a) is not a swap seed, and sigma(a)sigma(a) is always a power
 
 
 def test_fail_closed(graph: OverlapGraph) -> None:
@@ -107,6 +109,8 @@ def test_fail_closed(graph: OverlapGraph) -> None:
         inflate_collar(SIGMA, seed_collar(1, 2, 1), 1, 1, 1)
     with pytest.raises(RuntimeError):
         inflate_collar(SIGMA, seed_collar(1, 2, 1), 1, 0, -1)  # a negative radius must not yield an empty collar
+    with pytest.raises(RuntimeError):
+        inflate_collar(SIGMA, Collar((1,), (1,)), 1, 0, 2)  # radius-1 neighbours with length-one images cannot supply radius 2
     with pytest.raises(RuntimeError):  # a certificate from another graph has no starting fibre here
         lift_affine_pump(build_collared_graph(graph, 1), first_zero_shift_free_affine_pump(OverlapGraph({1: (2, 1, 3), 2: (3,), 3: (1, 3, 1)})))
     with pytest.raises(RuntimeError):

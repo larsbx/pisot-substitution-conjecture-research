@@ -2032,3 +2032,26 @@ No other findings were posted in the ninety-fifth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the ninety-sixth round.
+
+# Ninety-seventh round: review of the invalid-input revision (pull request #101)
+
+**Reviewed commit:** `5b06d74b19` (findings 161 and 162).
+**Review posted:** 2026-09-16T04:07:01Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 163 (P2) — `mojo/psc/overlap_collar.mojo`, line 441
+
+> **Reject identical letters in patch-collapse checks**
+>
+> When `a == b`, the first candidate is necessarily `sigma(a) sigma(a)`, so `patch_power_level` reports level 1 for every non-erasing substitution even though `(a, a)` is not one of the distinct-letter swap seeds whose collapse this diagnostic is meant to certify. Direct callers can therefore record a spurious collapsing seed pair; reject equal endpoints in both this canonical routine and the Python oracle.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 164 (P2) — `src/psc_research/overlap_collar.py`, line 108
+
+> **Reject undersized input collars in the Python oracle**
+>
+> When a positive `radius` exceeds the context supplied by `collar` and the neighboring images are too short—for example, a radius-1 collar inflated at radius 2 under a length-one image—these slices silently return sides shorter than the requested radius. The canonical Mojo implementation rejects this condition, whereas the oracle returns an apparently valid `Collar`, so add the same post-inflation length check before returning.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the ninety-seventh round.

@@ -438,6 +438,8 @@ def patch_power_level(sigma: List[List[Int]], a: Int, b: Int, max_level: Int) ra
     collar radius separates."""
     if max_level < 1:
         raise Error("patch power search needs a positive level bound")
+    if a == b:
+        raise Error("a swap seed needs two distinct letters")
     var word: List[Int] = [a, b]
     for n in range(1, max_level + 1):
         word = _image(sigma, word)

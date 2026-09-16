@@ -105,6 +105,8 @@ def inflate_collar(sigma: Any, collar: Collar, letter: int, child_index: int, ra
         raise RuntimeError("collar child index lies outside the parent image")
     left = _image(sigma, collar.left) + tuple(sigma[letter][:child_index])
     right = tuple(sigma[letter][child_index + 1 :]) + _image(sigma, collar.right)
+    if len(left) < radius or len(right) < radius:
+        raise RuntimeError("inflated collar is shorter than its radius")
     return Collar(left[len(left) - radius :], right[:radius])
 
 
@@ -217,6 +219,8 @@ def patch_power_level(sigma: Any, a: int, b: int, max_level: int) -> int | None:
     no collar radius separates."""
     if max_level < 1:
         raise RuntimeError("patch power search needs a positive level bound")
+    if a == b:
+        raise RuntimeError("a swap seed needs two distinct letters")
     word: Word = (a, b)
     for n in range(1, max_level + 1):
         word = _image(sigma, word)
