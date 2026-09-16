@@ -120,11 +120,12 @@ _TEX_DEFINERS = {**dict.fromkeys("newcommand providecommand DeclareMathOperator 
 
 
 def _units_before(active: str, openers: dict[int, int], end: int, floor: int) -> list[tuple[int, str, str]]:
-    """The last (up to nine) argument units before ``active[end]`` and after ``floor``, oldest first:
-    a brace group (``openers`` maps each closing brace to its opener), a control word, a control
-    symbol or a single character, as (start, kind, text)."""
-    units, j = [], end
-    while len(units) < 9:
+    """The argument units before ``active[end]`` and after ``floor``, oldest first: a brace group
+    (``openers`` maps each closing brace to its opener), a control word, a control symbol or a
+    single character, as (start, kind, text).  No cap: the units of an optional argument could
+    otherwise exhaust a bounded lookback before the call that takes it."""
+    units, j, letter_run_start = [], end, None
+    while True:
         while j > floor and active[j - 1] in " \t\n":
             j -= 1
         if j <= floor:
@@ -132,19 +133,27 @@ def _units_before(active: str, openers: dict[int, int], end: int, floor: int) ->
         c = active[j - 1]
         if j - 1 in openers:
             start, kind = openers[j - 1], "group"
+            letter_run_start = None
         else:
-            k = j - 1
-            while k > floor and c.isalpha() and active[k - 1].isalpha():
-                k -= 1
+            if c.isalpha() and letter_run_start is not None and letter_run_start < j:
+                k = letter_run_start
+            else:
+                k = j - 1
+                while k > floor and c.isalpha() and active[k - 1].isalpha():
+                    k -= 1
+                letter_run_start = k if c.isalpha() else None
             slashes = 0
             while k - 1 - slashes >= floor and active[k - 1 - slashes] == "\\":
                 slashes += 1
             if slashes % 2:  # an odd run of backslashes ends a control word or symbol
                 start, kind = k - 1, "word" if c.isalpha() else "symbol"
+                letter_run_start = None
             else:
                 start, kind = (k if c.isalpha() else j - 1), "char"
-                if c.isalpha() and k != j - 1:  # a run of plain letters: each letter is a unit
+                if c.isalpha() and k != j - 1:  # a plain letter run: emit one unit but reuse its start
                     start = j - 1
+                if c.isalpha() and start == k:
+                    letter_run_start = None
         units.append((start, kind, active[start:j]))
         j = start
     return units[::-1]
@@ -162,13 +171,10 @@ def _unfinished(active: str, openers: dict[int, int], end: int, floor: int, arit
         n = arity(text[1:], pos) if kind == "word" else _TEX_SYMBOL_ARITY.get(text[1:], 0)
         if n is None:
             return pos, text
-        rest = [u for u in units[i + 1:]]
-        if rest and rest[0][2] == "*":
-            rest = rest[1:]
-        while rest and rest[0][2] == "[":  # skip an optional argument up to its ]
-            close = next((k for k, u in enumerate(rest) if u[2] == "]"), None)
-            rest = rest[close + 1:] if close is not None else []
-        if len(rest) < n:
+        k = i + 1 + (i + 1 < len(units) and units[i + 1][2] == "*")
+        while k < len(units) and units[k][2] == "[":  # skip an optional argument up to its ]
+            k = next((m for m in range(k, len(units)) if units[m][2] == "]"), len(units) - 1) + 1
+        if len(units) - k < n:
             return pos, text
     return None
 
@@ -305,9 +311,17 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
     for m in re.finditer(r"(?<!\\)(?:\\\\)*\\(" + "|".join(sorted(_TEX_DEFINERS)) + r")(?![a-zA-Z])\*?[ \t\n]*\{?[ \t\n]*\\([a-zA-Z]+)[ \t\n]*\}?[ \t\n]*"
                          r"(?:\[(\d)\](?:[ \t\n]*\[([^\]]*)\])?)?", active):  # [n][default] makes the first of n arguments optional
         kind, name = _TEX_DEFINERS[m.group(1)], m.group(2)
-        defined = name in _TEX_ARITY or any(nm == name for _, nm, _ in declared)
-        if executable(m.start()) and (kind == "always" or defined == (kind == "renew")):
-            declared.append((m.start(), name, int(m.group(3) or 0) - (m.group(4) is not None) if m.group(1).endswith("ommand") else 0))
+        prior = any(nm == name for _, nm, _ in declared)
+        # Arity metadata is not proof that a package-independent definition exists:
+        # e.g. \\mathbb has known arity but is absent with the article class alone.
+        # A state-dependent definer aimed at such a name must therefore fail closed.
+        defined = True if prior else None if name in _TEX_ARITY else False
+        if executable(m.start()):
+            if kind == "always" or (defined is not None and defined == (kind == "renew")):
+                declared.append((m.start(), name, int(m.group(3) or 0) - (m.group(4) is not None) if m.group(1).endswith("ommand") else 0))
+            elif defined is None:
+                problems.append(f"{path}: \\{m.group(1)} targets \\{name} on line {active.count(chr(10), 0, m.start()) + 1}, "
+                                "whose current definition state the guard cannot determine")
     declared.sort()
     arity = lambda name, pos: next((n for d, nm, n in reversed(declared) if nm == name and d < pos), _TEX_ARITY.get(name))
     openers, open_stack = {}, []

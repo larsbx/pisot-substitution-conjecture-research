@@ -302,16 +302,27 @@ def test_arguments_complete_before_sentinels_and_bodies(copy):
     text = tex.read_text()
     i = text.rindex("\\end{document}")
     allow(copy, "foo sqrt newenvironment renewcommand providecommand csnamex iffalse fi DeclareRobustCommand NewCommandCopy DeclareGraphicsExtensions "
-                "newif ifdraft drafttrue")
+                "newif ifdraft drafttrue mathbb")
     for source in ("\\title", "\\usepackage[a]{b}\\sqrt", "\\newcommand{\\foo}[2]{}\\foo{x}", "\\newcommand{\\foo}{\\emph}\n\\foo", "\\newcommand{\\foo}{\\frac{a}}",
                    "\\newenvironment{foo}{x}{\\emph}", "\\csnamex", "\\newcommand{\\foo}[1]{#1}\\foo{\\sqrt}", "\\newcommand{\\foo}[1]{#1}\\foo\\sqrt",
                    "\\textbf{\\emph}\\textbf{x}",
                    "\\foo\n\\newcommand{\\foo}{}", "\\iffalse\n\\newcommand{\\foo}{}\n\\fi\n\\foo", "{\\newcommand{\\foo}{}}\n\\foo",  # a declaration that has not executed at the call
                    "\\newcommand{\\foo}[1]{}\\providecommand{\\foo}{}\n\\foo", "\\newcommand{\\emph}{}\n\\emph", "\\renewcommand{\\foo}{}\n\\foo",  # declarations LaTeX does not carry out
-                   "\\DeclareRobustCommand{\\foo}[1]{}\\providecommand{\\foo}{}\n\\foo"):  # a robust declaration, then a no-op
+                   "\\DeclareRobustCommand{\\foo}[1]{}\\providecommand{\\foo}{}\n\\foo",  # a robust declaration, then a no-op
+                   "\\newcommand{\\foo}[2][d]{}\\foo[abcdefghijk]", "\\newcommand{\\foo}[1]{}\\foo[abc",  # an optional argument longer than any bounded lookback, and an unclosed one
+                   "\\newcommand{\\foo}[2][d]{}\\foo[abcdefghijk]{x}\\foo[abcdefghijk]"):  # the same after a complete call
         tex.write_text(text.replace("\\begin{document}", source + "\n\\begin{document}", 1))  # a call short of arguments, or of unknown arity
         code, out = run(copy)
         assert code == 1 and "has fewer arguments than it takes" in out, (source, out)
+    for source in ("\\newcommand{\\mathbb}[3]{}\\mathbb a b",
+                   "\\providecommand{\\mathbb}[3]{}\\mathbb a b",
+                   "\\renewcommand{\\mathbb}[3]{}\\mathbb a b"):
+        tex.write_text(text.replace("\\begin{document}", source + "\n\\begin{document}", 1))
+        code, out = run(copy)
+        assert code == 1 and "current definition state the guard cannot determine" in out, (source, out)
+    tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\foo}[3]{}\\foo a b\n\\begin{document}", 1))
+    code, out = run(copy)
+    assert code == 1 and "has fewer arguments than it takes" in out, out
     tex.write_text(text[:i] + "\\emph\n" + text[i:])  # likewise before the closing sentinel
     code, out = run(copy)
     assert code == 1 and "before the document sentinel" in out, out
@@ -326,9 +337,13 @@ def test_arguments_complete_before_sentinels_and_bodies(copy):
     assert code == 1 and "has fewer arguments than it takes" in out, out
     tex.write_text(text.replace("\\begin{document}", "\\title{X}\\usepackage[a]{b} $\\frac12 \\bar\\beta \\sqrt[3]{x}$ \\\\ \\{\\}\n"
                                 "\\providecommand{\\foo}{\\emph{x}}\\renewcommand*{\\foo}[1][d]{\\sqrt{#1}}\\foo\n"
-                                "\\DeclareRobustCommand{\\foo}[1]{#1}\\foo{x}\\newif\\ifdraft\\drafttrue\n\\begin{document}", 1))
+                                "\\DeclareRobustCommand{\\foo}[1]{#1}\\foo{x}\\newif\\ifdraft\\drafttrue\n"
+                                "\\renewcommand{\\foo}[2][d]{}\\foo[abcdefghijk]{x}\\foo[abc]{y}\\foo[abcdefghijk][x]{y}\n\\begin{document}", 1))
     code, out = run(copy)
-    assert code == 0, out  # complete calls, single-token and optional arguments, control symbols, and a body whose call is complete
+    assert code == 0, out  # complete calls, single-token, optional and long optional arguments, control symbols, and a body whose call is complete
+    tex.write_text(text.replace("\\begin{document}", "a" * 10_000 + "\n\\begin{document}", 1))
+    code, out = run(copy)
+    assert code == 0, out  # a long plain-letter run must not make uncapped backward scanning quadratic
 
 
 def test_tex_input_files_are_rejected(copy):
