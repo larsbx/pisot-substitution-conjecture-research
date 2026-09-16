@@ -1907,3 +1907,18 @@ No other findings were posted in the eighty-seventh round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the eighty-eighth round.
+
+# Eighty-ninth round: review of the argument-boundary revision (pull request #95)
+
+**Reviewed commit:** `f2d4a86492` (finding 153).
+**Review posted:** 2026-09-16T01:47:30Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 154 (P2) — `scripts/check_manuscript_source.py`, line 282
+
+> **Derive macro arity only from prior executable declarations**
+>
+> This collects declarations from the entire source, including text after `\end{document}` or inside an inactive conditional, and retroactively assigns that arity to earlier calls. For example, an allowlisted `\PSC` before `\begin{document}`, followed by `\newcommand{\PSC}{}` after `\end{document}`, produces no problems even though TeX stops at the undefined preamble command and never enters the document environment. Only declarations that execute before a call should establish its arity; otherwise the guard should fail closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the eighty-ninth round.

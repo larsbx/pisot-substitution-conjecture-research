@@ -293,7 +293,7 @@ def test_macro_parameters_stay_in_order(copy):
         tex.write_text(text.replace("\\begin{document}", body + "\n\\begin{document}", 1))
         code, out = run(copy)
         assert code == 1 and "macro parameter on line" in out, (body, out)
-    tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\e}[2]{\\f{#1}{#2}}\\newcommand{\\f}[1]{#1}\n\\begin{document}", 1))
+    tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\f}[1]{#1}\\newcommand{\\e}[2]{\\f{#1}{#2}}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # in order, and one parameter per body; the source's own \\Status macro and escaped \\# pass alike
 
 

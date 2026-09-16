@@ -140,15 +140,16 @@ def _units_before(active: str, openers: dict[int, int], end: int, floor: int) ->
     return units[::-1]
 
 
-def _unfinished(active: str, openers: dict[int, int], end: int, floor: int, arity: dict[str, int]) -> tuple[int, str] | None:
+def _unfinished(active: str, openers: dict[int, int], end: int, floor: int, arity) -> tuple[int, str] | None:
     """A control word or symbol among the units before ``active[end]`` whose arguments would reach
     ``end`` (or whose arity the guard does not know), as (position, name); None if every call
-    completes before the boundary.  A * and [...] groups right after the call are optional."""
+    completes before the boundary.  ``arity(name, position)`` gives a word's mandatory-argument
+    count at that position, or None.  A * and [...] groups right after the call are optional."""
     units = _units_before(active, openers, end, floor)
     for i, (pos, kind, text) in enumerate(units):
         if kind not in ("word", "symbol"):
             continue
-        n = arity.get(text[1:]) if kind == "word" else _TEX_SYMBOL_ARITY.get(text[1:], 0)
+        n = arity(text[1:], pos) if kind == "word" else _TEX_SYMBOL_ARITY.get(text[1:], 0)
         if n is None:
             return pos, text
         rest = [u for u in units[i + 1:]]
@@ -275,11 +276,17 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
     # call at the end of any brace group, since a macro body's expansion and an argument a body
     # re-emits are followed by whatever comes after the call, and a call at the end of an
     # argument passed as a single token is checked the same way.  Only a definer's target
-    # group, {\\name}, holds a bare control word by design.  Macros defined by \\newcommand
-    # take the arity of their declaration.
-    arity = {**_TEX_ARITY, **dict.fromkeys(ifs, 0), **{m.group(1): int(m.group(2) or 0) - (m.group(3) is not None) for m in re.finditer(
+    # group, {\\name}, holds a bare control word by design.  A macro defined by \\newcommand takes
+    # the arity of the latest declaration that executes before the call: one at brace depth zero,
+    # outside every conditional and before the closing sentinel (a declaration in a group, a
+    # skipped branch or after the document may never run), and earlier in the source than the
+    # call; likewise a conditional declared by \\newif takes none from its declaration on.
+    executable = lambda pos: (e < 0 or pos < e) and depth(braces, pos) == 0 and depth(conditionals, pos) == 0
+    declared = sorted([(m.start(), m.group(1), int(m.group(2) or 0) - (m.group(3) is not None)) for m in re.finditer(
         r"(?<!\\)(?:\\\\)*\\(?:new|renew|provide)command\*?[ \t\n]*\{?[ \t\n]*\\([a-zA-Z]+)[ \t\n]*\}?[ \t\n]*"
-        r"(?:\[(\d)\](?:[ \t\n]*\[([^\]]*)\])?)?", active)}}  # [n][default] makes the first of n arguments optional
+        r"(?:\[(\d)\](?:[ \t\n]*\[([^\]]*)\])?)?", active) if executable(m.start())]  # [n][default] makes the first of n arguments optional
+        + [(m.start(), m.group(1), 0) for m in re.finditer(r"(?<!\\)(?:\\\\)*\\newif[ \t\n]*\\(if[a-zA-Z]+)", active) if executable(m.start())])
+    arity = lambda name, pos: next((n for d, nm, n in reversed(declared) if nm == name and d < pos), _TEX_ARITY.get(name))
     openers, open_stack = {}, []
     for i, d in braces:
         open_stack.append(i) if d > 0 else (openers.__setitem__(i, open_stack.pop()) if open_stack else None)
