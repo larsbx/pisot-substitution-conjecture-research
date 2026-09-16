@@ -183,8 +183,11 @@ def lift_affine_pump(cg: CollaredGraph, certificate: Any) -> tuple[LiftedOrbit, 
     """Replay an occurrence-labelled cycle from every collared state over its first
     state; the collar is eventually periodic, with the reported preperiod and period
     measured in traversals of the cycle."""
-    if not certificate.state_indices or len(certificate.state_indices) != len(certificate.edges):
+    states, edges = certificate.state_indices, certificate.edges
+    if not states or len(states) != len(edges):
         raise RuntimeError("affine pump certificate is malformed")
+    if any(e.parent_index != states[k] or e.child_index != states[(k + 1) % len(states)] for k, e in enumerate(edges)):
+        raise RuntimeError("affine pump certificate edges do not close over its states")
     step = {(e.parent, e.ordinal): e.child for e in cg.edges}
 
     def traverse(k: int) -> int:

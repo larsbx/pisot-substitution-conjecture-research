@@ -1,7 +1,7 @@
 """Exact regressions for radius-m collars of seed-patch occurrences."""
 
 from std.testing import assert_equal, assert_true
-from psc.overlap_affine_pump import first_zero_shift_free_affine_pump, occurrence_edges
+from psc.overlap_affine_pump import AffinePumpCertificate, first_zero_shift_free_affine_pump, occurrence_edges
 from psc.overlap_collar import (
     Collar,
     build_collared_graph,
@@ -249,6 +249,16 @@ def test_fail_closed() raises:
         var short_left: List[Int] = [0]
         var short_right: List[Int] = [0]
         _ = inflate_collar(sigma, Collar(short_left, short_right), 0, 0, 2)
+    except:
+        caught = True
+    assert_true(caught)
+    caught = False
+    try:  # later state entries corrupted behind a valid first state and valid edges
+        var certificates = first_zero_shift_free_affine_pump(tables, graph)
+        var corrupted_states = List[Int]()
+        for k in range(len(certificates[0].state_indices)):
+            corrupted_states.append(certificates[0].state_indices[0] if k == 0 else -1)
+        _ = lift_affine_pump(build_collared_graph(tables, graph, 1), AffinePumpCertificate(corrupted_states, certificates[0].edges))
     except:
         caught = True
     assert_true(caught)

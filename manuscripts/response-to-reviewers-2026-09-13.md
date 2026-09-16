@@ -1043,3 +1043,11 @@ Two findings from the automated Codex review of commit `400010cf0a`; both accept
 | --- | --- | --- | --- | --- |
 | 165 | P2 | The oracle lifted a certificate whose edge sequence did not match its states, so an empty edge sequence read as a constant pump | Accepted. The oracle now rejects an empty certificate and one whose edge and state sequences differ in length, as the canonical implementation does; tests assert the error on three malformed certificates | `src/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
 | 166 | P2 | The oracle's `legal_factors` accepted a nonpositive length and returned the letters | Accepted. The oracle rejects a length below one, as the canonical routine does; a test asserts the error. The oracle's `collared_seeds` also rejects a capped graph, the one remaining check the canonical module had and the oracle lacked | `src/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
+
+## Ninety-ninth round (pull request #101, oracle-parity revision)
+
+One finding from the automated Codex review of commit `a238e8dfb9`; accepted, on the fail-closed side, in both implementations.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 167 | P2 | A certificate with a valid first state and valid edges but corrupted later states lifted to the original periods, since only the first state was consulted | Accepted. Both implementations now check, before lifting, that every edge's parent is the state at its index and its child the cyclically next state, the invariant `verify_affine_pump` enforces; tests corrupt every later state entry of the golden certificate and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |

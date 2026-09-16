@@ -2078,3 +2078,18 @@ No other findings were posted in the ninety-seventh round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the ninety-eighth round.
+
+# Ninety-ninth round: review of the oracle-parity revision (pull request #101)
+
+**Reviewed commit:** `a238e8dfb9` (findings 165 and 166).
+**Review posted:** 2026-09-16T04:18:36Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 167 (P2) — `mojo/psc/overlap_collar.mojo`, line 388
+
+> **Validate every pump state before lifting**
+>
+> Fresh evidence beyond finding 165 is that a same-length certificate can retain the valid first state and edges while replacing every later `state_indices` entry with an invalid value, and `lift_affine_pump` still returns the original periods because only `state_indices[0]` is consulted. This violates the state/edge sequence invariant enforced by `verify_affine_pump` and allows a corrupted or cross-serialized certificate to be recorded as valid evidence; validate each edge's parent and cyclic child against the corresponding state entries in both implementations before lifting.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the ninety-ninth round.

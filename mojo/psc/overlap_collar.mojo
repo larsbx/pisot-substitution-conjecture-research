@@ -384,8 +384,12 @@ def lift_affine_pump(
     """Replay an occurrence-labelled cycle from every collared state over its first
     state; the collar is eventually periodic, with the reported preperiod and period
     measured in traversals of the cycle."""
-    if len(certificate.state_indices) == 0 or len(certificate.edges) != len(certificate.state_indices):
+    var n = len(certificate.state_indices)
+    if n == 0 or len(certificate.edges) != n:
         raise Error("affine pump certificate is malformed")
+    for k in range(n):
+        if certificate.edges[k].parent_index != certificate.state_indices[k] or certificate.edges[k].child_index != certificate.state_indices[(k + 1) % n]:
+            raise Error("affine pump certificate edges do not close over its states")
     var out = List[LiftedOrbit]()
     var fibre = cg.fibre(certificate.state_indices[0])
     if len(fibre) == 0:
