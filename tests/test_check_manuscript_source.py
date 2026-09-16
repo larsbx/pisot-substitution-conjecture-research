@@ -302,7 +302,7 @@ def test_arguments_complete_before_sentinels_and_bodies(copy):
     text = tex.read_text()
     i = text.rindex("\\end{document}")
     allow(copy, "foo sqrt newenvironment renewcommand providecommand csnamex iffalse fi DeclareRobustCommand NewCommandCopy DeclareGraphicsExtensions "
-                "newif ifdraft drafttrue")
+                "newif ifdraft drafttrue mathbb")
     for source in ("\\title", "\\usepackage[a]{b}\\sqrt", "\\newcommand{\\foo}[2]{}\\foo{x}", "\\newcommand{\\foo}{\\emph}\n\\foo", "\\newcommand{\\foo}{\\frac{a}}",
                    "\\newenvironment{foo}{x}{\\emph}", "\\csnamex", "\\newcommand{\\foo}[1]{#1}\\foo{\\sqrt}", "\\newcommand{\\foo}[1]{#1}\\foo\\sqrt",
                    "\\textbf{\\emph}\\textbf{x}",
@@ -314,6 +314,15 @@ def test_arguments_complete_before_sentinels_and_bodies(copy):
         tex.write_text(text.replace("\\begin{document}", source + "\n\\begin{document}", 1))  # a call short of arguments, or of unknown arity
         code, out = run(copy)
         assert code == 1 and "has fewer arguments than it takes" in out, (source, out)
+    for source in ("\\newcommand{\\mathbb}[3]{}\\mathbb a b",
+                   "\\providecommand{\\mathbb}[3]{}\\mathbb a b",
+                   "\\renewcommand{\\mathbb}[3]{}\\mathbb a b"):
+        tex.write_text(text.replace("\\begin{document}", source + "\n\\begin{document}", 1))
+        code, out = run(copy)
+        assert code == 1 and "current definition state the guard cannot determine" in out, (source, out)
+    tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\foo}[3]{}\\foo a b\n\\begin{document}", 1))
+    code, out = run(copy)
+    assert code == 1 and "has fewer arguments than it takes" in out, out
     tex.write_text(text[:i] + "\\emph\n" + text[i:])  # likewise before the closing sentinel
     code, out = run(copy)
     assert code == 1 and "before the document sentinel" in out, out
