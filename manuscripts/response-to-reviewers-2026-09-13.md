@@ -1008,3 +1008,66 @@ Two P2 findings were accepted on the fail-closed side.
 | --- | --- | --- | --- | --- |
 | 158 | P2 | Known arity was incorrectly treated as proof that a control word was already defined | Accepted. Declaration history now establishes definite definition; an arity-table entry without an executed declaration is uncertain. State-dependent definers targeting an uncertain name fail closed. Coverage includes \`\newcommand\`, \`\providecommand\`, and \`\renewcommand\` against package-dependent \`\mathbb\`, plus a fresh three-argument custom command | \`scripts/check_manuscript_source.py\`, \`tests/test_check_manuscript_source.py\` |
 | 159 | P2 | Uncapped backward scanning repeatedly rescanned a long plain-letter run and became quadratic | Accepted. The scanner retains the discovered start of the current plain-letter run while emitting its characters, so the uncapped safety check remains linear. Coverage exercises a 10,000-character run | \`scripts/check_manuscript_source.py\`, \`tests/test_check_manuscript_source.py\` |
+
+## Ninety-fifth round (pull request #101, radius-`m` collar slice)
+
+One finding from the automated Codex review of commit `c14afe4f2b`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 160 | P2 | The oracle's separation-radius search returned None on a negative cap, which reads as a surviving collision | Accepted. The oracle now raises on a negative bound, as the canonical Mojo `separation_radius` already did; a test asserts the error, so an empty search can no longer be recorded as a survivor | `src/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
+
+## Ninety-sixth round (pull request #101, negative-cap revision)
+
+Two findings from the automated Codex review of commit `d5be52f0f2`; both accepted, on the fail-closed side, in the canonical implementation and the oracle alike.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 161 | P2 | `inflate_collar` with a negative radius returned empty collars instead of raising | Accepted. Both implementations now reject a negative radius before inflating; tests assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
+| 162 | P2 | A pump certificate whose first state has no fibre in the collared graph lifted to no orbits, which the census would read as a constant collar | Accepted. Both implementations now fail when the starting fibre is empty; tests lift the collapsing specimen's certificate against the determinant-two collared graph and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
+
+## Ninety-seventh round (pull request #101, invalid-input revision)
+
+Two findings from the automated Codex review of commit `5b06d74b19`; both accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 163 | P2 | `patch_power_level` with equal letters reported level 1 for every substitution, since `sigma(a)sigma(a)` is always a power | Accepted. Both implementations reject equal endpoints, as a swap seed needs two distinct letters; tests assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
+| 164 | P2 | The oracle's `inflate_collar` returned sides shorter than the radius when the input collar was undersized, where the canonical implementation raises | Accepted. The oracle now carries the same post-inflation length check; both test files inflate a radius-1 collar at radius 2 under a length-one image and assert the error | `src/psc_research/overlap_collar.py`, tests |
+
+## Ninety-eighth round (pull request #101, equal-letter revision)
+
+Two findings from the automated Codex review of commit `400010cf0a`; both accepted, and the oracle's input validation brought to parity with the canonical module in the same revision.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 165 | P2 | The oracle lifted a certificate whose edge sequence did not match its states, so an empty edge sequence read as a constant pump | Accepted. The oracle now rejects an empty certificate and one whose edge and state sequences differ in length, as the canonical implementation does; tests assert the error on three malformed certificates | `src/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
+| 166 | P2 | The oracle's `legal_factors` accepted a nonpositive length and returned the letters | Accepted. The oracle rejects a length below one, as the canonical routine does; a test asserts the error. The oracle's `collared_seeds` also rejects a capped graph, the one remaining check the canonical module had and the oracle lacked | `src/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
+
+## Ninety-ninth round (pull request #101, oracle-parity revision)
+
+One finding from the automated Codex review of commit `a238e8dfb9`; accepted, on the fail-closed side, in both implementations.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 167 | P2 | A certificate with a valid first state and valid edges but corrupted later states lifted to the original periods, since only the first state was consulted | Accepted. Both implementations now check, before lifting, that every edge's parent is the state at its index and its child the cyclically next state, the invariant `verify_affine_pump` enforces; tests corrupt every later state entry of the golden certificate and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
+
+## Hundredth round (pull request #101, pump-state revision)
+
+One finding from the automated Codex review of commit `89550a4350`; accepted, on the fail-closed side, in both implementations.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 168 | P2 | A certificate edge with a valid ordinal but stale child indices was followed by ordinal alone, so the lift accepted an edge `verify_affine_pump` rejects | Accepted. Both lifts now compare the selected collared edge's child state and both child indices with the certificate edge before following it; tests corrupt the top child index of the golden certificate's first edge and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
+
+## Hundred-and-first round (pull request #101, occurrence-edge revision)
+
+One finding from the automated Codex review of commit `938a1100fc`; accepted, at the root: the lift no longer trusts any field of a certificate.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 169 | P2 | A certificate with corrupted prefix or forcing payload still lifted, since the collared edge retains no such fields | Accepted. Both lifts now take the seed-patch tables and graph and replay the certificate in full with `verify_affine_pump` (every field of every edge, and the exact cycle identity) before lifting, so only a verified affine pump is lifted; the census passes its tables through. Tests forge the forcing term of the golden certificate's first edge and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, `mojo/swap_overlap_census.mojo`, tests |
+
+## Hundred-and-second round (pull request #101, verified-lift revision)
+
+The automated Codex review of commit `fdeacddc6e` posted no findings. No change.

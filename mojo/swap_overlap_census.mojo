@@ -13,6 +13,8 @@ G1-free form; a clean corpus is finite evidence only.
 from psc.bpa import substitution_incidence
 from finite_linear_algebra.mat3 import Mat3
 from psc.pisot import is_pip
+from psc.overlap_affine_pump import first_zero_shift_free_affine_pump
+from psc.overlap_collar import build_collared_graph, collapsing_seed_pair_count, lift_affine_pump, separation_radius
 from psc.overlap_recurrence import zero_shift_free_recurrent_sccs
 from psc.overlap_seed_patch import (
     build_seed_overlap_graph_from_tables,
@@ -22,6 +24,10 @@ from psc.overlap_seed_patch import (
     nonproductive_overlap_states,
     strong_coincidence_depth_from,
 )
+
+
+comptime COLLAR_RADIUS_CAP = 6
+comptime LIFT_RADIUS = 4
 
 
 def image_words() -> List[List[Int]]:
@@ -52,6 +58,22 @@ def main() raises:
     var n_zero_shift_free_cycle_specimens = 0
     var n_zero_shift_free_cycle_sccs = 0
     var max_zero_shift_free_cycle_size = 0
+    # Radius-m collars (psc.overlap_collar): the least radius at which every
+    # occurrence's one-step ancestry is determined by its collar, capped at
+    # COLLAR_RADIUS_CAP with survivors counted, and the eventual period of the
+    # collar along the first zero-shift-free affine pump at LIFT_RADIUS.
+    var separation_histogram = List[Int]()
+    for _ in range(COLLAR_RADIUS_CAP + 1):
+        separation_histogram.append(0)
+    var n_collar_survivors = 0
+    var n_collapsing_specimens = 0
+    var n_survivors_without_collapse = 0
+    var n_collapse_without_survivor = 0
+    var max_separation = 0
+    var n_lift_specimens = 0
+    var max_lift_preperiod = 0
+    var max_lift_period = 0
+    var n_lift_nonconstant = 0
     var largest = 0
     var total_states = 0
     var max_depth = 0
@@ -101,6 +123,37 @@ def main() raises:
                         for z in range(len(zipper_sccs)):
                             if len(zipper_sccs[z]) > max_zero_shift_free_cycle_size:
                                 max_zero_shift_free_cycle_size = len(zipper_sccs[z])
+                        var certificates = first_zero_shift_free_affine_pump(tables, g)
+                        var orbits = lift_affine_pump(tables, g, build_collared_graph(tables, g, LIFT_RADIUS), certificates[0])
+                        n_lift_specimens += 1
+                        var constant = True
+                        for o in range(len(orbits)):
+                            if orbits[o].preperiod > max_lift_preperiod:
+                                max_lift_preperiod = orbits[o].preperiod
+                            if orbits[o].period > max_lift_period:
+                                max_lift_period = orbits[o].period
+                            if orbits[o].period != 1:
+                                constant = False
+                        if not constant:
+                            n_lift_nonconstant += 1
+                            print("NONCONSTANT collar along the affine pump:", i, j, k)
+
+                    var separation = separation_radius(tables, g, COLLAR_RADIUS_CAP)
+                    var collapsing = collapsing_seed_pair_count(sigma, COLLAR_RADIUS_CAP) > 0
+                    if collapsing:
+                        n_collapsing_specimens += 1
+                    if separation < 0:
+                        n_collar_survivors += 1
+                        if not collapsing:
+                            n_survivors_without_collapse += 1
+                            print("COLLAR collision survives radius", COLLAR_RADIUS_CAP, "without a collapsing patch:", i, j, k)
+                    else:
+                        if collapsing:
+                            n_collapse_without_survivor += 1
+                            print("COLLAPSING patch without a surviving collision:", i, j, k)
+                        separation_histogram[separation] = separation_histogram[separation] + 1
+                        if separation > max_separation:
+                            max_separation = separation
 
                     var bad = len(nonproductive_overlap_states(g))
                     if bad > 0:
@@ -166,6 +219,34 @@ def main() raises:
         n_zero_shift_free_cycle_sccs,
         " largest-scc:",
         max_zero_shift_free_cycle_size,
+    )
+    print("maximum collar separation radius:", max_separation, " survivors at radius", COLLAR_RADIUS_CAP, ":", n_collar_survivors)
+    print(
+        "collapsing periodic patches by level",
+        COLLAR_RADIUS_CAP,
+        ": specimens:",
+        n_collapsing_specimens,
+        " survivors without collapse:",
+        n_survivors_without_collapse,
+        " collapses without survivor:",
+        n_collapse_without_survivor,
+    )
+    var separation_line = String("specimens by collar separation radius:")
+    for d in range(len(separation_histogram)):
+        if separation_histogram[d] > 0:
+            separation_line += " " + String(d) + ":" + String(separation_histogram[d])
+    print(separation_line)
+    print(
+        "collared affine pumps at radius",
+        LIFT_RADIUS,
+        ": specimens:",
+        n_lift_specimens,
+        " maximum preperiod:",
+        max_lift_preperiod,
+        " maximum period:",
+        max_lift_period,
+        " nonconstant:",
+        n_lift_nonconstant,
     )
     print("maximum first-coincidence depth:", max_depth)
     var line = String("specimens by maximal first-coincidence depth:")

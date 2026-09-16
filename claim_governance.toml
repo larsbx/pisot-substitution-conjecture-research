@@ -192,6 +192,15 @@ anchor = "| One-step overlap context equality |"
 window_lines = 0
 
 [[claim]]
+name = "PeriodicPatchCollar"
+status = "proved"
+aliases = ["radius-m periodic-patch collar", "collar recursion lemma"]
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Radius-`m` periodic-patch collar |"
+window_lines = 0
+
+[[claim]]
 name = "RealizationCoincidenceRankBridge"
 status = "bridge"
 aliases = ["realization / coincidence-rank chain", "realization/coincidence-rank bridge"]

@@ -65,8 +65,12 @@ non-Archimedean) internal representation.
 The first context checkpoint is also finite and negative: one affine child
 state in the determinant-two regression has two unequal one-step paired
 prefix-suffix addresses. This rules out treating `(top,bottom,w)` as a
-complete symbolic pump state. It does not supply a recognizability radius or
-prove separation at arbitrary periodic-patch collar depth.
+complete symbolic pump state. The radius-`m` collar is now exact
+(`docs/p1-overlap-collar-2026-09-16.md`): on that graph one letter of context
+resolves every occurrence's ancestry, and the golden pump lifts to a collared
+cycle at every tested radius, so bounded-context equality alone cannot exclude
+such pumps. Neither supplies a recognizability radius for the periodic patches
+nor the splicing/dictionary bridge to the tiling, which remain open.
 
 ### Full-rank constraint on a bad set
 
