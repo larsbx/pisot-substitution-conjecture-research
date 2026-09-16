@@ -1922,3 +1922,18 @@ No other findings were posted in the eighty-eighth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the eighty-ninth round.
+
+# Ninetieth round: review of the declaration-order revision (pull request #95)
+
+**Reviewed commit:** `0eccfebc91` (finding 154).
+**Review posted:** 2026-09-16T02:05:14Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 155 (P2) — `scripts/check_manuscript_source.py`, line 287
+
+> **Preserve arity across no-op providecommand**
+>
+> Fresh evidence beyond the prior declaration-order fix is `\newcommand{\foo}[1]{}` followed by `\providecommand{\foo}{}`, a bare `\foo`, and the opening sentinel: LaTeX leaves the existing one-argument definition unchanged, so `\foo` consumes the sentinel's `\begin` token, but this collector records the no-op `\providecommand` as a newer zero-argument declaration and `check_tex` returns success. Treat `\providecommand` as changing arity only when no prior executable definition exists, so the guard fails closed when the sentinel is consumed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the ninetieth round.

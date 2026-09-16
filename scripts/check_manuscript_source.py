@@ -280,12 +280,18 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
     # the arity of the latest declaration that executes before the call: one at brace depth zero,
     # outside every conditional and before the closing sentinel (a declaration in a group, a
     # skipped branch or after the document may never run), and earlier in the source than the
-    # call; likewise a conditional declared by \\newif takes none from its declaration on.
+    # call; likewise a conditional declared by \\newif takes none from its declaration on.  Only a
+    # declaration LaTeX carries out counts: \\newcommand and \\providecommand define a name that
+    # is not yet defined (a kernel word or an earlier declaration leaves them without effect, the
+    # former with an error), and \\renewcommand redefines a name that is.
     executable = lambda pos: (e < 0 or pos < e) and depth(braces, pos) == 0 and depth(conditionals, pos) == 0
-    declared = sorted([(m.start(), m.group(1), int(m.group(2) or 0) - (m.group(3) is not None)) for m in re.finditer(
-        r"(?<!\\)(?:\\\\)*\\(?:new|renew|provide)command\*?[ \t\n]*\{?[ \t\n]*\\([a-zA-Z]+)[ \t\n]*\}?[ \t\n]*"
-        r"(?:\[(\d)\](?:[ \t\n]*\[([^\]]*)\])?)?", active) if executable(m.start())]  # [n][default] makes the first of n arguments optional
-        + [(m.start(), m.group(1), 0) for m in re.finditer(r"(?<!\\)(?:\\\\)*\\newif[ \t\n]*\\(if[a-zA-Z]+)", active) if executable(m.start())])
+    declared = [(m.start(), m.group(1), 0) for m in re.finditer(r"(?<!\\)(?:\\\\)*\\newif[ \t\n]*\\(if[a-zA-Z]+)", active) if executable(m.start())]
+    for m in re.finditer(r"(?<!\\)(?:\\\\)*\\(new|renew|provide)command\*?[ \t\n]*\{?[ \t\n]*\\([a-zA-Z]+)[ \t\n]*\}?[ \t\n]*"
+                         r"(?:\[(\d)\](?:[ \t\n]*\[([^\]]*)\])?)?", active):  # [n][default] makes the first of n arguments optional
+        defined = m.group(2) in _TEX_ARITY or any(nm == m.group(2) for _, nm, _ in declared)
+        if executable(m.start()) and defined == (m.group(1) == "renew"):
+            declared.append((m.start(), m.group(2), int(m.group(3) or 0) - (m.group(4) is not None)))
+    declared.sort()
     arity = lambda name, pos: next((n for d, nm, n in reversed(declared) if nm == name and d < pos), _TEX_ARITY.get(name))
     openers, open_stack = {}, []
     for i, d in braces:
