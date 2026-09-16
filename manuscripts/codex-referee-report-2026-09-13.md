@@ -1952,3 +1952,18 @@ No other findings were posted in the ninetieth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the ninety-first round.
+
+# Ninety-second round: review of the modelled-definer revision (pull request #95)
+
+**Reviewed commit:** `f0efd6a485` (finding 156).
+**Review posted:** 2026-09-16T02:39:07Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 157 (P2) — `scripts/check_manuscript_source.py`, line 127
+
+> **Parse optional arguments before limiting the lookback**
+>
+> Because `_units_before` stops after nine raw units, the contents of a bracketed optional argument can exhaust the lookback before the originating macro is reached. For example, `\newcommand{\foo}[2][d]{}` followed by `\foo[abcdefghijk]` immediately before `\begin{document}` produces no problems, although TeX consumes `\begin` as the missing mandatory argument and never starts the document environment. Parse `[...]` atomically or continue scanning far enough to find the call rather than applying the nine-unit cap to its contents.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the ninety-second round.

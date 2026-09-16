@@ -120,11 +120,12 @@ _TEX_DEFINERS = {**dict.fromkeys("newcommand providecommand DeclareMathOperator 
 
 
 def _units_before(active: str, openers: dict[int, int], end: int, floor: int) -> list[tuple[int, str, str]]:
-    """The last (up to nine) argument units before ``active[end]`` and after ``floor``, oldest first:
-    a brace group (``openers`` maps each closing brace to its opener), a control word, a control
-    symbol or a single character, as (start, kind, text)."""
+    """The argument units before ``active[end]`` and after ``floor``, oldest first: a brace group
+    (``openers`` maps each closing brace to its opener), a control word, a control symbol or a
+    single character, as (start, kind, text).  No cap: the units of an optional argument could
+    otherwise exhaust a bounded lookback before the call that takes it."""
     units, j = [], end
-    while len(units) < 9:
+    while True:
         while j > floor and active[j - 1] in " \t\n":
             j -= 1
         if j <= floor:
@@ -162,13 +163,10 @@ def _unfinished(active: str, openers: dict[int, int], end: int, floor: int, arit
         n = arity(text[1:], pos) if kind == "word" else _TEX_SYMBOL_ARITY.get(text[1:], 0)
         if n is None:
             return pos, text
-        rest = [u for u in units[i + 1:]]
-        if rest and rest[0][2] == "*":
-            rest = rest[1:]
-        while rest and rest[0][2] == "[":  # skip an optional argument up to its ]
-            close = next((k for k, u in enumerate(rest) if u[2] == "]"), None)
-            rest = rest[close + 1:] if close is not None else []
-        if len(rest) < n:
+        k = i + 1 + (i + 1 < len(units) and units[i + 1][2] == "*")
+        while k < len(units) and units[k][2] == "[":  # skip an optional argument up to its ]
+            k = next((m for m in range(k, len(units)) if units[m][2] == "]"), len(units) - 1) + 1
+        if len(units) - k < n:
             return pos, text
     return None
 
