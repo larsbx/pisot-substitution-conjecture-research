@@ -193,14 +193,16 @@ def test_commented_document_sentinels_fail(copy):
                          "\\renewcommand{#1}{}", "\\newcommand", "\\newcommand\\foo\\bar", "\\NewCommandCopy\\foo\\bar",  # a definer whose target is not a control word right there, followed by a body
                          "\\renewenvironment{begin}{}{}", "\\newenvironment*{ end }{}{}",  # environment definers naming a sentinel word
                          "\\newtheorem{document}{Broken}", "\\newtheorem*{end}{Broken}", "\\newtheorem\n{begin}[section]{Broken}",  # theorem environments alike
+                         "\\newcommand{\\foo}{document}\n\\renewenvironment{\\foo}{}{}", "\\newcommand{\\foo}{document}\n\\newtheorem{\\foo}{Broken}",  # expanded names
+                         "\\newenvironment{ doc }{}{}", "\\newenvironment{do#1}{}{}", "\\newtheorem",  # names that are not literal plain names
                          "\\newcommand{\\foo}[1]{\\begin{docu#1}}", "\\newcommand{\\foo}[1]{\\end{#1}}", "\\begin{ center }\\end{ center }"):  # environment names that are not plain
         tex.write_text(text.replace("\\begin{document}", redefinition + "\n\\begin{document}", 1))
         code, out = run(copy)
         assert code == 1 and "can change what the document sentinels mean" in out, (redefinition, out)
     tex.write_text(text.replace("\\begin{document}", "\\begingroup\\endgroup \\begin {center}\\end{center}\n\\newcommand{\\foo}{\\begin{center}}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # environment uses, longer control words and a macro body using \\begin{...} are fine
-    tex.write_text(text.replace("\\begin{document}", "\\renewcommand{\\foo}\n{\\begin{center}}\n\\newenvironment\n{doc}{}{}\n\\begin{document}", 1))
-    assert run(copy)[0] == 0  # a line-broken definer whose target is not a sentinel, and another environment
+    tex.write_text(text.replace("\\begin{document}", "\\renewcommand{\\foo}\n{\\begin{center}}\n\\newenvironment\n{doc}{}{}\\newtheorem*{lem2}[doc]{Lemma}\n\\begin{document}", 1))
+    assert run(copy)[0] == 0  # a line-broken definer whose target is not a sentinel, another environment and a theorem with a plain name
     tex.write_text(text.replace("\\begin{document}", "\\renewcommand*{\\foo}{\\begin{center}}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # a starred definer with another target
     for wrapper in ("\\newcommand{\\foo}{\\end{document}}\n\\foo", "\\newcommand{\\foo}{\\begin{document}}", "x \\end{document}"):

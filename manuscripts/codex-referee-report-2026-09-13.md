@@ -1862,3 +1862,18 @@ No other findings were posted in the eighty-fourth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the eighty-fifth round.
+
+# Eighty-sixth round: review of the letters-only revision (pull request #95)
+
+**Reviewed commit:** `0977d0f55c` (finding 150).
+**Review posted:** 2026-09-16T00:44:29Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 151 (P2) — `scripts/check_manuscript_source.py`, line 189
+
+> **Reject expanded environment-definer targets**
+>
+> Fresh evidence beyond the literal `\newtheorem` target fix is `\newcommand{\foo}{document}` followed by `\renewenvironment{\foo}{}{}` (with both commands allowlisted): LaTeX expands `\foo` while constructing the environment control-sequence names, so this replaces `\document` and `\enddocument`, but the regex only recognizes a literal `{document}` target and `check_tex` returns no problems. Reject non-literal targets for environment/theorem definers so the textual sentinels cannot pass after their implementation has been replaced.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the eighty-sixth round.

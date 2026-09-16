@@ -169,7 +169,9 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
     # target of a definer (\\def and its variants, \\let, \\futurelet, a prefix such as \\global, or any
     # ...command... macro), the internal \\document and \\enddocument may not occur, and no
     # environment-defining command (a ...environment... or ...theorem... macro, since \\newtheorem
-    # defines an environment too) may target document, begin or end.  TeX skips the white space after a control
+    # defines an environment too) may target document, begin or end, and must name its target as a
+    # literal plain name right there, since LaTeX expands the argument into the environment's
+    # control-sequence names and a macro could expand to document.  TeX skips the white space after a control
     # word, a line ending included (a comment ends a line), so a definer, \\newif and an argument
     # may be separated from what follows by line endings as well as by spaces; a LaTeX definer may
     # carry a * before its target; a ...namedef... or ...namelet... macro defines the control
@@ -186,7 +188,8 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
                               r"(?!(?:\{[ \t\n]*\\[a-zA-Z@]+[ \t\n]*\}|\\[a-zA-Z@]+)[ \t\n]*[{\[])", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*name(?:def|let)[a-zA-Z@]*)[ \t\n]*\{[ \t\n]*(?:begin|end|document|enddocument)[ \t\n]*\}", active)
                  or re.search(r"(?<!\\)(?:\\\\)*\\(document|enddocument)(?![a-zA-Z@])", active)
-                 or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*(?:[eE]nvironment|[tT]heorem)[a-zA-Z@]*)[ \t\n]*\*?[ \t\n]*\{[ \t\n]*(?:document|begin|end|enddocument)[ \t\n]*\}", active))
+                 or re.search(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]*(?:[eE]nvironment|[tT]heorem)[a-zA-Z@]*)(?![a-zA-Z@])[ \t\n]*\*?[ \t\n]*"
+                              r"(?![ \t\n*])(?!\{(?!(?:document|begin|end|enddocument)\})[a-zA-Z0-9*]+\})", active))
     if tampering:
         problems.append(f"{path}: \\{tampering.group(1)} on line {active.count(chr(10), 0, tampering.start()) + 1} "
                         "can change what the document sentinels mean")

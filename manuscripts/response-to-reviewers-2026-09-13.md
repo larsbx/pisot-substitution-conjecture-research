@@ -942,3 +942,11 @@ One finding from the automated Codex review of commit `d67b8eacf7`; accepted, on
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 150 | P2 | An allowlisted name containing `@` could hide a stop word (`\endinput@foo`) | Accepted. Allowlist names are now letters only, so no name containing `@` can be listed; the scanner keeps taking `@` as a letter, so a control word containing `@` fails whichever catcode `@` has, as one unknown word or as a known word the scan would otherwise have cut short. The scenario (`endinput@foo` listed and `\endinput@foo` used) was confirmed to pass the previous revision. Tests: `\endinput@foo` before the sentinels (fails as unlisted); a list containing `x@y` (fails as malformed) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Eighty-sixth round (pull request #95, letters-only revision)
+
+One finding from the automated Codex review of commit `0977d0f55c`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 151 | P2 | An environment definer whose name argument was a macro expanding to `document` escaped the literal-target rule | Accepted. Every `...environment...` or `...theorem...` definer must now name its target as a literal plain name (letters, digits, `*`) right there, and that name may not be a sentinel word; a macro, a padded name, a parameter or a missing argument fails the source, since LaTeX expands the argument into the environment's control-sequence names. The scenario and its `\newtheorem` form were confirmed to pass the previous revision. Tests: `\newcommand{\foo}{document}` followed by `\renewenvironment{\foo}{}{}` or by `\newtheorem{\foo}{Broken}`, `\newenvironment{ doc }{}{}`, `\newenvironment{do#1}{}{}` and a bare `\newtheorem` (all fail); `\newenvironment{doc}` and `\newtheorem*{lem2}[doc]{Lemma}` (pass) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
