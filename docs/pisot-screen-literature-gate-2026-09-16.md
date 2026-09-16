@@ -81,7 +81,34 @@ testing found in this module, and it is why the implementation pairs the Routh
 count with a separate unit-circle test rather than trusting the count to be
 silent about the circle.
 
-### 3. The cubic identity does not generalise
+### 3. Only one of the two Routh singularities is handled, and the bound is real
+
+A Routh array stalls in two distinct ways, and the literature treats them
+separately. The vanishing row is handled here, as above. The other is a
+**first-column zero in a row that is not itself zero**, and this module
+implements none of its classical remedies — it refuses.
+
+That refusal is a genuine capability bound, not a formality. `x^3 - 3x^2 - 3x - 3`
+is a Pisot polynomial: its roots are 3.951... and a conjugate pair of modulus
+0.871... . Its image under the transform is `4w^3 + 12w - 8`, whose second Routh
+row is `[0, -8]`, so the screen refuses it.
+
+The bound has a sharper consequence for how a refusal may be recorded. On the
+imaginary axis that image has constant real part `-8`, so it has no axis root
+whatsoever. A refusal therefore carries **no** implication about the unit
+circle, in either direction. Writing "refused" into a census column that means
+"has a conjugate on the circle" would be manufacturing evidence, and the module
+now says so at every surface that returns the sentinel, with
+`known_first_column_refusal` naming the witness and
+`refusal_means_root_on_unit_circle` pinning the non-claim.
+
+Lifting the bound is possible — the standard routes are the epsilon
+perturbation of the offending entry and the reversal `w -> 1/w`, which
+preserves the half-plane count when `q(0) != 0` — but each needs its own
+correctness and termination argument, so neither is attempted here. This is
+recorded as the screen's first known limitation rather than smoothed over.
+
+### 4. The cubic identity does not generalise
 
 `psc.pisot.is_pisot_charpoly` decides the conjugate-pair case from
 `beta * |beta_2|^2 = det`: with one real root and one conjugate pair, the pair
@@ -99,7 +126,7 @@ where root location and the PIP regime are different questions, and the
 cross-check between the two in `tests/test_pisot_screen.mojo` is restricted to
 irreducible cubics for exactly that reason.
 
-### 4. Root location is not the Pisot property
+### 5. Root location is not the Pisot property
 
 A Pisot number is an algebraic integer greater than one whose *conjugates* —
 the other roots of its **minimal** polynomial — lie in the open unit disc.[^8]
@@ -119,7 +146,7 @@ test that cannot see a product of two irreducible quadratics. Deciding
 irreducibility at degree four and above needs a factorisation algorithm of the
 Zassenhaus or van Hoeij kind, which is out of scope here and is not attempted.
 
-### 5. Negative controls, and what each one catches
+### 6. Negative controls, and what each one catches
 
 Every family below is pinned in `tests/test_pisot_screen.mojo` and in
 `tests/test_pisot_screen.py`.
@@ -134,6 +161,7 @@ Every family below is pinned in `tests/test_pisot_screen.mojo` and in
 | Reducible with Pisot-shaped roots | `x^3 - 2x^2` | the boundary between root location and the PIP regime |
 | Degree one | `x - 2` | irreducible, yet it has a rational root |
 | Product of irreducible quadratics | `(x^2 + 1)^2` | no rational root, so the rational-root test proves nothing |
+| Unresolved first-column zero | `x^3 - 3x^2 - 3x - 3` | a Pisot polynomial this method refuses, with no circle root to blame |
 
 Salem's construction is the reason the first row exists: he exhibited algebraic
 integers with one conjugate outside the unit circle and the rest *on* it,[^9]
@@ -147,10 +175,15 @@ distinguish from the Pisot one once its array has been completed.
 2. **No irreducibility above degree three.** The screen refuses, and a caller
    that wants the Pisot property of a *number* must supply an irreducibility
    certificate from elsewhere.
-3. **No reading of a refusal as a negative.** A refusal means the array did not
-   decide, which for this method means a root on the unit circle — a fact the
-   caller must handle, not discard.
-4. **No replacement of `psc.pisot`.** The cubic decider remains the one the PIP
+3. **No reading of a refusal in either direction.** A refusal means the array
+   did not resolve. It is not a negative result, and it is equally not evidence
+   of a root on the unit circle; finding 3 gives a refused specimen that is
+   Pisot and has no circle root. A caller must handle the refusal, not convert
+   it into a verdict.
+4. **No claim of completeness at any degree.** The screen decides, refuses, or
+   is wrong, and the first two are distinguishable only because the second is
+   reported honestly. Finding 3 bounds where it refuses.
+5. **No replacement of `psc.pisot`.** The cubic decider remains the one the PIP
    test calls. The screen extends the reach of the same question; it does not
    supersede a routine that is cross-checked against it.
 

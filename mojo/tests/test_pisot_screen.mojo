@@ -9,6 +9,7 @@ monic cubic with coefficients in `[-4, 4]` is therefore evidence, not an echo.
 
 from std.testing import assert_equal, assert_false, assert_true
 from finite_exact.rat_q import Q
+from finite_linear_algebra.scalar import q_int
 from psc.exact import q_poly
 from psc.pisot import is_pisot_charpoly, poly_degree
 from psc.pisot_screen import (
@@ -22,7 +23,9 @@ from psc.pisot_screen import (
     halfplane_transform,
     has_root_on_unit_circle,
     irreducibility,
+    known_first_column_refusal,
     refusal_means_not_pisot,
+    refusal_means_root_on_unit_circle,
     roots_outside_unit_circle,
     routh_right_half_plane_count,
     screen,
@@ -105,7 +108,10 @@ def test_reciprocal_pisot_polynomials_are_not_refused() raises:
 
 def test_a_conjugate_on_the_unit_circle_is_not_pisot() raises:
     # The Routh count alone reports one root outside for a Salem polynomial and
-    # would call it Pisot; the unit-circle test is what refuses it.
+    # would call it Pisot; the unit-circle test is what refuses it. This is also
+    # what makes the strict-interior clause of the `screen` contract load-bearing:
+    # a Salem polynomial has exactly one root outside the closed disc, real and
+    # greater than one, and is still not Pisot.
     var on_circle = List[List[Int]]()
     on_circle.append(salem())
     on_circle.append(cyclotomic())
@@ -147,6 +153,31 @@ def test_a_refusal_is_never_a_negative_result() raises:
     assert_equal(screen(not_monic), SCREEN_REFUSED)
     assert_true(screen(not_monic) != SCREEN_NOT_PISOT)
     assert_false(refusal_means_not_pisot())
+
+
+def test_a_refusal_is_never_a_unit_circle_result_either() raises:
+    """`x^3 - 3x^2 - 3x - 3` is Pisot, refused, and has no root on the circle.
+
+    Its image `4w^3 + 12w - 8` has second Routh row `[0, -8]`: a first-column
+    zero in a row that is not itself zero. That singularity has classical
+    remedies and none is implemented here, so the screen refuses a genuine
+    Pisot polynomial. The refusal proves nothing about the unit circle either,
+    since `q(iy)` has constant real part `-8` and so no axis root at all.
+    """
+    var coeffs = known_first_column_refusal()
+    var expected: List[Int] = [-3, -3, -3, 1]
+    assert_equal(len(coeffs), len(expected))
+    for i in range(len(expected)):
+        assert_equal(coeffs[i], expected[i])
+    var image = halfplane_transform(coeffs)
+    var image_expected: List[Int] = [-8, 12, 0, 4]
+    assert_equal(len(image), len(image_expected))
+    for i in range(len(image_expected)):
+        assert_true(image[i].eq(q_int(image_expected[i])))
+    assert_equal(routh_right_half_plane_count(image), ROUTH_UNDECIDED)
+    assert_equal(screen(coeffs), SCREEN_REFUSED)
+    assert_false(has_root_on_unit_circle(coeffs))   # the refusal is not circle evidence
+    assert_false(refusal_means_root_on_unit_circle())
 
 
 def test_the_transform_drops_degree_exactly_at_a_root_of_minus_one() raises:
@@ -239,6 +270,8 @@ def main() raises:
     print("[PASS] test_the_screen_refuses_what_it_cannot_accept")
     test_a_refusal_is_never_a_negative_result()
     print("[PASS] test_a_refusal_is_never_a_negative_result")
+    test_a_refusal_is_never_a_unit_circle_result_either()
+    print("[PASS] test_a_refusal_is_never_a_unit_circle_result_either")
     test_the_transform_drops_degree_exactly_at_a_root_of_minus_one()
     print("[PASS] test_the_transform_drops_degree_exactly_at_a_root_of_minus_one")
     test_the_screen_agrees_with_the_cubic_decider()
@@ -249,4 +282,4 @@ def main() raises:
     print("[PASS] test_screening_and_irreducibility_are_independent")
     test_the_cubic_decider_is_still_the_one_used_for_pip()
     print("[PASS] test_the_cubic_decider_is_still_the_one_used_for_pip")
-    print("11 Pisot-screen Mojo tests passed.")
+    print("12 Pisot-screen Mojo tests passed.")

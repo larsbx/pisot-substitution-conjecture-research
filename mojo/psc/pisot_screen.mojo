@@ -19,13 +19,20 @@ rationals. `z = -1` maps to `w = infinity`, which shows up as a degree drop in
 Every value is a `finite_exact` rational. No floating point is used anywhere,
 and the polynomial helpers are shared with `psc.pisot` rather than repeated.
 
-**A refusal is not a negative result.** The array is undecided when a
-first-column entry vanishes or a row terminates early, which is exactly when
-`q` has roots on the imaginary axis, meaning `p` has roots on the unit circle.
-`screen` then answers `SCREEN_REFUSED`, never `SCREEN_NOT_PISOT`. A caller that
-treats the two alike converts "this method cannot tell" into "this is not a
-Pisot polynomial", which is false for a Salem polynomial and for any polynomial
-with a root of absolute value one.
+**A refusal is not a negative result, and it is not a positive one either.**
+The array is undecided when a first-column entry vanishes or a row terminates
+early. Those are the two classical Routh singularities and they do not mean the
+same thing. A *vanishing row* is handled here by the auxiliary-derivative rule.
+A *first-column zero in a row that is not itself zero* is a different
+singularity, with its own classical remedies, and this module implements none
+of them: it refuses. Such a refusal says only that this array did not resolve.
+
+So `SCREEN_REFUSED` must not be read either way. `x^3 - 3x^2 - 3x - 3` is
+refused here and is nevertheless a genuine Pisot polynomial: its image is
+`4w^3 + 12w - 8`, whose second Routh row is `[0, -8]`, while its roots are
+3.951... and a conjugate pair of modulus 0.871... . Its real part on the
+imaginary axis is the constant `-8`, so it has no axis root at all. That bound
+is recorded in the literature gate; see `known_first_column_refusal`.
 
 The literature gate for this diagnostic is
 `docs/pisot-screen-literature-gate-2026-09-16.md`; the Python oracle it was
@@ -46,7 +53,8 @@ comptime REDUCIBLE = 0
 comptime IRREDUCIBILITY_REFUSED = -1
 
 # A count of roots is never negative, so this sentinel cannot be mistaken for
-# one. It says the method did not decide, which is not the same as "none".
+# one. It says the method did not decide, which is neither "none outside" nor
+# "a root on the circle": see the module docstring for a refused Pisot case.
 comptime ROUTH_UNDECIDED = -1
 
 # Rational-root testing rules out linear factors only, so irreducibility is
@@ -142,8 +150,10 @@ def auxiliary_derivative(row: List[Q], top_degree: Int) -> List[Q]:
 def routh_right_half_plane_count(q: List[Q]) -> Int:
     """Roots of `q` with `Re(w) > 0`, or `ROUTH_UNDECIDED`.
 
-    Undecided means `q` has a root on the imaginary axis, so `p` has a root of
-    absolute value one. It never means zero."""
+    Undecided means this array did not resolve, and nothing more. It never
+    means zero, and it is not evidence of a root on the imaginary axis: a
+    first-column zero in a non-zero row refuses here whether or not `q` has an
+    axis root. Use `has_root_on_unit_circle` to decide that question."""
     var n = poly_degree(q)
     if n < 1:
         return ROUTH_UNDECIDED
@@ -270,7 +280,9 @@ def has_root_on_unit_circle(coeffs: List[Int]) -> Bool:
 def roots_outside_unit_circle(coeffs: List[Int]) -> Int:
     """How many roots of `p` satisfy `|z| > 1`, or `ROUTH_UNDECIDED`.
 
-    Undecided means some root has absolute value exactly one."""
+    Undecided means the count was not established. A root at `z = 1` or
+    `z = -1` is one reason; an unresolved Routh singularity is another, and it
+    carries no implication about the unit circle."""
     var n = int_degree(coeffs)
     if n < 1:
         return ROUTH_UNDECIDED
@@ -285,10 +297,15 @@ def roots_outside_unit_circle(coeffs: List[Int]) -> Int:
 def screen(coeffs: List[Int]) -> Int:
     """`SCREEN_PISOT`, `SCREEN_NOT_PISOT`, or `SCREEN_REFUSED`.
 
-    `SCREEN_PISOT` means exactly one root lies outside the closed unit disc and
-    that root is real and greater than one. It is a statement about root
-    location, not about irreducibility: use `irreducibility` for that, and note
-    that a Pisot *number* is defined by its minimal polynomial."""
+    `SCREEN_PISOT` means exactly one root lies outside the closed unit disc,
+    that root is real and greater than one, and every other root lies
+    *strictly* inside the disc. The last clause is not redundant: a Salem
+    polynomial meets the first two and is refused by `has_root_on_unit_circle`
+    precisely because its remaining conjugates sit on the boundary.
+
+    It is a statement about root location, not about irreducibility: use
+    `irreducibility` for that, and note that a Pisot *number* is defined by its
+    minimal polynomial."""
     if not is_monic_integer(coeffs):
         return SCREEN_REFUSED
     if has_root_on_unit_circle(coeffs):
@@ -359,6 +376,16 @@ def irreducibility(coeffs: List[Int]) -> Int:
 # --- non-claims -----------------------------------------------------------------
 
 
+def known_first_column_refusal() -> List[Int]:
+    """`x^3 - 3x^2 - 3x - 3`: Pisot, refused, and with no root on the circle.
+
+    Kept as a named witness so the bound is visible from the module rather than
+    only from the tests. Its image `4w^3 + 12w - 8` has second Routh row
+    `[0, -8]`, a first-column zero this module does not resolve."""
+    var c: List[Int] = [-3, -3, -3, 1]
+    return c^
+
+
 def refusal_means_not_pisot() -> Bool:
     """A refusal says the method could not decide, which is a different fact
     from the polynomial not being Pisot."""
@@ -367,4 +394,10 @@ def refusal_means_not_pisot() -> Bool:
 
 def screen_decides_irreducibility() -> Bool:
     """Root location and irreducibility are independent questions here."""
+    return False
+
+
+def refusal_means_root_on_unit_circle() -> Bool:
+    """The converse mistake: a refusal is not evidence of a circle root, so a
+    refused specimen must never be recorded as one."""
     return False

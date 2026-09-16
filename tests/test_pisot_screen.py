@@ -149,6 +149,32 @@ def test_a_refusal_is_never_a_negative_result():
     assert not ps.refusal_means_not_pisot()
 
 
+def test_a_refusal_is_never_a_unit_circle_result_either():
+    # x^3 - 3x^2 - 3x - 3 is genuinely Pisot, and this method still refuses it:
+    # its image 4w^3 + 12w - 8 has second Routh row [0, -8], a first-column zero
+    # in a row that is not itself zero. That singularity has classical remedies
+    # and none is implemented here. Crucially the refusal proves nothing about
+    # the unit circle -- q(iy) has constant real part -8, so there is no root on
+    # the imaginary axis at all.
+    coeffs = ps.known_first_column_refusal()
+    assert coeffs == [-3, -3, -3, 1]
+    assert ps.halfplane_transform(coeffs) == [Fraction(-8), Fraction(12), Fraction(0), Fraction(4)]
+    assert ps.routh_right_half_plane_count(ps.halfplane_transform(coeffs)) is None
+    assert ps.screen(coeffs) == ps.REFUSED
+    assert not ps.has_root_on_unit_circle(coeffs)      # the refusal is not circle evidence
+    assert not ps.refusal_means_root_on_unit_circle()
+    assert _oracle(coeffs) == ps.PISOT                 # and the specimen really is Pisot
+
+
+def test_the_pisot_verdict_requires_the_others_strictly_inside():
+    # A Salem polynomial has exactly one root outside the closed disc, real and
+    # greater than one. Only the strict-interior clause separates it from Pisot.
+    outside = [z for z in _roots(SALEM) if abs(z) > 1 + 1e-6]
+    assert len(outside) == 1
+    assert abs(outside[0].imag) < 1e-6 and outside[0].real > 1
+    assert ps.screen(SALEM) == ps.NOT_PISOT
+
+
 # --- irreducibility, decided only where the test can decide it ------------------
 
 
