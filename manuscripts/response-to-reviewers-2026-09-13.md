@@ -998,3 +998,13 @@ One finding from the automated Codex review of commit `f0efd6a485`; accepted, on
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 157 | P2 | The nine-unit lookback could be exhausted by the contents of an optional argument before reaching the call that takes it | Accepted, with the second remedy the finding offers: the lookback has no cap. Before a sentinel it reaches the start of the source, and before a closing brace it reaches the group's opener, so every call in the group or at the top level is examined, and the argument count is computed by index so the uncapped scan stays linear in the source. The scenario was confirmed to pass the previous revision. Tests: the scenario and an unclosed `\foo[abc` (fail as calls short of arguments), the scenario after a complete call (fails); `\foo[abcdefghijk]{x}`, `\foo[abc]{y}` and `\foo[abcdefghijk][x]{y}` (pass) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+
+## Ninety-third and ninety-fourth rounds (pull requests #95 and #100)
+
+Two P2 findings were accepted on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 158 | P2 | Known arity was incorrectly treated as proof that a control word was already defined | Accepted. Declaration history now establishes definite definition; an arity-table entry without an executed declaration is uncertain. State-dependent definers targeting an uncertain name fail closed. Coverage includes \`\newcommand\`, \`\providecommand\`, and \`\renewcommand\` against package-dependent \`\mathbb\`, plus a fresh three-argument custom command | \`scripts/check_manuscript_source.py\`, \`tests/test_check_manuscript_source.py\` |
+| 159 | P2 | Uncapped backward scanning repeatedly rescanned a long plain-letter run and became quadratic | Accepted. The scanner retains the discovered start of the current plain-letter run while emitting its characters, so the uncapped safety check remains linear. Coverage exercises a 10,000-character run | \`scripts/check_manuscript_source.py\`, \`tests/test_check_manuscript_source.py\` |
