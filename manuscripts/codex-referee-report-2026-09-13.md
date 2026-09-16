@@ -1832,3 +1832,18 @@ No other findings were posted in the eighty-second round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the eighty-third round.
+
+# Eighty-fourth round: review of the theorem-definer revision (pull request #95)
+
+**Reviewed commit:** `f3a2082a88` (finding 148).
+**Review posted:** 2026-09-16T00:17:45Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 149 (P2) — `scripts/check_manuscript_source.py`, line 984
+
+> **Tie the parsed terminator to the final EOF**
+>
+> When a second `startxref`/`%%EOF` pair pointing to the same section is appended after an otherwise valid PDF, `check_pdf` selects that final pair, but this match consumes the first terminator following the section and never verifies that `after` reaches the selected final pair. The structural walk therefore returns success while `_full_parse` starts from the same valid xref offset and ignores the unaccounted duplicate terminator bytes. Require the newest section's parsed terminator to be the final one selected by `check_pdf`, so appended content cannot bypass the fail-closed guard.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the eighty-fourth round.

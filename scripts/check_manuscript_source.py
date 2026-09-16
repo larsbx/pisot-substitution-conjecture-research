@@ -996,6 +996,11 @@ def _xref_chain(raw: bytes, off: int) -> str | int:
             if entries.get(num, (None,))[:3] != (1, xrefstm, gen):  # the table must not free or move the companion it names
                 return f"/XRefStm companion object {num} {gen} at offset {xrefstm} is not an in-use entry at that offset once the classic table's entries take precedence"
         sections.append((entries, sizes, roots, classic, here, after))
+    # the newest section's terminator must be the one the file ends with: bytes after it (a
+    # duplicate startxref/%%EOF pair, say) belong to no revision the walk has seen
+    if raw[sections[0][5]:].strip(b"\r\n"):
+        return (f"{len(raw) - sections[0][5]} bytes follow the newest revision's %%EOF at offset {sections[0][5]}, "
+                "so the terminator the file ends with is not its own")
     merged, cache = {}, {}
     for entries, sizes, roots, classic, _, _ in reversed(sections):
         merged = {**merged, **entries}  # newer sections win

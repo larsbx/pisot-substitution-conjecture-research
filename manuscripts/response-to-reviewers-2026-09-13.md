@@ -926,3 +926,11 @@ One finding from the automated Codex review of commit `d794f9c534`; accepted, on
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 148 | P2 | `\newtheorem{document}` escaped the environment-definer rule | Accepted. The rule now covers every `...theorem...` macro alongside the `...environment...` macros, since `\newtheorem` defines an environment too: one targeting `document`, `begin`, `end` or `enddocument` fails the source. The scenario, its starred form and its optional-argument form were confirmed to pass the previous revision. Tests: `\newtheorem{document}{Broken}`, `\newtheorem*{end}{Broken}` and a line-broken `\newtheorem` with `{begin}[section]{Broken}` (all fail) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Eighty-fourth round (pull request #95, theorem-definer revision)
+
+One finding from the automated Codex review of commit `f3a2082a88`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 149 | P2 | A duplicate `startxref`/`%%EOF` pair appended after a valid PDF left unaccounted bytes | Accepted. The newest cross-reference section's terminator must now be the one the file ends with: any bytes after it other than line endings fail the file, so appended content, a duplicate terminator included, cannot bypass the structural walk. The scenario and a variant with stray bytes before the duplicate were both confirmed to pass the previous revision. Tests: a duplicate terminator and stray bytes plus a duplicate terminator appended to a valid file (both fail); trailing line endings after the real terminator (pass) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

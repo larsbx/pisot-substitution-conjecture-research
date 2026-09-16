@@ -1141,6 +1141,13 @@ def test_eof_marker_needs_a_line_boundary(copy):
     pdf.write_bytes(classic_pdf() + b"X")
     code, out = run(copy)
     assert code == 1 and "does not end with %%EOF" in out, out
+    terminator = re.search(rb"startxref\n\d+\n%%EOF\n", classic_pdf()).group()
+    for extra in (terminator, b"stray bytes\n" + terminator):  # a duplicate terminator naming the same section
+        pdf.write_bytes(classic_pdf() + extra)
+        code, out = run(copy)
+        assert code == 1 and "bytes follow the newest revision's %%EOF" in out, out
+    pdf.write_bytes(classic_pdf() + b"\r\n\n")
+    assert run(copy)[0] == 0  # trailing line endings only
 
 
 def test_superseded_dictionary_is_parsed_structurally(copy):
