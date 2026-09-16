@@ -155,7 +155,10 @@ def test_a_refusal_is_never_a_negative_result():
 def test_irreducibility_is_decided_below_degree_four_and_refused_above():
     assert ps.irreducibility(GOLDEN) == "irreducible"
     assert ps.irreducibility(PLASTIC) == "irreducible"
-    assert ps.irreducibility([-2, 1]) == "reducible"          # x - 2 has a rational root
+    # x - 2 is irreducible: every linear polynomial is, and every linear
+    # polynomial has a rational root, so the root test must not decide degree one.
+    assert ps.irreducibility([-2, 1]) == "irreducible"
+    assert ps.irreducibility([2, 1]) == "irreducible"
     assert ps.irreducibility([0, -1, 1]) == "reducible"       # x^2 - x = x(x - 1)
     # A product of two irreducible quadratics has no rational root, so the
     # rational-root test proves nothing at degree four.
@@ -165,6 +168,9 @@ def test_irreducibility_is_decided_below_degree_four_and_refused_above():
 
 
 def test_screening_and_irreducibility_are_independent():
-    # Pisot root location, but reducible over the rationals.
-    assert ps.screen([-2, 1]) == ps.PISOT
-    assert ps.irreducibility([-2, 1]) == "reducible"
+    # Pisot root location on a reducible polynomial: x^2 - x - 6 = (x - 3)(x + 2)
+    # has roots 3 and -2, so it is reducible and not Pisot; x^3 - x^2 - x - 1
+    # is irreducible and Pisot. Neither property implies the other.
+    assert ps.irreducibility([-6, -1, 1]) == "reducible"
+    assert ps.screen(TRIBONACCI) == ps.PISOT and ps.irreducibility(TRIBONACCI) == "irreducible"
+    assert ps.screen([-2, 1]) == ps.PISOT and ps.irreducibility([-2, 1]) == "irreducible"

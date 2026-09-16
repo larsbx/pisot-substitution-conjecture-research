@@ -271,14 +271,20 @@ def screen(coeffs: Sequence[int]) -> str:
 def irreducibility(coeffs: Sequence[int]) -> str:
     """`"irreducible"`, `"reducible"`, or `"refused"` over the rationals.
 
-    A rational root of a monic integer polynomial is an integer dividing the
-    constant term, which settles degrees two and three because a factorisation
-    there must include a linear factor. At degree four and above a product of
+    Degree one is irreducible outright. Above that, a rational root of a monic
+    integer polynomial is an integer dividing the constant term, which settles
+    degrees two and three because a factorisation there must include a linear
+    factor. At degree four and above a product of
     two irreducible quadratics has no rational root, so the same test proves
     nothing and this refuses rather than guessing."""
     n = degree(coeffs)
     if not is_monic_integer(coeffs):
         return "refused"
+    if n == 1:
+        # A non-constant linear polynomial is irreducible, and it always has a
+        # rational root, so the test below would call every one of them
+        # reducible. Degree one has to be settled before asking.
+        return "irreducible"
     if _has_rational_root(coeffs):
         return "reducible"
     if n > MAX_DECIDABLE_IRREDUCIBLE_DEGREE:
