@@ -107,6 +107,8 @@ def test_fail_closed(graph: OverlapGraph) -> None:
         inflate_collar(SIGMA, seed_collar(1, 2, 1), 1, 1, 1)
     with pytest.raises(RuntimeError):
         build_collared_graph(graph, 1, max_states=100)
+    with pytest.raises(RuntimeError):
+        separation_radius(graph, -1)  # an empty search must not read as a surviving collision
     capped = OverlapGraph(SIGMA)
     capped.capped = True
     with pytest.raises(RuntimeError):

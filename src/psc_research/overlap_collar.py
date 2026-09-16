@@ -168,6 +168,8 @@ def separation_radius(g: Any, max_radius: int, max_states: int = 200_000) -> int
     is determined by its collar; None if a collision survives at ``max_radius``.
 
     A finer collar determines the coarser one, so resolution is monotone in the radius."""
+    if max_radius < 0:
+        raise RuntimeError("separation radius search needs a nonnegative bound")
     return next((m for m in range(max_radius + 1) if not unresolved_collisions(build_collared_graph(g, m, max_states))), None)
 
 

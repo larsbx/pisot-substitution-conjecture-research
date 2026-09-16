@@ -1994,3 +1994,18 @@ No other findings were posted in the ninety-third round.
 > With a long unbroken alphabetic token at top level or inside a brace group, this uncapped loop makes \`_units_before\` quadratic: the backward scan walks to the beginning of the same plain-letter run on every iteration, while advancing by only one character. Tokenize the span in one pass or retain the previously discovered start of a plain-letter run before removing the cap.
 
 No other findings were posted in the ninety-fourth round.
+
+# Ninety-fifth round: review of the radius-`m` collar slice (pull request #101)
+
+**Reviewed commit:** `c14afe4f2b`.
+**Review posted:** 2026-09-16T03:53:15Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 160 (P2) — `src/psc_research/overlap_collar.py`, line 171
+
+> **Reject a negative separation-radius cap**
+>
+> When `max_radius` is negative, `range(max_radius + 1)` is empty and this returns `None`, which callers interpret as a collision surviving through the requested cap. The canonical Mojo implementation rejects the same input, and other bounded searches in this oracle validate their bounds; raise here as well so an invalid experiment cannot be recorded as mathematical evidence.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the ninety-fifth round.

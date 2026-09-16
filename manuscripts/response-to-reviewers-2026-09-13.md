@@ -1008,3 +1008,11 @@ Two P2 findings were accepted on the fail-closed side.
 | --- | --- | --- | --- | --- |
 | 158 | P2 | Known arity was incorrectly treated as proof that a control word was already defined | Accepted. Declaration history now establishes definite definition; an arity-table entry without an executed declaration is uncertain. State-dependent definers targeting an uncertain name fail closed. Coverage includes \`\newcommand\`, \`\providecommand\`, and \`\renewcommand\` against package-dependent \`\mathbb\`, plus a fresh three-argument custom command | \`scripts/check_manuscript_source.py\`, \`tests/test_check_manuscript_source.py\` |
 | 159 | P2 | Uncapped backward scanning repeatedly rescanned a long plain-letter run and became quadratic | Accepted. The scanner retains the discovered start of the current plain-letter run while emitting its characters, so the uncapped safety check remains linear. Coverage exercises a 10,000-character run | \`scripts/check_manuscript_source.py\`, \`tests/test_check_manuscript_source.py\` |
+
+## Ninety-fifth round (pull request #101, radius-`m` collar slice)
+
+One finding from the automated Codex review of commit `c14afe4f2b`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 160 | P2 | The oracle's separation-radius search returned None on a negative cap, which reads as a surviving collision | Accepted. The oracle now raises on a negative bound, as the canonical Mojo `separation_radius` already did; a test asserts the error, so an empty search can no longer be recorded as a survivor | `src/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
