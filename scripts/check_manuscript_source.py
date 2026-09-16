@@ -124,7 +124,7 @@ def _units_before(active: str, openers: dict[int, int], end: int, floor: int) ->
     (``openers`` maps each closing brace to its opener), a control word, a control symbol or a
     single character, as (start, kind, text).  No cap: the units of an optional argument could
     otherwise exhaust a bounded lookback before the call that takes it."""
-    units, j = [], end
+    units, j, letter_run_start = [], end, None
     while True:
         while j > floor and active[j - 1] in " \t\n":
             j -= 1
@@ -133,19 +133,27 @@ def _units_before(active: str, openers: dict[int, int], end: int, floor: int) ->
         c = active[j - 1]
         if j - 1 in openers:
             start, kind = openers[j - 1], "group"
+            letter_run_start = None
         else:
-            k = j - 1
-            while k > floor and c.isalpha() and active[k - 1].isalpha():
-                k -= 1
+            if c.isalpha() and letter_run_start is not None and letter_run_start < j:
+                k = letter_run_start
+            else:
+                k = j - 1
+                while k > floor and c.isalpha() and active[k - 1].isalpha():
+                    k -= 1
+                letter_run_start = k if c.isalpha() else None
             slashes = 0
             while k - 1 - slashes >= floor and active[k - 1 - slashes] == "\\":
                 slashes += 1
             if slashes % 2:  # an odd run of backslashes ends a control word or symbol
                 start, kind = k - 1, "word" if c.isalpha() else "symbol"
+                letter_run_start = None
             else:
                 start, kind = (k if c.isalpha() else j - 1), "char"
-                if c.isalpha() and k != j - 1:  # a run of plain letters: each letter is a unit
+                if c.isalpha() and k != j - 1:  # a plain letter run: emit one unit but reuse its start
                     start = j - 1
+                if c.isalpha() and start == k:
+                    letter_run_start = None
         units.append((start, kind, active[start:j]))
         j = start
     return units[::-1]
