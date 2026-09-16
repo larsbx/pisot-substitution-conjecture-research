@@ -177,7 +177,7 @@ def test_commented_document_sentinels_fail(copy):
         tex.write_text(text.replace("\\begin{document}", word + "\n\\begin{document}", 1))
         code, out = run(copy)
         assert code == 1 and "precedes \\end{document}; the guard cannot follow it" in out, (word, out)
-    tex.write_text(text.replace("\\begin{document}", "\\inputencoding{utf8} \\csnamex\n\\begin{document}", 1))  # longer control words differ
+    tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\csnamex}{}\\inputencoding{utf8} \\csnamex\n\\begin{document}", 1))  # longer control words differ
     assert run(copy)[0] == 0
     tex.write_text(text.replace("\\begin{document}", "\\end^^69nput\n\\begin{document}", 1))  # ^^69 is i to TeX's input processor
     code, out = run(copy)
@@ -295,6 +295,26 @@ def test_macro_parameters_stay_in_order(copy):
         assert code == 1 and "macro parameter on line" in out, (body, out)
     tex.write_text(text.replace("\\begin{document}", "\\newcommand{\\e}[2]{\\f{#1}{#2}}\\newcommand{\\f}[1]{#1}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # in order, and one parameter per body; the source's own \\Status macro and escaped \\# pass alike
+
+
+def test_arguments_complete_before_sentinels_and_bodies(copy):
+    tex = next(copy.glob("*.tex"))
+    text = tex.read_text()
+    i = text.rindex("\\end{document}")
+    allow(copy, "foo sqrt newenvironment renewcommand csnamex")
+    for source in ("\\title", "\\usepackage[a]{b}\\sqrt", "\\newcommand{\\foo}[2]{}\\foo{x}", "\\newcommand{\\foo}{\\emph}\n\\foo", "\\newcommand{\\foo}{\\frac{a}}",
+                   "\\newenvironment{foo}{x}{\\emph}", "\\csnamex", "\\newcommand{\\foo}[1]{#1}\\foo{\\sqrt}", "\\newcommand{\\foo}[1]{#1}\\foo\\sqrt",
+                   "\\textbf{\\emph}\\textbf{x}"):
+        tex.write_text(text.replace("\\begin{document}", source + "\n\\begin{document}", 1))  # a call short of arguments, or of unknown arity
+        code, out = run(copy)
+        assert code == 1 and "has fewer arguments than it takes" in out, (source, out)
+    tex.write_text(text[:i] + "\\emph\n" + text[i:])  # likewise before the closing sentinel
+    code, out = run(copy)
+    assert code == 1 and "before the document sentinel" in out, out
+    tex.write_text(text.replace("\\begin{document}", "\\title{X}\\usepackage[a]{b} $\\frac12 \\bar\\beta \\sqrt[3]{x}$ \\\\ \\{\\}\n"
+                                "\\newcommand{\\foo}{\\emph{x}}\\newcommand*{\\foo}[1][d]{\\sqrt{#1}}\\foo\n\\begin{document}", 1))
+    code, out = run(copy)
+    assert code == 0, out  # complete calls, single-token and optional arguments, control symbols, and a body whose call is complete
 
 
 def test_tex_input_files_are_rejected(copy):

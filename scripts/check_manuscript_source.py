@@ -65,6 +65,102 @@ _TEX_INPUTS = frozenset(".sty .cls .clo .def .cfg .fd .ltx .dtx .ins".split())
 # path can reach a file outside the installed tree.
 _TEX_LOADERS = frozenset("documentclass usepackage RequirePackage LoadClass RequirePackageWithOptions LoadClassWithOptions".split())
 
+# Mandatory-argument counts of the control words a source may use, so that a call whose
+# arguments run out before a sentinel or the end of a brace group is caught: a macro takes its
+# undelimited arguments from the tokens that follow it, so a bare \\title before
+# \\begin{document} would take the \\begin token as its argument.  A word not listed here has
+# an arity the guard does not know and fails when it stands within reach of such a boundary;
+# macros a source defines with \\newcommand take the arity of their declaration, and the
+# conditionals it declares with \\newif take none.  Primitives that read a number or a
+# dimension count as taking none: they cannot take a control word silently.
+_TEX_ARITY = {**dict.fromkeys(
+    "Delta Lambda Leftrightarrow Longrightarrow Omega Phi Pi Rightarrow S Sigma Theta alpha approx beta bigcup bmod "
+    "bottomrule cap cdot cdots chi circ colon cong cup delta deg det dim dots ell emptyset epsilon equiv gamma gcd ge "
+    "gtrsim in infty iota item kappa ker lambda langle le lim log maketitle mapsto max mid midrule min mkern mu ne neg "
+    "neq nobreakdash noindent notin omega oplus otimes partial perp pi pm prod qquad quad rangle rho setminus sigma sim "
+    "small sqcup subset subseteq sum tableofcontents tau times to top toprule varepsilon varphi varsigma wedge "
+    "begingroup endgroup relax par newpage clearpage centering hline ldots vdots ddots limits nolimits displaystyle "
+    "textstyle scriptstyle scriptscriptstyle lfloor rfloor lceil rceil vert Vert iff else fi or iftrue iffalse ifvmode "
+    "ifhmode ifmmode ifinner ifnum ifdim ifcase hfill vfill hrule vrule leq geq subsetneq supset supseteq ni forall "
+    "exists nabla int oint iint cap cup bigcap bigvee bigwedge bigoplus bigotimes coprod ast star dagger ddagger "
+    "leftarrow rightarrow longleftarrow longrightarrow uparrow downarrow Leftarrow Uparrow Downarrow implies impliedby "
+    "zeta eta theta nu xi upsilon phi psi Gamma Xi Upsilon Psi varsigma vartheta varrho varpi aleph hbar imath jmath "
+    "wp Re Im prime nexists angle triangle backslash flat natural sharp clubsuit diamondsuit heartsuit spadesuit "
+    "sin cos tan cot sec csc arcsin arccos arctan sinh cosh tanh coth exp ln lg arg hom inf sup liminf limsup Pr "
+    "diamond bullet amalg uplus sqcap dashv vdash models simeq asymp doteq propto parallel ll gg prec succ preceq "
+    "succeq smile frown bowtie lhd rhd unlhd unrhd centerdot ne le ge".split(), 0),
+    **dict.fromkeys(
+    "arabic author bar begin bibitem bigl bigr boxed check cite date documentclass emph end eqref label mathbb mathbf "
+    "mathbin mathcal mathfrak mathrm mathsf not operatorname overline paragraph pmod ref roman section sqrt subsection "
+    "subsubsection text textbf textit textsc texttt textup thanks theoremstyle tilde title usepackage v "
+    "hat vec dot ddot breve acute grave widehat widetilde underline underbrace overbrace hspace vspace hskip vskip "
+    "caption footnote url includegraphics textsuperscript textsubscript mathit mathop mathrel mathord mathpunct "
+    "mathopen mathclose left right big Big bigg Bigg bigm Bigm biggm Biggm Bigl Bigr biggl biggr Biggl Biggr "
+    "newif newcounter newlength newdimen newcount newskip newbox setcounter refstepcounter stepcounter addtocounter "
+    "value pageref autoref nameref hyperref inputencoding fontencoding fontfamily fontsize selectfont textcolor "
+    "color chapter part appendix addcontentsline phantom hphantom vphantom smash mathstrut ifodd ifdefined ifeof "
+    "ifvoid ifhbox ifvbox DeclareGraphicsExtensions graphicspath bibliographystyle bibliography nocite ensuremath "
+    "protect".split(), 1),
+    **dict.fromkeys("binom frac newcommand newtheorem texorpdfstring renewcommand providecommand DeclareMathOperator "
+                    "setlength addtolength href if ifcat ifx iffontchar tfrac dfrac cfrac overset underset stackrel "
+                    "substack".split(), 2),
+    **dict.fromkeys("ifthenelse newenvironment renewenvironment".split(), 3)}
+# Control symbols (a backslash and one non-letter): the accents take one argument, the rest none.
+_TEX_SYMBOL_ARITY = dict.fromkeys("'\"^~=.", 1)
+
+
+def _units_before(active: str, openers: dict[int, int], end: int, floor: int) -> list[tuple[int, str, str]]:
+    """The last (up to nine) argument units before ``active[end]`` and after ``floor``, oldest first:
+    a brace group (``openers`` maps each closing brace to its opener), a control word, a control
+    symbol or a single character, as (start, kind, text)."""
+    units, j = [], end
+    while len(units) < 9:
+        while j > floor and active[j - 1] in " \t\n":
+            j -= 1
+        if j <= floor:
+            break
+        c = active[j - 1]
+        if j - 1 in openers:
+            start, kind = openers[j - 1], "group"
+        else:
+            k = j - 1
+            while k > floor and c.isalpha() and active[k - 1].isalpha():
+                k -= 1
+            slashes = 0
+            while k - 1 - slashes >= floor and active[k - 1 - slashes] == "\\":
+                slashes += 1
+            if slashes % 2:  # an odd run of backslashes ends a control word or symbol
+                start, kind = k - 1, "word" if c.isalpha() else "symbol"
+            else:
+                start, kind = (k if c.isalpha() else j - 1), "char"
+                if c.isalpha() and k != j - 1:  # a run of plain letters: each letter is a unit
+                    start = j - 1
+        units.append((start, kind, active[start:j]))
+        j = start
+    return units[::-1]
+
+
+def _unfinished(active: str, openers: dict[int, int], end: int, floor: int, arity: dict[str, int]) -> tuple[int, str] | None:
+    """A control word or symbol among the units before ``active[end]`` whose arguments would reach
+    ``end`` (or whose arity the guard does not know), as (position, name); None if every call
+    completes before the boundary.  A * and [...] groups right after the call are optional."""
+    units = _units_before(active, openers, end, floor)
+    for i, (pos, kind, text) in enumerate(units):
+        if kind not in ("word", "symbol"):
+            continue
+        n = arity.get(text[1:]) if kind == "word" else _TEX_SYMBOL_ARITY.get(text[1:], 0)
+        if n is None:
+            return pos, text
+        rest = [u for u in units[i + 1:]]
+        if rest and rest[0][2] == "*":
+            rest = rest[1:]
+        while rest and rest[0][2] == "[":  # skip an optional argument up to its ]
+            close = next((k for k, u in enumerate(rest) if u[2] == "]"), None)
+            rest = rest[close + 1:] if close is not None else []
+        if len(rest) < n:
+            return pos, text
+    return None
+
 
 def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
     raw = path.read_bytes()
@@ -173,6 +269,29 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
         if (pos == b and stack[:-1]) or (pos == e and stack):
             problems.append(f"{path}: the document sentinel on line {active.count(chr(10), 0, pos) + 1} sits inside the environment "
                             f"{(stack[:-1] or stack)[-1]}, which the guard cannot follow")
+            break
+    # a macro takes its arguments from the tokens after it, so a call whose arguments run out
+    # before a sentinel would take the sentinel's \\begin or \\end as an argument; the same for a
+    # call at the end of any brace group, since a macro body's expansion and an argument a body
+    # re-emits are followed by whatever comes after the call, and a call at the end of an
+    # argument passed as a single token is checked the same way.  Only a definer's target
+    # group, {\\name}, holds a bare control word by design.  Macros defined by \\newcommand
+    # take the arity of their declaration.
+    arity = {**_TEX_ARITY, **dict.fromkeys(ifs, 0), **{m.group(1): int(m.group(2) or 0) - (m.group(3) is not None) for m in re.finditer(
+        r"(?<!\\)(?:\\\\)*\\(?:new|renew|provide)command\*?[ \t\n]*\{?[ \t\n]*\\([a-zA-Z]+)[ \t\n]*\}?[ \t\n]*"
+        r"(?:\[(\d)\](?:[ \t\n]*\[([^\]]*)\])?)?", active)}}  # [n][default] makes the first of n arguments optional
+    openers, open_stack = {}, []
+    for i, d in braces:
+        open_stack.append(i) if d > 0 else (openers.__setitem__(i, open_stack.pop()) if open_stack else None)
+    targets = {m.start(1) for m in re.finditer(
+        r"(?<!\\)(?:\\\\)*\\(?:[a-zA-Z]*[cC]ommand[a-zA-Z]*|Declare[a-zA-Z]*|new(?:length|counter|savebox|count|dimen|skip|box|toks|read|write))"
+        r"\*?[ \t\n]*(\{)[ \t\n]*\\[a-zA-Z]+[ \t\n]*\}", active)}
+    boundaries = [(c, o) for c, o in openers.items() if (e < 0 or c < e) and o not in targets] + [(p, 0) for p in (b, e) if p >= 0]
+    for end, floor in sorted(boundaries):
+        if (unfinished := _unfinished(active, openers, end, floor, arity)) is not None:
+            problems.append(f"{path}: {unfinished[1]} on line {active.count(chr(10), 0, unfinished[0]) + 1} has fewer arguments than it takes before "
+                            f"the {'document sentinel' if end in (b, e) else 'end of its brace group'} on line {active.count(chr(10), 0, end) + 1}, "
+                            "or an arity the guard does not know; it could take what follows as an argument")
             break
     # every other \\begin{document} or \\end{document} before the closing sentinel, in a macro body
     # or beside other text, could be executed by a macro or a group and end or restart the document

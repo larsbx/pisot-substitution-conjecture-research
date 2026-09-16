@@ -1892,3 +1892,18 @@ No other findings were posted in the eighty-sixth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the eighty-seventh round.
+
+# Eighty-eighth round: review of the environment-nesting revision (pull request #95)
+
+**Reviewed commit:** `385bc8e3c0` (finding 152).
+**Review posted:** 2026-09-16T01:18:34Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 153 (P2) — `scripts/check_manuscript_source.py`, line 110
+
+> **Reject sentinels consumed as macro arguments**
+>
+> When an allowlisted argument-taking command is left bare immediately before the opening sentinel, this matcher counts a command that TeX never executes. For example, inserting a standalone `\title` line before `\begin{document}` makes `\title` consume the `\begin` token as its argument, leaving the source without an executed document environment, yet `check_tex` returns no problems. Track complete arguments for allowed preamble commands, or otherwise reject a sentinel that can be consumed by the preceding command, so the guard fails closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the eighty-eighth round.
