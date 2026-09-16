@@ -80,7 +80,7 @@ The strong G/F synthetic artifact is important precisely because it prevents ove
 
 ## 4. TLA+ proof-dependency layer
 
-`ProofArchitecture.tla` is a generic dependency state machine. A result can be discharged only when all prerequisites are already established; withdrawn results can never be discharged. `Ledger.tla` supplies the current mathematical dependency graph.
+`ProofArchitecture.tla` is a generic dependency state machine (the same module as `proof_records/ProofArchitecture.tla` in `larsbx/finite-math-kernels`). A result can be discharged only when all prerequisites are already established; withdrawn results can never be discharged. `Ledger.tla` supplies the current mathematical dependency graph and is generated, together with one `MCLedger<Set>` model per assumption set, from the proof records tabulated in `scripts/make_ledger.py` (`tla/ledger.json`). Repository theorems are `ProvedDef`, imported theorems `ImportedDef` (established only by assumption, so a model that needs Barge–Štimac–Williams names it in its assumption set), withdrawn claims `WithdrawnDef`. Every generated model holds; a model's `Reachable` set states what its assumptions derive and its `<Name>NotEstablished` invariants what they do not, replacing the earlier configurations that demonstrated derivations through expected invariant violations.
 
 The dependency graph must encode **sufficiency**, not converse implications. In particular the current route is
 

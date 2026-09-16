@@ -15,6 +15,7 @@ PACKAGES = {
     "substitution_dynamics": ("larsbx/finite-math-kernels", "mojo"),
     "finite_linear_algebra": ("larsbx/finite-math-kernels", "mojo"),
     "claim_governance": ("larsbx/finite-math-kernels", "tools"),
+    "proof_records": ("larsbx/finite-math-kernels", "tools"),
 }
 
 
@@ -22,10 +23,11 @@ def test_vendored_packages_match_their_pins():
     assert sync.check() == []
     packages = {p["name"]: p for p in sync.load()}
     assert {n: (p["repository"], p["root"]) for n, p in packages.items()} == PACKAGES
+    assert len({pkg["commit"] for pkg in packages.values()}) == 1, "every package is pinned to one upstream commit"
     for name, pkg in packages.items():
         assert pkg["repository"] == "larsbx/finite-math-kernels"
-        assert pkg["commit"] == "007e40f679f3b9be86dade148b3bf08c518de74a"
         assert all(rel.startswith(name + "/") for rel in pkg["files"])
+    assert set(packages["proof_records"]["files"]) == {"proof_records/__init__.py", "proof_records/records.py", "proof_records/generate_ledgers.py"}
 
 
 def test_local_patch_is_detected(tmp_path, monkeypatch):
