@@ -341,6 +341,9 @@ def test_arguments_complete_before_sentinels_and_bodies(copy):
                                 "\\renewcommand{\\foo}[2][d]{}\\foo[abcdefghijk]{x}\\foo[abc]{y}\\foo[abcdefghijk][x]{y}\n\\begin{document}", 1))
     code, out = run(copy)
     assert code == 0, out  # complete calls, single-token, optional and long optional arguments, control symbols, and a body whose call is complete
+    tex.write_text(text.replace("\\begin{document}", "a" * 10_000 + "\n\\begin{document}", 1))
+    code, out = run(copy)
+    assert code == 0, out  # a long plain-letter run must not make uncapped backward scanning quadratic
 
 
 def test_tex_input_files_are_rejected(copy):
