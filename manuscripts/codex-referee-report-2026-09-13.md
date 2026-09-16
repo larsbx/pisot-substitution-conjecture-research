@@ -2055,3 +2055,26 @@ No other findings were posted in the ninety-sixth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the ninety-seventh round.
+
+# Ninety-eighth round: review of the equal-letter revision (pull request #101)
+
+**Reviewed commit:** `400010cf0a` (findings 163 and 164).
+**Review posted:** 2026-09-16T04:12:29Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 165 (P2) — `src/psc_research/overlap_collar.py`, line 201
+
+> **Reject malformed pump certificates in the oracle**
+>
+> When `certificate.state_indices` is nonempty but its length differs from `certificate.edges`, the Python oracle omits the structural check present in the canonical Mojo implementation. In particular, a certificate such as `AffinePumpCertificate((valid_start,), ())` makes `traverse` the identity and reports every fibre point with period 1, falsely treating an empty edge sequence as an eventually constant pump; validate that both sequences are nonempty and have equal lengths before lifting.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 166 (P2) — `src/psc_research/overlap_collar.py`, line 240
+
+> **Reject nonpositive legal-factor lengths in the oracle**
+>
+> When `length` is zero or negative, the growth ranges are empty and this seeded set is returned unchanged, so `legal_factors(sigma, 0)` incorrectly reports every one-letter word as a factor of length at most zero. The canonical Mojo routine rejects lengths below 1; the oracle should do the same so an invalid bound cannot produce an apparently exact legality result.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the ninety-eighth round.

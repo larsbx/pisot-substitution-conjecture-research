@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from psc_research.overlap_affine_pump import first_zero_shift_free_affine_pump, occurrence_edges
+from psc_research.overlap_affine_pump import AffinePumpCertificate, first_zero_shift_free_affine_pump, occurrence_edges
 from psc_research.overlap_collar import (
     Collar,
     build_collared_graph,
@@ -111,13 +111,26 @@ def test_fail_closed(graph: OverlapGraph) -> None:
         inflate_collar(SIGMA, seed_collar(1, 2, 1), 1, 0, -1)  # a negative radius must not yield an empty collar
     with pytest.raises(RuntimeError):
         inflate_collar(SIGMA, Collar((1,), (1,)), 1, 0, 2)  # radius-1 neighbours with length-one images cannot supply radius 2
+    certificate = first_zero_shift_free_affine_pump(graph)
+    for malformed in (AffinePumpCertificate((certificate.state_indices[0],), ()), AffinePumpCertificate((), ()),
+                      AffinePumpCertificate(certificate.state_indices, certificate.edges[:-1])):
+        with pytest.raises(RuntimeError):  # an edge sequence that does not match the states is not a pump
+            lift_affine_pump(build_collared_graph(graph, 1), malformed)
+    with pytest.raises(RuntimeError):
+        legal_factors(SIGMA, 0)
+    with pytest.raises(RuntimeError):
+        collared_seeds(capped_graph(), 1)
     with pytest.raises(RuntimeError):  # a certificate from another graph has no starting fibre here
         lift_affine_pump(build_collared_graph(graph, 1), first_zero_shift_free_affine_pump(OverlapGraph({1: (2, 1, 3), 2: (3,), 3: (1, 3, 1)})))
     with pytest.raises(RuntimeError):
         build_collared_graph(graph, 1, max_states=100)
     with pytest.raises(RuntimeError):
         separation_radius(graph, -1)  # an empty search must not read as a surviving collision
+    with pytest.raises(RuntimeError):
+        build_collared_graph(capped_graph(), 1)
+
+
+def capped_graph() -> OverlapGraph:
     capped = OverlapGraph(SIGMA)
     capped.capped = True
-    with pytest.raises(RuntimeError):
-        build_collared_graph(capped, 1)
+    return capped

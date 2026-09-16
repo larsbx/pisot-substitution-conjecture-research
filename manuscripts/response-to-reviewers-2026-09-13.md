@@ -1034,3 +1034,12 @@ Two findings from the automated Codex review of commit `5b06d74b19`; both accept
 | --- | --- | --- | --- | --- |
 | 163 | P2 | `patch_power_level` with equal letters reported level 1 for every substitution, since `sigma(a)sigma(a)` is always a power | Accepted. Both implementations reject equal endpoints, as a swap seed needs two distinct letters; tests assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
 | 164 | P2 | The oracle's `inflate_collar` returned sides shorter than the radius when the input collar was undersized, where the canonical implementation raises | Accepted. The oracle now carries the same post-inflation length check; both test files inflate a radius-1 collar at radius 2 under a length-one image and assert the error | `src/psc_research/overlap_collar.py`, tests |
+
+## Ninety-eighth round (pull request #101, equal-letter revision)
+
+Two findings from the automated Codex review of commit `400010cf0a`; both accepted, and the oracle's input validation brought to parity with the canonical module in the same revision.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 165 | P2 | The oracle lifted a certificate whose edge sequence did not match its states, so an empty edge sequence read as a constant pump | Accepted. The oracle now rejects an empty certificate and one whose edge and state sequences differ in length, as the canonical implementation does; tests assert the error on three malformed certificates | `src/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
+| 166 | P2 | The oracle's `legal_factors` accepted a nonpositive length and returned the letters | Accepted. The oracle rejects a length below one, as the canonical routine does; a test asserts the error. The oracle's `collared_seeds` also rejects a capped graph, the one remaining check the canonical module had and the oracle lacked | `src/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |

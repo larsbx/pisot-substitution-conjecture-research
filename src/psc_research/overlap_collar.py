@@ -112,6 +112,8 @@ def inflate_collar(sigma: Any, collar: Collar, letter: int, child_index: int, ra
 
 def collared_seeds(g: Any, radius: int) -> tuple[CollaredState, ...]:
     """The seed overlaps with the collars of their tiles in ``(ab)^Z`` and ``(ba)^Z``."""
+    if g.capped:
+        raise RuntimeError("collared seeds are undefined for a capped seed-patch graph")
     F = g.F
     out = []
     for a in (1, 2, 3):
@@ -181,6 +183,8 @@ def lift_affine_pump(cg: CollaredGraph, certificate: Any) -> tuple[LiftedOrbit, 
     """Replay an occurrence-labelled cycle from every collared state over its first
     state; the collar is eventually periodic, with the reported preperiod and period
     measured in traversals of the cycle."""
+    if not certificate.state_indices or len(certificate.state_indices) != len(certificate.edges):
+        raise RuntimeError("affine pump certificate is malformed")
     step = {(e.parent, e.ordinal): e.child for e in cg.edges}
 
     def traverse(k: int) -> int:
@@ -237,6 +241,8 @@ def collapsing_seed_pairs(g: Any, max_level: int) -> tuple[tuple[int, int, int],
 
 def legal_factors(sigma: Any, length: int) -> frozenset[Word]:
     """All factors of length at most ``length`` of the language of ``sigma``."""
+    if length < 1:
+        raise RuntimeError("legal factor length must be positive")
     factors = {(a,) for a in sigma}
     while True:
         grown = factors | {img[i:i + n] for w in factors for img in (_image(sigma, w),)
