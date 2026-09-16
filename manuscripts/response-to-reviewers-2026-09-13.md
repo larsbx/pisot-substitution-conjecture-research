@@ -1059,3 +1059,11 @@ One finding from the automated Codex review of commit `89550a4350`; accepted, on
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 168 | P2 | A certificate edge with a valid ordinal but stale child indices was followed by ordinal alone, so the lift accepted an edge `verify_affine_pump` rejects | Accepted. Both lifts now compare the selected collared edge's child state and both child indices with the certificate edge before following it; tests corrupt the top child index of the golden certificate's first edge and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
+
+## Hundred-and-first round (pull request #101, occurrence-edge revision)
+
+One finding from the automated Codex review of commit `938a1100fc`; accepted, at the root: the lift no longer trusts any field of a certificate.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 169 | P2 | A certificate with corrupted prefix or forcing payload still lifted, since the collared edge retains no such fields | Accepted. Both lifts now take the seed-patch tables and graph and replay the certificate in full with `verify_affine_pump` (every field of every edge, and the exact cycle identity) before lifting, so only a verified affine pump is lifted; the census passes its tables through. Tests forge the forcing term of the golden certificate's first edge and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, `mojo/swap_overlap_census.mojo`, tests |

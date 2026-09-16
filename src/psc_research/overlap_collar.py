@@ -27,7 +27,7 @@ from collections import deque
 from dataclasses import dataclass
 from typing import Any
 
-from psc_research.overlap_affine_pump import occurrence_edges
+from psc_research.overlap_affine_pump import occurrence_edges, verify_affine_pump
 
 Word = tuple[int, ...]
 
@@ -179,15 +179,19 @@ def separation_radius(g: Any, max_radius: int, max_states: int = 200_000) -> int
     return next((m for m in range(max_radius + 1) if not unresolved_collisions(build_collared_graph(g, m, max_states))), None)
 
 
-def lift_affine_pump(cg: CollaredGraph, certificate: Any) -> tuple[LiftedOrbit, ...]:
+def lift_affine_pump(g: Any, cg: CollaredGraph, certificate: Any) -> tuple[LiftedOrbit, ...]:
     """Replay an occurrence-labelled cycle from every collared state over its first
     state; the collar is eventually periodic, with the reported preperiod and period
-    measured in traversals of the cycle."""
+    measured in traversals of the cycle.  The certificate is first replayed in full
+    against the seed-patch graph ``g`` (every field of every edge), so only a verified
+    affine pump is lifted."""
     states, edges = certificate.state_indices, certificate.edges
     if not states or len(states) != len(edges):
         raise RuntimeError("affine pump certificate is malformed")
     if any(e.parent_index != states[k] or e.child_index != states[(k + 1) % len(states)] for k, e in enumerate(edges)):
         raise RuntimeError("affine pump certificate edges do not close over its states")
+    if not verify_affine_pump(g, certificate):
+        raise RuntimeError("affine pump certificate does not replay on the seed-patch graph")
     step = {(e.parent, e.ordinal): e for e in cg.edges}
 
     def traverse(k: int) -> int:

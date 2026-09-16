@@ -70,7 +70,7 @@ def test_golden_pump_lifts_to_an_eventually_constant_collar(graph: OverlapGraph)
     certificate = first_zero_shift_free_affine_pump(graph)
     assert certificate is not None and len(certificate.edges) == 6
     for radius, fibre_size in ((1, 11), (2, 12), (4, 16)):
-        orbits = lift_affine_pump(build_collared_graph(graph, radius), certificate)
+        orbits = lift_affine_pump(graph, build_collared_graph(graph, radius), certificate)
         assert len(orbits) == fibre_size
         assert {o.period for o in orbits} == {1}
         assert {o.preperiod for o in orbits} == {0, 1}
@@ -115,16 +115,18 @@ def test_fail_closed(graph: OverlapGraph) -> None:
     from dataclasses import replace
     corrupted = AffinePumpCertificate(certificate.state_indices[:1] + (-1,) * (len(certificate.edges) - 1), certificate.edges)
     stale = AffinePumpCertificate(certificate.state_indices, (replace(certificate.edges[0], top_child_index=certificate.edges[0].top_child_index + 1),) + certificate.edges[1:])
+    assert any(certificate.edges[2].forcing)  # the third edge advances the bottom child, so its forcing term is nonzero
+    forged = AffinePumpCertificate(certificate.state_indices, certificate.edges[:2] + (replace(certificate.edges[2], forcing=graph.F.zero),) + certificate.edges[3:])
     for malformed in (AffinePumpCertificate((certificate.state_indices[0],), ()), AffinePumpCertificate((), ()),
-                      AffinePumpCertificate(certificate.state_indices, certificate.edges[:-1]), corrupted, stale):
+                      AffinePumpCertificate(certificate.state_indices, certificate.edges[:-1]), corrupted, stale, forged):
         with pytest.raises(RuntimeError):  # an edge sequence that does not match the states is not a pump
-            lift_affine_pump(build_collared_graph(graph, 1), malformed)
+            lift_affine_pump(graph, build_collared_graph(graph, 1), malformed)
     with pytest.raises(RuntimeError):
         legal_factors(SIGMA, 0)
     with pytest.raises(RuntimeError):
         collared_seeds(capped_graph(), 1)
     with pytest.raises(RuntimeError):  # a certificate from another graph has no starting fibre here
-        lift_affine_pump(build_collared_graph(graph, 1), first_zero_shift_free_affine_pump(OverlapGraph({1: (2, 1, 3), 2: (3,), 3: (1, 3, 1)})))
+        lift_affine_pump(graph, build_collared_graph(graph, 1), first_zero_shift_free_affine_pump(OverlapGraph({1: (2, 1, 3), 2: (3,), 3: (1, 3, 1)})))
     with pytest.raises(RuntimeError):
         build_collared_graph(graph, 1, max_states=100)
     with pytest.raises(RuntimeError):

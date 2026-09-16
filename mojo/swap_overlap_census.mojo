@@ -124,7 +124,7 @@ def main() raises:
                             if len(zipper_sccs[z]) > max_zero_shift_free_cycle_size:
                                 max_zero_shift_free_cycle_size = len(zipper_sccs[z])
                         var certificates = first_zero_shift_free_affine_pump(tables, g)
-                        var orbits = lift_affine_pump(build_collared_graph(tables, g, LIFT_RADIUS), certificates[0])
+                        var orbits = lift_affine_pump(tables, g, build_collared_graph(tables, g, LIFT_RADIUS), certificates[0])
                         n_lift_specimens += 1
                         var constant = True
                         for o in range(len(orbits)):

@@ -2108,3 +2108,18 @@ No other findings were posted in the ninety-ninth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the hundredth round.
+
+# Hundred-and-first round: review of the occurrence-edge revision (pull request #101)
+
+**Reviewed commit:** `938a1100fc` (finding 168).
+**Review posted:** 2026-09-16T04:29:13Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 169 (P2) — `mojo/psc/overlap_collar.mojo`, line 415
+
+> **Validate the remaining affine-edge payload**
+>
+> When a serialized certificate keeps its states, ordinal, child, and child indices valid but corrupts `top_prefix`, `bottom_prefix`, or `forcing`, these comparisons still pass because `CollaredEdge` does not retain those fields. Fresh evidence beyond finding 168 is that `verify_affine_pump` rejects such a certificate through full edge equality, while both collar lifts still return normal orbits. Recompute or compare the complete `AffineOccurrenceEdge` before lifting so malformed affine evidence fails closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the hundred-and-first round.

@@ -23,7 +23,7 @@ productivity.  Capped graphs and out-of-range data
 fail closed.  Independent oracle: src/psc_research/overlap_collar.py.
 """
 
-from psc.overlap_affine_pump import AffineOccurrenceEdge, AffinePumpCertificate, occurrence_edges
+from psc.overlap_affine_pump import AffineOccurrenceEdge, AffinePumpCertificate, occurrence_edges, verify_affine_pump
 from psc.overlap_seed_patch import (
     OverlapState,
     SeedOverlapAutomaton,
@@ -379,17 +379,24 @@ def separation_radius(
 
 
 def lift_affine_pump(
-    cg: CollaredGraph, certificate: AffinePumpCertificate
+    tables: SeedOverlapTables,
+    graph: SeedOverlapAutomaton,
+    cg: CollaredGraph,
+    certificate: AffinePumpCertificate,
 ) raises -> List[LiftedOrbit]:
     """Replay an occurrence-labelled cycle from every collared state over its first
     state; the collar is eventually periodic, with the reported preperiod and period
-    measured in traversals of the cycle."""
+    measured in traversals of the cycle.  The certificate is first replayed in full
+    against the seed-patch graph (every field of every edge), so only a verified
+    affine pump is lifted."""
     var n = len(certificate.state_indices)
     if n == 0 or len(certificate.edges) != n:
         raise Error("affine pump certificate is malformed")
     for k in range(n):
         if certificate.edges[k].parent_index != certificate.state_indices[k] or certificate.edges[k].child_index != certificate.state_indices[(k + 1) % n]:
             raise Error("affine pump certificate edges do not close over its states")
+    if not verify_affine_pump(tables, graph, certificate):
+        raise Error("affine pump certificate does not replay on the seed-patch graph")
     var out = List[LiftedOrbit]()
     var fibre = cg.fibre(certificate.state_indices[0])
     if len(fibre) == 0:

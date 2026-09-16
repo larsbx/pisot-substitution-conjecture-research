@@ -18,6 +18,7 @@ from psc.overlap_collar import (
     unresolved_collisions,
     word_key,
 )
+from psc.perron_field3 import CubicElt
 from psc.overlap_seed_patch import (
     SeedOverlapAutomaton,
     build_seed_overlap_graph_from_tables,
@@ -140,7 +141,7 @@ def test_golden_pump_lifts_to_an_eventually_constant_collar() raises:
     var radii: List[Int] = [1, 2, 4]
     var fibre_sizes: List[Int] = [11, 12, 16]
     for r in range(len(radii)):
-        var orbits = lift_affine_pump(build_collared_graph(tables, graph, radii[r]), certificates[0])
+        var orbits = lift_affine_pump(tables, graph, build_collared_graph(tables, graph, radii[r]), certificates[0])
         assert_equal(len(orbits), fibre_sizes[r])
         var seen_zero = False
         var seen_one = False
@@ -258,7 +259,7 @@ def test_fail_closed() raises:
         var corrupted_states = List[Int]()
         for k in range(len(certificates[0].state_indices)):
             corrupted_states.append(certificates[0].state_indices[0] if k == 0 else -1)
-        _ = lift_affine_pump(build_collared_graph(tables, graph, 1), AffinePumpCertificate(corrupted_states, certificates[0].edges))
+        _ = lift_affine_pump(tables, graph, build_collared_graph(tables, graph, 1), AffinePumpCertificate(corrupted_states, certificates[0].edges))
     except:
         caught = True
     assert_true(caught)
@@ -267,7 +268,17 @@ def test_fail_closed() raises:
         var certificates = first_zero_shift_free_affine_pump(tables, graph)
         var stale_edges = certificates[0].edges.copy()
         stale_edges[0].top_child_index += 1
-        _ = lift_affine_pump(build_collared_graph(tables, graph, 1), AffinePumpCertificate(certificates[0].state_indices, stale_edges))
+        _ = lift_affine_pump(tables, graph, build_collared_graph(tables, graph, 1), AffinePumpCertificate(certificates[0].state_indices, stale_edges))
+    except:
+        caught = True
+    assert_true(caught)
+    caught = False
+    try:  # a forged forcing term behind valid states, ordinals and child indices
+        var certificates = first_zero_shift_free_affine_pump(tables, graph)
+        var forged_edges = certificates[0].edges.copy()
+        assert_true(not forged_edges[2].forcing.is_zero())  # the third edge advances the bottom child
+        forged_edges[2].forcing = CubicElt()
+        _ = lift_affine_pump(tables, graph, build_collared_graph(tables, graph, 1), AffinePumpCertificate(certificates[0].state_indices, forged_edges))
     except:
         caught = True
     assert_true(caught)
@@ -277,7 +288,7 @@ def test_fail_closed() raises:
         var other = build_seed_overlap_graph_from_tables(other_tables, 20000)
         var certificates = first_zero_shift_free_affine_pump(other_tables, other)
         assert_equal(len(certificates), 1)
-        _ = lift_affine_pump(build_collared_graph(tables, graph, 1), certificates[0])
+        _ = lift_affine_pump(tables, graph, build_collared_graph(tables, graph, 1), certificates[0])
     except:
         caught = True
     assert_true(caught)
