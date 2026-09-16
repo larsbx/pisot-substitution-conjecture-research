@@ -34,6 +34,11 @@ if python3 scripts/check_vendored_sync.py; then
 else
     bad "vendored package drift (vendored.toml)"
 fi
+if python3 scripts/make_ledger.py --check >/dev/null; then
+    ok "generated ledger surfaces are current (scripts/make_ledger.py --check)"
+else
+    bad "generated ledger surfaces are stale (run: python3 scripts/make_ledger.py)"
+fi
 if python3 scripts/check_manuscript_source.py; then
     ok "manuscript sources are intact LaTeX and PDF"
 else

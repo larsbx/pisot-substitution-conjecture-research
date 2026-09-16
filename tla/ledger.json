@@ -1,0 +1,1954 @@
+{
+  "format": "finite_proof_records ledger 1",
+  "repository": "larsbx/pisot-substitution-conjecture-research",
+  "module": "Ledger",
+  "tla_dir": "tla",
+  "index_path": "docs/ledger-index.md",
+  "assumption_sets": {
+    "G1AndProducer": [
+      "G1",
+      "SCCProducer"
+    ],
+    "G1Only": [
+      "G1"
+    ],
+    "G1AndC4": [
+      "G1",
+      "C4"
+    ],
+    "RenewalGateAssumed": [
+      "G1b1BoundedDiscrepancy",
+      "G1b2RenewalFiniteness"
+    ],
+    "SpectralGateAssumed": [
+      "G1",
+      "ConcentrationAuxB",
+      "SpanRichProductivity",
+      "SpectralSCCProducer"
+    ],
+    "OverlapGateAssumed": [
+      "OverlapProductivity",
+      "DensityToPDSBridge"
+    ]
+  },
+  "status_classes": {
+    "verified_finite_computation": "finite-domain"
+  },
+  "status_labels": {
+    "proved": "Repository-proved",
+    "imported": "Imported theorem",
+    "conditional": "Conditional theorem",
+    "open": "Open conjectural gate",
+    "retired": "Retired claim",
+    "finite-domain": "Finite-domain theorem"
+  },
+  "aliases": {
+    "DefectTheorem": [
+      "FullIncidenceRank",
+      "full incidence rank"
+    ],
+    "UniqueDecodability": [
+      "unique decodability"
+    ],
+    "G1b1BoundedDiscrepancy": [
+      "G1b-1",
+      "bounded discrepancy"
+    ],
+    "G1b2RenewalFiniteness": [
+      "G1b-2",
+      "renewal finiteness"
+    ],
+    "G1": [
+      "finite BPA"
+    ],
+    "SinkSCCReduction": [
+      "sink-SCC reduction"
+    ],
+    "GaloisWedgePropagation": [
+      "degree-two carrier span"
+    ],
+    "ConcentrationAuxB": [
+      "aux-B",
+      "general concentration"
+    ],
+    "SpanRichProductivity": [
+      "general wedge productivity"
+    ],
+    "SwapOverlapFiniteness": [
+      "seed-patch overlap graph finiteness",
+      "seed-patch overlap finiteness"
+    ],
+    "OverlapFullRank": [
+      "full-rank child-closed overlap constraint"
+    ],
+    "OverlapBadSCCNormalForm": [
+      "closed irreducible bad-overlap normal form"
+    ],
+    "OverlapBoundaryZipperDichotomy": [
+      "strict zipper dichotomy"
+    ],
+    "CoincidenceDensityOne": [
+      "coincidence density one"
+    ],
+    "DensityToPDSBridge": [
+      "density-to-PDS bridge",
+      "Barge–Štimac–Williams theorem"
+    ],
+    "PDSOverlapRoute": [
+      "Theorem 5.38"
+    ],
+    "AlignedOverlapsAreStrongCoincidence": [
+      "endpoint-aligned overlaps"
+    ],
+    "BoundaryCoincidenceCriterion": [
+      "boundary-hitting criterion"
+    ],
+    "OverlapProductivity": [
+      "seedwise overlap productivity",
+      "overlap productivity",
+      "Open Problem 5.35"
+    ],
+    "SCCProducer": [
+      "SCC Producer"
+    ]
+  },
+  "surfaces": {
+    "DefectTheorem": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Full incidence rank from",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "### Full incidence rank and unique decodability",
+        "window_lines": 2
+      }
+    ],
+    "UniqueDecodability": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Unique decodability of substitution images and powers |",
+        "window_lines": 0
+      },
+      {
+        "path": "README.md",
+        "anchor": "**Unique decodability:**",
+        "window_lines": 0
+      }
+    ],
+    "G1b1BoundedDiscrepancy": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| G1b-1 bounded discrepancy |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "### G1b-1 bounded discrepancy",
+        "window_lines": 2
+      },
+      {
+        "path": "docs/completion-ledger-2026-09-14.md",
+        "anchor": "=> bounded discrepancy",
+        "window_lines": 0
+      },
+      {
+        "path": "README.md",
+        "anchor": "=> bounded discrepancy",
+        "window_lines": 0
+      }
+    ],
+    "G1b2RenewalFiniteness": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| G1b-2 renewal finiteness |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "### G1b-2",
+        "window_lines": 2
+      },
+      {
+        "path": "docs/completion-ledger-2026-09-14.md",
+        "anchor": "=> [OPEN] G1b-2 renewal finiteness",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/completion-ledger-2026-09-14.md",
+        "anchor": "| **P3** | G1b-2 renewal finiteness |",
+        "window_lines": 0
+      }
+    ],
+    "G1": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Finite BPA, G1 |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "## C. Parallel programme — G1 / renewal finiteness",
+        "window_lines": 4
+      }
+    ],
+    "SinkSCCReduction": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Sink-SCC reduction under G1 |",
+        "window_lines": 0
+      }
+    ],
+    "GaloisWedgePropagation": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Degree-two carrier span / wedge dichotomy |",
+        "window_lines": 0
+      }
+    ],
+    "ConcentrationAuxB": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Concentration / aux-B |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "### Concentration / aux-B",
+        "window_lines": 2
+      },
+      {
+        "path": "docs/completion-ledger-2026-09-14.md",
+        "anchor": "| **P4** | General concentration",
+        "window_lines": 0
+      }
+    ],
+    "SpanRichProductivity": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| General wedge productivity |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "### Wedge productivity",
+        "window_lines": 2
+      },
+      {
+        "path": "docs/completion-ledger-2026-09-14.md",
+        "anchor": "| **P5** | General wedge productivity",
+        "window_lines": 0
+      }
+    ],
+    "SwapOverlapFiniteness": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Seed-patch overlap graph finiteness |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "### Seed-patch overlap finiteness",
+        "window_lines": 2
+      },
+      {
+        "path": "docs/completion-ledger-2026-09-14.md",
+        "anchor": "=> finite seed-patch overlap graph",
+        "window_lines": 0
+      },
+      {
+        "path": "README.md",
+        "anchor": "=> finite seed-patch overlap graph",
+        "window_lines": 0
+      }
+    ],
+    "OverlapFullRank": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Full-rank child-closed overlap constraint |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "### Full-rank constraint on a bad set",
+        "window_lines": 2
+      }
+    ],
+    "OverlapBadSCCNormalForm": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Closed irreducible bad-overlap normal form |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "### Closed irreducible bad-overlap normal form",
+        "window_lines": 2
+      }
+    ],
+    "OverlapBoundaryZipperDichotomy": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Boundary obstruction / strict zipper dichotomy |",
+        "window_lines": 0
+      }
+    ],
+    "CoincidenceDensityOne": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Coincidence density / dense-good-set equivalence |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/completion-ledger-2026-09-14.md",
+        "anchor": "=> coincidence density one / dense good set",
+        "window_lines": 0
+      },
+      {
+        "path": "README.md",
+        "anchor": "=> coincidence density one / dense good set",
+        "window_lines": 0
+      }
+    ],
+    "DensityToPDSBridge": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Density-to-PDS bridge |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/completion-ledger-2026-09-14.md",
+        "anchor": "=> pure discrete spectrum",
+        "window_lines": 0
+      },
+      {
+        "path": "README.md",
+        "anchor": "=> pure discrete spectrum",
+        "window_lines": 0
+      }
+    ],
+    "PDSOverlapRoute": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| One-seed overlap productivity implies PDS |",
+        "window_lines": 0
+      }
+    ],
+    "AlignedOverlapsAreStrongCoincidence": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Endpoint-aligned overlaps = strong-coincidence boundary cases |",
+        "window_lines": 0
+      }
+    ],
+    "BoundaryCoincidenceCriterion": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Boundary-hitting criterion |",
+        "window_lines": 0
+      }
+    ],
+    "OverlapProductivity": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Seedwise overlap productivity / Open Problem 5.35 |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "### Overlap productivity / Open Problem 5.35",
+        "window_lines": 2
+      },
+      {
+        "path": "docs/completion-ledger-2026-09-14.md",
+        "anchor": "=> one swap seed has only productive reachable overlaps",
+        "window_lines": 0
+      },
+      {
+        "path": "README.md",
+        "anchor": "=> one swap seed has only productive reachable overlaps",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/completion-ledger-2026-09-14.md",
+        "anchor": "| **P1** | **Seedwise overlap productivity",
+        "window_lines": 0
+      }
+    ],
+    "SCCProducer": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| SCC Producer / C1 |",
+        "window_lines": 0
+      }
+    ]
+  },
+  "records": {
+    "DefectTheorem": {
+      "id": "sha256:a4f2760ea5de08a5abc2de46140b4122a838348b4986d05d5a2539513888473e",
+      "kind": "repository_theorem",
+      "statement": "det M_sigma != 0 gives full incidence rank and letter injectivity, so the defect theorem applies to the image code",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, standing algebraic setup"
+        ]
+      ],
+      "tags": []
+    },
+    "UniqueDecodability": {
+      "id": "sha256:64655fcda3d238549eee7698990b03367bf14ecc44e92ee8d7ed5f49a6887594",
+      "kind": "repository_theorem",
+      "statement": "the substitution images form a uniquely decodable code",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:a4f2760ea5de08a5abc2de46140b4122a838348b4986d05d5a2539513888473e",
+          "det M_sigma != 0 gives full incidence rank and letter injectivity, so the defect theorem applies to the image code",
+          "UniqueDecodability/DefectTheorem",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Theorem 3.1"
+        ]
+      ],
+      "tags": []
+    },
+    "UDForPowers": {
+      "id": "sha256:2c6cea34fc686bd8c907bfcb590230005dc4f8a08c6cfca5eceab33b875f54db",
+      "kind": "repository_theorem",
+      "statement": "the images of every power sigma^r form a uniquely decodable code",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:64655fcda3d238549eee7698990b03367bf14ecc44e92ee8d7ed5f49a6887594",
+          "the substitution images form a uniquely decodable code",
+          "UDForPowers/UniqueDecodability",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, power corollary of Theorem 3.1"
+        ]
+      ],
+      "tags": []
+    },
+    "LocalWitnessInjectivity": {
+      "id": "sha256:1f59d1dedb0625b888e81c245fd0b46b6c6c9a1f4af7970c3d341265129e9645",
+      "kind": "repository_theorem",
+      "statement": "local witness injectivity on the symbolic side",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, symbolic side"
+        ]
+      ],
+      "tags": []
+    },
+    "MassBalanceK2Obstruction": {
+      "id": "sha256:da54fc2a27bb9b64b352e2e92d87d40d344cb262900d37ed7435bb3ddb9f5112",
+      "kind": "repository_theorem",
+      "statement": "the mass-balance obstruction for K2 on the symbolic side",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, symbolic side"
+        ]
+      ],
+      "tags": []
+    },
+    "AlgebraicEmbedding": {
+      "id": "sha256:81670c45ee958a3560e1523a6ff04433f1cedc0e5606471c906005131715beb6",
+      "kind": "repository_theorem",
+      "statement": "the algebraic embedding of the symbolic side",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:64655fcda3d238549eee7698990b03367bf14ecc44e92ee8d7ed5f49a6887594",
+          "the substitution images form a uniquely decodable code",
+          "AlgebraicEmbedding/UniqueDecodability",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, symbolic side"
+        ]
+      ],
+      "tags": []
+    },
+    "WedgeBound": {
+      "id": "sha256:569c49ca86af3e23e843602ee705cd0bfafd84e5fb4f73687b10ce9100a64e7b",
+      "kind": "repository_theorem",
+      "statement": "the wedge bound",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:81670c45ee958a3560e1523a6ff04433f1cedc0e5606471c906005131715beb6",
+          "the algebraic embedding of the symbolic side",
+          "WedgeBound/AlgebraicEmbedding",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:da54fc2a27bb9b64b352e2e92d87d40d344cb262900d37ed7435bb3ddb9f5112",
+          "the mass-balance obstruction for K2 on the symbolic side",
+          "WedgeBound/MassBalanceK2Obstruction",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, symbolic side"
+        ]
+      ],
+      "tags": []
+    },
+    "PhiSemisimplicity": {
+      "id": "sha256:f12d4c982b9af0a861eb23b065f0a1a2a8efc3119338ca2d340ba2bf33d67339",
+      "kind": "repository_theorem",
+      "statement": "Phi_3 acts semisimply on the seed spectral module",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "PscVerif/PscVerif/Spectral.lean"
+        ]
+      ],
+      "tags": []
+    },
+    "ThetaIntertwining": {
+      "id": "sha256:0d73e0745377a8d8c69739f9bc5546a7f1274dfb14d3a076783950b65f415094",
+      "kind": "repository_theorem",
+      "statement": "Theta intertwines the seed spectral operators",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "PscVerif/PscVerif/Spectral.lean"
+        ]
+      ],
+      "tags": []
+    },
+    "SeedCentralizer": {
+      "id": "sha256:4fe566c8f582e186d7167e4c34889eabc1bc9c561475dee32b5430ea226f5d64",
+      "kind": "repository_theorem",
+      "statement": "the seed centralizer is as certified",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:0d73e0745377a8d8c69739f9bc5546a7f1274dfb14d3a076783950b65f415094",
+          "Theta intertwines the seed spectral operators",
+          "SeedCentralizer/ThetaIntertwining",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:f12d4c982b9af0a861eb23b065f0a1a2a8efc3119338ca2d340ba2bf33d67339",
+          "Phi_3 acts semisimply on the seed spectral module",
+          "SeedCentralizer/PhiSemisimplicity",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "PscVerif/PscVerif/Spectral.lean"
+        ]
+      ],
+      "tags": []
+    },
+    "Target1": {
+      "id": "sha256:59e168b7a07fe780bf1e6d632f44c2a0a1fce8b4f46554194ede1503c947ec61",
+      "kind": "repository_theorem",
+      "statement": "Target 1 of the seed spectral module",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:4fe566c8f582e186d7167e4c34889eabc1bc9c561475dee32b5430ea226f5d64",
+          "the seed centralizer is as certified",
+          "Target1/SeedCentralizer",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "PscVerif/PscVerif/Spectral.lean"
+        ]
+      ],
+      "tags": []
+    },
+    "DominantCubicCapture": {
+      "id": "sha256:11213c087e38c3d9d14362b40fb1402b4faa85a48ae2136ddd4b3eff78730a76",
+      "kind": "repository_theorem",
+      "statement": "dominant cubic capture for the explicitly certified seeds",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:59e168b7a07fe780bf1e6d632f44c2a0a1fce8b4f46554194ede1503c947ec61",
+          "Target 1 of the seed spectral module",
+          "DominantCubicCapture/Target1",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, sections 8-10 (historical restricted theorem)"
+        ]
+      ],
+      "tags": []
+    },
+    "SpectralBlackBox": {
+      "id": "sha256:7b3297168f605a4d881916a67f4fa22aa7a4010f73d540259e17e1af2a8fc85a",
+      "kind": "repository_theorem",
+      "statement": "the seed-module spectral black box follows from Target 1 and dominant cubic capture",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:59e168b7a07fe780bf1e6d632f44c2a0a1fce8b4f46554194ede1503c947ec61",
+          "Target 1 of the seed spectral module",
+          "SpectralBlackBox/Target1",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:11213c087e38c3d9d14362b40fb1402b4faa85a48ae2136ddd4b3eff78730a76",
+          "dominant cubic capture for the explicitly certified seeds",
+          "SpectralBlackBox/DominantCubicCapture",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, sections 8-10"
+        ]
+      ],
+      "tags": []
+    },
+    "InterBlockCancellation": {
+      "id": "sha256:343c03c97c0fcb218935ae2c3700dec6299d6dfc66b62c6a563216d136928247",
+      "kind": "repository_theorem",
+      "statement": "inter-block cancellation on the v33/v34 route",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, historical route"
+        ]
+      ],
+      "tags": []
+    },
+    "DominantK2Source": {
+      "id": "sha256:70d6f7fa33f38979777547576163a4f9537b1e22782e39360f8fcab426e03bcd",
+      "kind": "repository_theorem",
+      "statement": "the dominant K2 source on the v33/v34 route",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, historical route"
+        ]
+      ],
+      "tags": []
+    },
+    "LoadBearingSCC": {
+      "id": "sha256:b37384d6852df70c1a8db95cb721148f9f694ac1a46acb9d683c2c8d8299a261",
+      "kind": "repository_theorem",
+      "statement": "under G1 the load-bearing SCC of the v33/v34 route exists",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:7a89514693e4438fb6921449d1d79da52acdb19bc452b10646eabf0f65c8f0f4",
+          "finite BPA (G1)",
+          "LoadBearingSCC/G1",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:70d6f7fa33f38979777547576163a4f9537b1e22782e39360f8fcab426e03bcd",
+          "the dominant K2 source on the v33/v34 route",
+          "LoadBearingSCC/DominantK2Source",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:343c03c97c0fcb218935ae2c3700dec6299d6dfc66b62c6a563216d136928247",
+          "inter-block cancellation on the v33/v34 route",
+          "LoadBearingSCC/InterBlockCancellation",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, historical route"
+        ]
+      ],
+      "tags": []
+    },
+    "SinkSCCReduction": {
+      "id": "sha256:632d740a6fd539df090c84bb4abf2b4a6a3ed3d6482a3efbe8239977eb726532",
+      "kind": "repository_theorem",
+      "statement": "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:7a89514693e4438fb6921449d1d79da52acdb19bc452b10646eabf0f65c8f0f4",
+          "finite BPA (G1)",
+          "SinkSCCReduction/G1",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/sink-scc-reduction.md"
+        ]
+      ],
+      "tags": []
+    },
+    "C3Locality": {
+      "id": "sha256:b5f6c3de6e30783d95131423a4ea724aac93632bc6a0ff3af26ee69fd13cd722",
+      "kind": "repository_theorem",
+      "statement": "higher newborn cuts are one-step block-local",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c3-locality-reduction.md"
+        ]
+      ],
+      "tags": []
+    },
+    "EndpointCore": {
+      "id": "sha256:a993cff74489fdf2098ecc8ee47eb50acc1b900ce3d8a5f5710a0c4cdf9d50c0",
+      "kind": "repository_theorem",
+      "statement": "the endpoint-core normal form classifies the finitely many endpoint maps",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-endpoint-core-program.md"
+        ]
+      ],
+      "tags": []
+    },
+    "GlobalEndpointSync": {
+      "id": "sha256:3c4c9188d7d133889aa0dc262c6c198c5bb21ad4b30af3178da7c7adfe925d37",
+      "kind": "repository_theorem",
+      "statement": "global endpoint synchronization eliminates endpoint types A and B",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:a993cff74489fdf2098ecc8ee47eb50acc1b900ce3d8a5f5710a0c4cdf9d50c0",
+          "the endpoint-core normal form classifies the finitely many endpoint maps",
+          "GlobalEndpointSync/EndpointCore",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-barge-diamond-endpoint-eliminator.md"
+        ]
+      ],
+      "tags": []
+    },
+    "SignatureReduction": {
+      "id": "sha256:3b4be431e192acaaa60b641cb79ff4ba1c76d01746ed2cb5aa103ebd0a33c8e2",
+      "kind": "repository_theorem",
+      "statement": "the endpoint-quotient signature reduction",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:a993cff74489fdf2098ecc8ee47eb50acc1b900ce3d8a5f5710a0c4cdf9d50c0",
+          "the endpoint-core normal form classifies the finitely many endpoint maps",
+          "SignatureReduction/EndpointCore",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-signature-reduction.md"
+        ]
+      ],
+      "tags": []
+    },
+    "ParikhIntertwiner": {
+      "id": "sha256:b43d00bb575ced0a257cfb5df2a286f732f06e310208fff75e4f6986ddb8301f",
+      "kind": "repository_theorem",
+      "statement": "for a finite closed nonproductive SCC the Parikh intertwiner identity P N = M P holds",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-parikh-intertwiner.md"
+        ]
+      ],
+      "tags": []
+    },
+    "OrientationMonodromy": {
+      "id": "sha256:da3cb664eb137618149bef6774e95db3fbf95aaa4aa691288c447e5b0081dea1",
+      "kind": "repository_theorem",
+      "statement": "the orientation cocycle and oriented double cover dichotomy",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-orientation-monodromy.md"
+        ]
+      ],
+      "tags": []
+    },
+    "OrientationSpectrum": {
+      "id": "sha256:63cc681fbe05bbd22aa373359f0cee7e6ed856c26932b0bf82dab7f121669fc2",
+      "kind": "repository_theorem",
+      "statement": "the orientation-even/odd spectral decomposition with its Perron comparison",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:da3cb664eb137618149bef6774e95db3fbf95aaa4aa691288c447e5b0081dea1",
+          "the orientation cocycle and oriented double cover dichotomy",
+          "OrientationSpectrum/OrientationMonodromy",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:b43d00bb575ced0a257cfb5df2a286f732f06e310208fff75e4f6986ddb8301f",
+          "for a finite closed nonproductive SCC the Parikh intertwiner identity P N = M P holds",
+          "OrientationSpectrum/ParikhIntertwiner",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-orientation-spectrum.md"
+        ]
+      ],
+      "tags": []
+    },
+    "DefectIntertwiner": {
+      "id": "sha256:34c67045c51b557745b6ea640cb0c79faabaac35f6b96fc0d54eacd3f2c5a2e3",
+      "kind": "repository_theorem",
+      "statement": "the signed scattered-subword defect intertwiners in degrees two and three",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:da3cb664eb137618149bef6774e95db3fbf95aaa4aa691288c447e5b0081dea1",
+          "the orientation cocycle and oriented double cover dichotomy",
+          "DefectIntertwiner/OrientationMonodromy",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-lowest-defect-intertwiner.md"
+        ]
+      ],
+      "tags": []
+    },
+    "W3LowGrowth": {
+      "id": "sha256:7c107162242728c67113e12080ced801e0a0eb3c27ecabd191f549c234262b0e",
+      "kind": "repository_theorem",
+      "statement": "the universal low-growth classification in W_3",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:34c67045c51b557745b6ea640cb0c79faabaac35f6b96fc0d54eacd3f2c5a2e3",
+          "the signed scattered-subword defect intertwiners in degrees two and three",
+          "W3LowGrowth/DefectIntertwiner",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:f12d4c982b9af0a861eb23b065f0a1a2a8efc3119338ca2d340ba2bf33d67339",
+          "Phi_3 acts semisimply on the seed spectral module",
+          "W3LowGrowth/PhiSemisimplicity",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-w3-low-growth-and-interface-correction.md"
+        ]
+      ],
+      "tags": []
+    },
+    "Degree4Floor": {
+      "id": "sha256:149d96856e6bdf70f9b47b7b636fbbdbebf38ddb4e08dabf80d77fed345962f0",
+      "kind": "repository_theorem",
+      "statement": "the degree-4 first-defect reduction",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:34c67045c51b557745b6ea640cb0c79faabaac35f6b96fc0d54eacd3f2c5a2e3",
+          "the signed scattered-subword defect intertwiners in degrees two and three",
+          "Degree4Floor/DefectIntertwiner",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-degree4-free-lie.md"
+        ]
+      ],
+      "tags": []
+    },
+    "Mod3Sieve": {
+      "id": "sha256:ae085b0bfacb33dbb3cecae0a3f98b7187d6484fadf68dfd1942ad15eb04ed07",
+      "kind": "repository_theorem",
+      "statement": "the arbitrary-degree multidegree spectral sieve",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:34c67045c51b557745b6ea640cb0c79faabaac35f6b96fc0d54eacd3f2c5a2e3",
+          "the signed scattered-subword defect intertwiners in degrees two and three",
+          "Mod3Sieve/DefectIntertwiner",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-multidegree-spectral-sieve.md"
+        ]
+      ],
+      "tags": []
+    },
+    "ParitySieve": {
+      "id": "sha256:c62f14360df07413ea036c6e1e233cabf923ddfede6e26a5acfcdd3d0a85d77b",
+      "kind": "repository_theorem",
+      "statement": "the degree-2 parity sieve for a strict closed nonproductive SCC with nonzero K2",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:34c67045c51b557745b6ea640cb0c79faabaac35f6b96fc0d54eacd3f2c5a2e3",
+          "the signed scattered-subword defect intertwiners in degrees two and three",
+          "ParitySieve/DefectIntertwiner",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-degree2-parity-sieve.md"
+        ]
+      ],
+      "tags": []
+    },
+    "MidArea": {
+      "id": "sha256:958ceb2e05af5716096b9875669423f9769a15347a1d18c5723a0ce64c05dd7b",
+      "kind": "repository_theorem",
+      "statement": "the degree-2 mid-area factorization identity",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-degree2-midarea-factorization.md"
+        ]
+      ],
+      "tags": []
+    },
+    "MeanAreaLift": {
+      "id": "sha256:219877408f8ab0635186d1582d93be6a983c897d859f3ae92db219d8953007b8",
+      "kind": "repository_theorem",
+      "statement": "the three-state mean-area lifting obstruction",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:958ceb2e05af5716096b9875669423f9769a15347a1d18c5723a0ce64c05dd7b",
+          "the degree-2 mid-area factorization identity",
+          "MeanAreaLift/MidArea",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:b43d00bb575ced0a257cfb5df2a286f732f06e310208fff75e4f6986ddb8301f",
+          "for a finite closed nonproductive SCC the Parikh intertwiner identity P N = M P holds",
+          "MeanAreaLift/ParikhIntertwiner",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-degree2-meanarea-integrality.md"
+        ]
+      ],
+      "tags": []
+    },
+    "LatticeLift": {
+      "id": "sha256:f75301dc1e9dbf24c69fec7b170079e70585fc2ba18eca08e8ce12e34a799610",
+      "kind": "repository_theorem",
+      "statement": "the degree-2 integral lattice lifting certificate",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:219877408f8ab0635186d1582d93be6a983c897d859f3ae92db219d8953007b8",
+          "the three-state mean-area lifting obstruction",
+          "LatticeLift/MeanAreaLift",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c4-degree2-lattice-lift.md"
+        ]
+      ],
+      "tags": []
+    },
+    "G1b1BoundedDiscrepancy": {
+      "id": "sha256:c5d7a98e80b6f3d4392a127c06d2edaddc75ec4a0a7fdb1bbd2b3f1f9765af68",
+      "kind": "repository_theorem",
+      "statement": "all reachable swap-state prefix-difference walks are uniformly bounded",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md; manuscript Theorem 4.4; PR #69"
+        ]
+      ],
+      "tags": []
+    },
+    "G1b2RenewalFiniteness": {
+      "id": "sha256:56e48172edd60ded6b9f78571dc958c1fd298f4b9d6b33a3cb5ff4f86c7e37d7",
+      "kind": "pending_dependency",
+      "statement": "only finitely many realizable irreducible balanced pairs occur inside the established discrepancy bound",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:c5d7a98e80b6f3d4392a127c06d2edaddc75ec4a0a7fdb1bbd2b3f1f9765af68",
+          "all reachable swap-state prefix-difference walks are uniformly bounded",
+          "G1b2RenewalFiniteness/G1b1BoundedDiscrepancy",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "reason",
+          "open conjectural gate; manuscript Level-2 open problem; issue #44"
+        ]
+      ],
+      "tags": []
+    },
+    "G1FromRenewal": {
+      "id": "sha256:f2022983b05a0559c47327b9621c3119140a3a6f88e06764600c420748fa6495",
+      "kind": "repository_theorem",
+      "statement": "G1b-1 and G1b-2 together give finite BPA",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:c5d7a98e80b6f3d4392a127c06d2edaddc75ec4a0a7fdb1bbd2b3f1f9765af68",
+          "all reachable swap-state prefix-difference walks are uniformly bounded",
+          "G1FromRenewal/G1b1BoundedDiscrepancy",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:56e48172edd60ded6b9f78571dc958c1fd298f4b9d6b33a3cb5ff4f86c7e37d7",
+          "only finitely many realizable irreducible balanced pairs occur inside the established discrepancy bound",
+          "G1FromRenewal/G1b2RenewalFiniteness",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 4.11"
+        ]
+      ],
+      "tags": []
+    },
+    "G1": {
+      "id": "sha256:7a89514693e4438fb6921449d1d79da52acdb19bc452b10646eabf0f65c8f0f4",
+      "kind": "repository_theorem",
+      "statement": "finite BPA (G1)",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:f2022983b05a0559c47327b9621c3119140a3a6f88e06764600c420748fa6495",
+          "G1b-1 and G1b-2 together give finite BPA",
+          "G1/G1FromRenewal",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 4.11 and open-problem list"
+        ],
+        [
+          "status_note",
+          "the conditional assembly from G1b-1 and G1b-2 is proved; G1 itself is an open conjectural gate"
+        ]
+      ],
+      "tags": [
+        "status:open"
+      ]
+    },
+    "SwapOverlapFiniteness": {
+      "id": "sha256:e0b8de0d1503d7260f52b099bf0a13b97c73d11515a61bd2d94151c8edfdd5df",
+      "kind": "repository_theorem",
+      "statement": "every swap seed has a finite exact overlap graph",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:c5d7a98e80b6f3d4392a127c06d2edaddc75ec4a0a7fdb1bbd2b3f1f9765af68",
+          "all reachable swap-state prefix-difference walks are uniformly bounded",
+          "SwapOverlapFiniteness/G1b1BoundedDiscrepancy",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md; manuscript Theorem 4.22; PR #72"
+        ]
+      ],
+      "tags": []
+    },
+    "OverlapFullRank": {
+      "id": "sha256:34e24e72176b9d0c41dc8e98e1c45be9c5f1ed01174d20ff0f7d77a1c124e15f",
+      "kind": "repository_theorem",
+      "statement": "a nonempty child-closed noncoincidence set has full rational intersection-vector rank",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Corollary 5.34; PR #76"
+        ]
+      ],
+      "tags": []
+    },
+    "OverlapBadSCCNormalForm": {
+      "id": "sha256:5cabccb094e5fecb321a8d4a8e7e7ad2ef9109930a7fe8c39107686e1bbded0b",
+      "kind": "repository_theorem",
+      "statement": "failure of overlap productivity has a finite child-closed recurrent nonproductive SCC with PF(N_S) = beta, full-rank V_S, and spec(M) inside spec(N_S)",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:e0b8de0d1503d7260f52b099bf0a13b97c73d11515a61bd2d94151c8edfdd5df",
+          "every swap seed has a finite exact overlap graph",
+          "OverlapBadSCCNormalForm/SwapOverlapFiniteness",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:34e24e72176b9d0c41dc8e98e1c45be9c5f1ed01174d20ff0f7d77a1c124e15f",
+          "a nonempty child-closed noncoincidence set has full rational intersection-vector rank",
+          "OverlapBadSCCNormalForm/OverlapFullRank",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.43; docs/p1-overlap-minimal-obstruction-2026-09-14.md, Proposition 2.1; PR #88"
+        ]
+      ],
+      "tags": []
+    },
+    "OverlapBoundaryZipperDichotomy": {
+      "id": "sha256:430a12ef5768ff8942185cfcef76d3b35057796c2baa5a1218bbcd04355c6961",
+      "kind": "repository_theorem",
+      "statement": "a bad SCC contains an offset-zero non-eventually-coincident pair or every child factorization is a strict no-tie prefix-grid zipper",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:5cabccb094e5fecb321a8d4a8e7e7ad2ef9109930a7fe8c39107686e1bbded0b",
+          "failure of overlap productivity has a finite child-closed recurrent nonproductive SCC with PF(N_S) = beta, full-rank V_S, and spec(M) inside spec(N_S)",
+          "OverlapBoundaryZipperDichotomy/OverlapBadSCCNormalForm",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:0d4322a64a0efc37c8c5efa33b1b8e5f836b6d1677fb7e339ea8e16d43de1ca0",
+          "offset-zero and right-aligned seed overlaps are productive exactly in the prefix/suffix strong-coincidence cases",
+          "OverlapBoundaryZipperDichotomy/AlignedOverlapsAreStrongCoincidence",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:c477ad3f630d9c80039fc28dba0fb9356fb86f9ecb474a51884b4949463d8e8f",
+          "an overlap reaches an offset-zero descendant exactly on an exact prefix-Parikh / common-left-endpoint hit",
+          "OverlapBoundaryZipperDichotomy/BoundaryCoincidenceCriterion",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.44 and Lemma 5.45; docs/p1-overlap-minimal-obstruction-2026-09-14.md, Proposition 3.1; PR #88"
+        ]
+      ],
+      "tags": []
+    },
+    "OverlapProductivity": {
+      "id": "sha256:0f8af280ab768d072781322cf68a1fea3ca2c024a123c379b2731bc4a8cabe3c",
+      "kind": "pending_dependency",
+      "statement": "for every PIP substitution one swap seed on distinct tile types has only productive reachable overlaps",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "reason",
+          "open conjectural gate, the current shortest-path gate; manuscript Open Problem 5.35; issue #84"
+        ]
+      ],
+      "tags": []
+    },
+    "CoincidenceDensityOne": {
+      "id": "sha256:f4efecf4f707090b566ad9f1f19f88cba4b77618affe398992ae6c16c1ffb6bf",
+      "kind": "repository_theorem",
+      "statement": "seedwise overlap productivity gives coincidence density one and a dense eventual-coincidence good set",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:0f8af280ab768d072781322cf68a1fea3ca2c024a123c379b2731bc4a8cabe3c",
+          "for every PIP substitution one swap seed on distinct tile types has only productive reachable overlaps",
+          "CoincidenceDensityOne/OverlapProductivity",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:e0b8de0d1503d7260f52b099bf0a13b97c73d11515a61bd2d94151c8edfdd5df",
+          "every swap seed has a finite exact overlap graph",
+          "CoincidenceDensityOne/SwapOverlapFiniteness",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Lemma 5.36; PR #77"
+        ],
+        [
+          "status_note",
+          "the equivalence of Lemma 5.36 is repository-proved; the ledger node is its conclusion, which needs overlap productivity"
+        ]
+      ],
+      "tags": [
+        "status:proved"
+      ]
+    },
+    "AllStatesProductiveViaOverlaps": {
+      "id": "sha256:1b6f44e69b6a1e91963a69da2b306db191b5eaf1667088527c328064265a858e",
+      "kind": "repository_theorem",
+      "statement": "under seedwise overlap productivity every reachable balanced-pair state is productive",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:0f8af280ab768d072781322cf68a1fea3ca2c024a123c379b2731bc4a8cabe3c",
+          "for every PIP substitution one swap seed on distinct tile types has only productive reachable overlaps",
+          "AllStatesProductiveViaOverlaps/OverlapProductivity",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:e0b8de0d1503d7260f52b099bf0a13b97c73d11515a61bd2d94151c8edfdd5df",
+          "every swap seed has a finite exact overlap graph",
+          "AllStatesProductiveViaOverlaps/SwapOverlapFiniteness",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, overlap route"
+        ]
+      ],
+      "tags": []
+    },
+    "DensityToPDSBridge": {
+      "id": "sha256:1146fea4a59921812561d69b036af5649744c9373352d76fe7ffe076a9ef3183",
+      "kind": "imported_theorem",
+      "statement": "dense eventual coincidence gives pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "hypotheses_checked",
+          "true"
+        ],
+        [
+          "source",
+          "Barge, Stimac, and Williams; manuscript Imported Theorem 5.37; PR #77"
+        ]
+      ],
+      "tags": []
+    },
+    "PDSOverlapRoute": {
+      "id": "sha256:3270b8aa4af5d7d33d0f61342f1ad20b8810d2b5f6aeedf1facfd880e7708520",
+      "kind": "repository_theorem",
+      "statement": "one-seed overlap productivity implies pure discrete spectrum, without G1 and without a seed-legality hypothesis",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:f4efecf4f707090b566ad9f1f19f88cba4b77618affe398992ae6c16c1ffb6bf",
+          "seedwise overlap productivity gives coincidence density one and a dense eventual-coincidence good set",
+          "PDSOverlapRoute/CoincidenceDensityOne",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:1146fea4a59921812561d69b036af5649744c9373352d76fe7ffe076a9ef3183",
+          "dense eventual coincidence gives pure discrete spectrum",
+          "PDSOverlapRoute/DensityToPDSBridge",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Theorem 5.38"
+        ]
+      ],
+      "tags": []
+    },
+    "AlignedOverlapsAreStrongCoincidence": {
+      "id": "sha256:0d4322a64a0efc37c8c5efa33b1b8e5f836b6d1677fb7e339ea8e16d43de1ca0",
+      "kind": "repository_theorem",
+      "statement": "offset-zero and right-aligned seed overlaps are productive exactly in the prefix/suffix strong-coincidence cases",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.39; PR #82"
+        ]
+      ],
+      "tags": []
+    },
+    "BoundaryCoincidenceCriterion": {
+      "id": "sha256:c477ad3f630d9c80039fc28dba0fb9356fb86f9ecb474a51884b4949463d8e8f",
+      "kind": "repository_theorem",
+      "statement": "an overlap reaches an offset-zero descendant exactly on an exact prefix-Parikh / common-left-endpoint hit",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.40 and Corollary 5.41; PR #82"
+        ]
+      ],
+      "tags": []
+    },
+    "ConcentrationAuxB": {
+      "id": "sha256:3b68e2b9e6d48f09be320e5fe9c10b247ef5de7deac778f714554bf5370ba4fc",
+      "kind": "pending_dependency",
+      "statement": "no strict component with K2 = 0 exists (concentration / aux-B)",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:7a89514693e4438fb6921449d1d79da52acdb19bc452b10646eabf0f65c8f0f4",
+          "finite BPA (G1)",
+          "ConcentrationAuxB/G1",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:632d740a6fd539df090c84bb4abf2b4a6a3ed3d6482a3efbe8239977eb726532",
+          "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
+          "ConcentrationAuxB/SinkSCCReduction",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "reason",
+          "open conjectural gate, not source-pending; manuscript open problem; issue #43"
+        ]
+      ],
+      "tags": []
+    },
+    "GaloisWedgePropagation": {
+      "id": "sha256:1dcd255d5ef30fb34de3eb258a0f71d7aa029877e51f4cc2eb13a018c68e6895",
+      "kind": "repository_theorem",
+      "statement": "nonzero K2 gives full rational wedge span (degree-two carrier span)",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.20; docs/galois-aux-b-source-resolution-2026-09-13.md; PR #68"
+        ]
+      ],
+      "tags": []
+    },
+    "SpanRichProductivity": {
+      "id": "sha256:312399099d82819930fee3c79563ddd602ceea39f00fd0681a4f312cd1d7992a",
+      "kind": "pending_dependency",
+      "statement": "no strict component with K2 != 0 exists (general wedge productivity)",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:3b68e2b9e6d48f09be320e5fe9c10b247ef5de7deac778f714554bf5370ba4fc",
+          "no strict component with K2 = 0 exists (concentration / aux-B)",
+          "SpanRichProductivity/ConcentrationAuxB",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:1dcd255d5ef30fb34de3eb258a0f71d7aa029877e51f4cc2eb13a018c68e6895",
+          "nonzero K2 gives full rational wedge span (degree-two carrier span)",
+          "SpanRichProductivity/GaloisWedgePropagation",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "reason",
+          "open conjectural gate, not source-pending; manuscript open problem; issue #85"
+        ]
+      ],
+      "tags": []
+    },
+    "SpectralSCCProducer": {
+      "id": "sha256:5d09f0658073da919e937ecb676b9113d07160b35f82184f86fd968a2015e67b",
+      "kind": "pending_dependency",
+      "statement": "the spectral route produces an SCC producer under G1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:7a89514693e4438fb6921449d1d79da52acdb19bc452b10646eabf0f65c8f0f4",
+          "finite BPA (G1)",
+          "SpectralSCCProducer/G1",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:632d740a6fd539df090c84bb4abf2b4a6a3ed3d6482a3efbe8239977eb726532",
+          "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
+          "SpectralSCCProducer/SinkSCCReduction",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:312399099d82819930fee3c79563ddd602ceea39f00fd0681a4f312cd1d7992a",
+          "no strict component with K2 != 0 exists (general wedge productivity)",
+          "SpectralSCCProducer/SpanRichProductivity",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "reason",
+          "open; the spectral SCC producer is not proved even conditionally"
+        ]
+      ],
+      "tags": []
+    },
+    "PDSSpectralRoute": {
+      "id": "sha256:812c08fa49074d33f97965de7d46c5a926d1289ed5a79aab3f34b0b587c78d0f",
+      "kind": "repository_theorem",
+      "statement": "under G1 and a spectral SCC producer, pure discrete spectrum follows",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:7a89514693e4438fb6921449d1d79da52acdb19bc452b10646eabf0f65c8f0f4",
+          "finite BPA (G1)",
+          "PDSSpectralRoute/G1",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:5d09f0658073da919e937ecb676b9113d07160b35f82184f86fd968a2015e67b",
+          "the spectral route produces an SCC producer under G1",
+          "PDSSpectralRoute/SpectralSCCProducer",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, spectral route"
+        ]
+      ],
+      "tags": []
+    },
+    "C4": {
+      "id": "sha256:b08373a2c4d79c6aeeb3f3d1b4bc3db4c591019a7c4f65c190eb9acebb4573ff",
+      "kind": "pending_dependency",
+      "statement": "the C4 hypothesis of the boundary route",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "reason",
+          "open sufficiency premise of the C4 route"
+        ]
+      ],
+      "tags": []
+    },
+    "C3Local": {
+      "id": "sha256:831865baeecbdc878ac721a5fd52ea4eb5b60ba26045ff0391eb3b8898af1796",
+      "kind": "repository_theorem",
+      "statement": "C4 gives C3-local",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:b08373a2c4d79c6aeeb3f3d1b4bc3db4c591019a7c4f65c190eb9acebb4573ff",
+          "the C4 hypothesis of the boundary route",
+          "C3Local/C4",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:b5f6c3de6e30783d95131423a4ea724aac93632bc6a0ff3af26ee69fd13cd722",
+          "higher newborn cuts are one-step block-local",
+          "C3Local/C3Locality",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/c3-locality-reduction.md"
+        ]
+      ],
+      "tags": []
+    },
+    "C2": {
+      "id": "sha256:45f16b829181ca02ac8c537030f86f2dd57fb7f870a52d105ba912f69f369d2f",
+      "kind": "repository_theorem",
+      "statement": "C3-local gives C2",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:831865baeecbdc878ac721a5fd52ea4eb5b60ba26045ff0391eb3b8898af1796",
+          "C4 gives C3-local",
+          "C2/C3Local",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary route"
+        ]
+      ],
+      "tags": []
+    },
+    "SCCProducer": {
+      "id": "sha256:8abec7cd38cbb169921d56750bcf99f55febd1cd12520829061137d31f769356",
+      "kind": "repository_theorem",
+      "statement": "SCC Producer / C1 follows from G1, the sink-SCC reduction, and C2",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:7a89514693e4438fb6921449d1d79da52acdb19bc452b10646eabf0f65c8f0f4",
+          "finite BPA (G1)",
+          "SCCProducer/G1",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:632d740a6fd539df090c84bb4abf2b4a6a3ed3d6482a3efbe8239977eb726532",
+          "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
+          "SCCProducer/SinkSCCReduction",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:45f16b829181ca02ac8c537030f86f2dd57fb7f870a52d105ba912f69f369d2f",
+          "C3-local gives C2",
+          "SCCProducer/C2",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/conjecture-ledger.md; manuscript unresolved statements"
+        ],
+        [
+          "status_note",
+          "the implication from G1, the sink-SCC reduction, and C2 is proved; SCC Producer / C1 is an open theorem target"
+        ]
+      ],
+      "tags": [
+        "status:open"
+      ]
+    },
+    "PDS": {
+      "id": "sha256:2afa165c12fdb5ee0d0bd528a012b4c507266e6b5078c45306a523b0aad24471",
+      "kind": "repository_theorem",
+      "statement": "pure discrete spectrum follows from G1 and SCC Producer",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:7a89514693e4438fb6921449d1d79da52acdb19bc452b10646eabf0f65c8f0f4",
+          "finite BPA (G1)",
+          "PDS/G1",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:8abec7cd38cbb169921d56750bcf99f55febd1cd12520829061137d31f769356",
+          "SCC Producer / C1 follows from G1, the sink-SCC reduction, and C2",
+          "PDS/SCCProducer",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary route"
+        ]
+      ],
+      "tags": []
+    },
+    "StandardBPAEquivalence": {
+      "id": "sha256:12fc08186847f0218dcfeac9e63ef1287ea78c11a15b072d780e834ea202b24e",
+      "kind": "imported_theorem",
+      "statement": "the standard balanced-pair algorithm criterion for pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "hypotheses_checked",
+          "true"
+        ],
+        [
+          "source",
+          "docs/bpa-literature-bridge.md and the literature cited there"
+        ]
+      ],
+      "tags": []
+    },
+    "RepoSeedUnionBridge": {
+      "id": "sha256:0424d81942aa2155673e34281b9417780d7929aca79b378b4378a21b6df6f3c5",
+      "kind": "repository_theorem",
+      "statement": "the repository seed-union graph is the union of the literature seed graphs",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/bpa-literature-bridge.md"
+        ]
+      ],
+      "tags": []
+    },
+    "PDSImpliesRepoG1": {
+      "id": "sha256:38b8b33c1df4965f9587a12003b2c88b4baa4bec59d39af2e09d2bff050c7731",
+      "kind": "pending_dependency",
+      "statement": "seedwise pure discrete spectrum implies repository G1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:12fc08186847f0218dcfeac9e63ef1287ea78c11a15b072d780e834ea202b24e",
+          "the standard balanced-pair algorithm criterion for pure discrete spectrum",
+          "PDSImpliesRepoG1/StandardBPAEquivalence",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:0424d81942aa2155673e34281b9417780d7929aca79b378b4378a21b6df6f3c5",
+          "the repository seed-union graph is the union of the literature seed graphs",
+          "PDSImpliesRepoG1/RepoSeedUnionBridge",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "reason",
+          "open until the seedwise implication is pinned; docs/bpa-literature-bridge.md"
+        ]
+      ],
+      "tags": []
+    },
+    "V5Thm51": {
+      "id": "sha256:04688a54f9c75aa5403b6ebe386e67209578cc5f70ca401ebc779effea503e62",
+      "kind": "pending_dependency",
+      "statement": "v5 Theorem 5.1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "reason",
+          "retired: the v5 Theorem 5.1 argument is withdrawn"
+        ]
+      ],
+      "tags": [
+        "withdrawn"
+      ]
+    }
+  }
+}
