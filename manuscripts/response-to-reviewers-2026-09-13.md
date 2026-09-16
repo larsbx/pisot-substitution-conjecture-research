@@ -934,3 +934,11 @@ One finding from the automated Codex review of commit `f3a2082a88`; accepted, on
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 149 | P2 | A duplicate `startxref`/`%%EOF` pair appended after a valid PDF left unaccounted bytes | Accepted. The newest cross-reference section's terminator must now be the one the file ends with: any bytes after it other than line endings fail the file, so appended content, a duplicate terminator included, cannot bypass the structural walk. The scenario and a variant with stray bytes before the duplicate were both confirmed to pass the previous revision. Tests: a duplicate terminator and stray bytes plus a duplicate terminator appended to a valid file (both fail); trailing line endings after the real terminator (pass) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Eighty-fifth round (pull request #95, terminator revision)
+
+One finding from the automated Codex review of commit `d67b8eacf7`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 150 | P2 | An allowlisted name containing `@` could hide a stop word (`\endinput@foo`) | Accepted. Allowlist names are now letters only, so no name containing `@` can be listed; the scanner keeps taking `@` as a letter, so a control word containing `@` fails whichever catcode `@` has, as one unknown word or as a known word the scan would otherwise have cut short. The scenario (`endinput@foo` listed and `\endinput@foo` used) was confirmed to pass the previous revision. Tests: `\endinput@foo` before the sentinels (fails as unlisted); a list containing `x@y` (fails as malformed) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

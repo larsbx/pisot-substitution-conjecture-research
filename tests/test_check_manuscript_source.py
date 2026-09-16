@@ -241,7 +241,7 @@ def test_control_words_must_be_listed(copy):
     tex = next(copy.glob("*.tex"))
     text = tex.read_text()
     listed = copy / "TEX_CONTROL_WORDS"
-    for source in ("\\csdef{begin}{}\n\\csdef{end}{}", "\\@namedef{beginfoo}{}", "\\newcommand{\\foo}{x}", "\\cslet{end}\\relax"):
+    for source in ("\\csdef{begin}{}\n\\csdef{end}{}", "\\@namedef{beginfoo}{}", "\\newcommand{\\foo}{x}", "\\cslet{end}\\relax", "\\endinput@foo"):
         tex.write_text(text.replace("\\begin{document}", source + "\n\\begin{document}", 1))  # words the guard has not been told about
         code, out = run(copy)
         assert code == 1 and "is not listed in TEX_CONTROL_WORDS" in out, (source, out)
@@ -254,10 +254,10 @@ def test_control_words_must_be_listed(copy):
     allow(copy, "def")  # a control word the guard can never follow
     code, out = run(copy)
     assert code == 1 and "\\def cannot be allowed" in out, out
-    for bad in (words + "A\n", "zeta\n" + words, words + "not a name\n", ""):  # unsorted, repeated, not a name, empty
+    for bad in (words + "A\n", "zeta\n" + words, words + "not a name\n", "", words + "x@y\n"):  # unsorted, repeated, not a name, empty, with @
         listed.write_text(bad)
         code, out = run(copy)
-        assert code == 1 and "sorted and without repetition" in out, (bad[-20:], out)
+        assert code == 1 and "letters only, sorted and without repetition" in out, (bad[-20:], out)
     listed.write_text(words)
     tex.write_text(text)
     assert run(copy)[0] == 0

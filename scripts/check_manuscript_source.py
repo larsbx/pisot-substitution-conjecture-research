@@ -3,8 +3,10 @@
 
 ``manuscripts/MANIFEST`` lists the required files, one per line, and
 ``manuscripts/TEX_CONTROL_WORDS`` the control words a source may use, one per
-line, sorted: the guard cannot evaluate TeX, so a control word it has not been
-told about (a name-based definer from a package, say) fails the source.  Every
+line, letters only, sorted: the guard cannot evaluate TeX, so a control word it
+has not been told about (a name-based definer from a package, say) fails the
+source, as does any control word containing ``@``, whose catcode it does not
+model.  Every
 listed file must exist; every ``.tex`` in the directory must be valid UTF-8 with
 no control bytes other than tab and newline, a ``\\documentclass`` first line,
 ``\\begin{document}`` before ``\\end{document}``, only allowed control words and
@@ -121,7 +123,10 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
                 problems.append(f"{path}: an unmatched {what} on line {active.count(chr(10), 0, pos) + 1} precedes \\end{{document}}")
                 break
     # every control word before the closing sentinel must be one the guard has been told about;
-    # control symbols (a backslash and one non-letter) define nothing and are exempt
+    # control symbols (a backslash and one non-letter) define nothing and are exempt.  The scan
+    # takes @ as a letter, so a word containing @ (which cannot be listed) fails whichever
+    # catcode @ has: as one unknown word, or as a known word the guard would otherwise have
+    # cut short
     unknown = [m for m in re.finditer(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]+)", active) if m.group(1) not in allowed and (e < 0 or m.start(1) < e)]
     if unknown:
         problems.append(f"{path}: \\{unknown[0].group(1)} on line {active.count(chr(10), 0, unknown[0].start()) + 1} is not listed in "
@@ -1137,8 +1142,11 @@ def main(argv: list[str]) -> int:
         problems.append(f"{words}: {'missing list of allowed control words' if why == 'missing' else 'list of allowed control words is ' + why}")
     else:
         entries = words.read_text().splitlines()
-        if not entries or entries != sorted(set(entries)) or not all(re.fullmatch(r"[a-zA-Z@]+", w) for w in entries):
-            problems.append(f"{words}: must list one control word name per line, sorted and without repetition")
+        # a name is letters only: @ is not a letter under the document catcodes the guard assumes
+        # (nothing may change them), so \\endinput@foo is \\endinput followed by text, which the
+        # scanner would take for one allowed word if @ could be listed
+        if not entries or entries != sorted(set(entries)) or not all(re.fullmatch(r"[a-zA-Z]+", w) for w in entries):
+            problems.append(f"{words}: must list one control word name per line, letters only, sorted and without repetition")
         elif banned := sorted(set(entries) & _TEX_STOPS):
             problems.append(f"{words}: {', '.join(chr(92) + w for w in banned)} cannot be allowed; the guard cannot follow them")
         else:

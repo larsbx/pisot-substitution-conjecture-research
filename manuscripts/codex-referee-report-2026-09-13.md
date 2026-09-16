@@ -1847,3 +1847,18 @@ No other findings were posted in the eighty-third round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the eighty-fourth round.
+
+# Eighty-fifth round: review of the terminator revision (pull request #95)
+
+**Reviewed commit:** `d67b8eacf7` (finding 149).
+**Review posted:** 2026-09-16T00:31:56Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 150 (P2) — `scripts/check_manuscript_source.py`, line 1140
+
+> **Reject `@`-suffixed stop controls**
+>
+> With default LaTeX catcodes, `@` is not a letter, so an allowlisted name such as `endinput@foo` permits a source containing `\endinput@foo`: this scanner treats the entire text as the allowed control word and the stop-control regex excludes the `\endinput` prefix, while TeX tokenizes and executes `\endinput` followed by ordinary `@foo` characters, stopping before the document sentinels. Disallow `@` in this allowlist unless its catcode is modeled, or make stop detection use TeX's actual token boundary so the guard fails closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the eighty-fifth round.
