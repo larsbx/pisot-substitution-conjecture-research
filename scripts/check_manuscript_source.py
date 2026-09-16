@@ -109,6 +109,17 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
         return -1
 
     b, e = sentinel("begin"), sentinel("end")
+    # a closing brace or \\fi that no opener precedes stops TeX with an error before the document,
+    # and a later opener would cancel it in a plain sum: the running depth may never go negative
+    for events, what in ((braces, "closing brace"), (conditionals, "\\fi")):
+        level = 0
+        for pos, d in events:
+            if e >= 0 and pos >= e:
+                break
+            level += d
+            if level < 0:
+                problems.append(f"{path}: an unmatched {what} on line {active.count(chr(10), 0, pos) + 1} precedes \\end{{document}}")
+                break
     # every control word before the closing sentinel must be one the guard has been told about;
     # control symbols (a backslash and one non-letter) define nothing and are exempt
     unknown = [m for m in re.finditer(r"(?<!\\)(?:\\\\)*\\([a-zA-Z@]+)", active) if m.group(1) not in allowed and (e < 0 or m.start(1) < e)]

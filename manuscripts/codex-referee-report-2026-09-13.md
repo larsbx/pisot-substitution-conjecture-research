@@ -1794,3 +1794,26 @@ No other findings were posted in the eightieth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the eighty-first round.
+
+# Eighty-second round: review of the subdirectory revision (pull request #95)
+
+**Reviewed commit:** `af8f2a3975` (finding 145).
+**Review posted:** 2026-09-15T23:54:45Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 146 (P2) — `scripts/check_manuscript_source.py`, line 94
+
+> **Reject unmatched closing braces before sentinels**
+>
+> When a source contains `}` followed later by `{` before the standalone document sentinels, these signed events cancel and both sentinels appear to have depth zero. For example, a 500-line file beginning with `\documentclass{article}`, `}`, `{`, and then the sentinel pair makes `check_tex` return no problems, although TeX encounters an unmatched closing brace before any document environment. Reject any negative intermediate brace depth and require balanced braces rather than relying only on the net sum at each sentinel.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 147 (P2) — `scripts/check_manuscript_source.py`, line 99
+
+> **Reject unmatched conditional closers before sentinels**
+>
+> When `fi` and a conditional opener are allowlisted, a stray `\fi` before `\iffalse` contributes `-1` and the opener contributes `+1`, so the sentinel depth returns to zero. A 500-line source containing `\fi`, `\iffalse`, the standalone sentinel pair, and the real closing `\fi` therefore passes even though TeX fails at the first unmatched closer before reaching the document. Validate conditional nesting so it never becomes negative and is balanced, instead of treating it as an unrestricted arithmetic sum.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the eighty-second round.

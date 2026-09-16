@@ -909,3 +909,12 @@ One finding from the automated Codex review of commit `f1e1ee8fb3`; accepted, on
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 145 | P2 | A TeX input file in a subdirectory, loaded by path, escaped the input-file rule | Accepted. The manuscripts directory may now hold no subdirectory at all, and every package or class loader (`\documentclass`, `\usepackage`, `\RequirePackage`, `\LoadClass` and their `WithOptions` forms) before the closing sentinel must name plain names (letters, digits, `-`, `_`, comma-separated after an optional options group), never a path. The scenario (`sub/evil.sty` with `\usepackage{sub/evil}`) was confirmed to pass the previous revision. Tests: a subdirectory holding `evil.sty` and an empty subdirectory (both fail); `\usepackage{sub/evil}`, `\usepackage{../evil}`, `\usepackage{evil.sty}`, `\usepackage[a]{geometry, sub/x}`, `\documentclass{./article}`, `\usepackage{\foo}` and a bare `\usepackage` (all fail); options, comma-separated names and line-broken arguments (pass) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Eighty-second round (pull request #95, subdirectory revision)
+
+Two findings from the automated Codex review of commit `af8f2a3975`; both accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 146 | P2 | A closing brace before its opener summed to depth zero at the sentinels | Accepted. The running brace depth before the closing sentinel may never go negative: the first closer with no opener before it fails the source, since TeX stops there with an error before the document. The scenario was confirmed to pass the previous revision. Test: `}` then `{` before the sentinels (fails); a `}` after `\end{document}` (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+| 147 | P2 | A `\fi` before its opener summed to depth zero at the sentinels | Accepted, by the same rule applied to conditional tokens: the running conditional depth before the closing sentinel may never go negative. The scenario was confirmed to pass the previous revision. Test: `\fi` then `\iffalse` before the sentinels with the real `\fi` after them (fails); a `\fi` after `\end{document}` (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

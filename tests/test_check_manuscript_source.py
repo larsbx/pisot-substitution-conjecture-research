@@ -103,7 +103,7 @@ def test_mangled_tex_fails(copy):
 def test_commented_document_sentinels_fail(copy):
     tex = next(copy.glob("*.tex"))
     text = tex.read_text()
-    allow(copy, "newif ifdraft else fi iff ifthenelse inputencoding csnamex begingroup endgroup foo renewcommand newenvironment "
+    allow(copy, "newif ifdraft else fi iffalse iff ifthenelse inputencoding csnamex begingroup endgroup foo renewcommand newenvironment "
                 "DeclareMathOperator Tr DeclareGraphicsExtensions newcounter newlength len newdimen dim bar baz providecommand")
     i = text.rindex("\\end{document}")
     tex.write_text(text[:i] + "%" + text[i:])  # the only \end{document} is now a comment
@@ -208,6 +208,14 @@ def test_commented_document_sentinels_fail(copy):
         assert code == 1 and "is not the standalone sentinel" in out, (wrapper, out)
     tex.write_text(text.replace("\\begin{document}", "\\begin{align*}\\end{align*}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # a starred environment name is plain
+    tex.write_text(text.replace("\\begin{document}", "}\n{\n\\begin{document}", 1))  # a closer before its opener sums to zero
+    code, out = run(copy)
+    assert code == 1 and "an unmatched closing brace on line" in out, out
+    tex.write_text(wrapped("\\fi\n\\iffalse\n", "", "", "\n\\fi"))  # likewise for conditionals
+    code, out = run(copy)
+    assert code == 1 and "an unmatched \\fi on line" in out, out
+    tex.write_text(text[:i + len("\\end{document}")] + "\n\\fi\n}" + text[i + len("\\end{document}"):])  # after the document is fine
+    assert run(copy)[0] == 0
     tex.write_text(text.replace("\\begin{document}", "\\DeclareMathOperator{\\Tr}{Tr}\\DeclareGraphicsExtensions{.pdf}\\newcounter{foo}\\newlength{\\len}\\newdimen\\dim\n"
                                 "\\newcommand\\foo{}\\newcommand*{ \\bar }[1]{#1}\\providecommand{\\baz}{\\bar{x}}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # Declare... macros, allocators and ...command... definers naming their targets
