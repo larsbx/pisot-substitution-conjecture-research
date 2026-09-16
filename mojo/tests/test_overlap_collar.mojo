@@ -263,6 +263,15 @@ def test_fail_closed() raises:
         caught = True
     assert_true(caught)
     caught = False
+    try:  # a stale child index behind a valid state cycle and ordinal
+        var certificates = first_zero_shift_free_affine_pump(tables, graph)
+        var stale_edges = certificates[0].edges.copy()
+        stale_edges[0].top_child_index += 1
+        _ = lift_affine_pump(build_collared_graph(tables, graph, 1), AffinePumpCertificate(certificates[0].state_indices, stale_edges))
+    except:
+        caught = True
+    assert_true(caught)
+    caught = False
     try:  # a certificate from another graph has no starting fibre here
         var other_tables = build_seed_overlap_tables(collapsing_sigma())
         var other = build_seed_overlap_graph_from_tables(other_tables, 20000)

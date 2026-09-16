@@ -408,6 +408,12 @@ def lift_affine_pump(
                 for o in range(len(cg.out_edges[current])):
                     var edge = cg.edges[cg.out_edges[current][o]]
                     if edge.ordinal == certificate.edges[e].occurrence_ordinal:
+                        if (
+                            cg.states[edge.child].state_index != certificate.edges[e].child_index
+                            or edge.top_child_index != certificate.edges[e].top_child_index
+                            or edge.bottom_child_index != certificate.edges[e].bottom_child_index
+                        ):
+                            raise Error("affine pump certificate edge disagrees with the collared occurrence it names")
                         next = edge.child
                         break
                 if next < 0:

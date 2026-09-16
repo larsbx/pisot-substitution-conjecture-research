@@ -112,9 +112,11 @@ def test_fail_closed(graph: OverlapGraph) -> None:
     with pytest.raises(RuntimeError):
         inflate_collar(SIGMA, Collar((1,), (1,)), 1, 0, 2)  # radius-1 neighbours with length-one images cannot supply radius 2
     certificate = first_zero_shift_free_affine_pump(graph)
+    from dataclasses import replace
     corrupted = AffinePumpCertificate(certificate.state_indices[:1] + (-1,) * (len(certificate.edges) - 1), certificate.edges)
+    stale = AffinePumpCertificate(certificate.state_indices, (replace(certificate.edges[0], top_child_index=certificate.edges[0].top_child_index + 1),) + certificate.edges[1:])
     for malformed in (AffinePumpCertificate((certificate.state_indices[0],), ()), AffinePumpCertificate((), ()),
-                      AffinePumpCertificate(certificate.state_indices, certificate.edges[:-1]), corrupted):
+                      AffinePumpCertificate(certificate.state_indices, certificate.edges[:-1]), corrupted, stale):
         with pytest.raises(RuntimeError):  # an edge sequence that does not match the states is not a pump
             lift_affine_pump(build_collared_graph(graph, 1), malformed)
     with pytest.raises(RuntimeError):

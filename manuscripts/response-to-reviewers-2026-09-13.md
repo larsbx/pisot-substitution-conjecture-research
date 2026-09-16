@@ -1051,3 +1051,11 @@ One finding from the automated Codex review of commit `a238e8dfb9`; accepted, on
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 167 | P2 | A certificate with a valid first state and valid edges but corrupted later states lifted to the original periods, since only the first state was consulted | Accepted. Both implementations now check, before lifting, that every edge's parent is the state at its index and its child the cyclically next state, the invariant `verify_affine_pump` enforces; tests corrupt every later state entry of the golden certificate and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
+
+## Hundredth round (pull request #101, pump-state revision)
+
+One finding from the automated Codex review of commit `89550a4350`; accepted, on the fail-closed side, in both implementations.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 168 | P2 | A certificate edge with a valid ordinal but stale child indices was followed by ordinal alone, so the lift accepted an edge `verify_affine_pump` rejects | Accepted. Both lifts now compare the selected collared edge's child state and both child indices with the certificate edge before following it; tests corrupt the top child index of the golden certificate's first edge and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |

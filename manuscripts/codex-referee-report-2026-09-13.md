@@ -2093,3 +2093,18 @@ No other findings were posted in the ninety-eighth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the ninety-ninth round.
+
+# Hundredth round: review of the pump-state revision (pull request #101)
+
+**Reviewed commit:** `89550a4350` (finding 167).
+**Review posted:** 2026-09-16T04:24:04Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 168 (P2) — `mojo/psc/overlap_collar.mojo`, line 411
+
+> **Validate the complete occurrence edge before lifting**
+>
+> When a serialized certificate has a valid state cycle and an in-range occurrence ordinal but stale or corrupted `top_child_index`/`bottom_child_index` payload, this lookup silently follows the collared edge selected by the ordinal and accepts the certificate; the Python lift has the same behavior. Parallel occurrences with the same projected parent and child make this especially easy to miss, while `verify_affine_pump` rejects the inconsistent edge. Compare the selected collared edge's child and child indices with the certificate edge before using it so malformed evidence fails closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the hundredth round.

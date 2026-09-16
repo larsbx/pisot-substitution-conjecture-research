@@ -188,13 +188,16 @@ def lift_affine_pump(cg: CollaredGraph, certificate: Any) -> tuple[LiftedOrbit, 
         raise RuntimeError("affine pump certificate is malformed")
     if any(e.parent_index != states[k] or e.child_index != states[(k + 1) % len(states)] for k, e in enumerate(edges)):
         raise RuntimeError("affine pump certificate edges do not close over its states")
-    step = {(e.parent, e.ordinal): e.child for e in cg.edges}
+    step = {(e.parent, e.ordinal): e for e in cg.edges}
 
     def traverse(k: int) -> int:
         for e in certificate.edges:
             if cg.states[k].state_index != e.parent_index:
                 raise RuntimeError("affine pump certificate leaves the fibre it is lifted from")
-            k = step[(k, e.occurrence_ordinal)]
+            selected = step[(k, e.occurrence_ordinal)]
+            if (cg.states[selected.child].state_index, selected.label[1], selected.label[3]) != (e.child_index, e.top_child_index, e.bottom_child_index):
+                raise RuntimeError("affine pump certificate edge disagrees with the collared occurrence it names")
+            k = selected.child
         return k
 
     def orbit(start: int) -> LiftedOrbit:
