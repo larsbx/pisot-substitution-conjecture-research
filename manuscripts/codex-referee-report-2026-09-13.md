@@ -1937,3 +1937,18 @@ No other findings were posted in the eighty-ninth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the ninetieth round.
+
+# Ninety-first round: review of the carried-out-declaration revision (pull request #95)
+
+**Reviewed commit:** `692ecf821b` (finding 155).
+**Review posted:** 2026-09-16T02:22:53Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 156 (P2) — `scripts/check_manuscript_source.py`, line 293
+
+> **Track arity from every accepted command definer**
+>
+> Fresh evidence beyond the prior `newcommand` case is `\DeclareRobustCommand{\foo}[1]{}` followed by `\providecommand{\foo}{}`, a bare `\foo`, and the opening sentinel: the robust declaration is accepted but omitted from `declared`, so the no-op `providecommand` is incorrectly recorded as a new zero-argument definition and `check_tex` returns success. LaTeX retains the one-argument definition, causing `\foo` to consume and discard the sentinel's `\begin` token; either collect arity from accepted command definers such as `DeclareRobustCommand` or reject definers whose effects are not modeled.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the ninety-first round.

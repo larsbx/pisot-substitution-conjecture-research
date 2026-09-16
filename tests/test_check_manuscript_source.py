@@ -235,7 +235,7 @@ def test_commented_document_sentinels_fail(copy):
     assert code == 1 and "an unmatched \\fi on line" in out, out
     tex.write_text(text[:i + len("\\end{document}")] + "\n\\fi\n}" + text[i + len("\\end{document}"):])  # after the document is fine
     assert run(copy)[0] == 0
-    tex.write_text(text.replace("\\begin{document}", "\\DeclareMathOperator{\\Tr}{Tr}\\DeclareGraphicsExtensions{.pdf}\\newcounter{foo}\\newlength{\\len}\\newdimen\\dim\n"
+    tex.write_text(text.replace("\\begin{document}", "\\DeclareMathOperator{\\Tr}{Tr}\\newcounter{foo}\\newlength{\\len}\\newdimen\\dim\n"
                                 "\\newcommand\\foo{}\\newcommand*{ \\bar }[1]{#1}\\providecommand{\\baz}{\\bar{x}}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # Declare... macros, allocators and ...command... definers naming their targets
     tex.write_text(text.replace("\\begin{document}", "\\newif\n\\ifdraft\n\\ifdraft\n\\begin{document}", 1))  # a declared conditional across a line ending
@@ -301,25 +301,32 @@ def test_arguments_complete_before_sentinels_and_bodies(copy):
     tex = next(copy.glob("*.tex"))
     text = tex.read_text()
     i = text.rindex("\\end{document}")
-    allow(copy, "foo sqrt newenvironment renewcommand providecommand csnamex iffalse fi")
+    allow(copy, "foo sqrt newenvironment renewcommand providecommand csnamex iffalse fi DeclareRobustCommand NewCommandCopy DeclareGraphicsExtensions "
+                "newif ifdraft drafttrue")
     for source in ("\\title", "\\usepackage[a]{b}\\sqrt", "\\newcommand{\\foo}[2]{}\\foo{x}", "\\newcommand{\\foo}{\\emph}\n\\foo", "\\newcommand{\\foo}{\\frac{a}}",
                    "\\newenvironment{foo}{x}{\\emph}", "\\csnamex", "\\newcommand{\\foo}[1]{#1}\\foo{\\sqrt}", "\\newcommand{\\foo}[1]{#1}\\foo\\sqrt",
                    "\\textbf{\\emph}\\textbf{x}",
                    "\\foo\n\\newcommand{\\foo}{}", "\\iffalse\n\\newcommand{\\foo}{}\n\\fi\n\\foo", "{\\newcommand{\\foo}{}}\n\\foo",  # a declaration that has not executed at the call
-                   "\\newcommand{\\foo}[1]{}\\providecommand{\\foo}{}\n\\foo", "\\newcommand{\\emph}{}\n\\emph", "\\renewcommand{\\foo}{}\n\\foo"):  # declarations LaTeX does not carry out
+                   "\\newcommand{\\foo}[1]{}\\providecommand{\\foo}{}\n\\foo", "\\newcommand{\\emph}{}\n\\emph", "\\renewcommand{\\foo}{}\n\\foo",  # declarations LaTeX does not carry out
+                   "\\DeclareRobustCommand{\\foo}[1]{}\\providecommand{\\foo}{}\n\\foo"):  # a robust declaration, then a no-op
         tex.write_text(text.replace("\\begin{document}", source + "\n\\begin{document}", 1))  # a call short of arguments, or of unknown arity
         code, out = run(copy)
         assert code == 1 and "has fewer arguments than it takes" in out, (source, out)
     tex.write_text(text[:i] + "\\emph\n" + text[i:])  # likewise before the closing sentinel
     code, out = run(copy)
     assert code == 1 and "before the document sentinel" in out, out
+    for definer in ("\\NewCommandCopy{\\foo}{\\emph}", "\\DeclareGraphicsExtensions{.pdf}"):  # definers the guard does not model
+        tex.write_text(text.replace("\\begin{document}", definer + "\n\\begin{document}", 1))
+        code, out = run(copy)
+        assert code == 1 and "is a definer whose effect on control words the guard does not model" in out, (definer, out)
     after = text.replace("\\begin{document}", "\\foo\n\\begin{document}", 1)
     j = after.rindex("\\end{document}") + len("\\end{document}")
     tex.write_text(after[:j] + "\n\\newcommand{\\foo}{}" + after[j:])  # a declaration after the document
     code, out = run(copy)
     assert code == 1 and "has fewer arguments than it takes" in out, out
     tex.write_text(text.replace("\\begin{document}", "\\title{X}\\usepackage[a]{b} $\\frac12 \\bar\\beta \\sqrt[3]{x}$ \\\\ \\{\\}\n"
-                                "\\providecommand{\\foo}{\\emph{x}}\\renewcommand*{\\foo}[1][d]{\\sqrt{#1}}\\foo\n\\begin{document}", 1))
+                                "\\providecommand{\\foo}{\\emph{x}}\\renewcommand*{\\foo}[1][d]{\\sqrt{#1}}\\foo\n"
+                                "\\DeclareRobustCommand{\\foo}[1]{#1}\\foo{x}\\newif\\ifdraft\\drafttrue\n\\begin{document}", 1))
     code, out = run(copy)
     assert code == 0, out  # complete calls, single-token and optional arguments, control symbols, and a body whose call is complete
 

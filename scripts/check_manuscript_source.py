@@ -96,17 +96,27 @@ _TEX_ARITY = {**dict.fromkeys(
     "hat vec dot ddot breve acute grave widehat widetilde underline underbrace overbrace hspace vspace hskip vskip "
     "caption footnote url includegraphics textsuperscript textsubscript mathit mathop mathrel mathord mathpunct "
     "mathopen mathclose left right big Big bigg Bigg bigm Bigm biggm Biggm Bigl Bigr biggl biggr Biggl Biggr "
-    "newif newcounter newlength newdimen newcount newskip newbox setcounter refstepcounter stepcounter addtocounter "
+    "newif newcounter newlength newdimen newcount newskip newbox newmuskip newread newwrite newfam newinsert newlanguage "
+    "newsavebox setcounter refstepcounter stepcounter addtocounter "
     "value pageref autoref nameref hyperref inputencoding fontencoding fontfamily fontsize selectfont textcolor "
     "color chapter part appendix addcontentsline phantom hphantom vphantom smash mathstrut ifodd ifdefined ifeof "
     "ifvoid ifhbox ifvbox DeclareGraphicsExtensions graphicspath bibliographystyle bibliography nocite ensuremath "
     "protect".split(), 1),
-    **dict.fromkeys("binom frac newcommand newtheorem texorpdfstring renewcommand providecommand DeclareMathOperator "
+    **dict.fromkeys("binom frac newcommand newtheorem texorpdfstring renewcommand providecommand DeclareMathOperator DeclareRobustCommand "
                     "setlength addtolength href if ifcat ifx iffontchar tfrac dfrac cfrac overset underset stackrel "
                     "substack".split(), 2),
     **dict.fromkeys("ifthenelse newenvironment renewenvironment".split(), 3)}
 # Control symbols (a backslash and one non-letter): the accents take one argument, the rest none.
 _TEX_SYMBOL_ARITY = dict.fromkeys("'\"^~=.", 1)
+# The definers whose effect on a control word the guard models, by what LaTeX does with a name
+# that is already defined: "new" definers leave it (with an error) and define only a fresh
+# name, "renew" redefines only a defined one, "always" defines either way.  Any other control
+# word of the definer families (a ...command... macro, a Declare... macro or an allocator) has
+# an effect the guard does not model and fails the source.
+_TEX_DEFINERS = {**dict.fromkeys("newcommand providecommand DeclareMathOperator newlength newsavebox".split(), "new"),
+                 "renewcommand": "renew",
+                 **dict.fromkeys("DeclareRobustCommand newcount newdimen newskip newmuskip newbox newread newwrite newfam newinsert "
+                                 "newlanguage".split(), "always")}
 
 
 def _units_before(active: str, openers: dict[int, int], end: int, floor: int) -> list[tuple[int, str, str]]:
@@ -280,17 +290,24 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
     # the arity of the latest declaration that executes before the call: one at brace depth zero,
     # outside every conditional and before the closing sentinel (a declaration in a group, a
     # skipped branch or after the document may never run), and earlier in the source than the
-    # call; likewise a conditional declared by \\newif takes none from its declaration on.  Only a
-    # declaration LaTeX carries out counts: \\newcommand and \\providecommand define a name that
-    # is not yet defined (a kernel word or an earlier declaration leaves them without effect, the
-    # former with an error), and \\renewcommand redefines a name that is.
+    # call; likewise a conditional declared by \\newif, with its ...true and ...false setters, takes
+    # none from its declaration on.  Only a declaration LaTeX carries out counts, as _TEX_DEFINERS
+    # records for each modelled definer; a definer the guard does not model fails the source.
+    unmodelled = [m for m in re.finditer(r"(?<!\\)(?:\\\\)*\\([a-zA-Z]*[cC]ommand[a-zA-Z]*|Declare[a-zA-Z]*|new(?:length|savebox|count|dimen|skip|"
+                                         r"muskip|box|read|write|fam|insert|language))(?![a-zA-Z])", active)
+                  if m.group(1) not in _TEX_DEFINERS and (e < 0 or m.start() < e)]
+    if unmodelled:
+        problems.append(f"{path}: \\{unmodelled[0].group(1)} on line {active.count(chr(10), 0, unmodelled[0].start()) + 1} is a definer whose effect "
+                        "on control words the guard does not model")
     executable = lambda pos: (e < 0 or pos < e) and depth(braces, pos) == 0 and depth(conditionals, pos) == 0
-    declared = [(m.start(), m.group(1), 0) for m in re.finditer(r"(?<!\\)(?:\\\\)*\\newif[ \t\n]*\\(if[a-zA-Z]+)", active) if executable(m.start())]
-    for m in re.finditer(r"(?<!\\)(?:\\\\)*\\(new|renew|provide)command\*?[ \t\n]*\{?[ \t\n]*\\([a-zA-Z]+)[ \t\n]*\}?[ \t\n]*"
+    declared = [(m.start(), name, 0) for m in re.finditer(r"(?<!\\)(?:\\\\)*\\newif[ \t\n]*\\if([a-zA-Z]+)", active) if executable(m.start())
+                for name in ("if" + m.group(1), m.group(1) + "true", m.group(1) + "false")]
+    for m in re.finditer(r"(?<!\\)(?:\\\\)*\\(" + "|".join(sorted(_TEX_DEFINERS)) + r")(?![a-zA-Z])\*?[ \t\n]*\{?[ \t\n]*\\([a-zA-Z]+)[ \t\n]*\}?[ \t\n]*"
                          r"(?:\[(\d)\](?:[ \t\n]*\[([^\]]*)\])?)?", active):  # [n][default] makes the first of n arguments optional
-        defined = m.group(2) in _TEX_ARITY or any(nm == m.group(2) for _, nm, _ in declared)
-        if executable(m.start()) and defined == (m.group(1) == "renew"):
-            declared.append((m.start(), m.group(2), int(m.group(3) or 0) - (m.group(4) is not None)))
+        kind, name = _TEX_DEFINERS[m.group(1)], m.group(2)
+        defined = name in _TEX_ARITY or any(nm == name for _, nm, _ in declared)
+        if executable(m.start()) and (kind == "always" or defined == (kind == "renew")):
+            declared.append((m.start(), name, int(m.group(3) or 0) - (m.group(4) is not None) if m.group(1).endswith("ommand") else 0))
     declared.sort()
     arity = lambda name, pos: next((n for d, nm, n in reversed(declared) if nm == name and d < pos), _TEX_ARITY.get(name))
     openers, open_stack = {}, []
