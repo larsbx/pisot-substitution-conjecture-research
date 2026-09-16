@@ -104,6 +104,7 @@ def test_commented_document_sentinels_fail(copy):
     tex = next(copy.glob("*.tex"))
     text = tex.read_text()
     allow(copy, "newif ifdraft else fi iffalse iff ifthenelse inputencoding csnamex begingroup endgroup foo renewcommand newenvironment "
+                "comment "
                 "DeclareMathOperator Tr DeclareGraphicsExtensions newcounter newlength len newdimen dim bar baz providecommand")
     i = text.rindex("\\end{document}")
     tex.write_text(text[:i] + "%" + text[i:])  # the only \end{document} is now a comment
@@ -199,11 +200,26 @@ def test_commented_document_sentinels_fail(copy):
         tex.write_text(text.replace("\\begin{document}", redefinition + "\n\\begin{document}", 1))
         code, out = run(copy)
         assert code == 1 and "can change what the document sentinels mean" in out, (redefinition, out)
-    tex.write_text(text.replace("\\begin{document}", "\\begingroup\\endgroup \\begin {center}\\end{center}\n\\newcommand{\\foo}{\\begin{center}}\n\\begin{document}", 1))
-    assert run(copy)[0] == 0  # environment uses, longer control words and a macro body using \\begin{...} are fine
-    tex.write_text(text.replace("\\begin{document}", "\\renewcommand{\\foo}\n{\\begin{center}}\n\\newenvironment\n{doc}{}{}\\newtheorem*{lem2}[doc]{Lemma}\n\\begin{document}", 1))
+    tex.write_text(text.replace("\\begin{document}", "\\begingroup\\endgroup \\begin {center}\\end{center}\n\\newcommand{\\foo}{\\begin{center}\\end{center}}\n\\begin{document}", 1))
+    assert run(copy)[0] == 0  # environment uses, longer control words and a macro body using a whole environment are fine
+    tex.write_text(wrapped("\\begin{comment}\n", "", "", "\n\\end{comment}"))  # sentinels inside an environment that discards its body
+    code, out = run(copy)
+    assert code == 1 and "sits inside the environment comment" in out, out
+    tex.write_text(text.replace("\\begin{document}", "\\begin{center}\n\\begin{document}", 1))  # an environment left open at the opening sentinel
+    code, out = run(copy)
+    assert code == 1 and "sits inside the environment center" in out, out
+    tex.write_text(text[:i] + "\\begin{center}\n" + text[i:])  # an environment left open at the closing sentinel, which then closes center
+    code, out = run(copy)
+    assert code == 1 and "\\end{document} on line" in out and "closes no open environment" in out, out
+    for nesting in ("\\end{center}", "\\begin{center}\\end{quote}", "\\newcommand{\\foo}{\\begin{center}}"):  # nesting the guard cannot follow
+        tex.write_text(text.replace("\\begin{document}", nesting + "\n\\begin{document}", 1))
+        code, out = run(copy)
+        assert code == 1 and ("closes no open environment" in out or "sits inside the environment" in out), (nesting, out)
+    tex.write_text(text[:i + len("\\end{document}")] + "\n\\end{center}" + text[i + len("\\end{document}"):])  # after the document is fine
+    assert run(copy)[0] == 0
+    tex.write_text(text.replace("\\begin{document}", "\\renewcommand{\\foo}\n{\\begin{center}\\end{center}}\n\\newenvironment\n{doc}{}{}\\newtheorem*{lem2}[doc]{Lemma}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # a line-broken definer whose target is not a sentinel, another environment and a theorem with a plain name
-    tex.write_text(text.replace("\\begin{document}", "\\renewcommand*{\\foo}{\\begin{center}}\n\\begin{document}", 1))
+    tex.write_text(text.replace("\\begin{document}", "\\renewcommand*{\\foo}{\\begin{center}\\end{center}}\n\\begin{document}", 1))
     assert run(copy)[0] == 0  # a starred definer with another target
     for wrapper in ("\\newcommand{\\foo}{\\end{document}}\n\\foo", "\\newcommand{\\foo}{\\begin{document}}", "x \\end{document}"):
         tex.write_text(text.replace("\\begin{document}", wrapper + "\n\\begin{document}", 1))  # a sentinel a macro or group could execute

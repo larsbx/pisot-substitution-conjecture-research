@@ -155,6 +155,25 @@ def check_tex(path: Path, allowed: frozenset[str]) -> list[str]:
     if loaders:
         problems.append(f"{path}: \\{loaders[0].group(1)} on line {active.count(chr(10), 0, loaders[0].start()) + 1} does not name plain package or "
                         "class names; a path could load a file the guard does not read")
+    # the sentinels must sit inside no other environment: an environment such as comment or verbatim
+    # discards or quotes its body, and an environment left open at \\end{document} is an error; so
+    # the environment uses up to the closing sentinel must nest properly (at any brace depth, since
+    # a macro body cannot be told apart), with nothing open at the opening sentinel and nothing but
+    # document open at the closing one
+    stack = []
+    for m in re.finditer(r"(?<!\\)(?:\\\\)*\\(begin|end)[ \t]*\{([a-zA-Z0-9*]+)\}", active):
+        pos = m.end(1) - len(m.group(1)) - 1
+        if e >= 0 and pos > e:
+            break
+        if m.group(1) == "begin":
+            stack.append(m.group(2))
+        elif not stack or stack.pop() != m.group(2):
+            problems.append(f"{path}: \\end{{{m.group(2)}}} on line {active.count(chr(10), 0, pos) + 1} closes no open environment; the guard cannot follow it")
+            break
+        if (pos == b and stack[:-1]) or (pos == e and stack):
+            problems.append(f"{path}: the document sentinel on line {active.count(chr(10), 0, pos) + 1} sits inside the environment "
+                            f"{(stack[:-1] or stack)[-1]}, which the guard cannot follow")
+            break
     # every other \\begin{document} or \\end{document} before the closing sentinel, in a macro body
     # or beside other text, could be executed by a macro or a group and end or restart the document
     # in ways the guard cannot follow

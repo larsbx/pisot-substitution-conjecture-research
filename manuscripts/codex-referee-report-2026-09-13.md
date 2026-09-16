@@ -1877,3 +1877,18 @@ No other findings were posted in the eighty-fifth round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the eighty-sixth round.
+
+# Eighty-seventh round: review of the literal-name revision (pull request #95)
+
+**Reviewed commit:** `747fd3b77f` (finding 151).
+**Review posted:** 2026-09-16T00:59:38Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 152 (P2) — `scripts/check_manuscript_source.py`, line 110
+
+> **Reject document sentinels inside excluded environments**
+>
+> When a source loads the standard `comment` package and wraps the only standalone `\begin{document}` and `\end{document}` lines in `\begin{comment}`/`\end{comment}`, both sentinels have zero brace and conditional depth, so `check_tex` returns success even though LaTeX discards them and never enters the document environment. Conservatively reject document sentinels nested inside any preceding non-document environment that the guard cannot evaluate.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the eighty-seventh round.
