@@ -8,14 +8,19 @@ records the gap precisely: `mojo/psc/finite_cokernel_address.mojo` computes
 `Z^3 / M^k Z^3` classes exactly, and there is no p-adic module in
 `larsbx/finite-math-kernels`.
 
-The proposal is therefore a carrier in that monorepo:
+The proposal as inherited was a carrier in that monorepo built from scalar
+`Z_p`:
 
 1. exact `Z_p` arithmetic at a declared precision `k`, as a residue together
    with the ball radius `p^(-k)` it stands for;
 2. a combined box, one closed rational interval per Archimedean coordinate and
-   one `p`-adic ball per finite place;
+   one scalar `p`-adic ball per finite place;
 3. the same fail-closed discipline the rational intervals already carry, where
    unknown containment or sign is never promoted to equality.
+
+Item 3 survives review. Items 1 and 2 do not: finding 5 exhibits a computed
+obstruction to the scalar design on this repository's own canonical
+substitution, and finding 6 states what has to replace it.
 
 This review asks whether that carrier is a known construction, which of its
 hypotheses transfer to the standing PIP regime, which known families break a
@@ -31,13 +36,16 @@ bibliographic references to standard literature, not verified snapshots.
 **Proceed with the carrier only. Do not invoke it, and do not rank it as the
 next theorem step.**
 
-Two separate findings support splitting the item this way.
+Three findings shape that decision: the step it serves is not next (finding 4),
+the design it inherited does not work (finding 5), and what replaces it is two
+objects rather than one (finding 6).
 
-The carrier itself is standard and is legitimate infrastructure: representing
-`Z_p` to finite precision with an explicit ball radius is ordinary zealous
-`p`-adic arithmetic, and it is the exact analogue of what
-`finite_exact/closed_interval.mojo` already does for the reals. Building it
-asserts nothing.
+A carrier is legitimate infrastructure, and a ball with an explicit radius is
+the exact analogue of what `finite_exact/closed_interval.mojo` already does for
+the reals. Building one asserts nothing. But it must be the right ball:
+review of the first draft showed that the scalar `Z_p` design cannot model the
+quotient it was supposed to check against, so the licensed carrier is the
+`M`-adic one. See findings 5 and 6.
 
 The theorem step it exists to serve is **not** next, and this gate exists to say
 so before the work is spent. See finding 4.
@@ -54,14 +62,21 @@ subring of the adele ring.[^2] The survey of the Pisot substitution conjecture
 states the unimodular and non-unimodular settings separately for this
 reason.[^3]
 
-The standing regime is the non-unit one: the canonical determinant-two
-regression has `|det M| = 2`, and `finite_cokernel_address.mojo` already
-observes the consequence, a cokernel `Z^3 / M^k Z^3` of order `2^k`. So the
-2-adic component of that repository's own diagnostic is not a refinement anyone
-chose; it is what the regime forces.
+The standing regime does **not** settle this either way, and the first draft of
+this note overstated it. `README.md` admits any `sigma` with
+`det M_sigma != 0` and says in terms that unimodularity is not assumed, so the
+regime contains both the unit and the non-unit branch; the unimodular negative
+control in finding 7 is itself a case inside it. What `README.md` states is the
+stronger discipline that a general theorem must not *silently add*
+unimodularity, nor a purely Euclidean internal-space model where a
+non-unimodular argument needs more structure.
 
-This is the firewall the repository already maintains, and it is the one part of
-this proposal that needs no further argument.
+So the accurate scoping is by branch, not by regime. On the **non-unit branch**,
+which the canonical determinant-two regression inhabits,
+`finite_cokernel_address.mojo` observes a cokernel `Z^3 / M^k Z^3` of order
+`2^k`, and there the finite-place structure is forced rather than chosen. On the
+unit branch it is absent. A carrier must therefore handle the non-unit branch
+without assuming it, which is the same discipline `README.md` already imposes.
 
 ### 2. What transfers is the carrier, and only the carrier
 
@@ -127,34 +142,93 @@ The consequence is that **building it must not be reported as progress on
 overlap productivity**, and that R7's ranking of it alongside the other three
 parts overstates its position in the route.
 
-### 5. Negative controls the carrier must satisfy
+### 5. The scalar design fails on this repository's own canonical substitution
+
+This is a computed obstruction, not a stylistic preference, and it came out of
+review of the first draft.
+
+Take the canonical determinant-two substitution of
+`mojo/tests/test_overlap_collar.mojo`, `0 -> 1`, `1 -> 021`, `2 -> 001`, whose
+incidence matrix and square are
+
+```text
+M   = [[0,1,2],[1,1,1],[0,1,0]]      det M   = 2
+M^2 = [[1,3,1],[1,3,3],[1,1,1]]      det M^2 = 4
+```
+
+The Smith invariants are
+
+| `k` | invariants of `M^k` | `Z^3 / M^k Z^3` |
+| --- | --- | --- |
+| 1 | `(1, 1, 2)` | `Z/2` |
+| 2 | `(1, 2, 2)` | `Z/2 x Z/2` |
+| 3 | `(1, 2, 4)` | `Z/2 x Z/4` |
+
+At `k = 2` the quotient is `Z/2 x Z/2`, which is not cyclic, while a scalar
+`Z_2` ball at precision `2` is `Z/4`, which is. They have the same order and
+different group structure, so they are not the same object, and the two cannot
+be checked against each other.
+
+That kills the differential test the first draft claimed, and it kills the
+design that test was meant to validate. It also shows why one scalar precision
+cannot express the filtration at all: the invariant sequence
+`(1,1,2)`, `(1,2,2)`, `(1,2,4)` changes shape with `k`, and a single exponent
+`p^(-k)` has no room to record that.
+
+### 6. What has to replace it
+
+Two objects, kept distinct:
+
+- **The `M`-adic ball.** The filtration `Z^3 ⊃ M Z^3 ⊃ M^2 Z^3 ⊃ ...` is the
+  one the existing diagnostic already uses, and the honest carrier is a coset of
+  `M^k Z^3` in `Z^3` with that lattice as its radius. This is not `p`-adic; it is
+  `M`-adic, and it is where a differential test against
+  `finite_cokernel_address.mojo` is legitimate, because both then decide the same
+  membership question — one by lattice coset, the other by Cramer's-rule
+  divisibility.
+- **The local-field factor.** For the adelic picture the finite places are places
+  of the number field `Q(beta)`, not of `Q`, so the factors are completions `K_v`
+  with their own uniformizers and ramification indices.[^1] [^2] A carrier that
+  flattens these to scalar `Q_p` discards exactly the ramification that makes the
+  non-unit case different from the unit one.
+
+The carrier is therefore two carriers, and the cheaper one is the one with a
+checkable contract. The `M`-adic ball should be built first, and the local-field
+factor should not be attempted until something needs it.
+
+### 7. Negative controls the carrier must satisfy
 
 | Control | Case | What it catches |
 | --- | --- | --- |
 | Unimodular substitution | `det M = 1` or `det M = -1` | the finite-place factor is trivial; a carrier that manufactures a non-trivial `p`-adic component here is wrong |
 | A prime not dividing `det M` | `p = 3`, `det M = 2` | the `p`-adic factor is trivial, so using it is a category error, not a refinement |
-| The determinant-two regression | `det M = 2`, `p = 2` | the cokernel has order `2^k`; this is the case the carrier exists for, and it must agree with `finite_cokernel_address.mojo` where they overlap |
+| The determinant-two regression | `det M = 2`, `k = 2` | `Z^3 / M^2 Z^3` is `Z/2 x Z/2`, not `Z/4`: an `M`-adic ball must reproduce the group structure, and a scalar `Z_2` ball provably cannot |
 | Precision exhaustion | a difference that is zero to precision `k` | must answer unknown, never zero: a ball containing zero is not the point zero |
 | The golden zero-shift-free cycle | six edges, inside a productive graph | recurrence alone excludes nothing, and the carrier must not be presented as resolving it |
 
-The third row is the one that makes the carrier checkable rather than merely
-plausible: the existing exact cokernel diagnostic is an independent
-implementation of the same finite quotient, so the two can be differentially
-tested against each other where their domains meet.
+The third row is what makes the `M`-adic carrier checkable rather than merely
+plausible, and it is also the row that refuted the scalar design. Against
+`finite_cokernel_address.mojo` the `M`-adic ball is an independent
+implementation of the same membership question, so the two can be differentially
+tested; a scalar `Z_p` ball is not, per finding 5.
 
 ## What this gate licenses, and what it does not
 
-1. **Licensed:** an exact `Z_p` ball carrier and a combined real-times-`p`-adic
-   box in the kernels monorepo, with a spec document beside
-   `docs/rational-interval-arithmetic-spec.md`, inheriting its unknown-is-not-
-   equality contract, and differentially tested against the existing exact
-   cokernel diagnostic.
-2. **Not licensed:** any separation, tiling, or unique-representation property in
+1. **Licensed:** an exact `M`-adic ball carrier, a coset of `M^k Z^3` with that
+   lattice as its radius, plus a combined box pairing it with one closed
+   rational interval per Archimedean coordinate, in the kernels monorepo, with a
+   spec document beside `docs/rational-interval-arithmetic-spec.md`, inheriting
+   its unknown-is-not-equality contract, and differentially tested against
+   `finite_cokernel_address.mojo` on the membership question they share.
+2. **Not licensed:** a carrier built from scalar `Z_p` with one precision per
+   rational prime. Finding 5 refutes it on the canonical substitution, and
+   finding 6 says what the local-field factor would actually require.
+3. **Not licensed:** any separation, tiling, or unique-representation property in
    the representation space.
-3. **Not licensed:** any statement that the carrier advances overlap
+4. **Not licensed:** any statement that the carrier advances overlap
    productivity, the open premise of the shortest route, or the splicing and
    tiling-dictionary bridge.
-4. **Not licensed:** reporting R7's p-adic part as delivered when the carrier
+5. **Not licensed:** reporting R7's p-adic part as delivered when the carrier
    lands. The carrier is the part that is available now; the step it serves is
    behind an open obligation, and the delivery ledger should say which of the two
    it is recording.
