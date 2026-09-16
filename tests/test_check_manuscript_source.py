@@ -192,6 +192,7 @@ def test_commented_document_sentinels_fail(copy):
                          "\\newcommand{\\d}[1]{\\renewcommand#1{}}\n\\d\\begin{}", "\\newcommand\\d{\\renewcommand}\n\\d\\begin{}",  # wrappers
                          "\\renewcommand{#1}{}", "\\newcommand", "\\newcommand\\foo\\bar", "\\NewCommandCopy\\foo\\bar",  # a definer whose target is not a control word right there, followed by a body
                          "\\renewenvironment{begin}{}{}", "\\newenvironment*{ end }{}{}",  # environment definers naming a sentinel word
+                         "\\newtheorem{document}{Broken}", "\\newtheorem*{end}{Broken}", "\\newtheorem\n{begin}[section]{Broken}",  # theorem environments alike
                          "\\newcommand{\\foo}[1]{\\begin{docu#1}}", "\\newcommand{\\foo}[1]{\\end{#1}}", "\\begin{ center }\\end{ center }"):  # environment names that are not plain
         tex.write_text(text.replace("\\begin{document}", redefinition + "\n\\begin{document}", 1))
         code, out = run(copy)

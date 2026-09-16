@@ -918,3 +918,11 @@ Two findings from the automated Codex review of commit `af8f2a3975`; both accept
 | --- | --- | --- | --- | --- |
 | 146 | P2 | A closing brace before its opener summed to depth zero at the sentinels | Accepted. The running brace depth before the closing sentinel may never go negative: the first closer with no opener before it fails the source, since TeX stops there with an error before the document. The scenario was confirmed to pass the previous revision. Test: `}` then `{` before the sentinels (fails); a `}` after `\end{document}` (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
 | 147 | P2 | A `\fi` before its opener summed to depth zero at the sentinels | Accepted, by the same rule applied to conditional tokens: the running conditional depth before the closing sentinel may never go negative. The scenario was confirmed to pass the previous revision. Test: `\fi` then `\iffalse` before the sentinels with the real `\fi` after them (fails); a `\fi` after `\end{document}` (passes) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |
+
+## Eighty-third round (pull request #95, unmatched-closer revision)
+
+One finding from the automated Codex review of commit `d794f9c534`; accepted, on the fail-closed side.
+
+| # | Priority | Finding (short) | Action | Where in the revision |
+| --- | --- | --- | --- | --- |
+| 148 | P2 | `\newtheorem{document}` escaped the environment-definer rule | Accepted. The rule now covers every `...theorem...` macro alongside the `...environment...` macros, since `\newtheorem` defines an environment too: one targeting `document`, `begin`, `end` or `enddocument` fails the source. The scenario, its starred form and its optional-argument form were confirmed to pass the previous revision. Tests: `\newtheorem{document}{Broken}`, `\newtheorem*{end}{Broken}` and a line-broken `\newtheorem` with `{begin}[section]{Broken}` (all fail) | `scripts/check_manuscript_source.py`, `tests/test_check_manuscript_source.py` |

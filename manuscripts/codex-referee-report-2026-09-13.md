@@ -1817,3 +1817,18 @@ No other findings were posted in the eighty-first round.
 > AGENTS.md reference: AGENTS.md:L31-L31
 
 No other findings were posted in the eighty-second round.
+
+# Eighty-third round: review of the unmatched-closer revision (pull request #95)
+
+**Reviewed commit:** `d794f9c534` (findings 146–147).
+**Review posted:** 2026-09-16T00:07:07Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 148 (P2) — `scripts/check_manuscript_source.py`, line 183
+
+> **Treat newtheorem as an environment definer**
+>
+> When an allowlisted `\newtheorem{document}{Broken}` (or a target such as `begin` or `end`) appears before the opening sentinel, `check_tex` returns no problems because this pattern recognizes only command names containing `Environment`. LaTeX's `\newtheorem` also defines an environment and attempts to define the corresponding control sequences, so targeting the existing `document` environment raises an error before the manuscript body is reached. Validate `\newtheorem` targets alongside the other environment definers so this integrity check fails closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the eighty-third round.
