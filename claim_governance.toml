@@ -131,9 +131,10 @@ message = "the Python oracle must stay exact (fractions.Fraction and int only)"
 # claims that are not nodes of the TLA+ proof-dependency ledger (finite-domain
 # certificates, historical and bridge claims, PSC itself).  Every node of the
 # TLA+ ledger has a generated entry between the markers at the end of this
-# file, written by scripts/make_ledger.py from tla/ledger.json (the proof
-# records) through the vendored tools/proof_records/generate_ledgers.py; do
-# not edit that block, edit the record table and regenerate.  Surfaces:
+# file, written by scripts/make_ledger.py from the proof-record table it
+# holds (serialized to tla/ledger.json, itself generated) through the vendored
+# tools/proof_records/generate_ledgers.py; do not edit that block or
+# ledger.json, edit the table in scripts/make_ledger.py and regenerate.  Surfaces:
 #   map    = docs/claim-status-and-source-map-2026-09-13.md (the live claim map)
 #   ledger = docs/conjecture-ledger.md (prose dependency ledger)
 #   weekly = docs/completion-ledger-2026-09-14.md (weekly snapshot and priority table)
