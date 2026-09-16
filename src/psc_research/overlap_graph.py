@@ -60,18 +60,27 @@ class Field:
         return (x[0] - y[0], x[1] - y[1], x[2] - y[2])
 
     def mul(self, x: Elt, y: Elt) -> Elt:
-        c = [Fraction(0)] * 5
-        for i in range(3):
-            for j in range(3):
-                c[i + j] += x[i] * y[j]
+        # Optimization: unroll the loops to avoid list allocations and overhead
+        x0, x1, x2 = x
+        y0, y1, y2 = y
+        c0 = x0 * y0
+        c1 = x0 * y1 + x1 * y0
+        c2 = x0 * y2 + x1 * y1 + x2 * y0
+        c3 = x1 * y2 + x2 * y1
+        c4 = x2 * y2
+
         # reduce b^4 then b^3 using b^3 = T b^2 - U b + D
-        for k in (4, 3):
-            if c[k]:
-                c[k - 1] += self.T * c[k]
-                c[k - 2] -= self.U * c[k]
-                c[k - 3] += self.D * c[k]
-                c[k] = Fraction(0)
-        return (c[0], c[1], c[2])
+        if c4:
+            c3 += self.T * c4
+            c2 -= self.U * c4
+            c1 += self.D * c4
+
+        if c3:
+            c2 += self.T * c3
+            c1 -= self.U * c3
+            c0 += self.D * c3
+
+        return (c0, c1, c2)
 
     def inv(self, x: Elt) -> Elt:
         """Solve mult-by-x (a Q-linear map) = 1 by Gaussian elimination."""
@@ -93,7 +102,6 @@ class Field:
             return 0
         while True:
             lo, hi = self.lo, self.hi
-            vals = [x[0] + x[1] * t + x[2] * t * t for t in (lo, hi)]
             # bound the polynomial on [lo,hi]: monotone pieces suffice after refinement,
             # so use the crude interval extension and refine until it excludes zero
             a1 = x[1]; a2 = x[2]
