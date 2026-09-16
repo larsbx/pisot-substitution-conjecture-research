@@ -1,4 +1,10 @@
-"""A degree-`n` Pisot screen, exact and fail-closed.
+"""Oracle for the degree-`n` Pisot screen, exact and fail-closed.
+
+The canonical implementation is `mojo/psc/pisot_screen.mojo`. This module is
+the Python oracle it was differentially tested against, kept in step with it
+function for function; `mojo/tests/test_pisot_screen.mojo` and
+`tests/test_pisot_screen.py` pin the same classifications. The literature gate
+for the diagnostic is `docs/pisot-screen-literature-gate-2026-09-16.md`.
 
 `mojo/psc/pisot.mojo` decides the Pisot condition for degree three only, and it
 does so with a cubic-specific trick: for one real root and one conjugate pair,
