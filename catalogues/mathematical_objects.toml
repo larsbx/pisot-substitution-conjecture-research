@@ -1,0 +1,166 @@
+schema_version = 1
+title = "PSC mathematical-object catalogue"
+description = "Canonical registry of the mathematical objects used by the live PSC research program."
+
+[[taxonomy]]
+id = "dynamics"
+name = "Substitution dynamics"
+description = "Substitutions, words, tilings, and their finite symbolic dynamics."
+
+[[taxonomy]]
+id = "automata"
+name = "Finite-state objects"
+description = "Graphs, automata, components, and finite carriers used in exact reductions."
+
+[[taxonomy]]
+id = "algebra"
+name = "Exact algebra"
+description = "Finite-dimensional exact arithmetic and algebraic invariants."
+
+[[taxonomy]]
+id = "certificates"
+name = "Certificates and evidence"
+description = "Replayable bounded-domain objects; never general theorems by themselves."
+
+[[object]]
+id = "substitution"
+name = "Substitution"
+taxonomy = "dynamics"
+status = "definition"
+scope = "A non-erasing morphism on the finite alphabet, with the standing program usually restricted to primitive irreducible Pisot substitutions."
+definition = "The generating morphism sigma; its incidence matrix controls abelianized growth."
+canonical = "mojo/substitution_dynamics/substitution.mojo"
+oracle = "src/psc_research/bpa.py"
+related = ["incidence-matrix", "balanced-pair-automaton", "seed-patch-overlap-automaton"]
+
+[[object]]
+id = "incidence-matrix"
+name = "Incidence matrix"
+taxonomy = "algebra"
+status = "definition"
+scope = "Exact integer matrix of letter counts in substitution images."
+definition = "M[i,j] counts occurrences of letter i in sigma(j)."
+canonical = "mojo/substitution_dynamics/substitution.mojo"
+oracle = "src/psc_research/pisot_screen.py"
+related = ["substitution", "perron-cubic-field", "wedge-defect"]
+
+[[object]]
+id = "balanced-pair-state"
+name = "Balanced-pair state"
+taxonomy = "dynamics"
+status = "definition"
+scope = "A normalized ordered word pair with equal Parikh vector."
+definition = "A state (u,v) satisfying pi(u)=pi(v), reduced according to the BPA normalization contract."
+canonical = "mojo/substitution_dynamics/balanced_pairs.mojo"
+oracle = "src/psc_research/bpa.py"
+related = ["balanced-pair-automaton", "producer", "wedge-defect"]
+
+[[object]]
+id = "balanced-pair-automaton"
+name = "Balanced-pair automaton"
+taxonomy = "automata"
+status = "open-boundary"
+scope = "Exact reachable normalized balanced-pair graph; general finiteness remains open."
+definition = "Inflate, factor at coincidences, normalize, and retain the directed child relation."
+canonical = "mojo/substitution_dynamics/automaton.mojo"
+oracle = "src/psc_research/bpa.py"
+related = ["balanced-pair-state", "recurrent-scc", "producer"]
+
+[[object]]
+id = "seed-patch-overlap-state"
+name = "Seed-patch overlap state"
+taxonomy = "dynamics"
+status = "definition"
+scope = "An oriented interior overlap of two prototiles with exact displacement in Z[beta]."
+definition = "The triple (top tile, bottom tile, displacement), with coincidence exactly (i,i,0)."
+canonical = "mojo/psc/overlap_seed_patch.mojo"
+oracle = "src/psc_research/overlap_graph.py"
+related = ["seed-patch-overlap-automaton", "coincidence", "perron-cubic-field"]
+
+[[object]]
+id = "seed-patch-overlap-automaton"
+name = "Seed-patch overlap automaton"
+taxonomy = "automata"
+status = "proved-finite"
+scope = "Reachable graph from legal two-letter swap seed superpositions; finiteness follows from bounded discrepancy."
+definition = "Inflation graph of exact seed-patch overlap states. Capped construction is inconclusive and fails closed."
+canonical = "mojo/psc/overlap_seed_patch.mojo"
+oracle = "src/psc_research/overlap_graph.py"
+related = ["seed-patch-overlap-state", "coincidence", "overlap-productivity"]
+
+[[object]]
+id = "coincidence"
+name = "Coincidence"
+taxonomy = "dynamics"
+status = "definition"
+scope = "Equal tile types with equal support origin inside an overlap automaton."
+definition = "The terminal overlap state (i,i,0)."
+canonical = "mojo/psc/overlap_seed_patch.mojo"
+oracle = "src/psc_research/overlap_graph.py"
+related = ["seed-patch-overlap-state", "overlap-productivity", "producer"]
+
+[[object]]
+id = "overlap-productivity"
+name = "Overlap productivity"
+taxonomy = "automata"
+status = "open-general"
+scope = "Reachability of a coincidence from an overlap state; the general one-seed theorem remains the primary open gate."
+definition = "An overlap is productive when some directed descendant is a coincidence."
+canonical = "mojo/psc/overlap_seed_patch.mojo"
+oracle = "src/psc_research/overlap_graph.py"
+related = ["seed-patch-overlap-automaton", "coincidence", "finite-corpus-certificate"]
+
+[[object]]
+id = "recurrent-scc"
+name = "Recurrent strongly connected component"
+taxonomy = "automata"
+status = "definition"
+scope = "A recurrent component of a finite directed carrier; use in BPA arguments is conditional on the required finiteness and realization hypotheses."
+definition = "A strongly connected component supporting a directed cycle and the stated closure property."
+canonical = "mojo/substitution_dynamics/automaton.mojo"
+oracle = "src/psc_research/bpa.py"
+related = ["balanced-pair-automaton", "producer", "wedge-defect"]
+
+[[object]]
+id = "producer"
+name = "Producer state"
+taxonomy = "automata"
+status = "open-general"
+scope = "A balanced-pair state whose inflation and factorization produces a coincidence sibling under the repository definition."
+definition = "The local productive witness used in the SCC Producer program."
+canonical = "mojo/psc/bpa.mojo"
+oracle = "src/psc_research/bpa.py"
+related = ["balanced-pair-state", "recurrent-scc", "coincidence"]
+
+[[object]]
+id = "perron-cubic-field"
+name = "Cubic Perron field element"
+taxonomy = "algebra"
+status = "definition"
+scope = "Exact rank-three representation a0+a1 beta+a2 beta^2 modulo the irreducible characteristic cubic."
+definition = "The exact coordinate type used for ternary overlap displacement and sign decisions."
+canonical = "mojo/psc/perron_field3.mojo"
+oracle = "src/psc_research/overlap_graph.py"
+related = ["incidence-matrix", "seed-patch-overlap-state"]
+
+[[object]]
+id = "wedge-defect"
+name = "Wedge defect"
+taxonomy = "algebra"
+status = "definition"
+scope = "Alternating tensor invariant used to stratify finite balanced-pair carriers by first nonzero defect degree."
+definition = "The exact exterior-algebra obstruction represented by K2, K3, and their higher-degree analogues."
+canonical = "mojo/psc/w3.mojo"
+oracle = "src/psc_research/defect_intertwiner.py"
+related = ["incidence-matrix", "balanced-pair-state", "recurrent-scc"]
+
+[[object]]
+id = "finite-corpus-certificate"
+name = "Finite-corpus certificate"
+taxonomy = "certificates"
+status = "finite-domain"
+scope = "Replayable exact result over an explicitly enumerated domain; caps or incomplete enumeration are inconclusive."
+definition = "A bounded-domain witness with enough metadata to replay the exact computation and audit its completeness contract."
+canonical = "mojo/swap_overlap_census.mojo"
+oracle = "scripts/swap_overlap_census.py"
+related = ["seed-patch-overlap-automaton", "overlap-productivity"]

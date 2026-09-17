@@ -39,6 +39,11 @@ if python3 scripts/make_ledger.py --check >/dev/null; then
 else
     bad "generated ledger surfaces are stale (run: python3 scripts/make_ledger.py)"
 fi
+if python3 scripts/make_math_catalogue.py --check >/dev/null; then
+    ok "generated mathematical-object catalogue is current"
+else
+    bad "mathematical-object catalogue drift (run: python3 scripts/make_math_catalogue.py)"
+fi
 if python3 scripts/check_manuscript_source.py; then
     ok "manuscript sources are intact LaTeX and PDF"
 else
