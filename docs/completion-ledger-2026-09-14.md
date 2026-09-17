@@ -20,6 +20,14 @@ primitive irreducible Pisot
 
 Thus **overlap productivity for one swap seed is the only open premise on the current shortest PDS route** (manuscript Theorem 5.38 / Open Problem 5.35).
 
+The forward seed-relative occurrence dictionary is no longer part of that
+gap: the path–occurrence lemma in
+`docs/p1-overlap-seed-growth-bridge-2026-09-17.md` proves that the
+multiple-edge graph counts actual residual overlap occurrences per inherited
+seed period, including repeated child types and the proper-power collapse
+case. The remaining gap is a rigidity theorem excluding a full-growth closed
+nonproductive realized component; the accounting lemma alone does not do so.
+
 The ordered affine-cycle identity is now a proved supporting lemma: actual
 prefix-grid occurrences satisfy `w'=Mw+q-p`, with exact replayable pump
 certificates. It is not a productivity theorem. The determinant-two golden

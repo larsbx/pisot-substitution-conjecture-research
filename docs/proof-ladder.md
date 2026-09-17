@@ -40,6 +40,12 @@ The two-letter periodic swap patch uses distinct tile types; `ab` need not be a 
 
 **OPEN (Open Problem 5.35).** For every PIP substitution it is enough to prove existence of distinct letters `a != b` such that every overlap reachable from the seed overlaps of `(ab,ba)` is productive.
 
+The seed-relative growth accounting needed for this attack is now exact:
+`docs/p1-overlap-seed-growth-bridge-2026-09-17.md` proves that the
+multiple-edge update counts actual residual occurrences per inherited seed
+period. The unresolved step is not the occurrence dictionary but the rigidity
+claim excluding a full-growth, child-closed nonproductive realized component.
+
 The ordered strict-zipper layer now has an exact finite affine-pump lemma:
 every actual child occurrence satisfies `w'=Mw+q-p`, and a replayed cycle
 satisfies the iterated cycle identity. This does not close the gate. A
