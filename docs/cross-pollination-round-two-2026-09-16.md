@@ -179,7 +179,7 @@ R7 also skipped two process gates. That is a different failure from a wrong stat
 - N1 and N2 rest on literature statements marked `[L]`; nothing here promotes them, and the residual-class reformulation is a definition, not a theorem.
 - The frontier comparison in N1 is an analogy with a stated leak: substitution dynamics describes the dynamical plane of a residual parameter, and parameter-plane shrinking needs a priori bounds.
 - Section 2 concerns engineering structure; none of it bears on `OverlapProductivity`, `ResidualClosureNoMissingLinks`, or any conjecture status.
-- `coop_substrate` was not read and is not assessed.
+- `coop_substrate` was not read and is not assessed. **Read on 2026-09-17**, with eleven further repositories this audit never listed: `docs/cross-pollination-round-three-2026-09-17.md`.
 
 ## 5. Citation targets to pin before any ledger uses them
 

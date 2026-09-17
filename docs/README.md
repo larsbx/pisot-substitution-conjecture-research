@@ -68,6 +68,12 @@ Change the ledger entry and every surface in the same commit.
   `coverage` check does and does not conclude from that.
 - `cross-program-bridge-psc-nlapjt-2026-09-12.md` — structural comparison
   with the NLAP-JT finite Mandelbrot program.
+- `cross-pollination-round-two-2026-09-16.md` — the comparative audit across
+  both research programs, `finite-math-kernels`, and four adjacent
+  repositories, with the running delivery record of its ranked items.
+- `cross-pollination-round-three-2026-09-17.md` — the rest of the estate:
+  twelve repositories round two never opened, and the six rulings they state
+  independently of each other and of this program.
 
 ## Source provenance
 
