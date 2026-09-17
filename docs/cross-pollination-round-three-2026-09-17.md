@@ -135,7 +135,7 @@ R9 is first because it is the only item that answers a defect the estate has alr
 ## 4. Two empty repositories, one of them a name collision `[V]`
 
 - `larsbx/finite-mandelbrot-research` was created on 2026-09-17 and contains one file: a README holding its own title. The live program is `larsbx/finite-mandlebrot-research`, spelled with the transposition, and carries the whole Mandelbrot repository. Anyone or anything resolving the correctly spelled name reaches the empty one. `FMK: README.md` and both cross-pollination audits cite the misspelled name as canonical, so the live name is the one with the typo in it.
-- `larsbx/cross-pollinated` is likewise a single README holding its title. Nothing in either audit refers to it.
+- `larsbx/cross-pollinated` is likewise a single README holding its title. Nothing in either audit refers to it. *(Resolved after this audit was written: R12 was delivered there. See section 6.)*
 
 Neither is a mathematical matter. Both are recorded because a reader who searches the estate by name will find them first.
 
@@ -146,3 +146,40 @@ Neither is a mathematical matter. Both are recorded because a reader who searche
 - `MT:`'s three instruments are a specification, not a running system: its own README says implementation is not authorized and S0 is blocked. Nothing here treats its guarantees as available.
 - The six repositories listed as not read in section 0 are not assessed, and their absence from section 1 is not evidence that they lack the rulings.
 - `coop_substrate`'s charter constants are flagged in its own source as placeholders awaiting declaration; no number taken from it is a real value, and none is used here.
+
+## 6. Delivered: R12, as a package rather than a document `[V]`
+
+R12 ranked "write P1–P6 once, as operational rulings, each citing the
+repositories that state it". It is delivered in `larsbx/cross-pollinated`,
+which was one of the two empty repositories of section 4, as data rather than
+as prose in `ORM:`'s manifesto directory. Two departures from the ranked item,
+both stated rather than hidden:
+
+- **Location.** `ORM:` was not read by this audit and is not in this session's
+  scope, so putting the rulings there was not available. `cross-pollinated` was
+  empty and named for exactly this, which resolves half of section 4 as a side
+  effect.
+- **Form.** `rulings.toml` and `vocabularies.toml` are machine-readable, and
+  `python -m crosspollinated` refuses malformed data: a ruling with no
+  instance, an instance with no path, a term outside the declared classes, a
+  repository cited but absent from the estate, or the `inconclusive` class
+  removed. A document could not refuse any of these.
+
+What it deliberately does **not** contain is a checker. The mechanisms these
+rulings describe live where they were built — `FMK: proof_records`,
+`FMK: audit/claim_governance`, `CS:`'s append gate, the verifier `MT:`
+specifies — and restating one in a package that no repository's CI runs would
+give it an authority it has not earned, which is what P4 forbids. What it adds
+instead is `CONFORMANCE.md`: for each ruling, the test a repository must be
+able to show, and the near-miss that does not count. Those tests are
+generalizations of instruments already built in this estate, not new
+requirements.
+
+Every `instance` there is a citation, not a verification: it records that a
+repository states the ruling at that path, never that it obeys it. One entry —
+`sprucegoose: UNEXECUTED` — is carried from round two and was not read directly;
+its entry says so.
+
+P6 is still stated once. The package reports it as not yet cross-pollinated
+rather than filling the gap, and a test pins that the report does so. R13
+remains open and is the item that would close it.
