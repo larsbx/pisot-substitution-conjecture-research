@@ -253,12 +253,13 @@ jobs:
           out=$(pixi run mojo run -I . numeration_addition_census.mojo 2>&1) || status=$?
           printf '%s\n' "$out"
           (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
-          grep -Fx 'corpus: 4554  stride: 200  sampled: 23' <<<"$out"
-          grep -Fx 'greedy digits equal the path digits: 1  differ: 22' <<<"$out"
+          grep -Fx 'corpus: 4554  stride: 25  sampled: 183' <<<"$out"
+          grep -Fx 'greedy digits equal the path digits: 3  differ: 180' <<<"$out"
           grep -Fx 'basis recurrence mismatches: 0' <<<"$out"
-          grep -Fx 'addition automata built: 14  refused at the cap: 2  skipped for alphabet: 7' <<<"$out"
-          grep -Fx 'sums checked: 8750  false rejects: 0  false accepts: 0' <<<"$out"
-          grep -Fx 'largest minimised addition automaton: 485' <<<"$out"
+          grep -Fx 'addition automata built: 109  refused at the cap: 8  skipped for alphabet: 66' <<<"$out"
+          grep -Fx 'sums checked: 68125  false rejects: 0  false accepts: 0' <<<"$out"
+          grep -Fx 'powered images past the certified overlap domain: 67  of those, built: 1' <<<"$out"
+          grep -Fx 'largest minimised addition automaton: 494' <<<"$out"
 
   finite-classification:
     runs-on: ubuntu-latest

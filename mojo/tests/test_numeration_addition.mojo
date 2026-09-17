@@ -29,7 +29,10 @@ from psc.linear_numeration import (
     max_greedy_digit,
     recurrence,
 )
-from psc.numeration_addition import addition_automaton, triple_word
+from psc.numeration_addition import addition_automaton, powered_field, triple_word
+from psc.perron_field3 import build_perron_field3
+from psc.bpa import substitution_incidence
+from finite_linear_algebra.mat3 import Mat3
 from psc.oa_overlap_types import prolongable_point
 
 
@@ -123,6 +126,71 @@ def test_the_two_numerations_are_not_the_same_presentation() raises:
     )
 
 
+def prolongable_only_at_a_power() -> List[List[Int]]:
+    """`0 -> 1, 1 -> 2, 2 -> 02`: prolongable at the cube, whose images run to
+    length four and so leave the domain `build_perron_field3` is certified on.
+
+    This is a corpus specimen, not a contrivance: the cube of a three-letter
+    substitution can have images of length up to 27, and every specimen whose
+    prolongable power exceeds one is a candidate for leaving that domain."""
+    var a: List[Int] = [1]
+    var b: List[Int] = [2]
+    var c: List[Int] = [0, 2]
+    return substitution(a, b, c)
+
+
+def test_a_powered_substitution_builds_its_own_field() raises:
+    """The field must come from the powered matrix, and the overlap kernel's
+    entry point cannot supply it.
+
+    `build_perron_field3` is certified only for image lengths at most three --
+    the audited domain of its legacy unchecked predicates -- and a cube of
+    three-letter images leaves that domain by construction. Such a specimen is
+    otherwise perfectly eligible for this numeration, so refusing it would be
+    an artefact of which function was asked, not a fact about the
+    substitution."""
+    var sigma = prolongable_only_at_a_power()
+    var point = prolongable_point(sigma)
+    assert_equal(point.power, 3)
+    var tau = prolongable_form(sigma)
+    var longest = 0
+    for a in range(3):
+        if len(tau[a]) > longest:
+            longest = len(tau[a])
+    assert_true(longest > 3)                    # outside the audited domain
+
+    var refused = False
+    try:
+        _ = build_perron_field3(Mat3(substitution_incidence(tau)))
+    except:
+        refused = True
+    assert_true(refused)                        # and it says so, rather than guessing
+
+    # The same cubic, screened by the exact coefficient tests, is available.
+    var field = powered_field(tau)
+    var chi = Mat3(substitution_incidence(tau)).charpoly()
+    assert_equal(field.chi0, chi[0])
+    assert_equal(field.chi1, chi[1])
+    assert_equal(field.chi2, chi[2])
+
+    # And the automaton builds and recognises addition for that specimen.
+    var u = longest_basis(tau, point.letter, 20)
+    var radix = max_greedy_digit(u, 200) + 1
+    var result = addition_automaton(tau, point.letter, radix, 4000)
+    assert_true(result.accepted())
+    var add = result.automaton.copy()
+    for n in range(20):
+        for m in range(20):
+            var true_word = triple_word(
+                radix, greedy_digits(u, n), greedy_digits(u, m), greedy_digits(u, n + m)
+            )
+            assert_true(add.accepts(true_word))
+            var false_word = triple_word(
+                radix, greedy_digits(u, n), greedy_digits(u, m), greedy_digits(u, n + m + 1)
+            )
+            assert_false(add.accepts(false_word))
+
+
 def test_the_addition_automaton_accepts_every_true_sum_and_no_false_one() raises:
     """The substantive check. Every `n + m` below the bound is accepted, and
     every near miss `n + m + d` is rejected -- so the automaton is the addition
@@ -133,7 +201,9 @@ def test_the_addition_automaton_accepts_every_true_sum_and_no_false_one() raises
     var u = longest_basis(tau, point.letter, 20)
     var radix = max_greedy_digit(u, 400) + 1
     assert_equal(radix, 2)
-    var add = addition_automaton(tau, point.letter, radix, 4000)
+    var result = addition_automaton(tau, point.letter, radix, 4000)
+    assert_true(result.accepted())
+    var add = result.automaton.copy()
     assert_equal(add.letters, 8)                # triples over a binary alphabet
     assert_equal(add.states(), 137)
     assert_equal(minimised(add).states(), 44)
@@ -167,7 +237,7 @@ def test_leading_zeros_change_no_verdict() raises:
     var point = prolongable_point(sigma)
     var tau = prolongable_form(sigma)
     var u = longest_basis(tau, point.letter, 20)
-    var add = addition_automaton(tau, point.letter, 2, 4000)
+    var add = addition_automaton(tau, point.letter, 2, 4000).automaton.copy()
     var word = triple_word(2, greedy_digits(u, 5), greedy_digits(u, 9), greedy_digits(u, 14))
     assert_true(add.accepts(word))
     var padded = List[Int]()
@@ -178,19 +248,28 @@ def test_leading_zeros_change_no_verdict() raises:
     assert_true(add.accepts(padded))
 
 
-def test_a_construction_with_no_finite_answer_raises() raises:
-    """The state set is finite by the imported Pisot theorem, not by anything
-    proved here, so the cap is the honest boundary: past it the construction
-    refuses rather than returning a truncated automaton."""
+def test_a_search_out_of_budget_refuses_and_malformed_input_raises() raises:
+    """Two different failures, which must not reach a caller alike.
+
+    The state set is finite by the imported Pisot theorem, not by anything
+    proved here, so a cap reached is an inconclusive *search*: it comes back as
+    a refusal carrying no automaton. Malformed input is an impossible state and
+    raises. A caller that caught both through one channel could report a defect
+    as inconclusive evidence, which is exactly what the census must not do."""
     var sigma = tribonacci()
     var point = prolongable_point(sigma)
     var tau = prolongable_form(sigma)
-    var caught = False
-    try:
-        _ = addition_automaton(tau, point.letter, 2, 8)
-    except:
-        caught = True
-    assert_true(caught)
+
+    var starved = addition_automaton(tau, point.letter, 2, 8)
+    assert_false(starved.accepted())
+    assert_equal(starved.explored, 0)
+    # A refusal carries no automaton worth reading: nothing is accepted by it.
+    var word: List[Int] = [0, 0, 0]
+    assert_false(starved.automaton.accepts(word))
+
+    var enough = addition_automaton(tau, point.letter, 2, 4000)
+    assert_true(enough.accepted())
+    assert_equal(enough.explored, 137)
 
     var refused_radix = False
     try:
@@ -216,11 +295,13 @@ def main() raises:
     print("[PASS] test_greedy_digits_round_trip")
     test_the_two_numerations_are_not_the_same_presentation()
     print("[PASS] test_the_two_numerations_are_not_the_same_presentation")
+    test_a_powered_substitution_builds_its_own_field()
+    print("[PASS] test_a_powered_substitution_builds_its_own_field")
     test_the_addition_automaton_accepts_every_true_sum_and_no_false_one()
     print("[PASS] test_the_addition_automaton_accepts_every_true_sum_and_no_false_one")
     test_leading_zeros_change_no_verdict()
     print("[PASS] test_leading_zeros_change_no_verdict")
-    test_a_construction_with_no_finite_answer_raises()
-    print("[PASS] test_a_construction_with_no_finite_answer_raises")
-    print("7 numeration and addition tests passed.")
+    test_a_search_out_of_budget_refuses_and_malformed_input_raises()
+    print("[PASS] test_a_search_out_of_budget_refuses_and_malformed_input_raises")
+    print("8 numeration and addition tests passed.")
     require_contract("the linear numeration of a substitution round-trips its greedy digits, its agreement with the Dumont-Thomas path digits is decided per substitution rather than assumed, and the addition automaton built by exact Pisot state exploration is the addition relation on a stated bounded domain; the general recognisability of addition remains an imported theorem, gated in docs/automatic-sequence-route-literature-gate-2026-09-17.md")

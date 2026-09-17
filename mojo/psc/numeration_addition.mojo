@@ -42,8 +42,14 @@ constant.
 
 That the reachable set is finite at all is the content of the imported theorem
 (`docs/automatic-sequence-route-literature-gate-2026-09-17.md`), not of this
-code: the exploration carries a cap and *raises* when it is exceeded. An
-automaton returned here is a construction whose boundedness was observed on
+code. So the exploration carries a cap, and exceeding it is an *outcome*, not
+an error: `AdditionResult` carries it as a refusal, the way a bounded search in
+this repository reports an exhausted budget. Malformed input still raises,
+because that is an impossible state rather than an inconclusive search, and the
+two must not reach a caller through the same channel -- a caller that caught
+both would be free to report a defect as inconclusive evidence.
+
+An automaton returned here is a construction whose boundedness was observed on
 this input, never a proof that addition is recognisable in general.
 """
 
@@ -51,17 +57,50 @@ from finite_linear_algebra.mat3 import Mat3
 from psc.automata import Dfa
 from psc.bpa import substitution_incidence
 from psc.linear_numeration import basis, basis_obeys_recurrence, recurrence
-from psc.perron_field3 import (
-    CubicElt,
-    PerronField3,
-    build_perron_field3,
-    cubic_sub_checked,
-    sign_at_perron,
-)
+from psc.perron_field3 import CubicElt, PerronField3, cubic_sub_checked, sign_at_perron
+from psc.pisot import is_irreducible_cubic, is_pisot_charpoly, is_primitive
 
 
 def _key(a: Int, b: Int, c: Int) -> String:
     return String(a) + "," + String(b) + "," + String(c)
+
+
+comptime POWERED_ENTRY_BOUND = 64
+
+
+def powered_field(tau: List[List[Int]]) raises -> PerronField3:
+    """The cubic field of a substitution that may be a power of another.
+
+    `build_perron_field3` is deliberately not used here. That entry point is
+    certified only for image lengths at most three, the audited domain of the
+    overlap kernel's legacy unchecked predicates, and a substitution made
+    prolongable by raising it to a power legitimately leaves that domain: a
+    cube of three-letter images has images up to length 27. Sending a powered
+    matrix through it would be asking a function for an answer outside the
+    domain it states, and it rightly refuses.
+
+    What the field actually needs is the characteristic polynomial, so the
+    screen here is on that polynomial, with the same exact tests the corpus
+    screen uses: irreducibility by rational roots, and the Pisot property by
+    Sturm counting. Both take coefficients, and neither is the unchecked
+    matrix-level predicate the other domain restricts. The entry bound is this
+    module's own stated boundary, wide enough for any power of a three-letter
+    substitution and narrow enough that the characteristic polynomial's
+    intermediates stay small."""
+    var m = Mat3(substitution_incidence(tau))
+    for row in range(3):
+        for col in range(3):
+            var entry = m.at(row, col)
+            if entry < 0 or entry > POWERED_ENTRY_BOUND:
+                raise Error("incidence entry outside the powered-substitution bound")
+    if not is_primitive(m):
+        raise Error("the numeration needs a primitive substitution")
+    var chi = m.charpoly()
+    if not is_irreducible_cubic(chi):
+        raise Error("the powered characteristic polynomial is reducible")
+    if not is_pisot_charpoly(chi):
+        raise Error("the powered characteristic polynomial is not Pisot")
+    return PerronField3(chi[0], chi[1], chi[2])
 
 
 def _completable(field: PerronField3, v0: Int, v1: Int, v2: Int, reserve: Int) raises -> Bool:
@@ -81,15 +120,44 @@ def _completable(field: PerronField3, v0: Int, v1: Int, v2: Int, reserve: Int) r
     return True
 
 
+struct AdditionResult(Copyable, Movable):
+    """The automaton, or the refusal that no finite state set was found.
+
+    `refused` is the cap being exceeded and nothing else: a search that ran out
+    of budget, which is inconclusive about the specimen. A refused result
+    carries no automaton worth reading, and `accepted` is how a caller asks
+    before reading one."""
+
+    var automaton: Dfa
+    var explored: Int
+    var refused: Bool
+
+    def __init__(out self, automaton: Dfa, explored: Int, refused: Bool):
+        self.automaton = automaton.copy()
+        self.explored = explored
+        self.refused = refused
+
+    def accepted(self) -> Bool:
+        return not self.refused
+
+
+def _refusal(letters: Int) raises -> AdditionResult:
+    """A refusal carries a rejecting one-state automaton, never a truncated
+    exploration that a caller could mistake for the real one."""
+    var delta = List[Int](length=letters, fill=0)
+    var accepting: List[Bool] = [False]
+    return AdditionResult(Dfa(letters, delta, accepting), 0, True)
+
+
 def addition_automaton(
     tau: List[List[Int]], letter: Int, radix: Int, cap: Int
-) raises -> Dfa:
+) raises -> AdditionResult:
     """The addition relation over digit triples packed as `x + radix y + radix^2 z`.
 
-    Refuses a radix below two, a basis that does not obey its own recurrence,
-    and a state set past `cap` -- the last is the case where the construction
-    has no finite answer to give on this input, and saying so is the only
-    honest outcome."""
+    Raises on malformed input -- a radix below two, a non-positive cap, a basis
+    that does not obey its own recurrence -- because those are impossible
+    states, not inconclusive searches. A state set past `cap` comes back as a
+    refusal instead, which is what it is."""
     if radix < 2:
         raise Error("a digit alphabet has at least two digits")
     if cap < 1:
@@ -98,7 +166,7 @@ def addition_automaton(
         raise Error("the basis does not obey the characteristic recurrence")
     var u = basis(tau, letter, 3)
     var c = recurrence(tau)
-    var field = build_perron_field3(Mat3(substitution_incidence(tau)))
+    var field = powered_field(tau)
     # A digit sum lies in [-(radix-1), 2(radix-1)], and the digits below the
     # current position can contribute a bounded multiple of that; three times
     # the largest digit sum is past any reachable reserve for a Pisot basis.
@@ -137,10 +205,7 @@ def addition_automaton(
                     at = i
             if at < 0:
                 if len(keys) >= cap:
-                    raise Error(
-                        "addition automaton exceeded the state cap: the"
-                        " construction found no finite state set on this input"
-                    )
+                    return _refusal(letters)
                 keys.append(key)
                 v0.append(n0)
                 v1.append(n1)
@@ -155,7 +220,7 @@ def addition_automaton(
         accepting.append(
             not dead[i] and v0[i] * u[2] + v1[i] * u[1] + v2[i] * u[0] == 0
         )
-    return Dfa(letters, delta, accepting)
+    return AdditionResult(Dfa(letters, delta, accepting), len(keys), False)
 
 
 def triple_word(

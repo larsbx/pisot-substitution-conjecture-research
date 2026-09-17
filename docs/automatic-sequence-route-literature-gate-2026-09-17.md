@@ -72,11 +72,22 @@ minimised, over the eight triples of a binary alphabet; every one of the 3,600
 sums below 60 is accepted and no near miss is.
 
 `mojo/numeration_addition_census.mojo` carries that over the corpus, and keeps
-three outcomes apart. Over 23 sampled specimens: 14 automata built and
-verified, with 8,750 sums checked, zero false rejects and zero false accepts;
-2 constructions refused at the state cap; 7 specimens skipped because their
+three outcomes apart. Over 183 sampled specimens: 109 automata built and
+verified, with 68,125 sums checked, zero false rejects and zero false accepts;
+8 constructions refused at the state cap; 66 specimens skipped because their
 digit alphabet would make the triple alphabet too large to be worth building.
-The largest minimised automaton has 485 states.
+The largest minimised automaton has 494 states.
+
+A substitution made prolongable by a power can have images longer than three,
+which is the domain `build_perron_field3` states it is certified on — that
+entry point serves the overlap kernel's legacy unchecked predicates, and it
+refuses outside it, correctly. Such a specimen is still eligible for this
+numeration, so the field is built here from the powered matrix's own
+characteristic polynomial, screened by the same exact coefficient tests the
+corpus screen uses: rational roots for irreducibility, Sturm counting for the
+Pisot property. 67 of the sampled specimens are past that domain, and the
+census reports how many of them built, so a run says whether it exercised the
+case at all rather than leaving it to inference.
 
 A refusal at the cap is a statement about this exploration's bound, not about
 the specimen: the imported theorem says a finite state set exists for a Pisot
@@ -131,8 +142,8 @@ correct on their own terms; the linear numeration round-trips its greedy
 digits; and the addition automaton, where it was built, is the addition
 relation on the range tested. No claim is made that any coincidence condition
 has been decided, for one substitution or for a family, and none that the
-construction terminates for every specimen — two refusals say otherwise on this
-corpus sample and this cap.
+construction terminates for every specimen — eight refusals say otherwise on
+this corpus sample and this cap.
 
 Three automata now exist for a specimen that builds: admissibility, the letter
 map, and addition. What remains is the formula — the coincidence condition
