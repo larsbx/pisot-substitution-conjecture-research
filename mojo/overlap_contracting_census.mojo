@@ -11,11 +11,11 @@ recorded before any depth statistic.  The Python oracle
 but the specimen-count header).
 """
 
-from psc.bpa import substitution_incidence
-from finite_linear_algebra.mat3 import Mat3
-from psc.pisot import is_pip
+from psc.corpus import STATE_CAP, Specimen, pip_corpus, report_progress
+from psc.histogram import Histogram, max_int
 from psc.overlap_contracting import ContractingBound
 from psc.overlap_seed_patch import (
+    SeedOverlapAutomaton,
     build_seed_overlap_graph_from_tables,
     build_seed_overlap_tables,
     first_left_aligned_depths,
@@ -24,132 +24,90 @@ from psc.overlap_seed_patch import (
 from psc.perron_field3 import CubicElt
 
 
-def image_words() -> List[List[Int]]:
-    var out = List[List[Int]]()
-    for a in range(3):
-        var w1: List[Int] = [a]
-        out.append(w1^)
-    for a in range(3):
-        for b in range(3):
-            var w2: List[Int] = [a, b]
-            out.append(w2^)
-    for a in range(3):
-        for b in range(3):
-            for c in range(3):
-                var w3: List[Int] = [a, b, c]
-                out.append(w3^)
-    return out^
+struct RegimeExtremes(Copyable, Movable):
+    """Specimen count and maxima of `m_0` and of the excess within one
+    spectral regime (complex conjugate pair or three real roots)."""
 
+    var specimens: Int
+    var max_m0: Int
+    var max_excess: Int
 
-def histogram_line(label: String, h: List[Int]) -> String:
-    var line = label
-    for d in range(len(h)):
-        if h[d] > 0:
-            line += " " + String(d) + ":" + String(h[d])
-    return line
+    def __init__(out self):
+        self.specimens = 0
+        self.max_m0 = 0
+        self.max_excess = 0
+
+    def absorb(mut self, m0: Int, excess: Int):
+        self.specimens += 1
+        self.max_m0 = max_int(self.max_m0, m0)
+        self.max_excess = max_int(self.max_excess, excess)
+
+    def line(self, label: String) -> String:
+        return (
+            label + " " + String(self.specimens) + "  maximal m0: " + String(self.max_m0)
+            + "  maximal excess: " + String(self.max_excess)
+        )
 
 
 def main() raises:
-    var words = image_words()
-    var n_pip = 0
-    var n_vertices = 0
+    var corpus = pip_corpus()
     var n_nonproductive = 0
     var n_failed = 0
-    var n_complex = 0
-    var n_real = 0
-    var max_m0 = 0
-    var max_excess = 0
-    var max_m0_complex = 0
-    var max_excess_complex = 0
-    var max_m0_real = 0
-    var max_excess_real = 0
-    var hist_m0 = List[Int]()
-    var hist_excess = List[Int]()
-    var hist_spec_excess = List[Int]()
-    var hist_spec_m0 = List[Int]()
-    for _ in range(128):
-        hist_m0.append(0)
-        hist_excess.append(0)
-        hist_spec_excess.append(0)
-        hist_spec_m0.append(0)
+    var complex_regime = RegimeExtremes()
+    var real_regime = RegimeExtremes()
+    var vertex_m0 = Histogram()
+    var vertex_excess = Histogram()
+    var specimen_m0 = Histogram()
+    var specimen_excess = Histogram()
 
-    for i in range(len(words)):
-        for j in range(len(words)):
-            for k in range(len(words)):
-                var sigma = List[List[Int]]()
-                sigma.append(words[i].copy())
-                sigma.append(words[j].copy())
-                sigma.append(words[k].copy())
-                if not is_pip(Mat3(substitution_incidence(sigma))):
-                    continue
-                n_pip += 1
-                try:
-                    var tables = build_seed_overlap_tables(sigma)
-                    var g = build_seed_overlap_graph_from_tables(tables, 20000)
-                    if g.capped:
-                        raise Error("seed-patch overlap graph capped")
-                    if len(nonproductive_overlap_states(g)) > 0:
-                        n_nonproductive += 1
-                        print("NONPRODUCTIVE overlap specimen:", i, j, k)
-                        continue
-                    var left = first_left_aligned_depths(g)
-                    var cb = ContractingBound(tables)
-                    var cache = Dict[CubicElt, Int]()
-                    var worst_e = 0
-                    var worst_m = 0
-                    for v in range(g.size()):
-                        var t = g.states[v].shift
-                        var m0: Int
-                        if t in cache:
-                            m0 = cache[t]
-                        else:
-                            m0 = cb.least_level(g, t)
-                            cache[t] = m0
-                        if m0 < 0 or m0 > left[v]:
-                            raise Error("contracting bound exceeds the left-aligned depth")
-                        if (m0 == 0) != t.is_zero():
-                            raise Error("contracting bound vanishes off offset zero")
-                        var e = left[v] - m0
-                        if e >= len(hist_excess) or m0 >= len(hist_m0):
-                            raise Error("histogram range exceeded")
-                        hist_excess[e] = hist_excess[e] + 1
-                        hist_m0[m0] = hist_m0[m0] + 1
-                        if e > worst_e:
-                            worst_e = e
-                        if m0 > worst_m:
-                            worst_m = m0
-                        n_vertices += 1
-                    hist_spec_excess[worst_e] = hist_spec_excess[worst_e] + 1
-                    hist_spec_m0[worst_m] = hist_spec_m0[worst_m] + 1
-                    if worst_e > max_excess:
-                        max_excess = worst_e
-                    if worst_m > max_m0:
-                        max_m0 = worst_m
-                    if cb.is_complex:
-                        n_complex += 1
-                        if worst_m > max_m0_complex:
-                            max_m0_complex = worst_m
-                        if worst_e > max_excess_complex:
-                            max_excess_complex = worst_e
-                    else:
-                        n_real += 1
-                        if worst_m > max_m0_real:
-                            max_m0_real = worst_m
-                        if worst_e > max_excess_real:
-                            max_excess_real = worst_e
-                except e:
-                    n_failed += 1
-                    print("FAILED specimen:", i, j, k, " ", e)
-                if n_pip % 500 == 0:
-                    print("progress:", n_pip)
+    for s in range(len(corpus)):
+        ref spec = corpus[s]
+        try:
+            var tables = build_seed_overlap_tables(spec.sigma)
+            var g = build_seed_overlap_graph_from_tables(tables, STATE_CAP)
+            if g.capped:
+                raise Error("seed-patch overlap graph capped")
+            if len(nonproductive_overlap_states(g)) > 0:
+                n_nonproductive += 1
+                print("NONPRODUCTIVE overlap specimen:", spec.label())
+                continue
+            var left = first_left_aligned_depths(g)
+            var cb = ContractingBound(tables)
+            var cache = Dict[CubicElt, Int]()
+            var worst_excess = 0
+            var worst_m0 = 0
+            for v in range(g.size()):
+                var t = g.states[v].shift
+                if t not in cache:
+                    cache[t] = cb.least_level(g, t)
+                var m0 = cache[t]
+                if m0 < 0 or m0 > left[v]:
+                    raise Error("contracting bound exceeds the left-aligned depth")
+                if (m0 == 0) != t.is_zero():
+                    raise Error("contracting bound vanishes off offset zero")
+                var excess = left[v] - m0
+                vertex_m0.record(m0)
+                vertex_excess.record(excess)
+                worst_m0 = max_int(worst_m0, m0)
+                worst_excess = max_int(worst_excess, excess)
+            specimen_m0.record(worst_m0)
+            specimen_excess.record(worst_excess)
+            if cb.is_complex:
+                complex_regime.absorb(worst_m0, worst_excess)
+            else:
+                real_regime.absorb(worst_m0, worst_excess)
+        except e:
+            n_failed += 1
+            print("FAILED specimen:", spec.label(), " ", e)
+        report_progress(s + 1)
 
-    print("PIP specimens:", n_pip, " failed:", n_failed, " nonproductive:", n_nonproductive)
-    print("vertices checked:", n_vertices)
-    print("maximum contracting lower bound m0:", max_m0)
-    print(histogram_line("vertices by contracting lower bound m0:", hist_m0))
-    print("maximum excess b - m0:", max_excess)
-    print(histogram_line("vertices by excess b - m0:", hist_excess))
-    print(histogram_line("specimens by maximal excess:", hist_spec_excess))
-    print(histogram_line("specimens by maximal m0:", hist_spec_m0))
-    print("complex-pair specimens:", n_complex, " maximal m0:", max_m0_complex, " maximal excess:", max_excess_complex)
-    print("real-conjugate specimens:", n_real, " maximal m0:", max_m0_real, " maximal excess:", max_excess_real)
+    print("PIP specimens:", len(corpus), " failed:", n_failed, " nonproductive:", n_nonproductive)
+    print("vertices checked:", vertex_m0.total())
+    print("maximum contracting lower bound m0:", vertex_m0.maximum())
+    print(vertex_m0.line("vertices by contracting lower bound m0:"))
+    print("maximum excess b - m0:", vertex_excess.maximum())
+    print(vertex_excess.line("vertices by excess b - m0:"))
+    print(specimen_excess.line("specimens by maximal excess:"))
+    print(specimen_m0.line("specimens by maximal m0:"))
+    print(complex_regime.line("complex-pair specimens:"))
+    print(real_regime.line("real-conjugate specimens:"))

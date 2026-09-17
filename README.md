@@ -12,6 +12,13 @@ The generated [mathematical-object catalogue](docs/mathematical-object-catalogue
 provides a browsable taxonomy with explicit canonical-Mojo and independent-oracle
 links. Its single machine-readable source is `catalogues/mathematical_objects.toml`.
 
+Censuses, catalogues and the taxonomies of the objects they classify are built
+on one shared library (`mojo/psc/corpus.mojo`, `histogram.mojo`, `carrier.mojo`,
+`symmetry.mojo` and the defect kernels), so a driver is a survey over the corpus
+rather than a private copy of it. `mojo/pixi.toml` has one task per driver and
+`pixi run test` loops over every `mojo/tests/test_*.mojo`. See
+`docs/mojo-census-library-2026-09-16.md`.
+
 ## Current mathematical state
 
 Start here:
