@@ -179,7 +179,9 @@ the current ledgers rather than rewriting the archive.
   library every driver is built on, and the retirement of the Python-only
   computation scripts it replaced.
 - `automatic-sequence-route-literature-gate-2026-09-17.md` gates the step from
-  a census to a decision procedure: what the automata kernel and the
+  a census to a decision procedure, and now records the three automata that
+  exist for a specimen that builds -- admissibility, the letter map, and
+  addition -- against what is still missing: what the automata kernel and the
   Dumont-Thomas numeration now establish, and the three things that would have
   to be imported before any family could be decided.
 - `frontier-intersections-2026-09-17.md` looks outward from the two programs:
