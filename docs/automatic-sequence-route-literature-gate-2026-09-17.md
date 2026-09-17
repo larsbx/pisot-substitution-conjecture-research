@@ -44,12 +44,62 @@ substitution[^11] and on a substitution prolongable only at a power. That is
 finite evidence over an enumerated domain, and it is the whole of what is
 established here.
 
+### The addition automaton, built and checked
+
+`mojo/psc/linear_numeration.mojo` — the numeration the substitution itself
+carries: `U_k = |tau^k(c)|`, which obeys the characteristic recurrence of the
+incidence matrix by Cayley–Hamilton, with greedy digits written against it. The
+census below verifies that recurrence on every sampled specimen rather than
+citing it.
+
+`mojo/psc/numeration_addition.mojo` — the third automaton a decision procedure
+needs, after admissibility and the letter map:
+
+    { (x, y, z) : val(x) + val(y) = val(z) }
+
+over digit triples. Reading most significant first, the running difference is
+kept as a window vector over `(U_(j+2), U_(j+1), U_j)`, and the step is
+`v <- (v1 - c2 v0, v2 - c1 v0, -c0 v0 + s)` with `s = x + y - z`. Unpruned that
+exploration diverges, because the step is multiplication by the expanding root.
+What makes it finite is the Pisot property applied as a reachability test: the
+digits still to come can contribute only a bounded reserve, so a state past it
+can never be completed to zero and is sent to a rejecting sink. The comparison
+is exact — the state's value is a cubic element and `sign_at_perron` decides
+its sign at the Perron root by Sturm–Tarski counting, with no float anywhere.
+
+For the tribonacci substitution the construction gives 137 states, 44
+minimised, over the eight triples of a binary alphabet; every one of the 3,600
+sums below 60 is accepted and no near miss is.
+
+`mojo/numeration_addition_census.mojo` carries that over the corpus, and keeps
+three outcomes apart. Over 23 sampled specimens: 14 automata built and
+verified, with 8,750 sums checked, zero false rejects and zero false accepts;
+2 constructions refused at the state cap; 7 specimens skipped because their
+digit alphabet would make the triple alphabet too large to be worth building.
+The largest minimised automaton has 485 states.
+
+A refusal at the cap is a statement about this exploration's bound, not about
+the specimen: the imported theorem says a finite state set exists for a Pisot
+basis, and not finding one inside the cap is a refusal, never a negative.
+
+### The two numerations are not one presentation
+
+The greedy digits against `U` and the Dumont–Thomas path digits coincide for
+some substitutions and not for others: a path digit weighs a child block, whose
+length depends on the letters along the path, and a greedy digit weighs `U_j`
+alone. Over the sampled corpus they agree for 1 specimen and differ for 22.
+`agrees_with_path_digits` decides it per substitution, and the tests carry one
+example of each. This matters for the route: the letter map of
+`psc.dumont_thomas` is indexed by path digits, and addition is recognised over
+greedy digits, so a formula quantifying over both needs the conversion — which
+is a further automaton, and is not built here.
+
 ## What must be imported
 
-**Recognisability of addition.** A first-order formula over the numeration is
-decidable by automata only when addition is recognisable in it: the set of
-triples of representations with `x + y = z` must be accepted by a finite
-automaton. For a Pisot base this is Frougny's theorem,[^4] with the finiteness
+**Recognisability of addition, in general.** The automaton above is built and
+checked per specimen on a bounded domain. That a finite one exists for every
+Pisot basis, and that the construction terminates for all of them rather than
+for the fourteen it happened to terminate for, is Frougny's theorem,[^4] with the finiteness
 side studied by Frougny and Solomyak,[^5] and the logical framework that turns
 recognisability into decidability of a first-order theory is Bruyère, Hansel,
 Michaux and Villemaire,[^6] extended to linear numeration systems of this kind
@@ -74,15 +124,23 @@ anything is concluded from it.
 
 ## Decision
 
-**Proceed, with the claim narrowed to a presentation.** What is claimed now is
-that the Dumont–Thomas numeration presents the fixed point exactly, and that the
-automata operations implementing a decision procedure are correct on their own
-terms. No claim is made that any coincidence condition has been decided, for one
-substitution or for a family.
+**Proceed, with the claim narrowed to constructions checked on bounded
+domains.** What is claimed now: the Dumont–Thomas numeration presents the fixed
+point exactly; the automata operations implementing a decision procedure are
+correct on their own terms; the linear numeration round-trips its greedy
+digits; and the addition automaton, where it was built, is the addition
+relation on the range tested. No claim is made that any coincidence condition
+has been decided, for one substitution or for a family, and none that the
+construction terminates for every specimen — two refusals say otherwise on this
+corpus sample and this cap.
 
-The next step is the encoding, and its acceptance test is agreement with the
-verdicts the degree-3 census already reports on a family it already covers.
-Disagreement there is a bug in the encoding, never a new result.
+Three automata now exist for a specimen that builds: admissibility, the letter
+map, and addition. What remains is the formula — the coincidence condition
+written with quantifiers a decision procedure can eliminate — and the
+conversion between path digits and greedy digits that a formula over both would
+need. Its acceptance test is unchanged: agreement with the verdicts the
+degree-3 census already reports on a family it already covers. Disagreement
+there is a bug in the encoding, never a new result.
 
 ## Sources
 

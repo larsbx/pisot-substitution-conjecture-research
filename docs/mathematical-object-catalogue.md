@@ -13,8 +13,8 @@ link names an independent oracle or diagnostic, never a second source of truth.
 
 | Taxonomy | Meaning | Objects |
 | --- | --- | --- |
-| Substitution dynamics | Substitutions, words, tilings, and their finite symbolic dynamics. | [Substitution](#substitution), [Balanced-pair state](#balanced-pair-state), [Seed-patch overlap state](#seed-patch-overlap-state), [Coincidence](#coincidence), [Dumont-Thomas numeration](#dumont-thomas-numeration) |
-| Finite-state objects | Graphs, automata, components, and finite carriers used in exact reductions. | [Balanced-pair automaton](#balanced-pair-automaton), [Seed-patch overlap automaton](#seed-patch-overlap-automaton), [Overlap productivity](#overlap-productivity), [Recurrent strongly connected component](#recurrent-scc), [Producer state](#producer), [Numeration automaton](#numeration-automaton) |
+| Substitution dynamics | Substitutions, words, tilings, and their finite symbolic dynamics. | [Substitution](#substitution), [Balanced-pair state](#balanced-pair-state), [Seed-patch overlap state](#seed-patch-overlap-state), [Coincidence](#coincidence), [Dumont-Thomas numeration](#dumont-thomas-numeration), [Linear numeration system](#linear-numeration) |
+| Finite-state objects | Graphs, automata, components, and finite carriers used in exact reductions. | [Balanced-pair automaton](#balanced-pair-automaton), [Seed-patch overlap automaton](#seed-patch-overlap-automaton), [Overlap productivity](#overlap-productivity), [Recurrent strongly connected component](#recurrent-scc), [Producer state](#producer), [Numeration automaton](#numeration-automaton), [Addition automaton](#addition-automaton) |
 | Exact algebra | Finite-dimensional exact arithmetic and algebraic invariants. | [Incidence matrix](#incidence-matrix), [Cubic Perron field element](#perron-cubic-field), [Wedge defect](#wedge-defect) |
 | Certificates and evidence | Replayable bounded-domain objects; never general theorems by themselves. | [Finite-corpus certificate](#finite-corpus-certificate) |
 
@@ -37,6 +37,8 @@ link names an independent oracle or diagnostic, never a second source of truth.
 | [Finite-corpus certificate](#finite-corpus-certificate) | Certificates and evidence | `finite-domain` | [`mojo/swap_overlap_census.mojo`](../mojo/swap_overlap_census.mojo) | [`scripts/swap_overlap_census.py`](../scripts/swap_overlap_census.py) |
 | [Dumont-Thomas numeration](#dumont-thomas-numeration) | Substitution dynamics | `definition` | [`mojo/psc/dumont_thomas.mojo`](../mojo/psc/dumont_thomas.mojo) | [`mojo/automatic_route_census.mojo`](../mojo/automatic_route_census.mojo) |
 | [Numeration automaton](#numeration-automaton) | Finite-state objects | `definition` | [`mojo/psc/automata.mojo`](../mojo/psc/automata.mojo) | [`mojo/automatic_route_census.mojo`](../mojo/automatic_route_census.mojo) |
+| [Linear numeration system](#linear-numeration) | Substitution dynamics | `definition` | [`mojo/psc/linear_numeration.mojo`](../mojo/psc/linear_numeration.mojo) | [`mojo/numeration_addition_census.mojo`](../mojo/numeration_addition_census.mojo) |
+| [Addition automaton](#addition-automaton) | Finite-state objects | `open-boundary` | [`mojo/psc/numeration_addition.mojo`](../mojo/psc/numeration_addition.mojo) | [`mojo/numeration_addition_census.mojo`](../mojo/numeration_addition_census.mojo) |
 
 ## Definitions
 
@@ -219,3 +221,27 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Canonical Mojo:** [`mojo/psc/automata.mojo`](../mojo/psc/automata.mojo)
 - **Independent oracle / diagnostic:** [`mojo/automatic_route_census.mojo`](../mojo/automatic_route_census.mojo)
 - **Related objects:** [Dumont-Thomas numeration](#dumont-thomas-numeration), [Substitution](#substitution), [Incidence matrix](#incidence-matrix)
+
+<a id="linear-numeration"></a>
+### Linear numeration system
+
+- **Catalogue ID:** `linear-numeration`
+- **Taxonomy:** Substitution dynamics
+- **Status:** `definition`
+- **Definition:** The image lengths obey the characteristic recurrence of the incidence matrix by Cayley-Hamilton, and a position is written greedily against them. This is a different presentation from the Dumont-Thomas path: a path digit weighs a child block, a greedy digit weighs U_j, and whether the two coincide is decided per substitution.
+- **Scope boundary:** The basis U_k = |tau^k(c)| a substitution carries, with greedy digits written against it.
+- **Canonical Mojo:** [`mojo/psc/linear_numeration.mojo`](../mojo/psc/linear_numeration.mojo)
+- **Independent oracle / diagnostic:** [`mojo/numeration_addition_census.mojo`](../mojo/numeration_addition_census.mojo)
+- **Related objects:** [Dumont-Thomas numeration](#dumont-thomas-numeration), [Addition automaton](#addition-automaton), [Incidence matrix](#incidence-matrix)
+
+<a id="addition-automaton"></a>
+### Addition automaton
+
+- **Catalogue ID:** `addition-automaton`
+- **Taxonomy:** Finite-state objects
+- **Status:** `open-boundary`
+- **Definition:** Built by exact state exploration over a window vector, pruned by a Pisot reachability test decided with sign_at_perron. Finiteness of the state set is an imported theorem, so the construction carries a cap and refuses past it; a built automaton is verified against the arithmetic on a stated bounded domain. It is the third automaton a first-order decision procedure needs, after admissibility and the letter map.
+- **Scope boundary:** Digit triples (x, y, z) with val(x) + val(y) = val(z) in the linear numeration of a substitution.
+- **Canonical Mojo:** [`mojo/psc/numeration_addition.mojo`](../mojo/psc/numeration_addition.mojo)
+- **Independent oracle / diagnostic:** [`mojo/numeration_addition_census.mojo`](../mojo/numeration_addition_census.mojo)
+- **Related objects:** [Linear numeration system](#linear-numeration), [Numeration automaton](#numeration-automaton), [Cubic Perron field element](#perron-cubic-field)
