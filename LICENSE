@@ -1,0 +1,59 @@
+# Licences
+
+This repository contains both software and mathematical prose, which are
+released under different licences. Every file falls under exactly one of the
+two sections below.
+
+## 1. Software — MIT
+
+Applies to `mojo/`, `src/`, `tests/`, `scripts/`, `tools/`, `tla/`,
+`PscVerif/`, `.github/`, and every other executable, configuration, or
+machine-checked file in this repository.
+
+MIT License
+
+Copyright (c) 2026 Lars Bendixen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+## 2. Mathematical prose — CC BY 4.0
+
+Applies to `docs/`, `manuscripts/`, `archive/`, `README.md`, `AGENTS.md`, and
+every other prose document: notes, ledgers, audits, and the manuscript sources
+and their compiled PDFs.
+
+Copyright (c) 2026 Lars Bendixen. Licensed under the Creative Commons
+Attribution 4.0 International License (CC BY 4.0). You may share and adapt
+this material for any purpose, including commercially, provided you give
+appropriate credit, link to the licence, and indicate whether changes were
+made. Full text: <https://creativecommons.org/licenses/by/4.0/legalcode>.
+
+Attribution for the mathematics should cite the manuscript and this
+repository; see `CITATION.cff`.
+
+## 3. Vendored and imported material
+
+- `mojo/finite_exact/`, `mojo/substitution_dynamics/`, and the other packages
+  listed in `vendored.toml` are copied verbatim (up to a recorded import
+  rewrite) from `larsbx/finite-math-kernels`, which has the same copyright
+  holder. They are covered by section 1, and are re-vendored rather than
+  patched; see `AGENTS.md`.
+- Imported theorems from the literature are cited, not copied; the citation
+  and the audited hypotheses live in the manuscript. No third-party text is
+  redistributed here.

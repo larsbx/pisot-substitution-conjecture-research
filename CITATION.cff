@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+message: >-
+  If you use this repository, please cite both the software (this file) and the
+  manuscript listed under references.
+title: Pisot Substitution Conjecture Research Program
+abstract: >-
+  Reproducible research workspace for the balanced-pair and seed-patch overlap
+  route to the Pisot Substitution Conjecture, in the non-unimodular primitive
+  irreducible Pisot setting. Contains a canonical exact Mojo implementation,
+  TLA+ dependency and state-machine models, Lean 4 proofs of the finite
+  algebra, a Python reference oracle, and exact finite-domain certificates.
+type: software
+authors:
+  - family-names: Bendixen
+    given-names: Lars
+    email: larsbendixen@gmail.com
+    alias: larsbx
+repository-code: >-
+  https://github.com/larsbx/pisot-substitution-conjecture-research
+license:
+  - MIT
+  - CC-BY-4.0
+version: 0.1.0
+date-released: '2026-09-17'
+keywords:
+  - Pisot substitution conjecture
+  - substitution dynamical systems
+  - balanced pairs
+  - pure discrete spectrum
+  - overlap coincidence
+  - exact arithmetic
+  - formal verification
+references:
+  - type: unpublished
+    title: >-
+      The balanced-pair and overlap route to pure discrete spectrum for Pisot
+      substitutions: state of the programme
+    authors:
+      - family-names: Bendixen
+        given-names: Lars
+    year: 2026
+    notes: >-
+      manuscripts/PSC_balanced_pair_state_2026-09-13.tex in this repository;
+      unpublished working manuscript.
