@@ -13,15 +13,14 @@ but the specimen-count header).
 
 from psc.corpus import STATE_CAP, Specimen, pip_corpus, report_progress
 from psc.histogram import Histogram, max_int
-from psc.overlap_contracting import ContractingBound
+from psc.overlap_contracting import ContractingBoundCache
 from psc.overlap_seed_patch import (
+    PerronCache,
     SeedOverlapAutomaton,
     build_seed_overlap_graph_from_tables,
-    build_seed_overlap_tables,
     first_left_aligned_depths,
     nonproductive_overlap_states,
 )
-from psc.perron_field3 import CubicElt
 
 
 struct RegimeExtremes(Copyable, Movable):
@@ -51,6 +50,12 @@ struct RegimeExtremes(Copyable, Movable):
 
 def main() raises:
     var corpus = pip_corpus()
+    # Field and tile lengths are read off the incidence matrix, which the
+    # corpus repeats: one per matrix, not one per specimen (psc.overlap_seed_patch).
+    var perron = PerronCache()
+    # One bound per distinct (cubic, digit set), shared across the specimens
+    # that carry it, with its computed levels beside it (psc.overlap_contracting).
+    var bounds = ContractingBoundCache()
     var n_nonproductive = 0
     var n_failed = 0
     var complex_regime = RegimeExtremes()
@@ -63,7 +68,7 @@ def main() raises:
     for s in range(len(corpus)):
         ref spec = corpus[s]
         try:
-            var tables = build_seed_overlap_tables(spec.sigma)
+            var tables = perron.tables_for(spec.sigma)
             var g = build_seed_overlap_graph_from_tables(tables, STATE_CAP)
             if g.capped:
                 raise Error("seed-patch overlap graph capped")
@@ -72,15 +77,12 @@ def main() raises:
                 print("NONPRODUCTIVE overlap specimen:", spec.label())
                 continue
             var left = first_left_aligned_depths(g)
-            var cb = ContractingBound(tables)
-            var cache = Dict[CubicElt, Int]()
+            var slot = bounds.slot(tables)
             var worst_excess = 0
             var worst_m0 = 0
             for v in range(g.size()):
                 var t = g.states[v].shift
-                if t not in cache:
-                    cache[t] = cb.least_level(g, t)
-                var m0 = cache[t]
+                var m0 = bounds.least_level(slot, g, t)
                 if m0 < 0 or m0 > left[v]:
                     raise Error("contracting bound exceeds the left-aligned depth")
                 if (m0 == 0) != t.is_zero():
@@ -92,7 +94,7 @@ def main() raises:
                 worst_excess = max_int(worst_excess, excess)
             specimen_m0.record(worst_m0)
             specimen_excess.record(worst_excess)
-            if cb.is_complex:
+            if bounds.is_complex(slot):
                 complex_regime.absorb(worst_m0, worst_excess)
             else:
                 real_regime.absorb(worst_m0, worst_excess)

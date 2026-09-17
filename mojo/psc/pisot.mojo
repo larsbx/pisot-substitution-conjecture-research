@@ -158,6 +158,66 @@ def is_pisot_charpoly(coeffs: List[Int]) -> Bool:
     return q_sign(poly_eval(p, q_int(det))) < 0
 
 
+struct CubicKey(ImplicitlyCopyable, Copyable, Movable, Equatable, Hashable):
+    """A monic integer cubic `c0 + c1 x + c2 x^2 + x^3` as a dictionary key."""
+
+    var c0: Int
+    var c1: Int
+    var c2: Int
+
+    def __init__(out self, coeffs: List[Int]):
+        self.c0 = coeffs[0]
+        self.c1 = coeffs[1]
+        self.c2 = coeffs[2]
+
+    def __eq__(self, other: CubicKey) -> Bool:
+        return self.c0 == other.c0 and self.c1 == other.c1 and self.c2 == other.c2
+
+    def __ne__(self, other: CubicKey) -> Bool:
+        return not (self == other)
+
+
+struct CubicScreen(Copyable, Movable):
+    """`is_pip` with the two characteristic-polynomial tests memoized.
+
+    Primitivity is a property of the matrix, but irreducibility and the Pisot
+    property are functions of the characteristic polynomial alone. Those two
+    are the expensive half: rational-root enumeration and Sturm sequences over
+    unbounded rationals. Screening the standing corpus evaluates them on
+    33,318 primitive candidates that carry only 177 distinct cubics, so the
+    verdict is decided once per cubic and reused.
+
+    This changes no verdict. It is the same exact decision procedure, asked
+    once per distinct question instead of once per candidate, so a memoized
+    screen and a bare `is_pip` accept exactly the same matrices; the
+    regression in `test_census_library.mojo` pins that.
+    """
+
+    var verdicts: Dict[CubicKey, Bool]
+
+    def __init__(out self):
+        self.verdicts = Dict[CubicKey, Bool]()
+
+    def accepts_cubic(mut self, coeffs: List[Int]) raises -> Bool:
+        """Whether the cubic is irreducible with a Pisot Perron root."""
+        var key = CubicKey(coeffs)
+        if key in self.verdicts:
+            return self.verdicts[key]
+        var verdict = is_irreducible_cubic(coeffs) and is_pisot_charpoly(coeffs)
+        self.verdicts[key] = verdict
+        return verdict
+
+    def is_pip(mut self, m: Mat3) raises -> Bool:
+        """Primitivity first, as in the free function: it is the cheap test and
+        it rejects most candidates before any cubic work."""
+        if not is_primitive(m):
+            return False
+        return self.accepts_cubic(m.charpoly())
+
+    def distinct_cubics(self) -> Int:
+        return len(self.verdicts)
+
+
 def is_pip(m: Mat3) -> Bool:
     """Primitive, irreducible characteristic cubic, Pisot Perron root."""
     var chi = m.charpoly()

@@ -4,7 +4,14 @@ from std.testing import assert_equal, assert_true
 from finite_exact.rat_q import Q
 from psc.claim_tests import require_contract, require_claim
 from psc.exact import q_int, q_poly
-from psc.overlap_contracting import ContractingBound, digit_set, discriminant, field_norm
+from psc.overlap_contracting import (
+    ContractingBound,
+    ContractingBoundCache,
+    bound_key,
+    digit_set,
+    discriminant,
+    field_norm,
+)
 from psc.overlap_seed_patch import (
     build_seed_overlap_graph_from_tables,
     build_seed_overlap_tables,
@@ -116,6 +123,91 @@ def test_capped_graph_is_rejected() raises:
     assert_true(caught)
 
 
+def reordered_pair() -> List[List[List[Int]]]:
+    """`0->1, 1->2, 2->01` and `0->1, 1->2, 2->10`: one cubic, two digit sets.
+
+    Reordering the image of 2 leaves the incidence matrix, and so the
+    characteristic cubic, untouched. It does move the prefix positions, and
+    with them the single-inflation increments the bound is built from. The
+    pair is the counterexample to keying a bound on its cubic alone.
+    """
+    var first: List[List[Int]] = [[1], [2], [0, 1]]
+    var second: List[List[Int]] = [[1], [2], [1, 0]]
+    var both = List[List[List[Int]]]()
+    both.append(first^)
+    both.append(second^)
+    return both^
+
+
+def test_the_cache_answers_as_a_freshly_built_bound_does() raises:
+    """Every reachable shift of every specimen, cached against built fresh.
+
+    The cache is a memo over an exact procedure, so the only contract it has
+    is identity: the same complexity verdict and the same least level, on
+    every shift, as a bound built for that specimen alone.
+    """
+    var sigmas = List[List[List[Int]]]()
+    sigmas.append(tribonacci_sigma())
+    sigmas.append(tau_sigma())
+    sigmas.append(totally_real_sigma())
+    var cache = ContractingBoundCache()
+    var compared = 0
+    for s in range(len(sigmas)):
+        var tables = build_seed_overlap_tables(sigmas[s])
+        var graph = build_seed_overlap_graph_from_tables(tables, 20000)
+        var fresh = ContractingBound(tables)
+        var slot = cache.slot(tables)
+        assert_equal(cache.slot(tables), slot)          # a second sighting is the same slot
+        assert_equal(cache.is_complex(slot), fresh.is_complex)
+        for i in range(graph.size()):
+            var t = graph.states[i].shift
+            assert_equal(cache.least_level(slot, graph, t), fresh.least_level(graph, t))
+            assert_equal(cache.least_level(slot, graph, t), fresh.least_level(graph, t))
+            compared += 1
+    assert_equal(cache.distinct_bounds(), len(sigmas))
+    assert_true(compared > 0)
+    assert_true(cache.distinct_levels() <= compared)
+
+
+def test_the_key_separates_a_shared_cubic_with_different_digits() raises:
+    """Two specimens share a cubic and must still not share a bound."""
+    var pair = reordered_pair()
+    var first = build_seed_overlap_tables(pair[0])
+    var second = build_seed_overlap_tables(pair[1])
+    assert_equal(first.field.chi0, second.field.chi0)
+    assert_equal(first.field.chi1, second.field.chi1)
+    assert_equal(first.field.chi2, second.field.chi2)
+    assert_true(bound_key(first) != bound_key(second))
+    var cache = ContractingBoundCache()
+    assert_true(cache.slot(first) != cache.slot(second))
+    assert_equal(cache.distinct_bounds(), 2)
+
+
+def test_a_cached_bound_still_rejects_a_capped_graph() raises:
+    """Fail-closed is a property of the answer, so caching may not soften it."""
+    var tables = build_seed_overlap_tables(tau_sigma())
+    var capped = build_seed_overlap_graph_from_tables(tables, 1)
+    var whole = build_seed_overlap_graph_from_tables(tables, 20000)
+    var cache = ContractingBoundCache()
+    var slot = cache.slot(tables)
+    var t = CubicElt(1, 0, 0)
+    var caught = False
+    try:
+        _ = cache.least_level(slot, capped, t)
+    except:
+        caught = True
+    assert_true(caught)
+    # And still after the level is cached: a memo hit is not an answer about a
+    # partial graph, so the refusal must precede the lookup, not follow it.
+    _ = cache.least_level(slot, whole, t)
+    var caught_again = False
+    try:
+        _ = cache.least_level(slot, capped, t)
+    except:
+        caught_again = True
+    assert_true(caught_again)
+
+
 def main() raises:
     test_sturm_tarski_counts_and_signs()
     print("[PASS] test_sturm_tarski_counts_and_signs")
@@ -125,6 +217,12 @@ def main() raises:
     print("[PASS] test_defining_inequality_not_its_relaxation")
     test_capped_graph_is_rejected()
     print("[PASS] test_capped_graph_is_rejected")
-    print("4 contracting-bound Mojo tests passed.")
+    test_the_cache_answers_as_a_freshly_built_bound_does()
+    print("[PASS] test_the_cache_answers_as_a_freshly_built_bound_does")
+    test_the_key_separates_a_shared_cubic_with_different_digits()
+    print("[PASS] test_the_key_separates_a_shared_cubic_with_different_digits")
+    test_a_cached_bound_still_rejects_a_capped_graph()
+    print("[PASS] test_a_cached_bound_still_rejects_a_capped_graph")
+    print("7 contracting-bound Mojo tests passed.")
     require_claim("OverlapBadSCCNormalForm")
     require_contract("manuscript Proposition 5.42: the contracting bound is decided by exact Sturm-Tarski counting, and a capped graph is rejected")

@@ -164,3 +164,25 @@ definition = "A bounded-domain witness with enough metadata to replay the exact 
 canonical = "mojo/swap_overlap_census.mojo"
 oracle = "scripts/swap_overlap_census.py"
 related = ["seed-patch-overlap-automaton", "overlap-productivity"]
+
+[[object]]
+id = "dumont-thomas-numeration"
+name = "Dumont-Thomas numeration"
+taxonomy = "dynamics"
+status = "definition"
+scope = "Positions of the fixed point of a substitution prolongable at a letter, written along the prefix tree of its images."
+definition = "n < |tau^k(c)| decomposes into digits d_(k-1) ... d_0, each the index of the child block containing what is left of the position; the letter reached after the last digit is u_n."
+canonical = "mojo/psc/dumont_thomas.mojo"
+oracle = "mojo/automatic_route_census.mojo"
+related = ["substitution", "numeration-automaton", "incidence-matrix"]
+
+[[object]]
+id = "numeration-automaton"
+name = "Numeration automaton"
+taxonomy = "automata"
+status = "definition"
+scope = "The Dumont-Thomas digits read as a deterministic automaton: states are letters, and a digit past the end of an image is inadmissible."
+definition = "delta(a, j) is the j-th letter of tau(a); admissible digit words of length k are in bijection with the positions of tau^k(c), and the words ending at a letter are counted by the incidence matrix power. Deciding a first-order statement over this numeration needs recognisability of addition, which is not supplied here (docs/automatic-sequence-route-literature-gate-2026-09-17.md)."
+canonical = "mojo/psc/automata.mojo"
+oracle = "mojo/automatic_route_census.mojo"
+related = ["dumont-thomas-numeration", "substitution", "incidence-matrix"]

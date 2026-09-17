@@ -7,12 +7,15 @@ from psc.claim_tests import require_claim
 from psc.overlap_obstruction import common_child_start_count, nonproductive_sink_sccs
 from psc.overlap_seed_patch import (
     OverlapState,
+    PerronCache,
     SeedOverlapAutomaton,
+    SeedOverlapTables,
     build_seed_overlap_graph,
     build_seed_overlap_graph_from_tables,
+    build_seed_overlap_tables,
     first_coincidence_depths,
     first_left_aligned_depths,
-    build_seed_overlap_tables,
+    incidence_key,
     nonproductive_overlap_states,
     overlap_children,
     seed_overlap_states,
@@ -241,6 +244,80 @@ def test_nonproductive_sink_obstruction_is_extracted_exactly() raises:
     assert_true(caught)
 
 
+def reordered_pair() -> List[List[List[Int]]]:
+    """`0->1, 1->2, 2->01` and `0->1, 1->2, 2->10`.
+
+    The two differ only in the order of the image of 2, so they share an
+    incidence matrix -- and with it a Perron field and tile lengths -- while
+    their prefix positions differ: over `01` the child `1` starts at the
+    length of tile 0, over `10` the child `0` starts at the length of tile 1.
+    The pair is what separates the part of a build that may be shared from the
+    part that may not.
+    """
+    var first: List[List[Int]] = [[1], [2], [0, 1]]
+    var second: List[List[Int]] = [[1], [2], [1, 0]]
+    var both = List[List[List[Int]]]()
+    both.append(first^)
+    both.append(second^)
+    return both^
+
+
+def assert_same_tables(a: SeedOverlapTables, b: SeedOverlapTables) raises:
+    assert_equal(a.field.chi0, b.field.chi0)
+    assert_equal(a.field.chi1, b.field.chi1)
+    assert_equal(a.field.chi2, b.field.chi2)
+    for letter in range(3):
+        assert_true(a.lengths.at(letter) == b.lengths.at(letter))
+    assert_equal(len(a.prefix_starts), len(b.prefix_starts))
+    for i in range(len(a.prefix_starts)):
+        assert_equal(a.prefix_starts[i], b.prefix_starts[i])
+    assert_equal(len(a.prefix_positions), len(b.prefix_positions))
+    for i in range(len(a.prefix_positions)):
+        assert_true(a.prefix_positions[i] == b.prefix_positions[i])
+
+
+def test_the_perron_cache_rebuilds_the_tables_it_shares() raises:
+    """A cached build is the build: same field, same lengths, same positions.
+
+    Sharing is keyed on the incidence matrix, which is exactly what the field
+    and the tile lengths are read from. The prefix positions are not: they are
+    recomputed per substitution, and the reordered pair below would be wrong
+    if they were shared, so the test pins both halves at once -- one matrix
+    built once, two sets of positions that differ.
+    """
+    var pair = reordered_pair()
+    assert_equal(incidence_key(pair[0]), incidence_key(pair[1]))
+    var cache = PerronCache()
+    for i in range(len(pair)):
+        assert_same_tables(cache.tables_for(pair[i]), build_seed_overlap_tables(pair[i]))
+    assert_equal(cache.distinct_matrices(), 1)
+    var first = cache.tables_for(pair[0])
+    var second = cache.tables_for(pair[1])
+    var differ = False
+    for i in range(len(first.prefix_positions)):
+        if not (first.prefix_positions[i] == second.prefix_positions[i]):
+            differ = True
+    assert_true(differ)
+    # The canonical specimen goes through the cache unchanged as well.
+    assert_same_tables(
+        cache.tables_for(determinant_two_sigma()),
+        build_seed_overlap_tables(determinant_two_sigma()),
+    )
+    assert_equal(cache.distinct_matrices(), 2)
+
+
+def test_the_perron_cache_refuses_what_a_bare_build_refuses() raises:
+    """Validation is not something a cache may skip on a second sighting."""
+    var cache = PerronCache()
+    _ = cache.tables_for(determinant_two_sigma())
+    var caught = False
+    try:
+        _ = cache.tables_for(identity_sigma())
+    except:
+        caught = True
+    assert_true(caught)
+
+
 def main() raises:
     test_perron_order_is_exact_on_basic_elements()
     print("[PASS] test_perron_order_is_exact_on_basic_elements")
@@ -260,7 +337,11 @@ def main() raises:
     print("[PASS] test_common_child_starts_are_exactly_zero_shift_children")
     test_nonproductive_sink_obstruction_is_extracted_exactly()
     print("[PASS] test_nonproductive_sink_obstruction_is_extracted_exactly")
-    print("9 seed-patch-overlap Mojo tests passed.")
+    test_the_perron_cache_rebuilds_the_tables_it_shares()
+    print("[PASS] test_the_perron_cache_rebuilds_the_tables_it_shares")
+    test_the_perron_cache_refuses_what_a_bare_build_refuses()
+    print("[PASS] test_the_perron_cache_refuses_what_a_bare_build_refuses")
+    print("11 seed-patch-overlap Mojo tests passed.")
     require_claim("SwapOverlapFiniteness")
     require_claim("AlignedOverlapsAreStrongCoincidence")
     require_claim("BoundaryCoincidenceCriterion")

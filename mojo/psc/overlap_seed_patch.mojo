@@ -112,8 +112,16 @@ def _validate_sigma(sigma: List[List[Int]]) raises:
 def build_seed_overlap_tables(sigma: List[List[Int]]) raises -> SeedOverlapTables:
     _validate_sigma(sigma)
     var m = Mat3(substitution_incidence(sigma))
-    var field = build_perron_field3(m)
-    var lengths = left_perron_tile_lengths(m)
+    return _tables_from(sigma, build_perron_field3(m), left_perron_tile_lengths(m))
+
+
+def _tables_from(
+    sigma: List[List[Int]], field: PerronField3, lengths: TileLengths3
+) raises -> SeedOverlapTables:
+    """The prefix positions of `sigma` over an already-built field and lengths.
+
+    The scaling check stays here: it is what ties the positions to the field,
+    and it must run for every substitution, not once per incidence matrix."""
     var starts: List[Int] = [0]
     var positions = List[CubicElt]()
     for parent in range(3):
@@ -125,6 +133,59 @@ def build_seed_overlap_tables(sigma: List[List[Int]]) raises -> SeedOverlapTable
             raise Error("substitution image length disagrees with Perron scaling")
         starts.append(len(positions))
     return SeedOverlapTables(sigma, field, lengths, starts, positions)
+
+
+def incidence_key(sigma: List[List[Int]]) -> String:
+    """The incidence matrix of `sigma`, row major, as a dictionary key."""
+    var entries = substitution_incidence(sigma)
+    var key = String("")
+    for i in range(len(entries)):
+        key += String(entries[i]) + ","
+    return key^
+
+
+struct PerronCache(Copyable, Movable):
+    """The Perron field and tile lengths of an incidence matrix, kept once.
+
+    `build_seed_overlap_tables` reads the cubic field and the left-Perron tile
+    lengths off the incidence matrix, and everything else it builds -- the
+    prefix positions -- off the images in order. The first part is essentially
+    the whole cost, at about 628 of the 632 microseconds a build takes, since
+    it isolates the Perron root and decides signs exactly.
+
+    Over the standing corpus 4,554 specimens carry only 348 distinct incidence
+    matrices, so that work is repeated about thirteen times over for each
+    matrix that occurs. Here it is done once per matrix, and the prefix
+    positions are still computed per substitution, which they must be: two
+    substitutions can share an incidence matrix while their images differ in
+    order, and then their prefix positions differ. Keying whole tables by the
+    incidence matrix would be wrong for exactly that reason.
+    """
+
+    var index: Dict[String, Int]
+    var fields: List[PerronField3]
+    var lengths: List[TileLengths3]
+
+    def __init__(out self):
+        self.index = Dict[String, Int]()
+        self.fields = List[PerronField3]()
+        self.lengths = List[TileLengths3]()
+
+    def tables_for(mut self, sigma: List[List[Int]]) raises -> SeedOverlapTables:
+        """`build_seed_overlap_tables`, reusing the field and lengths of an
+        incidence matrix already seen."""
+        _validate_sigma(sigma)
+        var key = incidence_key(sigma)
+        if key not in self.index:
+            var m = Mat3(substitution_incidence(sigma))
+            self.index[key] = len(self.fields)
+            self.fields.append(build_perron_field3(m))
+            self.lengths.append(left_perron_tile_lengths(m))
+        var slot = self.index[key]
+        return _tables_from(sigma, self.fields[slot], self.lengths[slot])
+
+    def distinct_matrices(self) -> Int:
+        return len(self.fields)
 
 
 def cached_sign(

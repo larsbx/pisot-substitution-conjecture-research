@@ -13,8 +13,8 @@ link names an independent oracle or diagnostic, never a second source of truth.
 
 | Taxonomy | Meaning | Objects |
 | --- | --- | --- |
-| Substitution dynamics | Substitutions, words, tilings, and their finite symbolic dynamics. | [Substitution](#substitution), [Balanced-pair state](#balanced-pair-state), [Seed-patch overlap state](#seed-patch-overlap-state), [Coincidence](#coincidence) |
-| Finite-state objects | Graphs, automata, components, and finite carriers used in exact reductions. | [Balanced-pair automaton](#balanced-pair-automaton), [Seed-patch overlap automaton](#seed-patch-overlap-automaton), [Overlap productivity](#overlap-productivity), [Recurrent strongly connected component](#recurrent-scc), [Producer state](#producer) |
+| Substitution dynamics | Substitutions, words, tilings, and their finite symbolic dynamics. | [Substitution](#substitution), [Balanced-pair state](#balanced-pair-state), [Seed-patch overlap state](#seed-patch-overlap-state), [Coincidence](#coincidence), [Dumont-Thomas numeration](#dumont-thomas-numeration) |
+| Finite-state objects | Graphs, automata, components, and finite carriers used in exact reductions. | [Balanced-pair automaton](#balanced-pair-automaton), [Seed-patch overlap automaton](#seed-patch-overlap-automaton), [Overlap productivity](#overlap-productivity), [Recurrent strongly connected component](#recurrent-scc), [Producer state](#producer), [Numeration automaton](#numeration-automaton) |
 | Exact algebra | Finite-dimensional exact arithmetic and algebraic invariants. | [Incidence matrix](#incidence-matrix), [Cubic Perron field element](#perron-cubic-field), [Wedge defect](#wedge-defect) |
 | Certificates and evidence | Replayable bounded-domain objects; never general theorems by themselves. | [Finite-corpus certificate](#finite-corpus-certificate) |
 
@@ -35,6 +35,8 @@ link names an independent oracle or diagnostic, never a second source of truth.
 | [Cubic Perron field element](#perron-cubic-field) | Exact algebra | `definition` | [`mojo/psc/perron_field3.mojo`](../mojo/psc/perron_field3.mojo) | [`src/psc_research/overlap_graph.py`](../src/psc_research/overlap_graph.py) |
 | [Wedge defect](#wedge-defect) | Exact algebra | `definition` | [`mojo/psc/w3.mojo`](../mojo/psc/w3.mojo) | [`src/psc_research/defect_intertwiner.py`](../src/psc_research/defect_intertwiner.py) |
 | [Finite-corpus certificate](#finite-corpus-certificate) | Certificates and evidence | `finite-domain` | [`mojo/swap_overlap_census.mojo`](../mojo/swap_overlap_census.mojo) | [`scripts/swap_overlap_census.py`](../scripts/swap_overlap_census.py) |
+| [Dumont-Thomas numeration](#dumont-thomas-numeration) | Substitution dynamics | `definition` | [`mojo/psc/dumont_thomas.mojo`](../mojo/psc/dumont_thomas.mojo) | [`mojo/automatic_route_census.mojo`](../mojo/automatic_route_census.mojo) |
+| [Numeration automaton](#numeration-automaton) | Finite-state objects | `definition` | [`mojo/psc/automata.mojo`](../mojo/psc/automata.mojo) | [`mojo/automatic_route_census.mojo`](../mojo/automatic_route_census.mojo) |
 
 ## Definitions
 
@@ -193,3 +195,27 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Canonical Mojo:** [`mojo/swap_overlap_census.mojo`](../mojo/swap_overlap_census.mojo)
 - **Independent oracle / diagnostic:** [`scripts/swap_overlap_census.py`](../scripts/swap_overlap_census.py)
 - **Related objects:** [Seed-patch overlap automaton](#seed-patch-overlap-automaton), [Overlap productivity](#overlap-productivity)
+
+<a id="dumont-thomas-numeration"></a>
+### Dumont-Thomas numeration
+
+- **Catalogue ID:** `dumont-thomas-numeration`
+- **Taxonomy:** Substitution dynamics
+- **Status:** `definition`
+- **Definition:** n < |tau^k(c)| decomposes into digits d_(k-1) ... d_0, each the index of the child block containing what is left of the position; the letter reached after the last digit is u_n.
+- **Scope boundary:** Positions of the fixed point of a substitution prolongable at a letter, written along the prefix tree of its images.
+- **Canonical Mojo:** [`mojo/psc/dumont_thomas.mojo`](../mojo/psc/dumont_thomas.mojo)
+- **Independent oracle / diagnostic:** [`mojo/automatic_route_census.mojo`](../mojo/automatic_route_census.mojo)
+- **Related objects:** [Substitution](#substitution), [Numeration automaton](#numeration-automaton), [Incidence matrix](#incidence-matrix)
+
+<a id="numeration-automaton"></a>
+### Numeration automaton
+
+- **Catalogue ID:** `numeration-automaton`
+- **Taxonomy:** Finite-state objects
+- **Status:** `definition`
+- **Definition:** delta(a, j) is the j-th letter of tau(a); admissible digit words of length k are in bijection with the positions of tau^k(c), and the words ending at a letter are counted by the incidence matrix power. Deciding a first-order statement over this numeration needs recognisability of addition, which is not supplied here (docs/automatic-sequence-route-literature-gate-2026-09-17.md).
+- **Scope boundary:** The Dumont-Thomas digits read as a deterministic automaton: states are letters, and a digit past the end of an image is inadmissible.
+- **Canonical Mojo:** [`mojo/psc/automata.mojo`](../mojo/psc/automata.mojo)
+- **Independent oracle / diagnostic:** [`mojo/automatic_route_census.mojo`](../mojo/automatic_route_census.mojo)
+- **Related objects:** [Dumont-Thomas numeration](#dumont-thomas-numeration), [Substitution](#substitution), [Incidence matrix](#incidence-matrix)

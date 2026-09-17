@@ -172,6 +172,17 @@ the current ledgers rather than rewriting the archive.
 - `mojo-census-library-2026-09-16.md` describes the shared census/catalogue
   library every driver is built on, and the retirement of the Python-only
   computation scripts it replaced.
+- `automatic-sequence-route-literature-gate-2026-09-17.md` gates the step from
+  a census to a decision procedure: what the automata kernel and the
+  Dumont-Thomas numeration now establish, and the three things that would have
+  to be imported before any family could be decided.
+- `frontier-intersections-2026-09-17.md` looks outward from the two programs:
+  which fields of mathematics the separation calculus, the certificate calculus
+  and the governance layer could touch, what each would return, and a first
+  experiment for each. It proves nothing and changes no ledger.
+- `mojo-lookup-caches-2026-09-17.md` records which repeated computations were
+  worth replacing with a lookup and which measurement said to leave alone, and
+  what keys make the three caches exact.
 - `../AGENTS.md` is the implementation policy.
 - Mojo is canonical for executable research.
 - TLA+ records dependency/state-machine claims.
