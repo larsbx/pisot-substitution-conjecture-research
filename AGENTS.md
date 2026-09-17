@@ -158,3 +158,33 @@ The declaration is placed after the assertions it stands behind, because
 check credits nothing a run did not reach. A declaration is a link, not
 evidence: what the contract is, the assertions decide; that the claim follows
 from it, its own proof or certificate decides.
+
+## Fail closed, and which way closed points
+
+"Fail closed" is used throughout this repository as though it had one meaning.
+It has two, and they point opposite ways. `larsbx/native-deployment-control-plane`
+is the only repository in this estate that says so, and it is right:
+
+> For deploy gates, failing closed means refusing to proceed. For a destructive
+> operation, failing closed means refusing to delete. Uncertainty is never
+> resolved in favour of deletion.
+
+Applied here, by effect rather than by name:
+
+| Operation | Closed means | Because |
+| --- | --- | --- |
+| A catalogue or census cap is reached | refuse to conclude | an exhausted budget is not a mathematical verdict, and a capped run reports as capped |
+| A certificate check cannot decide | refuse to promote | the claim keeps the status its evidence earns, never the one the run hoped for |
+| A generated surface disagrees with its table | refuse the run (`--check`) | the surface is a function of the table, so disagreement is drift and not a new fact |
+| A claim is to be retired | refuse to retire | withdrawal is a statement about the claim's history; an uncertain one stays live and stays wrong in public rather than vanishing |
+| An archived certificate or manuscript source is to be replaced | refuse to overwrite | the archive is the record a reader replays; a doubtful replacement destroys the thing the doubt was about |
+
+The first three refuse to *proceed*. The last two refuse to *destroy*, and a
+rule that only knew the word would have had them delete. When a new gate is
+added, state which column it is in; when it is not obvious, it is the second,
+because that is the direction that cannot be undone.
+
+This does not license retiring a claim quietly when the evidence is clear.
+Retirement is a deliberate, attributable act with its own status in
+`claim_governance.toml`; what fails closed is the *uncertain* case, not the
+decided one.
