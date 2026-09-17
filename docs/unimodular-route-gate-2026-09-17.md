@@ -90,14 +90,22 @@ The pump column reproduces the count of `docs/p1-overlap-collar-2026-09-16.md`
 §3.3 (4,524 specimens with a zero-shift-free recurrent cycle) and attributes
 it by determinant, which that note did not do.
 
-*Provenance of these numbers.* They were produced by the independent Python
-oracle (`psc_research.pip_screen`, `psc_research.overlap_collar`,
-`psc_research.overlap_affine_pump`). The canonical implementation is the regime
-split of `mojo/swap_overlap_census.mojo`, guarded by
-`mojo/tests/test_unimodular_route.mojo`; no Mojo toolchain was available where
-this note was written, so the canonical run has not yet confirmed the table.
-Until it has, read the table as an oracle computation whose canonical
-cross-check is pending, not as a two-implementation agreement.
+*Provenance of these numbers.* Two implementations agree on them. The
+independent Python oracle (`psc_research.pip_screen`,
+`psc_research.overlap_collar`, `psc_research.overlap_affine_pump`) produced the
+table; the canonical regime split of `mojo/swap_overlap_census.mojo` reproduced
+it line for line in CI:
+
+```text
+regime |det M| > 1: specimens: 1926 overlap states: 969030 collapsing patches: 120 zero-shift-free pumps: 1926
+regime |det M| = 1: specimens: 2628 overlap states: 149820 collapsing patches: 0 zero-shift-free pumps: 2598
+unimodular collapsing seed patches (must be 0): 0
+```
+
+Those three lines are pinned by the `swap-overlap-census` job, and
+`mojo/tests/test_unimodular_route.mojo` guards the same split in the
+regression suite, so a drift in either direction fails the build rather than
+changing a number in this table.
 
 ### 3. The collapse obstruction is entirely non-unit; the pump obstruction is not
 
