@@ -109,10 +109,11 @@ mojo/tests/test_signing.mojo
 Run locally from `mojo/` with:
 
 ```bash
-pixi run signing
+pixi run mojo run -I . tests/test_signing.mojo
 ```
 
-or through the full check once the task is enabled:
+or through the full regression loop, which runs every `tests/test_*.mojo` and
+so already covers this one:
 
 ```bash
 pixi run check
