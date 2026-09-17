@@ -4,3 +4,7 @@
 ## 2026-09-14 - Optimize coincidence boundary computation
 **Learning:** Checking for equality of two arrays `pu == pv` or checking for non-zero differences `any(diff)` in the inner loop (like in `coincidence_boundaries`) adds significant overhead. Keeping a running count `non_zero` of the number of non-zero elements in the `diff` array allows replacing O(size) list scans with a single O(1) integer comparison `non_zero == 0`.
 **Action:** When tracking multidimensional state changes sequentially (like prefix Parikh vectors), avoid O(size) vector comparisons inside loops. Maintain an active diff vector and a simple count of discrepancies.
+
+## 2024-09-15 - Optimize inner polynomial multiplication loop
+**Learning:** In Q(beta) calculations within Python (like `Field.mul` in `overlap_graph.py`), list allocations inside hot inner loops (e.g. `c = [Fraction(0)] * 5`) and nested loops evaluating small constant-size dimensions (like 3x3 matrices) cause major overhead. Evaluating unused list comprehensions inside `while` loops also tanks performance.
+**Action:** Unroll fixed-size (e.g., 3x3) mathematical loops manually. Write explicit linear combinations for dimensions that are small and known at compile time to avoid loop control and array access costs. Remove all dead assignments inside loops.
