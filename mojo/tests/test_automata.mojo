@@ -242,6 +242,126 @@ def test_a_power_substitution_has_the_same_fixed_point() raises:
         assert_equal(letter_at(tau, point.letter, n), u[n])
 
 
+def one_marked_coincidence() raises -> Dfa:
+    """Three tracks over `{0, 1}`, a letter packed as `x + 2y + 4z`.
+
+    The language: the `z` track carries exactly one `1`, and it stands at a
+    position where `x` and `y` are both `1`. So `z` marks a witness, and the
+    marking is only legal where the witness holds.
+
+    States: `0` no mark yet, `1` one legal mark seen, `2` a rejecting sink for
+    a second mark or an illegal one.
+    """
+    var delta = List[Int]()
+    var accepting: List[Bool] = [False, True, False]
+    for state in range(3):
+        for letter in range(8):
+            var x = letter % 2
+            var y = (letter // 2) % 2
+            var z = letter // 4
+            var next = 2
+            if state == 0:
+                next = 0 if z == 0 else (1 if (x == 1 and y == 1) else 2)
+            elif state == 1:
+                next = 1 if z == 0 else 2
+            delta.append(next)
+    return Dfa(8, delta, accepting)
+
+
+def contains_letter(letters: Int, target: Int) raises -> Dfa:
+    """Words over `letters` containing `target` at least once."""
+    var delta = List[Int]()
+    var accepting: List[Bool] = [False, True]
+    for state in range(2):
+        for letter in range(letters):
+            delta.append(1 if (state == 1 or letter == target) else 0)
+    return Dfa(letters, delta, accepting)
+
+
+def packed(xs: List[Int], ys: List[Int], zs: List[Int]) -> List[Int]:
+    var out = List[Int]()
+    for i in range(len(xs)):
+        out.append(xs[i] + 2 * ys[i] + 4 * zs[i])
+    return out^
+
+
+def test_projection_over_three_tracks_eliminates_a_real_quantifier() raises:
+    """The marked-witness language, where the quantified track must be guessed.
+
+    Existentially quantifying `z` asks: is there a legal place to put the one
+    mark? That is `exists i : x_i = y_i = 1`, and no deterministic reading of
+    `(x, y)` alone knows at position `i` whether a later position will do
+    instead. The subset construction is what resolves it, and this is the case
+    that distinguishes a real projection from dropping a coordinate.
+    """
+    var marked = one_marked_coincidence()
+    var xs: List[Int] = [1, 0, 1]
+    var ys: List[Int] = [0, 0, 1]
+    var legal: List[Int] = [0, 0, 1]
+    var illegal: List[Int] = [1, 0, 0]
+    var twice: List[Int] = [0, 0, 0]
+    assert_true(marked.accepts(packed(xs, ys, legal)))       # marks position 2
+    assert_false(marked.accepts(packed(xs, ys, illegal)))    # marks where y = 0
+    assert_false(marked.accepts(packed(xs, ys, twice)))      # marks nothing
+
+    # Drop z. What survives is exactly "some position has x = y = 1", which over
+    # the packed pair alphabet is "contains the letter 3".
+    var witnessed = project(marked, 3, 2)
+    assert_equal(witnessed.letters, 4)
+    assert_true(same_language(witnessed, contains_letter(4, 3)))
+    var both_ones: List[Int] = [1, 0, 3]
+    var never: List[Int] = [1, 2, 1]
+    assert_true(witnessed.accepts(both_ones))
+    assert_false(witnessed.accepts(never))
+    assert_equal(minimised(witnessed).states(), 2)
+
+    # The construction had to merge: at a position with x = y = 1 the mark may
+    # be placed or deferred, so the reachable subsets are genuinely sets. A
+    # projection that merely renumbered letters could not accept `1 0 3`, whose
+    # only legal mark is at the last position.
+    assert_true(witnessed.states() >= 2)
+
+    # Dropping a different track is a different language, so the track index is
+    # load-bearing: quantifying x instead leaves "z marks one position, and y is
+    # 1 there", which rejects a mark where y = 0.
+    var over_x = project(marked, 3, 0)
+    var y_track: List[Int] = [0, 0, 1]
+    var z_track: List[Int] = [0, 0, 1]
+    var bad_z: List[Int] = [1, 0, 0]
+    var yz = List[Int]()
+    var yz_bad = List[Int]()
+    for i in range(3):
+        yz.append(y_track[i] + 2 * z_track[i])
+        yz_bad.append(y_track[i] + 2 * bad_z[i])
+    assert_true(over_x.accepts(yz))
+    assert_false(over_x.accepts(yz_bad))
+    assert_false(same_language(over_x, witnessed))
+
+
+def test_two_quantifiers_eliminate_in_sequence() raises:
+    """`exists x exists z` on the same language, one projection at a time.
+
+    After dropping `z` the tracks renumber to `(x, y)`, so `x` is track 0 of
+    the smaller alphabet. What is left is "some position has y = 1": a witness
+    can always be marked where `y` holds, by choosing `x` there. Two
+    quantifiers, two subset constructions, and a language small enough to check
+    by hand.
+    """
+    var marked = one_marked_coincidence()
+    var once = project(marked, 3, 2)
+    var twice = project(once, 2, 0)
+    assert_equal(twice.letters, 2)
+    assert_true(same_language(twice, contains_letter(2, 1)))
+    var has_one: List[Int] = [0, 1, 0]
+    var all_zero: List[Int] = [0, 0, 0]
+    assert_true(twice.accepts(has_one))
+    assert_false(twice.accepts(all_zero))
+    assert_equal(minimised(twice).states(), 2)
+    # Order does not matter for two existentials over the same language.
+    var other_order = project(project(marked, 3, 0), 2, 1)
+    assert_true(same_language(twice, other_order))
+
+
 def main() raises:
     test_the_kernel_is_a_boolean_algebra_of_languages()
     print("[PASS] test_the_kernel_is_a_boolean_algebra_of_languages")
@@ -249,6 +369,10 @@ def main() raises:
     print("[PASS] test_emptiness_reports_the_instance_not_only_the_verdict")
     test_projection_discharges_one_existential_quantifier()
     print("[PASS] test_projection_discharges_one_existential_quantifier")
+    test_projection_over_three_tracks_eliminates_a_real_quantifier()
+    print("[PASS] test_projection_over_three_tracks_eliminates_a_real_quantifier")
+    test_two_quantifiers_eliminate_in_sequence()
+    print("[PASS] test_two_quantifiers_eliminate_in_sequence")
     test_minimisation_identifies_exactly_equal_languages()
     print("[PASS] test_minimisation_identifies_exactly_equal_languages")
     test_a_partial_table_is_completed_by_one_rejecting_sink()
@@ -261,4 +385,4 @@ def main() raises:
     print("[PASS] test_letter_counts_are_the_incidence_matrix")
     test_a_power_substitution_has_the_same_fixed_point()
     print("[PASS] test_a_power_substitution_has_the_same_fixed_point")
-    print("9 automata and numeration tests passed.")
+    print("11 automata and numeration tests passed.")
