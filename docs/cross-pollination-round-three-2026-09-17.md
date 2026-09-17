@@ -138,6 +138,17 @@ Besides P1 and P2, the roadmap draws a boundary the research programs draw infor
 
 R9 is first because it is the only item that answers a defect the estate has already suffered rather than one it might. R10 is second because the encoding convergence was round two's cheapest item and `CS:` has since finished the hard half of it.
 
+### 3.1 Running delivery record
+
+| Item | State | Where |
+| --- | --- | --- |
+| R9 | delivered. `FMK: tools/refinement.py` makes a generator's input distribution a declared object, `phi_G`, that a run can refuse: every draw inside the declared codomain, and each named class either reached at least once or explicitly missed with the reason. Both directions are checked, so a class declared missed and then drawn fails too and a declaration cannot rot. The M-adic corpus is widened as well as declared -- one coordinate in six now lands within four of `2^63`, and the lattice corpus contains the singular matrix -- so reverting either reproduces the exact corpus that hid each defect, by name. The property probe's generators are declared but not changed, because its stream is shared call for call with the Mojo probe and vendored by `interval_q`; the declaration instead records five gaps that were silent, each naming the branch it leaves unexercised | `FMK: 400e393`; `FMK: docs/generator-refinement-spec.md` |
+| R13 | delivered, and it is an adoption rather than a convergence. `PSC: AGENTS.md` sorts this repository's gates into the two columns -- a reached cap and an undecided certificate refuse to proceed; a doubtful retirement and a doubtful replacement of an archived certificate refuse to destroy -- and states the tie-break for a new gate as the irreversible column. `larsbx/cross-pollinated` records the instance as `adopted = true` with its source, so P6 still counts as reached once: closing the estate's gap and converging on the ruling are different facts | `PSC: e052ca3`; `cross-pollinated: 64eb0fe` |
+| R12 | delivered, section 6 | `cross-pollinated` |
+| R10, R11, R14, R15 | not started | -- |
+
+R9 and R13 leave R10 as the ranked head of what remains.
+
 ## 4. Two empty repositories, one of them a name collision `[V]`
 
 - `larsbx/finite-mandelbrot-research` was created on 2026-09-17 and contains one file: a README holding its own title. The live program is `larsbx/finite-mandlebrot-research`, spelled with the transposition, and carries the whole Mandelbrot repository. Anyone or anything resolving the correctly spelled name reaches the empty one. `FMK: README.md` and both cross-pollination audits cite the misspelled name as canonical, so the live name is the one with the typo in it.
