@@ -68,16 +68,20 @@ letters' weights are not commensurable: `L_m(b)` grows like `v_b beta^m` with
 `v` the left Perron eigenvector, whose entries lie in `Z[beta]` and differ
 between letters. So the test is exact rather than scalar.
 `perron_tile_lengths_in` constructs and verifies that eigenvector in the same
-cubic field, the value becomes the cubic element `sum_b x[b] v_b`, and
-`sign_at_perron` decides the comparison by Sturm-Tarski counting. The reserve's
-`1/(beta - 1)` is cleared by multiplying the comparison through by `beta - 1`,
-which is positive, so no division enters. No float anywhere.
+cubic field, and `psc.pisot_state` decides the comparison there: it is the
+same algebra three explorations in this repository need, so it lives in one
+place rather than three.
 
-Like the bound in `psc.numeration_addition`, this one is deliberately generous:
-the ratios are the limiting ones, exact for the eigenvector and only asymptotic
-at a finite level, so pruning too little is the safe direction -- it adds
-states, which the cap catches -- and the regressions check acceptance on every
-position below a stated bound rather than trusting the constant.
+Like the bound in `psc.numeration_addition`, this one is deliberately generous,
+and for a reason worth naming: the weights here are only *asymptotically*
+`v_b beta^m`, since `L_m(b)` is not `v_b beta^m` at a finite level, so the
+reserve is an estimate rather than an identity and the constant has to be
+measured. (Where a state's weights are exactly the eigenvector's --
+`psc.coincidence_formula` -- the same reserve at `slack = 1` is a theorem and
+nothing has to be measured.) Pruning too little is the safe direction: it adds
+states, which the cap catches, while pruning too much drops an answer nothing
+catches. The regressions check acceptance on every position below a stated
+bound rather than trusting the constant.
 
 That a finite state set exists at all is the imported theorem, gated in
 `docs/automatic-sequence-route-literature-gate-2026-09-17.md`. Exceeding the
@@ -110,17 +114,8 @@ from psc.bpa import substitution_incidence
 from psc.dumont_thomas import letter_automaton, max_image_length
 from psc.linear_numeration import basis_obeys_recurrence
 from psc.numeration_addition import powered_field
-from psc.perron_field3 import (
-    CubicElt,
-    PerronField3,
-    TileLengths3,
-    cubic_add_checked,
-    cubic_mul,
-    cubic_scale_checked,
-    cubic_sub_checked,
-    perron_tile_lengths_in,
-    sign_at_perron,
-)
+from psc.perron_field3 import perron_tile_lengths_in
+from psc.pisot_state import completion_reserve, incidence_step, within_reserve
 
 
 comptime SLACK = 3
@@ -132,40 +127,6 @@ of that asymmetry, because the ratios the reserve is computed from are the
 limiting ones and the levels are finite. The regressions decide whether it was
 enough, and `test_the_pruning_bound_does_not_decide_the_language` checks that
 narrowing or widening it leaves the same minimal automaton."""
-
-
-def _value(field: PerronField3, v: TileLengths3, x: List[Int]) raises -> CubicElt:
-    """`sum_b x[b] v_b`, the state's value at the Perron root in the
-    eigenvector's own scale."""
-    var total = CubicElt()
-    for b in range(3):
-        total = cubic_add_checked(total, cubic_scale_checked(v.at(b), x[b]))
-    return total
-
-
-def _reserve(v: TileLengths3, radix: Int, slack: Int) raises -> CubicElt:
-    """`slack (radix - 1) sum_b v_b`: what the digits still to come can reach,
-    with the comparison already multiplied through by `beta - 1`.
-
-    A step contributes at most `radix - 1` copies of any one letter's length and
-    subtracts at most `radix - 1` copies of `c`'s, so `|s[b]| <= radix - 1`, and
-    the levels below sum to less than `1/(beta - 1)` of the current one."""
-    var total = CubicElt()
-    for b in range(3):
-        total = cubic_add_checked(total, v.at(b))
-    return cubic_scale_checked(total, slack * (radix - 1))
-
-
-def _completable(
-    field: PerronField3, v: TileLengths3, x: List[Int], reserve: CubicElt
-) raises -> Bool:
-    """Whether the digits still to come can still cancel this state."""
-    var scaled = cubic_mul(field, CubicElt(-1, 1, 0), _value(field, v, x))
-    if sign_at_perron(field, cubic_sub_checked(reserve, scaled)) < 0:
-        return False
-    if sign_at_perron(field, cubic_add_checked(scaled, reserve)) < 0:
-        return False
-    return True
 
 
 def _key(letter: Int, x: List[Int]) -> String:
@@ -209,7 +170,7 @@ def conversion_automaton_with(
     var m = Mat3(substitution_incidence(tau))
     var field = powered_field(tau)
     var v = perron_tile_lengths_in(field, m)
-    var reserve = _reserve(v, radix, slack)
+    var reserve = completion_reserve(v, radix, slack)
 
     # State 0 is the zero difference at the starting letter; state 1 is the
     # rejecting sink an inadmissible or hopeless transition falls into.
@@ -239,14 +200,8 @@ def conversion_automaton_with(
             for t in range(p):
                 s[tau[a][t]] += 1
             s[letter] -= g
-            var old = coefficients[done].copy()
-            var next = List[Int](length=3, fill=0)
-            for row in range(3):
-                var total = s[row]
-                for col in range(3):
-                    total += m.at(row, col) * old[col]
-                next[row] = total
-            if not _completable(field, v, next, reserve):
+            var next = incidence_step(m, coefficients[done], s)
+            if not within_reserve(field, v, next, reserve):
                 delta.append(1)
                 continue
             var reached = tau[a][p]

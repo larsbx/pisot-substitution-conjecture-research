@@ -230,3 +230,14 @@ definition = "The Dumont-Thomas letter map placed on the path track of the conve
 canonical = "mojo/psc/numeration_conversion.mojo"
 oracle = "mojo/numeration_conversion_census.mojo"
 related = ["numeration-conversion-automaton", "numeration-automaton", "addition-automaton"]
+
+[[object]]
+id = "coincidence-formula-automaton"
+name = "Coincidence formula automaton"
+taxonomy = "automata"
+status = "open-boundary"
+scope = "Pairs of Dumont-Thomas paths of one length that reach one letter after prefixes of one Parikh vector: the strong coincidence condition SC(i, j) for a pair of letters."
+definition = "A synchronous two-track automaton whose state is the two letters reached and the Parikh difference of the two prefixes, stepped by the incidence matrix as delta <- M delta + (s_top - s_bottom), accepting where the difference is zero and the letters agree. SC(i, j) is the language being non-empty, and the shortest accepted word is the least level at which the pair coincides, naming the position in both images. The state set is finite by the Pisot property alone -- the contracting eigencoordinates are bounded from zero and the expanding one by the exact reserve of psc.pisot_state at slack 1 -- so the cap guards against a defect rather than budgeting a search. Deciding the condition for a specimen is not deciding it for the family, which is open."
+canonical = "mojo/psc/coincidence_formula.mojo"
+oracle = "mojo/coincidence_formula_census.mojo"
+related = ["dumont-thomas-numeration", "numeration-conversion-automaton", "balanced-pair-automaton", "seed-patch-overlap-automaton"]

@@ -167,6 +167,88 @@ representation of such a position. For a decision procedure that is the useful
 side of the choice, since normalisation is its own automaton there too; it is
 still a thing that has to be said rather than left to inference.
 
+### The coincidence formula, and where the route stops
+
+`mojo/psc/coincidence_formula.mojo` writes the condition and decides it:
+
+    SC(i, j)  ==  exists k, exists p :
+                      p < |sigma^k(i)|,  p < |sigma^k(j)|,
+                      sigma^k(i)[p] = sigma^k(j)[p],
+                      l(sigma^k(i)[0..p)) = l(sigma^k(j)[0..p))
+
+with `l` the Parikh map, and `sigma` satisfies strong coincidence when this
+holds for every pair.
+
+**The four automata above do not assemble it,** and the reason is worth
+recording rather than working around. The Parikh conjunct is not in the theory
+they present: a counting function `n -> |u[0..n)|_a` is not in general
+first-order definable from `+` and the letter predicates, which is why Walnut
+counts with linear representations[^9] rather than with formulas. What rescues
+the formula is that it never needs either count, only that the two are equal —
+and the *difference* of two Parikh vectors over prefixes reached by the same
+number of substitution steps is bounded, by the Pisot property, so it is a
+finite-state quantity though neither count is.
+
+So the condition gets its own automaton, on two synchronous Dumont–Thomas path
+tracks, carrying `delta <- M delta + (s_top - s_bottom)` alongside the two
+letters reached. Since `M[i][j]` counts letter `i` in `sigma(j)`, a state
+accumulated this way *is* a Parikh vector, and `delta = 0` with the two letters
+equal is exactly the conjunction above. Equal Parikh vectors force equal
+lengths, so an accepted word is one position read in both images at once and
+its length is the level `k`. `SC(i, j)` is the language being non-empty, and
+one breadth-first search discharges both quantifiers and returns the witness.
+
+**Finiteness here is a theorem, not an import.** `M` is primitive with
+irreducible characteristic polynomial, so its eigenvalues are the three distinct
+roots `beta > 1 > |beta_2|, |beta_3|`. In that eigenbasis the step acts as
+`a_r <- lambda_r a_r + t_r` with `t` ranging over a finite set: the two
+contracting coordinates are bounded from `a_r(0) = 0` by a geometric series, and
+the expanding one is bounded by acceptance, since `v^T delta' = beta v^T delta +
+v^T t` is an identity for the left Perron eigenvector `v`, giving
+`|v^T delta| < max|v^T t| / (beta - 1)` for any state that can still reach zero.
+A lattice point of `Z^3` with all three coordinates bounded — finitely many. The
+reserve of `psc.pisot_state` at `slack = 1` is therefore derived rather than
+estimated here, unlike the two explorations above, and the state cap guards
+against a defect in the file rather than budgeting a search: exceeding it raises.
+
+`mojo/coincidence_formula_census.mojo` decides the whole corpus and checks the
+answers twice over. The formula is cheap and the overlap graph is not, so the
+verdict covers every specimen and the cross-check covers a sample of them, which
+is why the two are counted apart.
+
+Over **all 4,554 specimens**: 40,986 ordered pairs decided, **every one of the
+40,986 witnesses recomputed from the substitution alone** — split the accepted
+word back into two paths, recompute the Parikh vectors and the letters by
+substituting — with none failing, and **0 specimens without strong
+coincidence**. Against the seed-patch overlap graph on every thirtieth specimen:
+**873 left-aligned non-coincidence vertices whose first-coincidence depth equals
+the shortest witness level, with 0 different**. Not merely the same verdict —
+the same number, from exact cubic tile geometry on one side and an integer
+Parikh difference on the other, sharing no step. The deepest coincidence level
+in the corpus is 15, and the whole sweep takes under a minute.
+
+That last figure is the practical difference: `coincidence_witness` stops at the
+first accepting state instead of closing the state set, so a pair that coincides
+early costs a handful of states where the full construction would close a set of
+thousands. Building the automaton remains available for the questions that need
+the language rather than the verdict.
+
+**Where the route stops.** This is the acceptance test the gate set, and it
+passes; what it does not do is what the proposed step asked for. A first-order
+decision procedure over *a* substitution's numeration decides the condition for
+*that* substitution — which the balanced-pair and overlap constructions already
+did. Answering "true of every substitution in this family" would need to
+quantify over the substitution as well, and the substitution is what fixes the
+numeration, the alphabet and the automaton: it is a parameter of the theory, not
+a variable in it. No arrangement of these automata reaches the family, and the
+gate should not have expected one.
+
+What the route did deliver is worth having, and is smaller than was hoped: a
+third decision procedure for strong coincidence, independent of the other two,
+elementary enough that its termination is proved rather than imported, and
+agreeing with the overlap graph pair by pair and depth by depth. That is
+cross-validation of the repository's central diagnostic, not a new theorem.
+
 ## What must be imported
 
 **Recognisability of addition, in general.** The automaton above is built and
@@ -187,13 +269,14 @@ is both the reference and the practical account of what the decision procedure
 can and cannot reach. Using it would mean generating the addition automaton for
 each cubic Pisot base, which is the same import in executable form.
 
-**The formula itself.** Strong coincidence, in the sense this repository uses
-it,[^10] is stated here as a property of balanced pairs and of the overlap
-graph. Writing it as a first-order formula
-over positions of the fixed point — with the quantifiers a decision procedure
-can eliminate — is mathematics this gate does not do, and the encoding would
-have to be checked against the verdicts the existing census reports before
-anything is concluded from it.
+**The formula itself — now written, and settled.** Strong coincidence, in the
+sense this repository uses it,[^10] is stated here as a property of balanced
+pairs and of the overlap graph. It is now also written as a formula and decided
+by its own automaton (above), checked against the overlap graph's depths pair by
+pair. Nothing is imported for it: its termination is proved from the Pisot
+property directly. What the section above records instead is the limit this
+exposed — the formula decides one substitution at a time, and the family is not
+reachable by quantifying inside a theory the substitution itself parameterises.
 
 ## Decision
 
@@ -202,22 +285,36 @@ domains.** What is claimed now: the Dumont–Thomas numeration presents the fixe
 point exactly; the automata operations implementing a decision procedure are
 correct on their own terms; the linear numeration round-trips its greedy
 digits; the addition automaton, where it was built, is the addition relation on
-the range tested; and the conversion, where it was built, pairs each position's
+the range tested; the conversion, where it was built, pairs each position's
 path word with that position's digit word and with no other on the range
-tested, carrying the letter map across unchanged. No claim is made that any coincidence condition
-has been decided, for one substitution or for a family, and none that the
-construction terminates for every specimen — eight refusals say otherwise on
-this corpus sample and this cap.
+tested, carrying the letter map across unchanged; and strong coincidence is
+decided, per specimen, by an automaton whose termination is proved here and
+whose every witness is recomputed from the substitution.
 
-Four automata now exist for a specimen that builds: admissibility, the letter
-map, addition, and the conversion that puts the first two into the numeration
-the third is recognised over. What remains is the formula — the coincidence
-condition written with quantifiers a decision procedure can eliminate — and,
-for a claim about digits rather than about values, the greedy-normal language
-that would make the conversion functional. Its acceptance test is unchanged:
-agreement with the verdicts the degree-3 census already reports on a family it
-already covers. Disagreement there is a bug in the encoding, never a new
-result.
+What is *not* claimed: that strong coincidence holds for the alphabet-3 Pisot
+family. The corpus sweep decides it for 4,554 substitutions and finds no
+failure, which is elimination of counterexamples over a finite corpus and not a
+theorem about the family — the same standing every other census here has. Nor
+is it claimed that the addition and conversion explorations terminate for every
+specimen: nine refusals across the two say otherwise on this corpus sample and
+these caps. (The coincidence automaton is the exception, and the reason is
+stated above: its termination is proved rather than observed.)
+
+Five automata now exist: admissibility, the letter map, addition, the
+conversion that puts the first two into the numeration the third is recognised
+over, and the coincidence automaton. The last one met the acceptance test this
+gate set — agreement with the verdicts the degree-3 census already reports —
+in its strongest form, matching the overlap graph's first-coincidence depth on
+every left-aligned vertex compared rather than only its verdict.
+
+What that closed is the encoding question, and what it opened is a narrower and
+more honest reading of the route: it decides one substitution at a time, so it
+cross-validates the census rather than replacing it. Two smaller things remain
+open and are worth naming as such — the greedy-normal language, for a claim
+about digits rather than about values, and whether the coincidence automaton's
+elementary finiteness argument also retires the imported theorem behind the
+addition and conversion explorations, which carry caps that may be defensive
+rather than necessary.
 
 ## Sources
 
