@@ -24,9 +24,11 @@ Six repositories were **not read**: `truck-shop`, `redis-pilot`, `nextcloud-cale
 
 Markers: `[V]` verified here by reading; `[L]` a claim in the source that this audit did not check.
 
-## 1. The estate states the same six rulings, six times over, and never cites itself `[V]`
+## 1. Five rulings the estate reaches independently, a sixth it reaches once, and no citation between any of them `[V]`
 
-This is the finding. Six repositories, written for co-op finance, deployment, oracle grading, agent operations and two mathematics programs, independently arrive at the same small set of rules. No one of them references another for any of it.
+This is the finding. Six repositories, written for co-op finance, deployment, oracle grading, agent operations and two mathematics programs, arrive at an overlapping set of rules without referencing one another for any of it.
+
+The overlap is not uniform, and the counts are the evidence, so they are stated rather than averaged. Repositories stating each ruling, as the subsections below cite them: **P1** four, **P2** four, **P3** seven, **P4** five, **P5** four, **P6** *one*. Only P1–P5 are convergences. P6 is a single repository's ruling that the others have not stated, recorded here because the estate needs it, not because it recurs — see its own subsection and section 6.
 
 ### P1. A derived fact is read or generated from its source, never re-derived
 
@@ -43,9 +45,11 @@ Four statements, four repositories, no shared wording:
 | `OW:` roadmap, "Anti-vacuity" | "Every phase carries a regression that fails against current code. A phase whose test passes before the change has not proven anything and is not done." |
 | `NDC:` README, restore drill | "The negative control is required evidence; an equality check that never fails is a broken instrument." |
 | `NDC:` README, routing check | a deliberately mismatched upstream is run "confirming the check is a working instrument rather than a constant pass" |
-| `MT:` INV-4 | "vacuity is uncompilable where provable" — provably vacuous oracles fail to compile, discharged by SMT at DSL compile time |
+| `MT:` INV-4 `[L]` | "vacuity is uncompilable where provable" — provably vacuous oracles fail to compile, discharged by SMT at DSL compile time. Specified, not running: see below |
 
-Round two recorded the same lesson as a correction rather than a rule: R5's first negative control was tautological because the separators were built from the addresses they were meant to separate. The Mandelbrot program has since built a real one. `MT:` is the only place in the estate where the rule is mechanized rather than remembered.
+Round two recorded the same lesson as a correction rather than a rule: R5's first negative control was tautological because the separators were built from the addresses they were meant to separate. The Mandelbrot program has since built a real one.
+
+`MT:` is the only place in the estate where the rule is **specified as a mechanism** rather than left to be remembered. It is not mechanized anywhere: `MT:` is a normative specification whose implementation is not authorized and whose S0 is blocked, so its compile-time refusal is a design nobody can run today. `NDC:` and the Mandelbrot program enforce the rule by carrying an actual rejecting case; `MT:` is the only one that would make a vacuous oracle unbuildable, if it existed. Section 5 states this non-claim, and the row above is marked accordingly.
 
 ### P3. Inconclusive is a third outcome, never a pass and never a failure
 
@@ -56,9 +60,11 @@ Round two recorded the same lesson as a correction rather than a rule: R5's firs
 | `SG:` | `UNEXECUTED`, neither PASS nor FAIL |
 | `MT:` A.5 | "Solver `:unknown` MUST be treated as unliftable — never as pass or fail" |
 | `OW:` Phase 3 | "Unclassifiable → `ambiguous`, never silently dropped" |
-| `CS:` | undeclared constants ⇒ `gate` fails closed |
+| `CS:` 00 Art. I.2, 09 §1 | "pending a ruling, contested instruments are gated `N` (not-yet)" |
 
 Six vocabularies for one idea. Round two's A1 noted three of them and proposed mapping them onto each other; the map `FMK: proof_records/vocabularies.py` now holds covers two.
+
+`CS:` earns its row on `N`, not on failing closed. Its `undeclared ⇒ fails closed` and `unclassified ⇒ block` rules refuse to proceed, which is a decision to deny rather than a third outcome carried forward, and they belong under P5 and P6 where they are cited. `N` is the genuine third state: contested, awaiting a ruling, and not readable as either answer in the meantime.
 
 ### P4. A derived or machine-produced artifact never authorizes
 
