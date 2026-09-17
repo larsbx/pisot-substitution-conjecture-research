@@ -253,6 +253,7 @@ outside the index, which is how record drift starts.
 - `completion-ledger-2026-09-11.md` — PSC weekly completion ledger — 2026-09-11
 - `current-proof-architecture-2026-09-11.md` — Current PSC proof architecture — 2026-09-11
 - `manuscript-p0-corrections-2026-09-11.md` — P0 manuscript corrections — 2026-09-11
+
 ## Status-change checklist
 
 When a theorem status changes:

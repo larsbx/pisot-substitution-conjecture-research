@@ -28,7 +28,7 @@ It contains no `PSC_PROOF_v16` or later manuscript.
 The two load-bearing text files with checksums already recorded by the
 repository provenance audit match exactly:
 
-| File | SHA-256 |
+| File in the tarball | SHA-256 |
 | --- | --- |
 | `tarball: manuscripts/PSC_PROOF_v15.tex` | `0b28c23aa8f4d006e6de3823b1c953626dad20ce58c77afa76717bd91abee6df` |
 | `tarball: certificates_patched/PROOF_CERTIFICATE.md` | `c318edd7b55aacddf4a3f980eea22b183b7161249dbc0ff42d74ef93faf13b3e` |
