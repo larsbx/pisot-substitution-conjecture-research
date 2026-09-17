@@ -8,6 +8,13 @@ Automated research workspace for the Pisot Substitution Conjecture (PSC), with e
 
 Python under `src/psc_research/` is a secondary reference/oracle and prototyping layer. Once a Mojo implementation exists, the Mojo module is the executable source of truth. See `AGENTS.md` for the detailed policy.
 
+Censuses, catalogues and the taxonomies of the objects they classify are built
+on one shared library (`mojo/psc/corpus.mojo`, `histogram.mojo`, `carrier.mojo`,
+`symmetry.mojo` and the defect kernels), so a driver is a survey over the corpus
+rather than a private copy of it. `mojo/pixi.toml` has one task per driver and
+`pixi run test` loops over every `mojo/tests/test_*.mojo`. See
+`docs/mojo-census-library-2026-09-16.md`.
+
 ## Current mathematical state
 
 Start here:
