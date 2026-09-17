@@ -142,12 +142,12 @@ R9 is first because it is the only item that answers a defect the estate has alr
 
 | Item | State | Where |
 | --- | --- | --- |
-| R9 | delivered. `FMK: tools/refinement.py` makes a generator's input distribution a declared object, `phi_G`, that a run can refuse: every draw inside the declared codomain, and each named class either reached at least once or explicitly missed with the reason. Both directions are checked, so a class declared missed and then drawn fails too and a declaration cannot rot. The M-adic corpus is widened as well as declared -- one coordinate in six now lands within four of `2^63`, and the lattice corpus contains the singular matrix -- so reverting either reproduces the exact corpus that hid each defect, by name. The property probe's generators are declared but not changed, because its stream is shared call for call with the Mojo probe and vendored by `interval_q`; the declaration instead records five gaps that were silent, each naming the branch it leaves unexercised | `FMK: 400e393`; `FMK: docs/generator-refinement-spec.md` |
-| R13 | delivered, and it is an adoption rather than a convergence. `PSC: AGENTS.md` sorts this repository's gates into the two columns -- a reached cap and an undecided certificate refuse to proceed; a doubtful retirement and a doubtful replacement of an archived certificate refuse to destroy -- and states the tie-break for a new gate as the irreversible column. `larsbx/cross-pollinated` records the instance as `adopted = true` with its source, so P6 still counts as reached once: closing the estate's gap and converging on the ruling are different facts | `PSC: e052ca3`; `cross-pollinated: 64eb0fe` |
+| R9 | **partly delivered: `FMK:` only.** The ranked row names `FMK:`, `PSC:` and `NLAP:`, and the reference oracles of the latter two still declare nothing. `FMK: tools/refinement.py` makes a generator's input distribution a declared object, `phi_G`, that a run can refuse: every draw inside the declared codomain, and each named class either reached at least once or explicitly missed with the reason. Both directions are checked, so a class declared missed and then drawn fails too and a declaration cannot rot. The M-adic corpus is widened as well as declared -- one coordinate in six now lands within four of `2^63`, and the lattice corpus contains the singular matrix -- so reverting either reproduces the exact corpus that hid each defect, by name. The property probe's generators are declared but not changed, because its stream is shared call for call with the Mojo probe and vendored by `interval_q`; the declaration instead records five gaps that were silent, each naming the branch it leaves unexercised. Outstanding: the facility lives in `FMK: tools/`, which no consumer vendors, so carrying it to `PSC:` and `NLAP:` means making it vendorable first | `FMK: 400e393`; `FMK: docs/generator-refinement-spec.md` |
+| R13 | **partly delivered: `PSC:` only.** The ranked row names both mathematics programs and `NLAP: docs/` is unchanged. It is also an adoption rather than a convergence. `PSC: AGENTS.md` sorts this repository's gates into the two columns -- a reached cap and an undecided certificate refuse to proceed; a doubtful retirement and a doubtful replacement of an archived certificate refuse to destroy -- and states the tie-break for a new gate as the irreversible column. `larsbx/cross-pollinated` records the instance as `adopted = true` with its source, so P6 still counts as reached once: closing the estate's gap and converging on the ruling are different facts | `PSC: e052ca3`; `cross-pollinated: 64eb0fe` |
 | R12 | delivered, section 6 | `cross-pollinated` |
 | R10, R11, R14, R15 | not started | -- |
 
-R9 and R13 leave R10 as the ranked head of what remains.
+Neither item is finished, so neither leaves the queue. What remains at the head is their outstanding halves -- `PSC:` and `NLAP:` for R9, `NLAP:` for R13 -- and R10 after them.
 
 ## 4. Two empty repositories, one of them a name collision `[V]`
 
@@ -197,6 +197,13 @@ repository states the ruling at that path, never that it obeys it. One entry —
 `sprucegoose: UNEXECUTED` — is carried from round two and was not read directly;
 its entry says so.
 
-P6 is still stated once. The package reports it as not yet cross-pollinated
-rather than filling the gap, and a test pins that the report does so. R13
-remains open and is the item that would close it.
+P6 was stated once when this section was written. It no longer is: R13 has
+since given `PSC: AGENTS.md` the distinction, and section 3.1 records it. The
+package does not count that as a second convergence, because `PSC:` adopted the
+ruling rather than reaching it: the instance carries `adopted = true` with its
+source, `Ruling.independent` counts only repositories that reached the ruling,
+and the report says "stated more than once but reached once". Closing the
+estate's gap and converging on a ruling are different facts.
+
+R13 is not finished either. It names both mathematics programs, and `NLAP:` is
+unchanged.
