@@ -192,6 +192,24 @@ anchor = "| Bounded degree-two wedge productivity |"
 window_lines = 0
 
 [[claim]]
+name = "UnimodularNoPatchCollapse"
+status = "proved"
+aliases = ["unimodular seed-patch non-collapse"]
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Unimodular seed-patch non-collapse |"
+window_lines = 0
+
+[[claim]]
+name = "CorpusDeterminantSplit"
+status = "finite-domain"
+aliases = ["corpus determinant split"]
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Corpus determinant split |"
+window_lines = 0
+
+[[claim]]
 name = "OrderedAffineCycleIdentity"
 status = "proved"
 aliases = ["ordered affine overlap-cycle identity"]

@@ -195,7 +195,12 @@ cap `6` on the separation radius, lifts at radius `4`):
   most `6`; the median radius is `2`.
 - The 120 survivors at radius `6` are exactly the 120 specimens with a seed
   pair whose patch collapses to a proper power by level `6`: no survivor
-  without a collapse, no collapse without a survivor. On this corpus the
+  without a collapse, no collapse without a survivor. All 120 are
+  non-unimodular, and `docs/unimodular-route-gate-2026-09-17.md` Lemma 1
+  proves that they must be: a unimodular incidence matrix forbids a collapsing
+  patch at every level. The collapsing case of this dichotomy is therefore a
+  non-unit phenomenon, which does not make the surviving collision easier to
+  resolve on the branch where it occurs. On this corpus the
   finite obstruction to resolving ancestry by context is entirely the
   periodicity of the patches, and a separation radius exists precisely when
   no iterated seed patch is a proper power at the tested levels.
