@@ -93,8 +93,11 @@ else
 fi
 
 section "Python secondary reference/oracle"
-if command -v pytest >/dev/null 2>&1; then
-    if pytest_out=$(pytest -q 2>&1); then
+# Run through python3 -m so the suite uses the interpreter whose dev extra was
+# installed; a pytest earlier on PATH can belong to another interpreter, and
+# then the pinned PDF parser looks missing.
+if python3 -m pytest --version >/dev/null 2>&1; then
+    if pytest_out=$(python3 -m pytest -q 2>&1); then
         ok "pytest oracle regressions"
     else
         bad "pytest oracle regressions"
