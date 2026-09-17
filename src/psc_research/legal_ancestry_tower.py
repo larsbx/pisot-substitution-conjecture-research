@@ -14,7 +14,6 @@ simple conservative margin recurrence.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Sequence
 
 from .bpa import State, Substitution, alphabet_size, apply_substitution_n, coincidence_boundaries, parikh
 from .legal_cut_context import (

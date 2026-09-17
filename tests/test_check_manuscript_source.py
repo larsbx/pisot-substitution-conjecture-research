@@ -559,7 +559,6 @@ def test_xref_stream_entries_are_dereferenced(copy):
 
 
 def test_predicted_xref_stream_is_unfiltered(copy):
-    import zlib
 
     pdf = next(copy.glob("*.pdf"))
     # PNG Up predictor: one row, filter byte 2, row bytes are deltas against a zero previous row

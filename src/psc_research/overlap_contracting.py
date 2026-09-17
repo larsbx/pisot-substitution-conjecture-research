@@ -145,8 +145,13 @@ def digit_set(g: OverlapGraph) -> list[Elt]:
     return sorted(out)
 
 
+def _rat(x: Fraction | int) -> Elt:
+    """The rational `x` as an element of Q(beta)."""
+    return (Fraction(x), Fraction(0), Fraction(0))
+
+
 def _abs(sign_fn, x: Elt) -> Elt:
-    return x if sign_fn(x) >= 0 else tuple(-c for c in x)
+    return x if sign_fn(x) >= 0 else (-x[0], -x[1], -x[2])
 
 
 class ContractingBound:
@@ -160,20 +165,26 @@ class ContractingBound:
         one = F.one
         if self.complex:
             # K = max_F |N(c)|/|c| chosen by cross-multiplication; store c* and |N(c*)|
-            best, best_norm = None, None
+            best: Elt | None = None
+            best_norm: Fraction | None = None
             for c in digits:
                 nc = abs(field_norm(F, c))
                 ac = _abs(F.sign, c)
-                if best is None:
+                if best is None or best_norm is None:
                     best, best_norm = ac, nc
                     continue
                 # nc/|c| > best_norm/|best|  <=>  nc*|best| - best_norm*|c| > 0
-                lhs = F.sub(F.mul((nc, 0, 0), best), F.mul((best_norm, 0, 0), ac))
+                lhs = F.sub(F.mul(_rat(nc), best), F.mul(_rat(best_norm), ac))
                 if F.sign(lhs) > 0:
                     best, best_norm = ac, nc
-            self.cstar, self.cstar_norm = best, best_norm
+            if best is None or best_norm is None:
+                # digit_set keeps only nonzero increments; an empty set would make
+                # every level vacuously admissible, so refuse instead of bounding.
+                raise ValueError("no nonzero offset increment: degenerate digit set")
+            self.cstar: Elt = best
+            self.cstar_norm: Fraction = best_norm
             assert F.D > 0
-            self.rho = F.mul(F.beta, (Fraction(1, F.D), 0, 0))  # |sigma_2(beta)|^{-2}
+            self.rho = F.mul(F.beta, _rat(Fraction(1, F.D)))  # |sigma_2(beta)|^{-2}
             rho_pow = [one]
             for _ in range(max_level):
                 rho_pow.append(F.mul(rho_pow[-1], self.rho))
@@ -182,7 +193,7 @@ class ContractingBound:
             for m in range(1, max_level + 1):
                 A, B = F.zero, F.zero
                 for k in range(2, 2 * m + 1):
-                    term = F.mul((Fraction(min(k - 1, 2 * m + 1 - k)), 0, 0), rho_pow[k // 2])
+                    term = F.mul(_rat(min(k - 1, 2 * m + 1 - k)), rho_pow[k // 2])
                     if k % 2 == 0:
                         A = F.add(A, term)
                     else:
@@ -195,7 +206,7 @@ class ContractingBound:
             for r in self.roots:
                 eps = r.sign(F.beta)
                 assert eps != 0
-                eb = tuple(eps * c for c in F.beta)  # |beta_k| as a field element at root k
+                eb = (eps * F.beta[0], eps * F.beta[1], eps * F.beta[2])  # |beta_k| at root k
                 cs = [_abs(r.sign, c) for c in digits]
                 cmax = cs[0]
                 for c in cs[1:]:
@@ -216,7 +227,7 @@ class ContractingBound:
         if not any(t):
             return 0
         if self.complex:
-            scale = lambda k, x: F.mul((Fraction(k), 0, 0), x)
+            scale = lambda k, x: F.mul(_rat(k), x)
             nt = abs(field_norm(F, t))
             at = _abs(F.sign, t)
             lhs = scale(nt, self.cstar)  # |N(t)| |c*|

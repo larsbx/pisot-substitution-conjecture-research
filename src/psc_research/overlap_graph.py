@@ -267,7 +267,7 @@ def first_depths(g: "OverlapGraph", is_target) -> list[int]:
     for k in range(n):
         for c in g.adj[k]:
             parents[c].append(k)
-    q = _dq()
+    q: _dq[int] = _dq()
     for k, s in enumerate(g.states):
         if is_target(s):
             dist[k] = 0

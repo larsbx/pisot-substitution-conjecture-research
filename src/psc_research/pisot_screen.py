@@ -55,7 +55,7 @@ REFUSED = "refused"
 MAX_DECIDABLE_IRREDUCIBLE_DEGREE = 3
 
 
-def degree(coeffs: Sequence[int]) -> int:
+def degree(coeffs: Sequence[Fraction | int]) -> int:
     """Index of the highest non-zero coefficient; `-1` for the zero polynomial.
     Coefficients are low-degree-first throughout this module."""
     for i in range(len(coeffs) - 1, -1, -1):
@@ -228,7 +228,8 @@ def has_root_on_unit_circle(coeffs: Sequence[int]) -> bool:
     if evaluate(coeffs, Fraction(1)) == 0 or evaluate(coeffs, Fraction(-1)) == 0:
         return True
     q = halfplane_transform(coeffs)
-    real_part, imag_part = [], []
+    real_part: list[Fraction] = []
+    imag_part: list[Fraction] = []
     for k, c in enumerate(q):
         sign = (-1) ** (k // 2)
         if k % 2 == 0:

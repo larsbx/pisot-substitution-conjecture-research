@@ -26,6 +26,10 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -U pip
       - run: pip install -e .[dev]
+      - name: Lint the Python oracle (ruff, pinned in the dev extra)
+        run: ruff check src tests scripts
+      - name: Type-check the Python oracle (mypy, configured in pyproject.toml)
+        run: mypy
       - run: python scripts/check_vendored_sync.py
       - name: Generated ledger surfaces are current (tla/ledger.json, tla/Ledger.tla, models, index, claims)
         run: python scripts/make_ledger.py --check
@@ -298,10 +302,8 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
-      - name: Fetch TLA+ tools
-        run: |
-          curl -fsSL -o tla/tla2tools.jar \
-            https://github.com/tlaplus/tlaplus/releases/latest/download/tla2tools.jar
+      - name: Fetch the pinned TLA+ tools (tla/tla2tools.pin)
+        run: ./tla/fetch-tools.sh
       - name: Check all models
         run: ./tla/check.sh
 

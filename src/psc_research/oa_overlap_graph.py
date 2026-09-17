@@ -32,7 +32,7 @@ def prolongable_power(sigma) -> tuple[int, int]:
 
 
 def fixed_point_prefix(sigma, q: int, c: int, min_len: int) -> tuple[int, ...]:
-    u = (c,)
+    u: tuple[int, ...] = (c,)
     while len(u) < min_len:
         u = apply_substitution_n(sigma, u, q)
     return u
@@ -101,7 +101,8 @@ def oa_types(g: OverlapGraph, u: tuple[int, ...], k: int, window: int | None = N
         t = F.zero
         for c in range(d):
             if w[c]:
-                t = F.add(t, tuple(x * w[c] for x in g.l[c]))
+                lc = g.l[c]
+                t = F.add(t, (lc[0] * w[c], lc[1] * w[c], lc[2] * w[c]))
         s = (a, b, t)
         if g.overlaps(s):
             seeds.add(s)

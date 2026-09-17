@@ -6,9 +6,17 @@ set -uo pipefail
 cd "$(dirname "$0")"
 JAR="${TLA_TOOLS:-tla2tools.jar}"
 if [ ! -f "$JAR" ]; then
-    echo "tla2tools.jar not found. Set TLA_TOOLS or download it:"
-    echo "  curl -L -o tla2tools.jar https://github.com/tlaplus/tlaplus/releases/latest/download/tla2tools.jar"
+    echo "tla2tools.jar not found. Fetch the pinned release (see tla2tools.pin):"
+    echo "  ./tla/fetch-tools.sh"
+    echo "or point TLA_TOOLS at your own jar."
     exit 2
+fi
+# The managed jar must match the pinned digest: the expected-outcome table below
+# asserts which invariants TLC violates, so the tool version is load-bearing.
+if [ "$JAR" -ef tla2tools.jar ]; then
+    ./fetch-tools.sh >/dev/null || exit 1
+else
+    echo "[info] using an unpinned jar $JAR (sha256 $(sha256sum "$JAR" | cut -d' ' -f1))"
 fi
 
 # model : expected

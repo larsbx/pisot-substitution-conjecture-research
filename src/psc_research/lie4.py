@@ -16,7 +16,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from itertools import permutations
-from math import factorial
 from typing import Mapping
 
 Weight = tuple[int, int, int]
@@ -36,7 +35,7 @@ def _mul(a: Mapping[Weight, int], b: Mapping[Weight, int]) -> Character:
     out: Character = {}
     for wa, ma in a.items():
         for wb, mb in b.items():
-            weight = tuple(wa[i] + wb[i] for i in range(3))
+            weight = (wa[0] + wb[0], wa[1] + wb[1], wa[2] + wb[2])
             out[weight] = out.get(weight, 0) + ma * mb
     return out
 
@@ -97,7 +96,7 @@ def character_dimension(character: Mapping[Weight, int]) -> int:
 
 def orbit(weight: Weight) -> tuple[Weight, ...]:
     """Distinct coordinate permutations of one eigenvalue exponent pattern."""
-    return tuple(sorted(set(permutations(weight))))
+    return tuple(sorted({(p[0], p[1], p[2]) for p in permutations(weight)}))
 
 
 @dataclass(frozen=True)

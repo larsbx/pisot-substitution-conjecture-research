@@ -130,7 +130,7 @@ def iterate_derived_generic(tau: DerivedMap[S], state: S, depth: int) -> tuple[S
         raise ValueError("depth must be nonnegative")
     if state not in tau:
         raise ValueError("state lies outside derived substitution")
-    word = (state,)
+    word: tuple[S, ...] = (state,)
     for _ in range(depth):
         word = apply_derived_generic(tau, word)
     return word

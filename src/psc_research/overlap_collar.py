@@ -253,7 +253,7 @@ def legal_factors(sigma: Any, length: int) -> frozenset[Word]:
     """All factors of length at most ``length`` of the language of ``sigma``."""
     if length < 1:
         raise RuntimeError("legal factor length must be positive")
-    factors = {(a,) for a in sigma}
+    factors: set[tuple[int, ...]] = {(a,) for a in sigma}
     while True:
         grown = factors | {img[i:i + n] for w in factors for img in (_image(sigma, w),)
                            for n in range(1, length + 1) for i in range(len(img) - n + 1)}

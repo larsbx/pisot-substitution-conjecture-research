@@ -1,0 +1,9 @@
+# Pinned TLA+ tools release, the single source of truth for every consumer
+# (tla/fetch-tools.sh, tla/check.sh, and the tla-models CI job).
+#
+# Pinned rather than tracking releases/latest: TLC's expected outcome table in
+# check.sh asserts which invariants hold and which are violated, so a silent
+# tool upgrade could flip a HOLD/violation expectation without any source
+# change. Bump deliberately: change both lines, then run ./tla/check.sh.
+version=v1.7.4
+sha256=936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88

@@ -13,7 +13,7 @@ natural object is the oriented double cover.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Mapping, Sequence
+from typing import Sequence
 
 from .bpa import (
     State,

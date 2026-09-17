@@ -208,7 +208,7 @@ def integral_solution(solution: RatMatrix) -> IntMatrix:
 def side_area_columns(
     meanarea: IntMatrix,
     q: IntMatrix,
-) -> tuple[tuple[tuple[int, ...], ...], tuple[tuple[tuple[int, ...], ...]]]:
+) -> tuple[tuple[tuple[int, ...], ...], tuple[tuple[int, ...], ...]]:
     """Return area(u)=J+Q and area(v)=J-Q as column tuples."""
     if len(meanarea) != 3 or len(q) != 3:
         raise ValueError("three-row matrices required")
@@ -217,7 +217,7 @@ def side_area_columns(
     for j in range(3):
         left.append(tuple(meanarea[i][j] + q[i][j] for i in range(3)))
         right.append(tuple(meanarea[i][j] - q[i][j] for i in range(3)))
-    return tuple(left), tuple(right)  # type: ignore[return-value]
+    return tuple(left), tuple(right)
 
 
 def area_vector_passes_parikh_bounds(area: Sequence[int], p: Sequence[int]) -> bool:

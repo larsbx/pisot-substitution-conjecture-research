@@ -73,14 +73,14 @@ def sccs(g: Any) -> list[list[int]]:
             continue
         assigned[root] = True
         comp: list[int] = []
-        stack = [root]
-        while stack:
-            v = stack.pop()
+        comp_stack = [root]
+        while comp_stack:
+            v = comp_stack.pop()
             comp.append(v)
             for w in rev[v]:
                 if not assigned[w]:
                     assigned[w] = True
-                    stack.append(w)
+                    comp_stack.append(w)
         out.append(comp)
     return out
 

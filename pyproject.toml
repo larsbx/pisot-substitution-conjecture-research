@@ -10,9 +10,41 @@ requires-python = ">=3.10"
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest>=7.0", "pypdf==6.1.3"]
+dev = ["pytest>=7.0", "pypdf==6.1.3", "ruff==0.15.8", "mypy==1.19.1"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
 addopts = "-q"
+
+# Lint and type gates for the Python oracle layer. Both are pinned in the dev
+# extra so a local run and CI report the same findings. Neither covers the
+# vendored packages under tools/ (see vendored.toml): those are fixed upstream
+# in larsbx/finite-math-kernels and re-vendored, never patched here.
+[tool.ruff]
+target-version = "py310"
+extend-exclude = ["tools"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F"]
+ignore = [
+    # Long lines are deliberate: exact-arithmetic derivations and census output
+    # formats read better unwrapped than folded.
+    "E501",
+    # Compact guards and paired statements are an intentional style in the
+    # census drivers and oracle scripts.
+    "E701",
+    "E702",
+    # Short lambdas stand in for local algebraic notation (scale, word, f).
+    "E731",
+    # In this domain `l` is a line and `I` an identity matrix.
+    "E741",
+    # Grouped stdlib imports in single-purpose scripts.
+    "E401",
+]
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src"]
+ignore_missing_imports = true
+warn_unused_ignores = true

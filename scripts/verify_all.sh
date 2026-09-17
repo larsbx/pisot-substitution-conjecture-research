@@ -88,9 +88,34 @@ fi
 
 section "Python secondary reference/oracle"
 if command -v pytest >/dev/null 2>&1; then
-    if pytest -q >/dev/null 2>&1; then ok "pytest oracle regressions"; else bad "pytest oracle regressions"; fi
+    if pytest_out=$(pytest -q 2>&1); then
+        ok "pytest oracle regressions"
+    else
+        bad "pytest oracle regressions"
+        tail -20 <<<"$pytest_out"
+    fi
 else
     skip "pytest oracle" "not installed; pip install -e .[dev]"
+fi
+if command -v ruff >/dev/null 2>&1; then
+    if ruff_out=$(ruff check src tests scripts 2>&1); then
+        ok "ruff lint"
+    else
+        bad "ruff lint"
+        tail -20 <<<"$ruff_out"
+    fi
+else
+    skip "ruff lint" "not installed; pip install -e .[dev]"
+fi
+if command -v mypy >/dev/null 2>&1; then
+    if mypy_out=$(mypy 2>&1); then
+        ok "mypy types (src)"
+    else
+        bad "mypy types (src)"
+        tail -20 <<<"$mypy_out"
+    fi
+else
+    skip "mypy types" "not installed; pip install -e .[dev]"
 fi
 
 section "TLA+ models"
@@ -98,7 +123,7 @@ JAR="${TLA_TOOLS:-$ROOT/tla/tla2tools.jar}"
 if command -v java >/dev/null 2>&1 && [ -f "$JAR" ]; then
     if TLA_TOOLS="$JAR" ./tla/check.sh; then ok "all models"; else bad "some model"; fi
 else
-    skip "TLA+ layer" "need java and tla2tools.jar (set TLA_TOOLS, or download into tla/)"
+    skip "TLA+ layer" "need java and tla2tools.jar (run ./tla/fetch-tools.sh, or set TLA_TOOLS)"
 fi
 
 section "Lean 4 proofs"
