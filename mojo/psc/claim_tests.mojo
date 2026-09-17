@@ -28,7 +28,7 @@ follows from the contract is what its own proof or certificate decides.
 def require_claim(claim: String) raises:
     """Declare that this test guards a contract the named ledger claim rests
     on. The name must be a claim name or alias in `claim_governance.toml`."""
-    if len(claim) == 0:
+    if claim.byte_length() == 0:
         raise Error("require_claim: a test must name the claim it guards")
     print("claim-receipt:", claim)
 
@@ -37,6 +37,6 @@ def require_contract(contract: String) raises:
     """Declare the contract this test guards when no ledger claim is its
     target: a vendored kernel's arithmetic, or a shared primitive that
     several claims rest on without being one."""
-    if len(contract) == 0:
+    if contract.byte_length() == 0:
         raise Error("require_contract: a test must state the contract it guards")
     print("contract-receipt:", contract)
