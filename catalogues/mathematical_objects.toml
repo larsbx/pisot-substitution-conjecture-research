@@ -208,3 +208,25 @@ definition = "Built by exact state exploration over a window vector, pruned by a
 canonical = "mojo/psc/numeration_addition.mojo"
 oracle = "mojo/numeration_addition_census.mojo"
 related = ["linear-numeration", "numeration-automaton", "perron-cubic-field"]
+
+[[object]]
+id = "numeration-conversion-automaton"
+name = "Numeration conversion automaton"
+taxonomy = "automata"
+status = "open-boundary"
+scope = "Pairs (P, G) of equal length with val_path(P) = val_greedy(G): a Dumont-Thomas path word and a digit word of the linear numeration naming one position."
+definition = "A synchronous two-track automaton whose state is the running difference, kept as a coefficient vector against the current level of the length vector and stepped by the incidence matrix, since |tau^(m+1)| = M^T |tau^m|. Pruned by a Pisot reachability test decided with sign_at_perron over the left Perron eigenvector, whose entries lie in Z[beta] and differ between letters. Finiteness of the state set is an imported theorem, so the construction carries a cap and refuses past it; a built automaton is verified on a stated bounded domain. The two presentations are not equal in general, so this is what lets one formula quantify over both."
+canonical = "mojo/psc/numeration_conversion.mojo"
+oracle = "mojo/numeration_conversion_census.mojo"
+related = ["dumont-thomas-numeration", "linear-numeration", "addition-automaton", "greedy-letter-automaton"]
+
+[[object]]
+id = "greedy-letter-automaton"
+name = "Letter map over the linear numeration"
+taxonomy = "automata"
+status = "open-boundary"
+scope = "Digit words of the linear numeration whose value is a position of the fixed point carrying a given letter."
+definition = "The Dumont-Thomas letter map placed on the path track of the conversion automaton and the path then discharged by the subset construction, leaving a condition on the digit word alone. It puts the letter map and the addition relation in one numeration, which is what a first-order formula over positions needs. It accepts every representation of such a position, not only the greedy one: greedy-normality is a separate language and is not built."
+canonical = "mojo/psc/numeration_conversion.mojo"
+oracle = "mojo/numeration_conversion_census.mojo"
+related = ["numeration-conversion-automaton", "numeration-automaton", "addition-automaton"]

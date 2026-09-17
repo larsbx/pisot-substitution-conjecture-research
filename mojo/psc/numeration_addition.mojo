@@ -54,7 +54,7 @@ this input, never a proof that addition is recognisable in general.
 """
 
 from finite_linear_algebra.mat3 import Mat3
-from psc.automata import Dfa
+from psc.automata import BoundedAutomaton, Dfa, refusal
 from psc.bpa import substitution_incidence
 from psc.linear_numeration import basis, basis_obeys_recurrence, recurrence
 from psc.perron_field3 import CubicElt, PerronField3, cubic_sub_checked, sign_at_perron
@@ -120,33 +120,7 @@ def _completable(field: PerronField3, v0: Int, v1: Int, v2: Int, reserve: Int) r
     return True
 
 
-struct AdditionResult(Copyable, Movable):
-    """The automaton, or the refusal that no finite state set was found.
-
-    `refused` is the cap being exceeded and nothing else: a search that ran out
-    of budget, which is inconclusive about the specimen. A refused result
-    carries no automaton worth reading, and `accepted` is how a caller asks
-    before reading one."""
-
-    var automaton: Dfa
-    var explored: Int
-    var refused: Bool
-
-    def __init__(out self, automaton: Dfa, explored: Int, refused: Bool):
-        self.automaton = automaton.copy()
-        self.explored = explored
-        self.refused = refused
-
-    def accepted(self) -> Bool:
-        return not self.refused
-
-
-def _refusal(letters: Int) raises -> AdditionResult:
-    """A refusal carries a rejecting one-state automaton, never a truncated
-    exploration that a caller could mistake for the real one."""
-    var delta = List[Int](length=letters, fill=0)
-    var accepting: List[Bool] = [False]
-    return AdditionResult(Dfa(letters, delta, accepting), 0, True)
+comptime AdditionResult = BoundedAutomaton
 
 
 def addition_automaton(
@@ -205,7 +179,7 @@ def addition_automaton(
                     at = i
             if at < 0:
                 if len(keys) >= cap:
-                    return _refusal(letters)
+                    return refusal(letters)
                 keys.append(key)
                 v0.append(n0)
                 v1.append(n1)
@@ -220,7 +194,7 @@ def addition_automaton(
         accepting.append(
             not dead[i] and v0[i] * u[2] + v1[i] * u[1] + v2[i] * u[0] == 0
         )
-    return AdditionResult(Dfa(letters, delta, accepting), len(keys), False)
+    return BoundedAutomaton(Dfa(letters, delta, accepting), len(keys), False)
 
 
 def triple_word(

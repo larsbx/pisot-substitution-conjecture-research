@@ -261,6 +261,30 @@ jobs:
           grep -Fx 'powered images past the certified overlap domain: 67  of those, built: 1' <<<"$out"
           grep -Fx 'largest minimised addition automaton: 494' <<<"$out"
 
+  numeration-conversion-census:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Conversion automata over the corpus, and the letter map carried across them
+        working-directory: mojo
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . numeration_conversion_census.mojo 2>&1) || status=$?
+          printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
+          grep -Fx 'corpus: 4554  stride: 25  sampled: 183' <<<"$out"
+          grep -Fx 'basis recurrence mismatches: 0' <<<"$out"
+          grep -Fx 'conversions built: 115  refused at the cap: 1  skipped for alphabet: 67' <<<"$out"
+          grep -Fx 'pairs checked: 4600  false rejects: 0  false accepts: 0' <<<"$out"
+          grep -Fx 'letter maps carried across: 88  conversions too large to project: 27' <<<"$out"
+          grep -Fx 'letter verdicts checked: 10560  mismatches: 0' <<<"$out"
+          grep -Fx 'largest minimised conversion: 1421  largest letter map: 198' <<<"$out"
+
   finite-classification:
     runs-on: ubuntu-latest
     steps:

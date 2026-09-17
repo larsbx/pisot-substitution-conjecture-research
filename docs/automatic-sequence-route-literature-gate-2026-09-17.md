@@ -102,8 +102,70 @@ alone. Over the sampled corpus they agree for 1 specimen and differ for 22.
 `agrees_with_path_digits` decides it per substitution, and the tests carry one
 example of each. This matters for the route: the letter map of
 `psc.dumont_thomas` is indexed by path digits, and addition is recognised over
-greedy digits, so a formula quantifying over both needs the conversion — which
-is a further automaton, and is not built here.
+greedy digits, so a formula quantifying over both needs the conversion. That is
+a fourth automaton, and it is the next section.
+
+### The conversion, and the letter map moved across it
+
+`mojo/psc/numeration_conversion.mojo` builds
+
+    C = { (P, G) : P an admissible path word from `c`, |G| = |P|,
+                   val_path(P) = val_greedy(G) }
+
+as a synchronous two-track automaton, and then uses it to carry the letter map
+into the numeration where addition is recognised.
+
+The state is three integers and one letter. The length vector satisfies
+`L_(m+1) = M^T L_m` — one substitution step is one level of it — so the running
+difference, kept as a coefficient vector against the *current* level, steps by
+the integer matrix `x <- M x + s`, and `L_0 = (1, 1, 1)` makes acceptance the
+statement that the coordinates of `x` sum to zero. That identity is what keeps
+the state small: a window of three levels across three letters would be nine
+coefficients for a value with three degrees of freedom, the same difference
+would be reached in representations the exploration cannot identify, and it
+diverges rather than closing. Measured, not argued: at nine coefficients the
+tribonacci conversion closes at 3,182 states and `0 -> 011, 1 -> 02, 2 -> 0`
+was still opening new ones past 400,000.
+
+Pruning is the same Pisot reachability test as for addition, with one
+difference that matters. The three letters' weights are not commensurable:
+`L_m(b)` grows like `v_b beta^m` with `v` the left Perron eigenvector, whose
+entries lie in `Z[beta]` and differ between letters. So the value is the cubic
+element `sum_b x[b] v_b` over the eigenvector `perron_tile_lengths_in`
+constructs and verifies in the same field, and `sign_at_perron` decides the
+comparison. The reserve's `1/(beta - 1)` is cleared by multiplying through by
+`beta - 1`, which is positive, so no division and no float enters.
+
+The bound is drawn wider than the computation asks, because the ratios it is
+computed from are limiting ones applied at finite levels. How much wider is
+measured on both sides rather than asserted: at the narrowest factor the
+computation suggests, the language of the `0 -> 011` specimen changes; from one
+step wider it stops changing, and widening further only adds states that
+minimisation merges back. `conversion_automaton_with` exposes the factor so the
+regression can check exactly that.
+
+`greedy_letter_automaton` is then the object the route wanted: place the
+Dumont–Thomas letter map on the path track, discharge the path by the subset
+construction, and what is left is a condition on the digit word alone. The
+letter map and addition now speak one numeration.
+
+`mojo/numeration_conversion_census.mojo` carries this over the corpus with the
+same three outcomes kept apart. Over 183 sampled specimens: 115 conversions
+built, 4,600 position pairs checked with zero false rejects and zero false
+accepts; 1 construction refused at the state cap; 67 skipped for their digit
+alphabet. The letter map was carried across for 88 of them — the projection
+costs the conversion's size squared, so 27 conversions were too large to
+attempt, which is not the same as failing — and all 10,560 transferred letter
+verdicts agree with reading the fixed point. The largest minimised conversion
+has 1,421 states and the largest transferred letter map 198.
+
+What it does *not* do: `C` relates a path word to any digit word of the same
+length with the same value, not only to the greedy one. Greedy-normality is a
+separate language — a lexicographic condition against the expansion of one —
+and it is not built, so the transferred letter map accepts every
+representation of such a position. For a decision procedure that is the useful
+side of the choice, since normalisation is its own automaton there too; it is
+still a thing that has to be said rather than left to inference.
 
 ## What must be imported
 
@@ -139,19 +201,23 @@ anything is concluded from it.
 domains.** What is claimed now: the Dumont–Thomas numeration presents the fixed
 point exactly; the automata operations implementing a decision procedure are
 correct on their own terms; the linear numeration round-trips its greedy
-digits; and the addition automaton, where it was built, is the addition
-relation on the range tested. No claim is made that any coincidence condition
+digits; the addition automaton, where it was built, is the addition relation on
+the range tested; and the conversion, where it was built, pairs each position's
+path word with that position's digit word and with no other on the range
+tested, carrying the letter map across unchanged. No claim is made that any coincidence condition
 has been decided, for one substitution or for a family, and none that the
 construction terminates for every specimen — eight refusals say otherwise on
 this corpus sample and this cap.
 
-Three automata now exist for a specimen that builds: admissibility, the letter
-map, and addition. What remains is the formula — the coincidence condition
-written with quantifiers a decision procedure can eliminate — and the
-conversion between path digits and greedy digits that a formula over both would
-need. Its acceptance test is unchanged: agreement with the verdicts the
-degree-3 census already reports on a family it already covers. Disagreement
-there is a bug in the encoding, never a new result.
+Four automata now exist for a specimen that builds: admissibility, the letter
+map, addition, and the conversion that puts the first two into the numeration
+the third is recognised over. What remains is the formula — the coincidence
+condition written with quantifiers a decision procedure can eliminate — and,
+for a claim about digits rather than about values, the greedy-normal language
+that would make the conversion functional. Its acceptance test is unchanged:
+agreement with the verdicts the degree-3 census already reports on a family it
+already covers. Disagreement there is a bug in the encoding, never a new
+result.
 
 ## Sources
 

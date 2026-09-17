@@ -22,12 +22,14 @@ from psc.automata import (
     Dfa,
     accepted_count,
     complement,
+    cylinder,
     intersection,
     is_empty,
     minimised,
     project,
     same_language,
     union,
+    widened,
     with_sink,
     witness,
 )
@@ -423,6 +425,45 @@ def test_an_impossible_length_is_refused_not_answered() raises:
     assert_true(refused_lengths)
 
 
+def test_a_track_condition_enters_and_leaves_a_product() raises:
+    """`cylinder` is how a condition on one track enters a product, and
+    `project` is how a track leaves it. Putting a condition on track zero in and
+    then quantifying track one away must give the condition back, over the
+    alphabet it started in -- and widening an automaton to a larger alphabet
+    must not let it accept a letter it never had."""
+    # Over {0, 1}: words with an even number of ones.
+    var even = Dfa(2, [0, 1, 1, 0], [True, False])
+    var wide = widened(even, 3)
+    assert_true(wide.accepts([0, 1, 1]))
+    assert_false(wide.accepts([2]))
+    assert_false(wide.accepts([1, 1, 2]))
+
+    var lifted = cylinder(wide, 2, 0, 3)
+    # Track zero reads the condition; track one is free, so quantifying it away
+    # returns the condition itself.
+    var back = minimised(project(lifted, 2, 1))
+    assert_true(same_language(back, minimised(wide)))
+
+    # Placed on track one instead, the same condition reads the other digit.
+    var other = cylinder(wide, 2, 1, 3)
+    assert_true(other.accepts([3, 3]))
+    assert_false(other.accepts([3, 0]))
+
+    var shrunk = False
+    try:
+        _ = widened(even, 1)
+    except:
+        shrunk = True
+    assert_true(shrunk)
+
+    var mismatched = False
+    try:
+        _ = cylinder(even, 2, 0, 3)
+    except:
+        mismatched = True
+    assert_true(mismatched)
+
+
 def main() raises:
     test_the_kernel_is_a_boolean_algebra_of_languages()
     print("[PASS] test_the_kernel_is_a_boolean_algebra_of_languages")
@@ -450,7 +491,9 @@ def main() raises:
     print("[PASS] test_a_count_past_the_machine_range_is_still_exact")
     test_an_impossible_length_is_refused_not_answered()
     print("[PASS] test_an_impossible_length_is_refused_not_answered")
-    print("13 automata and numeration tests passed.")
+    test_a_track_condition_enters_and_leaves_a_product()
+    print("[PASS] test_a_track_condition_enters_and_leaves_a_product")
+    print("14 automata and numeration tests passed.")
     # One line and one literal: `policy.py` reads the declaration out of the
     # source, and its pattern does not join concatenated string parts.
     require_contract("the automata kernel decides emptiness, complement and projection over total deterministic automata, and the Dumont-Thomas numeration presents the fixed point exactly; no ledger claim rests on it, and the step to a decision procedure is gated in docs/automatic-sequence-route-literature-gate-2026-09-17.md")

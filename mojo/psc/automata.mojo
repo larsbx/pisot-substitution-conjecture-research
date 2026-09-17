@@ -2,7 +2,9 @@
 
 The operations a decision procedure needs, and no more: intersection, union,
 complement, the subset construction that discharges an existential quantifier
-over one track, emptiness with a witness word, and Moore minimisation.
+over one track, the widening and cylinder that put a single-track condition
+into a product in the first place, emptiness with a witness word, and Moore
+minimisation.
 
 Every automaton here is *total*: `delta` has one entry per (state, letter), so
 complement is exactly a flip of the accepting set and no operation has to
@@ -300,6 +302,81 @@ def same_language(a: Dfa, b: Dfa) raises -> Bool:
     var left = intersection(a, complement(b))
     var right = intersection(complement(a), b)
     return is_empty(left) and is_empty(right)
+
+
+def widened(a: Dfa, letters: Int) raises -> Dfa:
+    """The same language over a larger alphabet.
+
+    A letter the original did not have cannot begin an accepted word, so it
+    falls into a rejecting sink. This is what lets two automata built over
+    different digit ranges -- a path alphabet and a greedy one -- be combined
+    over the common alphabet the product needs."""
+    if letters < a.letters:
+        raise Error("an alphabet is not widened by shrinking it")
+    var sink = a.states()
+    var delta = List[Int]()
+    for state in range(a.states()):
+        for c in range(letters):
+            delta.append(a.step(state, c) if c < a.letters else sink)
+    for _ in range(letters):
+        delta.append(sink)
+    var accepting = a.accepting.copy()
+    accepting.append(False)
+    return Dfa(letters, delta, accepting)
+
+
+def cylinder(a: Dfa, tracks: Int, track: Int, radix: Int) raises -> Dfa:
+    """An automaton on one track, read as an automaton on the product alphabet.
+
+    The inverse of `project` in the sense that matters: `project` discharges an
+    existential over a track, and this is how a condition on a single track
+    enters a product in the first place. The packing is the one `project`
+    undoes -- digit `t` of a letter sits at position `t` in base `radix`."""
+    if tracks < 1 or track < 0 or track >= tracks:
+        raise Error("track outside the product alphabet")
+    if a.letters != radix:
+        raise Error("the automaton's alphabet is not this track's radix")
+    var letters = radix ** tracks
+    var place = radix ** track
+    var delta = List[Int]()
+    for state in range(a.states()):
+        for packed in range(letters):
+            delta.append(a.step(state, (packed // place) % radix))
+    return Dfa(letters, delta, a.accepting)
+
+
+struct BoundedAutomaton(Copyable, Movable):
+    """An automaton a bounded exploration found, or the refusal that it did not.
+
+    `refused` is the state cap being exceeded and nothing else: a search that
+    ran out of budget, which is inconclusive about the input rather than
+    negative about it. A refused result carries no automaton worth reading, and
+    `accepted` is how a caller asks before reading one.
+
+    Malformed input is deliberately not this. That raises, because it is an
+    impossible state and not an exhausted budget, and a caller free to catch
+    both through one channel would be free to report a defect as inconclusive
+    evidence."""
+
+    var automaton: Dfa
+    var explored: Int
+    var refused: Bool
+
+    def __init__(out self, automaton: Dfa, explored: Int, refused: Bool):
+        self.automaton = automaton.copy()
+        self.explored = explored
+        self.refused = refused
+
+    def accepted(self) -> Bool:
+        return not self.refused
+
+
+def refusal(letters: Int) raises -> BoundedAutomaton:
+    """A refusal carries a rejecting one-state automaton, never a truncated
+    exploration that a caller could mistake for the real one."""
+    var delta = List[Int](length=letters, fill=0)
+    var accepting: List[Bool] = [False]
+    return BoundedAutomaton(Dfa(letters, delta, accepting), 0, True)
 
 
 def accepted_count(a: Dfa, length: Int) raises -> BigZ:
