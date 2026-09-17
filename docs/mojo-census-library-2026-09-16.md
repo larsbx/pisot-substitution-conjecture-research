@@ -80,7 +80,7 @@ that reason, and they contribute to no count.
 
 - every census prints byte-identical summary lines, checked against the greps in all three workflow files;
 - `overlap_contracting_census.mojo` was timed against the pre-refactor driver on an equal 300-specimen slice: identical output, 1m32.7s versus 1m32.9s;
-- four new test files carrying 33 tests (`test_census_library.mojo`, `test_endpoint_core.mojo`, `test_boundary_sync.mojo`, `test_oa_overlap_types.mojo`), so the suite runs 28 files and all pass;
+- four new test files carrying 33 tests (`test_census_library.mojo`, `test_endpoint_core.mojo`, `test_boundary_sync.mojo`, `test_oa_overlap_types.mojo`), and the loop runs every test file in `mojo/tests/` with no list to maintain;
 - `mojo/run_tests.sh` replaces the two hand-maintained 20-item chains in `pixi.toml` (audit 2026-09-15, finding F6) with one loop over `tests/test_*.mojo`, and reports every failure in one run;
 - new CI jobs pin the endpoint classification, the sweep, and both overlap-type explorations.
 

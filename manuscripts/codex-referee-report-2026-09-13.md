@@ -1994,3 +1994,139 @@ No other findings were posted in the ninety-third round.
 > With a long unbroken alphabetic token at top level or inside a brace group, this uncapped loop makes \`_units_before\` quadratic: the backward scan walks to the beginning of the same plain-letter run on every iteration, while advancing by only one character. Tokenize the span in one pass or retain the previously discovered start of a plain-letter run before removing the cap.
 
 No other findings were posted in the ninety-fourth round.
+
+# Ninety-fifth round: review of the radius-`m` collar slice (pull request #101)
+
+**Reviewed commit:** `c14afe4f2b`.
+**Review posted:** 2026-09-16T03:53:15Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 160 (P2) — `src/psc_research/overlap_collar.py`, line 171
+
+> **Reject a negative separation-radius cap**
+>
+> When `max_radius` is negative, `range(max_radius + 1)` is empty and this returns `None`, which callers interpret as a collision surviving through the requested cap. The canonical Mojo implementation rejects the same input, and other bounded searches in this oracle validate their bounds; raise here as well so an invalid experiment cannot be recorded as mathematical evidence.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the ninety-fifth round.
+
+# Ninety-sixth round: review of the negative-cap revision (pull request #101)
+
+**Reviewed commit:** `d5be52f0f2` (finding 160).
+**Review posted:** 2026-09-16T03:58:23Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 161 (P2) — `mojo/psc/overlap_collar.mojo`, line 218
+
+> **Reject negative radii when inflating collars**
+>
+> When `inflate_collar` is called directly with a negative `radius`, this length check is false and the subsequent slices return empty collars instead of raising; the Python oracle likewise accepts the input. This lets an invalid mathematical parameter produce an apparently valid `Collar`, so add an explicit nonnegative-radius guard as `seed_collar` and `separation_radius` already do.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 162 (P2) — `mojo/psc/overlap_collar.mojo`, line 390
+
+> **Reject pump certificates with an absent starting fibre**
+>
+> When `certificate.state_indices[0]` is absent from `cg`—for example, because a certificate from another overlap graph is supplied—`cg.fibre` is empty and this function silently returns no orbits. Callers such as the census initialize the result as constant and only disprove that inside the orbit loop, so an empty lift can be recorded as successful evidence; validate that the starting fibre is nonempty before iterating.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the ninety-sixth round.
+
+# Ninety-seventh round: review of the invalid-input revision (pull request #101)
+
+**Reviewed commit:** `5b06d74b19` (findings 161 and 162).
+**Review posted:** 2026-09-16T04:07:01Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 163 (P2) — `mojo/psc/overlap_collar.mojo`, line 441
+
+> **Reject identical letters in patch-collapse checks**
+>
+> When `a == b`, the first candidate is necessarily `sigma(a) sigma(a)`, so `patch_power_level` reports level 1 for every non-erasing substitution even though `(a, a)` is not one of the distinct-letter swap seeds whose collapse this diagnostic is meant to certify. Direct callers can therefore record a spurious collapsing seed pair; reject equal endpoints in both this canonical routine and the Python oracle.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 164 (P2) — `src/psc_research/overlap_collar.py`, line 108
+
+> **Reject undersized input collars in the Python oracle**
+>
+> When a positive `radius` exceeds the context supplied by `collar` and the neighboring images are too short—for example, a radius-1 collar inflated at radius 2 under a length-one image—these slices silently return sides shorter than the requested radius. The canonical Mojo implementation rejects this condition, whereas the oracle returns an apparently valid `Collar`, so add the same post-inflation length check before returning.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the ninety-seventh round.
+
+# Ninety-eighth round: review of the equal-letter revision (pull request #101)
+
+**Reviewed commit:** `400010cf0a` (findings 163 and 164).
+**Review posted:** 2026-09-16T04:12:29Z, one automated Codex review with two inline comments. Reproduced verbatim.
+
+## Finding 165 (P2) — `src/psc_research/overlap_collar.py`, line 201
+
+> **Reject malformed pump certificates in the oracle**
+>
+> When `certificate.state_indices` is nonempty but its length differs from `certificate.edges`, the Python oracle omits the structural check present in the canonical Mojo implementation. In particular, a certificate such as `AffinePumpCertificate((valid_start,), ())` makes `traverse` the identity and reports every fibre point with period 1, falsely treating an empty edge sequence as an eventually constant pump; validate that both sequences are nonempty and have equal lengths before lifting.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+## Finding 166 (P2) — `src/psc_research/overlap_collar.py`, line 240
+
+> **Reject nonpositive legal-factor lengths in the oracle**
+>
+> When `length` is zero or negative, the growth ranges are empty and this seeded set is returned unchanged, so `legal_factors(sigma, 0)` incorrectly reports every one-letter word as a factor of length at most zero. The canonical Mojo routine rejects lengths below 1; the oracle should do the same so an invalid bound cannot produce an apparently exact legality result.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the ninety-eighth round.
+
+# Ninety-ninth round: review of the oracle-parity revision (pull request #101)
+
+**Reviewed commit:** `a238e8dfb9` (findings 165 and 166).
+**Review posted:** 2026-09-16T04:18:36Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 167 (P2) — `mojo/psc/overlap_collar.mojo`, line 388
+
+> **Validate every pump state before lifting**
+>
+> Fresh evidence beyond finding 165 is that a same-length certificate can retain the valid first state and edges while replacing every later `state_indices` entry with an invalid value, and `lift_affine_pump` still returns the original periods because only `state_indices[0]` is consulted. This violates the state/edge sequence invariant enforced by `verify_affine_pump` and allows a corrupted or cross-serialized certificate to be recorded as valid evidence; validate each edge's parent and cyclic child against the corresponding state entries in both implementations before lifting.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the ninety-ninth round.
+
+# Hundredth round: review of the pump-state revision (pull request #101)
+
+**Reviewed commit:** `89550a4350` (finding 167).
+**Review posted:** 2026-09-16T04:24:04Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 168 (P2) — `mojo/psc/overlap_collar.mojo`, line 411
+
+> **Validate the complete occurrence edge before lifting**
+>
+> When a serialized certificate has a valid state cycle and an in-range occurrence ordinal but stale or corrupted `top_child_index`/`bottom_child_index` payload, this lookup silently follows the collared edge selected by the ordinal and accepts the certificate; the Python lift has the same behavior. Parallel occurrences with the same projected parent and child make this especially easy to miss, while `verify_affine_pump` rejects the inconsistent edge. Compare the selected collared edge's child and child indices with the certificate edge before using it so malformed evidence fails closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the hundredth round.
+
+# Hundred-and-first round: review of the occurrence-edge revision (pull request #101)
+
+**Reviewed commit:** `938a1100fc` (finding 168).
+**Review posted:** 2026-09-16T04:29:13Z, one automated Codex review with one inline comment. Reproduced verbatim.
+
+## Finding 169 (P2) — `mojo/psc/overlap_collar.mojo`, line 415
+
+> **Validate the remaining affine-edge payload**
+>
+> When a serialized certificate keeps its states, ordinal, child, and child indices valid but corrupts `top_prefix`, `bottom_prefix`, or `forcing`, these comparisons still pass because `CollaredEdge` does not retain those fields. Fresh evidence beyond finding 168 is that `verify_affine_pump` rejects such a certificate through full edge equality, while both collar lifts still return normal orbits. Recompute or compare the complete `AffineOccurrenceEdge` before lifting so malformed affine evidence fails closed.
+>
+> AGENTS.md reference: AGENTS.md:L31-L31
+
+No other findings were posted in the hundred-and-first round.
+
+# Hundred-and-second round: review of the verified-lift revision (pull request #101)
+
+**Reviewed commit:** `fdeacddc6e` (finding 169).
+**Review posted:** 2026-09-16T04:41:14Z. Reproduced verbatim: "Codex Review: Didn't find any major issues. Another round soon, please!"
+
+No findings were posted in the hundred-and-second round.

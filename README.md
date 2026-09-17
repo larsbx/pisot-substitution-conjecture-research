@@ -65,7 +65,7 @@ This does **not** mean the stronger structural problems are solved:
 - **Endpoint-aligned structure:** PR #82 identifies offset-zero/right-aligned overlaps with prefix/suffix strong coincidence and proves the exact prefix-Parikh boundary-hitting criterion.
 - **Obstruction normal form in the manuscript:** Propositions 5.43–5.44 and Lemma 5.45 state and prove the closed irreducible obstruction, the aligned-versus-strict-zipper dichotomy (with first-/last-letter closure of the aligned pairs), and the ordered cycle equation with its purely periodic offset expansion.
 - **Contracting lower bound:** PR #87 proves that a boundary hit at level `m` forces `|ς(t)| ≤ C_ς Σ_{s≤m} |ς(β)|^{-s}` for every contracting embedding (Proposition 5.42, decided exactly in `Q(β)`); on the corpus this lower bound is at most 8 while the hitting depth reaches 17, a gap of up to 14 inflations that this magnitude bound does not explain (the gap includes the slack of the bound; no further attribution is drawn).
-- **Ordered affine/context boundary:** ordered occurrences satisfy the exact affine recurrence, but the determinant-two calibration reaches one affine child state through unequal one-step paired prefix-suffix addresses. Affine equality is therefore not a symbolic pump-deletion criterion; the depth-`k` periodic-patch context bridge remains open.
+- **Ordered affine/context boundary:** ordered occurrences satisfy the exact affine recurrence, but the determinant-two calibration reaches one affine child state through unequal one-step paired prefix-suffix addresses. Affine equality is therefore not a symbolic pump-deletion criterion. The radius-`m` collar (`docs/p1-overlap-collar-2026-09-16.md`) is now exact: on the determinant-two graph one letter of context on each side resolves the one-step ancestry of every occurrence, and the golden zero-shift-free pump lifts to a collared cycle at every tested radius, so bounded-context equality cannot by itself exclude such pumps. On the exact 4,554-member corpus every specimen resolves ancestry at radius at most 6 except 120, which are exactly those with a seed pair whose iterated patch collapses to a proper power (a periodic word with two parsings). The periodic-patch context bridge (splicing and the dictionary to the tiling) remains open.
 
 ### Current theorem target
 
@@ -160,11 +160,11 @@ Issue #45 is therefore closed as a completed status/source reconciliation task. 
 | Priority | Layer | Tool | Scope |
 |---|---|---|---|
 | **Canonical executable** | `mojo/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. The reusable kernels under `mojo/finite_exact/`, `mojo/substitution_dynamics/`, and `mojo/finite_linear_algebra/` are vendored from one pinned `larsbx/finite-math-kernels` commit. |
-| Formal state/dependency | `tla/` | TLA+ / TLC | BPA state-machine models and the machine-checked proof-dependency ledger. |
+| Formal state/dependency | `tla/` | TLA+ / TLC | BPA state-machine models and the machine-checked proof-dependency ledger, generated from the proof-record table in `scripts/make_ledger.py` (`tla/ledger.json` is its serialized output). |
 | Deductive finite algebra | `PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
 | Secondary oracle | `src/psc_research/` + `tests/` | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |
 
-The four logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `scripts/check_vendored_sync.py` in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under `tools/claim_governance`.
+The five logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `scripts/check_vendored_sync.py` in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under `tools/claim_governance`. The TLA+ ledger, its TLC models, `tla/ledger.json`, the claim entries of every ledger node, and `docs/ledger-index.md` are generated from the one table of proof records in `scripts/make_ledger.py` through the vendored `tools/proof_records` package; edit that table and regenerate, since CI fails if any output is stale or hand-edited.
 
 Run everything:
 
@@ -188,12 +188,12 @@ Unavailable toolchains are reported as skipped; a skip is not a passing proof.
 │   ├── finite_linear_algebra/  # Mat3, RREF, rank-three tensors, W_3, vendored
 │   ├── psc/                    # reusable Mojo research kernel
 │   └── tests/                  # canonical executable regressions
-├── tla/                        # TLA+ BPA models and proof-dependency ledger
+├── tla/                        # TLA+ BPA models; Ledger.tla, MCLedger*, and ledger.json are generated from scripts/make_ledger.py
 ├── PscVerif/                   # Lean 4 + Mathlib finite-algebra proofs
 ├── src/psc_research/           # secondary Python reference/oracle layer
 ├── tests/                      # Python oracle/regression tests
 ├── scripts/verify_all.sh       # run every verification layer
-├── vendored.toml               # commit and digest pins of the four vendored Mojo packages
+├── vendored.toml               # commit and digest pins of the five vendored packages
 ├── .github/workflows/          # automated checks and exact censuses
 └── pyproject.toml              # secondary Python oracle metadata
 ```

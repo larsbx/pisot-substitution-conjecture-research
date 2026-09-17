@@ -12,6 +12,13 @@ G1-free form; a clean corpus is finite evidence only.
 
 from psc.corpus import STATE_CAP, pip_corpus, report_progress
 from psc.histogram import Histogram, max_int
+from psc.overlap_affine_pump import first_zero_shift_free_affine_pump
+from psc.overlap_collar import (
+    build_collared_graph,
+    collapsing_seed_pair_count,
+    lift_affine_pump,
+    separation_radius,
+)
 from psc.overlap_recurrence import zero_shift_free_recurrent_sccs
 from psc.overlap_seed_patch import (
     SeedOverlapAutomaton,
@@ -23,6 +30,113 @@ from psc.overlap_seed_patch import (
     nonproductive_overlap_states,
     strong_coincidence_depth_from,
 )
+
+
+comptime COLLAR_RADIUS_CAP = 6
+comptime LIFT_RADIUS = 4
+
+
+struct CollarSurvey(Copyable, Movable):
+    """Radius-`m` collars (`psc.overlap_collar`): the least radius at which
+    every occurrence's one-step ancestry is determined by its collar, capped at
+    `COLLAR_RADIUS_CAP` with the survivors counted against the collapsing
+    periodic patches at the same level."""
+
+    var separation: Histogram
+    var survivors: Int
+    var collapsing: Int
+    var survivors_without_collapse: Int
+    var collapse_without_survivor: Int
+    var max_separation: Int
+
+    def __init__(out self):
+        self.separation = Histogram(COLLAR_RADIUS_CAP + 1)
+        self.survivors = 0
+        self.collapsing = 0
+        self.survivors_without_collapse = 0
+        self.collapse_without_survivor = 0
+        self.max_separation = 0
+
+    def absorb(mut self, separation: Int, collapsing: Bool, label: String) raises:
+        """A negative separation means the collision survived the cap."""
+        self.collapsing += 1 if collapsing else 0
+        if separation < 0:
+            self.survivors += 1
+            if not collapsing:
+                self.survivors_without_collapse += 1
+                print(
+                    "COLLAR collision survives radius", COLLAR_RADIUS_CAP,
+                    "without a collapsing patch:", label,
+                )
+            return
+        if collapsing:
+            self.collapse_without_survivor += 1
+            print("COLLAPSING patch without a surviving collision:", label)
+        self.separation.record(separation)
+        self.max_separation = max_int(self.max_separation, separation)
+
+    def print_lines(self):
+        print(
+            "maximum collar separation radius:", self.max_separation,
+            " survivors at radius", COLLAR_RADIUS_CAP, ":", self.survivors,
+        )
+        print(
+            "collapsing periodic patches by level",
+            COLLAR_RADIUS_CAP,
+            ": specimens:",
+            self.collapsing,
+            " survivors without collapse:",
+            self.survivors_without_collapse,
+            " collapses without survivor:",
+            self.collapse_without_survivor,
+        )
+        print(self.separation.line("specimens by collar separation radius:"))
+
+
+struct PumpLiftSurvey(Copyable, Movable):
+    """The eventual period of the collar along the first zero-shift-free affine
+    pump, lifted at `LIFT_RADIUS`. A nonconstant orbit is the interesting case
+    and is named as it is found."""
+
+    var specimens: Int
+    var max_preperiod: Int
+    var max_period: Int
+    var nonconstant: Int
+
+    def __init__(out self):
+        self.specimens = 0
+        self.max_preperiod = 0
+        self.max_period = 0
+        self.nonconstant = 0
+
+    def absorb(mut self, tables: SeedOverlapTables, g: SeedOverlapAutomaton, label: String) raises:
+        var certificates = first_zero_shift_free_affine_pump(tables, g)
+        var orbits = lift_affine_pump(
+            tables, g, build_collared_graph(tables, g, LIFT_RADIUS), certificates[0]
+        )
+        self.specimens += 1
+        var constant = True
+        for o in range(len(orbits)):
+            self.max_preperiod = max_int(self.max_preperiod, orbits[o].preperiod)
+            self.max_period = max_int(self.max_period, orbits[o].period)
+            constant = constant and orbits[o].period == 1
+        if not constant:
+            self.nonconstant += 1
+            print("NONCONSTANT collar along the affine pump:", label)
+
+    def print_lines(self):
+        print(
+            "collared affine pumps at radius",
+            LIFT_RADIUS,
+            ": specimens:",
+            self.specimens,
+            " maximum preperiod:",
+            self.max_preperiod,
+            " maximum period:",
+            self.max_period,
+            " nonconstant:",
+            self.nonconstant,
+        )
 
 
 struct DepthProfile(Copyable, Movable):
@@ -73,6 +187,8 @@ def main() raises:
     var max_zipper_size = 0
     var largest = 0
     var total_states = 0
+    var collars = CollarSurvey()
+    var pumps = PumpLiftSurvey()
     var coincidence = Histogram()
     var left_aligned = Histogram()
     var prefix_strong = Histogram()
@@ -101,6 +217,13 @@ def main() raises:
                 n_zipper_sccs += len(zipper_sccs)
                 for z in range(len(zipper_sccs)):
                     max_zipper_size = max_int(max_zipper_size, len(zipper_sccs[z]))
+                pumps.absorb(tables, g, spec.label())
+
+            collars.absorb(
+                separation_radius(tables, g, COLLAR_RADIUS_CAP),
+                collapsing_seed_pair_count(spec.sigma, COLLAR_RADIUS_CAP) > 0,
+                spec.label(),
+            )
 
             var bad = len(nonproductive_overlap_states(g))
             if bad > 0:
@@ -130,6 +253,8 @@ def main() raises:
         "zero-shift-free recurrent overlap cycles: specimens:", n_zipper_specimens,
         " sccs:", n_zipper_sccs, " largest-scc:", max_zipper_size,
     )
+    collars.print_lines()
+    pumps.print_lines()
     print("maximum first-coincidence depth:", coincidence.maximum())
     print(coincidence.line("specimens by maximal first-coincidence depth:"))
     print("maximum first left-aligned depth:", left_aligned.maximum())

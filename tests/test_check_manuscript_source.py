@@ -105,7 +105,7 @@ def test_commented_document_sentinels_fail(copy):
     text = tex.read_text()
     allow(copy, "newif ifdraft else fi iffalse iff ifthenelse inputencoding csnamex begingroup endgroup foo renewcommand newenvironment "
                 "comment "
-                "DeclareMathOperator Tr DeclareGraphicsExtensions newcounter newlength len newdimen dim bar baz providecommand")
+                "DeclareMathOperator Tr DeclareGraphicsExtensions newcounter newlength len newdimen dim barx baz providecommand")
     i = text.rindex("\\end{document}")
     tex.write_text(text[:i] + "%" + text[i:])  # the only \end{document} is now a comment
     code, out = run(copy)
@@ -236,8 +236,8 @@ def test_commented_document_sentinels_fail(copy):
     tex.write_text(text[:i + len("\\end{document}")] + "\n\\fi\n}" + text[i + len("\\end{document}"):])  # after the document is fine
     assert run(copy)[0] == 0
     tex.write_text(text.replace("\\begin{document}", "\\DeclareMathOperator{\\Tr}{Tr}\\newcounter{foo}\\newlength{\\len}\\newdimen\\dim\n"
-                                "\\newcommand\\foo{}\\newcommand*{ \\bar }[1]{#1}\\providecommand{\\baz}{\\bar{x}}\n\\begin{document}", 1))
-    assert run(copy)[0] == 0  # Declare... macros, allocators and ...command... definers naming their targets
+                                "\\newcommand\\foo{}\\newcommand*{ \\barx }[1]{#1}\\providecommand{\\baz}{\\barx{x}}\n\\begin{document}", 1))
+    assert run(copy)[0] == 0  # Declare... macros, allocators and ...command... definers naming fresh targets (a name with known arity fails closed: finding 159)
     tex.write_text(text.replace("\\begin{document}", "\\newif\n\\ifdraft\n\\ifdraft\n\\begin{document}", 1))  # a declared conditional across a line ending
     code, out = run(copy)
     assert code == 1 and "outside conditionals" in out, out

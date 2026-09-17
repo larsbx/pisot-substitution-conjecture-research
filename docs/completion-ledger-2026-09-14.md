@@ -28,8 +28,12 @@ showing that recurrence alone cannot exclude the strict branch. The next open
 obligation is context-preserving recognizability plus separation in the full
 non-unimodular internal representation. The first one-step prefix-suffix
 diagnostic already finds equal affine child states with unequal symbolic
-addresses, so affine-state equality alone cannot justify pump deletion; a
-depth-`k` periodic-patch collar remains open.
+addresses, so affine-state equality alone cannot justify pump deletion. The
+radius-`m` periodic-patch collar is now exact (`docs/p1-overlap-collar-2026-09-16.md`):
+its recursion is proved, the determinant-two graph has separation radius `1`,
+and the golden pump lifts to a collared cycle at every tested radius, so
+bounded-context equality cannot by itself exclude zero-shift-free recurrence;
+the splicing and tiling-dictionary bridge remains open.
 
 This does **not** prove or obsolete the stronger structural problems:
 
