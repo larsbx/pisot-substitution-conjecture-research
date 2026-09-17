@@ -31,6 +31,8 @@ jobs:
       - name: Type-check the Python oracle (mypy, configured in pyproject.toml)
         run: mypy
       - run: python scripts/check_vendored_sync.py
+      - name: Documentation index and cross-references
+        run: python scripts/check_docs_refs.py
       - name: Generated ledger surfaces are current (tla/ledger.json, tla/Ledger.tla, models, index, claims)
         run: python scripts/make_ledger.py --check
       - name: Generated mathematical-object catalogue is current

@@ -68,8 +68,8 @@ maps that it names exactly the class `classify_maps(3)` derives.
 
 ## 4. Exploratory hygiene
 
-Randomised search now has a stated contract. `psc/prng.mojo` fixes the
-generator so a sweep replays from its seed. `psc/bounded_bpa.mojo` stops on a
+Randomised search now has a stated contract. `mojo/psc/prng.mojo` fixes the
+generator so a sweep replays from its seed. `mojo/psc/bounded_bpa.mojo` stops on a
 state-count *or* a state-length budget and reports which: most randomly drawn
 substitutions are not Pisot, their balanced-pair graphs are infinite, and an
 exhausted budget must read as inconclusive rather than as a verdict. In the
@@ -89,3 +89,6 @@ that reason, and they contribute to no count.
 It proves nothing new. Every number here is finite evidence over a stated
 domain, and the two overlap-type drivers remain exploratory: their level-zero
 types are read off a finite prefix of a fixed point, an uncertified factor set.
+
+<!-- check-docs-refs: exempt scripts/analyze_degree3_catalog.py scripts/classify_endpoint_cores.py scripts/sweep_boundary_sync.py scripts/oa_type_inclusion_explore.py scripts/oa_failures_probe.py -->
+<!-- the Was column of the port table: these five scripts are deleted, which is what it records -->

@@ -89,3 +89,6 @@ finding remains valid, but it no longer blocks the current proof architecture:
 If a v16 document is later recovered, preserve its version identity and authorship metadata, compare every theorem against the reconstructed statements and present hypotheses, and archive the result. Do not automatically upgrade any live claim merely because the file exists.
 
 Current status vocabulary and maintenance rules are centralized in `docs/claim-status-and-source-map-2026-09-13.md`.
+
+<!-- check-docs-refs: exempt docs/p1a-concentration-aux-b-program.md docs/p1a-v34-concentration-audit.md -->
+<!-- the original paths on the source branch; the snapshots live under docs/source-imports/issue-45/ -->

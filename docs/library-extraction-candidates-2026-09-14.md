@@ -1,12 +1,12 @@
 # Library extraction candidates across PSC and NLAP-JT
 
-**Status:** cross-repository engineering audit, dated 2026-09-14. It ranks code that could be lifted out of the two research repositories into shared libraries, states what must happen before each lift, and fixes the order. It is not a mathematical document: no row below discharges or weakens any theorem obligation, certificate gate, or conjecture status in either repository. Project terms follow `docs/terminology-registry.md` in NLAP-JT and `docs/conjecture-ledger.md` in PSC.
+**Status:** cross-repository engineering audit, dated 2026-09-14. It ranks code that could be lifted out of the two research repositories into shared libraries, states what must happen before each lift, and fixes the order. It is not a mathematical document: no row below discharges or weakens any theorem obligation, certificate gate, or conjecture status in either repository. Project terms follow `NLAP: docs/terminology-registry.md` in NLAP-JT and `docs/conjecture-ledger.md` in PSC.
 
 Heads audited, on the shared branch `claude/library-extraction-candidates-d9lp6i`:
 
 | Tag | Repository | Head | Executable surface |
 | --- | --- | --- | --- |
-| `NLAP:` | `larsbx/NLAP-JT` | `ac7f8f9` | Mojo `src/`, compiled by CI through the closure of `src/smoke_tests.mojo`; Python `tools/` audits and `tests/` |
+| `NLAP:` | `larsbx/NLAP-JT` | `ac7f8f9` | Mojo `src/`, compiled by CI through the closure of `NLAP: src/smoke_tests.mojo`; Python `tools/` audits and `tests/` |
 | `PSC:` | `larsbx/pisot-substitution-conjecture-research` | `970f214` | Mojo `mojo/psc/`, compiled and tested by CI (`pixi run test`, `verify`, censuses); Python `src/psc_research/` oracle |
 
 Markers: `[V]` was checked in this session by reading or executing the repository; `[U]` could not be checked here. Both CI workflows are green on their `main` heads `[V]` (NLAP run 679, PSC runs 884/721/665). Locally, PSC's Python suite passes in full and NLAP-JT's passes except the one test that requires a `mojo` binary, which this container lacks `[V]`.
@@ -17,8 +17,8 @@ Markers: `[V]` was checked in this session by reading or executing the repositor
 | --- | --- | --- |
 | 1. Harden `finite_exact` in NLAP-JT, extract | done | `larsbx/finite_exact` (`BigZ`, `Q`, probe, oracle, boundary, specification); `poly_z` left in NLAP-JT as a bounded-degree machine-integer module (section 1.3 item 7, second option) |
 | 2. Migrate PSC's `Rat` and `CheckedRat` consumers, delete both | done | `mojo/finite_exact/`, `mojo/interval_q/`, `mojo/psc/exact.mojo`; pins in `vendored.toml` |
-| 3. Extract `substitution_dynamics` | done | `larsbx/substitution_dynamics`; `mojo/substitution_dynamics/` is the vendored copy, `psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` the alphabet-3 views |
-| 4. Separate exact linear algebra from certificate logic | done | `larsbx/finite_linear_algebra` (`mat3`, `qlinalg`, `tensor3`, general `w3`, `scalar`); `psc/w3.mojo` keeps the printed certificate basis |
+| 3. Extract `substitution_dynamics` | done | `larsbx/substitution_dynamics`; `mojo/substitution_dynamics/` is the vendored copy, `mojo/psc/words.mojo`, `mojo/psc/bpa.mojo`, `mojo/psc/swap_discrepancy.mojo` the alphabet-3 views |
+| 4. Separate exact linear algebra from certificate logic | done | `larsbx/finite_linear_algebra` (`mat3`, `qlinalg`, `tensor3`, general `w3`, `scalar`); `mojo/psc/w3.mojo` keeps the printed certificate basis |
 | interval layer (section 3) | done | `larsbx/interval_q`, on `finite_exact` |
 | 5. Specify `finite_proof_records` | specification and Python reference model done; Mojo implementation pending | `larsbx/finite_proof_records` |
 | 6. Extract the audit tooling with per-repository policy | done | `larsbx/claim_governance_tools` (terminology, claims, promotion, numerics, consistency checks over a per-repository `claim_governance.toml`); PSC is the first consumer: claim ledger with status surfaces, exact-kernel float ban, run by CI, `pytest`, and `verify_all.sh`; NLAP-JT's policy expresses its no-trigonometry, no-points, rank-2, and C1-scoped vocabulary rules beside its existing `tools/audit_*.py` |
@@ -29,12 +29,12 @@ Vendoring is by byte-identical copy, pinned per package by upstream commit and S
 
 | Priority | Candidate | Source of truth today | Consumers | Readiness |
 | --- | --- | --- | --- | --- |
-| P0 | Exact integers and rationals (`finite_exact`) | `NLAP: src/bigint_z.mojo`, `src/rat_q.mojo` | PSC, NLAP-JT, later certificate projects | after the hardening list in section 1.3 |
+| P0 | Exact integers and rationals (`finite_exact`) | `NLAP: src/bigint_z.mojo`, `NLAP: src/rat_q.mojo` | PSC, NLAP-JT, later certificate projects | after the hardening list in section 1.3 |
 | P0 | Substitution-dynamics kernel (`substitution_dynamics`) | `PSC: mojo/psc/{words,bpa,derived_system,...}.mojo` | PSC censuses, other symbolic-dynamics work | after alphabet generalization and uniform symbol validation |
 | P1 | Closed rational intervals (`interval/closed_q`) | `NLAP: src/interval_q.mojo` (+ PSC checked-operation tests) | both programs | after `finite_exact`; spec hook already exists |
 | P1 | Exact finite-dimensional linear algebra (`finite_linear_algebra`) | `PSC: mojo/psc/{mat3,qlinalg,tensor3,w3}.mojo` | spectral, wedge, incidence experiments | after moving scalars onto `finite_exact` |
 | P1 | Finite proof-record infrastructure (`finite_proof_records`) | `NLAP: src/mojo_theorem_kernel.mojo` and the C1 ledgers | both programs | specification first; the current code is outside the compiled closure |
-| P2 | Claim-governance and language audits (`math_repo_audit`) | `NLAP: tools/audit_*.py`, `tools/source_tokens.py` | every mathematical repository | nearly ready; policies must move to per-repository configuration |
+| P2 | Claim-governance and language audits (`math_repo_audit`) | `NLAP: tools/audit_*.py`, `NLAP: tools/source_tokens.py` | every mathematical repository | nearly ready; policies must move to per-repository configuration |
 
 Three arithmetic authorities exist today `[V]`: PSC's unchecked machine-width `Rat`, PSC's checked machine-width `CheckedRat`, and NLAP's unbounded `BigZ`-backed `Q`. The purpose of P0 is to reduce that to one.
 
@@ -46,7 +46,7 @@ Three arithmetic authorities exist today `[V]`: PSC's unchecked machine-width `R
 | --- | --- | --- |
 | integers | `BigZ`: dynamic little-endian limbs in base `10^9`, sign in `{-1,0,1}`, add/sub/mul, order, quotient/remainder, exact division with rejection, Euclidean gcd, canonical `Z(sign, byte_len, big_endian_magnitude)` bytes, and `bigz_is_canonical` `[V]` | machine `Int` only |
 | rationals | `Q`: normalized `BigZ` fraction, `den > 0`, `gcd = 1`, `rejected` flag propagated through every operation and through `q_canonical_bytes` `[V]` | `Rat` in `mojo/psc/rational.mojo`: normalized machine `Int`, unchecked overflow, `abort` on zero denominator `[V]`; `CheckedRat` in `mojo/psc/rational_interval.mojo`: normalized machine `Int` with overflow checks that `raise` `[V]` |
-| polynomials | `PolyZ` in `src/poly_z.mojo`: fixed `MAX_DEGREE`, machine `Int` coefficients, not yet on `BigZ` `[V]` | integer coefficient lists inside `mat3.charpoly` and `rational_interval.eval_int_poly_at_rat` `[V]` |
+| polynomials | `PolyZ` in `NLAP: src/poly_z.mojo`: fixed `MAX_DEGREE`, machine `Int` coefficients, not yet on `BigZ` `[V]` | integer coefficient lists inside `mat3.charpoly` and `rational_interval.eval_int_poly_at_rat` `[V]` |
 
 Dependency chain as it stands:
 
@@ -59,9 +59,9 @@ Rat (Int)  -->  qlinalg / tensor3 / w3 ;  CheckedRat (Int)  -->  RatInterval  --
 ### 1.2 Verified findings on the NLAP stack
 
 - `bigz_abs_divmod` is binary shift-and-subtract: it doubles the divisor until it exceeds the dividend, then halves and subtracts. Every step is a full limb-vector add or small-divide, so the cost is quadratic in limb count times the bit length of the quotient. It is correct on the smoke inputs and checked by `bigz_divmod_identity_holds`, but it is not a general backend division `[V]`.
-- `Q.add`, `Q.sub`, `Q.lt`, `Q.le` cross-multiply raw numerators and denominators, and `Q.mul` multiplies before normalizing. No denominator-gcd or cross-cancellation is applied `[V]`. The transitional `src/checked_q.mojo` already implements both (denominator gcd in `checked_q_add`, cross-cancellation in `checked_q_mul`) over `Int64` `[V]`, so the fix is a port, not a design task.
-- `IQ.point` and `ComplexIQ.point` exist as `@staticmethod` constructors `[V]`. `docs/no-points-invariant.md` permits a `point(...)` helper only when it means a singleton-box constructor and only with a comment saying so; `src/interval_q.mojo` carries no such comment `[V]`. The allowlist entries in `tools/audit_no_points.py` still spell the declarations `fn point(...)`, which no longer match the `def` text; the audit passes only because its regex does not match `def point(` `[V]`. Renaming to `singleton` removes the exception rather than repairing it.
-- The 2026-09-14 project audit (`docs/project-audit-2026-09-14.md`, F1 and F2) predates the BigZ series. As of run 630 CI compiles and runs the smoke closure and all subsequent runs pass `[V]`. Modules outside that closure, in particular `src/mojo_theorem_kernel.mojo` and `src/canonical_serialization.mojo`, still use `inout self` and `fn` signatures and have not been compiled `[V]`.
+- `Q.add`, `Q.sub`, `Q.lt`, `Q.le` cross-multiply raw numerators and denominators, and `Q.mul` multiplies before normalizing. No denominator-gcd or cross-cancellation is applied `[V]`. The transitional `NLAP: src/checked_q.mojo` already implements both (denominator gcd in `checked_q_add`, cross-cancellation in `checked_q_mul`) over `Int64` `[V]`, so the fix is a port, not a design task.
+- `IQ.point` and `ComplexIQ.point` exist as `@staticmethod` constructors `[V]`. `NLAP: docs/no-points-invariant.md` permits a `point(...)` helper only when it means a singleton-box constructor and only with a comment saying so; `NLAP: src/interval_q.mojo` carries no such comment `[V]`. The allowlist entries in `NLAP: tools/audit_no_points.py` still spell the declarations `fn point(...)`, which no longer match the `def` text; the audit passes only because its regex does not match `def point(` `[V]`. Renaming to `singleton` removes the exception rather than repairing it.
+- The 2026-09-14 project audit (`NLAP: docs/project-audit-2026-09-14.md`, F1 and F2) predates the BigZ series. As of run 630 CI compiles and runs the smoke closure and all subsequent runs pass `[V]`. Modules outside that closure, in particular `NLAP: src/mojo_theorem_kernel.mojo` and `NLAP: src/canonical_serialization.mojo`, still use `inout self` and `fn` signatures and have not been compiled `[V]`.
 
 ### 1.3 Required before extraction
 
@@ -70,7 +70,7 @@ Rat (Int)  -->  qlinalg / tensor3 / w3 ;  CheckedRat (Int)  -->  RatInterval  --
 3. Port denominator-gcd addition, cross-cancelled multiplication, and gcd-reduced comparison from `checked_q.mojo` into `rat_q.mojo`.
 4. Split canonical encoding: the integer and rational encodings (`bigz_canonical_bytes`, `q_canonical_bytes`) belong to the library; the certificate schemas in `canonical_serialization.mojo` stay in NLAP-JT.
 5. Rename `IQ.point` and `ComplexIQ.point` to `singleton`, update the five call sites, and delete the stale allowlist lines.
-6. Keep every certificate-acceptance or proof-grade predicate out of the package. Arithmetic readiness (`allows_certificate_acceptance`) is a consumer decision, as `docs/bigint-migration-handoff.md` already states.
+6. Keep every certificate-acceptance or proof-grade predicate out of the package. Arithmetic readiness (`allows_certificate_acceptance`) is a consumer decision, as `NLAP: docs/bigint-migration-handoff.md` already states.
 7. Move `PolyZ` onto `BigZ` coefficients and unbounded degree, or document that the library ships `poly_z` as a bounded-degree specialization.
 
 PSC then retires both `Rat` and `CheckedRat`. `CheckedRat` contributes its test file, its cancellation discipline, and its explicit unknown-versus-failure semantics; its bounded `Int` representation must not survive as a canonical backend.
@@ -104,7 +104,7 @@ Semantics, already shared by both implementations `[V]`:
 - strict sign only when the whole interval excludes zero;
 - an interval containing zero is *unknown*, never equality;
 - invalid arithmetic (reversed endpoints, rejected endpoint, reciprocal across zero) is distinct from unknown;
-- interval filtering never becomes exact acceptance without an independent exact predicate (`docs/rational-interval-arithmetic-spec.md` section 3.2).
+- interval filtering never becomes exact acceptance without an independent exact predicate (`NLAP: docs/rational-interval-arithmetic-spec.md` section 3.2).
 
 Base: `NLAP: src/interval_q.mojo` (`IQ`, `ComplexIQ`, `IQSignResult`, `IQBoolResult`). Contribution from PSC: `mojo/tests/test_rational_interval.mojo` (natural Horner extension containment, division across zero fails closed) and the Perron-root enclosure use case, which becomes the first external consumer test.
 
@@ -125,7 +125,7 @@ Required before extraction:
 
 ## 5. Finite proof-record infrastructure: `finite_proof_records`
 
-Reusable ideas `[V]`: `src/mojo_theorem_kernel.mojo` (statement, theorem-tag import, rule application, proof object, checked status), the theorem-tag import ledger and assumption-payload records, proof-block status records, the canonical-serialization gate, and the finite-certificate composition gates.
+Reusable ideas `[V]`: `NLAP: src/mojo_theorem_kernel.mojo` (statement, theorem-tag import, rule application, proof object, checked status), the theorem-tag import ledger and assumption-payload records, proof-block status records, the canonical-serialization gate, and the finite-certificate composition gates.
 
 The generalizable content is the classification, not the C1 vocabulary:
 
@@ -144,7 +144,7 @@ Blockers: the kernel hard-codes NLAP policy (`uses_rank2_circle` rejection, `cla
 
 ## 6. Claim-governance and language tooling: `math_repo_audit`
 
-Candidates `[V]`: `tools/audit_paper_language.py`, `tools/audit_terminology.py`, `tools/audit_exact_arithmetic.py`, `tools/audit_no_trig.py`, `tools/audit_no_points.py`, `tools/source_tokens.py`, the terminology registry and use-manifest format, and the theorem-status consistency tests.
+Candidates `[V]`: `NLAP: tools/audit_paper_language.py`, `NLAP: tools/audit_terminology.py`, `NLAP: tools/audit_exact_arithmetic.py`, `NLAP: tools/audit_no_trig.py`, `NLAP: tools/audit_no_points.py`, `NLAP: tools/source_tokens.py`, the terminology registry and use-manifest format, and the theorem-status consistency tests.
 
 The shared core should check: undeclared project terminology; apparent theorem claims without a status label; source-pending results described as proved; forbidden numerical primitives; inconsistent claim status across manuscripts, code, and ledgers. Repository policy (NLAP's no-trigonometry rule, its rank-2 vocabulary, PSC's named conjectures) moves to per-repository configuration. PSC has no counterpart audit today and `docs/README.md` in PSC asks reviewers to reconcile status surfaces by hand `[V]`, so it is the first consumer.
 
@@ -172,3 +172,6 @@ It stays inside NLAP-JT and does not create a shared repository:
 - leave every acceptance gate, theorem tag, and C1 ledger untouched.
 
 Only after that lands and CI is green should a shared repository be created and PSC migrated. This avoids making an immature API the new source of truth in two programs at once.
+
+<!-- check-docs-refs: exempt mojo/psc/rational.mojo mojo/psc/rational_interval.mojo mojo/tests/test_rational_interval.mojo -->
+<!-- two modules dropped when finite_exact was vendored, and one test this plan proposed but did not create -->

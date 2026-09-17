@@ -44,6 +44,12 @@ if python3 scripts/make_math_catalogue.py --check >/dev/null; then
 else
     bad "mathematical-object catalogue drift (run: python3 scripts/make_math_catalogue.py)"
 fi
+if docs_refs_out=$(python3 scripts/check_docs_refs.py); then
+    ok "docs index is complete and every path reference resolves"
+else
+    bad "documentation index or cross-references"
+    tail -20 <<<"$docs_refs_out"
+fi
 if python3 scripts/check_manuscript_source.py; then
     ok "manuscript sources are intact LaTeX and PDF"
 else

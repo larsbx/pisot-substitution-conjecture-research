@@ -176,6 +176,83 @@ Run all available verification layers with:
 
 A skipped unavailable toolchain must be reported; it is not a passing proof.
 
+## Complete note index
+
+Every note in this directory, grouped by the programme it serves. The sections
+above say which notes are authoritative; this list exists so that no note sits
+outside the index, which is how record drift starts.
+`scripts/check_docs_refs.py` fails if a note is missing from this file.
+
+### Audits and protocol
+
+- `audit-2026-09-10.md` — Audit — 2026-09-10: repository state and mathematical progress
+- `audit-2026-09-15.md` — Audit — 2026-09-15: repository engineering state
+- `automation-protocol.md` — Automated research protocol
+- `cross-pollination-round-two-2026-09-16.md` — Cross-pollination, round two: PSC, NLAP-JT, finite-math-kernels, and four adjacent repositories
+
+### Literature gates: what must be pinned before a ledger cites it
+
+- `p1-overlap-affine-pump-literature-gate-2026-09-15.md` — Literature gate — ordered overlap affine pumps
+- `padic-representation-literature-gate-2026-09-16.md` — Literature gate — a real times p-adic box carrier
+- `pisot-screen-literature-gate-2026-09-16.md` — Literature gate — the degree-`n` Pisot screen
+- `tuning-substitutions-stop-go-2026-09-16.md` — Tuning substitutions and column coincidence: targeted literature stop/go check
+
+### Primary route: seed-patch overlaps and coincidence density
+
+- `overlap-finiteness-and-coincidence-density-2026-09-13.md` — The seed-patch overlap automaton is finite, and Level 3 without G1
+- `p1-overlap-affine-pump-2026-09-15.md` — P1 overlap productivity — ordered affine-pump certificate
+- `p1-overlap-collar-2026-09-16.md` — P1 overlap productivity — radius-`m` periodic-patch collars
+- `p1-overlap-context-equality-2026-09-15.md` — P1 overlap productivity — first prefix-suffix context checkpoint
+- `p1-overlap-minimal-obstruction-2026-09-14.md` — P1 overlap productivity — minimal bad-overlap normal form
+- `seed-patch-to-literature-overlap-audit-2026-09-13.md` — Seed-patch to literature-overlap bridge: closure audit
+
+### Stronger parallel route: G1b-2, renewal, realization
+
+- `p1b-affine-ancestry-pump.md` — P1-B — exact affine-ancestry pump calibration
+- `p1b-joint-local-census.md` — P1-B joint-local census: bounded windows and a regular collision family
+- `p1b-labelled-renewal-program.md` — P1-B — labelled renewal program for G1b-2
+- `p1b-overlap-realization-bridge.md` — P1-B — balanced-pair to overlap realization bridge
+- `p1b-sidewise-finite-cokernel.md` — P1-B — sidewise finite-cokernel diagnostic
+
+### C3 and C4 structural programme (conditional on a finite carrier)
+
+- `FINITE_SIGNING_PARITY.md` — Finite signing parity criterion
+- `boundary-synchronization.md` — Boundary synchronization reduction
+- `c3-locality-reduction.md` — C3 locality reduction: higher newborn cuts are one-step block-local
+- `c4-barge-diamond-endpoint-eliminator.md` — C4 Barge-Diamond endpoint eliminator
+- `c4-birth-event-transducer.md` — C4 newborn birth-event transducer
+- `c4-defect-degree-census.md` — C4 finite-corpus first-defect census
+- `c4-degree2-lattice-lift.md` — C4 degree-2 integral lattice lifting certificate
+- `c4-degree2-meanarea-integrality.md` — C4 degree-2 three-state mean-area lifting obstruction
+- `c4-degree2-midarea-factorization.md` — C4 degree-2 mid-area factorization identity
+- `c4-degree2-parity-sieve.md` — C4 degree-2 parity sieve
+- `c4-degree2-synthetic-realizability.md` — C4 degree-2 synthetic factorization-realizability obstruction
+- `c4-degree2-three-state-trace-diagnostic.md` — C4 degree-2 three-state trace/factorization diagnostic
+- `c4-degree4-free-lie.md` — C4-D degree-4 first-defect reduction
+- `c4-derived-cut-address.md` — C4 derived substitution and canonical zero-return addresses
+- `c4-derived-recognizability.md` — C4 derived recognizability after cyclic decomposition
+- `c4-endpoint-core-program.md` — C4 endpoint-core normal form
+- `c4-first-child-hub-phase.md` — C4 first-child hub phase
+- `c4-good-edge-system-bridge.md` — C4 system-level Barge–Diamond good-edge bridge
+- `c4-hub-side-cocycle.md` — C4 hub-side cocycle
+- `c4-legal-ancestry-towers.md` — C4 arbitrarily long legal ancestry towers
+- `c4-lowest-defect-intertwiner.md` — C4-C signed scattered-subword defect intertwiners
+- `c4-multidegree-spectral-sieve.md` — C4-E arbitrary-degree multidegree spectral sieve
+- `c4-orientation-monodromy.md` — C4-C orientation cocycle and the oriented double cover
+- `c4-orientation-spectrum.md` — C4-C orientation-even/odd spectral decomposition
+- `c4-parikh-intertwiner.md` — C4-C Parikh intertwiner for a hypothetical nonproductive sink SCC
+- `c4-pisot-ancestry-finiteness.md` — C4 Pisot finiteness of multi-level cut ancestry
+- `c4-prefix-difference-return-calculus.md` — C4 prefix-difference return calculus
+- `c4-recognizable-cut-germs.md` — C4 recognizable cut germs and legal-context extraction
+- `c4-relative-hierarchy-offset.md` — C4 relative hierarchy-offset state
+- `c4-signature-reduction.md` — C4-B endpoint-quotient signature reduction
+- `c4-w3-low-growth-and-interface-correction.md` — C4-C universal low-growth classification in `W_3`
+
+### Superseded dated snapshots, kept for provenance
+
+- `completion-ledger-2026-09-11.md` — PSC weekly completion ledger — 2026-09-11
+- `current-proof-architecture-2026-09-11.md` — Current PSC proof architecture — 2026-09-11
+- `manuscript-p0-corrections-2026-09-11.md` — P0 manuscript corrections — 2026-09-11
 ## Status-change checklist
 
 When a theorem status changes:

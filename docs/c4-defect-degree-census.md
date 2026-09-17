@@ -143,3 +143,6 @@ determinant eigenspace, equivalently its `Theta(K3)` matrices commute with the
 incidence matrix. In the bounded corpus all 24 reachable degree-three states
 fail this necessary condition and, independently, all reach a coincidence in
 at most two inflations.
+
+<!-- check-docs-refs: exempt scripts/analyze_degree3_catalog.py -->
+<!-- the former Python oracle, deleted when the taxonomy moved into Mojo -->

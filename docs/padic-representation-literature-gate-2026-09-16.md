@@ -41,7 +41,7 @@ the design it inherited does not work (finding 5), and what replaces it is two
 objects rather than one (finding 6).
 
 A carrier is legitimate infrastructure, and a ball with an explicit radius is
-the exact analogue of what `finite_exact/closed_interval.mojo` already does for
+the exact analogue of what `mojo/finite_exact/closed_interval.mojo` already does for
 the reals. Building one asserts nothing. But it must be the right ball:
 review of the first draft showed that the scalar `Z_p` design cannot model the
 quotient it was supposed to check against, so the licensed carrier is the
@@ -89,7 +89,7 @@ Three things transfer cleanly.
 - **The conservative-filter contract.** A `p`-adic ball is the same kind of
   object as a closed rational interval: it may certify a difference is non-zero,
   and it may return unknown, and the second must never be read as the first.
-  `docs/rational-interval-arithmetic-spec.md` in the monorepo already fixes that
+  `finite-math-kernels:docs/rational-interval-arithmetic-spec.md` in the monorepo already fixes that
   contract, and the `p`-adic side should inherit it verbatim rather than invent a
   second one.
 - **The addressing.** Dumont--Thomas numeration is the standard addressing of
@@ -217,7 +217,7 @@ tested; a scalar `Z_p` ball is not, per finding 5.
 1. **Licensed:** an exact `M`-adic ball carrier, a coset of `M^k Z^3` with that
    lattice as its radius, plus a combined box pairing it with one closed
    rational interval per Archimedean coordinate, in the kernels monorepo, with a
-   spec document beside `docs/rational-interval-arithmetic-spec.md`, inheriting
+   spec document beside `finite-math-kernels:docs/rational-interval-arithmetic-spec.md`, inheriting
    its unknown-is-not-equality contract, and differentially tested against
    `finite_cokernel_address.mojo` on the membership question they share.
 2. **Not licensed:** a carrier built from scalar `Z_p` with one precision per

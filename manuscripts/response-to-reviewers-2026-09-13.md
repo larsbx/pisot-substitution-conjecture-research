@@ -1071,3 +1071,6 @@ One finding from the automated Codex review of commit `938a1100fc`; accepted, at
 ## Hundred-and-second round (pull request #101, verified-lift revision)
 
 The automated Codex review of commit `fdeacddc6e` posted no findings. No change.
+
+<!-- check-docs-refs: exempt ../archive/...pdf sub/dir.pdf -->
+<!-- rejected manifest entries quoted as test inputs, not references -->

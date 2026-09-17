@@ -1,6 +1,6 @@
 # Cross-program bridge audit: PSC balanced-pair route and NLAP-JT finite Mandelbrot fibers
 
-**Status:** comparative audit of two repositories, dated 2026-09-12. It records structural correspondences, corrections found by comparison, capability gaps, and ranked bridging contributions. It proves neither the Pisot Substitution Conjecture (PSC) nor Mandelbrot local connectivity (MLC), and it promotes no correspondence to a theorem. Everything below is labelled with one of the status values in section 0.2. Project terms used here are governed by `docs/terminology-registry.md` in NLAP-JT and by `docs/conjecture-ledger.md` in PSC.
+**Status:** comparative audit of two repositories, dated 2026-09-12. It records structural correspondences, corrections found by comparison, capability gaps, and ranked bridging contributions. It proves neither the Pisot Substitution Conjecture (PSC) nor Mandelbrot local connectivity (MLC), and it promotes no correspondence to a theorem. Everything below is labelled with one of the status values in section 0.2. Project terms used here are governed by `NLAP: docs/terminology-registry.md` in NLAP-JT and by `docs/conjecture-ledger.md` in PSC.
 
 Repositories compared, at the heads on the shared branch `claude/isomorphisms-gaps-analysis-jkvo3f`:
 
@@ -178,7 +178,7 @@ Each item names the map, what it preserves, what leaks, and its status.
 | terminology declarations (genealogy/leaks) | none; private terms `carrier`, `concentration`, `aux-B`, `renewal address` undeclared | registry + manifest + linter `[V]` | GAP (PSC) |
 | negative controls / counter-calibrations | synthetic G/F artifact, non-Pisot strict component, Tribonacci ancestry loop `[V]` | none `[V]` | GAP (NLAP) |
 | exact census with CI-pinned counts | 4,554 PIP; 5,022 SCCs; 385,926 states; 24 degree-3 `[V]` | two hand examples (`c = -2`, `M_{4,1}`) `[V]` | GAP (NLAP) |
-| canonical serialization / hash root spec | none (issue #2 open) | `docs/canonical-serialization.md` `[V]` | GAP (PSC) |
+| canonical serialization / hash root spec | none (issue #2 open) | `NLAP: docs/canonical-serialization.md` `[V]` | GAP (PSC) |
 
 ## 3. Corrections found by comparison
 
@@ -199,7 +199,7 @@ R_{3,2} = ... (C^3+C^2-C+1) ...                         ->(3,2)
 R_{4,2} = ... (C^8+4C^7+6C^6+6C^5+4C^4+1) ...           ->(4,2)
 ```
 
-Every irreducible factor carries exactly one exact type. NLAP's own `examples/stress-test-m41.md` already lists `R_{4,1}` factored by type and is consistent with this.
+Every irreducible factor carries exactly one exact type. NLAP's own `NLAP: examples/stress-test-m41.md` already lists `R_{4,1}` factored by type and is consistent with this.
 
 Consequences.
 
@@ -211,8 +211,8 @@ Consequences.
 ### C2. NLAP: the governance layer has outrun the content; main CI is red `[V]`
 
 - The five most recent `main` runs of `finite-regime-core-audit` (run numbers 263–267) all fail at step 3, "Run no-trig core audit", so every downstream step is skipped, including all proof-object tests.
-- Cause: `tools/audit_no_trig.py` bans the token `degree` lexically; the six hits are all *polynomial* degree (`src/poly_witness.mojo:17 var degree: Int64`, `src/poly_interval_eval.mojo:79 # Degree 12`, and four more). A polynomial-certificate project cannot ban the word.
-- `tools/audit_terminology.py` reports 41 further findings on the same head, mostly the deprecated term used without migration context in twenty `docs/C1_*` files, plus scoped terms in `docs/mojo_first_execution_policy.md` and `src/alignment_audit_status.mojo`.
+- Cause: `NLAP: tools/audit_no_trig.py` bans the token `degree` lexically; the six hits are all *polynomial* degree (`NLAP: src/poly_witness.mojo:17 var degree: Int64`, `NLAP: src/poly_interval_eval.mojo:79 # Degree 12`, and four more). A polynomial-certificate project cannot ban the word.
+- `NLAP: tools/audit_terminology.py` reports 41 further findings on the same head, mostly the deprecated term used without migration context in twenty `docs/C1_*` files, plus scoped terms in `NLAP: docs/mojo_first_execution_policy.md` and `NLAP: src/alignment_audit_status.mojo`.
 - `pytest` on the same head: 16 failed, 290 passed, all failures in the same lexical class.
 
 Nothing in NLAP is currently verified by its own gate.
@@ -221,12 +221,12 @@ Nothing in NLAP is currently verified by its own gate.
 
 - No CI step installs or runs Mojo; the only `subprocess` use in `tests/` runs a Python oracle.
 - `src/*.mojo` uses `fn __init__(inout self, ...)` (17 structs) and `@value` (14 structs). PSC pins `modular >= 26.6` and writes `def __init__(out self, ...)`, `mut`, `ref`, and `Copyable, Movable` traits. The NLAP forms predate that toolchain and are not expected to compile on it.
-- `tests/test_krawczyk_joint_scaffold.py::test_p21_demo_is_computed_not_status_asserted` asserts that a substring `verify_p21_krawczyk_c_minus_2(8)` appears in the source; it does not run it.
-- `src/cert_types.mojo` states of `KrawczykWitness`: "The current fields are metadata; exact interval enclosures will replace them."
+- `NLAP: tests/test_krawczyk_joint_scaffold.py::test_p21_demo_is_computed_not_status_asserted` asserts that a substring `verify_p21_krawczyk_c_minus_2(8)` appears in the source; it does not run it.
+- `NLAP: src/cert_types.mojo` states of `KrawczykWitness`: "The current fields are metadata; exact interval enclosures will replace them."
 
 ### C4. PSC: an imported theorem is recorded as proved `[V]`
 
-`PSC: tla/Ledger.tla` places `StandardBPAEquivalence` in `ProvedDef`. It is Akiyama--Barge--Berthé--Lee--Siegel Theorem 5.3, and `docs/bpa-literature-bridge.md` section 3 says the seedwise clause "should be checked in the theorem's proof ... rather than inferred from the word 'any'". `ProofArchitecture.tla` has `Proved`, `Withdrawn`, `Assumed` but no `Imported` category carrying hypotheses, conclusion, and leak note. The v16 source-pending results are handled by exclusion only. NLAP's `TheoremTagImport` (`src/mojo_theorem_kernel.mojo`) is the missing structure.
+`PSC: tla/Ledger.tla` places `StandardBPAEquivalence` in `ProvedDef`. It is Akiyama--Barge--Berthé--Lee--Siegel Theorem 5.3, and `docs/bpa-literature-bridge.md` section 3 says the seedwise clause "should be checked in the theorem's proof ... rather than inferred from the word 'any'". `ProofArchitecture.tla` has `Proved`, `Withdrawn`, `Assumed` but no `Imported` category carrying hypotheses, conclusion, and leak note. The v16 source-pending results are handled by exclusion only. NLAP's `TheoremTagImport` (`NLAP: src/mojo_theorem_kernel.mojo`) is the missing structure.
 
 ### C5. PSC: two contradictory policies on the contracting space `[V]`
 
@@ -292,7 +292,7 @@ Ranking is by expected leverage on the named repository's own open gate, then by
 
 ### B3. Port the TLA+ dependency ledger to NLAP — NLAP, infrastructure
 
-- `PSC: tla/ProofArchitecture.tla` is generic (`CONSTANTS Results, Requires, Proved, Withdrawn, Assumed`) and needs no change. NLAP supplies a `Ledger.tla` with the seven proof blocks of `docs/C1_proof_definition_and_priority.md`, the theorem tags as `Assumed` in one configuration and absent in another, and invariants such as `C1NotEstablished`, `MissingLinkNeverTerminal`, `MLCStrengthUnreachableWithoutResidualClosure`. TLC then checks what `src/C1_theorem_status.mojo` currently asserts by hand.
+- `PSC: tla/ProofArchitecture.tla` is generic (`CONSTANTS Results, Requires, Proved, Withdrawn, Assumed`) and needs no change. NLAP supplies a `Ledger.tla` with the seven proof blocks of `NLAP: docs/C1_proof_definition_and_priority.md`, the theorem tags as `Assumed` in one configuration and absent in another, and invariants such as `C1NotEstablished`, `MissingLinkNeverTerminal`, `MLCStrengthUnreachableWithoutResidualClosure`. TLC then checks what `NLAP: src/C1_theorem_status.mojo` currently asserts by hand.
 - Add an `Imported` constant to the shared `ProofArchitecture.tla` while porting (also fixes C4 on the PSC side).
 - First files: new `NLAP: tla/Ledger.tla`, `NLAP: tla/check.sh` copied from PSC.
 
@@ -300,7 +300,7 @@ Ranking is by expected leverage on the named repository's own open gate, then by
 
 - Copy `PSC: mojo/pixi.toml` (pin `modular >= 26.6`), port `inout self` to `out self`/`mut`, replace `@value` with explicit `Copyable, Movable`, add a `verify.mojo` in PSC's `Check` style, and add a `mojo-kernel` CI job. Until this exists the "Mojo theorem kernel" and the Krawczyk computation are prose.
 - Prerequisite: C2 (the current CI never reaches any later step).
-- First files: `NLAP: .github/workflows/no-trig-audit.yml`, new `NLAP/mojo/pixi.toml`.
+- First files: `NLAP: .github/workflows/no-trig-audit.yml`, new `NLAP: mojo/pixi.toml`.
 
 ### B5. Upgrade PSC's census to per-instance certificates with import metadata — PSC, semantics and serialization
 
@@ -330,7 +330,7 @@ Ranking is by expected leverage on the named repository's own open gate, then by
 
 ### B9. A hypothesis-firewall linter and terminology declarations for PSC — PSC, infrastructure
 
-- PSC's ledger lists the leaks it forbids (unimodularity, lattice assumption, inverse of `M`, realization shortcut, "bounded hence finite"). NLAP enforces its analogous invariants lexically. A `PSC: tools/audit_firewall.py` that flags `|det M| = 1`, `M^{-1}`, "lattice" without negation, and "therefore finite" outside allow-listed archive files is cheap, and a `docs/terminology-registry.md` with declarations for `carrier`, `concentration`, `aux-B`, `renewal address`, `level-scaled address` resolves the archive/ledger collision noted in C5.
+- PSC's ledger lists the leaks it forbids (unimodularity, lattice assumption, inverse of `M`, realization shortcut, "bounded hence finite"). NLAP enforces its analogous invariants lexically. A `PSC: tools/audit_firewall.py` that flags `|det M| = 1`, `M^{-1}`, "lattice" without negation, and "therefore finite" outside allow-listed archive files is cheap, and a `NLAP: docs/terminology-registry.md` with declarations for `carrier`, `concentration`, `aux-B`, `renewal address`, `level-scaled address` resolves the archive/ledger collision noted in C5.
 - First file: new `PSC: tools/audit_firewall.py`, wired into `ci.yml`.
 
 ### B10. Make NLAP's own gate green — NLAP, prerequisite
@@ -358,3 +358,6 @@ Ranking is by expected leverage on the named repository's own open gate, then by
 - Schleicher, *On fibers and local connectivity of Mandelbrot and Multibrot sets*; *Rational parameter rays of the Mandelbrot set*.
 - Hutz, Towsley, *Misiurewicz points for polynomial maps and transversality* (2015), generalized dynatomic polynomials and root simplicity.
 - Thurston, *Entropy in dimension one* (2014); Tiozzo, *Galois conjugates of entropies of real unimodal maps*; Bray, Davis, Lindsey, Wu, *The shape of Thurston's Master Teapot* — entry points for B8 only.
+
+<!-- check-docs-refs: exempt mojo/psc/rational.mojo mojo/psc/overlap.mojo -->
+<!-- a module dropped when finite_exact was vendored, and a file this plan proposed -->

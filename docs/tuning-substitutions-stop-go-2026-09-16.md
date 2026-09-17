@@ -32,7 +32,7 @@ Do not transfer:
 - A constant-length-`q` substitution on `n >= 2` letters has incidence matrix with Perron–Frobenius eigenvalue `q`, an integer, so `x - q` divides its characteristic polynomial. No such substitution is an irreducible Pisot substitution. The PIP regime of this repository therefore contains no constant-length specimen, and nothing computed by `coincidence.mojo` bears on `OverlapProductivity`, G1, C3, C4, or the conjecture. The kernel is calibration, never evidence.
 - Dekking's theorem needs primitivity, aperiodicity, and the height: when `h(sigma) > 1` the coincidence condition is to be evaluated on the pure base, which the package does not compute (its specification, section 3.3). Until a height kernel exists upstream, a `found` witness is not the hypothesis of Dekking's theorem, and the theorem may not be imported on the strength of it.
 - Tuning acts on kneading sequences of real quadratic maps; nothing in this repository is a kneading sequence. The tuning and directive-prefix kernels have no PSC consumer and are pinned only because the package is vendored byte-for-byte.
-- The module docstrings cite `docs/tuning-substitutions-spec.md` and `tools/tuning_reference.py`, which are paths of the monorepo, not of this repository. The vendoring protocol forbids editing them here; the specification is read upstream at the pinned commit.
+- The module docstrings cite `finite-math-kernels:docs/tuning-substitutions-spec.md` and `finite-math-kernels:tools/tuning_reference.py`, which are paths of the monorepo, not of this repository. The vendoring protocol forbids editing them here; the specification is read upstream at the pinned commit.
 
 ## Known negative controls and counterexamples
 

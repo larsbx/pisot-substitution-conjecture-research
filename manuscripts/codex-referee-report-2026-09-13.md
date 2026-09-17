@@ -2130,3 +2130,6 @@ No other findings were posted in the hundred-and-first round.
 **Review posted:** 2026-09-16T04:41:14Z. Reproduced verbatim: "Codex Review: Didn't find any major issues. Another round soon, please!"
 
 No findings were posted in the hundred-and-second round.
+
+<!-- check-docs-refs: exempt scripts/oa_failures_probe.py -->
+<!-- the referee report records a finding against a script since ported to Mojo and deleted -->

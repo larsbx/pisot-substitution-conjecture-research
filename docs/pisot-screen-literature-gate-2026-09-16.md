@@ -123,7 +123,7 @@ such as `x^3 - 2x^2` it returns `False` for a polynomial whose root location is
 in fact one root outside, real and greater than one, because its case split
 counts distinct real roots. That is not a defect in either routine. It marks
 where root location and the PIP regime are different questions, and the
-cross-check between the two in `tests/test_pisot_screen.mojo` is restricted to
+cross-check between the two in `mojo/tests/test_pisot_screen.mojo` is restricted to
 irreducible cubics for exactly that reason.
 
 ### 5. Root location is not the Pisot property
@@ -148,7 +148,7 @@ Zassenhaus or van Hoeij kind, which is out of scope here and is not attempted.
 
 ### 6. Negative controls, and what each one catches
 
-Every family below is pinned in `tests/test_pisot_screen.mojo` and in
+Every family below is pinned in `mojo/tests/test_pisot_screen.mojo` and in
 `tests/test_pisot_screen.py`.
 
 | Family | Example | What it catches |
