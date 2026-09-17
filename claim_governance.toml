@@ -97,6 +97,24 @@ file_status_lines = 10
 allow = ["manuscripts/PSC_balanced_pair_state_2026-09-13.tex", "manuscripts/PSC_PROOF_next_source_audit.tex"]
 
 # ---------------------------------------------------------------------------
+# Coverage: every Mojo test names what it guards.  `mojo/psc/claim_tests.mojo`
+# supplies the two declarations; `mojo/run_tests.sh` collects the receipts of
+# the tests that passed, so a declaration no run reached guards nothing and a
+# red suite credits nothing.  The required classes are the two whose warrant
+# *is* an exact finite computation: a finite-domain theorem and an empirical
+# evidence claim have no other source, so an unguarded one has no live
+# warrant.  A repository-proved claim is not required here: its warrant is a
+# manuscript proof, a Lean proof, or an archived certificate, and demanding a
+# Mojo test for it would manufacture a link the repository does not have.
+# Which proved claims happen to be guarded anyway is readable from the
+# declarations and from docs/claim-relationship-graph.json.
+# ---------------------------------------------------------------------------
+[coverage]
+tests = ["mojo/tests/test_*.mojo"]
+require_classes = ["finite-domain", "evidence"]
+receipts = "mojo/build/claim-receipts.tsv"
+
+# ---------------------------------------------------------------------------
 # Promotion: an unsettled claim must not be described as proved.
 # ---------------------------------------------------------------------------
 [promotion]

@@ -7,9 +7,10 @@ assumption sets the TLC models bind, the status labels the index prints, and
 the aliases and prose surfaces each claim keeps in claim_governance.toml.
 `tools/proof_records/generate_ledgers.py` (vendored from larsbx/finite-math-
 kernels, docs/ledger-generation-spec.md there) renders tla/Ledger.tla, one
-TLC model per assumption set, docs/ledger-index.md, and the generated
-[[claim]] block of claim_governance.toml. CI runs `--check`, so none of those
-surfaces can drift from this table or be hand-edited.
+TLC model per assumption set, docs/ledger-index.md, the typed relationship
+graph docs/claim-relationship-graph.json, and the generated [[claim]] block of
+claim_governance.toml. CI runs `--check`, so none of those surfaces can drift
+from this table or be hand-edited.
 
 Usage: make_ledger.py [--check]
 """
@@ -240,6 +241,7 @@ def ledger() -> dict:
         "module": "Ledger",
         "tla_dir": "tla",
         "index_path": "docs/ledger-index.md",
+        "graph_path": "docs/claim-relationship-graph.json",
         "assumption_sets": ASSUMPTION_SETS,
         "status_classes": {Kind.VERIFIED.value: "finite-domain"},
         "status_labels": STATUS_LABELS,

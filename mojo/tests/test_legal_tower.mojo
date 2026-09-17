@@ -1,6 +1,7 @@
 """Canonical Mojo regressions for legal ancestry towers."""
 
 from std.testing import assert_equal, assert_true, assert_false
+from psc.claim_tests import require_claim
 from psc.legal_tower import (
     descent_margin,
     first_legal_tower_cut,
@@ -91,3 +92,4 @@ def main() raises:
     test_nonpisot_strict_calibration()
     print("[PASS] test_nonpisot_strict_calibration")
     print("5 legal-tower Mojo tests passed.")
+    require_claim("C3Locality")

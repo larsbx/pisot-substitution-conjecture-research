@@ -21,6 +21,7 @@ from psc.carrier import (
     profile_component,
     state_sync,
 )
+from psc.claim_tests import require_claim
 from psc.corpus import (
     MAX_IMAGE_LENGTH,
     REGIME_NONUNIMODULAR,
@@ -384,3 +385,7 @@ def main() raises:
     test_the_corpus_is_the_screened_corpus()
     print("[PASS] test_the_corpus_is_the_screened_corpus")
     print("10 census-library tests passed.")
+    require_claim("BoundedDegree3Exclusion")
+    require_claim("BoundedDegree2WedgeProductivity")
+    require_claim("ParitySieve")
+    require_claim("DefectIntertwiner")

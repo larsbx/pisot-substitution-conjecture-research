@@ -14,6 +14,8 @@ lengths of the substitution, and the powers of its incidence matrix.
 
 from std.testing import assert_equal, assert_false, assert_true
 
+from psc.claim_tests import require_contract
+
 from finite_linear_algebra.mat3 import Mat3, identity3
 from psc.automata import (
     Dfa,
@@ -386,3 +388,6 @@ def main() raises:
     test_a_power_substitution_has_the_same_fixed_point()
     print("[PASS] test_a_power_substitution_has_the_same_fixed_point")
     print("11 automata and numeration tests passed.")
+    # One line and one literal: `policy.py` reads the declaration out of the
+    # source, and its pattern does not join concatenated string parts.
+    require_contract("the automata kernel decides emptiness, complement and projection over total deterministic automata, and the Dumont-Thomas numeration presents the fixed point exactly; no ledger claim rests on it, and the step to a decision procedure is gated in docs/automatic-sequence-route-literature-gate-2026-09-17.md")

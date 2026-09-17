@@ -3,6 +3,7 @@
 from std.testing import assert_equal, assert_false, assert_true
 from psc.bpa import substitution_incidence
 from finite_linear_algebra.mat3 import Mat3
+from psc.claim_tests import require_contract
 from psc.overlap_interval_audit import audit_seed_overlap_interval_margins
 from psc.perron_field3 import CubicElt, build_perron_field3
 from psc.perron_interval import (
@@ -179,3 +180,4 @@ def main() raises:
     test_coarse_overlap_audit_withholds_partial_minimum()
     print("[PASS] test_coarse_overlap_audit_withholds_partial_minimum")
     print("9 exact-interval Mojo tests passed.")
+    require_contract("the exact rational and closed-interval layer: an unknown containment or sign is never promoted, and a coarse audit withholds a partial minimum")

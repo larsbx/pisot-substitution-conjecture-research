@@ -27,7 +27,8 @@ def test_vendored_packages_match_their_pins():
     for name, pkg in packages.items():
         assert pkg["repository"] == "larsbx/finite-math-kernels"
         assert all(rel.startswith(name + "/") for rel in pkg["files"])
-    assert set(packages["proof_records"]["files"]) == {"proof_records/__init__.py", "proof_records/records.py", "proof_records/generate_ledgers.py"}
+    assert set(packages["proof_records"]["files"]) == {"proof_records/__init__.py", "proof_records/records.py", "proof_records/generate_ledgers.py",
+                                                       "proof_records/graph.py"}
 
 
 def test_local_patch_is_detected(tmp_path, monkeypatch):

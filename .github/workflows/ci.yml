@@ -29,6 +29,8 @@ jobs:
       - run: python scripts/check_vendored_sync.py
       - name: Generated ledger surfaces are current (tla/ledger.json, tla/Ledger.tla, models, index, claims)
         run: python scripts/make_ledger.py --check
+      - name: Generated mathematical-object catalogue is current
+        run: python scripts/make_math_catalogue.py --check
       - name: Claim governance audit (claim_governance.toml)
         run: PYTHONPATH=tools python -m claim_governance.cli --root .
       - run: pytest
@@ -45,6 +47,8 @@ jobs:
       - name: Canonical Mojo regression tests
         working-directory: mojo
         run: pixi run test
+      - name: Every claim the policy requires guarded has a passing test (run receipts)
+        run: PYTHONPATH=tools python3 -m claim_governance.cli --root . --check coverage
       - name: Certificate checks
         working-directory: mojo
         run: pixi run verify

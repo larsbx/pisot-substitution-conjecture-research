@@ -1,6 +1,7 @@
 """Exact regressions for ordered overlap child occurrences."""
 
 from std.testing import assert_equal, assert_true
+from psc.claim_tests import require_claim
 from psc.overlap_obstruction import common_child_start_count
 from psc.overlap_recurrence import zero_shift_free_recurrent_sccs
 from psc.overlap_seed_patch import (
@@ -115,3 +116,4 @@ def main() raises:
     test_zero_shift_free_recurrence_is_one_sided_and_fail_closed()
     print("[PASS] test_zero_shift_free_recurrence_is_one_sided_and_fail_closed")
     print("2 ordered-overlap-zipper Mojo tests passed.")
+    require_claim("OverlapBoundaryZipperDichotomy")

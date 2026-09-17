@@ -9,6 +9,7 @@ construction.
 
 from std.testing import assert_equal, assert_false, assert_true
 
+from psc.claim_tests import require_claim
 from psc.endpoint_core import (
     all_maps,
     canonical_map,
@@ -167,3 +168,5 @@ def main() raises:
     test_endpoint_maps_read_the_image_ends()
     print("[PASS] test_endpoint_maps_read_the_image_ends")
     print("10 endpoint-core tests passed.")
+    require_claim("EndpointCore")
+    require_claim("SignatureReduction")

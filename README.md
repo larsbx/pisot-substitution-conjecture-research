@@ -8,6 +8,10 @@ Automated research workspace for the Pisot Substitution Conjecture (PSC), with e
 
 Python under `src/psc_research/` is a secondary reference/oracle and prototyping layer. Once a Mojo implementation exists, the Mojo module is the executable source of truth. See `AGENTS.md` for the detailed policy.
 
+The generated [mathematical-object catalogue](docs/mathematical-object-catalogue.md)
+provides a browsable taxonomy with explicit canonical-Mojo and independent-oracle
+links. Its single machine-readable source is `catalogues/mathematical_objects.toml`.
+
 Censuses, catalogues and the taxonomies of the objects they classify are built
 on one shared library (`mojo/psc/corpus.mojo`, `histogram.mojo`, `carrier.mojo`,
 `symmetry.mojo` and the defect kernels), so a driver is a survey over the corpus
@@ -166,7 +170,7 @@ Issue #45 is therefore closed as a completed status/source reconciliation task. 
 | Deductive finite algebra | `PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
 | Secondary oracle | `src/psc_research/` + `tests/` | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |
 
-The five logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `scripts/check_vendored_sync.py` in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under `tools/claim_governance`. The TLA+ ledger, its TLC models, `tla/ledger.json`, the claim entries of every ledger node, and `docs/ledger-index.md` are generated from the one table of proof records in `scripts/make_ledger.py` through the vendored `tools/proof_records` package; edit that table and regenerate, since CI fails if any output is stale or hand-edited.
+The five logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `scripts/check_vendored_sync.py` in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under `tools/claim_governance`. The TLA+ ledger, its TLC models, `tla/ledger.json`, the claim entries of every ledger node, `docs/ledger-index.md`, and the typed relationship graph `docs/claim-relationship-graph.json` are generated from the one table of proof records in `scripts/make_ledger.py` through the vendored `tools/proof_records` package; edit that table and regenerate, since CI fails if any output is stale or hand-edited. Every Mojo test names the ledger claim or the contract it guards (`mojo/psc/claim_tests.mojo`), and the `coverage` check reads the receipts of the run, so a claim whose warrant is a finite computation cannot lose its regression unnoticed.
 
 Run everything:
 
