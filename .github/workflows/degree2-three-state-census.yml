@@ -37,5 +37,7 @@ jobs:
           grep -Fx 'minimum sink SCC size among combined survivors: 4' <<<"$out"
           grep -Fx 'first failure at k=3: 54' <<<"$out"
           grep -Fx 'first failure at k=7: 108' <<<"$out"
-          grep -F '"T": 1 ,"U": -1 ,"d": 1' <<<"$out"
-          grep -F '"plus": 6 ,"minus": 5' <<<"$out"
+          # Replayable survivor records; every driver now emits one compact
+          # JSON object per diagnostic, built from Specimen.json_fields().
+          grep -Fx 'TRACE12_SURVIVOR_JSON {"i":1,"j":2,"k":17,"T":1,"U":-1,"d":1}' <<<"$out"
+          grep -Fx 'ENDPOINT_TRACE12_SURVIVOR_JSON {"i":1,"j":2,"k":19,"T":1,"U":-1,"d":1,"plus":6,"minus":5}' <<<"$out"

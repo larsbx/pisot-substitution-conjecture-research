@@ -224,7 +224,7 @@ preserved rather than silently discarded.
 
 - `src/psc_research/endpoint_core.py` — exact classification, synchronization
   quotient, and product-core dynamics;
-- `scripts/classify_endpoint_cores.py` — deterministic human/JSONL report;
+- `mojo/endpoint_core_catalog.mojo` — deterministic report, CI-pinned;
 - `tests/test_endpoint_core.py` — exhaustive three-letter regressions.
 
 This finite-map layer has no floating point and no substitution-specific

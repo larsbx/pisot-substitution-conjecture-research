@@ -153,6 +153,9 @@ the current ledgers rather than rewriting the archive.
 
 - `verification-architecture.md` describes the responsibilities and limits of
   Mojo, TLA+, Lean, and Python.
+- `mojo-census-library-2026-09-16.md` describes the shared census/catalogue
+  library every driver is built on, and the retirement of the Python-only
+  computation scripts it replaced.
 - `../AGENTS.md` is the implementation policy.
 - Mojo is canonical for executable research.
 - TLA+ records dependency/state-machine claims.
