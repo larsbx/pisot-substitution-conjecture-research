@@ -1,6 +1,7 @@
 """Canonical Mojo regressions for the system-level good-edge bridge."""
 
 from std.testing import assert_equal, assert_true
+from psc.claim_tests import require_claim
 from psc.derived_system import DerivedSystem, build_derived_system
 from psc.good_edge_system import (
     candidate_good_edge_count,
@@ -94,3 +95,4 @@ def main() raises:
     test_malformed_system_fails_before_endpoint_early_rejection()
     print("[PASS] test_malformed_system_fails_before_endpoint_early_rejection")
     print("3 system good-edge Mojo tests passed.")
+    require_claim("GlobalEndpointSync")

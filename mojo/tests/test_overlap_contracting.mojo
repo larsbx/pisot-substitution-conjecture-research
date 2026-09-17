@@ -2,6 +2,7 @@
 
 from std.testing import assert_equal, assert_true
 from finite_exact.rat_q import Q
+from psc.claim_tests import require_contract, require_claim
 from psc.exact import q_int, q_poly
 from psc.overlap_contracting import ContractingBound, digit_set, discriminant, field_norm
 from psc.overlap_seed_patch import (
@@ -125,3 +126,5 @@ def main() raises:
     test_capped_graph_is_rejected()
     print("[PASS] test_capped_graph_is_rejected")
     print("4 contracting-bound Mojo tests passed.")
+    require_claim("OverlapBadSCCNormalForm")
+    require_contract("manuscript Proposition 5.42: the contracting bound is decided by exact Sturm-Tarski counting, and a capped graph is rejected")

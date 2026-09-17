@@ -1,6 +1,7 @@
 """Canonical Mojo regressions for the relative hierarchy-offset state."""
 
 from std.testing import assert_equal, assert_true
+from psc.claim_tests import require_contract, require_claim
 from psc.derived_system import (
     OrientedSymbol,
     build_derived_system,
@@ -158,3 +159,5 @@ def main() raises:
     test_context_packing_uses_one_sentinel()
     print("[PASS] test_context_packing_uses_one_sentinel")
     print("5 hierarchy-offset Mojo tests passed.")
+    require_claim("OrientationMonodromy")
+    require_contract("the derived system interns each normalized state once and packs relative context with one sentinel")

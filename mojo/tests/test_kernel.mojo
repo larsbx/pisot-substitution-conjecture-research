@@ -7,6 +7,7 @@ from std.testing import assert_equal, assert_true, assert_false
 
 from psc.bpa import build, recurrent_noncoincident_sccs, sccs, coincidence_boundaries, inherited_boundary_positions, newborn_boundary_positions, inherited_sync_positions, newborn_sync_positions
 from psc.certificate import run_all, q_target1, pip_corpus
+from psc.claim_tests import require_claim
 from psc.endpoint_core import endpoint_type
 from finite_linear_algebra.mat3 import Mat3, identity3, has_rational_root
 from psc.pisot import is_pip, is_primitive, is_irreducible_cubic, is_pisot_charpoly
@@ -257,3 +258,5 @@ def main() raises:
     n += 1
     print("[PASS]", "test_full_certificate_passes")
     print(n, "kernel tests passed.")
+    require_claim("Target1")
+    require_claim("W3LowGrowth")

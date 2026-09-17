@@ -1,6 +1,7 @@
 """Canonical Mojo regressions for the Barge-Diamond hub-side cocycle."""
 
 from std.testing import assert_equal, assert_false, assert_true
+from psc.claim_tests import require_claim
 from psc.derived_system import build_derived_system
 from psc.hub_cocycle import (
     build_hub_cocycle,
@@ -89,3 +90,4 @@ def main() raises:
     test_scc_precondition_detects_disconnected_support()
     print("[PASS] test_scc_precondition_detects_disconnected_support")
     print("4 hub-cocycle Mojo tests passed.")
+    require_claim("OrientationMonodromy")

@@ -21,6 +21,7 @@ from psc.carrier import (
     profile_component,
     state_sync,
 )
+from psc.claim_tests import require_claim
 from psc.corpus import (
     MAX_IMAGE_LENGTH,
     REGIME_NONUNIMODULAR,
@@ -325,3 +326,7 @@ def main() raises:
     test_the_degree_three_taxonomy_reproduces_the_known_orbit()
     print("[PASS] test_the_degree_three_taxonomy_reproduces_the_known_orbit")
     print("8 census-library tests passed.")
+    require_claim("BoundedDegree3Exclusion")
+    require_claim("BoundedDegree2WedgeProductivity")
+    require_claim("ParitySieve")
+    require_claim("DefectIntertwiner")
