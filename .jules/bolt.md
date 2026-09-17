@@ -8,3 +8,10 @@
 ## 2024-09-15 - Optimize inner polynomial multiplication loop
 **Learning:** In Q(beta) calculations within Python (like `Field.mul` in `overlap_graph.py`), list allocations inside hot inner loops (e.g. `c = [Fraction(0)] * 5`) and nested loops evaluating small constant-size dimensions (like 3x3 matrices) cause major overhead. Evaluating unused list comprehensions inside `while` loops also tanks performance.
 **Action:** Unroll fixed-size (e.g., 3x3) mathematical loops manually. Write explicit linear combinations for dimensions that are small and known at compile time to avoid loop control and array access costs. Remove all dead assignments inside loops.
+## 2025-02-18 - Avoid Fraction overhead inside loops
+**Learning:** Arbitrary precision `Fraction` arithmetic is heavily penalized in Python inside tight loops due to continual GCD calculations and object instantiation.
+**Action:** Always compute intermediates natively as integers, replacing algorithms with equivalent native implementations like `math.comb`, and cast to `Fraction` only at the end.
+
+## 2025-02-18 - C-delegation can break complexity
+**Learning:** Moving a Python loop to a C-level function (like `list.count`) might look faster on micro-benchmarks but can silently increase algorithmic complexity (e.g., from O(N) to O(N * alphabet_size)), causing massive performance regressions on large inputs.
+**Action:** Always ensure that time complexity invariants are strictly preserved before replacing loops with built-ins.
