@@ -216,16 +216,24 @@ answers twice over. The formula is cheap and the overlap graph is not, so the
 verdict covers every specimen and the cross-check covers a sample of them, which
 is why the two are counted apart.
 
-Over **all 4,554 specimens**: 40,986 ordered pairs decided, **every one of the
-40,986 witnesses recomputed from the substitution alone** — split the accepted
-word back into two paths, recompute the Parikh vectors and the letters by
-substituting — with none failing, and **0 specimens without strong
-coincidence**. Against the seed-patch overlap graph on every thirtieth specimen:
-**873 left-aligned non-coincidence vertices whose first-coincidence depth equals
-the shortest witness level, with 0 different**. Not merely the same verdict —
-the same number, from exact cubic tile geometry on one side and an integer
-Parikh difference on the other, sharing no step. The deepest coincidence level
-in the corpus is 15, and the whole sweep takes under a minute.
+Over **all 4,554 specimens**: 40,986 ordered pairs decided, every witness split
+back into two paths and re-derived, none failing, and **0 specimens without
+strong coincidence**. That re-derivation is a consistency check and is counted
+as one — it reuses the same recurrence the automaton is built on, so it catches
+a wrong witness and not a wrong recurrence. The checks that share no step with
+the automaton are sampled and reported apart:
+
+- **against the images themselves**, by substituting `sigma^k(i)` and
+  `sigma^k(j)` and scanning for a position where the prefixes carry one Parikh
+  vector and the letters agree — no incidence matrix, no Perron field, no digit
+  path;
+- **against the seed-patch overlap graph**, whose first-coincidence depth at a
+  left-aligned non-coincidence vertex must equal the shortest witness level —
+  not merely the same verdict but the same number, from exact cubic tile
+  geometry on one side and an integer Parikh difference on the other.
+
+Neither finds a difference. The deepest coincidence level in the corpus is 15,
+and the whole sweep takes under a minute.
 
 That last figure is the practical difference: `coincidence_witness` stops at the
 first accepting state instead of closing the state set, so a pair that coincides
@@ -233,21 +241,81 @@ early costs a handful of states where the full construction would close a set of
 thousands. Building the automaton remains available for the questions that need
 the language rather than the verdict.
 
-**Where the route stops.** This is the acceptance test the gate set, and it
-passes; what it does not do is what the proposed step asked for. A first-order
-decision procedure over *a* substitution's numeration decides the condition for
-*that* substitution — which the balanced-pair and overlap constructions already
-did. Answering "true of every substitution in this family" would need to
-quantify over the substitution as well, and the substitution is what fixes the
-numeration, the alphabet and the automaton: it is a parameter of the theory, not
-a variable in it. No arrangement of these automata reaches the family, and the
-gate should not have expected one.
+### The procedure as planned: the formula, eliminated
 
-What the route did deliver is worth having, and is smaller than was hoped: a
-third decision procedure for strong coincidence, independent of the other two,
-elementary enough that its termination is proved rather than imported, and
-agreeing with the overlap graph pair by pair and depth by depth. That is
-cross-validation of the repository's central diagnostic, not a new theorem.
+The automaton above answers `SC(i, j)`, but it answers it by having the
+conjunction wired into its accepting condition. That settles the question and
+is *not* the procedure this gate proposed, which was to write the formula and
+let the automata kernel eliminate its quantifiers.
+`mojo/psc/coincidence_elimination.mojo` is that procedure, run. Each conjunct
+goes to the automaton that already recognises it:
+
+| Conjunct | Discharged by |
+| --- | --- |
+| `adm_i(P)`, `adm_j(Q)` | `numeration_automaton`, one per track |
+| `⋁_a ( end_i(P) = a ∧ end_j(Q) = a )` | `letter_automaton`, both tracks, unioned |
+| `parikh_i(P) = parikh_j(Q)` | `parikh_equality_automaton` |
+| `∃P, Q` | `is_empty` with `witness` |
+
+`cylinder` puts a one-track condition on its track, `intersection` and `union`
+are the connectives, `project` discharges a quantifier that is *not* the
+outermost one. Nothing in that module decides anything itself; it assembles,
+and the kernel does the deciding.
+
+Two things come of running it rather than asserting it would run.
+
+**The assembled language is the purpose-built one.** `same_language` on every
+ordered pair of every sampled specimen, with no difference. This is not a
+tautology: the direct automaton reads the letters off its own state, the
+assembly reads them off the Dumont–Thomas letter map and through the product,
+the union and the subset construction. Three pieces of this repository that are
+supposed to agree, made to say so.
+
+**A formula answers with a set where a search answers with an instance.**
+`coincident_positions` quantifies the second path away and leaves the
+recognisable *set* of paths in `σ^k(i)` at which the pair coincides. The
+bespoke automaton has no way to produce that; `project` does, and a regression
+checks it against the existential by enumeration rather than by trusting the
+subset construction.
+
+**What the theory needed extending by, exactly one predicate.** Everything but
+the Parikh conjunct is in the numeration's own signature. Adding a
+*recognisable* relation to the structure leaves the first-order theory
+decidable, which is what licenses the assembly; and the relation is
+recognisable precisely because the *equality* of two counting functions is
+finite-state where neither count is. That is now a demonstrated boundary rather
+than a claim: the four automata are given every chance to assemble the formula,
+and the one place they cannot reach is named, built, and separated into its own
+entry point.
+
+### The family is a different quantifier
+
+The gate proposed replacing "no counterexample among these 4,554 specimens"
+with "true of every substitution in this family". The procedure above is the
+first half and not the second, and the gap is structural rather than a matter
+of more work.
+
+`SC(σ)` is decidable — three independent procedures now say so. The family
+statement is `∀σ ∈ F. SC(σ)` with `F` the irreducible Pisot substitutions on
+three letters, which is infinite: the corpus fixes image lengths at most three,
+and nothing about the condition does. `F` is recursively enumerable and `SC` is
+decidable, so the statement is `Π₁`: **a counterexample would be found by
+search, and no finite computation certifies the positive case.** Enumerating
+further only moves the bound; it never closes it.
+
+Closing it needs a uniform argument — one bounding the coincidence level over
+all of `F`, or reducing `F` to finitely many cases. For two letters that
+argument exists (Barge–Diamond[^10]); for three it is the open problem. The
+automata do not supply it and cannot, because `σ` is what fixes the alphabet,
+the numeration and the automaton before any of this starts: a parameter of the
+theory, not a variable in it.
+
+So what this route delivered is smaller than the gate hoped and worth having:
+three independent decision procedures for `SC(σ)`, one of them with a proved
+termination bound, agreeing with the overlap graph pair by pair and depth by
+depth; a corpus sweep that is a `Π₁` refutation search finding nothing; and a
+precise statement of what a family-level answer would have to be, which is a
+theorem and not a computation.
 
 ## What must be imported
 
@@ -302,19 +370,21 @@ stated above: its termination is proved rather than observed.)
 
 Five automata now exist: admissibility, the letter map, addition, the
 conversion that puts the first two into the numeration the third is recognised
-over, and the coincidence automaton. The last one met the acceptance test this
-gate set — agreement with the verdicts the degree-3 census already reports —
-in its strongest form, matching the overlap graph's first-coincidence depth on
-every left-aligned vertex compared rather than only its verdict.
+over, and the Parikh-equality relation the coincidence condition needs. The
+formula is written over them and its quantifiers are eliminated by the kernel,
+which is the procedure this gate proposed; the purpose-built automaton is a
+second route to the same language and the two agree. The acceptance test the
+gate set was met in its strongest form: not the verdicts the degree-3 census
+reports but the overlap graph's first-coincidence *depth*, matched on every
+left-aligned vertex compared.
 
-What that closed is the encoding question, and what it opened is a narrower and
-more honest reading of the route: it decides one substitution at a time, so it
-cross-validates the census rather than replacing it. Two smaller things remain
-open and are worth naming as such — the greedy-normal language, for a claim
-about digits rather than about values, and whether the coincidence automaton's
-elementary finiteness argument also retires the imported theorem behind the
-addition and conversion explorations, which carry caps that may be defensive
-rather than necessary.
+What stays open is the family, and the section above says why that is a
+theorem rather than more computation. Two smaller things are open too and are
+worth naming as such — the greedy-normal language, for a claim about digits
+rather than about values, and whether the coincidence automaton's elementary
+finiteness argument also retires the imported theorem behind the addition and
+conversion explorations, which carry caps that may be defensive rather than
+necessary.
 
 ## Sources
 

@@ -302,10 +302,12 @@ jobs:
           printf '%s\n' "$out"
           (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
           grep -Fx 'corpus: 4554  specimens decided: 4554  compare stride: 30' <<<"$out"
-          grep -Fx 'ordered pairs decided: 40986  witnesses checked: 40986  witnesses that did not check: 0' <<<"$out"
+          grep -Fx 'ordered pairs decided: 40986  witnesses re-derived: 40986  that did not check: 0' <<<"$out"
+          grep -Fx 'pair levels checked against the inflated images: 279  equal: 279  different: 0' <<<"$out"
           grep -Fx 'specimens without strong coincidence: 0' <<<"$out"
           grep -Fx 'overlap graphs compared: 152  capped: 0' <<<"$out"
           grep -Fx 'left-aligned depths equal to the witness level: 873  different: 0' <<<"$out"
+          grep -Fx 'specimens whose formula was assembled from the kernel: 16  pair languages equal: 144  different: 0' <<<"$out"
           grep -Fx 'deepest coincidence level: 15' <<<"$out"
 
   finite-classification:

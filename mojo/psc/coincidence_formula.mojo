@@ -185,12 +185,41 @@ def coincidence_automaton(sigma: List[List[Int]], top: Int, bottom: Int) raises 
     return coincidence_automaton_with(sigma, top, bottom, 1, STATE_CAP)
 
 
+def parikh_equality_automaton(
+    sigma: List[List[Int]], top: Int, bottom: Int
+) raises -> Dfa:
+    """Pairs of admissible paths of one length whose prefixes carry one Parikh
+    vector, saying nothing about the letters they reach.
+
+    This is the recognisable relation the condition needs beyond the
+    numeration's own signature, and the one the elimination of
+    `psc.coincidence_elimination` adds to the theory: the letter conjunct comes
+    from the Dumont-Thomas letter map through the automata kernel, not from
+    here. `coincidence_automaton` is this relation with the letters required to
+    agree in the accepting condition instead, built directly; that the two
+    routes give one language is what the regression checks."""
+    return _build(sigma, top, bottom, 1, STATE_CAP, False)
+
+
 def coincidence_automaton_with(
     sigma: List[List[Int]], top: Int, bottom: Int, slack: Int, cap: Int
 ) raises -> Dfa:
     """The construction with the pruning bound named, so a regression can widen
     it and see that the language does not move. `slack = 1` is the derived
     bound; anything larger only admits states a minimisation merges back."""
+    return _build(sigma, top, bottom, slack, cap, True)
+
+
+def _build(
+    sigma: List[List[Int]],
+    top: Int,
+    bottom: Int,
+    slack: Int,
+    cap: Int,
+    letters_must_agree: Bool,
+) raises -> Dfa:
+    """The state exploration both entry points share; they differ only in
+    whether reaching one letter is part of accepting."""
     if top < 0 or top >= ALPHABET or bottom < 0 or bottom >= ALPHABET:
         raise Error("a coincidence pair is two letters of the substitution")
     if cap < 2:
@@ -242,8 +271,13 @@ def coincidence_automaton_with(
 
     var accepting = List[Bool]()
     for s in range(len(keys)):
+        if dead[s]:
+            accepting.append(False)
+            continue
+        ref d = deltas[s]
+        var balanced = d[0] == 0 and d[1] == 0 and d[2] == 0
         accepting.append(
-            not dead[s] and _accepting(tops[s], bottoms[s], deltas[s])
+            balanced and (tops[s] == bottoms[s] or not letters_must_agree)
         )
     return Dfa(letters, delta, accepting)
 

@@ -464,6 +464,35 @@ def test_a_track_condition_enters_and_leaves_a_product() raises:
     assert_true(mismatched)
 
 
+def test_a_letter_outside_the_alphabet_is_refused_not_indexed_with() raises:
+    """Both numeration entry points renumber their state set around the letter
+    they are given, so an out-of-range one reached a bare list index and aborted
+    the process. A caller assembling a formula out of them has to get an error
+    it can report instead."""
+    var tau = tribonacci()
+
+    var negative_start = False
+    try:
+        _ = numeration_automaton(tau, -1)
+    except:
+        negative_start = True
+    assert_true(negative_start)
+
+    var start_past_the_end = False
+    try:
+        _ = letter_automaton(tau, 3, 0)
+    except:
+        start_past_the_end = True
+    assert_true(start_past_the_end)
+
+    var target_past_the_end = False
+    try:
+        _ = letter_automaton(tau, 0, 3)
+    except:
+        target_past_the_end = True
+    assert_true(target_past_the_end)
+
+
 def main() raises:
     test_the_kernel_is_a_boolean_algebra_of_languages()
     print("[PASS] test_the_kernel_is_a_boolean_algebra_of_languages")
@@ -493,7 +522,9 @@ def main() raises:
     print("[PASS] test_an_impossible_length_is_refused_not_answered")
     test_a_track_condition_enters_and_leaves_a_product()
     print("[PASS] test_a_track_condition_enters_and_leaves_a_product")
-    print("14 automata and numeration tests passed.")
+    test_a_letter_outside_the_alphabet_is_refused_not_indexed_with()
+    print("[PASS] test_a_letter_outside_the_alphabet_is_refused_not_indexed_with")
+    print("15 automata and numeration tests passed.")
     # One line and one literal: `policy.py` reads the declaration out of the
     # source, and its pattern does not join concatenated string parts.
     require_contract("the automata kernel decides emptiness, complement and projection over total deterministic automata, and the Dumont-Thomas numeration presents the fixed point exactly; no ledger claim rests on it, and the step to a decision procedure is gated in docs/automatic-sequence-route-literature-gate-2026-09-17.md")

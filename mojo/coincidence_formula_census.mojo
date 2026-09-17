@@ -5,10 +5,19 @@ search of `psc.coincidence_formula`, which is cheap enough that sampling would
 be a false economy, and then checks the answer twice over against two things
 that share no step with it:
 
-* **Each witness, directly.** A shortest accepted word splits into two
+* **Each witness, re-derived.** A shortest accepted word splits into two
   Dumont-Thomas paths; `path_prefix_parikh` and `path_letter` recompute the
-  Parikh vectors and the letters from the substitution alone. A witness that
-  does not check is a defect, not a finding.
+  Parikh vectors and the letters. This is a *consistency* check and is counted
+  as one: those functions reuse `incidence_step`, the recurrence the automaton
+  is built on, so a defect there could make the witness and its check agree.
+  It catches a wrong witness, not a wrong recurrence.
+* **Each level, against the images themselves.** Sampled, because it inflates:
+  `sigma^k(i)` and `sigma^k(j)` are built by substituting and scanned for a
+  position where the prefixes carry one Parikh vector and the letters agree.
+  Nothing in it touches the automaton, the incidence matrix or the Perron
+  field, and it must find one at the reported level and none below it. This is
+  the check with no shared step, which is why it is stated apart from the one
+  above rather than folded into it.
 * **Each level, against the overlap graph.** A left-aligned non-coincidence
   vertex `(i, j, 0)` of the seed-patch overlap automaton is productive exactly
   when the pair is eventually coincident, and its first-coincidence depth is
@@ -29,7 +38,11 @@ coincidence for alphabet-3 Pisot substitutions is open, and a clean sweep here
 is elimination of counterexamples over a finite corpus and nothing more.
 """
 
+from psc.automata import minimised, same_language
+from psc.bpa import apply_substitution
+from psc.coincidence_elimination import coincidence_by_elimination
 from psc.coincidence_formula import (
+    coincidence_automaton,
     coincidence_witness,
     pair_paths,
     path_letter,
@@ -50,6 +63,44 @@ from psc.words import ALPHABET
 # covers the corpus, and the agreement covers a sample of it.
 comptime COMPARE_STRIDE = 30
 
+# Assembling the formula out of the kernel builds products before it minimises
+# them, so it is the most expensive check here and the most sparsely sampled.
+comptime ELIMINATE_STRIDE = 300
+
+# Inflating `sigma^k` costs the length of the image, so the one check that
+# shares no step with the automaton is sampled too.
+comptime INFLATE_STRIDE = 150
+
+
+def least_level_by_images(
+    sigma: List[List[Int]], top: Int, bottom: Int, max_level: Int
+) raises -> Int:
+    """The definition, carried out by substituting: the least `k` at which
+    `sigma^k(top)` and `sigma^k(bottom)` carry one letter at one position after
+    prefixes of one Parikh vector.
+
+    Deliberately shares nothing with `psc.coincidence_formula` -- no incidence
+    matrix, no Perron field, no digit path. It is the check that makes the
+    census's agreement mean something."""
+    var above: List[Int] = [top]
+    var below: List[Int] = [bottom]
+    for level in range(max_level + 1):
+        var counted_above = List[Int](length=ALPHABET, fill=0)
+        var counted_below = List[Int](length=ALPHABET, fill=0)
+        var shorter = len(above) if len(above) < len(below) else len(below)
+        for p in range(shorter):
+            var balanced = True
+            for letter in range(ALPHABET):
+                if counted_above[letter] != counted_below[letter]:
+                    balanced = False
+            if balanced and above[p] == below[p]:
+                return level
+            counted_above[above[p]] += 1
+            counted_below[below[p]] += 1
+        above = apply_substitution(sigma, above)
+        below = apply_substitution(sigma, below)
+    return -1
+
 
 def main() raises:
     var corpus = pip_corpus()
@@ -63,6 +114,12 @@ def main() raises:
     var depth_matches = 0
     var depth_mismatches = 0
     var without_coincidence = 0
+    var inflated = 0
+    var inflated_agrees = 0
+    var inflated_differs = 0
+    var eliminated = 0
+    var elimination_agrees = 0
+    var elimination_differs = 0
     var deepest = 0
     var levels = Histogram(256)
 
@@ -86,7 +143,9 @@ def main() raises:
                 levels.record(level)
                 deepest = max_int(deepest, level)
 
-                # The witness, recomputed from the substitution alone.
+                # The witness, re-derived through this module's own path
+                # functions: consistency, not independence -- the check with
+                # no shared step is the inflated one below.
                 witnesses += 1
                 var paths = pair_paths(radix, found.word)
                 var top = path_prefix_parikh(spec.sigma, i, paths[0])
@@ -112,6 +171,37 @@ def main() raises:
         if not all_pairs:
             without_coincidence += 1
             print("NO STRONG COINCIDENCE", spec.label())
+
+        # The one check with no shared step: the images themselves.
+        if s % INFLATE_STRIDE == 0:
+            for i in range(ALPHABET):
+                for j in range(ALPHABET):
+                    inflated += 1
+                    if least_level_by_images(spec.sigma, i, j, 24) == mine[
+                        i * ALPHABET + j
+                    ]:
+                        inflated_agrees += 1
+                    else:
+                        inflated_differs += 1
+                        print("IMAGE LEVEL DIFFERS", spec.label(), i, j)
+
+        # The formula assembled conjunct by conjunct out of the automata kernel
+        # must accept the language the purpose-built automaton accepts. Two
+        # routes to one condition, and the letters come off the Dumont-Thomas
+        # letter map on one of them and off the exploration's own state on the
+        # other.
+        if s % ELIMINATE_STRIDE == 0:
+            eliminated += 1
+            for i in range(ALPHABET):
+                for j in range(ALPHABET):
+                    if same_language(
+                        coincidence_by_elimination(spec.sigma, i, j),
+                        minimised(coincidence_automaton(spec.sigma, i, j)),
+                    ):
+                        elimination_agrees += 1
+                    else:
+                        elimination_differs += 1
+                        print("ELIMINATION DIFFERS", spec.label(), i, j)
 
         if s % COMPARE_STRIDE != 0:
             report_progress(s, len(corpus))
@@ -140,11 +230,16 @@ def main() raises:
 
     print("corpus:", len(corpus), " specimens decided:", decided,
           " compare stride:", COMPARE_STRIDE)
-    print("ordered pairs decided:", pairs, " witnesses checked:", witnesses,
-          " witnesses that did not check:", bad_witnesses)
+    print("ordered pairs decided:", pairs, " witnesses re-derived:", witnesses,
+          " that did not check:", bad_witnesses)
+    print("pair levels checked against the inflated images:", inflated,
+          " equal:", inflated_agrees, " different:", inflated_differs)
     print("specimens without strong coincidence:", without_coincidence)
     print("overlap graphs compared:", compared, " capped:", capped_graphs)
     print("left-aligned depths equal to the witness level:", depth_matches,
           " different:", depth_mismatches)
+    print("specimens whose formula was assembled from the kernel:", eliminated,
+          " pair languages equal:", elimination_agrees,
+          " different:", elimination_differs)
     print("deepest coincidence level:", deepest)
     print(levels.line("pairs by coincidence level"))

@@ -49,7 +49,12 @@ The two together are what make the accumulation safe rather than merely
 plausible: three columns of entries at most this large, against coordinates at
 most `ENTRY_BOUND`, keep every intermediate under `193 * 2^52`, which is an
 order of magnitude inside the machine range. Both are checked on the way in, so
-the only unchecked quantity is the sum, which is checked on the way out."""
+the only unchecked quantity is the sum, which is checked on the way out.
+
+This bound is the *matrix's* alone. A step's contribution is bounded by
+`ENTRY_BOUND` like a coordinate, because it is one: a caller with a large digit
+alphabet legitimately contributes more than an incidence entry ever holds, and
+the arithmetic above has room for it."""
 
 
 def incidence_step(m: Mat3, x: List[Int], s: List[Int]) raises -> List[Int]:
@@ -69,7 +74,7 @@ def incidence_step(m: Mat3, x: List[Int], s: List[Int]) raises -> List[Int]:
     for i in range(3):
         if x[i] > ENTRY_BOUND or x[i] < -ENTRY_BOUND:
             raise Error("state coordinate outside the checked range")
-        if s[i] > INCIDENCE_BOUND or s[i] < -INCIDENCE_BOUND:
+        if s[i] > ENTRY_BOUND or s[i] < -ENTRY_BOUND:
             raise Error("step contribution outside the checked range")
     var out = List[Int](length=3, fill=0)
     for row in range(3):
