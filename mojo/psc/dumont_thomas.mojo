@@ -24,6 +24,7 @@ theorem, gated in
 `docs/automatic-sequence-route-literature-gate-2026-09-17.md`.
 """
 
+from finite_exact.bigint_z import BigZ
 from psc.automata import Dfa, accepted_count, with_sink
 from psc.oa_overlap_types import ProlongablePoint, apply_substitution, prolongable_point
 from psc.words import ALPHABET
@@ -57,7 +58,13 @@ def max_image_length(tau: List[List[Int]]) -> Int:
 
 
 def image_lengths(tau: List[List[Int]], level: Int) raises -> List[Int]:
-    """`|tau^level(a)|` for each letter `a`, by repeated substitution counts."""
+    """`|tau^level(a)|` for each letter `a`, by repeated substitution counts.
+
+    These stay machine integers because they are positions: a position indexes
+    a word this repository can hold. The growth is still exponential, so the
+    accumulation is checked and a level past the range raises rather than
+    wrapping -- a wrapped length would silently misplace every digit computed
+    from it."""
     if level < 0:
         raise Error("a level is not negative")
     var lengths = List[Int](length=len(tau), fill=1)
@@ -65,7 +72,10 @@ def image_lengths(tau: List[List[Int]], level: Int) raises -> List[Int]:
         var next = List[Int](length=len(tau), fill=0)
         for a in range(len(tau)):
             for i in range(len(tau[a])):
-                next[a] += lengths[tau[a][i]]
+                var add = lengths[tau[a][i]]
+                if next[a] > Int.MAX - add:
+                    raise Error("image length exceeds the machine integer range")
+                next[a] += add
         lengths = next^
     return lengths^
 
@@ -192,16 +202,20 @@ def _bools(flags: List[Int]) -> List[Bool]:
     return out^
 
 
-def positions_of_length(tau: List[List[Int]], letter: Int, level: Int) raises -> Int:
+def positions_of_length(tau: List[List[Int]], letter: Int, level: Int) raises -> BigZ:
     """`|tau^level(letter)|` counted through the automaton rather than by
     substitution: the two must agree, and that is the content of the
-    numeration being a bijection on positions."""
+    numeration being a bijection on positions.
+
+    Exact and unbounded, like the count beneath it: image lengths grow like the
+    Perron root to the level, so the type has to carry more than a machine
+    integer for a level a caller may legitimately ask about."""
     return accepted_count(numeration_automaton(tau, letter), level)
 
 
 def occurrences_of_length(
     tau: List[List[Int]], letter: Int, target: Int, level: Int
-) raises -> Int:
+) raises -> BigZ:
     """How many positions of `tau^level(letter)` carry `target`, through the
     automaton. The incidence matrix counts the same thing."""
     return accepted_count(letter_automaton(tau, letter, target), level)

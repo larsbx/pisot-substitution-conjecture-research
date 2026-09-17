@@ -18,6 +18,8 @@ of addition in the numeration -- is an imported theorem, gated in
 supplies it.
 """
 
+from finite_exact.bigint_z import BigZ, bigz_add, bigz_from_i64, bigz_zero
+
 
 
 struct Dfa(Copyable, Movable):
@@ -300,24 +302,40 @@ def same_language(a: Dfa, b: Dfa) raises -> Bool:
     return is_empty(left) and is_empty(right)
 
 
-def accepted_count(a: Dfa, length: Int) raises -> Int:
+def accepted_count(a: Dfa, length: Int) raises -> BigZ:
     """How many words of exactly `length` letters the automaton accepts.
 
     Counting by dynamic programming over states rather than by enumeration:
     the count is exponential in the length and the vector of per-state counts
-    is not."""
-    var counts = List[Int](length=a.states(), fill=0)
-    counts[0] = 1
+    is not.
+
+    The count is exact and unbounded, over the vendored `BigZ`. A machine
+    integer would be the wrong type here rather than merely a tight one: an
+    automaton accepting every word over two letters has `2^length` of them, so
+    `length = 63` already leaves the range, and a wrapped count is a wrong
+    number presented as a mathematical fact.
+
+    A negative length is refused. `range` would perform no iterations and hand
+    back the empty-word count, which would make an impossible query look like a
+    level-zero answer."""
+    if length < 0:
+        raise Error("a word length is not negative")
+    var counts = List[BigZ]()
+    for state in range(a.states()):
+        counts.append(bigz_from_i64(Int64(1)) if state == 0 else bigz_zero())
     for _ in range(length):
-        var next = List[Int](length=a.states(), fill=0)
+        var next = List[BigZ]()
+        for _ in range(a.states()):
+            next.append(bigz_zero())
         for state in range(a.states()):
-            if counts[state] == 0:
+            if counts[state].is_zero():
                 continue
             for c in range(a.letters):
-                next[a.step(state, c)] += counts[state]
+                var to = a.step(state, c)
+                next[to] = bigz_add(next[to], counts[state])
         counts = next^
-    var total = 0
+    var total = bigz_zero()
     for state in range(a.states()):
         if a.accepting[state]:
-            total += counts[state]
-    return total
+            total = bigz_add(total, counts[state])
+    return total^

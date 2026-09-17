@@ -17,6 +17,7 @@ recognisability of addition in this numeration -- is an imported theorem, gated
 in `docs/automatic-sequence-route-literature-gate-2026-09-17.md`.
 """
 
+from finite_exact.bigint_z import BigZ, bigz_add, bigz_eq, bigz_from_i64, bigz_zero
 from finite_linear_algebra.mat3 import Mat3, identity3
 from psc.bpa import substitution_incidence
 from psc.corpus import pip_corpus, report_progress
@@ -67,17 +68,17 @@ def main() raises:
         for k in range(LEVELS):
             var lengths = image_lengths(tau, k)
             var counted = positions_of_length(tau, point.letter, k)
-            if counted != lengths[point.letter]:
+            if not bigz_eq(counted, bigz_from_i64(Int64(lengths[point.letter]))):
                 position_failures += 1
                 print("POSITION MISMATCH", spec.label(), "level", k)
-            var total = 0
+            var total = bigz_zero()
             for target in range(3):
                 var occurrences = occurrences_of_length(tau, point.letter, target, k)
-                if occurrences != power.at(target, point.letter):
+                if not bigz_eq(occurrences, bigz_from_i64(Int64(power.at(target, point.letter)))):
                     occurrence_failures += 1
                     print("OCCURRENCE MISMATCH", spec.label(), "level", k, "letter", target)
-                total += occurrences
-            if total != counted:
+                total = bigz_add(total, occurrences)
+            if not bigz_eq(total, counted):
                 occurrence_failures += 1
             deepest = max_int(deepest, lengths[point.letter])
             power = power * m

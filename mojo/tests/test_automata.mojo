@@ -16,6 +16,7 @@ from std.testing import assert_equal, assert_false, assert_true
 
 from psc.claim_tests import require_contract
 
+from finite_exact.bigint_z import BigZ, bigz_add, bigz_eq, bigz_from_i64, bigz_mul, bigz_zero
 from finite_linear_algebra.mat3 import Mat3, identity3
 from psc.automata import (
     Dfa,
@@ -46,6 +47,11 @@ from psc.dumont_thomas import (
     prolongable_form,
 )
 from psc.oa_overlap_types import fixed_point_prefix, prolongable_point
+
+
+def counts(value: Int) raises -> BigZ:
+    """The exact count a test expects, as the unbounded integer it is."""
+    return bigz_from_i64(Int64(value))
 
 
 def even_ones() raises -> Dfa:
@@ -91,9 +97,9 @@ def test_the_kernel_is_a_boolean_algebra_of_languages() raises:
     assert_true(is_empty(intersection(even, odd)))
     assert_true(is_empty(complement(union(even, odd))))
     # 2^(n-1) words of each parity at length n > 0.
-    assert_equal(accepted_count(even, 3), 4)
-    assert_equal(accepted_count(odd, 3), 4)
-    assert_equal(accepted_count(even, 0), 1)
+    assert_true(bigz_eq(accepted_count(even, 3), counts(4)))
+    assert_true(bigz_eq(accepted_count(odd, 3), counts(4)))
+    assert_true(bigz_eq(accepted_count(even, 0), counts(1)))
     # The shortest witness of an even count of ones is the empty word.
     assert_equal(len(witness(even).word), 0)
     assert_equal(len(witness(odd).word), 1)
@@ -205,7 +211,7 @@ def test_position_counts_are_the_image_lengths() raises:
     var expected: List[Int] = [1, 2, 4, 7, 13, 24, 44, 81]
     for k in range(len(expected)):
         assert_equal(image_lengths(tau, k)[point.letter], expected[k])
-        assert_equal(positions_of_length(tau, point.letter, k), expected[k])
+        assert_true(bigz_eq(positions_of_length(tau, point.letter, k), counts(expected[k])))
 
 
 def test_letter_counts_are_the_incidence_matrix() raises:
@@ -222,12 +228,12 @@ def test_letter_counts_are_the_incidence_matrix() raises:
         var m = Mat3(substitution_incidence(tau))
         var power = identity3()
         for k in range(6):
-            var total = 0
+            var total = bigz_zero()
             for target in range(3):
                 var counted = occurrences_of_length(tau, point.letter, target, k)
-                assert_equal(counted, power.at(target, point.letter))
-                total += counted
-            assert_equal(total, positions_of_length(tau, point.letter, k))
+                assert_true(bigz_eq(counted, counts(power.at(target, point.letter))))
+                total = bigz_add(total, counted)
+            assert_true(bigz_eq(total, positions_of_length(tau, point.letter, k)))
             power = power * m
 
 
@@ -364,6 +370,59 @@ def test_two_quantifiers_eliminate_in_sequence() raises:
     assert_true(same_language(twice, other_order))
 
 
+def test_a_count_past_the_machine_range_is_still_exact() raises:
+    """`2^63` words, which a machine integer cannot hold.
+
+    One state, two letters, accepting: the language is every binary word, so
+    the count at length `n` is exactly `2^n`. At 63 an Int has already left its
+    range, and a wrapped answer would be a wrong number presented as a count.
+    The check is against `2^n` built by doubling, which shares no step with the
+    dynamic programming that produced it."""
+    var delta: List[Int] = [0, 0]
+    var accepting: List[Bool] = [True]
+    var universal = Dfa(2, delta, accepting)
+    var two = counts(2)
+    var expected = counts(1)
+    for n in range(65):
+        assert_true(bigz_eq(accepted_count(universal, n), expected))
+        expected = bigz_mul(expected, two)
+
+
+def test_an_impossible_length_is_refused_not_answered() raises:
+    """A negative length would run no iterations and hand back the empty-word
+    count, which is a level-zero answer to a question that has none."""
+    var even = even_ones()
+    var caught = False
+    try:
+        _ = accepted_count(even, -1)
+    except:
+        caught = True
+    assert_true(caught)
+
+    var sigma = tribonacci()
+    var point = prolongable_point(sigma)
+    var tau = prolongable_form(sigma)
+    var refused_positions = False
+    try:
+        _ = positions_of_length(tau, point.letter, -1)
+    except:
+        refused_positions = True
+    assert_true(refused_positions)
+    var refused_occurrences = False
+    try:
+        _ = occurrences_of_length(tau, point.letter, 0, -1)
+    except:
+        refused_occurrences = True
+    assert_true(refused_occurrences)
+    # The neighbouring numeration API already refused it, and still does.
+    var refused_lengths = False
+    try:
+        _ = image_lengths(tau, -1)
+    except:
+        refused_lengths = True
+    assert_true(refused_lengths)
+
+
 def main() raises:
     test_the_kernel_is_a_boolean_algebra_of_languages()
     print("[PASS] test_the_kernel_is_a_boolean_algebra_of_languages")
@@ -387,7 +446,11 @@ def main() raises:
     print("[PASS] test_letter_counts_are_the_incidence_matrix")
     test_a_power_substitution_has_the_same_fixed_point()
     print("[PASS] test_a_power_substitution_has_the_same_fixed_point")
-    print("11 automata and numeration tests passed.")
+    test_a_count_past_the_machine_range_is_still_exact()
+    print("[PASS] test_a_count_past_the_machine_range_is_still_exact")
+    test_an_impossible_length_is_refused_not_answered()
+    print("[PASS] test_an_impossible_length_is_refused_not_answered")
+    print("13 automata and numeration tests passed.")
     # One line and one literal: `policy.py` reads the declaration out of the
     # source, and its pattern does not join concatenated string parts.
     require_contract("the automata kernel decides emptiness, complement and projection over total deterministic automata, and the Dumont-Thomas numeration presents the fixed point exactly; no ledger claim rests on it, and the step to a decision procedure is gated in docs/automatic-sequence-route-literature-gate-2026-09-17.md")
