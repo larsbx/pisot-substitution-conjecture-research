@@ -8,6 +8,10 @@ Automated research workspace for the Pisot Substitution Conjecture (PSC), with e
 
 Python under `src/psc_research/` is a secondary reference/oracle and prototyping layer. Once a Mojo implementation exists, the Mojo module is the executable source of truth. See `AGENTS.md` for the detailed policy.
 
+The generated [mathematical-object catalogue](docs/mathematical-object-catalogue.md)
+provides a browsable taxonomy with explicit canonical-Mojo and independent-oracle
+links. Its single machine-readable source is `catalogues/mathematical_objects.toml`.
+
 ## Current mathematical state
 
 Start here:
