@@ -93,6 +93,15 @@ logic and compare its verdict with `PSC: mojo/degree3_catalog.mojo` on the same 
 agreement with the verdicts that census already reports; disagreement is a bug in the encoding, not a
 result.
 
+**Started `[V]`.** The engine and the presentation exist: `PSC: mojo/psc/automata.mojo` (total
+deterministic automata with product, complement, subset-construction projection, emptiness with a
+shortest witness, Moore minimisation) and `PSC: mojo/psc/dumont_thomas.mojo` (the Dumont-Thomas
+numeration of a fixed point as an automaton). `PSC: mojo/automatic_route_census.mojo` checks three
+identities per specimen against computations sharing no step: 228 specimens, 68,400 letter
+positions, zero mismatches. The formula, the addition automaton and the encoding test are not done,
+and `docs/automatic-sequence-route-literature-gate-2026-09-17.md` states exactly what remains and
+what would have to be imported.
+
 **Difficulty.** Medium, and the highest-payoff item in this note.
 
 ## 3. Shift radix systems and beta-numeration
@@ -139,6 +148,10 @@ the governance layer adversarially.
 
 **First move.** A standalone methodological note: the tag vocabulary, the three-outcome discipline,
 and the two audits that enforce them, written for readers who have never seen either conjecture.
+
+**Started `[V]`.** `FMK: docs/provenance-for-computer-assisted-proof.md`: the three distinctions
+prose blurs, the three outcomes, the five record kinds, the five policy checks, and four adoption
+steps, with two real incidents as calibration.
 
 **Difficulty.** Low, and the machinery already exists.
 
