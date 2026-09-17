@@ -1,6 +1,7 @@
 """Canonical bounded-corpus regressions for the G1b-2 joint-local census."""
 
 from std.testing import assert_equal, assert_false, assert_true
+from psc.claim_tests import require_claim
 from psc.joint_local_census import (
     JointLocalSample,
     address_is_one_loop_extension,
@@ -276,3 +277,4 @@ def main() raises:
     test_loop_classifier_rejects_different_insertion_levels()
     print("[PASS] test_loop_classifier_rejects_different_insertion_levels")
     print("8 joint-local-census Mojo tests passed.")
+    require_claim("G1b2RenewalFiniteness")

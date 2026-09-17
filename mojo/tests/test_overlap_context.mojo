@@ -1,6 +1,7 @@
 """Finite context-equality calibration for ordered seed-patch occurrences."""
 
 from std.testing import assert_equal, assert_true
+from psc.claim_tests import require_claim
 from psc.overlap_context import (
     first_affine_context_mismatch,
     occurrence_context,
@@ -65,3 +66,4 @@ def main() raises:
     test_cap_fails_closed()
     print("[PASS] test_cap_fails_closed")
     print("2 overlap-context Mojo tests passed.")
+    require_claim("OneStepContextEquality")

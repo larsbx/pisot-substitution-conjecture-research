@@ -8,6 +8,7 @@ the exact census values for the named examples.
 from std.testing import assert_equal, assert_true
 
 from psc.bpa import build, decompose
+from psc.claim_tests import require_claim
 from psc.swap_discrepancy import (
     common_tile_count,
     discrepancy,
@@ -107,3 +108,4 @@ def main() raises:
     test_common_tile_counts_pin_exact_values()
     print("[PASS] test_common_tile_counts_pin_exact_values")
     print("5 swap-discrepancy tests passed.")
+    require_claim("G1b1BoundedDiscrepancy")

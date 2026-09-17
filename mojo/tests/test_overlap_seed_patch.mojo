@@ -3,6 +3,7 @@
 from std.testing import assert_equal, assert_false, assert_true
 from psc.bpa import build, nonproductive_states, substitution_incidence
 from finite_linear_algebra.mat3 import Mat3
+from psc.claim_tests import require_claim
 from psc.overlap_obstruction import common_child_start_count, nonproductive_sink_sccs
 from psc.overlap_seed_patch import (
     OverlapState,
@@ -260,3 +261,6 @@ def main() raises:
     test_nonproductive_sink_obstruction_is_extracted_exactly()
     print("[PASS] test_nonproductive_sink_obstruction_is_extracted_exactly")
     print("9 seed-patch-overlap Mojo tests passed.")
+    require_claim("SwapOverlapFiniteness")
+    require_claim("AlignedOverlapsAreStrongCoincidence")
+    require_claim("BoundaryCoincidenceCriterion")

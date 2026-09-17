@@ -66,6 +66,16 @@ if command -v pixi >/dev/null 2>&1; then
     else
         bad "canonical Mojo regression tests"
     fi
+    cd "$ROOT"
+    # The suite has now written mojo/build/claim-receipts.tsv, so the coverage
+    # check above re-runs with the run behind it: a claim whose only test body
+    # was never reached is uncovered, not credited.
+    if PYTHONPATH=tools python3 -m claim_governance.cli --root . --check coverage >/dev/null; then
+        ok "every ledger claim the policy requires guarded has a passing test (receipts)"
+    else
+        bad "test-claim coverage against the run receipts (PYTHONPATH=tools python3 -m claim_governance.cli --root . --check coverage)"
+    fi
+    cd "$ROOT/mojo"
     if pixi run verify; then
         ok "certificate checks (verify.mojo)"
     else

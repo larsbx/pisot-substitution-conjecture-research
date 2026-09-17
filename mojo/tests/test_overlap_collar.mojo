@@ -1,6 +1,7 @@
 """Exact regressions for radius-m collars of seed-patch occurrences."""
 
 from std.testing import assert_equal, assert_true
+from psc.claim_tests import require_claim
 from psc.overlap_affine_pump import AffinePumpCertificate, first_zero_shift_free_affine_pump, occurrence_edges
 from psc.overlap_collar import (
     Collar,
@@ -315,3 +316,5 @@ def main() raises:
     test_fail_closed()
     print("[PASS] test_fail_closed")
     print("6 overlap-collar Mojo tests passed.")
+    require_claim("PeriodicPatchCollar")
+    require_claim("FiniteCollarDeath")

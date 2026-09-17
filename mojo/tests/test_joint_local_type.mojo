@@ -1,6 +1,7 @@
 """Canonical falsification/regression tests for joint G1b-2 local types."""
 
 from std.testing import assert_equal, assert_false, assert_true
+from psc.claim_tests import require_claim
 from psc.joint_local_type import joint_local_type, same_joint_local_type
 from psc.renewal_address import (
     build_renewal_address_tables,
@@ -128,3 +129,4 @@ def main() raises:
     test_invalid_projection_parameters_fail_closed()
     print("[PASS] test_invalid_projection_parameters_fail_closed")
     print("3 joint-local-type Mojo tests passed.")
+    require_claim("G1b2RenewalFiniteness")

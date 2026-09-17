@@ -4,6 +4,7 @@
   "module": "Ledger",
   "tla_dir": "tla",
   "index_path": "docs/ledger-index.md",
+  "graph_path": "docs/claim-relationship-graph.json",
   "assumption_sets": {
     "G1AndProducer": [
       "G1",

@@ -84,9 +84,9 @@ COMMIT`).
 | --- | --- | --- | --- |
 | `mojo/finite_exact/` | `larsbx/finite-math-kernels` | unbounded `BigZ`, normalized `Q`, canonical bytes, closed rational intervals and rank-2 boxes; rejection is sticky | `mojo/psc/exact.mojo`: rejected consumer states raise/abort; Horner helpers, midpoint, diagnostic rendering |
 | `mojo/substitution_dynamics/` | `larsbx/finite-math-kernels` | words, substitutions, balanced pairs, automaton, discrepancy, tuning patterns, directive prefixes, and column coincidence over an explicit alphabet | `mojo/psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` remain thin alphabet-3 views |
-| `mojo/finite_linear_algebra/` | `larsbx/finite-math-kernels` | `Mat3`, generic RREF/rank/nullspace over `Q`, rank-three tensors, `W_3`, integer lifts | `mojo/psc/w3.mojo` keeps the printed certificate basis; `psc/exact.mojo` re-exports lifts |
-| `tools/claim_governance/` | `larsbx/finite-math-kernels` (`audit/`) | the status-surface, terminology, promotion, and numerics audit | `claim_governance.toml` is the policy |
-| `tools/proof_records/` | `larsbx/finite-math-kernels` | proof records (kinds, identity, dependency closure) and the ledger generator | `scripts/make_ledger.py` holds the record table; `tla/ledger.json`, `tla/Ledger.tla`, the `tla/MCLedger*` models, `docs/ledger-index.md`, and the generated `[[claim]]` block of `claim_governance.toml` are its outputs, never hand-edited |
+| `mojo/finite_linear_algebra/` | `larsbx/finite-math-kernels` | `Mat3`, generic RREF/rank/nullspace over `Q`, rank-three tensors, `W_3`, integer lifts, the M-adic ball carrier | `mojo/psc/w3.mojo` keeps the printed certificate basis; `psc/exact.mojo` re-exports lifts |
+| `tools/claim_governance/` | `larsbx/finite-math-kernels` (`audit/`) | the status-surface, terminology, promotion, numerics, and test-coverage audit | `claim_governance.toml` is the policy; its `[coverage]` table binds `mojo/tests/` to the ledger |
+| `tools/proof_records/` | `larsbx/finite-math-kernels` | proof records (kinds, identity, dependency closure) and the ledger generator | `scripts/make_ledger.py` holds the record table; `tla/ledger.json`, `tla/Ledger.tla`, the `tla/MCLedger*` models, `docs/ledger-index.md`, `docs/claim-relationship-graph.json`, and the generated `[[claim]]` block of `claim_governance.toml` are its outputs, never hand-edited |
 
 Integer, rational, and rational-interval arithmetic is therefore **not**
 implemented in this repository. Do not add a second rational type or a
@@ -139,3 +139,22 @@ For new executable mathematical machinery, a PR should normally contain or depen
 - explicit counter-calibrations for known overstrong variants;
 - Python oracle coverage only when it adds independent value;
 - no claim beyond what the exact executable or formal proof actually establishes.
+
+## Every test names what it guards
+
+A file under `mojo/tests/` ends its `main` with a declaration from
+`mojo/psc/claim_tests.mojo`: `require_claim("<Name>")` for each ledger claim
+in `claim_governance.toml` whose certificate rests on the contract the test
+pins, or `require_contract("<what it pins>")` when no ledger claim is the
+target, as for a vendored kernel. The `coverage` check of the vendored
+`claim_governance` package reports a test that declares neither, a name that
+is in no ledger claim or alias, and a finite-domain or evidence claim that no
+test guards -- those two classes because their whole warrant is an exact
+finite computation, where a repository-proved claim also has a manuscript,
+a Lean proof, or an archived certificate behind it.
+
+The declaration is placed after the assertions it stands behind, because
+`mojo/run_tests.sh` collects the receipts of the tests that *passed* and the
+check credits nothing a run did not reach. A declaration is a link, not
+evidence: what the contract is, the assertions decide; that the claim follows
+from it, its own proof or certificate decides.

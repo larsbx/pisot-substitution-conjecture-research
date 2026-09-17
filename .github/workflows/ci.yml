@@ -47,6 +47,8 @@ jobs:
       - name: Canonical Mojo regression tests
         working-directory: mojo
         run: pixi run test
+      - name: Every claim the policy requires guarded has a passing test (run receipts)
+        run: PYTHONPATH=tools python3 -m claim_governance.cli --root . --check coverage
       - name: Certificate checks
         working-directory: mojo
         run: pixi run verify
