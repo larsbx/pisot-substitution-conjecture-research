@@ -13,7 +13,9 @@ on one shared library (`mojo/psc/corpus.mojo`, `histogram.mojo`, `carrier.mojo`,
 `symmetry.mojo` and the defect kernels), so a driver is a survey over the corpus
 rather than a private copy of it. `mojo/pixi.toml` has one task per driver and
 `pixi run test` loops over every `mojo/tests/test_*.mojo`. See
-`docs/mojo-census-library-2026-09-16.md`.
+`docs/mojo-census-library-2026-09-16.md`, and
+`docs/mojo-lookup-caches-2026-09-17.md` for the exact-arithmetic results the
+drivers now look up instead of recomputing.
 
 ## Current mathematical state
 

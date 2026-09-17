@@ -156,6 +156,9 @@ the current ledgers rather than rewriting the archive.
 - `mojo-census-library-2026-09-16.md` describes the shared census/catalogue
   library every driver is built on, and the retirement of the Python-only
   computation scripts it replaced.
+- `mojo-lookup-caches-2026-09-17.md` records which repeated computations were
+  worth replacing with a lookup and which measurement said to leave alone, and
+  what keys make the three caches exact.
 - `../AGENTS.md` is the implementation policy.
 - Mojo is canonical for executable research.
 - TLA+ records dependency/state-machine claims.

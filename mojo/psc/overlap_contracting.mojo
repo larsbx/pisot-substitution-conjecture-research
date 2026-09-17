@@ -302,3 +302,97 @@ struct ContractingBound(Copyable, Movable):
             if not found:
                 raise Error("contracting bound exceeded the level cap")
         return worst
+
+
+def bound_key(tables: SeedOverlapTables) raises -> String:
+    """What a `ContractingBound` actually depends on: the cubic and the digit set.
+
+    The bound is built from the cubic field and from `digit_set(tables)`, the
+    single-inflation offset increments, whose extremal element fixes `c*`. The
+    digit set is read off the substitution's images and prefix positions, so
+    two specimens share a bound exactly when they share both. The cubic alone
+    is not enough, and keying on it would return a bound built for a different
+    increment set."""
+    var chi = tables.field.charpoly()
+    var digits = digit_set(tables)
+    var parts = List[String]()
+    for d in range(len(digits)):
+        parts.append(
+            String(digits[d].a0) + ":" + String(digits[d].a1) + ":" + String(digits[d].a2)
+        )
+    sort(parts)
+    var key = String(chi[0]) + "," + String(chi[1]) + "," + String(chi[2]) + "|"
+    for i in range(len(parts)):
+        key += parts[i] + ";"
+    return key^
+
+
+struct ContractingBoundCache(Copyable, Movable):
+    """One `ContractingBound` per distinct cubic and digit set, with its levels.
+
+    Building a bound isolates the real roots, fills the level tables and picks
+    the extremal increment, which costs far more than one evaluation of the
+    bound. Over the standing corpus 4,554 specimens carry only 1,617 distinct
+    (cubic, digit set) pairs, so most of that work is repeated on inputs that
+    have already been seen.
+
+    `least_level` reads the overlap graph only to refuse a capped one, and is
+    otherwise a function of the bound and the shift, so computed levels are
+    kept beside the bound they came from. A shift met again under the same key
+    is not recomputed, even when it is first met under a different
+    substitution.
+
+    The key is never the shift alone, and never the cubic alone. A shift is a
+    coefficient triple over a basis the cubic defines, so the same triple
+    denotes different numbers in different fields; and two specimens can share
+    a cubic while their increment sets differ, which gives different bounds.
+    `test_census_library.mojo` pins agreement with a freshly built bound.
+    """
+
+    var index: Dict[String, Int]
+    var bounds: List[ContractingBound]
+    var levels: List[Dict[CubicElt, Int]]
+
+    def __init__(out self):
+        self.index = Dict[String, Int]()
+        self.bounds = List[ContractingBound]()
+        self.levels = List[Dict[CubicElt, Int]]()
+
+    def slot(mut self, tables: SeedOverlapTables) raises -> Int:
+        """The slot holding this specimen's bound, building it on first sight."""
+        var key = bound_key(tables)
+        if key in self.index:
+            return self.index[key]
+        var slot = len(self.bounds)
+        self.bounds.append(ContractingBound(tables))
+        self.levels.append(Dict[CubicElt, Int]())
+        self.index[key] = slot
+        return slot
+
+    def is_complex(self, slot: Int) -> Bool:
+        return self.bounds[slot].is_complex
+
+    def least_level(
+        mut self, slot: Int, a: SeedOverlapAutomaton, t: CubicElt
+    ) raises -> Int:
+        """`ContractingBound.least_level`, computed once per bound and shift.
+
+        The capped refusal comes first, before the memo: a level already
+        computed for this shift is no reason to answer a query about a partial
+        graph, and a memo that answers one would be fail-open."""
+        if a.capped:
+            raise Error("contracting bound is undefined for a capped partial graph")
+        if t in self.levels[slot]:
+            return self.levels[slot][t]
+        var level = self.bounds[slot].least_level(a, t)
+        self.levels[slot][t] = level
+        return level
+
+    def distinct_bounds(self) -> Int:
+        return len(self.bounds)
+
+    def distinct_levels(self) -> Int:
+        var n = 0
+        for slot in range(len(self.levels)):
+            n += len(self.levels[slot])
+        return n
