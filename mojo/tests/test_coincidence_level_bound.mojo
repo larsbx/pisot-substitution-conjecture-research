@@ -69,7 +69,7 @@ def test_unimodular_pip_inputs_have_unbounded_syntactic_parameters() raises:
         var incidence = Mat3(substitution_incidence(sigma))
         assert_equal(incidence.det(), 1)
         assert_equal(max_image_length(sigma), n + 1)
-        assert_equal(incidence[2, 2], n)
+        assert_equal(incidence.at(2, 2), n)
 
 
 def main() raises:
