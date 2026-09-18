@@ -102,7 +102,6 @@ environment that reports a skip is honest; one that reports a pass is not.
   an explicit budget, and output distinguishing an exhausted budget from a
   mathematical verdict.
 
-
 ## Decide whether to build
 
 Steward scope as well as implementation. Before accepting a new subsystem,
