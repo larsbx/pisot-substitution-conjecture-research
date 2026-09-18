@@ -14,7 +14,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 | Taxonomy | Meaning | Objects |
 | --- | --- | --- |
 | Substitution dynamics | Substitutions, words, tilings, and their finite symbolic dynamics. | [Substitution](#substitution), [Balanced-pair state](#balanced-pair-state), [Seed-patch overlap state](#seed-patch-overlap-state), [Coincidence](#coincidence), [Dumont-Thomas numeration](#dumont-thomas-numeration), [Linear numeration system](#linear-numeration) |
-| Finite-state objects | Graphs, automata, components, and finite carriers used in exact reductions. | [Balanced-pair automaton](#balanced-pair-automaton), [Seed-patch overlap automaton](#seed-patch-overlap-automaton), [Overlap productivity](#overlap-productivity), [Recurrent strongly connected component](#recurrent-scc), [Producer state](#producer), [Numeration automaton](#numeration-automaton), [Addition automaton](#addition-automaton), [Numeration conversion automaton](#numeration-conversion-automaton), [Letter map over the linear numeration](#greedy-letter-automaton) |
+| Finite-state objects | Graphs, automata, components, and finite carriers used in exact reductions. | [Balanced-pair automaton](#balanced-pair-automaton), [Seed-patch overlap automaton](#seed-patch-overlap-automaton), [Overlap productivity](#overlap-productivity), [Recurrent strongly connected component](#recurrent-scc), [Producer state](#producer), [Numeration automaton](#numeration-automaton), [Addition automaton](#addition-automaton), [Numeration conversion automaton](#numeration-conversion-automaton), [Letter map over the linear numeration](#greedy-letter-automaton), [Coincidence formula automaton](#coincidence-formula-automaton), [Parikh equality relation](#parikh-equality-automaton), [Coincidence formula by quantifier elimination](#coincidence-quantifier-elimination) |
 | Exact algebra | Finite-dimensional exact arithmetic and algebraic invariants. | [Incidence matrix](#incidence-matrix), [Cubic Perron field element](#perron-cubic-field), [Wedge defect](#wedge-defect) |
 | Certificates and evidence | Replayable bounded-domain objects; never general theorems by themselves. | [Finite-corpus certificate](#finite-corpus-certificate) |
 
@@ -41,6 +41,9 @@ link names an independent oracle or diagnostic, never a second source of truth.
 | [Addition automaton](#addition-automaton) | Finite-state objects | `open-boundary` | [`mojo/psc/numeration_addition.mojo`](../mojo/psc/numeration_addition.mojo) | [`mojo/numeration_addition_census.mojo`](../mojo/numeration_addition_census.mojo) |
 | [Numeration conversion automaton](#numeration-conversion-automaton) | Finite-state objects | `open-boundary` | [`mojo/psc/numeration_conversion.mojo`](../mojo/psc/numeration_conversion.mojo) | [`mojo/numeration_conversion_census.mojo`](../mojo/numeration_conversion_census.mojo) |
 | [Letter map over the linear numeration](#greedy-letter-automaton) | Finite-state objects | `open-boundary` | [`mojo/psc/numeration_conversion.mojo`](../mojo/psc/numeration_conversion.mojo) | [`mojo/numeration_conversion_census.mojo`](../mojo/numeration_conversion_census.mojo) |
+| [Coincidence formula automaton](#coincidence-formula-automaton) | Finite-state objects | `open-boundary` | [`mojo/psc/coincidence_formula.mojo`](../mojo/psc/coincidence_formula.mojo) | [`mojo/coincidence_formula_census.mojo`](../mojo/coincidence_formula_census.mojo) |
+| [Parikh equality relation](#parikh-equality-automaton) | Finite-state objects | `open-boundary` | [`mojo/psc/coincidence_formula.mojo`](../mojo/psc/coincidence_formula.mojo) | [`mojo/coincidence_formula_census.mojo`](../mojo/coincidence_formula_census.mojo) |
+| [Coincidence formula by quantifier elimination](#coincidence-quantifier-elimination) | Finite-state objects | `open-boundary` | [`mojo/psc/coincidence_elimination.mojo`](../mojo/psc/coincidence_elimination.mojo) | [`mojo/coincidence_formula_census.mojo`](../mojo/coincidence_formula_census.mojo) |
 
 ## Definitions
 
@@ -271,3 +274,39 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Canonical Mojo:** [`mojo/psc/numeration_conversion.mojo`](../mojo/psc/numeration_conversion.mojo)
 - **Independent oracle / diagnostic:** [`mojo/numeration_conversion_census.mojo`](../mojo/numeration_conversion_census.mojo)
 - **Related objects:** [Numeration conversion automaton](#numeration-conversion-automaton), [Numeration automaton](#numeration-automaton), [Addition automaton](#addition-automaton)
+
+<a id="coincidence-formula-automaton"></a>
+### Coincidence formula automaton
+
+- **Catalogue ID:** `coincidence-formula-automaton`
+- **Taxonomy:** Finite-state objects
+- **Status:** `open-boundary`
+- **Definition:** A synchronous two-track automaton whose state is the two letters reached and the Parikh difference of the two prefixes, stepped by the incidence matrix as delta <- M delta + (s_top - s_bottom), accepting where the difference is zero and the letters agree. SC(i, j) is the language being non-empty, and the shortest accepted word is the least level at which the pair coincides, naming the position in both images. The state set is finite by the Pisot property alone -- the contracting eigencoordinates are bounded from zero and the expanding one by the exact reserve of psc.pisot_state at slack 1 -- so the cap guards against a defect rather than budgeting a search. Deciding the condition for a specimen is not deciding it for the family, which is open.
+- **Scope boundary:** Pairs of Dumont-Thomas paths of one length that reach one letter after prefixes of one Parikh vector: the strong coincidence condition SC(i, j) for a pair of letters.
+- **Canonical Mojo:** [`mojo/psc/coincidence_formula.mojo`](../mojo/psc/coincidence_formula.mojo)
+- **Independent oracle / diagnostic:** [`mojo/coincidence_formula_census.mojo`](../mojo/coincidence_formula_census.mojo)
+- **Related objects:** [Dumont-Thomas numeration](#dumont-thomas-numeration), [Numeration conversion automaton](#numeration-conversion-automaton), [Balanced-pair automaton](#balanced-pair-automaton), [Seed-patch overlap automaton](#seed-patch-overlap-automaton)
+
+<a id="parikh-equality-automaton"></a>
+### Parikh equality relation
+
+- **Catalogue ID:** `parikh-equality-automaton`
+- **Taxonomy:** Finite-state objects
+- **Status:** `open-boundary`
+- **Definition:** The one predicate the strong coincidence formula needs beyond the numeration's own signature. A counting function n -> |u[0..n)|_a is not in general first-order definable from addition and the letter predicates, but the equality of two such counts is recognisable, because the difference of two Parikh vectors over prefixes reached by the same number of substitution steps is bounded by the Pisot property. Adding a recognisable relation to the structure leaves the first-order theory decidable, which is what licenses assembling the formula over it.
+- **Scope boundary:** Pairs of admissible Dumont-Thomas paths of one length whose prefixes carry the same Parikh vector, saying nothing about the letters they reach.
+- **Canonical Mojo:** [`mojo/psc/coincidence_formula.mojo`](../mojo/psc/coincidence_formula.mojo)
+- **Independent oracle / diagnostic:** [`mojo/coincidence_formula_census.mojo`](../mojo/coincidence_formula_census.mojo)
+- **Related objects:** [Coincidence formula automaton](#coincidence-formula-automaton), [Numeration automaton](#numeration-automaton), [Dumont-Thomas numeration](#dumont-thomas-numeration)
+
+<a id="coincidence-quantifier-elimination"></a>
+### Coincidence formula by quantifier elimination
+
+- **Catalogue ID:** `coincidence-quantifier-elimination`
+- **Taxonomy:** Finite-state objects
+- **Status:** `open-boundary`
+- **Definition:** Admissibility from numeration-automaton on each track, the shared-letter conjunct as a union of products of letter-automaton, the Parikh conjunct from parikh-equality-automaton, the connectives from the kernel's intersection and union, and the quantifier from emptiness with a shortest witness. The language it assembles is the one the purpose-built coincidence automaton accepts, which is checked rather than assumed: the two read the letters from different places. Projecting the second path away leaves the recognisable set of positions at which the pair coincides, which is a formula's answer rather than a search's. It decides one substitution; the family statement is Pi_1 over an infinite recursively enumerable family and needs a uniform argument, not more computation.
+- **Scope boundary:** The strong coincidence formula assembled conjunct by conjunct from the automata that recognise its parts, with its existential discharged by emptiness.
+- **Canonical Mojo:** [`mojo/psc/coincidence_elimination.mojo`](../mojo/psc/coincidence_elimination.mojo)
+- **Independent oracle / diagnostic:** [`mojo/coincidence_formula_census.mojo`](../mojo/coincidence_formula_census.mojo)
+- **Related objects:** [Coincidence formula automaton](#coincidence-formula-automaton), [Parikh equality relation](#parikh-equality-automaton), [Numeration automaton](#numeration-automaton)

@@ -230,3 +230,36 @@ definition = "The Dumont-Thomas letter map placed on the path track of the conve
 canonical = "mojo/psc/numeration_conversion.mojo"
 oracle = "mojo/numeration_conversion_census.mojo"
 related = ["numeration-conversion-automaton", "numeration-automaton", "addition-automaton"]
+
+[[object]]
+id = "coincidence-formula-automaton"
+name = "Coincidence formula automaton"
+taxonomy = "automata"
+status = "open-boundary"
+scope = "Pairs of Dumont-Thomas paths of one length that reach one letter after prefixes of one Parikh vector: the strong coincidence condition SC(i, j) for a pair of letters."
+definition = "A synchronous two-track automaton whose state is the two letters reached and the Parikh difference of the two prefixes, stepped by the incidence matrix as delta <- M delta + (s_top - s_bottom), accepting where the difference is zero and the letters agree. SC(i, j) is the language being non-empty, and the shortest accepted word is the least level at which the pair coincides, naming the position in both images. The state set is finite by the Pisot property alone -- the contracting eigencoordinates are bounded from zero and the expanding one by the exact reserve of psc.pisot_state at slack 1 -- so the cap guards against a defect rather than budgeting a search. Deciding the condition for a specimen is not deciding it for the family, which is open."
+canonical = "mojo/psc/coincidence_formula.mojo"
+oracle = "mojo/coincidence_formula_census.mojo"
+related = ["dumont-thomas-numeration", "numeration-conversion-automaton", "balanced-pair-automaton", "seed-patch-overlap-automaton"]
+
+[[object]]
+id = "parikh-equality-automaton"
+name = "Parikh equality relation"
+taxonomy = "automata"
+status = "open-boundary"
+scope = "Pairs of admissible Dumont-Thomas paths of one length whose prefixes carry the same Parikh vector, saying nothing about the letters they reach."
+definition = "The one predicate the strong coincidence formula needs beyond the numeration's own signature. A counting function n -> |u[0..n)|_a is not in general first-order definable from addition and the letter predicates, but the equality of two such counts is recognisable, because the difference of two Parikh vectors over prefixes reached by the same number of substitution steps is bounded by the Pisot property. Adding a recognisable relation to the structure leaves the first-order theory decidable, which is what licenses assembling the formula over it."
+canonical = "mojo/psc/coincidence_formula.mojo"
+oracle = "mojo/coincidence_formula_census.mojo"
+related = ["coincidence-formula-automaton", "numeration-automaton", "dumont-thomas-numeration"]
+
+[[object]]
+id = "coincidence-quantifier-elimination"
+name = "Coincidence formula by quantifier elimination"
+taxonomy = "automata"
+status = "open-boundary"
+scope = "The strong coincidence formula assembled conjunct by conjunct from the automata that recognise its parts, with its existential discharged by emptiness."
+definition = "Admissibility from numeration-automaton on each track, the shared-letter conjunct as a union of products of letter-automaton, the Parikh conjunct from parikh-equality-automaton, the connectives from the kernel's intersection and union, and the quantifier from emptiness with a shortest witness. The language it assembles is the one the purpose-built coincidence automaton accepts, which is checked rather than assumed: the two read the letters from different places. Projecting the second path away leaves the recognisable set of positions at which the pair coincides, which is a formula's answer rather than a search's. It decides one substitution; the family statement is Pi_1 over an infinite recursively enumerable family and needs a uniform argument, not more computation."
+canonical = "mojo/psc/coincidence_elimination.mojo"
+oracle = "mojo/coincidence_formula_census.mojo"
+related = ["coincidence-formula-automaton", "parikh-equality-automaton", "numeration-automaton"]

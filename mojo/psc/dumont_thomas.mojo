@@ -142,6 +142,7 @@ def letter_of_digits(tau: List[List[Int]], letter: Int, path: List[Int]) raises 
 def numeration_automaton(tau: List[List[Int]], letter: Int) raises -> Dfa:
     """Admissible digit words from `letter`: states are letters, a digit past
     the end of an image is inadmissible and falls into the sink."""
+    _require_letter(tau, letter)
     var radix = max_image_length(tau)
     var partial = List[Int]()
     for a in range(len(tau)):
@@ -155,6 +156,8 @@ def numeration_automaton(tau: List[List[Int]], letter: Int) raises -> Dfa:
 def letter_automaton(tau: List[List[Int]], letter: Int, target: Int) raises -> Dfa:
     """Admissible digit words from `letter` that end at `target`: the positions
     of the fixed point carrying that letter, as a recognisable set."""
+    _require_letter(tau, letter)
+    _require_letter(tau, target)
     var radix = max_image_length(tau)
     var partial = List[Int]()
     for a in range(len(tau)):
@@ -165,6 +168,17 @@ def letter_automaton(tau: List[List[Int]], letter: Int, target: Int) raises -> D
         accepting.append(a == target)
     var reordered = _start_at(partial, accepting, radix, letter)
     return with_sink(radix, reordered[0], _bools(reordered[1]))
+
+
+def _require_letter(tau: List[List[Int]], letter: Int) raises:
+    """A letter outside the alphabet is refused rather than indexed with.
+
+    These two entry points renumber the state set around the letter they are
+    given, so an out-of-range one reaches a bare list index and aborts the
+    process instead of raising -- a caller assembling a formula out of them
+    would get a crash where it should get an error it can report."""
+    if letter < 0 or letter >= len(tau):
+        raise Error("letter lies outside the substitution's alphabet")
 
 
 def _start_at(

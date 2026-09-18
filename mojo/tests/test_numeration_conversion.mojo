@@ -17,7 +17,11 @@ nothing behind it.
 
 from std.testing import assert_equal, assert_false, assert_true
 
+from finite_linear_algebra.mat3 import Mat3
+
 from psc.automata import minimised, same_language
+from psc.bpa import substitution_incidence
+from psc.pisot_state import incidence_step
 from psc.claim_tests import require_contract
 from psc.dumont_thomas import digits, letter_at
 from psc.linear_numeration import greedy_digits, longest_basis
@@ -173,6 +177,39 @@ def test_a_short_budget_refuses_and_malformed_input_raises() raises:
     assert_false(refused_map.accepted())
 
 
+def test_a_large_digit_alphabet_is_not_refused_for_the_matrix_bound() raises:
+    """A greedy digit is a state contribution, not an incidence entry.
+
+    The shared step checks both on the way in, and briefly checked the
+    contribution against the *matrix* bound of 64: a radix past that made a
+    legitimate transition raise while the start state was still being expanded,
+    though `conversion_automaton` documents no such ceiling. A small cap turns
+    the search into a refusal, which is an outcome and is what this must see --
+    raising would not be, and was the defect.
+
+    The step itself is checked at the value: a contribution far past the matrix
+    bound is arithmetic this is expected to do, and only the machine range may
+    refuse it."""
+    var tau = tribonacci()
+    var wide = conversion_automaton(tau, 0, 70, 40)
+    assert_false(wide.accepted())
+
+    var m = Mat3(substitution_incidence(tau))
+    var zero = List[Int](length=3, fill=0)
+    var large: List[Int] = [1000, -1000, 0]
+    var stepped = incidence_step(m, zero, large)
+    assert_equal(stepped[0], 1000)
+    assert_equal(stepped[1], -1000)
+    assert_equal(stepped[2], 0)
+
+    var past_the_range = False
+    try:
+        _ = incidence_step(m, zero, [1 << 60, 0, 0])
+    except:
+        past_the_range = True
+    assert_true(past_the_range)
+
+
 def main() raises:
     test_each_position_is_paired_with_itself_and_with_nothing_else()
     print("[PASS] test_each_position_is_paired_with_itself_and_with_nothing_else")
@@ -186,5 +223,7 @@ def main() raises:
     print("[PASS] test_the_pruning_bound_does_not_decide_the_language")
     test_a_short_budget_refuses_and_malformed_input_raises()
     print("[PASS] test_a_short_budget_refuses_and_malformed_input_raises")
-    print("6 numeration conversion tests passed.")
+    test_a_large_digit_alphabet_is_not_refused_for_the_matrix_bound()
+    print("[PASS] test_a_large_digit_alphabet_is_not_refused_for_the_matrix_bound")
+    print("7 numeration conversion tests passed.")
     require_contract("the conversion automaton pairs a Dumont-Thomas path word with the digit word of the same position and with no other, on a stated bounded domain, and the letter map carried across it answers as the fixed point does; its pruning bound is measured on both sides rather than asserted, and the finiteness of the state set it explores remains an imported theorem, gated in docs/automatic-sequence-route-literature-gate-2026-09-17.md")
