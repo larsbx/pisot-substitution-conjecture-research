@@ -61,7 +61,7 @@ def test_shortest_level_is_bounded_by_reachable_states() raises:
 
 
 def test_unimodular_pip_inputs_have_unbounded_syntactic_parameters() raises:
-    var ns: List[Int] = [3, 7, 31]
+    var ns: List[Int] = [3, 7, 31, 63]
     for i in range(len(ns)):
         var n = ns[i]
         var sigma = height_family(n)
@@ -72,10 +72,21 @@ def test_unimodular_pip_inputs_have_unbounded_syntactic_parameters() raises:
         assert_equal(incidence.at(2, 2), n)
 
 
+def test_the_current_field_ceiling_refuses_instead_of_narrowing_the_theorem() raises:
+    var refused = False
+    try:
+        _ = powered_field(height_family(65))
+    except:
+        refused = True
+    assert_true(refused)
+
+
 def main() raises:
     test_shortest_level_is_bounded_by_reachable_states()
     print("[PASS] test_shortest_level_is_bounded_by_reachable_states")
     test_unimodular_pip_inputs_have_unbounded_syntactic_parameters()
     print("[PASS] test_unimodular_pip_inputs_have_unbounded_syntactic_parameters")
-    print("2 coincidence-level-bound tests passed.")
+    test_the_current_field_ceiling_refuses_instead_of_narrowing_the_theorem()
+    print("[PASS] test_the_current_field_ceiling_refuses_instead_of_narrowing_the_theorem")
+    print("3 coincidence-level-bound tests passed.")
     require_contract("a nonempty pair coincidence language has least level at most the number of reachable affine-automaton states minus one; this is substitution-local, does not prove nonemptiness, and supplies no uniform alphabet-three PIP bound")
