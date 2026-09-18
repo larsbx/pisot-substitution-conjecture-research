@@ -1,6 +1,7 @@
 """Exact regressions for the seed-relative multiple-edge growth bridge."""
 
 from std.testing import assert_equal, assert_true
+from psc.claim_tests import require_contract
 from psc.overlap_growth_bridge import (
     OccurrenceMultiplicity,
     inflate_occurrence_multiplicity,
@@ -102,3 +103,4 @@ def main() raises:
     test_fail_closed()
     print("[PASS] test_fail_closed")
     print("3 overlap-growth-bridge Mojo tests passed.")
+    require_contract("residual overlap multiplicities count multiple child occurrences exactly under inflation, compose across levels, and fail closed on invalid levels, caps, or capped graphs")
