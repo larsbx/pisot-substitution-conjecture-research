@@ -70,7 +70,7 @@ a certificate, a census, or proof-support code.
 
 ## Vendored packages
 
-Three logical Mojo packages under `mojo/`, and the two Python packages under
+Three logical Mojo packages under `mojo/`, and the three Python packages under
 `tools/`, are vendored byte-for-byte from the single
 `larsbx/finite-math-kernels` monorepo and pinned to one commit by SHA-256
 digest in `vendored.toml`;
@@ -87,6 +87,7 @@ COMMIT`).
 | `mojo/finite_linear_algebra/` | `larsbx/finite-math-kernels` | `Mat3`, generic RREF/rank/nullspace over `Q`, rank-three tensors, `W_3`, integer lifts, the M-adic ball carrier | `mojo/psc/w3.mojo` keeps the printed certificate basis; `psc/exact.mojo` re-exports lifts |
 | `tools/claim_governance/` | `larsbx/finite-math-kernels` (`audit/`) | the status-surface, terminology, promotion, numerics, and test-coverage audit | `claim_governance.toml` is the policy; its `[coverage]` table binds `mojo/tests/` to the ledger |
 | `tools/proof_records/` | `larsbx/finite-math-kernels` | proof records (kinds, identity, dependency closure) and the ledger generator | `scripts/make_ledger.py` holds the record table; `tla/ledger.json`, `tla/Ledger.tla`, the `tla/MCLedger*` models, `docs/ledger-index.md`, `docs/claim-relationship-graph.json`, and the generated `[[claim]]` block of `claim_governance.toml` are its outputs, never hand-edited |
+| `tools/oracle_refinement/` | `larsbx/finite-math-kernels` | a generator's declared input distribution, `φ_G`: the codomain every draw must satisfy, and per named class whether the corpus reaches it or misses it with a stated reason, both directions checked | `tools/corpus_refinement.py` declares `psc_research.pip_screen.pip_corpus()`, the domain every finite-domain claim is asserted for, and pins its digest |
 
 Integer, rational, and rational-interval arithmetic is therefore **not**
 implemented in this repository. Do not add a second rational type or a

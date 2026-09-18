@@ -16,6 +16,7 @@ PACKAGES = {
     "finite_linear_algebra": ("larsbx/finite-math-kernels", "mojo"),
     "claim_governance": ("larsbx/finite-math-kernels", "tools"),
     "proof_records": ("larsbx/finite-math-kernels", "tools"),
+    "oracle_refinement": ("larsbx/finite-math-kernels", "tools"),
 }
 
 
@@ -29,6 +30,7 @@ def test_vendored_packages_match_their_pins():
         assert all(rel.startswith(name + "/") for rel in pkg["files"])
     assert set(packages["proof_records"]["files"]) == {"proof_records/__init__.py", "proof_records/records.py", "proof_records/generate_ledgers.py",
                                                        "proof_records/graph.py"}
+    assert set(packages["oracle_refinement"]["files"]) == {"oracle_refinement/__init__.py"}
 
 
 def test_local_patch_is_detected(tmp_path, monkeypatch):
