@@ -129,7 +129,28 @@ entry 63 solely to guard this encoding, and checks that member 65 is explicitly
 refused by the present field kernel. That refusal is an implementation boundary,
 not a restriction on the proved algebraic family.
 
-## 5. Literature stop/go decision
+
+## 5. Height cancellation occurs in this family
+
+The same family is not a counterexample to a uniform coincidence level.
+For every n at least 3 it has explicit balanced-prefix witnesses:
+
+- pair (1,2), level 3, position 3: the two words begin with `1022...`
+  and `2102...`; both prefixes have Parikh vector (1,1,1), and both
+  position-3 letters are 2;
+- pair (0,1), level 4, position 3: this is the preceding witness after using
+  `sigma^4(0)=sigma^3(1)`;
+- pair (0,2), level 4, position n+4: both prefixes have Parikh vector
+  (2,1,n+1), and both letters at that position are 2.
+
+Thus the strong-coincidence level is at most 4 throughout this unbounded-height
+family. This is a genuine cancellation result: raw digit and matrix height grow,
+but the needed balanced-prefix pattern does not. It does not imply a bound for
+arbitrary ternary PIP substitutions. The Mojo regression reconstructs the
+inflated words and checks these witnesses for representative n; the displayed
+word identities are the proof for all n.
+
+## 6. Literature stop/go decision
 
 Barge's two-letter theorem proves strong coincidence in degree two, but does
 not provide the desired ternary quantitative bound. Arnoux--Ito formulate the
@@ -157,13 +178,15 @@ Primary sources:
   substitution tiling dynamics,” *European J. Combin.* 39 (2014), 233–243.
 - S. Akiyama, “Strong coincidence and overlap coincidence,” arXiv:1509.04471.
 
-## 6. Theorem/non-claim boundary
+## 7. Theorem/non-claim boundary
 
 Repository-proved:
 
 - Proposition 2.1;
 - the algebraic PIP/unimodular properties of the family (\sigma_n);
-- unbounded image length and matrix height in that family.
+- unbounded image length and matrix height in that family;
+- a strong-coincidence upper bound of 4 for that family, by the explicit
+  balanced-prefix witnesses above.
 
 Not proved:
 
