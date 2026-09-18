@@ -14,7 +14,7 @@ encoding and must not be cited as that proof.
 from std.testing import assert_equal, assert_true
 
 from finite_linear_algebra.mat3 import Mat3
-from psc.bpa import substitution_incidence
+from psc.bpa import apply_substitution, substitution_incidence
 from psc.claim_tests import require_contract
 from psc.coincidence_level_bound import pair_depth_bound, substitution_depth_bound
 from psc.dumont_thomas import max_image_length
@@ -72,6 +72,52 @@ def test_unimodular_pip_inputs_have_unbounded_syntactic_parameters() raises:
         assert_equal(incidence.at(2, 2), n)
 
 
+
+def inflated(sigma: List[List[Int]], letter: Int, level: Int) -> List[Int]:
+    var word: List[Int] = [letter]
+    for _ in range(level):
+        word = apply_substitution(sigma, word)
+    return word^
+
+
+def assert_balanced_witness(
+    sigma: List[List[Int]],
+    top: Int,
+    bottom: Int,
+    level: Int,
+    position: Int,
+    expected0: Int,
+    expected1: Int,
+    expected2: Int,
+) raises:
+    var above = inflated(sigma, top, level)
+    var below = inflated(sigma, bottom, level)
+    assert_true(position < len(above) and position < len(below))
+    var ca = List[Int](length=ALPHABET, fill=0)
+    var cb = List[Int](length=ALPHABET, fill=0)
+    for p in range(position):
+        ca[above[p]] += 1
+        cb[below[p]] += 1
+    for a in range(ALPHABET):
+        assert_equal(ca[a], cb[a])
+    assert_equal(ca[0], expected0)
+    assert_equal(ca[1], expected1)
+    assert_equal(ca[2], expected2)
+    assert_equal(above[position], below[position])
+
+
+def test_height_cancels_in_explicit_level_four_witnesses() raises:
+    var ns: List[Int] = [3, 7, 31]
+    for i in range(len(ns)):
+        var n = ns[i]
+        var sigma = height_family(n)
+        # sigma^3(1), sigma^3(2) begin 1022... and 2102...
+        assert_balanced_witness(sigma, 1, 2, 3, 3, 1, 1, 1)
+        # sigma^4(0) = sigma^3(1).
+        assert_balanced_witness(sigma, 0, 1, 4, 3, 1, 1, 1)
+        # The n-dependent position has the same two-zero, one-one balance.
+        assert_balanced_witness(sigma, 0, 2, 4, n + 4, 2, 1, n + 1)
+
 def test_the_current_field_ceiling_refuses_instead_of_narrowing_the_theorem() raises:
     var refused = False
     try:
@@ -86,7 +132,9 @@ def main() raises:
     print("[PASS] test_shortest_level_is_bounded_by_reachable_states")
     test_unimodular_pip_inputs_have_unbounded_syntactic_parameters()
     print("[PASS] test_unimodular_pip_inputs_have_unbounded_syntactic_parameters")
+    test_height_cancels_in_explicit_level_four_witnesses()
+    print("[PASS] test_height_cancels_in_explicit_level_four_witnesses")
     test_the_current_field_ceiling_refuses_instead_of_narrowing_the_theorem()
     print("[PASS] test_the_current_field_ceiling_refuses_instead_of_narrowing_the_theorem")
-    print("3 coincidence-level-bound tests passed.")
+    print("4 coincidence-level-bound tests passed.")
     require_contract("a nonempty pair coincidence language has least level at most the number of reachable affine-automaton states minus one; this is substitution-local, does not prove nonemptiness, and supplies no uniform alphabet-three PIP bound")
