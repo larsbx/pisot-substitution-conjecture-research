@@ -114,4 +114,4 @@ def occurrence_multiplicity_at_level(
     var out = seed_occurrence_multiplicity(tables, graph, max_count)
     for _ in range(level):
         out = inflate_occurrence_multiplicity(graph, out, max_count)
-    return out
+    return out^
