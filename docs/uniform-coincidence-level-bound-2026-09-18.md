@@ -1,7 +1,8 @@
 # Uniform strong-coincidence level bound: first gate
 
-**Status:** proved conditional, substitution-local bound plus a proved negative
-control for two naive uniformizations. This note does **not** prove strong
+**Status:** proved conditional mathematical bound, executable on the shared
+powered-field kernel's stated domain, plus a proved negative control for two
+naive uniformizations. This note does **not** prove strong
 coincidence for the ternary irreducible Pisot family, seedwise overlap
 productivity, Open Problem 5.35, or the Pisot substitution conjecture.
 
@@ -44,13 +45,18 @@ R(\sigma)=\max_{i<j}|Q_{\sigma,i,j}|,
 
 and all three pair languages are nonempty, the strong-coincidence level is at
 most (R(\sigma)-1). Canonical executable support is
-`mojo/psc/coincidence_level_bound.mojo`.
+`mojo/psc/coincidence_level_bound.mojo`. The proposition is graph-theoretic and
+has no height hypothesis. The present executable inherits
+`powered_field`'s incidence-entry ceiling of 64; an input beyond that ceiling
+raises and is inconclusive rather than false.
 
 This separates two uncontrolled obligations:
 
 1. **nonemptiness:** prove each pair language is nonempty; the finite-state
    argument does not do this;
-2. **uniform size:** bound (R(\sigma)) independently of (\sigma).
+2. **uniform size:** bound (R(\sigma)) independently of (\sigma);
+3. **executable arithmetic domain:** remove or replace the current fixed-width
+   powered-field entry ceiling before claiming a family-wide implementation.
 
 Even a uniform bound for the conditional depth would not by itself establish
 Issue #84. It would become useful only together with a uniform nonemptiness or
@@ -118,8 +124,10 @@ neither bounded image length nor bounded incidence entries can be inserted as
 a hidden compactness premise, even on the unimodular branch. This does **not**
 prove that (R(\sigma_n)) is unbounded; it proves only that a uniform estimate
 must exploit cancellation or arithmetic structure beyond those raw bounds.
-The Mojo regression checks representative family members solely to guard this
-encoding.
+The Mojo regression checks representative family members through incidence
+entry 63 solely to guard this encoding, and checks that member 65 is explicitly
+refused by the present field kernel. That refusal is an implementation boundary,
+not a restriction on the proved algebraic family.
 
 ## 5. Literature stop/go decision
 
@@ -159,6 +167,7 @@ Repository-proved:
 
 Not proved:
 
+- a family-wide executable beyond the current powered-field entry ceiling;
 - a uniform bound on (R(\sigma));
 - a uniform bound on the least coincidence level;
 - nonemptiness of every pair language;
