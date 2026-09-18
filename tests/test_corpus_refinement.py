@@ -33,7 +33,7 @@ def test_the_size_the_finite_domain_claims_name_is_the_size_that_is_checked():
     members. The number is not a remark in a document here."""
     assert len(CORPUS) == cr.SIZE == 4554
     shrunk = cr.problems(CORPUS[:-1])
-    assert shrunk and "are asserted for 4554" in shrunk[0]
+    assert any("has 4553 members, and the finite-domain claims are asserted for 4554" in p for p in shrunk)
 
 
 def test_a_member_outside_the_declared_shape_is_refused():
@@ -59,6 +59,31 @@ def test_a_constant_length_member_would_make_the_declaration_stale():
     assert cr.PIP.holds(constant)
     found = cr.problems([*CORPUS[:-1], constant])
     assert any("misses 'a constant image length'" in p for p in found)
+
+
+def test_the_digest_says_which_corpus_and_not_only_what_it_is_like():
+    """The finding this answers: a member swapped for a duplicate of another
+    leaves the count, the shape and every named class intact, so a shape check
+    alone lets a screening regression through in silence."""
+    swapped = [*CORPUS[:-1], CORPUS[0]]
+    assert len(swapped) == cr.SIZE
+    assert cr.PIP.audit(swapped) == ()                      # shape and classes survive
+    found = cr.problems(swapped)
+    assert any("hashes to" in p for p in found), found
+    assert any("repeats 1 member" in p for p in found), found
+
+
+def test_a_reordering_is_a_different_corpus():
+    """`pip_corpus` enumerates, so order is part of what the claims rest on."""
+    reversed_corpus = list(reversed(CORPUS))
+    assert cr.PIP.audit(reversed_corpus) == () and len(reversed_corpus) == cr.SIZE
+    assert any("hashes to" in p for p in cr.problems(reversed_corpus))
+
+
+def test_the_pinned_digest_is_the_digest_of_the_committed_corpus():
+    assert cr.digest(CORPUS) == cr.DIGEST
+    assert cr.preimage(CORPUS).count(b"\n") == cr.SIZE - 1
+    assert cr.encode(CORPUS[0]) == "1:2 2:3 3:12"
 
 
 def test_every_declared_gap_states_why_it_is_out_of_reach():

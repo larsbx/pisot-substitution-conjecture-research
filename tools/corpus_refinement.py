@@ -17,6 +17,13 @@ domain contains is part of every one of them. A sentence in a document saying
 "the exact 4,554-member short-image corpus" is a number; this is the number, the
 shape behind it, and a run that refuses when either moves.
 
+The declaration says what the corpus is *like*. `DIGEST` says *which* corpus it
+is, because the two are different guarantees: swap one member for a duplicate
+of another and the count, the shape and every named class survive untouched
+while the finite domain has quietly changed. The size and the classes catch a
+screen that admits or rejects the wrong kind of substitution; the digest catches
+a screen that admits or rejects the wrong ones.
+
 Writing the declaration found something the name hides. The domain is described
 as "image lengths at most three", and the corpus contains **no constant-length
 substitution at all**: not one of `(1,1,1)`, `(2,2,2)` or `(3,3,3)`. A constant
@@ -35,6 +42,7 @@ Usage:
 
 from __future__ import annotations
 
+import hashlib
 import sys
 from pathlib import Path
 
@@ -49,6 +57,12 @@ LETTERS = (1, 2, 3)
 MAX_IMAGE = 3
 SIZE = 4554
 WIDEST = 8
+#: SHA-256 of `preimage()`: the ordered corpus, member by member, canonically
+#: encoded. The size and the declared classes say what the corpus is like; this
+#: says which corpus it is. Swapping one member for a duplicate of another
+#: leaves the count and every class intact and changes the domain, so a shape
+#: check alone would let a screening regression through in silence.
+DIGEST = "ba36a99940d08b8c5f3b077aa382c543eb572604b6c0081eab872b5f7fd46308"
 
 
 def _images(sigma: dict) -> tuple[tuple[int, ...], ...]:
@@ -86,13 +100,37 @@ PIP = Refinement(
 )
 
 
+def encode(sigma: dict) -> str:
+    """One member as canonical text: the images in letter order, nothing else."""
+    return " ".join(f"{letter}:{''.join(map(str, sigma[letter]))}" for letter in LETTERS)
+
+
+def preimage(corpus: list[dict]) -> bytes:
+    """The ordered corpus as bytes, one member per line. Order is part of the
+    identity: `pip_corpus` enumerates, so a reordering is a different program."""
+    return "\n".join(encode(sigma) for sigma in corpus).encode("utf-8")
+
+
+def digest(corpus: list[dict]) -> str:
+    return hashlib.sha256(preimage(corpus)).hexdigest()
+
+
 def problems(corpus: list[dict] | None = None) -> tuple[str, ...]:
-    """Every way the corpus departs from the declaration, the size included."""
+    """Every way the corpus departs from the declaration: its identity first,
+    then its size, then the shape and the classes."""
     corpus = pip_corpus() if corpus is None else corpus
     found = list(PIP.audit(corpus))
+    duplicates = len(corpus) - len({encode(sigma) for sigma in corpus})
+    if duplicates:
+        found.insert(0, f"pip_corpus repeats {duplicates} member(s); an enumeration that "
+                        f"repeats itself is smaller than it counts")
     if len(corpus) != SIZE:
         found.insert(0, f"pip_corpus has {len(corpus)} members, and the finite-domain claims "
                         f"are asserted for {SIZE}")
+    found_digest = digest(corpus)
+    if DIGEST and found_digest != DIGEST:
+        found.insert(0, f"pip_corpus hashes to {found_digest}, and the finite-domain claims "
+                        f"are asserted for {DIGEST}")
     return tuple(found)
 
 
@@ -106,6 +144,7 @@ def main(argv: list[str]) -> int:
         return 1
     corpus = pip_corpus()
     print(f"OK: pip_corpus has {len(corpus)} members, each {PIP.codomain}.")
+    print(f"    sha256 {digest(corpus)}")
     print(f"    reaches {', '.join(PIP.reached())}")
     for cls in PIP.classes:
         if not cls.required:
