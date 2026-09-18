@@ -10,6 +10,7 @@ monic cubic with coefficients in `[-4, 4]` is therefore evidence, not an echo.
 from std.testing import assert_equal, assert_false, assert_true
 from finite_exact.rat_q import Q
 from finite_linear_algebra.scalar import q_int
+from psc.claim_tests import require_contract
 from psc.exact import q_poly
 from psc.pisot import is_pisot_charpoly, poly_degree
 from psc.pisot_screen import (
@@ -285,3 +286,4 @@ def main() raises:
     test_the_cubic_decider_is_still_the_one_used_for_pip()
     print("[PASS] test_the_cubic_decider_is_still_the_one_used_for_pip")
     print("12 Pisot-screen Mojo tests passed.")
+    require_contract("the degree-n Pisot screen is exact and fail-closed: a refusal is never a negative result, and the cubic decider stays canonical for PIP")

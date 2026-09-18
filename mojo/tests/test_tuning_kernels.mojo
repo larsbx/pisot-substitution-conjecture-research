@@ -18,6 +18,7 @@ from substitution_dynamics.coincidence import column_coincidence, constant_lengt
 from substitution_dynamics.sadic import apply_directive, compose, directive_composite
 from substitution_dynamics.substitution import Substitution
 from substitution_dynamics.tuning import TuningPattern, dgp_twist, kneading_prefix, star_product
+from psc.claim_tests import require_contract
 
 
 def period_doubling() raises -> TuningPattern:
@@ -151,3 +152,4 @@ def main() raises:
     test_column_coincidence_reports_least_depth_with_calibrations()
     print("[PASS] test_column_coincidence_reports_least_depth_with_calibrations")
     print("4 tuning-kernel Mojo tests passed.")
+    require_contract("the vendored substitution_dynamics tuning, directive-prefix, and column-coincidence kernels hold under the PSC toolchain")

@@ -1,6 +1,7 @@
 """Exact regressions for occurrence-labelled overlap affine pumps."""
 
 from std.testing import assert_equal, assert_true
+from psc.claim_tests import require_claim
 from psc.overlap_affine_pump import (
     AffinePumpCertificate,
     first_zero_shift_free_affine_pump,
@@ -74,3 +75,4 @@ def main() raises:
     test_caps_fail_closed()
     print("[PASS] test_caps_fail_closed")
     print("2 overlap affine-pump Mojo tests passed.")
+    require_claim("OrderedAffineCycleIdentity")

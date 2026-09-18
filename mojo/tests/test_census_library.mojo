@@ -21,6 +21,7 @@ from psc.carrier import (
     profile_component,
     state_sync,
 )
+from psc.claim_tests import require_claim
 from psc.corpus import (
     MAX_IMAGE_LENGTH,
     REGIME_NONUNIMODULAR,
@@ -29,9 +30,11 @@ from psc.corpus import (
     arithmetic_regime,
     cubic_discriminant,
     image_words,
+    pip_corpus,
     substitution_of,
     words_of_length,
 )
+from psc.pisot import CubicScreen, is_pip
 from psc.defect_degree import (
     DEGREE_FIVE_PLUS,
     DEGREE_THREE,
@@ -307,6 +310,59 @@ def test_the_degree_three_taxonomy_reproduces_the_known_orbit() raises:
     assert_equal(summary.state_classes[2], "011202001|120001120")
 
 
+def test_the_memoized_screen_accepts_exactly_what_is_pip_accepts() raises:
+    """`CubicScreen` against `is_pip` on a stride through the candidate space.
+
+    The screen memoizes irreducibility and the Pisot test by characteristic
+    cubic, which is sound because both are functions of that cubic alone,
+    while primitivity stays a per-matrix test. The claim is exact agreement,
+    not agreement in aggregate, so the comparison is verdict by verdict; the
+    stride keeps the test to a seventh of the 59,319 candidates rather than
+    all of them, and `pip_corpus` covers the rest by its own pinned size. The
+    stride is 7 because it is coprime to the 39 images: a stride sharing a
+    factor with the innermost range would sample the same few images of the
+    third letter over and over, which is how a sieve like this quietly stops
+    testing anything.
+
+    The distinct-cubic count is the reason the memo is worth having: the
+    candidates that reach a cubic at all carry far fewer cubics than
+    candidates, so the exact decision procedure runs once per question instead
+    of once per asking.
+    """
+    var words = image_words()
+    var screen = CubicScreen()
+    var compared = 0
+    var accepted = 0
+    var step = 0
+    for i in range(len(words)):
+        for j in range(len(words)):
+            for k in range(len(words)):
+                step += 1
+                if step % 7 != 0:
+                    continue
+                var m = Mat3(substitution_incidence(substitution_of(words, i, j, k)))
+                var memoized = screen.is_pip(m)
+                assert_equal(memoized, is_pip(m))
+                assert_equal(memoized, screen.is_pip(m))    # a repeat is not a new verdict
+                compared += 1
+                if memoized:
+                    accepted += 1
+    assert_equal(compared, 8474)
+    assert_equal(accepted, 633)
+    # 174 distinct cubics behind 8,474 candidates, and 177 behind all 59,319:
+    # the memo is worth having because that ratio is the whole point of it.
+    assert_equal(screen.distinct_cubics(), 174)
+
+
+def test_the_corpus_is_the_screened_corpus() raises:
+    """The corpus a memoized screen builds is the pinned one, in order."""
+    var corpus = pip_corpus()
+    assert_equal(len(corpus), 4554)
+    for s in range(len(corpus)):
+        assert_equal(corpus[s].index, s)
+        assert_true(is_pip(Mat3(substitution_incidence(corpus[s].sigma))))
+
+
 def main() raises:
     test_the_candidate_images_are_the_short_words_in_order()
     print("[PASS] test_the_candidate_images_are_the_short_words_in_order")
@@ -324,4 +380,12 @@ def main() raises:
     print("[PASS] test_the_degree_two_trace_sieve_is_exact")
     test_the_degree_three_taxonomy_reproduces_the_known_orbit()
     print("[PASS] test_the_degree_three_taxonomy_reproduces_the_known_orbit")
-    print("8 census-library tests passed.")
+    test_the_memoized_screen_accepts_exactly_what_is_pip_accepts()
+    print("[PASS] test_the_memoized_screen_accepts_exactly_what_is_pip_accepts")
+    test_the_corpus_is_the_screened_corpus()
+    print("[PASS] test_the_corpus_is_the_screened_corpus")
+    print("10 census-library tests passed.")
+    require_claim("BoundedDegree3Exclusion")
+    require_claim("BoundedDegree2WedgeProductivity")
+    require_claim("ParitySieve")
+    require_claim("DefectIntertwiner")

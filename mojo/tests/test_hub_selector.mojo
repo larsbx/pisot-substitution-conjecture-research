@@ -1,6 +1,7 @@
 """Canonical Mojo regressions for the strict first-child hub phase."""
 
 from std.testing import assert_equal, assert_true
+from psc.claim_tests import require_claim
 from psc.endpoint_core import endpoint_type
 from psc.hub_selector import (
     cdef_phase_is_uniform,
@@ -99,3 +100,4 @@ def main() raises:
     test_viability_rejects_good_edge_and_coalescence()
     print("[PASS] test_viability_rejects_good_edge_and_coalescence")
     print("3 hub-selector Mojo tests passed.")
+    require_claim("EndpointCore")

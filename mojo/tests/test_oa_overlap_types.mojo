@@ -10,6 +10,7 @@ an under-sized window or prefix from silently dropping overlaps.
 
 from std.testing import assert_equal, assert_false, assert_true
 
+from psc.claim_tests import require_contract, require_claim
 from psc.oa_overlap_types import (
     extended_inclusion_witness,
     fixed_point_prefix,
@@ -171,3 +172,5 @@ def main() raises:
     test_tau_needs_a_longer_prefix_than_one_letter()
     print("[PASS] test_tau_needs_a_longer_prefix_than_one_letter")
     print("7 overlap-type tests passed.")
+    require_claim("SwapOverlapFiniteness")
+    require_contract("the Sirvent-Solomyak overlap-type layer agrees with the repository seed-patch graph on the tribonacci calibration")

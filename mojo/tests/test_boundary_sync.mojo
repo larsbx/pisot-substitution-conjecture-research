@@ -22,6 +22,7 @@ from psc.boundary_sync import (
     substitution_key,
     synchronizing_cut_count,
 )
+from psc.claim_tests import require_contract, require_claim
 from psc.integer_matrix import is_positive, is_primitive, matmul, wielandt_bound
 from psc.pisot import is_primitive as mat3_is_primitive
 from psc.prng import SplitMix64
@@ -168,3 +169,5 @@ def main() raises:
     test_a_random_substitution_is_well_formed()
     print("[PASS] test_a_random_substitution_is_well_formed")
     print("8 boundary-synchronization tests passed.")
+    require_claim("SinkSCCReduction")
+    require_contract("the seeded sweep is reproducible from its seed alone, and an exhausted budget reports itself rather than a verdict")

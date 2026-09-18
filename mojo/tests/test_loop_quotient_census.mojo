@@ -1,6 +1,7 @@
 """Exact finite regressions for the G1b-2 observed loop quotient."""
 
 from std.testing import assert_equal, assert_false, assert_true
+from psc.claim_tests import require_claim
 from psc.loop_quotient_census import (
     AddressedJointLocalSample,
     addressed_samples_through_depth,
@@ -321,3 +322,4 @@ def main() raises:
     test_invalid_residue_modulus_is_rejected_on_empty_corpus()
     print("[PASS] test_invalid_residue_modulus_is_rejected_on_empty_corpus")
     print("8 loop-quotient-census Mojo tests passed.")
+    require_claim("G1b2RenewalFiniteness")

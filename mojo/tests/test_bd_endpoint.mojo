@@ -9,6 +9,7 @@ from psc.bd_endpoint import (
     strict_pip_endpoint_type_admissible,
     type_g_pair_action_is_transitive,
 )
+from psc.claim_tests import require_claim
 from psc.endpoint_core import endpoint_type
 
 
@@ -108,3 +109,4 @@ def main() raises:
     test_one_good_pair_forces_a_common_hub_on_every_other_edge()
     print("[PASS] test_one_good_pair_forces_a_common_hub_on_every_other_edge")
     print("5 Barge-Diamond endpoint tests passed.")
+    require_claim("GlobalEndpointSync")

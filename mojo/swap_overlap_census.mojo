@@ -21,10 +21,10 @@ from psc.overlap_collar import (
 )
 from psc.overlap_recurrence import zero_shift_free_recurrent_sccs
 from psc.overlap_seed_patch import (
+    PerronCache,
     SeedOverlapAutomaton,
     SeedOverlapTables,
     build_seed_overlap_graph_from_tables,
-    build_seed_overlap_tables,
     first_coincidence_depths,
     first_left_aligned_depths,
     nonproductive_overlap_states,
@@ -177,6 +177,9 @@ def depth_profile(tables: SeedOverlapTables, g: SeedOverlapAutomaton) raises -> 
 
 def main() raises:
     var corpus = pip_corpus()
+    # Field and tile lengths are read off the incidence matrix, which the
+    # corpus repeats: one per matrix, not one per specimen (psc.overlap_seed_patch).
+    var perron = PerronCache()
     var n_built = 0
     var n_capped = 0
     var n_failed = 0
@@ -197,7 +200,7 @@ def main() raises:
     for s in range(len(corpus)):
         ref spec = corpus[s]
         try:
-            var tables = build_seed_overlap_tables(spec.sigma)
+            var tables = perron.tables_for(spec.sigma)
             var g = build_seed_overlap_graph_from_tables(tables, STATE_CAP)
             if g.capped:
                 n_capped += 1

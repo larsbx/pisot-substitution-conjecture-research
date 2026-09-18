@@ -25,7 +25,7 @@ from psc.oa_overlap_types import (
     type_inclusion_report,
     union_probe,
 )
-from psc.overlap_seed_patch import build_seed_overlap_graph_from_tables, build_seed_overlap_tables
+from psc.overlap_seed_patch import PerronCache, build_seed_overlap_graph_from_tables
 
 comptime STRIDE = 10
 comptime KMAX = 8
@@ -34,6 +34,9 @@ comptime MIN_PREFIX = 6000
 
 def main() raises:
     var corpus = pip_corpus()
+    # Field and tile lengths are read off the incidence matrix, which the
+    # corpus repeats: one per matrix, not one per specimen (psc.overlap_seed_patch).
+    var perron = PerronCache()
     var least_k = Histogram(KMAX + 2)
     var sampled = 0
     var without_inclusion = 0
@@ -43,7 +46,7 @@ def main() raises:
     for s in range(0, len(corpus), STRIDE):
         ref spec = corpus[s]
         sampled += 1
-        var tables = build_seed_overlap_tables(spec.sigma)
+        var tables = perron.tables_for(spec.sigma)
         var seed_graph = build_seed_overlap_graph_from_tables(tables, STATE_CAP)
         if seed_graph.capped:
             raise Error("seed-patch overlap graph capped: the sample is inconclusive")

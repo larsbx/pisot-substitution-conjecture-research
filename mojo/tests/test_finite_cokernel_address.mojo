@@ -1,6 +1,7 @@
 """Exact finite regressions for the G1b-2 sidewise cokernel diagnostic."""
 
 from std.testing import assert_equal, assert_false, assert_true
+from psc.claim_tests import require_claim
 from psc.finite_cokernel_address import (
     audit_sidewise_cokernel,
     build_cokernel_lattice,
@@ -178,3 +179,4 @@ def main() raises:
     test_cokernel_audit_rejects_invalid_level_and_mixed_specimens()
     print("[PASS] test_cokernel_audit_rejects_invalid_level_and_mixed_specimens")
     print("6 finite-cokernel-address Mojo tests passed.")
+    require_claim("G1b2RenewalFiniteness")

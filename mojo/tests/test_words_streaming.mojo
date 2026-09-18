@@ -5,6 +5,7 @@ future optimization cannot silently change the scattered-subword convention.
 """
 
 from std.testing import assert_equal
+from psc.claim_tests import require_claim
 from psc.words import n2, n3
 
 
@@ -57,3 +58,4 @@ def main() raises:
     test_repeated_letter_mass()
     print("[PASS] test_repeated_letter_mass")
     print("3 streaming word-kernel tests passed.")
+    require_claim("DefectIntertwiner")

@@ -1,4 +1,4 @@
-"""Exact seed-patch overlap graph over Q(beta) (independent Python oracle).
+"""Independent Python oracle for the exact seed-patch overlap graph over Q(beta).
 
 States are oriented overlaps (top, bottom, t): the top tile [0, l_top) and the
 bottom tile [t, t + l_bottom) with nonempty interior intersection, t in Q(beta).
@@ -12,12 +12,21 @@ the interval image excludes zero (which terminates for every nonzero element).
 Finiteness of the reachable graph is a theorem (bounded discrepancy); the cap
 here is only a fail-closed guard.  Canonical implementation:
 mojo/psc/overlap_seed_patch.mojo.
+
+This module is deliberately retained as a separately written oracle. It is
+not an alternative production implementation and must not be cited as the
+executable source of truth. The implementation-role constants below are
+checked against ``catalogues/mathematical_objects.toml``.
 """
 from __future__ import annotations
 
 from collections import deque
 from fractions import Fraction
 from typing import Mapping, Sequence
+
+IMPLEMENTATION_ROLE = "independent-oracle"
+CANONICAL_IMPLEMENTATION = "mojo/psc/overlap_seed_patch.mojo"
+CATALOGUE_OBJECT_ID = "seed-patch-overlap-automaton"
 
 Letter = int
 Substitution = Mapping[Letter, Sequence[Letter]]

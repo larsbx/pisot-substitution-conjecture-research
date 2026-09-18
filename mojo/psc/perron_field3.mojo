@@ -470,7 +470,27 @@ def _negate_lengths(lengths: TileLengths3) raises -> TileLengths3:
 
 def left_perron_tile_lengths(m: Mat3) raises -> TileLengths3:
     """Construct and verify a positive left Perron eigenvector exactly."""
-    var field = build_perron_field3(m)
+    return perron_tile_lengths_in(build_perron_field3(m), m)
+
+
+def perron_tile_lengths_in(field: PerronField3, m: Mat3) raises -> TileLengths3:
+    """The same construction, inside a field a caller has already built.
+
+    Split out of `left_perron_tile_lengths` because a caller that legitimately
+    works outside `build_perron_field3`'s certified domain -- a substitution
+    raised to a power, whose images outrun the audited bound that entry point
+    states -- needs this eigenvector too, and a second copy of an exact
+    construction is a second thing to keep right.
+
+    The field is checked against the matrix rather than trusted: a field for a
+    different characteristic polynomial would make every sign query below
+    answer about the wrong number, and the eigenvector would come back verified
+    and wrong."""
+    var mine = field.charpoly()
+    var theirs = m.charpoly()
+    for i in range(len(theirs)):
+        if mine[i] != theirs[i]:
+            raise Error("the field does not belong to this incidence matrix")
     var lengths = TileLengths3(CubicElt(), CubicElt(), CubicElt())
     var found = False
     for r in range(3):

@@ -16,7 +16,7 @@ general PIP regime.
 
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
-from psc.pisot import is_pip
+from psc.pisot import CubicScreen, is_pip
 from psc.words import ALPHABET
 
 comptime MAX_IMAGE_LENGTH = 3
@@ -104,17 +104,18 @@ def substitution_of(words: List[List[Int]], i: Int, j: Int, k: Int) -> List[List
     return sigma^
 
 
-def pip_corpus() -> List[Specimen]:
+def pip_corpus() raises -> List[Specimen]:
     """The 4554 PIP specimens with images of length at most 3, screened exactly
     and returned in the canonical `(i, j, k)` order."""
     var words = image_words()
+    var screen = CubicScreen()
     var out = List[Specimen]()
     for i in range(len(words)):
         for j in range(len(words)):
             for k in range(len(words)):
                 var sigma = substitution_of(words, i, j, k)
                 var m = Mat3(substitution_incidence(sigma))
-                if is_pip(m):
+                if screen.is_pip(m):
                     out.append(Specimen(len(out), i, j, k, sigma^, m^))
     return out^
 
