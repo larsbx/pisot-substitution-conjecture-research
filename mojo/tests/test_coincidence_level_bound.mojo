@@ -46,7 +46,7 @@ def height_family(n: Int) raises -> List[List[Int]]:
     return sigma^
 
 
-def test_shortest_level_is_bounded_by_reachable_states() raises:
+def test_shortest_level_is_bounded_by_coaccessible_states() raises:
     var expected: List[Int] = [1, 3, 14, 15]
     var corpus = deep_specimens()
     for s in range(len(corpus)):
@@ -54,10 +54,14 @@ def test_shortest_level_is_bounded_by_reachable_states() raises:
         assert_true(not whole.empty)
         assert_equal(whole.level, expected[s])
         assert_true(whole.level <= whole.upper)
+        assert_true(whole.coaccessible <= whole.states)
         for top in range(ALPHABET):
             for bottom in range(top + 1, ALPHABET):
                 var pair = pair_depth_bound(corpus[s], top, bottom)
                 assert_true(pair.certifies_level())
+                assert_true(pair.coaccessible <= pair.states)
+                # The rejecting sink is reachable but cannot reach acceptance.
+                assert_true(pair.coaccessible < pair.states)
 
 
 def test_unimodular_pip_inputs_have_unbounded_syntactic_parameters() raises:
@@ -128,8 +132,8 @@ def test_the_current_field_ceiling_refuses_instead_of_narrowing_the_theorem() ra
 
 
 def main() raises:
-    test_shortest_level_is_bounded_by_reachable_states()
-    print("[PASS] test_shortest_level_is_bounded_by_reachable_states")
+    test_shortest_level_is_bounded_by_coaccessible_states()
+    print("[PASS] test_shortest_level_is_bounded_by_coaccessible_states")
     test_unimodular_pip_inputs_have_unbounded_syntactic_parameters()
     print("[PASS] test_unimodular_pip_inputs_have_unbounded_syntactic_parameters")
     test_height_cancels_in_explicit_level_four_witnesses()
@@ -137,4 +141,4 @@ def main() raises:
     test_the_current_field_ceiling_refuses_instead_of_narrowing_the_theorem()
     print("[PASS] test_the_current_field_ceiling_refuses_instead_of_narrowing_the_theorem")
     print("4 coincidence-level-bound tests passed.")
-    require_contract("a nonempty pair coincidence language has least level at most the reachable affine-state count minus one; the unbounded-height unimodular family 0->1, 1->2, 2->0 2^n has explicit pair witnesses by level four; the current powered-field ceiling refuses member 65 rather than narrowing either mathematical statement, and no uniform alphabet-three PIP bound or pair nonemptiness theorem is claimed")
+    require_contract("a nonempty pair coincidence language has least level at most the coaccessible affine-state count minus one; the unbounded-height unimodular family 0->1, 1->2, 2->0 2^n has explicit pair witnesses by level four; the current powered-field ceiling refuses member 65 rather than narrowing either mathematical statement, and no uniform alphabet-three PIP bound or pair nonemptiness theorem is claimed")
