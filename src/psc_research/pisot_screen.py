@@ -44,6 +44,7 @@ is recorded in the literature gate; see `known_first_column_refusal`.
 from __future__ import annotations
 
 from fractions import Fraction
+import math
 from typing import Sequence
 
 PISOT = "pisot"
@@ -89,28 +90,31 @@ def halfplane_transform(coeffs: Sequence[int]) -> list[Fraction]:
     `q` has degree `n` unless `z = -1` is a root of `p`, in which case the
     leading coefficient vanishes and the degree drops."""
     n = degree(coeffs)
-    out = [Fraction(0)] * (n + 1)
+    # Optimization: compute as integers first to avoid expensive Fraction arithmetic in inner loops
+    out = [0] * (n + 1)
     for k in range(n + 1):
         if coeffs[k] == 0:
             continue
         left = _binomial_power(k, +1)        # (1 + w)^k
         right = _binomial_power(n - k, -1)   # (1 - w)^(n - k)
+        c_k = coeffs[k]
         for i, a in enumerate(left):
+            term = c_k * a
             for j, b in enumerate(right):
-                out[i + j] += Fraction(coeffs[k]) * a * b
-    return out
+                out[i + j] += term * b
+    return [Fraction(x) for x in out]
 
 
-def _binomial_power(k: int, sign: int) -> list[Fraction]:
+def _binomial_power(k: int, sign: int) -> list[int]:
     """Coefficients of `(1 + sign * w)^k`."""
-    row = [Fraction(1)]
-    for _ in range(k):
-        row = [
-            (row[i] if i < len(row) else Fraction(0))
-            + sign * (row[i - 1] if i >= 1 else Fraction(0))
-            for i in range(len(row) + 1)
-        ]
-    return row
+    if k == 0:
+        return [1]
+    out = []
+    current_sign = 1
+    for i in range(k + 1):
+        out.append(math.comb(k, i) * current_sign)
+        current_sign *= sign
+    return out
 
 
 def routh_right_half_plane_count(q: Sequence[Fraction]) -> int | None:
