@@ -5,11 +5,12 @@ coincidence automaton without promoting it to a uniform family theorem.  If the
 language for a letter pair is nonempty, a shortest accepting run is simple, so
 its length is at most the number of reachable automaton states minus one.
 
-The bound is exact and unconditional for a fixed substitution.  Uniform use
-over the alphabet-three PIP family still requires a substitution-independent
-bound on the reachable state count, and it does not prove that the accepted
-language is nonempty.  Those two obligations are deliberately returned rather
-than hidden.
+The graph inequality is unconditional, but the executable construction is
+exact only when the shared powered-field kernel accepts the input; that kernel
+currently has a documented incidence-entry bound of 64 and raises outside it.
+Such a refusal is inconclusive. Uniform use over the alphabet-three PIP family
+therefore also requires removal of that implementation boundary, as well as a
+substitution-independent reachable-state bound and a proof of nonemptiness.
 """
 
 from psc.automata import witness
@@ -44,6 +45,10 @@ def pair_depth_bound(
     `states - 1`: deleting a repeated-state segment from a shortest run would
     give a shorter accepting run.  The rejecting sink is retained, so this is a
     safe bound rather than a sharpened count of coaccessible live states.
+
+    The shared exact field constructor currently raises when an incidence entry
+    exceeds 64. That is an explicit executable-domain refusal, not a negative
+    coincidence result and not a restriction in the mathematical proposition.
     """
     var automaton = coincidence_automaton(sigma, top, bottom)
     var found = witness(automaton)
@@ -52,7 +57,7 @@ def pair_depth_bound(
     var out = PairDepthBound(automaton.states(), upper, level, found.empty)
     if not out.certifies_level():
         raise Error("shortest coincidence path exceeds its finite-state bound")
-    return out
+    return out^
 
 
 def substitution_depth_bound(sigma: List[List[Int]]) raises -> PairDepthBound:
