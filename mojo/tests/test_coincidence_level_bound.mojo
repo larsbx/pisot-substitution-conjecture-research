@@ -137,4 +137,4 @@ def main() raises:
     test_the_current_field_ceiling_refuses_instead_of_narrowing_the_theorem()
     print("[PASS] test_the_current_field_ceiling_refuses_instead_of_narrowing_the_theorem")
     print("4 coincidence-level-bound tests passed.")
-    require_contract("a nonempty pair coincidence language has least level at most the number of reachable affine-automaton states minus one; this is substitution-local, does not prove nonemptiness, and supplies no uniform alphabet-three PIP bound")
+    require_contract("a nonempty pair coincidence language has least level at most the reachable affine-state count minus one; the unbounded-height unimodular family 0->1, 1->2, 2->0 2^n has explicit pair witnesses by level four; the current powered-field ceiling refuses member 65 rather than narrowing either mathematical statement, and no uniform alphabet-three PIP bound or pair nonemptiness theorem is claimed")
