@@ -156,17 +156,30 @@ Two costs of the same order, so the job needs both addressed or neither.
 
 `separation_radius` runs per specimen at `COLLAR_RADIUS_CAP = 6`, searching for
 the least radius at which every occurrence's one-step ancestry is determined by
-its collar, and carries its own `max_states = 200000`. The radii it returns sum
-to 9,558 over the corpus, so the mean answer is about 2.1 against a cap of 6 —
-worth checking whether the search is paying for the cap rather than for the
-answer, and whether a specimen's radius can be bounded from a cheaper invariant
-before the search starts.
+its collar, and carries its own `max_states = 200000`. The census already
+reports the distribution of its answers, which is worth more than a mean: 618
+specimens resolve at radius 1, 2,664 at radius 2, 912 at 3, 216 at 4, 12 at 5,
+12 at 6 — and **120 do not resolve at all**, because a collision survives the
+cap and the function returns `-1`.
 
-The pump-lift survey runs only where a zipper SCC exists, which sounds like a
-rare branch and is not: 6,986 such SCCs are found across the corpus. Its cost
-should be attributed per call before anything is changed, since a survey that is
-expensive because it runs often needs different treatment from one that is
-expensive per call.
+That sentinel is a trap for anyone summing the returned values: a naive total is
+9,558, which is the resolved total of 9,678 with 120 sentinels subtracted as
+`-1`. It is not a workload figure either way, and the unresolved specimens are
+the *most* expensive, not the cheapest — each searches every radius up to the
+cap and finds nothing.
+
+So the common case is already cheap and the tail is not: about 60% of specimens
+stop at radius 2, while 132 — the 12 at radius 6 plus the 120 survivors — pay
+the full cap. If the cost of building collars grows with the radius, those 132
+can dominate the other 4,422 despite being 3% of them. Measure that split first;
+optimising the common case would then buy nothing.
+
+The pump-lift survey runs **once per specimen that has any zipper SCC**, not
+once per SCC — `pumps.absorb` sits inside `if len(zipper_sccs) > 0`. The census
+reports 4,524 such specimens against 6,986 SCCs, so a per-call attribution
+divides its 218s by 4,524. Its cost still needs attributing per call before
+anything is changed, since a survey that is expensive because it runs often
+needs different treatment from one that is expensive per call.
 
 ### 4. `B_sigma` with the children kept — measured −16.7%
 
@@ -212,10 +225,20 @@ These do not matter for wall clock and do matter for what can be run at all.
 
 ## Traps
 
-1. **Every census output line is pinned.** `.github/workflows/ci.yml` greps each
-   census's output with `grep -Fx`, line by line. A change that moves a count
-   fails CI by design. A moved count is a finding to explain, never a number to
-   quietly update.
+1. **Census output is pinned selectively, not exhaustively.** `ci.yml` greps
+   each census's output with `grep -Fx`, line by line, and for most drivers
+   that covers every verdict — but not all of them, and the gaps are where an
+   optimisation can do damage quietly. Two found while writing this:
+   `swap_overlap_census.mojo` prints
+   `zero-shift-free recurrent overlap cycles: specimens: … sccs: … largest-scc: …`
+   and no job greps it; `census.mojo` prints `largest |B_sigma|: 1502` and the
+   `mojo-kernel` step pins three of its five lines. So a change **can** move a
+   reported number while CI stays green.
+
+   Before optimising a driver, list which of its lines are pinned and pin the
+   ones the change could move. A moved count that a pin catches is a finding to
+   explain, never a number to quietly update. A moved count that no pin catches
+   is the worse case, because nothing will tell you it moved.
 2. **Caps hide outcomes.** See the addition census above. Raising a cap is a
    change to the evidence, not only to the runtime.
 3. **Vendored code is digest-checked.** `substitution_dynamics` and
@@ -227,9 +250,10 @@ These do not matter for wall clock and do matter for what can be run at all.
    `scripts/make_math_catalogue.py`) and a test reaching a
    `require_claim`/`require_contract` declaration, or the coverage check fails.
 5. **An optimisation must not change a verdict.** Every census here reports
-   mathematical evidence. The pins in trap 1 are the mechanism that enforces it;
-   treat a green CI after an optimisation as the claim that the evidence is
-   unchanged.
+   mathematical evidence. The pins are the mechanism that enforces it, and trap
+   1 says how far that mechanism reaches: where a line is unpinned, the guard is
+   the reviewer and the diff, not CI. Treat a green CI after an optimisation as
+   a claim about the pinned lines only.
 
 ## Reproducing the attribution
 
