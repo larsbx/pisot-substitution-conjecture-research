@@ -33,6 +33,8 @@ jobs:
         run: python scripts/make_math_catalogue.py --check
       - name: Claim governance audit (claim_governance.toml)
         run: PYTHONPATH=tools python -m claim_governance.cli --root .
+      - name: The oracle corpus matches its declared refinement
+        run: python tools/corpus_refinement.py --check
       - run: pytest
 
   mojo-kernel:
