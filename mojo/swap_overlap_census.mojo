@@ -10,7 +10,15 @@ productivity for every reachable overlap is the open Level-3 statement in its
 G1-free form; a clean corpus is finite evidence only.
 """
 
-from psc.corpus import STATE_CAP, pip_corpus, report_progress
+from psc.corpus import (
+    REGIME_NONUNIMODULAR,
+    REGIME_UNIMODULAR_COMPLEX,
+    REGIME_UNIMODULAR_REAL,
+    STATE_CAP,
+    arithmetic_regime,
+    pip_corpus,
+    report_progress,
+)
 from psc.histogram import Histogram, max_int
 from psc.overlap_affine_pump import first_zero_shift_free_affine_pump
 from psc.overlap_collar import (
@@ -139,6 +147,71 @@ struct PumpLiftSurvey(Copyable, Movable):
         )
 
 
+struct RegimeSplit(Copyable, Movable):
+    """The two live obstructions of this census, split by the arithmetic regime
+    of the incidence cubic (`psc.corpus.arithmetic_regime`, branch `0` non-unit
+    and branch `1` unimodular).
+
+    Unimodularity forbids a collapsing seed patch at every level
+    (`docs/unimodular-route-gate-2026-09-17.md`, Lemma 1: a proper power `u^k`
+    would put `e_a + e_b` in `k Z^A` through `M^(-n)`), so a unimodular collapse
+    is a kernel defect and is named rather than tabulated. A zero-shift-free
+    affine pump has no such obstruction on either branch and is counted on
+    both."""
+
+    var specimens: List[Int]
+    var states: List[Int]
+    var collapsing: List[Int]
+    var pumped: List[Int]
+    var unimodular_collapses: Int
+
+    def __init__(out self):
+        self.specimens = List[Int](length=2, fill=0)
+        self.states = List[Int](length=2, fill=0)
+        self.collapsing = List[Int](length=2, fill=0)
+        self.pumped = List[Int](length=2, fill=0)
+        self.unimodular_collapses = 0
+
+    def absorb(
+        mut self,
+        regime: Int,
+        states: Int,
+        collapsing: Bool,
+        pumped: Bool,
+        label: String,
+    ) raises:
+        var branch = 0
+        if regime == REGIME_UNIMODULAR_REAL or regime == REGIME_UNIMODULAR_COMPLEX:
+            branch = 1
+        elif regime != REGIME_NONUNIMODULAR:
+            raise Error(
+                "an irreducible incidence cubic cannot have a repeated root: " + label
+            )
+        self.specimens[branch] += 1
+        self.states[branch] += states
+        if collapsing:
+            self.collapsing[branch] += 1
+            if branch == 1:
+                self.unimodular_collapses += 1
+                print("UNIMODULAR collapsing seed patch (Lemma 1 violated):", label)
+        if pumped:
+            self.pumped[branch] += 1
+
+    def branch_line(self, branch: Int, name: String) -> String:
+        return (
+            name
+            + ": specimens: " + String(self.specimens[branch])
+            + " overlap states: " + String(self.states[branch])
+            + " collapsing patches: " + String(self.collapsing[branch])
+            + " zero-shift-free pumps: " + String(self.pumped[branch])
+        )
+
+    def print_lines(self):
+        print(self.branch_line(0, "regime |det M| > 1"))
+        print(self.branch_line(1, "regime |det M| = 1"))
+        print("unimodular collapsing seed patches (must be 0):", self.unimodular_collapses)
+
+
 struct DepthProfile(Copyable, Movable):
     """Per-specimen maxima of the four depth statistics on a productive graph."""
 
@@ -192,6 +265,7 @@ def main() raises:
     var total_states = 0
     var collars = CollarSurvey()
     var pumps = PumpLiftSurvey()
+    var regimes = RegimeSplit()
     var coincidence = Histogram()
     var left_aligned = Histogram()
     var prefix_strong = Histogram()
@@ -222,9 +296,17 @@ def main() raises:
                     max_zipper_size = max_int(max_zipper_size, len(zipper_sccs[z]))
                 pumps.absorb(tables, g, spec.label())
 
+            var collapsing = collapsing_seed_pair_count(spec.sigma, COLLAR_RADIUS_CAP) > 0
             collars.absorb(
                 separation_radius(tables, g, COLLAR_RADIUS_CAP),
-                collapsing_seed_pair_count(spec.sigma, COLLAR_RADIUS_CAP) > 0,
+                collapsing,
+                spec.label(),
+            )
+            regimes.absorb(
+                arithmetic_regime(spec.incidence),
+                g.size(),
+                collapsing,
+                len(zipper_sccs) > 0,
                 spec.label(),
             )
 
@@ -258,6 +340,7 @@ def main() raises:
     )
     collars.print_lines()
     pumps.print_lines()
+    regimes.print_lines()
     print("maximum first-coincidence depth:", coincidence.maximum())
     print(coincidence.line("specimens by maximal first-coincidence depth:"))
     print("maximum first left-aligned depth:", left_aligned.maximum())

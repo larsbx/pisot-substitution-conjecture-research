@@ -78,7 +78,13 @@ def test_the_required_classes_are_the_ones_whose_warrant_is_a_computation():
     requiring one of a manuscript- or Lean-backed claim would not."""
     assert set(COVERAGE.require_classes) == {"finite-domain", "evidence"}
     required = {c.name for c in POLICY.ledger if c.status in COVERAGE.require_classes}
-    assert required == {"BoundedDegree3Exclusion", "BoundedDegree2WedgeProductivity", "OneStepContextEquality", "FiniteCollarDeath"}
+    assert required == {
+        "BoundedDegree3Exclusion",
+        "BoundedDegree2WedgeProductivity",
+        "OneStepContextEquality",
+        "FiniteCollarDeath",
+        "CorpusDeterminantSplit",
+    }
 
 
 def test_the_generated_graph_carries_the_proof_record_ledger_and_only_that():
