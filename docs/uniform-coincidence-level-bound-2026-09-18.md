@@ -1,0 +1,169 @@
+# Uniform strong-coincidence level bound: first gate
+
+**Status:** proved conditional, substitution-local bound plus a proved negative
+control for two naive uniformizations. This note does **not** prove strong
+coincidence for the ternary irreducible Pisot family, seedwise overlap
+productivity, Open Problem 5.35, or the Pisot substitution conjecture.
+
+Primary target: issue #84. Dependencies: the exact affine coincidence
+automaton introduced in PR #122 and the hypothesis firewall summarized in the
+issue.
+
+## 1. Proposed uniform statement
+
+Let (A_{\sigma,i,j}) be the reachable deterministic affine automaton whose
+states are ((a,b,\delta)), with
+
+[
+\delta' = M_\sigma\delta+
+  \pi(\text{top proper prefix})-
+  \pi(\text{bottom proper prefix}).
+]
+
+The intended target is a constant (B_3), independent of the ternary PIP
+substitution, such that whenever a pair has a strong coincidence, its least
+coincidence level is at most (B_3). A stronger useful target would also prove
+that every pair language is nonempty.
+
+## 2. What the existing automaton proves
+
+**Proposition 2.1 (fixed-substitution graph bound).** If
+(L(A_{\sigma,i,j})\neq\varnothing), then its least accepted word has length
+at most (|Q_{\sigma,i,j}|-1).
+
+**Proof.** Breadth-first search returns a shortest accepting run. Such a run
+cannot repeat a state: deleting the segment between two occurrences would give
+a shorter run with the same endpoint. It therefore uses at most every reachable
+state once. ∎
+
+Consequently, if
+
+[
+R(\sigma)=\max_{i<j}|Q_{\sigma,i,j}|,
+]
+
+and all three pair languages are nonempty, the strong-coincidence level is at
+most (R(\sigma)-1). Canonical executable support is
+`mojo/psc/coincidence_level_bound.mojo`.
+
+This separates two uncontrolled obligations:
+
+1. **nonemptiness:** prove each pair language is nonempty; the finite-state
+   argument does not do this;
+2. **uniform size:** bound (R(\sigma)) independently of (\sigma).
+
+Even a uniform bound for the conditional depth would not by itself establish
+Issue #84. It would become useful only together with a uniform nonemptiness or
+finite-reduction argument.
+
+## 3. Parameters exposed by the spectral proof
+
+The finiteness proof bounds the expanding coordinate using
+
+[
+\frac{\max_t |v^Tt|}{\beta-1}
+]
+
+and each contracting coordinate using
+
+[
+\frac{\max_t |u_r^Tt|}{1-|\beta_r|}.
+]
+
+Turning these coordinate bounds into an integer-state count additionally uses
+the covolume/conditioning of the eigenbasis. Thus the direct estimate presently
+depends on:
+
+- the proper-prefix translation set (T_\sigma);
+- the Perron and conjugate spectral gaps;
+- the eigenbasis conditioning (equivalently, a discriminant/covolume control);
+- the exact intersection of the resulting spectral box with
+  (\mathbb Z^3).
+
+The first and third items cannot be replaced silently by a fixed image-length
+or bounded-entry assumption; neither assumption belongs to the standing
+regime.
+
+## 4. Exact negative control: unbounded height inside the regime
+
+For every integer (n\ge3), define
+
+[
+\sigma_n(0)=1,\qquad \sigma_n(1)=2,\qquad
+\sigma_n(2)=0\,2^n.
+]
+
+Its incidence matrix is
+
+[
+M_n=\begin{pmatrix}0&0&1\\1&0&0\\0&1&n\end{pmatrix},
+qquad
+\chi_n(x)=x^3-nx^2-1.
+]
+
+This is a primitive unimodular irreducible Pisot family:
+
+- primitivity follows from the directed 3-cycle and the loop at (2);
+- (det M_n=1);
+- the only possible rational roots of (chi_n) are (pm1), and neither is
+  a root for (n\ge3), so the cubic is irreducible;
+- its discriminant is (-4n^3-27<0), so the two non-Perron roots are a complex
+  conjugate pair;
+- the positive root satisfies (eta_n>n), and the product of the conjugate
+  pair is (1/\beta_n), hence each has modulus
+  (eta_n^{-1/2}<1).
+
+But (max_a|\sigma_n(a)|=n+1) and the height of (M_n) is (n). Therefore
+neither bounded image length nor bounded incidence entries can be inserted as
+a hidden compactness premise, even on the unimodular branch. This does **not**
+prove that (R(\sigma_n)) is unbounded; it proves only that a uniform estimate
+must exploit cancellation or arithmetic structure beyond those raw bounds.
+The Mojo regression checks representative family members solely to guard this
+encoding.
+
+## 5. Literature stop/go decision
+
+Barge's two-letter theorem proves strong coincidence in degree two, but does
+not provide the desired ternary quantitative bound. Arnoux--Ito formulate the
+strong-coincidence condition used here. Akiyama--Lee and Akiyama clarify the
+relationship between strong and overlap coincidence under their stated
+hypotheses; they do not supply a substitution-independent coincidence level
+for all ternary PIP substitutions. The automata/numeration literature supplies
+finite-state constructions for a fixed Pisot system, with the system fixing the
+digit set and machine.
+
+**Decision: proceed narrowly.** The graph bound is valid and worth recording,
+but the next theorem must bound the spectral lattice-point count through
+arithmetic invariants of irreducible cubic Pisot matrices. Do not run a larger
+short-image census as a substitute. First test whether the characteristic
+polynomial coefficients and the prefix-translation set admit a cancellation
+that removes matrix height; otherwise retain a parameterized theorem.
+
+Primary sources:
+
+- M. Barge, “Coincidence for substitutions of Pisot type,” *Bull. Soc. Math.
+  France* 130 (2002), 619–635.
+- P. Arnoux and S. Ito, “Pisot substitutions and Rauzy fractals,” *Bull. Belg.
+  Math. Soc. Simon Stevin* 8 (2001), 181–207.
+- S. Akiyama and J.-Y. Lee, “Overlap coincidence to strong coincidence in
+  substitution tiling dynamics,” *European J. Combin.* 39 (2014), 233–243.
+- S. Akiyama, “Strong coincidence and overlap coincidence,” arXiv:1509.04471.
+
+## 6. Theorem/non-claim boundary
+
+Repository-proved:
+
+- Proposition 2.1;
+- the algebraic PIP/unimodular properties of the family (\sigma_n);
+- unbounded image length and matrix height in that family.
+
+Not proved:
+
+- a uniform bound on (R(\sigma));
+- a uniform bound on the least coincidence level;
+- nonemptiness of every pair language;
+- overlap productivity or PSC.
+
+No legality-of-`ab`, finite injectivity, unique decodability, unimodularity,
+Euclidean-only internal space, global-realization, or census-completeness
+hypothesis is added.
