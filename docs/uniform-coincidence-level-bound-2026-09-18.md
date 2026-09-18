@@ -28,19 +28,22 @@ that every pair language is nonempty.
 
 ## 2. What the existing automaton proves
 
+Write C(sigma,i,j) for the forward-reachable states from which an accepting
+state is reachable (the coaccessible core).
+
 **Proposition 2.1 (fixed-substitution graph bound).** If
 (L(A_{\sigma,i,j})\neq\varnothing), then its least accepted word has length
-at most (|Q_{\sigma,i,j}|-1).
+at most (|C_{\sigma,i,j}|-1).
 
 **Proof.** Breadth-first search returns a shortest accepting run. Such a run
 cannot repeat a state: deleting the segment between two occurrences would give
-a shorter run with the same endpoint. It therefore uses at most every reachable
-state once. ∎
+a shorter run with the same endpoint. Every state on it can reach the accepting endpoint, so it lies in the
+coaccessible core. The run uses each such state at most once. ∎
 
 Consequently, if
 
 [
-R(\sigma)=\max_{i<j}|Q_{\sigma,i,j}|,
+R(\sigma)=\max_{i<j}|C_{\sigma,i,j}|,
 ]
 
 and all three pair languages are nonempty, the strong-coincidence level is at
@@ -182,7 +185,8 @@ Primary sources:
 
 Repository-proved:
 
-- Proposition 2.1;
+- Proposition 2.1 with the exact coaccessible core, which is never larger
+  than the full reachable affine state set;
 - the algebraic PIP/unimodular properties of the family (\sigma_n);
 - unbounded image length and matrix height in that family;
 - a strong-coincidence upper bound of 4 for that family, by the explicit
