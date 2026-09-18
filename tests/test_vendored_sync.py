@@ -28,8 +28,12 @@ def test_vendored_packages_match_their_pins():
     for name, pkg in packages.items():
         assert pkg["repository"] == "larsbx/finite-math-kernels"
         assert all(rel.startswith(name + "/") for rel in pkg["files"])
+    # The inventory is written out so that a re-vendor which quietly adds or drops a file is a
+    # test to update rather than a change nobody sees. self_test.py and known_answers.py arrived
+    # with the import-time known-answer gate; the package's Mojo sources and vocabularies.py sit
+    # beside them upstream and are deliberately not taken.
     assert set(packages["proof_records"]["files"]) == {"proof_records/__init__.py", "proof_records/records.py", "proof_records/generate_ledgers.py",
-                                                       "proof_records/graph.py"}
+                                                       "proof_records/graph.py", "proof_records/self_test.py", "proof_records/known_answers.py"}
     assert set(packages["oracle_refinement"]["files"]) == {"oracle_refinement/__init__.py"}
 
 
