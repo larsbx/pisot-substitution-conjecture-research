@@ -108,7 +108,7 @@ def substitution_depth_bound(sigma: List[List[Int]]) raises -> PairDepthBound:
     """
     var largest_states = 0
     var largest_coaccessible = 0
-    var largest_upper = 0
+    var largest_upper = -1
     var largest_level = 0
     var any_empty = False
     for top in range(ALPHABET):
