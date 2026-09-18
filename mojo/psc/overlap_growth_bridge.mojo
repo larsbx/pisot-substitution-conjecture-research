@@ -32,7 +32,7 @@ struct OccurrenceMultiplicity(Copyable, Movable):
         var out = 0
         for i in range(len(self.counts)):
             out = _checked_add_bounded(out, self.counts[i], self.max_count)
-        return out
+        return out^
 
 
 def _checked_add_bounded(a: Int, b: Int, max_count: Int) raises -> Int:
