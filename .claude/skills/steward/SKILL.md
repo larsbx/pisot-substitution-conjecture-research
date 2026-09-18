@@ -104,40 +104,21 @@ environment that reports a skip is honest; one that reports a pass is not.
 
 ## Decide whether to build
 
-Steward scope as well as implementation. Before accepting a new subsystem,
-horizontal platform, shared abstraction, or feature family, make the proposal
-show:
+Before adding a subsystem, abstraction, or feature family, identify the concrete
+user outcome or external obligation. Then ask:
 
-1. the user outcome or external obligation in one sentence;
-2. why the smallest existing mechanism cannot deliver it;
-3. the running cost over years, not merely the initial implementation cost —
-   ownership, security and authorization, support, monitoring, migrations,
-   accessibility, dependency churn, and eventual deletion;
-4. the subtraction case — what can be removed, merged, retired, or left
-   unbuilt instead; and
-5. the opportunity cost: which already-prioritized work and maintenance budget
-   this addition displaces.
+- Can an existing mechanism meet the need?
+- What will this cost to operate and maintain over time?
+- Can removing or simplifying something produce the same outcome?
+- What higher-priority work will this displace?
 
-Treat each concrete use case on its own merits. A generic hub, centre, framework,
-or one-size-fits-all layer carries a higher evidence burden than a narrow
-solution because it creates a permanent product surface and attracts unrelated
-requirements. Prefer a simple path or an existing tool when it satisfies the
-actual outcome, even imperfectly.
+Prefer the smallest solution that meets the actual need. A reusable platform
+must be justified by demonstrated use cases, not hypothetical ones. Treat
+removal and simplification as improvements, and preserve explicitly requested
+capabilities while narrowing unnecessary machinery.
 
-Record the decision as one of **build**, **reuse**, **subtract**, or **defer**.
-For **build**, name the long-term owner, maintenance budget, success measure in
-the user's world, and a retirement condition. For **reuse** or **subtract**,
-state how the original need is still met. For **defer**, name the missing
-evidence or trigger for reconsideration. Preserve an explicitly requested
-capability: this gate sharpens scope; it is not permission to veto user intent.
-
-On every material PR, ask whether the same outcome can be achieved with fewer
-components, concepts, interfaces, or maintained lines. Give removal and
-simplification the same status as shipped functionality.
-
-This protocol adapts Liam Nugent's “The most important product decision is what
-you don’t build” (2026-09-14):
-https://liamnugent.me/posts/what-you-dont-build/
+Adapted from Liam Nugent, [“The most important product decision is what you
+don’t build”](https://liamnugent.me/posts/what-you-dont-build/).
 
 ## Never, here
 
