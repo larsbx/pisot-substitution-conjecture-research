@@ -47,6 +47,13 @@ def coaccessible_state_count(automaton: Dfa) raises -> Int:
     that can lie on an accepting run.  This is a graph computation: no spectral
     approximation and no additional substitution hypothesis enters.
     """
+    var reverse = List[List[Int]]()
+    for _ in range(automaton.states()):
+        reverse.append(List[Int]())
+    for source in range(automaton.states()):
+        for letter in range(automaton.letters):
+            reverse[automaton.step(source, letter)].append(source)
+
     var live = List[Bool](length=automaton.states(), fill=False)
     var queue = List[Int]()
     for state in range(automaton.states()):
@@ -57,14 +64,11 @@ def coaccessible_state_count(automaton: Dfa) raises -> Int:
     while head < len(queue):
         var target = queue[head]
         head += 1
-        for source in range(automaton.states()):
-            if live[source]:
-                continue
-            for letter in range(automaton.letters):
-                if automaton.step(source, letter) == target:
-                    live[source] = True
-                    queue.append(source)
-                    break
+        for i in range(len(reverse[target])):
+            var source = reverse[target][i]
+            if not live[source]:
+                live[source] = True
+                queue.append(source)
     return len(queue)
 
 def pair_depth_bound(
