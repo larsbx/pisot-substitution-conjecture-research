@@ -33,7 +33,7 @@ state is reachable (the coaccessible core).
 
 **Proposition 2.1 (fixed-substitution graph bound).** If
 (L(A_{\sigma,i,j})\neq\varnothing), then its least accepted word has length
-at most (|Q_{\sigma,i,j}|-1).
+at most (|C_{\sigma,i,j}|-1).
 
 **Proof.** Breadth-first search returns a shortest accepting run. Such a run
 cannot repeat a state: deleting the segment between two occurrences would give
@@ -43,7 +43,7 @@ coaccessible core. The run uses each such state at most once. ∎
 Consequently, if
 
 [
-R(\sigma)=\max_{i<j}|Q_{\sigma,i,j}|,
+R(\sigma)=\max_{i<j}|C_{\sigma,i,j}|,
 ]
 
 and all three pair languages are nonempty, the strong-coincidence level is at
