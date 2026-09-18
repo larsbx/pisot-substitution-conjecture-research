@@ -90,14 +90,18 @@ two-to-one between evaluating the bound per vertex and constructing it.
 | + all four depth statistics | 9.9 | 0.5 |
 | + `zero_shift_free_recurrent_sccs` | 10.2 | 0.3 |
 | + `collapsing_seed_pair_count` | 10.0 | 0.0 |
-| the whole census | 473.2 | **463** |
+| + **`separation_radius`** | 255.4 | **245.4** |
+| the whole census (adds the **pump-lift survey**) | 473.2 | **217.8** |
 
 The four depth statistics (`first_coincidence_depths`,
 `first_left_aligned_depths`, and `strong_coincidence_depth_from` on both
 orientations) cost half a second across the corpus. The zipper-SCC scan costs a
 third of a second, over 6,986 SCCs found. The collapsing-seed-pair count is free
-to measurement noise. Everything the census does apart from `separation_radius`
-and the pump-lift survey it triggers accounts for **10 of 473 seconds**.
+to measurement noise, and finds 120 collapsing specimens.
+
+So this census is **two comparable costs, not one**: the separation radius at
+245s and the pump-lift survey at 218s, with everything else at 10s. Optimising
+either alone halves nothing.
 
 ## Two things that are *not* worth doing
 
@@ -146,18 +150,23 @@ isolates the real roots and fills the level tables `A`, `B`, `G` and
 `max_level` — which candidate 1's distribution would show — the tables can be
 filled lazily and most of that work never done.
 
-### 3. `separation_radius` — 463s, 98% of the second-longest CI job
+### 3. `separation_radius` (245s) and the pump-lift survey (218s) — together 98% of the second-longest CI job
 
-The layer-by-layer table above leaves this and the pump-lift survey it triggers
-holding 463 of the census's 473 seconds, with everything else at 10s. It runs
-per specimen at `COLLAR_RADIUS_CAP = 6`, searching for the least radius at which
-every occurrence's one-step ancestry is determined by its collar, and it carries
-its own `max_states = 200000`.
+Two costs of the same order, so the job needs both addressed or neither.
 
-The two are still to be separated from each other, which is one probe: repeat
-the layer above with `separation_radius` included and `pumps.absorb` left out.
-Note that 6,986 zipper SCCs are found across the corpus, so the pump survey is
-not a rare branch and cannot be assumed negligible.
+`separation_radius` runs per specimen at `COLLAR_RADIUS_CAP = 6`, searching for
+the least radius at which every occurrence's one-step ancestry is determined by
+its collar, and carries its own `max_states = 200000`. The radii it returns sum
+to 9,558 over the corpus, so the mean answer is about 2.1 against a cap of 6 —
+worth checking whether the search is paying for the cap rather than for the
+answer, and whether a specimen's radius can be bounded from a cheaper invariant
+before the search starts.
+
+The pump-lift survey runs only where a zipper SCC exists, which sounds like a
+rare branch and is not: 6,986 such SCCs are found across the corpus. Its cost
+should be attributed per call before anything is changed, since a survey that is
+expensive because it runs often needs different treatment from one that is
+expensive per call.
 
 ### 4. `B_sigma` with the children kept — measured −16.7%
 
@@ -239,7 +248,8 @@ order: `pip_corpus()` alone; plus `build_seed_overlap_graph_from_tables`; plus
 `ContractingBoundCache.slot`; and the census itself for the last difference.
 For the swap-overlap census: the same first two, plus the four depth
 statistics, plus `zero_shift_free_recurrent_sccs`, plus
-`collapsing_seed_pair_count`.
+`collapsing_seed_pair_count`, plus `separation_radius` — the census itself then
+supplies the pump-lift survey as the last difference.
 
 A probe must print an aggregate that depends on every value it computes, or the
 work can be optimised away and the layer will measure as free. Each of the
