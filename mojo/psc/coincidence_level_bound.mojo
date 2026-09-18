@@ -1,0 +1,90 @@
+"""A substitution-local upper bound on the least strong-coincidence level.
+
+This module extracts the quantitative statement that follows from the affine
+coincidence automaton without promoting it to a uniform family theorem.  If the
+language for a letter pair is nonempty, a shortest accepting run is simple, so
+its length is at most the number of reachable automaton states minus one.
+
+The graph inequality is unconditional, but the executable construction is
+exact only when the shared powered-field kernel accepts the input; that kernel
+currently has a documented incidence-entry bound of 64 and raises outside it.
+Such a refusal is inconclusive. Uniform use over the alphabet-three PIP family
+therefore also requires removal of that implementation boundary, as well as a
+substitution-independent reachable-state bound and a proof of nonemptiness.
+"""
+
+from psc.automata import witness
+from psc.coincidence_formula import coincidence_automaton
+from psc.words import ALPHABET
+
+
+struct PairDepthBound(Copyable, Movable):
+    """The fixed-substitution graph bound and its nonemptiness outcome."""
+
+    var states: Int
+    var upper: Int
+    var level: Int
+    var empty: Bool
+
+    def __init__(out self, states: Int, upper: Int, level: Int, empty: Bool):
+        self.states = states
+        self.upper = upper
+        self.level = level
+        self.empty = empty
+
+    def certifies_level(self) -> Bool:
+        return self.empty or (self.level >= 0 and self.level <= self.upper)
+
+
+def pair_depth_bound(
+    sigma: List[List[Int]], top: Int, bottom: Int
+) raises -> PairDepthBound:
+    """Build the complete reachable affine automaton for one pair.
+
+    When its language is nonempty, the returned shortest level is at most
+    `states - 1`: deleting a repeated-state segment from a shortest run would
+    give a shorter accepting run.  The rejecting sink is retained, so this is a
+    safe bound rather than a sharpened count of coaccessible live states.
+
+    The shared exact field constructor currently raises when an incidence entry
+    exceeds 64. That is an explicit executable-domain refusal, not a negative
+    coincidence result and not a restriction in the mathematical proposition.
+    """
+    var automaton = coincidence_automaton(sigma, top, bottom)
+    var found = witness(automaton)
+    var upper = automaton.states() - 1
+    var level = -1 if found.empty else len(found.word)
+    var out = PairDepthBound(automaton.states(), upper, level, found.empty)
+    if not out.certifies_level():
+        raise Error("shortest coincidence path exceeds its finite-state bound")
+    return out^
+
+
+def substitution_depth_bound(sigma: List[List[Int]]) raises -> PairDepthBound:
+    """The maximum fixed-substitution bound over the three unordered pairs.
+
+    `empty` records whether some pair language is empty.  In that case
+    `level = -1`; the state bound remains diagnostic and is not a coincidence
+    theorem.
+    """
+    var largest_states = 0
+    var largest_upper = 0
+    var largest_level = 0
+    var any_empty = False
+    for top in range(ALPHABET):
+        for bottom in range(top + 1, ALPHABET):
+            var pair = pair_depth_bound(sigma, top, bottom)
+            if pair.states > largest_states:
+                largest_states = pair.states
+            if pair.upper > largest_upper:
+                largest_upper = pair.upper
+            if pair.empty:
+                any_empty = True
+            elif pair.level > largest_level:
+                largest_level = pair.level
+    return PairDepthBound(
+        largest_states,
+        largest_upper,
+        -1 if any_empty else largest_level,
+        any_empty,
+    )
