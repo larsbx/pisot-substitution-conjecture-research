@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from collections import deque
+from itertools import chain
 from typing import Mapping, Sequence
 
 Letter = int
@@ -49,10 +50,7 @@ def parikh(word: Sequence[Letter], size: int | None = None) -> tuple[int, ...]:
 
 
 def apply_substitution(sigma: Substitution, word: Sequence[Letter]) -> Word:
-    out: list[Letter] = []
-    for a in word:
-        out.extend(sigma[a])
-    return tuple(out)
+    return tuple(chain.from_iterable(sigma[a] for a in word))
 
 
 def apply_substitution_n(sigma: Substitution, word: Sequence[Letter], n: int) -> Word:
@@ -87,24 +85,28 @@ def coincidence_boundaries(u: Sequence[Letter], v: Sequence[Letter], size: int |
     non_zero = 0
 
     for i, (a, b) in enumerate(zip(u, v), start=1):
-        if a != b:
-            idx_a = a - 1
-            val_a = diff[idx_a] + 1
-            diff[idx_a] = val_a
-            if val_a == 1:
-                non_zero += 1
-            elif val_a == 0:
-                non_zero -= 1
+        if a == b:
+            if not non_zero:
+                out.append(i)
+            continue
 
-            idx_b = b - 1
-            val_b = diff[idx_b] - 1
-            diff[idx_b] = val_b
-            if val_b == -1:
-                non_zero += 1
-            elif val_b == 0:
-                non_zero -= 1
+        idx_a = a - 1
+        val_a = diff[idx_a] + 1
+        diff[idx_a] = val_a
+        if val_a == 1:
+            non_zero += 1
+        elif val_a == 0:
+            non_zero -= 1
 
-        if non_zero == 0:
+        idx_b = b - 1
+        val_b = diff[idx_b] - 1
+        diff[idx_b] = val_b
+        if val_b == -1:
+            non_zero += 1
+        elif val_b == 0:
+            non_zero -= 1
+
+        if not non_zero:
             out.append(i)
     return out
 
