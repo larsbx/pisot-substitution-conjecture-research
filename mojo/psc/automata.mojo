@@ -157,14 +157,21 @@ def is_empty(a: Dfa) raises -> Bool:
     return witness(a).empty
 
 
-def _subset_index(mut keys: List[String], mut sets: List[List[Int]], key: String,
-                  members: List[Int]) -> Int:
-    for i in range(len(keys)):
-        if keys[i] == key:
-            return i
-    keys.append(key)
+def _subset_index(mut index: Dict[String, Int], mut sets: List[List[Int]], key: String,
+                  members: List[Int]) raises -> Int:
+    """Index a subset by its key, appending it when it is new.
+
+    The index is a hash map, not a scanned list: the subset construction asks
+    this question once per (state, letter), so a linear scan makes the
+    determinisation quadratic in the number of subsets. Subsets are still
+    numbered by first encounter, so the automaton this returns is the one the
+    scan returned, not merely one with the same language."""
+    if key in index:
+        return index[key]
+    var at = len(sets)
+    index[key] = at
     sets.append(members.copy())
-    return len(keys) - 1
+    return at
 
 
 def project(a: Dfa, tracks: Int, track: Int) raises -> Dfa:
@@ -186,14 +193,14 @@ def project(a: Dfa, tracks: Int, track: Int) raises -> Dfa:
         raise Error("alphabet is not a power of a radix")
     var out_letters = radix ** (tracks - 1)
 
-    var keys = List[String]()
+    var index = Dict[String, Int]()
     var sets = List[List[Int]]()
     var start: List[Int] = [0]
-    _ = _subset_index(keys, sets, String("0"), start)
+    _ = _subset_index(index, sets, String("0"), start)
     var delta = List[Int]()
     var accepting = List[Bool]()
     var done = 0
-    while done < len(keys):
+    while done < len(sets):
         var members = sets[done].copy()
         var accepts = False
         for i in range(len(members)):
@@ -222,7 +229,7 @@ def project(a: Dfa, tracks: Int, track: Int) raises -> Dfa:
             var key = String("")
             for i in range(len(image)):
                 key += String(image[i]) + ","
-            delta.append(_subset_index(keys, sets, key, image))
+            delta.append(_subset_index(index, sets, key, image))
         done += 1
     return Dfa(out_letters, delta, accepting)
 
@@ -253,26 +260,27 @@ def minimised(a: Dfa) raises -> Dfa:
         block[order[i]] = 1 if a.accepting[order[i]] else 0
     var blocks = 2
     while True:
-        var keys = List[String]()
+        # the signature -> class map is a hash index: scanning it would make
+        # every refinement round quadratic in the number of classes
+        var classes = Dict[String, Int]()
         var next_block = List[Int](length=a.states(), fill=-1)
         for i in range(len(order)):
             var state = order[i]
             var key = String(block[state]) + "|"
             for c in range(a.letters):
                 key += String(block[a.step(state, c)]) + ","
-            var at = -1
-            for k in range(len(keys)):
-                if keys[k] == key:
-                    at = k
-            if at < 0:
-                keys.append(key)
-                at = len(keys) - 1
+            var at: Int
+            if key in classes:
+                at = classes[key]
+            else:
+                at = len(classes)
+                classes[key] = at
             next_block[state] = at
         for i in range(len(order)):
             block[order[i]] = next_block[order[i]]
-        if len(keys) == blocks:
+        if len(classes) == blocks:
             break
-        blocks = len(keys)
+        blocks = len(classes)
 
     # renumber so the start block is 0, which `Dfa` requires
     var relabel = List[Int](length=blocks, fill=-1)

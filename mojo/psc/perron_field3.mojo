@@ -393,6 +393,56 @@ def _linear_terminal_sign(field: PerronField3, B: Int, C: Int) raises -> Int:
     return -_sign_int(N) * _sign_int(B)
 
 
+def _sign_without_remainders(field: PerronField3, x: CubicElt) raises -> Int:
+    """Decide ``sign(Q(beta))`` when no signed-remainder chain is needed.
+
+    Two exact shortcuts, in cost order. Both are one-sided: a ``0`` return
+    means *undecided here*, never *zero*, so the caller still runs the full
+    Sturm--Tarski query. Neither can narrow the decidable domain: the
+    coefficient-sign test does no arithmetic at all, and every operation in
+    the bracket is guarded, with an overflow reported as "undecided" and left
+    for the authoritative path to raise on if it must.
+
+    1. Coefficients of one sign. ``beta > 1 > 0``, so a nonzero ``Q`` with all
+       coefficients ``>= 0`` has ``Q(beta) > 0``, and dually.
+    2. A bracket over the integer enclosure ``1 < beta <= B`` of the Perron
+       root. A quadratic attains its extremes on a closed interval at an
+       endpoint or at its vertex, so when the vertex lies outside ``(1, B)``
+       the two endpoint values bound ``Q`` over the whole interval; a bound
+       that excludes zero proves the sign.
+    """
+    if x.a0 >= 0 and x.a1 >= 0 and x.a2 >= 0:
+        return 1
+    if x.a0 <= 0 and x.a1 <= 0 and x.a2 <= 0:
+        return -1
+
+    # Everything from here on is arithmetic that can overflow. It is all
+    # guarded, and every failure returns "undecided" rather than raising, so
+    # the bracket can only ever add an answer, never take one away.
+    try:
+        var hi = _perron_integer_bound(field)
+        if hi <= 1:
+            return 0
+        if x.a2 != 0:
+            # vertex at -a1 / (2 a2), placed against 1 and hi without dividing
+            var numerator = _checked_neg(x.a1)
+            var denominator = _checked_mul(2, x.a2)
+            if denominator < 0:
+                numerator = _checked_neg(numerator)
+                denominator = _checked_neg(denominator)
+            if numerator > denominator and numerator < _checked_mul(denominator, hi):
+                return 0
+        var at_one = _eval_quadratic(x.a2, x.a1, x.a0, 1)
+        var at_hi = _eval_quadratic(x.a2, x.a1, x.a0, hi)
+        if at_one > 0 and at_hi > 0:
+            return 1
+        if at_one < 0 and at_hi < 0:
+            return -1
+        return 0
+    except:
+        return 0
+
+
 def sign_at_perron(field: PerronField3, x: CubicElt) raises -> Int:
     """Return the exact sign of ``x(beta)`` without rational refinement.
 
@@ -405,6 +455,10 @@ def sign_at_perron(field: PerronField3, x: CubicElt) raises -> Int:
     """
     if x.is_zero():
         return 0
+
+    var cheap = _sign_without_remainders(field, x)
+    if cheap != 0:
+        return cheap
 
     var coeffs = _signed_remainder_coefficients(field, x)
     var A = coeffs[0]

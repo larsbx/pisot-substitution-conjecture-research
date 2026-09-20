@@ -5,7 +5,7 @@ from psc.bpa import substitution_incidence
 from finite_linear_algebra.mat3 import Mat3
 from psc.claim_tests import require_contract
 from psc.overlap_interval_audit import audit_seed_overlap_interval_margins
-from psc.perron_field3 import CubicElt, build_perron_field3
+from psc.perron_field3 import CubicElt, PerronField3, build_perron_field3, sign_at_perron
 from psc.perron_interval import (
     cubic_perron_interval,
     interval_sign_at_perron,
@@ -160,6 +160,92 @@ def test_coarse_overlap_audit_withholds_partial_minimum() raises:
     assert_true(audit.minimum_interval_lower_margin.eq(Q.zero()))
 
 
+def _chain_decides(field: PerronField3, x: CubicElt) -> Bool:
+    try:
+        _ = sign_at_perron(field, x)
+        return True
+    except:
+        return False
+
+
+def test_the_two_sign_oracles_agree_wherever_both_decide() raises:
+    """Differential check of the fixed-width oracle against the rational one.
+
+    The two share no method: `sign_at_perron` counts sign variations in a
+    signed-remainder chain over machine integers, `interval_sign_at_perron`
+    encloses beta in a rational interval and brackets the quadratic over it.
+    Every coefficient triple on which both return a strict sign must return
+    the same one, and neither may call a nonzero element zero.
+    """
+    var fields = List[PerronField3]()
+    fields.append(PerronField3(-1, -1, 0))   # x^3 - x - 1
+    fields.append(PerronField3(-1, 0, -1))   # x^3 - x^2 - 1
+    fields.append(PerronField3(-1, -1, -1))  # x^3 - x^2 - x - 1
+    var compared = 0
+    for f in range(len(fields)):
+        ref field = fields[f]
+        for a0 in range(-4, 5):
+            for a1 in range(-4, 5):
+                for a2 in range(-4, 5):
+                    var x = CubicElt(a0, a1, a2)
+                    if x.is_zero():
+                        continue
+                    var boxed = interval_sign_at_perron(field, x, 24)
+                    var exact = sign_at_perron(field, x)
+                    assert_true(exact == 1 or exact == -1)
+                    if boxed != 0:
+                        assert_equal(boxed, exact)
+                        compared += 1
+    assert_true(compared > 2000)
+
+
+def test_coefficients_of_one_sign_are_decided_by_positivity_alone() raises:
+    """beta > 1 > 0, so a nonzero one-signed quadratic cannot change sign at it.
+
+    This is the shortcut `sign_at_perron` takes before building any remainder,
+    and it has to agree with the chain it skips -- including the cases where
+    the leading or constant coefficient vanishes.
+    """
+    var field = PerronField3(-1, -1, 0)
+    assert_equal(sign_at_perron(field, CubicElt(0, 0, 7)), 1)
+    assert_equal(sign_at_perron(field, CubicElt(3, 0, 0)), 1)
+    assert_equal(sign_at_perron(field, CubicElt(1, 2, 3)), 1)
+    assert_equal(sign_at_perron(field, CubicElt(0, 0, -7)), -1)
+    assert_equal(sign_at_perron(field, CubicElt(-3, 0, 0)), -1)
+    assert_equal(sign_at_perron(field, CubicElt(-1, -2, -3)), -1)
+    assert_equal(sign_at_perron(field, CubicElt()), 0)
+
+
+def test_a_mixed_sign_element_still_goes_through_the_remainder_chain() raises:
+    """`beta^2 - p beta + p` changes sign on the enclosure of beta for every
+    p >= 6, so no coefficient test and no endpoint bracket can settle it; the
+    answer is the chain's, and the rational oracle confirms it."""
+    var field = PerronField3(-1, -1, 0)
+    for p in [6, 100, 10000, 100000]:
+        var x = CubicElt(p, -p, 1)
+        assert_equal(sign_at_perron(field, x), -1)
+        assert_equal(interval_sign_at_perron(field, x, 24), -1)
+
+
+def test_the_fixed_width_chain_refuses_past_its_range_and_never_wraps() raises:
+    """The operating envelope of the machine-integer oracle, pinned.
+
+    The terminal resultant of the signed-remainder chain is a cubic form in
+    quantities linear in the coefficients, so it leaves `Int` once they reach
+    roughly `10^6`. Past that `sign_at_perron` raises -- it does not return a
+    wrapped verdict -- while the unbounded rational layer keeps deciding. That
+    gap is the reason the interval layer exists and is worth routing to.
+    """
+    var field = PerronField3(-1, -1, 0)
+    var near = CubicElt(100000, -100000, 1)
+    assert_true(_chain_decides(field, near))
+    assert_equal(sign_at_perron(field, near), -1)
+
+    var past = CubicElt(10000000, -10000000, 1)
+    assert_false(_chain_decides(field, past))
+    assert_equal(interval_sign_at_perron(field, past, 24), -1)
+
+
 def main() raises:
     test_exact_rational_normalization_and_order()
     print("[PASS] test_exact_rational_normalization_and_order")
@@ -179,5 +265,13 @@ def main() raises:
     print("[PASS] test_canonical_overlap_margin_interval_calibration")
     test_coarse_overlap_audit_withholds_partial_minimum()
     print("[PASS] test_coarse_overlap_audit_withholds_partial_minimum")
-    print("9 exact-interval Mojo tests passed.")
+    test_the_two_sign_oracles_agree_wherever_both_decide()
+    print("[PASS] test_the_two_sign_oracles_agree_wherever_both_decide")
+    test_coefficients_of_one_sign_are_decided_by_positivity_alone()
+    print("[PASS] test_coefficients_of_one_sign_are_decided_by_positivity_alone")
+    test_a_mixed_sign_element_still_goes_through_the_remainder_chain()
+    print("[PASS] test_a_mixed_sign_element_still_goes_through_the_remainder_chain")
+    test_the_fixed_width_chain_refuses_past_its_range_and_never_wraps()
+    print("[PASS] test_the_fixed_width_chain_refuses_past_its_range_and_never_wraps")
+    print("13 exact-interval Mojo tests passed.")
     require_contract("the exact rational and closed-interval layer: an unknown containment or sign is never promoted, and a coarse audit withholds a partial minimum")
