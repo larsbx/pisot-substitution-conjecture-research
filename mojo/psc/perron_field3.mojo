@@ -14,6 +14,7 @@ evidence.
 """
 
 from finite_linear_algebra.mat3 import Mat3
+from psc.perron_root_sign import perron_sign_by_enclosure
 from psc.pisot import is_pip
 
 
@@ -393,18 +394,124 @@ def _linear_terminal_sign(field: PerronField3, B: Int, C: Int) raises -> Int:
     return -_sign_int(N) * _sign_int(B)
 
 
-def sign_at_perron(field: PerronField3, x: CubicElt) raises -> Int:
-    """Return the exact sign of ``x(beta)`` without rational refinement.
+def _sign_without_remainders(field: PerronField3, x: CubicElt) raises -> Int:
+    """Decide ``sign(Q(beta))`` when no signed-remainder chain is needed.
 
-    For nonzero Q of degree at most two, the irreducible cubic Perron root beta
-    cannot be a zero of Q. We use the Sturm--Tarski query for the Cauchy index of
-    ``P' Q / P`` on ``(1,B]``. Because P has exactly one root in that interval,
-    the variation difference is precisely ``sign(Q(beta))``. The signed
-    remainder sequence is specialized symbolically to degree 3/2 so every
-    operation is checked fixed-width integer arithmetic.
+    Two exact shortcuts, in cost order. Both are one-sided: a ``0`` return
+    means *undecided here*, never *zero*, so the caller still runs the full
+    Sturm--Tarski query. Neither can narrow the decidable domain: the
+    coefficient-sign test does no arithmetic at all, and every operation in
+    the bracket is guarded, with an overflow reported as "undecided" and left
+    for the authoritative path to raise on if it must.
+
+    1. Coefficients of one sign. ``beta > 1 > 0``, so a nonzero ``Q`` with all
+       coefficients ``>= 0`` has ``Q(beta) > 0``, and dually.
+    2. A bracket over the integer enclosure ``1 < beta <= B`` of the Perron
+       root. A quadratic attains its extremes on a closed interval at an
+       endpoint or at its vertex, so when the vertex lies outside ``(1, B)``
+       the two endpoint values bound ``Q`` over the whole interval; a bound
+       that excludes zero proves the sign.
+    """
+    if x.a0 >= 0 and x.a1 >= 0 and x.a2 >= 0:
+        return 1
+    if x.a0 <= 0 and x.a1 <= 0 and x.a2 <= 0:
+        return -1
+
+    # Everything from here on is arithmetic that can overflow. It is all
+    # guarded, and every failure returns "undecided" rather than raising, so
+    # the bracket can only ever add an answer, never take one away.
+    try:
+        var hi = _perron_integer_bound(field)
+        if hi <= 1:
+            return 0
+        if x.a2 != 0:
+            # vertex at -a1 / (2 a2), placed against 1 and hi without dividing
+            var numerator = _checked_neg(x.a1)
+            var denominator = _checked_mul(2, x.a2)
+            if denominator < 0:
+                numerator = _checked_neg(numerator)
+                denominator = _checked_neg(denominator)
+            if numerator > denominator and numerator < _checked_mul(denominator, hi):
+                return 0
+        var at_one = _eval_quadratic(x.a2, x.a1, x.a0, 1)
+        var at_hi = _eval_quadratic(x.a2, x.a1, x.a0, hi)
+        if at_one > 0 and at_hi > 0:
+            return 1
+        if at_one < 0 and at_hi < 0:
+            return -1
+        return 0
+    except:
+        return 0
+
+
+def _remainder_chain_fits(field: PerronField3, x: CubicElt) -> Bool:
+    """Whether the signed-remainder chain is certain to stay inside ``Int``.
+
+    With ``C = max(|chi_i|, 1)`` and ``H = max |a_i|``, the first remainder's
+    coefficients are bounded by ``K = H (C^2 + 7C + 3)``, and the largest
+    intermediate anywhere in the chain is the terminal resultant -- a cubic
+    form in those coefficients with chi-quadratic weights, so it is under
+    ``32 K^3 C^2``. When that fits, no operation in the chain can overflow;
+    when it does not, or when the bound itself cannot be formed, the answer is
+    ``False`` and the caller asks the unbounded oracle instead.
+
+    This is deliberately a *static* test rather than catching the chain's own
+    overflow: the chain also raises on a malformed field or a lost coprimality,
+    and those are defects that must stay audible rather than be quietly
+    rerouted. The price is that a band of coefficients the chain would in fact
+    have settled is sent to the enclosure, which is exact and merely slower.
+    """
+    try:
+        var c = 1
+        for coefficient in [field.chi0, field.chi1, field.chi2]:
+            var m = _checked_abs(coefficient)
+            if m > c:
+                c = m
+        var h = 0
+        for coefficient in [x.a0, x.a1, x.a2]:
+            var m = _checked_abs(coefficient)
+            if m > h:
+                h = m
+        var weight = _checked_add(
+            _checked_add(_checked_mul(c, c), _checked_mul(7, c)), 3
+        )
+        var k = _checked_mul(h, weight)
+        _ = _checked_mul(_checked_mul(32, _mul3(k, k, k)), _checked_mul(c, c))
+        return True
+    except:
+        return False
+
+
+def sign_at_perron(field: PerronField3, x: CubicElt) raises -> Int:
+    """Return the exact sign of ``x(beta)``.
+
+    Three rungs, cheapest first, and every one of them exact.
+
+    1. ``_sign_without_remainders``: the coefficient signs, then a bracket over
+       the integer enclosure of beta. Settles three calls in five.
+    2. The Sturm--Tarski query for the Cauchy index of ``P' Q / P`` on
+       ``(1,B]``. Because P has exactly one root there, the variation
+       difference is precisely ``sign(Q(beta))``. The signed remainder sequence
+       is specialized symbolically to degree 3/2, so every operation is checked
+       fixed-width integer arithmetic -- fast, and bounded in coefficient size.
+    3. ``psc.perron_root_sign``: the same sign from a rational enclosure of
+       beta over unbounded arithmetic, when rung 2's bound would be exceeded.
+
+    The coefficient bound of rung 2 is therefore not a bound on this function:
+    it decides every nonzero element of ``Z[beta]`` whose coordinates fit in
+    ``Int``, or raises on a defect. Nothing is ever guessed at any rung.
     """
     if x.is_zero():
         return 0
+
+    var cheap = _sign_without_remainders(field, x)
+    if cheap != 0:
+        return cheap
+
+    if not _remainder_chain_fits(field, x):
+        return perron_sign_by_enclosure(
+            field.chi0, field.chi1, field.chi2, x.a0, x.a1, x.a2
+        )
 
     var coeffs = _signed_remainder_coefficients(field, x)
     var A = coeffs[0]
