@@ -6,6 +6,7 @@ from finite_linear_algebra.mat3 import Mat3
 from psc.claim_tests import require_contract
 from psc.overlap_interval_audit import audit_seed_overlap_interval_margins
 from psc.perron_field3 import CubicElt, PerronField3, build_perron_field3, sign_at_perron
+from psc.perron_root_sign import perron_sign_by_enclosure
 from psc.perron_interval import (
     cubic_perron_interval,
     interval_sign_at_perron,
@@ -160,14 +161,6 @@ def test_coarse_overlap_audit_withholds_partial_minimum() raises:
     assert_true(audit.minimum_interval_lower_margin.eq(Q.zero()))
 
 
-def _chain_decides(field: PerronField3, x: CubicElt) -> Bool:
-    try:
-        _ = sign_at_perron(field, x)
-        return True
-    except:
-        return False
-
-
 def test_the_two_sign_oracles_agree_wherever_both_decide() raises:
     """Differential check of the fixed-width oracle against the rational one.
 
@@ -227,23 +220,38 @@ def test_a_mixed_sign_element_still_goes_through_the_remainder_chain() raises:
         assert_equal(interval_sign_at_perron(field, x, 24), -1)
 
 
-def test_the_fixed_width_chain_refuses_past_its_range_and_never_wraps() raises:
-    """The operating envelope of the machine-integer oracle, pinned.
+def test_the_perron_sign_has_no_coefficient_ceiling() raises:
+    """`sign_at_perron` decides every element whose coordinates fit in `Int`.
 
-    The terminal resultant of the signed-remainder chain is a cubic form in
-    quantities linear in the coefficients, so it leaves `Int` once they reach
-    roughly `10^6`. Past that `sign_at_perron` raises -- it does not return a
-    wrapped verdict -- while the unbounded rational layer keeps deciding. That
-    gap is the reason the interval layer exists and is worth routing to.
+    Its machine-integer rung stops at about `2 * 10^6`, where the cubic form in
+    the terminal resultant leaves `Int`. Past that the question goes to the
+    rational enclosure instead of being refused, so the ceiling belongs to the
+    rung and not to the function. `beta^2 - p beta + p` is negative at beta for
+    every `p >= 6` and is settled by no coefficient test and no endpoint
+    bracket, so each case here really does reach past the shortcuts.
     """
     var field = PerronField3(-1, -1, 0)
-    var near = CubicElt(100000, -100000, 1)
-    assert_true(_chain_decides(field, near))
-    assert_equal(sign_at_perron(field, near), -1)
+    for p in [100000, 10000000, 1000000000000, 4611686018427387904]:
+        var x = CubicElt(p, -p, 1)
+        assert_equal(sign_at_perron(field, x), -1)
+        assert_equal(
+            perron_sign_by_enclosure(field.chi0, field.chi1, field.chi2, p, -p, 1), -1
+        )
 
-    var past = CubicElt(10000000, -10000000, 1)
-    assert_false(_chain_decides(field, past))
-    assert_equal(interval_sign_at_perron(field, past, 24), -1)
+
+def test_the_enclosure_decides_where_the_machine_rung_cannot() raises:
+    """The unbounded oracle on its own, at sizes the chain cannot reach.
+
+    Both signs, at a magnitude where the chain's terminal resultant would need
+    roughly `10^54`, and the zero element, which is exactly zero and is the one
+    element that has no sign.
+    """
+    assert_equal(perron_sign_by_enclosure(-1, -1, 0, 10**18, -(10**18), 1), -1)
+    assert_equal(perron_sign_by_enclosure(-1, -1, 0, -(10**18), 10**18, -1), 1)
+    assert_equal(perron_sign_by_enclosure(-1, -1, 0, 0, 0, 0), 0)
+    # beta - 1 > 0 and beta^2 - 2 < 0 for the plastic root, at any scale
+    assert_equal(perron_sign_by_enclosure(-1, -1, 0, -(10**15), 10**15, 0), 1)
+    assert_equal(perron_sign_by_enclosure(-1, -1, 0, -(2 * 10**15), 0, 10**15), -1)
 
 
 def main() raises:
@@ -271,7 +279,9 @@ def main() raises:
     print("[PASS] test_coefficients_of_one_sign_are_decided_by_positivity_alone")
     test_a_mixed_sign_element_still_goes_through_the_remainder_chain()
     print("[PASS] test_a_mixed_sign_element_still_goes_through_the_remainder_chain")
-    test_the_fixed_width_chain_refuses_past_its_range_and_never_wraps()
-    print("[PASS] test_the_fixed_width_chain_refuses_past_its_range_and_never_wraps")
-    print("13 exact-interval Mojo tests passed.")
+    test_the_perron_sign_has_no_coefficient_ceiling()
+    print("[PASS] test_the_perron_sign_has_no_coefficient_ceiling")
+    test_the_enclosure_decides_where_the_machine_rung_cannot()
+    print("[PASS] test_the_enclosure_decides_where_the_machine_rung_cannot")
+    print("14 exact-interval Mojo tests passed.")
     require_contract("the exact rational and closed-interval layer: an unknown containment or sign is never promoted, and a coarse audit withholds a partial minimum")

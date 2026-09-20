@@ -15,7 +15,10 @@ element `sum_b x[b] v_b`, and what the remaining digits can still contribute is
 bounded by a geometric series in `1/beta`. Clearing the series' `1/(beta - 1)`
 by multiplying the comparison through by `beta - 1`, which is positive, leaves
 an exact comparison between two elements of `Z[beta]` that `sign_at_perron`
-decides by Sturm-Tarski counting. No division and no float enters.
+decides -- by Sturm-Tarski counting where the coefficients are small enough for
+it, and by a rational enclosure of `beta` where they are not, so no size of
+coordinate the step admits can leave the comparison undecided. No division and
+no float enters.
 
 `slack` is the caller's, not this module's. The bound here is
 `slack (radix - 1) sum_b v_b`, and whether `slack = 1` is a theorem about the
@@ -40,7 +43,14 @@ from psc.perron_field3 import (
 
 
 comptime ENTRY_BOUND = 1 << 52
-"""Where a state coordinate is refused rather than allowed to wrap."""
+"""Where a state coordinate is refused rather than allowed to wrap.
+
+This is the bound on the *stepping* arithmetic, and it is the only one: the
+sign query the reserve comparison ends in decides every element of `Z[beta]`
+whose coordinates fit in `Int`, because `sign_at_perron` hands a coefficient
+past its machine-integer rung to an unbounded rational enclosure rather than
+refusing it. A coordinate admitted here therefore reaches a decision, which
+was not true while the sign oracle stopped near `2 * 10^6`."""
 
 comptime INCIDENCE_BOUND = 64
 """Where an incidence entry is refused, so the bound above can be checked once.

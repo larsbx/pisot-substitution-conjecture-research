@@ -68,32 +68,89 @@ Checked by reading, all sound:
 - `is_primitive` checks `M^1..M^5`; Wielandt's exponent for `n = 3` is
   `n^2 - 2n + 2 = 5`.
 
-## 2. The envelope: one stated bound is not the effective one
+## 2. The envelope: the ceiling belonged to the rung, and is gone
 
-`sign_at_perron` decides coefficients up to roughly `2 * 10^6` and raises past
-that. On the family `beta^2 - p beta + p` over `x^3 - x - 1`, bisection puts
-the exact threshold at **458,007**. The binding term is `A * A * A * c * c` in
-`_quadratic_terminal_sign`'s terminal resultant `R`, which is a cubic form in
-`(A, B, C)` with `A, B, C` linear in `Q`'s coefficients — so the chain costs
-one cube of the input range.
+The machine-integer rung of `sign_at_perron` decides coefficients up to
+roughly `2 * 10^6` and cannot go past that. On the family `beta^2 - p beta + p`
+over `x^3 - x - 1`, bisection puts its exact threshold at **458,007**. The
+binding term is `A * A * A * c * c` in `_quadratic_terminal_sign`'s terminal
+resultant `R`, a cubic form in `(A, B, C)` with `A, B, C` linear in `Q`'s
+coefficients — so the chain costs one cube of the input range, and a fixed
+width buys a fixed ceiling.
 
-**This never bites in practice.** Instrumenting every call:
+Measured, that ceiling never binds. Instrumenting every call:
 
 | driver | `sign_at_perron` calls | largest coefficient seen |
 | --- | --- | --- |
 | coincidence-formula-census | 23,762,617 | **66** |
 | overlap-contracting-census | 278,662 | **36** |
 
-Four orders of margin. But one guard does not say so:
+Four orders of margin — but one guard was written as though there were none:
 
-> **`ENTRY_BOUND = 1 << 52` in `psc/pisot_state.mojo` advertises a domain
-> about `2 * 10^9` times wider than the kernel can decide.**
+> `ENTRY_BOUND = 1 << 52` in `psc/pisot_state.mojo` admitted state coordinates
+> about `2 * 10^9` times larger than the sign query the reserve comparison ends
+> in could settle. A coordinate that passed it near `2^52` produced a
+> `CubicElt` the oracle refused, so the run raised anyway — fail-closed, never
+> a wrong answer, but the bound named in the source was not the bound that
+> governed.
 
-A state that passes that guard with entries near `2^52` yields a `CubicElt`
-far outside anything `sign_at_perron` can settle, so the run raises anyway.
-Nothing wrong is ever returned — the failure is closed — but the bound named
-in the source is not the bound that governs. Either document the effective
-ceiling beside it, or route the refusal as in §4(ii), which removes it.
+**Fixed, by making the function total rather than by lowering the bound.**
+`sign_at_perron` is now a three-rung ladder, and the coefficient range belongs
+to rung 2 alone:
+
+1. `_sign_without_remainders` — the coefficient signs, then a bracket over the
+   integer enclosure of `beta`. Answers three calls in five (§3).
+2. the Sturm–Tarski chain in machine integers — exact, fast, bounded.
+3. `psc/perron_root_sign.mojo` — the same sign from a rational enclosure of
+   `beta` over unbounded `finite_exact` arithmetic.
+
+Rung 3 is reached through a *static* test, `_remainder_chain_fits`, which asks
+whether `32 K^3 C^2` fits in `Int` for `C = max(|chi_i|, 1)` and
+`K = H (C^2 + 7C + 3)` — a bound on the largest intermediate the chain can
+form. It is deliberately not a `try` around the chain: the chain also raises on
+a malformed field or a lost coprimality, and those are defects that must stay
+audible rather than be quietly rerouted. The price is that a band of
+coefficients the chain would in fact have settled goes to the enclosure
+instead, which is exact and merely slower — and which nothing in the corpus
+enters, since the largest coefficient seen is 66.
+
+Rung 3 terminates, at a depth known before it starts. `chi` is irreducible of
+degree three and `deg Q <= 2`, so `Res(chi, Q) = prod_i Q(beta_i)` is a nonzero
+integer; `beta` is Pisot, so its conjugates lie in the open unit disc and
+`|Q(beta_i)| <= 3H`. Hence
+
+```
+|Q(beta)| >= 1 / (9 H^2).
+```
+
+The root is bracketed between consecutive integers, so `k` bisections leave
+width `2^-k`, over which the natural Horner extension of `Q` has width at most
+`3 H B 2^-k`. Any `k` with `2^k > 27 H^3 B` puts that below the separation, and
+an interval of width under `|Q(beta)|` that contains `Q(beta)` cannot contain
+zero. `_sufficient_refinements` returns such a `k` from bit lengths alone;
+exhausting it is a defect and raises, never an inconclusive verdict.
+
+Re-running the same wide-magnitude differential of §1 against the ladder:
+
+| `sign_at_perron` | before | after |
+| --- | --- | --- |
+| decided | 2,488 | **7,200** |
+| refused | 4,712 | **0** |
+| disagreed with the oracle | 0 | **0** |
+
+Every one of the 4,712 newly decided cases — at magnitudes to `10^15` — agrees
+with the independent oracle. `sign_at_perron` now decides every nonzero element
+of `Z[beta]` whose coordinates fit in `Int`, so `ENTRY_BOUND` governs the
+stepping arithmetic it was written for and nothing narrower sits behind it.
+
+The ladder costs nothing on the happy path: three runs of the coincidence
+census at 55.82 s, 48.23 s, 47.47 s against 50.31 s, 50.46 s, 47.89 s for the
+shortcut alone, with output unchanged — the static test is ten integer
+operations on the 40% of calls that reach it.
+
+`psc/perron_interval.mojo` keeps its role — the field's own type, and one
+enclosure cached per field — and now delegates its bracketing to
+`psc/perron_root_sign.mojo` rather than carrying a second copy of it.
 
 ## 3. Where the time goes: 60% of the hot primitive was wasted
 
@@ -111,9 +168,9 @@ Three in five calls built a degree-5 resultant they did not need.
 
 ## 4. What changed, and what is left on the table
 
-### Landed — both behaviour-identical, both measured
+### Landed — three changes, all measured
 
-**(a) A two-step shortcut in `sign_at_perron`.** Before any remainder is
+**(a) A two-step shortcut at the front of `sign_at_perron`.** Before any remainder is
 built: if the coefficients are all of one sign the answer is that sign, since
 `beta > 1 > 0`; otherwise, if the vertex of the quadratic falls outside
 `(1, B)`, the two endpoint values bound `Q` over the whole enclosure and a
@@ -145,13 +202,20 @@ regression pins.
 | `PROJECTABLE = 200` (shipped) | 11.58 s | 10.95 s |
 | `PROJECTABLE = 1500` | 21.78 s | 18.79 s |
 
-Both changes are guarded by new regressions: four in
-`tests/test_exact_interval.mojo` (including a 2,184-case differential of the
-fixed-width oracle against the unbounded rational one, and the envelope of
-§2 pinned as *refuses*, never wraps) and one in `tests/test_automata.mojo`.
-All 39 test files, `verify.mojo`, and every pinned census line pass unchanged.
+**(c) The unbounded rung, which removes the envelope.** §2 in full: a new
+`psc/perron_root_sign.mojo`, reached through a static fits-test so defects stay
+audible, turning `sign_at_perron` from bounded to total. This is the one change
+of the three that alters behaviour — on inputs that previously raised, and only
+there — and the wide differential confirms every newly decided case.
 
-### Not landed — two measured recommendations
+All three are guarded by new regressions: six in `tests/test_exact_interval.mojo`
+(among them a 2,184-case differential of the fixed-width oracle against the
+unbounded rational one, the shortcuts' contracts, a mixed-sign element that must
+still reach the chain, and the absence of a coefficient ceiling up to `2^62`)
+and one in `tests/test_automata.mojo`. All 39 test files, `verify.mojo`, all six
+governance checks, and every pinned census line pass unchanged.
+
+### Not landed — one measured recommendation
 
 **(i) `PROJECTABLE = 200` is over-conservative by measurement.** The census
 comment argues the letter-map projection "costs the conversion's size
@@ -170,25 +234,10 @@ mismatches. It is left for a decision rather than taken, because it widens
 what the census claims and needs the two `grep -Fx` pins at
 `.github/workflows/ci.yml:287,289` moved with it.
 
-**(ii) The rational-interval layer has no production caller.**
-`psc/perron_interval.mojo` answers the same sign question over unbounded
-`finite_exact` rationals. Its only importer is its own test. On the family of
-§2:
-
-| `p` | fixed-width chain | interval layer |
-| --- | --- | --- |
-| `10^5` | decides (`-1`) | `-1` |
-| `10^6` | **raises** | `-1` |
-| `10^8` | **raises** | `-1` |
-
-Routing the *refusal* case to it makes `sign_at_perron` a four-rung ladder —
-coefficient signs, integer bracket, remainder chain, rational enclosure — in
-which the ceiling of §2 disappears and fail-closed is preserved, because the
-enclosure returns "undecided" rather than a guess, so an unresolved bracket
-re-raises. Not taken here: it widens the kernel's contract, and at a largest
-observed coefficient of 66 nothing in the corpus demands it. It becomes the
-obvious move the moment a driver works with powered substitutions or larger
-digit alphabets, where the coefficients are not bounded by 66.
+**(ii) — done.** This was the second recommendation of the first pass: the
+rational-interval layer answered where the fixed-width chain refused and had no
+production caller. It is now rung 3 of `sign_at_perron`, as §2 records, and the
+envelope it removed is pinned by two regressions.
 
 ## How this was measured
 
