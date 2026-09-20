@@ -166,9 +166,9 @@ sufficed:
 
 Three in five calls built a degree-5 resultant they did not need.
 
-## 4. What changed, and what is left on the table
+## 4. What changed
 
-### Landed — three changes, all measured
+### Landed — four changes, all measured
 
 **(a) A two-step shortcut at the front of `sign_at_perron`.** Before any remainder is
 built: if the coefficients are all of one sign the answer is that sign, since
@@ -199,45 +199,51 @@ regression pins.
 
 | numeration-conversion-census | scan | hash |
 | --- | --- | --- |
-| `PROJECTABLE = 200` (shipped) | 11.58 s | 10.95 s |
-| `PROJECTABLE = 1500` | 21.78 s | 18.79 s |
+| `PROJECTABLE = 200` (the cap then) | 11.58 s | 10.95 s |
+| `PROJECTABLE = 1500` (the cap now, (d)) | 21.78 s | 18.79 s |
 
 **(c) The unbounded rung, which removes the envelope.** §2 in full: a new
 `psc/perron_root_sign.mojo`, reached through a static fits-test so defects stay
 audible, turning `sign_at_perron` from bounded to total. This is the one change
-of the three that alters behaviour — on inputs that previously raised, and only
+here that alters an answer — on inputs that previously raised, and only
 there — and the wide differential confirms every newly decided case.
 
-All three are guarded by new regressions: six in `tests/test_exact_interval.mojo`
+(a) to (c) are guarded by new regressions: six in `tests/test_exact_interval.mojo`
 (among them a 2,184-case differential of the fixed-width oracle against the
 unbounded rational one, the shortcuts' contracts, a mixed-sign element that must
 still reach the chain, and the absence of a coefficient ceiling up to `2^62`)
-and one in `tests/test_automata.mojo`. All 39 test files, `verify.mojo`, all six
-governance checks, and every pinned census line pass unchanged.
+and one in `tests/test_automata.mojo`; (d) is guarded by the census's own three
+`grep -Fx` pins, moved to the counts it now reports. All 39 test files,
+`verify.mojo`, all six governance checks, and every census line but those three
+pass unchanged.
 
-### Not landed — one measured recommendation
+### Also landed — the projection cap
 
-**(i) `PROJECTABLE = 200` is over-conservative by measurement.** The census
-comment argues the letter-map projection "costs the conversion's size
-squared", and the cap leaves 27 specimens unverified. The constant is small
-enough that it does not:
+**(d) `PROJECTABLE = 200` was over-conservative by measurement.** The
+conversion census argued that carrying the letter map across "costs the
+conversion's size squared", and capped at 200 — which left 27 of 115
+conversions unprojected. The growth is real; the constant is not what the cap
+assumed:
 
 | `PROJECTABLE` | letter maps carried across | too large | seconds |
 | --- | --- | --- | --- |
-| 200 (shipped) | 88 | 27 | 10.9 |
+| 200 (was) | 88 | 27 | 10.9 |
 | 400 | 107 | 8 | 13.9 |
 | 800 | 112 | 3 | 16.0 |
-| **1500** | **115** | **0** | 18.8 |
+| **1500 (is)** | **115** | **0** | 13.4 – 20.8 |
 
-Full coverage costs **+8 seconds** and reports 13,800 letter verdicts with 0
-mismatches. It is left for a decision rather than taken, because it widens
-what the census claims and needs the two `grep -Fx` pins at
-`.github/workflows/ci.yml:287,289` moved with it.
+Full coverage costs a handful of seconds on a census that is nowhere near CI's
+critical path, and reports **13,800 letter verdicts with 0 mismatches**, up
+from 10,560. The cap now sits above every conversion this corpus and stride
+produce — the largest minimised one is 1421 — so the skipped count is zero and
+the outcome separation stands ready for a corpus that produces a larger one.
+Three `grep -Fx` pins moved with it; the largest letter map grew from 198 to
+1015, which is the object the extra 27 specimens were hiding.
 
-**(ii) — done.** This was the second recommendation of the first pass: the
-rational-interval layer answered where the fixed-width chain refused and had no
-production caller. It is now rung 3 of `sign_at_perron`, as §2 records, and the
-envelope it removed is pinned by two regressions.
+Both of the first pass's open recommendations are therefore closed. The
+rational-interval layer, which answered where the fixed-width chain refused and
+had no production caller, is now rung 3 of `sign_at_perron` (§2); the
+projection cap is (d) above. Nothing from this audit is left outstanding.
 
 ## How this was measured
 

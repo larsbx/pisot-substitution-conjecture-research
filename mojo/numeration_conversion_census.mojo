@@ -13,7 +13,9 @@ the state cap is a refusal, not a negative: the imported theorem says a finite
 state set exists, and this exploration did not find one inside the cap. A
 specimen skipped -- for a digit alphabet larger than the cap, or for a
 conversion too large to project through -- was never attempted, and the two
-reasons are counted apart because they say different things.
+reasons are counted apart because they say different things. No conversion in
+this corpus is currently too large: every one that builds also carries its
+letter map across.
 
 This driver catches nothing. A refusal arrives as a flag on the result;
 anything that raises aborts the census rather than being counted as an
@@ -45,7 +47,7 @@ comptime RADIX_CAP = 4
 comptime STATE_CAP = 20000
 comptime POSITION_BOUND = 40
 comptime NEAR_MISSES = 3
-comptime PROJECTABLE = 200
+comptime PROJECTABLE = 1500
 
 
 def main() raises:
@@ -105,9 +107,17 @@ def main() raises:
                     print("FALSE ACCEPT", spec.label(), n, "against", n + offset)
 
         # Carrying the letter map across is a subset construction over the
-        # product, so its cost is the conversion's size squared: a large
-        # conversion is not attempted, and saying so is not the same as saying
-        # it failed.
+        # product, so its cost grows faster than the conversion's size: the cap
+        # keeps one specimen from setting the census's running time, and a
+        # conversion above it is not attempted. Saying that is not the same as
+        # saying it failed, which is why the two are counted apart.
+        #
+        # The cap is above every conversion this corpus and stride produce --
+        # the largest minimised one is 1421 -- so the skipped count is zero and
+        # the separation stands ready for a corpus that produces a larger one.
+        # It was 200 until measurement showed what that cost: 88 of 115 letter
+        # maps carried across, for 10.9 s against 18.8 s to carry all 115. See
+        # docs/exact-cubic-kernel-audit-2026-09-20.md.
         if small.states() > PROJECTABLE:
             too_large_to_project += 1
             report_progress(s, len(corpus))
