@@ -15,12 +15,11 @@ def test_cylinder_is_specified_but_hitting_remains_open():
     data = load_contract()
     assert data["issue"] == 139
     assert data["status"] == "specified_not_proved"
-    assert data["residual_lemma"] == {
-        "name": "PeriodicOrbitCylinderRecurrence",
-        "status": "open",
-        "must_be_uniform_in_component": True,
-        "must_preserve_occurrence_compatibility": True,
-    }
+    residual = data["residual_lemma"]
+    assert residual["name"] == "AffinePeriodicOrbitCylinderRecurrence"
+    assert residual["status"] == "open"
+    assert residual["must_be_uniform_in_component"] is True
+    assert residual["must_preserve_occurrence_compatibility"] is True
 
 
 def test_nonunit_carrier_keeps_finite_places():
@@ -42,6 +41,18 @@ def test_acceptance_stays_exact_and_occurrence_labelled():
     assert "occurrence-labelled" in target["authoritative_acceptance"]
 
 
+def test_affine_orbit_keeps_forcing_digits():
+    orbit = load_contract()["affine_orbit"]
+    assert orbit["recurrence"] == "w_(t+1) = M*w_t + d_t"
+    assert orbit["replayed_offset"] == "w_t = M^t*w_0 + q_t"
+    assert orbit["periodicity"] == "w_r = w_0"
+    assert orbit["forbidden_homogeneous_substitute"] == (
+        "M^t*w_0 without accumulated forcing"
+    )
+    forbidden = load_contract()["forbidden_acceptance"]
+    assert any("homogeneous powers" in item for item in forbidden)
+
+
 def test_weak_geometric_surrogates_cannot_accept():
     forbidden = set(load_contract()["forbidden_acceptance"])
     assert "Archimedean projection equality in the non-unit case" in forbidden
@@ -50,13 +61,33 @@ def test_weak_geometric_surrogates_cannot_accept():
     assert "floating or truncated local-coordinate equality" in forbidden
 
 
-def test_note_keeps_claim_boundary_explicit():
+def test_note_has_no_forbidden_control_characters():
+    note = NOTE.read_text(encoding="utf-8")
+    forbidden = [
+        char
+        for char in note
+        if ord(char) < 32 and char not in {"\n", "\t"}
+    ]
+    assert forbidden == []
+    for marker in [
+        r"\beta",
+        r"\lambda",
+        r"\Phi'_\sigma",
+        r"\mathcal C_m",
+        r"\varnothing",
+    ]:
+        assert marker in note
+
+
+def test_note_keeps_claim_boundary_and_affine_correction_explicit():
     note = NOTE.read_text(encoding="utf-8")
     for marker in [
         "**Status:** exact specification for issue #139.",
         "### AdelicPeriodicOffsetHitting",
-        "### Periodic-orbit cylinder recurrence (open)",
-        "It does not imply a target hit.",
-        "certificate acceptance remains",
+        "### Affine periodic-orbit cylinder recurrence (open)",
+        "It does **not** say",
+        r"w_{t+1}=Mw_t+d_t",
+        r"w_t=M^t w_0+q_t",
+        "certificate acceptance remains integer/algebraic and fail-closed",
     ]:
         assert marker in note
