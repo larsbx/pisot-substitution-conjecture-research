@@ -25,11 +25,12 @@ drivers now look up instead of recomputing.
 
 Start here:
 
-1. `docs/current-proof-architecture-2026-09-14.md` — canonical current architecture.
-2. `docs/completion-ledger-2026-09-14.md` — latest weekly completion ledger and priority ordering.
-3. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the 2026-09-14 architecture reconciliation.
-4. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
-5. `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form state-of-program exposition.
+1. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the #138 aligned branch, #139 strict-zipper branch, Level 2, hypothesis firewall, and prioritized closure criteria.
+2. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
+3. `docs/completion-ledger-2026-09-14.md` — latest merged weekly completion snapshot; historical evidence/priorities should be read against the live roadmap.
+4. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
+5. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
+6. `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form state-of-program exposition.
 
 ### Headline: one open premise on the shortest PDS route
 

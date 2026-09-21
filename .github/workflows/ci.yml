@@ -286,9 +286,9 @@ jobs:
           grep -Fx 'basis recurrence mismatches: 0' <<<"$out"
           grep -Fx 'conversions built: 115  refused at the cap: 1  skipped for alphabet: 67' <<<"$out"
           grep -Fx 'pairs checked: 4600  false rejects: 0  false accepts: 0' <<<"$out"
-          grep -Fx 'letter maps carried across: 88  conversions too large to project: 27' <<<"$out"
-          grep -Fx 'letter verdicts checked: 10560  mismatches: 0' <<<"$out"
-          grep -Fx 'largest minimised conversion: 1421  largest letter map: 198' <<<"$out"
+          grep -Fx 'letter maps carried across: 115  conversions too large to project: 0' <<<"$out"
+          grep -Fx 'letter verdicts checked: 13800  mismatches: 0' <<<"$out"
+          grep -Fx 'largest minimised conversion: 1421  largest letter map: 1015' <<<"$out"
 
   coincidence-formula-census:
     runs-on: ubuntu-latest

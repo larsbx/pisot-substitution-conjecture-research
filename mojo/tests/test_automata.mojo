@@ -48,6 +48,7 @@ from psc.dumont_thomas import (
     power_substitution,
     prolongable_form,
 )
+from psc.numeration_conversion import conversion_automaton
 from psc.oa_overlap_types import fixed_point_prefix, prolongable_point
 
 
@@ -372,6 +373,35 @@ def test_two_quantifiers_eliminate_in_sequence() raises:
     assert_true(same_language(twice, other_order))
 
 
+def test_the_subset_and_refinement_indices_are_order_faithful_at_scale() raises:
+    """Determinisation and Moore refinement on a construction big enough to
+    tell a hash index from a scanned list.
+
+    Both index a subset (a projection) or a signature (a refinement round) by
+    first encounter, so the numbering, and therefore the automaton, is fixed by
+    the order states are explored in -- not by how the index is searched. What
+    is pinned is that identity: exact state counts either side of minimisation,
+    and the language, on a conversion automaton with hundreds of states. A
+    lookup that returned the wrong index would move a transition and change one
+    of the three.
+    """
+    var sigma = tribonacci()
+    var built = conversion_automaton(sigma, 0, 3, 20000)
+    assert_true(built.accepted())
+    var conversion = built.automaton.copy()
+    var small = minimised(conversion)
+    assert_true(conversion.states() > 500)
+    assert_true(same_language(conversion, small))
+    assert_true(small.states() <= conversion.states())
+
+    # projecting out the path track is the subset construction, on a product
+    # whose determinisation is where a linear scan costs the most
+    var letters = project(small, 2, 0)
+    assert_equal(letters.letters * letters.letters, small.letters)
+    assert_true(same_language(letters, minimised(letters)))
+    assert_equal(minimised(letters).states(), minimised(minimised(letters)).states())
+
+
 def test_a_count_past_the_machine_range_is_still_exact() raises:
     """`2^63` words, which a machine integer cannot hold.
 
@@ -524,7 +554,9 @@ def main() raises:
     print("[PASS] test_a_track_condition_enters_and_leaves_a_product")
     test_a_letter_outside_the_alphabet_is_refused_not_indexed_with()
     print("[PASS] test_a_letter_outside_the_alphabet_is_refused_not_indexed_with")
-    print("15 automata and numeration tests passed.")
+    test_the_subset_and_refinement_indices_are_order_faithful_at_scale()
+    print("[PASS] test_the_subset_and_refinement_indices_are_order_faithful_at_scale")
+    print("16 automata and numeration tests passed.")
     # One line and one literal: `policy.py` reads the declaration out of the
     # source, and its pattern does not join concatenated string parts.
     require_contract("the automata kernel decides emptiness, complement and projection over total deterministic automata, and the Dumont-Thomas numeration presents the fixed point exactly; no ledger claim rests on it, and the step to a decision procedure is gated in docs/automatic-sequence-route-literature-gate-2026-09-17.md")

@@ -7,12 +7,18 @@ is returned only when the enclosure excludes zero. Ambiguous or invalid interval
 work falls back to ``sign_at_perron``; it is never interpreted as a zero or a
 negative mathematical result. Endpoints are unbounded ``finite_exact``
 rationals, so refinement depth is limited by cost only, never by overflow.
+
+What this module adds over `psc.perron_root_sign`, which holds the bracketing
+and the same enclosure in plain integers, is the field's own type and one
+enclosure cached per field: a census isolates beta once per substitution and
+answers every element against the stored box.
 """
 
 from finite_exact.closed_interval import IQ
 from finite_exact.rat_q import Q
-from psc.exact import eval_int_poly_at_q, interval_horner_int, midpoint, q_int, q_sign, require_iq, strict_sign
+from psc.exact import interval_horner_int, strict_sign
 from psc.perron_field3 import CubicElt, PerronField3, sign_at_perron
+from psc.perron_root_sign import perron_root_bracket
 
 
 struct PerronIntervalDecision(ImplicitlyCopyable, Copyable, Movable):
@@ -24,85 +30,15 @@ struct PerronIntervalDecision(ImplicitlyCopyable, Copyable, Movable):
         self.interval_certified = interval_certified
 
 
-def _safe_abs(x: Int) raises -> Int:
-    if x == Int.MIN:
-        raise Error("Perron interval cannot take abs(Int.MIN)")
-    return -x if x < 0 else x
-
-
-def _safe_add_one(x: Int) raises -> Int:
-    if x == Int.MAX:
-        raise Error("Perron interval integer bound overflow")
-    return x + 1
-
-
-def _integer_bound(field: PerronField3) raises -> Int:
-    var m = _safe_abs(field.chi0)
-    var t = _safe_abs(field.chi1)
-    if t > m:
-        m = t
-    t = _safe_abs(field.chi2)
-    if t > m:
-        m = t
-    return _safe_add_one(m)
-
-
-def _charpoly(field: PerronField3) -> List[Int]:
-    return [field.chi0, field.chi1, field.chi2, 1]
-
-
-def _sign_at_rational(coeffs: List[Int], x: Q) raises -> Int:
-    return q_sign(eval_int_poly_at_q(coeffs, x))
-
-
 def perron_root_interval(
     field: PerronField3, refinements: Int = 10
 ) raises -> IQ:
     """Return an exact rational enclosure containing the unique Perron root.
 
-    The initial bracket is located between consecutive integers in ``(1,B]``.
-    It is then bisected a bounded number of times with exact rational
-    arithmetic.
-    """
-    if refinements < 0:
-        raise Error("Perron interval refinement count must be nonnegative")
-    var coeffs = _charpoly(field)
-    var bound = _integer_bound(field)
-    if bound <= 1:
-        raise Error("invalid Perron interval bound")
-
-    var lo = Q.one()
-    var flo = _sign_at_rational(coeffs, lo)
-    if flo == 0:
-        raise Error("irreducible Perron cubic unexpectedly vanishes at 1")
-    var hi = q_int(bound)
-    var found = False
-
-    for k in range(2, bound + 1):
-        var right = q_int(k)
-        var fright = _sign_at_rational(coeffs, right)
-        if fright == 0:
-            raise Error("irreducible Perron cubic unexpectedly has an integer root")
-        if fright != flo:
-            hi = right.copy()
-            found = True
-            break
-        lo = right.copy()
-        flo = fright
-    if not found:
-        raise Error("failed to bracket the Perron root between consecutive integers")
-
-    for _ in range(refinements):
-        var mid = midpoint(lo, hi)
-        var fm = _sign_at_rational(coeffs, mid)
-        if fm == 0:
-            raise Error("irreducible Perron cubic unexpectedly has a rational root")
-        if fm == flo:
-            lo = mid.copy()
-            flo = fm
-        else:
-            hi = mid.copy()
-    return require_iq(IQ(lo, hi), "Perron root enclosure")
+    The bracketing and bisection live in `psc.perron_root_sign`, which is
+    below `psc.perron_field3` and so can also serve as that module's unbounded
+    rung; this is the same enclosure under the field's own type."""
+    return perron_root_bracket(field.chi0, field.chi1, field.chi2, refinements)
 
 
 struct PerronEnclosure(Copyable, Movable):
