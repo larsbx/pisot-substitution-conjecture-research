@@ -86,7 +86,7 @@ Issue #84 is the primary completion issue. The preferred attack is to assume a *
 
 until a boundary hit / coincidence or an impossible finite configuration is forced.
 
-Proving all seeds or every overlap vertex is stronger than necessary; one legal swap seed per substitution suffices for Theorem 5.38.
+Proving all seeds or every overlap vertex is stronger than necessary; one periodic swap seed built from distinct tile types per substitution suffices for Theorem 5.38. No substitution-language legality assumption is used.
 
 ### Exact finite evidence
 
