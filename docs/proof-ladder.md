@@ -2,7 +2,7 @@
 
 The current shortest route to the Pisot Substitution Conjecture in the standing regime has **one open mathematical premise**: seedwise overlap productivity. The finite-BPA/G1 and closed-carrier programmes remain important stronger structural routes, but they are no longer prerequisites of the shortest PDS sufficiency theorem.
 
-For detailed claim status use `docs/claim-status-and-source-map-2026-09-13.md`; for the current weekly snapshot use `docs/completion-ledger-2026-09-14.md`; theorem statements and imported hypotheses are in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
+For detailed claim status use `docs/claim-status-and-source-map-2026-09-13.md`; for the live completion priorities use `docs/research-roadmap-2026-09-21.md`; for the latest merged weekly snapshot use `docs/completion-ledger-2026-09-14.md`; theorem statements and imported hypotheses are in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
 
 # Stable base — incidence rank, UD, and bounded discrepancy
 
@@ -254,11 +254,12 @@ Every proposed completion proof must preserve:
 
 # Completion order
 
-1. **P0 — synchronization.** Keep manuscript, claim/source map, conjecture ledger, proof ladder, README and TLA dependency comments aligned.
-2. **P1 — overlap productivity.** Prove the one-seed form of Open Problem 5.35. This is the only open premise on the current shortest PDS route.
-3. **P2 — aligned/zipper obstruction.** Use PR #88's normal form: eliminate the exposed bad letter pair or rule out the strict ordered zipper using full rank and exact prefix geometry.
-4. **P3 — G1b-2.** Continue as a stronger independent theorem on BPA finiteness, with the non-unimodular firewall intact.
-5. **P4 — concentration and wedge productivity.** Continue as the alternative finite-BPA/SCC route.
-6. **P5 — realization bridge.** Discharge G0–G6 only if pursuing the coincidence-rank/collar certification route.
+1. **P0 — synchronization.** Keep manuscript, claim/source map, conjecture ledger, proof ladder, README, roadmap, issue statements and TLA dependency comments aligned.
+2. **P1a — aligned branch (#138).** Prove the ternary two-sided strong-coincidence statement needed to eliminate every aligned bad SCC, or reduce it to a strictly smaller named theorem. Keep the Barge–Diamond two-letter/general-existence scopes distinct.
+3. **P1b — strict-zipper branch (#139).** Complete the Ito–Rao / Barge–Kwapisz / Akiyama–Lee / Minervino–Thuswaldner / Barge transfer audit, then state and attack a uniform non-unimodular prefix-hitting theorem in the full contracting representation.
+4. **P1 — overlap productivity (#84).** Assemble P1a and P1b, or replace them with one stronger theorem excluding every bad closed irreducible SCC. This remains the only open premise on the current shortest PDS route.
+5. **P2 — G1b-2.** Continue as a stronger independent theorem on BPA finiteness, with the non-unimodular and label/order firewalls intact.
+6. **P3 — concentration and wedge productivity.** Continue as the alternative finite-BPA/SCC route only when new invariants add information beyond child counts and full wedge span.
+7. **P4 — realization bridge.** Discharge G0–G6 only if pursuing the coincidence-rank/collar certification route.
 
-No additional fixed-size SCC sieve should displace P1 unless it supplies a credible uniform theorem feeding the overlap gate.
+No additional fixed-size SCC sieve, collar depth, coincidence-depth census, or determinant-restricted argument should displace P1a/P1b unless it supplies a credible uniform theorem feeding #84.

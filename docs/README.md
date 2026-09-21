@@ -11,21 +11,24 @@ TOML and regenerate rather than hand-editing the Markdown.
 
 ## Current status
 
-1. `completion-ledger-2026-09-14.md` — latest weekly completion ledger and
-   priority ordering. It records the current shortest route: one-seed overlap
-   productivity is the only open premise of the G1-free PDS theorem.
-2. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
+1. `research-roadmap-2026-09-21.md` — live completion roadmap. It splits
+   Open Problem 5.35 into the aligned strong-coincidence branch (#138) and the
+   strict-zipper contracting-space hitting branch (#139), while keeping G1b-2,
+   finite-BPA carrier work, and realization as parallel programmes.
+2. `completion-ledger-2026-09-14.md` — latest merged weekly completion
+   snapshot; read its priority ordering against the live roadmap.
+3. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
-3. `conjecture-ledger.md` — live prose dependency ledger.
+4. `conjecture-ledger.md` — live prose dependency ledger.
    `ledger-index.md` is its generated machine-derived counterpart: one row per
    TLA+ ledger node with kind, source, dependencies, and closure.
-4. `proof-ladder.md` — shortest honest path from established results to the
+5. `proof-ladder.md` — shortest honest path from established results to the
    remaining theorem, plus the stronger parallel structural routes.
-5. `current-proof-architecture-2026-09-14.md` — canonical detailed architecture,
+6. `current-proof-architecture-2026-09-14.md` — canonical detailed architecture,
    explicitly distinguishing the primary overlap route from the finite-BPA and
    realization programmes. The 2026-09-11 file is retained only as a superseded
    historical pointer.
-6. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
+7. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
    state-of-program exposition.
 
 When these disagree, do not choose the strongest wording. Check the latest
@@ -115,8 +118,9 @@ closed on caps and retain a replayable record for every survivor.
 - Coincidence-density / dense-good-set equivalence: repository-proved.
 - Density-to-PDS: imported Barge–Štimac–Williams theorem, audited in the manuscript.
 - **Overlap productivity remains the only open premise on this shortest route.**
-  Productivity of the overlaps reachable from one legal swap seed already implies
-  PDS (manuscript Theorem 5.38); proving every seed or every vertex in the union
+  Productivity of the overlaps reachable from one periodic swap seed built from
+  distinct tile types already implies PDS (manuscript Theorem 5.38); no
+  substitution-language legality assumption is used; proving every seed or every vertex in the union
   graph is stronger than necessary.
 - Endpoint-aligned overlaps are the two-sided strong coincidence condition, and
   under strong coincidence productivity is the prefix-Parikh boundary-hitting
