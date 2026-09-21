@@ -46,6 +46,8 @@ primitive irreducible Pisot
 
 The only open premise on this route is **seedwise overlap productivity (Open Problem 5.35, issue #84)**. Manuscript Theorem 5.38 therefore no longer requires finite BPA / G1.
 
+What that premise is, so the headline is not misread as a reduction: it contains the two-sided strong coincidence condition of Arnoux–Ito as its endpoint-aligned case (manuscript Proposition 5.39), open for three letters since 2001; under strong coincidence its remaining content is the prefix-Parikh hitting problem of Corollary 5.41, the geometric (super-)coincidence problem of Ito–Rao and Barge–Kwapisz; and for unimodular `sigma` a converse (PDS implies productivity of every overlap vertex) can be read off Barge–Kwapisz Cor. 9.4 / Prop. 17.2, cited but not imported, so there the premise is equivalent to PDS. Theorem 5.38 removes the finiteness hypothesis from the route; it does not reduce the conjecture. Manuscript Open Problem 5.35 is stated for every vertex of the overlap graph; the one-seed form that Theorem 5.38 needs is weaker and is the form meant on the status surfaces. See `docs/audit-2026-09-20.md` §C.
+
 The current strict-zipper attack retains actual ordered child occurrences and
 certifies their exact affine recurrence `w'=Mw+q-p`. A productive
 determinant-two regression has a six-edge zero-shift-free affine cycle, so the
@@ -85,7 +87,7 @@ Issue #84 is the primary completion issue. The preferred attack is to assume a *
 
 until a boundary hit / coincidence or an impossible finite configuration is forced.
 
-Proving all seeds or every overlap vertex is stronger than necessary; one legal swap seed per substitution suffices for Theorem 5.38.
+Proving all seeds or every overlap vertex is stronger than necessary; one swap seed on distinct tile types per substitution suffices for Theorem 5.38, and `ab` need not be a legal factor.
 
 ### Exact finite evidence
 

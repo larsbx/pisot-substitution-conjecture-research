@@ -98,7 +98,13 @@ fi
 
 section "Python secondary reference/oracle"
 if command -v pytest >/dev/null 2>&1; then
-    if pytest -q >/dev/null 2>&1; then ok "pytest oracle regressions"; else bad "pytest oracle regressions"; fi
+    pytest_out=$(pytest -q 2>&1)
+    if [ $? -eq 0 ]; then
+        ok "pytest oracle regressions"
+    else
+        bad "pytest oracle regressions"
+        tail -20 <<<"$pytest_out"
+    fi
 else
     skip "pytest oracle" "not installed; pip install -e .[dev]"
 fi

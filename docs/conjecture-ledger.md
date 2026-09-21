@@ -52,7 +52,9 @@ Finite calibration over the 4,554-member corpus reports maximum discrepancy `14`
 
 > For every PIP substitution there exist distinct letters `a != b` such that every exact overlap reachable from the seed overlaps of `(ab,ba)` is productive.
 
-All-seed or all-vertex productivity is stronger than manuscript Theorem 5.38 requires.
+All-seed or all-vertex productivity is stronger than manuscript Theorem 5.38 requires. (Manuscript Open Problem 5.35 is stated in the all-vertex form; the surfaces use its number for the one-seed form.)
+
+**What the gate is.** It contains the two-sided strong coincidence condition of Arnoux–Ito as its endpoint-aligned case (Proposition 5.39), open for `d >= 3`; under strong coincidence it is the prefix-Parikh hitting problem of Corollary 5.41; and for unimodular `sigma` the Barge–Kwapisz converse (Cor. 9.4 / Prop. 17.2, cited in the manuscript, not imported) makes all-vertex productivity equivalent to PDS. Theorem 5.38 removes finiteness from the route; it does not reduce the conjecture.
 
 **Latest supporting lemma.** Ordered child occurrences satisfy the exact
 affine recurrence `w'=Mw+q-p`, and every replayed occurrence-labelled cycle

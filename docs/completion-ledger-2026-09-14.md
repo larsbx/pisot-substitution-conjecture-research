@@ -60,7 +60,7 @@ The load-bearing path is now:
 
 1. **G1b-1 bounded discrepancy — repository-proved.** PR #69 reconstructs a proof from Pisot contracting-prefix geometry without unimodularity, unique decodability, or the withdrawn child/parent contraction estimate.
 2. **Seed-patch overlap graph finiteness — repository-proved.** PR #72 shows that bounded discrepancy gives an explicit finite set of exact overlap types for every swap seed, without assuming finite BPA.
-3. **Overlap productivity — OPEN.** It suffices to prove that, for every PIP substitution, there exists a legal swap seed `(ab,ba)` for which every reachable overlap is productive. Proving all seeds or every overlap in the union graph is stronger than necessary.
+3. **Overlap productivity — OPEN.** It suffices to prove that, for every PIP substitution, there exists a swap seed `(ab,ba)` on distinct tile types (legality of `ab` is not assumed) for which every reachable overlap is productive. Proving all seeds or every overlap in the union graph is stronger than necessary. The premise contains two-sided strong coincidence (Proposition 5.39) and is equivalent to PDS for unimodular `sigma` (Barge–Kwapisz converse, cited, not imported); it is the conjecture without the finiteness hypothesis, not a reduction of it.
 4. **Coincidence density / dense-good-set equivalence — repository-proved.** Lemma 5.36 identifies reachable-overlap productivity with coincidence density one and density of the eventual-coincidence good set for the periodic swap tiling.
 5. **Density to PDS — imported theorem.** PR #77 imports the precise Barge–Štimac–Williams theorem and checks the PIP hypotheses, yielding manuscript Theorem 5.38 without any finite-BPA hypothesis.
 
@@ -244,7 +244,7 @@ No imported theorem should acquire stronger hypotheses or conclusions merely bec
 | Priority | Obligation | Status | Evidence that would close it |
 | --- | --- | --- | --- |
 | **P0** | Keep claim/status surfaces synchronized | ongoing | claim map, manuscript, proof ladder, conjecture ledger, README and TLA agree on the same dependency boundary |
-| **P1** | **Seedwise overlap productivity (Open Problem 5.35)** | **OPEN — current shortest-path gate** | theorem excluding a reachable child-closed nonproductive overlap set for at least one legal swap seed of every PIP substitution |
+| **P1** | **Seedwise overlap productivity (Open Problem 5.35)** | **OPEN — current shortest-path gate** | theorem excluding a reachable child-closed nonproductive overlap set for at least one swap seed (legality not assumed) of every PIP substitution |
 | **P2** | Minimal bad-set contradiction | **OPEN — best immediate subproblem** | use full rank + child-count spectrum + ordered descendants + boundary-hitting to force coincidence |
 | **P3** | G1b-2 renewal finiteness | **OPEN — stronger structural theorem, not required by Theorem 5.38** | non-unimodular-safe finite-return / pump-normal-form theorem for realizable labelled first-return words |
 | **P4** | General concentration (`K2=0`) | **OPEN — alternative finite-BPA route** | uniform exclusion of strict zero-wedge carriers |

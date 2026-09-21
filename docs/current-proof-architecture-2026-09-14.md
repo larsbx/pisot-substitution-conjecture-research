@@ -19,6 +19,8 @@ The swap seed uses any two distinct tile types; no assumption that `ab` is a leg
 
 G1b-2, finite BPA, concentration, wedge productivity, SCC Producer, and the realization/rank bridge all remain open in their respective programmes. They are not hidden assumptions of manuscript Theorem 5.38.
 
+The open premise is not a reduction of the conjecture. It contains the two-sided strong coincidence condition as its endpoint-aligned case (Proposition 5.39), under strong coincidence it is the geometric hitting problem of Corollary 5.41, and for unimodular `sigma` the Barge–Kwapisz converse (Cor. 9.4 / Prop. 17.2, cited, not imported) makes all-vertex productivity equivalent to PDS. What Theorem 5.38 gains is the removal of the finiteness hypothesis and an unconditionally finite graph on which the question is posed. Manuscript Open Problem 5.35 is the all-vertex form; the one-seed form used here is weaker (`docs/audit-2026-09-20.md` §C).
+
 ## Primary gate — seedwise overlap productivity
 
 For every primitive irreducible Pisot substitution, prove that there are distinct letters `a != b` such that every exact overlap reachable from the seed overlaps of `(ab,ba)` is productive.

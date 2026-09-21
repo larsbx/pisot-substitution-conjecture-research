@@ -611,7 +611,7 @@
       "statement": "the images of every power sigma^r form a uniquely decodable code",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, power corollary of Theorem 3.1"
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, power corollary of Theorem 2.8"
     },
     {
       "id": "UniqueDecodability",
@@ -621,7 +621,7 @@
       "statement": "the substitution images form a uniquely decodable code",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Theorem 3.1"
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Theorem 2.8"
     },
     {
       "id": "V5Thm51",

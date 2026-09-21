@@ -82,14 +82,22 @@ The strong G/F synthetic artifact is important precisely because it prevents ove
 
 `ProofArchitecture.tla` is a generic dependency state machine (the same module as `proof_records/ProofArchitecture.tla` in `larsbx/finite-math-kernels`). A result can be discharged only when all prerequisites are already established; withdrawn results can never be discharged. `Ledger.tla` supplies the current mathematical dependency graph and is generated, together with one `MCLedger<Set>` model per assumption set, from the proof records tabulated in `scripts/make_ledger.py` (`tla/ledger.json`). Repository theorems are `ProvedDef`, imported theorems `ImportedDef` (established only by assumption, so a model that needs Barge–Štimac–Williams names it in its assumption set), withdrawn claims `WithdrawnDef`. Every generated model holds; a model's `Reachable` set states what its assumptions derive and its `<Name>NotEstablished` invariants what they do not, replacing the earlier configurations that demonstrated derivations through expected invariant violations.
 
-The dependency graph must encode **sufficiency**, not converse implications. In particular the current route is
+The dependency graph must encode **sufficiency**, not converse implications. The primary route is the G1-free overlap route,
+
+```text
+G1b1BoundedDiscrepancy => SwapOverlapFiniteness,
+OverlapProductivity + SwapOverlapFiniteness => CoincidenceDensityOne,
+CoincidenceDensityOne + DensityToPDSBridge (imported) => PDSOverlapRoute,
+```
+
+checked in both directions by `MCLedgerOverlapGateAssumed` (reaches `PDSOverlapRoute`, asserts `PDS`, `G1`, `SCCProducer` not established) and by `MCLedgerOpen` / `MCLedgerImports` (assert `PDSOverlapRoute` not established). The finite-BPA route
 
 ```text
 C4 => C3-local => C2 => SCCProducer,
-G1 + SCCProducer => PDS.
+G1 + SCCProducer => PDS
 ```
 
-G1 is used to extract a finite sink SCC from global nonproductivity. Structural statements conditional on an already-given finite closed SCC should not all be made to depend on G1 in the ledger.
+is retained as a conditional side route. G1 is used there to extract a finite sink SCC from global nonproductivity. Structural statements conditional on an already-given finite closed SCC should not all be made to depend on G1 in the ledger.
 
 The literature relation between PDS and standard BPA termination is tracked separately. Until the repository's normalized all-seed graph is explicitly bridged to the literature algorithm, the ledger must not silently add `PDS => G1`.
 
