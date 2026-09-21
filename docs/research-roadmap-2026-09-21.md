@@ -341,9 +341,9 @@ Countermodels and failed routes remain part of the project evidence and should s
 
 For the next research cycle:
 
-1. **#139 literature baseline first.** Finish the exact transfer audit before inventing another strict-zipper invariant.
+1. **#139 adelic cylinder next.** The literature baseline is complete; define the exact full-representation prefix-difference cylinder and its membership predicate before proposing new machinery.
 2. **#138 propagation theorem in parallel.** The aligned branch has a finite combinatorial normal form and may close independently of the geometric branch.
-3. **State the non-unit strict-zipper hitting theorem precisely.** It must mention the full representation space and its conclusion must force an actual prefix-Parikh hit.
+3. **State the complete recurrence/coverage lemma precisely.** It must act in the full representation space and force an actual prefix-Parikh hit for a realized periodic offset orbit.
 4. **Use the known pumps/collars as mandatory negative controls.**
 5. **Keep G1b-2 active but secondary to #84.** It is a stronger structural theorem, not a hidden dependency of PDS.
 6. **Do not expand fixed-size sieves unless they test a specific proposed uniform lemma.**
