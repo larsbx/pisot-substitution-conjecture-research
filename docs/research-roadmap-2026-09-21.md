@@ -142,7 +142,7 @@ Do **not** spend the next cycle reproving any of the following as if it were suf
 
 The determinant-two regression already contains a six-edge zero-shift-free affine pump inside a productive graph, and the pump survives every tested collar radius. The current lower bound says a hit cannot happen too early; completion needs an upper-bound, recurrence, covering, or separation theorem that forces a hit.
 
-#### P1b literature baseline — mandatory before new machinery
+#### P1b literature baseline — completed by PR #141
 
 Issue #139 requires a source-by-source transfer audit:
 
@@ -154,7 +154,7 @@ Issue #139 requires a source-by-source transfer audit:
 | Minervino–Thuswaldner | non-unit Rauzy geometry and representation space with finite-place factors | this is the correct warning against a purely Euclidean internal space |
 | Barge 2016/2018 family results | identify classes where PDS is proved and the mechanism used | family theorems do not close the universal PIP branch |
 
-The first deliverable on #139 is therefore an explicit transfer table: **what theorem transfers verbatim, what transfers after a hypothesis check, what is unit-only, and what residual theorem remains in the non-unimodular PIP setting.**
+The transfer table is now complete in `p1b-strict-zipper-literature-gate-2026-09-21.md`, with machine-readable hypotheses in `p1b-strict-zipper-transfer-matrix.json`. It leaves one named open obligation, **AdelicPeriodicOffsetHitting**: force a realized purely periodic offset orbit to meet the actual prefix-difference cylinder in the full non-unit representation space.
 
 #### P1b non-unimodular theorem target
 
@@ -170,11 +170,10 @@ The theorem must be uniform in `|S|`; another necessary-condition sieve without 
 
 #### P1b next proof tasks
 
-1. Finish the Ito–Rao / Barge–Kwapisz / Akiyama–Lee / Minervino–Thuswaldner / Barge transfer audit required by #139.
-2. Define the strict-zipper offset and prefix-difference sets in the non-unit representation space, including finite-place coordinates.
-3. State the smallest uniform hitting theorem that would close #139.
-4. Test that theorem first against the known affine-pump and collar countermodels.
-5. Only then build new Mojo instrumentation, preserving ordered child occurrences and exact arithmetic.
+1. Define the strict-zipper offset and prefix-difference cylinder in the non-unit representation space, including finite-place coordinates.
+2. State the smallest recurrence or coverage lemma that proves `AdelicPeriodicOffsetHitting` uniformly in the chosen closed SCC.
+3. Test that lemma first against the known affine-pump and collar countermodels.
+4. Only then build new Mojo instrumentation, preserving ordered child occurrences and exact arithmetic.
 
 **Closure evidence:** a uniform hitting theorem eliminating every strict-zipper bad SCC, or an exact proof that the standard super-coincidence machinery does not close the residual obligation together with a strictly smaller named theorem gap.
 
@@ -330,7 +329,7 @@ Countermodels and failed routes remain part of the project evidence and should s
 | --- | --- | --- | --- | --- |
 | **P0** | Status/provenance synchronization | ongoing | roadmap, proof ladder, claim map, manuscript, ledger and README agree on the same theorem boundary | land this roadmap and keep issue #84/#138/#139 wording synchronized |
 | **P1a** | Aligned strong coincidence (#138) | **OPEN critical** | uniform elimination of every aligned bad SCC for ternary PIP, including reversal | propagation theorem from one good pair through hub-star/endpoint recurrence |
-| **P1b** | Strict-zipper hitting (#139) | **OPEN critical** | uniform non-unit-safe prefix-hitting/recurrence theorem, or a strictly smaller residual theorem gap | literature transfer table, then full-representation hitting formulation |
+| **P1b** | Strict-zipper hitting (#139) | **OPEN critical; literature gate complete** | uniform non-unit-safe `AdelicPeriodicOffsetHitting` theorem | define the full-representation prefix-difference cylinder and a complete recurrence/coverage lemma |
 | **P1** | Seedwise overlap productivity (#84) | **OPEN — only shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad SCC | assemble after branch theorems; do not replace with larger finite sieves |
 | **P2** | G1b-2 renewal finiteness | **OPEN parallel** | uniform finite-return theorem for realizable labelled first returns | develop non-unit level-scaled address/return theory |
 | **P3a** | Concentration, `K2=0` | **OPEN parallel** | uniform exclusion of strict zero-wedge closed carriers | use ordered/ancestral information absent from current span data |
