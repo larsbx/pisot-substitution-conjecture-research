@@ -66,7 +66,7 @@ def test_note_has_no_forbidden_control_characters():
     forbidden = [
         char
         for char in note
-        if ord(char) < 32 and char not in {"\n", "\t"}
+        if ord(char) < 32 and char != "\n"
     ]
     assert forbidden == []
     for marker in [
