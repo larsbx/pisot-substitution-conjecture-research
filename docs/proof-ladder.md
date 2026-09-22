@@ -258,7 +258,7 @@ Every proposed completion proof must preserve:
 
 1. **P0 — synchronization.** Keep manuscript, claim/source map, conjecture ledger, proof ladder, README, roadmap, issue statements and TLA dependency comments aligned.
 2. **P1a — aligned branch (#138).** Prove the ternary two-sided strong-coincidence statement needed to eliminate every aligned bad SCC, or reduce it to a strictly smaller named theorem. Keep the Barge–Diamond two-letter/general-existence scopes distinct.
-3. **P1b — strict-zipper branch (#139).** Complete the Ito–Rao / Barge–Kwapisz / Akiyama–Lee / Minervino–Thuswaldner / Barge transfer audit, then state and attack a uniform non-unimodular prefix-hitting theorem in the full contracting representation.
+3. **P1b — strict-zipper branch (#139).** The literature transfer audit is complete. Define the full adelic prefix-difference cylinder, then prove a uniform `AdelicPeriodicOffsetHitting` recurrence/coverage lemma for realized closed SCCs.
 4. **P1 — overlap productivity (#84).** Assemble P1a and P1b, or replace them with one stronger theorem excluding every bad closed irreducible SCC. This remains the only open premise on the current shortest PDS route.
 5. **P2 — G1b-2.** Continue as a stronger independent theorem on BPA finiteness, with the non-unimodular and label/order firewalls intact.
 6. **P3 — concentration and wedge productivity.** Continue as the alternative finite-BPA/SCC route only when new invariants add information beyond child counts and full wedge span.

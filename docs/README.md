@@ -15,20 +15,23 @@ TOML and regenerate rather than hand-editing the Markdown.
    Open Problem 5.35 into the aligned strong-coincidence branch (#138) and the
    strict-zipper contracting-space hitting branch (#139), while keeping G1b-2,
    finite-BPA carrier work, and realization as parallel programmes.
-2. `completion-ledger-2026-09-14.md` — latest merged weekly completion
+2. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
+   literature transfer audit, non-unit hypothesis firewall, and exact open
+   adelic periodic-offset hitting obligation.
+3. `completion-ledger-2026-09-14.md` — latest merged weekly completion
    snapshot; read its priority ordering against the live roadmap.
-3. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
+4. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
-4. `conjecture-ledger.md` — live prose dependency ledger.
+5. `conjecture-ledger.md` — live prose dependency ledger.
    `ledger-index.md` is its generated machine-derived counterpart: one row per
    TLA+ ledger node with kind, source, dependencies, and closure.
-5. `proof-ladder.md` — shortest honest path from established results to the
+6. `proof-ladder.md` — shortest honest path from established results to the
    remaining theorem, plus the stronger parallel structural routes.
-6. `current-proof-architecture-2026-09-14.md` — canonical detailed architecture,
+7. `current-proof-architecture-2026-09-14.md` — canonical detailed architecture,
    explicitly distinguishing the primary overlap route from the finite-BPA and
    realization programmes. The 2026-09-11 file is retained only as a superseded
    historical pointer.
-7. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
+8. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
    state-of-program exposition.
 
 When these disagree, do not choose the strongest wording. Check the latest

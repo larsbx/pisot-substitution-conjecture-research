@@ -26,11 +26,12 @@ drivers now look up instead of recomputing.
 Start here:
 
 1. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the #138 aligned branch, #139 strict-zipper branch, Level 2, hypothesis firewall, and prioritized closure criteria.
-2. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
-3. `docs/completion-ledger-2026-09-14.md` — latest merged weekly completion snapshot; historical evidence/priorities should be read against the live roadmap.
-4. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
-5. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
-6. `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form state-of-program exposition.
+2. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
+3. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
+4. `docs/completion-ledger-2026-09-14.md` — latest merged weekly completion snapshot; historical evidence/priorities should be read against the live roadmap.
+5. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
+6. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
+7. `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form state-of-program exposition.
 
 ### Headline: one open premise on the shortest PDS route
 
@@ -88,7 +89,7 @@ Issue #84 is the primary completion issue. The preferred attack is to assume a *
 
 until a boundary hit / coincidence or an impossible finite configuration is forced.
 
-Proving all seeds or every overlap vertex is stronger than necessary; one swap seed on distinct tile types per substitution suffices for Theorem 5.38, and `ab` need not be a legal factor.
+Proving all seeds or every overlap vertex is stronger than necessary; one periodic swap seed built from distinct tile types per substitution suffices for Theorem 5.38. No substitution-language legality assumption is used.
 
 ### Exact finite evidence
 
