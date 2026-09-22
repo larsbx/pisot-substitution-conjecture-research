@@ -85,7 +85,7 @@ def test_note_keeps_claim_boundary_and_affine_correction_explicit():
         "**Status:** exact specification for issue #139.",
         "### AdelicPeriodicOffsetHitting",
         "### Affine periodic-orbit cylinder recurrence (open)",
-        "It does **not** say",
+        "it does **not** say",
         r"w_{t+1}=Mw_t+d_t",
         r"w_t=M^t w_0+q_t",
         "certificate acceptance remains integer/algebraic and fail-closed",
