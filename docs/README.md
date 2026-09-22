@@ -121,9 +121,10 @@ closed on caps and retain a replayable record for every survivor.
   Productivity of the overlaps reachable from one periodic swap seed built from
   distinct tile types already implies PDS (manuscript Theorem 5.38); no
   substitution-language legality assumption is used; proving every seed or every vertex in the union
-  graph is stronger than necessary. The premise contains two-sided strong
-  coincidence and is equivalent to PDS for unimodular `sigma`; see
-  `audit-2026-09-20.md` §C.
+  graph is stronger than necessary. Proposition 5.39(iii), the all-pairs
+  strong-coincidence consequence, and the unimodular equivalence with PDS apply
+  only to the stronger all-vertex hypothesis; no one-seed-to-all-vertices
+  implication is claimed. See `audit-2026-09-20.md` §C.
 - Endpoint-aligned overlaps are the two-sided strong coincidence condition, and
   under strong coincidence productivity is the prefix-Parikh boundary-hitting
   statement of Propositions 5.39–5.40 / Corollary 5.41.
