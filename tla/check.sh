@@ -23,9 +23,11 @@ MODELS=(
     # Generated proof-dependency models (scripts/make_ledger.py): every one must
     # hold. Each asserts <Name>NotEstablished for the results its assumptions
     # leave unreachable and the liveness property that its Reachable set is
-    # eventually established, so the positive derivations (PDS under G1 and
-    # SCC Producer, LoadBearingSCC under G1, SpectralBlackBox unconditionally)
-    # are read off the Reachable sets rather than off expected violations.
+    # eventually established, so the positive derivations (PDSOverlapRoute
+    # under OverlapProductivity and the imported density bridge, PDS under G1
+    # and SCC Producer, LoadBearingSCC under G1, SpectralBlackBox
+    # unconditionally) are read off the Reachable sets rather than off
+    # expected violations.
     "MCLedgerOpen:HOLD"
     "MCLedgerImports:HOLD"
     "MCLedgerG1AndProducer:HOLD"

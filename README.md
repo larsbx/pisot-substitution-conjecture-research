@@ -48,6 +48,8 @@ primitive irreducible Pisot
 
 The only open premise on this route is **seedwise overlap productivity (Open Problem 5.35, issue #84)**. Manuscript Theorem 5.38 therefore no longer requires finite BPA / G1.
 
+Keep the two productivity hypotheses separate. Theorem 5.38 needs only `OP_seed`: every overlap reachable from one selected swap seed is productive. Manuscript Open Problem 5.35 states the stronger `OP_all`: every vertex of the union overlap graph is productive. Proposition 5.39(iii), the all-pairs strong-coincidence consequence, the every-vertex hitting formulation, and the unimodular equivalence with PDS apply to `OP_all`, not to `OP_seed`. No one-seed-to-all-vertices implication is claimed. See `docs/audit-2026-09-20.md` §C.
+
 The current strict-zipper attack retains actual ordered child occurrences and
 certifies their exact affine recurrence `w'=Mw+q-p`. A productive
 determinant-two regression has a six-edge zero-shift-free affine cycle, so the

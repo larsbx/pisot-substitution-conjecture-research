@@ -124,7 +124,10 @@ closed on caps and retain a replayable record for every survivor.
   Productivity of the overlaps reachable from one periodic swap seed built from
   distinct tile types already implies PDS (manuscript Theorem 5.38); no
   substitution-language legality assumption is used; proving every seed or every vertex in the union
-  graph is stronger than necessary.
+  graph is stronger than necessary. Proposition 5.39(iii), the all-pairs
+  strong-coincidence consequence, and the unimodular equivalence with PDS apply
+  only to the stronger all-vertex hypothesis; no one-seed-to-all-vertices
+  implication is claimed. See `audit-2026-09-20.md` §C.
 - Endpoint-aligned overlaps are the two-sided strong coincidence condition, and
   under strong coincidence productivity is the prefix-Parikh boundary-hitting
   statement of Propositions 5.39–5.40 / Corollary 5.41.
@@ -198,6 +201,13 @@ the current ledgers rather than rewriting the archive.
 - `mojo-lookup-caches-2026-09-17.md` records which repeated computations were
   worth replacing with a lookup and which measurement said to leave alone, and
   what keys make the three caches exact.
+- `bsw-import-literature-gate-2026-09-21.md` checks Imported Theorem 5.37
+  against the Barge–Štimac–Williams source text: patches need not be allowed,
+  "densely" means a dense set of points, and the one-dimensional
+  specialization is their own proof of Theorem 3.2. Decision: proceed.
+- `audit-2026-09-10.md`, `audit-2026-09-15.md`, `audit-2026-09-20.md` are the
+  three audits: the C1–C4 reduction chain, the engineering state, and the
+  overlap-productivity route against the reduction chain.
 - `../AGENTS.md` is the implementation policy.
 - Mojo is canonical for executable research.
 - TLA+ records dependency/state-machine claims.

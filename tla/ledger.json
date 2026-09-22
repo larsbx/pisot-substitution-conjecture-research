@@ -405,7 +405,7 @@
       "tags": []
     },
     "UniqueDecodability": {
-      "id": "sha256:64655fcda3d238549eee7698990b03367bf14ecc44e92ee8d7ed5f49a6887594",
+      "id": "sha256:311ec25a686231f34245f9fd02818949f3813529e2784724c366ab37db1ebd18",
       "kind": "repository_theorem",
       "statement": "the substitution images form a uniquely decodable code",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -425,19 +425,19 @@
         ],
         [
           "source",
-          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Theorem 3.1"
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Theorem 2.8"
         ]
       ],
       "tags": []
     },
     "UDForPowers": {
-      "id": "sha256:2c6cea34fc686bd8c907bfcb590230005dc4f8a08c6cfca5eceab33b875f54db",
+      "id": "sha256:891936c03efbd456a255e8cb01b647b03fc6f7099a8f5009f4a956a23bc6900f",
       "kind": "repository_theorem",
       "statement": "the images of every power sigma^r form a uniquely decodable code",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:64655fcda3d238549eee7698990b03367bf14ecc44e92ee8d7ed5f49a6887594",
+          "sha256:311ec25a686231f34245f9fd02818949f3813529e2784724c366ab37db1ebd18",
           "the substitution images form a uniquely decodable code",
           "UDForPowers/UniqueDecodability",
           "same",
@@ -451,7 +451,7 @@
         ],
         [
           "source",
-          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, power corollary of Theorem 3.1"
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, power corollary of Theorem 2.8"
         ]
       ],
       "tags": []
@@ -493,13 +493,13 @@
       "tags": []
     },
     "AlgebraicEmbedding": {
-      "id": "sha256:81670c45ee958a3560e1523a6ff04433f1cedc0e5606471c906005131715beb6",
+      "id": "sha256:e741d48b30b413946ff823f720ac377360fb271128c8308a80beef7fed31cae0",
       "kind": "repository_theorem",
       "statement": "the algebraic embedding of the symbolic side",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:64655fcda3d238549eee7698990b03367bf14ecc44e92ee8d7ed5f49a6887594",
+          "sha256:311ec25a686231f34245f9fd02818949f3813529e2784724c366ab37db1ebd18",
           "the substitution images form a uniquely decodable code",
           "AlgebraicEmbedding/UniqueDecodability",
           "same",
@@ -519,13 +519,13 @@
       "tags": []
     },
     "WedgeBound": {
-      "id": "sha256:569c49ca86af3e23e843602ee705cd0bfafd84e5fb4f73687b10ce9100a64e7b",
+      "id": "sha256:9f1ac0f07697c45a0244de7836aca1df82769580edf61bc10c58fc9ece2d2fa5",
       "kind": "repository_theorem",
       "statement": "the wedge bound",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:81670c45ee958a3560e1523a6ff04433f1cedc0e5606471c906005131715beb6",
+          "sha256:e741d48b30b413946ff823f720ac377360fb271128c8308a80beef7fed31cae0",
           "the algebraic embedding of the symbolic side",
           "WedgeBound/AlgebraicEmbedding",
           "same",

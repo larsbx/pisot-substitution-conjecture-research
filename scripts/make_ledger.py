@@ -44,8 +44,8 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     # --- symbolic side, repository theorem-grade ------------------------------------
     "DefectTheorem": (T, "det M_sigma != 0 gives full incidence rank and letter injectivity, so the defect theorem applies to the image code",
                       f"{MANUSCRIPT}, standing algebraic setup", (), ()),
-    "UniqueDecodability": (T, "the substitution images form a uniquely decodable code", f"{MANUSCRIPT}, Theorem 3.1", ("DefectTheorem",), ()),
-    "UDForPowers": (T, "the images of every power sigma^r form a uniquely decodable code", f"{MANUSCRIPT}, power corollary of Theorem 3.1", ("UniqueDecodability",), ()),
+    "UniqueDecodability": (T, "the substitution images form a uniquely decodable code", f"{MANUSCRIPT}, Theorem 2.8", ("DefectTheorem",), ()),
+    "UDForPowers": (T, "the images of every power sigma^r form a uniquely decodable code", f"{MANUSCRIPT}, power corollary of Theorem 2.8", ("UniqueDecodability",), ()),
     "LocalWitnessInjectivity": (T, "local witness injectivity on the symbolic side", f"{MANUSCRIPT}, symbolic side", (), ()),
     "MassBalanceK2Obstruction": (T, "the mass-balance obstruction for K2 on the symbolic side", f"{MANUSCRIPT}, symbolic side", (), ()),
     "AlgebraicEmbedding": (T, "the algebraic embedding of the symbolic side", f"{MANUSCRIPT}, symbolic side", ("UniqueDecodability",), ()),
