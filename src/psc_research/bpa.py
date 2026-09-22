@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import itertools
 from collections import deque
 from typing import Mapping, Sequence
 
@@ -49,10 +50,9 @@ def parikh(word: Sequence[Letter], size: int | None = None) -> tuple[int, ...]:
 
 
 def apply_substitution(sigma: Substitution, word: Sequence[Letter]) -> Word:
-    out: list[Letter] = []
-    for a in word:
-        out.extend(sigma[a])
-    return tuple(out)
+    # Optimization: itertools.chain.from_iterable inside a tuple constructor avoids list
+    # allocations and list.extend() overhead, making it significantly faster and more memory-efficient.
+    return tuple(itertools.chain.from_iterable(sigma[a] for a in word))
 
 
 def apply_substitution_n(sigma: Substitution, word: Sequence[Letter], n: int) -> Word:
