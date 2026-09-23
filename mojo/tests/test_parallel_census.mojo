@@ -7,7 +7,7 @@ from psc.corpus import pip_corpus
 from psc.parallel_census import BpaCensusResult, run_bpa_census
 
 
-def assert_same(a: BpaCensusResult, b: BpaCensusResult):
+def assert_same(a: BpaCensusResult, b: BpaCensusResult) raises:
     assert_equal(a.terminated, b.terminated)
     assert_equal(a.capped, b.capped)
     assert_equal(a.productive, b.productive)
