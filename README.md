@@ -30,6 +30,7 @@ Start here:
 3. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
 4. `docs/completion-ledger-2026-09-14.md` — latest merged weekly completion snapshot; historical evidence/priorities should be read against the live roadmap.
 5. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
+6. `docs/tier2-bridge-salvage-2026-09-23.md` — research-taxonomy note separating termination-style Descent Bridges from recurrent arithmetic Growth Bridges; moves no theorem status.
 6. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
 7. `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form state-of-program exposition.
 
