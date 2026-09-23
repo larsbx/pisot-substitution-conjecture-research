@@ -170,12 +170,12 @@ Issue #45 is therefore closed as a completed status/source reconciliation task. 
 
 | Priority | Layer | Tool | Scope |
 |---|---|---|---|
-| **Canonical executable** | `mojo/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. The reusable kernels under `mojo/finite_exact/`, `mojo/substitution_dynamics/`, and `mojo/finite_linear_algebra/` are vendored from one pinned `larsbx/finite-math-kernels` commit. |
+| **Canonical executable** | `mojo/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. The reusable kernels under `mojo/finite_exact/`, `mojo/substitution_dynamics/`, `mojo/finite_linear_algebra/`, and `mojo/parallel_fold/` are vendored from one pinned `larsbx/finite-math-kernels` commit. |
 | Formal state/dependency | `tla/` | TLA+ / TLC | BPA state-machine models and the machine-checked proof-dependency ledger, generated from the proof-record table in `scripts/make_ledger.py` (`tla/ledger.json` is its serialized output). |
 | Deductive finite algebra | `PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
 | Secondary oracle | `src/psc_research/` + `tests/` | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |
 
-The five logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `scripts/check_vendored_sync.py` in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under `tools/claim_governance`. The TLA+ ledger, its TLC models, `tla/ledger.json`, the claim entries of every ledger node, `docs/ledger-index.md`, and the typed relationship graph `docs/claim-relationship-graph.json` are generated from the one table of proof records in `scripts/make_ledger.py` through the vendored `tools/proof_records` package; edit that table and regenerate, since CI fails if any output is stale or hand-edited. Every Mojo test names the ledger claim or the contract it guards (`mojo/psc/claim_tests.mojo`), and the `coverage` check reads the receipts of the run, so a claim whose warrant is a finite computation cannot lose its regression unnoticed.
+The seven logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `scripts/check_vendored_sync.py` in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under `tools/claim_governance`. The TLA+ ledger, its TLC models, `tla/ledger.json`, the claim entries of every ledger node, `docs/ledger-index.md`, and the typed relationship graph `docs/claim-relationship-graph.json` are generated from the one table of proof records in `scripts/make_ledger.py` through the vendored `tools/proof_records` package; edit that table and regenerate, since CI fails if any output is stale or hand-edited. Every Mojo test names the ledger claim or the contract it guards (`mojo/psc/claim_tests.mojo`), and the `coverage` check reads the receipts of the run, so a claim whose warrant is a finite computation cannot lose its regression unnoticed.
 
 Run everything:
 
@@ -197,6 +197,7 @@ Unavailable toolchains are reported as skipped; a skip is not a passing proof.
 │   ├── finite_exact/           # BigZ, Q, and closed intervals from finite-math-kernels
 │   ├── substitution_dynamics/  # words, balanced pairs, automaton, vendored (alphabet-generic)
 │   ├── finite_linear_algebra/  # Mat3, RREF, rank-three tensors, W_3, vendored
+│   ├── parallel_fold/          # deterministic MAX-backed ordered map/fold, vendored
 │   ├── psc/                    # reusable Mojo research kernel
 │   └── tests/                  # canonical executable regressions
 ├── tla/                        # TLA+ BPA models; Ledger.tla, MCLedger*, and ledger.json are generated from scripts/make_ledger.py
@@ -204,7 +205,7 @@ Unavailable toolchains are reported as skipped; a skip is not a passing proof.
 ├── src/psc_research/           # secondary Python reference/oracle layer
 ├── tests/                      # Python oracle/regression tests
 ├── scripts/verify_all.sh       # run every verification layer
-├── vendored.toml               # commit and digest pins of the five vendored packages
+├── vendored.toml               # commit and digest pins of the seven vendored packages
 ├── .github/workflows/          # automated checks and exact censuses
 └── pyproject.toml              # secondary Python oracle metadata
 ```

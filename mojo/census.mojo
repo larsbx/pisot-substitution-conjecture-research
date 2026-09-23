@@ -8,36 +8,52 @@ For each PIP specimen it builds `B_sigma` and reports:
 
 Neither is a proof. A clean sweep is elimination of counterexamples over a
 finite corpus; G1 and SCC Producer both remain open for alphabet 3.
+
+The outer corpus fold may use MAX worker threads. Set `PSC_CENSUS_WORKERS`
+to a positive integer; the default is one worker, preserving the historical
+execution shape. Worker-count invariance is pinned by
+`tests/test_parallel_census.mojo`.
 """
 
-from psc.bpa import build, nonproductive_states
-from psc.corpus import STATE_CAP, pip_corpus
-from psc.histogram import max_int
+from std.os import getenv
+
+from psc.corpus import pip_corpus
+from psc.parallel_census import replay_failure, run_bpa_census
 
 
 def main() raises:
     var corpus = pip_corpus()
-    var n_terminated = 0
-    var n_capped = 0
-    var n_productive = 0
-    var n_nonproductive = 0
-    var max_size = 0
+    var workers = atol(getenv("PSC_CENSUS_WORKERS", "1"))
+    var result = run_bpa_census(corpus, len(corpus), workers)
 
-    for s in range(len(corpus)):
-        ref spec = corpus[s]
-        var a = build(spec.sigma, STATE_CAP)
-        if a.capped:
-            n_capped += 1
-            continue
-        n_terminated += 1
-        max_size = max_int(max_size, a.size())
-        if len(nonproductive_states(a)) == 0:
-            n_productive += 1
-        else:
-            n_nonproductive += 1
-            print("NON-PRODUCTIVE specimen:", spec.label())
+    # Preserve the old diagnostic order. If a worker failed, replay the first
+    # failing specimen sequentially after printing only earlier diagnostics;
+    # the kernel error remains an execution failure rather than a census row.
+    if result.failed_index >= 0:
+        for i in range(len(result.nonproductive_indices)):
+            var index = result.nonproductive_indices[i]
+            if index >= result.failed_index:
+                break
+            print("NON-PRODUCTIVE specimen:", corpus[index].label())
+        replay_failure(corpus, result.failed_index)
+
+    for i in range(len(result.nonproductive_indices)):
+        print(
+            "NON-PRODUCTIVE specimen:",
+            corpus[result.nonproductive_indices[i]].label(),
+        )
 
     print("PIP specimens (images of length <= 3):", len(corpus))
-    print("  B_sigma construction terminated:", n_terminated, " capped:", n_capped)
-    print("  largest |B_sigma|:", max_size)
-    print("  productive:", n_productive, "  non-productive:", n_nonproductive)
+    print(
+        "  B_sigma construction terminated:",
+        result.terminated,
+        " capped:",
+        result.capped,
+    )
+    print("  largest |B_sigma|:", result.max_size)
+    print(
+        "  productive:",
+        result.productive,
+        "  non-productive:",
+        result.nonproductive,
+    )
