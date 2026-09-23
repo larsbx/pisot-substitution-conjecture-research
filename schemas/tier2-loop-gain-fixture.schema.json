@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/larsbx/pisot-substitution-conjecture-research/schemas/tier2-loop-gain-fixture.schema.json",
+  "title": "Tier 2 Loop Gain Fixture",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "component_id",
+    "vertices",
+    "edges",
+    "arithmetic_basis"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "tier2-loop-gain-v1"
+    },
+    "component_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "vertices": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "edge_id",
+          "source",
+          "target",
+          "occurrence_ordinal",
+          "gain_coordinates"
+        ],
+        "properties": {
+          "edge_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "occurrence_ordinal": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "gain_coordinates": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "arithmetic_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "labels"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "integer_power_basis",
+            "integer_lattice_basis"
+          ]
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "minimal_polynomial": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 2
+        }
+      }
+    },
+    "cycle_basis": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minItems": 1
+      }
+    },
+    "generated_module_generators": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "minItems": 1
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}
