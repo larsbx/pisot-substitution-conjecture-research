@@ -14,7 +14,23 @@ from dataclasses import dataclass
 from pathlib import Path
 
 TEXT_SUFFIXES = {".tex", ".md", ".txt", ".rst"}
-DEFAULT_SKIP_DIRS = {".git", ".pytest_cache", "__pycache__", "dist", "build", ".venv", "venv"}
+DEFAULT_SKIP_DIRS = {
+    ".git",
+    ".pytest_cache",
+    "__pycache__",
+    "dist",
+    "build",
+    ".venv",
+    "venv",
+}
+
+CURRENT_SURFACE = {
+    "README.md",
+    "docs/proof-ladder.md",
+    "docs/conjecture-ledger.md",
+    "docs/boundary-synchronization.md",
+    "docs/automation-protocol.md",
+}
 
 
 @dataclass(frozen=True)
@@ -56,7 +72,15 @@ RULES: tuple[Rule, ...] = (
 )
 
 
-def iter_text_files(root: Path):
+def iter_text_files(root: Path, strict_current: bool = False):
+    if strict_current:
+        base = root.resolve()
+        for rel in sorted(CURRENT_SURFACE):
+            path = base / rel
+            if path.exists():
+                yield path
+        return
+
     for path in root.rglob("*"):
         if path.is_dir():
             continue
@@ -83,11 +107,16 @@ def audit_file(path: Path) -> list[str]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd(), help="repository root to audit")
+    parser.add_argument(
+        "--strict-current",
+        action="store_true",
+        help="audit only the canonical current manuscript/research surface, not archives",
+    )
     args = parser.parse_args(argv)
 
     root = args.root.resolve()
     failures: list[str] = []
-    for path in iter_text_files(root):
+    for path in iter_text_files(root, strict_current=args.strict_current):
         failures.extend(audit_file(path))
 
     if failures:
