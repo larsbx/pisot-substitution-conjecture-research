@@ -141,7 +141,7 @@ struct GrowthResult(Copyable, Movable):
 
 
 def merge_growth(a: GrowthResult, b: GrowthResult) -> GrowthResult:
-    var out = a
+    var out = a.copy()
     out.screened += b.screened
     for i in range(len(b.accepted_offsets)):
         out.accepted_offsets.append(b.accepted_offsets[i])
