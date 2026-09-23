@@ -30,12 +30,12 @@ def main() raises:
     var words = image_words_up_to(max_len)
 
     print("schema\tpsc-growing-corpus-shard/v1")
-    print("max_image_length\t", max_len, sep="")
-    print("start_offset\t", start, sep="")
-    print("screened\t", result.screened, sep="")
-    print("accepted\t", len(result.accepted_offsets), sep="")
-    print("next_offset\t", start + result.screened, sep="")
-    print("band_total\t", total, sep="")
+    print("max_image_length\t" + String(max_len))
+    print("start_offset\t" + String(start))
+    print("screened\t" + String(result.screened))
+    print("accepted\t" + String(len(result.accepted_offsets)))
+    print("next_offset\t" + String(start + result.screened))
+    print("band_total\t" + String(total))
     print("columns\toffset\tsubstitution\tchi0\tchi1\tchi2")
     for i in range(len(result.accepted_offsets)):
         print(
