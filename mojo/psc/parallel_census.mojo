@@ -74,7 +74,7 @@ def evaluate_specimen(spec: Specimen) -> BpaCensusResult:
 
 def merge_bpa_census(a: BpaCensusResult, b: BpaCensusResult) -> BpaCensusResult:
     """Associative, order-preserving merge used by parallel_map_fold."""
-    var out = a
+    var out = a.copy()
     out.terminated += b.terminated
     out.capped += b.capped
     out.productive += b.productive
