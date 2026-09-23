@@ -96,9 +96,21 @@ def audit_file(path: Path) -> list[str]:
     except UnicodeDecodeError:
         return []
     failures: list[str] = []
+    lines = text.splitlines()
     for rule in RULES:
         for match in rule.pattern.finditer(text):
             line = text.count("\n", 0, match.start()) + 1
+            line_text = lines[line - 1] if line <= len(lines) else ""
+
+            # Meta/documentation uses are not stale mathematical claims.  In
+            # particular, the Parikh intertwiner contains the substring
+            # "N_C = M_sigma" without asserting the retired synthetic model.
+            if rule.name == "synthetic-countermodel-transpose":
+                if "P_C N_C = M_sigma P_C" in line_text or "No stale" in line_text:
+                    continue
+            if rule.name == "old-cycle-exclusion-target" and "Do not cite" in line_text:
+                continue
+
             snippet = " ".join(match.group(0).split())
             failures.append(f"{path}:{line}: {rule.name}: {rule.message} [matched: {snippet!r}]")
     return failures
