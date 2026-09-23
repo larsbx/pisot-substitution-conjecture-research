@@ -35,10 +35,26 @@ def _degree(poly: int) -> int:
 
 
 def _remainder(a: int, b: int) -> int:
+    """Remainder of `a` modulo `b` in `F_2[t]`, on nonnegative coefficient bitmasks.
+
+    Each degree is taken once per iteration and the divisor's once in total, but
+    always through `_degree`, which stays the single validation point.  A negative
+    bitmask is an impossible exact-arithmetic state, so a caller reaching this
+    helper without passing through `gcd_mod2` still fails closed: substituting a
+    raw `bit_length()` would make `_remainder(-1, 1)` oscillate between `-1` and
+    `-2` forever and let a negative divisor return a meaningless remainder.
+    """
     if b == 0:
         raise ZeroDivisionError("polynomial division by zero")
-    while a and _degree(a) >= _degree(b):
-        a ^= b << (_degree(a) - _degree(b))
+    if a == 0:
+        return 0
+    deg_b = _degree(b)
+    deg_a = _degree(a)
+    while deg_a >= deg_b:
+        a ^= b << (deg_a - deg_b)
+        if a == 0:
+            return 0
+        deg_a = _degree(a)
     return a
 
 
