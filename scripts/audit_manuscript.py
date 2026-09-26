@@ -98,6 +98,45 @@ def audit_file(path: Path) -> list[str]:
     failures: list[str] = []
     for rule in RULES:
         for match in rule.pattern.finditer(text):
+            line_start = text.rfind("\n", 0, match.start()) + 1
+            line_end = text.find("\n", match.end())
+            if line_end == -1:
+                line_end = len(text)
+            line_text = text[line_start:line_end]
+
+            if rule.name == "synthetic-countermodel-transpose":
+                normalized = " ".join(line_text.split())
+                # The Parikh intertwiner is the legitimate identity
+                # P_C N_C = M_sigma P_C; the stale rule concerns the synthetic
+                # countermodel assignment N_C = M_sigma with P = I.
+                if re.search(
+                    r"P[_ ]?C\s+N[_ ]?C\s*=\s*M[_ ]?sigma\s+P[_ ]?C",
+                    normalized,
+                    re.IGNORECASE,
+                ):
+                    continue
+                # Guidance may quote the bad form while explicitly requiring
+                # the transposed replacement. Do not make the guard fail on
+                # its own prohibition text.
+                if (
+                    re.search(r"N[_ ]?C\s*=\s*M[_ ]?sigma\s*\^T", normalized, re.IGNORECASE)
+                    and re.search(r"N[_ ]?C\s*=\s*M[_ ]?sigma", normalized, re.IGNORECASE)
+                    and re.search(r"\b(?:must|not|stale)\b", normalized, re.IGNORECASE)
+                ):
+                    continue
+
+            if rule.name == "old-cycle-exclusion-target":
+                normalized = " ".join(line_text.split())
+                # Historical/negative statements are allowed. The rule is
+                # intended to reject asserting cycle exclusion as a theorem,
+                # not documentation that the target is false or retired.
+                if re.search(
+                    r"\b(?:false|retired|no longer|attempted|earlier|do not|don't|cannot|can't)\b",
+                    normalized,
+                    re.IGNORECASE,
+                ):
+                    continue
+
             line = text.count("\n", 0, match.start()) + 1
             snippet = " ".join(match.group(0).split())
             failures.append(f"{path}:{line}: {rule.name}: {rule.message} [matched: {snippet!r}]")
