@@ -46,3 +46,40 @@ def test_audit_rejects_unconditional_pds_claim(tmp_path: Path) -> None:
 def test_audit_rejects_loose_subblock_language(tmp_path: Path) -> None:
     write(tmp_path, "bad.md", "N_C contains M_sigma as an invariant sub-block.")
     assert audit_manuscript.main(["--root", str(tmp_path)]) == 1
+
+
+def test_audit_accepts_parikh_intertwiner(tmp_path: Path) -> None:
+    write(
+        tmp_path,
+        "paper.md",
+        "The proved identity is P_C N_C = M_sigma P_C with rank(P_C)=3.",
+    )
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
+
+
+def test_audit_accepts_transpose_guidance_that_quotes_bad_form(tmp_path: Path) -> None:
+    write(
+        tmp_path,
+        "guide.md",
+        "No stale N_C = M_sigma synthetic-countermodel language; it must be "
+        "N_C = M_sigma^T, P = I.",
+    )
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
+
+
+def test_audit_accepts_historical_cycle_exclusion_rejection(tmp_path: Path) -> None:
+    write(
+        tmp_path,
+        "history.tex",
+        'The earlier target "no recurrent noncoincident cycle" is false.',
+    )
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
+
+
+def test_audit_accepts_no_longer_cycle_target_wording(tmp_path: Path) -> None:
+    write(
+        tmp_path,
+        "ledger.md",
+        'The target is no longer "there are no recurrent noncoincident cycles".',
+    )
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
