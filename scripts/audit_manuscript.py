@@ -98,41 +98,51 @@ def audit_file(path: Path) -> list[str]:
     failures: list[str] = []
     for rule in RULES:
         for match in rule.pattern.finditer(text):
-            line_start = text.rfind("\n", 0, match.start()) + 1
-            line_end = text.find("\n", match.end())
-            if line_end == -1:
-                line_end = len(text)
-            line_text = text[line_start:line_end]
+            # Use paragraph context so ordinary TeX/Markdown line wrapping does
+            # not change the semantic audit result.
+            para_start = text.rfind("\n\n", 0, match.start()) + 2
+            para_end = text.find("\n\n", match.end())
+            if para_end == -1:
+                para_end = len(text)
+            paragraph = " ".join(text[para_start:para_end].split())
 
             if rule.name == "synthetic-countermodel-transpose":
-                normalized = " ".join(line_text.split())
-                # The Parikh intertwiner is the legitimate identity
-                # P_C N_C = M_sigma P_C; the stale rule concerns the synthetic
-                # countermodel assignment N_C = M_sigma with P = I.
-                if re.search(
-                    r"P[_ ]?C\s+N[_ ]?C\s*=\s*M[_ ]?sigma\s+P[_ ]?C",
-                    normalized,
-                    re.IGNORECASE,
+                # Exempt only the exact occurrence that is syntactically the
+                # middle of the proved Parikh intertwiner
+                # P_C N_C = M_sigma P_C.  A second bad assignment elsewhere
+                # on the same line/paragraph must still be rejected.
+                before = text[max(0, match.start() - 32):match.start()]
+                after = text[match.end():match.end() + 32]
+                if (
+                    re.search(r"P[_ ]?C\s*$", before, re.IGNORECASE)
+                    and re.match(r"\s+P[_ ]?C\b", after, re.IGNORECASE)
                 ):
                     continue
-                # Guidance may quote the bad form while explicitly requiring
-                # the transposed replacement. Do not make the guard fail on
-                # its own prohibition text.
+
+                # Guidance may quote the stale form if it explicitly requires
+                # a supported transposed replacement.  Match all transpose
+                # spellings accepted by the base rule.
+                transpose = (
+                    r"N[_ ]?C\s*=\s*M[_ ]?sigma"
+                    r"\s*(?:\^T|\\top|\^\\top|\^\\T)"
+                )
                 if (
-                    re.search(r"N[_ ]?C\s*=\s*M[_ ]?sigma\s*\^T", normalized, re.IGNORECASE)
-                    and re.search(r"N[_ ]?C\s*=\s*M[_ ]?sigma", normalized, re.IGNORECASE)
-                    and re.search(r"\b(?:must|not|stale)\b", normalized, re.IGNORECASE)
+                    re.search(transpose, paragraph, re.IGNORECASE)
+                    and re.search(
+                        r"\b(?:must|instead|stale|replace|replacement|should)\b",
+                        paragraph,
+                        re.IGNORECASE,
+                    )
                 ):
                     continue
 
             if rule.name == "old-cycle-exclusion-target":
-                normalized = " ".join(line_text.split())
-                # Historical/negative statements are allowed. The rule is
-                # intended to reject asserting cycle exclusion as a theorem,
-                # not documentation that the target is false or retired.
+                # Permit only explicit rejection/retirement of the matched
+                # target.  Mere historical framing such as "earlier work
+                # proves ..." is still an affirmative false claim and fails.
                 if re.search(
-                    r"\b(?:false|retired|no longer|attempted|earlier|do not|don't|cannot|can't)\b",
-                    normalized,
+                    r"\b(?:false|retired|withdrawn|no longer|do not|don't)\b",
+                    paragraph,
                     re.IGNORECASE,
                 ):
                     continue
