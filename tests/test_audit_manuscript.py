@@ -1,6 +1,10 @@
+import sys
 from pathlib import Path
 
-from scripts import audit_manuscript
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+import audit_manuscript  # noqa: E402
 
 
 def write(root: Path, rel: str, text: str) -> Path:
@@ -15,7 +19,7 @@ def test_audit_accepts_current_correct_formulations(tmp_path: Path) -> None:
         tmp_path,
         "paper.tex",
         """
-        The synthetic algebraic solution is $N_C=M_\sigma^\top$ with $P=I$.
+        The synthetic algebraic solution is $N_C=M_\\sigma^\\top$ with $P=I$.
         The matrix acts on an invariant subspace as a similar copy of $M_\sigma$.
         Then, conditional on the SCC Producer Theorem, the associated tiling
         dynamical system has pure discrete spectrum.
