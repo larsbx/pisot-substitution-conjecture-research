@@ -87,3 +87,40 @@ def test_audit_accepts_no_longer_cycle_target_wording(tmp_path: Path) -> None:
         'The target is no longer "there are no recurrent noncoincident cycles".',
     )
     assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
+
+
+def test_audit_rejects_bad_assignment_beside_intertwiner(tmp_path: Path) -> None:
+    write(
+        tmp_path,
+        "bad.md",
+        "P_C N_C = M_sigma P_C holds, but the synthetic countermodel sets "
+        "N_C = M_sigma with P = I.",
+    )
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 1
+
+
+def test_audit_accepts_latex_transpose_guidance(tmp_path: Path) -> None:
+    write(
+        tmp_path,
+        "guide.tex",
+        r"The stale N_C = M_sigma must instead be N_C = M_sigma^\top.",
+    )
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
+
+
+def test_audit_rejects_affirmative_earlier_cycle_claim(tmp_path: Path) -> None:
+    write(
+        tmp_path,
+        "bad.md",
+        "Earlier work proves there is no recurrent noncoincident cycle.",
+    )
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 1
+
+
+def test_audit_accepts_wrapped_cycle_rejection(tmp_path: Path) -> None:
+    write(
+        tmp_path,
+        "history.tex",
+        'The old target was "no recurrent noncoincident cycle"\nand is false.',
+    )
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
