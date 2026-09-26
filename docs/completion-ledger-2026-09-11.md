@@ -59,7 +59,7 @@ Assuming G1,
 |B_sigma| < infinity  =>  recurrent SCC analysis.
 ```
 
-The target is no longer "there are no recurrent noncoincident cycles". Flipped Tribonacci killed that target: recurrent, noncoincident, zero-displacement cycles genuinely occur (`tla/MCFlippedTribonacci.tla`). The corrected target is **SCC Producer**: recurrent noncoincident behavior cannot remain permanently producer-free.
+Universal exclusion of recurrent noncoincident cycles is no longer the target. Flipped Tribonacci killed that target: recurrent, noncoincident, zero-displacement cycles genuinely occur (`tla/MCFlippedTribonacci.tla`). The corrected target is **SCC Producer**: recurrent noncoincident behavior cannot remain permanently producer-free.
 
 The present closed-case route is
 

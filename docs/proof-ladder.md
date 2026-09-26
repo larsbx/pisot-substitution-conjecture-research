@@ -194,7 +194,7 @@ The following remain theoremically useful where their individual notes mark them
 - sink-SCC reduction under G1;
 - endpoint synchronization quotient and A/B eliminator;
 - Barge–Diamond type-G eliminator and hub-star normal form;
-- Parikh intertwiner `P_C N_C = M_sigma P_C`;
+- Parikh intertwiner `P_C N_C = (M_sigma) P_C`;
 - orientation monodromy and signed child-count matrices;
 - signed first-defect intertwiners;
 - degree-3, degree-4 and generalized-Witt spectral sieves;

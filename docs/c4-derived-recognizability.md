@@ -41,7 +41,7 @@ has primitive incidence matrix.
 For a strict closed component, the Parikh intertwiner already gives
 
 ```text
-P_C N_C = M_sigma P_C,
+P_C N_C = (M_sigma) P_C,
 rank(P_C)=3,
 rho(N_C)=beta.
 ```
