@@ -86,6 +86,7 @@ Change the ledger entry and every surface in the same commit.
 - `archive-tarball-audit-2026-09-13.md` — uploaded archive digest, identity check, and warning about contradictory v34 closing status language.
 - `source-provenance-v16-later-audit-2026-09-12.md` — exhaustive reachable
   Git-history audit and imported-source checksums.
+- `v9-extraction-audit-2026-09-23.md` — extracts the reusable UD / UD-for-powers / local-hierarchy material from the externally supplied PSC v9 manuscript and explicitly rejects its withdrawn finite-BPA and cycle-exclusion claims.
 - `galois-aux-b-source-resolution-2026-09-13.md` — separates the historical
   degree-three seed theorem, the reconstructed degree-two carrier theorem, and
   open concentration.
