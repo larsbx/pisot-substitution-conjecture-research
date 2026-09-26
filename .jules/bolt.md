@@ -15,3 +15,6 @@
 ## 2025-02-18 - C-delegation can break complexity
 **Learning:** Moving a Python loop to a C-level function (like `list.count`) might look faster on micro-benchmarks but can silently increase algorithmic complexity (e.g., from O(N) to O(N * alphabet_size)), causing massive performance regressions on large inputs.
 **Action:** Always ensure that time complexity invariants are strictly preserved before replacing loops with built-ins.
+## 2024-09-26 - Unroll small fixed-size vector operations
+**Learning:** In pure Python math routines, using generator expressions or `zip` for small, fixed-size mathematical operations (like 2D or 3D vector addition or 3x3 matrix multiplication) carries extreme overhead (up to 3x slower) compared to direct scalar operations and array indexing.
+**Action:** Unroll fixed-size loops for mathematical functions when the size is known (e.g., `len(a) == 3`) directly, avoiding comprehensions.
