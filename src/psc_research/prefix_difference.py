@@ -75,18 +75,35 @@ class InflatedPrefixLift:
 def _sub_vectors(a: Sequence[int], b: Sequence[int]) -> Vector:
     if len(a) != len(b):
         raise ValueError("vector dimensions differ")
+    # Optimization: Unroll for fixed short sizes to avoid list instantiation/zip overhead
+    if len(a) == 3:
+        return (a[0] - b[0], a[1] - b[1], a[2] - b[2])
+    elif len(a) == 2:
+        return (a[0] - b[0], a[1] - b[1])
     return tuple(x - y for x, y in zip(a, b))
 
 
 def _add_vectors(a: Sequence[int], b: Sequence[int]) -> Vector:
     if len(a) != len(b):
         raise ValueError("vector dimensions differ")
+    # Optimization: Unroll for fixed short sizes to avoid list instantiation/zip overhead
+    if len(a) == 3:
+        return (a[0] + b[0], a[1] + b[1], a[2] + b[2])
+    elif len(a) == 2:
+        return (a[0] + b[0], a[1] + b[1])
     return tuple(x + y for x, y in zip(a, b))
 
 
 def _matvec(matrix: Sequence[Sequence[int]], vector: Sequence[int]) -> Vector:
     if any(len(row) != len(vector) for row in matrix):
         raise ValueError("matrix/vector dimensions differ")
+    # Optimization: Unroll for fixed short sizes to avoid list instantiation/zip overhead
+    if len(vector) == 3 and len(matrix) == 3:
+        return (
+            matrix[0][0]*vector[0] + matrix[0][1]*vector[1] + matrix[0][2]*vector[2],
+            matrix[1][0]*vector[0] + matrix[1][1]*vector[1] + matrix[1][2]*vector[2],
+            matrix[2][0]*vector[0] + matrix[2][1]*vector[1] + matrix[2][2]*vector[2]
+        )
     return tuple(sum(row[j] * vector[j] for j in range(len(vector))) for row in matrix)
 
 
