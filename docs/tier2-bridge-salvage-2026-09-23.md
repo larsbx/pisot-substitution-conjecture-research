@@ -73,15 +73,27 @@ recurrence.
 A useful generic name for the finite-coverage step is **finite
 overlap-universe completeness (FOUC)**:
 
-1. after the chosen normalisation/collaring, the legal exact-overlap universe is
-   finite;
-2. every legal overlap is represented in that universe;
-3. each class is assigned to a finite residual packet / component family.
+1. after the chosen normalisation/collaring, the represented exact-overlap
+   universe is finite;
+2. every overlap in the declared scope is represented in that universe;
+3. each represented class is assigned to a finite residual packet / component
+   family.
+
+Here **represented** is deliberately neutral: it does not mean legal in the
+substitution language. In particular, the PSC periodic swap seed may use two
+distinct tile types even when the corresponding two-letter word is not a
+language factor.
 
 For the current PSC shortest route, the already-proved finite exact seed-patch
-overlap graph supplies a seed-relative finite universe. It does **not** by
-itself imply the stronger all-seed/all-vertex coverage statement of Open
-Problem 5.35. Keep that distinction explicit.
+overlap graph supplies the required seed-relative finite represented universe.
+That finiteness/coverage input is already closed.
+
+Open Problem 5.35 is instead a **productivity** obligation: every vertex already
+represented in the finite union overlap graph is productive (eventually reaches
+coincidence). Theorem 5.38 uses the weaker seedwise form needed by the shortest
+route. FOUC must therefore not be presented as the missing content of Open
+Problem 5.35; the open bridge is productivity/eventual coincidence, not graph
+coverage.
 
 ## 5. Relevance to #84 / #138 / #139
 
