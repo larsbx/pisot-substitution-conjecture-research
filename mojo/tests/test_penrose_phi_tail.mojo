@@ -8,7 +8,12 @@ from psc.penrose_phi_tail import (
     cycle_gain,
     h_tail_branch_cycle,
     h_tail_period_gain,
+    inflation_closure_generators,
+    inflation_closure_index,
+    inflation_closure_residue_vanishes,
+    phi_mul,
     phi_state_potential_obstruction,
+    residue_mod_11,
 )
 
 
@@ -31,6 +36,19 @@ def test_positive_growth_channel_is_not_a_state_potential():
     assert_true(phi_state_potential_obstruction())
 
 
+def test_inflation_closure_has_index_eleven():
+    var g = h_tail_period_gain()
+    var generators = inflation_closure_generators()
+    assert_equal(len(generators), 2)
+    assert_equal(generators[0], g)
+    assert_equal(generators[1], phi_mul(g))
+    assert_equal(generators[1], PenrosePhiElt(-1, 3))
+    assert_equal(inflation_closure_index(), 11)
+    assert_true(inflation_closure_residue_vanishes())
+    assert_equal(residue_mod_11(PenrosePhiElt(1, 0)), 3)
+    assert_equal(residue_mod_11(PenrosePhiElt(0, 1)), 1)
+
+
 def main() raises:
     test_both_tail_cycles_have_the_same_exact_gain()
     print("[PASS] test_both_tail_cycles_have_the_same_exact_gain")
@@ -38,5 +56,7 @@ def main() raises:
     print("[PASS] test_period_gain_has_exact_norm_eleven")
     test_positive_growth_channel_is_not_a_state_potential()
     print("[PASS] test_positive_growth_channel_is_not_a_state_potential")
-    print("3 Penrose H_tail Phi-cocycle tests passed.")
+    test_inflation_closure_has_index_eleven()
+    print("[PASS] test_inflation_closure_has_index_eleven")
+    print("4 Penrose H_tail Phi-cocycle tests passed.")
     require_contract("penrose H_tail penrose_phi_increment channel")
