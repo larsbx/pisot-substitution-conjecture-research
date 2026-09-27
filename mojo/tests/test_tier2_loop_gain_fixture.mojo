@@ -39,7 +39,7 @@ def test_affine_forcing_channel_is_exact_and_occurrence_labelled() raises:
         assert_true(len(fixtures[f].state_indices) > 0)
         assert_true(len(fixtures[f].edges) > 0)
         for j in range(len(fixtures[f].edges)):
-            var edge = fixtures[f].edges[j]
+            var edge = fixtures[f].edges[j].copy()
             var coords = cubic_gain_coordinates(edge.gain)
             assert_equal(len(coords), 3)
             assert_true(edge.occurrence_ordinal >= 0)
@@ -59,10 +59,10 @@ def test_affine_forcing_channel_is_exact_and_occurrence_labelled() raises:
             continue
         found_component = True
         for k in range(len(pumps[0].edges)):
-            var wanted = pumps[0].edges[k]
+            var wanted = pumps[0].edges[k].copy()
             var found_edge = False
             for j in range(len(fixtures[f].edges)):
-                var got = fixtures[f].edges[j]
+                var got = fixtures[f].edges[j].copy()
                 if (
                     got.source_index == wanted.parent_index
                     and got.target_index == wanted.child_index
