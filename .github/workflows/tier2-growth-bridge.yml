@@ -23,6 +23,7 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.9.1
         with:
           pixi-version: latest
+          manifest-path: mojo/pixi.toml
 
       - name: Run Tier 2 Mojo fixture regression
         working-directory: mojo
