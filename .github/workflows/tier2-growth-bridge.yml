@@ -5,6 +5,12 @@ on:
     paths:
       - "mojo/psc/tier2_loop_gain_fixture.mojo"
       - "mojo/tests/test_tier2_loop_gain_fixture.mojo"
+      - "mojo/psc/penrose_phi_tail.mojo"
+      - "mojo/tests/test_penrose_phi_tail.mojo"
+      - "docs/tier2-penrose-phi-cocycle.md"
+      - "mojo/psc/penrose_phi_tail.mojo"
+      - "mojo/tests/test_penrose_phi_tail.mojo"
+      - "docs/tier2-penrose-phi-cocycle.md"
       - "schemas/tier2-loop-gain-fixture.schema.json"
       - ".github/workflows/tier2-growth-bridge.yml"
   pull_request:
@@ -25,9 +31,11 @@ jobs:
           pixi-version: latest
           manifest-path: mojo/pixi.toml
 
-      - name: Run Tier 2 Mojo fixture regression
+      - name: Run Tier 2 Mojo regressions
         working-directory: mojo
-        run: pixi run mojo run -I . tests/test_tier2_loop_gain_fixture.mojo
+        run: |
+          pixi run mojo run -I . tests/test_tier2_loop_gain_fixture.mojo
+          pixi run mojo run -I . tests/test_penrose_phi_tail.mojo
 
       - name: Validate Tier 2 fixture schema JSON
         run: python -m json.tool schemas/tier2-loop-gain-fixture.schema.json >/dev/null
