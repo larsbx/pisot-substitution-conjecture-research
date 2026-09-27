@@ -33,6 +33,40 @@ CURRENT_SURFACE = {
 }
 
 
+# Every accepted transpose suffix: ^T, ^\T, ^\top, bare \top, with optional TeX braces.
+TRANSPOSE = r"(?:\^\{?\s*(?:T|\\T|\\top)\s*\}?|\\top)(?![A-Za-z])"
+BAD_ASSIGNMENT = r"N[_ ]?C\s*=\s*M[_ ]?sigma"
+# Inter-token spacing, including TeX thin/medium/thick/negative spaces.
+SEP = r"(?:\s|\\[,;:! ])*"
+PARIKH_C = r"(?<![A-Za-z])P[_ ]?C(?![A-Za-z0-9])"
+
+# Clause boundaries (for local markers) and sentence boundaries (for replacements).
+CLAUSE_END = re.compile(r"[.;!?](?=\s|$)")
+SENTENCE_END = re.compile(r"[.!?](?=\s|$)")
+
+STALE_MARKER = re.compile(
+    r"\b(?:stale|old|wrong|incorrect|not|never|no|instead\s+of|replace)\b[^.;!?]{0,40}$",
+    re.IGNORECASE,
+)
+CYCLE_NEGATED_BEFORE = re.compile(
+    r"(?:\b(?:no\s+longer|do\s+not|don't|never)\b[^.;!?]{0,80}"
+    r"|\b(?:retired|refuted|withdrawn|false)\b[^.;!?\w]{0,4}(?:[\w-]+[^.;!?\w]{1,4}){0,3})$",
+    re.IGNORECASE,
+)
+CYCLE_NEGATED_AFTER = re.compile(
+    # The copula must predicate the target itself, not a later subordinate clause.
+    r"^(?:(?!\b(?:which|that|why|because|since|so|hence|thus|but|while|whereas|although)\b)"
+    r"[^.;!?]){0,80}?\b(?:is|are|was|were)\s+(?:(?:now|also|thus|therefore)\s+)?"
+    r"(?:false|retired|withdrawn|refuted)\b",
+    re.IGNORECASE,
+)
+CYCLE_NEGATED_NEXT = re.compile(
+    r"^\s*(?:That|This|The|Such\s+an?)\s+(?:[\w-]+\s+){0,2}?(?:target|statement|claim|theorem)"
+    r"\s+(?:is|was)\s+(?:\w+\s+)?(?:false|retired|withdrawn|refuted)\b",
+    re.IGNORECASE,
+)
+
+
 @dataclass(frozen=True)
 class Rule:
     name: str
@@ -43,7 +77,7 @@ class Rule:
 RULES: tuple[Rule, ...] = (
     Rule(
         name="synthetic-countermodel-transpose",
-        pattern=re.compile(r"N[_ ]?C\s*=\s*M[_ ]?sigma(?!\s*(?:\^T|\\top|\^\\top|\^\\T))", re.IGNORECASE),
+        pattern=re.compile(BAD_ASSIGNMENT + rf"(?!\s*{TRANSPOSE})", re.IGNORECASE),
         message="Synthetic countermodel must be N_C = M_sigma^T, P = I; not N_C = M_sigma.",
     ),
     Rule(
@@ -90,67 +124,70 @@ def iter_text_files(root: Path, strict_current: bool = False):
             yield path
 
 
+def _span(text: str, pos: int, end: re.Pattern[str]) -> tuple[int, int]:
+    """Bounds of the unit (clause/sentence) around ``pos``, clipped to its paragraph."""
+    brk = text.rfind("\n\n", 0, pos)
+    para_start = 0 if brk == -1 else brk + 2
+    para_end = text.find("\n\n", pos)
+    para_end = len(text) if para_end == -1 else para_end
+    starts = [m.end() for m in end.finditer(text, para_start, pos)]
+    stop = end.search(text, pos, para_end)
+    return (starts[-1] if starts else para_start), (stop.end() if stop else para_end)
+
+
+def _flat(s: str) -> str:
+    return " ".join(s.split())
+
+
+def _is_parikh_intertwiner(text: str, m: re.Match[str]) -> bool:
+    """``m`` is the middle of P_C N_C = M_sigma P_C, not merely beside it."""
+    return bool(
+        re.search(PARIKH_C + SEP + r"$", text[max(0, m.start() - 32):m.start()], re.IGNORECASE)
+        and re.match(SEP + PARIKH_C, text[m.end():], re.IGNORECASE)
+    )
+
+
+def _is_stale_quote(text: str, m: re.Match[str]) -> bool:
+    """``m`` itself is marked stale and its sentence supplies a transposed replacement."""
+    c_start, _ = _span(text, m.start(), CLAUSE_END)
+    s_start, s_end = _span(text, m.start(), SENTENCE_END)
+    replacement = re.compile(BAD_ASSIGNMENT + r"\s*" + TRANSPOSE, re.IGNORECASE)
+    return bool(
+        STALE_MARKER.search(_flat(text[c_start:m.start()]))
+        and replacement.search(text, s_start, s_end)
+    )
+
+
+def _is_negated_cycle_claim(text: str, m: re.Match[str]) -> bool:
+    """``m`` is itself marked false/retired in its clause, or by an anaphoric next sentence."""
+    c_start, c_end = _span(text, m.start(), CLAUSE_END)
+    _, s_end = _span(text, m.start(), SENTENCE_END)
+    _, n_end = _span(text, s_end, SENTENCE_END) if s_end < len(text) else (s_end, s_end)
+    return bool(
+        CYCLE_NEGATED_BEFORE.search(_flat(text[c_start:m.start()]))
+        or CYCLE_NEGATED_AFTER.search(_flat(text[m.end():c_end]))
+        or CYCLE_NEGATED_NEXT.search(_flat(text[s_end:n_end]))
+    )
+
+
+EXEMPTIONS = {
+    "synthetic-countermodel-transpose": (_is_parikh_intertwiner, _is_stale_quote),
+    "old-cycle-exclusion-target": (_is_negated_cycle_claim,),
+}
+
+
 def audit_file(path: Path) -> list[str]:
     try:
         text = path.read_text(encoding="utf-8")
     except UnicodeDecodeError:
         return []
-    failures: list[str] = []
-    for rule in RULES:
-        for match in rule.pattern.finditer(text):
-            # Use paragraph context so ordinary TeX/Markdown line wrapping does
-            # not change the semantic audit result.
-            para_start = text.rfind("\n\n", 0, match.start()) + 2
-            para_end = text.find("\n\n", match.end())
-            if para_end == -1:
-                para_end = len(text)
-            paragraph = " ".join(text[para_start:para_end].split())
-
-            if rule.name == "synthetic-countermodel-transpose":
-                # Exempt only the exact occurrence that is syntactically the
-                # middle of the proved Parikh intertwiner
-                # P_C N_C = M_sigma P_C.  A second bad assignment elsewhere
-                # on the same line/paragraph must still be rejected.
-                before = text[max(0, match.start() - 32):match.start()]
-                after = text[match.end():match.end() + 32]
-                if (
-                    re.search(r"P[_ ]?C\s*$", before, re.IGNORECASE)
-                    and re.match(r"\s+P[_ ]?C\b", after, re.IGNORECASE)
-                ):
-                    continue
-
-                # Guidance may quote the stale form if it explicitly requires
-                # a supported transposed replacement.  Match all transpose
-                # spellings accepted by the base rule.
-                transpose = (
-                    r"N[_ ]?C\s*=\s*M[_ ]?sigma"
-                    r"\s*(?:\^T|\\top|\^\\top|\^\\T)"
-                )
-                if (
-                    re.search(transpose, paragraph, re.IGNORECASE)
-                    and re.search(
-                        r"\b(?:must|instead|stale|replace|replacement|should)\b",
-                        paragraph,
-                        re.IGNORECASE,
-                    )
-                ):
-                    continue
-
-            if rule.name == "old-cycle-exclusion-target":
-                # Permit only explicit rejection/retirement of the matched
-                # target.  Mere historical framing such as "earlier work
-                # proves ..." is still an affirmative false claim and fails.
-                if re.search(
-                    r"\b(?:false|retired|withdrawn|no longer|do not|don't)\b",
-                    paragraph,
-                    re.IGNORECASE,
-                ):
-                    continue
-
-            line = text.count("\n", 0, match.start()) + 1
-            snippet = " ".join(match.group(0).split())
-            failures.append(f"{path}:{line}: {rule.name}: {rule.message} [matched: {snippet!r}]")
-    return failures
+    return [
+        f"{path}:{text.count(chr(10), 0, m.start()) + 1}: {rule.name}: {rule.message} "
+        f"[matched: {_flat(m.group(0))!r}]"
+        for rule in RULES
+        for m in rule.pattern.finditer(text)
+        if not any(exempt(text, m) for exempt in EXEMPTIONS.get(rule.name, ()))
+    ]
 
 
 def main(argv: list[str] | None = None) -> int:
