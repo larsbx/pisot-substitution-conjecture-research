@@ -116,3 +116,39 @@ def h_tail_period_gain() -> PenrosePhiElt:
 def phi_state_potential_obstruction() -> Bool:
     """Nonzero recurrent loop gain forbids these increments being state differences."""
     return not h_tail_period_gain().is_zero()
+
+
+def phi_mul(x: PenrosePhiElt) -> PenrosePhiElt:
+    """Multiply a + b*phi by phi using phi^2 = phi + 1."""
+    return PenrosePhiElt(x.a1, x.a0 + x.a1)
+
+
+def inflation_closure_generators() -> List[PenrosePhiElt]:
+    """g and phi*g for g = 4 - phi."""
+    var g = h_tail_period_gain()
+    return [g, phi_mul(g)]
+
+
+def coordinate_determinant(a: PenrosePhiElt, b: PenrosePhiElt) -> Int:
+    return a.a0 * b.a1 - a.a1 * b.a0
+
+
+def inflation_closure_index() -> Int:
+    """Index of Z*g + Z*(phi*g) in Z[phi], exactly 11."""
+    var generators = inflation_closure_generators()
+    var det = coordinate_determinant(generators[0], generators[1])
+    return -det if det < 0 else det
+
+
+def residue_mod_11(x: PenrosePhiElt) -> Int:
+    """Quotient coordinate r(a,b) = 3a + b mod 11."""
+    var r = (3 * x.a0 + x.a1) % 11
+    return r + 11 if r < 0 else r
+
+
+def inflation_closure_residue_vanishes() -> Bool:
+    var generators = inflation_closure_generators()
+    return (
+        residue_mod_11(generators[0]) == 0
+        and residue_mod_11(generators[1]) == 0
+    )
