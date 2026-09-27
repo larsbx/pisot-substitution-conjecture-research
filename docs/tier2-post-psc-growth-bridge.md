@@ -8,6 +8,18 @@ Project premise: the general Pisot Substitution Conjecture is treated as closed.
 
 This scaffold does not itself rewrite historical claim ledgers or archived proof-status documents. Status reconciliation belongs in a dedicated follow-up change so generated surfaces remain governance-consistent.
 
+## Literature gate
+
+The stop/go review is `docs/tier2-loop-gain-literature-gate-2026-09-27.md`.
+Decision: **redirect, then proceed narrowed.** Obligation 3 below is
+Solomyak's return-vector eigenvalue criterion (import, do not reprove);
+obligation 5 is automatic in its asymptotic form and degenerate in the exact
+form stated here; the mod-11 residual resonance of obligation 6 is stopped
+and replaced by Pisot trace integrality over the full return module. The
+surviving target is *recurrent visibility*: whether the recurrent loop gains
+generate the same `Z[lambda]`-module as the return set. `affine_forcing`
+loop invariants are `beta`-twisted sums, not plain sums.
+
 ## Main route
 
 The active Tier 2 route is the Growth Bridge:

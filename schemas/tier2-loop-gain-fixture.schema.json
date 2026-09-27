@@ -127,5 +127,58 @@
       "minLength": 1,
       "description": "Names the exact gain semantics; e.g. affine_forcing. Distinct cocycles must use distinct channel names."
     }
-  }
+  },
+  "allOf": [
+    {
+      "$comment": "affine_forcing lives in the cubic power basis (1, beta, beta^2); rank-generic dimension checks are in scripts/check_tier2_fixture.py.",
+      "if": {
+        "properties": {
+          "gain_channel": {
+            "const": "affine_forcing"
+          }
+        },
+        "required": [
+          "gain_channel"
+        ]
+      },
+      "then": {
+        "properties": {
+          "arithmetic_basis": {
+            "required": [
+              "minimal_polynomial"
+            ],
+            "properties": {
+              "kind": {
+                "const": "integer_power_basis"
+              },
+              "labels": {
+                "minItems": 3,
+                "maxItems": 3
+              },
+              "minimal_polynomial": {
+                "minItems": 4,
+                "maxItems": 4
+              }
+            }
+          },
+          "edges": {
+            "items": {
+              "properties": {
+                "gain_coordinates": {
+                  "minItems": 3,
+                  "maxItems": 3
+                }
+              }
+            }
+          },
+          "generated_module_generators": {
+            "items": {
+              "minItems": 3,
+              "maxItems": 3
+            }
+          }
+        }
+      }
+    }
+  ]
 }
