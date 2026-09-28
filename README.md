@@ -25,7 +25,7 @@ drivers now look up instead of recomputing.
 
 Start here:
 
-1. `docs/audit-2026-09-27.md` — current-state audit of the theorem record, post-PSC project transition, source integrity, and verification boundary.
+1. `docs/audit-2026-09-27.md` — current-state audit of the theorem record, Tier 2 project transition, source integrity, and verification boundary.
 2. `docs/completion-ledger-2026-09-28.md` — latest weekly completion ledger: established results, open risks, independence/unimodularity firewall, computational evidence, and prioritized proof obligations.
 3. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the aligned branch, #139 strict-zipper branch, Level 2, and parallel structural routes.
 4. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
@@ -48,7 +48,7 @@ primitive irreducible Pisot
 => pure discrete spectrum                               [IMPORTED theorem]
 ```
 
-In the **canonical mathematical record**, the only open premise on this route is seedwise overlap productivity. Manuscript Theorem 5.38 therefore no longer requires finite BPA / G1. Issue #84 was administratively closed under the newer post-PSC project premise; that issue-state change is not itself theorem provenance. See `docs/audit-2026-09-27.md`, `docs/completion-ledger-2026-09-28.md`, and the still-open status reconciliation #153.
+In the **canonical mathematical record**, the only open premise on this route is seedwise overlap productivity. Manuscript Theorem 5.38 therefore no longer requires finite BPA / G1. Issue #84 was administratively closed under the newer PSC-closed project premise; that issue-state change is not itself theorem provenance. See `docs/audit-2026-09-27.md`, `docs/completion-ledger-2026-09-28.md`, and the still-open status reconciliation #153.
 
 Keep the two productivity hypotheses separate. Theorem 5.38 needs only `OP_seed`: every overlap reachable from one selected swap seed is productive. Manuscript Open Problem 5.35 states the stronger `OP_all`: every vertex of the union overlap graph is productive. Proposition 5.39(iii), the all-pairs strong-coincidence consequence, the every-vertex hitting formulation, and the unimodular equivalence with PDS apply to `OP_all`, not to `OP_seed`. No one-seed-to-all-vertices implication is claimed. See `docs/audit-2026-09-20.md` §C.
 
@@ -64,7 +64,7 @@ This does **not** mean the stronger structural problems are solved:
 - **Concentration (`K2=0`)** and **general wedge productivity (`K2!=0`)** remain open on the finite-BPA/SCC route (issue #43 covers the concentration branch).
 - **SCC Producer** remains open generally.
 - **Realization / coincidence-rank** remains an audited open bridge with G0–G6 obligations.
-- **Canonical theorem record:** PSC remains open pending the proof-source/status reconciliation in #153; project management is already operating under a post-PSC premise.
+- **Canonical theorem record:** PSC remains open pending the proof-source/status reconciliation in #153; project management is already operating under a PSC-closed premise.
 
 ### Established primary-route inputs
 

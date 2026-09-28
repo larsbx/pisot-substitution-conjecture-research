@@ -2,13 +2,13 @@
 
 **Repository baseline:** `main@7eb4d58926456647d3fa2b44a803ad105feba338`, including the merged current-state audit PR #167.  
 **Purpose:** weekly completion/status snapshot. This file is not itself a proof source. The authoritative theorem-status sources remain the manuscript, claim/source map, generated proof ledger, and claim-governance record.  
-**Current status caveat:** the project-management layer now treats general PSC as closed/post-PSC, while the canonical mathematical record still classifies PSC and the remaining overlap-productivity obligations as open. Issue #153 owns that provenance/status reconciliation.
+**Current status caveat:** the project-management layer now treats general PSC as closed, while the canonical mathematical record still classifies PSC and the remaining overlap-productivity obligations as open. Issue #153 owns that provenance/status reconciliation.
 
 ## Executive status
 
 The principal development this week is a **status/provenance split**, not a newly merged proof of the remaining general theorem.
 
-The project-management layer has moved into a post-PSC phase: issue #151 explicitly says general PSC is treated as closed for the project, and issues #84 and #138 were administratively closed on 2026-09-26. At the same time, the canonical mathematical record on `main` still says:
+The project-management layer has moved into a Tier 2 phase: issue #151 carried, before its 2026-09-28 revision, an explicit project premise of general-PSC closure, and issues #84 and #138 were administratively closed on 2026-09-26. At the same time, the canonical mathematical record on `main` still says:
 
 - the Pisot Substitution Conjecture is open;
 - seedwise overlap productivity is an open premise of the shortest G1-free sufficiency route;
@@ -16,7 +16,7 @@ The project-management layer has moved into a post-PSC phase: issue #151 explici
 - the strict-zipper branch remains open as the `AdelicPeriodicOffsetHitting` problem;
 - G1b-2, concentration, general wedge productivity, and the realization bridge remain open.
 
-Issue #153 explicitly requires the accepted proof source and immutable provenance to be recorded, the authoritative proof/status record changed, and all generated surfaces regenerated before the post-PSC premise becomes canonical theorem status.
+Issue #153 explicitly requires the accepted proof source and immutable provenance to be recorded, the authoritative proof/status record changed, and all generated surfaces regenerated before the PSC-closed premise becomes canonical theorem status.
 
 Accordingly, this ledger uses the following boundary:
 
@@ -419,7 +419,7 @@ The following still classify general PSC as open on `main`:
 
 ### Project-management record
 
-The following now treat the project as post-PSC:
+The following treated the project as having closed PSC:
 
 - issue #151;
 - the latest project-status comment on #84;
@@ -532,7 +532,7 @@ The largest immediate project risk is **not** a hidden unimodularity assumption.
 
 Until #153 resolves that discrepancy, the correct weekly status is:
 
-> **Canonical theorem status: open. Post-PSC project status: active by project premise. Proof-source reconciliation: pending.**
+> **Canonical theorem status: open. Tier 2 project status: active by administrative premise. Proof-source reconciliation: pending.**
 
 ## Primary repository sources for this ledger
 

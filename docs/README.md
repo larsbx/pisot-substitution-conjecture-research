@@ -12,7 +12,7 @@ TOML and regenerate rather than hand-editing the Markdown.
 ## Current status
 
 1. `audit-2026-09-27.md` — current-state audit. It distinguishes the canonical
-   theorem ledger from the post-PSC project-management premise, records the
+   theorem ledger from the PSC-closed project-management premise, records the
    still-open #153 reconciliation, audits the new adelic/trim research, and
    flags source-integrity control characters in three merged research notes.
 2. `completion-ledger-2026-09-28.md` — latest weekly completion ledger. It
@@ -95,6 +95,7 @@ Change the ledger entry and every surface in the same commit.
 - `archive-tarball-audit-2026-09-13.md` — uploaded archive digest, identity check, and warning about contradictory v34 closing status language.
 - `source-provenance-v16-later-audit-2026-09-12.md` — exhaustive reachable
   Git-history audit and imported-source checksums.
+- `v9-extraction-audit-2026-09-23.md` — extracts the reusable UD / UD-for-powers / local-hierarchy material from the externally supplied PSC v9 manuscript and explicitly rejects its withdrawn finite-BPA and cycle-exclusion claims.
 - `galois-aux-b-source-resolution-2026-09-13.md` — separates the historical
   degree-three seed theorem, the reconstructed degree-two carrier theorem, and
   open concentration.
@@ -137,7 +138,7 @@ closed on caps and retain a replayable record for every survivor.
   strong-coincidence consequence, and the unimodular equivalence with PDS apply
   only to the stronger all-vertex hypothesis; no one-seed-to-all-vertices
   implication is claimed. Issue #84 is administratively closed under the
-  post-PSC project premise; that does not by itself change theorem status.
+  PSC-closed project premise; that does not by itself change theorem status.
   See `audit-2026-09-27.md` and `completion-ledger-2026-09-28.md`.
 - Endpoint-aligned overlaps are the two-sided strong coincidence condition, and
   under strong coincidence productivity is the prefix-Parikh boundary-hitting
