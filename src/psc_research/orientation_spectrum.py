@@ -57,6 +57,13 @@ def _block_cover(a: IntMatrix, b: IntMatrix) -> IntMatrix:
 def _matvec(matrix: Sequence[Sequence[int]], vector: Sequence[int]) -> tuple[int, ...]:
     if any(len(row) != len(vector) for row in matrix):
         raise ValueError("matrix/vector dimensions do not agree")
+    # Optimization: Unroll for fixed short sizes to avoid list instantiation/zip overhead
+    if len(vector) == 3 and len(matrix) == 3:
+        return (
+            matrix[0][0]*vector[0] + matrix[0][1]*vector[1] + matrix[0][2]*vector[2],
+            matrix[1][0]*vector[0] + matrix[1][1]*vector[1] + matrix[1][2]*vector[2],
+            matrix[2][0]*vector[0] + matrix[2][1]*vector[1] + matrix[2][2]*vector[2]
+        )
     return tuple(sum(row[j] * vector[j] for j in range(len(vector))) for row in matrix)
 
 
