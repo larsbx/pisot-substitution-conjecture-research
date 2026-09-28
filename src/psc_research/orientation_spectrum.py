@@ -20,6 +20,7 @@ from dataclasses import dataclass
 from typing import Sequence
 
 from .bpa import State, Substitution
+from .fixed_vector import matvec as _matvec
 from .intertwiner import IntMatrix, build_scc_intertwiner, matmul
 from .orientation import OrientedEdge, strict_orientation_edges
 
@@ -52,12 +53,6 @@ def _block_cover(a: IntMatrix, b: IntMatrix) -> IntMatrix:
     top = tuple(tuple(a[i]) + tuple(b[i]) for i in range(n))
     bottom = tuple(tuple(b[i]) + tuple(a[i]) for i in range(n))
     return top + bottom
-
-
-def _matvec(matrix: Sequence[Sequence[int]], vector: Sequence[int]) -> tuple[int, ...]:
-    if any(len(row) != len(vector) for row in matrix):
-        raise ValueError("matrix/vector dimensions do not agree")
-    return tuple(sum(row[j] * vector[j] for j in range(len(vector))) for row in matrix)
 
 
 def build_orientation_incidence(

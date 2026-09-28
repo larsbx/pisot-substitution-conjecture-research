@@ -41,6 +41,7 @@ from .bpa import (
     normalize_state,
     parikh,
 )
+from .fixed_vector import add as _add_vectors, matvec as _matvec, sub as _sub_vectors
 from .intertwiner import substitution_incidence
 
 Vector = tuple[int, ...]
@@ -70,24 +71,6 @@ class InflatedPrefixLift:
     @property
     def source_aligned_on_both_sides(self) -> bool:
         return self.top_offset == 0 and self.bottom_offset == 0
-
-
-def _sub_vectors(a: Sequence[int], b: Sequence[int]) -> Vector:
-    if len(a) != len(b):
-        raise ValueError("vector dimensions differ")
-    return tuple(x - y for x, y in zip(a, b))
-
-
-def _add_vectors(a: Sequence[int], b: Sequence[int]) -> Vector:
-    if len(a) != len(b):
-        raise ValueError("vector dimensions differ")
-    return tuple(x + y for x, y in zip(a, b))
-
-
-def _matvec(matrix: Sequence[Sequence[int]], vector: Sequence[int]) -> Vector:
-    if any(len(row) != len(vector) for row in matrix):
-        raise ValueError("matrix/vector dimensions differ")
-    return tuple(sum(row[j] * vector[j] for j in range(len(vector))) for row in matrix)
 
 
 def _det3(matrix: Sequence[Sequence[int]]) -> int:

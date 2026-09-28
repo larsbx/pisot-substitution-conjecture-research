@@ -21,6 +21,7 @@ from dataclasses import dataclass
 from typing import Sequence
 
 from .bpa import State, Substitution, alphabet_size, apply_substitution, apply_substitution_n, parikh
+from .fixed_vector import add as _add, matvec as _matvec, sub as _sub
 from .intertwiner import substitution_incidence
 from .prefix_difference import (
     Vector,
@@ -28,24 +29,6 @@ from .prefix_difference import (
     local_image_prefix_vector,
     locate_inflated_cut,
 )
-
-
-def _sub(a: Sequence[int], b: Sequence[int]) -> Vector:
-    if len(a) != len(b):
-        raise ValueError("vector dimensions differ")
-    return tuple(x - y for x, y in zip(a, b))
-
-
-def _add(a: Sequence[int], b: Sequence[int]) -> Vector:
-    if len(a) != len(b):
-        raise ValueError("vector dimensions differ")
-    return tuple(x + y for x, y in zip(a, b))
-
-
-def _matvec(matrix: Sequence[Sequence[int]], vector: Sequence[int]) -> Vector:
-    if any(len(row) != len(vector) for row in matrix):
-        raise ValueError("matrix/vector dimensions differ")
-    return tuple(sum(row[j] * vector[j] for j in range(len(vector))) for row in matrix)
 
 
 @dataclass(frozen=True)
