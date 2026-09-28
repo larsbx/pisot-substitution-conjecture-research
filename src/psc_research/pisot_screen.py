@@ -95,8 +95,8 @@ def halfplane_transform(coeffs: Sequence[int]) -> list[Fraction]:
     for k in range(n + 1):
         if coeffs[k] == 0:
             continue
-        left = _binomial_power(k, +1)        # (1 + w)^k
-        right = _binomial_power(n - k, -1)   # (1 - w)^(n - k)
+        left = _binomial_power(k, +1)  # (1 + w)^k
+        right = _binomial_power(n - k, -1)  # (1 - w)^(n - k)
         c_k = coeffs[k]
         for i, a in enumerate(left):
             term = c_k * a
@@ -144,7 +144,7 @@ def routh_right_half_plane_count(q: Sequence[Fraction]) -> int | None:
             if not current or all(x == 0 for x in current):
                 return None
         if current[0] == 0:
-            return None                      # first-column zero, not a whole row
+            return None  # first-column zero, not a whole row
         nxt = []
         for i in range(1, max(len(above), len(current))):
             a = above[i] if i < len(above) else Fraction(0)
@@ -157,7 +157,7 @@ def routh_right_half_plane_count(q: Sequence[Fraction]) -> int | None:
         rows.append(nxt)
     column = [row[0] for row in rows if row]
     if len(column) < n + 1 or any(x == 0 for x in column):
-        return None                          # early termination or a zero
+        return None  # early termination or a zero
     return sum(1 for i in range(n) if (column[i] > 0) != (column[i + 1] > 0))
 
 
@@ -188,13 +188,16 @@ def _poly_gcd(a: Sequence[Fraction], b: Sequence[Fraction]) -> list[Fraction]:
 
 
 def _poly_rem(a: Sequence[Fraction], b: Sequence[Fraction]) -> list[Fraction]:
+    # Optimization: Cache degree(a) and decrement inline to avoid O(N^2) backward scan overhead
     a, db = list(a), degree(b)
-    while degree(a) >= db >= 0:
-        d = degree(a)
-        factor = a[d] / b[db]
+    da = degree(a)
+    while da >= db >= 0:
+        factor = a[da] / b[db]
         for i in range(db + 1):
-            a[d - db + i] -= factor * b[i]
-        a[d] = Fraction(0)
+            a[da - db + i] -= factor * b[i]
+        a[da] = Fraction(0)
+        while da >= 0 and a[da] == 0:
+            da -= 1
     return a[:db] if db > 0 else []
 
 
@@ -214,7 +217,9 @@ def _real_root_count(p: Sequence[Fraction]) -> int:
     def changes(x: Fraction) -> int:
         signs = [evaluate(c, x) for c in chain]
         signs = [s for s in signs if s != 0]
-        return sum(1 for i in range(len(signs) - 1) if (signs[i] > 0) != (signs[i + 1] > 0))
+        return sum(
+            1 for i in range(len(signs) - 1) if (signs[i] > 0) != (signs[i + 1] > 0)
+        )
 
     return changes(-bound) - changes(bound)
 
@@ -257,7 +262,7 @@ def roots_outside_unit_circle(coeffs: Sequence[int]) -> int | None:
     if n < 1:
         return None
     if evaluate(coeffs, Fraction(1)) == 0 or evaluate(coeffs, Fraction(-1)) == 0:
-        return None                          # a root at z = 1 or z = -1
+        return None  # a root at z = 1 or z = -1
     return routh_right_half_plane_count(halfplane_transform(coeffs))
 
 
@@ -279,7 +284,7 @@ def screen(coeffs: Sequence[int]) -> str:
     if not is_monic_integer(coeffs):
         return REFUSED
     if has_root_on_unit_circle(coeffs):
-        return NOT_PISOT                     # a conjugate on the circle disqualifies
+        return NOT_PISOT  # a conjugate on the circle disqualifies
     outside = roots_outside_unit_circle(coeffs)
     if outside is None:
         return REFUSED
@@ -293,7 +298,7 @@ def screen(coeffs: Sequence[int]) -> str:
     low = evaluate(coeffs, Fraction(1))
     high = evaluate(coeffs, bound)
     if (low > 0) == (high > 0):
-        return NOT_PISOT                     # the outside root is below -1
+        return NOT_PISOT  # the outside root is below -1
     return PISOT
 
 
@@ -324,7 +329,7 @@ def irreducibility(coeffs: Sequence[int]) -> str:
 def _has_rational_root(coeffs: Sequence[int]) -> bool:
     constant = coeffs[0]
     if constant == 0:
-        return True                          # zero is a root
+        return True  # zero is a root
     for divisor in _divisors(abs(constant)):
         for candidate in (divisor, -divisor):
             if evaluate(coeffs, Fraction(candidate)) == 0:
