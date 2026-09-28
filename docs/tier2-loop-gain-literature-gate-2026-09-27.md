@@ -196,14 +196,15 @@ must reproduce this control before it is trusted.
 
 - The executable fixture machinery may merge as finite, exact infrastructure;
   it establishes no spectral statement.
-- `docs/tier2-post-psc-growth-bridge.md` obligations 3, 5, 6 are to be
-  restated per the Decision before any theorem-facing test targets them.
-- `affine_forcing` fixtures must not be passed to a plain-sum module
-  computation until a twist is declared (Finding 5, C3).
-- The schema now fixes the `affine_forcing` channel to the three-coordinate
-  power basis, and `scripts/check_tier2_fixture.py` enforces the remaining
-  dimension semantics (gain and generator width = basis rank; power-basis
-  rank = degree of the minimal polynomial).
+- `docs/tier2-post-psc-growth-bridge.md` obligations 3, 5, 6 are restated
+  per the Decision, and its Inflation-Closure Lemma is withdrawn.
+- Every fixture declares `loop_composition` (`additive` or `beta_twisted`).
+  The schema pins `affine_forcing` to `beta_twisted` over the three-coordinate
+  power basis, so a plain-sum reading of it is not schema-valid (Finding 5,
+  C3).
+- `scripts/check_tier2_fixture.py` enforces the remaining semantics: gain and
+  generator width = basis rank, distinct labels, power-basis rank = degree of
+  the monic minimal polynomial, and `beta_twisted` only over a power basis.
 
 ## Sources
 

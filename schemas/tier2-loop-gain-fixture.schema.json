@@ -10,7 +10,8 @@
     "gain_channel",
     "vertices",
     "edges",
-    "arithmetic_basis"
+    "arithmetic_basis",
+    "loop_composition"
   ],
   "properties": {
     "schema_version": {
@@ -126,11 +127,18 @@
       "type": "string",
       "minLength": 1,
       "description": "Names the exact gain semantics; e.g. affine_forcing. Distinct cocycles must use distinct channel names."
+    },
+    "loop_composition": {
+      "enum": [
+        "additive",
+        "beta_twisted"
+      ],
+      "description": "How edge labels compose around a closed loop of edges d_0..d_{k-1}. additive: gain = sum_i d_i. beta_twisted: the labels are forcing terms of w' = beta*w + d, so the lap translation is sum_i beta^(k-1-i) d_i with beta the power-basis generator; a plain-sum module of such labels is not a loop invariant."
     }
   },
   "allOf": [
     {
-      "$comment": "affine_forcing lives in the cubic power basis (1, beta, beta^2); rank-generic dimension checks are in scripts/check_tier2_fixture.py.",
+      "$comment": "affine_forcing labels the affine recurrence w' = beta*w + (q - p) in the cubic power basis (1, beta, beta^2), so loops compose beta_twisted; rank-generic checks are in scripts/check_tier2_fixture.py.",
       "if": {
         "properties": {
           "gain_channel": {
@@ -176,6 +184,9 @@
               "minItems": 3,
               "maxItems": 3
             }
+          },
+          "loop_composition": {
+            "const": "beta_twisted"
           }
         }
       }
