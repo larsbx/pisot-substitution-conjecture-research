@@ -12,19 +12,20 @@ TOML and regenerate rather than hand-editing the Markdown.
 ## Current status
 
 1. `audit-2026-09-27.md` — current-state audit. It distinguishes the canonical
-   theorem ledger (PSC/#84/#138 remain mathematically open) from the post-PSC
-   project-management premise, records the still-open #153 reconciliation,
-   audits the new adelic/trim research, and flags source-integrity control
-   characters in three merged research notes.
-2. `research-roadmap-2026-09-21.md` — live completion roadmap. It splits
-   Open Problem 5.35 into the aligned strong-coincidence branch (#138) and the
-   strict-zipper contracting-space hitting branch (#139), while keeping G1b-2,
-   finite-BPA carrier work, and realization as parallel programmes.
-3. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
+   theorem ledger from the post-PSC project-management premise, records the
+   still-open #153 reconciliation, audits the new adelic/trim research, and
+   flags source-integrity control characters in three merged research notes.
+2. `completion-ledger-2026-09-28.md` — latest weekly completion ledger. It
+   separates theorem-level results, conditional results, finite evidence,
+   conjectural bridges and unresolved dependencies; it also records the
+   independence/unimodularity firewall and prioritized closure criteria.
+3. `research-roadmap-2026-09-21.md` — live completion roadmap. It splits the
+   mathematical overlap-productivity obstruction into the aligned branch and
+   the strict-zipper contracting-space hitting branch (#139), while keeping
+   G1b-2, finite-BPA carrier work, and realization as parallel programmes.
+4. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
-4. `completion-ledger-2026-09-14.md` — latest merged weekly completion
-   snapshot; read its priority ordering against the live roadmap.
 5. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
 6. `conjecture-ledger.md` — live prose dependency ledger.
@@ -38,6 +39,9 @@ TOML and regenerate rather than hand-editing the Markdown.
    historical pointer.
 9. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
    state-of-program exposition.
+
+The previous `completion-ledger-2026-09-14.md` is retained as a historical
+weekly snapshot.
 
 When these disagree, do not choose the strongest wording. Check the latest
 merged commit, the claim/source map, the proof note, and `tla/Ledger.tla`,
@@ -125,14 +129,16 @@ closed on caps and retain a replayable record for every survivor.
 - Seed-patch overlap-graph finiteness: repository-proved from bounded discrepancy.
 - Coincidence-density / dense-good-set equivalence: repository-proved.
 - Density-to-PDS: imported Barge–Štimac–Williams theorem, audited in the manuscript.
-- **Overlap productivity remains the only open premise on this shortest route.**
+- **In the canonical theorem record, overlap productivity remains the only open premise on this shortest route.**
   Productivity of the overlaps reachable from one periodic swap seed built from
   distinct tile types already implies PDS (manuscript Theorem 5.38); no
   substitution-language legality assumption is used; proving every seed or every vertex in the union
   graph is stronger than necessary. Proposition 5.39(iii), the all-pairs
   strong-coincidence consequence, and the unimodular equivalence with PDS apply
   only to the stronger all-vertex hypothesis; no one-seed-to-all-vertices
-  implication is claimed. See `audit-2026-09-20.md` §C.
+  implication is claimed. Issue #84 is administratively closed under the
+  post-PSC project premise; that does not by itself change theorem status.
+  See `audit-2026-09-27.md` and `completion-ledger-2026-09-28.md`.
 - Endpoint-aligned overlaps are the two-sided strong coincidence condition, and
   under strong coincidence productivity is the prefix-Parikh boundary-hitting
   statement of Propositions 5.39–5.40 / Corollary 5.41.
