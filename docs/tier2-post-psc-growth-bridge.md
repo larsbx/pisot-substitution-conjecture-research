@@ -1,12 +1,51 @@
-# Tier 2: post-PSC Growth Bridge research programme
+# Tier 2: Growth Bridge research programme
 
 ## Status and purpose
 
-This is a post-PSC research programme.
+**PSC is open.** On the repository's shortest sufficiency route
+(`README.md`, `docs/research-roadmap-2026-09-21.md`) the one open premise is
+seedwise overlap productivity `OP_seed` (Open Problem 5.35, issue #84), split
+into the aligned branch #138 and the strict-zipper branch #139
+(`AdelicPeriodicOffsetHitting`). An earlier draft of this file called Tier 2 a
+"post-PSC" programme resting on the premise that PSC is closed; that premise is
+withdrawn, since it contradicts `docs/claim-status-and-source-map-2026-09-13.md`,
+which forbids describing PSC as proved. The filename is kept for link stability.
 
-Project premise: the general Pisot Substitution Conjecture is treated as closed. Tier 2 asks what new structure, invariants, algorithms, and theorem families can be built on top of that result.
+Tier 2 develops the Growth Bridge of `docs/tier2-bridge-salvage-2026-09-23.md`:
+a proof template in which recurrent noncoincident packet dynamics are allowed
+and the obstruction is arithmetic/spectral rather than termination. It is
+therefore a candidate *mechanism toward* #84 (most relevant to #139), plus a
+family of finite invariants. It is not built on PSC and proves no part of it.
 
-This scaffold does not itself rewrite historical claim ledgers or archived proof-status documents. Status reconciliation belongs in a dedicated follow-up change so generated surfaces remain governance-consistent.
+Every Tier 2 statement falls into one of three classes:
+
+- **Unconditional.** The finite algebra (loop gains, generated modules, index
+  computations, the Penrose `H_tail` arithmetic); the imported criteria of the
+  literature gate (Solomyak's eigenvalue criterion, Kenyon's realization,
+  Pisot-trace sufficiency), whose hypotheses are primitivity, finite local
+  complexity and self-similarity, not pure discrete spectrum; and the Penrose
+  calibration, since Penrose PDS is Robinson's theorem, independent of PSC.
+- **Open.** Any Growth Bridge theorem concluding PDS for the standing ternary
+  primitive irreducible Pisot regime. Such a theorem would be a route to #84;
+  none is claimed.
+- **Firewall.** No Tier 2 argument aimed at #84, #138 or #139 may take as input
+  PDS, `OP_seed`, `OP_all`, or any consequence of them (for example that
+  eigenfunctions span `L^2`). Doing so would be circular.
+
+This scaffold does not rewrite claim ledgers or generated status surfaces, and
+moves no theorem status.
+
+## Literature gate
+
+The stop/go review is `docs/tier2-loop-gain-literature-gate-2026-09-27.md`.
+Decision: **redirect, then proceed narrowed.** Obligation 3 below is
+Solomyak's return-vector eigenvalue criterion (import, do not reprove);
+obligation 5 is automatic in its asymptotic form and degenerate in the exact
+form stated here; the mod-11 residual resonance of obligation 6 is stopped
+and replaced by Pisot trace integrality over the full return module. The
+surviving target is *recurrent visibility*: whether the recurrent loop gains
+generate the same `Z[lambda]`-module as the return set. `affine_forcing`
+loop invariants are `beta`-twisted sums, not plain sums.
 
 ## Main route
 
@@ -71,7 +110,13 @@ For a closed lifted loop `ell`,
 gain(ell) = sum DeltaPhi(edge)
 ```
 
-with exact arithmetic only.
+with exact arithmetic only. This is the `additive` loop composition. A
+channel whose labels are forcing terms of an affine recurrence composes
+`beta_twisted` instead: for `w' = beta*w + d`, a loop `d_0, ..., d_{k-1}`
+translates by `sum_i beta^(k-1-i) d_i`, and the plain sum is not a loop
+invariant. `affine_forcing` is such a channel. Every fixture declares its
+`loop_composition`, and the schema pins `affine_forcing` to `beta_twisted`
+(`docs/tier2-loop-gain-literature-gate-2026-09-27.md`, Finding 5).
 
 ### Recurrent loop-gain subgroup
 
@@ -87,12 +132,16 @@ This is the first new Tier 2 finite invariant.
 
 The immediate theorem work is deliberately split into independently auditable obligations.
 
-1. **Arithmetic realization.** Prove that the lifted cocycle lands in an explicitly described finitely generated arithmetic module.
+Obligations 3, 5 and 6 below are restated per the literature gate; the earlier
+formulations (exact annihilation, a separate inflation-closure lemma, a mod-11
+residual resonance) are withdrawn.
+
+1. **Arithmetic realization.** Prove that the lifted cocycle lands in an explicitly described finitely generated arithmetic module. For return vectors this is Kenyon's `Z[theta]`-lattice theorem; the obligation is its specialization to the lifted cocycle.
 2. **Loop-gain invariance.** Prove that `G_q` is independent of cycle-basis choice and stable under the allowed packet normalizations.
-3. **Eigenvalue-to-kernel bridge.** Formulate and prove the exact implication from a measurable eigenvalue to annihilation constraints on recurrent loop gains.
+3. **Eigenvalue bridge (imported).** Solomyak's criterion: `alpha` is an eigenvalue (measurable = continuous) iff `exp(2 pi i <phi^n z, alpha>) -> 1` for every return vector `z`, plus the period condition. Cite it; do not reprove it. The constraint is asymptotic, not exact annihilation.
 4. **Spectral-character restriction.** Define precisely the image of measurable translation eigenvalues inside the character group of the arithmetic gain module. The target is this restricted class, not all additive characters of the ambient module.
-5. **Inflation closure.** Prove when annihilation of recurrent loop gains propagates under multiplication by the expansion, producing a Z[lambda]-submodule rather than only a Z-subgroup.
-6. **Kernel escape / finite residual resonance.** Identify the annihilator inside the compatible spectral-character class after inflation closure. Penrose currently suggests a finite mod-11 residual problem, not automatic escape from every ambient character.
+5. **Recurrent visibility.** The set of `z` satisfying the criterion is already a `Z[lambda]`-module, so no inflation-closure lemma is needed. The obligation is instead to prove, or refute with a finite certificate, that the `Z[lambda]`-module generated by the recurrent loop gains equals the one generated by the full return set. The defect module, if nonzero, is the new finite invariant.
+6. **Pisot trace test.** Decide eigenvalues on the full return module by eventual trace integrality (`dist(theta^n x, Z) -> 0` for Pisot `theta`). An index computed from one recurrent component cannot decide it: see control C2 in the gate note.
 7. **Penrose witness.** Compute the source-grounded Penrose gain and the exact arithmetic closure, keeping finite algebra separate from the spectral implication.
 8. **Class promotion.** Only after the preceding obligations are closed should a general Growth Bridge theorem be promoted.
 
@@ -161,6 +210,7 @@ LoopGainFixture {
   vertices
   occurrence_labelled_edges
   edge_gain_coordinates
+  loop_composition
   arithmetic_basis
   expected_generated_module
 }
@@ -229,13 +279,10 @@ r(a,b) = 3a + b mod 11,
 
 and is cyclic of order 11.
 
-This finite arithmetic does **not** yet prove that a measurable eigencharacter
-must annihilate the whole principal submodule. The new theorem obligation is:
-
-> **Inflation-Closure Lemma.** Prove that the spectral compatibility relation
-> arising from the self-affine dynamics propagates loop-gain annihilation under
-> the expansion action.
-
-If that lemma holds in the Penrose setting, the remaining resonance problem is
-reduced to ten nontrivial characters of the order-11 quotient rather than the
-full ambient character group.
+This finite arithmetic stands, but it carries no eigenvalue constraint. A
+nonzero real eigenvalue never annihilates the rank-two module `Z[phi] g`: the
+kernel of `t -> exp(2 pi i t alpha)` on a subgroup of `R` has rank at most one.
+Conversely, `alpha = 1/g` annihilates `Z g` exactly but is not an eigenvalue
+(control C2). The Inflation-Closure Lemma and the order-11 residual resonance
+problem proposed here are therefore **withdrawn**; see obligations 5 and 6
+above and `docs/tier2-loop-gain-literature-gate-2026-09-27.md`.
