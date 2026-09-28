@@ -25,14 +25,15 @@ drivers now look up instead of recomputing.
 
 Start here:
 
-1. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the #138 aligned branch, #139 strict-zipper branch, Level 2, hypothesis firewall, and prioritized closure criteria.
-2. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
-3. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
-4. `docs/completion-ledger-2026-09-14.md` — latest merged weekly completion snapshot; historical evidence/priorities should be read against the live roadmap.
-5. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
-6. `docs/tier2-bridge-salvage-2026-09-23.md` — research-taxonomy note separating termination-style Descent Bridges from recurrent arithmetic Growth Bridges; moves no theorem status.
-6. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
-7. `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form state-of-program exposition.
+1. `docs/audit-2026-09-27.md` — current-state audit of the theorem record, post-PSC project transition, source integrity, and verification boundary.
+2. `docs/completion-ledger-2026-09-28.md` — latest weekly completion ledger: established results, open risks, independence/unimodularity firewall, computational evidence, and prioritized proof obligations.
+3. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the aligned branch, #139 strict-zipper branch, Level 2, and parallel structural routes.
+4. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
+5. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
+6. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy.
+7. `docs/tier2-bridge-salvage-2026-09-23.md` — research taxonomy separating Descent Bridges from recurrent arithmetic Growth Bridges; moves no theorem status.
+8. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
+9. `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form state-of-program exposition.
 
 ### Headline: one open premise on the shortest PDS route
 
@@ -47,7 +48,7 @@ primitive irreducible Pisot
 => pure discrete spectrum                               [IMPORTED theorem]
 ```
 
-The only open premise on this route is **seedwise overlap productivity (Open Problem 5.35, issue #84)**. Manuscript Theorem 5.38 therefore no longer requires finite BPA / G1.
+In the **canonical mathematical record**, the only open premise on this route is seedwise overlap productivity. Manuscript Theorem 5.38 therefore no longer requires finite BPA / G1. Issue #84 was administratively closed under the newer post-PSC project premise; that issue-state change is not itself theorem provenance. See `docs/audit-2026-09-27.md`, `docs/completion-ledger-2026-09-28.md`, and the still-open status reconciliation #153.
 
 Keep the two productivity hypotheses separate. Theorem 5.38 needs only `OP_seed`: every overlap reachable from one selected swap seed is productive. Manuscript Open Problem 5.35 states the stronger `OP_all`: every vertex of the union overlap graph is productive. Proposition 5.39(iii), the all-pairs strong-coincidence consequence, the every-vertex hitting formulation, and the unimodular equivalence with PDS apply to `OP_all`, not to `OP_seed`. No one-seed-to-all-vertices implication is claimed. See `docs/audit-2026-09-20.md` §C.
 
@@ -63,7 +64,7 @@ This does **not** mean the stronger structural problems are solved:
 - **Concentration (`K2=0`)** and **general wedge productivity (`K2!=0`)** remain open on the finite-BPA/SCC route (issue #43 covers the concentration branch).
 - **SCC Producer** remains open generally.
 - **Realization / coincidence-rank** remains an audited open bridge with G0–G6 obligations.
-- **PSC remains open.**
+- **Canonical theorem record:** PSC remains open pending the proof-source/status reconciliation in #153; project management is already operating under a post-PSC premise.
 
 ### Established primary-route inputs
 
@@ -80,7 +81,7 @@ This does **not** mean the stronger structural problems are solved:
 
 ### Current theorem target
 
-Issue #84 is the primary completion issue. The preferred attack is to assume a **minimal finite reachable child-closed nonproductive overlap set** and combine:
+The canonical theorem target remains seedwise overlap productivity, even though issue #84 is administratively closed. The preferred mathematical attack is to assume a **minimal finite reachable child-closed nonproductive overlap set** and combine:
 
 - full rational rank;
 - inherited child-count spectrum;
