@@ -1,12 +1,39 @@
-# Tier 2: post-PSC Growth Bridge research programme
+# Tier 2: Growth Bridge research programme
 
 ## Status and purpose
 
-This is a post-PSC research programme.
+**PSC is open.** On the repository's shortest sufficiency route
+(`README.md`, `docs/research-roadmap-2026-09-21.md`) the one open premise is
+seedwise overlap productivity `OP_seed` (Open Problem 5.35, issue #84), split
+into the aligned branch #138 and the strict-zipper branch #139
+(`AdelicPeriodicOffsetHitting`). An earlier draft of this file called Tier 2 a
+"post-PSC" programme resting on the premise that PSC is closed; that premise is
+withdrawn, since it contradicts `docs/claim-status-and-source-map-2026-09-13.md`,
+which forbids describing PSC as proved. The filename is kept for link stability.
 
-Project premise: the general Pisot Substitution Conjecture is treated as closed. Tier 2 asks what new structure, invariants, algorithms, and theorem families can be built on top of that result.
+Tier 2 develops the Growth Bridge of `docs/tier2-bridge-salvage-2026-09-23.md`:
+a proof template in which recurrent noncoincident packet dynamics are allowed
+and the obstruction is arithmetic/spectral rather than termination. It is
+therefore a candidate *mechanism toward* #84 (most relevant to #139), plus a
+family of finite invariants. It is not built on PSC and proves no part of it.
 
-This scaffold does not itself rewrite historical claim ledgers or archived proof-status documents. Status reconciliation belongs in a dedicated follow-up change so generated surfaces remain governance-consistent.
+Every Tier 2 statement falls into one of three classes:
+
+- **Unconditional.** The finite algebra (loop gains, generated modules, index
+  computations, the Penrose `H_tail` arithmetic); the imported criteria of the
+  literature gate (Solomyak's eigenvalue criterion, Kenyon's realization,
+  Pisot-trace sufficiency), whose hypotheses are primitivity, finite local
+  complexity and self-similarity, not pure discrete spectrum; and the Penrose
+  calibration, since Penrose PDS is Robinson's theorem, independent of PSC.
+- **Open.** Any Growth Bridge theorem concluding PDS for the standing ternary
+  primitive irreducible Pisot regime. Such a theorem would be a route to #84;
+  none is claimed.
+- **Firewall.** No Tier 2 argument aimed at #84, #138 or #139 may take as input
+  PDS, `OP_seed`, `OP_all`, or any consequence of them (for example that
+  eigenfunctions span `L^2`). Doing so would be circular.
+
+This scaffold does not rewrite claim ledgers or generated status surfaces, and
+moves no theorem status.
 
 ## Literature gate
 
