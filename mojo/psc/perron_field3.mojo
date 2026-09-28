@@ -14,6 +14,13 @@ evidence.
 """
 
 from finite_linear_algebra.mat3 import Mat3
+from psc.checked_int import (
+    checked_abs as _checked_abs,
+    checked_add as _checked_add,
+    checked_mul as _checked_mul,
+    checked_neg as _checked_neg,
+    checked_sub as _checked_sub,
+)
 from psc.perron_root_sign import perron_sign_by_enclosure
 from psc.pisot import is_pip
 
@@ -89,44 +96,6 @@ struct TileLengths3(ImplicitlyCopyable, Copyable, Movable):
         if letter == 2:
             return self.l2
         raise Error("tile-length letter lies outside 0..2")
-
-
-def _checked_abs(x: Int) raises -> Int:
-    if x == Int.MIN:
-        raise Error("exact cubic arithmetic cannot take abs(Int.MIN)")
-    return -x if x < 0 else x
-
-
-def _checked_add(a: Int, b: Int) raises -> Int:
-    if b > 0 and a > Int.MAX - b:
-        raise Error("exact cubic integer addition overflow")
-    if b < 0 and a < Int.MIN - b:
-        raise Error("exact cubic integer addition overflow")
-    return a + b
-
-
-def _checked_sub(a: Int, b: Int) raises -> Int:
-    if b > 0 and a < Int.MIN + b:
-        raise Error("exact cubic integer subtraction overflow")
-    if b < 0 and a > Int.MAX + b:
-        raise Error("exact cubic integer subtraction overflow")
-    return a - b
-
-
-def _checked_neg(a: Int) raises -> Int:
-    if a == Int.MIN:
-        raise Error("exact cubic integer negation overflow")
-    return -a
-
-
-def _checked_mul(a: Int, b: Int) raises -> Int:
-    if a == 0 or b == 0:
-        return 0
-    var aa = _checked_abs(a)
-    var bb = _checked_abs(b)
-    if aa > Int.MAX // bb:
-        raise Error("exact cubic integer multiplication overflow")
-    return a * b
 
 
 def _mul3(a: Int, b: Int, c: Int) raises -> Int:
