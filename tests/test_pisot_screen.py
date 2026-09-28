@@ -107,6 +107,31 @@ def test_the_screen_refuses_what_it_cannot_accept():
 # --- the method -----------------------------------------------------------------
 
 
+def test_poly_rem_cached_degree_matches_scan_after_multi_zero_cancellation():
+    def repeated_degree_scan(a, b):
+        """Reference the pre-optimization exact polynomial remainder loop."""
+        a, db = list(a), ps.degree(b)
+        while ps.degree(a) >= db >= 0:
+            da = ps.degree(a)
+            factor = a[da] / b[db]
+            for i in range(db + 1):
+                a[da - db + i] -= factor * b[i]
+            a[da] = Fraction(0)
+        return a[:db] if db > 0 else []
+
+    divisor = [Fraction(1, 2), Fraction(-3, 4), Fraction(2, 3)]
+    expected = [Fraction(5, 7), Fraction(-11, 13)]
+    # dividend = expected + x^3 * divisor.  Cancelling its leading term also
+    # zeros coefficients 4 and 3, so the cached degree must cross three zero
+    # coefficients in one descent before recognizing the degree-1 remainder.
+    dividend = expected + [Fraction(0)] + divisor
+
+    assert ps._poly_rem(dividend, divisor) == expected
+    assert ps._poly_rem(dividend, divisor) == repeated_degree_scan(
+        dividend, divisor
+    )
+
+
 def test_the_transform_sends_the_unit_circle_to_the_imaginary_axis():
     for coeffs in (GOLDEN, PLASTIC, TRIBONACCI, QUARTIC, SALEM):
         q = ps.halfplane_transform(coeffs)
