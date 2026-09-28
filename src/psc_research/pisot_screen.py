@@ -189,12 +189,21 @@ def _poly_gcd(a: Sequence[Fraction], b: Sequence[Fraction]) -> list[Fraction]:
 
 def _poly_rem(a: Sequence[Fraction], b: Sequence[Fraction]) -> list[Fraction]:
     a, db = list(a), degree(b)
-    while degree(a) >= db >= 0:
-        d = degree(a)
-        factor = a[d] / b[db]
-        for i in range(db + 1):
-            a[d - db + i] -= factor * b[i]
-        a[d] = Fraction(0)
+    if db < 0:
+        return []
+
+    da = degree(a)
+    while da >= db:
+        factor = a[da] / b[db]
+        # Optimization: Only iterate up to db-1, as a[da] will explicitly become 0
+        for i in range(db):
+            a[da - db + i] -= factor * b[i]
+        a[da] = Fraction(0)
+        da -= 1
+        # Update degree inline instead of rescanning the whole list each iteration
+        while da >= 0 and a[da] == 0:
+            da -= 1
+
     return a[:db] if db > 0 else []
 
 
