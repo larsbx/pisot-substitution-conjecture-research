@@ -6,10 +6,10 @@
 (`README.md`, `docs/research-roadmap-2026-09-21.md`) the one open premise is
 seedwise overlap productivity `OP_seed` (Open Problem 5.35, issue #84), split
 into the aligned branch #138 and the strict-zipper branch #139
-(`AdelicPeriodicOffsetHitting`). An earlier draft of this file called Tier 2 a
-"post-PSC" programme resting on the premise that PSC is closed; that premise is
-withdrawn, since it contradicts `docs/claim-status-and-source-map-2026-09-13.md`,
-which forbids describing PSC as proved. The filename is kept for link stability.
+(`AdelicPeriodicOffsetHitting`). An earlier draft of this file rested on the
+premise that PSC is closed; that premise is withdrawn, since it contradicts
+`docs/claim-status-and-source-map-2026-09-13.md`, which forbids describing PSC
+as proved.
 
 Tier 2 develops the Growth Bridge of `docs/tier2-bridge-salvage-2026-09-23.md`:
 a proof template in which recurrent noncoincident packet dynamics are allowed

@@ -3,7 +3,7 @@
 ## Proposed step
 
 PR #152 opens the Tier 2 Growth Bridge with a new theorem-facing diagnostic
-(`docs/tier2-post-psc-growth-bridge.md`, `docs/tier2-penrose-phi-cocycle.md`):
+(`docs/tier2-growth-bridge.md`, `docs/tier2-penrose-phi-cocycle.md`):
 
 1. export each recurrent component of a finite packet quotient as a fixture
    carrying an exact additive edge cocycle `DeltaPhi : Edge -> Gamma`;
@@ -196,7 +196,7 @@ must reproduce this control before it is trusted.
 
 - The executable fixture machinery may merge as finite, exact infrastructure;
   it establishes no spectral statement.
-- `docs/tier2-post-psc-growth-bridge.md` obligations 3, 5, 6 are restated
+- `docs/tier2-growth-bridge.md` obligations 3, 5, 6 are restated
   per the Decision, and its Inflation-Closure Lemma is withdrawn.
 - Every fixture declares `loop_composition` (`additive` or `beta_twisted`).
   The schema pins `affine_forcing` to `beta_twisted` over the three-coordinate

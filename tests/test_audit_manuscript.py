@@ -149,7 +149,7 @@ def test_audit_rejects_psc_closed_premise(tmp_path: Path, text: str) -> None:
         "Never describe overlap productivity, SCC Producer, or PSC as proved.",
         'The earlier premise that PSC is closed is withdrawn.',
         "PSC remains open; Tier 2 does not assume it.",
-        "See `docs/tier2-post-psc-growth-bridge.md` for the programme.",
+        "See `archive/tier2-post-psc-draft.md` for the old path.",
     ],
 )
 def test_audit_accepts_psc_open_framing(tmp_path: Path, text: str) -> None:
