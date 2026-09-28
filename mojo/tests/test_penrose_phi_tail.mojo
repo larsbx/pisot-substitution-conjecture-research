@@ -24,19 +24,19 @@ def test_both_tail_cycles_have_the_same_exact_gain() raises:
     assert_equal(h_tail_period_gain(), expected)
 
 
-def test_period_gain_has_exact_norm_eleven():
+def test_period_gain_has_exact_norm_eleven() raises:
     # N(4 - phi) = 4^2 + 4*(-1) - (-1)^2 = 11.
     assert_equal(h_tail_period_gain().norm(), 11)
 
 
-def test_positive_growth_channel_is_not_a_state_potential():
+def test_positive_growth_channel_is_not_a_state_potential() raises:
     # A genuine state potential telescopes to zero around a closed loop.
     # The source-grounded increment channel has gain 4-phi != 0, so the
     # accumulated exact-prefix height must live on a lift of H_tail.
     assert_true(phi_state_potential_obstruction())
 
 
-def test_inflation_closure_has_index_eleven():
+def test_inflation_closure_has_index_eleven() raises:
     var g = h_tail_period_gain()
     var generators = inflation_closure_generators()
     assert_equal(len(generators), 2)

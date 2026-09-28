@@ -100,7 +100,7 @@ def affine_forcing_fixture_for_component(
             continue
         var occurrences = occurrence_edges(tables, a, source_index)
         for j in range(len(occurrences)):
-            var edge = occurrences[j]
+            var edge = occurrences[j].copy()
             if not member[edge.child_index]:
                 continue
             edges.append(

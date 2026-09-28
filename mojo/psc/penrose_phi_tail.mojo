@@ -54,12 +54,12 @@ struct PenrosePhiElt(
         w.write("(", self.a0, ",", self.a1, ")")
 
 
-alias E_SHORT = 0
-alias E_MINUS = 1
-alias E_PLUS = 2
-alias O_SHORT = 3
-alias O_MINUS = 4
-alias O_PLUS = 5
+comptime E_SHORT = 0
+comptime E_MINUS = 1
+comptime E_PLUS = 2
+comptime O_SHORT = 3
+comptime O_MINUS = 4
+comptime O_PLUS = 5
 
 
 struct PenrosePhiEdge(ImplicitlyCopyable, Copyable, Movable):
