@@ -2,11 +2,14 @@
 
 import copy
 import json
+import sys
 from pathlib import Path
 
 import pytest
 
-from scripts.check_tier2_fixture import CHANNEL_RANK, SCHEMA, dimension_errors
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+
+from check_tier2_fixture import CHANNEL_RANK, SCHEMA, dimension_errors  # noqa: E402
 
 CUBIC = {
     "schema_version": "tier2-loop-gain-v1",
