@@ -26,13 +26,16 @@ drivers now look up instead of recomputing.
 Start here:
 
 1. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the #138 aligned branch, #139 strict-zipper branch, Level 2, hypothesis firewall, and prioritized closure criteria.
-2. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
-3. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
-4. `docs/completion-ledger-2026-09-14.md` — latest merged weekly completion snapshot; historical evidence/priorities should be read against the live roadmap.
-5. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
-6. `docs/tier2-bridge-salvage-2026-09-23.md` — research-taxonomy note separating termination-style Descent Bridges from recurrent arithmetic Growth Bridges; moves no theorem status.
-6. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
-7. `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form state-of-program exposition.
+2. `docs/next-actions.md` and `docs/ci-reconciliation.md` — open operational actions. Action 1 is restoring the estate CI gates; see the note under **Verification layers** below, which is the one place this README's description of the repository and the repository itself currently disagree.
+3. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
+4. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
+5. `docs/completion-ledger-2026-09-14.md` — latest merged weekly completion snapshot; historical evidence/priorities should be read against the live roadmap.
+6. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
+7. `docs/tier2-bridge-salvage-2026-09-23.md` — research-taxonomy note separating termination-style Descent Bridges from recurrent arithmetic Growth Bridges; moves no theorem status.
+8. `docs/automatic-sequence-route-literature-gate-2026-09-17.md` — the decision-procedure route: the Dumont–Thomas numeration as an automaton, the addition and conversion automata, strong coincidence written as a formula and its quantifiers eliminated by the automata kernel, and the Π₁ shape of the family statement. Gated; decides the corpus, proves nothing about the family.
+9. `docs/exact-cubic-kernel-audit-2026-09-20.md` and `docs/fixed-dimension-kernel-to-mojo-2026-09-28.md` — state of the exact arithmetic the overlap and coincidence work rests on: differential evidence that it is exact or raises and never wraps, the removal of the Perron sign oracle's coefficient ceiling, and the measured case for keeping performance work in the canonical kernel rather than the oracle.
+10. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
+11. `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form state-of-program exposition.
 
 ### Headline: one open premise on the shortest PDS route
 
@@ -106,7 +109,8 @@ On the exact 4,554-member ternary PIP short-image corpus:
 - maximum first left-aligned depth: `17`;
 - maximum prefix/suffix strong-coincidence depth: `15`;
 - contracting lower bound on the hitting level (Proposition 5.42): at most `8`, excess of the hitting depth over it at most `14`;
-- every specimen satisfies the tested two-sided strong-coincidence condition.
+- every specimen satisfies the tested two-sided strong-coincidence condition;
+- strong coincidence is additionally **decided** rather than tested: all `4,554` specimens and `40,986` ordered pairs are settled by the formula of `mojo/psc/coincidence_formula.mojo`, each witness re-derived and re-checked, `0` specimens without strong coincidence, deepest coincidence level `15`, and `16` specimens have the formula assembled conjunct-by-conjunct and its quantifiers eliminated by the automata kernel, agreeing with the direct construction on all `144` pair languages.
 
 The degree-two and degree-three fail-closed carrier certificates also have zero survivors in their exact stated domains. These are finite-domain theorems/evidence according to their individual completeness contracts; none proves the general PSC.
 
@@ -175,7 +179,9 @@ Issue #45 is therefore closed as a completed status/source reconciliation task. 
 | Deductive finite algebra | `PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
 | Secondary oracle | `src/psc_research/` + `tests/` | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |
 
-The seven logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `scripts/check_vendored_sync.py` in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under `tools/claim_governance`. The TLA+ ledger, its TLC models, `tla/ledger.json`, the claim entries of every ledger node, `docs/ledger-index.md`, and the typed relationship graph `docs/claim-relationship-graph.json` are generated from the one table of proof records in `scripts/make_ledger.py` through the vendored `tools/proof_records` package; edit that table and regenerate, since CI fails if any output is stale or hand-edited. Every Mojo test names the ledger claim or the contract it guards (`mojo/psc/claim_tests.mojo`), and the `coverage` check reads the receipts of the run, so a claim whose warrant is a finite computation cannot lose its regression unnoticed.
+The seven logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `scripts/check_vendored_sync.py`. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under `tools/claim_governance`. The TLA+ ledger, its TLC models, `tla/ledger.json`, the claim entries of every ledger node, `docs/ledger-index.md`, and the typed relationship graph `docs/claim-relationship-graph.json` are generated from the one table of proof records in `scripts/make_ledger.py` through the vendored `tools/proof_records` package; edit that table and regenerate, since `make_ledger.py --check` fails if any output is stale or hand-edited. Every Mojo test names the ledger claim or the contract it guards (`mojo/psc/claim_tests.mojo`), and the `coverage` check reads the receipts of the run, so a claim whose warrant is a finite computation cannot lose its regression unnoticed.
+
+**Which of these currently run in CI.** All of them run under `./scripts/verify_all.sh`, and that is where the guarantees above hold. GitHub Actions is narrower: `ci.yml` was reduced on 2026-09-23 to a single `python-tests` job (`pip install -e .[dev]`, `scripts/audit_manuscript.py`, `pytest`), and the Mojo suite, `pixi run verify`, claim governance, the generated-artifact checks, the vendored digest check, TLA+, Lean, source provenance, and every `grep -Fx` census output pin went with it. The exact censuses that remain in CI are the four jobs of `defect-degree-census.yml` and `degree2-three-state-census.yml`, plus `boundary-sync.yml`. `docs/ci-reconciliation.md`, added minutes after that reduction, records the estate workflow as authoritative unless deliberately superseded and asks for any unintentionally removed gate to be restored; `docs/next-actions.md` carries it as action 1. Until then, a green GitHub check is not the same statement as a green `verify_all.sh`, and only the latter is evidence for the layers listed above.
 
 Run everything:
 
