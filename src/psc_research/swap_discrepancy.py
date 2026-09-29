@@ -33,16 +33,31 @@ def discrepancy(state: State, size: int) -> int:
     # Optimization: Instead of recalculating max(abs(c)) over the entire diff array (O(size))
     # on every iteration, we only check the two values that actually changed.
     # We also skip identical characters since they don't affect the difference vector.
+    # Unroll max/abs to avoid function call overhead in the inner loop.
     for x, y in zip(u, v):
         if not (1 <= x <= size and 1 <= y <= size):
             raise ValueError(f"state label lies outside 1..{size}: {(x, y)!r}")
         if x == y:
             continue
 
-        diff[x - 1] += 1
-        diff[y - 1] -= 1
+        idx_x = x - 1
+        idx_y = y - 1
 
-        best = max(best, abs(diff[x - 1]), abs(diff[y - 1]))
+        diff[idx_x] += 1
+        diff[idx_y] -= 1
+
+        val_x = diff[idx_x]
+        val_y = diff[idx_y]
+
+        if val_x > best:
+            best = val_x
+        elif -val_x > best:
+            best = -val_x
+
+        if val_y > best:
+            best = val_y
+        elif -val_y > best:
+            best = -val_y
 
     return best
 
