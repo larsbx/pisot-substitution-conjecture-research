@@ -12,7 +12,7 @@ TOML and regenerate rather than hand-editing the Markdown.
 ## Current status
 
 1. `audit-2026-09-27.md` — current-state audit. It distinguishes the canonical
-   theorem ledger (PSC/#84/#138 remain mathematically open) from the post-PSC
+   theorem ledger (PSC/#84/#138 remain mathematically open) from the PSC-closed
    project-management premise, records the still-open #153 reconciliation,
    audits the new adelic/trim research, and flags source-integrity control
    characters in three merged research notes.
