@@ -3,13 +3,16 @@
 
 ``schemas/tier2-loop-gain-fixture.schema.json`` fixes the shape of a fixture
 and pins each fixed channel (``CHANNELS``) to its power basis and loop
-composition. What JSON Schema cannot express is checked here: every gain
-vector and every generated-module generator has exactly one coordinate per
-basis label, the labels are distinct, a power basis has rank equal to the
-degree of its monic minimal polynomial, and a ``beta_twisted`` composition
-(loop gain ``sum_i beta^(k-1-i) d_i``) is declared only over a power basis,
-where ``beta`` acts. A fixture failing any check has no unambiguous exact
-interpretation, so it is rejected rather than read.
+composition. The rest is checked here: a recurrent component has at least
+one vertex and one edge (the schema's ``minItems``, repeated so the check
+fails closed on its own; an empty component is invalid evidence, not a
+trivial module), every gain vector and every generated-module generator has
+exactly one coordinate per basis label, the labels are distinct, a power
+basis has rank equal to the degree of its monic minimal polynomial, and a
+``beta_twisted`` composition (loop gain ``sum_i beta^(k-1-i) d_i``) is
+declared only over a power basis, where ``beta`` acts. A fixture failing any
+check has no unambiguous exact interpretation, so it is rejected rather than
+read.
 
 Usage:
     check_tier2_fixture.py FIXTURE.json...   exit 1 if any fixture is ill-formed,
@@ -43,6 +46,7 @@ def dimension_errors(doc: dict) -> tuple[str, ...]:
         (f"generator {i}", g) for i, g in enumerate(doc.get("generated_module_generators", []))
     ]
     checks = [
+        (not doc["vertices"] or not doc["edges"], "a recurrent component needs a vertex and an edge"),
         (len(set(labels)) != rank, "basis labels are not distinct"),
         (
             channel in CHANNELS and (not power_basis or (rank, composition) != CHANNELS[channel]),

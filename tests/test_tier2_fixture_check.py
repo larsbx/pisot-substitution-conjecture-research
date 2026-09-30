@@ -58,6 +58,9 @@ def test_well_formed_fixtures_pass(doc):
 @pytest.mark.parametrize(
     "doc",
     [
+        # an empty component is invalid evidence, not a trivial module
+        mutated(CUBIC, lambda d: d.update(edges=[])),
+        mutated(PENROSE, lambda d: d.update(vertices=[], edges=[])),
         # the review's counterexample: cubic basis, one coordinate
         mutated(CUBIC, lambda d: d["edges"][0].update(gain_coordinates=[1])),
         mutated(CUBIC, lambda d: d["generated_module_generators"].append([1, 2])),
@@ -78,6 +81,11 @@ def test_well_formed_fixtures_pass(doc):
 )
 def test_dimension_mismatches_fail_closed(doc):
     assert dimension_errors(doc) != ()
+
+
+def test_schema_rejects_an_empty_component():
+    props = json.loads(Path(SCHEMA).read_text())["properties"]
+    assert props["vertices"]["minItems"] == props["edges"]["minItems"] == 1
 
 
 def test_schema_pins_the_same_channel_ranks():
