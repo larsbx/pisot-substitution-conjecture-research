@@ -682,6 +682,15 @@
       ]
     },
     {
+      "id": "coincidence-density / dense-good-set equivalence",
+      "kind": "alias",
+      "label": "coincidence-density / dense-good-set equivalence",
+      "provenance": "declared",
+      "members": [
+        "CoincidenceDensityOne"
+      ]
+    },
+    {
       "id": "aux-B",
       "kind": "alias",
       "label": "aux-B",
@@ -721,6 +730,15 @@
       "id": "Barge–Štimac–Williams theorem",
       "kind": "alias",
       "label": "Barge–Štimac–Williams theorem",
+      "provenance": "declared",
+      "members": [
+        "DensityToPDSBridge"
+      ]
+    },
+    {
+      "id": "Dense eventual coincidence => PDS",
+      "kind": "alias",
+      "label": "Dense eventual coincidence => PDS",
       "provenance": "declared",
       "members": [
         "DensityToPDSBridge"
@@ -880,6 +898,15 @@
       ]
     },
     {
+      "id": "wedge productivity",
+      "kind": "alias",
+      "label": "wedge productivity",
+      "provenance": "declared",
+      "members": [
+        "SpanRichProductivity"
+      ]
+    },
+    {
       "id": "seed-patch overlap finiteness",
       "kind": "alias",
       "label": "seed-patch overlap finiteness",
@@ -892,6 +919,15 @@
       "id": "seed-patch overlap graph finiteness",
       "kind": "alias",
       "label": "seed-patch overlap graph finiteness",
+      "provenance": "declared",
+      "members": [
+        "SwapOverlapFiniteness"
+      ]
+    },
+    {
+      "id": "swap-seed overlap graph",
+      "kind": "alias",
+      "label": "swap-seed overlap graph",
       "provenance": "declared",
       "members": [
         "SwapOverlapFiniteness"
@@ -1507,6 +1543,14 @@
     },
     {
       "type": "synonymous",
+      "source": "Dense eventual coincidence => PDS",
+      "target": "DensityToPDSBridge",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "FullIncidenceRank",
       "target": "DefectTheorem",
       "provenance": "theorem-backed",
@@ -1588,6 +1632,14 @@
     {
       "type": "synonymous",
       "source": "coincidence density one",
+      "target": "CoincidenceDensityOne",
+      "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "coincidence-density / dense-good-set equivalence",
       "target": "CoincidenceDensityOne",
       "provenance": "conditional",
       "certainty": 1,
@@ -1715,9 +1767,25 @@
     },
     {
       "type": "synonymous",
+      "source": "swap-seed overlap graph",
+      "target": "SwapOverlapFiniteness",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "unique decodability",
       "target": "UniqueDecodability",
       "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "wedge productivity",
+      "target": "SpanRichProductivity",
+      "provenance": "open",
       "certainty": 1,
       "use_site": "aliases"
     },

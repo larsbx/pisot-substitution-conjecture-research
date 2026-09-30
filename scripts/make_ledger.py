@@ -33,7 +33,7 @@ SCOPE = "primitive irreducible Pisot substitutions in the standing regime"
 MANUSCRIPT = "manuscripts/PSC_balanced_pair_state_2026-09-13.tex"
 MAP = "docs/claim-status-and-source-map-2026-09-13.md"
 LEDGER_DOC = "docs/conjecture-ledger.md"
-WEEKLY = "docs/completion-ledger-2026-09-14.md"
+WEEKLY = "docs/completion-ledger-2026-09-28.md"
 
 # name -> (kind, statement, source or reason, dependencies, tags)
 # Dependencies are one-way proof sufficiency, never a converse implication
@@ -163,10 +163,10 @@ ALIASES = {
     "DefectTheorem": ["FullIncidenceRank", "full incidence rank"], "UniqueDecodability": ["unique decodability"],
     "G1b1BoundedDiscrepancy": ["G1b-1", "bounded discrepancy"], "G1b2RenewalFiniteness": ["G1b-2", "renewal finiteness"], "G1": ["finite BPA"],
     "SinkSCCReduction": ["sink-SCC reduction"], "GaloisWedgePropagation": ["degree-two carrier span"], "ConcentrationAuxB": ["aux-B", "general concentration"],
-    "SpanRichProductivity": ["general wedge productivity"], "SwapOverlapFiniteness": ["seed-patch overlap graph finiteness", "seed-patch overlap finiteness"],
+    "SpanRichProductivity": ["general wedge productivity", "wedge productivity"], "SwapOverlapFiniteness": ["seed-patch overlap graph finiteness", "seed-patch overlap finiteness", "swap-seed overlap graph"],
     "OverlapFullRank": ["full-rank child-closed overlap constraint"], "OverlapBadSCCNormalForm": ["closed irreducible bad-overlap normal form"],
-    "OverlapBoundaryZipperDichotomy": ["strict zipper dichotomy"], "CoincidenceDensityOne": ["coincidence density one"],
-    "DensityToPDSBridge": ["density-to-PDS bridge", "Barge–Štimac–Williams theorem"], "PDSOverlapRoute": ["Theorem 5.38"],
+    "OverlapBoundaryZipperDichotomy": ["strict zipper dichotomy"], "CoincidenceDensityOne": ["coincidence density one", "coincidence-density / dense-good-set equivalence"],
+    "DensityToPDSBridge": ["density-to-PDS bridge", "Barge–Štimac–Williams theorem", "Dense eventual coincidence => PDS"], "PDSOverlapRoute": ["Theorem 5.38"],
     "AlignedOverlapsAreStrongCoincidence": ["endpoint-aligned overlaps"], "BoundaryCoincidenceCriterion": ["boundary-hitting criterion"],
     "OverlapProductivity": ["seedwise overlap productivity", "overlap productivity", "Open Problem 5.35"], "SCCProducer": ["SCC Producer"],
 }
@@ -180,28 +180,27 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "DefectTheorem": [surface(MAP, "| Full incidence rank from"), surface(LEDGER_DOC, "### Full incidence rank and unique decodability", 2)],
     "UniqueDecodability": [surface(MAP, "| Unique decodability of substitution images and powers |"), surface("README.md", "**Unique decodability:**")],
     "G1b1BoundedDiscrepancy": [surface(MAP, "| G1b-1 bounded discrepancy |"), surface(LEDGER_DOC, "### G1b-1 bounded discrepancy", 2),
-                               surface(WEEKLY, "=> bounded discrepancy"), surface("README.md", "=> bounded discrepancy")],
+                               surface(WEEKLY, "| G1b-1 bounded discrepancy |"), surface("README.md", "=> bounded discrepancy")],
     "G1b2RenewalFiniteness": [surface(MAP, "| G1b-2 renewal finiteness |"), surface(LEDGER_DOC, "### G1b-2", 2),
-                              surface(WEEKLY, "=> [OPEN] G1b-2 renewal finiteness"), surface(WEEKLY, "| **P3** | G1b-2 renewal finiteness |")],
+                              surface(WEEKLY, "=> G1b-2 renewal finiteness [OPEN]"), surface(WEEKLY, "| **P2** | G1b-2 renewal finiteness |")],
     "G1": [surface(MAP, "| Finite BPA, G1 |"), surface(LEDGER_DOC, "## C. Parallel programme — G1 / renewal finiteness", 4)],
     "SinkSCCReduction": [surface(MAP, "| Sink-SCC reduction under G1 |")],
     "GaloisWedgePropagation": [surface(MAP, "| Degree-two carrier span / wedge dichotomy |")],
-    "ConcentrationAuxB": [surface(MAP, "| Concentration / aux-B |"), surface(LEDGER_DOC, "### Concentration / aux-B", 2), surface(WEEKLY, "| **P4** | General concentration")],
-    "SpanRichProductivity": [surface(MAP, "| General wedge productivity |"), surface(LEDGER_DOC, "### Wedge productivity", 2), surface(WEEKLY, "| **P5** | General wedge productivity")],
+    "ConcentrationAuxB": [surface(MAP, "| Concentration / aux-B |"), surface(LEDGER_DOC, "### Concentration / aux-B", 2), surface(WEEKLY, "| **P4a** | Concentration, `K2=0` |")],
+    "SpanRichProductivity": [surface(MAP, "| General wedge productivity |"), surface(LEDGER_DOC, "### Wedge productivity", 2), surface(WEEKLY, "| **P4b** | Wedge productivity, `K2!=0` |")],
     "SwapOverlapFiniteness": [surface(MAP, "| Seed-patch overlap graph finiteness |"), surface(LEDGER_DOC, "### Seed-patch overlap finiteness", 2),
-                              surface(WEEKLY, "=> finite seed-patch overlap graph"), surface("README.md", "=> finite seed-patch overlap graph")],
+                              surface(WEEKLY, "| Finite exact swap-seed overlap graph |"), surface("README.md", "=> finite seed-patch overlap graph")],
     "OverlapFullRank": [surface(MAP, "| Full-rank child-closed overlap constraint |"), surface(LEDGER_DOC, "### Full-rank constraint on a bad set", 2)],
     "OverlapBadSCCNormalForm": [surface(MAP, "| Closed irreducible bad-overlap normal form |"), surface(LEDGER_DOC, "### Closed irreducible bad-overlap normal form", 2)],
     "OverlapBoundaryZipperDichotomy": [surface(MAP, "| Boundary obstruction / strict zipper dichotomy |")],
-    "CoincidenceDensityOne": [surface(MAP, "| Coincidence density / dense-good-set equivalence |"), surface(WEEKLY, "=> coincidence density one / dense good set"),
+    "CoincidenceDensityOne": [surface(MAP, "| Coincidence density / dense-good-set equivalence |"), surface(WEEKLY, "| Coincidence-density / dense-good-set equivalence |"),
                               surface("README.md", "=> coincidence density one / dense good set")],
-    "DensityToPDSBridge": [surface(MAP, "| Density-to-PDS bridge |"), surface(WEEKLY, "=> pure discrete spectrum"), surface("README.md", "=> pure discrete spectrum")],
+    "DensityToPDSBridge": [surface(MAP, "| Density-to-PDS bridge |"), surface(WEEKLY, "| Dense eventual coincidence => PDS |"), surface("README.md", "=> pure discrete spectrum")],
     "PDSOverlapRoute": [surface(MAP, "| One-seed overlap productivity implies PDS |")],
     "AlignedOverlapsAreStrongCoincidence": [surface(MAP, "| Endpoint-aligned overlaps = strong-coincidence boundary cases |")],
     "BoundaryCoincidenceCriterion": [surface(MAP, "| Boundary-hitting criterion |")],
     "OverlapProductivity": [surface(MAP, "| Seedwise overlap productivity / Open Problem 5.35 |"), surface(LEDGER_DOC, "### Overlap productivity / Open Problem 5.35", 2),
-                            surface(WEEKLY, "=> one swap seed has only productive reachable overlaps"), surface("README.md", "=> one swap seed has only productive reachable overlaps"),
-                            surface(WEEKLY, "| **P1** | **Seedwise overlap productivity")],
+                            surface(WEEKLY, "| **P1** | One-seed overlap productivity |"), surface("README.md", "=> one swap seed has only productive reachable overlaps")],
     "SCCProducer": [surface(MAP, "| SCC Producer / C1 |")],
 }
 

@@ -73,11 +73,13 @@
       "general concentration"
     ],
     "SpanRichProductivity": [
-      "general wedge productivity"
+      "general wedge productivity",
+      "wedge productivity"
     ],
     "SwapOverlapFiniteness": [
       "seed-patch overlap graph finiteness",
-      "seed-patch overlap finiteness"
+      "seed-patch overlap finiteness",
+      "swap-seed overlap graph"
     ],
     "OverlapFullRank": [
       "full-rank child-closed overlap constraint"
@@ -89,11 +91,13 @@
       "strict zipper dichotomy"
     ],
     "CoincidenceDensityOne": [
-      "coincidence density one"
+      "coincidence density one",
+      "coincidence-density / dense-good-set equivalence"
     ],
     "DensityToPDSBridge": [
       "density-to-PDS bridge",
-      "Barge–Štimac–Williams theorem"
+      "Barge–Štimac–Williams theorem",
+      "Dense eventual coincidence => PDS"
     ],
     "PDSOverlapRoute": [
       "Theorem 5.38"
@@ -150,8 +154,8 @@
         "window_lines": 2
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "=> bounded discrepancy",
+        "path": "docs/completion-ledger-2026-09-28.md",
+        "anchor": "| G1b-1 bounded discrepancy |",
         "window_lines": 0
       },
       {
@@ -172,13 +176,13 @@
         "window_lines": 2
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "=> [OPEN] G1b-2 renewal finiteness",
+        "path": "docs/completion-ledger-2026-09-28.md",
+        "anchor": "=> G1b-2 renewal finiteness [OPEN]",
         "window_lines": 0
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "| **P3** | G1b-2 renewal finiteness |",
+        "path": "docs/completion-ledger-2026-09-28.md",
+        "anchor": "| **P2** | G1b-2 renewal finiteness |",
         "window_lines": 0
       }
     ],
@@ -220,8 +224,8 @@
         "window_lines": 2
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "| **P4** | General concentration",
+        "path": "docs/completion-ledger-2026-09-28.md",
+        "anchor": "| **P4a** | Concentration, `K2=0` |",
         "window_lines": 0
       }
     ],
@@ -237,8 +241,8 @@
         "window_lines": 2
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "| **P5** | General wedge productivity",
+        "path": "docs/completion-ledger-2026-09-28.md",
+        "anchor": "| **P4b** | Wedge productivity, `K2!=0` |",
         "window_lines": 0
       }
     ],
@@ -254,8 +258,8 @@
         "window_lines": 2
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "=> finite seed-patch overlap graph",
+        "path": "docs/completion-ledger-2026-09-28.md",
+        "anchor": "| Finite exact swap-seed overlap graph |",
         "window_lines": 0
       },
       {
@@ -302,8 +306,8 @@
         "window_lines": 0
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "=> coincidence density one / dense good set",
+        "path": "docs/completion-ledger-2026-09-28.md",
+        "anchor": "| Coincidence-density / dense-good-set equivalence |",
         "window_lines": 0
       },
       {
@@ -319,8 +323,8 @@
         "window_lines": 0
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "=> pure discrete spectrum",
+        "path": "docs/completion-ledger-2026-09-28.md",
+        "anchor": "| Dense eventual coincidence => PDS |",
         "window_lines": 0
       },
       {
@@ -362,18 +366,13 @@
         "window_lines": 2
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "=> one swap seed has only productive reachable overlaps",
+        "path": "docs/completion-ledger-2026-09-28.md",
+        "anchor": "| **P1** | One-seed overlap productivity |",
         "window_lines": 0
       },
       {
         "path": "README.md",
         "anchor": "=> one swap seed has only productive reachable overlaps",
-        "window_lines": 0
-      },
-      {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "| **P1** | **Seedwise overlap productivity",
         "window_lines": 0
       }
     ],

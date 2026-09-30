@@ -155,7 +155,7 @@ message = "the Python oracle must stay exact (fractions.Fraction and int only)"
 # ledger.json, edit the table in scripts/make_ledger.py and regenerate.  Surfaces:
 #   map    = docs/claim-status-and-source-map-2026-09-13.md (the live claim map)
 #   ledger = docs/conjecture-ledger.md (prose dependency ledger)
-#   weekly = docs/completion-ledger-2026-09-14.md (weekly snapshot and priority table)
+#   weekly = docs/completion-ledger-2026-09-28.md (weekly snapshot and priority table)
 #   README = README.md (headline chain)
 #   index  = docs/ledger-index.md (generated; one row per TLA+ node)
 #   tla    = tla/Ledger.tla (ProvedDef / ImportedDef / WithdrawnDef membership;
@@ -404,7 +404,7 @@ window_lines = 0
 [[claim]]
 name = "CoincidenceDensityOne"
 status = "proved"
-aliases = ["coincidence density one"]
+aliases = ["coincidence density one", "coincidence-density / dense-good-set equivalence"]
 [[claim.surfaces]]
 path = "tla/Ledger.tla"
 anchor = '"CoincidenceDensityOne"'
@@ -420,8 +420,8 @@ path = "docs/claim-status-and-source-map-2026-09-13.md"
 anchor = "| Coincidence density / dense-good-set equivalence |"
 window_lines = 0
 [[claim.surfaces]]
-path = "docs/completion-ledger-2026-09-14.md"
-anchor = "=> coincidence density one / dense good set"
+path = "docs/completion-ledger-2026-09-28.md"
+anchor = "| Coincidence-density / dense-good-set equivalence |"
 window_lines = 0
 [[claim.surfaces]]
 path = "README.md"
@@ -451,8 +451,8 @@ path = "docs/conjecture-ledger.md"
 anchor = "### Concentration / aux-B"
 window_lines = 2
 [[claim.surfaces]]
-path = "docs/completion-ledger-2026-09-14.md"
-anchor = "| **P4** | General concentration"
+path = "docs/completion-ledger-2026-09-28.md"
+anchor = "| **P4a** | Concentration, `K2=0` |"
 window_lines = 0
 
 [[claim]]
@@ -509,7 +509,7 @@ window_lines = 0
 [[claim]]
 name = "DensityToPDSBridge"
 status = "imported"
-aliases = ["density-to-PDS bridge", "Barge–Štimac–Williams theorem"]
+aliases = ["density-to-PDS bridge", "Barge–Štimac–Williams theorem", "Dense eventual coincidence => PDS"]
 [[claim.surfaces]]
 path = "tla/Ledger.tla"
 anchor = '"DensityToPDSBridge"'
@@ -525,8 +525,8 @@ path = "docs/claim-status-and-source-map-2026-09-13.md"
 anchor = "| Density-to-PDS bridge |"
 window_lines = 0
 [[claim.surfaces]]
-path = "docs/completion-ledger-2026-09-14.md"
-anchor = "=> pure discrete spectrum"
+path = "docs/completion-ledger-2026-09-28.md"
+anchor = "| Dense eventual coincidence => PDS |"
 window_lines = 0
 [[claim.surfaces]]
 path = "README.md"
@@ -635,8 +635,8 @@ path = "docs/conjecture-ledger.md"
 anchor = "### G1b-1 bounded discrepancy"
 window_lines = 2
 [[claim.surfaces]]
-path = "docs/completion-ledger-2026-09-14.md"
-anchor = "=> bounded discrepancy"
+path = "docs/completion-ledger-2026-09-28.md"
+anchor = "| G1b-1 bounded discrepancy |"
 window_lines = 0
 [[claim.surfaces]]
 path = "README.md"
@@ -666,12 +666,12 @@ path = "docs/conjecture-ledger.md"
 anchor = "### G1b-2"
 window_lines = 2
 [[claim.surfaces]]
-path = "docs/completion-ledger-2026-09-14.md"
-anchor = "=> [OPEN] G1b-2 renewal finiteness"
+path = "docs/completion-ledger-2026-09-28.md"
+anchor = "=> G1b-2 renewal finiteness [OPEN]"
 window_lines = 0
 [[claim.surfaces]]
-path = "docs/completion-ledger-2026-09-14.md"
-anchor = "| **P3** | G1b-2 renewal finiteness |"
+path = "docs/completion-ledger-2026-09-28.md"
+anchor = "| **P2** | G1b-2 renewal finiteness |"
 window_lines = 0
 
 [[claim]]
@@ -935,16 +935,12 @@ path = "docs/conjecture-ledger.md"
 anchor = "### Overlap productivity / Open Problem 5.35"
 window_lines = 2
 [[claim.surfaces]]
-path = "docs/completion-ledger-2026-09-14.md"
-anchor = "=> one swap seed has only productive reachable overlaps"
+path = "docs/completion-ledger-2026-09-28.md"
+anchor = "| **P1** | One-seed overlap productivity |"
 window_lines = 0
 [[claim.surfaces]]
 path = "README.md"
 anchor = "=> one swap seed has only productive reachable overlaps"
-window_lines = 0
-[[claim.surfaces]]
-path = "docs/completion-ledger-2026-09-14.md"
-anchor = "| **P1** | **Seedwise overlap productivity"
 window_lines = 0
 
 [[claim]]
@@ -1133,7 +1129,7 @@ window_lines = 0
 [[claim]]
 name = "SpanRichProductivity"
 status = "open"
-aliases = ["general wedge productivity"]
+aliases = ["general wedge productivity", "wedge productivity"]
 [[claim.surfaces]]
 path = "tla/Ledger.tla"
 anchor = '"SpanRichProductivity"'
@@ -1153,8 +1149,8 @@ path = "docs/conjecture-ledger.md"
 anchor = "### Wedge productivity"
 window_lines = 2
 [[claim.surfaces]]
-path = "docs/completion-ledger-2026-09-14.md"
-anchor = "| **P5** | General wedge productivity"
+path = "docs/completion-ledger-2026-09-28.md"
+anchor = "| **P4b** | Wedge productivity, `K2!=0` |"
 window_lines = 0
 
 [[claim]]
@@ -1202,7 +1198,7 @@ window_lines = 0
 [[claim]]
 name = "SwapOverlapFiniteness"
 status = "proved"
-aliases = ["seed-patch overlap graph finiteness", "seed-patch overlap finiteness"]
+aliases = ["seed-patch overlap graph finiteness", "seed-patch overlap finiteness", "swap-seed overlap graph"]
 [[claim.surfaces]]
 path = "tla/Ledger.tla"
 anchor = '"SwapOverlapFiniteness"'
@@ -1222,8 +1218,8 @@ path = "docs/conjecture-ledger.md"
 anchor = "### Seed-patch overlap finiteness"
 window_lines = 2
 [[claim.surfaces]]
-path = "docs/completion-ledger-2026-09-14.md"
-anchor = "=> finite seed-patch overlap graph"
+path = "docs/completion-ledger-2026-09-28.md"
+anchor = "| Finite exact swap-seed overlap graph |"
 window_lines = 0
 [[claim.surfaces]]
 path = "README.md"

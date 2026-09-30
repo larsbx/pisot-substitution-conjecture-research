@@ -81,7 +81,8 @@ The obstruction then splits:
 ```text
 bad closed irreducible S
 => aligned branch:
-   S exposes an offset-zero/right-aligned non-eventually-coincident letter pair
+   A_+(S) != empty: S contains an offset-zero vertex and therefore exposes a
+   non-eventually-coincident letter pair
 OR
 => strict-zipper branch:
    no offset-zero vertex occurs and the ordered prefix-grid zipper remains strict.
@@ -99,13 +100,13 @@ The two branches are mathematically different and should remain separate researc
 | Unique decodability of substitution images | **Repository theorem** | Closed via full rank + defect theorem. |
 | UD for powers | **Repository theorem** | Closed because `det M_{sigma^r}=(det M_sigma)^r != 0`. |
 | Tile-length rational/integer independence where used | **Derived theorem input** | Must be derived from irreducibility/cyclic-vector structure, never added independently. |
-| G1b-1 bounded discrepancy | **Repository theorem** | Closed; no unimodularity or UD hypothesis. |
-| Finite exact swap-seed overlap graph | **Repository theorem** | Closed; does not require finite BPA/G1. |
+| G1b-1 bounded discrepancy | **Repository-proved** | Closed; no unimodularity or UD hypothesis. |
+| Finite exact swap-seed overlap graph | **Repository-proved** | Closed; does not require finite BPA/G1. |
 | Bad-SCC full-rank normal form | **Repository theorem** | Closed; rules out the rank-deficiency route. |
 | Endpoint/boundary-hitting criterion | **Repository theorem** | Closed. |
 | Ordered affine cycle equation | **Repository theorem** | Closed. |
-| Coincidence-density / dense-good-set equivalence | **Repository theorem** | Closed after the non-nesting correction. |
-| Dense eventual coincidence => PDS | **Imported BSW theorem** | Source-audited; no seed-legality or unimodularity leak. |
+| Coincidence-density / dense-good-set equivalence | **Repository-proved** | Closed after the non-nesting correction. |
+| Dense eventual coincidence => PDS | **Imported theorem (BSW)** | Source-audited; no seed-legality or unimodularity leak. |
 | One-seed overlap productivity => PDS | **Conditional theorem** | The implication is proved; productivity remains the open premise. |
 | Exact 4,554-corpus degree-two / degree-three carrier exclusions | **Finite-domain theorems** | Exact only on their enumerated domains. |
 
