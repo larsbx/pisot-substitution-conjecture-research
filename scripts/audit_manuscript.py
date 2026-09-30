@@ -65,6 +65,16 @@ RULES: tuple[Rule, ...] = (
         message="Main PDS claim must be explicitly conditional unless SCC Producer is proved.",
     ),
     Rule(
+        name="psc-closed-premise",
+        pattern=re.compile(
+            r"(?i:\b(?:PSC|Pisot\s+Substitution\s+Conjecture)\b(?:\s+[\w-]+){0,2}?"
+            r"\s+(?:is|as|was|has\s+been)\s+(?:(?:now|treated\s+as|considered)\s+)?"
+            r"(?:closed|proved|proven|settled|resolved)\b)"
+            r"|(?<![\w/-])post-PSC(?![\w-])"
+        ),
+        message="PSC is open (one open premise, OP_seed / #84); do not state or premise it as proved or closed.",
+    ),
+    Rule(
         name="loose-subblock-language",
         pattern=re.compile(r"contains\s+M[_ ]?sigma\s+as\s+an\s+invariant\s+sub-?block", re.IGNORECASE),
         message="Use 'acts on an invariant subspace as a similar copy of M_sigma' instead of loose sub-block language.",
@@ -100,7 +110,8 @@ def audit_file(path: Path) -> list[str]:
         for match in rule.pattern.finditer(text):
             # Use paragraph context so ordinary TeX/Markdown line wrapping does
             # not change the semantic audit result.
-            para_start = text.rfind("\n\n", 0, match.start()) + 2
+            para_break = text.rfind("\n\n", 0, match.start())
+            para_start = 0 if para_break == -1 else para_break + 2
             para_end = text.find("\n\n", match.end())
             if para_end == -1:
                 para_end = len(text)
@@ -142,6 +153,16 @@ def audit_file(path: Path) -> list[str]:
                 # proves ..." is still an affirmative false claim and fails.
                 if re.search(
                     r"\b(?:false|retired|withdrawn|no longer|do not|don't)\b",
+                    paragraph,
+                    re.IGNORECASE,
+                ):
+                    continue
+
+            if rule.name == "psc-closed-premise":
+                # Permit only guidance or retraction that negates the claim,
+                # e.g. "Never describe ... PSC as proved" or "... is withdrawn".
+                if re.search(
+                    r"\b(?:never|not|withdrawn|false|retired|no longer)\b",
                     paragraph,
                     re.IGNORECASE,
                 ):

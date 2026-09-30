@@ -1,6 +1,8 @@
 import sys
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
@@ -123,4 +125,33 @@ def test_audit_accepts_wrapped_cycle_rejection(tmp_path: Path) -> None:
         "history.tex",
         'The old target was "no recurrent noncoincident cycle"\nand is false.',
     )
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Project premise: the general Pisot Substitution Conjecture is treated as closed.",
+        "This is a post-PSC research programme.",
+        "# Tier 2: post-PSC Growth Bridge research programme",
+        "Since PSC is now proved, Tier 2 builds on it.",
+        "The PSC has been settled for all Pisot substitutions.",
+    ],
+)
+def test_audit_rejects_psc_closed_premise(tmp_path: Path, text: str) -> None:
+    write(tmp_path, "bad.md", text)
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 1
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Never describe overlap productivity, SCC Producer, or PSC as proved.",
+        'The earlier premise that PSC is closed is withdrawn.',
+        "PSC remains open; Tier 2 does not assume it.",
+        "See `archive/tier2-post-psc-draft.md` for the old path.",
+    ],
+)
+def test_audit_accepts_psc_open_framing(tmp_path: Path, text: str) -> None:
+    write(tmp_path, "ok.md", text)
     assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
