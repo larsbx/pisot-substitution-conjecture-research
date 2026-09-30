@@ -32,15 +32,10 @@ from typing import Sequence
 
 from .bpa import State, Substitution, alphabet_size, children, parikh
 from .defect_intertwiner import exterior_square, k2_wedge, n2
+from .fixed_vector import matvec as _matvec
 from .intertwiner import IntMatrix, substitution_incidence
 
 Area = tuple[int, int, int]
-
-
-def _matvec(matrix: Sequence[Sequence[int]], vector: Sequence[int]) -> tuple[int, ...]:
-    if any(len(row) != len(vector) for row in matrix):
-        raise ValueError("matrix/vector dimensions do not agree")
-    return tuple(sum(row[j] * vector[j] for j in range(len(vector))) for row in matrix)
 
 
 def word_area(word: Sequence[int]) -> Area:

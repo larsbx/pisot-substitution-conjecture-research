@@ -11,27 +11,32 @@ TOML and regenerate rather than hand-editing the Markdown.
 
 ## Current status
 
-1. `research-roadmap-2026-09-21.md` — live completion roadmap. It splits
+1. `audit-2026-09-27.md` — current-state audit. It distinguishes the canonical
+   theorem ledger (PSC/#84/#138 remain mathematically open) from the PSC-closed
+   project-management premise, records the still-open #153 reconciliation,
+   audits the new adelic/trim research, and flags source-integrity control
+   characters in three merged research notes.
+2. `research-roadmap-2026-09-21.md` — live completion roadmap. It splits
    Open Problem 5.35 into the aligned strong-coincidence branch (#138) and the
    strict-zipper contracting-space hitting branch (#139), while keeping G1b-2,
    finite-BPA carrier work, and realization as parallel programmes.
-2. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
+3. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
-3. `completion-ledger-2026-09-14.md` — latest merged weekly completion
+4. `completion-ledger-2026-09-14.md` — latest merged weekly completion
    snapshot; read its priority ordering against the live roadmap.
-4. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
+5. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
-5. `conjecture-ledger.md` — live prose dependency ledger.
+6. `conjecture-ledger.md` — live prose dependency ledger.
    `ledger-index.md` is its generated machine-derived counterpart: one row per
    TLA+ ledger node with kind, source, dependencies, and closure.
-6. `proof-ladder.md` — shortest honest path from established results to the
+7. `proof-ladder.md` — shortest honest path from established results to the
    remaining theorem, plus the stronger parallel structural routes.
-7. `current-proof-architecture-2026-09-14.md` — canonical detailed architecture,
+8. `current-proof-architecture-2026-09-14.md` — canonical detailed architecture,
    explicitly distinguishing the primary overlap route from the finite-BPA and
    realization programmes. The 2026-09-11 file is retained only as a superseded
    historical pointer.
-8. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
+9. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
    state-of-program exposition.
 
 When these disagree, do not choose the strongest wording. Check the latest
@@ -86,6 +91,7 @@ Change the ledger entry and every surface in the same commit.
 - `archive-tarball-audit-2026-09-13.md` — uploaded archive digest, identity check, and warning about contradictory v34 closing status language.
 - `source-provenance-v16-later-audit-2026-09-12.md` — exhaustive reachable
   Git-history audit and imported-source checksums.
+- `v9-extraction-audit-2026-09-23.md` — extracts the reusable UD / UD-for-powers / local-hierarchy material from the externally supplied PSC v9 manuscript and explicitly rejects its withdrawn finite-BPA and cycle-exclusion claims.
 - `galois-aux-b-source-resolution-2026-09-13.md` — separates the historical
   degree-three seed theorem, the reconstructed degree-two carrier theorem, and
   open concentration.
