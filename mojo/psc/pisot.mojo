@@ -19,6 +19,9 @@ from finite_linear_algebra.mat3 import Mat3, has_rational_root
 def poly_eval(p: List[Q], x: Q) -> Q:
     """Horner evaluation; `p` is low-degree-first."""
     var n = len(p)
+    # Horner propagates a rejected argument even for a constant polynomial.
+    if n > 0 and x.rejected:
+        return x.copy()
     if n == 4:
         return p[3].mul(x).add(p[2]).mul(x).add(p[1]).mul(x).add(p[0])
     if n == 3:

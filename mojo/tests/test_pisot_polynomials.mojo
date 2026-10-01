@@ -1,6 +1,6 @@
 """Pin exact polynomial kernels against the pre-optimization algorithms."""
 from std.testing import assert_equal, assert_true
-from finite_exact.rat_q import Q
+from finite_exact.rat_q import Q, q_rejected
 from psc.exact import q_int, q_poly
 from psc.pisot import poly_eval, poly_degree, poly_rem
 from psc.claim_tests import require_contract
@@ -20,10 +20,14 @@ def main() raises:
         p.append(Q.zero())
         p.append(Q.zero())
         assert_equal(poly_degree(p), reference_degree(p))
+    var constant: List[Int] = [7]
+    assert_true(poly_eval(q_poly(constant), q_rejected()).rejected)
+    var empty = List[Q]()
+    assert_true(poly_eval(empty, q_rejected()).eq(Q.zero()))
     var a: List[Int] = [3, 0, 2, 0, 2, 0, 2, 0, 0]
     var b: List[Int] = [0, 0, 2, 0]
     var r = poly_rem(q_poly(a), q_poly(b))
-    # Cancellation descends 8 -> 6 -> 4 -> 2 -> 0, skipping zeros repeatedly.
+    # Initial degree scan skips 8,7; cancellation descends 6 -> 4 -> 2 -> 0.
     assert_true(r[0].eq(q_int(3)))
     assert_equal(poly_degree(r), 0)
     for degree in range(1, 7):
