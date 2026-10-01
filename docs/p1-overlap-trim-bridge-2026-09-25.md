@@ -26,13 +26,13 @@ L(T)=g(T)
 for an irreducible balanced-pair defect block, with
 
 [
-L(T')=eta L(T)-	au(T	o T').
+L(T')=\beta L(T)-\tau(T\to T').
 ]
 
 If the recurrent trim inequality
 
 [
-	au<(eta-1)L
+\tau<(\beta-1)L
 ]
 
 holds on recurrent nc edges, then (L(T')>L(T)), excluding cycles in a finite recurrent balanced-pair carrier.
@@ -46,7 +46,7 @@ The live overlap route already has geometric mass balance.
 For an overlap (O), let (lambda(O)) be the intersection length. Its geometric children partition the inflated intersection, so
 
 [
-sum_{O'	ext{ child of }O}lambda(O')=etalambda(O).
+\sum_{O'\text{ child of }O}\lambda(O')=\beta\lambda(O).
 ]
 
 Thus a closed nonproductive overlap SCC can carry the full Perron mass by splitting it among several children. Mass balance alone gives no contradiction.
@@ -102,7 +102,7 @@ Before attempting a theorem, add a canonical Mojo diagnostic that, for a realize
 1. the ordered overlap cells across one inherited seed period;
 2. the zero-return / irreducible balanced-block decomposition induced by that ordered chain;
 3. the geometric block masses (L);
-4. the trim values (	au);
+4. the trim values (\tau);
 5. whether return of the overlap cycle returns the same defect-chain type, a longer chain, or a collapsed/coincident chain.
 
 Run it first on:
@@ -118,9 +118,9 @@ A counterexample must be retained as a replayable fixture.
 This bridge may be promoted into the #84 route only if it proves, without G1:
 
 [
-	ext{closed nonproductive overlap SCC}
+\text{closed nonproductive overlap SCC}
 Longrightarrow
-	ext{bounded/recurrent ordered defect chain}
+\text{bounded/recurrent ordered defect chain}
 ]
 
 or derives a direct chain-level Lyapunov contradiction.
