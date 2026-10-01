@@ -15,3 +15,7 @@
 ## 2025-02-18 - C-delegation can break complexity
 **Learning:** Moving a Python loop to a C-level function (like `list.count`) might look faster on micro-benchmarks but can silently increase algorithmic complexity (e.g., from O(N) to O(N * alphabet_size)), causing massive performance regressions on large inputs.
 **Action:** Always ensure that time complexity invariants are strictly preserved before replacing loops with built-ins.
+
+## 2024-05-18 - Optimize bit_length calls inside loops
+**Learning:** In tight Python arithmetic loops (like polynomial division in `_remainder`), repeatedly calling a wrapper function like `_degree()` that calculates `bit_length()` introduces significant function call overhead.
+**Action:** Cache loop-invariant values (like the degree of the divisor) outside the loop, and inline method calls (like `bit_length()`) directly within the loop to minimize overhead.

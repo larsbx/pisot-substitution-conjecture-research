@@ -37,8 +37,15 @@ def _degree(poly: int) -> int:
 def _remainder(a: int, b: int) -> int:
     if b == 0:
         raise ZeroDivisionError("polynomial division by zero")
-    while a and _degree(a) >= _degree(b):
-        a ^= b << (_degree(a) - _degree(b))
+
+    # Optimization: Cache the degree of b and inline the bit_length call for a
+    # to avoid the overhead of repeated _degree() function calls in the loop.
+    deg_b = b.bit_length() - 1
+    while a:
+        deg_a = a.bit_length() - 1
+        if deg_a < deg_b:
+            break
+        a ^= b << (deg_a - deg_b)
     return a
 
 
