@@ -20,6 +20,20 @@ from psc.swap_discrepancy import (
 from psc.words import Pair
 
 
+def reference_discrepancy(p: Pair) -> Int:
+    """Original full-scan definition, retained only as a test oracle."""
+    var diff: List[Int] = [0, 0, 0]
+    var best = 0
+    for i in range(len(p.u)):
+        diff[p.u[i]] += 1
+        diff[p.v[i]] -= 1
+        for j in range(3):
+            var magnitude = diff[j] if diff[j] >= 0 else -diff[j]
+            if magnitude > best:
+                best = magnitude
+    return best
+
+
 def tribonacci() -> List[List[Int]]:
     var s = List[List[Int]]()
     var w0: List[Int] = [0, 1]
@@ -47,6 +61,19 @@ def test_swap_seed_has_discrepancy_one() raises:
     var v: List[Int] = [1, 0]
     assert_equal(discrepancy(Pair(u, v)), 1)
     assert_equal(swap_walk_sup(tribonacci(), 0, 1, 0), 1)
+
+
+def test_unrolled_sign_branches_match_original_metric() raises:
+    # These paths collectively update x and y through both signs, while each
+    # orientation makes the strict positive/negative maximum occur on the
+    # opposite updated coordinate.  Compare with the original definition.
+    var cases = List[Pair]()
+    cases.append(Pair([0, 0, 2, 2], [1, 2, 1, 0]))
+    cases.append(Pair([1, 2, 1, 0], [0, 0, 2, 2]))
+    cases.append(Pair([1, 1, 0, 2], [0, 0, 2, 1]))
+    cases.append(Pair([0, 0, 2, 1], [1, 1, 0, 2]))
+    for i in range(len(cases)):
+        assert_equal(discrepancy(cases[i]), reference_discrepancy(cases[i]))
 
 
 def test_blocks_inherit_the_swap_walk_bound() raises:
@@ -99,6 +126,8 @@ def test_common_tile_counts_pin_exact_values() raises:
 def main() raises:
     test_swap_seed_has_discrepancy_one()
     print("[PASS] test_swap_seed_has_discrepancy_one")
+    test_unrolled_sign_branches_match_original_metric()
+    print("[PASS] test_unrolled_sign_branches_match_original_metric")
     test_blocks_inherit_the_swap_walk_bound()
     print("[PASS] test_blocks_inherit_the_swap_walk_bound")
     test_tribonacci_profile_is_flat()
@@ -107,5 +136,5 @@ def main() raises:
     print("[PASS] test_tau_profile_and_reachable_maximum")
     test_common_tile_counts_pin_exact_values()
     print("[PASS] test_common_tile_counts_pin_exact_values")
-    print("5 swap-discrepancy tests passed.")
+    print("6 swap-discrepancy tests passed.")
     require_claim("G1b1BoundedDiscrepancy")
