@@ -16,27 +16,29 @@ TOML and regenerate rather than hand-editing the Markdown.
    #84/#138 are live theorem issues again, and #153 is resolved conservatively.
    The audit also records the adelic/trim frontier and the Markdown source
    corruption repaired by the current maintenance work.
-2. `research-roadmap-2026-09-21.md` — live completion roadmap. It splits
-   Open Problem 5.35 into the aligned strong-coincidence branch (#138) and the
-   strict-zipper contracting-space hitting branch (#139), while keeping G1b-2,
-   finite-BPA carrier work, and realization as parallel programmes.
-3. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
+2. `research-roadmap-2026-09-21.md` — live completion roadmap. Its
+   2026-10-01 update incorporates the fixed-edge/alternating-E aligned normal
+   form and the strict-zipper M-adic carry stop result.
+3. `p1-two-route-map-2026-10-01.md` — current attack map joining the aligned
+   and strict-zipper routes at offset zero and identifying the next reviewable
+   theorem targets.
+4. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
-4. `completion-ledger-2026-09-14.md` — latest merged weekly completion
+5. `completion-ledger-2026-09-14.md` — latest merged weekly completion
    snapshot; read its priority ordering against the live roadmap.
-5. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
+6. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
-6. `conjecture-ledger.md` — live prose dependency ledger.
+7. `conjecture-ledger.md` — live prose dependency ledger.
    `ledger-index.md` is its generated machine-derived counterpart: one row per
    TLA+ ledger node with kind, source, dependencies, and closure.
-7. `proof-ladder.md` — shortest honest path from established results to the
+8. `proof-ladder.md` — shortest honest path from established results to the
    remaining theorem, plus the stronger parallel structural routes.
-8. `current-proof-architecture-2026-09-14.md` — canonical detailed architecture,
+9. `current-proof-architecture-2026-09-14.md` — canonical detailed architecture,
    explicitly distinguishing the primary overlap route from the finite-BPA and
    realization programmes. The 2026-09-11 file is retained only as a superseded
    historical pointer.
-9. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
+10. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
    state-of-program exposition.
 
 When these disagree, do not choose the strongest wording. Check the latest
