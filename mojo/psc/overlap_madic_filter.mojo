@@ -57,7 +57,7 @@ struct MadicLevelAudit(Copyable, Movable):
         self.zero_class_count = zero_class_count
 
 
-def _validate_letter(letter: Int):
+def _validate_letter(letter: Int) raises:
     if letter < 0 or letter >= 3:
         raise Error("strict-zipper M-adic filter expects letters in 0..2")
 
@@ -94,7 +94,7 @@ def _proper_prefix_parikhs(word: List[Int]) -> List[List[Int]]:
     return out^
 
 
-def _difference(top: List[Int], bottom: List[Int]) -> List[Int]:
+def _difference(top: List[Int], bottom: List[Int]) raises -> List[Int]:
     if len(top) != 3 or len(bottom) != 3:
         raise Error("M-adic prefix difference expects rank three")
     var out = List[Int]()
