@@ -142,14 +142,28 @@ def cubic_scale_checked(x: CubicElt, n: Int) raises -> CubicElt:
     )
 
 
+# Widest incidence column sum (longest image) the legacy predicates are
+# certified on; see `_validate_bounded_incidence_domain`.
+comptime MAX_CERTIFIED_COLUMN_SUM = 6
+
+
 def _validate_bounded_incidence_domain(m: Mat3) raises:
     """Restrict the legacy PIP predicate to its audited finite input domain.
 
-    The repository census enumerates non-erasing three-letter substitutions
-    whose image lengths are at most three.  Hence every incidence-matrix
-    column has sum in ``1..3``.  On this domain the unchecked legacy
-    primitivity and cubic predicates have bounded intermediates; inputs
-    outside it must not reach them through this exact overlap kernel.
+    The predicate's fixed-width steps are the primitivity test, which forms
+    powers up to `M^6`, the characteristic polynomial, and the rational-root
+    test; the Pisot test runs over unbounded rationals. With every column sum
+    of the non-negative `M` at most `C`, every column sum of `M^k` is at most
+    `C^k`, so the entries of `M^6` are at most `C^6`; the cubic's coefficients
+    are at most `3C`, `3C^2` and `C^3` in absolute value (the determinant is
+    bounded by the permanent, hence by the product of the column sums); and
+    the rational-root test evaluates the cubic at divisors `r` of the constant
+    term, `|r| <= C^3`, whose largest term is `|r|^3 <= C^9`. At
+    `C = MAX_CERTIFIED_COLUMN_SUM = 6`, `C^9 = 10077696` and every intermediate
+    is a small multiple of it, far inside `Int`. The repository corpora
+    (`psc.corpus`) are non-erasing three-letter substitutions with images of
+    length at most six, so they lie inside this domain; inputs outside it must not reach the unchecked predicates through
+    this exact overlap kernel.
     """
     if len(m.e) != 9:
         raise Error("cubic Perron field requires a 3x3 incidence matrix")
@@ -157,14 +171,16 @@ def _validate_bounded_incidence_domain(m: Mat3) raises:
         var column_sum = 0
         for row in range(3):
             var entry = m.at(row, col)
-            if entry < 0 or entry > 3:
+            if entry < 0 or entry > MAX_CERTIFIED_COLUMN_SUM:
                 raise Error(
-                    "cubic Perron PIP validation is certified only for image lengths at most three"
+                    "cubic Perron PIP validation is certified only for image lengths at most "
+                    + String(MAX_CERTIFIED_COLUMN_SUM)
                 )
             column_sum += entry
-        if column_sum <= 0 or column_sum > 3:
+        if column_sum <= 0 or column_sum > MAX_CERTIFIED_COLUMN_SUM:
             raise Error(
-                "cubic Perron PIP validation is certified only for non-erasing image lengths at most three"
+                "cubic Perron PIP validation is certified only for non-erasing image lengths at most "
+                + String(MAX_CERTIFIED_COLUMN_SUM)
             )
 
 

@@ -98,7 +98,7 @@ is intentionally retained: a modest rational interval remains ambiguous, while t
 
 No floating point, inverse incidence matrix, Euclidean stable-space lattice, or unimodularity assumption is used. Rational arithmetic is unbounded; the integer-width Sturm--Tarski oracle and the cubic-field arithmetic remain overflow-checked and fail closed, making a finite run inconclusive rather than wrong.
 
-The current PIP-validation boundary is deliberately restricted to the audited repository census domain: non-erasing three-letter substitutions with every image length at most three. This finite precondition is checked before calling the PIP predicate and the checked integer cubic-field arithmetic. Larger incidence matrices are rejected as unsupported rather than risk overflow in that cubic-field layer and false classification.
+The current PIP-validation boundary is deliberately restricted to an audited finite domain: non-erasing three-letter substitutions with every image length at most `MAX_CERTIFIED_COLUMN_SUM = 6` (raised from three on 2026-10-01 for the total-length corpus; the overflow bound is stated in `mojo/psc/perron_field3.mojo`). This finite precondition is checked before calling the PIP predicate and the checked integer cubic-field arithmetic. Larger incidence matrices are rejected as unsupported rather than risk overflow in that cubic-field layer and false classification.
 
 For an oriented overlap state
 

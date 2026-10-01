@@ -22,7 +22,12 @@ from psc.overlap_seed_patch import (
     strong_coincidence_depth,
     strong_coincidence_depth_from,
 )
-from psc.perron_field3 import CubicElt, build_perron_field3, sign_at_perron
+from psc.perron_field3 import (
+    MAX_CERTIFIED_COLUMN_SUM,
+    CubicElt,
+    build_perron_field3,
+    sign_at_perron,
+)
 
 
 def determinant_two_sigma() -> List[List[Int]]:
@@ -318,6 +323,54 @@ def test_the_perron_cache_refuses_what_a_bare_build_refuses() raises:
     assert_true(caught)
 
 
+def tail_heavy_sigma(tail: Int) -> List[List[Int]]:
+    """`0 -> 1, 1 -> 2, 2 -> 0 2^tail`: PIP with an image of length `tail + 1`
+    for `tail = 2, 5, 6`, so it probes the domain boundary on PIP inputs."""
+    var a: List[Int] = [1]
+    var b: List[Int] = [2]
+    var c: List[Int] = [0]
+    for _ in range(tail):
+        c.append(2)
+    var sigma = List[List[Int]]()
+    sigma.append(a^)
+    sigma.append(b^)
+    sigma.append(c^)
+    return sigma^
+
+
+def test_the_certified_domain_ends_at_column_sum_six() raises:
+    """A PIP matrix with column sum six builds; one with column sum seven is
+    refused before the unchecked predicates, although it is PIP too."""
+    assert_equal(MAX_CERTIFIED_COLUMN_SUM, 6)
+    _ = build_perron_field3(Mat3(substitution_incidence(tail_heavy_sigma(5))))
+    var caught = False
+    try:
+        _ = build_perron_field3(Mat3(substitution_incidence(tail_heavy_sigma(6))))
+    except:
+        caught = True
+    assert_true(caught)
+
+
+def test_the_perron_cache_keeps_refusing_after_a_failed_build() raises:
+    """A refused build must leave no cache entry behind: the second sighting
+    of the same incidence matrix raises again instead of reading a slot that
+    was never filled."""
+    var cache = PerronCache()
+    for _ in range(2):
+        var caught = False
+        try:
+            _ = cache.tables_for(tail_heavy_sigma(6))
+        except:
+            caught = True
+        assert_true(caught)
+    assert_equal(cache.distinct_matrices(), 0)
+    assert_same_tables(
+        cache.tables_for(determinant_two_sigma()),
+        build_seed_overlap_tables(determinant_two_sigma()),
+    )
+    assert_equal(cache.distinct_matrices(), 1)
+
+
 def main() raises:
     test_perron_order_is_exact_on_basic_elements()
     print("[PASS] test_perron_order_is_exact_on_basic_elements")
@@ -341,7 +394,11 @@ def main() raises:
     print("[PASS] test_the_perron_cache_rebuilds_the_tables_it_shares")
     test_the_perron_cache_refuses_what_a_bare_build_refuses()
     print("[PASS] test_the_perron_cache_refuses_what_a_bare_build_refuses")
-    print("11 seed-patch-overlap Mojo tests passed.")
+    test_the_certified_domain_ends_at_column_sum_six()
+    print("[PASS] test_the_certified_domain_ends_at_column_sum_six")
+    test_the_perron_cache_keeps_refusing_after_a_failed_build()
+    print("[PASS] test_the_perron_cache_keeps_refusing_after_a_failed_build")
+    print("13 seed-patch-overlap Mojo tests passed.")
     require_claim("SwapOverlapFiniteness")
     require_claim("AlignedOverlapsAreStrongCoincidence")
     require_claim("BoundaryCoincidenceCriterion")
