@@ -11,11 +11,11 @@ TOML and regenerate rather than hand-editing the Markdown.
 
 ## Current status
 
-1. `audit-2026-09-27.md` — current-state audit. It distinguishes the canonical
-   theorem ledger (PSC/#84/#138 remain mathematically open) from the PSC-closed
-   project-management premise, records the still-open #153 reconciliation,
-   audits the new adelic/trim research, and flags source-integrity control
-   characters in three merged research notes.
+1. `audit-2026-09-27.md` — status/provenance audit, now carrying a 2026-10-01
+   resolution note: the PSC-closed premise was withdrawn, PSC remains open,
+   #84/#138 are live theorem issues again, and #153 is resolved conservatively.
+   The audit also records the adelic/trim frontier and the Markdown source
+   corruption repaired by the current maintenance work.
 2. `research-roadmap-2026-09-21.md` — live completion roadmap. It splits
    Open Problem 5.35 into the aligned strong-coincidence branch (#138) and the
    strict-zipper contracting-space hitting branch (#139), while keeping G1b-2,
