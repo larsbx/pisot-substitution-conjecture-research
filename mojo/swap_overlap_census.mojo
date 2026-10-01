@@ -285,6 +285,22 @@ def survey(corpus: List[Specimen]) raises:
             total_states += g.size()
             largest = max_int(largest, g.size())
 
+            # A nonproductive graph is the mathematical event this census
+            # exists to detect, so it is decided first: a diagnostic below
+            # that fails closed must not leave the verdict uncomputed. Depth
+            # statistics are undefined on such a graph.
+            var bad = len(nonproductive_overlap_states(g))
+            if bad > 0:
+                n_nonproductive_specimens += 1
+                n_nonproductive_states += bad
+                print("NONPRODUCTIVE overlap specimen:", spec.label(), " states:", bad)
+            else:
+                var profile = depth_profile(tables, g)
+                coincidence.record(profile.coincidence)
+                left_aligned.record(profile.left_aligned)
+                prefix_strong.record(profile.prefix_strong)
+                suffix_strong.record(profile.suffix_strong)
+
             # Necessary finite signature of the strict left-boundary zipper
             # branch: after deleting coincidences and all offset-zero states,
             # does any directed recurrence remain?  Right-aligned states are
@@ -310,21 +326,6 @@ def survey(corpus: List[Specimen]) raises:
                 len(zipper_sccs) > 0,
                 spec.label(),
             )
-
-            var bad = len(nonproductive_overlap_states(g))
-            if bad > 0:
-                # A nonproductive graph is the mathematical event this census
-                # exists to detect; record it before any depth statistic,
-                # which is undefined on such a graph.
-                n_nonproductive_specimens += 1
-                n_nonproductive_states += bad
-                print("NONPRODUCTIVE overlap specimen:", spec.label(), " states:", bad)
-                continue
-            var profile = depth_profile(tables, g)
-            coincidence.record(profile.coincidence)
-            left_aligned.record(profile.left_aligned)
-            prefix_strong.record(profile.prefix_strong)
-            suffix_strong.record(profile.suffix_strong)
         except e:
             n_failed += 1
             print("FAILED specimen:", spec.label(), " ", e)
