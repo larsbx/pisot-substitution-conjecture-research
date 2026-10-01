@@ -32,17 +32,33 @@ def irreducible(T,U,D):
 
 # --- exact Pisot test by Sturm sequences over Q (mirrors mojo/psc/pisot.mojo) ---
 def _deg(p):
-    for i in range(len(p)-1,-1,-1):
-        if p[i]!=0: return i
+    n = len(p)
+    while n > 0:
+        n -= 1
+        if p[n] != 0: return n
     return -1
 def _eval(p,x):
-    acc=Fraction(0)
-    for c in reversed(p): acc=acc*x+c
+    n = len(p)
+    if n == 4:
+        return ((p[3]*x+p[2])*x+p[1])*x+p[0]
+    elif n == 3:
+        return (p[2]*x+p[1])*x+p[0]
+    elif n == 2:
+        return p[1]*x+p[0]
+    elif n == 1:
+        return p[0]
+    elif n == 0:
+        return Fraction(0)
+    acc = Fraction(0)
+    for c in p[::-1]:
+        acc = acc * x + c
     return acc
 def _rem(a,b):
     r=list(a); db=_deg(b)
+    if db < 0: return r
+    inv = Fraction(1, b[db])
     while _deg(r)>=db:
-        dr=_deg(r); f=r[dr]/b[db]
+        dr=_deg(r); f=r[dr]*inv
         for i in range(db+1): r[dr-db+i]-=f*b[i]
         r[dr]=Fraction(0)
     return r

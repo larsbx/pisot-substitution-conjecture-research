@@ -15,3 +15,6 @@
 ## 2025-02-18 - C-delegation can break complexity
 **Learning:** Moving a Python loop to a C-level function (like `list.count`) might look faster on micro-benchmarks but can silently increase algorithmic complexity (e.g., from O(N) to O(N * alphabet_size)), causing massive performance regressions on large inputs.
 **Action:** Always ensure that time complexity invariants are strictly preserved before replacing loops with built-ins.
+## 2026-09-17 - Fast evaluation of exact polynomials
+**Learning:** Evaluating polynomials using `for c in reversed(p): acc=acc*x+c` creates overhead from the `reversed()` iterator and the loop structure itself. Because Python exact arithmetic (using `Fraction`) incurs significant object allocation overhead, loop unrolling for fixed-degree polynomials, alongside converting division to multiplication via precomputed inverses in division loops, provides major speedups. Iterating backward via a `while` loop is also faster than allocating a sequence via `range(n, -1, -1)`.
+**Action:** Unroll mathematical evaluation loops manually for constant small sizes. In division algorithms, pull inverses out of inner loops.
