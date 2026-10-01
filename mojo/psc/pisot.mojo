@@ -18,16 +18,31 @@ from finite_linear_algebra.mat3 import Mat3, has_rational_root
 
 def poly_eval(p: List[Q], x: Q) -> Q:
     """Horner evaluation; `p` is low-degree-first."""
+    var n = len(p)
+    # Horner propagates a rejected argument even for a constant polynomial.
+    if n > 0 and x.rejected:
+        return x.copy()
+    if n == 4:
+        return p[3].mul(x).add(p[2]).mul(x).add(p[1]).mul(x).add(p[0])
+    if n == 3:
+        return p[2].mul(x).add(p[1]).mul(x).add(p[0])
+    if n == 2:
+        return p[1].mul(x).add(p[0])
+    if n == 1:
+        return p[0].copy()
     var acc = Q.zero()
-    for i in range(len(p) - 1, -1, -1):
-        acc = acc.mul(x).add(p[i])
+    while n > 0:
+        n -= 1
+        acc = acc.mul(x).add(p[n])
     return acc^
 
 
 def poly_degree(p: List[Q]) -> Int:
-    for i in range(len(p) - 1, -1, -1):
-        if not q_is_zero(p[i]):
-            return i
+    var n = len(p)
+    while n > 0:
+        n -= 1
+        if not q_is_zero(p[n]):
+            return n
     return -1
 
 
@@ -46,14 +61,20 @@ def poly_rem(a: List[Q], b: List[Q]) -> List[Q]:
     var db = poly_degree(b)
     if db < 0:
         return r^
-    while True:
-        var dr = poly_degree(r)
-        if dr < db:
-            return r^
-        var f = r[dr].div(b[db])
+    var dr = poly_degree(r)
+    if dr < db:
+        return r^
+    var inv = Q.one().div(b[db])
+    while dr >= db:
+        var f = r[dr].mul(inv)
         for i in range(db + 1):
             r[dr - db + i] = r[dr - db + i].sub(f.mul(b[i]))
         r[dr] = Q.zero()
+        while dr >= 0:
+            if not q_is_zero(r[dr]):
+                break
+            dr -= 1
+    return r^
 
 
 def sturm_chain(p: List[Q]) -> List[List[Q]]:
