@@ -1,7 +1,7 @@
 """Canonical Mojo regressions for the strict first-child hub phase."""
 
 from std.testing import assert_equal, assert_true
-from psc.claim_tests import require_claim
+from psc.claim_tests import require_claim, require_contract
 from psc.endpoint_core import endpoint_type
 from psc.hub_selector import (
     alternating_e_template,
@@ -148,3 +148,6 @@ def main() raises:
     print("[PASS] test_alternating_e_cycle_is_exactly_the_good_edge_swap")
     print("5 hub-selector Mojo tests passed.")
     require_claim("EndpointCore")
+    require_contract(
+        "aligned recurrent hub-star pair cycle is fixed or alternating type-E"
+    )
