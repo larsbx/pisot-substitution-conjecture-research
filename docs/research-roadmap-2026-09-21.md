@@ -102,14 +102,36 @@ Before adding new machinery, keep the exact scope of the classical results visib
 
 **Attribution firewall:** never cite Barge–Diamond as an all-pairs theorem in alphabet size three.
 
+#### P1a 2026-10-01 milestone
+
+The recurrent first-child pair dynamics is now completely normalized after
+fixing a Barge–Diamond-good edge. A bad aligned orbit has only two recurrent
+templates:
+
+1. a **fixed bad hub edge**; or
+2. the unique **alternating type-E template**, where the hub is fixed and the
+   two letters of the good edge are swapped.
+
+There is no recurrent aligned pair cycle of period greater than two. In the
+alternating template the good edge never synchronizes at the left endpoint, so
+its Barge–Diamond eventual-coincidence witness is necessarily an **interior**
+balanced-prefix witness. See
+`docs/p1a-aligned-cycle-normal-form-2026-10-01.md`.
+
 #### P1a next proof tasks
 
-1. Write the exact ternary propagation lemma needed after fixing a Barge–Diamond good pair.
-2. Express every surviving bad pair through the hub-star and endpoint-map normal forms.
-3. Use recurrence of the first-/last-letter maps to show that a surviving bad pair forces a forbidden good pair, or isolate the exact new invariant still missing.
-4. If a proposed argument uses Rauzy geometry, classify every imported step as unit-only or non-unit-safe before using it.
+1. **Alternating-E interior-witness transport:** force the known interior good-edge
+   witness into a zero-return boundary descendant of one of the two bad hub
+   edges, or derive a contradiction with closed nonproductivity.
+2. **Fixed-edge interior forcing:** eliminate a setwise fixed bad hub edge using
+   substitution-word / balanced-prefix structure beyond the endpoint map.
+3. Apply the same reduction to the suffix branch by reversal.
+4. If a proposed argument uses Rauzy geometry, classify every imported step as
+   unit-only or non-unit-safe before using it.
 
-**Closure evidence:** a proof that eliminates every aligned bad SCC for all ternary PIP substitutions, with the reversed-substitution statement handled explicitly and no FI, legality, or unimodularity assumption.
+**Closure evidence:** a proof that eliminates both fixed-edge and alternating-E
+aligned templates for all ternary PIP substitutions, with reversal handled
+explicitly and no FI, legality, or unimodularity assumption.
 
 ### P1b — strict-zipper branch: issue #139
 
@@ -168,14 +190,36 @@ The high-value target is a uniform statement of one of the following forms:
 
 The theorem must be uniform in `|S|`; another necessary-condition sieve without a completeness statement is not completion progress.
 
+#### P1b 2026-10-01 milestone
+
+The finite-place side now has an exact M-adic prefix-difference filter. A
+level-`m` hit requires the occurrence-labelled prefix difference to be zero
+in `Z^3 / M^m Z^3`. On the determinant-two golden regression only 11 of 35
+level-two occurrence pairs survive; on the unimodular Tribonacci control all
+12 survive, as the trivial cokernel requires.
+
+More importantly, the descaled zero-class candidate sets obey exactly the
+existing occurrence-labelled affine overlap update. Thus **deeper finite
+cokernel refinement by itself is not a new closure mechanism**: after
+descaling it reconstructs the reverse zero-offset basin of the same affine
+graph. See `docs/p1b-madic-carry-reduction-2026-10-01.md`.
+
 #### P1b next proof tasks
 
-1. Define the strict-zipper offset and prefix-difference cylinder in the non-unit representation space, including finite-place coordinates.
-2. State the smallest recurrence or coverage lemma that proves `AdelicPeriodicOffsetHitting` uniformly in the chosen closed SCC.
-3. Test that lemma first against the known affine-pump and collar countermodels.
-4. Only then build new Mojo instrumentation, preserving ordered child occurrences and exact arithmetic.
+1. Skip further quotient-depth accumulation as a standalone strategy.
+2. Prove the **occurrence-compatible adelic coverage lemma**: a realized
+   periodic strict-zipper orbit must enter the graph-directed prefix-difference
+   subtile corresponding to its reverse zero basin.
+3. Keep the determinant-two affine pump, collar collision, unimodular control,
+   and a genuine non-unit finite-place specimen as mandatory negative/positive
+   controls.
+4. Preserve ordered child occurrences and exact arithmetic in any executable
+   theorem interface.
 
-**Closure evidence:** a uniform hitting theorem eliminating every strict-zipper bad SCC, or an exact proof that the standard super-coincidence machinery does not close the residual obligation together with a strictly smaller named theorem gap.
+**Closure evidence:** a uniform full-representation hitting/coverage theorem
+eliminating every strict-zipper bad SCC, or a further exact reduction that
+strictly shrinks that theorem without reverting to another necessary-condition
+sieve.
 
 ### P1 assembly
 
