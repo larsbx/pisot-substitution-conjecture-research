@@ -28,7 +28,7 @@ ran=0
 failed=()
 for test in tests/test_*.mojo; do
     ran=$((ran + 1))
-    mojo run -I . "$test" 2>&1 | tee "$LOG"
+    mojo run -I . -I tests "$test" 2>&1 | tee "$LOG"
     if (( ${PIPESTATUS[0]} == 0 )); then
         awk -v path="mojo/$test" '
             /^claim-receipt: /    { printf "%s\tclaim\t%s\n",    path, substr($0, 16) }
