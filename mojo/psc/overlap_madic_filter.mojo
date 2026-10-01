@@ -14,7 +14,14 @@ The word cap is an implementation boundary.  Exceeding it raises rather than
 turning an incomplete enumeration into a negative result.
 """
 
-from finite_linear_algebra.madic_ball import contains
+from finite_exact.rat_q import Q
+from finite_linear_algebra.madic_ball import (
+    lift_square,
+    q_is_integer,
+    qmat_det,
+    qmat_pow,
+)
+from finite_linear_algebra.scalar import q_int, q_is_zero
 from substitution_dynamics.substitution import Substitution
 
 
@@ -103,6 +110,64 @@ def _difference(top: List[Int], bottom: List[Int]) raises -> List[Int]:
     return out^
 
 
+def _minor2(a: Q, b: Q, c: Q, d: Q) -> Q:
+    return a.mul(d).sub(b.mul(c))
+
+
+def _inverse_lattice3(entries: List[Int], level: Int) raises -> List[List[Q]]:
+    """Precompute the inverse of M^level once over exact unbounded rationals."""
+    var base = lift_square(entries, 3)
+    if q_is_zero(qmat_det(base)):
+        raise Error("M-adic prefix filter requires det M != 0")
+    var a = qmat_pow(base, level)
+    var det = qmat_det(a)
+    if q_is_zero(det):
+        raise Error("M-adic prefix lattice unexpectedly singular")
+
+    var out = List[List[Q]]()
+
+    var row0 = List[Q]()
+    row0.append(_minor2(a[1][1], a[1][2], a[2][1], a[2][2]).div(det))
+    row0.append(_minor2(a[0][2], a[0][1], a[2][2], a[2][1]).div(det))
+    row0.append(_minor2(a[0][1], a[0][2], a[1][1], a[1][2]).div(det))
+    out.append(row0^)
+
+    var row1 = List[Q]()
+    row1.append(_minor2(a[1][2], a[1][0], a[2][2], a[2][0]).div(det))
+    row1.append(_minor2(a[0][0], a[0][2], a[2][0], a[2][2]).div(det))
+    row1.append(_minor2(a[0][2], a[0][0], a[1][2], a[1][0]).div(det))
+    out.append(row1^)
+
+    var row2 = List[Q]()
+    row2.append(_minor2(a[1][0], a[1][1], a[2][0], a[2][1]).div(det))
+    row2.append(_minor2(a[0][1], a[0][0], a[2][1], a[2][0]).div(det))
+    row2.append(_minor2(a[0][0], a[0][1], a[1][0], a[1][1]).div(det))
+    out.append(row2^)
+
+    for i in range(3):
+        for j in range(3):
+            if out[i][j].rejected:
+                raise Error("exact M-adic inverse construction rejected")
+    return out^
+
+
+def _zero_class_contains(inverse: List[List[Q]], difference: List[Int]) raises -> Bool:
+    """Test integrality after applying the prepared inverse."""
+    if len(inverse) != 3 or len(difference) != 3:
+        raise Error("prepared M-adic solver has the wrong dimension")
+    for i in range(3):
+        if len(inverse[i]) != 3:
+            raise Error("prepared M-adic solver has the wrong row width")
+        var coordinate = Q.zero()
+        for j in range(3):
+            coordinate = coordinate.add(inverse[i][j].mul(q_int(difference[j])))
+        if coordinate.rejected:
+            raise Error("prepared M-adic solve rejected exact arithmetic")
+        if not q_is_integer(coordinate):
+            return False
+    return True
+
+
 def madic_zero_class_candidates(
     sigma: List[List[Int]],
     top_letter: Int,
@@ -122,12 +187,13 @@ def madic_zero_class_candidates(
     var top_prefixes = _proper_prefix_parikhs(top_word)
     var bottom_prefixes = _proper_prefix_parikhs(bottom_word)
     var entries = substitution.incidence()
+    var inverse = _inverse_lattice3(entries, level)
 
     var out = List[MadicPrefixCandidate]()
     for i in range(len(top_prefixes)):
         for j in range(len(bottom_prefixes)):
             var d = _difference(top_prefixes[i], bottom_prefixes[j])
-            if contains(entries, 3, level, d):
+            if _zero_class_contains(inverse, d):
                 out.append(MadicPrefixCandidate(i, j, d))
     return out^
 
