@@ -104,6 +104,11 @@ Change the ledger entry and every surface in the same commit.
   `p1a-v34-concentration-audit.md` — preserved formulation and inheritance
   audits, not proofs of concentration.
 
+- `lost-depth-indexed-formulation-2026-10-01.md` — records the lost files of a
+  parallel depth-indexed ladder (`PROOF_LADDER.md`, `SWEEP_RESULTS.md`, ...),
+  marks every claim attributed to them unverified and uncited, and identifies
+  the lost 24,486-specimen sweep domain as total image length at most 8.
+
 The missing `PSC_PROOF_v16` file is a historical provenance fact. It is not a
 current dependency for G1b-1 or degree-two carrier-span propagation.
 
