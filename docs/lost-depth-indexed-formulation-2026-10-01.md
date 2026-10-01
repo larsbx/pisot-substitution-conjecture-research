@@ -1,7 +1,8 @@
 # Lost depth-indexed formulation: provenance record — 2026-10-01
 
-**Status:** missing-source provenance record. Nothing below is a repository
-result. Every item attributed to the lost files is unverified, is not cited by
+**Status:** missing-source provenance record, plus finite-domain evidence
+computed in this repository (§4–§6, each labelled with its evidence class).
+Every item attributed to the lost files is unverified, is not cited by
 any status surface, and must not enter `claim_governance.toml`, the ledgers or
 the manuscript until it is reconstructed from scratch with its own proof or
 replayable finite certificate. This note does not change the status of any
@@ -88,12 +89,54 @@ conditions, but it does not remove the obstruction on this repository's
 routes: a bad closed SCC for σ, sampled every k steps, is still a bad closed
 recurrent structure for σ^k.
 
-## 6. Follow-up tasks
+## 6. Overlap census over the recovered domain
 
-1. Extend `mojo/psc/corpus.mojo` with a total-length bound so the 24,486 class
-   becomes a canonical corpus, with the 4,554 corpus as a regression slice.
-2. Run the existing swap-overlap census over that class. The result is
-   finite-domain evidence on the larger class; it does not reconstruct the
-   lost 2-step criterion and does not close any level.
-3. Optionally, a bounded BPA build on the 14,670 max-image ≤ 4 slice, as
+**Evidence class:** finite-domain evidence on the stated class only. It does
+not reconstruct the lost 2-step criterion, does not close any level, and says
+nothing about substitutions outside the class.
+
+`mojo/swap_overlap_census_total_length.mojo` runs the survey of
+`mojo/swap_overlap_census.mojo` unchanged over the 24,486 specimens of §4
+(`psc.corpus.pip_corpus_total_length(8)`). Two kernel changes made this
+possible: the exact Perron layer is certified to column sum
+`MAX_CERTIFIED_COLUMN_SUM = 6` with the overflow bound stated in
+`mojo/psc/perron_field3.mojo`, and `PerronCache` no longer leaves a stale
+entry behind a refused build. The same driver on the standing corpus
+reproduces every published line exactly.
+
+| | standing 4,554 | total length ≤ 8: 24,486 |
+| --- | --- | --- |
+| overlap graphs built / capped | 4,554 / 0 | 24,486 / 0 |
+| total overlap states | 1,118,850 | 7,522,892 |
+| largest overlap graph | 2,640 | 14,826 |
+| specimens with a nonproductive overlap | 0 | 0 |
+| maximum first-coincidence depth | 18 | 26 |
+| maximum first left-aligned depth | 17 | 24 |
+| maximum prefix / suffix strong-coincidence depth | 15 / 15 | 15 / 15 |
+| unimodular collapsing seed patches (must be 0) | 0 | 0 |
+
+Diagnostics that did not complete, reported as such:
+
+- **24 specimens** exceed the 200,000-state cap of the collared occurrence
+  graph, so their collar and pump-lift diagnostics are inconclusive. Their
+  productivity verdict is decided before those diagnostics (commit
+  `bb79c1c`; the first run decided it last and so skipped it), and all 24 are
+  productive. The figures above combine the first full run with a run of the
+  same survey over those 24 specimens; the survey is deterministic.
+- **12 specimens**, one orbit under relabelling and reversal (representative
+  `0 -> 1, 1 -> 2, 2 -> 022102`), keep a collar collision at the census cap of
+  radius 6 without a collapsing seed patch by level 6. An exploratory probe of
+  the representative (not a census) finds no collapsing patch through level
+  14 and separation at radius 9, with unresolved collisions
+  29, 26, 14, 12, 11, 9, 6, 3, 1, 0 at radii 0–9. The standing corpus's
+  coincidence of survivors with collapsing patches therefore fails on this
+  class at the census cap, because the separation radius exceeds the cap,
+  not because a non-collapsing collision persists at the probed radius.
+
+## 7. Follow-up tasks
+
+1. Optionally, a bounded BPA build on the 14,670 max-image ≤ 4 slice, as
    evidence about the recorded Level-2 item only.
+2. Optionally, a census-grade separation-radius sweep with a cap above 9 over
+   the 24,486 class, so that §6's probe of one representative becomes a
+   replayable count.
