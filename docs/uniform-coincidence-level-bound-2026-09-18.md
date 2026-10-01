@@ -118,9 +118,9 @@ This is a primitive unimodular irreducible Pisot family:
   a root for (n\ge3), so the cubic is irreducible;
 - its discriminant is (-4n^3-27<0), so the two non-Perron roots are a complex
   conjugate pair;
-- the positive root satisfies (eta_n>n), and the product of the conjugate
+- the positive root satisfies (\beta_n>n), and the product of the conjugate
   pair is (1/\beta_n), hence each has modulus
-  (eta_n^{-1/2}<1).
+  (\beta_n^{-1/2}<1).
 
 But (max_a|\sigma_n(a)|=n+1) and the height of (M_n) is (n). Therefore
 neither bounded image length nor bounded incidence entries can be inserted as
