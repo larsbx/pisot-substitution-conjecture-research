@@ -141,3 +141,80 @@ def cdef_phase_is_uniform(h: List[Int], good_a: Int, good_b: Int) raises -> Bool
     if t < 2 or t > 5:
         return False
     return strict_star_selector_phase(h, good_a, good_b) != 2
+
+
+def strict_star_eventual_cycle_period(
+    h: List[Int], good_a: Int, good_b: Int, pair_a: Int, pair_b: Int
+) raises -> Int:
+    """Eventual recurrent period of one viable strict hub-star pair.
+
+    Returns -1 when the pair is not viable. Because the good edge is removed
+    from the three-edge alphabet, a viable orbit has only the two hub-star
+    edges available; its eventual cycle therefore has period one or two.
+    """
+    _validate_map(h)
+    if not strict_star_pair_viable(h, good_a, good_b, pair_a, pair_b):
+        return -1
+
+    var x = pair_a
+    var y = pair_b
+    var first_seen = List[Int](length=3, fill=-1)
+    for step in range(5):
+        if x == y:
+            raise Error("viable strict pair entered the diagonal")
+        if pair_equals(good_a, good_b, x, y):
+            raise Error("viable strict pair entered the good edge")
+        var pair_id = unordered_pair_id(x, y)
+        if first_seen[pair_id] >= 0:
+            return step - first_seen[pair_id]
+        first_seen[pair_id] = step
+        x = h[x]
+        y = h[y]
+    raise Error("finite strict hub-star orbit did not repeat")
+
+
+def alternating_e_template(h: List[Int], good_a: Int, good_b: Int) raises -> Bool:
+    """Whether the unique two-cycle hub-star template is present.
+
+    If the two bad hub edges alternate, their common letter must map to itself;
+    the two letters of the good edge must be exchanged. Conversely that
+    type-E map alternates the two hub edges exactly.
+    """
+    _validate_map(h)
+    _ = unordered_pair_id(good_a, good_b)
+    var hub = complementary_hub_letter(good_a, good_b)
+    return (
+        endpoint_type(h) == 4
+        and h[hub] == hub
+        and h[good_a] == good_b
+        and h[good_b] == good_a
+    )
+
+
+def strict_star_recurrent_cycle_kind(
+    h: List[Int], good_a: Int, good_b: Int
+) raises -> Int:
+    """Classify the recurrent aligned pair template for one endpoint/good-edge pair.
+
+    Return values:
+      -1 : no viable strict pair orbit,
+       1 : every viable orbit eventually lands on a fixed bad hub edge,
+       2 : the two bad hub edges form the unique alternating type-E cycle,
+       3 : mixed recurrent periods (generic sentinel; absent on three letters).
+    """
+    _validate_map(h)
+    _ = unordered_pair_id(good_a, good_b)
+    var period = -1
+    for a in range(3):
+        for b in range(a + 1, 3):
+            var p = strict_star_eventual_cycle_period(h, good_a, good_b, a, b)
+            if p < 0:
+                continue
+            if period < 0:
+                period = p
+            elif period != p:
+                return 3
+
+    if period == 2 and not alternating_e_template(h, good_a, good_b):
+        raise Error("two-cycle strict hub-star orbit is not the forced type-E template")
+    return period
