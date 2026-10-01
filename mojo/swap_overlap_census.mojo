@@ -15,6 +15,7 @@ from psc.corpus import (
     REGIME_UNIMODULAR_COMPLEX,
     REGIME_UNIMODULAR_REAL,
     STATE_CAP,
+    Specimen,
     arithmetic_regime,
     pip_corpus,
     report_progress,
@@ -248,8 +249,8 @@ def depth_profile(tables: SeedOverlapTables, g: SeedOverlapAutomaton) raises -> 
     return DepthProfile(worst, worst_left, prefix_scc, suffix_scc)
 
 
-def main() raises:
-    var corpus = pip_corpus()
+def survey(corpus: List[Specimen]) raises:
+    """Build, classify and summarize the overlap graph of every specimen."""
     # Field and tile lengths are read off the incidence matrix, which the
     # corpus repeats: one per matrix, not one per specimen (psc.overlap_seed_patch).
     var perron = PerronCache()
@@ -349,3 +350,7 @@ def main() raises:
     print(prefix_strong.line("specimens by prefix strong-coincidence depth:"))
     print("maximum suffix strong-coincidence depth:", suffix_strong.maximum())
     print(suffix_strong.line("specimens by suffix strong-coincidence depth:"))
+
+
+def main() raises:
+    survey(pip_corpus())
