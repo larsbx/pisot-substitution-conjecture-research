@@ -9,39 +9,36 @@ productivity, or PSC.
 
 ## 1. Descaled prefix-difference candidates
 
-For ordered letters (i,j), let
+For ordered letters i,j, let
 
-[
-D_m(i,j)=P_m(i)-P_m(j)subseteq mathbb Z^3
-]
+```text
+D_m(i,j) = P_m(i) - P_m(j)
+```
 
 be the difference of proper-prefix Parikh sets.
 
 Define the descaled integral candidate set
 
-[
-Z_m(i,j)
- ={zinmathbb Z^3: M^m zin D_m(i,j)}.
-	ag{1}
-]
+```text
+Z_m(i,j) = { z in Z^3 : M^m z in D_m(i,j) }.
+```
 
-This is the part of the level-(m) prefix-difference set that survives the
-strongest level-(m) finite cokernel
+This is the part of the level-m prefix-difference set that survives the
+strongest level-m finite cokernel
 
-[
-mathbb Z^3/M^mmathbb Z^3,
-]
+```text
+Z^3 / M^m Z^3
+```
 
 followed by exact integral descaling.
 
-For an overlap offset (w), the existing boundary-hitting criterion becomes
+For an overlap offset w, the existing boundary-hitting criterion becomes
 
-[
-M^m win D_m(i,j)
-quadLongleftrightarrowquad
-win Z_m(i,j).
-	ag{2}
-]
+```text
+M^m w in D_m(i,j)
+iff
+w in Z_m(i,j).
+```
 
 Thus the strict-zipper target is exactly eventual membership of its realized
 offset in these descaled candidate sets.
@@ -50,121 +47,117 @@ offset in these descaled candidate sets.
 
 ### Lemma 2.1
 
-If an overlap ((i,j,w)) has an offset-zero descendant at level (m), then
-some occurrence-labelled (din D_m(i,j)) satisfies
+If an overlap (i,j,w) has an offset-zero descendant at level m, then some
+occurrence-labelled d in D_m(i,j) satisfies
 
-[
-din M^mmathbb Z^3.
-	ag{3}
-]
+```text
+d in M^m Z^3.
+```
 
 Equivalently, the corresponding prefix difference is zero in
 
-[
-mathbb Z^3/M^mmathbb Z^3.
-]
+```text
+Z^3 / M^m Z^3.
+```
 
 Therefore, if no proper-prefix occurrence pair survives the zero class at
-level (m), a level-(m) hit is impossible.
+level m, a level-m hit is impossible.
 
 ### Proof
 
-A hit gives (d=M^m w) for some (din D_m(i,j)). Since
-(winmathbb Z^3), equation (3) follows. ∎
+A hit gives d = M^m w for some d in D_m(i,j). Since w is integral, the
+membership follows.
 
 This is one-sided. A zero-class survivor is not a hit: it has the form
-(d=M^m z) for a unique integral (z), and the hit occurs only when
-(z=w).
+d = M^m z for a unique integral z, and the hit occurs only when z = w.
 
-For unimodular (M), (M^mmathbb Z^3=mathbb Z^3), so every prefix
-difference survives. The filter correctly contributes no information in the
-unit case.
+For unimodular M, M^m Z^3 = Z^3, so every prefix difference survives. The
+filter correctly contributes no information in the unit case.
 
 ## 3. Exact carry recursion
 
 ### Theorem 3.1 — descaled candidates obey the overlap affine update
 
-For (mge0),
+For m >= 0,
 
-[
-zin Z_{m+1}(i,j)
-]
+```text
+z in Z_(m+1)(i,j)
+```
 
 if and only if there are occurrences
 
-[
-sigma(i)=p,a,s,qquad
-sigma(j)=q,b,t
-]
+```text
+sigma(i) = p a s
+sigma(j) = q b t
+```
 
-and a state (z'in Z_m(a,b)) such that
+and a state z' in Z_m(a,b) such that
 
-[
-z'=Mz+pi(q)-pi(p).
-	ag{4}
-]
+```text
+z' = M z + pi(q) - pi(p).
+```
 
 The occurrences are part of the witness; repeated child letters at different
 positions are not identified.
 
 ### Proof
 
-A proper prefix of (sigma^{m+1}(i)) that enters the occurrence
-(sigma^m(a)) after the first-level prefix (p) has Parikh vector
+A proper prefix of sigma^(m+1)(i) that enters the occurrence sigma^m(a) after
+the first-level prefix p has Parikh vector
 
-[
-M^mpi(p)+u,qquad uin P_m(a).
-]
+```text
+M^m pi(p) + u,  with u in P_m(a).
+```
 
 Similarly the bottom prefix has the form
 
-[
-M^mpi(q)+v,qquad vin P_m(b).
-]
+```text
+M^m pi(q) + v,  with v in P_m(b).
+```
 
 Their difference is
 
-[
-d_{m+1}
- =M^m(pi(p)-pi(q))+(u-v).
-	ag{5}
-]
+```text
+d_(m+1) = M^m (pi(p) - pi(q)) + (u-v).
+```
 
-Now (zin Z_{m+1}(i,j)) precisely when
-(d_{m+1}=M^{m+1}z) for some such occurrence pair. Rearranging (5),
+Now z is in Z_(m+1)(i,j) precisely when d_(m+1) = M^(m+1) z for some such
+occurrence pair. Rearranging gives
 
-[
-u-v
- =M^migl(Mz+pi(q)-pi(p)igr).
-]
+```text
+u-v = M^m ( M z + pi(q) - pi(p) ).
+```
 
 Hence
 
-[
-z':=Mz+pi(q)-pi(p)in Z_m(a,b),
-]
+```text
+z' := M z + pi(q) - pi(p)
+```
 
-which is (4). Every step reverses, so the condition is also sufficient. ∎
+lies in Z_m(a,b). Every step reverses, so the condition is also sufficient.
 
 ## 4. The key architectural consequence
 
-Equation (4) is exactly the occurrence-labelled overlap child recurrence
+The update
 
-[
-w'=Mw+pi(q)-pi(p).
-	ag{6}
-]
+```text
+z' = M z + pi(q) - pi(p)
+```
 
-Therefore the family (Z_m) is not a new dynamical state space. It is the
+is exactly the occurrence-labelled overlap child recurrence
+
+```text
+w' = M w + pi(q) - pi(p).
+```
+
+Therefore the family Z_m is not a new dynamical state space. It is the
 **reverse zero-offset basin of the same affine overlap dynamics**:
 
-[
-win Z_m(i,j)
-quadLongleftrightarrowquad
-(i,j,w)	ext{ has an occurrence-labelled length-}m
-	ext{ path to offset zero}.
-	ag{7}
-]
+```text
+w in Z_m(i,j)
+iff
+(i,j,w) has an occurrence-labelled length-m path to offset zero.
+```
 
 This is the important negative result:
 
@@ -185,35 +178,39 @@ Archimedean-plus-finite-place coverage, or another complete recurrence theorem.
 
 Canonical Mojo support is in
 
-- mojo/psc/overlap_madic_filter.mojo;
-- mojo/tests/test_overlap_madic_filter.mojo.
+- `mojo/psc/overlap_madic_filter.mojo`;
+- `mojo/tests/test_overlap_madic_filter.mojo`.
 
 The diagnostic enumerates occurrence-labelled proper-prefix pairs and retains
-only differences in (M^mmathbb Z^3), using the exact M-adic lattice carrier
-from finite_linear_algebra. A configured word cap raises and is never
-reported as a negative result.
+only differences in M^m Z^3, using the exact M-adic lattice carrier from
+finite_linear_algebra. A configured word cap raises and is never reported as
+a negative result.
 
 On the determinant-two golden regression
 
-    0 -> 1
-    1 -> 0 2 1
-    2 -> 0 0 1
+```text
+0 -> 1
+1 -> 0 2 1
+2 -> 0 0 1
+```
 
-the ordered pair ((1,2)) at level two has word lengths (7) and (5),
-hence (35) proper-prefix occurrence pairs. Exactly (11) survive the
-zero class in (mathbb Z^3/M^2mathbb Z^3).
+the ordered pair (1,2) at level two has word lengths 7 and 5, hence 35
+proper-prefix occurrence pairs. Exactly 11 survive the zero class in
+Z^3 / M^2 Z^3.
 
 This is an exact finite-domain fact and demonstrates that the non-unit
 finite-place filter is nontrivial.
 
 On the unimodular Tribonacci substitution
 
-    0 -> 0 1
-    1 -> 0 2
-    2 -> 0
+```text
+0 -> 0 1
+1 -> 0 2
+2 -> 0
+```
 
-the level-two pair ((0,1)) has (12) proper-prefix occurrence pairs and
-all (12) survive, as required because the cokernel is trivial.
+the level-two pair (0,1) has 12 proper-prefix occurrence pairs and all 12
+survive, as required because the cokernel is trivial.
 
 The diagnostic explicitly exports the non-claim that a zero-class survivor
 proves a hit.
@@ -228,9 +225,9 @@ model.
 The current strict-zipper route can now be separated into three layers:
 
 1. **finite-place compatibility:** the prefix difference survives
-   (mathbb Z^3/M^mmathbb Z^3);
-2. **integral carry state:** descaling gives (zin Z_m(i,j)), whose recursion
-   is exactly the overlap affine update;
+   Z^3 / M^m Z^3;
+2. **integral carry state:** descaling gives z in Z_m(i,j), whose recursion is
+   exactly the overlap affine update;
 3. **new geometric forcing:** prove that a realized periodic strict-zipper
    offset must enter this reverse zero basin.
 
@@ -254,6 +251,6 @@ untyped difference of Rauzy subtiles remains insufficient.
 
 ## 8. Generality firewall
 
-No inverse of (M) over (mathbb Z^3) is assumed. No unimodularity,
-Euclidean-only internal space, global realization, legality of the swap word,
-or finite-search completeness assumption is introduced.
+No inverse of M over Z^3 is assumed. No unimodularity, Euclidean-only internal
+space, global realization, legality of the swap word, or finite-search
+completeness assumption is introduced.
