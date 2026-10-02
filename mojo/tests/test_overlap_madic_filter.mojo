@@ -69,7 +69,7 @@ def test_word_cap_refuses_incomplete_filter() raises:
     assert_true(caught)
 
 
-def test_zero_class_survival_is_not_a_hit_claim():
+def test_zero_class_survival_is_not_a_hit_claim() raises:
     assert_true(not zero_class_survival_proves_hit())
 
 
