@@ -66,13 +66,13 @@ Exact over the 4554 specimens and `n = 1..32` (`pixi run return-lattice-census`)
 ```text
 specimens by |det M| 1:2628 2:1926
 Lambda_1 = Z^3: 4554  of 4554
-chain breaks: 0  covering bound breaks: 0
+profiles verified against the chain and the covering bound: 4554
 unimodular with Lambda_1 = Z^3, hence Lambda_n = Z^3 for every n: 2628  of 2628
 unimodular with an index > 1 at some order: 0
 |det M| = 2 still index 1 at order 32: 0
 |det M| = 2 by first order with index > 1 2:564 3:528 4:540 5:186 6:84 7:12 13:12
 |det M| = 2 by log2 index at order 32 2:288 3:1278 4:348 5:12
-sampled cross-checks: 276  equal to exact: 276  not a multiple: 0
+sampled cross-checks: 276  equal to exact: 276
 ```
 
 Three arguments, each elementary, turn this into statements:

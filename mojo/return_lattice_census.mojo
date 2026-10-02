@@ -2,8 +2,9 @@
 
 For **every** specimen and every order `n = 1..MAX_ORDER` this computes
 `[Z^3 : Lambda_n]`, where `Lambda_n` is the span of the return vectors of the
-length-`n` factors (`psc.return_lattice`, exact through the Rauzy graph), and
-checks three facts that hold for any primitive substitution:
+length-`n` factors (`psc.return_lattice`, exact through the Rauzy graph). Two
+facts hold for any primitive substitution, and `verify_index_profile` refuses a
+profile that breaks either; the third is what the census reports:
 
 * **Chain.** A return of a length-`n+1` factor is a return of its length-`n`
   prefix, so `Lambda_{n+1} <= Lambda_n` and each index divides the next.
@@ -23,14 +24,15 @@ A sampled cross-check reads returns off a prefix of `sigma^k(0)` instead, a
 route sharing no step with the Rauzy graph; its index must be a multiple of the
 exact one, and the run counts how often the two agree.
 
-Anything impossible raises: a rank-deficient lattice, an overflow, a
-disconnected Rauzy graph. A clean run is exact over the 4554 specimens and the
+Anything impossible raises: a broken chain or covering bound, a sampled index
+that is not a multiple of the exact one, a rank-deficient lattice, an
+overflow, a disconnected Rauzy graph. A clean run is exact over the 4554 specimens and the
 orders computed, and says nothing about other substitutions.
 """
 
 from psc.corpus import pip_corpus, report_progress
 from psc.histogram import Histogram
-from psc.return_lattice import covering_level, return_index_profile, sampled_return_index
+from psc.return_lattice import return_index_profile, sampled_return_index, verify_index_profile
 
 comptime MAX_ORDER = 32
 comptime SAMPLE_STRIDE = 50
@@ -49,12 +51,6 @@ def log2_exact(x: Int) raises -> Int:
     return k
 
 
-def power(base: Int, exponent: Int) -> Int:
-    var out = 1
-    for _ in range(exponent):
-        out *= base
-    return out
-
 
 def main() raises:
     var corpus = pip_corpus()
@@ -63,8 +59,7 @@ def main() raises:
     var tile_spanning = 0
     var unimodular_certified = 0
     var unimodular_nontrivial = 0
-    var chain_breaks = 0
-    var bound_breaks = 0
+    var verified = 0
     var first_growth = Histogram(MAX_ORDER + 1)
     var still_trivial = 0
     var log2_at = List[Histogram]()
@@ -72,7 +67,6 @@ def main() raises:
         log2_at.append(Histogram(MAX_ORDER))
     var sampled = 0
     var sampled_equal = 0
-    var sampled_not_multiple = 0
 
     for s in range(len(corpus)):
         ref spec = corpus[s]
@@ -81,15 +75,8 @@ def main() raises:
         var profile = return_index_profile(spec.sigma, MAX_ORDER)
         if profile[0] == 1:
             tile_spanning += 1
-        for n in range(1, MAX_ORDER + 1):
-            var index = profile[n - 1]
-            if n > 1 and index % profile[n - 2] != 0:
-                chain_breaks += 1
-                print("CHAIN BREAK", spec.label(), n)
-            var bound = power(det, covering_level(spec.sigma, n)) * profile[0]
-            if bound % index != 0:
-                bound_breaks += 1
-                print("COVERING BOUND BREAK", spec.label(), n, index, bound)
+        verify_index_profile(spec.sigma, det, profile)
+        verified += 1
 
         if det == 1:
             if profile[0] == 1:
@@ -119,16 +106,18 @@ def main() raises:
                 sampled += 1
                 var coarse = sampled_return_index(spec.sigma, n, SAMPLE_LENGTH)
                 if coarse % profile[n - 1] != 0:
-                    sampled_not_multiple += 1
-                    print("SAMPLE NOT A MULTIPLE", spec.label(), n, coarse, profile[n - 1])
-                elif coarse == profile[n - 1]:
+                    raise Error(
+                        "sampled index " + String(coarse) + " is not a multiple of the exact "
+                        + String(profile[n - 1]) + " at order " + String(n) + " for " + spec.label()
+                    )
+                if coarse == profile[n - 1]:
                     sampled_equal += 1
         report_progress(s, len(corpus))
 
     print("corpus:", len(corpus), " orders: 1 ..", MAX_ORDER)
     print(by_det.line("specimens by |det M|"))
     print("Lambda_1 = Z^3:", tile_spanning, " of", len(corpus))
-    print("chain breaks:", chain_breaks, " covering bound breaks:", bound_breaks)
+    print("profiles verified against the chain and the covering bound:", verified)
     print("unimodular with Lambda_1 = Z^3, hence Lambda_n = Z^3 for every n:",
           unimodular_certified, " of", by_det.count(1))
     print("unimodular with an index > 1 at some order:", unimodular_nontrivial)
@@ -138,5 +127,4 @@ def main() raises:
         print(log2_at[r].line(
             "|det M| = 2 by log2 index at order " + String(reported[r])
         ))
-    print("sampled cross-checks:", sampled, " equal to exact:", sampled_equal,
-          " not a multiple:", sampled_not_multiple)
+    print("sampled cross-checks:", sampled, " equal to exact:", sampled_equal)

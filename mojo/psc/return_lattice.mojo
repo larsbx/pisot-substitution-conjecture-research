@@ -269,6 +269,30 @@ def sampled_return_index(sigma: List[List[Int]], n: Int, min_length: Int) raises
     return lattice.index()
 
 
+def verify_index_profile(sigma: List[List[Int]], det: Int, profile: List[Int]) raises:
+    """Refuse an index profile that breaks either structural invariant.
+
+    `profile[n - 1] = [Z^3 : Lambda_n]`. A return of a length-`n+1` factor
+    returns its prefix, so each index divides the next; and the index at
+    order `n` divides `|det M|^K [Z^3 : Lambda_1]` for the covering level `K`
+    of `n`. Either failure is a defect in this module, never a census result."""
+    for n in range(1, len(profile) + 1):
+        var index = profile[n - 1]
+        if n > 1 and index % profile[n - 2] != 0:
+            raise Error(
+                "return-lattice chain broken at order " + String(n) + ": "
+                + String(profile[n - 2]) + " does not divide " + String(index)
+            )
+        var bound = profile[0]
+        for _ in range(covering_level(sigma, n)):
+            bound = checked_mul(bound, det)
+        if bound % index != 0:
+            raise Error(
+                "covering bound broken at order " + String(n) + ": "
+                + String(index) + " does not divide " + String(bound)
+            )
+
+
 def covering_level(sigma: List[List[Int]], n: Int) -> Int:
     """The least `K` with `|sigma^K(a)| >= n` for every letter `a`.
 
