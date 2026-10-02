@@ -223,14 +223,61 @@ candidates fail.
 | `abs(det M) > 1` | 4:24 5:138 6:252 7:288 8:360 9:228 10:192 11:120 12:36 13:48 14:72 15:120 16:36 17:12 |
 
 Unimodular specimens have `K_V <= 8`, apart from one class of 12 with
-`K_V = 14`. Non-unimodular specimens reach 17. The extra depth is therefore
-carried by the non-Archimedean coordinates. A hit at depth `m` also has to
-pass the `M`-adic filter `M^m w ∈ D_m(i, j)` of
-`p1b-madic-carry-reduction-2026-10-01.md`. That filter is trivial for
-unimodular `M` and refines with `abs(det M)^m` otherwise. This is an
-observation, not a theorem.
+`K_V = 14`. Non-unimodular specimens reach 17. A first reading put the extra
+depth in the `M`-adic coordinates. §§5.4–5.5 show that the contraction rate
+explains it better, in both regimes.
 
-### 5.4 The closing target, restated
+### 5.4 Excess over the contracting bound (exact census)
+
+`vertex_excess_census.mojo` compares, on every non-coincidence cycle vertex
+of every box graph, the first left-aligned depth `b` with the contracting
+lower bound `m_0` of manuscript Proposition 5.42. It checks `m_0 <= b`
+everywhere. Specimens by maximal excess `b − m_0`:
+
+| Regime | largest `m_0` | maximal excess: specimens |
+| --- | --- | --- |
+| unimodular, two real conjugates | 4 | 0:6 1:120 2:270 3:198 4:54 |
+| unimodular, complex pair | 3 | 1:246 2:600 3:576 4:324 5:126 6:78 7:18 12:6 13:6 |
+| `abs(det M) > 1` | 9 | 2:12 3:108 4:240 5:354 6:432 7:264 8:168 9:108 10:78 11:96 12:42 13:18 14:6 |
+
+The 12 unimodular specimens with excess 12–13, and `K_V = 14`, are one
+relabelling and reversal class: `0 -> 1, 1 -> 2, 2 -> 01` and its images, with
+characteristic polynomial `x^3 − x − 1`. Their Perron root is the plastic
+number, the smallest Pisot number. Their complex conjugates have modulus
+`mu ≈ 0.8688`, the slowest contraction in the unimodular corpus.
+
+### 5.5 An empirical law: depth is set by the contraction rate
+
+Let `mu = max_k |sigma_k(beta)|` be the slowest contraction. For a complex
+pair, `mu^2 = abs(det M)/beta`, so a determinant above 1 slows contraction.
+Over the standing corpus (uncommitted floating-point oracle, which reproduces
+the exact `K_V` of every specimen):
+
+- `K_V · log(1/mu)` lies in `[0.441, 3.164]`;
+- the correlation of `K_V` with `1/log(1/mu)` is `0.923`;
+- every specimen with `K_V >= 15` has `mu ≈ 0.9387`, and every specimen with
+  `K_V <= 3` has `mu <= 0.802`.
+
+So the first common vertex of every cycle vertex appears within about three
+e-foldings of contraction, `K_V <= 3.2 / log(1/mu)`, in every regime. The
+determinant matters only through `mu`, and the plastic-number class is the
+unimodular extreme of the same law.
+
+*Conjecture UH (uniform hitting scale).* There is an absolute constant `c`
+such that for every PIP `sigma` on three letters,
+`K_V(sigma) <= c / log(1/mu(sigma))`. The standing corpus is consistent with
+`c = 3.2`.
+
+UH implies PPVC, hence G1, and adds an explicit depth. It is stated so that
+it can be refuted by one specimen. Its form says which kind of proof to look
+for: a contracting-space argument at a fixed scale relative to the
+contraction. Concretely, once a cycle vertex's contracting offset has shrunk
+by a fixed factor `e^{−c}`, its region must contain a common vertex. That is
+a uniform covering statement for the Rauzy-type sets of the box graph, at
+one scale. It is not a statement about arbitrarily fine scales, which is
+where the density arguments of the stop list fail.
+
+### 5.6 The closing target, restated
 
 The box graph is the carry automaton of the Dumont–Thomas numeration of
 `sigma`: offsets are carries, children are digit pairs, and offset zero is a
@@ -239,9 +286,10 @@ This is the substitution analogue of Akiyama's weak finiteness property (W)
 for `beta`-numeration, which Barge proved for every Pisot `beta` by
 `beta`-specific monotonicity (`p1b-barge-diamond-configuration-gate-2026-10-02.md`).
 The data above says a general proof cannot be one-step, cannot be
-endpoint-based, and cannot use Archimedean magnitude alone. It must resolve
-carries by an argument that sees both the contracting and the `M`-adic
-coordinates, across many levels. No such argument is given here.
+endpoint-based, and cannot use a size bound plus a constant number of levels.
+It should instead show that carries resolve within a bounded number of
+e-foldings of contraction (Conjecture UH). The determinant enters only
+through the contraction rate. No such argument is given here.
 
 ## 6. What this does not establish
 
