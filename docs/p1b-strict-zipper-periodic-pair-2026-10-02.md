@@ -4,7 +4,8 @@
 Proposition A, Lemma C and Theorem B are elementary statements about the
 seed-patch overlap graph and are proved in full below. §5 compares them with
 the literature; the fibre identification it uses is Proposition F of the
-companion gate, proved there under hypothesis (R). This note does
+companion gate, proved there for every PIP substitution (Theorem R of that
+gate removes its hypothesis (R)). This note does
 **not** exclude strict zippers, does not prove AdelicPeriodicOffsetHitting,
 G1 or balanced-pair termination, and promotes nothing to the ledger or the
 manuscript.
@@ -230,9 +231,9 @@ without pure discrete spectrum there are `Phi`-periodic `T` and `T′` with
 Theorem B produces `Phi^r`-periodic pairs with **no common vertex**, a
 strictly stronger disjointness. That the pair lies in one fibre is
 Proposition F of `p1b-periodic-pair-fibre-literature-gate-2026-10-02.md`. It
-is proved there from Solomyak's eigenvalue criterion, without unimodularity,
-under hypothesis (R): the return module is all of `Z^3`. (R) is verified on
-finite domains and open in general. Under (R):
+is proved there from Solomyak's eigenvalue criterion, without unimodularity.
+It needs the return module to be all of `Z^3`, and Theorem R of that gate
+proves this for every PIP substitution. So, for every PIP `sigma`:
 
 | Obstruction | Periodic pair in one fibre | Known status |
 | --- | --- | --- |
@@ -241,10 +242,11 @@ finite domains and open in general. Under (R):
 | (b1) right-aligned | as (a), mirrored | suffix P1a, open |
 | (b2) two-sided strict zipper | no common **vertex** | #139, open |
 
-Consequences under (R):
+Consequences:
 
-- A strict zipper forces `cr >= 2`. This is consistent with the known chain
-  PDS ⇒ productivity ⇒ no strict zipper, and adds nothing unconditional.
+- A strict zipper forces `cr >= 2`, unconditionally. This is consistent with
+  the known chain PDS ⇒ productivity ⇒ no strict zipper, and excludes
+  nothing new.
 - Strict-zipper exclusion asks for a **vertex** analogue of coincidence rank
   one along periodic fibres. It is weaker than the Pisot conjecture but not
   implied by any unconditional result found: balanced-pair termination, its
@@ -300,6 +302,9 @@ standing regime, since none is known.
   5.47. Promoting it would mean a manuscript remark and a ledger refinement
   of `AllSeedStrictZipperExclusion` to the two-sided form. That needs review
   first.
-- Next step: the companion gate (§6 there) names a reading of
-  Barge–Diamond 2002 in full, to test whether its configuration argument,
-  used by Barge for β-substitutions, can force a common vertex.
+- Barge–Diamond 2002 has been read in full
+  (`p1b-barge-diamond-configuration-gate-2026-10-02.md`). Its configuration
+  argument does not force a common vertex: its maximality step only yields an
+  aligned pair, which shares a vertex already. Barge's β-substitution proof
+  closes that step with a monotonicity property of the β-language that
+  general PIP substitutions lack. Decision there: stop.

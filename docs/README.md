@@ -127,8 +127,13 @@ Change the ledger entry and every surface in the same commit.
   Excludes no strict zipper.
 - `p1b-periodic-pair-fibre-literature-gate-2026-10-02.md` — stop/go gate for
   the fibre identification: Proposition F (the Theorem B pair lies in one
-  fibre of the maximal equicontinuous factor) proved under hypothesis (R),
-  return module equal to `Z^3`; decision "proceed, conditional on (R)".
+  fibre of the maximal equicontinuous factor), with Theorem R proving its
+  hypothesis (R), return module equal to `Z^3`, for every PIP substitution;
+  exact index `mojo/psc/return_module.mojo`. Decision "proceed".
+- `p1b-barge-diamond-configuration-gate-2026-10-02.md` — Barge–Diamond 2002
+  and Barge 2018 Lemma 2 read in full: the configuration argument does not
+  force a common vertex (its maximality step yields only an aligned pair).
+  Decision "stop".
 
 The missing `PSC_PROOF_v16` file is a historical provenance fact. It is not a
 current dependency for G1b-1 or degree-two carrier-span propagation.

@@ -1,13 +1,15 @@
 # Literature gate: the fibre identification for strict-zipper periodic pairs — 2026-10-02
 
 **Status:** stop/go literature gate for §5 of
-`p1b-strict-zipper-periodic-pair-2026-10-02.md`. **Decision: proceed,
-conditional on hypothesis (R)** (§6). Proposition F below, proved here, puts
-the two tilings of Theorem B in one fibre of the maximal equicontinuous factor
-whenever (R) holds. (R) is verified on the finite domains in §5 and is open in
-general. Nothing here excludes a strict zipper or proves
-PeriodicPairVertexCoincidence, AdelicPeriodicOffsetHitting, G1 or the Pisot
-substitution conjecture.
+`p1b-strict-zipper-periodic-pair-2026-10-02.md`. **Decision: proceed.**
+Proposition F below, proved here, puts the two tilings of Theorem B in one
+fibre of the maximal equicontinuous factor. It was first proved under a
+hypothesis (R), the return module is all of `Z^3`. §5 now proves (R) for
+every primitive substitution whose frequency vector has `Q`-independent
+coordinates, in particular for every PIP substitution (Theorem R), so
+Proposition F holds without hypothesis. Nothing here excludes a strict zipper
+or proves PeriodicPairVertexCoincidence, AdelicPeriodicOffsetHitting, G1 or
+the Pisot substitution conjecture.
 
 ## 1. Exact claim under review
 
@@ -36,11 +38,12 @@ needs.
 | J.-Y. Lee, B. Solomyak, *Pisot family self-affine tilings, discrete spectrum, and the Meyer property* (arXiv:1002.0039) | Proof of Prop 4.1, restating Solomyak (1997), Thm 3.13: `gamma` is an eigenvalue iff `e^{2 pi i <phi^n x, gamma>} → 1` for every return vector `x ∈ Ξ = {x : T + x ∈ T for some tile T}`. | §§2, 4 |
 
 Not read directly, used only through the restatements above: Solomyak,
-*Dynamics of self-similar tilings* (ETDS 17, 1997); Barge–Diamond, *Coincidence
-for substitutions of Pisot type* (2002); Barge–Diamond, *Proximality in Pisot
+*Dynamics of self-similar tilings* (ETDS 17, 1997); Barge–Diamond, *Proximality in Pisot
 tiling spaces* (2007); Barge–Kwapisz (2006); Barge–Bruin–Jones–Sadun. Pisot's
 theorem on `||theta beta^n|| → 0` is classical (Cassels, *An introduction to
-Diophantine approximation*, Ch. VIII).
+Diophantine approximation*, Ch. VIII). Barge–Diamond, *Coincidence for
+substitutions of Pisot type* (2002), is now read in full; see
+`p1b-barge-diamond-configuration-gate-2026-10-02.md`.
 
 ## 3. What the literature gives and what it does not
 
@@ -55,25 +58,30 @@ Diophantine approximation*, Ch. VIII).
   large ball somewhere. For a reachable overlap the patches descend from a
   swap seed `(ab)^Z` against `(ba)^Z`, which need not be legal, so this
   criterion cannot be checked directly.
-- **The eigenvalue route works without unimodularity** (§4), at the price of
-  hypothesis (R).
+- **The eigenvalue route works without unimodularity** (§4). It needs the
+  return module to be all of `Z^3`, which Theorem R (§5) supplies.
 
 ## 4. Proposition F (proved here)
 
 *Hypothesis (R).* The **return module**
-`Λ_ret = <pi(u) : a u a is legal, u ≠ empty>_Z` is all of `Z^3`.
-Equivalently, the uncollared return vectors span `Z⟨ell⟩`.
+`Λ_ret = <pi(w) : w nonempty and legal, w w_1 legal>_Z` is all of `Z^3`.
+Here `pi(w)` is the lifted displacement from an occurrence of the letter
+`w_1` to the next occurrence of `w_1`. (The first version of this note wrote
+`pi(u)` for a legal `a u a`. That is the displacement between the two
+copies of `a` with the first copy left out; the displacement itself is
+`pi(a u)`.) Equivalently, the uncollared return vectors span `Z⟨ell⟩`.
+Theorem R (§5) proves (R) for every PIP substitution.
 
-*Proposition F.* Under (R), `g(T_A) = g(T_B)`.
+*Proposition F.* `g(T_A) = g(T_B)` for every PIP `sigma`.
 
 *Proof.*
 
 1. **The eigenvalue criterion on `Z^3`.** By (R), the return vectors `Ξ`
-   generate `Z⟨ell⟩`. By Solomyak's criterion each eigenvalue `b` has
+   generate `Z⟨ell⟩` (Theorem R). By Solomyak's criterion each eigenvalue `b` has
    `e^{2 pi i b beta^n x} → 1` for `x ∈ Ξ`, hence for the group they
    generate. So `||b beta^n <ell, z>|| → 0` for every `z ∈ Z^3`. Steps 3 and
    4 use this for all bounded prefix vectors, not only for `w_0`, which is
-   why (R) is stated for the whole module.
+   why (R) is needed for the whole module.
 2. **Exponential rate.** Fix `z` and put `theta = b <ell, z>`. By Pisot's
    theorem `theta ∈ Q(beta)`. Pick `D` with `D theta ∈ Z[beta]`. Then
    `Tr(D theta beta^n) ∈ Z`, so `||D theta beta^n|| <= C rho^n`, where
@@ -101,7 +109,7 @@ Equivalently, the uncollared return vectors span `Z⟨ell⟩`.
    and `j`, with left endpoints `−beta^{rn} c` and `beta^{rn}(<ell, w_0> − c)`.
    Hence
    `F_b(T_A − c) / F_b(T_B − c) = lim_n e^{−2 pi i b <ell, M^{rn} w_0>} = 1`
-   by (R).
+   by (R), since `w_0 ∈ Z^3`.
 5. **Same fibre.** Every eigenfunction can be chosen continuous (BK Thm 5.1).
    For a minimal action, `X_max` is the dual of the group of continuous
    eigenvalues, and `g(T) = g(T')` iff every continuous eigenfunction agrees
@@ -111,39 +119,91 @@ Equivalently, the uncollared return vectors span `Z⟨ell⟩`.
 `square`
 
 Neither unimodularity nor reachability from a swap seed is used. Only the
-integrality of `w_0` and (R) are.
+integrality of `w_0` and (R) are, and (R) is Theorem R.
 
-## 5. Hypothesis (R): exploratory check, and its obstruction
+## 5. Theorem R (hypothesis (R) holds)
 
-**Exploratory check.** An uncommitted scratch oracle computed the index of
-`Λ_ret` in `Z^3` from the gaps between consecutive equal letters in a long
-`sigma^n(0)`, by integer row reduction. Index 1 is (R). Results:
+**Theorem R.** *Let `sigma` be primitive on a finite alphabet `A`, and suppose
+the coordinates of its frequency vector `r` (the right Perron eigenvector,
+`r > 0`) are linearly independent over `Q`. Then `Λ_ret = Z^A`. In particular
+`Λ_ret = Z^3` for every PIP substitution on three letters.*
 
-- Tribonacci, the cube-image specimen and the determinant-two golden pump:
-  index 1.
-- 1,534 random primitive irreducible Pisot substitutions with images of
-  length at most 3: all index 1.
-- All primitive irreducible Pisot substitutions on three letters with total
-  image length at most 8: the enumeration found exactly 24,486 specimens,
-  matching the class of `lost-depth-indexed-formulation-2026-10-01.md` §6,
-  and all have index 1.
+*Proof.*
 
-This is evidence only. A Mojo port is required before (R) on any finite
-domain is cited as a finite-domain theorem.
+1. **Coboundary form.** Let `chi: Z^A → Q/Z` be a homomorphism that vanishes
+   on `Λ_ret`. Fix a two-sided sequence `x` in the subshift of `sigma`.
+   Primitivity makes the subshift minimal, so every legal word occurs in `x`.
+   Put `G(n) = chi(pi(x_[0,n)))` for `n >= 0` and `G(n) = −chi(pi(x_[n,0)))`
+   for `n < 0`. If `n < m` and `x_n = x_m`, then `x_[n,m)` is a generator of
+   `Λ_ret`, so `G(m) = G(n)`. Hence `G(n) = H(x_n)` for a function
+   `H: A → Q/Z`. Then `chi(e_{x_n}) = G(n+1) − G(n) = H(x_{n+1}) − H(x_n)`.
+   Since every legal two-letter word occurs in `x`, this gives
+   `chi(e_a) = H(c) − H(a)` for every legal `ac`. Put
+   `K(a) = H(a) + chi(e_a)`. Then every letter `c` that can follow `a` has
+   `H(c) = K(a)`.
+2. **Counting.** Fix `h ∈ Q/Z` and `N >= 1`. By step 1,
+   `H(x_{n+1}) = K(x_n)`, so
+   `#{0 <= n < N : H(x_n) = h} − #{0 <= n < N : K(x_n) = h}`
+   `= [H(x_0) = h] − [H(x_N) = h]`, which lies in `{−1, 0, 1}`. Divide by `N`.
+   Letter frequencies exist (primitivity implies unique ergodicity), so
+   `sum_{H(a) = h} r_a = sum_{K(a) = h} r_a`, that is,
+   `<1_{H = h} − 1_{K = h}, r> = 0`.
+3. **Independence.** The vector `1_{H = h} − 1_{K = h}` is an integer vector
+   orthogonal to `r`, so by hypothesis it is zero: `H(a) = h` iff `K(a) = h`.
+   This holds for every `h`, so `H = K`, so `chi(e_a) = 0` for every `a`,
+   and `chi = 0`.
+4. **Conclusion.** If `L` is a proper subgroup of `Z^A`, then `Z^A / L` is a
+   nonzero finitely generated abelian group, so it has a quotient `Z` or
+   `Z/n` with `n >= 2`. Either maps nontrivially to `Q/Z` (`1 ↦ 1/2`,
+   respectively `1 ↦ 1/n`). Composing gives a nonzero `chi` vanishing on
+   `L`. By step 3 no such `chi` exists for
+   `L = Λ_ret`, so `Λ_ret = Z^A`.
+5. **PIP substitutions.** If the characteristic polynomial of `M` is
+   irreducible, take `r ∈ Q(beta)^A`. If `<v, r> = 0` for some `v ∈ Q^A`,
+   then applying the field embeddings gives `<v, r^tau> = 0` for the
+   eigenvectors `r^tau` of all conjugates of `beta`. These form a basis of
+   `C^A`, so `v = 0`. This is the same fact as the `Q`-independence of `ell`
+   used throughout the repository.
 
-**Obstruction.** A character `chi: Z^3 → Q/Z` vanishes on `Λ_ret` iff there
-is `h: A → Q/Z` with `chi(e_a) = h(c) − h(a)` for every legal two-letter word
-`ac`. These are "height"-type cocycles. Then `chi ∘ M` has the same form,
-with `h_M(a) = h(first letter of sigma(a))`. If such a `chi` exists, an
-eigenvalue may detect `w_0` modulo `Λ_ret`, and the construction of step 3
-needs modification. The ratio in step 4 is then a
-root of unity, and (F) can fail by a torsion element of
-`(M^r − I)^{−1} Z^3 / Z^3`. Whether `Λ_ret = Z^3` holds for every primitive
-irreducible Pisot substitution was not settled by the sources read.
+`square`
+
+**Remarks.**
+
+- *The two-letter graph.* Step 1 holds in both directions: `chi` vanishes on
+  `Λ_ret` iff `chi` is a coboundary on the edges of the two-letter graph `G`
+  (edge `a -> c` when `ac` is legal). For the converse, a return word
+  `w w_1` telescopes to `H(w_1) − H(w_1) = 0`. A coboundary is the same as a
+  character vanishing on the cycle lattice of `G`, because `G` is strongly
+  connected (primitivity) and a closed walk is a sum of simple cycles. So `Λ_ret` and the cycle
+  lattice of `G` have the same annihilator in `(Q/Z)^A`, and they are equal.
+  This is what `mojo/psc/return_module.mojo` computes.
+- *A second proof on three letters.* `M Λ_ret ⊆ Λ_ret`, because `sigma`
+  maps a return word of `a` to a return word of the first letter of
+  `sigma(a)`. So `Λ_ret ⊗ Q` is a nonzero `M`-invariant rational subspace,
+  and irreducibility makes its rank 3. The regression
+  `test_every_digraph_on_three_letters_has_index_zero_or_one` checks all 512
+  digraphs on three vertices: the cycle lattice has rank below 3 (303 of
+  them) or is all of `Z^3` (209). There is no index `>= 2`, so rank 3 already
+  means index 1.
+- *Where the hypothesis is used.* Height-type cocycles are real. Dekking's
+  `0 -> 010, 1 -> 201, 2 -> 102` has height 2: letter `0` occupies every
+  other position, and `r_0 = r_1 + r_2` is a rational relation. Its
+  incidence matrix is singular, so its return module has rank 2
+  (`test_dekkings_height_two_substitution_has_rank_two`). Step 3 is exactly
+  where an irreducible characteristic polynomial excludes this.
+- *Finite-domain regression.* `mojo/tests/test_return_module.mojo` checks
+  that the index is 1 on all 4,554 corpus specimens and on all 24,486
+  specimens with total image length at most 8. A scratch sweep (not
+  committed) found index 1 on all 135,990 PIP substitutions with images of
+  length at most 4. It found no index `>= 2` among the 1,042,188 primitive
+  substitutions with nonsingular incidence and images of length at most 4.
+  These checks calibrate the implementation. The theorem does not rest on
+  them.
 
 ## 6. Consequences and decision
 
-Under (R), Theorem B and Proposition F give the following chain:
+By Theorem R, Proposition F holds for every PIP `sigma`. With Theorem B this
+gives:
 
 1. A reachable strict zipper gives a `Phi^r`-periodic pair in one fibre with
    **no common vertex**, hence no common tile.
@@ -151,30 +211,29 @@ Under (R), Theorem B and Proposition F give the following chain:
    hence no pure discrete spectrum (Barge 2013 Thm 4(5)).
 
 This is consistent with the known chain from pure discrete spectrum through
-productivity to the absence of strict zippers, and adds nothing
-unconditional. The table in §5 of the note now stands **under (R)**:
+productivity to the absence of strict zippers. With (R) removed it is an
+unconditional implication (strict zipper ⇒ `cr >= 2`), but it does not
+exclude anything new. The table in §5 of the note holds for every PIP
+substitution:
 
 | Periodic pair in one fibre | Equivalent to |
 | --- | --- |
 | no common tile | `cr >= 2` (known) |
 | no common vertex | a strict zipper (Theorem B with Proposition F) |
 
-**Decision: proceed, conditional on (R).**
+**Decision: proceed.**
 
-1. Record Proposition F in the note as proved under (R), with the sources
-   above. Do not cite (F) without (R).
+1. Record Proposition F in the note as proved, with Theorem R and the
+   sources above.
 2. Promote no ledger node. PeriodicPairVertexCoincidence stays open.
 3. **Stop list.** None of the following may be offered as closing #139:
    - `cr = 1`-type statements, since they are pure discrete spectrum itself;
    - density or counting, since a hypothetical `cr = 2` substitution with
      measure-disjoint subtiles has vertex-disjoint generic pairs;
-   - Barge–Gambaudo global shadowing without a proof that `GR(Phi) = Z⟨ell⟩`.
-4. **Candidate route, not verified.** Barge 2015, Lemma 2, runs the
-   Barge–Diamond 2002 configuration argument on `Psi`-fixed, pairwise
-   tile-disjoint tilings in one fibre: union vertex set, local
-   configurations, a pumping step, and a contradiction with `cr`. Our pair
-   is a two-element instance with the stronger property of vertex
-   disjointness. Whether that argument, which in Barge 2015 depends on the
-   monotone structure of beta-substitutions, can yield a common vertex in
-   general needs a reading of Barge–Diamond 2002 in full. That reading is
-   the next gate.
+   - Barge–Gambaudo global shadowing without a proof that `GR(Phi) = Z⟨ell⟩`;
+   - the Barge–Diamond configuration argument in vertex form, for the
+     reason recorded in `p1b-barge-diamond-configuration-gate-2026-10-02.md`.
+4. The candidate route of the first version of this note, the Barge–Diamond
+   2002 configuration argument as run in Barge 2015 Lemma 2, has been read in
+   full. Its gate is `p1b-barge-diamond-configuration-gate-2026-10-02.md`.
+   Decision there: stop as a closing argument.
