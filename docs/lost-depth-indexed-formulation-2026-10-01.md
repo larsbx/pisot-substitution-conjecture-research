@@ -140,3 +140,36 @@ Diagnostics that did not complete, reported as such:
 2. Optionally, a census-grade separation-radius sweep with a cap above 9 over
    the 24,486 class, so that §6's probe of one representative becomes a
    replayable count.
+
+## 8. Deterministic separation follow-up — implementation pending execution
+
+`mojo/separation_radius_total_length_sweep.mojo` surveys the same complete
+24,486-member class in corpus order. It reuses the reviewed occurrence and
+proper-power contracts of `psc.overlap_collar`; this is a replay extension,
+not a new recognizability diagnostic or a universal invariant. The prior
+literature gate and countermodel are recorded in
+`p1-overlap-collar-2026-09-16.md` (§3.2 and its literature references).
+
+Explicit budgets: overlap states 20,000; collared occurrence states
+2,000,000; separation radii 0–12 inclusive. Proper-power seed witnesses are
+searched through level 6, as in the existing survey. A witnessed collapse is
+reported as structurally nonseparating with its exact seed pair and level;
+it is not assigned a fictitious finite radius. Every remaining specimen is
+searched from radius zero, and only its first fully closed collision-free
+graph supplies a radius. A missing collapse witness proves nothing.
+
+Every specimen emits its image triple and outcome. Radii above 6 additionally
+emit the canonical relabelling/reversal representative; orbit totals follow
+in deterministic corpus order. State caps, radius exhaustion and other errors
+retain the specimen as inconclusive and force a nonzero exit. Histogram lines
+are partial unless the final `COMPLETE` receipt is reached. The dedicated
+workflow preserves the full log even on failure.
+
+**Execution status:** no new distribution or exceptional-orbit count is
+asserted yet. The local pinned Mojo installation could not fetch its conda
+packages in this environment. The radius-9 statement in §6 remains a
+single-representative probe until a successful complete run is archived and
+its distribution and exceptional representatives are transcribed here.
+The earlier 24 collar-cap failures remain inconclusive; raising a configured
+budget alone does not resolve them. #84, #138, #139 and general PSC remain
+open. No ledger, manuscript or theorem status is promoted.
