@@ -47,7 +47,7 @@ automatically. In particular, Level 3 here presupposes Level 2, so no
 | Level 3 "computationally closed for all 24,486 substitutions with \|σ\| ≤ 8 via a 2-step criterion" | **Unverified; wording rejected.** The 2-step criterion's definition is lost. Under hypothesis-firewall item 8 of `docs/proof-ladder.md`, a finite sweep is finite-domain evidence and cannot close a level. The domain is recovered (§4). |
 | "Joint full-support lemma", false by Tribonacci; remaining gap stated as joint-support growth | **Counterexample reproduced** (§5). The lemma plays no role on this repository's routes: the bad-SCC normal form already has `rank_Q(V_S) = \|A\|`. |
 | "S-child" statement: child support = supp σ(x) ∪ supp σ(y) | **Elementary, to be re-derived where used:** σ(xy) = σ(x)σ(y), so supp σ(xy) = supp σ(x) ∪ supp σ(y). Which graph's "child" was meant is lost. |
-| Level 2 "closed for ℤ-independent substitutions with max \|σ\| ≤ 4" (Thm 9.28, chain 9.26a–j) | **Unverified and suspect.** It adds ℤ-independence as a hypothesis, which firewall item 2 forbids, and it conflicts with G1b-2 remaining open. It may descend from the retracted inference "UD ⇒ bounded padding ⇒ finite BPA" (see `docs/completion-ledger-2026-09-11.md`); this is a conjecture about provenance, not a finding. If it is ever reconstructed, it can only be a restricted-class result inside G1b-2. |
+| Level 2 "closed for ℤ-independent substitutions with max \|σ\| ≤ 4" (Thm 9.28, chain 9.26a–j) | **Unverified and suspect.** It adds ℤ-independence as a hypothesis, which firewall item 2 forbids, and it conflicts with G1b-2 remaining open. It may descend from the retracted inference "UD ⇒ bounded padding ⇒ finite BPA" (see `docs/completion-ledger-2026-09-11.md`); this is a conjecture about provenance, not a finding. If it is ever reconstructed, it can only be a restricted-class result inside G1b-2. The bounded sweep of §7 finds 120 specimens of this slice whose builds exhaust a 100,000-letter state budget, so finite evidence does not support the recorded closure as stated. |
 | 4,554-PIP `psc_suite` run | Matches this repository's standing corpus (`mojo/psc/corpus.mojo`). |
 
 ## 4. Recovered sweep domain
@@ -140,10 +140,54 @@ Diagnostics that did not complete, reported as such:
   class at the survey cap, because the separation radius exceeds the cap,
   not because a non-collapsing collision persists at the probed radius.
 
-## 7. Follow-up tasks
+## 7. Exploratory bounded BPA sweep on the longest-image ≤ 4 slice
 
-1. Optionally, a bounded BPA build on the 14,670 max-image ≤ 4 slice, as
-   evidence about the recorded Level-2 item only.
+**Evidence class:** finite-domain evidence on the stated slice and budgets
+only. A build that exhausts a budget is inconclusive; it is neither a
+counterexample to G1 nor evidence of termination. Nothing here bears on
+G1b-2 in general.
+
+`mojo/bpa_total_length_sweep.mojo` builds `B_sigma` with
+`psc.bounded_bpa.build_bounded` for the 14,670 specimens of §4 with longest
+image at most 4, under the shared 20,000-state cap and a state-length budget
+of 100,000 letters. A state-count cap alone did not bound memory here: on the
+first attempt one specimen grew a single automaton past 9 GB while staying
+under 20,000 states.
+
+| longest image | specimens | terminated | exhausted (state length) | non-productive | largest `B_sigma` | longest state |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2 | 72 | 72 | 0 | 0 | 32 | 16 |
+| 3 | 4,482 | 4,482 | 0 | 0 | 1,502 | 48,020 |
+| 4 | 10,116 | 9,996 | 120 | 0 | 4,305 | 62,707 |
+
+The longest-image ≤ 3 rows are the standing corpus, and their longest state,
+48,020, matches the figure recorded in `docs/proof-ladder.md`. No build
+exhausted the state count. The sweep exits non-zero because 120 builds are
+inconclusive.
+
+The 120 inconclusive specimens form one structural family: image lengths
+(1, 3, 4) with one letter sent to the cube of another (for example
+`0 -> 1, 1 -> 222, 2 -> 0222`), determinant 3, and one of two characteristic
+polynomials, `x^3 - 2x^2 - 3x - 3` (72 specimens) or `x^3 - 3x^2 - 3`
+(48 specimens). An exploratory probe of `0 -> 1, 1 -> 222, 2 -> 0222` (not a
+sweep) under larger length budgets finds at most 102 states, while the
+longest state grows from 85,719 letters to 280,899 and then exceeds 400,000.
+The ratio 280,899 / 85,719 ≈ 3.2770 is close to the Perron root
+β ≈ 3.2790 of `x^3 - 3x^2 - 3`, as if one irreducible balanced pair kept
+inflating with almost no coincidence cut. Whether this chain terminates is
+open: the probe is consistent with an infinite balanced-pair automaton for a
+primitive irreducible Pisot, non-unimodular substitution, which would be a
+candidate counterexample to G1, but a finite probe cannot distinguish that
+from late termination. The same specimens have finite, fully productive
+seed-patch overlap graphs (§6), so the primary overlap route, which does not
+assume G1, is not affected either way.
+
+## 8. Follow-up tasks
+
+1. Decide termination of the balanced-pair chain of
+   `0 -> 1, 1 -> 222, 2 -> 0222` (§7) by an argument, not a larger budget:
+   identify the growing irreducible pair's normal form and show that it
+   recurs up to inflation, or that it is cut.
 2. Optionally, a census-grade separation-radius sweep with a cap above 9 over
    the 24,486 class, so that §6's probe of one representative becomes a
    replayable count.
