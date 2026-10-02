@@ -270,7 +270,13 @@ every strict SCC hits offset zero
 
 ## 5. Research priority after the present milestone
 
-The best immediate theorem target is **A-altE interior-witness transport**.
+The best immediate theorem target was **A-altE interior-witness transport**.
+Superseded 2026-10-02: on 66 of the 294 alternating-E corpus specimens no
+offset-zero `G` vertex lies below the hub star, and all 294 coincide on paths
+avoiding one, so the transport mechanism is not forced by PIP and a good `G`.
+Both aligned templates now need one closed-component forcing argument
+(`docs/p1a-alternating-e-transport-gate-2026-10-02.md`). The reasons below are
+kept as the record of the original choice.
 
 Reasons:
 

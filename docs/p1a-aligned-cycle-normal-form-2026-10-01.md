@@ -178,6 +178,12 @@ If this transport lemma holds, the alternating template is eliminated
 immediately because a good pair at a zero-return boundary makes the state
 productive.
 
+**Calibration (2026-10-02).** The first disjunct is not forced by PIP and a
+good `G`: 66 of 294 alternating-E corpus specimens have no offset-zero `G`
+vertex below the hub star, while all 294 coincide on paths avoiding one
+(`docs/p1a-alternating-e-transport-gate-2026-10-02.md`). Any proof must use
+closed nonproductivity substantively.
+
 ## 6. Generality firewall
 
 Nothing here assumes legality of a swap word, unique decodability as an

@@ -22,7 +22,9 @@ TOML and regenerate rather than hand-editing the Markdown.
    and complete finite separation evidence; the open gates remain open.
 3. `p1-two-route-map-2026-10-01.md` — current attack map joining the aligned
    and strict-zipper routes at offset zero and identifying the next reviewable
-   theorem targets.
+   theorem targets. Its A-altE priority is superseded by
+   `p1a-alternating-e-transport-gate-2026-10-02.md`: the good-edge transport
+   mechanism is not forced (66 of 294 alternating-E corpus specimens).
 4. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
