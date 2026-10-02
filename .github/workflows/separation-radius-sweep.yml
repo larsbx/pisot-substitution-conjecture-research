@@ -2,6 +2,8 @@ name: Total-length separation evidence
 on:
   pull_request:
     paths:
+      - 'mojo/pixi.toml'
+      - 'docs/lost-depth-indexed-formulation-2026-10-01.md'
       - 'mojo/psc/separation_sweep.mojo'
       - 'mojo/separation_radius_total_length_sweep.mojo'
       - 'mojo/tests/test_separation_sweep.mojo'
