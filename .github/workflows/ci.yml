@@ -44,8 +44,15 @@ jobs:
       - name: Install pixi
         run: |
           set -o pipefail
-          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | PIXI_VERSION=v0.81.0 PIXI_NO_PATH_UPDATE=1 bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: SessionStart provisioning and real bare-Mojo activation regression
+        run: |
+          python -m pip install pytest
+          PSC_SESSION_START_REAL_PIXI="$HOME/.pixi/bin/pixi" python -m pytest tests/test_session_start.py
       - name: Canonical Mojo regression tests
         working-directory: mojo
         run: pixi run test
