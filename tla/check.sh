@@ -37,6 +37,7 @@ MODELS=(
     "MCLedgerSpectralGateAssumed:HOLD"
     "MCLedgerOverlapGateAssumed:HOLD"
     "MCLedgerAllSeedOverlapGateAssumed:HOLD"
+    "MCLedgerAllSeedStrictZipperGateAssumed:HOLD"
 )
 
 fail=0

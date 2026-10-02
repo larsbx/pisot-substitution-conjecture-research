@@ -16,7 +16,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import make_ledger  # noqa: E402
 from proof_records import generate_ledgers as gl  # noqa: E402
 
-MODELS = ("Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed")
+MODELS = ("Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
 
 
 def reachable(model: str) -> set[str]:
@@ -79,7 +79,7 @@ def test_all_seed_overlap_route_establishes_canonical_g1_and_downstream():
     analysis = gl.analyse(gl.load_ledger(ROOT / "tla" / "ledger.json"))
     by_name = {e.name: e for e in analysis.entries}
     g1 = by_name["G1"]
-    assert g1.routes == (("G1FromRenewal",), ("G1OverlapRoute",))
+    assert g1.routes == (("G1FromRenewal",), ("G1OverlapRoute",), ("G1HalfCoincidenceRoute",))
     assert g1.status == "open"
     done = gl.established(analysis, ("AllSeedOverlapProductivity",))
     assert {"G1OverlapRoute", "G1", "SinkSCCReduction", "LoadBearingSCC"} <= done
@@ -94,13 +94,26 @@ def test_all_seed_overlap_route_establishes_canonical_g1_and_downstream():
     assert "G1" in reachable("RenewalGateAssumed")
 
 
+def test_strict_zipper_exclusion_route_establishes_canonical_g1_without_productivity():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "tla" / "ledger.json"))
+    done = gl.established(analysis, ("AllSeedStrictZipperExclusion",))
+    assert {"G1HalfCoincidenceRoute", "G1", "SinkSCCReduction", "LoadBearingSCC"} <= done
+    assert done == reachable("AllSeedStrictZipperGateAssumed")
+    # excluding strict zippers gives finiteness, not productivity or PDS
+    assert not {"G1OverlapRoute", "AllSeedOverlapProductivity", "OverlapProductivity", "PDS", "PDSOverlapRoute", "SCCProducer", "G1b2RenewalFiniteness"} & done
+    cfg = (ROOT / "tla/MCLedgerAllSeedStrictZipperGateAssumed.cfg").read_text()
+    assert "    G1NotEstablished\n" not in cfg
+    assert "    PDSNotEstablished\n" in cfg
+    assert "G1HalfCoincidenceRoute" not in reachable("AllSeedOverlapGateAssumed")  # the gates are separate nodes
+
+
 def test_alternative_routes_are_bound_to_the_canonical_record_identity():
     from dataclasses import replace
     from proof_records.records import identified
     records = make_ledger.records()
     g1 = records["G1"]
     branches = json.loads(g1.field("dependency_alternatives"))
-    assert branches == [[records["G1FromRenewal"].id], [records["G1OverlapRoute"].id]]
+    assert branches == [[records["G1FromRenewal"].id], [records["G1OverlapRoute"].id], [records["G1HalfCoincidenceRoute"].id]]
     removed = identified(replace(g1, id="", evidence=tuple((k,v) for k,v in g1.evidence if k != "dependency_alternatives")))
     assert removed.id != g1.id
     assert all(e.record_id != removed.id for e in records["SinkSCCReduction"].depends_on)

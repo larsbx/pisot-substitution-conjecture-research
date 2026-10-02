@@ -59,7 +59,7 @@ recognizability/full-internal-space theorem, not a bare cycle exclusion.
 
 This does **not** mean the stronger structural problems are solved:
 
-- **G1b-2 renewal finiteness / finite BPA (G1)** remains open (issue #44), but is now a parallel stronger theorem rather than a prerequisite of Theorem 5.38. G1 also follows from all-seed overlap productivity by the overlap-depth route (`docs/bpa-termination-by-overlap-depth-2026-10-02.md`).
+- **G1b-2 renewal finiteness / finite BPA (G1)** remains open (issue #44), but is now a parallel stronger theorem rather than a prerequisite of Theorem 5.38. G1 also follows from all-seed overlap productivity by the overlap-depth route, and from all-seed strict-zipper exclusion alone by the half-coincidence route (`docs/bpa-termination-by-overlap-depth-2026-10-02.md`).
 - **Concentration (`K2=0`)** and **general wedge productivity (`K2!=0`)** remain open on the finite-BPA/SCC route (issue #43 covers the concentration branch).
 - **SCC Producer** remains open generally.
 - **Realization / coincidence-rank** remains an audited open bridge with G0–G6 obligations.

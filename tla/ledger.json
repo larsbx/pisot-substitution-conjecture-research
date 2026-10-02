@@ -33,6 +33,9 @@
     ],
     "AllSeedOverlapGateAssumed": [
       "AllSeedOverlapProductivity"
+    ],
+    "AllSeedStrictZipperGateAssumed": [
+      "AllSeedStrictZipperExclusion"
     ]
   },
   "status_classes": {
@@ -120,6 +123,12 @@
     ],
     "G1OverlapRoute": [
       "overlap-depth route to finite BPA"
+    ],
+    "AllSeedStrictZipperExclusion": [
+      "all-seed strict-zipper exclusion"
+    ],
+    "G1HalfCoincidenceRoute": [
+      "half-coincidence route to finite BPA"
     ]
   },
   "surfaces": {
@@ -419,6 +428,35 @@
       {
         "path": "docs/proof-ladder.md",
         "anchor": "## Overlap-depth route to G1",
+        "window_lines": 2
+      }
+    ],
+    "AllSeedStrictZipperExclusion": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| All-seed strict-zipper exclusion |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "### All-seed strict-zipper exclusion",
+        "window_lines": 2
+      }
+    ],
+    "G1HalfCoincidenceRoute": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Strict-zipper exclusion implies finite BPA |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "### Half-coincidence route to finite BPA",
+        "window_lines": 2
+      },
+      {
+        "path": "docs/proof-ladder.md",
+        "anchor": "## Half-coincidence route to G1",
         "window_lines": 2
       }
     ]
@@ -780,13 +818,13 @@
       "tags": []
     },
     "LoadBearingSCC": {
-      "id": "sha256:88e28d23b7377a4df0b2f21948dfc6e1b64d818f7e5b70f69ffd71ec4ba6d299",
+      "id": "sha256:6b8496052d2b48c488d54c79a78706fc6f64b88126a4b05a1a8424de10f865f2",
       "kind": "repository_theorem",
       "statement": "under G1 the load-bearing SCC of the v33/v34 route exists",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
+          "sha256:e07516d688c67969ded5fb0038d6439b869e59cf944a41c916562dc957711044",
           "finite BPA (G1)",
           "LoadBearingSCC/G1",
           "same",
@@ -820,13 +858,13 @@
       "tags": []
     },
     "SinkSCCReduction": {
-      "id": "sha256:e3b87d31b7f7828aea22d137866a05a7ed781111ffa0a4cbdc2ed1286c44a847",
+      "id": "sha256:5877f40da22d24082019e394542b8ad2398ff09147be4fbd01830188df65ffc5",
       "kind": "repository_theorem",
       "statement": "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
+          "sha256:e07516d688c67969ded5fb0038d6439b869e59cf944a41c916562dc957711044",
           "finite BPA (G1)",
           "SinkSCCReduction/G1",
           "same",
@@ -1290,7 +1328,7 @@
       "tags": []
     },
     "G1": {
-      "id": "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
+      "id": "sha256:e07516d688c67969ded5fb0038d6439b869e59cf944a41c916562dc957711044",
       "kind": "repository_theorem",
       "statement": "finite BPA (G1)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -1308,6 +1346,13 @@
           "G1/G1OverlapRoute",
           "same",
           "accepted"
+        ],
+        [
+          "sha256:e7c5b033ef7415eb8bcf91187096319eb5c3558b10d9827d7c47ff473ee6c4ea",
+          "exclusion of reachable strict zippers from every swap seed gives finite BPA, every reachable state being at most 2 beta^K' ell_max long",
+          "G1/G1HalfCoincidenceRoute",
+          "same",
+          "accepted"
         ]
       ],
       "evidence": [
@@ -1317,15 +1362,15 @@
         ],
         [
           "source",
-          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Propositions 4.11 and 5.46 and open-problem list"
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Propositions 4.11, 5.46 and 5.47 and open-problem list"
         ],
         [
           "dependency_alternatives",
-          "[[\"sha256:f2022983b05a0559c47327b9621c3119140a3a6f88e06764600c420748fa6495\"],[\"sha256:9b3ecd7cf41a5465cacf79c53473373b537d54deb37d282a054b5f692816628f\"]]"
+          "[[\"sha256:f2022983b05a0559c47327b9621c3119140a3a6f88e06764600c420748fa6495\"],[\"sha256:9b3ecd7cf41a5465cacf79c53473373b537d54deb37d282a054b5f692816628f\"],[\"sha256:e7c5b033ef7415eb8bcf91187096319eb5c3558b10d9827d7c47ff473ee6c4ea\"]]"
         ],
         [
           "status_note",
-          "the renewal and all-seed overlap implications are proved alternative establishments of canonical G1; their open premises are not discharged, so G1 itself remains an open conjectural gate"
+          "the renewal, all-seed overlap and strict-zipper-exclusion implications are proved alternative establishments of canonical G1; their open premises are not discharged, so G1 itself remains an open conjectural gate"
         ]
       ],
       "tags": [
@@ -1510,6 +1555,53 @@
       ],
       "tags": []
     },
+    "AllSeedStrictZipperExclusion": {
+      "id": "sha256:8b4c4d517f56500c3cd82076f1706c75f3e786c7214794d966147d9a8ad68388",
+      "kind": "pending_dependency",
+      "statement": "for every PIP substitution no closed nonproductive strict-zipper set is reachable from any swap seed",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "reason",
+          "open conjectural gate; the all-seed form of the strict-zipper branch of Open Problem 5.35 (manuscript Proposition 5.44(iii)(b)); issue #139"
+        ]
+      ],
+      "tags": []
+    },
+    "G1HalfCoincidenceRoute": {
+      "id": "sha256:e7c5b033ef7415eb8bcf91187096319eb5c3558b10d9827d7c47ff473ee6c4ea",
+      "kind": "repository_theorem",
+      "statement": "exclusion of reachable strict zippers from every swap seed gives finite BPA, every reachable state being at most 2 beta^K' ell_max long",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:8b4c4d517f56500c3cd82076f1706c75f3e786c7214794d966147d9a8ad68388",
+          "for every PIP substitution no closed nonproductive strict-zipper set is reachable from any swap seed",
+          "G1HalfCoincidenceRoute/AllSeedStrictZipperExclusion",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:e0b8de0d1503d7260f52b099bf0a13b97c73d11515a61bd2d94151c8edfdd5df",
+          "every swap seed has a finite exact overlap graph",
+          "G1HalfCoincidenceRoute/SwapOverlapFiniteness",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.47; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 4 and Corollary 5; half-coincidence form of Sirvent-Solomyak 2002, Theorem 5.6"
+        ]
+      ],
+      "tags": []
+    },
     "CoincidenceDensityOne": {
       "id": "sha256:f4efecf4f707090b566ad9f1f19f88cba4b77618affe398992ae6c16c1ffb6bf",
       "kind": "repository_theorem",
@@ -1670,20 +1762,20 @@
       "tags": []
     },
     "ConcentrationAuxB": {
-      "id": "sha256:782d727ad6fc11374b346017c1d443a3b34bf686f32b9179d3e7f1942dc14db0",
+      "id": "sha256:e57d34c7c68917676b913a27a89ce83c936d239764d8b4edecbc6ede9c83fc01",
       "kind": "pending_dependency",
       "statement": "no strict component with K2 = 0 exists (concentration / aux-B)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
+          "sha256:e07516d688c67969ded5fb0038d6439b869e59cf944a41c916562dc957711044",
           "finite BPA (G1)",
           "ConcentrationAuxB/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:e3b87d31b7f7828aea22d137866a05a7ed781111ffa0a4cbdc2ed1286c44a847",
+          "sha256:5877f40da22d24082019e394542b8ad2398ff09147be4fbd01830188df65ffc5",
           "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
           "ConcentrationAuxB/SinkSCCReduction",
           "same",
@@ -1717,13 +1809,13 @@
       "tags": []
     },
     "SpanRichProductivity": {
-      "id": "sha256:f75df505b700f2ec7551ed05439468b0f5cb31501cb727ff01607e6452a4d855",
+      "id": "sha256:cc7f7d6241905002c39bf38c7093fad39e1c66a76a8cdd64af16642bd01d373f",
       "kind": "pending_dependency",
       "statement": "no strict component with K2 != 0 exists (general wedge productivity)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:782d727ad6fc11374b346017c1d443a3b34bf686f32b9179d3e7f1942dc14db0",
+          "sha256:e57d34c7c68917676b913a27a89ce83c936d239764d8b4edecbc6ede9c83fc01",
           "no strict component with K2 = 0 exists (concentration / aux-B)",
           "SpanRichProductivity/ConcentrationAuxB",
           "same",
@@ -1746,27 +1838,27 @@
       "tags": []
     },
     "SpectralSCCProducer": {
-      "id": "sha256:6adb6d350cdebce1f5e23cb05e8a0190506f2449cfd29ddd390c6671b31d28c1",
+      "id": "sha256:01ddbe20054cfb64b4e25e306b290f5b255d1c6733e2426a4d80c41fff75257e",
       "kind": "pending_dependency",
       "statement": "the spectral route produces an SCC producer under G1",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
+          "sha256:e07516d688c67969ded5fb0038d6439b869e59cf944a41c916562dc957711044",
           "finite BPA (G1)",
           "SpectralSCCProducer/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:e3b87d31b7f7828aea22d137866a05a7ed781111ffa0a4cbdc2ed1286c44a847",
+          "sha256:5877f40da22d24082019e394542b8ad2398ff09147be4fbd01830188df65ffc5",
           "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
           "SpectralSCCProducer/SinkSCCReduction",
           "same",
           "accepted"
         ],
         [
-          "sha256:f75df505b700f2ec7551ed05439468b0f5cb31501cb727ff01607e6452a4d855",
+          "sha256:cc7f7d6241905002c39bf38c7093fad39e1c66a76a8cdd64af16642bd01d373f",
           "no strict component with K2 != 0 exists (general wedge productivity)",
           "SpectralSCCProducer/SpanRichProductivity",
           "same",
@@ -1782,20 +1874,20 @@
       "tags": []
     },
     "PDSSpectralRoute": {
-      "id": "sha256:40a56b74b3a49f0f1cc5ab02ecc1441f7a12185d86cfe9dc8ce212b63fb30fc8",
+      "id": "sha256:a6c4b545be51cc71da40e5ba324b47ec519c9ef7297a4cb2184f4ddce3fcb073",
       "kind": "repository_theorem",
       "statement": "under G1 and a spectral SCC producer, pure discrete spectrum follows",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
+          "sha256:e07516d688c67969ded5fb0038d6439b869e59cf944a41c916562dc957711044",
           "finite BPA (G1)",
           "PDSSpectralRoute/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:6adb6d350cdebce1f5e23cb05e8a0190506f2449cfd29ddd390c6671b31d28c1",
+          "sha256:01ddbe20054cfb64b4e25e306b290f5b255d1c6733e2426a4d80c41fff75257e",
           "the spectral route produces an SCC producer under G1",
           "PDSSpectralRoute/SpectralSCCProducer",
           "same",
@@ -1888,20 +1980,20 @@
       "tags": []
     },
     "SCCProducer": {
-      "id": "sha256:bfd2d4ad677e1633919d3acac1f4d2b88b5fb48afa36ac1220b7812e31a3fda9",
+      "id": "sha256:7a67159c0de2b29bb35056035e49a51f296afadabcff02e9515a4e30f2105185",
       "kind": "repository_theorem",
       "statement": "SCC Producer / C1 follows from G1, the sink-SCC reduction, and C2",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
+          "sha256:e07516d688c67969ded5fb0038d6439b869e59cf944a41c916562dc957711044",
           "finite BPA (G1)",
           "SCCProducer/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:e3b87d31b7f7828aea22d137866a05a7ed781111ffa0a4cbdc2ed1286c44a847",
+          "sha256:5877f40da22d24082019e394542b8ad2398ff09147be4fbd01830188df65ffc5",
           "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
           "SCCProducer/SinkSCCReduction",
           "same",
@@ -1934,20 +2026,20 @@
       ]
     },
     "PDS": {
-      "id": "sha256:0a0625ce78fd2d56ee96298518b8316d3b0f9ece2272ccbdd0a14122df6889ce",
+      "id": "sha256:641a7d4adee400175bd87d27ae2ced53d81f91e1c0e45e0ef389fa87e81211ef",
       "kind": "repository_theorem",
       "statement": "pure discrete spectrum follows from G1 and SCC Producer",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
+          "sha256:e07516d688c67969ded5fb0038d6439b869e59cf944a41c916562dc957711044",
           "finite BPA (G1)",
           "PDS/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:bfd2d4ad677e1633919d3acac1f4d2b88b5fb48afa36ac1220b7812e31a3fda9",
+          "sha256:7a67159c0de2b29bb35056035e49a51f296afadabcff02e9515a4e30f2105185",
           "SCC Producer / C1 follows from G1, the sink-SCC reduction, and C2",
           "PDS/SCCProducer",
           "same",

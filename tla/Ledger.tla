@@ -11,6 +11,7 @@ ResultSet == {
     "AlgebraicEmbedding",
     "AlignedOverlapsAreStrongCoincidence",
     "AllSeedOverlapProductivity",
+    "AllSeedStrictZipperExclusion",
     "AllStatesProductiveViaOverlaps",
     "BoundaryCoincidenceCriterion",
     "C2",
@@ -28,6 +29,7 @@ ResultSet == {
     "EndpointCore",
     "G1",
     "G1FromRenewal",
+    "G1HalfCoincidenceRoute",
     "G1OverlapRoute",
     "G1b1BoundedDiscrepancy",
     "G1b2RenewalFiniteness",
@@ -77,6 +79,7 @@ RequiresDef == [r \in ResultSet |->
     CASE r = "AlgebraicEmbedding" -> {{"UniqueDecodability"}}
       [] r = "AlignedOverlapsAreStrongCoincidence" -> {{}}
       [] r = "AllSeedOverlapProductivity" -> {{}}
+      [] r = "AllSeedStrictZipperExclusion" -> {{}}
       [] r = "AllStatesProductiveViaOverlaps" -> {{"OverlapProductivity", "SwapOverlapFiniteness"}}
       [] r = "BoundaryCoincidenceCriterion" -> {{}}
       [] r = "C2" -> {{"C3Local"}}
@@ -92,8 +95,9 @@ RequiresDef == [r \in ResultSet |->
       [] r = "DominantCubicCapture" -> {{"Target1"}}
       [] r = "DominantK2Source" -> {{}}
       [] r = "EndpointCore" -> {{}}
-      [] r = "G1" -> {{"G1FromRenewal"}, {"G1OverlapRoute"}}
+      [] r = "G1" -> {{"G1FromRenewal"}, {"G1OverlapRoute"}, {"G1HalfCoincidenceRoute"}}
       [] r = "G1FromRenewal" -> {{"G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"}}
+      [] r = "G1HalfCoincidenceRoute" -> {{"AllSeedStrictZipperExclusion", "SwapOverlapFiniteness"}}
       [] r = "G1OverlapRoute" -> {{"AllSeedOverlapProductivity", "SwapOverlapFiniteness"}}
       [] r = "G1b1BoundedDiscrepancy" -> {{}}
       [] r = "G1b2RenewalFiniteness" -> {{"G1b1BoundedDiscrepancy"}}
@@ -155,6 +159,7 @@ ProvedDef == {
     "EndpointCore",
     "G1",
     "G1FromRenewal",
+    "G1HalfCoincidenceRoute",
     "G1OverlapRoute",
     "G1b1BoundedDiscrepancy",
     "GaloisWedgePropagation",
@@ -209,6 +214,9 @@ ImportsAssumed == ImportedDef
 AllSeedOverlapGateAssumed == {
     "AllSeedOverlapProductivity"
 }
+AllSeedStrictZipperGateAssumed == {
+    "AllSeedStrictZipperExclusion"
+}
 G1AndC4 == {
     "G1",
     "C4"
@@ -240,6 +248,7 @@ SpectralGateAssumed == {
 AlgebraicEmbeddingNotEstablished == "AlgebraicEmbedding" \notin established
 AlignedOverlapsAreStrongCoincidenceNotEstablished == "AlignedOverlapsAreStrongCoincidence" \notin established
 AllSeedOverlapProductivityNotEstablished == "AllSeedOverlapProductivity" \notin established
+AllSeedStrictZipperExclusionNotEstablished == "AllSeedStrictZipperExclusion" \notin established
 AllStatesProductiveViaOverlapsNotEstablished == "AllStatesProductiveViaOverlaps" \notin established
 BoundaryCoincidenceCriterionNotEstablished == "BoundaryCoincidenceCriterion" \notin established
 C2NotEstablished == "C2" \notin established
@@ -257,6 +266,7 @@ DominantK2SourceNotEstablished == "DominantK2Source" \notin established
 EndpointCoreNotEstablished == "EndpointCore" \notin established
 G1NotEstablished == "G1" \notin established
 G1FromRenewalNotEstablished == "G1FromRenewal" \notin established
+G1HalfCoincidenceRouteNotEstablished == "G1HalfCoincidenceRoute" \notin established
 G1OverlapRouteNotEstablished == "G1OverlapRoute" \notin established
 G1b1BoundedDiscrepancyNotEstablished == "G1b1BoundedDiscrepancy" \notin established
 G1b2RenewalFinitenessNotEstablished == "G1b2RenewalFiniteness" \notin established
