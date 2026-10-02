@@ -44,3 +44,4 @@ coincidence-formula-census = "mojo run -I . coincidence_formula_census.mojo"
 # Kernel micro-benchmarks: both paths print the same checksum, so a faster
 # path that computes something else shows up as a differential, not a win.
 integer-vector-bench = "mojo run -I . integer_vector_bench.mojo"
+separation-radius-total-length-sweep = "mojo run -I . separation_radius_total_length_sweep.mojo"
