@@ -7,7 +7,8 @@ and an exact Mojo certificate. Remark 3 records the finite-domain
 consequence for the total-length class. This note does not prove G1 or
 G1b-2 in general, does not prove the overlap-productivity gate of issue #84,
 and records Proposition 1 in the ledger as a conditional theorem whose open
-premise is all-seed overlap productivity (§5).
+premise is all-seed overlap productivity (§5). Proposition 1 is manuscript
+Proposition 5.46 (§5.11 of `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`).
 
 ## 1. Setting
 
@@ -120,5 +121,7 @@ substitutions outside the class.
   G1"). `docs/cross-program-bridge-psc-nlapjt-2026-09-12.md` §5 (B1) already
   identifies G1b-2 with bounded gaps between simultaneous boundaries;
   Proposition 1 supplies that bound from overlap depth, for the reachable
-  swap-pair states, without a realization hypothesis. The manuscript text
-  is not changed here.
+  swap-pair states, without a realization hypothesis. The manuscript states
+  it as Proposition 5.46 and cross-references it from the abstract, the
+  headline status, the discussion of Conjecture `conj:density`, the remark
+  after Theorem 5.38, the open-statement list and the conclusion.

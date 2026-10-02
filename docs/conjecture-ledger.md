@@ -139,7 +139,7 @@ This programme is no longer completion-critical for Theorem 5.38, but it remains
 
 ### Overlap-depth route to finite BPA
 
-**Status:** Conditional theorem (`docs/bpa-termination-by-overlap-depth-2026-10-02.md`, Proposition 1).
+**Status:** Conditional theorem (manuscript Proposition 5.46; `docs/bpa-termination-by-overlap-depth-2026-10-02.md`, Proposition 1).
 
 ```text
 all-seed overlap productivity            [OPEN]

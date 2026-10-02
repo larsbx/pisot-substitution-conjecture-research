@@ -104,7 +104,7 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "AllSeedOverlapProductivity": (P, "for every PIP substitution every overlap reachable from every swap seed is productive",
                                    "open conjectural gate, stronger than the one-seed gate; manuscript Open Problem 5.35 (all-vertex form)", (), ()),
     "G1OverlapRoute": (T, "productivity of the seed-patch overlap graph from every swap seed gives finite BPA, by bounding every reachable state by 2 beta^D ell_max",
-                       "docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1", ("AllSeedOverlapProductivity", "SwapOverlapFiniteness"), ()),
+                       f"{MANUSCRIPT}, Proposition 5.46; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1", ("AllSeedOverlapProductivity", "SwapOverlapFiniteness"), ()),
     "CoincidenceDensityOne": (T, "seedwise overlap productivity gives coincidence density one and a dense eventual-coincidence good set",
                               f"{MANUSCRIPT}, Lemma 5.36; PR #77", ("OverlapProductivity", "SwapOverlapFiniteness"), ("status:proved",)),
     "AllStatesProductiveViaOverlaps": (T, "under seedwise overlap productivity every reachable balanced-pair state is productive",

@@ -125,7 +125,7 @@ primitive + Pisot spectrum
 
 ## Overlap-depth route to G1
 
-**Conditional theorem** (`docs/bpa-termination-by-overlap-depth-2026-10-02.md`, Proposition 1). G1 has a second sufficient premise on the overlap side:
+**Conditional theorem** (manuscript Proposition 5.46; `docs/bpa-termination-by-overlap-depth-2026-10-02.md`, Proposition 1). G1 has a second sufficient premise on the overlap side:
 
 ```text
 primitive irreducible Pisot

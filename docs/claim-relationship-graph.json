@@ -241,7 +241,7 @@
       "statement": "productivity of the seed-patch overlap graph from every swap seed gives finite BPA, by bounding every reachable state by 2 beta^D ell_max",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1",
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.46; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1",
       "leaks": "premises not established: AllSeedOverlapProductivity"
     },
     {
