@@ -1,7 +1,8 @@
 # PSC weekly completion ledger — 2026-10-02
 
-**Repository baseline:** `main@7596436255d7e8a86589573b129652c7e17e86a1`
-(through merged PR #188; the following PR #179 merge is dependency-only).
+**Repository baseline:** `main@ff9e5d359ea6ebe7d463f25874335a66ce3a429a`
+(mathematical/evidence additions through PR #188; also includes research
+references from PRs #154 and #157 and CI/provenance maintenance from PR #191).
 **Purpose:** weekly completion/status snapshot. This file is not a proof
 source. Claim status is governed by `claim_governance.toml`, the generated
 ledger surfaces, `docs/claim-status-and-source-map-2026-09-13.md`, and the
@@ -23,14 +24,14 @@ primitive irreducible Pisot
 => pure discrete spectrum                               [IMPORTED theorem]
 ```
 
-The week produced two genuine theorem-level reductions and one complete finite
+The week produced two proved reductions and one complete finite
 evidence package without crossing that boundary:
 
 1. the aligned obstruction is reduced to a fixed bad hub edge or an
    alternating type-E template;
 2. all-seed overlap productivity, and more sharply all-seed strict-zipper
    exclusion, each conditionally imply finite BPA (G1); and
-3. the 24,486-member total-image-length-at-most-8 separation sweep completed
+3. the 24,486-member ternary total-image-length-at-most-8 separation sweep completed
    with exact receipts and an independent recomputation.
 
 ## Repository-proved or imported results added this cycle
@@ -64,7 +65,7 @@ all-seed strict-zipper exclusion + finite seed overlap graphs
 
 The second route uses only half-coincidences: an offset-zero descendant gives
 the common vertex needed for the bounded-gap proof. It does not exclude strict
-zippers. Consequently canonical G1 now has three proved alternative
+zippers. Consequently canonical G1 now has three conditional alternative
 establishment routes—renewal finiteness, all-seed productivity, or all-seed
 strict-zipper exclusion—but every route retains an open premise. G1 remains
 open.
@@ -76,8 +77,8 @@ bound. This is a certified specimen result, not the general theorem.
 ## Exact finite evidence completed
 
 PRs #182, #184, #186 and #187 reconstruct and certify the
-total-image-length-at-most-8 domain of 24,486 primitive irreducible Pisot
-substitutions.
+total-image-length-at-most-8 domain of 24,486 ternary primitive irreducible
+Pisot substitutions.
 
 The canonical Mojo separation sweep, at a 2,000,000 collared-state cap and
 radii through 12, reports:
@@ -103,6 +104,26 @@ are decided under the larger canonical budget: 12 at radius 2 and 12 at radius
 This evidence is exact on the enumerated domain and stated resource contract.
 It supplies no completeness theorem beyond that domain and does not promote
 #84, #138, #139, G1, or PSC.
+
+## Research references and maintenance
+
+- **PR #154 — Penrose 2D interface bridge.**
+  `docs/bridges/penrose-2d-to-psc-interface-program.md` records non-load-bearing
+  analogies for P2/G1b-2 and P4 realization, with a narrower P1b/#139
+  comparison. It merits indexing and references only; it supplies no PSC
+  theorem or discharge of an open gate.
+- **PR #157 — Padovan / Plastic-A conjecture program.**
+  `docs/post-proof-padovan-plastic-a-conjectures-2026-09-23.md` and its JSON
+  catalogue remain research-only. The historical "post-proof" filename does
+  not establish general PSC or promote the benchmark conjectures.
+- **PR #191 — CI and provenance repairs.** The estate CI workflow was restored,
+  the boundary-sync audit now uses the repository root, the Padovan note's C0
+  controls were repaired, and the archived v15 source blob was restored.
+  These are verification/source maintenance, not mathematical closures.
+
+None of these merges changes #84, #138, #139, G1, or general PSC from open.
+The proof/evidence milestones above and the closure priorities below retain
+their existing hypotheses and domains.
 
 ## Open mathematical obligations
 

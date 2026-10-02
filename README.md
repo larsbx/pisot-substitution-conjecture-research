@@ -28,7 +28,7 @@ Start here:
 1. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the #138 aligned branch, #139 strict-zipper branch, Level 2, hypothesis firewall, and prioritized closure criteria.
 2. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
 3. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
-4. `docs/completion-ledger-2026-10-02.md` — latest merged weekly completion snapshot, through PR #188 and the complete 24,486-specimen separation record.
+4. `docs/completion-ledger-2026-10-02.md` — latest merged weekly completion snapshot, refreshed to `main@ff9e5d3`; mathematical/evidence additions through PR #188 and the complete 24,486-specimen separation record.
 5. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
 6. `docs/tier2-bridge-salvage-2026-09-23.md` — research-taxonomy note separating termination-style Descent Bridges from recurrent arithmetic Growth Bridges; moves no theorem status.
 7. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
@@ -110,9 +110,9 @@ On the exact 4,554-member ternary PIP short-image corpus:
 
 The degree-two and degree-three fail-closed carrier certificates also have zero survivors in their exact stated domains. These are finite-domain theorems/evidence according to their individual completeness contracts; none proves the general PSC.
 
-On the broader class of all 24,486 primitive irreducible Pisot substitutions
-with total image length at most 8, the deterministic separation sweep is also
-complete at its declared caps:
+On the broader class of all 24,486 ternary primitive irreducible Pisot
+substitutions with total image length at most 8, the deterministic separation
+sweep is also complete at its declared caps:
 
 - 23,634 specimens have a decided finite separation radius: `2,264` at radius
   `1`, `13,688` at `2`, `6,092` at `3`, `1,230` at `4`, `288` at `5`, `60`
@@ -172,6 +172,13 @@ The carrier-span theorem is proved; full span alone does not imply productivity.
 ### Realization / MEF route
 
 The realization/coincidence-rank chain is an open bridge / certificate programme. Formal recurrence, global realization, and finite collar survival must remain distinct.
+
+Research references: the [Penrose 2D interface bridge](docs/bridges/penrose-2d-to-psc-interface-program.md)
+(PR #154) supplies analogies for renewal finiteness and realization, with a
+narrower comparison to strict-zipper hitting. The [Padovan / Plastic-A conjecture
+program](docs/post-proof-padovan-plastic-a-conjectures-2026-09-23.md) (PR #157)
+records benchmark research targets. Both are non-load-bearing; #84, #138,
+#139, G1, and general PSC remain open.
 
 ## Source/provenance status
 

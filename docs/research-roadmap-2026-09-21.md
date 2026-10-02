@@ -7,9 +7,18 @@
 **2026-10-02 synchronization:** PRs #181–#188 add the aligned fixed-edge /
 alternating-E normal form, exact M-adic carry reduction, two conditional routes
 from overlap hypotheses to G1 (manuscript Propositions 5.46–5.47), and complete
-separation evidence on the 24,486-member total-image-length-at-most-8 class.
+separation evidence on the 24,486-member ternary total-image-length-at-most-8 class.
 None discharges seedwise overlap productivity, either obstruction branch, G1,
 or PSC.
+
+**Reference update at `main@ff9e5d3`:** PR #154's
+[Penrose 2D interface bridge](bridges/penrose-2d-to-psc-interface-program.md)
+and PR #157's [Padovan / Plastic-A conjecture program](post-proof-padovan-plastic-a-conjectures-2026-09-23.md)
+are non-load-bearing research references. The Penrose analogies are strongest
+for P2/G1b-2 and P4 realization; its P1b/#139 comparison supplies no adelic
+hitting theorem. PR #191 repairs CI and source integrity. These merges change
+no mathematical status or closure priority: #84, #138, #139, G1, and general
+PSC remain open.
 
 ## 1. Completion architecture
 
@@ -319,8 +328,8 @@ On the declared 4,554-member ternary short-image PIP corpus:
 - unit/non-unit split on this corpus: 2,628 unimodular and 1,926 determinant-two specimens;
 - proper-power collapse occurs only on the non-unit branch in this domain, but zero-shift-free pumps occur on both branches, including 2,598 of 2,628 unimodular specimens.
 
-On the broader 24,486-member total-image-length-at-most-8 class, the canonical
-separation sweep completed with no inconclusive specimen at its declared caps:
+On the broader 24,486-member ternary total-image-length-at-most-8 class, the
+canonical separation sweep completed with no inconclusive specimen at its declared caps:
 23,634 specimens have finite least separation radius (maximum `9`), while 852
 have an exact proper-power collapse witness by level `6`. The radius histogram
 is `1:2264, 2:13688, 3:6092, 4:1230, 5:288, 6:60, 9:12`; an independent driver
@@ -388,7 +397,7 @@ Countermodels and failed routes remain part of the project evidence and should s
 
 | Priority | Item | Status | Evidence needed to close | Immediate next deliverable |
 | --- | --- | --- | --- | --- |
-| **P0** | Status/provenance synchronization | current through PR #188 | roadmap, proof ladder, claim map, manuscript, ledger and README agree on the same theorem boundary | keep issue #84/#138/#139 wording synchronized as new work lands |
+| **P0** | Status/provenance synchronization | refreshed to `main@ff9e5d3`; mathematical/evidence additions through PR #188 | roadmap, proof ladder, claim map, manuscript, ledger and README agree on the same theorem boundary | keep issue #84/#138/#139 wording synchronized as new work lands |
 | **P1a** | Aligned strong coincidence (#138) | **OPEN critical; cycle normal form proved** | uniform elimination of the fixed bad hub edge and alternating type-E templates, including reversal | prove the endpoint/occurrence incompatibility for the two surviving templates |
 | **P1b** | Strict-zipper hitting (#139) | **OPEN critical; literature, cylinder and carry reductions complete** | uniform non-unit-safe `AdelicPeriodicOffsetHitting` theorem | prove occurrence-compatible coverage of the reverse zero basin in the full representation |
 | **P1** | Seedwise overlap productivity (#84) | **OPEN — only shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad SCC | assemble after branch theorems; do not replace with larger finite sieves |
