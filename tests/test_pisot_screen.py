@@ -132,6 +132,28 @@ def test_poly_rem_cached_degree_matches_scan_after_multi_zero_cancellation():
     )
 
 
+def _ordinary_fraction_horner(coeffs, x: Fraction) -> Fraction:
+    """Unoptimized reference for direct equivalence checks."""
+    acc = Fraction(0)
+    for c in reversed(coeffs):
+        acc = acc * x + Fraction(c)
+    return acc
+
+
+def test_evaluate_matches_ordinary_fraction_horner_on_fast_and_fallback_paths():
+    fast_coeffs = [-7, 3, 0, -5, 2]
+    fast_x = Fraction(7, 5)
+    assert fast_x.denominator > 1
+    assert all(type(c) is int for c in fast_coeffs)
+    assert ps.evaluate(fast_coeffs, fast_x) == _ordinary_fraction_horner(fast_coeffs, fast_x)
+
+    mixed_coeffs = [Fraction(2, 3), -4, Fraction(-5, 7), 3]
+    mixed_x = Fraction(-11, 6)
+    assert mixed_x.denominator > 1
+    assert any(type(c) is Fraction for c in mixed_coeffs)
+    assert ps.evaluate(mixed_coeffs, mixed_x) == _ordinary_fraction_horner(mixed_coeffs, mixed_x)
+
+
 def test_the_transform_sends_the_unit_circle_to_the_imaginary_axis():
     for coeffs in (GOLDEN, PLASTIC, TRIBONACCI, QUARTIC, SALEM):
         q = ps.halfplane_transform(coeffs)
