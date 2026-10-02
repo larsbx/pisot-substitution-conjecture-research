@@ -16,7 +16,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import make_ledger  # noqa: E402
 from proof_records import generate_ledgers as gl  # noqa: E402
 
-MODELS = ("Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed")
+MODELS = ("Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed")
 
 
 def reachable(model: str) -> set[str]:
@@ -73,3 +73,51 @@ def test_check_script_runs_every_generated_model_and_no_stale_model_remains():
         assert (ROOT / "tla" / f"MCLedger{model}.cfg").exists()
     assert not list((ROOT / "tla").glob("MCArchitecture*"))
     assert "MCArchitecture" not in script
+
+
+def test_all_seed_overlap_route_establishes_canonical_g1_and_downstream():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "tla" / "ledger.json"))
+    by_name = {e.name: e for e in analysis.entries}
+    g1 = by_name["G1"]
+    assert g1.routes == (("G1FromRenewal",), ("G1OverlapRoute",))
+    assert g1.status == "open"
+    done = gl.established(analysis, ("AllSeedOverlapProductivity",))
+    assert {"G1OverlapRoute", "G1", "SinkSCCReduction", "LoadBearingSCC"} <= done
+    assert done == reachable("AllSeedOverlapGateAssumed")
+    assert not {"G1FromRenewal", "G1b2RenewalFiniteness", "PDS", "SCCProducer", "OverlapProductivity"} & done
+    cfg = (ROOT / "tla/MCLedgerAllSeedOverlapGateAssumed.cfg").read_text()
+    assert "    G1NotEstablished\n" not in cfg
+    assert "    G1b2RenewalFinitenessNotEstablished\n" in cfg
+    assert "    PDSNotEstablished\n" in cfg
+    assert "G1" not in reachable("Open") and "G1" not in reachable("Imports")
+    assert "G1" not in reachable("OverlapGateAssumed")  # one seed is not all seeds
+    assert "G1" in reachable("RenewalGateAssumed")
+
+
+def test_alternative_routes_are_bound_to_the_canonical_record_identity():
+    from dataclasses import replace
+    from proof_records.records import identified
+    records = make_ledger.records()
+    g1 = records["G1"]
+    branches = json.loads(g1.field("dependency_alternatives"))
+    assert branches == [[records["G1FromRenewal"].id], [records["G1OverlapRoute"].id]]
+    removed = identified(replace(g1, id="", evidence=tuple((k,v) for k,v in g1.evidence if k != "dependency_alternatives")))
+    assert removed.id != g1.id
+    assert all(e.record_id != removed.id for e in records["SinkSCCReduction"].depends_on)
+
+
+def test_model_rejects_false_g1_nonestablishment_with_tlc(tmp_path):
+    import os
+    import shutil
+    import pytest
+    jar = os.environ.get("TLA_TOOLS")
+    if not jar or not Path(jar).is_file() or not shutil.which("java"):
+        pytest.skip("set TLA_TOOLS to check the alternative dependency model")
+    model = "MCLedgerAllSeedOverlapGateAssumed"
+    for name in ("ProofArchitecture.tla", "Ledger.tla", model + ".tla", model + ".cfg"):
+        shutil.copyfile(ROOT / "tla" / name, tmp_path / name)
+    cfg = tmp_path / (model + ".cfg")
+    cfg.write_text(cfg.read_text().replace("    TypeOK\n", "    TypeOK\n    G1NotEstablished\n"))
+    out = subprocess.run(["java", "-XX:+UseSerialGC", "-cp", jar, "tlc2.TLC", "-workers", "1", model],
+                         cwd=tmp_path, capture_output=True, text=True, timeout=60)
+    assert "Invariant G1NotEstablished is violated" in out.stdout, out.stdout + out.stderr

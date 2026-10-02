@@ -88,7 +88,7 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "G1b2RenewalFiniteness": (P, "only finitely many realizable irreducible balanced pairs occur inside the established discrepancy bound",
                               "open conjectural gate; manuscript Level-2 open problem; issue #44", ("G1b1BoundedDiscrepancy",), ()),
     "G1FromRenewal": (T, "G1b-1 and G1b-2 together give finite BPA", f"{MANUSCRIPT}, Proposition 4.11", ("G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"), ()),
-    "G1": (T, "finite BPA (G1)", f"{MANUSCRIPT}, Proposition 4.11 and open-problem list", ("G1FromRenewal",), ("status:open",)),
+    "G1": (T, "finite BPA (G1)", f"{MANUSCRIPT}, Propositions 4.11 and 5.46 and open-problem list", ("G1FromRenewal", "G1OverlapRoute"), ("status:open",)),
     # --- overlap route (finite graph, no G1) ----------------------------------------
     "SwapOverlapFiniteness": (T, "every swap seed has a finite exact overlap graph",
                               "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md; manuscript Theorem 4.22; PR #72", ("G1b1BoundedDiscrepancy",), ()),
@@ -143,7 +143,7 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
 }
 
 STATUS_NOTES = {
-    "G1": "the conditional assembly from G1b-1 and G1b-2 is proved; G1 itself is an open conjectural gate; G1 also follows from AllSeedOverlapProductivity by G1OverlapRoute, which this conjunctive ledger records as a separate node rather than a second way to establish G1",
+    "G1": "the renewal and all-seed overlap implications are proved alternative establishments of canonical G1; their open premises are not discharged, so G1 itself remains an open conjectural gate",
     "SCCProducer": "the implication from G1, the sink-SCC reduction, and C2 is proved; SCC Producer / C1 is an open theorem target",
     "CoincidenceDensityOne": "the equivalence of Lemma 5.36 is repository-proved; the ledger node is its conclusion, which needs overlap productivity",
 }
@@ -229,6 +229,10 @@ def records() -> dict[str, Record]:
             evidence = (("hypotheses_checked", "true"), ("source", source))
         else:
             evidence = (("proof_reviewed", "true"), ("source", source))
+        if name == "G1":
+            evidence += (("dependency_alternatives", json.dumps(
+                [[build("G1FromRenewal").id], [build("G1OverlapRoute").id]],
+                separators=(",", ":"))),)
         if name in STATUS_NOTES:
             evidence += (("status_note", STATUS_NOTES[name]),)
         built[name] = identified(Record("", kind, statement, SCOPE, edges, evidence, frozenset(tags)))

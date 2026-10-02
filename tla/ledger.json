@@ -780,13 +780,13 @@
       "tags": []
     },
     "LoadBearingSCC": {
-      "id": "sha256:87ba3641a543d23546b272a6db6574308ef30440c3beb0986db4752ea41b0acd",
+      "id": "sha256:88e28d23b7377a4df0b2f21948dfc6e1b64d818f7e5b70f69ffd71ec4ba6d299",
       "kind": "repository_theorem",
       "statement": "under G1 the load-bearing SCC of the v33/v34 route exists",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:f6e39ddab619916c87c8499ce17644a093123173f08252411102cacfcc7b064c",
+          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
           "finite BPA (G1)",
           "LoadBearingSCC/G1",
           "same",
@@ -820,13 +820,13 @@
       "tags": []
     },
     "SinkSCCReduction": {
-      "id": "sha256:3ccecdcee67289084c2e7e717fa8f31e873b0eae7f7214a0688eac6b54611e6c",
+      "id": "sha256:e3b87d31b7f7828aea22d137866a05a7ed781111ffa0a4cbdc2ed1286c44a847",
       "kind": "repository_theorem",
       "statement": "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:f6e39ddab619916c87c8499ce17644a093123173f08252411102cacfcc7b064c",
+          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
           "finite BPA (G1)",
           "SinkSCCReduction/G1",
           "same",
@@ -1290,7 +1290,7 @@
       "tags": []
     },
     "G1": {
-      "id": "sha256:f6e39ddab619916c87c8499ce17644a093123173f08252411102cacfcc7b064c",
+      "id": "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
       "kind": "repository_theorem",
       "statement": "finite BPA (G1)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -1299,6 +1299,13 @@
           "sha256:f2022983b05a0559c47327b9621c3119140a3a6f88e06764600c420748fa6495",
           "G1b-1 and G1b-2 together give finite BPA",
           "G1/G1FromRenewal",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:9b3ecd7cf41a5465cacf79c53473373b537d54deb37d282a054b5f692816628f",
+          "productivity of the seed-patch overlap graph from every swap seed gives finite BPA, by bounding every reachable state by 2 beta^D ell_max",
+          "G1/G1OverlapRoute",
           "same",
           "accepted"
         ]
@@ -1310,11 +1317,15 @@
         ],
         [
           "source",
-          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 4.11 and open-problem list"
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Propositions 4.11 and 5.46 and open-problem list"
+        ],
+        [
+          "dependency_alternatives",
+          "[[\"sha256:f2022983b05a0559c47327b9621c3119140a3a6f88e06764600c420748fa6495\"],[\"sha256:9b3ecd7cf41a5465cacf79c53473373b537d54deb37d282a054b5f692816628f\"]]"
         ],
         [
           "status_note",
-          "the conditional assembly from G1b-1 and G1b-2 is proved; G1 itself is an open conjectural gate; G1 also follows from AllSeedOverlapProductivity by G1OverlapRoute, which this conjunctive ledger records as a separate node rather than a second way to establish G1"
+          "the renewal and all-seed overlap implications are proved alternative establishments of canonical G1; their open premises are not discharged, so G1 itself remains an open conjectural gate"
         ]
       ],
       "tags": [
@@ -1659,20 +1670,20 @@
       "tags": []
     },
     "ConcentrationAuxB": {
-      "id": "sha256:c3d9fa88f9ffcbd8d18b1ff0a6951ebba678df144864c77c1281dffd5b1fd60b",
+      "id": "sha256:782d727ad6fc11374b346017c1d443a3b34bf686f32b9179d3e7f1942dc14db0",
       "kind": "pending_dependency",
       "statement": "no strict component with K2 = 0 exists (concentration / aux-B)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:f6e39ddab619916c87c8499ce17644a093123173f08252411102cacfcc7b064c",
+          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
           "finite BPA (G1)",
           "ConcentrationAuxB/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:3ccecdcee67289084c2e7e717fa8f31e873b0eae7f7214a0688eac6b54611e6c",
+          "sha256:e3b87d31b7f7828aea22d137866a05a7ed781111ffa0a4cbdc2ed1286c44a847",
           "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
           "ConcentrationAuxB/SinkSCCReduction",
           "same",
@@ -1706,13 +1717,13 @@
       "tags": []
     },
     "SpanRichProductivity": {
-      "id": "sha256:852bc0816986771c08b344731c1ed845492a736ae3ff135cbddda001f6d066aa",
+      "id": "sha256:f75df505b700f2ec7551ed05439468b0f5cb31501cb727ff01607e6452a4d855",
       "kind": "pending_dependency",
       "statement": "no strict component with K2 != 0 exists (general wedge productivity)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:c3d9fa88f9ffcbd8d18b1ff0a6951ebba678df144864c77c1281dffd5b1fd60b",
+          "sha256:782d727ad6fc11374b346017c1d443a3b34bf686f32b9179d3e7f1942dc14db0",
           "no strict component with K2 = 0 exists (concentration / aux-B)",
           "SpanRichProductivity/ConcentrationAuxB",
           "same",
@@ -1735,27 +1746,27 @@
       "tags": []
     },
     "SpectralSCCProducer": {
-      "id": "sha256:892991a6687e49c1d768c0497f88fae1fdb6b862e52ff1fa30e7b0aec2d5b66b",
+      "id": "sha256:6adb6d350cdebce1f5e23cb05e8a0190506f2449cfd29ddd390c6671b31d28c1",
       "kind": "pending_dependency",
       "statement": "the spectral route produces an SCC producer under G1",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:f6e39ddab619916c87c8499ce17644a093123173f08252411102cacfcc7b064c",
+          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
           "finite BPA (G1)",
           "SpectralSCCProducer/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:3ccecdcee67289084c2e7e717fa8f31e873b0eae7f7214a0688eac6b54611e6c",
+          "sha256:e3b87d31b7f7828aea22d137866a05a7ed781111ffa0a4cbdc2ed1286c44a847",
           "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
           "SpectralSCCProducer/SinkSCCReduction",
           "same",
           "accepted"
         ],
         [
-          "sha256:852bc0816986771c08b344731c1ed845492a736ae3ff135cbddda001f6d066aa",
+          "sha256:f75df505b700f2ec7551ed05439468b0f5cb31501cb727ff01607e6452a4d855",
           "no strict component with K2 != 0 exists (general wedge productivity)",
           "SpectralSCCProducer/SpanRichProductivity",
           "same",
@@ -1771,20 +1782,20 @@
       "tags": []
     },
     "PDSSpectralRoute": {
-      "id": "sha256:1da5a63e4feca7207b6ac44b385c2167688851ae3beddc244d57cdb34ede851f",
+      "id": "sha256:40a56b74b3a49f0f1cc5ab02ecc1441f7a12185d86cfe9dc8ce212b63fb30fc8",
       "kind": "repository_theorem",
       "statement": "under G1 and a spectral SCC producer, pure discrete spectrum follows",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:f6e39ddab619916c87c8499ce17644a093123173f08252411102cacfcc7b064c",
+          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
           "finite BPA (G1)",
           "PDSSpectralRoute/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:892991a6687e49c1d768c0497f88fae1fdb6b862e52ff1fa30e7b0aec2d5b66b",
+          "sha256:6adb6d350cdebce1f5e23cb05e8a0190506f2449cfd29ddd390c6671b31d28c1",
           "the spectral route produces an SCC producer under G1",
           "PDSSpectralRoute/SpectralSCCProducer",
           "same",
@@ -1877,20 +1888,20 @@
       "tags": []
     },
     "SCCProducer": {
-      "id": "sha256:730ee696907eb31427368bec17bcc16c60ca545e2a8324e8e76fdb9b43c06d84",
+      "id": "sha256:bfd2d4ad677e1633919d3acac1f4d2b88b5fb48afa36ac1220b7812e31a3fda9",
       "kind": "repository_theorem",
       "statement": "SCC Producer / C1 follows from G1, the sink-SCC reduction, and C2",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:f6e39ddab619916c87c8499ce17644a093123173f08252411102cacfcc7b064c",
+          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
           "finite BPA (G1)",
           "SCCProducer/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:3ccecdcee67289084c2e7e717fa8f31e873b0eae7f7214a0688eac6b54611e6c",
+          "sha256:e3b87d31b7f7828aea22d137866a05a7ed781111ffa0a4cbdc2ed1286c44a847",
           "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
           "SCCProducer/SinkSCCReduction",
           "same",
@@ -1923,20 +1934,20 @@
       ]
     },
     "PDS": {
-      "id": "sha256:aec4655848c9b7db78b8459f7f42359eed8ba0e37b28b819bac29bfa9e4e4ac5",
+      "id": "sha256:0a0625ce78fd2d56ee96298518b8316d3b0f9ece2272ccbdd0a14122df6889ce",
       "kind": "repository_theorem",
       "statement": "pure discrete spectrum follows from G1 and SCC Producer",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:f6e39ddab619916c87c8499ce17644a093123173f08252411102cacfcc7b064c",
+          "sha256:2adb8afab9fe8c0ced2d948ffa8bd03a751f45793e4673003b2f6970d221aa81",
           "finite BPA (G1)",
           "PDS/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:730ee696907eb31427368bec17bcc16c60ca545e2a8324e8e76fdb9b43c06d84",
+          "sha256:bfd2d4ad677e1633919d3acac1f4d2b88b5fb48afa36ac1220b7812e31a3fda9",
           "SCC Producer / C1 follows from G1, the sink-SCC reduction, and C2",
           "PDS/SCCProducer",
           "same",
