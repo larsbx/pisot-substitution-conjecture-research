@@ -3,9 +3,8 @@
 **Status:** research note for issue #139, proved here and not yet reviewed.
 Proposition A, Lemma C and Theorem B are elementary statements about the
 seed-patch overlap graph and are proved in full below. §5 compares them with
-the literature. That comparison is a reading, not an imported theorem: the
-identification with fibres of the maximal equicontinuous factor rests on the
-standard description of that map and is not verified here. This note does
+the literature; the fibre identification it uses is Proposition F of the
+companion gate, proved there under hypothesis (R). This note does
 **not** exclude strict zippers, does not prove AdelicPeriodicOffsetHitting,
 G1 or balanced-pair termination, and promotes nothing to the ledger or the
 manuscript.
@@ -218,7 +217,7 @@ subtile `X_i` with address `(P, P, …)`, and likewise `xi_B ∈ X_j`. So the
 target asks for one finite-level prefix difference to land exactly on the
 difference of two periodic Rauzy points.
 
-## 5. Comparison with the literature (reading, not import)
+## 5. Comparison with the literature
 
 Barge, *Factors of Pisot tiling spaces and the Coincidence Rank Conjecture*
 (arXiv:1301.7094), Theorem 4, collects from Barge–Kellendonk the following:
@@ -229,11 +228,11 @@ without pure discrete spectrum there are `Phi`-periodic `T` and `T′` with
 `g(T) = g(T′)` and **no common tile**.
 
 Theorem B produces `Phi^r`-periodic pairs with **no common vertex**, a
-strictly stronger disjointness. The pair also has the bounded integer
-discrepancy of an overlap-graph path, and its internal addresses satisfy
-`xi_B − xi_A = w_0*`. Under the standard description of `g` through Rauzy
-addresses, that places `T_A` and `T_B` in one fibre. This identification is
-not verified here, so it is stated as a reading only. On that reading:
+strictly stronger disjointness. That the pair lies in one fibre is
+Proposition F of `p1b-periodic-pair-fibre-literature-gate-2026-10-02.md`. It
+is proved there from Solomyak's eigenvalue criterion, without unimodularity,
+under hypothesis (R): the return module is all of `Z^3`. (R) is verified on
+finite domains and open in general. Under (R):
 
 | Obstruction | Periodic pair in one fibre | Known status |
 | --- | --- | --- |
@@ -242,7 +241,7 @@ not verified here, so it is stated as a reading only. On that reading:
 | (b1) right-aligned | as (a), mirrored | suffix P1a, open |
 | (b2) two-sided strict zipper | no common **vertex** | #139, open |
 
-Consequences on that reading:
+Consequences under (R):
 
 - A strict zipper forces `cr >= 2`. This is consistent with the known chain
   PDS ⇒ productivity ⇒ no strict zipper, and adds nothing unconditional.
@@ -256,21 +255,42 @@ Consequences on that reading:
   vertex-disjoint pairs. So any proof has to use periodicity, or integrality
   of (1), and not counting.
 
-## 6. Exploratory check (diagnostic, not a certificate)
+## 6. Exact certificate (`psc.periodic_pair`)
 
-A scratch Python oracle (not committed; the canonical implementation remains
-gated by `p1b-adelic-prefix-difference-cylinder-2026-09-21.md` §8) enumerated
-all interior occurrence pairs and tested (c) by exact integer arithmetic:
+`mojo/psc/periodic_pair.mojo` is the canonical implementation of Theorem B's
+certificate. For an ordered pair of interior occurrences, `certify_pair`:
 
-| Specimen | `r <=` | pairs | `w_0` integral | share a vertex | deepest `m` |
-| --- | --- | --- | --- | --- | --- |
-| Tribonacci `0→01, 1→02, 2→0` | 6 | 908 | 18 | 18 | 3 |
-| cube `0→1, 1→222, 2→0222` | 3 | 232 | 8 | 8 | 1 |
-| golden pump `0→1, 1→021, 2→001` (det 2) | 4 | 366 | 20 | 20 | 7 |
+1. computes `w_0` from (1) over `Z` with the adjugate of `M^r − I` and
+   replays `(M^r − I) w_0 = pi(P) − pi(Q)`; a non-integral `w_0` is
+   reported as such;
+2. checks that `v_0` is an interior overlap and replays the `r`-cycle of
+   Theorem B(2) child by child, in the exact Perron field, back to `v_0`;
+3. builds the descendant closure of `v_0`, which is finite by manuscript
+   Theorem 4.22, and decides (a) on it. A complete closure with no
+   offset-zero vertex is a **strict-zipper certificate**. An offset-zero
+   vertex at depth `m` is a shared vertex, and `m` is re-derived over `Z` as
+   the least `m` with `M^m w_0 ∈ D_m(i, j)` (criterion (c)). The two depths
+   must agree, or the certificate is refused;
+4. reports a capped closure as capped, never as a verdict.
 
-All three are known productive. The table checks Theorem B's bookkeeping,
-(1) and (c) on productive specimens. It is not evidence for
-PeriodicPairVertexCoincidence beyond the cases enumerated.
+Acceptance is by exact integer and `Z[beta]` equality. No adelic coordinate
+is computed, so the local-field bindings of §8 of the adelic note are neither
+needed for these verdicts nor supplied by them.
+
+`mojo/tests/test_periodic_pair.mojo` pins the census over all ordered pairs
+of interior occurrences with distinct letters. An independent integer-only
+oracle (not committed) gave the same numbers:
+
+| Specimen | `r <=` | pairs | `w_0` integral | share a vertex | strict zipper | deepest `m` |
+| --- | --- | --- | --- | --- | --- | --- |
+| Tribonacci `0→01, 1→02, 2→0` | 6 | 908 | 18 | 18 | 0 | 3 |
+| cube `0→1, 1→222, 2→0222` | 3 | 232 | 8 | 8 | 0 | 1 |
+| golden pump `0→1, 1→021, 2→001` (det 2) | 4 | 366 | 20 | 20 | 0 | 7 |
+
+All three are known productive, so these are consistency checks of Theorem
+B's bookkeeping. They are not evidence for PeriodicPairVertexCoincidence
+beyond the pairs enumerated. No positive strict-zipper control exists in the
+standing regime, since none is known.
 
 ## 7. What this does not establish, and next steps
 
@@ -280,10 +300,6 @@ PeriodicPairVertexCoincidence beyond the cases enumerated.
   5.47. Promoting it would mean a manuscript remark and a ledger refinement
   of `AllSeedStrictZipperExclusion` to the two-sided form. That needs review
   first.
-- Possible next steps, each gated:
-  - a Mojo certificate type for interior occurrence pairs, as `(r, i, j, P, Q)`
-    with exact (1) and the (c) replay, under the §8 bindings of the adelic
-    note;
-  - a literature gate on Barge–Kellendonk and Barge–Diamond (2007) for the
-    fibre identification of §5, and for whether periodic fibres admit a
-    branch-locus argument of the kind used for β-substitutions.
+- Next step: the companion gate (§6 there) names a reading of
+  Barge–Diamond 2002 in full, to test whether its configuration argument,
+  used by Barge for β-substitutions, can force a common vertex.
