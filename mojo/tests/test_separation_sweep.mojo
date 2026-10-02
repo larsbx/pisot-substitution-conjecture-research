@@ -28,6 +28,9 @@ def main() raises:
     var og = build_seed_overlap_graph_from_tables(ot, 20000)
     assert_equal(classify_separation(ot, og), -1)
     var exceptional = parse_substitution_key("1/2/022102")
+    var et = build_seed_overlap_tables(exceptional)
+    var eg = build_seed_overlap_graph_from_tables(et, 20000)
+    assert_equal(classify_separation(et, eg), 9)
     assert_equal(orbit_key(exceptional), orbit_key(reversed_substitution(exceptional)))
     var perm: List[Int] = [2, 0, 1]
     assert_equal(orbit_key(exceptional), orbit_key(conjugated_substitution(exceptional, perm)))
