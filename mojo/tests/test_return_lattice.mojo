@@ -81,14 +81,24 @@ def test_covering_bound() raises:
             assert_true(profile[n - 1] % profile[n - 2] == 0)
 
 
-def test_verify_refuses_broken_profiles() raises:
+def test_verify_accepts_valid_profiles() raises:
     var good = return_index_profile(det_two(), 13)
     verify_index_profile(det_two(), 2, good)
-    # 2 then 3: the chain breaks, since 2 does not divide 3.
-    var unchained: List[Int] = [1, 2, 3]
+    var unimodular = return_index_profile(tribonacci(), 12)
+    verify_index_profile(tribonacci(), 1, unimodular)
+
+
+def test_verify_refuses_broken_chain() raises:
+    # Every index divides its covering bound (1, 2, 4), but 2 does not
+    # divide the next index 1. The covering check cannot mask this failure.
+    var unchained: List[Int] = [1, 2, 1]
     with assert_raises():
         verify_index_profile(det_two(), 2, unchained)
-    # Index 2 at order 2 where the covering bound is 1 (unimodular, K = 2).
+
+
+def test_verify_refuses_broken_covering_bound() raises:
+    # The chain holds (1 divides 2), but index 2 at order 2 does not
+    # divide the unimodular covering bound 1. The chain cannot mask this.
     var unbounded: List[Int] = [1, 2]
     with assert_raises():
         verify_index_profile(tribonacci(), 1, unbounded)
@@ -107,7 +117,12 @@ def main() raises:
     print("[PASS] test_exact_agrees_with_sampled_route")
     test_covering_bound()
     print("[PASS] test_covering_bound")
-    test_verify_refuses_broken_profiles()
-    print("[PASS] test_verify_refuses_broken_profiles")
-    print("7 return-lattice Mojo tests passed.")
+    test_verify_accepts_valid_profiles()
+    print("[PASS] test_verify_accepts_valid_profiles")
+    test_verify_refuses_broken_chain()
+    print("[PASS] test_verify_refuses_broken_chain")
+    test_verify_refuses_broken_covering_bound()
+    print("[PASS] test_verify_refuses_broken_covering_bound")
+    print("9 return-lattice Mojo tests passed.")
     require_contract("return lattice of radius-n patches is the Rauzy-graph cycle image")
+    require_contract("return-lattice census refuses broken chain and covering-bound profiles")

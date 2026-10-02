@@ -1,0 +1,53 @@
+name: Target-aware BPA diagnostic
+
+on:
+  push:
+    paths:
+      - 'mojo/psc/target_packet*.mojo'
+      - 'mojo/target_aware_bpa.mojo'
+      - 'mojo/check_target_packets.sh'
+      - 'mojo/tests/test_target_packets.mojo'
+      - 'mojo/pixi.*'
+      - 'docs/target-aware-bpa*.md'
+      - 'docs/evidence/target-aware-bpa-2026-10-02/**'
+      - 'tests/test_target_packet_evidence.py'
+      - '.github/workflows/target-aware-bpa.yml'
+  pull_request:
+
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -e '.[dev]'
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          manifest-path: mojo/pixi.toml
+      - name: Canonical Mojo regressions and receipts
+        working-directory: mojo
+        run: pixi run test
+      - name: Canonical exact certificates
+        working-directory: mojo
+        run: pixi run verify
+      - name: Deterministic diagnostic replay and CLI boundaries
+        working-directory: mojo
+        run: pixi run bash check_target_packets.sh
+      - name: Independent literal-word oracle
+        run: python -m pytest tests/test_target_packet_evidence.py tests/test_synthetic_degree2.py
+      - name: Vendoring, generated surfaces, and claim governance
+        run: |
+          python scripts/check_vendored_sync.py
+          python scripts/make_ledger.py --check
+          python scripts/make_math_catalogue.py --check
+          PYTHONPATH=tools python -m claim_governance.cli --root .
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: target-aware-bpa-receipts
+          path: |
+            mojo/build/target-*.jsonl
+            mojo/build/target-*.log
+            mojo/build/claim-receipts.tsv
