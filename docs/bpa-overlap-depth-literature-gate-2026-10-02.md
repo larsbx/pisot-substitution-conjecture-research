@@ -95,5 +95,10 @@ Its novelty is restricted to:
 
 A sharper statement is suggested by Theorem 5.6: finiteness should already
 follow from every reachable overlap reaching a **half**-coincidence, a
-condition weaker than productivity. It is not claimed here; it is a candidate
-follow-up.
+condition weaker than productivity. It is proved as Proposition 4 of
+`docs/bpa-termination-by-overlap-depth-2026-10-02.md`, by the same transfer
+and with the same attribution: it is the half-coincidence form of Theorem
+5.6, (ii′)⇒(i′), on the repository's swap-seed graph. Its Corollary 5
+identifies the hypothesis with the exclusion of strict-zipper obstructions
+(manuscript Proposition 5.44(iii)(b)). No further literature review is
+needed for it: the sources and hypothesis boundaries above are the same.

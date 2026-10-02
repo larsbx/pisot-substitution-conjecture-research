@@ -9,6 +9,10 @@ G1b-2 in general, does not prove the overlap-productivity gate of issue #84,
 and records Proposition 1 in the ledger as a conditional theorem whose open
 premise is all-seed overlap productivity (§5). Proposition 1 is manuscript
 Proposition 5.46 (§5.11 of `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`).
+Proposition 4 and Corollary 5 (§5) are a strengthening proved here: a
+half-coincidence hypothesis, equivalent to excluding strict-zipper
+obstructions, already gives finiteness. They are not yet recorded in the
+ledger or the manuscript.
 
 ## 0. Prior art
 
@@ -121,8 +125,62 @@ exhaust the state-length budget. This is a finite-domain consequence of
 Proposition 1 and that sweep's exact verdicts; it is not a statement about
 substitutions outside the class.
 
-## 5. What this does not establish, and what review should decide
+## 5. Proposition 4 (the half-coincidence strengthening)
 
+The proof of Proposition 1 uses a coincidence only for the common vertex it
+supplies. A common vertex alone suffices, which is the half-coincidence form
+of Sirvent–Solomyak Theorem 5.6.
+
+*Suppose every vertex of the seed-patch overlap graph reachable from the
+seed overlaps of `s` has an offset-zero descendant (coincidences count as
+offset zero), and let `K'` be the largest first left-aligned depth among
+those vertices (`psc.overlap_seed_patch.first_left_aligned_depths`). Then
+every state reached from `s` at a level `n >= K'` has geometric length at
+most `2 beta^K' ell_max`, and the closure of `s` is finite. Since a
+coincidence has offset zero, `K' <= D`, and the hypothesis is implied by the
+hypothesis of Proposition 1.*
+
+*Proof.* As in Proposition 1, with one change. Let `O` be the level-`(n−K')`
+overlap whose `beta^K'`-scaled region `R` contains `t`, and let `O'` be an
+offset-zero descendant of `O` at depth `k <= K'`. The two tiles of `O'`
+start at the same point `y`, so `y` is a common vertex of the
+level-`(n−K'+k)` tilings, and `y` lies in the closure of `R`. Inflation
+subdivides each tile and keeps its endpoints as vertices, so `y` is still a
+common vertex of the level-`n` tilings. By manuscript Lemma 5.30 it is a
+balanced cut, within `|R| <= beta^K' ell_max` of `t`. The rest of the proof
+of Proposition 1 applies verbatim. `square`
+
+*Corollary 5 (strict-zipper exclusion suffices).* Let `Z` be the set of
+vertices reachable from the seed overlaps of `s` that have no offset-zero
+descendant, the vertex itself included (depth 0). Every child of a vertex of `Z` is again in `Z`, and no vertex of
+`Z` is a coincidence or has offset zero. So `Z`, if nonempty, is a closed set
+of nonproductive non-coincidence vertices without an offset-zero vertex:
+case (b) of manuscript Proposition 5.44(iii), a strict zipper. Conversely,
+every reachable case-(b) set lies in `Z`, because it is closed and contains
+no offset-zero vertex. Hence the hypothesis of Proposition 4 holds exactly
+when no closed nonproductive set reachable from `s` is a strict zipper. If
+this holds for every swap seed, `B_sigma` is finite. Case (a) obstructions,
+closed nonproductive sets that contain an offset-zero vertex and so exhibit
+a pair of letters that is not eventually coincident, do not obstruct
+finiteness.
+
+So G1 follows from excluding the strict-zipper branch alone (the target of
+issue #139, P1b). The aligned branch, which is the strong-coincidence problem
+(issue #138, P1a), is needed for productivity and pure discrete spectrum
+but not for finiteness.
+
+*The cube-image specimen.* The regression
+`test_the_cube_image_specimen_reaches_a_half_coincidence_by_depth_17`
+certifies that every one of the 1,142 vertices of the overlap graph of
+`0 -> 1, 1 -> 222, 2 -> 0222` has an offset-zero descendant, with `K' = 17`.
+Proposition 4 bounds every state by `2 beta^17 ell_max / ell_min`, at most
+4,198,004,819 letters, a factor `beta^2` below the bound of Corollary 2.
+
+## 6. What this does not establish, and what review should decide
+
+- Proposition 4 and Corollary 5 do not exclude strict zippers; they show
+  that excluding them, from every swap seed, is all G1 needs. That exclusion
+  is open (issue #139). They are not yet in the ledger or the manuscript.
 - It does not prove G1 or G1b-2 in general. Proposition 1 reduces finite
   `B_sigma` to productivity of the seed-patch overlap graph from every swap
   seed, which remains open.

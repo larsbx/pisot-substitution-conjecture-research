@@ -402,6 +402,20 @@ def test_the_cube_image_specimen_has_a_productive_depth_19_overlap_graph() raise
     assert_equal(worst, 19)
 
 
+def test_the_cube_image_specimen_reaches_a_half_coincidence_by_depth_17() raises:
+    """The certificate behind the half-coincidence strengthening (Proposition 3
+    of docs/bpa-termination-by-overlap-depth-2026-10-02.md): every vertex has
+    an offset-zero descendant, at depth at most 17."""
+    var graph = build_seed_overlap_graph_from_tables(build_seed_overlap_tables(cube_image_sigma()), 20000)
+    var left = first_left_aligned_depths(graph)
+    var worst = 0
+    for v in range(len(left)):
+        assert_true(left[v] >= 0)
+        if left[v] > worst:
+            worst = left[v]
+    assert_equal(worst, 17)
+
+
 def main() raises:
     test_perron_order_is_exact_on_basic_elements()
     print("[PASS] test_perron_order_is_exact_on_basic_elements")
@@ -431,8 +445,11 @@ def main() raises:
     print("[PASS] test_the_perron_cache_keeps_refusing_after_a_failed_build")
     test_the_cube_image_specimen_has_a_productive_depth_19_overlap_graph()
     print("[PASS] test_the_cube_image_specimen_has_a_productive_depth_19_overlap_graph")
-    print("14 seed-patch-overlap Mojo tests passed.")
+    test_the_cube_image_specimen_reaches_a_half_coincidence_by_depth_17()
+    print("[PASS] test_the_cube_image_specimen_reaches_a_half_coincidence_by_depth_17")
+    print("15 seed-patch-overlap Mojo tests passed.")
     require_claim("SwapOverlapFiniteness")
     require_claim("AlignedOverlapsAreStrongCoincidence")
     require_claim("BoundaryCoincidenceCriterion")
     require_contract("0 -> 1, 1 -> 222, 2 -> 0222 has an uncapped productive seed-patch overlap graph of 1142 states with maximum first-coincidence depth 19")
+    require_contract("every seed-patch overlap of 0 -> 1, 1 -> 222, 2 -> 0222 has an offset-zero descendant, with maximum first left-aligned depth 17")
