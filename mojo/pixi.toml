@@ -26,6 +26,7 @@ wedge-productivity-catalog = "mojo run -I . wedge_productivity_catalog.mojo"
 swap-discrepancy-census = "mojo run -I . swap_discrepancy_census.mojo"
 swap-overlap-census = "mojo run -I . swap_overlap_census.mojo"
 overlap-contracting-census = "mojo run -I . overlap_contracting_census.mojo"
+return-lattice-census = "mojo run -I . return_lattice_census.mojo"
 
 # Finite classifications with no substitution input.
 endpoint-core-catalog = "mojo run -I . endpoint_core_catalog.mojo"

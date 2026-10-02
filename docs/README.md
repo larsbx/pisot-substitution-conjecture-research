@@ -136,6 +136,12 @@ These are reference/index additions only. They do not establish #84, #138,
 - `bpa-overlap-depth-literature-gate-2026-10-02.md` — stop/go literature gate
   for that argument: the mechanism is Sirvent–Solomyak (2002), Theorem 5.6;
   novelty is narrowed to the swap-seed transfer and the explicit bound.
+- `return-lattice-literature-gate-2026-10-02.md` — return vectors of tiles
+  span `Z<ell>` on the whole corpus; return vectors of length-`n` patches span
+  it for every `n` on the unimodular classes and fail to by `n = 13` on every
+  `|det M| = 2` specimen, where the equicontinuous factor is a solenoid
+  (Barge–Kellendonk Corollary 5.11). Exact census:
+  `mojo/return_lattice_census.mojo`.
 - Manuscript Proposition 5.47 and the same proof note's Proposition 4 /
   Corollary 5 sharpen this to the half-coincidence route: excluding reachable
   strict zippers from every swap seed is sufficient for G1. The exclusion is
