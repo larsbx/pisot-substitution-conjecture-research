@@ -277,7 +277,55 @@ a uniform covering statement for the Rauzy-type sets of the box graph, at
 one scale. It is not a statement about arbitrarily fine scales, which is
 where the density arguments of the stop list fail.
 
-### 5.6 The closing target, restated
+### 5.6 Working the argument: cancellation, not shrinkage
+
+*Lemma D (discreteness, proved).* There is `epsilon_0(sigma) > 0` such that
+an overlap `(i, j, t)` with `|sigma_k(t)| < epsilon_0` for every contracting
+`k` has `t = 0`.
+
+*Proof.* `|t| < ell_max` for every overlap. The Minkowski image of `Z⟨ell⟩` is
+a lattice in `R^3`, so only finitely many offsets have all three embeddings
+bounded. Take `epsilon_0` below the smallest nonzero contracting size among
+them. `square`
+
+So a vertex hits exactly when some descendant enters the
+`epsilon_0`-ball in the contracting coordinates. Conjecture UH would follow if
+contracting sizes shrank geometrically along some descendant path. That would
+give depth about `L = log(B/epsilon_0) / log(1/mu)`, where `B` is the largest
+contracting size on the recurrent part.
+
+The data rules this mechanism out. On a stride-7 sample of 651 corpus
+specimens (uncommitted oracle), `K_V − L` ranges from −33.75 to 5.00, and
+`K_V / L` from 0.32 to 2.56. For example, `0 -> 22, 1 -> 001, 2 -> 10` has
+`L ≈ 49.8` and `K_V = 16`. Hits happen long before the offset is small, by
+**exact cancellation**: `beta^m t` lands on a prefix difference
+`<ell, pi(q) − pi(p)>` while `|sigma_k(beta^m t)|` is still of order `B`.
+
+The lattice form makes this precise. By Theorem B(3)(c), `(i, j, w)` hits at
+depth `m` iff `M^m w ∈ P_m(i) − P_m(j)`. Equivalently, the staircase of
+`sigma^m(j)`, translated by `M^m w`, shares a lattice vertex with the
+staircase of `sigma^m(i)`. Both staircases lie in strips of `Z^3` along the
+expanding line. Their contracting windows differ by
+`sigma_k(M^m w) = lambda_k^m sigma_k(w) → 0`.
+
+- **Under pure discrete spectrum.** Each staircase is, up to its boundary,
+  every lattice point of its strip whose contracting coordinate lies in its
+  window (the model-set property), so two staircases with overlapping
+  windows must meet. This is the mechanism behind Theorem S.
+- **Without it.** Each staircase is a proper subset of lattice density
+  `1/p` inside the same model set, and meeting is a rigidity question about
+  the substitutive hierarchy.
+
+The census says this rigidity holds on every specimen surveyed, and holds
+quickly: within about three e-foldings of contraction. A proof has to show
+that two such staircases, produced by the same substitution from letters
+`i` and `j` and shifted by an integral offset of a cycle vertex, cannot
+interleave without a common vertex. That is the strict-zipper exclusion in
+its sharpest lattice form. Lemma D and the sample above are what working the
+argument has added: the obstruction is exact combinatorial interleaving, not
+a size or scale effect.
+
+### 5.7 The closing target, restated
 
 The box graph is the carry automaton of the Dumont–Thomas numeration of
 `sigma`: offsets are carries, children are digit pairs, and offset zero is a
