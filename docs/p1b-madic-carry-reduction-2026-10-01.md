@@ -1,11 +1,12 @@
 # P1b strict zipper: M-adic carry reduction — 2026-10-01
 
-**Status:** repository proof of an exact finite-place reduction and a negative
-architectural result for #139. The reduction supplies a sound M-adic
-prefilter, but proves that iterating this quotient alone reconstructs the
-existing affine overlap recurrence rather than creating a new closure
-mechanism. It does **not** prove AdelicPeriodicOffsetHitting, overlap
-productivity, or PSC.
+**Status:** repository proof of an exact finite-place reduction and recurrence
+equivalence for #139. The reduction supplies a sound M-adic prefilter; after
+integral descaling, its candidates follow the existing affine overlap
+recurrence. Quotient iteration alone does not yet supply a forcing theorem;
+a separate finite-quotient completeness or coverage theorem remains possible.
+It does **not** prove AdelicPeriodicOffsetHitting, overlap productivity, or PSC.
+#84, #138, #139, and PSC remain open.
 
 ## 1. Descaled prefix-difference candidates
 
@@ -159,20 +160,22 @@ iff
 (i,j,w) has an occurrence-labelled length-m path to offset zero.
 ```
 
-This is the important negative result:
+The conclusion is recurrence equivalence:
 
-> **Deeper M-adic quotienting by itself cannot close #139.** Once a zero-class
-> prefix difference is integrally descaled, its carry recursion is precisely
-> the affine overlap recurrence already present in the strict-zipper graph.
+> **Deeper M-adic quotient iteration alone does not yet supply the missing
+> forcing theorem for #139.** Once a zero-class prefix difference is integrally
+> descaled, its carry recursion is precisely the existing affine overlap
+> recurrence.
 
-The finite-place quotient is still useful computationally because it can
-discard impossible prefix pairs before exact comparison. But no iteration of
-that same divisibility filter can manufacture the missing recurrence/coverage
-theorem.
+The finite-place quotient can discard impossible prefix pairs before exact
+comparison. The identity does not show that every relevant realized orbit
+enters the reverse zero-offset basin, and it does not rule out proving that
+coverage through a finite quotient with a separate completeness map.
 
-The next universal step must therefore add information not contained in the
-affine graph alone: occurrence-compatible Rauzy-subtile geometry,
-Archimedean-plus-finite-place coverage, or another complete recurrence theorem.
+A closure argument still needs an occurrence-compatible completeness or
+coverage theorem. Possible routes include a complete finite-quotient argument,
+Rauzy-subtile geometry, Archimedean-plus-finite-place coverage, or another
+complete recurrence theorem. None is supplied by the carry identity alone.
 
 ## 5. Canonical exact diagnostic
 
@@ -228,7 +231,7 @@ The current strict-zipper route can now be separated into three layers:
    Z^3 / M^m Z^3;
 2. **integral carry state:** descaling gives z in Z_m(i,j), whose recursion is
    exactly the overlap affine update;
-3. **new geometric forcing:** prove that a realized periodic strict-zipper
+3. **forcing / coverage:** prove that a realized periodic strict-zipper
    offset must enter this reverse zero basin.
 
 Layers 1–2 are now exact. Layer 3 is AdelicPeriodicOffsetHitting and remains
@@ -236,10 +239,12 @@ open.
 
 ## 7. Next admissible theorem
 
-The next proof should not be “use a deeper cokernel.” The exact recurrence
-above shows that this only refines the same affine carry information.
+Using a deeper cokernel alone refines the same affine carry information. A
+finite-quotient route remains admissible if it supplies a proved completeness
+or coverage map forcing every relevant orbit into the reverse zero basin.
+That theorem remains open.
 
-The next admissible target is:
+One admissible target is:
 
 > **Occurrence-compatible adelic coverage lemma (open).** For a child-closed
 > realized strict-zipper SCC, the full adelic periodic orbit of at least one

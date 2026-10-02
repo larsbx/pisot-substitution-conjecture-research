@@ -148,6 +148,4 @@ def main() raises:
     print("[PASS] test_alternating_e_cycle_is_exactly_the_good_edge_swap")
     print("5 hub-selector Mojo tests passed.")
     require_claim("EndpointCore")
-    require_contract(
-        "aligned recurrent hub-star pair cycle is fixed or alternating type-E"
-    )
+    require_contract("aligned recurrent hub-star pair cycle is fixed or alternating type-E")

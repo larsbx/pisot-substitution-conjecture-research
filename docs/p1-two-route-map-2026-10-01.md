@@ -7,8 +7,8 @@ reductions from this research branch:
 1. the aligned branch is reduced to a fixed bad hub edge or one forced
    alternating type-E template;
 2. the strict-zipper M-adic zero-class candidates obey exactly the existing
-   overlap affine recurrence, so deeper finite-cokernel filtering alone is not
-   a new closure mechanism.
+   overlap affine recurrence; quotient iteration alone does not yet supply
+   the missing forcing theorem.
 
 Neither reduction closes #84.
 
@@ -204,24 +204,26 @@ This is exactly the occurrence-labelled overlap child update.
 Therefore descaled finite-place candidates are simply the reverse zero-offset
 basin of the existing affine overlap graph.
 
-**Consequence:** repeatedly strengthening only the M-adic quotient cannot close
-#139. It prunes prefix pairs, but after descaling it reconstructs the same
-affine state recurrence that the strict zipper already avoids.
+**Consequence:** quotient iteration alone does not yet supply the missing
+forcing theorem for #139. After descaling, it reconstructs the same affine
+recurrence. This identity does not exclude a finite-quotient strategy with a
+separate completeness or coverage theorem proving that every relevant orbit
+enters the reverse zero-offset basin.
 
-This is a stop result for a potentially expensive dead end.
+### B3. The remaining forcing theorem
 
-### B3. The remaining genuinely new theorem
-
-The next step must add geometry not encoded by the affine carry graph:
+A closure argument must prove occurrence-compatible coverage. A complete
+finite-quotient argument remains admissible; another candidate is:
 
 > **Occurrence-compatible adelic coverage lemma.** A realized periodic orbit
 > of a child-closed strict-zipper SCC must enter the graph-directed
 > prefix-difference subtile corresponding to its reverse zero basin.
 
-The proof must use the full non-unit representation or another complete
-recurrence theorem. It cannot be replaced by:
+An adelic proof must use the full non-unit representation; an alternative
+finite-quotient proof must establish its completeness and coverage. Neither
+can be replaced by:
 
-- a deeper finite quotient;
+- a deeper finite quotient without a proved completeness or coverage map;
 - compactness alone;
 - multiple tiling or positive measure;
 - residual Perron criticality;
@@ -279,8 +281,9 @@ Reasons:
    infrastructure;
 4. a proof would remove the only non-fixed aligned pair cycle.
 
-In parallel, Route B should now skip further quotient depth and move directly
-to the graph-directed adelic coverage interface.
+Route B should prioritize a proved completeness or coverage interface, either
+through finite quotients or graph-directed adelic coverage, before further
+quotient-depth computation is treated as progress toward closure.
 
 ## 6. Review milestone
 
@@ -292,8 +295,9 @@ confirmed:
 - the M-adic zero-class filter's exact non-unit and unimodular regressions;
 - the proof that descaled M-adic candidates obey the same affine child
   recurrence;
-- the conclusion that deeper finite-cokernel refinement alone is not an
-  independent closure strategy.
+- the limited conclusion that quotient iteration alone does not yet supply a
+  forcing theorem, while a separate quotient completeness or coverage theorem
+  remains possible.
 
 Acceptance of those points changes the research frontier even though it does
 not yet change the theorem status of #84.

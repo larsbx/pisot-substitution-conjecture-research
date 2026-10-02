@@ -83,6 +83,4 @@ def main() raises:
     test_zero_class_survival_is_not_a_hit_claim()
     print("[PASS] test_zero_class_survival_is_not_a_hit_claim")
     print("4 strict-zipper M-adic filter tests passed.")
-    require_contract(
-        "strict-zipper level-m hit implies zero class in Z^3 / M^m Z^3"
-    )
+    require_contract("strict-zipper level-m hit implies zero class in Z^3 / M^m Z^3")

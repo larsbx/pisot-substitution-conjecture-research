@@ -199,14 +199,16 @@ level-two occurrence pairs survive; on the unimodular Tribonacci control all
 12 survive, as the trivial cokernel requires.
 
 More importantly, the descaled zero-class candidate sets obey exactly the
-existing occurrence-labelled affine overlap update. Thus **deeper finite
-cokernel refinement by itself is not a new closure mechanism**: after
-descaling it reconstructs the reverse zero-offset basin of the same affine
-graph. See `docs/p1b-madic-carry-reduction-2026-10-01.md`.
+existing occurrence-labelled affine overlap update. Thus quotient iteration
+alone does not yet supply the missing forcing theorem: after descaling it reconstructs the reverse zero-offset basin of the
+same affine graph. A separate finite-quotient completeness or coverage theorem
+could still establish entry into that basin and is not excluded by this
+identity. See `docs/p1b-madic-carry-reduction-2026-10-01.md`.
 
 #### P1b next proof tasks
 
-1. Skip further quotient-depth accumulation as a standalone strategy.
+1. Require a proved completeness or coverage map for any finite-quotient
+   closure argument; quotient-depth accumulation alone does not supply it.
 2. Prove the **occurrence-compatible adelic coverage lemma**: a realized
    periodic strict-zipper orbit must enter the graph-directed prefix-difference
    subtile corresponding to its reverse zero basin.
