@@ -20,6 +20,7 @@ jobs:
         run: |
           python -m pytest -q \
             tests/test_audit_manuscript.py \
+            tests/test_prose_parser.py \
             tests/test_bpa_basics.py \
             tests/test_boundary_sync.py \
             tests/test_birth_event.py

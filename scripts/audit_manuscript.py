@@ -3,7 +3,8 @@
 
 The audit is intentionally conservative: it catches phrases that caused
 version drift during the v11 -> v12.1 transition. It is not a LaTeX prover;
-it is a CI guardrail against known bad claims.
+it is a CI guardrail against known bad claims.  Meta-text exemptions are
+decided on the clause parse of ``prose_parser``, never on raw-text keywords.
 """
 from __future__ import annotations
 
@@ -13,6 +14,8 @@ import sys
 from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
+
+from prose_parser import HOLE, STAR, Alt, Block, Item, Opt, Rep, Seq, Token, match, parse, phrase, words
 
 TEXT_SUFFIXES = {".tex", ".md", ".txt", ".rst"}
 DEFAULT_SKIP_DIRS = {
@@ -37,50 +40,6 @@ CURRENT_SURFACE = {
 # Every accepted transpose suffix: ^T, ^\T, ^\top, bare \top, with optional TeX braces.
 TRANSPOSE = r"(?:\^\{?\s*(?:T|\\T|\\top)\s*\}?|\\top)(?![A-Za-z])"
 BAD_ASSIGNMENT = r"N[_ ]?C\s*=\s*M[_ ]?sigma"
-# Inter-token spacing, including TeX thin/medium/thick/negative spaces.
-SEP = r"(?:\s|\\[,;:! ])*"
-PARIKH_C = r"(?<![A-Za-z])P[_ ]?C(?![A-Za-z0-9])"
-
-# Clause and sentence boundaries: terminal punctuation followed by whitespace
-# (so TeX ``\,`` and decimals do not split), or a new list item / table row.
-_ITEM = r"|\n(?=[ \t]*(?:[-*+|#]|\d+\.)\s)"
-CLAUSE_END = re.compile(r"[.;:!?](?=\s|$)" + _ITEM)
-SENTENCE_END = re.compile(r"[.!?](?=\s|$)" + _ITEM)
-
-# Meta-text markers.  Each is anchored to the matched occurrence: a marker
-# elsewhere on the line or in the paragraph never exempts it.
-#   STALE_QUOTE      -- "stale/not/instead of <match>" (marker within 3 tokens).
-#   NEGATED_FRAMING  -- "never describe ... <match>", "do not cite ... as <match>",
-#                       "no longer <match>", "forbids describing <match>", with no
-#                       independent clause between the negation and the match.
-#   RETRACTED_AFTER  -- "<match> is false/withdrawn/...", predicated of the match itself.
-#   RETRACTED_NEXT   -- "<match>; that premise is withdrawn" (demonstrative anaphor).
-STALE_QUOTE = re.compile(
-    r"\b(?:stale|old|retired|wrong|incorrect|not|never|instead\s+of|replace[sd]?)\W+(?:\S+\s+){0,2}$",
-    re.IGNORECASE,
-)
-_RETRACTED = r"(?:false|retired|withdrawn|refuted|retracted)\b"
-_FRAMING_VERB = (
-    r"(?:cite|claim|assert|state|describe|use|treat|assume|say|write|present"
-    r"|prove|show|establish|frame|call|regard|consider)\w*"
-)
-_INDEPENDENT_CLAUSE = r",\s*(?:and|but|yet|so|we|i|they|it|this|that|which|hence|thus)\b"
-NEGATED_FRAMING = re.compile(
-    rf"(?:\b(?:never|not|\w+n['’]t)\s+(?:\w+ly\s+)?{_FRAMING_VERB}"
-    rf"|\bno\s+longer|\bforbid(?:s|ding)?\s+\w+ing)\b"
-    rf"(?:(?!{_INDEPENDENT_CLAUSE}).){{0,160}}$",
-    re.IGNORECASE,
-)
-RETRACTED_AFTER = re.compile(
-    r"^\w*[\"'”’`)*]*\s*(?:and\s+)?(?:is|are|was|were|has\s+been|have\s+been)\s+"
-    rf"(?:(?:now|also|thus|therefore)\s+)?{_RETRACTED}",
-    re.IGNORECASE,
-)
-RETRACTED_NEXT = re.compile(
-    r"^(?:that|this|such\s+an?)\s+(?:[\w-]+\s+){0,2}?(?:premise|target|claim|statement|assertion)\s+"
-    rf"(?:is|was|has\s+been)\s+(?:now\s+)?{_RETRACTED}",
-    re.IGNORECASE,
-)
 
 # Exact documentation lines known to quote a retired claim as reported speech.
 # The exemption is keyed by (root-relative path, rule, whole stripped line), so
@@ -103,44 +62,86 @@ def _flat(s: str) -> str:
     return " ".join(s.split())
 
 
-def _unit(text: str, start: int, end: int, boundary: re.Pattern[str]) -> tuple[int, int]:
-    """Bounds of the clause/sentence spanning ``[start, end)``, clipped to its paragraph."""
-    brk = text.rfind("\n\n", 0, start)
-    para_start = 0 if brk == -1 else brk + 2
-    para_end = text.find("\n\n", end)
-    para_end = len(text) if para_end == -1 else para_end
-    starts = [b.end() for b in boundary.finditer(text, para_start, start)]
-    stop = boundary.search(text, end, para_end)
-    return (starts[-1] if starts else para_start), (stop.start() if stop else para_end)
+@dataclass(frozen=True)
+class Site:
+    """The parsed clause holding a match, the matched constituent replaced by HOLE."""
+    text: str
+    block: Block
+    index: int
+    items: tuple[Item | object, ...]
+    end: int
+
+    @property
+    def next_clause(self) -> tuple[Item, ...]:
+        return self.block[self.index + 1].items if self.index + 1 < len(self.block) else ()
+
+    @property
+    def sentence_end(self) -> int:
+        sentence = self.block[self.index].sentence
+        return max(c.end for c in self.block if c.sentence == sentence)
 
 
-def _is_parikh_intertwiner(text: str, m: re.Match[str]) -> bool:
-    """``m`` is the middle of P_C N_C = M_sigma P_C, not merely beside it."""
-    return bool(
-        re.search(PARIKH_C + SEP + r"$", text[max(0, m.start() - 32):m.start()], re.IGNORECASE)
-        and re.match(SEP + PARIKH_C, text[m.end():], re.IGNORECASE)
-    )
+def locate(text: str, blocks: tuple[Block, ...], start: int, end: int) -> Site | None:
+    """The clause whose top-level items cover ``[start, end)``; None if it spans clauses."""
+    for block in blocks:
+        for index, clause in enumerate(block):
+            hit = [k for k, it in enumerate(clause.items) if it.start < end and start < it.end]
+            if not hit:
+                continue
+            i, j = hit[0], hit[-1] + 1
+            if clause.items[i].start > start or clause.items[j - 1].end < end:
+                return None
+            items = (*clause.items[:i], HOLE, *clause.items[j:])
+            return Site(text, block, index, items, clause.items[j - 1].end)
+    return None
 
 
-def _is_stale_quote(text: str, m: re.Match[str]) -> bool:
-    """``m`` itself is marked stale and its sentence supplies the transposed replacement."""
-    c_start, _ = _unit(text, m.start(), m.end(), CLAUSE_END)
-    s_start, s_end = _unit(text, m.start(), m.end(), SENTENCE_END)
-    replacement = re.compile(BAD_ASSIGNMENT + r"\s*" + TRANSPOSE, re.IGNORECASE)
-    return bool(
-        STALE_QUOTE.search(_flat(text[c_start:m.start()]) + " ")
-        and replacement.search(text, s_start, s_end)
-    )
+# Meta-text productions (see prose_parser for the clause grammar).  A match is
+# exempt only when its own clause -- or, for an anaphoric retraction, the next
+# clause -- is generated by one of these; nothing elsewhere on the line counts.
+FRAMING_VERBS = (
+    "cite claim assert state describe use treat assume say write present prove show "
+    "establish frame call regard consider"
+).split()
+FRAMING = words(*(f"{v} {v}s {v}d {v}ed {v}ing {v.removesuffix('e')}ing" for v in FRAMING_VERBS))
+NEG = Alt((words("never not forbid forbids forbidding avoid avoids avoiding"),
+           lambda it: isinstance(it, Token) and it.word.endswith(("n't", "n’t"))))
+ADV = lambda it: isinstance(it, Token) and it.word.endswith("ly")  # noqa: E731
+ANY_WORD = lambda it: isinstance(it, Token) and bool(it.word)  # noqa: E731
+COPULA = Seq((Opt(words("has have had")), words("is are was were be been")))
+RETRACTED = words("false retired withdrawn refuted retracted")
+P_C = Alt((words("p_c pc"), phrase("p c")))
+
+# "Never describe ... PSC as proved", "do not cite X as proving C", "forbids describing C".
+PROHIBITION = Seq((STAR, NEG, Opt(ADV), FRAMING, STAR, HOLE, STAR))
+# "The premise that C is withdrawn", '"C" and is false'.
+PREDICATED = Seq((STAR, HOLE, Opt(words("and")), COPULA, Opt(ADV), RETRACTED, STAR))
+# 'The target is no longer "C"'.
+NEGATED = Seq((STAR, COPULA, Alt((words("not"), phrase("no longer"))), HOLE, STAR))
+# Next clause: "that premise is withdrawn", "This claim was refuted".
+ANAPHOR = Seq((words("that this such"), Opt(words("a an")), Rep(ANY_WORD, 0, 2),
+               words("premise target claim statement assertion assumption"),
+               COPULA, Opt(ADV), RETRACTED, STAR))
+# "No stale C ...", "The stale C must instead be ...", "is not C but ...".
+STALE = Seq((STAR, Alt((words("stale old retired wrong incorrect not"), phrase("instead of"),
+                        words("replace replaces replaced"))), Opt(words("the a an")), HOLE, STAR))
+PARIKH = Seq((STAR, P_C, HOLE, P_C, STAR))
+REPLACEMENT = re.compile(BAD_ASSIGNMENT + r"\s*" + TRANSPOSE, re.IGNORECASE)
 
 
-def _is_retracted(text: str, m: re.Match[str]) -> bool:
-    """``m`` is governed by a framing negation, predicated false, or retracted anaphorically."""
-    c_start, c_end = _unit(text, m.start(), m.end(), CLAUSE_END)
-    _, n_end = _unit(text, c_end + 1, c_end + 1, CLAUSE_END) if c_end < len(text) else (c_end, c_end)
-    return bool(
-        NEGATED_FRAMING.search(_flat(text[c_start:m.start()]) + " ")
-        or RETRACTED_AFTER.search(_flat(text[m.end():c_end]))
-        or RETRACTED_NEXT.search(_flat(text[c_end + 1:n_end]))
+def _is_parikh_intertwiner(site: Site) -> bool:
+    return match(PARIKH, site.items)
+
+
+def _is_stale_quote(site: Site) -> bool:
+    """Marked stale in its own clause, with the transposed form later in its sentence."""
+    return match(STALE, site.items) and bool(REPLACEMENT.search(site.text, site.end, site.sentence_end))
+
+
+def _is_retracted(site: Site) -> bool:
+    return (
+        any(match(p, site.items) for p in (PROHIBITION, PREDICATED, NEGATED))
+        or match(ANAPHOR, site.next_clause)
     )
 
 
@@ -149,7 +150,7 @@ class Rule:
     name: str
     pattern: re.Pattern[str]
     message: str
-    exemptions: tuple[Callable[[str, re.Match[str]], bool], ...] = ()
+    exemptions: tuple[Callable[[Site], bool], ...] = ()
 
 
 RULES: tuple[Rule, ...] = (
@@ -228,15 +229,18 @@ def audit_file(path: Path, root: Path | None = None) -> list[str]:
     except UnicodeDecodeError:
         return []
     rel = (path.resolve().relative_to(root.resolve()) if root else path).as_posix()
+    blocks = parse(text)
+
+    def exempt(rule: Rule, m: re.Match[str]) -> bool:
+        site = locate(text, blocks, m.start(), m.end())
+        return bool(site and any(e(site) for e in rule.exemptions)) or _is_known_meta_line(rel, rule, text, m)
+
     return [
         f"{path}:{text.count(chr(10), 0, m.start()) + 1}: {rule.name}: {rule.message} "
         f"[matched: {_flat(m.group(0))!r}]"
         for rule in RULES
         for m in rule.pattern.finditer(text)
-        if not (
-            any(exempt(text, m) for exempt in rule.exemptions)
-            or _is_known_meta_line(rel, rule, text, m)
-        )
+        if not exempt(rule, m)
     ]
 
 
