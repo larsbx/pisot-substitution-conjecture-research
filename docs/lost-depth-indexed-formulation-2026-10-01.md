@@ -134,27 +134,7 @@ Diagnostics that did not complete, reported as such:
   `0 -> 1, 1 -> 2, 2 -> 022102`), keep a collar collision at the survey cap of
   radius 6 without a collapsing seed patch by level 6.
 
-The exploratory sweep `mojo/separation_radius_sweep.mojo` (not a census;
-exhaustive and deterministic) computes the separation radius with cap 12,
-crossed with collapse by level 12, under a collared-state budget of
-1,000,000. It completes on all 24,486 specimens with none capped or failed,
-so the 24 above resolve within the larger budget:
-
-| separation radius | 1 | 2 | 3 | 4 | 5 | 6 | 9 | survivors at 12 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| total-length class | 2,264 | 13,688 | 6,092 | 1,230 | 288 | 60 | 12 | 852 |
-| standing slice | 618 | 2,664 | 912 | 216 | 12 | 12 | 0 | 120 |
-
-The standing slice reproduces the published table of
-`docs/p1-overlap-collar-2026-09-16.md` §3.3. All 852 survivors at radius 12
-have a collapsing patch by level 12, no survivor lacks one, and no collapsing
-specimen resolves. The 12 specimens of the orbit above are exactly the
-specimens of radius 9 (the regression
-`test_a_non_collapsing_collision_can_need_radius_nine` pins the
-representative). So the coincidence of survivors with collapsing patches,
-which the radius-6 survey cap broke on this class, holds again at cap 12:
-those 12 exceed the survey cap, not because of periodicity. This is finite
-evidence at these caps only.
+The separation radius beyond the survey's cap is the subject of §9.
 
 ## 7. Exploratory bounded BPA sweep on the longest-image ≤ 4 slice
 
@@ -207,3 +187,36 @@ inconclusive specimens and for the whole class of §6.
 2. Decide whether finiteness already follows from every reachable overlap
    reaching a half-coincidence, as Sirvent–Solomyak Theorem 5.6 suggests
    (`docs/bpa-overlap-depth-literature-gate-2026-10-02.md` §6).
+
+## 9. Deterministic separation follow-up — implementation pending execution
+
+`mojo/separation_radius_total_length_sweep.mojo` surveys the same complete
+24,486-member class in corpus order. It reuses the reviewed occurrence and
+proper-power contracts of `psc.overlap_collar`; this is a replay extension,
+not a new recognizability diagnostic or a universal invariant. The prior
+literature gate and countermodel are recorded in
+`p1-overlap-collar-2026-09-16.md` (§3.2 and its literature references).
+
+Explicit budgets: overlap states 20,000; collared occurrence states
+2,000,000; separation radii 0–12 inclusive. Proper-power seed witnesses are
+searched through level 6, as in the existing survey. A witnessed collapse is
+reported as structurally nonseparating with its exact seed pair and level;
+it is not assigned a fictitious finite radius. Every remaining specimen is
+searched from radius zero, and only its first fully closed collision-free
+graph supplies a radius. A missing collapse witness proves nothing.
+
+Every specimen emits its image triple and outcome. Radii above 6 additionally
+emit the canonical relabelling/reversal representative; orbit totals follow
+in deterministic corpus order. State caps, radius exhaustion and other errors
+retain the specimen as inconclusive and force a nonzero exit. Histogram lines
+are partial unless the final `COMPLETE` receipt is reached. The dedicated
+workflow preserves the full log even on failure.
+
+**Execution status:** no new distribution or exceptional-orbit count is
+asserted yet. The local pinned Mojo installation could not fetch its conda
+packages in this environment. The radius-9 statement in §6 remains a
+single-representative probe until a successful complete run is archived and
+its distribution and exceptional representatives are transcribed here.
+The earlier 24 collar-cap failures remain inconclusive; raising a configured
+budget alone does not resolve them. #84, #138, #139 and general PSC remain
+open. No ledger, manuscript or theorem status is promoted.

@@ -40,9 +40,9 @@ numeration-addition-census = "mojo run -I . numeration_addition_census.mojo"
 numeration-conversion-census = "mojo run -I . numeration_conversion_census.mojo"
 coincidence-formula-census = "mojo run -I . coincidence_formula_census.mojo"
 swap-overlap-total-length-sweep = "mojo run -I . swap_overlap_total_length_sweep.mojo"
-separation-radius-sweep = "mojo run -I . separation_radius_sweep.mojo"
 bpa-total-length-sweep = "mojo run -I . bpa_total_length_sweep.mojo"
 
 # Kernel micro-benchmarks: both paths print the same checksum, so a faster
 # path that computes something else shows up as a differential, not a win.
 integer-vector-bench = "mojo run -I . integer_vector_bench.mojo"
+separation-radius-total-length-sweep = "mojo run -I . separation_radius_total_length_sweep.mojo"
