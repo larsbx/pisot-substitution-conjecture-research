@@ -155,3 +155,75 @@ def test_audit_rejects_psc_closed_premise(tmp_path: Path, text: str) -> None:
 def test_audit_accepts_psc_open_framing(tmp_path: Path, text: str) -> None:
     write(tmp_path, "ok.md", text)
     assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
+
+
+# Meta-text exemptions are scoped to the matched occurrence, never to a
+# keyword elsewhere on the line or in the paragraph.
+@pytest.mark.parametrize(
+    "text",
+    [
+        # Synthetic countermodel: "stale"/transpose present, but not marking the match.
+        "The synthetic countermodel is N_C = M_sigma with P = I. "
+        "No stale wording remains, unlike N_C = M_sigma^T drafts.",
+        "The synthetic countermodel is N_C = M_sigma; replace nothing, N_C = M_sigma^T is a typo.",
+        # Cycle target: negation governs another clause, or is not a framing negation.
+        "Do not cite this note; we prove no recurrent noncoincident cycle.",
+        "Do not cite this note, we prove there is no recurrent noncoincident cycle.",
+        "It is not hard to see there is no recurrent noncoincident cycle.",
+        "We prove no recurrent noncoincident cycle; the old target is false.",
+        "There is no recurrent noncoincident cycle, and the old bridge is false.",
+        # PSC premise: negation or retraction elsewhere in the paragraph.
+        "Do not cite this note; PSC is now proved.",
+        "PSC is proved, which is not surprising.",
+        "PSC is closed, and the old bridge is withdrawn.",
+        "Never mind the drafts.\nPSC is settled for all Pisot substitutions.",
+        # Unconditional PDS claim: "unconditionally" is not a conditional.
+        "Then the associated tiling dynamical system has pure discrete spectrum unconditionally.",
+    ],
+)
+def test_audit_rejects_claim_beside_unrelated_meta_text(tmp_path: Path, text: str) -> None:
+    write(tmp_path, "bad.md", text)
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 1
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "The synthetic countermodel is not N_C = M_sigma but N_C = M_sigma^T.",
+        r"The proved identity is P_C\,N_C = M_sigma\,P_C.",
+        "Do not cite BD/BK as proving no recurrent noncoincident cycles.",
+        "We don't claim there is no recurrent noncoincident cycle.",
+        "Earlier drafts targeted no recurrent noncoincident cycle. That target is retired.",
+        "- Never describe overlap productivity, G1b-2, concentration, general wedge "
+        "productivity, realization G0–G6, SCC Producer, or PSC as proved.",
+        "An earlier draft rested on the premise that PSC is closed; that premise is "
+        "withdrawn, since it contradicts the source map, which forbids describing PSC\n"
+        "as proved.",
+    ],
+)
+def test_audit_accepts_meta_text_governing_the_match(tmp_path: Path, text: str) -> None:
+    write(tmp_path, "ok.md", text)
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
+
+
+KNOWN_AUDIT_LINE = (
+    "| issue #151 | “General PSC is treated as closed for this project.” |"
+)
+
+
+def test_audit_accepts_exact_known_meta_line(tmp_path: Path) -> None:
+    write(tmp_path, "docs/audit-2026-09-27.md", KNOWN_AUDIT_LINE + "\n")
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 0
+
+
+@pytest.mark.parametrize(
+    ("rel", "text"),
+    [
+        ("docs/audit-2026-09-27.md", KNOWN_AUDIT_LINE + " Hence PSC is proved.\n"),
+        ("docs/audit-2026-09-27.md", KNOWN_AUDIT_LINE + "\nPSC is proved.\n"),
+        ("docs/other.md", KNOWN_AUDIT_LINE + "\n"),
+    ],
+)
+def test_audit_known_meta_line_is_exact(tmp_path: Path, rel: str, text: str) -> None:
+    write(tmp_path, rel, text)
+    assert audit_manuscript.main(["--root", str(tmp_path)]) == 1
