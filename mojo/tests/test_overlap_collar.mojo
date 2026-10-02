@@ -218,6 +218,32 @@ def test_a_collision_surviving_every_radius_comes_from_a_collapsing_patch() rais
     assert_true(caught)
 
 
+def late_separating_sigma() -> List[List[Int]]:
+    """`0 -> 1, 1 -> 2, 2 -> 022102`: PIP with total image length 8."""
+    var a0: List[Int] = [1]
+    var a1: List[Int] = [2]
+    var a2: List[Int] = [0, 2, 2, 1, 0, 2]
+    var sigma = List[List[Int]]()
+    sigma.append(a0^)
+    sigma.append(a1^)
+    sigma.append(a2^)
+    return sigma^
+
+
+def test_a_non_collapsing_collision_can_need_radius_nine() raises:
+    """A collision can outlive radius 8 without any collapsing patch: here no
+    seed patch is a proper power through level 14, one collision survives at
+    radius 8, and radius 9 resolves every ancestry."""
+    var sigma = late_separating_sigma()
+    var tables = build_seed_overlap_tables(sigma)
+    var graph = build_seed_overlap_graph_from_tables(tables, 20000)
+    assert_equal(graph.size(), 31)
+    assert_equal(collapsing_seed_pair_count(sigma, 14), 0)
+    assert_equal(separation_radius(tables, graph, 8), -1)
+    assert_equal(len(unresolved_collisions(build_collared_graph(tables, graph, 8))), 1)
+    assert_equal(separation_radius(tables, graph, 12), 9)
+
+
 def test_fail_closed() raises:
     var sigma = determinant_two_sigma()
     var tables = build_seed_overlap_tables(sigma)
@@ -313,8 +339,10 @@ def main() raises:
     print("[PASS] test_most_collared_tiles_are_legal_factors")
     test_a_collision_surviving_every_radius_comes_from_a_collapsing_patch()
     print("[PASS] test_a_collision_surviving_every_radius_comes_from_a_collapsing_patch")
+    test_a_non_collapsing_collision_can_need_radius_nine()
+    print("[PASS] test_a_non_collapsing_collision_can_need_radius_nine")
     test_fail_closed()
     print("[PASS] test_fail_closed")
-    print("6 overlap-collar Mojo tests passed.")
+    print("7 overlap-collar Mojo tests passed.")
     require_claim("PeriodicPatchCollar")
     require_claim("FiniteCollarDeath")
