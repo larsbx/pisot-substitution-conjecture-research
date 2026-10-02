@@ -104,7 +104,7 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "AllSeedOverlapProductivity": (P, "for every PIP substitution every overlap reachable from every swap seed is productive",
                                    "open conjectural gate, stronger than the one-seed gate; manuscript Open Problem 5.35 (all-vertex form)", (), ()),
     "G1OverlapRoute": (T, "productivity of the seed-patch overlap graph from every swap seed gives finite BPA, by bounding every reachable state by 2 beta^D ell_max",
-                       f"{MANUSCRIPT}, Proposition 5.46; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1", ("AllSeedOverlapProductivity", "SwapOverlapFiniteness"), ()),
+                       f"{MANUSCRIPT}, Proposition 5.46; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1; mechanism of Sirvent-Solomyak 2002, Theorem 5.6 (docs/bpa-overlap-depth-literature-gate-2026-10-02.md)", ("AllSeedOverlapProductivity", "SwapOverlapFiniteness"), ()),
     "CoincidenceDensityOne": (T, "seedwise overlap productivity gives coincidence density one and a dense eventual-coincidence good set",
                               f"{MANUSCRIPT}, Lemma 5.36; PR #77", ("OverlapProductivity", "SwapOverlapFiniteness"), ("status:proved",)),
     "AllStatesProductiveViaOverlaps": (T, "under seedwise overlap productivity every reachable balanced-pair state is productive",
@@ -143,7 +143,7 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
 }
 
 STATUS_NOTES = {
-    "G1": "the conditional assembly from G1b-1 and G1b-2 is proved; G1 itself is an open conjectural gate",
+    "G1": "the conditional assembly from G1b-1 and G1b-2 is proved; G1 itself is an open conjectural gate; G1 also follows from AllSeedOverlapProductivity by G1OverlapRoute, which this conjunctive ledger records as a separate node rather than a second way to establish G1",
     "SCCProducer": "the implication from G1, the sink-SCC reduction, and C2 is proved; SCC Producer / C1 is an open theorem target",
     "CoincidenceDensityOne": "the equivalence of Lemma 5.36 is repository-proved; the ledger node is its conclusion, which needs overlap productivity",
 }

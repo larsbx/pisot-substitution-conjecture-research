@@ -10,6 +10,18 @@ and records Proposition 1 in the ledger as a conditional theorem whose open
 premise is all-seed overlap productivity (§5). Proposition 1 is manuscript
 Proposition 5.46 (§5.11 of `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`).
 
+## 0. Prior art
+
+The mechanism is Sirvent–Solomyak (2002), Theorem 5.6: termination of the
+balanced-pair algorithm from a prefix of the fixed point is equivalent to a
+uniform bound on the gaps between half-coincidences, and their proof of that
+bound from overlap termination is the depth argument used below. The
+conclusion is close to their Theorem 5.1 and to Akiyama–Barge–Berthé–Lee–
+Siegel (2015), Theorem 5.3. What is new here is the transfer to the
+repository's swap seeds, legal or not, on the unconditionally finite
+seed-patch overlap graph, with an explicit bound. The stop/go review is
+`docs/bpa-overlap-depth-literature-gate-2026-10-02.md`.
+
 ## 1. Setting
 
 `sigma` is a primitive irreducible Pisot substitution on `A = {0,1,2}` with
