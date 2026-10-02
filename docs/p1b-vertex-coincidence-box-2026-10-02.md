@@ -134,7 +134,29 @@ inflation of a finite set of overlaps that contains every overlap with
 
 ## 4. Census
 
-CENSUS_PLACEHOLDER
+`mojo/vertex_coincidence_census.mojo` (pixi task `vertex-coincidence-census`)
+runs the exact decision on every specimen. It folds in canonical order on
+`parallel_fold`, so the result does not depend on the worker count.
+
+| Domain | specimens | PPVC holds for every `r` | capped | largest box graph | recurrent vertices (max / total) | largest `K_V` |
+| --- | --- | --- | --- | --- | --- | --- |
+| standing corpus (images of length <= 3) | 4,554 | 4,554 | 0 | 249,385 (`6 11 13`) | 2,676 (`4 11 21`) / 1,174,788 | 17 (`1 23 21`) |
+| total image length <= 8 | 24,486 | 24,486 | 0 | 1,342,201 (`1 38 56`) | 14,938 (`1 254 4`) / 7,891,548 | 25 (`1 38 56`) |
+
+Wall-clock times on 4 workers were 7 and 49 minutes. The uncommitted
+floating-point oracle of §3 reproduces the standing-corpus row
+independently: no failure, 1,174,788 recurrent vertices in total, at most
+2,676 per specimen, deepest recurrent depth 17.
+
+*Finite-domain theorem.* For every PIP substitution on three letters with
+images of length at most 3, or with total image length at most 8, and for
+every `r >= 1`, any two `Phi^r`-fixed tilings with a common centre and
+integral centre offset share a vertex. Hence no strict zipper is reachable
+from any swap seed (Corollary B′). For the first domain the balanced-pair
+builds already certify G1 directly; for the second domain Remark 3 of the
+depth note already gives G1 through all-seed overlap productivity. What is new
+is the periodic-pair statement for **all** `r`, not only the seed-reachable
+part, and the uniform depth `K_V`.
 
 ## 5. What this does not establish
 
