@@ -254,6 +254,23 @@ negative-control tests for truncation, omissions, inconclusive records and
 changed histogram counts. This checker validates receipt integrity and
 power witnesses; it does not independently recompute separation radii.
 
+Two further checks, from a separate local run:
+
+- **Independent recomputation.** The receipt checker above validates the
+  log's integrity and power witnesses but does not recompute radii. An
+  independently written exploratory driver (radius cap 12, collapse level
+  12, 1,000,000 collared states; commit `be8eb9c`, later removed in favour of
+  the canonical sweep) recomputed them on all 24,486 specimens with none
+  capped or failed. It gave the same radius distribution, the same 12
+  radius-9 specimens, and 852 survivors at radius 12, every one with a
+  collapsing patch. A local run of the canonical sweep also reproduced the
+  distribution above, ending with the same `COMPLETE` receipt.
+- **The 24 collar-cap specimens of §6.** All 24 specimens whose collar
+  diagnostics exhaust the 200,000-state cap of the swap-overlap survey are
+  decided by the canonical sweep under its 2,000,000-state budget: 12
+  separate at radius 2 and 12 at radius 3, and none is structurally
+  nonseparating. In the swap-overlap survey itself they remain inconclusive.
+
 This completes the separation follow-up only. The earlier pump-lift
 failures in §6 were not re-run by this dedicated survey. Absence of a
 collapsing patch through level `14` remains the earlier single-specimen
