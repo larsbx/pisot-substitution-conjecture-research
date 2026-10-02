@@ -119,6 +119,16 @@ Change the ledger entry and every surface in the same commit.
 - `bpa-overlap-depth-literature-gate-2026-10-02.md` — stop/go literature gate
   for that argument: the mechanism is Sirvent–Solomyak (2002), Theorem 5.6;
   novelty is narrowed to the swap-seed transfer and the explicit bound.
+- `p1b-strict-zipper-periodic-pair-2026-10-02.md` — #139 research note
+  (unreviewed): two-sided alignment weakening of Proposition 5.47, and the
+  reformulation of a strict zipper as two `Phi^r`-fixed legal tilings with a
+  common centre and no common vertex; isolates the open target
+  PeriodicPairVertexCoincidence; exact certificate `mojo/psc/periodic_pair.mojo`.
+  Excludes no strict zipper.
+- `p1b-periodic-pair-fibre-literature-gate-2026-10-02.md` — stop/go gate for
+  the fibre identification: Proposition F (the Theorem B pair lies in one
+  fibre of the maximal equicontinuous factor) proved under hypothesis (R),
+  return module equal to `Z^3`; decision "proceed, conditional on (R)".
 
 The missing `PSC_PROOF_v16` file is a historical provenance fact. It is not a
 current dependency for G1b-1 or degree-two carrier-span propagation.
