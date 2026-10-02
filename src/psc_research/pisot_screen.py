@@ -67,9 +67,27 @@ def degree(coeffs: Sequence[int]) -> int:
 
 def evaluate(coeffs: Sequence[Fraction | int], x: Fraction) -> Fraction:
     """Horner evaluation."""
+    # Optimization: Defer Fraction instantiation to avoid overhead.
+    # When all coefficients are integers and x is a Fraction, we can evaluate Horner's
+    # method entirely with integers by tracking numerator and denominator powers.
+    if type(x) is Fraction:
+        try:
+            n = x.numerator
+            d = x.denominator
+            acc = 0
+            d_pow = 1
+            for c in reversed(coeffs):
+                if type(c) is not int:
+                    raise TypeError
+                acc = acc * n + c * d_pow
+                d_pow *= d
+            return Fraction(acc, d_pow // d) if d_pow > 1 else Fraction(acc)
+        except TypeError:
+            pass
+
     acc = Fraction(0)
     for c in reversed(coeffs):
-        acc = acc * x + Fraction(c)
+        acc = acc * x + c
     return acc
 
 
