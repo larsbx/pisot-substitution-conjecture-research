@@ -248,6 +248,11 @@ bad SCC
 
 Thus neither route has to prove the other route's internal theorem.
 
+Every order passes through the aligned branch. On 3,264 of 4,554 corpus
+specimens every swap seed meets all three letter pairs at offset zero, so
+there the aligned branch is the prefix strong coincidence condition, open for
+three letters (`docs/p1a-seed-aligned-obligation-2026-10-02.md`).
+
 A complete proof can proceed in either order.
 
 **A-first**

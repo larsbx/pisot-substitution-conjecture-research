@@ -25,6 +25,9 @@ TOML and regenerate rather than hand-editing the Markdown.
    theorem targets. Its A-altE priority is superseded by
    `p1a-alternating-e-transport-gate-2026-10-02.md`: the good-edge transport
    mechanism is not forced (66 of 294 alternating-E corpus specimens).
+   `p1a-seed-aligned-obligation-2026-10-02.md` shows the one-seed premise
+   does not shrink the aligned branch: on 3,264 corpus specimens it is the
+   ternary prefix strong coincidence condition.
 4. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
