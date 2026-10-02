@@ -380,10 +380,6 @@ def test_the_long_images_extend_the_short_images_in_order() raises:
             assert_true(word_less(long[i - 1], long[i]))
 
 
-def max_image_length_of(sigma: List[List[Int]]) -> Int:
-    return max_int(max_int(len(sigma[0]), len(sigma[1])), len(sigma[2]))
-
-
 def test_the_total_length_corpus_contains_the_standing_corpus() raises:
     """24486 PIP specimens with total image length at most 8; slicing by the
     longest image gives 72 / 4554 / 14670 / 22080 / 24486, and the slice at 3
@@ -401,7 +397,7 @@ def test_the_total_length_corpus_contains_the_standing_corpus() raises:
             <= TOTAL_LENGTH_CAP
         )
         assert_true(is_pip(Mat3(substitution_incidence(spec.sigma))))
-        var longest = max_image_length_of(spec.sigma)
+        var longest = spec.longest_image()
         slices[longest] += 1
         if longest <= MAX_IMAGE_LENGTH:
             assert_equal(spec.label(), standing[seen].label())

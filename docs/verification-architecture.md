@@ -90,7 +90,7 @@ OverlapProductivity + SwapOverlapFiniteness => CoincidenceDensityOne,
 CoincidenceDensityOne + DensityToPDSBridge (imported) => PDSOverlapRoute,
 ```
 
-checked in both directions by `MCLedgerOverlapGateAssumed` (reaches `PDSOverlapRoute`, asserts `PDS`, `G1`, `SCCProducer` not established) and by `MCLedgerOpen` / `MCLedgerImports` (assert `PDSOverlapRoute` not established). The finite-BPA route
+checked in both directions by `MCLedgerOverlapGateAssumed` (reaches `PDSOverlapRoute`, asserts `PDS`, `G1`, `SCCProducer` not established) and by `MCLedgerOpen` / `MCLedgerImports` (assert `PDSOverlapRoute` not established). The overlap-depth route `AllSeedOverlapProductivity + SwapOverlapFiniteness => G1OverlapRoute` is checked by `MCLedgerAllSeedOverlapGateAssumed` (reaches `G1OverlapRoute`, asserts `G1b2RenewalFiniteness` and `PDS` not established); like the PDS routes, it is a separate node because ledger dependencies are conjunctive. The finite-BPA route
 
 ```text
 C4 => C3-local => C2 => SCCProducer,

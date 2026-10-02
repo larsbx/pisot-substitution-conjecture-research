@@ -123,6 +123,21 @@ primitive + Pisot spectrum
 => finite BPA (G1).
 ```
 
+## Overlap-depth route to G1
+
+**Conditional theorem** (manuscript Proposition 5.46; `docs/bpa-termination-by-overlap-depth-2026-10-02.md`, Proposition 1; mechanism of Sirvent–Solomyak 2002, Theorem 5.6, per `docs/bpa-overlap-depth-literature-gate-2026-10-02.md`). G1 has a second sufficient premise on the overlap side:
+
+```text
+primitive irreducible Pisot
+=> bounded discrepancy                                   [PROVED]
+=> finite seed-patch overlap graph                       [PROVED]
+=> every swap seed has only productive reachable overlaps [OPEN]
+=> every reachable state has length <= 2 beta^D ell_max   [PROVED implication]
+=> finite BPA (G1).
+```
+
+`D` is the largest first-coincidence depth of the overlap graph. Balanced cuts are simultaneous tile boundaries because the coordinates of `ell` are `Q`-independent, and every overlap at level `n - D` has a coincident descendant inside its `beta^D`-scaled region, so consecutive cuts are at most `2 beta^D ell_max` apart. No realization hypothesis is needed: every reachable state is a gap of a swap pair `(sigma^n(ab), sigma^n(ba))`. The premise is the all-seed form, stronger than the one-seed gate of Theorem 5.38, so this arrow does not shorten the PDS route; it makes G1 a consequence of the overlap programme rather than an independent obligation.
+
 ## G1b-2 — renewal finiteness
 
 **OPEN; equivalent to G1 after G1b-1. Not required by Theorem 5.38.**
@@ -184,7 +199,7 @@ The exact 4,554-member corpus has fail-closed finite-domain certificates excludi
 
 ## Relation to the overlap route
 
-A proof of general overlap productivity is stronger than needed to bypass G1 and, under G1, supplies productivity of all reachable BPA states. Therefore the overlap theorem can feed SCC Producer, but the finite-BPA carrier route is not required to prove Theorem 5.38.
+A proof of general overlap productivity is stronger than needed to bypass G1. In its all-seed form it also implies G1 (the overlap-depth route above) and supplies productivity of all reachable BPA states. Therefore the overlap theorem can feed SCC Producer, but the finite-BPA carrier route is not required to prove Theorem 5.38.
 
 # Supporting structural machinery
 
@@ -260,7 +275,7 @@ Every proposed completion proof must preserve:
 2. **P1a — aligned branch (#138).** Prove the ternary two-sided strong-coincidence statement needed to eliminate every aligned bad SCC, or reduce it to a strictly smaller named theorem. Keep the Barge–Diamond two-letter/general-existence scopes distinct.
 3. **P1b — strict-zipper branch (#139).** The literature transfer audit is complete. Define the full adelic prefix-difference cylinder, then prove a uniform `AdelicPeriodicOffsetHitting` recurrence/coverage lemma for realized closed SCCs.
 4. **P1 — overlap productivity (#84).** Assemble P1a and P1b, or replace them with one stronger theorem excluding every bad closed irreducible SCC. This remains the only open premise on the current shortest PDS route.
-5. **P2 — G1b-2.** Continue as a stronger independent theorem on BPA finiteness, with the non-unimodular and label/order firewalls intact.
+5. **P2 — G1b-2.** Continue as a stronger theorem on BPA finiteness, with the non-unimodular and label/order firewalls intact. G1 now also follows from all-seed overlap productivity (overlap-depth route), so G1b-2 is one of two sufficient premises for G1.
 6. **P3 — concentration and wedge productivity.** Continue as the alternative finite-BPA/SCC route only when new invariants add information beyond child counts and full wedge span.
 7. **P4 — realization bridge.** Discharge G0–G6 only if pursuing the coincidence-rank/collar certification route.
 

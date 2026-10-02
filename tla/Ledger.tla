@@ -10,6 +10,7 @@ EXTENDS ProofArchitecture
 ResultSet == {
     "AlgebraicEmbedding",
     "AlignedOverlapsAreStrongCoincidence",
+    "AllSeedOverlapProductivity",
     "AllStatesProductiveViaOverlaps",
     "BoundaryCoincidenceCriterion",
     "C2",
@@ -27,6 +28,7 @@ ResultSet == {
     "EndpointCore",
     "G1",
     "G1FromRenewal",
+    "G1OverlapRoute",
     "G1b1BoundedDiscrepancy",
     "G1b2RenewalFiniteness",
     "GaloisWedgePropagation",
@@ -74,6 +76,7 @@ ResultSet == {
 RequiresDef == [r \in ResultSet |->
     CASE r = "AlgebraicEmbedding" -> {"UniqueDecodability"}
       [] r = "AlignedOverlapsAreStrongCoincidence" -> {}
+      [] r = "AllSeedOverlapProductivity" -> {}
       [] r = "AllStatesProductiveViaOverlaps" -> {"OverlapProductivity", "SwapOverlapFiniteness"}
       [] r = "BoundaryCoincidenceCriterion" -> {}
       [] r = "C2" -> {"C3Local"}
@@ -91,6 +94,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "EndpointCore" -> {}
       [] r = "G1" -> {"G1FromRenewal"}
       [] r = "G1FromRenewal" -> {"G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"}
+      [] r = "G1OverlapRoute" -> {"AllSeedOverlapProductivity", "SwapOverlapFiniteness"}
       [] r = "G1b1BoundedDiscrepancy" -> {}
       [] r = "G1b2RenewalFiniteness" -> {"G1b1BoundedDiscrepancy"}
       [] r = "GaloisWedgePropagation" -> {}
@@ -151,6 +155,7 @@ ProvedDef == {
     "EndpointCore",
     "G1",
     "G1FromRenewal",
+    "G1OverlapRoute",
     "G1b1BoundedDiscrepancy",
     "GaloisWedgePropagation",
     "GlobalEndpointSync",
@@ -201,6 +206,9 @@ WithdrawnDef == {
 
 NoAssumptions == {}
 ImportsAssumed == ImportedDef
+AllSeedOverlapGateAssumed == {
+    "AllSeedOverlapProductivity"
+}
 G1AndC4 == {
     "G1",
     "C4"
@@ -231,6 +239,7 @@ SpectralGateAssumed == {
 (* lists those its assumptions leave unreachable; TLC then checks the closure.  *)
 AlgebraicEmbeddingNotEstablished == "AlgebraicEmbedding" \notin established
 AlignedOverlapsAreStrongCoincidenceNotEstablished == "AlignedOverlapsAreStrongCoincidence" \notin established
+AllSeedOverlapProductivityNotEstablished == "AllSeedOverlapProductivity" \notin established
 AllStatesProductiveViaOverlapsNotEstablished == "AllStatesProductiveViaOverlaps" \notin established
 BoundaryCoincidenceCriterionNotEstablished == "BoundaryCoincidenceCriterion" \notin established
 C2NotEstablished == "C2" \notin established
@@ -248,6 +257,7 @@ DominantK2SourceNotEstablished == "DominantK2Source" \notin established
 EndpointCoreNotEstablished == "EndpointCore" \notin established
 G1NotEstablished == "G1" \notin established
 G1FromRenewalNotEstablished == "G1FromRenewal" \notin established
+G1OverlapRouteNotEstablished == "G1OverlapRoute" \notin established
 G1b1BoundedDiscrepancyNotEstablished == "G1b1BoundedDiscrepancy" \notin established
 G1b2RenewalFinitenessNotEstablished == "G1b2RenewalFiniteness" \notin established
 GaloisWedgePropagationNotEstablished == "GaloisWedgePropagation" \notin established

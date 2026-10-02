@@ -133,6 +133,23 @@ realizable labelled first-return words
 
 This programme is no longer completion-critical for Theorem 5.38, but it remains the canonical route to the stronger finite-BPA theorem.
 
+### All-seed overlap productivity
+
+**Status: OPEN.** Every overlap reachable from every swap seed is productive. This is the all-vertex form of manuscript Open Problem 5.35 and is stronger than the one-seed gate of Theorem 5.38.
+
+### Overlap-depth route to finite BPA
+
+**Status:** Conditional theorem (manuscript Proposition 5.46; `docs/bpa-termination-by-overlap-depth-2026-10-02.md`, Proposition 1).
+
+```text
+all-seed overlap productivity            [OPEN]
++ finite seed-patch overlap graph         [PROVED]
+=> every reachable state has geometric length <= 2 beta^D ell_max
+=> G1.
+```
+
+`D` is the largest first-coincidence depth of the graph. The proof uses that balanced cuts are simultaneous tile boundaries (`Q`-independence of `ell`) and that every overlap at level `n - D` has a coincident descendant inside its `beta^D`-scaled region; it needs no realization hypothesis. G1 therefore follows from either G1b-2 or all-seed overlap productivity.
+
 ## D. Parallel programme — SCC Producer under G1
 
 Assume G1. Then nonproductivity reduces to a finite closed/sink recurrent noncoincident carrier.

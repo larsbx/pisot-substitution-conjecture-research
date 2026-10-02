@@ -110,6 +110,15 @@ Change the ledger entry and every surface in the same commit.
   parallel depth-indexed ladder (`PROOF_LADDER.md`, `SWEEP_RESULTS.md`, ...),
   marks every claim attributed to them unverified and uncited, and identifies
   the lost 24,486-specimen sweep domain as total image length at most 8.
+- `bpa-termination-by-overlap-depth-2026-10-02.md` — conditional bounded-gap
+  argument: a productive seed-patch overlap graph of depth `D` bounds every
+  balanced-pair state by `2 beta^D ell_max`; finite-domain consequences for
+  `0 -> 1, 1 -> 222, 2 -> 0222` and the total-length class. Recorded in the
+  ledger as the conditional theorem `G1OverlapRoute` (manuscript Proposition
+  5.46).
+- `bpa-overlap-depth-literature-gate-2026-10-02.md` — stop/go literature gate
+  for that argument: the mechanism is Sirvent–Solomyak (2002), Theorem 5.6;
+  novelty is narrowed to the swap-seed transfer and the explicit bound.
 
 The missing `PSC_PROOF_v16` file is a historical provenance fact. It is not a
 current dependency for G1b-1 or degree-two carrier-span propagation.

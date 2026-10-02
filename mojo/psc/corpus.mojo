@@ -10,9 +10,10 @@ indices, the images and the incidence matrix so that no driver recomputes
 them. A specimen's `label` (`i j k`) and `json_fields` are the replayable
 identity printed by every diagnostic line.
 
-`pip_corpus_total_length` widens the same survey to every PIP substitution
-whose three images have total length at most `TOTAL_LENGTH_CAP` (24486
-specimens at 8), the domain of a lost earlier sweep
+`pip_corpus_total_length` enumerates a wider class for exploratory sweeps,
+not for censuses: every PIP substitution whose three images have total length
+at most `TOTAL_LENGTH_CAP` (24486 specimens at 8), the domain of a lost
+earlier sweep
 (docs/lost-depth-indexed-formulation-2026-10-01.md). Its image words extend
 `image_words` in the same order, so a standing specimen keeps its label there.
 
@@ -64,6 +65,14 @@ struct Specimen(Copyable, Movable):
         self.k = k
         self.sigma = sigma^
         self.incidence = incidence^
+
+    def longest_image(self) -> Int:
+        """`max_a |sigma(a)|`, the slicing key of the total-length corpus."""
+        var longest = 0
+        for a in range(len(self.sigma)):
+            if len(self.sigma[a]) > longest:
+                longest = len(self.sigma[a])
+        return longest
 
     def label(self) -> String:
         """`i j k`: the image indices, as every diagnostic line prints them."""

@@ -313,6 +313,29 @@ anchor = "| Endpoint-aligned overlaps = strong-coincidence boundary cases |"
 window_lines = 0
 
 [[claim]]
+name = "AllSeedOverlapProductivity"
+status = "open"
+aliases = ["all-seed overlap productivity"]
+[[claim.surfaces]]
+path = "tla/Ledger.tla"
+anchor = '"AllSeedOverlapProductivity"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "absent"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| AllSeedOverlapProductivity |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| All-seed overlap productivity |"
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/conjecture-ledger.md"
+anchor = "### All-seed overlap productivity"
+window_lines = 2
+
+[[claim]]
 name = "AllStatesProductiveViaOverlaps"
 status = "conditional"
 [[claim.surfaces]]
@@ -611,6 +634,33 @@ expect = "present"
 path = "docs/ledger-index.md"
 anchor = '| G1FromRenewal |'
 window_lines = 0
+
+[[claim]]
+name = "G1OverlapRoute"
+status = "conditional"
+aliases = ["overlap-depth route to finite BPA"]
+[[claim.surfaces]]
+path = "tla/Ledger.tla"
+anchor = '"G1OverlapRoute"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| G1OverlapRoute |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| All-seed overlap productivity implies finite BPA |"
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/conjecture-ledger.md"
+anchor = "### Overlap-depth route to finite BPA"
+window_lines = 2
+[[claim.surfaces]]
+path = "docs/proof-ladder.md"
+anchor = "## Overlap-depth route to G1"
+window_lines = 2
 
 [[claim]]
 name = "G1b1BoundedDiscrepancy"

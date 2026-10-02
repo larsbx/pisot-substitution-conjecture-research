@@ -3,7 +3,7 @@
 from std.testing import assert_equal, assert_false, assert_true
 from psc.bpa import build, nonproductive_states, substitution_incidence
 from finite_linear_algebra.mat3 import Mat3
-from psc.claim_tests import require_claim
+from psc.claim_tests import require_claim, require_contract
 from psc.overlap_obstruction import common_child_start_count, nonproductive_sink_sccs
 from psc.overlap_seed_patch import (
     OverlapState,
@@ -371,6 +371,37 @@ def test_the_perron_cache_keeps_refusing_after_a_failed_build() raises:
     assert_equal(cache.distinct_matrices(), 1)
 
 
+def cube_image_sigma() -> List[List[Int]]:
+    """`0 -> 1, 1 -> 222, 2 -> 0222`: PIP, determinant 3, total image length 8."""
+    var a: List[Int] = [1]
+    var b: List[Int] = [2, 2, 2]
+    var c: List[Int] = [0, 2, 2, 2]
+    var sigma = List[List[Int]]()
+    sigma.append(a^)
+    sigma.append(b^)
+    sigma.append(c^)
+    return sigma^
+
+
+def test_the_cube_image_specimen_has_a_productive_depth_19_overlap_graph() raises:
+    """The finite certificate behind the bounded-gap termination argument of
+    docs/bpa-termination-by-overlap-depth-2026-10-02.md: the overlap graph
+    from all three swap seeds is finite, uncapped and productive, with
+    maximum first-coincidence depth exactly 19."""
+    var tables = build_seed_overlap_tables(cube_image_sigma())
+    var graph = build_seed_overlap_graph_from_tables(tables, 20000)
+    assert_false(graph.capped)
+    assert_equal(graph.size(), 1142)
+    assert_equal(len(nonproductive_overlap_states(graph)), 0)
+    var depths = first_coincidence_depths(graph)
+    var worst = 0
+    for v in range(len(depths)):
+        assert_true(depths[v] >= 0)
+        if depths[v] > worst:
+            worst = depths[v]
+    assert_equal(worst, 19)
+
+
 def main() raises:
     test_perron_order_is_exact_on_basic_elements()
     print("[PASS] test_perron_order_is_exact_on_basic_elements")
@@ -398,7 +429,10 @@ def main() raises:
     print("[PASS] test_the_certified_domain_ends_at_column_sum_six")
     test_the_perron_cache_keeps_refusing_after_a_failed_build()
     print("[PASS] test_the_perron_cache_keeps_refusing_after_a_failed_build")
-    print("13 seed-patch-overlap Mojo tests passed.")
+    test_the_cube_image_specimen_has_a_productive_depth_19_overlap_graph()
+    print("[PASS] test_the_cube_image_specimen_has_a_productive_depth_19_overlap_graph")
+    print("14 seed-patch-overlap Mojo tests passed.")
     require_claim("SwapOverlapFiniteness")
     require_claim("AlignedOverlapsAreStrongCoincidence")
     require_claim("BoundaryCoincidenceCriterion")
+    require_contract("0 -> 1, 1 -> 222, 2 -> 0222 has an uncapped productive seed-patch overlap graph of 1142 states with maximum first-coincidence depth 19")

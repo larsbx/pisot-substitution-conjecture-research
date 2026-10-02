@@ -47,7 +47,7 @@ automatically. In particular, Level 3 here presupposes Level 2, so no
 | Level 3 "computationally closed for all 24,486 substitutions with \|σ\| ≤ 8 via a 2-step criterion" | **Unverified; wording rejected.** The 2-step criterion's definition is lost. Under hypothesis-firewall item 8 of `docs/proof-ladder.md`, a finite sweep is finite-domain evidence and cannot close a level. The domain is recovered (§4). |
 | "Joint full-support lemma", false by Tribonacci; remaining gap stated as joint-support growth | **Counterexample reproduced** (§5). The lemma plays no role on this repository's routes: the bad-SCC normal form already has `rank_Q(V_S) = \|A\|`. |
 | "S-child" statement: child support = supp σ(x) ∪ supp σ(y) | **Elementary, to be re-derived where used:** σ(xy) = σ(x)σ(y), so supp σ(xy) = supp σ(x) ∪ supp σ(y). Which graph's "child" was meant is lost. |
-| Level 2 "closed for ℤ-independent substitutions with max \|σ\| ≤ 4" (Thm 9.28, chain 9.26a–j) | **Unverified and suspect.** It adds ℤ-independence as a hypothesis, which firewall item 2 forbids, and it conflicts with G1b-2 remaining open. It may descend from the retracted inference "UD ⇒ bounded padding ⇒ finite BPA" (see `docs/completion-ledger-2026-09-11.md`); this is a conjecture about provenance, not a finding. If it is ever reconstructed, it can only be a restricted-class result inside G1b-2. |
+| Level 2 "closed for ℤ-independent substitutions with max \|σ\| ≤ 4" (Thm 9.28, chain 9.26a–j) | **Unverified and suspect.** It adds ℤ-independence as a hypothesis, which firewall item 2 forbids, and it conflicts with G1b-2 remaining open. It may descend from the retracted inference "UD ⇒ bounded padding ⇒ finite BPA" (see `docs/completion-ledger-2026-09-11.md`); this is a conjecture about provenance, not a finding. If it is ever reconstructed, it can only be a restricted-class result inside G1b-2. On the total-length ≤ 8 part of that slice, finite `B_sigma` holds for every specimen as a finite-domain consequence of `docs/bpa-termination-by-overlap-depth-2026-10-02.md` (Proposition 1 with the exact overlap verdicts of §6), including the 120 whose direct builds exhaust the budget of §7. The recorded theorem and its proof remain lost, and nothing is claimed beyond that class. |
 | 4,554-PIP `psc_suite` run | Matches this repository's standing corpus (`mojo/psc/corpus.mojo`). |
 
 ## 4. Recovered sweep domain
@@ -65,11 +65,14 @@ The standing 4,554 corpus is exactly the max-image ≤ 3 slice: total length 9
 adds no member, because images of lengths (3,3,3) are constant-length, so
 β = 3 and the incidence polynomial is reducible.
 
-**Evidence class:** oracle-only. The table was computed with the existing
-Python screen `src/psc_research/pip_screen.py` (`mat`, `charpoly`, `primitive`,
-`irreducible`, `pisot`) by enumerating every image triple with
-Σ_a |σ(a)| ≤ 8. It has no canonical Mojo counterpart yet; until it does, it is
-a recovery aid and not a repository census.
+**Evidence class:** exact finite count, replayable in Mojo. The canonical
+enumeration is `psc.corpus.pip_corpus_total_length`, and the regression
+`test_the_total_length_corpus_contains_the_standing_corpus` in
+`mojo/tests/test_census_library.mojo` pins the total, every cumulative slice,
+and the max-image ≤ 3 slice's identity with the standing corpus, label for
+label. The Python screen `src/psc_research/pip_screen.py` is the
+independently written oracle and gives the same counts. The class is a corpus
+for exploratory sweeps, not for censuses (§6).
 
 ## 5. Primitivity and joint-support exponents on the standing corpus
 
@@ -89,15 +92,19 @@ conditions, but it does not remove the obstruction on this repository's
 routes: a bad closed SCC for σ, sampled every k steps, is still a bad closed
 recurrent structure for σ^k.
 
-## 6. Overlap census over the recovered domain
+## 6. Exploratory overlap sweep over the recovered domain
 
 **Evidence class:** finite-domain evidence on the stated class only. It does
 not reconstruct the lost 2-step criterion, does not close any level, and says
 nothing about substitutions outside the class.
 
-`mojo/swap_overlap_census_total_length.mojo` runs the survey of
+`mojo/swap_overlap_total_length_sweep.mojo` runs the survey of
 `mojo/swap_overlap_census.mojo` unchanged over the 24,486 specimens of §4
-(`psc.corpus.pip_corpus_total_length(8)`). Two kernel changes made this
+(`psc.corpus.pip_corpus_total_length(8)`). It is an exhaustive, deterministic
+exploratory sweep, not a census: the repository's censuses survey the
+canonical 4,554 corpus (`AGENTS.md`, "The census library"). Because 24
+specimens exhaust a diagnostic budget (below), the sweep reports itself
+incomplete and exits non-zero after printing its summary. Two kernel changes made this
 possible: the exact Perron layer is certified to column sum
 `MAX_CERTIFIED_COLUMN_SUM = 6` with the overflow bound stated in
 `mojo/psc/perron_field3.mojo`, and `PerronCache` no longer leaves a stale
@@ -124,24 +131,64 @@ Diagnostics that did not complete, reported as such:
   productive. The figures above combine the first full run with a run of the
   same survey over those 24 specimens; the survey is deterministic.
 - **12 specimens**, one orbit under relabelling and reversal (representative
-  `0 -> 1, 1 -> 2, 2 -> 022102`), keep a collar collision at the census cap of
-  radius 6 without a collapsing seed patch by level 6. An exploratory probe of
-  the representative (not a census) finds no collapsing patch through level
-  14 and separation at radius 9, with unresolved collisions
-  29, 26, 14, 12, 11, 9, 6, 3, 1, 0 at radii 0–9. The standing corpus's
-  coincidence of survivors with collapsing patches therefore fails on this
-  class at the census cap, because the separation radius exceeds the cap,
-  not because a non-collapsing collision persists at the probed radius.
+  `0 -> 1, 1 -> 2, 2 -> 022102`), keep a collar collision at the survey cap of
+  radius 6 without a collapsing seed patch by level 6.
 
-## 7. Follow-up tasks
+The separation radius beyond the survey's cap is the subject of §9.
 
-1. Optionally, a bounded BPA build on the 14,670 max-image ≤ 4 slice, as
-   evidence about the recorded Level-2 item only.
-2. Optionally, a census-grade separation-radius sweep with a cap above 9 over
-   the 24,486 class, so that §6's probe of one representative becomes a
-   replayable count.
+## 7. Exploratory bounded BPA sweep on the longest-image ≤ 4 slice
 
-## 8. Deterministic separation follow-up — implementation pending execution
+**Evidence class:** finite-domain evidence on the stated slice and budgets
+only. A build that exhausts a budget is inconclusive; it is neither a
+counterexample to G1 nor evidence of termination. Nothing here bears on
+G1b-2 in general.
+
+`mojo/bpa_total_length_sweep.mojo` builds `B_sigma` with
+`psc.bounded_bpa.build_bounded` for the 14,670 specimens of §4 with longest
+image at most 4, under the shared 20,000-state cap and a state-length budget
+of 100,000 letters. A state-count cap alone did not bound memory here: on the
+first attempt one specimen grew a single automaton past 9 GB while staying
+under 20,000 states.
+
+| longest image | specimens | terminated | exhausted (state length) | non-productive | largest `B_sigma` | longest state |
+| --- | --- | --- | --- | --- | --- | --- |
+| 2 | 72 | 72 | 0 | 0 | 32 | 16 |
+| 3 | 4,482 | 4,482 | 0 | 0 | 1,502 | 48,020 |
+| 4 | 10,116 | 9,996 | 120 | 0 | 4,305 | 62,707 |
+
+The longest-image ≤ 3 rows are the standing corpus, and their longest state,
+48,020, matches the figure recorded in `docs/proof-ladder.md`. No build
+exhausted the state count. The sweep exits non-zero because 120 builds are
+inconclusive.
+
+The 120 inconclusive specimens form one structural family: image lengths
+(1, 3, 4) with one letter sent to the cube of another (for example
+`0 -> 1, 1 -> 222, 2 -> 0222`), determinant 3, and one of two characteristic
+polynomials, `x^3 - 2x^2 - 3x - 3` (72 specimens) or `x^3 - 3x^2 - 3`
+(48 specimens). An exploratory probe of `0 -> 1, 1 -> 222, 2 -> 0222` (not a
+sweep) under larger length budgets finds at most 102 states, while the
+longest state grows from 85,719 letters to 280,899 and then exceeds 400,000.
+The ratio 280,899 / 85,719 ≈ 3.2770 is close to the Perron root
+β ≈ 3.2790 of `x^3 - 3x^2 - 3`, as if one irreducible balanced pair kept
+inflating with almost no coincidence cut. The chain terminates:
+`docs/bpa-termination-by-overlap-depth-2026-10-02.md` proves that a
+productive seed-patch overlap graph of largest first-coincidence depth `D`
+bounds every balanced-pair state by `2 beta^D ell_max`, and this specimen's
+graph is productive with `D = 19`, giving a bound of about `4.5e10`
+letters. The budget exhaustion is growth towards that bound, not an infinite
+automaton, and the same argument gives a finite `B_sigma` for all 120
+inconclusive specimens and for the whole class of §6.
+
+## 8. Follow-up tasks
+
+1. Mathematical review of Proposition 1 of
+   `docs/bpa-termination-by-overlap-depth-2026-10-02.md` (manuscript
+   Proposition 5.46), now recorded in the ledger as `G1OverlapRoute`.
+2. Decide whether finiteness already follows from every reachable overlap
+   reaching a half-coincidence, as Sirvent–Solomyak Theorem 5.6 suggests
+   (`docs/bpa-overlap-depth-literature-gate-2026-10-02.md` §6).
+
+## 9. Deterministic separation follow-up — implementation pending execution
 
 `mojo/separation_radius_total_length_sweep.mojo` surveys the same complete
 24,486-member class in corpus order. It reuses the reviewed occurrence and

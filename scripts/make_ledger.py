@@ -101,6 +101,10 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                        ("OverlapBadSCCNormalForm", "AlignedOverlapsAreStrongCoincidence", "BoundaryCoincidenceCriterion"), ()),
     "OverlapProductivity": (P, "for every PIP substitution one swap seed on distinct tile types has only productive reachable overlaps",
                             "open conjectural gate, the current shortest-path gate; manuscript Open Problem 5.35; issue #84", (), ()),
+    "AllSeedOverlapProductivity": (P, "for every PIP substitution every overlap reachable from every swap seed is productive",
+                                   "open conjectural gate, stronger than the one-seed gate; manuscript Open Problem 5.35 (all-vertex form)", (), ()),
+    "G1OverlapRoute": (T, "productivity of the seed-patch overlap graph from every swap seed gives finite BPA, by bounding every reachable state by 2 beta^D ell_max",
+                       f"{MANUSCRIPT}, Proposition 5.46; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1; mechanism of Sirvent-Solomyak 2002, Theorem 5.6 (docs/bpa-overlap-depth-literature-gate-2026-10-02.md)", ("AllSeedOverlapProductivity", "SwapOverlapFiniteness"), ()),
     "CoincidenceDensityOne": (T, "seedwise overlap productivity gives coincidence density one and a dense eventual-coincidence good set",
                               f"{MANUSCRIPT}, Lemma 5.36; PR #77", ("OverlapProductivity", "SwapOverlapFiniteness"), ("status:proved",)),
     "AllStatesProductiveViaOverlaps": (T, "under seedwise overlap productivity every reachable balanced-pair state is productive",
@@ -139,7 +143,7 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
 }
 
 STATUS_NOTES = {
-    "G1": "the conditional assembly from G1b-1 and G1b-2 is proved; G1 itself is an open conjectural gate",
+    "G1": "the conditional assembly from G1b-1 and G1b-2 is proved; G1 itself is an open conjectural gate; G1 also follows from AllSeedOverlapProductivity by G1OverlapRoute, which this conjunctive ledger records as a separate node rather than a second way to establish G1",
     "SCCProducer": "the implication from G1, the sink-SCC reduction, and C2 is proved; SCC Producer / C1 is an open theorem target",
     "CoincidenceDensityOne": "the equivalence of Lemma 5.36 is repository-proved; the ledger node is its conclusion, which needs overlap productivity",
 }
@@ -154,6 +158,7 @@ ASSUMPTION_SETS = {
     # ProvedDef), so the overlap gate names the Barge-Stimac-Williams import it
     # needs to reach PDSOverlapRoute.
     "OverlapGateAssumed": ["OverlapProductivity", "DensityToPDSBridge"],
+    "AllSeedOverlapGateAssumed": ["AllSeedOverlapProductivity"],
 }
 
 STATUS_LABELS = {"proved": "Repository-proved", "imported": "Imported theorem", "conditional": "Conditional theorem", "open": "Open conjectural gate",
@@ -169,6 +174,7 @@ ALIASES = {
     "DensityToPDSBridge": ["density-to-PDS bridge", "Barge–Štimac–Williams theorem"], "PDSOverlapRoute": ["Theorem 5.38"],
     "AlignedOverlapsAreStrongCoincidence": ["endpoint-aligned overlaps"], "BoundaryCoincidenceCriterion": ["boundary-hitting criterion"],
     "OverlapProductivity": ["seedwise overlap productivity", "overlap productivity", "Open Problem 5.35"], "SCCProducer": ["SCC Producer"],
+    "AllSeedOverlapProductivity": ["all-seed overlap productivity"], "G1OverlapRoute": ["overlap-depth route to finite BPA"],
 }
 
 
@@ -203,6 +209,9 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
                             surface(WEEKLY, "=> one swap seed has only productive reachable overlaps"), surface("README.md", "=> one swap seed has only productive reachable overlaps"),
                             surface(WEEKLY, "| **P1** | **Seedwise overlap productivity")],
     "SCCProducer": [surface(MAP, "| SCC Producer / C1 |")],
+    "AllSeedOverlapProductivity": [surface(MAP, "| All-seed overlap productivity |"), surface(LEDGER_DOC, "### All-seed overlap productivity", 2)],
+    "G1OverlapRoute": [surface(MAP, "| All-seed overlap productivity implies finite BPA |"), surface(LEDGER_DOC, "### Overlap-depth route to finite BPA", 2),
+                       surface("docs/proof-ladder.md", "## Overlap-depth route to G1", 2)],
 }
 
 
