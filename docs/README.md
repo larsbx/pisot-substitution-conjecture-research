@@ -108,6 +108,11 @@ Change the ledger entry and every surface in the same commit.
   parallel depth-indexed ladder (`PROOF_LADDER.md`, `SWEEP_RESULTS.md`, ...),
   marks every claim attributed to them unverified and uncited, and identifies
   the lost 24,486-specimen sweep domain as total image length at most 8.
+- `bpa-termination-by-overlap-depth-2026-10-02.md` — conditional bounded-gap
+  argument: a productive seed-patch overlap graph of depth `D` bounds every
+  balanced-pair state by `2 beta^D ell_max`; finite-domain consequences for
+  `0 -> 1, 1 -> 222, 2 -> 0222` and the total-length class. Changes no
+  ladder status.
 
 The missing `PSC_PROOF_v16` file is a historical provenance fact. It is not a
 current dependency for G1b-1 or degree-two carrier-span propagation.

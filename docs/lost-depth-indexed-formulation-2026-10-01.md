@@ -47,7 +47,7 @@ automatically. In particular, Level 3 here presupposes Level 2, so no
 | Level 3 "computationally closed for all 24,486 substitutions with \|σ\| ≤ 8 via a 2-step criterion" | **Unverified; wording rejected.** The 2-step criterion's definition is lost. Under hypothesis-firewall item 8 of `docs/proof-ladder.md`, a finite sweep is finite-domain evidence and cannot close a level. The domain is recovered (§4). |
 | "Joint full-support lemma", false by Tribonacci; remaining gap stated as joint-support growth | **Counterexample reproduced** (§5). The lemma plays no role on this repository's routes: the bad-SCC normal form already has `rank_Q(V_S) = \|A\|`. |
 | "S-child" statement: child support = supp σ(x) ∪ supp σ(y) | **Elementary, to be re-derived where used:** σ(xy) = σ(x)σ(y), so supp σ(xy) = supp σ(x) ∪ supp σ(y). Which graph's "child" was meant is lost. |
-| Level 2 "closed for ℤ-independent substitutions with max \|σ\| ≤ 4" (Thm 9.28, chain 9.26a–j) | **Unverified and suspect.** It adds ℤ-independence as a hypothesis, which firewall item 2 forbids, and it conflicts with G1b-2 remaining open. It may descend from the retracted inference "UD ⇒ bounded padding ⇒ finite BPA" (see `docs/completion-ledger-2026-09-11.md`); this is a conjecture about provenance, not a finding. If it is ever reconstructed, it can only be a restricted-class result inside G1b-2. The bounded sweep of §7 finds 120 specimens of this slice whose builds exhaust a 100,000-letter state budget, so finite evidence does not support the recorded closure as stated. |
+| Level 2 "closed for ℤ-independent substitutions with max \|σ\| ≤ 4" (Thm 9.28, chain 9.26a–j) | **Unverified and suspect.** It adds ℤ-independence as a hypothesis, which firewall item 2 forbids, and it conflicts with G1b-2 remaining open. It may descend from the retracted inference "UD ⇒ bounded padding ⇒ finite BPA" (see `docs/completion-ledger-2026-09-11.md`); this is a conjecture about provenance, not a finding. If it is ever reconstructed, it can only be a restricted-class result inside G1b-2. On the total-length ≤ 8 part of that slice, finite `B_sigma` holds for every specimen as a finite-domain consequence of `docs/bpa-termination-by-overlap-depth-2026-10-02.md` (Proposition 1 with the exact overlap verdicts of §6), including the 120 whose direct builds exhaust the budget of §7. The recorded theorem and its proof remain lost, and nothing is claimed beyond that class. |
 | 4,554-PIP `psc_suite` run | Matches this repository's standing corpus (`mojo/psc/corpus.mojo`). |
 
 ## 4. Recovered sweep domain
@@ -174,20 +174,20 @@ sweep) under larger length budgets finds at most 102 states, while the
 longest state grows from 85,719 letters to 280,899 and then exceeds 400,000.
 The ratio 280,899 / 85,719 ≈ 3.2770 is close to the Perron root
 β ≈ 3.2790 of `x^3 - 3x^2 - 3`, as if one irreducible balanced pair kept
-inflating with almost no coincidence cut. Whether this chain terminates is
-open: the probe is consistent with an infinite balanced-pair automaton for a
-primitive irreducible Pisot, non-unimodular substitution, which would be a
-candidate counterexample to G1, but a finite probe cannot distinguish that
-from late termination. The same specimens have finite, fully productive
-seed-patch overlap graphs (§6), so the primary overlap route, which does not
-assume G1, is not affected either way.
+inflating with almost no coincidence cut. The chain terminates:
+`docs/bpa-termination-by-overlap-depth-2026-10-02.md` proves that a
+productive seed-patch overlap graph of largest first-coincidence depth `D`
+bounds every balanced-pair state by `2 beta^D ell_max`, and this specimen's
+graph is productive with `D = 19`, giving a bound of about `4.5e10`
+letters. The budget exhaustion is growth towards that bound, not an infinite
+automaton, and the same argument gives a finite `B_sigma` for all 120
+inconclusive specimens and for the whole class of §6.
 
 ## 8. Follow-up tasks
 
-1. Decide termination of the balanced-pair chain of
-   `0 -> 1, 1 -> 222, 2 -> 0222` (§7) by an argument, not a larger budget:
-   identify the growing irreducible pair's normal form and show that it
-   recurs up to inflation, or that it is cut.
+1. Review Proposition 1 of `docs/bpa-termination-by-overlap-depth-2026-10-02.md`
+   and decide whether `docs/proof-ladder.md` should record
+   `all-seed overlap productivity => G1`.
 2. Optionally, a census-grade separation-radius sweep with a cap above 9 over
    the 24,486 class, so that §6's probe of one representative becomes a
    replayable count.
