@@ -336,6 +336,29 @@ anchor = "### All-seed overlap productivity"
 window_lines = 2
 
 [[claim]]
+name = "AllSeedStrictZipperExclusion"
+status = "open"
+aliases = ["all-seed strict-zipper exclusion"]
+[[claim.surfaces]]
+path = "tla/Ledger.tla"
+anchor = '"AllSeedStrictZipperExclusion"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "absent"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| AllSeedStrictZipperExclusion |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| All-seed strict-zipper exclusion |"
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/conjecture-ledger.md"
+anchor = "### All-seed strict-zipper exclusion"
+window_lines = 2
+
+[[claim]]
 name = "AllStatesProductiveViaOverlaps"
 status = "conditional"
 [[claim.surfaces]]
@@ -634,6 +657,33 @@ expect = "present"
 path = "docs/ledger-index.md"
 anchor = '| G1FromRenewal |'
 window_lines = 0
+
+[[claim]]
+name = "G1HalfCoincidenceRoute"
+status = "conditional"
+aliases = ["half-coincidence route to finite BPA"]
+[[claim.surfaces]]
+path = "tla/Ledger.tla"
+anchor = '"G1HalfCoincidenceRoute"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| G1HalfCoincidenceRoute |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Strict-zipper exclusion implies finite BPA |"
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/conjecture-ledger.md"
+anchor = "### Half-coincidence route to finite BPA"
+window_lines = 2
+[[claim.surfaces]]
+path = "docs/proof-ladder.md"
+anchor = "## Half-coincidence route to G1"
+window_lines = 2
 
 [[claim]]
 name = "G1OverlapRoute"

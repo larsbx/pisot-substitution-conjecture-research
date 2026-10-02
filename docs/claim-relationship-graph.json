@@ -56,6 +56,17 @@
       "leaks": "open conjectural gate, stronger than the one-seed gate; manuscript Open Problem 5.35 (all-vertex form)"
     },
     {
+      "id": "AllSeedStrictZipperExclusion",
+      "kind": "claim",
+      "label": "Open conjectural gate",
+      "provenance": "open",
+      "statement": "for every PIP substitution no closed nonproductive strict-zipper set is reachable from any swap seed",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "pending_dependency",
+      "source": "reason: open conjectural gate; the all-seed form of the strict-zipper branch of Open Problem 5.35 (manuscript Proposition 5.44(iii)(b)); issue #139",
+      "leaks": "open conjectural gate; the all-seed form of the strict-zipper branch of Open Problem 5.35 (manuscript Proposition 5.44(iii)(b)); issue #139"
+    },
+    {
       "id": "AllStatesProductiveViaOverlaps",
       "kind": "claim",
       "label": "Conditional theorem",
@@ -219,8 +230,8 @@
       "statement": "finite BPA (G1)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Propositions 4.11 and 5.46 and open-problem list",
-      "leaks": "premises not established: G1FromRenewal, G1OverlapRoute"
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Propositions 4.11, 5.46 and 5.47 and open-problem list",
+      "leaks": "premises not established: G1FromRenewal, G1HalfCoincidenceRoute, G1OverlapRoute"
     },
     {
       "id": "G1FromRenewal",
@@ -232,6 +243,17 @@
       "record_kind": "repository_theorem",
       "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 4.11",
       "leaks": "premises not established: G1b2RenewalFiniteness"
+    },
+    {
+      "id": "G1HalfCoincidenceRoute",
+      "kind": "claim",
+      "label": "Conditional theorem",
+      "provenance": "conditional",
+      "statement": "exclusion of reachable strict zippers from every swap seed gives finite BPA, every reachable state being at most 2 beta^K' ell_max long",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.47; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 4 and Corollary 5; half-coincidence form of Sirvent-Solomyak 2002, Theorem 5.6",
+      "leaks": "premises not established: AllSeedStrictZipperExclusion"
     },
     {
       "id": "G1OverlapRoute",
@@ -695,6 +717,15 @@
       ]
     },
     {
+      "id": "all-seed strict-zipper exclusion",
+      "kind": "alias",
+      "label": "all-seed strict-zipper exclusion",
+      "provenance": "declared",
+      "members": [
+        "AllSeedStrictZipperExclusion"
+      ]
+    },
+    {
       "id": "boundary-hitting criterion",
       "kind": "alias",
       "label": "boundary-hitting criterion",
@@ -773,6 +804,15 @@
       "provenance": "declared",
       "members": [
         "G1"
+      ]
+    },
+    {
+      "id": "half-coincidence route to finite BPA",
+      "kind": "alias",
+      "label": "half-coincidence route to finite BPA",
+      "provenance": "declared",
+      "members": [
+        "G1HalfCoincidenceRoute"
       ]
     },
     {
@@ -956,6 +996,15 @@
       ]
     },
     {
+      "id": "AllSeedStrictZipperGateAssumed",
+      "kind": "assumption_set",
+      "label": "assumption set",
+      "provenance": "declared",
+      "members": [
+        "AllSeedStrictZipperExclusion"
+      ]
+    },
+    {
       "id": "G1AndC4",
       "kind": "assumption_set",
       "label": "assumption set",
@@ -1041,6 +1090,15 @@
       "provenance": "open",
       "certainty": 1,
       "use_site": "G1OverlapRoute/AllSeedOverlapProductivity",
+      "leaks": "premise is open"
+    },
+    {
+      "type": "implicative",
+      "source": "AllSeedStrictZipperExclusion",
+      "target": "G1HalfCoincidenceRoute",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "G1HalfCoincidenceRoute/AllSeedStrictZipperExclusion",
       "leaks": "premise is open"
     },
     {
@@ -1256,6 +1314,15 @@
       "certainty": 1,
       "use_site": "G1/G1FromRenewal",
       "leaks": "premise is conditional; alternative dependency branch(es): 1"
+    },
+    {
+      "type": "implicative",
+      "source": "G1HalfCoincidenceRoute",
+      "target": "G1",
+      "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "G1/G1HalfCoincidenceRoute",
+      "leaks": "premise is conditional; alternative dependency branch(es): 3"
     },
     {
       "type": "implicative",
@@ -1519,6 +1586,14 @@
     {
       "type": "implicative",
       "source": "SwapOverlapFiniteness",
+      "target": "G1HalfCoincidenceRoute",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "G1HalfCoincidenceRoute/SwapOverlapFiniteness"
+    },
+    {
+      "type": "implicative",
+      "source": "SwapOverlapFiniteness",
       "target": "G1OverlapRoute",
       "provenance": "theorem-backed",
       "certainty": 1,
@@ -1638,6 +1713,14 @@
     },
     {
       "type": "synonymous",
+      "source": "all-seed strict-zipper exclusion",
+      "target": "AllSeedStrictZipperExclusion",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "aux-B",
       "target": "ConcentrationAuxB",
       "provenance": "open",
@@ -1742,6 +1825,14 @@
     },
     {
       "type": "synonymous",
+      "source": "half-coincidence route to finite BPA",
+      "target": "G1HalfCoincidenceRoute",
+      "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "overlap productivity",
       "target": "OverlapProductivity",
       "provenance": "open",
@@ -1816,6 +1907,14 @@
       "type": "part-whole",
       "source": "AllSeedOverlapProductivity",
       "target": "AllSeedOverlapGateAssumed",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "AllSeedStrictZipperExclusion",
+      "target": "AllSeedStrictZipperGateAssumed",
       "provenance": "open",
       "certainty": 1,
       "use_site": "assumption_sets"

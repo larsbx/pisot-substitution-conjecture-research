@@ -11,8 +11,9 @@ premise is all-seed overlap productivity (§5). Proposition 1 is manuscript
 Proposition 5.46 (§5.11 of `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`).
 Proposition 4 and Corollary 5 (§5) are a strengthening proved here: a
 half-coincidence hypothesis, equivalent to excluding strict-zipper
-obstructions, already gives finiteness. They are not yet recorded in the
-ledger or the manuscript.
+obstructions, already gives finiteness. They are manuscript Proposition 5.47
+and the ledger's conditional theorem `G1HalfCoincidenceRoute`, whose open
+premise is the gate `AllSeedStrictZipperExclusion`.
 
 ## 0. Prior art
 
@@ -180,7 +181,8 @@ Proposition 4 bounds every state by `2 beta^17 ell_max / ell_min`, at most
 
 - Proposition 4 and Corollary 5 do not exclude strict zippers; they show
   that excluding them, from every swap seed, is all G1 needs. That exclusion
-  is open (issue #139). They are not yet in the ledger or the manuscript.
+  is open (issue #139). They are recorded as manuscript Proposition 5.47 and
+  the ledger's `G1HalfCoincidenceRoute`.
 - It does not prove G1 or G1b-2 in general. Proposition 1 reduces finite
   `B_sigma` to productivity of the seed-patch overlap graph from every swap
   seed, which remains open.

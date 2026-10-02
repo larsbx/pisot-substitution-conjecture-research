@@ -150,6 +150,24 @@ all-seed overlap productivity            [OPEN]
 
 `D` is the largest first-coincidence depth of the graph. The proof uses that balanced cuts are simultaneous tile boundaries (`Q`-independence of `ell`) and that every overlap at level `n - D` has a coincident descendant inside its `beta^D`-scaled region; it needs no realization hypothesis. G1 therefore follows from either G1b-2 or all-seed overlap productivity.
 
+### All-seed strict-zipper exclusion
+
+**Status: OPEN.** No closed nonproductive strict-zipper set (manuscript Proposition 5.44(iii)(b): no offset-zero vertex) is reachable from any swap seed. This is the all-seed form of the strict-zipper branch of Open Problem 5.35 (issue #139); it is implied by all-seed overlap productivity and does not involve the strong-coincidence branch (issue #138).
+
+### Half-coincidence route to finite BPA
+
+**Status:** Conditional theorem (manuscript Proposition 5.47; `docs/bpa-termination-by-overlap-depth-2026-10-02.md`, Proposition 4 and Corollary 5).
+
+```text
+all-seed strict-zipper exclusion          [OPEN]
++ finite seed-patch overlap graph         [PROVED]
+=> every reachable overlap has an offset-zero descendant within K' levels
+=> every reachable state has geometric length <= 2 beta^K' ell_max
+=> G1.
+```
+
+The proof of the overlap-depth route needs a coincidence only for its common vertex; an offset-zero descendant supplies one, and common vertices persist under inflation. G1 therefore follows from G1b-2, from all-seed overlap productivity, or from all-seed strict-zipper exclusion alone.
+
 ## D. Parallel programme — SCC Producer under G1
 
 Assume G1. Then nonproductivity reduces to a finite closed/sink recurrent noncoincident carrier.

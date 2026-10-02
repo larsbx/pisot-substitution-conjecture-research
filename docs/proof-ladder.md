@@ -138,6 +138,20 @@ primitive irreducible Pisot
 
 `D` is the largest first-coincidence depth of the overlap graph. Balanced cuts are simultaneous tile boundaries because the coordinates of `ell` are `Q`-independent, and every overlap at level `n - D` has a coincident descendant inside its `beta^D`-scaled region, so consecutive cuts are at most `2 beta^D ell_max` apart. No realization hypothesis is needed: every reachable state is a gap of a swap pair `(sigma^n(ab), sigma^n(ba))`. The premise is the all-seed form, stronger than the one-seed gate of Theorem 5.38, so this arrow does not shorten the PDS route; it makes G1 a consequence of the overlap programme rather than an independent obligation.
 
+
+## Half-coincidence route to G1
+
+**Conditional theorem** (manuscript Proposition 5.47; `docs/bpa-termination-by-overlap-depth-2026-10-02.md`, Proposition 4 and Corollary 5; half-coincidence form of Sirvent–Solomyak 2002, Theorem 5.6). The overlap-depth route needs less than productivity:
+
+```text
+finite seed-patch overlap graph                           [PROVED]
+=> no reachable strict zipper from any swap seed           [OPEN, issue #139 form]
+=> every reachable overlap has an offset-zero descendant   [equivalent, Corollary 5]
+=> every reachable state has length <= 2 beta^K' ell_max   [PROVED implication]
+=> finite BPA (G1).
+```
+
+A coincidence has offset zero, so `K' <= D` and this premise is implied by all-seed overlap productivity. The vertices with no offset-zero descendant form a closed nonproductive set with no offset-zero vertex, case (b) of manuscript Proposition 5.44(iii), and every reachable such set lies inside them. So finiteness needs only the strict-zipper branch of the obstruction problem; the strong-coincidence branch (P1a, issue #138) is needed for productivity and pure discrete spectrum, not for G1.
 ## G1b-2 — renewal finiteness
 
 **OPEN; equivalent to G1 after G1b-1. Not required by Theorem 5.38.**

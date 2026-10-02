@@ -88,7 +88,7 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "G1b2RenewalFiniteness": (P, "only finitely many realizable irreducible balanced pairs occur inside the established discrepancy bound",
                               "open conjectural gate; manuscript Level-2 open problem; issue #44", ("G1b1BoundedDiscrepancy",), ()),
     "G1FromRenewal": (T, "G1b-1 and G1b-2 together give finite BPA", f"{MANUSCRIPT}, Proposition 4.11", ("G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"), ()),
-    "G1": (T, "finite BPA (G1)", f"{MANUSCRIPT}, Propositions 4.11 and 5.46 and open-problem list", ("G1FromRenewal", "G1OverlapRoute"), ("status:open",)),
+    "G1": (T, "finite BPA (G1)", f"{MANUSCRIPT}, Propositions 4.11, 5.46 and 5.47 and open-problem list", ("G1FromRenewal", "G1OverlapRoute", "G1HalfCoincidenceRoute"), ("status:open",)),
     # --- overlap route (finite graph, no G1) ----------------------------------------
     "SwapOverlapFiniteness": (T, "every swap seed has a finite exact overlap graph",
                               "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md; manuscript Theorem 4.22; PR #72", ("G1b1BoundedDiscrepancy",), ()),
@@ -105,6 +105,10 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                    "open conjectural gate, stronger than the one-seed gate; manuscript Open Problem 5.35 (all-vertex form)", (), ()),
     "G1OverlapRoute": (T, "productivity of the seed-patch overlap graph from every swap seed gives finite BPA, by bounding every reachable state by 2 beta^D ell_max",
                        f"{MANUSCRIPT}, Proposition 5.46; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1; mechanism of Sirvent-Solomyak 2002, Theorem 5.6 (docs/bpa-overlap-depth-literature-gate-2026-10-02.md)", ("AllSeedOverlapProductivity", "SwapOverlapFiniteness"), ()),
+    "AllSeedStrictZipperExclusion": (P, "for every PIP substitution no closed nonproductive strict-zipper set is reachable from any swap seed",
+                                     "open conjectural gate; the all-seed form of the strict-zipper branch of Open Problem 5.35 (manuscript Proposition 5.44(iii)(b)); issue #139", (), ()),
+    "G1HalfCoincidenceRoute": (T, "exclusion of reachable strict zippers from every swap seed gives finite BPA, every reachable state being at most 2 beta^K' ell_max long",
+                               f"{MANUSCRIPT}, Proposition 5.47; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 4 and Corollary 5; half-coincidence form of Sirvent-Solomyak 2002, Theorem 5.6", ("AllSeedStrictZipperExclusion", "SwapOverlapFiniteness"), ()),
     "CoincidenceDensityOne": (T, "seedwise overlap productivity gives coincidence density one and a dense eventual-coincidence good set",
                               f"{MANUSCRIPT}, Lemma 5.36; PR #77", ("OverlapProductivity", "SwapOverlapFiniteness"), ("status:proved",)),
     "AllStatesProductiveViaOverlaps": (T, "under seedwise overlap productivity every reachable balanced-pair state is productive",
@@ -143,7 +147,7 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
 }
 
 STATUS_NOTES = {
-    "G1": "the renewal and all-seed overlap implications are proved alternative establishments of canonical G1; their open premises are not discharged, so G1 itself remains an open conjectural gate",
+    "G1": "the renewal, all-seed overlap and strict-zipper-exclusion implications are proved alternative establishments of canonical G1; their open premises are not discharged, so G1 itself remains an open conjectural gate",
     "SCCProducer": "the implication from G1, the sink-SCC reduction, and C2 is proved; SCC Producer / C1 is an open theorem target",
     "CoincidenceDensityOne": "the equivalence of Lemma 5.36 is repository-proved; the ledger node is its conclusion, which needs overlap productivity",
 }
@@ -159,6 +163,7 @@ ASSUMPTION_SETS = {
     # needs to reach PDSOverlapRoute.
     "OverlapGateAssumed": ["OverlapProductivity", "DensityToPDSBridge"],
     "AllSeedOverlapGateAssumed": ["AllSeedOverlapProductivity"],
+    "AllSeedStrictZipperGateAssumed": ["AllSeedStrictZipperExclusion"],
 }
 
 STATUS_LABELS = {"proved": "Repository-proved", "imported": "Imported theorem", "conditional": "Conditional theorem", "open": "Open conjectural gate",
@@ -175,6 +180,7 @@ ALIASES = {
     "AlignedOverlapsAreStrongCoincidence": ["endpoint-aligned overlaps"], "BoundaryCoincidenceCriterion": ["boundary-hitting criterion"],
     "OverlapProductivity": ["seedwise overlap productivity", "overlap productivity", "Open Problem 5.35"], "SCCProducer": ["SCC Producer"],
     "AllSeedOverlapProductivity": ["all-seed overlap productivity"], "G1OverlapRoute": ["overlap-depth route to finite BPA"],
+    "AllSeedStrictZipperExclusion": ["all-seed strict-zipper exclusion"], "G1HalfCoincidenceRoute": ["half-coincidence route to finite BPA"],
 }
 
 
@@ -212,6 +218,9 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "AllSeedOverlapProductivity": [surface(MAP, "| All-seed overlap productivity |"), surface(LEDGER_DOC, "### All-seed overlap productivity", 2)],
     "G1OverlapRoute": [surface(MAP, "| All-seed overlap productivity implies finite BPA |"), surface(LEDGER_DOC, "### Overlap-depth route to finite BPA", 2),
                        surface("docs/proof-ladder.md", "## Overlap-depth route to G1", 2)],
+    "AllSeedStrictZipperExclusion": [surface(MAP, "| All-seed strict-zipper exclusion |"), surface(LEDGER_DOC, "### All-seed strict-zipper exclusion", 2)],
+    "G1HalfCoincidenceRoute": [surface(MAP, "| Strict-zipper exclusion implies finite BPA |"), surface(LEDGER_DOC, "### Half-coincidence route to finite BPA", 2),
+                               surface("docs/proof-ladder.md", "## Half-coincidence route to G1", 2)],
 }
 
 
@@ -231,7 +240,7 @@ def records() -> dict[str, Record]:
             evidence = (("proof_reviewed", "true"), ("source", source))
         if name == "G1":
             evidence += (("dependency_alternatives", json.dumps(
-                [[build("G1FromRenewal").id], [build("G1OverlapRoute").id]],
+                [[build("G1FromRenewal").id], [build("G1OverlapRoute").id], [build("G1HalfCoincidenceRoute").id]],
                 separators=(",", ":"))),)
         if name in STATUS_NOTES:
             evidence += (("status_note", STATUS_NOTES[name]),)
