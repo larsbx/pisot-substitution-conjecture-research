@@ -16,14 +16,14 @@ for fixture in real-secondary non-pisot-strict gf-actual; do
     cmp "$fixtures/$fixture.jsonl" "build/target-$fixture.jsonl"
 done
 "$driver" --replay 396,820 --cycle > build/target-cycle-replay.jsonl
-rg -q '"record":"requested_replay"' build/target-cycle-replay.jsonl
+grep -Eq '"record":"requested_replay"' build/target-cycle-replay.jsonl
 "$driver" --potential linear --weights 1 0 -1 --strict > build/target-linear.jsonl
 for budget in state length packet edge; do
     if "$driver" "--$budget-cap" 1 > "build/target-$budget-cap.log" 2>&1; then
         echo "ERROR: exhausted $budget cap succeeded" >&2
         exit 1
     fi
-    if rg -q '"record":"header"|"record":"summary"' "build/target-$budget-cap.log"; then
+    if grep -Eq '"record":"header"|"record":"summary"' "build/target-$budget-cap.log"; then
         echo "ERROR: exhausted $budget cap emitted a complete verdict" >&2
         exit 1
     fi
