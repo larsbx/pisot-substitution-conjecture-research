@@ -219,8 +219,8 @@
       "statement": "finite BPA (G1)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 4.11 and open-problem list",
-      "leaks": "premises not established: G1FromRenewal"
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Propositions 4.11 and 5.46 and open-problem list",
+      "leaks": "premises not established: G1FromRenewal, G1OverlapRoute"
     },
     {
       "id": "G1FromRenewal",
@@ -1255,7 +1255,16 @@
       "provenance": "conditional",
       "certainty": 1,
       "use_site": "G1/G1FromRenewal",
-      "leaks": "premise is conditional"
+      "leaks": "premise is conditional; alternative dependency branch(es): 1"
+    },
+    {
+      "type": "implicative",
+      "source": "G1OverlapRoute",
+      "target": "G1",
+      "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "G1/G1OverlapRoute",
+      "leaks": "premise is conditional; alternative dependency branch(es): 2"
     },
     {
       "type": "implicative",

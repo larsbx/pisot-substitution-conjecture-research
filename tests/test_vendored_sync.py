@@ -11,6 +11,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import check_vendored_sync as sync  # noqa: E402
 
 PACKAGES = {
+    "proof_architecture": ("larsbx/finite-math-kernels", "tla"),
     "finite_exact": ("larsbx/finite-math-kernels", "mojo"),
     "substitution_dynamics": ("larsbx/finite-math-kernels", "mojo"),
     "finite_linear_algebra": ("larsbx/finite-math-kernels", "mojo"),
@@ -28,7 +29,10 @@ def test_vendored_packages_match_their_pins():
     assert len({pkg["commit"] for pkg in packages.values()}) == 1, "every package is pinned to one upstream commit"
     for name, pkg in packages.items():
         assert pkg["repository"] == "larsbx/finite-math-kernels"
-        assert all(rel.startswith(name + "/") for rel in pkg["files"])
+        if name == "proof_architecture":
+            assert set(pkg["files"]) == {"ProofArchitecture.tla"}
+        else:
+            assert all(rel.startswith(name + "/") for rel in pkg["files"])
     # The inventory is written out so that a re-vendor which quietly adds or drops a file is a
     # test to update rather than a change nobody sees. self_test.py and known_answers.py arrived
     # with the import-time known-answer gate; the package's Mojo sources and vocabularies.py sit
