@@ -30,6 +30,9 @@
     "OverlapGateAssumed": [
       "OverlapProductivity",
       "DensityToPDSBridge"
+    ],
+    "AllSeedOverlapGateAssumed": [
+      "AllSeedOverlapProductivity"
     ]
   },
   "status_classes": {
@@ -111,6 +114,12 @@
     ],
     "SCCProducer": [
       "SCC Producer"
+    ],
+    "AllSeedOverlapProductivity": [
+      "all-seed overlap productivity"
+    ],
+    "G1OverlapRoute": [
+      "overlap-depth route to finite BPA"
     ]
   },
   "surfaces": {
@@ -382,6 +391,35 @@
         "path": "docs/claim-status-and-source-map-2026-09-13.md",
         "anchor": "| SCC Producer / C1 |",
         "window_lines": 0
+      }
+    ],
+    "AllSeedOverlapProductivity": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| All-seed overlap productivity |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "### All-seed overlap productivity",
+        "window_lines": 2
+      }
+    ],
+    "G1OverlapRoute": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| All-seed overlap productivity implies finite BPA |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/conjecture-ledger.md",
+        "anchor": "### Overlap-depth route to finite BPA",
+        "window_lines": 2
+      },
+      {
+        "path": "docs/proof-ladder.md",
+        "anchor": "## Overlap-depth route to G1",
+        "window_lines": 2
       }
     ]
   },
@@ -1410,6 +1448,53 @@
         [
           "reason",
           "open conjectural gate, the current shortest-path gate; manuscript Open Problem 5.35; issue #84"
+        ]
+      ],
+      "tags": []
+    },
+    "AllSeedOverlapProductivity": {
+      "id": "sha256:10045d49bc40565f157f5dc219c7ade0946916f3d2129b644ec4ffbe1595c84b",
+      "kind": "pending_dependency",
+      "statement": "for every PIP substitution every overlap reachable from every swap seed is productive",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "reason",
+          "open conjectural gate, stronger than the one-seed gate; manuscript Open Problem 5.35 (all-vertex form)"
+        ]
+      ],
+      "tags": []
+    },
+    "G1OverlapRoute": {
+      "id": "sha256:d75f6881afde257ee310246e43f0788f3771945be82368ebac6d98d820c8e424",
+      "kind": "repository_theorem",
+      "statement": "productivity of the seed-patch overlap graph from every swap seed gives finite BPA, by bounding every reachable state by 2 beta^D ell_max",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:10045d49bc40565f157f5dc219c7ade0946916f3d2129b644ec4ffbe1595c84b",
+          "for every PIP substitution every overlap reachable from every swap seed is productive",
+          "G1OverlapRoute/AllSeedOverlapProductivity",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:e0b8de0d1503d7260f52b099bf0a13b97c73d11515a61bd2d94151c8edfdd5df",
+          "every swap seed has a finite exact overlap graph",
+          "G1OverlapRoute/SwapOverlapFiniteness",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1"
         ]
       ],
       "tags": []

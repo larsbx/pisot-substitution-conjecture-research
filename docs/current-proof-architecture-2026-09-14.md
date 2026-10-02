@@ -71,6 +71,8 @@ G1b-1 bounded discrepancy [PROVED]
 => finite BPA (G1).
 ```
 
+G1 has a second sufficient premise: all-seed overlap productivity implies finite BPA by the overlap-depth route (`docs/bpa-termination-by-overlap-depth-2026-10-02.md`, Proposition 1, a conditional theorem whose only open premise is that productivity).
+
 G1b-2 remains the exact missing theorem for finite BPA. The target is a realizability/renewal statement for labelled first-return words, not another bounded norm. Any contracting-address proof must handle non-unimodular substitutions and may not treat the stable projection of the integer module as a lattice.
 
 ## Parallel programme B — finite-BPA closed carriers

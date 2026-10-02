@@ -6,8 +6,8 @@ productivity of the seed-patch overlap graph from every swap seed. Corollary
 and an exact Mojo certificate. Remark 3 records the finite-domain
 consequence for the total-length class. This note does not prove G1 or
 G1b-2 in general, does not prove the overlap-productivity gate of issue #84,
-and changes no status in `docs/proof-ladder.md`; whether Proposition 1
-should enter the ladder is left to review (§5).
+and records Proposition 1 in the ledger as a conditional theorem whose open
+premise is all-seed overlap productivity (§5).
 
 ## 1. Setting
 
@@ -114,10 +114,11 @@ substitutions outside the class.
   `B_sigma` to productivity of the seed-patch overlap graph from every swap
   seed, which remains open.
 - It does not touch the one-seed gate of issue #84 or Open Problem 5.35.
-- `docs/proof-ladder.md` presents the finite-BPA route (route A) and overlap
-  productivity as separate programmes. If Proposition 1 survives review, the
-  ladder can record `all-seed overlap productivity => G1` as a proved arrow;
-  `docs/cross-program-bridge-psc-nlapjt-2026-09-12.md` §5 (B1) already
-  identifies G1b-2 with bounded gaps between simultaneous boundaries, and
-  Proposition 1 supplies that bound from overlap depth. That change touches
-  the ledger, the TLA model and the manuscript, and is not made here.
+- The ledger records Proposition 1 as `G1OverlapRoute`, a conditional theorem
+  whose open premise is the new gate `AllSeedOverlapProductivity`
+  (`scripts/make_ledger.py`; `docs/proof-ladder.md`, "Overlap-depth route to
+  G1"). `docs/cross-program-bridge-psc-nlapjt-2026-09-12.md` §5 (B1) already
+  identifies G1b-2 with bounded gaps between simultaneous boundaries;
+  Proposition 1 supplies that bound from overlap depth, for the reachable
+  swap-pair states, without a realization hypothesis. The manuscript text
+  is not changed here.

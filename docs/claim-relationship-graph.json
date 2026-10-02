@@ -45,6 +45,17 @@
       "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.39; PR #82"
     },
     {
+      "id": "AllSeedOverlapProductivity",
+      "kind": "claim",
+      "label": "Open conjectural gate",
+      "provenance": "open",
+      "statement": "for every PIP substitution every overlap reachable from every swap seed is productive",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "pending_dependency",
+      "source": "reason: open conjectural gate, stronger than the one-seed gate; manuscript Open Problem 5.35 (all-vertex form)",
+      "leaks": "open conjectural gate, stronger than the one-seed gate; manuscript Open Problem 5.35 (all-vertex form)"
+    },
+    {
       "id": "AllStatesProductiveViaOverlaps",
       "kind": "claim",
       "label": "Conditional theorem",
@@ -221,6 +232,17 @@
       "record_kind": "repository_theorem",
       "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 4.11",
       "leaks": "premises not established: G1b2RenewalFiniteness"
+    },
+    {
+      "id": "G1OverlapRoute",
+      "kind": "claim",
+      "label": "Conditional theorem",
+      "provenance": "conditional",
+      "statement": "productivity of the seed-patch overlap graph from every swap seed gives finite BPA, by bounding every reachable state by 2 beta^D ell_max",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1",
+      "leaks": "premises not established: AllSeedOverlapProductivity"
     },
     {
       "id": "G1b1BoundedDiscrepancy",
@@ -664,6 +686,15 @@
       ]
     },
     {
+      "id": "all-seed overlap productivity",
+      "kind": "alias",
+      "label": "all-seed overlap productivity",
+      "provenance": "declared",
+      "members": [
+        "AllSeedOverlapProductivity"
+      ]
+    },
+    {
       "id": "boundary-hitting criterion",
       "kind": "alias",
       "label": "boundary-hitting criterion",
@@ -742,6 +773,15 @@
       "provenance": "declared",
       "members": [
         "G1"
+      ]
+    },
+    {
+      "id": "overlap-depth route to finite BPA",
+      "kind": "alias",
+      "label": "overlap-depth route to finite BPA",
+      "provenance": "declared",
+      "members": [
+        "G1OverlapRoute"
       ]
     },
     {
@@ -907,6 +947,15 @@
       ]
     },
     {
+      "id": "AllSeedOverlapGateAssumed",
+      "kind": "assumption_set",
+      "label": "assumption set",
+      "provenance": "declared",
+      "members": [
+        "AllSeedOverlapProductivity"
+      ]
+    },
+    {
       "id": "G1AndC4",
       "kind": "assumption_set",
       "label": "assumption set",
@@ -984,6 +1033,15 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "OverlapBoundaryZipperDichotomy/AlignedOverlapsAreStrongCoincidence"
+    },
+    {
+      "type": "implicative",
+      "source": "AllSeedOverlapProductivity",
+      "target": "G1OverlapRoute",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "G1OverlapRoute/AllSeedOverlapProductivity",
+      "leaks": "premise is open"
     },
     {
       "type": "implicative",
@@ -1452,6 +1510,14 @@
     {
       "type": "implicative",
       "source": "SwapOverlapFiniteness",
+      "target": "G1OverlapRoute",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "G1OverlapRoute/SwapOverlapFiniteness"
+    },
+    {
+      "type": "implicative",
+      "source": "SwapOverlapFiniteness",
       "target": "OverlapBadSCCNormalForm",
       "provenance": "theorem-backed",
       "certainty": 1,
@@ -1550,6 +1616,14 @@
       "source": "Theorem 5.38",
       "target": "PDSOverlapRoute",
       "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "all-seed overlap productivity",
+      "target": "AllSeedOverlapProductivity",
+      "provenance": "open",
       "certainty": 1,
       "use_site": "aliases"
     },
@@ -1667,6 +1741,14 @@
     },
     {
       "type": "synonymous",
+      "source": "overlap-depth route to finite BPA",
+      "target": "G1OverlapRoute",
+      "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "renewal finiteness",
       "target": "G1b2RenewalFiniteness",
       "provenance": "open",
@@ -1720,6 +1802,14 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"
+    },
+    {
+      "type": "part-whole",
+      "source": "AllSeedOverlapProductivity",
+      "target": "AllSeedOverlapGateAssumed",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
     },
     {
       "type": "part-whole",
