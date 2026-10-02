@@ -29,6 +29,11 @@ if sha256sum -c docs/source-imports/issue-45/SHA256SUMS \
 else
     bad "Issue #45 source provenance"
 fi
+if sha256sum -c docs/source-imports/minimal-bad-scc/SHA256SUMS; then
+    ok "minimal-bad-SCC historical proposal snapshot is intact"
+else
+    bad "minimal-bad-SCC proposal source provenance"
+fi
 if python3 scripts/check_vendored_sync.py; then
     ok "vendored Mojo packages match the commits pinned in vendored.toml"
 else
