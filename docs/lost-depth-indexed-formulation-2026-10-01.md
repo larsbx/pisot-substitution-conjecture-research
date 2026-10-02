@@ -65,11 +65,14 @@ The standing 4,554 corpus is exactly the max-image ≤ 3 slice: total length 9
 adds no member, because images of lengths (3,3,3) are constant-length, so
 β = 3 and the incidence polynomial is reducible.
 
-**Evidence class:** oracle-only. The table was computed with the existing
-Python screen `src/psc_research/pip_screen.py` (`mat`, `charpoly`, `primitive`,
-`irreducible`, `pisot`) by enumerating every image triple with
-Σ_a |σ(a)| ≤ 8. It has no canonical Mojo counterpart yet; until it does, it is
-a recovery aid and not a repository census.
+**Evidence class:** exact finite count, replayable in Mojo. The canonical
+enumeration is `psc.corpus.pip_corpus_total_length`, and the regression
+`test_the_total_length_corpus_contains_the_standing_corpus` in
+`mojo/tests/test_census_library.mojo` pins the total, every cumulative slice,
+and the max-image ≤ 3 slice's identity with the standing corpus, label for
+label. The Python screen `src/psc_research/pip_screen.py` is the
+independently written oracle and gives the same counts. The class is a corpus
+for exploratory sweeps, not for censuses (§6).
 
 ## 5. Primitivity and joint-support exponents on the standing corpus
 
@@ -89,15 +92,19 @@ conditions, but it does not remove the obstruction on this repository's
 routes: a bad closed SCC for σ, sampled every k steps, is still a bad closed
 recurrent structure for σ^k.
 
-## 6. Overlap census over the recovered domain
+## 6. Exploratory overlap sweep over the recovered domain
 
 **Evidence class:** finite-domain evidence on the stated class only. It does
 not reconstruct the lost 2-step criterion, does not close any level, and says
 nothing about substitutions outside the class.
 
-`mojo/swap_overlap_census_total_length.mojo` runs the survey of
+`mojo/swap_overlap_total_length_sweep.mojo` runs the survey of
 `mojo/swap_overlap_census.mojo` unchanged over the 24,486 specimens of §4
-(`psc.corpus.pip_corpus_total_length(8)`). Two kernel changes made this
+(`psc.corpus.pip_corpus_total_length(8)`). It is an exhaustive, deterministic
+exploratory sweep, not a census: the repository's censuses survey the
+canonical 4,554 corpus (`AGENTS.md`, "The census library"). Because 24
+specimens exhaust a diagnostic budget (below), the sweep reports itself
+incomplete and exits non-zero after printing its summary. Two kernel changes made this
 possible: the exact Perron layer is certified to column sum
 `MAX_CERTIFIED_COLUMN_SUM = 6` with the overflow bound stated in
 `mojo/psc/perron_field3.mojo`, and `PerronCache` no longer leaves a stale
@@ -124,13 +131,13 @@ Diagnostics that did not complete, reported as such:
   productive. The figures above combine the first full run with a run of the
   same survey over those 24 specimens; the survey is deterministic.
 - **12 specimens**, one orbit under relabelling and reversal (representative
-  `0 -> 1, 1 -> 2, 2 -> 022102`), keep a collar collision at the census cap of
+  `0 -> 1, 1 -> 2, 2 -> 022102`), keep a collar collision at the survey cap of
   radius 6 without a collapsing seed patch by level 6. An exploratory probe of
   the representative (not a census) finds no collapsing patch through level
   14 and separation at radius 9, with unresolved collisions
   29, 26, 14, 12, 11, 9, 6, 3, 1, 0 at radii 0–9. The standing corpus's
   coincidence of survivors with collapsing patches therefore fails on this
-  class at the census cap, because the separation radius exceeds the cap,
+  class at the survey cap, because the separation radius exceeds the cap,
   not because a non-collapsing collision persists at the probed radius.
 
 ## 7. Follow-up tasks

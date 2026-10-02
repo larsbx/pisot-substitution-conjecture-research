@@ -25,7 +25,6 @@ degree3-catalog = "mojo run -I . degree3_catalog.mojo"
 wedge-productivity-catalog = "mojo run -I . wedge_productivity_catalog.mojo"
 swap-discrepancy-census = "mojo run -I . swap_discrepancy_census.mojo"
 swap-overlap-census = "mojo run -I . swap_overlap_census.mojo"
-swap-overlap-census-total-length = "mojo run -I . swap_overlap_census_total_length.mojo"
 overlap-contracting-census = "mojo run -I . overlap_contracting_census.mojo"
 
 # Finite classifications with no substitution input.
@@ -40,6 +39,7 @@ automatic-route-census = "mojo run -I . automatic_route_census.mojo"
 numeration-addition-census = "mojo run -I . numeration_addition_census.mojo"
 numeration-conversion-census = "mojo run -I . numeration_conversion_census.mojo"
 coincidence-formula-census = "mojo run -I . coincidence_formula_census.mojo"
+swap-overlap-total-length-sweep = "mojo run -I . swap_overlap_total_length_sweep.mojo"
 
 # Kernel micro-benchmarks: both paths print the same checksum, so a faster
 # path that computes something else shows up as a differential, not a win.

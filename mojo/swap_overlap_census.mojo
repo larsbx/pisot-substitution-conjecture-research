@@ -351,6 +351,13 @@ def survey(corpus: List[Specimen]) raises:
     print(prefix_strong.line("specimens by prefix strong-coincidence depth:"))
     print("maximum suffix strong-coincidence depth:", suffix_strong.maximum())
     print(suffix_strong.line("specimens by suffix strong-coincidence depth:"))
+    if n_capped > 0 or n_failed > 0:
+        # An exhausted budget is not a verdict: the summary above is printed
+        # for diagnosis, and the run refuses to conclude.
+        raise Error(
+            "incomplete survey: " + String(n_capped) + " capped and "
+            + String(n_failed) + " failed specimens"
+        )
 
 
 def main() raises:
