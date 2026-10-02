@@ -17,16 +17,18 @@ TOML and regenerate rather than hand-editing the Markdown.
    The audit also records the adelic/trim frontier and the Markdown source
    corruption repaired by the current maintenance work.
 2. `research-roadmap-2026-09-21.md` — live completion roadmap. Its
-   2026-10-01 update incorporates the fixed-edge/alternating-E aligned normal
-   form and the strict-zipper M-adic carry stop result.
+   2026-10-02 synchronization includes the fixed-edge/alternating-E aligned
+   normal form, strict-zipper M-adic carry stop result, conditional G1 routes,
+   and complete finite separation evidence; the open gates remain open.
 3. `p1-two-route-map-2026-10-01.md` — current attack map joining the aligned
    and strict-zipper routes at offset zero and identifying the next reviewable
    theorem targets.
 4. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
-5. `completion-ledger-2026-09-14.md` — latest merged weekly completion
-   snapshot; read its priority ordering against the live roadmap.
+5. `completion-ledger-2026-10-02.md` — latest merged weekly completion
+   snapshot, refreshed to `main@ff9e5d3`; mathematical/evidence additions
+   through PR #188 and the complete 24,486-specimen separation record.
 6. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
 7. `conjecture-ledger.md` — live prose dependency ledger.
@@ -88,6 +90,21 @@ Change the ledger entry and every surface in the same commit.
   twelve repositories round two never opened, and the six rulings they state
   independently of each other and of this program.
 
+## Research references
+
+- [`bridges/penrose-2d-to-psc-interface-program.md`](bridges/penrose-2d-to-psc-interface-program.md)
+  — PR #154's non-load-bearing Penrose interface comparison. Its strongest
+  analogies concern P2/G1b-2 and P4 realization; the narrower P1b/#139 analogy
+  supplies no adelic hitting theorem. Penrose derivations remain in
+  `larsbx/tiling-theory-research`.
+- [`post-proof-padovan-plastic-a-conjectures-2026-09-23.md`](post-proof-padovan-plastic-a-conjectures-2026-09-23.md)
+  and its [JSON catalogue](post-proof-padovan-plastic-a-conjectures-2026-09-23.json)
+  — PR #157's research-only benchmark conjectures. The historical
+  "post-proof" filename does not assert a completed PSC proof.
+
+These are reference/index additions only. They do not establish #84, #138,
+#139, G1, or general PSC, or change their ledger status or closure priorities.
+
 ## Source provenance
 
 - `archive-tarball-audit-2026-09-13.md` — uploaded archive digest, identity check, and warning about contradictory v34 closing status language.
@@ -119,6 +136,10 @@ Change the ledger entry and every surface in the same commit.
 - `bpa-overlap-depth-literature-gate-2026-10-02.md` — stop/go literature gate
   for that argument: the mechanism is Sirvent–Solomyak (2002), Theorem 5.6;
   novelty is narrowed to the swap-seed transfer and the explicit bound.
+- Manuscript Proposition 5.47 and the same proof note's Proposition 4 /
+  Corollary 5 sharpen this to the half-coincidence route: excluding reachable
+  strict zippers from every swap seed is sufficient for G1. The exclusion is
+  still open, so this conditional theorem does not promote G1 or PSC.
 
 The missing `PSC_PROOF_v16` file is a historical provenance fact. It is not a
 current dependency for G1b-1 or degree-two carrier-span propagation.

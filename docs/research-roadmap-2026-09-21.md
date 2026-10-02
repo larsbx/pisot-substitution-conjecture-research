@@ -4,6 +4,22 @@
 
 **Standing target:** pure discrete spectrum for primitive irreducible Pisot substitutions in the repository's standing regime, **without** silently adding seed legality, unique decodability, finite injectivity, rational/integer independence, or unimodularity.
 
+**2026-10-02 synchronization:** PRs #181–#188 add the aligned fixed-edge /
+alternating-E normal form, exact M-adic carry reduction, two conditional routes
+from overlap hypotheses to G1 (manuscript Propositions 5.46–5.47), and complete
+separation evidence on the 24,486-member ternary total-image-length-at-most-8 class.
+None discharges seedwise overlap productivity, either obstruction branch, G1,
+or PSC.
+
+**Reference update at `main@ff9e5d3`:** PR #154's
+[Penrose 2D interface bridge](bridges/penrose-2d-to-psc-interface-program.md)
+and PR #157's [Padovan / Plastic-A conjecture program](post-proof-padovan-plastic-a-conjectures-2026-09-23.md)
+are non-load-bearing research references. The Penrose analogies are strongest
+for P2/G1b-2 and P4 realization; its P1b/#139 comparison supplies no adelic
+hitting theorem. PR #191 repairs CI and source integrity. These merges change
+no mathematical status or closure priority: #84, #138, #139, G1, and general
+PSC remain open.
+
 ## 1. Completion architecture
 
 The shortest current route is still G1-free:
@@ -312,6 +328,14 @@ On the declared 4,554-member ternary short-image PIP corpus:
 - unit/non-unit split on this corpus: 2,628 unimodular and 1,926 determinant-two specimens;
 - proper-power collapse occurs only on the non-unit branch in this domain, but zero-shift-free pumps occur on both branches, including 2,598 of 2,628 unimodular specimens.
 
+On the broader 24,486-member ternary total-image-length-at-most-8 class, the
+canonical separation sweep completed with no inconclusive specimen at its declared caps:
+23,634 specimens have finite least separation radius (maximum `9`), while 852
+have an exact proper-power collapse witness by level `6`. The radius histogram
+is `1:2264, 2:13688, 3:6092, 4:1230, 5:288, 6:60, 9:12`; an independent driver
+reproduced it. This decides the finite class only. It is not a universal
+recognizability, productivity, G1, or PSC theorem.
+
 The exact cubic arithmetic audit reports zero disagreements against the independent oracle on its declared tests, including wide-magnitude Perron-sign checks.
 
 ### Generalization warning
@@ -373,9 +397,9 @@ Countermodels and failed routes remain part of the project evidence and should s
 
 | Priority | Item | Status | Evidence needed to close | Immediate next deliverable |
 | --- | --- | --- | --- | --- |
-| **P0** | Status/provenance synchronization | ongoing | roadmap, proof ladder, claim map, manuscript, ledger and README agree on the same theorem boundary | land this roadmap and keep issue #84/#138/#139 wording synchronized |
-| **P1a** | Aligned strong coincidence (#138) | **OPEN critical** | uniform elimination of every aligned bad SCC for ternary PIP, including reversal | propagation theorem from one good pair through hub-star/endpoint recurrence |
-| **P1b** | Strict-zipper hitting (#139) | **OPEN critical; literature gate complete** | uniform non-unit-safe `AdelicPeriodicOffsetHitting` theorem | define the full-representation prefix-difference cylinder and a complete recurrence/coverage lemma |
+| **P0** | Status/provenance synchronization | refreshed to `main@ff9e5d3`; mathematical/evidence additions through PR #188 | roadmap, proof ladder, claim map, manuscript, ledger and README agree on the same theorem boundary | keep issue #84/#138/#139 wording synchronized as new work lands |
+| **P1a** | Aligned strong coincidence (#138) | **OPEN critical; cycle normal form proved** | uniform elimination of the fixed bad hub edge and alternating type-E templates, including reversal | prove the endpoint/occurrence incompatibility for the two surviving templates |
+| **P1b** | Strict-zipper hitting (#139) | **OPEN critical; literature, cylinder and carry reductions complete** | uniform non-unit-safe `AdelicPeriodicOffsetHitting` theorem | prove occurrence-compatible coverage of the reverse zero basin in the full representation |
 | **P1** | Seedwise overlap productivity (#84) | **OPEN — only shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad SCC | assemble after branch theorems; do not replace with larger finite sieves |
 | **P2** | G1b-2 renewal finiteness | **OPEN parallel** | uniform finite-return theorem for realizable labelled first returns | develop non-unit level-scaled address/return theory |
 | **P3a** | Concentration, `K2=0` | **OPEN parallel** | uniform exclusion of strict zero-wedge closed carriers | use ordered/ancestral information absent from current span data |
@@ -387,9 +411,17 @@ Countermodels and failed routes remain part of the project evidence and should s
 
 For the next research cycle:
 
-1. **#139 adelic cylinder next.** The literature baseline is complete; define the exact full-representation prefix-difference cylinder and its membership predicate before proposing new machinery.
-2. **#138 propagation theorem in parallel.** The aligned branch has a finite combinatorial normal form and may close independently of the geometric branch.
-3. **State the complete recurrence/coverage lemma precisely.** It must act in the full representation space and force an actual prefix-Parikh hit for a realized periodic offset orbit.
+1. **#139 coverage theorem next.** The literature baseline, full-representation
+   cylinder, M-adic compatibility filter, and integral carry recursion are now
+   explicit. Prove that a realized periodic strict-zipper orbit enters the
+   occurrence-compatible reverse zero basin; deeper quotient iteration alone
+   is not progress without a completeness map.
+2. **#138 template exclusion in parallel.** The aligned branch is reduced to a
+   fixed bad hub edge or an alternating type-E template. Exclude those two
+   templates using endpoint/occurrence structure, including reversal.
+3. **Keep the conditional G1 routes separate from closure.** Propositions
+   5.46–5.47 prove implications from all-seed productivity or strict-zipper
+   exclusion; their premises remain open.
 4. **Use the known pumps/collars as mandatory negative controls.**
 5. **Keep G1b-2 active but secondary to #84.** It is a stronger structural theorem, not a hidden dependency of PDS.
 6. **Do not expand fixed-size sieves unless they test a specific proposed uniform lemma.**
