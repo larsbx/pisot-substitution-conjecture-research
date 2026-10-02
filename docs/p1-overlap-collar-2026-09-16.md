@@ -211,8 +211,12 @@ cap `6` on the separation radius, lifts at radius `4`):
   collision there without a collapsing patch. Its representative
   `0 -> 1, 1 -> 2, 2 -> 022102` has separation radius `9` and no collapsing
   patch through level `14` (regressions in `mojo/tests/test_overlap_collar.mojo`
-  and `mojo/tests/test_separation_sweep.mojo`); the class-wide count is the
-  deterministic sweep `mojo/separation_radius_total_length_sweep.mojo`.
+  and `mojo/tests/test_separation_sweep.mojo`). The deterministic sweep
+  `mojo/separation_radius_total_length_sweep.mojo` decides all 24,486
+  specimens at radius cap `12`: the 12 members of that orbit are exactly the
+  specimens of radius above `6` (all radius `9`), and the 852 that never
+  separate are exactly those with a collapsing patch by level `6`. At that
+  cap the equivalence holds on the whole class.
 - Of the 4524 specimens with a zero-shift-free recurrent cycle, the first
   affine pump lifts at radius `4` to a collar that is eventually constant in
   3820 specimens and eventually periodic with period `2` or `3` in 704; the
