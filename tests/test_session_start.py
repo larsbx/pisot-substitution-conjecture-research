@@ -23,7 +23,7 @@ PIN = "0.81.0"
 STD_PROBE = '''from std.collections import List
 
 def main():
-    var values = List[Int](17, 25)
+    var values: List[Int] = [17, 25]
     print("session-start std ok", values[0] + values[1])
 '''
 
