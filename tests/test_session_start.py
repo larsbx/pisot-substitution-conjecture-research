@@ -35,8 +35,10 @@ def script(path, body):
 
 
 def sandbox(tmp_path, *, installed=None, failure="", real_pixi=None):
-    # Spaces and shell metacharacters must survive sourcing the emitted PATH.
-    repo = tmp_path / "parent workspace" / "repo with $literal and 'quotes'"
+    # Check the hook's metacharacter quoting independently of pixi's known
+    # dollar-expansion bug. Real pixi still exercises spaces and single quotes.
+    name = "repo with spaces and 'quotes'" if real_pixi else "repo with $literal and 'quotes'"
+    repo = tmp_path / "parent workspace" / name
     hook = repo / ".claude/hooks/session-start.sh"
     hook.parent.mkdir(parents=True)
     shutil.copyfile(HOOK, hook)
@@ -59,6 +61,8 @@ def sandbox(tmp_path, *, installed=None, failure="", real_pixi=None):
         "PATH": "/must-not-freeze-this-path",
         "PIXI_IN_SHELL": "1", "PIXI_PROMPT": "(psc-mojo)",
     }
+    if failure == "activation-prefix":
+        activation["CONDA_PREFIX"] = str(tmp_path / "wrong-prefix")
     prelude = f'''
 import json, os, pathlib, subprocess, sys
 repo = pathlib.Path({str(repo)!r})
@@ -180,11 +184,14 @@ def test_hook_provisions_locked_activation_from_its_own_repository(tmp_path, ins
             assert not Path(args[1]).exists()
 
 
-@pytest.mark.parametrize("failure", ["install", "shell-hook", "probe", "installer-version"])
+@pytest.mark.parametrize("failure", ["install", "shell-hook", "probe", "installer-version", "activation-prefix"])
 def test_hook_refuses_provisioning_or_compilation_failure(tmp_path, failure):
-    repo, hook, _, log, env = sandbox(tmp_path, installed=PIN, failure=failure)
+    repo, hook, env_file, log, env = sandbox(tmp_path, installed=PIN, failure=failure)
     result = run_hook(hook, env, repo.parent)
     assert result.returncode != 0, result.stdout + result.stderr
+    if failure == "activation-prefix":
+        assert "activation prefix differs" in result.stderr
+        assert env_file.read_bytes() == b""
     for tool, _, args in map(json.loads, log.read_text().splitlines()):
         if tool == "mojo" and args[0] == "run":
             assert not Path(args[1]).exists()

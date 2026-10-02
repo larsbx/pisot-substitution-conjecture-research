@@ -7,7 +7,7 @@ set -euo pipefail
 [ "${CLAUDE_CODE_REMOTE:-}" = "true" ] || exit 0
 # The hook may be registered from a parent workspace, so locate the repo from
 # the script rather than trusting CLAUDE_PROJECT_DIR.
-REPO=$(cd "$(dirname "$0")/../.." && pwd)
+REPO=$(cd "$(dirname "$0")/../.." && pwd -P)
 cd "$REPO"
 
 python3 -m pip install -q -e '.[dev]'
@@ -30,11 +30,16 @@ MOJO_BIN="$REPO/mojo/.pixi/envs/default/bin"
 # PATH is composed below rather than frozen at hook time; the interactive-shell
 # markers are dropped so `pixi run` still works from the session.
 (cd mojo && "$PIXI_BIN/pixi" shell-hook --locked --json) | python3 -c '
-import json, shlex, sys
+import json, os, shlex, sys
+env = json.load(sys.stdin)["environment_variables"]
+# pixi 0.81.0 can expand dollar expressions in a prefix during activation.
+# Refuse that mismatch before publishing an unusable session environment.
+if os.path.realpath(env.get("CONDA_PREFIX", "")) != os.path.realpath(sys.argv[1]):
+    raise SystemExit("pixi activation prefix differs from the locked repository environment")
 skip = {"PATH", "PIXI_IN_SHELL", "PIXI_PROMPT"}
-for k, v in json.load(sys.stdin)["environment_variables"].items():
+for k, v in sorted(env.items()):
     if k not in skip:
-        print(f"export {k}={shlex.quote(v)}")' >> "$CLAUDE_ENV_FILE"
+        print(f"export {k}={shlex.quote(v)}")' "$REPO/mojo/.pixi/envs/default" >> "$CLAUDE_ENV_FILE"
 
 # The pip-installed pytest (with pypdf) must shadow any preinstalled tool copy.
 printf 'export PATH=%q:"$PATH"\n' "$(python3 -c 'import sysconfig; print(sysconfig.get_path("scripts"))'):$MOJO_BIN:$PIXI_BIN" >> "$CLAUDE_ENV_FILE"
