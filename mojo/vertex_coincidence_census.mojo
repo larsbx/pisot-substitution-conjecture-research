@@ -8,15 +8,25 @@ integral centre offset shares a vertex. A failing specimen would be a strict
 zipper and is printed with its witness vertex; a capped graph is reported as
 capped and is not a verdict.
 
-Usage: `mojo run -I . vertex_coincidence_census.mojo [total]` surveys the 4554
-standing specimens, or with `total` the 24486 specimens of total image length
-at most 8. Specimens are folded in canonical order on `parallel_fold`, so the
+Usage: `mojo run -I . vertex_coincidence_census.mojo [total | len4 START END]`
+surveys the 4554 standing specimens; with `total` the 24486 specimens of total
+image length at most 8; with `len4 START END` the slice `[START, END)` of the
+135990 specimens with images of length at most 4 (labels index
+`image_words_up_to(4)`), so that long survey can run in resumable chunks. Specimens are folded in canonical order on `parallel_fold`, so the
 record does not depend on the worker count.
 """
 
 from std.sys import argv
 from parallel_fold.map_fold import parallel_map_fold
-from psc.corpus import Specimen, TOTAL_LENGTH_CAP, arithmetic_regime, pip_corpus, pip_corpus_total_length
+from psc.corpus import (
+    Specimen,
+    TOTAL_LENGTH_CAP,
+    arithmetic_regime,
+    image_words_up_to,
+    pip_corpus,
+    pip_corpus_total_length,
+    screened_triples,
+)
 from psc.vertex_coincidence import decide_vertex_coincidence
 
 comptime WORKERS = 4
@@ -110,8 +120,23 @@ def evaluate(index: Int, spec: Specimen) -> VertexCensus:
 
 def main() raises:
     var args = argv()
-    var total = len(args) > 1 and String(args[1]) == "total"
-    var corpus = pip_corpus_total_length(TOTAL_LENGTH_CAP) if total else pip_corpus()
+    var mode = String(args[1]) if len(args) > 1 else String("")
+    var corpus = List[Specimen]()
+    if mode == "total":
+        corpus = pip_corpus_total_length(TOTAL_LENGTH_CAP)
+    elif mode == "len4":
+        if len(args) != 4:
+            raise Error("usage: len4 START END")
+        var full = screened_triples(image_words_up_to(4), 12)
+        var start = Int(String(args[2]))
+        var end = min(Int(String(args[3])), len(full))
+        if start < 0 or start > end:
+            raise Error("len4 slice lies outside the corpus")
+        print("images of length <= 4: specimens", len(full), "slice", start, end)
+        for s in range(start, end):
+            corpus.append(full[s].copy())
+    else:
+        corpus = pip_corpus()
 
     def one(s: Int) {corpus} -> VertexCensus:
         return evaluate(s, corpus[s])
