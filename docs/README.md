@@ -134,6 +134,12 @@ Change the ledger entry and every surface in the same commit.
   and Barge 2018 Lemma 2 read in full: the configuration argument does not
   force a common vertex (its maximality step yields only an aligned pair).
   Decision "stop".
+- `p1b-vertex-coincidence-box-2026-10-02.md` — #139 research note
+  (unreviewed): Proposition V decides PeriodicPairVertexCoincidence per
+  substitution for every `r` on one finite box graph; exact certificate
+  `mojo/psc/vertex_coincidence.mojo` and census
+  `mojo/vertex_coincidence_census.mojo`. Not proved for all PIP
+  substitutions (it implies G1).
 
 The missing `PSC_PROOF_v16` file is a historical provenance fact. It is not a
 current dependency for G1b-1 or degree-two carrier-span propagation.

@@ -308,3 +308,7 @@ standing regime, since none is known.
   aligned pair, which shares a vertex already. Barge's β-substitution proof
   closes that step with a monotonicity property of the β-language that
   general PIP substitutions lack. Decision there: stop.
+- PeriodicPairVertexCoincidence is decidable per substitution, for every `r`
+  at once, on one finite box graph
+  (`p1b-vertex-coincidence-box-2026-10-02.md`, Proposition V). It holds on
+  the finite domains surveyed there. It remains open in general.
