@@ -435,6 +435,4 @@ def main() raises:
     require_claim("SwapOverlapFiniteness")
     require_claim("AlignedOverlapsAreStrongCoincidence")
     require_claim("BoundaryCoincidenceCriterion")
-    require_contract(
-        "0 -> 1, 1 -> 222, 2 -> 0222 has an uncapped productive seed-patch overlap graph of 1142 states with maximum first-coincidence depth 19"
-    )
+    require_contract("0 -> 1, 1 -> 222, 2 -> 0222 has an uncapped productive seed-patch overlap graph of 1142 states with maximum first-coincidence depth 19")
