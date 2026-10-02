@@ -1,0 +1,112 @@
+"""Exact regressions for the box-graph decision of PeriodicPairVertexCoincidence
+(Proposition V of docs/p1b-vertex-coincidence-box-2026-10-02.md)."""
+
+from std.testing import assert_equal, assert_true
+from psc.claim_tests import require_contract
+from psc.overlap_obstruction import _has_cycle, overlap_sccs
+from psc.overlap_seed_patch import build_seed_overlap_graph_from_tables, build_seed_overlap_tables
+from psc.periodic_pair import centre_offset, interior_occurrences
+from psc.vertex_coincidence import box_radii, build_box_graph, decide_vertex_coincidence, decide_vertex_coincidence_from
+
+
+def sigma_of(a: List[Int], b: List[Int], c: List[Int]) -> List[List[Int]]:
+    var sigma = List[List[Int]]()
+    sigma.append(a.copy())
+    sigma.append(b.copy())
+    sigma.append(c.copy())
+    return sigma^
+
+
+def tribonacci() -> List[List[Int]]:
+    return sigma_of([0, 1], [0, 2], [0])
+
+
+def cube_image() -> List[List[Int]]:
+    return sigma_of([1], [2, 2, 2], [0, 2, 2, 2])
+
+
+def golden_pump() -> List[List[Int]]:
+    return sigma_of([1], [0, 2, 1], [0, 0, 1])
+
+
+def assert_holds(sigma: List[List[Int]], recurrent: Int, deepest: Int) raises:
+    var v = decide_vertex_coincidence(sigma)
+    assert_equal(v.capped, False)
+    assert_equal(v.holds, True)
+    assert_equal(v.recurrent, recurrent)
+    assert_equal(v.deepest, deepest)
+
+
+def test_named_specimens_hold_for_every_r() raises:
+    """Recurrent counts and depths agree with an independent floating-point
+    oracle that uses different bounds and a different start set (the recurrent
+    part does not depend on the start superset)."""
+    assert_holds(tribonacci(), 14, 3)
+    assert_holds(cube_image(), 1166, 17)
+    assert_holds(golden_pump(), 716, 15)
+
+
+def test_every_integral_centre_offset_lies_in_the_box() raises:
+    """Step 1 of Proposition V against Theorem B: every integral centre offset of
+    an interior-occurrence pair has |w_m| <= R_m."""
+    var specimens = List[List[List[Int]]]()
+    specimens.append(tribonacci())
+    specimens.append(golden_pump())
+    var depths: List[Int] = [6, 4]
+    var checked = 0
+    for s in range(len(specimens)):
+        var sigma = specimens[s].copy()
+        var radii = box_radii(build_seed_overlap_tables(sigma))
+        for r in range(1, depths[s] + 1):
+            for i in range(3):
+                var top = interior_occurrences(sigma, i, r)
+                for j in range(3):
+                    var bottom = interior_occurrences(sigma, j, r)
+                    for p in range(len(top)):
+                        for q in range(len(bottom)):
+                            var w = centre_offset(sigma, r, top[p].prefix, bottom[q].prefix)
+                            if len(w) != 3:
+                                continue
+                            checked += 1
+                            for m in range(3):
+                                assert_true(w[m] <= radii[m] and -w[m] <= radii[m])
+    assert_true(checked > 0)
+
+
+def test_seed_graph_cycles_lie_in_the_box_graph() raises:
+    """Every vertex on a cycle of the seed-patch graph is a vertex of the box graph."""
+    var tables = build_seed_overlap_tables(cube_image())
+    var seed = build_seed_overlap_graph_from_tables(tables, 20000)
+    assert_equal(seed.capped, False)
+    var box = build_box_graph(tables)
+    assert_equal(box.capped, False)
+    var members = Dict[String, Bool]()
+    for i in range(box.size()):
+        members[String(box.states[i])] = True
+    var comps = overlap_sccs(seed)
+    var recurrent = 0
+    for c in range(len(comps)):
+        if not _has_cycle(seed, comps[c]):
+            continue
+        for k in range(len(comps[c])):
+            recurrent += 1
+            assert_true(String(seed.states[comps[c][k]]) in members)
+    assert_true(recurrent > 0)
+
+
+def test_a_capped_box_graph_is_never_a_verdict() raises:
+    var v = decide_vertex_coincidence_from(build_seed_overlap_tables(golden_pump()), 10)
+    assert_equal(v.capped, True)
+    assert_equal(v.holds, False)
+
+
+def main() raises:
+    test_named_specimens_hold_for_every_r()
+    print("[PASS] test_named_specimens_hold_for_every_r")
+    test_every_integral_centre_offset_lies_in_the_box()
+    print("[PASS] test_every_integral_centre_offset_lies_in_the_box")
+    test_seed_graph_cycles_lie_in_the_box_graph()
+    print("[PASS] test_seed_graph_cycles_lie_in_the_box_graph")
+    test_a_capped_box_graph_is_never_a_verdict()
+    print("[PASS] test_a_capped_box_graph_is_never_a_verdict")
+    require_contract("box-graph vertex coincidence (Proposition V): tribonacci 14/3, cube 1166/17, golden pump 716/15 hold for every r; every integral centre offset and every seed-graph cycle vertex lies in the box; a capped box graph is not a verdict")
