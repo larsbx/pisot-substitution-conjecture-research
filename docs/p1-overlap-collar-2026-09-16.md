@@ -204,12 +204,15 @@ cap `6` on the separation radius, lifts at radius `4`):
   finite obstruction to resolving ancestry by context is entirely the
   periodicity of the patches, and a separation radius exists precisely when
   no iterated seed patch is a proper power at the tested levels.
-- This equivalence is scoped to the 4,554 corpus. On the 24,486-member
-  total-length class (`docs/lost-depth-indexed-formulation-2026-10-01.md`
-  §6) one symmetry orbit of 12 specimens keeps a collision at radius `6`
-  without a collapsing patch; an exploratory probe of its representative
-  `0 -> 1, 1 -> 2, 2 -> 022102` finds separation at radius `9` and no collapse
-  through level `14`, so the census cap, not periodicity, is what that orbit
+- This equivalence is a finite statement at the stated caps. On the
+  24,486-member total-length class
+  (`docs/lost-depth-indexed-formulation-2026-10-01.md` §6) it fails at the
+  survey's radius cap `6`: one symmetry orbit of 12 specimens keeps a
+  collision there without a collapsing patch. The exploratory sweep
+  `mojo/separation_radius_sweep.mojo`, with cap `12` and collapse level `12`,
+  restores it on the whole class: those 12 are exactly the specimens of
+  separation radius `9`, and all 852 survivors at radius `12` have a
+  collapsing patch. The radius-`6` cap, not periodicity, is what the orbit
   exceeds.
 - Of the 4524 specimens with a zero-shift-free recurrent cycle, the first
   affine pump lifts at radius `4` to a collar that is eventually constant in

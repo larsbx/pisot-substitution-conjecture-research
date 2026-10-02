@@ -132,13 +132,29 @@ Diagnostics that did not complete, reported as such:
   same survey over those 24 specimens; the survey is deterministic.
 - **12 specimens**, one orbit under relabelling and reversal (representative
   `0 -> 1, 1 -> 2, 2 -> 022102`), keep a collar collision at the survey cap of
-  radius 6 without a collapsing seed patch by level 6. An exploratory probe of
-  the representative (not a census) finds no collapsing patch through level
-  14 and separation at radius 9, with unresolved collisions
-  29, 26, 14, 12, 11, 9, 6, 3, 1, 0 at radii 0–9. The standing corpus's
-  coincidence of survivors with collapsing patches therefore fails on this
-  class at the survey cap, because the separation radius exceeds the cap,
-  not because a non-collapsing collision persists at the probed radius.
+  radius 6 without a collapsing seed patch by level 6.
+
+The exploratory sweep `mojo/separation_radius_sweep.mojo` (not a census;
+exhaustive and deterministic) computes the separation radius with cap 12,
+crossed with collapse by level 12, under a collared-state budget of
+1,000,000. It completes on all 24,486 specimens with none capped or failed,
+so the 24 above resolve within the larger budget:
+
+| separation radius | 1 | 2 | 3 | 4 | 5 | 6 | 9 | survivors at 12 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| total-length class | 2,264 | 13,688 | 6,092 | 1,230 | 288 | 60 | 12 | 852 |
+| standing slice | 618 | 2,664 | 912 | 216 | 12 | 12 | 0 | 120 |
+
+The standing slice reproduces the published table of
+`docs/p1-overlap-collar-2026-09-16.md` §3.3. All 852 survivors at radius 12
+have a collapsing patch by level 12, no survivor lacks one, and no collapsing
+specimen resolves. The 12 specimens of the orbit above are exactly the
+specimens of radius 9 (the regression
+`test_a_non_collapsing_collision_can_need_radius_nine` pins the
+representative). So the coincidence of survivors with collapsing patches,
+which the radius-6 survey cap broke on this class, holds again at cap 12:
+those 12 exceed the survey cap, not because of periodicity. This is finite
+evidence at these caps only.
 
 ## 7. Exploratory bounded BPA sweep on the longest-image ≤ 4 slice
 
@@ -185,9 +201,9 @@ inconclusive specimens and for the whole class of §6.
 
 ## 8. Follow-up tasks
 
-1. Review Proposition 1 of `docs/bpa-termination-by-overlap-depth-2026-10-02.md`
-   and decide whether `docs/proof-ladder.md` should record
-   `all-seed overlap productivity => G1`.
-2. Optionally, a census-grade separation-radius sweep with a cap above 9 over
-   the 24,486 class, so that §6's probe of one representative becomes a
-   replayable count.
+1. Mathematical review of Proposition 1 of
+   `docs/bpa-termination-by-overlap-depth-2026-10-02.md` (manuscript
+   Proposition 5.46), now recorded in the ledger as `G1OverlapRoute`.
+2. Decide whether finiteness already follows from every reachable overlap
+   reaching a half-coincidence, as Sirvent–Solomyak Theorem 5.6 suggests
+   (`docs/bpa-overlap-depth-literature-gate-2026-10-02.md` §6).
