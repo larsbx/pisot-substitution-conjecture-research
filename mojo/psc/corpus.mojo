@@ -10,6 +10,12 @@ indices, the images and the incidence matrix so that no driver recomputes
 them. A specimen's `label` (`i j k`) and `json_fields` are the replayable
 identity printed by every diagnostic line.
 
+`pip_corpus_total_length` widens the same survey to every PIP substitution
+whose three images have total length at most `TOTAL_LENGTH_CAP` (24486
+specimens at 8), the domain of a lost earlier sweep
+(docs/lost-depth-indexed-formulation-2026-10-01.md). Its image words extend
+`image_words` in the same order, so a standing specimen keeps its label there.
+
 The corpus is finite evidence only: its 4554 members prove nothing about the
 general PIP regime.
 """
@@ -20,6 +26,7 @@ from psc.pisot import CubicScreen, is_pip
 from psc.words import ALPHABET
 
 comptime MAX_IMAGE_LENGTH = 3
+comptime TOTAL_LENGTH_CAP = 8
 comptime PROGRESS_STRIDE = 500
 
 # Fail-closed state cap shared by every balanced-pair and overlap-graph census.
@@ -85,14 +92,20 @@ def words_of_length(n: Int) -> List[List[Int]]:
     return out^
 
 
-def image_words() -> List[List[Int]]:
-    """The 39 candidate images: every word of length 1, 2 or 3 over `{0,1,2}`."""
+def image_words_up_to(max_length: Int) -> List[List[Int]]:
+    """Every word of length `1..max_length` over `{0,1,2}`, by length first,
+    then lexicographically."""
     var out = List[List[Int]]()
-    for n in range(1, MAX_IMAGE_LENGTH + 1):
+    for n in range(1, max_length + 1):
         var words = words_of_length(n)
         for w in range(len(words)):
             out.append(words[w].copy())
     return out^
+
+
+def image_words() -> List[List[Int]]:
+    """The 39 candidate images: every word of length 1, 2 or 3 over `{0,1,2}`."""
+    return image_words_up_to(MAX_IMAGE_LENGTH)
 
 
 def substitution_of(words: List[List[Int]], i: Int, j: Int, k: Int) -> List[List[Int]]:
@@ -104,20 +117,37 @@ def substitution_of(words: List[List[Int]], i: Int, j: Int, k: Int) -> List[List
     return sigma^
 
 
-def pip_corpus() raises -> List[Specimen]:
-    """The 4554 PIP specimens with images of length at most 3, screened exactly
-    and returned in the canonical `(i, j, k)` order."""
-    var words = image_words()
+def screened_triples(words: List[List[Int]], max_total: Int) raises -> List[Specimen]:
+    """Every PIP triple over the length-sorted `words` with total image length
+    at most `max_total`, screened exactly, in `(i, j, k)` order."""
     var screen = CubicScreen()
     var out = List[Specimen]()
     for i in range(len(words)):
         for j in range(len(words)):
+            if len(words[i]) + len(words[j]) + 1 > max_total:
+                break
             for k in range(len(words)):
+                if len(words[i]) + len(words[j]) + len(words[k]) > max_total:
+                    break
                 var sigma = substitution_of(words, i, j, k)
                 var m = Mat3(substitution_incidence(sigma))
                 if screen.is_pip(m):
                     out.append(Specimen(len(out), i, j, k, sigma^, m^))
     return out^
+
+
+def pip_corpus() raises -> List[Specimen]:
+    """The 4554 PIP specimens with images of length at most 3, screened exactly
+    and returned in the canonical `(i, j, k)` order."""
+    return screened_triples(image_words(), ALPHABET * MAX_IMAGE_LENGTH)
+
+
+def pip_corpus_total_length(max_total: Int) raises -> List[Specimen]:
+    """The PIP specimens with total image length at most `max_total`, labelled
+    by indices into `image_words_up_to(max_total - 2)`."""
+    if max_total < ALPHABET:
+        raise Error("a substitution on three letters has total image length >= 3")
+    return screened_triples(image_words_up_to(max_total - (ALPHABET - 1)), max_total)
 
 
 def report_progress(done: Int, stride: Int = PROGRESS_STRIDE):

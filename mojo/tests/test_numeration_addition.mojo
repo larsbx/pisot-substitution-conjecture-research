@@ -30,7 +30,7 @@ from psc.linear_numeration import (
     recurrence,
 )
 from psc.numeration_addition import addition_automaton, powered_field, triple_word
-from psc.perron_field3 import build_perron_field3
+from psc.perron_field3 import MAX_CERTIFIED_COLUMN_SUM, build_perron_field3
 from psc.bpa import substitution_incidence
 from finite_linear_algebra.mat3 import Mat3
 from psc.oa_overlap_types import prolongable_point
@@ -127,15 +127,16 @@ def test_the_two_numerations_are_not_the_same_presentation() raises:
 
 
 def prolongable_only_at_a_power() -> List[List[Int]]:
-    """`0 -> 1, 1 -> 2, 2 -> 02`: prolongable at the cube, whose images run to
-    length four and so leave the domain `build_perron_field3` is certified on.
+    """`0 -> 1, 1 -> 2, 2 -> 022`: prolongable at the cube, whose images run to
+    length fifteen and so leave the domain `build_perron_field3` is certified
+    on (column sums at most `MAX_CERTIFIED_COLUMN_SUM = 6`).
 
     This is a corpus specimen, not a contrivance: the cube of a three-letter
     substitution can have images of length up to 27, and every specimen whose
     prolongable power exceeds one is a candidate for leaving that domain."""
     var a: List[Int] = [1]
     var b: List[Int] = [2]
-    var c: List[Int] = [0, 2]
+    var c: List[Int] = [0, 2, 2]
     return substitution(a, b, c)
 
 
@@ -143,9 +144,9 @@ def test_a_powered_substitution_builds_its_own_field() raises:
     """The field must come from the powered matrix, and the overlap kernel's
     entry point cannot supply it.
 
-    `build_perron_field3` is certified only for image lengths at most three --
+    `build_perron_field3` is certified only for column sums at most six --
     the audited domain of its legacy unchecked predicates -- and a cube of
-    three-letter images leaves that domain by construction. Such a specimen is
+    three-letter images can leave that domain, as this one does. Such a specimen is
     otherwise perfectly eligible for this numeration, so refusing it would be
     an artefact of which function was asked, not a fact about the
     substitution."""
@@ -157,7 +158,7 @@ def test_a_powered_substitution_builds_its_own_field() raises:
     for a in range(3):
         if len(tau[a]) > longest:
             longest = len(tau[a])
-    assert_true(longest > 3)                    # outside the audited domain
+    assert_true(longest > MAX_CERTIFIED_COLUMN_SUM)  # outside the audited domain
 
     var refused = False
     try:

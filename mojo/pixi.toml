@@ -25,6 +25,7 @@ degree3-catalog = "mojo run -I . degree3_catalog.mojo"
 wedge-productivity-catalog = "mojo run -I . wedge_productivity_catalog.mojo"
 swap-discrepancy-census = "mojo run -I . swap_discrepancy_census.mojo"
 swap-overlap-census = "mojo run -I . swap_overlap_census.mojo"
+swap-overlap-census-total-length = "mojo run -I . swap_overlap_census_total_length.mojo"
 overlap-contracting-census = "mojo run -I . overlap_contracting_census.mojo"
 
 # Finite classifications with no substitution input.

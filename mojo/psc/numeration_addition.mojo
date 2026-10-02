@@ -72,7 +72,7 @@ def powered_field(tau: List[List[Int]]) raises -> PerronField3:
     """The cubic field of a substitution that may be a power of another.
 
     `build_perron_field3` is deliberately not used here. That entry point is
-    certified only for image lengths at most three, the audited domain of the
+    certified only for image lengths at most six, the audited domain of the
     overlap kernel's legacy unchecked predicates, and a substitution made
     prolongable by raising it to a power legitimately leaves that domain: a
     cube of three-letter images has images up to length 27. Sending a powered

@@ -28,9 +28,12 @@ from psc.corpus import (
     REGIME_UNIMODULAR_COMPLEX,
     REGIME_UNIMODULAR_REAL,
     arithmetic_regime,
+    TOTAL_LENGTH_CAP,
     cubic_discriminant,
     image_words,
+    image_words_up_to,
     pip_corpus,
+    pip_corpus_total_length,
     substitution_of,
     words_of_length,
 )
@@ -363,6 +366,54 @@ def test_the_corpus_is_the_screened_corpus() raises:
         assert_true(is_pip(Mat3(substitution_incidence(corpus[s].sigma))))
 
 
+def test_the_long_images_extend_the_short_images_in_order() raises:
+    """Indices into `image_words` stay valid in the longer list, so a standing
+    specimen keeps its `i j k` label in the total-length corpus."""
+    var short = image_words()
+    var long = image_words_up_to(TOTAL_LENGTH_CAP - 2)
+    assert_equal(len(long), 3 + 9 + 27 + 81 + 243 + 729)
+    for i in range(len(short)):
+        assert_equal(word_key(long[i]), word_key(short[i]))
+    for i in range(1, len(long)):
+        assert_true(len(long[i - 1]) <= len(long[i]))
+        if len(long[i - 1]) == len(long[i]):
+            assert_true(word_less(long[i - 1], long[i]))
+
+
+def max_image_length_of(sigma: List[List[Int]]) -> Int:
+    return max_int(max_int(len(sigma[0]), len(sigma[1])), len(sigma[2]))
+
+
+def test_the_total_length_corpus_contains_the_standing_corpus() raises:
+    """24486 PIP specimens with total image length at most 8; slicing by the
+    longest image gives 72 / 4554 / 14670 / 22080 / 24486, and the slice at 3
+    is the standing corpus, label for label and in order."""
+    var corpus = pip_corpus_total_length(TOTAL_LENGTH_CAP)
+    var standing = pip_corpus()
+    assert_equal(len(corpus), 24486)
+    var slices = List[Int](length=TOTAL_LENGTH_CAP - 1, fill=0)
+    var seen = 0
+    for s in range(len(corpus)):
+        ref spec = corpus[s]
+        assert_equal(spec.index, s)
+        assert_true(
+            len(spec.sigma[0]) + len(spec.sigma[1]) + len(spec.sigma[2])
+            <= TOTAL_LENGTH_CAP
+        )
+        assert_true(is_pip(Mat3(substitution_incidence(spec.sigma))))
+        var longest = max_image_length_of(spec.sigma)
+        slices[longest] += 1
+        if longest <= MAX_IMAGE_LENGTH:
+            assert_equal(spec.label(), standing[seen].label())
+            seen += 1
+    assert_equal(seen, len(standing))
+    var cumulative = 0
+    var expected: List[Int] = [0, 0, 72, 4554, 14670, 22080, 24486]
+    for longest in range(1, TOTAL_LENGTH_CAP - 1):
+        cumulative += slices[longest]
+        assert_equal(cumulative, expected[longest])
+
+
 def main() raises:
     test_the_candidate_images_are_the_short_words_in_order()
     print("[PASS] test_the_candidate_images_are_the_short_words_in_order")
@@ -384,7 +435,11 @@ def main() raises:
     print("[PASS] test_the_memoized_screen_accepts_exactly_what_is_pip_accepts")
     test_the_corpus_is_the_screened_corpus()
     print("[PASS] test_the_corpus_is_the_screened_corpus")
-    print("10 census-library tests passed.")
+    test_the_long_images_extend_the_short_images_in_order()
+    print("[PASS] test_the_long_images_extend_the_short_images_in_order")
+    test_the_total_length_corpus_contains_the_standing_corpus()
+    print("[PASS] test_the_total_length_corpus_contains_the_standing_corpus")
+    print("12 census-library tests passed.")
     require_claim("BoundedDegree3Exclusion")
     require_claim("BoundedDegree2WedgeProductivity")
     require_claim("ParitySieve")

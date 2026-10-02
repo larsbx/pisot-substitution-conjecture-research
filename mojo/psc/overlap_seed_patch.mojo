@@ -177,10 +177,14 @@ struct PerronCache(Copyable, Movable):
         _validate_sigma(sigma)
         var key = incidence_key(sigma)
         if key not in self.index:
+            # Build before indexing: a refused build must leave no entry
+            # pointing at a slot that was never filled.
             var m = Mat3(substitution_incidence(sigma))
+            var field = build_perron_field3(m)
+            var lengths = left_perron_tile_lengths(m)
             self.index[key] = len(self.fields)
-            self.fields.append(build_perron_field3(m))
-            self.lengths.append(left_perron_tile_lengths(m))
+            self.fields.append(field^)
+            self.lengths.append(lengths^)
         var slot = self.index[key]
         return _tables_from(sigma, self.fields[slot], self.lengths[slot])
 
