@@ -4,7 +4,7 @@
 Proposition V reduces PeriodicPairVertexCoincidence, for one substitution and
 **every** `r` at once, to a property of one finite graph, and
 `mojo/psc/vertex_coincidence.mojo` decides it exactly. The general statement,
-for every PIP substitution, is **not** proved. §5 explains why it carries the
+for every PIP substitution, is **not** proved. §6 explains why it carries the
 weight of an open problem. Nothing here is promoted to the ledger or the
 manuscript.
 
@@ -158,7 +158,92 @@ depth note already gives G1 through all-seed overlap productivity. What is new
 is the periodic-pair statement for **all** `r`, not only the seed-reachable
 part, and the uniform depth `K_V`.
 
-## 5. What this does not establish
+## 5. What the data says about a general proof
+
+### 5.1 A sandwich (proved)
+
+*Theorem S.* For PIP `sigma`: pure discrete spectrum ⇒ PPVC(`sigma`) ⇒ G1
+for `sigma`.
+
+*Proof.*
+
+- **PDS ⇒ PPVC.** If PPVC(`sigma`) fails, Proposition V gives a pair
+  `T(i, P)`, `T(j, Q) + <ell, w_0>` with no common vertex, hence no common
+  tile. By Proposition F with Theorem R, the two tilings lie in one fibre of
+  the maximal equicontinuous factor. Barge 2013, Theorem 4(3),(5) (from
+  Barge–Kellendonk) then gives coincidence rank at least 2, hence no pure
+  discrete spectrum.
+- **PPVC ⇒ G1.** Corollary B′ with manuscript Proposition 5.47.
+
+`square`
+
+So a failure of PPVC, which Proposition V would detect in finite time, is a
+counterexample to the Pisot conjecture for that `sigma`. PPVC holds wherever
+pure discrete spectrum is known, for example Barge's class of substitutions
+injective on initial letters and constant on final letters, and Pisot
+`beta`-substitutions. Neither class adds anything to G1, which pure discrete
+spectrum already implies there.
+
+### 5.2 Mechanisms the data rules out (exploratory)
+
+An uncommitted floating-point miner was run on the box graphs of the three
+named specimens. It searched for a local reason why every vertex reaches
+offset zero, because a provable local reason would close the problem. Three
+candidates fail.
+
+- **One-step descent of the contracting size.** Candidate: every
+  non-offset-zero recurrent vertex has a child with smaller
+  `sum_k |sigma_k(t)|^2` (or smaller `max_k |sigma_k(t)|/B_k`). This fails on
+  234 of the 1,166 recurrent vertices of the cube specimen and on 140 of the
+  716 of the golden pump. A smaller descendant always exists within 5 levels
+  there, but that is implied by reaching offset zero and is no mechanism.
+- **Endpoint hitting.** Candidate: the first common vertex is an endpoint of
+  the vertex's region, i.e. it is reached along the leftmost or rightmost
+  child chain. This holds for all 14 recurrent vertices of Tribonacci and for
+  1,053 of the 1,166 of the cube specimen, but only for 8 of the 716 of the
+  golden pump. The common vertex is in general interior, consistent with the
+  six-edge affine pump on that specimen
+  (`p1-overlap-affine-pump-2026-09-15.md`).
+- **Magnitude plus a constant.** Candidate: the first-hit depth is at most
+  the contracting lower bound `m_0(t)` of manuscript Proposition 5.42 plus a
+  uniform constant. On the seed-patch graphs of the corpus the excess
+  `b − m_0` already reaches 14
+  (`overlap-finiteness-and-coincidence-density-2026-09-13.md`), so no small
+  uniform constant is visible.
+
+### 5.3 Where the depth sits (exact census)
+
+`K_V` by specimen over the standing corpus, split by arithmetic regime
+(`vertex_coincidence_census.mojo`):
+
+| Regime | `K_V`: specimens |
+| --- | --- |
+| unimodular, two real conjugates | 2:108 3:198 4:234 5:102 6:6 |
+| unimodular, complex pair | 2:210 3:612 4:588 5:336 6:120 7:84 8:18 14:12 |
+| `abs(det M) > 1` | 4:24 5:138 6:252 7:288 8:360 9:228 10:192 11:120 12:36 13:48 14:72 15:120 16:36 17:12 |
+
+Unimodular specimens have `K_V <= 8`, apart from one class of 12 with
+`K_V = 14`. Non-unimodular specimens reach 17. The extra depth is therefore
+carried by the non-Archimedean coordinates. A hit at depth `m` also has to
+pass the `M`-adic filter `M^m w ∈ D_m(i, j)` of
+`p1b-madic-carry-reduction-2026-10-01.md`. That filter is trivial for
+unimodular `M` and refines with `abs(det M)^m` otherwise. This is an
+observation, not a theorem.
+
+### 5.4 The closing target, restated
+
+The box graph is the carry automaton of the Dumont–Thomas numeration of
+`sigma`: offsets are carries, children are digit pairs, and offset zero is a
+resolved carry. PPVC(`sigma`) says every recurrent carry can be resolved.
+This is the substitution analogue of Akiyama's weak finiteness property (W)
+for `beta`-numeration, which Barge proved for every Pisot `beta` by
+`beta`-specific monotonicity (`p1b-barge-diamond-configuration-gate-2026-10-02.md`).
+The data above says a general proof cannot be one-step, cannot be
+endpoint-based, and cannot use Archimedean magnitude alone. It must resolve
+carries by an argument that sees both the contracting and the `M`-adic
+coordinates, across many levels. No such argument is given here.
+
+## 6. What this does not establish
 
 - PPVC is not proved for all PIP substitutions. For every PIP `sigma` it
   implies G1 for `sigma`, through Corollary B′ and Proposition 5.47. A proof

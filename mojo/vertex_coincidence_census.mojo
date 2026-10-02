@@ -16,10 +16,12 @@ record does not depend on the worker count.
 
 from std.sys import argv
 from parallel_fold.map_fold import parallel_map_fold
-from psc.corpus import Specimen, TOTAL_LENGTH_CAP, pip_corpus, pip_corpus_total_length
+from psc.corpus import Specimen, TOTAL_LENGTH_CAP, arithmetic_regime, pip_corpus, pip_corpus_total_length
 from psc.vertex_coincidence import decide_vertex_coincidence
 
 comptime WORKERS = 4
+comptime DEPTH_SLOTS = 64
+comptime REGIMES = 4
 
 
 struct VertexCensus(Copyable, Movable):
@@ -35,6 +37,8 @@ struct VertexCensus(Copyable, Movable):
     var max_deepest: Int
     var max_deepest_index: Int
     var recurrent_total: Int
+    # K_V histogram by arithmetic regime: depth_by_regime[regime * DEPTH_SLOTS + K_V]
+    var depth_by_regime: List[Int]
 
     def __init__(out self):
         self.specimens = 0
@@ -49,6 +53,7 @@ struct VertexCensus(Copyable, Movable):
         self.max_deepest = -1
         self.max_deepest_index = -1
         self.recurrent_total = 0
+        self.depth_by_regime = List[Int](length=REGIMES * DEPTH_SLOTS, fill=0)
 
 
 def merge(a: VertexCensus, b: VertexCensus) -> VertexCensus:
@@ -71,6 +76,8 @@ def merge(a: VertexCensus, b: VertexCensus) -> VertexCensus:
         out.max_deepest = b.max_deepest
         out.max_deepest_index = b.max_deepest_index
     out.recurrent_total += b.recurrent_total
+    for k in range(len(out.depth_by_regime)):
+        out.depth_by_regime[k] += b.depth_by_regime[k]
     return out^
 
 
@@ -93,6 +100,9 @@ def evaluate(index: Int, spec: Specimen) -> VertexCensus:
         out.max_deepest = v.deepest
         out.max_deepest_index = index
         out.recurrent_total = v.recurrent
+        if v.deepest < 0 or v.deepest >= DEPTH_SLOTS:
+            raise Error("K_V outside the histogram")
+        out.depth_by_regime[arithmetic_regime(spec.incidence) * DEPTH_SLOTS + v.deepest] += 1
     except:
         out.failed_index = index
     return out^
@@ -121,3 +131,14 @@ def main() raises:
         print("most recurrent vertices:", r.max_recurrent, "specimen", corpus[r.max_recurrent_index].label())
         print("deepest recurrent first left-aligned depth:", r.max_deepest, "specimen", corpus[r.max_deepest_index].label())
         print("recurrent vertices in total:", r.recurrent_total)
+        var names: List[String] = ["nonunimodular", "unimodular real", "unimodular complex", "zero discriminant"]
+        for g in range(REGIMES):
+            var line = String("K_V by specimen, ") + names[g] + ":"
+            var any = False
+            for k in range(DEPTH_SLOTS):
+                var n = r.depth_by_regime[g * DEPTH_SLOTS + k]
+                if n > 0:
+                    line += " " + String(k) + ":" + String(n)
+                    any = True
+            if any:
+                print(line)
