@@ -70,10 +70,6 @@ struct RadiusTable(Copyable, Movable):
         )
 
 
-def longest_image(sigma: List[List[Int]]) -> Int:
-    return max_int(max_int(len(sigma[0]), len(sigma[1])), len(sigma[2]))
-
-
 def main() raises:
     print(
         "exploratory sweep: PIP substitutions with total image length <=", TOTAL_LENGTH_CAP,
@@ -104,7 +100,7 @@ def main() raises:
                 print("separation radius", radius, "above the survey cap:", spec.label())
             max_resolved = max_int(max_resolved, radius)
             whole.absorb(radius, collapsing)
-            if longest_image(spec.sigma) <= MAX_IMAGE_LENGTH:
+            if spec.longest_image() <= MAX_IMAGE_LENGTH:
                 standing.absorb(radius, collapsing)
         except e:
             n_failed += 1

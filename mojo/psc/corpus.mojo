@@ -66,6 +66,14 @@ struct Specimen(Copyable, Movable):
         self.sigma = sigma^
         self.incidence = incidence^
 
+    def longest_image(self) -> Int:
+        """`max_a |sigma(a)|`, the slicing key of the total-length corpus."""
+        var longest = 0
+        for a in range(len(self.sigma)):
+            if len(self.sigma[a]) > longest:
+                longest = len(self.sigma[a])
+        return longest
+
     def label(self) -> String:
         """`i j k`: the image indices, as every diagnostic line prints them."""
         return String(self.i) + " " + String(self.j) + " " + String(self.k)
