@@ -28,11 +28,11 @@ Start here:
 1. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the #138 aligned branch, #139 strict-zipper branch, Level 2, hypothesis firewall, and prioritized closure criteria.
 2. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
 3. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
-4. `docs/completion-ledger-2026-09-14.md` — latest merged weekly completion snapshot; historical evidence/priorities should be read against the live roadmap.
+4. `docs/completion-ledger-2026-10-02.md` — latest merged weekly completion snapshot, through PR #188 and the complete 24,486-specimen separation record.
 5. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
 6. `docs/tier2-bridge-salvage-2026-09-23.md` — research-taxonomy note separating termination-style Descent Bridges from recurrent arithmetic Growth Bridges; moves no theorem status.
-6. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
-7. `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form state-of-program exposition.
+7. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
+8. `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form state-of-program exposition.
 
 ### Headline: one open premise on the shortest PDS route
 
@@ -109,6 +109,25 @@ On the exact 4,554-member ternary PIP short-image corpus:
 - every specimen satisfies the tested two-sided strong-coincidence condition.
 
 The degree-two and degree-three fail-closed carrier certificates also have zero survivors in their exact stated domains. These are finite-domain theorems/evidence according to their individual completeness contracts; none proves the general PSC.
+
+On the broader class of all 24,486 primitive irreducible Pisot substitutions
+with total image length at most 8, the deterministic separation sweep is also
+complete at its declared caps:
+
+- 23,634 specimens have a decided finite separation radius: `2,264` at radius
+  `1`, `13,688` at `2`, `6,092` at `3`, `1,230` at `4`, `288` at `5`, `60`
+  at `6`, and `12` at `9`;
+- 852 have an exact proper-power seed-patch witness by level `6` and are
+  structurally nonseparating under the existing occurrence contract;
+- 0 specimens are inconclusive at the sweep's 2,000,000-state and radius-12
+  budgets; and
+- an independent driver reproduced the distribution, the 12-member radius-9
+  orbit, and the 852 collapsing survivors.
+
+This is exact finite-domain evidence, not a completeness theorem for arbitrary
+substitutions. It does not close issues #84, #138, #139, G1, or PSC. See
+`docs/lost-depth-indexed-formulation-2026-10-01.md` §9 and the archived
+receipts under `archive/2026-10-02/separation-radius-total-length/`.
 
 ## Generality firewall
 

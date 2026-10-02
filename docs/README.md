@@ -25,8 +25,9 @@ TOML and regenerate rather than hand-editing the Markdown.
 4. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
-5. `completion-ledger-2026-09-14.md` — latest merged weekly completion
-   snapshot; read its priority ordering against the live roadmap.
+5. `completion-ledger-2026-10-02.md` — latest merged weekly completion
+   snapshot, through PR #188 and the complete 24,486-specimen separation
+   record.
 6. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
 7. `conjecture-ledger.md` — live prose dependency ledger.
@@ -119,6 +120,10 @@ Change the ledger entry and every surface in the same commit.
 - `bpa-overlap-depth-literature-gate-2026-10-02.md` — stop/go literature gate
   for that argument: the mechanism is Sirvent–Solomyak (2002), Theorem 5.6;
   novelty is narrowed to the swap-seed transfer and the explicit bound.
+- Manuscript Proposition 5.47 and the same proof note's Proposition 4 /
+  Corollary 5 sharpen this to the half-coincidence route: excluding reachable
+  strict zippers from every swap seed is sufficient for G1. The exclusion is
+  still open, so this conditional theorem does not promote G1 or PSC.
 
 The missing `PSC_PROOF_v16` file is a historical provenance fact. It is not a
 current dependency for G1b-1 or degree-two carrier-span propagation.
