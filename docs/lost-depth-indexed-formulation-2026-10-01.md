@@ -188,7 +188,7 @@ inconclusive specimens and for the whole class of §6.
    reaching a half-coincidence, as Sirvent–Solomyak Theorem 5.6 suggests
    (`docs/bpa-overlap-depth-literature-gate-2026-10-02.md` §6).
 
-## 9. Deterministic separation follow-up — implementation pending execution
+## 9. Completed deterministic separation follow-up — 2026-10-02
 
 `mojo/separation_radius_total_length_sweep.mojo` surveys the same complete
 24,486-member class in corpus order. It reuses the reviewed occurrence and
@@ -212,11 +212,50 @@ retain the specimen as inconclusive and force a nonzero exit. Histogram lines
 are partial unless the final `COMPLETE` receipt is reached. The dedicated
 workflow preserves the full log even on failure.
 
-**Execution status:** no new distribution or exceptional-orbit count is
-asserted yet. The local pinned Mojo installation could not fetch its conda
-packages in this environment. The radius-9 statement in §6 remains a
-single-representative probe until a successful complete run is archived and
-its distribution and exceptional representatives are transcribed here.
-The earlier 24 collar-cap failures remain inconclusive; raising a configured
-budget alone does not resolve them. #84, #138, #139 and general PSC remain
+**Execution status:** complete. [Workflow run 36966474792](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/36966474792)
+passed on source head `9a59dcd4a8fe22958ab2d36cfa8ab8c9c5ce7aab`, subsequently
+merged as `7c7cf103a7ca1743ea8065b230249ace8855637f` (PR #184).
+Canonical Mojo regressions, claim receipts, governance and the exhaustive
+sweep all passed in that run. Its exact artifact, full per-specimen log,
+receipts and derived summary are retained in
+[`archive/2026-10-02/separation-radius-total-length/`](../archive/2026-10-02/separation-radius-total-length/README.md).
+
+| Least finite separation radius | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Specimens | 0 | 2,264 | 13,688 | 6,092 | 1,230 | 288 | 60 | 0 | 0 | 12 | 0 | 0 | 0 |
+
+- **23,634** specimens have a decided least finite radius; maximum `9`.
+- **852** have an exact proper-power seed-patch witness by level `6`,
+  establishing structural nonseparation under the existing occurrence
+  contract. They have no assigned finite radius and are not resource caps.
+- **0** are inconclusive. The two categories sum to **24,486**.
+
+Exactly the following 12 specimens exceed radius `6`, and each separates at
+radius `9`. Image triples use `σ(0)/σ(1)/σ(2)`; their shared canonical
+relabelling/reversal representative is **`012001/2/0`**, equivalent to the
+previously probed `1/2/022102`:
+
+| | | |
+| --- | --- | --- |
+| `1/2/022102` | `1/2/201220` | `1/120112/0` |
+| `1/211021/0` | `2/0/122012` | `2/0/210221` |
+| `2/011201/1` | `2/102110/1` | `012001/2/0` |
+| `021002/0/1` | `100210/2/0` | `200120/0/1` |
+
+The archived log's specimen sequence matches an independently screened
+exact Python corpus: every member occurs once, in canonical order. Its
+histogram and orbit totals agree with its records, and all emitted power
+witnesses replay exactly. The artifact ZIP SHA-256 is
+`545ab0e762446810c439950608f2700dea3027b6538305f0e810148bd75abb61`;
+the uncompressed log SHA-256 is
+`b9f7ccb1dd43bae7c1867ee50bd9b30a40fc45c6405f54bafc1dc54e12037a8f`.
+The archive includes a reproducible independent receipt checker and
+negative-control tests for truncation, omissions, inconclusive records and
+changed histogram counts. This checker validates receipt integrity and
+power witnesses; it does not independently recompute separation radii.
+
+This completes the separation follow-up only. The earlier pump-lift
+failures in §6 were not re-run by this dedicated survey. Absence of a
+collapsing patch through level `14` remains the earlier single-specimen
+probe, not a new 24,486-member result. #84, #138, #139 and general PSC remain
 open. No ledger, manuscript or theorem status is promoted.
