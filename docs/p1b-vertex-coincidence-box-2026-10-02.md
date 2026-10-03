@@ -386,6 +386,17 @@ It should instead show that carries resolve within a bounded number of
 e-foldings of contraction (Conjecture UH). The determinant enters only
 through the contraction rate. No such argument is given here.
 
+*Route check (2026-10-03).* Barge's proof of (W) was read in Barge 2018,
+§§1, 4 and the end of §5 (arXiv:1505.04408). Property (W) is Corollary 17
+there, deduced from Theorem 15 (pure discrete spectrum for every
+`beta`-substitution) through Akiyama's equivalence between (W) and pure
+discrete spectrum and Barge's Proposition 31. So it is a consequence of pure
+discrete spectrum, not an independent numeration argument. Theorem 15 rests
+on the monotonicity Properties 1–3 of the `beta`-language, which the
+Barge–Diamond gate already stopped. The (W) analogy therefore offers no route
+to PPVC that bypasses pure discrete spectrum. It remains a useful dictionary,
+not a proof strategy.
+
 ## 6. What this does not establish
 
 - PPVC is not proved for all PIP substitutions. For every PIP `sigma` it
