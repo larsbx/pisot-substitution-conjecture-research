@@ -142,21 +142,37 @@ runs the exact decision on every specimen. It folds in canonical order on
 | --- | --- | --- | --- | --- | --- | --- |
 | standing corpus (images of length <= 3) | 4,554 | 4,554 | 0 | 249,385 (`6 11 13`) | 2,676 (`4 11 21`) / 1,174,788 | 17 (`1 23 21`) |
 | total image length <= 8 | 24,486 | 24,486 | 0 | 1,342,201 (`1 38 56`) | 14,938 (`1 254 4`) / 7,891,548 | 25 (`1 38 56`) |
+| images of length <= 4 | 135,990 | 135,990 | 0 | 1,432,357 (`25 84 41`) | 27,692 (`23 12 97`) / 75,080,616 | 26 (`13 57 12`) |
 
-Wall-clock times on 4 workers were 7 and 49 minutes. The uncommitted
+Wall-clock times on 4 workers were 7 and 49 minutes for the first two rows. The
+third row ran in 28 resumable slices (`len4 START END`), 5.8 hours in total;
+its labels index `image_words_up_to(4)`. Its deepest specimen,
+`0 -> 001, 1 -> 0200, 2 -> 000` (`K_V = 26`), has `mu ≈ 0.9651`, well inside
+Conjecture UH's `3.2 / log(1/mu) ≈ 90`. `K_V` by regime over this domain:
+unimodular, two real conjugates 1:6 2:2118 3:6948 4:5820 5:2742 6:1410 7:324;
+unimodular complex pair 1:48 2:3858 3:13266 4:9912 5:3822 6:960 7:252 8:30
+9:36 14:12; `abs(det M) > 1` 2:72 3:2460 4:16332 5:19542 6:14574 7:7110
+8:3540 9:2874 10:3744 11:5598 12:3648 13:1242 14:1098 15:1068 16:516 17:156
+18:108 19:72 20:24 22:84 23:228 24:180 25:132 26:24. Unimodular specimens
+still have `K_V <= 9`, apart from 12 at `K_V = 14`, matching the
+plastic-number class of the standing corpus. The uncommitted
 floating-point oracle of §3 reproduces the standing-corpus row
 independently: no failure, 1,174,788 recurrent vertices in total, at most
 2,676 per specimen, deepest recurrent depth 17.
 
 *Finite-domain theorem.* For every PIP substitution on three letters with
-images of length at most 3, or with total image length at most 8, and for
+images of length at most 4 (which contains the standing corpus), or with total
+image length at most 8, and for
 every `r >= 1`, any two `Phi^r`-fixed tilings with a common centre and
 integral centre offset share a vertex. Hence no strict zipper is reachable
-from any swap seed (Corollary B′). For the first domain the balanced-pair
-builds already certify G1 directly; for the second domain Remark 3 of the
-depth note already gives G1 through all-seed overlap productivity. What is new
-is the periodic-pair statement for **all** `r`, not only the seed-reachable
-part, and the uniform depth `K_V`.
+from any swap seed (Corollary B′), and G1 holds by manuscript Proposition
+5.47. On the standing corpus the balanced-pair builds already certify G1
+directly, and on the total-length class Remark 3 of the depth note already
+gives it. For the 121,320 specimens with images of length at most 4 that lie
+in neither of those domains (count by the uncommitted floating-point PIP
+screen), this census is, as far as this repository records, the first
+certificate of G1. Everywhere it adds the periodic-pair statement for
+**all** `r`, not only the seed-reachable part, and the uniform depth `K_V`.
 
 ## 5. What the data says about a general proof
 
