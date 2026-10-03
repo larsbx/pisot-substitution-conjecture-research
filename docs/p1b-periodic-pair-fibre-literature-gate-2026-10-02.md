@@ -176,7 +176,13 @@ the coordinates of its frequency vector `r` (the right Perron eigenvector,
   character vanishing on the cycle lattice of `G`, because `G` is strongly
   connected (primitivity) and a closed walk is a sum of simple cycles. So `Λ_ret` and the cycle
   lattice of `G` have the same annihilator in `(Q/Z)^A`, and they are equal.
-  This is what `mojo/psc/return_module.mojo` computes.
+  This is `Lambda_1` of `mojo/psc/return_lattice.mojo`, computed there by
+  the same identification (`return-lattice-literature-gate-2026-10-02.md`,
+  which credits it to Barge–Gambaudo Lemma 15). That gate certifies
+  `Lambda_1 = Z^3` on the 4,554 corpus specimens; Theorem R proves it for
+  every PIP substitution. Its finding that `Lambda_n` for `n > 1` has index
+  `> 1` when `abs(det M) = 2` does not touch Proposition F, whose step 1 uses
+  only tile returns, `Lambda_1`.
 - *A second proof on three letters.* `M Λ_ret ⊆ Λ_ret`, because `sigma`
   maps a return word of `a` to a return word of the first letter of
   `sigma(a)`. So `Λ_ret ⊗ Q` is a nonzero `M`-invariant rational subspace,

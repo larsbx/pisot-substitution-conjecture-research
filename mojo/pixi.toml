@@ -27,6 +27,7 @@ swap-discrepancy-census = "mojo run -I . swap_discrepancy_census.mojo"
 swap-overlap-census = "mojo run -I . swap_overlap_census.mojo"
 overlap-contracting-census = "mojo run -I . overlap_contracting_census.mojo"
 vertex-coincidence-census = "mojo run -I . vertex_coincidence_census.mojo"
+return-lattice-census = "mojo run -I . return_lattice_census.mojo"
 
 # Finite classifications with no substitution input.
 endpoint-core-catalog = "mojo run -I . endpoint_core_catalog.mojo"
@@ -47,3 +48,4 @@ bpa-total-length-sweep = "mojo run -I . bpa_total_length_sweep.mojo"
 # path that computes something else shows up as a differential, not a win.
 integer-vector-bench = "mojo run -I . integer_vector_bench.mojo"
 separation-radius-total-length-sweep = "mojo run -I . separation_radius_total_length_sweep.mojo"
+target-aware-bpa = "mojo run -I . target_aware_bpa.mojo"

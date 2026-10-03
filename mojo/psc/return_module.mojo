@@ -1,44 +1,20 @@
-"""The return module of a substitution on three letters, decided exactly.
+"""The finite three-letter lemma behind Theorem R.
 
-The return module is the subgroup of Z^3 spanned by the Parikh vectors of
-the return words: pi(w) for every nonempty legal word w such that w w_1 is
-legal, i.e. the lifted displacements between two occurrences of one letter.
-Its index in Z^3 is hypothesis (R) of
-docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md, which is proved
-there as Theorem R: the index is 1 for every primitive substitution whose
-frequency vector has Q-independent coordinates, in particular for every PIP
-substitution.
+Theorem R (docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md, §5):
+the return module of a primitive substitution whose frequency vector has
+Q-independent coordinates is all of Z^A; in particular `Lambda_1 = Z^3` for
+every PIP substitution on three letters. The return module is `Lambda_1` of
+`psc.return_lattice`, computed there exactly as the cycle lattice of the
+two-letter (order-1 Rauzy) graph; this module does not recompute it.
 
-For primitive sigma the index is computed from the two-letter graph G (an
-edge a -> c for each legal word ac), which is then strongly connected. A
-character of Z^3 vanishes on the return module exactly when
-it is a coboundary on the edges of G (Theorem R, step 1), so the return module
-is the cycle lattice of G: the span of the letter-count vectors of the simple
-cycles of G. On three vertices those are the loops, the two-cycles and the two
-oriented triangles. The index is the gcd of the 3 x 3 minors of these vectors;
-0 means the span has rank less than 3, which an irreducible incidence matrix
-excludes (see the singular controls in tests/test_return_module.mojo).
-
-Exact integer arithmetic only; the two-letter language is
-`psc.overlap_collar.legal_factors`, not a second enumeration.
+What lives here is the second proof's finite lemma: on three vertices the
+cycle lattice of any digraph (spanned by the letter-count vectors of its
+simple cycles: loops, two-cycles and the two oriented triangles) has rank
+below 3 or is all of Z^3. Irreducibility of the incidence matrix gives rank 3
+(the return module is M-invariant), so the lemma gives index 1.
 """
 
-from std.math import gcd
-from psc.overlap_collar import legal_factors, word_key
-
-
-def two_letter_graph(sigma: List[List[Int]]) raises -> List[List[Bool]]:
-    """`edge[a][c]` is True exactly when `ac` is a legal word of `sigma`."""
-    if len(sigma) != 3:
-        raise Error("return module: the alphabet must be {0,1,2}")
-    var legal = legal_factors(sigma, 2)
-    var edge = List[List[Bool]]()
-    for a in range(3):
-        var row = List[Bool]()
-        for c in range(3):
-            row.append(word_key([a, c]) in legal)
-        edge.append(row^)
-    return edge^
+from psc.return_lattice import TriangularLattice, return_lattice
 
 
 def cycle_vectors(edge: List[List[Bool]]) -> List[List[Int]]:
@@ -61,26 +37,19 @@ def cycle_vectors(edge: List[List[Bool]]) -> List[List[Int]]:
     return out^
 
 
-def _det3(a: List[Int], b: List[Int], c: List[Int]) -> Int:
-    return (
-        a[0] * (b[1] * c[2] - b[2] * c[1])
-        - a[1] * (b[0] * c[2] - b[2] * c[0])
-        + a[2] * (b[0] * c[1] - b[1] * c[0])
-    )
-
-
-def lattice_index(vectors: List[List[Int]]) -> Int:
-    """Index in Z^3 of the span of `vectors`: the gcd of their 3 x 3 minors,
-    0 when the span has rank less than 3."""
-    var g = 0
-    var n = len(vectors)
-    for i in range(n):
-        for j in range(i + 1, n):
-            for k in range(j + 1, n):
-                g = gcd(g, abs(_det3(vectors[i], vectors[j], vectors[k])))
-    return g
+def lattice_index(vectors: List[List[Int]]) raises -> Int:
+    """Index in Z^3 of the span of `vectors`, 0 when the span has rank below 3."""
+    var lattice = TriangularLattice()
+    for v in range(len(vectors)):
+        lattice.insert(vectors[v])
+    if lattice.rank() < 3:
+        return 0
+    return lattice.index()
 
 
 def return_module_index(sigma: List[List[Int]]) raises -> Int:
-    """Index of the return module of `sigma` in Z^3 (0: rank less than 3)."""
-    return lattice_index(cycle_vectors(two_letter_graph(sigma)))
+    """`[Z^3 : Lambda_1]` for primitive `sigma`, 0 when `Lambda_1` has rank below 3."""
+    var lattice = return_lattice(sigma, 1)
+    if lattice.rank() < 3:
+        return 0
+    return lattice.index()

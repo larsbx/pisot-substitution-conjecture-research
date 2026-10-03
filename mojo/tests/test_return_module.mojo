@@ -4,7 +4,8 @@ docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md)."""
 from std.testing import assert_equal
 from psc.claim_tests import require_contract
 from psc.corpus import pip_corpus, pip_corpus_total_length
-from psc.return_module import cycle_vectors, lattice_index, return_module_index, two_letter_graph
+from psc.return_lattice import factor_set
+from psc.return_module import cycle_vectors, lattice_index, return_module_index
 
 
 def sigma_of(a: List[Int], b: List[Int], c: List[Int]) -> List[List[Int]]:
@@ -46,9 +47,12 @@ def test_dekkings_height_two_substitution_has_rank_two() raises:
     irreducible): 0 occupies every other position and r_0 = r_1 + r_2. Its
     two-letter graph is 0 <-> 1, 0 <-> 2, so the return module has rank 2."""
     var sigma = sigma_of([0, 1, 0], [2, 0, 1], [1, 0, 2])
-    var edge = two_letter_graph(sigma)
-    assert_equal(edge[0][1] and edge[1][0] and edge[0][2] and edge[2][0], True)
-    assert_equal(edge[0][0] or edge[1][1] or edge[1][2] or edge[2][1] or edge[2][2], False)
+    var pairs = factor_set(sigma, 2)
+    var words = List[Int]()
+    for k in range(len(pairs)):
+        words.append(3 * pairs[k][0] + pairs[k][1])
+    sort(words)
+    assert_equal(words, [1, 2, 3, 6])  # 01, 02, 10, 20
     assert_equal(return_module_index(sigma), 0)
 
 

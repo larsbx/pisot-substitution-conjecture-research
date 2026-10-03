@@ -8,11 +8,12 @@ integral centre offset shares a vertex. A failing specimen would be a strict
 zipper and is printed with its witness vertex; a capped graph is reported as
 capped and is not a verdict.
 
-Usage: `mojo run -I . vertex_coincidence_census.mojo [total | len4 START END]`
+Usage: `mojo run -I . vertex_coincidence_census.mojo [total | len4 START END] [records]`
 surveys the 4554 standing specimens; with `total` the 24486 specimens of total
 image length at most 8; with `len4 START END` the slice `[START, END)` of the
 135990 specimens with images of length at most 4 (labels index
-`image_words_up_to(4)`), so that long survey can run in resumable chunks. Specimens are folded in canonical order on `parallel_fold`, so the
+`image_words_up_to(4)`), so that long survey can run in resumable chunks. With a final
+`records`, one `K_V record: i j k K_V` line per specimen follows the summary. Specimens are folded in canonical order on `parallel_fold`, so the
 record does not depend on the worker count.
 """
 
@@ -47,6 +48,8 @@ struct VertexCensus(Copyable, Movable):
     var max_deepest: Int
     var max_deepest_index: Int
     var recurrent_total: Int
+    # one (index, K_V) pair per evaluated specimen, in canonical order
+    var depths: List[Int]
     # K_V histogram by arithmetic regime: depth_by_regime[regime * DEPTH_SLOTS + K_V]
     var depth_by_regime: List[Int]
 
@@ -63,6 +66,7 @@ struct VertexCensus(Copyable, Movable):
         self.max_deepest = -1
         self.max_deepest_index = -1
         self.recurrent_total = 0
+        self.depths = List[Int]()
         self.depth_by_regime = List[Int](length=REGIMES * DEPTH_SLOTS, fill=0)
 
 
@@ -86,6 +90,8 @@ def merge(a: VertexCensus, b: VertexCensus) -> VertexCensus:
         out.max_deepest = b.max_deepest
         out.max_deepest_index = b.max_deepest_index
     out.recurrent_total += b.recurrent_total
+    for k in range(len(b.depths)):
+        out.depths.append(b.depths[k])
     for k in range(len(out.depth_by_regime)):
         out.depth_by_regime[k] += b.depth_by_regime[k]
     return out^
@@ -110,6 +116,8 @@ def evaluate(index: Int, spec: Specimen) -> VertexCensus:
         out.max_deepest = v.deepest
         out.max_deepest_index = index
         out.recurrent_total = v.recurrent
+        out.depths.append(index)
+        out.depths.append(v.deepest)
         if v.deepest < 0 or v.deepest >= DEPTH_SLOTS:
             raise Error("K_V outside the histogram")
         out.depth_by_regime[arithmetic_regime(spec.incidence) * DEPTH_SLOTS + v.deepest] += 1
@@ -125,8 +133,8 @@ def main() raises:
     if mode == "total":
         corpus = pip_corpus_total_length(TOTAL_LENGTH_CAP)
     elif mode == "len4":
-        if len(args) != 4:
-            raise Error("usage: len4 START END")
+        if len(args) != 4 and len(args) != 5:
+            raise Error("usage: len4 START END [records]")
         var full = screened_triples(image_words_up_to(4), 12)
         var start = Int(String(args[2]))
         var end = min(Int(String(args[3])), len(full))
@@ -167,3 +175,7 @@ def main() raises:
                     any = True
             if any:
                 print(line)
+    if String(args[len(args) - 1]) == "records":
+        # per-specimen K_V, for offline analysis against spectral data
+        for k in range(0, len(r.depths), 2):
+            print("K_V record:", corpus[r.depths[k]].label(), r.depths[k + 1])
