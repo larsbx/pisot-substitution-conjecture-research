@@ -341,6 +341,37 @@ its sharpest lattice form. Lemma D and the sample above are what working the
 argument has added: the obstruction is exact combinatorial interleaving, not
 a size or scale effect.
 
+### 5.6a The plastic-number class and the climb lemma
+
+The 12-specimen outlier class of §5.4 is a model problem. Its box graph has
+74 recurrent vertices, and the deepest are all same-letter self-overlaps with
+offsets `±beta^{−k}`. For `0 -> 1, 1 -> 2, 2 -> 01`, `(0, 0, (1,1,−1))` has
+`t = beta^{−2}` and depth 14, `(1, 1, (−1,0,1))` has `t = beta^{−1}` and depth
+13, and `(2, 2, (1,0,0))` has `t = 1` and depth 12 (uncommitted oracle).
+
+*Climb lemma (proved).* Let `(a, a, t)` be an overlap and let `c` be a letter
+of `sigma(a)`. If `beta |t| < ell_c`, then `(c, c, beta t)` is a child: the
+same child on both sides, offset increment `0`. So a same-letter vertex with
+`beta^n |t| < ell_min` has a diagonal descendant `(c_n, c_n, beta^n t)`, and
+its contracting coordinate is `sigma_k(beta)^n sigma_k(t)`, which shrinks.
+Moreover `|N(t)| = |t| prod_k |sigma_k(t)|` takes values in a discrete subset
+of `Q`, bounded below on nonzero `t` by some `nu > 0`. On a vertex of the box,
+`|sigma_k(t)| <= B_k`, so `|t| >= nu / prod_k B_k`. Hence a same-letter
+recurrent vertex climbs to tile scale within
+`log(ell_min prod_k B_k / nu) / log beta + 1` levels. For a unimodular complex
+pair `log beta = 2 log(1/mu)`, so this is exactly the form of Conjecture UH.
+`square`
+
+The climb lemma explains the plastic class: its deep vertices are pure
+climbs. It does **not** explain the depth in general. On the stride-7 sample,
+the vertex achieving `K_V` is same-letter in only 111 of 651 specimens. The
+depth remaining after the climb (`depth − climb`, maximised over recurrent
+vertices) has the same distribution as `K_V`. The deepest specimens have
+climb 0 or 1, for example `0 -> 210, 1 -> 0, 2 -> 110` with `K_V = 17`. Their
+depth comes from cancellation between different letters. So UH has two
+parts: a climb part, which is proved, and a cross-letter cancellation part,
+which is the open rigidity statement of §5.6.
+
 ### 5.7 The closing target, restated
 
 The box graph is the carry automaton of the Dumont–Thomas numeration of
