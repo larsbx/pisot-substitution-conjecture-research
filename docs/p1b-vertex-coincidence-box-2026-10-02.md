@@ -310,6 +310,78 @@ a uniform covering statement for the Rauzy-type sets of the box graph, at
 one scale. It is not a statement about arbitrarily fine scales, which is
 where the density arguments of the stop list fail.
 
+### 5.5a Depth laws checked exactly on images of length at most 4
+
+`vertex_coincidence_census.mojo len4 START END records` printed the exact
+`K_V` of each of the 135,990 specimens with images of length at most 4, in 28
+slices (every specimen holds, none capped). `vertex_depth_law.mojo FILE 4`
+(kernel `psc.depth_law`) judges each record against a law
+`K_V <= a + c / log(1/mu)`, exactly:
+
+- `mu^2` is enclosed in a rational bracket: `abs(det M) / beta` for a complex
+  pair, the larger squared real conjugate otherwise. Both come from
+  isolating intervals of the characteristic polynomial, refined by exact
+  bisection.
+- For `K_V > a` the law is `(mu^2)^(K_V − a) >= (e^(−c))^2`, tested against a
+  rational bracket of `e^(−c)`.
+- A specimen not decided within 80 bisections is reported as undecided and
+  counted as neither verdict.
+- `tests/test_depth_law.mojo` pins a violator, two holding specimens and a
+  hypothetical failure of the affine law.
+
+Result (3 min 48 s):
+
+| law | holds | violates | undecided |
+| --- | --- | --- | --- |
+| `K_V <= 3.2 / log(1/mu)` | 134,484 | 1,506 | 0 |
+| `K_V <= 4 / log(1/mu)` | 135,918 | 72 | 0 |
+| `K_V <= 7 + 1/log(1/mu)` | 135,990 | 0 | 0 |
+
+*Reading.*
+
+- Conjecture UH asserts that **some** absolute constant `c` works. These
+  counts reject the standing-corpus calibration `c = 3.2` and also `c = 4`,
+  but UH itself stays open: no finite domain can refute an existential
+  constant.
+- `tests/test_depth_law.mojo` pins `0 -> 2220, 1 -> 100, 2 -> 0012`, with
+  `K_V = 6` and `mu ≈ 0.51`, as a violator of both ratio laws. Fast
+  contraction with a depth floor is what defeats a pure ratio `c / log(1/mu)`.
+- The affine form survives on this domain. *Empirical envelope E7*:
+  `K_V <= 7 + 1/log(1/mu)` holds on all 135,990 specimens, exactly
+  certified.
+- E7 is recorded as an observation, **not** as a conjecture. Stating it as
+  a universal invariant needs the targeted literature stop/go check of
+  `AGENTS.md` first, which has not been done.
+- An earlier draft of this section tabulated floating-point estimates of
+  the envelope constant for each offset and extrapolated an equality beyond
+  the offsets shown. Those estimates came from an uncommitted script and are
+  withdrawn; the exact counts above replace them.
+
+### 5.5b Targeted search where contraction is slowest (exploratory sample)
+
+A strict zipper, and with it a counterexample to the Pisot substitution
+conjecture for its substitution (Theorem S), is most plausible where `mu` is
+close to 1. `vertex_coincidence_targeted.mojo 5 39 40 40` selects, exactly,
+the PIP substitutions with images of length at most 5, a complex contracting
+pair and `mu^2 = abs(det M)/beta > (39/40)^2`. There are 40,680 of them, and
+none have `mu > 0.98`. It decides PPVC on a deterministic sample of every
+40th candidate in canonical order, 1,017 specimens, with the state cap
+4,000,000 per box graph:
+
+```text
+decided: 1017  holds for every r: 993  capped: 24  fails: 0
+deepest K_V: 39 specimen 17 135 239  largest box graph: 3995093
+```
+
+(96 minutes on 4 workers.) No sampled specimen fails. The 24 capped
+specimens are inconclusive at this state cap and are not verdicts. The
+deepest specimen is `0 -> 012, 1 -> 00120, 2 -> 11102` (labels index
+`image_words_up_to(5)`), with `K_V = 39`. `vertex_depth_law.mojo` certifies
+exactly that it satisfies all three laws of §5.5a, envelope E7 included.
+
+This is a sample, labelled as such, and not a census. It says nothing about
+the other 39,663 candidates or about the 24 capped ones.
+
 ### 5.6 Working the argument: cancellation, not shrinkage
 
 *Lemma D (discreteness, proved).* There is `epsilon_0(sigma) > 0` such that
@@ -388,6 +460,27 @@ climb 0 or 1, for example `0 -> 210, 1 -> 0, 2 -> 110` with `K_V = 17`. Their
 depth comes from cancellation between different letters. So UH has two
 parts: a climb part, which is proved, and a cross-letter cancellation part,
 which is the open rigidity statement of §5.6.
+
+### 5.6b Open: is the rigidity a one-tile question?
+
+Every first common vertex `y` of a recurrent vertex is born in each tiling
+at some level, `k_A` and `k_B`. Two cases:
+
+- **catch-up** (`min(k_A, k_B) < max(k_A, k_B)`): one tiling's vertex is
+  reached later by the other's subdivision. That is a one-tile question: is
+  a given integral offset inside a tile an eventual subdivision boundary?
+- **simultaneous birth** (`k_A = k_B`): a genuine two-tile cancellation.
+
+If every recurrent vertex had *some* catch-up hit, at any depth and not
+necessarily the first, the cross-letter rigidity of §5.6 would reduce to the
+one-tile question.
+
+An exploratory pass looked at one minimal hit path per vertex. It found many
+simultaneous births, but that does not decide the question: a one-tile
+argument needs only some catch-up descendant, and other shortest paths or
+later common vertices were not examined. The pass used an uncommitted script,
+so its figures are not reported here. The question stays open. Settling it
+needs an exact, committed enumeration of all hit witnesses per vertex.
 
 ### 5.7 The closing target, restated
 
