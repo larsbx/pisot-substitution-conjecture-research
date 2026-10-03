@@ -57,7 +57,7 @@ Avoid these formulations unless a future proof and ledger update justify them:
 
 - "PSC is closed."
 - "The finite corpus proves the general conjecture."
-- "Finite BPA is now established in general."
+- "BPA finiteness is solved generally."
 - "Formal recurrence is the same thing as global realization."
 - "All-seed productivity follows from one-seed productivity."
 - "SCC Producer / concentration / wedge productivity is solved generally."
