@@ -3,6 +3,7 @@
 
 from std.testing import assert_equal, assert_true
 from psc.claim_tests import require_contract
+from psc.corpus import Specimen, image_words_up_to, pip_corpus, screened_triples
 from psc.overlap_obstruction import _has_cycle, overlap_sccs
 from psc.overlap_seed_patch import build_seed_overlap_graph_from_tables, build_seed_overlap_tables
 from psc.periodic_pair import centre_offset, interior_occurrences
@@ -94,6 +95,32 @@ def test_seed_graph_cycles_lie_in_the_box_graph() raises:
     assert_true(recurrent > 0)
 
 
+def assert_slice(corpus: List[Specimen], n: Int, recurrent: Int, deepest: Int, states: Int) raises:
+    var rec = 0
+    var deep = -1
+    var total = 0
+    for s in range(n):
+        var v = decide_vertex_coincidence(corpus[s].sigma)
+        assert_equal(v.capped, False)
+        assert_equal(v.holds, True)
+        rec += v.recurrent
+        total += v.states
+        if v.deepest > deep:
+            deep = v.deepest
+    assert_equal(rec, recurrent)
+    assert_equal(deep, deepest)
+    assert_equal(total, states)
+
+
+def test_census_slices_are_pinned() raises:
+    """The census kernel, without the parallel fold, on the first 300 standing
+    specimens and the first 100 specimens with images of length <= 4: every
+    one holds for every r; recurrent totals, deepest K_V and box-graph sizes
+    are pinned (the full standing census is pinned in CI)."""
+    assert_slice(pip_corpus(), 300, 59372, 17, 5221392)
+    assert_slice(screened_triples(image_words_up_to(4), 12), 100, 14180, 15, 1116030)
+
+
 def test_a_capped_box_graph_is_never_a_verdict() raises:
     var v = decide_vertex_coincidence_from(build_seed_overlap_tables(golden_pump()), 10)
     assert_equal(v.capped, True)
@@ -109,4 +136,6 @@ def main() raises:
     print("[PASS] test_seed_graph_cycles_lie_in_the_box_graph")
     test_a_capped_box_graph_is_never_a_verdict()
     print("[PASS] test_a_capped_box_graph_is_never_a_verdict")
-    require_contract("box-graph vertex coincidence (Proposition V): tribonacci 14/3, cube 1166/17, golden pump 716/15 hold for every r; every integral centre offset and every seed-graph cycle vertex lies in the box; a capped box graph is not a verdict")
+    test_census_slices_are_pinned()
+    print("[PASS] test_census_slices_are_pinned")
+    require_contract("box-graph vertex coincidence (Proposition V): tribonacci 14/3, cube 1166/17, golden pump 716/15 hold for every r; every integral centre offset and every seed-graph cycle vertex lies in the box; a capped box graph is not a verdict; census slices pinned: first 300 standing specimens 59372 recurrent, K_V 17, 5221392 states; first 100 images-of-length-4 specimens 14180 recurrent, K_V 15, 1116030 states")

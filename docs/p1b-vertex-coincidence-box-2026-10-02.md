@@ -160,19 +160,36 @@ floating-point oracle of §3 reproduces the standing-corpus row
 independently: no failure, 1,174,788 recurrent vertices in total, at most
 2,676 per specimen, deepest recurrent depth 17.
 
-*Finite-domain theorem.* For every PIP substitution on three letters with
-images of length at most 4 (which contains the standing corpus), or with total
-image length at most 8, and for
-every `r >= 1`, any two `Phi^r`-fixed tilings with a common centre and
-integral centre offset share a vertex. Hence no strict zipper is reachable
-from any swap seed (Corollary B′), and G1 holds by manuscript Proposition
-5.47. On the standing corpus the balanced-pair builds already certify G1
-directly, and on the total-length class Remark 3 of the depth note already
-gives it. For the 121,320 specimens with images of length at most 4 that lie
-in neither of those domains (count by the uncommitted floating-point PIP
-screen), this census is, as far as this repository records, the first
-certificate of G1. Everywhere it adds the periodic-pair statement for
-**all** `r`, not only the seed-reachable part, and the uniform depth `K_V`.
+*Guarding, row by row.* Each row is an exact run of the committed driver,
+but they are not guarded equally:
+
+- **Standing corpus: CI-pinned.** The `vertex-coincidence-census` job of
+  `.github/workflows/ci.yml` reruns it and checks every summary line above
+  exactly.
+- **Two slices: regression-pinned.** `test_census_slices_are_pinned` in
+  `mojo/tests/test_vertex_coincidence.mojo` pins the first 300 standing
+  specimens and the first 100 specimens with images of length at most 4,
+  without the parallel fold. Every one holds; the recurrent totals, `K_V` and
+  box-graph sizes are pinned.
+- **Total length at most 8, and images of length at most 4: recorded runs
+  only.** Their wall-clock (49 minutes; 5.8 hours) puts them outside CI. They
+  are reproducible with `pixi run vertex-coincidence-census total` and with
+  the `len4 START END` slices, and they are not guarded by CI.
+
+*Finite-domain statement.* On the standing corpus, as an exact certificate
+guarded by CI: for every PIP substitution on three letters with images of
+length at most 3 and every `r >= 1`, any two `Phi^r`-fixed tilings with a
+common centre and integral centre offset share a vertex. Hence no strict
+zipper is reachable from any swap seed (Corollary B′), and G1 holds by
+manuscript Proposition 5.47; the balanced-pair builds already certify G1
+there directly. The recorded runs give the same statement for total image
+length at most 8, where Remark 3 of the depth note already gives G1, and for
+images of length at most 4. In the last domain, 121,320 specimens lie in
+neither of the other two (count by the uncommitted floating-point PIP
+screen); for them the recorded run is, as far as this repository records,
+the only evidence of G1, and it is not CI-guarded. Everywhere the census adds
+the periodic-pair statement for **all** `r`, not only the seed-reachable
+part, and the uniform depth `K_V`.
 
 ## 5. What the data says about a general proof
 

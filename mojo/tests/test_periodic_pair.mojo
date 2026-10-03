@@ -51,14 +51,12 @@ def assert_census(c: PairCensus, pairs: Int, integral: Int, shared: Int, deepest
 def test_census_pins_agree_with_the_independent_oracle() raises:
     """Every integral centre-difference pair of three productive specimens shares
     a vertex; counts and depths match an independent integer-only oracle."""
-    require_contract("interior-occurrence pair census: tribonacci r<=6 908/18/18 depth 3, cube r<=3 232/8/8 depth 1, golden pump r<=4 366/20/20 depth 7, no strict zipper")
     assert_census(periodic_pair_census(tribonacci(), 6), 908, 18, 18, 3)
     assert_census(periodic_pair_census(cube_image(), 3), 232, 8, 8, 1)
     assert_census(periodic_pair_census(golden_pump(), 4), 366, 20, 20, 7)
 
 
 def test_centre_offset_is_exact_and_integrality_is_decided() raises:
-    require_contract("centre offset (M^r - I)^{-1}(pi(P) - pi(Q)) is computed over Z and replayed exactly")
     var sigma = tribonacci()
     var total = 0
     var integral = 0
@@ -75,7 +73,6 @@ def test_centre_offset_is_exact_and_integrality_is_decided() raises:
 
 
 def test_the_cycle_replay_refuses_a_wrong_start() raises:
-    require_contract("periodic-pair cycle replay fails closed when the chain does not close on its start")
     var sigma = golden_pump()
     var tables = build_seed_overlap_tables(sigma)
     var occ = interior_occurrences(sigma, 1, 2)
@@ -89,7 +86,6 @@ def test_the_cycle_replay_refuses_a_wrong_start() raises:
 
 
 def test_a_capped_closure_is_never_a_verdict() raises:
-    require_contract("a capped periodic-pair descendant closure is reported as capped, not as a strict zipper")
     var sigma = golden_pump()
     var tables = build_seed_overlap_tables(sigma)
     var found = False
@@ -118,3 +114,7 @@ def main() raises:
     print("[PASS] test_the_cycle_replay_refuses_a_wrong_start")
     test_a_capped_closure_is_never_a_verdict()
     print("[PASS] test_a_capped_closure_is_never_a_verdict")
+    require_contract("interior-occurrence pair census: tribonacci r<=6 908/18/18 depth 3, cube r<=3 232/8/8 depth 1, golden pump r<=4 366/20/20 depth 7, no strict zipper")
+    require_contract("centre offset (M^r - I)^{-1}(pi(P) - pi(Q)) is computed over Z and replayed exactly")
+    require_contract("periodic-pair cycle replay fails closed when the chain does not close on its start")
+    require_contract("a capped periodic-pair descendant closure is reported as capped, not as a strict zipper")
