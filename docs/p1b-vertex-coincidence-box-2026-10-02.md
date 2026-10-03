@@ -389,6 +389,36 @@ depth comes from cancellation between different letters. So UH has two
 parts: a climb part, which is proved, and a cross-letter cancellation part,
 which is the open rigidity statement of §5.6.
 
+### 5.6b Birth analysis: no reduction to a one-tile problem
+
+Every first common vertex `y` of a recurrent vertex, found at hit depth `m`,
+is born in each tiling at some level: `k_A` (`k_B`) is the least level at
+which `y` is a vertex of tiling A (B), so `max(k_A, k_B) = m`. Two cases:
+
+- **catch-up**: `min(k_A, k_B) < m`. A vertex of one tiling already exists
+  and the other tiling's subdivision reaches it later. That is a one-tile
+  question: is a given integral offset `s` inside a tile `b` an eventual
+  subdivision boundary of `b`?
+- **simultaneous birth**: `k_A = k_B = m`. A genuine two-tile cancellation.
+
+If catch-up dominated with a short delay `m − min(k_A, k_B)`, the
+cross-letter rigidity of §5.6 would reduce to the one-tile question, which
+is a finiteness-type property of a single tile. The data rules that out
+(uncommitted floating-point oracle; one minimal hit path per vertex):
+
+- On four hand-picked specimens catch-up does dominate. The golden pump has
+  4 simultaneous births among 716 recurrent vertices, and every catch-up has
+  delay 1. The cube specimen and `0 -> 210, 1 -> 0, 2 -> 110` have none, with
+  delays at most 5 and 2. The plastic class has none, with delays up to 8.
+- On the stride-7 sample of 651 corpus specimens the picture reverses.
+  61,854 of the 149,412 recurrent vertices (41%) hit by simultaneous birth.
+  31 specimens hit only that way. The largest catch-up delay is 10 for
+  unimodular specimens and 11 for `abs(det M) = 2`.
+
+So the obstruction is genuinely two-tile in a large fraction of cases, and
+the one-tile route is closed as a general reduction. It is recorded so that
+the four-specimen impression is not mistaken for the general mechanism.
+
 ### 5.7 The closing target, restated
 
 The box graph is the carry automaton of the Dumont–Thomas numeration of
