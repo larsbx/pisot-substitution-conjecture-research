@@ -349,6 +349,32 @@ jobs:
           grep -Fx '|det M| = 2 by log2 index at order 32 2:288 3:1278 4:348 5:12' <<<"$out"
           grep -Fx 'sampled cross-checks: 276  equal to exact: 276' <<<"$out"
 
+  vertex-coincidence-census:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: PeriodicPairVertexCoincidence for every r on the standing corpus (Proposition V, exact)
+        working-directory: mojo
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . vertex_coincidence_census.mojo 2>&1) || status=$?
+          printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
+          grep -Fx 'Vertex coincidence census (Proposition V), specimens: 4554' <<<"$out"
+          grep -Fx 'holds for every r: 4554  capped: 0  fails: 0' <<<"$out"
+          grep -Fx 'largest box graph: 249385 states, specimen 6 11 13' <<<"$out"
+          grep -Fx 'most recurrent vertices: 2676 specimen 4 11 21' <<<"$out"
+          grep -Fx 'deepest recurrent first left-aligned depth: 17 specimen 1 23 21' <<<"$out"
+          grep -Fx 'recurrent vertices in total: 1174788' <<<"$out"
+          grep -Fx 'K_V by specimen, nonunimodular: 4:24 5:138 6:252 7:288 8:360 9:228 10:192 11:120 12:36 13:48 14:72 15:120 16:36 17:12' <<<"$out"
+          grep -Fx 'K_V by specimen, unimodular real: 2:108 3:198 4:234 5:102 6:6' <<<"$out"
+          grep -Fx 'K_V by specimen, unimodular complex: 2:210 3:612 4:588 5:336 6:120 7:84 8:18 14:12' <<<"$out"
+
   finite-classification:
     runs-on: ubuntu-latest
     steps:

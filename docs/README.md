@@ -136,6 +136,27 @@ These are reference/index additions only. They do not establish #84, #138,
 - `bpa-overlap-depth-literature-gate-2026-10-02.md` — stop/go literature gate
   for that argument: the mechanism is Sirvent–Solomyak (2002), Theorem 5.6;
   novelty is narrowed to the swap-seed transfer and the explicit bound.
+- `p1b-strict-zipper-periodic-pair-2026-10-02.md` — #139 research note
+  (unreviewed): two-sided alignment weakening of Proposition 5.47, and the
+  reformulation of a strict zipper as two `Phi^r`-fixed legal tilings with a
+  common centre and no common vertex; isolates the open target
+  PeriodicPairVertexCoincidence; exact certificate `mojo/psc/periodic_pair.mojo`.
+  Excludes no strict zipper.
+- `p1b-periodic-pair-fibre-literature-gate-2026-10-02.md` — stop/go gate for
+  the fibre identification: Proposition F (the Theorem B pair lies in one
+  fibre of the maximal equicontinuous factor), with Theorem R proving its
+  hypothesis (R), return module equal to `Z^3`, for every PIP substitution;
+  exact index `mojo/psc/return_module.mojo`. Decision "proceed".
+- `p1b-barge-diamond-configuration-gate-2026-10-02.md` — Barge–Diamond 2002
+  and Barge 2018 Lemma 2 read in full: the configuration argument does not
+  force a common vertex (its maximality step yields only an aligned pair).
+  Decision "stop".
+- `p1b-vertex-coincidence-box-2026-10-02.md` — #139 research note
+  (unreviewed): Proposition V decides PeriodicPairVertexCoincidence per
+  substitution for every `r` on one finite box graph; exact certificate
+  `mojo/psc/vertex_coincidence.mojo` and census
+  `mojo/vertex_coincidence_census.mojo`. Not proved for all PIP
+  substitutions (it implies G1).
 - `return-lattice-literature-gate-2026-10-02.md` — return vectors of tiles
   span `Z<ell>` on the whole corpus; return vectors of length-`n` patches span
   it for every `n` on the unimodular classes and fail to by `n = 13` on every
