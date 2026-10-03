@@ -310,6 +310,39 @@ a uniform covering statement for the Rauzy-type sets of the box graph, at
 one scale. It is not a statement about arbitrarily fine scales, which is
 where the density arguments of the stop list fail.
 
+### 5.5a Conjecture UH tested on images of length at most 4: refuted, refined
+
+`vertex_coincidence_census.mojo len4 START END records` printed `K_V` for
+each of the 135,990 specimens with images of length at most 4 (28 slices,
+every specimen holds, none capped). Joining those exact values with `mu`
+(uncommitted floating-point root finder, exploratory):
+
+- `K_V · log(1/mu)` ranges over `[0.441, 4.042]`. **1,506 specimens exceed
+  3.2** and 336 exceed 3.5, so Conjecture UH with the standing-corpus
+  constant `c = 3.2` is refuted.
+- The violators are not slow contractions. The record value 4.042 is held
+  by `K_V = 6` at `mu ≈ 0.5098` (unimodular, for example
+  `0 -> 2220, 1 -> 100, 2 -> 0012`): a depth floor at fast contraction,
+  which a pure ratio `c / log(1/mu)` cannot absorb.
+- The correlation of `K_V` with `1/log(1/mu)` rises to `0.944`.
+
+The scaling therefore survives in affine form. With
+`c(a) = max (K_V − a) log(1/mu)` over the domain:
+
+| `a` | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| images of length <= 4 | 4.042 | 3.440 | 2.867 | 2.293 | 1.911 | 1.529 | 1.147 | 0.984 | 0.844 |
+| standing corpus | 3.164 | 2.768 | 2.373 | 1.977 | 1.582 | 1.265 | 1.125 | 0.984 | 0.844 |
+
+From `a = 7` on, the two rows agree: the binding specimens are slow
+contractions already present in the standing corpus, and the larger domain
+does not tighten the envelope.
+
+*Conjecture UH′ (refined).* For every PIP `sigma` on three letters,
+`K_V(sigma) <= 7 + 1/log(1/mu(sigma))`. It holds on all 135,990 specimens
+above. Like UH, it is stated so that one specimen can refute it, and it
+implies PPVC and hence G1.
+
 ### 5.6 Working the argument: cancellation, not shrinkage
 
 *Lemma D (discreteness, proved).* There is `epsilon_0(sigma) > 0` such that
