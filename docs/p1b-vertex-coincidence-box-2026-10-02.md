@@ -357,6 +357,31 @@ Result (3 min 48 s):
   the offsets shown. Those estimates came from an uncommitted script and are
   withdrawn; the exact counts above replace them.
 
+### 5.5b Targeted search where contraction is slowest (exploratory sample)
+
+A strict zipper, and with it a counterexample to the Pisot substitution
+conjecture for its substitution (Theorem S), is most plausible where `mu` is
+close to 1. `vertex_coincidence_targeted.mojo 5 39 40 40` selects, exactly,
+the PIP substitutions with images of length at most 5, a complex contracting
+pair and `mu^2 = abs(det M)/beta > (39/40)^2`. There are 40,680 of them, and
+none have `mu > 0.98`. It decides PPVC on a deterministic sample of every
+40th candidate in canonical order, 1,017 specimens, with the state cap
+4,000,000 per box graph:
+
+```text
+decided: 1017  holds for every r: 993  capped: 24  fails: 0
+deepest K_V: 39 specimen 17 135 239  largest box graph: 3995093
+```
+
+(96 minutes on 4 workers.) No sampled specimen fails. The 24 capped
+specimens are inconclusive at this state cap and are not verdicts. The
+deepest specimen is `0 -> 012, 1 -> 00120, 2 -> 11102` (labels index
+`image_words_up_to(5)`), with `K_V = 39`. `vertex_depth_law.mojo` certifies
+exactly that it satisfies all three laws of §5.5a, envelope E7 included.
+
+This is a sample, labelled as such, and not a census. It says nothing about
+the other 39,663 candidates or about the 24 capped ones.
+
 ### 5.6 Working the argument: cancellation, not shrinkage
 
 *Lemma D (discreteness, proved).* There is `epsilon_0(sigma) > 0` such that
