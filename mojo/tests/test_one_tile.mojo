@@ -3,6 +3,7 @@
 from std.testing import assert_equal
 from psc.claim_tests import require_contract
 from psc.one_tile import mirror, one_tile, two_sided
+from psc.vertex_coincidence import decide_vertex_coincidence
 
 
 def sigma_of(a: List[Int], b: List[Int], c: List[Int]) -> List[List[Int]]:
@@ -57,6 +58,9 @@ def test_right_endpoints_do_not_rescue_q1() raises:
     assert_equal(one_tile(mirror(sigma_of([0, 1], [0, 2], [0]))).recurrent, 8)
     assert_two_sided(sigma_of([1], [1, 2], [0, 2, 2]), 14, 12, 12, 12)
     assert_two_sided(sigma_of([1], [0, 1, 2], [0, 1, 0]), 694, 0, 0, 0)
+    var v = decide_vertex_coincidence(sigma_of([1], [0, 1, 2], [0, 1, 0]))
+    assert_equal(v.holds, True)  # PPVC still holds: every hit is a simultaneous birth
+    assert_equal(v.deepest, 14)
 
 
 def main() raises:
@@ -66,4 +70,4 @@ def main() raises:
     print("[PASS] test_q1_fails_where_no_catch_up_is_reachable")
     test_right_endpoints_do_not_rescue_q1()
     print("[PASS] test_right_endpoints_do_not_rescue_q1")
-    require_contract("one-tile catch-up analysis: recurrent/in-CU/reach-CU pinned on seven specimens; Q1 holds on cube, golden pump, 210/0/110, plastic, Tribonacci; fails totally on 1/012/010 (694/0/0) and partly on 1/12/022 (14/4/12); two-sided (left/right/either), Tribonacci 14/14/14 of 14 (mirror recurrent 8), 1/12/022 12/12/12 of 14, 1/012/010 0/0/0 of 694")
+    require_contract("one-tile catch-up analysis: recurrent/in-CU/reach-CU pinned on seven specimens; Q1 holds on cube, golden pump, 210/0/110, plastic, Tribonacci; fails totally on 1/012/010 (694/0/0) and partly on 1/12/022 (14/4/12); two-sided (left/right/either), Tribonacci 14/14/14 of 14 (mirror recurrent 8), 1/12/022 12/12/12 of 14, 1/012/010 0/0/0 of 694 while PPVC holds with K_V 14")
