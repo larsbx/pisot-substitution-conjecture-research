@@ -156,7 +156,9 @@ These are reference/index additions only. They do not establish #84, #138,
   substitution for every `r` on one finite box graph; exact certificate
   `mojo/psc/vertex_coincidence.mojo` and census
   `mojo/vertex_coincidence_census.mojo`. Not proved for all PIP
-  substitutions (it implies G1).
+  substitutions (it implies G1). Depth laws `K_V <= a + c/log(1/mu)` are checked
+  exactly against the census records by `mojo/vertex_depth_law.mojo`
+  (`psc.depth_law`).
 - `return-lattice-literature-gate-2026-10-02.md` — return vectors of tiles
   span `Z<ell>` on the whole corpus; return vectors of length-`n` patches span
   it for every `n` on the unimodular classes and fail to by `n = 13` on every

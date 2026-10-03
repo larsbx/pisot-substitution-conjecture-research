@@ -310,38 +310,52 @@ a uniform covering statement for the Rauzy-type sets of the box graph, at
 one scale. It is not a statement about arbitrarily fine scales, which is
 where the density arguments of the stop list fail.
 
-### 5.5a Conjecture UH tested on images of length at most 4: refuted, refined
+### 5.5a Depth laws checked exactly on images of length at most 4
 
-`vertex_coincidence_census.mojo len4 START END records` printed `K_V` for
-each of the 135,990 specimens with images of length at most 4 (28 slices,
-every specimen holds, none capped). Joining those exact values with `mu`
-(uncommitted floating-point root finder, exploratory):
+`vertex_coincidence_census.mojo len4 START END records` printed the exact
+`K_V` of each of the 135,990 specimens with images of length at most 4, in 28
+slices (every specimen holds, none capped). `vertex_depth_law.mojo FILE 4`
+(kernel `psc.depth_law`) judges each record against a law
+`K_V <= a + c / log(1/mu)`, exactly:
 
-- `K_V · log(1/mu)` ranges over `[0.441, 4.042]`. **1,506 specimens exceed
-  3.2** and 336 exceed 3.5, so Conjecture UH with the standing-corpus
-  constant `c = 3.2` is refuted.
-- The violators are not slow contractions. The record value 4.042 is held
-  by `K_V = 6` at `mu ≈ 0.5098` (unimodular, for example
-  `0 -> 2220, 1 -> 100, 2 -> 0012`): a depth floor at fast contraction,
-  which a pure ratio `c / log(1/mu)` cannot absorb.
-- The correlation of `K_V` with `1/log(1/mu)` rises to `0.944`.
+- `mu^2` is enclosed in a rational bracket: `abs(det M) / beta` for a complex
+  pair, the larger squared real conjugate otherwise. Both come from
+  isolating intervals of the characteristic polynomial, refined by exact
+  bisection.
+- For `K_V > a` the law is `(mu^2)^(K_V − a) >= (e^(−c))^2`, tested against a
+  rational bracket of `e^(−c)`.
+- A specimen not decided within 80 bisections is reported as undecided and
+  counted as neither verdict.
+- `tests/test_depth_law.mojo` pins a violator, two holding specimens and a
+  hypothetical failure of the affine law.
 
-The scaling therefore survives in affine form. With
-`c(a) = max (K_V − a) log(1/mu)` over the domain:
+Result (3 min 48 s):
 
-| `a` | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| images of length <= 4 | 4.042 | 3.440 | 2.867 | 2.293 | 1.911 | 1.529 | 1.147 | 0.984 | 0.844 |
-| standing corpus | 3.164 | 2.768 | 2.373 | 1.977 | 1.582 | 1.265 | 1.125 | 0.984 | 0.844 |
+| law | holds | violates | undecided |
+| --- | --- | --- | --- |
+| `K_V <= 3.2 / log(1/mu)` | 134,484 | 1,506 | 0 |
+| `K_V <= 4 / log(1/mu)` | 135,918 | 72 | 0 |
+| `K_V <= 7 + 1/log(1/mu)` | 135,990 | 0 | 0 |
 
-From `a = 7` on, the two rows agree: the binding specimens are slow
-contractions already present in the standing corpus, and the larger domain
-does not tighten the envelope.
+*Reading.*
 
-*Conjecture UH′ (refined).* For every PIP `sigma` on three letters,
-`K_V(sigma) <= 7 + 1/log(1/mu(sigma))`. It holds on all 135,990 specimens
-above. Like UH, it is stated so that one specimen can refute it, and it
-implies PPVC and hence G1.
+- Conjecture UH asserts that **some** absolute constant `c` works. These
+  counts reject the standing-corpus calibration `c = 3.2` and also `c = 4`,
+  but UH itself stays open: no finite domain can refute an existential
+  constant.
+- `tests/test_depth_law.mojo` pins `0 -> 2220, 1 -> 100, 2 -> 0012`, with
+  `K_V = 6` and `mu ≈ 0.51`, as a violator of both ratio laws. Fast
+  contraction with a depth floor is what defeats a pure ratio `c / log(1/mu)`.
+- The affine form survives on this domain. *Empirical envelope E7*:
+  `K_V <= 7 + 1/log(1/mu)` holds on all 135,990 specimens, exactly
+  certified.
+- E7 is recorded as an observation, **not** as a conjecture. Stating it as
+  a universal invariant needs the targeted literature stop/go check of
+  `AGENTS.md` first, which has not been done.
+- An earlier draft of this section tabulated floating-point estimates of
+  the envelope constant for each offset and extrapolated an equality beyond
+  the offsets shown. Those estimates came from an uncommitted script and are
+  withdrawn; the exact counts above replace them.
 
 ### 5.6 Working the argument: cancellation, not shrinkage
 
@@ -422,35 +436,26 @@ depth comes from cancellation between different letters. So UH has two
 parts: a climb part, which is proved, and a cross-letter cancellation part,
 which is the open rigidity statement of §5.6.
 
-### 5.6b Birth analysis: no reduction to a one-tile problem
+### 5.6b Open: is the rigidity a one-tile question?
 
-Every first common vertex `y` of a recurrent vertex, found at hit depth `m`,
-is born in each tiling at some level: `k_A` (`k_B`) is the least level at
-which `y` is a vertex of tiling A (B), so `max(k_A, k_B) = m`. Two cases:
+Every first common vertex `y` of a recurrent vertex is born in each tiling
+at some level, `k_A` and `k_B`. Two cases:
 
-- **catch-up**: `min(k_A, k_B) < m`. A vertex of one tiling already exists
-  and the other tiling's subdivision reaches it later. That is a one-tile
-  question: is a given integral offset `s` inside a tile `b` an eventual
-  subdivision boundary of `b`?
-- **simultaneous birth**: `k_A = k_B = m`. A genuine two-tile cancellation.
+- **catch-up** (`min(k_A, k_B) < max(k_A, k_B)`): one tiling's vertex is
+  reached later by the other's subdivision. That is a one-tile question: is
+  a given integral offset inside a tile an eventual subdivision boundary?
+- **simultaneous birth** (`k_A = k_B`): a genuine two-tile cancellation.
 
-If catch-up dominated with a short delay `m − min(k_A, k_B)`, the
-cross-letter rigidity of §5.6 would reduce to the one-tile question, which
-is a finiteness-type property of a single tile. The data rules that out
-(uncommitted floating-point oracle; one minimal hit path per vertex):
+If every recurrent vertex had *some* catch-up hit, at any depth and not
+necessarily the first, the cross-letter rigidity of §5.6 would reduce to the
+one-tile question.
 
-- On four hand-picked specimens catch-up does dominate. The golden pump has
-  4 simultaneous births among 716 recurrent vertices, and every catch-up has
-  delay 1. The cube specimen and `0 -> 210, 1 -> 0, 2 -> 110` have none, with
-  delays at most 5 and 2. The plastic class has none, with delays up to 8.
-- On the stride-7 sample of 651 corpus specimens the picture reverses.
-  61,854 of the 149,412 recurrent vertices (41%) hit by simultaneous birth.
-  31 specimens hit only that way. The largest catch-up delay is 10 for
-  unimodular specimens and 11 for `abs(det M) = 2`.
-
-So the obstruction is genuinely two-tile in a large fraction of cases, and
-the one-tile route is closed as a general reduction. It is recorded so that
-the four-specimen impression is not mistaken for the general mechanism.
+An exploratory pass looked at one minimal hit path per vertex. It found many
+simultaneous births, but that does not decide the question: a one-tile
+argument needs only some catch-up descendant, and other shortest paths or
+later common vertices were not examined. The pass used an uncommitted script,
+so its figures are not reported here. The question stays open. Settling it
+needs an exact, committed enumeration of all hit witnesses per vertex.
 
 ### 5.7 The closing target, restated
 
