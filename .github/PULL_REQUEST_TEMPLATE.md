@@ -21,15 +21,15 @@ say so plainly rather than leaving the line blank.
 
 | Check                                                   | Command                                                                     | Result  |
 | ------------------------------------------------------- | --------------------------------------------------------------------------- | ------- |
-| every verification layer, reporting skips honestly      | `./scripts/verify_all.sh`                                                   | not run |
-| Mojo regressions plus claim receipts                    | `./mojo/run_tests.sh`                                                       | not run |
-| the ledger is still generated, not hand-edited          | `python scripts/make_ledger.py --check`                                     | not run |
-| the math catalogue is still generated                   | `python scripts/make_math_catalogue.py --check`                             | not run |
+| every verification layer, reporting skips honestly      | `./tools/verify_all.sh`                                                   | not run |
+| Mojo regressions plus claim receipts                    | `./kernel/run_tests.sh`                                                       | not run |
+| the ledger is still generated, not hand-edited          | `python tools/make_ledger.py --check`                                     | not run |
+| the math catalogue is still generated                   | `python tools/make_math_catalogue.py --check`                             | not run |
 | claim governance                                        | `PYTHONPATH=tools python -m claim_governance.cli --root .`                  | not run |
 | every claim is guarded by a test a run actually reached | `PYTHONPATH=tools python -m claim_governance.cli --root . --check coverage` | not run |
-| vendored packages still match their pins                | `python scripts/check_vendored_sync.py`                                     | not run |
+| vendored packages still match their pins                | `python tools/check_vendored_sync.py`                                     | not run |
 | suite                                                   | `pixi run test`                                                             | not run |
-| TLA+ models                                             | `./tla/check.sh`                                                            | not run |
+| TLA+ models                                             | `./proof/tla/check.sh`                                                            | not run |
 
 ## What this does *not* establish
 

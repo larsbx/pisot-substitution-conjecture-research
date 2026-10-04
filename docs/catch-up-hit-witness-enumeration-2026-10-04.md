@@ -8,7 +8,7 @@ depends on the [stop/go check](catch-up-hit-witness-gate-2026-10-04.md).
 
 ## Complete decision, then witness selection
 
-`mojo/psc/hit_witness.mojo` uses the complete Proposition V box graph built by
+`kernel/psc/hit_witness.mojo` uses the complete Proposition V box graph built by
 `psc.vertex_coincidence`. Each child **occurrence** retains its top and bottom
 indices, even when several occurrences have the same child type. The shift
 convention is the canonical bottom-start minus top-start convention:
@@ -61,7 +61,7 @@ refusals terminate the run rather than supplying a negative verdict.
 ## Recorded finite domains
 
 Base main: `3344a6b7d449ad17a2630307acffde55b64de31f`. Toolchain:
-Mojo `1.1.0.dev2026090805 (34562fa1)`, pinned by `mojo/pixi.lock`.
+Mojo `1.1.0.dev2026090805 (34562fa1)`, pinned by `kernel/pixi.lock`.
 State cap: 4,000,000 per graph. Deterministic four-worker fold.
 
 | Domain | Evaluated | Recurrent nonzero vertices | Catch-up at either endpoint | Simultaneous-only | Failing specimens | Total-failure specimens | Caps |
@@ -96,7 +96,7 @@ mkdir -p build
 pixi run hit-witness-census standing 0 4554 failures > build/hit-standing.txt
 pixi run hit-witness-census total8 0 1000 failures > build/hit-total8.txt
 pixi run hit-witness-census len4 0 1000 failures > build/hit-len4.txt
-python ../scripts/check_hit_witness_evidence.py --live-output build/hit-standing.txt
+python ../tools/check_hit_witness_evidence.py --live-output build/hit-standing.txt
 ```
 
 `records` in place of `failures` emits **every** recurrent nonzero vertex,

@@ -13,7 +13,7 @@ from what it would have to import.
 
 ## What is built here, and checked
 
-`mojo/psc/automata.mojo` — deterministic automata over an integer alphabet with
+`kernel/psc/automata.mojo` — deterministic automata over an integer alphabet with
 total transitions, and the operations a decision procedure needs: intersection,
 union, complement, the subset construction of Rabin and Scott[^1] discharging
 one existential quantifier over a track of a product alphabet, emptiness with a
@@ -21,14 +21,14 @@ shortest witness, and Moore's partition refinement[^2] with language equality on
 top of it. Both constructions are textbook and nothing about them is new here;
 what they are for is the next paragraph.
 
-`mojo/psc/dumont_thomas.mojo` — the Dumont–Thomas numeration[^3] of the fixed
+`kernel/psc/dumont_thomas.mojo` — the Dumont–Thomas numeration[^3] of the fixed
 point of a substitution, as an automaton: states are letters, the digit `j` moves from
 `a` to the `j`-th letter of `tau(a)`, a digit past the end of an image is
 inadmissible, and the letter reached after the last digit is `u_n`. The fixed
 point is therefore a letter-valued output of a finite automaton reading these
 digits, and the positions carrying a given letter form a recognisable set.
 
-`mojo/automatic_route_census.mojo` — three identities per specimen, between
+`kernel/automatic_route_census.mojo` — three identities per specimen, between
 computations that share no step:
 
 | Identity | One side | The other side |
@@ -46,13 +46,13 @@ established here.
 
 ### The addition automaton, built and checked
 
-`mojo/psc/linear_numeration.mojo` — the numeration the substitution itself
+`kernel/psc/linear_numeration.mojo` — the numeration the substitution itself
 carries: `U_k = |tau^k(c)|`, which obeys the characteristic recurrence of the
 incidence matrix by Cayley–Hamilton, with greedy digits written against it. The
 census below verifies that recurrence on every sampled specimen rather than
 citing it.
 
-`mojo/psc/numeration_addition.mojo` — the third automaton a decision procedure
+`kernel/psc/numeration_addition.mojo` — the third automaton a decision procedure
 needs, after admissibility and the letter map:
 
     { (x, y, z) : val(x) + val(y) = val(z) }
@@ -71,7 +71,7 @@ For the tribonacci substitution the construction gives 137 states, 44
 minimised, over the eight triples of a binary alphabet; every one of the 3,600
 sums below 60 is accepted and no near miss is.
 
-`mojo/numeration_addition_census.mojo` carries that over the corpus, and keeps
+`kernel/numeration_addition_census.mojo` carries that over the corpus, and keeps
 three outcomes apart. Over 183 sampled specimens: 109 automata built and
 verified, with 68,125 sums checked, zero false rejects and zero false accepts;
 8 constructions refused at the state cap; 66 specimens skipped because their
@@ -107,7 +107,7 @@ a fourth automaton, and it is the next section.
 
 ### The conversion, and the letter map moved across it
 
-`mojo/psc/numeration_conversion.mojo` builds
+`kernel/psc/numeration_conversion.mojo` builds
 
     C = { (P, G) : P an admissible path word from `c`, |G| = |P|,
                    val_path(P) = val_greedy(G) }
@@ -149,7 +149,7 @@ Dumont–Thomas letter map on the path track, discharge the path by the subset
 construction, and what is left is a condition on the digit word alone. The
 letter map and addition now speak one numeration.
 
-`mojo/numeration_conversion_census.mojo` carries this over the corpus with the
+`kernel/numeration_conversion_census.mojo` carries this over the corpus with the
 same three outcomes kept apart. Over 183 sampled specimens: 115 conversions
 built, 4,600 position pairs checked with zero false rejects and zero false
 accepts; 1 construction refused at the state cap; 67 skipped for their digit
@@ -169,7 +169,7 @@ still a thing that has to be said rather than left to inference.
 
 ### The coincidence formula, and where the route stops
 
-`mojo/psc/coincidence_formula.mojo` writes the condition and decides it:
+`kernel/psc/coincidence_formula.mojo` writes the condition and decides it:
 
     SC(i, j)  ==  exists k, exists p :
                       p < |sigma^k(i)|,  p < |sigma^k(j)|,
@@ -211,7 +211,7 @@ reserve of `psc.pisot_state` at `slack = 1` is therefore derived rather than
 estimated here, unlike the two explorations above, and the state cap guards
 against a defect in the file rather than budgeting a search: exceeding it raises.
 
-`mojo/coincidence_formula_census.mojo` decides the whole corpus and checks the
+`kernel/coincidence_formula_census.mojo` decides the whole corpus and checks the
 answers twice over. The formula is cheap and the overlap graph is not, so the
 verdict covers every specimen and the cross-check covers a sample of them, which
 is why the two are counted apart.
@@ -247,7 +247,7 @@ The automaton above answers `SC(i, j)`, but it answers it by having the
 conjunction wired into its accepting condition. That settles the question and
 is *not* the procedure this gate proposed, which was to write the formula and
 let the automata kernel eliminate its quantifiers.
-`mojo/psc/coincidence_elimination.mojo` is that procedure, run. Each conjunct
+`kernel/psc/coincidence_elimination.mojo` is that procedure, run. Each conjunct
 goes to the automaton that already recognises it:
 
 | Conjunct | Discharged by |
@@ -389,7 +389,7 @@ necessary.
 ## Sources
 
 No PDF snapshots were imported for this review, so there is nothing under
-`docs/source-imports/` to cite. The entries below are bibliographic references
+`sources/` to cite. The entries below are bibliographic references
 to standard literature, not verified snapshots: they were written without access
 to the published record, so volume, year and page details must be checked
 against it when each is pinned, and no ledger may cite one until that is done.

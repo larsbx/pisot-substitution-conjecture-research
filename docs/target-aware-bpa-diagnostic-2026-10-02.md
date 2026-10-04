@@ -8,7 +8,7 @@ the implementation.
 
 ## Executable object
 
-`mojo/psc/target_packets.mojo` consumes a complete actual swap-seed BPA closure.
+`kernel/psc/target_packets.mojo` consumes a complete actual swap-seed BPA closure.
 It verifies normalization, irreducibility, seed reachability, and the actual
 ordered child table. A synthetic adjacency table cannot supply edges in place
 of word factorization.
@@ -104,7 +104,7 @@ raise with nonzero exit status before a complete diagnostic verdict.
 
 ## Reproduction
 
-From `mojo/`:
+From `kernel/`:
 
 ```sh
 pixi run target-aware-bpa --dump
@@ -147,10 +147,10 @@ seed closure; it does not eliminate the template by an earlier discarded
 shortcut.
 
 Full JSONL receipts and digests are under
-`docs/evidence/target-aware-bpa-2026-10-02/`. The independent Python oracle
+`evidence/target-aware-bpa-2026-10-02/`. The independent Python oracle
 checks their full packet and edge sets, addresses, orientation, targets, SCC
 membership/exits, accumulated forcing, shortest paths, and potential failures.
-`mojo/check_target_packets.sh` rebuilds the driver, compares those receipts
+`kernel/check_target_packets.sh` rebuilds the driver, compares those receipts
 byte-for-byte, replays the default affine cycle, and checks CLI rejection/caps.
 
 ## Verification
@@ -160,19 +160,19 @@ The implementation was rebased onto main
 `1.1.0.dev2026090805 (34562fa1)` ran the canonical tasks directly; a full pixi
 environment could not be installed because the conda-forge download was
 blocked. Compiler, stdlib and MAX runtime packages were recovered from the
-exact hashes in `mojo/pixi.lock`.
+exact hashes in `kernel/pixi.lock`.
 
 | Check | Result |
 | --- | --- |
-| Canonical `mojo/run_tests.sh` | 47 test files passed, with live contract/claim receipts |
+| Canonical `kernel/run_tests.sh` | 47 test files passed, with live contract/claim receipts |
 | Latest target-packet contract | Passed, including wrong-target zeros and invented terminal edges |
 | Canonical `verify.mojo` | All 10 exact certificate checks passed |
 | Standing `census.mojo` | 4,554 PIP specimens; 4,554 terminated and productive; zero capped |
-| `mojo/check_target_packets.sh` and evidence SHA-256 | All three exports reproduced exactly; replay, potentials, invalid inputs and all four CLI caps passed |
+| `kernel/check_target_packets.sh` and evidence SHA-256 | All three exports reproduced exactly; replay, potentials, invalid inputs and all four CLI caps passed |
 | Full Python suite after Mojo receipts completed | 390 passed, one optional TLC bridge skipped |
 | Optional TLC bridge rerun with `TLA_TOOLS` | Passed |
-| `tla/check.sh` | All 14 unchanged models passed, including the expected nonproductive countermodel |
-| `scripts/verify_all.sh provenance` | All seven provenance, vendoring, generated-surface, source-integrity and governance gates passed |
+| `proof/tla/check.sh` | All 14 unchanged models passed, including the expected nonproductive countermodel |
+| `tools/verify_all.sh provenance` | All seven provenance, vendoring, generated-surface, source-integrity and governance gates passed |
 | Full claim-governance CLI | Terminology, claims, live coverage, promotion, numerics and consistency passed |
 | Manuscript audit and `git diff --check` | Passed |
 

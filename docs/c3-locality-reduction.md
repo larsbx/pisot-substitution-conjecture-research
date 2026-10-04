@@ -119,7 +119,7 @@ The reference implementations use exactly these definitions:
   `newborn_boundary_sync_hits`.
 - Mojo: `inherited_boundary_positions`, `newborn_boundary_positions`,
   `newborn_sync_positions`.
-- `mojo/c3_census.mojo` scans the one-step local property over every state of
+- `kernel/c3_census.mojo` scans the one-step local property over every state of
   every recurrent noncoincident SCC in the exact 4554-substitution PIP corpus.
 
 The Smith-type regression state is a calibration example: its inherited cuts

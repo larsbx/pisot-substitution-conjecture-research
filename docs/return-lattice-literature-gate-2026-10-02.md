@@ -1,7 +1,7 @@
 # Literature gate: return vectors of patches and `Z<ell>` — 2026-10-02
 
 **Status:** literature baseline, stop/go decision and exact finite-domain
-census (`mojo/return_lattice_census.mojo`). **Decision: proceed with a
+census (`kernel/return_lattice_census.mojo`). **Decision: proceed with a
 narrowed target** (§7). Identifying the fibre relation of the maximal
 equicontinuous factor through `Z<ell>`-valued return vectors is sound in the
 unimodular corpus classes and unsound for `|det M| = 2` once patches have
@@ -57,7 +57,7 @@ the return vectors span all of `Z<ell>`. The check: compute
 `0 -> 22, 1 -> 20, 2 -> 221` (`|det M| = 2`): `[Z^3 : Lambda_n] = 1, 1, 1, 2,
 ..., 2, 4, ...` for `n = 1, 2, 3, 4, ..., 10, 11, ...`, and `8` by `n = 30`.
 Tile returns span `Z<ell>`; length-4 patches already do not. Pinned in
-`mojo/tests/test_return_lattice.mojo`.
+`kernel/tests/test_return_lattice.mojo`.
 
 ## 6. Census and the elementary arguments around it
 

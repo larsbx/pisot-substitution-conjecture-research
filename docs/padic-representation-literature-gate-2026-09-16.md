@@ -4,7 +4,7 @@
 
 Round-two item R7 carries a "p-adic module" as one of its four parts, inherited
 from round-one item B7, "shared real times 2-adic box kernel". B7's state line
-records the gap precisely: `mojo/psc/finite_cokernel_address.mojo` computes
+records the gap precisely: `kernel/psc/finite_cokernel_address.mojo` computes
 `Z^3 / M^k Z^3` classes exactly, and there is no p-adic module in
 `larsbx/finite-math-kernels`.
 
@@ -28,7 +28,7 @@ naive version, and — the question that turned out to matter — whether the st
 it serves is the next one.
 
 No PDF snapshots were imported for this review, so there is nothing under
-`docs/source-imports/` to cite. The entries under [Sources](#sources) are
+`sources/` to cite. The entries under [Sources](#sources) are
 bibliographic references to standard literature, not verified snapshots.
 
 ## Decision
@@ -148,7 +148,7 @@ This is a computed obstruction, not a stylistic preference, and it came out of
 review of the first draft.
 
 Take the canonical determinant-two substitution of
-`mojo/tests/test_overlap_collar.mojo`, `0 -> 1`, `1 -> 021`, `2 -> 001`, whose
+`kernel/tests/test_overlap_collar.mojo`, `0 -> 1`, `1 -> 021`, `2 -> 001`, whose
 incidence matrix and square are
 
 ```text

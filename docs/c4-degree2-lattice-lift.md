@@ -94,7 +94,7 @@ The golden G/F template is rejected at step 5. The next computational target is 
 
 ## 7. Executable scope
 
-`src/psc_research/lattice_lift.py` provides:
+`reference/psc_research/lattice_lift.py` provides:
 
 - exact column replacement;
 - fraction-free determinants;

@@ -15,7 +15,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact three-state degree2 necessary-condition census
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . degree2_three_state_census.mojo 2>&1) || status=$?

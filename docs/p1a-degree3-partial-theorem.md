@@ -23,7 +23,7 @@ cap in zero cases.
 
 ## Proof certificate
 
-`mojo/degree3_catalog.mojo` is the canonical exact computation. It:
+`kernel/degree3_catalog.mojo` is the canonical exact computation. It:
 
 1. enumerates the finite substitution domain and applies the exact PIP screen;
 2. constructs every reachable automaton and rejects capped constructions as

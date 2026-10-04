@@ -28,7 +28,7 @@ with `p, q` the prefix translations of the chosen sub-tiles. A *coincidence*
 is a type `(i, i, 0)`; coincidences are terminal.
 
 The *seed-patch overlap graph* `O_sigma` (manuscript Computation 6.7;
-canonical implementation `mojo/psc/overlap_seed_patch.mojo`) is the graph on
+canonical implementation `kernel/psc/overlap_seed_patch.mojo`) is the graph on
 the types reachable from the level-0 overlaps of the three seeds under the
 child relation.
 
@@ -222,9 +222,9 @@ to the finite graph `O_sigma`).
 
 ## 5. Exact census (finite evidence)
 
-Canonical run `mojo/swap_overlap_census.mojo` (exact Sturm-sequence PIP
+Canonical run `kernel/swap_overlap_census.mojo` (exact Sturm-sequence PIP
 screening; shifts in `Z[beta]`; every sign decided exactly), independent
-Python oracle `scripts/swap_overlap_census.py` (`src/psc_research/overlap_graph.py`,
+Python oracle `oracles/python/swap_overlap_census.py` (`reference/psc_research/overlap_graph.py`,
 elements of `Q(beta)` as polynomials modulo the irreducible cubic, signs by
 certified interval refinement):
 
@@ -313,7 +313,7 @@ every non-coincidence type of G_O(T, x(W)) is a vertex type of O_sigma.   (TI_W)
 finite (Theorem 2.1 for `O_sigma`; `G_O` is finite in the Pisot setting).
 
 **Exploratory computation (not a certificate;
-`mojo/oa_type_inclusion_census.mojo`, canonical since 2026-09-16; the figures
+`kernel/oa_type_inclusion_census.mojo`, canonical since 2026-09-16; the figures
 below were first produced by the retired Python explorer and are reproduced
 exactly by the Mojo driver, which CI pins).** The level-0 types of
 `(u, S^{|W|} u)` were read off a prefix of `u` of length at least 6,000
@@ -341,7 +341,7 @@ argument described in the audit. No conclusion about the bridge for
 substitutions outside the corpus follows from this table.
 
 **Addendum (2026-09-14; exploratory, not a certificate;
-`mojo/oa_failures_probe.mojo`, canonical since 2026-09-16; the Mojo driver
+`kernel/oa_failures_probe.mojo`, canonical since 2026-09-16; the Mojo driver
 reproduces every figure below, including all nine least witnesses, and CI
 pins them).** For the 22 failures above, every
 prolongable pair `(q, c)` (power `q <= 3`, letter `c` with
@@ -524,11 +524,11 @@ the referee's example `1->2, 2->33, 3->213`, offset `(-8, -2, 5/2)`, has
 `m_0 = 6` while the relaxation gives `5`). For two real contracting
 conjugates the test is the defining inequality at each isolated root.
 
-**Exact census (Mojo canonical, `mojo/psc/overlap_contracting.mojo` with the
-Sturm–Tarski module `mojo/psc/real_root_sign.mojo` and the driver
-`mojo/overlap_contracting_census.mojo`, asserted line by line in CI; Python
-oracle `src/psc_research/overlap_contracting.py`,
-`scripts/overlap_contracting_census.py`, prints the same nine summary lines, without the specimen-count header).** Over all
+**Exact census (Mojo canonical, `kernel/psc/overlap_contracting.mojo` with the
+Sturm–Tarski module `kernel/psc/real_root_sign.mojo` and the driver
+`kernel/overlap_contracting_census.mojo`, asserted line by line in CI; Python
+oracle `reference/psc_research/overlap_contracting.py`,
+`oracles/python/overlap_contracting_census.py`, prints the same nine summary lines, without the specimen-count header).** Over all
 1,118,850 vertices of the 4,554 corpus graphs, `m_0` never exceeds the first
 left-aligned depth `b`; the largest `m_0` is 8 (vertices by `m_0`:
 0:34702 1:338684 2:429036 3:206232 4:77748 5:26496 6:5424 7:516 8:12); the excess

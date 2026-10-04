@@ -1,4 +1,4 @@
-"""Dimension semantics of Tier 2 loop-gain fixtures (scripts/check_tier2_fixture.py)."""
+"""Dimension semantics of Tier 2 loop-gain fixtures (tools/check_tier2_fixture.py)."""
 
 import copy
 import json
@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 
 from check_tier2_fixture import CHANNELS, SCHEMA, dimension_errors, main  # noqa: E402
 

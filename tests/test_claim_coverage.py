@@ -1,7 +1,7 @@
 """The seam between the Mojo declarations, the run receipts, and the policy.
 
-`mojo/psc/claim_tests.mojo` prints a receipt line, `mojo/run_tests.sh` turns
-the lines of a passing test into rows of `mojo/build/claim-receipts.tsv`, and
+`kernel/psc/claim_tests.mojo` prints a receipt line, `kernel/run_tests.sh` turns
+the lines of a passing test into rows of `kernel/build/claim-receipts.tsv`, and
 the `coverage` check of `claim_governance.toml` reads those rows. Three
 languages, one format: these tests pin it without a Mojo toolchain, so a
 change to either end that breaks the other is caught here rather than by a
@@ -28,15 +28,15 @@ from claim_governance.repo import Repo  # noqa: E402
 
 POLICY = load_policy(ROOT / "claim_governance.toml")
 COVERAGE = POLICY.coverage
-DECLARER = (ROOT / "mojo" / "psc" / "claim_tests.mojo").read_text(encoding="utf-8")
-RUNNER = (ROOT / "mojo" / "run_tests.sh").read_text(encoding="utf-8")
+DECLARER = (ROOT / "kernel" / "psc" / "claim_tests.mojo").read_text(encoding="utf-8")
+RUNNER = (ROOT / "kernel" / "run_tests.sh").read_text(encoding="utf-8")
 PREFIXES = {"claim": "claim-receipt:", "contract": "contract-receipt:"}
 
 
 def test_the_policy_watches_the_mojo_tests_and_the_runner_receipts():
-    assert COVERAGE.tests == ("mojo/tests/test_*.mojo",)
-    assert COVERAGE.receipts == "mojo/build/claim-receipts.tsv"
-    assert f"RECEIPTS=${{CLAIM_RECEIPTS:-{COVERAGE.receipts.removeprefix('mojo/')}}}" in RUNNER
+    assert COVERAGE.tests == ("kernel/tests/test_*.mojo",)
+    assert COVERAGE.receipts == "kernel/build/claim-receipts.tsv"
+    assert f"RECEIPTS=${{CLAIM_RECEIPTS:-{COVERAGE.receipts.removeprefix('kernel/')}}}" in RUNNER
     assert f"printf '{RECEIPTS_FORMAT}\\n' > \"$RECEIPTS\"" in RUNNER
 
 
@@ -65,11 +65,11 @@ def test_the_runner_turns_a_printed_receipt_into_a_row_the_check_accepts(tmp_pat
                    f"{PREFIXES['claim']} OverlapProductivity\n"
                    f"{PREFIXES['contract']} a contract with spaces\n"
                    "8 tests passed.\n", encoding="utf-8")
-    script = re.search(r"awk -v path=\"mojo/\$test\" '\n(.*?)' \"\$LOG\"", RUNNER, re.S).group(1)
-    rows = subprocess.run(["awk", "-v", "path=mojo/tests/test_x.mojo", script, str(out)],
+    script = re.search(r"awk -v path=\"kernel/\$test\" '\n(.*?)' \"\$LOG\"", RUNNER, re.S).group(1)
+    rows = subprocess.run(["awk", "-v", "path=kernel/tests/test_x.mojo", script, str(out)],
                           capture_output=True, text=True, check=True).stdout
-    assert rows == ("mojo/tests/test_x.mojo\tclaim\tOverlapProductivity\n"
-                    "mojo/tests/test_x.mojo\tcontract\ta contract with spaces\n")
+    assert rows == ("kernel/tests/test_x.mojo\tclaim\tOverlapProductivity\n"
+                    "kernel/tests/test_x.mojo\tcontract\ta contract with spaces\n")
 
 
 def test_the_required_classes_are_the_ones_whose_warrant_is_a_computation():
@@ -89,7 +89,7 @@ def test_the_required_classes_are_the_ones_whose_warrant_is_a_computation():
 
 def test_the_generated_graph_carries_the_proof_record_ledger_and_only_that():
     policy = tomllib.loads((ROOT / "claim_governance.toml").read_text(encoding="utf-8"))
-    records = set(json.loads((ROOT / "tla" / "ledger.json").read_text(encoding="utf-8"))["records"])
+    records = set(json.loads((ROOT / "proof" / "tla" / "ledger.json").read_text(encoding="utf-8"))["records"])
     graph = json.loads((ROOT / "docs" / "claim-relationship-graph.json").read_text(encoding="utf-8"))
     claims = {n["id"] for n in graph["nodes"] if n["kind"] == "claim"}
     assert claims == records

@@ -130,13 +130,13 @@ Hence:
 
 Thus the right-boundary pair alphabet collapses to a two-edge star centered at `c`. In an oriented state one may record a binary **hub-side bit** indicating whether the top or bottom side carries `c`; normalization/orientation then acts on this bit by an explicit `F_2` flip.
 
-This is a structural consequence only. It does not yet identify the hub-side cocycle with the orientation signing from `mojo/psc/signing.mojo`; that requires a separate child-occurrence compatibility proof.
+This is a structural consequence only. It does not yet identify the hub-side cocycle with the orientation signing from `kernel/psc/signing.mojo`; that requires a separate child-occurrence compatibility proof.
 
 The same statement applies to left-adjacent boundaries after reversing the substitution.
 
 ## 8. Canonical Mojo support
 
-`mojo/psc/bd_endpoint.mojo` contains only the finite part of the argument:
+`kernel/psc/bd_endpoint.mojo` contains only the finite part of the argument:
 
 - exact unordered-pair encoding;
 - endpoint-pair orbit masks;
@@ -145,7 +145,7 @@ The same statement applies to left-adjacent boundaries after reversing the subst
 - complementary hub-letter and two-edge-star checks;
 - the combined A/B/G type filter.
 
-`mojo/tests/test_bd_endpoint.mojo` exhausts all 27 self-maps of the three-letter alphabet. It pins that there are two type-G maps and both have full pair-orbit mask `0b111` from every distinct pair, and it checks the two-edge hub normal form for each possible choice of good pair.
+`kernel/tests/test_bd_endpoint.mojo` exhausts all 27 self-maps of the three-letter alphabet. It pins that there are two type-G maps and both have full pair-orbit mask `0b111` from every distinct pair, and it checks the two-edge hub normal form for each possible choice of good pair.
 
 The Barge-Diamond existence theorem itself is a cited mathematical input, not something the finite Mojo test claims to prove.
 
