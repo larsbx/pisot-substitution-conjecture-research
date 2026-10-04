@@ -231,19 +231,19 @@ for `tau` the series of Lemma 1 converges slowly because the second
 eigenvalue has modulus `sqrt(2/beta) ~ 0.94`.
 
 The canonical exact implementation is the Mojo kernel
-`mojo/psc/swap_discrepancy.mojo` with census driver
-`mojo/swap_discrepancy_census.mojo` (PIP screening by the repository's exact
-Sturm-sequence procedure in `mojo/psc/pisot.mojo`; no floating point anywhere)
-and regression `mojo/tests/test_swap_discrepancy.mojo`, which pins the
-reduction step and the example values above. `src/psc_research/swap_discrepancy.py`,
-`scripts/swap_discrepancy_census.py` (exact screening by rational-root test
+`kernel/psc/swap_discrepancy.mojo` with census driver
+`kernel/swap_discrepancy_census.mojo` (PIP screening by the repository's exact
+Sturm-sequence procedure in `kernel/psc/pisot.mojo`; no floating point anywhere)
+and regression `kernel/tests/test_swap_discrepancy.mojo`, which pins the
+reduction step and the example values above. `reference/psc_research/swap_discrepancy.py`,
+`oracles/python/swap_discrepancy_census.py` (exact screening by rational-root test
 and Sturm sequences over `Q`) and `tests/test_swap_discrepancy.py` are the
 independent Python oracle; both layers report the same corpus size and the
 same discrepancy statistics.
 
 ## 7. Ledger consequences
 
-- `G1b1BoundedDiscrepancy` moves into `ProvedDef` in `tla/Ledger.tla` with
+- `G1b1BoundedDiscrepancy` moves into `ProvedDef` in `proof/tla/Ledger.tla` with
   no repository prerequisites (it does not use `UniqueDecodability`).
 - `G1b2RenewalFiniteness` remains outside `ProvedDef`; `G1` remains
   conditional on it. `RenewalFinitenessRemainsOpen` must continue to hold.
