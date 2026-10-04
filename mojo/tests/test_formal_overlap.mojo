@@ -1,0 +1,85 @@
+"""Regressions for the formal-overlap carrier survey (`psc.formal_overlap`)."""
+
+from std.testing import assert_equal, assert_false, assert_true
+from psc.claim_tests import require_contract
+from psc.formal_overlap import recurrent_coincidence_free_sccs, survey_formal_overlaps
+from psc.overlap_seed_patch import OverlapState, build_seed_overlap_graph_from_tables, build_seed_overlap_tables
+
+
+def sigma_of(a: List[Int], b: List[Int], c: List[Int]) -> List[List[Int]]:
+    return [a.copy(), b.copy(), c.copy()]
+
+
+def test_plastic_has_realized_and_unrealized_carriers() raises:
+    """0 -> 1, 1 -> 2, 2 -> 01 (corpus specimen `1 2 4`): one realized aligned
+    carrier and one unrealized strict carrier, both exiting to coincidence."""
+    var s = survey_formal_overlaps(build_seed_overlap_tables(sigma_of([1], [2], [0, 1])))
+    assert_equal(s.nonproductive, 0)
+    assert_true(s.carriers_inside_box)
+    assert_equal(len(s.carriers), 2)
+    var seen_realized = False
+    var seen_unrealized = False
+    for c in range(2):
+        ref x = s.carriers[c]
+        assert_false(x.closed)
+        assert_false(x.direct_producer)
+        if x.realized:
+            seen_realized = True
+            assert_equal(x.size(), 58)
+            assert_equal(x.cyclomatic(), 19)
+            assert_true(x.aligned)
+            assert_equal(x.death_depth, 4)
+        else:
+            seen_unrealized = True
+            assert_equal(x.size(), 16)
+            assert_equal(x.cyclomatic(), 3)
+            assert_false(x.aligned)
+            assert_equal(x.death_depth, 6)
+    assert_true(seen_realized and seen_unrealized)
+
+
+def test_realized_carriers_are_the_realized_graphs_own() raises:
+    """The realized graph's recurrent coincidence-free SCCs are exactly the
+    realized formal carriers, member for member."""
+    var tables = build_seed_overlap_tables(sigma_of([1], [2], [0, 1]))
+    var s = survey_formal_overlaps(tables)
+    var realized = build_seed_overlap_graph_from_tables(tables)
+    var own = recurrent_coincidence_free_sccs(realized)
+    assert_equal(len(own), 1)
+    var formal_members = Dict[OverlapState, Bool]()
+    for c in range(len(s.carriers)):
+        if s.carriers[c].realized:
+            for i in range(len(s.carriers[c].members)):
+                formal_members[s.formal.states[s.carriers[c].members[i]]] = True
+    assert_equal(len(own[0]), len(formal_members))
+    for i in range(len(own[0])):
+        assert_true(realized.states[own[0][i]] in formal_members)
+
+
+def test_single_realized_carrier_specimen() raises:
+    """0 -> 1, 1 -> 2, 2 -> 02 (corpus specimen `1 2 5`): no unrealized carrier."""
+    var s = survey_formal_overlaps(build_seed_overlap_tables(sigma_of([1], [2], [0, 2])))
+    assert_equal(len(s.carriers), 1)
+    assert_true(s.carriers[0].realized)
+    assert_equal(s.carriers[0].size(), 22)
+    assert_equal(s.carriers[0].death_depth, 4)
+
+
+def test_non_pisot_input_fails_closed() raises:
+    """0 -> 1, 1 -> 012, 2 -> 1 is not Pisot: no contraction box exists, and
+    the survey raises (at the Perron-field construction) instead of reporting."""
+    var raised = False
+    try:
+        _ = survey_formal_overlaps(build_seed_overlap_tables(sigma_of([1], [0, 1, 2], [1])))
+    except:
+        raised = True
+    assert_true(raised)
+
+
+def main() raises:
+    test_plastic_has_realized_and_unrealized_carriers()
+    test_realized_carriers_are_the_realized_graphs_own()
+    test_single_realized_carrier_specimen()
+    test_non_pisot_input_fails_closed()
+    print("[PASS] formal overlap carriers: box, realization split, cross-check, fail-closed")
+    require_contract("formal overlap carriers are the recurrent coincidence-free SCCs of the closure of a Pisot-contraction box of potential overlaps; each is wholly realized or wholly unrealized, the realized ones are the swap-seed graph's own, and a non-Pisot input fails closed")
