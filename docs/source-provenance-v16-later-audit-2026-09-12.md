@@ -48,7 +48,7 @@ A default or single-branch checkout need not contain those side-branch commits. 
 
 The full source commit identifiers above are historical locators and object identities. The full-index patch records are the durable verification anchor for these two source additions: they remain sufficient to reconstruct and inspect the original file bytes even if the side branch is later deleted.
 
-The checksums are committed in `docs/source-imports/issue-45/SHA256SUMS`. `scripts/verify_all.sh` and the `source-provenance` CI job also apply the preserved patch series in an empty temporary repository and compare the reconstructed bytes to the imported snapshots. Thus changing a snapshot together with its checksum manifest still fails unless it matches the independently preserved source record.
+The checksums are committed in `docs/source-imports/issue-45/SHA256SUMS`. `tools/verify_all.sh` and the `source-provenance` CI job also apply the preserved patch series in an empty temporary repository and compare the reconstructed bytes to the imported snapshots. Thus changing a snapshot together with its checksum manifest still fails unless it matches the independently preserved source record.
 
 The new manuscript `manuscripts/PSC_PROOF_next_source_audit.tex` is derived from the archived v15 source and therefore is not represented as the missing v16 manuscript. Its front-page notice identifies that fact and freezes the four source boundaries above.
 

@@ -34,27 +34,27 @@ if sha256sum -c docs/source-imports/minimal-bad-scc/SHA256SUMS; then
 else
     bad "minimal-bad-SCC proposal source provenance"
 fi
-if python3 scripts/check_vendored_sync.py; then
+if python3 tools/check_vendored_sync.py; then
     ok "vendored Mojo packages match the commits pinned in vendored.toml"
 else
     bad "vendored package drift (vendored.toml)"
 fi
-if python3 scripts/make_ledger.py --check >/dev/null; then
-    ok "generated ledger surfaces are current (scripts/make_ledger.py --check)"
+if python3 tools/make_ledger.py --check >/dev/null; then
+    ok "generated ledger surfaces are current (tools/make_ledger.py --check)"
 else
-    bad "generated ledger surfaces are stale (run: python3 scripts/make_ledger.py)"
+    bad "generated ledger surfaces are stale (run: python3 tools/make_ledger.py)"
 fi
-if python3 scripts/make_math_catalogue.py --check >/dev/null; then
+if python3 tools/make_math_catalogue.py --check >/dev/null; then
     ok "generated mathematical-object catalogue is current"
 else
-    bad "mathematical-object catalogue drift (run: python3 scripts/make_math_catalogue.py)"
+    bad "mathematical-object catalogue drift (run: python3 tools/make_math_catalogue.py)"
 fi
-if python3 scripts/check_manuscript_source.py; then
+if python3 tools/check_manuscript_source.py; then
     ok "manuscript sources are intact LaTeX and PDF"
 else
     bad "manuscript source integrity"
 fi
-if python3 scripts/check_markdown_source.py; then
+if python3 tools/check_markdown_source.py; then
     ok "theorem/research Markdown contains no unexpected C0 controls"
 else
     bad "theorem/research Markdown source integrity"

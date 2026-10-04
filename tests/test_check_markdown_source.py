@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPT = ROOT / "scripts" / "check_markdown_source.py"
+SCRIPT = ROOT / "tools" / "check_markdown_source.py"
 
 
 def run(*targets: Path, cwd: Path | None = None) -> subprocess.CompletedProcess[str]:

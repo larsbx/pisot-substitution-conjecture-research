@@ -11,7 +11,7 @@ only; see
 docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md.
 """
 import sys, time
-sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[1] / 'reference'))
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[2] / 'reference'))
 from psc_research.bpa import build_bpa
 
 from psc_research.pip_screen import pip_corpus

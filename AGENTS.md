@@ -55,10 +55,10 @@ not re-enumerate the image words, re-screen the corpus, re-derive sink or strict
 -carrier membership by scanning component edges, or hand-roll a histogram line.
 
 The same rule governs scripts. An executable computation belongs in `mojo/` with
-a driver and a regression test, not in `scripts/`. What remains under `scripts/`
-is the provenance and governance tooling plus the Python census oracles that
-cross-check a Mojo census in an independently written language; those are
-sanctioned by the oracle policy above. A Python script that is the *only*
+a driver and a regression test, not in `tools/`. What lives under `tools/`
+is the provenance and governance tooling; the Python census oracles that
+cross-check a Mojo census in an independently written language live under
+`oracles/python/`, sanctioned by the oracle policy above. A Python script that is the *only*
 implementation of a computation is a defect to be ported, and the ported script
 is then deleted rather than kept as a second source of truth.
 
@@ -74,10 +74,10 @@ Four logical Mojo packages under `mojo/`, and the three Python packages under
 `tools/`, are vendored byte-for-byte from the single
 `larsbx/finite-math-kernels` monorepo and pinned to one commit by SHA-256
 digest in `vendored.toml`;
-`scripts/check_vendored_sync.py` enforces the pins in CI and in
-`scripts/verify_all.sh`. Do not patch a vendored file, add a file beside one,
+`tools/check_vendored_sync.py` enforces the pins in CI and in
+`tools/verify_all.sh`. Do not patch a vendored file, add a file beside one,
 or reintroduce a local copy of what a package provides: change the package
-upstream, re-vendor, and re-pin (`scripts/check_vendored_sync.py pin NAME
+upstream, re-vendor, and re-pin (`tools/check_vendored_sync.py pin NAME
 COMMIT`).
 
 | Package | Upstream | Provides | PSC-side layer |
@@ -88,7 +88,7 @@ COMMIT`).
 | `mojo/parallel_fold/` | `larsbx/finite-math-kernels` | deterministic MAX-backed map/fold over an index range; index-order fold preserves sequential results for associative combines | `mojo/psc/parallel_census.mojo` keeps PSC evidence semantics, failure replay, and corpus-specific result records |
 | `tools/claim_governance/` | `larsbx/finite-math-kernels` (`audit/`) | the status-surface, terminology, promotion, numerics, and test-coverage audit | `claim_governance.toml` is the policy; its `[coverage]` table binds `mojo/tests/` to the ledger |
 | `tla/ProofArchitecture.tla` | `larsbx/finite-math-kernels` | generic alternative-dependency state machine, pinned as `proof_architecture`; copy with the matching ledger generator |
-| `tools/proof_records/` | `larsbx/finite-math-kernels` | proof records (kinds, identity, dependency closure) and the ledger generator | `scripts/make_ledger.py` holds the record table; `tla/ledger.json`, `tla/Ledger.tla`, the `tla/MCLedger*` models, `docs/ledger-index.md`, `docs/claim-relationship-graph.json`, and the generated `[[claim]]` block of `claim_governance.toml` are its outputs, never hand-edited |
+| `tools/proof_records/` | `larsbx/finite-math-kernels` | proof records (kinds, identity, dependency closure) and the ledger generator | `tools/make_ledger.py` holds the record table; `tla/ledger.json`, `tla/Ledger.tla`, the `tla/MCLedger*` models, `docs/ledger-index.md`, `docs/claim-relationship-graph.json`, and the generated `[[claim]]` block of `claim_governance.toml` are its outputs, never hand-edited |
 | `tools/oracle_refinement/` | `larsbx/finite-math-kernels` | a generator's declared input distribution, `φ_G`: the codomain every draw must satisfy, and per named class whether the corpus reaches it or misses it with a stated reason, both directions checked | `tools/corpus_refinement.py` declares `psc_research.pip_screen.pip_corpus()`, the domain every finite-domain claim is asserted for, and pins its digest |
 
 Integer, rational, and rational-interval arithmetic is therefore **not**

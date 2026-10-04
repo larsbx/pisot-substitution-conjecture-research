@@ -51,11 +51,11 @@ histograms and counters. `census.mojo` is 40 lines; `c4_census.mojo` lost its
 
 | Was | Is | Reproduces |
 | --- | --- | --- |
-| `scripts/analyze_degree3_catalog.py` | `mojo/psc/degree3_taxonomy.mojo`, printed by `degree3_catalog.mojo` | all 22 `DEGREE3_*` lines CI pinned, including the four state classes and two substitution classes |
-| `scripts/classify_endpoint_cores.py` | `mojo/endpoint_core_catalog.mojo` | the seven three-letter classes, their sizes `3,6,6,1,3,6,2`, the two globally synchronizing classes, every recurrent core |
-| `scripts/sweep_boundary_sync.py` | `mojo/boundary_sync_sweep.mojo` | a seeded sweep; 500 trials, 312 primitive, 60 components, no productive component missed |
-| `scripts/oa_type_inclusion_explore.py` | `mojo/oa_type_inclusion_census.mojo` | the least-`k` table of `overlap-finiteness-and-coincidence-density-2026-09-13.md` exactly: `1:256 2:109 3:41 4:8 5:12 6:6 7:1 8:1`, 22 failures |
-| `scripts/oa_failures_probe.py` | `mojo/oa_failures_probe.mojo` | the addendum exactly: 9 of 22 resolved, union types 58–132 against 15–48, 43–85 outside, 0–15 unmet, all productive, and all nine least witnesses |
+| `tools/analyze_degree3_catalog.py` | `mojo/psc/degree3_taxonomy.mojo`, printed by `degree3_catalog.mojo` | all 22 `DEGREE3_*` lines CI pinned, including the four state classes and two substitution classes |
+| `tools/classify_endpoint_cores.py` | `mojo/endpoint_core_catalog.mojo` | the seven three-letter classes, their sizes `3,6,6,1,3,6,2`, the two globally synchronizing classes, every recurrent core |
+| `tools/sweep_boundary_sync.py` | `mojo/boundary_sync_sweep.mojo` | a seeded sweep; 500 trials, 312 primitive, 60 components, no productive component missed |
+| `tools/oa_type_inclusion_explore.py` | `mojo/oa_type_inclusion_census.mojo` | the least-`k` table of `overlap-finiteness-and-coincidence-density-2026-09-13.md` exactly: `1:256 2:109 3:41 4:8 5:12 6:6 7:1 8:1`, 22 failures |
+| `tools/oa_failures_probe.py` | `mojo/oa_failures_probe.mojo` | the addendum exactly: 9 of 22 resolved, union types 58–132 against 15–48, 43–85 outside, 0–15 unmet, all productive, and all nine least witnesses |
 
 The five scripts are deleted. They were the only implementation of those
 computations, so keeping them would leave two sources of truth for a taxonomy;

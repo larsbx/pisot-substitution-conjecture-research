@@ -278,7 +278,7 @@ def main(argv: list[str]) -> int:
     text = json.dumps(ledger(), indent=2, ensure_ascii=False) + "\n"
     if check:
         if not LEDGER.exists() or LEDGER.read_text(encoding="utf-8") != text:
-            print(f"stale: {LEDGER} (run scripts/make_ledger.py)")
+            print(f"stale: {LEDGER} (run tools/make_ledger.py)")
             return 1
     else:
         LEDGER.write_text(text, encoding="utf-8")

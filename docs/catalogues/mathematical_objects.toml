@@ -162,7 +162,7 @@ status = "finite-domain"
 scope = "Replayable exact result over an explicitly enumerated domain; caps or incomplete enumeration are inconclusive."
 definition = "A bounded-domain witness with enough metadata to replay the exact computation and audit its completeness contract."
 canonical = "mojo/swap_overlap_census.mojo"
-oracle = "scripts/swap_overlap_census.py"
+oracle = "oracles/python/swap_overlap_census.py"
 related = ["seed-patch-overlap-automaton", "overlap-productivity"]
 
 [[object]]

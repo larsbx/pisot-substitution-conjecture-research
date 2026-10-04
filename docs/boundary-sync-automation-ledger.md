@@ -4,8 +4,8 @@
 
 - `docs/boundary-synchronization.md` documents the Boundary Synchronization Lemma, the synchronizing-end criterion, and the nonsynchronizing trap normal form.
 - `reference/psc_research/` contains lightweight Python BPA and boundary-sync utilities.
-- `scripts/sweep_boundary_sync.py` provides a small random sweep driver.
-- `scripts/audit_manuscript.py` guards against known stale manuscript claims.
+- `tools/sweep_boundary_sync.py` provides a small random sweep driver.
+- `tools/audit_manuscript.py` guards against known stale manuscript claims.
 - `.github/workflows/boundary-sync.yml` runs the focused lightweight checks.
 
 ## Regression targets

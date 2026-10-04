@@ -189,7 +189,7 @@ Proposition 4 bounds every state by `2 beta^17 ell_max / ell_min`, at most
 - It does not touch the one-seed gate of issue #84 or Open Problem 5.35.
 - The ledger records Proposition 1 as `G1OverlapRoute`, a conditional theorem
   whose open premise is the new gate `AllSeedOverlapProductivity`
-  (`scripts/make_ledger.py`; `docs/proof-ladder.md`, "Overlap-depth route to
+  (`tools/make_ledger.py`; `docs/proof-ladder.md`, "Overlap-depth route to
   G1"). `docs/cross-program-bridge-psc-nlapjt-2026-09-12.md` §5 (B1) already
   identifies G1b-2 with bounded gaps between simultaneous boundaries;
   Proposition 1 supplies that bound from overlap depth, for the reachable

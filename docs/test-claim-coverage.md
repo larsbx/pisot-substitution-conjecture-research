@@ -9,7 +9,7 @@
 - `require_claim("<Name>")` — the test pins a contract that the named ledger claim's certificate rests on;
 - `require_contract("<what it pins>")` — the test pins a contract that is no ledger claim, as for a vendored kernel.
 
-A declaration is a link, not evidence. That the contract holds is what the test's assertions decide; that the claim follows from the contract is what its own proof, certificate, or manuscript argument decides. In particular a declaration never promotes anything: the status of every claim is the ledger's, and the ledger is generated from the proof-record table of `scripts/make_ledger.py`.
+A declaration is a link, not evidence. That the contract holds is what the test's assertions decide; that the claim follows from the contract is what its own proof, certificate, or manuscript argument decides. In particular a declaration never promotes anything: the status of every claim is the ledger's, and the ledger is generated from the proof-record table of `tools/make_ledger.py`.
 
 ## 2. The three layers, and what each can catch
 
@@ -68,7 +68,7 @@ A claim named against an open or conditional node — `G1b2RenewalFiniteness` mo
 ## 5. What this does not yet cover
 
 - **The Python oracle layer is not read.** `tests = ["mojo/tests/test_*.mojo"]`, so a claim whose only regression is a Python oracle (`tests/test_lattice_lift.py`, `test_meanarea_integrality.py`, `test_multidegree_sieve.py`, `test_lie4.py` among them) counts as unguarded. That is deliberate while Mojo is the canonical layer, and it means the guarded counts below understate the regression coverage of the degree-2 lattice results.
-- **Census drivers are not read.** The exhaustive censuses under `mojo/*.mojo` are run by CI and by `scripts/verify_all.sh` with their exact output pinned, but they emit no receipt, so a finite-domain claim is guarded here through the library contracts its driver is a survey over, not through the driver's own run.
+- **Census drivers are not read.** The exhaustive censuses under `mojo/*.mojo` are run by CI and by `tools/verify_all.sh` with their exact output pinned, but they emit no receipt, so a finite-domain claim is guarded here through the library contracts its driver is a survey over, not through the driver's own run.
 - **Guarded is not complete.** 18 of the 42 repository-proved claims name a Mojo test today. The rest are manuscript-, Lean-, or certificate-backed, and the check does not ask which of those has a regression, because it cannot tell an absent one from an inapplicable one.
 
 None of the three is a gap in a proof. Each is a bound on what the mechanism reports, stated here so that a passing `coverage` check is not read as more than it is.

@@ -68,7 +68,7 @@ not the source's undefined small-regime BPA cycle. Transferring inversion or
 bracket data to that object needs a new, explicit interface proof.
 
 The **finite-BPA SCC Producer route is stronger parallel work**. Its complete
-boundary sufficiency ladder, matching `scripts/make_ledger.py`, is:
+boundary sufficiency ladder, matching `tools/make_ledger.py`, is:
 
 | Step | Premises and conclusion | Status/boundary |
 | --- | --- | --- |

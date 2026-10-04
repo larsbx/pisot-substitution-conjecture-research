@@ -73,7 +73,7 @@ jobs:
             exit 1
           fi
           # The catalogue prints its own taxonomy; the former Python oracle
-          # (scripts/analyze_degree3_catalog.py) is superseded by
+          # (tools/analyze_degree3_catalog.py) is superseded by
           # mojo/psc/degree3_taxonomy.mojo and its regression test.
           grep -Fx 'DEGREE3_OCCURRENCES 24' degree3.log
           grep -Fx 'DEGREE3_STATE_RELABEL_CLASSES 4' degree3.log

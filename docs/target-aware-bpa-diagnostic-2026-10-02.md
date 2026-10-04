@@ -172,7 +172,7 @@ exact hashes in `mojo/pixi.lock`.
 | Full Python suite after Mojo receipts completed | 390 passed, one optional TLC bridge skipped |
 | Optional TLC bridge rerun with `TLA_TOOLS` | Passed |
 | `tla/check.sh` | All 14 unchanged models passed, including the expected nonproductive countermodel |
-| `scripts/verify_all.sh provenance` | All seven provenance, vendoring, generated-surface, source-integrity and governance gates passed |
+| `tools/verify_all.sh provenance` | All seven provenance, vendoring, generated-surface, source-integrity and governance gates passed |
 | Full claim-governance CLI | Terminology, claims, live coverage, promotion, numerics and consistency passed |
 | Manuscript audit and `git diff --check` | Passed |
 

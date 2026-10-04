@@ -4,7 +4,7 @@ from pathlib import Path
 from zipfile import ZipFile
 import pytest
 
-spec = importlib.util.spec_from_file_location('separation_receipts', Path(__file__).parents[1] / 'scripts/check_separation_receipts.py')
+spec = importlib.util.spec_from_file_location('separation_receipts', Path(__file__).parents[1] / 'tools/check_separation_receipts.py')
 checker = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(checker)
 

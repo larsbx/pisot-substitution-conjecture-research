@@ -202,7 +202,7 @@ must reproduce this control before it is trusted.
   The schema pins `affine_forcing` to `beta_twisted` over the three-coordinate
   power basis, so a plain-sum reading of it is not schema-valid (Finding 5,
   C3).
-- `scripts/check_tier2_fixture.py` enforces the remaining semantics: gain and
+- `tools/check_tier2_fixture.py` enforces the remaining semantics: gain and
   generator width = basis rank, distinct labels, power-basis rank = degree of
   the monic minimal polynomial, and `beta_twisted` only over a power basis.
 

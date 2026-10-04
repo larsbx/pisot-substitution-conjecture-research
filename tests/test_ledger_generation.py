@@ -10,7 +10,7 @@ import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "tools"))
 sys.path.insert(0, str(ROOT / "tools"))
 
 import make_ledger  # noqa: E402
@@ -26,7 +26,7 @@ def reachable(model: str) -> set[str]:
 
 
 def test_generated_surfaces_are_current():
-    result = subprocess.run([sys.executable, str(ROOT / "scripts" / "make_ledger.py"), "--check"], capture_output=True, text=True, check=False)
+    result = subprocess.run([sys.executable, str(ROOT / "tools" / "make_ledger.py"), "--check"], capture_output=True, text=True, check=False)
     assert result.returncode == 0, result.stdout
 
 

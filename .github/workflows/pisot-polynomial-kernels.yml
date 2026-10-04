@@ -19,4 +19,4 @@ jobs:
       - name: Repository verification gates
         run: |
           pip install -e .[dev]
-          bash scripts/verify_all.sh
+          bash tools/verify_all.sh

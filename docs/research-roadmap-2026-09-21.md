@@ -1,6 +1,6 @@
 # PSC research roadmap — 2026-09-21
 
-**Status:** live completion roadmap for the current research frontier. This file is a planning/status surface, not a proof source. The authoritative claim taxonomy remains `docs/claim-status-and-source-map-2026-09-13.md`; theorem statements remain in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`; machine dependencies remain generated from `scripts/make_ledger.py`.
+**Status:** live completion roadmap for the current research frontier. This file is a planning/status surface, not a proof source. The authoritative claim taxonomy remains `docs/claim-status-and-source-map-2026-09-13.md`; theorem statements remain in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`; machine dependencies remain generated from `tools/make_ledger.py`.
 
 **Standing target:** pure discrete spectrum for primitive irreducible Pisot substitutions in the repository's standing regime, **without** silently adding seed legality, unique decodability, finite injectivity, rational/integer independence, or unimodularity.
 

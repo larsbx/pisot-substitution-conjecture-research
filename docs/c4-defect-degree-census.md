@@ -44,7 +44,7 @@ membership, two-step coincidence leakage, and strict-component detection).
 `mojo/psc/degree3_taxonomy.mojo` adds the relabeling and reversal
 classification, printed by the catalogue itself as the `DEGREE3_*` lines that
 CI pins; `mojo/tests/test_census_library.mojo` regresses it against the known
-orbit. The former Python oracle `scripts/analyze_degree3_catalog.py` is
+orbit. The former Python oracle `tools/analyze_degree3_catalog.py` is
 retired: the taxonomy is canonical Mojo, like the census that produces it.
 
 There are exactly **four normalized state relabeling classes** (Mojo uses zero-based letters):

@@ -7,7 +7,7 @@ accident of how the test was written. The facility is
 `tools/oracle_refinement`, vendored from `larsbx/finite-math-kernels` and
 specified in its `docs/generator-refinement-spec.md`.
 
-This repository's differential oracles -- `scripts/overlap_depth_census_oracle.py`
+This repository's differential oracles -- `oracles/python/overlap_depth_census_oracle.py`
 and the census scripts beside it -- do not sample. They run over
 `psc_research.pip_screen.pip_corpus()`, every PIP substitution on three letters
 with image lengths at most three. That is the strongest distribution there is,

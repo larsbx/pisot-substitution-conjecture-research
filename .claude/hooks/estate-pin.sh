@@ -6,4 +6,4 @@ set -euo pipefail
 REPO=$(cd "$(dirname "$0")/../.." && pwd -P)
 path=$(python3 -c 'import json, sys; print(json.load(sys.stdin).get("tool_input", {}).get("file_path", ""))')
 [ "$(realpath -m "$path")" = "$REPO/vendored.toml" ] || exit 0
-python3 "$REPO/scripts/check_vendored_sync.py" estate >&2 || exit 2
+python3 "$REPO/tools/check_vendored_sync.py" estate >&2 || exit 2

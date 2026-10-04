@@ -224,7 +224,7 @@ to the finite graph `O_sigma`).
 
 Canonical run `mojo/swap_overlap_census.mojo` (exact Sturm-sequence PIP
 screening; shifts in `Z[beta]`; every sign decided exactly), independent
-Python oracle `scripts/swap_overlap_census.py` (`reference/psc_research/overlap_graph.py`,
+Python oracle `oracles/python/swap_overlap_census.py` (`reference/psc_research/overlap_graph.py`,
 elements of `Q(beta)` as polynomials modulo the irreducible cubic, signs by
 certified interval refinement):
 
@@ -528,7 +528,7 @@ conjugates the test is the defining inequality at each isolated root.
 Sturm–Tarski module `mojo/psc/real_root_sign.mojo` and the driver
 `mojo/overlap_contracting_census.mojo`, asserted line by line in CI; Python
 oracle `reference/psc_research/overlap_contracting.py`,
-`scripts/overlap_contracting_census.py`, prints the same nine summary lines, without the specimen-count header).** Over all
+`oracles/python/overlap_contracting_census.py`, prints the same nine summary lines, without the specimen-count header).** Over all
 1,118,850 vertices of the 4,554 corpus graphs, `m_0` never exceeds the first
 left-aligned depth `b`; the largest `m_0` is 8 (vertices by `m_0`:
 0:34702 1:338684 2:429036 3:206232 4:77748 5:26496 6:5424 7:516 8:12); the excess

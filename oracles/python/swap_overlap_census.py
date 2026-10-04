@@ -2,7 +2,7 @@
 (independent Python oracle of mojo/swap_overlap_census.mojo).  Finite evidence
 only; see docs/overlap-finiteness-and-coincidence-density-2026-09-13.md."""
 import sys, time
-sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[1] / 'reference'))
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[2] / 'reference'))
 from psc_research.pip_screen import pip_corpus
 from psc_research.overlap_graph import OverlapGraph
 

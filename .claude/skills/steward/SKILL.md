@@ -32,7 +32,7 @@ speculative ones.
 1. every verification layer, reporting skips honestly —
 
    ```sh
-   ./scripts/verify_all.sh
+   ./tools/verify_all.sh
    ```
 
 2. Mojo regressions plus claim receipts —
@@ -44,13 +44,13 @@ speculative ones.
 3. the ledger is still generated, not hand-edited —
 
    ```sh
-   python scripts/make_ledger.py --check
+   python tools/make_ledger.py --check
    ```
 
 4. the math catalogue is still generated —
 
    ```sh
-   python scripts/make_math_catalogue.py --check
+   python tools/make_math_catalogue.py --check
    ```
 
 5. claim governance —
@@ -68,7 +68,7 @@ speculative ones.
 7. vendored packages still match their pins —
 
    ```sh
-   python scripts/check_vendored_sync.py
+   python tools/check_vendored_sync.py
    ```
 
 8. suite —

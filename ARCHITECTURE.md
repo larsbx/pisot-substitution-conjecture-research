@@ -24,7 +24,7 @@ under `tla/` are the proof plane: they hold claim state, not acceptance
 authority over the Mojo kernel. `claim_governance.toml` and `vendored.toml` are
 policy alongside the manifest; packages vendored from `larsbx/finite-math-kernels`
 are pinned there and, as a whole, by the `finite-math-kernels` `[[dep]]`, whose
-pin `scripts/check_vendored_sync.py` derives and checks.
+pin `tools/check_vendored_sync.py` derives and checks.
 
 The layout is transitional: every plane in `ESTATE.toml` names its template
 `target` and maps today's paths in `current`. `[migration].next` queues the
