@@ -29,6 +29,7 @@ overlap-contracting-census = "mojo run -I . overlap_contracting_census.mojo"
 vertex-coincidence-census = "mojo run -I . vertex_coincidence_census.mojo"
 one-tile-census = "mojo run -I . one_tile_census.mojo"
 valuation-ascent-census = "mojo run -I . valuation_ascent_census.mojo"
+barge-class-census = "mojo run -I . barge_class_census.mojo"
 return-lattice-census = "mojo run -I . return_lattice_census.mojo"
 
 # Finite classifications with no substitution input.

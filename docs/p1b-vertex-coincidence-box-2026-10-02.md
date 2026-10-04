@@ -845,6 +845,73 @@ aligned route (#138) is the obstruction. A proof of T2 must establish tile
 coincidence for the periodic fibre pairs of §1 directly, which is the
 coincidence-rank problem in its periodic form.
 
+### 5.6g Periodic coincidence rank on the catch-up-free class: what the literature already gives (2026-10-04)
+
+§5.6f leaves T2, on the catch-up-free class, as tile coincidence of the
+periodic fibre pairs of §1, i.e. a coincidence-rank statement. Before any new
+coincidence-rank argument, one existing theorem reaches part of the class.
+
+*The lever.* Barge (2016) proves pure discrete spectrum for primitive,
+non-periodic substitutions with Pisot inflation that are injective on initial
+letters and constant on final letters (hypotheses as audited in
+`p1b-strict-zipper-literature-gate-2026-09-21.md`); reversing every image
+gives the mirror class. Pure discrete spectrum is shared by `sigma`, its
+powers, and the conjugates `u^{-1} sigma^n u` or `v sigma^n v^{-1}` by a common
+prefix `u` or suffix `v` of the images, which have the same tiling space up to
+translation. Lemma E makes this natural here: catch-up-free images begin and
+end with E letters, so a rotation by the common prefix of the images of
+`sigma^n` is automatically constant on final letters, and it lies in Barge's
+class exactly when the letters after the maximal common prefix are pairwise
+distinct. A witness gives pure discrete spectrum, hence PPVC (Theorem S), and
+on the catch-up-free class PPVC is T2.
+
+`mojo/barge_class_census.mojo` (kernel `psc.barge_class`) searches `sigma^n`,
+`n <= 6`, and its maximal left and right rotations, exactly:
+
+| domain | specimens | with a witness | catch-up-free | catch-up-free with a witness |
+| --- | --- | --- | --- | --- |
+| standing corpus | 4,554 | 1,248 | 210 | 78 |
+| total length ≤ 8 | 24,486 | 6,336 | 654 | 174 |
+
+Every witness occurs at power 1 or 2. By Lemma E stratum (`|det M| = 2`):
+
+| `|E|`, number of length-1 images | standing corpus | total length ≤ 8 |
+| --- | --- | --- |
+| 1, none | 6 / 6 | 6 / 6 |
+| 1, at least one | 0 / 12 | 0 / 264 |
+| 2, none | 48 / 156 | 48 / 156 |
+| 2, one | 24 / 36 | 84 / 144 |
+| (`|det M| != 2`) | — | 36 / 84 |
+
+`tests/test_barge_class.mojo` pins Tribonacci (mirror class), the plastic
+substitution (no witness) and `0 -> 1, 1 -> 22, 2 -> 012`, the first total Q1
+failure of §5.6b, whose square `(22, 012012, 122012)` lies in Barge's class:
+T2 holds for it, by Barge's theorem.
+
+*Lemma B (obstruction, proved).* Let `|det M| = 2`, `sigma` catch-up-free with
+one E letter `x` and at least one image of length 1. Then no power `sigma^n`
+lies in Barge's class or its mirror.
+
+*Proof.* By Lemma E, every image of length at least 2 begins and ends with
+`x`, and every image of length 1 is a single letter. So the first-letter map
+`g(a)` and the last-letter map `f(a)` of `sigma` coincide, and so do those of
+`sigma^n` (`g^n = f^n`). One map on three letters cannot be both injective and
+constant. `square`
+
+Rotations are not covered by Lemma B; the census finds none that work in this
+stratum on either domain (0 of 264 at total length at most 8). When the stratum has no image of
+length 1, `f = g` is the constant `x`, `sigma` is constant on both ends, and a
+rotation by the common prefix succeeds on every specimen surveyed.
+
+*Where this leaves the coincidence-rank argument.* On the surveyed domains
+Barge's theorem settles T2 for 78 of the 210 catch-up-free corpus specimens
+and 174 of 654 of total length at most 8. For the rest no conjugacy route is
+known, and in the stratum `|E| = 1` with a length-1 image it is blocked for
+powers by Lemma B. Those specimens are where a genuine periodic
+coincidence-rank argument is needed. No such argument is given here. These
+consequences inherit the review status of Theorem S and the import of
+Barge (2016).
+
 ### 5.7 The closing target, restated
 
 The box graph is the carry automaton of the Dumont–Thomas numeration of
