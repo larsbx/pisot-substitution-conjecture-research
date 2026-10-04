@@ -182,6 +182,10 @@ These are reference/index additions only. They do not establish #84, #138,
   descendant (Proposition FP), with the remainder after offset zero bounded by
   `S(sigma)`; with Proposition V and Theorem S this is PDS plus all-pairs
   aligned strong coincidence (Corollary FP′). Changes no status.
+- `pds-strong-coincidence-literature-gate-2026-10-04.md` — stop/go: Akiyama–Lee
+  2014 Corollary 4.5 gives PDS ⇒ all-pairs prefix strong coincidence for
+  irreducible Pisot substitutions (non-unit case via Sing 2006, unread);
+  hence formal productivity ⟺ PDS. Decision "proceed, caveat recorded".
 - `return-lattice-literature-gate-2026-10-02.md` — return vectors of tiles
   span `Z<ell>` on the whole corpus; return vectors of length-`n` patches span
   it for every `n` on the unimodular classes and fail to by `n = 13` on every

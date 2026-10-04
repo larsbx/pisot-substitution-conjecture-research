@@ -77,6 +77,19 @@ So the realization-free statement costs, beyond pure discrete spectrum,
 exactly all-pairs aligned strong coincidence: three letter pairs, each a
 single state.
 
+**Corollary FP″** (2026-10-04; adds the import of
+`pds-strong-coincidence-literature-gate-2026-10-04.md`). Akiyama–Lee 2014,
+Corollary 4.5, gives PDS ⇒ SC_all for irreducible Pisot substitutions (in the
+non-unit case through the cited height-group lemma of Sing 2006, not read
+here). Hence, for PIP `sigma`,
+
+```text
+FP  <=>  PDS.
+```
+
+The realization-free route asks for exactly the Pisot substitution
+conjecture, no more; and SC_all, route A's target, is necessary for it.
+
 **For the two routes of `p1-two-route-map-2026-10-01.md`.**
 
 - Route A, in formal form, is SC_all: no SCC structure remains once the

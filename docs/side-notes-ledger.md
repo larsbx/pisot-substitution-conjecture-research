@@ -68,6 +68,11 @@ by deleting it.
   (2016) and, for PPVC, on Theorem S (unreviewed). ·
   `p1b-vertex-coincidence-box-2026-10-02.md` §5.6g
 
+- 2026-10-04 · PDS ⇒ all-pairs prefix strong coincidence for irreducible
+  Pisot substitutions: Akiyama–Lee 2014, Corollary 4.5 (non-unit case via
+  Sing 2006, Lemma 6.34, unread). Do not re-search; consequence FP ⟺ PDS. ·
+  `pds-strong-coincidence-literature-gate-2026-10-04.md`
+
 ## 4. Withdrawn or unreproducible figures
 
 - 2026-10-04 · "1,764 formal producer-free cycles; maximum death radius 7;
