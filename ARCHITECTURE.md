@@ -18,17 +18,18 @@ authority -> mathematical/domain concern -> implementation language
 ```
 
 Mojo under `kernel/` is the canonical executable (see `AGENTS.md`). Python under
-`reference/psc_research/` is a non-authoritative reference and oracle layer; Julia
-under `oracles/julia/` is a research oracle. Lean under `proof/PscVerif/` and TLA+
-under `proof/tla/` are the proof plane: they hold claim state, not acceptance
-authority over the Mojo kernel. `claim_governance.toml` and `vendored.toml` are
-policy alongside the manifest; packages vendored from `larsbx/finite-math-kernels`
-are pinned there and, as a whole, by the `finite-math-kernels` `[[dep]]`, whose
-pin `tools/check_vendored_sync.py` derives and checks.
+`reference/psc_research/` is a non-authoritative reference layer, and the
+oracles under `oracles/` (Python census oracles, a Julia lane) never carry
+acceptance. Lean under `proof/PscVerif/` and TLA+ under `proof/tla/` are the
+proof plane: they hold claim state, not acceptance authority over the Mojo
+kernel. Recorded run outputs live in `evidence/` and imported external sources
+in `sources/`, both verbatim and pinned by `SHA256SUMS`. `claim_governance.toml`
+and `vendored.toml` are policy alongside the manifest; packages vendored from
+`larsbx/finite-math-kernels` are pinned there and, as a whole, by the
+`finite-math-kernels` `[[dep]]`, whose pin `tools/check_vendored_sync.py`
+derives and checks.
 
-The layout is transitional: every plane in `ESTATE.toml` names its template
-`target` and maps today's paths in `current`. `[migration].next` queues the
-remaining moves, one boundary per reviewed step and never as a mass move; once
-it is empty and each plane maps exactly its target, the layout becomes
-canonical. Directory renames alone must not change claim status, acceptance,
-or authority.
+The layout is canonical: every plane in `ESTATE.toml` maps exactly its `target`
+(root-level files aside), every top-level directory is some plane's target, and
+no migration step is pending; the audit enforces all three. Directory renames
+alone must not change claim status, acceptance, or authority.

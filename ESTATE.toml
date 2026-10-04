@@ -32,11 +32,10 @@ pin = "sha256:7d1c4780c60c8c41b5d726ec5a9e25183ecee7e56775fa91d664560742536afa"
 [exports]
 names = []
 
-# Transitional: the planes are declared at their template targets and mapped to
-# today's paths. Directories move one boundary at a time ([migration].next);
-# no move changes claim status, acceptance, or authority.
+# Canonical: every plane maps exactly its target (root-level files aside) and
+# every top-level directory is some plane's target.
 [layout]
-status = "transitional"
+status = "canonical"
 
 [principles]
 ordering = ["authority", "domain", "language"]
@@ -77,12 +76,13 @@ authority = "non_authoritative_reference"
 required = true
 current = ["reference"]
 
+# julia/ (scaffold) and python/ (the census oracles).
 [[plane]]
 id = "oracles"
 target = "oracles"
 authority = "non_authoritative_oracle"
 required = true
-current = ["oracles"]  # julia/ (scaffold), python/ (census oracles)
+current = ["oracles"]
 
 [[plane]]
 id = "experiments"
@@ -183,11 +183,7 @@ authority = "supporting"
 roles = ["oracle", "experiment"]
 acceptance_authority = false
 
-# One boundary per step, each its own reviewed PR; a step lands only with every
-# path that names it (pixi tasks, -I roots, vendored.toml roots, CI
-# working-directory, claim_governance.toml [scan], scripts) moved in the same commit.
 [migration]
 mode = "boundary_first"
 mass_move = false
-next = [
-]
+next = []
