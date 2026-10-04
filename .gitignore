@@ -27,3 +27,4 @@ PscVerif/.lake/
 tla/states/
 tla/*.jar
 tla/MC*.out
+archive/**/refs-local/
