@@ -109,3 +109,20 @@ Proposition V and Theorem S. The census numbers are finite evidence.
 checks `L <= D <= L + S` for each of its carriers through
 `psc.formal_overlap.aligned_pair_depth`, which also checks that the formal graph
 holds exactly the six aligned pairs.
+
+## 6. Gap audit against Proposition V (2026-10-04)
+
+The formal-overlap census and the vertex-coincidence box graph were built
+independently. What is checked to agree, and what is not:
+
+| Item | Status |
+| --- | --- |
+| Vertex sets | Carriers (region `K_T`, coincidences deleted) total 1,174,788 vertices on the standing corpus, equal to the box census's recurrent total; `tests/test_formal_overlap.mojo` checks state-for-state equality on two specimens. A per-specimen check over the whole corpus has **not** been run. |
+| Covering regions | Two different exact regions, Proposition V's trace-dual triangle bound and `K_T` by Cauchy–Schwarz on `q`, each proved to contain every cycle vertex. Carriers do not depend on the region; an earlier, differently shaped run gave the same 13,260 records. |
+| Depth conventions | `L` here is a per-carrier minimum of the first offset-zero depth, coincidences included; `K_V` is a per-vertex maximum of the first left-aligned depth. They are different statistics (max `L` = 12, max `K_V` = 17) and must not be compared as equals. |
+| Recurrent-vertex conventions | §5.6b of the vertex note excludes every offset-zero vertex from "recurrent"; carriers keep the aligned pairs `(i, j, 0)` that lie on cycles (the 4,860 aligned carriers). |
+| BH ⟺ PPVC | (⇐) PPVC gives an offset-zero descendant to every box vertex (Proposition V(2)), and cycle vertices are box vertices (V(1)). (⇒) If every cycle vertex has one, so does every box vertex: the box vertices without one form a finite child-closed set, which would contain a cycle. Then V(2) gives PPVC. Both directions of V(2) rest on Theorem B (unreviewed). |
+| Mass lemma | Uses children counted with multiplicity; both constructions use the same kernel (`build_overlap_graph_from_seeds`), so the multiplicities agree. |
+| Domains | FP and the carriers are surveyed only on the standing corpus; PPVC also on total length ≤ 8 and images ≤ 4. SC_all, and hence FP, is **not** checked beyond the standing corpus. |
+| Realization × trichotomy | The realized/unrealized split of carriers is not cross-tabulated with the cases of §5.6b; whether unrealized strict carriers concentrate in the catch-up-free case is open. |
+

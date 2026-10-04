@@ -702,6 +702,74 @@ So neither Archimedean nor non-Archimedean size decreases locally. With §5.6
 this places T2 where the rest of this note places PPVC: in exact interleaving
 of the two hierarchies, which needs a non-local argument.
 
+### 5.6e T2 via adelic coverage: an attempt (2026-10-04)
+
+*Lemma E (proved).* Let `|det M| = 2`, so `Z^3 / M Z^3 = Z/2`, and call a
+letter `c` an *E letter* if `e_c` is not in `M Z^3` and a *Z letter*
+otherwise. Then `sigma` is catch-up-free iff every image of length at least 2
+has the form `E Z* E` and every image of length 1 is a Z letter.
+
+*Proof.* The class of a prefix is the number of its E letters mod 2. Write
+`s_p` for the class of the length-`p` prefix of `sigma(a)`, `n = |sigma(a)|`:
+`s_0 = 0` and `s_n = 0`, since `ab(sigma(a)) = M e_a`. Catch-up-free means
+`s_p = 1` for `0 < p < n`. For `n >= 2` this forces the first letter to be E,
+the letters at positions `1..n-2` to be Z, and the last to be E; for `n = 1`
+it forces `s_1 = 0`, a Z letter. The converse is the same computation.
+`square`
+
+`psc.valuation_ascent.lemma_e_shape` decides the shape, and
+`valuation_ascent_census.mojo` checks it against `catch_up_free` on every
+`|det M| = 2` specimen. On the standing corpus the 210 catch-up-free specimens
+split by (number of E letters, number of length-1 images) as `(2, 0): 156`,
+`(2, 1): 36`, `(1, 1): 12`, `(1, 0): 6`. With two E letters the hierarchy is
+read off a parity: a cut is a level-0 vertex iff an odd number of E letters
+precedes it, and its exact level is its M-adic valuation (P′).
+
+*Simultaneous births are explicit.* With Lemma E a hit of `(a, b, w)` through
+indices `(p, q)`, both positive, is `M w in Delta_{a,b}`, where `Delta_{a,b}`
+is the finite set of differences of the vectors `e_x + z`, `x` the leading E
+letter and `z` the abelianisation of a proper prefix of the Z-run. T2 asks
+that every recurrent vertex has a descendant with `M w` in such a set.
+
+*The adelic setting.* Let `H` be the internal space of the contracting
+embeddings times the M-adic completion `Z_M = lim Z^3 / M^k Z^3`. `M` contracts
+both factors, so the child maps `w -> M w + d` form a contracting
+graph-directed system on `H`, and the closures of the descaled staircases
+`P_m(a)` are its attractors `W_a` (adelic Rauzy pieces). A hit of a recurrent
+`w` at depth `m` is a common point of the staircases `P_m(i)` and
+`M^m w + P_m(j)`, whose windows in `H` are `W_i` and `W_j` shifted by the image
+of `M^m w`, which tends to 0.
+
+*Where the attempt stops.* Coverage needs the two staircases to meet once
+their windows overlap. That holds when each staircase is the full model set
+of its window, i.e. when the pieces `W_a` tile `H` with multiplicity one.
+Pure discrete spectrum gives this (it is the mechanism of Theorem S, through
+coincidence rank 1 in the Baker–Barge–Kwapisz form recorded in §5.6b); the
+converse, multiplicity one ⇒ pure discrete spectrum in the non-unit adelic
+setting, is not re-verified here and is not used. On the
+catch-up-free class T2 is PPVC itself, since every hit there is a
+simultaneous birth, so as set up here adelic coverage proves T2 from pure
+discrete spectrum (or multiplicity one) and from nothing weaker. The arithmetic of the class does not lower the bar:
+
+- Lemma E fixes the M-adic coordinate of every vertex (its level and
+  parity), but says nothing about the multiplicity of the Archimedean
+  windows.
+- Recoding cannot move the class to the unimodular case on three letters:
+  `|det M| = |N(beta)| = 2` is an invariant of the Perron number.
+- One-step size arguments fail in both factors of `H` (§5.2 and §5.6d).
+
+*The precise missing statement.* PPVC needs vertex coincidence, not tile
+coincidence. What coverage actually uses is weaker than multiplicity one:
+
+> **Vertex-sheet alignment (open).** For a catch-up-free `sigma`, the vertex
+> staircases of two letters, shifted by the offset of a recurrent vertex,
+> lie in a common sheet of the multiplicity-`p` self-replicating multi-tiling
+> of `H`.
+
+Multiplicity one gives it trivially. Whether it holds when `p > 1` is the
+first point at which a proof of T2 could avoid pure discrete spectrum. No
+argument is given here.
+
 ### 5.7 The closing target, restated
 
 The box graph is the carry automaton of the Dumont–Thomas numeration of

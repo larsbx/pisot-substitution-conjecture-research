@@ -185,3 +185,38 @@ def valuation_ascent(sigma: List[List[Int]]) raises -> ValuationAscentVerdict:
         if d > out.max_ascent_depth:
             out.max_ascent_depth = d
     return out^
+
+
+def letter_classes(m: Mat3) -> List[Int]:
+    """For `|det M| = 2`: the class of each `e_c` in `Z^3 / M Z^3 = Z/2`
+    (`1` for an *E* letter, `0` for a *Z* letter)."""
+    var out = List[Int]()
+    for c in range(3):
+        var e: List[Int] = [0, 0, 0]
+        e[c] = 1
+        out.append(0 if in_image_lattice(m, e) else 1)
+    return out^
+
+
+def lemma_e_shape(sigma: List[List[Int]]) raises -> Bool:
+    """Lemma E's shape (docs/p1b-vertex-coincidence-box-2026-10-02.md §5.6e):
+    every image of length at least 2 is `E Z* E` and every image of length 1
+    is a `Z` letter. For `|det M| = 2` it is equivalent to catch-up-freeness;
+    other determinants raise."""
+    var m = Mat3(substitution_incidence(sigma))
+    if abs(m.det()) != 2:
+        raise Error("Lemma E is stated for |det M| = 2")
+    var chi = letter_classes(m)
+    for a in range(len(sigma)):
+        ref w = sigma[a]
+        var n = len(w)
+        if n == 1:
+            if chi[w[0]] != 0:
+                return False
+            continue
+        if chi[w[0]] != 1 or chi[w[n - 1]] != 1:
+            return False
+        for p in range(1, n - 1):
+            if chi[w[p]] != 0:
+                return False
+    return True

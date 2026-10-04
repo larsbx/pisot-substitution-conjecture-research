@@ -156,3 +156,38 @@ short remainder: after offset zero only three fixed states remain.
 
 None of this is a universal theorem: a clean corpus is finite evidence, and
 the region argument only makes the census complete per specimen.
+
+## 6. Refactors flagged (2026-10-04)
+
+Found while connecting this work to `p1b-vertex-coincidence-box-2026-10-02.md`.
+None changes a result; none is done yet.
+
+1. **Two covering constructions.** `psc.formal_overlap.formal_region` and
+   `psc.vertex_coincidence.box_radii` / `box_start_states` both compute an
+   exact region containing every cycle vertex. Carriers do not depend on the
+   choice, so the formal survey could seed from `build_box_graph` and keep
+   `K_T` only for the forward-closure argument (§2, items 1 and 5).
+2. **Field arithmetic in four places.** `trace`, `norm`, `_det3_int`
+   (`formal_overlap`), `_trace`, `_inverse3` (`vertex_coincidence`, over `Q`),
+   `field_norm`, `discriminant` (`overlap_contracting`): one cubic-field module.
+3. **Recurrent-SCC detection in five places.** `overlap_obstruction._has_cycle`,
+   `formal_overlap.recurrent_coincidence_free_sccs`,
+   `valuation_ascent._recurrent_closure`, `one_tile._recurrent_nonzero` and a
+   test helper: one public `recurrent_sccs(a, keep)`.
+4. **A private import.** `formal_overlap` imports `_first_depths` from
+   `overlap_seed_patch`; make `first_depths(a, target)` public.
+5. **Offset/vector conversion twice.** `valuation_ascent.offset_vector` (t → w)
+   and `vertex_coincidence._offset` (w → t).
+6. **Corpus selection by argument** repeated in `one_tile_census`,
+   `valuation_ascent_census` and `vertex_coincidence_census`: a corpus helper.
+7. **Corpus re-screening in a script (rule violation).**
+   `scripts/check_formal_overlap_receipts.py` re-screens the PIP corpus;
+   `AGENTS.md` forbids it. Use `psc_research.pip_screen.pip_corpus()`.
+8. **Oracle helpers.** `src/psc_research/formal_overlap.py` re-implements SCCs
+   and depth BFS that `overlap_obstruction.py` / `overlap_graph.py` already
+   provide in the oracle layer. Independence from Mojo does not require
+   duplication inside the oracle layer.
+9. **Oracle cost.** The exact oracle's triangle-inequality region makes
+   real-pair specimens slow; the stride-150 receipt check exceeded two hours.
+   A tighter oracle bound or a label-only sample is needed for routine runs.
+

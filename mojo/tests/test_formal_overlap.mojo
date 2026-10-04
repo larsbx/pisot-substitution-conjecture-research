@@ -3,6 +3,8 @@
 from std.testing import assert_equal, assert_false, assert_true
 from psc.claim_tests import require_contract
 from psc.formal_overlap import aligned_pair_depth, recurrent_coincidence_free_sccs, survey_formal_overlaps
+from psc.overlap_obstruction import overlap_sccs
+from psc.vertex_coincidence import build_box_graph
 from psc.overlap_seed_patch import OverlapState, build_seed_overlap_graph_from_tables, build_seed_overlap_tables
 
 
@@ -75,6 +77,39 @@ def test_aligned_remainder_is_bounded_by_the_six_aligned_pairs() raises:
         assert_true(x.death_depth <= x.aligned_depth + bound)
 
 
+def _box_recurrent_states(sigma: List[List[Int]]) raises -> Dict[OverlapState, Bool]:
+    """Non-coincidence vertices on cycles of the Proposition V box graph."""
+    var a = build_box_graph(build_seed_overlap_tables(sigma))
+    var comps = overlap_sccs(a)
+    var out = Dict[OverlapState, Bool]()
+    for c in range(len(comps)):
+        var cyclic = len(comps[c]) > 1
+        if len(comps[c]) == 1:
+            for k in range(len(a.adj[comps[c][0]])):
+                cyclic = cyclic or a.adj[comps[c][0]][k] == comps[c][0]
+        if cyclic:
+            for k in range(len(comps[c])):
+                if not a.states[comps[c][k]].is_coincidence():
+                    out[a.states[comps[c][k]]] = True
+    return out^
+
+
+def test_carriers_are_the_box_graphs_recurrent_vertices() raises:
+    """Gap check between the two constructions: the formal carriers (region
+    `K_T`, coincidences deleted) cover exactly the recurrent non-coincidence
+    vertices of Proposition V's box graph, state for state."""
+    var sigmas: List[List[List[Int]]] = [sigma_of([1], [2], [0, 1]), sigma_of([1], [2, 2], [0, 1, 2])]
+    for k in range(len(sigmas)):
+        var box = _box_recurrent_states(sigmas[k])
+        var s = survey_formal_overlaps(build_seed_overlap_tables(sigmas[k]))
+        var n = 0
+        for c in range(len(s.carriers)):
+            for i in range(len(s.carriers[c].members)):
+                n += 1
+                assert_true(s.formal.states[s.carriers[c].members[i]] in box)
+        assert_equal(n, len(box))
+
+
 def test_single_realized_carrier_specimen() raises:
     """0 -> 1, 1 -> 2, 2 -> 02 (corpus specimen `1 2 5`): no unrealized carrier."""
     var s = survey_formal_overlaps(build_seed_overlap_tables(sigma_of([1], [2], [0, 2])))
@@ -99,7 +134,8 @@ def main() raises:
     test_plastic_has_realized_and_unrealized_carriers()
     test_realized_carriers_are_the_realized_graphs_own()
     test_aligned_remainder_is_bounded_by_the_six_aligned_pairs()
+    test_carriers_are_the_box_graphs_recurrent_vertices()
     test_single_realized_carrier_specimen()
     test_non_pisot_input_fails_closed()
-    print("[PASS] formal overlap carriers: box, realization split, aligned depths, D <= L + S, cross-check, fail-closed")
-    require_contract("formal overlap carriers are the recurrent coincidence-free SCCs of the closure of a Pisot-contraction box of potential overlaps; each is wholly realized or wholly unrealized, the realized ones are the swap-seed graph's own, and a non-Pisot input fails closed")
+    print("[PASS] formal overlap carriers: box, realization split, aligned depths, D <= L + S, box-graph agreement, cross-check, fail-closed")
+    require_contract("formal overlap carriers are the recurrent coincidence-free SCCs of the closure of a Pisot-contraction box of potential overlaps; each is wholly realized or wholly unrealized, the realized ones are the swap-seed graph's own, together they are exactly the recurrent non-coincidence vertices of the Proposition V box graph, and a non-Pisot input fails closed")
