@@ -28,7 +28,8 @@ from psc.histogram import Histogram, max_int
 from psc.overlap_seed_patch import build_seed_overlap_tables
 
 comptime WORKERS = 4
-comptime FIELDS = 8  # specimen, size, cyclomatic, realized, closed, aligned, direct, death
+comptime FIELDS = 10  # specimen, size, cyclomatic, realized, closed, aligned, direct, death,
+# aligned depth (offset zero, coincidences included), proper aligned depth (offset zero, not a coincidence)
 
 
 struct FormalCensus(Copyable, Movable):
@@ -81,6 +82,7 @@ def evaluate(index: Int, spec: Specimen) -> FormalCensus:
             out.carriers += [
                 index, x.size(), x.cyclomatic(), Int(x.realized), Int(x.closed),
                 Int(x.aligned), Int(x.direct_producer), x.death_depth,
+                x.aligned_depth, x.proper_aligned_depth,
             ]
     except:
         out.failed_index = index
@@ -108,6 +110,16 @@ def main() raises:
     var death_realized = Histogram(64)
     var death_unrealized = Histogram(64)
     var size_unrealized = Histogram(4096)
+    # Aligned-route decomposition (P1 two-route map), split by realization:
+    # L = aligned depth, D - L the remainder after the first offset-zero hit,
+    # and whether an aligned noncoincident pair (P1a's object) is reachable.
+    var first_aligned = List[Histogram]()
+    var remainder = List[Histogram]()
+    var through_proper = List[Int](length=2, fill=0)
+    var proper_before_death = List[Int](length=2, fill=0)
+    for _ in range(2):
+        first_aligned.append(Histogram(64))
+        remainder.append(Histogram(64))
     var cyclomatic = 0
     var with_unrealized = List[Bool](length=len(corpus), fill=False)
     for c in range(n):
@@ -115,6 +127,15 @@ def main() raises:
         var o = c * FIELDS
         counts[f[o + 3] * 8 + f[o + 4] * 4 + f[o + 5] * 2 + f[o + 6]] += 1
         cyclomatic += f[o + 2]
+        var real = f[o + 3]
+        if f[o + 8] < 0 or f[o + 8] > f[o + 7]:
+            raise Error("aligned depth exceeds death depth: a coincidence is offset zero")
+        first_aligned[real].record(f[o + 8])
+        remainder[real].record(f[o + 7] - f[o + 8])
+        if f[o + 9] >= 0:
+            through_proper[real] += 1
+            if f[o + 9] < f[o + 7]:
+                proper_before_death[real] += 1
         if f[o + 4] != 0:
             print("CLOSED formal carrier: specimen", corpus[f[o]].label(), "size", f[o + 1])
         if f[o + 3] != 0:
@@ -151,6 +172,13 @@ def main() raises:
     print(death_realized.line("realized carriers by death depth:"))
     print(death_unrealized.line("unrealized carriers by death depth:"))
     print(size_unrealized.line("unrealized carriers by size:"))
+    for real in range(2):
+        print(first_aligned[real].line(names[real] + " carriers by first offset-zero depth L:"))
+        print(remainder[real].line(names[real] + " carriers by death depth minus L:"))
+        print(
+            names[real], "carriers reaching an aligned noncoincident pair:", through_proper[real],
+            " strictly before their death depth:", proper_before_death[real],
+        )
 
     if len(args) > 1 and String(args[1]) == "records":
         for c in range(n):
@@ -164,5 +192,7 @@ def main() raises:
                 + ",\"closed\":" + _flag(f[o + 4])
                 + ",\"aligned\":" + _flag(f[o + 5])
                 + ",\"direct\":" + _flag(f[o + 6])
-                + ",\"death\":" + String(f[o + 7]) + "}"
+                + ",\"death\":" + String(f[o + 7])
+                + ",\"aligned_depth\":" + String(f[o + 8])
+                + ",\"proper_aligned_depth\":" + String(f[o + 9]) + "}"
             )

@@ -29,12 +29,18 @@ def test_plastic_has_realized_and_unrealized_carriers() raises:
             assert_equal(x.cyclomatic(), 19)
             assert_true(x.aligned)
             assert_equal(x.death_depth, 4)
+            assert_equal(x.aligned_depth, 0)
+            assert_equal(x.proper_aligned_depth, 0)
         else:
             seen_unrealized = True
             assert_equal(x.size(), 16)
             assert_equal(x.cyclomatic(), 3)
             assert_false(x.aligned)
             assert_equal(x.death_depth, 6)
+            # The first offset-zero descendant is the coincidence itself; an
+            # aligned noncoincident pair is reached only later, at depth 9.
+            assert_equal(x.aligned_depth, 6)
+            assert_equal(x.proper_aligned_depth, 9)
     assert_true(seen_realized and seen_unrealized)
 
 
@@ -81,5 +87,5 @@ def main() raises:
     test_realized_carriers_are_the_realized_graphs_own()
     test_single_realized_carrier_specimen()
     test_non_pisot_input_fails_closed()
-    print("[PASS] formal overlap carriers: box, realization split, cross-check, fail-closed")
+    print("[PASS] formal overlap carriers: box, realization split, aligned depths, cross-check, fail-closed")
     require_contract("formal overlap carriers are the recurrent coincidence-free SCCs of the closure of a Pisot-contraction box of potential overlaps; each is wholly realized or wholly unrealized, the realized ones are the swap-seed graph's own, and a non-Pisot input fails closed")

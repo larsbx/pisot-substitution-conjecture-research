@@ -49,7 +49,9 @@ from psc.overlap_seed_patch import (
     SeedOverlapTables,
     build_overlap_graph_from_seeds,
     build_seed_overlap_graph_from_tables,
+    _first_depths,
     first_coincidence_depths,
+    first_left_aligned_depths,
     interior_overlap_cached,
 )
 from psc.checked_int import checked_add as _checked_add, checked_mul as _checked_mul, checked_sub as _checked_sub
@@ -85,6 +87,8 @@ struct FormalCarrier(Copyable, Movable):
     var aligned: Bool
     var direct_producer: Bool
     var death_depth: Int
+    var aligned_depth: Int
+    var proper_aligned_depth: Int
 
     def __init__(
         out self,
@@ -95,6 +99,8 @@ struct FormalCarrier(Copyable, Movable):
         aligned: Bool,
         direct_producer: Bool,
         death_depth: Int,
+        aligned_depth: Int,
+        proper_aligned_depth: Int,
     ):
         self.members = members^
         self.internal_edges = internal_edges
@@ -103,6 +109,8 @@ struct FormalCarrier(Copyable, Movable):
         self.aligned = aligned
         self.direct_producer = direct_producer
         self.death_depth = death_depth
+        self.aligned_depth = aligned_depth
+        self.proper_aligned_depth = proper_aligned_depth
 
     def size(self) -> Int:
         return len(self.members)
@@ -434,6 +442,16 @@ def recurrent_coincidence_free_sccs(a: SeedOverlapAutomaton) raises -> List[List
     return out^
 
 
+def _least_depth(comp: List[Int], depths: List[Int]) -> Int:
+    """The least nonnegative `depths[v]` over `comp`, `-1` if there is none."""
+    var out = -1
+    for i in range(len(comp)):
+        var d = depths[comp[i]]
+        if d >= 0 and (out < 0 or d < out):
+            out = d
+    return out
+
+
 def survey_formal_overlaps(
     tables: SeedOverlapTables, max_states: Int = FORMAL_STATE_CAP
 ) raises -> FormalSurvey:
@@ -456,6 +474,11 @@ def survey_formal_overlaps(
         in_seeds[seeds[s]] = True
 
     var depth = first_coincidence_depths(formal)
+    var aligned_depths = first_left_aligned_depths(formal)
+    var proper_target = List[Bool]()
+    for v in range(formal.size()):
+        proper_target.append(formal.states[v].shift.is_zero() and not formal.states[v].is_coincidence())
+    var proper_depths = _first_depths(formal, proper_target)
     var nonproductive = 0
     for v in range(formal.size()):
         if depth[v] < 0:
@@ -477,7 +500,6 @@ def survey_formal_overlaps(
         var closed = True
         var aligned = False
         var direct = False
-        var death = -1
         for i in range(len(comp)):
             var v = comp[i]
             var s = formal.states[v]
@@ -485,8 +507,6 @@ def survey_formal_overlaps(
                 n_real += 1
             inside = inside and s in in_seeds
             aligned = aligned or s.shift.is_zero()
-            if death < 0 or (depth[v] >= 0 and depth[v] < death):
-                death = depth[v]
             for j in range(len(formal.adj[v])):
                 var w = formal.adj[v][j]
                 if member[w] == k:
@@ -499,7 +519,11 @@ def survey_formal_overlaps(
         if n_real > 0:
             realized_count += 1
         carriers.append(
-            FormalCarrier(comp.copy(), internal, n_real > 0, closed, aligned, direct, death)
+            FormalCarrier(
+                comp.copy(), internal, n_real > 0, closed, aligned, direct,
+                _least_depth(comp, depth), _least_depth(comp, aligned_depths),
+                _least_depth(comp, proper_depths),
+            )
         )
 
     var realized_comps = recurrent_coincidence_free_sccs(realized)

@@ -202,12 +202,13 @@ def _sccs(adj: list[list[int]]) -> list[list[int]]:
     return out
 
 
-def _death_depths(g: OverlapGraph) -> list[int]:
+def _depths(g: OverlapGraph, target) -> list[int]:
+    """Least number of inflations from each state to a target state, -1 if none."""
     radj = [[] for _ in g.states]
     for v, ws in enumerate(g.adj):
         for w in ws:
             radj[w].append(v)
-    depth = [0 if g.is_coincidence(s) else -1 for s in g.states]
+    depth = [0 if target(s) else -1 for s in g.states]
     queue = deque(v for v, d in enumerate(depth) if d == 0)
     while queue:
         v = queue.popleft()
@@ -226,6 +227,8 @@ class Carrier:
     aligned: bool
     direct: bool
     death: int
+    aligned_depth: int
+    proper_aligned_depth: int
 
 
 def carriers(sigma: Mapping[int, Sequence[int]]) -> tuple[list[Carrier], int]:
@@ -236,7 +239,10 @@ def carriers(sigma: Mapping[int, Sequence[int]]) -> tuple[list[Carrier], int]:
         raise RuntimeError("capped graph: no verdict")
     coin = [f.is_coincidence(s) for s in f.states]
     free = [[] if coin[v] else [w for w in f.adj[v] if not coin[w]] for v in range(len(f.states))]
-    depth = _death_depths(f)
+    depth = _depths(f, f.is_coincidence)
+    aligned = _depths(f, lambda s: not any(s[2]))
+    proper = _depths(f, lambda s: not any(s[2]) and not f.is_coincidence(s))
+    least = lambda comp, ds: min((ds[v] for v in comp if ds[v] >= 0), default=-1)
     realized = set(r.states)
     out = []
     for comp in _sccs(free):
@@ -254,6 +260,8 @@ def carriers(sigma: Mapping[int, Sequence[int]]) -> tuple[list[Carrier], int]:
             closed=not exits,
             aligned=any(not any(f.states[v][2]) for v in comp),
             direct=any(coin[w] for w in exits),
-            death=min(depth[v] for v in comp),
+            death=least(comp, depth),
+            aligned_depth=least(comp, aligned),
+            proper_aligned_depth=least(comp, proper),
         ))
     return sorted(out, key=lambda c: tuple(vars(c).values())), sum(1 for d in depth if d < 0)
