@@ -490,9 +490,12 @@ are exact finite computations on the box graph (`psc.one_tile`). Right
 endpoints are the mirror case. Reversing every image word reverses both
 tilings, so a right-endpoint catch-up of `sigma` is a left-endpoint catch-up
 of the mirror substitution, read through the vertex map
-`(a, b, t) -> (a, b, l_a − l_b − t)`. The box graph stops at left-aligned
-vertices, so the mirror's recurrent part is not the image of `sigma`'s
-(Tribonacci: 14 against 8), and `two_sided` checks per vertex.
+`(a, b, t) -> (a, b, l_a − l_b − t)`. Mirroring maps edges to edges, so the
+two recurrent parts correspond. The counts above exclude offset-zero
+vertices, though, and mirroring exchanges left-aligned with right-aligned
+vertices. Tribonacci has 14 recurrent vertices on both sides, but 6 of them
+are right-aligned and become offset zero in the mirror, which leaves 8 there.
+So `two_sided` checks per vertex rather than comparing the two counts.
 
 **Census (exact, standing corpus, `pixi run one-tile-census`).**
 
@@ -509,6 +512,8 @@ vertices, so the mirror's recurrent part is not the image of `sigma`'s
 | catch-up-free (Lemma P) | 210 |
 | … of which Q1 fails totally | 210 |
 | total failures not catch-up-free | 0 |
+| failing vertices outside the catch-up-free class | 348 |
+| … short periodic (nonzero closure ≤ 2) | 348 |
 
 Right endpoints rescue nothing. On every failing specimen the per-vertex
 left, right and either counts coincide (116,316 recurrent vertices, 19,092
@@ -549,16 +554,33 @@ census). It applies to precisely the 210 total failures, all of them with
 `|det M| = 2`. Every total failure is catch-up-free, and the census checks
 that no catch-up-free specimen has a vertex in `CU`. The converse, that a
 total failure must be catch-up-free, is observed, not proved. The 150
-partial failures, 102 of them unimodular, are not arithmetic: there a
-prefix lies in `Λ`, but some recurrent component cannot reach a step that
-uses it. Lemma P also explains the left–right coincidence for total
-failures. For partial failures that coincidence remains unexplained.
+partial failures, 102 of them unimodular, are not arithmetic: in each, some
+prefix lies in `Λ`. They are instead degenerate. The census finds 348
+failing recurrent vertices outside the catch-up-free class, and every one is
+a *short periodic vertex*: its forward closure, offset-zero vertices
+excluded, is the vertex itself (a fixed point of the inflation) or a 2-cycle.
+Its other children all have offset zero, and since PPVC holds, it hits within
+two levels. For example, in `0 -> 1, 1 -> 12, 2 -> 022` the two failing
+vertices `(1, 2, (0, 2, −1))` and `(2, 1, (0, −2, 1))` each have one nonzero
+child, themselves, and one simultaneous-birth child `(2, 2, 0)`. Lemma P also
+explains the left–right coincidence for total failures. For partial failures
+that coincidence remains unexplained.
 
-So the one-tile reduction is false in general, at either endpoint. A proof of
-PPVC must handle two-tile cancellation, where both tilings acquire the common
-vertex at the same level. That is the sharp form of §5.6's interleaving
-question. Q1 does hold on 4194 of 4554 specimens, so a one-tile argument
-would still cover most of the corpus. For the catch-up-free class, the
+So the one-tile reduction is false in general, at either endpoint. On the
+corpus every recurrent vertex falls into one of three cases, decided exactly:
+
+1. it reaches a catch-up hit (Q1), so a one-tile argument applies;
+2. it is short periodic and hits within two levels;
+3. its specimen is catch-up-free (Lemma P), so all of its hits are
+   simultaneous births.
+
+Cases 1 and 2 cover every specimen outside the arithmetic class. The
+trichotomy is a census fact, not a theorem: nothing yet shows that a
+non-short vertex of a non-catch-up-free substitution must reach `CU`. A
+proof of PPVC along these lines needs that statement and the case-3
+question below. Case 3 is the sharp form of §5.6's interleaving question:
+two-tile cancellation, where both tilings acquire the common vertex at the
+same level. For the catch-up-free class, the
 interleaving question is exactly whether a simultaneous birth
 `M w = ab(P_a(i)) − ab(P_b(j))`, with `i, j > 0`, is reachable from every
 recurrent vertex.

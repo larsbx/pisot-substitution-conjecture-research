@@ -14,7 +14,10 @@ matrix), i.e. a right-endpoint catch-up of `sigma`. A specimen *fails at both
 endpoints* when some recurrent vertex reaches a catch-up at neither. Each specimen is
 also tested for Lemma P's arithmetic obstruction (`catch_up_free`), which
 forces total failure; the census checks the lemma's conclusion (no vertex in
-CU) and counts total failures it does not explain. Folded in canonical order on `parallel_fold`.
+CU) and counts total failures it does not explain. Outside that class, it
+counts the failing vertices whose nonzero forward closure has at most two
+vertices (a fixed point or 2-cycle of the inflation whose other children
+are all offset zero). Folded in canonical order on `parallel_fold`.
 """
 
 from parallel_fold.map_fold import parallel_map_fold
@@ -36,6 +39,8 @@ struct OneTileCensus(Copyable, Movable):
     var free: Int
     var free_total: Int
     var total_not_free: Int
+    var fail_not_free: Int
+    var fail_not_free_short: Int
     var failed_index: Int
 
     def __init__(out self):
@@ -50,6 +55,8 @@ struct OneTileCensus(Copyable, Movable):
         self.free = 0
         self.free_total = 0
         self.total_not_free = 0
+        self.fail_not_free = 0
+        self.fail_not_free_short = 0
         self.failed_index = -1
 
 
@@ -68,6 +75,8 @@ def merge(a: OneTileCensus, b: OneTileCensus) -> OneTileCensus:
     out.free += b.free
     out.free_total += b.free_total
     out.total_not_free += b.total_not_free
+    out.fail_not_free += b.fail_not_free
+    out.fail_not_free_short += b.fail_not_free_short
     if b.failed_index >= 0 and (out.failed_index < 0 or b.failed_index < out.failed_index):
         out.failed_index = b.failed_index
     return out^
@@ -92,8 +101,11 @@ def main() raises:
                 out.free = 1
                 if total:
                     out.free_total = 1
-            elif total:
-                out.total_not_free = 1
+            else:
+                if total:
+                    out.total_not_free = 1
+                out.fail_not_free = v.recurrent - v.reach_cu
+                out.fail_not_free_short = v.short
             if v.reach_cu < v.recurrent:
                 out.fails.append(s)
                 if v.reach_cu == 0:
@@ -115,6 +127,7 @@ def main() raises:
     print("recurrent vertices:", r.recurrent, " in CU:", r.in_cu, " reach CU:", r.reach_cu)
     print("specimens failing Q1:", len(r.fails), " of which no recurrent vertex reaches CU:", r.none_reach)
     print("catch-up-free (no proper prefix in M Z^3):", r.free, " of which Q1 fails totally:", r.free_total, " total failures not catch-up-free:", r.total_not_free)
+    print("Q1-failing vertices outside the catch-up-free class:", r.fail_not_free, " with nonzero forward closure <= 2:", r.fail_not_free_short)
     print("specimens failing Q1 at both endpoints:", len(r.both), " of which no recurrent vertex reaches either:", r.both_none)
     for i in range(min(len(r.fails), 12)):
         print("Q1 fails:", corpus[r.fails[i]].label())
