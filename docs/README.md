@@ -168,6 +168,13 @@ These are reference/index additions only. They do not establish #84, #138,
   route check against Baker–Barge–Kwapisz 2006 recorded.
   §5.6c: exact anatomy (`kernel/one_tile_anatomy.mojo`); §5.6d: every scratch
   probe of the session archived with outputs in `archive/2026-10-04/session-probes/`.
+- `catch-up-hit-witness-enumeration-2026-10-04.md` — occurrence-level
+  all-path decision (`psc.hit_witness`): committed stable labels for all
+  97,224 simultaneous-only standing vertices, replayable closed certificates,
+  alternative-shortest and later-hit controls; recorded 1,000-specimen slices
+  of the total-length-8 and image-length-4 domains. Standing export rerun in
+  CI. [Stop/go check](catch-up-hit-witness-gate-2026-10-04.md); no closure of
+  #139, UH, G1, general PPVC or PSC.
 - `return-lattice-literature-gate-2026-10-02.md` — return vectors of tiles
   span `Z<ell>` on the whole corpus; return vectors of length-`n` patches span
   it for every `n` on the unimodular classes and fail to by `n = 13` on every

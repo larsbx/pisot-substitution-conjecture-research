@@ -433,6 +433,17 @@ jobs:
           grep -Fx 'specimens without a recurrent one-step catch-up that fail Q1: 0' <<<"$out"
           grep -Fx 'recurrent vertices: 1154040  reach a diagonal hit: 1080828  reach an off-diagonal hit: 1153308' <<<"$out"
           grep -Fx 'catch-up-free: every recurrent vertex reaches a diagonal hit: 180  not: 30  vertices reaching none: 12276' <<<"$out"
+      - name: Occurrence-level all-path decision matches every committed standing failure label
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          mkdir -p build
+          if ! pixi run mojo run -I . catch_up_witness_census.mojo standing 0 4554 failures > build/hit-witness-standing.txt 2> build/hit-witness-standing.stderr; then
+            cat build/hit-witness-standing.stderr
+            exit 1
+          fi
+          head -5 build/hit-witness-standing.txt
+          python ../tools/check_hit_witness_evidence.py --live-output build/hit-witness-standing.txt
 
   finite-classification:
     runs-on: ubuntu-latest
