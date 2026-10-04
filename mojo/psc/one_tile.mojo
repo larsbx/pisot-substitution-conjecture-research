@@ -76,6 +76,39 @@ def catch_up_free(sigma: List[List[Int]]) -> Bool:
     return True
 
 
+def _odd_shaped(sigma: List[List[Int]], odd: List[Bool]) -> Bool:
+    """Every image is one even letter, or odd . even* . odd."""
+    for a in range(len(sigma)):
+        var x = sigma[a].copy()
+        if len(x) == 1:
+            if odd[x[0]]:
+                return False
+            continue
+        if not odd[x[0]] or not odd[x[len(x) - 1]]:
+            return False
+        for i in range(1, len(x) - 1):
+            if odd[x[i]]:
+                return False
+    return True
+
+
+def odd_letter_sets(sigma: List[List[Int]]) -> List[Int]:
+    """Proposition C: the nonempty letter sets `O` (as bit masks) for which every
+    image is a single letter outside `O` or an `O`-letter, letters outside
+    `O`, and an `O`-letter. Such an `O` makes every column even and every
+    proper prefix odd for the parity `f = sum over O`, so `M Z^3 <= ker f`
+    excludes every proper prefix: `sigma` is catch-up-free. When
+    `|det M| = 2` the converse holds with `ker f = M Z^3`."""
+    var out = List[Int]()
+    for mask in range(1, 8):
+        var odd = List[Bool](length=3, fill=False)
+        for c in range(3):
+            odd[c] = (mask >> c) & 1 == 1
+        if _odd_shaped(sigma, odd):
+            out.append(mask)
+    return out^
+
+
 def _power(sigma: List[List[Int]], a: Int, n: Int) -> List[Int]:
     var x: List[Int] = [a]
     for _ in range(n):
