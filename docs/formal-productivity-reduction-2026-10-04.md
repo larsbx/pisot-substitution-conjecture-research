@@ -85,6 +85,10 @@ single state.
 - Route B, in formal form, is BH, which Proposition V identifies with PPVC.
   Proposition FP says route B never has to deliver more than an offset-zero
   hit: the remainder is bounded by `S(sigma)`.
+  In tiling terms (Lemma VT, `p1b-vertex-coincidence-box-2026-10-02.md`
+  §5.6f), under SC_all a common vertex of two `Phi^r`-fixed tilings forces a
+  common tile, so route B's target is tile coincidence of periodic fibre
+  pairs; the vertex/tile distinction gives no slack.
 
 **What the census adds** (`formal-overlap-carriers-2026-10-04.md` §3.1). On
 the standing corpus FP holds, so SC_all and BH hold; BH agrees with the

@@ -794,9 +794,56 @@ coincidence. What coverage actually uses is weaker than multiplicity one:
 > lie in a common sheet of the multiplicity-`p` self-replicating multi-tiling
 > of `H`.
 
-Multiplicity one gives it trivially. Whether it holds when `p > 1` is the
-first point at which a proof of T2 could avoid pure discrete spectrum. No
-argument is given here.
+Multiplicity one gives it trivially. §5.6f shows that under all-pairs
+aligned strong coincidence it is not weaker than tile coincidence, so it does
+not open a route around pure discrete spectrum.
+
+### 5.6f Vertex-sheet alignment collapses to tile coincidence (2026-10-04)
+
+*Lemma VT (proved).* Let `sigma` be PIP with SC_all: each of the six aligned
+pairs `(a, b, 0)`, `a != b`, is productive
+(`formal-productivity-reduction-2026-10-04.md`). Let `T`, `T'` be
+`Phi^r`-fixed tilings for some `r >= 1`. If `T` and `T'` share a vertex, they
+share a tile.
+
+*Proof.* Let `x` be a common vertex, and `a`, `b` the tiles of `T`, `T'` that
+start at `x`. If `a = b` they share a tile. Otherwise the overlap `(a, b, 0)`
+is productive: for some `n` there are prefixes `p` of `sigma^n(a)` and `q` of
+`sigma^n(b)` with `ab(p) = ab(q)`, each followed by the same letter `c`. The
+coincidence persists under inflation: `sigma^(m−n)(p)` and `sigma^(m−n)(q)`
+have equal abelianisations and are followed by `sigma^(m−n)(c)` for every
+`m >= n`. Take `k` with `rk >= n`. Since `Phi^(rk)(T) = T`, the tiling `T`
+contains `sigma^(rk)(a)` placed at `beta^(rk) x`, and likewise `T'` contains
+`sigma^(rk)(b)` there. So both contain the tiles of `sigma^(rk−n)(c)` at
+`beta^(rk) x + <ell, M^(rk−n) ab(p)>`. `square`
+
+The argument is elementary and is not claimed new; it is the tiling-space
+reading of Proposition FP (1), `D <= L + S(sigma)`: once offset zero is
+reached, coincidence follows within `S(sigma)` levels.
+
+*Consequences.*
+
+- Under SC_all, two tilings that never share a tile never share a vertex. A
+  vertex staircase cannot cross into another sheet: vertex-sheet alignment of
+  §5.6e is equivalent to tile coincidence of the pair.
+- Hence, under SC_all, PPVC(`sigma`) holds iff every pair of §1 (the
+  `Phi^r`-fixed tilings `T(i, P)`, `T(j, Q) + <ell, w_0>`) shares a **tile**.
+  By the proof of Theorem S such a pair lies in one fibre of the maximal
+  equicontinuous factor, and a pair sharing no tile forces coincidence rank
+  at least 2 (Barge 2013, Theorem 4(3),(5)). So under SC_all a failure of
+  PPVC is a failure of tile coincidence in a fibre, not a weaker
+  vertex-level phenomenon.
+- SC_all holds on the standing corpus (formal productivity holds there), and
+  formal productivity requires it in general (Proposition FP). On this
+  route there is therefore no vertex-level slack: T2, PPVC and BH are, under
+  SC_all, tile-coincidence statements for periodic fibre pairs.
+
+*Decision: redirect.* Vertex-sheet alignment is not a PDS-free lever when
+SC_all holds. The only room left by the vertex/tile distinction is in
+substitutions failing SC_all, where formal productivity fails anyway and the
+aligned route (#138) is the obstruction. A proof of T2 must establish tile
+coincidence for the periodic fibre pairs of §1 directly, which is the
+coincidence-rank problem in its periodic form.
 
 ### 5.7 The closing target, restated
 
