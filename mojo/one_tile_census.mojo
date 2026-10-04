@@ -24,7 +24,7 @@ are all offset zero). Folded in canonical order on `parallel_fold`.
 
 from parallel_fold.map_fold import parallel_map_fold
 from psc.corpus import Specimen, pip_corpus
-from psc.one_tile import catch_up_free, level_is_valuation, one_tile, two_sided
+from psc.one_tile import catch_up_free, level_is_valuation, odd_letter_sets, one_tile, two_sided
 
 comptime WORKERS = 4
 comptime VALUATION_DEPTH = 5
@@ -44,6 +44,8 @@ struct OneTileCensus(Copyable, Movable):
     var total_not_free: Int
     var fail_not_free: Int
     var valuation_mismatch: Int
+    var shape_mismatch: Int
+    var shape_one_odd: Int
     var fail_not_free_short: Int
     var failed_index: Int
 
@@ -61,6 +63,8 @@ struct OneTileCensus(Copyable, Movable):
         self.total_not_free = 0
         self.fail_not_free = 0
         self.valuation_mismatch = 0
+        self.shape_mismatch = 0
+        self.shape_one_odd = 0
         self.fail_not_free_short = 0
         self.failed_index = -1
 
@@ -82,6 +86,8 @@ def merge(a: OneTileCensus, b: OneTileCensus) -> OneTileCensus:
     out.total_not_free += b.total_not_free
     out.fail_not_free += b.fail_not_free
     out.valuation_mismatch += b.valuation_mismatch
+    out.shape_mismatch += b.shape_mismatch
+    out.shape_one_odd += b.shape_one_odd
     out.fail_not_free_short += b.fail_not_free_short
     if b.failed_index >= 0 and (out.failed_index < 0 or b.failed_index < out.failed_index):
         out.failed_index = b.failed_index
@@ -102,6 +108,11 @@ def main() raises:
             var free = catch_up_free(corpus[s].sigma)
             if level_is_valuation(corpus[s].sigma, VALUATION_DEPTH) != free:
                 out.valuation_mismatch = 1
+            var shapes = odd_letter_sets(corpus[s].sigma)
+            if (len(shapes) == 1) != free or len(shapes) > 1:
+                out.shape_mismatch = 1
+            if len(shapes) == 1 and shapes[0] in [1, 2, 4]:
+                out.shape_one_odd = 1
             var total = v.recurrent > 0 and v.reach_cu == 0
             if free:
                 if v.in_cu != 0:
@@ -136,6 +147,7 @@ def main() raises:
     print("specimens failing Q1:", len(r.fails), " of which no recurrent vertex reaches CU:", r.none_reach)
     print("catch-up-free (no proper prefix in M Z^3):", r.free, " of which Q1 fails totally:", r.free_total, " total failures not catch-up-free:", r.total_not_free)
     print("Proposition P' (level = M-adic valuation to depth", VALUATION_DEPTH, ") iff catch-up-free, mismatches:", r.valuation_mismatch)
+    print("Proposition C (unique odd-letter shape) iff catch-up-free, mismatches:", r.shape_mismatch, " one odd letter:", r.shape_one_odd)
     print("Q1-failing vertices outside the catch-up-free class:", r.fail_not_free, " with nonzero forward closure <= 2:", r.fail_not_free_short)
     print("specimens failing Q1 at both endpoints:", len(r.both), " of which no recurrent vertex reaches either:", r.both_none)
     for i in range(min(len(r.fails), 12)):

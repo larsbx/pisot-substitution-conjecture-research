@@ -515,6 +515,8 @@ So `two_sided` checks per vertex rather than comparing the two counts.
 | failing vertices outside the catch-up-free class | 348 |
 | … short periodic (nonzero closure ≤ 2) | 348 |
 | P′ to depth 5 disagrees with catch-up-freeness | 0 |
+| Proposition C shape disagrees with catch-up-freeness | 0 |
+| … catch-up-free with one odd letter | 18 |
 
 Right endpoints rescue nothing. On every failing specimen the per-vertex
 left, right and either counts coincide (116,316 recurrent vertices, 19,092
@@ -571,6 +573,28 @@ depth `m` is a vertex with position `v` in `sigma^m(i)` and `v − M^m w` in
 `m`. Since the lattices `M^k Z^3` are nested, the two valuations, which are
 the two levels, are equal. The census checks P′ exactly to
 depth 5 on every specimen: it holds on exactly the 210 catch-up-free ones.
+
+*Proposition C (the class in words, proved).* Call a nonempty letter set `O`
+*odd*. If every image is either a single letter outside `O`, or an `O`-letter,
+then letters outside `O`, then an `O`-letter, then `sigma` is catch-up-free.
+When `|det M| = 2` the converse holds, and `O` is unique.
+
+*Proof.* Let `f(v) = sum_{c in O} v_c mod 2`. Under the shape, every column
+has `f = 0`, so `Λ <= ker f`. Every proper nonempty prefix has `f = 1`, so it
+is not in `Λ`. Conversely, if `|det M| = 2` then `Z^3 / Λ ≅ Z/2`, so
+`Λ = ker f` for a unique nonzero `f`, which defines `O`. If every proper prefix
+has `f = 1`, then in an image `x_1 ... x_L` with `L >= 2`, `f(x_1) = 1`. Each
+`f(x_2), ..., f(x_{L−1})` is 0, as a difference of two odd prefixes. Then
+`f(x_L) = 1`, because the column is even. An image of length 1 is a column,
+so its letter is even. `square`
+
+So in a catch-up-free tiling, odd tiles occur only as the first and last
+tiles of level-1 supertiles. A vertex is a level-1 boundary exactly when an
+even number of odd tiles separate it from a level-1 reference vertex, which
+is P′ at level 1 in combinatorial form. The census finds a unique such `O` on
+exactly the 210 catch-up-free specimens, and on no other. In 192 of them
+`|O| = 2` (e.g. `0 -> 1, 1 -> 22, 2 -> 012` with `O = {0, 2}`), and in 18
+`|O| = 1` (e.g. `0 -> 1, 1 -> 22, 2 -> 202` with `O = {2}`).
 
 *Route check (2026-10-04).* I read the M-adic picture against Baker, Barge and
 Kwapisz, *Geometric realization and coincidence for reducible
