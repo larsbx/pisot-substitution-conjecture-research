@@ -120,18 +120,18 @@ The census below meets such pumps.
 Canonical implementation and regression:
 
 ```text
-mojo/psc/overlap_collar.mojo
-mojo/tests/test_overlap_collar.mojo
+kernel/psc/overlap_collar.mojo
+kernel/tests/test_overlap_collar.mojo
 ```
 
 Independent oracle:
 
 ```text
-src/psc_research/overlap_collar.py
+reference/psc_research/overlap_collar.py
 tests/test_overlap_collar.py
 ```
 
-The corpus census `mojo/swap_overlap_census.mojo` now reports the separation
+The corpus census `kernel/swap_overlap_census.mojo` now reports the separation
 radius of every specimen (capped at `6`), whether some seed pair's patch
 collapses by level `6`, the two cross-terms (a survivor without a collapse,
 a collapse without a survivor), and the lift of the first zero-shift-free
@@ -184,7 +184,7 @@ finite collar radius always resolves the ancestry of a seed-patch occurrence.
 
 ### 3.3 The exact 4,554-member corpus
 
-On the exact short-image ternary PIP corpus (`mojo/swap_overlap_census.mojo`,
+On the exact short-image ternary PIP corpus (`kernel/swap_overlap_census.mojo`,
 cap `6` on the separation radius, lifts at radius `4`):
 
 | separation radius | 1 | 2 | 3 | 4 | 5 | 6 | survivor at 6 |
@@ -210,9 +210,9 @@ cap `6` on the separation radius, lifts at radius `4`):
   survey's radius cap `6`: one symmetry orbit of 12 specimens keeps a
   collision there without a collapsing patch. Its representative
   `0 -> 1, 1 -> 2, 2 -> 022102` has separation radius `9` and no collapsing
-  patch through level `14` (regressions in `mojo/tests/test_overlap_collar.mojo`
-  and `mojo/tests/test_separation_sweep.mojo`). The deterministic sweep
-  `mojo/separation_radius_total_length_sweep.mojo` decides all 24,486
+  patch through level `14` (regressions in `kernel/tests/test_overlap_collar.mojo`
+  and `kernel/tests/test_separation_sweep.mojo`). The deterministic sweep
+  `kernel/separation_radius_total_length_sweep.mojo` decides all 24,486
   specimens at radius cap `12`: the 12 members of that orbit are exactly the
   specimens of radius above `6` (all radius `9`), and the 852 that never
   separate are exactly those with a collapsing patch by level `6`. At that

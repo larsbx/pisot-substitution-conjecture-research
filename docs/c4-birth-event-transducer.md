@@ -26,7 +26,7 @@ tau_C(T) = R_1 ... R_j | R_(j+1) ... R_m,
 
 there is a canonical physical cut in `(sigma(u_T),sigma(v_T))` after the first `j` child blocks.
 
-`src/psc_research/birth_event.py` records the following data for that split:
+`reference/psc_research/birth_event.py` records the following data for that split:
 
 - parent `T` and split index `j`;
 - adjacent normalized child states;

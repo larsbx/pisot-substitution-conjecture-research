@@ -69,12 +69,12 @@ The Descent Bridge remains a secondary route for settings with a genuine well-fo
 
 Do not build another graph engine. The current repository already contains the relevant substrate:
 
-- `mojo/psc/overlap_seed_patch.mojo`: exact overlap states with displacement in `Z[beta]`;
-- `mojo/psc/overlap_zipper.mojo`: ordered child occurrences, preserving repeated occurrences and prefix positions;
-- `mojo/psc/overlap_recurrence.mojo`: recurrent SCC extraction;
-- `mojo/psc/overlap_affine_pump.mojo`: occurrence-labelled cycles obeying `w' = beta*w + q - p`;
-- `mojo/psc/affine_ancestry_trace.mojo`: additive affine ancestry recurrence;
-- `mojo/psc/overlap_contracting.mojo`: exact `Q(beta)` arithmetic, norms, conjugate-root sign tests, and contracting-place calculations.
+- `kernel/psc/overlap_seed_patch.mojo`: exact overlap states with displacement in `Z[beta]`;
+- `kernel/psc/overlap_zipper.mojo`: ordered child occurrences, preserving repeated occurrences and prefix positions;
+- `kernel/psc/overlap_recurrence.mojo`: recurrent SCC extraction;
+- `kernel/psc/overlap_affine_pump.mojo`: occurrence-labelled cycles obeying `w' = beta*w + q - p`;
+- `kernel/psc/affine_ancestry_trace.mojo`: additive affine ancestry recurrence;
+- `kernel/psc/overlap_contracting.mojo`: exact `Q(beta)` arithmetic, norms, conjugate-root sign tests, and contracting-place calculations.
 
 Tier 2 should generalize these objects into packet/cocycle language rather than duplicate them.
 

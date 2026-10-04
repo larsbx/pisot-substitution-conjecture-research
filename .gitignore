@@ -16,15 +16,19 @@ dist/
 *.egg-info/
 
 # Mojo / pixi
-mojo/.pixi/
-mojo/.magic/
+kernel/.pixi/
+kernel/.magic/
 *.mojopkg
 
 # Lean / lake
-PscVerif/.lake/
+proof/PscVerif/.lake/
 
 # TLC scratch
-tla/states/
-tla/*.jar
-tla/MC*.out
+proof/tla/states/
+proof/tla/*.jar
+proof/tla/MC*.out
 archive/**/refs-local/
+
+# Archived records are verbatim: never drop them by extension.
+!archive/**/*.log
+!archive/**/*.out

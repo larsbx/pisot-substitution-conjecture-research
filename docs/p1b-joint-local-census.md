@@ -18,7 +18,7 @@ A projection collision is recorded as evidence to classify. A collision is **not
 
 ## 2. Exact census discipline
 
-`mojo/psc/joint_local_census.mojo` uses two independent checks:
+`kernel/psc/joint_local_census.mojo` uses two independent checks:
 
 1. materialize the requested finite inflation and stream the aligned Parikh-difference walk to enumerate interior zero returns;
 2. pass every enumerated cut through the symbolic renewal-address constructor and joint-local projection.

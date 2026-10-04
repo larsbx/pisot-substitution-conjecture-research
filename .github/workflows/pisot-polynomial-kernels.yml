@@ -9,14 +9,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: prefix-dev/setup-pixi@v0.9.1
         with:
-          manifest-path: mojo/pixi.toml
+          manifest-path: kernel/pixi.toml
       - name: Exact equivalence regression
-        working-directory: mojo
+        working-directory: kernel
         run: pixi run mojo run -I . -I tests tests/test_pisot_polynomials.mojo
       - name: Before and after canonical Mojo benchmark
-        working-directory: mojo
+        working-directory: kernel
         run: pixi run mojo run -I . -I tests pisot_polynomial_bench.mojo
       - name: Repository verification gates
         run: |
           pip install -e .[dev]
-          bash scripts/verify_all.sh
+          bash tools/verify_all.sh

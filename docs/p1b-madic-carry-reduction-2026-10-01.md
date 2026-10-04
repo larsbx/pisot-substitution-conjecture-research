@@ -181,8 +181,8 @@ complete recurrence theorem. None is supplied by the carry identity alone.
 
 Canonical Mojo support is in
 
-- `mojo/psc/overlap_madic_filter.mojo`;
-- `mojo/tests/test_overlap_madic_filter.mojo`.
+- `kernel/psc/overlap_madic_filter.mojo`;
+- `kernel/tests/test_overlap_madic_filter.mojo`.
 
 The diagnostic enumerates occurrence-labelled proper-prefix pairs and retains
 only differences in M^m Z^3, using the exact M-adic lattice carrier from

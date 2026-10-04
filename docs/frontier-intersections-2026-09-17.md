@@ -38,7 +38,7 @@ Two instantiations exist and are executed in CI:
 
 | Instance | `X` | `T` | `Σ` |
 | --- | --- | --- | --- |
-| `PSC: mojo/psc/overlap_seed_patch.mojo`, `overlap_recurrence.mojo` | seed-patch overlap states | one inflation step | coincidence and collar data |
+| `PSC: kernel/psc/overlap_seed_patch.mojo`, `overlap_recurrence.mojo` | seed-patch overlap states | one inflation step | coincidence and collar data |
 | `NLAP: src/C1_misiurewicz_prefix_graph.mojo` | `Z/den` | doubling | two-ray separators with a landing tag |
 
 The abstraction claim is falsifiable and worth falsifying: *if* the signature above is genuine, one
@@ -72,7 +72,7 @@ separated pairs and never the size of the prefix that separates them, so no stat
 quantitative in the parameter that field has spent forty years bounding.
 
 **First move.** Report prefix size beside `undecided` and `nonproductive` in both extractors, and
-state `PSC: mojo/psc/... ` coincidence density and `NLAP: src/C1_separated_density.mojo` as functions
+state `PSC: kernel/psc/... ` coincidence density and `NLAP: src/C1_separated_density.mojo` as functions
 of it. The flattened-density control already in the density module is the right negative example.
 
 **Difficulty.** Low. The data exists; only the reporting dimension is missing.
@@ -89,14 +89,14 @@ parameters (Shallit; Hieronymi, Ma, Oei, Schaeffer, Thompson, Shallit) `[L]`.
 different kind of object entirely.
 
 **First move.** Express the degree-3 coincidence condition for one substitution family in Walnut's
-logic and compare its verdict with `PSC: mojo/degree3_catalog.mojo` on the same family. The test is
+logic and compare its verdict with `PSC: kernel/degree3_catalog.mojo` on the same family. The test is
 agreement with the verdicts that census already reports; disagreement is a bug in the encoding, not a
 result.
 
-**Started `[V]`.** The engine and the presentation exist: `PSC: mojo/psc/automata.mojo` (total
+**Started `[V]`.** The engine and the presentation exist: `PSC: kernel/psc/automata.mojo` (total
 deterministic automata with product, complement, subset-construction projection, emptiness with a
-shortest witness, Moore minimisation) and `PSC: mojo/psc/dumont_thomas.mojo` (the Dumont-Thomas
-numeration of a fixed point as an automaton). `PSC: mojo/automatic_route_census.mojo` checks three
+shortest witness, Moore minimisation) and `PSC: kernel/psc/dumont_thomas.mojo` (the Dumont-Thomas
+numeration of a fixed point as an automaton). `PSC: kernel/automatic_route_census.mojo` checks three
 identities per specimen against computations sharing no step: 228 specimens, 68,400 letter
 positions, zero mismatches. The formula, the addition automaton and the encoding test are not done,
 and `docs/automatic-sequence-route-literature-gate-2026-09-17.md` states exactly what remains and
@@ -106,7 +106,7 @@ what would have to be imported.
 
 ## 3. Shift radix systems and beta-numeration
 
-**Transfer out.** `PSC: mojo/psc/overlap_contracting.mojo` keys a contracting bound on the pair
+**Transfer out.** `PSC: kernel/psc/overlap_contracting.mojo` keys a contracting bound on the pair
 (characteristic cubic, digit set) — 1,617 distinct pairs over the corpus `[V]`. That pair is the data
 of a shift radix system, and the bound is an effective statement about its contraction. SRS
 finiteness and periodicity in the cubic region are open (Akiyama, Borbély, Brunotte, Pethő,
@@ -114,7 +114,7 @@ Thuswaldner) `[L]`, and the same parameters govern the finiteness property (F) o
 `[L]`.
 
 **Return.** That programme computes root isolation numerically; the exact Sturm and Perron layer here
-(`PSC: mojo/psc/real_root_sign.mojo`, `perron_field3.mojo`) certifies it.
+(`PSC: kernel/psc/real_root_sign.mojo`, `perron_field3.mojo`) certifies it.
 
 **First move.** Publish the 1,617 keys as SRS parameters with their certified bounds, and check the
 subset where SRS finiteness is known against what the contracting bound gives.
@@ -201,7 +201,7 @@ the certificates.
 
 ## 9. Combinatorics on words: piecewise testability
 
-**Transfer out.** `PSC: mojo/psc/defect_degree.mojo` computes the level at which two words become
+**Transfer out.** `PSC: kernel/psc/defect_degree.mojo` computes the level at which two words become
 inequivalent for scattered subwords `[V]`. That level is Simon's congruence, and the same invariant
 governs `k`-piecewise testable separability of languages, an active topic (Place, Zeitoun) `[L]`.
 

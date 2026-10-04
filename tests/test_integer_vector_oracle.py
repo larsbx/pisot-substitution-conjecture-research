@@ -1,6 +1,6 @@
-"""Oracle constants shared with mojo/tests/test_integer_vector.mojo.
+"""Oracle constants shared with kernel/tests/test_integer_vector.mojo.
 
-The canonical kernel is `mojo/psc/integer_vector.mojo`; this is the independent
+The canonical kernel is `kernel/psc/integer_vector.mojo`; this is the independent
 cross-check. Both derive the same two checksums over the same 348 distinct
 incidence matrices of the alphabet-3 PIP corpus, by different implementations in
 different languages, so a divergence in either shows up as a number rather than
@@ -57,7 +57,7 @@ def test_a_dimension_that_does_not_agree_is_refused():
 def test_the_oracle_is_arbitrary_precision_where_the_kernel_refuses():
     """The one documented difference between the two implementations.
 
-    `mojo/tests/test_integer_vector.mojo` pins each of these as a refusal; here
+    `kernel/tests/test_integer_vector.mojo` pins each of these as a refusal; here
     they have exact values. Neither side wraps, which is the property that
     matters: the kernel declines to answer rather than answering wrongly.
     """

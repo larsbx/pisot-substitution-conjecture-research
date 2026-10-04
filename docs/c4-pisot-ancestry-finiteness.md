@@ -36,7 +36,7 @@ If the base state belongs to a fixed finite component `C`, then `x_0` belongs to
 
 Thus every deep zero-return ancestry is an integral affine orbit with a finite initial alphabet, finite forcing alphabet, and terminal state zero.
 
-`src/psc_research/prefix_ancestry.py` constructs this recurrence exactly, allowing the two source cuts to be asynchronous at every intermediate level.
+`reference/psc_research/prefix_ancestry.py` constructs this recurrence exactly, allowing the two source cuts to be asynchronous at every intermediate level.
 
 ## 2. Pisot ancestry finiteness theorem
 

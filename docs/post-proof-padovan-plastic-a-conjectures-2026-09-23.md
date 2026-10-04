@@ -208,17 +208,17 @@ The repository's current theorem boundary is unchanged by this note.
 
 Following the repository's Mojo-first policy:
 
-1. `mojo/psc/horizon.mojo`
+1. `kernel/psc/horizon.mojo`
    - exact coincidence horizon;
    - seed-scale offset;
    - root/iterate normalization.
 
-2. `mojo/psc/fm_witness.mojo`
+2. `kernel/psc/fm_witness.mojo`
    - 6-coordinate FM witness;
    - exact mod-`p` reduction;
    - least detecting prime.
 
-3. `mojo/psc/iterate_family.mojo`
+3. `kernel/psc/iterate_family.mojo`
    - relabeling-normalized root-family / iterate decomposition.
 
 4. census driver:

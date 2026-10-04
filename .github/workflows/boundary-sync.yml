@@ -15,7 +15,7 @@ jobs:
       - run: python -m pip install -U pip
       - run: pip install pytest
       - name: Source consistency audit
-        run: python scripts/audit_manuscript.py --root . --strict-current
+        run: python tools/audit_manuscript.py --root . --strict-current
       - name: Boundary-sync regression tests
         run: |
           python -m pytest -q \

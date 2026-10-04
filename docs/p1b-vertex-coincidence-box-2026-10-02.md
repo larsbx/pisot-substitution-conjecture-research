@@ -3,7 +3,7 @@
 **Status:** research note for issue #139, proved here and not yet reviewed.
 Proposition V reduces PeriodicPairVertexCoincidence, for one substitution and
 **every** `r` at once, to a property of one finite graph, and
-`mojo/psc/vertex_coincidence.mojo` decides it exactly. The general statement,
+`kernel/psc/vertex_coincidence.mojo` decides it exactly. The general statement,
 for every PIP substitution, is **not** proved. §6 explains why it carries the
 weight of an open problem. Nothing here is promoted to the ledger or the
 manuscript.
@@ -125,7 +125,7 @@ inflation of a finite set of overlaps that contains every overlap with
   `0 -> 1, 1 -> 222, 2 -> 0222` 1,166 and 17, the golden pump
   `0 -> 1, 1 -> 021, 2 -> 001` 716 and 15. For the cube specimen `K_V = 17`
   equals the `K'` of its seed-patch graph.
-- **Regression.** `mojo/tests/test_vertex_coincidence.mojo` pins these values.
+- **Regression.** `kernel/tests/test_vertex_coincidence.mojo` pins these values.
   It also checks every integral centre offset of Tribonacci (`r <= 6`) and the
   golden pump (`r <= 4`) against the radii, which tests step 1 against
   Theorem B. It checks that every cycle vertex of the cube specimen's
@@ -134,7 +134,7 @@ inflation of a finite set of overlaps that contains every overlap with
 
 ## 4. Census
 
-`mojo/vertex_coincidence_census.mojo` (pixi task `vertex-coincidence-census`)
+`kernel/vertex_coincidence_census.mojo` (pixi task `vertex-coincidence-census`)
 runs the exact decision on every specimen. It folds in canonical order on
 `parallel_fold`, so the result does not depend on the worker count.
 
@@ -167,7 +167,7 @@ but they are not guarded equally:
   `.github/workflows/ci.yml` reruns it and checks every summary line above
   exactly.
 - **Two slices: regression-pinned.** `test_census_slices_are_pinned` in
-  `mojo/tests/test_vertex_coincidence.mojo` pins the first 300 standing
+  `kernel/tests/test_vertex_coincidence.mojo` pins the first 300 standing
   specimens and the first 100 specimens with images of length at most 4,
   without the parallel fold. Every one holds; the recurrent totals, `K_V` and
   box-graph sizes are pinned.
@@ -722,7 +722,7 @@ recurrent vertex.
 
 These are the side computations behind §5.6b. Each one is exact on every
 standing-corpus specimen and is computed by the committed driver
-`mojo/one_tile_anatomy.mojo` with `psc.one_tile`. CI pins the output. An
+`kernel/one_tile_anatomy.mojo` with `psc.one_tile`. CI pins the output. An
 earlier scratch probe gave each of them first. Those probes are archived with
 their outputs in `archive/2026-10-04/session-probes/` (§5.6d) and agree with
 the driver line by line.
@@ -805,7 +805,7 @@ Python files and 5 Mojo probes, `rerun.sh`, the session's census logs, and
 `SHA256SUMS`. The index there lists, for each probe, what it computes, its
 result, where the note uses it, and the committed driver that supersedes
 it. The Python probes are floating-point oracles, not certificates. The Mojo
-probes are exact, and `mojo/one_tile_anatomy.mojo` supersedes them. Every
+probes are exact, and `kernel/one_tile_anatomy.mojo` supersedes them. Every
 figure this note cites from a probe reproduces exactly on the re-run, in
 particular:
 

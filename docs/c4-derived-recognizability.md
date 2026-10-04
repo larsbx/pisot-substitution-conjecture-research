@@ -34,7 +34,7 @@ rho_j = tau_C^h | C_j
 
 has primitive incidence matrix.
 
-`src/psc_research/derived_dynamics.py` computes `h`, the cyclic classes, and these primitive power restrictions exactly.
+`reference/psc_research/derived_dynamics.py` computes `h`, the cyclic classes, and these primitive power restrictions exactly.
 
 ## 2. Perron eigenvalue of each power restriction
 

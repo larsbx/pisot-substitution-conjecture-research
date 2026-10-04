@@ -79,9 +79,9 @@
     }
   ],
   "planned_mojo_modules": [
-    "mojo/psc/horizon.mojo",
-    "mojo/psc/fm_witness.mojo",
-    "mojo/psc/iterate_family.mojo"
+    "kernel/psc/horizon.mojo",
+    "kernel/psc/fm_witness.mojo",
+    "kernel/psc/iterate_family.mojo"
   ],
   "promotion_gate": [
     "targeted literature stop/go check",

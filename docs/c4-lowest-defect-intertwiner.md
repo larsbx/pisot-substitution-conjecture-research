@@ -200,7 +200,7 @@ This is narrower than the original SCC Producer conjecture: the automaton, orien
 
 ## 8. Executable scope
 
-`src/psc_research/defect_intertwiner.py` provides:
+`reference/psc_research/defect_intertwiner.py` provides:
 
 - exact `K_2` and `K_3` scattered-subword defects;
 - the three-dimensional exterior-square matrix;

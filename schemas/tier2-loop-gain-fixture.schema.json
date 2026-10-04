@@ -140,7 +140,7 @@
   },
   "allOf": [
     {
-      "$comment": "affine_forcing labels the affine recurrence w' = beta*w + (q - p) in the cubic power basis (1, beta, beta^2), so loops compose beta_twisted; rank-generic checks are in scripts/check_tier2_fixture.py.",
+      "$comment": "affine_forcing labels the affine recurrence w' = beta*w + (q - p) in the cubic power basis (1, beta, beta^2), so loops compose beta_twisted; rank-generic checks are in tools/check_tier2_fixture.py.",
       "if": {
         "properties": {
           "gain_channel": {

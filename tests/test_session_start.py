@@ -42,10 +42,10 @@ def sandbox(tmp_path, *, installed=None, failure="", real_pixi=None):
     hook = repo / ".claude/hooks/session-start.sh"
     hook.parent.mkdir(parents=True)
     shutil.copyfile(HOOK, hook)
-    mojo = repo / "mojo"
+    mojo = repo / "kernel"
     mojo.mkdir()
     for name in ("pixi.toml", "pixi.lock"):
-        shutil.copyfile(ROOT / "mojo" / name, mojo / name)
+        shutil.copyfile(ROOT / "kernel" / name, mojo / name)
     home = tmp_path / "home with spaces"
     home.mkdir()
     env_file = tmp_path / "session.env"
@@ -103,7 +103,7 @@ args = sys.argv[1:]
 if args == ["--version"]:
     print("pixi {'0.80.0' if failure == 'installer-version' else PIN}")
 else:
-    assert pathlib.Path.cwd() == repo / "mojo"
+    assert pathlib.Path.cwd() == repo / "kernel"
     assert args in (["install", "--locked"], ["shell-hook", "--locked", "--json"])
     if args[0] == {failure!r}:
         sys.exit(23)
@@ -165,7 +165,7 @@ def test_hook_provisions_locked_activation_from_its_own_repository(tmp_path, ins
     repo, hook, env_file, log, env = sandbox(tmp_path, installed=installed)
     if project_dir is None:
         del env["CLAUDE_PROJECT_DIR"]
-    lock = (repo / "mojo/pixi.lock").read_bytes()
+    lock = (repo / "kernel/pixi.lock").read_bytes()
     for _ in range(2):
         result = run_hook(hook, env, repo.parent)
         assert result.returncode == 0, result.stdout + result.stderr
@@ -177,7 +177,7 @@ def test_hook_provisions_locked_activation_from_its_own_repository(tmp_path, ins
     assert sum(call[0] == "installer" for call in calls) == (installed != PIN)
     assert sum(call[0] == "pixi" and call[2] == ["install", "--locked"] for call in calls) == 2
     assert sum(call[0] == "pixi" and call[2] == ["shell-hook", "--locked", "--json"] for call in calls) == 2
-    assert (repo / "mojo/pixi.lock").read_bytes() == lock
+    assert (repo / "kernel/pixi.lock").read_bytes() == lock
     # The hook removes each temporary compilation probe on exit.
     for tool, _, args in calls:
         if tool == "mojo" and args[0] == "run" and "std-probe" not in args[1]:
@@ -212,11 +212,11 @@ def test_real_locked_mojo_runs_from_emitted_environment(tmp_path):
     version = subprocess.check_output([str(real_pixi), "--version"], text=True).strip()
     assert version == f"pixi {PIN}"
     repo, hook, env_file, _, env = sandbox(tmp_path, installed=PIN, real_pixi=real_pixi)
-    lock = (repo / "mojo/pixi.lock").read_bytes()
+    lock = (repo / "kernel/pixi.lock").read_bytes()
     result = run_hook(hook, env, repo.parent)
     assert result.returncode == 0, result.stdout + result.stderr
     assert "mojo ok" in result.stdout
     result = bare_probe(repo, env_file)
     assert result.returncode == 0, result.stdout + result.stderr
     assert "session-start std ok 42" in result.stdout
-    assert (repo / "mojo/pixi.lock").read_bytes() == lock
+    assert (repo / "kernel/pixi.lock").read_bytes() == lock

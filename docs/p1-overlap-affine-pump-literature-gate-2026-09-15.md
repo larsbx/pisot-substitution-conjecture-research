@@ -13,8 +13,8 @@ This review asks whether that sequence duplicates known machinery or silently
 uses hypotheses unavailable for the swap-seed problem.
 
 The collected bibliographic metadata and claim-level source annotations are
-in `docs/source-imports/issue-84/README.md`, with reusable BibTeX in
-`docs/source-imports/issue-84/references.bib`.
+in `sources/issue-84/README.md`, with reusable BibTeX in
+`sources/issue-84/references.bib`.
 
 ## Decision
 
