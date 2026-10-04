@@ -59,6 +59,11 @@ if python3 scripts/check_markdown_source.py; then
 else
     bad "theorem/research Markdown source integrity"
 fi
+if python3 scripts/check_hit_witness_evidence.py; then
+    ok "committed finite-box hit-witness exports match their digests and stable labels"
+else
+    bad "hit-witness export provenance"
+fi
 if PYTHONPATH=tools python3 -m claim_governance.cli --root . >/dev/null; then
     ok "status surfaces agree with the claim ledger (claim_governance.toml)"
 else

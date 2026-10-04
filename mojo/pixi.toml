@@ -28,6 +28,7 @@ swap-overlap-census = "mojo run -I . swap_overlap_census.mojo"
 overlap-contracting-census = "mojo run -I . overlap_contracting_census.mojo"
 vertex-coincidence-census = "mojo run -I . vertex_coincidence_census.mojo"
 one-tile-census = "mojo run -I . one_tile_census.mojo"
+hit-witness-census = "mojo run -I . catch_up_witness_census.mojo"
 return-lattice-census = "mojo run -I . return_lattice_census.mojo"
 
 # Finite classifications with no substitution input.

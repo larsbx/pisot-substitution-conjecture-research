@@ -531,6 +531,15 @@ endpoint; PPVC holds with `K_V = 14`).
 reach a catch-up, at either endpoint. Both are pinned in
 `tests/test_one_tile.mojo`.
 
+The [October 4 occurrence-level enumeration](catch-up-hit-witness-enumeration-2026-10-04.md)
+rechecks Q1 directly at both endpoints on every child occurrence. It commits
+stable labels for all 97,224 simultaneous-only recurrent nonzero vertices of
+the standing domain, with replayable closed-set counterexamples and controls
+where a simultaneous first hit conceals another shortest or later catch-up.
+The larger-domain runs there are explicitly 1,000-specimen prefix slices.
+This supplies inspectable hit witnesses and agrees with the census above;
+it does not close #139, UH, G1, general PPVC or PSC.
+
 *Lemma P (arithmetic catch-up obstruction, proved).* Write `ab(u)` for the
 abelianisation of a word and `Λ = M Z^3`, a sublattice of index `|det M|`.
 If no proper nonempty prefix `u` of an image `sigma(a)` has `ab(u) ∈ Λ`,

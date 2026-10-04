@@ -399,6 +399,17 @@ jobs:
           grep -Fx 'Proposition C (unique odd-letter shape) iff catch-up-free, mismatches: 0  one odd letter: 18' <<<"$out"
           grep -Fx 'Q1-failing vertices outside the catch-up-free class: 348  with nonzero forward closure <= 2: 348' <<<"$out"
           grep -Fx 'specimens failing Q1 at both endpoints: 360  of which no recurrent vertex reaches either: 210' <<<"$out"
+      - name: Occurrence-level all-path decision matches every committed standing failure label
+        working-directory: mojo
+        run: |
+          set -euo pipefail
+          mkdir -p build
+          if ! pixi run mojo run -I . catch_up_witness_census.mojo standing 0 4554 failures > build/hit-witness-standing.txt 2> build/hit-witness-standing.stderr; then
+            cat build/hit-witness-standing.stderr
+            exit 1
+          fi
+          head -5 build/hit-witness-standing.txt
+          python ../scripts/check_hit_witness_evidence.py --live-output build/hit-witness-standing.txt
 
   finite-classification:
     runs-on: ubuntu-latest
