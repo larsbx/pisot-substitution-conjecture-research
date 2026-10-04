@@ -77,7 +77,7 @@ Receipts: `docs/evidence/formal-overlap-carriers-2026-10-04/`.
 | Quantity | Value |
 | --- | ---: |
 | specimens | 4,554 |
-| formal states / largest formal graph | 23,286,258 / 114,033 |
+| formal states / largest formal graph | 50,466,666 / 179,937 |
 | realized states (equals the standing overlap census) | 1,118,850 |
 | formal nonproductive states | 0 |
 | specimens with a carrier vertex outside the seed box | 0 |
@@ -129,6 +129,9 @@ states, depth 4) and one unrealized strict carrier (16 states, depth 6).
   arithmetic, its own root isolation, SCC algorithm and a deliberately looser
   region (triangle-inequality digit bound). Carriers do not depend on the
   region once it contains every cycle, so agreement also checks that.
+  A first run seeded from a differently shaped region (per-conjugate bounds,
+  23,286,258 formal states) produced the same 13,260 carrier records as a
+  multiset, a corpus-wide check that carriers do not depend on the region.
   `scripts/check_formal_overlap_receipts.py` re-derives the summary from the
   records and recomputes a strided sample; `tests/test_formal_overlap.py`
   recomputes two fixtures on every run.
