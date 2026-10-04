@@ -89,7 +89,7 @@ id = "experiments"
 target = "experiments"
 authority = "non_authoritative_experiment"
 required = true
-current = ["spikes"]
+current = ["experiments"]
 
 [[plane]]
 id = "schemas"
@@ -176,7 +176,6 @@ next = [
   "kernel: mojo/ -> kernel/",
   "proof: PscVerif/ -> proof/PscVerif/, tla/ -> proof/tla/",
   "reference: src/ -> reference/",
-  "experiments: spikes/ -> experiments/",
   "tooling: scripts/ -> tools/",
   "docs: catalogues/ -> docs/catalogues/",
 ]
