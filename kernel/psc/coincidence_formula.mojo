@@ -360,6 +360,39 @@ def coincidence_level(sigma: List[List[Int]], top: Int, bottom: Int) raises -> I
     return -1 if found.empty else len(found.word)
 
 
+def first_letter_merge_level(sigma: List[List[Int]], top: Int, bottom: Int) -> Int:
+    """The least `n` with `h^n(top) = h^n(bottom)`, `h(a) = sigma(a)[0]` the
+    first-letter map, or `-1`. Then `sigma^n(top)` and `sigma^n(bottom)` start
+    with one letter, a coincidence at the left end, so `n` bounds the level.
+    On three letters two orbits of `h` that ever meet do so within two steps."""
+    var x = top
+    var y = bottom
+    for n in range(ALPHABET):
+        if x == y:
+            return n
+        x = sigma[x][0]
+        y = sigma[y][0]
+    return -1
+
+
+def balanced_proper_prefix_pairs(sigma: List[List[Int]], top: Int, bottom: Int) -> Int:
+    """The number of pairs `(p, q)` of nonempty proper prefixes of
+    `sigma(top)`, `sigma(bottom)` with `ab(p) = ab(q)`: the offset-zero children
+    of the aligned overlap `(top, bottom, 0)` other than its leftmost one."""
+    var count = 0
+    var above = List[Int](length=ALPHABET, fill=0)
+    for p in range(1, len(sigma[top])):
+        above[sigma[top][p - 1]] += 1
+        var below = List[Int](length=ALPHABET, fill=0)
+        for q in range(1, len(sigma[bottom])):
+            below[sigma[bottom][q - 1]] += 1
+            var same = True
+            for c in range(ALPHABET):
+                same = same and above[c] == below[c]
+            count += Int(same)
+    return count
+
+
 def strong_coincidence_level(sigma: List[List[Int]]) raises -> Int:
     """The least `k` at which *every* pair of distinct letters has coincided,
     which is the largest per-pair level, or `-1` if some pair never does.

@@ -1075,6 +1075,12 @@ coincidence-rank argument is needed. No such argument is given here. These
 consequences inherit the review status of Theorem S and the import of
 Barge (2016).
 
+*Update 2026-10-04:* the specimens without a witness are not open one by one.
+SC_all holds on both surveyed domains and PPVC is recorded there, so Proposition
+FP and manuscript Theorem `thm:main-density` give pure discrete spectrum for
+every one of them (`strong-coincidence-census-2026-10-04.md` §4). What a
+coincidence-rank argument is still needed for is the uniform statement.
+
 ### 5.6h Anatomy of the one-tile analysis (exact, `pixi run one-tile-anatomy`)
 
 *Numbering (2026-10-04 merge):* §§5.6h–5.6i were §§5.6c–5.6d when written;

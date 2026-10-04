@@ -105,10 +105,21 @@ by deleting it.
   statistics; do not compare them as equals. ·
   `formal-productivity-reduction-2026-10-04.md` §6
 
+- 2026-10-04 · SC_all holds on 408,798 specimens of total length ≤ 10 and on
+  the 135,990 with images ≤ 4 (exact, 11 and 3 minutes); deepest residual pair
+  level 15 on `0 -> 1, 1 -> 2, 2 -> 10` on every domain. With the recorded
+  PPVC runs this gives PDS on 145,806 specimens; the catch-up-free specimens
+  without a Barge witness are settled one by one, only a uniform argument is
+  open. Lemma A: on the catch-up-free `|det M| = 2` class an unmerged aligned
+  pair has no interior offset-zero child. · `strong-coincidence-census-2026-10-04.md`
+
 ## 6. Tooling pitfalls
 
 - 2026-10-04 · `pkill -f PATTERN` inside a shell command whose own text
   contains PATTERN kills that command. Kill by PID from a separate command.
+  (Hit again the same day: `pkill -f 'scratchpad/scc'` killed its own shell.)
+- 2026-10-04 · `/usr/bin/time` is not installed in the cloud container; time
+  runs with `date +%s` differences.
 - 2026-10-04 · `cmd | tail -1 && next` tests `tail`'s status, not `cmd`'s:
   a failing governance audit then lets the commit through. Capture `$?`.
 - 2026-10-04 · Editing a `require_contract` text makes the recorded receipts

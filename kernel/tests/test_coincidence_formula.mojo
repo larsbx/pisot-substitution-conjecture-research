@@ -26,6 +26,8 @@ from psc.coincidence_formula import (
     coincidence_level,
     coincidence_witness,
     coincidence_witness_with,
+    balanced_proper_prefix_pairs,
+    first_letter_merge_level,
     pair_paths,
     path_letter,
     path_prefix_parikh,
@@ -249,6 +251,42 @@ def test_the_search_and_the_whole_language_agree() raises:
                 assert_true(coincidence_automaton(sigma, i, j).accepts(searched.word))
 
 
+def test_a_first_letter_merge_bounds_the_level() raises:
+    """A pair merged by the first-letter map `h` coincides at the left end of
+    `sigma^n` for the least such `n`, so its level is at most that `n`, and on
+    three letters `n <= 2`. Tribonacci merges every pair (`h` is constant);
+    `0 -> 1, 1 -> 2, 2 -> 01` merges none (`h` is a 3-cycle), and its pairs
+    are the deep ones."""
+    var specs = specimens()
+    for s in range(len(specs)):
+        for i in range(ALPHABET):
+            for j in range(i + 1, ALPHABET):
+                var n = first_letter_merge_level(specs[s], i, j)
+                if n >= 0:
+                    assert_true(n <= 2)
+                    assert_true(coincidence_level(specs[s], i, j) <= n)
+    for i in range(ALPHABET):
+        for j in range(i + 1, ALPHABET):
+            assert_true(first_letter_merge_level(specs[0], i, j) >= 0)
+            assert_equal(first_letter_merge_level(specs[2], i, j), -1)
+
+
+def test_balanced_proper_prefix_pairs_are_counted_exactly() raises:
+    """Pairs of nonempty proper prefixes of `sigma(a)`, `sigma(b)` with one
+    Parikh vector are the interior offset-zero children of `(a, b, 0)`. On the
+    catch-up-free `0 -> 1, 1 -> 22, 2 -> 012` (Lemma E shape, `h(1) = 2`,
+    `h(2) = 0`) there are none; Tribonacci's `01` and `02` share the prefix
+    `0`, one pair."""
+    var free: List[List[Int]] = [[1], [2, 2], [0, 1, 2]]
+    for a in range(ALPHABET):
+        for b in range(ALPHABET):
+            if a != b:
+                assert_equal(balanced_proper_prefix_pairs(free, a, b), 0)
+    var tribonacci = specimens()[0].copy()
+    assert_equal(balanced_proper_prefix_pairs(tribonacci, 0, 1), 1)
+    assert_equal(balanced_proper_prefix_pairs(tribonacci, 0, 2), 0)
+
+
 def main() raises:
     test_a_witness_is_a_coincidence_the_substitution_confirms()
     print("[PASS] test_a_witness_is_a_coincidence_the_substitution_confirms")
@@ -264,5 +302,9 @@ def main() raises:
     print("[PASS] test_malformed_input_raises")
     test_the_search_and_the_whole_language_agree()
     print("[PASS] test_the_search_and_the_whole_language_agree")
-    print("7 coincidence formula tests passed.")
+    test_a_first_letter_merge_bounds_the_level()
+    print("[PASS] test_a_first_letter_merge_bounds_the_level")
+    test_balanced_proper_prefix_pairs_are_counted_exactly()
+    print("[PASS] test_balanced_proper_prefix_pairs_are_counted_exactly")
+    print("9 coincidence formula tests passed.")
     require_contract("strong coincidence is decided per substitution by one automaton over synchronous Dumont-Thomas path pairs carrying the Parikh difference, whose state set is finite by the Pisot argument stated in psc/coincidence_formula.mojo rather than by an imported theorem; every witness is checked against the images themselves, and deciding the condition for a specimen is not deciding it for the alphabet-3 Pisot family, which stays open")

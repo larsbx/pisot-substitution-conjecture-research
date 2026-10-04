@@ -194,6 +194,13 @@ These are reference/index additions only. They do not establish #84, #138,
   imports behind Theorem S (Barge 2013 Thm 4, Barge 2015 §1 (2)–(3)) assume
   only a primitive, non-periodic substitution with Pisot inflation, so they
   cover every PIP substitution, non-unit included. Decision "proceed".
+- `strong-coincidence-census-2026-10-04.md` — exact SC_all census on the
+  corpus, total length ≤ 8, images ≤ 4 and total length ≤ 10 (408,798
+  specimens): no failure. Lemma A: on the catch-up-free `|det M| = 2` class the
+  aligned route is a hitting statement through nonzero offsets. With the
+  recorded PPVC runs, pure discrete spectrum on the 145,806 specimens with
+  images ≤ 4 or total length ≤ 8 (finite evidence; Proposition V unreviewed).
+  Driver `kernel/strong_coincidence_census.mojo`.
 - `catch-up-hit-witness-enumeration-2026-10-04.md` — occurrence-level
   all-path decision (`psc.hit_witness`): committed stable labels for all
   97,224 simultaneous-only standing vertices, replayable closed certificates,

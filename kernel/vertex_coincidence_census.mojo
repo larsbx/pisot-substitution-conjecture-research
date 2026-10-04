@@ -23,8 +23,6 @@ from psc.corpus import (
     Specimen,
     arithmetic_regime,
     corpus_for,
-    image_words_up_to,
-    screened_triples,
 )
 from psc.vertex_coincidence import decide_vertex_coincidence
 
@@ -131,7 +129,7 @@ def main() raises:
     if mode == "len4":
         if len(args) != 4 and len(args) != 5:
             raise Error("usage: len4 START END [records]")
-        var full = screened_triples(image_words_up_to(4), 12)
+        var full = corpus_for(mode)
         var start = Int(String(args[2]))
         var end = min(Int(String(args[3])), len(full))
         if start < 0 or start > end:

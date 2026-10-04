@@ -146,6 +146,6 @@ independently. What is checked to agree, and what is not:
 | Recurrent-vertex conventions | §5.6b of the vertex note excludes every offset-zero vertex from "recurrent"; carriers keep the aligned pairs `(i, j, 0)` that lie on cycles (the 4,860 aligned carriers). |
 | BH ⟺ PPVC | (⇐) PPVC gives an offset-zero descendant to every box vertex (Proposition V(2)), and cycle vertices are box vertices (V(1)). (⇒) If every cycle vertex has one, so does every box vertex: the box vertices without one form a finite child-closed set, which would contain a cycle. Then V(2) gives PPVC. Both directions of V(2) rest on Theorem B (unreviewed). |
 | Mass lemma | Uses children counted with multiplicity; both constructions use the same kernel (`build_overlap_graph_from_seeds`), so the multiplicities agree. |
-| Domains | FP and the carriers are surveyed only on the standing corpus; PPVC also on total length ≤ 8 and images ≤ 4. SC_all, and hence FP, is **not** checked beyond the standing corpus. |
+| Domains | The carriers are surveyed only on the standing corpus; PPVC also on total length ≤ 8 and images ≤ 4. SC_all was checked only on the standing corpus. *Update 2026-10-04:* SC_all holds on total length ≤ 8, images ≤ 4 and total length ≤ 10 (`strong-coincidence-census-2026-10-04.md`), so with PPVC, FP and pure discrete spectrum hold on the first two. |
 | Realization × trichotomy | The realized/unrealized split of carriers is not cross-tabulated with the cases of §5.6b; whether unrealized strict carriers concentrate in the catch-up-free case is open. |
 
