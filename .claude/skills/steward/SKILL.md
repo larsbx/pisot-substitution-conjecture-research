@@ -4,9 +4,9 @@ description: Repository-specific guidance for driving a pull request in pisot-su
 ---
 
 <!--
-Derived from skills/steward/SKILL.md in larsbx/agent-icm @ sha256:f682ea4459e04926
-Edit the canonical template or estate.toml, then re-render: make estate
-Hand-edits here are drift and `make estate-check` fails on them.
+Derived from skills/steward/SKILL.md in larsbx/agent-icm @ sha256:64592e5b34b3339d
+Edit the canonical template or estate.toml in larsbx/agent-icm, then re-render there: make estate
+Hand-edits here are drift, and agent-icm's `make estate-check` fails on them.
 -->
 
 # Stewarding a pull request in pisot-substitution-conjecture-research
@@ -15,7 +15,9 @@ Exact, exhaustive research on the Pisot substitution conjecture over the 4,554
 primitive irreducible Pisot substitutions on {0,1,2}.
 
 **Language / toolchain:** Mojo (canonical) with Python oracles, TLA+ and Lean
-**CI:** GitHub Actions: `ci.yml` (PSC research checks) plus two census workflows
+**CI:** GitHub Actions: `ci.yml` (PSC research checks, with the pinned estate audit as
+  its `policy` job) plus eight workflows: six census and diagnostic gates,
+  `boundary-sync.yml`, and the scheduled `grow-corpus-daily.yml`
 
 This document says *how* to steward a PR here. It does not widen what you are
 allowed to do. The standing prohibitions in your harness still hold — never
@@ -102,6 +104,28 @@ environment that reports a skip is honest; one that reports a pass is not.
   an explicit budget, and output distinguishing an exhausted budget from a
   mathematical verdict.
 
+## Decide whether to build
+
+Before adding a subsystem, abstraction, or feature family, identify the concrete
+user outcome or external obligation. Then ask:
+
+- Can an existing mechanism meet the need?
+- What will this cost to operate and maintain over time?
+- Can removing or simplifying something produce the same outcome?
+- What higher-priority work will this displace?
+
+Classify the decision as **build**, **reuse**, **subtract**, or **defer**.
+Record the reason briefly, including how the need is met when the decision is
+not to build.
+
+Prefer the smallest solution that meets the actual need. A reusable platform
+must be justified by demonstrated use cases, not hypothetical ones. Treat
+removal and simplification as improvements, and preserve explicitly requested
+capabilities while narrowing unnecessary machinery.
+
+Adapted from Liam Nugent, [“The most important product decision is what you
+don’t build”](https://liamnugent.me/posts/what-you-dont-build/).
+
 ## Never, here
 
 - Never merge new theorem-support code as Python-only while a Mojo
@@ -114,8 +138,8 @@ environment that reports a skip is honest; one that reports a pass is not.
   `larsbx/finite-math-kernels`, re-vendor, re-pin.
 - Never hand-edit a generated artifact: `proof/tla/ledger.json`,
   `proof/tla/Ledger.tla`, the `proof/tla/MCLedger*` models,
-  `docs/ledger-index.md`, `docs/claim-relationship-graph.json`, or the
-  generated `[[claim]]` block of `claim_governance.toml`.
+  `docs/ledger-index.md`, `docs/claim-relationship-graph.json`, or generated
+  claim entries in `claim_governance.toml`.
 - Never claim beyond what the exact executable or the formal proof actually
   establishes.
 - Never return an empty structure where an invariant is impossible. Fail
@@ -151,8 +175,9 @@ diff, say so in a comment and leave it.
 ## Reading a failure here
 
 Before concluding a failure is environmental, check it against this
-repository's shape. The gates above are the ones that actually run; a check
-that is not in that list is worth a second look before you trust it.
+repository's shape. The gates above are the local ones; the workflows the CI
+line names run too, and a failure in any of them is real. A check named in
+neither place is worth a second look before you trust it.
 
 ## When you stand down
 

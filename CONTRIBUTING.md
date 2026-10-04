@@ -1,7 +1,7 @@
 <!--
 Derived from templates/docs/CONTRIBUTING.md in larsbx/agent-icm @ sha256:88bf9172c22bc8da
-Edit the canonical template or estate.toml, then re-render: make estate
-Hand-edits here are drift and `make estate-check` fails on them.
+Edit the canonical template or estate.toml in larsbx/agent-icm, then re-render there: make estate
+Hand-edits here are drift, and agent-icm's `make estate-check` fails on them.
 -->
 
 # Contributing to pisot-substitution-conjecture-research
@@ -10,10 +10,14 @@ Exact, exhaustive research on the Pisot substitution conjecture over the 4,554
 primitive irreducible Pisot substitutions on {0,1,2}.
 
 **Language / toolchain:** Mojo (canonical) with Python oracles, TLA+ and Lean
-**CI:** GitHub Actions: `ci.yml` (PSC research checks) plus two census workflows
+**CI:** GitHub Actions: `ci.yml` (PSC research checks, with the pinned estate audit as
+  its `policy` job) plus eight workflows: six census and diagnostic gates,
+  `boundary-sync.yml`, and the scheduled `grow-corpus-daily.yml`
 
 Read these first — they are normative, not background:
 
+- `ESTATE.toml`
+- `ARCHITECTURE.md`
 - `AGENTS.md`
 - `README.md`
 - `claim_governance.toml`
@@ -110,8 +114,8 @@ the pull request template has a place for exactly that.
   `larsbx/finite-math-kernels`, re-vendor, re-pin.
 - Never hand-edit a generated artifact: `proof/tla/ledger.json`,
   `proof/tla/Ledger.tla`, the `proof/tla/MCLedger*` models,
-  `docs/ledger-index.md`, `docs/claim-relationship-graph.json`, or the
-  generated `[[claim]]` block of `claim_governance.toml`.
+  `docs/ledger-index.md`, `docs/claim-relationship-graph.json`, or generated
+  claim entries in `claim_governance.toml`.
 - Never claim beyond what the exact executable or the formal proof actually
   establishes.
 - Never return an empty structure where an invariant is impossible. Fail
