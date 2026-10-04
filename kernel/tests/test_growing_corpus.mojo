@@ -68,6 +68,4 @@ def main() raises:
     test_invalid_slice_fails_closed()
     print("[PASS] test_invalid_slice_fails_closed")
     print("4 growing-corpus tests passed.")
-    require_contract(
-        "the growing research corpus partitions substitutions by exact maximum image length, screens each candidate once, and is worker-count invariant"
-    )
+    require_contract("the growing research corpus partitions substitutions by exact maximum image length, screens each candidate once, and is worker-count invariant")
