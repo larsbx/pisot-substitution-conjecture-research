@@ -119,3 +119,20 @@ by deleting it.
 - 2026-10-04 · The exact Python formal-overlap oracle is slow on specimens with
   two real contracting conjugates unless each `q(c)` is bounded tightly
   (binary search on exact signs): `1 5 20` takes 42 s, about 7 minutes before.
+
+## 7. Review outcomes
+
+- 2026-10-04 · Independent adversarial audit (no counterexample found) of
+  Lemma C, Theorem B, Corollary B′, Proposition F, Theorem R, Proposition V,
+  Theorem S, the mass lemma, Lemmas E, VT, B, the Barge-class lever,
+  Proposition FP, Corollary FP′ and the region argument. All hold as
+  corrected; fifteen findings applied in the notes (dated corrections). The
+  one open item: the hypotheses of the imports behind Theorem S (Barge 2013
+  Thm 4(5),(6); Barge 2015 item (3)) are recorded but not audited in any gate.
+  Do not cite "Barge 2013 Thm 4(3)" (not recorded) or BK Lemma 5.12 for
+  "no common tile ⇒ cr ≥ 2" (wrong direction). Theorem S implies "PDS ⇒ G1 for
+  the all-seed automaton", which manuscript Open Problem 4.24 declines to
+  assert; flag it at review. · `p1b-vertex-coincidence-box-2026-10-02.md`
+  §5.1, §7; `p1b-strict-zipper-periodic-pair-2026-10-02.md`;
+  `p1b-periodic-pair-fibre-literature-gate-2026-10-02.md` §6
+

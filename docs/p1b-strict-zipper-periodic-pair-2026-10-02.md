@@ -39,9 +39,14 @@ point, and **right-aligned** when both end at the same point. A common vertex
 of the two level-`m` patches is a point that is a tile endpoint in both.
 Writing `D_m(i, j) = P_m(i) − P_m(j)` for the prefix-difference set:
 
-> (H) `v = (i, j, w)` has a common vertex at depth `m` (in `cl R_v`, scaled by
-> `beta^m`) iff `M^m w ∈ D_m(i, j)`. Because `M P_m(a) ⊆ P_{m+1}(a)`, this
-> property is monotone in `m`.
+> (H) `v = (i, j, w)` has an offset-zero descendant at depth `m`, i.e. a
+> common vertex in the half-open interval `[left end, right end)` of
+> `beta^m R_v`, iff `M^m w ∈ D_m(i, j)` (`P_m` is the set of *proper*
+> prefixes). Because `M P_m(a) ⊆ P_{m+1}(a)`, this property is monotone in
+> `m`. *Correction 2026-10-04:* an earlier version said "in `cl R_v`"; a
+> common vertex at the right end alone (e.g. a right-aligned `v` with
+> `w != 0`) is not seen by (H). Theorem B(3) is unaffected, since in the
+> periodic setting every common vertex is seen at some depth `rn`.
 
 This is the boundary-hitting criterion already used by the P1b notes.
 
@@ -99,8 +104,11 @@ of Proposition A is structural: it moves (b1) onto the mirror of P1a.
 
 ## 3. Lemma C (cycles with interior centre)
 
-*Lemma C.* Let `Y` be a finite nonempty set of vertices that is closed under
-children (for example `Z` or `Z''`). Then `Y` contains a cycle
+*Lemma C.* Let `Y` be a finite nonempty set of non-coincidence vertices that
+is closed under children (for example `Z` or `Z''`), so that every vertex of
+`Y` has a child in `Y`. Edges are labelled by the child indices (children
+counted with multiplicity), so leftmost and rightmost edges are distinct even
+between vertices of the same type. Then `Y` contains a cycle
 `v_0 -> v_1 -> … -> v_r = v_0` whose composite contraction
 `E = e_0 ∘ … ∘ e_{r−1}: cl R_{v_0} -> cl R_{v_0}` has its fixed point `c` in
 the **open** region `R_{v_0}`.
@@ -109,7 +117,8 @@ the **open** region `R_{v_0}`.
 
 1. **Fixed points on the boundary.** Each `e_k` is increasing with image
    inside `cl R_{v_k}`. Hence `E` fixes the left end of `R_{v_0}` exactly when
-   every edge of the cycle is a leftmost child. It fixes the right end
+   every edge of the cycle is a leftmost child (the child whose region's
+   closure contains the left end). It fixes the right end
    exactly when every edge is a rightmost child.
 2. **Every cycle has a branching vertex.** If every vertex on a cycle had a
    single child, region lengths would multiply by `beta` at each step, giving
@@ -163,9 +172,10 @@ If `w_0 ∈ Z^A`, then:
    - (b) `T_A` and `T_B` have no common vertex;
    - (c) `M^m w_0 ∉ D_m(i, j)` for every `m >= 0`.
 
-Conversely, take any vertex of a nonempty closed set `Y` with no left-aligned
-vertex (in particular, any `Y = Z(s) ≠ ∅`). Lemma C gives a cycle in `Y` with
-interior centre. Composing its prefixes, `P = sigma^{r−1}(p_0)…p_{r−1}` and
+Conversely, let `Y` be a nonempty closed set with no left-aligned vertex (in
+particular, any `Y = Z(s) ≠ ∅`). Lemma C gives a cycle in `Y` with interior
+centre; it lies in a terminal component of `Y`, not necessarily through a
+prescribed vertex. Composing its prefixes, `P = sigma^{r−1}(p_0)…p_{r−1}` and
 likewise `Q`, gives interior occurrences that satisfy (1) with
 `w_0 ∈ Z^A` and (a)–(c).
 
@@ -240,13 +250,16 @@ proves this for every PIP substitution. So, for every PIP `sigma`:
 | non-PDS | no common **tile** | equivalent to `cr >= 2` (BK, Barge 2013) |
 | case (a) aligned | common vertices, no common tile | P1a, open |
 | (b1) right-aligned | as (a), mirrored | suffix P1a, open |
-| (b2) two-sided strict zipper | no common **vertex** | #139, open |
+| (b2) two-sided strict zipper | no common **vertex** (failure of PPVC; a formal strict zipper, of which a seed-reachable one is a special case) | #139, open |
 
 Consequences:
 
-- A strict zipper forces `cr >= 2`, unconditionally. This is consistent with
-  the known chain PDS ⇒ productivity ⇒ no strict zipper, and excludes
-  nothing new.
+- A strict zipper forces `cr >= 2`, modulo the import audit recorded under
+  Theorem S of `p1b-vertex-coincidence-box-2026-10-02.md`. Within the
+  repository, pure discrete spectrum excludes strict zippers only through
+  that Theorem S; "PDS ⇒ productivity" is not imported (manuscript, remark
+  after Theorem 5.38), and PDS ⇒ formal productivity needs SC_all as well.
+  *Correction 2026-10-04:* an earlier version called this "the known chain".
 - Strict-zipper exclusion asks for a **vertex** analogue of coincidence rank
   one along periodic fibres. It is weaker than the Pisot conjecture but not
   implied by any unconditional result found: balanced-pair termination, its

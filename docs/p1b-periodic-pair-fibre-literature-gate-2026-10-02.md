@@ -213,11 +213,19 @@ gives:
 
 1. A reachable strict zipper gives a `Phi^r`-periodic pair in one fibre with
    **no common vertex**, hence no common tile.
-2. BK Lemma 5.12 (equivalently Barge 2015, item (3)) then gives `cr >= 2`,
-   hence no pure discrete spectrum (Barge 2013 Thm 4(5)).
+2. Barge 2015, item (3) (pairwise strongly regionally proximal, pairwise
+   tile-disjoint tilings exist in number at most `cr`), with Barge 2013
+   Thm 4(6) (one fibre iff strongly regionally proximal), then gives
+   `cr >= 2`, hence no pure discrete spectrum (Barge 2013 Thm 4(5)).
+   *Correction 2026-10-04:* an earlier version cited BK Lemma 5.12 here,
+   which as recorded runs the other way (not proximal ⇒ no common tile).
+   The hypotheses of these imports are not yet audited in a gate.
 
-This is consistent with the known chain from pure discrete spectrum through
-productivity to the absence of strict zippers. With (R) removed it is an
+Within the repository, pure discrete spectrum excludes strict zippers only
+through Theorem S of `p1b-vertex-coincidence-box-2026-10-02.md`; the
+manuscript does not import a "PDS ⇒ productivity" chain (see the remark after
+its Theorem 5.38). *Correction 2026-10-04:* an earlier version called this "the
+known chain". With (R) removed it is an
 unconditional implication (strict zipper ⇒ `cr >= 2`), but it does not
 exclude anything new. The table in §5 of the note holds for every PIP
 substitution:
@@ -225,7 +233,7 @@ substitution:
 | Periodic pair in one fibre | Equivalent to |
 | --- | --- |
 | no common tile | `cr >= 2` (known) |
-| no common vertex | a strict zipper (Theorem B with Proposition F) |
+| no common vertex | failure of PPVC, i.e. a formal strict zipper (Theorem B with Proposition F); a strict zipper reachable from a swap seed is a special case |
 
 **Decision: proceed.**
 
