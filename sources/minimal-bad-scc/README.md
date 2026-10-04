@@ -14,7 +14,7 @@ inputs. Import/review date: 2026-10-02.
 | Extent | Four pages, 167,325 bytes |
 | SHA-256 | `0bae1b1dd6a68f9035bb3a9e2d622e042ec0b0919a170e5ebdc35bc093d68a83` |
 | Repository snapshot | [Original PDF](MINIMAL_BAD_SCC_SETUP_NOTE.pdf), copied byte-for-byte without corrections |
-| Live interpretation | [Routing and stop/go note](../../minimal-bad-scc-track-routing.md) |
+| Live interpretation | [Routing and stop/go note](../../docs/minimal-bad-scc-track-routing.md) |
 
 ## Pinpoint source inventory
 
@@ -37,8 +37,8 @@ wording overrides this source inventory or the live ledger.
 Verify from the repository root:
 
 ```sh
-sha256sum -c docs/source-imports/minimal-bad-scc/SHA256SUMS
+sha256sum -c sources/minimal-bad-scc/SHA256SUMS
 ```
 
-The provenance mode of `scripts/verify_all.sh` runs this check. Digest mismatch
+The provenance mode of `tools/verify_all.sh` runs this check. Digest mismatch
 refuses verification; the preserved source must not be silently overwritten.
