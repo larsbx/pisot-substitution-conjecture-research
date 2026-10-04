@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Iterable
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "reference"))
 
 from psc_research import pip_screen as oracle  # noqa: E402
 
@@ -289,7 +289,7 @@ def advance(
         raise ValueError("worker count must be positive")
 
     state = load_state(state_path)
-    mojo_dir = ROOT / "mojo"
+    mojo_dir = ROOT / "kernel"
     index_path = state_path.parent / "index.jsonl"
     written: list[Path] = []
     remaining = budget

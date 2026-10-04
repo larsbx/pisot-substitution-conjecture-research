@@ -28,7 +28,7 @@ def test_band_partition_sizes_and_identity_are_stable():
 
 
 def test_initial_state_starts_after_the_frozen_theorem_corpus():
-    path = ROOT / "research" / "growing-corpus" / "state.json"
+    path = ROOT / "experiments" / "growing-corpus" / "state.json"
     state = json.loads(path.read_text(encoding="utf-8"))
     assert state["schema"] == grow.STATE_SCHEMA
     assert state["alphabet"] == 3

@@ -55,15 +55,15 @@ jobs:
           fi
 
       - name: Verify the deterministic band kernel
-        working-directory: mojo
+        working-directory: kernel
         run: pixi run mojo run -I . tests/test_growing_corpus.mojo
 
       - name: Screen the next daily shard
         run: |
           set -euo pipefail
           python3 tools/grow_corpus.py \
-            --state research/growing-corpus/state.json \
-            --shard-root research/growing-corpus/shards \
+            --state experiments/growing-corpus/state.json \
+            --shard-root experiments/growing-corpus/shards \
             --budget "$DAILY_CANDIDATES" \
             --workers "$MAX_WORKERS" \
             --kernel-revision "$GITHUB_SHA"
@@ -72,7 +72,7 @@ jobs:
         id: commit
         run: |
           set -euo pipefail
-          git add research/growing-corpus
+          git add experiments/growing-corpus
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
@@ -99,7 +99,7 @@ jobs:
               --base main \
               --head "$GROWTH_BRANCH" \
               --title "Daily growing PIP research corpus" \
-              --body "Append-only exact PIP research-corpus growth. This data does not widen the frozen 4,554-member theorem corpus; see research/growing-corpus/README.md." \
+              --body "Append-only exact PIP research-corpus growth. This data does not widen the frozen 4,554-member theorem corpus; see experiments/growing-corpus/README.md." \
               || echo "::warning::Corpus branch grew, but this repository does not permit Actions to create pull requests."
           else
             echo "Corpus growth continues in PR #$number"

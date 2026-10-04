@@ -54,8 +54,8 @@ From the repository root:
 
 ```bash
 python3 tools/grow_corpus.py \
-  --state research/growing-corpus/state.json \
-  --shard-root research/growing-corpus/shards \
+  --state experiments/growing-corpus/state.json \
+  --shard-root experiments/growing-corpus/shards \
   --budget 50000 \
   --workers 4
 ```
