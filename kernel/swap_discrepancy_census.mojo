@@ -5,7 +5,7 @@ length at most 3 (exact Sturm-sequence screening), builds `B_sigma` from the
 three swap seeds under a cap of 20000 states and reports the maximum
 discrepancy and the longest reachable state.  Finite evidence only: the
 bounded-discrepancy theorem is proved in
-docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md and no
+sources/issue-45/g1b1-bounded-discrepancy-reconstruction.md and no
 computation verifies its constant `D_sigma`.
 """
 

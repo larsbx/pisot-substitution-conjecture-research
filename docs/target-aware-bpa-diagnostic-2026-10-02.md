@@ -147,7 +147,7 @@ seed closure; it does not eliminate the template by an earlier discarded
 shortcut.
 
 Full JSONL receipts and digests are under
-`docs/evidence/target-aware-bpa-2026-10-02/`. The independent Python oracle
+`evidence/target-aware-bpa-2026-10-02/`. The independent Python oracle
 checks their full packet and edge sets, addresses, orientation, targets, SCC
 membership/exits, accumulated forcing, shortest paths, and potential failures.
 `kernel/check_target_packets.sh` rebuilds the driver, compares those receipts

@@ -17,19 +17,19 @@ skip()    { printf '  \033[33mSKIP\033[0m  %s (%s)\n' "$1" "$2"; skipped=$((skip
 section "Source provenance"
 PROV_TMP=$(mktemp -d)
 git -C "$PROV_TMP" init -q
-if sha256sum -c docs/source-imports/issue-45/SHA256SUMS \
+if sha256sum -c sources/issue-45/SHA256SUMS \
    && git -C "$PROV_TMP" apply \
-        "$ROOT/docs/source-imports/issue-45/0001-Seed-P1-A-concentration-program.patch" \
-        "$ROOT/docs/source-imports/issue-45/0002-Audit-v34-against-the-concentration-gate.patch" \
-   && cmp -s docs/source-imports/issue-45/p1a-concentration-aux-b-program.md \
+        "$ROOT/sources/issue-45/0001-Seed-P1-A-concentration-program.patch" \
+        "$ROOT/sources/issue-45/0002-Audit-v34-against-the-concentration-gate.patch" \
+   && cmp -s sources/issue-45/p1a-concentration-aux-b-program.md \
         "$PROV_TMP/docs/p1a-concentration-aux-b-program.md" \
-   && cmp -s docs/source-imports/issue-45/p1a-v34-concentration-audit.md \
+   && cmp -s sources/issue-45/p1a-v34-concentration-audit.md \
         "$PROV_TMP/docs/p1a-v34-concentration-audit.md"; then
     ok "Issue #45 snapshots match preserved source commits"
 else
     bad "Issue #45 source provenance"
 fi
-if sha256sum -c docs/source-imports/minimal-bad-scc/SHA256SUMS; then
+if sha256sum -c sources/minimal-bad-scc/SHA256SUMS; then
     ok "minimal-bad-SCC historical proposal snapshot is intact"
 else
     bad "minimal-bad-SCC proposal source provenance"

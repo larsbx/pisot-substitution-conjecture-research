@@ -83,7 +83,7 @@ The referee reviewed the bounded-discrepancy import and posted three findings; a
 | --- | --- | --- | --- | --- |
 | 10 | P1 | The Python census screened the corpus with floating-point roots and a tolerance, so "exact" was overstated | Accepted. Screening is now exact: rational-root test for irreducibility and Sturm sequences over the rationals for the Pisot property, mirroring the repository's exact procedure; the corpus size and every reported statistic are unchanged | `oracles/python/swap_discrepancy_census.py` |
 | 11 | P1 | Proof-support computation was Python-only, against the Mojo-first policy | Accepted. Canonical Mojo kernel, census driver and deterministic regression added; the Python layer is retained as the independent oracle and both layers agree | `kernel/psc/swap_discrepancy.mojo`, `kernel/swap_discrepancy_census.mojo`, `kernel/tests/test_swap_discrepancy.mojo`; proof note, section 6 |
-| 12 | P2 | The backward direction of the realization equivalence needs the realizing windows to be cofinal; it is not definitional | Accepted. The backward direction is restated with cofinal coverage as an explicit hypothesis and a new gap (G3) records it; the gap count in the conclusion is updated | `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`, sections 2–3 |
+| 12 | P2 | The backward direction of the realization equivalence needs the realizing windows to be cofinal; it is not definitional | Accepted. The backward direction is restated with cofinal coverage as an explicit hypothesis and a new gap (G3) records it; the gap count in the conclusion is updated | `sources/issue-45/realization-coincidence-rank-audit.md`, sections 2–3 |
 
 ### Finding 10 (P1)
 
@@ -105,7 +105,7 @@ One further finding on the realization audit; accepted.
 
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
-| 13 | P2 | The gap inventory omitted two forward-direction requirements named in the same note (transfer of non-coincidence to reductions; recurrence under G1), so the gap count was inconsistent | Accepted. Entries (G5) transfer of non-coincidence and (G6) recurrence added; conclusion now refers to (G0)–(G6); README and provenance summary synchronized to the seven obligations | `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`, section 3; `README.md`; `docs/source-provenance-v16-later-audit-2026-09-12.md` |
+| 13 | P2 | The gap inventory omitted two forward-direction requirements named in the same note (transfer of non-coincidence to reductions; recurrence under G1), so the gap count was inconsistent | Accepted. Entries (G5) transfer of non-coincidence and (G6) recurrence added; conclusion now refers to (G0)–(G6); README and provenance summary synchronized to the seven obligations | `sources/issue-45/realization-coincidence-rank-audit.md`, section 3; `README.md`; `docs/source-provenance-v16-later-audit-2026-09-12.md` |
 
 ### Finding 13 (P2)
 

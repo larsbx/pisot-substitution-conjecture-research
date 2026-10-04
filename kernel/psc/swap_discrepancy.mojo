@@ -7,7 +7,7 @@ walk of the inflated pair `(sigma^n(ab), sigma^n(ba))`; every state of
     Disc(T) <= max_j ||Delta_n(j)||_inf.
 
 The bounded-discrepancy theorem
-(docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md)
+(sources/issue-45/g1b1-bounded-discrepancy-reconstruction.md)
 proves that this supremum is uniformly bounded in `n`; the package only
 evaluates it exactly, with a fixed three-coordinate accumulator and no
 floating point.

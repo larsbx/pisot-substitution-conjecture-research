@@ -7,7 +7,7 @@ import argparse
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_TARGETS = (ROOT / "README.md", ROOT / "docs", ROOT / "manuscripts")
+DEFAULT_TARGETS = (ROOT / "README.md", ROOT / "docs", ROOT / "sources", ROOT / "manuscripts")
 ALLOWED_CONTROLS = {0x0A}  # LF is the repository Markdown line separator.
 
 

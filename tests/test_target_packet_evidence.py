@@ -15,7 +15,7 @@ from psc_research.bpa import _tarjan
 from psc_research.synthetic_degree2 import verify_synthetic_template
 from psc_research.pip_screen import mat, charpoly, primitive, irreducible, pisot
 
-EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence/target-aware-bpa-2026-10-02"
+EVIDENCE = Path(__file__).resolve().parents[1] / "evidence/target-aware-bpa-2026-10-02"
 
 
 def inflate(sigma, word):

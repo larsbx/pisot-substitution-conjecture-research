@@ -111,7 +111,7 @@ No other findings were posted in the second round.
 >
 > AGENTS.md reference: AGENTS.md:L16-L16
 
-## Finding 12 (P2) — `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`, lines 47–50
+## Finding 12 (P2) — `sources/issue-45/realization-coincidence-rank-audit.md`, lines 47–50
 
 > **Require cofinal realized windows for the reverse implication**
 >
@@ -126,7 +126,7 @@ No finding contests Theorem 4.4, Lemmas 4.5–4.8, or Proposition 4.11 of the ma
 **Reviewed commit:** `6024fcd5ccf2a3a1fbf3e8aefe9d7dca64d355ea`.
 **Review posted:** 2026-09-13T12:40:45Z, one review with one inline comment. Reproduced verbatim.
 
-## Finding 13 (P2) — `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`, lines 65–69
+## Finding 13 (P2) — `sources/issue-45/realization-coincidence-rank-audit.md`, lines 65–69
 
 > **Add the missing forward-direction gaps**
 >

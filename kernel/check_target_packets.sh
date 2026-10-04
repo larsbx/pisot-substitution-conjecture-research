@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 mkdir -p build
 mojo build -I . target_aware_bpa.mojo -o build/target-aware-bpa
 driver=build/target-aware-bpa
-fixtures=../docs/evidence/target-aware-bpa-2026-10-02
+fixtures=../evidence/target-aware-bpa-2026-10-02
 for fixture in real-secondary non-pisot-strict gf-actual; do
     case "$fixture" in
         real-secondary) key=1/02/202 ;;

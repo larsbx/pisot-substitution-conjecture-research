@@ -8,7 +8,7 @@ balanced-pair graph from the three swap seeds (cap 20000 states), and reports
 the maximum discrepancy over reachable states.  Independent Python oracle for
 the canonical Mojo kernel kernel/swap_discrepancy_census.mojo.  Finite evidence
 only; see
-docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md.
+sources/issue-45/g1b1-bounded-discrepancy-reconstruction.md.
 """
 import sys, time
 sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[2] / 'reference'))

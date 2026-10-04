@@ -84,7 +84,7 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "LatticeLift": (T, "the degree-2 integral lattice lifting certificate", "docs/c4-degree2-lattice-lift.md", ("MeanAreaLift",), ()),
     # --- Level-2 gate ------------------------------------------------------------------
     "G1b1BoundedDiscrepancy": (T, "all reachable swap-state prefix-difference walks are uniformly bounded",
-                               "docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md; manuscript Theorem 4.4; PR #69", (), ()),
+                               "sources/issue-45/g1b1-bounded-discrepancy-reconstruction.md; manuscript Theorem 4.4; PR #69", (), ()),
     "G1b2RenewalFiniteness": (P, "only finitely many realizable irreducible balanced pairs occur inside the established discrepancy bound",
                               "open conjectural gate; manuscript Level-2 open problem; issue #44", ("G1b1BoundedDiscrepancy",), ()),
     "G1FromRenewal": (T, "G1b-1 and G1b-2 together give finite BPA", f"{MANUSCRIPT}, Proposition 4.11", ("G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"), ()),

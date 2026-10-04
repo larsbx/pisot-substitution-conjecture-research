@@ -17,7 +17,7 @@ This review asks whether that construction is already known, which of its
 hypotheses survive the transfer, and which known families break it.
 
 No PDF snapshots were imported for this review, so there is nothing under
-`docs/source-imports/` to cite. The entries under [Sources](#sources) are
+`sources/` to cite. The entries under [Sources](#sources) are
 bibliographic references to standard literature, not verified snapshots.
 
 ## Decision

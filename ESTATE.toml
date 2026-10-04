@@ -98,6 +98,22 @@ authority = "contract"
 required = true
 current = ["schemas"]
 
+# Recorded run outputs, verbatim; each packet pins its files in SHA256SUMS (tests/test_recorded_data_integrity.py).
+[[plane]]
+id = "evidence"
+target = "evidence"
+authority = "evidence"
+required = true
+current = ["evidence"]
+
+# Imported external sources and their provenance, verbatim; SHA256SUMS where bytes are imported.
+[[plane]]
+id = "sources"
+target = "sources"
+authority = "pinned_external"
+required = true
+current = ["sources"]
+
 [[plane]]
 id = "conformance"
 target = "tests"

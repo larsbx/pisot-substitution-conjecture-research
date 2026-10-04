@@ -13,7 +13,7 @@ segment of a swap walk starting at 0.  Hence
 
 for every state T at depth n below the seed (ab, ba).  The bound
 ``swap_walk_sup`` is what the bounded-discrepancy theorem
-(docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md)
+(sources/issue-45/g1b1-bounded-discrepancy-reconstruction.md)
 proves to be uniformly bounded in n; this module only evaluates it exactly.
 """
 

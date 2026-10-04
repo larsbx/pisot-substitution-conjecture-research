@@ -389,7 +389,7 @@ necessary.
 ## Sources
 
 No PDF snapshots were imported for this review, so there is nothing under
-`docs/source-imports/` to cite. The entries below are bibliographic references
+`sources/` to cite. The entries below are bibliographic references
 to standard literature, not verified snapshots: they were written without access
 to the published record, so volume, year and page details must be checked
 against it when each is pinned, and no ledger may cite one until that is done.

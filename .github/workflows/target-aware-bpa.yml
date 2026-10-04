@@ -9,7 +9,7 @@ on:
       - 'kernel/tests/test_target_packets.mojo'
       - 'kernel/pixi.*'
       - 'docs/target-aware-bpa*.md'
-      - 'docs/evidence/target-aware-bpa-2026-10-02/**'
+      - 'evidence/target-aware-bpa-2026-10-02/**'
       - 'tests/test_target_packet_evidence.py'
       - '.github/workflows/target-aware-bpa.yml'
   pull_request:

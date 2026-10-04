@@ -28,7 +28,7 @@ naive version, and — the question that turned out to matter — whether the st
 it serves is the next one.
 
 No PDF snapshots were imported for this review, so there is nothing under
-`docs/source-imports/` to cite. The entries under [Sources](#sources) are
+`sources/` to cite. The entries under [Sources](#sources) are
 bibliographic references to standard literature, not verified snapshots.
 
 ## Decision

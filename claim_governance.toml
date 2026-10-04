@@ -18,7 +18,7 @@ name = "larsbx/pisot-substitution-conjecture-research"
 [scan]
 prose = ["README.md", "docs/**/*.md", "manuscripts/*.tex", "manuscripts/*.md"]
 source = ["kernel/psc/**/*.mojo", "kernel/*.mojo", "kernel/tests/*.mojo", "reference/psc_research/*.py"]
-exclude = ["archive/**", "docs/source-imports/**"]
+exclude = ["archive/**", "sources/**"]
 
 # ---------------------------------------------------------------------------
 # Status vocabulary: docs/claim-status-and-source-map-2026-09-13.md section

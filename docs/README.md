@@ -114,12 +114,12 @@ These are reference/index additions only. They do not establish #84, #138,
 - `galois-aux-b-source-resolution-2026-09-13.md` — separates the historical
   degree-three seed theorem, the reconstructed degree-two carrier theorem, and
   open concentration.
-- `source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md` —
+- `../sources/issue-45/g1b1-bounded-discrepancy-reconstruction.md` —
   self-contained proof replacing dependence on the unrecovered contraction
   estimate.
-- `source-imports/issue-45/realization-coincidence-rank-audit.md` — G0–G6
+- `../sources/issue-45/realization-coincidence-rank-audit.md` — G0–G6
   decomposition of the open realization bridge.
-- `source-imports/issue-45/p1a-concentration-aux-b-program.md` and
+- `../sources/issue-45/p1a-concentration-aux-b-program.md` and
   `p1a-v34-concentration-audit.md` — preserved formulation and inheritance
   audits, not proofs of concentration.
 

@@ -206,7 +206,7 @@ The closest construction and exact transfer boundary are:
   [“Algorithm for determining pure pointedness of self-affine tilings”](https://arxiv.org/abs/1003.2898),
   especially equation (4.2) and Theorem 4.1;
 - the repository's claim-level source record at
-  docs/source-imports/issue-84/README.md.
+  sources/issue-84/README.md.
 
 Canterini–Siegel supplies the established prefix-suffix address language:
 V. Canterini and A. Siegel,

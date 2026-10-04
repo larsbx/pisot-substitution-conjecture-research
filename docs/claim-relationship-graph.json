@@ -274,7 +274,7 @@
       "statement": "all reachable swap-state prefix-difference walks are uniformly bounded",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md; manuscript Theorem 4.4; PR #69"
+      "source": "source: sources/issue-45/g1b1-bounded-discrepancy-reconstruction.md; manuscript Theorem 4.4; PR #69"
     },
     {
       "id": "G1b2RenewalFiniteness",

@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MATRIX_PATH = ROOT / "docs" / "p1b-strict-zipper-transfer-matrix.json"
+MATRIX_PATH = ROOT / "schemas" / "p1b-strict-zipper-transfer-matrix.json"
 NOTE_PATH = ROOT / "docs" / "p1b-strict-zipper-literature-gate-2026-09-21.md"
 
 

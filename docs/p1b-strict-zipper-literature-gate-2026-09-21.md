@@ -36,7 +36,7 @@ The standing class permits (|det M|>1). Accordingly:
 | Barge (2018) | The special combinatorics of (\beta)-substitutions for Pisot (\beta) | A non-unit-capable proof that pure discrete spectrum can be obtained by exploiting a class-specific quotient/geometric mechanism | Not a general theorem for all irreducible Pisot substitutions and not a generic periodic-address hitting lemma |
 
 The machine-readable version is in
-`docs/p1b-strict-zipper-transfer-matrix.json`; its regression test rejects
+`schemas/p1b-strict-zipper-transfer-matrix.json`; its regression test rejects
 silent removal of the unit/unimodular and class-specific hypotheses.
 
 ## 3. Ito–Rao: useful dictionary, non-transferable closure step
