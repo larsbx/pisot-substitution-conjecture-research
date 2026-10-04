@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def _catalogue():
     return tomllib.loads(
-        (ROOT / "catalogues/mathematical_objects.toml").read_text(encoding="utf-8")
+        (ROOT / "docs/catalogues/mathematical_objects.toml").read_text(encoding="utf-8")
     )
 
 

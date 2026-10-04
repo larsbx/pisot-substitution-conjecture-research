@@ -14,7 +14,7 @@ Python under `src/psc_research/` is a secondary reference/oracle and prototyping
 
 The generated [mathematical-object catalogue](docs/mathematical-object-catalogue.md)
 provides a browsable taxonomy with explicit canonical-Mojo and independent-oracle
-links. Its single machine-readable source is `catalogues/mathematical_objects.toml`.
+links. Its single machine-readable source is `docs/catalogues/mathematical_objects.toml`.
 
 Censuses, catalogues and the taxonomies of the objects they classify are built
 on one shared library (`mojo/psc/corpus.mojo`, `histogram.mojo`, `carrier.mojo`,

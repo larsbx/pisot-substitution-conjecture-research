@@ -6,7 +6,7 @@ the section matching the question you are asking.
 
 For definitions and implementation authority, use the generated
 [`mathematical-object-catalogue.md`](mathematical-object-catalogue.md). Its
-single structured source is `../catalogues/mathematical_objects.toml`; edit the
+single structured source is `catalogues/mathematical_objects.toml`; edit the
 TOML and regenerate rather than hand-editing the Markdown.
 
 ## Current status

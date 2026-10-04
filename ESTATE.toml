@@ -113,13 +113,13 @@ authority = "repository_tooling"
 required = true
 current = ["tools", "scripts"]
 
-# catalogues/mathematical_objects.toml is the single source of docs/mathematical-object-catalogue.md.
+# docs/catalogues/mathematical_objects.toml is the single source of docs/mathematical-object-catalogue.md.
 [[plane]]
 id = "docs"
 target = "docs"
 authority = "exposition"
 required = true
-current = ["docs", "catalogues", "README.md", "ARCHITECTURE.md", "AGENTS.md", "CONTRIBUTING.md"]
+current = ["docs", "README.md", "ARCHITECTURE.md", "AGENTS.md", "CONTRIBUTING.md"]
 
 [[plane]]
 id = "publication"
@@ -177,5 +177,4 @@ next = [
   "proof: PscVerif/ -> proof/PscVerif/, tla/ -> proof/tla/",
   "reference: src/ -> reference/",
   "tooling: scripts/ -> tools/",
-  "docs: catalogues/ -> docs/catalogues/",
 ]

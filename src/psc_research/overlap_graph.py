@@ -16,7 +16,7 @@ mojo/psc/overlap_seed_patch.mojo.
 This module is deliberately retained as a separately written oracle. It is
 not an alternative production implementation and must not be cited as the
 executable source of truth. The implementation-role constants below are
-checked against ``catalogues/mathematical_objects.toml``.
+checked against ``docs/catalogues/mathematical_objects.toml``.
 """
 from __future__ import annotations
 

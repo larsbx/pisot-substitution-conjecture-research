@@ -246,7 +246,7 @@ These do not matter for wall clock and do matter for what can be run at all.
    `scripts/check_vendored_sync.py`. Editing them here fails CI; the route is a
    PR to FMK, then re-copy and re-pin.
 4. **Governance.** A new module needs an entry in
-   `catalogues/mathematical_objects.toml` (regenerate with
+   `docs/catalogues/mathematical_objects.toml` (regenerate with
    `scripts/make_math_catalogue.py`) and a test reaching a
    `require_claim`/`require_contract` declaration, or the coverage check fails.
 5. **An optimisation must not change a verdict.** Every census here reports
