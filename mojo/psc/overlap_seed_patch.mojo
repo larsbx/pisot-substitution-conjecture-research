@@ -394,7 +394,7 @@ def nonproductive_overlap_states(a: SeedOverlapAutomaton) raises -> List[Int]:
             out.append(i)
     return out^
 
-def _first_depths(a: SeedOverlapAutomaton, target: List[Bool]) raises -> List[Int]:
+def first_depths(a: SeedOverlapAutomaton, target: List[Bool]) raises -> List[Int]:
     """Shortest number of inflations from each vertex to a target vertex, `-1` if none.
 
     Reverse breadth-first search from the target vertices; fails closed on a
@@ -435,7 +435,7 @@ def first_coincidence_depths(a: SeedOverlapAutomaton) raises -> List[Int]:
     var target = List[Bool]()
     for i in range(a.size()):
         target.append(a.states[i].is_coincidence())
-    return _first_depths(a, target)
+    return first_depths(a, target)
 
 
 def first_left_aligned_depths(a: SeedOverlapAutomaton) raises -> List[Int]:
@@ -447,7 +447,7 @@ def first_left_aligned_depths(a: SeedOverlapAutomaton) raises -> List[Int]:
     var target = List[Bool]()
     for i in range(a.size()):
         target.append(a.states[i].shift.is_zero())
-    return _first_depths(a, target)
+    return first_depths(a, target)
 
 
 def strong_coincidence_depth(

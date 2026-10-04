@@ -30,7 +30,7 @@ recurrent vertex. All signs are exact (`cached_sign`); a capped graph raises.
 
 from finite_linear_algebra.mat3 import Mat3, identity3
 from psc.bpa import substitution_incidence
-from psc.overlap_obstruction import _has_cycle, overlap_sccs
+from psc.overlap_obstruction import recurrent_sccs
 from psc.overlap_seed_patch import (
     OverlapState,
     SeedOverlapAutomaton,
@@ -169,10 +169,8 @@ struct OneTileVerdict(Copyable, Movable, Writable):
 def _recurrent_nonzero(a: SeedOverlapAutomaton) raises -> List[Int]:
     """Indices of the recurrent vertices of `a` with nonzero offset."""
     var out = List[Int]()
-    var comps = overlap_sccs(a)
+    var comps = recurrent_sccs(a)
     for c in range(len(comps)):
-        if not _has_cycle(a, comps[c]):
-            continue
         for k in range(len(comps[c])):
             if not a.states[comps[c][k]].shift.is_zero():
                 out.append(comps[c][k])

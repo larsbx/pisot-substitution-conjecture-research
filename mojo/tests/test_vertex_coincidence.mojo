@@ -4,7 +4,7 @@
 from std.testing import assert_equal, assert_true
 from psc.claim_tests import require_contract
 from psc.corpus import Specimen, image_words_up_to, pip_corpus, screened_triples
-from psc.overlap_obstruction import _has_cycle, overlap_sccs
+from psc.overlap_obstruction import recurrent_sccs
 from psc.overlap_seed_patch import build_seed_overlap_graph_from_tables, build_seed_overlap_tables
 from psc.periodic_pair import centre_offset, interior_occurrences
 from psc.vertex_coincidence import box_radii, build_box_graph, decide_vertex_coincidence, decide_vertex_coincidence_from
@@ -84,11 +84,9 @@ def test_seed_graph_cycles_lie_in_the_box_graph() raises:
     var members = Dict[String, Bool]()
     for i in range(box.size()):
         members[String(box.states[i])] = True
-    var comps = overlap_sccs(seed)
+    var comps = recurrent_sccs(seed)
     var recurrent = 0
     for c in range(len(comps)):
-        if not _has_cycle(seed, comps[c]):
-            continue
         for k in range(len(comps[c])):
             recurrent += 1
             assert_true(String(seed.states[comps[c][k]]) in members)

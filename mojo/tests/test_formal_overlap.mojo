@@ -3,7 +3,7 @@
 from std.testing import assert_equal, assert_false, assert_true
 from psc.claim_tests import require_contract
 from psc.formal_overlap import aligned_pair_depth, recurrent_coincidence_free_sccs, survey_formal_overlaps
-from psc.overlap_obstruction import overlap_sccs
+from psc.overlap_obstruction import recurrent_sccs
 from psc.vertex_coincidence import build_box_graph
 from psc.overlap_seed_patch import OverlapState, build_seed_overlap_graph_from_tables, build_seed_overlap_tables
 
@@ -80,17 +80,12 @@ def test_aligned_remainder_is_bounded_by_the_six_aligned_pairs() raises:
 def _box_recurrent_states(sigma: List[List[Int]]) raises -> Dict[OverlapState, Bool]:
     """Non-coincidence vertices on cycles of the Proposition V box graph."""
     var a = build_box_graph(build_seed_overlap_tables(sigma))
-    var comps = overlap_sccs(a)
+    var comps = recurrent_sccs(a)
     var out = Dict[OverlapState, Bool]()
     for c in range(len(comps)):
-        var cyclic = len(comps[c]) > 1
-        if len(comps[c]) == 1:
-            for k in range(len(a.adj[comps[c][0]])):
-                cyclic = cyclic or a.adj[comps[c][0]][k] == comps[c][0]
-        if cyclic:
-            for k in range(len(comps[c])):
-                if not a.states[comps[c][k]].is_coincidence():
-                    out[a.states[comps[c][k]]] = True
+        for k in range(len(comps[c])):
+            if not a.states[comps[c][k]].is_coincidence():
+                out[a.states[comps[c][k]]] = True
     return out^
 
 

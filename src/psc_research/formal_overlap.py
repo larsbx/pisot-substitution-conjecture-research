@@ -8,10 +8,9 @@ inflation; a carrier is a recurrent SCC of it with coincidences deleted.
 With q(t) the sum of |sigma_k(t)|^2 over the two contracting embeddings and
 rho the largest contracting modulus, the region q(t) <= T^2 is forward closed
 and contains every cycle once T >= max_c sqrt q(c) / (1 - rho). This oracle
-bounds each q(c) by a binary search on exact signs in Q(beta), where the
-canonical kernel uses rational interval enclosures; the two regions differ,
-and carriers do not depend on T once the region covers every cycle, so
-agreement is also a check of that. Every
+bounds each q(c) by a binary search on exact signs in Q(beta). The canonical
+kernel seeds from Proposition V's box instead; carriers do not depend on the
+region once it covers every cycle, so agreement is also a check of that. Every
 quantity is an exact rational: rho from Sturm bisection, T rounded up to a
 multiple of 1/64, membership as an exact sign in Q(beta), and the w-box from
 the trace-dual basis by Cauchy--Schwarz.

@@ -21,11 +21,9 @@ from std.sys import argv
 from parallel_fold.map_fold import parallel_map_fold
 from psc.corpus import (
     Specimen,
-    TOTAL_LENGTH_CAP,
     arithmetic_regime,
+    corpus_for,
     image_words_up_to,
-    pip_corpus,
-    pip_corpus_total_length,
     screened_triples,
 )
 from psc.vertex_coincidence import decide_vertex_coincidence
@@ -130,9 +128,7 @@ def main() raises:
     var args = argv()
     var mode = String(args[1]) if len(args) > 1 else String("")
     var corpus = List[Specimen]()
-    if mode == "total":
-        corpus = pip_corpus_total_length(TOTAL_LENGTH_CAP)
-    elif mode == "len4":
+    if mode == "len4":
         if len(args) != 4 and len(args) != 5:
             raise Error("usage: len4 START END [records]")
         var full = screened_triples(image_words_up_to(4), 12)
@@ -144,7 +140,7 @@ def main() raises:
         for s in range(start, end):
             corpus.append(full[s].copy())
     else:
-        corpus = pip_corpus()
+        corpus = corpus_for(mode)
 
     def one(s: Int) {corpus} -> VertexCensus:
         return evaluate(s, corpus[s])

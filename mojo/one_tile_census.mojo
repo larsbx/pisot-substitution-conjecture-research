@@ -28,7 +28,7 @@ corpus: a falsification test of the trichotomy of §5.6b on a larger domain.
 
 from std.sys import argv
 from parallel_fold.map_fold import parallel_map_fold
-from psc.corpus import Specimen, TOTAL_LENGTH_CAP, pip_corpus, pip_corpus_total_length
+from psc.corpus import Specimen, corpus_for
 from psc.one_tile import catch_up_free, level_is_valuation, one_tile, two_sided
 
 comptime WORKERS = 4
@@ -95,7 +95,7 @@ def merge(a: OneTileCensus, b: OneTileCensus) -> OneTileCensus:
 
 def main() raises:
     var args = argv()
-    var corpus = pip_corpus_total_length(TOTAL_LENGTH_CAP) if len(args) > 1 and String(args[1]) == "total" else pip_corpus()
+    var corpus = corpus_for(String(args[1]) if len(args) > 1 else String(""))
 
     def one(s: Int) {corpus} -> OneTileCensus:
         var out = OneTileCensus()

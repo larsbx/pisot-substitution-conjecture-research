@@ -21,37 +21,13 @@ of the contracting size) is refuted in §5.2 of that note.
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
 from psc.one_tile import catch_up_free, in_image_lattice
-from psc.overlap_obstruction import overlap_sccs
+from psc.overlap_obstruction import recurrent_sccs
 from psc.overlap_seed_patch import SeedOverlapAutomaton, SeedOverlapTables, build_seed_overlap_tables
 from psc.perron_field3 import CubicElt
-from psc.vertex_coincidence import build_box_graph
+from psc.vertex_coincidence import build_box_graph, length_matrix, offset_vector
 
 
 comptime NU_INFINITY = -1
-
-
-def _length_matrix(tables: SeedOverlapTables) raises -> Mat3:
-    """Columns are the tile lengths in the basis `1, beta, beta^2`."""
-    var e = List[Int]()
-    for r in range(3):
-        for a in range(3):
-            var l = tables.lengths.at(a)
-            e.append(l.a0 if r == 0 else (l.a1 if r == 1 else l.a2))
-    return Mat3(e^)
-
-
-def offset_vector(lengths: Mat3, t: CubicElt) raises -> List[Int]:
-    """The integral `w` with `t = <ell, w>`; raises if `t` is not in `<ell, Z^3>`."""
-    var d = lengths.det()
-    if d == 0:
-        raise Error("tile lengths are linearly dependent")
-    var u = lengths.adjugate().apply([t.a0, t.a1, t.a2])
-    var w = List[Int]()
-    for k in range(3):
-        if u[k] % d != 0:
-            raise Error("offset is not an integral combination of tile lengths")
-        w.append(u[k] // d)
-    return w^
 
 
 def m_valuation(m: Mat3, w: List[Int]) raises -> Int:
@@ -104,17 +80,11 @@ def _recurrent_closure(a: SeedOverlapAutomaton) raises -> List[Bool]:
     """Vertices reachable from a vertex lying on a cycle."""
     var mark = List[Bool](length=a.size(), fill=False)
     var queue = List[Int]()
-    var comps = overlap_sccs(a)
+    var comps = recurrent_sccs(a)
     for c in range(len(comps)):
-        var cyclic = len(comps[c]) > 1
-        if len(comps[c]) == 1:
-            var v = comps[c][0]
-            for k in range(len(a.adj[v])):
-                cyclic = cyclic or a.adj[v][k] == v
-        if cyclic:
-            for k in range(len(comps[c])):
-                mark[comps[c][k]] = True
-                queue.append(comps[c][k])
+        for k in range(len(comps[c])):
+            mark[comps[c][k]] = True
+            queue.append(comps[c][k])
     var head = 0
     while head < len(queue):
         var v = queue[head]
@@ -165,7 +135,7 @@ def valuation_ascent(sigma: List[List[Int]]) raises -> ValuationAscentVerdict:
     if a.capped:
         raise Error("valuation ascent: box graph capped, no verdict")
     var m = Mat3(substitution_incidence(sigma))
-    var lengths = _length_matrix(tables)
+    var lengths = length_matrix(tables)
     var nu = List[Int]()
     for v in range(a.size()):
         nu.append(m_valuation(m, offset_vector(lengths, a.states[v].shift)))

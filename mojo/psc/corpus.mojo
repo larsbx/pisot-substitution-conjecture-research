@@ -159,6 +159,15 @@ def pip_corpus_total_length(max_total: Int) raises -> List[Specimen]:
     return screened_triples(image_words_up_to(max_total - (ALPHABET - 1)), max_total)
 
 
+def corpus_for(mode: String) raises -> List[Specimen]:
+    """The census domain a driver's first argument selects: `total` gives the
+    specimens of total image length at most `TOTAL_LENGTH_CAP`; anything else
+    (no argument, or a trailing flag such as `records`) the standing corpus."""
+    if mode == "total":
+        return pip_corpus_total_length(TOTAL_LENGTH_CAP)
+    return pip_corpus()
+
+
 def report_progress(done: Int, stride: Int = PROGRESS_STRIDE):
     """One `progress:` line every `stride` specimens, for long censuses."""
     if done % stride == 0:

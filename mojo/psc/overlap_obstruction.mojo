@@ -119,7 +119,8 @@ def overlap_sccs(a: SeedOverlapAutomaton) raises -> List[List[Int]]:
     return out^
 
 
-def _has_cycle(a: SeedOverlapAutomaton, comp: List[Int]) -> Bool:
+def has_cycle(a: SeedOverlapAutomaton, comp: List[Int]) -> Bool:
+    """An SCC carries a cycle: it has two vertices or a self-loop."""
     if len(comp) > 1:
         return True
     if len(comp) == 0:
@@ -129,6 +130,16 @@ def _has_cycle(a: SeedOverlapAutomaton, comp: List[Int]) -> Bool:
         if a.adj[v][j] == v:
             return True
     return False
+
+
+def recurrent_sccs(a: SeedOverlapAutomaton) raises -> List[List[Int]]:
+    """The SCCs of `a` that carry a cycle (the recurrent part)."""
+    var all = overlap_sccs(a)
+    var out = List[List[Int]]()
+    for k in range(len(all)):
+        if has_cycle(a, all[k]):
+            out.append(all[k].copy())
+    return out^
 
 
 def nonproductive_sink_sccs(a: SeedOverlapAutomaton) raises -> List[List[Int]]:
@@ -162,7 +173,7 @@ def nonproductive_sink_sccs(a: SeedOverlapAutomaton) raises -> List[List[Int]]:
     var out = List[List[Int]]()
     for k in range(len(all)):
         ref comp = all[k]
-        if len(comp) == 0 or not _has_cycle(a, comp):
+        if len(comp) == 0 or not has_cycle(a, comp):
             continue
 
         var member = List[Bool]()
