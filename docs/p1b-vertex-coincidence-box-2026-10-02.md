@@ -660,6 +660,48 @@ trichotomy therefore reduces PPVC to two statements, neither proved:
 T1 and T2 together with the mass lemma give PPVC, hence BH
 (`formal-productivity-reduction-2026-10-04.md`) and G1.
 
+### 5.6d A non-Archimedean local mechanism for T2 fails (exact census)
+
+In the catch-up-free class levels are M-adic valuations (P′), so the
+non-Archimedean analogue of §5.2's refuted contracting-size descent is the
+natural local candidate. Write `nu(w) = max{k : w in M^k Z^3}` for the
+offset vector of a vertex.
+
+*Valuation ascent* (VA): every nonzero-offset descendant of a recurrent
+vertex has a child of offset zero or of strictly larger valuation. Nonzero
+offsets of the box graph are finitely many, so `nu` is bounded on them by
+some `K_0`, and VA would give T2 within `K_0 + 1` levels. When `|det M| = 2`
+and every proper prefix is in the nontrivial class, a child through indices
+`(p, q)` lies in `M Z^3` exactly when `p, q` are both zero or both positive;
+then `nu(w') = 1 + nu(w + e)` with `M e` the prefix difference, so VA is a
+cancellation condition modulo `M^(nu(w) + 1)`.
+
+`mojo/valuation_ascent_census.mojo` (kernel `psc.valuation_ascent`) decides
+VA exactly on the box graph of every catch-up-free specimen of the standing
+corpus:
+
+| | count |
+| --- | --- |
+| catch-up-free specimens | 210 |
+| nonzero-offset descendants of recurrent vertices | 126,396 |
+| one-step VA failures | 57,540 |
+| specimens where one-step VA holds | 0 |
+| failures by valuation | `0:23184 1:15984 2:9456 3:4212 4:2640 5:1488 6:516 7:60` |
+| specimens by `K_0` | `3:6 4:72 5:54 6:66 7:12` |
+| specimens by largest ascent depth | `3:6 4:24 5:36 6:18 7:6 8:42 9:18 10:24 11:18 12:6 14:12` |
+
+VA fails on every specimen. The failures at `nu = 0` are vertices with no
+child whose two indices are both positive; the rest are spread over every
+valuation. The ascent depth (least depth to offset zero or larger valuation)
+reaches 14, at the scale of `K_V` itself, so a k-step variant would only
+restate PPVC. `tests/test_valuation_ascent.mojo` pins
+`0 -> 1, 1 -> 22, 2 -> 012`: 368 of 826 vertices fail, ascent depth 14,
+`K_0 = 6`.
+
+So neither Archimedean nor non-Archimedean size decreases locally. With §5.6
+this places T2 where the rest of this note places PPVC: in exact interleaving
+of the two hierarchies, which needs a non-local argument.
+
 ### 5.7 The closing target, restated
 
 The box graph is the carry automaton of the Dumont–Thomas numeration of
