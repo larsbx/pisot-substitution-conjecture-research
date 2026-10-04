@@ -106,14 +106,16 @@ struct OneTileVerdict(Copyable, Movable, Writable):
     var recurrent: Int
     var in_cu: Int
     var reach_cu: Int
+    var short: Int  # vertices not reaching CU whose nonzero forward closure has <= 2 vertices
 
     def __init__(out self):
         self.recurrent = 0
         self.in_cu = 0
         self.reach_cu = 0
+        self.short = 0
 
     def write_to[W: Writer](self, mut w: W):
-        w.write("recurrent=", self.recurrent, " in_cu=", self.in_cu, " reach_cu=", self.reach_cu)
+        w.write("recurrent=", self.recurrent, " in_cu=", self.in_cu, " reach_cu=", self.reach_cu, " short=", self.short)
 
 
 def _recurrent_nonzero(a: SeedOverlapAutomaton) raises -> List[Int]:
@@ -191,9 +193,29 @@ def _reaches_cu(a: SeedOverlapAutomaton, mark: List[Int]) -> List[Bool]:
     return good^
 
 
+def _short_closure(a: SeedOverlapAutomaton, v: Int) -> Bool:
+    """The nonzero-offset forward closure of `v` (itself included) has at most
+    two vertices: `v` is a fixed point or lies on a 2-cycle of the inflation,
+    with every other child at offset zero."""
+    var seen: List[Int] = [v]
+    var head = 0
+    while head < len(seen):
+        var x = seen[head]
+        head += 1
+        for j in range(len(a.adj[x])):
+            var y = a.adj[x][j]
+            if a.states[y].shift.is_zero() or y in seen:
+                continue
+            if len(seen) == 2:
+                return False
+            seen.append(y)
+    return True
+
+
 def one_tile_from(tables: SeedOverlapTables, a: SeedOverlapAutomaton) raises -> OneTileVerdict:
     """Count the recurrent non-offset-zero vertices of the box graph `a` that lie
-    in CU and that have a descendant in CU."""
+    in CU, that have a descendant in CU, and, among those that have none, the
+    short ones (`_short_closure`)."""
     if a.capped:
         raise Error("one-tile analysis is undefined on a capped graph")
     var mark = _cu_marks(tables, a)
@@ -206,6 +228,8 @@ def one_tile_from(tables: SeedOverlapTables, a: SeedOverlapAutomaton) raises -> 
             v.in_cu += 1
         if good[rec[k]]:
             v.reach_cu += 1
+        elif _short_closure(a, rec[k]):
+            v.short += 1
     return v^
 
 
@@ -245,11 +269,11 @@ def two_sided(sigma: List[List[Int]]) raises -> TwoSidedVerdict:
     """Per recurrent vertex: can it reach a catch-up at a left endpoint (CU of
     `sigma`) or at a right endpoint (CU of the mirror, through the vertex map
     `(a, b, t) -> (a, b, l_a - l_b - t)`)? Mirroring `x -> -x` maps the
-    children of a pair to the children of its image, but the box graph stops at
-    left-aligned vertices, and the mirror's stops at the images of the
-    right-aligned ones, so the two recurrent parts differ (Tribonacci: 14 and
-    8). Each side is searched up to its own first hit; a recurrent vertex whose
-    image is missing from the mirror's box graph raises."""
+    children of a pair to the children of its image, so the recurrent parts
+    correspond; but offset zero is not counted and mirroring exchanges left-
+    and right-aligned vertices, so the nonzero counts differ (Tribonacci: 14
+    and 8), hence the per-vertex map. A recurrent vertex whose image is
+    missing from the mirror's box graph raises."""
     var tables = build_seed_overlap_tables(sigma)
     var a = build_box_graph(tables)
     var mtables = build_seed_overlap_tables(mirror(sigma))
