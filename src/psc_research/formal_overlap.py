@@ -2,108 +2,169 @@
 
 A potential overlap is a state (i, j, t) of ``overlap_graph.OverlapGraph``
 with t = sum_a w_a l_a, w in Z^3, not required to be reachable from a seed.
-The formal graph closes every potential overlap of a box |w_a| <= R_a under
+The formal graph closes the potential overlaps of a contraction region under
 inflation; a carrier is a recurrent SCC of it with coincidences deleted.
 
-Every recurrent state satisfies |t(z)| <= max_c |c(z)| / (1 - |z|) for each
-contracting conjugate z (c ranging over prefix-position differences) and
-|t(beta)| < l_max, so a box covering that region contains every carrier.
-The box is chosen in floating point with its own slack, independently of the
-canonical kernel; carriers do not depend on the box once it covers the
-region, so agreement with a differently sized canonical box is a check of
-that independence. Seeds are further restricted to the forward-closed region
-|t(z)| <= T_z (1 + eps), again with a tolerance of its own. Every predicate is exact over Q(beta).
+With q(t) the sum of |sigma_k(t)|^2 over the two contracting embeddings and
+rho the largest contracting modulus, the region q(t) <= T^2 is forward closed
+and contains every cycle once T >= max_c sqrt q(c) / (1 - rho). This oracle
+bounds the digits by the triangle inequality, q(c) <= 2 (sum_i |c_i| rho^i)^2,
+a looser bound than the canonical kernel's; carriers do not depend on T once
+the region covers every cycle, so agreement is also a check of that. Every
+quantity is an exact rational: rho from Sturm bisection, T rounded up to a
+multiple of 1/64, membership as an exact sign in Q(beta), and the w-box from
+the trace-dual basis by Cauchy--Schwarz.
 
 Canonical implementation: mojo/psc/formal_overlap.mojo.
 """
 from __future__ import annotations
 
-import cmath
 import itertools
 import math
 from collections import deque
 from dataclasses import dataclass
+from fractions import Fraction
 from typing import Mapping, Sequence
 
 from psc_research.overlap_graph import Elt, OverlapGraph
+from psc_research.pip_screen import _changes, _sturm
 
 IMPLEMENTATION_ROLE = "independent-oracle"
 CANONICAL_IMPLEMENTATION = "mojo/psc/formal_overlap.mojo"
 
-BOX_SLACK = 1.25
-REGION_TOLERANCE = 1e-5
+DENOMINATOR = 64
 
 
-def _roots(T: int, U: int, D: int) -> list[complex]:
-    """Roots of x^3 - T x^2 + U x - D by Durand--Kerner iteration."""
-    f = lambda x: ((x - T) * x + U) * x - D
-    zs = [complex(0.4, 0.9) ** k for k in range(3)]
-    for _ in range(500):
-        zs = [z - f(z) / math.prod(z - w for w in zs if w is not z) for z in zs]
-    return zs
+def _ceil(x: Fraction) -> int:
+    return -((-x.numerator) // x.denominator)
 
 
-def _at(x: Elt, z: complex) -> complex:
-    return float(x[0]) + float(x[1]) * z + float(x[2]) * z * z
-
-
-def _box_bounds(m: list[list[float]], b: list[float]) -> list[float]:
-    """`sum_k |inv(m)[a][k]| b_k` per coordinate `a`, the inverse by Cramer's rule."""
-    det = lambda a: (a[0][0] * (a[1][1] * a[2][2] - a[1][2] * a[2][1])
-                     - a[0][1] * (a[1][0] * a[2][2] - a[1][2] * a[2][0])
-                     + a[0][2] * (a[1][0] * a[2][1] - a[1][1] * a[2][0]))
-    d = det(m)
-    out = []
-    for a in range(3):
-        total = 0.0
-        for k in range(3):
-            col = [[(float(r == k) if c == a else m[r][c]) for c in range(3)] for r in range(3)]
-            total += abs(det(col) / d) * b[k]
-        out.append(total)
-    return out
+def _ceil_sqrt(x: Fraction) -> int:
+    """The least integer n >= 0 with n^2 >= x."""
+    n = math.isqrt(max(_ceil(x), 0))
+    return n if n * n >= x else n + 1
 
 
 class FormalGraph(OverlapGraph):
-    """The inflation closure of every potential overlap in a covering box."""
+    """The inflation closure of every genuine potential overlap of the region."""
 
-    def __init__(self, sigma: Mapping[int, Sequence[int]], slack: float = BOX_SLACK, max_states: int = 400000):
-        self.slack = slack
+    def __init__(self, sigma: Mapping[int, Sequence[int]], max_states: int = 400000):
         super().__init__(sigma, max_states=max_states)
 
-    def box(self) -> list[int]:
+    # -- exact field quantities -------------------------------------------
+    def _trace(self, x: Elt) -> Fraction:
+        T, U = self.F.T, self.F.U
+        return 3 * x[0] + T * x[1] + (T * T - 2 * U) * x[2]
+
+    def _norm(self, x: Elt) -> Fraction:
         F = self.F
-        zs = _roots(F.T, F.U, F.D)
-        beta = max(zs, key=lambda z: z.real if abs(z.imag) < 1e-9 else -math.inf).real
-        contracting = [z for z in zs if abs(z - beta) > 1e-9 and z.imag >= -1e-12]
-        digits = {F.sub(self.prefix[(j, b)], self.prefix[(i, a)])
+        cols = [x, F.mul(F.beta, x), F.mul(F.beta, F.mul(F.beta, x))]
+        m = [[cols[c][r] for c in range(3)] for r in range(3)]
+        return (m[0][0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1])
+                - m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0])
+                + m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]))
+
+    def _beta_box(self, width: Fraction = Fraction(1, 2 ** 40)) -> tuple[Fraction, Fraction]:
+        F = self.F
+        lo, hi = F.lo, F.hi
+        while hi - lo > width:
+            mid = (lo + hi) / 2
+            lo, hi = (mid, hi) if F.f(mid) < 0 else (lo, mid)
+        return lo, hi
+
+    def _abs_upper(self, x: Elt) -> Fraction:
+        lo, hi = self.beta
+        return abs(x[0]) + abs(x[1]) * hi + abs(x[2]) * hi * hi
+
+    def _q(self, x: Elt) -> Elt:
+        """q(x) as an element of Q(beta)."""
+        F = self.F
+        if not any(x):
+            return F.zero
+        if self.complex_pair:
+            n = self._norm(x)
+            return F.mul((2 * n, Fraction(0), Fraction(0)), F.inv(x))
+        x2 = F.mul(x, x)
+        return F.sub((self._trace(x2), Fraction(0), Fraction(0)), x2)
+
+    def _rho_upper(self) -> Fraction:
+        F = self.F
+        if self.complex_pair:
+            rho2 = abs(Fraction(F.D)) / self.beta[0]
+        else:
+            chain = _sturm([Fraction(-F.D), Fraction(F.U), Fraction(-F.T), Fraction(1)])
+            count = lambda a, b: _changes(chain, a) - _changes(chain, b)
+            boxes, rho2 = [(Fraction(-1), Fraction(1))], Fraction(0)
+            assert count(Fraction(-1), Fraction(1)) == 2, "two contracting real roots expected"
+            while boxes:
+                a, b = boxes.pop()
+                n = count(a, b)
+                if n == 0:
+                    continue
+                if n == 1 and max(a * a, b * b) < 1:
+                    rho2 = max(rho2, a * a, b * b)
+                    continue
+                m = (a + b) / 2
+                assert F.f(m) != 0
+                boxes += [(a, m), (m, b)]
+        k = _ceil_sqrt(rho2 * 2 ** 40)
+        assert k < 2 ** 20, "contracting modulus bound is not below one"
+        return Fraction(k, 2 ** 20)
+
+    def region(self) -> None:
+        F = self.F
+        T, U, D = F.T, F.U, F.D
+        b, c, d = -T, U, -D
+        self.complex_pair = 18 * b * c * d - 4 * b ** 3 * d + b * b * c * c - 4 * c ** 3 - 27 * d * d < 0
+        self.beta = self._beta_box()
+        rho = self._rho_upper()
+        digits = {F.sub(self.prefix[(j, y)], self.prefix[(i, x)])
                   for i in (1, 2, 3) for j in (1, 2, 3)
-                  for a in range(len(self.sigma[i])) for b in range(len(self.sigma[j]))}
-        rows = [[_at(l, beta).real for l in self.l]]
-        bounds = [max(_at(l, beta).real for l in self.l)]
-        self.region = []
-        for z in contracting:
-            assert abs(z) < 1, "formal box requires contracting conjugates"
-            threshold = max(abs(_at(d, z)) for d in digits) / (1 - abs(z))
-            self.region.append((z, threshold * (1 + REGION_TOLERANCE)))
-            rows.append([_at(l, z).real for l in self.l]); bounds.append(threshold)
-            if abs(z.imag) > 1e-9:
-                rows.append([_at(l, z).imag for l in self.l]); bounds.append(threshold)
-        assert len(rows) == 3
-        return [math.ceil(self.slack * r) + 1 for r in _box_bounds(rows, bounds)]
+                  for x in range(len(self.sigma[i])) for y in range(len(self.sigma[j]))}
+        dmax = max(abs(e[0]) + abs(e[1]) * rho + abs(e[2]) * rho * rho for e in digits)
+        self.a = _ceil_sqrt(2 * dmax * dmax * DENOMINATOR ** 2 / (1 - rho) ** 2)
+        self.t2 = Fraction(self.a * self.a, DENOMINATOR ** 2)
+        gram = [[self._trace(F.mul(li, lj)) for lj in self.l] for li in self.l]
+        inv = _inverse(gram)
+        lmax = max(self._abs_upper(l) for l in self.l)
+        self.radii = []
+        for a in range(3):
+            dual = F.zero
+            for k in range(3):
+                dual = F.add(dual, tuple(inv[a][k] * e for e in self.l[k]))
+            q_dual = 2 * (abs(dual[0]) + abs(dual[1]) * rho + abs(dual[2]) * rho * rho) ** 2
+            self.radii.append(_ceil(lmax * self._abs_upper(dual)) + _ceil_sqrt(self.t2 * q_dual) + 1)
+
+    def in_region(self, t: Elt) -> bool:
+        F = self.F
+        return F.sign(F.sub((self.t2, Fraction(0), Fraction(0)), self._q(t))) >= 0
 
     def seeds(self) -> list[tuple[int, int, Elt]]:
         F = self.F
-        self.box_radii = self.box()
+        self.region()
         out = []
-        for w in itertools.product(*(range(-r, r + 1) for r in self.box_radii)):
+        for w in itertools.product(*(range(-r, r + 1) for r in self.radii)):
             t = F.zero
             for a in range(3):
                 t = F.add(t, tuple(w[a] * c for c in self.l[a]))
-            if any(abs(_at(t, z)) > bound for z, bound in self.region):
-                continue
-            out.extend(s for s in ((i, j, t) for i in (1, 2, 3) for j in (1, 2, 3)) if self.overlaps(s))
+            genuine = [s for s in ((i, j, t) for i in (1, 2, 3) for j in (1, 2, 3)) if self.overlaps(s)]
+            if genuine and self.in_region(t):
+                out += genuine
         self.seed_set = set(out)
         return out
+
+
+def _inverse(m: list[list[Fraction]]) -> list[list[Fraction]]:
+    """Gauss--Jordan inverse of a 3x3 rational matrix."""
+    a = [[Fraction(x) for x in row] + [Fraction(int(i == j)) for j in range(3)] for i, row in enumerate(m)]
+    for c in range(3):
+        p = next(r for r in range(c, 3) if a[r][c] != 0)
+        a[c], a[p] = a[p], a[c]
+        a[c] = [x / a[c][c] for x in a[c]]
+        for r in range(3):
+            if r != c and a[r][c] != 0:
+                a[r] = [x - a[r][c] * y for x, y in zip(a[r], a[c])]
+    return [row[3:] for row in a]
 
 
 def _sccs(adj: list[list[int]]) -> list[list[int]]:
@@ -167,9 +228,9 @@ class Carrier:
     death: int
 
 
-def carriers(sigma: Mapping[int, Sequence[int]], slack: float = BOX_SLACK) -> tuple[list[Carrier], int]:
+def carriers(sigma: Mapping[int, Sequence[int]]) -> tuple[list[Carrier], int]:
     """The formal carriers of sigma, sorted, and the formal nonproductive-state count."""
-    f = FormalGraph(sigma, slack)
+    f = FormalGraph(sigma)
     r = OverlapGraph(sigma)
     if f.capped or r.capped:
         raise RuntimeError("capped graph: no verdict")
