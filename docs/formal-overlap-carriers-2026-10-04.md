@@ -58,12 +58,17 @@ with `c` a difference of two prefix positions.
    `{q <= T'^2, |t(beta)| < l_max}` for any `T' > T` and repeats a state. The
    repeated segment is a nonproductive cycle, which lies in `K_T` by 2.
 
-The kernel is exact. `q(t)` is an element of `Q(beta)` (`Tr(t^2) - t^2` for a
-real contracting pair, `2N(t)/t` for a complex pair), so membership in `K_T`
-is one exact sign at the Perron root. `rho`, `T` and the enumeration box are
-rational upper bounds: Sturm isolation or `|chi_0|/beta`, `T = A/64`, and the
-trace-dual basis with Cauchy–Schwarz,
-`|w_a| = |Tr(t l*_a)| <= l_max |l*_a(beta)| + T sqrt q(l*_a)`.
+Seeding. `q(t)` is an element of `Q(beta)` (`Tr(t^2) - t^2` for a real
+contracting pair, `2N(t)/t` for a complex pair), so membership in `K_T` is one
+exact sign at the Perron root; the independent oracle seeds from `K_T` that
+way, with `rho` from Sturm isolation or `|chi_0|/beta` and the enumeration
+box from the trace-dual basis by Cauchy–Schwarz,
+`|w_a| = |Tr(t l*_a)| <= l_max |l*_a(beta)| + T sqrt q(l*_a)`. The canonical
+kernel instead seeds from Proposition V's box
+(`p1b-vertex-coincidence-box-2026-10-02.md` §2), which also contains every
+cycle vertex. By items 2–3 and 5 the carriers, their depths and the
+nonproductivity verdict do not depend on the choice; the earlier receipts were
+produced with `K_T` seeding in the kernel; the box-seeded rerun is pending.
 
 ## 3. Census
 
@@ -157,37 +162,32 @@ short remainder: after offset zero only three fixed states remain.
 None of this is a universal theorem: a clean corpus is finite evidence, and
 the region argument only makes the census complete per specimen.
 
-## 6. Refactors flagged (2026-10-04)
+## 6. Refactors (flagged and applied 2026-10-04)
 
 Found while connecting this work to `p1b-vertex-coincidence-box-2026-10-02.md`.
-None changes a result; none is done yet.
+Every affected regression passes unchanged; the box-seeded census rerun
+(refactor 1) is pending.
 
-1. **Two covering constructions.** `psc.formal_overlap.formal_region` and
-   `psc.vertex_coincidence.box_radii` / `box_start_states` both compute an
-   exact region containing every cycle vertex. Carriers do not depend on the
-   choice, so the formal survey could seed from `build_box_graph` and keep
-   `K_T` only for the forward-closure argument (§2, items 1 and 5).
-2. **Field arithmetic in four places.** `trace`, `norm`, `_det3_int`
-   (`formal_overlap`), `_trace`, `_inverse3` (`vertex_coincidence`, over `Q`),
-   `field_norm`, `discriminant` (`overlap_contracting`): one cubic-field module.
-3. **Recurrent-SCC detection in five places.** `overlap_obstruction._has_cycle`,
-   `formal_overlap.recurrent_coincidence_free_sccs`,
-   `valuation_ascent._recurrent_closure`, `one_tile._recurrent_nonzero` and a
-   test helper: one public `recurrent_sccs(a, keep)`.
-4. **A private import.** `formal_overlap` imports `_first_depths` from
-   `overlap_seed_patch`; make `first_depths(a, target)` public.
-5. **Offset/vector conversion twice.** `valuation_ascent.offset_vector` (t → w)
-   and `vertex_coincidence._offset` (w → t).
-6. **Corpus selection by argument** repeated in `one_tile_census`,
-   `valuation_ascent_census` and `vertex_coincidence_census`: a corpus helper.
-7. **Corpus re-screening in a script (rule violation).**
-   `scripts/check_formal_overlap_receipts.py` re-screens the PIP corpus;
-   `AGENTS.md` forbids it. Use `psc_research.pip_screen.pip_corpus()`.
-8. **Oracle helpers.** `src/psc_research/formal_overlap.py` re-implements SCCs
-   and depth BFS that `overlap_obstruction.py` / `overlap_graph.py` already
-   provide in the oracle layer. Independence from Mojo does not require
-   duplication inside the oracle layer.
-9. **Oracle cost.** The exact oracle's triangle-inequality region makes
-   real-pair specimens slow; the stride-150 receipt check exceeded two hours.
-   A tighter oracle bound or a label-only sample is needed for routine runs.
-
+1. **Two covering constructions.** The formal survey seeds from Proposition
+   V's `box_radii` / `box_start_states`; its own exact `K_T` region code is
+   removed from the kernel (`K_T` stays the proof device and the oracle's
+   region).
+2. **Field arithmetic.** The `Q[x]/(chi)` helpers, `field_norm`,
+   `discriminant` and the Cauchy bound live in `psc/field3.mojo` under public
+   names; `overlap_contracting`, `vertex_coincidence` and `depth_law` no
+   longer import private helpers.
+3. **Recurrent-SCC detection.** One public `recurrent_sccs` and `has_cycle` in
+   `overlap_obstruction`, used by `formal_overlap`, `valuation_ascent`,
+   `one_tile`, `vertex_coincidence`, `overlap_recurrence`,
+   `vertex_excess_census` and the tests.
+4. **`first_depths`** is public in `overlap_seed_patch`.
+5. **Offset conversion.** `offset_of` (w → t), `length_matrix` and
+   `offset_vector` (t → w) live together in `vertex_coincidence`.
+6. **Corpus selection.** `psc.corpus.corpus_for` serves the one-tile,
+   valuation-ascent and vertex-coincidence census drivers.
+7. **Corpus re-screening.** The receipt checker takes the corpus from
+   `pip_screen.pip_corpus()`.
+8. **Oracle helpers.** The oracle reuses the oracle layer's `sccs` and
+   `first_depths`.
+9. **Oracle cost.** The oracle bounds each `q(c)` by binary search on exact
+   signs: real-pair specimen `1 5 20` drops from about 7 minutes to 42 s.

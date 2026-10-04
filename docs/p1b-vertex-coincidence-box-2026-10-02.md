@@ -660,6 +660,26 @@ trichotomy therefore reduces PPVC to two statements, neither proved:
 T1 and T2 together with the mass lemma give PPVC, hence BH
 (`formal-productivity-reduction-2026-10-04.md`) and G1.
 
+*Falsification test on a larger domain (exact census).*
+`pixi run one-tile-census total` surveys the 24,486 specimens of total image
+length at most 8 (104 minutes on 4 workers):
+
+| | count |
+| --- | --- |
+| recurrent vertices (nonzero offset) | 7,796,496 |
+| in `CU` / reach `CU` | 3,129,864 / 7,362,240 |
+| specimens failing Q1 / totally | 1,326 / 654 |
+| catch-up-free specimens, all failing Q1 totally | 654 |
+| total failures not catch-up-free | 0 |
+| P′ (to depth 5) iff catch-up-free, mismatches | 0 |
+| Q1-failing vertices outside the catch-up-free class / short periodic | 1,572 / 1,572 |
+| trichotomy exceptions | 0 |
+
+The trichotomy, and the observation that every total failure is
+catch-up-free, survive on a domain about five times the standing corpus.
+Right endpoints again rescue nothing: every Q1-failing specimen fails at both
+endpoints.
+
 ### 5.6d A non-Archimedean local mechanism for T2 fails (exact census)
 
 In the catch-up-free class levels are M-adic valuations (P′), so the
@@ -690,6 +710,10 @@ corpus:
 | specimens by `K_0` | `3:6 4:72 5:54 6:66 7:12` |
 | specimens by largest ascent depth | `3:6 4:24 5:36 6:18 7:6 8:42 9:18 10:24 11:18 12:6 14:12` |
 
+On the 24,486 specimens of total image length at most 8 the class has 654
+members, and VA again holds on none: 311,952 of 605,280 vertices fail, at
+every valuation 0..7, with ascent depth up to 25.
+
 VA fails on every specimen. The failures at `nu = 0` are vertices with no
 child whose two indices are both positive; the rest are spread over every
 valuation. The ascent depth (least depth to offset zero or larger valuation)
@@ -719,7 +743,10 @@ it forces `s_1 = 0`, a Z letter. The converse is the same computation.
 
 `psc.valuation_ascent.lemma_e_shape` decides the shape, and
 `valuation_ascent_census.mojo` checks it against `catch_up_free` on every
-`|det M| = 2` specimen. On the standing corpus the 210 catch-up-free specimens
+`|det M| = 2` specimen: 0 mismatches on the 1,926 of the standing corpus and
+the 12,672 of total length at most 8. On the standing
+corpus all 210 catch-up-free specimens have `|det M| = 2`; whether all 654 of
+total length at most 8 do is being recounted in Mojo (pending). On the standing corpus the 210 catch-up-free specimens
 split by (number of E letters, number of length-1 images) as `(2, 0): 156`,
 `(2, 1): 36`, `(1, 1): 12`, `(1, 0): 6`. With two E letters the hierarchy is
 read off a parity: a cut is a level-0 vertex iff an odd number of E letters
