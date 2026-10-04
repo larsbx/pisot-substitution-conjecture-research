@@ -117,7 +117,7 @@ inflation of a finite set of overlaps that contains every overlap with
 - **Verdict.** The closure is `build_overlap_graph_from_seeds`, and offset-zero
   reachability is `first_left_aligned_depths`, both the exact kernels of
   `psc.overlap_seed_patch`. A capped closure is reported as capped.
-- **Cross-check.** An uncommitted floating-point oracle builds the box from
+- **Cross-check.** A floating-point oracle (`box2.py` in `archive/2026-10-04/session-probes/`, re-run output saved there) builds the box from
   approximate eigenvectors with a different bound and start set. The
   recurrent part (non-coincidence vertices on cycles) and its deepest first
   left-aligned depth do not depend on the start set. They agree exactly with
@@ -155,8 +155,8 @@ unimodular complex pair 1:48 2:3858 3:13266 4:9912 5:3822 6:960 7:252 8:30
 8:3540 9:2874 10:3744 11:5598 12:3648 13:1242 14:1098 15:1068 16:516 17:156
 18:108 19:72 20:24 22:84 23:228 24:180 25:132 26:24. Unimodular specimens
 still have `K_V <= 9`, apart from 12 at `K_V = 14`, matching the
-plastic-number class of the standing corpus. The uncommitted
-floating-point oracle of §3 reproduces the standing-corpus row
+plastic-number class of the standing corpus. The
+floating-point oracle of §3 (`oracle_total.py`, archived) reproduces the standing-corpus row
 independently: no failure, 1,174,788 recurrent vertices in total, at most
 2,676 per specimen, deepest recurrent depth 17.
 
@@ -185,8 +185,9 @@ manuscript Proposition 5.47; the balanced-pair builds already certify G1
 there directly. The recorded runs give the same statement for total image
 length at most 8, where Remark 3 of the depth note already gives G1, and for
 images of length at most 4. In the last domain, 121,320 specimens lie in
-neither of the other two (count by the uncommitted floating-point PIP
-screen); for them the recorded run is, as far as this repository records,
+neither of the other two. That count comes from a floating-point PIP screen,
+`len4_rest.py` (archived, re-run: 135,990 PIP specimens, of which 4554 are
+standing and 14,670 have total length at most 8). for them the recorded run is, as far as this repository records,
 the only evidence of G1, and it is not CI-guarded. Everywhere the census adds
 the periodic-pair statement for **all** `r`, not only the seed-reachable
 part, and the uniform depth `K_V`.
@@ -219,7 +220,7 @@ spectrum already implies there.
 
 ### 5.2 Mechanisms the data rules out (exploratory)
 
-An uncommitted floating-point miner was run on the box graphs of the three
+A floating-point miner (`mine.py`, `mine2.py`, archived with outputs) was run on the box graphs of the three
 named specimens. It searched for a local reason why every vertex reaches
 offset zero, because a provable local reason would close the problem. Three
 candidates fail.
@@ -283,7 +284,7 @@ number, the smallest Pisot number. Their complex conjugates have modulus
 
 Let `mu = max_k |sigma_k(beta)|` be the slowest contraction. For a complex
 pair, `mu^2 = abs(det M)/beta`, so a determinant above 1 slows contraction.
-Over the standing corpus (uncommitted floating-point oracle, which reproduces
+Over the standing corpus (floating-point oracle `law.py` with `law_stats.py`, archived; it reproduces
 the exact `K_V` of every specimen):
 
 - `K_V · log(1/mu)` lies in `[0.441, 3.164]`;
@@ -354,8 +355,8 @@ Result (3 min 48 s):
   `AGENTS.md` first, which has not been done.
 - An earlier draft of this section tabulated floating-point estimates of
   the envelope constant for each offset and extrapolated an equality beyond
-  the offsets shown. Those estimates came from an uncommitted script and are
-  withdrawn; the exact counts above replace them.
+  the offsets shown. Those estimates came from `uhan.py`, now archived with
+  its output, and are withdrawn; the exact counts above replace them.
 
 ### 5.5b Targeted search where contraction is slowest (exploratory sample)
 
@@ -400,7 +401,7 @@ give depth about `L = log(B/epsilon_0) / log(1/mu)`, where `B` is the largest
 contracting size on the recurrent part.
 
 The data rules this mechanism out. On a stride-7 sample of 651 corpus
-specimens (uncommitted oracle), `K_V − L` ranges from −33.75 to 5.00, and
+specimens (`mine3.py`, archived with output), `K_V − L` ranges from −33.75 to 5.00, and
 `K_V / L` from 0.32 to 2.56. For example, `0 -> 22, 1 -> 001, 2 -> 10` has
 `L ≈ 49.8` and `K_V = 16`. Hits happen long before the offset is small, by
 **exact cancellation**: `beta^m t` lands on a prefix difference
@@ -436,7 +437,8 @@ The 12-specimen outlier class of §5.4 is a model problem. Its box graph has
 74 recurrent vertices, and the deepest are all same-letter self-overlaps with
 offsets `±beta^{−k}`. For `0 -> 1, 1 -> 2, 2 -> 01`, `(0, 0, (1,1,−1))` has
 `t = beta^{−2}` and depth 14, `(1, 1, (−1,0,1))` has `t = beta^{−1}` and depth
-13, and `(2, 2, (1,0,0))` has `t = 1` and depth 12 (uncommitted oracle).
+13, and `(2, 2, (1,0,0))` has `t = 1` and depth 12 (`plastic.py`, archived
+with output; each also appears with the opposite sign).
 
 *Climb lemma (proved).* Let `(a, a, t)` be an overlap and let `c` be a letter
 of `sigma(a)`. If `beta |t| < ell_c`, then `(c, c, beta t)` is a child: the
@@ -794,6 +796,34 @@ outside that class it fails on specimens where PPVC holds. Tribonacci's 14
 recurrent vertices all reach an off-diagonal hit first and no diagonal one,
 and `0 -> 1, 1 -> 012, 2 -> 010` (694 vertices) does the same. Both are
 pinned in `tests/test_one_tile.mojo`.
+
+### 5.6d The session's scratch probes (archived)
+
+Every scratch probe run for §§3–5.6 is archived in
+`archive/2026-10-04/session-probes/` with its saved output and a fresh re-run of each. That covers 34
+Python files and 5 Mojo probes, `rerun.sh`, the session's census logs, and
+`SHA256SUMS`. The index there lists, for each probe, what it computes, its
+result, where the note uses it, and the committed driver that supersedes
+it. The Python probes are floating-point oracles, not certificates. The Mojo
+probes are exact, and `mojo/one_tile_anatomy.mojo` supersedes them. Every
+figure this note cites from a probe reproduces exactly on the re-run, in
+particular:
+
+- §3: 14/3, 1166/17 and 716/15;
+- §4: 1,174,788 recurrent vertices, at most 2,676 per specimen, deepest 17;
+- §5.5: `[0.441, 3.164]` and correlation 0.923;
+- §5.6: 651 specimens, `[−33.75, 5.00]` and `[0.32, 2.56]`;
+- §5.6a: 111 of 651, and the plastic depths 14/13/12;
+- §5.6c: all figures.
+
+Two archived results are not cited elsewhere in this note:
+
+- the withdrawn one-witness birth analysis (`birth3.py`): on the stride-7
+  sample, 61,854 of 149,412 recurrent vertices have a simultaneous birth as
+  the first hit along one minimal path;
+- the float Q1 prototype (`onetile_s.py`): on the same sample, 78,406 of
+  149,412 vertices are in `CU`, 135,266 reach it, and Q1 fails on 53 of 651
+  specimens. This is consistent with the exact census (360 of 4554).
 
 ### 5.7 The closing target, restated
 
