@@ -34,14 +34,14 @@ rho_j = tau_C^h | C_j
 
 has primitive incidence matrix.
 
-`src/psc_research/derived_dynamics.py` computes `h`, the cyclic classes, and these primitive power restrictions exactly.
+`reference/psc_research/derived_dynamics.py` computes `h`, the cyclic classes, and these primitive power restrictions exactly.
 
 ## 2. Perron eigenvalue of each power restriction
 
 For a strict closed component, the Parikh intertwiner already gives
 
 ```text
-P_C N_C = M_sigma P_C,
+P_C N_C = (M_sigma) P_C,
 rank(P_C)=3,
 rho(N_C)=beta.
 ```

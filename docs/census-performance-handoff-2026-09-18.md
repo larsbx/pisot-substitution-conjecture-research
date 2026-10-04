@@ -243,11 +243,11 @@ These do not matter for wall clock and do matter for what can be run at all.
    change to the evidence, not only to the runtime.
 3. **Vendored code is digest-checked.** `substitution_dynamics` and
    `finite_exact` come from `larsbx/finite-math-kernels` and are verified by
-   `scripts/check_vendored_sync.py`. Editing them here fails CI; the route is a
+   `tools/check_vendored_sync.py`. Editing them here fails CI; the route is a
    PR to FMK, then re-copy and re-pin.
 4. **Governance.** A new module needs an entry in
-   `catalogues/mathematical_objects.toml` (regenerate with
-   `scripts/make_math_catalogue.py`) and a test reaching a
+   `docs/catalogues/mathematical_objects.toml` (regenerate with
+   `tools/make_math_catalogue.py`) and a test reaching a
    `require_claim`/`require_contract` declaration, or the coverage check fails.
 5. **An optimisation must not change a verdict.** Every census here reports
    mathematical evidence. The pins are the mechanism that enforces it, and trap
@@ -264,7 +264,7 @@ sits in the working directory:
 pixi run mojo run -I . /path/to/probe.mojo
 ```
 
-with the repository's `mojo/` as the working directory. A probe does a prefix of
+with the repository's `kernel/` as the working directory. A probe does a prefix of
 a census's per-specimen work over the full corpus and prints one aggregate, so
 that consecutive probes differ by exactly one layer. The layers used above, in
 order: `pip_corpus()` alone; plus `build_seed_overlap_graph_from_tables`; plus

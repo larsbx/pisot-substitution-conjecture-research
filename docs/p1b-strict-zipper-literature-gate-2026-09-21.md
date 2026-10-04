@@ -6,13 +6,13 @@
 
 ## 1. Exact question and hypothesis firewall
 
-Let (sigma) be a primitive irreducible Pisot substitution with incidence matrix (M), Perron root (eta), and ordered prefix-digit set (F). For a bad closed recurrent overlap component (S) with no offset-zero vertex, a cycle of length (r) has an offset (w) satisfying
+Let (sigma) be a primitive irreducible Pisot substitution with incidence matrix (M), Perron root (\beta), and ordered prefix-digit set (F). For a bad closed recurrent overlap component (S) with no offset-zero vertex, a cycle of length (r) has an offset (w) satisfying
 [
- (I-M^r)w=sum_{k=0}^{r-1}M^{r-1-k}d_k,qquad d_kin F.
+ (I-M^r)w=\sum_{k=0}^{r-1}M^{r-1-k}d_k,\qquad d_k\in F.
 ]
 Thus its contracting representation is purely periodic. The required hit is
 [
- exists mge 0:quad M^m win P_m(i)-P_m(j),                 	ag{H}
+ \exists m\ge 0:\quad M^m w\in P_m(i)-P_m(j). \tag{H}
 ]
 where (P_m(a)) is the set of Parikh vectors of prefixes of (sigma^m(a)).
 
@@ -30,13 +30,13 @@ The standing class permits (|det M|>1). Accordingly:
 | --- | --- | --- | --- |
 | Ito–Rao (2006) | Irreducible **Pisot unit** substitution; Euclidean atomic surfaces; super-coincidence | Prefix-suffix graph-directed equations, the idea that coincidence is expressed as an intersection/equality of subtile pieces, and a model for turning digit expansions into geometric membership | The unit lattice, Euclidean-only contracting representation, and any implication that a periodic contracting address must hit a prefix-difference set in the non-unit case |
 | Barge–Kwapisz (2006) | **Unimodular** Pisot substitution; geometric realization through a hyperbolic toral automorphism/stable foliation | The distinction between geometric coincidence and pure discrete spectrum; the contrapositive picture in which persistent noncoincidence survives in a residual geometric object | The toral/lattice realization when (M) is not unimodular; Cor. 9.4 or Prop. 17.2 cannot be cited with the word “unimodular” deleted |
-| Akiyama–Lee (2011) | Repetitive primitive self-affine tiling, finite local complexity/representability, Meyer return set; overlap graph | The overlap algorithm and its completeness for deciding overlap coincidence; if coincidence fails, the residual noncoincident graph is Perron-critical (Theorem 4.1), explaining (ho(N_S)=eta) in dimension one | It detects a residual component but supplies no theorem forcing a particular periodic offset into (P_m(i)-P_m(j)); Perron-criticality is not a contradiction |
-| Minervino–Thuswaldner (2014) | Irreducible non-unit Pisot substitution with a fixed point; representation space built from contracting Archimedean places and finite places dividing ((eta)) | The correct adelic internal space, diagonal embedding, graph-directed Rauzy subtiles, compactness/local finiteness, and the non-Archimedean coordinates lost by Euclidean projection | A general coincidence theorem, property (F), exclusive tiling, or the pointwise hit (H). Their geometry repairs the ambient space, not the missing recurrence/coverage implication |
+| Akiyama–Lee (2011) | Repetitive primitive self-affine tiling, finite local complexity/representability, Meyer return set; overlap graph | The overlap algorithm and its completeness for deciding overlap coincidence; if coincidence fails, the residual noncoincident graph is Perron-critical (Theorem 4.1), explaining (\rho(N_S)=\beta) in dimension one | It detects a residual component but supplies no theorem forcing a particular periodic offset into (P_m(i)-P_m(j)); Perron-criticality is not a contradiction |
+| Minervino–Thuswaldner (2014) | Irreducible non-unit Pisot substitution with a fixed point; representation space built from contracting Archimedean places and finite places dividing ((\beta)) | The correct adelic internal space, diagonal embedding, graph-directed Rauzy subtiles, compactness/local finiteness, and the non-Archimedean coordinates lost by Euclidean projection | A general coincidence theorem, property (F), exclusive tiling, or the pointwise hit (H). Their geometry repairs the ambient space, not the missing recurrence/coverage implication |
 | Barge (2016) | Primitive, nonperiodic, Pisot inflation; injective on initial letters and constant on final letters | A genuine PDS theorem for a proper subclass, driven by special endpoint/branch structure | No transfer to arbitrary PIP substitutions or arbitrary strict-zipper SCCs lacking those endpoint hypotheses |
-| Barge (2018) | The special combinatorics of (eta)-substitutions for Pisot (eta) | A non-unit-capable proof that pure discrete spectrum can be obtained by exploiting a class-specific quotient/geometric mechanism | Not a general theorem for all irreducible Pisot substitutions and not a generic periodic-address hitting lemma |
+| Barge (2018) | The special combinatorics of (\beta)-substitutions for Pisot (\beta) | A non-unit-capable proof that pure discrete spectrum can be obtained by exploiting a class-specific quotient/geometric mechanism | Not a general theorem for all irreducible Pisot substitutions and not a generic periodic-address hitting lemma |
 
 The machine-readable version is in
-`docs/p1b-strict-zipper-transfer-matrix.json`; its regression test rejects
+`schemas/p1b-strict-zipper-transfer-matrix.json`; its regression test rejects
 silent removal of the unit/unimodular and class-specific hypotheses.
 
 ## 3. Ito–Rao: useful dictionary, non-transferable closure step
@@ -57,8 +57,8 @@ The importable part is structural:
 
 The obstruction is exactly the one issue #139 records. Unit norm makes the
 contracting realization Euclidean and keeps the relevant arithmetic module
-lattice-like. If (|N(eta)|=|det M|>1), multiplication by (eta) is not
-invertible on that lattice and finite places over primes dividing ((eta))
+lattice-like. If (|N(\beta)|=|det M|>1), multiplication by (\beta) is not
+invertible on that lattice and finite places over primes dividing ((\beta))
 carry missing information. The super-coincidence theorem therefore cannot be
 used as a non-unit hit-forcing result.
 
@@ -104,7 +104,7 @@ inflation rate exactly when overlap coincidence holds; otherwise the residual
 noncoincident part carries the full rate. In the present one-dimensional
 notation this validates, rather than contradicts,
 [
- ho(N_S)=eta
+ \rho(N_S)=\beta
 ]
 for the hard residual component.
 
@@ -123,11 +123,11 @@ no pointwise or uniform hit theorem.
 Minervino–Thuswaldner replace the incomplete Euclidean stable space by a
 representation space
 [
- K_sigma=K_infty	imes K_{mathrm{fin}},
+ K_\sigma=K_\infty\times K_{\mathrm{fin}},
 ]
 where (K_infty) contains the contracting Archimedean embeddings and
 (K_{mathrm{fin}}) contains the completions at prime ideals dividing
-((eta)). In this product multiplication by (eta) is contracting in
+((\beta)). In this product multiplication by (\beta) is contracting in
 every internal coordinate. Prefix expansions define compact Rauzy subtiles
 and admit graph-directed equations compatible with the substitution.
 
@@ -145,7 +145,7 @@ point.
 Barge's class theorems show two valid ways extra structure can close the gap:
 
 - endpoint rigidity (initial-letter injectivity and a common final letter);
-- the special quotient/combinatorics of (eta)-substitutions.
+- the special quotient/combinatorics of (\beta)-substitutions.
 
 Those mechanisms are positive controls. They are not properties of arbitrary
 PIP substitutions and must not be abstracted away as “Pisot inflation alone.”
@@ -199,7 +199,7 @@ does not discharge this obligation.
 - Euclidean contracting projection alone for (|det M|>1);
 - importing super-coincidence or geometric coincidence without unit or
   unimodular hypotheses;
-- treating (ho(N_S)=eta) as a contradiction;
+- treating (\rho(N_S)=\beta) as a contradiction;
 - adding collars, congruences, or cycle identities as another necessary layer
   without a completeness or uniformity theorem;
 - inferring a pointwise hit from an almost-everywhere tiling statement.
@@ -239,6 +239,6 @@ replayable under `AGENTS.md`.
    substitution tiling systems,” *Discrete and Continuous Dynamical Systems*
    36 (2016), 1159–1173.
    [arXiv:1403.7826](https://arxiv.org/abs/1403.7826).
-6. Marcy Barge, “The Pisot conjecture for (eta)-substitutions,”
+6. Marcy Barge, “The Pisot conjecture for (\beta)-substitutions,”
    *Ergodic Theory and Dynamical Systems* 38 (2018), 2009–2034.
    [arXiv:1505.04408](https://arxiv.org/abs/1505.04408).

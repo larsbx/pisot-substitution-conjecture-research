@@ -4,9 +4,9 @@
 
 **Mojo is the default and canonical implementation language for executable research code in this repository.**
 
-New algorithms, finite-state constructions, exact arithmetic kernels, census drivers, proof-support instrumentation, and performance-sensitive research tooling should be implemented in `mojo/` first.
+New algorithms, finite-state constructions, exact arithmetic kernels, census drivers, proof-support instrumentation, and performance-sensitive research tooling should be implemented in `kernel/` first.
 
-Python under `src/psc_research/` is a secondary oracle/prototyping layer. It may be used to:
+Python under `reference/psc_research/` is a secondary oracle/prototyping layer. It may be used to:
 
 - cross-check a Mojo implementation with an independently written reference;
 - generate small calibration fixtures or counterexamples;
@@ -34,60 +34,61 @@ Performance-sensitive code must be designed for Mojo rather than transliterated 
 
 ## The census library
 
-Every exhaustive census and catalogue in `mojo/` surveys the same object: the
+Every exhaustive census and catalogue in `kernel/` surveys the same object: the
 4,554 primitive irreducible Pisot substitutions on `{0,1,2}` with images of
 length at most three. That corpus, and the vocabulary for reporting on it, are
 first-class modules rather than something each driver rebuilds:
 
 | Module | Provides |
 | --- | --- |
-| `mojo/psc/corpus.mojo` | `Specimen`, the deterministic `image_words` order, `pip_corpus`, the shared state cap, the arithmetic regime of the incidence cubic |
-| `mojo/psc/histogram.mojo` | bounded exact histogram over integer keys; a key outside its capacity raises |
-| `mojo/psc/carrier.mojo` | the two edge facts that classify a recurrent noncoincident SCC (sink, strict carrier), per-state flags, boundary-synchronization lineage, replayable countermodels |
-| `mojo/psc/symmetry.mojo` | relabelling and reversal normal forms for words, pairs and substitutions |
-| `mojo/psc/defect_degree.mojo` | streaming `N4` and the first scattered-subword defect degree |
-| `mojo/psc/degree2_sieve.mojo` | the parity and trace necessary conditions on the incidence cubic |
-| `mojo/psc/degree3_taxonomy.mojo` | the degree-3 catalogue taxonomy and its summary lines |
+| `kernel/psc/corpus.mojo` | `Specimen`, the deterministic `image_words` order, `pip_corpus`, the shared state cap, the arithmetic regime of the incidence cubic |
+| `kernel/psc/histogram.mojo` | bounded exact histogram over integer keys; a key outside its capacity raises |
+| `kernel/psc/carrier.mojo` | the two edge facts that classify a recurrent noncoincident SCC (sink, strict carrier), per-state flags, boundary-synchronization lineage, replayable countermodels |
+| `kernel/psc/symmetry.mojo` | relabelling and reversal normal forms for words, pairs and substitutions |
+| `kernel/psc/defect_degree.mojo` | streaming `N4` and the first scattered-subword defect degree |
+| `kernel/psc/degree2_sieve.mojo` | the parity and trace necessary conditions on the incidence cubic |
+| `kernel/psc/degree3_taxonomy.mojo` | the degree-3 catalogue taxonomy and its summary lines |
 
 A census driver is then a survey: it walks `pip_corpus()` and folds per-specimen
 facts into histograms and counters. A new census should be written that way. Do
 not re-enumerate the image words, re-screen the corpus, re-derive sink or strict
 -carrier membership by scanning component edges, or hand-roll a histogram line.
 
-The same rule governs scripts. An executable computation belongs in `mojo/` with
-a driver and a regression test, not in `scripts/`. What remains under `scripts/`
-is the provenance and governance tooling plus the Python census oracles that
-cross-check a Mojo census in an independently written language; those are
-sanctioned by the oracle policy above. A Python script that is the *only*
+The same rule governs scripts. An executable computation belongs in `kernel/` with
+a driver and a regression test, not in `tools/`. What lives under `tools/`
+is the provenance and governance tooling; the Python census oracles that
+cross-check a Mojo census in an independently written language live under
+`oracles/python/`, sanctioned by the oracle policy above. A Python script that is the *only*
 implementation of a computation is a defect to be ported, and the ported script
 is then deleted rather than kept as a second source of truth.
 
 Exploratory searches are welcome but must be reproducible and must label
-themselves: a seeded generator (`mojo/psc/prng.mojo`) or a stated stride, an
+themselves: a seeded generator (`kernel/psc/prng.mojo`) or a stated stride, an
 explicit resource budget, and output that distinguishes an exhausted budget from
-a mathematical verdict (`mojo/psc/bounded_bpa.mojo`). Randomness may never enter
+a mathematical verdict (`kernel/psc/bounded_bpa.mojo`). Randomness may never enter
 a certificate, a census, or proof-support code.
 
 ## Vendored packages
 
-Four logical Mojo packages under `mojo/`, and the three Python packages under
+Four logical Mojo packages under `kernel/`, and the three Python packages under
 `tools/`, are vendored byte-for-byte from the single
 `larsbx/finite-math-kernels` monorepo and pinned to one commit by SHA-256
 digest in `vendored.toml`;
-`scripts/check_vendored_sync.py` enforces the pins in CI and in
-`scripts/verify_all.sh`. Do not patch a vendored file, add a file beside one,
+`tools/check_vendored_sync.py` enforces the pins in CI and in
+`tools/verify_all.sh`. Do not patch a vendored file, add a file beside one,
 or reintroduce a local copy of what a package provides: change the package
-upstream, re-vendor, and re-pin (`scripts/check_vendored_sync.py pin NAME
+upstream, re-vendor, and re-pin (`tools/check_vendored_sync.py pin NAME
 COMMIT`).
 
 | Package | Upstream | Provides | PSC-side layer |
 | --- | --- | --- | --- |
-| `mojo/finite_exact/` | `larsbx/finite-math-kernels` | unbounded `BigZ`, normalized `Q`, canonical bytes, closed rational intervals and rank-2 boxes; rejection is sticky | `mojo/psc/exact.mojo`: rejected consumer states raise/abort; Horner helpers, midpoint, diagnostic rendering |
-| `mojo/substitution_dynamics/` | `larsbx/finite-math-kernels` | words, substitutions, balanced pairs, automaton, discrepancy, tuning patterns, directive prefixes, and column coincidence over an explicit alphabet | `mojo/psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` remain thin alphabet-3 views |
-| `mojo/finite_linear_algebra/` | `larsbx/finite-math-kernels` | `Mat3`, generic RREF/rank/nullspace over `Q`, rank-three tensors, `W_3`, integer lifts, the M-adic ball carrier | `mojo/psc/w3.mojo` keeps the printed certificate basis; `psc/exact.mojo` re-exports lifts |
-| `mojo/parallel_fold/` | `larsbx/finite-math-kernels` | deterministic MAX-backed map/fold over an index range; index-order fold preserves sequential results for associative combines | `mojo/psc/parallel_census.mojo` keeps PSC evidence semantics, failure replay, and corpus-specific result records |
-| `tools/claim_governance/` | `larsbx/finite-math-kernels` (`audit/`) | the status-surface, terminology, promotion, numerics, and test-coverage audit | `claim_governance.toml` is the policy; its `[coverage]` table binds `mojo/tests/` to the ledger |
-| `tools/proof_records/` | `larsbx/finite-math-kernels` | proof records (kinds, identity, dependency closure) and the ledger generator | `scripts/make_ledger.py` holds the record table; `tla/ledger.json`, `tla/Ledger.tla`, the `tla/MCLedger*` models, `docs/ledger-index.md`, `docs/claim-relationship-graph.json`, and the generated `[[claim]]` block of `claim_governance.toml` are its outputs, never hand-edited |
+| `kernel/finite_exact/` | `larsbx/finite-math-kernels` | unbounded `BigZ`, normalized `Q`, canonical bytes, closed rational intervals and rank-2 boxes; rejection is sticky | `kernel/psc/exact.mojo`: rejected consumer states raise/abort; Horner helpers, midpoint, diagnostic rendering |
+| `kernel/substitution_dynamics/` | `larsbx/finite-math-kernels` | words, substitutions, balanced pairs, automaton, discrepancy, tuning patterns, directive prefixes, and column coincidence over an explicit alphabet | `kernel/psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` remain thin alphabet-3 views |
+| `kernel/finite_linear_algebra/` | `larsbx/finite-math-kernels` | `Mat3`, generic RREF/rank/nullspace over `Q`, rank-three tensors, `W_3`, integer lifts, the M-adic ball carrier | `kernel/psc/w3.mojo` keeps the printed certificate basis; `psc/exact.mojo` re-exports lifts |
+| `kernel/parallel_fold/` | `larsbx/finite-math-kernels` | deterministic MAX-backed map/fold over an index range; index-order fold preserves sequential results for associative combines | `kernel/psc/parallel_census.mojo` keeps PSC evidence semantics, failure replay, and corpus-specific result records |
+| `tools/claim_governance/` | `larsbx/finite-math-kernels` (`audit/`) | the status-surface, terminology, promotion, numerics, and test-coverage audit | `claim_governance.toml` is the policy; its `[coverage]` table binds `kernel/tests/` to the ledger |
+| `proof/tla/ProofArchitecture.tla` | `larsbx/finite-math-kernels` | generic alternative-dependency state machine, pinned as `proof_architecture`; copy with the matching ledger generator |
+| `tools/proof_records/` | `larsbx/finite-math-kernels` | proof records (kinds, identity, dependency closure) and the ledger generator | `tools/make_ledger.py` holds the record table; `proof/tla/ledger.json`, `proof/tla/Ledger.tla`, the `proof/tla/MCLedger*` models, `docs/ledger-index.md`, `docs/claim-relationship-graph.json`, and the generated `[[claim]]` block of `claim_governance.toml` are its outputs, never hand-edited |
 | `tools/oracle_refinement/` | `larsbx/finite-math-kernels` | a generator's declared input distribution, `φ_G`: the codomain every draw must satisfy, and per named class whether the corpus reaches it or misses it with a stated reason, both directions checked | `tools/corpus_refinement.py` declares `psc_research.pip_screen.pip_corpus()`, the domain every finite-domain claim is asserted for, and pins its digest |
 
 Integer, rational, and rational-interval arithmetic is therefore **not**
@@ -99,7 +100,7 @@ the arithmetic specification are in `docs/exact-arithmetic-binding.md`.
 
 The current C4 recognizability/factorization work is being migrated to this policy. The preferred order is:
 
-1. shared word/prefix and BPA primitives in `mojo/psc/`;
+1. shared word/prefix and BPA primitives in `kernel/psc/`;
 2. multi-level prefix ancestry and legal-context/tower primitives;
 3. derived substitution/address and orientation-aware birth events;
 4. relative hierarchy-offset state/transducer;
@@ -144,8 +145,8 @@ For new executable mathematical machinery, a PR should normally contain or depen
 
 ## Every test names what it guards
 
-A file under `mojo/tests/` ends its `main` with a declaration from
-`mojo/psc/claim_tests.mojo`: `require_claim("<Name>")` for each ledger claim
+A file under `kernel/tests/` ends its `main` with a declaration from
+`kernel/psc/claim_tests.mojo`: `require_claim("<Name>")` for each ledger claim
 in `claim_governance.toml` whose certificate rests on the contract the test
 pins, or `require_contract("<what it pins>")` when no ledger claim is the
 target, as for a vendored kernel. The `coverage` check of the vendored
@@ -156,7 +157,7 @@ finite computation, where a repository-proved claim also has a manuscript,
 a Lean proof, or an archived certificate behind it.
 
 The declaration is placed after the assertions it stands behind, because
-`mojo/run_tests.sh` collects the receipts of the tests that *passed* and the
+`kernel/run_tests.sh` collects the receipts of the tests that *passed* and the
 check credits nothing a run did not reach. A declaration is a link, not
 evidence: what the contract is, the assertions decide; that the claim follows
 from it, its own proof or certificate decides.

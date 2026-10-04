@@ -49,6 +49,8 @@ Generic Perron growth alone is insufficient: the residual real-overlap graph can
 
 UD and UD for powers are repository-proved consequences of full incidence rank / the defect theorem. They are not standing assumptions.
 
+The externally supplied `PSC_PROOF_v9.pdf` independently re-derives this part cleanly and also gives the useful local observation that UD for powers fixes the hierarchy inside a specified supertile. The extraction audit is recorded in `docs/v9-extraction-audit-2026-09-23.md`. No status change follows: the v9 predecessor-contraction / finite-BPA inference and universal cycle-exclusion claims are not imported.
+
 ### Bounded discrepancy
 
 G1b-1 is repository-proved by the PR #69 reconstruction using primitivity and the Pisot spectrum. It neither assumes unimodularity nor proves finite BPA.
@@ -68,6 +70,8 @@ G1b-1 bounded discrepancy [PROVED]
 => G1b-2 renewal finiteness [OPEN]
 => finite BPA (G1).
 ```
+
+G1 has a second sufficient premise: all-seed overlap productivity implies finite BPA by the overlap-depth route (manuscript Proposition 5.46; `docs/bpa-termination-by-overlap-depth-2026-10-02.md`, Proposition 1, a conditional theorem whose only open premise is that productivity).
 
 G1b-2 remains the exact missing theorem for finite BPA. The target is a realizability/renewal statement for labelled first-return words, not another bounded norm. Any contracting-address proof must handle non-unimodular substitutions and may not treat the stable projection of the integer module as a lattice.
 

@@ -4,7 +4,7 @@ The repository uses several complementary verification layers. No layer is allow
 
 ## 0. Canonical executable language
 
-**Mojo is the canonical executable implementation layer.** New algorithms, exact finite-state machinery, census drivers, and performance-sensitive theorem-support code should be implemented in `mojo/` first. Python is retained as an independent reference/oracle and prototyping layer, not as the default implementation surface.
+**Mojo is the canonical executable implementation layer.** New algorithms, exact finite-state machinery, census drivers, and performance-sensitive theorem-support code should be implemented in `kernel/` first. Python is retained as an independent reference/oracle and prototyping layer, not as the default implementation surface.
 
 This is also an optimization policy: hot kernels should be redesigned around Mojo's strengths rather than mechanically translated from Python. In the standing alphabet-3 regime, prefer fixed-dimension exact arithmetic, streaming prefix accumulators, precomputed substitution-local tables, compact integer-index graph representations, iterative traversals, and storage reuse. Diagnostic string serialization and Python-style dynamic object graphs should stay out of inner loops where an exact compact representation is available.
 
@@ -17,7 +17,7 @@ The detailed agent/review rules are in `AGENTS.md`.
 | State/dependency model | TLA+ / TLC | Does the finite automaton/model behave as claimed, and which proof conclusions are reachable from which assumptions? | BPA model checks and proof-dependency ledger |
 | Deductive finite algebra | Lean 4 + Mathlib | Do the formalized finite-algebra theorems follow? | seed/spectral algebra and axiom audit |
 
-Run the available layers with `scripts/verify_all.sh`. A missing toolchain must be reported as skipped, never converted into a vacuous pass.
+Run the available layers with `tools/verify_all.sh`. A missing toolchain must be reported as skipped, never converted into a vacuous pass.
 
 ## 1. What is proved versus computed
 
@@ -29,7 +29,7 @@ Lean currently formalizes the older finite spectral core, not the full C4 stack.
 
 ## 2. Mojo kernel and optimization policy
 
-The Mojo kernel uses exact integer/rational operations (unbounded `BigZ`-backed rationals and closed rational intervals from `mojo/finite_exact/`, vendored from one pinned `larsbx/finite-math-kernels` commit) for:
+The Mojo kernel uses exact integer/rational operations (unbounded `BigZ`-backed rationals and closed rational intervals from `kernel/finite_exact/`, vendored from one pinned `larsbx/finite-math-kernels` commit) for:
 
 - incidence and characteristic-polynomial arithmetic;
 - primitive / irreducible / Pisot screening;
@@ -60,7 +60,7 @@ Issue #2 tracks the remaining infrastructure step: make this exact screen the ca
 
 ## 3. Python reference/oracle layer
 
-`src/psc_research/` and `tests/` contain exact reference implementations for much of the live C4 reduction stack, including:
+`reference/psc_research/` and `tests/` contain exact reference implementations for much of the live C4 reduction stack, including:
 
 - sink-SCC and boundary-lineage tooling;
 - seven endpoint-map types and synchronization quotients;
@@ -80,7 +80,7 @@ The strong G/F synthetic artifact is important precisely because it prevents ove
 
 ## 4. TLA+ proof-dependency layer
 
-`ProofArchitecture.tla` is a generic dependency state machine (the same module as `proof_records/ProofArchitecture.tla` in `larsbx/finite-math-kernels`). A result can be discharged only when all prerequisites are already established; withdrawn results can never be discharged. `Ledger.tla` supplies the current mathematical dependency graph and is generated, together with one `MCLedger<Set>` model per assumption set, from the proof records tabulated in `scripts/make_ledger.py` (`tla/ledger.json`). Repository theorems are `ProvedDef`, imported theorems `ImportedDef` (established only by assumption, so a model that needs Barge–Štimac–Williams names it in its assumption set), withdrawn claims `WithdrawnDef`. Every generated model holds; a model's `Reachable` set states what its assumptions derive and its `<Name>NotEstablished` invariants what they do not, replacing the earlier configurations that demonstrated derivations through expected invariant violations.
+`ProofArchitecture.tla` is a generic dependency state machine (the same module as `proof_records/ProofArchitecture.tla` in `larsbx/finite-math-kernels`). A result can be discharged only when all prerequisites in one sufficient proof branch are already established; withdrawn results can never be discharged. `Ledger.tla` supplies the current mathematical dependency graph and is generated, together with one `MCLedger<Set>` model per assumption set, from the proof records tabulated in `tools/make_ledger.py` (`proof/tla/ledger.json`). Repository theorems are `ProvedDef`, imported theorems `ImportedDef` (established only by assumption, so a model that needs Barge–Štimac–Williams names it in its assumption set), withdrawn claims `WithdrawnDef`. Every generated model holds; a model's `Reachable` set states what its assumptions derive and its `<Name>NotEstablished` invariants what they do not, replacing the earlier configurations that demonstrated derivations through expected invariant violations.
 
 The dependency graph must encode **sufficiency**, not converse implications. The primary route is the G1-free overlap route,
 
@@ -90,7 +90,7 @@ OverlapProductivity + SwapOverlapFiniteness => CoincidenceDensityOne,
 CoincidenceDensityOne + DensityToPDSBridge (imported) => PDSOverlapRoute,
 ```
 
-checked in both directions by `MCLedgerOverlapGateAssumed` (reaches `PDSOverlapRoute`, asserts `PDS`, `G1`, `SCCProducer` not established) and by `MCLedgerOpen` / `MCLedgerImports` (assert `PDSOverlapRoute` not established). The finite-BPA route
+checked in both directions by `MCLedgerOverlapGateAssumed` (reaches `PDSOverlapRoute`, asserts `PDS`, `G1`, `SCCProducer` not established) and by `MCLedgerOpen` / `MCLedgerImports` (assert `PDSOverlapRoute` not established). The overlap-depth route `AllSeedOverlapProductivity + SwapOverlapFiniteness => G1OverlapRoute => G1` is checked by `MCLedgerAllSeedOverlapGateAssumed`: it reaches canonical `G1` and its downstream finite-BPA reductions, while `G1b2RenewalFiniteness` and `PDS` remain unestablished. The half-coincidence route `AllSeedStrictZipperExclusion + SwapOverlapFiniteness => G1HalfCoincidenceRoute` is a third alternative establishment of canonical `G1`, checked by `MCLedgerAllSeedStrictZipperGateAssumed` (reaches `G1`, asserts `PDS` and `OverlapProductivity` not established). Canonical `G1` declares `G1FromRenewal` OR `G1OverlapRoute` OR `G1HalfCoincidenceRoute` as sufficient proof branches through digest-bound `dependency_alternatives` evidence in its source record. AND remains the rule within each branch. Both `MCLedgerOpen` and `MCLedgerImports` still leave `G1` unestablished. The alternatives do not prove the open all-seed productivity or strict-zipper gates, #84, #138, #139, or PSC; G1 retains its open status. The generic record closure conservatively audits every branch, while the establishment fixpoint discharges any one branch. The finite-BPA route
 
 ```text
 C4 => C3-local => C2 => SCCProducer,

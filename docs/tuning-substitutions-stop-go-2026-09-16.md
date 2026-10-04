@@ -1,6 +1,6 @@
 # Tuning substitutions and column coincidence: targeted literature stop/go check
 
-**Status:** stop/go note under the review gate of `AGENTS.md`, dated 2026-09-16. It records the decision on how the three kernels that the finite-math-kernels pin of PR #102 adds to `mojo/substitution_dynamics/` (`tuning.mojo`, `sadic.mojo`, `coincidence.mojo`) may be used in this repository. It proves nothing, promotes no claim, and changes no ledger entry; `OverlapProductivity` and the Pisot substitution conjecture remain open.
+**Status:** stop/go note under the review gate of `AGENTS.md`, dated 2026-09-16. It records the decision on how the three kernels that the finite-math-kernels pin of PR #102 adds to `kernel/substitution_dynamics/` (`tuning.mojo`, `sadic.mojo`, `coincidence.mojo`) may be used in this repository. It proves nothing, promotes no claim, and changes no ledger entry; `OverlapProductivity` and the Pisot substitution conjecture remain open.
 
 ## Proposed claim or experiment
 
@@ -36,7 +36,7 @@ Do not transfer:
 
 ## Known negative controls and counterexamples
 
-- Thue–Morse (`0 -> 01`, `1 -> 10`): no column of any power is constant, and its spectrum has a continuous component (Queffélec, item 3). Pinned by `mojo/tests/test_tuning_kernels.mojo` as `found == False`, depth `-1`.
+- Thue–Morse (`0 -> 01`, `1 -> 10`): no column of any power is constant, and its spectrum has a continuous component (Queffélec, item 3). Pinned by `kernel/tests/test_tuning_kernels.mojo` as `found == False`, depth `-1`.
 - Period doubling (`0 -> 11`, `1 -> 10`), the DGP tuning of the period-two centre: coincidence at depth one in column zero; every tuning substitution has this property because both images share their prefix, so a depth-one witness on a tuning substitution carries no information beyond the definition.
 - The three-letter substitution `0 -> 01`, `1 -> 20`, `2 -> 21`: least depth two, columns `(0, 1)`, checking that the search does not stop at the first level.
 - A non-constant-length substitution (Fibonacci) is rejected by `column_coincidence`; a mixed-alphabet directive prefix is rejected by `compose` and `directive_composite`. Upstream also rejects it in `apply_directive` from the commit after the one pinned here; the pin will follow once that commit is on the monorepo's main branch, and the regression will then add that case.
@@ -45,7 +45,7 @@ Do not transfer:
 
 Proceed with a narrowed target.
 
-- The three modules are pinned and compiled by `pixi run test` through `mojo/tests/test_tuning_kernels.mojo`, which exercises the composition identity, DGP closure, the kneading prefix, and least-depth coincidence with the negative controls above.
+- The three modules are pinned and compiled by `pixi run test` through `kernel/tests/test_tuning_kernels.mojo`, which exercises the composition identity, DGP closure, the kneading prefix, and least-depth coincidence with the negative controls above.
 - Column coincidence may be cited in this repository only as the constant-length calibration of the coincidence vocabulary, outside the PIP regime. It is not a gate input and no ledger entry, status surface, or manuscript may cite it as evidence.
 - Dekking's theorem is not imported. Importing it requires the height kernel upstream and a claim-ledger entry of class `imported` with the primitivity, aperiodicity, and height hypotheses checked on the specimen.
 - The tuning and directive-prefix kernels stay unbound here; their consumer is NLAP-JT.

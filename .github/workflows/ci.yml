@@ -5,6 +5,24 @@ on:
   pull_request:
 
 jobs:
+  policy:
+    name: policy (estate layout)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Estate audit (pinned public artifact)
+        run: |
+          set -eu
+          rev=$(python3 -c 'import tomllib; print(next(d["rev"] for d in tomllib.load(open("ESTATE.toml", "rb"))["dep"] if d["id"] == "estate-governance"))')
+          pin=$(python3 -c 'import tomllib; print(next(d["pin"] for d in tomllib.load(open("ESTATE.toml", "rb"))["dep"] if d["id"] == "estate-governance"))')
+          test "$rev" = "0833929ed82d42cf3674a1565681625a9622827b"
+          curl --fail --location --proto '=https' --tlsv1.2 --output /tmp/estate-audit.py "https://raw.githubusercontent.com/larsbx/finite-math-kernels/4485675c1ed5da52beafad98c5118dc0ffc22456/policy/estate-audits/$rev.py"
+          printf '%s  %s\n' "${pin#sha256:}" /tmp/estate-audit.py | sha256sum --check --strict -
+          python3 /tmp/estate-audit.py --root .
+
   source-provenance:
     runs-on: ubuntu-latest
     steps:
@@ -15,7 +33,7 @@ jobs:
       - name: Install the pinned PDF parser used by the manuscript-source guard
         run: python -m pip install "pypdf==6.1.3"
       - name: Verify Issue 45 source snapshots and manuscript sources
-        run: ./scripts/verify_all.sh provenance
+        run: ./tools/verify_all.sh provenance
 
   python-tests:
     runs-on: ubuntu-latest
@@ -26,11 +44,11 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -U pip
       - run: pip install -e .[dev]
-      - run: python scripts/check_vendored_sync.py
-      - name: Generated ledger surfaces are current (tla/ledger.json, tla/Ledger.tla, models, index, claims)
-        run: python scripts/make_ledger.py --check
+      - run: python tools/check_vendored_sync.py
+      - name: Generated ledger surfaces are current (proof/tla/ledger.json, proof/tla/Ledger.tla, models, index, claims)
+        run: python tools/make_ledger.py --check
       - name: Generated mathematical-object catalogue is current
-        run: python scripts/make_math_catalogue.py --check
+        run: python tools/make_math_catalogue.py --check
       - name: Claim governance audit (claim_governance.toml)
         run: PYTHONPATH=tools python -m claim_governance.cli --root .
       - name: The oracle corpus matches its declared refinement
@@ -44,18 +62,25 @@ jobs:
       - name: Install pixi
         run: |
           set -o pipefail
-          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | PIXI_VERSION=v0.81.0 PIXI_NO_PATH_UPDATE=1 bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: SessionStart provisioning and real bare-Mojo activation regression
+        run: |
+          python -m pip install pytest
+          PSC_SESSION_START_REAL_PIXI="$HOME/.pixi/bin/pixi" python -m pytest tests/test_session_start.py
       - name: Canonical Mojo regression tests
-        working-directory: mojo
+        working-directory: kernel
         run: pixi run test
       - name: Every claim the policy requires guarded has a passing test (run receipts)
         run: PYTHONPATH=tools python3 -m claim_governance.cli --root . --check coverage
       - name: Certificate checks
-        working-directory: mojo
+        working-directory: kernel
         run: pixi run verify
       - name: Alphabet-3 census regression
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . census.mojo 2>&1) || status=$?
@@ -75,7 +100,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: C3 exact local census
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . c3_census.mojo 2>&1) || status=$?
@@ -107,7 +132,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: C4 exact endpoint-type sink-SCC census
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . c4_census.mojo 2>&1) || status=$?
@@ -145,7 +170,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact swap-discrepancy census (G1b-1 cross-check)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . swap_discrepancy_census.mojo 2>&1) || status=$?
@@ -166,7 +191,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact seed-patch overlap census (finite by theorem; productivity is evidence)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . swap_overlap_census.mojo 2>&1) || status=$?
@@ -203,7 +228,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact contracting-bound census (Proposition 5.42; finite evidence only)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . overlap_contracting_census.mojo 2>&1) || status=$?
@@ -230,7 +255,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Dumont-Thomas numeration against the fixed point (bounded experiment)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . automatic_route_census.mojo 2>&1) || status=$?
@@ -252,7 +277,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Addition automata over the corpus, verified on a bounded domain
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . numeration_addition_census.mojo 2>&1) || status=$?
@@ -276,7 +301,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Conversion automata over the corpus, and the letter map carried across them
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . numeration_conversion_census.mojo 2>&1) || status=$?
@@ -300,7 +325,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Strong coincidence by formula, against the overlap graph per pair
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . coincidence_formula_census.mojo 2>&1) || status=$?
@@ -315,6 +340,100 @@ jobs:
           grep -Fx 'specimens whose formula was assembled from the kernel: 16  pair languages equal: 144  different: 0' <<<"$out"
           grep -Fx 'deepest coincidence level: 15' <<<"$out"
 
+  return-lattice-census:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Return lattices of radius-n patches, exactly
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . return_lattice_census.mojo 2>&1) || status=$?
+          printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
+          grep -Fx 'corpus: 4554  orders: 1 .. 32' <<<"$out"
+          grep -Fx 'specimens by |det M| 1:2628 2:1926' <<<"$out"
+          grep -Fx 'Lambda_1 = Z^3: 4554  of 4554' <<<"$out"
+          grep -Fx 'profiles verified against the chain and the covering bound: 4554' <<<"$out"
+          grep -Fx 'unimodular with Lambda_1 = Z^3, hence Lambda_n = Z^3 for every n: 2628  of 2628' <<<"$out"
+          grep -Fx 'unimodular with an index > 1 at some order: 0' <<<"$out"
+          grep -Fx '|det M| = 2 still index 1 at order 32: 0' <<<"$out"
+          grep -Fx '|det M| = 2 by first order with index > 1 2:564 3:528 4:540 5:186 6:84 7:12 13:12' <<<"$out"
+          grep -Fx '|det M| = 2 by log2 index at order 32 2:288 3:1278 4:348 5:12' <<<"$out"
+          grep -Fx 'sampled cross-checks: 276  equal to exact: 276' <<<"$out"
+
+  vertex-coincidence-census:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: PeriodicPairVertexCoincidence for every r on the standing corpus (Proposition V, exact)
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . vertex_coincidence_census.mojo 2>&1) || status=$?
+          printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
+          grep -Fx 'Vertex coincidence census (Proposition V), specimens: 4554' <<<"$out"
+          grep -Fx 'holds for every r: 4554  capped: 0  fails: 0' <<<"$out"
+          grep -Fx 'largest box graph: 249385 states, specimen 6 11 13' <<<"$out"
+          grep -Fx 'most recurrent vertices: 2676 specimen 4 11 21' <<<"$out"
+          grep -Fx 'deepest recurrent first left-aligned depth: 17 specimen 1 23 21' <<<"$out"
+          grep -Fx 'recurrent vertices in total: 1174788' <<<"$out"
+          grep -Fx 'K_V by specimen, nonunimodular: 4:24 5:138 6:252 7:288 8:360 9:228 10:192 11:120 12:36 13:48 14:72 15:120 16:36 17:12' <<<"$out"
+          grep -Fx 'K_V by specimen, unimodular real: 2:108 3:198 4:234 5:102 6:6' <<<"$out"
+          grep -Fx 'K_V by specimen, unimodular complex: 2:210 3:612 4:588 5:336 6:120 7:84 8:18 14:12' <<<"$out"
+
+  one-tile-census:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Catch-up reachability (Q1) on the standing corpus, both endpoints (exact)
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . one_tile_census.mojo 2>&1) || status=$?
+          printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
+          grep -Fx 'One-tile census, specimens: 4554' <<<"$out"
+          grep -Fx 'recurrent vertices: 1154040  in CU: 561624  reach CU: 1056816' <<<"$out"
+          grep -Fx 'specimens failing Q1: 360  of which no recurrent vertex reaches CU: 210' <<<"$out"
+          grep -Fx 'catch-up-free (no proper prefix in M Z^3): 210  of which Q1 fails totally: 210  total failures not catch-up-free: 0' <<<"$out"
+          grep -Fx "Proposition P' (level = M-adic valuation to depth 5 ) iff catch-up-free, mismatches: 0" <<<"$out"
+          grep -Fx 'Proposition C (unique odd-letter shape) iff catch-up-free, mismatches: 0  one odd letter: 18' <<<"$out"
+          grep -Fx 'Q1-failing vertices outside the catch-up-free class: 348  with nonzero forward closure <= 2: 348' <<<"$out"
+          grep -Fx 'specimens failing Q1 at both endpoints: 360  of which no recurrent vertex reaches either: 210' <<<"$out"
+      - name: Anatomy of the one-tile analysis (exact)
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . one_tile_anatomy.mojo 2>&1) || status=$?
+          printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
+          grep -Fx 'One-tile anatomy, specimens: 4554' <<<"$out"
+          grep -Fx 'class |det M| 1 real : specimens 648  Q1 partial 48  Q1 total 0' <<<"$out"
+          grep -Fx 'class |det M| 1 complex : specimens 1980  Q1 partial 54  Q1 total 0' <<<"$out"
+          grep -Fx 'class |det M| 2 complex : specimens 1926  Q1 partial 48  Q1 total 210' <<<"$out"
+          grep -Fx 'Q1-failing vertices outside the catch-up-free class by nonzero closure size: 1: 276  2: 72  >2: 0' <<<"$out"
+          grep -Fx 'not catch-up-free: 4344  with a recurrent one-step catch-up: 4170  recurrent one-step vertices: 29712  without: 174' <<<"$out"
+          grep -Fx 'specimens without a recurrent one-step catch-up that fail Q1: 0' <<<"$out"
+          grep -Fx 'recurrent vertices: 1154040  reach a diagonal hit: 1080828  reach an off-diagonal hit: 1153308' <<<"$out"
+          grep -Fx 'catch-up-free: every recurrent vertex reaches a diagonal hit: 180  not: 30  vertices reaching none: 12276' <<<"$out"
+
   finite-classification:
     runs-on: ubuntu-latest
     steps:
@@ -325,7 +444,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact endpoint-map conjugacy classification (finite maps; no substitution input)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . endpoint_core_catalog.mojo 2>&1) || status=$?
@@ -339,7 +458,7 @@ jobs:
           grep -Fx 'maximum steps into the recurrent core: 1' <<<"$out"
           grep -Fx 'pairs by steps into the recurrent core: 0:60 1:24' <<<"$out"
       - name: Boundary-synchronization sweep (exploratory; reproducible from its seed)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . boundary_sync_sweep.mojo 2>&1) || status=$?
@@ -364,7 +483,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Sirvent-Solomyak type inclusion over every tenth specimen (exploratory)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . oa_type_inclusion_census.mojo 2>&1) || status=$?
@@ -376,7 +495,7 @@ jobs:
           grep -Fx 'literature graphs with a nonproductive type: 0' <<<"$out"
           grep -Fx 'specimens by least k with inclusion (9 = none): 1:256 2:109 3:41 4:8 5:12 6:6 7:1 8:1 9:22' <<<"$out"
       - name: Inclusion-failure probe over longer prefixes and every fixed point (exploratory)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . oa_failures_probe.mojo 2>&1) || status=$?
@@ -402,10 +521,10 @@ jobs:
           java-version: '21'
       - name: Fetch TLA+ tools
         run: |
-          curl -fsSL -o tla/tla2tools.jar \
+          curl -fsSL -o proof/tla/tla2tools.jar \
             https://github.com/tlaplus/tlaplus/releases/latest/download/tla2tools.jar
       - name: Check all models
-        run: ./tla/check.sh
+        run: ./proof/tla/check.sh
 
   lean-proofs:
     runs-on: ubuntu-latest
@@ -417,10 +536,10 @@ jobs:
           sh elan.sh -y --default-toolchain none
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Fetch Mathlib cache
-        working-directory: PscVerif
+        working-directory: proof/PscVerif
         run: lake exe cache get
       - name: Build and audit axioms
-        working-directory: PscVerif
+        working-directory: proof/PscVerif
         run: |
           set -o pipefail
           lake build PscVerif 2>&1 | tee build.log

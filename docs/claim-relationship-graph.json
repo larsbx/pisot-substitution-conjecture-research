@@ -45,6 +45,28 @@
       "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.39; PR #82"
     },
     {
+      "id": "AllSeedOverlapProductivity",
+      "kind": "claim",
+      "label": "Open conjectural gate",
+      "provenance": "open",
+      "statement": "for every PIP substitution every overlap reachable from every swap seed is productive",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "pending_dependency",
+      "source": "reason: open conjectural gate, stronger than the one-seed gate; manuscript Open Problem 5.35 (all-vertex form)",
+      "leaks": "open conjectural gate, stronger than the one-seed gate; manuscript Open Problem 5.35 (all-vertex form)"
+    },
+    {
+      "id": "AllSeedStrictZipperExclusion",
+      "kind": "claim",
+      "label": "Open conjectural gate",
+      "provenance": "open",
+      "statement": "for every PIP substitution no closed nonproductive strict-zipper set is reachable from any swap seed",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "pending_dependency",
+      "source": "reason: open conjectural gate; the all-seed form of the strict-zipper branch of Open Problem 5.35 (manuscript Proposition 5.44(iii)(b)); issue #139",
+      "leaks": "open conjectural gate; the all-seed form of the strict-zipper branch of Open Problem 5.35 (manuscript Proposition 5.44(iii)(b)); issue #139"
+    },
+    {
       "id": "AllStatesProductiveViaOverlaps",
       "kind": "claim",
       "label": "Conditional theorem",
@@ -208,8 +230,8 @@
       "statement": "finite BPA (G1)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 4.11 and open-problem list",
-      "leaks": "premises not established: G1FromRenewal"
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Propositions 4.11, 5.46 and 5.47 and open-problem list",
+      "leaks": "premises not established: G1FromRenewal, G1HalfCoincidenceRoute, G1OverlapRoute"
     },
     {
       "id": "G1FromRenewal",
@@ -223,6 +245,28 @@
       "leaks": "premises not established: G1b2RenewalFiniteness"
     },
     {
+      "id": "G1HalfCoincidenceRoute",
+      "kind": "claim",
+      "label": "Conditional theorem",
+      "provenance": "conditional",
+      "statement": "exclusion of reachable strict zippers from every swap seed gives finite BPA, every reachable state being at most 2 beta^K' ell_max long",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.47; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 4 and Corollary 5; half-coincidence form of Sirvent-Solomyak 2002, Theorem 5.6",
+      "leaks": "premises not established: AllSeedStrictZipperExclusion"
+    },
+    {
+      "id": "G1OverlapRoute",
+      "kind": "claim",
+      "label": "Conditional theorem",
+      "provenance": "conditional",
+      "statement": "productivity of the seed-patch overlap graph from every swap seed gives finite BPA, by bounding every reachable state by 2 beta^D ell_max",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.46; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1; mechanism of Sirvent-Solomyak 2002, Theorem 5.6 (docs/bpa-overlap-depth-literature-gate-2026-10-02.md)",
+      "leaks": "premises not established: AllSeedOverlapProductivity"
+    },
+    {
       "id": "G1b1BoundedDiscrepancy",
       "kind": "claim",
       "label": "Repository-proved",
@@ -230,7 +274,7 @@
       "statement": "all reachable swap-state prefix-difference walks are uniformly bounded",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md; manuscript Theorem 4.4; PR #69"
+      "source": "source: sources/issue-45/g1b1-bounded-discrepancy-reconstruction.md; manuscript Theorem 4.4; PR #69"
     },
     {
       "id": "G1b2RenewalFiniteness",
@@ -477,7 +521,7 @@
       "statement": "Phi_3 acts semisimply on the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: PscVerif/PscVerif/Spectral.lean"
+      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
     },
     {
       "id": "RepoSeedUnionBridge",
@@ -508,7 +552,7 @@
       "statement": "the seed centralizer is as certified",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: PscVerif/PscVerif/Spectral.lean"
+      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
     },
     {
       "id": "SignatureReduction",
@@ -591,7 +635,7 @@
       "statement": "Target 1 of the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: PscVerif/PscVerif/Spectral.lean"
+      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
     },
     {
       "id": "ThetaIntertwining",
@@ -601,7 +645,7 @@
       "statement": "Theta intertwines the seed spectral operators",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: PscVerif/PscVerif/Spectral.lean"
+      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
     },
     {
       "id": "UDForPowers",
@@ -661,6 +705,24 @@
       "provenance": "declared",
       "members": [
         "AlignedOverlapsAreStrongCoincidence"
+      ]
+    },
+    {
+      "id": "all-seed overlap productivity",
+      "kind": "alias",
+      "label": "all-seed overlap productivity",
+      "provenance": "declared",
+      "members": [
+        "AllSeedOverlapProductivity"
+      ]
+    },
+    {
+      "id": "all-seed strict-zipper exclusion",
+      "kind": "alias",
+      "label": "all-seed strict-zipper exclusion",
+      "provenance": "declared",
+      "members": [
+        "AllSeedStrictZipperExclusion"
       ]
     },
     {
@@ -742,6 +804,24 @@
       "provenance": "declared",
       "members": [
         "G1"
+      ]
+    },
+    {
+      "id": "half-coincidence route to finite BPA",
+      "kind": "alias",
+      "label": "half-coincidence route to finite BPA",
+      "provenance": "declared",
+      "members": [
+        "G1HalfCoincidenceRoute"
+      ]
+    },
+    {
+      "id": "overlap-depth route to finite BPA",
+      "kind": "alias",
+      "label": "overlap-depth route to finite BPA",
+      "provenance": "declared",
+      "members": [
+        "G1OverlapRoute"
       ]
     },
     {
@@ -907,6 +987,24 @@
       ]
     },
     {
+      "id": "AllSeedOverlapGateAssumed",
+      "kind": "assumption_set",
+      "label": "assumption set",
+      "provenance": "declared",
+      "members": [
+        "AllSeedOverlapProductivity"
+      ]
+    },
+    {
+      "id": "AllSeedStrictZipperGateAssumed",
+      "kind": "assumption_set",
+      "label": "assumption set",
+      "provenance": "declared",
+      "members": [
+        "AllSeedStrictZipperExclusion"
+      ]
+    },
+    {
       "id": "G1AndC4",
       "kind": "assumption_set",
       "label": "assumption set",
@@ -984,6 +1082,24 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "OverlapBoundaryZipperDichotomy/AlignedOverlapsAreStrongCoincidence"
+    },
+    {
+      "type": "implicative",
+      "source": "AllSeedOverlapProductivity",
+      "target": "G1OverlapRoute",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "G1OverlapRoute/AllSeedOverlapProductivity",
+      "leaks": "premise is open"
+    },
+    {
+      "type": "implicative",
+      "source": "AllSeedStrictZipperExclusion",
+      "target": "G1HalfCoincidenceRoute",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "G1HalfCoincidenceRoute/AllSeedStrictZipperExclusion",
+      "leaks": "premise is open"
     },
     {
       "type": "implicative",
@@ -1197,7 +1313,25 @@
       "provenance": "conditional",
       "certainty": 1,
       "use_site": "G1/G1FromRenewal",
-      "leaks": "premise is conditional"
+      "leaks": "premise is conditional; alternative dependency branch(es): 1"
+    },
+    {
+      "type": "implicative",
+      "source": "G1HalfCoincidenceRoute",
+      "target": "G1",
+      "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "G1/G1HalfCoincidenceRoute",
+      "leaks": "premise is conditional; alternative dependency branch(es): 3"
+    },
+    {
+      "type": "implicative",
+      "source": "G1OverlapRoute",
+      "target": "G1",
+      "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "G1/G1OverlapRoute",
+      "leaks": "premise is conditional; alternative dependency branch(es): 2"
     },
     {
       "type": "implicative",
@@ -1452,6 +1586,22 @@
     {
       "type": "implicative",
       "source": "SwapOverlapFiniteness",
+      "target": "G1HalfCoincidenceRoute",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "G1HalfCoincidenceRoute/SwapOverlapFiniteness"
+    },
+    {
+      "type": "implicative",
+      "source": "SwapOverlapFiniteness",
+      "target": "G1OverlapRoute",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "G1OverlapRoute/SwapOverlapFiniteness"
+    },
+    {
+      "type": "implicative",
+      "source": "SwapOverlapFiniteness",
       "target": "OverlapBadSCCNormalForm",
       "provenance": "theorem-backed",
       "certainty": 1,
@@ -1550,6 +1700,22 @@
       "source": "Theorem 5.38",
       "target": "PDSOverlapRoute",
       "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "all-seed overlap productivity",
+      "target": "AllSeedOverlapProductivity",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "all-seed strict-zipper exclusion",
+      "target": "AllSeedStrictZipperExclusion",
+      "provenance": "open",
       "certainty": 1,
       "use_site": "aliases"
     },
@@ -1659,9 +1825,25 @@
     },
     {
       "type": "synonymous",
+      "source": "half-coincidence route to finite BPA",
+      "target": "G1HalfCoincidenceRoute",
+      "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "overlap productivity",
       "target": "OverlapProductivity",
       "provenance": "open",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "overlap-depth route to finite BPA",
+      "target": "G1OverlapRoute",
+      "provenance": "conditional",
       "certainty": 1,
       "use_site": "aliases"
     },
@@ -1720,6 +1902,22 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"
+    },
+    {
+      "type": "part-whole",
+      "source": "AllSeedOverlapProductivity",
+      "target": "AllSeedOverlapGateAssumed",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "AllSeedStrictZipperExclusion",
+      "target": "AllSeedStrictZipperGateAssumed",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
     },
     {
       "type": "part-whole",

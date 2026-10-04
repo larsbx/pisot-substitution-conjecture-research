@@ -19,7 +19,7 @@ Agents working in this repository should preserve the proof-state distinction:
 
 ## Required checks before editing a manuscript
 
-1. No stale `N_C = M_sigma` synthetic-countermodel language; it must be `N_C = M_sigma^T, P = I`.
+1. No stale untransposed synthetic-countermodel language; the required form is `N_C = (M_sigma)^T, P = I`.
 2. Do not claim unconditional PSC unless SCC Producer has been proved.
-3. Do not cite BD/BK as proving no recurrent noncoincident cycles.
+3. Do not cite BD/BK as proving universal exclusion of recurrent noncoincident cycles.
 4. Boundary synchronization is a normal form/reduction layer, not a completed proof of PSC.

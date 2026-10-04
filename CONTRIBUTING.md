@@ -30,25 +30,25 @@ evidence table.
 1. every verification layer, reporting skips honestly —
 
    ```sh
-   ./scripts/verify_all.sh
+   ./tools/verify_all.sh
    ```
 
 2. Mojo regressions plus claim receipts —
 
    ```sh
-   ./mojo/run_tests.sh
+   ./kernel/run_tests.sh
    ```
 
 3. the ledger is still generated, not hand-edited —
 
    ```sh
-   python scripts/make_ledger.py --check
+   python tools/make_ledger.py --check
    ```
 
 4. the math catalogue is still generated —
 
    ```sh
-   python scripts/make_math_catalogue.py --check
+   python tools/make_math_catalogue.py --check
    ```
 
 5. claim governance —
@@ -66,7 +66,7 @@ evidence table.
 7. vendored packages still match their pins —
 
    ```sh
-   python scripts/check_vendored_sync.py
+   python tools/check_vendored_sync.py
    ```
 
 8. suite —
@@ -78,7 +78,7 @@ evidence table.
 9. TLA+ models —
 
    ```sh
-   ./tla/check.sh
+   ./proof/tla/check.sh
    ```
 
 A check you did not run is not evidence. Say which ones you skipped and why;
@@ -86,7 +86,7 @@ the pull request template has a place for exactly that.
 
 ## What counts as evidence here
 
-- A test under `mojo/tests/` ends its `main` with `require_claim("<Name>")` or
+- A test under `kernel/tests/` ends its `main` with `require_claim("<Name>")` or
   `require_contract("<what it pins>")`, placed after the assertions it stands
   behind.
 - Receipts are collected from the tests that *passed*: a declaration no run
@@ -108,8 +108,8 @@ the pull request template has a place for exactly that.
 - Never patch a vendored file, add a file beside one, or reintroduce a local
   copy of what a package provides. Change it upstream in
   `larsbx/finite-math-kernels`, re-vendor, re-pin.
-- Never hand-edit a generated artifact: `tla/ledger.json`, `tla/Ledger.tla`,
-  the `tla/MCLedger*` models, `docs/ledger-index.md`,
+- Never hand-edit a generated artifact: `proof/tla/ledger.json`, `proof/tla/Ledger.tla`,
+  the `proof/tla/MCLedger*` models, `docs/ledger-index.md`,
   `docs/claim-relationship-graph.json`, or the generated `[[claim]]` block of
   `claim_governance.toml`.
 - Never claim beyond what the exact executable or the formal proof actually

@@ -22,7 +22,7 @@ closure and coincidence-child predicates directly.
 
 ## Canonical certificate
 
-`mojo/wedge_productivity_catalog.mojo` is the source of truth. It:
+`kernel/wedge_productivity_catalog.mojo` is the source of truth. It:
 
 1. enumerates the exact 4,554-member bounded PIP corpus;
 2. constructs every reachable automaton and fails closed on a capped build;
