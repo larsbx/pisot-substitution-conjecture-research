@@ -92,7 +92,32 @@ of the three papers read for the literature gates that the notes rely on:
 Baker–Barge–Kwapisz 2006, Barge 2015 (arXiv:1505.04408) and Barge–Diamond
 2002.
 
+## References
+
+`fetch_references.sh` downloads the three papers into `refs-local/`, which
+is gitignored, and checks each against the SHA-256 of the copy read in the
+session:
+
+| paper | source | SHA-256 |
+|---|---|---|
+| Baker–Barge–Kwapisz, Ann. Inst. Fourier 56 (2006) 2213–2248 | numdam.org, doi:10.5802/aif.2238 | `1a3683a0e7eaef3e11a0492857da5ee7471b710aca00cf6fc3083910b23f8ce8` |
+| Barge, arXiv:1505.04408v2 (2015) | arxiv.org | `4edde4708c136439f11b0ffe2747ce9c758246790fd47564ee6fe97536d1b0b8` |
+| Barge–Diamond, Bull. SMF 130 (2002) 619–626 | numdam.org, doi:10.24033/bsmf.2433 | `c7f0f79628217c13cda86f374751e125017253d3d69755103e1c637942d333ab` |
+
+The first two hashes equal those of the copies read on 2026-10-03/04. The
+Barge–Diamond hash is of the copy fetched on 2026-10-04 to build this list,
+because the session copy was overwritten by that fetch.
+
+The repository is public, so the papers themselves are not committed. The
+AIF article reads: "© Association des Annales de l'institut Fourier, 2006,
+tous droits réservés … Toute reproduction en tout ou partie cet article …
+pour tout usage autre que l'utilisation à fin strictement personnelle du
+copiste est constitutive d'une infraction pénale". The arXiv paper carries
+arXiv's non-exclusive distribution licence (arxiv.org/licenses/nonexclusive-distrib/1.0),
+which licenses arXiv only. The Bull. SMF article is on Numdam under its
+terms of use. The archive therefore pins each exact copy by hash and quotes
+the passages used, and the script restores the copies for local use.
+
 Not archived: compiled Mojo binaries (`vcc`, `vct`, `vdl`, `vex`), helper
-scripts that only edited repository files, local drafts of documents since
-merged, and the full extracted text of the three papers, which are cited
-and quoted rather than reproduced.
+scripts that only edited repository files, and local drafts of documents
+since merged.
