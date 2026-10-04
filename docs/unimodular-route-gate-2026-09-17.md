@@ -93,7 +93,7 @@ it by determinant, which that note did not do.
 *Provenance of these numbers.* Two implementations agree on them. The
 independent Python oracle (`psc_research.pip_screen`,
 `psc_research.overlap_collar`, `psc_research.overlap_affine_pump`) produced the
-table; the canonical regime split of `mojo/swap_overlap_census.mojo` reproduced
+table; the canonical regime split of `kernel/swap_overlap_census.mojo` reproduced
 it line for line in CI:
 
 ```text
@@ -103,7 +103,7 @@ unimodular collapsing seed patches (must be 0): 0
 ```
 
 Those three lines are pinned by the `swap-overlap-census` job, and
-`mojo/tests/test_unimodular_route.mojo` guards the same split in the
+`kernel/tests/test_unimodular_route.mojo` guards the same split in the
 regression suite, so a drift in either direction fails the build rather than
 changing a number in this table.
 
@@ -170,7 +170,7 @@ and a proof that wants a discrete stable object still has to earn it.
 
 1. **Licensed:** Lemma 1 as a repository-proved restricted lemma, and
    Computational Proposition 2 as a finite-domain determinant split, with the
-   regime split folded into the existing `mojo/swap_overlap_census.mojo`
+   regime split folded into the existing `kernel/swap_overlap_census.mojo`
    survey rather than a second driver.
 2. **Licensed:** reading `det M` as a first-class coordinate of the corpus in
    any future obstruction census, so that "is this obstruction non-unit?" is a

@@ -6,6 +6,9 @@ fail_closed = true
 authority_change = false
 ci_wiring = false
 
+[estate]
+manifest = "ESTATE.toml"
+
 [authority]
 primary_languages = ["Mojo"]
 supporting_languages = ["Lean", "Haskell", "Python", "Julia"]
@@ -27,7 +30,7 @@ normalization_mismatch = "reject"
 [julia]
 role = "supporting-research-engine"
 oracle_path = "oracles/julia"
-spike_path = "spikes/julia"
+spike_path = "experiments/julia"
 acceptance_authority = false
 proof_authority = false
 promotion_requires = "canonical boundary vectors and authoritative checker replay"

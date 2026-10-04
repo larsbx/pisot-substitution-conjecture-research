@@ -22,7 +22,7 @@ The generalized Witt formula gives the multiplicity of that ordered weight in th
 
 `m(a,b,c) = (1/r) sum_{d | gcd(a,b,c)} mu(d) * (r/d)! / ((a/d)!(b/d)!(c/d)!).`
 
-`src/psc_research/multidegree_sieve.py` implements this formula exactly, enumerates all positive-multiplicity multidegrees, and verifies that their orbit dimensions sum to the ordinary Witt dimension
+`reference/psc_research/multidegree_sieve.py` implements this formula exactly, enumerates all positive-multiplicity multidegrees, and verifies that their orbit dimensions sum to the ordinary Witt dimension
 
 `dim Lie_r(Q^3) = (1/r) sum_{d|r} mu(d) 3^(r/d)`.
 

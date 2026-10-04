@@ -202,6 +202,6 @@ The synthetic artifact is a golden negative case: any proposed finite transition
 
 ## 9. Executable scope
 
-`src/psc_research/synthetic_degree2.py` contains the exact substitution, matrices, states, signed child word, endpoint checks, and actual factorization comparison.
+`reference/psc_research/synthetic_degree2.py` contains the exact substitution, matrices, states, signed child word, endpoint checks, and actual factorization comparison.
 
 `tests/test_synthetic_degree2.py` verifies the full claim and pins the actual factorization counts `(1,2,5)` plus the direct coincidence child of `T2`.

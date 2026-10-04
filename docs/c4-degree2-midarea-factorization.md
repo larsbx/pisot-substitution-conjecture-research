@@ -160,7 +160,7 @@ The exact three-state corpus census already shows that parity, traces, and endpo
 
 ## 9. Executable scope
 
-`src/psc_research/factorization_degree2.py` implements:
+`reference/psc_research/factorization_degree2.py` implements:
 
 - word area and exterior products;
 - the affine substitution-area identity;
