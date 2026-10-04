@@ -87,7 +87,12 @@ run against `mojo/` through `pixi run --manifest-path`.
 | `rec_small.txt`, `rec_t.txt` | `K_V` records of a 300-specimen slice and of the targeted search's deepest specimen |
 | `gate_test.txt`, `gate_test2.txt`, `tla.txt` | full Mojo suite and TLA runs from the session's gate checks |
 
+`literature-quotes.md` quotes verbatim, with section and page, every passage
+of the three papers read for the literature gates that the notes rely on:
+Baker–Barge–Kwapisz 2006, Barge 2015 (arXiv:1505.04408) and Barge–Diamond
+2002.
+
 Not archived: compiled Mojo binaries (`vcc`, `vct`, `vdl`, `vex`), helper
 scripts that only edited repository files, local drafts of documents since
-merged, and text extracted from the papers read for the literature gates
-(copyrighted). The papers are cited in the note.
+merged, and the full extracted text of the three papers, which are cited
+and quoted rather than reproduced.
