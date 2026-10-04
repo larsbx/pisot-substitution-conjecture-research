@@ -90,9 +90,9 @@ environment that reports a skip is honest; one that reports a pass is not.
 
 ## What this repository accepts as evidence
 
-- A test under `kernel/tests/` ends its `main` with `require_claim("<Name>")` or
-  `require_contract("<what it pins>")`, placed after the assertions it stands
-  behind.
+- A test under `kernel/tests/` ends its `main` with `require_claim("<Name>")`
+  or `require_contract("<what it pins>")`, placed after the assertions it
+  stands behind.
 - Receipts are collected from the tests that *passed*: a declaration no run
   reached guards nothing.
 - A new theorem-facing diagnostic or promoted lemma is preceded by a targeted
@@ -112,10 +112,10 @@ environment that reports a skip is honest; one that reports a pass is not.
 - Never patch a vendored file, add a file beside one, or reintroduce a local
   copy of what a package provides. Change it upstream in
   `larsbx/finite-math-kernels`, re-vendor, re-pin.
-- Never hand-edit a generated artifact: `proof/tla/ledger.json`, `proof/tla/Ledger.tla`,
-  the `proof/tla/MCLedger*` models, `docs/ledger-index.md`,
-  `docs/claim-relationship-graph.json`, or the generated `[[claim]]` block of
-  `claim_governance.toml`.
+- Never hand-edit a generated artifact: `proof/tla/ledger.json`,
+  `proof/tla/Ledger.tla`, the `proof/tla/MCLedger*` models,
+  `docs/ledger-index.md`, `docs/claim-relationship-graph.json`, or the
+  generated `[[claim]]` block of `claim_governance.toml`.
 - Never claim beyond what the exact executable or the formal proof actually
   establishes.
 - Never return an empty structure where an invariant is impossible. Fail
