@@ -625,6 +625,41 @@ interleaving question is exactly whether a simultaneous birth
 `M w = ab(P_a(i)) − ab(P_b(j))`, with `i, j > 0`, is reachable from every
 recurrent vertex.
 
+### 5.6c Case 2 needs no PPVC; the two missing statements (2026-10-04)
+
+*Mass lemma (proved).* Write `|x|` for the length of the overlap interval of
+a vertex `x`. The children of `x` partition the inflated overlap, so
+`sum_{y child of x} |y| = beta |x|`, children counted with multiplicity.
+
+- If the only nonzero-offset child of `x` is `x` itself, then
+  `(beta − 1) |x|` is the mass of its offset-zero children, which is
+  positive: `x` hits at level 1.
+- If `x, y` form a 2-cycle and neither has another nonzero-offset child,
+  adding the two identities gives `(beta − 1)(|x| + |y|)` as the mass of
+  their offset-zero children: one of them has such a child, and both hit
+  within two levels.
+- In general, on a nonempty finite set `Y` of nonzero-offset vertices closed
+  under children, the positive vector `(|x|)` satisfies `N_Y (|x|) =
+  beta (|x|)`, so `rho(N_Y) = beta`. Such a set is never a union of
+  vertex-disjoint cycles (`rho = 1`).
+
+`square`
+
+So case 2 of §5.6b holds unconditionally: a short periodic vertex hits
+within two levels by mass alone, not because PPVC holds. The census
+trichotomy therefore reduces PPVC to two statements, neither proved:
+
+- **T1 (catch-up reachability).** If `sigma` is not catch-up-free, every
+  recurrent vertex that is not short periodic reaches `CU`. A vertex of `CU`
+  reaches offset zero along its leftmost chain, so T1 with the mass lemma
+  gives BH outside the catch-up-free class.
+- **T2 (simultaneous birth).** If `sigma` is catch-up-free, every recurrent
+  vertex has a descendant `(i, j, w)` with an offset-zero child through indices
+  `(p, q)`, both positive: `M w = ab(P_a(p)) − ab(P_b(q))`.
+
+T1 and T2 together with the mass lemma give PPVC, hence BH
+(`formal-productivity-reduction-2026-10-04.md`) and G1.
+
 ### 5.7 The closing target, restated
 
 The box graph is the carry automaton of the Dumont–Thomas numeration of
