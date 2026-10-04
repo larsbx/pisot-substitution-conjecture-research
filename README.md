@@ -2,6 +2,10 @@
 
 Automated research workspace for the Pisot Substitution Conjecture (PSC), with emphasis on reproducible experiments, conjecture tracking, manuscript hygiene, theorem-audit automation, and exact finite certificates.
 
+Repository structure and authority planes are declared in `ESTATE.toml`
+(estate template `estate-repository-v2`, as in `larsbx/langlands-lab`); see
+`ARCHITECTURE.md`.
+
 ## Implementation default
 
 **Mojo is the canonical implementation language for executable research code in this repository.** New algorithms, exact finite-state machinery, census code, and performance-sensitive proof instrumentation should land in `mojo/` first and use Mojo-native data/layout optimizations.
