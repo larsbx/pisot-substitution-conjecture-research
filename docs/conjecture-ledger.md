@@ -1,6 +1,6 @@
 # Conjecture ledger
 
-The machine-checked dependency form is `proof/tla/Ledger.tla`. This prose ledger distinguishes repository proofs, imported theorems, finite-domain theorems, open gates, open bridges, empirical evidence, and retired claims. The concise status/source index is `docs/claim-status-and-source-map-2026-09-13.md`; the current architecture is `docs/current-proof-architecture-2026-09-14.md`; the live completion priorities are `docs/research-roadmap-2026-09-21.md`; the latest merged weekly snapshot is `docs/completion-ledger-2026-09-14.md`.
+The machine-checked dependency form is `proof/tla/Ledger.tla`. This prose ledger distinguishes repository proofs, imported theorems, finite-domain theorems, open gates, open bridges, empirical evidence, and retired claims. The concise status/source index is `docs/claim-status-and-source-map-2026-09-13.md`; the current architecture is `docs/current-proof-architecture-2026-09-14.md`; the live completion priorities are `docs/research-roadmap-2026-09-21.md`; the latest merged weekly snapshot is `docs/completion-ledger-2026-10-02.md`.
 
 ## Executive status — one shortest-path gate, several stronger parallel programmes
 
@@ -167,6 +167,49 @@ all-seed strict-zipper exclusion          [OPEN]
 ```
 
 The proof of the overlap-depth route needs a coincidence only for its common vertex; an offset-zero descendant supplies one, and common vertices persist under inflation. G1 therefore follows from G1b-2, from all-seed overlap productivity, or from all-seed strict-zipper exclusion alone.
+
+Consequently finiteness needs only the strict-zipper branch of the obstruction
+problem (issue #139). The strong-coincidence branch (issue #138) is needed for
+productivity and for pure discrete spectrum, but not for G1.
+
+### PDS implies G1
+
+**Status: repository-proved** (manuscript Proposition `prop:PDS-implies-G1`;
+ledger `PDSImpliesRepoG1`, the Theorem S route; independently audited
+2026-10-04, **human review pending** — `docs/side-notes-ledger.md` §7).
+
+```text
+pure discrete spectrum
+=> no reachable strict zipper from any swap seed
+   (a zipper gives a Phi^r-fixed pair in one MEF fibre sharing no tile,
+    hence coincidence rank >= 2)          [IMPORTED: Barge coincidence rank]
+=> G1, by the half-coincidence route above.
+```
+
+This is the direction the programme lacked. G1 is therefore a **necessary**
+condition for PDS, not an artefact of the balanced-pair method: any proof of
+PSC makes G1 true, and a counterexample to G1 would refute PSC. The
+realization step is legitimate rather than a formal-recurrence shortcut: it
+builds `Phi^r`-fixed tilings from *interior occurrences*, whose patches are
+allowed for `sigma`, and takes integrality of the offset from the cycle
+equation (manuscript Lemma 5.45) rather than by assumption.
+
+The imports assume neither unimodularity nor irreducibility
+(`docs/coincidence-rank-imports-literature-gate-2026-10-04.md`). One soft
+link remains recorded there: the Barge item used is stated in a published
+introduction's summary, whose own proofs that gate did not read.
+
+### PDS implies seedwise termination
+
+**Status: repository-proved** (manuscript Theorem `thm:seedwise`; ledger
+`PDSImpliesSeedwiseTermination`, using the imported
+`StrongCoincidenceFromPDS`; same review status as above).
+
+PDS implies that the balanced-pair algorithm terminates with coincidence from
+**every** seed `(ab, ba)`, legal factor or not. This answers in full what the
+manuscript formerly carried as Open Problem 4.24, so the repository's
+all-seed graph is covered rather than one convenient seed. Dated notes that
+still call 4.24 open are history, not status.
 
 ## D. Parallel programme — SCC Producer under G1
 

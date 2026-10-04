@@ -113,6 +113,15 @@ by deleting it.
   open. Lemma A: on the catch-up-free `|det M| = 2` class an unmerged aligned
   pair has no interior offset-zero child. · `strong-coincidence-census-2026-10-04.md`
 
+- 2026-10-04 · The two cube-image certificates behind Propositions 5.46/5.47
+  were executed in Mojo, not just cited: all 15 seed-patch-overlap tests pass
+  and the receipts reproduce 1,142 vertices, first-coincidence depth `D = 19`
+  and first left-aligned depth `K' = 17`. The stated state bounds
+  `2 beta^19 ell_max = 45,136,797,534` and `2 beta^17 ell_max = 4,198,004,819`
+  recompute exactly in 60-digit decimal, and both integer floors are right.
+  Do not re-verify. · `kernel/tests/test_overlap_seed_patch.mojo`;
+  `audit-2026-10-04.md` §B.3
+
 ## 6. Tooling pitfalls
 
 - 2026-10-04 · `pkill -f PATTERN` inside a shell command whose own text
@@ -144,7 +153,41 @@ by deleting it.
   §§5.6c–5.6d on `main`; the checksummed archive index still cites the old
   numbers. Do not edit the archive README (its `SHA256SUMS` covers it).
 
+- 2026-10-04 · `tools/make_ledger.py` binds eleven generated claim surfaces to
+  `WEEKLY = docs/completion-ledger-2026-09-14.md`, a frozen dated snapshot, so
+  claims are validated against a superseded weekly ledger. Repointing `WEEKLY`
+  to `completion-ledger-2026-10-02.md` is **not** a drop-in: the consistency
+  check then fails on five anchors the newer snapshot does not carry
+  (`ConcentrationAuxB`, `G1b2RenewalFiniteness` twice, `SpanRichProductivity`,
+  and `OverlapProductivity` for want of a status label within 0 lines). Either
+  give the new snapshot those anchors with status labels, or drop the WEEKLY
+  bindings and rely on the live surfaces, which is arguably correct since a
+  snapshot is not a proof source. Left at 09-14 deliberately rather than
+  changing what eleven claims are checked against. · `tools/make_ledger.py`
+  (`WEEKLY`); `audit-2026-10-04.md` §D.5
+
 ## 7. Review outcomes
+
+- 2026-10-04 · Independent status audit (`audit-2026-10-04.md`) re-derived
+  Propositions 5.46, 5.47 with Corollary 5, and Theorem B: all hold. Theorem
+  B's realization does **not** breach the formal-recurrence firewall — it
+  builds `Phi^r`-fixed tilings from *interior* occurrences, whose patches are
+  allowed for `sigma`, and takes offset integrality from the cycle equation.
+  The ledger's new set-of-sets `Requires` with existential discharge is sound
+  and no route establishes anything from nothing. Two findings of that audit
+  were self-corrected: the 2026-10-04 review *is* recorded (§7 here, not a
+  standalone file), and `PDSImpliesRepoG1` *does* name its repository inputs
+  in the record source, though they are not ledger nodes so the closure cannot
+  track them. · `audit-2026-10-04.md` §§B, D.2, D.4
+- 2026-10-04 · The four 2026-10-04 claims (`PDSImpliesRepoG1`,
+  `PDSImpliesSeedwiseTermination`, `CoincidenceRankFibreTheorems`,
+  `StrongCoincidenceFromPDS`) were on no prose status surface, so governance
+  could not see drift on them; they now have rows in the claim/source map and,
+  for the two repository claims, sections in the conjecture ledger and proof
+  ladder. `PDS => G1` and the seedwise bridge were likewise absent from every
+  headline surface and are now stated on README, the conjecture ledger, the
+  proof ladder and the architecture note. · `tools/make_ledger.py` surfaces;
+  `audit-2026-10-04.md` §D.3
 
 - 2026-10-04 · Independent adversarial audit (no counterexample found) of
   Lemma C, Theorem B, Corollary B′, Proposition F, Theorem R, Proposition V,

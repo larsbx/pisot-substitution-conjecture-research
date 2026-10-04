@@ -53,6 +53,42 @@ primitive irreducible Pisot
 
 The only open premise on this route is **seedwise overlap productivity (Open Problem 5.35, issue #84)**. Manuscript Theorem 5.38 therefore no longer requires finite BPA / G1.
 
+### Finiteness is now tied to the conjecture, not to the method
+
+Three results of 2026-10-02/04 changed the shape of the programme. They add no
+proof of PSC and move no open premise, but they settle how finiteness relates
+to everything else.
+
+1. **G1 is a necessary condition for PDS, not an artefact of the
+   balanced-pair method.** Pure discrete spectrum implies finite `B_sigma`
+   (manuscript Proposition `prop:PDS-implies-G1`, ledger `PDSImpliesRepoG1`,
+   proved by the Theorem S route; *independently audited 2026-10-04, human
+   review pending*). So the conditional main theorem (`thm:main-conditional`,
+   G1 plus SCC Producer gives PDS) is not merely one sufficient route among
+   possible others: any proof of PSC makes G1 true as well, and a substitution
+   with an infinite `B_sigma` would be a counterexample to PSC.
+2. **Former Open Problem 4.24 is answered in full.** PDS implies termination
+   with coincidence from **every** seed `(ab,ba)`, legal factor or not
+   (manuscript Theorem `thm:seedwise`, ledger `PDSImpliesSeedwiseTermination`,
+   using the imported `StrongCoincidenceFromPDS`). The repository's all-seed
+   graph is therefore covered, not just one convenient seed.
+3. **Finiteness needs only half of the obstruction problem.** G1 now has three
+   alternative conditional routes — G1b-2 renewal finiteness, all-seed overlap
+   productivity (Proposition 5.46), or all-seed strict-zipper exclusion alone
+   (Proposition 5.47) — each still carrying one open premise. Because the
+   half-coincidence route needs only a common vertex rather than a
+   coincidence, **G1 requires only the strict-zipper branch (#139); the
+   strong-coincidence branch (#138) is needed for productivity and PDS, not
+   for finiteness.**
+
+Both new routes are the mechanism of Sirvent–Solomyak (2002) Theorem 5.6,
+transferred to the repository's possibly illegal swap seeds with an explicit
+bound; the imports behind Theorem S assume neither unimodularity nor
+irreducibility. See `docs/bpa-termination-by-overlap-depth-2026-10-02.md`,
+`docs/coincidence-rank-imports-literature-gate-2026-10-04.md`,
+`docs/side-notes-ledger.md` §7 for the review record, and
+`docs/audit-2026-10-04.md` §B for an independent re-derivation.
+
 Keep the two productivity hypotheses separate. Theorem 5.38 needs only `OP_seed`: every overlap reachable from one selected swap seed is productive. Manuscript Open Problem 5.35 states the stronger `OP_all`: every vertex of the union overlap graph is productive. Proposition 5.39(iii), the all-pairs strong-coincidence consequence, the every-vertex hitting formulation, and the unimodular equivalence with PDS apply to `OP_all`, not to `OP_seed`. No one-seed-to-all-vertices implication is claimed. See `docs/audit-2026-09-20.md` §C.
 
 The current strict-zipper attack retains actual ordered child occurrences and
