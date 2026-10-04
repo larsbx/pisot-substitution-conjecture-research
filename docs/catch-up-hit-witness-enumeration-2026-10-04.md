@@ -81,7 +81,7 @@ are **prefix slices**, not full censuses and not statistically representative
 samples. They overlap each other and the standing domain; do not add their
 counts as distinct specimens. No claim is made about their unvisited members.
 
-The [evidence directory](evidence/catch-up-hits-2026-10-04/) contains summaries,
+The [evidence directory](../evidence/catch-up-hits-2026-10-04/) contains summaries,
 a manifest with compressed and uncompressed SHA-256 digests, and every failed
 specimen/vertex label in deterministic gzip JSONL. `schema: 1` records use
 `i,j,k` from `corpus.image_words_up_to(MAX_LEN)` and
