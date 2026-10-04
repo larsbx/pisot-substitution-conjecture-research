@@ -92,6 +92,7 @@ the complete graph. `new_left/new_right` exclude inherited endpoints.
 
 ```bash
 cd mojo
+mkdir -p build
 pixi run hit-witness-census standing 0 4554 failures > build/hit-standing.txt
 pixi run hit-witness-census total8 0 1000 failures > build/hit-total8.txt
 pixi run hit-witness-census len4 0 1000 failures > build/hit-len4.txt
