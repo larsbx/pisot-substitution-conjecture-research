@@ -16,7 +16,13 @@ TOML and regenerate rather than hand-editing the Markdown.
    withdrawn figures, finite observations and tooling pitfalls. Read it
    before starting a new mechanism, census or route (`AGENTS.md`).
 
-1. `audit-2026-09-27.md` — status/provenance audit, now carrying a 2026-10-01
+1. `audit-2026-10-04.md` — latest status audit, after the overlap-depth routes
+   and the `PDS ⇒ G1` promotion. Re-derives Propositions 5.46/5.47 and
+   Theorem B, confirms the realization firewall holds and the cube-image
+   bounds, and records that the promoted `PDSImpliesRepoG1` rests on a note
+   whose header still disclaims promotion, under-declares its dependencies in
+   the ledger, and is absent from every headline status surface.
+2. `audit-2026-09-27.md` — status/provenance audit, now carrying a 2026-10-01
    resolution note: the PSC-closed premise was withdrawn, PSC remains open,
    #84/#138 are live theorem issues again, and #153 is resolved conservatively.
    The audit also records the adelic/trim frontier and the Markdown source
@@ -332,9 +338,10 @@ the current ledgers rather than rewriting the archive.
   against the Barge–Štimac–Williams source text: patches need not be allowed,
   "densely" means a dense set of points, and the one-dimensional
   specialization is their own proof of Theorem 3.2. Decision: proceed.
-- `audit-2026-09-10.md`, `audit-2026-09-15.md`, `audit-2026-09-20.md` are the
-  three audits: the C1–C4 reduction chain, the engineering state, and the
-  overlap-productivity route against the reduction chain.
+- `audit-2026-09-10.md`, `audit-2026-09-15.md`, `audit-2026-09-20.md` and
+  `audit-2026-10-04.md` are the status audits: the C1–C4 reduction chain, the
+  engineering state, the overlap-productivity route against that chain, and
+  the overlap-depth routes with the `PDS ⇒ G1` promotion.
 - `../AGENTS.md` is the implementation policy.
 - Mojo is canonical for executable research.
 - TLA+ records dependency/state-machine claims.
