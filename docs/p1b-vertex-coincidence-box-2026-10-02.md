@@ -514,6 +514,7 @@ So `two_sided` checks per vertex rather than comparing the two counts.
 | total failures not catch-up-free | 0 |
 | failing vertices outside the catch-up-free class | 348 |
 | … short periodic (nonzero closure ≤ 2) | 348 |
+| P′ to depth 5 disagrees with catch-up-freeness | 0 |
 
 Right endpoints rescue nothing. On every failing specimen the per-vertex
 left, right and either counts coincide (116,316 recurrent vertices, 19,092
@@ -548,6 +549,45 @@ When `M` is unimodular, `Λ = Z^3`, so Lemma P never applies. When
 `|det M| = 2` and every proper prefix lies in the nontrivial class of
 `Z^3 / Λ ≅ Z/2`, every difference of two proper prefixes lies in `Λ`. Hits are
 then possible, but only as simultaneous births.
+
+*Proposition P′ (levels are arithmetic, proved).* Call a vertex of
+`sigma^n(a)` of *exact level* `k` if it is a boundary of the level-`k`
+supertiles but not of the level-`k + 1` ones, and place it at the
+abelianisation `v` of the prefix before it. Then `sigma` is catch-up-free iff
+every such vertex has `max{k' : v ∈ M^{k'} Z^3} = k`, for every `n` and `a`.
+In other words, the level of a vertex is the M-adic valuation of its position.
+
+*Proof.* (⇒) An exact-level-`k` vertex sits at `v = M^{k+1} u + M^k ab(p)`,
+with `p` a proper nonempty prefix of an image. Since `M` is injective,
+`v ∈ M^{k+1} Z^3` iff `ab(p) ∈ Λ`, which catch-up-freeness excludes, and
+`v ∈ M^k Z^3` always. (⇐) A proper prefix `p` with `ab(p) ∈ Λ` gives a
+level-0 vertex of valuation at least 1. `square`
+
+So in the catch-up-free class the hierarchy is read off the non-Archimedean
+coordinate of the position. This also gives a second proof that every hit
+there is a simultaneous birth. By Theorem B(3)(c), a hit of `(i, j, w)` at
+depth `m` is a vertex with position `v` in `sigma^m(i)` and `v − M^m w` in
+`sigma^m(j)`. Both levels are below `m`, while `M^m w` has valuation at least
+`m`. Since the lattices `M^k Z^3` are nested, the two valuations, which are
+the two levels, are equal. The census checks P′ exactly to
+depth 5 on every specimen: it holds on exactly the 210 catch-up-free ones.
+
+*Route check (2026-10-04).* I read the M-adic picture against Baker, Barge and
+Kwapisz, *Geometric realization and coincidence for reducible
+non-unimodular Pisot tiling spaces*, Ann. Inst. Fourier 56 (2006), §§1, 4
+and 6. They realise the tiling flow of any Pisot substitution on the
+inverse limit `T_A` of the torus under `A`. For `|det A| > 1` that limit
+carries exactly the non-Archimedean coordinate in which P′ reads levels.
+Their Geometric Coincidence Condition (Def. 4.1: `cr_phi = 1`, where
+strands are coincident iff some `Phi^k` images share a labelled edge) is
+decidable per substitution and equivalent to pure discrete spectrum
+(Thms 4.2 and 5.1). Thm 6.1 is a criterion for it. It is proved
+unconditionally only for a class of `beta`-substitutions (Thm 7.1). So the
+paper gives the setting for case 3 below, but no unconditional argument. Its
+coincidence is labelled-edge coincidence, which implies vertex coincidence,
+and reaching it would be stronger than PPVC. Like the (W) check in §5.7,
+this is a dictionary entry, not a route that bypasses pure discrete
+spectrum. Lemma P and P′ themselves were not found there in this form.
 
 On the standing corpus Lemma P is exact (`catch_up_free`, checked in the
 census). It applies to precisely the 210 total failures, all of them with
