@@ -160,7 +160,8 @@ These are reference/index additions only. They do not establish #84, #138,
   exactly against the census records by `mojo/vertex_depth_law.mojo`
   (`psc.depth_law`). §5.6b: catch-up reachability (`mojo/psc/one_tile.mojo`,
   `mojo/one_tile_census.mojo`) fails on 360 of 4554 specimens at both
-  endpoints, so the cross-letter rigidity is not a one-tile question.
+  endpoints, so the cross-letter rigidity is not a one-tile question;
+  Lemma P (no proper prefix in `M Z^3`) accounts for all 210 total failures.
 - `return-lattice-literature-gate-2026-10-02.md` — return vectors of tiles
   span `Z<ell>` on the whole corpus; return vectors of length-`n` patches span
   it for every `n` on the unimodular classes and fail to by `n = 13` on every

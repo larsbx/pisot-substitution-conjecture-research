@@ -506,6 +506,9 @@ vertices, so the mirror's recurrent part is not the image of `sigma`'s
 | … with no recurrent vertex reaching `CU` | 210 |
 | specimens where Q1 fails at both endpoints | 360 |
 | … with no recurrent vertex reaching either | 210 |
+| catch-up-free (Lemma P) | 210 |
+| … of which Q1 fails totally | 210 |
+| total failures not catch-up-free | 0 |
 
 Right endpoints rescue nothing. On every failing specimen the per-vertex
 left, right and either counts coincide (116,316 recurrent vertices, 19,092
@@ -520,12 +523,45 @@ endpoint; PPVC holds with `K_V = 14`).
 reach a catch-up, at either endpoint. Both are pinned in
 `tests/test_one_tile.mojo`.
 
+*Lemma P (arithmetic catch-up obstruction, proved).* Write `ab(u)` for the
+abelianisation of a word and `Λ = M Z^3`, a sublattice of index `|det M|`.
+If no proper nonempty prefix `u` of an image `sigma(a)` has `ab(u) ∈ Λ`,
+then no edge of the overlap graph is a catch-up hit, at either endpoint.
+In particular no vertex of nonzero offset lies in `CU`, and Q1 fails on every
+recurrent vertex.
+
+*Proof.* Every vertex has an integral offset vector `w`, with
+`t = ⟨ell, w⟩`. The child through indices `(i, j)` has offset vector
+`M w + ab(P_b(j)) − ab(P_a(i))`, where `P_a(i)` is the length-`i` prefix of
+`sigma(a)`. So the child has offset zero iff
+`M w = ab(P_a(i)) − ab(P_b(j))`. For a catch-up one index is 0 and the other,
+say `j`, satisfies `0 < j < |sigma(b)|`, so `ab(P_b(j)) ∈ Λ`. That is
+excluded. For right endpoints, `ab(suffix) = M e_a − ab(prefix)` is in `Λ`
+iff the prefix is. `square`
+
+When `M` is unimodular, `Λ = Z^3`, so Lemma P never applies. When
+`|det M| = 2` and every proper prefix lies in the nontrivial class of
+`Z^3 / Λ ≅ Z/2`, every difference of two proper prefixes lies in `Λ`. Hits are
+then possible, but only as simultaneous births.
+
+On the standing corpus Lemma P is exact (`catch_up_free`, checked in the
+census). It applies to precisely the 210 total failures, all of them with
+`|det M| = 2`. Every total failure is catch-up-free, and the census checks
+that no catch-up-free specimen has a vertex in `CU`. The converse, that a
+total failure must be catch-up-free, is observed, not proved. The 150
+partial failures, 102 of them unimodular, are not arithmetic: there a
+prefix lies in `Λ`, but some recurrent component cannot reach a step that
+uses it. Lemma P also explains the left–right coincidence for total
+failures. For partial failures that coincidence remains unexplained.
+
 So the one-tile reduction is false in general, at either endpoint. A proof of
 PPVC must handle two-tile cancellation, where both tilings acquire the common
 vertex at the same level. That is the sharp form of §5.6's interleaving
 question. Q1 does hold on 4194 of 4554 specimens, so a one-tile argument
-would still cover most of the corpus. The coincidence of the left and right
-counts is observed, not explained.
+would still cover most of the corpus. For the catch-up-free class, the
+interleaving question is exactly whether a simultaneous birth
+`M w = ab(P_a(i)) − ab(P_b(j))`, with `i, j > 0`, is reachable from every
+recurrent vertex.
 
 ### 5.7 The closing target, restated
 

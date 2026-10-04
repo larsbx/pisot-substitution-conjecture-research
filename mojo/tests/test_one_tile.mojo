@@ -1,8 +1,8 @@
 """Exact regressions for the catch-up (one-tile) analysis (psc.one_tile)."""
 
-from std.testing import assert_equal
+from std.testing import assert_equal, assert_true
 from psc.claim_tests import require_contract
-from psc.one_tile import mirror, one_tile, two_sided
+from psc.one_tile import catch_up_free, mirror, one_tile, two_sided
 from psc.vertex_coincidence import decide_vertex_coincidence
 
 
@@ -63,6 +63,21 @@ def test_right_endpoints_do_not_rescue_q1() raises:
     assert_equal(v.deepest, 14)
 
 
+def test_lemma_p_explains_the_total_failures() raises:
+    """Lemma P: with no proper prefix in M Z^3, no hit is a catch-up. Both
+    total failures are |det M| = 2 and catch-up-free: for 1 -> 012, 2 -> 010,
+    M Z^3 = {x + z even} and the proper prefixes 0, 01 have abelianisations
+    (1,0,0), (1,1,0). So is the mirror. The partial failure 1 -> 12,
+    2 -> 022 and the unimodular Tribonacci and plastic specimens are not."""
+    assert_true(catch_up_free(sigma_of([1], [0, 1, 2], [0, 1, 0])))
+    assert_true(catch_up_free(mirror(sigma_of([1], [0, 1, 2], [0, 1, 0]))))
+    assert_true(catch_up_free(sigma_of([1], [2, 2], [0, 1, 2])))
+    assert_true(not catch_up_free(sigma_of([1], [1, 2], [0, 2, 2])))
+    assert_true(not catch_up_free(sigma_of([0, 1], [0, 2], [0])))
+    assert_true(not catch_up_free(sigma_of([1], [2], [0, 1])))
+    assert_equal(one_tile(sigma_of([1], [2, 2], [0, 1, 2])).in_cu, 0)
+
+
 def main() raises:
     test_every_recurrent_vertex_reaches_a_catch_up()
     print("[PASS] test_every_recurrent_vertex_reaches_a_catch_up")
@@ -70,4 +85,6 @@ def main() raises:
     print("[PASS] test_q1_fails_where_no_catch_up_is_reachable")
     test_right_endpoints_do_not_rescue_q1()
     print("[PASS] test_right_endpoints_do_not_rescue_q1")
-    require_contract("one-tile catch-up analysis: recurrent/in-CU/reach-CU pinned on seven specimens; Q1 holds on cube, golden pump, 210/0/110, plastic, Tribonacci; fails totally on 1/012/010 (694/0/0) and partly on 1/12/022 (14/4/12); two-sided (left/right/either), Tribonacci 14/14/14 of 14 (mirror recurrent 8), 1/12/022 12/12/12 of 14, 1/012/010 0/0/0 of 694 while PPVC holds with K_V 14")
+    test_lemma_p_explains_the_total_failures()
+    print("[PASS] test_lemma_p_explains_the_total_failures")
+    require_contract("one-tile catch-up analysis: recurrent/in-CU/reach-CU pinned on seven specimens; Q1 holds on cube, golden pump, 210/0/110, plastic, Tribonacci; fails totally on 1/012/010 (694/0/0) and partly on 1/12/022 (14/4/12); two-sided (left/right/either), Tribonacci 14/14/14 of 14 (mirror recurrent 8), 1/12/022 12/12/12 of 14, 1/012/010 0/0/0 of 694 while PPVC holds with K_V 14; Lemma P catch-up-free on 1/012/010, its mirror and 1/22/012 (in_cu 0), not on 1/12/022, Tribonacci, plastic")

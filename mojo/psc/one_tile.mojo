@@ -28,6 +28,8 @@ left-endpoint catch-up of `mirror(sigma)`; `two_sided` checks both per
 recurrent vertex. All signs are exact (`cached_sign`); a capped graph raises.
 """
 
+from finite_linear_algebra.mat3 import Mat3
+from psc.bpa import substitution_incidence
 from psc.overlap_obstruction import _has_cycle, overlap_sccs
 from psc.overlap_seed_patch import (
     OverlapState,
@@ -44,6 +46,34 @@ comptime CU_UNKNOWN = 0
 comptime CU_ACTIVE = 1
 comptime CU_HITS = 2
 comptime CU_MISSES = 3
+
+
+def in_image_lattice(m: Mat3, v: List[Int]) -> Bool:
+    """`v` lies in `M Z^3` iff `adj(M) v = det(M) M^{-1} v` is divisible by
+    `det M` (`M` is invertible: PIP)."""
+    var d = abs(m.det())
+    var u = m.adjugate().apply(v)
+    for i in range(3):
+        if u[i] % d != 0:
+            return False
+    return True
+
+
+def catch_up_free(sigma: List[List[Int]]) -> Bool:
+    """No proper nonempty prefix of an image has its abelianisation in
+    `M Z^3`. Then no edge anywhere in the overlap graph is a catch-up hit
+    (Lemma P, docs/p1b-vertex-coincidence-box-2026-10-02.md §5.6b): a hit from
+    `w` through child indices `(i, j)` needs `M w = ab(P_i) - ab(P_j)`, and
+    for a catch-up one index is 0 and the other prefix is proper and
+    nonempty. Suffixes give the same test, since `ab(suffix) = M e_a - ab(prefix)`."""
+    var m = Mat3(substitution_incidence(sigma))
+    for a in range(len(sigma)):
+        var v: List[Int] = [0, 0, 0]
+        for i in range(len(sigma[a]) - 1):
+            v[sigma[a][i]] += 1
+            if in_image_lattice(m, v):
+                return False
+    return True
 
 
 def leftmost_child(
