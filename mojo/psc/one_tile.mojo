@@ -28,7 +28,7 @@ left-endpoint catch-up of `mirror(sigma)`; `two_sided` checks both per
 recurrent vertex. All signs are exact (`cached_sign`); a capped graph raises.
 """
 
-from finite_linear_algebra.mat3 import Mat3
+from finite_linear_algebra.mat3 import Mat3, identity3
 from psc.bpa import substitution_incidence
 from psc.overlap_obstruction import _has_cycle, overlap_sccs
 from psc.overlap_seed_patch import (
@@ -72,6 +72,54 @@ def catch_up_free(sigma: List[List[Int]]) -> Bool:
         for i in range(len(sigma[a]) - 1):
             v[sigma[a][i]] += 1
             if in_image_lattice(m, v):
+                return False
+    return True
+
+
+def _power(sigma: List[List[Int]], a: Int, n: Int) -> List[Int]:
+    var x: List[Int] = [a]
+    for _ in range(n):
+        var y = List[Int]()
+        for i in range(len(x)):
+            for c in sigma[x[i]]:
+                y.append(c)
+        x = y^
+    return x^
+
+
+def _key(v: List[Int]) -> String:
+    return String(v[0], ",", v[1], ",", v[2])
+
+
+def level_is_valuation(sigma: List[List[Int]], n: Int) -> Bool:
+    """Proposition P' at depth `n`: inside every `sigma^n(a)`, each interior
+    vertex of exact level `k` (a boundary of the level-`k` supertiles but not
+    of the level-`k+1` ones) sits at an abelianised position `v` with
+    `max{k' <= n : v in M^k' Z^3} = k`. This holds iff `sigma` is
+    catch-up-free (`catch_up_free`)."""
+    var m = Mat3(substitution_incidence(sigma))
+    var powers: List[Mat3] = [identity3()]
+    for _ in range(n):
+        powers.append(powers[len(powers) - 1] * m)
+    for a in range(len(sigma)):
+        var level = Dict[String, Int]()
+        var points = List[List[Int]]()
+        for k in range(n, -1, -1):
+            var x = _power(sigma, a, n - k)
+            var u: List[Int] = [0, 0, 0]
+            for j in range(len(x) - 1):
+                u[x[j]] += 1
+                var v = powers[k].apply(u)
+                var key = _key(v)
+                if key not in level:
+                    level[key] = k
+                    points.append(v^)
+        for p in range(len(points)):
+            var val = 0
+            for k in range(1, n + 1):
+                if in_image_lattice(powers[k], points[p]):
+                    val = k
+            if val != level.get(_key(points[p]), -1):
                 return False
     return True
 
