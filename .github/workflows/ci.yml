@@ -375,6 +375,28 @@ jobs:
           grep -Fx 'K_V by specimen, unimodular real: 2:108 3:198 4:234 5:102 6:6' <<<"$out"
           grep -Fx 'K_V by specimen, unimodular complex: 2:210 3:612 4:588 5:336 6:120 7:84 8:18 14:12' <<<"$out"
 
+  one-tile-census:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Catch-up reachability (Q1) on the standing corpus, both endpoints (exact)
+        working-directory: mojo
+        run: |
+          set -o pipefail
+          out=$(pixi run mojo run -I . one_tile_census.mojo 2>&1) || status=$?
+          printf '%s\n' "$out"
+          (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
+          grep -Fx 'One-tile census, specimens: 4554' <<<"$out"
+          grep -Fx 'recurrent vertices: 1154040  in CU: 561624  reach CU: 1056816' <<<"$out"
+          grep -Fx 'specimens failing Q1: 360  of which no recurrent vertex reaches CU: 210' <<<"$out"
+          grep -Fx 'catch-up-free (no proper prefix in M Z^3): 210  of which Q1 fails totally: 210  total failures not catch-up-free: 0' <<<"$out"
+          grep -Fx 'specimens failing Q1 at both endpoints: 360  of which no recurrent vertex reaches either: 210' <<<"$out"
+
   finite-classification:
     runs-on: ubuntu-latest
     steps:

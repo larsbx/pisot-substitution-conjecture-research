@@ -461,7 +461,7 @@ depth comes from cancellation between different letters. So UH has two
 parts: a climb part, which is proved, and a cross-letter cancellation part,
 which is the open rigidity statement of §5.6.
 
-### 5.6b Open: is the rigidity a one-tile question?
+### 5.6b The rigidity is not a one-tile question (exact census)
 
 Every first common vertex `y` of a recurrent vertex is born in each tiling
 at some level, `k_A` and `k_B`. Two cases:
@@ -473,14 +473,95 @@ at some level, `k_A` and `k_B`. Two cases:
 
 If every recurrent vertex had *some* catch-up hit, at any depth and not
 necessarily the first, the cross-letter rigidity of §5.6 would reduce to the
-one-tile question.
+one-tile question (Q1).
 
-An exploratory pass looked at one minimal hit path per vertex. It found many
-simultaneous births, but that does not decide the question: a one-tile
-argument needs only some catch-up descendant, and other shortest paths or
-later common vertices were not examined. The pass used an uncommitted script,
-so its figures are not reported here. The question stays open. Settling it
-needs an exact, committed enumeration of all hit witnesses per vertex.
+*Lemma (catch-up locus, proved).* Take an edge `p -> u` into an offset-zero
+child whose common vertex `y` is new. If the top child index is 0, `y` is the
+start of `p`'s top tile, so `t_p <= 0` and `y` is `p`'s left region endpoint
+(symmetrically for a bottom index 0). Both indices 0 would make `p` itself
+offset zero, so `y` would not be new. So a catch-up hit is exactly a step of
+`p`'s *leftmost chain* (the child whose region contains `p`'s left end) into
+offset zero. With `CU` the set of vertices whose leftmost chain reaches offset
+zero, a vertex can reach a catch-up hit iff it has a descendant in `CU`.
+`square`
+
+The leftmost chain is a function on vertices, so `CU` and the reachability
+are exact finite computations on the box graph (`psc.one_tile`). Right
+endpoints are the mirror case. Reversing every image word reverses both
+tilings, so a right-endpoint catch-up of `sigma` is a left-endpoint catch-up
+of the mirror substitution, read through the vertex map
+`(a, b, t) -> (a, b, l_a − l_b − t)`. The box graph stops at left-aligned
+vertices, so the mirror's recurrent part is not the image of `sigma`'s
+(Tribonacci: 14 against 8), and `two_sided` checks per vertex.
+
+**Census (exact, standing corpus, `pixi run one-tile-census`).**
+
+| | count |
+|---|---|
+| specimens | 4554 |
+| recurrent vertices (nonzero offset) | 1,154,040 |
+| in `CU` | 561,624 |
+| reach `CU` | 1,056,816 |
+| specimens where Q1 fails | 360 |
+| … with no recurrent vertex reaching `CU` | 210 |
+| specimens where Q1 fails at both endpoints | 360 |
+| … with no recurrent vertex reaching either | 210 |
+| catch-up-free (Lemma P) | 210 |
+| … of which Q1 fails totally | 210 |
+| total failures not catch-up-free | 0 |
+
+Right endpoints rescue nothing. On every failing specimen the per-vertex
+left, right and either counts coincide (116,316 recurrent vertices, 19,092
+reaching a catch-up). The first total failure in canonical order is
+`0 -> 1, 1 -> 22, 2 -> 012` (label `1 11 17`): none of its 560 recurrent
+vertices reaches a catch-up at either endpoint, yet PPVC holds there for
+every `r` (§4). Every new common vertex reachable from its recurrent part is
+a simultaneous birth. The pinned specimen `0 -> 1, 1 -> 012, 2 -> 010` is
+the same (694 recurrent, none in `CU`, none reaching a catch-up at either
+endpoint; PPVC holds with `K_V = 14`).
+`0 -> 1, 1 -> 12, 2 -> 022` (label `1 8 20`) fails partially: 12 of its 14 recurrent vertices
+reach a catch-up, at either endpoint. Both are pinned in
+`tests/test_one_tile.mojo`.
+
+*Lemma P (arithmetic catch-up obstruction, proved).* Write `ab(u)` for the
+abelianisation of a word and `Λ = M Z^3`, a sublattice of index `|det M|`.
+If no proper nonempty prefix `u` of an image `sigma(a)` has `ab(u) ∈ Λ`,
+then no edge of the overlap graph is a catch-up hit, at either endpoint.
+In particular no vertex of nonzero offset lies in `CU`, and Q1 fails on every
+recurrent vertex.
+
+*Proof.* Every vertex has an integral offset vector `w`, with
+`t = ⟨ell, w⟩`. The child through indices `(i, j)` has offset vector
+`M w + ab(P_b(j)) − ab(P_a(i))`, where `P_a(i)` is the length-`i` prefix of
+`sigma(a)`. So the child has offset zero iff
+`M w = ab(P_a(i)) − ab(P_b(j))`. For a catch-up one index is 0 and the other,
+say `j`, satisfies `0 < j < |sigma(b)|`, so `ab(P_b(j)) ∈ Λ`. That is
+excluded. For right endpoints, `ab(suffix) = M e_a − ab(prefix)` is in `Λ`
+iff the prefix is. `square`
+
+When `M` is unimodular, `Λ = Z^3`, so Lemma P never applies. When
+`|det M| = 2` and every proper prefix lies in the nontrivial class of
+`Z^3 / Λ ≅ Z/2`, every difference of two proper prefixes lies in `Λ`. Hits are
+then possible, but only as simultaneous births.
+
+On the standing corpus Lemma P is exact (`catch_up_free`, checked in the
+census). It applies to precisely the 210 total failures, all of them with
+`|det M| = 2`. Every total failure is catch-up-free, and the census checks
+that no catch-up-free specimen has a vertex in `CU`. The converse, that a
+total failure must be catch-up-free, is observed, not proved. The 150
+partial failures, 102 of them unimodular, are not arithmetic: there a
+prefix lies in `Λ`, but some recurrent component cannot reach a step that
+uses it. Lemma P also explains the left–right coincidence for total
+failures. For partial failures that coincidence remains unexplained.
+
+So the one-tile reduction is false in general, at either endpoint. A proof of
+PPVC must handle two-tile cancellation, where both tilings acquire the common
+vertex at the same level. That is the sharp form of §5.6's interleaving
+question. Q1 does hold on 4194 of 4554 specimens, so a one-tile argument
+would still cover most of the corpus. For the catch-up-free class, the
+interleaving question is exactly whether a simultaneous birth
+`M w = ab(P_a(i)) − ab(P_b(j))`, with `i, j > 0`, is reachable from every
+recurrent vertex.
 
 ### 5.7 The closing target, restated
 
