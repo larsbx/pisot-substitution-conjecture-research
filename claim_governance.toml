@@ -475,6 +475,21 @@ anchor = "=> coincidence density one / dense good set"
 window_lines = 0
 
 [[claim]]
+name = "CoincidenceRankFibreTheorems"
+status = "imported"
+aliases = ["coincidence-rank fibre theorems"]
+[[claim.surfaces]]
+path = "tla/Ledger.tla"
+anchor = '"CoincidenceRankFibreTheorems"'
+section = "ImportedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| CoincidenceRankFibreTheorems |'
+window_lines = 0
+
+[[claim]]
 name = "ConcentrationAuxB"
 status = "open"
 aliases = ["aux-B", "general concentration"]
@@ -1063,13 +1078,14 @@ window_lines = 0
 
 [[claim]]
 name = "PDSImpliesRepoG1"
-status = "open"
+status = "proved"
+aliases = ["Theorem S", "PDS implies G1"]
 [[claim.surfaces]]
 path = "tla/Ledger.tla"
 anchor = '"PDSImpliesRepoG1"'
 section = "ProvedDef == {"
 section_end = "}"
-expect = "absent"
+expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| PDSImpliesRepoG1 |'

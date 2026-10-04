@@ -129,6 +129,13 @@
     ],
     "G1HalfCoincidenceRoute": [
       "half-coincidence route to finite BPA"
+    ],
+    "PDSImpliesRepoG1": [
+      "Theorem S",
+      "PDS implies G1"
+    ],
+    "CoincidenceRankFibreTheorems": [
+      "coincidence-rank fibre theorems"
     ]
   },
   "surfaces": {
@@ -2094,31 +2101,46 @@
       ],
       "tags": []
     },
+    "CoincidenceRankFibreTheorems": {
+      "id": "sha256:016081d7a8b57cd77f8ddacdf47e28e2cacde69a2cf8cda6e682c1ca8747ca06",
+      "kind": "imported_theorem",
+      "statement": "for a primitive non-periodic substitution with Pisot inflation: one fibre of the maximal equicontinuous factor iff strongly regionally proximal; pairwise strongly regionally proximal, tile-disjoint tilings number at most cr; pure discrete spectrum iff cr = 1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "hypotheses_checked",
+          "true"
+        ],
+        [
+          "source",
+          "docs/coincidence-rank-imports-literature-gate-2026-10-04.md (Barge arXiv:1301.7094 Thm 4(5),(6); Barge arXiv:1505.04408 Sec. 1 items (2)-(3))"
+        ]
+      ],
+      "tags": []
+    },
     "PDSImpliesRepoG1": {
-      "id": "sha256:38b8b33c1df4965f9587a12003b2c88b4baa4bec59d39af2e09d2bff050c7731",
-      "kind": "pending_dependency",
-      "statement": "seedwise pure discrete spectrum implies repository G1",
+      "id": "sha256:c83300d6020f9708d0e74e124b61a208a603f3f635c9b7442e1b320e5beab0ff",
+      "kind": "repository_theorem",
+      "statement": "pure discrete spectrum implies repository G1 (finite BPA from every swap seed)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:12fc08186847f0218dcfeac9e63ef1287ea78c11a15b072d780e834ea202b24e",
-          "the standard balanced-pair algorithm criterion for pure discrete spectrum",
-          "PDSImpliesRepoG1/StandardBPAEquivalence",
-          "same",
-          "accepted"
-        ],
-        [
-          "sha256:0424d81942aa2155673e34281b9417780d7929aca79b378b4378a21b6df6f3c5",
-          "the repository seed-union graph is the union of the literature seed graphs",
-          "PDSImpliesRepoG1/RepoSeedUnionBridge",
+          "sha256:016081d7a8b57cd77f8ddacdf47e28e2cacde69a2cf8cda6e682c1ca8747ca06",
+          "for a primitive non-periodic substitution with Pisot inflation: one fibre of the maximal equicontinuous factor iff strongly regionally proximal; pairwise strongly regionally proximal, tile-disjoint tilings number at most cr; pure discrete spectrum iff cr = 1",
+          "PDSImpliesRepoG1/CoincidenceRankFibreTheorems",
           "same",
           "accepted"
         ]
       ],
       "evidence": [
         [
-          "reason",
-          "open until the seedwise implication is pinned; docs/bpa-literature-bridge.md"
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-vertex-coincidence-box-2026-10-02.md, Theorem 5.1 (Theorem S) with Corollary B' of docs/p1b-strict-zipper-periodic-pair-2026-10-02.md, Proposition F and Theorem R of docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md and manuscript Proposition 5.47; independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending"
         ]
       ],
       "tags": []

@@ -19,6 +19,7 @@ ResultSet == {
     "C3Locality",
     "C4",
     "CoincidenceDensityOne",
+    "CoincidenceRankFibreTheorems",
     "ConcentrationAuxB",
     "DefectIntertwiner",
     "DefectTheorem",
@@ -87,6 +88,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "C3Locality" -> {{}}
       [] r = "C4" -> {{}}
       [] r = "CoincidenceDensityOne" -> {{"OverlapProductivity", "SwapOverlapFiniteness"}}
+      [] r = "CoincidenceRankFibreTheorems" -> {{}}
       [] r = "ConcentrationAuxB" -> {{"G1", "SinkSCCReduction"}}
       [] r = "DefectIntertwiner" -> {{"OrientationMonodromy"}}
       [] r = "DefectTheorem" -> {{}}
@@ -118,7 +120,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "OverlapFullRank" -> {{}}
       [] r = "OverlapProductivity" -> {{}}
       [] r = "PDS" -> {{"G1", "SCCProducer"}}
-      [] r = "PDSImpliesRepoG1" -> {{"StandardBPAEquivalence", "RepoSeedUnionBridge"}}
+      [] r = "PDSImpliesRepoG1" -> {{"CoincidenceRankFibreTheorems"}}
       [] r = "PDSOverlapRoute" -> {{"CoincidenceDensityOne", "DensityToPDSBridge"}}
       [] r = "PDSSpectralRoute" -> {{"G1", "SpectralSCCProducer"}}
       [] r = "ParikhIntertwiner" -> {{}}
@@ -178,6 +180,7 @@ ProvedDef == {
     "OverlapBoundaryZipperDichotomy",
     "OverlapFullRank",
     "PDS",
+    "PDSImpliesRepoG1",
     "PDSOverlapRoute",
     "PDSSpectralRoute",
     "ParikhIntertwiner",
@@ -199,6 +202,7 @@ ProvedDef == {
 }
 
 ImportedDef == {
+    "CoincidenceRankFibreTheorems",
     "DensityToPDSBridge",
     "StandardBPAEquivalence"
 }
@@ -256,6 +260,7 @@ C3LocalNotEstablished == "C3Local" \notin established
 C3LocalityNotEstablished == "C3Locality" \notin established
 C4NotEstablished == "C4" \notin established
 CoincidenceDensityOneNotEstablished == "CoincidenceDensityOne" \notin established
+CoincidenceRankFibreTheoremsNotEstablished == "CoincidenceRankFibreTheorems" \notin established
 ConcentrationAuxBNotEstablished == "ConcentrationAuxB" \notin established
 DefectIntertwinerNotEstablished == "DefectIntertwiner" \notin established
 DefectTheoremNotEstablished == "DefectTheorem" \notin established

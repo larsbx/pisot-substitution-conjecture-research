@@ -140,4 +140,12 @@ by deleting it.
   inflation) assume neither unimodularity nor irreducibility, so every PIP
   substitution qualifies. Do not re-audit. ·
   `coincidence-rank-imports-literature-gate-2026-10-04.md`
+- 2026-10-04 · `PDSImpliesRepoG1` promoted to repository-proved (Theorem S
+  route; audited; human review pending) and manuscript Proposition
+  `prop:PDS-implies-G1` added; the coincidence half of Open Problem 4.24
+  stays open. · `scripts/make_ledger.py`; manuscript §4.8
+- 2026-10-04 · Pre-existing false positive on `main`: `scripts/audit_manuscript.py`
+  flags `docs/psc-motivation-2026-10-02.md:58`, where "PSC is closed" appears
+  in a list of formulations to *avoid*. Not caused by this branch. ·
+  `scripts/audit_manuscript.py` (psc-closed-premise rule)
 
