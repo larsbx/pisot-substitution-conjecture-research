@@ -219,7 +219,8 @@ gives:
    `cr >= 2`, hence no pure discrete spectrum (Barge 2013 Thm 4(5)).
    *Correction 2026-10-04:* an earlier version cited BK Lemma 5.12 here,
    which as recorded runs the other way (not proximal ⇒ no common tile).
-   The hypotheses of these imports are not yet audited in a gate.
+   Their hypotheses are audited in
+   `coincidence-rank-imports-literature-gate-2026-10-04.md` (no unimodularity).
 
 Within the repository, pure discrete spectrum excludes strict zippers only
 through Theorem S of `p1b-vertex-coincidence-box-2026-10-02.md`; the

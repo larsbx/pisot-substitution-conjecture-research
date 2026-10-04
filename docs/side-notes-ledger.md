@@ -135,4 +135,9 @@ by deleting it.
   assert; flag it at review. · `p1b-vertex-coincidence-box-2026-10-02.md`
   §5.1, §7; `p1b-strict-zipper-periodic-pair-2026-10-02.md`;
   `p1b-periodic-pair-fibre-literature-gate-2026-10-02.md` §6
+- 2026-10-04 · The Theorem S import gap is closed: Barge 2013 Thm 4 (Pisot
+  family) and Barge 2015 §1 items (2)–(3) (primitive, non-periodic, Pisot
+  inflation) assume neither unimodularity nor irreducibility, so every PIP
+  substitution qualifies. Do not re-audit. ·
+  `coincidence-rank-imports-literature-gate-2026-10-04.md`
 

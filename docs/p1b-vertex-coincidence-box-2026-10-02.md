@@ -194,7 +194,7 @@ part, and the uniform depth `K_V`.
 
 ## 5. What the data says about a general proof
 
-### 5.1 A sandwich (proved modulo an unaudited import)
+### 5.1 A sandwich (proved; imports audited 2026-10-04)
 
 *Theorem S.* For PIP `sigma`: pure discrete spectrum ⇒ PPVC(`sigma`) ⇒ G1
 for `sigma`.
@@ -219,13 +219,13 @@ for `sigma`.
 
 `square`
 
-*Import status (audit 2026-10-04).* The first bullet rests on three imported
-statements recorded in the fibre gate's source table: Barge 2013 Theorem 4(5),
-(6) and Barge 2015 item (3). Their hypotheses (unimodularity or not, Meyer
-property, the exact definition of `cr` and of "tile-disjoint") are **not yet
-audited in any gate**. An earlier version cited "Theorem 4(3)", which is not
-among the recorded items. Theorem S is therefore proved here modulo that
-audit.
+*Import status (audit 2026-10-04).* The first bullet rests on Barge 2013
+Theorem 4(5),(6) and Barge 2015 item (3). Their hypotheses are audited in
+`coincidence-rank-imports-literature-gate-2026-10-04.md`: a primitive,
+non-periodic substitution with Pisot inflation (Pisot family), with no
+unimodularity or irreducibility assumption, so every PIP substitution
+qualifies, non-unit ones included. An earlier version cited "Theorem 4(3)",
+which is not among the recorded items.
 
 *Consequence for the manuscript.* Theorem S with Corollary B′ and
 Proposition 5.47 gives "pure discrete spectrum implies G1 for the all-seed
@@ -870,7 +870,7 @@ reached, coincidence follows within `S(sigma)` levels.
   `Phi^r`-fixed tilings `T(i, P)`, `T(j, Q) + <ell, w_0>`) shares a **tile**.
   By the proof of Theorem S such a pair lies in one fibre of the maximal
   equicontinuous factor, and a pair sharing no tile forces coincidence rank
-  at least 2 (Barge 2015 item (3) with Barge 2013 Theorem 4(6), as in the proof of Theorem S; imports not yet audited). So under SC_all a failure of
+  at least 2 (Barge 2015 item (3) with Barge 2013 Theorem 4(6), as in the proof of Theorem S). So under SC_all a failure of
   PPVC is a failure of tile coincidence in a fibre, not a weaker
   vertex-level phenomenon.
 - SC_all holds on the standing corpus (formal productivity holds there), and

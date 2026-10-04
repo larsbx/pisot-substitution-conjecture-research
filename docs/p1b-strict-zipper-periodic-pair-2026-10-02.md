@@ -254,8 +254,8 @@ proves this for every PIP substitution. So, for every PIP `sigma`:
 
 Consequences:
 
-- A strict zipper forces `cr >= 2`, modulo the import audit recorded under
-  Theorem S of `p1b-vertex-coincidence-box-2026-10-02.md`. Within the
+- A strict zipper forces `cr >= 2` (imports audited in
+  `coincidence-rank-imports-literature-gate-2026-10-04.md`). Within the
   repository, pure discrete spectrum excludes strict zippers only through
   that Theorem S; "PDS ⇒ productivity" is not imported (manuscript, remark
   after Theorem 5.38), and PDS ⇒ formal productivity needs SC_all as well.
