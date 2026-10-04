@@ -140,8 +140,19 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     # --- literature / repository BPA bridge ---------------------------------------
     "StandardBPAEquivalence": (I, "the standard balanced-pair algorithm criterion for pure discrete spectrum", "docs/bpa-literature-bridge.md and the literature cited there", (), ()),
     "RepoSeedUnionBridge": (T, "the repository seed-union graph is the union of the literature seed graphs", "docs/bpa-literature-bridge.md", (), ()),
-    "PDSImpliesRepoG1": (P, "seedwise pure discrete spectrum implies repository G1", "open until the seedwise implication is pinned; docs/bpa-literature-bridge.md",
-                         ("StandardBPAEquivalence", "RepoSeedUnionBridge"), ()),
+    "CoincidenceRankFibreTheorems": (I, "for a primitive non-periodic substitution with Pisot inflation: one fibre of the maximal equicontinuous factor iff strongly regionally proximal; pairwise strongly regionally proximal, tile-disjoint tilings number at most cr; pure discrete spectrum iff cr = 1",
+                                     "docs/coincidence-rank-imports-literature-gate-2026-10-04.md (Barge arXiv:1301.7094 Thm 4(5),(6); Barge arXiv:1505.04408 Sec. 1 items (2)-(3))", (), ()),
+    "PDSImpliesRepoG1": (T, "pure discrete spectrum implies repository G1 (finite BPA from every swap seed)",
+                         "docs/p1b-vertex-coincidence-box-2026-10-02.md, Theorem 5.1 (Theorem S) with Corollary B' of docs/p1b-strict-zipper-periodic-pair-2026-10-02.md, "
+                         "Proposition F and Theorem R of docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md and manuscript Proposition 5.47; "
+                         "independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending",
+                         ("CoincidenceRankFibreTheorems",), ()),
+    "StrongCoincidenceFromPDS": (I, "pure discrete spectrum of an irreducible Pisot substitution gives simultaneous prefix strong coincidence of all letters",
+                                 "Akiyama-Lee, European J. Combin. 39 (2014), Corollary 4.5; height-group step by Theorem R; docs/pds-strong-coincidence-literature-gate-2026-10-04.md", (), ()),
+    "PDSImpliesSeedwiseTermination": (T, "pure discrete spectrum implies termination of the balanced-pair algorithm with coincidence from every seed (ab, ba), legal or not",
+                                      f"{MANUSCRIPT}, Theorem thm:seedwise; docs/formal-productivity-reduction-2026-10-04.md, Proposition FP and Corollary FP''; "
+                                      "manuscript Theorem 5.33(iii),(v); independently audited 2026-10-04, human review pending",
+                                      ("PDSImpliesRepoG1", "StrongCoincidenceFromPDS"), ()),
     # --- retracted ------------------------------------------------------------------------
     "V5Thm51": (P, "v5 Theorem 5.1", "retired: the v5 Theorem 5.1 argument is withdrawn", (), (gl.WITHDRAWN_TAG,)),
 }
@@ -181,6 +192,8 @@ ALIASES = {
     "OverlapProductivity": ["seedwise overlap productivity", "overlap productivity", "Open Problem 5.35"], "SCCProducer": ["SCC Producer"],
     "AllSeedOverlapProductivity": ["all-seed overlap productivity"], "G1OverlapRoute": ["overlap-depth route to finite BPA"],
     "AllSeedStrictZipperExclusion": ["all-seed strict-zipper exclusion"], "G1HalfCoincidenceRoute": ["half-coincidence route to finite BPA"],
+    "PDSImpliesRepoG1": ["Theorem S", "PDS implies G1"], "CoincidenceRankFibreTheorems": ["coincidence-rank fibre theorems"],
+    "PDSImpliesSeedwiseTermination": ["seedwise bridge"], "StrongCoincidenceFromPDS": ["overlap coincidence to strong coincidence"],
 }
 
 

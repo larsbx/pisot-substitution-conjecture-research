@@ -15,7 +15,7 @@ from finite_exact.rat_q import Q
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
 from psc.exact import eval_q_poly_at_q, q_int, q_poly, q_sign, require_q
-from psc.overlap_contracting import _cauchy_bound, discriminant
+from psc.field3 import cauchy_bound, discriminant
 from psc.overlap_seed_patch import build_seed_overlap_tables
 from psc.real_root_sign import isolate_real_roots
 
@@ -91,7 +91,7 @@ struct MuSquared(Copyable, Movable):
         self.det = q_int(abs(m.det()))
         self.lo = List[Q]()
         self.hi = List[Q]()
-        var perron = isolate_real_roots(self.chi, q_int(1), q_int(_cauchy_bound(field)), 1)
+        var perron = isolate_real_roots(self.chi, q_int(1), q_int(cauchy_bound(field)), 1)
         self.lo.append(perron[0][0].copy())
         self.hi.append(perron[0][1].copy())
         if not self.is_complex:

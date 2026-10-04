@@ -19,9 +19,9 @@ Theorem B, Corollary B′); manuscript Theorem 4.22, Lemma 5.45 and Proposition
 `sigma^r(j) = Q j V` whose centre offset
 `w_0 = (M^r − I)^{−1}(pi(P) − pi(Q))` is integral, the `Phi^r`-fixed tilings
 `T(i, P)` and `T(j, Q) + <ell, w_0>` share a vertex. By Proposition F and
-Theorem R of `p1b-periodic-pair-fibre-literature-gate-2026-10-02.md`, these
-are exactly the pairs of `Phi^r`-fixed tilings in one fibre with a common
-centre and integral offset.
+Theorem R of `p1b-periodic-pair-fibre-literature-gate-2026-10-02.md`, each
+such pair lies in one fibre of the maximal equicontinuous factor (the forward
+direction of Proposition F; the centre is interior to a tile in both tilings).
 
 By Corollary B′, PPVC(`sigma`) excludes strict zippers from every swap seed,
 so by manuscript Proposition 5.47 it gives G1 for `sigma`.
@@ -179,7 +179,8 @@ but they are not guarded equally:
 *Finite-domain statement.* On the standing corpus, as an exact certificate
 guarded by CI: for every PIP substitution on three letters with images of
 length at most 3 and every `r >= 1`, any two `Phi^r`-fixed tilings with a
-common centre and integral centre offset share a vertex. Hence no strict
+common centre interior to a tile of each and integral centre offset share a
+vertex. Hence no strict
 zipper is reachable from any swap seed (Corollary B′), and G1 holds by
 manuscript Proposition 5.47; the balanced-pair builds already certify G1
 there directly. The recorded runs give the same statement for total image
@@ -194,29 +195,54 @@ part, and the uniform depth `K_V`.
 
 ## 5. What the data says about a general proof
 
-### 5.1 A sandwich (proved)
+### 5.1 A sandwich (proved; imports audited 2026-10-04)
 
 *Theorem S.* For PIP `sigma`: pure discrete spectrum ⇒ PPVC(`sigma`) ⇒ G1
 for `sigma`.
 
 *Proof.*
 
-- **PDS ⇒ PPVC.** If PPVC(`sigma`) fails, Proposition V gives a pair
-  `T(i, P)`, `T(j, Q) + <ell, w_0>` with no common vertex, hence no common
-  tile. By Proposition F with Theorem R, the two tilings lie in one fibre of
-  the maximal equicontinuous factor. Barge 2013, Theorem 4(3),(5) (from
-  Barge–Kellendonk) then gives coincidence rank at least 2, hence no pure
-  discrete spectrum.
+- **PDS ⇒ PPVC.** A failure of PPVC(`sigma`) is, by definition, a pair
+  `T_A = T(i, P)`, `T_B = T(j, Q) + <ell, w_0>` of §1 with no common vertex,
+  hence no common tile. It persists under every `Phi^k`: inflation about 0
+  and about the common centre `c` differ by one translation, applied to both
+  tilings, and `Phi_c^(rj − k)` for `rj >= k` would carry a common vertex of
+  `Phi^k T_A` and `Phi^k T_B` back to one of `T_A` and `T_B`. By Proposition F
+  with Theorem R the two tilings lie in one fibre of the maximal
+  equicontinuous factor, i.e. they are strongly regionally proximal (Barge
+  2013, Theorem 4(6), as recorded in
+  `p1b-periodic-pair-fibre-literature-gate-2026-10-02.md` §2). Barge 2015
+  (arXiv:1505.04408), item (3) of §1 as recorded there, says pairwise strongly
+  regionally proximal, pairwise tile-disjoint tilings `T_1, …, T_r` exist iff
+  `r <= cr`; with `r = 2` this gives `cr >= 2`, hence no pure discrete
+  spectrum (Barge 2013, Theorem 4(5)).
 - **PPVC ⇒ G1.** Corollary B′ with manuscript Proposition 5.47.
 
 `square`
+
+*Import status (audit 2026-10-04).* The first bullet rests on Barge 2013
+Theorem 4(5),(6) and Barge 2015 item (3). Their hypotheses are audited in
+`coincidence-rank-imports-literature-gate-2026-10-04.md`: a primitive,
+non-periodic substitution with Pisot inflation (Pisot family), with no
+unimodularity or irreducibility assumption, so every PIP substitution
+qualifies, non-unit ones included. An earlier version cited "Theorem 4(3)",
+which is not among the recorded items.
+
+*Consequence for the manuscript (applied 2026-10-04).* Theorem S with
+Corollary B′ and Proposition 5.47 gives "pure discrete spectrum implies G1
+for the all-seed automaton", which the manuscript's former Open Problem 4.24
+declined to assert. It is now manuscript Proposition `prop:PDS-implies-G1`,
+and, with Corollary FP″ of `formal-productivity-reduction-2026-10-04.md`,
+Theorem `thm:seedwise`: pure discrete spectrum gives termination with
+coincidence from every seed. Ledger nodes `PDSImpliesRepoG1` and
+`PDSImpliesSeedwiseTermination`.
 
 So a failure of PPVC, which Proposition V would detect in finite time, is a
 counterexample to the Pisot conjecture for that `sigma`. PPVC holds wherever
 pure discrete spectrum is known, for example Barge's class of substitutions
 injective on initial letters and constant on final letters, and Pisot
-`beta`-substitutions. Neither class adds anything to G1, which pure discrete
-spectrum already implies there.
+`beta`-substitutions; there G1 also follows, but only through Theorem S
+itself.
 
 ### 5.2 Mechanisms the data rules out (exploratory)
 
@@ -417,7 +443,10 @@ expanding line. Their contracting windows differ by
 - **Under pure discrete spectrum.** Each staircase is, up to its boundary,
   every lattice point of its strip whose contracting coordinate lies in its
   window (the model-set property), so two staircases with overlapping
-  windows must meet. This is the mechanism behind Theorem S.
+  windows must meet. This is a heuristic picture in the real contracting
+  coordinates, not the proof of Theorem S (which goes through fibres and
+  coincidence rank); for `|det M| > 1` the true internal space also carries
+  an M-adic factor (`p1b-strict-zipper-literature-gate-2026-09-21.md`).
 - **Without it.** Each staircase is a proper subset of lattice density
   `1/p` inside the same model set, and meeting is a rigidity question about
   the substitutive hierarchy.
@@ -727,13 +756,342 @@ interleaving question is exactly whether a simultaneous birth
 `M w = ab(P_a(i)) − ab(P_b(j))`, with `i, j > 0`, is reachable from every
 recurrent vertex.
 
-### 5.6c Anatomy of the one-tile analysis (exact, `pixi run one-tile-anatomy`)
+### 5.6c Case 2 needs no PPVC; the two missing statements (2026-10-04)
+
+*Mass lemma (proved).* Write `|x|` for the length of the overlap interval of
+a vertex `x`. The children of `x` partition the inflated overlap, so
+`sum_{y child of x} |y| = beta |x|`, children counted with multiplicity.
+
+- On a nonempty finite set `Y` of nonzero-offset vertices closed under
+  children, the positive vector `(|x|)` satisfies `N_Y (|x|) = beta (|x|)`,
+  so `rho(N_Y) = beta`. Since `beta` has degree 3, `|Y| >= 3` (compare the
+  manuscript's overlap-rank corollary).
+- Let `x` be short periodic: its forward closure `S`, offset-zero vertices
+  excluded, has at most two vertices (self-loops and multiple edges allowed).
+  If no vertex of `S` had an offset-zero child, `S` would be such a `Y` with
+  `|S| <= 2`, which is impossible. So some vertex of `S` has an offset-zero
+  child, and every vertex of `S` reaches it, so `x` hits within two levels.
+  For a fixed point with `k` self-loops the offset-zero mass is
+  `(beta − k)|x| > 0`, since `beta` is not an integer.
+
+`square`
+
+*Correction 2026-10-04 (audit F8):* an earlier version handled only the
+fixed point and the 2-cycle without self-loops or multiplicities; the
+degree argument above covers every closure of size at most two.
+
+So case 2 of §5.6b holds unconditionally: a short periodic vertex hits
+within two levels by mass alone, not because PPVC holds. The census
+trichotomy therefore reduces PPVC to two statements, neither proved. Here,
+as in §5.6b, "recurrent vertex" means a vertex on a cycle with **nonzero**
+offset (1,154,040 on the standing corpus); §§3–4 count aligned cycle vertices
+too (1,174,788).
+
+- **T1 (catch-up reachability).** If `sigma` is not catch-up-free, every
+  recurrent vertex that is not short periodic reaches `CU`. A vertex of `CU`
+  reaches offset zero along its leftmost chain, so T1 with the mass lemma
+  gives BH outside the catch-up-free class.
+- **T2 (simultaneous birth).** If `sigma` is catch-up-free, every recurrent
+  vertex has a descendant `(i, j, w)` with an offset-zero child through indices
+  `(p, q)`, both positive: `M w = ab(P_a(p)) − ab(P_b(q))`.
+
+T1 and T2 together with the mass lemma give PPVC, hence BH
+(`formal-productivity-reduction-2026-10-04.md`) and G1.
+
+*Falsification test on a larger domain (exact census).*
+`pixi run one-tile-census total` surveys the 24,486 specimens of total image
+length at most 8 (104 minutes on 4 workers):
+
+| | count |
+| --- | --- |
+| recurrent vertices (nonzero offset) | 7,796,496 |
+| in `CU` / reach `CU` | 3,129,864 / 7,362,240 |
+| specimens failing Q1 / totally | 1,326 / 654 |
+| catch-up-free specimens, all failing Q1 totally | 654 |
+| total failures not catch-up-free | 0 |
+| P′ (to depth 5) iff catch-up-free, mismatches | 0 |
+| Q1-failing vertices outside the catch-up-free class / short periodic | 1,572 / 1,572 |
+| trichotomy exceptions | 0 |
+
+The trichotomy, and the observation that every total failure is
+catch-up-free, survive on a domain about five times the standing corpus.
+Right endpoints again rescue nothing: every Q1-failing specimen fails at both
+endpoints.
+
+### 5.6d A non-Archimedean local mechanism for T2 fails (exact census)
+
+In the catch-up-free class levels are M-adic valuations (P′), so the
+non-Archimedean analogue of §5.2's refuted contracting-size descent is the
+natural local candidate. Write `nu(w) = max{k : w in M^k Z^3}` for the
+offset vector of a vertex.
+
+*Valuation ascent* (VA): every nonzero-offset descendant of a recurrent
+vertex has a child of offset zero or of strictly larger valuation. Nonzero
+offsets of the box graph are finitely many, so `nu` is bounded on them by
+some `K_0`, and VA would give T2 within `K_0 + 1` levels. When `|det M| = 2`
+and every proper prefix is in the nontrivial class, a child through indices
+`(p, q)` lies in `M Z^3` exactly when `p, q` are both zero or both positive;
+then `nu(w') = 1 + nu(w + e)` with `M e` the prefix difference, so VA is a
+cancellation condition modulo `M^(nu(w) + 1)`.
+
+`kernel/valuation_ascent_census.mojo` (kernel `psc.valuation_ascent`) decides
+VA exactly on the box graph of every catch-up-free specimen of the standing
+corpus:
+
+| | count |
+| --- | --- |
+| catch-up-free specimens | 210 |
+| nonzero-offset descendants of recurrent vertices | 126,396 |
+| one-step VA failures | 57,540 |
+| specimens where one-step VA holds | 0 |
+| failures by valuation | `0:23184 1:15984 2:9456 3:4212 4:2640 5:1488 6:516 7:60` |
+| specimens by `K_0` | `3:6 4:72 5:54 6:66 7:12` |
+| specimens by largest ascent depth | `3:6 4:24 5:36 6:18 7:6 8:42 9:18 10:24 11:18 12:6 14:12` |
+
+On the 24,486 specimens of total image length at most 8 the class has 654
+members, and VA again holds on none: 311,952 of 605,280 vertices fail, at
+every valuation 0..7, with ascent depth up to 25.
+
+VA fails on every specimen. The failures at `nu = 0` are vertices with no
+child whose two indices are both positive; the rest are spread over every
+valuation. The ascent depth (least depth to offset zero or larger valuation)
+reaches 14, at the scale of `K_V` itself, so a k-step variant would only
+restate PPVC. `tests/test_valuation_ascent.mojo` pins
+`0 -> 1, 1 -> 22, 2 -> 012`: 368 of 826 vertices fail, ascent depth 14,
+`K_0 = 6`.
+
+So neither Archimedean nor non-Archimedean size decreases locally. With §5.6
+this places T2 where the rest of this note places PPVC: in exact interleaving
+of the two hierarchies, which needs a non-local argument.
+
+### 5.6e T2 via adelic coverage: an attempt (2026-10-04)
+
+*Lemma E (proved).* Let `|det M| = 2`, so `Z^3 / M Z^3 = Z/2`, and call a
+letter `c` an *E letter* if `e_c` is not in `M Z^3` and a *Z letter*
+otherwise. Then `sigma` is catch-up-free iff every image of length at least 2
+has the form `E Z* E`. (An image of length 1 is automatically a Z letter:
+`e_c = M e_a` lies in `M Z^3`.)
+
+*Proof.* The class of a prefix is the number of its E letters mod 2. Write
+`s_p` for the class of the length-`p` prefix of `sigma(a)`, `n = |sigma(a)|`:
+`s_0 = 0` and `s_n = 0`, since `ab(sigma(a)) = M e_a`. Catch-up-free means
+`s_p = 1` for `0 < p < n`. For `n >= 2` this forces the first letter to be E,
+the letters at positions `1..n-2` to be Z, and the last to be E; for `n = 1`
+it forces `s_1 = 0`, a Z letter. The converse is the same computation.
+`square`
+
+*Note (2026-10-04 merge):* Lemma E is Proposition C of §5.6b, found
+independently on `main`, with the E letters as the odd set `O`. The two
+censuses agree: `|E| = 2` on 192 corpus specimens (`156 + 36`), `|E| = 1` on 18
+(`12 + 6`). Proposition C's forward direction needs no determinant hypothesis.
+
+`psc.valuation_ascent.lemma_e_shape` decides the shape, and
+`valuation_ascent_census.mojo` checks it against `catch_up_free` on every
+`|det M| = 2` specimen: 0 mismatches on the 1,926 of the standing corpus and
+the 12,672 of total length at most 8. The class is not
+confined to `|det M| = 2`: on the standing corpus all 210 catch-up-free
+specimens have it, but of the 654 of total length at most 8 only 570 do, and
+Lemma E says nothing about the other 84. On the standing corpus the 210 catch-up-free specimens
+split by (number of E letters, number of length-1 images) as `(2, 0): 156`,
+`(2, 1): 36`, `(1, 1): 12`, `(1, 0): 6`. With two E letters the hierarchy is
+read off a parity: a cut is a level-0 vertex iff an odd number of E letters
+precedes it, and its exact level is its M-adic valuation (P′).
+
+*Simultaneous births are explicit.* With Lemma E a hit of `(a, b, w)` through
+indices `(p, q)`, both positive, is `M w in Delta_{a,b}`, where `Delta_{a,b}`
+is the finite set of differences of the vectors `e_x + z`, `x` the leading E
+letter and `z` the abelianisation of a proper prefix of the Z-run. T2 asks
+that every recurrent vertex has a descendant with `M w` in such a set.
+
+*The adelic setting.* Let `H` be the internal space of the contracting
+embeddings times the M-adic completion `Z_M = lim Z^3 / M^k Z^3`. `M` contracts
+both factors, so the child maps `w -> M w + d` form a contracting
+graph-directed system on `H`, and the closures of the descaled staircases
+`P_m(a)` are its attractors `W_a` (adelic Rauzy pieces). A hit of a recurrent
+`w` at depth `m` is a common point of the staircases `P_m(i)` and
+`M^m w + P_m(j)`, whose windows in `H` are `W_i` and `W_j` shifted by the image
+of `M^m w`, which tends to 0.
+
+*Where the attempt stops.* Coverage needs the two staircases to meet once
+their windows overlap. That holds when each staircase is the full model set
+of its window, i.e. when the pieces `W_a` tile `H` with multiplicity one.
+Heuristically, pure discrete spectrum gives this (coincidence rank 1 in the
+Baker–Barge–Kwapisz form recorded in §5.6b; Theorem S itself is proved
+through fibres, not through windows); the
+converse, multiplicity one ⇒ pure discrete spectrum in the non-unit adelic
+setting, is not re-verified here and is not used. On the
+catch-up-free class T2 is PPVC itself, since every hit there is a
+simultaneous birth, so as set up here adelic coverage proves T2 from pure
+discrete spectrum (or multiplicity one) and from nothing weaker. The arithmetic of the class does not lower the bar:
+
+- Lemma E fixes the M-adic coordinate of every vertex (its level and
+  parity), but says nothing about the multiplicity of the Archimedean
+  windows.
+- Recoding cannot move the class to the unimodular case on three letters:
+  `|det M| = |N(beta)| = 2` is an invariant of the Perron number.
+- One-step size arguments fail in both factors of `H` (§5.2 and §5.6d).
+
+*The precise missing statement.* PPVC needs vertex coincidence, not tile
+coincidence. What coverage actually uses is weaker than multiplicity one:
+
+> **Vertex-sheet alignment (open).** For a catch-up-free `sigma`, the vertex
+> staircases of two letters, shifted by the offset of a recurrent vertex,
+> lie in a common sheet of the multiplicity-`p` self-replicating multi-tiling
+> of `H`.
+
+Multiplicity one gives it trivially. §5.6f shows that under all-pairs
+aligned strong coincidence it is not weaker than tile coincidence of the §1
+periodic pairs.
+
+### 5.6f Vertex-sheet alignment collapses to tile coincidence (2026-10-04)
+
+*Lemma VT (proved).* Let `sigma` be PIP with SC_all: each of the six aligned
+pairs `(a, b, 0)`, `a != b`, is productive
+(`formal-productivity-reduction-2026-10-04.md`). Let `T`, `T'` be
+tilings fixed by `Phi^r` about the **same** centre (for some `r >= 1`;
+with different periods use their least common multiple). If `T` and `T'`
+share a vertex, they share a tile. The §1 pairs qualify after translating
+both by the common centre.
+
+*Proof.* Let `x` be a common vertex, and `a`, `b` the tiles of `T`, `T'` that
+start at `x`. If `a = b` they share a tile. Otherwise the overlap `(a, b, 0)`
+is productive: for some `n` there are prefixes `p` of `sigma^n(a)` and `q` of
+`sigma^n(b)` with `ab(p) = ab(q)`, each followed by the same letter `c`. The
+coincidence persists under inflation: `sigma^(m−n)(p)` and `sigma^(m−n)(q)`
+have equal abelianisations and are followed by `sigma^(m−n)(c)` for every
+`m >= n`. Take `k` with `rk >= n`. Since `Phi^(rk)(T) = T`, the tiling `T`
+contains `sigma^(rk)(a)` placed at `beta^(rk) x`, and likewise `T'` contains
+`sigma^(rk)(b)` there. So both contain the tiles of `sigma^(rk−n)(c)` at
+`beta^(rk) x + <ell, M^(rk−n) ab(p)>`. `square`
+
+The argument is elementary and is not claimed new; it is the tiling-space
+reading of Proposition FP (1), `D <= L + S(sigma)`: once offset zero is
+reached, coincidence follows within `S(sigma)` levels.
+
+*Consequences.*
+
+- Under SC_all, two tilings fixed about a common centre that share no tile
+  share no vertex; for arbitrary tilings the same holds with "never" read as
+  "under no `Phi^k`". A vertex staircase cannot cross into another sheet:
+  vertex-sheet alignment of §5.6e is equivalent to tile coincidence of the
+  pair.
+- Hence, under SC_all, PPVC(`sigma`) holds iff every pair of §1 (the
+  `Phi^r`-fixed tilings `T(i, P)`, `T(j, Q) + <ell, w_0>`) shares a **tile**.
+  By the proof of Theorem S such a pair lies in one fibre of the maximal
+  equicontinuous factor, and a pair sharing no tile forces coincidence rank
+  at least 2 (Barge 2015 item (3) with Barge 2013 Theorem 4(6), as in the proof of Theorem S). So under SC_all a failure of
+  PPVC is a failure of tile coincidence in a fibre, not a weaker
+  vertex-level phenomenon.
+- SC_all holds on the standing corpus (formal productivity holds there), and
+  formal productivity requires it in general (Proposition FP). On this
+  route there is therefore no vertex-level slack: T2, PPVC and BH are, under
+  SC_all, tile-coincidence statements for periodic fibre pairs.
+
+*Decision: redirect.* Under SC_all, vertex-sheet alignment is not weaker than
+tile coincidence of the §1 periodic pairs. Whether that periodic-pair tile
+coincidence is equivalent to pure discrete spectrum is **not** shown: the
+non-PDS periodic pair of Barge 2013 Thm 5 need not have §1 form (its centre
+may be a vertex, and integrality of `w_0` is not known for it). *Correction
+2026-10-04 (audit F10):* an earlier version said this closes the route around
+pure discrete spectrum. The only room left by the vertex/tile distinction is in
+substitutions failing SC_all, where formal productivity fails anyway and the
+aligned route (#138) is the obstruction. A proof of T2 must establish tile
+coincidence for the periodic fibre pairs of §1 directly, which is the
+coincidence-rank problem in its periodic form.
+
+### 5.6g Periodic coincidence rank on the catch-up-free class: what the literature already gives (2026-10-04)
+
+§5.6f leaves T2, on the catch-up-free class, as tile coincidence of the
+periodic fibre pairs of §1, i.e. a coincidence-rank statement. Before any new
+coincidence-rank argument, one existing theorem reaches part of the class.
+
+*The lever.* Barge (2016) proves pure discrete spectrum for primitive,
+non-periodic substitutions with Pisot inflation that are injective on initial
+letters and constant on final letters (hypotheses as audited in
+`p1b-strict-zipper-literature-gate-2026-09-21.md`); reversing every image
+gives the mirror class. Pure discrete spectrum is shared by `sigma`, its
+powers, and the conjugates `u^{-1} sigma^n u` or `v sigma^n v^{-1}` by a common
+prefix `u` or suffix `v` of the images, which have the same tiling space up to
+translation. Indeed, if every `sigma(a)` begins with `u`, then
+`tau(w) = u^{-1} sigma(w) u` telescopes to `sigma^k(w) u_k = u_k tau^k(w)` for
+the iterates, so `tau` has the same language as `sigma` (primitivity), the
+same incidence matrix and tile lengths, hence the same tiling space `Omega`
+with the same R-action. Primitivity, non-periodicity, Pisot inflation and
+pure discrete spectrum transfer; irreducibility and unimodularity are not
+among Barge's recorded hypotheses. Any rotation by a nonempty common prefix is
+constant on final letters; it lies in Barge's class when the letters following
+the maximal common prefix are pairwise distinct (if an image equals the
+prefix, its rotation is the prefix itself and its first letter is the
+prefix's first letter). Lemma E bears only on whether a nonempty common prefix
+exists. A witness gives pure discrete spectrum, hence PPVC (Theorem S), and
+on the catch-up-free class PPVC is T2.
+
+`kernel/barge_class_census.mojo` (kernel `psc.barge_class`) searches `sigma^n`,
+`n <= 6`, and its maximal left and right rotations, exactly:
+
+| domain | specimens | with a witness | catch-up-free | catch-up-free with a witness |
+| --- | --- | --- | --- | --- |
+| standing corpus | 4,554 | 1,248 | 210 | 78 |
+| total length ≤ 8 | 24,486 | 6,336 | 654 | 174 |
+
+Every witness occurs at power 1 or 2. By Lemma E stratum (`|det M| = 2`):
+
+| `|E|`, number of length-1 images | standing corpus | total length ≤ 8 |
+| --- | --- | --- |
+| 1, none | 6 / 6 | 6 / 6 |
+| 1, at least one | 0 / 12 | 0 / 264 |
+| 2, none | 48 / 156 | 48 / 156 |
+| 2, one | 24 / 36 | 84 / 144 |
+| (`|det M| != 2`) | — | 36 / 84 |
+
+`tests/test_barge_class.mojo` pins Tribonacci (mirror class), the plastic
+substitution (no witness) and `0 -> 1, 1 -> 22, 2 -> 012`, the first total Q1
+failure of §5.6b, whose square `(22, 012012, 122012)` lies in Barge's class:
+T2 holds for it, by Barge's theorem.
+
+*Lemma B (obstruction, proved).* Let `|det M| = 2` and `sigma` catch-up-free
+with one E letter `x`. Then no power `sigma^n` lies in Barge's class or its
+mirror. (An earlier version also assumed an image of length 1; the proof
+never uses it.)
+
+*Proof.* By Lemma E, every image of length at least 2 begins and ends with
+`x`, and every image of length 1 is a single letter. So the first-letter map
+`g(a)` and the last-letter map `f(a)` of `sigma` coincide, and so do those of
+`sigma^n` (`g^n = f^n`). One map on three letters cannot be both injective and
+constant. `square`
+
+Rotations are not covered by Lemma B. With a length-1 image the census finds
+no rotation witness on either domain (0 of 264 at total length at most 8).
+With no length-1 image, `f = g` is the constant `x`, so every witness must be
+a rotation, and a rotation by the common prefix succeeds on every specimen
+surveyed.
+
+*Where this leaves the coincidence-rank argument.* On the surveyed domains
+Barge's theorem settles T2 for 78 of the 210 catch-up-free corpus specimens
+and 174 of 654 of total length at most 8. For the rest no conjugacy route is
+known, and in the stratum `|E| = 1` with a length-1 image it is blocked for
+powers by Lemma B. Those specimens are where a genuine periodic
+coincidence-rank argument is needed. No such argument is given here. These
+consequences inherit the review status of Theorem S and the import of
+Barge (2016).
+
+*Update 2026-10-04:* the specimens without a witness are not open one by one.
+SC_all holds on both surveyed domains and PPVC is recorded there, so Proposition
+FP and manuscript Theorem `thm:main-density` give pure discrete spectrum for
+every one of them (`strong-coincidence-census-2026-10-04.md` §4). What a
+coincidence-rank argument is still needed for is the uniform statement.
+
+### 5.6h Anatomy of the one-tile analysis (exact, `pixi run one-tile-anatomy`)
+
+*Numbering (2026-10-04 merge):* §§5.6h–5.6i were §§5.6c–5.6d when written;
+the checksummed archive index in `archive/2026-10-04/session-probes/` still
+cites them by the old numbers.
 
 These are the side computations behind §5.6b. Each one is exact on every
 standing-corpus specimen and is computed by the committed driver
 `kernel/one_tile_anatomy.mojo` with `psc.one_tile`. CI pins the output. An
 earlier scratch probe gave each of them first. Those probes are archived with
-their outputs in `archive/2026-10-04/session-probes/` (§5.6d) and agree with
+their outputs in `archive/2026-10-04/session-probes/` (§5.6i) and agree with
 the driver line by line.
 
 *Q1 failures by spectral class.*
@@ -806,7 +1164,7 @@ recurrent vertices all reach an off-diagonal hit first and no diagonal one,
 and `0 -> 1, 1 -> 012, 2 -> 010` (694 vertices) does the same. Both are
 pinned in `tests/test_one_tile.mojo`.
 
-### 5.6d The session's scratch probes (archived)
+### 5.6i The session's scratch probes (archived)
 
 Every scratch probe run for §§3–5.6 is archived in
 `archive/2026-10-04/session-probes/` with its saved output and a fresh re-run of each. That covers 34
@@ -823,7 +1181,7 @@ particular:
 - §5.5: `[0.441, 3.164]` and correlation 0.923;
 - §5.6: 651 specimens, `[−33.75, 5.00]` and `[0.32, 2.56]`;
 - §5.6a: 111 of 651, and the plastic depths 14/13/12;
-- §5.6c: all figures.
+- §5.6h: all figures.
 
 Two archived results are not cited elsewhere in this note:
 
@@ -872,3 +1230,14 @@ not a proof strategy.
   is the strict-zipper exclusion itself.
 - The census is a finite-domain theorem about the specimens it covers, by
   exact certificate. It says nothing outside them.
+
+## 7. Citation keys (audit 2026-10-04)
+
+The notes use year keys that collide with the manuscript's bibliography:
+
+| Key in these notes | Paper | Manuscript key |
+| --- | --- | --- |
+| Barge 2013 | *Factors of Pisot tiling spaces and the Coincidence Rank Conjecture*, arXiv:1301.7094 (Bull. SMF 2015) | `Barge2016` |
+| Barge 2015 (fibre gate) = Barge 2018 (§5.7) | *The Pisot conjecture for beta-substitutions*, arXiv:1505.04408 (ETDS 2018) | — |
+| Barge (2016) (§5.6g) | *Pure discrete spectrum for a class of one-dimensional substitution tiling systems*, DCDS 2016 | — |
+

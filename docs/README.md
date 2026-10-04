@@ -11,6 +11,11 @@ TOML and regenerate rather than hand-editing the Markdown.
 
 ## Current status
 
+0. `side-notes-ledger.md` — live, append-only record of side findings:
+   refuted mechanisms, redirected routes, specimens settled by the literature,
+   withdrawn figures, finite observations and tooling pitfalls. Read it
+   before starting a new mechanism, census or route (`AGENTS.md`).
+
 1. `audit-2026-09-27.md` — status/provenance audit, now carrying a 2026-10-01
    resolution note: the PSC-closed premise was withdrawn, PSC remains open,
    #84/#138 are live theorem issues again, and #153 is resolved conservatively.
@@ -166,8 +171,36 @@ These are reference/index additions only. They do not establish #84, #138,
   positions; Proposition C gives the class by image shape; Proposition P″
   (M-adic centres coincide in a periodic pair) closes the purely M-adic route;
   route check against Baker–Barge–Kwapisz 2006 recorded.
-  §5.6c: exact anatomy (`kernel/one_tile_anatomy.mojo`); §5.6d: every scratch
+  §5.6h: exact anatomy (`kernel/one_tile_anatomy.mojo`); §5.6i: every scratch
   probe of the session archived with outputs in `archive/2026-10-04/session-probes/`.
+- `formal-overlap-carriers-2026-10-04.md` — exact census of formal
+  (potential) versus realized overlap carriers; supersedes the unreproducible
+  "1,764 formal producer-free cycles / death radius 7" line of the
+  2026-09-11 ledger. No closed carrier and no nonproductive potential overlap
+  on the corpus; realized carriers are mostly aligned and die fast, unrealized
+  ones are 99.3% strict zippers and die later (depth up to 14). Canonical
+  `kernel/psc/formal_overlap.mojo`, census `kernel/formal_overlap_census.mojo`.
+- `formal-productivity-reduction-2026-10-04.md` — research note
+  (unreviewed): every potential overlap is productive iff the six aligned
+  pairs `(i, j, 0)` are productive and every cycle overlap has an offset-zero
+  descendant (Proposition FP), with the remainder after offset zero bounded by
+  `S(sigma)`; with Proposition V and Theorem S this is PDS plus all-pairs
+  aligned strong coincidence (Corollary FP′). Changes no status.
+- `pds-strong-coincidence-literature-gate-2026-10-04.md` — stop/go: Akiyama–Lee
+  2014 Corollary 4.5 gives PDS ⇒ all-pairs prefix strong coincidence for
+  irreducible Pisot substitutions (non-unit height step via Theorem R);
+  hence formal productivity ⟺ PDS. Decision "proceed, caveat recorded".
+- `coincidence-rank-imports-literature-gate-2026-10-04.md` — stop/go: the
+  imports behind Theorem S (Barge 2013 Thm 4, Barge 2015 §1 (2)–(3)) assume
+  only a primitive, non-periodic substitution with Pisot inflation, so they
+  cover every PIP substitution, non-unit included. Decision "proceed".
+- `strong-coincidence-census-2026-10-04.md` — exact SC_all census on the
+  corpus, total length ≤ 8, images ≤ 4 and total length ≤ 10 (408,798
+  specimens): no failure. Lemma A: on the catch-up-free `|det M| = 2` class the
+  aligned route is a hitting statement through nonzero offsets. With the
+  recorded PPVC runs, pure discrete spectrum on the 145,806 specimens with
+  images ≤ 4 or total length ≤ 8 (finite evidence; Proposition V unreviewed).
+  Driver `kernel/strong_coincidence_census.mojo`.
 - `catch-up-hit-witness-enumeration-2026-10-04.md` — occurrence-level
   all-path decision (`psc.hit_witness`): committed stable labels for all
   97,224 simultaneous-only standing vertices, replayable closed certificates,

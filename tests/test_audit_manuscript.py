@@ -136,6 +136,8 @@ def test_audit_accepts_wrapped_cycle_rejection(tmp_path: Path) -> None:
         "# Tier 2: post-PSC Growth Bridge research programme",
         "Since PSC is now proved, Tier 2 builds on it.",
         "The PSC has been settled for all Pisot substitutions.",
+        "Results:\n\n- PSC is closed.\n- The corpus is finite.",
+        "Avoid overclaiming.\n\n- PSC is closed.",
     ],
 )
 def test_audit_rejects_psc_closed_premise(tmp_path: Path, text: str) -> None:
@@ -150,6 +152,7 @@ def test_audit_rejects_psc_closed_premise(tmp_path: Path, text: str) -> None:
         'The earlier premise that PSC is closed is withdrawn.',
         "PSC remains open; Tier 2 does not assume it.",
         "See `archive/tier2-post-psc-draft.md` for the old path.",
+        "Avoid these formulations unless a proof justifies them:\n\n- \"PSC is closed.\"\n- \"BPA finiteness is solved.\"",
     ],
 )
 def test_audit_accepts_psc_open_framing(tmp_path: Path, text: str) -> None:

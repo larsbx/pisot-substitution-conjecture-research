@@ -142,6 +142,16 @@
       "leaks": "premises not established: OverlapProductivity"
     },
     {
+      "id": "CoincidenceRankFibreTheorems",
+      "kind": "claim",
+      "label": "Imported theorem",
+      "provenance": "imported-theorem",
+      "statement": "for a primitive non-periodic substitution with Pisot inflation: one fibre of the maximal equicontinuous factor iff strongly regionally proximal; pairwise strongly regionally proximal, tile-disjoint tilings number at most cr; pure discrete spectrum iff cr = 1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "imported_theorem",
+      "source": "source: docs/coincidence-rank-imports-literature-gate-2026-10-04.md (Barge arXiv:1301.7094 Thm 4(5),(6); Barge arXiv:1505.04408 Sec. 1 items (2)-(3))"
+    },
+    {
       "id": "ConcentrationAuxB",
       "kind": "claim",
       "label": "Open conjectural gate",
@@ -463,13 +473,24 @@
     {
       "id": "PDSImpliesRepoG1",
       "kind": "claim",
-      "label": "Open conjectural gate",
-      "provenance": "open",
-      "statement": "seedwise pure discrete spectrum implies repository G1",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "pure discrete spectrum implies repository G1 (finite BPA from every swap seed)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
-      "record_kind": "pending_dependency",
-      "source": "reason: open until the seedwise implication is pinned; docs/bpa-literature-bridge.md",
-      "leaks": "open until the seedwise implication is pinned; docs/bpa-literature-bridge.md"
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-vertex-coincidence-box-2026-10-02.md, Theorem 5.1 (Theorem S) with Corollary B' of docs/p1b-strict-zipper-periodic-pair-2026-10-02.md, Proposition F and Theorem R of docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md and manuscript Proposition 5.47; independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending",
+      "leaks": "premises not established: CoincidenceRankFibreTheorems"
+    },
+    {
+      "id": "PDSImpliesSeedwiseTermination",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "pure discrete spectrum implies termination of the balanced-pair algorithm with coincidence from every seed (ab, ba), legal or not",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Theorem thm:seedwise; docs/formal-productivity-reduction-2026-10-04.md, Proposition FP and Corollary FP''; manuscript Theorem 5.33(iii),(v); independently audited 2026-10-04, human review pending",
+      "leaks": "premises not established: StrongCoincidenceFromPDS"
     },
     {
       "id": "PDSOverlapRoute",
@@ -618,6 +639,16 @@
       "source": "source: docs/bpa-literature-bridge.md and the literature cited there"
     },
     {
+      "id": "StrongCoincidenceFromPDS",
+      "kind": "claim",
+      "label": "Imported theorem",
+      "provenance": "imported-theorem",
+      "statement": "pure discrete spectrum of an irreducible Pisot substitution gives simultaneous prefix strong coincidence of all letters",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "imported_theorem",
+      "source": "source: Akiyama-Lee, European J. Combin. 39 (2014), Corollary 4.5; height-group step by Theorem R; docs/pds-strong-coincidence-literature-gate-2026-10-04.md"
+    },
+    {
       "id": "SwapOverlapFiniteness",
       "kind": "claim",
       "label": "Repository-proved",
@@ -741,6 +772,15 @@
       "provenance": "declared",
       "members": [
         "CoincidenceDensityOne"
+      ]
+    },
+    {
+      "id": "coincidence-rank fibre theorems",
+      "kind": "alias",
+      "label": "coincidence-rank fibre theorems",
+      "provenance": "declared",
+      "members": [
+        "CoincidenceRankFibreTheorems"
       ]
     },
     {
@@ -924,6 +964,33 @@
       ]
     },
     {
+      "id": "PDS implies G1",
+      "kind": "alias",
+      "label": "PDS implies G1",
+      "provenance": "declared",
+      "members": [
+        "PDSImpliesRepoG1"
+      ]
+    },
+    {
+      "id": "Theorem S",
+      "kind": "alias",
+      "label": "Theorem S",
+      "provenance": "declared",
+      "members": [
+        "PDSImpliesRepoG1"
+      ]
+    },
+    {
+      "id": "seedwise bridge",
+      "kind": "alias",
+      "label": "seedwise bridge",
+      "provenance": "declared",
+      "members": [
+        "PDSImpliesSeedwiseTermination"
+      ]
+    },
+    {
       "id": "Theorem 5.38",
       "kind": "alias",
       "label": "Theorem 5.38",
@@ -957,6 +1024,15 @@
       "provenance": "declared",
       "members": [
         "SpanRichProductivity"
+      ]
+    },
+    {
+      "id": "overlap coincidence to strong coincidence",
+      "kind": "alias",
+      "label": "overlap coincidence to strong coincidence",
+      "provenance": "declared",
+      "members": [
+        "StrongCoincidenceFromPDS"
       ]
     },
     {
@@ -1152,6 +1228,15 @@
       "certainty": 1,
       "use_site": "PDSOverlapRoute/CoincidenceDensityOne",
       "leaks": "premise is conditional"
+    },
+    {
+      "type": "implicative",
+      "source": "CoincidenceRankFibreTheorems",
+      "target": "PDSImpliesRepoG1",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "PDSImpliesRepoG1/CoincidenceRankFibreTheorems",
+      "leaks": "premise is imported-theorem"
     },
     {
       "type": "implicative",
@@ -1458,6 +1543,14 @@
     },
     {
       "type": "implicative",
+      "source": "PDSImpliesRepoG1",
+      "target": "PDSImpliesSeedwiseTermination",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "PDSImpliesSeedwiseTermination/PDSImpliesRepoG1"
+    },
+    {
+      "type": "implicative",
       "source": "ParikhIntertwiner",
       "target": "MeanAreaLift",
       "provenance": "theorem-backed",
@@ -1487,14 +1580,6 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "W3LowGrowth/PhiSemisimplicity"
-    },
-    {
-      "type": "implicative",
-      "source": "RepoSeedUnionBridge",
-      "target": "PDSImpliesRepoG1",
-      "provenance": "theorem-backed",
-      "certainty": 1,
-      "use_site": "PDSImpliesRepoG1/RepoSeedUnionBridge"
     },
     {
       "type": "implicative",
@@ -1560,11 +1645,11 @@
     },
     {
       "type": "implicative",
-      "source": "StandardBPAEquivalence",
-      "target": "PDSImpliesRepoG1",
+      "source": "StrongCoincidenceFromPDS",
+      "target": "PDSImpliesSeedwiseTermination",
       "provenance": "imported-theorem",
       "certainty": 1,
-      "use_site": "PDSImpliesRepoG1/StandardBPAEquivalence",
+      "use_site": "PDSImpliesSeedwiseTermination/StrongCoincidenceFromPDS",
       "leaks": "premise is imported-theorem"
     },
     {
@@ -1689,6 +1774,14 @@
     },
     {
       "type": "synonymous",
+      "source": "PDS implies G1",
+      "target": "PDSImpliesRepoG1",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "SCC Producer",
       "target": "SCCProducer",
       "provenance": "conditional",
@@ -1700,6 +1793,14 @@
       "source": "Theorem 5.38",
       "target": "PDSOverlapRoute",
       "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "Theorem S",
+      "target": "PDSImpliesRepoG1",
+      "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"
     },
@@ -1756,6 +1857,14 @@
       "source": "coincidence density one",
       "target": "CoincidenceDensityOne",
       "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "coincidence-rank fibre theorems",
+      "target": "CoincidenceRankFibreTheorems",
+      "provenance": "imported-theorem",
       "certainty": 1,
       "use_site": "aliases"
     },
@@ -1833,6 +1942,14 @@
     },
     {
       "type": "synonymous",
+      "source": "overlap coincidence to strong coincidence",
+      "target": "StrongCoincidenceFromPDS",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "overlap productivity",
       "target": "OverlapProductivity",
       "provenance": "open",
@@ -1867,6 +1984,14 @@
       "type": "synonymous",
       "source": "seed-patch overlap graph finiteness",
       "target": "SwapOverlapFiniteness",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "seedwise bridge",
+      "target": "PDSImpliesSeedwiseTermination",
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"

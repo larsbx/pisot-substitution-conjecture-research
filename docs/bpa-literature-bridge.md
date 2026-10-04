@@ -79,6 +79,19 @@ RepoSeedUnionBridge
 PDSImpliesRepoG1   [open until the seedwise implication is pinned]
 ```
 
+*Update 2026-10-04.* `PDSImpliesRepoG1` is now repository-proved by a route
+that bypasses the literature question above: Theorem S of
+`p1b-vertex-coincidence-box-2026-10-02.md` (pure discrete spectrum ⇒ PPVC ⇒
+no strict zipper from any seed ⇒ G1 by manuscript Proposition 5.47), with the
+coincidence-rank imports audited in
+`coincidence-rank-imports-literature-gate-2026-10-04.md`; manuscript
+Proposition `prop:PDS-implies-G1`. The ledger node now depends on that import,
+not on `StandardBPAEquivalence`. Termination *with coincidence* from every
+seed (the rest of former Open Problem 4.24) also follows: manuscript Theorem
+`thm:seedwise` (ledger node `PDSImpliesSeedwiseTermination`), through the
+productivity of every potential overlap. The literature question of §3 is no
+longer needed for either.
+
 rather than silently merging all three statements.
 
 ## 5. Why this matters strategically

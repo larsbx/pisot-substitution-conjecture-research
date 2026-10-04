@@ -161,9 +161,18 @@ def audit_file(path: Path) -> list[str]:
             if rule.name == "psc-closed-premise":
                 # Permit only guidance or retraction that negates the claim,
                 # e.g. "Never describe ... PSC as proved" or "... is withdrawn".
+                # A Markdown list is read together with the colon-terminated
+                # lead-in paragraph that introduces it ("Avoid these ...:").
+                context = paragraph
+                if re.match(r"[-*+]\s|\d+[.)]\s", paragraph):
+                    lead_end = para_start - 2 if para_break != -1 else -1
+                    lead_break = text.rfind("\n\n", 0, max(lead_end, 0))
+                    lead = " ".join(text[lead_break + 2 if lead_break != -1 else 0:max(lead_end, 0)].split())
+                    if lead.endswith(":"):
+                        context = f"{lead} {paragraph}"
                 if re.search(
-                    r"\b(?:never|not|withdrawn|false|retired|no longer)\b",
-                    paragraph,
+                    r"\b(?:never|not|withdrawn|false|retired|no longer|avoid)\b",
+                    context,
                     re.IGNORECASE,
                 ):
                     continue

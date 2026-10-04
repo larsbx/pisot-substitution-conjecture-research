@@ -11,20 +11,8 @@ This is a diagnostic constraint, not a proof that every such cycle can occur
 in a closed nonproductive component.
 """
 
-from psc.overlap_obstruction import overlap_sccs
+from psc.overlap_obstruction import has_cycle, overlap_sccs
 from psc.overlap_seed_patch import SeedOverlapAutomaton
-
-
-def _has_cycle(a: SeedOverlapAutomaton, comp: List[Int]) -> Bool:
-    if len(comp) > 1:
-        return True
-    if len(comp) == 0:
-        return False
-    var v = comp[0]
-    for j in range(len(a.adj[v])):
-        if a.adj[v][j] == v:
-            return True
-    return False
 
 
 def zero_shift_free_recurrent_sccs(
@@ -59,6 +47,6 @@ def zero_shift_free_recurrent_sccs(
         if len(comps[i]) == 0:
             continue
         var representative = comps[i][0]
-        if kept[representative] and _has_cycle(filtered, comps[i]):
+        if kept[representative] and has_cycle(filtered, comps[i]):
             out.append(comps[i].copy())
     return out^

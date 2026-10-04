@@ -143,6 +143,18 @@ For new executable mathematical machinery, a PR should normally contain or depen
 - Python oracle coverage only when it adds independent value;
 - no claim beyond what the exact executable or formal proof actually establishes.
 
+## Record side findings
+
+Every session records its side findings in `docs/side-notes-ledger.md` in the
+same commit as the work that produced them: a refuted or retired mechanism, a
+route redirected at a stop/go decision, specimens already settled by the
+literature, a withdrawn or unreproducible figure, a finite observation worth
+not recomputing, a tooling pitfall. One dated line, with a locator for the
+evidence. Before starting a new mechanism, census or literature route, read
+the ledger first; an entry there is the reason not to spend the cycles again.
+The ledger is append-only: correct an entry with a dated correction beneath
+it.
+
 ## Every test names what it guards
 
 A file under `kernel/tests/` ends its `main` with a declaration from

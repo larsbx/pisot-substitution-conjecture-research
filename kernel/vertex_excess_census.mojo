@@ -13,7 +13,7 @@ bound is confined to the non-unimodular regime.
 from parallel_fold.map_fold import parallel_map_fold
 from psc.corpus import Specimen, arithmetic_regime, pip_corpus
 from psc.overlap_contracting import ContractingBound
-from psc.overlap_obstruction import _has_cycle, overlap_sccs
+from psc.overlap_obstruction import recurrent_sccs
 from psc.overlap_seed_patch import build_seed_overlap_tables, first_left_aligned_depths
 from psc.vertex_coincidence import build_box_graph
 
@@ -59,10 +59,8 @@ def specimen_excess(spec: Specimen) raises -> ExcessCensus:
     var bound = ContractingBound(tables)
     var regime = arithmetic_regime(spec.incidence)
     var worst = 0
-    var comps = overlap_sccs(a)
+    var comps = recurrent_sccs(a)
     for c in range(len(comps)):
-        if not _has_cycle(a, comps[c]):
-            continue
         for k in range(len(comps[c])):
             var i = comps[c][k]
             var b = depths[i]

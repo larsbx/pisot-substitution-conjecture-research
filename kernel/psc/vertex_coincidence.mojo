@@ -28,9 +28,11 @@ used. A capped closure is reported as capped, never as a verdict.
 """
 
 from finite_exact.rat_q import Q
+from finite_linear_algebra.mat3 import Mat3
 from psc.exact import q_int, q_poly, q_sign, require_q
-from psc.overlap_contracting import _cauchy_bound, _fadd, _fmul, _fnorm, _fscale, _fsub, digit_set, discriminant, lift
-from psc.overlap_obstruction import _has_cycle, overlap_sccs
+from psc.field3 import cauchy_bound, discriminant, lift, qf_add, qf_mul, qf_norm, qf_scale, qf_sub
+from psc.overlap_contracting import digit_set
+from psc.overlap_obstruction import recurrent_sccs
 from psc.overlap_seed_patch import (
     OverlapState,
     SeedOverlapAutomaton,
@@ -64,7 +66,7 @@ struct ConjugateRoots(Copyable, Movable):
         self.is_complex = discriminant(field) < 0
         self.lo = List[Q]()
         self.hi = List[Q]()
-        var perron = isolate_real_roots(self.chi, q_int(1), q_int(_cauchy_bound(field)), 1)
+        var perron = isolate_real_roots(self.chi, q_int(1), q_int(cauchy_bound(field)), 1)
         self.lo.append(perron[0][0].copy())
         self.hi.append(perron[0][1].copy())
         if not self.is_complex:
@@ -88,10 +90,10 @@ struct ConjugateRoots(Copyable, Movable):
             var sx = self.sign_at(0, x)
             if sx == 0:
                 return q_sign(q) > 0
-            var diff = _fsub(_fscale(x, require_q(q.square(), "q^2")), _constant(_fnorm(self.chi, x)))
+            var diff = qf_sub(qf_scale(x, require_q(q.square(), "q^2")), _constant(qf_norm(self.chi, x)))
             return self.sign_at(0, diff) == sx
         var qq = _constant(q)
-        return self.sign_at(k, _fsub(qq, x)) > 0 and self.sign_at(k, _fadd(qq, x)) > 0
+        return self.sign_at(k, qf_sub(qq, x)) > 0 and self.sign_at(k, qf_add(qq, x)) > 0
 
     def upper(self, k: Int, x: List[Q], steps: Int = REFINE_STEPS) raises -> Q:
         """A rational `q > |sigma_k(x)|`, within a factor `1 + 2^-steps` of it
@@ -198,14 +200,14 @@ def box_radii(tables: SeedOverlapTables) raises -> List[Int]:
     for a in range(3):
         var row = List[Q]()
         for b in range(3):
-            row.append(_trace(chi, _fmul(chi, lengths[a], lengths[b])))
+            row.append(_trace(chi, qf_mul(chi, lengths[a], lengths[b])))
         gram.append(row^)
     var inv = _inverse3(gram)
     var radii = List[Int]()
     for m in range(3):
         var theta = q_poly([0])
         for b in range(3):
-            theta = _fadd(theta, _fscale(lengths[b], inv[m][b]))
+            theta = qf_add(theta, qf_scale(lengths[b], inv[m][b]))
         var radius = require_q(roots.upper(0, theta).mul(lmax), "expanding term")
         for idx in range(len(ks)):
             var term = require_q(roots.upper(ks[idx], theta).mul(bounds[idx]).mul(mult), "contracting term")
@@ -217,11 +219,36 @@ def box_radii(tables: SeedOverlapTables) raises -> List[Int]:
     return radii^
 
 
-def _offset(lengths: List[CubicElt], w: List[Int]) raises -> CubicElt:
+def offset_of(lengths: List[CubicElt], w: List[Int]) raises -> CubicElt:
+    """`t = <ell, w>`; `offset_vector` is its inverse."""
     var x = CubicElt()
     for a in range(3):
         x = cubic_add_checked(x, cubic_scale_checked(lengths[a], w[a]))
     return x
+
+
+def length_matrix(tables: SeedOverlapTables) raises -> Mat3:
+    """Columns are the tile lengths in the basis `1, beta, beta^2`."""
+    var e = List[Int]()
+    for r in range(3):
+        for a in range(3):
+            var l = tables.lengths.at(a)
+            e.append(l.a0 if r == 0 else (l.a1 if r == 1 else l.a2))
+    return Mat3(e^)
+
+
+def offset_vector(lengths: Mat3, t: CubicElt) raises -> List[Int]:
+    """The integral `w` with `t = <ell, w>`; raises if `t` is not in `<ell, Z^3>`."""
+    var d = lengths.det()
+    if d == 0:
+        raise Error("tile lengths are linearly dependent")
+    var u = lengths.adjugate().apply([t.a0, t.a1, t.a2])
+    var w = List[Int]()
+    for k in range(3):
+        if u[k] % d != 0:
+            raise Error("offset is not an integral combination of tile lengths")
+        w.append(u[k] // d)
+    return w^
 
 
 def box_start_states(
@@ -258,18 +285,18 @@ def box_start_states(
             var s = starts[iy]
             w[z] = s
             # least s with t > -l_max
-            if cached_sign(tables, cache, cubic_add_checked(_offset(lengths, w), longest)) <= 0:
-                while cached_sign(tables, cache, cubic_add_checked(_offset(lengths, w), longest)) <= 0:
+            if cached_sign(tables, cache, cubic_add_checked(offset_of(lengths, w), longest)) <= 0:
+                while cached_sign(tables, cache, cubic_add_checked(offset_of(lengths, w), longest)) <= 0:
                     w[z] += 1
             else:
                 while True:
                     w[z] -= 1
-                    if cached_sign(tables, cache, cubic_add_checked(_offset(lengths, w), longest)) <= 0:
+                    if cached_sign(tables, cache, cubic_add_checked(offset_of(lengths, w), longest)) <= 0:
                         w[z] += 1
                         break
             starts[iy] = w[z]
             while True:
-                var t = _offset(lengths, w)
+                var t = offset_of(lengths, w)
                 if cached_sign(tables, cache, cubic_sub_checked(t, longest)) >= 0:
                     break
                 for i in range(3):
@@ -349,10 +376,8 @@ def _verdict_on(a: SeedOverlapAutomaton, var v: VertexCoincidenceVerdict) raises
             v.holds = False
             v.witness = a.states[i]
             break
-    var comps = overlap_sccs(a)
+    var comps = recurrent_sccs(a)
     for c in range(len(comps)):
-        if not _has_cycle(a, comps[c]):
-            continue
         for k in range(len(comps[c])):
             var i = comps[c][k]
             v.recurrent += 1

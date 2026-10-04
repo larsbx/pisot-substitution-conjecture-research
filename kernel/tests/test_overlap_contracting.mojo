@@ -9,9 +9,8 @@ from psc.overlap_contracting import (
     ContractingBoundCache,
     bound_key,
     digit_set,
-    discriminant,
-    field_norm,
 )
+from psc.field3 import discriminant, field_norm
 from psc.overlap_seed_patch import (
     build_seed_overlap_graph_from_tables,
     build_seed_overlap_tables,
