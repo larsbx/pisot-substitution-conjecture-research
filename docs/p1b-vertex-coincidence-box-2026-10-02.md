@@ -596,6 +596,73 @@ exactly the 210 catch-up-free specimens, and on no other. In 192 of them
 `|O| = 2` (e.g. `0 -> 1, 1 -> 22, 2 -> 012` with `O = {0, 2}`), and in 18
 `|O| = 1` (e.g. `0 -> 1, 1 -> 22, 2 -> 202` with `O = {2}`).
 
+*The M-adic completion.* Assume `|det M| >= 2`. This holds throughout the
+catch-up-free class, since Lemma P is void when `Λ = Z^3`. When `M` is
+unimodular, `M^n Z^3 = Z^3` and what follows degenerates. Let
+`v(x) = sup{n : x ∈ M^n Z^3}` for
+`x ∈ Z^3`. The lattices `M^n Z^3` are nested, so `v` is ultrametric:
+`v(x + y) >= min(v(x), v(y))`, with equality when `v(x) ≠ v(y)`. Since `M`
+is injective, `v(M x) = v(x) + 1`. Moreover `∩_n M^n Z^3 = 0`. To see this,
+identify `x` with `ξ = ⟨ell, x⟩` in the full-rank module `Z⟨ell⟩ ⊂ Q(beta)`.
+Then `M^{−n} x` corresponds to `beta^{−n} ξ`. The norms of nonzero elements
+of a finitely generated full-rank module lie in `(1/q) Z \ {0}` for some
+fixed `q`. If `x ≠ 0` and `M^{−n} x ∈ Z^3` for every `n`, then
+`|N(beta^{−n} ξ)| = |N(ξ)| / |det M|^n` tends to 0, which is a contradiction.
+So `v(x) = ∞` iff `x = 0`. Let `Ẑ_M = lim Z^3 / M^n Z^3` be the completion. It is complete
+and Hausdorff, `Z^3` embeds in it, and `v` extends to it.
+
+Positions are compared only through differences. Two vertices `y, z` of
+one σ-tiling differ by the abelianisation `D(y, z) ∈ Z^3` of the word
+between them. If two tilings lie in one fibre (Proposition F), their vertex
+positions lie in one coset `x + Z⟨ell⟩`. Since `ell` has rationally
+independent entries, every difference of vertex positions across both
+tilings is then `⟨ell, D⟩` for a unique `D ∈ Z^3`. So all vertices of both
+tilings live in one torsor `A` under `Z^3`, which completes to a torsor `Â`
+under `Ẑ_M`. One should not use rational coordinates instead, such as the
+rational fixed point `(I − M^r)^{−1} E` of an inflation. Its denominator
+`det(I − M^r)` can be even, and `v` is not defined there. The argument below
+uses only differences and completeness.
+
+*Proposition P″ (M-adic centres, proved).*
+(a) Every σ-tiling `T` has an *M-adic centre* `c_T ∈ Â`: for any vertices
+`z_n` of `T` with `level_T(z_n) >= n`, `c_T = lim z_n`. If `σ` is
+catch-up-free, then `level_T(y) = v(y − c_T)` for every vertex `y` of finite
+level, and a vertex of infinite level equals `c_T`.
+(b) If `T, T′` are `Φ^r`-fixed with a common centre and lie in one fibre,
+then `c_T = c_{T′}`.
+(c) Hence, for catch-up-free `σ`, every common vertex of such a pair has
+the same level in both tilings. The M-adic coordinate cannot by itself
+exclude a common vertex, so P′ alone does not rule out a strict zipper.
+
+*Proof.* (a) Between two vertices of level `>= n` lie whole level-`n`
+supertiles, and each has abelianisation `M^n e_c`. So
+`v(z_n − z_m) >= min(n, m)`. The sequence is Cauchy, and any two such
+sequences interleave, so the limit does not depend on the choice. Now let
+`σ` be catch-up-free and `level_T(y) = k < ∞`. Then `y` is interior to a
+level-`(k+1)` supertile starting at some `s`, and `y = s + M^k ab(p)` for a
+proper nonempty prefix `p`. So `v(y − s) = k`, as in P′. For `n > k`,
+`v(z_n − s) >= k + 1`, hence `v(y − z_n) = k`. Since
+`v(z_n − c_T) >= n > k`, we get `v(y − c_T) = k`. If `y` has infinite level,
+`v(y − z_n) >= n` for every `n`, so `y = c_T`.
+(b) The real map `x -> beta^r x` about the common centre sends vertices of
+each tiling to vertices of the same tiling. On the common coset it acts by
+the same affine map `F(y) = F(y_0) + M^r (y − y_0)` for both tilings. `F`
+extends to `Â` and satisfies `v(F(y) − F(y′)) = v(y − y′) + r`, so it is a
+strict contraction of a complete ultrametric space. Its fixed point is
+therefore unique. `F` raises levels by `r` (recognizability), so it maps a
+sequence `z_n` of increasing level to another such sequence, and `F(c_T) = c_T`.
+Likewise `F(c_{T′}) = c_{T′}`, so `c_T = c_{T′}`.
+(c) A common vertex `y` has `level_T(y) = v(y − c_T) = v(y − c_{T′}) =
+level_{T′}(y)`. `square`
+
+So the tempting route "different M-adic centres force disjoint vertex sets"
+is closed. The centres always coincide. Part (c) re-derives the
+simultaneous-birth property of the catch-up-free class (Lemma P), and also
+shows that the non-Archimedean coordinate carries no further obstruction. A
+proof of case 3 has to use the order structure on the real line, not the
+M-adic arithmetic alone. Parts (a) and (b) need only `|det M| >= 2`, not
+catch-up-freeness.
+
 *Route check (2026-10-04).* I read the M-adic picture against Baker, Barge and
 Kwapisz, *Geometric realization and coincidence for reducible
 non-unimodular Pisot tiling spaces*, Ann. Inst. Fourier 56 (2006), §§1, 4
