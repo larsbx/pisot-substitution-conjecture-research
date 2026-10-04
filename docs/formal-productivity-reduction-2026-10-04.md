@@ -7,10 +7,11 @@ unreviewed Proposition V and Theorem S of
 and Theorem R and on the imports behind Theorem S (Barge 2013 Theorem 4(5),(6)
 and Barge 2015 item (3), audited in `coincidence-rank-imports-literature-gate-2026-10-04.md`), and on the
 imported Barge–Štimac–Williams density theorem behind manuscript Theorem
-5.38. Through Theorem S these corollaries imply "PDS ⇒ G1 for the all-seed
-automaton", which manuscript Open Problem 4.24 declines to assert; that
-consequence awaits review. No ledger node, open problem, or PSC status
-changes. Step 3 of the
+5.38. Through Theorem S and Corollary FP″ they answer the manuscript's former
+Open Problem 4.24: pure discrete spectrum gives termination with coincidence
+from every seed (manuscript Theorem `thm:seedwise`; ledger nodes
+`PDSImpliesRepoG1`, `PDSImpliesSeedwiseTermination`). PSC's status does not
+change. Step 3 of the
 realization programme following `formal-overlap-carriers-2026-10-04.md`.
 
 ## 1. Statement

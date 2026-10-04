@@ -227,12 +227,14 @@ unimodularity or irreducibility assumption, so every PIP substitution
 qualifies, non-unit ones included. An earlier version cited "Theorem 4(3)",
 which is not among the recorded items.
 
-*Consequence for the manuscript.* Theorem S with Corollary B′ and
-Proposition 5.47 gives "pure discrete spectrum implies G1 for the all-seed
-automaton", which manuscript Open Problem 4.24 (`prob:seedwise`) explicitly
-declines to assert. This note does not edit the manuscript; the implication
-must pass review, including the import audit above, before Problem 4.24 is
-updated.
+*Consequence for the manuscript (applied 2026-10-04).* Theorem S with
+Corollary B′ and Proposition 5.47 gives "pure discrete spectrum implies G1
+for the all-seed automaton", which the manuscript's former Open Problem 4.24
+declined to assert. It is now manuscript Proposition `prop:PDS-implies-G1`,
+and, with Corollary FP″ of `formal-productivity-reduction-2026-10-04.md`,
+Theorem `thm:seedwise`: pure discrete spectrum gives termination with
+coincidence from every seed. Ledger nodes `PDSImpliesRepoG1` and
+`PDSImpliesSeedwiseTermination`.
 
 So a failure of PPVC, which Proposition V would detect in finite time, is a
 counterexample to the Pisot conjecture for that `sigma`. PPVC holds wherever

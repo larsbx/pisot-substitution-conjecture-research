@@ -52,6 +52,7 @@ ResultSet == {
     "OverlapProductivity",
     "PDS",
     "PDSImpliesRepoG1",
+    "PDSImpliesSeedwiseTermination",
     "PDSOverlapRoute",
     "PDSSpectralRoute",
     "ParikhIntertwiner",
@@ -66,6 +67,7 @@ ResultSet == {
     "SpectralBlackBox",
     "SpectralSCCProducer",
     "StandardBPAEquivalence",
+    "StrongCoincidenceFromPDS",
     "SwapOverlapFiniteness",
     "Target1",
     "ThetaIntertwining",
@@ -121,6 +123,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "OverlapProductivity" -> {{}}
       [] r = "PDS" -> {{"G1", "SCCProducer"}}
       [] r = "PDSImpliesRepoG1" -> {{"CoincidenceRankFibreTheorems"}}
+      [] r = "PDSImpliesSeedwiseTermination" -> {{"PDSImpliesRepoG1", "StrongCoincidenceFromPDS"}}
       [] r = "PDSOverlapRoute" -> {{"CoincidenceDensityOne", "DensityToPDSBridge"}}
       [] r = "PDSSpectralRoute" -> {{"G1", "SpectralSCCProducer"}}
       [] r = "ParikhIntertwiner" -> {{}}
@@ -135,6 +138,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "SpectralBlackBox" -> {{"Target1", "DominantCubicCapture"}}
       [] r = "SpectralSCCProducer" -> {{"G1", "SinkSCCReduction", "SpanRichProductivity"}}
       [] r = "StandardBPAEquivalence" -> {{}}
+      [] r = "StrongCoincidenceFromPDS" -> {{}}
       [] r = "SwapOverlapFiniteness" -> {{"G1b1BoundedDiscrepancy"}}
       [] r = "Target1" -> {{"SeedCentralizer"}}
       [] r = "ThetaIntertwining" -> {{}}
@@ -181,6 +185,7 @@ ProvedDef == {
     "OverlapFullRank",
     "PDS",
     "PDSImpliesRepoG1",
+    "PDSImpliesSeedwiseTermination",
     "PDSOverlapRoute",
     "PDSSpectralRoute",
     "ParikhIntertwiner",
@@ -204,7 +209,8 @@ ProvedDef == {
 ImportedDef == {
     "CoincidenceRankFibreTheorems",
     "DensityToPDSBridge",
-    "StandardBPAEquivalence"
+    "StandardBPAEquivalence",
+    "StrongCoincidenceFromPDS"
 }
 
 BoundedDef == {}
@@ -293,6 +299,7 @@ OverlapFullRankNotEstablished == "OverlapFullRank" \notin established
 OverlapProductivityNotEstablished == "OverlapProductivity" \notin established
 PDSNotEstablished == "PDS" \notin established
 PDSImpliesRepoG1NotEstablished == "PDSImpliesRepoG1" \notin established
+PDSImpliesSeedwiseTerminationNotEstablished == "PDSImpliesSeedwiseTermination" \notin established
 PDSOverlapRouteNotEstablished == "PDSOverlapRoute" \notin established
 PDSSpectralRouteNotEstablished == "PDSSpectralRoute" \notin established
 ParikhIntertwinerNotEstablished == "ParikhIntertwiner" \notin established
@@ -307,6 +314,7 @@ SpanRichProductivityNotEstablished == "SpanRichProductivity" \notin established
 SpectralBlackBoxNotEstablished == "SpectralBlackBox" \notin established
 SpectralSCCProducerNotEstablished == "SpectralSCCProducer" \notin established
 StandardBPAEquivalenceNotEstablished == "StandardBPAEquivalence" \notin established
+StrongCoincidenceFromPDSNotEstablished == "StrongCoincidenceFromPDS" \notin established
 SwapOverlapFinitenessNotEstablished == "SwapOverlapFiniteness" \notin established
 Target1NotEstablished == "Target1" \notin established
 ThetaIntertwiningNotEstablished == "ThetaIntertwining" \notin established

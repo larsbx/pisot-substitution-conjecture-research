@@ -147,6 +147,12 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                          "Proposition F and Theorem R of docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md and manuscript Proposition 5.47; "
                          "independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending",
                          ("CoincidenceRankFibreTheorems",), ()),
+    "StrongCoincidenceFromPDS": (I, "pure discrete spectrum of an irreducible Pisot substitution gives simultaneous prefix strong coincidence of all letters",
+                                 "Akiyama-Lee, European J. Combin. 39 (2014), Corollary 4.5; height-group step by Theorem R; docs/pds-strong-coincidence-literature-gate-2026-10-04.md", (), ()),
+    "PDSImpliesSeedwiseTermination": (T, "pure discrete spectrum implies termination of the balanced-pair algorithm with coincidence from every seed (ab, ba), legal or not",
+                                      f"{MANUSCRIPT}, Theorem thm:seedwise; docs/formal-productivity-reduction-2026-10-04.md, Proposition FP and Corollary FP''; "
+                                      "manuscript Theorem 5.33(iii),(v); independently audited 2026-10-04, human review pending",
+                                      ("PDSImpliesRepoG1", "StrongCoincidenceFromPDS"), ()),
     # --- retracted ------------------------------------------------------------------------
     "V5Thm51": (P, "v5 Theorem 5.1", "retired: the v5 Theorem 5.1 argument is withdrawn", (), (gl.WITHDRAWN_TAG,)),
 }
@@ -187,6 +193,7 @@ ALIASES = {
     "AllSeedOverlapProductivity": ["all-seed overlap productivity"], "G1OverlapRoute": ["overlap-depth route to finite BPA"],
     "AllSeedStrictZipperExclusion": ["all-seed strict-zipper exclusion"], "G1HalfCoincidenceRoute": ["half-coincidence route to finite BPA"],
     "PDSImpliesRepoG1": ["Theorem S", "PDS implies G1"], "CoincidenceRankFibreTheorems": ["coincidence-rank fibre theorems"],
+    "PDSImpliesSeedwiseTermination": ["seedwise bridge"], "StrongCoincidenceFromPDS": ["overlap coincidence to strong coincidence"],
 }
 
 

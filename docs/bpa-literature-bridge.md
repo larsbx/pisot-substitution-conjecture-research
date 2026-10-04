@@ -86,8 +86,11 @@ no strict zipper from any seed ⇒ G1 by manuscript Proposition 5.47), with the
 coincidence-rank imports audited in
 `coincidence-rank-imports-literature-gate-2026-10-04.md`; manuscript
 Proposition `prop:PDS-implies-G1`. The ledger node now depends on that import,
-not on `StandardBPAEquivalence`. Whether termination *with coincidence* holds
-from every seed (the rest of Open Problem 4.24) is still the question of §3.
+not on `StandardBPAEquivalence`. Termination *with coincidence* from every
+seed (the rest of former Open Problem 4.24) also follows: manuscript Theorem
+`thm:seedwise` (ledger node `PDSImpliesSeedwiseTermination`), through the
+productivity of every potential overlap. The literature question of §3 is no
+longer needed for either.
 
 rather than silently merging all three statements.
 

@@ -482,6 +482,17 @@
       "leaks": "premises not established: CoincidenceRankFibreTheorems"
     },
     {
+      "id": "PDSImpliesSeedwiseTermination",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "pure discrete spectrum implies termination of the balanced-pair algorithm with coincidence from every seed (ab, ba), legal or not",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Theorem thm:seedwise; docs/formal-productivity-reduction-2026-10-04.md, Proposition FP and Corollary FP''; manuscript Theorem 5.33(iii),(v); independently audited 2026-10-04, human review pending",
+      "leaks": "premises not established: StrongCoincidenceFromPDS"
+    },
+    {
       "id": "PDSOverlapRoute",
       "kind": "claim",
       "label": "Conditional theorem",
@@ -626,6 +637,16 @@
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "imported_theorem",
       "source": "source: docs/bpa-literature-bridge.md and the literature cited there"
+    },
+    {
+      "id": "StrongCoincidenceFromPDS",
+      "kind": "claim",
+      "label": "Imported theorem",
+      "provenance": "imported-theorem",
+      "statement": "pure discrete spectrum of an irreducible Pisot substitution gives simultaneous prefix strong coincidence of all letters",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "imported_theorem",
+      "source": "source: Akiyama-Lee, European J. Combin. 39 (2014), Corollary 4.5; height-group step by Theorem R; docs/pds-strong-coincidence-literature-gate-2026-10-04.md"
     },
     {
       "id": "SwapOverlapFiniteness",
@@ -961,6 +982,15 @@
       ]
     },
     {
+      "id": "seedwise bridge",
+      "kind": "alias",
+      "label": "seedwise bridge",
+      "provenance": "declared",
+      "members": [
+        "PDSImpliesSeedwiseTermination"
+      ]
+    },
+    {
       "id": "Theorem 5.38",
       "kind": "alias",
       "label": "Theorem 5.38",
@@ -994,6 +1024,15 @@
       "provenance": "declared",
       "members": [
         "SpanRichProductivity"
+      ]
+    },
+    {
+      "id": "overlap coincidence to strong coincidence",
+      "kind": "alias",
+      "label": "overlap coincidence to strong coincidence",
+      "provenance": "declared",
+      "members": [
+        "StrongCoincidenceFromPDS"
       ]
     },
     {
@@ -1504,6 +1543,14 @@
     },
     {
       "type": "implicative",
+      "source": "PDSImpliesRepoG1",
+      "target": "PDSImpliesSeedwiseTermination",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "PDSImpliesSeedwiseTermination/PDSImpliesRepoG1"
+    },
+    {
+      "type": "implicative",
       "source": "ParikhIntertwiner",
       "target": "MeanAreaLift",
       "provenance": "theorem-backed",
@@ -1595,6 +1642,15 @@
       "certainty": 1,
       "use_site": "PDSSpectralRoute/SpectralSCCProducer",
       "leaks": "premise is open"
+    },
+    {
+      "type": "implicative",
+      "source": "StrongCoincidenceFromPDS",
+      "target": "PDSImpliesSeedwiseTermination",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "PDSImpliesSeedwiseTermination/StrongCoincidenceFromPDS",
+      "leaks": "premise is imported-theorem"
     },
     {
       "type": "implicative",
@@ -1886,6 +1942,14 @@
     },
     {
       "type": "synonymous",
+      "source": "overlap coincidence to strong coincidence",
+      "target": "StrongCoincidenceFromPDS",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "overlap productivity",
       "target": "OverlapProductivity",
       "provenance": "open",
@@ -1920,6 +1984,14 @@
       "type": "synonymous",
       "source": "seed-patch overlap graph finiteness",
       "target": "SwapOverlapFiniteness",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "seedwise bridge",
+      "target": "PDSImpliesSeedwiseTermination",
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"

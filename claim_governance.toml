@@ -1092,6 +1092,21 @@ anchor = '| PDSImpliesRepoG1 |'
 window_lines = 0
 
 [[claim]]
+name = "PDSImpliesSeedwiseTermination"
+status = "proved"
+aliases = ["seedwise bridge"]
+[[claim.surfaces]]
+path = "tla/Ledger.tla"
+anchor = '"PDSImpliesSeedwiseTermination"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PDSImpliesSeedwiseTermination |'
+window_lines = 0
+
+[[claim]]
 name = "PDSOverlapRoute"
 status = "conditional"
 aliases = ["Theorem 5.38"]
@@ -1313,6 +1328,21 @@ expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| StandardBPAEquivalence |'
+window_lines = 0
+
+[[claim]]
+name = "StrongCoincidenceFromPDS"
+status = "imported"
+aliases = ["overlap coincidence to strong coincidence"]
+[[claim.surfaces]]
+path = "tla/Ledger.tla"
+anchor = '"StrongCoincidenceFromPDS"'
+section = "ImportedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| StrongCoincidenceFromPDS |'
 window_lines = 0
 
 [[claim]]

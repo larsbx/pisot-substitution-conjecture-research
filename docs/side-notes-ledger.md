@@ -148,4 +148,11 @@ by deleting it.
   flags `docs/psc-motivation-2026-10-02.md:58`, where "PSC is closed" appears
   in a list of formulations to *avoid*. Not caused by this branch. ·
   `scripts/audit_manuscript.py` (psc-closed-premise rule)
+- 2026-10-04 · Former manuscript Open Problem 4.24 answered in full: pure
+  discrete spectrum gives termination with coincidence from every seed,
+  legal or not (Theorem `thm:seedwise`; ledger `PDSImpliesSeedwiseTermination`,
+  with imported `StrongCoincidenceFromPDS`). Dated notes that still call 4.24
+  open (`audit-2026-09-20.md`, `bsw-import-literature-gate-2026-09-21.md`,
+  `overlap-finiteness-and-coincidence-density-2026-09-13.md`) are history, not
+  status. · manuscript §4.8; `formal-productivity-reduction-2026-10-04.md`
 
