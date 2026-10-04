@@ -8,9 +8,10 @@ inflation; a carrier is a recurrent SCC of it with coincidences deleted.
 With q(t) the sum of |sigma_k(t)|^2 over the two contracting embeddings and
 rho the largest contracting modulus, the region q(t) <= T^2 is forward closed
 and contains every cycle once T >= max_c sqrt q(c) / (1 - rho). This oracle
-bounds the digits by the triangle inequality, q(c) <= 2 (sum_i |c_i| rho^i)^2,
-a looser bound than the canonical kernel's; carriers do not depend on T once
-the region covers every cycle, so agreement is also a check of that. Every
+bounds each q(c) by a binary search on exact signs in Q(beta), where the
+canonical kernel uses rational interval enclosures; the two regions differ,
+and carriers do not depend on T once the region covers every cycle, so
+agreement is also a check of that. Every
 quantity is an exact rational: rho from Sturm bisection, T rounded up to a
 multiple of 1/64, membership as an exact sign in Q(beta), and the w-box from
 the trace-dual basis by Cauchy--Schwarz.
@@ -21,12 +22,13 @@ from __future__ import annotations
 
 import itertools
 import math
-from collections import deque
 from dataclasses import dataclass
 from fractions import Fraction
+from types import SimpleNamespace
 from typing import Mapping, Sequence
 
-from psc_research.overlap_graph import Elt, OverlapGraph
+from psc_research.overlap_graph import Elt, OverlapGraph, first_depths
+from psc_research.overlap_obstruction import sccs
 from psc_research.pip_screen import _changes, _sturm
 
 IMPLEMENTATION_ROLE = "independent-oracle"
@@ -87,6 +89,21 @@ class FormalGraph(OverlapGraph):
         x2 = F.mul(x, x)
         return F.sub((self._trace(x2), Fraction(0), Fraction(0)), x2)
 
+    def _q_upper(self, x: Elt) -> Fraction:
+        """The least multiple of 1/4096 that is at least q(x), by exponential
+        then binary search on exact signs in Q(beta)."""
+        F = self.F
+        q = self._q(x)
+        above = lambda k: F.sign(F.sub((Fraction(k, 4096), Fraction(0), Fraction(0)), q)) >= 0
+        hi = 1
+        while not above(hi):
+            hi *= 2
+        lo = 0
+        while lo < hi:
+            mid = (lo + hi) // 2
+            lo, hi = (lo, mid) if above(mid) else (mid + 1, hi)
+        return Fraction(lo, 4096)
+
     def _rho_upper(self) -> Fraction:
         F = self.F
         if self.complex_pair:
@@ -121,8 +138,8 @@ class FormalGraph(OverlapGraph):
         digits = {F.sub(self.prefix[(j, y)], self.prefix[(i, x)])
                   for i in (1, 2, 3) for j in (1, 2, 3)
                   for x in range(len(self.sigma[i])) for y in range(len(self.sigma[j]))}
-        dmax = max(abs(e[0]) + abs(e[1]) * rho + abs(e[2]) * rho * rho for e in digits)
-        self.a = _ceil_sqrt(2 * dmax * dmax * DENOMINATOR ** 2 / (1 - rho) ** 2)
+        d2 = max(self._q_upper(e) for e in digits)
+        self.a = _ceil_sqrt(d2 * DENOMINATOR ** 2 / (1 - rho) ** 2)
         self.t2 = Fraction(self.a * self.a, DENOMINATOR ** 2)
         gram = [[self._trace(F.mul(li, lj)) for lj in self.l] for li in self.l]
         inv = _inverse(gram)
@@ -132,7 +149,7 @@ class FormalGraph(OverlapGraph):
             dual = F.zero
             for k in range(3):
                 dual = F.add(dual, tuple(inv[a][k] * e for e in self.l[k]))
-            q_dual = 2 * (abs(dual[0]) + abs(dual[1]) * rho + abs(dual[2]) * rho * rho) ** 2
+            q_dual = self._q_upper(dual)
             self.radii.append(_ceil(lmax * self._abs_upper(dual)) + _ceil_sqrt(self.t2 * q_dual) + 1)
 
     def in_region(self, t: Elt) -> bool:
@@ -167,57 +184,6 @@ def _inverse(m: list[list[Fraction]]) -> list[list[Fraction]]:
     return [row[3:] for row in a]
 
 
-def _sccs(adj: list[list[int]]) -> list[list[int]]:
-    """Kosaraju: forward finishing order, then the reversed graph."""
-    n = len(adj)
-    seen, order = [False] * n, []
-    for root in range(n):
-        if seen[root]:
-            continue
-        seen[root] = True
-        stack = [(root, iter(adj[root]))]
-        while stack:
-            v, it = stack[-1]
-            w = next(it, None)
-            if w is None:
-                stack.pop(); order.append(v)
-            elif not seen[w]:
-                seen[w] = True; stack.append((w, iter(adj[w])))
-    radj = [[] for _ in range(n)]
-    for v in range(n):
-        for w in adj[v]:
-            radj[w].append(v)
-    comp = [-1] * n
-    out = []
-    for root in reversed(order):
-        if comp[root] >= 0:
-            continue
-        comp[root] = len(out); members = [root]; queue = [root]
-        while queue:
-            v = queue.pop()
-            for u in radj[v]:
-                if comp[u] < 0:
-                    comp[u] = comp[root]; members.append(u); queue.append(u)
-        out.append(members)
-    return out
-
-
-def _depths(g: OverlapGraph, target) -> list[int]:
-    """Least number of inflations from each state to a target state, -1 if none."""
-    radj = [[] for _ in g.states]
-    for v, ws in enumerate(g.adj):
-        for w in ws:
-            radj[w].append(v)
-    depth = [0 if target(s) else -1 for s in g.states]
-    queue = deque(v for v, d in enumerate(depth) if d == 0)
-    while queue:
-        v = queue.popleft()
-        for u in radj[v]:
-            if depth[u] < 0:
-                depth[u] = depth[v] + 1; queue.append(u)
-    return depth
-
-
 @dataclass(frozen=True)
 class Carrier:
     size: int
@@ -238,17 +204,20 @@ def carriers(sigma: Mapping[int, Sequence[int]]) -> tuple[list[Carrier], int]:
     if f.capped or r.capped:
         raise RuntimeError("capped graph: no verdict")
     coin = [f.is_coincidence(s) for s in f.states]
-    free = [[] if coin[v] else [w for w in f.adj[v] if not coin[w]] for v in range(len(f.states))]
-    depth = _depths(f, f.is_coincidence)
-    aligned = _depths(f, lambda s: not any(s[2]))
-    proper = _depths(f, lambda s: not any(s[2]) and not f.is_coincidence(s))
+    free = SimpleNamespace(
+        states=f.states, capped=False,
+        adj=[[] if coin[v] else [w for w in f.adj[v] if not coin[w]] for v in range(len(f.states))],
+    )
+    depth = first_depths(f, f.is_coincidence)
+    aligned = first_depths(f, lambda s: not any(s[2]))
+    proper = first_depths(f, lambda s: not any(s[2]) and not f.is_coincidence(s))
     least = lambda comp, ds: min((ds[v] for v in comp if ds[v] >= 0), default=-1)
     realized = set(r.states)
     out = []
-    for comp in _sccs(free):
-        members = set(comp)
-        if len(comp) == 1 and comp[0] not in free[comp[0]]:
+    for comp in sccs(free):
+        if len(comp) == 1 and comp[0] not in free.adj[comp[0]]:
             continue
+        members = set(comp)
         assert members <= {f.index[s] for s in f.seed_set}, "carrier outside the box"
         real = {f.states[v] in realized for v in comp}
         assert len(real) == 1, "carrier partly realized"

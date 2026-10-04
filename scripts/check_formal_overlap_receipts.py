@@ -24,20 +24,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from psc_research.formal_overlap import Carrier, carriers  # noqa: E402
-from psc_research.pip_screen import charpoly, irreducible, mat, pisot, primitive  # noqa: E402
+from psc_research.pip_screen import pip_corpus  # noqa: E402
 
 EVIDENCE = ROOT / "docs/evidence/formal-overlap-carriers-2026-10-04"
 WORDS = [w for n in (1, 2, 3) for w in itertools.product((1, 2, 3), repeat=n)]
 
 
 def corpus_labels() -> list[tuple[int, int, int]]:
-    out = []
-    for i, j, k in itertools.product(range(len(WORDS)), repeat=3):
-        sigma = {1: WORDS[i], 2: WORDS[j], 3: WORDS[k]}
-        M = mat(sigma)
-        if primitive(M) and irreducible(*charpoly(M)) and pisot(*charpoly(M)):
-            out.append((i, j, k))
-    return out
+    """The standing corpus in canonical order, as image-word indices."""
+    index = {w: n for n, w in enumerate(WORDS)}
+    return [tuple(index[tuple(s[a])] for a in (1, 2, 3)) for s in pip_corpus()]
 
 
 def records() -> dict[tuple[int, int, int], list[Carrier]]:
