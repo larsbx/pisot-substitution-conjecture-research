@@ -11,7 +11,8 @@ contracting conjugate z (c ranging over prefix-position differences) and
 The box is chosen in floating point with its own slack, independently of the
 canonical kernel; carriers do not depend on the box once it covers the
 region, so agreement with a differently sized canonical box is a check of
-that independence. Every predicate is exact over Q(beta).
+that independence. Seeds are further restricted to the forward-closed region
+|t(z)| <= T_z (1 + eps), again with a tolerance of its own. Every predicate is exact over Q(beta).
 
 Canonical implementation: mojo/psc/formal_overlap.mojo.
 """
@@ -30,6 +31,7 @@ IMPLEMENTATION_ROLE = "independent-oracle"
 CANONICAL_IMPLEMENTATION = "mojo/psc/formal_overlap.mojo"
 
 BOX_SLACK = 1.25
+REGION_TOLERANCE = 1e-5
 
 
 def _roots(T: int, U: int, D: int) -> list[complex]:
@@ -78,9 +80,11 @@ class FormalGraph(OverlapGraph):
                   for a in range(len(self.sigma[i])) for b in range(len(self.sigma[j]))}
         rows = [[_at(l, beta).real for l in self.l]]
         bounds = [max(_at(l, beta).real for l in self.l)]
+        self.region = []
         for z in contracting:
             assert abs(z) < 1, "formal box requires contracting conjugates"
             threshold = max(abs(_at(d, z)) for d in digits) / (1 - abs(z))
+            self.region.append((z, threshold * (1 + REGION_TOLERANCE)))
             rows.append([_at(l, z).real for l in self.l]); bounds.append(threshold)
             if abs(z.imag) > 1e-9:
                 rows.append([_at(l, z).imag for l in self.l]); bounds.append(threshold)
@@ -95,6 +99,8 @@ class FormalGraph(OverlapGraph):
             t = F.zero
             for a in range(3):
                 t = F.add(t, tuple(w[a] * c for c in self.l[a]))
+            if any(abs(_at(t, z)) > bound for z, bound in self.region):
+                continue
             out.extend(s for s in ((i, j, t) for i in (1, 2, 3) for j in (1, 2, 3)) if self.overlaps(s))
         self.seed_set = set(out)
         return out

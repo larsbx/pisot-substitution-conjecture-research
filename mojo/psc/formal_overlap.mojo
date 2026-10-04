@@ -18,9 +18,13 @@ of two prefix positions. For a contracting conjugate `z` with
 `|t(z)| <= T_z` has every child with `|t'(z)| <= T_z`. Around a cycle the
 value cannot strictly decrease and come back, so every cycle state has
 `|t(z)| <= T_z` for every contracting `z`, and `|t(beta)| < l_max` by
-interior overlap. The box radii are an over-approximation of that region,
-computed in floating point and then doubled; floating point only chooses
-which exact states seed the closure. Every predicate (overlap, child,
+interior overlap. The region `K+ = {|t(z)| <= T_z (1 + eps)}` is forward
+closed (`|z| T_z (1 + eps) + D_z <= T_z (1 + eps)`), so seeding only from
+`K+` loses no carrier and no path from a carrier to a coincidence. `K+` is
+enumerated inside a `w`-box whose radii over-approximate it and are then
+doubled. Floating point only chooses which exact states seed the closure:
+`eps = 1e-6` exceeds the float error by orders of magnitude, so every state
+of `K` is seeded. Every predicate (overlap, child,
 coincidence, SCC, depth, realization) is exact. `carriers_inside_box`
 records the a-posteriori receipt that every carrier vertex is a box seed.
 
@@ -48,6 +52,38 @@ from psc.perron_field3 import CubicElt, cubic_add_checked, cubic_sub_checked
 
 comptime FORMAL_STATE_CAP = 400000
 comptime BOX_SLACK = 2.0
+comptime REGION_TOLERANCE = 1.0e-6
+
+
+struct ContractionBox(Copyable, Movable):
+    """The `w`-box radii and, per contracting conjugate `z = re + i im`, the
+    threshold `T_z = D_z / (1 - |z|)` of the forward-closed region."""
+
+    var radii: List[Int]
+    var roots_re: List[Float64]
+    var roots_im: List[Float64]
+    var thresholds: List[Float64]
+
+    def __init__(
+        out self,
+        var radii: List[Int],
+        var roots_re: List[Float64],
+        var roots_im: List[Float64],
+        var thresholds: List[Float64],
+    ):
+        self.radii = radii^
+        self.roots_re = roots_re^
+        self.roots_im = roots_im^
+        self.thresholds = thresholds^
+
+    def in_region(self, t: CubicElt) -> Bool:
+        """`|t(z)| <= T_z (1 + REGION_TOLERANCE)` for every contracting `z`."""
+        for k in range(len(self.roots_re)):
+            var v = _value(t, self.roots_re[k], self.roots_im[k])
+            var bound = self.thresholds[k] * (1.0 + REGION_TOLERANCE)
+            if v[0] * v[0] + v[1] * v[1] > bound * bound:
+                return False
+        return True
 
 
 struct FormalCarrier(Copyable, Movable):
@@ -183,8 +219,8 @@ def _inverse3(m: List[List[Float64]]) raises -> List[List[Float64]]:
     return out^
 
 
-def formal_box(tables: SeedOverlapTables) raises -> List[Int]:
-    """Radii `R_a` of a `w`-box containing every recurrent potential overlap."""
+def formal_box(tables: SeedOverlapTables) raises -> ContractionBox:
+    """The contraction region and a `w`-box containing it."""
     var coeffs = tables.field.charpoly()
     var beta = _perron_root(coeffs)
     # chi(x) = (x - beta)(x^2 + p x + q)
@@ -211,6 +247,7 @@ def formal_box(tables: SeedOverlapTables) raises -> List[Int]:
 
     var rows = List[List[Float64]]()
     var bounds = List[Float64]()
+    var thresholds = List[Float64]()
     var perron_row = List[Float64]()
     var lmax = 0.0
     for a in range(3):
@@ -230,6 +267,7 @@ def formal_box(tables: SeedOverlapTables) raises -> List[Int]:
             var v = _value(digits[d], re, im)
             dmax = max(dmax, sqrt(v[0] * v[0] + v[1] * v[1]))
         var threshold = dmax / (1.0 - modulus)
+        thresholds.append(threshold)
         var re_row = List[Float64]()
         var im_row = List[Float64]()
         for a in range(3):
@@ -248,7 +286,7 @@ def formal_box(tables: SeedOverlapTables) raises -> List[Int]:
         for k in range(3):
             r += abs(inv[a][k]) * bounds[k]
         radii.append(Int(BOX_SLACK * r) + 1)
-    return radii^
+    return ContractionBox(radii^, roots_re^, roots_im^, thresholds^)
 
 
 # ---- exact construction -------------------------------------------------------
@@ -263,9 +301,11 @@ def _scaled(x: CubicElt, n: Int) raises -> CubicElt:
 
 
 def formal_seed_states(
-    tables: SeedOverlapTables, box: List[Int], mut sign_cache: Dict[CubicElt, Int]
+    tables: SeedOverlapTables, region: ContractionBox, mut sign_cache: Dict[CubicElt, Int]
 ) raises -> List[OverlapState]:
-    """Every potential overlap `(i, j, sum_a w_a l_a)` with `|w_a| <= box[a]`."""
+    """Every potential overlap `(i, j, sum_a w_a l_a)` with `|w_a| <= R_a` and
+    `t` in the contraction region."""
+    ref box = region.radii
     var out = List[OverlapState]()
     for w0 in range(-box[0], box[0] + 1):
         var t0 = _scaled(tables.lengths.at(0), w0)
@@ -273,6 +313,8 @@ def formal_seed_states(
             var t1 = cubic_add_checked(t0, _scaled(tables.lengths.at(1), w1))
             for w2 in range(-box[2], box[2] + 1):
                 var t = cubic_add_checked(t1, _scaled(tables.lengths.at(2), w2))
+                if not region.in_region(t):
+                    continue
                 for top in range(3):
                     for bottom in range(3):
                         var s = OverlapState(top, bottom, t)
@@ -316,8 +358,9 @@ def survey_formal_overlaps(
     tables: SeedOverlapTables, max_states: Int = FORMAL_STATE_CAP
 ) raises -> FormalSurvey:
     var cache = Dict[CubicElt, Int]()
-    var box = formal_box(tables)
-    var seeds = formal_seed_states(tables, box, cache)
+    var region = formal_box(tables)
+    var box = region.radii.copy()
+    var seeds = formal_seed_states(tables, region, cache)
     var formal = build_overlap_graph_from_seeds(tables, seeds, cache, max_states)
     if formal.capped:
         raise Error("formal overlap graph capped: no verdict")
