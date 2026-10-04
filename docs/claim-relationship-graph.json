@@ -284,7 +284,7 @@
       "statement": "all reachable swap-state prefix-difference walks are uniformly bounded",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md; manuscript Theorem 4.4; PR #69"
+      "source": "source: sources/issue-45/g1b1-bounded-discrepancy-reconstruction.md; manuscript Theorem 4.4; PR #69"
     },
     {
       "id": "G1b2RenewalFiniteness",
@@ -542,7 +542,7 @@
       "statement": "Phi_3 acts semisimply on the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: PscVerif/PscVerif/Spectral.lean"
+      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
     },
     {
       "id": "RepoSeedUnionBridge",
@@ -573,7 +573,7 @@
       "statement": "the seed centralizer is as certified",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: PscVerif/PscVerif/Spectral.lean"
+      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
     },
     {
       "id": "SignatureReduction",
@@ -666,7 +666,7 @@
       "statement": "Target 1 of the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: PscVerif/PscVerif/Spectral.lean"
+      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
     },
     {
       "id": "ThetaIntertwining",
@@ -676,7 +676,7 @@
       "statement": "Theta intertwines the seed spectral operators",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: PscVerif/PscVerif/Spectral.lean"
+      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
     },
     {
       "id": "UDForPowers",

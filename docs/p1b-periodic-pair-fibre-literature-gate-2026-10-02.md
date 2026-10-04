@@ -176,7 +176,7 @@ the coordinates of its frequency vector `r` (the right Perron eigenvector,
   character vanishing on the cycle lattice of `G`, because `G` is strongly
   connected (primitivity) and a closed walk is a sum of simple cycles. So `Λ_ret` and the cycle
   lattice of `G` have the same annihilator in `(Q/Z)^A`, and they are equal.
-  This is `Lambda_1` of `mojo/psc/return_lattice.mojo`, computed there by
+  This is `Lambda_1` of `kernel/psc/return_lattice.mojo`, computed there by
   the same identification (`return-lattice-literature-gate-2026-10-02.md`,
   which credits it to Barge–Gambaudo Lemma 15). That gate certifies
   `Lambda_1 = Z^3` on the 4,554 corpus specimens; Theorem R proves it for
@@ -197,7 +197,7 @@ the coordinates of its frequency vector `r` (the right Perron eigenvector,
   incidence matrix is singular, so its return module has rank 2
   (`test_dekkings_height_two_substitution_has_rank_two`). Step 3 is exactly
   where an irreducible characteristic polynomial excludes this.
-- *Finite-domain regression.* `mojo/tests/test_return_module.mojo` checks
+- *Finite-domain regression.* `kernel/tests/test_return_module.mojo` checks
   that the index is 1 on all 4,554 corpus specimens and on all 24,486
   specimens with total image length at most 8. A scratch sweep (not
   committed) found index 1 on all 135,990 PIP substitutions with images of

@@ -48,7 +48,7 @@ R(\sigma)=\max_{i<j}|C_{\sigma,i,j}|,
 
 and all three pair languages are nonempty, the strong-coincidence level is at
 most (R(\sigma)-1). Canonical executable support is
-`mojo/psc/coincidence_level_bound.mojo`. The proposition is graph-theoretic and
+`kernel/psc/coincidence_level_bound.mojo`. The proposition is graph-theoretic and
 has no height hypothesis. The present executable inherits
 `powered_field`'s incidence-entry ceiling of 64; an input beyond that ceiling
 raises and is inconclusive rather than false.

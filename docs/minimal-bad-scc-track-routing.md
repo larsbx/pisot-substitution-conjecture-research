@@ -7,8 +7,8 @@ or claim-status promotion. **Stop/go review:** 2026-10-02.
 
 The source is the user-supplied four-page PDF *Minimal bad SCC setup for the
 general PSC*, original filename `MINIMAL_BAD_SCC_SETUP_NOTE.pdf`, available as
-an [unaltered source snapshot](source-imports/minimal-bad-scc/MINIMAL_BAD_SCC_SETUP_NOTE.pdf).
-The [import record and checksum](source-imports/minimal-bad-scc/README.md)
+an [unaltered source snapshot](../sources/minimal-bad-scc/MINIMAL_BAD_SCC_SETUP_NOTE.pdf).
+The [import record and checksum](../sources/minimal-bad-scc/README.md)
 identify the exact bytes. Page/section numbers below refer to that PDF, not to
 the earlier v12.2 relevance assessment or this routing note.
 
@@ -68,7 +68,7 @@ not the source's undefined small-regime BPA cycle. Transferring inversion or
 bracket data to that object needs a new, explicit interface proof.
 
 The **finite-BPA SCC Producer route is stronger parallel work**. Its complete
-boundary sufficiency ladder, matching `scripts/make_ledger.py`, is:
+boundary sufficiency ladder, matching `tools/make_ledger.py`, is:
 
 | Step | Premises and conclusion | Status/boundary |
 | --- | --- | --- |

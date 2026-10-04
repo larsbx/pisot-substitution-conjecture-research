@@ -10,7 +10,7 @@ import pytest
 
 from psc_research.formal_overlap import Carrier, carriers
 
-EVIDENCE = Path(__file__).resolve().parents[1] / "docs/evidence/formal-overlap-carriers-2026-10-04"
+EVIDENCE = Path(__file__).resolve().parents[1] / "evidence/formal-overlap-carriers-2026-10-04"
 WORDS = [w for n in (1, 2, 3) for w in itertools.product((1, 2, 3), repeat=n)]
 
 

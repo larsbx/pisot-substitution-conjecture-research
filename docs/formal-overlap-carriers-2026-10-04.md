@@ -21,7 +21,7 @@ collar radius.
 
 Fix a primitive irreducible Pisot substitution on three letters, with the
 exact tile lengths `l_a` and overlap states `(i, j, t)` of
-`mojo/psc/overlap_seed_patch.mojo`.
+`kernel/psc/overlap_seed_patch.mojo`.
 
 - **Potential overlap:** a genuine state `(i, j, t)` with
   `t = sum_a w_a l_a`, `w in Z^3`, not required to be reachable from a seed.
@@ -75,8 +75,8 @@ summary line equal, in 7 minutes instead of 107.
 ## 3. Census
 
 `pixi run formal-overlap-census records` (canonical
-`mojo/psc/formal_overlap.mojo`, driver `mojo/formal_overlap_census.mojo`).
-Receipts: `docs/evidence/formal-overlap-carriers-2026-10-04/`.
+`kernel/psc/formal_overlap.mojo`, driver `kernel/formal_overlap_census.mojo`).
+Receipts: `evidence/formal-overlap-carriers-2026-10-04/`.
 
 | Quantity | Value |
 | --- | ---: |
@@ -147,10 +147,10 @@ short remainder: after offset zero only three fixed states remain.
 
 ## 5. Verification
 
-- Mojo regression `mojo/tests/test_formal_overlap.mojo`: the plastic control,
+- Mojo regression `kernel/tests/test_formal_overlap.mojo`: the plastic control,
   the realized carriers equal the realized graph's own, a single-carrier
   specimen, and a non-Pisot input failing closed.
-- Independent oracle `src/psc_research/formal_overlap.py`: exact `Fraction`
+- Independent oracle `reference/psc_research/formal_overlap.py`: exact `Fraction`
   arithmetic, its own root isolation, SCC algorithm and a deliberately looser
   region (triangle-inequality digit bound). Carriers do not depend on the
   region once it contains every cycle, so agreement also checks that.
@@ -158,7 +158,7 @@ short remainder: after offset zero only three fixed states remain.
   23,286,258 formal states; `K_T`, 50,466,666; Proposition V's box,
   68,923,062) produced the same 13,260 carrier records as a multiset, a
   corpus-wide check that carriers do not depend on the region.
-  `scripts/check_formal_overlap_receipts.py` re-derives the summary from the
+  `tools/check_formal_overlap_receipts.py` re-derives the summary from the
   records and recomputes a strided sample; `tests/test_formal_overlap.py`
   recomputes two fixtures on every run.
 

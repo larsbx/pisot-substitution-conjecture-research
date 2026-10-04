@@ -1,4 +1,4 @@
-"""The proof-dependency ledger is generated from tla/ledger.json and says what the old hand-written models said."""
+"""The proof-dependency ledger is generated from proof/tla/ledger.json and says what the old hand-written models said."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "tools"))
 sys.path.insert(0, str(ROOT / "tools"))
 
 import make_ledger  # noqa: E402
@@ -20,20 +20,20 @@ MODELS = ("Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateA
 
 
 def reachable(model: str) -> set[str]:
-    text = (ROOT / "tla" / f"MCLedger{model}.tla").read_text(encoding="utf-8")
+    text = (ROOT / "proof" / "tla" / f"MCLedger{model}.tla").read_text(encoding="utf-8")
     body = text[text.index("Reachable == {"):text.index("EventuallyReachable")]
     return set(re.findall(r'"([A-Za-z0-9_]+)"', body))
 
 
 def test_generated_surfaces_are_current():
-    result = subprocess.run([sys.executable, str(ROOT / "scripts" / "make_ledger.py"), "--check"], capture_output=True, text=True, check=False)
+    result = subprocess.run([sys.executable, str(ROOT / "tools" / "make_ledger.py"), "--check"], capture_output=True, text=True, check=False)
     assert result.returncode == 0, result.stdout
 
 
 def test_every_ledger_node_is_a_validated_record_with_a_generated_claim():
-    analysis = gl.analyse(gl.load_ledger(ROOT / "tla" / "ledger.json"))
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof" / "tla" / "ledger.json"))
     names = {e.name for e in analysis.entries}
-    tla = (ROOT / "tla" / "Ledger.tla").read_text(encoding="utf-8")
+    tla = (ROOT / "proof" / "tla" / "Ledger.tla").read_text(encoding="utf-8")
     assert names == set(re.findall(r'^    "([A-Za-z0-9_]+)",?$', tla[tla.index("ResultSet == {"):tla.index("RequiresDef")], re.M))
     policy = tomllib.loads((ROOT / "claim_governance.toml").read_text(encoding="utf-8"))
     claims = {c["name"]: c for c in policy["claim"]}
@@ -46,7 +46,7 @@ def test_every_ledger_node_is_a_validated_record_with_a_generated_claim():
 
 
 def test_status_overrides_are_recorded_in_the_records():
-    data = json.loads((ROOT / "tla" / "ledger.json").read_text(encoding="utf-8"))
+    data = json.loads((ROOT / "proof" / "tla" / "ledger.json").read_text(encoding="utf-8"))
     for name in make_ledger.STATUS_NOTES:
         record = data["records"][name]
         assert any(t.startswith("status:") for t in record["tags"]) and ["status_note", make_ledger.STATUS_NOTES[name]] in record["evidence"]
@@ -67,16 +67,16 @@ def test_models_state_what_the_hand_written_configurations_demonstrated():
 
 
 def test_check_script_runs_every_generated_model_and_no_stale_model_remains():
-    script = (ROOT / "tla" / "check.sh").read_text(encoding="utf-8")
+    script = (ROOT / "proof" / "tla" / "check.sh").read_text(encoding="utf-8")
     for model in MODELS:
         assert f'"MCLedger{model}:HOLD"' in script
-        assert (ROOT / "tla" / f"MCLedger{model}.cfg").exists()
-    assert not list((ROOT / "tla").glob("MCArchitecture*"))
+        assert (ROOT / "proof" / "tla" / f"MCLedger{model}.cfg").exists()
+    assert not list((ROOT / "proof" / "tla").glob("MCArchitecture*"))
     assert "MCArchitecture" not in script
 
 
 def test_all_seed_overlap_route_establishes_canonical_g1_and_downstream():
-    analysis = gl.analyse(gl.load_ledger(ROOT / "tla" / "ledger.json"))
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof" / "tla" / "ledger.json"))
     by_name = {e.name: e for e in analysis.entries}
     g1 = by_name["G1"]
     assert g1.routes == (("G1FromRenewal",), ("G1OverlapRoute",), ("G1HalfCoincidenceRoute",))
@@ -85,7 +85,7 @@ def test_all_seed_overlap_route_establishes_canonical_g1_and_downstream():
     assert {"G1OverlapRoute", "G1", "SinkSCCReduction", "LoadBearingSCC"} <= done
     assert done == reachable("AllSeedOverlapGateAssumed")
     assert not {"G1FromRenewal", "G1b2RenewalFiniteness", "PDS", "SCCProducer", "OverlapProductivity"} & done
-    cfg = (ROOT / "tla/MCLedgerAllSeedOverlapGateAssumed.cfg").read_text()
+    cfg = (ROOT / "proof/tla/MCLedgerAllSeedOverlapGateAssumed.cfg").read_text()
     assert "    G1NotEstablished\n" not in cfg
     assert "    G1b2RenewalFinitenessNotEstablished\n" in cfg
     assert "    PDSNotEstablished\n" in cfg
@@ -95,13 +95,13 @@ def test_all_seed_overlap_route_establishes_canonical_g1_and_downstream():
 
 
 def test_strict_zipper_exclusion_route_establishes_canonical_g1_without_productivity():
-    analysis = gl.analyse(gl.load_ledger(ROOT / "tla" / "ledger.json"))
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof" / "tla" / "ledger.json"))
     done = gl.established(analysis, ("AllSeedStrictZipperExclusion",))
     assert {"G1HalfCoincidenceRoute", "G1", "SinkSCCReduction", "LoadBearingSCC"} <= done
     assert done == reachable("AllSeedStrictZipperGateAssumed")
     # excluding strict zippers gives finiteness, not productivity or PDS
     assert not {"G1OverlapRoute", "AllSeedOverlapProductivity", "OverlapProductivity", "PDS", "PDSOverlapRoute", "SCCProducer", "G1b2RenewalFiniteness"} & done
-    cfg = (ROOT / "tla/MCLedgerAllSeedStrictZipperGateAssumed.cfg").read_text()
+    cfg = (ROOT / "proof/tla/MCLedgerAllSeedStrictZipperGateAssumed.cfg").read_text()
     assert "    G1NotEstablished\n" not in cfg
     assert "    PDSNotEstablished\n" in cfg
     assert "G1HalfCoincidenceRoute" not in reachable("AllSeedOverlapGateAssumed")  # the gates are separate nodes
@@ -128,7 +128,7 @@ def test_model_rejects_false_g1_nonestablishment_with_tlc(tmp_path):
         pytest.skip("set TLA_TOOLS to check the alternative dependency model")
     model = "MCLedgerAllSeedOverlapGateAssumed"
     for name in ("ProofArchitecture.tla", "Ledger.tla", model + ".tla", model + ".cfg"):
-        shutil.copyfile(ROOT / "tla" / name, tmp_path / name)
+        shutil.copyfile(ROOT / "proof" / "tla" / name, tmp_path / name)
     cfg = tmp_path / (model + ".cfg")
     cfg.write_text(cfg.read_text().replace("    TypeOK\n", "    TypeOK\n    G1NotEstablished\n"))
     out = subprocess.run(["java", "-XX:+UseSerialGC", "-cp", jar, "tlc2.TLC", "-workers", "1", model],

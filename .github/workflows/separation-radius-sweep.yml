@@ -2,11 +2,11 @@ name: Total-length separation evidence
 on:
   pull_request:
     paths:
-      - 'mojo/pixi.toml'
+      - 'kernel/pixi.toml'
       - 'docs/lost-depth-indexed-formulation-2026-10-01.md'
-      - 'mojo/psc/separation_sweep.mojo'
-      - 'mojo/separation_radius_total_length_sweep.mojo'
-      - 'mojo/tests/test_separation_sweep.mojo'
+      - 'kernel/psc/separation_sweep.mojo'
+      - 'kernel/separation_radius_total_length_sweep.mojo'
+      - 'kernel/tests/test_separation_sweep.mojo'
       - '.github/workflows/separation-radius-sweep.yml'
   workflow_dispatch:
 jobs:
@@ -21,12 +21,12 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Canonical regressions and claim receipts
-        working-directory: mojo
+        working-directory: kernel
         run: pixi run test
       - name: Claim governance
         run: PYTHONPATH=tools python3 -m claim_governance.cli --root .
       - name: Exhaustive deterministic separation survey
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           pixi run separation-radius-total-length-sweep 2>&1 | tee separation-radius.log
@@ -36,5 +36,5 @@ jobs:
         with:
           name: total-length-separation-evidence
           path: |
-            mojo/separation-radius.log
-            mojo/build/claim-receipts.tsv
+            kernel/separation-radius.log
+            kernel/build/claim-receipts.tsv

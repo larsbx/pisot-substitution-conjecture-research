@@ -128,7 +128,7 @@ Proposition V and Theorem S. The census numbers are finite evidence.
 
 ## 5. Verification
 
-`mojo/tests/test_formal_overlap.mojo` pins `S = 14` on the plastic control and
+`kernel/tests/test_formal_overlap.mojo` pins `S = 14` on the plastic control and
 checks `L <= D <= L + S` for each of its carriers through
 `psc.formal_overlap.aligned_pair_depth`, which also checks that the formal graph
 holds exactly the six aligned pairs.

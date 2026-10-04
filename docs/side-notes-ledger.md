@@ -29,7 +29,7 @@ by deleting it.
 - 2026-10-04 · One-step M-adic valuation ascent as a local mechanism for T2:
   holds on none of the 210 (corpus) or 654 (total length ≤ 8) catch-up-free
   specimens; ascent depth reaches 25. · same, §5.6d;
-  `mojo/valuation_ascent_census.mojo`
+  `kernel/valuation_ascent_census.mojo`
 - 2026-10-04 · Universal noncoincident-cycle exclusion: retired earlier
   (flipped Tribonacci); formal carriers confirm that coincidence-free cycles
   are ubiquitous (13,260 on the corpus), realized or not. ·
@@ -89,13 +89,17 @@ by deleting it.
   under three different seeding regions. Realization separates the escape
   mechanism (aligned and fast vs strict and slow), not productivity. ·
   `formal-overlap-carriers-2026-10-04.md`; receipts in
-  `docs/evidence/formal-overlap-carriers-2026-10-04/`
+  `evidence/formal-overlap-carriers-2026-10-04/`
 - 2026-10-04 · The §5.6b trichotomy holds on all 24,486 specimens of total
   length ≤ 8: no exception; every total Q1 failure is catch-up-free; P′ exact.
   · `p1b-vertex-coincidence-box-2026-10-02.md` §5.6c
 - 2026-10-04 · The catch-up-free class is not confined to `|det M| = 2`: 84 of
   654 at total length ≤ 8 have another determinant (all 210 corpus members
   have `|det M| = 2`). · same, §5.6e
+- 2026-10-04 · Lemma E (§5.6e) and Proposition C (§5.6b, from `main`) are the
+  same statement; Proposition P″ (§5.6b) shows the M-adic centres of a
+  periodic pair coincide, so the M-adic coordinate alone excludes nothing.
+  Do not re-derive either. · `p1b-vertex-coincidence-box-2026-10-02.md`
 - 2026-10-04 · `L` (per-carrier least offset-zero depth, max 12) and `K_V`
   (per-vertex greatest first left-aligned depth, max 17) are different
   statistics; do not compare them as equals. ·
@@ -108,7 +112,7 @@ by deleting it.
 - 2026-10-04 · `cmd | tail -1 && next` tests `tail`'s status, not `cmd`'s:
   a failing governance audit then lets the commit through. Capture `$?`.
 - 2026-10-04 · Editing a `require_contract` text makes the recorded receipts
-  stale until `mojo/run_tests.sh` reruns; the coverage audit then fails
+  stale until `kernel/run_tests.sh` reruns; the coverage audit then fails
   locally (CI regenerates the receipts).
 - 2026-10-04 · Prefer Mojo with `parallel_fold` to throwaway Python for any
   exact check; a Python-only computation is a defect under `AGENTS.md`.
@@ -119,6 +123,15 @@ by deleting it.
 - 2026-10-04 · The exact Python formal-overlap oracle is slow on specimens with
   two real contracting conjugates unless each `q(c)` is bounded tightly
   (binary search on exact signs): `1 5 20` takes 42 s, about 7 minutes before.
+- 2026-10-04 · Estate layout on `main`: `mojo/` → `kernel/`, `scripts/` →
+  `tools/` (Python censuses → `oracles/python/`), `src/psc_research` →
+  `reference/psc_research`, `docs/evidence/` → `evidence/`, `tla/` →
+  `proof/tla/`. A pixi env cannot be moved (absolute prefixes; `std` not
+  found): keep `mojo/.pixi` and symlink `kernel/.pixi` to it, excluded in
+  `.git/info/exclude`.
+- 2026-10-04 · `p1b-vertex-coincidence-box-2026-10-02.md` §§5.6h–5.6i were
+  §§5.6c–5.6d on `main`; the checksummed archive index still cites the old
+  numbers. Do not edit the archive README (its `SHA256SUMS` covers it).
 
 ## 7. Review outcomes
 
@@ -143,11 +156,15 @@ by deleting it.
 - 2026-10-04 · `PDSImpliesRepoG1` promoted to repository-proved (Theorem S
   route; audited; human review pending) and manuscript Proposition
   `prop:PDS-implies-G1` added; the coincidence half of Open Problem 4.24
-  stays open. · `scripts/make_ledger.py`; manuscript §4.8
-- 2026-10-04 · Pre-existing false positive on `main`: `scripts/audit_manuscript.py`
+  stays open. · `tools/make_ledger.py`; manuscript §4.8
+- 2026-10-04 · Pre-existing false positive on `main`: `tools/audit_manuscript.py`
   flags `docs/psc-motivation-2026-10-02.md:58`, where "PSC is closed" appears
   in a list of formulations to *avoid*. Not caused by this branch. ·
-  `scripts/audit_manuscript.py` (psc-closed-premise rule)
+  `tools/audit_manuscript.py` (psc-closed-premise rule)
+  *Fixed 2026-10-04:* the rule now reads a Markdown list together with its
+  colon-terminated lead-in paragraph and accepts "avoid" as negation; an
+  affirmative list ("Results:" / "- PSC is closed.") still fails. ·
+  `tests/test_audit_manuscript.py`
 - 2026-10-04 · Former manuscript Open Problem 4.24 answered in full: pure
   discrete spectrum gives termination with coincidence from every seed,
   legal or not (Theorem `thm:seedwise`; ledger `PDSImpliesSeedwiseTermination`,

@@ -272,7 +272,7 @@ Consequences:
 
 ## 6. Exact certificate (`psc.periodic_pair`)
 
-`mojo/psc/periodic_pair.mojo` is the canonical implementation of Theorem B's
+`kernel/psc/periodic_pair.mojo` is the canonical implementation of Theorem B's
 certificate. For an ordered pair of interior occurrences, `certify_pair`:
 
 1. computes `w_0` from (1) over `Z` with the adjugate of `M^r − I` and
@@ -292,7 +292,7 @@ Acceptance is by exact integer and `Z[beta]` equality. No adelic coordinate
 is computed, so the local-field bindings of §8 of the adelic note are neither
 needed for these verdicts nor supplied by them.
 
-`mojo/tests/test_periodic_pair.mojo` pins the census over all ordered pairs
+`kernel/tests/test_periodic_pair.mojo` pins the census over all ordered pairs
 of interior occurrences with distinct letters. An independent integer-only
 oracle (not committed) gave the same numbers:
 

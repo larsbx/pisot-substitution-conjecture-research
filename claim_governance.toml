@@ -17,8 +17,8 @@ name = "larsbx/pisot-substitution-conjecture-research"
 
 [scan]
 prose = ["README.md", "docs/**/*.md", "manuscripts/*.tex", "manuscripts/*.md"]
-source = ["mojo/psc/**/*.mojo", "mojo/*.mojo", "mojo/tests/*.mojo", "src/psc_research/*.py"]
-exclude = ["archive/**", "docs/source-imports/**"]
+source = ["kernel/psc/**/*.mojo", "kernel/*.mojo", "kernel/tests/*.mojo", "reference/psc_research/*.py"]
+exclude = ["archive/**", "sources/**"]
 
 # ---------------------------------------------------------------------------
 # Status vocabulary: docs/claim-status-and-source-map-2026-09-13.md section
@@ -97,8 +97,8 @@ file_status_lines = 10
 allow = ["manuscripts/PSC_balanced_pair_state_2026-09-13.tex", "manuscripts/PSC_PROOF_next_source_audit.tex"]
 
 # ---------------------------------------------------------------------------
-# Coverage: every Mojo test names what it guards.  `mojo/psc/claim_tests.mojo`
-# supplies the two declarations; `mojo/run_tests.sh` collects the receipts of
+# Coverage: every Mojo test names what it guards.  `kernel/psc/claim_tests.mojo`
+# supplies the two declarations; `kernel/run_tests.sh` collects the receipts of
 # the tests that passed, so a declaration no run reached guards nothing and a
 # red suite credits nothing.  The required classes are the two whose warrant
 # *is* an exact finite computation: a finite-domain theorem and an empirical
@@ -110,9 +110,9 @@ allow = ["manuscripts/PSC_balanced_pair_state_2026-09-13.tex", "manuscripts/PSC_
 # declarations and from docs/claim-relationship-graph.json.
 # ---------------------------------------------------------------------------
 [coverage]
-tests = ["mojo/tests/test_*.mojo"]
+tests = ["kernel/tests/test_*.mojo"]
 require_classes = ["finite-domain", "evidence"]
-receipts = "mojo/build/claim-receipts.tsv"
+receipts = "kernel/build/claim-receipts.tsv"
 
 # ---------------------------------------------------------------------------
 # Promotion: an unsettled claim must not be described as proved.
@@ -135,13 +135,13 @@ allow = ["manuscripts/PSC_balanced_pair_state_2026-09-13.tex"]
 [[numerics.rule]]
 name = "no-float-in-kernel"
 pattern = '\b(?:Float16|Float32|Float64|BFloat16|FloatLiteral|Float|float)\b|(?<![\w.])(?:\d(?:_?\d)*\.(?:\d(?:_?\d)*)?|\.\d(?:_?\d)*)(?:[eE][+-]?\d(?:_?\d)*)?(?![\w.])|(?<![\w.])\d(?:_?\d)*[eE][+-]?\d(?:_?\d)*(?![\w.])'
-paths = ["mojo/psc/**/*.mojo", "mojo/*.mojo", "mojo/tests/*.mojo"]
+paths = ["kernel/psc/**/*.mojo", "kernel/*.mojo", "kernel/tests/*.mojo"]
 message = "floating point in exact kernel scope (binding criterion C1)"
 
 [[numerics.rule]]
 name = "no-float-in-oracle"
 pattern = '\bfloat\b|\bmath\.(?:sqrt|log|exp|sin|cos|pow)\b|\bnumpy\b'
-paths = ["src/psc_research/*.py"]
+paths = ["reference/psc_research/*.py"]
 message = "the Python oracle must stay exact (fractions.Fraction and int only)"
 
 # ---------------------------------------------------------------------------
@@ -149,16 +149,16 @@ message = "the Python oracle must stay exact (fractions.Fraction and int only)"
 # claims that are not nodes of the TLA+ proof-dependency ledger (finite-domain
 # certificates, historical and bridge claims, PSC itself).  Every node of the
 # TLA+ ledger has a generated entry between the markers at the end of this
-# file, written by scripts/make_ledger.py from the proof-record table it
-# holds (serialized to tla/ledger.json, itself generated) through the vendored
+# file, written by tools/make_ledger.py from the proof-record table it
+# holds (serialized to proof/tla/ledger.json, itself generated) through the vendored
 # tools/proof_records/generate_ledgers.py; do not edit that block or
-# ledger.json, edit the table in scripts/make_ledger.py and regenerate.  Surfaces:
+# ledger.json, edit the table in tools/make_ledger.py and regenerate.  Surfaces:
 #   map    = docs/claim-status-and-source-map-2026-09-13.md (the live claim map)
 #   ledger = docs/conjecture-ledger.md (prose dependency ledger)
 #   weekly = docs/completion-ledger-2026-09-14.md (weekly snapshot and priority table)
 #   README = README.md (headline chain)
 #   index  = docs/ledger-index.md (generated; one row per TLA+ node)
-#   tla    = tla/Ledger.tla (ProvedDef / ImportedDef / WithdrawnDef membership;
+#   tla    = proof/tla/Ledger.tla (ProvedDef / ImportedDef / WithdrawnDef membership;
 #            a node whose implication is proved but whose premises are open,
 #            such as G1 or SCCProducer, is in ProvedDef and carries a
 #            status override recorded in the ledger's status_note evidence)
@@ -283,7 +283,7 @@ window_lines = 0
 name = "AlgebraicEmbedding"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"AlgebraicEmbedding"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -298,7 +298,7 @@ name = "AlignedOverlapsAreStrongCoincidence"
 status = "proved"
 aliases = ["endpoint-aligned overlaps"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"AlignedOverlapsAreStrongCoincidence"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -317,7 +317,7 @@ name = "AllSeedOverlapProductivity"
 status = "open"
 aliases = ["all-seed overlap productivity"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"AllSeedOverlapProductivity"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -340,7 +340,7 @@ name = "AllSeedStrictZipperExclusion"
 status = "open"
 aliases = ["all-seed strict-zipper exclusion"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"AllSeedStrictZipperExclusion"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -362,7 +362,7 @@ window_lines = 2
 name = "AllStatesProductiveViaOverlaps"
 status = "conditional"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"AllStatesProductiveViaOverlaps"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -377,7 +377,7 @@ name = "BoundaryCoincidenceCriterion"
 status = "proved"
 aliases = ["boundary-hitting criterion"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"BoundaryCoincidenceCriterion"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -395,7 +395,7 @@ window_lines = 0
 name = "C2"
 status = "conditional"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"C2"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -409,7 +409,7 @@ window_lines = 0
 name = "C3Local"
 status = "conditional"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"C3Local"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -423,7 +423,7 @@ window_lines = 0
 name = "C3Locality"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"C3Locality"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -437,7 +437,7 @@ window_lines = 0
 name = "C4"
 status = "open"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"C4"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -452,7 +452,7 @@ name = "CoincidenceDensityOne"
 status = "proved"
 aliases = ["coincidence density one"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"CoincidenceDensityOne"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -479,7 +479,7 @@ name = "CoincidenceRankFibreTheorems"
 status = "imported"
 aliases = ["coincidence-rank fibre theorems"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"CoincidenceRankFibreTheorems"'
 section = "ImportedDef == {"
 section_end = "}"
@@ -494,7 +494,7 @@ name = "ConcentrationAuxB"
 status = "open"
 aliases = ["aux-B", "general concentration"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"ConcentrationAuxB"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -520,7 +520,7 @@ window_lines = 0
 name = "DefectIntertwiner"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"DefectIntertwiner"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -535,7 +535,7 @@ name = "DefectTheorem"
 status = "proved"
 aliases = ["FullIncidenceRank", "full incidence rank"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"DefectTheorem"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -557,7 +557,7 @@ window_lines = 2
 name = "Degree4Floor"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"Degree4Floor"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -572,7 +572,7 @@ name = "DensityToPDSBridge"
 status = "imported"
 aliases = ["density-to-PDS bridge", "Barge–Štimac–Williams theorem"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"DensityToPDSBridge"'
 section = "ImportedDef == {"
 section_end = "}"
@@ -598,7 +598,7 @@ window_lines = 0
 name = "DominantCubicCapture"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"DominantCubicCapture"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -612,7 +612,7 @@ window_lines = 0
 name = "DominantK2Source"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"DominantK2Source"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -626,7 +626,7 @@ window_lines = 0
 name = "EndpointCore"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"EndpointCore"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -641,7 +641,7 @@ name = "G1"
 status = "open"
 aliases = ["finite BPA"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"G1"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -663,7 +663,7 @@ window_lines = 4
 name = "G1FromRenewal"
 status = "conditional"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"G1FromRenewal"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -678,7 +678,7 @@ name = "G1HalfCoincidenceRoute"
 status = "conditional"
 aliases = ["half-coincidence route to finite BPA"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"G1HalfCoincidenceRoute"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -705,7 +705,7 @@ name = "G1OverlapRoute"
 status = "conditional"
 aliases = ["overlap-depth route to finite BPA"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"G1OverlapRoute"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -732,7 +732,7 @@ name = "G1b1BoundedDiscrepancy"
 status = "proved"
 aliases = ["G1b-1", "bounded discrepancy"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"G1b1BoundedDiscrepancy"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -763,7 +763,7 @@ name = "G1b2RenewalFiniteness"
 status = "open"
 aliases = ["G1b-2", "renewal finiteness"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"G1b2RenewalFiniteness"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -794,7 +794,7 @@ name = "GaloisWedgePropagation"
 status = "proved"
 aliases = ["degree-two carrier span"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"GaloisWedgePropagation"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -812,7 +812,7 @@ window_lines = 0
 name = "GlobalEndpointSync"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"GlobalEndpointSync"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -826,7 +826,7 @@ window_lines = 0
 name = "InterBlockCancellation"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"InterBlockCancellation"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -840,7 +840,7 @@ window_lines = 0
 name = "LatticeLift"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"LatticeLift"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -854,7 +854,7 @@ window_lines = 0
 name = "LoadBearingSCC"
 status = "conditional"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"LoadBearingSCC"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -868,7 +868,7 @@ window_lines = 0
 name = "LocalWitnessInjectivity"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"LocalWitnessInjectivity"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -882,7 +882,7 @@ window_lines = 0
 name = "MassBalanceK2Obstruction"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"MassBalanceK2Obstruction"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -896,7 +896,7 @@ window_lines = 0
 name = "MeanAreaLift"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"MeanAreaLift"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -910,7 +910,7 @@ window_lines = 0
 name = "MidArea"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"MidArea"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -924,7 +924,7 @@ window_lines = 0
 name = "Mod3Sieve"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"Mod3Sieve"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -938,7 +938,7 @@ window_lines = 0
 name = "OrientationMonodromy"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"OrientationMonodromy"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -952,7 +952,7 @@ window_lines = 0
 name = "OrientationSpectrum"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"OrientationSpectrum"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -967,7 +967,7 @@ name = "OverlapBadSCCNormalForm"
 status = "proved"
 aliases = ["closed irreducible bad-overlap normal form"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"OverlapBadSCCNormalForm"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -990,7 +990,7 @@ name = "OverlapBoundaryZipperDichotomy"
 status = "proved"
 aliases = ["strict zipper dichotomy"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"OverlapBoundaryZipperDichotomy"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1009,7 +1009,7 @@ name = "OverlapFullRank"
 status = "proved"
 aliases = ["full-rank child-closed overlap constraint"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"OverlapFullRank"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1032,7 +1032,7 @@ name = "OverlapProductivity"
 status = "open"
 aliases = ["seedwise overlap productivity", "overlap productivity", "Open Problem 5.35"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"OverlapProductivity"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1066,7 +1066,7 @@ window_lines = 0
 name = "PDS"
 status = "conditional"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"PDS"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1081,7 +1081,7 @@ name = "PDSImpliesRepoG1"
 status = "proved"
 aliases = ["Theorem S", "PDS implies G1"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"PDSImpliesRepoG1"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1096,7 +1096,7 @@ name = "PDSImpliesSeedwiseTermination"
 status = "proved"
 aliases = ["seedwise bridge"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"PDSImpliesSeedwiseTermination"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1111,7 +1111,7 @@ name = "PDSOverlapRoute"
 status = "conditional"
 aliases = ["Theorem 5.38"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"PDSOverlapRoute"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1129,7 +1129,7 @@ window_lines = 0
 name = "PDSSpectralRoute"
 status = "conditional"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"PDSSpectralRoute"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1143,7 +1143,7 @@ window_lines = 0
 name = "ParikhIntertwiner"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"ParikhIntertwiner"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1157,7 +1157,7 @@ window_lines = 0
 name = "ParitySieve"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"ParitySieve"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1171,7 +1171,7 @@ window_lines = 0
 name = "PhiSemisimplicity"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"PhiSemisimplicity"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1185,7 +1185,7 @@ window_lines = 0
 name = "RepoSeedUnionBridge"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"RepoSeedUnionBridge"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1200,7 +1200,7 @@ name = "SCCProducer"
 status = "open"
 aliases = ["SCC Producer"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"SCCProducer"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1218,7 +1218,7 @@ window_lines = 0
 name = "SeedCentralizer"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"SeedCentralizer"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1232,7 +1232,7 @@ window_lines = 0
 name = "SignatureReduction"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"SignatureReduction"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1247,7 +1247,7 @@ name = "SinkSCCReduction"
 status = "conditional"
 aliases = ["sink-SCC reduction"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"SinkSCCReduction"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1266,7 +1266,7 @@ name = "SpanRichProductivity"
 status = "open"
 aliases = ["general wedge productivity"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"SpanRichProductivity"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1292,7 +1292,7 @@ window_lines = 0
 name = "SpectralBlackBox"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"SpectralBlackBox"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1306,7 +1306,7 @@ window_lines = 0
 name = "SpectralSCCProducer"
 status = "open"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"SpectralSCCProducer"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1320,7 +1320,7 @@ window_lines = 0
 name = "StandardBPAEquivalence"
 status = "imported"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"StandardBPAEquivalence"'
 section = "ImportedDef == {"
 section_end = "}"
@@ -1335,7 +1335,7 @@ name = "StrongCoincidenceFromPDS"
 status = "imported"
 aliases = ["overlap coincidence to strong coincidence"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"StrongCoincidenceFromPDS"'
 section = "ImportedDef == {"
 section_end = "}"
@@ -1350,7 +1350,7 @@ name = "SwapOverlapFiniteness"
 status = "proved"
 aliases = ["seed-patch overlap graph finiteness", "seed-patch overlap finiteness"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"SwapOverlapFiniteness"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1380,7 +1380,7 @@ window_lines = 0
 name = "Target1"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"Target1"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1394,7 +1394,7 @@ window_lines = 0
 name = "ThetaIntertwining"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"ThetaIntertwining"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1408,7 +1408,7 @@ window_lines = 0
 name = "UDForPowers"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"UDForPowers"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1423,7 +1423,7 @@ name = "UniqueDecodability"
 status = "proved"
 aliases = ["unique decodability"]
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"UniqueDecodability"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1445,7 +1445,7 @@ window_lines = 0
 name = "V5Thm51"
 status = "retired"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"V5Thm51"'
 section = "WithdrawnDef == {"
 section_end = "}"
@@ -1459,7 +1459,7 @@ window_lines = 0
 name = "W3LowGrowth"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"W3LowGrowth"'
 section = "ProvedDef == {"
 section_end = "}"
@@ -1473,7 +1473,7 @@ window_lines = 0
 name = "WedgeBound"
 status = "proved"
 [[claim.surfaces]]
-path = "tla/Ledger.tla"
+path = "proof/tla/Ledger.tla"
 anchor = '"WedgeBound"'
 section = "ProvedDef == {"
 section_end = "}"

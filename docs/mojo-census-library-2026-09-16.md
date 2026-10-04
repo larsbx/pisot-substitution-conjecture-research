@@ -26,19 +26,19 @@ of this research programme, not incidental scaffolding.
 
 | Module | Provides |
 | --- | --- |
-| `mojo/psc/corpus.mojo` | `Specimen` (indices, images, incidence), the deterministic `image_words` order, `pip_corpus()`, the shared `STATE_CAP`, `arithmetic_regime` |
-| `mojo/psc/histogram.mojo` | a bounded exact histogram; a key outside its capacity raises rather than truncating a statistic |
-| `mojo/psc/carrier.mojo` | `profile_component` (the two edge facts: a coincidence child, a noncoincident exit), `is_sink`, `is_closed_nonproductive`, per-state `carrier_flags`, `state_sync`, `emit_countermodel` |
-| `mojo/psc/symmetry.mojo` | permutations of any alphabet, relabelling and reversal of words, pairs and substitutions, canonical representatives, substitution keys |
-| `mojo/psc/defect_degree.mojo` | streaming `N4` in `O(n)` and the first scattered-subword defect degree |
-| `mojo/psc/degree2_sieve.mojo` | the mod-2 parity sieve and the Newton trace recurrences in `(T, U, D)` |
-| `mojo/psc/degree3_taxonomy.mojo` | the degree-3 catalogue rows and their `DEGREE3_*` summary |
-| `mojo/psc/integer_matrix.mojo` | primitivity of a non-negative integer matrix on any alphabet (Wielandt's bound) |
-| `mojo/psc/prng.mojo` | SplitMix64: a reproducible source for exploratory searches only |
-| `mojo/psc/bounded_bpa.mojo` | `B_sigma` under a state-count *and* a state-length budget, reporting which was exhausted |
-| `mojo/psc/oa_overlap_types.mojo` | level-zero overlap types of `(u, S^k u)`, the exact enumeration window, and inclusion reports against the seed patch |
+| `kernel/psc/corpus.mojo` | `Specimen` (indices, images, incidence), the deterministic `image_words` order, `pip_corpus()`, the shared `STATE_CAP`, `arithmetic_regime` |
+| `kernel/psc/histogram.mojo` | a bounded exact histogram; a key outside its capacity raises rather than truncating a statistic |
+| `kernel/psc/carrier.mojo` | `profile_component` (the two edge facts: a coincidence child, a noncoincident exit), `is_sink`, `is_closed_nonproductive`, per-state `carrier_flags`, `state_sync`, `emit_countermodel` |
+| `kernel/psc/symmetry.mojo` | permutations of any alphabet, relabelling and reversal of words, pairs and substitutions, canonical representatives, substitution keys |
+| `kernel/psc/defect_degree.mojo` | streaming `N4` in `O(n)` and the first scattered-subword defect degree |
+| `kernel/psc/degree2_sieve.mojo` | the mod-2 parity sieve and the Newton trace recurrences in `(T, U, D)` |
+| `kernel/psc/degree3_taxonomy.mojo` | the degree-3 catalogue rows and their `DEGREE3_*` summary |
+| `kernel/psc/integer_matrix.mojo` | primitivity of a non-negative integer matrix on any alphabet (Wielandt's bound) |
+| `kernel/psc/prng.mojo` | SplitMix64: a reproducible source for exploratory searches only |
+| `kernel/psc/bounded_bpa.mojo` | `B_sigma` under a state-count *and* a state-length budget, reporting which was exhausted |
+| `kernel/psc/oa_overlap_types.mojo` | level-zero overlap types of `(u, S^k u)`, the exact enumeration window, and inclusion reports against the seed patch |
 
-`mojo/psc/overlap_seed_patch.mojo` gained `build_overlap_graph_from_seeds`, so
+`kernel/psc/overlap_seed_patch.mojo` gained `build_overlap_graph_from_seeds`, so
 the seed-patch graph and the Sirvent–Solomyak graph are two seedings of one
 exact inflation kernel; comparing their vertices is then meaningful rather than
 a comparison of two implementations.
@@ -51,15 +51,15 @@ histograms and counters. `census.mojo` is 40 lines; `c4_census.mojo` lost its
 
 | Was | Is | Reproduces |
 | --- | --- | --- |
-| `scripts/analyze_degree3_catalog.py` | `mojo/psc/degree3_taxonomy.mojo`, printed by `degree3_catalog.mojo` | all 22 `DEGREE3_*` lines CI pinned, including the four state classes and two substitution classes |
-| `scripts/classify_endpoint_cores.py` | `mojo/endpoint_core_catalog.mojo` | the seven three-letter classes, their sizes `3,6,6,1,3,6,2`, the two globally synchronizing classes, every recurrent core |
-| `scripts/sweep_boundary_sync.py` | `mojo/boundary_sync_sweep.mojo` | a seeded sweep; 500 trials, 312 primitive, 60 components, no productive component missed |
-| `scripts/oa_type_inclusion_explore.py` | `mojo/oa_type_inclusion_census.mojo` | the least-`k` table of `overlap-finiteness-and-coincidence-density-2026-09-13.md` exactly: `1:256 2:109 3:41 4:8 5:12 6:6 7:1 8:1`, 22 failures |
-| `scripts/oa_failures_probe.py` | `mojo/oa_failures_probe.mojo` | the addendum exactly: 9 of 22 resolved, union types 58–132 against 15–48, 43–85 outside, 0–15 unmet, all productive, and all nine least witnesses |
+| `tools/analyze_degree3_catalog.py` | `kernel/psc/degree3_taxonomy.mojo`, printed by `degree3_catalog.mojo` | all 22 `DEGREE3_*` lines CI pinned, including the four state classes and two substitution classes |
+| `tools/classify_endpoint_cores.py` | `kernel/endpoint_core_catalog.mojo` | the seven three-letter classes, their sizes `3,6,6,1,3,6,2`, the two globally synchronizing classes, every recurrent core |
+| `tools/sweep_boundary_sync.py` | `kernel/boundary_sync_sweep.mojo` | a seeded sweep; 500 trials, 312 primitive, 60 components, no productive component missed |
+| `tools/oa_type_inclusion_explore.py` | `kernel/oa_type_inclusion_census.mojo` | the least-`k` table of `overlap-finiteness-and-coincidence-density-2026-09-13.md` exactly: `1:256 2:109 3:41 4:8 5:12 6:6 7:1 8:1`, 22 failures |
+| `tools/oa_failures_probe.py` | `kernel/oa_failures_probe.mojo` | the addendum exactly: 9 of 22 resolved, union types 58–132 against 15–48, 43–85 outside, 0–15 unmet, all productive, and all nine least witnesses |
 
 The five scripts are deleted. They were the only implementation of those
 computations, so keeping them would leave two sources of truth for a taxonomy;
-the Python modules under `src/psc_research/` that carry pytest coverage remain
+the Python modules under `reference/psc_research/` that carry pytest coverage remain
 as independent oracles, which the policy sanctions.
 
 `endpoint_type`, the fast A..G classifier the C4 census calls per specimen, is
@@ -80,8 +80,8 @@ that reason, and they contribute to no count.
 
 - every census prints byte-identical summary lines, checked against the greps in all three workflow files;
 - `overlap_contracting_census.mojo` was timed against the pre-refactor driver on an equal 300-specimen slice: identical output, 1m32.7s versus 1m32.9s;
-- four new test files carrying 33 tests (`test_census_library.mojo`, `test_endpoint_core.mojo`, `test_boundary_sync.mojo`, `test_oa_overlap_types.mojo`), and the loop runs every test file in `mojo/tests/` with no list to maintain;
-- `mojo/run_tests.sh` replaces the two hand-maintained 20-item chains in `pixi.toml` (audit 2026-09-15, finding F6) with one loop over `tests/test_*.mojo`, and reports every failure in one run;
+- four new test files carrying 33 tests (`test_census_library.mojo`, `test_endpoint_core.mojo`, `test_boundary_sync.mojo`, `test_oa_overlap_types.mojo`), and the loop runs every test file in `kernel/tests/` with no list to maintain;
+- `kernel/run_tests.sh` replaces the two hand-maintained 20-item chains in `pixi.toml` (audit 2026-09-15, finding F6) with one loop over `tests/test_*.mojo`, and reports every failure in one run;
 - new CI jobs pin the endpoint classification, the sweep, and both overlap-type explorations.
 
 ## 6. What this does not do

@@ -1,7 +1,7 @@
 <!--
 Derived from templates/docs/CONTRIBUTING.md in larsbx/agent-icm @ sha256:88bf9172c22bc8da
-Edit the canonical template or estate.toml, then re-render: make estate
-Hand-edits here are drift and `make estate-check` fails on them.
+Edit the canonical template or estate.toml in larsbx/agent-icm, then re-render there: make estate
+Hand-edits here are drift, and agent-icm's `make estate-check` fails on them.
 -->
 
 # Contributing to pisot-substitution-conjecture-research
@@ -10,10 +10,14 @@ Exact, exhaustive research on the Pisot substitution conjecture over the 4,554
 primitive irreducible Pisot substitutions on {0,1,2}.
 
 **Language / toolchain:** Mojo (canonical) with Python oracles, TLA+ and Lean
-**CI:** GitHub Actions: `ci.yml` (PSC research checks) plus two census workflows
+**CI:** GitHub Actions: `ci.yml` (PSC research checks, with the pinned estate audit as
+  its `policy` job) plus eight workflows: six census and diagnostic gates,
+  `boundary-sync.yml`, and the scheduled `grow-corpus-daily.yml`
 
 Read these first — they are normative, not background:
 
+- `ESTATE.toml`
+- `ARCHITECTURE.md`
 - `AGENTS.md`
 - `README.md`
 - `claim_governance.toml`
@@ -30,25 +34,25 @@ evidence table.
 1. every verification layer, reporting skips honestly —
 
    ```sh
-   ./scripts/verify_all.sh
+   ./tools/verify_all.sh
    ```
 
 2. Mojo regressions plus claim receipts —
 
    ```sh
-   ./mojo/run_tests.sh
+   ./kernel/run_tests.sh
    ```
 
 3. the ledger is still generated, not hand-edited —
 
    ```sh
-   python scripts/make_ledger.py --check
+   python tools/make_ledger.py --check
    ```
 
 4. the math catalogue is still generated —
 
    ```sh
-   python scripts/make_math_catalogue.py --check
+   python tools/make_math_catalogue.py --check
    ```
 
 5. claim governance —
@@ -66,7 +70,7 @@ evidence table.
 7. vendored packages still match their pins —
 
    ```sh
-   python scripts/check_vendored_sync.py
+   python tools/check_vendored_sync.py
    ```
 
 8. suite —
@@ -78,7 +82,7 @@ evidence table.
 9. TLA+ models —
 
    ```sh
-   ./tla/check.sh
+   ./proof/tla/check.sh
    ```
 
 A check you did not run is not evidence. Say which ones you skipped and why;
@@ -86,9 +90,9 @@ the pull request template has a place for exactly that.
 
 ## What counts as evidence here
 
-- A test under `mojo/tests/` ends its `main` with `require_claim("<Name>")` or
-  `require_contract("<what it pins>")`, placed after the assertions it stands
-  behind.
+- A test under `kernel/tests/` ends its `main` with `require_claim("<Name>")`
+  or `require_contract("<what it pins>")`, placed after the assertions it
+  stands behind.
 - Receipts are collected from the tests that *passed*: a declaration no run
   reached guards nothing.
 - A new theorem-facing diagnostic or promoted lemma is preceded by a targeted
@@ -108,10 +112,10 @@ the pull request template has a place for exactly that.
 - Never patch a vendored file, add a file beside one, or reintroduce a local
   copy of what a package provides. Change it upstream in
   `larsbx/finite-math-kernels`, re-vendor, re-pin.
-- Never hand-edit a generated artifact: `tla/ledger.json`, `tla/Ledger.tla`,
-  the `tla/MCLedger*` models, `docs/ledger-index.md`,
-  `docs/claim-relationship-graph.json`, or the generated `[[claim]]` block of
-  `claim_governance.toml`.
+- Never hand-edit a generated artifact: `proof/tla/ledger.json`,
+  `proof/tla/Ledger.tla`, the `proof/tla/MCLedger*` models,
+  `docs/ledger-index.md`, `docs/claim-relationship-graph.json`, or generated
+  claim entries in `claim_governance.toml`.
 - Never claim beyond what the exact executable or the formal proof actually
   establishes.
 - Never return an empty structure where an invariant is impossible. Fail

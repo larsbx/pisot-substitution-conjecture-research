@@ -15,7 +15,7 @@ The correct coordinate is their **relative hierarchy offset**.
 
 ## 2. Mojo-first representation
 
-`mojo/psc/derived_system.mojo` constructs the derived substitution once.
+`kernel/psc/derived_system.mojo` constructs the derived substitution once.
 
 At construction time it:
 

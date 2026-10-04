@@ -204,4 +204,4 @@ The finite ancestry-defect alphabet is a natural offset-state space. If a recurr
 3. Formulate recognizability in terms of the bounded source-index/local-image offset state.
 4. Search for persistent nonzero offset cycles in the exact corpus and in the non-Pisot negative control before claiming an alignment lemma.
 
-`src/psc_research/prefix_difference.py` implements the exact one-step calculus and finite regressions. `tests/test_prefix_difference.py` checks the identity on named BPA states and the strict-component return bound on the non-Pisot negative control.
+`reference/psc_research/prefix_difference.py` implements the exact one-step calculus and finite regressions. `tests/test_prefix_difference.py` checks the identity on named BPA states and the strict-component return bound on the non-Pisot negative control.
