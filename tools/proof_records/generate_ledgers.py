@@ -38,7 +38,7 @@ ROOT = Path(__file__).resolve().parents[1]
 # Relocatable: in the monorepo `proof_records/` sits under `kernel/` and the
 # audit package under `tools/`; a consumer vendors `proof_records/` and
 # `claim_governance/` side by side under one directory (both consumers: `tools/`).
-BASES = (ROOT / "audit", ROOT)
+BASES = (ROOT.parent / "tools", ROOT)
 for _base in BASES:
     sys.path.insert(0, str(_base))
 
