@@ -260,6 +260,12 @@ the current ledgers rather than rewriting the archive.
 
 ## Verification and implementation
 
+- [`audit-pr197-2026-10-03.md`](audit-pr197-2026-10-03.md) records the
+  independent audit of PR #197 at `347c0d9`: Theorem R, Proposition V's finite
+  box completeness and the PDS ⇒ PPVC ⇒ G1 interface. It distinguishes the
+  CI-guarded standing census and regression slices from the larger recorded
+  PPVC runs, leaves general G1 and PSC open, and changes no claim-ledger status.
+  Its checks are historical results on that head, not on later `main`.
 - `verification-architecture.md` describes the responsibilities and limits of
   Mojo, TLA+, Lean, and Python.
 - `mojo-census-library-2026-09-16.md` describes the shared census/catalogue
