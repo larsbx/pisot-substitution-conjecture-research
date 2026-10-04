@@ -20,10 +20,15 @@ CU) and counts total failures it does not explain. Outside that class, it
 counts the failing vertices whose nonzero forward closure has at most two
 vertices (a fixed point or 2-cycle of the inflation whose other children
 are all offset zero). Folded in canonical order on `parallel_fold`.
+
+Usage: `mojo run -I . one_tile_census.mojo [total]`. With `total` it surveys
+the 24,486 specimens of total image length at most 8 instead of the standing
+corpus: a falsification test of the trichotomy of §5.6b on a larger domain.
 """
 
+from std.sys import argv
 from parallel_fold.map_fold import parallel_map_fold
-from psc.corpus import Specimen, pip_corpus
+from psc.corpus import Specimen, TOTAL_LENGTH_CAP, pip_corpus, pip_corpus_total_length
 from psc.one_tile import catch_up_free, level_is_valuation, one_tile, two_sided
 
 comptime WORKERS = 4
@@ -89,7 +94,8 @@ def merge(a: OneTileCensus, b: OneTileCensus) -> OneTileCensus:
 
 
 def main() raises:
-    var corpus = pip_corpus()
+    var args = argv()
+    var corpus = pip_corpus_total_length(TOTAL_LENGTH_CAP) if len(args) > 1 and String(args[1]) == "total" else pip_corpus()
 
     def one(s: Int) {corpus} -> OneTileCensus:
         var out = OneTileCensus()
@@ -137,6 +143,7 @@ def main() raises:
     print("catch-up-free (no proper prefix in M Z^3):", r.free, " of which Q1 fails totally:", r.free_total, " total failures not catch-up-free:", r.total_not_free)
     print("Proposition P' (level = M-adic valuation to depth", VALUATION_DEPTH, ") iff catch-up-free, mismatches:", r.valuation_mismatch)
     print("Q1-failing vertices outside the catch-up-free class:", r.fail_not_free, " with nonzero forward closure <= 2:", r.fail_not_free_short)
+    print("trichotomy exceptions (non-short Q1-failing vertices outside the catch-up-free class):", r.fail_not_free - r.fail_not_free_short)
     print("specimens failing Q1 at both endpoints:", len(r.both), " of which no recurrent vertex reaches either:", r.both_none)
     for i in range(min(len(r.fails), 12)):
         print("Q1 fails:", corpus[r.fails[i]].label())
