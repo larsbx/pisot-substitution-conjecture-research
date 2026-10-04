@@ -117,7 +117,7 @@ inflation of a finite set of overlaps that contains every overlap with
 - **Verdict.** The closure is `build_overlap_graph_from_seeds`, and offset-zero
   reachability is `first_left_aligned_depths`, both the exact kernels of
   `psc.overlap_seed_patch`. A capped closure is reported as capped.
-- **Cross-check.** An uncommitted floating-point oracle builds the box from
+- **Cross-check.** A floating-point oracle (`box2.py` in `archive/2026-10-04/session-probes/`, re-run output saved there) builds the box from
   approximate eigenvectors with a different bound and start set. The
   recurrent part (non-coincidence vertices on cycles) and its deepest first
   left-aligned depth do not depend on the start set. They agree exactly with
@@ -155,8 +155,8 @@ unimodular complex pair 1:48 2:3858 3:13266 4:9912 5:3822 6:960 7:252 8:30
 8:3540 9:2874 10:3744 11:5598 12:3648 13:1242 14:1098 15:1068 16:516 17:156
 18:108 19:72 20:24 22:84 23:228 24:180 25:132 26:24. Unimodular specimens
 still have `K_V <= 9`, apart from 12 at `K_V = 14`, matching the
-plastic-number class of the standing corpus. The uncommitted
-floating-point oracle of §3 reproduces the standing-corpus row
+plastic-number class of the standing corpus. The
+floating-point oracle of §3 (`oracle_total.py`, archived) reproduces the standing-corpus row
 independently: no failure, 1,174,788 recurrent vertices in total, at most
 2,676 per specimen, deepest recurrent depth 17.
 
@@ -185,8 +185,9 @@ manuscript Proposition 5.47; the balanced-pair builds already certify G1
 there directly. The recorded runs give the same statement for total image
 length at most 8, where Remark 3 of the depth note already gives G1, and for
 images of length at most 4. In the last domain, 121,320 specimens lie in
-neither of the other two (count by the uncommitted floating-point PIP
-screen); for them the recorded run is, as far as this repository records,
+neither of the other two. That count comes from a floating-point PIP screen,
+`len4_rest.py` (archived, re-run: 135,990 PIP specimens, of which 4554 are
+standing and 14,670 have total length at most 8). for them the recorded run is, as far as this repository records,
 the only evidence of G1, and it is not CI-guarded. Everywhere the census adds
 the periodic-pair statement for **all** `r`, not only the seed-reachable
 part, and the uniform depth `K_V`.
@@ -219,7 +220,7 @@ spectrum already implies there.
 
 ### 5.2 Mechanisms the data rules out (exploratory)
 
-An uncommitted floating-point miner was run on the box graphs of the three
+A floating-point miner (`mine.py`, `mine2.py`, archived with outputs) was run on the box graphs of the three
 named specimens. It searched for a local reason why every vertex reaches
 offset zero, because a provable local reason would close the problem. Three
 candidates fail.
@@ -283,7 +284,7 @@ number, the smallest Pisot number. Their complex conjugates have modulus
 
 Let `mu = max_k |sigma_k(beta)|` be the slowest contraction. For a complex
 pair, `mu^2 = abs(det M)/beta`, so a determinant above 1 slows contraction.
-Over the standing corpus (uncommitted floating-point oracle, which reproduces
+Over the standing corpus (floating-point oracle `law.py` with `law_stats.py`, archived; it reproduces
 the exact `K_V` of every specimen):
 
 - `K_V · log(1/mu)` lies in `[0.441, 3.164]`;
@@ -354,8 +355,8 @@ Result (3 min 48 s):
   `AGENTS.md` first, which has not been done.
 - An earlier draft of this section tabulated floating-point estimates of
   the envelope constant for each offset and extrapolated an equality beyond
-  the offsets shown. Those estimates came from an uncommitted script and are
-  withdrawn; the exact counts above replace them.
+  the offsets shown. Those estimates came from `uhan.py`, now archived with
+  its output, and are withdrawn; the exact counts above replace them.
 
 ### 5.5b Targeted search where contraction is slowest (exploratory sample)
 
@@ -400,7 +401,7 @@ give depth about `L = log(B/epsilon_0) / log(1/mu)`, where `B` is the largest
 contracting size on the recurrent part.
 
 The data rules this mechanism out. On a stride-7 sample of 651 corpus
-specimens (uncommitted oracle), `K_V − L` ranges from −33.75 to 5.00, and
+specimens (`mine3.py`, archived with output), `K_V − L` ranges from −33.75 to 5.00, and
 `K_V / L` from 0.32 to 2.56. For example, `0 -> 22, 1 -> 001, 2 -> 10` has
 `L ≈ 49.8` and `K_V = 16`. Hits happen long before the offset is small, by
 **exact cancellation**: `beta^m t` lands on a prefix difference
@@ -436,7 +437,8 @@ The 12-specimen outlier class of §5.4 is a model problem. Its box graph has
 74 recurrent vertices, and the deepest are all same-letter self-overlaps with
 offsets `±beta^{−k}`. For `0 -> 1, 1 -> 2, 2 -> 01`, `(0, 0, (1,1,−1))` has
 `t = beta^{−2}` and depth 14, `(1, 1, (−1,0,1))` has `t = beta^{−1}` and depth
-13, and `(2, 2, (1,0,0))` has `t = 1` and depth 12 (uncommitted oracle).
+13, and `(2, 2, (1,0,0))` has `t = 1` and depth 12 (`plastic.py`, archived
+with output; each also appears with the opposite sign).
 
 *Climb lemma (proved).* Let `(a, a, t)` be an overlap and let `c` be a letter
 of `sigma(a)`. If `beta |t| < ell_c`, then `(c, c, beta t)` is a child: the
@@ -596,6 +598,73 @@ exactly the 210 catch-up-free specimens, and on no other. In 192 of them
 `|O| = 2` (e.g. `0 -> 1, 1 -> 22, 2 -> 012` with `O = {0, 2}`), and in 18
 `|O| = 1` (e.g. `0 -> 1, 1 -> 22, 2 -> 202` with `O = {2}`).
 
+*The M-adic completion.* Assume `|det M| >= 2`. This holds throughout the
+catch-up-free class, since Lemma P is void when `Λ = Z^3`. When `M` is
+unimodular, `M^n Z^3 = Z^3` and what follows degenerates. Let
+`v(x) = sup{n : x ∈ M^n Z^3}` for
+`x ∈ Z^3`. The lattices `M^n Z^3` are nested, so `v` is ultrametric:
+`v(x + y) >= min(v(x), v(y))`, with equality when `v(x) ≠ v(y)`. Since `M`
+is injective, `v(M x) = v(x) + 1`. Moreover `∩_n M^n Z^3 = 0`. To see this,
+identify `x` with `ξ = ⟨ell, x⟩` in the full-rank module `Z⟨ell⟩ ⊂ Q(beta)`.
+Then `M^{−n} x` corresponds to `beta^{−n} ξ`. The norms of nonzero elements
+of a finitely generated full-rank module lie in `(1/q) Z \ {0}` for some
+fixed `q`. If `x ≠ 0` and `M^{−n} x ∈ Z^3` for every `n`, then
+`|N(beta^{−n} ξ)| = |N(ξ)| / |det M|^n` tends to 0, which is a contradiction.
+So `v(x) = ∞` iff `x = 0`. Let `Ẑ_M = lim Z^3 / M^n Z^3` be the completion. It is complete
+and Hausdorff, `Z^3` embeds in it, and `v` extends to it.
+
+Positions are compared only through differences. Two vertices `y, z` of
+one σ-tiling differ by the abelianisation `D(y, z) ∈ Z^3` of the word
+between them. If two tilings lie in one fibre (Proposition F), their vertex
+positions lie in one coset `x + Z⟨ell⟩`. Since `ell` has rationally
+independent entries, every difference of vertex positions across both
+tilings is then `⟨ell, D⟩` for a unique `D ∈ Z^3`. So all vertices of both
+tilings live in one torsor `A` under `Z^3`, which completes to a torsor `Â`
+under `Ẑ_M`. One should not use rational coordinates instead, such as the
+rational fixed point `(I − M^r)^{−1} E` of an inflation. Its denominator
+`det(I − M^r)` can be even, and `v` is not defined there. The argument below
+uses only differences and completeness.
+
+*Proposition P″ (M-adic centres, proved).*
+(a) Every σ-tiling `T` has an *M-adic centre* `c_T ∈ Â`: for any vertices
+`z_n` of `T` with `level_T(z_n) >= n`, `c_T = lim z_n`. If `σ` is
+catch-up-free, then `level_T(y) = v(y − c_T)` for every vertex `y` of finite
+level, and a vertex of infinite level equals `c_T`.
+(b) If `T, T′` are `Φ^r`-fixed with a common centre and lie in one fibre,
+then `c_T = c_{T′}`.
+(c) Hence, for catch-up-free `σ`, every common vertex of such a pair has
+the same level in both tilings. The M-adic coordinate cannot by itself
+exclude a common vertex, so P′ alone does not rule out a strict zipper.
+
+*Proof.* (a) Between two vertices of level `>= n` lie whole level-`n`
+supertiles, and each has abelianisation `M^n e_c`. So
+`v(z_n − z_m) >= min(n, m)`. The sequence is Cauchy, and any two such
+sequences interleave, so the limit does not depend on the choice. Now let
+`σ` be catch-up-free and `level_T(y) = k < ∞`. Then `y` is interior to a
+level-`(k+1)` supertile starting at some `s`, and `y = s + M^k ab(p)` for a
+proper nonempty prefix `p`. So `v(y − s) = k`, as in P′. For `n > k`,
+`v(z_n − s) >= k + 1`, hence `v(y − z_n) = k`. Since
+`v(z_n − c_T) >= n > k`, we get `v(y − c_T) = k`. If `y` has infinite level,
+`v(y − z_n) >= n` for every `n`, so `y = c_T`.
+(b) The real map `x -> beta^r x` about the common centre sends vertices of
+each tiling to vertices of the same tiling. On the common coset it acts by
+the same affine map `F(y) = F(y_0) + M^r (y − y_0)` for both tilings. `F`
+extends to `Â` and satisfies `v(F(y) − F(y′)) = v(y − y′) + r`, so it is a
+strict contraction of a complete ultrametric space. Its fixed point is
+therefore unique. `F` raises levels by `r` (recognizability), so it maps a
+sequence `z_n` of increasing level to another such sequence, and `F(c_T) = c_T`.
+Likewise `F(c_{T′}) = c_{T′}`, so `c_T = c_{T′}`.
+(c) A common vertex `y` has `level_T(y) = v(y − c_T) = v(y − c_{T′}) =
+level_{T′}(y)`. `square`
+
+So the tempting route "different M-adic centres force disjoint vertex sets"
+is closed. The centres always coincide. Part (c) re-derives the
+simultaneous-birth property of the catch-up-free class (Lemma P), and also
+shows that the non-Archimedean coordinate carries no further obstruction. A
+proof of case 3 has to use the order structure on the real line, not the
+M-adic arithmetic alone. Parts (a) and (b) need only `|det M| >= 2`, not
+catch-up-freeness.
+
 *Route check (2026-10-04).* I read the M-adic picture against Baker, Barge and
 Kwapisz, *Geometric realization and coincidence for reducible
 non-unimodular Pisot tiling spaces*, Ann. Inst. Fourier 56 (2006), §§1, 4
@@ -648,6 +717,113 @@ same level. For the catch-up-free class, the
 interleaving question is exactly whether a simultaneous birth
 `M w = ab(P_a(i)) − ab(P_b(j))`, with `i, j > 0`, is reachable from every
 recurrent vertex.
+
+### 5.6c Anatomy of the one-tile analysis (exact, `pixi run one-tile-anatomy`)
+
+These are the side computations behind §5.6b. Each one is exact on every
+standing-corpus specimen and is computed by the committed driver
+`kernel/one_tile_anatomy.mojo` with `psc.one_tile`. CI pins the output. An
+earlier scratch probe gave each of them first. Those probes are archived with
+their outputs in `archive/2026-10-04/session-probes/` (§5.6d) and agree with
+the driver line by line.
+
+*Q1 failures by spectral class.*
+
+| class | specimens | Q1 fails partially | Q1 fails totally |
+|---|---|---|---|
+| `|det M| = 1`, real contracting pair | 648 | 48 | 0 |
+| `|det M| = 1`, complex contracting pair | 1980 | 54 | 0 |
+| `|det M| = 2`, complex contracting pair | 1926 | 48 | 210 |
+
+Every total failure has `|det M| = 2`, as Lemma P requires. Partial failures
+occur in all three classes, 102 of them unimodular.
+
+*Closure sizes of the failing vertices.* Outside the catch-up-free class,
+the 348 recurrent vertices that reach no catch-up have nonzero forward
+closure of size 1 (276 vertices, fixed points of the inflation) or 2 (72
+vertices, 2-cycles). None has a larger closure.
+
+*One-step catch-ups (towards the converse of Lemma P).* Of the 4344
+specimens that are not catch-up-free, 4170 have a recurrent vertex whose
+leftmost child has offset zero. That is a catch-up taken in one step from
+the recurrent part, and there are 29,712 such vertices in all. The other 174
+specimens have none. Their recurrent vertices still all reach a catch-up,
+because none of the 174 fails Q1, but only through a leftmost chain of two
+or more steps, or through non-recurrent descendants. A proof of the converse
+of Lemma P therefore cannot rely on the explicit one-step vertex
+`(a′, b, −M^{−1} ab(p))` being recurrent. The 174 labels, `i/j/k` indexing
+the image words as in the census, are:
+
+```
+1/2/9 1/2/33 1/2/36 1/8/0 1/8/6 1/9/30 1/9/36 1/10/33 1/10/36 1/11/36 
+1/23/0 1/26/0 1/26/3 1/26/6 1/26/21 1/26/24 1/31/21 2/0/10 2/0/31 2/0/37 
+2/3/37 2/6/1 2/9/10 2/9/37 2/21/6 2/24/1 2/24/6 2/24/7 2/24/8 2/27/1 2/27/8 
+2/30/23 2/30/37 2/36/37 4/2/0 4/5/0 4/17/3 4/17/5 4/20/5 5/0/1 5/0/4 5/3/19 
+5/4/16 5/4/19 6/5/33 6/8/21 6/8/27 6/23/0 6/23/21 6/26/0 6/26/15 6/26/21 
+6/26/24 6/27/21 6/29/27 7/2/36 7/8/27 7/23/6 7/26/0 7/26/6 7/26/24 8/4/31 
+8/6/1 8/24/1 8/24/7 8/26/0 8/27/7 8/29/0 8/29/27 8/33/29 9/0/31 9/0/37 
+9/18/37 9/27/4 9/30/10 9/30/31 9/30/33 9/30/37 9/33/10 9/33/34 9/36/37 
+10/0/34 10/0/37 10/2/9 10/2/36 10/11/33 10/11/36 10/23/5 10/33/34 10/34/27 
+11/0/37 11/9/31 11/9/37 11/24/1 11/33/10 11/36/37 13/2/0 13/2/3 13/2/4 
+13/2/5 13/5/0 13/5/3 13/11/0 13/14/0 13/14/3 13/14/5 13/20/0 13/20/5 
+13/32/5 14/0/1 14/0/4 14/0/7 14/0/13 14/0/16 14/3/1 14/3/4 14/3/13 14/4/1 
+14/4/13 14/4/16 14/4/22 14/5/1 16/2/4 16/17/4 16/17/5 17/0/1 17/3/4 17/4/1 
+17/4/16 17/9/8 17/20/5 19/2/0 19/2/5 19/4/16 19/5/3 19/10/6 19/20/5 20/4/19 
+20/5/1 20/5/19 21/17/6 23/6/7 23/6/8 23/16/4 23/21/6 23/21/8 26/24/1 
+26/24/7 26/24/8 27/20/0 28/10/36 29/6/8 29/19/1 29/23/8 29/24/1 29/24/8 
+29/27/8 30/9/19 31/5/20 31/9/30 31/10/9 31/10/30 31/11/9 33/0/16 34/2/17 
+34/2/36 34/10/9 34/10/31 34/10/33 34/10/36 35/24/8 37/2/36 37/10/36 
+37/11/36
+```
+
+Their first images have length 1 (34 specimens), 2 (62) or 3 (78). The
+first few are `0 -> 1` with `1 -> 2, 2 -> 20`, `1 -> 2, 2 -> 210`,
+`1 -> 2, 2 -> 220`, `1 -> 12, 2 -> 0` and `1 -> 12, 2 -> 10`.
+
+*Diagonal against off-diagonal hits.* A diagonal offset-zero state
+`(c, c, 0)` is an exact tile coincidence and is terminal in the box graph.
+An off-diagonal one `(c, d, 0)` with `c ≠ d` is a common vertex without a
+common tile, and it is expanded further. Counting only paths through
+nonzero offsets, so only the first hit counts:
+
+- 1,080,828 of the 1,154,040 recurrent vertices reach a diagonal hit, and
+  1,153,308 reach an off-diagonal one;
+- on 180 of the 210 catch-up-free specimens every recurrent vertex reaches a
+  diagonal hit; on the other 30, 12,276 recurrent vertices reach none.
+
+So "first hit is a tile coincidence" is not a route to case 3 either. Even
+outside that class it fails on specimens where PPVC holds. Tribonacci's 14
+recurrent vertices all reach an off-diagonal hit first and no diagonal one,
+and `0 -> 1, 1 -> 012, 2 -> 010` (694 vertices) does the same. Both are
+pinned in `tests/test_one_tile.mojo`.
+
+### 5.6d The session's scratch probes (archived)
+
+Every scratch probe run for §§3–5.6 is archived in
+`archive/2026-10-04/session-probes/` with its saved output and a fresh re-run of each. That covers 34
+Python files and 5 Mojo probes, `rerun.sh`, the session's census logs, and
+`SHA256SUMS`. The index there lists, for each probe, what it computes, its
+result, where the note uses it, and the committed driver that supersedes
+it. The Python probes are floating-point oracles, not certificates. The Mojo
+probes are exact, and `kernel/one_tile_anatomy.mojo` supersedes them. Every
+figure this note cites from a probe reproduces exactly on the re-run, in
+particular:
+
+- §3: 14/3, 1166/17 and 716/15;
+- §4: 1,174,788 recurrent vertices, at most 2,676 per specimen, deepest 17;
+- §5.5: `[0.441, 3.164]` and correlation 0.923;
+- §5.6: 651 specimens, `[−33.75, 5.00]` and `[0.32, 2.56]`;
+- §5.6a: 111 of 651, and the plastic depths 14/13/12;
+- §5.6c: all figures.
+
+Two archived results are not cited elsewhere in this note:
+
+- the withdrawn one-witness birth analysis (`birth3.py`): on the stride-7
+  sample, 61,854 of 149,412 recurrent vertices have a simultaneous birth as
+  the first hit along one minimal path;
+- the float Q1 prototype (`onetile_s.py`): on the same sample, 78,406 of
+  149,412 vertices are in `CU`, 135,266 reach it, and Q1 fails on 53 of 651
+  specimens. This is consistent with the exact census (360 of 4554).
 
 ### 5.7 The closing target, restated
 

@@ -274,10 +274,9 @@ def _reaches_cu(a: SeedOverlapAutomaton, mark: List[Int]) -> List[Bool]:
     return good^
 
 
-def _short_closure(a: SeedOverlapAutomaton, v: Int) -> Bool:
-    """The nonzero-offset forward closure of `v` (itself included) has at most
-    two vertices: `v` is a fixed point or lies on a 2-cycle of the inflation,
-    with every other child at offset zero."""
+def nonzero_closure_size(a: SeedOverlapAutomaton, v: Int, cap: Int) -> Int:
+    """Size of the nonzero-offset forward closure of `v` (itself included),
+    or `cap + 1` once it exceeds `cap`."""
     var seen: List[Int] = [v]
     var head = 0
     while head < len(seen):
@@ -287,10 +286,49 @@ def _short_closure(a: SeedOverlapAutomaton, v: Int) -> Bool:
             var y = a.adj[x][j]
             if a.states[y].shift.is_zero() or y in seen:
                 continue
-            if len(seen) == 2:
-                return False
+            if len(seen) == cap:
+                return cap + 1
             seen.append(y)
-    return True
+    return len(seen)
+
+
+def _short_closure(a: SeedOverlapAutomaton, v: Int) -> Bool:
+    """`v` is a fixed point or lies on a 2-cycle of the inflation, with every
+    other child at offset zero."""
+    return nonzero_closure_size(a, v, 2) <= 2
+
+
+def reaches_hit_kind(a: SeedOverlapAutomaton, diagonal: Bool) -> List[Bool]:
+    """Nonzero-offset vertices with a descendant (themselves included) that
+    has an offset-zero child `(c, d, 0)` with `c == d` (`diagonal`) or
+    `c != d`, through nonzero-offset vertices only."""
+    var n = a.size()
+    var good = List[Bool](length=n, fill=False)
+    var parents = List[List[Int]]()
+    for _ in range(n):
+        parents.append(List[Int]())
+    for i in range(n):
+        for j in range(len(a.adj[i])):
+            parents[a.adj[i][j]].append(i)
+    var queue = List[Int]()
+    for i in range(n):
+        if a.states[i].shift.is_zero():
+            continue
+        for j in range(len(a.adj[i])):
+            var y = a.states[a.adj[i][j]]
+            if y.shift.is_zero() and (y.top == y.bottom) == diagonal and not good[i]:
+                good[i] = True
+                queue.append(i)
+    var head = 0
+    while head < len(queue):
+        var k = queue[head]
+        head += 1
+        for j in range(len(parents[k])):
+            var p = parents[k][j]
+            if not good[p] and not a.states[p].shift.is_zero():
+                good[p] = True
+                queue.append(p)
+    return good^
 
 
 def one_tile_from(tables: SeedOverlapTables, a: SeedOverlapAutomaton) raises -> OneTileVerdict:

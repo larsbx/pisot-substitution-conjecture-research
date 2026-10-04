@@ -16,9 +16,10 @@ SUMS = sorted(p for plane in ("evidence", "sources", "archive") for p in (ROOT /
 
 
 def entries(sums: Path) -> dict[Path, str]:
-    """A path with a slash is repository-relative (``sha256sum -c`` from the root); a bare name is packet-relative."""
+    """``./x`` and a bare name are packet-relative; any other path is repository-relative (``sha256sum -c`` from the root)."""
     rows = (line.split(maxsplit=1) for line in sums.read_text(encoding="utf-8").splitlines() if line.strip())
-    return {(ROOT if "/" in rel else sums.parent) / rel.strip(): digest for digest, rel in rows}
+    rels = ((digest, rel.strip()) for digest, rel in rows)
+    return {(ROOT if "/" in rel and not rel.startswith("./") else sums.parent) / rel: digest for digest, rel in rels}
 
 
 def test_every_evidence_packet_is_pinned():

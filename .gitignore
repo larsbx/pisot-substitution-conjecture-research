@@ -27,3 +27,8 @@ proof/PscVerif/.lake/
 proof/tla/states/
 proof/tla/*.jar
 proof/tla/MC*.out
+archive/**/refs-local/
+
+# Archived records are verbatim: never drop them by extension.
+!archive/**/*.log
+!archive/**/*.out
