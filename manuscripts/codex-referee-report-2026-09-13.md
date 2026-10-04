@@ -95,7 +95,7 @@ No other findings were posted in the second round.
 **Reviewed commit:** `f0de05fcde21abcbf458edd12004e246f91435fc` (bounded-discrepancy theorem, realization audit, ledger and TLA changes).
 **Review posted:** 2026-09-13T12:25:55Z, one review with three inline comments. Reproduced verbatim.
 
-## Finding 10 (P1) — `scripts/swap_discrepancy_census.py`, lines 53–58
+## Finding 10 (P1) — `oracles/python/swap_discrepancy_census.py`, lines 53–58
 
 > **Use exact Pisot screening for the claimed exact census**
 >
@@ -103,15 +103,15 @@ No other findings were posted in the second round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L32
 
-## Finding 11 (P1) — `src/psc_research/swap_discrepancy.py`, line 28
+## Finding 11 (P1) — `reference/psc_research/swap_discrepancy.py`, line 28
 
 > **Add the canonical Mojo discrepancy implementation**
 >
-> The new swap-walk algorithm, corpus driver, and theorem-contract regressions are Python-only; a repository-wide search for swap-discrepancy code found no Mojo counterpart or documented blocker. This leaves the proof-support computation in the secondary oracle layer rather than the repository's canonical executable layer, so the PR does not satisfy the Mojo-first review gate. Implement the discrepancy kernel and deterministic regression in `mojo/` first, retaining this module only as an independent oracle if useful.
+> The new swap-walk algorithm, corpus driver, and theorem-contract regressions are Python-only; a repository-wide search for swap-discrepancy code found no Mojo counterpart or documented blocker. This leaves the proof-support computation in the secondary oracle layer rather than the repository's canonical executable layer, so the PR does not satisfy the Mojo-first review gate. Implement the discrepancy kernel and deterministic regression in `kernel/` first, retaining this module only as an independent oracle if useful.
 >
 > AGENTS.md reference: AGENTS.md:L16-L16
 
-## Finding 12 (P2) — `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`, lines 47–50
+## Finding 12 (P2) — `sources/issue-45/realization-coincidence-rank-audit.md`, lines 47–50
 
 > **Require cofinal realized windows for the reverse implication**
 >
@@ -126,7 +126,7 @@ No finding contests Theorem 4.4, Lemmas 4.5–4.8, or Proposition 4.11 of the ma
 **Reviewed commit:** `6024fcd5ccf2a3a1fbf3e8aefe9d7dca64d355ea`.
 **Review posted:** 2026-09-13T12:40:45Z, one review with one inline comment. Reproduced verbatim.
 
-## Finding 13 (P2) — `docs/source-imports/issue-45/realization-coincidence-rank-audit.md`, lines 65–69
+## Finding 13 (P2) — `sources/issue-45/realization-coincidence-rank-audit.md`, lines 65–69
 
 > **Add the missing forward-direction gaps**
 >
@@ -229,7 +229,7 @@ No findings were posted in the eighth round.
 >
 > Immediately before this new theorem, line 765 still says that overlap productivity does not by itself give PDS because the older bridge needs finiteness. That is the exact conclusion Theorem 5.38 now reverses via the imported dense-eventual-coincidence theorem, so the manuscript presents contradictory mathematical status within the same subsection.
 
-## Finding 21 (P3) — `tla/Ledger.tla`, line 181
+## Finding 21 (P3) — `proof/tla/Ledger.tla`, line 181
 
 > **Update the stale open-input description in the TLA ledger**
 >
@@ -250,7 +250,7 @@ No other findings were posted in the ninth round.
 >
 > Although the manuscript was corrected, this newly added companion proof still calls the sets `G_m(s)` increasing. A common tile's internal subdivision points belong to its rescaled interior at level `m` but to no child interior at level `m+1`, so this assertion is false; consequently, lines 351–354 still cannot assume that the arbitrary witnessing level is at least the overlap level `N`. Replace the nesting assertion and abridged proof with the manuscript's finite-difference argument so this active proof note actually supports Lemma 5.36.
 
-## Finding 23 (P2) — `scripts/oa_failures_probe.py`, line 36
+## Finding 23 (P2) — `tools/oa_failures_probe.py`, line 36
 
 > **Compute a valid overlap-enumeration window**
 >
@@ -303,7 +303,7 @@ No other findings were posted in the twelfth round.
 **Reviewed commit:** `310f06c06bdf757745cdb9c19f4e0411d20a9cd5`.
 **Review posted:** 2026-09-14T22:06:17Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 26 (P2) — `src/psc_research/overlap_graph.py`, line 240
+## Finding 26 (P2) — `reference/psc_research/overlap_graph.py`, line 240
 
 > **Reject capped graphs before computing target depths**
 >
@@ -320,13 +320,13 @@ No other findings were posted in the thirteenth round.
 **Reviewed commit:** `3dc397856ab8ceaf0298c34c3e1df8855e612f10`.
 **Review posted:** 2026-09-14T22:20:51Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 27 (P2) — `mojo/swap_overlap_census.mojo`, line 102
+## Finding 27 (P2) — `kernel/swap_overlap_census.mojo`, line 102
 
 > **Record nonproductive graphs before validating depths**
 >
 > When a graph contains any nonproductive state, its coincidence depth is `-1`; its left-aligned depth is either also `-1` (triggering the first clause here) or nonnegative (triggering `left[d] > depths[d]`). Thus every nonproductive specimen throws before the counters at lines 126–129 are updated, causing a mathematical counterexample to be reported only as `FAILED` while the advertised nonproductive count remains zero. Record `bad` before these validations or omit the depth histograms for nonproductive graphs.
 
-## Finding 28 (P2) — `mojo/swap_overlap_census.mojo`, line 112
+## Finding 28 (P2) — `kernel/swap_overlap_census.mojo`, line 112
 
 > **Reuse the already-computed coincidence depths**
 >
@@ -343,7 +343,7 @@ No other findings were posted in the fourteenth round.
 **Reviewed commit:** `2288163613668619be3185e97b1474ca059f3dc2`.
 **Review posted:** 2026-09-14T22:27:01Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 29 (P2) — `mojo/psc/overlap_seed_patch.mojo`, line 384
+## Finding 29 (P2) — `kernel/psc/overlap_seed_patch.mojo`, line 384
 
 > **Reject capped automata in the reused-depth helper**
 >
@@ -351,7 +351,7 @@ No other findings were posted in the fourteenth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 30 (P2) — `mojo/swap_overlap_census.mojo`, line 118
+## Finding 30 (P2) — `kernel/swap_overlap_census.mojo`, line 118
 
 > **Reuse substitution tables across graph and depth scans**
 >
@@ -368,11 +368,11 @@ No other findings were posted in the fifteenth round.
 **Reviewed commit:** `3b8e6d42acfac4c1d9c23abe6f5190e6656e0ce8` (Proposition 5.42 and the census against the first left-aligned depth).
 **Review posted:** 2026-09-15T00:23:22Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 31 (P1) — `src/psc_research/overlap_contracting.py`, line 149
+## Finding 31 (P1) — `reference/psc_research/overlap_contracting.py`, line 149
 
 > **Add the canonical Mojo contracting-bound implementation**
 >
-> This class is the new exact kernel supporting Proposition 5.42 and the reported 1,118,850-vertex census, but a repo-wide search finds no corresponding contracting-bound implementation or regression under `mojo/`, nor any documented blocker. Consequently the manuscript's new numerical result depends solely on the secondary Python layer, contrary to the repository's explicit requirement that new theorem-support algorithms and census drivers land in Mojo first.
+> This class is the new exact kernel supporting Proposition 5.42 and the reported 1,118,850-vertex census, but a repo-wide search finds no corresponding contracting-bound implementation or regression under `kernel/`, nor any documented blocker. Consequently the manuscript's new numerical result depends solely on the secondary Python layer, contrary to the repository's explicit requirement that new theorem-support algorithms and census drivers land in Mojo first.
 >
 > AGENTS.md reference: AGENTS.md:L5-L16
 
@@ -401,15 +401,15 @@ No other findings were posted in the sixteenth round.
 **Reviewed commit:** `7d74aa42c3ce138afe85b332b4964e30f58dacd2` (canonical Mojo contracting bound, zero case, wording).
 **Review posted:** 2026-09-15T00:53:39Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 34 (P1) — `mojo/psc/real_root_sign.mojo`, line 29
+## Finding 34 (P1) — `kernel/psc/real_root_sign.mojo`, line 29
 
 > **Centralize the new Horner helper in exact.mojo**
 >
-> This newly introduced polynomial evaluator is a PSC-specific Horner helper over the vendored rational type, but the repository's exact-arithmetic authority requires such helpers to live in `mojo/psc/exact.mojo` and nowhere else. Keeping another implementation in `real_root_sign.mojo` splits the rejection/adapter conventions across modules; move this helper into the designated adapter and import it here.
+> This newly introduced polynomial evaluator is a PSC-specific Horner helper over the vendored rational type, but the repository's exact-arithmetic authority requires such helpers to live in `kernel/psc/exact.mojo` and nowhere else. Keeping another implementation in `real_root_sign.mojo` splits the rejection/adapter conventions across modules; move this helper into the designated adapter and import it here.
 >
 > AGENTS.md reference: AGENTS.md:L44-L48
 
-## Finding 35 (P1) — `mojo/psc/overlap_contracting.mojo`, line 249
+## Finding 35 (P1) — `kernel/psc/overlap_contracting.mojo`, line 249
 
 > **Test the inequality that actually defines m0**
 >
@@ -441,11 +441,11 @@ No other findings were posted in the eighteenth round.
 **Reviewed commit:** `059c4c5536cc4f0f9252a55a628ca90e7ea0bdf4` (finding 36 and the merge of `main`).
 **Review posted:** 2026-09-15T01:31:48Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 37 (P1) — `mojo/psc/overlap_contracting.mojo`, line 269
+## Finding 37 (P1) — `kernel/psc/overlap_contracting.mojo`, line 269
 
 > **Precompute level terms before scanning offsets**
 >
-> In the checked `mojo/overlap_contracting_census.mojo` path, every uncached shift calls `least_level`, but this line rebuilds the `A_m`/`B_m` tables from exact field operations for every attempted level and shift even though they depend only on the substitution and `max_level`; the real-conjugate branch similarly rebuilds `G` and the beta powers per shift. Across the 1,118,850-vertex census this causes substantial repeated allocation and exact arithmetic, so precompute both sets of level tables once in the constructor and index them here.
+> In the checked `kernel/overlap_contracting_census.mojo` path, every uncached shift calls `least_level`, but this line rebuilds the `A_m`/`B_m` tables from exact field operations for every attempted level and shift even though they depend only on the substitution and `max_level`; the real-conjugate branch similarly rebuilds `G` and the beta powers per shift. Across the 1,118,850-vertex census this causes substantial repeated allocation and exact arithmetic, so precompute both sets of level tables once in the constructor and index them here.
 >
 > AGENTS.md reference: AGENTS.md:L26-L27
 
@@ -487,7 +487,7 @@ No other findings were posted in the twenty-first round.
 **Reviewed commit:** `d2adbb9b97` (guard against byte-mangled manuscript sources).
 **Review posted:** 2026-09-15T15:32:16Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 39 (P2) — `scripts/check_manuscript_source.py`, line 45
+## Finding 39 (P2) — `tools/check_manuscript_source.py`, line 45
 
 > **Reject PDFs truncated after their header**
 >
@@ -495,7 +495,7 @@ No other findings were posted in the twenty-first round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 40 (P2) — `scripts/check_manuscript_source.py`, line 50
+## Finding 40 (P2) — `tools/check_manuscript_source.py`, line 50
 
 > **Require the expected manuscript inventory**
 >
@@ -522,7 +522,7 @@ No other findings were posted in the twenty-third round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 42 (P2) — `scripts/check_manuscript_source.py`, line 63
+## Finding 42 (P2) — `tools/check_manuscript_source.py`, line 63
 
 > **Verify that an object is an XRef stream**
 >
@@ -540,7 +540,7 @@ No other findings were posted in the twenty-fourth round.
 **Reviewed commit:** `ea83b495c5` (findings 41–42).
 **Review posted:** 2026-09-15T15:43:06Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 43 (P2) — `scripts/check_manuscript_source.py`, line 55
+## Finding 43 (P2) — `tools/check_manuscript_source.py`, line 55
 
 > **Select the startxref preceding the final EOF**
 >
@@ -548,7 +548,7 @@ No other findings were posted in the twenty-fourth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 44 (P2) — `scripts/check_manuscript_source.py`, line 68
+## Finding 44 (P2) — `tools/check_manuscript_source.py`, line 68
 
 > **Require an actual stream in XRef objects**
 >
@@ -566,7 +566,7 @@ No other findings were posted in the twenty-fifth round.
 **Reviewed commit:** `c6032e3dad` (findings 43–44).
 **Review posted:** 2026-09-15T15:48:39Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 45 (P2) — `scripts/check_manuscript_source.py`, line 70
+## Finding 45 (P2) — `tools/check_manuscript_source.py`, line 70
 
 > **Validate the classic cross-reference table contents**
 >
@@ -574,7 +574,7 @@ No other findings were posted in the twenty-fifth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 46 (P2) — `scripts/check_manuscript_source.py`, line 74
+## Finding 46 (P2) — `tools/check_manuscript_source.py`, line 74
 
 > **Validate data in the XRef stream body**
 >
@@ -592,7 +592,7 @@ No other findings were posted in the twenty-sixth round.
 **Reviewed commit:** `3a9d53ee10` (findings 45–46 and the test fixtures).
 **Review posted:** 2026-09-15T15:56:08Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 47 (P2) — `scripts/check_manuscript_source.py`, line 118
+## Finding 47 (P2) — `tools/check_manuscript_source.py`, line 118
 
 > **Reject indirect references for direct /Length**
 >
@@ -600,7 +600,7 @@ No other findings were posted in the twenty-sixth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 48 (P2) — `scripts/check_manuscript_source.py`, line 140
+## Finding 48 (P2) — `tools/check_manuscript_source.py`, line 140
 
 > **Enforce the XRef stream's declared row count**
 >
@@ -608,7 +608,7 @@ No other findings were posted in the twenty-sixth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 49 (P2) — `scripts/check_manuscript_source.py`, line 129
+## Finding 49 (P2) — `tools/check_manuscript_source.py`, line 129
 
 > **Handle filter arrays before validating payload bytes**
 >
@@ -626,7 +626,7 @@ No other findings were posted in the twenty-seventh round.
 **Reviewed commit:** `a9242e36aa` (findings 47–49).
 **Review posted:** 2026-09-15T16:16:23Z, one automated Codex review with four inline comments. Reproduced verbatim.
 
-## Finding 50 (P2) — `scripts/check_manuscript_source.py`, line 136
+## Finding 50 (P2) — `tools/check_manuscript_source.py`, line 136
 
 > **Require the XRef indirect object to terminate**
 >
@@ -634,7 +634,7 @@ No other findings were posted in the twenty-seventh round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 51 (P2) — `scripts/check_manuscript_source.py`, line 127
+## Finding 51 (P2) — `tools/check_manuscript_source.py`, line 127
 
 > **Reject invalid /Index ranges**
 >
@@ -642,7 +642,7 @@ No other findings were posted in the twenty-seventh round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 52 (P2) — `scripts/check_manuscript_source.py`, line 112
+## Finding 52 (P2) — `tools/check_manuscript_source.py`, line 112
 
 > **Require exactly three fields in /W**
 >
@@ -650,7 +650,7 @@ No other findings were posted in the twenty-seventh round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 53 (P2) — `scripts/check_manuscript_source.py`, line 81
+## Finding 53 (P2) — `tools/check_manuscript_source.py`, line 81
 
 > **Validate in-use classic xref offsets**
 >
@@ -668,7 +668,7 @@ No other findings were posted in the twenty-eighth round.
 **Reviewed commit:** `9256ace9d9` (findings 50–53).
 **Review posted:** 2026-09-15T16:22:36Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 54 (P2) — `scripts/check_manuscript_source.py`, line 100
+## Finding 54 (P2) — `tools/check_manuscript_source.py`, line 100
 
 > **Enforce classic subsection ranges against /Size**
 >
@@ -676,7 +676,7 @@ No other findings were posted in the twenty-eighth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 55 (P2) — `scripts/check_manuscript_source.py`, line 174
+## Finding 55 (P2) — `tools/check_manuscript_source.py`, line 174
 
 > **Validate XRef stream entry contents**
 >
@@ -694,7 +694,7 @@ No other findings were posted in the twenty-ninth round.
 **Reviewed commit:** `f158aab509` (findings 54–55).
 **Review posted:** 2026-09-15T16:30:06Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 56 (P2) — `scripts/check_manuscript_source.py`, line 105
+## Finding 56 (P2) — `tools/check_manuscript_source.py`, line 105
 
 > **Validate classic trailer `/Prev` chains**
 >
@@ -702,7 +702,7 @@ No other findings were posted in the twenty-ninth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 57 (P2) — `scripts/check_manuscript_source.py`, line 151
+## Finding 57 (P2) — `tools/check_manuscript_source.py`, line 151
 
 > **Dereference in-range type-2 object-stream targets**
 >
@@ -710,7 +710,7 @@ No other findings were posted in the twenty-ninth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 58 (P2) — `scripts/check_manuscript_source.py`, line 180
+## Finding 58 (P2) — `tools/check_manuscript_source.py`, line 180
 
 > **Reject inconsistent PNG predictor parameters**
 >
@@ -729,7 +729,7 @@ No other findings were posted in the thirtieth round.
 **Reviewed commit:** `22716cd7a0` (findings 56–58).
 **Review posted:** 2026-09-15T16:41:20Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 59 (P2) — `scripts/check_manuscript_source.py`, line 266
+## Finding 59 (P2) — `tools/check_manuscript_source.py`, line 266
 
 > **Reject an inflated trailer size**
 >
@@ -737,7 +737,7 @@ No other findings were posted in the thirtieth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 60 (P2) — `scripts/check_manuscript_source.py`, line 257
+## Finding 60 (P2) — `tools/check_manuscript_source.py`, line 257
 
 > **Decode ordinary streams while dereferencing objects**
 >
@@ -755,7 +755,7 @@ No other findings were posted in the thirty-first round.
 **Reviewed commit:** `7d557ac9f8` (findings 59–60).
 **Review posted:** 2026-09-15T16:48:33Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 61 (P2) — `scripts/check_manuscript_source.py`, line 285
+## Finding 61 (P2) — `tools/check_manuscript_source.py`, line 285
 
 > **Include free entries when validating /Size**
 >
@@ -771,7 +771,7 @@ No other findings were posted in the thirty-second round.
 **Reviewed commit:** `7ec39a90c0` (finding 61).
 **Review posted:** 2026-09-15T16:57:25Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 62 (P2) — `scripts/check_manuscript_source.py`, line 94
+## Finding 62 (P2) — `tools/check_manuscript_source.py`, line 94
 
 > **Validate classic xref free entries**
 >
@@ -779,7 +779,7 @@ No other findings were posted in the thirty-second round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 63 (P2) — `scripts/check_manuscript_source.py`, line 85
+## Finding 63 (P2) — `tools/check_manuscript_source.py`, line 85
 
 > **Reject empty classic xref subsections**
 >
@@ -797,7 +797,7 @@ No other findings were posted in the thirty-third round.
 **Reviewed commit:** `30d16e00e8` (findings 62–63).
 **Review posted:** 2026-09-15T17:04:50Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 64 (P2) — `scripts/check_manuscript_source.py`, line 278
+## Finding 64 (P2) — `tools/check_manuscript_source.py`, line 278
 
 > **Permit unlinked free entries in xref streams**
 >
@@ -805,7 +805,7 @@ No other findings were posted in the thirty-third round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 65 (P2) — `scripts/check_manuscript_source.py`, line 170
+## Finding 65 (P2) — `tools/check_manuscript_source.py`, line 170
 
 > **Preserve the encoded xref generation value**
 >
@@ -823,19 +823,19 @@ No other findings were posted in the thirty-fourth round.
 **Reviewed commit:** `99cc3be753` (findings 64–65).
 **Review posted:** 2026-09-15T17:14:04Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 66 (P2) — `scripts/check_manuscript_source.py`, line 281
+## Finding 66 (P2) — `tools/check_manuscript_source.py`, line 281
 
 > **Validate classic free lists before stream entries supersede them**
 >
 > Fresh evidence beyond finding 64 is a mixed incremental chain: when a newer cross-reference stream replaces object 0 with an unlinked `(0, 0, generation)` row and inherits a free object from the preceding classic table through `/Prev`, that older entry retains `classic=True` and is rejected here even though its classic section's original object-0 entry linked it correctly and stream free-list coverage is optional. Validate the classic list against the effective table at that historical section, rather than applying entry provenance after newer sections have overwritten its head.
 
-## Finding 67 (P2) — `scripts/check_manuscript_source.py`, line 228
+## Finding 67 (P2) — `tools/check_manuscript_source.py`, line 228
 
 > **Bound xref row counts before materializing them**
 >
 > When a damaged cross-reference stream declares a very large `/Size` without `/Index`, this eagerly constructs that many Python integers before the code reads or compares the actual payload; `/Size 1000000000` can therefore exhaust the verifier process instead of returning a guarded failure. The `/Index` comprehension has the same problem for a huge count. Derive the available row count from the decoded payload first and reject inconsistent declarations before materializing object numbers.
 
-## Finding 68 (P2) — `scripts/check_manuscript_source.py`, line 173
+## Finding 68 (P2) — `tools/check_manuscript_source.py`, line 173
 
 > **Reject oversized generations on in-use stream rows**
 >
@@ -851,7 +851,7 @@ No other findings were posted in the thirty-fifth round.
 **Reviewed commit:** `f89f2b61d7` (findings 66–68).
 **Review posted:** 2026-09-15T17:23:51Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 69 (P2) — `scripts/check_manuscript_source.py`, line 248
+## Finding 69 (P2) — `tools/check_manuscript_source.py`, line 248
 
 > **Cap decoded xref rows independently of declarations**
 >
@@ -859,7 +859,7 @@ No other findings were posted in the thirty-fifth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 70 (P2) — `scripts/check_manuscript_source.py`, line 128
+## Finding 70 (P2) — `tools/check_manuscript_source.py`, line 128
 
 > **Walk companion /XRefStm sections structurally**
 >
@@ -867,7 +867,7 @@ No other findings were posted in the thirty-fifth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 71 (P2) — `scripts/check_manuscript_source.py`, line 320
+## Finding 71 (P2) — `tools/check_manuscript_source.py`, line 320
 
 > **Validate /Size for every historical section**
 >
@@ -885,7 +885,7 @@ No other findings were posted in the thirty-sixth round.
 **Reviewed commit:** `a76630a9ed` (findings 69–71).
 **Review posted:** 2026-09-15T17:33:35Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 72 (P2) — `scripts/check_manuscript_source.py`, line 334
+## Finding 72 (P2) — `tools/check_manuscript_source.py`, line 334
 
 > **Check the companion stream's own /Size**
 >
@@ -893,7 +893,7 @@ No other findings were posted in the thirty-sixth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 73 (P2) — `scripts/check_manuscript_source.py`, line 114
+## Finding 73 (P2) — `tools/check_manuscript_source.py`, line 114
 
 > **Bound historical object offsets to their revision**
 >
@@ -901,7 +901,7 @@ No other findings were posted in the thirty-sixth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 74 (P2) — `scripts/check_manuscript_source.py`, line 256
+## Finding 74 (P2) — `tools/check_manuscript_source.py`, line 256
 
 > **Cap decoded xref bytes, not only row count**
 >
@@ -919,7 +919,7 @@ No other findings were posted in the thirty-seventh round.
 **Reviewed commit:** `273d95fb7d` (findings 72–74).
 **Review posted:** 2026-09-15T17:42:51Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 75 (P2) — `scripts/check_manuscript_source.py`, line 402
+## Finding 75 (P2) — `tools/check_manuscript_source.py`, line 402
 
 > **Decode streams from superseded revisions**
 >
@@ -927,7 +927,7 @@ No other findings were posted in the thirty-seventh round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 76 (P2) — `scripts/check_manuscript_source.py`, line 324
+## Finding 76 (P2) — `tools/check_manuscript_source.py`, line 324
 
 > **Bound classic entry offsets before the xref section**
 >
@@ -945,7 +945,7 @@ No other findings were posted in the thirty-eighth round.
 **Reviewed commit:** `bb3f62c23f` (findings 75–76).
 **Review posted:** 2026-09-15T17:51:10Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 77 (P2) — `scripts/check_manuscript_source.py`, line 350
+## Finding 77 (P2) — `tools/check_manuscript_source.py`, line 350
 
 > **Reject unparsable filters on superseded streams**
 >
@@ -953,7 +953,7 @@ No other findings were posted in the thirty-eighth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 78 (P2) — `scripts/check_manuscript_source.py`, line 354
+## Finding 78 (P2) — `tools/check_manuscript_source.py`, line 354
 
 > **Validate decode parameters on superseded streams**
 >
@@ -961,7 +961,7 @@ No other findings were posted in the thirty-eighth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 79 (P2) — `scripts/check_manuscript_source.py`, line 348
+## Finding 79 (P2) — `tools/check_manuscript_source.py`, line 348
 
 > **Require superseded stream objects to end with endobj**
 >
@@ -979,7 +979,7 @@ No other findings were posted in the thirty-ninth round.
 **Reviewed commit:** `7394ee76d2` (findings 77–79).
 **Review posted:** 2026-09-15T17:57:59Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 80 (P2) — `scripts/check_manuscript_source.py`, line 347
+## Finding 80 (P2) — `tools/check_manuscript_source.py`, line 347
 
 > **Validate TIFF predictor row geometry**
 >
@@ -987,7 +987,7 @@ No other findings were posted in the thirty-ninth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 81 (P2) — `scripts/check_manuscript_source.py`, line 370
+## Finding 81 (P2) — `tools/check_manuscript_source.py`, line 370
 
 > **Reject malformed superseded stream markers**
 >
@@ -995,7 +995,7 @@ No other findings were posted in the thirty-ninth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 82 (P2) — `scripts/check_manuscript_source.py`, line 383
+## Finding 82 (P2) — `tools/check_manuscript_source.py`, line 383
 
 > **Parse the entire superseded filter name**
 >
@@ -1013,7 +1013,7 @@ No other findings were posted in the fortieth round.
 **Reviewed commit:** `f427597e50` (findings 80–82).
 **Review posted:** 2026-09-15T18:07:43Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 83 (P2) — `scripts/check_manuscript_source.py`, line 212
+## Finding 83 (P2) — `tools/check_manuscript_source.py`, line 212
 
 > **Resolve superseded type-2 cross-reference entries**
 >
@@ -1021,7 +1021,7 @@ No other findings were posted in the fortieth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 84 (P2) — `scripts/check_manuscript_source.py`, line 366
+## Finding 84 (P2) — `tools/check_manuscript_source.py`, line 366
 
 > **Reject malformed predictor field values**
 >
@@ -1029,7 +1029,7 @@ No other findings were posted in the fortieth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 85 (P2) — `scripts/check_manuscript_source.py`, line 397
+## Finding 85 (P2) — `tools/check_manuscript_source.py`, line 397
 
 > **Parse superseded non-dictionary object bodies**
 >
@@ -1047,7 +1047,7 @@ No other findings were posted in the forty-first round.
 **Reviewed commit:** `026cdcd882` (findings 83–85).
 **Review posted:** 2026-09-15T18:15:08Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 86 (P2) — `scripts/check_manuscript_source.py`, line 400
+## Finding 86 (P2) — `tools/check_manuscript_source.py`, line 400
 
 > **Parse superseded dictionaries structurally**
 >
@@ -1055,7 +1055,7 @@ No other findings were posted in the forty-first round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 87 (P2) — `scripts/check_manuscript_source.py`, line 498
+## Finding 87 (P2) — `tools/check_manuscript_source.py`, line 498
 
 > **Match type-2 entries to object-stream members**
 >
@@ -1063,7 +1063,7 @@ No other findings were posted in the forty-first round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 88 (P2) — `scripts/check_manuscript_source.py`, line 156
+## Finding 88 (P2) — `tools/check_manuscript_source.py`, line 156
 
 > **Validate historical trailer roots**
 >
@@ -1081,7 +1081,7 @@ No other findings were posted in the forty-second round.
 **Reviewed commit:** `b4a3799157` (findings 86–88).
 **Review posted:** 2026-09-15T18:27:33Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 89 (P2) — `scripts/check_manuscript_source.py`, line 554
+## Finding 89 (P2) — `tools/check_manuscript_source.py`, line 554
 
 > **Parse compressed members before accepting type-2 entries**
 >
@@ -1089,7 +1089,7 @@ No other findings were posted in the forty-second round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 90 (P2) — `scripts/check_manuscript_source.py`, line 583
+## Finding 90 (P2) — `tools/check_manuscript_source.py`, line 583
 
 > **Require a top-level /Type on historical catalogs**
 >
@@ -1097,7 +1097,7 @@ No other findings were posted in the forty-second round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 91 (P2) — `scripts/check_manuscript_source.py`, line 612
+## Finding 91 (P2) — `tools/check_manuscript_source.py`, line 612
 
 > **Revalidate inherited type-2 entries after container updates**
 >
@@ -1115,7 +1115,7 @@ No other findings were posted in the forty-third round.
 **Reviewed commit:** `b961e70914` (findings 89–91).
 **Review posted:** 2026-09-15T18:38:05Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 92 (P2) — `scripts/check_manuscript_source.py`, line 161
+## Finding 92 (P2) — `tools/check_manuscript_source.py`, line 161
 
 > **Read classic trailer keys only from the top level**
 >
@@ -1123,7 +1123,7 @@ No other findings were posted in the forty-third round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 93 (P2) — `scripts/check_manuscript_source.py`, line 577
+## Finding 93 (P2) — `tools/check_manuscript_source.py`, line 577
 
 > **Reject overlapping object-stream member offsets**
 >
@@ -1141,7 +1141,7 @@ No other findings were posted in the forty-fourth round.
 **Reviewed commit:** `dff1e3ac05` (findings 92–93).
 **Review posted:** 2026-09-15T18:49:33Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 94 (P2) — `scripts/check_manuscript_source.py`, line 504
+## Finding 94 (P2) — `tools/check_manuscript_source.py`, line 504
 
 > **Read superseded stream lengths from top-level items**
 >
@@ -1149,13 +1149,13 @@ No other findings were posted in the forty-fourth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 95 (P2) — `scripts/check_manuscript_source.py`, line 576
+## Finding 95 (P2) — `tools/check_manuscript_source.py`, line 576
 
 > **Apply predictors before parsing object-stream members**
 >
 > Fresh evidence beyond the predictor-parameter validation is that `_decode_parms` only validates the inflated bytes and its result is discarded, after which the still predictor-encoded `data` is parsed as the object-stream header and members. For example, a valid Flate object stream using `/Predictor 12` with a PNG filter byte at the start of its row is rejected as not having `/N` integer pairs; TIFF prediction can likewise make the encoded bytes differ from the objects. Undo the declared predictor before applying `/First` and parsing the header and members.
 
-## Finding 96 (P2) — `scripts/check_manuscript_source.py`, line 282
+## Finding 96 (P2) — `tools/check_manuscript_source.py`, line 282
 
 > **Reject overlapping or unordered /Index ranges**
 >
@@ -1173,7 +1173,7 @@ No other findings were posted in the forty-fifth round.
 **Reviewed commit:** `b084115186` (findings 94–96).
 **Review posted:** 2026-09-15T18:59:24Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 97 (P2) — `scripts/check_manuscript_source.py`, line 448
+## Finding 97 (P2) — `tools/check_manuscript_source.py`, line 448
 
 > **Reject duplicate keys while parsing PDF dictionaries**
 >
@@ -1181,7 +1181,7 @@ No other findings were posted in the forty-fifth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 98 (P2) — `scripts/check_manuscript_source.py`, line 680
+## Finding 98 (P2) — `tools/check_manuscript_source.py`, line 680
 
 > **Require /Prev to point to an earlier section**
 >
@@ -1189,7 +1189,7 @@ No other findings were posted in the forty-fifth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 99 (P2) — `scripts/check_manuscript_source.py`, line 162
+## Finding 99 (P2) — `tools/check_manuscript_source.py`, line 162
 
 > **Reject overlapping classic xref subsections**
 >
@@ -1207,7 +1207,7 @@ No other findings were posted in the forty-sixth round.
 **Reviewed commit:** `caf7c77d0d` (findings 97–99).
 **Review posted:** 2026-09-15T19:09:48Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 100 (P2) — `scripts/check_manuscript_source.py`, line 693
+## Finding 100 (P2) — `tools/check_manuscript_source.py`, line 693
 
 > **Validate the companion stream's /Prev**
 >
@@ -1215,7 +1215,7 @@ No other findings were posted in the forty-sixth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 101 (P2) — `scripts/check_manuscript_source.py`, line 602
+## Finding 101 (P2) — `tools/check_manuscript_source.py`, line 602
 
 > **Reject duplicate object-stream member numbers**
 >
@@ -1223,7 +1223,7 @@ No other findings were posted in the forty-sixth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 102 (P2) — `scripts/check_manuscript_source.py`, line 667
+## Finding 102 (P2) — `tools/check_manuscript_source.py`, line 667
 
 > **Validate each historical catalog's page tree**
 >
@@ -1241,7 +1241,7 @@ No other findings were posted in the forty-seventh round.
 **Reviewed commit:** `bddda784b3` (findings 100–102).
 **Review posted:** 2026-09-15T19:19:29Z, one automated Codex review with four inline comments. Reproduced verbatim.
 
-## Finding 103 (P2) — `scripts/check_manuscript_source.py`, line 608
+## Finding 103 (P2) — `tools/check_manuscript_source.py`, line 608
 
 > **Match every object-stream member to an xref entry**
 >
@@ -1249,7 +1249,7 @@ No other findings were posted in the forty-seventh round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 104 (P2) — `scripts/check_manuscript_source.py`, line 743
+## Finding 104 (P2) — `tools/check_manuscript_source.py`, line 743
 
 > **Validate terminators for every historical revision**
 >
@@ -1257,7 +1257,7 @@ No other findings were posted in the forty-seventh round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 105 (P2) — `scripts/check_manuscript_source.py`, line 694
+## Finding 105 (P2) — `tools/check_manuscript_source.py`, line 694
 
 > **Reject a /Parent on the page-tree root**
 >
@@ -1265,7 +1265,7 @@ No other findings were posted in the forty-seventh round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 106 (P2) — `scripts/check_manuscript_source.py`, line 666
+## Finding 106 (P2) — `tools/check_manuscript_source.py`, line 666
 
 > **Reject streams used as historical page-tree dictionaries**
 >
@@ -1280,7 +1280,7 @@ No other findings were posted in the forty-eighth round.
 **Reviewed commit:** `8df488e563` (findings 103–106).
 **Review posted:** 2026-09-15T19:27:51Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 107 (P2) — `scripts/check_manuscript_source.py`, line 644
+## Finding 107 (P2) — `tools/check_manuscript_source.py`, line 644
 
 > **Decode object streams even when no type-2 row references them**
 >
@@ -1288,7 +1288,7 @@ No other findings were posted in the forty-eighth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 108 (P2) — `scripts/check_manuscript_source.py`, line 884
+## Finding 108 (P2) — `tools/check_manuscript_source.py`, line 884
 
 > **Restrict manifest entries to files that are actually checked**
 >
@@ -1296,7 +1296,7 @@ No other findings were posted in the forty-eighth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 109 (P2) — `scripts/check_manuscript_source.py`, line 765
+## Finding 109 (P2) — `tools/check_manuscript_source.py`, line 765
 
 > **Require a boundary after each historical EOF marker**
 >
@@ -1311,7 +1311,7 @@ No other findings were posted in the forty-ninth round.
 **Reviewed commit:** `621133b1e3` (findings 107–109).
 **Review posted:** 2026-09-15T19:38:09Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 110 (P2) — `scripts/check_manuscript_source.py`, line 190
+## Finding 110 (P2) — `tools/check_manuscript_source.py`, line 190
 
 > **Use the declared pixel width for PNG predictors**
 >
@@ -1326,7 +1326,7 @@ No other findings were posted in the fiftieth round.
 **Reviewed commit:** `998cf89ae0` (finding 110).
 **Review posted:** 2026-09-15T19:48:16Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 111 (P2) — `scripts/check_manuscript_source.py`, line 242
+## Finding 111 (P2) — `tools/check_manuscript_source.py`, line 242
 
 > **Include the xref-stream object in /Size validation**
 >
@@ -1341,7 +1341,7 @@ No other findings were posted in the fifty-first round.
 **Reviewed commit:** `98d583269e` (finding 111).
 **Review posted:** 2026-09-15T19:55:27Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 112 (P2) — `scripts/check_manuscript_source.py`, line 801
+## Finding 112 (P2) — `tools/check_manuscript_source.py`, line 801
 
 > **Revalidate the companion after applying table precedence**
 >
@@ -1356,7 +1356,7 @@ No other findings were posted in the fifty-second round.
 **Reviewed commit:** `8c4ad88fb2` (finding 112).
 **Review posted:** 2026-09-15T20:02:54Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 113 (P2) — `scripts/check_manuscript_source.py`, line 86
+## Finding 113 (P2) — `tools/check_manuscript_source.py`, line 86
 
 > **Treat NUL as PDF whitespace in object tokens**
 >
@@ -1371,7 +1371,7 @@ No other findings were posted in the fifty-third round.
 **Reviewed commit:** `c2a67ae3c9` (finding 113).
 **Review posted:** 2026-09-15T20:11:20Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 114 (P2) — `scripts/check_manuscript_source.py`, line 537
+## Finding 114 (P2) — `tools/check_manuscript_source.py`, line 537
 
 > **Bound superseded objects to their historical revision**
 >
@@ -1379,7 +1379,7 @@ No other findings were posted in the fifty-third round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 115 (P2) — `scripts/check_manuscript_source.py`, line 542
+## Finding 115 (P2) — `tools/check_manuscript_source.py`, line 542
 
 > **Require a PDF token boundary after endobj**
 >
@@ -1394,7 +1394,7 @@ No other findings were posted in the fifty-fourth round.
 **Reviewed commit:** `426c06dd38` (findings 114–115).
 **Review posted:** 2026-09-15T20:23:00Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 116 (P2) — `scripts/check_manuscript_source.py`, line 930
+## Finding 116 (P2) — `tools/check_manuscript_source.py`, line 930
 
 > **Reject manifest symlinks that escape manuscripts**
 >
@@ -1409,7 +1409,7 @@ No other findings were posted in the fifty-fifth round.
 **Reviewed commit:** `156822e056` (finding 116).
 **Review posted:** 2026-09-15T20:30:04Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 117 (P2) — `scripts/check_manuscript_source.py`, line 925
+## Finding 117 (P2) — `tools/check_manuscript_source.py`, line 925
 
 > **Reject a symlinked manuscripts directory**
 >
@@ -1424,7 +1424,7 @@ No other findings were posted in the fifty-sixth round.
 **Reviewed commit:** `ee3e4b8f3f` (finding 117).
 **Review posted:** 2026-09-15T20:36:37Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 118 (P2) — `scripts/check_manuscript_source.py`, line 384
+## Finding 118 (P2) — `tools/check_manuscript_source.py`, line 384
 
 > **Reject indirect objects omitted from cross-reference sections**
 >
@@ -1439,7 +1439,7 @@ No other findings were posted in the fifty-seventh round.
 **Reviewed commit:** `c472c2b3c8` (finding 118).
 **Review posted:** 2026-09-15T20:44:28Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 119 (P2) — `scripts/check_manuscript_source.py`, line 565
+## Finding 119 (P2) — `tools/check_manuscript_source.py`, line 565
 
 > **Require separator comments to end before the next object**
 >
@@ -1454,7 +1454,7 @@ No other findings were posted in the fifty-eighth round.
 **Reviewed commit:** `d4ce42bb76` (finding 119).
 **Review posted:** 2026-09-15T20:50:58Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 120 (P2) — `scripts/check_manuscript_source.py`, line 827
+## Finding 120 (P2) — `tools/check_manuscript_source.py`, line 827
 
 > **Require line-delimited revision terminators**
 >
@@ -1469,7 +1469,7 @@ No other findings were posted in the fifty-ninth round.
 **Reviewed commit:** `e59444dfba` (findings 121–122 and their tests).
 **Review posted:** 2026-09-15T21:08:22Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 123 (P2) — `scripts/check_manuscript_source.py`, line 44
+## Finding 123 (P2) — `tools/check_manuscript_source.py`, line 44
 
 > **Count backslash parity before stripping TeX comments**
 >
@@ -1477,7 +1477,7 @@ No other findings were posted in the fifty-ninth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 124 (P2) — `scripts/check_manuscript_source.py`, line 47
+## Finding 124 (P2) — `tools/check_manuscript_source.py`, line 47
 
 > **Preserve within-line ordering of document sentinels**
 >
@@ -1492,7 +1492,7 @@ No other findings were posted in the sixty-first round.
 **Reviewed commit:** `b8ea3754c5` (findings 123–124).
 **Review posted:** 2026-09-15T21:16:16Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 125 (P2) — `scripts/check_manuscript_source.py`, line 274
+## Finding 125 (P2) — `tools/check_manuscript_source.py`, line 274
 
 > **Keep the /W width when Predictor is 1**
 >
@@ -1500,7 +1500,7 @@ No other findings were posted in the sixty-first round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 126 (P2) — `scripts/check_manuscript_source.py`, line 660
+## Finding 126 (P2) — `tools/check_manuscript_source.py`, line 660
 
 > **Reject data in zero-member object streams**
 >
@@ -1515,7 +1515,7 @@ No other findings were posted in the sixty-second round.
 **Reviewed commit:** `4967a92624` (findings 125–126).
 **Review posted:** 2026-09-15T21:24:29Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 127 (P2) — `scripts/check_manuscript_source.py`, line 661
+## Finding 127 (P2) — `tools/check_manuscript_source.py`, line 661
 
 > **Require a token boundary at /First**
 >
@@ -1530,7 +1530,7 @@ No other findings were posted in the sixty-third round.
 **Reviewed commit:** `873ff91650` (finding 127).
 **Review posted:** 2026-09-15T21:30:19Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 128 (P2) — `scripts/check_manuscript_source.py`, line 47
+## Finding 128 (P2) — `tools/check_manuscript_source.py`, line 47
 
 > **Reject an end sentinel before the document begins**
 >
@@ -1545,7 +1545,7 @@ No other findings were posted in the sixty-fourth round.
 **Reviewed commit:** `319b7f7f53` (finding 128).
 **Review posted:** 2026-09-15T21:34:51Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 129 (P2) — `scripts/check_manuscript_source.py`, line 48
+## Finding 129 (P2) — `tools/check_manuscript_source.py`, line 48
 
 > **Reject escaped document sentinels**
 >
@@ -1560,7 +1560,7 @@ No other findings were posted in the sixty-fifth round.
 **Reviewed commit:** `95d3a614f7` (finding 129).
 **Review posted:** 2026-09-15T21:40:57Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 130 (P2) — `scripts/check_manuscript_source.py`, line 52
+## Finding 130 (P2) — `tools/check_manuscript_source.py`, line 52
 
 > **Require executable document sentinels**
 >
@@ -1575,7 +1575,7 @@ No other findings were posted in the sixty-sixth round.
 **Reviewed commit:** `174114be1e` (finding 130).
 **Review posted:** 2026-09-15T21:47:15Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 131 (P2) — `scripts/check_manuscript_source.py`, line 51
+## Finding 131 (P2) — `tools/check_manuscript_source.py`, line 51
 
 > **Reject sentinels inside multiline macro definitions**
 >
@@ -1590,7 +1590,7 @@ No other findings were posted in the sixty-seventh round.
 **Reviewed commit:** `4f7ca64ce0` (finding 131).
 **Review posted:** 2026-09-15T21:53:53Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 132 (P2) — `scripts/check_manuscript_source.py`, line 54
+## Finding 132 (P2) — `tools/check_manuscript_source.py`, line 54
 
 > **Ignore sentinels in inactive TeX conditionals**
 >
@@ -1605,7 +1605,7 @@ No other findings were posted in the sixty-eighth round.
 **Reviewed commit:** `5510b474cb` (finding 132).
 **Review posted:** 2026-09-15T22:03:18Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 133 (P2) — `scripts/check_manuscript_source.py`, line 65
+## Finding 133 (P2) — `tools/check_manuscript_source.py`, line 65
 
 > **Ignore conditional tokens stored in macro bodies**
 >
@@ -1620,7 +1620,7 @@ No other findings were posted in the sixty-ninth round.
 **Reviewed commit:** `e4a69e56aa` (finding 133).
 **Review posted:** 2026-09-15T22:08:19Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 134 (P2) — `scripts/check_manuscript_source.py`, line 67
+## Finding 134 (P2) — `tools/check_manuscript_source.py`, line 67
 
 > **Track conditionals inside executed brace groups**
 >
@@ -1635,7 +1635,7 @@ No other findings were posted in the seventieth round.
 **Reviewed commit:** `3360c47049` (finding 134).
 **Review posted:** 2026-09-15T22:14:31Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 135 (P2) — `scripts/check_manuscript_source.py`, line 76
+## Finding 135 (P2) — `tools/check_manuscript_source.py`, line 76
 
 > **Reject sentinels after an active `\endinput`**
 >
@@ -1650,7 +1650,7 @@ No other findings were posted in the seventy-first round.
 **Reviewed commit:** `fb9d9910f9` (finding 135).
 **Review posted:** 2026-09-15T22:19:55Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 136 (P2) — `scripts/check_manuscript_source.py`, line 81
+## Finding 136 (P2) — `tools/check_manuscript_source.py`, line 81
 
 > **Detect dynamically constructed endinput controls**
 >
@@ -1665,7 +1665,7 @@ No other findings were posted in the seventy-second round.
 **Reviewed commit:** `b6753bdd51` (finding 136).
 **Review posted:** 2026-09-15T22:25:16Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 137 (P2) — `scripts/check_manuscript_source.py`, line 88
+## Finding 137 (P2) — `tools/check_manuscript_source.py`, line 88
 
 > **Reject TeX ^^ notation before scanning stop controls**
 >
@@ -1680,7 +1680,7 @@ No other findings were posted in the seventy-third round.
 **Reviewed commit:** `0ff3859a4b` (finding 137).
 **Review posted:** 2026-09-15T22:29:50Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 138 (P2) — `scripts/check_manuscript_source.py`, line 86
+## Finding 138 (P2) — `tools/check_manuscript_source.py`, line 86
 
 > **Reject redefined document sentinels**
 >
@@ -1695,7 +1695,7 @@ No other findings were posted in the seventy-fourth round.
 **Reviewed commit:** `9a48edeaad` (finding 138).
 **Review posted:** 2026-09-15T22:35:04Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 139 (P2) — `scripts/check_manuscript_source.py`, line 93
+## Finding 139 (P2) — `tools/check_manuscript_source.py`, line 93
 
 > **Reject parameterless redefinitions of document sentinels**
 >
@@ -1710,7 +1710,7 @@ No other findings were posted in the seventy-fifth round.
 **Reviewed commit:** `bc8d534802` (finding 139).
 **Review posted:** 2026-09-15T22:42:40Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 140 (P2) — `scripts/check_manuscript_source.py`, line 97
+## Finding 140 (P2) — `tools/check_manuscript_source.py`, line 97
 
 > **Scan definer targets across TeX line endings**
 >
@@ -1725,7 +1725,7 @@ No other findings were posted in the seventy-sixth round.
 **Reviewed commit:** `b51e7ebbbb` (finding 140).
 **Review posted:** 2026-09-15T22:50:02Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 141 (P2) — `scripts/check_manuscript_source.py`, line 99
+## Finding 141 (P2) — `tools/check_manuscript_source.py`, line 99
 
 > **Reject starred command definers**
 >
@@ -1740,7 +1740,7 @@ No other findings were posted in the seventy-seventh round.
 **Reviewed commit:** `d05f64b009` (finding 141).
 **Review posted:** 2026-09-15T22:57:31Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 142 (P2) — `scripts/check_manuscript_source.py`, line 101
+## Finding 142 (P2) — `tools/check_manuscript_source.py`, line 101
 
 > **Reject definer targets assembled by expansion**
 >
@@ -1755,7 +1755,7 @@ No other findings were posted in the seventy-eighth round.
 **Reviewed commit:** `c5fc74d300` (finding 142).
 **Review posted:** 2026-09-15T23:10:01Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 143 (P2) — `scripts/check_manuscript_source.py`, line 115
+## Finding 143 (P2) — `tools/check_manuscript_source.py`, line 115
 
 > **Reject name-based definers beyond `namedef`**
 >
@@ -1770,7 +1770,7 @@ No other findings were posted in the seventy-ninth round.
 **Reviewed commit:** `e22297f7b7` (finding 143).
 **Review posted:** 2026-09-15T23:30:16Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 144 (P2) — `scripts/check_manuscript_source.py`, line 104
+## Finding 144 (P2) — `tools/check_manuscript_source.py`, line 104
 
 > **Reject macro-wrapped document sentinels**
 >
@@ -1785,7 +1785,7 @@ No other findings were posted in the eightieth round.
 **Reviewed commit:** `f1e1ee8fb3` (finding 144).
 **Review posted:** 2026-09-15T23:43:59Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 145 (P2) — `scripts/check_manuscript_source.py`, line 1118
+## Finding 145 (P2) — `tools/check_manuscript_source.py`, line 1118
 
 > **Reject TeX inputs in nested manuscript directories**
 >
@@ -1800,7 +1800,7 @@ No other findings were posted in the eighty-first round.
 **Reviewed commit:** `af8f2a3975` (finding 145).
 **Review posted:** 2026-09-15T23:54:45Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 146 (P2) — `scripts/check_manuscript_source.py`, line 94
+## Finding 146 (P2) — `tools/check_manuscript_source.py`, line 94
 
 > **Reject unmatched closing braces before sentinels**
 >
@@ -1808,7 +1808,7 @@ No other findings were posted in the eighty-first round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 147 (P2) — `scripts/check_manuscript_source.py`, line 99
+## Finding 147 (P2) — `tools/check_manuscript_source.py`, line 99
 
 > **Reject unmatched conditional closers before sentinels**
 >
@@ -1823,7 +1823,7 @@ No other findings were posted in the eighty-second round.
 **Reviewed commit:** `d794f9c534` (findings 146–147).
 **Review posted:** 2026-09-16T00:07:07Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 148 (P2) — `scripts/check_manuscript_source.py`, line 183
+## Finding 148 (P2) — `tools/check_manuscript_source.py`, line 183
 
 > **Treat newtheorem as an environment definer**
 >
@@ -1838,7 +1838,7 @@ No other findings were posted in the eighty-third round.
 **Reviewed commit:** `f3a2082a88` (finding 148).
 **Review posted:** 2026-09-16T00:17:45Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 149 (P2) — `scripts/check_manuscript_source.py`, line 984
+## Finding 149 (P2) — `tools/check_manuscript_source.py`, line 984
 
 > **Tie the parsed terminator to the final EOF**
 >
@@ -1853,7 +1853,7 @@ No other findings were posted in the eighty-fourth round.
 **Reviewed commit:** `d67b8eacf7` (finding 149).
 **Review posted:** 2026-09-16T00:31:56Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 150 (P2) — `scripts/check_manuscript_source.py`, line 1140
+## Finding 150 (P2) — `tools/check_manuscript_source.py`, line 1140
 
 > **Reject `@`-suffixed stop controls**
 >
@@ -1868,7 +1868,7 @@ No other findings were posted in the eighty-fifth round.
 **Reviewed commit:** `0977d0f55c` (finding 150).
 **Review posted:** 2026-09-16T00:44:29Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 151 (P2) — `scripts/check_manuscript_source.py`, line 189
+## Finding 151 (P2) — `tools/check_manuscript_source.py`, line 189
 
 > **Reject expanded environment-definer targets**
 >
@@ -1883,7 +1883,7 @@ No other findings were posted in the eighty-sixth round.
 **Reviewed commit:** `747fd3b77f` (finding 151).
 **Review posted:** 2026-09-16T00:59:38Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 152 (P2) — `scripts/check_manuscript_source.py`, line 110
+## Finding 152 (P2) — `tools/check_manuscript_source.py`, line 110
 
 > **Reject document sentinels inside excluded environments**
 >
@@ -1898,7 +1898,7 @@ No other findings were posted in the eighty-seventh round.
 **Reviewed commit:** `385bc8e3c0` (finding 152).
 **Review posted:** 2026-09-16T01:18:34Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 153 (P2) — `scripts/check_manuscript_source.py`, line 110
+## Finding 153 (P2) — `tools/check_manuscript_source.py`, line 110
 
 > **Reject sentinels consumed as macro arguments**
 >
@@ -1913,7 +1913,7 @@ No other findings were posted in the eighty-eighth round.
 **Reviewed commit:** `f2d4a86492` (finding 153).
 **Review posted:** 2026-09-16T01:47:30Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 154 (P2) — `scripts/check_manuscript_source.py`, line 282
+## Finding 154 (P2) — `tools/check_manuscript_source.py`, line 282
 
 > **Derive macro arity only from prior executable declarations**
 >
@@ -1928,7 +1928,7 @@ No other findings were posted in the eighty-ninth round.
 **Reviewed commit:** `0eccfebc91` (finding 154).
 **Review posted:** 2026-09-16T02:05:14Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 155 (P2) — `scripts/check_manuscript_source.py`, line 287
+## Finding 155 (P2) — `tools/check_manuscript_source.py`, line 287
 
 > **Preserve arity across no-op providecommand**
 >
@@ -1943,7 +1943,7 @@ No other findings were posted in the ninetieth round.
 **Reviewed commit:** `692ecf821b` (finding 155).
 **Review posted:** 2026-09-16T02:22:53Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 156 (P2) — `scripts/check_manuscript_source.py`, line 293
+## Finding 156 (P2) — `tools/check_manuscript_source.py`, line 293
 
 > **Track arity from every accepted command definer**
 >
@@ -1958,7 +1958,7 @@ No other findings were posted in the ninety-first round.
 **Reviewed commit:** `f0efd6a485` (finding 156).
 **Review posted:** 2026-09-16T02:39:07Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 157 (P2) — `scripts/check_manuscript_source.py`, line 127
+## Finding 157 (P2) — `tools/check_manuscript_source.py`, line 127
 
 > **Parse optional arguments before limiting the lookback**
 >
@@ -1974,7 +1974,7 @@ No other findings were posted in the ninety-second round.
 **Reviewed commit:** \`80ac39d937\`.
 **Review posted:** 2026-09-16T02:58:48Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 158 (P2) — \`scripts/check_manuscript_source.py\`, line 308
+## Finding 158 (P2) — \`tools/check_manuscript_source.py\`, line 308
 
 > **Separate known arity from known definition state**
 >
@@ -1987,7 +1987,7 @@ No other findings were posted in the ninety-third round.
 **Reviewed commit:** \`bc0e0166a5\`.
 **Review posted:** 2026-09-16T03:10:01Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 159 (P2) — \`scripts/check_manuscript_source.py\`, line 128
+## Finding 159 (P2) — \`tools/check_manuscript_source.py\`, line 128
 
 > **Avoid quadratic rescanning in the uncapped lookback**
 >
@@ -2000,7 +2000,7 @@ No other findings were posted in the ninety-fourth round.
 **Reviewed commit:** `c14afe4f2b`.
 **Review posted:** 2026-09-16T03:53:15Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 160 (P2) — `src/psc_research/overlap_collar.py`, line 171
+## Finding 160 (P2) — `reference/psc_research/overlap_collar.py`, line 171
 
 > **Reject a negative separation-radius cap**
 >
@@ -2015,7 +2015,7 @@ No other findings were posted in the ninety-fifth round.
 **Reviewed commit:** `d5be52f0f2` (finding 160).
 **Review posted:** 2026-09-16T03:58:23Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 161 (P2) — `mojo/psc/overlap_collar.mojo`, line 218
+## Finding 161 (P2) — `kernel/psc/overlap_collar.mojo`, line 218
 
 > **Reject negative radii when inflating collars**
 >
@@ -2023,7 +2023,7 @@ No other findings were posted in the ninety-fifth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 162 (P2) — `mojo/psc/overlap_collar.mojo`, line 390
+## Finding 162 (P2) — `kernel/psc/overlap_collar.mojo`, line 390
 
 > **Reject pump certificates with an absent starting fibre**
 >
@@ -2038,7 +2038,7 @@ No other findings were posted in the ninety-sixth round.
 **Reviewed commit:** `5b06d74b19` (findings 161 and 162).
 **Review posted:** 2026-09-16T04:07:01Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 163 (P2) — `mojo/psc/overlap_collar.mojo`, line 441
+## Finding 163 (P2) — `kernel/psc/overlap_collar.mojo`, line 441
 
 > **Reject identical letters in patch-collapse checks**
 >
@@ -2046,7 +2046,7 @@ No other findings were posted in the ninety-sixth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 164 (P2) — `src/psc_research/overlap_collar.py`, line 108
+## Finding 164 (P2) — `reference/psc_research/overlap_collar.py`, line 108
 
 > **Reject undersized input collars in the Python oracle**
 >
@@ -2061,7 +2061,7 @@ No other findings were posted in the ninety-seventh round.
 **Reviewed commit:** `400010cf0a` (findings 163 and 164).
 **Review posted:** 2026-09-16T04:12:29Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 165 (P2) — `src/psc_research/overlap_collar.py`, line 201
+## Finding 165 (P2) — `reference/psc_research/overlap_collar.py`, line 201
 
 > **Reject malformed pump certificates in the oracle**
 >
@@ -2069,7 +2069,7 @@ No other findings were posted in the ninety-seventh round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 166 (P2) — `src/psc_research/overlap_collar.py`, line 240
+## Finding 166 (P2) — `reference/psc_research/overlap_collar.py`, line 240
 
 > **Reject nonpositive legal-factor lengths in the oracle**
 >
@@ -2084,7 +2084,7 @@ No other findings were posted in the ninety-eighth round.
 **Reviewed commit:** `a238e8dfb9` (findings 165 and 166).
 **Review posted:** 2026-09-16T04:18:36Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 167 (P2) — `mojo/psc/overlap_collar.mojo`, line 388
+## Finding 167 (P2) — `kernel/psc/overlap_collar.mojo`, line 388
 
 > **Validate every pump state before lifting**
 >
@@ -2099,7 +2099,7 @@ No other findings were posted in the ninety-ninth round.
 **Reviewed commit:** `89550a4350` (finding 167).
 **Review posted:** 2026-09-16T04:24:04Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 168 (P2) — `mojo/psc/overlap_collar.mojo`, line 411
+## Finding 168 (P2) — `kernel/psc/overlap_collar.mojo`, line 411
 
 > **Validate the complete occurrence edge before lifting**
 >
@@ -2114,7 +2114,7 @@ No other findings were posted in the hundredth round.
 **Reviewed commit:** `938a1100fc` (finding 168).
 **Review posted:** 2026-09-16T04:29:13Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 169 (P2) — `mojo/psc/overlap_collar.mojo`, line 415
+## Finding 169 (P2) — `kernel/psc/overlap_collar.mojo`, line 415
 
 > **Validate the remaining affine-edge payload**
 >

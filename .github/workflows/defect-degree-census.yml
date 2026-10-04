@@ -15,7 +15,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact first-defect-degree census
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . defect_degree_census.mojo 2>&1) || status=$?
@@ -51,7 +51,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact degree-3 state catalogue
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           set +e
@@ -73,8 +73,8 @@ jobs:
             exit 1
           fi
           # The catalogue prints its own taxonomy; the former Python oracle
-          # (scripts/analyze_degree3_catalog.py) is superseded by
-          # mojo/psc/degree3_taxonomy.mojo and its regression test.
+          # (tools/analyze_degree3_catalog.py) is superseded by
+          # kernel/psc/degree3_taxonomy.mojo and its regression test.
           grep -Fx 'DEGREE3_OCCURRENCES 24' degree3.log
           grep -Fx 'DEGREE3_STATE_RELABEL_CLASSES 4' degree3.log
           grep -Fx 'DEGREE3_SUBSTITUTION_CONJUGACY_CLASSES 2' degree3.log
@@ -108,7 +108,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact bounded K2-nonzero carrier catalogue
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           set +e

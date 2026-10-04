@@ -56,7 +56,7 @@ The canonical Mojo implementation verifies phase equality exactly by running the
 
 ## 4. Mojo-first implementation
 
-`mojo/psc/hub_cocycle.mojo` builds the hub data directly on the integer-indexed `DerivedSystem`:
+`kernel/psc/hub_cocycle.mojo` builds the hub data directly on the integer-indexed `DerivedSystem`:
 
 - validates that the chosen hub occurs in every state's first pair exactly once;
 - stores one canonical hub-side bit per state;

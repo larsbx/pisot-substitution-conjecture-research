@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTRACT = ROOT / "docs" / "p1b-adelic-prefix-difference-cylinder.json"
+CONTRACT = ROOT / "schemas" / "p1b-adelic-prefix-difference-cylinder.json"
 NOTE = ROOT / "docs" / "p1b-adelic-prefix-difference-cylinder-2026-09-21.md"
 
 

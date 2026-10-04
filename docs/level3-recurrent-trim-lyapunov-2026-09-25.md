@@ -9,21 +9,21 @@ This note records a stronger parallel Level-3 route that acts on a **finite recu
 For an irreducible noncoincidence balanced-pair state (T=(u,v)), let
 
 [
-L(T) := g(u)=g(v)=langle ell,pi(u)angle
+L(T) := g(u)=g(v)=\langle \ell,\pi(u)\rangle
 ]
 
 be its geometric defect span. Under one inflate-cut-reduce step, for a chosen noncoincidence child (T'),
 
 [
-L(T') = eta L(T)-	au(T	o T'),
+L(T') = \beta L(T)-\tau(T\to T'),
 ]
 
-where (	au) is the total geometric material removed by coincidence cuts before the child is retained.
+where (\tau) is the total geometric material removed by coincidence cuts before the child is retained.
 
 The proposed recurrent trim inequality is
 
 [
-oxed{	au(T	o T') < (eta-1)L(T)}
+\boxed{\tau(T\to T') < (\beta-1)L(T)}
 ]
 
 on every recurrent-to-recurrent noncoincidence edge. It implies
@@ -39,7 +39,7 @@ On a finite recurrent noncoincidence graph, strict increase of (L) rules out dir
 This scalar does not use the Parikh **difference** (pi(u)-pi(v)), which vanishes on balanced pairs. It uses the common Parikh mass
 
 [
-L(T)=langle ell,pi(u)angle=langle ell,pi(v)angle.
+L(T)=\langle \ell,\pi(u)\rangle=\langle \ell,\pi(v)\rangle.
 ]
 
 Thus the existing no-go observation for difference/eigenspace invariants does not apply to (L).
@@ -53,11 +53,11 @@ The current working reduction is:
 3. **No genuine interior coincidences on reduced recurrent edges.** Hence trim on such an edge is determined by boundary coincidence data.
 4. **Boundary trim bound.** Let (C_{mathrm{rec}}(sigma)) be the maximum legal boundary trim over recurrent endpoint tile-pairs. Then
    [
-   	aule C_{mathrm{rec}}(sigma).
+   \tau\le C_{\mathrm{rec}}(\sigma).
    ]
 5. **Reduced recurrent size lemma.** It remains to prove
    [
-   L(T)>rac{C_{mathrm{rec}}(sigma)}{eta-1}
+   L(T)>\frac{C_{mathrm{rec}}(sigma)}{\beta-1}
    ]
    uniformly on reduced recurrent nc states.
 6. **Unreduced case.** A first-mismatch/minimal-compensation normal form appears to give a separate finite local estimate; this branch is not currently the main difficulty.
@@ -70,7 +70,7 @@ The current external working stack reports:
 
 - 42/42 recurrent nc edges across four explicit specimens satisfy
   [
-  	au<(eta-1)L;
+  \tau<(\beta-1)L;
   ]
 - the minimum observed growth ratio (L(T')/L(T)) is (1.528);
 - 39/39 reduced recurrent edges showed no genuine interior coincidence cuts;

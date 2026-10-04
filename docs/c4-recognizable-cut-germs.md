@@ -26,7 +26,7 @@ where `0` is used only as an exterior sentinel in finite-word contexts.
 
 Thus arbitrarily deep zero-return ancestries contain repeated decorated germs. This is the exact finite-pigeon object on which a recognizability argument may act.
 
-`src/psc_research/cut_germ.py` constructs these germs and detects exact repeats.
+`reference/psc_research/cut_germ.py` constructs these germs and detects exact repeats.
 
 ## 2. Repetition is not itself a contradiction
 
@@ -140,7 +140,7 @@ Because a primitive PIP substitution has `L_n -> infinity`, eventually the zero-
 
 For a primitive substitution, every finite factor of `sigma^n(a)` is a legal language factor. Therefore both local contexts of the selected cut are genuine hull contexts even if the original BPA state word was not globally legal.
 
-`src/psc_research/legal_cut_context.py` implements the exact finite containment and the counting criterion.
+`reference/psc_research/legal_cut_context.py` implements the exact finite containment and the counting criterion.
 
 ### Calibration on an illegal seed
 

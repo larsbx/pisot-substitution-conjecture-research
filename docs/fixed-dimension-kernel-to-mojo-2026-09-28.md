@@ -5,8 +5,8 @@ significant speedup"):
 
 > This commit is explicitly a performance optimization, but every executable
 > change implements and duplicates the optimized kernels under
-> `src/psc_research/`, with no corresponding canonical implementation under
-> `mojo/` or documented blocker. That makes the secondary Python oracle the
+> `reference/psc_research/`, with no corresponding canonical implementation under
+> `kernel/` or documented blocker. That makes the secondary Python oracle the
 > target of performance-sensitive research work; implement and benchmark the
 > fixed-dimension kernel in Mojo first, retaining Python only as an independent
 > cross-check.
@@ -60,12 +60,12 @@ it. Measured over the same workload:
 | `add` + `sub` | 19.58 ms | 17.14 ms | **−12.5%** |
 
 Three paired runs each, every pair favouring the unroll. It is kept for that
-reason and no other; `mojo/integer_vector_bench.mojo` is the measurement, and
+reason and no other; `kernel/integer_vector_bench.mojo` is the measurement, and
 `pixi run integer-vector-bench` re-runs it.
 
 ## What landed
 
-`mojo/psc/integer_vector.mojo` is the canonical kernel. Two contracts, both
+`kernel/psc/integer_vector.mojo` is the canonical kernel. Two contracts, both
 inherited from the oracle and both fail-closed:
 
 - a dimension that does not agree raises, never a truncated or zero-padded
@@ -75,12 +75,12 @@ inherited from the oracle and both fail-closed:
 
 The second is the one place the two implementations genuinely differ, because
 Python's `int` is arbitrary precision and cannot overflow. That asymmetry is
-asserted from both sides: `mojo/tests/test_integer_vector.mojo` pins each
+asserted from both sides: `kernel/tests/test_integer_vector.mojo` pins each
 overflow case as a *refusal*, and `tests/test_integer_vector_oracle.py` pins the
 same cases as exact values. Neither side wraps, which is the property that
 matters — the kernel declines to answer rather than answering wrongly.
 
-`src/psc_research/fixed_vector.py` is now the single oracle, and the four
+`reference/psc_research/fixed_vector.py` is now the single oracle, and the four
 private copies are gone. It stays in its generic, obvious form deliberately: an
 oracle earns its keep by reading straight off the definition, and a
 dimension-specialised branch there would add a second path taken by exactly the
@@ -92,7 +92,7 @@ sum agree" is the assumption an unroll exists to violate. Both languages also
 derive the same two corpus checksums independently — `4728` and `1576` over the
 348 distinct incidence matrices — so a divergence surfaces as a number.
 
-`mojo/psc/checked_int.mojo` now holds the checked integer primitives once.
+`kernel/psc/checked_int.mojo` now holds the checked integer primitives once.
 `psc/perron_field3.mojo` had the only other copy and delegates to it; paired
 alternating runs of the coincidence census put that at 42.44 s before and
 41.96 s after, so the indirection is free.

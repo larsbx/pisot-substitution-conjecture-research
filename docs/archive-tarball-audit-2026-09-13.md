@@ -113,7 +113,7 @@ These files remain immutable historical evidence. Do not repair them in place.
 - Cite the dominant-source lemma separately from the G1-conditional SCC
   transfer.
 - Never quote the unconditional rows of `V34_CLOSURE.md` as current status.
-- Use `docs/source-imports/issue-45/p1a-v34-concentration-audit.md` and
+- Use `sources/issue-45/p1a-v34-concentration-audit.md` and
   `docs/claim-status-and-source-map-2026-09-13.md` for the live
   interpretation.
 - If the original tarball is retained externally, identify it by the archive

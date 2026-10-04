@@ -10,7 +10,7 @@ This repository already contained a substantial PSC research estate before the b
 
 ## Canonical current surface for lightweight audit
 
-The lightweight `scripts/audit_manuscript.py --strict-current` mode currently audits:
+The lightweight `tools/audit_manuscript.py --strict-current` mode currently audits:
 
 - `README.md`
 - `docs/proof-ladder.md`

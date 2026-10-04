@@ -32,7 +32,7 @@ r_+(p) = parent hub side XOR physical first-child hub side.
 
 This is exactly the hub residual bit on the distinguished first-child occurrence. No interior word data are needed.
 
-`mojo/psc/hub_selector.mojo` computes `r_+` directly from `h`, the good edge, and the pair.
+`kernel/psc/hub_selector.mojo` computes `r_+` directly from `h`, the good edge, and the pair.
 
 ## 3. Uniform phase theorem for C-F
 

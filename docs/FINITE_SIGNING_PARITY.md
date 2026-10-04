@@ -97,16 +97,16 @@ If neither `q = 0` nor `q = 1` solves the coboundary system, the signing is Perr
 Canonical implementation:
 
 ```text
-mojo/psc/signing.mojo
+kernel/psc/signing.mojo
 ```
 
 Regression tests:
 
 ```text
-mojo/tests/test_signing.mojo
+kernel/tests/test_signing.mojo
 ```
 
-Run locally from `mojo/` with:
+Run locally from `kernel/` with:
 
 ```bash
 pixi run mojo run -I . tests/test_signing.mojo

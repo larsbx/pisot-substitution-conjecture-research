@@ -15,7 +15,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
-sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "reference"))
 
 import corpus_refinement as cr  # noqa: E402
 from psc_research.pip_screen import pip_corpus  # noqa: E402

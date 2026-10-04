@@ -48,7 +48,7 @@ R(\sigma)=\max_{i<j}|C_{\sigma,i,j}|,
 
 and all three pair languages are nonempty, the strong-coincidence level is at
 most (R(\sigma)-1). Canonical executable support is
-`mojo/psc/coincidence_level_bound.mojo`. The proposition is graph-theoretic and
+`kernel/psc/coincidence_level_bound.mojo`. The proposition is graph-theoretic and
 has no height hypothesis. The present executable inherits
 `powered_field`'s incidence-entry ceiling of 64; an input beyond that ceiling
 raises and is inconclusive rather than false.
@@ -118,9 +118,9 @@ This is a primitive unimodular irreducible Pisot family:
   a root for (n\ge3), so the cubic is irreducible;
 - its discriminant is (-4n^3-27<0), so the two non-Perron roots are a complex
   conjugate pair;
-- the positive root satisfies (eta_n>n), and the product of the conjugate
+- the positive root satisfies (\beta_n>n), and the product of the conjugate
   pair is (1/\beta_n), hence each has modulus
-  (eta_n^{-1/2}<1).
+  (\beta_n^{-1/2}<1).
 
 But (max_a|\sigma_n(a)|=n+1) and the height of (M_n) is (n). Therefore
 neither bounded image length nor bounded incidence entries can be inserted as

@@ -7,7 +7,7 @@ Heads audited, on the shared branch `claude/library-extraction-candidates-d9lp6i
 | Tag | Repository | Head | Executable surface |
 | --- | --- | --- | --- |
 | `NLAP:` | `larsbx/NLAP-JT` | `ac7f8f9` | Mojo `src/`, compiled by CI through the closure of `src/smoke_tests.mojo`; Python `tools/` audits and `tests/` |
-| `PSC:` | `larsbx/pisot-substitution-conjecture-research` | `970f214` | Mojo `mojo/psc/`, compiled and tested by CI (`pixi run test`, `verify`, censuses); Python `src/psc_research/` oracle |
+| `PSC:` | `larsbx/pisot-substitution-conjecture-research` | `970f214` | Mojo `kernel/psc/`, compiled and tested by CI (`pixi run test`, `verify`, censuses); Python `reference/psc_research/` oracle |
 
 Markers: `[V]` was checked in this session by reading or executing the repository; `[U]` could not be checked here. Both CI workflows are green on their `main` heads `[V]` (NLAP run 679, PSC runs 884/721/665). Locally, PSC's Python suite passes in full and NLAP-JT's passes except the one test that requires a `mojo` binary, which this container lacks `[V]`.
 
@@ -16,23 +16,23 @@ Markers: `[V]` was checked in this session by reading or executing the repositor
 | Step (section 8) | State | Where |
 | --- | --- | --- |
 | 1. Harden `finite_exact` in NLAP-JT, extract | done | `larsbx/finite_exact` (`BigZ`, `Q`, probe, oracle, boundary, specification); `poly_z` left in NLAP-JT as a bounded-degree machine-integer module (section 1.3 item 7, second option) |
-| 2. Migrate PSC's `Rat` and `CheckedRat` consumers, delete both | done | `mojo/finite_exact/`, `mojo/interval_q/`, `mojo/psc/exact.mojo`; pins in `vendored.toml` |
-| 3. Extract `substitution_dynamics` | done | `larsbx/substitution_dynamics`; `mojo/substitution_dynamics/` is the vendored copy, `psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` the alphabet-3 views |
+| 2. Migrate PSC's `Rat` and `CheckedRat` consumers, delete both | done | `kernel/finite_exact/`, `kernel/interval_q/`, `kernel/psc/exact.mojo`; pins in `vendored.toml` |
+| 3. Extract `substitution_dynamics` | done | `larsbx/substitution_dynamics`; `kernel/substitution_dynamics/` is the vendored copy, `psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` the alphabet-3 views |
 | 4. Separate exact linear algebra from certificate logic | done | `larsbx/finite_linear_algebra` (`mat3`, `qlinalg`, `tensor3`, general `w3`, `scalar`); `psc/w3.mojo` keeps the printed certificate basis |
 | interval layer (section 3) | done | `larsbx/interval_q`, on `finite_exact` |
 | 5. Specify `finite_proof_records` | specification and Python reference model done; Mojo implementation pending | `larsbx/finite_proof_records` |
 | 6. Extract the audit tooling with per-repository policy | done | `larsbx/claim_governance_tools` (terminology, claims, promotion, numerics, consistency checks over a per-repository `claim_governance.toml`); PSC is the first consumer: claim ledger with status surfaces, exact-kernel float ban, run by CI, `pytest`, and `verify_all.sh`; NLAP-JT's policy expresses its no-trigonometry, no-points, rank-2, and C1-scoped vocabulary rules beside its existing `tools/audit_*.py` |
 
-Vendoring is by byte-identical copy, pinned per package by upstream commit and SHA-256 digest in `vendored.toml` and enforced by `scripts/check_vendored_sync.py` (shipped by `finite_exact`). The heads and paths quoted below are those of 2026-09-14 and are kept as the audit record.
+Vendoring is by byte-identical copy, pinned per package by upstream commit and SHA-256 digest in `vendored.toml` and enforced by `tools/check_vendored_sync.py` (shipped by `finite_exact`). The heads and paths quoted below are those of 2026-09-14 and are kept as the audit record.
 
 ## 0. Summary
 
 | Priority | Candidate | Source of truth today | Consumers | Readiness |
 | --- | --- | --- | --- | --- |
 | P0 | Exact integers and rationals (`finite_exact`) | `NLAP: src/bigint_z.mojo`, `src/rat_q.mojo` | PSC, NLAP-JT, later certificate projects | after the hardening list in section 1.3 |
-| P0 | Substitution-dynamics kernel (`substitution_dynamics`) | `PSC: mojo/psc/{words,bpa,derived_system,...}.mojo` | PSC censuses, other symbolic-dynamics work | after alphabet generalization and uniform symbol validation |
+| P0 | Substitution-dynamics kernel (`substitution_dynamics`) | `PSC: kernel/psc/{words,bpa,derived_system,...}.mojo` | PSC censuses, other symbolic-dynamics work | after alphabet generalization and uniform symbol validation |
 | P1 | Closed rational intervals (`interval/closed_q`) | `NLAP: src/interval_q.mojo` (+ PSC checked-operation tests) | both programs | after `finite_exact`; spec hook already exists |
-| P1 | Exact finite-dimensional linear algebra (`finite_linear_algebra`) | `PSC: mojo/psc/{mat3,qlinalg,tensor3,w3}.mojo` | spectral, wedge, incidence experiments | after moving scalars onto `finite_exact` |
+| P1 | Exact finite-dimensional linear algebra (`finite_linear_algebra`) | `PSC: kernel/psc/{mat3,qlinalg,tensor3,w3}.mojo` | spectral, wedge, incidence experiments | after moving scalars onto `finite_exact` |
 | P1 | Finite proof-record infrastructure (`finite_proof_records`) | `NLAP: src/mojo_theorem_kernel.mojo` and the C1 ledgers | both programs | specification first; the current code is outside the compiled closure |
 | P2 | Claim-governance and language audits (`math_repo_audit`) | `NLAP: tools/audit_*.py`, `tools/source_tokens.py` | every mathematical repository | nearly ready; policies must move to per-repository configuration |
 
@@ -45,7 +45,7 @@ Three arithmetic authorities exist today `[V]`: PSC's unchecked machine-width `R
 | Layer | NLAP-JT | PSC |
 | --- | --- | --- |
 | integers | `BigZ`: dynamic little-endian limbs in base `10^9`, sign in `{-1,0,1}`, add/sub/mul, order, quotient/remainder, exact division with rejection, Euclidean gcd, canonical `Z(sign, byte_len, big_endian_magnitude)` bytes, and `bigz_is_canonical` `[V]` | machine `Int` only |
-| rationals | `Q`: normalized `BigZ` fraction, `den > 0`, `gcd = 1`, `rejected` flag propagated through every operation and through `q_canonical_bytes` `[V]` | `Rat` in `mojo/psc/rational.mojo`: normalized machine `Int`, unchecked overflow, `abort` on zero denominator `[V]`; `CheckedRat` in `mojo/psc/rational_interval.mojo`: normalized machine `Int` with overflow checks that `raise` `[V]` |
+| rationals | `Q`: normalized `BigZ` fraction, `den > 0`, `gcd = 1`, `rejected` flag propagated through every operation and through `q_canonical_bytes` `[V]` | `Rat` in `kernel/psc/rational.mojo`: normalized machine `Int`, unchecked overflow, `abort` on zero denominator `[V]`; `CheckedRat` in `kernel/psc/rational_interval.mojo`: normalized machine `Int` with overflow checks that `raise` `[V]` |
 | polynomials | `PolyZ` in `src/poly_z.mojo`: fixed `MAX_DEGREE`, machine `Int` coefficients, not yet on `BigZ` `[V]` | integer coefficient lists inside `mat3.charpoly` and `rational_interval.eval_int_poly_at_rat` `[V]` |
 
 Dependency chain as it stands:
@@ -79,12 +79,12 @@ PSC then retires both `Rat` and `CheckedRat`. `CheckedRat` contributes its test 
 
 ### 2.1 What exists
 
-`PSC: mojo/psc/words.mojo` (Parikh vector, streaming `N2`, `N3`, `Pair`), `bpa.mojo` (substitution application, coincidence boundaries, boundary lineage, `Automaton`, breadth-first `build` with a state cap, iterative Tarjan SCC, non-productive states), `derived_system.mojo`, `endpoint_core.mojo`, `hierarchy_offset.mojo`, `legal_tower.mojo`, `affine_ancestry_trace.mojo`, `swap_discrepancy.mojo`, together with their Mojo regression tests under `mojo/tests/` `[V]`. This is a coherent computational subject independent of the Pisot conjecture: finite words, substitutions, Parikh differences, balanced-pair factorization, boundary ancestry, recurrent components, and exact trace records.
+`PSC: kernel/psc/words.mojo` (Parikh vector, streaming `N2`, `N3`, `Pair`), `bpa.mojo` (substitution application, coincidence boundaries, boundary lineage, `Automaton`, breadth-first `build` with a state cap, iterative Tarjan SCC, non-productive states), `derived_system.mojo`, `endpoint_core.mojo`, `hierarchy_offset.mojo`, `legal_tower.mojo`, `affine_ancestry_trace.mojo`, `swap_discrepancy.mojo`, together with their Mojo regression tests under `kernel/tests/` `[V]`. This is a coherent computational subject independent of the Pisot conjecture: finite words, substitutions, Parikh differences, balanced-pair factorization, boundary ancestry, recurrent components, and exact trace records.
 
 ### 2.2 Verified findings
 
 - The alphabet size three is hard-coded as literal arrays or loop bounds in `words.parikh`, `words.n2`, `words.n3`, `bpa.coincidence_boundaries`, `bpa.seed_states`, `swap_discrepancy.discrepancy`, and `tensor3` (`idx3`, `zeros27`) `[V]`. `AGENTS.md` rule 1 asks for fixed dimensions in hot loops, so generalization must keep alphabet-3 as a compile-time specialization, not replace it with dynamic containers.
-- Symbol validation is inconsistent. `bd_endpoint._validate_letter` and `affine_ancestry_trace._validate_sigma` reject letters outside `0..2`; `words.parikh`, `bpa.coincidence_boundaries`, and `swap_discrepancy.discrepancy` index `List[Int]` with the raw symbol and never check it `[V]`. The out-of-range-label regression fixed in commit `fbc26c3` was in the Python oracle `src/psc_research/swap_discrepancy.py`; the Mojo `discrepancy` kernel has no equivalent guard `[V]`.
+- Symbol validation is inconsistent. `bd_endpoint._validate_letter` and `affine_ancestry_trace._validate_sigma` reject letters outside `0..2`; `words.parikh`, `bpa.coincidence_boundaries`, and `swap_discrepancy.discrepancy` index `List[Int]` with the raw symbol and never check it `[V]`. The out-of-range-label regression fixed in commit `fbc26c3` was in the Python oracle `reference/psc_research/swap_discrepancy.py`; the Mojo `discrepancy` kernel has no equivalent guard `[V]`.
 - Failure channels are mixed: `bpa.inherited_boundary_positions` calls `abort`, `bpa.build` is declared `raises` and additionally returns `capped=True` for resource exhaustion `[V]`. The docstring rule that a capped run is inconclusive is correct and must be preserved.
 - Conjecture-specific vocabulary (G1, C3, C4, producer, renewal, hub) lives in module and function names beside general mechanics `[V]`.
 
@@ -106,7 +106,7 @@ Semantics, already shared by both implementations `[V]`:
 - invalid arithmetic (reversed endpoints, rejected endpoint, reciprocal across zero) is distinct from unknown;
 - interval filtering never becomes exact acceptance without an independent exact predicate (`docs/rational-interval-arithmetic-spec.md` section 3.2).
 
-Base: `NLAP: src/interval_q.mojo` (`IQ`, `ComplexIQ`, `IQSignResult`, `IQBoolResult`). Contribution from PSC: `mojo/tests/test_rational_interval.mojo` (natural Horner extension containment, division across zero fails closed) and the Perron-root enclosure use case, which becomes the first external consumer test.
+Base: `NLAP: src/interval_q.mojo` (`IQ`, `ComplexIQ`, `IQSignResult`, `IQBoolResult`). Contribution from PSC: `kernel/tests/test_rational_interval.mojo` (natural Horner extension containment, division across zero fails closed) and the Perron-root enclosure use case, which becomes the first external consumer test.
 
 The NLAP specification already carries a proposed PSC binding table (section 6.1) and a "future sync rule" requiring verbatim mirroring once PSC adopts it `[V]`. Extraction makes that rule concrete: the specification moves with the code, and each repository keeps only its binding rows.
 

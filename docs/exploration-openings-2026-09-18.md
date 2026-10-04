@@ -115,7 +115,7 @@ its seed-patch overlap graph:
   mixed, then 5 mixed once reversal joins the group). This one is expected
   rather than alarming: the extractor deletes offset-zero states while
   deliberately retaining right-aligned ones, an asymmetry
-  `mojo/swap_overlap_census.mojo` documents at its call site. It still means
+  `kernel/swap_overlap_census.mojo` documents at its call site. It still means
   "has a zero-shift-free cycle" is a property of a substitution together with a
   left/right convention.
 
@@ -177,11 +177,11 @@ more effort goes into three letters.
 The cost is bounded rather than open-ended. The vendored
 `substitution_dynamics` package is alphabet-generic; what is fixed to three
 letters is the `psc` binding — `ALPHABET = 3` in `psc.words` and the `Mat3`
-linear algebra — in 13 of the 50 modules under `mojo/psc/`.
+linear algebra — in 13 of the 50 modules under `kernel/psc/`.
 
 ## 7. Depth of the deductive layer `[P]`
 
-`PscVerif/` machine-checks finite algebra from the spectral module. The
+`proof/PscVerif/` machine-checks finite algebra from the spectral module. The
 reduction itself — bounded discrepancy to finite overlap graph to coincidence
 density to the imported bridge — is audited prose and a TLA+ dependency ledger,
 which record that the hypotheses were checked by a reader rather than by a

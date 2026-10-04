@@ -1,6 +1,6 @@
 # Conjecture ledger
 
-The machine-checked dependency form is `tla/Ledger.tla`. This prose ledger distinguishes repository proofs, imported theorems, finite-domain theorems, open gates, open bridges, empirical evidence, and retired claims. The concise status/source index is `docs/claim-status-and-source-map-2026-09-13.md`; the current architecture is `docs/current-proof-architecture-2026-09-14.md`; the live completion priorities are `docs/research-roadmap-2026-09-21.md`; the latest merged weekly snapshot is `docs/completion-ledger-2026-09-14.md`.
+The machine-checked dependency form is `proof/tla/Ledger.tla`. This prose ledger distinguishes repository proofs, imported theorems, finite-domain theorems, open gates, open bridges, empirical evidence, and retired claims. The concise status/source index is `docs/claim-status-and-source-map-2026-09-13.md`; the current architecture is `docs/current-proof-architecture-2026-09-14.md`; the live completion priorities are `docs/research-roadmap-2026-09-21.md`; the latest merged weekly snapshot is `docs/completion-ledger-2026-09-14.md`.
 
 ## Executive status — one shortest-path gate, several stronger parallel programmes
 
@@ -132,6 +132,41 @@ realizable labelled first-return words
 ```
 
 This programme is no longer completion-critical for Theorem 5.38, but it remains the canonical route to the stronger finite-BPA theorem.
+
+### All-seed overlap productivity
+
+**Status: OPEN.** Every overlap reachable from every swap seed is productive. This is the all-vertex form of manuscript Open Problem 5.35 and is stronger than the one-seed gate of Theorem 5.38.
+
+### Overlap-depth route to finite BPA
+
+**Status:** Conditional theorem (manuscript Proposition 5.46; `docs/bpa-termination-by-overlap-depth-2026-10-02.md`, Proposition 1).
+
+```text
+all-seed overlap productivity            [OPEN]
++ finite seed-patch overlap graph         [PROVED]
+=> every reachable state has geometric length <= 2 beta^D ell_max
+=> G1.
+```
+
+`D` is the largest first-coincidence depth of the graph. The proof uses that balanced cuts are simultaneous tile boundaries (`Q`-independence of `ell`) and that every overlap at level `n - D` has a coincident descendant inside its `beta^D`-scaled region; it needs no realization hypothesis. G1 therefore follows from either G1b-2 or all-seed overlap productivity.
+
+### All-seed strict-zipper exclusion
+
+**Status: OPEN.** No closed nonproductive strict-zipper set (manuscript Proposition 5.44(iii)(b): no offset-zero vertex) is reachable from any swap seed. This is the all-seed form of the strict-zipper branch of Open Problem 5.35 (issue #139); it is implied by all-seed overlap productivity and does not involve the strong-coincidence branch (issue #138).
+
+### Half-coincidence route to finite BPA
+
+**Status:** Conditional theorem (manuscript Proposition 5.47; `docs/bpa-termination-by-overlap-depth-2026-10-02.md`, Proposition 4 and Corollary 5).
+
+```text
+all-seed strict-zipper exclusion          [OPEN]
++ finite seed-patch overlap graph         [PROVED]
+=> every reachable overlap has an offset-zero descendant within K' levels
+=> every reachable state has geometric length <= 2 beta^K' ell_max
+=> G1.
+```
+
+The proof of the overlap-depth route needs a coincidence only for its common vertex; an offset-zero descendant supplies one, and common vertices persist under inflation. G1 therefore follows from G1b-2, from all-seed overlap productivity, or from all-seed strict-zipper exclusion alone.
 
 ## D. Parallel programme — SCC Producer under G1
 

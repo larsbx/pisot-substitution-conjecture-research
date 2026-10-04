@@ -1,6 +1,6 @@
 # PSC weekly completion ledger — 2026-09-11
 
-**Status:** dated weekly ledger, a **historical snapshot as of 2026-09-11**. It is not a live record: every Level-3 statement in this file that treats concentration / aux-B as the sole remaining closed-carrier obligation was superseded on 2026-09-13 by the merged manuscript (`manuscripts/PSC_balanced_pair_state_2026-09-13.tex`, Proposition 5.20), which shows that the spectral route has two independent open obligations, concentration (no strict component with `K2 == 0`) and wedge productivity (no strict component with `K2 != 0`). For the current state read `docs/conjecture-ledger.md`, `docs/proof-ladder.md`, and `docs/current-proof-architecture-2026-09-11.md`. This file records the completion state of the proof program as of 2026-09-11 and the prioritized obligations that remained then. The live undated records are `docs/conjecture-ledger.md`, `docs/current-proof-architecture-2026-09-11.md`, `docs/proof-ladder.md`, and the machine-checked dependency form `tla/Ledger.tla`. Where this ledger cites a result or a figure that cannot be reproduced from files on `main`, section X says so.
+**Status:** dated weekly ledger, a **historical snapshot as of 2026-09-11**. It is not a live record: every Level-3 statement in this file that treats concentration / aux-B as the sole remaining closed-carrier obligation was superseded on 2026-09-13 by the merged manuscript (`manuscripts/PSC_balanced_pair_state_2026-09-13.tex`, Proposition 5.20), which shows that the spectral route has two independent open obligations, concentration (no strict component with `K2 == 0`) and wedge productivity (no strict component with `K2 != 0`). For the current state read `docs/conjecture-ledger.md`, `docs/proof-ladder.md`, and `docs/current-proof-architecture-2026-09-11.md`. This file records the completion state of the proof program as of 2026-09-11 and the prioritized obligations that remained then. The live undated records are `docs/conjecture-ledger.md`, `docs/current-proof-architecture-2026-09-11.md`, `docs/proof-ladder.md`, and the machine-checked dependency form `proof/tla/Ledger.tla`. Where this ledger cites a result or a figure that cannot be reproduced from files on `main`, section X says so.
 
 ## Executive status
 
@@ -59,7 +59,7 @@ Assuming G1,
 |B_sigma| < infinity  =>  recurrent SCC analysis.
 ```
 
-The target is no longer "there are no recurrent noncoincident cycles". Flipped Tribonacci killed that target: recurrent, noncoincident, zero-displacement cycles genuinely occur (`tla/MCFlippedTribonacci.tla`). The corrected target is **SCC Producer**: recurrent noncoincident behavior cannot remain permanently producer-free.
+Universal exclusion of recurrent noncoincident cycles is no longer the target. Flipped Tribonacci killed that target: recurrent, noncoincident, zero-displacement cycles genuinely occur (`proof/tla/MCFlippedTribonacci.tla`). The corrected target is **SCC Producer**: recurrent noncoincident behavior cannot remain permanently producer-free.
 
 The present closed-case route is
 
@@ -90,7 +90,7 @@ The power-iterated version is available because
 det M_{sigma^r} = (det M_sigma)^r != 0.
 ```
 
-**G1b-1 is closed in the v16 track.** Bounded discrepancy and the norm-conversion seam are proved there; the tests report no soundness violations in the corpus. Its detailed source is not yet on `main` (section X). *[2026-09-13: superseded; G1b-1 was independently reconstructed and proved without the contraction estimate, see `docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md`.]*
+**G1b-1 is closed in the v16 track.** Bounded discrepancy and the norm-conversion seam are proved there; the tests report no soundness violations in the corpus. Its detailed source is not yet on `main` (section X). *[2026-09-13: superseded; G1b-1 was independently reconstructed and proved without the contraction estimate, see `sources/issue-45/g1b1-bounded-discrepancy-reconstruction.md`.]*
 
 ### Open
 
@@ -285,7 +285,7 @@ The shortest honest path to completion, as recorded on 2026-09-11: one concentra
 
 This section records what the repository can and cannot substantiate in the ledger above.
 
-1. **v16 provenance.** `archive/2026-09-08/README_READ_FIRST_2026_09_08.md` states that no file `PSC_PROOF_v16` has ever been found and that references to it should be treated as unreliable. The canonical archived manuscript is v15. Every "v16 track" claim above (G1b-1 proof, Galois propagation, exact aux-B formulation, leg-factor proof, collision-producer lemma, realization/rank equivalence) is therefore **reported, not verified on `main`**, and `tla/Ledger.tla` deliberately keeps those results outside `ProvedDef`. Source import and audit remain P0.
+1. **v16 provenance.** `archive/2026-09-08/README_READ_FIRST_2026_09_08.md` states that no file `PSC_PROOF_v16` has ever been found and that references to it should be treated as unreliable. The canonical archived manuscript is v15. Every "v16 track" claim above (G1b-1 proof, Galois propagation, exact aux-B formulation, leg-factor proof, collision-producer lemma, realization/rank equivalence) is therefore **reported, not verified on `main`**, and `proof/tla/Ledger.tla` deliberately keeps those results outside `ProvedDef`. Source import and audit remain P0.
 2. **P0 defects are verifiable on `main` in v15.** The three wording defects of section VI items 6–8 occur at `PSC_PROOF_v15.tex` lines 140, 114, and 576 respectively, so the P0 obligation stands independently of whether a v16 file exists.
 3. **Figures reproducible from `main`.** The 4,554-specimen PIP census and its BPA termination are pinned by the Mojo censuses and CI; the 500/500 span-rich figure appears in v15 and `V34_CLOSURE.md`; the G1b-2 anatomy figures are recorded in `docs/current-proof-architecture-2026-09-11.md`.
 4. **Figures not reproducible from `main`.** The 59,319 / 7,491 UD census, the 198/300 and 4,086 collision counts, the 300/300, 200/200, 400/400 producer tests, the 759 relabeling orbits, the imbalance bound 14, and the 1,764-cycle collar census (death radius 7, collar 40) have no generating instrument or output on `main`. They are ledger-reported evidence and a P6 target for certificate-producing Mojo reproduction.
