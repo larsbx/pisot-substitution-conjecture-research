@@ -72,3 +72,50 @@ def test_no_second_arithmetic_or_kernel_lives_beside_the_packages():
     for path in psc.glob("*.mojo"):
         body = path.read_text(encoding="utf-8")
         assert "struct Rat" not in body and "struct Mat3" not in body, path.name
+
+
+def _copy_vendored_tree(tmp_path):
+    for pkg in sync.load():
+        for rel in pkg["files"]:
+            target = tmp_path / pkg["root"] / rel
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes((ROOT / pkg["root"] / rel).read_bytes())
+    for name in ("vendored.toml", "ESTATE.toml"):
+        (tmp_path / name).write_bytes((ROOT / name).read_bytes())
+    return tmp_path / "vendored.toml"
+
+
+def test_estate_pin_is_the_vendored_digest():
+    # ESTATE.toml's [[dep]] pin for each vendoring source is derived from vendored.toml
+    # exactly as the pinned estate audit derives it; the recorded pin was computed by that audit.
+    assert sync.estate_pins() == {"finite-math-kernels": "sha256:897b1eebc5aba2afbf27f3cb183446b2ed8174d36351a56d47d688a87c641ace"}
+    assert sync.estate_drift() == []
+
+
+def test_estate_pin_drift_is_detected_and_rederived(tmp_path):
+    manifest = _copy_vendored_tree(tmp_path)
+    estate = tmp_path / "ESTATE.toml"
+    good = estate.read_text(encoding="utf-8")
+    estate.write_text(good.replace(sync.estate_pins()["finite-math-kernels"], "sha256:" + "0" * 64), encoding="utf-8")
+    assert any("finite-math-kernels" in e for e in sync.check(tmp_path, manifest))
+    assert sync.write_estate_pins(tmp_path, manifest) == []
+    assert estate.read_text(encoding="utf-8") == good
+    assert sync.check(tmp_path, manifest) == []
+
+
+def test_pin_rederives_the_estate_pin(tmp_path):
+    manifest = _copy_vendored_tree(tmp_path)
+    target = tmp_path / "mojo" / "finite_exact" / "rat_q.mojo"
+    target.write_text(target.read_text(encoding="utf-8") + "\n# re-vendored\n", encoding="utf-8")
+    pkg = next(p for p in sync.load(manifest) if p["name"] == "finite_exact")
+    assert sync.pin("finite_exact", pkg["commit"], tmp_path, manifest) == []
+    assert sync.check(tmp_path, manifest) == []
+    assert sync.estate_pins(tmp_path, manifest) != sync.estate_pins()
+
+
+def test_missing_estate_dep_fails_closed(tmp_path):
+    manifest = _copy_vendored_tree(tmp_path)
+    estate = tmp_path / "ESTATE.toml"
+    estate.write_text(estate.read_text(encoding="utf-8").replace('id = "finite-math-kernels"', 'id = "renamed"'), encoding="utf-8")
+    assert any("no [[dep]]" in e for e in sync.write_estate_pins(tmp_path, manifest))
+    assert any("no [[dep]]" in e for e in sync.check(tmp_path, manifest))
