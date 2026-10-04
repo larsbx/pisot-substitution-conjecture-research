@@ -151,4 +151,4 @@ Do not use:
 - Cite the archived certificate only with its seed-specific degree-three scope.
 - Label the two exhaustively certified 4,554-corpus carrier exclusions as finite-domain theorems; the overlap productivity census remains finite evidence for the general gate.
 - Never describe overlap productivity, G1b-2, concentration, general wedge productivity, realization G0–G6, SCC Producer, or PSC as proved.
-- When a status changes, update this map, `docs/conjecture-ledger.md`, `docs/proof-ladder.md`, `docs/current-proof-architecture-2026-09-14.md`, the manuscript status table, and `tla/Ledger.tla` as applicable.
+- When a status changes, update this map, `docs/conjecture-ledger.md`, `docs/proof-ladder.md`, `docs/current-proof-architecture-2026-09-14.md`, the manuscript status table, and `proof/tla/Ledger.tla` as applicable.

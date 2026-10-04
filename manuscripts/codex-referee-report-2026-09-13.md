@@ -229,7 +229,7 @@ No findings were posted in the eighth round.
 >
 > Immediately before this new theorem, line 765 still says that overlap productivity does not by itself give PDS because the older bridge needs finiteness. That is the exact conclusion Theorem 5.38 now reverses via the imported dense-eventual-coincidence theorem, so the manuscript presents contradictory mathematical status within the same subsection.
 
-## Finding 21 (P3) — `tla/Ledger.tla`, line 181
+## Finding 21 (P3) — `proof/tla/Ledger.tla`, line 181
 
 > **Update the stale open-input description in the TLA ledger**
 >

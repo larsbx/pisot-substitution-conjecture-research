@@ -120,16 +120,16 @@ else
 fi
 
 section "TLA+ models"
-JAR="${TLA_TOOLS:-$ROOT/tla/tla2tools.jar}"
+JAR="${TLA_TOOLS:-$ROOT/proof/tla/tla2tools.jar}"
 if command -v java >/dev/null 2>&1 && [ -f "$JAR" ]; then
-    if TLA_TOOLS="$JAR" ./tla/check.sh; then ok "all models"; else bad "some model"; fi
+    if TLA_TOOLS="$JAR" ./proof/tla/check.sh; then ok "all models"; else bad "some model"; fi
 else
-    skip "TLA+ layer" "need java and tla2tools.jar (set TLA_TOOLS, or download into tla/)"
+    skip "TLA+ layer" "need java and tla2tools.jar (set TLA_TOOLS, or download into proof/tla/)"
 fi
 
 section "Lean 4 proofs"
 if command -v lake >/dev/null 2>&1; then
-    cd "$ROOT/PscVerif"
+    cd "$ROOT/proof/PscVerif"
     out=$(lake build PscVerif 2>&1)
     if grep -q "Build completed successfully" <<<"$out"; then
         if grep -q "sorryAx" <<<"$out"; then

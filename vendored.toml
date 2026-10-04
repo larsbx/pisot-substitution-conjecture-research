@@ -109,7 +109,7 @@ root = "mojo"
 name = "proof_architecture"
 repository = "larsbx/finite-math-kernels"
 commit = "0ff79ccaa3d71491d5eb9a8ed5a7e01c0c3e855a"
-root = "tla"
+root = "proof/tla"
 
 [package.files]
 "ProofArchitecture.tla" = "11dbe66eb10f43e1c334b33308bc576f7ad5286f7f50a760a63bda7f1c2e8c49"

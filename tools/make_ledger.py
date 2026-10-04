@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Build tla/ledger.json from the record table below and regenerate every ledger surface.
+"""Build proof/tla/ledger.json from the record table below and regenerate every ledger surface.
 
 The table is the single source of the proof-dependency ledger: one proof
 record per named result (kind, statement, source, dependencies, tags), the
 assumption sets the TLC models bind, the status labels the index prints, and
 the aliases and prose surfaces each claim keeps in claim_governance.toml.
 `tools/proof_records/generate_ledgers.py` (vendored from larsbx/finite-math-
-kernels, docs/ledger-generation-spec.md there) renders tla/Ledger.tla, one
+kernels, docs/ledger-generation-spec.md there) renders proof/tla/Ledger.tla, one
 TLC model per assumption set, docs/ledger-index.md, the typed relationship
 graph docs/claim-relationship-graph.json, and the generated [[claim]] block of
 claim_governance.toml. CI runs `--check`, so none of those surfaces can drift
@@ -27,7 +27,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 from proof_records import generate_ledgers as gl  # noqa: E402
 from proof_records.records import Edge, Kind, Record, identified  # noqa: E402
 
-LEDGER = ROOT / "tla" / "ledger.json"
+LEDGER = ROOT / "proof" / "tla" / "ledger.json"
 POLICY = ROOT / "claim_governance.toml"
 SCOPE = "primitive irreducible Pisot substitutions in the standing regime"
 MANUSCRIPT = "manuscripts/PSC_balanced_pair_state_2026-09-13.tex"
@@ -37,7 +37,7 @@ WEEKLY = "docs/completion-ledger-2026-09-14.md"
 
 # name -> (kind, statement, source or reason, dependencies, tags)
 # Dependencies are one-way proof sufficiency, never a converse implication
-# (tla/ProofArchitecture.tla). A proved node whose dependencies are open is a
+# (proof/tla/ProofArchitecture.tla). A proved node whose dependencies are open is a
 # conditional theorem: its implication is proved, its premises are not.
 T, I, P = Kind.REPOSITORY, Kind.IMPORTED, Kind.PENDING
 TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
@@ -51,10 +51,10 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "AlgebraicEmbedding": (T, "the algebraic embedding of the symbolic side", f"{MANUSCRIPT}, symbolic side", ("UniqueDecodability",), ()),
     "WedgeBound": (T, "the wedge bound", f"{MANUSCRIPT}, symbolic side", ("AlgebraicEmbedding", "MassBalanceK2Obstruction"), ()),
     # --- seed spectral module ---------------------------------------------------------
-    "PhiSemisimplicity": (T, "Phi_3 acts semisimply on the seed spectral module", "PscVerif/PscVerif/Spectral.lean", (), ()),
-    "ThetaIntertwining": (T, "Theta intertwines the seed spectral operators", "PscVerif/PscVerif/Spectral.lean", (), ()),
-    "SeedCentralizer": (T, "the seed centralizer is as certified", "PscVerif/PscVerif/Spectral.lean", ("ThetaIntertwining", "PhiSemisimplicity"), ()),
-    "Target1": (T, "Target 1 of the seed spectral module", "PscVerif/PscVerif/Spectral.lean", ("SeedCentralizer",), ()),
+    "PhiSemisimplicity": (T, "Phi_3 acts semisimply on the seed spectral module", "proof/PscVerif/PscVerif/Spectral.lean", (), ()),
+    "ThetaIntertwining": (T, "Theta intertwines the seed spectral operators", "proof/PscVerif/PscVerif/Spectral.lean", (), ()),
+    "SeedCentralizer": (T, "the seed centralizer is as certified", "proof/PscVerif/PscVerif/Spectral.lean", ("ThetaIntertwining", "PhiSemisimplicity"), ()),
+    "Target1": (T, "Target 1 of the seed spectral module", "proof/PscVerif/PscVerif/Spectral.lean", ("SeedCentralizer",), ()),
     "DominantCubicCapture": (T, "dominant cubic capture for the explicitly certified seeds",
                              "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, sections 8-10 (historical restricted theorem)", ("Target1",), ()),
     "SpectralBlackBox": (T, "the seed-module spectral black box follows from Target 1 and dominant cubic capture",
@@ -261,7 +261,7 @@ def ledger() -> dict:
         "format": gl.FORMAT,
         "repository": "larsbx/pisot-substitution-conjecture-research",
         "module": "Ledger",
-        "tla_dir": "tla",
+        "tla_dir": "proof/tla",
         "index_path": "docs/ledger-index.md",
         "graph_path": "docs/claim-relationship-graph.json",
         "assumption_sets": ASSUMPTION_SETS,

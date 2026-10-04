@@ -521,7 +521,7 @@
       "statement": "Phi_3 acts semisimply on the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: PscVerif/PscVerif/Spectral.lean"
+      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
     },
     {
       "id": "RepoSeedUnionBridge",
@@ -552,7 +552,7 @@
       "statement": "the seed centralizer is as certified",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: PscVerif/PscVerif/Spectral.lean"
+      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
     },
     {
       "id": "SignatureReduction",
@@ -635,7 +635,7 @@
       "statement": "Target 1 of the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: PscVerif/PscVerif/Spectral.lean"
+      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
     },
     {
       "id": "ThetaIntertwining",
@@ -645,7 +645,7 @@
       "statement": "Theta intertwines the seed spectral operators",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: PscVerif/PscVerif/Spectral.lean"
+      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
     },
     {
       "id": "UDForPowers",

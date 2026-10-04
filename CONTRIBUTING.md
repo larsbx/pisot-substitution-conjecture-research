@@ -78,7 +78,7 @@ evidence table.
 9. TLA+ models —
 
    ```sh
-   ./tla/check.sh
+   ./proof/tla/check.sh
    ```
 
 A check you did not run is not evidence. Say which ones you skipped and why;
@@ -108,8 +108,8 @@ the pull request template has a place for exactly that.
 - Never patch a vendored file, add a file beside one, or reintroduce a local
   copy of what a package provides. Change it upstream in
   `larsbx/finite-math-kernels`, re-vendor, re-pin.
-- Never hand-edit a generated artifact: `tla/ledger.json`, `tla/Ledger.tla`,
-  the `tla/MCLedger*` models, `docs/ledger-index.md`,
+- Never hand-edit a generated artifact: `proof/tla/ledger.json`, `proof/tla/Ledger.tla`,
+  the `proof/tla/MCLedger*` models, `docs/ledger-index.md`,
   `docs/claim-relationship-graph.json`, or the generated `[[claim]]` block of
   `claim_governance.toml`.
 - Never claim beyond what the exact executable or the formal proof actually

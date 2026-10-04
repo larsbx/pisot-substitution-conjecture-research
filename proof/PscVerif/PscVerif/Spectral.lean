@@ -36,8 +36,8 @@
   bound.  These need the splitting field of `χ_M` and are not formalised.
 * Hypothesis **G1** (finiteness of `B_σ`) and the **SCC Producer** conjecture.
   These are state-machine statements, specified and model-checked in scope in the
-  TLA+ layer (`tla/BPA.tla`), and they remain open in general.  The
-  proof-architecture ledger `tla/ProofArchitecture.tla` records exactly which
+  TLA+ layer (`proof/tla/BPA.tla`), and they remain open in general.  The
+  proof-architecture ledger `proof/tla/ProofArchitecture.tla` records exactly which
   claims depend on them.
 * Everything in §12's "what this certificate does NOT prove" list.
 

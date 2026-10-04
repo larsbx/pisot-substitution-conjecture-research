@@ -226,7 +226,7 @@ Nothing in NLAP is currently verified by its own gate.
 
 ### C4. PSC: an imported theorem is recorded as proved `[V]`
 
-`PSC: tla/Ledger.tla` places `StandardBPAEquivalence` in `ProvedDef`. It is Akiyama--Barge--Berthé--Lee--Siegel Theorem 5.3, and `docs/bpa-literature-bridge.md` section 3 says the seedwise clause "should be checked in the theorem's proof ... rather than inferred from the word 'any'". `ProofArchitecture.tla` has `Proved`, `Withdrawn`, `Assumed` but no `Imported` category carrying hypotheses, conclusion, and leak note. The v16 source-pending results are handled by exclusion only. NLAP's `TheoremTagImport` (`src/mojo_theorem_kernel.mojo`) is the missing structure.
+`PSC: proof/tla/Ledger.tla` places `StandardBPAEquivalence` in `ProvedDef`. It is Akiyama--Barge--Berthé--Lee--Siegel Theorem 5.3, and `docs/bpa-literature-bridge.md` section 3 says the seedwise clause "should be checked in the theorem's proof ... rather than inferred from the word 'any'". `ProofArchitecture.tla` has `Proved`, `Withdrawn`, `Assumed` but no `Imported` category carrying hypotheses, conclusion, and leak note. The v16 source-pending results are handled by exclusion only. NLAP's `TheoremTagImport` (`src/mojo_theorem_kernel.mojo`) is the missing structure.
 
 ### C5. PSC: two contradictory policies on the contracting space `[V]`
 
@@ -284,17 +284,17 @@ Ranking is by expected leverage on the named repository's own open gate, then by
 
 ### B2. One Lean lemma for both Galois uses — PSC and NLAP, formal
 
-- Statement to formalize in `PSC: PscVerif/`: for `f` irreducible over `Q`, a predicate given by `Q`-rational polynomial equalities and disequalities is constant on the roots of `f`. Mathlib has the Galois action on roots of an irreducible polynomial.
+- Statement to formalize in `PSC: proof/PscVerif/`: for `f` irreducible over `Q`, a predicate given by `Q`-rational polynomial equalities and disequalities is constant on the roots of `f`. Mathlib has the Galois action on roots of an irreducible polynomial.
 - PSC payoff: a Lean formulation would strengthen formal coverage of the archived degree-three seed proof, but it is no longer a prerequisite for the live degree-two carrier span implication. The TLA source-pending invariant is retired by the audited wedge-dichotomy reconstruction, not by importing a missing v16 file.
 - NLAP payoff: the exact-type invariance of C1, and the algebraic catalogue object it licenses.
-- First file: `PSC: PscVerif/PscVerif/Spectral.lean` (extend the axiom-audited module).
+- First file: `PSC: proof/PscVerif/PscVerif/Spectral.lean` (extend the axiom-audited module).
 - Status: THEOREM-grade target, small.
 
 ### B3. Port the TLA+ dependency ledger to NLAP — NLAP, infrastructure
 
-- `PSC: tla/ProofArchitecture.tla` is generic (`CONSTANTS Results, Requires, Proved, Withdrawn, Assumed`) and needs no change. NLAP supplies a `Ledger.tla` with the seven proof blocks of `docs/C1_proof_definition_and_priority.md`, the theorem tags as `Assumed` in one configuration and absent in another, and invariants such as `C1NotEstablished`, `MissingLinkNeverTerminal`, `MLCStrengthUnreachableWithoutResidualClosure`. TLC then checks what `src/C1_theorem_status.mojo` currently asserts by hand.
+- `PSC: proof/tla/ProofArchitecture.tla` is generic (`CONSTANTS Results, Requires, Proved, Withdrawn, Assumed`) and needs no change. NLAP supplies a `Ledger.tla` with the seven proof blocks of `docs/C1_proof_definition_and_priority.md`, the theorem tags as `Assumed` in one configuration and absent in another, and invariants such as `C1NotEstablished`, `MissingLinkNeverTerminal`, `MLCStrengthUnreachableWithoutResidualClosure`. TLC then checks what `src/C1_theorem_status.mojo` currently asserts by hand.
 - Add an `Imported` constant to the shared `ProofArchitecture.tla` while porting (also fixes C4 on the PSC side).
-- First files: new `NLAP: tla/Ledger.tla`, `NLAP: tla/check.sh` copied from PSC.
+- First files: new `NLAP: proof/tla/Ledger.tla`, `NLAP: proof/tla/check.sh` copied from PSC.
 
 ### B4. Give NLAP a compiling Mojo toolchain and CI — NLAP, infrastructure
 

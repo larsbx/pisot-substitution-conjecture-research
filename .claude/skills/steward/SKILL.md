@@ -80,7 +80,7 @@ speculative ones.
 9. TLA+ models —
 
    ```sh
-   ./tla/check.sh
+   ./proof/tla/check.sh
    ```
 
 If a gate cannot run in this environment — a blocked toolchain, an absent
@@ -112,8 +112,8 @@ environment that reports a skip is honest; one that reports a pass is not.
 - Never patch a vendored file, add a file beside one, or reintroduce a local
   copy of what a package provides. Change it upstream in
   `larsbx/finite-math-kernels`, re-vendor, re-pin.
-- Never hand-edit a generated artifact: `tla/ledger.json`, `tla/Ledger.tla`,
-  the `tla/MCLedger*` models, `docs/ledger-index.md`,
+- Never hand-edit a generated artifact: `proof/tla/ledger.json`, `proof/tla/Ledger.tla`,
+  the `proof/tla/MCLedger*` models, `docs/ledger-index.md`,
   `docs/claim-relationship-graph.json`, or the generated `[[claim]]` block of
   `claim_governance.toml`.
 - Never claim beyond what the exact executable or the formal proof actually

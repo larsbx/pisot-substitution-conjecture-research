@@ -29,7 +29,7 @@ say so plainly rather than leaving the line blank.
 | every claim is guarded by a test a run actually reached | `PYTHONPATH=tools python -m claim_governance.cli --root . --check coverage` | not run |
 | vendored packages still match their pins                | `python tools/check_vendored_sync.py`                                     | not run |
 | suite                                                   | `pixi run test`                                                             | not run |
-| TLA+ models                                             | `./tla/check.sh`                                                            | not run |
+| TLA+ models                                             | `./proof/tla/check.sh`                                                            | not run |
 
 ## What this does *not* establish
 

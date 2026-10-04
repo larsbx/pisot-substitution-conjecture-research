@@ -25,7 +25,7 @@ A declaration is a link, not evidence. That the contract holds is what the test'
 
 `require_classes = ["finite-domain", "evidence"]`. Those two classes are the ones whose whole warrant is an exact finite computation: the live claim map gives "canonical Mojo certificate" as the source of each. An unguarded claim of either kind has no live warrant at all, so the check refuses it.
 
-A repository-proved claim is deliberately not required to name a test. Its warrant is a manuscript proof, a Lean proof in `PscVerif/`, or an archived certificate, and demanding a Mojo test of `PhiSemisimplicity` or `WedgeBound` would manufacture a link this repository does not have. The ranked item asked for "every `proved` claim names at least one passing test"; that is narrowed here, and section 5 records what the narrowing leaves open.
+A repository-proved claim is deliberately not required to name a test. Its warrant is a manuscript proof, a Lean proof in `proof/PscVerif/`, or an archived certificate, and demanding a Mojo test of `PhiSemisimplicity` or `WedgeBound` would manufacture a link this repository does not have. The ranked item asked for "every `proved` claim names at least one passing test"; that is narrowed here, and section 5 records what the narrowing leaves open.
 
 ## 4. The declarations
 

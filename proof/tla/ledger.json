@@ -2,7 +2,7 @@
   "format": "finite_proof_records ledger 1",
   "repository": "larsbx/pisot-substitution-conjecture-research",
   "module": "Ledger",
-  "tla_dir": "tla",
+  "tla_dir": "proof/tla",
   "index_path": "docs/ledger-index.md",
   "graph_path": "docs/claim-relationship-graph.json",
   "assumption_sets": {
@@ -628,7 +628,7 @@
       "tags": []
     },
     "PhiSemisimplicity": {
-      "id": "sha256:f12d4c982b9af0a861eb23b065f0a1a2a8efc3119338ca2d340ba2bf33d67339",
+      "id": "sha256:751c4e4b90e7e3b33968524fafd823ba2712dcf8743d02079551e7f77e3e4ce9",
       "kind": "repository_theorem",
       "statement": "Phi_3 acts semisimply on the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -640,13 +640,13 @@
         ],
         [
           "source",
-          "PscVerif/PscVerif/Spectral.lean"
+          "proof/PscVerif/PscVerif/Spectral.lean"
         ]
       ],
       "tags": []
     },
     "ThetaIntertwining": {
-      "id": "sha256:0d73e0745377a8d8c69739f9bc5546a7f1274dfb14d3a076783950b65f415094",
+      "id": "sha256:8647351b4d9ed0b5c6e09beb88e513ad255199703720bc583fd207c161aedc2d",
       "kind": "repository_theorem",
       "statement": "Theta intertwines the seed spectral operators",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -658,26 +658,26 @@
         ],
         [
           "source",
-          "PscVerif/PscVerif/Spectral.lean"
+          "proof/PscVerif/PscVerif/Spectral.lean"
         ]
       ],
       "tags": []
     },
     "SeedCentralizer": {
-      "id": "sha256:4fe566c8f582e186d7167e4c34889eabc1bc9c561475dee32b5430ea226f5d64",
+      "id": "sha256:447d964333585e118ea75a9a44dffec5949fb479f471da421788877641f2129b",
       "kind": "repository_theorem",
       "statement": "the seed centralizer is as certified",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:0d73e0745377a8d8c69739f9bc5546a7f1274dfb14d3a076783950b65f415094",
+          "sha256:8647351b4d9ed0b5c6e09beb88e513ad255199703720bc583fd207c161aedc2d",
           "Theta intertwines the seed spectral operators",
           "SeedCentralizer/ThetaIntertwining",
           "same",
           "accepted"
         ],
         [
-          "sha256:f12d4c982b9af0a861eb23b065f0a1a2a8efc3119338ca2d340ba2bf33d67339",
+          "sha256:751c4e4b90e7e3b33968524fafd823ba2712dcf8743d02079551e7f77e3e4ce9",
           "Phi_3 acts semisimply on the seed spectral module",
           "SeedCentralizer/PhiSemisimplicity",
           "same",
@@ -691,19 +691,19 @@
         ],
         [
           "source",
-          "PscVerif/PscVerif/Spectral.lean"
+          "proof/PscVerif/PscVerif/Spectral.lean"
         ]
       ],
       "tags": []
     },
     "Target1": {
-      "id": "sha256:59e168b7a07fe780bf1e6d632f44c2a0a1fce8b4f46554194ede1503c947ec61",
+      "id": "sha256:c7a0e9f25f58d5a8351557e37ba5dc69a81baaac9b9714a2148c92bb7478978a",
       "kind": "repository_theorem",
       "statement": "Target 1 of the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:4fe566c8f582e186d7167e4c34889eabc1bc9c561475dee32b5430ea226f5d64",
+          "sha256:447d964333585e118ea75a9a44dffec5949fb479f471da421788877641f2129b",
           "the seed centralizer is as certified",
           "Target1/SeedCentralizer",
           "same",
@@ -717,19 +717,19 @@
         ],
         [
           "source",
-          "PscVerif/PscVerif/Spectral.lean"
+          "proof/PscVerif/PscVerif/Spectral.lean"
         ]
       ],
       "tags": []
     },
     "DominantCubicCapture": {
-      "id": "sha256:11213c087e38c3d9d14362b40fb1402b4faa85a48ae2136ddd4b3eff78730a76",
+      "id": "sha256:86b10aca8eb78b697602d4f80ee833c1fc3df42fb85825a9bc7cdb1f58767083",
       "kind": "repository_theorem",
       "statement": "dominant cubic capture for the explicitly certified seeds",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:59e168b7a07fe780bf1e6d632f44c2a0a1fce8b4f46554194ede1503c947ec61",
+          "sha256:c7a0e9f25f58d5a8351557e37ba5dc69a81baaac9b9714a2148c92bb7478978a",
           "Target 1 of the seed spectral module",
           "DominantCubicCapture/Target1",
           "same",
@@ -749,20 +749,20 @@
       "tags": []
     },
     "SpectralBlackBox": {
-      "id": "sha256:7b3297168f605a4d881916a67f4fa22aa7a4010f73d540259e17e1af2a8fc85a",
+      "id": "sha256:aedba608628f7c3d4e4e0e2dd5f462b4db84fecd73eefa38651bf399b4425348",
       "kind": "repository_theorem",
       "statement": "the seed-module spectral black box follows from Target 1 and dominant cubic capture",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:59e168b7a07fe780bf1e6d632f44c2a0a1fce8b4f46554194ede1503c947ec61",
+          "sha256:c7a0e9f25f58d5a8351557e37ba5dc69a81baaac9b9714a2148c92bb7478978a",
           "Target 1 of the seed spectral module",
           "SpectralBlackBox/Target1",
           "same",
           "accepted"
         ],
         [
-          "sha256:11213c087e38c3d9d14362b40fb1402b4faa85a48ae2136ddd4b3eff78730a76",
+          "sha256:86b10aca8eb78b697602d4f80ee833c1fc3df42fb85825a9bc7cdb1f58767083",
           "dominant cubic capture for the explicitly certified seeds",
           "SpectralBlackBox/DominantCubicCapture",
           "same",
@@ -1067,7 +1067,7 @@
       "tags": []
     },
     "W3LowGrowth": {
-      "id": "sha256:7c107162242728c67113e12080ced801e0a0eb3c27ecabd191f549c234262b0e",
+      "id": "sha256:3e3d101c1366678df6596861949fca8023f4738d19136cc4c0286894bb693121",
       "kind": "repository_theorem",
       "statement": "the universal low-growth classification in W_3",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -1080,7 +1080,7 @@
           "accepted"
         ],
         [
-          "sha256:f12d4c982b9af0a861eb23b065f0a1a2a8efc3119338ca2d340ba2bf33d67339",
+          "sha256:751c4e4b90e7e3b33968524fafd823ba2712dcf8743d02079551e7f77e3e4ce9",
           "Phi_3 acts semisimply on the seed spectral module",
           "W3LowGrowth/PhiSemisimplicity",
           "same",

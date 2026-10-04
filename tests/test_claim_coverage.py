@@ -89,7 +89,7 @@ def test_the_required_classes_are_the_ones_whose_warrant_is_a_computation():
 
 def test_the_generated_graph_carries_the_proof_record_ledger_and_only_that():
     policy = tomllib.loads((ROOT / "claim_governance.toml").read_text(encoding="utf-8"))
-    records = set(json.loads((ROOT / "tla" / "ledger.json").read_text(encoding="utf-8"))["records"])
+    records = set(json.loads((ROOT / "proof" / "tla" / "ledger.json").read_text(encoding="utf-8"))["records"])
     graph = json.loads((ROOT / "docs" / "claim-relationship-graph.json").read_text(encoding="utf-8"))
     claims = {n["id"] for n in graph["nodes"] if n["kind"] == "claim"}
     assert claims == records

@@ -21,9 +21,9 @@ mojo/.magic/
 *.mojopkg
 
 # Lean / lake
-PscVerif/.lake/
+proof/PscVerif/.lake/
 
 # TLC scratch
-tla/states/
-tla/*.jar
-tla/MC*.out
+proof/tla/states/
+proof/tla/*.jar
+proof/tla/MC*.out

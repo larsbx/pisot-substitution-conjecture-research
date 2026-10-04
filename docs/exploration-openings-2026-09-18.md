@@ -181,7 +181,7 @@ linear algebra — in 13 of the 50 modules under `mojo/psc/`.
 
 ## 7. Depth of the deductive layer `[P]`
 
-`PscVerif/` machine-checks finite algebra from the spectral module. The
+`proof/PscVerif/` machine-checks finite algebra from the spectral module. The
 reduction itself — bounded discrepancy to finite overlap graph to coincidence
 density to the imported bridge — is audited prose and a TLA+ dependency ledger,
 which record that the hypotheses were checked by a reader rather than by a
