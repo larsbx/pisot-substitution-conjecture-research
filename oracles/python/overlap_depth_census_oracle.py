@@ -1,4 +1,4 @@
-"""Python oracle for the depth lines of mojo/swap_overlap_census.mojo (exact Q(beta)).
+"""Python oracle for the depth lines of kernel/swap_overlap_census.mojo (exact Q(beta)).
 
 Recomputes, over the alphabet-3 PIP corpus, the maxima and histograms of the
 first-coincidence depth, the first left-aligned depth, and the prefix/suffix

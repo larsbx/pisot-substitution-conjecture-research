@@ -1,6 +1,6 @@
 """Radius-``m`` symbolic collars of seed-patch occurrences (independent oracle).
 
-Canonical implementation: ``mojo/psc/overlap_collar.mojo``.  An occurrence
+Canonical implementation: ``kernel/psc/overlap_collar.mojo``.  An occurrence
 path from a swap seed is an actual pair of tiles in the inflated periodic
 patches ``sigma^n((ab)^Z)`` and ``sigma^n((ba)^Z)``.  Its radius-``m``
 collar records the ``m`` letters on each side of each tile in its patch.

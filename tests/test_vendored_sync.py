@@ -12,13 +12,13 @@ import check_vendored_sync as sync  # noqa: E402
 
 PACKAGES = {
     "proof_architecture": ("larsbx/finite-math-kernels", "proof/tla"),
-    "finite_exact": ("larsbx/finite-math-kernels", "mojo"),
-    "substitution_dynamics": ("larsbx/finite-math-kernels", "mojo"),
-    "finite_linear_algebra": ("larsbx/finite-math-kernels", "mojo"),
+    "finite_exact": ("larsbx/finite-math-kernels", "kernel"),
+    "substitution_dynamics": ("larsbx/finite-math-kernels", "kernel"),
+    "finite_linear_algebra": ("larsbx/finite-math-kernels", "kernel"),
     "claim_governance": ("larsbx/finite-math-kernels", "tools"),
     "proof_records": ("larsbx/finite-math-kernels", "tools"),
     "oracle_refinement": ("larsbx/finite-math-kernels", "tools"),
-    "parallel_fold": ("larsbx/finite-math-kernels", "mojo"),
+    "parallel_fold": ("larsbx/finite-math-kernels", "kernel"),
 }
 
 
@@ -55,9 +55,9 @@ def test_local_patch_is_detected(tmp_path, monkeypatch):
     manifest = tmp_path / "vendored.toml"
     manifest.write_text((ROOT / "vendored.toml").read_text(encoding="utf-8"), encoding="utf-8")
     assert sync.check(tmp_path, manifest) == []
-    target = tmp_path / "mojo" / "finite_exact" / "rat_q.mojo"
+    target = tmp_path / "kernel" / "finite_exact" / "rat_q.mojo"
     target.write_text(target.read_text(encoding="utf-8") + "\n# local patch\n", encoding="utf-8")
-    (tmp_path / "mojo" / "finite_exact" / "extra.mojo").write_text("", encoding="utf-8")
+    (tmp_path / "kernel" / "finite_exact" / "extra.mojo").write_text("", encoding="utf-8")
     (tmp_path / "tools" / "claim_governance" / "local_rule.py").write_text("", encoding="utf-8")
     errors = sync.check(tmp_path, manifest)
     assert any("rat_q.mojo differs" in e for e in errors)
@@ -66,7 +66,7 @@ def test_local_patch_is_detected(tmp_path, monkeypatch):
 
 
 def test_no_second_arithmetic_or_kernel_lives_beside_the_packages():
-    psc = ROOT / "mojo" / "psc"
+    psc = ROOT / "kernel" / "psc"
     for retired in ["rational.mojo", "rational_interval.mojo", "mat3.mojo", "qlinalg.mojo", "tensor3.mojo"]:
         assert not (psc / retired).exists(), retired
     for path in psc.glob("*.mojo"):
@@ -105,7 +105,7 @@ def test_estate_pin_drift_is_detected_and_rederived(tmp_path):
 
 def test_pin_rederives_the_estate_pin(tmp_path):
     manifest = _copy_vendored_tree(tmp_path)
-    target = tmp_path / "mojo" / "finite_exact" / "rat_q.mojo"
+    target = tmp_path / "kernel" / "finite_exact" / "rat_q.mojo"
     target.write_text(target.read_text(encoding="utf-8") + "\n# re-vendored\n", encoding="utf-8")
     pkg = next(p for p in sync.load(manifest) if p["name"] == "finite_exact")
     assert sync.pin("finite_exact", pkg["commit"], tmp_path, manifest) == []

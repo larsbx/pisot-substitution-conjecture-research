@@ -1,6 +1,6 @@
 """Independent Python oracle for ordered child-occurrence zipper geometry.
 
-Canonical executable implementation: ``mojo/psc/overlap_zipper.mojo``.
+Canonical executable implementation: ``kernel/psc/overlap_zipper.mojo``.
 The state-level overlap graph intentionally forgets child occurrence position;
 this module retains top/bottom child indices and geometric order so repeated
 child types remain distinct events.

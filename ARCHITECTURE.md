@@ -17,7 +17,7 @@ The ordering rule is:
 authority -> mathematical/domain concern -> implementation language
 ```
 
-Mojo under `mojo/` is the canonical executable (see `AGENTS.md`). Python under
+Mojo under `kernel/` is the canonical executable (see `AGENTS.md`). Python under
 `reference/psc_research/` is a non-authoritative reference and oracle layer; Julia
 under `oracles/julia/` is a research oracle. Lean under `proof/PscVerif/` and TLA+
 under `proof/tla/` are the proof plane: they hold claim state, not acceptance

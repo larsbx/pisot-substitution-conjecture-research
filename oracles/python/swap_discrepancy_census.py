@@ -6,7 +6,7 @@ matrix powers, rational-root test, Sturm sequences over Q; no floating point),
 builds the reachable
 balanced-pair graph from the three swap seeds (cap 20000 states), and reports
 the maximum discrepancy over reachable states.  Independent Python oracle for
-the canonical Mojo kernel mojo/swap_discrepancy_census.mojo.  Finite evidence
+the canonical Mojo kernel kernel/swap_discrepancy_census.mojo.  Finite evidence
 only; see
 docs/source-imports/issue-45/g1b1-bounded-discrepancy-reconstruction.md.
 """

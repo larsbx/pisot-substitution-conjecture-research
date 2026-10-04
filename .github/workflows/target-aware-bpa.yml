@@ -3,11 +3,11 @@ name: Target-aware BPA diagnostic
 on:
   push:
     paths:
-      - 'mojo/psc/target_packet*.mojo'
-      - 'mojo/target_aware_bpa.mojo'
-      - 'mojo/check_target_packets.sh'
-      - 'mojo/tests/test_target_packets.mojo'
-      - 'mojo/pixi.*'
+      - 'kernel/psc/target_packet*.mojo'
+      - 'kernel/target_aware_bpa.mojo'
+      - 'kernel/check_target_packets.sh'
+      - 'kernel/tests/test_target_packets.mojo'
+      - 'kernel/pixi.*'
       - 'docs/target-aware-bpa*.md'
       - 'docs/evidence/target-aware-bpa-2026-10-02/**'
       - 'tests/test_target_packet_evidence.py'
@@ -25,15 +25,15 @@ jobs:
       - run: pip install -e '.[dev]'
       - uses: prefix-dev/setup-pixi@v0.9.1
         with:
-          manifest-path: mojo/pixi.toml
+          manifest-path: kernel/pixi.toml
       - name: Canonical Mojo regressions and receipts
-        working-directory: mojo
+        working-directory: kernel
         run: pixi run test
       - name: Canonical exact certificates
-        working-directory: mojo
+        working-directory: kernel
         run: pixi run verify
       - name: Deterministic diagnostic replay and CLI boundaries
-        working-directory: mojo
+        working-directory: kernel
         run: pixi run bash check_target_packets.sh
       - name: Independent literal-word oracle
         run: python -m pytest tests/test_target_packet_evidence.py tests/test_synthetic_degree2.py
@@ -48,6 +48,6 @@ jobs:
         with:
           name: target-aware-bpa-receipts
           path: |
-            mojo/build/target-*.jsonl
-            mojo/build/target-*.log
-            mojo/build/claim-receipts.tsv
+            kernel/build/target-*.jsonl
+            kernel/build/target-*.log
+            kernel/build/claim-receipts.tsv

@@ -36,7 +36,7 @@ evidence table.
 2. Mojo regressions plus claim receipts —
 
    ```sh
-   ./mojo/run_tests.sh
+   ./kernel/run_tests.sh
    ```
 
 3. the ledger is still generated, not hand-edited —
@@ -86,7 +86,7 @@ the pull request template has a place for exactly that.
 
 ## What counts as evidence here
 
-- A test under `mojo/tests/` ends its `main` with `require_claim("<Name>")` or
+- A test under `kernel/tests/` ends its `main` with `require_claim("<Name>")` or
   `require_contract("<what it pins>")`, placed after the assertions it stands
   behind.
 - Receipts are collected from the tests that *passed*: a declaration no run

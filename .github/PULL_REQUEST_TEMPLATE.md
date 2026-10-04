@@ -22,7 +22,7 @@ say so plainly rather than leaving the line blank.
 | Check                                                   | Command                                                                     | Result  |
 | ------------------------------------------------------- | --------------------------------------------------------------------------- | ------- |
 | every verification layer, reporting skips honestly      | `./tools/verify_all.sh`                                                   | not run |
-| Mojo regressions plus claim receipts                    | `./mojo/run_tests.sh`                                                       | not run |
+| Mojo regressions plus claim receipts                    | `./kernel/run_tests.sh`                                                       | not run |
 | the ledger is still generated, not hand-edited          | `python tools/make_ledger.py --check`                                     | not run |
 | the math catalogue is still generated                   | `python tools/make_math_catalogue.py --check`                             | not run |
 | claim governance                                        | `PYTHONPATH=tools python -m claim_governance.cli --root .`                  | not run |

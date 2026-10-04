@@ -17,7 +17,7 @@ name = "larsbx/pisot-substitution-conjecture-research"
 
 [scan]
 prose = ["README.md", "docs/**/*.md", "manuscripts/*.tex", "manuscripts/*.md"]
-source = ["mojo/psc/**/*.mojo", "mojo/*.mojo", "mojo/tests/*.mojo", "reference/psc_research/*.py"]
+source = ["kernel/psc/**/*.mojo", "kernel/*.mojo", "kernel/tests/*.mojo", "reference/psc_research/*.py"]
 exclude = ["archive/**", "docs/source-imports/**"]
 
 # ---------------------------------------------------------------------------
@@ -97,8 +97,8 @@ file_status_lines = 10
 allow = ["manuscripts/PSC_balanced_pair_state_2026-09-13.tex", "manuscripts/PSC_PROOF_next_source_audit.tex"]
 
 # ---------------------------------------------------------------------------
-# Coverage: every Mojo test names what it guards.  `mojo/psc/claim_tests.mojo`
-# supplies the two declarations; `mojo/run_tests.sh` collects the receipts of
+# Coverage: every Mojo test names what it guards.  `kernel/psc/claim_tests.mojo`
+# supplies the two declarations; `kernel/run_tests.sh` collects the receipts of
 # the tests that passed, so a declaration no run reached guards nothing and a
 # red suite credits nothing.  The required classes are the two whose warrant
 # *is* an exact finite computation: a finite-domain theorem and an empirical
@@ -110,9 +110,9 @@ allow = ["manuscripts/PSC_balanced_pair_state_2026-09-13.tex", "manuscripts/PSC_
 # declarations and from docs/claim-relationship-graph.json.
 # ---------------------------------------------------------------------------
 [coverage]
-tests = ["mojo/tests/test_*.mojo"]
+tests = ["kernel/tests/test_*.mojo"]
 require_classes = ["finite-domain", "evidence"]
-receipts = "mojo/build/claim-receipts.tsv"
+receipts = "kernel/build/claim-receipts.tsv"
 
 # ---------------------------------------------------------------------------
 # Promotion: an unsettled claim must not be described as proved.
@@ -135,7 +135,7 @@ allow = ["manuscripts/PSC_balanced_pair_state_2026-09-13.tex"]
 [[numerics.rule]]
 name = "no-float-in-kernel"
 pattern = '\b(?:Float16|Float32|Float64|BFloat16|FloatLiteral|Float|float)\b|(?<![\w.])(?:\d(?:_?\d)*\.(?:\d(?:_?\d)*)?|\.\d(?:_?\d)*)(?:[eE][+-]?\d(?:_?\d)*)?(?![\w.])|(?<![\w.])\d(?:_?\d)*[eE][+-]?\d(?:_?\d)*(?![\w.])'
-paths = ["mojo/psc/**/*.mojo", "mojo/*.mojo", "mojo/tests/*.mojo"]
+paths = ["kernel/psc/**/*.mojo", "kernel/*.mojo", "kernel/tests/*.mojo"]
 message = "floating point in exact kernel scope (binding criterion C1)"
 
 [[numerics.rule]]

@@ -1,6 +1,6 @@
 """Independent oracle for seed-relative overlap occurrence multiplicities.
 
-Canonical implementation: ``mojo/psc/overlap_growth_bridge.mojo``.  Counts
+Canonical implementation: ``kernel/psc/overlap_growth_bridge.mojo``.  Counts
 are per inherited period of the swap seeds and stop at coincidence vertices,
 matching the residual seed-patch graph contract.
 """
@@ -9,7 +9,7 @@ from __future__ import annotations
 from typing import Any
 
 IMPLEMENTATION_ROLE = "independent-oracle"
-CANONICAL_IMPLEMENTATION = "mojo/psc/overlap_growth_bridge.mojo"
+CANONICAL_IMPLEMENTATION = "kernel/psc/overlap_growth_bridge.mojo"
 
 
 def seed_occurrence_multiplicity(g: Any) -> tuple[int, ...]:

@@ -27,7 +27,7 @@ Manifest shape::
     name = "finite_exact"
     repository = "larsbx/finite_exact"
     commit = "<40 hex>"
-    root = "mojo"                      # local include root; "." for the repo root
+    root = "kernel"                      # local include root; "." for the repo root
 
     [package.files]
     "finite_exact/__init__.mojo" = "<sha256>"

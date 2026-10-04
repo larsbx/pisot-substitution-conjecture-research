@@ -71,8 +71,8 @@ inconsistent occurrence aborts rather than becoming evidence.
 Canonical implementation:
 
 ```text
-mojo/psc/overlap_affine_pump.mojo
-mojo/tests/test_overlap_affine_pump.mojo
+kernel/psc/overlap_affine_pump.mojo
+kernel/tests/test_overlap_affine_pump.mojo
 ```
 
 Independent oracle:

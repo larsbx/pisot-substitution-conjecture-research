@@ -4,7 +4,7 @@ The repository uses several complementary verification layers. No layer is allow
 
 ## 0. Canonical executable language
 
-**Mojo is the canonical executable implementation layer.** New algorithms, exact finite-state machinery, census drivers, and performance-sensitive theorem-support code should be implemented in `mojo/` first. Python is retained as an independent reference/oracle and prototyping layer, not as the default implementation surface.
+**Mojo is the canonical executable implementation layer.** New algorithms, exact finite-state machinery, census drivers, and performance-sensitive theorem-support code should be implemented in `kernel/` first. Python is retained as an independent reference/oracle and prototyping layer, not as the default implementation surface.
 
 This is also an optimization policy: hot kernels should be redesigned around Mojo's strengths rather than mechanically translated from Python. In the standing alphabet-3 regime, prefer fixed-dimension exact arithmetic, streaming prefix accumulators, precomputed substitution-local tables, compact integer-index graph representations, iterative traversals, and storage reuse. Diagnostic string serialization and Python-style dynamic object graphs should stay out of inner loops where an exact compact representation is available.
 
@@ -29,7 +29,7 @@ Lean currently formalizes the older finite spectral core, not the full C4 stack.
 
 ## 2. Mojo kernel and optimization policy
 
-The Mojo kernel uses exact integer/rational operations (unbounded `BigZ`-backed rationals and closed rational intervals from `mojo/finite_exact/`, vendored from one pinned `larsbx/finite-math-kernels` commit) for:
+The Mojo kernel uses exact integer/rational operations (unbounded `BigZ`-backed rationals and closed rational intervals from `kernel/finite_exact/`, vendored from one pinned `larsbx/finite-math-kernels` commit) for:
 
 - incidence and characteristic-polynomial arithmetic;
 - primitive / irreducible / Pisot screening;

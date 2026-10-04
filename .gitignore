@@ -16,8 +16,8 @@ dist/
 *.egg-info/
 
 # Mojo / pixi
-mojo/.pixi/
-mojo/.magic/
+kernel/.pixi/
+kernel/.magic/
 *.mojopkg
 
 # Lean / lake

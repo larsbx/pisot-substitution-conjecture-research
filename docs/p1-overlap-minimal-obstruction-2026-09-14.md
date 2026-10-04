@@ -167,7 +167,7 @@ stated against exactly this object.
 Canonical Mojo implementation:
 
 ```text
-mojo/psc/overlap_obstruction.mojo
+kernel/psc/overlap_obstruction.mojo
 ```
 
 The function

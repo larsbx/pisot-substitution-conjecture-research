@@ -99,7 +99,7 @@ state has symbolic length at most 45,136,797,534.*
 `beta ≈ 3.27902` and `ell = (1, beta, beta^2/3) ≈ (1, 3.27902, 3.58399)`, so
 `ell_min = 1` and `ell_max = beta^2/3`. The regression
 `test_the_cube_image_specimen_has_a_productive_depth_19_overlap_graph` in
-`mojo/tests/test_overlap_seed_patch.mojo` certifies, in exact arithmetic,
+`kernel/tests/test_overlap_seed_patch.mojo` certifies, in exact arithmetic,
 that its seed-patch overlap graph from all three swap seeds has 1,142
 vertices, is not capped, has no nonproductive vertex, and has largest
 first-coincidence depth `D = 19`. Proposition 1 applies, and

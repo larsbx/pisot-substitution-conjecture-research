@@ -1,10 +1,10 @@
 # Which test guards which claim
 
-**Status:** engineering record of the `coverage` check, round-two item R8 (transfer A2) of `docs/cross-pollination-round-two-2026-09-16.md`. It states no mathematics and changes no claim status. The mechanism is the vendored `claim_governance` package (`audit/docs/policy-format.md` in `larsbx/finite-math-kernels`, section `[coverage]`); the policy is the `[coverage]` table of `claim_governance.toml`; the declarations are `mojo/psc/claim_tests.mojo`.
+**Status:** engineering record of the `coverage` check, round-two item R8 (transfer A2) of `docs/cross-pollination-round-two-2026-09-16.md`. It states no mathematics and changes no claim status. The mechanism is the vendored `claim_governance` package (`audit/docs/policy-format.md` in `larsbx/finite-math-kernels`, section `[coverage]`); the policy is the `[coverage]` table of `claim_governance.toml`; the declarations are `kernel/psc/claim_tests.mojo`.
 
 ## 1. What a declaration says, and what it does not
 
-`larsbx/crypto-composer` refuses to let a test exist without a proof statement, an argument, and the constraint identifiers it guards. This repository had the same intent in the `AGENTS.md` review gate — "Mojo regression coverage for the theorem/invariant contract" — and nothing that linked a test file to a claim. Now each file under `mojo/tests/` ends its `main` with one of:
+`larsbx/crypto-composer` refuses to let a test exist without a proof statement, an argument, and the constraint identifiers it guards. This repository had the same intent in the `AGENTS.md` review gate — "Mojo regression coverage for the theorem/invariant contract" — and nothing that linked a test file to a claim. Now each file under `kernel/tests/` ends its `main` with one of:
 
 - `require_claim("<Name>")` — the test pins a contract that the named ledger claim's certificate rests on;
 - `require_contract("<what it pins>")` — the test pins a contract that is no ledger claim, as for a vendored kernel.
@@ -16,10 +16,10 @@ A declaration is a link, not evidence. That the contract holds is what the test'
 | Layer | Runs | Catches |
 | --- | --- | --- |
 | static | anywhere, no toolchain | a test that declares neither a claim nor a contract; a name that is in no claim or alias of the ledger; a required claim that no test names |
-| receipts | after `mojo/run_tests.sh` | a declaration the run did not reach, because the test body is never called from `main` or its file failed; a receipt no test declares |
+| receipts | after `kernel/run_tests.sh` | a declaration the run did not reach, because the test body is never called from `main` or its file failed; a receipt no test declares |
 | seam | `pytest tests/test_claim_coverage.py` | drift between the Mojo receipt prefixes, the `awk` that reads them, and the policy paths |
 
-`run_tests.sh` rewrites `mojo/build/claim-receipts.tsv` from empty on every run and appends only the receipts of tests that *passed*, so a red suite credits nothing and a stale receipt cannot survive. The file is a run product and is not committed. Without it — a checkout with no Mojo toolchain — the static layer still runs and reports honestly that it is the only one that did.
+`run_tests.sh` rewrites `kernel/build/claim-receipts.tsv` from empty on every run and appends only the receipts of tests that *passed*, so a red suite credits nothing and a stale receipt cannot survive. The file is a run product and is not committed. Without it — a checkout with no Mojo toolchain — the static layer still runs and reports honestly that it is the only one that did.
 
 ## 3. Which classes must be guarded, and why only those
 
@@ -67,8 +67,8 @@ A claim named against an open or conditional node — `G1b2RenewalFiniteness` mo
 
 ## 5. What this does not yet cover
 
-- **The Python oracle layer is not read.** `tests = ["mojo/tests/test_*.mojo"]`, so a claim whose only regression is a Python oracle (`tests/test_lattice_lift.py`, `test_meanarea_integrality.py`, `test_multidegree_sieve.py`, `test_lie4.py` among them) counts as unguarded. That is deliberate while Mojo is the canonical layer, and it means the guarded counts below understate the regression coverage of the degree-2 lattice results.
-- **Census drivers are not read.** The exhaustive censuses under `mojo/*.mojo` are run by CI and by `tools/verify_all.sh` with their exact output pinned, but they emit no receipt, so a finite-domain claim is guarded here through the library contracts its driver is a survey over, not through the driver's own run.
+- **The Python oracle layer is not read.** `tests = ["kernel/tests/test_*.mojo"]`, so a claim whose only regression is a Python oracle (`tests/test_lattice_lift.py`, `test_meanarea_integrality.py`, `test_multidegree_sieve.py`, `test_lie4.py` among them) counts as unguarded. That is deliberate while Mojo is the canonical layer, and it means the guarded counts below understate the regression coverage of the degree-2 lattice results.
+- **Census drivers are not read.** The exhaustive censuses under `kernel/*.mojo` are run by CI and by `tools/verify_all.sh` with their exact output pinned, but they emit no receipt, so a finite-domain claim is guarded here through the library contracts its driver is a survey over, not through the driver's own run.
 - **Guarded is not complete.** 18 of the 42 repository-proved claims name a Mojo test today. The rest are manuscript-, Lean-, or certificate-backed, and the check does not ask which of those has a regression, because it cannot tell an absent one from an inapplicable one.
 
 None of the three is a gap in a proof. Each is a bound on what the mechanism reports, stated here so that a passing `coverage` check is not read as more than it is.

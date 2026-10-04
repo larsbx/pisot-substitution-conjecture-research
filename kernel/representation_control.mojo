@@ -1,6 +1,6 @@
 """Print replayable counts for docs/representation-control-bpa-vs-overlap-2026-10-02.md.
 
-Run from mojo/: pixi run mojo run -I . representation_control.mojo
+Run from kernel/: pixi run mojo run -I . representation_control.mojo
 Four fixed specimens only; no census, quotient, spectral margin, or theorem.
 """
 

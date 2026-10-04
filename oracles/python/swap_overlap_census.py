@@ -1,5 +1,5 @@
 """Exact seed-patch overlap-graph census over the alphabet-3 PIP corpus
-(independent Python oracle of mojo/swap_overlap_census.mojo).  Finite evidence
+(independent Python oracle of kernel/swap_overlap_census.mojo).  Finite evidence
 only; see docs/overlap-finiteness-and-coincidence-density-2026-09-13.md."""
 import sys, time
 sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[2] / 'reference'))

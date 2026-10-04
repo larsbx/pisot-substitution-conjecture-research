@@ -48,7 +48,7 @@ automatically. In particular, Level 3 here presupposes Level 2, so no
 | "Joint full-support lemma", false by Tribonacci; remaining gap stated as joint-support growth | **Counterexample reproduced** (§5). The lemma plays no role on this repository's routes: the bad-SCC normal form already has `rank_Q(V_S) = \|A\|`. |
 | "S-child" statement: child support = supp σ(x) ∪ supp σ(y) | **Elementary, to be re-derived where used:** σ(xy) = σ(x)σ(y), so supp σ(xy) = supp σ(x) ∪ supp σ(y). Which graph's "child" was meant is lost. |
 | Level 2 "closed for ℤ-independent substitutions with max \|σ\| ≤ 4" (Thm 9.28, chain 9.26a–j) | **Unverified and suspect.** It adds ℤ-independence as a hypothesis, which firewall item 2 forbids, and it conflicts with G1b-2 remaining open. It may descend from the retracted inference "UD ⇒ bounded padding ⇒ finite BPA" (see `docs/completion-ledger-2026-09-11.md`); this is a conjecture about provenance, not a finding. If it is ever reconstructed, it can only be a restricted-class result inside G1b-2. On the total-length ≤ 8 part of that slice, finite `B_sigma` holds for every specimen as a finite-domain consequence of `docs/bpa-termination-by-overlap-depth-2026-10-02.md` (Proposition 1 with the exact overlap verdicts of §6), including the 120 whose direct builds exhaust the budget of §7. The recorded theorem and its proof remain lost, and nothing is claimed beyond that class. |
-| 4,554-PIP `psc_suite` run | Matches this repository's standing corpus (`mojo/psc/corpus.mojo`). |
+| 4,554-PIP `psc_suite` run | Matches this repository's standing corpus (`kernel/psc/corpus.mojo`). |
 
 ## 4. Recovered sweep domain
 
@@ -68,7 +68,7 @@ adds no member, because images of lengths (3,3,3) are constant-length, so
 **Evidence class:** exact finite count, replayable in Mojo. The canonical
 enumeration is `psc.corpus.pip_corpus_total_length`, and the regression
 `test_the_total_length_corpus_contains_the_standing_corpus` in
-`mojo/tests/test_census_library.mojo` pins the total, every cumulative slice,
+`kernel/tests/test_census_library.mojo` pins the total, every cumulative slice,
 and the max-image ≤ 3 slice's identity with the standing corpus, label for
 label. The Python screen `reference/psc_research/pip_screen.py` is the
 independently written oracle and gives the same counts. The class is a corpus
@@ -98,8 +98,8 @@ recurrent structure for σ^k.
 not reconstruct the lost 2-step criterion, does not close any level, and says
 nothing about substitutions outside the class.
 
-`mojo/swap_overlap_total_length_sweep.mojo` runs the survey of
-`mojo/swap_overlap_census.mojo` unchanged over the 24,486 specimens of §4
+`kernel/swap_overlap_total_length_sweep.mojo` runs the survey of
+`kernel/swap_overlap_census.mojo` unchanged over the 24,486 specimens of §4
 (`psc.corpus.pip_corpus_total_length(8)`). It is an exhaustive, deterministic
 exploratory sweep, not a census: the repository's censuses survey the
 canonical 4,554 corpus (`AGENTS.md`, "The census library"). Because 24
@@ -107,7 +107,7 @@ specimens exhaust a diagnostic budget (below), the sweep reports itself
 incomplete and exits non-zero after printing its summary. Two kernel changes made this
 possible: the exact Perron layer is certified to column sum
 `MAX_CERTIFIED_COLUMN_SUM = 6` with the overflow bound stated in
-`mojo/psc/perron_field3.mojo`, and `PerronCache` no longer leaves a stale
+`kernel/psc/perron_field3.mojo`, and `PerronCache` no longer leaves a stale
 entry behind a refused build. The same driver on the standing corpus
 reproduces every published line exactly.
 
@@ -143,7 +143,7 @@ only. A build that exhausts a budget is inconclusive; it is neither a
 counterexample to G1 nor evidence of termination. Nothing here bears on
 G1b-2 in general.
 
-`mojo/bpa_total_length_sweep.mojo` builds `B_sigma` with
+`kernel/bpa_total_length_sweep.mojo` builds `B_sigma` with
 `psc.bounded_bpa.build_bounded` for the 14,670 specimens of §4 with longest
 image at most 4, under the shared 20,000-state cap and a state-length budget
 of 100,000 letters. A state-count cap alone did not bound memory here: on the
@@ -190,7 +190,7 @@ inconclusive specimens and for the whole class of §6.
 
 ## 9. Completed deterministic separation follow-up — 2026-10-02
 
-`mojo/separation_radius_total_length_sweep.mojo` surveys the same complete
+`kernel/separation_radius_total_length_sweep.mojo` surveys the same complete
 24,486-member class in corpus order. It reuses the reviewed occurrence and
 proper-power contracts of `psc.overlap_collar`; this is a replay extension,
 not a new recognizability diagnostic or a universal invariant. The prior

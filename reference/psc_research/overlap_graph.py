@@ -11,7 +11,7 @@ the interval image excludes zero (which terminates for every nonzero element).
 
 Finiteness of the reachable graph is a theorem (bounded discrepancy); the cap
 here is only a fail-closed guard.  Canonical implementation:
-mojo/psc/overlap_seed_patch.mojo.
+kernel/psc/overlap_seed_patch.mojo.
 
 This module is deliberately retained as a separately written oracle. It is
 not an alternative production implementation and must not be cited as the
@@ -25,7 +25,7 @@ from fractions import Fraction
 from typing import Mapping, Sequence
 
 IMPLEMENTATION_ROLE = "independent-oracle"
-CANONICAL_IMPLEMENTATION = "mojo/psc/overlap_seed_patch.mojo"
+CANONICAL_IMPLEMENTATION = "kernel/psc/overlap_seed_patch.mojo"
 CATALOGUE_OBJECT_ID = "seed-patch-overlap-automaton"
 
 Letter = int

@@ -22,7 +22,7 @@ The original PR #192 note at
 `e1ff17c3e27d9e2956399e7ff413444c7f04ed1d` reported BPA counts
 `8, 606, 626, 2308` and overlap counts `9, 19, 39, 42`. The P1 review correctly
 identified that canonical Tribonacci overlap counts are 29, already pinned in
-`mojo/tests/test_oa_overlap_types.mojo` on
+`kernel/tests/test_oa_overlap_types.mojo` on
 `main@4339c0eff04531cf98529c85e8defdecae1a2d03`.
 
 No graph constructor, seed convention, quotient map, equivalence relation,
@@ -70,16 +70,16 @@ it is not a certificate that all types of the infinite literature graph
 complete graph. The two initial objects must stay distinct even when counts
 or sampled type sets agree.
 
-Replay with the pinned `mojo/pixi.lock` toolchain:
+Replay with the pinned `kernel/pixi.lock` toolchain:
 
 ```sh
-cd mojo
+cd kernel
 pixi run --locked mojo run -I . representation_control.mojo
 pixi run --locked mojo run -I . tests/test_representation_control.mojo
 ```
 
-The canonical entry point is `mojo/representation_control.mojo`; its thin
-adapter is `mojo/psc/representation_control.mojo`. The regression pins every
+The canonical entry point is `kernel/representation_control.mojo`; its thin
+adapter is `kernel/psc/representation_control.mojo`. The regression pins every
 count and input field below, the noncoincidence type differences, productivity,
 and independent BPA, seed-overlap and OA cap refusals. The existing exact
 Python oracle independently reproduces the counts and type differences; it

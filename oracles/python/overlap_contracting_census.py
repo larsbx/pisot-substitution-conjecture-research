@@ -1,4 +1,4 @@
-"""Python oracle for mojo/overlap_contracting_census.mojo: first left-aligned depth b(O) against the
+"""Python oracle for kernel/overlap_contracting_census.mojo: first left-aligned depth b(O) against the
 contracting lower bound m_0(O) of psc_research.overlap_contracting, over the
 alphabet-3 PIP corpus.  Verifies b >= m_0 on every vertex and reports the
 distribution of the excess b - m_0 and of m_0 itself."""

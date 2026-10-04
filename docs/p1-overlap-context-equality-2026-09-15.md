@@ -35,8 +35,8 @@ inflation step. It is not yet a collar in the iterated periodic swap patch.
 Canonical implementation:
 
 ```text
-mojo/psc/overlap_context.mojo
-mojo/tests/test_overlap_context.mojo
+kernel/psc/overlap_context.mojo
+kernel/tests/test_overlap_context.mojo
 ```
 
 Independent oracle:

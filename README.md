@@ -8,7 +8,7 @@ Repository structure and authority planes are declared in `ESTATE.toml`
 
 ## Implementation default
 
-**Mojo is the canonical implementation language for executable research code in this repository.** New algorithms, exact finite-state machinery, census code, and performance-sensitive proof instrumentation should land in `mojo/` first and use Mojo-native data/layout optimizations.
+**Mojo is the canonical implementation language for executable research code in this repository.** New algorithms, exact finite-state machinery, census code, and performance-sensitive proof instrumentation should land in `kernel/` first and use Mojo-native data/layout optimizations.
 
 Python under `reference/psc_research/` is a secondary reference/oracle and prototyping layer. Once a Mojo implementation exists, the Mojo module is the executable source of truth. See `AGENTS.md` for the detailed policy.
 
@@ -17,10 +17,10 @@ provides a browsable taxonomy with explicit canonical-Mojo and independent-oracl
 links. Its single machine-readable source is `docs/catalogues/mathematical_objects.toml`.
 
 Censuses, catalogues and the taxonomies of the objects they classify are built
-on one shared library (`mojo/psc/corpus.mojo`, `histogram.mojo`, `carrier.mojo`,
+on one shared library (`kernel/psc/corpus.mojo`, `histogram.mojo`, `carrier.mojo`,
 `symmetry.mojo` and the defect kernels), so a driver is a survey over the corpus
-rather than a private copy of it. `mojo/pixi.toml` has one task per driver and
-`pixi run test` loops over every `mojo/tests/test_*.mojo`. See
+rather than a private copy of it. `kernel/pixi.toml` has one task per driver and
+`pixi run test` loops over every `kernel/tests/test_*.mojo`. See
 `docs/mojo-census-library-2026-09-16.md`, and
 `docs/mojo-lookup-caches-2026-09-17.md` for the exact-arithmetic results the
 drivers now look up instead of recomputing.
@@ -200,12 +200,12 @@ Issue #45 is therefore closed as a completed status/source reconciliation task. 
 
 | Priority | Layer | Tool | Scope |
 |---|---|---|---|
-| **Canonical executable** | `mojo/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. The reusable kernels under `mojo/finite_exact/`, `mojo/substitution_dynamics/`, `mojo/finite_linear_algebra/`, and `mojo/parallel_fold/` are vendored from one pinned `larsbx/finite-math-kernels` commit. |
+| **Canonical executable** | `kernel/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. The reusable kernels under `kernel/finite_exact/`, `kernel/substitution_dynamics/`, `kernel/finite_linear_algebra/`, and `kernel/parallel_fold/` are vendored from one pinned `larsbx/finite-math-kernels` commit. |
 | Formal state/dependency | `proof/tla/` | TLA+ / TLC | BPA state-machine models and the machine-checked proof-dependency ledger, generated from the proof-record table in `tools/make_ledger.py` (`proof/tla/ledger.json` is its serialized output). |
 | Deductive finite algebra | `proof/PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
 | Secondary oracle | `reference/psc_research/` + `tests/` | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |
 
-The seven logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `tools/check_vendored_sync.py` in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under `tools/claim_governance`. The TLA+ ledger, its TLC models, `proof/tla/ledger.json`, the claim entries of every ledger node, `docs/ledger-index.md`, and the typed relationship graph `docs/claim-relationship-graph.json` are generated from the one table of proof records in `tools/make_ledger.py` through the vendored `tools/proof_records` package; edit that table and regenerate, since CI fails if any output is stale or hand-edited. Every Mojo test names the ledger claim or the contract it guards (`mojo/psc/claim_tests.mojo`), and the `coverage` check reads the receipts of the run, so a claim whose warrant is a finite computation cannot lose its regression unnoticed.
+The seven logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `tools/check_vendored_sync.py` in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under `tools/claim_governance`. The TLA+ ledger, its TLC models, `proof/tla/ledger.json`, the claim entries of every ledger node, `docs/ledger-index.md`, and the typed relationship graph `docs/claim-relationship-graph.json` are generated from the one table of proof records in `tools/make_ledger.py` through the vendored `tools/proof_records` package; edit that table and regenerate, since CI fails if any output is stale or hand-edited. Every Mojo test names the ledger claim or the contract it guards (`kernel/psc/claim_tests.mojo`), and the `coverage` check reads the receipts of the run, so a claim whose warrant is a finite computation cannot lose its regression unnoticed.
 
 Run everything:
 
@@ -223,7 +223,7 @@ Unavailable toolchains are reported as skipped; a skip is not a passing proof.
 ├── archive/2026-09-08/        # preserved source corpus: manuscripts, notes, instruments
 ├── docs/                       # live proof architecture, audits, conjecture ledger
 ├── manuscripts/                # publication drafts and referee records
-├── mojo/                       # canonical exact implementation + finite censuses
+├── kernel/                       # canonical exact implementation + finite censuses
 │   ├── finite_exact/           # BigZ, Q, and closed intervals from finite-math-kernels
 │   ├── substitution_dynamics/  # words, balanced pairs, automaton, vendored (alphabet-generic)
 │   ├── finite_linear_algebra/  # Mat3, RREF, rank-three tensors, W_3, vendored
@@ -243,7 +243,7 @@ Unavailable toolchains are reported as skipped; a skip is not a passing proof.
 ## Quick start — Mojo
 
 ```bash
-cd mojo
+cd kernel
 pixi run test
 pixi run verify
 ```

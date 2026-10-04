@@ -140,13 +140,13 @@ These are reference/index additions only. They do not establish #84, #138,
   (unreviewed): two-sided alignment weakening of Proposition 5.47, and the
   reformulation of a strict zipper as two `Phi^r`-fixed legal tilings with a
   common centre and no common vertex; isolates the open target
-  PeriodicPairVertexCoincidence; exact certificate `mojo/psc/periodic_pair.mojo`.
+  PeriodicPairVertexCoincidence; exact certificate `kernel/psc/periodic_pair.mojo`.
   Excludes no strict zipper.
 - `p1b-periodic-pair-fibre-literature-gate-2026-10-02.md` — stop/go gate for
   the fibre identification: Proposition F (the Theorem B pair lies in one
   fibre of the maximal equicontinuous factor), with Theorem R proving its
   hypothesis (R), return module equal to `Z^3`, for every PIP substitution;
-  exact index `mojo/psc/return_module.mojo`. Decision "proceed".
+  exact index `kernel/psc/return_module.mojo`. Decision "proceed".
 - `p1b-barge-diamond-configuration-gate-2026-10-02.md` — Barge–Diamond 2002
   and Barge 2018 Lemma 2 read in full: the configuration argument does not
   force a common vertex (its maximality step yields only an aligned pair).
@@ -154,12 +154,12 @@ These are reference/index additions only. They do not establish #84, #138,
 - `p1b-vertex-coincidence-box-2026-10-02.md` — #139 research note
   (unreviewed): Proposition V decides PeriodicPairVertexCoincidence per
   substitution for every `r` on one finite box graph; exact certificate
-  `mojo/psc/vertex_coincidence.mojo` and census
-  `mojo/vertex_coincidence_census.mojo`. Not proved for all PIP
+  `kernel/psc/vertex_coincidence.mojo` and census
+  `kernel/vertex_coincidence_census.mojo`. Not proved for all PIP
   substitutions (it implies G1). Depth laws `K_V <= a + c/log(1/mu)` are checked
-  exactly against the census records by `mojo/vertex_depth_law.mojo`
-  (`psc.depth_law`). §5.6b: catch-up reachability (`mojo/psc/one_tile.mojo`,
-  `mojo/one_tile_census.mojo`) fails on 360 of 4554 specimens at both
+  exactly against the census records by `kernel/vertex_depth_law.mojo`
+  (`psc.depth_law`). §5.6b: catch-up reachability (`kernel/psc/one_tile.mojo`,
+  `kernel/one_tile_census.mojo`) fails on 360 of 4554 specimens at both
   endpoints, so the cross-letter rigidity is not a one-tile question;
   Lemma P (no proper prefix in `M Z^3`) accounts for all 210 total failures.
   Proposition P′: there, vertex levels are the M-adic valuations of their
@@ -169,7 +169,7 @@ These are reference/index additions only. They do not establish #84, #138,
   it for every `n` on the unimodular classes and fail to by `n = 13` on every
   `|det M| = 2` specimen, where the equicontinuous factor is a solenoid
   (Barge–Kellendonk Corollary 5.11). Exact census:
-  `mojo/return_lattice_census.mojo`.
+  `kernel/return_lattice_census.mojo`.
 - Manuscript Proposition 5.47 and the same proof note's Proposition 4 /
   Corollary 5 sharpen this to the half-coincidence route: excluding reachable
   strict zippers from every swap seed is sufficient for G1. The exclusion is
@@ -184,7 +184,7 @@ current dependency for G1b-1 or degree-two carrier-span propagation.
   component in the exact 4,554-member short-image corpus.
 - `p1a-degree2-wedge-productivity.md` — no closed nonproductive recurrent
   nonzero-`K2` component in the same corpus.
-- Canonical executable certificates live in `../mojo/` and are enforced by
+- Canonical executable certificates live in `../kernel/` and are enforced by
   GitHub Actions.
 
 These are theorems over their enumerated finite domain. They are evidence, not

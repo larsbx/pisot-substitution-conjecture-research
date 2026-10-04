@@ -58,8 +58,8 @@ uniqueness, not the forward multiplicity update.
 Canonical Mojo:
 
 ```
-mojo/psc/overlap_growth_bridge.mojo
-mojo/tests/test_overlap_growth_bridge.mojo
+kernel/psc/overlap_growth_bridge.mojo
+kernel/tests/test_overlap_growth_bridge.mojo
 ```
 
 Independent Python oracle:

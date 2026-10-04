@@ -1,6 +1,6 @@
 """Independent Python oracle for finite bad-overlap obstruction extraction.
 
-The canonical executable implementation is ``mojo/psc/overlap_obstruction.mojo``.
+The canonical executable implementation is ``kernel/psc/overlap_obstruction.mojo``.
 This module intentionally works against the public ``OverlapGraph`` shape
 (``states``, ``adj``, ``capped``, ``nonproductive()``), so tests can also use
 small synthetic graphs that isolate the graph-theoretic contract.

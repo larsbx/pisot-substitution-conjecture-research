@@ -38,7 +38,7 @@ speculative ones.
 2. Mojo regressions plus claim receipts —
 
    ```sh
-   ./mojo/run_tests.sh
+   ./kernel/run_tests.sh
    ```
 
 3. the ledger is still generated, not hand-edited —
@@ -90,7 +90,7 @@ environment that reports a skip is honest; one that reports a pass is not.
 
 ## What this repository accepts as evidence
 
-- A test under `mojo/tests/` ends its `main` with `require_claim("<Name>")` or
+- A test under `kernel/tests/` ends its `main` with `require_claim("<Name>")` or
   `require_contract("<what it pins>")`, placed after the assertions it stands
   behind.
 - Receipts are collected from the tests that *passed*: a declaration no run

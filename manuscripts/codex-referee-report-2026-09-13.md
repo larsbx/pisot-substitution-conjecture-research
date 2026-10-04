@@ -107,7 +107,7 @@ No other findings were posted in the second round.
 
 > **Add the canonical Mojo discrepancy implementation**
 >
-> The new swap-walk algorithm, corpus driver, and theorem-contract regressions are Python-only; a repository-wide search for swap-discrepancy code found no Mojo counterpart or documented blocker. This leaves the proof-support computation in the secondary oracle layer rather than the repository's canonical executable layer, so the PR does not satisfy the Mojo-first review gate. Implement the discrepancy kernel and deterministic regression in `mojo/` first, retaining this module only as an independent oracle if useful.
+> The new swap-walk algorithm, corpus driver, and theorem-contract regressions are Python-only; a repository-wide search for swap-discrepancy code found no Mojo counterpart or documented blocker. This leaves the proof-support computation in the secondary oracle layer rather than the repository's canonical executable layer, so the PR does not satisfy the Mojo-first review gate. Implement the discrepancy kernel and deterministic regression in `kernel/` first, retaining this module only as an independent oracle if useful.
 >
 > AGENTS.md reference: AGENTS.md:L16-L16
 
@@ -320,13 +320,13 @@ No other findings were posted in the thirteenth round.
 **Reviewed commit:** `3dc397856ab8ceaf0298c34c3e1df8855e612f10`.
 **Review posted:** 2026-09-14T22:20:51Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 27 (P2) — `mojo/swap_overlap_census.mojo`, line 102
+## Finding 27 (P2) — `kernel/swap_overlap_census.mojo`, line 102
 
 > **Record nonproductive graphs before validating depths**
 >
 > When a graph contains any nonproductive state, its coincidence depth is `-1`; its left-aligned depth is either also `-1` (triggering the first clause here) or nonnegative (triggering `left[d] > depths[d]`). Thus every nonproductive specimen throws before the counters at lines 126–129 are updated, causing a mathematical counterexample to be reported only as `FAILED` while the advertised nonproductive count remains zero. Record `bad` before these validations or omit the depth histograms for nonproductive graphs.
 
-## Finding 28 (P2) — `mojo/swap_overlap_census.mojo`, line 112
+## Finding 28 (P2) — `kernel/swap_overlap_census.mojo`, line 112
 
 > **Reuse the already-computed coincidence depths**
 >
@@ -343,7 +343,7 @@ No other findings were posted in the fourteenth round.
 **Reviewed commit:** `2288163613668619be3185e97b1474ca059f3dc2`.
 **Review posted:** 2026-09-14T22:27:01Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 29 (P2) — `mojo/psc/overlap_seed_patch.mojo`, line 384
+## Finding 29 (P2) — `kernel/psc/overlap_seed_patch.mojo`, line 384
 
 > **Reject capped automata in the reused-depth helper**
 >
@@ -351,7 +351,7 @@ No other findings were posted in the fourteenth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 30 (P2) — `mojo/swap_overlap_census.mojo`, line 118
+## Finding 30 (P2) — `kernel/swap_overlap_census.mojo`, line 118
 
 > **Reuse substitution tables across graph and depth scans**
 >
@@ -372,7 +372,7 @@ No other findings were posted in the fifteenth round.
 
 > **Add the canonical Mojo contracting-bound implementation**
 >
-> This class is the new exact kernel supporting Proposition 5.42 and the reported 1,118,850-vertex census, but a repo-wide search finds no corresponding contracting-bound implementation or regression under `mojo/`, nor any documented blocker. Consequently the manuscript's new numerical result depends solely on the secondary Python layer, contrary to the repository's explicit requirement that new theorem-support algorithms and census drivers land in Mojo first.
+> This class is the new exact kernel supporting Proposition 5.42 and the reported 1,118,850-vertex census, but a repo-wide search finds no corresponding contracting-bound implementation or regression under `kernel/`, nor any documented blocker. Consequently the manuscript's new numerical result depends solely on the secondary Python layer, contrary to the repository's explicit requirement that new theorem-support algorithms and census drivers land in Mojo first.
 >
 > AGENTS.md reference: AGENTS.md:L5-L16
 
@@ -401,15 +401,15 @@ No other findings were posted in the sixteenth round.
 **Reviewed commit:** `7d74aa42c3ce138afe85b332b4964e30f58dacd2` (canonical Mojo contracting bound, zero case, wording).
 **Review posted:** 2026-09-15T00:53:39Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 34 (P1) — `mojo/psc/real_root_sign.mojo`, line 29
+## Finding 34 (P1) — `kernel/psc/real_root_sign.mojo`, line 29
 
 > **Centralize the new Horner helper in exact.mojo**
 >
-> This newly introduced polynomial evaluator is a PSC-specific Horner helper over the vendored rational type, but the repository's exact-arithmetic authority requires such helpers to live in `mojo/psc/exact.mojo` and nowhere else. Keeping another implementation in `real_root_sign.mojo` splits the rejection/adapter conventions across modules; move this helper into the designated adapter and import it here.
+> This newly introduced polynomial evaluator is a PSC-specific Horner helper over the vendored rational type, but the repository's exact-arithmetic authority requires such helpers to live in `kernel/psc/exact.mojo` and nowhere else. Keeping another implementation in `real_root_sign.mojo` splits the rejection/adapter conventions across modules; move this helper into the designated adapter and import it here.
 >
 > AGENTS.md reference: AGENTS.md:L44-L48
 
-## Finding 35 (P1) — `mojo/psc/overlap_contracting.mojo`, line 249
+## Finding 35 (P1) — `kernel/psc/overlap_contracting.mojo`, line 249
 
 > **Test the inequality that actually defines m0**
 >
@@ -441,11 +441,11 @@ No other findings were posted in the eighteenth round.
 **Reviewed commit:** `059c4c5536cc4f0f9252a55a628ca90e7ea0bdf4` (finding 36 and the merge of `main`).
 **Review posted:** 2026-09-15T01:31:48Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 37 (P1) — `mojo/psc/overlap_contracting.mojo`, line 269
+## Finding 37 (P1) — `kernel/psc/overlap_contracting.mojo`, line 269
 
 > **Precompute level terms before scanning offsets**
 >
-> In the checked `mojo/overlap_contracting_census.mojo` path, every uncached shift calls `least_level`, but this line rebuilds the `A_m`/`B_m` tables from exact field operations for every attempted level and shift even though they depend only on the substitution and `max_level`; the real-conjugate branch similarly rebuilds `G` and the beta powers per shift. Across the 1,118,850-vertex census this causes substantial repeated allocation and exact arithmetic, so precompute both sets of level tables once in the constructor and index them here.
+> In the checked `kernel/overlap_contracting_census.mojo` path, every uncached shift calls `least_level`, but this line rebuilds the `A_m`/`B_m` tables from exact field operations for every attempted level and shift even though they depend only on the substitution and `max_level`; the real-conjugate branch similarly rebuilds `G` and the beta powers per shift. Across the 1,118,850-vertex census this causes substantial repeated allocation and exact arithmetic, so precompute both sets of level tables once in the constructor and index them here.
 >
 > AGENTS.md reference: AGENTS.md:L26-L27
 
@@ -2015,7 +2015,7 @@ No other findings were posted in the ninety-fifth round.
 **Reviewed commit:** `d5be52f0f2` (finding 160).
 **Review posted:** 2026-09-16T03:58:23Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 161 (P2) — `mojo/psc/overlap_collar.mojo`, line 218
+## Finding 161 (P2) — `kernel/psc/overlap_collar.mojo`, line 218
 
 > **Reject negative radii when inflating collars**
 >
@@ -2023,7 +2023,7 @@ No other findings were posted in the ninety-fifth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 162 (P2) — `mojo/psc/overlap_collar.mojo`, line 390
+## Finding 162 (P2) — `kernel/psc/overlap_collar.mojo`, line 390
 
 > **Reject pump certificates with an absent starting fibre**
 >
@@ -2038,7 +2038,7 @@ No other findings were posted in the ninety-sixth round.
 **Reviewed commit:** `5b06d74b19` (findings 161 and 162).
 **Review posted:** 2026-09-16T04:07:01Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 163 (P2) — `mojo/psc/overlap_collar.mojo`, line 441
+## Finding 163 (P2) — `kernel/psc/overlap_collar.mojo`, line 441
 
 > **Reject identical letters in patch-collapse checks**
 >
@@ -2084,7 +2084,7 @@ No other findings were posted in the ninety-eighth round.
 **Reviewed commit:** `a238e8dfb9` (findings 165 and 166).
 **Review posted:** 2026-09-16T04:18:36Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 167 (P2) — `mojo/psc/overlap_collar.mojo`, line 388
+## Finding 167 (P2) — `kernel/psc/overlap_collar.mojo`, line 388
 
 > **Validate every pump state before lifting**
 >
@@ -2099,7 +2099,7 @@ No other findings were posted in the ninety-ninth round.
 **Reviewed commit:** `89550a4350` (finding 167).
 **Review posted:** 2026-09-16T04:24:04Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 168 (P2) — `mojo/psc/overlap_collar.mojo`, line 411
+## Finding 168 (P2) — `kernel/psc/overlap_collar.mojo`, line 411
 
 > **Validate the complete occurrence edge before lifting**
 >
@@ -2114,7 +2114,7 @@ No other findings were posted in the hundredth round.
 **Reviewed commit:** `938a1100fc` (finding 168).
 **Review posted:** 2026-09-16T04:29:13Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 169 (P2) — `mojo/psc/overlap_collar.mojo`, line 415
+## Finding 169 (P2) — `kernel/psc/overlap_collar.mojo`, line 415
 
 > **Validate the remaining affine-edge payload**
 >

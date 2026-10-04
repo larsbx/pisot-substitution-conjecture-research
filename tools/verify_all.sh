@@ -70,14 +70,14 @@ fi
 
 section "Mojo canonical exact implementation"
 if command -v pixi >/dev/null 2>&1; then
-    cd "$ROOT/mojo"
+    cd "$ROOT/kernel"
     if pixi run test; then
         ok "canonical Mojo regression tests"
     else
         bad "canonical Mojo regression tests"
     fi
     cd "$ROOT"
-    # The suite has now written mojo/build/claim-receipts.tsv, so the coverage
+    # The suite has now written kernel/build/claim-receipts.tsv, so the coverage
     # check above re-runs with the run behind it: a claim whose only test body
     # was never reached is uncovered, not credited.
     if PYTHONPATH=tools python3 -m claim_governance.cli --root . --check coverage >/dev/null; then
@@ -85,7 +85,7 @@ if command -v pixi >/dev/null 2>&1; then
     else
         bad "test-claim coverage against the run receipts (PYTHONPATH=tools python3 -m claim_governance.cli --root . --check coverage)"
     fi
-    cd "$ROOT/mojo"
+    cd "$ROOT/kernel"
     if pixi run verify; then
         ok "certificate checks (verify.mojo)"
     else

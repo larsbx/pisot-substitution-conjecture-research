@@ -4,7 +4,7 @@
 
 ## Boundary
 
-The baseline `mojo/census.mojo` has one naturally independent unit of work:
+The baseline `kernel/census.mojo` has one naturally independent unit of work:
 one member of the canonical 4,554-specimen PIP corpus. This slice parallelizes
 that outer boundary only. BPA construction, SCC/productivity logic, state caps,
 and every exact predicate remain unchanged and sequential inside one specimen.
@@ -31,7 +31,7 @@ inconclusive, never productive or nonproductive evidence.
 The historical behavior remains the default:
 
 ```bash
-cd mojo
+cd kernel
 pixi run census
 ```
 
@@ -46,7 +46,7 @@ mathematical driver.
 
 ## Regression gate
 
-`mojo/tests/test_parallel_census.mojo` evaluates the same canonical corpus
+`kernel/tests/test_parallel_census.mojo` evaluates the same canonical corpus
 prefix with 1, 2, 3, and 7 workers and requires identical counters, maximum,
 failure state, and diagnostic specimen order. It also checks that zero workers
 is rejected.

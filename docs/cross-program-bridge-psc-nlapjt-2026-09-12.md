@@ -120,7 +120,7 @@ Each item names the map, what it preserves, what leaks, and its status.
 
 ### I3. Finite witness and its dual
 
-- Map: a Parikh-prefix zero return (`coincidence_boundaries` in `PSC: mojo/psc/bpa.mojo`) maps to a certified separator code (`SeparationLine` in `NLAP: src/separation_grammar.mojo`).
+- Map: a Parikh-prefix zero return (`coincidence_boundaries` in `PSC: kernel/psc/bpa.mojo`) maps to a certified separator code (`SeparationLine` in `NLAP: src/separation_grammar.mojo`).
 - Preserved: both are finite, canonicalized, monotone-accumulating witnesses; both repositories insist the witness is checkable without the classical object (no analytic point, no realized tiling).
 - Leaks: polarity (section 1.3). The PSC witness is unary on automaton states, the NLAP witness is binary on representatives.
 - Status: DEFINITION.
@@ -238,8 +238,8 @@ The comparison in section 5 B1 shows that the contracting-space formulation is t
 
 ### C6. PSC: arithmetic is not fail-closed and the Pisot test is cubic-only `[V]`
 
-- `mojo/psc/rational.mojo`, `mat3.mojo`, `renewal_address.mojo` use machine `Int`; `AGENTS.md` rule 8 ("fail closed") is not enforced at the arithmetic level. `M^d delta` at depth 7 is safe, but nothing aborts on overflow.
-- `mojo/psc/pisot.mojo::is_pisot_charpoly` handles monic cubics only. Any bridge in section 5 B8 needs degree `n`.
+- `kernel/psc/rational.mojo`, `mat3.mojo`, `renewal_address.mojo` use machine `Int`; `AGENTS.md` rule 8 ("fail closed") is not enforced at the arithmetic level. `M^d delta` at depth 7 is safe, but nothing aborts on overflow.
+- `kernel/psc/pisot.mojo::is_pisot_charpoly` handles monic cubics only. Any bridge in section 5 B8 needs degree `n`.
 
 ## 4. Gap matrix
 
@@ -279,7 +279,7 @@ Ranking is by expected leverage on the named repository's own open gate, then by
   This is a statement about two Meyer sets in one cut-and-project scheme, not about balanced words, and it is where the profinite factor enters in the non-unimodular case (Minervino--Thuswaldner 2014 `[L]`). PSC's `docs/c4-prefix-difference-return-calculus.md` section 5 proves the bounded-gap statement *inside* a strict closed component; the geometric statement is its unconditional target.
 - The unrealized formal states of `B_sigma` are the excess between `G1` and the theorem; PSC's realization firewall already says the formal graph over-generates. Whether the repository graph from seeds `(ab,ba)` explores unrealizable states is the same question as `PDSImpliesRepoG1`, and it should be settled on that side, not on the finiteness side.
 - Executable deliverable: a Mojo overlap-coincidence kernel over the same 4,554-specimen corpus, with the CI regression "BPA productive iff overlap coincident" on every specimen. That regression is a NLAP-style adequacy theorem made executable, and it supplies PSC's missing finite negative certificate (a realized non-coincident overlap cycle certifies non-PDS).
-- First files: `PSC: docs/bpa-literature-bridge.md` (add the overlap dictionary), then a new `mojo/psc/overlap.mojo`.
+- First files: `PSC: docs/bpa-literature-bridge.md` (add the overlap dictionary), then a new `kernel/psc/overlap.mojo`.
 - Status: CONDITIONAL program, not a theorem; the geometric statement is offered as the correct target, not as proved.
 
 ### B2. One Lean lemma for both Galois uses — PSC and NLAP, formal
@@ -298,15 +298,15 @@ Ranking is by expected leverage on the named repository's own open gate, then by
 
 ### B4. Give NLAP a compiling Mojo toolchain and CI — NLAP, infrastructure
 
-- Copy `PSC: mojo/pixi.toml` (pin `modular >= 26.6`), port `inout self` to `out self`/`mut`, replace `@value` with explicit `Copyable, Movable`, add a `verify.mojo` in PSC's `Check` style, and add a `mojo-kernel` CI job. Until this exists the "Mojo theorem kernel" and the Krawczyk computation are prose.
+- Copy `PSC: kernel/pixi.toml` (pin `modular >= 26.6`), port `inout self` to `out self`/`mut`, replace `@value` with explicit `Copyable, Movable`, add a `verify.mojo` in PSC's `Check` style, and add a `mojo-kernel` CI job. Until this exists the "Mojo theorem kernel" and the Krawczyk computation are prose.
 - Prerequisite: C2 (the current CI never reaches any later step).
 - First files: `NLAP: .github/workflows/no-trig-audit.yml`, new `NLAP/mojo/pixi.toml`.
 
 ### B5. Upgrade PSC's census to per-instance certificates with import metadata — PSC, semantics and serialization
 
 - Under the literature criterion (BPA terminates with coincidence for the irreducible Pisot substitution, seed bridge pinned) each of the 4,554 runs is a certificate of pure discrete spectrum for that substitution. The correct caveat "evidence only" applies to the universal `G1`, not to the instances. Emit `PDSCertificate(sigma) = {incidence, PIP witness, BPA graph hash, productivity witness paths, theorem tag with hypotheses and seed-bridge status}` per specimen using NLAP's canonical serialization envelope, closing issue #2 with a format that is already specified.
-- Add a `TheoremTagImport`-style record to `mojo/psc/certificate.mojo` and an `Imported` set to the TLA ledger (C4).
-- First files: `PSC: mojo/census.mojo`, `PSC: docs/verification-architecture.md` section 1.
+- Add a `TheoremTagImport`-style record to `kernel/psc/certificate.mojo` and an `Imported` set to the TLA ledger (C4).
+- First files: `PSC: kernel/census.mojo`, `PSC: docs/verification-architecture.md` section 1.
 
 ### B6. Exact-type catalogue and a counting identity for separator completeness — NLAP, mathematics and executable
 
@@ -318,14 +318,14 @@ Ranking is by expected leverage on the named repository's own open gate, then by
 ### B7. A shared `R x Q_2` dyadic box kernel — PSC and NLAP, executable
 
 - From I8: one record `(mantissa, shift)` as real interval endpoint and as 2-adic ball radius `2^{-shift}`. PSC uses it for the non-Archimedean coordinate of the determinant-2 regression (after auditing the index of `Z[beta]` at 2); NLAP uses the real part as is. A Lean-verified rational interval arithmetic would serve both and is the natural first NLAP Lean target.
-- First files: `NLAP: src/interval_q.mojo` (port to the current toolchain), new `PSC: mojo/psc/padic.mojo`.
+- First files: `NLAP: src/interval_q.mojo` (port to the current toolchain), new `PSC: kernel/psc/padic.mojo`.
 - Status: THEOREM-grade arithmetic; the *usefulness* for `G1b-2` is CONDITIONAL on B1.
 
 ### B8. Hubbard-tree edge substitutions: a census of the algebraic type of core entropy — cross-field, exploratory
 
 - For a postcritically finite quadratic parameter, the Hubbard tree map is Markov on edges and its transition matrix `A_c` is a nonnegative integer matrix with `rho(A_c) = exp(h_core(c))` `[L]` (Thurston, "Entropy in dimension one"; Tiozzo). NLAP's exact rational-angle machinery produces the tree combinatorics; PSC's exact screen (`is_primitive`, irreducibility, Pisot test) classifies `A_c`, once `is_pisot_charpoly` is generalized to degree `n` (C6).
 - Deliverable: for all Misiurewicz parameters with `(l,k)` in a box, the exact algebraic type of `exp(h_core)` (Pisot / Salem / other Perron), and for the Pisot cases the BPA run on the induced edge substitution. This connects Thurston's lamination program and his Pisot-tiling program through both repositories' existing kernels. Whether "Pisot core entropy" has been characterized in the literature must be searched before any claim; Tiozzo's Galois-conjugate results and the Master Teapot literature are the entry points `[L]`.
-- First files: `PSC: mojo/psc/pisot.mojo` (degree-`n` Sturm/Pisot), then a new NLAP module for tree transition matrices.
+- First files: `PSC: kernel/psc/pisot.mojo` (degree-`n` Sturm/Pisot), then a new NLAP module for tree transition matrices.
 - Status: ANALOGY today; the census question is well-posed.
 
 ### B9. A hypothesis-firewall linter and terminology declarations for PSC — PSC, infrastructure

@@ -1,7 +1,7 @@
 #!/bin/bash
 # Provision a Claude Code on the web container for the repository gates:
 # Python oracles and pytest (as CI does), and the Mojo toolchain exactly as
-# pinned by mojo/pixi.lock, with `mojo` itself on PATH.
+# pinned by kernel/pixi.lock, with `mojo` itself on PATH.
 set -euo pipefail
 
 [ "${CLAUDE_CODE_REMOTE:-}" = "true" ] || exit 0
@@ -21,15 +21,15 @@ PIXI_BIN="$HOME/.pixi/bin"
 # Refuse a failed/mismatched installer result before provisioning the lock.
 "$PIXI_BIN/pixi" --version | grep -qx "pixi $PIXI_VERSION"
 
-# --locked: install exactly mojo/pixi.lock; fail rather than re-solve the pin.
-(cd mojo && "$PIXI_BIN/pixi" install --locked)
-MOJO_BIN="$REPO/mojo/.pixi/envs/default/bin"
+# --locked: install exactly kernel/pixi.lock; fail rather than re-solve the pin.
+(cd kernel && "$PIXI_BIN/pixi" install --locked)
+MOJO_BIN="$REPO/kernel/.pixi/envs/default/bin"
 
 # Activate the environment for the whole session: a bare `mojo` needs the
 # activation variables (MODULAR_HOME, CONDA_PREFIX, ...) to locate `std`.
 # PATH is composed below rather than frozen at hook time; the interactive-shell
 # markers are dropped so `pixi run` still works from the session.
-(cd mojo && "$PIXI_BIN/pixi" shell-hook --locked --json) | python3 -c '
+(cd kernel && "$PIXI_BIN/pixi" shell-hook --locked --json) | python3 -c '
 import json, os, shlex, sys
 env = json.load(sys.stdin)["environment_variables"]
 # pixi 0.81.0 can expand dollar expressions in a prefix during activation.
@@ -39,7 +39,7 @@ if os.path.realpath(env.get("CONDA_PREFIX", "")) != os.path.realpath(sys.argv[1]
 skip = {"PATH", "PIXI_IN_SHELL", "PIXI_PROMPT"}
 for k, v in sorted(env.items()):
     if k not in skip:
-        print(f"export {k}={shlex.quote(v)}")' "$REPO/mojo/.pixi/envs/default" >> "$CLAUDE_ENV_FILE"
+        print(f"export {k}={shlex.quote(v)}")' "$REPO/kernel/.pixi/envs/default" >> "$CLAUDE_ENV_FILE"
 
 # The pip-installed pytest (with pypdf) must shadow any preinstalled tool copy.
 printf 'export PATH=%q:"$PATH"\n' "$(python3 -c 'import sysconfig; print(sysconfig.get_path("scripts"))'):$MOJO_BIN:$PIXI_BIN" >> "$CLAUDE_ENV_FILE"

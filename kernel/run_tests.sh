@@ -30,7 +30,7 @@ for test in tests/test_*.mojo; do
     ran=$((ran + 1))
     mojo run -I . -I tests "$test" 2>&1 | tee "$LOG"
     if (( ${PIPESTATUS[0]} == 0 )); then
-        awk -v path="mojo/$test" '
+        awk -v path="kernel/$test" '
             /^claim-receipt: /    { printf "%s\tclaim\t%s\n",    path, substr($0, 16) }
             /^contract-receipt: / { printf "%s\tcontract\t%s\n", path, substr($0, 19) }' "$LOG" >> "$RECEIPTS"
     else

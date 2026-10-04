@@ -1,7 +1,7 @@
 """Fixed-dimension integer vector arithmetic: the oracle, in one place.
 
 The canonical implementation of this kernel is Mojo, in
-`mojo/psc/integer_vector.mojo` (AGENTS.md: Mojo is canonical, Python is an
+`kernel/psc/integer_vector.mojo` (AGENTS.md: Mojo is canonical, Python is an
 oracle). This module is the independent cross-check, and the reason it exists
 as a module rather than as a private helper in each caller is that four callers
 had four copies of it -- `prefix_difference`, `prefix_ancestry`,
@@ -13,7 +13,7 @@ being easy to read against the definition, not by being fast: a
 dimension-specialised branch here would add a second path taken by exactly the
 dimensions the corpus actually uses, which is the worst place for an
 unverified shortcut. Performance work belongs in the canonical kernel, where
-`mojo/integer_vector_bench.mojo` measures it.
+`kernel/integer_vector_bench.mojo` measures it.
 
 Python's `int` is arbitrary precision, so nothing here can overflow. The Mojo
 kernel is 64-bit and raises where an intermediate would leave the range; that

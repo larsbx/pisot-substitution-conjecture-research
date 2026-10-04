@@ -264,7 +264,7 @@ sits in the working directory:
 pixi run mojo run -I . /path/to/probe.mojo
 ```
 
-with the repository's `mojo/` as the working directory. A probe does a prefix of
+with the repository's `kernel/` as the working directory. A probe does a prefix of
 a census's per-specimen work over the full corpus and prints one aggregate, so
 that consecutive probes differ by exactly one layer. The layers used above, in
 order: `pip_corpus()` alone; plus `build_seed_overlap_graph_from_tables`; plus

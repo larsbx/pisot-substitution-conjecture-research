@@ -3,7 +3,7 @@
 `docs/unimodular-route-gate-2026-09-17.md` Lemma 1: `|det M_sigma| = 1` forbids
 `sigma^n(ab)` from being a proper power, because `M^n in GL_A(Z)` would put
 `e_a + e_b` in `k Z^A`.  These tests are the independently written Python side
-of `mojo/tests/test_unimodular_route.mojo`.
+of `kernel/tests/test_unimodular_route.mojo`.
 """
 from __future__ import annotations
 

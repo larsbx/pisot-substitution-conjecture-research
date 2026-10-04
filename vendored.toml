@@ -5,7 +5,7 @@
 name = "finite_exact"
 repository = "larsbx/finite-math-kernels"
 commit = "0ff79ccaa3d71491d5eb9a8ed5a7e01c0c3e855a"
-root = "mojo"
+root = "kernel"
 
 [package.files]
 "finite_exact/__init__.mojo" = "6c12cff9ef6a09417bddaa8324372888a30b4c75b2b64438eb47bb17ea9138c9"
@@ -19,7 +19,7 @@ root = "mojo"
 name = "substitution_dynamics"
 repository = "larsbx/finite-math-kernels"
 commit = "0ff79ccaa3d71491d5eb9a8ed5a7e01c0c3e855a"
-root = "mojo"
+root = "kernel"
 
 [package.files]
 "substitution_dynamics/__init__.mojo" = "249a8f3ea14cb37d58b32cee97f7d0d724502257ab30faab5bdabb6ac74f0183"
@@ -36,7 +36,7 @@ root = "mojo"
 name = "finite_linear_algebra"
 repository = "larsbx/finite-math-kernels"
 commit = "0ff79ccaa3d71491d5eb9a8ed5a7e01c0c3e855a"
-root = "mojo"
+root = "kernel"
 
 [package.files]
 "finite_linear_algebra/__init__.mojo" = "b120372d34f83705535739236239c4d38ea8621645802760a237b2b1edd05e26"
@@ -99,7 +99,7 @@ root = "tools"
 name = "parallel_fold"
 repository = "larsbx/finite-math-kernels"
 commit = "0ff79ccaa3d71491d5eb9a8ed5a7e01c0c3e855a"
-root = "mojo"
+root = "kernel"
 
 [package.files]
 "parallel_fold/__init__.mojo" = "23c5b90db3b3cf3f9df0e06f4872e959a477ab89b7a0132915e0efedd285733d"

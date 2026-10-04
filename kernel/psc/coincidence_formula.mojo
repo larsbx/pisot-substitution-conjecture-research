@@ -87,7 +87,7 @@ an honest search come back empty-handed.
 That this decides `SC(i, j)` for a specimen it is run on. Not that any
 substitution family satisfies it: the condition is checked, per specimen, and
 its agreement with the overlap graph's first-coincidence depths is the census's
-business (`mojo/coincidence_formula_census.mojo`). Strong coincidence for the
+business (`kernel/coincidence_formula_census.mojo`). Strong coincidence for the
 alphabet-3 Pisot family is open, and nothing here changes that.
 """
 

@@ -3,20 +3,20 @@ name: Tier 2 Growth Bridge
 on:
   push:
     paths:
-      - "mojo/psc/tier2_loop_gain_fixture.mojo"
-      - "mojo/tests/test_tier2_loop_gain_fixture.mojo"
-      - "mojo/psc/penrose_phi_tail.mojo"
-      - "mojo/tests/test_penrose_phi_tail.mojo"
+      - "kernel/psc/tier2_loop_gain_fixture.mojo"
+      - "kernel/tests/test_tier2_loop_gain_fixture.mojo"
+      - "kernel/psc/penrose_phi_tail.mojo"
+      - "kernel/tests/test_penrose_phi_tail.mojo"
       - "docs/tier2-penrose-phi-cocycle.md"
-      - "mojo/psc/penrose_phi_tail.mojo"
-      - "mojo/tests/test_penrose_phi_tail.mojo"
+      - "kernel/psc/penrose_phi_tail.mojo"
+      - "kernel/tests/test_penrose_phi_tail.mojo"
       - "docs/tier2-penrose-phi-cocycle.md"
       - "schemas/tier2-loop-gain-fixture.schema.json"
       - ".github/workflows/tier2-growth-bridge.yml"
   pull_request:
     paths:
-      - "mojo/psc/tier2_loop_gain_fixture.mojo"
-      - "mojo/tests/test_tier2_loop_gain_fixture.mojo"
+      - "kernel/psc/tier2_loop_gain_fixture.mojo"
+      - "kernel/tests/test_tier2_loop_gain_fixture.mojo"
       - "schemas/tier2-loop-gain-fixture.schema.json"
       - ".github/workflows/tier2-growth-bridge.yml"
 
@@ -29,10 +29,10 @@ jobs:
       - uses: prefix-dev/setup-pixi@v0.9.1
         with:
           pixi-version: latest
-          manifest-path: mojo/pixi.toml
+          manifest-path: kernel/pixi.toml
 
       - name: Run Tier 2 Mojo regressions
-        working-directory: mojo
+        working-directory: kernel
         run: |
           pixi run mojo run -I . tests/test_tier2_loop_gain_fixture.mojo
           pixi run mojo run -I . tests/test_penrose_phi_tail.mojo

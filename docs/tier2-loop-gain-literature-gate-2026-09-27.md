@@ -15,8 +15,8 @@ PR #152 opens the Tier 2 Growth Bridge with a new theorem-facing diagnostic
    residual resonance test on the quotient (for Penrose, the index-11
    quotient `Z[phi] / (4 - phi)`);
 4. the first executables: the `affine_forcing` adapter
-   (`mojo/psc/tier2_loop_gain_fixture.mojo`), the Penrose `H_tail`
-   `penrose_phi_increment` channel (`mojo/psc/penrose_phi_tail.mojo`), and
+   (`kernel/psc/tier2_loop_gain_fixture.mojo`), the Penrose `H_tail`
+   `penrose_phi_increment` channel (`kernel/psc/penrose_phi_tail.mojo`), and
    the fixture schema `schemas/tier2-loop-gain-fixture.schema.json`.
 
 The review asks whether steps 2–3 duplicate a known construction and whether

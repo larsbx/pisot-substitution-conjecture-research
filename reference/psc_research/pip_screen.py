@@ -1,7 +1,7 @@
 """Exact enumeration of the alphabet-3 PIP corpus (letters 1..3, image
 lengths <= 3): primitivity by integer matrix powers, irreducibility by the
 integer rational-root test, and the Pisot property by Sturm sequences over Q.
-No floating point.  Independent Python oracle of mojo/psc/pisot.mojo."""
+No floating point.  Independent Python oracle of kernel/psc/pisot.mojo."""
 from __future__ import annotations
 
 import itertools
@@ -30,7 +30,7 @@ def irreducible(T,U,D):
         if D%r==0 and (f(r)==0 or f(-r)==0): return False
     return True
 
-# --- exact Pisot test by Sturm sequences over Q (mirrors mojo/psc/pisot.mojo) ---
+# --- exact Pisot test by Sturm sequences over Q (mirrors kernel/psc/pisot.mojo) ---
 def _deg(p):
     n = len(p)
     while n > 0:

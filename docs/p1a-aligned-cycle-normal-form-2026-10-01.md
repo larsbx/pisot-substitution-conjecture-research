@@ -104,8 +104,8 @@ reversing the substitution.
 
 ## 3. Exact finite classifier
 
-Canonical Mojo support is in mojo/psc/hub_selector.mojo and
-mojo/tests/test_hub_selector.mojo.
+Canonical Mojo support is in kernel/psc/hub_selector.mojo and
+kernel/tests/test_hub_selector.mojo.
 
 The new functions compute the eventual cycle period of a viable hub-star pair
 and recognize the forced alternating-E template.

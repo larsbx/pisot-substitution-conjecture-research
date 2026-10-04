@@ -1,6 +1,6 @@
 """Exact occurrence-labelled affine pump certificates for overlap zippers.
 
-The canonical implementation is ``mojo/psc/overlap_affine_pump.mojo``.  This
+The canonical implementation is ``kernel/psc/overlap_affine_pump.mojo``.  This
 module is an independently written Python oracle.  A certificate proves only
 that an actual ordered child-occurrence cycle satisfies the iterated affine
 offset recurrence.  It does not prove that the cycle is child-closed,

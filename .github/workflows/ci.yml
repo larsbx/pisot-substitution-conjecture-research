@@ -72,15 +72,15 @@ jobs:
           python -m pip install pytest
           PSC_SESSION_START_REAL_PIXI="$HOME/.pixi/bin/pixi" python -m pytest tests/test_session_start.py
       - name: Canonical Mojo regression tests
-        working-directory: mojo
+        working-directory: kernel
         run: pixi run test
       - name: Every claim the policy requires guarded has a passing test (run receipts)
         run: PYTHONPATH=tools python3 -m claim_governance.cli --root . --check coverage
       - name: Certificate checks
-        working-directory: mojo
+        working-directory: kernel
         run: pixi run verify
       - name: Alphabet-3 census regression
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . census.mojo 2>&1) || status=$?
@@ -100,7 +100,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: C3 exact local census
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . c3_census.mojo 2>&1) || status=$?
@@ -132,7 +132,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: C4 exact endpoint-type sink-SCC census
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . c4_census.mojo 2>&1) || status=$?
@@ -170,7 +170,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact swap-discrepancy census (G1b-1 cross-check)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . swap_discrepancy_census.mojo 2>&1) || status=$?
@@ -191,7 +191,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact seed-patch overlap census (finite by theorem; productivity is evidence)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . swap_overlap_census.mojo 2>&1) || status=$?
@@ -228,7 +228,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact contracting-bound census (Proposition 5.42; finite evidence only)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . overlap_contracting_census.mojo 2>&1) || status=$?
@@ -255,7 +255,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Dumont-Thomas numeration against the fixed point (bounded experiment)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . automatic_route_census.mojo 2>&1) || status=$?
@@ -277,7 +277,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Addition automata over the corpus, verified on a bounded domain
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . numeration_addition_census.mojo 2>&1) || status=$?
@@ -301,7 +301,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Conversion automata over the corpus, and the letter map carried across them
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . numeration_conversion_census.mojo 2>&1) || status=$?
@@ -325,7 +325,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Strong coincidence by formula, against the overlap graph per pair
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . coincidence_formula_census.mojo 2>&1) || status=$?
@@ -350,7 +350,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Return lattices of radius-n patches, exactly
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . return_lattice_census.mojo 2>&1) || status=$?
@@ -377,7 +377,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: PeriodicPairVertexCoincidence for every r on the standing corpus (Proposition V, exact)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . vertex_coincidence_census.mojo 2>&1) || status=$?
@@ -403,7 +403,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Catch-up reachability (Q1) on the standing corpus, both endpoints (exact)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . one_tile_census.mojo 2>&1) || status=$?
@@ -428,7 +428,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Exact endpoint-map conjugacy classification (finite maps; no substitution input)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . endpoint_core_catalog.mojo 2>&1) || status=$?
@@ -442,7 +442,7 @@ jobs:
           grep -Fx 'maximum steps into the recurrent core: 1' <<<"$out"
           grep -Fx 'pairs by steps into the recurrent core: 0:60 1:24' <<<"$out"
       - name: Boundary-synchronization sweep (exploratory; reproducible from its seed)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . boundary_sync_sweep.mojo 2>&1) || status=$?
@@ -467,7 +467,7 @@ jobs:
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
       - name: Sirvent-Solomyak type inclusion over every tenth specimen (exploratory)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . oa_type_inclusion_census.mojo 2>&1) || status=$?
@@ -479,7 +479,7 @@ jobs:
           grep -Fx 'literature graphs with a nonproductive type: 0' <<<"$out"
           grep -Fx 'specimens by least k with inclusion (9 = none): 1:256 2:109 3:41 4:8 5:12 6:6 7:1 8:1 9:22' <<<"$out"
       - name: Inclusion-failure probe over longer prefixes and every fixed point (exploratory)
-        working-directory: mojo
+        working-directory: kernel
         run: |
           set -o pipefail
           out=$(pixi run mojo run -I . oa_failures_probe.mojo 2>&1) || status=$?
