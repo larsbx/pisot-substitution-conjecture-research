@@ -80,8 +80,8 @@ single state.
 **Corollary FP″** (2026-10-04; adds the import of
 `pds-strong-coincidence-literature-gate-2026-10-04.md`). Akiyama–Lee 2014,
 Corollary 4.5, gives PDS ⇒ SC_all for irreducible Pisot substitutions (in the
-non-unit case through the cited height-group lemma of Sing 2006, not read
-here). Hence, for PIP `sigma`,
+non-unit case through Theorem R, which supplies the height-group step that
+Akiyama–Lee cite to Sing 2006). Hence, for PIP `sigma`,
 
 ```text
 FP  <=>  PDS.

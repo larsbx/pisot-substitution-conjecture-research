@@ -69,8 +69,10 @@ by deleting it.
   `p1b-vertex-coincidence-box-2026-10-02.md` §5.6g
 
 - 2026-10-04 · PDS ⇒ all-pairs prefix strong coincidence for irreducible
-  Pisot substitutions: Akiyama–Lee 2014, Corollary 4.5 (non-unit case via
-  Sing 2006, Lemma 6.34, unread). Do not re-search; consequence FP ⟺ PDS. ·
+  Pisot substitutions: Akiyama–Lee 2014, Corollary 4.5; in the non-unit case
+  the height-group step is Theorem R (repository, unreviewed), since Sing's
+  2006 thesis is not retrievable (Bielefeld repository refuses access). Do
+  not re-search; consequence FP ⟺ PDS. ·
   `pds-strong-coincidence-literature-gate-2026-10-04.md`
 
 ## 4. Withdrawn or unreproducible figures
