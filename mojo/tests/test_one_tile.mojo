@@ -2,7 +2,19 @@
 
 from std.testing import assert_equal, assert_true
 from psc.claim_tests import require_contract
-from psc.one_tile import catch_up_free, level_is_valuation, mirror, odd_letter_sets, one_tile, two_sided
+from psc.one_tile import (
+    _recurrent_nonzero,
+    catch_up_free,
+    level_is_valuation,
+    mirror,
+    nonzero_closure_size,
+    odd_letter_sets,
+    one_tile,
+    reaches_hit_kind,
+    two_sided,
+)
+from psc.overlap_seed_patch import build_seed_overlap_tables
+from psc.vertex_coincidence import build_box_graph
 from psc.vertex_coincidence import decide_vertex_coincidence
 
 
@@ -96,6 +108,37 @@ def test_proposition_c() raises:
     assert_equal(len(odd_letter_sets(sigma_of([1], [1, 2], [0, 2, 2]))), 0)
 
 
+def anatomy_counts(sigma: List[List[Int]]) raises -> List[Int]:
+    """recurrent, reach diagonal hit, reach off-diagonal hit, closure size 1, closure size 2."""
+    var a = build_box_graph(build_seed_overlap_tables(sigma))
+    var rec = _recurrent_nonzero(a)
+    var d = reaches_hit_kind(a, True)
+    var o = reaches_hit_kind(a, False)
+    var out: List[Int] = [len(rec), 0, 0, 0, 0]
+    for k in range(len(rec)):
+        if d[rec[k]]:
+            out[1] += 1
+        if o[rec[k]]:
+            out[2] += 1
+        var size = nonzero_closure_size(a, rec[k], 2)
+        if size == 1:
+            out[3] += 1
+        elif size == 2:
+            out[4] += 1
+    return out^
+
+
+def test_hit_kinds_and_closures() raises:
+    """Through nonzero offsets only: Tribonacci reaches no diagonal (tile
+    coincidence) hit directly, only off-diagonal ones (14/0/14); 1 -> 12,
+    2 -> 022 reaches diagonal hits from all 14 and off-diagonal from 12, and
+    its 2 Q1 failures are fixed points (closure 1); the catch-up-free
+    1 -> 012, 2 -> 010 reaches only off-diagonal hits (694/0/694)."""
+    assert_equal(anatomy_counts(sigma_of([0, 1], [0, 2], [0])), [14, 0, 14, 0, 0])
+    assert_equal(anatomy_counts(sigma_of([1], [1, 2], [0, 2, 2])), [14, 14, 12, 2, 0])
+    assert_equal(anatomy_counts(sigma_of([1], [0, 1, 2], [0, 1, 0])), [694, 0, 694, 0, 0])
+
+
 def test_proposition_p_prime() raises:
     """Exact level = M-adic valuation iff catch-up-free: holds to depth 6 on
     the two catch-up-free specimens, fails on unimodular Tribonacci (every
@@ -119,4 +162,6 @@ def main() raises:
     print("[PASS] test_proposition_p_prime")
     test_proposition_c()
     print("[PASS] test_proposition_c")
-    require_contract("one-tile catch-up analysis: recurrent/in-CU/reach-CU pinned on seven specimens; Q1 holds on cube, golden pump, 210/0/110, plastic, Tribonacci; fails totally on 1/012/010 (694/0/0) and partly on 1/12/022 (14/4/12, both failures short); two-sided (left/right/either), Tribonacci 14/14/14 of 14 (mirror recurrent 14, of which 8 nonzero), 1/12/022 12/12/12 of 14, 1/012/010 0/0/0 of 694 while PPVC holds with K_V 14; Lemma P catch-up-free on 1/012/010, its mirror and 1/22/012 (in_cu 0), not on 1/12/022, Tribonacci, plastic; Proposition P' (level = M-adic valuation, depth 6) on 1/012/010 and 1/22/012, not on Tribonacci or 1/12/022; Proposition C odd sets {0,2} for 1/012/010, {2} for 1/22/202, none for Tribonacci or 1/12/022")
+    test_hit_kinds_and_closures()
+    print("[PASS] test_hit_kinds_and_closures")
+    require_contract("one-tile catch-up analysis: recurrent/in-CU/reach-CU pinned on seven specimens; Q1 holds on cube, golden pump, 210/0/110, plastic, Tribonacci; fails totally on 1/012/010 (694/0/0) and partly on 1/12/022 (14/4/12, both failures short); two-sided (left/right/either), Tribonacci 14/14/14 of 14 (mirror recurrent 14, of which 8 nonzero), 1/12/022 12/12/12 of 14, 1/012/010 0/0/0 of 694 while PPVC holds with K_V 14; Lemma P catch-up-free on 1/012/010, its mirror and 1/22/012 (in_cu 0), not on 1/12/022, Tribonacci, plastic; Proposition P' (level = M-adic valuation, depth 6) on 1/012/010 and 1/22/012, not on Tribonacci or 1/12/022; Proposition C odd sets {0,2} for 1/012/010, {2} for 1/22/202, none for Tribonacci or 1/12/022; hit kinds and closures (recurrent/diagonal/off-diagonal/closure 1/closure 2): Tribonacci 14/0/14/0/0, 1/12/022 14/14/12/2/0, 1/012/010 694/0/694/0/0")

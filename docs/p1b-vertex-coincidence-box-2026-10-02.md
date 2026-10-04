@@ -716,6 +716,85 @@ interleaving question is exactly whether a simultaneous birth
 `M w = ab(P_a(i)) − ab(P_b(j))`, with `i, j > 0`, is reachable from every
 recurrent vertex.
 
+### 5.6c Anatomy of the one-tile analysis (exact, `pixi run one-tile-anatomy`)
+
+These are the side computations behind §5.6b. Each one is exact on every
+standing-corpus specimen and is computed by the committed driver
+`mojo/one_tile_anatomy.mojo` with `psc.one_tile`. CI pins the output. An
+earlier scratch probe gave each of them first. Those probes are archived with
+their outputs in `archive/2026-10-04/session-probes/` (§5.6d) and agree with
+the driver line by line.
+
+*Q1 failures by spectral class.*
+
+| class | specimens | Q1 fails partially | Q1 fails totally |
+|---|---|---|---|
+| `|det M| = 1`, real contracting pair | 648 | 48 | 0 |
+| `|det M| = 1`, complex contracting pair | 1980 | 54 | 0 |
+| `|det M| = 2`, complex contracting pair | 1926 | 48 | 210 |
+
+Every total failure has `|det M| = 2`, as Lemma P requires. Partial failures
+occur in all three classes, 102 of them unimodular.
+
+*Closure sizes of the failing vertices.* Outside the catch-up-free class,
+the 348 recurrent vertices that reach no catch-up have nonzero forward
+closure of size 1 (276 vertices, fixed points of the inflation) or 2 (72
+vertices, 2-cycles). None has a larger closure.
+
+*One-step catch-ups (towards the converse of Lemma P).* Of the 4344
+specimens that are not catch-up-free, 4170 have a recurrent vertex whose
+leftmost child has offset zero. That is a catch-up taken in one step from
+the recurrent part, and there are 29,712 such vertices in all. The other 174
+specimens have none. Their recurrent vertices still all reach a catch-up,
+because none of the 174 fails Q1, but only through a leftmost chain of two
+or more steps, or through non-recurrent descendants. A proof of the converse
+of Lemma P therefore cannot rely on the explicit one-step vertex
+`(a′, b, −M^{−1} ab(p))` being recurrent. The 174 labels, `i/j/k` indexing
+the image words as in the census, are:
+
+```
+1/2/9 1/2/33 1/2/36 1/8/0 1/8/6 1/9/30 1/9/36 1/10/33 1/10/36 1/11/36 
+1/23/0 1/26/0 1/26/3 1/26/6 1/26/21 1/26/24 1/31/21 2/0/10 2/0/31 2/0/37 
+2/3/37 2/6/1 2/9/10 2/9/37 2/21/6 2/24/1 2/24/6 2/24/7 2/24/8 2/27/1 2/27/8 
+2/30/23 2/30/37 2/36/37 4/2/0 4/5/0 4/17/3 4/17/5 4/20/5 5/0/1 5/0/4 5/3/19 
+5/4/16 5/4/19 6/5/33 6/8/21 6/8/27 6/23/0 6/23/21 6/26/0 6/26/15 6/26/21 
+6/26/24 6/27/21 6/29/27 7/2/36 7/8/27 7/23/6 7/26/0 7/26/6 7/26/24 8/4/31 
+8/6/1 8/24/1 8/24/7 8/26/0 8/27/7 8/29/0 8/29/27 8/33/29 9/0/31 9/0/37 
+9/18/37 9/27/4 9/30/10 9/30/31 9/30/33 9/30/37 9/33/10 9/33/34 9/36/37 
+10/0/34 10/0/37 10/2/9 10/2/36 10/11/33 10/11/36 10/23/5 10/33/34 10/34/27 
+11/0/37 11/9/31 11/9/37 11/24/1 11/33/10 11/36/37 13/2/0 13/2/3 13/2/4 
+13/2/5 13/5/0 13/5/3 13/11/0 13/14/0 13/14/3 13/14/5 13/20/0 13/20/5 
+13/32/5 14/0/1 14/0/4 14/0/7 14/0/13 14/0/16 14/3/1 14/3/4 14/3/13 14/4/1 
+14/4/13 14/4/16 14/4/22 14/5/1 16/2/4 16/17/4 16/17/5 17/0/1 17/3/4 17/4/1 
+17/4/16 17/9/8 17/20/5 19/2/0 19/2/5 19/4/16 19/5/3 19/10/6 19/20/5 20/4/19 
+20/5/1 20/5/19 21/17/6 23/6/7 23/6/8 23/16/4 23/21/6 23/21/8 26/24/1 
+26/24/7 26/24/8 27/20/0 28/10/36 29/6/8 29/19/1 29/23/8 29/24/1 29/24/8 
+29/27/8 30/9/19 31/5/20 31/9/30 31/10/9 31/10/30 31/11/9 33/0/16 34/2/17 
+34/2/36 34/10/9 34/10/31 34/10/33 34/10/36 35/24/8 37/2/36 37/10/36 
+37/11/36
+```
+
+Their first images have length 1 (34 specimens), 2 (62) or 3 (78). The
+first few are `0 -> 1` with `1 -> 2, 2 -> 20`, `1 -> 2, 2 -> 210`,
+`1 -> 2, 2 -> 220`, `1 -> 12, 2 -> 0` and `1 -> 12, 2 -> 10`.
+
+*Diagonal against off-diagonal hits.* A diagonal offset-zero state
+`(c, c, 0)` is an exact tile coincidence and is terminal in the box graph.
+An off-diagonal one `(c, d, 0)` with `c ≠ d` is a common vertex without a
+common tile, and it is expanded further. Counting only paths through
+nonzero offsets, so only the first hit counts:
+
+- 1,080,828 of the 1,154,040 recurrent vertices reach a diagonal hit, and
+  1,153,308 reach an off-diagonal one;
+- on 180 of the 210 catch-up-free specimens every recurrent vertex reaches a
+  diagonal hit; on the other 30, 12,276 recurrent vertices reach none.
+
+So "first hit is a tile coincidence" is not a route to case 3 either. Even
+outside that class it fails on specimens where PPVC holds. Tribonacci's 14
+recurrent vertices all reach an off-diagonal hit first and no diagonal one,
+and `0 -> 1, 1 -> 012, 2 -> 010` (694 vertices) does the same. Both are
+pinned in `tests/test_one_tile.mojo`.
+
 ### 5.7 The closing target, restated
 
 The box graph is the carry automaton of the Dumont–Thomas numeration of
