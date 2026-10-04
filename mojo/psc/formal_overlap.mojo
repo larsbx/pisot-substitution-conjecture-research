@@ -533,3 +533,28 @@ def survey_formal_overlaps(
     return FormalSurvey(
         formal^, realized.size(), box^, len(seeds), nonproductive, carriers^, inside
     )
+
+
+def aligned_pair_depth(s: FormalSurvey) raises -> Int:
+    """`S(sigma)`: the largest first-coincidence depth of the six aligned pairs
+    `(i, j, 0)`, `i != j`, or `-1` if one of them is nonproductive.
+
+    They are the only offset-zero states that are not coincidences, and `t = 0`
+    is genuine and in every contraction region, so all six are formal seeds;
+    a missing one is an impossible state and raises. With `L` the first
+    offset-zero depth of a state and `D` its coincidence depth, `D <= L + S`
+    (docs/formal-productivity-reduction-2026-10-04.md)."""
+    var depth = first_coincidence_depths(s.formal)
+    var found = 0
+    var out = 0
+    for v in range(s.formal.size()):
+        var x = s.formal.states[v]
+        if x.shift.is_zero() and not x.is_coincidence():
+            found += 1
+            if depth[v] < 0:
+                out = -1
+            elif out >= 0 and depth[v] > out:
+                out = depth[v]
+    if found != 6:
+        raise Error("formal graph does not hold exactly the six aligned pairs")
+    return out

@@ -2,10 +2,7 @@
 
 **Status:** exact finite census over the standing 4,554-member corpus, plus an
 elementary region argument stated and proved below. Finite evidence only; no
-ledger node, open problem, or PSC status changes. **Provisional:** the §3
-numbers are from the first full run, whose region was sized in floating
-point; the exact-kernel re-run, the receipts under `docs/evidence/` and the
-oracle receipt check are pending and will replace this sentence.
+ledger node, open problem, or PSC status changes.
 
 ## 1. Why this exists
 
@@ -100,6 +97,27 @@ states) and the largest (322 states, depth 10) occur in specimens `7 5 30`
 and `7 9 14`. The Padovan/plastic substitution `0 -> 1, 1 -> 2, 2 -> 01`
 (specimen `1 2 4`) is the smallest control: one realized aligned carrier (58
 states, depth 4) and one unrealized strict carrier (16 states, depth 6).
+
+### 3.1 Aligned-route decomposition (step 2)
+
+Per carrier the census also records `L`, the least depth to an offset-zero
+state (coincidences included, so `L <= D` with `D` the death depth), and the
+least depth to an offset-zero state that is not a coincidence, i.e. one of the
+aligned pairs `(i, j, 0)`, `i != j`, of the P1a route.
+
+| | unrealized | realized |
+| --- | --- | --- |
+| `L` | `0:52 1:176 2:1256 3:1900 4:1074 5:828 6:648 7:324 8:216 9:228 10:180 11:180 12:120` | `0:4808 1:784 2:418 3:38 4:18 5:12` |
+| `D - L` | `0:2298 1:3890 2:980 3:14` | `0:780 1:4132 2:940 3:130 4:78 5:12 6:6` |
+| reach an aligned pair `(i, j, 0)` | 7,108 | 5,588 |
+| ... strictly before `D` | 4,884 | 5,298 |
+
+The escape splits into a strict phase of variable length (`L`, up to 12 for
+unrealized carriers) and a short aligned remainder (`D - L <= 3` unrealized,
+`<= 6` realized). Neither "first offset-zero hit is a coincidence" (`L = D`:
+2,298 unrealized) nor "through an aligned pair" dominates outright. The
+proposition of `formal-productivity-reduction-2026-10-04.md` explains the
+short remainder: after offset zero only three fixed states remain.
 
 ## 4. Reading
 

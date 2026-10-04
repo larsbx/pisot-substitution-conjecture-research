@@ -2,7 +2,7 @@
 
 from std.testing import assert_equal, assert_false, assert_true
 from psc.claim_tests import require_contract
-from psc.formal_overlap import recurrent_coincidence_free_sccs, survey_formal_overlaps
+from psc.formal_overlap import aligned_pair_depth, recurrent_coincidence_free_sccs, survey_formal_overlaps
 from psc.overlap_seed_patch import OverlapState, build_seed_overlap_graph_from_tables, build_seed_overlap_tables
 
 
@@ -62,6 +62,19 @@ def test_realized_carriers_are_the_realized_graphs_own() raises:
         assert_true(realized.states[own[0][i]] in formal_members)
 
 
+def test_aligned_remainder_is_bounded_by_the_six_aligned_pairs() raises:
+    """`D <= L + S(sigma)` for every carrier: after the first offset-zero
+    descendant only a coincidence or one of the six states `(i, j, 0)` can
+    have been reached, and each of those dies within `S(sigma)`."""
+    var s = survey_formal_overlaps(build_seed_overlap_tables(sigma_of([1], [2], [0, 1])))
+    var bound = aligned_pair_depth(s)
+    assert_equal(bound, 14)  # loose here: the carriers have D - L <= 4
+    for c in range(len(s.carriers)):
+        ref x = s.carriers[c]
+        assert_true(x.aligned_depth <= x.death_depth)
+        assert_true(x.death_depth <= x.aligned_depth + bound)
+
+
 def test_single_realized_carrier_specimen() raises:
     """0 -> 1, 1 -> 2, 2 -> 02 (corpus specimen `1 2 5`): no unrealized carrier."""
     var s = survey_formal_overlaps(build_seed_overlap_tables(sigma_of([1], [2], [0, 2])))
@@ -85,7 +98,8 @@ def test_non_pisot_input_fails_closed() raises:
 def main() raises:
     test_plastic_has_realized_and_unrealized_carriers()
     test_realized_carriers_are_the_realized_graphs_own()
+    test_aligned_remainder_is_bounded_by_the_six_aligned_pairs()
     test_single_realized_carrier_specimen()
     test_non_pisot_input_fails_closed()
-    print("[PASS] formal overlap carriers: box, realization split, aligned depths, cross-check, fail-closed")
+    print("[PASS] formal overlap carriers: box, realization split, aligned depths, D <= L + S, cross-check, fail-closed")
     require_contract("formal overlap carriers are the recurrent coincidence-free SCCs of the closure of a Pisot-contraction box of potential overlaps; each is wholly realized or wholly unrealized, the realized ones are the swap-seed graph's own, and a non-Pisot input fails closed")

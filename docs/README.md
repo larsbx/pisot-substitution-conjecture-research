@@ -171,6 +171,12 @@ These are reference/index additions only. They do not establish #84, #138,
   on the corpus; realized carriers are mostly aligned and die fast, unrealized
   ones are 99.3% strict zippers and die later (depth up to 14). Canonical
   `mojo/psc/formal_overlap.mojo`, census `mojo/formal_overlap_census.mojo`.
+- `formal-productivity-reduction-2026-10-04.md` — research note
+  (unreviewed): every potential overlap is productive iff the six aligned
+  pairs `(i, j, 0)` are productive and every cycle overlap has an offset-zero
+  descendant (Proposition FP), with the remainder after offset zero bounded by
+  `S(sigma)`; with Proposition V and Theorem S this is PDS plus all-pairs
+  aligned strong coincidence (Corollary FP′). Changes no status.
 - `return-lattice-literature-gate-2026-10-02.md` — return vectors of tiles
   span `Z<ell>` on the whole corpus; return vectors of length-`n` patches span
   it for every `n` on the unimodular classes and fail to by `n = 13` on every
