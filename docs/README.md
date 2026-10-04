@@ -164,6 +164,13 @@ These are reference/index additions only. They do not establish #84, #138,
   Lemma P (no proper prefix in `M Z^3`) accounts for all 210 total failures.
   Proposition P′: there, vertex levels are the M-adic valuations of their
   positions; route check against Baker–Barge–Kwapisz 2006 recorded.
+- `formal-overlap-carriers-2026-10-04.md` — exact census of formal
+  (potential) versus realized overlap carriers; supersedes the unreproducible
+  "1,764 formal producer-free cycles / death radius 7" line of the
+  2026-09-11 ledger. No closed carrier and no nonproductive potential overlap
+  on the corpus; realized carriers are mostly aligned and die fast, unrealized
+  ones are 99.3% strict zippers and die later (depth up to 14). Canonical
+  `mojo/psc/formal_overlap.mojo`, census `mojo/formal_overlap_census.mojo`.
 - `return-lattice-literature-gate-2026-10-02.md` — return vectors of tiles
   span `Z<ell>` on the whole corpus; return vectors of length-`n` patches span
   it for every `n` on the unimodular classes and fail to by `n = 13` on every
