@@ -395,6 +395,7 @@ jobs:
           grep -Fx 'recurrent vertices: 1154040  in CU: 561624  reach CU: 1056816' <<<"$out"
           grep -Fx 'specimens failing Q1: 360  of which no recurrent vertex reaches CU: 210' <<<"$out"
           grep -Fx 'catch-up-free (no proper prefix in M Z^3): 210  of which Q1 fails totally: 210  total failures not catch-up-free: 0' <<<"$out"
+          grep -Fx "Proposition P' (level = M-adic valuation to depth 5 ) iff catch-up-free, mismatches: 0" <<<"$out"
           grep -Fx 'Q1-failing vertices outside the catch-up-free class: 348  with nonzero forward closure <= 2: 348' <<<"$out"
           grep -Fx 'specimens failing Q1 at both endpoints: 360  of which no recurrent vertex reaches either: 210' <<<"$out"
 
