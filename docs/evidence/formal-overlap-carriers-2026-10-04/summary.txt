@@ -1,5 +1,5 @@
 Formal overlap carrier census, specimens: 4554
-formal states: 50466666  largest formal graph: 179937  realized states: 1118850
+formal states: 68923062  largest formal graph: 249385  realized states: 1118850
 formal nonproductive states (Q-infinity): 0  specimens with a carrier outside the box: 0
 unrealized carriers: 7182  aligned: 52  strict: 7130  closed: 0  with a direct coincidence child: 36
 realized carriers: 6078  aligned: 4808  strict: 1270  closed: 0  with a direct coincidence child: 4194

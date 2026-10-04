@@ -68,7 +68,9 @@ kernel instead seeds from Proposition V's box
 (`p1b-vertex-coincidence-box-2026-10-02.md` §2), which also contains every
 cycle vertex. By items 2–3 and 5 the carriers, their depths and the
 nonproductivity verdict do not depend on the choice; the earlier receipts were
-produced with `K_T` seeding in the kernel; the box-seeded rerun is pending.
+produced with `K_T` seeding in the kernel (50,466,666 formal states); the
+box-seeded kernel reproduces all 13,260 records as a multiset, with every other
+summary line equal, in 7 minutes instead of 107.
 
 ## 3. Census
 
@@ -79,7 +81,7 @@ Receipts: `docs/evidence/formal-overlap-carriers-2026-10-04/`.
 | Quantity | Value |
 | --- | ---: |
 | specimens | 4,554 |
-| formal states / largest formal graph | 50,466,666 / 179,937 |
+| formal states / largest formal graph (box seeding) | 68,923,062 / 249,385 |
 | realized states (equals the standing overlap census) | 1,118,850 |
 | formal nonproductive states | 0 |
 | specimens with a carrier vertex outside the seed box | 0 |
@@ -152,9 +154,10 @@ short remainder: after offset zero only three fixed states remain.
   arithmetic, its own root isolation, SCC algorithm and a deliberately looser
   region (triangle-inequality digit bound). Carriers do not depend on the
   region once it contains every cycle, so agreement also checks that.
-  A first run seeded from a differently shaped region (per-conjugate bounds,
-  23,286,258 formal states) produced the same 13,260 carrier records as a
-  multiset, a corpus-wide check that carriers do not depend on the region.
+  Three runs seeded from differently shaped regions (per-conjugate bounds,
+  23,286,258 formal states; `K_T`, 50,466,666; Proposition V's box,
+  68,923,062) produced the same 13,260 carrier records as a multiset, a
+  corpus-wide check that carriers do not depend on the region.
   `scripts/check_formal_overlap_receipts.py` re-derives the summary from the
   records and recomputes a strided sample; `tests/test_formal_overlap.py`
   recomputes two fixtures on every run.
@@ -165,8 +168,8 @@ the region argument only makes the census complete per specimen.
 ## 6. Refactors (flagged and applied 2026-10-04)
 
 Found while connecting this work to `p1b-vertex-coincidence-box-2026-10-02.md`.
-Every affected regression passes unchanged; the box-seeded census rerun
-(refactor 1) is pending.
+Every affected regression passes unchanged, and the box-seeded census
+reproduces the carrier records (§2).
 
 1. **Two covering constructions.** The formal survey seeds from Proposition
    V's `box_radii` / `box_start_states`; its own exact `K_T` region code is

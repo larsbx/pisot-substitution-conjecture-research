@@ -744,9 +744,10 @@ it forces `s_1 = 0`, a Z letter. The converse is the same computation.
 `psc.valuation_ascent.lemma_e_shape` decides the shape, and
 `valuation_ascent_census.mojo` checks it against `catch_up_free` on every
 `|det M| = 2` specimen: 0 mismatches on the 1,926 of the standing corpus and
-the 12,672 of total length at most 8. On the standing
-corpus all 210 catch-up-free specimens have `|det M| = 2`; whether all 654 of
-total length at most 8 do is being recounted in Mojo (pending). On the standing corpus the 210 catch-up-free specimens
+the 12,672 of total length at most 8. The class is not
+confined to `|det M| = 2`: on the standing corpus all 210 catch-up-free
+specimens have it, but of the 654 of total length at most 8 only 570 do, and
+Lemma E says nothing about the other 84. On the standing corpus the 210 catch-up-free specimens
 split by (number of E letters, number of length-1 images) as `(2, 0): 156`,
 `(2, 1): 36`, `(1, 1): 12`, `(1, 0): 6`. With two E letters the hierarchy is
 read off a parity: a cut is a level-0 vertex iff an odd number of E letters
