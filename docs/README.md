@@ -11,6 +11,11 @@ TOML and regenerate rather than hand-editing the Markdown.
 
 ## Current status
 
+0. `side-notes-ledger.md` — live, append-only record of side findings:
+   refuted mechanisms, redirected routes, specimens settled by the literature,
+   withdrawn figures, finite observations and tooling pitfalls. Read it
+   before starting a new mechanism, census or route (`AGENTS.md`).
+
 1. `audit-2026-09-27.md` — status/provenance audit, now carrying a 2026-10-01
    resolution note: the PSC-closed premise was withdrawn, PSC remains open,
    #84/#138 are live theorem issues again, and #153 is resolved conservatively.
