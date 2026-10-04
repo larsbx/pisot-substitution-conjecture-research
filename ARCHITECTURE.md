@@ -18,7 +18,7 @@ authority -> mathematical/domain concern -> implementation language
 ```
 
 Mojo under `mojo/` is the canonical executable (see `AGENTS.md`). Python under
-`src/psc_research/` is a non-authoritative reference and oracle layer; Julia
+`reference/psc_research/` is a non-authoritative reference and oracle layer; Julia
 under `oracles/julia/` is a research oracle. Lean under `PscVerif/` and TLA+
 under `tla/` are the proof plane: they hold claim state, not acceptance
 authority over the Mojo kernel. `claim_governance.toml` and `vendored.toml` are

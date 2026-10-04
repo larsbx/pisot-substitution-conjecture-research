@@ -60,7 +60,7 @@ Issue #2 tracks the remaining infrastructure step: make this exact screen the ca
 
 ## 3. Python reference/oracle layer
 
-`src/psc_research/` and `tests/` contain exact reference implementations for much of the live C4 reduction stack, including:
+`reference/psc_research/` and `tests/` contain exact reference implementations for much of the live C4 reduction stack, including:
 
 - sink-SCC and boundary-lineage tooling;
 - seven endpoint-map types and synchronization quotients;

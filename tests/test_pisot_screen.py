@@ -8,7 +8,7 @@ from fractions import Fraction
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "reference"))
 
 from psc_research import pisot_screen as ps  # noqa: E402
 

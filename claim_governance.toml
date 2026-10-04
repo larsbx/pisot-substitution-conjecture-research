@@ -17,7 +17,7 @@ name = "larsbx/pisot-substitution-conjecture-research"
 
 [scan]
 prose = ["README.md", "docs/**/*.md", "manuscripts/*.tex", "manuscripts/*.md"]
-source = ["mojo/psc/**/*.mojo", "mojo/*.mojo", "mojo/tests/*.mojo", "src/psc_research/*.py"]
+source = ["mojo/psc/**/*.mojo", "mojo/*.mojo", "mojo/tests/*.mojo", "reference/psc_research/*.py"]
 exclude = ["archive/**", "docs/source-imports/**"]
 
 # ---------------------------------------------------------------------------
@@ -141,7 +141,7 @@ message = "floating point in exact kernel scope (binding criterion C1)"
 [[numerics.rule]]
 name = "no-float-in-oracle"
 pattern = '\bfloat\b|\bmath\.(?:sqrt|log|exp|sin|cos|pow)\b|\bnumpy\b'
-paths = ["src/psc_research/*.py"]
+paths = ["reference/psc_research/*.py"]
 message = "the Python oracle must stay exact (fractions.Fraction and int only)"
 
 # ---------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 """Fixed-dimension integer vector arithmetic: the canonical kernel.
 
-`src/psc_research/prefix_difference.py`, `prefix_ancestry.py`,
+`reference/psc_research/prefix_difference.py`, `prefix_ancestry.py`,
 `orientation_spectrum.py` and `factorization_degree2.py` each carry a private
 `_matvec`, and two of them a private `_add` and `_sub`, over short integer
 vectors -- the prefix-difference lift, the ancestry step, the orientation gauge

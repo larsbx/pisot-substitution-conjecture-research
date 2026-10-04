@@ -18,7 +18,7 @@ def test_overlap_graph_is_registered_as_oracle_for_canonical_mojo_kernel():
     item = entries[overlap_graph.CATALOGUE_OBJECT_ID]
     assert overlap_graph.IMPLEMENTATION_ROLE == "independent-oracle"
     assert item["canonical"] == overlap_graph.CANONICAL_IMPLEMENTATION
-    assert item["oracle"] == "src/psc_research/overlap_graph.py"
+    assert item["oracle"] == "reference/psc_research/overlap_graph.py"
 
 
 def test_catalogue_paths_exist():

@@ -6,7 +6,7 @@
 
 New algorithms, finite-state constructions, exact arithmetic kernels, census drivers, proof-support instrumentation, and performance-sensitive research tooling should be implemented in `mojo/` first.
 
-Python under `src/psc_research/` is a secondary oracle/prototyping layer. It may be used to:
+Python under `reference/psc_research/` is a secondary oracle/prototyping layer. It may be used to:
 
 - cross-check a Mojo implementation with an independently written reference;
 - generate small calibration fixtures or counterexamples;

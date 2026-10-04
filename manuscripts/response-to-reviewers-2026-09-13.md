@@ -187,7 +187,7 @@ Two findings; both accepted. Neither concerns the manuscript.
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 22 | P2 | The note's Lemma 8.1 still asserts that the `G_m(s)` increase and its proof still picks a witnessing level at least `N` without justification | Accepted. The note now carries the manuscript's finite-difference statement and the repaired proof of (c)⇒(a) verbatim in substance | Note Section 8, good-set paragraph and proof of Lemma 8.1 |
-| 23 | P2 | The probe passed the heuristic window `14 + k` to `oa_types`, below the documented bound `(g(W) + l_max)/l_min` for large length ratios, so level-0 types could be missed | Accepted. The bound is now computed exactly in `Q(β)` (`oa_window`: least `n` with `n·l_min > g(W) + l_max`, decided by exact signs) and used by default; an explicit smaller window, or a prefix too short for the window, raises (fail closed). The same heuristic (`window = 14`, `k ≤ 8`) had been used for the Section 7 sample table, so both the sample and the probe were re-run with the exact window; the recomputation reproduced every reported figure exactly (same 22 failures, same least witnesses, same type counts), and the note now states the method with the exact window | `src/psc_research/oa_overlap_graph.py` (`oa_window`, `oa_types`, `type_inclusion_report`), both scripts, regression tests in `tests/test_oa_overlap_graph.py`; note Section 7 table and addendum |
+| 23 | P2 | The probe passed the heuristic window `14 + k` to `oa_types`, below the documented bound `(g(W) + l_max)/l_min` for large length ratios, so level-0 types could be missed | Accepted. The bound is now computed exactly in `Q(β)` (`oa_window`: least `n` with `n·l_min > g(W) + l_max`, decided by exact signs) and used by default; an explicit smaller window, or a prefix too short for the window, raises (fail closed). The same heuristic (`window = 14`, `k ≤ 8`) had been used for the Section 7 sample table, so both the sample and the probe were re-run with the exact window; the recomputation reproduced every reported figure exactly (same 22 failures, same least witnesses, same type counts), and the note now states the method with the exact window | `reference/psc_research/oa_overlap_graph.py` (`oa_window`, `oa_types`, `type_inclusion_report`), both scripts, regression tests in `tests/test_oa_overlap_graph.py`; note Section 7 table and addendum |
 
 ### Finding 23 (P2)
 
@@ -222,7 +222,7 @@ One finding from the automated Codex review of commit `310f06c06bdf757745cdb9c19
 
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
-| 26 | P2 | The Python depth helper returned depths on a capped partial graph, unlike the canonical Mojo kernel | Accepted. `first_depths` now raises on a capped graph (so do the coincidence, left-aligned and strong-coincidence wrappers), matching `_first_depths` and `nonproductive`; regression test on `τ` with `max_states = 1` | `src/psc_research/overlap_graph.py`; `tests/test_swap_discrepancy.py` |
+| 26 | P2 | The Python depth helper returned depths on a capped partial graph, unlike the canonical Mojo kernel | Accepted. `first_depths` now raises on a capped graph (so do the coincidence, left-aligned and strong-coincidence wrappers), matching `_first_depths` and `nonproductive`; regression test on `τ` with `max_states = 1` | `reference/psc_research/overlap_graph.py`; `tests/test_swap_discrepancy.py` |
 
 ---
 
@@ -233,7 +233,7 @@ Two findings from the automated Codex review of commit `3dc397856ab8ceaf0298c34c
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 27 | P2 | A nonproductive graph would raise in the depth validations before being counted, so a counterexample would surface as `FAILED` with the nonproductive count still zero | Accepted. The driver now records and prints a nonproductive specimen immediately after the productivity check and skips the depth statistics for it, which are undefined on such a graph | `mojo/swap_overlap_census.mojo` |
-| 28 | P2 | The prefix and suffix strong-coincidence scans each recomputed the coincidence depths, three reverse searches per graph | Accepted. `strong_coincidence_depth_from(depths, ...)` takes the precomputed vector (length-checked); `strong_coincidence_depth` wraps it; the census passes the one vector it already holds. The Python oracle takes an optional `depths` argument likewise. Census lines unchanged | `mojo/psc/overlap_seed_patch.mojo`, `mojo/swap_overlap_census.mojo`, `mojo/tests/test_overlap_seed_patch.mojo`, `src/psc_research/overlap_graph.py`, `scripts/overlap_depth_census_oracle.py` |
+| 28 | P2 | The prefix and suffix strong-coincidence scans each recomputed the coincidence depths, three reverse searches per graph | Accepted. `strong_coincidence_depth_from(depths, ...)` takes the precomputed vector (length-checked); `strong_coincidence_depth` wraps it; the census passes the one vector it already holds. The Python oracle takes an optional `depths` argument likewise. Census lines unchanged | `mojo/psc/overlap_seed_patch.mojo`, `mojo/swap_overlap_census.mojo`, `mojo/tests/test_overlap_seed_patch.mojo`, `reference/psc_research/overlap_graph.py`, `scripts/overlap_depth_census_oracle.py` |
 
 ---
 
@@ -267,7 +267,7 @@ Two findings from the automated Codex review of commit `7d74aa42c3ce138afe85b332
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
 | 34 | P1 | The rational Horner evaluator lived in `real_root_sign.mojo` instead of the designated adapter | Accepted. `eval_q_poly_at_q` now lives in `mojo/psc/exact.mojo` next to the integer Horner helper; `real_root_sign.mojo` imports it and keeps only polynomial algebra (trim, derivative, product, remainder) and the Sturm–Tarski queries | `mojo/psc/exact.mojo`, `mojo/psc/real_root_sign.mojo` |
-| 35 | P1 | The complex-pair test decided the Cauchy–Schwarz relaxation `N(t)/t ≤ K m Σ ρ^s`, which is one-way, so the census was not a census of the stated `m_0` (example: `1→2, 2→33, 3→213`, offset `(−8, −2, 5/2)`: relaxation 5, defining inequality 6) | Accepted. Both implementations now decide the defining inequality exactly: with `ρ = β/D`, `(Σ_{s≤m} ρ^{s/2})² = A_m + ρ^{1/2} B_m` with `A_m, B_m ∈ Q(β)` (`n_k = min(k−1, 2m+1−k)` pairs), so `N(t)/t ≤ K(A_m + ρ^{1/2}B_m)` iff `N(t)/t ≤ K A_m`, or `N(t)/t > K A_m` and `(N(t)/t − K A_m)² ≤ K² ρ B_m²`: at most two sign tests at `β`, no relaxation. Proposition 5.42 and its proof state this formulation; every mention of Chebyshev or Cauchy–Schwarz is removed from statement, proof, "Meaning", note Section 10, and both implementations. The referee's example is pinned in both regression suites (`m_0 = 6`), and the census was rerun with the exact test in both implementations and repinned in CI, Computation 6.7, the note, the ledgers, and the READMEs (the largest `m_0` rises from 7 to 8, attained on 12 vertices of 6 substitutions; the largest excess stays 14; the totally real specimens are unchanged) | Proposition 5.42 statement and proof; Computation 6.7; note Section 10; `mojo/psc/overlap_contracting.mojo`, `src/psc_research/overlap_contracting.py`, `mojo/tests/test_overlap_contracting.mojo`, `tests/test_oa_overlap_graph.py`, `.github/workflows/ci.yml` |
+| 35 | P1 | The complex-pair test decided the Cauchy–Schwarz relaxation `N(t)/t ≤ K m Σ ρ^s`, which is one-way, so the census was not a census of the stated `m_0` (example: `1→2, 2→33, 3→213`, offset `(−8, −2, 5/2)`: relaxation 5, defining inequality 6) | Accepted. Both implementations now decide the defining inequality exactly: with `ρ = β/D`, `(Σ_{s≤m} ρ^{s/2})² = A_m + ρ^{1/2} B_m` with `A_m, B_m ∈ Q(β)` (`n_k = min(k−1, 2m+1−k)` pairs), so `N(t)/t ≤ K(A_m + ρ^{1/2}B_m)` iff `N(t)/t ≤ K A_m`, or `N(t)/t > K A_m` and `(N(t)/t − K A_m)² ≤ K² ρ B_m²`: at most two sign tests at `β`, no relaxation. Proposition 5.42 and its proof state this formulation; every mention of Chebyshev or Cauchy–Schwarz is removed from statement, proof, "Meaning", note Section 10, and both implementations. The referee's example is pinned in both regression suites (`m_0 = 6`), and the census was rerun with the exact test in both implementations and repinned in CI, Computation 6.7, the note, the ledgers, and the READMEs (the largest `m_0` rises from 7 to 8, attained on 12 vertices of 6 substitutions; the largest excess stays 14; the totally real specimens are unchanged) | Proposition 5.42 statement and proof; Computation 6.7; note Section 10; `mojo/psc/overlap_contracting.mojo`, `reference/psc_research/overlap_contracting.py`, `mojo/tests/test_overlap_contracting.mojo`, `tests/test_oa_overlap_graph.py`, `.github/workflows/ci.yml` |
 
 ---
 
@@ -287,7 +287,7 @@ One finding from the automated Codex review of commit `059c4c5536cc4f0f9252a55a6
 
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
-| 37 | P1 | `least_level` rebuilt the level tables `A_m`, `B_m` (complex pair) and the β-powers and `G_m` (real conjugates) for every shift and level, although they depend only on the substitution | Accepted. The constructor now builds `A_m`, `B_m` for `m ≤ max_level` (complex pair) and `β^m`, `G_r[m]` (real conjugates) once per substitution; `least_level` indexes them. The Python oracle precomputes `A_m`, `B_m` the same way (its real branch already did). Census rerun: identical lines | `mojo/psc/overlap_contracting.mojo`, `src/psc_research/overlap_contracting.py` |
+| 37 | P1 | `least_level` rebuilt the level tables `A_m`, `B_m` (complex pair) and the β-powers and `G_m` (real conjugates) for every shift and level, although they depend only on the substitution | Accepted. The constructor now builds `A_m`, `B_m` for `m ≤ max_level` (complex pair) and `β^m`, `G_r[m]` (real conjugates) once per substitution; `least_level` indexes them. The Python oracle precomputes `A_m`, `B_m` the same way (its real branch already did). Census rerun: identical lines | `mojo/psc/overlap_contracting.mojo`, `reference/psc_research/overlap_contracting.py` |
 
 ---
 
@@ -1015,7 +1015,7 @@ One finding from the automated Codex review of commit `c14afe4f2b`; accepted, on
 
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
-| 160 | P2 | The oracle's separation-radius search returned None on a negative cap, which reads as a surviving collision | Accepted. The oracle now raises on a negative bound, as the canonical Mojo `separation_radius` already did; a test asserts the error, so an empty search can no longer be recorded as a survivor | `src/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
+| 160 | P2 | The oracle's separation-radius search returned None on a negative cap, which reads as a surviving collision | Accepted. The oracle now raises on a negative bound, as the canonical Mojo `separation_radius` already did; a test asserts the error, so an empty search can no longer be recorded as a survivor | `reference/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
 
 ## Ninety-sixth round (pull request #101, negative-cap revision)
 
@@ -1023,8 +1023,8 @@ Two findings from the automated Codex review of commit `d5be52f0f2`; both accept
 
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
-| 161 | P2 | `inflate_collar` with a negative radius returned empty collars instead of raising | Accepted. Both implementations now reject a negative radius before inflating; tests assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
-| 162 | P2 | A pump certificate whose first state has no fibre in the collared graph lifted to no orbits, which the census would read as a constant collar | Accepted. Both implementations now fail when the starting fibre is empty; tests lift the collapsing specimen's certificate against the determinant-two collared graph and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
+| 161 | P2 | `inflate_collar` with a negative radius returned empty collars instead of raising | Accepted. Both implementations now reject a negative radius before inflating; tests assert the error | `mojo/psc/overlap_collar.mojo`, `reference/psc_research/overlap_collar.py`, tests |
+| 162 | P2 | A pump certificate whose first state has no fibre in the collared graph lifted to no orbits, which the census would read as a constant collar | Accepted. Both implementations now fail when the starting fibre is empty; tests lift the collapsing specimen's certificate against the determinant-two collared graph and assert the error | `mojo/psc/overlap_collar.mojo`, `reference/psc_research/overlap_collar.py`, tests |
 
 ## Ninety-seventh round (pull request #101, invalid-input revision)
 
@@ -1032,8 +1032,8 @@ Two findings from the automated Codex review of commit `5b06d74b19`; both accept
 
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
-| 163 | P2 | `patch_power_level` with equal letters reported level 1 for every substitution, since `sigma(a)sigma(a)` is always a power | Accepted. Both implementations reject equal endpoints, as a swap seed needs two distinct letters; tests assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
-| 164 | P2 | The oracle's `inflate_collar` returned sides shorter than the radius when the input collar was undersized, where the canonical implementation raises | Accepted. The oracle now carries the same post-inflation length check; both test files inflate a radius-1 collar at radius 2 under a length-one image and assert the error | `src/psc_research/overlap_collar.py`, tests |
+| 163 | P2 | `patch_power_level` with equal letters reported level 1 for every substitution, since `sigma(a)sigma(a)` is always a power | Accepted. Both implementations reject equal endpoints, as a swap seed needs two distinct letters; tests assert the error | `mojo/psc/overlap_collar.mojo`, `reference/psc_research/overlap_collar.py`, tests |
+| 164 | P2 | The oracle's `inflate_collar` returned sides shorter than the radius when the input collar was undersized, where the canonical implementation raises | Accepted. The oracle now carries the same post-inflation length check; both test files inflate a radius-1 collar at radius 2 under a length-one image and assert the error | `reference/psc_research/overlap_collar.py`, tests |
 
 ## Ninety-eighth round (pull request #101, equal-letter revision)
 
@@ -1041,8 +1041,8 @@ Two findings from the automated Codex review of commit `400010cf0a`; both accept
 
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
-| 165 | P2 | The oracle lifted a certificate whose edge sequence did not match its states, so an empty edge sequence read as a constant pump | Accepted. The oracle now rejects an empty certificate and one whose edge and state sequences differ in length, as the canonical implementation does; tests assert the error on three malformed certificates | `src/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
-| 166 | P2 | The oracle's `legal_factors` accepted a nonpositive length and returned the letters | Accepted. The oracle rejects a length below one, as the canonical routine does; a test asserts the error. The oracle's `collared_seeds` also rejects a capped graph, the one remaining check the canonical module had and the oracle lacked | `src/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
+| 165 | P2 | The oracle lifted a certificate whose edge sequence did not match its states, so an empty edge sequence read as a constant pump | Accepted. The oracle now rejects an empty certificate and one whose edge and state sequences differ in length, as the canonical implementation does; tests assert the error on three malformed certificates | `reference/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
+| 166 | P2 | The oracle's `legal_factors` accepted a nonpositive length and returned the letters | Accepted. The oracle rejects a length below one, as the canonical routine does; a test asserts the error. The oracle's `collared_seeds` also rejects a capped graph, the one remaining check the canonical module had and the oracle lacked | `reference/psc_research/overlap_collar.py`, `tests/test_overlap_collar.py` |
 
 ## Ninety-ninth round (pull request #101, oracle-parity revision)
 
@@ -1050,7 +1050,7 @@ One finding from the automated Codex review of commit `a238e8dfb9`; accepted, on
 
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
-| 167 | P2 | A certificate with a valid first state and valid edges but corrupted later states lifted to the original periods, since only the first state was consulted | Accepted. Both implementations now check, before lifting, that every edge's parent is the state at its index and its child the cyclically next state, the invariant `verify_affine_pump` enforces; tests corrupt every later state entry of the golden certificate and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
+| 167 | P2 | A certificate with a valid first state and valid edges but corrupted later states lifted to the original periods, since only the first state was consulted | Accepted. Both implementations now check, before lifting, that every edge's parent is the state at its index and its child the cyclically next state, the invariant `verify_affine_pump` enforces; tests corrupt every later state entry of the golden certificate and assert the error | `mojo/psc/overlap_collar.mojo`, `reference/psc_research/overlap_collar.py`, tests |
 
 ## Hundredth round (pull request #101, pump-state revision)
 
@@ -1058,7 +1058,7 @@ One finding from the automated Codex review of commit `89550a4350`; accepted, on
 
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
-| 168 | P2 | A certificate edge with a valid ordinal but stale child indices was followed by ordinal alone, so the lift accepted an edge `verify_affine_pump` rejects | Accepted. Both lifts now compare the selected collared edge's child state and both child indices with the certificate edge before following it; tests corrupt the top child index of the golden certificate's first edge and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, tests |
+| 168 | P2 | A certificate edge with a valid ordinal but stale child indices was followed by ordinal alone, so the lift accepted an edge `verify_affine_pump` rejects | Accepted. Both lifts now compare the selected collared edge's child state and both child indices with the certificate edge before following it; tests corrupt the top child index of the golden certificate's first edge and assert the error | `mojo/psc/overlap_collar.mojo`, `reference/psc_research/overlap_collar.py`, tests |
 
 ## Hundred-and-first round (pull request #101, occurrence-edge revision)
 
@@ -1066,7 +1066,7 @@ One finding from the automated Codex review of commit `938a1100fc`; accepted, at
 
 | # | Priority | Finding (short) | Action | Where in the revision |
 | --- | --- | --- | --- | --- |
-| 169 | P2 | A certificate with corrupted prefix or forcing payload still lifted, since the collared edge retains no such fields | Accepted. Both lifts now take the seed-patch tables and graph and replay the certificate in full with `verify_affine_pump` (every field of every edge, and the exact cycle identity) before lifting, so only a verified affine pump is lifted; the census passes its tables through. Tests forge the forcing term of the golden certificate's first edge and assert the error | `mojo/psc/overlap_collar.mojo`, `src/psc_research/overlap_collar.py`, `mojo/swap_overlap_census.mojo`, tests |
+| 169 | P2 | A certificate with corrupted prefix or forcing payload still lifted, since the collared edge retains no such fields | Accepted. Both lifts now take the seed-patch tables and graph and replay the certificate in full with `verify_affine_pump` (every field of every edge, and the exact cycle identity) before lifting, so only a verified affine pump is lifted; the census passes its tables through. Tests forge the forcing term of the golden certificate's first edge and assert the error | `mojo/psc/overlap_collar.mojo`, `reference/psc_research/overlap_collar.py`, `mojo/swap_overlap_census.mojo`, tests |
 
 ## Hundred-and-second round (pull request #101, verified-lift revision)
 

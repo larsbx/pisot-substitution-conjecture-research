@@ -22,18 +22,18 @@ link names an independent oracle or diagnostic, never a second source of truth.
 
 | Object | Class | Status | Canonical implementation | Oracle / diagnostic |
 | --- | --- | --- | --- | --- |
-| [Substitution](#substitution) | Substitution dynamics | `definition` | [`mojo/substitution_dynamics/substitution.mojo`](../mojo/substitution_dynamics/substitution.mojo) | [`src/psc_research/bpa.py`](../src/psc_research/bpa.py) |
-| [Incidence matrix](#incidence-matrix) | Exact algebra | `definition` | [`mojo/substitution_dynamics/substitution.mojo`](../mojo/substitution_dynamics/substitution.mojo) | [`src/psc_research/pisot_screen.py`](../src/psc_research/pisot_screen.py) |
-| [Balanced-pair state](#balanced-pair-state) | Substitution dynamics | `definition` | [`mojo/substitution_dynamics/balanced_pairs.mojo`](../mojo/substitution_dynamics/balanced_pairs.mojo) | [`src/psc_research/bpa.py`](../src/psc_research/bpa.py) |
-| [Balanced-pair automaton](#balanced-pair-automaton) | Finite-state objects | `open-boundary` | [`mojo/substitution_dynamics/automaton.mojo`](../mojo/substitution_dynamics/automaton.mojo) | [`src/psc_research/bpa.py`](../src/psc_research/bpa.py) |
-| [Seed-patch overlap state](#seed-patch-overlap-state) | Substitution dynamics | `definition` | [`mojo/psc/overlap_seed_patch.mojo`](../mojo/psc/overlap_seed_patch.mojo) | [`src/psc_research/overlap_graph.py`](../src/psc_research/overlap_graph.py) |
-| [Seed-patch overlap automaton](#seed-patch-overlap-automaton) | Finite-state objects | `proved-finite` | [`mojo/psc/overlap_seed_patch.mojo`](../mojo/psc/overlap_seed_patch.mojo) | [`src/psc_research/overlap_graph.py`](../src/psc_research/overlap_graph.py) |
-| [Coincidence](#coincidence) | Substitution dynamics | `definition` | [`mojo/psc/overlap_seed_patch.mojo`](../mojo/psc/overlap_seed_patch.mojo) | [`src/psc_research/overlap_graph.py`](../src/psc_research/overlap_graph.py) |
-| [Overlap productivity](#overlap-productivity) | Finite-state objects | `open-general` | [`mojo/psc/overlap_seed_patch.mojo`](../mojo/psc/overlap_seed_patch.mojo) | [`src/psc_research/overlap_graph.py`](../src/psc_research/overlap_graph.py) |
-| [Recurrent strongly connected component](#recurrent-scc) | Finite-state objects | `definition` | [`mojo/substitution_dynamics/automaton.mojo`](../mojo/substitution_dynamics/automaton.mojo) | [`src/psc_research/bpa.py`](../src/psc_research/bpa.py) |
-| [Producer state](#producer) | Finite-state objects | `open-general` | [`mojo/psc/bpa.mojo`](../mojo/psc/bpa.mojo) | [`src/psc_research/bpa.py`](../src/psc_research/bpa.py) |
-| [Cubic Perron field element](#perron-cubic-field) | Exact algebra | `definition` | [`mojo/psc/perron_field3.mojo`](../mojo/psc/perron_field3.mojo) | [`src/psc_research/overlap_graph.py`](../src/psc_research/overlap_graph.py) |
-| [Wedge defect](#wedge-defect) | Exact algebra | `definition` | [`mojo/psc/w3.mojo`](../mojo/psc/w3.mojo) | [`src/psc_research/defect_intertwiner.py`](../src/psc_research/defect_intertwiner.py) |
+| [Substitution](#substitution) | Substitution dynamics | `definition` | [`mojo/substitution_dynamics/substitution.mojo`](../mojo/substitution_dynamics/substitution.mojo) | [`reference/psc_research/bpa.py`](../reference/psc_research/bpa.py) |
+| [Incidence matrix](#incidence-matrix) | Exact algebra | `definition` | [`mojo/substitution_dynamics/substitution.mojo`](../mojo/substitution_dynamics/substitution.mojo) | [`reference/psc_research/pisot_screen.py`](../reference/psc_research/pisot_screen.py) |
+| [Balanced-pair state](#balanced-pair-state) | Substitution dynamics | `definition` | [`mojo/substitution_dynamics/balanced_pairs.mojo`](../mojo/substitution_dynamics/balanced_pairs.mojo) | [`reference/psc_research/bpa.py`](../reference/psc_research/bpa.py) |
+| [Balanced-pair automaton](#balanced-pair-automaton) | Finite-state objects | `open-boundary` | [`mojo/substitution_dynamics/automaton.mojo`](../mojo/substitution_dynamics/automaton.mojo) | [`reference/psc_research/bpa.py`](../reference/psc_research/bpa.py) |
+| [Seed-patch overlap state](#seed-patch-overlap-state) | Substitution dynamics | `definition` | [`mojo/psc/overlap_seed_patch.mojo`](../mojo/psc/overlap_seed_patch.mojo) | [`reference/psc_research/overlap_graph.py`](../reference/psc_research/overlap_graph.py) |
+| [Seed-patch overlap automaton](#seed-patch-overlap-automaton) | Finite-state objects | `proved-finite` | [`mojo/psc/overlap_seed_patch.mojo`](../mojo/psc/overlap_seed_patch.mojo) | [`reference/psc_research/overlap_graph.py`](../reference/psc_research/overlap_graph.py) |
+| [Coincidence](#coincidence) | Substitution dynamics | `definition` | [`mojo/psc/overlap_seed_patch.mojo`](../mojo/psc/overlap_seed_patch.mojo) | [`reference/psc_research/overlap_graph.py`](../reference/psc_research/overlap_graph.py) |
+| [Overlap productivity](#overlap-productivity) | Finite-state objects | `open-general` | [`mojo/psc/overlap_seed_patch.mojo`](../mojo/psc/overlap_seed_patch.mojo) | [`reference/psc_research/overlap_graph.py`](../reference/psc_research/overlap_graph.py) |
+| [Recurrent strongly connected component](#recurrent-scc) | Finite-state objects | `definition` | [`mojo/substitution_dynamics/automaton.mojo`](../mojo/substitution_dynamics/automaton.mojo) | [`reference/psc_research/bpa.py`](../reference/psc_research/bpa.py) |
+| [Producer state](#producer) | Finite-state objects | `open-general` | [`mojo/psc/bpa.mojo`](../mojo/psc/bpa.mojo) | [`reference/psc_research/bpa.py`](../reference/psc_research/bpa.py) |
+| [Cubic Perron field element](#perron-cubic-field) | Exact algebra | `definition` | [`mojo/psc/perron_field3.mojo`](../mojo/psc/perron_field3.mojo) | [`reference/psc_research/overlap_graph.py`](../reference/psc_research/overlap_graph.py) |
+| [Wedge defect](#wedge-defect) | Exact algebra | `definition` | [`mojo/psc/w3.mojo`](../mojo/psc/w3.mojo) | [`reference/psc_research/defect_intertwiner.py`](../reference/psc_research/defect_intertwiner.py) |
 | [Finite-corpus certificate](#finite-corpus-certificate) | Certificates and evidence | `finite-domain` | [`mojo/swap_overlap_census.mojo`](../mojo/swap_overlap_census.mojo) | [`scripts/swap_overlap_census.py`](../scripts/swap_overlap_census.py) |
 | [Dumont-Thomas numeration](#dumont-thomas-numeration) | Substitution dynamics | `definition` | [`mojo/psc/dumont_thomas.mojo`](../mojo/psc/dumont_thomas.mojo) | [`mojo/automatic_route_census.mojo`](../mojo/automatic_route_census.mojo) |
 | [Numeration automaton](#numeration-automaton) | Finite-state objects | `definition` | [`mojo/psc/automata.mojo`](../mojo/psc/automata.mojo) | [`mojo/automatic_route_census.mojo`](../mojo/automatic_route_census.mojo) |
@@ -56,7 +56,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Definition:** The generating morphism sigma; its incidence matrix controls abelianized growth.
 - **Scope boundary:** A non-erasing morphism on the finite alphabet, with the standing program usually restricted to primitive irreducible Pisot substitutions.
 - **Canonical Mojo:** [`mojo/substitution_dynamics/substitution.mojo`](../mojo/substitution_dynamics/substitution.mojo)
-- **Independent oracle / diagnostic:** [`src/psc_research/bpa.py`](../src/psc_research/bpa.py)
+- **Independent oracle / diagnostic:** [`reference/psc_research/bpa.py`](../reference/psc_research/bpa.py)
 - **Related objects:** [Incidence matrix](#incidence-matrix), [Balanced-pair automaton](#balanced-pair-automaton), [Seed-patch overlap automaton](#seed-patch-overlap-automaton)
 
 <a id="incidence-matrix"></a>
@@ -68,7 +68,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Definition:** M[i,j] counts occurrences of letter i in sigma(j).
 - **Scope boundary:** Exact integer matrix of letter counts in substitution images.
 - **Canonical Mojo:** [`mojo/substitution_dynamics/substitution.mojo`](../mojo/substitution_dynamics/substitution.mojo)
-- **Independent oracle / diagnostic:** [`src/psc_research/pisot_screen.py`](../src/psc_research/pisot_screen.py)
+- **Independent oracle / diagnostic:** [`reference/psc_research/pisot_screen.py`](../reference/psc_research/pisot_screen.py)
 - **Related objects:** [Substitution](#substitution), [Cubic Perron field element](#perron-cubic-field), [Wedge defect](#wedge-defect)
 
 <a id="balanced-pair-state"></a>
@@ -80,7 +80,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Definition:** A state (u,v) satisfying pi(u)=pi(v), reduced according to the BPA normalization contract.
 - **Scope boundary:** A normalized ordered word pair with equal Parikh vector.
 - **Canonical Mojo:** [`mojo/substitution_dynamics/balanced_pairs.mojo`](../mojo/substitution_dynamics/balanced_pairs.mojo)
-- **Independent oracle / diagnostic:** [`src/psc_research/bpa.py`](../src/psc_research/bpa.py)
+- **Independent oracle / diagnostic:** [`reference/psc_research/bpa.py`](../reference/psc_research/bpa.py)
 - **Related objects:** [Balanced-pair automaton](#balanced-pair-automaton), [Producer state](#producer), [Wedge defect](#wedge-defect)
 
 <a id="balanced-pair-automaton"></a>
@@ -92,7 +92,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Definition:** Inflate, factor at coincidences, normalize, and retain the directed child relation.
 - **Scope boundary:** Exact reachable normalized balanced-pair graph; general finiteness remains open.
 - **Canonical Mojo:** [`mojo/substitution_dynamics/automaton.mojo`](../mojo/substitution_dynamics/automaton.mojo)
-- **Independent oracle / diagnostic:** [`src/psc_research/bpa.py`](../src/psc_research/bpa.py)
+- **Independent oracle / diagnostic:** [`reference/psc_research/bpa.py`](../reference/psc_research/bpa.py)
 - **Related objects:** [Balanced-pair state](#balanced-pair-state), [Recurrent strongly connected component](#recurrent-scc), [Producer state](#producer)
 
 <a id="seed-patch-overlap-state"></a>
@@ -104,7 +104,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Definition:** The triple (top tile, bottom tile, displacement), with coincidence exactly (i,i,0).
 - **Scope boundary:** An oriented interior overlap of two prototiles with exact displacement in Z[beta].
 - **Canonical Mojo:** [`mojo/psc/overlap_seed_patch.mojo`](../mojo/psc/overlap_seed_patch.mojo)
-- **Independent oracle / diagnostic:** [`src/psc_research/overlap_graph.py`](../src/psc_research/overlap_graph.py)
+- **Independent oracle / diagnostic:** [`reference/psc_research/overlap_graph.py`](../reference/psc_research/overlap_graph.py)
 - **Related objects:** [Seed-patch overlap automaton](#seed-patch-overlap-automaton), [Coincidence](#coincidence), [Cubic Perron field element](#perron-cubic-field)
 
 <a id="seed-patch-overlap-automaton"></a>
@@ -116,7 +116,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Definition:** Inflation graph of exact seed-patch overlap states. Capped construction is inconclusive and fails closed.
 - **Scope boundary:** Reachable graph from legal two-letter swap seed superpositions; finiteness follows from bounded discrepancy.
 - **Canonical Mojo:** [`mojo/psc/overlap_seed_patch.mojo`](../mojo/psc/overlap_seed_patch.mojo)
-- **Independent oracle / diagnostic:** [`src/psc_research/overlap_graph.py`](../src/psc_research/overlap_graph.py)
+- **Independent oracle / diagnostic:** [`reference/psc_research/overlap_graph.py`](../reference/psc_research/overlap_graph.py)
 - **Related objects:** [Seed-patch overlap state](#seed-patch-overlap-state), [Coincidence](#coincidence), [Overlap productivity](#overlap-productivity)
 
 <a id="coincidence"></a>
@@ -128,7 +128,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Definition:** The terminal overlap state (i,i,0).
 - **Scope boundary:** Equal tile types with equal support origin inside an overlap automaton.
 - **Canonical Mojo:** [`mojo/psc/overlap_seed_patch.mojo`](../mojo/psc/overlap_seed_patch.mojo)
-- **Independent oracle / diagnostic:** [`src/psc_research/overlap_graph.py`](../src/psc_research/overlap_graph.py)
+- **Independent oracle / diagnostic:** [`reference/psc_research/overlap_graph.py`](../reference/psc_research/overlap_graph.py)
 - **Related objects:** [Seed-patch overlap state](#seed-patch-overlap-state), [Overlap productivity](#overlap-productivity), [Producer state](#producer)
 
 <a id="overlap-productivity"></a>
@@ -140,7 +140,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Definition:** An overlap is productive when some directed descendant is a coincidence.
 - **Scope boundary:** Reachability of a coincidence from an overlap state; the general one-seed theorem remains the primary open gate.
 - **Canonical Mojo:** [`mojo/psc/overlap_seed_patch.mojo`](../mojo/psc/overlap_seed_patch.mojo)
-- **Independent oracle / diagnostic:** [`src/psc_research/overlap_graph.py`](../src/psc_research/overlap_graph.py)
+- **Independent oracle / diagnostic:** [`reference/psc_research/overlap_graph.py`](../reference/psc_research/overlap_graph.py)
 - **Related objects:** [Seed-patch overlap automaton](#seed-patch-overlap-automaton), [Coincidence](#coincidence), [Finite-corpus certificate](#finite-corpus-certificate)
 
 <a id="recurrent-scc"></a>
@@ -152,7 +152,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Definition:** A strongly connected component supporting a directed cycle and the stated closure property.
 - **Scope boundary:** A recurrent component of a finite directed carrier; use in BPA arguments is conditional on the required finiteness and realization hypotheses.
 - **Canonical Mojo:** [`mojo/substitution_dynamics/automaton.mojo`](../mojo/substitution_dynamics/automaton.mojo)
-- **Independent oracle / diagnostic:** [`src/psc_research/bpa.py`](../src/psc_research/bpa.py)
+- **Independent oracle / diagnostic:** [`reference/psc_research/bpa.py`](../reference/psc_research/bpa.py)
 - **Related objects:** [Balanced-pair automaton](#balanced-pair-automaton), [Producer state](#producer), [Wedge defect](#wedge-defect)
 
 <a id="producer"></a>
@@ -164,7 +164,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Definition:** The local productive witness used in the SCC Producer program.
 - **Scope boundary:** A balanced-pair state whose inflation and factorization produces a coincidence sibling under the repository definition.
 - **Canonical Mojo:** [`mojo/psc/bpa.mojo`](../mojo/psc/bpa.mojo)
-- **Independent oracle / diagnostic:** [`src/psc_research/bpa.py`](../src/psc_research/bpa.py)
+- **Independent oracle / diagnostic:** [`reference/psc_research/bpa.py`](../reference/psc_research/bpa.py)
 - **Related objects:** [Balanced-pair state](#balanced-pair-state), [Recurrent strongly connected component](#recurrent-scc), [Coincidence](#coincidence)
 
 <a id="perron-cubic-field"></a>
@@ -176,7 +176,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Definition:** The exact coordinate type used for ternary overlap displacement and sign decisions.
 - **Scope boundary:** Exact rank-three representation a0+a1 beta+a2 beta^2 modulo the irreducible characteristic cubic.
 - **Canonical Mojo:** [`mojo/psc/perron_field3.mojo`](../mojo/psc/perron_field3.mojo)
-- **Independent oracle / diagnostic:** [`src/psc_research/overlap_graph.py`](../src/psc_research/overlap_graph.py)
+- **Independent oracle / diagnostic:** [`reference/psc_research/overlap_graph.py`](../reference/psc_research/overlap_graph.py)
 - **Related objects:** [Incidence matrix](#incidence-matrix), [Seed-patch overlap state](#seed-patch-overlap-state)
 
 <a id="wedge-defect"></a>
@@ -188,7 +188,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Definition:** The exact exterior-algebra obstruction represented by K2, K3, and their higher-degree analogues.
 - **Scope boundary:** Alternating tensor invariant used to stratify finite balanced-pair carriers by first nonzero defect degree.
 - **Canonical Mojo:** [`mojo/psc/w3.mojo`](../mojo/psc/w3.mojo)
-- **Independent oracle / diagnostic:** [`src/psc_research/defect_intertwiner.py`](../src/psc_research/defect_intertwiner.py)
+- **Independent oracle / diagnostic:** [`reference/psc_research/defect_intertwiner.py`](../reference/psc_research/defect_intertwiner.py)
 - **Related objects:** [Incidence matrix](#incidence-matrix), [Balanced-pair state](#balanced-pair-state), [Recurrent strongly connected component](#recurrent-scc)
 
 <a id="finite-corpus-certificate"></a>

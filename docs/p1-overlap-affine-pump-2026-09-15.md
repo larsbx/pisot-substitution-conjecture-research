@@ -78,7 +78,7 @@ mojo/tests/test_overlap_affine_pump.mojo
 Independent oracle:
 
 ```text
-src/psc_research/overlap_affine_pump.py
+reference/psc_research/overlap_affine_pump.py
 tests/test_overlap_affine_pump.py
 ```
 

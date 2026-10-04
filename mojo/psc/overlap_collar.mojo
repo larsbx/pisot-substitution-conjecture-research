@@ -20,7 +20,7 @@ a seed pair whose iterated patch collapses to a proper power, hence to a
 periodic word with two parsings into images (patch_power_level).  None of
 this proves a recognizability radius for the periodic patches, nor overlap
 productivity.  Capped graphs and out-of-range data
-fail closed.  Independent oracle: src/psc_research/overlap_collar.py.
+fail closed.  Independent oracle: reference/psc_research/overlap_collar.py.
 """
 
 from psc.overlap_affine_pump import AffineOccurrenceEdge, AffinePumpCertificate, occurrence_edges, verify_affine_pump

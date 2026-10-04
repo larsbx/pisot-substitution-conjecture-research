@@ -7,7 +7,7 @@ Heads audited, on the shared branch `claude/library-extraction-candidates-d9lp6i
 | Tag | Repository | Head | Executable surface |
 | --- | --- | --- | --- |
 | `NLAP:` | `larsbx/NLAP-JT` | `ac7f8f9` | Mojo `src/`, compiled by CI through the closure of `src/smoke_tests.mojo`; Python `tools/` audits and `tests/` |
-| `PSC:` | `larsbx/pisot-substitution-conjecture-research` | `970f214` | Mojo `mojo/psc/`, compiled and tested by CI (`pixi run test`, `verify`, censuses); Python `src/psc_research/` oracle |
+| `PSC:` | `larsbx/pisot-substitution-conjecture-research` | `970f214` | Mojo `mojo/psc/`, compiled and tested by CI (`pixi run test`, `verify`, censuses); Python `reference/psc_research/` oracle |
 
 Markers: `[V]` was checked in this session by reading or executing the repository; `[U]` could not be checked here. Both CI workflows are green on their `main` heads `[V]` (NLAP run 679, PSC runs 884/721/665). Locally, PSC's Python suite passes in full and NLAP-JT's passes except the one test that requires a `mojo` binary, which this container lacks `[V]`.
 
@@ -84,7 +84,7 @@ PSC then retires both `Rat` and `CheckedRat`. `CheckedRat` contributes its test 
 ### 2.2 Verified findings
 
 - The alphabet size three is hard-coded as literal arrays or loop bounds in `words.parikh`, `words.n2`, `words.n3`, `bpa.coincidence_boundaries`, `bpa.seed_states`, `swap_discrepancy.discrepancy`, and `tensor3` (`idx3`, `zeros27`) `[V]`. `AGENTS.md` rule 1 asks for fixed dimensions in hot loops, so generalization must keep alphabet-3 as a compile-time specialization, not replace it with dynamic containers.
-- Symbol validation is inconsistent. `bd_endpoint._validate_letter` and `affine_ancestry_trace._validate_sigma` reject letters outside `0..2`; `words.parikh`, `bpa.coincidence_boundaries`, and `swap_discrepancy.discrepancy` index `List[Int]` with the raw symbol and never check it `[V]`. The out-of-range-label regression fixed in commit `fbc26c3` was in the Python oracle `src/psc_research/swap_discrepancy.py`; the Mojo `discrepancy` kernel has no equivalent guard `[V]`.
+- Symbol validation is inconsistent. `bd_endpoint._validate_letter` and `affine_ancestry_trace._validate_sigma` reject letters outside `0..2`; `words.parikh`, `bpa.coincidence_boundaries`, and `swap_discrepancy.discrepancy` index `List[Int]` with the raw symbol and never check it `[V]`. The out-of-range-label regression fixed in commit `fbc26c3` was in the Python oracle `reference/psc_research/swap_discrepancy.py`; the Mojo `discrepancy` kernel has no equivalent guard `[V]`.
 - Failure channels are mixed: `bpa.inherited_boundary_positions` calls `abort`, `bpa.build` is declared `raises` and additionally returns `capped=True` for resource exhaustion `[V]`. The docstring rule that a capped run is inconclusive is correct and must be preserved.
 - Conjecture-specific vocabulary (G1, C3, C4, producer, renewal, hub) lives in module and function names beside general mechanics `[V]`.
 

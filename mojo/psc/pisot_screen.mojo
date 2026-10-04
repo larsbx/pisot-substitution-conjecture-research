@@ -36,7 +36,7 @@ is recorded in the literature gate; see `known_first_column_refusal`.
 
 The literature gate for this diagnostic is
 `docs/pisot-screen-literature-gate-2026-09-16.md`; the Python oracle it was
-differentially tested against is `src/psc_research/pisot_screen.py`.
+differentially tested against is `reference/psc_research/pisot_screen.py`.
 """
 
 from finite_exact.rat_q import Q

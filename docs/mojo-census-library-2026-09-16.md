@@ -59,7 +59,7 @@ histograms and counters. `census.mojo` is 40 lines; `c4_census.mojo` lost its
 
 The five scripts are deleted. They were the only implementation of those
 computations, so keeping them would leave two sources of truth for a taxonomy;
-the Python modules under `src/psc_research/` that carry pytest coverage remain
+the Python modules under `reference/psc_research/` that carry pytest coverage remain
 as independent oracles, which the policy sanctions.
 
 `endpoint_type`, the fast A..G classifier the C4 census calls per specimen, is

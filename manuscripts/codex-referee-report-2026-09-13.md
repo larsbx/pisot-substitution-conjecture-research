@@ -103,7 +103,7 @@ No other findings were posted in the second round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L32
 
-## Finding 11 (P1) — `src/psc_research/swap_discrepancy.py`, line 28
+## Finding 11 (P1) — `reference/psc_research/swap_discrepancy.py`, line 28
 
 > **Add the canonical Mojo discrepancy implementation**
 >
@@ -303,7 +303,7 @@ No other findings were posted in the twelfth round.
 **Reviewed commit:** `310f06c06bdf757745cdb9c19f4e0411d20a9cd5`.
 **Review posted:** 2026-09-14T22:06:17Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 26 (P2) — `src/psc_research/overlap_graph.py`, line 240
+## Finding 26 (P2) — `reference/psc_research/overlap_graph.py`, line 240
 
 > **Reject capped graphs before computing target depths**
 >
@@ -368,7 +368,7 @@ No other findings were posted in the fifteenth round.
 **Reviewed commit:** `3b8e6d42acfac4c1d9c23abe6f5190e6656e0ce8` (Proposition 5.42 and the census against the first left-aligned depth).
 **Review posted:** 2026-09-15T00:23:22Z, one automated Codex review with three inline comments. Reproduced verbatim.
 
-## Finding 31 (P1) — `src/psc_research/overlap_contracting.py`, line 149
+## Finding 31 (P1) — `reference/psc_research/overlap_contracting.py`, line 149
 
 > **Add the canonical Mojo contracting-bound implementation**
 >
@@ -2000,7 +2000,7 @@ No other findings were posted in the ninety-fourth round.
 **Reviewed commit:** `c14afe4f2b`.
 **Review posted:** 2026-09-16T03:53:15Z, one automated Codex review with one inline comment. Reproduced verbatim.
 
-## Finding 160 (P2) — `src/psc_research/overlap_collar.py`, line 171
+## Finding 160 (P2) — `reference/psc_research/overlap_collar.py`, line 171
 
 > **Reject a negative separation-radius cap**
 >
@@ -2046,7 +2046,7 @@ No other findings were posted in the ninety-sixth round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 164 (P2) — `src/psc_research/overlap_collar.py`, line 108
+## Finding 164 (P2) — `reference/psc_research/overlap_collar.py`, line 108
 
 > **Reject undersized input collars in the Python oracle**
 >
@@ -2061,7 +2061,7 @@ No other findings were posted in the ninety-seventh round.
 **Reviewed commit:** `400010cf0a` (findings 163 and 164).
 **Review posted:** 2026-09-16T04:12:29Z, one automated Codex review with two inline comments. Reproduced verbatim.
 
-## Finding 165 (P2) — `src/psc_research/overlap_collar.py`, line 201
+## Finding 165 (P2) — `reference/psc_research/overlap_collar.py`, line 201
 
 > **Reject malformed pump certificates in the oracle**
 >
@@ -2069,7 +2069,7 @@ No other findings were posted in the ninety-seventh round.
 >
 > AGENTS.md reference: AGENTS.md:L31-L31
 
-## Finding 166 (P2) — `src/psc_research/overlap_collar.py`, line 240
+## Finding 166 (P2) — `reference/psc_research/overlap_collar.py`, line 240
 
 > **Reject nonpositive legal-factor lengths in the oracle**
 >

@@ -231,7 +231,7 @@ The exact 4,554-PIP census already shows that parity, endpoint types, and power 
 
 ## 9. Executable scope
 
-`src/psc_research/meanarea_integrality.py` provides:
+`reference/psc_research/meanarea_integrality.py` provides:
 
 - exact child-incidence, Parikh, `K2`, and ordered cross-area matrices;
 - the `9x9` Sylvester operator;

@@ -5,7 +5,7 @@ significant speedup"):
 
 > This commit is explicitly a performance optimization, but every executable
 > change implements and duplicates the optimized kernels under
-> `src/psc_research/`, with no corresponding canonical implementation under
+> `reference/psc_research/`, with no corresponding canonical implementation under
 > `mojo/` or documented blocker. That makes the secondary Python oracle the
 > target of performance-sensitive research work; implement and benchmark the
 > fixed-dimension kernel in Mojo first, retaining Python only as an independent
@@ -80,7 +80,7 @@ overflow case as a *refusal*, and `tests/test_integer_vector_oracle.py` pins the
 same cases as exact values. Neither side wraps, which is the property that
 matters — the kernel declines to answer rather than answering wrongly.
 
-`src/psc_research/fixed_vector.py` is now the single oracle, and the four
+`reference/psc_research/fixed_vector.py` is now the single oracle, and the four
 private copies are gone. It stays in its generic, obvious form deliberately: an
 oracle earns its keep by reading straight off the definition, and a
 dimension-specialised branch there would add a second path taken by exactly the

@@ -195,7 +195,7 @@ boundary/zipper dictionary rather than inferring it from floating geometry.
 Independent Python oracle:
 
 ```text
-src/psc_research/overlap_obstruction.py
+reference/psc_research/overlap_obstruction.py
 tests/test_overlap_obstruction.py
 ```
 

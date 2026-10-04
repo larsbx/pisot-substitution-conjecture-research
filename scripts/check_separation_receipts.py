@@ -16,7 +16,7 @@ import re
 import sys
 from zipfile import ZipFile
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'reference'))
 from psc_research.pip_screen import mat, charpoly, primitive, irreducible, pisot
 
 ARCHIVE = Path(__file__).resolve().parents[1] / 'archive/2026-10-02/separation-radius-total-length'

@@ -222,7 +222,7 @@ preserved rather than silently discarded.
 
 ## 7. Executable reference
 
-- `src/psc_research/endpoint_core.py` — exact classification, synchronization
+- `reference/psc_research/endpoint_core.py` — exact classification, synchronization
   quotient, and product-core dynamics;
 - `mojo/endpoint_core_catalog.mojo` — deterministic report, CI-pinned;
 - `tests/test_endpoint_core.py` — exhaustive three-letter regressions.

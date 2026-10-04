@@ -70,7 +70,7 @@ enumeration is `psc.corpus.pip_corpus_total_length`, and the regression
 `test_the_total_length_corpus_contains_the_standing_corpus` in
 `mojo/tests/test_census_library.mojo` pins the total, every cumulative slice,
 and the max-image ≤ 3 slice's identity with the standing corpus, label for
-label. The Python screen `src/psc_research/pip_screen.py` is the
+label. The Python screen `reference/psc_research/pip_screen.py` is the
 independently written oracle and gives the same counts. The class is a corpus
 for exploratory sweeps, not for censuses (§6).
 

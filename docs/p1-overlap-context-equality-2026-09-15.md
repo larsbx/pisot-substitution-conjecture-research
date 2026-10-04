@@ -42,7 +42,7 @@ mojo/tests/test_overlap_context.mojo
 Independent oracle:
 
 ```text
-src/psc_research/overlap_context.py
+reference/psc_research/overlap_context.py
 tests/test_overlap_context.py
 ```
 

@@ -127,7 +127,7 @@ mojo/tests/test_overlap_collar.mojo
 Independent oracle:
 
 ```text
-src/psc_research/overlap_collar.py
+reference/psc_research/overlap_collar.py
 tests/test_overlap_collar.py
 ```
 

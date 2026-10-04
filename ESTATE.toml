@@ -75,7 +75,7 @@ id = "reference"
 target = "reference"
 authority = "non_authoritative_reference"
 required = true
-current = ["src"]
+current = ["reference"]
 
 [[plane]]
 id = "oracles"
@@ -175,6 +175,5 @@ mass_move = false
 next = [
   "kernel: mojo/ -> kernel/",
   "proof: PscVerif/ -> proof/PscVerif/, tla/ -> proof/tla/",
-  "reference: src/ -> reference/",
   "tooling: scripts/ -> tools/",
 ]

@@ -48,7 +48,7 @@ tau_C(R_1) ... tau_C(R_k) = tau_C^(n+1)(T).
 
 This proves the induction. QED.
 
-The executable cross-check is `verify_derived_factorization` in `src/psc_research/derived_factorization.py`.
+The executable cross-check is `verify_derived_factorization` in `reference/psc_research/derived_factorization.py`.
 
 ## 3. Physical cuts become symbolic addresses
 

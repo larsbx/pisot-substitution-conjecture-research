@@ -3,7 +3,7 @@ contracting lower bound m_0(O) of psc_research.overlap_contracting, over the
 alphabet-3 PIP corpus.  Verifies b >= m_0 on every vertex and reports the
 distribution of the excess b - m_0 and of m_0 itself."""
 import sys, time
-sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[1] / 'src'))
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[1] / 'reference'))
 from psc_research.pip_screen import pip_corpus
 from psc_research.overlap_graph import OverlapGraph, first_left_aligned_depths
 from psc_research.overlap_contracting import ContractingBound

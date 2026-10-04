@@ -4,7 +4,7 @@ Recomputes, over the alphabet-3 PIP corpus, the maxima and histograms of the
 first-coincidence depth, the first left-aligned depth, and the prefix/suffix
 strong-coincidence depths, in the same format as the Mojo census lines."""
 import sys, time
-sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[1] / 'src'))
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[1] / 'reference'))
 from psc_research.pip_screen import pip_corpus
 from psc_research.overlap_graph import (
     OverlapGraph, first_coincidence_depths, first_left_aligned_depths, strong_coincidence_depths)
