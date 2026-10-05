@@ -199,6 +199,41 @@ by deleting it.
     `completion-ledger-2026-10-02.md` snapshot stays frozen by design. ·
     `audit-2026-10-04.md` §D.5 correction
 
+- 2026-10-05 · The leftmost child is a *function* on nonzero-offset vertices,
+  so `CU` is the complement of the basins of its terminal cycles, and every
+  such cycle is a prefix-vs-interior periodic pair with constant offset sign
+  (Proposition LC). Worth not rederiving: the sign is preserved by every
+  leftmost step, so the catching side's child index is always 0 and its letters
+  follow the first-letter map `a -> sigma(a)[0]`; at most three letters are
+  periodic for it, so the prefix side of every cycle is one of at most three
+  tilings. This gives Lemma P back in one line. It does **not** give T1: the
+  reachability half is still a pointwise hitting problem. ·
+  `p1b-leftmost-chain-periodic-pair-2026-10-05.md`;
+  `kernel/psc/leftmost_chain.mojo`
+
+- 2026-10-05 · Stop/go on the leftmost-cycle route: Siegel-Thuswaldner's
+  zero-expansion graph (Def. 5.1 of *Topological properties of Rauzy
+  fractals*) is the same principle — a finite graph whose nodes all lie on
+  infinite paths decides whether 0 lies in a tile — so claim no novelty for it.
+  The decisive hypothesis boundary: their Proposition 5.2 is for primitive
+  **unit** Pisot substitutions and its proof uses unimodularity at the step
+  "`gamma_{l+1} ∈ pi(Z^n)` by the unimodularity of `M`", which is exactly the
+  `M^{-1}`-integrality that Proposition LC(4) must carry explicitly as
+  `ab(Q) ∈ (I - M^r) Z^A`. Their graphs are in the contracting representation
+  and are not functional, so no sign invariant and no prefix-vs-interior
+  dichotomy there. Geometric property (F) is the right dictionary entry for a
+  resolved carry. · same note §5
+
+- 2026-10-05 · Finite observation worth not recomputing: Tribonacci
+  `0 -> 01, 1 -> 02, 2 -> 0` has **no** terminal leftmost cycle at all — every
+  nonzero-offset vertex reaches a catch-up — which is the expected unimodular
+  behaviour (Lemma P is void). The smallest witness in the other direction is
+  `0 -> 1, 1 -> 12, 2 -> 022`, with two cycles of length `r = 1`,
+  `ab(Q) = e_0` and `w_0 = (0, 1, -1)`; it is checkable by hand and is pinned.
+  The catch-up-free `1 -> 22, 2 -> 012` specimen's cycles have `r = 15`, where
+  `M^r` is already past the exact 64-bit integer range, so its offsets are
+  reported as uncomputed rather than assumed. · `kernel/tests/test_leftmost_chain.mojo`
+
 - 2026-10-05 · The closure behind `PDSImpliesRepoG1` tracked only the Barge
   import; its five repository inputs were named in the record `source` field
   but were not ledger nodes. Three are now nodes — `ReturnModuleFullRank`

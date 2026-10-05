@@ -199,6 +199,25 @@ These are reference/index additions only. They do not establish #84, #138,
   route check against Baker–Barge–Kwapisz 2006 recorded.
   §5.6h: exact anatomy (`kernel/one_tile_anatomy.mojo`); §5.6i: every scratch
   probe of the session archived with outputs in `archive/2026-10-04/session-probes/`.
+  §5.6c states the closing trichotomy and its two unproved statements T1 and
+  T2; the structure of T1's object is in the next entry.
+- `p1b-leftmost-chain-periodic-pair-2026-10-05.md` — #139 research note
+  (unreviewed), with its own stop/go gate: the leftmost child is a *function*
+  on nonzero-offset vertices, so `CU` is the complement of the basins of that
+  function's terminal cycles, and **Proposition LC** proves every such cycle
+  keeps one offset sign and is a **prefix-vs-interior** periodic pair — a
+  prefix occurrence `sigma^r(i) = i U` on the side whose tile starts later, an
+  interior occurrence `sigma^r(j) = Q j V` on the other, and
+  `w_0 = (I − M^r)^{-1} ab(Q) ∈ Z^A`. It is the half-degenerate companion of
+  Theorem B, which excludes the prefix case. Canonical
+  `kernel/psc/leftmost_chain.mojo`, census `kernel/leftmost_chain_census.mojo`,
+  regression `kernel/tests/test_leftmost_chain.mojo`. It restructures T1 —
+  "reaches `CU`" is an invariant of the box graph's strongly connected
+  components (Corollary LC2) — but **does not prove T1**: the reachability half
+  is still a pointwise hitting problem, and T2 is untouched. The gate records
+  that the cycle principle itself is Siegel–Thuswaldner's zero-expansion graph,
+  whose proposition assumes unimodularity at exactly the step this one carries
+  as an explicit integrality condition.
 - `formal-overlap-carriers-2026-10-04.md` — exact census of formal
   (potential) versus realized overlap carriers; supersedes the unreproducible
   "1,764 formal producer-free cycles / death radius 7" line of the

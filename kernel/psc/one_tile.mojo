@@ -30,6 +30,7 @@ recurrent vertex. All signs are exact (`cached_sign`); a capped graph raises.
 
 from finite_linear_algebra.mat3 import Mat3, identity3
 from psc.bpa import substitution_incidence
+from psc.leftmost_chain import leftmost_step
 from psc.overlap_obstruction import recurrent_sccs
 from psc.overlap_seed_patch import (
     OverlapState,
@@ -161,26 +162,11 @@ def leftmost_child(
     tables: SeedOverlapTables, mut cache: Dict[CubicElt, Int], state: OverlapState
 ) raises -> OverlapState:
     """The child whose region contains `state`'s left region endpoint
-    (`state` must have nonzero offset)."""
-    var s = cached_sign(tables, cache, state.shift)
-    if s == 0:
-        raise Error("leftmost child of an offset-zero vertex is not a catch-up step")
-    var scaled = cubic_mul_beta(tables.field, state.shift)
-    if s < 0:
-        # left end is the top tile's start: top child 0, bottom child covering it
-        var top = tables.sigma[state.top][0]
-        for j in range(len(tables.sigma[state.bottom])):
-            var child = OverlapState(top, tables.sigma[state.bottom][j], cubic_add_checked(scaled, tables.prefix(state.bottom, j)))
-            if cached_sign(tables, cache, child.shift) <= 0 and interior_overlap_cached(tables, cache, child):
-                return child
-    else:
-        # left end is the bottom tile's start: bottom child 0, top child covering it
-        var bottom = tables.sigma[state.bottom][0]
-        for i in range(len(tables.sigma[state.top])):
-            var child = OverlapState(tables.sigma[state.top][i], bottom, cubic_sub_checked(scaled, tables.prefix(state.top, i)))
-            if cached_sign(tables, cache, child.shift) >= 0 and interior_overlap_cached(tables, cache, child):
-                return child
-    raise Error("no child covers the parent's left endpoint")
+    (`state` must have nonzero offset).
+
+    One implementation, in `psc.leftmost_chain`, which also keeps the two child
+    indices the step used and the sign lemma they satisfy."""
+    return leftmost_step(tables, cache, state).child
 
 
 struct OneTileVerdict(Copyable, Movable, Writable):
