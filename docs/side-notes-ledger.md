@@ -225,14 +225,22 @@ by deleting it.
   `sigma(b) = a` as a single even letter, landing in the §5.6g one-E-letter
   sub-class. · `p1a-a1-prime-2026-10-05.md` §3a
 
-- 2026-10-05 · Exploratory sweep of that normal form, stated budget
-  `p, q, r <= 5`: 174 PIP members with `|det M| = 2`, A1′ holds on all of them,
-  and the deepest first shared tile sits at abelianised position **311**. At
-  `p = q = r = 5` the total image length is 21, past every censused domain
-  (largest: total length 10). The depth is the finding — far beyond what the
-  level statistics suggest — and the deep members share a shape, `sigma(x)`
-  ending in `c` while `sigma(c)` ends in `x`. Not a verdict: a member outside
-  the range is not covered. · same §3a
+- 2026-10-05 · Exploratory sweep of that normal form at three budgets,
+  `p, q, r <= 5`, `<= 8`, `<= 11`: 174, 420 and 766 PIP members with
+  `|det M| = 2`, A1′ witnessed on **every** one, coincidence level at most 7
+  throughout. The finding worth not recomputing: **the tail does not move.**
+  The level-4 to level-7 counts are identical at all three budgets (8, 2, 2, 2)
+  while only levels 2 and 3 grow, so the hard cases do not scale with the
+  parameters. The 14 members of level >= 4 are the same 14 every time, form 7
+  mirror pairs under `x <-> c`, and all have `p, q, r <= 3`; the deepest has
+  `sigma(x) = xyc`, `sigma(c) = cx`, `sigma(y) = cyc` with its first shared
+  tile at position 311. The method is cheap because equal Parikh prefixes have
+  equal length, so the search is one pass with two integer counters. Not a
+  verdict: a member outside the range is uncovered, and the cap column is
+  reported separately (zero on all three). Probe archived with its output and
+  digests; **not ported to Mojo**, so nothing rests on it. ·
+  `p1a-a1-prime-2026-10-05.md` §3a;
+  `archive/2026-10-05/session-probes/`
 
 - 2026-10-05 · A1′, the obligation Theorem C leaves, is the **residual** half
   of all-pairs strong coincidence: under its hypothesis `h^n(x) = x != c =

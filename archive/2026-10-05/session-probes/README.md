@@ -1,0 +1,41 @@
+# Session probe behind the A1′ note — 2026-10-05
+
+The exploratory sweep cited in `docs/p1a-a1-prime-2026-10-05.md` §3a, with its
+saved output. It is **provenance, not canonical code** (AGENTS.md): a Python
+prototype in the sanctioned oracle layer, not a certificate. The theorems the
+note states — Lemma D0, Propositions A, B and D, Corollaries C3, D1 and D2 —
+are proved by hand there and do not rest on this probe. The probe supplies one
+thing only: the exploratory evidence table, labelled as such.
+
+| file | what it is |
+| --- | --- |
+| `a1prime_normal_form_sweep.py` | sweeps the Proposition D normal form `sigma(x) = x y^p s_x`, `sigma(c) = c y^q s_c`, `sigma(y) = t y^r s_y` over three stated budgets, keeps the PIP members with `|det M| = 2`, and decides A1′ by scanning for a shared tile |
+| `a1prime_normal_form_sweep.out` | its output, re-run for this archive |
+
+**Method.** Equal Parikh prefixes have equal length, because the components of
+a Parikh vector sum to the word length. So a common vertex of
+`u = sigma^infinity(x)` and `w = sigma^infinity(c)` is an index `s` with
+`pi(u[0:s]) = pi(w[0:s])`, and a shared tile is such an `s` with
+`u[s] = w[s]`. That makes the search one linear scan with two integer
+counters — no floating point, no rational arithmetic, no lattice reduction.
+The PIP screen is `reference/psc_research/pip_screen.py`, which is exact
+(Sturm sequences).
+
+**Budget, and what an exhausted budget means.** Three nested ranges,
+`p, q, r <= 5`, `<= 8` and `<= 11`, each with a word-length cap of 2,000,000
+letters. A member whose shared tile is not found within the cap is reported in
+its own column, `A1' not witnessed within the cap`, and is **not** counted as
+a verdict either way. That column is zero on all three budgets. A member with
+a parameter outside the range is not covered at all.
+
+**What the output says.** 174, 420 and 766 PIP members with `|det M| = 2`;
+A1′ witnessed on every one; coincidence level at most 7 throughout; and the
+level distribution's tail is *identical* across the three budgets — 8 members
+at level 4, 2 at level 5, 2 at level 6, 2 at level 7 — while only the level-2
+and level-3 counts grow. The 14 members of level at least 4 form 7 mirror
+pairs under the relabelling `x <-> c`, all with `p, q, r <= 3`.
+
+**Follow-up.** Porting this to a Mojo driver with a regression test, as
+AGENTS.md requires of any computation that is cited, is not done. Until it is,
+the table in the note is exploratory evidence and is labelled so; no ledger
+node and no claim status rests on it.

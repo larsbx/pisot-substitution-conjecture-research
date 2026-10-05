@@ -24,6 +24,16 @@ deliberately long and should not be mistaken for the result.
 | **Proposition A + Corollary C3** | The surviving obligation A1′ is the **residual** half of all-pairs strong coincidence, so it holds with zero failures on all **408,798** PIP specimens already censused; and on the catch-up-free class — all 210 corpus members — **A1′ and T2 are the same boundary-hitting statement**, so #138's aligned branch and #139's strict-zipper branch converge there | [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) |
 | **Lemma D0 + Proposition D** | On that class the surviving template is an **explicit three-parameter normal form**: the odd letter set is exactly the bad edge, forcing `sigma(x) = x y^p s_x`, `sigma(c) = c y^q s_c`, `sigma(y) = t y^r s_y`. The 18 catch-up-free corpus specimens with one odd letter cannot carry the template at all; the other two templates force a length-one image. `|O| <= 2` because all-odd would make every image length two, hence the Perron root the rational number 2 | same, §3a |
 
+An exploratory sweep of that normal form at three budgets (`p,q,r <= 5`, `8`,
+`11`; 174, 420 and 766 PIP members) witnesses A1′ on **every** member with
+coincidence level at most 7, and — the point — the level-4 to level-7 counts
+are *identical* at all three budgets while only levels 2 and 3 grow. **The hard
+cases do not scale:** they are 14 members, the same 14 each time, 7 mirror
+pairs under `x <-> c`, all with `p,q,r <= 3`. That is the shape a uniform level
+bound would need. The figures are exploratory, from a Python probe archived
+with its output at `archive/2026-10-05/session-probes/`, not ported to Mojo,
+and no claim status rests on them.
+
 Two redirects came with them, and are worth as much as the theorems. The
 `CU` / one-tile route **cannot** reach #139: by Proposition LC its obstructions
 are pairs whose centre is a vertex of one tiling and interior to the other,
