@@ -6,6 +6,9 @@ Classes: CONFORMS (criteria C1 to C7 with an unbounded backend), CONFORMS-CHECKE
 
 | Spec item | Module | Class | Notes |
 | --- | --- | --- | --- |
+| 1.1–1.3 exact field adapter | `kernel/finite_exact/field.mojo` (`ExactField`, `QField`) | CONFORMS | vendored whole-package snapshot; `QField` delegates to unbounded `Q` with sticky rejection. Unused by PSC |
+| finite prime field | `kernel/finite_exact/fp.mojo` (`Fp`, `FpField`) | DEMO | vendored whole-package snapshot; compile-time prime bound below `2^31` keeps canonical-residue operations within Int64, and division by zero rejects. Unused by PSC |
+| 1 checked fixed width and support decision | `kernel/finite_linear_algebra/integer_matrix.mojo`, consumed by `kernel/psc/boundary_sync.mojo` | CONFORMS-CHECKED | square dimensions, products and accumulation are checked and raise on refusal; the PSC wrapper propagates refusal. Primitivity uses exact Boolean support powers rather than weighted products |
 | 1.1 integer backend, 1.1–1.3 ℚ | `kernel/finite_exact/bigint_z.mojo`, `kernel/finite_exact/rational.mojo` | CONFORMS | vendored from the one monorepo commit pinned in `vendored.toml`; per-file SHA-256 drift fails CI |
 | 2.1–2.5 I_Q and rank-2 boxes | `kernel/finite_exact/closed_interval.mojo` | CONFORMS | same repository, commit, and digest discipline |
 | PSC conventions over the packages | `kernel/psc/exact.mojo` | CONFORMS | a rejected enclosure raises, a rejected scalar in integer-seeded polynomial arithmetic aborts as an impossible state; Horner helpers, midpoint, diagnostic rendering; integer lifts re-exported from `finite_linear_algebra.scalar` |

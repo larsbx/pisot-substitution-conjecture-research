@@ -40,7 +40,7 @@ def random_substitution(
     return Substitution.checked(images^)
 
 
-def is_primitive_substitution(sigma: Substitution) -> Bool:
+def is_primitive_substitution(sigma: Substitution) raises -> Bool:
     return is_primitive(sigma.incidence(), sigma.size)
 
 

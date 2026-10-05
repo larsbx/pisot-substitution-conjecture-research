@@ -290,3 +290,11 @@ by deleting it.
   `overlap-finiteness-and-coincidence-density-2026-09-13.md`) are history, not
   status. · manuscript §4.8; `formal-productivity-reduction-2026-10-04.md`
 
+- 2026-10-05 · Vendoring review caught shared machine-integer and governance
+  defects beyond green consumer CI. FMK #63 repairs checked products and
+  signed-minimum GCD refusal, exact support-based primitivity, alternative-route
+  closure and executable-source coverage. All twelve packages now match landed
+  commit `360bc90c27893900d30718e42d61d14ce255e530`; the boundary-synchronization
+  wrapper propagates upstream refusal. ·
+  <https://github.com/larsbx/finite-math-kernels/pull/63>; `vendored.toml`;
+  `kernel/psc/boundary_sync.mojo`
