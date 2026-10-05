@@ -17,11 +17,18 @@ TOML and regenerate rather than hand-editing the Markdown.
    before starting a new mechanism, census or route (`AGENTS.md`).
 
 1. `audit-2026-10-04.md` — latest status audit, after the overlap-depth routes
-   and the `PDS ⇒ G1` promotion. Re-derives Propositions 5.46/5.47 and
-   Theorem B, confirms the realization firewall holds and the cube-image
-   bounds, and records that the promoted `PDSImpliesRepoG1` rests on a note
-   whose header still disclaims promotion, under-declares its dependencies in
-   the ledger, and is absent from every headline status surface.
+   and the `PDS ⇒ G1` promotion. It re-derives Propositions 5.46/5.47 and
+   Theorem B, confirms the realization firewall holds, and reproduces the
+   cube-image bounds exactly. **Its findings describe the audited baseline
+   `b661f50` and most were applied in the same change; §A.1 is the resolved
+   list.** Resolved there: the strict-zipper note's header now records what
+   depends on it, the four 2026-10-04 claims now have prose surfaces that
+   governance checks, and `PDS ⇒ G1` with the seedwise bridge is now stated on
+   every headline surface. Two findings were retracted as wrong on inspection
+   (§§D.2, D.4). What still stands is §D.6 plus two deliberate deferrals: the
+   eleven generated claim bindings still target the frozen 2026-09-14 weekly
+   snapshot, and Theorem B, Proposition F and Theorem R are not ledger nodes,
+   so the closure tracks only the import behind `PDSImpliesRepoG1`.
 2. `audit-2026-09-27.md` — status/provenance audit, now carrying a 2026-10-01
    resolution note: the PSC-closed premise was withdrawn, PSC remains open,
    #84/#138 are live theorem issues again, and #153 is resolved conservatively.
