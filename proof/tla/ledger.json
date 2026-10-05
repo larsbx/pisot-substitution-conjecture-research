@@ -137,6 +137,18 @@
     "CoincidenceRankFibreTheorems": [
       "coincidence-rank fibre theorems"
     ],
+    "ReturnModuleFullRank": [
+      "full-rank return module",
+      "Theorem R"
+    ],
+    "PeriodicPairOneFibre": [
+      "periodic pairs in one fibre",
+      "Proposition F"
+    ],
+    "StrictZipperPeriodicPairForm": [
+      "periodic-pair form of a strict zipper",
+      "Theorem B"
+    ],
     "PDSImpliesSeedwiseTermination": [
       "seedwise bridge"
     ],
@@ -511,6 +523,27 @@
       {
         "path": "docs/claim-status-and-source-map-2026-09-13.md",
         "anchor": "| Coincidence-rank fibre theorems |",
+        "window_lines": 0
+      }
+    ],
+    "ReturnModuleFullRank": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Full-rank return module |",
+        "window_lines": 0
+      }
+    ],
+    "PeriodicPairOneFibre": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Periodic pairs lie in one fibre |",
+        "window_lines": 0
+      }
+    ],
+    "StrictZipperPeriodicPairForm": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Periodic-pair form of a strict zipper |",
         "window_lines": 0
       }
     ],
@@ -2173,16 +2206,34 @@
       ],
       "tags": []
     },
-    "PDSImpliesRepoG1": {
-      "id": "sha256:c83300d6020f9708d0e74e124b61a208a603f3f635c9b7442e1b320e5beab0ff",
+    "ReturnModuleFullRank": {
+      "id": "sha256:7820496b324cdef5979b2cb7c3bc8a36714e51ff62a96e33a657a8e431881600",
       "kind": "repository_theorem",
-      "statement": "pure discrete spectrum implies repository G1 (finite BPA from every swap seed)",
+      "statement": "the uncollared return module Lambda_ret of a primitive substitution whose frequency vector has Q-independent coordinates is all of Z^A; in particular Z^3 for every PIP substitution",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md, Theorem R; independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "PeriodicPairOneFibre": {
+      "id": "sha256:844a67f2908fe7ba1cc61dc19c1e7bf1a6f414f1128a72f170f9bc2e1301711c",
+      "kind": "repository_theorem",
+      "statement": "two Phi^r-fixed legal tilings built from interior occurrences and sharing a centre have the same maximal-equicontinuous-factor image, so they lie in one fibre",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:016081d7a8b57cd77f8ddacdf47e28e2cacde69a2cf8cda6e682c1ca8747ca06",
-          "for a primitive non-periodic substitution with Pisot inflation: one fibre of the maximal equicontinuous factor iff strongly regionally proximal; pairwise strongly regionally proximal, tile-disjoint tilings number at most cr; pure discrete spectrum iff cr = 1",
-          "PDSImpliesRepoG1/CoincidenceRankFibreTheorems",
+          "sha256:7820496b324cdef5979b2cb7c3bc8a36714e51ff62a96e33a657a8e431881600",
+          "the uncollared return module Lambda_ret of a primitive substitution whose frequency vector has Q-independent coordinates is all of Z^A; in particular Z^3 for every PIP substitution",
+          "PeriodicPairOneFibre/ReturnModuleFullRank",
           "same",
           "accepted"
         ]
@@ -2194,7 +2245,65 @@
         ],
         [
           "source",
-          "docs/p1b-vertex-coincidence-box-2026-10-02.md, Theorem 5.1 (Theorem S) with Corollary B' of docs/p1b-strict-zipper-periodic-pair-2026-10-02.md, Proposition F and Theorem R of docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md and manuscript Proposition 5.47; independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending"
+          "docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md, Proposition F, via Solomyak's eigenvalue criterion on the full-rank return module; independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "StrictZipperPeriodicPairForm": {
+      "id": "sha256:829a89fe972cfc623489ede962c6597a72ba6bbcf25133b75a868400144dc2ac",
+      "kind": "repository_theorem",
+      "statement": "a strict zipper reachable from a swap seed exists iff two Phi^r-fixed legal tilings with a common centre have no common vertex, that is iff PeriodicPairVertexCoincidence fails",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-strict-zipper-periodic-pair-2026-10-02.md, Theorem B with Lemma C and Corollary B' (reformulation of issue #139); independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "PDSImpliesRepoG1": {
+      "id": "sha256:7acd6aa1e23557604965c909f4cc01b42050f349676087587af7a9fb85d6aa9b",
+      "kind": "repository_theorem",
+      "statement": "pure discrete spectrum implies repository G1 (finite BPA from every swap seed)",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:016081d7a8b57cd77f8ddacdf47e28e2cacde69a2cf8cda6e682c1ca8747ca06",
+          "for a primitive non-periodic substitution with Pisot inflation: one fibre of the maximal equicontinuous factor iff strongly regionally proximal; pairwise strongly regionally proximal, tile-disjoint tilings number at most cr; pure discrete spectrum iff cr = 1",
+          "PDSImpliesRepoG1/CoincidenceRankFibreTheorems",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:844a67f2908fe7ba1cc61dc19c1e7bf1a6f414f1128a72f170f9bc2e1301711c",
+          "two Phi^r-fixed legal tilings built from interior occurrences and sharing a centre have the same maximal-equicontinuous-factor image, so they lie in one fibre",
+          "PDSImpliesRepoG1/PeriodicPairOneFibre",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:829a89fe972cfc623489ede962c6597a72ba6bbcf25133b75a868400144dc2ac",
+          "a strict zipper reachable from a swap seed exists iff two Phi^r-fixed legal tilings with a common centre have no common vertex, that is iff PeriodicPairVertexCoincidence fails",
+          "PDSImpliesRepoG1/StrictZipperPeriodicPairForm",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-vertex-coincidence-box-2026-10-02.md, Theorem 5.1 (Theorem S) with manuscript Proposition 5.47; independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending"
         ]
       ],
       "tags": []
@@ -2218,13 +2327,13 @@
       "tags": []
     },
     "PDSImpliesSeedwiseTermination": {
-      "id": "sha256:fc0eec4c2d52e5ff9f05704fafbaeb87364901932e407ee58cbab8e813371989",
+      "id": "sha256:371c5702d5eaf166163ffdf056083d6b7b65d776583672801507d394a26f8071",
       "kind": "repository_theorem",
       "statement": "pure discrete spectrum implies termination of the balanced-pair algorithm with coincidence from every seed (ab, ba), legal or not",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:c83300d6020f9708d0e74e124b61a208a603f3f635c9b7442e1b320e5beab0ff",
+          "sha256:7acd6aa1e23557604965c909f4cc01b42050f349676087587af7a9fb85d6aa9b",
           "pure discrete spectrum implies repository G1 (finite BPA from every swap seed)",
           "PDSImpliesSeedwiseTermination/PDSImpliesRepoG1",
           "same",

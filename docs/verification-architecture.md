@@ -151,7 +151,41 @@ This correction does **not** invalidate the seed-level finite Spectral Black Box
 
 ## 7. Current verification and implementation gap
 
-The deepest current mathematical gap remains a uniform theorem about actual factorization and recognizability:
+*Refreshed 2026-10-05. Until then this section called factorization and
+recognizability "the deepest current mathematical gap", which the overlap-depth
+work had already displaced (`audit-2026-09-27.md` §G.2, `audit-2026-10-04.md`
+§D.6).*
+
+The primary gap is **seedwise overlap productivity** (manuscript Open
+Problem 5.35, issue #84): productivity of every vertex of the finite
+seed-patch overlap graph reachable from the swap seeds. Theorem 4.22 makes
+that graph finite unconditionally, and Theorem 5.38 turns the one-seed form of
+productivity into pure discrete spectrum through the imported
+Barge–Štimac–Williams bridge, so this one hypothesis carries the shortest
+route to PDS. It splits into two branches, and the live frontier is both of
+them:
+
+- **aligned strong coincidence** (#138), where the cycle normal form is proved
+  and the fixed bad hub edge and alternating type-E templates remain;
+- **strict-zipper hitting** (#139), where the literature, cylinder and carry
+  reductions are complete and a uniform non-unit-safe
+  `AdelicPeriodicOffsetHitting` theorem remains.
+
+Finiteness of the balanced-pair automaton (G1) is no longer an independent
+obligation on this frontier, in either direction. It is **necessary**: pure
+discrete spectrum implies G1 (`prop:PDS-implies-G1`, independently audited
+2026-10-04, human review pending), so no route to PDS can route around it and
+an infinite automaton would refute the conjecture. And it is **cheaper than
+productivity**: by Corollary 5 of the half-coincidence route (Proposition
+5.47), excluding strict zippers alone gives G1, with no appeal to #138. So
+#139 buys finiteness as a by-product, while productivity and PDS need both
+branches.
+
+Factorization and recognizability remain live, but as a *secondary* route
+rather than the headline gap: they feed G1b-2 renewal finiteness (manuscript
+`prob:G1b2`, roadmap P2), which since 2026-10-04 is the least load-bearing of
+the three routes to G1, and they remain relevant to possible
+bridge routes. What that route still needs is unchanged:
 
 - the prefix-difference walk determines balanced child return times;
 - finite closed SCC recurrence produces many bounded-gap returns under inflation;
@@ -159,4 +193,13 @@ The deepest current mathematical gap remains a uniform theorem about actual fact
 - recognizability constrains recurrent child cuts relative to supertile boundaries;
 - the remaining object is the relative hierarchy-offset/address state.
 
-The implementation gap is now explicit too: recent Python structural prototypes on this route must be migrated into canonical Mojo modules, beginning with multi-level prefix ancestry/legal towers and the relative hierarchy-offset state. New work on this path should be Mojo-first.
+The implementation gap is explicit too: Python structural prototypes on the
+factorization route must be migrated into canonical Mojo modules, beginning
+with multi-level prefix ancestry/legal towers and the relative
+hierarchy-offset state (`AGENTS.md`, "Porting order for the live C4
+program"). New work on this path should be Mojo-first.
+
+Nothing in this section discharges an open premise: #84, #138, #139, G1b-2 and
+PSC all remain open. The live planning surface is
+`research-roadmap-2026-09-21.md`; the claim taxonomy is
+`claim-status-and-source-map-2026-09-13.md`.
