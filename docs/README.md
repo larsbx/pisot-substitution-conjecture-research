@@ -23,12 +23,15 @@ TOML and regenerate rather than hand-editing the Markdown.
    `b661f50` and most were applied in the same change; §A.1 is the resolved
    list.** Resolved there: the strict-zipper note's header now records what
    depends on it, the four 2026-10-04 claims now have prose surfaces that
-   governance checks, and `PDS ⇒ G1` with the seedwise bridge is now stated on
-   every headline surface. Two findings were retracted as wrong on inspection
-   (§§D.2, D.4). What still stands is §D.6 plus two deliberate deferrals: the
-   eleven generated claim bindings still target the frozen 2026-09-14 weekly
-   snapshot, and Theorem B, Proposition F and Theorem R are not ledger nodes,
-   so the closure tracks only the import behind `PDSImpliesRepoG1`.
+   governance checks, and `PDS ⇒ G1` with the seedwise bridge is stated on
+   `README.md`, the conjecture ledger, the proof ladder, the architecture note
+   and the claim/source map — and, since 2026-10-05, on the live research
+   roadmap, which that change had missed. Two findings were retracted as wrong
+   on inspection (§§D.2, D.4). What still stands is §D.6 plus two deliberate
+   deferrals: the eleven generated claim bindings still target the frozen
+   2026-09-14 weekly snapshot, and Theorem B, Proposition F and Theorem R are
+   not ledger nodes, so the closure tracks only the import behind
+   `PDSImpliesRepoG1`.
 2. `audit-2026-09-27.md` — status/provenance audit, now carrying a 2026-10-01
    resolution note: the PSC-closed premise was withdrawn, PSC remains open,
    #84/#138 are live theorem issues again, and #153 is resolved conservatively.

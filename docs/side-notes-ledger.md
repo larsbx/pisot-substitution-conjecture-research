@@ -189,6 +189,16 @@ by deleting it.
   proof ladder and the architecture note. · `tools/make_ledger.py` surfaces;
   `audit-2026-10-04.md` §D.3
 
+  - *Correction 2026-10-05.* That list omitted
+    `docs/research-roadmap-2026-09-21.md`, which the same audit counts as a
+    headline status surface (§D.5) and which stayed synchronized only through
+    2026-10-02. It now carries a 2026-10-05 synchronization block for both
+    results, plus the planning consequence that by Corollary 5 the
+    strict-zipper branch (#139) alone suffices for G1, so G1b-2 (P2) is the
+    least load-bearing of the three routes. The dated
+    `completion-ledger-2026-10-02.md` snapshot stays frozen by design. ·
+    `audit-2026-10-04.md` §D.5 correction
+
 - 2026-10-04 · Independent adversarial audit (no counterexample found) of
   Lemma C, Theorem B, Corollary B′, Proposition F, Theorem R, Proposition V,
   Theorem S, the mass lemma, Lemmas E, VT, B, the Barge-class lever,
