@@ -199,11 +199,15 @@ balanced-prefix witness. See
 
 #### P1a next proof tasks
 
-1. **Alternating-E interior-witness transport:** force the known interior good-edge
-   witness into a zero-return boundary descendant of one of the two bad hub
-   edges, or derive a contradiction with closed nonproductivity.
-2. **Fixed-edge interior forcing:** eliminate a setwise fixed bad hub edge using
-   substitution-word / balanced-prefix structure beyond the endpoint map.
+1. **A1 — fixed-edge interior forcing (open):** prove the fixed-edge
+   interior-forcing lemma using substitution-word / balanced-prefix structure
+   beyond the endpoint map. Corollary 2.2 does not supply an interior witness
+   for this template.
+2. **A2 — alternating-E interior-witness transport (open):** transport the
+   interior good-edge witness supplied by Corollary 2.2 into a zero-return
+   boundary descendant of one of the two bad hub edges, or derive a
+   contradiction with closed nonproductivity. The established interior
+   witness is specific to A2.
 3. Apply the same reduction to the suffix branch by reversal.
 4. If a proposed argument uses Rauzy geometry, classify every imported step as
    unit-only or non-unit-safe before using it.
@@ -576,7 +580,7 @@ do not quietly resurrect it under a new name.
 | --- | --- | --- | --- | --- |
 | **P0** | Status/provenance synchronization | current through `main@96bed675`; this roadmap is the live weekly completion surface | roadmap, proof ladder, claim map, manuscript, generated ledger and README preserve the same theorem/review boundary | keep #84/#138/#139, PDS=>G1, and finite-domain statements synchronized without promoting review-pending inputs |
 | **P1b** | Strict-zipper hitting (#139) | **OPEN critical; highest leverage** — literature, periodic-pair, cylinder and M-adic carry reductions established | uniform non-unit-safe occurrence-compatible adelic hitting/coverage theorem, or a strictly smaller equivalent theorem | prove that every realized periodic zipper orbit enters its graph-directed reverse zero basin in the full representation |
-| **P1a** | Aligned strong coincidence (#138) | **OPEN critical; endpoint dynamics reduced to fixed bad hub edge or alternating type-E** | uniform elimination of both templates, including reversal | transport the known interior good-edge witness into a forbidden bad-hub boundary descendant; separate fixed and alternating cases |
+| **P1a** | Aligned strong coincidence (#138) | **OPEN critical; endpoint dynamics reduced to fixed bad hub edge or alternating type-E** | uniform elimination of A1 and A2, including reversal | prove A1's open fixed-edge interior-forcing lemma; for A2 only, transport the Corollary 2.2 interior good-edge witness into a zero-return boundary descendant or derive a contradiction with closed nonproductivity |
 | **P1** | Seedwise overlap productivity (#84) | **OPEN — sole shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad closed SCC | assemble only after branch closure; do not substitute a larger finite census |
 | **Review-0** | `PDS => G1` dependency package | **repository-proved; independently audited; human review pending** | direct human check of Theorem R, Proposition F, Theorem B/Lemma C and the primary proof chain behind the Barge fibre/coincidence-rank criterion | audit Theorem R and the Barge source chain first; both protect the non-unimodular import boundary |
 | **P2** | G1b-2 renewal finiteness | **OPEN parallel; G1 is necessary for PDS but this is the least load-bearing of the three G1 routes** | uniform finite-return theorem for realizable labelled first returns | develop non-unit level-scaled labelled return/address theory; do not reuse UD-padding or predecessor contraction |
@@ -598,9 +602,12 @@ For the next research cycle:
    zero basin. Deeper quotient iteration is not progress without a theorem
    saying why entry must occur.
 2. **#138 template exclusion in parallel.** The aligned recurrent dynamics has
-   only a fixed bad hub edge or the alternating type-E template. Use the
-   existing interior Barge–Diamond-good-edge witness to force a zero-return
-   descendant or contradiction, and handle the suffix branch by reversal.
+   only a fixed bad hub edge (A1) or the alternating type-E template (A2).
+   For A1, prove the open fixed-edge interior-forcing lemma using
+   substitution-word / balanced-prefix structure. For A2 only, transport the
+   interior Barge–Diamond-good-edge witness supplied by Corollary 2.2 into a
+   zero-return boundary descendant or derive a contradiction with closed
+   nonproductivity. Handle both suffix cases by reversal.
 3. **Human-review the `PDS => G1` chain without delaying P1 proof work.**
    Follow the Barge coincidence-rank/disjoint-fibre source chain to its primary
    proofs and recheck Theorem R, Proposition F and Theorem B/Lemma C. This is a
