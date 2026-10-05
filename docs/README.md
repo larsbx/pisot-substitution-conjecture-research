@@ -30,9 +30,13 @@ coincidence level at most 7, and — the point — the level-4 to level-7 counts
 are *identical* at all three budgets while only levels 2 and 3 grow. **The hard
 cases do not scale:** they are 14 members, the same 14 each time, 7 mirror
 pairs under `x <-> c`, all with `p,q,r <= 3`. That is the shape a uniform level
-bound would need. The figures are exploratory, from a Python probe archived
-with its output at `archive/2026-10-05/session-probes/`, not ported to Mojo,
-and no claim status rests on them.
+bound would need. The sweep is `kernel/a1_normal_form_census.mojo`
+(`pixi run a1-normal-form-census`), deciding each member with the canonical
+exact `coincidence_level` — so a negative is a verdict, and the driver raises
+on one — with two bounds pinned in `kernel/tests/test_a1_normal_form.mojo` so
+that the *tail* claim is guarded, not just the totals. The Python probe that
+found it first is kept as provenance at
+`archive/2026-10-05/session-probes/`. No claim status rests on the sweep.
 
 Two redirects came with them, and are worth as much as the theorems. The
 `CU` / one-tile route **cannot** reach #139: by Proposition LC its obstructions

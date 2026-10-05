@@ -35,7 +35,12 @@ at level 4, 2 at level 5, 2 at level 6, 2 at level 7 — while only the level-2
 and level-3 counts grow. The 14 members of level at least 4 form 7 mirror
 pairs under the relabelling `x <-> c`, all with `p, q, r <= 3`.
 
-**Follow-up.** Porting this to a Mojo driver with a regression test, as
-AGENTS.md requires of any computation that is cited, is not done. Until it is,
-the table in the note is exploratory evidence and is labelled so; no ledger
-node and no claim status rests on it.
+**Ported.** `kernel/a1_normal_form_census.mojo` with
+`kernel/tests/test_a1_normal_form.mojo` is now the canonical computation, and
+the note cites it. It decides each member with the canonical exact
+`psc.coincidence_formula.coincidence_level` rather than this probe's ad-hoc
+scan, so a negative there is a verdict and the driver raises on one. It
+reproduces this probe cell for cell at bounds 5 and 8 — 174 and 420 members,
+level histograms 96/64/8/2/2/2 and 268/138/8/2/2/2, the same 14 deep members.
+This probe is kept only as provenance: it is what found the result first, and
+its bound-11 row is the one figure the Mojo regression does not pin.

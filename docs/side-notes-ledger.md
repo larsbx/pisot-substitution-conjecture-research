@@ -237,9 +237,13 @@ by deleting it.
   tile at position 311. The method is cheap because equal Parikh prefixes have
   equal length, so the search is one pass with two integer counters. Not a
   verdict: a member outside the range is uncovered, and the cap column is
-  reported separately (zero on all three). Probe archived with its output and
-  digests; **not ported to Mojo**, so nothing rests on it. ·
-  `p1a-a1-prime-2026-10-05.md` §3a;
+  reported separately (zero on all three). Now ported:
+  `kernel/a1_normal_form_census.mojo` decides each member with the canonical
+  exact `coincidence_level`, so a negative is a verdict and the driver raises
+  on one, and it reproduces the probe cell for cell at bounds 5 and 8. The
+  regression pins **two** bounds on purpose, so that the tail claim itself is
+  guarded. The probe is kept as provenance with its output and digests. ·
+  `p1a-a1-prime-2026-10-05.md` §3a; `kernel/tests/test_a1_normal_form.mojo`;
   `archive/2026-10-05/session-probes/`
 
 - 2026-10-05 · A1′, the obligation Theorem C leaves, is the **residual** half
