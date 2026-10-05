@@ -1,6 +1,6 @@
 # Which test guards which claim
 
-**Status:** engineering record of the `coverage` check, round-two item R8 (transfer A2) of `docs/cross-pollination-round-two-2026-09-16.md`. It states no mathematics and changes no claim status. The mechanism is the vendored `claim_governance` package (`audit/docs/policy-format.md` in `larsbx/finite-math-kernels`, section `[coverage]`); the policy is the `[coverage]` table of `claim_governance.toml`; the declarations are `kernel/psc/claim_tests.mojo`.
+**Status:** engineering record of the `coverage` check, round-two item R8 (transfer A2) of `docs/cross-pollination-round-two-2026-09-16.md`. It states no mathematics and changes no claim status. The mechanism is the vendored `claim_governance` package (`audit/docs/policy-format.md` in `larsbx/finite-math-kernels`, section `[coverage]`); the policy is the `[coverage]` table of `claim_governance.toml`; the declarations are the vendored `kernel/mojo_smoke/claims.mojo` (formerly `kernel/psc/claim_tests.mojo`).
 
 ## 1. What a declaration says, and what it does not
 

@@ -26,7 +26,7 @@ kernel. Recorded run outputs live in `evidence/` and imported external sources
 in `sources/`, both verbatim and pinned by `SHA256SUMS`. `claim_governance.toml`
 and `vendored.toml` are policy alongside the manifest; packages vendored from
 `larsbx/finite-math-kernels` are pinned there and, as a whole, by the
-`finite-math-kernels` `[[dep]]`, whose pin `tools/check_vendored_sync.py`
+`finite-math-kernels` `[[dep]]`, whose pin `tools/vendoring/check_vendored_sync.py`
 derives and checks.
 
 The layout is canonical: every plane in `ESTATE.toml` maps exactly its `target`

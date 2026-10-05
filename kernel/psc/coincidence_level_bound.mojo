@@ -13,7 +13,7 @@ therefore also requires removal of that implementation boundary, as well as a
 substitution-independent coaccessible-state bound and a proof of nonemptiness.
 """
 
-from psc.automata import Dfa, witness
+from finite_automata.dfa import Dfa, witness
 from psc.coincidence_formula import coincidence_automaton
 from psc.words import ALPHABET
 

@@ -1,13 +1,13 @@
 """Executes the vendored finite_exact arithmetic and interval checks under the PSC toolchain.
 
 The byte-level identity of the vendored files with their pinned upstream
-commits is checked separately by tools/check_vendored_sync.py.
+commits is checked separately by tools/vendoring/check_vendored_sync.py.
 """
 
 from finite_exact.bigint_z import bigint_z_phase_one_smoke, bigint_z_phase_two_smoke, bigint_z_phase_three_smoke, bigz_long_division_smoke
 from finite_exact.rat_q import bigq_storage_smoke, demo_q_normalization, demo_q_order, q_cancellation_smoke
 from finite_exact.closed_interval import bigq_interval_conformance_smoke, demo_complex_quadrance_point, demo_interval_mul
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 
 
 def main() raises:

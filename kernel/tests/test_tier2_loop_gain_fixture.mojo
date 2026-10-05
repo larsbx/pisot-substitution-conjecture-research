@@ -2,7 +2,7 @@
 
 from std.testing import assert_equal, assert_true
 
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.overlap_affine_pump import first_zero_shift_free_affine_pump
 from psc.overlap_seed_patch import (
     SeedOverlapAutomaton,

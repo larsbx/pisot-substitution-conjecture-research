@@ -14,11 +14,11 @@ lengths of the substitution, and the powers of its incidence matrix.
 
 from std.testing import assert_equal, assert_false, assert_true
 
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 
 from finite_exact.bigint_z import BigZ, bigz_add, bigz_eq, bigz_from_i64, bigz_mul, bigz_zero
 from finite_linear_algebra.mat3 import Mat3, identity3
-from psc.automata import (
+from finite_automata.dfa import (
     Dfa,
     accepted_count,
     complement,

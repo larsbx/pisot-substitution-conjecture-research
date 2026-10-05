@@ -1,7 +1,7 @@
 """Exact regressions for the strict-zipper M-adic prefix filter."""
 
 from std.testing import assert_equal, assert_true
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.overlap_madic_filter import (
     audit_madic_zero_class,
     madic_zero_class_candidates,

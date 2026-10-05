@@ -22,7 +22,7 @@ transformation does not change Perron compatibility/strictness.
 """
 
 from psc.derived_system import DerivedSystem
-from psc.signing import SignedEdge, perron_phase
+from finite_graph.signing import SignedEdge, perron_phase
 
 
 def _bit(x: Int) -> Int:

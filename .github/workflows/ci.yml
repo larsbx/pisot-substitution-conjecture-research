@@ -44,7 +44,7 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -U pip
       - run: pip install -e .[dev]
-      - run: python tools/check_vendored_sync.py
+      - run: python tools/vendoring/check_vendored_sync.py
       - name: Generated ledger surfaces are current (proof/tla/ledger.json, proof/tla/Ledger.tla, models, index, claims)
         run: python tools/make_ledger.py --check
       - name: Generated mathematical-object catalogue is current

@@ -8,7 +8,7 @@
 # failed.
 #
 # Each test declares the ledger claim or the contract it guards
-# (psc/claim_tests.mojo) and prints a receipt line when the declaration is
+# (mojo_smoke/claims.mojo, vendored) and prints a receipt line when the declaration is
 # reached. The receipts of the tests that *passed* are collected here into
 # $CLAIM_RECEIPTS (default build/claim-receipts.tsv, repository-relative
 # paths), which the `coverage` check of claim_governance.toml reads: a

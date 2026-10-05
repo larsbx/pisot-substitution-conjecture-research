@@ -2,7 +2,7 @@
 
 from std.testing import assert_equal, assert_false, assert_true
 
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.growing_corpus import (
     band_index,
     band_total,

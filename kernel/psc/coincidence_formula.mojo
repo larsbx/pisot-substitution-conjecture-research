@@ -92,7 +92,7 @@ alphabet-3 Pisot family is open, and nothing here changes that.
 """
 
 from finite_linear_algebra.mat3 import Mat3
-from psc.automata import Dfa, Witness, witness
+from finite_automata.dfa import Dfa, Witness, witness
 from psc.bpa import substitution_incidence
 from psc.dumont_thomas import max_image_length
 from psc.numeration_addition import powered_field

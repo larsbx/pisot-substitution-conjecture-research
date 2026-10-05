@@ -12,11 +12,11 @@ special-case a missing transition. A partial transition table is made total by
 `with_sink` before anything else touches it.
 
 This module states no theorem about substitutions. It is the engine under
-`psc.dumont_thomas`, where the letters of a fixed point become the outputs of a
+the Dumont-Thomas numeration of `larsbx/pisot-substitution-conjecture-research`, where the letters of a fixed point become the outputs of a
 run, and it is the engine a first-order decision procedure over a numeration
 system would need. What that procedure additionally requires -- recognisability
-of addition in the numeration -- is an imported theorem, gated in
-`docs/automatic-sequence-route-literature-gate-2026-09-17.md`, and nothing here
+of addition in the numeration -- is an imported theorem, gated in that
+repository's automatic-sequence literature gate, and nothing here
 supplies it.
 """
 

@@ -1,7 +1,7 @@
 """Canonical Mojo regressions for legal ancestry towers."""
 
 from std.testing import assert_equal, assert_true, assert_false
-from psc.claim_tests import require_claim
+from mojo_smoke.claims import require_claim
 from psc.legal_tower import (
     descent_margin,
     first_legal_tower_cut,

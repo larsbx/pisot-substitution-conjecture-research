@@ -17,9 +17,9 @@ checked on the deepest specimen these tests carry.
 
 from std.testing import assert_equal, assert_false, assert_true
 
-from psc.automata import minimised, same_language, witness
+from finite_automata.dfa import minimised, same_language, witness
 from psc.bpa import apply_substitution
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.coincidence_formula import (
     coincidence_automaton,
     coincidence_automaton_with,

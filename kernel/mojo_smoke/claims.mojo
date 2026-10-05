@@ -1,19 +1,19 @@
 """What a regression test stands for, declared by the test itself.
 
-`AGENTS.md` asks every new piece of executable mathematical machinery for
-"Mojo regression coverage for the theorem/invariant contract", and nothing
-linked a test file to the claim in `claim_governance.toml` whose certificate
-that contract supports. These two calls are that link, in the shape
+A consumer that asks every new piece of executable mathematical machinery
+for Mojo regression coverage of its contract still needs something that links
+a test file to the claim in its `claim_governance.toml` whose certificate that
+contract supports. These two calls are that link, in the shape
 `larsbx/crypto-composer` uses for its proof-driven tests: a test declares a
 claim it guards, or states the contract it guards when no ledger claim is
-the right target, and the `coverage` check of the vendored
-`claim_governance` package reports a test that declares neither, a name
+the right target, and the `coverage` check of the
+`claim_governance` package (`tools/claim_governance/checks/coverage.py`) reports a test that declares neither, a name
 outside the ledger, and a claim the policy requires guarded that no test
 names.
 
 A declaration is both text and an act. Statically it is read out of the
 source; at run time it prints a receipt line, `claim-receipt: <name>` or
-`contract-receipt: <text>`, and `run_tests.sh` collects the receipts of a
+`contract-receipt: <text>`, and the consumer's test runner collects the receipts of a
 run into `build/claim-receipts.tsv`. So a declaration placed at the end of
 `main`, after the assertions it stands behind, is reached only when they all
 passed, and a claim whose only test body is never called from `main` is

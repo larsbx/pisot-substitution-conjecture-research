@@ -1,7 +1,7 @@
 """Exact regressions for the seed-relative multiple-edge growth bridge."""
 
 from std.testing import assert_equal, assert_true
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.overlap_growth_bridge import (
     OccurrenceMultiplicity,
     inflate_occurrence_multiplicity,

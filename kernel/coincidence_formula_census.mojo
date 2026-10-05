@@ -38,7 +38,7 @@ coincidence for alphabet-3 Pisot substitutions is open, and a clean sweep here
 is elimination of counterexamples over a finite corpus and nothing more.
 """
 
-from psc.automata import minimised, same_language
+from finite_automata.dfa import minimised, same_language
 from psc.bpa import apply_substitution
 from psc.coincidence_elimination import coincidence_by_elimination
 from psc.coincidence_formula import (

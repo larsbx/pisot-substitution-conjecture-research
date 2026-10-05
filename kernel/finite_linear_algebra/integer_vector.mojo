@@ -1,13 +1,13 @@
 """Fixed-dimension integer vector arithmetic: the canonical kernel.
 
-`reference/psc_research/prefix_difference.py`, `prefix_ancestry.py`,
-`orientation_spectrum.py` and `factorization_degree2.py` each carry a private
-`_matvec`, and two of them a private `_add` and `_sub`, over short integer
+The Python references of `larsbx/pisot-substitution-conjecture-research` (its prefix-difference,
+prefix-ancestry, orientation-spectrum and degree-two factorization modules)
+each carry a private `_matvec`, and two of them a private `_add` and `_sub`, over short integer
 vectors -- the prefix-difference lift, the ancestry step, the orientation gauge
 and the mid-area residual all reduce to `M x`, `x + y` and `x - y` on dimension
 two or three. That is one kernel with four Python copies, and this module is
-the one canonical implementation of it (AGENTS.md: Mojo is canonical, Python is
-an oracle). Performance work on it belongs here, not in the oracle.
+the one canonical implementation of it (Mojo is canonical, Python is an
+oracle). Performance work on it belongs here, not in the oracle.
 
 Two contracts, both inherited from the oracle and both fail-closed:
 
@@ -24,7 +24,7 @@ pins them against the general form over a grid rather than trusting that two
 spellings of the same sum agree.
 """
 
-from psc.checked_int import checked_add, checked_mul, checked_sub
+from finite_exact.checked_int import checked_add, checked_mul, checked_sub
 
 
 def _require_same_length(a: List[Int], b: List[Int]) raises:
@@ -96,7 +96,8 @@ def matvec(m: List[List[Int]], v: List[Int]) raises -> List[Int]:
 
     Dimension three is the alphabet the corpus runs on and is unrolled; every
     other dimension takes the general loop. The unroll is kept because it is
-    measured (`integer_vector_bench.mojo`), not because unrolling is assumed to
+    measured (`kernel/integer_vector_bench.mojo` in its first consumer,
+    `larsbx/pisot-substitution-conjecture-research`), not because unrolling is assumed to
     pay -- in Mojo it often does not, and where it does not the general form is
     the better kernel.
     """

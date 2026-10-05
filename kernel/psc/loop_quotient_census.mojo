@@ -27,6 +27,7 @@ actually observed certified edges generate identifications. Pairs in different
 connected components remain explicit residual counterexamples.
 """
 
+from finite_graph.union_find import find_root, union
 from psc.joint_local_census import (
     ObservationKey,
     address_is_one_loop_extension,
@@ -299,20 +300,6 @@ def _related(
     return False
 
 
-def _find_root(parent: List[Int], x: Int) -> Int:
-    var root = x
-    while parent[root] != root:
-        root = parent[root]
-    return root
-
-
-def _union(mut parent: List[Int], a: Int, b: Int):
-    var ra = _find_root(parent, a)
-    var rb = _find_root(parent, b)
-    if ra != rb:
-        parent[rb] = ra
-
-
 def _canonical_mod(x: Int, modulus: Int) -> Int:
     var r = x % modulus
     if r < 0:
@@ -441,7 +428,7 @@ def _audit_projection_with_relation(
                     child_index,
                 ):
                     direct_edges += 1
-                    _union(parent, left, right)
+                    union(parent, left, right)
                 right = next_member[right]
             left = next_member[left]
 
@@ -461,7 +448,7 @@ def _audit_projection_with_relation(
         while left >= 0:
             var right = next_member[left]
             while right >= 0:
-                if _find_root(parent, left) == _find_root(parent, right):
+                if find_root(parent, left) == find_root(parent, right):
                     quotiented_pairs += 1
                 else:
                     residual_pairs += 1

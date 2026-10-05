@@ -2,7 +2,7 @@
 (Proposition V of docs/p1b-vertex-coincidence-box-2026-10-02.md)."""
 
 from std.testing import assert_equal, assert_true
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.corpus import Specimen, image_words_up_to, pip_corpus, screened_triples
 from psc.overlap_obstruction import recurrent_sccs
 from psc.overlap_seed_patch import build_seed_overlap_graph_from_tables, build_seed_overlap_tables

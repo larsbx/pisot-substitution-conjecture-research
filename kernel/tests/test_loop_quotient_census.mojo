@@ -1,7 +1,7 @@
 """Exact finite regressions for the G1b-2 observed loop quotient."""
 
 from std.testing import assert_equal, assert_false, assert_true
-from psc.claim_tests import require_claim
+from mojo_smoke.claims import require_claim
 from psc.loop_quotient_census import (
     AddressedJointLocalSample,
     addressed_samples_through_depth,

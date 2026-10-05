@@ -1,7 +1,7 @@
 """Exact hit certificates: all-path decisions, birth replay and negative closures."""
 
 from std.testing import assert_equal, assert_true
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.hit_witness import analyze_hits, hit_kind, occurrences, replay_births, simultaneous_closure, vertex_label, witness_path
 from psc.one_tile import one_tile_from, two_sided
 from psc.overlap_seed_patch import OverlapState, SeedOverlapTables, build_seed_overlap_tables

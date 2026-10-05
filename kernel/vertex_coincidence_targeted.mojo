@@ -25,7 +25,7 @@ from finite_linear_algebra.mat3 import Mat3
 from parallel_fold.map_fold import parallel_map_fold
 from std.math import gcd
 from psc.bpa import substitution_incidence
-from psc.checked_int import checked_add, checked_mul
+from finite_exact.checked_int import checked_add, checked_mul
 from psc.corpus import Specimen, cubic_discriminant, image_words_up_to, substitution_of
 from psc.pisot import CubicScreen
 from psc.vertex_coincidence import decide_vertex_coincidence

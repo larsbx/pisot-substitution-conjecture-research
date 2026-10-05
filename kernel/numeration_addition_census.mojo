@@ -25,7 +25,7 @@ Nothing here decides a coincidence condition or moves a ledger entry
 (`docs/automatic-sequence-route-literature-gate-2026-09-17.md`).
 """
 
-from psc.automata import minimised
+from finite_automata.dfa import minimised
 from psc.corpus import pip_corpus, report_progress
 from psc.dumont_thomas import max_image_length, prolongable_form
 from psc.histogram import Histogram, max_int

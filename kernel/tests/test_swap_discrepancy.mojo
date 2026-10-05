@@ -8,7 +8,7 @@ the exact census values for the named examples.
 from std.testing import assert_equal, assert_true
 
 from psc.bpa import build, decompose
-from psc.claim_tests import require_claim
+from mojo_smoke.claims import require_claim
 from psc.swap_discrepancy import (
     common_tile_count,
     discrepancy,

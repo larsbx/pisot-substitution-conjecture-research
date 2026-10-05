@@ -1,8 +1,8 @@
 """Regression tests for finite F2 Perron-compatible signings."""
 
 from std.testing import assert_equal, assert_false, assert_true
-from psc.claim_tests import require_claim
-from psc.signing import SignedEdge, positive_edge, negative_edge, directed_period, cyclic_classes, wrap_bit, compatibility_potential, perron_phase, is_perron_compatible, is_perron_strict
+from mojo_smoke.claims import require_claim
+from finite_graph.signing import SignedEdge, positive_edge, negative_edge, directed_period, cyclic_classes, wrap_bit, compatibility_potential, perron_phase, is_perron_compatible, is_perron_strict
 
 
 def test_positive_loop_is_trivial_phase() raises:

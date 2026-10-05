@@ -59,7 +59,7 @@ without a uniform argument. The gate says which uniform arguments exist (two
 letters, Barge-Diamond) and that three letters is open.
 """
 
-from psc.automata import (
+from finite_automata.dfa import (
     Dfa,
     cylinder,
     intersection,

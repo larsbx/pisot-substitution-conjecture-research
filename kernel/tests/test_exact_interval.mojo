@@ -3,7 +3,7 @@
 from std.testing import assert_equal, assert_false, assert_true
 from psc.bpa import substitution_incidence
 from finite_linear_algebra.mat3 import Mat3
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.overlap_interval_audit import audit_seed_overlap_interval_margins
 from psc.perron_field3 import CubicElt, PerronField3, build_perron_field3, sign_at_perron
 from psc.perron_root_sign import perron_sign_by_enclosure

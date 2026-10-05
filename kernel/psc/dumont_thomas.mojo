@@ -25,7 +25,7 @@ theorem, gated in
 """
 
 from finite_exact.bigint_z import BigZ
-from psc.automata import Dfa, accepted_count, with_sink
+from finite_automata.dfa import Dfa, accepted_count, with_sink
 from psc.oa_overlap_types import ProlongablePoint, apply_substitution, prolongable_point
 from psc.words import ALPHABET
 

@@ -70,26 +70,31 @@ a certificate, a census, or proof-support code.
 
 ## Vendored packages
 
-Four logical Mojo packages under `kernel/`, and the three Python packages under
-`tools/`, are vendored byte-for-byte from the single
+Seven logical Mojo packages under `kernel/`, the four Python packages under
+`tools/`, and `proof/tla/ProofArchitecture.tla` are vendored byte-for-byte from the single
 `larsbx/finite-math-kernels` monorepo and pinned to one commit by SHA-256
 digest in `vendored.toml`;
-`tools/check_vendored_sync.py` enforces the pins in CI and in
-`tools/verify_all.sh`. Do not patch a vendored file, add a file beside one,
+`tools/vendoring/check_vendored_sync.py`, itself vendored, enforces the pins
+in CI and in `tools/verify_all.sh` and derives the `finite-math-kernels` pin
+of `ESTATE.toml`. Do not patch a vendored file, add a file beside one,
 or reintroduce a local copy of what a package provides: change the package
-upstream, re-vendor, and re-pin (`tools/check_vendored_sync.py pin NAME
+upstream, re-vendor, and re-pin (`tools/vendoring/check_vendored_sync.py pin NAME
 COMMIT`).
 
 | Package | Upstream | Provides | PSC-side layer |
 | --- | --- | --- | --- |
-| `kernel/finite_exact/` | `larsbx/finite-math-kernels` | unbounded `BigZ`, normalized `Q`, canonical bytes, closed rational intervals and rank-2 boxes; rejection is sticky | `kernel/psc/exact.mojo`: rejected consumer states raise/abort; Horner helpers, midpoint, diagnostic rendering |
+| `kernel/finite_exact/` | `larsbx/finite-math-kernels` | unbounded `BigZ`, normalized `Q`, canonical bytes, closed rational intervals and rank-2 boxes, checked machine-integer arithmetic; rejection is sticky | `kernel/psc/exact.mojo`: rejected consumer states raise/abort; Horner helpers, midpoint, diagnostic rendering |
 | `kernel/substitution_dynamics/` | `larsbx/finite-math-kernels` | words, substitutions, balanced pairs, automaton, discrepancy, tuning patterns, directive prefixes, and column coincidence over an explicit alphabet | `kernel/psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` remain thin alphabet-3 views |
-| `kernel/finite_linear_algebra/` | `larsbx/finite-math-kernels` | `Mat3`, generic RREF/rank/nullspace over `Q`, rank-three tensors, `W_3`, integer lifts, the M-adic ball carrier | `kernel/psc/w3.mojo` keeps the printed certificate basis; `psc/exact.mojo` re-exports lifts |
+| `kernel/finite_linear_algebra/` | `larsbx/finite-math-kernels` | `Mat3`, generic RREF/rank/nullspace over `Q`, rank-three tensors, `W_3`, integer lifts, the M-adic ball carrier, checked integer vectors and the primitivity test of a non-negative integer matrix | `kernel/psc/w3.mojo` keeps the printed certificate basis; `psc/exact.mojo` re-exports lifts |
 | `kernel/parallel_fold/` | `larsbx/finite-math-kernels` | deterministic MAX-backed map/fold over an index range; index-order fold preserves sequential results for associative combines | `kernel/psc/parallel_census.mojo` keeps PSC evidence semantics, failure replay, and corpus-specific result records |
+| `kernel/finite_graph/` | `larsbx/finite-math-kernels` | iterative Tarjan SCCs and the cycle test on an adjacency list, a disjoint-set forest, and the F2 Perron-compatibility signing test | `kernel/psc/overlap_obstruction.mojo` keeps the capped-graph refusal around `scc`; `psc/finite_cokernel_address.mojo` and `psc/loop_quotient_census.mojo` use `union_find`; `psc/hub_cocycle.mojo` reads `signing` |
+| `kernel/finite_automata/` | `larsbx/finite-math-kernels` | deterministic finite automata over an integer alphabet: products, complement, projection (subset construction), minimisation, language equality, witnesses, accepted-word counts, and a bounded automaton that can refuse | `kernel/psc/dumont_thomas.mojo` and the numeration and coincidence modules build their automata on it; the Dumont-Thomas numeration stays here |
+| `kernel/mojo_smoke/` | `larsbx/finite-math-kernels` | `require_claim` / `require_contract`, the receipt lines a test prints when its declaration is reached | `kernel/run_tests.sh` collects the receipts; `claim_governance.toml` `[coverage]` reads them |
 | `tools/claim_governance/` | `larsbx/finite-math-kernels` (`audit/`) | the status-surface, terminology, promotion, numerics, and test-coverage audit | `claim_governance.toml` is the policy; its `[coverage]` table binds `kernel/tests/` to the ledger |
 | `proof/tla/ProofArchitecture.tla` | `larsbx/finite-math-kernels` | generic alternative-dependency state machine, pinned as `proof_architecture`; copy with the matching ledger generator |
 | `tools/proof_records/` | `larsbx/finite-math-kernels` | proof records (kinds, identity, dependency closure) and the ledger generator | `tools/make_ledger.py` holds the record table; `proof/tla/ledger.json`, `proof/tla/Ledger.tla`, the `proof/tla/MCLedger*` models, `docs/ledger-index.md`, `docs/claim-relationship-graph.json`, and the generated `[[claim]]` block of `claim_governance.toml` are its outputs, never hand-edited |
 | `tools/oracle_refinement/` | `larsbx/finite-math-kernels` | a generator's declared input distribution, `φ_G`: the codomain every draw must satisfy, and per named class whether the corpus reaches it or misses it with a stated reason, both directions checked | `tools/corpus_refinement.py` declares `psc_research.pip_screen.pip_corpus()`, the domain every finite-domain claim is asserted for, and pins its digest |
+| `tools/vendoring/` | `larsbx/finite-math-kernels` | `check_vendored_sync.py`: per-file digest check of every package, refusal of an unpinned source file inside a package directory, and derivation of the `ESTATE.toml` vendoring pin | `vendored.toml` is the manifest; CI, `tools/verify_all.sh` and the estate-pin hook run it |
 
 Integer, rational, and rational-interval arithmetic is therefore **not**
 implemented in this repository. Do not add a second rational type or a
@@ -157,8 +162,8 @@ it.
 
 ## Every test names what it guards
 
-A file under `kernel/tests/` ends its `main` with a declaration from
-`kernel/psc/claim_tests.mojo`: `require_claim("<Name>")` for each ledger claim
+A file under `kernel/tests/` ends its `main` with a declaration from the
+vendored `kernel/mojo_smoke/claims.mojo`: `require_claim("<Name>")` for each ledger claim
 in `claim_governance.toml` whose certificate rests on the contract the test
 pins, or `require_contract("<what it pins>")` when no ledger claim is the
 target, as for a vendored kernel. The `coverage` check of the vendored

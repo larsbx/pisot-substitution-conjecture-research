@@ -16,10 +16,11 @@ Usage:
                                            (re-derives the ESTATE.toml pins too)
     check_vendored_sync.py estate          re-derive the ESTATE.toml pins only
 
-ESTATE.toml pins each vendoring source with a [[dep]] whose ``pin`` is the
-digest the estate audit computes over vendored.toml (metadata plus file
-contents). The pin is derived, never hand-written: ``check`` fails when it
-disagrees and ``pin`` / ``estate`` rewrite it.
+A consumer whose ESTATE.toml pins a vendoring source with a [[dep]] gets that
+``pin`` checked too: it is the digest the estate audit computes over
+vendored.toml (metadata plus file contents), derived and never hand-written.
+``check`` fails when it disagrees and ``pin`` / ``estate`` rewrite it. A
+consumer without ESTATE.toml has no estate pins to keep.
 
 Manifest shape::
 
@@ -27,7 +28,7 @@ Manifest shape::
     name = "finite_exact"
     repository = "larsbx/finite_exact"
     commit = "<40 hex>"
-    root = "kernel"                      # local include root; "." for the repo root
+    root = "mojo"                      # local include root; "." for the repo root
 
     [package.files]
     "finite_exact/__init__.mojo" = "<sha256>"
@@ -42,11 +43,25 @@ import sys
 import tomllib
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "vendored.toml"
+MANIFEST_NAME = "vendored.toml"
 ESTATE = "ESTATE.toml"
 COMMIT_RE = re.compile(r"^[0-9a-f]{40}$")
 SOURCE_SUFFIXES = {".mojo", ".py"}
+
+
+def repo_root(start: Path | None = None) -> Path:
+    """The nearest ancestor of this file holding the manifest.
+
+    The checker is itself vendored, so it cannot assume how deep inside a
+    consumer it sits. Searching upward for the manifest makes the depth
+    irrelevant; with no manifest anywhere above, the grandparent is returned
+    and `check` reports the manifest missing rather than guessing.
+    """
+    here = (start or Path(__file__)).resolve()
+    for parent in here.parents:
+        if (parent / MANIFEST_NAME).exists():
+            return parent
+    return here.parents[1]
 
 
 def sources(package_dir: Path) -> list[Path]:
@@ -57,7 +72,8 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def load(manifest: Path = MANIFEST) -> list[dict]:
+def load(manifest: Path | None = None) -> list[dict]:
+    manifest = manifest or repo_root() / MANIFEST_NAME
     return tomllib.loads(manifest.read_text(encoding="utf-8")).get("package", [])
 
 
@@ -101,18 +117,20 @@ def estate_digest(packages: list[dict], repository: str, root: Path) -> str:
     return hashlib.sha256(json.dumps(rows, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
 
 
-def estate_pins(root: Path = ROOT, manifest: Path = MANIFEST) -> dict[str, str]:
+def estate_pins(root: Path | None = None, manifest: Path | None = None) -> dict[str, str]:
     """dep id -> the pin ESTATE.toml must carry for that vendoring source."""
-    packages = load(manifest)
+    root = root or repo_root()
+    packages = load(manifest or root / MANIFEST_NAME)
     return {source.split("/")[1]: "sha256:" + estate_digest(packages, source, root)
             for source in sorted({p["repository"] for p in packages})}
 
 
 def _dep_pin(dep_id: str) -> re.Pattern[str]:
-    return re.compile(r'(^\[\[dep\]\]\nid = "' + re.escape(dep_id) + r'"\n(?:[^\[\n].*\n|\n)*?pin = ")([^"]*)(")', re.M)
+    return re.compile(r'(^\[\[dep\]\][ \t]*(?:#.*)?\nid = "' + re.escape(dep_id) + r'"\n(?:[^\[\n].*\n|\n)*?pin = ")([^"]*)(")', re.M)
 
 
-def estate_drift(root: Path = ROOT, manifest: Path = MANIFEST) -> list[str]:
+def estate_drift(root: Path | None = None, manifest: Path | None = None) -> list[str]:
+    root = root or repo_root()
     estate = root / ESTATE
     if not estate.exists():
         return []
@@ -122,7 +140,8 @@ def estate_drift(root: Path = ROOT, manifest: Path = MANIFEST) -> list[str]:
             for dep_id, want in estate_pins(root, manifest).items() if deps.get(dep_id) != want]
 
 
-def write_estate_pins(root: Path = ROOT, manifest: Path = MANIFEST) -> list[str]:
+def write_estate_pins(root: Path | None = None, manifest: Path | None = None) -> list[str]:
+    root = root or repo_root()
     estate = root / ESTATE
     if not estate.exists():
         return []
@@ -137,7 +156,9 @@ def write_estate_pins(root: Path = ROOT, manifest: Path = MANIFEST) -> list[str]
     return errors
 
 
-def check_files(root: Path = ROOT, manifest: Path = MANIFEST) -> list[str]:
+def check_files(root: Path | None = None, manifest: Path | None = None) -> list[str]:
+    root = root or repo_root()
+    manifest = manifest or root / MANIFEST_NAME
     if not manifest.exists():
         return [f"missing manifest {manifest.name}"]
     packages = load(manifest)
@@ -146,7 +167,7 @@ def check_files(root: Path = ROOT, manifest: Path = MANIFEST) -> list[str]:
     return [e for pkg in packages for e in check_package(pkg, root)]
 
 
-def check(root: Path = ROOT, manifest: Path = MANIFEST) -> list[str]:
+def check(root: Path | None = None, manifest: Path | None = None) -> list[str]:
     return check_files(root, manifest) or estate_drift(root, manifest)
 
 
@@ -161,7 +182,9 @@ def render(packages: list[dict]) -> str:
     return "\n".join(out)
 
 
-def pin(name: str, commit: str, root: Path = ROOT, manifest: Path = MANIFEST) -> list[str]:
+def pin(name: str, commit: str, root: Path | None = None, manifest: Path | None = None) -> list[str]:
+    root = root or repo_root()
+    manifest = manifest or root / MANIFEST_NAME
     if not COMMIT_RE.match(commit):
         return ["commit must be a full 40-hex SHA"]
     packages = load(manifest)
@@ -197,7 +220,7 @@ def main(argv: list[str]) -> int:
         print("vendored packages are out of sync with vendored.toml:\n")
         print("\n".join(errors))
         return 1
-    names = ", ".join(p["name"] for p in load())
+    names = ", ".join(p["name"] for p in load(repo_root() / MANIFEST_NAME))
     print(f"OK: vendored packages match their pins ({names}).")
     return 0
 

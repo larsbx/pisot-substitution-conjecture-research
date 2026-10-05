@@ -1,6 +1,6 @@
 """The seam between the Mojo declarations, the run receipts, and the policy.
 
-`kernel/psc/claim_tests.mojo` prints a receipt line, `kernel/run_tests.sh` turns
+`kernel/mojo_smoke/claims.mojo` (vendored) prints a receipt line, `kernel/run_tests.sh` turns
 the lines of a passing test into rows of `kernel/build/claim-receipts.tsv`, and
 the `coverage` check of `claim_governance.toml` reads those rows. Three
 languages, one format: these tests pin it without a Mojo toolchain, so a
@@ -28,7 +28,7 @@ from claim_governance.repo import Repo  # noqa: E402
 
 POLICY = load_policy(ROOT / "claim_governance.toml")
 COVERAGE = POLICY.coverage
-DECLARER = (ROOT / "kernel" / "psc" / "claim_tests.mojo").read_text(encoding="utf-8")
+DECLARER = (ROOT / "kernel" / "mojo_smoke" / "claims.mojo").read_text(encoding="utf-8")
 RUNNER = (ROOT / "kernel" / "run_tests.sh").read_text(encoding="utf-8")
 PREFIXES = {"claim": "claim-receipt:", "contract": "contract-receipt:"}
 

@@ -1,7 +1,8 @@
-"""Finite F2 signing diagnostics for SCC child-orientation graphs.
+"""Finite F2 signing diagnostics for directed graphs.
 
-This module encodes the Perron-compatibility test used in the signed
-minimal-defect obstruction program.  It is intentionally finite and exact:
+This module encodes a Perron-compatibility test for signed irreducible graphs
+(first written for the signed minimal-defect obstruction programme of
+`larsbx/pisot-substitution-conjecture-research`).  It is finite and exact:
 edge signs are bits in F2, the directed period is computed by a gcd of cycle
 length obstructions, and Perron compatibility is tested by solving a coboundary
 system over F2.
@@ -17,7 +18,7 @@ potential x with
     b(e) = x(src(e)) + x(dst(e)) + q*lambda(e)  mod 2.
 
 If neither q works, the signing is Perron-strict.  This is a graph/signing
-classifier only: it does not assert the SCC Producer theorem.
+classifier only: what a consumer concludes from it is the consumer's import.
 """
 
 from std.os import abort

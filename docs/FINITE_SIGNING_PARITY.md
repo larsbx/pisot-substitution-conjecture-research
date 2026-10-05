@@ -97,7 +97,7 @@ If neither `q = 0` nor `q = 1` solves the coboundary system, the signing is Perr
 Canonical implementation:
 
 ```text
-kernel/psc/signing.mojo
+kernel/finite_graph/signing.mojo   (vendored from larsbx/finite-math-kernels)
 ```
 
 Regression tests:

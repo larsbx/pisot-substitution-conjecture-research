@@ -1,7 +1,7 @@
 """Exact regressions for occurrence-labelled overlap affine pumps."""
 
 from std.testing import assert_equal, assert_true
-from psc.claim_tests import require_claim
+from mojo_smoke.claims import require_claim
 from psc.overlap_affine_pump import (
     AffinePumpCertificate,
     first_zero_shift_free_affine_pump,

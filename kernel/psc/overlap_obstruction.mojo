@@ -20,6 +20,7 @@ from psc.overlap_seed_patch import (
     nonproductive_overlap_states,
 )
 from psc.perron_field3 import cubic_add_checked, cubic_mul_beta
+from finite_graph.scc import has_cycle as graph_has_cycle, sccs as graph_sccs
 
 
 def common_child_start_count(
@@ -51,85 +52,20 @@ def common_child_start_count(
 def overlap_sccs(a: SeedOverlapAutomaton) raises -> List[List[Int]]:
     """Strongly connected components of a complete overlap graph.
 
-    Iterative Tarjan implementation, mirroring the BPA kernel but keeping the
-    overlap obstruction layer independent of balanced-pair finiteness.
+    The components are `finite_graph.scc.sccs` of the child edges; this layer
+    adds only the refusal of a capped graph, which keeps the overlap
+    obstruction independent of balanced-pair finiteness.
     """
     if a.capped:
         raise Error("overlap SCCs are undefined for a capped partial graph")
-
-    var n = a.size()
-    var idx = List[Int]()
-    var low = List[Int]()
-    var on = List[Bool]()
-    for _ in range(n):
-        idx.append(-1)
-        low.append(0)
-        on.append(False)
-
-    var stack = List[Int]()
-    var out = List[List[Int]]()
-    var counter = 0
-
-    for root in range(n):
-        if idx[root] != -1:
-            continue
-        var call = List[Int]()
-        var pos = List[Int]()
-        call.append(root)
-        pos.append(0)
-        idx[root] = counter
-        low[root] = counter
-        counter += 1
-        stack.append(root)
-        on[root] = True
-
-        while len(call) > 0:
-            var v = call[len(call) - 1]
-            var p = pos[len(pos) - 1]
-            if p < len(a.adj[v]):
-                pos[len(pos) - 1] = p + 1
-                var w = a.adj[v][p]
-                if idx[w] == -1:
-                    idx[w] = counter
-                    low[w] = counter
-                    counter += 1
-                    stack.append(w)
-                    on[w] = True
-                    call.append(w)
-                    pos.append(0)
-                elif on[w]:
-                    if idx[w] < low[v]:
-                        low[v] = idx[w]
-            else:
-                _ = call.pop()
-                _ = pos.pop()
-                if len(call) > 0:
-                    var parent = call[len(call) - 1]
-                    if low[v] < low[parent]:
-                        low[parent] = low[v]
-                if low[v] == idx[v]:
-                    var comp = List[Int]()
-                    while True:
-                        var w = stack.pop()
-                        on[w] = False
-                        comp.append(w)
-                        if w == v:
-                            break
-                    out.append(comp^)
-    return out^
+    return graph_sccs(a.adj)
 
 
 def has_cycle(a: SeedOverlapAutomaton, comp: List[Int]) -> Bool:
     """An SCC carries a cycle: it has two vertices or a self-loop."""
-    if len(comp) > 1:
-        return True
     if len(comp) == 0:
         return False
-    var v = comp[0]
-    for j in range(len(a.adj[v])):
-        if a.adj[v][j] == v:
-            return True
-    return False
+    return graph_has_cycle(a.adj, comp)
 
 
 def recurrent_sccs(a: SeedOverlapAutomaton) raises -> List[List[Int]]:

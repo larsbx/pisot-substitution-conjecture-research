@@ -9,7 +9,7 @@ from psc.bd_endpoint import (
     strict_pip_endpoint_type_admissible,
     type_g_pair_action_is_transitive,
 )
-from psc.claim_tests import require_claim
+from mojo_smoke.claims import require_claim
 from psc.endpoint_core import endpoint_type
 
 
