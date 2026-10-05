@@ -446,19 +446,28 @@ For the next research cycle:
    exclusion; their premises remain open. Note that #139 is the cheaper of the
    two for finiteness: by Corollary 5 its exclusion alone gives G1, with no
    appeal to #138.
-4. **Use the known pumps/collars as mandatory negative controls.**
+4. **Keep #139 effort on interior-vs-interior pairs.** Proposition LC
+   (`p1b-leftmost-chain-periodic-pair-2026-10-05.md` §8b) shows the `CU` /
+   one-tile obstructions are prefix-vs-interior pairs whose centre is never a
+   common vertex by construction — a forced, abundant and harmless family
+   (10,584 on the corpus, while G1 holds throughout). The real obstruction is
+   the interior-vs-interior pair of Theorem B, i.e. `psc.periodic_pair` and
+   PPVC. Corollary LC5 is the leftmost chain's residual value: a cheap
+   sufficient condition discharging finiteness on 1,794 of the 4,554
+   specimens.
+5. **Use the known pumps/collars as mandatory negative controls.**
    To that list add the two extremes of the leftmost-chain picture
    (`p1b-leftmost-chain-periodic-pair-2026-10-05.md` §5): Tribonacci, where
    every nonzero-offset vertex reaches a catch-up and the terminal-cycle set is
    empty, and the catch-up-free class, where Lemma P forces every one of them
    into a cycle. A proposed uniform statement about `CU` must come out right on
    both.
-5. **Keep G1b-2 active but secondary to #84.** It is a stronger structural
+6. **Keep G1b-2 active but secondary to #84.** It is a stronger structural
    theorem, not a hidden dependency of PDS — and since 2026-10-04 it is the
    least load-bearing of three routes to G1, because PDS implies G1 outright
    and all-seed strict-zipper exclusion (#139) implies it as well. G1 itself
    is now a necessary condition for PDS, so it cannot be set aside.
-6. **Do not expand fixed-size sieves unless they test a specific proposed uniform lemma.**
+7. **Do not expand fixed-size sieves unless they test a specific proposed uniform lemma.**
 
 A successful week is not "more specimens passed." It is one of:
 

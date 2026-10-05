@@ -42,6 +42,19 @@ by deleting it.
 
 ## 2. Redirected routes (no lever there; see the decision)
 
+- 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
+  says why in terms of objects rather than counts: a `CU`-failure *is* a
+  prefix-vs-interior periodic pair, whose centre is a vertex of one tiling of
+  infinite level and interior to every level tile of the other — hence
+  **never** a common vertex, by construction. So these pairs are a forced,
+  abundant family (10,584 on the corpus, on 2,760 specimens) that costs
+  nothing: G1 holds on the whole standing corpus anyway. The genuine
+  obstruction to #139 is the **interior-vs-interior** pair of Theorem B, where
+  the centre is a vertex of neither tiling and a shared vertex elsewhere is
+  open — `psc.periodic_pair` and PPVC. Spend #139 effort there. The leftmost
+  chain's remaining use is Corollary LC5. ·
+  `p1b-leftmost-chain-periodic-pair-2026-10-05.md` §8b
+
 - 2026-10-03 · Barge's (W) / beta-numeration monotonicity as a route to PPVC:
   it is a consequence of pure discrete spectrum, not independent of it. ·
   `p1b-vertex-coincidence-box-2026-10-02.md` §5.7 route check
@@ -198,6 +211,22 @@ by deleting it.
     least load-bearing of the three routes. The dated
     `completion-ledger-2026-10-02.md` snapshot stays frozen by design. ·
     `audit-2026-10-04.md` §D.5 correction
+
+- 2026-10-05 · Proposition LC verified exactly on the whole standing corpus:
+  10,584 terminal leftmost cycles over 4,554 specimens, every one sign-constant
+  and prefix-vs-interior, no capped box graph, no failed replay, longest
+  `r = 39`; 10,128 cycle equations replayed over Z and 456 past the exact
+  integer range, reported uncomputed. Two sharpened corollaries: terminal
+  cycles come in **mirror pairs** of opposite sign, so their number is even
+  (LC4 — the catch-up-free counts are 2, 4, 6, 8, 10, never odd); and a box
+  graph with **no** terminal cycle has `Z(s) = ∅` for every seed, giving
+  finiteness for that substitution by Proposition 5.47 (LC5), which covers
+  1,794 of the 4,554. LC5 is a cheaper certificate, not a new finite-domain
+  result — the Proposition V census already certifies the whole corpus — and
+  it is one-directional and useless for the uniform statement, since all 210
+  catch-up-free specimens have cycles. ·
+  `p1b-leftmost-chain-periodic-pair-2026-10-05.md` §§8–8a;
+  `kernel/leftmost_chain_census.mojo`
 
 - 2026-10-05 · The leftmost child is a *function* on nonzero-offset vertices,
   so `CU` is the complement of the basins of its terminal cycles, and every

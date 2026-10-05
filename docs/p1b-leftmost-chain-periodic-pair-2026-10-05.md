@@ -1,7 +1,13 @@
 # P1b: the leftmost chain is functional, and its cycles are prefix-vs-interior pairs — 2026-10-05
 
-**Status:** one proposition proved here (Proposition LC), with an exact
-certificate on the standing corpus. It settles neither T1 nor T2 of
+**Status:** one proposition and three corollaries proved here, with an exact
+certificate on the standing corpus: Proposition LC holds on every one of the
+10,584 terminal leftmost cycles of all 4,554 specimens, none capped, none
+failing. Corollary LC5 gives **G1 outright for the 1,794 specimens whose box
+graph has no terminal cycle**, by a route needing only the leftmost function —
+though G1 is already certified on that whole corpus by the Proposition V
+census, so this is a cheaper certificate, not a new finite-domain result. It
+settles neither T1 nor T2 of
 [`p1b-vertex-coincidence-box-2026-10-02.md`](p1b-vertex-coincidence-box-2026-10-02.md)
 §5.6c, neither PPVC, nor #139, G1 or PSC. What it does is replace the
 combinatorial condition "this vertex is not in `CU`" by an arithmetic witness:
@@ -312,41 +318,141 @@ The census results and the corpus figures are in §8.
 
 ## 8. Census
 
-**Status at this commit: the full-corpus run had not finished.** It is
-`mojo run -I . leftmost_chain_census.mojo` (`pixi run leftmost-chain-census`)
-over the 4,554 standing specimens, and its figures will be recorded here in the
-commit that completes it. What follows is what *was* run and checked, and
-nothing here stands on the unfinished run.
+`pixi run leftmost-chain-census` on the standing corpus of 4,554 PIP
+specimens, exact, no capped box graph.
 
-**Exploratory slice (exact, stride 7, 651 specimens).** 1,478 terminal
-leftmost cycles. Every one kept its offset sign and had the prefix-vs-interior
-shape; the longest was `r = 30`.
+| | count |
+| --- | --- |
+| specimens | 4,554 |
+| terminal leftmost cycles | 10,584 |
+| sign kept along the cycle (claim 1) | **10,584 / 10,584** |
+| prefix-vs-interior shape (claims 2–3) | **10,584 / 10,584** |
+| cycle equation replayed over `Z` (claim 4) | 10,128 |
+| beyond the exact integer range (`r > 12`) | 456 |
+| failed replays | **0** |
+| longest cycle | `r = 39` |
+| specimens with no terminal cycle | 1,794 |
+| catch-up-free specimens with a terminal cycle | 210 / 210 |
 
-**Pinned specimens (exact, `kernel/tests/test_leftmost_chain.mojo`).**
+An earlier stride-7 slice of 651 specimens gave 1,478 cycles with the same
+verdict and `r <= 30`.
+
+**Pinned specimens** (`kernel/tests/test_leftmost_chain.mojo`):
 
 | `sigma` | catch-up-free | cycles | `r` | offsets |
 | --- | --- | --- | --- | --- |
 | `0 -> 01, 1 -> 02, 2 -> 0` (Tribonacci) | no | **0** | — | — |
-| `0 -> 1, 1 -> 12, 2 -> 022` | no | 2 | 1 | both certified over Z, `w_0 = (0, 1, -1)` |
-| `0 -> 1, 1 -> 012, 2 -> 010` | yes | 2 | 6 | both certified over Z |
-| `0 -> 1, 1 -> 22, 2 -> 012` | yes | 2 | 15 | both past the exact integer range, reported uncomputed |
+| `0 -> 1, 1 -> 12, 2 -> 022` | no | 2 | 1 | both over Z, `w_0 = (0, 1, -1)` |
+| `0 -> 1, 1 -> 012, 2 -> 010` | yes | 2 | 6 | both over Z |
+| `0 -> 1, 1 -> 22, 2 -> 012` | yes | 2 | 15 | past the integer range, uncomputed |
 
-The two extremes are the controls of §5: Tribonacci has no terminal cycle at
-all, so `CU` is everything and the proposition is vacuous there; a
-catch-up-free specimen has no vertex in `CU` by Lemma P, so every
-nonzero-offset vertex must run into a cycle, and both pinned ones have exactly
-two — a sign-balanced pair of equal length, which looks like one cycle and its
-mirror image. Whether that holds across the whole catch-up-free class is a
-question this note raises and does **not** answer; a probe of all 210 was
-running at this commit and its result is not assumed anywhere above.
+The two extremes are the controls of §5, and both come out as they must: all
+210 catch-up-free specimens have a cycle, because Lemma P puts none of their
+vertices in `CU`; and 1,794 specimens have none at all.
+
+**Cycle counts in the catch-up-free class** (all 210, exact): 2 cycles on 120
+specimens, 4 on 48, 6 on 18, 8 on 12, 10 on 6, more on 6. Never odd — which is
+Corollary LC4.
+
+## 8a. Two corollaries the census sharpened
+
+*Corollary LC4 (cycles come in mirror pairs).* Terminal leftmost cycles are
+exchanged in pairs of opposite sign by the tiling swap, so their number is
+even.
+
+*Proof.* Proposition `prop:aligned-overlaps` of the manuscript exchanges the
+roles of the two tilings by `(a, b, t) -> (b, a, −t)`, a bijection on vertices
+commuting with inflation. It translates the region by `−t`, so it carries the
+child containing the parent's left end to the child containing the parent's
+left end: leftmost chains go to leftmost chains, and terminal cycles to
+terminal cycles. It negates the offset, so by claim 1 it reverses a cycle's
+sign; a cycle fixed by it would need `t = −t`, hence `t = 0`, which its
+vertices do not have. So the involution is free and the cycles pair off.
+`square`
+
+This is why the catch-up-free counts above are 2, 4, 6, 8, 10 and never 1, 3,
+5, and why the corpus total 10,584 is even. It also halves the work: one cycle
+per mirror pair carries all the information.
+
+*Corollary LC5 (a sufficient condition for G1).* If the box graph of `sigma`
+has **no** terminal leftmost cycle, then `Z(s) = ∅` for every swap seed `s`, so
+all-seed strict-zipper exclusion holds for `sigma` and **G1 holds for
+`sigma`** by manuscript Proposition 5.47.
+
+*Proof.* No terminal cycle means every nonzero-offset vertex of the box graph
+lies in `CU`, i.e. its leftmost chain reaches offset zero, so it has a
+left-aligned descendant. Suppose `Z(s) != ∅`. It is finite and closed under
+children, so it contains a terminal strongly connected component, whose
+vertices lie on cycles of the overlap graph and therefore inside the box graph
+(`box_radii`, Proposition V step 1, bounds the offset of every overlap on a
+cycle). Those vertices have no left-aligned descendant by the definition of
+`Z(s)`, contradicting the previous sentence. So `Z(s) = ∅`, which is Corollary
+5 of the depth note's hypothesis. `square`
+
+**This covers 1,794 of the 4,554 standing specimens — 39%.** It is not a new
+finite-domain result: G1 is already certified on the whole standing corpus by
+the Proposition V census (§4 and the finite-domain statement of
+`p1b-vertex-coincidence-box-2026-10-02.md`), and the balanced-pair builds
+certify it there directly. What LC5 adds is a *cheaper and more structural*
+certificate on those 1,794: it needs only the leftmost **function** — one walk
+per vertex, no descendant-closure analysis and no depth bound — and its
+hypothesis is a statement about occurrences, by LC3. It is one-directional: a
+terminal cycle does not make G1 fail, because a cycle vertex may still have a
+left-aligned descendant through a non-leftmost child.
+
+## 8b. Why the one-tile route could not have worked, in terms of objects
+
+§5.6b of the box note established by census that "the cross-letter rigidity is
+not a one-tile question": Q1 fails on 360 of 4,554 specimens. Proposition LC
+says *why*, in terms of the objects rather than the counts, and the two
+families separate cleanly:
+
+| | Theorem B pair | Proposition LC pair |
+| --- | --- | --- |
+| occurrences | interior **and** interior | **prefix** and interior |
+| the centre `c` is | a vertex of neither tiling, at any level | a vertex of one of infinite level, interior to every level tile of the other |
+| is `c` ever a common vertex? | **open** — that is PPVC | **never**, by construction |
+| how many on the corpus | the ones PPVC decides | 10,584, on 2,760 specimens |
+| obstructs G1? | yes, when no vertex is shared | **no** |
+
+The one-tile question asks whether the left endpoint of a region — the centre
+of a Proposition LC pair — is an eventual subdivision boundary of the other
+tiling. By claim 5 it never is: that centre is interior to every level tile of
+the other tiling, for all time. So `CU`-failures are not accidents to be
+excluded; they are a structurally forced, abundant family, and they cost
+nothing — G1 holds on the whole standing corpus regardless, by the Proposition
+V census, while 10,584 of these pairs sit in it.
+
+The consequence for where to spend effort is the useful part. **The genuine
+obstruction to #139 is the interior-vs-interior pair**, where the centre is a
+vertex of neither tiling and whether the pair shares a vertex *elsewhere* is
+open. That is exactly what `psc.periodic_pair` certifies and what PPVC asks.
+Work on #139 belongs there, not on the leftmost chain. What the leftmost chain
+is good for is Corollary LC5: a cheap sufficient condition that discharges
+finiteness for 1,794 specimens without any closure analysis.
+
+This also places T1 precisely. T1 asks for catch-up *reachability*, which is a
+statement about which vertices fall into the basins of this harmless family.
+Proving it would complete the §5.6c trichotomy and hence PPVC — so T1 is not
+wasted effort — but its content is a pointwise hitting problem (§6), and the
+route to it does not run through the structure of the cycles, which is now
+known.
 
 ## 9. What this does not establish
 
 - **Not T1, and not T2.** §6 states exactly which half of T1 is untouched —
   the reachability half, which is the hard one. T2 is not addressed at all.
-- **Not PPVC, #139, G1 or PSC.** Proposition LC is a structure theorem for the
-  witnesses of `CU`-failure, not an exclusion of them. The catch-up-free class
-  is where witnesses provably exist, and nothing here shrinks it.
+- **Not PPVC, #139, G1 or PSC for the family.** Proposition LC is a structure
+  theorem for the witnesses of `CU`-failure, not an exclusion of them. The
+  catch-up-free class is where witnesses provably exist, and nothing here
+  shrinks it. The ledger's `G1` is the **uniform** hypothesis, for every PIP
+  `sigma`, and it remains open: Corollary LC5 discharges finiteness only for
+  an individual substitution whose hypothesis it has verified — 1,794 of the
+  standing corpus — and says nothing about the other 2,760, nor about any
+  infinite family. The uniform statement would need LC5's hypothesis for all
+  PIP `sigma`, and that is false: the 210 catch-up-free specimens all have
+  cycles. So LC5 is a decision procedure with a wide sufficient condition, not
+  a route to uniform G1 on its own.
 - **No novelty is claimed for the cycle principle.** That is
   Siegel–Thuswaldner's zero-expansion graph (§5). The narrowed claim is the
   functional/sign/prefix-vs-interior structure and the integrality condition,
