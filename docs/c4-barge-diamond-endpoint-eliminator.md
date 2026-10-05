@@ -130,7 +130,7 @@ Hence:
 
 Thus the right-boundary pair alphabet collapses to a two-edge star centered at `c`. In an oriented state one may record a binary **hub-side bit** indicating whether the top or bottom side carries `c`; normalization/orientation then acts on this bit by an explicit `F_2` flip.
 
-This is a structural consequence only. It does not yet identify the hub-side cocycle with the orientation signing from `kernel/psc/signing.mojo`; that requires a separate child-occurrence compatibility proof.
+This is a structural consequence only. It does not yet identify the hub-side cocycle with the orientation signing from `kernel/finite_graph/signing.mojo` (vendored); that requires a separate child-occurrence compatibility proof.
 
 The same statement applies to left-adjacent boundaries after reversing the substitution.
 

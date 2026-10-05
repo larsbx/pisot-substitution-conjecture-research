@@ -165,6 +165,27 @@ by deleting it.
   snapshot is not a proof source. Left at 09-14 deliberately rather than
   changing what eleven claims are checked against. · `tools/make_ledger.py`
   (`WEEKLY`); `audit-2026-10-04.md` §D.5
+- 2026-10-05 · Vendored `madic_ball.mojo` (finite-math-kernels da41c27) now
+  states that the generators of `M^k Z^n` are the *columns* of the row-major
+  `M`; the row span is a different lattice. `psc/overlap_madic_filter.mojo`
+  does not call `contains_exact` but solves `M^m x = d` with its own
+  adjugate inverse of `qmat_pow(lift_square(incidence))`, where
+  `incidence()[3*i + j]` counts letter `i` in `sigma(j)`; that is the column
+  span, the one `d = M^m w` for Parikh vectors needs. Checked by reading the
+  adjugate entry by entry; nothing changed. ·
+  `kernel/finite_linear_algebra/madic_ball.mojo`;
+  `kernel/psc/overlap_madic_filter.mojo` (`_inverse_lattice3`)
+- 2026-10-05 · The vendoring checker moved to the vendored
+  `tools/vendoring/check_vendored_sync.py`; the old `tools/check_vendored_sync.py`
+  is gone. `CONTRIBUTING.md` (gate 7), `.github/` and `.forgejo/`
+  `PULL_REQUEST_TEMPLATE.md` and `.claude/skills/steward/SKILL.md` still name the
+  old path: they are rendered from `larsbx/agent-icm` and must be corrected
+  there and re-rendered, not hand-edited here. Until then run the new path. ·
+  `vendored.toml`; `tests/test_vendored_sync.py`
+- 2026-10-05 · `mojo build kernel/pisot_polynomial_bench.mojo` needs `-I tests`
+  as well as `-I .`: it imports `tests/polynomial_reference.mojo`. Without it
+  the build fails to locate the module, before and after the re-vendor. ·
+  `kernel/pisot_polynomial_bench.mojo` line 7
 
 ## 7. Review outcomes
 
