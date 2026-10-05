@@ -2,7 +2,7 @@
 
 The current shortest route to the Pisot Substitution Conjecture in the standing regime has **one open mathematical premise**: seedwise overlap productivity. The finite-BPA/G1 and closed-carrier programmes remain important stronger structural routes, but they are no longer prerequisites of the shortest PDS sufficiency theorem.
 
-For detailed claim status use `docs/claim-status-and-source-map-2026-09-13.md`; for the live completion priorities use `docs/research-roadmap-2026-09-21.md`; for the latest merged weekly snapshot use `docs/completion-ledger-2026-09-14.md`; theorem statements and imported hypotheses are in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
+For detailed claim status use `docs/claim-status-and-source-map-2026-09-13.md`; for the live completion priorities use `docs/research-roadmap-2026-09-21.md`; for the latest merged weekly snapshot use `docs/completion-ledger-2026-10-02.md`; theorem statements and imported hypotheses are in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
 
 # Stable base — incidence rank, UD, and bounded discrepancy
 
@@ -152,6 +152,26 @@ finite seed-patch overlap graph                           [PROVED]
 ```
 
 A coincidence has offset zero, so `K' <= D` and this premise is implied by all-seed overlap productivity. The vertices with no offset-zero descendant form a closed nonproductive set with no offset-zero vertex, case (b) of manuscript Proposition 5.44(iii), and every reachable such set lies inside them. So finiteness needs only the strict-zipper branch of the obstruction problem; the strong-coincidence branch (P1a, issue #138) is needed for productivity and pure discrete spectrum, not for G1.
+
+## PDS implies G1, so G1 is necessary
+
+**Repository-proved** (manuscript Proposition `prop:PDS-implies-G1`; ledger `PDSImpliesRepoG1`, the Theorem S route of `docs/p1b-vertex-coincidence-box-2026-10-02.md` §5.1; independently audited 2026-10-04, **human review pending**, `docs/side-notes-ledger.md` §7).
+
+```text
+pure discrete spectrum
+=> no reachable strict zipper from any swap seed    [via imported coincidence rank]
+=> finite BPA (G1)                                  [half-coincidence route above]
+```
+
+A reachable strict zipper yields, by Theorem B and Corollary B′ of `docs/p1b-strict-zipper-periodic-pair-2026-10-02.md`, a pair of `Phi^r`-fixed tilings with a common interior centre, an integral centre offset and no common vertex; Proposition F and Theorem R put them in one fibre of the maximal equicontinuous factor; sharing no tile they force coincidence rank at least two, which excludes PDS by Barge's coincidence-rank theorems. Those imports assume neither unimodularity nor irreducibility (`docs/coincidence-rank-imports-literature-gate-2026-10-04.md`).
+
+This closes the direction the ladder lacked. Until now G1 was a hypothesis whose relation to the conjecture was unknown, so the boxed conditional was one sufficient route among possible others. G1 is now a **necessary** condition for PDS: any proof of PSC makes G1 true, and a counterexample to G1 would refute PSC. The realization step is not a formal-recurrence shortcut — it builds the two tilings from interior occurrences, whose patches are allowed for `sigma`, and takes integrality of the offset from the cycle equation rather than assuming it.
+
+Together with the seedwise bridge below, the finiteness side of the programme is no longer an independent obligation: it is a consequence of the conjecture, and it is implied by either half of the obstruction problem.
+
+## PDS implies seedwise termination (former Open Problem 4.24)
+
+**Repository-proved** (manuscript Theorem `thm:seedwise`; ledger `PDSImpliesSeedwiseTermination` with the imported `StrongCoincidenceFromPDS`; same review status as above). PDS implies termination with coincidence from **every** seed `(ab, ba)`, legal factor or not. The repository's all-seed graph is therefore covered, not one convenient seed, and the seed-family question the ladder used to carry as open is answered. Dated notes that still call Open Problem 4.24 open are history, not status.
 ## G1b-2 — renewal finiteness
 
 **OPEN; equivalent to G1 after G1b-1. Not required by Theorem 5.38.**
@@ -289,7 +309,7 @@ Every proposed completion proof must preserve:
 2. **P1a — aligned branch (#138).** Prove the ternary two-sided strong-coincidence statement needed to eliminate every aligned bad SCC, or reduce it to a strictly smaller named theorem. Keep the Barge–Diamond two-letter/general-existence scopes distinct.
 3. **P1b — strict-zipper branch (#139).** The literature transfer audit is complete. Define the full adelic prefix-difference cylinder, then prove a uniform `AdelicPeriodicOffsetHitting` recurrence/coverage lemma for realized closed SCCs.
 4. **P1 — overlap productivity (#84).** Assemble P1a and P1b, or replace them with one stronger theorem excluding every bad closed irreducible SCC. This remains the only open premise on the current shortest PDS route.
-5. **P2 — G1b-2.** Continue as a stronger theorem on BPA finiteness, with the non-unimodular and label/order firewalls intact. G1 now also follows from all-seed overlap productivity (overlap-depth route), so G1b-2 is one of two sufficient premises for G1.
+5. **P2 — G1b-2.** Continue as a stronger theorem on BPA finiteness, with the non-unimodular and label/order firewalls intact. G1 now has three sufficient premises — G1b-2, all-seed overlap productivity (overlap-depth route), or all-seed strict-zipper exclusion alone (half-coincidence route) — and is in any case a necessary consequence of PDS, so G1b-2 is the least load-bearing of the three.
 6. **P3 — concentration and wedge productivity.** Continue as the alternative finite-BPA/SCC route only when new invariants add information beyond child counts and full wedge span.
 7. **P4 — realization bridge.** Discharge G0–G6 only if pursuing the coincidence-rank/collar certification route.
 

@@ -234,6 +234,12 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "AllSeedStrictZipperExclusion": [surface(MAP, "| All-seed strict-zipper exclusion |"), surface(LEDGER_DOC, "### All-seed strict-zipper exclusion", 2)],
     "G1HalfCoincidenceRoute": [surface(MAP, "| Strict-zipper exclusion implies finite BPA |"), surface(LEDGER_DOC, "### Half-coincidence route to finite BPA", 2),
                                surface("docs/proof-ladder.md", "## Half-coincidence route to G1", 2)],
+    "PDSImpliesRepoG1": [surface(MAP, "| PDS implies G1 |"), surface(LEDGER_DOC, "### PDS implies G1", 2),
+                         surface("docs/proof-ladder.md", "## PDS implies G1, so G1 is necessary", 2)],
+    "PDSImpliesSeedwiseTermination": [surface(MAP, "| PDS implies seedwise termination |"), surface(LEDGER_DOC, "### PDS implies seedwise termination", 2),
+                                      surface("docs/proof-ladder.md", "## PDS implies seedwise termination (former Open Problem 4.24)", 2)],
+    "CoincidenceRankFibreTheorems": [surface(MAP, "| Coincidence-rank fibre theorems |")],
+    "StrongCoincidenceFromPDS": [surface(MAP, "| Strong coincidence from PDS |")],
 }
 
 

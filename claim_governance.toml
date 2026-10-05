@@ -488,6 +488,10 @@ expect = "present"
 path = "docs/ledger-index.md"
 anchor = '| CoincidenceRankFibreTheorems |'
 window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Coincidence-rank fibre theorems |"
+window_lines = 0
 
 [[claim]]
 name = "ConcentrationAuxB"
@@ -1090,6 +1094,18 @@ expect = "present"
 path = "docs/ledger-index.md"
 anchor = '| PDSImpliesRepoG1 |'
 window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| PDS implies G1 |"
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/conjecture-ledger.md"
+anchor = "### PDS implies G1"
+window_lines = 2
+[[claim.surfaces]]
+path = "docs/proof-ladder.md"
+anchor = "## PDS implies G1, so G1 is necessary"
+window_lines = 2
 
 [[claim]]
 name = "PDSImpliesSeedwiseTermination"
@@ -1105,6 +1121,18 @@ expect = "present"
 path = "docs/ledger-index.md"
 anchor = '| PDSImpliesSeedwiseTermination |'
 window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| PDS implies seedwise termination |"
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/conjecture-ledger.md"
+anchor = "### PDS implies seedwise termination"
+window_lines = 2
+[[claim.surfaces]]
+path = "docs/proof-ladder.md"
+anchor = "## PDS implies seedwise termination (former Open Problem 4.24)"
+window_lines = 2
 
 [[claim]]
 name = "PDSOverlapRoute"
@@ -1343,6 +1371,10 @@ expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| StrongCoincidenceFromPDS |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Strong coincidence from PDS |"
 window_lines = 0
 
 [[claim]]

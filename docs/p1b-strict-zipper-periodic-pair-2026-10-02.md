@@ -1,14 +1,28 @@
 # P1b: strict zippers as vertex-disjoint periodic pairs — 2026-10-02
 
-**Status:** research note for issue #139, proved here and not yet reviewed.
+**Status:** research note for issue #139, proved here. Reviewed by the
+independent adversarial audit of 2026-10-04, which found no counterexample to
+Lemma C, Theorem B or Corollary B′ and applied fifteen dated corrections
+across these notes (`docs/side-notes-ledger.md` §7); human review is still
+pending.
+
+**Load-bearing as of 2026-10-04.** Theorem B and Corollary B′ are inputs to
+manuscript Proposition `prop:PDS-implies-G1` and so to the ledger node
+`PDSImpliesRepoG1` (PDS implies G1), which is recorded as repository-proved.
+Changing either statement changes that claim. Theorem B was re-derived
+independently in `docs/audit-2026-10-04.md` §B.4, which confirms in particular
+that its realization step does not breach the firewall on formal recurrence:
+it builds `Phi^r`-fixed tilings from *interior* occurrences, whose patches are
+allowed for `sigma`, and takes integrality of the centre offset from the cycle
+equation rather than by assumption.
+
 Proposition A, Lemma C and Theorem B are elementary statements about the
 seed-patch overlap graph and are proved in full below. §5 compares them with
 the literature; the fibre identification it uses is Proposition F of the
 companion gate, proved there for every PIP substitution (Theorem R of that
-gate removes its hypothesis (R)). This note does
-**not** exclude strict zippers, does not prove AdelicPeriodicOffsetHitting,
-G1 or balanced-pair termination, and promotes nothing to the ledger or the
-manuscript.
+gate removes its hypothesis (R)). This note still does
+**not** exclude strict zippers, and does not prove AdelicPeriodicOffsetHitting,
+G1 unconditionally, or balanced-pair termination.
 
 Dependencies:
 

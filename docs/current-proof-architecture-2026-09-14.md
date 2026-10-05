@@ -71,7 +71,17 @@ G1b-1 bounded discrepancy [PROVED]
 => finite BPA (G1).
 ```
 
-G1 has a second sufficient premise: all-seed overlap productivity implies finite BPA by the overlap-depth route (manuscript Proposition 5.46; `docs/bpa-termination-by-overlap-depth-2026-10-02.md`, Proposition 1, a conditional theorem whose only open premise is that productivity).
+G1 has **three** alternative sufficient premises, each a conditional theorem with one open premise:
+
+```text
+G1b-2 renewal finiteness                   [OPEN]      -> G1
+all-seed overlap productivity              [OPEN]      -> G1   (Prop 5.46, overlap-depth route)
+all-seed strict-zipper exclusion alone     [OPEN]      -> G1   (Prop 5.47, half-coincidence route)
+```
+
+Both overlap routes are in `docs/bpa-termination-by-overlap-depth-2026-10-02.md` (Propositions 1 and 4 with Corollary 5). Because the half-coincidence route needs only a common vertex rather than a coincidence, finiteness requires only the strict-zipper branch (#139); the strong-coincidence branch (#138) is needed for productivity and PDS, not for G1.
+
+**G1 is also necessary.** PDS implies finite `B_sigma` (manuscript Proposition `prop:PDS-implies-G1`, ledger `PDSImpliesRepoG1`, the Theorem S route; independently audited 2026-10-04, human review pending), and PDS implies termination from every seed, legal or not (manuscript Theorem `thm:seedwise`, former Open Problem 4.24). So this programme is no longer an independent obligation: it is a consequence of the conjecture.
 
 G1b-2 remains the exact missing theorem for finite BPA. The target is a realizability/renewal statement for labelled first-return words, not another bounded norm. Any contracting-address proof must handle non-unimodular substitutions and may not treat the stable projection of the integer module as a lattice.
 
