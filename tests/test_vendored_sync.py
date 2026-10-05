@@ -82,7 +82,10 @@ def test_local_patch_is_detected(tmp_path, monkeypatch):
 
 def test_no_second_arithmetic_or_kernel_lives_beside_the_packages():
     psc = ROOT / "kernel" / "psc"
-    for retired in ["rational.mojo", "rational_interval.mojo", "mat3.mojo", "qlinalg.mojo", "tensor3.mojo"]:
+    # The second group moved upstream at finite-math-kernels da41c27 and is vendored from there.
+    for retired in ["rational.mojo", "rational_interval.mojo", "mat3.mojo", "qlinalg.mojo", "tensor3.mojo",
+                    "checked_int.mojo", "integer_matrix.mojo", "integer_vector.mojo", "automata.mojo", "signing.mojo",
+                    "claim_tests.mojo"]:
         assert not (psc / retired).exists(), retired
     for path in psc.glob("*.mojo"):
         body = path.read_text(encoding="utf-8")

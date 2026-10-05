@@ -36,7 +36,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 | [Wedge defect](#wedge-defect) | Exact algebra | `definition` | [`kernel/psc/w3.mojo`](../kernel/psc/w3.mojo) | [`reference/psc_research/defect_intertwiner.py`](../reference/psc_research/defect_intertwiner.py) |
 | [Finite-corpus certificate](#finite-corpus-certificate) | Certificates and evidence | `finite-domain` | [`kernel/swap_overlap_census.mojo`](../kernel/swap_overlap_census.mojo) | [`oracles/python/swap_overlap_census.py`](../oracles/python/swap_overlap_census.py) |
 | [Dumont-Thomas numeration](#dumont-thomas-numeration) | Substitution dynamics | `definition` | [`kernel/psc/dumont_thomas.mojo`](../kernel/psc/dumont_thomas.mojo) | [`kernel/automatic_route_census.mojo`](../kernel/automatic_route_census.mojo) |
-| [Numeration automaton](#numeration-automaton) | Finite-state objects | `definition` | [`kernel/psc/automata.mojo`](../kernel/psc/automata.mojo) | [`kernel/automatic_route_census.mojo`](../kernel/automatic_route_census.mojo) |
+| [Numeration automaton](#numeration-automaton) | Finite-state objects | `definition` | [`kernel/psc/dumont_thomas.mojo`](../kernel/psc/dumont_thomas.mojo) | [`kernel/automatic_route_census.mojo`](../kernel/automatic_route_census.mojo) |
 | [Linear numeration system](#linear-numeration) | Substitution dynamics | `definition` | [`kernel/psc/linear_numeration.mojo`](../kernel/psc/linear_numeration.mojo) | [`kernel/numeration_addition_census.mojo`](../kernel/numeration_addition_census.mojo) |
 | [Addition automaton](#addition-automaton) | Finite-state objects | `open-boundary` | [`kernel/psc/numeration_addition.mojo`](../kernel/psc/numeration_addition.mojo) | [`kernel/numeration_addition_census.mojo`](../kernel/numeration_addition_census.mojo) |
 | [Numeration conversion automaton](#numeration-conversion-automaton) | Finite-state objects | `open-boundary` | [`kernel/psc/numeration_conversion.mojo`](../kernel/psc/numeration_conversion.mojo) | [`kernel/numeration_conversion_census.mojo`](../kernel/numeration_conversion_census.mojo) |
@@ -223,7 +223,7 @@ link names an independent oracle or diagnostic, never a second source of truth.
 - **Status:** `definition`
 - **Definition:** delta(a, j) is the j-th letter of tau(a); admissible digit words of length k are in bijection with the positions of tau^k(c), and the words ending at a letter are counted by the incidence matrix power. Deciding a first-order statement over this numeration needs recognisability of addition, which is not supplied here (docs/automatic-sequence-route-literature-gate-2026-09-17.md).
 - **Scope boundary:** The Dumont-Thomas digits read as a deterministic automaton: states are letters, and a digit past the end of an image is inadmissible.
-- **Canonical Mojo:** [`kernel/psc/automata.mojo`](../kernel/psc/automata.mojo)
+- **Canonical Mojo:** [`kernel/psc/dumont_thomas.mojo`](../kernel/psc/dumont_thomas.mojo)
 - **Independent oracle / diagnostic:** [`kernel/automatic_route_census.mojo`](../kernel/automatic_route_census.mojo)
 - **Related objects:** [Dumont-Thomas numeration](#dumont-thomas-numeration), [Substitution](#substitution), [Incidence matrix](#incidence-matrix)
 

@@ -18,7 +18,7 @@ from std.time import perf_counter_ns
 
 from psc.corpus import pip_corpus
 from psc.bpa import substitution_incidence
-from psc.integer_vector import (
+from finite_linear_algebra.integer_vector import (
     add,
     add_general,
     matvec,

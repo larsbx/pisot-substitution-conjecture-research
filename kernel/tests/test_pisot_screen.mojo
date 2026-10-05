@@ -10,7 +10,7 @@ monic cubic with coefficients in `[-4, 4]` is therefore evidence, not an echo.
 from std.testing import assert_equal, assert_false, assert_true
 from finite_exact.rat_q import Q
 from finite_linear_algebra.scalar import q_int
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.exact import q_poly
 from psc.pisot import is_pisot_charpoly, poly_degree
 from psc.pisot_screen import (

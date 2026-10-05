@@ -1,7 +1,7 @@
 """Exact regressions for the catch-up (one-tile) analysis (psc.one_tile)."""
 
 from std.testing import assert_equal, assert_true
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.one_tile import (
     _recurrent_nonzero,
     catch_up_free,

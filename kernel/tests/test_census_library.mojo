@@ -21,7 +21,7 @@ from psc.carrier import (
     profile_component,
     state_sync,
 )
-from psc.claim_tests import require_claim
+from mojo_smoke.claims import require_claim
 from psc.corpus import (
     MAX_IMAGE_LENGTH,
     REGIME_NONUNIMODULAR,

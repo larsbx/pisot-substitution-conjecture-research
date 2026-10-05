@@ -2,7 +2,7 @@
 docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md)."""
 
 from std.testing import assert_equal
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.corpus import pip_corpus, pip_corpus_total_length
 from psc.return_lattice import factor_set
 from psc.return_module import cycle_vectors, lattice_index, return_module_index

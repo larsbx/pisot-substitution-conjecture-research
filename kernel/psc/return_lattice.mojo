@@ -31,7 +31,7 @@ rather than reporting index `0`.
 """
 
 from psc.bpa import apply_substitution
-from psc.checked_int import checked_add, checked_mul, checked_sub
+from finite_exact.checked_int import checked_add, checked_mul, checked_sub
 from psc.words import ALPHABET
 
 # Factor keys are base-3 integers, so a factor fits a 64-bit key up to here.

@@ -2,7 +2,7 @@
 
 from std.testing import assert_equal, assert_true
 from finite_exact.rat_q import Q
-from psc.claim_tests import require_contract, require_claim
+from mojo_smoke.claims import require_contract, require_claim
 from psc.exact import q_int, q_poly
 from psc.overlap_contracting import (
     ContractingBound,

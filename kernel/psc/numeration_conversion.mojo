@@ -100,7 +100,7 @@ claim about digits it is a thing that has to be said.
 """
 
 from finite_linear_algebra.mat3 import Mat3
-from psc.automata import (
+from finite_automata.dfa import (
     BoundedAutomaton,
     Dfa,
     cylinder,

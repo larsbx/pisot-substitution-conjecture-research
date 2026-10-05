@@ -2,7 +2,7 @@
 docs/p1b-strict-zipper-periodic-pair-2026-10-02.md)."""
 
 from std.testing import assert_equal, assert_true
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.overlap_seed_patch import OverlapState, build_seed_overlap_tables
 from psc.periodic_pair import (
     PAIR_CAPPED,

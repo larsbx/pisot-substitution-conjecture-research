@@ -1,6 +1,6 @@
 """Golden separation, genuine obstruction, and resource negative controls."""
 from std.testing import assert_equal, assert_true
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.overlap_seed_patch import build_seed_overlap_tables, build_seed_overlap_graph_from_tables
 from psc.separation_sweep import classify_separation, orbit_key
 from psc.symmetry import parse_substitution_key, reversed_substitution, conjugated_substitution

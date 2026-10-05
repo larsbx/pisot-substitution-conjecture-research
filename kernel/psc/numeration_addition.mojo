@@ -54,7 +54,7 @@ this input, never a proof that addition is recognisable in general.
 """
 
 from finite_linear_algebra.mat3 import Mat3
-from psc.automata import BoundedAutomaton, Dfa, refusal
+from finite_automata.dfa import BoundedAutomaton, Dfa, refusal
 from psc.bpa import substitution_incidence
 from psc.linear_numeration import basis, basis_obeys_recurrence, recurrence
 from psc.perron_field3 import CubicElt, PerronField3, cubic_sub_checked, sign_at_perron

@@ -16,8 +16,8 @@ trusting `project`.
 
 from std.testing import assert_equal, assert_false, assert_true
 
-from psc.automata import minimised, same_language
-from psc.claim_tests import require_contract
+from finite_automata.dfa import minimised, same_language
+from mojo_smoke.claims import require_contract
 from psc.coincidence_elimination import (
     coincidence_by_elimination,
     coincident_positions,

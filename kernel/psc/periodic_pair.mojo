@@ -32,7 +32,7 @@ not claimed by, these verdicts.
 
 from finite_linear_algebra.mat3 import Mat3, identity3
 from psc.bpa import substitution_incidence
-from psc.checked_int import checked_add, checked_mul, checked_sub
+from finite_exact.checked_int import checked_add, checked_mul, checked_sub
 from psc.overlap_seed_patch import (
     OverlapState,
     SeedOverlapTables,

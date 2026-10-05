@@ -3,7 +3,7 @@ from std.testing import assert_equal, assert_true
 from finite_exact.rat_q import Q, q_rejected
 from psc.exact import q_int, q_poly
 from psc.pisot import poly_eval, poly_degree, poly_rem
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from polynomial_reference import poly_eval as reference_eval, poly_degree as reference_degree, poly_rem as reference_rem
 
 

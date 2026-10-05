@@ -2,7 +2,7 @@
 
 from std.testing import assert_equal, assert_true
 
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.corpus import pip_corpus
 from psc.parallel_census import BpaCensusResult, run_bpa_census
 

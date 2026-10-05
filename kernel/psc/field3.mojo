@@ -8,7 +8,7 @@ definition.
 """
 
 from finite_exact.rat_q import Q
-from psc.checked_int import checked_add as _checked_add, checked_mul as _checked_mul, checked_sub as _checked_sub
+from finite_exact.checked_int import checked_add as _checked_add, checked_mul as _checked_mul, checked_sub as _checked_sub
 from psc.exact import q_poly, q_sign, require_q
 from psc.perron_field3 import CubicElt, PerronField3
 

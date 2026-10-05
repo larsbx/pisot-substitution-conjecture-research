@@ -15,7 +15,7 @@ actually visits.
 """
 
 from psc.bounded_bpa import BUDGET_LENGTH, build_bounded
-from psc.integer_matrix import is_primitive
+from finite_linear_algebra.integer_matrix import is_primitive
 from psc.prng import SplitMix64
 from substitution_dynamics.automaton import Automaton, recurrent_noncoincident_sccs
 from substitution_dynamics.balanced_pairs import (

@@ -15,7 +15,7 @@ from std.testing import assert_equal, assert_true
 
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import apply_substitution, substitution_incidence
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.coincidence_level_bound import pair_depth_bound, substitution_depth_bound
 from psc.dumont_thomas import max_image_length
 from psc.numeration_addition import powered_field

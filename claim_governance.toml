@@ -97,8 +97,8 @@ file_status_lines = 10
 allow = ["manuscripts/PSC_balanced_pair_state_2026-09-13.tex", "manuscripts/PSC_PROOF_next_source_audit.tex"]
 
 # ---------------------------------------------------------------------------
-# Coverage: every Mojo test names what it guards.  `kernel/psc/claim_tests.mojo`
-# supplies the two declarations; `kernel/run_tests.sh` collects the receipts of
+# Coverage: every Mojo test names what it guards.  The vendored
+# `kernel/mojo_smoke/claims.mojo` supplies the two declarations; `kernel/run_tests.sh` collects the receipts of
 # the tests that passed, so a declaration no run reached guards nothing and a
 # red suite credits nothing.  The required classes are the two whose warrant
 # *is* an exact finite computation: a finite-domain theorem and an empirical

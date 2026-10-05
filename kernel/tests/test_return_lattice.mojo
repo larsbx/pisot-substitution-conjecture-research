@@ -1,7 +1,7 @@
 """Exact regressions for the return lattices of radius-`n` patches."""
 
 from std.testing import assert_equal, assert_raises, assert_true
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.return_lattice import (
     TriangularLattice,
     covering_level,

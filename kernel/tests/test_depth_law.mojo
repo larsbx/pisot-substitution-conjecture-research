@@ -1,7 +1,7 @@
 """Exact regressions for the contraction-rate depth laws (psc.depth_law)."""
 
 from std.testing import assert_equal
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.depth_law import MuSquared, judge, standard_laws
 
 

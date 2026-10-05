@@ -23,9 +23,9 @@ different implementation in a different language.
 from std.testing import assert_equal, assert_true
 
 from psc.bpa import substitution_incidence
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.corpus import pip_corpus
-from psc.integer_vector import (
+from finite_linear_algebra.integer_vector import (
     add,
     add_general,
     matvec,

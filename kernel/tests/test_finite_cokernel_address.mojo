@@ -1,7 +1,7 @@
 """Exact finite regressions for the G1b-2 sidewise cokernel diagnostic."""
 
 from std.testing import assert_equal, assert_false, assert_true
-from psc.claim_tests import require_claim
+from mojo_smoke.claims import require_claim
 from psc.finite_cokernel_address import (
     audit_sidewise_cokernel,
     build_cokernel_lattice,
