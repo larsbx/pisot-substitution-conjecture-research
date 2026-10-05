@@ -19,6 +19,10 @@ PACKAGES = {
     "proof_records": ("larsbx/finite-math-kernels", "tools"),
     "oracle_refinement": ("larsbx/finite-math-kernels", "tools"),
     "parallel_fold": ("larsbx/finite-math-kernels", "kernel"),
+    "finite_graph": ("larsbx/finite-math-kernels", "kernel"),
+    "finite_automata": ("larsbx/finite-math-kernels", "kernel"),
+    "mojo_smoke": ("larsbx/finite-math-kernels", "kernel"),
+    "vendoring": ("larsbx/finite-math-kernels", "tools"),
 }
 
 
@@ -35,15 +39,26 @@ def test_vendored_packages_match_their_pins():
             assert all(rel.startswith(name + "/") for rel in pkg["files"])
     # The inventory is written out so that a re-vendor which quietly adds or drops a file is a
     # test to update rather than a change nobody sees. self_test.py and known_answers.py arrived
-    # with the import-time known-answer gate; the package's Mojo sources and vocabularies.py sit
-    # beside them upstream and are deliberately not taken.
+    # with the import-time known-answer gate. Upstream keeps the package under kernel/proof_records
+    # beside its Mojo sources and ProofArchitecture.tla; only the Python modules are taken here,
+    # every one of them, and the TLA+ module is pinned separately as proof_architecture.
     assert set(packages["proof_records"]["files"]) == {"proof_records/__init__.py", "proof_records/records.py", "proof_records/generate_ledgers.py",
-                                                       "proof_records/graph.py", "proof_records/self_test.py", "proof_records/known_answers.py"}
+                                                       "proof_records/graph.py", "proof_records/self_test.py", "proof_records/known_answers.py",
+                                                       "proof_records/vocabularies.py"}
     assert set(packages["oracle_refinement"]["files"]) == {"oracle_refinement/__init__.py"}
     assert set(packages["parallel_fold"]["files"]) == {
         "parallel_fold/__init__.mojo",
         "parallel_fold/map_fold.mojo",
     }
+    assert set(packages["finite_graph"]["files"]) == {
+        "finite_graph/__init__.mojo",
+        "finite_graph/scc.mojo",
+        "finite_graph/signing.mojo",
+        "finite_graph/union_find.mojo",
+    }
+    assert set(packages["finite_automata"]["files"]) == {"finite_automata/__init__.mojo", "finite_automata/dfa.mojo"}
+    assert set(packages["mojo_smoke"]["files"]) == {"mojo_smoke/__init__.mojo", "mojo_smoke/claims.mojo", "mojo_smoke/report.mojo"}
+    assert set(packages["vendoring"]["files"]) == {"vendoring/__init__.py", "vendoring/check_vendored_sync.py"}
 
 
 def test_local_patch_is_detected(tmp_path, monkeypatch):
