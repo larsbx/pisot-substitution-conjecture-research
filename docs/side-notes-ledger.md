@@ -212,6 +212,33 @@ by deleting it.
     `completion-ledger-2026-10-02.md` snapshot stays frozen by design. ·
     `audit-2026-10-04.md` §D.5 correction
 
+- 2026-10-05 · A1′, the obligation Theorem C leaves, is the **residual** half
+  of all-pairs strong coincidence: under its hypothesis `h^n(x) = x != c =
+  h^n(c)` for every `n`, so the pair is never merged and its witness is
+  strictly interior. So A1′ inherits the strong-coincidence census: **0
+  failures on all 408,798 PIP specimens**, residual level at most 15. Worth not
+  attempting: there is no sharper finite test, because A1′'s hypothesis
+  presupposes a bad edge and no verified specimen has one — a specimen
+  satisfying it non-vacuously would refute SC_all and PSC. ·
+  `p1a-a1-prime-2026-10-05.md` §2
+
+- 2026-10-05 · On the catch-up-free `|det M| = 2` class, **A1′ and T2 are the
+  same statement**, so #138's aligned branch and #139's strict-zipper branch
+  converge. Mechanism: Theorem C's template gives `h(x) = x`, `h(c) = c`, hence
+  `h(x) != h(c)`, so Lemma A's contrapositive forbids any offset-zero child of
+  `(x, c, 0)` other than its leftmost, which is itself; a coincidence must
+  therefore arrive through a nonzero-offset return, and by Lemma P every such
+  return is a simultaneous birth, which is T2's object. Covers all 210
+  catch-up-free corpus members (all of determinant 2) and 570 of 654 at total
+  length <= 8. · same §3
+
+- 2026-10-05 · Why A1′ is not a corollary of the Barge-Diamond import, in one
+  line to stop the question being reopened: BD Theorem 1 produces **one** of
+  the `d(d-1)/2` pairs, and neither of its two cases can be aimed at a
+  prescribed pair. For `d = 2` there is only one pair, which is exactly why the
+  two-letter case is a theorem; for `d = 3` the two bad edges are left open and
+  A1′ asks for the aimed version on one of them. · same §4
+
 - 2026-10-05 · #138's aligned branch has **one** surviving obligation, not
   two. Theorem C: passing to `sigma^2` squares the first-letter map, a fixed
   bad edge is permuted by it so the square fixes the edge pointwise, and in the

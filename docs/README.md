@@ -9,6 +9,32 @@ For definitions and implementation authority, use the generated
 single structured source is `catalogues/mathematical_objects.toml`; edit the
 TOML and regenerate rather than hand-editing the Markdown.
 
+## What the 2026-10-05 results establish
+
+Five theorems were proved on 2026-10-05, each with an exact certificate. They
+are stated here positively, because each note's own limits section is
+deliberately long and should not be mistaken for the result.
+
+| Result | What it establishes | Where |
+| --- | --- | --- |
+| **Proposition LC** | The leftmost child is a *function*, so the obstructions to `CU` are exactly the terminal cycles of that function — and every one of them is a **prefix-vs-interior periodic pair**: a prefix occurrence `sigma^r(i) = i U` on one side, an interior occurrence `sigma^r(j) = Q j V` on the other, offset `w_0 = (I − M^r)^{-1} ab(Q)`. The half-degenerate companion of Theorem B. Verified on **10,584 / 10,584** terminal cycles of all 4,554 corpus specimens, none capped, none failing | [`p1b-leftmost-chain-periodic-pair-2026-10-05.md`](p1b-leftmost-chain-periodic-pair-2026-10-05.md) |
+| **Corollary LC4** | Those cycles come in **mirror pairs** of opposite offset sign, so their number is always even. Confirmed on all 210 catch-up-free specimens (counts 2, 4, 6, 8, 10 — never odd) | same, §8a |
+| **Corollary LC5** | A box graph with **no** terminal leftmost cycle has `Z(s) = ∅` for every seed, so finiteness holds for that substitution. **Covers 1,794 of the 4,554 corpus specimens** by a certificate needing only the leftmost function — one walk per vertex, no closure analysis, no depth bound | same, §8a |
+| **Theorem C** | #138's aligned branch has **one** surviving obligation, not two: passing to `sigma^2` collapses the fixed-edge cases (i) and (ii) and the alternating-E template onto the single case where the first-letter map fixes both letters of a bad edge. Every hypothesis transfers. Certified on **36 / 36** viable endpoint/good-edge placements | [`p1a-template-collapse-2026-10-05.md`](p1a-template-collapse-2026-10-05.md) |
+| **Proposition A + Corollary C3** | The surviving obligation A1′ is the **residual** half of all-pairs strong coincidence, so it holds with zero failures on all **408,798** PIP specimens already censused; and on the catch-up-free class — all 210 corpus members — **A1′ and T2 are the same boundary-hitting statement**, so #138's aligned branch and #139's strict-zipper branch converge there | [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) |
+
+Two redirects came with them, and are worth as much as the theorems. The
+`CU` / one-tile route **cannot** reach #139: by Proposition LC its obstructions
+are pairs whose centre is a vertex of one tiling and interior to the other,
+hence never a common vertex, so they are forced, abundant and harmless — 10,584
+of them sit on a corpus where finiteness holds throughout. #139 effort belongs
+on the interior-vs-interior pairs of Theorem B. And A1′ is **not** a corollary
+of the Barge–Diamond import: that theorem produces one of `d(d-1)/2` pairs,
+which is the only pair when `d = 2` and is why the two-letter case is settled.
+
+None of this proves #84, #138, #139, G1b-2, G1 for the family, or PSC. Each
+note's final section states its own limits.
+
 ## Current status
 
 0. `side-notes-ledger.md` — live, append-only record of side findings:
@@ -183,6 +209,22 @@ These are reference/index additions only. They do not establish #84, #138,
   itself why the surviving obligation is a special case of the **open** ternary
   strong coincidence problem and not a corollary of the import, and that a
   proof routed through transitivity of eventual coincidence would be wrong.
+- `p1a-a1-prime-2026-10-05.md` — #138 research note (unreviewed) on the single
+  obligation Theorem C leaves. **Proposition A**: A1′ is the *residual* half of
+  all-pairs strong coincidence — the endpoints never synchronize in this
+  configuration, so the whole content is interior — hence A1′ holds with zero
+  failures on all 408,798 PIP specimens of the strong-coincidence census,
+  residual level at most 15, and no sharper finite test exists because the
+  hypothesis presupposes a bad edge no verified specimen has. **Corollary C3**:
+  on the catch-up-free `|det M| = 2` class, Theorem C's template makes the
+  aligned vertex a self-loop with no other offset-zero child (Lemma A's
+  contrapositive), so a coincidence can only arrive as a simultaneous birth —
+  **A1′ and T2 are the same statement there**, and #138's aligned branch meets
+  #139's strict-zipper branch. Covers all 210 catch-up-free corpus members.
+  All three are repository-proved. **Proposition B**: why A1′ is not a
+  corollary of the Barge–Diamond import, by the count `d(d-1)/2` of pairs
+  against the one the theorem produces, which also explains in one line why
+  `d = 2` is settled.
 - `p1b-strict-zipper-periodic-pair-2026-10-02.md` — #139 research note
   (unreviewed): two-sided alignment weakening of Proposition 5.47, and the
   reformulation of a strict zipper as two `Phi^r`-fixed legal tilings with a

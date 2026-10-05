@@ -97,6 +97,12 @@ case (i). Proving
 for every PIP `sigma` kills all three sub-templates, since the other two
 become case (i) for `sigma^2` and A1′ applied to `sigma^2` contradicts step 4.
 
+*Where A1′ goes next.* [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md)
+takes it up: A1′ is the residual half of all-pairs strong coincidence, so it
+holds on the 408,798 censused specimens; on the catch-up-free `|det M| = 2`
+class it coincides with T2 of the box note, so the two open branches of
+productivity meet; and the Barge–Diamond import cannot be aimed at it.
+
 *Corollary C2 (A1′ in classical form).* `h(x) = x` and `h(c) = c` mean
 `sigma(x) = x X` and `sigma(c) = c Y`, so the right-infinite words
 `u = sigma^infinity(x)` and `w = sigma^infinity(c)` are both `sigma`-fixed.

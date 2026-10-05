@@ -448,7 +448,12 @@ For the next research cycle:
    produces exactly an aligned coincident pair but cannot be aimed at a
    prescribed pair — so it needs the fixed-letter hypothesis, and any proof
    that would also give transitivity of eventual coincidence is wrong.
-   The former statement of the obligation follows.
+   `p1a-a1-prime-2026-10-05.md` then places A1′: it is the **residual** half of
+   all-pairs strong coincidence, so it already holds on the 408,798 censused
+   specimens, and on the catch-up-free `|det M| = 2` class it **coincides with
+   T2** of the box note. On that class the aligned and strict-zipper branches
+   are one boundary-hitting statement, which is where a single theorem would
+   buy both. The former statement of the obligation follows.
 3. **#138 template exclusion in parallel.** The aligned branch is reduced to a
    fixed bad hub edge or an alternating type-E template. Exclude those two
    templates using endpoint/occurrence structure, including reversal.
