@@ -420,7 +420,7 @@ Countermodels and failed routes remain part of the project evidence and should s
 | Priority | Item | Status | Evidence needed to close | Immediate next deliverable |
 | --- | --- | --- | --- | --- |
 | **P0** | Status/provenance synchronization | refreshed to `main@ff9e5d3`; mathematical/evidence additions through PR #188 | roadmap, proof ladder, claim map, manuscript, ledger and README agree on the same theorem boundary | keep issue #84/#138/#139 wording synchronized as new work lands |
-| **P1a** | Aligned strong coincidence (#138) | **OPEN critical; cycle normal form proved** | uniform elimination of the fixed bad hub edge and alternating type-E templates, including reversal | prove the endpoint/occurrence incompatibility for the two surviving templates |
+| **P1a** | Aligned strong coincidence (#138) | **OPEN critical; cycle normal form proved; the two templates are one at the square (Theorem C, 2026-10-05)** | uniform proof of A1′: a bad edge whose letters are both `h`-fixed is eventually coincident | prove A1′ — two one-sided `sigma`-fixed points anchored at a common point share a tile — using the fixed-letter hypothesis, and not via transitivity of eventual coincidence |
 | **P1b** | Strict-zipper hitting (#139) | **OPEN critical; literature, cylinder and carry reductions complete; the `CU`-failure witnesses are classified (Proposition LC, 2026-10-05)** | uniform non-unit-safe `AdelicPeriodicOffsetHitting` theorem | prove occurrence-compatible coverage of the reverse zero basin in the full representation; T1 is now an SCC-level statement, and its reachability half is the same hitting problem |
 | **P1** | Seedwise overlap productivity (#84) | **OPEN — only shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad SCC | assemble after branch theorems; do not replace with larger finite sieves |
 | **P2** | G1b-2 renewal finiteness | **OPEN parallel; now the least load-bearing of three G1 routes** | uniform finite-return theorem for realizable labelled first returns | develop non-unit level-scaled address/return theory |
@@ -438,15 +438,26 @@ For the next research cycle:
    explicit. Prove that a realized periodic strict-zipper orbit enters the
    occurrence-compatible reverse zero basin; deeper quotient iteration alone
    is not progress without a completeness map.
-2. **#138 template exclusion in parallel.** The aligned branch is reduced to a
+2. **#138 is now one template, not two.** Theorem C
+   (`p1a-template-collapse-2026-10-05.md`) collapses the fixed-edge cases (i)
+   and (ii) and the alternating-E template onto the single case where `h` fixes
+   both letters of a bad edge, by passing to `sigma^2`. The surviving
+   obligation A1′ is: *two distinct one-sided fixed points of a PIP
+   substitution, anchored at a common point, share a tile.* It is a special
+   case of the open ternary strong coincidence problem — Barge–Diamond's Case 1
+   produces exactly an aligned coincident pair but cannot be aimed at a
+   prescribed pair — so it needs the fixed-letter hypothesis, and any proof
+   that would also give transitivity of eventual coincidence is wrong.
+   The former statement of the obligation follows.
+3. **#138 template exclusion in parallel.** The aligned branch is reduced to a
    fixed bad hub edge or an alternating type-E template. Exclude those two
    templates using endpoint/occurrence structure, including reversal.
-3. **Keep the conditional G1 routes separate from closure.** Propositions
+4. **Keep the conditional G1 routes separate from closure.** Propositions
    5.46–5.47 prove implications from all-seed productivity or strict-zipper
    exclusion; their premises remain open. Note that #139 is the cheaper of the
    two for finiteness: by Corollary 5 its exclusion alone gives G1, with no
    appeal to #138.
-4. **Keep #139 effort on interior-vs-interior pairs.** Proposition LC
+5. **Keep #139 effort on interior-vs-interior pairs.** Proposition LC
    (`p1b-leftmost-chain-periodic-pair-2026-10-05.md` §8b) shows the `CU` /
    one-tile obstructions are prefix-vs-interior pairs whose centre is never a
    common vertex by construction — a forced, abundant and harmless family
@@ -455,19 +466,19 @@ For the next research cycle:
    PPVC. Corollary LC5 is the leftmost chain's residual value: a cheap
    sufficient condition discharging finiteness on 1,794 of the 4,554
    specimens.
-5. **Use the known pumps/collars as mandatory negative controls.**
+6. **Use the known pumps/collars as mandatory negative controls.**
    To that list add the two extremes of the leftmost-chain picture
    (`p1b-leftmost-chain-periodic-pair-2026-10-05.md` §5): Tribonacci, where
    every nonzero-offset vertex reaches a catch-up and the terminal-cycle set is
    empty, and the catch-up-free class, where Lemma P forces every one of them
    into a cycle. A proposed uniform statement about `CU` must come out right on
    both.
-6. **Keep G1b-2 active but secondary to #84.** It is a stronger structural
+7. **Keep G1b-2 active but secondary to #84.** It is a stronger structural
    theorem, not a hidden dependency of PDS — and since 2026-10-04 it is the
    least load-bearing of three routes to G1, because PDS implies G1 outright
    and all-seed strict-zipper exclusion (#139) implies it as well. G1 itself
    is now a necessary condition for PDS, so it cannot be set aside.
-7. **Do not expand fixed-size sieves unless they test a specific proposed uniform lemma.**
+8. **Do not expand fixed-size sieves unless they test a specific proposed uniform lemma.**
 
 A successful week is not "more specimens passed." It is one of:
 

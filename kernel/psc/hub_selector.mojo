@@ -218,3 +218,59 @@ def strict_star_recurrent_cycle_kind(
     if period == 2 and not alternating_e_template(h, good_a, good_b):
         raise Error("two-cycle strict hub-star orbit is not the forced type-E template")
     return period
+
+
+def compose_map(h: List[Int], g: List[Int]) raises -> List[Int]:
+    """`h o g`, the endpoint map of the composite substitution."""
+    _validate_map(h)
+    _validate_map(g)
+    var out = List[Int]()
+    for a in range(3):
+        out.append(h[g[a]])
+    return out^
+
+
+def pointwise_fixed_bad_edge(h: List[Int], good_a: Int, good_b: Int) raises -> Int:
+    """The letter `x` of a bad hub edge `{x, hub}` that `h` fixes pointwise.
+
+    Returns the lower-indexed such letter, or `-1` when neither bad edge has
+    both its letters fixed by `h`. The two bad edges are `{good_a, hub}` and
+    `{good_b, hub}` (Barge-Diamond eliminator), so the hub must be fixed too."""
+    _validate_map(h)
+    _ = unordered_pair_id(good_a, good_b)
+    var hub = complementary_hub_letter(good_a, good_b)
+    if h[hub] != hub:
+        return -1
+    var lo = good_a if good_a < good_b else good_b
+    var hi = good_b if good_a < good_b else good_a
+    if h[lo] == lo:
+        return lo
+    if h[hi] == hi:
+        return hi
+    return -1
+
+
+def template_collapses_at_square(h: List[Int], good_a: Int, good_b: Int) raises -> Bool:
+    """Theorem C: a viable aligned template becomes pointwise fixed under `h o h`.
+
+    docs/p1a-template-collapse-2026-10-05.md. On a viable placement the
+    recurrent bad-pair cycle has period one or two (Theorem 2.1 of the normal
+    form note). Period one makes `h` permute the two letters of a bad edge, so
+    `h o h` fixes both; period two forces `h o h` to be the identity. Either
+    way `h o h` fixes both letters of a bad edge pointwise, which is the single
+    surviving normal form. A placement with no viable orbit collapses
+    vacuously and returns True."""
+    _validate_map(h)
+    if strict_star_recurrent_cycle_kind(h, good_a, good_b) < 0:
+        return True
+    return pointwise_fixed_bad_edge(compose_map(h, h), good_a, good_b) >= 0
+
+
+def fixed_point_count(h: List[Int]) raises -> Int:
+    """How many letters `h` fixes."""
+    _validate_map(h)
+    var n = 0
+    for a in range(3):
+        if h[a] == a:
+            n += 1
+    return n

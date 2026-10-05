@@ -167,6 +167,22 @@ These are reference/index additions only. They do not establish #84, #138,
 - `bpa-overlap-depth-literature-gate-2026-10-02.md` — stop/go literature gate
   for that argument: the mechanism is Sirvent–Solomyak (2002), Theorem 5.6;
   novelty is narrowed to the swap-seed transfer and the explicit bound.
+- `p1a-template-collapse-2026-10-05.md` — #138 research note (unreviewed),
+  with its own stop/go gate: **Theorem C** collapses the three surviving
+  aligned sub-templates of `p1a-aligned-cycle-normal-form-2026-10-01.md` onto
+  one by passing to `sigma^2` — a fixed bad edge is permuted by the
+  first-letter map, so its square fixes it pointwise, and in the alternating
+  template the square is the identity; primitivity, irreducibility, the Pisot
+  property, the good pair, the badness of the edge and the closed
+  nonproductive component all transfer. So **A2 follows from A1**, and #138's
+  aligned branch has one obligation instead of two: *two distinct one-sided
+  fixed points of a PIP substitution on three letters, anchored at a common
+  point, share a tile*. Exact certificate over all 81 endpoint/good-edge
+  placements in `kernel/psc/hub_selector.mojo`, 36/36 viable ones collapsing,
+  reproducing the 45/33/3 table. The gate records from Barge–Diamond (2002)
+  itself why the surviving obligation is a special case of the **open** ternary
+  strong coincidence problem and not a corollary of the import, and that a
+  proof routed through transitivity of eventual coincidence would be wrong.
 - `p1b-strict-zipper-periodic-pair-2026-10-02.md` — #139 research note
   (unreviewed): two-sided alignment weakening of Proposition 5.47, and the
   reformulation of a strict zipper as two `Phi^r`-fixed legal tilings with a

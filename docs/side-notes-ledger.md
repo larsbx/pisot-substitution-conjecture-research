@@ -212,6 +212,35 @@ by deleting it.
     `completion-ledger-2026-10-02.md` snapshot stays frozen by design. ·
     `audit-2026-10-04.md` §D.5 correction
 
+- 2026-10-05 · #138's aligned branch has **one** surviving obligation, not
+  two. Theorem C: passing to `sigma^2` squares the first-letter map, a fixed
+  bad edge is permuted by it so the square fixes the edge pointwise, and in the
+  alternating-E template the square is the identity — so all three
+  sub-templates become the case where both letters of a bad edge are
+  `h`-fixed. Every hypothesis transfers (`sigma^2` is PIP because `beta^2` is
+  still cubic; the good pair survives by raising the level; a `sigma^2`-child
+  is a `sigma`-grandchild). Certificate: 36/36 viable endpoint/good-edge
+  placements, with `h o h` fixing at least two letters always. The surviving
+  statement in classical form: two distinct one-sided fixed points of a PIP
+  substitution, anchored at a common point, share a tile. ·
+  `p1a-template-collapse-2026-10-05.md`; `kernel/psc/hub_selector.mojo`
+
+- 2026-10-05 · Stop/go on that surviving obligation: it is a **special case of
+  the open ternary strong coincidence problem**, not a corollary of the
+  Barge-Diamond import. BD 2002's Case 1 (maximality) produces two eventually
+  coincident segments that start at the same point — exactly the aligned
+  configuration — but the pair it hands over is whichever maximality gives, and
+  the argument cannot be aimed at a prescribed pair; that is why `d >= 3` is
+  open. Negative control worth keeping: eventual coincidence is stable under
+  raising the level but is **not** transitive (two witnesses decompose
+  `sigma^n(j)` at unrelated positions), so any proposed proof that would also
+  give transitivity is wrong or is a major result. Also recorded:
+  Akiyama-Gaehler-Lee settle PSC by exhaustive search for every three-letter
+  substitution of incidence trace at most 2 — a finite-domain fact worth
+  pairing with this repository's own trace condition
+  (`kernel/psc/degree2_sieve.mojo`), not a mechanism. ·
+  same note §4
+
 - 2026-10-05 · Proposition LC verified exactly on the whole standing corpus:
   10,584 terminal leftmost cycles over 4,554 specimens, every one sign-constant
   and prefix-vs-interior, no capped box graph, no failed replay, longest
