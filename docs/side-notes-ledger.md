@@ -212,6 +212,28 @@ by deleting it.
     `completion-ledger-2026-10-02.md` snapshot stays frozen by design. ·
     `audit-2026-10-04.md` §D.5 correction
 
+- 2026-10-05 · On the catch-up-free `|det M| = 2` class the surviving aligned
+  template is an explicit normal form: the odd set of Proposition C is exactly
+  the bad edge, `O = {x, c}`, so `sigma(x) = x y^p s_x`, `sigma(c) = c y^q s_c`,
+  `sigma(y) = t y^r s_y` with the four endings in `{x, c}`. The lemma behind it
+  is worth keeping: `|O| <= 2`, because all three letters odd forces every
+  image to have length exactly two, hence every column sum 2, hence Perron root
+  the rational number 2, contradicting irreducibility (checked independently:
+  no nonnegative 3x3 matrix with all column sums 2 is PIP). Two consequences:
+  the 18 catch-up-free corpus specimens with `|O| = 1` cannot carry case (i) of
+  the template at all, and the alternating template forces `sigma(a) = b` or
+  `sigma(b) = a` as a single even letter, landing in the §5.6g one-E-letter
+  sub-class. · `p1a-a1-prime-2026-10-05.md` §3a
+
+- 2026-10-05 · Exploratory sweep of that normal form, stated budget
+  `p, q, r <= 5`: 174 PIP members with `|det M| = 2`, A1′ holds on all of them,
+  and the deepest first shared tile sits at abelianised position **311**. At
+  `p = q = r = 5` the total image length is 21, past every censused domain
+  (largest: total length 10). The depth is the finding — far beyond what the
+  level statistics suggest — and the deep members share a shape, `sigma(x)`
+  ending in `c` while `sigma(c)` ends in `x`. Not a verdict: a member outside
+  the range is not covered. · same §3a
+
 - 2026-10-05 · A1′, the obligation Theorem C leaves, is the **residual** half
   of all-pairs strong coincidence: under its hypothesis `h^n(x) = x != c =
   h^n(c)` for every `n`, so the pair is never merged and its witness is
