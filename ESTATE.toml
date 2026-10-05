@@ -121,7 +121,8 @@ authority = "evidence"
 required = true
 current = ["tests"]
 
-# claim_governance, proof_records and oracle_refinement under tools/ are vendored (vendored.toml);
+# claim_governance, proof_records, oracle_refinement and vendoring (the checker of
+# vendored.toml itself) under tools/ are vendored (vendored.toml);
 # the repository tooling sits beside them at the tools/ root.
 [[plane]]
 id = "tooling"

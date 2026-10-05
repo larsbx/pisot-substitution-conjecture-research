@@ -34,7 +34,7 @@ if sha256sum -c sources/minimal-bad-scc/SHA256SUMS; then
 else
     bad "minimal-bad-SCC proposal source provenance"
 fi
-if python3 tools/check_vendored_sync.py; then
+if python3 tools/vendoring/check_vendored_sync.py; then
     ok "vendored Mojo packages match the commits pinned in vendored.toml"
 else
     bad "vendored package drift (vendored.toml)"

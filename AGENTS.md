@@ -74,10 +74,10 @@ Four logical Mojo packages under `kernel/`, and the three Python packages under
 `tools/`, are vendored byte-for-byte from the single
 `larsbx/finite-math-kernels` monorepo and pinned to one commit by SHA-256
 digest in `vendored.toml`;
-`tools/check_vendored_sync.py` enforces the pins in CI and in
+`tools/vendoring/check_vendored_sync.py` enforces the pins in CI and in
 `tools/verify_all.sh`. Do not patch a vendored file, add a file beside one,
 or reintroduce a local copy of what a package provides: change the package
-upstream, re-vendor, and re-pin (`tools/check_vendored_sync.py pin NAME
+upstream, re-vendor, and re-pin (`tools/vendoring/check_vendored_sync.py pin NAME
 COMMIT`).
 
 | Package | Upstream | Provides | PSC-side layer |

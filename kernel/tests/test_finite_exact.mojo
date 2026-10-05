@@ -1,7 +1,7 @@
 """Executes the vendored finite_exact arithmetic and interval checks under the PSC toolchain.
 
 The byte-level identity of the vendored files with their pinned upstream
-commits is checked separately by tools/check_vendored_sync.py.
+commits is checked separately by tools/vendoring/check_vendored_sync.py.
 """
 
 from finite_exact.bigint_z import bigint_z_phase_one_smoke, bigint_z_phase_two_smoke, bigint_z_phase_three_smoke, bigz_long_division_smoke
