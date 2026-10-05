@@ -11,6 +11,28 @@ separation evidence on the 24,486-member ternary total-image-length-at-most-8 cl
 None discharges seedwise overlap productivity, either obstruction branch, G1,
 or PSC.
 
+**2026-10-05 synchronization (PRs #210–#213):** two results change the shape of
+this plan without moving any open premise.
+
+1. **G1 is now necessary, not optional.** Pure discrete spectrum implies finite
+   `B_sigma` (manuscript Proposition `prop:PDS-implies-G1`, ledger
+   `PDSImpliesRepoG1`, the Theorem S route; independently audited 2026-10-04,
+   **human review pending**). So the finiteness programme is a consequence of
+   the conjecture rather than an independent obligation, and a substitution
+   with an infinite `B_sigma` would refute PSC.
+2. **Former Open Problem 4.24 is answered.** PDS implies termination with
+   coincidence from every seed `(ab, ba)`, legal factor or not (manuscript
+   Theorem `thm:seedwise`, ledger `PDSImpliesSeedwiseTermination`).
+
+Planning consequence, carried into §11 and §12 below: by Corollary 5 of the
+half-coincidence route, **#139 alone suffices for G1**, while #138 is needed
+for productivity and PDS but not for finiteness. Closing #139 therefore buys
+G1 as a by-product. Neither result discharges #84, #138, #139 or PSC, all of
+which remain open. The imports behind Theorem S assume neither unimodularity
+nor irreducibility; one soft link is recorded in
+`coincidence-rank-imports-literature-gate-2026-10-04.md` §4, and the status
+audit is `audit-2026-10-04.md`.
+
 **Reference update at `main@ff9e5d3`:** PR #154's
 [Penrose 2D interface bridge](bridges/penrose-2d-to-psc-interface-program.md)
 and PR #157's [Padovan / Plastic-A conjecture program](post-proof-padovan-plastic-a-conjectures-2026-09-23.md)
@@ -401,7 +423,7 @@ Countermodels and failed routes remain part of the project evidence and should s
 | **P1a** | Aligned strong coincidence (#138) | **OPEN critical; cycle normal form proved** | uniform elimination of the fixed bad hub edge and alternating type-E templates, including reversal | prove the endpoint/occurrence incompatibility for the two surviving templates |
 | **P1b** | Strict-zipper hitting (#139) | **OPEN critical; literature, cylinder and carry reductions complete** | uniform non-unit-safe `AdelicPeriodicOffsetHitting` theorem | prove occurrence-compatible coverage of the reverse zero basin in the full representation |
 | **P1** | Seedwise overlap productivity (#84) | **OPEN — only shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad SCC | assemble after branch theorems; do not replace with larger finite sieves |
-| **P2** | G1b-2 renewal finiteness | **OPEN parallel** | uniform finite-return theorem for realizable labelled first returns | develop non-unit level-scaled address/return theory |
+| **P2** | G1b-2 renewal finiteness | **OPEN parallel; now the least load-bearing of three G1 routes** | uniform finite-return theorem for realizable labelled first returns | develop non-unit level-scaled address/return theory |
 | **P3a** | Concentration, `K2=0` | **OPEN parallel** | uniform exclusion of strict zero-wedge closed carriers | use ordered/ancestral information absent from current span data |
 | **P3b** | Wedge productivity, `K2!=0` | **OPEN parallel** | theorem converting the surviving recurrence/order constraints into coincidence | identify the missing invariant beyond full wedge span |
 | **P4** | Realization / MEF bridge | **OPEN secondary** | theorem relating formal recurrence to global realization, or excluding realization | seek a uniform realization/collar completeness statement |
@@ -421,9 +443,15 @@ For the next research cycle:
    templates using endpoint/occurrence structure, including reversal.
 3. **Keep the conditional G1 routes separate from closure.** Propositions
    5.46–5.47 prove implications from all-seed productivity or strict-zipper
-   exclusion; their premises remain open.
+   exclusion; their premises remain open. Note that #139 is the cheaper of the
+   two for finiteness: by Corollary 5 its exclusion alone gives G1, with no
+   appeal to #138.
 4. **Use the known pumps/collars as mandatory negative controls.**
-5. **Keep G1b-2 active but secondary to #84.** It is a stronger structural theorem, not a hidden dependency of PDS.
+5. **Keep G1b-2 active but secondary to #84.** It is a stronger structural
+   theorem, not a hidden dependency of PDS — and since 2026-10-04 it is the
+   least load-bearing of three routes to G1, because PDS implies G1 outright
+   and all-seed strict-zipper exclusion (#139) implies it as well. G1 itself
+   is now a necessary condition for PDS, so it cannot be set aside.
 6. **Do not expand fixed-size sieves unless they test a specific proposed uniform lemma.**
 
 A successful week is not "more specimens passed." It is one of:

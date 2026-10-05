@@ -478,7 +478,7 @@
       "statement": "pure discrete spectrum implies repository G1 (finite BPA from every swap seed)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: docs/p1b-vertex-coincidence-box-2026-10-02.md, Theorem 5.1 (Theorem S) with Corollary B' of docs/p1b-strict-zipper-periodic-pair-2026-10-02.md, Proposition F and Theorem R of docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md and manuscript Proposition 5.47; independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending",
+      "source": "source: docs/p1b-vertex-coincidence-box-2026-10-02.md, Theorem 5.1 (Theorem S) with manuscript Proposition 5.47; independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending",
       "leaks": "premises not established: CoincidenceRankFibreTheorems"
     },
     {
@@ -535,6 +535,16 @@
       "source": "source: docs/c4-degree2-parity-sieve.md"
     },
     {
+      "id": "PeriodicPairOneFibre",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "two Phi^r-fixed legal tilings built from interior occurrences and sharing a centre have the same maximal-equicontinuous-factor image, so they lie in one fibre",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md, Proposition F, via Solomyak's eigenvalue criterion on the full-rank return module; independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending"
+    },
+    {
       "id": "PhiSemisimplicity",
       "kind": "claim",
       "label": "Repository-proved",
@@ -553,6 +563,16 @@
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
       "source": "source: docs/bpa-literature-bridge.md"
+    },
+    {
+      "id": "ReturnModuleFullRank",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "the uncollared return module Lambda_ret of a primitive substitution whose frequency vector has Q-independent coordinates is all of Z^A; in particular Z^3 for every PIP substitution",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md, Theorem R; independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending"
     },
     {
       "id": "SCCProducer",
@@ -637,6 +657,16 @@
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "imported_theorem",
       "source": "source: docs/bpa-literature-bridge.md and the literature cited there"
+    },
+    {
+      "id": "StrictZipperPeriodicPairForm",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "a strict zipper reachable from a swap seed exists iff two Phi^r-fixed legal tilings with a common centre have no common vertex, that is iff PeriodicPairVertexCoincidence fails",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-strict-zipper-periodic-pair-2026-10-02.md, Theorem B with Lemma C and Corollary B' (reformulation of issue #139); independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending"
     },
     {
       "id": "StrongCoincidenceFromPDS",
@@ -1000,6 +1030,42 @@
       ]
     },
     {
+      "id": "Proposition F",
+      "kind": "alias",
+      "label": "Proposition F",
+      "provenance": "declared",
+      "members": [
+        "PeriodicPairOneFibre"
+      ]
+    },
+    {
+      "id": "periodic pairs in one fibre",
+      "kind": "alias",
+      "label": "periodic pairs in one fibre",
+      "provenance": "declared",
+      "members": [
+        "PeriodicPairOneFibre"
+      ]
+    },
+    {
+      "id": "Theorem R",
+      "kind": "alias",
+      "label": "Theorem R",
+      "provenance": "declared",
+      "members": [
+        "ReturnModuleFullRank"
+      ]
+    },
+    {
+      "id": "full-rank return module",
+      "kind": "alias",
+      "label": "full-rank return module",
+      "provenance": "declared",
+      "members": [
+        "ReturnModuleFullRank"
+      ]
+    },
+    {
       "id": "SCC Producer",
       "kind": "alias",
       "label": "SCC Producer",
@@ -1024,6 +1090,24 @@
       "provenance": "declared",
       "members": [
         "SpanRichProductivity"
+      ]
+    },
+    {
+      "id": "Theorem B",
+      "kind": "alias",
+      "label": "Theorem B",
+      "provenance": "declared",
+      "members": [
+        "StrictZipperPeriodicPairForm"
+      ]
+    },
+    {
+      "id": "periodic-pair form of a strict zipper",
+      "kind": "alias",
+      "label": "periodic-pair form of a strict zipper",
+      "provenance": "declared",
+      "members": [
+        "StrictZipperPeriodicPairForm"
       ]
     },
     {
@@ -1567,6 +1651,14 @@
     },
     {
       "type": "implicative",
+      "source": "PeriodicPairOneFibre",
+      "target": "PDSImpliesRepoG1",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "PDSImpliesRepoG1/PeriodicPairOneFibre"
+    },
+    {
+      "type": "implicative",
       "source": "PhiSemisimplicity",
       "target": "SeedCentralizer",
       "provenance": "theorem-backed",
@@ -1580,6 +1672,14 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "W3LowGrowth/PhiSemisimplicity"
+    },
+    {
+      "type": "implicative",
+      "source": "ReturnModuleFullRank",
+      "target": "PeriodicPairOneFibre",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "PeriodicPairOneFibre/ReturnModuleFullRank"
     },
     {
       "type": "implicative",
@@ -1642,6 +1742,14 @@
       "certainty": 1,
       "use_site": "PDSSpectralRoute/SpectralSCCProducer",
       "leaks": "premise is open"
+    },
+    {
+      "type": "implicative",
+      "source": "StrictZipperPeriodicPairForm",
+      "target": "PDSImpliesRepoG1",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "PDSImpliesRepoG1/StrictZipperPeriodicPairForm"
     },
     {
       "type": "implicative",
@@ -1782,6 +1890,14 @@
     },
     {
       "type": "synonymous",
+      "source": "Proposition F",
+      "target": "PeriodicPairOneFibre",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "SCC Producer",
       "target": "SCCProducer",
       "provenance": "conditional",
@@ -1793,6 +1909,22 @@
       "source": "Theorem 5.38",
       "target": "PDSOverlapRoute",
       "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "Theorem B",
+      "target": "StrictZipperPeriodicPairForm",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "Theorem R",
+      "target": "ReturnModuleFullRank",
+      "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"
     },
@@ -1918,6 +2050,14 @@
     },
     {
       "type": "synonymous",
+      "source": "full-rank return module",
+      "target": "ReturnModuleFullRank",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "general concentration",
       "target": "ConcentrationAuxB",
       "provenance": "open",
@@ -1961,6 +2101,22 @@
       "source": "overlap-depth route to finite BPA",
       "target": "G1OverlapRoute",
       "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "periodic pairs in one fibre",
+      "target": "PeriodicPairOneFibre",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "periodic-pair form of a strict zipper",
+      "target": "StrictZipperPeriodicPairForm",
+      "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"
     },

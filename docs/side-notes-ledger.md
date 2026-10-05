@@ -189,6 +189,48 @@ by deleting it.
   proof ladder and the architecture note. · `tools/make_ledger.py` surfaces;
   `audit-2026-10-04.md` §D.3
 
+  - *Correction 2026-10-05.* That list omitted
+    `docs/research-roadmap-2026-09-21.md`, which the same audit counts as a
+    headline status surface (§D.5) and which stayed synchronized only through
+    2026-10-02. It now carries a 2026-10-05 synchronization block for both
+    results, plus the planning consequence that by Corollary 5 the
+    strict-zipper branch (#139) alone suffices for G1, so G1b-2 (P2) is the
+    least load-bearing of the three routes. The dated
+    `completion-ledger-2026-10-02.md` snapshot stays frozen by design. ·
+    `audit-2026-10-04.md` §D.5 correction
+
+- 2026-10-05 · The closure behind `PDSImpliesRepoG1` tracked only the Barge
+  import; its five repository inputs were named in the record `source` field
+  but were not ledger nodes. Three are now nodes — `ReturnModuleFullRank`
+  (Theorem R), `PeriodicPairOneFibre` (Proposition F) and
+  `StrictZipperPeriodicPairForm` (Theorem B with Lemma C and Corollary B′) —
+  and the closure stays complete. The trap worth not re-finding: manuscript
+  Proposition 5.47 must **not** be added as a dependency, because the existing
+  `G1HalfCoincidenceRoute` node bundles the half-coincidence bound with its
+  open all-seed premise, so requiring it would make an unconditional
+  implication read as conditional on an open gate. Splitting that node into
+  premise and mechanism is the only way to model 5.47's role, and it was not
+  attempted here. · `tools/make_ledger.py`; `audit-2026-10-04.md` §D.4
+  resolution
+
+- 2026-10-05 · The three manuscript statements tagged
+  `\Status{Theorem}, conditional only on its hypothesis` (Theorem 5.38,
+  Propositions 5.46/5.47) now read `\Status{Conditional}` with the open
+  hypothesis named. Carried as audit debt since 2026-09-20; it was always only
+  a taxonomy inconsistency, since every generated surface already classified
+  them as conditional. · `audit-2026-09-20.md` §5, `audit-2026-09-27.md` §G.1,
+  `audit-2026-10-04.md` §D.6
+
+- 2026-10-05 · Tooling pitfall: `claim_governance`'s promotion check reads a
+  proving phrase within 120 characters of any claim alias, and its
+  `negating_context` list does not contain "none". A section-closing
+  disclaimer of the form "None of the above is proved" therefore *triggers* a
+  promotion finding against a claim name a few lines above it. Write the
+  disclaimer without a proving phrase ("nothing here discharges an open
+  premise; X remains open") rather than relying on the negation list. ·
+  `tools/claim_governance/checks/promotion.py`, `claim_governance.toml`
+  `[promotion]`
+
 - 2026-10-04 · Independent adversarial audit (no counterexample found) of
   Lemma C, Theorem B, Corollary B′, Proposition F, Theorem R, Proposition V,
   Theorem S, the mass lemma, Lemmas E, VT, B, the Barge-class lever,

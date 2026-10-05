@@ -796,7 +796,7 @@ Let $\sigma$ be a primitive substitution whose dilation $\beta$ is a Pisot numbe
 
 In~\cite{BSW} the statement is given for substitutions of Pisot family type in any dimension (their Theorem~3.1: a patch $Q$ whose lattice translates tile $\R^n$, a vector completely rationally independent of that lattice, and $\bar Q$, $\bar Q-v$ densely eventually coincident), under the standing assumptions of primitivity, aperiodicity and finite local complexity; the one-dimensional specialization above is exactly the argument by which their Theorem~3.2 (termination of the balanced-pair algorithm from $(uv,vu)$ implies \PDS{}) is derived from Theorem~3.1, with termination replaced by the dense coincidence it was used to produce. For PIP $\sigma$ the standing assumptions hold (Lemma~\ref{lem:aperiodic}; finite local complexity is automatic for finitely many interval prototiles), and for letters $a\ne b$ the lengths $\ell_a,\ell_b$ are $\Q$-independent by Lemma~\ref{lem:Zindep}. The translate $\bar Q-\ell_a$ is the periodic tiling by $ba$ with a vertex at $0$, so on each period the pair $(\bar Q,\bar Q-\ell_a)$ is the swap pair $(ab,ba)$, and $\Phi^k$ of the pair is the pair $(\sigma^k(ab),\sigma^k(ba))$ repeated; hence $\bar Q$ and $\bar Q-\ell_a$ are eventually coincident at $x$ whenever $x\bmod(\ell_a+\ell_b)$ lies in $G((ab,ba))$.
 
-\begin{theorem}[Main theorem without finiteness; \Status{Theorem}, conditional only on its hypothesis]\label{thm:main-density}
+\begin{theorem}[Main theorem without finiteness; \Status{Conditional} on one-seed overlap productivity]\label{thm:main-density}
 Let $\sigma$ be PIP and $a\ne b$ letters. If every vertex of $\mathcal O_\sigma$ reachable from the seed overlaps of $(ab,ba)$ is productive (equivalently $\delta((ab,ba))=1$, equivalently $G((ab,ba))$ is dense), then $(\Omega_\sigma,\R)$ has \PDS{}. In particular a positive answer to Open Problem~\ref{prob:overlap-productivity} for $\sigma$ implies \PDS{} for $\sigma$, and Theorem~\ref{thm:main-conditional} is the special case in which $\B_\sigma$ is finite and every state is productive (Theorem~\ref{thm:density}(v)).
 \end{theorem}
 \begin{proof}
@@ -943,7 +943,7 @@ Under Hypothesis~\ref{hyp:G1} the coincidence rank of $\sigma$~\cite{BK,Barge201
 
 The depth argument of Theorem~\ref{thm:density}(iii) also controls the length of reachable states, and so bears on G1 directly.
 
-\begin{proposition}[Finiteness from overlap depth; \Status{Theorem}, conditional only on its hypothesis]\label{prop:G1-from-overlaps}
+\begin{proposition}[Finiteness from overlap depth; \Status{Conditional} on all-vertex overlap productivity]\label{prop:G1-from-overlaps}
 Let $\sigma$ be PIP and $s=(ab,ba)$ a seed. Suppose every vertex of $\mathcal O_\sigma$ reachable from the seed overlaps of $s$ is productive, and let $K$ be the largest first-coincidence depth among those vertices, finite by Theorem~\ref{thm:overlap-finite}. Then every state at the end of a directed path of length $n\ge K$ from $s$ satisfies $g(T)\le2\beta^K\ell_{\max}$, and the set of states reachable from $s$ is finite. In particular, a positive answer to Open Problem~\ref{prob:overlap-productivity} for $\sigma$ implies Hypothesis~\ref{hyp:G1} for $\sigma$.
 \end{proposition}
 \begin{proof}
@@ -954,7 +954,7 @@ The mechanism is that of~\cite[Thm.~5.6]{SS}, where termination of the balanced-
 
 A coincidence is used in the proof of Proposition~\ref{prop:G1-from-overlaps} only for the common vertex it supplies, and a common vertex alone suffices; this is the half-coincidence form of~\cite[Thm.~5.6]{SS}. It shows that finiteness needs only one branch of the dichotomy of Proposition~\ref{prop:zipper-dichotomy}.
 
-\begin{proposition}[Finiteness from half-coincidences; \Status{Theorem}, conditional only on its hypothesis]\label{prop:G1-from-half-coincidences}
+\begin{proposition}[Finiteness from half-coincidences; \Status{Conditional} on strict-zipper exclusion]\label{prop:G1-from-half-coincidences}
 Let $\sigma$ be PIP and $s$ a seed. The following are equivalent: \textup{(a)} every vertex of $\mathcal O_\sigma$ reachable from the seed overlaps of $s$ has a descendant of offset $0$ (the vertex itself included); \textup{(b)} no closed set of nonproductive non-coincidence vertices reachable from $s$ falls under case \textup{(b)} of Proposition~\ref{prop:zipper-dichotomy}\textup{(iii)}. If they hold, let $K'$ be the largest depth at which the vertices reachable from $s$ first have a descendant of offset $0$. Then every state at the end of a directed path of length $n\ge K'$ from $s$ satisfies $g(T)\le2\beta^{K'}\ell_{\max}$, and the set of states reachable from $s$ is finite. In particular, if \textup{(b)} holds for every seed, then Hypothesis~\ref{hyp:G1} holds for $\sigma$.
 \end{proposition}
 \begin{proof}

@@ -57,8 +57,10 @@ ResultSet == {
     "PDSSpectralRoute",
     "ParikhIntertwiner",
     "ParitySieve",
+    "PeriodicPairOneFibre",
     "PhiSemisimplicity",
     "RepoSeedUnionBridge",
+    "ReturnModuleFullRank",
     "SCCProducer",
     "SeedCentralizer",
     "SignatureReduction",
@@ -67,6 +69,7 @@ ResultSet == {
     "SpectralBlackBox",
     "SpectralSCCProducer",
     "StandardBPAEquivalence",
+    "StrictZipperPeriodicPairForm",
     "StrongCoincidenceFromPDS",
     "SwapOverlapFiniteness",
     "Target1",
@@ -122,14 +125,16 @@ RequiresDef == [r \in ResultSet |->
       [] r = "OverlapFullRank" -> {{}}
       [] r = "OverlapProductivity" -> {{}}
       [] r = "PDS" -> {{"G1", "SCCProducer"}}
-      [] r = "PDSImpliesRepoG1" -> {{"CoincidenceRankFibreTheorems"}}
+      [] r = "PDSImpliesRepoG1" -> {{"CoincidenceRankFibreTheorems", "PeriodicPairOneFibre", "StrictZipperPeriodicPairForm"}}
       [] r = "PDSImpliesSeedwiseTermination" -> {{"PDSImpliesRepoG1", "StrongCoincidenceFromPDS"}}
       [] r = "PDSOverlapRoute" -> {{"CoincidenceDensityOne", "DensityToPDSBridge"}}
       [] r = "PDSSpectralRoute" -> {{"G1", "SpectralSCCProducer"}}
       [] r = "ParikhIntertwiner" -> {{}}
       [] r = "ParitySieve" -> {{"DefectIntertwiner"}}
+      [] r = "PeriodicPairOneFibre" -> {{"ReturnModuleFullRank"}}
       [] r = "PhiSemisimplicity" -> {{}}
       [] r = "RepoSeedUnionBridge" -> {{}}
+      [] r = "ReturnModuleFullRank" -> {{}}
       [] r = "SCCProducer" -> {{"G1", "SinkSCCReduction", "C2"}}
       [] r = "SeedCentralizer" -> {{"ThetaIntertwining", "PhiSemisimplicity"}}
       [] r = "SignatureReduction" -> {{"EndpointCore"}}
@@ -138,6 +143,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "SpectralBlackBox" -> {{"Target1", "DominantCubicCapture"}}
       [] r = "SpectralSCCProducer" -> {{"G1", "SinkSCCReduction", "SpanRichProductivity"}}
       [] r = "StandardBPAEquivalence" -> {{}}
+      [] r = "StrictZipperPeriodicPairForm" -> {{}}
       [] r = "StrongCoincidenceFromPDS" -> {{}}
       [] r = "SwapOverlapFiniteness" -> {{"G1b1BoundedDiscrepancy"}}
       [] r = "Target1" -> {{"SeedCentralizer"}}
@@ -190,13 +196,16 @@ ProvedDef == {
     "PDSSpectralRoute",
     "ParikhIntertwiner",
     "ParitySieve",
+    "PeriodicPairOneFibre",
     "PhiSemisimplicity",
     "RepoSeedUnionBridge",
+    "ReturnModuleFullRank",
     "SCCProducer",
     "SeedCentralizer",
     "SignatureReduction",
     "SinkSCCReduction",
     "SpectralBlackBox",
+    "StrictZipperPeriodicPairForm",
     "SwapOverlapFiniteness",
     "Target1",
     "ThetaIntertwining",
@@ -304,8 +313,10 @@ PDSOverlapRouteNotEstablished == "PDSOverlapRoute" \notin established
 PDSSpectralRouteNotEstablished == "PDSSpectralRoute" \notin established
 ParikhIntertwinerNotEstablished == "ParikhIntertwiner" \notin established
 ParitySieveNotEstablished == "ParitySieve" \notin established
+PeriodicPairOneFibreNotEstablished == "PeriodicPairOneFibre" \notin established
 PhiSemisimplicityNotEstablished == "PhiSemisimplicity" \notin established
 RepoSeedUnionBridgeNotEstablished == "RepoSeedUnionBridge" \notin established
+ReturnModuleFullRankNotEstablished == "ReturnModuleFullRank" \notin established
 SCCProducerNotEstablished == "SCCProducer" \notin established
 SeedCentralizerNotEstablished == "SeedCentralizer" \notin established
 SignatureReductionNotEstablished == "SignatureReduction" \notin established
@@ -314,6 +325,7 @@ SpanRichProductivityNotEstablished == "SpanRichProductivity" \notin established
 SpectralBlackBoxNotEstablished == "SpectralBlackBox" \notin established
 SpectralSCCProducerNotEstablished == "SpectralSCCProducer" \notin established
 StandardBPAEquivalenceNotEstablished == "StandardBPAEquivalence" \notin established
+StrictZipperPeriodicPairFormNotEstablished == "StrictZipperPeriodicPairForm" \notin established
 StrongCoincidenceFromPDSNotEstablished == "StrongCoincidenceFromPDS" \notin established
 SwapOverlapFinitenessNotEstablished == "SwapOverlapFiniteness" \notin established
 Target1NotEstablished == "Target1" \notin established

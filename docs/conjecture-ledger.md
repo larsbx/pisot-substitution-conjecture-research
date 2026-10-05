@@ -199,6 +199,19 @@ The imports assume neither unimodularity nor irreducibility
 link remains recorded there: the Barge item used is stated in a published
 introduction's summary, whose own proofs that gate did not read.
 
+**Since 2026-10-05 the repository side of this proof is in the closure, not
+only in its prose citation.** Three inputs are ledger nodes:
+`ReturnModuleFullRank` (Theorem R), `PeriodicPairOneFibre` (Proposition F,
+which needs it) and `StrictZipperPeriodicPairForm` (Theorem B with Lemma C and
+Corollary B′), so `PDSImpliesRepoG1` now requires all three alongside
+`CoincidenceRankFibreTheorems` and its dependency closure is still complete —
+no open premise enters. Manuscript Proposition 5.47 stays a prose citation on
+purpose: the `G1HalfCoincidenceRoute` node bundles the half-coincidence bound
+with its *open* all-seed premise, and what pure discrete spectrum supplies here
+is exactly that premise, through `StrictZipperPeriodicPairForm`. Requiring the
+bundled node would therefore have made an unconditional implication read as
+conditional on an open gate.
+
 ### PDS implies seedwise termination
 
 **Status: repository-proved** (manuscript Theorem `thm:seedwise`; ledger

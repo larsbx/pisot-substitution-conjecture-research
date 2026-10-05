@@ -34,6 +34,8 @@ MANUSCRIPT = "manuscripts/PSC_balanced_pair_state_2026-09-13.tex"
 MAP = "docs/claim-status-and-source-map-2026-09-13.md"
 LEDGER_DOC = "docs/conjecture-ledger.md"
 WEEKLY = "docs/completion-ledger-2026-09-14.md"
+ZIPPER = "docs/p1b-strict-zipper-periodic-pair-2026-10-02.md"
+FIBRE = "docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md"
 
 # name -> (kind, statement, source or reason, dependencies, tags)
 # Dependencies are one-way proof sufficiency, never a converse implication
@@ -142,11 +144,27 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "RepoSeedUnionBridge": (T, "the repository seed-union graph is the union of the literature seed graphs", "docs/bpa-literature-bridge.md", (), ()),
     "CoincidenceRankFibreTheorems": (I, "for a primitive non-periodic substitution with Pisot inflation: one fibre of the maximal equicontinuous factor iff strongly regionally proximal; pairwise strongly regionally proximal, tile-disjoint tilings number at most cr; pure discrete spectrum iff cr = 1",
                                      "docs/coincidence-rank-imports-literature-gate-2026-10-04.md (Barge arXiv:1301.7094 Thm 4(5),(6); Barge arXiv:1505.04408 Sec. 1 items (2)-(3))", (), ()),
+    "ReturnModuleFullRank": (T, "the uncollared return module Lambda_ret of a primitive substitution whose frequency vector has Q-independent coordinates is all of Z^A; in particular Z^3 for every PIP substitution",
+                             f"{FIBRE}, Theorem R; independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending", (), ()),
+    "PeriodicPairOneFibre": (T, "two Phi^r-fixed legal tilings built from interior occurrences and sharing a centre have the same maximal-equicontinuous-factor image, so they lie in one fibre",
+                             f"{FIBRE}, Proposition F, via Solomyak's eigenvalue criterion on the full-rank return module; "
+                             "independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending",
+                             ("ReturnModuleFullRank",), ()),
+    "StrictZipperPeriodicPairForm": (T, "a strict zipper reachable from a swap seed exists iff two Phi^r-fixed legal tilings with a common centre have no common vertex, that is iff PeriodicPairVertexCoincidence fails",
+                                     f"{ZIPPER}, Theorem B with Lemma C and Corollary B' (reformulation of issue #139); "
+                                     "independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending",
+                                     (), ()),
+    # Three of the five repository inputs named in the proof are nodes above, so
+    # the closure tracks more than the Barge import. Manuscript Proposition 5.47
+    # is deliberately NOT a dependency: G1HalfCoincidenceRoute bundles the
+    # half-coincidence bound with its open all-seed premise, and that premise is
+    # exactly what PDS discharges here through StrictZipperPeriodicPairForm, so
+    # requiring it would make an unconditional implication read as conditional
+    # on an open gate (docs/audit-2026-10-04.md, D.4 resolution).
     "PDSImpliesRepoG1": (T, "pure discrete spectrum implies repository G1 (finite BPA from every swap seed)",
-                         "docs/p1b-vertex-coincidence-box-2026-10-02.md, Theorem 5.1 (Theorem S) with Corollary B' of docs/p1b-strict-zipper-periodic-pair-2026-10-02.md, "
-                         "Proposition F and Theorem R of docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md and manuscript Proposition 5.47; "
+                         "docs/p1b-vertex-coincidence-box-2026-10-02.md, Theorem 5.1 (Theorem S) with manuscript Proposition 5.47; "
                          "independently audited 2026-10-04 (docs/side-notes-ledger.md, section 7), human review pending",
-                         ("CoincidenceRankFibreTheorems",), ()),
+                         ("CoincidenceRankFibreTheorems", "PeriodicPairOneFibre", "StrictZipperPeriodicPairForm"), ()),
     "StrongCoincidenceFromPDS": (I, "pure discrete spectrum of an irreducible Pisot substitution gives simultaneous prefix strong coincidence of all letters",
                                  "Akiyama-Lee, European J. Combin. 39 (2014), Corollary 4.5; height-group step by Theorem R; docs/pds-strong-coincidence-literature-gate-2026-10-04.md", (), ()),
     "PDSImpliesSeedwiseTermination": (T, "pure discrete spectrum implies termination of the balanced-pair algorithm with coincidence from every seed (ab, ba), legal or not",
@@ -193,6 +211,8 @@ ALIASES = {
     "AllSeedOverlapProductivity": ["all-seed overlap productivity"], "G1OverlapRoute": ["overlap-depth route to finite BPA"],
     "AllSeedStrictZipperExclusion": ["all-seed strict-zipper exclusion"], "G1HalfCoincidenceRoute": ["half-coincidence route to finite BPA"],
     "PDSImpliesRepoG1": ["Theorem S", "PDS implies G1"], "CoincidenceRankFibreTheorems": ["coincidence-rank fibre theorems"],
+    "ReturnModuleFullRank": ["full-rank return module", "Theorem R"], "PeriodicPairOneFibre": ["periodic pairs in one fibre", "Proposition F"],
+    "StrictZipperPeriodicPairForm": ["periodic-pair form of a strict zipper", "Theorem B"],
     "PDSImpliesSeedwiseTermination": ["seedwise bridge"], "StrongCoincidenceFromPDS": ["overlap coincidence to strong coincidence"],
 }
 
@@ -239,6 +259,9 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "PDSImpliesSeedwiseTermination": [surface(MAP, "| PDS implies seedwise termination |"), surface(LEDGER_DOC, "### PDS implies seedwise termination", 2),
                                       surface("docs/proof-ladder.md", "## PDS implies seedwise termination (former Open Problem 4.24)", 2)],
     "CoincidenceRankFibreTheorems": [surface(MAP, "| Coincidence-rank fibre theorems |")],
+    "ReturnModuleFullRank": [surface(MAP, "| Full-rank return module |")],
+    "PeriodicPairOneFibre": [surface(MAP, "| Periodic pairs lie in one fibre |")],
+    "StrictZipperPeriodicPairForm": [surface(MAP, "| Periodic-pair form of a strict zipper |")],
     "StrongCoincidenceFromPDS": [surface(MAP, "| Strong coincidence from PDS |")],
 }
 

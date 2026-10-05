@@ -1196,6 +1196,25 @@ anchor = '| ParitySieve |'
 window_lines = 0
 
 [[claim]]
+name = "PeriodicPairOneFibre"
+status = "proved"
+aliases = ["periodic pairs in one fibre", "Proposition F"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PeriodicPairOneFibre"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PeriodicPairOneFibre |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Periodic pairs lie in one fibre |"
+window_lines = 0
+
+[[claim]]
 name = "PhiSemisimplicity"
 status = "proved"
 [[claim.surfaces]]
@@ -1221,6 +1240,25 @@ expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| RepoSeedUnionBridge |'
+window_lines = 0
+
+[[claim]]
+name = "ReturnModuleFullRank"
+status = "proved"
+aliases = ["full-rank return module", "Theorem R"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"ReturnModuleFullRank"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| ReturnModuleFullRank |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Full-rank return module |"
 window_lines = 0
 
 [[claim]]
@@ -1356,6 +1394,25 @@ expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| StandardBPAEquivalence |'
+window_lines = 0
+
+[[claim]]
+name = "StrictZipperPeriodicPairForm"
+status = "proved"
+aliases = ["periodic-pair form of a strict zipper", "Theorem B"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"StrictZipperPeriodicPairForm"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| StrictZipperPeriodicPairForm |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Periodic-pair form of a strict zipper |"
 window_lines = 0
 
 [[claim]]
