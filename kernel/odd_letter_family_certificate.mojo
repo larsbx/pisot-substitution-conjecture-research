@@ -1539,6 +1539,56 @@ def _quadratic_nonneg(a: List[Int], b: List[Int], c: List[Int]) -> Bool:
     return True
 
 
+def _pisot_quadratic(counts: List[List[Int]], s: Int) -> List[List[Int]]:
+    """Lemma P1's quadratic form of the family as `[a, b, c]`, `f = a b + c`:
+    for s = +1, `Z_2 (Delta - 1) - 2 Y_2 - Delta - 3`; for s = -1,
+    `Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3`. A PIP member has `f < 0`."""
+    var dy = aff_sub(counts[0], counts[2])
+    var ad = dy.copy() if s == 1 else aff_scale(dy, -1)
+    var factor = ad.copy()
+    factor[0] -= 1
+    var rest = aff_scale(ad, -1)
+    if s == 1:
+        rest = aff_sub(rest, aff_scale(counts[2], 2))
+        rest[0] -= 3
+    else:
+        rest = aff_sub(rest, aff_scale(counts[0], 2))
+        rest[0] += 3
+    var out = List[List[Int]]()
+    out.append(counts[3].copy())
+    out.append(factor^)
+    out.append(rest^)
+    return out^
+
+
+def pisot_carve_forms(counts: List[List[Int]], s: Int, ns: List[Int]) -> List[List[Int]]:
+    """At a point `ns` where Lemma P1's quadratic form `f = a b + c` is >= 0
+    (no PIP member there; then a(p) >= 2, as f < 0 when a <= 1), affine
+    forms G_1 = a - 2, G_2 = b - b(p) and G_3 = 2 b + b(p) a - 2 b(p) + c:
+    where all three are >= 0, f = G_3 + (a - 2)(b - b(p)) >= 0 (McCormick),
+    and G_3(p) = f(p). Empty if f(ns) < 0."""
+    var q = _pisot_quadratic(counts, s)
+    var ap = aff_eval(q[0], ns)
+    var bp = aff_eval(q[1], ns)
+    if ap * bp + aff_eval(q[2], ns) < 0 or ap < 2:
+        return List[List[Int]]()
+    # the quadrant a >= 2, b >= b(p): a(p) is replaced by 2, which keeps the
+    # coefficient of Delta's variables at 1 (no residue splits) while
+    # G_3(p) = f(p) >= 0 still holds, as (a(p) - 2)(b(p) - b(p)) = 0
+    ap = 2
+    var g1 = q[0].copy()
+    g1[0] -= ap
+    var g2 = q[1].copy()
+    g2[0] -= bp
+    var g3 = aff_add(aff_add(aff_scale(q[1], ap), aff_scale(q[0], bp)), q[2])
+    g3[0] -= ap * bp
+    var out = List[List[Int]]()
+    out.append(g1^)
+    out.append(g2^)
+    out.append(g3^)
+    return out^
+
+
 def pisot_cut(counts: List[List[Int]], s: Int) -> Bool:
     """No PIP member in the region. Lemma Φ4: for s = +1 if `Y_2 - Y_1 - 1 >= 0`;
     for s = -1 if `Y_1 - Y_2 - 1 >= 0` or `1 - Z_2 >= 0`. Lemma P1 in the exact
@@ -1560,17 +1610,8 @@ def pisot_cut(counts: List[List[Int]], s: Int) -> Bool:
         h[0] += 1
         if aff_nonneg(h):
             return True
-    var ad = dy.copy() if s == 1 else aff_scale(dy, -1)
-    var factor = ad.copy()
-    factor[0] -= 1
-    var rest = aff_scale(ad, -1)
-    if s == 1:
-        rest = aff_sub(rest, aff_scale(counts[2], 2))
-        rest[0] -= 3
-    else:
-        rest = aff_sub(rest, aff_scale(counts[0], 2))
-        rest[0] += 3
-    return _quadratic_nonneg(counts[3], factor, rest)
+    var q = _pisot_quadratic(counts, s)
+    return _quadratic_nonneg(q[0], q[1], q[2])
 
 
 def _pattern_starts(pat: RunPattern, s: Int, delta: Int, tail: Bool) raises -> List[List[List[Int]]]:
@@ -2444,6 +2485,10 @@ def _residues(forms: List[List[Int]], idx: Int, a: Int, p: Int) -> List[List[Lis
     return out^
 
 
+comptime IMPOSE_MAX_MODULUS = 3  # impose_nonneg: residue splits beyond this modulus are refused
+comptime IMPOSE_MAX_VALUES = 64  # impose_nonneg: bounded variables enumerated beyond this are refused
+
+
 def impose_nonneg(forms: List[List[Int]], idx: Int) raises -> List[List[List[Int]]]:
     """Regions partitioning the points of `forms` (a region with constraint
     forms appended) where `forms[idx] >= 0`; on each, that form is
@@ -2465,12 +2510,16 @@ def impose_nonneg(forms: List[List[Int]], idx: Int) raises -> List[List[List[Int
         for j in range(m):
             if F[j + 1] < 0 and k < 0:
                 k = j
+        if F[0] // (-F[k + 1]) + 1 > IMPOSE_MAX_VALUES:
+            raise Error("impose_nonneg: refused (too many values)")
         for v in range(F[0] // (-F[k + 1]) + 1):
             var sub = impose_nonneg(_subst_var(forms, k, aff_const(m, v)), idx)
             for r in range(len(sub)):
                 out.append(sub[r].copy())
         return out^
     var a = F[p + 1]
+    if a > IMPOSE_MAX_MODULUS:
+        raise Error("impose_nonneg: refused (modulus)")
     var R = aff_scale(F, -1)
     R[p + 1] = 0  # F = a n_p - R
     var n = len(forms)
@@ -2502,12 +2551,27 @@ def impose_nonneg(forms: List[List[Int]], idx: Int) raises -> List[List[List[Int
 
 
 struct Carved(Copyable, Movable):
+    var ok: Bool
     var inside: List[List[List[Int]]]
     var outside: List[List[List[Int]]]
 
     def __init__(out self):
+        self.ok = True
         self.inside = List[List[List[Int]]]()
         self.outside = List[List[List[Int]]]()
+
+
+def try_carve(forms: List[List[Int]], first: Int, count: Int, keep: Int) raises -> Carved:
+    """`carve`, or a result with `ok` false when `impose_nonneg` refuses a
+    split as too fragmenting (the caller then does something else)."""
+    try:
+        return carve(forms, first, count, keep)
+    except e:
+        if "refused" in String(e):
+            var out = Carved()
+            out.ok = False
+            return out^
+        raise e^
 
 
 def carve(forms: List[List[Int]], first: Int, count: Int, keep: Int) raises -> Carved:
@@ -2672,7 +2736,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                 any_live = True
                 if first_live < 0:
                     first_live = k
-        var ns = _base_point(pat, reg, screen)
+        var ns = _generic_point(reg) if (any_live and nonmember_points) else _base_point(pat, reg, screen)
         if len(ns) == 0 and any_live and nonmember_points:
             # a certificate is combinatorial: one found at a non-member point
             # still holds on its carved region
@@ -2695,6 +2759,23 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
             stack.append(shifted^)
             peels.append(depth + 1)
             continue
+        # a non-PIP base point by Lemma P1: carve the quadrant it opens
+        var pc = pisot_carve_forms(pattern_counts(pat, reg), s, ns)
+        if len(pc) > 0:
+            var bag = reg.copy()
+            for k in range(len(pc)):
+                bag.append(pc[k].copy())
+            var cv = try_carve(bag, len(reg), len(pc), len(reg))
+            if cv.ok:
+                for q in range(len(cv.inside)):
+                    var slots_in = _drop_tail(cv.inside[q], len(reg))
+                    if not pisot_cut(pattern_counts(pat, slots_in), s):
+                        raise Error("a Pisot-carved region is not cut")
+                    out.cut += 1
+                for q in range(len(cv.outside)):
+                    stack.append(cv.outside[q].copy())
+                    peels.append(depth)
+                continue
         var fam = pattern_family(pat, reg)
         # a certificate for the whole region at once, as in cover_pattern
         var whole = search_witness(fam, O, Y, OFFSET_BOUND, MAX_LEVEL, True)
@@ -2726,21 +2807,22 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                         ineqs.append(aff_scale(lr.gamma[i], -1))
                 ineqs = _carving_forms(ineqs)
                 var bag = _guided_bag(reg, ineqs, lr.steps)
-                var cv = carve(bag, len(reg), len(ineqs), len(reg))
-                if verbose:
-                    _trace(out.regions, "path", ns, reg, ineqs, len(cv.inside), len(cv.outside))
-                for q in range(len(cv.inside)):
-                    var slots_in = _drop_tail(cv.inside[q], len(reg))
-                    var steps_in = _steps_from_bag(cv.inside[q], len(reg) + len(ineqs), lr.steps)
-                    if not verify_witness_line(pattern_family(pat, slots_in), O, Y, steps_in):
-                        raise Error("a carved region does not verify its lifted path")
-                    out.certified += 1
-                    out.line_certified += 1
-                    out.max_level = max(out.max_level, len(steps_in))
-                for q in range(len(cv.outside)):
-                    stack.append(cv.outside[q].copy())
-                    peels.append(depth)
-                done = True
+                var cv = try_carve(bag, len(reg), len(ineqs), len(reg))
+                if cv.ok:
+                    if verbose:
+                        _trace(out.regions, "path", ns, reg, ineqs, len(cv.inside), len(cv.outside))
+                    for q in range(len(cv.inside)):
+                        var slots_in = _drop_tail(cv.inside[q], len(reg))
+                        var steps_in = _steps_from_bag(cv.inside[q], len(reg) + len(ineqs), lr.steps)
+                        if not verify_witness_line(pattern_family(pat, slots_in), O, Y, steps_in):
+                            raise Error("a carved region does not verify its lifted path")
+                        out.certified += 1
+                        out.line_certified += 1
+                        out.max_level = max(out.max_level, len(steps_in))
+                    for q in range(len(cv.outside)):
+                        stack.append(cv.outside[q].copy())
+                        peels.append(depth)
+                    done = True
         if not done:
             var cp = search_crossing(point, O, Y, OFFSET_BOUND, MAX_LEVEL - 2, Y, Z, Y, Z)
             if cp.found:
@@ -2749,21 +2831,22 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                 if lr.ok and crossing_conditions(fam, lr.a, lr.b, lr.gamma, Y, Z, cp.close[0], ns, ineqs):
                     ineqs = _carving_forms(ineqs)
                     var bag = _guided_bag(reg, ineqs, lr.steps)
-                    var cv = carve(bag, len(reg), len(ineqs), len(reg))
-                    if verbose:
-                        _trace(out.regions, "crossing", ns, reg, ineqs, len(cv.inside), len(cv.outside))
-                    for q in range(len(cv.inside)):
-                        var slots_in = _drop_tail(cv.inside[q], len(reg))
-                        var steps_in = _steps_from_bag(cv.inside[q], len(reg) + len(ineqs), lr.steps)
-                        if not verify_crossing(pattern_family(pat, slots_in), O, Y, steps_in, cp.close[0], Y, Z):
-                            raise Error("a carved region does not verify its lifted crossing")
-                        out.certified += 1
-                        out.crossing_certified += 1
-                        out.max_level = max(out.max_level, len(steps_in) + 2)
-                    for q in range(len(cv.outside)):
-                        stack.append(cv.outside[q].copy())
-                        peels.append(depth)
-                    done = True
+                    var cv = try_carve(bag, len(reg), len(ineqs), len(reg))
+                    if cv.ok:
+                        if verbose:
+                            _trace(out.regions, "crossing", ns, reg, ineqs, len(cv.inside), len(cv.outside))
+                        for q in range(len(cv.inside)):
+                            var slots_in = _drop_tail(cv.inside[q], len(reg))
+                            var steps_in = _steps_from_bag(cv.inside[q], len(reg) + len(ineqs), lr.steps)
+                            if not verify_crossing(pattern_family(pat, slots_in), O, Y, steps_in, cp.close[0], Y, Z):
+                                raise Error("a carved region does not verify its lifted crossing")
+                            out.certified += 1
+                            out.crossing_certified += 1
+                            out.max_level = max(out.max_level, len(steps_in) + 2)
+                        for q in range(len(cv.outside)):
+                            stack.append(cv.outside[q].copy())
+                            peels.append(depth)
+                        done = True
         if not done:
             # no liftable certificate: peel a live variable, n = 0 | n >= 1,
             # as cover_pattern does (a region without one is a single point)
