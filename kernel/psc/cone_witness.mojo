@@ -797,50 +797,184 @@ def _aff_le(x: List[Int], y: List[Int]) -> Bool:
     return aff_nonneg(aff_sub(y, x))
 
 
-def crossing_holds(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], u: Int, v: Int, cl: CrossingClose) -> Bool:
-    """Lemma X at the state `(a, b, gamma)`: every condition checked on the
-    whole cone, so the state reaches a shared tile within two levels."""
+# Quadratic forms in the cone variables, as a flat (m + 1) x (m + 1) upper
+# triangle: entry [0][0] the constant, [0][k] the coefficient of n_k, and
+# [i][j] (1 <= i <= j) that of n_i n_j. At a closure M gamma may be quadratic
+# when M has variable entries (a variable Delta) and gamma a variable line
+# coefficient; Lemma X only compares such forms with affine ones.
+
+
+def _qa(a: List[Int]) -> List[Int]:
+    var m = len(a) - 1
+    var q = List[Int](length=(m + 1) * (m + 1), fill=0)
+    for k in range(m + 1):
+        q[k] = a[k]
+    return q^
+
+
+def _q_lin(a: List[Int], b: List[Int], sb: Int) -> List[Int]:
+    """`a + sb * b`."""
+    var out = a.copy()
+    for k in range(len(out)):
+        out[k] += sb * b[k]
+    return out^
+
+
+def _q_minus_const(a: List[Int], c: Int) -> List[Int]:
+    var out = a.copy()
+    out[0] -= c
+    return out^
+
+
+def m_times_quad(fam: ConeFamily, gamma: List[List[Int]]) -> List[List[Int]]:
+    """`M gamma` for affine `gamma`, as three quadratic forms."""
+    var m = fam.m
+    var w = m + 1
+    var out = List[List[Int]]()
+    for i in range(3):
+        var q = List[Int](length=w * w, fill=0)
+        for j in range(3):
+            ref a = fam.incidence[3 * i + j]
+            ref g = gamma[j]
+            q[0] += a[0] * g[0]
+            for k in range(1, w):
+                q[k] += a[0] * g[k] + a[k] * g[0]
+                for l in range(1, w):
+                    var lo = min(k, l)
+                    var hi = max(k, l)
+                    q[lo * w + hi] += a[k] * g[l]
+        out.append(q^)
+    return out^
+
+
+def _q_nonneg(q: List[Int]) -> Bool:
+    for k in range(len(q)):
+        if q[k] < 0:
+            return False
+    return True
+
+
+def _q_quad_part_nonneg(q: List[Int], m: Int) -> Bool:
+    var w = m + 1
+    for i in range(1, w):
+        for j in range(i, w):
+            if q[i * w + j] < 0:
+                return False
+    return True
+
+
+def _q_affine_part(q: List[Int], m: Int) -> List[Int]:
+    var out = List[Int]()
+    for k in range(m + 1):
+        out.append(q[k])
+    return out^
+
+
+def _q_eval(q: List[Int], ns: List[Int]) -> Int:
+    var w = len(ns) + 1
+    var v = q[0]
+    for k in range(1, w):
+        v += q[k] * ns[k - 1]
+        for l in range(k, w):
+            v += q[k * w + l] * ns[k - 1] * ns[l - 1]
+    return v
+
+
+struct CrossingForms(Copyable, Movable):
+    """Lemma X at one state and one pair of ranges: whether the structure
+    holds, the third coordinate's offset (must vanish), and per variant
+    (0: weak end, NW then SE; 1: weak, SE then NW; 2, 3: strict) the forms
+    that must be nonnegative; a weak variant is empty when not allowed."""
+
+    var ok: Bool
+    var off: List[Int]
+    var variants: List[List[List[Int]]]
+
+    def __init__(out self):
+        self.ok = False
+        self.off = List[Int]()
+        self.variants = List[List[List[Int]]]()
+
+
+def _crossing_forms(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], u: Int, v: Int, cl: CrossingClose) -> CrossingForms:
+    var out = CrossingForms()
     var third = 3 - u - v
     if not _plane_range(fam, a, cl.s0, cl.s1, third) or not _plane_range(fam, b, cl.t0, cl.t1, third):
-        return False
+        return out^
     ref hu = fam.images[u][0]
     ref hv = fam.images[v][0]
     if hu.kind != SEG_LETTER or hv.kind != SEG_LETTER or hu.letter != hv.letter:
-        return False
-    var mg = m_times_affine(fam, gamma)
-    if len(mg) == 0:
-        return False
+        return out^
+    var mg = m_times_quad(fam, gamma)
     var pa0 = fam.prefix_before(a, cl.s0)
     var pa1 = fam.prefix_before(a, cl.s1)
     var pb0 = fam.prefix_before(b, cl.t0)
     var pb1 = fam.prefix_before(b, cl.t1)
-    var off = aff_sub(aff_add(mg[third], pa0[third]), pb0[third])
-    for k in range(len(off)):
-        if off[k] != 0:
-            return False
+    out.off = _q_lin(_q_lin(mg[third], _qa(pa0[third]), 1), _qa(pb0[third]), -1)
     # The meeting point needs pre_a(i) = pre_b(k) - M gamma: Q = pre_b - M gamma.
-    var q0u = aff_sub(pb0[u], mg[u])
-    var q0v = aff_sub(pb0[v], mg[v])
-    var q1u = aff_sub(pb1[u], mg[u])
-    var q1v = aff_sub(pb1[v], mg[v])
-    var lp0 = aff_add(pa0[u], pa0[v])
-    var lp1 = aff_add(pa1[u], pa1[v])
-    var lq0 = aff_add(q0u, q0v)
-    var lq1 = aff_add(q1u, q1v)
+    var q0u = _q_lin(_qa(pb0[u]), mg[u], -1)
+    var q0v = _q_lin(_qa(pb0[v]), mg[v], -1)
+    var q1u = _q_lin(_qa(pb1[u]), mg[u], -1)
+    var q1v = _q_lin(_qa(pb1[v]), mg[v], -1)
+    var p0u = _qa(pa0[u])
+    var p0v = _qa(pa0[v])
+    var p1u = _qa(pa1[u])
+    var p1v = _qa(pa1[v])
+    var lp0 = _q_lin(p0u, p0v, 1)
+    var lp1 = _q_lin(p1u, p1v, 1)
+    var lq0 = _q_lin(q0u, q0v, 1)
+    var lq1 = _q_lin(q1u, q1v, 1)
     # Strict at the last common level unless both ranges stop before a
     # plane letter, which then follows the shared point even at that level.
     var inner = _plane_letter_at(fam, a, cl.s1, u, v) and _plane_letter_at(fam, b, cl.t1, u, v)
-    if inner:
-        if not (_aff_le(lp0, lp1) and _aff_le(lp0, lq1) and _aff_le(lq0, lp1) and _aff_le(lq0, lq1)):
-            return False
-        var nw_se = _aff_le(pa0[u], q0u) and _aff_le(q0v, pa0[v]) and _aff_le(q1u, pa1[u]) and _aff_le(pa1[v], q1v)
-        var se_nw = _aff_le(q0u, pa0[u]) and _aff_le(pa0[v], q0v) and _aff_le(pa1[u], q1u) and _aff_le(q1v, pa1[v])
-        return nw_se or se_nw
-    if not (_aff_lt(lp0, lp1) and _aff_lt(lp0, lq1) and _aff_lt(lq0, lp1) and _aff_lt(lq0, lq1)):
+    for variant in range(4):
+        var c = List[List[Int]]()
+        var weak_end = variant < 2
+        if weak_end and not inner:
+            out.variants.append(c^)
+            continue
+        var slack = 0 if weak_end else 1
+        c.append(_q_minus_const(_q_lin(lp1, lp0, -1), slack))
+        c.append(_q_minus_const(_q_lin(lq1, lp0, -1), slack))
+        c.append(_q_minus_const(_q_lin(lp1, lq0, -1), slack))
+        c.append(_q_minus_const(_q_lin(lq1, lq0, -1), slack))
+        if variant % 2 == 0:  # Q starts weakly NW, ends SE
+            c.append(_q_lin(q0u, p0u, -1))
+            c.append(_q_lin(p0v, q0v, -1))
+            c.append(_q_minus_const(_q_lin(p1u, q1u, -1), slack))
+            c.append(_q_minus_const(_q_lin(q1v, p1v, -1), slack))
+        else:  # Q starts weakly SE, ends NW
+            c.append(_q_lin(p0u, q0u, -1))
+            c.append(_q_lin(q0v, p0v, -1))
+            c.append(_q_minus_const(_q_lin(q1u, p1u, -1), slack))
+            c.append(_q_minus_const(_q_lin(p1v, q1v, -1), slack))
+        out.variants.append(c^)
+    out.ok = True
+    return out^
+
+
+def crossing_holds(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], u: Int, v: Int, cl: CrossingClose) -> Bool:
+    """Lemma X at the state `(a, b, gamma)`: every condition checked on the
+    whole cone, so the state reaches a shared tile within two levels. A
+    condition may be quadratic (variable `M` times a variable line
+    coefficient); it holds if every coefficient is nonnegative."""
+    var cf = _crossing_forms(fam, a, b, gamma, u, v, cl)
+    if not cf.ok:
         return False
-    var nw_then_se = _aff_le(pa0[u], q0u) and _aff_le(q0v, pa0[v]) and _aff_lt(q1u, pa1[u]) and _aff_lt(pa1[v], q1v)
-    var se_then_nw = _aff_le(q0u, pa0[u]) and _aff_le(pa0[v], q0v) and _aff_lt(pa1[u], q1u) and _aff_lt(q1v, pa1[v])
-    return nw_then_se or se_then_nw
+    for k in range(len(cf.off)):
+        if cf.off[k] != 0:
+            return False
+    for variant in range(4):
+        ref c = cf.variants[variant]
+        if len(c) == 0:
+            continue
+        var all = True
+        for k in range(len(c)):
+            if not _q_nonneg(c[k]):
+                all = False
+        if all:
+            return True
+    return False
 
 
 def find_crossing(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], u: Int, v: Int) -> List[CrossingClose]:
@@ -1113,60 +1247,31 @@ def lift_path(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: In
 
 
 def crossing_conditions(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], u: Int, v: Int, cl: CrossingClose, ns: List[Int], mut ineqs: List[List[Int]]) -> Bool:
-    """The forms under which `crossing_holds` holds, in the variant (weak or
-    strict end, orientation) that holds at `ns`; the third coordinate's
-    vanishing enters as a pair of opposite forms. False if no variant holds
-    at `ns` or the structure (ranges, first letters, affine `M gamma`) fails."""
-    var third = 3 - u - v
-    if not _plane_range(fam, a, cl.s0, cl.s1, third) or not _plane_range(fam, b, cl.t0, cl.t1, third):
+    """The affine forms under which `crossing_holds` holds, in a variant that
+    holds at `ns`. A quadratic condition enters as its affine part when its
+    quadratic part is coefficientwise nonnegative (then the affine part being
+    nonnegative suffices), and makes the variant unusable otherwise; the
+    third coordinate's vanishing enters as a pair of opposite forms and must
+    be affine. False if no variant qualifies."""
+    var cf = _crossing_forms(fam, a, b, gamma, u, v, cl)
+    if not cf.ok or not _q_quad_part_nonneg(cf.off, fam.m) or not _q_quad_part_nonneg(_q_lin(_qa(aff_const(fam.m, 0)), cf.off, -1), fam.m):
         return False
-    ref hu = fam.images[u][0]
-    ref hv = fam.images[v][0]
-    if hu.kind != SEG_LETTER or hv.kind != SEG_LETTER or hu.letter != hv.letter:
-        return False
-    var mg = m_times_affine(fam, gamma)
-    if len(mg) == 0:
-        return False
-    var pa0 = fam.prefix_before(a, cl.s0)
-    var pa1 = fam.prefix_before(a, cl.s1)
-    var pb0 = fam.prefix_before(b, cl.t0)
-    var pb1 = fam.prefix_before(b, cl.t1)
-    var off = aff_sub(aff_add(mg[third], pa0[third]), pb0[third])
-    var q0u = aff_sub(pb0[u], mg[u])
-    var q0v = aff_sub(pb0[v], mg[v])
-    var q1u = aff_sub(pb1[u], mg[u])
-    var q1v = aff_sub(pb1[v], mg[v])
-    var lp0 = aff_add(pa0[u], pa0[v])
-    var lp1 = aff_add(pa1[u], pa1[v])
-    var lq0 = aff_add(q0u, q0v)
-    var lq1 = aff_add(q1u, q1v)
-    var one = aff_const(fam.m, 1)
-    var inner = _plane_letter_at(fam, a, cl.s1, u, v) and _plane_letter_at(fam, b, cl.t1, u, v)
+    var off = _q_affine_part(cf.off, fam.m)
     for variant in range(4):
-        var weak_end = variant < 2
-        if weak_end and not inner:
+        ref c = cf.variants[variant]
+        if len(c) == 0:
             continue
-        var c = List[List[Int]]()
-        c.append(off.copy())
-        c.append(aff_scale(off, -1))
-        var slack = aff_const(fam.m, 0) if weak_end else one.copy()
-        # levels: max(lp0, lq0) <= or < min(lp1, lq1)
-        c.append(aff_sub(aff_sub(lp1, lp0), slack))
-        c.append(aff_sub(aff_sub(lq1, lp0), slack))
-        c.append(aff_sub(aff_sub(lp1, lq0), slack))
-        c.append(aff_sub(aff_sub(lq1, lq0), slack))
-        if variant % 2 == 0:  # Q starts weakly NW, ends SE
-            c.append(aff_sub(q0u, pa0[u]))
-            c.append(aff_sub(pa0[v], q0v))
-            c.append(aff_sub(aff_sub(pa1[u], q1u), slack))
-            c.append(aff_sub(aff_sub(q1v, pa1[v]), slack))
-        else:  # Q starts weakly SE, ends NW
-            c.append(aff_sub(pa0[u], q0u))
-            c.append(aff_sub(q0v, pa0[v]))
-            c.append(aff_sub(aff_sub(q1u, pa1[u]), slack))
-            c.append(aff_sub(aff_sub(pa1[v], q1v), slack))
-        if _all_at_least_zero(c, ns):
-            for k in range(len(c)):
-                ineqs.append(c[k].copy())
+        var forms = List[List[Int]]()
+        forms.append(off.copy())
+        forms.append(aff_scale(off, -1))
+        var usable = True
+        for k in range(len(c)):
+            if not _q_quad_part_nonneg(c[k], fam.m) or _q_eval(c[k], ns) < 0:
+                usable = False
+                break
+            forms.append(_q_affine_part(c[k], fam.m))
+        if usable and _all_at_least_zero(forms, ns):
+            for k in range(len(forms)):
+                ineqs.append(forms[k].copy())
             return True
     return False
