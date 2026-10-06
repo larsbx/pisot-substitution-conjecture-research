@@ -23,6 +23,7 @@ PACKAGES = {
     "finite_automata": ("larsbx/finite-math-kernels", "kernel"),
     "mojo_smoke": ("larsbx/finite-math-kernels", "kernel"),
     "vendoring": ("larsbx/finite-math-kernels", "tools"),
+    "polyglot_envelope": ("larsbx/finite-math-kernels", "tools"),
 }
 
 

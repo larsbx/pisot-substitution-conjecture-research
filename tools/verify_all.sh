@@ -49,6 +49,11 @@ if python3 tools/make_math_catalogue.py --check >/dev/null; then
 else
     bad "mathematical-object catalogue drift (run: python3 tools/make_math_catalogue.py)"
 fi
+if python3 tools/polyglot_envelope/render.py --check >/dev/null; then
+    ok "the polyglot envelope is the rendering of its vendored template"
+else
+    bad "polyglot envelope drift (run: python3 tools/polyglot_envelope/render.py)"
+fi
 if python3 tools/check_manuscript_source.py; then
     ok "manuscript sources are intact LaTeX and PDF"
 else
