@@ -416,6 +416,18 @@ by deleting it.
   (15 of 20 leaves, 8 revealed runs), so fixed `Delta` is not a way around
   the tail either. · `kernel/tests/test_poly_line.mojo`
 
+- 2026-10-06 · Lifting is linear algebra once the segments are fixed: the
+  letters are then determined and the end offset is linear in the run
+  offsets, so "affine offsets with `gamma_L = 0` identically, agreeing with
+  the point" is one exact system over Q (`solve_lift`). It answers
+  definitively where candidate menus only fail to find: in `zyz +yy | zyz`
+  (cell `(+1, 2)`, every run revealed) the base point's first path has
+  **no** such offsets, while other paths at the same point do
+  (`enumerate_point_paths`); open regions 2 → 1, one certificate covering a
+  whole region uncarved. The remaining one is a boundary slice (`n4 = 0`)
+  whose 40 enumerated point paths all fail; Lemma X closures are not yet
+  solved linearly. · `kernel/psc/poly_line.mojo`; `kernel/tests/test_poly_line.mojo`
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing

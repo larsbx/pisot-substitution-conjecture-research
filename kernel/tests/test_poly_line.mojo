@@ -7,7 +7,7 @@ agreement with the affine line verifier wherever both apply.
 
 from std.testing import assert_equal, assert_false, assert_true
 from psc.claim_tests import require_contract
-from psc.cone_witness import Prover, aff_eval, search_witness_line, verify_witness_line
+from psc.cone_witness import ConeFamily, Prover, aff_eval, search_witness_line, verify_witness_line
 from psc.poly_line import (
     Poly,
     PolyStep,
@@ -20,6 +20,8 @@ from psc.poly_line import (
     poly_steps,
     poly_sub,
     poly_vanishes_under,
+    enumerate_point_paths,
+    solve_lift,
     steps_at,
     verify_witness_poly,
 )
@@ -146,6 +148,55 @@ def test_polynomial_mode_agrees_with_line_mode() raises:
             assert_true(verify_witness_line(point, O, Y, steps_at(ps, ns)))
 
 
+def _line_family_at(ns: List[Int]) raises -> ConeFamily:
+    var subst = List[List[Int]]()
+    subst.append(List[Int]([3 + ns[0] + ns[1]]))
+    subst.append(List[Int]([1 + ns[1]]))
+    subst.append(List[Int]([2 + ns[1]]))
+    subst.append(List[Int]([4 + ns[0] + ns[1]]))
+    return shape_family(List[Int]([Z, Y]), List[Int]([Y, Z]), subst)
+
+
+def test_linear_lift_solves_point_paths() raises:
+    """On the line-mode family, at the base points (1, 2) and (2, 1): every
+    enumerated point path verifies on the point family, and some solves
+    (solve_lift) to a polynomial path whose end offset is zero and which
+    verify_witness_poly accepts on the region its offset bounds carve; the
+    solved path, instantiated at every point of [0, 5]^2 inside that region,
+    verifies on the point family."""
+    var subst = List[List[Int]]()
+    subst.append(List[Int]([3, 1, 1]))
+    subst.append(List[Int]([1, 0, 1]))
+    subst.append(List[Int]([2, 0, 1]))
+    subst.append(List[Int]([4, 1, 1]))
+    var fam = shape_family(List[Int]([Z, Y]), List[Int]([Y, Z]), subst)
+    for base in range(2):
+        var ns = List[Int]([1, 2]) if base == 0 else List[Int]([2, 1])
+        var point = _line_family_at(ns)
+        var paths = enumerate_point_paths(point, O, Y, 3, 6, Y, Z, 50, 20000)
+        assert_true(len(paths) >= 1)
+        var solved = 0
+        for k in range(len(paths)):
+            assert_true(verify_witness_line(point, O, Y, paths[k]))
+            var lr = solve_lift(fam, point, ns, O, Y, paths[k])
+            if not lr.ok:
+                continue
+            solved += 1
+            for i in range(3):
+                assert_true(poly_vanishes_under(lr.gamma[i], Prover()))
+            assert_true(verify_witness_poly(fam, O, Y, lr.steps, Prover(lr.ineqs.copy())))
+            for x in range(6):
+                for y in range(6):
+                    var at = List[Int]([x, y])
+                    var inside = True
+                    for f in range(len(lr.ineqs)):
+                        if aff_eval(lr.ineqs[f], at) < 0:
+                            inside = False
+                    if inside:
+                        assert_true(verify_witness_line(_line_family_at(at), O, Y, steps_at(lr.steps, at)))
+        assert_true(solved >= 1)
+
+
 def main() raises:
     test_polynomial_arithmetic_matches_evaluation()
     print("[PASS] test_polynomial_arithmetic_matches_evaluation")
@@ -153,4 +204,6 @@ def main() raises:
     print("[PASS] test_polynomial_prover_is_sound")
     test_polynomial_mode_agrees_with_line_mode()
     print("[PASS] test_polynomial_mode_agrees_with_line_mode")
-    require_contract("psc.poly_line, the polynomial line mode of Theorem K's tail cells: polynomial products and sums evaluate as the products of their affine factors on [0, 3]^3, poly_nonneg_under is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2 for products U V + W and (U V + W) U, vanishing needs both signs, and verify_witness_poly agrees with verify_witness_line on the line-mode family (z^a y^b, y^(b+1) z^(a+1)) and on its single-offset perturbations, the path holding at every point of [0, 4]^2 once instantiated")
+    test_linear_lift_solves_point_paths()
+    print("[PASS] test_linear_lift_solves_point_paths")
+    require_contract("psc.poly_line, the polynomial line mode of Theorem K's tail cells: polynomial products and sums evaluate as the products of their affine factors on [0, 3]^3, poly_nonneg_under is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2 for products U V + W and (U V + W) U, vanishing needs both signs, and verify_witness_poly agrees with verify_witness_line on the line-mode family (z^a y^b, y^(b+1) z^(a+1)) and on its single-offset perturbations, the path holding at every point of [0, 4]^2 once instantiated; the point-path enumeration returns only verified paths, and solve_lift solves some to a path with a zero end offset that verify_witness_poly accepts on its carved region and that holds at every point of [0, 5]^2 inside it")

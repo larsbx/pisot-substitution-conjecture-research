@@ -75,7 +75,7 @@ from psc.cone_witness import (
     witness_position,
 )
 from psc.cone_witness import aff_add, aff_eval, aff_nonneg, aff_scale, aff_sub, crossing_conditions, lift_path, monotone_paths_meet, Prover, _q_lin, _qa, _q_nonneg, _q_nonneg_under
-from psc.poly_line import lift_path_poly, poly_affine_part, poly_higher, poly_is_zero, poly_key, steps_at, verify_witness_poly
+from psc.poly_line import lift_path_poly, poly_affine_part, poly_higher, enumerate_point_paths, poly_is_zero, poly_key, solve_lift, steps_at, verify_witness_poly
 from psc.prng import SplitMix64
 from psc.pisot import CubicScreen
 from a1_normal_form_census import f_at, shared_tile_between
@@ -112,6 +112,8 @@ comptime REPAIR_MAX_VALUE = 1 << 20  # a base point walked into a region stays f
 comptime PROPAGATE_ROUNDS = 16  # guided cover: rounds of integer bound propagation
 comptime SEARCH_NODES = 4000  # guided cover: nodes of the exact point search
 comptime SEARCH_SPAN = 8  # guided cover: values tried for an unbounded variable in the point search
+comptime LIFT_PATHS = 200  # guided cover: point paths tried by the linear lift
+comptime LIFT_PATH_NODES = 20000  # guided cover: nodes of the point-path enumeration
 comptime FAR_CANDIDATES = 24  # guided tail cover: candidates tried with a moderately large tail variable first
 comptime BASE_POINT_SEED = 20261006  # guided cover: seed of the base-point search
 comptime BASE_POINT_DRAWS = 300  # guided cover: generic draws before the constant fallbacks
@@ -3292,8 +3294,9 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                 out.max_level = max(out.max_level, len(lr.steps))
                 _push_complements(stack, reg, ineqs)
                 done = True
-            elif not lr.ok and lr.why.find("quadratic") >= 0:
-                # the region's M gamma is quadratic: lift over polynomials
+            else:
+                # lift again with candidates built from the point's own step,
+                # over polynomials (the region's M gamma may be quadratic)
                 var levels = _poly_carve(fam, point, ns, wp.steps, reg, stack, verbose, out.regions)
                 if levels > 0:
                     out.certified += 1
@@ -3384,7 +3387,21 @@ def _poly_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], steps: List[W
     `verify_witness_poly` under the region's inequalities (a failure
     raises), and push the rest. The path's length, or 0 if it does not lift
     or its end offset keeps a term of degree >= 2."""
-    var lr = lift_path_poly(fam, point, ns, O, Y, steps, Y, Z)
+    var lr = solve_lift(fam, point, ns, O, Y, steps)
+    if not lr.ok:
+        # other point paths, other segments: the first that solves
+        var paths = enumerate_point_paths(point, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z, LIFT_PATHS, LIFT_PATH_NODES)
+        var tried = 0
+        for k in range(len(paths)):
+            tried += 1
+            var alt = solve_lift(fam, point, ns, O, Y, paths[k])
+            if alt.ok:
+                lr = alt^
+                break
+        if verbose and not lr.ok:
+            print("  linear lift failed on", tried, "point paths:", lr.why)
+    if not lr.ok:
+        lr = lift_path_poly(fam, point, ns, O, Y, steps, Y, Z)
     if not lr.ok or lr.a != lr.b:
         if verbose:
             print("  polynomial lift failed:", lr.why if not lr.ok else "ends off the diagonal")

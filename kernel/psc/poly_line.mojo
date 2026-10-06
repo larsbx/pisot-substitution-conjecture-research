@@ -19,6 +19,9 @@ suffices); the re-verification proves each condition again.
 """
 
 from std.collections import Dict
+from finite_exact.rat_q import Q
+from finite_linear_algebra.qlinalg import rref
+from finite_linear_algebra.scalar import q_int, q_is_zero
 from psc.cone_witness import (
     ConeFamily,
     Prover,
@@ -30,10 +33,14 @@ from psc.cone_witness import (
     aff_nonneg,
     aff_sub,
     apply_step_line,
+    _is_zero,
+    _line_candidates,
     _multipliers,
+    _within,
 )
 
-comptime POLY_DEGREE = 3  # the largest degree a state, offset or condition may reach
+comptime POLY_DEGREE = 8  # the largest degree a state, offset or condition may reach
+comptime LIFT_NODES = 4000  # nodes of the lift's depth-first search over candidates
 
 
 # ---------------------------------------------------------------------------
@@ -436,69 +443,112 @@ def carving_forms_of(conds: List[Poly], m: Int, ns: List[Int], mut ineqs: List[L
     return True
 
 
+struct _LiftFrame(Copyable, Movable):
+    var level: Int
+    var a: Int
+    var b: Int
+    var gamma: List[Poly]
+    var steps: List[PolyStep]
+    var ineqs: List[List[Int]]
+
+    def __init__(out self, level: Int, a: Int, b: Int, var gamma: List[Poly], var steps: List[PolyStep], var ineqs: List[List[Int]]):
+        self.level = level
+        self.a = a
+        self.b = b
+        self.gamma = gamma^
+        self.steps = steps^
+        self.ineqs = ineqs^
+
+
+def _affine_end(gamma: List[Poly]) raises -> Bool:
+    for i in range(3):
+        if not poly_is_zero(poly_higher(gamma[i])):
+            return False
+    return True
+
+
 def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], ly: Int, lz: Int) raises -> PolyLift:
     """`psc.cone_witness.lift_path` over polynomials: replay the point
     family's `steps` on the region family. At each level the candidates are
     built from the point's step (`_lift_candidates`, offsets agreeing with
-    the point's); the one taken reaches the point's letters, carves by
-    affine forms, and has the lowest degree, then the fewest forms."""
+    the point's) and must reach the point's letters and carve by affine
+    forms. A depth-first search over them (lowest degree, then fewest forms,
+    first; at most `LIFT_NODES` nodes) returns the first lift whose end
+    offset has no term of degree >= 2, so that it can vanish on a region."""
     var out = PolyLift()
-    var a = a0
-    var b = b0
-    var gr = List[Poly]()
-    var gp = List[List[Int]]()
-    for _ in range(3):
-        gr.append(Poly())
-        gp.append(aff_const(0, 0))
+    # the point path's states, level by level
+    var targets = List[List[Int]]()
+    var letters = List[List[Int]]()
     var ap = a0
     var bp = b0
+    var gp = List[List[Int]]()
+    for _ in range(3):
+        gp.append(aff_const(0, 0))
     for l in range(len(steps)):
         var rp = apply_step_line(point, ap, bp, gp, steps[l])
         if not rp.ok:
             out.why = "level " + String(l) + ": the point path does not replay"
             return out^
-        var target = List[Int]()
+        var t = List[Int]()
         for i in range(3):
-            target.append(rp.gamma[i][0])
-        var cands = _lift_candidates(fam, a, b, gr, steps[l].seg_a, steps[l].off_a[0], steps[l].seg_b, steps[l].off_b[0], target, ns, ly, lz)
-        var best = -1
-        var best_rank = 1 << 30
-        var best_state = PolyState()
-        var best_forms = List[List[Int]]()
-        var reaching = 0
+            t.append(rp.gamma[i][0])
+        targets.append(t^)
+        letters.append(List[Int]([rp.a, rp.b]))
+        ap = rp.a
+        bp = rp.b
+        gp = rp.gamma.copy()
+    var zero = List[Poly]()
+    for _ in range(3):
+        zero.append(Poly())
+    var stack = List[_LiftFrame]()
+    stack.append(_LiftFrame(0, a0, b0, zero^, List[PolyStep](), List[List[Int]]()))
+    var nodes = 0
+    var deepest = 0
+    var non_affine_ends = 0
+    while len(stack) > 0 and nodes < LIFT_NODES:
+        nodes += 1
+        var fr = stack.pop()
+        var l = fr.level
+        if l == len(steps):
+            if _affine_end(fr.gamma):
+                out.ok = True
+                out.a = fr.a
+                out.b = fr.b
+                out.steps = fr.steps.copy()
+                out.ineqs = fr.ineqs.copy()
+                out.gamma = fr.gamma.copy()
+                return out^
+            non_affine_ends += 1
+            continue
+        deepest = max(deepest, l)
+        var cands = _lift_candidates(fam, fr.a, fr.b, fr.gamma, steps[l].seg_a, steps[l].off_a[0], steps[l].seg_b, steps[l].off_b[0], targets[l], ns, ly, lz)
+        var children = List[_LiftFrame]()
+        var ranks = List[Int]()
         for c in range(len(cands)):
-            var rc = poly_step(fam, a, b, gr, cands[c])
-            if not rc.ok or rc.a != rp.a or rc.b != rp.b:
+            var rc = poly_step(fam, fr.a, fr.b, fr.gamma, cands[c])
+            if not rc.ok or rc.a != letters[l][0] or rc.b != letters[l][1]:
                 continue
-            reaching += 1
-            var forms = List[List[Int]]()
+            var forms = fr.ineqs.copy()
+            var before = len(forms)
             if not carving_forms_of(rc.conds, fam.m, ns, forms):
                 continue
             var degree = 0
             for i in range(3):
                 degree = max(degree, poly_degree(rc.gamma[i]))
-            var rank = 64 * degree + len(forms)  # lowest degree first, then fewest forms
-            if rank < best_rank:
-                best = c
-                best_rank = rank
-                best_state = rc^
-                best_forms = forms^
-        if best < 0:
-            out.why = "level " + String(l) + ": of " + String(len(cands)) + " polynomial candidates agreeing with the point, " + String(reaching) + " step, none carves by affine forms"
-            return out^
-        out.steps.append(cands[best].copy())
-        for k in range(len(best_forms)):
-            out.ineqs.append(best_forms[k].copy())
-        a = best_state.a
-        b = best_state.b
-        gr = best_state.gamma.copy()
-        ap = rp.a
-        bp = rp.b
-        gp = rp.gamma.copy()
-    out.ok = True
-    out.a = a
-    out.b = b
-    out.gamma = gr^
+            var st = fr.steps.copy()
+            st.append(cands[c].copy())
+            ranks.append(64 * degree + len(forms) - before)
+            children.append(_LiftFrame(l + 1, rc.a, rc.b, rc.gamma.copy(), st^, forms^))
+        # push the worst first, so the best is explored first
+        while len(children) > 0:
+            var worst = 0
+            for k in range(1, len(children)):
+                if ranks[k] > ranks[worst]:
+                    worst = k
+            stack.append(children[worst].copy())
+            _ = children.pop(worst)
+            _ = ranks.pop(worst)
+    out.why = "no lift with an affine end (" + String(nodes) + " nodes, deepest level " + String(deepest) + ", " + String(non_affine_ends) + " non-affine ends)"
     return out^
 
 
@@ -516,4 +566,255 @@ def steps_at(steps: List[PolyStep], ns: List[Int]) raises -> List[WitnessStep]:
     var out = List[WitnessStep]()
     for k in range(len(steps)):
         out.append(WitnessStep(steps[k].seg_a, List[Int]([poly_eval(steps[k].off_a, ns)]), steps[k].seg_b, List[Int]([poly_eval(steps[k].off_b, ns)])))
+    return out^
+
+
+# ---------------------------------------------------------------------------
+# Lifting by linear algebra. Fix the point path's segments; then the letters
+# of every state are fixed, and the end offset is linear in the run offsets:
+# gamma_L = P_0 + sum over unknowns t_j of t_j P_j, each offset an unknown
+# affine form o = c + sum u_k n_k. "gamma_L = 0 identically" and "each
+# offset takes the point's value at ns" are linear equations over Q in the
+# unknowns. A solution (free unknowns 0) that is integral gives a path on
+# the whole region whose only conditions are the offsets' affine bounds.
+# ---------------------------------------------------------------------------
+
+
+def _q_to_int(x: Q) raises -> Int:
+    """An exact rational that is a small integer, or raise."""
+    if x.rejected:
+        raise Error("a rejected rational in a lift")
+    if x.den.limb_count() != 1 or x.den.limb(0) != 1:
+        raise Error("not an integer")
+    if x.num.is_zero():
+        return 0
+    if x.num.limb_count() != 1 or x.num.limb(0) > UInt64(1 << 40):
+        raise Error("an integer too large for a lift")
+    var v = Int(x.num.limb(0))
+    return v if x.num.sign > 0 else -v
+
+
+def solve_lift(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep]) raises -> PolyLift:
+    """The point path's segments, with affine offsets solving `gamma_L = 0`
+    identically on the region and agreeing with the point's offsets at `ns`;
+    `ineqs` are the offsets' affine bounds not already nonnegative."""
+    var out = PolyLift()
+    var m = fam.m
+    var L = len(steps)
+    # the point path: letters and offsets
+    var la = List[Int]()
+    var lb = List[Int]()
+    var ap = a0
+    var bp = b0
+    var gp = List[List[Int]]()
+    for _ in range(3):
+        gp.append(aff_const(0, 0))
+    var letters_a = List[Int]([a0])
+    var letters_b = List[Int]([b0])
+    for l in range(L):
+        var rp = apply_step_line(point, ap, bp, gp, steps[l])
+        if not rp.ok:
+            out.why = "the point path does not replay"
+            return out^
+        ap = rp.a
+        bp = rp.b
+        gp = rp.gamma.copy()
+        letters_a.append(ap)
+        letters_b.append(bp)
+    if ap != bp:
+        out.why = "the point path ends off the diagonal"
+        return out^
+    # unknowns: for each level and side with a run segment, m + 1 of them
+    var owner_level = List[Int]()
+    var owner_side = List[Int]()
+    var first = List[Int]()  # per level and side (2 l + side): first unknown, or -1
+    var count = 0
+    for l in range(L):
+        for side in range(2):
+            var a = letters_a[l] if side == 0 else letters_b[l]
+            var sg = steps[l].seg_a if side == 0 else steps[l].seg_b
+            if fam.images[a][sg].kind == SEG_OPAQUE:
+                out.why = "a step names an opaque segment"
+                return out^
+            if fam.images[a][sg].is_run():
+                first.append(count)
+                for _ in range(m + 1):
+                    owner_level.append(l)
+                    owner_side.append(side)
+                count += m + 1
+            else:
+                first.append(-1)
+    # gamma as parts: index 0 the constant part, 1 + j the coefficient of t_j
+    var parts = List[List[Poly]]()
+    for _ in range(count + 1):
+        var z = List[Poly]()
+        for _ in range(3):
+            z.append(Poly())
+        parts.append(z^)
+    for l in range(L):
+        var a = letters_a[l]
+        var b = letters_b[l]
+        ref sa = fam.images[a][steps[l].seg_a]
+        ref sb = fam.images[b][steps[l].seg_b]
+        var pa = fam.prefix_before(a, steps[l].seg_a)
+        var pb = fam.prefix_before(b, steps[l].seg_b)
+        for j in range(count + 1):
+            var mg = List[Poly]()
+            for i in range(3):
+                var acc = Poly()
+                for k in range(3):
+                    acc = poly_add(acc, poly_mul(poly_from_aff(fam.incidence[3 * i + k]), parts[j][k]))
+                mg.append(acc^)
+            if j == 0:
+                for i in range(3):
+                    mg[i] = poly_sub(poly_add(mg[i], poly_from_aff(pa[i])), poly_from_aff(pb[i]))
+            parts[j] = mg^
+        # this level's offsets enter linearly
+        for side in range(2):
+            var f = first[2 * l + side]
+            if f < 0:
+                continue
+            var letter = sa.letter if side == 0 else sb.letter
+            var sign = 1 if side == 0 else -1
+            parts[1 + f][letter] = poly_add(parts[1 + f][letter], poly_const(sign))
+            for k in range(m):
+                var mono = Poly()
+                mono.add_term(String(k), sign)
+                parts[1 + f + 1 + k][letter] = poly_add(parts[1 + f + 1 + k][letter], mono)
+        for j in range(count + 1):
+            for i in range(3):
+                if poly_degree(parts[j][i]) > POLY_DEGREE:
+                    out.why = "the end offset's degree exceeds the cap"
+                    return out^
+    # equations: every monomial of every coordinate of gamma_L vanishes
+    var keys = List[String]()
+    var seen = Dict[String, Int]()
+    for j in range(count + 1):
+        for i in range(3):
+            for e in parts[j][i].terms.items():
+                var key = String(i) + "|" + e.key
+                if key not in seen:
+                    seen[key] = len(keys)
+                    keys.append(key)
+    var rows = List[List[Q]]()
+    for r in range(len(keys)):
+        var row = List[Q]()
+        for _ in range(count + 1):
+            row.append(q_int(0))
+        rows.append(row^)
+    for j in range(count + 1):
+        for i in range(3):
+            for e in parts[j][i].terms.items():
+                var r = seen[String(i) + "|" + e.key]
+                if j == 0:
+                    rows[r][count] = q_int(-e.value)  # right-hand side
+                else:
+                    rows[r][j - 1] = q_int(e.value)
+    # agreement with the point's offsets
+    for l in range(L):
+        for side in range(2):
+            var f = first[2 * l + side]
+            if f < 0:
+                continue
+            var row = List[Q]()
+            for _ in range(count + 1):
+                row.append(q_int(0))
+            row[f] = q_int(1)
+            for k in range(m):
+                row[f + 1 + k] = q_int(ns[k])
+            row[count] = q_int(steps[l].off_a[0] if side == 0 else steps[l].off_b[0])
+            rows.append(row^)
+    var red = rref(rows)
+    ref R = red[0]
+    ref pivots = red[1]
+    var t = List[Int](length=count, fill=0)
+    for r in range(len(pivots)):
+        if pivots[r] == count:
+            out.why = "no affine offsets make the end offset vanish on the region"
+            return out^
+        try:
+            t[pivots[r]] = _q_to_int(R[r][count])
+        except:
+            out.why = "the solving offsets are not integral"
+            return out^
+    # the offsets, the path, and its conditions
+    for l in range(L):
+        var offs = List[Poly]()
+        for side in range(2):
+            var f = first[2 * l + side]
+            if f < 0:
+                offs.append(Poly())
+                continue
+            var c = List[Int]()
+            for k in range(m + 1):
+                c.append(t[f + k])
+            offs.append(poly_from_aff(c))
+        out.steps.append(PolyStep(steps[l].seg_a, offs[0].copy(), steps[l].seg_b, offs[1].copy()))
+    var gamma = List[Poly]()
+    for _ in range(3):
+        gamma.append(Poly())
+    var a = a0
+    var b = b0
+    for l in range(L):
+        var r = poly_step(fam, a, b, gamma, out.steps[l])
+        if not r.ok:
+            out.why = "the solved path does not step"
+            return out^
+        if not carving_forms_of(r.conds, m, ns, out.ineqs):
+            out.why = "the solved offsets leave the region's runs at the point"
+            return out^
+        a = r.a
+        b = r.b
+        gamma = r.gamma.copy()
+    out.ok = True
+    out.a = a
+    out.b = b
+    out.gamma = gamma^
+    return out^
+
+
+def enumerate_point_paths(point: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int, ly: Int, lz: Int, max_paths: Int, max_nodes: Int) -> List[List[WitnessStep]]:
+    """Witness paths of a point family (constant offsets), by depth-first
+    search over the line candidates, shortest first by iterative deepening:
+    each depth limit up to `max_level` in turn, at most `max_paths` paths and
+    `max_nodes` nodes in all. Distinct paths may share states: `solve_lift`
+    asks only for their segments."""
+    var out = List[List[WitnessStep]]()
+    var nodes = 0
+    for depth in range(1, max_level + 1):
+        var zero = List[List[Int]]()
+        for _ in range(3):
+            zero.append(aff_const(point.m, 0))
+        # frames: state and the path so far
+        var sa = List[Int]([a0])
+        var sb = List[Int]([b0])
+        var sg = List[List[List[Int]]]()
+        sg.append(zero^)
+        var sp = List[List[WitnessStep]]()
+        sp.append(List[WitnessStep]())
+        while len(sa) > 0:
+            if nodes >= max_nodes or len(out) >= max_paths:
+                return out^
+            nodes += 1
+            var a = sa.pop()
+            var b = sb.pop()
+            var g = sg.pop()
+            var path = sp.pop()
+            if len(path) == depth:
+                continue
+            var cands = _line_candidates(point, a, b, g, bound, ly, lz)
+            for c in range(len(cands)):
+                var r = apply_step_line(point, a, b, g, cands[c])
+                if not r.ok or not _within(r.gamma, bound):
+                    continue
+                var p2 = path.copy()
+                p2.append(cands[c].copy())
+                if r.a == r.b and _is_zero(r.gamma):
+                    if len(p2) == depth:
+                        out.append(p2^)
+                    continue
+                sa.append(r.a)
+                sb.append(r.b)
+                sg.append(r.gamma.copy())
+                sp.append(p2^)
     return out^
