@@ -477,8 +477,9 @@ For the next research cycle:
    Lemma X (monotone crossing, read at endpoints only) with the suffix lemmas
    Φ5 and Φ5′ gives every non-crossing member through length 10 a certificate
    that reads a bounded part of its words, and the certificate-guided partition
-   of §3k uniformizes them: Theorems Λ and Λ′ close the cells
-   `(s, Delta) = (+1, 1)` and `(−1, −1)`. What remains is the other cells and the `Delta` tails,
+   of §3k uniformizes them: Theorems Λ, Λ′ and Λ″ close the cells
+   `(s, Delta) = (+1, 1)`, `(−1, −1)` and `(−1, 0)` (proof derived in full in
+   §3l). What remains is the other cells and the `Delta` tails,
    and determinant other than 2. The former statement of the obligation follows.
 3. **#138 template exclusion in parallel.** The aligned branch is reduced to a
    fixed bad hub edge or an alternating type-E template. Exclude those two
