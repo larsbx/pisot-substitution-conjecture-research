@@ -18,6 +18,15 @@ substitution and against the words themselves, and decides every remaining
 negative. The lemmas are proved in the note; the census is an exact finite
 check on a stated domain, not a proof beyond it.
 
+**The delta split** (`delta_census`, `phi_path`, `phi_census`; note §3g).
+`delta = pi(w_1) - pi(w_2)`. Lemma Φ4 (Pisot signs) and Lemma Φ5 (the
+`Z_1 = Z_2 + 1` non-crossing shape) are checked on every member; Lemmas
+Φ6-Φ8 name paths at the common points of the walks of `w_1` and `w_2 + e_z`,
+which close the cell `delta = e_z` (Theorem Φ) and are measured on the rest.
+With the `signatures` option `delta_census` also tallies the offset sequence
+of each non-crossing member's shortest witness -- exploratory, to find the
+next lemma.
+
 **The exploratory part** (`cover_family`). A partition tree of word patterns
 -- a letter `z`, a maximal run `y^(c + n)`, a run of exactly `c` letters `y`,
 or an opaque tail known only by its Parikh vector -- refined atom by atom and
@@ -29,16 +38,18 @@ whole region; a node still open at the depth limit is reported as open and
 never counted as covered. The tree does **not** converge as it stands (the
 open leaves grow with the depth), so it is an instrument, not a cover.
 
-Usage: `mojo run -I . odd_letter_family_certificate.mojo [max_len] [tree_depth]`,
+Usage: `mojo run -I . odd_letter_family_certificate.mojo [max_len] [tree_depth | phi | delta]`,
 or `pixi run odd-letter-family-certificate`.
 """
 
 from std.sys import argv
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
-from psc.coincidence_formula import coincidence_level
+from std.collections import Dict
+from psc.coincidence_formula import coincidence_level, coincidence_witness, pair_paths
 from psc.cone_witness import (
     ConeFamily,
+    apply_step,
     Segment,
     WitnessStep,
     aff_const,
@@ -580,6 +591,25 @@ def main() raises:
     for k in range(16):
         if c.levels[k] != 0:
             print("    level", k, ":", c.levels[k])
+    if len(args) > 2 and String(args[2]) == "phi":
+        var pc = phi_census(max_len)
+        print("Lemmas Phi6-Phi8: non-crossing", pc.non_crossing, " covered", pc.by_lemma, " failed", pc.lemma_failed, " delta = e_z residue", pc.cell_ez_residue)
+        for e in pc.residue.items():
+            print("    residue (s dy)", e.key, ":", e.value)
+        for k in range(16):
+            if pc.residue_levels[k] != 0:
+                print("    residue level", k, ":", pc.residue_levels[k])
+        return
+    if len(args) > 2 and String(args[2]) == "delta":
+        var dc = delta_census(max_len, True)
+        print("delta split: members", dc.members, " sign violations", dc.sign_violations, " non-crossing", dc.non_crossing, " shape violations", dc.shape_violations)
+        print("cells (s dy level): count")
+        for e in dc.cells.items():
+            print("   ", e.key, ":", e.value)
+        print("signatures (s dy | gamma:a,b ...): count")
+        for e in dc.signatures.items():
+            print("   ", e.value, "  ", e.key)
+        return
     if len(args) > 2:
         var depth = Int(String(args[2]))
         var cov = cover_family(depth, DEFAULT_SPLITS)
@@ -736,4 +766,330 @@ def family_census(max_len: Int) raises -> FamilyCensus:
             out.levels[min(lev, 15)] += 1
             if lev > out.max_level:
                 out.max_level = lev
+    return out^
+
+
+# ---------------------------------------------------------------------------
+# The delta split (docs/p1a-a1-prime-2026-10-05.md §3g). delta = pi(w_1) -
+# pi(w_2) = (Y_1 - Y_2, Z_1 - Z_2) = (dy, s). Lemma Φ4 (Pisot signs) and
+# Lemma Φ5 (the s = +1 non-crossing shape) are checked on every member; the
+# non-crossing members are then sorted by (s, dy) and by the offset sequence
+# of their shortest witness -- exploratory, to find the next lemma.
+# ---------------------------------------------------------------------------
+
+
+def _signature(sigma: List[List[Int]]) raises -> String:
+    """The offsets and letter pairs along the shortest `{o, y}` witness that
+    `coincidence_witness` returns, as `gamma:a,b|...`."""
+    var w = coincidence_witness(sigma, O, Y)
+    if w.empty:
+        raise Error("SC REFUTED in Theorem K's family")
+    var radix = 0
+    for a in range(3):
+        radix = max(radix, len(sigma[a]))
+    var paths = pair_paths(radix, w.word)
+    var m = Mat3(substitution_incidence(sigma))
+    var g = List[Int]([0, 0, 0])
+    var a = O
+    var b = Y
+    var names = List[String](["o", "y", "z"])
+    var out = String("")
+    for l in range(len(w.word)):
+        var i = paths[0][l]
+        var k = paths[1][l]
+        var g2 = List[Int]()
+        for r in range(3):
+            var v = 0
+            for c in range(3):
+                v += m.e[3 * r + c] * g[c]
+            for j in range(i):
+                if sigma[a][j] == r:
+                    v += 1
+            for j in range(k):
+                if sigma[b][j] == r:
+                    v -= 1
+            g2.append(v)
+        g = g2^
+        a = sigma[a][i]
+        b = sigma[b][k]
+        if l > 0:
+            out += "|"
+        out += "(" + String(g[0]) + "," + String(g[1]) + "," + String(g[2]) + ")" + names[a] + names[b]
+    return out
+
+
+struct DeltaCensus(Copyable, Movable):
+    var members: Int
+    var sign_violations: Int  # Lemma Φ4: s = +1 needs dy >= 0; s = -1 needs dy <= 0 and Z_2 >= 2
+    var shape_violations: Int  # Lemma Φ5: s = +1 non-crossing has w_1 = u y^dy, pi(u) = pi(w_2) + e_z
+    var non_crossing: Int
+    var cells: Dict[String, Int]  # "s dy level" -> count
+    var signatures: Dict[String, Int]  # "s dy | signature" -> count
+
+    def __init__(out self):
+        self.members = 0
+        self.sign_violations = 0
+        self.shape_violations = 0
+        self.non_crossing = 0
+        self.cells = Dict[String, Int]()
+        self.signatures = Dict[String, Int]()
+
+
+def _bump(mut d: Dict[String, Int], key: String) raises:
+    if key in d:
+        d[key] = d[key] + 1
+    else:
+        d[key] = 1
+
+
+def delta_census(max_len: Int, with_signatures: Bool) raises -> DeltaCensus:
+    var out = DeltaCensus()
+    var screen = CubicScreen()
+    var words = _words(max_len)
+    for ia in range(len(words)):
+        ref w1 = words[ia]
+        for ib in range(len(words)):
+            ref w2 = words[ib]
+            var y1 = 0
+            var z1 = 0
+            var y2 = 0
+            var z2 = 0
+            for k in range(len(w1)):
+                if w1[k] == Y:
+                    y1 += 1
+                else:
+                    z1 += 1
+            for k in range(len(w2)):
+                if w2[k] == Y:
+                    y2 += 1
+                else:
+                    z2 += 1
+            var s = z1 - z2
+            if abs(s) != 1:
+                continue
+            var sigma = member_sigma(w1, w2)
+            var mat = Mat3(substitution_incidence(sigma))
+            if not screen.is_pip(mat):
+                continue
+            out.members += 1
+            var dy = y1 - y2
+            if (s == 1 and dy < 0) or (s == -1 and (dy > 0 or z2 < 2)):
+                out.sign_violations += 1
+            if len(w1) == 0 or w1[0] != Z or crossing(w1, w2)[0] >= 0:
+                continue
+            out.non_crossing += 1
+            if s == 1:
+                # w_1 = u y^dy with pi(u) = pi(w_2) + e_z
+                var lu = len(w1) - dy
+                var ok = lu >= 0
+                if ok:
+                    for k in range(lu, len(w1)):
+                        if w1[k] != Y:
+                            ok = False
+                    var uy = 0
+                    for k in range(lu):
+                        if w1[k] == Y:
+                            uy += 1
+                    if uy != y2 or (lu - uy) != z2 + 1:
+                        ok = False
+                if not ok:
+                    out.shape_violations += 1
+            var lev = coincidence_level(sigma, O, Y)
+            if lev < 0:
+                raise Error("SC REFUTED in Theorem K's family: {o, y} is not eventually coincident")
+            _bump(out.cells, String(s) + " " + String(dy) + " " + String(lev))
+            if with_signatures:
+                _bump(out.signatures, String(s) + " " + String(dy) + " | " + _signature(sigma))
+    return out^
+
+
+# ---------------------------------------------------------------------------
+# Lemmas Φ6-Φ8 (§3g): named paths for the non-crossing members. Each lemma
+# supplies the core positions; `_finish` closes a state that is already good
+# (equal letters at offset 0; two letters of {y, z} at offset 0, which meet
+# again at their images' initial o; or offset e_b - e_a, which meet at the
+# final o). `verify_witness` then checks everything.
+# ---------------------------------------------------------------------------
+
+
+def _walk(w: List[Int]) -> List[List[Int]]:
+    """Prefix Parikh vectors `(y, z)` of `w`, lengths 0 to |w|."""
+    var out = List[List[Int]]()
+    out.append(List[Int]([0, 0]))
+    for k in range(len(w)):
+        var p = out[k].copy()
+        if w[k] == Y:
+            p[0] += 1
+        else:
+            p[1] += 1
+        out.append(p^)
+    return out^
+
+
+def _finish(fam: ConeFamily, var steps: List[WitnessStep]) -> List[WitnessStep]:
+    """Append the closing step, if the state the steps reach is good; return
+    an empty list otherwise."""
+    var a = O
+    var b = Y
+    var g = List[Int]([0, 0, 0])
+    for l in range(len(steps)):
+        var r = apply_step(fam, a, b, g, steps[l])
+        if not r.ok:
+            return List[WitnessStep]()
+        a = r.a
+        b = r.b
+        g = r.gamma.copy()
+    if a == b and g == List[Int]([0, 0, 0]):
+        return steps^
+    if a == O or b == O:
+        return List[WitnessStep]()
+    if g == List[Int]([0, 0, 0]):
+        steps.append(_step(0, 0))
+        return steps^
+    var want = List[Int]([0, 0, 0])
+    want[b] += 1
+    want[a] -= 1
+    if g == want:
+        steps.append(_step(len(fam.images[a]) - 1, len(fam.images[b]) - 1))
+        return steps^
+    return List[WitnessStep]()
+
+
+def _factor_closures(fam: ConeFamily, var head: List[WitnessStep], w: List[Int], dy: Int, dz: Int) -> List[WitnessStep]:
+    """From a state `(a, a, g)` whose next offset needs a factor of `w = w_a`
+    with Parikh `(dy, dz)` -- a-side position after it, b-side at its start --
+    or with Parikh `-(dy, dz)` the other way round: try every occurrence, in
+    both the start form and the end form shifted by one."""
+    var pw = _walk(w)
+    for f0 in range(len(w) + 1):
+        for f1 in range(f0 + 1, len(w) + 1):
+            var fy = pw[f1][0] - pw[f0][0]
+            var fz = pw[f1][1] - pw[f0][1]
+            var forms = List[List[Int]]()
+            if fy == dy and fz == dz:
+                forms.append(List[Int]([f1 + 1, f0 + 1]))
+                forms.append(List[Int]([f1, f0]))
+            if fy == -dy and fz == -dz:
+                forms.append(List[Int]([f0 + 1, f1 + 1]))
+                forms.append(List[Int]([f0, f1]))
+            for k in range(len(forms)):
+                var s = head.copy()
+                s.append(_step(forms[k][0], forms[k][1]))
+                var done = _finish(fam, s^)
+                if len(done) > 0:
+                    return done^
+    return List[WitnessStep]()
+
+
+def phi_path(w1: List[Int], w2: List[Int]) raises -> List[WitnessStep]:
+    """The first of Lemmas Φ6, Φ7, Φ8 that applies, as a path; empty if none."""
+    var sigma = member_sigma(w1, w2)
+    var fam = concrete_family(sigma)
+    var dy = 0
+    var dz = 0
+    for k in range(len(w1)):
+        dy += 1 if w1[k] == Y else 0
+        dz += 1 if w1[k] == Z else 0
+    for k in range(len(w2)):
+        dy -= 1 if w2[k] == Y else 0
+        dz -= 1 if w2[k] == Z else 0
+    var p1 = _walk(w1)
+    var p2 = _walk(w2)
+    # Common points: pi(w1[:t]) = pi(w2[:t-1]) + e_z, with both next letters.
+    for t in range(1, len(w1)):
+        if t - 1 >= len(w2):
+            break
+        if p1[t][0] != p2[t - 1][0] or p1[t][1] != p2[t - 1][1] + 1:
+            continue
+        var head = List[WitnessStep]()
+        head.append(_step(0, 1))
+        head.append(_step(t + 1, t))
+        var a = w1[t]
+        var b = w2[t - 1]
+        if a == b:  # Lemma Φ6
+            var done = _factor_closures(fam, head^, w1 if a == Y else w2, dy, dz)
+            if len(done) > 0:
+                return done^
+        elif a == Z and b == Y:  # Lemma Φ8: W_2 meets W_1 + delta
+            for m in range(len(w2) + 1):
+                for n in range(len(w1) + 1):
+                    if p2[m][0] != p1[n][0] + dy or p2[m][1] != p1[n][1] + dz:
+                        continue
+                    for shift in range(2):
+                        var s = head.copy()
+                        s.append(_step(m + 1 - shift, n + 1 - shift))
+                        var done = _finish(fam, s^)
+                        if len(done) > 0:
+                            return done^
+    # Lemma Φ7: delta = e_z, w1 = zz..., w2 = y...
+    if dy == 0 and dz == 1 and len(w1) >= 2 and w1[0] == Z and w1[1] == Z and len(w2) >= 1 and w2[0] == Y:
+        var head = List[WitnessStep]()
+        head.append(_step(0, 1))
+        head.append(_step(2, 0))
+        head.append(_step(1, 0))
+        var done = _factor_closures(fam, head^, w1, -1, -1)  # the a-side sits at the factor's start
+        if len(done) > 0:
+            return done^
+    return List[WitnessStep]()
+
+
+struct PhiCensus(Copyable, Movable):
+    var non_crossing: Int
+    var by_lemma: Int
+    var lemma_failed: Int
+    var residue: Dict[String, Int]  # "s dy" -> residual count
+    var residue_levels: List[Int]
+    var cell_ez_residue: Int  # delta = e_z members no lemma covers
+
+    def __init__(out self):
+        self.non_crossing = 0
+        self.by_lemma = 0
+        self.lemma_failed = 0
+        self.residue = Dict[String, Int]()
+        self.residue_levels = List[Int](length=16, fill=0)
+        self.cell_ez_residue = 0
+
+
+def phi_census(max_len: Int) raises -> PhiCensus:
+    """Every non-crossing PIP member with `|det M| = 2`, `|w_i| <= max_len`:
+    a Lemma Φ6-Φ8 path that verifies and names a shared tile of the words, or
+    a residual member decided exactly."""
+    var out = PhiCensus()
+    var screen = CubicScreen()
+    var words = _words(max_len)
+    for ia in range(len(words)):
+        ref w1 = words[ia]
+        if len(w1) == 0 or w1[0] != Z:
+            continue
+        for ib in range(len(words)):
+            ref w2 = words[ib]
+            var p1 = _walk(w1)
+            var p2 = _walk(w2)
+            var s = p1[len(w1)][1] - p2[len(w2)][1]
+            if abs(s) != 1 or crossing(w1, w2)[0] >= 0:
+                continue
+            var sigma = member_sigma(w1, w2)
+            var mat = Mat3(substitution_incidence(sigma))
+            if not screen.is_pip(mat):
+                continue
+            out.non_crossing += 1
+            var steps = phi_path(w1, w2)
+            if len(steps) > 0:
+                var fam = concrete_family(sigma)
+                var ok = verify_witness(fam, O, Y, steps)
+                if ok:
+                    ok = shared_tile_between(sigma, O, Y, len(steps), witness_position(fam, O, Y, steps, List[Int]()))
+                if ok:
+                    out.by_lemma += 1
+                else:
+                    out.lemma_failed += 1
+                continue
+            var dy = p1[len(w1)][0] - p2[len(w2)][0]
+            _bump(out.residue, String(s) + " " + String(dy))
+            if s == 1 and dy == 0:
+                out.cell_ez_residue += 1
+            var lev = coincidence_level(sigma, O, Y)
+            if lev < 0:
+                raise Error("SC REFUTED in Theorem K's family: {o, y} is not eventually coincident")
+            out.residue_levels[min(lev, 15)] += 1
     return out^

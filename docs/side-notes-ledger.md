@@ -279,6 +279,18 @@ by deleting it.
   `p1a-a1-prime-2026-10-05.md` §3f;
   `kernel/tests/test_odd_letter_family_certificate.mojo`
 
+- 2026-10-06 · Delta split of Theorem K's family: `f(−1) = (1 + Z_2)(Y_2 − Y_1 − 1)`
+  when `Z_1 = Z_2 + 1` and `f(1) = (Z_2 − 1)(Y_1 − Y_2 − 1)` when
+  `Z_1 = Z_2 − 1` (exact), so the sign of `Y_1 − Y_2` is fixed by `s`. Most
+  witnesses sit at **common points** of the walks of `w_1` and `w_2 + e_z`
+  (`t = 1` always is one): a matched step needs a factor of Parikh `±delta`, an
+  unmatched one a meeting of `w_2` with `w_1 + delta`. That closes
+  `delta = e_z` (Theorem Φ) but leaves a growing residue elsewhere (87 at
+  length 7, 265 at 8). The parametric cone search on residue run families
+  works only with `Delta` fixed. Next: split on `Delta` together with
+  relational run-length splits. · `p1a-a1-prime-2026-10-05.md` §3g;
+  `kernel/tests/test_odd_letter_family_certificate.mojo`
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing

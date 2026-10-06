@@ -34,7 +34,9 @@ from odd_letter_family_certificate import (
     any_word,
     cover_family,
     crossing,
+    delta_census,
     family_census,
+    phi_census,
     family_of,
     identity_subst,
     leaf_index,
@@ -156,6 +158,38 @@ def test_the_pattern_tree_is_a_sound_partial_cover() raises:
     assert_equal(in_open, 119)
 
 
+def test_lemmas_phi4_and_phi5_hold_on_every_member() raises:
+    """Lemma Φ4: Z_1 = Z_2 + 1 forces Y_1 >= Y_2, and Z_1 = Z_2 - 1 forces
+    Y_1 <= Y_2 and Z_2 >= 2 (f(-1) = (1 + Z_2)(Y_2 - Y_1 - 1) and
+    f(1) = (Z_2 - 1)(Y_1 - Y_2 - 1) respectively). Lemma Φ5: with
+    Z_1 = Z_2 + 1, a non-crossing w_1 is u y^(Y_1 - Y_2) with
+    pi(u) = pi(w_2) + e_z. Checked on all 2,136 members with |w_i| <= 6."""
+    var d = delta_census(6, False)
+    assert_equal(d.members, 2136)
+    assert_equal(d.sign_violations, 0)
+    assert_equal(d.non_crossing, 388)
+    assert_equal(d.shape_violations, 0)
+
+
+def test_lemmas_phi6_to_phi8_close_the_delta_ez_cell() raises:
+    """At |w_i| <= 7 every Lemma Φ6, Φ7 or Φ8 path verifies and names a shared
+    tile of the words (1,180 of the 1,267 non-crossing members); in the cell
+    delta = e_z the only member left is (zz, z), decided at level 6, and the
+    word pair (z, empty) is not PIP. The residue of the other cells is
+    decided exactly, at levels 3 to 6."""
+    var p = phi_census(7)
+    assert_equal(p.non_crossing, 1267)
+    assert_equal(p.by_lemma, 1180)
+    assert_equal(p.lemma_failed, 0)
+    assert_equal(p.cell_ez_residue, 1)
+    assert_equal(p.residue_levels[3], 38)
+    assert_equal(p.residue_levels[4], 42)
+    assert_equal(p.residue_levels[5], 6)
+    assert_equal(p.residue_levels[6], 1)
+    assert_equal(coincidence_level(member_sigma(List[Int]([Z, Z]), List[Int]([Z])), O, Y), 6)
+    assert_false(is_pip(Mat3(substitution_incidence(member_sigma(List[Int]([Z]), List[Int]())))))
+
+
 def main() raises:
     test_det_is_twice_the_z_difference()
     print("[PASS] test_det_is_twice_the_z_difference")
@@ -167,4 +201,8 @@ def main() raises:
     print("[PASS] test_an_opaque_cone_proves_lemma_phi1")
     test_the_pattern_tree_is_a_sound_partial_cover()
     print("[PASS] test_the_pattern_tree_is_a_sound_partial_cover")
-    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones")
+    test_lemmas_phi4_and_phi5_hold_on_every_member()
+    print("[PASS] test_lemmas_phi4_and_phi5_hold_on_every_member")
+    test_lemmas_phi6_to_phi8_close_the_delta_ez_cell()
+    print("[PASS] test_lemmas_phi6_to_phi8_close_the_delta_ez_cell")
+    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones; Lemma Phi4 (Pisot signs of Y_1 - Y_2 against Z_1 - Z_2) and Lemma Phi5 (the Z_1 = Z_2 + 1 non-crossing shape w_1 = u y^(Y_1 - Y_2), pi(u) = pi(w_2) + e_z) hold on all 2,136 members with |w_i| <= 6; at |w_i| <= 7 the Lemma Phi6-Phi8 paths verify on 1,180 of the 1,267 non-crossing members with none failing, the delta = e_z cell leaves only (zz, z) at level 6, (z, empty) is not PIP, and the other cells leave 87 members decided at levels 3 to 6")

@@ -86,3 +86,7 @@ images, not `o w o`. No further source was found that settles this family.
 suggests (Φ1, and the crossing Lemma Φ2) and an exact census of the rest.
 The letter-by-letter pattern tree was tried and recorded as not converging
 (A1′ note §3f); it is kept as an instrument, not cited as a cover.
+
+*Same day, the delta split (A1′ note §3g).* Lemmas Φ4–Φ8 and Theorem Φ refine
+the same target with the same tools; no new prior art was found or needed.
+The decision stands: proceed, narrowed.
