@@ -305,6 +305,19 @@ by deleting it.
   own command line — it kills that shell (happened twice). ·
   `p1a-a1-prime-2026-10-05.md` §3h; `kernel/tests/test_odd_letter_family_certificate.mojo`
 
+- 2026-10-06 · Induction on runs for Theorem K's residue: run patterns with
+  an opaque tail close as whole infinite families (unboundedly many runs);
+  over six `delta` cells 60 of 84 run-tree leaves close, and the cell
+  `(s, Delta) = (+1, 1)` is settled up to `zyz* | zyz*`, `zyz* | yzy*`
+  (Theorem Ξ). **Refining a doubly open pattern does not converge**: one
+  revealed run moves the openness to the other word (open regions 104, 74,
+  96, 44, 107 down the chain in cell `(+1, 1)`), so do not spend more budget
+  or depth there. The residue is mostly **single excursions**: only common
+  point `t = 1` (51 of 87 at length 7, 170 of 265 at 8). Next: a witness
+  argument inside an excursion. Tooling: a scratch driver `kernel/_*.mojo`
+  was once committed by mistake; check `git status` for it. ·
+  `p1a-a1-prime-2026-10-05.md` §3i; `kernel/tests/test_odd_letter_family_certificate.mojo`
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing

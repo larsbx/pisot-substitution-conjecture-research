@@ -469,8 +469,12 @@ For the next research cycle:
    (Theorem K, §3e). Inside that family the crossing lemma (§3f) leaves only
    the non-crossing pairs, and the delta split (§3g) closes their cell
    `delta = e_z` (Theorem Φ); the run-shape cover (§3h) closes 29 infinite
-   shape cells, among them three shapes for every `Delta` (Theorem Ψ). The
-   many-run shapes, and determinant other than 2, remain. The former statement of the obligation follows.
+   shape cells, among them three shapes for every `Delta` (Theorem Ψ), and the
+   induction on runs (§3i) settles the cell `Z_1 = Z_2 + 1`, `Y_1 = Y_2 + 1`
+   up to two three-run patterns (Theorem Ξ). Where both words keep an open
+   tail the induction does not converge; the residue there is mostly single
+   excursions of the two walks, which needs an argument inside an excursion.
+   That, and determinant other than 2, remain. The former statement of the obligation follows.
 3. **#138 template exclusion in parallel.** The aligned branch is reduced to a
    fixed bad hub edge or an alternating type-E template. Exclude those two
    templates using endpoint/occurrence structure, including reversal.

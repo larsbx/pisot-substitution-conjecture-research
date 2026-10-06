@@ -373,9 +373,9 @@ def test_pattern_refinement_partitions_the_word_pairs() raises:
 
 
 def test_run_patterns_with_a_tail_close() raises:
-    """Induction on runs, cell Z_1 = Z_2 + 1, Delta = 1: patterns whose one
-    word ends in an opaque tail (any further runs) close with no open region,
-    each an infinite family with unboundedly many runs."""
+    """Induction on runs, cell Z_1 = Z_2 + 1, Delta = 1 (Theorem Xi): the nine
+    closed leaves of the cell's run tree close with no open region; those with
+    an opaque tail are infinite families with unboundedly many runs."""
     var zy = List[Int]([Z, Y])
     var cases = List[RunPattern]()
     cases.append(RunPattern(zy.copy(), False, zy.copy(), True))
@@ -383,10 +383,18 @@ def test_run_patterns_with_a_tail_close() raises:
     cases.append(RunPattern(zy.copy(), True, List[Int]([Z]), False))
     cases.append(RunPattern(zy.copy(), True, List[Int]([Y]), False))
     cases.append(RunPattern(List[Int]([Z, Y, Z]), True, zy.copy(), False))
+    cases.append(RunPattern(List[Int]([Z, Y, Z]), True, List[Int]([Y, Z]), False))
     for k in range(len(cases)):
         var c = cover_pattern(cases[k], 1, 1, RUN_TREE_SPLITS, False, RUN_TREE_PEEL, RUN_TREE_BUDGET)
         assert_equal(c.open, 0)
         assert_true(c.certified >= 1)
+    # The rest of the cell's closed leaves: no member, or one point decided.
+    var rest = List[RunPattern]()
+    rest.append(RunPattern(List[Int]([Z]), False, List[Int]([Z]), True))
+    rest.append(RunPattern(List[Int]([Z]), False, List[Int]([Y]), True))
+    rest.append(RunPattern(List[Int]([Z]), True, List[Int](), False))
+    for k in range(len(rest)):
+        assert_equal(cover_pattern(rest[k], 1, 1, RUN_TREE_SPLITS, False, RUN_TREE_PEEL, RUN_TREE_BUDGET).open, 0)
     # Negative control: the doubly open pattern is not closed at this budget.
     var both = cover_pattern(RunPattern(zy.copy(), True, zy.copy(), True), 1, 1, RUN_TREE_SPLITS, False, RUN_TREE_PEEL, RUN_TREE_BUDGET)
     assert_true(both.open > 0)
@@ -455,4 +463,4 @@ def main() raises:
     print("[PASS] test_run_patterns_with_a_tail_close")
     test_the_residue_is_mostly_one_excursion()
     print("[PASS] test_the_residue_is_mostly_one_excursion")
-    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones; Lemma Phi4 (Pisot signs of Y_1 - Y_2 against Z_1 - Z_2) and Lemma Phi5 (the Z_1 = Z_2 + 1 non-crossing shape w_1 = u y^(Y_1 - Y_2), pi(u) = pi(w_2) + e_z) hold on all 2,136 members with |w_i| <= 6; at |w_i| <= 7 the Lemma Phi6-Phi8 paths verify on 1,180 of the 1,267 non-crossing members with none failing, the delta = e_z cell leaves only (zz, z) at level 6, (z, empty) is not PIP, and the other cells leave 87 members decided at levels 3 to 6; the run-shape cover: solve_constraint partitions the solutions of sum_pos n - sum_neg n = target exactly (every box solution hit once, targets -3..3), the quadratic Lemma P1 identities f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3 (Z_1 = Z_2 + 1) and f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3 (Z_1 = Z_2 - 1) hold, a line-mode path (offsets affine along e_z - e_y) verifies on (z^a y^b, y^(b+1) z^(a+1)), a >= b + 2, and the shape cells (zy | eps), (zy | z), (zy | yz) with Z_1 = Z_2 + 1 close for Delta = 1, 2, 3 and the tail Delta >= 4 with no open region, while (zy | yz) with Z_1 = Z_2 - 1 closes at Delta = -1 using line mode; induction on runs: refining a run pattern's opaque tail (it ends, or one more run of the other letter and a new tail) partitions the word pairs (31 * 63 pairs with w_1 beginning with z, |w_i| <= 5, each in exactly one leaf), the patterns (zy | zy*), (zy | yz*), (zy* | z), (zy* | y), (zyz* | zy) with Z_1 = Z_2 + 1, Delta = 1 close with no open region (each an infinite family with unboundedly many runs) while (zy* | zy*) does not at the same budget, and common points match their definition, 51 of the 87 residual members at |w_i| <= 7 having only t = 1")
+    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones; Lemma Phi4 (Pisot signs of Y_1 - Y_2 against Z_1 - Z_2) and Lemma Phi5 (the Z_1 = Z_2 + 1 non-crossing shape w_1 = u y^(Y_1 - Y_2), pi(u) = pi(w_2) + e_z) hold on all 2,136 members with |w_i| <= 6; at |w_i| <= 7 the Lemma Phi6-Phi8 paths verify on 1,180 of the 1,267 non-crossing members with none failing, the delta = e_z cell leaves only (zz, z) at level 6, (z, empty) is not PIP, and the other cells leave 87 members decided at levels 3 to 6; the run-shape cover: solve_constraint partitions the solutions of sum_pos n - sum_neg n = target exactly (every box solution hit once, targets -3..3), the quadratic Lemma P1 identities f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3 (Z_1 = Z_2 + 1) and f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3 (Z_1 = Z_2 - 1) hold, a line-mode path (offsets affine along e_z - e_y) verifies on (z^a y^b, y^(b+1) z^(a+1)), a >= b + 2, and the shape cells (zy | eps), (zy | z), (zy | yz) with Z_1 = Z_2 + 1 close for Delta = 1, 2, 3 and the tail Delta >= 4 with no open region, while (zy | yz) with Z_1 = Z_2 - 1 closes at Delta = -1 using line mode; induction on runs: refining a run pattern's opaque tail (it ends, or one more run of the other letter and a new tail) partitions the word pairs (31 * 63 pairs with w_1 beginning with z, |w_i| <= 5, each in exactly one leaf), the patterns (zy | zy*), (zy | yz*), (zy* | z), (zy* | y), (zyz* | zy), (zyz* | yz), (z | z*), (z | y*), (z* | eps) -- the nine closed leaves of the run tree -- with Z_1 = Z_2 + 1, Delta = 1 close with no open region (each an infinite family with unboundedly many runs) while (zy* | zy*) does not at the same budget, and common points match their definition, 51 of the 87 residual members at |w_i| <= 7 having only t = 1")

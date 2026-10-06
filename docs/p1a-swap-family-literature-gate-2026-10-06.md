@@ -93,3 +93,10 @@ The decision stands: proceed, narrowed.
 
 *Same day, run-shape cover (A1′ note §3h).* Same target and tools, plus a line
 mode of the witness search; no new prior art. Decision unchanged.
+
+*Same day, induction on runs (A1′ note §3i).* Same target; the run patterns
+add opaque tails, which the opaque segments of §3f already support. No new
+prior art. Decision unchanged. Redirect recorded for the next step: the
+residue is mostly single excursions, so the next experiment is a witness
+argument inside an excursion, and a further literature check is due before
+it if it brings in non-intersecting lattice-path machinery.
