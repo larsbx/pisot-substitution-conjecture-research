@@ -321,3 +321,12 @@ by deleting it.
   the message may name addition where the old named multiplication, or the
   reverse (loop order i,k,j against i,j,k). · `kernel/psc/pisot.mojo`;
   `kernel/psc/periodic_pair.mojo`
+- 2026-10-06 · The 2026-10-04 session-probe replay pointed `MOJO_DIR` at the
+  retired `mojo/`; repointed to `kernel/`. All five Mojo probes compile
+  unchanged against the current APIs and reproduce the archived results
+  (vc_try radii 29,17,18 / 61,337 states / 716 recurrent; closure 276 + 72;
+  diagonal 1,080,828 / 1,153,308 of 1,154,040, 180/30; direct 4170 of 4344,
+  29,712 vertices), compared against the README index (the archived
+  `rerun_*.out` files were never committed; the fresh ones carry new
+  timings and were not written back). ·
+  `archive/2026-10-04/session-probes/probes/rerun.sh`
