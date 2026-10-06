@@ -330,3 +330,43 @@ by deleting it.
   `rerun_*.out` files were never committed; the fresh ones carry new
   timings and were not written back). ·
   `archive/2026-10-04/session-probes/probes/rerun.sh`
+- 2026-10-06 · `psc.real_root_sign` now builds its Tarski query on the
+  vendored `qpoly` (`normalize`, `derivative`, `mul`, `remainder`, `neg`,
+  `evaluate`, `variation_difference`); its `poly_trim`, `poly_deriv`,
+  `poly_mul` and `poly_rem` are deleted. `tarski_query`, `count_real_roots`,
+  `isolate_real_roots` and `sign_at_isolated_root` stay: `qpoly` has no Tarski
+  query and isolates only the largest root. One semantic difference: the old
+  helpers raised on a rejected rational, `qpoly` aborts (via `q_is_zero`), so
+  `tarski_query` now checks its inputs are accepted and raises first; accepted
+  rationals stay accepted under every operation used. Runtime unchanged:
+  13,530 `sign_at_isolated_root` calls take 15.7 s on each side;
+  `overlap_contracting_census` 615/615 s before, 647/614 s after;
+  `vertex_coincidence_census` 791/647 s before, 855/700 s after (run-to-run
+  noise is about 20%), output byte-identical. · `kernel/psc/real_root_sign.mojo`;
+  `kernel/tests/test_overlap_contracting.mojo`
+- 2026-10-06 · `psc.pisot` and `psc.pisot_screen` take the derivative,
+  negation, gcd and Cauchy root bound from the vendored `qpoly`;
+  `poly_derivative`, `cauchy_bound` (`3 + max floor|p_k/p_n|`, a looser
+  bound than `qpoly.root_bound`'s `1 + max |p_k|/|p_n|`; only ever an
+  enclosing interval, so no count changes), `pisot_screen.poly_gcd` and
+  `int_cauchy_bound` are deleted. Kept local after measurement: `poly_eval`
+  (unrolled; `qpoly.evaluate` is the reference algorithm, about 15% slower
+  in `pisot_polynomial_bench`), `poly_degree` (`qpoly.degree` copies),
+  `poly_rem` (keeps length, returns the dividend for a zero divisor where
+  `qpoly.remainder` aborts; `test_pisot_polynomials` pins it) and
+  `sturm_chain` of `p` itself: `qpoly.sturm_chain` passes to the squarefree
+  part first, and an all-`qpoly` `is_pisot_charpoly` ran about 17% slower on
+  the 3,375 monic cubics with `|c_i| <= 7`. The two chains differ only for
+  non-squarefree `p` with a root at a count endpoint, outside Sturm's
+  hypothesis: the plain chain gives `-1` on `(-1, 1]` for `(x - 1)(x + 1)^2`.
+  `is_pip` tests irreducibility first, and the `is_pisot_charpoly` verdicts
+  agree on all 3,375 cubics. The chain is now built once per cubic rather
+  than once per count: `test_census_library` 13.3/14.0 s to 8.5/8.2 s,
+  `census.mojo` 91/98 s to 84/88 s. Claim receipts and the full Mojo test log
+  are byte-identical before and after. · `kernel/psc/pisot.mojo`;
+  `kernel/psc/pisot_screen.mojo`
+- 2026-10-06 · Tooling pitfall: `tools/verify_all.sh` and a `uv tool`
+  `pytest` fail `manuscript source integrity` when `pypdf` is missing from
+  that interpreter. That is the pinned dev dependency (`pyproject.toml`), not a
+  manuscript defect; install `pypdf==6.19.0` into the interpreter that runs
+  it. · `tests/test_check_manuscript_source.py`

@@ -1,7 +1,7 @@
 """Exact regressions for the contracting lower bound (manuscript Proposition 5.42)."""
 
 from std.testing import assert_equal, assert_true
-from finite_exact.rat_q import Q
+from finite_exact.rat_q import Q, q_rejected
 from mojo_smoke.claims import require_contract, require_claim
 from psc.exact import q_int, q_poly
 from psc.overlap_contracting import (
@@ -63,6 +63,15 @@ def test_sturm_tarski_counts_and_signs() raises:
     # x^2 - 3 at the positive root of x^2 - 2 is negative
     var y: List[Int] = [-3, 0, 1]
     assert_equal(sign_at_isolated_root(P, q_poly(y), q_int(0), q_int(2)), -1)
+    # A rejected coefficient raises before the vendored qpoly arithmetic sees it.
+    var bad = q_poly(x)
+    bad[0] = q_rejected()
+    var raised = False
+    try:
+        _ = tarski_query(P, bad, q_int(0), q_int(2))
+    except:
+        raised = True
+    assert_true(raised)
 
 
 def check_bound(sigma: List[List[Int]], expect_complex: Bool, expect_max_m0: Int) raises:
