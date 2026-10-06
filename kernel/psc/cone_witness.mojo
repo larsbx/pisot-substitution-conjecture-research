@@ -1259,6 +1259,7 @@ struct LiftResult(Copyable, Movable):
     var a: Int
     var b: Int
     var gamma: List[List[Int]]
+    var why: String  # when not ok: the level and the condition that stopped it
 
     def __init__(out self):
         self.ok = False
@@ -1267,6 +1268,7 @@ struct LiftResult(Copyable, Movable):
         self.a = -1
         self.b = -1
         self.gamma = List[List[Int]]()
+        self.why = String()
 
 
 def lift_path(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], bound: Int, ly: Int, lz: Int) -> LiftResult:
@@ -1286,6 +1288,10 @@ def lift_path(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: In
     for l in range(len(steps)):
         var rp = apply_step_line(point, ap, bp, gp, steps[l])
         if not rp.ok:
+            out.why = "level " + String(l) + ": the point path does not replay"
+            return out^
+        if len(m_times_affine(fam, gr)) == 0:
+            out.why = "level " + String(l) + ": M gamma is quadratic on the region"
             return out^
         var cands = _line_candidates(fam, a, b, gr, bound, ly, lz)
         var best = -1
@@ -1309,6 +1315,7 @@ def lift_path(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: In
                 best_hard = hard
                 best_res = rc^
         if best < 0:
+            out.why = "level " + String(l) + ": no line candidate agrees with the point"
             return out^
         out.steps.append(cands[best].copy())
         for k in range(len(best_res.ineqs)):

@@ -3267,6 +3267,8 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
         var wp = search_witness_line(point, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z)
         if wp.found:
             var lr = lift_path(fam, point, ns, O, Y, wp.steps, OFFSET_BOUND, Y, Z)
+            if verbose and not (lr.ok and lr.a == lr.b):
+                print("  lift failed (path):", lr.why if not lr.ok else "ends off the diagonal")
             if lr.ok and lr.a == lr.b:
                 var ineqs = lr.ineqs.copy()
                 for i in range(3):
@@ -3290,6 +3292,8 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
             var cp = search_crossing(point, O, Y, OFFSET_BOUND, MAX_LEVEL - 2, Y, Z, Y, Z)
             if cp.found:
                 var lr = lift_path(fam, point, ns, O, Y, cp.steps, OFFSET_BOUND, Y, Z)
+                if verbose and not lr.ok:
+                    print("  lift failed (crossing):", lr.why)
                 var ineqs = lr.ineqs.copy()
                 if lr.ok and crossing_conditions(fam, lr.a, lr.b, lr.gamma, Y, Z, cp.close[0], ns, ineqs):
                     ineqs = _new_forms(_carving_forms(ineqs), reg)
