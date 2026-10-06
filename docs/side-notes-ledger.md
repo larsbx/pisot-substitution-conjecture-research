@@ -381,6 +381,29 @@ by deleting it.
   bound). · `p1a-a1-prime-2026-10-05.md` §3k;
   `kernel/tests/test_odd_letter_family_certificate.mojo`
 
+- 2026-10-06 · Theorem K's tail cells, what the obstruction is and is not.
+  **Not the mathematics:** in a seeded sample (seed 1, 400 draws,
+  `|w_2| <= 10`, `Delta <= 12`; `xlev`, scratch) of `s = +1` non-crossing
+  members, every coincidence level is `<= 5`, and `<= 4` for `Delta >= 4`;
+  members per `Delta` settle at about 63. Past a threshold depending on
+  `(u, w_2)`, the shared tile's path is the same for every `Delta`, its
+  `o`-side digit counted from the *end* of `y^Delta` (e.g. `zyzy y^Delta |
+  zyy` at level 3 for all `Delta >= 2`), so the certificate is affine in
+  `Delta`. **Not hidden Pisot constraints:** for `s = +1`, `f(1) < 0` is the
+  whole Pisot condition (exact `pisot`, 5,680 of 5,680 points of
+  `Y_2, Z_2 < 30`, `Delta < 30`), and 3,100 of them have `Z_2, Delta >= 2`.
+  **It is the cover:** line mode works in fixed-`Delta` cells because
+  `M (e_z − e_y) = (0, −Delta, −s)` is constant there; with `Delta = 1 + e`
+  symbolic a variable line coefficient makes `M gamma` quadratic, which line
+  mode refuses, and point-wise lifting from small-`e` base points carves
+  `e`-bounded slices. Uniform McCormick corners `(k, 0)` cut `{Z_2 >= k,
+  (k − 1) e >= 2 Y_2 + 4}` with no staircase but leave wedges. Also: the
+  non-tail cells never fell back to a non-member base point (now they do),
+  and carve complements were mostly empty (dropping implied forms and empty
+  complements took `zyz* | yzy* +zzz` from 15,612 regions to 3,441). ·
+  `p1a-a1-prime-2026-10-05.md` §3l.5; `kernel/odd_letter_family_certificate.mojo`
+  (`search_point`, `mccormick_forms`, `_new_forms`)
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing

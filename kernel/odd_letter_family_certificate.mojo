@@ -109,6 +109,9 @@ comptime RUN_TREE_PEEL = 3  # run_tree: value splits per pattern
 comptime GUIDED_PEEL_LIMIT = 4  # guided cover: value peels on a branch before a region is reported open
 comptime REPAIR_MAX_VALUE = 1 << 20  # a base point walked into a region stays far from overflow
 comptime PROPAGATE_ROUNDS = 16  # guided cover: rounds of integer bound propagation
+comptime SEARCH_NODES = 4000  # guided cover: nodes of the exact point search
+comptime SEARCH_SPAN = 8  # guided cover: values tried for an unbounded variable in the point search
+comptime FAR_CANDIDATES = 24  # guided tail cover: candidates tried with a large tail variable first
 comptime BASE_POINT_SEED = 20261006  # guided cover: seed of the base-point search
 comptime BASE_POINT_DRAWS = 300  # guided cover: generic draws before the constant fallbacks
 comptime REVEAL_MAX_LEVEL = 6  # reveal census: witness depth before the Lemma X closure counts
@@ -1563,32 +1566,37 @@ def _pisot_quadratic(counts: List[List[Int]], s: Int) -> List[List[Int]]:
     return out^
 
 
-def pisot_carve_forms(counts: List[List[Int]], s: Int, ns: List[Int]) -> List[List[Int]]:
-    """At a point `ns` where Lemma P1's quadratic form `f = a b + c` is >= 0
-    (no PIP member there; then a(p) >= 2, as f < 0 when a <= 1), affine
-    forms G_1 = a - 2, G_2 = b - b(p) and G_3 = 2 b + b(p) a - 2 b(p) + c:
-    where all three are >= 0, f = G_3 + (a - 2)(b - b(p)) >= 0 (McCormick),
-    and G_3(p) = f(p). Empty if f(ns) < 0."""
+def mccormick_forms(counts: List[List[Int]], s: Int, a0: Int, b0: Int) -> List[List[Int]]:
+    """Lemma P1's `f = a b + c` at the corner `(a0, b0)`: the affine forms
+    G_1 = a - a0, G_2 = b - b0, G_3 = a0 b + b0 a - a0 b0 + c, with
+    f = G_3 + G_1 G_2 identically, so f >= 0 where all three are >= 0."""
     var q = _pisot_quadratic(counts, s)
-    var ap = aff_eval(q[0], ns)
-    var bp = aff_eval(q[1], ns)
-    if ap * bp + aff_eval(q[2], ns) < 0 or ap < 2:
-        return List[List[Int]]()
-    # the quadrant a >= 2, b >= b(p): a(p) is replaced by 2, which keeps the
-    # coefficient of Delta's variables at 1 (no residue splits) while
-    # G_3(p) = f(p) >= 0 still holds, as (a(p) - 2)(b(p) - b(p)) = 0
-    ap = 2
     var g1 = q[0].copy()
-    g1[0] -= ap
+    g1[0] -= a0
     var g2 = q[1].copy()
-    g2[0] -= bp
-    var g3 = aff_add(aff_add(aff_scale(q[1], ap), aff_scale(q[0], bp)), q[2])
-    g3[0] -= ap * bp
+    g2[0] -= b0
+    var g3 = aff_add(aff_add(aff_scale(q[1], a0), aff_scale(q[0], b0)), q[2])
+    g3[0] -= a0 * b0
     var out = List[List[Int]]()
     out.append(g1^)
     out.append(g2^)
     out.append(g3^)
     return out^
+
+
+def pisot_carve_forms(counts: List[List[Int]], s: Int, ns: List[Int]) -> List[List[Int]]:
+    """At a point `ns` where Lemma P1's quadratic form `f = a b + c` is >= 0
+    (no PIP member there; then a(p) >= 2, as f < 0 when a <= 1), the
+    McCormick forms at the corner `(2, b(p))`: the quadrant contains the
+    point, as G_3(p) = f(p) - (a(p) - 2)(b(p) - b(p)) = f(p). The corner
+    `a0 = 2` keeps the coefficient of Delta's variables at 1. Empty if
+    f(ns) < 0."""
+    var q = _pisot_quadratic(counts, s)
+    var ap = aff_eval(q[0], ns)
+    var bp = aff_eval(q[1], ns)
+    if ap * bp + aff_eval(q[2], ns) < 0 or ap < 2:
+        return List[List[Int]]()
+    return mccormick_forms(counts, s, 2, bp)
 
 
 def pisot_cut(counts: List[List[Int]], s: Int) -> Bool:
@@ -2751,11 +2759,13 @@ struct GuidedRegion(Copyable, Movable):
     var subst: List[List[Int]]
     var assume: List[List[Int]]
     var depth: Int  # value peels behind it
+    var corner: Int  # uniform McCormick corners already applied
 
-    def __init__(out self, var subst: List[List[Int]], var assume: List[List[Int]], depth: Int):
+    def __init__(out self, var subst: List[List[Int]], var assume: List[List[Int]], depth: Int, corner: Int = 0):
         self.subst = subst^
         self.assume = assume^
         self.depth = depth
+        self.corner = corner
 
 
 def tighten(f: List[Int]) -> List[Int]:
@@ -2783,14 +2793,14 @@ def _with_assumptions(reg: GuidedRegion, more: List[List[Int]]) -> GuidedRegion:
     var a = reg.assume.copy()
     for k in range(len(more)):
         a.append(tighten(more[k]))
-    return GuidedRegion(reg.subst.copy(), a^, reg.depth)
+    return GuidedRegion(reg.subst.copy(), a^, reg.depth, reg.corner)
 
 
 def _region_subst(reg: GuidedRegion, k: Int, repl: List[Int], depth: Int) -> GuidedRegion:
     var a = _subst_var(reg.assume, k, repl)
     for i in range(len(a)):
         a[i] = tighten(a[i])
-    return GuidedRegion(_subst_var(reg.subst, k, repl), a^, depth)
+    return GuidedRegion(_subst_var(reg.subst, k, repl), a^, depth, reg.corner)
 
 
 def _region_live(reg: GuidedRegion, k: Int) -> Bool:
@@ -2818,12 +2828,16 @@ def _ceil_div(a: Int, b: Int) -> Int:
 
 
 def propagate_bounds(assume: List[List[Int]], m: Int) -> Box:
+    return propagate_bounds_from(assume, Box(m))
+
+
+def propagate_bounds_from(assume: List[List[Int]], var box: Box) -> Box:
     """Bound propagation over the integers: from `a_k n_k + R >= 0` and the
     largest value `R` can take on the current box, `a_k n_k >= -max R`.
     Every bound holds at every integer point of the region, so a crossed
     pair of bounds proves it empty. Iterated to a fixed point, at most
-    `PROPAGATE_ROUNDS` rounds."""
-    var box = Box(m)
+    `PROPAGATE_ROUNDS` rounds; `propagate_bounds_from` starts from a given
+    box (its bounds assumed to hold)."""
     for _ in range(PROPAGATE_ROUNDS):
         var changed = False
         for i in range(len(assume)):
@@ -3053,15 +3067,94 @@ def _repair_into(assume: List[List[Int]], start: List[Int]) -> List[Int]:
     return ns^ if total == 0 else List[Int]()
 
 
-def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, want_member: Bool) raises -> List[Int]:
+struct PointSearch(Copyable, Movable):
+    """A point of a region (`point` nonempty), or a proof that it has none
+    (`empty`: the search exhausted every branch untruncated), or neither."""
+
+    var point: List[Int]
+    var empty: Bool
+
+    def __init__(out self, var point: List[Int], empty: Bool):
+        self.point = point^
+        self.empty = empty
+
+
+def search_point(assume: List[List[Int]], m: Int) -> PointSearch:
+    """Depth-first search over values with bound propagation at every node:
+    fix the first free variable that occurs in an assumption to each value
+    of its domain (at most `SEARCH_SPAN` values when unbounded, which
+    truncates the search), and accept a box whose lower corner satisfies
+    every assumption. A variable in no assumption is free and stays at its
+    lower bound. Each branching partitions a domain and propagation keeps
+    every integer point, so an untruncated search that finds nothing within
+    `SEARCH_NODES` nodes proves the region empty."""
+    var occurs = List[Bool](length=m, fill=False)
+    for i in range(len(assume)):
+        for k in range(m):
+            if assume[i][k + 1] != 0:
+                occurs[k] = True
+    var root = propagate_bounds(assume, m)
+    if root.empty:
+        return PointSearch(List[Int](), True)
+    var stack = List[Box]()
+    stack.append(root^)
+    var nodes = 0
+    var truncated = False
+    while len(stack) > 0:
+        if nodes >= SEARCH_NODES:
+            truncated = True
+            break
+        nodes += 1
+        var box = stack.pop()
+        if _satisfies(assume, box.lo):
+            return PointSearch(box.lo.copy(), False)
+        var pick = -1
+        for k in range(m):
+            if occurs[k] and (not box.bounded[k] or box.lo[k] < box.hi[k]):
+                pick = k
+                break
+        if pick < 0:
+            continue  # every occurring variable fixed, and the point fails
+        var top = box.hi[pick]
+        if not box.bounded[pick]:
+            top = box.lo[pick] + SEARCH_SPAN - 1
+            truncated = True
+        # push larger values first, so the smallest is tried first
+        var v = top
+        while v >= box.lo[pick]:
+            var child = box.copy()
+            child.lo[pick] = v
+            child.hi[pick] = v
+            child.bounded[pick] = True
+            var next = propagate_bounds_from(assume, child^)
+            if not next.empty:
+                stack.append(next^)
+            v -= 1
+    return PointSearch(List[Int](), not truncated)
+
+
+def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, want_member: Bool, far: Int = -1) raises -> List[Int]:
     """A point of the region (its assumptions hold there): the first member
     among the candidates, each walked into the region, or, unless
-    `want_member`, the first point."""
+    `want_member`, the first point. With `far >= 0` (a tail cell's `e`),
+    candidates with that coordinate large come first: past the threshold
+    where a tail's certificate no longer depends on `e`, a lifted one
+    covers every larger `e` at once."""
     var m = len(reg.subst[0]) - 1
     var box = propagate_bounds(reg.assume, m)
     if box.empty:
         return List[Int]()
     var tries = _base_candidates(m)
+    if far >= 0:
+        var near = tries^
+        tries = List[List[Int]]()
+        for t in range(min(FAR_CANDIDATES, len(near))):
+            for e in [40, 20, 10]:
+                var c = near[t].copy()
+                c[far] = e
+                tries.append(c^)
+        for t in range(len(near)):
+            tries.append(near[t].copy())
     for t in range(len(tries)):
         var c = tries[t].copy()
         for k in range(m):
@@ -3075,10 +3168,12 @@ def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, 
             return ns^
         if _member_at(pat, reg.subst, ns, screen):
             return ns^
+    if not want_member:
+        return search_point(reg.assume, m).point.copy()
     return List[Int]()
 
 
-def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int, tail: Bool = False, verbose: Bool = False, nonmember_points: Bool = False, cut_first: Bool = True) raises -> ShapeCover:
+def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int, tail: Bool = False, verbose: Bool = False, cut_first: Bool = True, corners: Int = 0) raises -> ShapeCover:
     """Cover the pattern's members in one delta cell by certificate-guided
     partition. Regions carry their own inequalities. At a point of each region
     find a certificate (an exact line-mode path, else a Lemma X closure), lift
@@ -3108,15 +3203,28 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
         if pisot_cut_under(pattern_counts(pat, reg.subst), s, prover):
             out.cut += 1
             continue
+        if reg.corner < corners - 1:
+            # a uniform McCormick corner (2 + corner, 0): Lemma P1's f >= 0
+            # on the quadrant, whatever the base point
+            var g = mccormick_forms(pattern_counts(pat, reg.subst), s, 2 + reg.corner, 0)
+            var inside = _with_assumptions(reg, g)
+            if not mccormick_cut(pattern_counts(pat, inside.subst), s, g, Prover(inside.assume.copy())):
+                raise Error("a McCormick corner is not cut")
+            var next = GuidedRegion(reg.subst.copy(), reg.assume.copy(), reg.depth, reg.corner + 1)
+            _push_complements(stack, next, g)
+            out.cut += 1
+            continue
         var any_live = False
         for k in range(m):
             if _region_live(reg, k):
                 any_live = True
-        var ns = _base_point_in(pat, reg, screen, not (any_live and nonmember_points))
-        if len(ns) == 0 and any_live and nonmember_points:
-            ns = _base_point_in(pat, reg, screen, False)
+        # a member if the candidates hit one, else any point of a live region
+        var far = m - 1 if tail else -1
+        var ns = _base_point_in(pat, reg, screen, True, far)
+        if len(ns) == 0 and any_live:
+            ns = _base_point_in(pat, reg, screen, False, far)
         if len(ns) == 0:
-            if not any_live:
+            if not any_live or search_point(reg.assume, m).empty:
                 out.not_member += 1
                 continue
             if reg.depth >= GUIDED_PEEL_LIMIT:
@@ -3165,7 +3273,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                     if not _is_zero_form(lr.gamma[i]):
                         ineqs.append(lr.gamma[i].copy())
                         ineqs.append(aff_scale(lr.gamma[i], -1))
-                ineqs = _carving_forms(ineqs)
+                ineqs = _new_forms(_carving_forms(ineqs), reg)
                 if not _satisfies(ineqs, ns):
                     raise Error("a lifted path does not hold at its own base point")
                 var inside = _with_assumptions(reg, ineqs)
@@ -3184,7 +3292,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                 var lr = lift_path(fam, point, ns, O, Y, cp.steps, OFFSET_BOUND, Y, Z)
                 var ineqs = lr.ineqs.copy()
                 if lr.ok and crossing_conditions(fam, lr.a, lr.b, lr.gamma, Y, Z, cp.close[0], ns, ineqs):
-                    ineqs = _carving_forms(ineqs)
+                    ineqs = _new_forms(_carving_forms(ineqs), reg)
                     if not _satisfies(ineqs, ns):
                         raise Error("a lifted crossing does not hold at its own base point")
                     var inside = _with_assumptions(reg, ineqs)
@@ -3242,9 +3350,22 @@ def _mccormick_carve(pat: RunPattern, s: Int, reg: GuidedRegion, ns: List[Int], 
     return True
 
 
+def _new_forms(forms: List[List[Int]], reg: GuidedRegion) -> List[List[Int]]:
+    """The forms the region does not already imply (by the prover): an
+    implied form carves nothing, and its complement is empty."""
+    var prover = Prover(reg.assume.copy())
+    var out = List[List[Int]]()
+    for k in range(len(forms)):
+        if not prover.nonneg(forms[k]):
+            out.append(forms[k].copy())
+    return out^
+
+
 def _push_complements(mut stack: List[GuidedRegion], reg: GuidedRegion, forms: List[List[Int]]):
     """The rest of `reg` once the region where every form is >= 0 is settled:
-    for each j, the forms before j hold and form j is <= -1. A partition."""
+    for each j, the forms before j hold and form j is <= -1. A partition;
+    pieces shown empty are not pushed."""
+    var m = len(reg.subst[0]) - 1
     for j in range(len(forms)):
         var more = List[List[Int]]()
         for i in range(j):
@@ -3252,7 +3373,9 @@ def _push_complements(mut stack: List[GuidedRegion], reg: GuidedRegion, forms: L
         var neg = aff_scale(forms[j], -1)
         neg[0] -= 1
         more.append(neg^)
-        stack.append(_with_assumptions(reg, more))
+        var piece = _with_assumptions(reg, more)
+        if not _assume_empty(piece.assume, m):
+            stack.append(piece^)
 
 
 def _peel_variable_in(reg: GuidedRegion, m: Int) -> Int:
@@ -3363,7 +3486,7 @@ def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Boo
         stack = suffix_roots(s, delta)
     while len(stack) > 0:
         var pat = stack.pop()
-        var c = cover_pattern_guided(pat, s, delta, budget, tail, False, tail)
+        var c = cover_pattern_guided(pat, s, delta, budget, tail)
         if c.open == 0:
             if verbose:
                 print("    closed ", pat, "  regions", c.regions, " certified", c.certified, " (line", c.line_certified, ", crossing", c.crossing_certified, ") cut", c.cut, " not member", c.not_member, flush=True)
