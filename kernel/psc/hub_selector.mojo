@@ -101,13 +101,9 @@ def first_child_hub_residual(
     var raw_bottom = h[p[1]]
     if raw_top == raw_bottom:
         raise Error("viable strict pair unexpectedly coalesces at first child")
-    var child_side = -1
-    if raw_top == hub:
-        child_side = 0
-    elif raw_bottom == hub:
-        child_side = 1
-    else:
+    if raw_top != hub and raw_bottom != hub:
         raise Error("viable first child lost the complementary hub")
+    var child_side = 0 if raw_top == hub else 1
     return parent_side ^ child_side
 
 

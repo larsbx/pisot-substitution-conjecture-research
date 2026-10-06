@@ -16,7 +16,10 @@ from a1_normal_form_census import (
     CLASS_C,
     CLASS_D,
     DEEP_LEVEL,
+    FAMILY_F1,
+    FAMILY_F2,
     X,
+    Y,
     census,
     class_member,
     f_at,
@@ -24,7 +27,12 @@ from a1_normal_form_census import (
     normal_form,
     residual_points,
     shared_tile_at,
+    swap_census,
+    swap_member,
     theorem_e_check,
+    y_family_check,
+    y_family_member,
+    y_family_residue,
 )
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
@@ -278,6 +286,126 @@ def test_the_mirror_relabelling_preserves_the_verdict() raises:
     assert_equal(coincidence_level(sigma, X, C), coincidence_level(mirror, X, C))
 
 
+def test_corollary_e2_theorem_e_gives_every_pair() raises:
+    """Prefix transfer: `sigma^(n+1)(i)` begins with `sigma^n(h(i))`, so a
+    coincidence of `{h(i), h(j)}` at level n is one of `{i, j}` at level n + 1.
+    On Theorem E's class `h(y) = t` lies in `{x, c}`, so `{x, y}` and `{c, y}`
+    are coincident within one level of `{x, c}`, or at level 1."""
+    var members = 0
+    for cls in range(4):
+        for p in range(6):
+            for q in range(6):
+                for r in range(6):
+                    var sigma = class_member(cls, p, q, r)
+                    var m = Mat3(substitution_incidence(sigma))
+                    if abs(m.det()) != 2 or not is_pip(m):
+                        continue
+                    members += 1
+                    var lxc = coincidence_level(sigma, X, C)
+                    var lxy = coincidence_level(sigma, X, Y)
+                    var lcy = coincidence_level(sigma, C, Y)
+                    assert_true(lxc >= 1 and lxy >= 1 and lcy >= 1)
+                    assert_true(lxy <= lxc + 1)
+                    assert_true(lcy <= lxc + 1)
+    assert_equal(members, 87)
+
+
+def test_proposition_y_closes_the_two_sigma_x_equals_y_families() raises:
+    """Family F1 (`sigma(c) = c y^q c`, `sigma(y) = x y^r c`) has det -2 and
+    family F2 (`sigma(c) = x y^q x`, `sigma(y) = x y^r c`) det 2 at every point.
+    Lemma L_y names position 2 of `{x, y}` at level 2 when `r >= 2`; Lemma L_cy
+    names position `q + r^2 + r + 1` of `{c, y}` at level 2 when `q > r >= 1`,
+    which Lemma P1 forces on every PIP point of F1. What is left is (2,1) in F1
+    and (1,1), (2,1) in F2."""
+    var b = y_family_check(FAMILY_F1, 10)
+    assert_equal(b.points, 121)
+    assert_equal(b.det_held, 121)
+    assert_equal(b.pip_points, 30)
+    assert_equal(b.pisot_conditions_held, 30)
+    assert_equal(b.ly_verified, 99)
+    assert_equal(b.ly_failed, 0)
+    assert_equal(b.lcy_verified, 45)
+    assert_equal(b.lcy_failed, 0)
+    assert_equal(b.pip_outside_lcy, 0)
+    assert_equal(b.residual_found, 1)
+    assert_equal(b.residual_unexpected, 0)
+    var c = y_family_check(FAMILY_F2, 10)
+    assert_equal(c.points, 121)
+    assert_equal(c.det_held, 121)
+    assert_equal(c.pip_points, 73)
+    assert_equal(c.pisot_conditions_held, 73)
+    assert_equal(c.ly_verified, 99)
+    assert_equal(c.ly_failed, 0)
+    assert_equal(c.residual_found, 2)
+    assert_equal(c.residual_unexpected, 0)
+    # the residue, decided exactly
+    var rb = y_family_member(FAMILY_F1, 2, 1)
+    assert_equal(coincidence_level(rb, X, Y), 4)
+    assert_equal(coincidence_level(rb, C, Y), 2)
+    assert_equal(coincidence_level(rb, X, C), 3)
+    var res = y_family_residue(FAMILY_F2)
+    for k in range(len(res)):
+        assert_equal(coincidence_level(y_family_member(FAMILY_F2, res[k][0], res[k][1]), X, Y), 3)
+
+
+def test_the_other_sigma_x_equals_y_endings_have_no_pip_member() raises:
+    """With `sigma(x) = y`, `sigma(c) = a y^q b`, `sigma(y) = x y^r e`, the
+    cases a = c and a = x keep one ending each: the other six are non-primitive
+    (some row of M is zero or a unit row) or have two equal rows."""
+    for a in [C, X]:
+        for b in [X, C]:
+            for e in [X, C]:
+                if (a == C and b == C and e == C) or (a == X and b == X and e == C):
+                    continue
+                for q in range(8):
+                    for r in range(8):
+                        var img_c = List[Int]([a])
+                        for _ in range(q):
+                            img_c.append(Y)
+                        img_c.append(b)
+                        var img_y = List[Int]([X])
+                        for _ in range(r):
+                            img_y.append(Y)
+                        img_y.append(e)
+                        var sigma = List[List[Int]]()
+                        sigma.append(List[Int]([Y]))
+                        sigma.append(img_c^)
+                        sigma.append(img_y^)
+                        assert_false(is_pip(Mat3(substitution_incidence(sigma))))
+
+
+def test_the_swap_family_sweep_is_coincident_and_its_deep_tail_does_not_move() raises:
+    """The open part of §3c, swept exactly: `sigma(x) = c y^p s_x`,
+    `sigma(c) = x y^q s_c`, `sigma(y) = t y^r s_y`. Ten endings carry PIP
+    members with `|det M| = 2`, in five mirror pairs; `{x, c}` is coincident on
+    every one (a negative would raise). Between bounds 6 and 9 the rows at
+    levels 5 to 7 are identical while levels 2 to 4 grow -- level 4 grows
+    because it contains infinite lines, so a proof needs level-4 lemmas."""
+    var a = swap_census(6)
+    assert_equal(a.members, 328)
+    assert_equal(a.max_level, 7)
+    var want6 = List[Int]([31, 36, 36, 16, 45, 0, 0, 45, 0, 0, 0, 0, 16, 36, 36, 31])
+    for k in range(16):
+        assert_equal(a.per_ending[k], want6[k])
+    assert_equal(a.levels.count(2), 114)
+    assert_equal(a.levels.count(3), 160)
+    assert_equal(a.levels.count(4), 38)
+    var b = swap_census(9)
+    assert_equal(b.members, 724)
+    assert_equal(b.max_level, 7)
+    assert_equal(b.levels.count(2), 276)
+    assert_equal(b.levels.count(3), 378)
+    assert_equal(b.levels.count(4), 54)
+    for k in range(5, 8):
+        assert_equal(a.levels.count(k), b.levels.count(k))
+    assert_equal(b.levels.count(5), 8)
+    assert_equal(b.levels.count(6), 6)
+    assert_equal(b.levels.count(7), 2)
+    # the deepest member and its mirror
+    assert_equal(coincidence_level(swap_member(0, 1, 0, X, C, X, X), X, C), 7)
+    assert_equal(coincidence_level(swap_member(1, 0, 0, X, C, C, C), X, C), 7)
+
+
 def main() raises:
     test_the_normal_form_is_built_as_proposition_d_states_it()
     print("[PASS] test_the_normal_form_is_built_as_proposition_d_states_it")
@@ -303,4 +431,12 @@ def main() raises:
     print("[PASS] test_the_eight_excluded_endings_have_no_pip_member")
     test_the_mirror_relabelling_preserves_the_verdict()
     print("[PASS] test_the_mirror_relabelling_preserves_the_verdict")
-    require_contract("Theorem E certificate (A1' on the catch-up-free |det M| = 2 class): the eight surviving endings are four mirror classes A-D and the other eight have no PIP member (four non-primitive, two det 0, two with left eigenvector (1,-1,0) for eigenvalue 2); f(1) and f(-1) are affine in (p,q,r) and every PIP point has both negative; lemmas L_BC and L_D (level 2) and L_A (level 3) name explicit positions, and at bound 11 all 453 named witnesses are shared tiles with none failing, over 383 PIP points; the PIP points no lemma covers are exactly the 27 listed (A 3, B 12, C 4, D 8), and the exact coincidence_level decides every one coincident at levels 3 to 7; the B line (n,0,1) has f(-1) = n - 12 and the D line (1,0,n) has f(1) = n - 3, so neither is PIP past its bound; the x <-> c mirror preserves PIP, |det M| and the level. Also the earlier sweep pins: A' holds at bounds 5 and 8 (174 and 420 members), deepest level 7, level-4-and-up rows identical (8/2/2/2) while levels 2 and 3 grow; no member merged at the endpoint; p = q = r = 0 members have all column sums 2 and none is PIP; deepest member sigma(x) = xyc, sigma(c) = cx, sigma(y) = cyc; a bound past MAX_BOUND is refused")
+    test_corollary_e2_theorem_e_gives_every_pair()
+    print("[PASS] test_corollary_e2_theorem_e_gives_every_pair")
+    test_proposition_y_closes_the_two_sigma_x_equals_y_families()
+    print("[PASS] test_proposition_y_closes_the_two_sigma_x_equals_y_families")
+    test_the_other_sigma_x_equals_y_endings_have_no_pip_member()
+    print("[PASS] test_the_other_sigma_x_equals_y_endings_have_no_pip_member")
+    test_the_swap_family_sweep_is_coincident_and_its_deep_tail_does_not_move()
+    print("[PASS] test_the_swap_family_sweep_is_coincident_and_its_deep_tail_does_not_move")
+    require_contract("Theorem E certificate (A1' on the catch-up-free |det M| = 2 class): the eight surviving endings are four mirror classes A-D and the other eight have no PIP member (four non-primitive, two det 0, two with left eigenvector (1,-1,0) for eigenvalue 2); f(1) and f(-1) are affine in (p,q,r) and every PIP point has both negative; lemmas L_BC and L_D (level 2) and L_A (level 3) name explicit positions, and at bound 11 all 453 named witnesses are shared tiles with none failing, over 383 PIP points; the PIP points no lemma covers are exactly the 27 listed (A 3, B 12, C 4, D 8), and the exact coincidence_level decides every one coincident at levels 3 to 7; the B line (n,0,1) has f(-1) = n - 12 and the D line (1,0,n) has f(1) = n - 3, so neither is PIP past its bound; the x <-> c mirror preserves PIP, |det M| and the level. Also the earlier sweep pins: A' holds at bounds 5 and 8 (174 and 420 members), deepest level 7, level-4-and-up rows identical (8/2/2/2) while levels 2 and 3 grow; no member merged at the endpoint; p = q = r = 0 members have all column sums 2 and none is PIP; deepest member sigma(x) = xyc, sigma(c) = cx, sigma(y) = cyc; a bound past MAX_BOUND is refused. Corollary E2 and Proposition Y: on Theorem E's class {x,y} and {c,y} are coincident within one level of {x,c} (87 PIP members at bound 5); the sigma(x) = y family F1 (det -2) and family F2 (det 2) have L_y at position 2 for r >= 2 and, in F1, L_cy at position q + r^2 + r + 1 for q > r >= 1 with no PIP point outside it; at bound 10 F1 has 30 PIP points and F2 73, all with f(1), f(-1) < 0; the residue is F1 (2,1) at levels {x,y} 4, {c,y} 2, {x,c} 3 and F2 (1,1), (2,1) at {x,y} level 3; the six other sigma(x) = y endings have no PIP member. Swap-family sweep (exploratory, exact): 328 and 724 PIP |det M| = 2 members at bounds 6 and 9 over ten endings, all {x,c}-coincident, deepest level 7 at (0,1,0) ending (x,c,x,x) and its mirror, level 5-7 rows 8/6/2 identical at both bounds")

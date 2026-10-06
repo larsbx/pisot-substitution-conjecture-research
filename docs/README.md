@@ -9,17 +9,21 @@ For definitions and implementation authority, use the generated
 single structured source is `catalogues/mathematical_objects.toml`; edit the
 TOML and regenerate rather than hand-editing the Markdown.
 
-## What the 2026-10-05 results establish
+## What the 2026-10-05 and 2026-10-06 results establish
 
-The results of 2026-10-05 are below, each with an exact certificate; Theorem E,
-the first row, is the only one that proves a statement on an infinite class
-of substitutions outright rather than reducing or locating one. They
+The results of 2026-10-05 and 2026-10-06 are below, each with an exact
+certificate; the first three rows, Theorem K, Corollary H1 and Theorem E, are the ones that
+prove a statement on an infinite class of substitutions outright rather than
+reducing or locating one. They
 are stated here positively, because each note's own limits section is
 deliberately long and should not be mistaken for the result.
 
 | Result | What it establishes | Where |
 | --- | --- | --- |
+| **Theorem K** (Proposition O with Corollary H1) | On the **whole** catch-up-free `|det M| = 2` class, all-pairs strong coincidence holds except possibly on one explicit family (`sigma(o) = y`, `sigma(y) = o w_1 o`, `sigma(z) = o w_2 o`); the one-odd-letter part closes by prefix transfer and Barge–Diamond outside it. **All 210 catch-up-free corpus specimens lie outside it**, so they satisfy strong coincidence by proof rather than census | [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) §3e |
+| **Corollary H1** (Theorems G, H) | **Every PIP, catch-up-free substitution with `|det M| = 2` and two odd letters satisfies the strong coincidence condition for every pair of letters** — an infinite class, every image length, 192 of the 210 catch-up-free corpus specimens. Theorem G reduces it to one pair in one explicit three-parameter family; Theorem H settles that family with a new kind of certificate, **parametric witness paths**: each proves a shared tile on a whole cone of parameters by one exact affine check. 42 certified cones, 6 Lemma P1 cuts and 20 exactly decided substitutions cover it; cross-checked against Theorem E's hand lemma L_D, the actual words at 246 sample points, and the exact screen on all 892 members up to parameter 10 | [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) §§3c–3d |
 | **Theorem E** | On the catch-up-free `|det M| = 2` class, **any two distinct letters fixed by the first-letter map are eventually coincident** — every substitution in the class, of every image length, not a finite list. So case (i) of #138's aligned template cannot occur anywhere on that class, which contains all 210 catch-up-free corpus specimens. Proof: explicit normal form, four mirror classes, three witness lemmas with named positions, two affine Pisot inequalities cutting the remainder to 27 substitutions, each decided exactly. 453 named witnesses certified in Mojo and 1,988 in an independent check, none failing | [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) §3b |
+| **Corollary E2 + Proposition Y + Theorem G** | The reduction behind Corollary H1, from one pair to **all pairs**: coincidence of `{h(i), h(j)}` at level `n` is one of `{i, j}` at level `n + 1`, so Theorem E gives the **strong coincidence condition for every pair** on its class, and Proposition Y gives it on the two families with an image of length one (two witness lemmas, a residue of three substitutions). On the whole catch-up-free `|det M| = 2` class with two odd letters, all-pairs strong coincidence is thereby **reduced to one pair in one explicit family** (the swap family), which Theorem H then proves | [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) §3c |
 | **Proposition LC** | The leftmost child is a *function*, so the obstructions to `CU` are exactly the terminal cycles of that function — and every one of them is a **prefix-vs-interior periodic pair**: a prefix occurrence `sigma^r(i) = i U` on one side, an interior occurrence `sigma^r(j) = Q j V` on the other, offset `w_0 = (I − M^r)^{-1} ab(Q)`. The half-degenerate companion of Theorem B. Verified on **10,584 / 10,584** terminal cycles of all 4,554 corpus specimens, none capped, none failing | [`p1b-leftmost-chain-periodic-pair-2026-10-05.md`](p1b-leftmost-chain-periodic-pair-2026-10-05.md) |
 | **Corollary LC4** | Those cycles come in **mirror pairs** of opposite offset sign, so their number is always even. Confirmed on all 210 catch-up-free specimens (counts 2, 4, 6, 8, 10 — never odd) | same, §8a |
 | **Corollary LC5** | A box graph with **no** terminal leftmost cycle has `Z(s) = ∅` for every seed, so finiteness holds for that substitution. **Covers 1,794 of the 4,554 corpus specimens** by a certificate needing only the leftmost function — one walk per vertex, no closure analysis, no depth bound | same, §8a |
@@ -307,6 +311,12 @@ These are reference/index additions only. They do not establish #84, #138,
   descendant (Proposition FP), with the remainder after offset zero bounded by
   `S(sigma)`; with Proposition V and Theorem S this is PDS plus all-pairs
   aligned strong coincidence (Corollary FP′). Changes no status.
+- `p1a-swap-family-literature-gate-2026-10-06.md` — stop/go before Theorem H:
+  Berthé–Bourdon–Jolivet–Siegel (2016) is the closest generic framework for
+  infinite families but is unimodular and product-based; Barge's
+  beta-substitution theorem has a different normal form; Akiyama's
+  equivalence shows strong coincidence alone is not PDS. Decision "proceed,
+  narrowed" to the swap family and the parametric witness-path certificate.
 - `pds-strong-coincidence-literature-gate-2026-10-04.md` — stop/go: Akiyama–Lee
   2014 Corollary 4.5 gives PDS ⇒ all-pairs prefix strong coincidence for
   irreducible Pisot substitutions (non-unit height step via Theorem R);

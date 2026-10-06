@@ -266,8 +266,14 @@ def shared_tile_at(sigma: List[List[Int]], level: Int, position: Int) -> Bool:
     """Position `position` of `sigma^level(x)` and `sigma^level(c)` carries the
     same letter after equal Parikh prefixes. Equal Parikh prefixes have equal
     length, so one position indexes both words."""
-    var u = _power_image(sigma, X, level)
-    var w = _power_image(sigma, C, level)
+    return shared_tile_between(sigma, X, C, level, position)
+
+
+def shared_tile_between(sigma: List[List[Int]], a: Int, b: Int, level: Int, position: Int) -> Bool:
+    """The same test for the pair `{a, b}`: position `position` of
+    `sigma^level(a)` and `sigma^level(b)` is a shared tile."""
+    var u = _power_image(sigma, a, level)
+    var w = _power_image(sigma, b, level)
     if position >= len(u) or position >= len(w):
         return False
     var pu = List[Int](length=3, fill=0)
@@ -375,4 +381,185 @@ def theorem_e_check(bound: Int) raises -> TheoremECheck:
                             out.residual_found += 1
                         else:
                             out.residual_unexpected += 1
+    return out^
+
+
+# ---------------------------------------------------------------------------
+# Proposition Y (docs/p1a-a1-prime-2026-10-05.md §3c): the two sigma(x) = y
+# families of the |O| = 2 class whose H-cycles are not closed by Theorem E,
+# by a single-letter image, or by Barge-Diamond. Named positions only.
+# ---------------------------------------------------------------------------
+
+comptime FAMILY_F1 = 0  # sigma(x) = y, sigma(c) = c y^q c, sigma(y) = x y^r c; det M = -2
+comptime FAMILY_F2 = 1  # sigma(x) = y, sigma(c) = x y^q x, sigma(y) = x y^r c; det M = 2
+
+
+def y_family_member(fam: Int, q: Int, r: Int) raises -> List[List[Int]]:
+    if fam != FAMILY_F1 and fam != FAMILY_F2:
+        raise Error("Proposition Y has two families")
+    var end = C if fam == FAMILY_F1 else X
+    var img_c = List[Int]([end])
+    for _ in range(q):
+        img_c.append(Y)
+    img_c.append(end)
+    var img_y = List[Int]([X])
+    for _ in range(r):
+        img_y.append(Y)
+    img_y.append(C)
+    var sigma = List[List[Int]]()
+    sigma.append(List[Int]([Y]))
+    sigma.append(img_c^)
+    sigma.append(img_y^)
+    return sigma^
+
+
+def y_family_residue(fam: Int) raises -> List[List[Int]]:
+    """The PIP points `(q, r)` with `r <= 1`, where Lemma L_y names nothing."""
+    var out = List[List[Int]]()
+    if fam == FAMILY_F1:
+        out.append(List[Int]([2, 1]))
+    elif fam == FAMILY_F2:
+        out.append(List[Int]([1, 1]))
+        out.append(List[Int]([2, 1]))
+    else:
+        raise Error("Proposition Y has two families")
+    return out^
+
+
+struct YFamilyCheck(Copyable, Movable):
+    var points: Int
+    var det_held: Int
+    var pip_points: Int
+    var pisot_conditions_held: Int
+    var ly_verified: Int
+    var ly_failed: Int
+    var lcy_verified: Int
+    var lcy_failed: Int
+    var pip_outside_lcy: Int
+    var residual_found: Int
+    var residual_unexpected: Int
+
+    def __init__(out self):
+        self.points = 0
+        self.det_held = 0
+        self.pip_points = 0
+        self.pisot_conditions_held = 0
+        self.ly_verified = 0
+        self.ly_failed = 0
+        self.lcy_verified = 0
+        self.lcy_failed = 0
+        self.pip_outside_lcy = 0
+        self.residual_found = 0
+        self.residual_unexpected = 0
+
+
+def _in_y_residue(fam: Int, q: Int, r: Int) raises -> Bool:
+    var pts = y_family_residue(fam)
+    for k in range(len(pts)):
+        if pts[k][0] == q and pts[k][1] == r:
+            return True
+    return False
+
+
+def y_family_check(fam: Int, bound: Int) raises -> YFamilyCheck:
+    """Over every `(q, r)` with both at most `bound`: `det M` is the family's
+    constant; every PIP point satisfies `f(1) < 0` and `f(-1) < 0`; Lemma L_y's
+    position 2 is a shared tile of `{x, y}` at level 2 whenever `r >= 2`; in
+    family F1, Lemma L_cy's position `q + r^2 + r + 1` is a shared tile of
+    `{c, y}` at level 2 whenever `q > r >= 1`, and no PIP point lies outside
+    that region; the PIP points with `r <= 1` are exactly the listed residue."""
+    if bound < 0 or bound > MAX_BOUND:
+        raise Error("the Proposition Y bound must lie in 0..", String(MAX_BOUND))
+    var want_det = -2 if fam == FAMILY_F1 else 2
+    var screen = CubicScreen()
+    var out = YFamilyCheck()
+    for q in range(bound + 1):
+        for r in range(bound + 1):
+            var sigma = y_family_member(fam, q, r)
+            var m = Mat3(substitution_incidence(sigma))
+            out.points += 1
+            if m.det() == want_det:
+                out.det_held += 1
+            var pip = screen.is_pip(m)
+            if pip:
+                out.pip_points += 1
+                if f_at(m, 1) < 0 and f_at(m, -1) < 0:
+                    out.pisot_conditions_held += 1
+            if r >= 2:
+                if shared_tile_between(sigma, X, Y, 2, 2):
+                    out.ly_verified += 1
+                else:
+                    out.ly_failed += 1
+            elif pip:
+                if _in_y_residue(fam, q, r):
+                    out.residual_found += 1
+                else:
+                    out.residual_unexpected += 1
+            if fam == FAMILY_F1:
+                if q > r and r >= 1:
+                    if shared_tile_between(sigma, C, Y, 2, q + r * r + r + 1):
+                        out.lcy_verified += 1
+                    else:
+                        out.lcy_failed += 1
+                elif pip:
+                    out.pip_outside_lcy += 1
+    return out^
+
+
+# ---------------------------------------------------------------------------
+# The swap family (docs/p1a-a1-prime-2026-10-05.md §3c): the one part of the
+# |O| = 2 class that §3c's reduction does not close. h swaps x and c, so the
+# pair {x, c} is its own H-image and no transfer reaches it. This is an exact
+# sweep -- the decision is coincidence_level, so a negative would raise -- and
+# not the proof, which is Theorem H in swap_family_certificate.mojo.
+# ---------------------------------------------------------------------------
+
+
+def swap_member(p: Int, q: Int, r: Int, sx: Int, sc: Int, t: Int, sy: Int) raises -> List[List[Int]]:
+    """`sigma(x) = c y^p s_x`, `sigma(c) = x y^q s_c`, `sigma(y) = t y^r s_y`."""
+    var sigma = normal_form(p, q, r, sx, sc, t, sy)
+    sigma[X][0] = C
+    sigma[C][0] = X
+    return sigma^
+
+
+struct SwapCensus(Copyable, Movable):
+    var members: Int
+    var per_ending: List[Int]
+    var levels: Histogram
+    var max_level: Int
+
+    def __init__(out self) raises:
+        self.members = 0
+        self.per_ending = List[Int](length=16, fill=0)
+        self.levels = Histogram(LEVEL_CAP)
+        self.max_level = -1
+
+
+def swap_census(bound: Int) raises -> SwapCensus:
+    """Every PIP member with `|det M| = 2` and `p, q, r <= bound`, with its
+    `{x, c}` coincidence level. Ending index `8 s_x + 4 s_c + 2 t + s_y`."""
+    if bound < 0 or bound > MAX_BOUND:
+        raise Error("the swap-family bound must lie in 0..", String(MAX_BOUND))
+    var screen = CubicScreen()
+    var out = SwapCensus()
+    for sx in range(2):
+        for sc in range(2):
+            for t in range(2):
+                for sy in range(2):
+                    for p in range(bound + 1):
+                        for q in range(bound + 1):
+                            for r in range(bound + 1):
+                                var sigma = swap_member(p, q, r, sx, sc, t, sy)
+                                var m = Mat3(substitution_incidence(sigma))
+                                if abs(m.det()) != 2 or not screen.is_pip(m):
+                                    continue
+                                var lev = coincidence_level(sigma, X, C)
+                                if lev < 0:
+                                    raise Error("SC REFUTED in the swap family: {x, c} is not eventually coincident")
+                                out.members += 1
+                                out.per_ending[8 * sx + 4 * sc + 2 * t + sy] += 1
+                                out.levels.record(lev)
+                                if lev > out.max_level:
+                                    out.max_level = lev
     return out^

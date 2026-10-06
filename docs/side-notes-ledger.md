@@ -228,6 +228,45 @@ by deleting it.
   at levels 3-7. · `p1a-a1-prime-2026-10-05.md` §3b;
   `kernel/tests/test_a1_normal_form.mojo`
 
+- 2026-10-06 · Prefix transfer: `sigma^(n+1)(i)` begins with
+  `sigma^n(h(i))`, so coincidence propagates *backwards* along the pair map
+  `H({i,j}) = {h(i),h(j)}`, and all-pairs strong coincidence holds iff every
+  `H`-cycle of distinct pairs contains a coincident pair. Do not re-derive the
+  per-pair cases by search: on the catch-up-free `|det M| = 2`, `|O| = 2`
+  class the `H`-cycles are a seven-row table, and only the swap family
+  (`h` swaps the odd letters) is not closed by Theorem E, Lemma T,
+  Barge–Diamond, or the two-lemma Proposition Y. Its sweep needs level-4
+  witnesses on infinite lines (`(n+1,0,n)` in ending `(x,x,x,c)`), so Theorem
+  E's level-2/3 lemma style will not suffice there. Reversal preserves `M` but
+  not coincidence levels (swap ending `(x,c,x,x)` is class D reversed, with
+  different levels). · `p1a-a1-prime-2026-10-05.md` §3c;
+  `kernel/tests/test_a1_normal_form.mojo`
+
+- 2026-10-06 · **Theorem H / Corollary H1 proved**: strong coincidence for
+  every pair on the catch-up-free `|det M| = 2` two-odd-letter class. Worth
+  not rediscovering: (1) *constant-offset* witness paths suffice — every
+  `gamma_l` along the path is a parameter-free vector, so `M gamma` is affine
+  and validity on a whole cone is affine identities plus coefficient-sign
+  inequalities (`psc.cone_witness`); (2) with that, every bulk quadrant of the
+  swap family is **one** cone, and the level-4 infinite lines are cones too —
+  hand-found lemmas were the bottleneck, not the mathematics; (3) the search
+  re-finds Theorem E's L_D with the lemma's own position `p + 3`, so the
+  machinery should be tried first on any new linear-exponent family. It does
+  not reach the `|O| = 1` sub-class as it stands: there the images `o w o`
+  carry arbitrary two-letter words `w`, not one run. ·
+  `p1a-a1-prime-2026-10-05.md` §3d;
+  `kernel/tests/test_swap_family_certificate.mojo`;
+  `p1a-swap-family-literature-gate-2026-10-06.md`
+
+- 2026-10-06 · One odd letter needs no new machinery except in one row: the
+  images are a non-`o` letter or `o w o`, so `h` is `o` on every long image and
+  prefix transfer closes every pair unless `sigma(o)` is a single letter (or
+  two images are short, which forces a letter 3-cycle and Barge–Diamond). None
+  of the 18 one-odd-letter corpus specimens is in that row, so the open family
+  of Theorem K has **no corpus member**; a census of it must be built from
+  scratch, over patterns of runs in `w_1, w_2`. · `p1a-a1-prime-2026-10-05.md`
+  §3e; `kernel/tests/test_swap_family_certificate.mojo`
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing
