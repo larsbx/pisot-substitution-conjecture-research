@@ -443,6 +443,20 @@ by deleting it.
   check blocks the removal). · `kernel/odd_letter_family_certificate.mojo`
   (`_affine_pisot_form`, `_pin_fixed`); `kernel/psc/poly_line.mojo`
 
+- 2026-10-06 · s = −1 tail cell, `zy* | zy* +[z*]` at 1,500–3,000 regions,
+  never closing. The McCormick cut at corner `(2, b(p))` walks `b` down one
+  unit per cut (69, 68, 67, …): 636 of 1,500 regions were cuts. Uniform
+  corners `(k, 0)` did not help (1,001 cuts, 359 open), certificate-before-
+  cut was worse (996 open). Descending from a feasible point to a member
+  (coordinate descent on Lemma P1's `f`) cut the cuts to 63 but left 464
+  regions with no certificate. Their base points have one y-run in the
+  thousands (n2 = 2,134), forced by large constants that earlier cuts left
+  in the region's inequalities, beyond the search's offset bound; smaller
+  candidate points change nothing there. Not reached by point heuristics:
+  the tail needs certificates (or cuts) that do not inherit those
+  constants. · scratch `xt m`; `kernel/odd_letter_family_certificate.mojo`
+  (`pisot_carve_forms`, `_descend_to_member`, `_base_candidates`)
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing

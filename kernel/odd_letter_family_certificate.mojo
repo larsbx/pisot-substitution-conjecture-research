@@ -112,8 +112,11 @@ comptime REPAIR_MAX_VALUE = 1 << 20  # a base point walked into a region stays f
 comptime PROPAGATE_ROUNDS = 16  # guided cover: rounds of integer bound propagation
 comptime SEARCH_NODES = 4000  # guided cover: nodes of the exact point search
 comptime SEARCH_SPAN = 8  # guided cover: values tried for an unbounded variable in the point search
-comptime LIFT_PATHS = 200  # guided cover: point paths tried by the linear lift
-comptime LIFT_PATH_NODES = 20000  # guided cover: nodes of the point-path enumeration
+comptime LIFT_PATHS = 40  # guided cover: point paths tried by the linear lift
+comptime LIFT_PATH_NODES = 5000  # guided cover: nodes of the point-path enumeration
+comptime DESCENT_STARTS = 8  # guided cover: feasible non-member points a member descent starts from
+comptime DESCENT_STEPS = 64  # guided cover: steps of one member descent
+comptime SMALL_POINT_DRAWS = 100  # guided cover: seeded base-point draws in 0..4, tried first
 comptime FAR_CANDIDATES = 24  # guided tail cover: candidates tried with a moderately large tail variable first
 comptime BASE_POINT_SEED = 20261006  # guided cover: seed of the base-point search
 comptime BASE_POINT_DRAWS = 300  # guided cover: generic draws before the constant fallbacks
@@ -1589,18 +1592,31 @@ def mccormick_forms(counts: List[List[Int]], s: Int, a0: Int, b0: Int) -> List[L
     return out^
 
 
+def _orthant_floor(f: List[Int]) -> Int:
+    """The least value of an affine form on the orthant, if it has no
+    negative coefficient (its constant); else -2^40, meaning unbounded."""
+    for k in range(1, len(f)):
+        if f[k] < 0:
+            return -(1 << 40)
+    return f[0]
+
+
 def pisot_carve_forms(counts: List[List[Int]], s: Int, ns: List[Int]) -> List[List[Int]]:
     """At a point `ns` where Lemma P1's quadratic form `f = a b + c` is >= 0
-    (no PIP member there; then a(p) >= 2, as f < 0 when a <= 1), the
-    McCormick forms at the corner `(2, b(p))`: the quadrant contains the
-    point, as G_3(p) = f(p) - (a(p) - 2)(b(p) - b(p)) = f(p). The corner
-    `a0 = 2` keeps the coefficient of Delta's variables at 1. Empty if
-    f(ns) < 0."""
+    (no PIP member there), the McCormick forms at a corner whose quadrant
+    contains the point: `(2, b(p))` or `(a(p), b_lo)`, with `b_lo` the
+    least value of `b` on the orthant; either way
+    `G_3(p) = f(p) - (a(p) - a_0)(b(p) - b_0) = f(p)`. The corner taken
+    leaves the shorter descent for later cuts: `b(p) - b_lo` steps in `b`,
+    or `a(p) - 2` in `a`. Empty if f(ns) < 0."""
     var q = _pisot_quadratic(counts, s)
     var ap = aff_eval(q[0], ns)
     var bp = aff_eval(q[1], ns)
     if ap * bp + aff_eval(q[2], ns) < 0 or ap < 2:
         return List[List[Int]]()
+    var b_lo = _orthant_floor(q[1])
+    if b_lo > -(1 << 40) and ap - 2 < bp - b_lo:
+        return mccormick_forms(counts, s, ap, b_lo)
     return mccormick_forms(counts, s, 2, bp)
 
 
@@ -2672,6 +2688,27 @@ def _base_point(pat: RunPattern, subst: List[List[Int]], mut screen: CubicScreen
     not a slice."""
     var m = len(subst[0]) - 1
     var tries = List[List[Int]]()
+    # small points first: a member with short runs keeps its certificate's
+    # offsets within the search's bound, and the linear lift asks identities
+    # of the whole region, so accidental relations at the point do no harm
+    for variant in range(4):
+        var small = List[Int]()
+        for k in range(m):
+            if variant == 0:
+                small.append(1 + k % 3)
+            elif variant == 1:
+                small.append(1 + (2 * k + 1) % 3)
+            elif variant == 2:
+                small.append(2 + k % 2)
+            else:
+                small.append(1)
+        tries.append(small^)
+    var srng = SplitMix64(BASE_POINT_SEED + 1)
+    for _ in range(SMALL_POINT_DRAWS):
+        var ns = List[Int]()
+        for _ in range(m):
+            ns.append(srng.between(0, 4))
+        tries.append(ns^)
     var primes = List[Int]([2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53])
     for variant in range(6):
         var generic = List[Int]()
@@ -2984,8 +3021,11 @@ def mccormick_cut(counts: List[List[Int]], s: Int, g: List[List[Int]], prover: P
 
 
 def _base_candidates(m: Int) raises -> List[List[Int]]:
-    """Generic points first (distinct primes and mixed sequences), then a
-    seeded search, then constant points, the origin and the unit points."""
+    """Small points first (short runs keep a certificate's offsets within
+    the search's bound; the linear lift asks identities of the whole region,
+    so relations that hold at the point by accident do no harm), then
+    generic points (distinct primes, mixed sequences), a seeded search,
+    constant points, the origin and the unit points."""
     var tries = List[List[Int]]()
     var primes = List[Int]([2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53])
     for variant in range(6):
@@ -3138,7 +3178,38 @@ def search_point(assume: List[List[Int]], m: Int) -> PointSearch:
     return PointSearch(List[Int](), not truncated)
 
 
-def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, want_member: Bool, far: Int = -1) raises -> List[Int]:
+def _descend_to_member(pat: RunPattern, reg: GuidedRegion, s: Int, start: List[Int], mut screen: CubicScreen) raises -> List[Int]:
+    """From a point of the region, coordinate descent on Lemma P1's form
+    `f` (a member has `f < 0`): halve or decrement one variable, keeping the
+    region's inequalities, taking the move that lowers `f` most, until a
+    member is reached; empty if `f` stops decreasing first. Guidance only."""
+    var q = _pisot_quadratic(pattern_counts(pat, reg.subst), s)
+    var x = start.copy()
+    for _ in range(DESCENT_STEPS):
+        var fx = aff_eval(q[0], x) * aff_eval(q[1], x) + aff_eval(q[2], x)
+        if fx < 0 and _member_at(pat, reg.subst, x, screen):
+            return x^
+        var best = List[Int]()
+        var best_f = fx
+        for k in range(len(x)):
+            if x[k] == 0:
+                continue
+            for v in [x[k] // 2, x[k] - 1]:
+                var y = x.copy()
+                y[k] = v
+                if not _satisfies(reg.assume, y):
+                    continue
+                var fy = aff_eval(q[0], y) * aff_eval(q[1], y) + aff_eval(q[2], y)
+                if fy < best_f:
+                    best = y^
+                    best_f = fy
+        if len(best) == 0:
+            return List[Int]()
+        x = best^
+    return List[Int]()
+
+
+def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, want_member: Bool, far: Int = -1, s: Int = 0) raises -> List[Int]:
     """A point of the region (its assumptions hold there): the first member
     among the candidates, each walked into the region, or, unless
     `want_member`, the first point. With `far >= 0` (a tail cell's `e`),
@@ -3161,6 +3232,7 @@ def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, 
                 tries.append(c^)
         for t in range(len(near)):
             tries.append(near[t].copy())
+    var feasible = List[List[Int]]()
     for t in range(len(tries)):
         var c = tries[t].copy()
         for k in range(m):
@@ -3174,6 +3246,13 @@ def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, 
             return ns^
         if _member_at(pat, reg.subst, ns, screen):
             return ns^
+        if len(feasible) < DESCENT_STARTS:
+            feasible.append(ns^)
+    if want_member and s != 0:
+        for t in range(len(feasible)):
+            var d = _descend_to_member(pat, reg, s, feasible[t], screen)
+            if len(d) > 0:
+                return d^
     if not want_member:
         return search_point(reg.assume, m).point.copy()
     return List[Int]()
@@ -3237,7 +3316,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                 any_live = True
         # a member if the candidates hit one, else any point of a live region
         var far = m - 1 if tail else -1
-        var ns = _base_point_in(pat, reg, screen, True, far)
+        var ns = _base_point_in(pat, reg, screen, True, far, s)
         if len(ns) == 0 and any_live:
             ns = _base_point_in(pat, reg, screen, False, far)
         if len(ns) == 0:
@@ -3258,7 +3337,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
             continue
         # a non-PIP point by Lemma P1: the McCormick quadrant it opens is cut
         # (first, or only once no certificate lifts from the point)
-        if cut_first and _mccormick_carve(pat, s, reg, ns, stack):
+        if cut_first and _mccormick_carve(pat, s, reg, ns, stack, verbose, out.regions):
             out.cut += 1
             continue
         var fam = pattern_family(pat, reg.subst)
@@ -3344,7 +3423,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                         out.poly_certified += 1
                         out.max_level = max(out.max_level, levels)
                         done = True
-        if not done and not cut_first and _mccormick_carve(pat, s, reg, ns, stack):
+        if not done and not cut_first and _mccormick_carve(pat, s, reg, ns, stack, verbose, out.regions):
             out.cut += 1
             done = True
         if not done:
@@ -3409,7 +3488,7 @@ def _minus_one_minus(f: List[Int]) -> List[Int]:
     return g^
 
 
-def _mccormick_carve(pat: RunPattern, s: Int, reg: GuidedRegion, ns: List[Int], mut stack: List[GuidedRegion]) raises -> Bool:
+def _mccormick_carve(pat: RunPattern, s: Int, reg: GuidedRegion, ns: List[Int], mut stack: List[GuidedRegion], verbose: Bool = False, index: Int = 0) raises -> Bool:
     """At a non-PIP point, cut the McCormick quadrant of Lemma P1 it opens
     (checked by `mccormick_cut`) and push the rest of the region. False if
     Lemma P1's form is negative at the point."""
@@ -3419,6 +3498,8 @@ def _mccormick_carve(pat: RunPattern, s: Int, reg: GuidedRegion, ns: List[Int], 
     var inside = _with_assumptions(reg, pc)
     if not mccormick_cut(pattern_counts(pat, inside.subst), s, pc, Prover(inside.assume.copy())):
         raise Error("a McCormick-carved region is not cut")
+    if verbose:
+        _trace(index, "McCormick cut", ns, reg.subst, pc, 1, len(pc))
     _push_complements(stack, reg, pc)
     return True
 
