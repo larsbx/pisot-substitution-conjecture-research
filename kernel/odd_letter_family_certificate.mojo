@@ -637,6 +637,20 @@ def main() raises:
                 res_closed += e.value
         print("residue members:", res_total, " in closed shape cells:", res_closed, " left:", res_total - res_closed)
         return
+    if len(args) > 2 and String(args[2]) == "cell":
+        # one delta cell by the guided run tree: cell s delta budget max_runs
+        var s = Int(String(args[3]))
+        var d = Int(String(args[4]))
+        var budget = Int(String(args[5]))
+        var max_runs = Int(String(args[6])) if len(args) > 6 else 8
+        print("cell s =", s, " Delta =", d, ": guided run tree, region budget", budget, "per pattern, at most", max_runs, "revealed runs", flush=True)
+        var leaves = run_tree_guided(s, d, max_runs, budget, True)
+        var closed = 0
+        for k in range(len(leaves)):
+            if leaves[k].closed:
+                closed += 1
+        print("cell s =", s, " Delta =", d, ": leaves", len(leaves), " closed", closed, " -> ", "CLOSED" if closed == len(leaves) else "OPEN", flush=True)
+        return
     if len(args) > 2 and String(args[2]) == "reveal":
         # exhaustive: lengths 1..max_len of the longer word
         print("least revealed runs of a Lemma X certificate (level <=", REVEAL_MAX_LEVEL, ", r capped at", REVEAL_CAP, "; 0 = capped):")

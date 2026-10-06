@@ -35,6 +35,7 @@ odd-letter-family-certificate = "mojo run -I . odd_letter_family_certificate.moj
 odd-letter-shape-catalog = "mojo run -I . odd_letter_family_certificate.mojo 8 catalog"
 odd-letter-run-tree = "mojo run -I . odd_letter_family_certificate.mojo 7 runs"
 odd-letter-reveal-census = "mojo run -I . odd_letter_family_certificate.mojo 10 reveal"
+odd-letter-cell-plus-one = "mojo run -I . odd_letter_family_certificate.mojo 2 cell 1 1 30000"
 valuation-ascent-census = "mojo run -I . valuation_ascent_census.mojo"
 barge-class-census = "mojo run -I . barge_class_census.mojo"
 strong-coincidence-census = "mojo run -I . strong_coincidence_census.mojo"
