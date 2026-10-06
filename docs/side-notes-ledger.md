@@ -318,6 +318,28 @@ by deleting it.
   was once committed by mistake; check `git status` for it. ·
   `p1a-a1-prime-2026-10-05.md` §3i; `kernel/tests/test_odd_letter_family_certificate.mojo`
 
+- 2026-10-06 · Excursion route for Theorem K's residue. **A lockstep
+  one-counter reading is the wrong model**: the level-2 state is
+  `(w_1[t], w_2[t−1], (1−h)(e_z−e_y))`, but closures compare the walks at a
+  lag `c (Delta + s)` (`M(e_z − e_y) = −delta`). What works is **Lemma X**
+  (monotone paths crossing at their endpoints meet; weak end allowed when a
+  letter follows), which reads endpoints only and so crosses opaque tails,
+  plus **Lemma Φ5′** (`s = −1`: `w_2` ends in an explicit suffix of length
+  `2 − Delta` with two `z`). Ablations (exploratory): without the Φ5/Φ5′
+  suffix the revealed runs a certificate needs grow with length (to 7 at
+  30–40); without lagged cuts `s = −1` climbs to 5–6; extremum cuts of `h`
+  are a marginal aid. With them (kernel `reveal_census`) the need is at most
+  2 runs through length 10 exhaustively and at most 4 in seeded samples at
+  lengths 40–60. **Blind splitting does
+  not uniformize** the per-point certificates: open regions 44 → 533 → 994 as
+  the budget grows 300 → 3,000 → 20,000, while every one of 11,664 tested
+  points has an opaque-tail certificate. Next: a certificate-guided
+  partition (lift a point certificate, carve its validity polyhedron). Do not
+  spend more budget on relational/value splits. Tooling: `grep` without
+  `--line-buffered` hides a long driver's progress until it exits. ·
+  `p1a-a1-prime-2026-10-05.md` §3j; `p1a-excursion-route-literature-gate-2026-10-06.md`;
+  `kernel/tests/test_odd_letter_family_certificate.mojo`
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing

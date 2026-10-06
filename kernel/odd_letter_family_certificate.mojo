@@ -67,12 +67,15 @@ from psc.cone_witness import (
     opaque_segment,
     run_of,
     search_witness,
+    search_crossing,
     search_witness_line,
+    verify_crossing,
     verify_witness,
     verify_witness_line,
     witness_position,
 )
-from psc.cone_witness import aff_add, aff_nonneg, aff_scale, aff_sub
+from psc.cone_witness import aff_add, aff_nonneg, aff_scale, aff_sub, monotone_paths_meet
+from psc.prng import SplitMix64
 from psc.pisot import CubicScreen
 from a1_normal_form_census import f_at, shared_tile_between
 
@@ -103,6 +106,8 @@ comptime REGION_BUDGET = 600  # cover_shape: regions examined per cell before re
 comptime RUN_TREE_MAX_RUNS = 6  # run_tree: a pattern with this many revealed runs is not refined further
 comptime RUN_TREE_SPLITS = 3  # run_tree: relational split depth per pattern
 comptime RUN_TREE_PEEL = 3  # run_tree: value splits per pattern
+comptime REVEAL_MAX_LEVEL = 6  # reveal census: witness depth before the Lemma X closure counts
+comptime REVEAL_CAP = 8  # reveal census: largest r tried before reporting capped
 comptime RUN_TREE_BUDGET = 300  # run_tree: regions examined per pattern before reporting the rest open
 
 
@@ -631,6 +636,31 @@ def main() raises:
             if key in closed_keys:
                 res_closed += e.value
         print("residue members:", res_total, " in closed shape cells:", res_closed, " left:", res_total - res_closed)
+        return
+    if len(args) > 2 and String(args[2]) == "reveal":
+        # exhaustive: lengths 1..max_len of the longer word
+        print("least revealed runs of a Lemma X certificate (level <=", REVEAL_MAX_LEVEL, ", r capped at", REVEAL_CAP, "; 0 = capped):")
+        var first = Int(String(args[3])) if len(args) > 3 else 2
+        for L in range(first, max_len + 1):
+            var h = reveal_census(L, REVEAL_MAX_LEVEL, REVEAL_CAP)
+            var line = "  longer word of length " + String(L) + ":"
+            for r in range(len(h)):
+                if h[r] != 0:
+                    line += "  r=" + String(r) + ": " + String(h[r])
+            print(line, flush=True)
+        return
+    if len(args) > 2 and String(args[2]) == "reveal-sample":
+        var seed = Int(String(args[3]))
+        var lo = Int(String(args[4]))
+        var hi = Int(String(args[5]))
+        var want = Int(String(args[6]))
+        var budget = 400 * want
+        var h = reveal_sample(seed, lo, hi, want, budget, REVEAL_MAX_LEVEL, REVEAL_CAP)
+        var line = "seed " + String(seed) + ", lengths " + String(lo) + ".." + String(hi) + ", budget " + String(budget) + " draws: " + String(h[REVEAL_CAP + 1]) + " members" + (" (budget exhausted)" if h[REVEAL_CAP + 1] < want else "") + ";"
+        for r in range(REVEAL_CAP + 1):
+            if h[r] != 0:
+                line += "  r=" + String(r) + ": " + String(h[r])
+        print(line)
         return
     if len(args) > 2 and String(args[2]) == "excursions":
         var residue = residue_members(max_len)
@@ -1290,6 +1320,7 @@ struct ShapeCover(Copyable, Movable):
     var regions: Int
     var certified: Int
     var line_certified: Int
+    var crossing_certified: Int
     var cut: Int
     var decided: Int
     var not_member: Int
@@ -1303,6 +1334,7 @@ struct ShapeCover(Copyable, Movable):
         self.regions = 0
         self.certified = 0
         self.line_certified = 0
+        self.crossing_certified = 0
         self.cut = 0
         self.decided = 0
         self.not_member = 0
@@ -1319,12 +1351,14 @@ struct RunPattern(Copyable, Movable, Writable):
     var open1: Bool
     var l2: List[Int]
     var open2: Bool
+    var suffix1: Int  # w_1 ends with this many further y (Lemma Phi5's y^Delta)
 
-    def __init__(out self, var l1: List[Int], open1: Bool, var l2: List[Int], open2: Bool):
+    def __init__(out self, var l1: List[Int], open1: Bool, var l2: List[Int], open2: Bool, suffix1: Int = 0):
         self.l1 = l1^
         self.open1 = open1
         self.l2 = l2^
         self.open2 = open2
+        self.suffix1 = suffix1
 
     def runs(self) -> Int:
         return len(self.l1) + len(self.l2)
@@ -1346,6 +1380,8 @@ struct RunPattern(Copyable, Movable, Writable):
                 w.write(names[letters[k]])
             if opn:
                 w.write("*")
+            if wi == 0 and self.suffix1 > 0:
+                w.write(" y^", self.suffix1)
 
 
 def pattern_family(pat: RunPattern, subst: List[List[Int]]) raises -> ConeFamily:
@@ -1374,6 +1410,8 @@ def pattern_family(pat: RunPattern, subst: List[List[Int]]) raises -> ConeFamily
             par.append(subst[slot + 1].copy())
             slot += 2
             img.append(opaque_segment(par^))
+        if wi == 0 and pat.suffix1 > 0:
+            img.append(run_of(Y, aff_const(m, pat.suffix1)))
         img.append(letter_segment(m, O))
         images.append(img^)
     return ConeFamily(m, images^)
@@ -1404,6 +1442,7 @@ def pattern_counts(pat: RunPattern, subst: List[List[Int]]) -> List[List[Int]]:
             out[2 * wi] = aff_add(out[2 * wi], subst[slot])
             out[2 * wi + 1] = aff_add(out[2 * wi + 1], subst[slot + 1])
             slot += 2
+    out[0][0] += pat.suffix1
     return out^
 
 
@@ -1498,6 +1537,7 @@ def cover_pattern(pat: RunPattern, s: Int, delta: Int, split_limit: Int, tail: B
                 yneg.append(slot)
                 zneg.append(slot + 1)
             slot += 2
+    yconst += pat.suffix1
     var starts = solve_constraint(identity_subst(m), zpos, zneg, s - zconst)
     if delta != NO_DELTA:
         if tail:
@@ -1540,6 +1580,14 @@ def cover_pattern(pat: RunPattern, s: Int, delta: Int, split_limit: Int, tail: B
             out.certified += 1
             out.line_certified += 1
             out.max_level = max(out.max_level, len(wl.steps))
+            continue
+        var wc = search_crossing(fam, O, Y, OFFSET_BOUND, MAX_LEVEL - 2, Y, Z, Y, Z)
+        if wc.found:
+            if not verify_crossing(fam, O, Y, wc.steps, wc.close[0], Y, Z):
+                raise Error("a crossing closure the search found does not verify")
+            out.certified += 1
+            out.crossing_certified += 1
+            out.max_level = max(out.max_level, len(wc.steps) + 2)
             continue
         var any_live = False
         for k in range(m):
@@ -1690,17 +1738,17 @@ def refine_pattern(pat: RunPattern) -> List[RunPattern]:
     else:
         nexts.append(Z if letters[len(letters) - 1] == Y else Y)
     if pick == 0:
-        out.append(RunPattern(pat.l1.copy(), False, pat.l2.copy(), pat.open2))
+        out.append(RunPattern(pat.l1.copy(), False, pat.l2.copy(), pat.open2, pat.suffix1))
         for k in range(len(nexts)):
             var l = pat.l1.copy()
             l.append(nexts[k])
-            out.append(RunPattern(l^, True, pat.l2.copy(), pat.open2))
+            out.append(RunPattern(l^, True, pat.l2.copy(), pat.open2, pat.suffix1))
     else:
-        out.append(RunPattern(pat.l1.copy(), pat.open1, pat.l2.copy(), False))
+        out.append(RunPattern(pat.l1.copy(), pat.open1, pat.l2.copy(), False, pat.suffix1))
         for k in range(len(nexts)):
             var l = pat.l2.copy()
             l.append(nexts[k])
-            out.append(RunPattern(pat.l1.copy(), pat.open1, l^, True))
+            out.append(RunPattern(pat.l1.copy(), pat.open1, l^, True, pat.suffix1))
     return out^
 
 
@@ -1742,9 +1790,19 @@ def _run_letters(w: List[Int]) -> List[Int]:
 
 def pattern_matches(pat: RunPattern, w1: List[Int], w2: List[Int]) -> Bool:
     """Does the word pair lie in the pattern: each word's run letters equal the
-    revealed ones, or begin with them when the word has a tail."""
+    revealed ones, or begin with them when the word has a tail; with a
+    suffix, `w_1` ends in `y^suffix1` and the runs are those of the rest."""
+    var n1 = len(w1) - pat.suffix1
+    if n1 < 0:
+        return False
+    for k in range(n1, len(w1)):
+        if w1[k] != Y:
+            return False
+    var u = List[Int]()
+    for k in range(n1):
+        u.append(w1[k])
     for wi in range(2):
-        var runs = _run_letters(w1 if wi == 0 else w2)
+        var runs = _run_letters(u if wi == 0 else w2)
         ref letters = pat.l1 if wi == 0 else pat.l2
         var opn = pat.open1 if wi == 0 else pat.open2
         if len(runs) < len(letters) or (not opn and len(runs) != len(letters)):
@@ -1854,3 +1912,267 @@ def common_points(w1: List[Int], w2: List[Int]) -> Int:
         if y1 == y2:
             n += 1
     return n
+
+
+
+# ---------------------------------------------------------------------------
+# How much a Lemma X certificate must reveal (§3j). A member's words are read
+# only at *revealed* points: positions inside the first r runs of each word,
+# the suffix that Lemma Phi5 (s = +1: w_1 = u y^Delta) or Lemma Phi5' (s = -1:
+# the last 2 - Delta letters of w_2) makes explicit, the synchronized cuts
+# (w_1 near |w_2| + 1, w_2 near |w_1|), and, for a closure step, the lagged
+# images of the other word's revealed points. A certificate is an exact path
+# through revealed positions to a state that Lemma X closes on revealed
+# endpoints: it would close every member that agrees on those points.
+# ---------------------------------------------------------------------------
+
+
+def _run_starts(w: List[Int], r: Int) -> Int:
+    """Length of the first `r` runs of `w`."""
+    var runs = 0
+    for k in range(1, len(w)):
+        if w[k] != w[k - 1]:
+            runs += 1
+            if runs == r:
+                return k
+    return len(w)
+
+
+def _sorted_unique(var xs: List[Int]) -> List[Int]:
+    sort(xs)
+    var out = List[Int]()
+    for k in range(len(xs)):
+        if k == 0 or xs[k] != xs[k - 1]:
+            out.append(xs[k])
+    return out^
+
+
+struct Revealed(Copyable, Movable):
+    """Revealed positions (letters readable) and points (walk values readable)
+    of both words, for one member and one `r`."""
+
+    var words: List[List[Int]]
+    var walks: List[List[List[Int]]]
+    var known: List[List[Bool]]  # known[i][p]: letter p of word i is revealed
+    var points: List[List[Int]]  # revealed prefix lengths of word i
+    var sigma: List[List[Int]]
+    var mat: List[List[Int]]
+
+    def __init__(out self, w1: List[Int], w2: List[Int], r: Int):
+        self.words = List[List[Int]]()
+        self.words.append(w1.copy())
+        self.words.append(w2.copy())
+        self.walks = List[List[List[Int]]]()
+        self.walks.append(_walk(w1))
+        self.walks.append(_walk(w2))
+        var s = self.walks[0][len(w1)][1] - self.walks[1][len(w2)][1]
+        self.known = List[List[Bool]]()
+        self.points = List[List[Int]]()
+        for i in range(2):
+            ref w = self.words[i]
+            var lim = _run_starts(w, r)
+            var kn = List[Bool]()
+            for p in range(len(w)):
+                kn.append(p < lim)
+            var pts = List[Int]([0, len(w)])
+            var runs = 0
+            for k in range(1, len(w)):
+                if w[k] != w[k - 1]:
+                    runs += 1
+                    if runs <= r:
+                        pts.append(k)
+            self.known.append(kn^)
+            self.points.append(pts^)
+        var l1 = len(w1)
+        var l2 = len(w2)
+        if s == 1:
+            # Lemma Phi5: w_1 = u y^Delta with |u| = |w_2| + 1.
+            for p in range(min(l2 + 1, l1), l1):
+                self.known[0][p] = True
+            for p in range(l2, min(l2 + 3, l1)):
+                self.points[0].append(p)
+        elif s == -1:
+            # Lemma Phi5': the last 2 - Delta letters of w_2 start at |w_1| - 1.
+            for p in range(max(l1 - 1, 0), l2):
+                self.known[1][p] = True
+                self.points[1].append(p)
+            for p in range(max(l1 - 1, 0), min(l1 + 2, l2)):
+                self.points[1].append(p)
+        for i in range(2):
+            self.points[i] = _sorted_unique(self.points[i].copy())
+        self.sigma = member_sigma(w1, w2)
+        self.mat = List[List[Int]]()
+        for i in range(3):
+            var row = List[Int]()
+            for j in range(3):
+                var n = 0
+                for k in range(len(self.sigma[j])):
+                    n += 1 if self.sigma[j][k] == i else 0
+                row.append(n)
+            self.mat.append(row^)
+
+    def m_times(self, g: List[Int]) -> List[Int]:
+        var out = List[Int](length=3, fill=0)
+        for i in range(3):
+            for j in range(3):
+                out[i] += self.mat[i][j] * g[j]
+        return out^
+
+    def positions(self, a: Int) -> List[Int]:
+        """Revealed positions of `sigma(a)`: its ends and revealed letters."""
+        var out = List[Int]()
+        var n = len(self.sigma[a])
+        if a == O:
+            out.append(0)
+            return out^
+        ref kn = self.known[0 if a == Y else 1]
+        for p in range(n):
+            if p == 0 or p == n - 1 or kn[p - 1]:
+                out.append(p)
+        return out^
+
+
+def _lemma_x_closes(rv: Revealed, a: Int, b: Int, mg: List[Int]) -> Bool:
+    """Lemma X from the state with letters `a, b` in {y, z} and `M gamma = mg`
+    (o-part 0): `W_a` meets `W_b - mg` between revealed points."""
+    var wa = 0 if a == Y else 1
+    var wb = 0 if b == Y else 1
+    ref pa = rv.walks[wa]
+    ref pb = rv.walks[wb]
+    var la = len(rv.words[wa])
+    var lb = len(rv.words[wb])
+    var lag = -mg[1] - mg[2]
+    var ia = rv.points[wa].copy()
+    var kb = rv.points[wb].copy()
+    for k in range(len(rv.points[wb])):
+        var i = rv.points[wb][k] + lag
+        if i >= 0 and i <= la:
+            ia.append(i)
+    for i in range(len(rv.points[wa])):
+        var k = rv.points[wa][i] - lag
+        if k >= 0 and k <= lb:
+            kb.append(k)
+    var pts_a = _sorted_unique(ia^)
+    var pts_b = _sorted_unique(kb^)
+    for i0 in range(len(pts_a)):
+        for i1 in range(i0 + 1, len(pts_a)):
+            for k0 in range(len(pts_b)):
+                for k1 in range(k0 + 1, len(pts_b)):
+                    var q0 = List[Int]([pb[pts_b[k0]][0] - mg[1], pb[pts_b[k0]][1] - mg[2]])
+                    var q1 = List[Int]([pb[pts_b[k1]][0] - mg[1], pb[pts_b[k1]][1] - mg[2]])
+                    if monotone_paths_meet(pa[pts_a[i0]], pa[pts_a[i1]], q0, q1, pts_a[i1] < la and pts_b[k1] < lb):
+                        return True
+    return False
+
+
+def reveal_certificate(w1: List[Int], w2: List[Int], r: Int, max_level: Int) raises -> Int:
+    """The level of the first certificate that reads only revealed data (an
+    exact shared tile, or Lemma X plus its two levels), or -1."""
+    var rv = Revealed(w1, w2, r)
+    var seen = Dict[String, Int]()
+    var fa = List[Int]([O])
+    var fb = List[Int]([Y])
+    var fg = List[List[Int]]()
+    fg.append(List[Int]([0, 0, 0]))
+    var bound = len(w1) + len(w2) + 4
+    for level in range(1, max_level + 1):
+        var na = List[Int]()
+        var nb = List[Int]()
+        var ng = List[List[Int]]()
+        for f in range(len(fa)):
+            var a = fa[f]
+            var b = fb[f]
+            var mg = rv.m_times(fg[f])
+            var pa = rv.positions(a)
+            var pb = rv.positions(b)
+            for x in range(len(pa)):
+                for y in range(len(pb)):
+                    var g2 = mg.copy()
+                    for k in range(pa[x]):
+                        g2[rv.sigma[a][k]] += 1
+                    for k in range(pb[y]):
+                        g2[rv.sigma[b][k]] -= 1
+                    var a2 = rv.sigma[a][pa[x]]
+                    var b2 = rv.sigma[b][pb[y]]
+                    if g2[0] == 0 and g2[1] == 0 and g2[2] == 0:
+                        if a2 == b2:
+                            return level
+                        if a2 != O and b2 != O:
+                            return level + 1
+                    if abs(g2[0]) > bound or abs(g2[1]) > bound or abs(g2[2]) > bound:
+                        continue
+                    var key = String(a2) + String(b2) + " " + String(g2[0]) + " " + String(g2[1]) + " " + String(g2[2])
+                    if key in seen:
+                        continue
+                    seen[key] = 1
+                    if a2 != O and b2 != O:
+                        var m2 = rv.m_times(g2)
+                        if m2[0] == 0 and _lemma_x_closes(rv, a2, b2, m2):
+                            return level + 2
+                    na.append(a2)
+                    nb.append(b2)
+                    ng.append(g2^)
+        fa = na^
+        fb = nb^
+        fg = ng^
+    return -1
+
+
+def least_reveal(w1: List[Int], w2: List[Int], max_level: Int, cap: Int) raises -> Int:
+    """Least `r <= cap` with a revealed certificate, or -1 (capped)."""
+    for r in range(1, cap + 1):
+        if reveal_certificate(w1, w2, r, max_level) >= 0:
+            return r
+    return -1
+
+
+def _noncrossing_member(mut screen: CubicScreen, w1: List[Int], w2: List[Int]) raises -> Bool:
+    var p1 = _walk(w1)
+    var p2 = _walk(w2)
+    if abs(p1[len(w1)][1] - p2[len(w2)][1]) != 1 or crossing(w1, w2)[0] >= 0:
+        return False
+    return screen.is_pip(Mat3(substitution_incidence(member_sigma(w1, w2))))
+
+
+def reveal_census(length: Int, max_level: Int, cap: Int) raises -> List[Int]:
+    """Histogram of `least_reveal` (index 0: capped) over the non-crossing PIP
+    members with `w_1` beginning with `z` and longer word of exactly `length`."""
+    var hist = List[Int](length=cap + 1, fill=0)
+    var screen = CubicScreen()
+    var words = _words(length)
+    for ia in range(len(words)):
+        ref w1 = words[ia]
+        if len(w1) == 0 or w1[0] != Z:
+            continue
+        for ib in range(len(words)):
+            ref w2 = words[ib]
+            if max(len(w1), len(w2)) != length or not _noncrossing_member(screen, w1, w2):
+                continue
+            var r = least_reveal(w1, w2, max_level, cap)
+            hist[max(r, 0)] += 1
+    return hist^
+
+
+def reveal_sample(seed: Int, lo: Int, hi: Int, want: Int, budget: Int, max_level: Int, cap: Int) raises -> List[Int]:
+    """The same histogram over a seeded sample: lengths uniform in
+    `[lo, hi]`, letters fair; draws stop at `budget`. Entry `cap + 1` holds
+    the members sampled, so a short count shows an exhausted budget."""
+    var hist = List[Int](length=cap + 2, fill=0)
+    var rng = SplitMix64(seed)
+    var screen = CubicScreen()
+    var draws = 0
+    while hist[cap + 1] < want and draws < budget:
+        draws += 1
+        var l1 = rng.between(lo, hi)
+        var l2 = rng.between(lo, hi)
+        var w1 = List[Int]([Z])
+        for _ in range(l1 - 1):
+            w1.append(Y if rng.below(2) == 0 else Z)
+        var w2 = List[Int]()
+        for _ in range(l2):
+            w2.append(Y if rng.below(2) == 0 else Z)
+        if not _noncrossing_member(screen, w1, w2):
+            continue
+        hist[cap + 1] += 1
+        hist[max(least_reveal(w1, w2, max_level, cap), 0)] += 1
+    return hist^

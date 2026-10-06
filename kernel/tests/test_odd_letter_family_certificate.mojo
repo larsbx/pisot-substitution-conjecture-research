@@ -16,7 +16,7 @@ from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
 from psc.claim_tests import require_contract
 from psc.coincidence_formula import coincidence_level
-from psc.cone_witness import search_witness, search_witness_line, verify_witness, verify_witness_line, witness_position
+from psc.cone_witness import monotone_paths_meet, search_crossing, search_witness, search_witness_line, verify_crossing, verify_witness, verify_witness_line, witness_position
 from std.collections import Dict
 from psc.pisot import is_pip
 from a1_normal_form_census import f_at, shared_tile_between
@@ -56,6 +56,8 @@ from odd_letter_family_certificate import (
     identity_subst,
     leaf_index,
     member_sigma,
+    concrete_family,
+    reveal_census,
     _words,
 )
 
@@ -434,6 +436,143 @@ def test_the_residue_is_mostly_one_excursion() raises:
     assert_equal(hist[3] + hist[4] + hist[5], 8)
 
 
+def _path(start: List[Int], w: List[Int]) -> List[List[Int]]:
+    """The monotone lattice path of `w` from `start`, coordinates (y, z)."""
+    var out = List[List[Int]]()
+    out.append(start.copy())
+    for k in range(len(w)):
+        var p = out[k].copy()
+        p[0 if w[k] == Y else 1] += 1
+        out.append(p^)
+    return out^
+
+
+def _first_meeting(pp: List[List[Int]], qq: List[List[Int]]) -> Int:
+    """Least level at which the two paths share a point, or -1."""
+    var best = -1
+    for i in range(len(pp)):
+        for k in range(len(qq)):
+            if pp[i][0] == qq[k][0] and pp[i][1] == qq[k][1]:
+                var n = pp[i][0] + pp[i][1]
+                if best < 0 or n < best:
+                    best = n
+    return best
+
+
+def test_lemma_x_on_every_small_pair_of_monotone_paths() raises:
+    """Lemma X by brute force against psc.cone_witness.monotone_paths_meet: for every
+    pair of monotone paths of at most 4 steps, Q starting in a box around P's
+    start, Q starting weakly on one side of P and ending strictly on the other
+    forces a shared point before the last common level; with a weak end, at or
+    before it. A weak end alone can leave the only shared point at the last
+    common level -- the negative control for strictness at a word's end."""
+    var words = _words(4)
+    var strict_cases = 0
+    var weak_only_at_end = 0
+    for a in range(len(words)):
+        var pp = _path(List[Int]([0, 0]), words[a])
+        ref p0 = pp[0]
+        ref p1 = pp[len(pp) - 1]
+        for b in range(len(words)):
+            for qy in range(-2, 3):
+                for qz in range(-2, 3):
+                    var qq = _path(List[Int]([qy, qz]), words[b])
+                    ref q0 = qq[0]
+                    ref q1 = qq[len(qq) - 1]
+                    var nlo = max(p0[0] + p0[1], q0[0] + q0[1])
+                    var nhi = min(p1[0] + p1[1], q1[0] + q1[1])
+                    if nlo > nhi:
+                        continue
+                    var strict = monotone_paths_meet(p0, p1, q0, q1, False)
+                    var weak = monotone_paths_meet(p0, p1, q0, q1, True)
+                    var meet = _first_meeting(pp, qq)
+                    if strict:
+                        strict_cases += 1
+                        assert_true(meet >= nlo and meet < nhi)
+                    if weak:
+                        assert_true(meet >= nlo and meet <= nhi)
+                        if meet == nhi and not strict:
+                            weak_only_at_end += 1
+    assert_true(strict_cases > 1000)
+    assert_true(weak_only_at_end > 0)
+
+
+def test_crossing_closures_are_shared_tiles() raises:
+    """Wherever the cone search closes a residual member by Lemma X, the exact
+    decider finds the shared tile within two levels of the path's end; on the
+    87 residual members at |w_i| <= 7 every one but (zz, z) closes this way."""
+    var res = residue_members(7)
+    var closed = 0
+    for r in range(len(res)):
+        ref m = res[r]
+        var sigma = member_sigma(m.w1, m.w2)
+        var fam = concrete_family(sigma)
+        var c = search_crossing(fam, O, Y, 12, 4, Y, Z, Y, Z)
+        if not c.found:
+            assert_equal(len(m.w1), 2)
+            continue
+        assert_true(verify_crossing(fam, O, Y, c.steps, c.close[0], Y, Z))
+        var lev = coincidence_level(sigma, O, Y)
+        assert_true(lev >= 0 and lev <= len(c.steps) + 2)
+        closed += 1
+    assert_equal(closed, 86)
+
+
+def test_lemma_phi5_prime_the_short_suffix_of_w2() raises:
+    """Lemma Phi5': with Z_2 = Z_1 + 1 and the walks not crossing, Delta <= 0,
+    |w_2| = |w_1| + 1 - Delta, and the suffix of w_2 after its first
+    |w_1| - 1 letters holds at least two z; on every member with |w_i| <= 7."""
+    var words = _words(7)
+    var checked = 0
+    for a in range(len(words)):
+        ref w1 = words[a]
+        if len(w1) < 2 or w1[0] != Z:
+            continue
+        for b in range(len(words)):
+            ref w2 = words[b]
+            if _count(w2, Z) != _count(w1, Z) + 1 or crossing(w1, w2)[0] >= 0:
+                continue
+            if not is_pip(Mat3(substitution_incidence(member_sigma(w1, w2)))):
+                continue
+            var dy = _count(w1, Y) - _count(w2, Y)
+            assert_true(dy <= 0)
+            assert_equal(len(w2), len(w1) + 1 - dy)
+            var zs = 0
+            for k in range(len(w1) - 1, len(w2)):
+                zs += 1 if w2[k] == Z else 0
+            assert_true(zs >= 2)
+            checked += 1
+    assert_true(checked > 100)
+
+
+def test_reveal_census_needs_at_most_two_runs_to_length_7() raises:
+    """With the suffix of Lemma Phi5 / Phi5', the synchronized and lagged
+    cuts, every non-crossing PIP member whose longer word has length 5, 6 or
+    7 has a Lemma X certificate reading at most its first two runs."""
+    var h5 = reveal_census(5, 6, 8)
+    assert_equal(h5[0], 0)
+    assert_equal(h5[1], 77)
+    assert_equal(h5[2], 4)
+    var h6 = reveal_census(6, 6, 8)
+    assert_equal(h6[1], 255)
+    assert_equal(h6[2], 13)
+    var h7 = reveal_census(7, 6, 8)
+    assert_equal(h7[0], 0)
+    assert_equal(h7[1], 825)
+    assert_equal(h7[2], 54)
+    for r in range(3, len(h7)):
+        assert_equal(h7[r], 0)
+
+
+def test_cover_pattern_closes_regions_by_lemma_x() raises:
+    """On the doubly open pattern zyz* y^Delta | zyz* (Lemma Phi5 suffix,
+    Delta = 1) the cone search certifies regions by Lemma X, each verified on
+    the whole region (a failed verification raises)."""
+    var zyz = List[Int]([Z, Y, Z])
+    var c = cover_pattern(RunPattern(zyz.copy(), True, zyz.copy(), True, 1), 1, 1, RUN_TREE_SPLITS, False, RUN_TREE_PEEL, 100)
+    assert_true(c.crossing_certified >= 1)
+
+
 def main() raises:
     test_det_is_twice_the_z_difference()
     print("[PASS] test_det_is_twice_the_z_difference")
@@ -463,4 +602,14 @@ def main() raises:
     print("[PASS] test_run_patterns_with_a_tail_close")
     test_the_residue_is_mostly_one_excursion()
     print("[PASS] test_the_residue_is_mostly_one_excursion")
-    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones; Lemma Phi4 (Pisot signs of Y_1 - Y_2 against Z_1 - Z_2) and Lemma Phi5 (the Z_1 = Z_2 + 1 non-crossing shape w_1 = u y^(Y_1 - Y_2), pi(u) = pi(w_2) + e_z) hold on all 2,136 members with |w_i| <= 6; at |w_i| <= 7 the Lemma Phi6-Phi8 paths verify on 1,180 of the 1,267 non-crossing members with none failing, the delta = e_z cell leaves only (zz, z) at level 6, (z, empty) is not PIP, and the other cells leave 87 members decided at levels 3 to 6; the run-shape cover: solve_constraint partitions the solutions of sum_pos n - sum_neg n = target exactly (every box solution hit once, targets -3..3), the quadratic Lemma P1 identities f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3 (Z_1 = Z_2 + 1) and f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3 (Z_1 = Z_2 - 1) hold, a line-mode path (offsets affine along e_z - e_y) verifies on (z^a y^b, y^(b+1) z^(a+1)), a >= b + 2, and the shape cells (zy | eps), (zy | z), (zy | yz) with Z_1 = Z_2 + 1 close for Delta = 1, 2, 3 and the tail Delta >= 4 with no open region, while (zy | yz) with Z_1 = Z_2 - 1 closes at Delta = -1 using line mode; induction on runs: refining a run pattern's opaque tail (it ends, or one more run of the other letter and a new tail) partitions the word pairs (31 * 63 pairs with w_1 beginning with z, |w_i| <= 5, each in exactly one leaf), the patterns (zy | zy*), (zy | yz*), (zy* | z), (zy* | y), (zyz* | zy), (zyz* | yz), (z | z*), (z | y*), (z* | eps) -- the nine closed leaves of the run tree -- with Z_1 = Z_2 + 1, Delta = 1 close with no open region (each an infinite family with unboundedly many runs) while (zy* | zy*) does not at the same budget, and common points match their definition, 51 of the 87 residual members at |w_i| <= 7 having only t = 1")
+    test_lemma_x_on_every_small_pair_of_monotone_paths()
+    print("[PASS] test_lemma_x_on_every_small_pair_of_monotone_paths")
+    test_crossing_closures_are_shared_tiles()
+    print("[PASS] test_crossing_closures_are_shared_tiles")
+    test_lemma_phi5_prime_the_short_suffix_of_w2()
+    print("[PASS] test_lemma_phi5_prime_the_short_suffix_of_w2")
+    test_reveal_census_needs_at_most_two_runs_to_length_7()
+    print("[PASS] test_reveal_census_needs_at_most_two_runs_to_length_7")
+    test_cover_pattern_closes_regions_by_lemma_x()
+    print("[PASS] test_cover_pattern_closes_regions_by_lemma_x")
+    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones; Lemma Phi4 (Pisot signs of Y_1 - Y_2 against Z_1 - Z_2) and Lemma Phi5 (the Z_1 = Z_2 + 1 non-crossing shape w_1 = u y^(Y_1 - Y_2), pi(u) = pi(w_2) + e_z) hold on all 2,136 members with |w_i| <= 6; at |w_i| <= 7 the Lemma Phi6-Phi8 paths verify on 1,180 of the 1,267 non-crossing members with none failing, the delta = e_z cell leaves only (zz, z) at level 6, (z, empty) is not PIP, and the other cells leave 87 members decided at levels 3 to 6; the run-shape cover: solve_constraint partitions the solutions of sum_pos n - sum_neg n = target exactly (every box solution hit once, targets -3..3), the quadratic Lemma P1 identities f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3 (Z_1 = Z_2 + 1) and f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3 (Z_1 = Z_2 - 1) hold, a line-mode path (offsets affine along e_z - e_y) verifies on (z^a y^b, y^(b+1) z^(a+1)), a >= b + 2, and the shape cells (zy | eps), (zy | z), (zy | yz) with Z_1 = Z_2 + 1 close for Delta = 1, 2, 3 and the tail Delta >= 4 with no open region, while (zy | yz) with Z_1 = Z_2 - 1 closes at Delta = -1 using line mode; induction on runs: refining a run pattern's opaque tail (it ends, or one more run of the other letter and a new tail) partitions the word pairs (31 * 63 pairs with w_1 beginning with z, |w_i| <= 5, each in exactly one leaf), the patterns (zy | zy*), (zy | yz*), (zy* | z), (zy* | y), (zyz* | zy), (zyz* | yz), (z | z*), (z | y*), (z* | eps) -- the nine closed leaves of the run tree -- with Z_1 = Z_2 + 1, Delta = 1 close with no open region (each an infinite family with unboundedly many runs) while (zy* | zy*) does not at the same budget, and common points match their definition, 51 of the 87 residual members at |w_i| <= 7 having only t = 1; Lemma X (monotone lattice paths whose endpoints cross, or touch with a letter following, share a point) holds on every pair of paths of at most 4 steps, a weak end at a word end can leave the only shared point at the last level, the cone search closes 86 of the 87 residual members at |w_i| <= 7 by Lemma X, each confirmed by the exact level, Lemma Phi5' (Z_2 = Z_1 + 1, non-crossing: Delta <= 0, |w_2| = |w_1| + 1 - Delta, at least two z in the last 2 - Delta letters of w_2) holds on every member with |w_i| <= 7, the reveal census needs at most two revealed runs at longer-word lengths 5..7 (77/4, 255/13, 825/54), and cover_pattern certifies regions of zyz* y | zyz* by Lemma X")

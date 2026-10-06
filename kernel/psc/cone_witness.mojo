@@ -713,3 +713,237 @@ def search_witness_line(fam: ConeFamily, a0: Int, b0: Int, bound: Int, max_level
                     return out^
         start = end
     return out^
+
+
+# ---------------------------------------------------------------------------
+# Crossing closure (Lemma X of docs/p1a-a1-prime-2026-10-05.md §3j). Inside a
+# range of segments that holds only the letters `u` and `v`, the prefix
+# Parikh vector walks a monotone lattice path in the (u, v)-plane, its third
+# coordinate constant. Two such paths P: p0 -> p1 and Q: q0 -> q1 whose
+# levels |.| = u + v overlap share a lattice point strictly before both ends
+# when Q starts weakly on one side of P and ends strictly on the other:
+# g(n) = Q_u(n) - P_u(n) moves by at most 1 per level, is >= 0 at the first
+# common level and < 0 at the last (or the mirror), so it vanishes before
+# the last. Only the four endpoints are read, never the arrangement inside,
+# so the ranges may cross opaque segments. At the shared point the next
+# offset is 0 and both letters lie in {u, v}: equal letters are a shared
+# tile, and unequal ones are one level from one when sigma(u) and sigma(v)
+# begin with the same letter.
+# ---------------------------------------------------------------------------
+
+
+def monotone_paths_meet(p0: List[Int], p1: List[Int], q0: List[Int], q1: List[Int], interior_end: Bool) -> Bool:
+    """Lemma X on integer endpoints `(u, v)`: monotone paths `P: p0 -> p1` and
+    `Q: q0 -> q1` share a point at a level `< min(|p1|, |q1|)`, or `<=` it
+    when `interior_end` (a letter follows both ends). `crossing_holds` is the
+    same test with every endpoint an affine form on a cone."""
+    var nlo = max(p0[0] + p0[1], q0[0] + q0[1])
+    var nhi = min(p1[0] + p1[1], q1[0] + q1[1])
+    if nlo > nhi or (nlo == nhi and not interior_end):
+        return False
+    var nw = q0[0] >= p0[0] and q0[1] <= p0[1]
+    var se = q0[0] <= p0[0] and q0[1] >= p0[1]
+    if interior_end:
+        return (nw and q1[0] <= p1[0] and q1[1] >= p1[1]) or (se and q1[0] >= p1[0] and q1[1] <= p1[1])
+    return (nw and q1[0] < p1[0] and q1[1] > p1[1]) or (se and q1[0] > p1[0] and q1[1] < p1[1])
+
+
+struct CrossingClose(Copyable, Movable):
+    """Segment ranges `[s0, s1)` of `sigma(a)` and `[t0, t1)` of `sigma(b)`."""
+
+    var s0: Int
+    var s1: Int
+    var t0: Int
+    var t1: Int
+
+    def __init__(out self, s0: Int, s1: Int, t0: Int, t1: Int):
+        self.s0 = s0
+        self.s1 = s1
+        self.t0 = t0
+        self.t1 = t1
+
+
+def _plane_range(fam: ConeFamily, a: Int, s0: Int, s1: Int, third: Int) -> Bool:
+    """Every segment in `[s0, s1)` avoids the letter `third`."""
+    if s0 < 0 or s1 > len(fam.images[a]) or s0 >= s1:
+        return False
+    for k in range(s0, s1):
+        ref seg = fam.images[a][k]
+        if seg.kind == SEG_OPAQUE:
+            for c in range(len(seg.parikh[third])):
+                if seg.parikh[third][c] != 0:
+                    return False
+        elif seg.letter == third:
+            return False
+    return True
+
+
+def _plane_letter_at(fam: ConeFamily, a: Int, s: Int, u: Int, v: Int) -> Bool:
+    """Segment `s` of `sigma(a)` exists, is nonempty, and holds `u` or `v`."""
+    if s >= len(fam.images[a]):
+        return False
+    ref seg = fam.images[a][s]
+    if seg.kind == SEG_OPAQUE or (seg.letter != u and seg.letter != v):
+        return False
+    return aff_nonneg(aff_sub(seg.length, aff_const(fam.m, 1)))
+
+
+def _aff_lt(x: List[Int], y: List[Int]) -> Bool:
+    """Sufficient for `x < y` on the whole cone."""
+    return aff_nonneg(aff_sub(aff_sub(y, x), aff_const(len(x) - 1, 1)))
+
+
+def _aff_le(x: List[Int], y: List[Int]) -> Bool:
+    return aff_nonneg(aff_sub(y, x))
+
+
+def crossing_holds(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], u: Int, v: Int, cl: CrossingClose) -> Bool:
+    """Lemma X at the state `(a, b, gamma)`: every condition checked on the
+    whole cone, so the state reaches a shared tile within two levels."""
+    var third = 3 - u - v
+    if not _plane_range(fam, a, cl.s0, cl.s1, third) or not _plane_range(fam, b, cl.t0, cl.t1, third):
+        return False
+    ref hu = fam.images[u][0]
+    ref hv = fam.images[v][0]
+    if hu.kind != SEG_LETTER or hv.kind != SEG_LETTER or hu.letter != hv.letter:
+        return False
+    var mg = m_times_affine(fam, gamma)
+    if len(mg) == 0:
+        return False
+    var pa0 = fam.prefix_before(a, cl.s0)
+    var pa1 = fam.prefix_before(a, cl.s1)
+    var pb0 = fam.prefix_before(b, cl.t0)
+    var pb1 = fam.prefix_before(b, cl.t1)
+    var off = aff_sub(aff_add(mg[third], pa0[third]), pb0[third])
+    for k in range(len(off)):
+        if off[k] != 0:
+            return False
+    # The meeting point needs pre_a(i) = pre_b(k) - M gamma: Q = pre_b - M gamma.
+    var q0u = aff_sub(pb0[u], mg[u])
+    var q0v = aff_sub(pb0[v], mg[v])
+    var q1u = aff_sub(pb1[u], mg[u])
+    var q1v = aff_sub(pb1[v], mg[v])
+    var lp0 = aff_add(pa0[u], pa0[v])
+    var lp1 = aff_add(pa1[u], pa1[v])
+    var lq0 = aff_add(q0u, q0v)
+    var lq1 = aff_add(q1u, q1v)
+    # Strict at the last common level unless both ranges stop before a
+    # plane letter, which then follows the shared point even at that level.
+    var inner = _plane_letter_at(fam, a, cl.s1, u, v) and _plane_letter_at(fam, b, cl.t1, u, v)
+    if inner:
+        if not (_aff_le(lp0, lp1) and _aff_le(lp0, lq1) and _aff_le(lq0, lp1) and _aff_le(lq0, lq1)):
+            return False
+        var nw_se = _aff_le(pa0[u], q0u) and _aff_le(q0v, pa0[v]) and _aff_le(q1u, pa1[u]) and _aff_le(pa1[v], q1v)
+        var se_nw = _aff_le(q0u, pa0[u]) and _aff_le(pa0[v], q0v) and _aff_le(pa1[u], q1u) and _aff_le(q1v, pa1[v])
+        return nw_se or se_nw
+    if not (_aff_lt(lp0, lp1) and _aff_lt(lp0, lq1) and _aff_lt(lq0, lp1) and _aff_lt(lq0, lq1)):
+        return False
+    var nw_then_se = _aff_le(pa0[u], q0u) and _aff_le(q0v, pa0[v]) and _aff_lt(q1u, pa1[u]) and _aff_lt(pa1[v], q1v)
+    var se_then_nw = _aff_le(q0u, pa0[u]) and _aff_le(pa0[v], q0v) and _aff_lt(pa1[u], q1u) and _aff_lt(q1v, pa1[v])
+    return nw_then_se or se_then_nw
+
+
+def find_crossing(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], u: Int, v: Int) -> List[CrossingClose]:
+    """The first pair of segment ranges satisfying Lemma X, or an empty list."""
+    var out = List[CrossingClose]()
+    if (a != u and a != v) or (b != u and b != v):
+        return out^
+    var na = len(fam.images[a])
+    var nb = len(fam.images[b])
+    for s0 in range(na):
+        for s1 in range(s0 + 1, na + 1):
+            if not _plane_range(fam, a, s0, s1, 3 - u - v):
+                break
+            for t0 in range(nb):
+                for t1 in range(t0 + 1, nb + 1):
+                    if not _plane_range(fam, b, t0, t1, 3 - u - v):
+                        break
+                    var cl = CrossingClose(s0, s1, t0, t1)
+                    if crossing_holds(fam, a, b, gamma, u, v, cl):
+                        out.append(cl^)
+                        return out^
+    return out^
+
+
+struct CrossingSearch(Copyable, Movable):
+    var found: Bool
+    var steps: List[WitnessStep]
+    var close: List[CrossingClose]
+
+    def __init__(out self):
+        self.found = False
+        self.steps = List[WitnessStep]()
+        self.close = List[CrossingClose]()
+
+
+def search_crossing(fam: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int, ly: Int, lz: Int, u: Int, v: Int) -> CrossingSearch:
+    """Breadth-first search, in line mode, for a path to a state that Lemma X
+    closes."""
+    var out = CrossingSearch()
+    var zero = List[List[Int]]()
+    for _ in range(3):
+        zero.append(aff_const(fam.m, 0))
+    var seen = Dict[String, Int]()
+    var parents = List[Int]()
+    var vias = List[WitnessStep]()
+    var sa_ = List[Int]()
+    var sb_ = List[Int]()
+    var sg = List[List[List[Int]]]()
+    seen[_line_key(a0, b0, zero)] = 0
+    parents.append(-1)
+    vias.append(WitnessStep(0, aff_const(fam.m, 0), 0, aff_const(fam.m, 0)))
+    sa_.append(a0)
+    sb_.append(b0)
+    sg.append(zero.copy())
+    var start = 0
+    for level in range(max_level + 1):
+        var end = len(sa_)
+        for f in range(start, end):
+            var cl = find_crossing(fam, sa_[f], sb_[f], sg[f], u, v)
+            if len(cl) > 0:
+                var rev = List[WitnessStep]()
+                var cur = f
+                while cur != 0:
+                    rev.append(vias[cur].copy())
+                    cur = parents[cur]
+                for i in range(len(rev) - 1, -1, -1):
+                    out.steps.append(rev[i].copy())
+                out.close.append(cl[0].copy())
+                out.found = True
+                return out^
+        if level == max_level:
+            break
+        for f in range(start, end):
+            var cands = _line_candidates(fam, sa_[f], sb_[f], sg[f], bound, ly, lz)
+            for c in range(len(cands)):
+                var r = apply_step_line(fam, sa_[f], sb_[f], sg[f], cands[c])
+                if not r.ok or not _within(r.gamma, bound):
+                    continue
+                var key = _line_key(r.a, r.b, r.gamma)
+                if key in seen:
+                    continue
+                seen[key] = len(sa_)
+                parents.append(f)
+                vias.append(cands[c].copy())
+                sa_.append(r.a)
+                sb_.append(r.b)
+                sg.append(r.gamma.copy())
+        start = end
+    return out^
+
+
+def verify_crossing(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessStep], cl: CrossingClose, u: Int, v: Int) -> Bool:
+    """Re-derive the path's last state in line mode and check Lemma X there."""
+    var a = a0
+    var b = b0
+    var gamma = List[List[Int]]()
+    for _ in range(3):
+        gamma.append(aff_const(fam.m, 0))
+    for l in range(len(steps)):
+        var r = apply_step_line(fam, a, b, gamma, steps[l])
+        if not r.ok:
+            return False
+        a = r.a
+        b = r.b
+        gamma = r.gamma.copy()
+    return crossing_holds(fam, a, b, gamma, u, v, cl)

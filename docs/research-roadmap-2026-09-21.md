@@ -473,8 +473,12 @@ For the next research cycle:
    induction on runs (§3i) settles the cell `Z_1 = Z_2 + 1`, `Y_1 = Y_2 + 1`
    up to two three-run patterns (Theorem Ξ). Where both words keep an open
    tail the induction does not converge; the residue there is mostly single
-   excursions of the two walks, which needs an argument inside an excursion.
-   That, and determinant other than 2, remain. The former statement of the obligation follows.
+   excursions of the two walks. §3j supplies the argument inside an excursion:
+   Lemma X (monotone crossing, read at endpoints only) with the suffix lemmas
+   Φ5 and Φ5′ gives every non-crossing member through length 10 a certificate
+   that reads a bounded part of its words. What remains is to uniformize those
+   certificates over the parametric regions (a certificate-guided partition),
+   and determinant other than 2. The former statement of the obligation follows.
 3. **#138 template exclusion in parallel.** The aligned branch is reduced to a
    fixed bad hub edge or an alternating type-E template. Exclude those two
    templates using endpoint/occurrence structure, including reversal.
