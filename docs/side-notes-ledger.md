@@ -298,3 +298,13 @@ by deleting it.
   wrapper propagates upstream refusal. ·
   <https://github.com/larsbx/finite-math-kernels/pull/63>; `vendored.toml`;
   `kernel/psc/boundary_sync.mojo`
+- 2026-10-06 · PSC's substitution application and powers now come from the
+  vendored `Substitution.apply` / `apply_n`: the second `apply_substitution`
+  in `oa_overlap_types` and `one_tile._power` are deleted, and
+  `legal_tower.apply_substitution_n` and `dumont_thomas.power_substitution`
+  delegate. The alphabet-generic callers keep the trusted (unvalidated)
+  constructor; the alphabet-3 callers keep `bpa.sigma3`'s abort, at depth 0
+  still unconsulted. `periodic_pair._image` stays: its word cap refuses
+  mid-construction, which `apply_n` cannot. Claim receipts and the full Mojo
+  test log are byte-identical before and after. · `kernel/psc/legal_tower.mojo`;
+  `kernel/run_tests.sh`

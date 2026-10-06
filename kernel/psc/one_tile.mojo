@@ -29,7 +29,7 @@ recurrent vertex. All signs are exact (`cached_sign`); a capped graph raises.
 """
 
 from finite_linear_algebra.mat3 import Mat3, identity3
-from psc.bpa import substitution_incidence
+from psc.bpa import sigma3, substitution_incidence
 from psc.overlap_obstruction import recurrent_sccs
 from psc.overlap_seed_patch import (
     OverlapState,
@@ -109,17 +109,6 @@ def odd_letter_sets(sigma: List[List[Int]]) -> List[Int]:
     return out^
 
 
-def _power(sigma: List[List[Int]], a: Int, n: Int) -> List[Int]:
-    var x: List[Int] = [a]
-    for _ in range(n):
-        var y = List[Int]()
-        for i in range(len(x)):
-            for c in sigma[x[i]]:
-                y.append(c)
-        x = y^
-    return x^
-
-
 def _key(v: List[Int]) -> String:
     return String(v[0], ",", v[1], ",", v[2])
 
@@ -131,6 +120,7 @@ def level_is_valuation(sigma: List[List[Int]], n: Int) -> Bool:
     `max{k' <= n : v in M^k' Z^3} = k`. This holds iff `sigma` is
     catch-up-free (`catch_up_free`)."""
     var m = Mat3(substitution_incidence(sigma))
+    var tau = sigma3(sigma)
     var powers: List[Mat3] = [identity3()]
     for _ in range(n):
         powers.append(powers[len(powers) - 1] * m)
@@ -138,7 +128,7 @@ def level_is_valuation(sigma: List[List[Int]], n: Int) -> Bool:
         var level = Dict[String, Int]()
         var points = List[List[Int]]()
         for k in range(n, -1, -1):
-            var x = _power(sigma, a, n - k)
+            var x = tau.apply_n([a], n - k)
             var u: List[Int] = [0, 0, 0]
             for j in range(len(x) - 1):
                 u[x[j]] += 1
