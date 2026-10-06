@@ -381,3 +381,16 @@ by deleting it.
   how the package regressions pin this repository's outputs. Two orbits of a
   self-map of d letters that meet do so within d - 1 steps (exhaustive,
   d <= 6). · finite-math-kernels `tests/substitution_dynamics/`
+- 2026-10-06 · Owner decision: the vendored `prolongable_points`
+  (`substitution_dynamics/dumont_thomas.mojo`, finite-math-kernels
+  `d61bcf8`) reports each letter at its minimal prolongable power only (its
+  first return under the first-letter map), as its docstring says, not again
+  at every multiple of its period up to `|A|`. Tribonacci now has one
+  prolongable point `(1, 0)` instead of `(1, 0), (2, 0), (3, 0)`;
+  `test_oa_overlap_types` pins that. In `oa_type_inclusion_census` and
+  `oa_failures_probe` only the `"points"` field of 17 of the 22 per-specimen
+  JSON lines drops (3 -> 1, 5 -> 3, 6 -> 2), where the dropped powers were
+  duplicates giving the same fixed-point word; union types, witnesses, every
+  CI-pinned summary line and the claim receipts are byte-identical. The
+  per-specimen lines are recorded nowhere in the repository. ·
+  `kernel/tests/test_oa_overlap_types.mojo`; `kernel/oa_failures_probe.mojo`
