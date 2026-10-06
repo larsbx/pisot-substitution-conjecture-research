@@ -466,7 +466,8 @@ For the next research cycle:
    paths: **strong coincidence for every pair holds on the whole catch-up-free
    `|det M| = 2` two-odd-letter class** (Corollary H1), and with Proposition O
    on the whole catch-up-free `|det M| = 2` class except one explicit family
-   (Theorem K, §3e). That family, and determinant other than 2, remain. The former statement of the obligation follows.
+   (Theorem K, §3e). Inside that family the crossing lemma (§3f) leaves only
+   the non-crossing pairs; those, and determinant other than 2, remain. The former statement of the obligation follows.
 3. **#138 template exclusion in parallel.** The aligned branch is reduced to a
    fixed bad hub edge or an alternating type-E template. Exclude those two
    templates using endpoint/occurrence structure, including reversal.

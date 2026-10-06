@@ -2,9 +2,10 @@
 whole cone of substitutions.
 
 A *cone family* is a three-letter substitution whose images are sequences of
-segments -- a single letter, or a run of the letter `y = 2` whose length is an
-affine form in cone variables `n_1, ..., n_m >= 0`. The incidence matrix `M`
-then has affine entries.
+segments -- a single letter, a run of one letter whose length is an affine
+form in cone variables `n_1, ..., n_m >= 0`, or an *opaque* word known only by
+its affine Parikh vector, inside which no position is ever named. The
+incidence matrix `M` then has affine entries.
 
 A *witness path* from the pair `(a_0, b_0)` is a sequence of steps; step `l`
 picks a position in `sigma(a_l)` and one in `sigma(b_l)`, each a segment and
@@ -81,25 +82,61 @@ def aff_eval(a: List[Int], ns: List[Int]) -> Int:
     return v
 
 
-struct Segment(Copyable, Movable):
-    """A single `letter`, or (`run`) a run of `y` of affine `length`."""
+comptime SEG_LETTER = 0
+comptime SEG_RUN = 1
+comptime SEG_OPAQUE = 2
 
-    var run: Bool
+
+struct Segment(Copyable, Movable):
+    """A single `letter`; a run of `letter` of affine `length`; or an opaque
+    word known only by its affine Parikh vector, inside which no position is
+    ever named. `parikh` holds the three affine counts for every kind."""
+
+    var kind: Int
     var letter: Int
     var length: List[Int]
+    var parikh: List[List[Int]]
 
-    def __init__(out self, run: Bool, letter: Int, var length: List[Int]):
-        self.run = run
+    def __init__(out self, kind: Int, letter: Int, var length: List[Int], var parikh: List[List[Int]]):
+        self.kind = kind
         self.letter = letter
         self.length = length^
+        self.parikh = parikh^
+
+    def is_run(self) -> Bool:
+        return self.kind == SEG_RUN
+
+
+def _unit_parikh(letter: Int, var amount: List[Int]) -> List[List[Int]]:
+    var m = len(amount) - 1
+    var out = List[List[Int]]()
+    for i in range(3):
+        if i == letter:
+            out.append(amount.copy())
+        else:
+            out.append(aff_const(m, 0))
+    return out^
 
 
 def letter_segment(m: Int, letter: Int) -> Segment:
-    return Segment(False, letter, aff_const(m, 1))
+    return Segment(SEG_LETTER, letter, aff_const(m, 1), _unit_parikh(letter, aff_const(m, 1)))
+
+
+def run_of(letter: Int, var length: List[Int]) -> Segment:
+    """A run of `letter` with affine `length`."""
+    var p = _unit_parikh(letter, length.copy())
+    return Segment(SEG_RUN, letter, length^, p^)
 
 
 def run_segment(var length: List[Int]) -> Segment:
-    return Segment(True, Y_LETTER, length^)
+    """A run of `y = 2`, the letter of the swap family's runs."""
+    return run_of(Y_LETTER, length^)
+
+
+def opaque_segment(var parikh: List[List[Int]]) -> Segment:
+    """An unrevealed word with affine Parikh vector `parikh`."""
+    var length = aff_add(aff_add(parikh[0], parikh[1]), parikh[2])
+    return Segment(SEG_OPAQUE, -1, length^, parikh^)
 
 
 struct ConeFamily(Copyable, Movable):
@@ -119,11 +156,11 @@ struct ConeFamily(Copyable, Movable):
             for s in range(len(self.images[j])):
                 ref seg = self.images[j][s]
                 if len(seg.length) != m + 1:
-                    raise Error("a segment length has the wrong number of cone variables")
-                if seg.run:
-                    self.incidence[3 * Y_LETTER + j] = aff_add(self.incidence[3 * Y_LETTER + j], seg.length)
-                else:
-                    self.incidence[3 * seg.letter + j] = aff_add(self.incidence[3 * seg.letter + j], aff_const(m, 1))
+                    raise Error("a segment has the wrong number of cone variables")
+                for i in range(3):
+                    if len(seg.parikh[i]) != m + 1:
+                        raise Error("a segment Parikh form has the wrong number of cone variables")
+                    self.incidence[3 * i + j] = aff_add(self.incidence[3 * i + j], seg.parikh[i])
 
     def m_times(self, gamma: List[Int]) -> List[List[Int]]:
         """`M gamma` for a constant `gamma`, as three affine forms."""
@@ -141,11 +178,8 @@ struct ConeFamily(Copyable, Movable):
         for _ in range(3):
             pre.append(aff_const(self.m, 0))
         for k in range(s):
-            ref seg = self.images[a][k]
-            if seg.run:
-                pre[Y_LETTER] = aff_add(pre[Y_LETTER], seg.length)
-            else:
-                pre[seg.letter] = aff_add(pre[seg.letter], aff_const(self.m, 1))
+            for i in range(3):
+                pre[i] = aff_add(pre[i], self.images[a][k].parikh[i])
         return pre^
 
     def start_of(self, a: Int, s: Int) -> List[Int]:
@@ -156,7 +190,10 @@ struct ConeFamily(Copyable, Movable):
         return st^
 
     def instantiate(self, ns: List[Int]) raises -> List[List[Int]]:
-        """The member of the cone at `ns`, as a plain substitution."""
+        """A member of the cone at `ns`, as a plain substitution. An opaque
+        segment is written as its letters in alphabet order; a witness path
+        never names a position inside one and reads it only through its
+        Parikh vector, so any arrangement gives the same verdict."""
         if len(ns) != self.m:
             raise Error("wrong number of cone coordinates")
         var sigma = List[List[Int]]()
@@ -164,14 +201,15 @@ struct ConeFamily(Copyable, Movable):
             var img = List[Int]()
             for s in range(len(self.images[a])):
                 ref seg = self.images[a][s]
-                if seg.run:
-                    var n = aff_eval(seg.length, ns)
-                    if n < 0:
-                        raise Error("a run length is negative at this cone point")
-                    for _ in range(n):
-                        img.append(Y_LETTER)
-                else:
+                if seg.kind == SEG_LETTER:
                     img.append(seg.letter)
+                    continue
+                for i in range(3):
+                    var n = aff_eval(seg.parikh[i], ns)
+                    if n < 0:
+                        raise Error("a segment count is negative at this cone point")
+                    for _ in range(n):
+                        img.append(i)
             sigma.append(img^)
         return sigma^
 
@@ -202,7 +240,9 @@ struct WitnessSearch(Copyable, Movable):
 
 def _offset_ok(fam: ConeFamily, a: Int, s: Int, off: List[Int]) -> Bool:
     ref seg = fam.images[a][s]
-    if not seg.run:
+    if seg.kind == SEG_OPAQUE:
+        return False
+    if seg.kind == SEG_LETTER:
         for k in range(len(off)):
             if off[k] != 0:
                 return False
@@ -243,18 +283,19 @@ def apply_step(fam: ConeFamily, a: Int, b: Int, gamma: List[Int], step: WitnessS
     var mg = fam.m_times(gamma)
     var pa = fam.prefix_before(a, step.seg_a)
     var pb = fam.prefix_before(b, step.seg_b)
+    ref sa = fam.images[a][step.seg_a]
+    ref sb = fam.images[b][step.seg_b]
     var g2 = List[Int]()
     for i in range(3):
         var d = aff_sub(aff_add(mg[i], pa[i]), pb[i])
-        if i == Y_LETTER:
-            if fam.images[a][step.seg_a].run:
-                d = aff_add(d, step.off_a)
-            if fam.images[b][step.seg_b].run:
-                d = aff_sub(d, step.off_b)
+        if sa.is_run() and sa.letter == i:
+            d = aff_add(d, step.off_a)
+        if sb.is_run() and sb.letter == i:
+            d = aff_sub(d, step.off_b)
         if not aff_is_const(d):
             return _refused("a witness Parikh offset is not constant on the cone")
         g2.append(d[0])
-    return StepResult(True, "", fam.images[a][step.seg_a].letter, fam.images[b][step.seg_b].letter, g2^)
+    return StepResult(True, "", sa.letter, sb.letter, g2^)
 
 
 def _key(a: Int, b: Int, gamma: List[Int], bound: Int) -> Int:
@@ -269,40 +310,62 @@ def _in_box(gamma: List[Int], bound: Int) -> Bool:
     return True
 
 
-def _candidates(fam: ConeFamily, a: Int, b: Int, gamma: List[Int], bound: Int) -> List[WitnessStep]:
-    """Every step whose target offset is constant with entries in the box. With
-    both positions in runs, one offset is pinned to 0, 1 or 2."""
+def _candidates(fam: ConeFamily, a: Int, b: Int, gamma: List[Int], bound: Int, end_pins: Bool) -> List[WitnessStep]:
+    """Every step whose target offset is constant with entries in the box. A
+    coordinate no run touches must already be constant; a run's offset is
+    solved from its target. With both positions in runs of one letter, one
+    offset is pinned to 0, 1 or 2 -- and, with `end_pins`, also to 0, 1 or 2
+    from the end of its run."""
     var out = List[WitnessStep]()
     var m = fam.m
     var mg = fam.m_times(gamma)
     for sa in range(len(fam.images[a])):
+        ref ga = fam.images[a][sa]
+        if ga.kind == SEG_OPAQUE:
+            continue
         var pa = fam.prefix_before(a, sa)
-        var ra = fam.images[a][sa].run
+        var la = ga.letter if ga.is_run() else -1
         for sb in range(len(fam.images[b])):
-            var pb = fam.prefix_before(b, sb)
-            var rb = fam.images[b][sb].run
-            var dx = aff_sub(aff_add(mg[0], pa[0]), pb[0])
-            var dc = aff_sub(aff_add(mg[1], pa[1]), pb[1])
-            if not aff_is_const(dx) or not aff_is_const(dc):
+            ref gb = fam.images[b][sb]
+            if gb.kind == SEG_OPAQUE:
                 continue
-            var dy = aff_sub(aff_add(mg[2], pa[2]), pb[2])
-            for ty in range(-bound, bound + 1):
-                var d = aff_sub(aff_const(m, ty), dy)  # off_a - off_b must equal d
-                if not ra and not rb:
-                    if d == aff_const(m, 0):
-                        out.append(WitnessStep(sa, aff_const(m, 0), sb, aff_const(m, 0)))
-                elif ra and not rb:
-                    out.append(WitnessStep(sa, d.copy(), sb, aff_const(m, 0)))
-                elif not ra and rb:
-                    out.append(WitnessStep(sa, aff_const(m, 0), sb, aff_scale(d, -1)))
-                else:
-                    for s in range(3):
-                        out.append(WitnessStep(sa, aff_add(d, aff_const(m, s)), sb, aff_const(m, s)))
-                        out.append(WitnessStep(sa, aff_const(m, s), sb, aff_sub(aff_const(m, s), d)))
+            var pb = fam.prefix_before(b, sb)
+            var lb = gb.letter if gb.is_run() else -1
+            var d = List[List[Int]]()
+            var fixed = True
+            for i in range(3):
+                d.append(aff_sub(aff_add(mg[i], pa[i]), pb[i]))
+                if i != la and i != lb and not aff_is_const(d[i]):
+                    fixed = False
+            if not fixed:
+                continue
+            if la < 0 and lb < 0:
+                out.append(WitnessStep(sa, aff_const(m, 0), sb, aff_const(m, 0)))
+            elif lb < 0:
+                for t in range(-bound, bound + 1):
+                    out.append(WitnessStep(sa, aff_sub(aff_const(m, t), d[la]), sb, aff_const(m, 0)))
+            elif la < 0:
+                for t in range(-bound, bound + 1):
+                    out.append(WitnessStep(sa, aff_const(m, 0), sb, aff_sub(d[lb], aff_const(m, t))))
+            elif la == lb:
+                for t in range(-bound, bound + 1):
+                    var dd = aff_sub(aff_const(m, t), d[la])  # off_a - off_b must equal dd
+                    for p in range(3):
+                        out.append(WitnessStep(sa, aff_add(dd, aff_const(m, p)), sb, aff_const(m, p)))
+                        out.append(WitnessStep(sa, aff_const(m, p), sb, aff_sub(aff_const(m, p), dd)))
+                        if end_pins:
+                            var eb = aff_sub(gb.length, aff_const(m, p + 1))
+                            out.append(WitnessStep(sa, aff_add(dd, eb), sb, eb.copy()))
+                            var ea = aff_sub(ga.length, aff_const(m, p + 1))
+                            out.append(WitnessStep(sa, ea.copy(), sb, aff_sub(ea, dd)))
+            else:
+                for t1 in range(-bound, bound + 1):
+                    for t2 in range(-bound, bound + 1):
+                        out.append(WitnessStep(sa, aff_sub(aff_const(m, t1), d[la]), sb, aff_sub(d[lb], aff_const(m, t2))))
     return out^
 
 
-def search_witness(fam: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int) -> WitnessSearch:
+def search_witness(fam: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int, end_pins: Bool = False) -> WitnessSearch:
     """Breadth-first search for a constant-offset witness path from `(a0, b0, 0)`
     to some `(a, a, 0)`, of length at most `max_level`."""
     var w = 2 * bound + 1
@@ -327,7 +390,7 @@ def search_witness(fam: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int
         var ng = List[List[Int]]()
         for f in range(len(fa)):
             var kf = _key(fa[f], fb[f], fg[f], bound)
-            var cands = _candidates(fam, fa[f], fb[f], fg[f], bound)
+            var cands = _candidates(fam, fa[f], fb[f], fg[f], bound, end_pins)
             for c in range(len(cands)):
                 var child = apply_step(fam, fa[f], fb[f], fg[f], cands[c])
                 if not child.ok or not _in_box(child.gamma, bound):
@@ -389,7 +452,7 @@ def witness_position(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessStep]
         for k in range(pos):
             p2 += len(sigma[word[k]])
         var st = aff_eval(fam.start_of(a, steps[l].seg_a), ns)
-        var off = aff_eval(steps[l].off_a, ns) if fam.images[a][steps[l].seg_a].run else 0
+        var off = aff_eval(steps[l].off_a, ns) if fam.images[a][steps[l].seg_a].is_run() else 0
         p2 += st + off
         var nxt = List[Int]()
         for k in range(len(word)):

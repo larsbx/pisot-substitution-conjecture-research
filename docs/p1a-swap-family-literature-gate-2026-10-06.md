@@ -69,3 +69,20 @@ the parametric witness-path certificate as the means of checking it. The
 idea of a finite certificate for an infinite family is BBJS's, and is cited as
 such. If the certificate cannot cover a region, the region stays in the
 residue or stays open; nothing is promoted on the strength of the sweep.
+
+## 6. Addendum, same day: Theorem K's open family
+
+*Proposed.* Strong coincidence for `{o, y}` on `sigma(o) = y`,
+`sigma(y) = o w_1 o`, `sigma(z) = o w_2 o` (A1′ note §3f), first by explicit
+witness lemmas and then by the same parametric witness paths, extended to
+runs of any letter and to opaque word tails.
+
+*Prior art.* The sources of §2 apply unchanged: none treats a family whose
+images carry arbitrary words; BBJS's products are a different, unimodular
+setting, and Barge's beta-substitutions have `sigma(1) = 1^{a_1} 2`-type
+images, not `o w o`. No further source was found that settles this family.
+
+*Decision.* **Proceed, narrowed** to the two lemmas the witness structure
+suggests (Φ1, and the crossing Lemma Φ2) and an exact census of the rest.
+The letter-by-letter pattern tree was tried and recorded as not converging
+(A1′ note §3f); it is kept as an instrument, not cited as a cover.

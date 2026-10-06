@@ -267,6 +267,18 @@ by deleting it.
   scratch, over patterns of runs in `w_1, w_2`. · `p1a-a1-prime-2026-10-05.md`
   §3e; `kernel/tests/test_swap_family_certificate.mojo`
 
+- 2026-10-06 · Theorem K's family (`sigma(o) = y`, `o w_1 o`, `o w_2 o`):
+  `det M = 2(Z_1 − Z_2)`, and every witness found starts
+  `(o, y) -> (y, w_1[0], −e_o)`. When `w_1` begins with `z` the crossing of the
+  Parikh walks of `w_1` and `w_2 + e_y` gives level 3 through the two final
+  `o`s (Lemma Φ2), so only non-crossing pairs remain. **Do not retry the
+  letter-by-letter pattern tree** on them: with opaque tails and relational
+  splits its open leaves still grow (34, 237, 969, 4,083 at depths 6, 9, 11,
+  13); the non-crossing witnesses depend on `delta = pi(w_1) − pi(w_2)`, so
+  the next decomposition should split on `delta` and on the walk. ·
+  `p1a-a1-prime-2026-10-05.md` §3f;
+  `kernel/tests/test_odd_letter_family_certificate.mojo`
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing
