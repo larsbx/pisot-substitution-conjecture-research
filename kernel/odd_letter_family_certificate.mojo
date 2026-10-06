@@ -106,6 +106,7 @@ comptime REGION_BUDGET = 600  # cover_shape: regions examined per cell before re
 comptime RUN_TREE_MAX_RUNS = 6  # run_tree: a pattern with this many revealed runs is not refined further
 comptime RUN_TREE_SPLITS = 3  # run_tree: relational split depth per pattern
 comptime RUN_TREE_PEEL = 3  # run_tree: value splits per pattern
+comptime GUIDED_PEEL_LIMIT = 4  # guided cover: value peels on a branch before a region is reported open
 comptime BASE_POINT_SEED = 20261006  # guided cover: seed of the base-point search
 comptime BASE_POINT_DRAWS = 300  # guided cover: generic draws before the constant fallbacks
 comptime REVEAL_MAX_LEVEL = 6  # reveal census: witness depth before the Lemma X closure counts
@@ -2509,8 +2510,10 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
     var screen = CubicScreen()
     var m = pat.slots() + (1 if tail else 0)
     var stack = _pattern_starts(pat, s, delta, tail)
+    var peels = List[Int](length=len(stack), fill=0)  # value peels behind each region
     while len(stack) > 0:
         var reg = stack.pop()
+        var depth = peels.pop()
         out.regions += 1
         if out.regions > region_budget:
             out.open += 1 + len(stack)
@@ -2535,13 +2538,19 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
             if not any_live:
                 out.not_member += 1
                 continue
+            if depth >= GUIDED_PEEL_LIMIT:
+                out.open += 1
+                out.open_forms.append(reg.copy())
+                continue
             stack.append(_set_value(reg, first_live, 0))
+            peels.append(depth + 1)
             var shifted = List[List[Int]]()
             for k in range(len(reg)):
                 var f = reg[k].copy()
                 f[0] += f[first_live + 1]
                 shifted.append(f^)
             stack.append(shifted^)
+            peels.append(depth + 1)
             continue
         var fam = pattern_family(pat, reg)
         # a certificate for the whole region at once, as in cover_pattern
@@ -2587,6 +2596,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                     out.max_level = max(out.max_level, len(steps_in))
                 for q in range(len(cv.outside)):
                     stack.append(cv.outside[q].copy())
+                    peels.append(depth)
                 done = True
         if not done:
             var cp = search_crossing(point, O, Y, OFFSET_BOUND, MAX_LEVEL - 2, Y, Z, Y, Z)
@@ -2609,19 +2619,25 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                         out.max_level = max(out.max_level, len(steps_in) + 2)
                     for q in range(len(cv.outside)):
                         stack.append(cv.outside[q].copy())
+                        peels.append(depth)
                     done = True
         if not done:
             # no liftable certificate: peel a live variable, n = 0 | n >= 1,
             # as cover_pattern does (a region without one is a single point)
-            if any_live:
+            if any_live and depth >= GUIDED_PEEL_LIMIT:
+                out.open += 1
+                out.open_forms.append(reg.copy())
+            elif any_live:
                 var pick = _peel_variable(reg, m, ns)
                 stack.append(_set_value(reg, pick, 0))
+                peels.append(depth + 1)
                 var shifted = List[List[Int]]()
                 for k in range(len(reg)):
                     var f = reg[k].copy()
                     f[0] += f[pick + 1]
                     shifted.append(f^)
                 stack.append(shifted^)
+                peels.append(depth + 1)
             else:
                 var sigma = fam.instantiate(List[Int](length=m, fill=0))
                 var lev = coincidence_level(sigma, O, Y)
