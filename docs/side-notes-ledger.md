@@ -404,6 +404,18 @@ by deleting it.
   `p1a-a1-prime-2026-10-05.md` §3l.5; `kernel/odd_letter_family_certificate.mojo`
   (`search_point`, `mccormick_forms`, `_new_forms`)
 
+- 2026-10-06 · Polynomial line mode (`psc/poly_line.mojo`) for the tail
+  cells. Pitfall: lifting a point path by the *search's* candidate menu (run
+  offsets anchored 0–2 from either end) found no candidate in all 15
+  quadratic cases (s = +1 tail, 3,000 regions): states agreed, offsets did
+  not. Building candidates from the point's own step (its offsets anchored at
+  either end, or solved to hold a coordinate) gives polynomial certificates,
+  some on a whole region uncarved. Open: most lifts end with an offset whose
+  degree-2 part does not vanish, i.e. the certificate holds on a slice, which
+  a finite cover cannot use. Also: the fixed cell `(+1, 2)` does not close
+  (15 of 20 leaves, 8 revealed runs), so fixed `Delta` is not a way around
+  the tail either. · `kernel/tests/test_poly_line.mojo`
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing

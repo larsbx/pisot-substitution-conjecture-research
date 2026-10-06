@@ -75,6 +75,7 @@ from psc.cone_witness import (
     witness_position,
 )
 from psc.cone_witness import aff_add, aff_eval, aff_nonneg, aff_scale, aff_sub, crossing_conditions, lift_path, monotone_paths_meet, Prover, _q_lin, _qa, _q_nonneg, _q_nonneg_under
+from psc.poly_line import lift_path_poly, poly_affine_part, poly_higher, poly_is_zero, poly_key, steps_at, verify_witness_poly
 from psc.prng import SplitMix64
 from psc.pisot import CubicScreen
 from a1_normal_form_census import f_at, shared_tile_between
@@ -111,7 +112,7 @@ comptime REPAIR_MAX_VALUE = 1 << 20  # a base point walked into a region stays f
 comptime PROPAGATE_ROUNDS = 16  # guided cover: rounds of integer bound propagation
 comptime SEARCH_NODES = 4000  # guided cover: nodes of the exact point search
 comptime SEARCH_SPAN = 8  # guided cover: values tried for an unbounded variable in the point search
-comptime FAR_CANDIDATES = 24  # guided tail cover: candidates tried with a large tail variable first
+comptime FAR_CANDIDATES = 24  # guided tail cover: candidates tried with a moderately large tail variable first
 comptime BASE_POINT_SEED = 20261006  # guided cover: seed of the base-point search
 comptime BASE_POINT_DRAWS = 300  # guided cover: generic draws before the constant fallbacks
 comptime REVEAL_MAX_LEVEL = 6  # reveal census: witness depth before the Lemma X closure counts
@@ -1345,6 +1346,7 @@ struct ShapeCover(Copyable, Movable):
     var certified: Int
     var line_certified: Int
     var crossing_certified: Int
+    var poly_certified: Int  # line paths lifted over polynomials (psc.poly_line)
     var cut: Int
     var decided: Int
     var not_member: Int
@@ -1359,6 +1361,7 @@ struct ShapeCover(Copyable, Movable):
         self.certified = 0
         self.line_certified = 0
         self.crossing_certified = 0
+        self.poly_certified = 0
         self.cut = 0
         self.decided = 0
         self.not_member = 0
@@ -3137,9 +3140,10 @@ def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, 
     """A point of the region (its assumptions hold there): the first member
     among the candidates, each walked into the region, or, unless
     `want_member`, the first point. With `far >= 0` (a tail cell's `e`),
-    candidates with that coordinate large come first: past the threshold
-    where a tail's certificate no longer depends on `e`, a lifted one
-    covers every larger `e` at once."""
+    candidates with that coordinate moderately large come first: past the
+    threshold where a tail's certificate no longer depends on `e`, a lifted
+    one covers every larger `e` at once, while its offsets stay within the
+    search's bound (at `e = 40` they did not)."""
     var m = len(reg.subst[0]) - 1
     var box = propagate_bounds(reg.assume, m)
     if box.empty:
@@ -3149,7 +3153,7 @@ def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, 
         var near = tries^
         tries = List[List[Int]]()
         for t in range(min(FAR_CANDIDATES, len(near))):
-            for e in [40, 20, 10]:
+            for e in [5, 3]:
                 var c = near[t].copy()
                 c[far] = e
                 tries.append(c^)
@@ -3288,6 +3292,15 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                 out.max_level = max(out.max_level, len(lr.steps))
                 _push_complements(stack, reg, ineqs)
                 done = True
+            elif not lr.ok and lr.why.find("quadratic") >= 0:
+                # the region's M gamma is quadratic: lift over polynomials
+                var levels = _poly_carve(fam, point, ns, wp.steps, reg, stack, verbose, out.regions)
+                if levels > 0:
+                    out.certified += 1
+                    out.line_certified += 1
+                    out.poly_certified += 1
+                    out.max_level = max(out.max_level, levels)
+                    done = True
         if not done:
             var cp = search_crossing(point, O, Y, OFFSET_BOUND, MAX_LEVEL - 2, Y, Z, Y, Z)
             if cp.found:
@@ -3363,6 +3376,42 @@ def _new_forms(forms: List[List[Int]], reg: GuidedRegion) -> List[List[Int]]:
         if not prover.nonneg(forms[k]):
             out.append(forms[k].copy())
     return out^
+
+
+def _poly_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], steps: List[WitnessStep], reg: GuidedRegion, mut stack: List[GuidedRegion], verbose: Bool, index: Int) raises -> Int:
+    """Lift a point path over polynomials (`psc.poly_line`), carve the region
+    by its affine forms, re-verify the path on the carved region with
+    `verify_witness_poly` under the region's inequalities (a failure
+    raises), and push the rest. The path's length, or 0 if it does not lift
+    or its end offset keeps a term of degree >= 2."""
+    var lr = lift_path_poly(fam, point, ns, O, Y, steps, Y, Z)
+    if not lr.ok or lr.a != lr.b:
+        if verbose:
+            print("  polynomial lift failed:", lr.why if not lr.ok else "ends off the diagonal")
+        return 0
+    var ineqs = lr.ineqs.copy()
+    for i in range(3):
+        if not poly_is_zero(poly_higher(lr.gamma[i])):
+            if verbose:
+                print("  polynomial lift failed: the end offset is not affine; coordinate", i, "has higher part", poly_key(poly_higher(lr.gamma[i])))
+            return 0
+        var g = poly_affine_part(lr.gamma[i], fam.m)
+        if not _is_zero_form(g):
+            ineqs.append(g.copy())
+            ineqs.append(aff_scale(g, -1))
+    ineqs = _new_forms(_carving_forms(ineqs), reg)
+    if not _satisfies(ineqs, ns):
+        raise Error("a polynomial lift does not hold at its own base point")
+    var inside = _with_assumptions(reg, ineqs)
+    if verbose:
+        _trace(index, "polynomial path", ns, reg.subst, ineqs, 1, len(ineqs))
+    if not verify_witness_poly(fam, O, Y, lr.steps, Prover(inside.assume.copy())):
+        raise Error("a carved region does not verify its polynomial path")
+    # an independent check in plain arithmetic: the path at the base point
+    if not verify_witness_line(point, O, Y, steps_at(lr.steps, ns)):
+        raise Error("a polynomial path fails at its own base point")
+    _push_complements(stack, reg, ineqs)
+    return len(lr.steps)
 
 
 def _push_complements(mut stack: List[GuidedRegion], reg: GuidedRegion, forms: List[List[Int]]):
