@@ -57,7 +57,11 @@ def test_vendored_packages_match_their_pins():
         "finite_graph/signing.mojo",
         "finite_graph/union_find.mojo",
     }
-    assert set(packages["finite_automata"]["files"]) == {"finite_automata/__init__.mojo", "finite_automata/dfa.mojo"}
+    # moore_minimisation.mojo and subset_construction.mojo arrived when upstream split named
+    # algorithms into their own modules; dfa.mojo re-exports them.
+    assert set(packages["finite_automata"]["files"]) == {"finite_automata/__init__.mojo", "finite_automata/dfa.mojo",
+                                                         "finite_automata/moore_minimisation.mojo",
+                                                         "finite_automata/subset_construction.mojo"}
     assert set(packages["mojo_smoke"]["files"]) == {"mojo_smoke/__init__.mojo", "mojo_smoke/claims.mojo", "mojo_smoke/report.mojo"}
     assert set(packages["vendoring"]["files"]) == {"vendoring/__init__.py", "vendoring/check_vendored_sync.py"}
 

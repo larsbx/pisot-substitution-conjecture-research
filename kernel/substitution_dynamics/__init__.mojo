@@ -14,6 +14,10 @@
 #                            2001) as an automaton over Dumont-Thomas paths
 #   return_lattice           return words and their Parikh lattices
 #                            (Durand 1998)
+#   tuning                   tuning patterns and the star product
+#                            (Derrida, Gervois & Pomeau 1978)
+#   internal_address         the internal address of a kneading sequence
+#                            (Lau & Schleicher 1994)
 # Generic helpers stay in generic modules (`symmetry`, `endpoint_maps`).
 #
 # Extracted from the PSC research kernel (psc/words.mojo, psc/bpa.mojo,
@@ -27,7 +31,7 @@
 # that boundary trust their inputs. A capped automaton build is inconclusive,
 # never evidence. `dumont_thomas` and `strong_coincidence` build on
 # `finite_automata` (and through it `finite_exact`); `return_lattice` uses
-# `finite_exact.checked_int`. Like every facade here this one is an index, not
-# a re-export: importing it pulls in no module, so a consumer vendoring a
-# subset of the package never compiles a dependency it did not vendor.
+# `finite_exact.checked_int`. This facade is an index, not a re-export:
+# importing it pulls in no module, so a consumer vendoring a subset of the
+# package never compiles a dependency it did not vendor.
 # See README.md at the repository root.
