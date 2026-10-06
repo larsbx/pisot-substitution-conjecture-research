@@ -648,7 +648,8 @@ def main() raises:
         var max_runs = Int(String(args[6])) if len(args) > 6 else 8
         print("cell s =", s, " Delta =", d, ": guided run tree, region budget", budget, "per pattern, at most", max_runs, "revealed runs", flush=True)
         var tail_cell = len(args) > 7 and String(args[7]) == "tail"
-        var leaves = run_tree_guided(s, d, max_runs, budget, True, tail_cell)
+        var xroot = len(args) > 7 and String(args[7]) == "xblock"
+        var leaves = run_tree_guided(s, d, max_runs, budget, True, tail_cell, xroot)
         var closed = 0
         for k in range(len(leaves)):
             if leaves[k].closed:
@@ -1372,6 +1373,9 @@ struct RunPattern(Copyable, Movable, Writable):
     var suffix1: List[Int]  # letters closing w_1 (Lemma Phi5: y^Delta)
     var suffix2: List[Int]  # letters closing w_2 (Lemma Phi5': 2 - Delta letters)
     var tail_run1: Int  # > 0: w_1 closes with y^(tail_run1 + e), e the cell's tail variable
+    var xblock: Bool  # w_2 = v x with x a second block (Lemma Phi5': the last 2 - Delta letters)
+    var xl: List[Int]  # the runs of x
+    var xopen: Bool  # x continues with an opaque tail
 
     def __init__(out self, var l1: List[Int], open1: Bool, var l2: List[Int], open2: Bool, var suffix1: List[Int] = List[Int](), var suffix2: List[Int] = List[Int]()):
         self.l1 = l1^
@@ -1381,13 +1385,17 @@ struct RunPattern(Copyable, Movable, Writable):
         self.suffix1 = suffix1^
         self.suffix2 = suffix2^
         self.tail_run1 = 0
+        self.xblock = False
+        self.xl = List[Int]()
+        self.xopen = False
 
     def runs(self) -> Int:
-        return len(self.l1) + len(self.l2)
+        return len(self.l1) + len(self.l2) + len(self.xl)
 
     def slots(self) -> Int:
-        """Run slots of w_1, its tail's (y, z) slots, then the same for w_2."""
-        return self.runs() + (2 if self.open1 else 0) + (2 if self.open2 else 0)
+        """Run slots of w_1, its tail's (y, z) slots, the same for w_2, then
+        the same for the block x of w_2."""
+        return self.runs() + (2 if self.open1 else 0) + (2 if self.open2 else 0) + (2 if self.xblock and self.xopen else 0)
 
     def write_to[W: Writer](self, mut w: W):
         var names = List[String](["o", "y", "z"])
@@ -1404,6 +1412,13 @@ struct RunPattern(Copyable, Movable, Writable):
                 w.write("*")
             if wi == 0 and self.tail_run1 > 0:
                 w.write(" +y^(", self.tail_run1, "+e)")
+            if wi == 1 and self.xblock:
+                w.write(" +[")
+                for k in range(len(self.xl)):
+                    w.write(names[self.xl[k]])
+                if self.xopen:
+                    w.write("*")
+                w.write("]")
             ref suf = self.suffix1 if wi == 0 else self.suffix2
             if len(suf) > 0:
                 w.write(" +")
@@ -1441,6 +1456,19 @@ def pattern_family(pat: RunPattern, subst: List[List[Int]]) raises -> ConeFamily
             var f = subst[pat.slots()].copy()
             f[0] += pat.tail_run1
             img.append(run_of(Y, f^))
+        if wi == 1 and pat.xblock:
+            for k in range(len(pat.xl)):
+                var f = subst[slot].copy()
+                f[0] += 1
+                slot += 1
+                img.append(run_of(pat.xl[k], f^))
+            if pat.xopen:
+                var par = List[List[Int]]()
+                par.append(aff_const(m, 0))
+                par.append(subst[slot].copy())
+                par.append(subst[slot + 1].copy())
+                slot += 2
+                img.append(opaque_segment(par^))
         ref suf = pat.suffix1 if wi == 0 else pat.suffix2
         for k in range(len(suf)):
             img.append(letter_segment(m, suf[k]))
@@ -1474,6 +1502,16 @@ def pattern_counts(pat: RunPattern, subst: List[List[Int]]) -> List[List[Int]]:
             out[2 * wi] = aff_add(out[2 * wi], subst[slot])
             out[2 * wi + 1] = aff_add(out[2 * wi + 1], subst[slot + 1])
             slot += 2
+    if pat.xblock:
+        for k in range(len(pat.xl)):
+            var f = subst[slot].copy()
+            f[0] += 1
+            var idx = 2 + (0 if pat.xl[k] == Y else 1)
+            out[idx] = aff_add(out[idx], f)
+            slot += 1
+        if pat.xopen:
+            out[2] = aff_add(out[2], subst[slot])
+            out[3] = aff_add(out[3], subst[slot + 1])
     for wi in range(2):
         ref suf = pat.suffix1 if wi == 0 else pat.suffix2
         for k in range(len(suf)):
@@ -1535,7 +1573,7 @@ def pisot_cut(counts: List[List[Int]], s: Int) -> Bool:
     return _quadratic_nonneg(counts[3], factor, rest)
 
 
-def _pattern_starts(pat: RunPattern, s: Int, delta: Int, tail: Bool) -> List[List[List[Int]]]:
+def _pattern_starts(pat: RunPattern, s: Int, delta: Int, tail: Bool) raises -> List[List[List[Int]]]:
     """The regions of the pattern's variables solving `Z_1 - Z_2 = s` and
     `Y_1 - Y_2 = delta` (or the tail `|Delta| >= |delta|`), as substitutions."""
     var slots = pat.slots()
@@ -1573,6 +1611,19 @@ def _pattern_starts(pat: RunPattern, s: Int, delta: Int, tail: Bool) -> List[Lis
                 yneg.append(slot)
                 zneg.append(slot + 1)
             slot += 2
+    if pat.xblock:
+        for k in range(len(pat.xl)):
+            if pat.xl[k] == Z:
+                zneg.append(slot)
+                zconst -= 1
+            else:
+                yneg.append(slot)
+                yconst -= 1
+            slot += 1
+        if pat.xopen:
+            yneg.append(slot)
+            zneg.append(slot + 1)
+            slot += 2
     for wi in range(2):
         ref suf = pat.suffix1 if wi == 0 else pat.suffix2
         for k in range(len(suf)):
@@ -1585,7 +1636,7 @@ def _pattern_starts(pat: RunPattern, s: Int, delta: Int, tail: Bool) -> List[Lis
         if tail and pat.tail_run1 > 0:
             yconst += pat.tail_run1  # the run y^(D + e) carries Delta = D + e
         elif tail:
-            if delta >= 0:
+            if delta > 0 or (delta == 0 and s == 1):
                 yneg.append(slots)  # Y_1 - Y_2 - e = delta
             else:
                 ypos.append(slots)  # Y_1 - Y_2 + e = delta
@@ -1595,7 +1646,84 @@ def _pattern_starts(pat: RunPattern, s: Int, delta: Int, tail: Bool) -> List[Lis
             for j in range(len(more)):
                 both.append(more[j].copy())
         starts = both^
+    if pat.xblock:
+        starts = _impose_x_block(pat, m, starts)
     return starts^
+
+
+def _x_block_forms(pat: RunPattern, m: Int) -> List[List[Int]]:
+    """Over the pattern's variables: `Z(x) - 2` and
+    `E = Z(x) - 2 + Y_1 - Y(v)`, where `w_2 = v x`. Lemma Phi5' asks
+    `Z(x) >= 2` and `|x| = 2 - Delta`, which is `E = 0`."""
+    var zx = aff_const(m, -2)
+    var e = aff_const(m, -2)
+    var slot = 0
+    for wi in range(2):
+        ref letters = pat.l1 if wi == 0 else pat.l2
+        var opn = pat.open1 if wi == 0 else pat.open2
+        for k in range(len(letters)):
+            if letters[k] == Y:
+                # a run of length 1 + n_slot
+                if wi == 0:
+                    e[0] += 1
+                    e[slot + 1] += 1
+                else:
+                    e[0] -= 1
+                    e[slot + 1] -= 1
+            slot += 1
+        if opn:
+            if wi == 0:
+                e[slot + 1] += 1
+            else:
+                e[slot + 1] -= 1
+            slot += 2
+    for k in range(len(pat.xl)):
+        if pat.xl[k] == Z:
+            zx[0] += 1
+            zx[slot + 1] += 1
+            e[0] += 1
+            e[slot + 1] += 1
+        slot += 1
+    if pat.xopen:
+        zx[slot + 2] += 1
+        e[slot + 2] += 1
+    for k in range(len(pat.suffix1)):
+        if pat.suffix1[k] == Y:
+            e[0] += 1
+    var out = List[List[Int]]()
+    out.append(zx^)
+    out.append(e^)
+    return out^
+
+
+def _compose(form: List[Int], subst: List[List[Int]]) -> List[Int]:
+    """A form over the pattern's variables, rewritten over a region's."""
+    var out = aff_const(len(subst[0]) - 1, form[0])
+    for k in range(len(subst)):
+        if form[k + 1] != 0:
+            out = aff_add(out, aff_scale(subst[k], form[k + 1]))
+    return out^
+
+
+def _impose_x_block(pat: RunPattern, m: Int, starts: List[List[List[Int]]]) raises -> List[List[List[Int]]]:
+    """Restrict regions to Lemma Phi5''s shape: Z(x) >= 2 and E = 0."""
+    var forms = _x_block_forms(pat, m)
+    var neg_e = aff_scale(forms[1], -1)
+    var out = List[List[List[Int]]]()
+    for r in range(len(starts)):
+        var bag = starts[r].copy()
+        var n = len(bag)
+        bag.append(_compose(forms[0], starts[r]))
+        bag.append(_compose(forms[1], starts[r]))
+        bag.append(_compose(neg_e, starts[r]))
+        var a = impose_nonneg(bag, n)
+        for i in range(len(a)):
+            var b = impose_nonneg(a[i], n + 1)
+            for j in range(len(b)):
+                var c = impose_nonneg(b[j], n + 2)
+                for q in range(len(c)):
+                    out.append(_drop_tail(c[q], n))
+    return out^
 
 
 def cover_pattern(pat: RunPattern, s: Int, delta: Int, split_limit: Int, tail: Bool = False, peel_limit: Int = PEEL_LIMIT, region_budget: Int = REGION_BUDGET) raises -> ShapeCover:
@@ -1774,38 +1902,53 @@ struct RunTreeLeaf(Copyable, Movable):
 
 
 def refine_pattern(pat: RunPattern) -> List[RunPattern]:
-    """Partition an open pattern by one run of the open word with fewer runs
-    (`w_1` on ties): its tail ends, or continues with a run of the letter
-    other than its last run's (either letter if it has no run yet)."""
+    """Partition an open pattern by one run of its open block with fewest
+    revealed runs (w_1, then w_2, then the block x of w_2 on ties): its tail
+    ends, or continues with a run of the letter other than its last run's
+    (either letter if it has no run yet). Every other field is inherited."""
     var out = List[RunPattern]()
-    var pick = 0
-    if pat.open1 and pat.open2:
-        pick = 0 if len(pat.l1) <= len(pat.l2) else 1
-    elif pat.open2:
+    var pick = -1
+    var fewest = 1 << 30
+    if pat.open1 and len(pat.l1) < fewest:
+        pick = 0
+        fewest = len(pat.l1)
+    if pat.open2 and len(pat.l2) < fewest:
         pick = 1
-    elif not pat.open1:
+        fewest = len(pat.l2)
+    if pat.xblock and pat.xopen and len(pat.xl) < fewest:
+        pick = 2
+    if pick < 0:
         return out^
-    ref letters = pat.l1 if pick == 0 else pat.l2
+    var last = -1
+    if pick == 0 and len(pat.l1) > 0:
+        last = pat.l1[len(pat.l1) - 1]
+    elif pick == 1 and len(pat.l2) > 0:
+        last = pat.l2[len(pat.l2) - 1]
+    elif pick == 2 and len(pat.xl) > 0:
+        last = pat.xl[len(pat.xl) - 1]
     var nexts = List[Int]()
-    if len(letters) == 0:
+    if last < 0:
         nexts.append(Y)
         nexts.append(Z)
     else:
-        nexts.append(Z if letters[len(letters) - 1] == Y else Y)
+        nexts.append(Z if last == Y else Y)
+    var closed = pat.copy()
     if pick == 0:
-        out.append(RunPattern(pat.l1.copy(), False, pat.l2.copy(), pat.open2, pat.suffix1.copy(), pat.suffix2.copy()))
-        for k in range(len(nexts)):
-            var l = pat.l1.copy()
-            l.append(nexts[k])
-            out.append(RunPattern(l^, True, pat.l2.copy(), pat.open2, pat.suffix1.copy(), pat.suffix2.copy()))
+        closed.open1 = False
+    elif pick == 1:
+        closed.open2 = False
     else:
-        out.append(RunPattern(pat.l1.copy(), pat.open1, pat.l2.copy(), False, pat.suffix1.copy(), pat.suffix2.copy()))
-        for k in range(len(nexts)):
-            var l = pat.l2.copy()
-            l.append(nexts[k])
-            out.append(RunPattern(pat.l1.copy(), pat.open1, l^, True, pat.suffix1.copy(), pat.suffix2.copy()))
-    for k in range(len(out)):
-        out[k].tail_run1 = pat.tail_run1
+        closed.xopen = False
+    out.append(closed^)
+    for k in range(len(nexts)):
+        var kid = pat.copy()
+        if pick == 0:
+            kid.l1.append(nexts[k])
+        elif pick == 1:
+            kid.l2.append(nexts[k])
+        else:
+            kid.xl.append(nexts[k])
+        out.append(kid^)
     return out^
 
 
@@ -2718,15 +2861,19 @@ def suffix_roots(s: Int, delta: Int) -> List[RunPattern]:
     return out^
 
 
-def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Bool = False, tail: Bool = False) raises -> List[RunTreeLeaf]:
+def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Bool = False, tail: Bool = False, xblock_root: Bool = False) raises -> List[RunTreeLeaf]:
     """The run tree of one delta cell under its suffix roots, each pattern
     covered by certificate-guided partition. With `tail` (s = +1 only), the
     cell is `Delta >= delta`: w_1 closes with y^(delta + e)."""
     var out = List[RunTreeLeaf]()
     var stack = List[RunPattern]()
-    if tail:
-        if s != 1:
-            raise Error("tail cells are implemented for s = +1 only")
+    if s == -1 and (tail or xblock_root):
+        # w_2 = v x with x the last 2 - Delta letters, at least two z
+        var root = RunPattern(List[Int]([Z]), True, List[Int](), True)
+        root.xblock = True
+        root.xopen = True
+        stack.append(root^)
+    elif tail:
         var root = RunPattern(List[Int]([Z]), True, List[Int](), True)
         root.tail_run1 = delta
         stack.append(root^)
