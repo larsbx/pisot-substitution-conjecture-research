@@ -82,6 +82,18 @@ unlike the explorations of `psc.numeration_addition` and
 `psc.numeration_conversion` there is no theorem left to import that could make
 an honest search come back empty-handed.
 
+## What lives where
+
+The construction -- path pairs, the Parikh-difference recursion, the state
+interning, the whole-language build and the witness search -- is
+`substitution_dynamics.strong_coincidence`, over an explicit alphabet and
+generic over the caller's `DifferenceBound`. What is specific to this
+repository is the bound itself: `PerronReserve` below steps with
+`psc.pisot_state.incidence_step` and prunes with the Perron-field reserve
+`within_reserve`, both in `Q(beta)` through `psc.perron_field3`, which is the
+finiteness argument above made executable. The package refuses nothing on
+its own account; the reserve is what makes its state cap a guard.
+
 ## What is and is not claimed
 
 That this decides `SC(i, j)` for a specimen it is run on. Not that any
@@ -92,87 +104,64 @@ alphabet-3 Pisot family is open, and nothing here changes that.
 """
 
 from finite_linear_algebra.mat3 import Mat3
-from finite_automata.dfa import Dfa, Witness, witness
+from finite_automata.dfa import Dfa, Witness
 from psc.bpa import substitution_incidence
 from psc.dumont_thomas import max_image_length
 from psc.numeration_addition import powered_field
 from psc.perron_field3 import CubicElt, PerronField3, TileLengths3, perron_tile_lengths_in
 from psc.pisot_state import completion_reserve, incidence_step, within_reserve
 from psc.words import ALPHABET
+from substitution_dynamics import strong_coincidence as sd
+from substitution_dynamics.strong_coincidence import (
+    DifferenceBound,
+    DifferenceStep,
+    STATE_CAP,
+    pair_paths,
+)
+from substitution_dynamics.substitution import Substitution
 
 
-comptime STATE_CAP = 1 << 20
-"""A guard against a defect here, not a budget: the state set is finite by the
-argument above, so reaching this means the argument or this file is wrong."""
+def _sub(sigma: List[List[Int]]) -> Substitution:
+    # Trusted constructor over len(sigma) letters: unvalidated, as before.
+    return Substitution(sigma.copy(), len(sigma))
 
 
-def _key(top: Int, bottom: Int, delta: List[Int]) -> String:
-    var out = String(top) + "," + String(bottom)
-    for i in range(len(delta)):
-        out += "," + String(delta[i])
-    return out
+struct IncidenceStep(DifferenceStep):
+    """`M x + s` through `psc.pisot_state.incidence_step`, whose entry bounds
+    are the ones the Perron-field comparison is stated for."""
 
-
-def _skipped(sigma: List[List[Int]], letter: Int, digit: Int) raises -> List[Int]:
-    """The Parikh vector of the first `digit` letters of `sigma(letter)`."""
-    if digit < 0 or digit > len(sigma[letter]):
-        raise Error("path digit outside the image")
-    var out = List[Int](length=ALPHABET, fill=0)
-    for r in range(digit):
-        out[sigma[letter][r]] += 1
-    return out^
-
-
-struct _Frontier(Copyable, Movable):
-    """Everything a step needs, built once per pair rather than per state."""
-
-    var sigma: List[List[Int]]
     var incidence: Mat3
+
+    def __init__(out self, sigma: List[List[Int]]):
+        self.incidence = Mat3(substitution_incidence(sigma))
+
+    def advance(self, delta: List[Int], contribution: List[Int]) raises -> List[Int]:
+        return incidence_step(self.incidence, delta, contribution)
+
+
+struct PerronReserve(DifferenceBound):
+    """The exact reserve of the finiteness argument: a difference whose value
+    at the left Perron eigenvector, times `beta - 1`, leaves
+    `slack (radix - 1) sum_b v_b` can no longer be completed to zero."""
+
+    var step: IncidenceStep
     var field: PerronField3
     var eigenvector: TileLengths3
     var reserve: CubicElt
-    var radix: Int
 
     def __init__(out self, sigma: List[List[Int]], slack: Int) raises:
         if len(sigma) != ALPHABET:
             raise Error("this state carries one coefficient per letter of three")
-        self.sigma = sigma.copy()
-        self.incidence = Mat3(substitution_incidence(sigma))
+        self.step = IncidenceStep(sigma)
         self.field = powered_field(sigma)
-        self.eigenvector = perron_tile_lengths_in(self.field, self.incidence)
-        self.radix = max_image_length(sigma)
-        self.reserve = completion_reserve(self.eigenvector, self.radix, slack)
+        self.eigenvector = perron_tile_lengths_in(self.field, self.step.incidence)
+        self.reserve = completion_reserve(self.eigenvector, max_image_length(sigma), slack)
 
-    def letters(self) -> Int:
-        return self.radix * self.radix
+    def advance(self, delta: List[Int], contribution: List[Int]) raises -> List[Int]:
+        return self.step.advance(delta, contribution)
 
-    def step(
-        self, top: Int, bottom: Int, delta: List[Int], packed: Int
-    ) raises -> List[Int]:
-        """The successor of a live state, as `(top, bottom, delta)`, or an empty
-        list where the transition is inadmissible or can no longer reach zero.
-
-        One place where a transition is decided, so the whole-language build and
-        the search that stops at the first witness cannot drift apart."""
-        var p = packed % self.radix
-        var q = packed // self.radix
-        if p >= len(self.sigma[top]) or q >= len(self.sigma[bottom]):
-            return List[Int]()
-        var contribution = _skipped(self.sigma, top, p)
-        var below = _skipped(self.sigma, bottom, q)
-        for letter in range(ALPHABET):
-            contribution[letter] -= below[letter]
-        var next = incidence_step(self.incidence, delta, contribution)
-        if not within_reserve(self.field, self.eigenvector, next, self.reserve):
-            return List[Int]()
-        var out: List[Int] = [self.sigma[top][p], self.sigma[bottom][q]]
-        for letter in range(ALPHABET):
-            out.append(next[letter])
-        return out^
-
-
-def _accepting(top: Int, bottom: Int, delta: List[Int]) -> Bool:
-    return top == bottom and delta[0] == 0 and delta[1] == 0 and delta[2] == 0
+    def admits(self, delta: List[Int]) raises -> Bool:
+        return within_reserve(self.field, self.eigenvector, delta, self.reserve)
 
 
 def coincidence_automaton(sigma: List[List[Int]], top: Int, bottom: Int) raises -> Dfa:
@@ -218,68 +207,11 @@ def _build(
     cap: Int,
     letters_must_agree: Bool,
 ) raises -> Dfa:
-    """The state exploration both entry points share; they differ only in
-    whether reaching one letter is part of accepting."""
-    if top < 0 or top >= ALPHABET or bottom < 0 or bottom >= ALPHABET:
-        raise Error("a coincidence pair is two letters of the substitution")
-    if cap < 2:
-        raise Error("a state cap leaves room for the start state and the sink")
-    var frontier = _Frontier(sigma, slack)
-
-    # State 0 is the zero difference at the two starting letters; state 1 is the
-    # rejecting sink an inadmissible or hopeless transition falls into.
-    var zero = List[Int](length=ALPHABET, fill=0)
-    var keys: List[String] = [_key(top, bottom, zero), String("dead")]
-    var index = Dict[String, Int]()
-    index[keys[0]] = 0
-    var tops: List[Int] = [top, -1]
-    var bottoms: List[Int] = [bottom, -1]
-    var deltas: List[List[Int]] = [zero.copy(), zero.copy()]
-    var dead: List[Bool] = [False, True]
-    var delta = List[Int]()
-    var letters = frontier.letters()
-
-    var done = 0
-    while done < len(keys):
-        for packed in range(letters):
-            if dead[done]:
-                delta.append(1)
-                continue
-            var next = frontier.step(
-                tops[done], bottoms[done], deltas[done], packed
-            )
-            if len(next) == 0:
-                delta.append(1)
-                continue
-            var reached = List[Int]()
-            for i in range(ALPHABET):
-                reached.append(next[2 + i])
-            var key = _key(next[0], next[1], reached)
-            var at = index.get(key, -1)
-            if at < 0:
-                if len(keys) >= cap:
-                    raise Error("coincidence state set past the cap: see the finiteness argument")
-                keys.append(key)
-                index[key] = len(keys) - 1
-                tops.append(next[0])
-                bottoms.append(next[1])
-                deltas.append(reached^)
-                dead.append(False)
-                at = len(keys) - 1
-            delta.append(at)
-        done += 1
-
-    var accepting = List[Bool]()
-    for s in range(len(keys)):
-        if dead[s]:
-            accepting.append(False)
-            continue
-        ref d = deltas[s]
-        var balanced = d[0] == 0 and d[1] == 0 and d[2] == 0
-        accepting.append(
-            balanced and (tops[s] == bottoms[s] or not letters_must_agree)
-        )
-    return Dfa(letters, delta, accepting)
+    var s = _sub(sigma)
+    sd.require_letter_pair(s, top, bottom)
+    return sd.coincidence_automaton(
+        s, top, bottom, PerronReserve(sigma, slack), cap, letters_must_agree
+    )
 
 
 def coincidence_witness(sigma: List[List[Int]], top: Int, bottom: Int) raises -> Witness:
@@ -293,63 +225,11 @@ def coincidence_witness_with(
     sigma: List[List[Int]], top: Int, bottom: Int, slack: Int, cap: Int
 ) raises -> Witness:
     """Breadth-first over the same state space, stopping at the first accepting
-    state rather than building the whole language first.
-
-    Same answer as `witness(coincidence_automaton(...))` and much less work for
-    a pair that coincides early, which is most of them: a shallow search visits
-    a handful of states where the full construction would close a set of
-    thousands. The regression checks the two agree."""
-    if top < 0 or top >= ALPHABET or bottom < 0 or bottom >= ALPHABET:
-        raise Error("a coincidence pair is two letters of the substitution")
-    if cap < 1:
-        raise Error("a state cap is positive")
-    var frontier = _Frontier(sigma, slack)
-    var zero = List[Int](length=ALPHABET, fill=0)
-    var keys: List[String] = [_key(top, bottom, zero)]
-    var seen = Dict[String, Int]()
-    seen[keys[0]] = 0
-    var tops: List[Int] = [top]
-    var bottoms: List[Int] = [bottom]
-    var deltas: List[List[Int]] = [zero.copy()]
-    var parent: List[Int] = [-1]
-    var arrival: List[Int] = [-1]
-    var letters = frontier.letters()
-
-    var done = 0
-    while done < len(keys):
-        if _accepting(tops[done], bottoms[done], deltas[done]):
-            var reversed = List[Int]()
-            var walk = done
-            while parent[walk] >= 0:
-                reversed.append(arrival[walk])
-                walk = parent[walk]
-            var word = List[Int]()
-            for i in range(len(reversed)):
-                word.append(reversed[len(reversed) - 1 - i])
-            return Witness(word, False)
-        for packed in range(letters):
-            var next = frontier.step(
-                tops[done], bottoms[done], deltas[done], packed
-            )
-            if len(next) == 0:
-                continue
-            var reached = List[Int]()
-            for i in range(ALPHABET):
-                reached.append(next[2 + i])
-            var key = _key(next[0], next[1], reached)
-            if key in seen:
-                continue
-            if len(keys) >= cap:
-                raise Error("coincidence state set past the cap: see the finiteness argument")
-            seen[key] = len(keys)
-            keys.append(key)
-            tops.append(next[0])
-            bottoms.append(next[1])
-            deltas.append(reached^)
-            parent.append(done)
-            arrival.append(packed)
-        done += 1
-    return Witness(List[Int](), True)
+    state rather than building the whole language first: same answer as
+    `witness(coincidence_automaton(...))`, which the regression checks."""
+    var s = _sub(sigma)
+    sd.require_letter_pair(s, top, bottom)
+    return sd.coincidence_witness(s, top, bottom, PerronReserve(sigma, slack), cap)
 
 
 def coincidence_level(sigma: List[List[Int]], top: Int, bottom: Int) raises -> Int:
@@ -365,32 +245,14 @@ def first_letter_merge_level(sigma: List[List[Int]], top: Int, bottom: Int) -> I
     first-letter map, or `-1`. Then `sigma^n(top)` and `sigma^n(bottom)` start
     with one letter, a coincidence at the left end, so `n` bounds the level.
     On three letters two orbits of `h` that ever meet do so within two steps."""
-    var x = top
-    var y = bottom
-    for n in range(ALPHABET):
-        if x == y:
-            return n
-        x = sigma[x][0]
-        y = sigma[y][0]
-    return -1
+    return sd.first_letter_merge_level(_sub(sigma), top, bottom)
 
 
 def balanced_proper_prefix_pairs(sigma: List[List[Int]], top: Int, bottom: Int) -> Int:
     """The number of pairs `(p, q)` of nonempty proper prefixes of
     `sigma(top)`, `sigma(bottom)` with `ab(p) = ab(q)`: the offset-zero children
     of the aligned overlap `(top, bottom, 0)` other than its leftmost one."""
-    var count = 0
-    var above = List[Int](length=ALPHABET, fill=0)
-    for p in range(1, len(sigma[top])):
-        above[sigma[top][p - 1]] += 1
-        var below = List[Int](length=ALPHABET, fill=0)
-        for q in range(1, len(sigma[bottom])):
-            below[sigma[bottom][q - 1]] += 1
-            var same = True
-            for c in range(ALPHABET):
-                same = same and above[c] == below[c]
-            count += Int(same)
-    return count
+    return sd.balanced_proper_prefix_pairs(_sub(sigma), top, bottom)
 
 
 def strong_coincidence_level(sigma: List[List[Int]]) raises -> Int:
@@ -409,23 +271,6 @@ def strong_coincidence_level(sigma: List[List[Int]]) raises -> Int:
     return worst
 
 
-def pair_paths(radix: Int, word: List[Int]) raises -> List[List[Int]]:
-    """The two path words a packed pair word carries, top track first."""
-    if radix < 2:
-        raise Error("a digit alphabet has at least two digits")
-    var top = List[Int]()
-    var bottom = List[Int]()
-    for i in range(len(word)):
-        if word[i] < 0 or word[i] >= radix * radix:
-            raise Error("a packed digit pair lies outside the alphabet")
-        top.append(word[i] % radix)
-        bottom.append(word[i] // radix)
-    var out = List[List[Int]]()
-    out.append(top^)
-    out.append(bottom^)
-    return out^
-
-
 def path_prefix_parikh(
     sigma: List[List[Int]], letter: Int, path: List[Int]
 ) raises -> List[Int]:
@@ -434,25 +279,12 @@ def path_prefix_parikh(
 
     Independent of the automaton, so a witness can be checked rather than
     trusted. The position itself is the sum of the coordinates."""
-    if letter < 0 or letter >= len(sigma):
+    var s = _sub(sigma)
+    if letter < 0 or letter >= s.size:
         raise Error("a path starts at a letter of the substitution")
-    var m = Mat3(substitution_incidence(sigma))
-    var parikh = List[Int](length=ALPHABET, fill=0)
-    var current = letter
-    for t in range(len(path)):
-        var digit = path[t]
-        if digit < 0 or digit >= len(sigma[current]):
-            raise Error("inadmissible path digit for this letter")
-        parikh = incidence_step(m, parikh, _skipped(sigma, current, digit))
-        current = sigma[current][digit]
-    return parikh^
+    return sd.path_prefix_parikh(s, IncidenceStep(sigma), letter, path)
 
 
 def path_letter(sigma: List[List[Int]], letter: Int, path: List[Int]) raises -> Int:
     """The letter a path reaches, which is the one standing at its position."""
-    var current = letter
-    for t in range(len(path)):
-        if path[t] < 0 or path[t] >= len(sigma[current]):
-            raise Error("inadmissible path digit for this letter")
-        current = sigma[current][path[t]]
-    return current
+    return sd.path_letter(_sub(sigma), letter, path)

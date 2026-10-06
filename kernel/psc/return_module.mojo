@@ -15,6 +15,7 @@ below 3 or is all of Z^3. Irreducibility of the incidence matrix gives rank 3
 """
 
 from psc.return_lattice import TriangularLattice, return_lattice
+from psc.words import ALPHABET
 
 
 def cycle_vectors(edge: List[List[Bool]]) -> List[List[Int]]:
@@ -39,7 +40,7 @@ def cycle_vectors(edge: List[List[Bool]]) -> List[List[Int]]:
 
 def lattice_index(vectors: List[List[Int]]) raises -> Int:
     """Index in Z^3 of the span of `vectors`, 0 when the span has rank below 3."""
-    var lattice = TriangularLattice()
+    var lattice = TriangularLattice(ALPHABET)
     for v in range(len(vectors)):
         lattice.insert(vectors[v])
     if lattice.rank() < 3:
