@@ -18,7 +18,7 @@ optimized for the standing three-letter regime:
   actually needed.
 """
 
-from psc.bpa import apply_substitution, coincidence_boundaries
+from psc.bpa import apply_substitution, coincidence_boundaries, sigma3
 from psc.words import Pair, is_balanced
 
 
@@ -59,10 +59,10 @@ def apply_substitution_n(
 ) raises -> List[Int]:
     if depth < 0:
         raise Error("depth must be nonnegative")
-    var out = w.copy()
-    for _ in range(depth):
-        out = apply_substitution(sigma, out)
-    return out^
+    if depth == 0:
+        # sigma is not consulted, so it is not validated: as before.
+        return w.copy()
+    return sigma3(sigma).apply_n(w, depth)
 
 
 def image_lengths_at_depth(sigma: List[List[Int]], depth: Int) raises -> List[Int]:
