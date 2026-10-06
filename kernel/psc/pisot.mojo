@@ -11,7 +11,10 @@ the complex-conjugate case. No floating point is used anywhere; rationals are
 the unbounded `finite_exact` values, so no coefficient growth can overflow.
 """
 
+from std.os import abort
+
 from finite_exact.rat_q import Q
+from finite_linear_algebra import integer_matrix
 from psc.exact import q_floor_abs, q_int, q_is_zero, q_poly, q_sign
 from finite_linear_algebra.mat3 import Mat3, has_rational_root
 
@@ -129,26 +132,20 @@ def is_irreducible_cubic(coeffs: List[Int]) -> Bool:
 
 
 def is_nonnegative(m: Mat3) -> Bool:
-    for i in range(9):
-        if m.e[i] < 0:
-            return False
-    return True
+    return integer_matrix.is_nonnegative(m.e)
 
 
 def is_primitive(m: Mat3) -> Bool:
-    """Some power of `m` is strictly positive. Wielandt: `k <= n^2 - 2n + 2 = 5`."""
-    if not is_nonnegative(m):
-        return False
-    var p = m.copy()
-    for _ in range(5):
-        var pos = True
-        for i in range(9):
-            if p.e[i] <= 0:
-                pos = False
-        if pos:
-            return True
-        p = p * m
-    return False
+    """Some power of `m` is strictly positive (Wielandt: `k <= n^2 - 2n + 2 = 5`).
+
+    The `Mat3` view of the vendored `integer_matrix.is_primitive`, which decides
+    on Boolean support powers and so cannot overflow. It raises only on a
+    dimension mismatch, which a `Mat3` (nine entries, size three) cannot have:
+    reaching that refusal is an impossible state, so it aborts."""
+    try:
+        return integer_matrix.is_primitive(m.e, 3)
+    except e:
+        abort(String("Mat3 primitivity refused: ", e))
 
 
 def is_pisot_charpoly(coeffs: List[Int]) -> Bool:

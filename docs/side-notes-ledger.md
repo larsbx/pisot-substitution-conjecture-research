@@ -298,3 +298,35 @@ by deleting it.
   wrapper propagates upstream refusal. ·
   <https://github.com/larsbx/finite-math-kernels/pull/63>; `vendored.toml`;
   `kernel/psc/boundary_sync.mojo`
+- 2026-10-06 · PSC's substitution application and powers now come from the
+  vendored `Substitution.apply` / `apply_n`: the second `apply_substitution`
+  in `oa_overlap_types` and `one_tile._power` are deleted, and
+  `legal_tower.apply_substitution_n` and `dumont_thomas.power_substitution`
+  delegate. The alphabet-generic callers keep the trusted (unvalidated)
+  constructor; the alphabet-3 callers keep `bpa.sigma3`'s abort, at depth 0
+  still unconsulted. `periodic_pair._image` stays: its word cap refuses
+  mid-construction, which `apply_n` cannot. Claim receipts and the full Mojo
+  test log are byte-identical before and after. · `kernel/psc/legal_tower.mojo`;
+  `kernel/run_tests.sh`
+- 2026-10-06 · `pisot.is_primitive(Mat3)` now delegates to the vendored
+  `integer_matrix.is_primitive` (Boolean support powers). The old body
+  multiplied real powers `M^1..M^5` with unchecked `Mat3.__mul__`, so a
+  matrix with entries large enough to wrap could be misjudged; on every
+  matrix whose fifth power fits a machine integer (all incidence matrices
+  here) the verdicts agree, as `test_boundary_sync` already pinned. The
+  vendored test raises only on a dimension mismatch, impossible for a
+  `Mat3`, so the view aborts there. `periodic_pair._checked_mat_mul` is
+  replaced by the checked `integer_matrix.matmul`: it raises exactly when
+  the old one did, though in a contrived case with two overflowing entries
+  the message may name addition where the old named multiplication, or the
+  reverse (loop order i,k,j against i,j,k). · `kernel/psc/pisot.mojo`;
+  `kernel/psc/periodic_pair.mojo`
+- 2026-10-06 · The 2026-10-04 session-probe replay pointed `MOJO_DIR` at the
+  retired `mojo/`; repointed to `kernel/`. All five Mojo probes compile
+  unchanged against the current APIs and reproduce the archived results
+  (vc_try radii 29,17,18 / 61,337 states / 716 recurrent; closure 276 + 72;
+  diagonal 1,080,828 / 1,153,308 of 1,154,040, 180/30; direct 4170 of 4344,
+  29,712 vertices), compared against the README index (the archived
+  `rerun_*.out` files were never committed; the fresh ones carry new
+  timings and were not written back). ·
+  `archive/2026-10-04/session-probes/probes/rerun.sh`

@@ -33,6 +33,7 @@ not claimed by, these verdicts.
 from finite_linear_algebra.mat3 import Mat3, identity3
 from psc.bpa import substitution_incidence
 from finite_exact.checked_int import checked_add, checked_mul, checked_sub
+from finite_linear_algebra.integer_matrix import matmul
 from psc.overlap_seed_patch import (
     OverlapState,
     SeedOverlapTables,
@@ -111,17 +112,6 @@ struct PairCensus(Copyable, Movable, Writable):
         )
 
 
-def _checked_mat_mul(a: Mat3, b: Mat3) raises -> Mat3:
-    var out = List[Int]()
-    for i in range(3):
-        for j in range(3):
-            var s = 0
-            for k in range(3):
-                s = checked_add(s, checked_mul(a.at(i, k), b.at(k, j)))
-            out.append(s)
-    return Mat3(out)
-
-
 def _checked_apply(m: Mat3, v: List[Int]) raises -> List[Int]:
     var out = List[Int]()
     for i in range(3):
@@ -138,7 +128,8 @@ def incidence_power(sigma: List[List[Int]], r: Int) raises -> Mat3:
     var m = Mat3(substitution_incidence(sigma))
     var p = identity3()
     for _ in range(r):
-        p = _checked_mat_mul(m, p)
+        # Checked: an unrepresentable product or sum raises, as before.
+        p = Mat3(matmul(m.e, p.e, 3))
     return p^
 
 

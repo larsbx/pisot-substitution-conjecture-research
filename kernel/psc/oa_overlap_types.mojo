@@ -39,6 +39,7 @@ from psc.perron_field3 import (
     sign_at_perron,
 )
 from psc.words import ALPHABET
+from substitution_dynamics.substitution import Substitution
 
 
 struct ProlongablePoint(Copyable, Movable):
@@ -77,24 +78,16 @@ def prolongable_point(sigma: List[List[Int]]) raises -> ProlongablePoint:
     return points[0].copy()
 
 
-def apply_substitution(sigma: List[List[Int]], w: List[Int]) -> List[Int]:
-    var out = List[Int]()
-    for i in range(len(w)):
-        ref image = sigma[w[i]]
-        for j in range(len(image)):
-            out.append(image[j])
-    return out^
-
-
 def fixed_point_prefix(
     sigma: List[List[Int]], point: ProlongablePoint, min_length: Int
 ) -> List[Int]:
     """A prefix of the fixed point of `sigma^q` starting at `c`, at least
     `min_length` letters long."""
+    # Trusted constructor over len(sigma) letters: unvalidated, as before.
+    var tau = Substitution(sigma.copy(), len(sigma))
     var u: List[Int] = [point.letter]
     while len(u) < min_length:
-        for _ in range(point.power):
-            u = apply_substitution(sigma, u)
+        u = tau.apply_n(u, point.power)
     return u^
 
 

@@ -26,8 +26,9 @@ theorem, gated in
 
 from finite_exact.bigint_z import BigZ
 from finite_automata.dfa import Dfa, accepted_count, with_sink
-from psc.oa_overlap_types import ProlongablePoint, apply_substitution, prolongable_point
+from psc.oa_overlap_types import ProlongablePoint, prolongable_point
 from psc.words import ALPHABET
+from substitution_dynamics.substitution import Substitution
 
 
 def power_substitution(sigma: List[List[Int]], power: Int) raises -> List[List[Int]]:
@@ -35,12 +36,11 @@ def power_substitution(sigma: List[List[Int]], power: Int) raises -> List[List[I
     prolongable at a letter, which is what the numeration needs."""
     if power < 1:
         raise Error("a substitution power is at least one")
+    # Trusted constructor over len(sigma) letters: unvalidated, as before.
+    var tau = Substitution(sigma.copy(), len(sigma))
     var out = List[List[Int]]()
     for a in range(len(sigma)):
-        var image: List[Int] = [a]
-        for _ in range(power):
-            image = apply_substitution(sigma, image)
-        out.append(image^)
+        out.append(tau.apply_n([a], power))
     return out^
 
 
