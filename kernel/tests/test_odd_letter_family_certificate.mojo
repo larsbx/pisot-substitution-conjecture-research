@@ -16,7 +16,7 @@ from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
 from psc.claim_tests import require_contract
 from psc.coincidence_formula import coincidence_level
-from psc.cone_witness import monotone_paths_meet, search_crossing, search_witness, search_witness_line, verify_crossing, verify_witness, verify_witness_line, witness_position
+from psc.cone_witness import aff_eval, monotone_paths_meet, search_crossing, search_witness, search_witness_line, verify_crossing, verify_witness, verify_witness_line, witness_position
 from std.collections import Dict
 from psc.pisot import is_pip
 from a1_normal_form_census import f_at, shared_tile_between
@@ -58,6 +58,8 @@ from odd_letter_family_certificate import (
     member_sigma,
     concrete_family,
     reveal_census,
+    impose_nonneg,
+    cover_pattern_guided,
     _words,
 )
 
@@ -569,8 +571,69 @@ def test_cover_pattern_closes_regions_by_lemma_x() raises:
     Delta = 1) the cone search certifies regions by Lemma X, each verified on
     the whole region (a failed verification raises)."""
     var zyz = List[Int]([Z, Y, Z])
-    var c = cover_pattern(RunPattern(zyz.copy(), True, zyz.copy(), True, 1), 1, 1, RUN_TREE_SPLITS, False, RUN_TREE_PEEL, 100)
+    var c = cover_pattern(RunPattern(zyz.copy(), True, zyz.copy(), True, List[Int]([Y])), 1, 1, RUN_TREE_SPLITS, False, RUN_TREE_PEEL, 100)
     assert_true(c.crossing_certified >= 1)
+
+
+def _live_vars(forms: List[List[Int]], m: Int) -> List[Int]:
+    var out = List[Int]()
+    for k in range(m):
+        for i in range(len(forms)):
+            if forms[i][k + 1] != 0:
+                out.append(k)
+                break
+    return out^
+
+
+def test_impose_nonneg_partitions_exactly() raises:
+    """For every form a_0 + a_1 n_1 + a_2 n_2 with a_0 in -4..4 and a_1, a_2 in
+    -3..3, the regions of impose_nonneg hit each point of the box [0, 5]^2 with
+    F >= 0 exactly once, never a point with F < 0, and carry F with
+    nonnegative coefficients."""
+    var B = 5
+    for a0 in range(-4, 5):
+        for a1 in range(-3, 4):
+            for a2 in range(-3, 4):
+                var F = List[Int]([a0, a1, a2])
+                var forms = identity_subst(2)
+                forms.append(F.copy())
+                var regs = impose_nonneg(forms, 2)
+                var hits = List[Int](length=(B + 1) * (B + 1), fill=0)
+                for r in range(len(regs)):
+                    ref g = regs[r]
+                    for k in range(len(g[2])):
+                        assert_true(g[2][k] >= 0)
+                    var lv = _live_vars(g, 2)
+                    var span = 1
+                    for _ in range(len(lv)):
+                        span *= 3 * B + 1
+                    for code in range(span):
+                        var ns = List[Int](length=2, fill=0)
+                        var x = code
+                        for j in range(len(lv)):
+                            ns[lv[j]] = x % (3 * B + 1)
+                            x //= 3 * B + 1
+                        var p0 = aff_eval(g[0], ns)
+                        var p1 = aff_eval(g[1], ns)
+                        assert_true(a0 + a1 * p0 + a2 * p1 >= 0)
+                        if p0 <= B and p1 <= B:
+                            hits[p0 * (B + 1) + p1] += 1
+                for p0 in range(B + 1):
+                    for p1 in range(B + 1):
+                        var want = 1 if a0 + a1 * p0 + a2 * p1 >= 0 else 0
+                        assert_equal(hits[p0 * (B + 1) + p1], want)
+
+
+def test_guided_partition_closes_a_doubly_open_pattern() raises:
+    """zy* y | zy* in the cell Z_1 = Z_2 + 1, Delta = 1 (Lemma Phi5 suffix):
+    both words keep an opaque tail, the blind cover leaves regions open, and
+    the certificate-guided partition closes it -- every carved region checked
+    again by the ordinary verifier."""
+    var zy = List[Int]([Z, Y])
+    var c = cover_pattern_guided(RunPattern(zy.copy(), True, zy.copy(), True, List[Int]([Y])), 1, 1, 2000)
+    assert_equal(c.open, 0)
+    assert_false(c.budget_exhausted)
+    assert_true(c.certified >= 100)
 
 
 def main() raises:
@@ -612,4 +675,8 @@ def main() raises:
     print("[PASS] test_reveal_census_needs_at_most_two_runs_to_length_7")
     test_cover_pattern_closes_regions_by_lemma_x()
     print("[PASS] test_cover_pattern_closes_regions_by_lemma_x")
-    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones; Lemma Phi4 (Pisot signs of Y_1 - Y_2 against Z_1 - Z_2) and Lemma Phi5 (the Z_1 = Z_2 + 1 non-crossing shape w_1 = u y^(Y_1 - Y_2), pi(u) = pi(w_2) + e_z) hold on all 2,136 members with |w_i| <= 6; at |w_i| <= 7 the Lemma Phi6-Phi8 paths verify on 1,180 of the 1,267 non-crossing members with none failing, the delta = e_z cell leaves only (zz, z) at level 6, (z, empty) is not PIP, and the other cells leave 87 members decided at levels 3 to 6; the run-shape cover: solve_constraint partitions the solutions of sum_pos n - sum_neg n = target exactly (every box solution hit once, targets -3..3), the quadratic Lemma P1 identities f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3 (Z_1 = Z_2 + 1) and f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3 (Z_1 = Z_2 - 1) hold, a line-mode path (offsets affine along e_z - e_y) verifies on (z^a y^b, y^(b+1) z^(a+1)), a >= b + 2, and the shape cells (zy | eps), (zy | z), (zy | yz) with Z_1 = Z_2 + 1 close for Delta = 1, 2, 3 and the tail Delta >= 4 with no open region, while (zy | yz) with Z_1 = Z_2 - 1 closes at Delta = -1 using line mode; induction on runs: refining a run pattern's opaque tail (it ends, or one more run of the other letter and a new tail) partitions the word pairs (31 * 63 pairs with w_1 beginning with z, |w_i| <= 5, each in exactly one leaf), the patterns (zy | zy*), (zy | yz*), (zy* | z), (zy* | y), (zyz* | zy), (zyz* | yz), (z | z*), (z | y*), (z* | eps) -- the nine closed leaves of the run tree -- with Z_1 = Z_2 + 1, Delta = 1 close with no open region (each an infinite family with unboundedly many runs) while (zy* | zy*) does not at the same budget, and common points match their definition, 51 of the 87 residual members at |w_i| <= 7 having only t = 1; Lemma X (monotone lattice paths whose endpoints cross, or touch with a letter following, share a point) holds on every pair of paths of at most 4 steps, a weak end at a word end can leave the only shared point at the last level, the cone search closes 86 of the 87 residual members at |w_i| <= 7 by Lemma X, each confirmed by the exact level, Lemma Phi5' (Z_2 = Z_1 + 1, non-crossing: Delta <= 0, |w_2| = |w_1| + 1 - Delta, at least two z in the last 2 - Delta letters of w_2) holds on every member with |w_i| <= 7, the reveal census needs at most two revealed runs at longer-word lengths 5..7 (77/4, 255/13, 825/54), and cover_pattern certifies regions of zyz* y | zyz* by Lemma X")
+    test_impose_nonneg_partitions_exactly()
+    print("[PASS] test_impose_nonneg_partitions_exactly")
+    test_guided_partition_closes_a_doubly_open_pattern()
+    print("[PASS] test_guided_partition_closes_a_doubly_open_pattern")
+    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones; Lemma Phi4 (Pisot signs of Y_1 - Y_2 against Z_1 - Z_2) and Lemma Phi5 (the Z_1 = Z_2 + 1 non-crossing shape w_1 = u y^(Y_1 - Y_2), pi(u) = pi(w_2) + e_z) hold on all 2,136 members with |w_i| <= 6; at |w_i| <= 7 the Lemma Phi6-Phi8 paths verify on 1,180 of the 1,267 non-crossing members with none failing, the delta = e_z cell leaves only (zz, z) at level 6, (z, empty) is not PIP, and the other cells leave 87 members decided at levels 3 to 6; the run-shape cover: solve_constraint partitions the solutions of sum_pos n - sum_neg n = target exactly (every box solution hit once, targets -3..3), the quadratic Lemma P1 identities f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3 (Z_1 = Z_2 + 1) and f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3 (Z_1 = Z_2 - 1) hold, a line-mode path (offsets affine along e_z - e_y) verifies on (z^a y^b, y^(b+1) z^(a+1)), a >= b + 2, and the shape cells (zy | eps), (zy | z), (zy | yz) with Z_1 = Z_2 + 1 close for Delta = 1, 2, 3 and the tail Delta >= 4 with no open region, while (zy | yz) with Z_1 = Z_2 - 1 closes at Delta = -1 using line mode; induction on runs: refining a run pattern's opaque tail (it ends, or one more run of the other letter and a new tail) partitions the word pairs (31 * 63 pairs with w_1 beginning with z, |w_i| <= 5, each in exactly one leaf), the patterns (zy | zy*), (zy | yz*), (zy* | z), (zy* | y), (zyz* | zy), (zyz* | yz), (z | z*), (z | y*), (z* | eps) -- the nine closed leaves of the run tree -- with Z_1 = Z_2 + 1, Delta = 1 close with no open region (each an infinite family with unboundedly many runs) while (zy* | zy*) does not at the same budget, and common points match their definition, 51 of the 87 residual members at |w_i| <= 7 having only t = 1; Lemma X (monotone lattice paths whose endpoints cross, or touch with a letter following, share a point) holds on every pair of paths of at most 4 steps, a weak end at a word end can leave the only shared point at the last level, the cone search closes 86 of the 87 residual members at |w_i| <= 7 by Lemma X, each confirmed by the exact level, Lemma Phi5' (Z_2 = Z_1 + 1, non-crossing: Delta <= 0, |w_2| = |w_1| + 1 - Delta, at least two z in the last 2 - Delta letters of w_2) holds on every member with |w_i| <= 7, the reveal census needs at most two revealed runs at longer-word lengths 5..7 (77/4, 255/13, 825/54), and cover_pattern certifies regions of zyz* y | zyz* by Lemma X; the certificate-guided partition: impose_nonneg covers {F >= 0} exactly (every form a_0 + a_1 n_1 + a_2 n_2, a_0 in -4..4, a_1, a_2 in -3..3, on the box [0, 5]^2) with F coefficientwise nonnegative on every region, and cover_pattern_guided closes the doubly open pattern zy* y | zy* at Z_1 = Z_2 + 1, Delta = 1 with every carved region re-verified")

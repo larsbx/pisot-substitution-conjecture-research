@@ -947,3 +947,226 @@ def verify_crossing(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessStep],
         b = r.b
         gamma = r.gamma.copy()
     return crossing_holds(fam, a, b, gamma, u, v, cl)
+
+
+# ---------------------------------------------------------------------------
+# Lifting a certificate found at one point of a region (docs/p1a-a1-prime-
+# 2026-10-05.md §3k). A region of a cone is the image of an orthant; at a base
+# point `ns` it is a single substitution, where `search_witness_line` or
+# `search_crossing` may find a certificate. `lift_path` replays it on the
+# region: the same segments, and among the line candidates of each step the
+# one whose offset agrees with the point's. Instead of requiring each
+# condition on the whole region, it collects the affine forms that must be
+# nonnegative there. The certificate holds wherever they all are, a region
+# containing `ns`; carving it out is the caller's business, and the carved
+# piece is checked again by the ordinary verifiers.
+# ---------------------------------------------------------------------------
+
+
+struct CollectResult(Copyable, Movable):
+    var ok: Bool
+    var a: Int
+    var b: Int
+    var gamma: List[List[Int]]
+    var ineqs: List[List[Int]]
+
+    def __init__(out self, ok: Bool, a: Int, b: Int, var gamma: List[List[Int]], var ineqs: List[List[Int]]):
+        self.ok = ok
+        self.a = a
+        self.b = b
+        self.gamma = gamma^
+        self.ineqs = ineqs^
+
+
+def _collect_refused() -> CollectResult:
+    return CollectResult(False, -1, -1, List[List[Int]](), List[List[Int]]())
+
+
+def _offset_needs(fam: ConeFamily, a: Int, s: Int, off: List[Int], mut ineqs: List[List[Int]]) -> Bool:
+    """The forms that place `off` inside segment `s`; false if impossible."""
+    ref seg = fam.images[a][s]
+    if seg.kind == SEG_OPAQUE:
+        return False
+    if seg.kind == SEG_LETTER:
+        for k in range(len(off)):
+            if off[k] != 0:
+                return False
+        return True
+    ineqs.append(off.copy())
+    ineqs.append(aff_sub(aff_sub(seg.length, off), aff_const(fam.m, 1)))
+    return True
+
+
+def apply_step_collect(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], step: WitnessStep) -> CollectResult:
+    """`apply_step_line`, with the offset bounds returned instead of checked."""
+    if step.seg_a < 0 or step.seg_a >= len(fam.images[a]) or step.seg_b < 0 or step.seg_b >= len(fam.images[b]):
+        return _collect_refused()
+    var ineqs = List[List[Int]]()
+    if not _offset_needs(fam, a, step.seg_a, step.off_a, ineqs) or not _offset_needs(fam, b, step.seg_b, step.off_b, ineqs):
+        return _collect_refused()
+    var mg = m_times_affine(fam, gamma)
+    if len(mg) == 0:
+        return _collect_refused()
+    var pa = fam.prefix_before(a, step.seg_a)
+    var pb = fam.prefix_before(b, step.seg_b)
+    ref sa = fam.images[a][step.seg_a]
+    ref sb = fam.images[b][step.seg_b]
+    var g2 = List[List[Int]]()
+    for i in range(3):
+        var d = aff_sub(aff_add(mg[i], pa[i]), pb[i])
+        if sa.is_run() and sa.letter == i:
+            d = aff_add(d, step.off_a)
+        if sb.is_run() and sb.letter == i:
+            d = aff_sub(d, step.off_b)
+        g2.append(d^)
+    return CollectResult(True, sa.letter, sb.letter, g2^, ineqs^)
+
+
+def _all_at_least_zero(forms: List[List[Int]], ns: List[Int]) -> Bool:
+    for k in range(len(forms)):
+        if aff_eval(forms[k], ns) < 0:
+            return False
+    return True
+
+
+def _hard_count(forms: List[List[Int]]) -> Int:
+    """Forms not already nonnegative on the whole orthant."""
+    var n = 0
+    for k in range(len(forms)):
+        if not aff_nonneg(forms[k]):
+            n += 1
+    return n
+
+
+struct LiftResult(Copyable, Movable):
+    var ok: Bool
+    var steps: List[WitnessStep]
+    var ineqs: List[List[Int]]
+    var a: Int
+    var b: Int
+    var gamma: List[List[Int]]
+
+    def __init__(out self):
+        self.ok = False
+        self.steps = List[WitnessStep]()
+        self.ineqs = List[List[Int]]()
+        self.a = -1
+        self.b = -1
+        self.gamma = List[List[Int]]()
+
+
+def lift_path(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], bound: Int, ly: Int, lz: Int) -> LiftResult:
+    """Replay the point family's `steps` on the region family `fam` (the same
+    segments; `point` is `fam` at `ns`), collecting the forms each step needs.
+    Every collected form is nonnegative at `ns`."""
+    var out = LiftResult()
+    var a = a0
+    var b = b0
+    var gr = List[List[Int]]()
+    var gp = List[List[Int]]()
+    for _ in range(3):
+        gr.append(aff_const(fam.m, 0))
+        gp.append(aff_const(0, 0))
+    var ap = a0
+    var bp = b0
+    for l in range(len(steps)):
+        var rp = apply_step_line(point, ap, bp, gp, steps[l])
+        if not rp.ok:
+            return out^
+        var cands = _line_candidates(fam, a, b, gr, bound, ly, lz)
+        var best = -1
+        var best_hard = 1 << 30
+        var best_res = _collect_refused()
+        for c in range(len(cands)):
+            if cands[c].seg_a != steps[l].seg_a or cands[c].seg_b != steps[l].seg_b:
+                continue
+            var rc = apply_step_collect(fam, a, b, gr, cands[c])
+            if not rc.ok or rc.a != rp.a or rc.b != rp.b:
+                continue
+            var agrees = True
+            for i in range(3):
+                if aff_eval(rc.gamma[i], ns) != rp.gamma[i][0]:
+                    agrees = False
+            if not agrees or not _all_at_least_zero(rc.ineqs, ns):
+                continue
+            var hard = _hard_count(rc.ineqs)
+            if hard < best_hard:
+                best = c
+                best_hard = hard
+                best_res = rc^
+        if best < 0:
+            return out^
+        out.steps.append(cands[best].copy())
+        for k in range(len(best_res.ineqs)):
+            out.ineqs.append(best_res.ineqs[k].copy())
+        a = best_res.a
+        b = best_res.b
+        gr = best_res.gamma.copy()
+        ap = rp.a
+        bp = rp.b
+        gp = rp.gamma.copy()
+    out.ok = True
+    out.a = a
+    out.b = b
+    out.gamma = gr^
+    return out^
+
+
+def crossing_conditions(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], u: Int, v: Int, cl: CrossingClose, ns: List[Int], mut ineqs: List[List[Int]]) -> Bool:
+    """The forms under which `crossing_holds` holds, in the variant (weak or
+    strict end, orientation) that holds at `ns`; the third coordinate's
+    vanishing enters as a pair of opposite forms. False if no variant holds
+    at `ns` or the structure (ranges, first letters, affine `M gamma`) fails."""
+    var third = 3 - u - v
+    if not _plane_range(fam, a, cl.s0, cl.s1, third) or not _plane_range(fam, b, cl.t0, cl.t1, third):
+        return False
+    ref hu = fam.images[u][0]
+    ref hv = fam.images[v][0]
+    if hu.kind != SEG_LETTER or hv.kind != SEG_LETTER or hu.letter != hv.letter:
+        return False
+    var mg = m_times_affine(fam, gamma)
+    if len(mg) == 0:
+        return False
+    var pa0 = fam.prefix_before(a, cl.s0)
+    var pa1 = fam.prefix_before(a, cl.s1)
+    var pb0 = fam.prefix_before(b, cl.t0)
+    var pb1 = fam.prefix_before(b, cl.t1)
+    var off = aff_sub(aff_add(mg[third], pa0[third]), pb0[third])
+    var q0u = aff_sub(pb0[u], mg[u])
+    var q0v = aff_sub(pb0[v], mg[v])
+    var q1u = aff_sub(pb1[u], mg[u])
+    var q1v = aff_sub(pb1[v], mg[v])
+    var lp0 = aff_add(pa0[u], pa0[v])
+    var lp1 = aff_add(pa1[u], pa1[v])
+    var lq0 = aff_add(q0u, q0v)
+    var lq1 = aff_add(q1u, q1v)
+    var one = aff_const(fam.m, 1)
+    var inner = _plane_letter_at(fam, a, cl.s1, u, v) and _plane_letter_at(fam, b, cl.t1, u, v)
+    for variant in range(4):
+        var weak_end = variant < 2
+        if weak_end and not inner:
+            continue
+        var c = List[List[Int]]()
+        c.append(off.copy())
+        c.append(aff_scale(off, -1))
+        var slack = aff_const(fam.m, 0) if weak_end else one.copy()
+        # levels: max(lp0, lq0) <= or < min(lp1, lq1)
+        c.append(aff_sub(aff_sub(lp1, lp0), slack))
+        c.append(aff_sub(aff_sub(lq1, lp0), slack))
+        c.append(aff_sub(aff_sub(lp1, lq0), slack))
+        c.append(aff_sub(aff_sub(lq1, lq0), slack))
+        if variant % 2 == 0:  # Q starts weakly NW, ends SE
+            c.append(aff_sub(q0u, pa0[u]))
+            c.append(aff_sub(pa0[v], q0v))
+            c.append(aff_sub(aff_sub(pa1[u], q1u), slack))
+            c.append(aff_sub(aff_sub(q1v, pa1[v]), slack))
+        else:  # Q starts weakly SE, ends NW
+            c.append(aff_sub(pa0[u], q0u))
+            c.append(aff_sub(q0v, pa0[v]))
+            c.append(aff_sub(aff_sub(q1u, pa1[u]), slack))
+            c.append(aff_sub(aff_sub(pa1[v], q1v), slack))
+        if _all_at_least_zero(c, ns):
+            for k in range(len(c)):
+                ineqs.append(c[k].copy())
+            return True
+    return False

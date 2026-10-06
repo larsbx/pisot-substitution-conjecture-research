@@ -74,7 +74,7 @@ from psc.cone_witness import (
     verify_witness_line,
     witness_position,
 )
-from psc.cone_witness import aff_add, aff_nonneg, aff_scale, aff_sub, monotone_paths_meet
+from psc.cone_witness import aff_add, aff_eval, aff_nonneg, aff_scale, aff_sub, crossing_conditions, lift_path, monotone_paths_meet
 from psc.prng import SplitMix64
 from psc.pisot import CubicScreen
 from a1_normal_form_census import f_at, shared_tile_between
@@ -1351,14 +1351,16 @@ struct RunPattern(Copyable, Movable, Writable):
     var open1: Bool
     var l2: List[Int]
     var open2: Bool
-    var suffix1: Int  # w_1 ends with this many further y (Lemma Phi5's y^Delta)
+    var suffix1: List[Int]  # letters closing w_1 (Lemma Phi5: y^Delta)
+    var suffix2: List[Int]  # letters closing w_2 (Lemma Phi5': 2 - Delta letters)
 
-    def __init__(out self, var l1: List[Int], open1: Bool, var l2: List[Int], open2: Bool, suffix1: Int = 0):
+    def __init__(out self, var l1: List[Int], open1: Bool, var l2: List[Int], open2: Bool, var suffix1: List[Int] = List[Int](), var suffix2: List[Int] = List[Int]()):
         self.l1 = l1^
         self.open1 = open1
         self.l2 = l2^
         self.open2 = open2
-        self.suffix1 = suffix1
+        self.suffix1 = suffix1^
+        self.suffix2 = suffix2^
 
     def runs(self) -> Int:
         return len(self.l1) + len(self.l2)
@@ -1380,8 +1382,11 @@ struct RunPattern(Copyable, Movable, Writable):
                 w.write(names[letters[k]])
             if opn:
                 w.write("*")
-            if wi == 0 and self.suffix1 > 0:
-                w.write(" y^", self.suffix1)
+            ref suf = self.suffix1 if wi == 0 else self.suffix2
+            if len(suf) > 0:
+                w.write(" +")
+                for k in range(len(suf)):
+                    w.write(names[suf[k]])
 
 
 def pattern_family(pat: RunPattern, subst: List[List[Int]]) raises -> ConeFamily:
@@ -1410,8 +1415,9 @@ def pattern_family(pat: RunPattern, subst: List[List[Int]]) raises -> ConeFamily
             par.append(subst[slot + 1].copy())
             slot += 2
             img.append(opaque_segment(par^))
-        if wi == 0 and pat.suffix1 > 0:
-            img.append(run_of(Y, aff_const(m, pat.suffix1)))
+        ref suf = pat.suffix1 if wi == 0 else pat.suffix2
+        for k in range(len(suf)):
+            img.append(letter_segment(m, suf[k]))
         img.append(letter_segment(m, O))
         images.append(img^)
     return ConeFamily(m, images^)
@@ -1442,7 +1448,10 @@ def pattern_counts(pat: RunPattern, subst: List[List[Int]]) -> List[List[Int]]:
             out[2 * wi] = aff_add(out[2 * wi], subst[slot])
             out[2 * wi + 1] = aff_add(out[2 * wi + 1], subst[slot + 1])
             slot += 2
-    out[0][0] += pat.suffix1
+    for wi in range(2):
+        ref suf = pat.suffix1 if wi == 0 else pat.suffix2
+        for k in range(len(suf)):
+            out[2 * wi + (0 if suf[k] == Y else 1)][0] += 1
     return out^
 
 
@@ -1496,12 +1505,9 @@ def pisot_cut(counts: List[List[Int]], s: Int) -> Bool:
     return _quadratic_nonneg(counts[3], factor, rest)
 
 
-def cover_pattern(pat: RunPattern, s: Int, delta: Int, split_limit: Int, tail: Bool = False, peel_limit: Int = PEEL_LIMIT, region_budget: Int = REGION_BUDGET) raises -> ShapeCover:
-    """Cover every member of the pattern with `Z_1 - Z_2 = s`, and with
-    `Y_1 - Y_2 = delta` unless `delta` is `NO_DELTA` -- or, with `tail`, with
-    `|Y_1 - Y_2| >= |delta|` on `delta`'s side, carried by one extra variable."""
-    var out = ShapeCover()
-    var screen = CubicScreen()
+def _pattern_starts(pat: RunPattern, s: Int, delta: Int, tail: Bool) -> List[List[List[Int]]]:
+    """The regions of the pattern's variables solving `Z_1 - Z_2 = s` and
+    `Y_1 - Y_2 = delta` (or the tail `|Delta| >= |delta|`), as substitutions."""
     var slots = pat.slots()
     var m = slots + (1 if tail else 0)
     var zpos = List[Int]()
@@ -1537,7 +1543,13 @@ def cover_pattern(pat: RunPattern, s: Int, delta: Int, split_limit: Int, tail: B
                 yneg.append(slot)
                 zneg.append(slot + 1)
             slot += 2
-    yconst += pat.suffix1
+    for wi in range(2):
+        ref suf = pat.suffix1 if wi == 0 else pat.suffix2
+        for k in range(len(suf)):
+            if suf[k] == Y:
+                yconst += 1 if wi == 0 else -1
+            else:
+                zconst += 1 if wi == 0 else -1
     var starts = solve_constraint(identity_subst(m), zpos, zneg, s - zconst)
     if delta != NO_DELTA:
         if tail:
@@ -1551,6 +1563,17 @@ def cover_pattern(pat: RunPattern, s: Int, delta: Int, split_limit: Int, tail: B
             for j in range(len(more)):
                 both.append(more[j].copy())
         starts = both^
+    return starts^
+
+
+def cover_pattern(pat: RunPattern, s: Int, delta: Int, split_limit: Int, tail: Bool = False, peel_limit: Int = PEEL_LIMIT, region_budget: Int = REGION_BUDGET) raises -> ShapeCover:
+    """Cover every member of the pattern with `Z_1 - Z_2 = s`, and with
+    `Y_1 - Y_2 = delta` unless `delta` is `NO_DELTA` -- or, with `tail`, with
+    `|Y_1 - Y_2| >= |delta|` on `delta`'s side, carried by one extra variable."""
+    var out = ShapeCover()
+    var screen = CubicScreen()
+    var m = pat.slots() + (1 if tail else 0)
+    var starts = _pattern_starts(pat, s, delta, tail)
     var stack = List[ShapeRegion]()
     for k in range(len(starts)):
         stack.append(ShapeRegion(starts[k].copy(), List[Int](), 0))
@@ -1738,17 +1761,17 @@ def refine_pattern(pat: RunPattern) -> List[RunPattern]:
     else:
         nexts.append(Z if letters[len(letters) - 1] == Y else Y)
     if pick == 0:
-        out.append(RunPattern(pat.l1.copy(), False, pat.l2.copy(), pat.open2, pat.suffix1))
+        out.append(RunPattern(pat.l1.copy(), False, pat.l2.copy(), pat.open2, pat.suffix1.copy(), pat.suffix2.copy()))
         for k in range(len(nexts)):
             var l = pat.l1.copy()
             l.append(nexts[k])
-            out.append(RunPattern(l^, True, pat.l2.copy(), pat.open2, pat.suffix1))
+            out.append(RunPattern(l^, True, pat.l2.copy(), pat.open2, pat.suffix1.copy(), pat.suffix2.copy()))
     else:
-        out.append(RunPattern(pat.l1.copy(), pat.open1, pat.l2.copy(), False, pat.suffix1))
+        out.append(RunPattern(pat.l1.copy(), pat.open1, pat.l2.copy(), False, pat.suffix1.copy(), pat.suffix2.copy()))
         for k in range(len(nexts)):
             var l = pat.l2.copy()
             l.append(nexts[k])
-            out.append(RunPattern(pat.l1.copy(), pat.open1, l^, True, pat.suffix1))
+            out.append(RunPattern(pat.l1.copy(), pat.open1, l^, True, pat.suffix1.copy(), pat.suffix2.copy()))
     return out^
 
 
@@ -1791,18 +1814,23 @@ def _run_letters(w: List[Int]) -> List[Int]:
 def pattern_matches(pat: RunPattern, w1: List[Int], w2: List[Int]) -> Bool:
     """Does the word pair lie in the pattern: each word's run letters equal the
     revealed ones, or begin with them when the word has a tail; with a
-    suffix, `w_1` ends in `y^suffix1` and the runs are those of the rest."""
-    var n1 = len(w1) - pat.suffix1
-    if n1 < 0:
-        return False
-    for k in range(n1, len(w1)):
-        if w1[k] != Y:
-            return False
-    var u = List[Int]()
-    for k in range(n1):
-        u.append(w1[k])
+    suffix, a word ends in its suffix and the runs are those of the rest."""
+    var cores = List[List[Int]]()
     for wi in range(2):
-        var runs = _run_letters(u if wi == 0 else w2)
+        ref w = w1 if wi == 0 else w2
+        ref suf = pat.suffix1 if wi == 0 else pat.suffix2
+        var n = len(w) - len(suf)
+        if n < 0:
+            return False
+        for k in range(len(suf)):
+            if w[n + k] != suf[k]:
+                return False
+        var core = List[Int]()
+        for k in range(n):
+            core.append(w[k])
+        cores.append(core^)
+    for wi in range(2):
+        var runs = _run_letters(cores[wi])
         ref letters = pat.l1 if wi == 0 else pat.l2
         var opn = pat.open1 if wi == 0 else pat.open2
         if len(runs) < len(letters) or (not opn and len(runs) != len(letters)):
@@ -2176,3 +2204,383 @@ def reveal_sample(seed: Int, lo: Int, hi: Int, want: Int, budget: Int, max_level
         hist[cap + 1] += 1
         hist[max(least_reveal(w1, w2, max_level, cap), 0)] += 1
     return hist^
+
+
+
+# ---------------------------------------------------------------------------
+# Certificate-guided partition (§3k). A region is the image of an orthant
+# under an affine substitution of the cone variables. `impose_nonneg` splits a
+# region into finitely many regions that exactly cover the points where an
+# affine form F is nonnegative, for any integer coefficients, and on each of
+# them F is nonnegative coefficientwise -- so the ordinary verifiers accept it.
+# For a variable n_p with coefficient a > 0 write F = a n_p - R. Either
+# R <= 0, and F >= 0 holds throughout; or R >= 1, and then n_p >= ceil(R / a):
+# split the other variables by their residues mod a until R / a is affine,
+# and substitute n_p <- ceil(R / a) + n_p. Both cases recurse on R, which
+# omits n_p, so the recursion ends. With no positive coefficient the
+# variables of F are bounded and are enumerated.
+# ---------------------------------------------------------------------------
+
+
+def _subst_var(forms: List[List[Int]], p: Int, repl: List[Int]) -> List[List[Int]]:
+    """Every form with the variable `n_p` replaced by the affine form `repl`
+    (which may itself contain `n_p`)."""
+    var out = List[List[Int]]()
+    for k in range(len(forms)):
+        var g = forms[k].copy()
+        var c = g[p + 1]
+        g[p + 1] = 0
+        if c != 0:
+            for j in range(len(g)):
+                g[j] += c * repl[j]
+        out.append(g^)
+    return out^
+
+
+def _drop_tail(forms: List[List[Int]], keep: Int) -> List[List[Int]]:
+    var out = List[List[Int]]()
+    for k in range(keep):
+        out.append(forms[k].copy())
+    return out^
+
+
+def _residues(forms: List[List[Int]], idx: Int, a: Int, p: Int) -> List[List[List[Int]]]:
+    """Split every variable other than `n_p` whose coefficient in `forms[idx]`
+    is not divisible by `a` as `n_k <- a n_k + rho`, rho in [0, a)."""
+    var out = List[List[List[Int]]]()
+    out.append(forms.copy())
+    var m = len(forms[0]) - 1
+    for k in range(m):
+        if k == p:
+            continue
+        var next = List[List[List[Int]]]()
+        for r in range(len(out)):
+            var c = out[r][idx][k + 1]
+            if c % a == 0:
+                next.append(out[r].copy())
+                continue
+            for rho in range(a):
+                var repl = aff_const(m, rho)
+                repl[k + 1] = a
+                next.append(_subst_var(out[r], k, repl))
+        out = next^
+    return out^
+
+
+def impose_nonneg(forms: List[List[Int]], idx: Int) raises -> List[List[List[Int]]]:
+    """Regions partitioning the points of `forms` (a region with constraint
+    forms appended) where `forms[idx] >= 0`; on each, that form is
+    nonnegative coefficientwise."""
+    var out = List[List[List[Int]]]()
+    ref F = forms[idx]
+    var m = len(F) - 1
+    if aff_nonneg(F):
+        out.append(forms.copy())
+        return out^
+    var p = -1
+    for k in range(m):
+        if F[k + 1] > 0 and (p < 0 or F[k + 1] < F[p + 1]):
+            p = k
+    if p < 0:
+        if F[0] < 0:
+            return out^
+        var k = -1
+        for j in range(m):
+            if F[j + 1] < 0 and k < 0:
+                k = j
+        for v in range(F[0] // (-F[k + 1]) + 1):
+            var sub = impose_nonneg(_subst_var(forms, k, aff_const(m, v)), idx)
+            for r in range(len(sub)):
+                out.append(sub[r].copy())
+        return out^
+    var a = F[p + 1]
+    var R = aff_scale(F, -1)
+    R[p + 1] = 0  # F = a n_p - R
+    var n = len(forms)
+    # R <= 0: F >= 0 throughout
+    var with_a = forms.copy()
+    with_a.append(aff_scale(R, -1))
+    var regs_a = impose_nonneg(with_a, n)
+    for r in range(len(regs_a)):
+        out.append(_drop_tail(regs_a[r], n))
+    # R >= 1: n_p >= ceil(R / a)
+    var with_b = forms.copy()
+    with_b.append(aff_sub(R, aff_const(m, 1)))
+    with_b.append(R.copy())
+    var regs_b = impose_nonneg(with_b, n)
+    for r in range(len(regs_b)):
+        var pieces = _residues(regs_b[r], n + 1, a, p)
+        for q in range(len(pieces)):
+            ref rc = pieces[q][n + 1]
+            var repl = aff_const(m, 0)
+            for k in range(1, m + 1):
+                repl[k] = rc[k] // a
+            repl[0] = -((-rc[0]) // a)  # ceil(rc0 / a)
+            repl[p + 1] = 1
+            var done = _subst_var(pieces[q], p, repl)
+            if not aff_nonneg(done[idx]):
+                raise Error("impose_nonneg: the imposed form is not coefficientwise nonnegative")
+            out.append(_drop_tail(done, n))
+    return out^
+
+
+struct Carved(Copyable, Movable):
+    var inside: List[List[List[Int]]]
+    var outside: List[List[List[Int]]]
+
+    def __init__(out self):
+        self.inside = List[List[List[Int]]]()
+        self.outside = List[List[List[Int]]]()
+
+
+def carve(forms: List[List[Int]], first: Int, count: Int, keep: Int) raises -> Carved:
+    """Partition by the forms `first .. first + count - 1`: the regions where
+    all are nonnegative (with every form kept), and the rest, region `j`
+    being where the first `j` hold and form `j` is negative (slots only)."""
+    var out = Carved()
+    out.inside.append(forms.copy())
+    for j in range(count):
+        var idx = first + j
+        var next = List[List[List[Int]]]()
+        for r in range(len(out.inside)):
+            ref f = out.inside[r]
+            var neg = f.copy()
+            var g = aff_scale(f[idx], -1)
+            g[0] -= 1
+            neg.append(g^)
+            var outs = impose_nonneg(neg, len(neg) - 1)
+            for q in range(len(outs)):
+                out.outside.append(_drop_tail(outs[q], keep))
+            var ins = impose_nonneg(f, idx)
+            for q in range(len(ins)):
+                next.append(ins[q].copy())
+        out.inside = next^
+    return out^
+
+
+def point_subst(forms: List[List[Int]], ns: List[Int]) -> List[List[Int]]:
+    """The slot values of a region at the point `ns`, as forms without variables."""
+    var out = List[List[Int]]()
+    for k in range(len(forms)):
+        out.append(aff_const(0, aff_eval(forms[k], ns)))
+    return out^
+
+
+def _member_at(pat: RunPattern, subst: List[List[Int]], ns: List[Int], mut screen: CubicScreen) raises -> Bool:
+    var sigma = pattern_family(pat, point_subst(subst, ns)).instantiate(List[Int]())
+    var mat = Mat3(substitution_incidence(sigma))
+    return abs(mat.det()) == 2 and screen.is_pip(mat)
+
+
+def _base_point(pat: RunPattern, subst: List[List[Int]], mut screen: CubicScreen) raises -> List[Int]:
+    """A member point of the region, generic first: every live variable 2,
+    then 1, then 3, then the origin and the unit points; empty if none of
+    them is a member. A generic point keeps the certificate from exploiting a
+    boundary value, so the carved region is a full cone, not a slice."""
+    var m = len(subst[0]) - 1
+    var tries = List[List[Int]]()
+    for g in [2, 1, 3]:
+        tries.append(List[Int](length=m, fill=g))
+    tries.append(List[Int](length=m, fill=0))
+    for k in range(m):
+        var e = List[Int](length=m, fill=0)
+        e[k] = 1
+        tries.append(e^)
+    for t in range(len(tries)):
+        if _member_at(pat, subst, tries[t], screen):
+            return tries[t].copy()
+    return List[Int]()
+
+
+
+def _guided_bag(slots: List[List[Int]], ineqs: List[List[Int]], steps: List[WitnessStep]) -> List[List[Int]]:
+    """Slots, then the forms to carve by, then each step's two offsets."""
+    var bag = slots.copy()
+    for k in range(len(ineqs)):
+        bag.append(ineqs[k].copy())
+    for k in range(len(steps)):
+        bag.append(steps[k].off_a.copy())
+        bag.append(steps[k].off_b.copy())
+    return bag^
+
+
+def _steps_from_bag(bag: List[List[Int]], first: Int, steps: List[WitnessStep]) -> List[WitnessStep]:
+    var out = List[WitnessStep]()
+    for k in range(len(steps)):
+        out.append(WitnessStep(steps[k].seg_a, bag[first + 2 * k].copy(), steps[k].seg_b, bag[first + 2 * k + 1].copy()))
+    return out^
+
+
+def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int, tail: Bool = False, verbose: Bool = False) raises -> ShapeCover:
+    """Cover the pattern's members in one delta cell by certificate-guided
+    partition: at a member point of each region find a certificate (an exact
+    line-mode path, else a Lemma X closure), lift it, carve out the regions
+    where it holds -- each re-verified by the ordinary verifier -- and go on
+    with the rest. Regions left at the budget are reported open."""
+    var out = ShapeCover()
+    var screen = CubicScreen()
+    var m = pat.slots() + (1 if tail else 0)
+    var stack = _pattern_starts(pat, s, delta, tail)
+    while len(stack) > 0:
+        var reg = stack.pop()
+        out.regions += 1
+        if out.regions > region_budget:
+            out.open += 1 + len(stack)
+            out.budget_exhausted = True
+            break
+        if pisot_cut(pattern_counts(pat, reg), s):
+            out.cut += 1
+            continue
+        var any_live = False
+        var first_live = -1
+        for k in range(m):
+            if _live(reg, k):
+                any_live = True
+                if first_live < 0:
+                    first_live = k
+        var ns = _base_point(pat, reg, screen)
+        if len(ns) == 0:
+            if not any_live:
+                out.not_member += 1
+                continue
+            stack.append(_set_value(reg, first_live, 0))
+            var shifted = List[List[Int]]()
+            for k in range(len(reg)):
+                var f = reg[k].copy()
+                f[0] += f[first_live + 1]
+                shifted.append(f^)
+            stack.append(shifted^)
+            continue
+        var fam = pattern_family(pat, reg)
+        var point = pattern_family(pat, point_subst(reg, ns))
+        var done = False
+        # an exact line-mode path at the point
+        var wp = search_witness_line(point, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z)
+        if wp.found:
+            var lr = lift_path(fam, point, ns, O, Y, wp.steps, OFFSET_BOUND, Y, Z)
+            if lr.ok and lr.a == lr.b:
+                var ineqs = lr.ineqs.copy()
+                for i in range(3):
+                    if not _is_zero_form(lr.gamma[i]):
+                        ineqs.append(lr.gamma[i].copy())
+                        ineqs.append(aff_scale(lr.gamma[i], -1))
+                var bag = _guided_bag(reg, ineqs, lr.steps)
+                var cv = carve(bag, len(reg), len(ineqs), len(reg))
+                if verbose:
+                    _trace(out.regions, "path", ns, reg, ineqs, len(cv.inside), len(cv.outside))
+                for q in range(len(cv.inside)):
+                    var slots_in = _drop_tail(cv.inside[q], len(reg))
+                    var steps_in = _steps_from_bag(cv.inside[q], len(reg) + len(ineqs), lr.steps)
+                    if not verify_witness_line(pattern_family(pat, slots_in), O, Y, steps_in):
+                        raise Error("a carved region does not verify its lifted path")
+                    out.certified += 1
+                    out.line_certified += 1
+                    out.max_level = max(out.max_level, len(steps_in))
+                for q in range(len(cv.outside)):
+                    stack.append(cv.outside[q].copy())
+                done = True
+        if not done:
+            var cp = search_crossing(point, O, Y, OFFSET_BOUND, MAX_LEVEL - 2, Y, Z, Y, Z)
+            if cp.found:
+                var lr = lift_path(fam, point, ns, O, Y, cp.steps, OFFSET_BOUND, Y, Z)
+                var ineqs = lr.ineqs.copy()
+                if lr.ok and crossing_conditions(fam, lr.a, lr.b, lr.gamma, Y, Z, cp.close[0], ns, ineqs):
+                    var bag = _guided_bag(reg, ineqs, lr.steps)
+                    var cv = carve(bag, len(reg), len(ineqs), len(reg))
+                    if verbose:
+                        _trace(out.regions, "crossing", ns, reg, ineqs, len(cv.inside), len(cv.outside))
+                    for q in range(len(cv.inside)):
+                        var slots_in = _drop_tail(cv.inside[q], len(reg))
+                        var steps_in = _steps_from_bag(cv.inside[q], len(reg) + len(ineqs), lr.steps)
+                        if not verify_crossing(pattern_family(pat, slots_in), O, Y, steps_in, cp.close[0], Y, Z):
+                            raise Error("a carved region does not verify its lifted crossing")
+                        out.certified += 1
+                        out.crossing_certified += 1
+                        out.max_level = max(out.max_level, len(steps_in) + 2)
+                    for q in range(len(cv.outside)):
+                        stack.append(cv.outside[q].copy())
+                    done = True
+        if not done:
+            out.open += 1
+            out.open_forms.append(reg.copy())
+    return out^
+
+
+def _form_str(f: List[Int]) -> String:
+    var out = String(f[0])
+    for k in range(1, len(f)):
+        if f[k] != 0:
+            out += (" +" if f[k] > 0 else " ") + String(f[k]) + "n" + String(k - 1)
+    return out
+
+
+def _trace(index: Int, kind: String, ns: List[Int], reg: List[List[Int]], ineqs: List[List[Int]], inside: Int, outside: Int):
+    var line = "  #" + String(index) + " " + kind + " at"
+    for k in range(len(ns)):
+        line += " " + String(ns[k])
+    line += " | slots"
+    for k in range(len(reg)):
+        line += " [" + _form_str(reg[k]) + "]"
+    line += " | carve by"
+    for k in range(len(ineqs)):
+        if not aff_nonneg(ineqs[k]):
+            line += " {" + _form_str(ineqs[k]) + " >= 0}"
+    line += " -> in " + String(inside) + ", out " + String(outside)
+    print(line, flush=True)
+
+
+def _is_zero_form(f: List[Int]) -> Bool:
+    for k in range(len(f)):
+        if f[k] != 0:
+            return False
+    return True
+
+
+def suffix_roots(s: Int, delta: Int) -> List[RunPattern]:
+    """The run-tree roots of a delta cell with the longer word's suffix made
+    explicit. s = +1: w_1 = u y^Delta (Lemma Phi5). s = -1: w_2 = v x with
+    |x| = 2 - Delta and at least two z in x (Lemma Phi5'). A non-crossing
+    member lies under exactly one root; a crossing one is Lemma Phi2's."""
+    var out = List[RunPattern]()
+    if s == 1:
+        var suf = List[Int]()
+        for _ in range(delta):
+            suf.append(Y)
+        out.append(RunPattern(List[Int]([Z]), True, List[Int](), True, suf^, List[Int]()))
+        return out^
+    var words = _words(2 - delta)
+    for k in range(len(words)):
+        if len(words[k]) != 2 - delta:
+            continue
+        var zs = 0
+        for j in range(len(words[k])):
+            zs += 1 if words[k][j] == Z else 0
+        if zs >= 2:
+            out.append(RunPattern(List[Int]([Z]), True, List[Int](), True, List[Int](), words[k].copy()))
+    return out^
+
+
+def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Bool = False) raises -> List[RunTreeLeaf]:
+    """The run tree of one delta cell under its suffix roots, each pattern
+    covered by certificate-guided partition."""
+    var out = List[RunTreeLeaf]()
+    var stack = suffix_roots(s, delta)
+    while len(stack) > 0:
+        var pat = stack.pop()
+        var c = cover_pattern_guided(pat, s, delta, budget)
+        if c.open == 0:
+            if verbose:
+                print("    closed ", pat, "  regions", c.regions, " certified", c.certified, " (line", c.line_certified, ", crossing", c.crossing_certified, ") cut", c.cut, " not member", c.not_member, flush=True)
+            out.append(RunTreeLeaf(pat.copy(), True, 0, c.certified, c.cut))
+            continue
+        var kids = refine_pattern(pat)
+        if pat.runs() >= max_runs or len(kids) == 0:
+            if verbose:
+                print("    OPEN   ", pat, "  regions", c.regions, " open", c.open, " budget" if c.budget_exhausted else "", flush=True)
+            out.append(RunTreeLeaf(pat.copy(), False, c.open, c.certified, c.cut))
+            continue
+        if verbose:
+            print("    refine ", pat, "  (open", c.open, ")", flush=True)
+        for k in range(len(kids)):
+            stack.append(kids[k].copy())
+    return out^
