@@ -330,3 +330,14 @@ by deleting it.
   `rerun_*.out` files were never committed; the fresh ones carry new
   timings and were not written back). ·
   `archive/2026-10-04/session-probes/probes/rerun.sh`
+- 2026-10-06 · Symmetry, endpoint maps, Barge class, bounded BPA, Dumont-Thomas,
+  return lattices and the strong-coincidence automaton moved to the vendored
+  `substitution_dynamics` over an explicit alphabet; only the Perron-field
+  reserve and the C4 A..G names stay here. Pitfalls met: `psc.symmetry.word_key`
+  renders arbitrary integer lists (cycle lengths, counts), so it stays the
+  plain decimal concatenation rather than the package's bracketed letter key;
+  pruning-independence makes the shortest coincidence witness, minimised
+  sizes and coaccessible counts reproducible under any sound bound, which is
+  how the package regressions pin this repository's outputs. Two orbits of a
+  self-map of d letters that meet do so within d - 1 steps (exhaustive,
+  d <= 6). · finite-math-kernels `tests/substitution_dynamics/`
