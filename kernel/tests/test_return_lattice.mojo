@@ -23,7 +23,7 @@ def det_two() -> List[List[Int]]:
 
 
 def test_hermite_form_index() raises:
-    var lattice = TriangularLattice()
+    var lattice = TriangularLattice(3)
     var a: List[Int] = [4, 0, 0]
     var b: List[Int] = [6, 3, 0]
     var c: List[Int] = [0, 5, 1]

@@ -370,3 +370,14 @@ by deleting it.
   that interpreter. That is the pinned dev dependency (`pyproject.toml`), not a
   manuscript defect; install `pypdf==6.19.0` into the interpreter that runs
   it. · `tests/test_check_manuscript_source.py`
+- 2026-10-06 · Symmetry, endpoint maps, Barge class, bounded BPA, Dumont-Thomas,
+  return lattices and the strong-coincidence automaton moved to the vendored
+  `substitution_dynamics` over an explicit alphabet; only the Perron-field
+  reserve and the C4 A..G names stay here. Pitfalls met: `psc.symmetry.word_key`
+  renders arbitrary integer lists (cycle lengths, counts), so it stays the
+  plain decimal concatenation rather than the package's bracketed letter key;
+  pruning-independence makes the shortest coincidence witness, minimised
+  sizes and coaccessible counts reproducible under any sound bound, which is
+  how the package regressions pin this repository's outputs. Two orbits of a
+  self-map of d letters that meet do so within d - 1 steps (exhaustive,
+  d <= 6). · finite-math-kernels `tests/substitution_dynamics/`

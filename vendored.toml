@@ -4,7 +4,7 @@
 [[package]]
 name = "finite_exact"
 repository = "larsbx/finite-math-kernels"
-commit = "2bc69d4581bd84acc0cd0c5eca5f424340e12cbe"
+commit = "c084777da4940fe5978030687a10baa5adaaa343"
 root = "kernel"
 
 [package.files]
@@ -24,24 +24,31 @@ root = "kernel"
 [[package]]
 name = "substitution_dynamics"
 repository = "larsbx/finite-math-kernels"
-commit = "2bc69d4581bd84acc0cd0c5eca5f424340e12cbe"
+commit = "c084777da4940fe5978030687a10baa5adaaa343"
 root = "kernel"
 
 [package.files]
-"substitution_dynamics/__init__.mojo" = "249a8f3ea14cb37d58b32cee97f7d0d724502257ab30faab5bdabb6ac74f0183"
+"substitution_dynamics/__init__.mojo" = "d13bf2470399520d029059973015ef653cd85c9548f997dc95307a1431f48b2f"
 "substitution_dynamics/automaton.mojo" = "0401bf57a41b8bce0d403b94cb1fb87b7a410fa13fb6c763e80768941c26903d"
+"substitution_dynamics/balanced_pair_algorithm.mojo" = "79b8e08d6ff6044d09c9af554ad8cee4fe9bc564abea7b33f30ab895d659a6a3"
 "substitution_dynamics/balanced_pairs.mojo" = "8be78a124f6898bde665c4da38cd0110e843c16404f70804b0d700f385d37618"
+"substitution_dynamics/barge_class.mojo" = "599dbbe932e39e4b1246181cce30e48deb481eb0793b402274a8e456aa9481c5"
 "substitution_dynamics/coincidence.mojo" = "fa5ca5712f416fc6344470a169d8bdb5311a6e06c88374ba519cffd59c2fe10e"
 "substitution_dynamics/discrepancy.mojo" = "85477e2fd5067d5fbb96bf6522105f0c3abc5e0aa145ac53414dfe2830f6a7b4"
+"substitution_dynamics/dumont_thomas.mojo" = "ff9fb0a62b4e30643ea4bc75df128ddd177b4509ee1e4d7f2c0222eefe0a310f"
+"substitution_dynamics/endpoint_maps.mojo" = "9b10b14e50bf256cd95ef321110a3e9313cbc830e17ec06eccea056c9e24f9f7"
+"substitution_dynamics/return_lattice.mojo" = "2149661a546e2614cd3fd8d87c629aabf653c0d7316f7331c59f8b535f63ea8a"
 "substitution_dynamics/sadic.mojo" = "8130962786a4f8c86fc51688b17b043fc42223bd9972216c61896ad425fa17cc"
-"substitution_dynamics/substitution.mojo" = "ffa0dafbd11abf612acad3cdd6e75f910ae91e6b24548cf979253372f1ffddde"
+"substitution_dynamics/strong_coincidence.mojo" = "09ff8e33a38433988a526b589a070cf40aaae3c324b685a5a505247819324f1f"
+"substitution_dynamics/substitution.mojo" = "9dc5b2efaaba196e10fae8213f80db566a6d4d11c64b5a209c5c133679e000e7"
+"substitution_dynamics/symmetry.mojo" = "5aabf5dd25e37f17dfde7ef795f540f6c704eaee0ac992db661abc6bb12d085f"
 "substitution_dynamics/tuning.mojo" = "1787b37e9291c87a4cea2924bd1232788a94a48bf7ebff157bc40103bc76384e"
 "substitution_dynamics/words.mojo" = "59eb2caefe20138da2a7d410a2e38db5b8d30c144759570e26501a7ed521442d"
 
 [[package]]
 name = "finite_linear_algebra"
 repository = "larsbx/finite-math-kernels"
-commit = "2bc69d4581bd84acc0cd0c5eca5f424340e12cbe"
+commit = "c084777da4940fe5978030687a10baa5adaaa343"
 root = "kernel"
 
 [package.files]
@@ -63,7 +70,7 @@ root = "kernel"
 [[package]]
 name = "claim_governance"
 repository = "larsbx/finite-math-kernels"
-commit = "2bc69d4581bd84acc0cd0c5eca5f424340e12cbe"
+commit = "c084777da4940fe5978030687a10baa5adaaa343"
 root = "tools"
 
 [package.files]
@@ -85,7 +92,7 @@ root = "tools"
 [[package]]
 name = "proof_records"
 repository = "larsbx/finite-math-kernels"
-commit = "2bc69d4581bd84acc0cd0c5eca5f424340e12cbe"
+commit = "c084777da4940fe5978030687a10baa5adaaa343"
 root = "tools"
 
 [package.files]
@@ -100,7 +107,7 @@ root = "tools"
 [[package]]
 name = "oracle_refinement"
 repository = "larsbx/finite-math-kernels"
-commit = "2bc69d4581bd84acc0cd0c5eca5f424340e12cbe"
+commit = "c084777da4940fe5978030687a10baa5adaaa343"
 root = "tools"
 
 [package.files]
@@ -109,7 +116,7 @@ root = "tools"
 [[package]]
 name = "parallel_fold"
 repository = "larsbx/finite-math-kernels"
-commit = "2bc69d4581bd84acc0cd0c5eca5f424340e12cbe"
+commit = "c084777da4940fe5978030687a10baa5adaaa343"
 root = "kernel"
 
 [package.files]
@@ -119,7 +126,7 @@ root = "kernel"
 [[package]]
 name = "proof_architecture"
 repository = "larsbx/finite-math-kernels"
-commit = "2bc69d4581bd84acc0cd0c5eca5f424340e12cbe"
+commit = "c084777da4940fe5978030687a10baa5adaaa343"
 root = "proof/tla"
 
 [package.files]
@@ -128,7 +135,7 @@ root = "proof/tla"
 [[package]]
 name = "finite_graph"
 repository = "larsbx/finite-math-kernels"
-commit = "2bc69d4581bd84acc0cd0c5eca5f424340e12cbe"
+commit = "c084777da4940fe5978030687a10baa5adaaa343"
 root = "kernel"
 
 [package.files]
@@ -140,7 +147,7 @@ root = "kernel"
 [[package]]
 name = "finite_automata"
 repository = "larsbx/finite-math-kernels"
-commit = "2bc69d4581bd84acc0cd0c5eca5f424340e12cbe"
+commit = "c084777da4940fe5978030687a10baa5adaaa343"
 root = "kernel"
 
 [package.files]
@@ -150,7 +157,7 @@ root = "kernel"
 [[package]]
 name = "mojo_smoke"
 repository = "larsbx/finite-math-kernels"
-commit = "2bc69d4581bd84acc0cd0c5eca5f424340e12cbe"
+commit = "c084777da4940fe5978030687a10baa5adaaa343"
 root = "kernel"
 
 [package.files]
@@ -161,7 +168,7 @@ root = "kernel"
 [[package]]
 name = "vendoring"
 repository = "larsbx/finite-math-kernels"
-commit = "2bc69d4581bd84acc0cd0c5eca5f424340e12cbe"
+commit = "c084777da4940fe5978030687a10baa5adaaa343"
 root = "tools"
 
 [package.files]
