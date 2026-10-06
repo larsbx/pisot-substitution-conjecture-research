@@ -74,8 +74,8 @@ from psc.cone_witness import (
     verify_witness_line,
     witness_position,
 )
-from psc.cone_witness import aff_add, aff_eval, aff_nonneg, aff_scale, aff_sub, crossing_conditions, lift_path, monotone_paths_meet, Prover, _q_lin, _qa, _q_nonneg, _q_nonneg_under
-from psc.poly_line import lift_path_poly, poly_affine_part, poly_higher, enumerate_point_paths, poly_is_zero, poly_key, solve_lift, steps_at, verify_witness_poly
+from psc.cone_witness import CrossingClose, aff_add, aff_eval, aff_nonneg, aff_scale, aff_sub, crossing_conditions, lift_path, monotone_paths_meet, Prover, _q_lin, _qa, _q_nonneg, _q_nonneg_under
+from psc.poly_line import lift_path_poly, poly_affine_part, poly_higher, enumerate_point_paths, poly_is_zero, poly_key, solve_crossing_lift, solve_lift, steps_at, verify_crossing_poly, verify_witness_poly
 from psc.prng import SplitMix64
 from psc.pisot import CubicScreen
 from a1_normal_form_census import f_at, shared_tile_between
@@ -3205,9 +3205,20 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
         if _assume_empty(reg.assume, m):
             out.not_member += 1
             continue
+        reg = _pin_fixed(reg, m)
         var prover = Prover(reg.assume.copy())
         if pisot_cut_under(pattern_counts(pat, reg.subst), s, prover):
             out.cut += 1
+            continue
+        # where Lemma P1's form is affine on the region (Delta fixed), split
+        # by it once: {f >= 0} holds no member, the rest carries f <= -1
+        var split = _affine_pisot_form(pattern_counts(pat, reg.subst), s)
+        if len(split) > 0 and not prover.nonneg(_minus_one_minus(split)):
+            var cut_piece = _with_assumptions(reg, List[List[Int]]([split.copy()]))
+            if not pisot_cut_under(pattern_counts(pat, cut_piece.subst), s, Prover(cut_piece.assume.copy())):
+                raise Error("an affine Lemma P1 split is not cut")
+            out.cut += 1
+            _push_complements(stack, reg, List[List[Int]]([split^]))
             continue
         if reg.corner < corners - 1:
             # a uniform McCormick corner (2 + corner, 0): Lemma P1's f >= 0
@@ -3325,6 +3336,14 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                     out.max_level = max(out.max_level, len(lr.steps) + 2)
                     _push_complements(stack, reg, ineqs)
                     done = True
+                else:
+                    var levels = _poly_crossing_carve(fam, point, ns, cp.steps, cp.close[0], reg, stack, verbose, out.regions)
+                    if levels > 0:
+                        out.certified += 1
+                        out.crossing_certified += 1
+                        out.poly_certified += 1
+                        out.max_level = max(out.max_level, levels)
+                        done = True
         if not done and not cut_first and _mccormick_carve(pat, s, reg, ns, stack):
             out.cut += 1
             done = True
@@ -3354,6 +3373,40 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                 out.decided += 1
                 out.max_level = max(out.max_level, lev)
     return out^
+
+
+def _pin_fixed(reg: GuidedRegion, m: Int) -> GuidedRegion:
+    """Substitute every variable whose propagated bounds coincide: every
+    integer point of the region has that value there."""
+    var box = propagate_bounds(reg.assume, m)
+    var out = reg.copy()
+    for k in range(m):
+        if box.bounded[k] and box.lo[k] == box.hi[k] and _region_live(out, k):
+            out = _region_subst(out, k, aff_const(m, box.lo[k]), out.depth)
+    return out^
+
+
+def _affine_pisot_form(counts: List[List[Int]], s: Int) raises -> List[Int]:
+    """Lemma P1's form `f = a b + c` as an affine form, when its quadratic
+    part vanishes (as with `Delta` fixed); else empty."""
+    var q = _pisot_quadratic(counts, s)
+    var f = _q_lin(_aff_times(q[0], q[1]), _qa(q[2]), 1)
+    var m = len(counts[0]) - 1
+    var w = m + 1
+    for i in range(1, w):
+        for j in range(i, w):
+            if f[i * w + j] != 0:
+                return List[Int]()
+    var out = List[Int]()
+    for k in range(w):
+        out.append(f[k])
+    return out^
+
+
+def _minus_one_minus(f: List[Int]) -> List[Int]:
+    var g = aff_scale(f, -1)
+    g[0] -= 1
+    return g^
 
 
 def _mccormick_carve(pat: RunPattern, s: Int, reg: GuidedRegion, ns: List[Int], mut stack: List[GuidedRegion]) raises -> Bool:
@@ -3429,6 +3482,32 @@ def _poly_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], steps: List[W
         raise Error("a polynomial path fails at its own base point")
     _push_complements(stack, reg, ineqs)
     return len(lr.steps)
+
+
+def _poly_crossing_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], steps: List[WitnessStep], cl: CrossingClose, reg: GuidedRegion, mut stack: List[GuidedRegion], verbose: Bool, index: Int) raises -> Int:
+    """`_poly_carve` for a Lemma X closure: solve the point path's offsets so
+    the closure's third coordinate offset vanishes on the region
+    (`solve_crossing_lift`), carve, re-verify with `verify_crossing_poly`
+    under the region's inequalities and check the closure in plain
+    arithmetic at the base point (each failure raises). The level reached,
+    or 0."""
+    var lr = solve_crossing_lift(fam, point, ns, O, Y, steps, cl, Y, Z)
+    if not lr.ok:
+        if verbose:
+            print("  linear crossing lift failed:", lr.why)
+        return 0
+    var ineqs = _new_forms(_carving_forms(lr.ineqs), reg)
+    if not _satisfies(ineqs, ns):
+        raise Error("a solved crossing does not hold at its own base point")
+    var inside = _with_assumptions(reg, ineqs)
+    if verbose:
+        _trace(index, "polynomial crossing", ns, reg.subst, ineqs, 1, len(ineqs))
+    if not verify_crossing_poly(fam, O, Y, lr.steps, cl, Y, Z, Prover(inside.assume.copy())):
+        raise Error("a carved region does not verify its polynomial crossing")
+    if not verify_crossing(point, O, Y, steps_at(lr.steps, ns), cl, Y, Z):
+        raise Error("a polynomial crossing fails at its own base point")
+    _push_complements(stack, reg, ineqs)
+    return len(lr.steps) + 2
 
 
 def _push_complements(mut stack: List[GuidedRegion], reg: GuidedRegion, forms: List[List[Int]]):

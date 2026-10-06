@@ -33,7 +33,10 @@ from psc.cone_witness import (
     aff_nonneg,
     aff_sub,
     apply_step_line,
+    CrossingClose,
     _is_zero,
+    _plane_letter_at,
+    _plane_range,
     _line_candidates,
     _multipliers,
     _within,
@@ -598,6 +601,19 @@ def solve_lift(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: I
     """The point path's segments, with affine offsets solving `gamma_L = 0`
     identically on the region and agreeing with the point's offsets at `ns`;
     `ineqs` are the offsets' affine bounds not already nonnegative."""
+    return _solve(fam, point, ns, a0, b0, steps, False, CrossingClose(0, 0, 0, 0), -1, -1)
+
+
+def solve_crossing_lift(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], cl: CrossingClose, u: Int, v: Int) raises -> PolyLift:
+    """The point path's segments, with affine offsets making Lemma X's third
+    coordinate offset vanish identically at the path's end and agreeing with
+    the point; `ineqs` adds, to the offsets' bounds, the affine parts of a
+    closure variant that holds at `ns` (each usable only when the rest of
+    its condition has every coefficient `>= 0`)."""
+    return _solve(fam, point, ns, a0, b0, steps, True, cl, u, v)
+
+
+def _solve(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], close: Bool, cl: CrossingClose, u: Int, v: Int) raises -> PolyLift:
     var out = PolyLift()
     var m = fam.m
     var L = len(steps)
@@ -621,7 +637,7 @@ def solve_lift(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: I
         gp = rp.gamma.copy()
         letters_a.append(ap)
         letters_b.append(bp)
-    if ap != bp:
+    if not close and ap != bp:
         out.why = "the point path ends off the diagonal"
         return out^
     # unknowns: for each level and side with a run segment, m + 1 of them
@@ -686,7 +702,27 @@ def solve_lift(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: I
                 if poly_degree(parts[j][i]) > POLY_DEGREE:
                     out.why = "the end offset's degree exceeds the cap"
                     return out^
-    # equations: every monomial of every coordinate of gamma_L vanishes
+    # the closing forms, linear in the unknowns: gamma_L itself, or Lemma
+    # X's third coordinate offset (M gamma_L)[third] + pre_a - pre_b
+    if close:
+        var third = 3 - u - v
+        var pa0 = fam.prefix_before(ap, cl.s0)
+        var pb0 = fam.prefix_before(bp, cl.t0)
+        for j in range(count + 1):
+            var acc = Poly()
+            for k in range(3):
+                acc = poly_add(acc, poly_mul(poly_from_aff(fam.incidence[3 * third + k]), parts[j][k]))
+            if j == 0:
+                acc = poly_sub(poly_add(acc, poly_from_aff(pa0[third])), poly_from_aff(pb0[third]))
+            if poly_degree(acc) > POLY_DEGREE:
+                out.why = "the closure's degree exceeds the cap"
+                return out^
+            var only = List[Poly]()
+            only.append(acc^)
+            only.append(Poly())
+            only.append(Poly())
+            parts[j] = only^
+    # equations: every monomial of every closing form vanishes
     var keys = List[String]()
     var seen = Dict[String, Int]()
     for j in range(count + 1):
@@ -766,11 +802,139 @@ def solve_lift(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: I
         a = r.a
         b = r.b
         gamma = r.gamma.copy()
+    if close:
+        var cf = poly_crossing_forms(fam, a, b, gamma, u, v, cl)
+        if not cf.ok or not poly_is_zero(cf.off):
+            out.why = "the solved closure does not stand"
+            return out^
+        var found = False
+        for variant in range(4):
+            ref c = cf.variants[variant]
+            if len(c) == 0:
+                continue
+            var forms = List[List[Int]]()
+            if carving_forms_of(c, m, ns, forms):
+                for k in range(len(forms)):
+                    out.ineqs.append(forms[k].copy())
+                found = True
+                break
+        if not found:
+            out.why = "no closure variant holds at the point by affine forms"
+            return out^
     out.ok = True
     out.a = a
     out.b = b
     out.gamma = gamma^
     return out^
+
+
+struct PolyCrossingForms(Copyable, Movable):
+    """`psc.cone_witness.CrossingForms` over polynomials."""
+
+    var ok: Bool
+    var off: Poly
+    var variants: List[List[Poly]]
+
+    def __init__(out self):
+        self.ok = False
+        self.off = Poly()
+        self.variants = List[List[Poly]]()
+
+
+def poly_crossing_forms(fam: ConeFamily, a: Int, b: Int, gamma: List[Poly], u: Int, v: Int, cl: CrossingClose) raises -> PolyCrossingForms:
+    """Lemma X at `(a, b, gamma)` over polynomials, exactly as
+    `psc.cone_witness._crossing_forms`: the third coordinate's offset (must
+    vanish) and, per variant, the forms that must be `>= 0`."""
+    var out = PolyCrossingForms()
+    var third = 3 - u - v
+    if not _plane_range(fam, a, cl.s0, cl.s1, third) or not _plane_range(fam, b, cl.t0, cl.t1, third):
+        return out^
+    ref hu = fam.images[u][0]
+    ref hv = fam.images[v][0]
+    if hu.kind != SEG_LETTER or hv.kind != SEG_LETTER or hu.letter != hv.letter:
+        return out^
+    var mg = m_times_poly(fam, gamma)
+    if len(mg) == 0:
+        return out^
+    var pa0 = fam.prefix_before(a, cl.s0)
+    var pa1 = fam.prefix_before(a, cl.s1)
+    var pb0 = fam.prefix_before(b, cl.t0)
+    var pb1 = fam.prefix_before(b, cl.t1)
+    out.off = poly_sub(poly_add(mg[third], poly_from_aff(pa0[third])), poly_from_aff(pb0[third]))
+    var q0u = poly_sub(poly_from_aff(pb0[u]), mg[u])
+    var q0v = poly_sub(poly_from_aff(pb0[v]), mg[v])
+    var q1u = poly_sub(poly_from_aff(pb1[u]), mg[u])
+    var q1v = poly_sub(poly_from_aff(pb1[v]), mg[v])
+    var p0u = poly_from_aff(pa0[u])
+    var p0v = poly_from_aff(pa0[v])
+    var p1u = poly_from_aff(pa1[u])
+    var p1v = poly_from_aff(pa1[v])
+    var lp0 = poly_add(p0u, p0v)
+    var lp1 = poly_add(p1u, p1v)
+    var lq0 = poly_add(q0u, q0v)
+    var lq1 = poly_add(q1u, q1v)
+    var inner = _plane_letter_at(fam, a, cl.s1, u, v) and _plane_letter_at(fam, b, cl.t1, u, v)
+    for variant in range(4):
+        var c = List[Poly]()
+        var weak_end = variant < 2
+        if weak_end and not inner:
+            out.variants.append(c^)
+            continue
+        var slack = poly_const(0 if weak_end else 1)
+        c.append(poly_sub(poly_sub(lp1, lp0), slack))
+        c.append(poly_sub(poly_sub(lq1, lp0), slack))
+        c.append(poly_sub(poly_sub(lp1, lq0), slack))
+        c.append(poly_sub(poly_sub(lq1, lq0), slack))
+        if variant % 2 == 0:
+            c.append(poly_sub(q0u, p0u))
+            c.append(poly_sub(p0v, q0v))
+            c.append(poly_sub(poly_sub(p1u, q1u), slack))
+            c.append(poly_sub(poly_sub(q1v, p1v), slack))
+        else:
+            c.append(poly_sub(p0u, q0u))
+            c.append(poly_sub(q0v, p0v))
+            c.append(poly_sub(poly_sub(q1u, p1u), slack))
+            c.append(poly_sub(poly_sub(p1v, q1v), slack))
+        out.variants.append(c^)
+    out.ok = True
+    return out^
+
+
+def verify_crossing_poly(fam: ConeFamily, a0: Int, b0: Int, steps: List[PolyStep], cl: CrossingClose, u: Int, v: Int, prover: Prover) raises -> Bool:
+    """Re-derive the path's last state over polynomials (every offset
+    condition proved on the region) and check Lemma X there: the third
+    coordinate's offset proved to vanish, and every form of some variant
+    proved `>= 0`."""
+    var a = a0
+    var b = b0
+    var gamma = List[Poly]()
+    for _ in range(3):
+        gamma.append(Poly())
+    for l in range(len(steps)):
+        var r = poly_step(fam, a, b, gamma, steps[l])
+        if not r.ok:
+            return False
+        for k in range(len(r.conds)):
+            if not poly_nonneg_under(r.conds[k], prover):
+                return False
+        a = r.a
+        b = r.b
+        gamma = r.gamma.copy()
+    var cf = poly_crossing_forms(fam, a, b, gamma, u, v, cl)
+    if not cf.ok or not poly_vanishes_under(cf.off, prover):
+        return False
+    for variant in range(4):
+        ref c = cf.variants[variant]
+        if len(c) == 0:
+            continue
+        var all = True
+        for k in range(len(c)):
+            if not poly_nonneg_under(c[k], prover):
+                all = False
+                break
+        if all:
+            return True
+    return False
 
 
 def enumerate_point_paths(point: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int, ly: Int, lz: Int, max_paths: Int, max_nodes: Int) -> List[List[WitnessStep]]:

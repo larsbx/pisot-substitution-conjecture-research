@@ -428,6 +428,21 @@ by deleting it.
   whose 40 enumerated point paths all fail; Lemma X closures are not yet
   solved linearly. · `kernel/psc/poly_line.mojo`; `kernel/tests/test_poly_line.mojo`
 
+- 2026-10-06 · Two cover leaks, each closing `zyz +yy | zyz` (cell
+  `(+1, 2)`, every run revealed: 2 open → 0, 81 regions → 51, 62 s → 4 s).
+  (1) With `Delta` fixed, Lemma P1's form is *affine*, and the cover never
+  split by it: it certified member base points and cut only at non-member
+  points, so a region whose members are finite (here 3 points,
+  `f = n3 + n5 − 1`) ran out of peels. Now `{f >= 0}` is cut once and the
+  rest carries `f <= −1`. (2) A region whose assumptions pin every
+  occurring variable is one substitution, but counted as live and never
+  reached exact decision; propagated bounds with `lo = hi` are now
+  substituted. Also: Lemma X closures solve linearly too
+  (`solve_crossing_lift`). Tooling: an unset shell variable sent a build to
+  `/olf20` and four logs to `~` (left for the user to delete; the safety
+  check blocks the removal). · `kernel/odd_letter_family_certificate.mojo`
+  (`_affine_pisot_form`, `_pin_fixed`); `kernel/psc/poly_line.mojo`
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing
