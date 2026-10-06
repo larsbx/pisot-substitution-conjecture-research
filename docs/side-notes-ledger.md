@@ -308,3 +308,16 @@ by deleting it.
   mid-construction, which `apply_n` cannot. Claim receipts and the full Mojo
   test log are byte-identical before and after. · `kernel/psc/legal_tower.mojo`;
   `kernel/run_tests.sh`
+- 2026-10-06 · `pisot.is_primitive(Mat3)` now delegates to the vendored
+  `integer_matrix.is_primitive` (Boolean support powers). The old body
+  multiplied real powers `M^1..M^5` with unchecked `Mat3.__mul__`, so a
+  matrix with entries large enough to wrap could be misjudged; on every
+  matrix whose fifth power fits a machine integer (all incidence matrices
+  here) the verdicts agree, as `test_boundary_sync` already pinned. The
+  vendored test raises only on a dimension mismatch, impossible for a
+  `Mat3`, so the view aborts there. `periodic_pair._checked_mat_mul` is
+  replaced by the checked `integer_matrix.matmul`: it raises exactly when
+  the old one did, though in a contrived case with two overflowing entries
+  the message may name addition where the old named multiplication, or the
+  reverse (loop order i,k,j against i,j,k). · `kernel/psc/pisot.mojo`;
+  `kernel/psc/periodic_pair.mojo`
