@@ -27,6 +27,16 @@ With the `signatures` option `delta_census` also tallies the offset sequence
 of each non-crossing member's shortest witness -- exploratory, to find the
 next lemma.
 
+**Run-shape cover** (`solve_constraint`, `cover_shape`, `shape_catalog`; note
+§3h). A run shape fixes the letters of the maximal runs of `w_1` and `w_2`;
+the run lengths are cone variables. The constraints `Z_1 - Z_2 = s` and an
+exact `Delta` (or a tail `|Delta| >= D`) are imposed by substitutions that
+partition the solutions; each region closes by a constant-offset or a
+line-mode witness path (`psc.cone_witness`), a Lemma Φ4 or quadratic Lemma P1
+cut, relational and value splits, or an exact decision once no variable is
+left. A region still open at the limits or past the budget is reported
+open. A cell with no open region is a proof for its whole infinite family.
+
 **The exploratory part** (`cover_family`). A partition tree of word patterns
 -- a letter `z`, a maximal run `y^(c + n)`, a run of exactly `c` letters `y`,
 or an opaque tail known only by its Parikh vector -- refined atom by atom and
@@ -38,7 +48,7 @@ whole region; a node still open at the depth limit is reported as open and
 never counted as covered. The tree does **not** converge as it stands (the
 open leaves grow with the depth), so it is an instrument, not a cover.
 
-Usage: `mojo run -I . odd_letter_family_certificate.mojo [max_len] [tree_depth | phi | delta]`,
+Usage: `mojo run -I . odd_letter_family_certificate.mojo [max_len] [tree_depth | phi | delta | catalog]`,
 or `pixi run odd-letter-family-certificate`.
 """
 
@@ -57,10 +67,12 @@ from psc.cone_witness import (
     opaque_segment,
     run_of,
     search_witness,
+    search_witness_line,
     verify_witness,
+    verify_witness_line,
     witness_position,
 )
-from psc.cone_witness import aff_nonneg
+from psc.cone_witness import aff_add, aff_nonneg, aff_scale, aff_sub
 from psc.pisot import CubicScreen
 from a1_normal_form_census import f_at, shared_tile_between
 
@@ -85,6 +97,9 @@ comptime LEAF_DECIDED = 2
 comptime LEAF_NOT_MEMBER = 3
 comptime LEAF_FAILED = 4
 comptime LEAF_CUT = 5
+comptime NO_DELTA = -1000000  # cover_shape: leave Y_1 - Y_2 free
+comptime PEEL_LIMIT = 4  # cover_shape: value splits n = 0 | n >= 1 beyond the relational ones
+comptime REGION_BUDGET = 600  # cover_shape: regions examined per cell before reporting the rest open
 
 
 struct Pattern(Copyable, Movable, Writable):
@@ -591,14 +606,40 @@ def main() raises:
     for k in range(16):
         if c.levels[k] != 0:
             print("    level", k, ":", c.levels[k])
+    if len(args) > 2 and String(args[2]) == "catalog":
+        var cat = shape_catalog(max_len, 3, 4, True)
+        var closed = 0
+        var closed_keys = Dict[String, Int]()
+        for k in range(len(cat)):
+            if cat[k].open == 0:
+                closed += 1
+                closed_keys[cat[k].key] = 1
+        print("shape cells:", len(cat), " closed:", closed)
+        var pc2 = phi_census(max_len)
+        var res_total = 0
+        var res_closed = 0
+        for e in pc2.shapes.items():
+            var parts = e.key.split(" | ")
+            var head = parts[0].split(" ")
+            var cell = delta_cell(Int(String(head[1])), Int(String(head[0])), 3)
+            var key = String(head[0]) + " " + String(cell[0]) + ("+" if cell[1] == 1 else "") + " | " + String(parts[1]) + " | " + String(parts[2])
+            res_total += e.value
+            if key in closed_keys:
+                res_closed += e.value
+        print("residue members:", res_total, " in closed shape cells:", res_closed, " left:", res_total - res_closed)
+        return
     if len(args) > 2 and String(args[2]) == "phi":
-        var pc = phi_census(max_len)
+        var pc = phi_census(max_len, len(args) > 3)
         print("Lemmas Phi6-Phi8: non-crossing", pc.non_crossing, " covered", pc.by_lemma, " failed", pc.lemma_failed, " delta = e_z residue", pc.cell_ez_residue)
         for e in pc.residue.items():
             print("    residue (s dy)", e.key, ":", e.value)
         for k in range(16):
             if pc.residue_levels[k] != 0:
                 print("    residue level", k, ":", pc.residue_levels[k])
+        for e in pc.signatures.items():
+            print("  SIG", e.key)
+        for e in pc.shapes.items():
+            print("  SHAPE", e.value, " ", e.key)
         return
     if len(args) > 2 and String(args[2]) == "delta":
         var dc = delta_census(max_len, True)
@@ -1040,6 +1081,8 @@ struct PhiCensus(Copyable, Movable):
     var residue: Dict[String, Int]  # "s dy" -> residual count
     var residue_levels: List[Int]
     var cell_ez_residue: Int  # delta = e_z members no lemma covers
+    var signatures: Dict[String, Int]  # residue only, when asked for: "s dy | w1 w2 | signature"
+    var shapes: Dict[String, Int]  # residue only: "s dy | run shape of w1 | of w2"
 
     def __init__(out self):
         self.non_crossing = 0
@@ -1048,9 +1091,29 @@ struct PhiCensus(Copyable, Movable):
         self.residue = Dict[String, Int]()
         self.residue_levels = List[Int](length=16, fill=0)
         self.cell_ez_residue = 0
+        self.signatures = Dict[String, Int]()
+        self.shapes = Dict[String, Int]()
 
 
-def phi_census(max_len: Int) raises -> PhiCensus:
+def run_shape(w: List[Int]) -> String:
+    """The letters of `w`'s maximal runs, in order: `zzyyz` has shape `zyz`."""
+    var names = List[String](["o", "y", "z"])
+    var out = String("")
+    for k in range(len(w)):
+        if k == 0 or w[k] != w[k - 1]:
+            out += names[w[k]]
+    return out if len(w) > 0 else String("ε")
+
+
+def _word_name(w: List[Int]) -> String:
+    var names = List[String](["o", "y", "z"])
+    var out = String("")
+    for k in range(len(w)):
+        out += names[w[k]]
+    return out if len(w) > 0 else String("ε")
+
+
+def phi_census(max_len: Int, with_signatures: Bool = False) raises -> PhiCensus:
     """Every non-crossing PIP member with `|det M| = 2`, `|w_i| <= max_len`:
     a Lemma Φ6-Φ8 path that verifies and names a shared tile of the words, or
     a residual member decided exactly."""
@@ -1092,4 +1155,421 @@ def phi_census(max_len: Int) raises -> PhiCensus:
             if lev < 0:
                 raise Error("SC REFUTED in Theorem K's family: {o, y} is not eventually coincident")
             out.residue_levels[min(lev, 15)] += 1
+            _bump(out.shapes, String(s) + " " + String(dy) + " | " + run_shape(w1) + " | " + run_shape(w2))
+            if with_signatures:
+                _bump(out.signatures, String(s) + " " + String(dy) + " | " + _signature(sigma) + " | " + _word_name(w1) + " " + _word_name(w2))
+    return out^
+
+
+# ---------------------------------------------------------------------------
+# Run-shape cover (§3h): the delta split with run-length splits. A run shape
+# fixes the letters of the maximal runs of w_1 and of w_2; each run has length
+# 1 + (its cone form). The determinant constraint Z_1 - Z_2 = s, and when
+# asked a fixed Delta = Y_1 - Y_2, are imposed by exact substitutions that
+# partition the solutions; each region is then covered by a witness path, a
+# Lemma Φ4 cut, relational splits n_i > n_j | n_i = n_j | n_i < n_j, or an
+# exact decision once no variable is left. Open regions are reported.
+# ---------------------------------------------------------------------------
+
+
+def _substitute_ge(subst: List[List[Int]], p: Int, q: Int) -> List[List[Int]]:
+    """`n_p <- n_q + n_p`: the region `n_p >= n_q`."""
+    var out = List[List[Int]]()
+    for k in range(len(subst)):
+        var f = subst[k].copy()
+        f[q + 1] += f[p + 1]
+        out.append(f^)
+    return out^
+
+
+def _substitute_gt(subst: List[List[Int]], p: Int, q: Int) -> List[List[Int]]:
+    """`n_q <- n_p + 1 + n_q`: the region `n_q > n_p`."""
+    var out = List[List[Int]]()
+    for k in range(len(subst)):
+        var f = subst[k].copy()
+        f[0] += f[q + 1]
+        f[p + 1] += f[q + 1]
+        out.append(f^)
+    return out^
+
+
+def _set_value(subst: List[List[Int]], p: Int, v: Int) -> List[List[Int]]:
+    var out = List[List[Int]]()
+    for k in range(len(subst)):
+        var f = subst[k].copy()
+        f[0] += v * f[p + 1]
+        f[p + 1] = 0
+        out.append(f^)
+    return out^
+
+
+def solve_constraint(subst: List[List[Int]], pos: List[Int], neg: List[Int], target: Int) -> List[List[List[Int]]]:
+    """All regions of `sum_pos n - sum_neg n = target` over `n >= 0`, as
+    substitutions; the regions partition the solutions. Each variable is
+    assumed to occur in the constraint once (identity forms on these slots)."""
+    var out = List[List[List[Int]]]()
+    if len(pos) == 0 and len(neg) == 0:
+        if target == 0:
+            out.append(subst.copy())
+        return out^
+    if len(neg) == 0 or len(pos) == 0:
+        var side = pos.copy() if len(neg) == 0 else neg.copy()
+        var t = target if len(neg) == 0 else -target
+        if t < 0:
+            return out^
+        var rest = List[Int]()
+        for k in range(1, len(side)):
+            rest.append(side[k])
+        if len(rest) == 0:
+            out.append(_set_value(subst, side[0], t))
+            return out^
+        for v in range(t + 1):
+            var reduced = _set_value(subst, side[0], v)
+            var sub = solve_constraint(reduced, rest, List[Int](), t - v) if len(neg) == 0 else solve_constraint(reduced, List[Int](), rest, v - t)
+            for k in range(len(sub)):
+                out.append(sub[k].copy())
+        return out^
+    var p = pos[0]
+    var q = neg[0]
+    var neg_rest = List[Int]()
+    for k in range(1, len(neg)):
+        neg_rest.append(neg[k])
+    var pos_rest = List[Int]()
+    for k in range(1, len(pos)):
+        pos_rest.append(pos[k])
+    # n_p >= n_q: n_p = n_q + r, r in slot p; the constraint loses n_q
+    var a = solve_constraint(_substitute_ge(subst, p, q), pos, neg_rest, target)
+    for k in range(len(a)):
+        out.append(a[k].copy())
+    # n_q > n_p: n_q = n_p + 1 + r, r in slot q; the constraint loses n_p
+    var b = solve_constraint(_substitute_gt(subst, p, q), pos_rest, neg, target + 1)
+    for k in range(len(b)):
+        out.append(b[k].copy())
+    return out^
+
+
+struct ShapeRegion(Copyable, Movable):
+    var subst: List[List[Int]]
+    var compared: List[Int]
+    var depth: Int
+
+    def __init__(out self, var subst: List[List[Int]], var compared: List[Int], depth: Int):
+        self.subst = subst^
+        self.compared = compared^
+        self.depth = depth
+
+
+struct ShapeCover(Copyable, Movable):
+    var regions: Int
+    var certified: Int
+    var line_certified: Int
+    var cut: Int
+    var decided: Int
+    var not_member: Int
+    var open: Int
+    var max_level: Int
+    var budget_exhausted: Bool
+    var open_forms: List[List[List[Int]]]
+
+    def __init__(out self):
+        self.budget_exhausted = False
+        self.regions = 0
+        self.certified = 0
+        self.line_certified = 0
+        self.cut = 0
+        self.decided = 0
+        self.not_member = 0
+        self.open = 0
+        self.max_level = 0
+        self.open_forms = List[List[List[Int]]]()
+
+
+def shape_family(l1: List[Int], l2: List[Int], subst: List[List[Int]]) raises -> ConeFamily:
+    """`sigma(o) = y`, `sigma(y) = o w_1 o`, `sigma(z) = o w_2 o` with the runs
+    of `w_1` (letters `l1`) and of `w_2` (letters `l2`) of lengths
+    `1 + subst[k]`, slots numbered over `l1` then `l2`; the forms may have
+    any number of free variables."""
+    var m = len(subst[0]) - 1
+    var images = List[List[Segment]]()
+    var img_o = List[Segment]()
+    img_o.append(letter_segment(m, Y))
+    images.append(img_o^)
+    var slot = 0
+    for wi in range(2):
+        ref letters = l1 if wi == 0 else l2
+        var img = List[Segment]()
+        img.append(letter_segment(m, O))
+        for k in range(len(letters)):
+            var f = subst[slot].copy()
+            f[0] += 1
+            slot += 1
+            img.append(run_of(letters[k], f^))
+        img.append(letter_segment(m, O))
+        images.append(img^)
+    return ConeFamily(m, images^)
+
+
+def _count_form(l1: List[Int], l2: List[Int], subst: List[List[Int]], letter: Int, sign2: Int) -> List[Int]:
+    """Affine form of (count of `letter` in w_1) + sign2 (count in w_2)."""
+    var m = len(subst)
+    var f = aff_const(m, 0)
+    var slot = 0
+    for wi in range(2):
+        ref letters = l1 if wi == 0 else l2
+        var sg = 1 if wi == 0 else sign2
+        for k in range(len(letters)):
+            if letters[k] == letter:
+                f[0] += sg
+                for j in range(m + 1):
+                    f[j] += sg * subst[slot][j]
+            slot += 1
+    return f^
+
+
+def _lemma_phi4_cut(l1: List[Int], l2: List[Int], subst: List[List[Int]], s: Int) -> Bool:
+    """No PIP member in the region by Lemma Φ4: for s = +1 if Y_2 - Y_1 - 1 is
+    provably >= 0; for s = -1 if Y_1 - Y_2 - 1 >= 0 (Z_2 >= 2 holding), or if
+    1 - Z_2 >= 0 (Z_1 = Z_2 - 1 <= 0, not primitive)."""
+    var dy = _count_form(l1, l2, subst, Y, -1)  # Y_1 - Y_2
+    var m = len(subst)
+    if s == 1:
+        var g = aff_scale(dy, -1)
+        g[0] -= 1
+        return aff_nonneg(g)
+    var z2 = aff_const(m, 0)
+    var slot = len(l1)
+    for k in range(len(l2)):
+        if l2[k] == Z:
+            z2[0] += 1
+            for j in range(m + 1):
+                z2[j] += subst[slot + k][j]
+    var one_minus = aff_scale(z2, -1)
+    one_minus[0] += 1
+    if aff_nonneg(one_minus):
+        return True
+    var g = dy.copy()
+    g[0] -= 1
+    return aff_nonneg(g)
+
+
+def _quadratic_nonneg(a: List[Int], b: List[Int], c: List[Int]) -> Bool:
+    """Is `a * b + c` (affine forms over `n >= 0`) provably nonnegative: all
+    coefficients of the expanded quadratic polynomial nonnegative?"""
+    var m = len(a) - 1
+    if a[0] * b[0] + c[0] < 0:
+        return False
+    for i in range(1, m + 1):
+        if a[0] * b[i] + a[i] * b[0] + c[i] < 0:
+            return False
+        for j in range(i, m + 1):
+            var q = a[i] * b[j] + (a[j] * b[i] if j != i else 0)
+            if q < 0:
+                return False
+    return True
+
+
+def _lemma_p1_quadratic_cut(l1: List[Int], l2: List[Int], subst: List[List[Int]], s: Int) -> Bool:
+    """Lemma P1 in the exact forms of §3h: for s = +1,
+    f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3; for s = -1,
+    f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3. A PIP member needs it
+    negative, so a region where it is provably >= 0 holds none."""
+    var m = len(subst)
+    var dy = _count_form(l1, l2, subst, Y, -1)  # Y_1 - Y_2
+    var ad = dy.copy() if s == 1 else aff_scale(dy, -1)  # |Delta| on the cell
+    var z2 = aff_const(m, 0)
+    var y1 = aff_const(m, 0)
+    var y2 = aff_const(m, 0)
+    var slot = 0
+    for wi in range(2):
+        ref letters = l1 if wi == 0 else l2
+        for k in range(len(letters)):
+            var f = subst[slot].copy()
+            f[0] += 1
+            if wi == 1 and letters[k] == Z:
+                z2 = aff_add(z2, f)
+            elif wi == 0 and letters[k] == Y:
+                y1 = aff_add(y1, f)
+            elif wi == 1 and letters[k] == Y:
+                y2 = aff_add(y2, f)
+            slot += 1
+    var factor = ad.copy()
+    factor[0] -= 1
+    var rest = aff_scale(ad, -1)
+    if s == 1:
+        rest = aff_sub(rest, aff_scale(y2, 2))
+        rest[0] -= 3
+    else:
+        rest = aff_sub(rest, aff_scale(y1, 2))
+        rest[0] += 3
+    return _quadratic_nonneg(z2, factor, rest)
+
+
+def cover_shape(l1: List[Int], l2: List[Int], s: Int, delta: Int, split_limit: Int, tail: Bool = False, peel_limit: Int = PEEL_LIMIT, region_budget: Int = REGION_BUDGET) raises -> ShapeCover:
+    """Cover every member of the run shape `(l1, l2)` with `Z_1 - Z_2 = s`, and
+    with `Y_1 - Y_2 = delta` unless `delta` is `NO_DELTA` -- or, with `tail`,
+    with `|Y_1 - Y_2| >= |delta|` on `delta`'s side, carried by one extra
+    variable `e >= 0` (`Y_1 - Y_2 = delta + e` or `delta - e`)."""
+    var out = ShapeCover()
+    var screen = CubicScreen()
+    var runs = len(l1) + len(l2)
+    var m = runs + (1 if tail else 0)
+    var zpos = List[Int]()
+    var zneg = List[Int]()
+    var ypos = List[Int]()
+    var yneg = List[Int]()
+    var zconst = 0
+    var yconst = 0
+    for k in range(len(l1)):
+        if l1[k] == Z:
+            zpos.append(k)
+            zconst += 1
+        else:
+            ypos.append(k)
+            yconst += 1
+    for k in range(len(l2)):
+        if l2[k] == Z:
+            zneg.append(len(l1) + k)
+            zconst -= 1
+        else:
+            yneg.append(len(l1) + k)
+            yconst -= 1
+    var starts = solve_constraint(identity_subst(m), zpos, zneg, s - zconst)
+    if delta != NO_DELTA:
+        if tail:
+            if delta >= 0:
+                yneg.append(runs)  # Y_1 - Y_2 - e = delta
+            else:
+                ypos.append(runs)  # Y_1 - Y_2 + e = delta
+        var both = List[List[List[Int]]]()
+        for k in range(len(starts)):
+            var more = solve_constraint(starts[k], ypos, yneg, delta - yconst)
+            for j in range(len(more)):
+                both.append(more[j].copy())
+        starts = both^
+    var stack = List[ShapeRegion]()
+    for k in range(len(starts)):
+        stack.append(ShapeRegion(starts[k].copy(), List[Int](), 0))
+    while len(stack) > 0:
+        var reg = stack.pop()
+        out.regions += 1
+        if out.regions > region_budget:
+            # budget exhausted: everything still unexamined is reported open
+            out.open += 1 + len(stack)
+            out.budget_exhausted = True
+            break
+        if _lemma_phi4_cut(l1, l2, reg.subst, s) or _lemma_p1_quadratic_cut(l1, l2, reg.subst, s):
+            out.cut += 1
+            continue
+        var fam = shape_family(l1, l2, reg.subst)
+        var w = search_witness(fam, O, Y, OFFSET_BOUND, MAX_LEVEL, True)
+        if w.found:
+            if not verify_witness(fam, O, Y, w.steps):
+                raise Error("a witness path the search found does not verify")
+            out.certified += 1
+            out.max_level = max(out.max_level, len(w.steps))
+            continue
+        var wl = search_witness_line(fam, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z)
+        if wl.found:
+            if not verify_witness_line(fam, O, Y, wl.steps):
+                raise Error("a line-mode witness path the search found does not verify")
+            out.certified += 1
+            out.line_certified += 1
+            out.max_level = max(out.max_level, len(wl.steps))
+            continue
+        var any_live = False
+        for k in range(m):
+            if _live(reg.subst, k):
+                any_live = True
+        if not any_live:
+            var sigma = fam.instantiate(List[Int](length=m, fill=0))
+            var mat = Mat3(substitution_incidence(sigma))
+            if abs(mat.det()) != 2 or not screen.is_pip(mat):
+                out.not_member += 1
+                continue
+            var lev = coincidence_level(sigma, O, Y)
+            if lev < 0:
+                raise Error("SC REFUTED in Theorem K's family: {o, y} is not eventually coincident")
+            out.decided += 1
+            out.max_level = max(out.max_level, lev)
+            continue
+        var node = Node(any_word(), any_word(), reg.subst.copy(), reg.compared.copy(), 0)
+        var pair = _next_pair(node)
+        if pair[0] < 0 or len(reg.compared) >= split_limit:
+            # value split of the first live variable: n = 0 | n = 1 + n'
+            var first = -1
+            for k in range(m):
+                if _live(reg.subst, k) and first < 0:
+                    first = k
+            if first < 0 or reg.depth >= split_limit + peel_limit:
+                out.open += 1
+                out.open_forms.append(reg.subst.copy())
+                continue
+            stack.append(ShapeRegion(_set_value(reg.subst, first, 0), reg.compared.copy(), reg.depth + 1))
+            var shifted = List[List[Int]]()
+            for k in range(len(reg.subst)):
+                var f = reg.subst[k].copy()
+                f[0] += f[first + 1]
+                shifted.append(f^)
+            stack.append(ShapeRegion(shifted^, reg.compared.copy(), reg.depth + 1))
+            continue
+        for which in range(3):
+            var comp = reg.compared.copy()
+            comp.append(pair[0] * 1000 + pair[1])
+            stack.append(ShapeRegion(_split(reg.subst, pair[0], pair[1], which), comp^, reg.depth + 1))
+    return out^
+
+
+def _letters(shape: String) -> List[Int]:
+    var out = List[Int]()
+    var b = shape.as_bytes()
+    for k in range(len(b)):
+        if Int(b[k]) == ord("y"):
+            out.append(Y)
+        elif Int(b[k]) == ord("z"):
+            out.append(Z)
+    return out^
+
+
+def delta_cell(dy: Int, s: Int, exact_cap: Int) -> List[Int]:
+    """The cover cell of `Delta`: `[delta, tail]`, exact for `|Delta| <=
+    exact_cap`, else the tail `|Delta| >= exact_cap + 1` on its side."""
+    if abs(dy) <= exact_cap:
+        return List[Int]([dy, 0])
+    return List[Int]([(exact_cap + 1) if dy > 0 else -(exact_cap + 1), 1])
+
+
+struct CatalogEntry(Copyable, Movable):
+    var key: String
+    var open: Int
+    var certified: Int
+    var cut: Int
+
+    def __init__(out self, key: String, open: Int, certified: Int, cut: Int):
+        self.key = key
+        self.open = open
+        self.certified = certified
+        self.cut = cut
+
+
+def shape_catalog(max_len: Int, exact_cap: Int, split_limit: Int, verbose: Bool = False) raises -> List[CatalogEntry]:
+    """Cover every (run shape, s, Delta cell) that a residual member of
+    `phi_census(max_len)` falls in; one entry per cell, with its open count."""
+    var pc = phi_census(max_len)
+    var done = Dict[String, Int]()
+    var out = List[CatalogEntry]()
+    for e in pc.shapes.items():
+        var parts = e.key.split(" | ")
+        var head = parts[0].split(" ")
+        var s = Int(String(head[0]))
+        var dy = Int(String(head[1]))
+        var cell = delta_cell(dy, s, exact_cap)
+        var key = String(s) + " " + String(cell[0]) + ("+" if cell[1] == 1 else "") + " | " + String(parts[1]) + " | " + String(parts[2])
+        if key in done:
+            continue
+        var l2 = _letters(String(parts[2])) if String(parts[2]) != "ε" else List[Int]()
+        var c = cover_shape(_letters(String(parts[1])), l2, s, cell[0], split_limit, cell[1] == 1, split_limit)
+        done[key] = len(out)
+        out.append(CatalogEntry(key, c.open, c.certified, c.cut))
+        if verbose:
+            print("   ", "closed" if c.open == 0 else ("BUDGET" if c.budget_exhausted else "OPEN  "), key, "  regions", c.regions, " certified", c.certified, " (line", c.line_certified, ") cut", c.cut, " decided", c.decided, " open", c.open, flush=True)
     return out^

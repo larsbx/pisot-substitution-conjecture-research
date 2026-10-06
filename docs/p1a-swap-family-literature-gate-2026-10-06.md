@@ -90,3 +90,6 @@ The letter-by-letter pattern tree was tried and recorded as not converging
 *Same day, the delta split (A1′ note §3g).* Lemmas Φ4–Φ8 and Theorem Φ refine
 the same target with the same tools; no new prior art was found or needed.
 The decision stands: proceed, narrowed.
+
+*Same day, run-shape cover (A1′ note §3h).* Same target and tools, plus a line
+mode of the witness search; no new prior art. Decision unchanged.

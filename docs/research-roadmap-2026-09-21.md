@@ -468,8 +468,9 @@ For the next research cycle:
    on the whole catch-up-free `|det M| = 2` class except one explicit family
    (Theorem K, §3e). Inside that family the crossing lemma (§3f) leaves only
    the non-crossing pairs, and the delta split (§3g) closes their cell
-   `delta = e_z` (Theorem Φ); the other cells, and determinant other than 2,
-   remain. The former statement of the obligation follows.
+   `delta = e_z` (Theorem Φ); the run-shape cover (§3h) closes 29 infinite
+   shape cells, among them three shapes for every `Delta` (Theorem Ψ). The
+   many-run shapes, and determinant other than 2, remain. The former statement of the obligation follows.
 3. **#138 template exclusion in parallel.** The aligned branch is reduced to a
    fixed bad hub edge or an alternating type-E template. Exclude those two
    templates using endpoint/occurrence structure, including reversal.

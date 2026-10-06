@@ -291,6 +291,20 @@ by deleting it.
   relational run-length splits. · `p1a-a1-prime-2026-10-05.md` §3g;
   `kernel/tests/test_odd_letter_family_certificate.mojo`
 
+- 2026-10-06 · Run-shape cover of Theorem K's residue: whole shape families
+  close (Theorem Ψ; 29 cells at length 8) once three things are in place —
+  exact `Delta` cells (with `Delta` free, `delta` is not constant), the
+  quadratic Pisot forms `f(1) = Z_2(Delta − 1) − 2Y_2 − Delta − 3` /
+  `f(−1) = Z_2(|Delta| − 1) − 2Y_1 − |Delta| + 3` as cuts (they kill the
+  `Delta`-tails), and a **line mode** allowing offsets affine along
+  `e_z − e_y` (some witnesses pass through `(b + 1)(e_z − e_y)`). Value
+  splits alone just push an open region outward (`a >= 11`): when a cell
+  will not close, look for a non-constant offset, not a deeper split.
+  Many-run shapes still exceed a 600-region budget. Tooling: never
+  `pkill -f` / `pgrep -f` a pattern that also appears in the running shell's
+  own command line — it kills that shell (happened twice). ·
+  `p1a-a1-prime-2026-10-05.md` §3h; `kernel/tests/test_odd_letter_family_certificate.mojo`
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing

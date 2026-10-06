@@ -23,12 +23,19 @@ member of the cone at once: unrolling the recursion, `gamma_n` is the
 difference of the Parikh vectors of the two prefixes in front of the two
 positions, and the letters there are equal.
 
+*Line mode* (`search_witness_line`, `verify_witness_line`) relaxes the
+constant-offset requirement along one direction `u`: offsets may be affine in
+the cone variables along `u` as long as `M gamma` stays affine, which is
+checked exactly; it serves families where `M u` is constant.
+
 `search_witness` finds a path by breadth-first search over the finitely many
 states `(a, b, gamma)` with `|gamma_i| <= bound`; `verify_witness` re-derives
 every state from the step data alone and checks every condition. The search
 is a means of finding a certificate; the verification is the certificate.
 A failed search is reported as such and is never a verdict about the cone.
 """
+
+from std.collections import Dict
 
 comptime Y_LETTER = 2
 
@@ -462,3 +469,247 @@ def witness_position(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessStep]
         pos = p2
         a = word[pos]
     return pos
+
+
+# ---------------------------------------------------------------------------
+# Line mode: offsets affine along one direction. Lemma W needs nothing of the
+# offsets but bookkeeping; what keeps every check affine is that `M gamma` be
+# affine. With `gamma = c + lambda u`, `c` constant and `lambda` affine, that
+# holds when `M u` is constant -- for Theorem K's family `u = e_z - e_y` and
+# `M u = -delta`, constant once the cell fixes `delta`. `m_times_affine`
+# computes `M gamma` as an exact quadratic and refuses it unless the
+# quadratic part vanishes, so the mode fails closed if that premise fails.
+# ---------------------------------------------------------------------------
+
+
+def m_times_affine(fam: ConeFamily, gamma: List[List[Int]]) -> List[List[Int]]:
+    """`M gamma` for affine `gamma`, or an empty list if it is not affine."""
+    var m = fam.m
+    var out = List[List[Int]]()
+    for i in range(3):
+        var acc = aff_const(m, 0)
+        var quad = List[Int](length=(m + 1) * (m + 1), fill=0)
+        for j in range(3):
+            ref a = fam.incidence[3 * i + j]
+            ref g = gamma[j]
+            acc[0] += a[0] * g[0]
+            for k in range(1, m + 1):
+                acc[k] += a[0] * g[k] + a[k] * g[0]
+                for l in range(1, m + 1):
+                    quad[k * (m + 1) + l] += a[k] * g[l]
+        for k in range(1, m + 1):
+            for l in range(k, m + 1):
+                var q = quad[k * (m + 1) + l] + (quad[l * (m + 1) + k] if l != k else 0)
+                if q != 0:
+                    return List[List[Int]]()
+        out.append(acc^)
+    return out^
+
+
+struct LineResult(Copyable, Movable):
+    var ok: Bool
+    var a: Int
+    var b: Int
+    var gamma: List[List[Int]]
+
+    def __init__(out self, ok: Bool, a: Int, b: Int, var gamma: List[List[Int]]):
+        self.ok = ok
+        self.a = a
+        self.b = b
+        self.gamma = gamma^
+
+
+def _line_refused() -> LineResult:
+    return LineResult(False, -1, -1, List[List[Int]]())
+
+
+def apply_step_line(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], step: WitnessStep) -> LineResult:
+    """A step with affine offsets: segment bounds and run offsets checked on
+    the whole cone, `M gamma` required affine. No constancy is asked of the
+    new offset; the path's end asks it to vanish identically."""
+    if step.seg_a < 0 or step.seg_a >= len(fam.images[a]) or step.seg_b < 0 or step.seg_b >= len(fam.images[b]):
+        return _line_refused()
+    if not _offset_ok(fam, a, step.seg_a, step.off_a) or not _offset_ok(fam, b, step.seg_b, step.off_b):
+        return _line_refused()
+    var mg = m_times_affine(fam, gamma)
+    if len(mg) == 0:
+        return _line_refused()
+    var pa = fam.prefix_before(a, step.seg_a)
+    var pb = fam.prefix_before(b, step.seg_b)
+    ref sa = fam.images[a][step.seg_a]
+    ref sb = fam.images[b][step.seg_b]
+    var g2 = List[List[Int]]()
+    for i in range(3):
+        var d = aff_sub(aff_add(mg[i], pa[i]), pb[i])
+        if sa.is_run() and sa.letter == i:
+            d = aff_add(d, step.off_a)
+        if sb.is_run() and sb.letter == i:
+            d = aff_sub(d, step.off_b)
+        g2.append(d^)
+    return LineResult(True, sa.letter, sb.letter, g2^)
+
+
+def _is_zero(gamma: List[List[Int]]) -> Bool:
+    for i in range(len(gamma)):
+        for k in range(len(gamma[i])):
+            if gamma[i][k] != 0:
+                return False
+    return True
+
+
+def verify_witness_line(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessStep]) -> Bool:
+    """Re-derive every state from the steps alone in line mode; true iff every
+    condition holds on the whole cone and the path ends at `(a, a, 0)` with
+    the offset identically zero."""
+    if len(steps) == 0:
+        return False
+    var a = a0
+    var b = b0
+    var gamma = List[List[Int]]()
+    for _ in range(3):
+        gamma.append(aff_const(fam.m, 0))
+    for l in range(len(steps)):
+        var r = apply_step_line(fam, a, b, gamma, steps[l])
+        if not r.ok:
+            return False
+        a = r.a
+        b = r.b
+        gamma = r.gamma.copy()
+    return a == b and _is_zero(gamma)
+
+
+def _line_key(a: Int, b: Int, gamma: List[List[Int]]) -> String:
+    var out = String(a) + ":" + String(b)
+    for i in range(3):
+        out += "|"
+        for k in range(len(gamma[i])):
+            out += String(gamma[i][k]) + ","
+    return out
+
+
+def _within(gamma: List[List[Int]], bound: Int) -> Bool:
+    for i in range(3):
+        for k in range(len(gamma[i])):
+            if gamma[i][k] < -bound or gamma[i][k] > bound:
+                return False
+    return True
+
+
+def _line_candidates(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], bound: Int, ly: Int, lz: Int) -> List[WitnessStep]:
+    """Constant-target steps as in `_candidates`, plus steps that keep the new
+    offset on the line `c + lambda (e_lz - e_ly)`: its other coordinate and
+    its `ly + lz` sum constant, solving or pinning run offsets for that."""
+    var out = List[WitnessStep]()
+    var m = fam.m
+    var mg = m_times_affine(fam, gamma)
+    if len(mg) == 0:
+        return out^
+    var lo = 3 - ly - lz  # the coordinate off the line
+    for sa in range(len(fam.images[a])):
+        ref ga = fam.images[a][sa]
+        if ga.kind == SEG_OPAQUE:
+            continue
+        var pa = fam.prefix_before(a, sa)
+        var la = ga.letter if ga.is_run() else -1
+        for sb in range(len(fam.images[b])):
+            ref gb = fam.images[b][sb]
+            if gb.kind == SEG_OPAQUE:
+                continue
+            var pb = fam.prefix_before(b, sb)
+            var lb = gb.letter if gb.is_run() else -1
+            var d = List[List[Int]]()
+            for i in range(3):
+                d.append(aff_sub(aff_add(mg[i], pa[i]), pb[i]))
+            # constant targets, as before
+            var fixed = True
+            for i in range(3):
+                if i != la and i != lb and not aff_is_const(d[i]):
+                    fixed = False
+            if fixed:
+                if la < 0 and lb < 0:
+                    out.append(WitnessStep(sa, aff_const(m, 0), sb, aff_const(m, 0)))
+                elif lb < 0:
+                    for t in range(-bound, bound + 1):
+                        out.append(WitnessStep(sa, aff_sub(aff_const(m, t), d[la]), sb, aff_const(m, 0)))
+                elif la < 0:
+                    for t in range(-bound, bound + 1):
+                        out.append(WitnessStep(sa, aff_const(m, 0), sb, aff_sub(d[lb], aff_const(m, t))))
+                elif la != lb:
+                    for t1 in range(-bound, bound + 1):
+                        for t2 in range(-bound, bound + 1):
+                            out.append(WitnessStep(sa, aff_sub(aff_const(m, t1), d[la]), sb, aff_sub(d[lb], aff_const(m, t2))))
+            # line targets: coordinate lo constant, ly + lz sum constant
+            if (la == lo or lb == lo) or not aff_is_const(d[lo]):
+                continue
+            var ssum = aff_add(d[ly], d[lz])
+            var ra = la == ly or la == lz
+            var rb = lb == ly or lb == lz
+            for t in range(-bound, bound + 1):
+                var need = aff_sub(aff_const(m, t), ssum)  # off_a - off_b must equal need
+                if not ra and not rb:
+                    if aff_is_const(need) and need[0] == 0:
+                        out.append(WitnessStep(sa, aff_const(m, 0), sb, aff_const(m, 0)))
+                elif ra and not rb:
+                    out.append(WitnessStep(sa, need.copy(), sb, aff_const(m, 0)))
+                elif rb and not ra:
+                    out.append(WitnessStep(sa, aff_const(m, 0), sb, aff_scale(need, -1)))
+                else:
+                    for p in range(3):
+                        out.append(WitnessStep(sa, aff_add(need, aff_const(m, p)), sb, aff_const(m, p)))
+                        out.append(WitnessStep(sa, aff_const(m, p), sb, aff_sub(aff_const(m, p), need)))
+                        var eb = aff_sub(gb.length, aff_const(m, p + 1))
+                        out.append(WitnessStep(sa, aff_add(need, eb), sb, eb.copy()))
+                        var ea = aff_sub(ga.length, aff_const(m, p + 1))
+                        out.append(WitnessStep(sa, ea.copy(), sb, aff_sub(ea, need)))
+    return out^
+
+
+def search_witness_line(fam: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int, ly: Int, lz: Int) -> WitnessSearch:
+    """Breadth-first search in line mode: offsets may be affine along
+    `e_lz - e_ly`, with every coefficient within `bound`."""
+    var out = WitnessSearch()
+    var zero = List[List[Int]]()
+    for _ in range(3):
+        zero.append(aff_const(fam.m, 0))
+    var seen = Dict[String, Int]()
+    var parents = List[Int]()
+    var vias = List[WitnessStep]()
+    var sa_ = List[Int]()
+    var sb_ = List[Int]()
+    var sg = List[List[List[Int]]]()
+    seen[_line_key(a0, b0, zero)] = 0
+    parents.append(-1)
+    vias.append(WitnessStep(0, aff_const(fam.m, 0), 0, aff_const(fam.m, 0)))
+    sa_.append(a0)
+    sb_.append(b0)
+    sg.append(zero.copy())
+    var start = 0
+    for _ in range(max_level):
+        var end = len(sa_)
+        for f in range(start, end):
+            var cands = _line_candidates(fam, sa_[f], sb_[f], sg[f], bound, ly, lz)
+            for c in range(len(cands)):
+                var r = apply_step_line(fam, sa_[f], sb_[f], sg[f], cands[c])
+                if not r.ok or not _within(r.gamma, bound):
+                    continue
+                var key = _line_key(r.a, r.b, r.gamma)
+                if key in seen:
+                    continue
+                seen[key] = len(sa_)
+                parents.append(f)
+                vias.append(cands[c].copy())
+                sa_.append(r.a)
+                sb_.append(r.b)
+                sg.append(r.gamma.copy())
+                if r.a == r.b and _is_zero(r.gamma):
+                    var rev = List[WitnessStep]()
+                    var cur = len(sa_) - 1
+                    while cur != 0:
+                        rev.append(vias[cur].copy())
+                        cur = parents[cur]
+                    for i in range(len(rev) - 1, -1, -1):
+                        out.steps.append(rev[i].copy())
+                    out.found = True
+                    return out^
+        start = end
+    return out^
