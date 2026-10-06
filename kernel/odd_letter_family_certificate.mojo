@@ -74,7 +74,7 @@ from psc.cone_witness import (
     verify_witness_line,
     witness_position,
 )
-from psc.cone_witness import CrossingClose, aff_add, aff_eval, aff_nonneg, aff_scale, aff_sub, crossing_conditions, lift_path, monotone_paths_meet, Prover, _q_lin, _qa, _q_nonneg, _q_nonneg_under
+from psc.cone_witness import CrossingClose, aff_add, aff_eval, aff_is_const, aff_nonneg, aff_scale, aff_sub, crossing_conditions, lift_path, monotone_paths_meet, Prover, _q_lin, _qa, _q_nonneg, _q_nonneg_under
 from psc.poly_line import lift_path_poly, poly_affine_part, poly_higher, enumerate_point_paths, poly_is_zero, poly_key, solve_crossing_lift, solve_lift, steps_at, verify_crossing_poly, verify_witness_poly
 from psc.prng import SplitMix64
 from psc.pisot import CubicScreen
@@ -2802,12 +2802,14 @@ struct GuidedRegion(Copyable, Movable):
     var assume: List[List[Int]]
     var depth: Int  # value peels behind it
     var corner: Int  # uniform McCormick corners already applied
+    var split: Bool  # split by the value of Lemma P1's factor a = Z_2 already
 
-    def __init__(out self, var subst: List[List[Int]], var assume: List[List[Int]], depth: Int, corner: Int = 0):
+    def __init__(out self, var subst: List[List[Int]], var assume: List[List[Int]], depth: Int, corner: Int = 0, split: Bool = False):
         self.subst = subst^
         self.assume = assume^
         self.depth = depth
         self.corner = corner
+        self.split = split
 
 
 def tighten(f: List[Int]) -> List[Int]:
@@ -2835,14 +2837,14 @@ def _with_assumptions(reg: GuidedRegion, more: List[List[Int]]) -> GuidedRegion:
     var a = reg.assume.copy()
     for k in range(len(more)):
         a.append(tighten(more[k]))
-    return GuidedRegion(reg.subst.copy(), a^, reg.depth, reg.corner)
+    return GuidedRegion(reg.subst.copy(), a^, reg.depth, reg.corner, reg.split)
 
 
 def _region_subst(reg: GuidedRegion, k: Int, repl: List[Int], depth: Int) -> GuidedRegion:
     var a = _subst_var(reg.assume, k, repl)
     for i in range(len(a)):
         a[i] = tighten(a[i])
-    return GuidedRegion(_subst_var(reg.subst, k, repl), a^, depth, reg.corner)
+    return GuidedRegion(_subst_var(reg.subst, k, repl), a^, depth, reg.corner, reg.split)
 
 
 def _region_live(reg: GuidedRegion, k: Int) -> Bool:
@@ -3258,7 +3260,7 @@ def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, 
     return List[Int]()
 
 
-def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int, tail: Bool = False, verbose: Bool = False, cut_first: Bool = True, corners: Int = 0) raises -> ShapeCover:
+def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int, tail: Bool = False, verbose: Bool = False, cut_first: Bool = True, corners: Int = 0, z_split: Int = 0) raises -> ShapeCover:
     """Cover the pattern's members in one delta cell by certificate-guided
     partition. Regions carry their own inequalities. At a point of each region
     find a certificate (an exact line-mode path, else a Lemma X closure), lift
@@ -3289,6 +3291,14 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
         if pisot_cut_under(pattern_counts(pat, reg.subst), s, prover):
             out.cut += 1
             continue
+        # split once by the value of Lemma P1's factor a = Z_2: a = k for
+        # k <= z_split by substitution (there f is affine), and a > z_split
+        if z_split > 0 and not reg.split:
+            var pieces = _split_by_factor(reg, _pisot_quadratic(pattern_counts(pat, reg.subst), s)[0], z_split)
+            if len(pieces) > 0:
+                for k in range(len(pieces)):
+                    stack.append(pieces[k].copy())
+                continue
         # where Lemma P1's form is affine on the region (Delta fixed), split
         # by it once: {f >= 0} holds no member, the rest carries f <= -1
         var split = _affine_pisot_form(pattern_counts(pat, reg.subst), s)
@@ -3306,7 +3316,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
             var inside = _with_assumptions(reg, g)
             if not mccormick_cut(pattern_counts(pat, inside.subst), s, g, Prover(inside.assume.copy())):
                 raise Error("a McCormick corner is not cut")
-            var next = GuidedRegion(reg.subst.copy(), reg.assume.copy(), reg.depth, reg.corner + 1)
+            var next = GuidedRegion(reg.subst.copy(), reg.assume.copy(), reg.depth, reg.corner + 1, reg.split)
             _push_complements(stack, next, g)
             out.cut += 1
             continue
@@ -3462,6 +3472,44 @@ def _pin_fixed(reg: GuidedRegion, m: Int) -> GuidedRegion:
     for k in range(m):
         if box.bounded[k] and box.lo[k] == box.hi[k] and _region_live(out, k):
             out = _region_subst(out, k, aff_const(m, box.lo[k]), out.depth)
+    return out^
+
+
+def _split_by_factor(reg: GuidedRegion, a: List[Int], top: Int) -> List[GuidedRegion]:
+    """A partition of the region by the value of the affine form `a`, whose
+    least value on the orthant is its constant (no negative coefficient):
+    `a = k` for each `k` from that constant to `top`, by substituting a
+    variable with a unit coefficient (or, lacking one, as two
+    assumptions), and `a >= top + 1`. Every piece is marked split. Empty
+    when `a` is constant or may be negative."""
+    var out = List[GuidedRegion]()
+    var lo = _orthant_floor(a)
+    if lo <= -(1 << 40) or aff_is_const(a):
+        return out^
+    var m = len(a) - 1
+    var marked = reg.copy()
+    marked.split = True
+    for k in range(lo, top + 1):
+        var g = a.copy()
+        g[0] -= k
+        var v = -1
+        for j in range(m):
+            if g[j + 1] == 1 or g[j + 1] == -1:
+                v = j
+                break
+        if v < 0:
+            out.append(_with_assumptions(marked, List[List[Int]]([g.copy(), aff_scale(g, -1)])))
+            continue
+        # g = c n_v + R = 0, so n_v = -c R, which must be >= 0
+        var c = g[v + 1]
+        var r = g.copy()
+        r[v + 1] = 0
+        var repl = aff_scale(r, -c)
+        var piece = _region_subst(marked, v, repl, marked.depth)
+        out.append(_with_assumptions(piece, List[List[Int]]([repl.copy()])))
+    var rest = a.copy()
+    rest[0] -= top + 1
+    out.append(_with_assumptions(marked, List[List[Int]]([rest^])))
     return out^
 
 

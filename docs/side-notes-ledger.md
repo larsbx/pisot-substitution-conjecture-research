@@ -457,6 +457,23 @@ by deleting it.
   constants. · scratch `xt m`; `kernel/odd_letter_family_certificate.mojo`
   (`pisot_carve_forms`, `_descend_to_member`, `_base_candidates`)
 
+- 2026-10-06 · Witness shapes of `s = +1` non-crossing members at large
+  `Delta` (scratch census, digits read structurally: in `u` from its start,
+  in `y^Delta` from its end, in `w_2` from its start). **Sampling pitfall:**
+  rejection sampling repeats members; a "dominant" level-4 shape inside
+  `y^Delta` (72% of 300 draws at every `Delta` in 6..20) is one family:
+  its Parikh condition is `(M^4 − Delta M^3 − 3 M^2 + (Delta − 4) M − 2) e_y = 0`,
+  i.e. `chi` divides that quartic, i.e. `w_2 = z`, `u = zz`. Counting
+  *distinct* members (all with `|w_2| <= 6`, `Delta = 8`): 37 members, 15
+  shapes, no shape a majority. The leading ones are uniform in `Delta` and
+  affine in run lengths, e.g. `u = zzy^k z`, `w_2 = zy^k z` at level 3 with
+  the `o`-side position `k − 1` from the end of `y^Delta`, which is the
+  form `solve_lift` finds; so the tail's obstacle is the cover, not missing
+  certificates. For `s = −1`, `Delta = −6`, `|w_1| <= 5`: Lemma P1 forces
+  `Y_1 >= 4`, so all 28 members have `w_1 = zyyyy` and `w_2` = two `z` in
+  `y^10`; 11 shapes, all level 4, reading `w_2`'s `z` by position from its
+  end (the x-block), again affine. · scratch `shapes2.py`, `shapes3.py`
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing
