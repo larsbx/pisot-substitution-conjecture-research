@@ -9,13 +9,32 @@ Every test here is exact: rational-root enumeration for irreducibility, Sturm
 sequences over Q for real-root location, and an exact determinant identity for
 the complex-conjugate case. No floating point is used anywhere; rationals are
 the unbounded `finite_exact` values, so no coefficient growth can overflow.
+
+The polynomial layer is the vendored `finite_linear_algebra.qpoly` wherever it
+computes the same thing at no material cost: the derivative, the negation in
+the Sturm chain, and the Cauchy root bound `1 + max |p_k| / |p_n|`. Four
+helpers stay local, each for a stated reason:
+
+- `poly_eval` is an unrolled Horner for the short polynomials of this regime
+  and evaluating the Sturm chain is the hot loop of the Pisot screen; the
+  vendored `qpoly.evaluate` is the pre-optimisation algorithm
+  (`tests/polynomial_reference.mojo`) and measurably slower there, so
+  `_sign_changes` stays on it rather than on `qpoly.sign_variations`.
+- `poly_degree` scans in place; `qpoly.degree` copies the list to normalize it.
+- `poly_rem` keeps the dividend's length and returns the dividend unchanged for
+  a zero divisor, where `qpoly.remainder` normalizes and aborts;
+  `tests/test_pisot_polynomials.mojo` pins that contract.
+- `sturm_chain` is the chain of `p` itself. `qpoly.sturm_chain` first passes to
+  the squarefree part, a second Euclidean pass that is redundant on the
+  irreducible cubics this screen decides. On a squarefree `p` the two chains
+  are the same polynomials.
 """
 
 from std.os import abort
 
 from finite_exact.rat_q import Q
-from finite_linear_algebra import integer_matrix
-from psc.exact import q_floor_abs, q_int, q_is_zero, q_poly, q_sign
+from finite_linear_algebra import integer_matrix, qpoly
+from psc.exact import q_int, q_is_zero, q_poly, q_sign
 from finite_linear_algebra.mat3 import Mat3, has_rational_root
 
 
@@ -49,15 +68,6 @@ def poly_degree(p: List[Q]) -> Int:
     return -1
 
 
-def poly_derivative(p: List[Q]) -> List[Q]:
-    var out = List[Q]()
-    for i in range(1, len(p)):
-        out.append(p[i].mul(q_int(i)))
-    if len(out) == 0:
-        out.append(Q.zero())
-    return out^
-
-
 def poly_rem(a: List[Q], b: List[Q]) -> List[Q]:
     """Remainder of `a` on division by `b` over Q."""
     var r = a.copy()
@@ -81,16 +91,16 @@ def poly_rem(a: List[Q], b: List[Q]) -> List[Q]:
 
 
 def sturm_chain(p: List[Q]) -> List[List[Q]]:
-    """`p_0 = p`, `p_1 = p'`, `p_{k+1} = -rem(p_{k-1}, p_k)`."""
+    """`p_0 = p`, `p_1 = p'`, `p_{k+1} = -rem(p_{k-1}, p_k)`.
+
+    The chain of `p` itself, not of its squarefree part (see the module
+    docstring); every entry after the first is normalized."""
     var chain = List[List[Q]]()
     chain.append(p.copy())
-    chain.append(poly_derivative(p))
+    chain.append(qpoly.derivative(p))
     while poly_degree(chain[len(chain) - 1]) > 0:
-        var r = poly_rem(chain[len(chain) - 2], chain[len(chain) - 1])
-        var neg = List[Q]()
-        for i in range(len(r)):
-            neg.append(r[i].neg())
-        if poly_degree(neg) < 0:
+        var neg = qpoly.neg(poly_rem(chain[len(chain) - 2], chain[len(chain) - 1]))
+        if len(neg) == 0:
             break
         chain.append(neg^)
     return chain^
@@ -109,21 +119,16 @@ def _sign_changes(chain: List[List[Q]], x: Q) -> Int:
     return count
 
 
-def count_roots_in(p: List[Q], a: Q, b: Q) -> Int:
-    """Number of distinct real roots of `p` in the half-open interval `(a, b]`."""
-    var chain = sturm_chain(p)
+def _count_in(chain: List[List[Q]], a: Q, b: Q) -> Int:
     return _sign_changes(chain, a) - _sign_changes(chain, b)
 
 
-def cauchy_bound(p: List[Q]) -> Q:
-    """A rational `B` with every real root of monic `p` strictly inside `(-B, B)`."""
-    var d = poly_degree(p)
-    var m = Q.zero()
-    for i in range(d):
-        var q = q_floor_abs(p[i].div(p[d])).add(Q.one())
-        if m.lt(q):
-            m = q^
-    return m.add(q_int(2))
+def count_roots_in(p: List[Q], a: Q, b: Q) -> Int:
+    """Number of distinct real roots of `p` in the half-open interval `(a, b]`.
+
+    Sturm's theorem, which requires that `p` vanish at neither endpoint when
+    `p` is not squarefree."""
+    return _count_in(sturm_chain(p), a, b)
 
 
 def is_irreducible_cubic(coeffs: List[Int]) -> Bool:
@@ -158,15 +163,17 @@ def is_pisot_charpoly(coeffs: List[Int]) -> Bool:
     is equivalent to `chi(det) < 0`.
     """
     var p = q_poly(coeffs)
-    var b = cauchy_bound(p)
+    var b = qpoly.root_bound(p)
     var one = Q.one()
     var minus_one = one.neg()
-    var nreal = count_roots_in(p, b.neg(), b)
-    var above_one = count_roots_in(p, one, b)
+    # One chain serves the three counts.
+    var chain = sturm_chain(p)
+    var nreal = _count_in(chain, b.neg(), b)
+    var above_one = _count_in(chain, one, b)
     if above_one != 1:
         return False
     if nreal == 3:
-        return count_roots_in(p, minus_one, one) == 2
+        return _count_in(chain, minus_one, one) == 2
     if nreal != 1:
         return False
     # det = -coeffs[0] for a monic cubic chi(t) = t^3 + c2 t^2 + c1 t + c0
