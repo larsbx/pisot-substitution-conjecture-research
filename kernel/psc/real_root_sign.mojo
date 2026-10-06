@@ -9,91 +9,59 @@ irreducible `P`.  With `Qp = 1` it counts the roots; on an isolating interval
 it is the sign of `Qp` at that root.  `sign_at_perron` covers the Perron root
 only; this module serves the two real contracting conjugates of a totally
 real cubic Pisot field.  Every operation is exact; a rejected rational
-raises (AGENTS.md rules 8 and 9)."""
+raises (AGENTS.md rules 8 and 9).
+
+The polynomial arithmetic (normalization, derivative, product, Euclidean
+remainder, negation) and the sign-variation count are the vendored
+`finite_linear_algebra.qpoly`; what is kept here is what that package does not
+provide: the Tarski query of a pair `(P, Qp)`, rather than the Sturm chain of
+`P` alone, and isolation of every real root in an interval, rather than of the
+largest one.  The sequence is built from `P` itself, not from its squarefree
+part, so it is the signed-remainder sequence of `(P, P' Qp)` exactly as
+stated above.  Reading a variation difference as a Cauchy index is Tarski's
+theorem, imported here as it was before the package was vendored."""
 
 from finite_exact.rat_q import Q
-from psc.exact import eval_q_poly_at_q, midpoint, q_int, q_is_zero, q_poly, q_sign, require_q
+from finite_linear_algebra import qpoly
+from psc.exact import midpoint, q_is_zero, require_q
 
 
-def poly_trim(p: List[Q]) -> List[Q]:
-    var out = p.copy()
-    while len(out) > 0 and q_is_zero(out[len(out) - 1]):
-        _ = out.pop()
-    return out^
+def _require_accepted(p: List[Q], what: StringLiteral) raises:
+    """Raise on a rejected coefficient before any vendored call can abort on it.
 
-
-def poly_deriv(p: List[Q]) raises -> List[Q]:
-    var out = List[Q]()
-    for i in range(1, len(p)):
-        out.append(require_q(p[i].mul(q_int(i)), "poly deriv"))
-    return poly_trim(out)
-
-
-def poly_mul(p: List[Q], q: List[Q]) raises -> List[Q]:
-    if len(p) == 0 or len(q) == 0:
-        return List[Q]()
-    var out = List[Q]()
-    for _ in range(len(p) + len(q) - 1):
-        out.append(Q.zero())
+    Accepted rationals are closed under the ring operations and under division
+    by a nonzero value, so once the inputs are accepted every intermediate value
+    of the query is too."""
     for i in range(len(p)):
-        for j in range(len(q)):
-            out[i + j] = require_q(out[i + j].add(p[i].mul(q[j])), "poly mul")
-    return poly_trim(out)
-
-
-def poly_rem(p: List[Q], q: List[Q]) raises -> List[Q]:
-    """Remainder of `p` modulo a nonzero `q`."""
-    var r = poly_trim(p)
-    var qq = poly_trim(q)
-    if len(qq) == 0:
-        raise Error("polynomial remainder by zero")
-    var dq = len(qq) - 1
-    var lead = qq[dq].copy()
-    while len(r) > dq:
-        var dr = len(r) - 1
-        var k = require_q(r[dr].div(lead), "poly rem")
-        for i in range(len(qq)):
-            r[dr - dq + i] = require_q(r[dr - dq + i].sub(k.mul(qq[i])), "poly rem")
-        r = poly_trim(r)
-    return r^
-
-
-def _variations(seq: List[List[Q]], x: Q) raises -> Int:
-    var prev = 0
-    var count = 0
-    for i in range(len(seq)):
-        var s = q_sign(eval_q_poly_at_q(seq[i], x))
-        if s == 0:
-            continue
-        if prev != 0 and s != prev:
-            count += 1
-        prev = s
-    return count
+        _ = require_q(p[i], what)
 
 
 def tarski_query(P: List[Q], Qp: List[Q], a: Q, b: Q) raises -> Int:
     """Sum of `sign(Qp(r))` over the real roots `r` of `P` in `(a, b)`."""
+    _require_accepted(P, "Tarski query P")
+    _require_accepted(Qp, "Tarski query Qp")
+    _ = require_q(a, "Tarski query endpoint")
+    _ = require_q(b, "Tarski query endpoint")
     if not a.lt(b):
         raise Error("Tarski query needs a < b")
-    var p0 = poly_trim(P)
+    var p0 = qpoly.normalize(P)
     if len(p0) < 2:
         raise Error("Tarski query needs a nonconstant P")
-    if q_is_zero(eval_q_poly_at_q(p0, a)) or q_is_zero(eval_q_poly_at_q(p0, b)):
+    if q_is_zero(qpoly.evaluate(p0, a)) or q_is_zero(qpoly.evaluate(p0, b)):
         raise Error("Tarski query endpoint is a root of P")
     var seq = List[List[Q]]()
     seq.append(p0.copy())
-    var f1 = poly_mul(poly_deriv(p0), Qp)
+    var f1 = qpoly.mul(qpoly.derivative(p0), Qp)
     if len(f1) == 0:
         return 0
     seq.append(f1^)
     while True:
-        var r = poly_rem(seq[len(seq) - 2], seq[len(seq) - 1])
+        # The divisor is the last appended entry, nonzero by construction.
+        var r = qpoly.remainder(seq[len(seq) - 2], seq[len(seq) - 1])
         if len(r) == 0:
             break
-        for i in range(len(r)):
-            r[i] = r[i].neg()
-        seq.append(r^)
-    return _variations(seq, a) - _variations(seq, b)
+        seq.append(qpoly.neg(r))
+    return qpoly.variation_difference(seq, a, b)
 
 
 def count_real_roots(P: List[Q], a: Q, b: Q) raises -> Int:
@@ -124,7 +92,7 @@ def isolate_real_roots(P: List[Q], a: Q, b: Q, expected: Int) raises -> List[Lis
             out.append(box^)
             continue
         var mid = midpoint(box[0], box[1])
-        if q_is_zero(eval_q_poly_at_q(P, mid)):
+        if q_is_zero(qpoly.evaluate(P, mid)):
             raise Error("rational root during isolation")
         var left = List[Q]()
         left.append(box[0].copy())

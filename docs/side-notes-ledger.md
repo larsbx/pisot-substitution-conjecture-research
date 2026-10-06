@@ -330,3 +330,17 @@ by deleting it.
   `rerun_*.out` files were never committed; the fresh ones carry new
   timings and were not written back). ·
   `archive/2026-10-04/session-probes/probes/rerun.sh`
+- 2026-10-06 · `psc.real_root_sign` now builds its Tarski query on the
+  vendored `qpoly` (`normalize`, `derivative`, `mul`, `remainder`, `neg`,
+  `evaluate`, `variation_difference`); its `poly_trim`, `poly_deriv`,
+  `poly_mul` and `poly_rem` are deleted. `tarski_query`, `count_real_roots`,
+  `isolate_real_roots` and `sign_at_isolated_root` stay: `qpoly` has no Tarski
+  query and isolates only the largest root. One semantic difference: the old
+  helpers raised on a rejected rational, `qpoly` aborts (via `q_is_zero`), so
+  `tarski_query` now checks its inputs are accepted and raises first; accepted
+  rationals stay accepted under every operation used. Runtime unchanged:
+  13,530 `sign_at_isolated_root` calls take 15.7 s on each side;
+  `overlap_contracting_census` 615/615 s before, 647/614 s after;
+  `vertex_coincidence_census` 791/647 s before, 855/700 s after (run-to-run
+  noise is about 20%), output byte-identical. · `kernel/psc/real_root_sign.mojo`;
+  `kernel/tests/test_overlap_contracting.mojo`
