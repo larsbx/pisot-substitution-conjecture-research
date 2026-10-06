@@ -27,7 +27,7 @@ say so plainly rather than leaving the line blank.
 | the math catalogue is still generated                   | `python tools/make_math_catalogue.py --check`                               | not run |
 | claim governance                                        | `PYTHONPATH=tools python -m claim_governance.cli --root .`                  | not run |
 | every claim is guarded by a test a run actually reached | `PYTHONPATH=tools python -m claim_governance.cli --root . --check coverage` | not run |
-| vendored packages still match their pins                | `python tools/check_vendored_sync.py`                                       | not run |
+| vendored packages still match their pins                | `python tools/vendoring/check_vendored_sync.py`                             | not run |
 | suite                                                   | `pixi run test`                                                             | not run |
 | TLA+ models                                             | `./proof/tla/check.sh`                                                      | not run |
 
