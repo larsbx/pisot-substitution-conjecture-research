@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import random
 import sys
+from cProfile import Profile
 from fractions import Fraction
 from pathlib import Path
 
@@ -105,6 +106,54 @@ def test_the_screen_refuses_what_it_cannot_accept():
 
 
 # --- the method -----------------------------------------------------------------
+
+
+def test_poly_gcd_preserves_exact_values_and_inputs_across_coefficient_types():
+    # The first two polynomials share exactly x - 1. Scaling either polynomial
+    # by a nonzero rational must leave its monic gcd unchanged.
+    cases = (
+        ([3, -4, -1, 2], [-2, 1, 1], [-1, 1]),
+        ([Fraction(c, 6) for c in (3, -4, -1, 2)],
+         [Fraction(2 * c, 5) for c in (-2, 1, 1)], [-1, 1]),
+        ([Fraction(3), -4, Fraction(-1), 2, 0],
+         [-2, Fraction(1), 1, 0], [-1, 1]),
+        ([], [], []),
+        ([Fraction(0), 0], [0], []),
+        ([], [-2, 2, 0], [-1, 1]),
+        ([-2, Fraction(2), 0], [], [-1, 1]),
+        ([Fraction(7, 3)], [Fraction(-2, 5)], [1]),
+        ([1, 0, 1], [-1, 1], [1]),
+    )
+    for a, b, expected in cases:
+        before_a, before_b = list(a), list(b)
+        result = ps._poly_gcd(a, b)
+        assert result == expected, (a, b)
+        assert all(type(c) is Fraction for c in result)
+        assert a == before_a and b == before_b
+
+
+def test_poly_gcd_canonicalizes_fraction_subclasses_before_arithmetic():
+    class ArithmeticTrap(Fraction):
+        def __truediv__(self, other):
+            raise AssertionError("subclass arithmetic must not reach the gcd")
+
+    # An isinstance fast path would retain this subclass and call its override.
+    a = [ArithmeticTrap(-3), ArithmeticTrap(3), ArithmeticTrap(0)]
+    b = [ArithmeticTrap(0)]
+    result = ps._poly_gcd(a, b)
+    assert result == [Fraction(-1), Fraction(1)]
+    assert all(type(c) is Fraction for c in result)
+    assert all(type(c) is ArithmeticTrap for c in a + b)
+
+
+def test_poly_gcd_does_not_reconstruct_exact_fraction_coefficients():
+    # Zero polynomials require no arithmetic constructors, so the profile
+    # isolates redundant construction while normalizing already exact inputs.
+    a, b = [Fraction(0), Fraction(0)], [Fraction(0)]
+    with Profile() as profile:
+        assert ps._poly_gcd(a, b) == []
+    assert not any(entry.code is Fraction.__new__.__code__
+                   for entry in profile.getstats())
 
 
 def test_poly_rem_cached_degree_matches_scan_after_multi_zero_cancellation():

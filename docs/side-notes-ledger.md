@@ -186,6 +186,14 @@ by deleting it.
   as well as `-I .`: it imports `tests/polynomial_reference.mojo`. Without it
   the build fails to locate the module, before and after the re-vendor. ·
   `kernel/pisot_polynomial_bench.mojo` line 7
+- 2026-10-06 · Python-oracle `_poly_gcd` can reuse exact immutable `Fraction`
+  coefficients while retaining conversion for every other type, including
+  subclasses: 4,800 gcd pairs and all 3,375 cubic screen results agree with
+  `main@c2bd9a0`; median normalization time drops 0.477466 -> 0.031462 s,
+  with a 6.4% full-screen gain on the shared-container run. Keep the exact-type
+  guard and distinguish normalization-only from caller speedup. ·
+  [poly-gcd-fraction-normalization-2026-10-06.md](poly-gcd-fraction-normalization-2026-10-06.md#benchmark-evidence)
+  (source digests and replay in §Reproduce); `tests/test_pisot_screen.py`
 
 ## 7. Review outcomes
 
