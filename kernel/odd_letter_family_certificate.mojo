@@ -100,6 +100,10 @@ comptime LEAF_CUT = 5
 comptime NO_DELTA = -1000000  # cover_shape: leave Y_1 - Y_2 free
 comptime PEEL_LIMIT = 4  # cover_shape: value splits n = 0 | n >= 1 beyond the relational ones
 comptime REGION_BUDGET = 600  # cover_shape: regions examined per cell before reporting the rest open
+comptime RUN_TREE_MAX_RUNS = 6  # run_tree: a pattern with this many revealed runs is not refined further
+comptime RUN_TREE_SPLITS = 3  # run_tree: relational split depth per pattern
+comptime RUN_TREE_PEEL = 3  # run_tree: value splits per pattern
+comptime RUN_TREE_BUDGET = 300  # run_tree: regions examined per pattern before reporting the rest open
 
 
 struct Pattern(Copyable, Movable, Writable):
@@ -627,6 +631,29 @@ def main() raises:
             if key in closed_keys:
                 res_closed += e.value
         print("residue members:", res_total, " in closed shape cells:", res_closed, " left:", res_total - res_closed)
+        return
+    if len(args) > 2 and String(args[2]) == "excursions":
+        var residue = residue_members(max_len)
+        var hist = Dict[Int, Int]()
+        for k in range(len(residue)):
+            var n = common_points(residue[k].w1, residue[k].w2)
+            hist[n] = hist.get(n, 0) + 1
+        print("residue members:", len(residue), "; by number of common points:")
+        for e in hist.items():
+            print("   ", e.key, ":", e.value)
+        return
+    if len(args) > 2 and String(args[2]) == "runs":
+        var residue = residue_members(max_len)
+        print("run tree (max runs", RUN_TREE_MAX_RUNS, " splits", RUN_TREE_SPLITS, " peel", RUN_TREE_PEEL, " budget", RUN_TREE_BUDGET, "per pattern); residue members:", len(residue))
+        var cell_s = List[Int]([1, 1, 1, -1, -1, -1])
+        var cell_d = List[Int]([1, 2, 3, 0, -1, -2])
+        for k in range(len(cell_s)):
+            var s = cell_s[k]
+            var d = cell_d[k]
+            print("  cell s", s, " Delta", d, flush=True)
+            var leaves = run_tree(s, d, False, RUN_TREE_MAX_RUNS, RUN_TREE_SPLITS, RUN_TREE_PEEL, RUN_TREE_BUDGET, True)
+            var t = run_tree_tally(leaves, residue, s, d)
+            print("  cell s", s, " Delta", d, ": leaves", t.leaves, " closed", t.closed_leaves, "; residue members", t.members, " in closed leaves", t.in_closed, flush=True)
         return
     if len(args) > 2 and String(args[2]) == "phi":
         var pc = phi_census(max_len, len(args) > 3)
@@ -1284,11 +1311,46 @@ struct ShapeCover(Copyable, Movable):
         self.open_forms = List[List[List[Int]]]()
 
 
-def shape_family(l1: List[Int], l2: List[Int], subst: List[List[Int]]) raises -> ConeFamily:
-    """`sigma(o) = y`, `sigma(y) = o w_1 o`, `sigma(z) = o w_2 o` with the runs
-    of `w_1` (letters `l1`) and of `w_2` (letters `l2`) of lengths
-    `1 + subst[k]`, slots numbered over `l1` then `l2`; the forms may have
-    any number of free variables."""
+struct RunPattern(Copyable, Movable, Writable):
+    """The runs of `w_1` and `w_2` (their letters, in order) and whether each
+    word continues with an opaque tail standing for any further runs."""
+
+    var l1: List[Int]
+    var open1: Bool
+    var l2: List[Int]
+    var open2: Bool
+
+    def __init__(out self, var l1: List[Int], open1: Bool, var l2: List[Int], open2: Bool):
+        self.l1 = l1^
+        self.open1 = open1
+        self.l2 = l2^
+        self.open2 = open2
+
+    def runs(self) -> Int:
+        return len(self.l1) + len(self.l2)
+
+    def slots(self) -> Int:
+        """Run slots of w_1, its tail's (y, z) slots, then the same for w_2."""
+        return self.runs() + (2 if self.open1 else 0) + (2 if self.open2 else 0)
+
+    def write_to[W: Writer](self, mut w: W):
+        var names = List[String](["o", "y", "z"])
+        for wi in range(2):
+            ref letters = self.l1 if wi == 0 else self.l2
+            var opn = self.open1 if wi == 0 else self.open2
+            if wi == 1:
+                w.write(" | ")
+            if len(letters) == 0 and not opn:
+                w.write("ε")
+            for k in range(len(letters)):
+                w.write(names[letters[k]])
+            if opn:
+                w.write("*")
+
+
+def pattern_family(pat: RunPattern, subst: List[List[Int]]) raises -> ConeFamily:
+    """`sigma(o) = y`, `sigma(y) = o w_1 o`, `sigma(z) = o w_2 o`: each run has
+    length `1 + form`, each tail is an opaque word with Parikh `(0, ty, tz)`."""
     var m = len(subst[0]) - 1
     var images = List[List[Segment]]()
     var img_o = List[Segment]()
@@ -1296,7 +1358,8 @@ def shape_family(l1: List[Int], l2: List[Int], subst: List[List[Int]]) raises ->
     images.append(img_o^)
     var slot = 0
     for wi in range(2):
-        ref letters = l1 if wi == 0 else l2
+        ref letters = pat.l1 if wi == 0 else pat.l2
+        var opn = pat.open1 if wi == 0 else pat.open2
         var img = List[Segment]()
         img.append(letter_segment(m, O))
         for k in range(len(letters)):
@@ -1304,52 +1367,44 @@ def shape_family(l1: List[Int], l2: List[Int], subst: List[List[Int]]) raises ->
             f[0] += 1
             slot += 1
             img.append(run_of(letters[k], f^))
+        if opn:
+            var par = List[List[Int]]()
+            par.append(aff_const(m, 0))
+            par.append(subst[slot].copy())
+            par.append(subst[slot + 1].copy())
+            slot += 2
+            img.append(opaque_segment(par^))
         img.append(letter_segment(m, O))
         images.append(img^)
     return ConeFamily(m, images^)
 
 
-def _count_form(l1: List[Int], l2: List[Int], subst: List[List[Int]], letter: Int, sign2: Int) -> List[Int]:
-    """Affine form of (count of `letter` in w_1) + sign2 (count in w_2)."""
-    var m = len(subst)
-    var f = aff_const(m, 0)
+def shape_family(l1: List[Int], l2: List[Int], subst: List[List[Int]]) raises -> ConeFamily:
+    """A run shape with no tails; see `pattern_family`."""
+    return pattern_family(RunPattern(l1.copy(), False, l2.copy(), False), subst)
+
+
+def pattern_counts(pat: RunPattern, subst: List[List[Int]]) -> List[List[Int]]:
+    """Affine forms of `Y_1, Z_1, Y_2, Z_2`."""
+    var m = len(subst[0]) - 1
+    var out = List[List[Int]]()
+    for _ in range(4):
+        out.append(aff_const(m, 0))
     var slot = 0
     for wi in range(2):
-        ref letters = l1 if wi == 0 else l2
-        var sg = 1 if wi == 0 else sign2
+        ref letters = pat.l1 if wi == 0 else pat.l2
+        var opn = pat.open1 if wi == 0 else pat.open2
         for k in range(len(letters)):
-            if letters[k] == letter:
-                f[0] += sg
-                for j in range(m + 1):
-                    f[j] += sg * subst[slot][j]
+            var f = subst[slot].copy()
+            f[0] += 1
+            var idx = 2 * wi + (0 if letters[k] == Y else 1)
+            out[idx] = aff_add(out[idx], f)
             slot += 1
-    return f^
-
-
-def _lemma_phi4_cut(l1: List[Int], l2: List[Int], subst: List[List[Int]], s: Int) -> Bool:
-    """No PIP member in the region by Lemma Φ4: for s = +1 if Y_2 - Y_1 - 1 is
-    provably >= 0; for s = -1 if Y_1 - Y_2 - 1 >= 0 (Z_2 >= 2 holding), or if
-    1 - Z_2 >= 0 (Z_1 = Z_2 - 1 <= 0, not primitive)."""
-    var dy = _count_form(l1, l2, subst, Y, -1)  # Y_1 - Y_2
-    var m = len(subst)
-    if s == 1:
-        var g = aff_scale(dy, -1)
-        g[0] -= 1
-        return aff_nonneg(g)
-    var z2 = aff_const(m, 0)
-    var slot = len(l1)
-    for k in range(len(l2)):
-        if l2[k] == Z:
-            z2[0] += 1
-            for j in range(m + 1):
-                z2[j] += subst[slot + k][j]
-    var one_minus = aff_scale(z2, -1)
-    one_minus[0] += 1
-    if aff_nonneg(one_minus):
-        return True
-    var g = dy.copy()
-    g[0] -= 1
-    return aff_nonneg(g)
+        if opn:
+            out[2 * wi] = aff_add(out[2 * wi], subst[slot])
+            out[2 * wi + 1] = aff_add(out[2 * wi + 1], subst[slot + 1])
+            slot += 2
+    return out^
 
 
 def _quadratic_nonneg(a: List[Int], b: List[Int], c: List[Int]) -> Bool:
@@ -1368,78 +1423,88 @@ def _quadratic_nonneg(a: List[Int], b: List[Int], c: List[Int]) -> Bool:
     return True
 
 
-def _lemma_p1_quadratic_cut(l1: List[Int], l2: List[Int], subst: List[List[Int]], s: Int) -> Bool:
-    """Lemma P1 in the exact forms of §3h: for s = +1,
-    f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3; for s = -1,
-    f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3. A PIP member needs it
-    negative, so a region where it is provably >= 0 holds none."""
-    var m = len(subst)
-    var dy = _count_form(l1, l2, subst, Y, -1)  # Y_1 - Y_2
-    var ad = dy.copy() if s == 1 else aff_scale(dy, -1)  # |Delta| on the cell
-    var z2 = aff_const(m, 0)
-    var y1 = aff_const(m, 0)
-    var y2 = aff_const(m, 0)
-    var slot = 0
-    for wi in range(2):
-        ref letters = l1 if wi == 0 else l2
-        for k in range(len(letters)):
-            var f = subst[slot].copy()
-            f[0] += 1
-            if wi == 1 and letters[k] == Z:
-                z2 = aff_add(z2, f)
-            elif wi == 0 and letters[k] == Y:
-                y1 = aff_add(y1, f)
-            elif wi == 1 and letters[k] == Y:
-                y2 = aff_add(y2, f)
-            slot += 1
+def pisot_cut(counts: List[List[Int]], s: Int) -> Bool:
+    """No PIP member in the region. Lemma Φ4: for s = +1 if `Y_2 - Y_1 - 1 >= 0`;
+    for s = -1 if `Y_1 - Y_2 - 1 >= 0` or `1 - Z_2 >= 0`. Lemma P1 in the exact
+    forms of §3h: for s = +1 if `Z_2 (Delta - 1) - 2 Y_2 - Delta - 3 >= 0`,
+    for s = -1 if `Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3 >= 0`, with
+    `Delta = Y_1 - Y_2`. Each condition is checked by coefficient signs."""
+    var dy = aff_sub(counts[0], counts[2])
+    if s == 1:
+        var g = aff_scale(dy, -1)
+        g[0] -= 1
+        if aff_nonneg(g):
+            return True
+    else:
+        var g = dy.copy()
+        g[0] -= 1
+        if aff_nonneg(g):
+            return True
+        var h = aff_scale(counts[3], -1)
+        h[0] += 1
+        if aff_nonneg(h):
+            return True
+    var ad = dy.copy() if s == 1 else aff_scale(dy, -1)
     var factor = ad.copy()
     factor[0] -= 1
     var rest = aff_scale(ad, -1)
     if s == 1:
-        rest = aff_sub(rest, aff_scale(y2, 2))
+        rest = aff_sub(rest, aff_scale(counts[2], 2))
         rest[0] -= 3
     else:
-        rest = aff_sub(rest, aff_scale(y1, 2))
+        rest = aff_sub(rest, aff_scale(counts[0], 2))
         rest[0] += 3
-    return _quadratic_nonneg(z2, factor, rest)
+    return _quadratic_nonneg(counts[3], factor, rest)
 
 
-def cover_shape(l1: List[Int], l2: List[Int], s: Int, delta: Int, split_limit: Int, tail: Bool = False, peel_limit: Int = PEEL_LIMIT, region_budget: Int = REGION_BUDGET) raises -> ShapeCover:
-    """Cover every member of the run shape `(l1, l2)` with `Z_1 - Z_2 = s`, and
-    with `Y_1 - Y_2 = delta` unless `delta` is `NO_DELTA` -- or, with `tail`,
-    with `|Y_1 - Y_2| >= |delta|` on `delta`'s side, carried by one extra
-    variable `e >= 0` (`Y_1 - Y_2 = delta + e` or `delta - e`)."""
+def cover_pattern(pat: RunPattern, s: Int, delta: Int, split_limit: Int, tail: Bool = False, peel_limit: Int = PEEL_LIMIT, region_budget: Int = REGION_BUDGET) raises -> ShapeCover:
+    """Cover every member of the pattern with `Z_1 - Z_2 = s`, and with
+    `Y_1 - Y_2 = delta` unless `delta` is `NO_DELTA` -- or, with `tail`, with
+    `|Y_1 - Y_2| >= |delta|` on `delta`'s side, carried by one extra variable."""
     var out = ShapeCover()
     var screen = CubicScreen()
-    var runs = len(l1) + len(l2)
-    var m = runs + (1 if tail else 0)
+    var slots = pat.slots()
+    var m = slots + (1 if tail else 0)
     var zpos = List[Int]()
     var zneg = List[Int]()
     var ypos = List[Int]()
     var yneg = List[Int]()
     var zconst = 0
     var yconst = 0
-    for k in range(len(l1)):
-        if l1[k] == Z:
-            zpos.append(k)
-            zconst += 1
-        else:
-            ypos.append(k)
-            yconst += 1
-    for k in range(len(l2)):
-        if l2[k] == Z:
-            zneg.append(len(l1) + k)
-            zconst -= 1
-        else:
-            yneg.append(len(l1) + k)
-            yconst -= 1
+    var slot = 0
+    for wi in range(2):
+        ref letters = pat.l1 if wi == 0 else pat.l2
+        var opn = pat.open1 if wi == 0 else pat.open2
+        var sg = 1 if wi == 0 else -1
+        for k in range(len(letters)):
+            if letters[k] == Z:
+                if wi == 0:
+                    zpos.append(slot)
+                else:
+                    zneg.append(slot)
+                zconst += sg
+            else:
+                if wi == 0:
+                    ypos.append(slot)
+                else:
+                    yneg.append(slot)
+                yconst += sg
+            slot += 1
+        if opn:
+            if wi == 0:
+                ypos.append(slot)
+                zpos.append(slot + 1)
+            else:
+                yneg.append(slot)
+                zneg.append(slot + 1)
+            slot += 2
     var starts = solve_constraint(identity_subst(m), zpos, zneg, s - zconst)
     if delta != NO_DELTA:
         if tail:
             if delta >= 0:
-                yneg.append(runs)  # Y_1 - Y_2 - e = delta
+                yneg.append(slots)  # Y_1 - Y_2 - e = delta
             else:
-                ypos.append(runs)  # Y_1 - Y_2 + e = delta
+                ypos.append(slots)  # Y_1 - Y_2 + e = delta
         var both = List[List[List[Int]]]()
         for k in range(len(starts)):
             var more = solve_constraint(starts[k], ypos, yneg, delta - yconst)
@@ -1457,10 +1522,10 @@ def cover_shape(l1: List[Int], l2: List[Int], s: Int, delta: Int, split_limit: I
             out.open += 1 + len(stack)
             out.budget_exhausted = True
             break
-        if _lemma_phi4_cut(l1, l2, reg.subst, s) or _lemma_p1_quadratic_cut(l1, l2, reg.subst, s):
+        if pisot_cut(pattern_counts(pat, reg.subst), s):
             out.cut += 1
             continue
-        var fam = shape_family(l1, l2, reg.subst)
+        var fam = pattern_family(pat, reg.subst)
         var w = search_witness(fam, O, Y, OFFSET_BOUND, MAX_LEVEL, True)
         if w.found:
             if not verify_witness(fam, O, Y, w.steps):
@@ -1519,6 +1584,11 @@ def cover_shape(l1: List[Int], l2: List[Int], s: Int, delta: Int, split_limit: I
     return out^
 
 
+def cover_shape(l1: List[Int], l2: List[Int], s: Int, delta: Int, split_limit: Int, tail: Bool = False, peel_limit: Int = PEEL_LIMIT, region_budget: Int = REGION_BUDGET) raises -> ShapeCover:
+    """A run shape with no tails; see `cover_pattern`."""
+    return cover_pattern(RunPattern(l1.copy(), False, l2.copy(), False), s, delta, split_limit, tail, peel_limit, region_budget)
+
+
 def _letters(shape: String) -> List[Int]:
     var out = List[Int]()
     var b = shape.as_bytes()
@@ -1573,3 +1643,214 @@ def shape_catalog(max_len: Int, exact_cap: Int, split_limit: Int, verbose: Bool 
         if verbose:
             print("   ", "closed" if c.open == 0 else ("BUDGET" if c.budget_exhausted else "OPEN  "), key, "  regions", c.regions, " certified", c.certified, " (line", c.line_certified, ") cut", c.cut, " decided", c.decided, " open", c.open, flush=True)
     return out^
+
+
+# ---------------------------------------------------------------------------
+# Run tree (§3i): induction on the number of runs. A pattern's tail stands for
+# any further runs; runs alternate, so a tail is either empty or one more run
+# of the other letter followed by a new tail -- a partition. Each pattern is
+# covered by `cover_pattern` in the given delta cell; an uncovered pattern is
+# refined by one run, up to `max_runs`. If every branch closes, the cell is
+# proved for words with any number of runs.
+# ---------------------------------------------------------------------------
+
+
+struct RunTreeLeaf(Copyable, Movable):
+    var pattern: RunPattern
+    var closed: Bool
+    var open_regions: Int
+    var certified: Int
+    var cut: Int
+
+    def __init__(out self, var pattern: RunPattern, closed: Bool, open_regions: Int, certified: Int, cut: Int):
+        self.pattern = pattern^
+        self.closed = closed
+        self.open_regions = open_regions
+        self.certified = certified
+        self.cut = cut
+
+
+def refine_pattern(pat: RunPattern) -> List[RunPattern]:
+    """Partition an open pattern by one run of the open word with fewer runs
+    (`w_1` on ties): its tail ends, or continues with a run of the letter
+    other than its last run's (either letter if it has no run yet)."""
+    var out = List[RunPattern]()
+    var pick = 0
+    if pat.open1 and pat.open2:
+        pick = 0 if len(pat.l1) <= len(pat.l2) else 1
+    elif pat.open2:
+        pick = 1
+    elif not pat.open1:
+        return out^
+    ref letters = pat.l1 if pick == 0 else pat.l2
+    var nexts = List[Int]()
+    if len(letters) == 0:
+        nexts.append(Y)
+        nexts.append(Z)
+    else:
+        nexts.append(Z if letters[len(letters) - 1] == Y else Y)
+    if pick == 0:
+        out.append(RunPattern(pat.l1.copy(), False, pat.l2.copy(), pat.open2))
+        for k in range(len(nexts)):
+            var l = pat.l1.copy()
+            l.append(nexts[k])
+            out.append(RunPattern(l^, True, pat.l2.copy(), pat.open2))
+    else:
+        out.append(RunPattern(pat.l1.copy(), pat.open1, pat.l2.copy(), False))
+        for k in range(len(nexts)):
+            var l = pat.l2.copy()
+            l.append(nexts[k])
+            out.append(RunPattern(pat.l1.copy(), pat.open1, l^, True))
+    return out^
+
+
+def run_tree(s: Int, delta: Int, tail: Bool, max_runs: Int, split_limit: Int, peel_limit: Int, budget: Int, verbose: Bool = False) raises -> List[RunTreeLeaf]:
+    """The run tree of one delta cell, from the root `w_1 = z^+ *`, `w_2 = *`
+    (`w_1` beginning with `y` is Lemma Φ1; `w_1` without `z` is not
+    primitive)."""
+    var out = List[RunTreeLeaf]()
+    var stack = List[RunPattern]()
+    stack.append(RunPattern(List[Int]([Z]), True, List[Int](), True))
+    while len(stack) > 0:
+        var pat = stack.pop()
+        var c = cover_pattern(pat, s, delta, split_limit, tail, peel_limit, budget)
+        if c.open == 0:
+            if verbose:
+                print("    closed ", pat, "  regions", c.regions, " certified", c.certified, " (line", c.line_certified, ") cut", c.cut, " decided", c.decided, flush=True)
+            out.append(RunTreeLeaf(pat.copy(), True, 0, c.certified, c.cut))
+            continue
+        var kids = refine_pattern(pat)
+        if pat.runs() >= max_runs or len(kids) == 0:
+            if verbose:
+                print("    OPEN   ", pat, "  regions", c.regions, " open", c.open, " budget" if c.budget_exhausted else "", flush=True)
+            out.append(RunTreeLeaf(pat.copy(), False, c.open, c.certified, c.cut))
+            continue
+        if verbose:
+            print("    refine ", pat, "  (open", c.open, ")", flush=True)
+        for k in range(len(kids)):
+            stack.append(kids[k].copy())
+    return out^
+
+
+def _run_letters(w: List[Int]) -> List[Int]:
+    var out = List[Int]()
+    for k in range(len(w)):
+        if k == 0 or w[k] != w[k - 1]:
+            out.append(w[k])
+    return out^
+
+
+def pattern_matches(pat: RunPattern, w1: List[Int], w2: List[Int]) -> Bool:
+    """Does the word pair lie in the pattern: each word's run letters equal the
+    revealed ones, or begin with them when the word has a tail."""
+    for wi in range(2):
+        var runs = _run_letters(w1 if wi == 0 else w2)
+        ref letters = pat.l1 if wi == 0 else pat.l2
+        var opn = pat.open1 if wi == 0 else pat.open2
+        if len(runs) < len(letters) or (not opn and len(runs) != len(letters)):
+            return False
+        for k in range(len(letters)):
+            if runs[k] != letters[k]:
+                return False
+    return True
+
+
+struct ResidueMember(Copyable, Movable):
+    var w1: List[Int]
+    var w2: List[Int]
+    var s: Int
+    var dy: Int
+
+    def __init__(out self, var w1: List[Int], var w2: List[Int], s: Int, dy: Int):
+        self.w1 = w1^
+        self.w2 = w2^
+        self.s = s
+        self.dy = dy
+
+
+def residue_members(max_len: Int) raises -> List[ResidueMember]:
+    """The members `phi_census` leaves: non-crossing, `w_1` beginning with `z`,
+    no Lemma Φ6-Φ8 path."""
+    var out = List[ResidueMember]()
+    var screen = CubicScreen()
+    var words = _words(max_len)
+    for ia in range(len(words)):
+        ref w1 = words[ia]
+        if len(w1) == 0 or w1[0] != Z:
+            continue
+        for ib in range(len(words)):
+            ref w2 = words[ib]
+            var p1 = _walk(w1)
+            var p2 = _walk(w2)
+            var s = p1[len(w1)][1] - p2[len(w2)][1]
+            if abs(s) != 1 or crossing(w1, w2)[0] >= 0:
+                continue
+            var mat = Mat3(substitution_incidence(member_sigma(w1, w2)))
+            if not screen.is_pip(mat):
+                continue
+            if len(phi_path(w1, w2)) > 0:
+                continue
+            out.append(ResidueMember(w1.copy(), w2.copy(), s, p1[len(w1)][0] - p2[len(w2)][0]))
+    return out^
+
+
+def run_leaf_index(leaves: List[RunTreeLeaf], w1: List[Int], w2: List[Int]) raises -> Int:
+    """The run-tree leaf holding a word pair. The leaves partition the pairs
+    whose `w_1` begins with `z`, so anything but exactly one match raises."""
+    var hit = -1
+    for k in range(len(leaves)):
+        if pattern_matches(leaves[k].pattern, w1, w2):
+            if hit >= 0:
+                raise Error("run-tree leaves overlap")
+            hit = k
+    if hit < 0:
+        raise Error("run-tree leaves miss a word pair")
+    return hit
+
+
+struct RunTreeTally(Copyable, Movable):
+    var leaves: Int
+    var closed_leaves: Int
+    var members: Int
+    var in_closed: Int
+
+    def __init__(out self):
+        self.leaves = 0
+        self.closed_leaves = 0
+        self.members = 0
+        self.in_closed = 0
+
+
+def run_tree_tally(leaves: List[RunTreeLeaf], residue: List[ResidueMember], s: Int, delta: Int) raises -> RunTreeTally:
+    """How many residue members of the cell `(s, Delta)` lie in closed leaves."""
+    var t = RunTreeTally()
+    t.leaves = len(leaves)
+    for k in range(len(leaves)):
+        if leaves[k].closed:
+            t.closed_leaves += 1
+    for k in range(len(residue)):
+        if residue[k].s != s or residue[k].dy != delta:
+            continue
+        t.members += 1
+        if leaves[run_leaf_index(leaves, residue[k].w1, residue[k].w2)].closed:
+            t.in_closed += 1
+    return t^
+
+
+def common_points(w1: List[Int], w2: List[Int]) -> Int:
+    """The number of common points (§3g): `t >= 1` with `w_1[t]`, `w_2[t - 1]`
+    defined and `pi(w_1[:t]) = pi(w_2[:t - 1]) + e_z`. The prefix lengths
+    differ by one, so equal `y`-counts suffice."""
+    var n = 0
+    var y1 = 0
+    var y2 = 0
+    for t in range(1, len(w1)):
+        if w1[t - 1] == Y:
+            y1 += 1
+        if t - 1 > len(w2) - 1:
+            break
+        if t >= 2 and w2[t - 2] == Y:
+            y2 += 1
+        if y1 == y2:
+            n += 1
+    return n
