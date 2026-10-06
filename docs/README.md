@@ -11,12 +11,15 @@ TOML and regenerate rather than hand-editing the Markdown.
 
 ## What the 2026-10-05 results establish
 
-Five theorems were proved on 2026-10-05, each with an exact certificate. They
+The results of 2026-10-05 are below, each with an exact certificate; Theorem E,
+the first row, is the only one that proves a statement on an infinite class
+of substitutions outright rather than reducing or locating one. They
 are stated here positively, because each note's own limits section is
 deliberately long and should not be mistaken for the result.
 
 | Result | What it establishes | Where |
 | --- | --- | --- |
+| **Theorem E** | On the catch-up-free `|det M| = 2` class, **any two distinct letters fixed by the first-letter map are eventually coincident** — every substitution in the class, of every image length, not a finite list. So case (i) of #138's aligned template cannot occur anywhere on that class, which contains all 210 catch-up-free corpus specimens. Proof: explicit normal form, four mirror classes, three witness lemmas with named positions, two affine Pisot inequalities cutting the remainder to 27 substitutions, each decided exactly. 453 named witnesses certified in Mojo and 1,988 in an independent check, none failing | [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) §3b |
 | **Proposition LC** | The leftmost child is a *function*, so the obstructions to `CU` are exactly the terminal cycles of that function — and every one of them is a **prefix-vs-interior periodic pair**: a prefix occurrence `sigma^r(i) = i U` on one side, an interior occurrence `sigma^r(j) = Q j V` on the other, offset `w_0 = (I − M^r)^{-1} ab(Q)`. The half-degenerate companion of Theorem B. Verified on **10,584 / 10,584** terminal cycles of all 4,554 corpus specimens, none capped, none failing | [`p1b-leftmost-chain-periodic-pair-2026-10-05.md`](p1b-leftmost-chain-periodic-pair-2026-10-05.md) |
 | **Corollary LC4** | Those cycles come in **mirror pairs** of opposite offset sign, so their number is always even. Confirmed on all 210 catch-up-free specimens (counts 2, 4, 6, 8, 10 — never odd) | same, §8a |
 | **Corollary LC5** | A box graph with **no** terminal leftmost cycle has `Z(s) = ∅` for every seed, so finiteness holds for that substitution. **Covers 1,794 of the 4,554 corpus specimens** by a certificate needing only the leftmost function — one walk per vertex, no closure analysis, no depth bound | same, §8a |

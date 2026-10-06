@@ -212,6 +212,27 @@ by deleting it.
     `completion-ledger-2026-10-02.md` snapshot stays frozen by design. ·
     `audit-2026-10-04.md` §D.5 correction
 
+- 2026-10-05 · **Theorem E proved**: on the catch-up-free `|det M| = 2` class,
+  any two distinct letters fixed by the first-letter map are eventually
+  coincident, so case (i) of #138's aligned template is eliminated on the whole
+  class. Three things worth not rediscovering. (1) `p, q, r` sit only in the
+  bottom row of `M`, so `det M`, `f(1)` and `f(-1)` are all **affine** in them,
+  and `|det M| = 2` is a linear Diophantine condition that fixes one
+  parameter. (2) The Pisot necessary conditions `f(1) < 0`, `f(-1) < 0`
+  (Lemma P1) predict every line's PIP range *exactly* — e.g. B's line
+  `(n, 0, 1)` has `f(-1) = n - 12`, which is why it stops at `n = 11` — so no
+  witness lemma is needed on the lines, only on the 2-dimensional bulk. (3) The
+  bulk falls to three explicit witness lemmas, each a one-step cancellation of
+  a small Parikh discrepancy by offsets that differ by one inside the next
+  blocks. The remainder is 27 explicit substitutions, all decided coincident
+  at levels 3-7. · `p1a-a1-prime-2026-10-05.md` §3b;
+  `kernel/tests/test_a1_normal_form.mojo`
+
+- 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
+  exact `coincidence_level` refused it ("the powered characteristic polynomial
+  is reducible"). Screen before deciding; the refusal is the procedure failing
+  closed correctly, not a bug. · `kernel/tests/test_a1_normal_form.mojo`
+
 - 2026-10-05 · On the catch-up-free `|det M| = 2` class the surviving aligned
   template is an explicit normal form: the odd set of Proposition C is exactly
   the bad edge, `O = {x, c}`, so `sigma(x) = x y^p s_x`, `sigma(c) = c y^q s_c`,

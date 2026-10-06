@@ -420,7 +420,7 @@ Countermodels and failed routes remain part of the project evidence and should s
 | Priority | Item | Status | Evidence needed to close | Immediate next deliverable |
 | --- | --- | --- | --- | --- |
 | **P0** | Status/provenance synchronization | refreshed to `main@ff9e5d3`; mathematical/evidence additions through PR #188 | roadmap, proof ladder, claim map, manuscript, ledger and README agree on the same theorem boundary | keep issue #84/#138/#139 wording synchronized as new work lands |
-| **P1a** | Aligned strong coincidence (#138) | **OPEN critical; cycle normal form proved; the two templates are one at the square (Theorem C, 2026-10-05)** | uniform proof of A1′: a bad edge whose letters are both `h`-fixed is eventually coincident | prove A1′ — two one-sided `sigma`-fixed points anchored at a common point share a tile — using the fixed-letter hypothesis, and not via transitivity of eventual coincidence |
+| **P1a** | Aligned strong coincidence (#138) | **OPEN critical; cycle normal form proved; the two templates are one at the square (Theorem C); case (i) eliminated on the whole catch-up-free determinant-2 class (Theorem E), 2026-10-05** | uniform proof of A1′: a bad edge whose letters are both `h`-fixed is eventually coincident | prove A1′ — two one-sided `sigma`-fixed points anchored at a common point share a tile — using the fixed-letter hypothesis, and not via transitivity of eventual coincidence |
 | **P1b** | Strict-zipper hitting (#139) | **OPEN critical; literature, cylinder and carry reductions complete; the `CU`-failure witnesses are classified (Proposition LC, 2026-10-05)** | uniform non-unit-safe `AdelicPeriodicOffsetHitting` theorem | prove occurrence-compatible coverage of the reverse zero basin in the full representation; T1 is now an SCC-level statement, and its reachability half is the same hitting problem |
 | **P1** | Seedwise overlap productivity (#84) | **OPEN — only shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad SCC | assemble after branch theorems; do not replace with larger finite sieves |
 | **P2** | G1b-2 renewal finiteness | **OPEN parallel; now the least load-bearing of three G1 routes** | uniform finite-return theorem for realizable labelled first returns | develop non-unit level-scaled address/return theory |
@@ -453,7 +453,12 @@ For the next research cycle:
    specimens, and on the catch-up-free `|det M| = 2` class it **coincides with
    T2** of the box note. On that class the aligned and strict-zipper branches
    are one boundary-hitting statement, which is where a single theorem would
-   buy both. The former statement of the obligation follows.
+   buy both. **Theorem E (§3b there) proves A1′ on that whole class** — any two
+   letters fixed by the first-letter map are eventually coincident — so case (i)
+   of the aligned template is eliminated on it, for every substitution in the
+   class. What remains of the aligned branch there is cases (ii) and
+   alternating, which force an image of length one (Corollary D2), and outside
+   the class, A1′ in general. The former statement of the obligation follows.
 3. **#138 template exclusion in parallel.** The aligned branch is reduced to a
    fixed bad hub edge or an alternating type-E template. Exclude those two
    templates using endpoint/occurrence structure, including reversal.

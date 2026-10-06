@@ -11,6 +11,8 @@ thing only: the exploratory evidence table, labelled as such.
 | --- | --- |
 | `a1prime_normal_form_sweep.py` | sweeps the Proposition D normal form `sigma(x) = x y^p s_x`, `sigma(c) = c y^q s_c`, `sigma(y) = t y^r s_y` over three stated budgets, keeps the PIP members with `|det M| = 2`, and decides A1′ by scanning for a shared tile |
 | `a1prime_normal_form_sweep.out` | its output, re-run for this archive |
+| `a1prime_theorem_check.py` | independent check of Theorem E's proof skeleton (note §3b): at every `|det M| = 2` point of the four classes it verifies that each lemma's *named* position is a shared tile, that every PIP point satisfies `f(1) < 0` and `f(-1) < 0`, and that the PIP points outside the lemmas are exactly the 27 listed. It checks named positions rather than searching, so it tests the proofs |
+| `a1prime_theorem_check.out` | its output at bound 22: 1,988 named witnesses, none failing; 1,404 PIP points satisfying both inequalities; residue equal to the predicted list in all four classes |
 
 **Method.** Equal Parikh prefixes have equal length, because the components of
 a Parikh vector sum to the word length. So a common vertex of

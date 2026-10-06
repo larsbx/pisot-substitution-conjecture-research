@@ -171,3 +171,208 @@ def main() raises:
     print("The tail is the point: run this at two bounds and compare the")
     print("level-", DEEP_LEVEL, "-and-up rows. Identical rows mean the hard cases do not")
     print("scale with the parameters; a growing tail would mean they do.")
+
+
+# ---------------------------------------------------------------------------
+# Theorem E (docs/p1a-a1-prime-2026-10-05.md §3b): the certificate behind the
+# proof. Everything below checks a *named* position or an explicit finite
+# list; nothing searches.
+# ---------------------------------------------------------------------------
+
+# One ending tuple per mirror class under x <-> c, as (s_x, s_c, t, s_y).
+comptime CLASS_A = 0  # (x, x, x, c): sigma(y) = x y^r c
+comptime CLASS_B = 1  # (x, x, c, x): sigma(y) = c y^r x
+comptime CLASS_C = 2  # (x, x, c, c): sigma(y) = c y^r c
+comptime CLASS_D = 3  # (c, x, c, c): sigma(x) = x y^p c
+
+
+def class_ending(cls: Int) raises -> List[Int]:
+    if cls == CLASS_A:
+        return List[Int]([X, X, X, C])
+    if cls == CLASS_B:
+        return List[Int]([X, X, C, X])
+    if cls == CLASS_C:
+        return List[Int]([X, X, C, C])
+    if cls == CLASS_D:
+        return List[Int]([C, X, C, C])
+    raise Error("Theorem E has four classes")
+
+
+def class_member(cls: Int, p: Int, q: Int, r: Int) raises -> List[List[Int]]:
+    var e = class_ending(cls)
+    return normal_form(p, q, r, e[0], e[1], e[2], e[3])
+
+
+struct NamedWitness(Copyable, Movable):
+    """A lemma's witness: shared tile at `position` of `sigma^level(x)` and
+    `sigma^level(c)`. `level == 0` means the point is outside every lemma."""
+
+    var level: Int
+    var position: Int
+
+    def __init__(out self, level: Int, position: Int):
+        self.level = level
+        self.position = position
+
+
+def lemma_witness(cls: Int, p: Int, q: Int, r: Int) raises -> NamedWitness:
+    """The position Lemma L_BC, L_D or L_A names, or level 0 outside its region.
+
+    L_BC (classes B, C; level 2): p > q, and r >= 1, q >= 1 -- or r = q = 0
+      with s_y = x. Position (p + 2) + q (r + 2) + 1.
+    L_D (class D; level 2): |p - q| = 1, min(p, q) >= 1, r >= 2. Position
+      p + 3 when p = q + 1, p + 4 when p = q - 1.
+    L_A (class A; level 3): p > q, |r - q| = 1, except (1, 0, 1) and the lines
+      (p, 1, 0), p >= 3, and (p, 2, 1), p >= 4. Position p + q + 6 + q(r + 2)
+      when r = q + 1, p + q + 5 + q(r + 2) when r = q - 1."""
+    if cls == CLASS_B or cls == CLASS_C:
+        var sy = class_ending(cls)[3]
+        if p > q and ((r >= 1 and q >= 1) or (r == 0 and q == 0 and sy == X)):
+            return NamedWitness(2, (p + 2) + q * (r + 2) + 1)
+        return NamedWitness(0, 0)
+    if cls == CLASS_D:
+        if abs(p - q) == 1 and min(p, q) >= 1 and r >= 2:
+            return NamedWitness(2, p + 3 if p == q + 1 else p + 4)
+        return NamedWitness(0, 0)
+    if cls == CLASS_A:
+        if not (p > q and abs(r - q) == 1):
+            return NamedWitness(0, 0)
+        if r == q + 1:
+            if p == q + 1 and q == 0:
+                return NamedWitness(0, 0)
+            return NamedWitness(3, p + q + 6 + q * (r + 2))
+        if p > q + 1 and (q == 1 or q == 2):
+            return NamedWitness(0, 0)
+        return NamedWitness(3, p + q + 5 + q * (r + 2))
+    raise Error("Theorem E has four classes")
+
+
+def _apply(sigma: List[List[Int]], w: List[Int]) -> List[Int]:
+    var out = List[Int]()
+    for k in range(len(w)):
+        for c in range(len(sigma[w[k]])):
+            out.append(sigma[w[k]][c])
+    return out^
+
+
+def _power_image(sigma: List[List[Int]], letter: Int, level: Int) -> List[Int]:
+    var w = List[Int]([letter])
+    for _ in range(level):
+        w = _apply(sigma, w)
+    return w^
+
+
+def shared_tile_at(sigma: List[List[Int]], level: Int, position: Int) -> Bool:
+    """Position `position` of `sigma^level(x)` and `sigma^level(c)` carries the
+    same letter after equal Parikh prefixes. Equal Parikh prefixes have equal
+    length, so one position indexes both words."""
+    var u = _power_image(sigma, X, level)
+    var w = _power_image(sigma, C, level)
+    if position >= len(u) or position >= len(w):
+        return False
+    var pu = List[Int](length=3, fill=0)
+    var pw = List[Int](length=3, fill=0)
+    for k in range(position):
+        pu[u[k]] += 1
+        pw[w[k]] += 1
+    return pu == pw and u[position] == w[position]
+
+
+def f_at(m: Mat3, t: Int) -> Int:
+    """`det(t I - M)`, the characteristic polynomial at `t`."""
+    var e = List[Int]()
+    for i in range(3):
+        for j in range(3):
+            e.append((t if i == j else 0) - m.e[3 * i + j])
+    return Mat3(e).det()
+
+
+def residual_points(cls: Int) raises -> List[List[Int]]:
+    """The PIP points of a class that no lemma covers: 27 in all."""
+    var out = List[List[Int]]()
+    if cls == CLASS_A:
+        out.append(List[Int]([1, 0, 1]))
+        out.append(List[Int]([4, 2, 1]))
+        out.append(List[Int]([5, 2, 1]))
+    elif cls == CLASS_B:
+        for n in range(1, 12):
+            out.append(List[Int]([n, 0, 1]))
+        out.append(List[Int]([2, 1, 0]))
+    elif cls == CLASS_C:
+        out.append(List[Int]([1, 0, 0]))
+        out.append(List[Int]([3, 1, 0]))
+        out.append(List[Int]([5, 2, 0]))
+        out.append(List[Int]([7, 3, 0]))
+    elif cls == CLASS_D:
+        out.append(List[Int]([1, 0, 0]))
+        out.append(List[Int]([1, 0, 1]))
+        out.append(List[Int]([1, 0, 2]))
+        out.append(List[Int]([2, 1, 0]))
+        out.append(List[Int]([2, 1, 1]))
+        out.append(List[Int]([3, 2, 0]))
+        out.append(List[Int]([3, 2, 1]))
+        out.append(List[Int]([4, 3, 1]))
+    else:
+        raise Error("Theorem E has four classes")
+    return out^
+
+
+struct TheoremECheck(Copyable, Movable):
+    var lemma_verified: Int
+    var lemma_failed: Int
+    var pip_points: Int
+    var pisot_conditions_held: Int
+    var residual_found: Int
+    var residual_unexpected: Int
+
+    def __init__(out self):
+        self.lemma_verified = 0
+        self.lemma_failed = 0
+        self.pip_points = 0
+        self.pisot_conditions_held = 0
+        self.residual_found = 0
+        self.residual_unexpected = 0
+
+
+def _in_residual(cls: Int, p: Int, q: Int, r: Int) raises -> Bool:
+    var pts = residual_points(cls)
+    for k in range(len(pts)):
+        if pts[k][0] == p and pts[k][1] == q and pts[k][2] == r:
+            return True
+    return False
+
+
+def theorem_e_check(bound: Int) raises -> TheoremECheck:
+    """Over every `|det M| = 2` point of the four classes with parameters at
+    most `bound`: each lemma's named position is a shared tile, every PIP point
+    satisfies `f(1) < 0` and `f(-1) < 0`, and the PIP points outside the lemmas
+    are exactly the listed residual ones."""
+    if bound < 0 or bound > MAX_BOUND:
+        raise Error("the Theorem E bound must lie in 0..", String(MAX_BOUND))
+    var screen = CubicScreen()
+    var out = TheoremECheck()
+    for cls in range(4):
+        for p in range(bound + 1):
+            for q in range(bound + 1):
+                for r in range(bound + 1):
+                    var sigma = class_member(cls, p, q, r)
+                    var m = Mat3(substitution_incidence(sigma))
+                    if abs(m.det()) != 2:
+                        continue
+                    var pip = screen.is_pip(m)
+                    if pip:
+                        out.pip_points += 1
+                        if f_at(m, 1) < 0 and f_at(m, -1) < 0:
+                            out.pisot_conditions_held += 1
+                    var wit = lemma_witness(cls, p, q, r)
+                    if wit.level > 0:
+                        if shared_tile_at(sigma, wit.level, wit.position):
+                            out.lemma_verified += 1
+                        else:
+                            out.lemma_failed += 1
+                    elif pip:
+                        if _in_residual(cls, p, q, r):
+                            out.residual_found += 1
+                        else:
+                            out.residual_unexpected += 1
+    return out^
