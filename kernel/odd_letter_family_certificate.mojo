@@ -644,7 +644,8 @@ def main() raises:
         var budget = Int(String(args[5]))
         var max_runs = Int(String(args[6])) if len(args) > 6 else 8
         print("cell s =", s, " Delta =", d, ": guided run tree, region budget", budget, "per pattern, at most", max_runs, "revealed runs", flush=True)
-        var leaves = run_tree_guided(s, d, max_runs, budget, True)
+        var tail_cell = len(args) > 7 and String(args[7]) == "tail"
+        var leaves = run_tree_guided(s, d, max_runs, budget, True, tail_cell)
         var closed = 0
         for k in range(len(leaves)):
             if leaves[k].closed:
@@ -1367,6 +1368,7 @@ struct RunPattern(Copyable, Movable, Writable):
     var open2: Bool
     var suffix1: List[Int]  # letters closing w_1 (Lemma Phi5: y^Delta)
     var suffix2: List[Int]  # letters closing w_2 (Lemma Phi5': 2 - Delta letters)
+    var tail_run1: Int  # > 0: w_1 closes with y^(tail_run1 + e), e the cell's tail variable
 
     def __init__(out self, var l1: List[Int], open1: Bool, var l2: List[Int], open2: Bool, var suffix1: List[Int] = List[Int](), var suffix2: List[Int] = List[Int]()):
         self.l1 = l1^
@@ -1375,6 +1377,7 @@ struct RunPattern(Copyable, Movable, Writable):
         self.open2 = open2
         self.suffix1 = suffix1^
         self.suffix2 = suffix2^
+        self.tail_run1 = 0
 
     def runs(self) -> Int:
         return len(self.l1) + len(self.l2)
@@ -1396,6 +1399,8 @@ struct RunPattern(Copyable, Movable, Writable):
                 w.write(names[letters[k]])
             if opn:
                 w.write("*")
+            if wi == 0 and self.tail_run1 > 0:
+                w.write(" +y^(", self.tail_run1, "+e)")
             ref suf = self.suffix1 if wi == 0 else self.suffix2
             if len(suf) > 0:
                 w.write(" +")
@@ -1429,6 +1434,10 @@ def pattern_family(pat: RunPattern, subst: List[List[Int]]) raises -> ConeFamily
             par.append(subst[slot + 1].copy())
             slot += 2
             img.append(opaque_segment(par^))
+        if wi == 0 and pat.tail_run1 > 0:
+            var f = subst[pat.slots()].copy()
+            f[0] += pat.tail_run1
+            img.append(run_of(Y, f^))
         ref suf = pat.suffix1 if wi == 0 else pat.suffix2
         for k in range(len(suf)):
             img.append(letter_segment(m, suf[k]))
@@ -1466,6 +1475,10 @@ def pattern_counts(pat: RunPattern, subst: List[List[Int]]) -> List[List[Int]]:
         ref suf = pat.suffix1 if wi == 0 else pat.suffix2
         for k in range(len(suf)):
             out[2 * wi + (0 if suf[k] == Y else 1)][0] += 1
+    if pat.tail_run1 > 0:
+        var f = subst[pat.slots()].copy()
+        f[0] += pat.tail_run1
+        out[0] = aff_add(out[0], f)
     return out^
 
 
@@ -1566,7 +1579,9 @@ def _pattern_starts(pat: RunPattern, s: Int, delta: Int, tail: Bool) -> List[Lis
                 zconst += 1 if wi == 0 else -1
     var starts = solve_constraint(identity_subst(m), zpos, zneg, s - zconst)
     if delta != NO_DELTA:
-        if tail:
+        if tail and pat.tail_run1 > 0:
+            yconst += pat.tail_run1  # the run y^(D + e) carries Delta = D + e
+        elif tail:
             if delta >= 0:
                 yneg.append(slots)  # Y_1 - Y_2 - e = delta
             else:
@@ -1786,6 +1801,8 @@ def refine_pattern(pat: RunPattern) -> List[RunPattern]:
             var l = pat.l2.copy()
             l.append(nexts[k])
             out.append(RunPattern(pat.l1.copy(), pat.open1, l^, True, pat.suffix1.copy(), pat.suffix2.copy()))
+    for k in range(len(out)):
+        out[k].tail_run1 = pat.tail_run1
     return out^
 
 
@@ -2387,12 +2404,19 @@ def _member_at(pat: RunPattern, subst: List[List[Int]], ns: List[Int], mut scree
 
 
 def _base_point(pat: RunPattern, subst: List[List[Int]], mut screen: CubicScreen) raises -> List[Int]:
-    """A member point of the region, generic first: every live variable 2,
-    then 1, then 3, then the origin and the unit points; empty if none of
-    them is a member. A generic point keeps the certificate from exploiting a
-    boundary value, so the carved region is a full cone, not a slice."""
+    """A member point of the region, generic first: distinct primes, so that
+    no small linear relation among the variables holds by accident; then
+    every variable 2, 1 or 3, the origin and the unit points; empty if none
+    is a member. A generic point keeps the certificate from exploiting a
+    boundary value or a coincidence, so the carved region is a full cone and
+    not a slice."""
     var m = len(subst[0]) - 1
     var tries = List[List[Int]]()
+    var primes = List[Int]([2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53])
+    var generic = List[Int]()
+    for k in range(m):
+        generic.append(primes[k % len(primes)])
+    tries.append(generic^)
     for g in [2, 1, 3]:
         tries.append(List[Int](length=m, fill=g))
     tries.append(List[Int](length=m, fill=0))
@@ -2405,6 +2429,22 @@ def _base_point(pat: RunPattern, subst: List[List[Int]], mut screen: CubicScreen
             return tries[t].copy()
     return List[Int]()
 
+
+
+def _carving_forms(ineqs: List[List[Int]]) -> List[List[Int]]:
+    """The forms worth carving by: those not already coefficientwise
+    nonnegative, each once."""
+    var out = List[List[Int]]()
+    for k in range(len(ineqs)):
+        if aff_nonneg(ineqs[k]):
+            continue
+        var seen = False
+        for j in range(len(out)):
+            if out[j] == ineqs[k]:
+                seen = True
+        if not seen:
+            out.append(ineqs[k].copy())
+    return out^
 
 
 def _guided_bag(slots: List[List[Int]], ineqs: List[List[Int]], steps: List[WitnessStep]) -> List[List[Int]]:
@@ -2478,6 +2518,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                     if not _is_zero_form(lr.gamma[i]):
                         ineqs.append(lr.gamma[i].copy())
                         ineqs.append(aff_scale(lr.gamma[i], -1))
+                ineqs = _carving_forms(ineqs)
                 var bag = _guided_bag(reg, ineqs, lr.steps)
                 var cv = carve(bag, len(reg), len(ineqs), len(reg))
                 if verbose:
@@ -2499,6 +2540,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                 var lr = lift_path(fam, point, ns, O, Y, cp.steps, OFFSET_BOUND, Y, Z)
                 var ineqs = lr.ineqs.copy()
                 if lr.ok and crossing_conditions(fam, lr.a, lr.b, lr.gamma, Y, Z, cp.close[0], ns, ineqs):
+                    ineqs = _carving_forms(ineqs)
                     var bag = _guided_bag(reg, ineqs, lr.steps)
                     var cv = carve(bag, len(reg), len(ineqs), len(reg))
                     if verbose:
@@ -2574,14 +2616,23 @@ def suffix_roots(s: Int, delta: Int) -> List[RunPattern]:
     return out^
 
 
-def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Bool = False) raises -> List[RunTreeLeaf]:
+def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Bool = False, tail: Bool = False) raises -> List[RunTreeLeaf]:
     """The run tree of one delta cell under its suffix roots, each pattern
-    covered by certificate-guided partition."""
+    covered by certificate-guided partition. With `tail` (s = +1 only), the
+    cell is `Delta >= delta`: w_1 closes with y^(delta + e)."""
     var out = List[RunTreeLeaf]()
-    var stack = suffix_roots(s, delta)
+    var stack = List[RunPattern]()
+    if tail:
+        if s != 1:
+            raise Error("tail cells are implemented for s = +1 only")
+        var root = RunPattern(List[Int]([Z]), True, List[Int](), True)
+        root.tail_run1 = delta
+        stack.append(root^)
+    else:
+        stack = suffix_roots(s, delta)
     while len(stack) > 0:
         var pat = stack.pop()
-        var c = cover_pattern_guided(pat, s, delta, budget)
+        var c = cover_pattern_guided(pat, s, delta, budget, tail)
         if c.open == 0:
             if verbose:
                 print("    closed ", pat, "  regions", c.regions, " certified", c.certified, " (line", c.line_certified, ", crossing", c.crossing_certified, ") cut", c.cut, " not member", c.not_member, flush=True)

@@ -340,6 +340,18 @@ by deleting it.
   `p1a-a1-prime-2026-10-05.md` §3j; `p1a-excursion-route-literature-gate-2026-10-06.md`;
   `kernel/tests/test_odd_letter_family_certificate.mojo`
 
+- 2026-10-06 · Certificate-guided partition (exact integer decomposition
+  `impose_nonneg` + lifted base-point certificates) closes what blind
+  splitting could not: Theorem Λ, the whole cell `(+1, 1)`. **Base points
+  must be generic**: from the origin, certificates carve slices
+  (`n_0 = 0`) and the cover peels one value at a time; with every variable 2,
+  they exploit accidental equalities (`2 n_0 = n_3 + n_6`), and one carve split
+  into 8,307 + 35,040 regions. Distinct primes `2, 3, 5, …` fixed both
+  (`zyz* +y | yzy*`: 18,396 regions → 2,833). Drop duplicate carving forms.
+  Tooling: never `pkill -f` a scratch binary; kill by the PID that `ps`
+  lists. · `p1a-a1-prime-2026-10-05.md` §3k;
+  `kernel/tests/test_odd_letter_family_certificate.mojo`
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing
