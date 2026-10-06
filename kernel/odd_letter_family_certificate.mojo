@@ -106,6 +106,8 @@ comptime REGION_BUDGET = 600  # cover_shape: regions examined per cell before re
 comptime RUN_TREE_MAX_RUNS = 6  # run_tree: a pattern with this many revealed runs is not refined further
 comptime RUN_TREE_SPLITS = 3  # run_tree: relational split depth per pattern
 comptime RUN_TREE_PEEL = 3  # run_tree: value splits per pattern
+comptime BASE_POINT_SEED = 20261006  # guided cover: seed of the base-point search
+comptime BASE_POINT_DRAWS = 300  # guided cover: generic draws before the constant fallbacks
 comptime REVEAL_MAX_LEVEL = 6  # reveal census: witness depth before the Lemma X closure counts
 comptime REVEAL_CAP = 8  # reveal census: largest r tried before reporting capped
 comptime RUN_TREE_BUDGET = 300  # run_tree: regions examined per pattern before reporting the rest open
@@ -2413,10 +2415,22 @@ def _base_point(pat: RunPattern, subst: List[List[Int]], mut screen: CubicScreen
     var m = len(subst[0]) - 1
     var tries = List[List[Int]]()
     var primes = List[Int]([2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53])
-    var generic = List[Int]()
-    for k in range(m):
-        generic.append(primes[k % len(primes)])
-    tries.append(generic^)
+    for variant in range(6):
+        var generic = List[Int]()
+        for k in range(m):
+            if variant == 0:
+                generic.append(primes[k % len(primes)])
+            elif variant == 1:
+                generic.append(primes[(m - 1 - k) % len(primes)])
+            elif variant == 2:
+                generic.append(2 + (3 * k) % 7)
+            elif variant == 3:
+                generic.append(1 + (5 * k + 2) % 9)
+            elif variant == 4:
+                generic.append(primes[(2 * k + 1) % len(primes)] % 13 + 1)
+            else:
+                generic.append(1 + (7 * k + 3) % 11)
+        tries.append(generic^)
     for g in [2, 1, 3]:
         tries.append(List[Int](length=m, fill=g))
     tries.append(List[Int](length=m, fill=0))
@@ -2425,9 +2439,29 @@ def _base_point(pat: RunPattern, subst: List[List[Int]], mut screen: CubicScreen
         e[k] = 1
         tries.append(e^)
     for t in range(len(tries)):
+        if t == 6:
+            # before the constant fallbacks: a seeded search for a generic
+            # member (the seed fixes the run; certificates are verified anyway)
+            var rng = SplitMix64(BASE_POINT_SEED)
+            for _ in range(BASE_POINT_DRAWS):
+                var ns = List[Int]()
+                for _ in range(m):
+                    ns.append(rng.between(1, 16))
+                if _member_at(pat, subst, ns, screen):
+                    return ns^
         if _member_at(pat, subst, tries[t], screen):
             return tries[t].copy()
     return List[Int]()
+
+
+def _generic_point(subst: List[List[Int]]) -> List[Int]:
+    """The distinct-primes point of a region, member or not."""
+    var m = len(subst[0]) - 1
+    var primes = List[Int]([2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53])
+    var out = List[Int]()
+    for k in range(m):
+        out.append(primes[k % len(primes)])
+    return out^
 
 
 
@@ -2465,7 +2499,7 @@ def _steps_from_bag(bag: List[List[Int]], first: Int, steps: List[WitnessStep]) 
     return out^
 
 
-def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int, tail: Bool = False, verbose: Bool = False) raises -> ShapeCover:
+def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int, tail: Bool = False, verbose: Bool = False, nonmember_points: Bool = False) raises -> ShapeCover:
     """Cover the pattern's members in one delta cell by certificate-guided
     partition: at a member point of each region find a certificate (an exact
     line-mode path, else a Lemma X closure), lift it, carve out the regions
@@ -2493,6 +2527,10 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                 if first_live < 0:
                     first_live = k
         var ns = _base_point(pat, reg, screen)
+        if len(ns) == 0 and any_live and nonmember_points:
+            # a certificate is combinatorial: one found at a non-member point
+            # still holds on its carved region
+            ns = _generic_point(reg)
         if len(ns) == 0:
             if not any_live:
                 out.not_member += 1
@@ -2506,6 +2544,22 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
             stack.append(shifted^)
             continue
         var fam = pattern_family(pat, reg)
+        # a certificate for the whole region at once, as in cover_pattern
+        var whole = search_witness(fam, O, Y, OFFSET_BOUND, MAX_LEVEL, True)
+        if whole.found:
+            if not verify_witness(fam, O, Y, whole.steps):
+                raise Error("a witness path the search found does not verify")
+            out.certified += 1
+            out.max_level = max(out.max_level, len(whole.steps))
+            continue
+        var whole_line = search_witness_line(fam, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z)
+        if whole_line.found:
+            if not verify_witness_line(fam, O, Y, whole_line.steps):
+                raise Error("a line-mode witness path the search found does not verify")
+            out.certified += 1
+            out.line_certified += 1
+            out.max_level = max(out.max_level, len(whole_line.steps))
+            continue
         var point = pattern_family(pat, point_subst(reg, ns))
         var done = False
         # an exact line-mode path at the point
@@ -2557,9 +2611,41 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                         stack.append(cv.outside[q].copy())
                     done = True
         if not done:
-            out.open += 1
-            out.open_forms.append(reg.copy())
+            # no liftable certificate: peel a live variable, n = 0 | n >= 1,
+            # as cover_pattern does (a region without one is a single point)
+            if any_live:
+                var pick = _peel_variable(reg, m, ns)
+                stack.append(_set_value(reg, pick, 0))
+                var shifted = List[List[Int]]()
+                for k in range(len(reg)):
+                    var f = reg[k].copy()
+                    f[0] += f[pick + 1]
+                    shifted.append(f^)
+                stack.append(shifted^)
+            else:
+                var sigma = fam.instantiate(List[Int](length=m, fill=0))
+                var lev = coincidence_level(sigma, O, Y)
+                if lev < 0:
+                    raise Error("SC REFUTED in Theorem K's family: {o, y} is not eventually coincident")
+                out.decided += 1
+                out.max_level = max(out.max_level, lev)
     return out^
+
+
+def _peel_variable(reg: List[List[Int]], m: Int, ns: List[Int]) -> Int:
+    """The live variable to peel: the one with the most occurrences in the
+    slots (the run lengths it drives), first on ties."""
+    var best = -1
+    var best_count = -1
+    for k in range(m):
+        var count = 0
+        for i in range(len(reg)):
+            if reg[i][k + 1] != 0:
+                count += 1
+        if count > best_count:
+            best = k
+            best_count = count
+    return best
 
 
 def _form_str(f: List[Int]) -> String:
@@ -2632,7 +2718,7 @@ def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Boo
         stack = suffix_roots(s, delta)
     while len(stack) > 0:
         var pat = stack.pop()
-        var c = cover_pattern_guided(pat, s, delta, budget, tail)
+        var c = cover_pattern_guided(pat, s, delta, budget, tail, False, tail)
         if c.open == 0:
             if verbose:
                 print("    closed ", pat, "  regions", c.regions, " certified", c.certified, " (line", c.line_certified, ", crossing", c.crossing_certified, ") cut", c.cut, " not member", c.not_member, flush=True)
