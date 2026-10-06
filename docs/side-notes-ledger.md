@@ -352,6 +352,35 @@ by deleting it.
   lists. · `p1a-a1-prime-2026-10-05.md` §3k;
   `kernel/tests/test_odd_letter_family_certificate.mojo`
 
+- 2026-10-06 · Regions that carry their own inequalities (`GuidedRegion`,
+  `Prover` in `psc/cone_witness.mojo`) replace decomposition in the guided
+  cover. Pitfalls met on the way, each now a regression: the verifiers' end
+  tests asked the offset to be *identically* zero, which a carved region
+  never makes it (they now ask the prover for `= 0` on the region); a form
+  tightened by its gcd (`tighten`, Chvátal–Gomory, same integer points) is
+  only re-provable with a multiplier (`f − 2 T >= 0`), so the prover reads
+  multipliers off coefficient ratios; the base-point walk into a region
+  overflowed `Int` and lifted a certificate at a garbage point (now capped,
+  and a carve whose inside misses its own base point raises). Complements of
+  carves are mostly *empty*, and often only through three assumptions at
+  once; pairwise sums missed them and the raise-only walk found no point, so
+  they were reported open (412 of them in `zyz* +y | yzy*`). Sums of up to
+  three assumptions, integer bound propagation (`propagate_bounds`) and a
+  local search on total violation took that pattern to 0 open (3,536
+  regions). **Finite observation, not to repeat:** in the symbolic tail cell
+  `s = +1`, `Delta = 1 + e`, point-wise McCormick quadrants do not converge:
+  with `a_0 = 2, b_0 = b(p)` the base points climb `e ≈ 23, 701, 22397,
+  716669` (×32 per step), and once points are walked into regions the cuts
+  step `e` by one (slopes 23, 24, 25, …). For fixed `Z_2` the non-PIP set
+  `(Z_2 − 1) e >= 2 Y_2 + 4` is a half-space, but over all `Z_2` it is not
+  polyhedral, so finitely many cuts always leave wedges holding non-PIP
+  points with `Z_2, e` both unbounded: a finite tail cover needs
+  certificates valid on those non-PIP points too, not finer cuts.
+  Certificate-before-cut (`cut_first = False`) does not converge at 5,000
+  regions either (PIP-side base points reach `n ≈ 400`, beyond the offset
+  bound). · `p1a-a1-prime-2026-10-05.md` §3k;
+  `kernel/tests/test_odd_letter_family_certificate.mojo`
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing

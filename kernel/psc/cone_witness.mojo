@@ -89,6 +89,60 @@ def aff_eval(a: List[Int], ns: List[Int]) -> Int:
     return v
 
 
+struct Prover(Copyable, Movable):
+    """Proves `f >= 0` on a region that carries assumptions `A_j >= 0`: true
+    when `f - l_i A_i - l_j A_j` has nonnegative coefficients for some
+    integers `l_i, l_j >= 0` (a Farkas certificate with at most two
+    multipliers, drawn from 1 and the coefficient ratios of `f` to `A_i`;
+    sufficient, exact). With no assumptions it is the coefficient-sign test
+    on the whole orthant."""
+
+    var assume: List[List[Int]]
+
+    def __init__(out self):
+        self.assume = List[List[Int]]()
+
+    def __init__(out self, var assume: List[List[Int]]):
+        self.assume = assume^
+
+    def nonneg(self, f: List[Int]) -> Bool:
+        if aff_nonneg(f):
+            return True
+        for i in range(len(self.assume)):
+            var li = _multipliers(f, self.assume[i])
+            for x in range(len(li)):
+                var g = aff_sub(f, aff_scale(self.assume[i], li[x]))
+                if aff_nonneg(g):
+                    return True
+                for j in range(i, len(self.assume)):
+                    var lj = _multipliers(g, self.assume[j])
+                    for y in range(len(lj)):
+                        if aff_nonneg(aff_sub(g, aff_scale(self.assume[j], lj[y]))):
+                            return True
+        return False
+
+    def vanishes(self, f: List[Int]) -> Bool:
+        """`f = 0` on the region; with no assumptions, `f` is identically 0."""
+        return self.nonneg(f) and self.nonneg(aff_scale(f, -1))
+
+
+def _multipliers(f: List[Int], a: List[Int]) -> List[Int]:
+    """Candidate multipliers `l >= 1` for `f - l a`: 1, and each positive
+    integer ratio `f_k / a_k` of variable coefficients (it cancels one, as
+    the multiple of a tightened form that restores its source does)."""
+    var out = List[Int]([1])
+    for k in range(1, len(f)):
+        if a[k] != 0 and f[k] != 0 and (f[k] > 0) == (a[k] > 0) and f[k] % a[k] == 0:
+            var l = f[k] // a[k]
+            var seen = False
+            for t in range(len(out)):
+                if out[t] == l:
+                    seen = True
+            if not seen:
+                out.append(l)
+    return out^
+
+
 comptime SEG_LETTER = 0
 comptime SEG_RUN = 1
 comptime SEG_OPAQUE = 2
@@ -245,7 +299,7 @@ struct WitnessSearch(Copyable, Movable):
         self.steps = List[WitnessStep]()
 
 
-def _offset_ok(fam: ConeFamily, a: Int, s: Int, off: List[Int]) -> Bool:
+def _offset_ok(fam: ConeFamily, a: Int, s: Int, off: List[Int], prover: Prover = Prover()) -> Bool:
     ref seg = fam.images[a][s]
     if seg.kind == SEG_OPAQUE:
         return False
@@ -255,7 +309,7 @@ def _offset_ok(fam: ConeFamily, a: Int, s: Int, off: List[Int]) -> Bool:
                 return False
         return True
     # 0 <= off <= length - 1
-    return aff_nonneg(off) and aff_nonneg(aff_sub(aff_sub(seg.length, off), aff_const(fam.m, 1)))
+    return prover.nonneg(off) and prover.nonneg(aff_sub(aff_sub(seg.length, off), aff_const(fam.m, 1)))
 
 
 struct StepResult(Copyable, Movable):
@@ -280,12 +334,12 @@ def _refused(why: String) -> StepResult:
     return StepResult(False, why, -1, -1, List[Int]([0, 0, 0]))
 
 
-def apply_step(fam: ConeFamily, a: Int, b: Int, gamma: List[Int], step: WitnessStep) -> StepResult:
+def apply_step(fam: ConeFamily, a: Int, b: Int, gamma: List[Int], step: WitnessStep, prover: Prover = Prover()) -> StepResult:
     """The state a step leads to, with every condition of the step checked on
     the whole cone. Used by both the search and the verifier."""
     if step.seg_a < 0 or step.seg_a >= len(fam.images[a]) or step.seg_b < 0 or step.seg_b >= len(fam.images[b]):
         return _refused("a witness step names a segment that does not exist")
-    if not _offset_ok(fam, a, step.seg_a, step.off_a) or not _offset_ok(fam, b, step.seg_b, step.off_b):
+    if not _offset_ok(fam, a, step.seg_a, step.off_a, prover) or not _offset_ok(fam, b, step.seg_b, step.off_b, prover):
         return _refused("a witness offset is not provably inside its segment")
     var mg = fam.m_times(gamma)
     var pa = fam.prefix_before(a, step.seg_a)
@@ -428,7 +482,7 @@ def search_witness(fam: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int
     return out^
 
 
-def verify_witness(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessStep]) -> Bool:
+def verify_witness(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessStep], prover: Prover = Prover()) -> Bool:
     """Re-derive every state from the steps alone; true iff every condition
     holds on the whole cone and the path ends at `(a, a, 0)`."""
     if len(steps) == 0:
@@ -437,7 +491,7 @@ def verify_witness(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessStep]) 
     var b = b0
     var gamma = List[Int]([0, 0, 0])
     for l in range(len(steps)):
-        var child = apply_step(fam, a, b, gamma, steps[l])
+        var child = apply_step(fam, a, b, gamma, steps[l], prover)
         if not child.ok:
             return False
         a = child.a
@@ -523,13 +577,13 @@ def _line_refused() -> LineResult:
     return LineResult(False, -1, -1, List[List[Int]]())
 
 
-def apply_step_line(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], step: WitnessStep) -> LineResult:
+def apply_step_line(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], step: WitnessStep, prover: Prover = Prover()) -> LineResult:
     """A step with affine offsets: segment bounds and run offsets checked on
     the whole cone, `M gamma` required affine. No constancy is asked of the
     new offset; the path's end asks it to vanish identically."""
     if step.seg_a < 0 or step.seg_a >= len(fam.images[a]) or step.seg_b < 0 or step.seg_b >= len(fam.images[b]):
         return _line_refused()
-    if not _offset_ok(fam, a, step.seg_a, step.off_a) or not _offset_ok(fam, b, step.seg_b, step.off_b):
+    if not _offset_ok(fam, a, step.seg_a, step.off_a, prover) or not _offset_ok(fam, b, step.seg_b, step.off_b, prover):
         return _line_refused()
     var mg = m_times_affine(fam, gamma)
     if len(mg) == 0:
@@ -557,7 +611,7 @@ def _is_zero(gamma: List[List[Int]]) -> Bool:
     return True
 
 
-def verify_witness_line(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessStep]) -> Bool:
+def verify_witness_line(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessStep], prover: Prover = Prover()) -> Bool:
     """Re-derive every state from the steps alone in line mode; true iff every
     condition holds on the whole cone and the path ends at `(a, a, 0)` with
     the offset identically zero."""
@@ -569,13 +623,18 @@ def verify_witness_line(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessSt
     for _ in range(3):
         gamma.append(aff_const(fam.m, 0))
     for l in range(len(steps)):
-        var r = apply_step_line(fam, a, b, gamma, steps[l])
+        var r = apply_step_line(fam, a, b, gamma, steps[l], prover)
         if not r.ok:
             return False
         a = r.a
         b = r.b
         gamma = r.gamma.copy()
-    return a == b and _is_zero(gamma)
+    if a != b:
+        return False
+    for i in range(3):
+        if not prover.vanishes(gamma[i]):
+            return False
+    return True
 
 
 def _line_key(a: Int, b: Int, gamma: List[List[Int]]) -> String:
@@ -854,6 +913,28 @@ def _q_nonneg(q: List[Int]) -> Bool:
     return True
 
 
+def _q_nonneg_under(q: List[Int], prover: Prover) -> Bool:
+    """A quadratic form is >= 0 on the region if it, less one or two of the
+    region's affine assumptions times multipliers as in `Prover.nonneg`
+    (read off its affine part), has nonnegative coefficients."""
+    if _q_nonneg(q):
+        return True
+    ref A = prover.assume
+    for i in range(len(A)):
+        var m = len(A[i]) - 1
+        var li = _multipliers(_q_affine_part(q, m), A[i])
+        for x in range(len(li)):
+            var g = _q_lin(q, _qa(A[i]), -li[x])
+            if _q_nonneg(g):
+                return True
+            for j in range(i, len(A)):
+                var lj = _multipliers(_q_affine_part(g, m), A[j])
+                for y in range(len(lj)):
+                    if _q_nonneg(_q_lin(g, _qa(A[j]), -lj[y])):
+                        return True
+    return False
+
+
 def _q_quad_part_nonneg(q: List[Int], m: Int) -> Bool:
     var w = m + 1
     for i in range(1, w):
@@ -953,7 +1034,7 @@ def _crossing_forms(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], u: 
     return out^
 
 
-def crossing_holds(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], u: Int, v: Int, cl: CrossingClose) -> Bool:
+def crossing_holds(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], u: Int, v: Int, cl: CrossingClose, prover: Prover = Prover()) -> Bool:
     """Lemma X at the state `(a, b, gamma)`: every condition checked on the
     whole cone, so the state reaches a shared tile within two levels. A
     condition may be quadratic (variable `M` times a variable line
@@ -961,16 +1042,15 @@ def crossing_holds(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], u: I
     var cf = _crossing_forms(fam, a, b, gamma, u, v, cl)
     if not cf.ok:
         return False
-    for k in range(len(cf.off)):
-        if cf.off[k] != 0:
-            return False
+    if not _q_nonneg_under(cf.off, prover) or not _q_nonneg_under(_q_lin(_qa(aff_const(fam.m, 0)), cf.off, -1), prover):
+        return False
     for variant in range(4):
         ref c = cf.variants[variant]
         if len(c) == 0:
             continue
         var all = True
         for k in range(len(c)):
-            if not _q_nonneg(c[k]):
+            if not _q_nonneg_under(c[k], prover):
                 all = False
         if all:
             return True
@@ -1066,7 +1146,7 @@ def search_crossing(fam: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: In
     return out^
 
 
-def verify_crossing(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessStep], cl: CrossingClose, u: Int, v: Int) -> Bool:
+def verify_crossing(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessStep], cl: CrossingClose, u: Int, v: Int, prover: Prover = Prover()) -> Bool:
     """Re-derive the path's last state in line mode and check Lemma X there."""
     var a = a0
     var b = b0
@@ -1074,13 +1154,13 @@ def verify_crossing(fam: ConeFamily, a0: Int, b0: Int, steps: List[WitnessStep],
     for _ in range(3):
         gamma.append(aff_const(fam.m, 0))
     for l in range(len(steps)):
-        var r = apply_step_line(fam, a, b, gamma, steps[l])
+        var r = apply_step_line(fam, a, b, gamma, steps[l], prover)
         if not r.ok:
             return False
         a = r.a
         b = r.b
         gamma = r.gamma.copy()
-    return crossing_holds(fam, a, b, gamma, u, v, cl)
+    return crossing_holds(fam, a, b, gamma, u, v, cl, prover)
 
 
 # ---------------------------------------------------------------------------

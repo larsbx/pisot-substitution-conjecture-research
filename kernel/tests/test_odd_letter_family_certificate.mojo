@@ -16,7 +16,7 @@ from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
 from psc.claim_tests import require_contract
 from psc.coincidence_formula import coincidence_level
-from psc.cone_witness import aff_eval, monotone_paths_meet, search_crossing, search_witness, search_witness_line, verify_crossing, verify_witness, verify_witness_line, witness_position
+from psc.cone_witness import aff_eval, monotone_paths_meet, Prover, _q_eval, _q_lin, _q_nonneg_under, _qa, search_crossing, search_witness, search_witness_line, verify_crossing, verify_witness, verify_witness_line, witness_position
 from std.collections import Dict
 from psc.pisot import is_pip
 from a1_normal_form_census import f_at, shared_tile_between
@@ -59,7 +59,13 @@ from odd_letter_family_certificate import (
     concrete_family,
     reveal_census,
     impose_nonneg,
+    impose_equal,
     cover_pattern_guided,
+    tighten,
+    propagate_bounds,
+    mccormick_cut,
+    pisot_carve_forms,
+    _aff_times,
     _words,
 )
 
@@ -633,7 +639,177 @@ def test_guided_partition_closes_a_doubly_open_pattern() raises:
     var c = cover_pattern_guided(RunPattern(zy.copy(), True, zy.copy(), True, List[Int]([Y])), 1, 1, 2000)
     assert_equal(c.open, 0)
     assert_false(c.budget_exhausted)
-    assert_true(c.certified >= 100)
+    assert_true(c.certified >= 50)
+
+
+def test_impose_equal_partitions_exactly() raises:
+    """For every form E = a_0 + a_1 n_1 + a_2 n_2 with a_0 in -4..4 and
+    a_1, a_2 in -2..2, the regions of impose_equal hit each point of the box
+    [0, 6]^2 with E = 0 exactly once and no other point."""
+    var B = 6
+    for a0 in range(-4, 5):
+        for a1 in range(-2, 3):
+            for a2 in range(-2, 3):
+                var forms = identity_subst(2)
+                forms.append(List[Int]([a0, a1, a2]))
+                var regs = impose_equal(forms, 2)
+                var hits = List[Int](length=(B + 1) * (B + 1), fill=0)
+                for r in range(len(regs)):
+                    ref g = regs[r]
+                    var lv = _live_vars(g, 2)
+                    var span = 1
+                    for _ in range(len(lv)):
+                        span *= 3 * B + 1
+                    for code in range(span):
+                        var ns = List[Int](length=2, fill=0)
+                        var x = code
+                        for j in range(len(lv)):
+                            ns[lv[j]] = x % (3 * B + 1)
+                            x //= 3 * B + 1
+                        var p0 = aff_eval(g[0], ns)
+                        var p1 = aff_eval(g[1], ns)
+                        assert_equal(a0 + a1 * p0 + a2 * p1, 0)
+                        if p0 <= B and p1 <= B:
+                            hits[p0 * (B + 1) + p1] += 1
+                for p0 in range(B + 1):
+                    for p1 in range(B + 1):
+                        var want = 1 if a0 + a1 * p0 + a2 * p1 == 0 else 0
+                        assert_equal(hits[p0 * (B + 1) + p1], want)
+
+
+def _small_forms(c_lo: Int, c_hi: Int, a: Int) -> List[List[Int]]:
+    var out = List[List[Int]]()
+    for c in range(c_lo, c_hi + 1):
+        for a1 in range(-a, a + 1):
+            for a2 in range(-a, a + 1):
+                out.append(List[Int]([c, a1, a2]))
+    return out^
+
+
+def test_tighten_keeps_the_integer_points() raises:
+    """tighten(F) >= 0 exactly where F >= 0 on the box [0, 6]^2, for every
+    F = a_0 + a_1 n_1 + a_2 n_2 with a_0 in -6..6 and a_1, a_2 in -3..3."""
+    var forms = _small_forms(-6, 6, 3)
+    for k in range(len(forms)):
+        var t = tighten(forms[k])
+        for p0 in range(7):
+            for p1 in range(7):
+                var ns = List[Int]([p0, p1])
+                assert_equal(aff_eval(forms[k], ns) >= 0, aff_eval(t, ns) >= 0)
+
+
+def test_the_prover_is_sound_on_its_regions() raises:
+    """Whenever the prover shows F >= 0 (affine) or Q >= 0 (Q = U V + W)
+    under one or two assumptions, F or Q is >= 0 at every point of the box
+    [0, 5]^2 where the assumptions hold; with no assumptions it is the
+    coefficient-sign test, and it proves an assumption, twice an
+    assumption, and an assumption's tightening's source."""
+    var assume = _small_forms(-1, 1, 1)
+    var targets = _small_forms(-2, 2, 2)
+    var proved = 0
+    for i in range(len(assume)):
+        for j in range(i, len(assume)):
+            var pv = Prover(List[List[Int]]([assume[i].copy(), assume[j].copy()]))
+            for k in range(len(targets)):
+                var q = _q_lin(_aff_times(assume[i], targets[k]), _qa(targets[(7 * k + 3) % len(targets)]), 1)
+                var aff_ok = pv.nonneg(targets[k])
+                var q_ok = _q_nonneg_under(q, pv)
+                if aff_ok:
+                    proved += 1
+                for p0 in range(6):
+                    for p1 in range(6):
+                        var ns = List[Int]([p0, p1])
+                        if aff_eval(assume[i], ns) < 0 or aff_eval(assume[j], ns) < 0:
+                            continue
+                        if aff_ok:
+                            assert_true(aff_eval(targets[k], ns) >= 0)
+                        if q_ok:
+                            assert_true(_q_eval(q, ns) >= 0)
+    assert_true(proved > 10000)
+    assert_true(Prover().nonneg(List[Int]([0, 1, 2])))
+    assert_false(Prover().nonneg(List[Int]([1, -1, 2])))
+    var a = List[Int]([-3, 2, -4])
+    var pv = Prover(List[List[Int]]([tighten(a)]))
+    assert_true(pv.nonneg(a))
+    assert_true(pv.nonneg(List[Int]([-4, 3, -4])))
+    assert_true(Prover(List[List[Int]]([a.copy()])).nonneg(List[Int]([-6, 4, -8])))
+    assert_true(Prover(List[List[Int]]([a.copy(), List[Int]([3, -2, 4])])).vanishes(a))
+
+
+def test_mccormick_quadrants_hold_no_pip_member() raises:
+    """For s = +1 and s = -1, a two-parameter family of counts (Y_1, Z_1,
+    Y_2, Z_2) and every point p of [0, 6]^2 where Lemma P1's f >= 0: the
+    quadrant G_1, G_2, G_3 >= 0 of pisot_carve_forms contains p, mccormick_cut
+    accepts it under its tightened forms, and f >= 0 at every box point in it."""
+    var carved = 0
+    for s in [1, -1]:
+        var counts = List[List[Int]]()
+        if s == 1:
+            # Y_1 = Y_2 + 1 + n_1, Z_1 = Z_2 + 1, Y_2 = n_2, Z_2 = 1 + n_1 + n_2
+            counts.append(List[Int]([1, 1, 1]))
+            counts.append(List[Int]([2, 1, 1]))
+            counts.append(List[Int]([0, 0, 1]))
+            counts.append(List[Int]([1, 1, 1]))
+        else:
+            # Y_1 = n_2, Z_1 = Z_2 - 1, Y_2 = Y_1 + 1 + n_1, Z_2 = 2 + n_1 + n_2
+            counts.append(List[Int]([0, 0, 1]))
+            counts.append(List[Int]([1, 1, 1]))
+            counts.append(List[Int]([1, 1, 1]))
+            counts.append(List[Int]([2, 1, 1]))
+        for p0 in range(7):
+            for p1 in range(7):
+                var ns = List[Int]([p0, p1])
+                var g = pisot_carve_forms(counts, s, ns)
+                if len(g) == 0:
+                    continue
+                carved += 1
+                var tight = List[List[Int]]()
+                for k in range(3):
+                    assert_true(aff_eval(g[k], ns) >= 0)
+                    tight.append(tighten(g[k]))
+                assert_true(mccormick_cut(counts, s, g, Prover(tight^)))
+                for r0 in range(7):
+                    for r1 in range(7):
+                        var rs = List[Int]([r0, r1])
+                        if aff_eval(g[0], rs) < 0 or aff_eval(g[1], rs) < 0 or aff_eval(g[2], rs) < 0:
+                            continue
+                        var z2 = aff_eval(counts[3], rs)
+                        var d = aff_eval(counts[0], rs) - aff_eval(counts[2], rs)
+                        var f = z2 * (d - 1) - 2 * aff_eval(counts[2], rs) - d - 3 if s == 1 else z2 * (-d - 1) - 2 * aff_eval(counts[0], rs) + d + 3
+                        assert_true(f >= 0)
+    assert_true(carved > 20)
+
+
+def test_bound_propagation_is_exact_on_integers() raises:
+    """For systems of three forms a_0 + a_1 n_1 + a_2 n_2 (a_0 in -3..3,
+    a_1, a_2 in -2..2; a deterministic stride through the triples), every
+    point of [0, 8]^2 satisfying the system lies in the propagated box, and
+    a system declared empty has no such point; some systems are empty only
+    through three forms at once."""
+    var forms = _small_forms(-3, 3, 2)
+    var n = len(forms)
+    var empties = 0
+    for i in range(0, n, 3):
+        for j in range(i, n, 5):
+            for k in range(j, n, 7):
+                var sys = List[List[Int]]([forms[i].copy(), forms[j].copy(), forms[k].copy()])
+                var box = propagate_bounds(sys, 2)
+                if box.empty:
+                    empties += 1
+                for p0 in range(9):
+                    for p1 in range(9):
+                        var ns = List[Int]([p0, p1])
+                        if aff_eval(sys[0], ns) < 0 or aff_eval(sys[1], ns) < 0 or aff_eval(sys[2], ns) < 0:
+                            continue
+                        assert_false(box.empty)
+                        for t in range(2):
+                            assert_true(ns[t] >= box.lo[t])
+                            if box.bounded[t]:
+                                assert_true(ns[t] <= box.hi[t])
+    assert_true(empties > 100)
+    # n_1 <= 0, n_2 <= 1 - n_1, n_2 >= 3 + n_1 - n_1: empty only via all three
+    var three = List[List[Int]]([List[Int]([0, -1, 0]), List[Int]([1, -1, -1]), List[Int]([-3, 1, 1])])
+    assert_true(propagate_bounds(three, 2).empty)
 
 
 def main() raises:
@@ -677,6 +853,16 @@ def main() raises:
     print("[PASS] test_cover_pattern_closes_regions_by_lemma_x")
     test_impose_nonneg_partitions_exactly()
     print("[PASS] test_impose_nonneg_partitions_exactly")
+    test_impose_equal_partitions_exactly()
+    print("[PASS] test_impose_equal_partitions_exactly")
     test_guided_partition_closes_a_doubly_open_pattern()
     print("[PASS] test_guided_partition_closes_a_doubly_open_pattern")
-    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones; Lemma Phi4 (Pisot signs of Y_1 - Y_2 against Z_1 - Z_2) and Lemma Phi5 (the Z_1 = Z_2 + 1 non-crossing shape w_1 = u y^(Y_1 - Y_2), pi(u) = pi(w_2) + e_z) hold on all 2,136 members with |w_i| <= 6; at |w_i| <= 7 the Lemma Phi6-Phi8 paths verify on 1,180 of the 1,267 non-crossing members with none failing, the delta = e_z cell leaves only (zz, z) at level 6, (z, empty) is not PIP, and the other cells leave 87 members decided at levels 3 to 6; the run-shape cover: solve_constraint partitions the solutions of sum_pos n - sum_neg n = target exactly (every box solution hit once, targets -3..3), the quadratic Lemma P1 identities f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3 (Z_1 = Z_2 + 1) and f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3 (Z_1 = Z_2 - 1) hold, a line-mode path (offsets affine along e_z - e_y) verifies on (z^a y^b, y^(b+1) z^(a+1)), a >= b + 2, and the shape cells (zy | eps), (zy | z), (zy | yz) with Z_1 = Z_2 + 1 close for Delta = 1, 2, 3 and the tail Delta >= 4 with no open region, while (zy | yz) with Z_1 = Z_2 - 1 closes at Delta = -1 using line mode; induction on runs: refining a run pattern's opaque tail (it ends, or one more run of the other letter and a new tail) partitions the word pairs (31 * 63 pairs with w_1 beginning with z, |w_i| <= 5, each in exactly one leaf), the patterns (zy | zy*), (zy | yz*), (zy* | z), (zy* | y), (zyz* | zy), (zyz* | yz), (z | z*), (z | y*), (z* | eps) -- the nine closed leaves of the run tree -- with Z_1 = Z_2 + 1, Delta = 1 close with no open region (each an infinite family with unboundedly many runs) while (zy* | zy*) does not at the same budget, and common points match their definition, 51 of the 87 residual members at |w_i| <= 7 having only t = 1; Lemma X (monotone lattice paths whose endpoints cross, or touch with a letter following, share a point) holds on every pair of paths of at most 4 steps, a weak end at a word end can leave the only shared point at the last level, the cone search closes 86 of the 87 residual members at |w_i| <= 7 by Lemma X, each confirmed by the exact level, Lemma Phi5' (Z_2 = Z_1 + 1, non-crossing: Delta <= 0, |w_2| = |w_1| + 1 - Delta, at least two z in the last 2 - Delta letters of w_2) holds on every member with |w_i| <= 7, the reveal census needs at most two revealed runs at longer-word lengths 5..7 (77/4, 255/13, 825/54), and cover_pattern certifies regions of zyz* y | zyz* by Lemma X; the certificate-guided partition: impose_nonneg covers {F >= 0} exactly (every form a_0 + a_1 n_1 + a_2 n_2, a_0 in -4..4, a_1, a_2 in -3..3, on the box [0, 5]^2) with F coefficientwise nonnegative on every region, and cover_pattern_guided closes the doubly open pattern zy* y | zy* at Z_1 = Z_2 + 1, Delta = 1 with every carved region re-verified")
+    test_tighten_keeps_the_integer_points()
+    print("[PASS] test_tighten_keeps_the_integer_points")
+    test_the_prover_is_sound_on_its_regions()
+    print("[PASS] test_the_prover_is_sound_on_its_regions")
+    test_mccormick_quadrants_hold_no_pip_member()
+    print("[PASS] test_mccormick_quadrants_hold_no_pip_member")
+    test_bound_propagation_is_exact_on_integers()
+    print("[PASS] test_bound_propagation_is_exact_on_integers")
+    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones; Lemma Phi4 (Pisot signs of Y_1 - Y_2 against Z_1 - Z_2) and Lemma Phi5 (the Z_1 = Z_2 + 1 non-crossing shape w_1 = u y^(Y_1 - Y_2), pi(u) = pi(w_2) + e_z) hold on all 2,136 members with |w_i| <= 6; at |w_i| <= 7 the Lemma Phi6-Phi8 paths verify on 1,180 of the 1,267 non-crossing members with none failing, the delta = e_z cell leaves only (zz, z) at level 6, (z, empty) is not PIP, and the other cells leave 87 members decided at levels 3 to 6; the run-shape cover: solve_constraint partitions the solutions of sum_pos n - sum_neg n = target exactly (every box solution hit once, targets -3..3), the quadratic Lemma P1 identities f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3 (Z_1 = Z_2 + 1) and f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3 (Z_1 = Z_2 - 1) hold, a line-mode path (offsets affine along e_z - e_y) verifies on (z^a y^b, y^(b+1) z^(a+1)), a >= b + 2, and the shape cells (zy | eps), (zy | z), (zy | yz) with Z_1 = Z_2 + 1 close for Delta = 1, 2, 3 and the tail Delta >= 4 with no open region, while (zy | yz) with Z_1 = Z_2 - 1 closes at Delta = -1 using line mode; induction on runs: refining a run pattern's opaque tail (it ends, or one more run of the other letter and a new tail) partitions the word pairs (31 * 63 pairs with w_1 beginning with z, |w_i| <= 5, each in exactly one leaf), the patterns (zy | zy*), (zy | yz*), (zy* | z), (zy* | y), (zyz* | zy), (zyz* | yz), (z | z*), (z | y*), (z* | eps) -- the nine closed leaves of the run tree -- with Z_1 = Z_2 + 1, Delta = 1 close with no open region (each an infinite family with unboundedly many runs) while (zy* | zy*) does not at the same budget, and common points match their definition, 51 of the 87 residual members at |w_i| <= 7 having only t = 1; Lemma X (monotone lattice paths whose endpoints cross, or touch with a letter following, share a point) holds on every pair of paths of at most 4 steps, a weak end at a word end can leave the only shared point at the last level, the cone search closes 86 of the 87 residual members at |w_i| <= 7 by Lemma X, each confirmed by the exact level, Lemma Phi5' (Z_2 = Z_1 + 1, non-crossing: Delta <= 0, |w_2| = |w_1| + 1 - Delta, at least two z in the last 2 - Delta letters of w_2) holds on every member with |w_i| <= 7, the reveal census needs at most two revealed runs at longer-word lengths 5..7 (77/4, 255/13, 825/54), and cover_pattern certifies regions of zyz* y | zyz* by Lemma X; the certificate-guided partition: impose_nonneg covers {F >= 0} exactly (every form a_0 + a_1 n_1 + a_2 n_2, a_0 in -4..4, a_1, a_2 in -3..3, on the box [0, 5]^2) with F coefficientwise nonnegative on every region, impose_equal covers {E = 0} exactly (a_1, a_2 in -2..2, box [0, 6]^2), and cover_pattern_guided closes the doubly open pattern zy* y | zy* at Z_1 = Z_2 + 1, Delta = 1 with every carved region re-verified under its own inequalities; tighten keeps the integer points of every form a_0 + a_1 n_1 + a_2 n_2 (a_0 in -6..6, a_1, a_2 in -3..3) on [0, 6]^2, the Prover (affine, and quadratic U V + W) is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2, and every McCormick quadrant of Lemma P1 that pisot_carve_forms opens in two-parameter families for s = +1 and s = -1 contains its point, passes mccormick_cut under its tightened forms, and holds no point with f < 0; integer bound propagation keeps every satisfying point of [0, 8]^2 in its box for a stride of three-form systems and declares empty only systems without one")
