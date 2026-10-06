@@ -474,6 +474,16 @@ by deleting it.
   `y^10`; 11 shapes, all level 4, reading `w_2`'s `z` by position from its
   end (the x-block), again affine. · scratch `shapes2.py`, `shapes3.py`
 
+- 2026-10-06 · Tooling, measured: the guided cover's tail regions cost
+  ~2 s each (300 regions: 9m51s), and neither the candidate search's
+  degree, nor its node budget, nor string-keyed polynomials were the cause
+  (each change: same 9m40s–10m13s, identical results). A stack sample with
+  `gdb -p PID -batch -ex bt` showed it at once: exact RREF over `BigZ`
+  rationals (a gcd per product) in the linear lift, on systems that are
+  mostly inconsistent. Screening mod two primes below 2^31 first: 42 s,
+  identical results. Sample before optimizing. · `kernel/psc/poly_line.mojo`
+  (`_consistent_mod`)
+
 - 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
   exact `coincidence_level` refused it ("the powered characteristic polynomial
   is reducible"). Screen before deciding; the refusal is the procedure failing

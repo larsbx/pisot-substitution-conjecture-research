@@ -19,6 +19,7 @@ suffices); the re-verification proves each condition again.
 """
 
 from std.collections import Dict
+from std.os import abort
 from finite_exact.rat_q import Q
 from finite_linear_algebra.qlinalg import rref
 from finite_linear_algebra.scalar import q_int, q_is_zero
@@ -43,43 +44,82 @@ from psc.cone_witness import (
 )
 
 comptime POLY_DEGREE = 8  # the largest degree a state, offset or condition may reach
+comptime SCREEN_PRIME_1 = 2147483629  # primes below 2^31: products stay within Int
+comptime SCREEN_PRIME_2 = 2147483587
+comptime SEARCH_DEGREE = 3  # the degree the lift's candidate search may reach
 comptime LIFT_NODES = 4000  # nodes of the lift's depth-first search over candidates
 
 
 # ---------------------------------------------------------------------------
 # Sparse integer polynomials. A monomial is the ascending list of its
-# variables' indices (0-based, repeats for powers); its key joins them by
-# "."; the constant's key is "".
+# variables' indices (0-based, repeats for powers), packed into an Int:
+# index + 1 in successive 5-bit fields from the low end, so at most
+# `MAX_VARS` variables and degree `MAX_PACKED_DEGREE`; the constant is 0.
 # ---------------------------------------------------------------------------
 
+comptime MONO_BITS = 5
+comptime MONO_MASK = 31
+comptime MAX_VARS = 30
+comptime MAX_PACKED_DEGREE = 12
 
-def _mono_key(vars: List[Int]) -> String:
-    var out = String()
-    for k in range(len(vars)):
-        if k > 0:
-            out += "."
-        out += String(vars[k])
+
+def mono_var(k: Int) -> Int:
+    """The packed monomial `n_k`; a variable past the field aborts."""
+    if k < 0 or k >= MAX_VARS:
+        abort("a polynomial variable past the packed field")
+    return k + 1
+
+
+def _mono_degree(key: Int) -> Int:
+    var d = 0
+    var x = key
+    while x != 0:
+        d += 1
+        x >>= MONO_BITS
+    return d
+
+
+def _mono_mul(a: Int, b: Int) -> Int:
+    """The product of two packed monomials: a merge of two ascending runs."""
+    var out = 0
+    var shift = 0
+    var x = a
+    var y = b
+    while x != 0 or y != 0:
+        var dx = x & MONO_MASK
+        var dy = y & MONO_MASK
+        if dy == 0 or (dx != 0 and dx <= dy):
+            out |= dx << shift
+            x >>= MONO_BITS
+        else:
+            out |= dy << shift
+            y >>= MONO_BITS
+        shift += MONO_BITS
     return out
 
 
-def _mono_vars(key: String) raises -> List[Int]:
-    var out = List[Int]()
-    if key == "":
-        return out^
-    for part in key.split("."):
-        out.append(Int(String(part)))
-    return out^
+def _mono_render(key: Int) -> String:
+    var out = String()
+    var x = key
+    var first = True
+    while x != 0:
+        if not first:
+            out += "."
+        out += String((x & MONO_MASK) - 1)
+        first = False
+        x >>= MONO_BITS
+    return out
 
 
 struct Poly(Copyable, Movable):
-    """An integer polynomial: monomial key -> nonzero coefficient."""
+    """An integer polynomial: packed monomial -> nonzero coefficient."""
 
-    var terms: Dict[String, Int]
+    var terms: Dict[Int, Int]
 
     def __init__(out self):
-        self.terms = Dict[String, Int]()
+        self.terms = Dict[Int, Int]()
 
-    def add_term(mut self, key: String, c: Int):
+    def add_term(mut self, key: Int, c: Int):
         if c == 0:
             return
         var v = self.terms.get(key, 0) + c
@@ -91,16 +131,16 @@ struct Poly(Copyable, Movable):
 
 def poly_const(c: Int) -> Poly:
     var p = Poly()
-    p.add_term("", c)
+    p.add_term(0, c)
     return p^
 
 
 def poly_from_aff(a: List[Int]) -> Poly:
     """`a[0] + sum a[k] n_(k-1)`."""
     var p = Poly()
-    p.add_term("", a[0])
+    p.add_term(0, a[0])
     for k in range(1, len(a)):
-        p.add_term(String(k - 1), a[k])
+        p.add_term(mono_var(k - 1), a[k])
     return p^
 
 
@@ -123,22 +163,24 @@ def poly_sub(p: Poly, q: Poly) -> Poly:
 
 
 def poly_mul(p: Poly, q: Poly) raises -> Poly:
+    var qk = List[Int]()
+    var qc = List[Int]()
+    for f in q.terms.items():
+        qk.append(f.key)
+        qc.append(f.value)
     var out = Poly()
     for e in p.terms.items():
-        var a = _mono_vars(e.key)
-        for f in q.terms.items():
-            var v = a.copy()
-            for x in _mono_vars(f.key):
-                v.append(x)
-            sort(v)
-            out.add_term(_mono_key(v), e.value * f.value)
+        for j in range(len(qk)):
+            if _mono_degree(e.key) + _mono_degree(qk[j]) > MAX_PACKED_DEGREE:
+                raise Error("a polynomial product past the packed degree")
+            out.add_term(_mono_mul(e.key, qk[j]), e.value * qc[j])
     return out^
 
 
 def poly_degree(p: Poly) raises -> Int:
     var d = 0
     for e in p.terms.items():
-        d = max(d, len(_mono_vars(e.key)))
+        d = max(d, _mono_degree(e.key))
     return d
 
 
@@ -146,8 +188,10 @@ def poly_eval(p: Poly, ns: List[Int]) raises -> Int:
     var total = 0
     for e in p.terms.items():
         var t = e.value
-        for x in _mono_vars(e.key):
-            t *= ns[x]
+        var x = e.key
+        while x != 0:
+            t *= ns[(x & MONO_MASK) - 1]
+            x >>= MONO_BITS
         total += t
     return total
 
@@ -158,7 +202,7 @@ def poly_is_zero(p: Poly) -> Bool:
 
 def poly_is_const(p: Poly) -> Bool:
     for e in p.terms.items():
-        if e.key != "":
+        if e.key != 0:
             return False
     return True
 
@@ -166,11 +210,10 @@ def poly_is_const(p: Poly) -> Bool:
 def poly_affine_part(p: Poly, m: Int) raises -> List[Int]:
     var out = aff_const(m, 0)
     for e in p.terms.items():
-        var v = _mono_vars(e.key)
-        if len(v) == 0:
+        if e.key == 0:
             out[0] += e.value
-        elif len(v) == 1:
-            out[v[0] + 1] += e.value
+        elif _mono_degree(e.key) == 1:
+            out[e.key] += e.value  # mono_var(k) = k + 1 is the form's slot
     return out^
 
 
@@ -178,7 +221,7 @@ def poly_higher(p: Poly) raises -> Poly:
     """The terms of degree at least 2."""
     var out = Poly()
     for e in p.terms.items():
-        if len(_mono_vars(e.key)) >= 2:
+        if _mono_degree(e.key) >= 2:
             out.add_term(e.key, e.value)
     return out^
 
@@ -219,13 +262,13 @@ def poly_vanishes_under(p: Poly, prover: Prover) raises -> Bool:
 
 def poly_key(p: Poly) -> String:
     """A canonical rendering, for deduplication and diagnostics."""
-    var keys = List[String]()
+    var keys = List[Int]()
     for e in p.terms.items():
         keys.append(e.key)
     sort(keys)
     var out = String()
     for k in range(len(keys)):
-        out += "[" + keys[k] + "]" + String(p.terms.get(keys[k], 0)) + " "
+        out += "[" + _mono_render(keys[k]) + "]" + String(p.terms.get(keys[k], 0)) + " "
     return out^
 
 
@@ -268,14 +311,14 @@ struct PolyState(Copyable, Movable):
         self.conds = List[Poly]()
 
 
-def m_times_poly(fam: ConeFamily, gamma: List[Poly]) raises -> List[Poly]:
-    """`M gamma`, or an empty list past `POLY_DEGREE`."""
+def m_times_poly(fam: ConeFamily, gamma: List[Poly], cap: Int = POLY_DEGREE) raises -> List[Poly]:
+    """`M gamma`, or an empty list past degree `cap`."""
     var out = List[Poly]()
     for i in range(3):
         var acc = Poly()
         for j in range(3):
             acc = poly_add(acc, poly_mul(poly_from_aff(fam.incidence[3 * i + j]), gamma[j]))
-        if poly_degree(acc) > POLY_DEGREE:
+        if poly_degree(acc) > cap:
             return List[Poly]()
         out.append(acc^)
     return out^
@@ -293,7 +336,7 @@ def _offset_conditions(fam: ConeFamily, a: Int, s: Int, off: Poly, mut conds: Li
     return True
 
 
-def poly_step(fam: ConeFamily, a: Int, b: Int, gamma: List[Poly], step: PolyStep) raises -> PolyState:
+def poly_step(fam: ConeFamily, a: Int, b: Int, gamma: List[Poly], step: PolyStep, cap: Int = POLY_DEGREE) raises -> PolyState:
     """`gamma' = M gamma + pi(sigma(a)[:i]) - pi(sigma(b)[:k])`, with the
     run offsets added in their letters' coordinates, and the offset
     conditions."""
@@ -302,7 +345,7 @@ def poly_step(fam: ConeFamily, a: Int, b: Int, gamma: List[Poly], step: PolyStep
         return out^
     if not _offset_conditions(fam, a, step.seg_a, step.off_a, out.conds) or not _offset_conditions(fam, b, step.seg_b, step.off_b, out.conds):
         return out^
-    var mg = m_times_poly(fam, gamma)
+    var mg = m_times_poly(fam, gamma, cap)
     if len(mg) == 0:
         return out^
     var pa = fam.prefix_before(a, step.seg_a)
@@ -315,7 +358,7 @@ def poly_step(fam: ConeFamily, a: Int, b: Int, gamma: List[Poly], step: PolyStep
             d = poly_add(d, step.off_a)
         if sb.is_run() and sb.letter == i:
             d = poly_sub(d, step.off_b)
-        if poly_degree(d) > POLY_DEGREE:
+        if poly_degree(d) > cap:
             return PolyState()
         out.gamma.append(d^)
     out.ok = True
@@ -375,7 +418,7 @@ def _lift_candidates(fam: ConeFamily, a: Int, b: Int, gamma: List[Poly], sa: Int
     letters, one solved from the other so that the `ly + lz` sum is
     constant. Candidates are filtered by their values at `ns`."""
     var out = List[PolyStep]()
-    var mg = m_times_poly(fam, gamma)
+    var mg = m_times_poly(fam, gamma, SEARCH_DEGREE)
     if len(mg) == 0:
         return out^
     ref ga = fam.images[a][sa]
@@ -528,7 +571,7 @@ def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b
         var children = List[_LiftFrame]()
         var ranks = List[Int]()
         for c in range(len(cands)):
-            var rc = poly_step(fam, fr.a, fr.b, fr.gamma, cands[c])
+            var rc = poly_step(fam, fr.a, fr.b, fr.gamma, cands[c], SEARCH_DEGREE)
             if not rc.ok or rc.a != letters[l][0] or rc.b != letters[l][1]:
                 continue
             var forms = fr.ineqs.copy()
@@ -595,6 +638,55 @@ def _q_to_int(x: Q) raises -> Int:
         raise Error("an integer too large for a lift")
     var v = Int(x.num.limb(0))
     return v if x.num.sign > 0 else -v
+
+
+def _pow_mod(a: Int, e: Int, p: Int) -> Int:
+    var r = 1
+    var b = a % p
+    var k = e
+    while k > 0:
+        if k & 1:
+            r = (r * b) % p
+        b = (b * b) % p
+        k >>= 1
+    return r
+
+
+def _consistent_mod(rows: List[List[Q]], ncols: Int, p: Int) raises -> Bool:
+    """Whether the augmented system (last column the right-hand side) is
+    consistent mod `p`, by Gaussian elimination over GF(p). The entries are
+    small integers."""
+    var a = List[List[Int]]()
+    for i in range(len(rows)):
+        var row = List[Int]()
+        for j in range(ncols + 1):
+            row.append(_q_to_int(rows[i][j]) % p)
+        a.append(row^)
+    var r = 0
+    for c in range(ncols):
+        if r == len(a):
+            break
+        var piv = -1
+        for i in range(r, len(a)):
+            if a[i][c] != 0:
+                piv = i
+                break
+        if piv < 0:
+            continue
+        a.swap_elements(r, piv)
+        var inv = _pow_mod(a[r][c], p - 2, p)
+        for j in range(c, ncols + 1):
+            a[r][j] = (a[r][j] * inv) % p
+        for i in range(len(a)):
+            if i != r and a[i][c] != 0:
+                var f = a[i][c]
+                for j in range(c, ncols + 1):
+                    a[i][j] = (a[i][j] - f * a[r][j]) % p
+        r += 1
+    for i in range(r, len(a)):
+        if a[i][ncols] % p != 0:
+            return False
+    return True
 
 
 def solve_lift(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep]) raises -> PolyLift:
@@ -667,41 +759,51 @@ def _solve(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, 
         for _ in range(3):
             z.append(Poly())
         parts.append(z^)
+    # the constant part: the path with every offset 0
     for l in range(L):
         var a = letters_a[l]
         var b = letters_b[l]
-        ref sa = fam.images[a][steps[l].seg_a]
-        ref sb = fam.images[b][steps[l].seg_b]
         var pa = fam.prefix_before(a, steps[l].seg_a)
         var pb = fam.prefix_before(b, steps[l].seg_b)
-        for j in range(count + 1):
-            var mg = List[Poly]()
-            for i in range(3):
-                var acc = Poly()
-                for k in range(3):
-                    acc = poly_add(acc, poly_mul(poly_from_aff(fam.incidence[3 * i + k]), parts[j][k]))
-                mg.append(acc^)
-            if j == 0:
-                for i in range(3):
-                    mg[i] = poly_sub(poly_add(mg[i], poly_from_aff(pa[i])), poly_from_aff(pb[i]))
-            parts[j] = mg^
-        # this level's offsets enter linearly
+        var mg = m_times_poly(fam, parts[0])
+        if len(mg) == 0:
+            out.why = "the end offset's degree exceeds the cap"
+            return out^
+        for i in range(3):
+            mg[i] = poly_sub(poly_add(mg[i], poly_from_aff(pa[i])), poly_from_aff(pb[i]))
+        parts[0] = mg^
+    # an offset entering at level l in letter i reaches the end as
+    # M^(L - 1 - l) e_i: the powers once per letter, then a monomial factor
+    var powers = List[List[List[Poly]]]()  # powers[i][j] = M^j e_i
+    for i in range(3):
+        var row = List[List[Poly]]()
+        var v = List[Poly]()
+        for k in range(3):
+            v.append(poly_const(1 if k == i else 0))
+        for j in range(L):
+            row.append(v.copy())
+            if j + 1 < L:
+                v = m_times_poly(fam, v)
+                if len(v) == 0:
+                    out.why = "the end offset's degree exceeds the cap"
+                    return out^
+        powers.append(row^)
+    for l in range(L):
         for side in range(2):
             var f = first[2 * l + side]
             if f < 0:
                 continue
-            var letter = sa.letter if side == 0 else sb.letter
+            var a = letters_a[l] if side == 0 else letters_b[l]
+            var letter = fam.images[a][steps[l].seg_a if side == 0 else steps[l].seg_b].letter
             var sign = 1 if side == 0 else -1
-            parts[1 + f][letter] = poly_add(parts[1 + f][letter], poly_const(sign))
+            ref vec = powers[letter][L - 1 - l]
+            for i in range(3):
+                parts[1 + f][i] = poly_scale(vec[i], sign)
             for k in range(m):
                 var mono = Poly()
-                mono.add_term(String(k), sign)
-                parts[1 + f + 1 + k][letter] = poly_add(parts[1 + f + 1 + k][letter], mono)
-        for j in range(count + 1):
-            for i in range(3):
-                if poly_degree(parts[j][i]) > POLY_DEGREE:
-                    out.why = "the end offset's degree exceeds the cap"
-                    return out^
+                mono.add_term(mono_var(k), sign)
+                for i in range(3):
+                    parts[1 + f + 1 + k][i] = poly_mul(vec[i], mono)
     # the closing forms, linear in the unknowns: gamma_L itself, or Lemma
     # X's third coordinate offset (M gamma_L)[third] + pre_a - pre_b
     if close:
@@ -723,12 +825,12 @@ def _solve(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, 
             only.append(Poly())
             parts[j] = only^
     # equations: every monomial of every closing form vanishes
-    var keys = List[String]()
-    var seen = Dict[String, Int]()
+    var keys = List[Int]()
+    var seen = Dict[Int, Int]()
     for j in range(count + 1):
         for i in range(3):
             for e in parts[j][i].terms.items():
-                var key = String(i) + "|" + e.key
+                var key = 4 * e.key + i
                 if key not in seen:
                     seen[key] = len(keys)
                     keys.append(key)
@@ -741,7 +843,7 @@ def _solve(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, 
     for j in range(count + 1):
         for i in range(3):
             for e in parts[j][i].terms.items():
-                var r = seen[String(i) + "|" + e.key]
+                var r = seen[4 * e.key + i]
                 if j == 0:
                     rows[r][count] = q_int(-e.value)  # right-hand side
                 else:
@@ -760,6 +862,12 @@ def _solve(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, 
                 row[f + 1 + k] = q_int(ns[k])
             row[count] = q_int(steps[l].off_a[0] if side == 0 else steps[l].off_b[0])
             rows.append(row^)
+    # screen mod two primes (guidance only: a system consistent over Q is
+    # consistent mod p unless p divides a pivot, and whatever is solved
+    # below is solved exactly and verified)
+    if not _consistent_mod(rows, count, SCREEN_PRIME_1) and not _consistent_mod(rows, count, SCREEN_PRIME_2):
+        out.why = "no affine offsets make the end offset vanish on the region (mod p)"
+        return out^
     var red = rref(rows)
     ref R = red[0]
     ref pivots = red[1]
