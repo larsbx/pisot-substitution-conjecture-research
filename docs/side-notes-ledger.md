@@ -94,6 +94,18 @@ by deleting it.
   constant, no common first letter. Do not test Theorem K's members against
   `barge_witness` again. · `p1a-tail-literature-gate-2026-10-07.md` §3
 
+- 2026-10-07 · **Bounded `Z_2` closes the tails for every `Delta`.** With
+  `Z_2 <= cap` the members' run patterns are finitely many and fully
+  revealed (`w_1` or `u` beginning with `z`, at most `Z_2 + s` z-runs;
+  `w_2` at most `cap`), symbolic in `Delta` and the run lengths; split by
+  the value of `Z_2` (pieces above `cap` left out) each closes:
+  `s = +1, Z_2 <= 1`: 24 patterns, 51 regions, 3 s; `Z_2 <= 2`: 60
+  patterns, 748 regions, 45 s; `s = −1, Z_2 <= 2`: 20 patterns, 92 regions,
+  2.5 s. Days of the open-tail run tree had not closed what this
+  decomposition closes in seconds: decompose by the Pisot factor first.
+  · `kernel/odd_letter_family_certificate.mojo` (`zcap_cover`, driver
+  `2 zcap s cap budget`)
+
 ## 4. Withdrawn or unreproducible figures
 
 - 2026-10-04 · "1,764 formal producer-free cycles; maximum death radius 7;

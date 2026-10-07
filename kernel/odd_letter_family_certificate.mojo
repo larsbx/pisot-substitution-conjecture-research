@@ -652,6 +652,14 @@ def main() raises:
                 res_closed += e.value
         print("residue members:", res_total, " in closed shape cells:", res_closed, " left:", res_total - res_closed)
         return
+    if len(args) > 2 and String(args[2]) == "zcap":
+        # Theorem K's members with Z_2 <= cap, every Delta: zcap s cap budget
+        var s = Int(String(args[3]))
+        var cap = Int(String(args[4]))
+        var budget = Int(String(args[5])) if len(args) > 5 else 5000
+        var c = zcap_cover(s, cap, budget, True)
+        print("s =", s, " Z_2 <=", cap, ", every Delta: patterns", c.patterns, " closed", c.closed, " regions", c.regions, " -> ", "CLOSED" if c.closed == c.patterns else "OPEN", flush=True)
+        return
     if len(args) > 2 and String(args[2]) == "cell":
         # one delta cell by the guided run tree:
         # cell s delta budget [max_runs] [tail|xblock|plain] [journal path]
@@ -3284,7 +3292,7 @@ def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, 
     return List[Int]()
 
 
-def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int, tail: Bool = False, verbose: Bool = False, cut_first: Bool = True, corners: Int = 0, z_split: Int = 0) raises -> ShapeCover:
+def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int, tail: Bool = False, verbose: Bool = False, cut_first: Bool = True, corners: Int = 0, z_split: Int = 0, z_cap: Bool = False) raises -> ShapeCover:
     """Cover the pattern's members in one delta cell by certificate-guided
     partition. Regions carry their own inequalities. At a point of each region
     find a certificate (an exact line-mode path, else a Lemma X closure), lift
@@ -3320,7 +3328,10 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
         if z_split > 0 and not reg.split:
             var pieces = _split_by_factor(reg, _pisot_quadratic(pattern_counts(pat, reg.subst), s)[0], z_split)
             if len(pieces) > 0:
-                for k in range(len(pieces)):
+                # with z_cap the claim is restricted to Z_2 <= z_split: the
+                # last piece (Z_2 > z_split) is left out, not covered
+                var keep = len(pieces) - 1 if z_cap else len(pieces)
+                for k in range(keep):
                     stack.append(pieces[k].copy())
                 continue
         # where Lemma P1's form is affine on the region (Delta fixed), split
@@ -3849,4 +3860,68 @@ def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Boo
             print("    refine ", pat, "  (open", c.open, ")", flush=True)
         for k in range(len(kids)):
             stack.append(kids[k].copy())
+    return out^
+
+
+def _alternating_runs(first: Int, n: Int) -> List[Int]:
+    var out = List[Int]()
+    var c = first
+    for _ in range(n):
+        out.append(c)
+        c = Z if c == Y else Y
+    return out^
+
+
+struct ZCapCover(Copyable, Movable):
+    var patterns: Int
+    var closed: Int
+    var regions: Int
+    var open_patterns: List[String]
+
+    def __init__(out self):
+        self.patterns = 0
+        self.closed = 0
+        self.regions = 0
+        self.open_patterns = List[String]()
+
+
+def zcap_cover(s: Int, cap: Int, budget: Int, verbose: Bool = False) raises -> ZCapCover:
+    """Theorem K's members with `Z_2 <= cap`, for every `Delta` of the sign's
+    tail (`s = +1`: `Delta = 1 + e`, the core `u` of Lemma Φ5 before
+    `y^Delta`; `s = −1`: `Delta = −e`), by finitely many fully revealed run
+    patterns: `w_1` (or `u`) beginning with `z` with at most `Z_1 = Z_2 + s`
+    z-runs, `w_2` with at most `cap`. Each pattern is covered with the region
+    split by the value of `Z_2` and the pieces above `cap` left out
+    (`z_cap`). Runs alternate, so every pair lies under exactly one
+    pattern."""
+    var out = ZCapCover()
+    var z1_max = cap + s
+    var l1s = List[List[Int]]()
+    for n in range(1, 2 * z1_max + 1):
+        l1s.append(_alternating_runs(Z, n))
+    var l2s = List[List[Int]]()
+    l2s.append(List[Int]())
+    for first in [Y, Z]:
+        for n in range(1, 2 * cap + 2):
+            var w = _alternating_runs(first, n)
+            var zr = 0
+            for k in range(len(w)):
+                if w[k] == Z:
+                    zr += 1
+            if zr <= cap:
+                l2s.append(w^)
+    for i in range(len(l1s)):
+        for j in range(len(l2s)):
+            var pat = RunPattern(l1s[i].copy(), False, l2s[j].copy(), False)
+            if s == 1:
+                pat.tail_run1 = 1
+            var c = cover_pattern_guided(pat, s, 1 if s == 1 else 0, budget, True, False, True, 0, cap, True)
+            out.patterns += 1
+            out.regions += c.regions
+            if c.open == 0 and not c.budget_exhausted:
+                out.closed += 1
+            else:
+                out.open_patterns.append(String(pat))
+                if verbose:
+                    print("    OPEN   ", pat, "  regions", c.regions, " open", c.open, " budget" if c.budget_exhausted else "", flush=True)
     return out^
