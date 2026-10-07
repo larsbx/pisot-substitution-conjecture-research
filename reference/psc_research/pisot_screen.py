@@ -196,7 +196,9 @@ def _auxiliary_derivative(row: Sequence[Fraction], top_degree: int) -> list[Frac
 
 def _poly_gcd(a: Sequence[Fraction], b: Sequence[Fraction]) -> list[Fraction]:
     """Monic greatest common divisor over the rationals."""
-    a, b = [Fraction(x) for x in a], [Fraction(x) for x in b]
+    # Exact Fractions are immutable; canonicalize all other types, including subclasses.
+    a = [x if type(x) is Fraction else Fraction(x) for x in a]
+    b = [x if type(x) is Fraction else Fraction(x) for x in b]
     while degree(b) >= 0:
         a, b = b, _poly_rem(a, b)
     d = degree(a)
