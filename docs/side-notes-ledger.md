@@ -106,6 +106,23 @@ by deleting it.
   · `kernel/odd_letter_family_certificate.mojo` (`zcap_cover`, driver
   `2 zcap s cap budget`)
 
+- 2026-10-07 · The Z_2-cap route, measured beyond cap 3. s = −1, Z_2 <= 4
+  does not close: of its patterns, `zy | yzyzyz`, `zy | yzyzyzy`,
+  `zy | yzyzyzyz` keep 9, 36 and 10 open regions after the finishers
+  (Fourier-Motzkin bounds, implied equalities, point-by-point decision up
+  to 2,000 points): the leftovers are finite boxes of up to ~18,000 points
+  (`n2` in `[20, 42]`, `n4, n6 <= 27`), slices with large constants
+  inherited from earlier carvings, where certificates found elsewhere do
+  not extend. Cost per cap: 3 s, 45 s, 82 s for the closed caps, hours at
+  cap 4. Witness shapes at `s = −1, Delta = −2`, `|w_1| <= 6` (scratch
+  census of distinct members): `Z_2 = 2`: 24 members, 20 shapes; `Z_2 = 3`:
+  186, 42; `Z_2 = 4`: 470, 86. The leading shapes at `Z_2 = 3` and `4` are
+  the same level-3 paths (`w_1` read from its start, `w_2` from its end),
+  so the bulk is uniform in `Z_2`, but the number of shapes grows with it:
+  no finite named-path lemma covers all `Z_2` from this census. ·
+  `kernel/odd_letter_family_certificate.mojo` (`zcap_cover`); scratch
+  `zshape.py`
+
 ## 4. Withdrawn or unreproducible figures
 
 - 2026-10-04 · "1,764 formal producer-free cycles; maximum death radius 7;
