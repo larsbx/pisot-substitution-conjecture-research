@@ -667,6 +667,23 @@ def main() raises:
         var c = zcap_cover(s, cap, budget, True, journal)
         print("s =", s, " Z_2 <=", cap, ", every Delta: patterns", c.patterns, " closed", c.closed, " regions", c.regions, " -> ", "CLOSED" if c.closed == c.patterns else "OPEN", flush=True)
         return
+    if len(args) > 2 and String(args[2]) == "zfloor":
+        # Theorem K's tail members with Z_2 >= floor, Lemma P1 linear:
+        # zfloor s delta floor budget [max_runs] [journal]
+        var s = Int(String(args[3]))
+        var d = Int(String(args[4]))
+        var floor = Int(String(args[5]))
+        var budget = Int(String(args[6]))
+        var max_runs = Int(String(args[7])) if len(args) > 7 else 8
+        var journal = String(args[8]) if len(args) > 8 else String()
+        print("s =", s, " |Delta| >=", abs(d), " Z_2 >=", floor, ": guided run tree, region budget", budget, "per pattern, at most", max_runs, "revealed runs", flush=True)
+        var leaves = run_tree_guided(s, d, max_runs, budget, True, s == 1, s == -1, journal, floor)
+        var closed = 0
+        for k in range(len(leaves)):
+            if leaves[k].closed:
+                closed += 1
+        print("s =", s, " |Delta| >=", abs(d), " Z_2 >=", floor, ": leaves", len(leaves), " closed", closed, " -> ", "CLOSED" if closed == len(leaves) else "OPEN", flush=True)
+        return
     if len(args) > 2 and String(args[2]) == "cell":
         # one delta cell by the guided run tree:
         # cell s delta budget [max_runs] [tail|xblock|plain] [journal path]
@@ -3549,7 +3566,7 @@ def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, 
     return List[Int]()
 
 
-def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int, tail: Bool = False, verbose: Bool = False, cut_first: Bool = True, corners: Int = 0, z_split: Int = 0, z_cap: Bool = False) raises -> ShapeCover:
+def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int, tail: Bool = False, verbose: Bool = False, cut_first: Bool = True, corners: Int = 0, z_split: Int = 0, z_cap: Bool = False, z_floor: Int = 0) raises -> ShapeCover:
     """Cover the pattern's members in one delta cell by certificate-guided
     partition. Regions carry their own inequalities. At a point of each region
     find a certificate (an exact line-mode path, else a Lemma X closure), lift
@@ -3557,14 +3574,25 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
     certificate is re-verified by the ordinary verifier under the region's
     inequalities; the rest goes back on the stack. A non-PIP point carves the
     McCormick quadrant of Lemma P1. Regions left at the budget are reported
-    open."""
+    open.
+
+    With `z_floor > 0` the claim is restricted to `Z_2 >= z_floor`, and
+    Lemma P1 enters once, linearly (`z_floor_forms`): each start region
+    carries `Z_2 >= z_floor` and the McCormick consequence of `f <= -1`."""
     var out = ShapeCover()
     var screen = CubicScreen()
     var m = pat.slots() + (1 if tail else 0)
     var starts = _pattern_starts(pat, s, delta, tail)
     var stack = List[GuidedRegion]()
     for k in range(len(starts)):
-        stack.append(GuidedRegion(starts[k].copy(), List[List[Int]](), 0))
+        var start = GuidedRegion(starts[k].copy(), List[List[Int]](), 0)
+        if z_floor > 0:
+            var g = z_floor_forms(pattern_counts(pat, starts[k]), s, z_floor)
+            if len(g) == 0:
+                raise Error("z_floor needs |Delta| - 1 bounded below on the pattern")
+            start = _with_assumptions(start, g)
+            out.cut += 1
+        stack.append(start^)
     while len(stack) > 0:
         var reg = stack.pop()
         out.regions += 1
@@ -3766,6 +3794,21 @@ def _affine_pisot_form(counts: List[List[Int]], s: Int) raises -> List[Int]:
     for k in range(w):
         out.append(f[k])
     return out^
+
+
+def z_floor_forms(counts: List[List[Int]], s: Int, z_floor: Int) -> List[List[Int]]:
+    """Lemma P1 on `Z_2 >= z_floor` as linear forms: `a - z_floor`,
+    `b - b_lo` and `-1 - G_3`, the McCormick forms of `f = a b + c`
+    (`a = Z_2`, `b = |Delta| - 1`) at the corner `(z_floor, b_lo)`, `b_lo`
+    the least value of `b` on the orthant. On the quadrant `f >= G_3`, so
+    every PIP member (`f <= -1`) with `Z_2 >= z_floor` satisfies all three.
+    Empty if `b` is unbounded below on the orthant."""
+    var b_lo = _orthant_floor(_pisot_quadratic(counts, s)[1])
+    if b_lo <= -(1 << 40):
+        return List[List[Int]]()
+    var g = mccormick_forms(counts, s, z_floor, b_lo)
+    g[2] = _minus_one_minus(g[2])
+    return g^
 
 
 def _minus_one_minus(f: List[Int]) -> List[Int]:
@@ -4124,7 +4167,7 @@ def _journal_add(path: String, key: String, verdict: String) raises:
         f.write(key + " => " + verdict + "\n")
 
 
-def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Bool = False, tail: Bool = False, xblock_root: Bool = False, journal: String = "") raises -> List[RunTreeLeaf]:
+def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Bool = False, tail: Bool = False, xblock_root: Bool = False, journal: String = "", z_floor: Int = 0) raises -> List[RunTreeLeaf]:
     """The run tree of one delta cell under its suffix roots, each pattern
     covered by certificate-guided partition. With `tail` (s = +1 only), the
     cell is `Delta >= delta`: w_1 closes with y^(delta + e).
@@ -4132,7 +4175,10 @@ def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Boo
     With a `journal` path, each pattern's verdict is appended to it as it is
     decided, and verdicts already there are replayed instead of recomputed,
     so a run interrupted by a restart resumes. A replayed verdict is not
-    re-verified: a run that a proof cites is one without a journal."""
+    re-verified: a run that a proof cites is one without a journal.
+
+    With `z_floor > 0` the claim is the members with `Z_2 >= z_floor`, Lemma
+    P1 entering linearly (`cover_pattern_guided`)."""
     var out = List[RunTreeLeaf]()
     var done = _journal_load(journal)
     var stack = List[RunPattern]()
@@ -4151,7 +4197,7 @@ def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Boo
         stack = suffix_roots(s, delta)
     while len(stack) > 0:
         var pat = stack.pop()
-        var key = String(pat)
+        var key = String(pat) + (" (Z_2 >= " + String(z_floor) + ")" if z_floor > 0 else "")
         if key in done:
             var verdict = done[key]
             if verbose:
@@ -4166,7 +4212,7 @@ def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Boo
             for k in range(len(replayed)):
                 stack.append(replayed[k].copy())
             continue
-        var c = cover_pattern_guided(pat, s, delta, budget, tail)
+        var c = cover_pattern_guided(pat, s, delta, budget, tail, z_floor=z_floor)
         if c.open == 0:
             _journal_add(journal, key, "closed")
             if verbose:

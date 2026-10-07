@@ -123,6 +123,24 @@ by deleting it.
   `kernel/odd_letter_family_certificate.mojo` (`zcap_cover`); scratch
   `zshape.py`
 
+- 2026-10-07 · Unbounded `Z_2`: Lemma P1 is needed only **linearly**. At
+  the McCormick corner `(floor, b_lo)` (`a = Z_2`, `b = |Delta| − 1`) it
+  implies one affine form, `2 Y_2 >= Z_2 + 2 Delta − 8` (`s = +1`,
+  `Delta >= 2`, `Z_2 >= 3`) and `2 Y_1 >= Z_2 + 3|Delta| − 4` (`s = −1`,
+  `|Delta| >= 2`, `Z_2 >= 4`) (`z_floor_forms`). On that polyhedral region
+  every non-crossing pair tested is coincident, PIP or not: exhaustive
+  `|w_1| <= 9` (`s = +1`: 453 pairs; `s = −1`, `|w_2| <= 13`: in progress)
+  holds only PIP pairs (non-PIP region points need longer words), so a
+  seeded sample of the **non-PIP** part (seed 1, 150 draws each sign,
+  `Z_2 <= 8`, `|Delta| <= 6`; seed 2, `s = +1`, 400 draws, `Z_2 <= 14`,
+  `Delta <= 10`) found every pair coincident by level 4 (draw budget 200
+  per wanted pair, not exhausted). Outside it, non-PIP pairs do fail (e.g.
+  `w_1 = z^k y^3`, `w_2 = z^(k−1)`, `k >= 6`: no tile by level 7), so the
+  quadratic is replaced, not dropped. Consequence: the open-tail cover needs
+  no McCormick staircase; `2 zfloor s delta floor budget` runs it.
+  · `kernel/odd_letter_family_certificate.mojo` (`z_floor_forms`,
+  `cover_pattern_guided(z_floor=)`); scratch `lin.py`, `linsamp.py`
+
 ## 4. Withdrawn or unreproducible figures
 
 - 2026-10-04 · "1,764 formal producer-free cycles; maximum death radius 7;
