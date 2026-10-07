@@ -950,3 +950,14 @@ by deleting it.
   No mathematical claim or review status changes. ·
   [October 7 follow-up](audit-2026-10-06.md#7-follow-up-2026-10-07);
   [PR #221 evidence](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/221)
+- 2026-10-07 · Adversarial audit of Proposition V and Theorem E found no
+  disproof and no failing proof step. An independent oracle reproduced every
+  computational input: the Theorem E class enumerated to image length 5 stays
+  in the normal form and is coincident; the 27-member residue was reproduced;
+  the Proposition V radii hold with margin ≥ 2. Four presentation fixes were
+  applied to the A1′ note: "position" means prefix length, L_BC's dead
+  `r = q = 0` clause was removed, two endings have det divisible by 4, and
+  §3b.7 line ranges are now explicit. The dead clause stays in the kernel's
+  `lemma_witness`, where it is unreachable. No claim status changes. ·
+  `audit-adversarial-prop-v-theorem-e-2026-10-07.md`,
+  `archive/2026-10-07/session-probes/`
