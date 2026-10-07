@@ -50,6 +50,19 @@ by deleting it.
 
 ## 2. Redirected routes (no lever there; see the decision)
 
+- 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
+  says why in terms of objects rather than counts: a `CU`-failure *is* a
+  prefix-vs-interior periodic pair, whose centre is a vertex of one tiling of
+  infinite level and interior to every level tile of the other — hence
+  **never** a common vertex, by construction. So these pairs are a forced,
+  abundant family (10,584 on the corpus, on 2,760 specimens) that costs
+  nothing: G1 holds on the whole standing corpus anyway. The genuine
+  obstruction to #139 is the **interior-vs-interior** pair of Theorem B, where
+  the centre is a vertex of neither tiling and a shared vertex elsewhere is
+  open — `psc.periodic_pair` and PPVC. Spend #139 effort there. The leftmost
+  chain's remaining use is Corollary LC5. ·
+  `p1b-leftmost-chain-periodic-pair-2026-10-05.md` §8b
+
 - 2026-10-03 · Barge's (W) / beta-numeration monotonicity as a route to PPVC:
   it is a consequence of pure discrete spectrum, not independent of it. ·
   `p1b-vertex-coincidence-box-2026-10-02.md` §5.7 route check
@@ -82,6 +95,65 @@ by deleting it.
   2006 thesis is not retrievable (Bielefeld repository refuses access). Do
   not re-search; consequence FP ⟺ PDS. ·
   `pds-strong-coincidence-literature-gate-2026-10-04.md`
+
+- 2026-10-07 · Theorem K's family has no power or rotation in Barge's PDS
+  class or its mirror: the initial (and final) letters of `sigma^n` on
+  `o, y, z` alternate `(y, o, o)` / `(o, y, y)`, never injective, never
+  constant, no common first letter. Do not test Theorem K's members against
+  `barge_witness` again. · `p1a-tail-literature-gate-2026-10-07.md` §3
+
+- 2026-10-07 · **Bounded `Z_2` closes the tails for every `Delta`.** With
+  `Z_2 <= cap` the members' run patterns are finitely many and fully
+  revealed (`w_1` or `u` beginning with `z`, at most `Z_2 + s` z-runs;
+  `w_2` at most `cap`), symbolic in `Delta` and the run lengths; split by
+  the value of `Z_2` (pieces above `cap` left out) each closes:
+  `s = +1, Z_2 <= 1`: 24 patterns, 51 regions, 3 s; `Z_2 <= 2`: 60
+  patterns, 748 regions, 45 s; `s = −1, Z_2 <= 2`: 20 patterns, 92 regions,
+  2.5 s. Days of the open-tail run tree had not closed what this
+  decomposition closes in seconds: decompose by the Pisot factor first.
+  · `kernel/odd_letter_family_certificate.mojo` (`zcap_cover`, driver
+  `2 zcap s cap budget`)
+
+- 2026-10-07 · The Z_2-cap route, measured beyond cap 3. s = −1, Z_2 <= 4
+  does not close: of its patterns, `zy | yzyzyz`, `zy | yzyzyzy`,
+  `zy | yzyzyzyz` keep 9, 36 and 10 open regions after the finishers
+  (Fourier-Motzkin bounds, implied equalities, point-by-point decision up
+  to 2,000 points): the leftovers are finite boxes of up to ~18,000 points
+  (`n2` in `[20, 42]`, `n4, n6 <= 27`), slices with large constants
+  inherited from earlier carvings, where certificates found elsewhere do
+  not extend. Cost per cap: 3 s, 45 s, 82 s for the closed caps, hours at
+  cap 4. Witness shapes at `s = −1, Delta = −2`, `|w_1| <= 6` (scratch
+  census of distinct members): `Z_2 = 2`: 24 members, 20 shapes; `Z_2 = 3`:
+  186, 42; `Z_2 = 4`: 470, 86. The leading shapes at `Z_2 = 3` and `4` are
+  the same level-3 paths (`w_1` read from its start, `w_2` from its end),
+  so the bulk is uniform in `Z_2`, but the number of shapes grows with it:
+  no finite named-path lemma covers all `Z_2` from this census. ·
+  `kernel/odd_letter_family_certificate.mojo` (`zcap_cover`); scratch
+  `zshape.py`
+
+- 2026-10-07 · Unbounded `Z_2`: Lemma P1 is needed only **linearly**. At
+  the McCormick corner `(floor, b_lo)` (`a = Z_2`, `b = |Delta| − 1`) it
+  implies one affine form, `2 Y_2 >= Z_2 + 2 Delta − 8` (`s = +1`,
+  `Delta >= 2`, `Z_2 >= 3`) and `2 Y_1 >= Z_2 + 3|Delta| − 4` (`s = −1`,
+  `|Delta| >= 2`, `Z_2 >= 4`) (`z_floor_forms`). On that polyhedral region
+  every non-crossing pair tested is coincident, PIP or not: exhaustive
+  `|w_1| <= 9` (`s = +1`: 453 pairs; `s = −1`, `|w_2| <= 13`: in progress)
+  holds only PIP pairs (non-PIP region points need longer words), so a
+  seeded sample of the **non-PIP** part (seed 1, 150 draws each sign,
+  `Z_2 <= 8`, `|Delta| <= 6`; seed 2, `s = +1`, 400 draws, `Z_2 <= 14`,
+  `Delta <= 10`) found every pair coincident by level 4 (draw budget 200
+  per wanted pair, not exhausted). Outside it, non-PIP pairs do fail (e.g.
+  `w_1 = z^k y^3`, `w_2 = z^(k−1)`, `k >= 6`: no tile by level 7), so the
+  quadratic is replaced, not dropped. Consequence: the open-tail cover needs
+  no McCormick staircase; `2 zfloor s delta floor budget` runs it.
+  · `kernel/odd_letter_family_certificate.mojo` (`z_floor_forms`,
+  `cover_pattern_guided(z_floor=)`); scratch `lin.py`, `linsamp.py`
+  Correction (2026-10-07): the `s = −1` exhaustive run "in progress" never
+  started (launched from the wrong directory); the `s = −1` exhaustive figure
+  is `|w_1| <= 7`, `|w_2| <= 11`: 1,395 region pairs, all PIP, all coincident
+  by level 5. The seed-2 `s = −1` sample (400 wanted, `Z_2 <= 14`,
+  `|Delta| <= 10`) was killed out of memory (10.5 GB: `first_tile` expands
+  whole level-6 words), so it reports nothing; `s = −1` rests on seed 1 only.
 
 ## 4. Withdrawn or unreproducible figures
 
@@ -265,6 +337,424 @@ by deleting it.
     least load-bearing of the three routes. The dated
     `completion-ledger-2026-10-02.md` snapshot stays frozen by design. ·
     `audit-2026-10-04.md` §D.5 correction
+
+- 2026-10-05 · **Theorem E proved**: on the catch-up-free `|det M| = 2` class,
+  any two distinct letters fixed by the first-letter map are eventually
+  coincident, so case (i) of #138's aligned template is eliminated on the whole
+  class. Three things worth not rediscovering. (1) `p, q, r` sit only in the
+  bottom row of `M`, so `det M`, `f(1)` and `f(-1)` are all **affine** in them,
+  and `|det M| = 2` is a linear Diophantine condition that fixes one
+  parameter. (2) The Pisot necessary conditions `f(1) < 0`, `f(-1) < 0`
+  (Lemma P1) predict every line's PIP range *exactly* — e.g. B's line
+  `(n, 0, 1)` has `f(-1) = n - 12`, which is why it stops at `n = 11` — so no
+  witness lemma is needed on the lines, only on the 2-dimensional bulk. (3) The
+  bulk falls to three explicit witness lemmas, each a one-step cancellation of
+  a small Parikh discrepancy by offsets that differ by one inside the next
+  blocks. The remainder is 27 explicit substitutions, all decided coincident
+  at levels 3-7. · `p1a-a1-prime-2026-10-05.md` §3b;
+  `kernel/tests/test_a1_normal_form.mojo`
+
+- 2026-10-06 · Prefix transfer: `sigma^(n+1)(i)` begins with
+  `sigma^n(h(i))`, so coincidence propagates *backwards* along the pair map
+  `H({i,j}) = {h(i),h(j)}`, and all-pairs strong coincidence holds iff every
+  `H`-cycle of distinct pairs contains a coincident pair. Do not re-derive the
+  per-pair cases by search: on the catch-up-free `|det M| = 2`, `|O| = 2`
+  class the `H`-cycles are a seven-row table, and only the swap family
+  (`h` swaps the odd letters) is not closed by Theorem E, Lemma T,
+  Barge–Diamond, or the two-lemma Proposition Y. Its sweep needs level-4
+  witnesses on infinite lines (`(n+1,0,n)` in ending `(x,x,x,c)`), so Theorem
+  E's level-2/3 lemma style will not suffice there. Reversal preserves `M` but
+  not coincidence levels (swap ending `(x,c,x,x)` is class D reversed, with
+  different levels). · `p1a-a1-prime-2026-10-05.md` §3c;
+  `kernel/tests/test_a1_normal_form.mojo`
+
+- 2026-10-06 · **Theorem H / Corollary H1 proved**: strong coincidence for
+  every pair on the catch-up-free `|det M| = 2` two-odd-letter class. Worth
+  not rediscovering: (1) *constant-offset* witness paths suffice — every
+  `gamma_l` along the path is a parameter-free vector, so `M gamma` is affine
+  and validity on a whole cone is affine identities plus coefficient-sign
+  inequalities (`psc.cone_witness`); (2) with that, every bulk quadrant of the
+  swap family is **one** cone, and the level-4 infinite lines are cones too —
+  hand-found lemmas were the bottleneck, not the mathematics; (3) the search
+  re-finds Theorem E's L_D with the lemma's own position `p + 3`, so the
+  machinery should be tried first on any new linear-exponent family. It does
+  not reach the `|O| = 1` sub-class as it stands: there the images `o w o`
+  carry arbitrary two-letter words `w`, not one run. ·
+  `p1a-a1-prime-2026-10-05.md` §3d;
+  `kernel/tests/test_swap_family_certificate.mojo`;
+  `p1a-swap-family-literature-gate-2026-10-06.md`
+
+- 2026-10-06 · One odd letter needs no new machinery except in one row: the
+  images are a non-`o` letter or `o w o`, so `h` is `o` on every long image and
+  prefix transfer closes every pair unless `sigma(o)` is a single letter (or
+  two images are short, which forces a letter 3-cycle and Barge–Diamond). None
+  of the 18 one-odd-letter corpus specimens is in that row, so the open family
+  of Theorem K has **no corpus member**; a census of it must be built from
+  scratch, over patterns of runs in `w_1, w_2`. · `p1a-a1-prime-2026-10-05.md`
+  §3e; `kernel/tests/test_swap_family_certificate.mojo`
+
+- 2026-10-06 · Theorem K's family (`sigma(o) = y`, `o w_1 o`, `o w_2 o`):
+  `det M = 2(Z_1 − Z_2)`, and every witness found starts
+  `(o, y) -> (y, w_1[0], −e_o)`. When `w_1` begins with `z` the crossing of the
+  Parikh walks of `w_1` and `w_2 + e_y` gives level 3 through the two final
+  `o`s (Lemma Φ2), so only non-crossing pairs remain. **Do not retry the
+  letter-by-letter pattern tree** on them: with opaque tails and relational
+  splits its open leaves still grow (34, 237, 969, 4,083 at depths 6, 9, 11,
+  13); the non-crossing witnesses depend on `delta = pi(w_1) − pi(w_2)`, so
+  the next decomposition should split on `delta` and on the walk. ·
+  `p1a-a1-prime-2026-10-05.md` §3f;
+  `kernel/tests/test_odd_letter_family_certificate.mojo`
+
+- 2026-10-06 · Delta split of Theorem K's family: `f(−1) = (1 + Z_2)(Y_2 − Y_1 − 1)`
+  when `Z_1 = Z_2 + 1` and `f(1) = (Z_2 − 1)(Y_1 − Y_2 − 1)` when
+  `Z_1 = Z_2 − 1` (exact), so the sign of `Y_1 − Y_2` is fixed by `s`. Most
+  witnesses sit at **common points** of the walks of `w_1` and `w_2 + e_z`
+  (`t = 1` always is one): a matched step needs a factor of Parikh `±delta`, an
+  unmatched one a meeting of `w_2` with `w_1 + delta`. That closes
+  `delta = e_z` (Theorem Φ) but leaves a growing residue elsewhere (87 at
+  length 7, 265 at 8). The parametric cone search on residue run families
+  works only with `Delta` fixed. Next: split on `Delta` together with
+  relational run-length splits. · `p1a-a1-prime-2026-10-05.md` §3g;
+  `kernel/tests/test_odd_letter_family_certificate.mojo`
+
+- 2026-10-06 · Run-shape cover of Theorem K's residue: whole shape families
+  close (Theorem Ψ; 29 cells at length 8) once three things are in place —
+  exact `Delta` cells (with `Delta` free, `delta` is not constant), the
+  quadratic Pisot forms `f(1) = Z_2(Delta − 1) − 2Y_2 − Delta − 3` /
+  `f(−1) = Z_2(|Delta| − 1) − 2Y_1 − |Delta| + 3` as cuts (they kill the
+  `Delta`-tails), and a **line mode** allowing offsets affine along
+  `e_z − e_y` (some witnesses pass through `(b + 1)(e_z − e_y)`). Value
+  splits alone just push an open region outward (`a >= 11`): when a cell
+  will not close, look for a non-constant offset, not a deeper split.
+  Many-run shapes still exceed a 600-region budget. Tooling: never
+  `pkill -f` / `pgrep -f` a pattern that also appears in the running shell's
+  own command line — it kills that shell (happened twice). ·
+  `p1a-a1-prime-2026-10-05.md` §3h; `kernel/tests/test_odd_letter_family_certificate.mojo`
+
+- 2026-10-06 · Induction on runs for Theorem K's residue: run patterns with
+  an opaque tail close as whole infinite families (unboundedly many runs);
+  over six `delta` cells 60 of 84 run-tree leaves close, and the cell
+  `(s, Delta) = (+1, 1)` is settled up to `zyz* | zyz*`, `zyz* | yzy*`
+  (Theorem Ξ). **Refining a doubly open pattern does not converge**: one
+  revealed run moves the openness to the other word (open regions 104, 74,
+  96, 44, 107 down the chain in cell `(+1, 1)`), so do not spend more budget
+  or depth there. The residue is mostly **single excursions**: only common
+  point `t = 1` (51 of 87 at length 7, 170 of 265 at 8). Next: a witness
+  argument inside an excursion. Tooling: a scratch driver `kernel/_*.mojo`
+  was once committed by mistake; check `git status` for it. ·
+  `p1a-a1-prime-2026-10-05.md` §3i; `kernel/tests/test_odd_letter_family_certificate.mojo`
+
+- 2026-10-06 · Excursion route for Theorem K's residue. **A lockstep
+  one-counter reading is the wrong model**: the level-2 state is
+  `(w_1[t], w_2[t−1], (1−h)(e_z−e_y))`, but closures compare the walks at a
+  lag `c (Delta + s)` (`M(e_z − e_y) = −delta`). What works is **Lemma X**
+  (monotone paths crossing at their endpoints meet; weak end allowed when a
+  letter follows), which reads endpoints only and so crosses opaque tails,
+  plus **Lemma Φ5′** (`s = −1`: `w_2` ends in an explicit suffix of length
+  `2 − Delta` with two `z`). Ablations (exploratory): without the Φ5/Φ5′
+  suffix the revealed runs a certificate needs grow with length (to 7 at
+  30–40); without lagged cuts `s = −1` climbs to 5–6; extremum cuts of `h`
+  are a marginal aid. With them (kernel `reveal_census`) the need is at most
+  2 runs through length 10 exhaustively and at most 4 in seeded samples at
+  lengths 40–60. **Blind splitting does
+  not uniformize** the per-point certificates: open regions 44 → 533 → 994 as
+  the budget grows 300 → 3,000 → 20,000, while every one of 11,664 tested
+  points has an opaque-tail certificate. Next: a certificate-guided
+  partition (lift a point certificate, carve its validity polyhedron). Do not
+  spend more budget on relational/value splits. Tooling: `grep` without
+  `--line-buffered` hides a long driver's progress until it exits. ·
+  `p1a-a1-prime-2026-10-05.md` §3j; `p1a-excursion-route-literature-gate-2026-10-06.md`;
+  `kernel/tests/test_odd_letter_family_certificate.mojo`
+
+- 2026-10-06 · Certificate-guided partition (exact integer decomposition
+  `impose_nonneg` + lifted base-point certificates) closes what blind
+  splitting could not: Theorem Λ, the whole cell `(+1, 1)`. **Base points
+  must be generic**: from the origin, certificates carve slices
+  (`n_0 = 0`) and the cover peels one value at a time; with every variable 2,
+  they exploit accidental equalities (`2 n_0 = n_3 + n_6`), and one carve split
+  into 8,307 + 35,040 regions. Distinct primes `2, 3, 5, …` fixed both
+  (`zyz* +y | yzy*`: 18,396 regions → 2,833). Drop duplicate carving forms.
+  Tooling: never `pkill -f` a scratch binary; kill by the PID that `ps`
+  lists. · `p1a-a1-prime-2026-10-05.md` §3k;
+  `kernel/tests/test_odd_letter_family_certificate.mojo`
+
+- 2026-10-06 · Regions that carry their own inequalities (`GuidedRegion`,
+  `Prover` in `psc/cone_witness.mojo`) replace decomposition in the guided
+  cover. Pitfalls met on the way, each now a regression: the verifiers' end
+  tests asked the offset to be *identically* zero, which a carved region
+  never makes it (they now ask the prover for `= 0` on the region); a form
+  tightened by its gcd (`tighten`, Chvátal–Gomory, same integer points) is
+  only re-provable with a multiplier (`f − 2 T >= 0`), so the prover reads
+  multipliers off coefficient ratios; the base-point walk into a region
+  overflowed `Int` and lifted a certificate at a garbage point (now capped,
+  and a carve whose inside misses its own base point raises). Complements of
+  carves are mostly *empty*, and often only through three assumptions at
+  once; pairwise sums missed them and the raise-only walk found no point, so
+  they were reported open (412 of them in `zyz* +y | yzy*`). Sums of up to
+  three assumptions, integer bound propagation (`propagate_bounds`) and a
+  local search on total violation took that pattern to 0 open (3,536
+  regions). **Finite observation, not to repeat:** in the symbolic tail cell
+  `s = +1`, `Delta = 1 + e`, point-wise McCormick quadrants do not converge:
+  with `a_0 = 2, b_0 = b(p)` the base points climb `e ≈ 23, 701, 22397,
+  716669` (×32 per step), and once points are walked into regions the cuts
+  step `e` by one (slopes 23, 24, 25, …). For fixed `Z_2` the non-PIP set
+  `(Z_2 − 1) e >= 2 Y_2 + 4` is a half-space, but over all `Z_2` it is not
+  polyhedral, so finitely many cuts always leave wedges holding non-PIP
+  points with `Z_2, e` both unbounded: a finite tail cover needs
+  certificates valid on those non-PIP points too, not finer cuts.
+  Certificate-before-cut (`cut_first = False`) does not converge at 5,000
+  regions either (PIP-side base points reach `n ≈ 400`, beyond the offset
+  bound). · `p1a-a1-prime-2026-10-05.md` §3k;
+  `kernel/tests/test_odd_letter_family_certificate.mojo`
+
+- 2026-10-06 · Theorem K's tail cells, what the obstruction is and is not.
+  **Not the mathematics:** in a seeded sample (seed 1, 400 draws,
+  `|w_2| <= 10`, `Delta <= 12`; `xlev`, scratch) of `s = +1` non-crossing
+  members, every coincidence level is `<= 5`, and `<= 4` for `Delta >= 4`;
+  members per `Delta` settle at about 63. Past a threshold depending on
+  `(u, w_2)`, the shared tile's path is the same for every `Delta`, its
+  `o`-side digit counted from the *end* of `y^Delta` (e.g. `zyzy y^Delta |
+  zyy` at level 3 for all `Delta >= 2`), so the certificate is affine in
+  `Delta`. **Not hidden Pisot constraints:** for `s = +1`, `f(1) < 0` is the
+  whole Pisot condition (exact `pisot`, 5,680 of 5,680 points of
+  `Y_2, Z_2 < 30`, `Delta < 30`), and 3,100 of them have `Z_2, Delta >= 2`.
+  **It is the cover:** line mode works in fixed-`Delta` cells because
+  `M (e_z − e_y) = (0, −Delta, −s)` is constant there; with `Delta = 1 + e`
+  symbolic a variable line coefficient makes `M gamma` quadratic, which line
+  mode refuses, and point-wise lifting from small-`e` base points carves
+  `e`-bounded slices. Uniform McCormick corners `(k, 0)` cut `{Z_2 >= k,
+  (k − 1) e >= 2 Y_2 + 4}` with no staircase but leave wedges. Also: the
+  non-tail cells never fell back to a non-member base point (now they do),
+  and carve complements were mostly empty (dropping implied forms and empty
+  complements took `zyz* | yzy* +zzz` from 15,612 regions to 3,441). ·
+  `p1a-a1-prime-2026-10-05.md` §3l.5; `kernel/odd_letter_family_certificate.mojo`
+  (`search_point`, `mccormick_forms`, `_new_forms`)
+
+- 2026-10-06 · Polynomial line mode (`psc/poly_line.mojo`) for the tail
+  cells. Pitfall: lifting a point path by the *search's* candidate menu (run
+  offsets anchored 0–2 from either end) found no candidate in all 15
+  quadratic cases (s = +1 tail, 3,000 regions): states agreed, offsets did
+  not. Building candidates from the point's own step (its offsets anchored at
+  either end, or solved to hold a coordinate) gives polynomial certificates,
+  some on a whole region uncarved. Open: most lifts end with an offset whose
+  degree-2 part does not vanish, i.e. the certificate holds on a slice, which
+  a finite cover cannot use. Also: the fixed cell `(+1, 2)` does not close
+  (15 of 20 leaves, 8 revealed runs), so fixed `Delta` is not a way around
+  the tail either. · `kernel/tests/test_poly_line.mojo`
+
+- 2026-10-06 · Lifting is linear algebra once the segments are fixed: the
+  letters are then determined and the end offset is linear in the run
+  offsets, so "affine offsets with `gamma_L = 0` identically, agreeing with
+  the point" is one exact system over Q (`solve_lift`). It answers
+  definitively where candidate menus only fail to find: in `zyz +yy | zyz`
+  (cell `(+1, 2)`, every run revealed) the base point's first path has
+  **no** such offsets, while other paths at the same point do
+  (`enumerate_point_paths`); open regions 2 → 1, one certificate covering a
+  whole region uncarved. The remaining one is a boundary slice (`n4 = 0`)
+  whose 40 enumerated point paths all fail; Lemma X closures are not yet
+  solved linearly. · `kernel/psc/poly_line.mojo`; `kernel/tests/test_poly_line.mojo`
+
+- 2026-10-06 · Two cover leaks, each closing `zyz +yy | zyz` (cell
+  `(+1, 2)`, every run revealed: 2 open → 0, 81 regions → 51, 62 s → 4 s).
+  (1) With `Delta` fixed, Lemma P1's form is *affine*, and the cover never
+  split by it: it certified member base points and cut only at non-member
+  points, so a region whose members are finite (here 3 points,
+  `f = n3 + n5 − 1`) ran out of peels. Now `{f >= 0}` is cut once and the
+  rest carries `f <= −1`. (2) A region whose assumptions pin every
+  occurring variable is one substitution, but counted as live and never
+  reached exact decision; propagated bounds with `lo = hi` are now
+  substituted. Also: Lemma X closures solve linearly too
+  (`solve_crossing_lift`). Tooling: an unset shell variable sent a build to
+  `/olf20` and four logs to `~` (left for the user to delete; the safety
+  check blocks the removal). · `kernel/odd_letter_family_certificate.mojo`
+  (`_affine_pisot_form`, `_pin_fixed`); `kernel/psc/poly_line.mojo`
+
+- 2026-10-06 · s = −1 tail cell, `zy* | zy* +[z*]` at 1,500–3,000 regions,
+  never closing. The McCormick cut at corner `(2, b(p))` walks `b` down one
+  unit per cut (69, 68, 67, …): 636 of 1,500 regions were cuts. Uniform
+  corners `(k, 0)` did not help (1,001 cuts, 359 open), certificate-before-
+  cut was worse (996 open). Descending from a feasible point to a member
+  (coordinate descent on Lemma P1's `f`) cut the cuts to 63 but left 464
+  regions with no certificate. Their base points have one y-run in the
+  thousands (n2 = 2,134), forced by large constants that earlier cuts left
+  in the region's inequalities, beyond the search's offset bound; smaller
+  candidate points change nothing there. Not reached by point heuristics:
+  the tail needs certificates (or cuts) that do not inherit those
+  constants. · scratch `xt m`; `kernel/odd_letter_family_certificate.mojo`
+  (`pisot_carve_forms`, `_descend_to_member`, `_base_candidates`)
+
+- 2026-10-06 · Witness shapes of `s = +1` non-crossing members at large
+  `Delta` (scratch census, digits read structurally: in `u` from its start,
+  in `y^Delta` from its end, in `w_2` from its start). **Sampling pitfall:**
+  rejection sampling repeats members; a "dominant" level-4 shape inside
+  `y^Delta` (72% of 300 draws at every `Delta` in 6..20) is one family:
+  its Parikh condition is `(M^4 − Delta M^3 − 3 M^2 + (Delta − 4) M − 2) e_y = 0`,
+  i.e. `chi` divides that quartic, i.e. `w_2 = z`, `u = zz`. Counting
+  *distinct* members (all with `|w_2| <= 6`, `Delta = 8`): 37 members, 15
+  shapes, no shape a majority. The leading ones are uniform in `Delta` and
+  affine in run lengths, e.g. `u = zzy^k z`, `w_2 = zy^k z` at level 3 with
+  the `o`-side position `k − 1` from the end of `y^Delta`, which is the
+  form `solve_lift` finds; so the tail's obstacle is the cover, not missing
+  certificates. For `s = −1`, `Delta = −6`, `|w_1| <= 5`: Lemma P1 forces
+  `Y_1 >= 4`, so all 28 members have `w_1 = zyyyy` and `w_2` = two `z` in
+  `y^10`; 11 shapes, all level 4, reading `w_2`'s `z` by position from its
+  end (the x-block), again affine. · scratch `shapes2.py`, `shapes3.py`
+
+- 2026-10-06 · Tooling, measured: the guided cover's tail regions cost
+  ~2 s each (300 regions: 9m51s), and neither the candidate search's
+  degree, nor its node budget, nor string-keyed polynomials were the cause
+  (each change: same 9m40s–10m13s, identical results). A stack sample with
+  `gdb -p PID -batch -ex bt` showed it at once: exact RREF over `BigZ`
+  rationals (a gcd per product) in the linear lift, on systems that are
+  mostly inconsistent. Screening mod two primes below 2^31 first: 42 s,
+  identical results. Sample before optimizing. · `kernel/psc/poly_line.mojo`
+  (`_consistent_mod`)
+
+- 2026-10-05 · Tooling: a test pinned an unscreened parameter tuple and the
+  exact `coincidence_level` refused it ("the powered characteristic polynomial
+  is reducible"). Screen before deciding; the refusal is the procedure failing
+  closed correctly, not a bug. · `kernel/tests/test_a1_normal_form.mojo`
+
+- 2026-10-05 · On the catch-up-free `|det M| = 2` class the surviving aligned
+  template is an explicit normal form: the odd set of Proposition C is exactly
+  the bad edge, `O = {x, c}`, so `sigma(x) = x y^p s_x`, `sigma(c) = c y^q s_c`,
+  `sigma(y) = t y^r s_y` with the four endings in `{x, c}`. The lemma behind it
+  is worth keeping: `|O| <= 2`, because all three letters odd forces every
+  image to have length exactly two, hence every column sum 2, hence Perron root
+  the rational number 2, contradicting irreducibility (checked independently:
+  no nonnegative 3x3 matrix with all column sums 2 is PIP). Two consequences:
+  the 18 catch-up-free corpus specimens with `|O| = 1` cannot carry case (i) of
+  the template at all, and the alternating template forces `sigma(a) = b` or
+  `sigma(b) = a` as a single even letter, landing in the §5.6g one-E-letter
+  sub-class. · `p1a-a1-prime-2026-10-05.md` §3a
+
+- 2026-10-05 · Exploratory sweep of that normal form at three budgets,
+  `p, q, r <= 5`, `<= 8`, `<= 11`: 174, 420 and 766 PIP members with
+  `|det M| = 2`, A1′ witnessed on **every** one, coincidence level at most 7
+  throughout. The finding worth not recomputing: **the tail does not move.**
+  The level-4 to level-7 counts are identical at all three budgets (8, 2, 2, 2)
+  while only levels 2 and 3 grow, so the hard cases do not scale with the
+  parameters. The 14 members of level >= 4 are the same 14 every time, form 7
+  mirror pairs under `x <-> c`, and all have `p, q, r <= 3`; the deepest has
+  `sigma(x) = xyc`, `sigma(c) = cx`, `sigma(y) = cyc` with its first shared
+  tile at position 311. The method is cheap because equal Parikh prefixes have
+  equal length, so the search is one pass with two integer counters. Not a
+  verdict: a member outside the range is uncovered, and the cap column is
+  reported separately (zero on all three). Now ported:
+  `kernel/a1_normal_form_census.mojo` decides each member with the canonical
+  exact `coincidence_level`, so a negative is a verdict and the driver raises
+  on one, and it reproduces the probe cell for cell at bounds 5 and 8. The
+  regression pins **two** bounds on purpose, so that the tail claim itself is
+  guarded. The probe is kept as provenance with its output and digests. ·
+  `p1a-a1-prime-2026-10-05.md` §3a; `kernel/tests/test_a1_normal_form.mojo`;
+  `archive/2026-10-05/session-probes/`
+
+- 2026-10-05 · A1′, the obligation Theorem C leaves, is the **residual** half
+  of all-pairs strong coincidence: under its hypothesis `h^n(x) = x != c =
+  h^n(c)` for every `n`, so the pair is never merged and its witness is
+  strictly interior. So A1′ inherits the strong-coincidence census: **0
+  failures on all 408,798 PIP specimens**, residual level at most 15. Worth not
+  attempting: there is no sharper finite test, because A1′'s hypothesis
+  presupposes a bad edge and no verified specimen has one — a specimen
+  satisfying it non-vacuously would refute SC_all and PSC. ·
+  `p1a-a1-prime-2026-10-05.md` §2
+
+- 2026-10-05 · On the catch-up-free `|det M| = 2` class, **A1′ and T2 are the
+  same statement**, so #138's aligned branch and #139's strict-zipper branch
+  converge. Mechanism: Theorem C's template gives `h(x) = x`, `h(c) = c`, hence
+  `h(x) != h(c)`, so Lemma A's contrapositive forbids any offset-zero child of
+  `(x, c, 0)` other than its leftmost, which is itself; a coincidence must
+  therefore arrive through a nonzero-offset return, and by Lemma P every such
+  return is a simultaneous birth, which is T2's object. Covers all 210
+  catch-up-free corpus members (all of determinant 2) and 570 of 654 at total
+  length <= 8. · same §3
+
+- 2026-10-05 · Why A1′ is not a corollary of the Barge-Diamond import, in one
+  line to stop the question being reopened: BD Theorem 1 produces **one** of
+  the `d(d-1)/2` pairs, and neither of its two cases can be aimed at a
+  prescribed pair. For `d = 2` there is only one pair, which is exactly why the
+  two-letter case is a theorem; for `d = 3` the two bad edges are left open and
+  A1′ asks for the aimed version on one of them. · same §4
+
+- 2026-10-05 · #138's aligned branch has **one** surviving obligation, not
+  two. Theorem C: passing to `sigma^2` squares the first-letter map, a fixed
+  bad edge is permuted by it so the square fixes the edge pointwise, and in the
+  alternating-E template the square is the identity — so all three
+  sub-templates become the case where both letters of a bad edge are
+  `h`-fixed. Every hypothesis transfers (`sigma^2` is PIP because `beta^2` is
+  still cubic; the good pair survives by raising the level; a `sigma^2`-child
+  is a `sigma`-grandchild). Certificate: 36/36 viable endpoint/good-edge
+  placements, with `h o h` fixing at least two letters always. The surviving
+  statement in classical form: two distinct one-sided fixed points of a PIP
+  substitution, anchored at a common point, share a tile. ·
+  `p1a-template-collapse-2026-10-05.md`; `kernel/psc/hub_selector.mojo`
+
+- 2026-10-05 · Stop/go on that surviving obligation: it is a **special case of
+  the open ternary strong coincidence problem**, not a corollary of the
+  Barge-Diamond import. BD 2002's Case 1 (maximality) produces two eventually
+  coincident segments that start at the same point — exactly the aligned
+  configuration — but the pair it hands over is whichever maximality gives, and
+  the argument cannot be aimed at a prescribed pair; that is why `d >= 3` is
+  open. Negative control worth keeping: eventual coincidence is stable under
+  raising the level but is **not** transitive (two witnesses decompose
+  `sigma^n(j)` at unrelated positions), so any proposed proof that would also
+  give transitivity is wrong or is a major result. Also recorded:
+  Akiyama-Gaehler-Lee settle PSC by exhaustive search for every three-letter
+  substitution of incidence trace at most 2 — a finite-domain fact worth
+  pairing with this repository's own trace condition
+  (`kernel/psc/degree2_sieve.mojo`), not a mechanism. ·
+  same note §4
+
+- 2026-10-05 · Proposition LC verified exactly on the whole standing corpus:
+  10,584 terminal leftmost cycles over 4,554 specimens, every one sign-constant
+  and prefix-vs-interior, no capped box graph, no failed replay, longest
+  `r = 39`; 10,128 cycle equations replayed over Z and 456 past the exact
+  integer range, reported uncomputed. Two sharpened corollaries: terminal
+  cycles come in **mirror pairs** of opposite sign, so their number is even
+  (LC4 — the catch-up-free counts are 2, 4, 6, 8, 10, never odd); and a box
+  graph with **no** terminal cycle has `Z(s) = ∅` for every seed, giving
+  finiteness for that substitution by Proposition 5.47 (LC5), which covers
+  1,794 of the 4,554. LC5 is a cheaper certificate, not a new finite-domain
+  result — the Proposition V census already certifies the whole corpus — and
+  it is one-directional and useless for the uniform statement, since all 210
+  catch-up-free specimens have cycles. ·
+  `p1b-leftmost-chain-periodic-pair-2026-10-05.md` §§8–8a;
+  `kernel/leftmost_chain_census.mojo`
+
+- 2026-10-05 · The leftmost child is a *function* on nonzero-offset vertices,
+  so `CU` is the complement of the basins of its terminal cycles, and every
+  such cycle is a prefix-vs-interior periodic pair with constant offset sign
+  (Proposition LC). Worth not rederiving: the sign is preserved by every
+  leftmost step, so the catching side's child index is always 0 and its letters
+  follow the first-letter map `a -> sigma(a)[0]`; at most three letters are
+  periodic for it, so the prefix side of every cycle is one of at most three
+  tilings. This gives Lemma P back in one line. It does **not** give T1: the
+  reachability half is still a pointwise hitting problem. ·
+  `p1b-leftmost-chain-periodic-pair-2026-10-05.md`;
+  `kernel/psc/leftmost_chain.mojo`
+
+- 2026-10-05 · Stop/go on the leftmost-cycle route: Siegel-Thuswaldner's
+  zero-expansion graph (Def. 5.1 of *Topological properties of Rauzy
+  fractals*) is the same principle — a finite graph whose nodes all lie on
+  infinite paths decides whether 0 lies in a tile — so claim no novelty for it.
+  The decisive hypothesis boundary: their Proposition 5.2 is for primitive
+  **unit** Pisot substitutions and its proof uses unimodularity at the step
+  "`gamma_{l+1} ∈ pi(Z^n)` by the unimodularity of `M`", which is exactly the
+  `M^{-1}`-integrality that Proposition LC(4) must carry explicitly as
+  `ab(Q) ∈ (I - M^r) Z^A`. Their graphs are in the contracting representation
+  and are not functional, so no sign invariant and no prefix-vs-interior
+  dichotomy there. Geometric property (F) is the right dictionary entry for a
+  resolved carry. · same note §5
+
+- 2026-10-05 · Finite observation worth not recomputing: Tribonacci
+  `0 -> 01, 1 -> 02, 2 -> 0` has **no** terminal leftmost cycle at all — every
+  nonzero-offset vertex reaches a catch-up — which is the expected unimodular
+  behaviour (Lemma P is void). The smallest witness in the other direction is
+  `0 -> 1, 1 -> 12, 2 -> 022`, with two cycles of length `r = 1`,
+  `ab(Q) = e_0` and `w_0 = (0, 1, -1)`; it is checkable by hand and is pinned.
+  The catch-up-free `1 -> 22, 2 -> 012` specimen's cycles have `r = 15`, where
+  `M^r` is already past the exact 64-bit integer range, so its offsets are
+  reported as uncomputed rather than assumed. · `kernel/tests/test_leftmost_chain.mojo`
 
 - 2026-10-05 · The closure behind `PDSImpliesRepoG1` tracked only the Barge
   import; its five repository inputs were named in the record `source` field

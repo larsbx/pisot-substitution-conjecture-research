@@ -9,6 +9,54 @@ For definitions and implementation authority, use the generated
 single structured source is `catalogues/mathematical_objects.toml`; edit the
 TOML and regenerate rather than hand-editing the Markdown.
 
+## What the 2026-10-05 and 2026-10-06 results establish
+
+The results of 2026-10-05 and 2026-10-06 are below, each with an exact
+certificate; the first three rows, Theorem K, Corollary H1 and Theorem E, are the ones that
+prove a statement on an infinite class of substitutions outright rather than
+reducing or locating one. They
+are stated here positively, because each note's own limits section is
+deliberately long and should not be mistaken for the result.
+
+| Result | What it establishes | Where |
+| --- | --- | --- |
+| **Theorem K** (Proposition O with Corollary H1) | On the **whole** catch-up-free `|det M| = 2` class, all-pairs strong coincidence holds except possibly on one explicit family (`sigma(o) = y`, `sigma(y) = o w_1 o`, `sigma(z) = o w_2 o`); the one-odd-letter part closes by prefix transfer and Barge–Diamond outside it. **All 210 catch-up-free corpus specimens lie outside it**, so they satisfy strong coincidence by proof rather than census. Inside the family, the crossing lemma Φ2 cuts the open part to the **non-crossing** pairs (§3f), and splitting those by `delta = pi(w_1) − pi(w_2)` **Theorem Φ closes the whole cell `delta = e_z`** (§3g), and splitting by run shape **Theorem Ψ closes `(z^a y^b, ε)`, `(z^a y^b, z^c)`, `(z^a y^b, y^c z^d)` for every `Delta`** (§3h) — 29 infinite shape cells in all, with a new line mode of the witness search; an induction on runs closes patterns with an open tail (words with unboundedly many runs), and **Theorem Ξ settles the cell `Z_1 = Z_2 + 1`, `Y_1 = Y_2 + 1` except two three-run patterns** (§3i). §3j adds **Lemma X** (monotone lattice paths that cross at their endpoints meet), which closes witnesses across opaque tails, and **Lemma Φ5′** (the longer word ends in a bounded explicit suffix); with them, every non-crossing member through length 10 has a certificate reading a bounded part of its words, and the certificate-guided partition (§3k: exact integer decomposition, lifted certificates) makes them a finite cover: **Theorems Λ, Λ′ and Λ″ close the whole cells `(s, Delta) = (+1, 1)`, `(−1, −1)` and `(−1, 0)`**, with the proof derived in full in §3l; cutting by `Z_2` instead, **Theorem Ζ closes every member with `s = +1, Z_2 <= 2` or `s = −1, Z_2 <= 3`, for every `Delta`** (§3m) — unbounded `Z_2` is open, and the members there are coincident by exact decision, not yet proved | [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) §§3e–3m |
+| **Corollary H1** (Theorems G, H) | **Every PIP, catch-up-free substitution with `|det M| = 2` and two odd letters satisfies the strong coincidence condition for every pair of letters** — an infinite class, every image length, 192 of the 210 catch-up-free corpus specimens. Theorem G reduces it to one pair in one explicit three-parameter family; Theorem H settles that family with a new kind of certificate, **parametric witness paths**: each proves a shared tile on a whole cone of parameters by one exact affine check. 42 certified cones, 6 Lemma P1 cuts and 20 exactly decided substitutions cover it; cross-checked against Theorem E's hand lemma L_D, the actual words at 246 sample points, and the exact screen on all 892 members up to parameter 10 | [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) §§3c–3d |
+| **Theorem E** | On the catch-up-free `|det M| = 2` class, **any two distinct letters fixed by the first-letter map are eventually coincident** — every substitution in the class, of every image length, not a finite list. So case (i) of #138's aligned template cannot occur anywhere on that class, which contains all 210 catch-up-free corpus specimens. Proof: explicit normal form, four mirror classes, three witness lemmas with named positions, two affine Pisot inequalities cutting the remainder to 27 substitutions, each decided exactly. 453 named witnesses certified in Mojo and 1,988 in an independent check, none failing | [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) §3b |
+| **Corollary E2 + Proposition Y + Theorem G** | The reduction behind Corollary H1, from one pair to **all pairs**: coincidence of `{h(i), h(j)}` at level `n` is one of `{i, j}` at level `n + 1`, so Theorem E gives the **strong coincidence condition for every pair** on its class, and Proposition Y gives it on the two families with an image of length one (two witness lemmas, a residue of three substitutions). On the whole catch-up-free `|det M| = 2` class with two odd letters, all-pairs strong coincidence is thereby **reduced to one pair in one explicit family** (the swap family), which Theorem H then proves | [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) §3c |
+| **Proposition LC** | The leftmost child is a *function*, so the obstructions to `CU` are exactly the terminal cycles of that function — and every one of them is a **prefix-vs-interior periodic pair**: a prefix occurrence `sigma^r(i) = i U` on one side, an interior occurrence `sigma^r(j) = Q j V` on the other, offset `w_0 = (I − M^r)^{-1} ab(Q)`. The half-degenerate companion of Theorem B. Verified on **10,584 / 10,584** terminal cycles of all 4,554 corpus specimens, none capped, none failing | [`p1b-leftmost-chain-periodic-pair-2026-10-05.md`](p1b-leftmost-chain-periodic-pair-2026-10-05.md) |
+| **Corollary LC4** | Those cycles come in **mirror pairs** of opposite offset sign, so their number is always even. Confirmed on all 210 catch-up-free specimens (counts 2, 4, 6, 8, 10 — never odd) | same, §8a |
+| **Corollary LC5** | A box graph with **no** terminal leftmost cycle has `Z(s) = ∅` for every seed, so finiteness holds for that substitution. **Covers 1,794 of the 4,554 corpus specimens** by a certificate needing only the leftmost function — one walk per vertex, no closure analysis, no depth bound | same, §8a |
+| **Theorem C** | #138's aligned branch has **one** surviving obligation, not two: passing to `sigma^2` collapses the fixed-edge cases (i) and (ii) and the alternating-E template onto the single case where the first-letter map fixes both letters of a bad edge. Every hypothesis transfers. Certified on **36 / 36** viable endpoint/good-edge placements | [`p1a-template-collapse-2026-10-05.md`](p1a-template-collapse-2026-10-05.md) |
+| **Proposition A + Corollary C3** | The surviving obligation A1′ is the **residual** half of all-pairs strong coincidence, so it holds with zero failures on all **408,798** PIP specimens already censused; and on the catch-up-free class — all 210 corpus members — **A1′ and T2 are the same boundary-hitting statement**, so #138's aligned branch and #139's strict-zipper branch converge there | [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) |
+| **Lemma D0 + Proposition D** | On that class the surviving template is an **explicit three-parameter normal form**: the odd letter set is exactly the bad edge, forcing `sigma(x) = x y^p s_x`, `sigma(c) = c y^q s_c`, `sigma(y) = t y^r s_y`. The 18 catch-up-free corpus specimens with one odd letter cannot carry the template at all; the other two templates force a length-one image. `|O| <= 2` because all-odd would make every image length two, hence the Perron root the rational number 2 | same, §3a |
+
+An exploratory sweep of that normal form at three budgets (`p,q,r <= 5`, `8`,
+`11`; 174, 420 and 766 PIP members) witnesses A1′ on **every** member with
+coincidence level at most 7, and — the point — the level-4 to level-7 counts
+are *identical* at all three budgets while only levels 2 and 3 grow. **The hard
+cases do not scale:** they are 14 members, the same 14 each time, 7 mirror
+pairs under `x <-> c`, all with `p,q,r <= 3`. That is the shape a uniform level
+bound would need. The sweep is `kernel/a1_normal_form_census.mojo`
+(`pixi run a1-normal-form-census`), deciding each member with the canonical
+exact `coincidence_level` — so a negative is a verdict, and the driver raises
+on one — with two bounds pinned in `kernel/tests/test_a1_normal_form.mojo` so
+that the *tail* claim is guarded, not just the totals. The Python probe that
+found it first is kept as provenance at
+`archive/2026-10-05/session-probes/`. No claim status rests on the sweep.
+
+Two redirects came with them, and are worth as much as the theorems. The
+`CU` / one-tile route **cannot** reach #139: by Proposition LC its obstructions
+are pairs whose centre is a vertex of one tiling and interior to the other,
+hence never a common vertex, so they are forced, abundant and harmless — 10,584
+of them sit on a corpus where finiteness holds throughout. #139 effort belongs
+on the interior-vs-interior pairs of Theorem B. And A1′ is **not** a corollary
+of the Barge–Diamond import: that theorem produces one of `d(d-1)/2` pairs,
+which is the only pair when `d = 2` and is why the two-letter case is settled.
+
+None of this proves #84, #138, #139, G1b-2, G1 for the family, or PSC. Each
+note's final section states its own limits.
+
 ## Current status
 
 1. `side-notes-ledger.md` — live, append-only record of side findings:
@@ -145,6 +193,38 @@ These are reference/index additions only. They do not establish #84, #138,
 - `bpa-overlap-depth-literature-gate-2026-10-02.md` — stop/go literature gate
   for that argument: the mechanism is Sirvent–Solomyak (2002), Theorem 5.6;
   novelty is narrowed to the swap-seed transfer and the explicit bound.
+- `p1a-template-collapse-2026-10-05.md` — #138 research note (unreviewed),
+  with its own stop/go gate: **Theorem C** collapses the three surviving
+  aligned sub-templates of `p1a-aligned-cycle-normal-form-2026-10-01.md` onto
+  one by passing to `sigma^2` — a fixed bad edge is permuted by the
+  first-letter map, so its square fixes it pointwise, and in the alternating
+  template the square is the identity; primitivity, irreducibility, the Pisot
+  property, the good pair, the badness of the edge and the closed
+  nonproductive component all transfer. So **A2 follows from A1**, and #138's
+  aligned branch has one obligation instead of two: *two distinct one-sided
+  fixed points of a PIP substitution on three letters, anchored at a common
+  point, share a tile*. Exact certificate over all 81 endpoint/good-edge
+  placements in `kernel/psc/hub_selector.mojo`, 36/36 viable ones collapsing,
+  reproducing the 45/33/3 table. The gate records from Barge–Diamond (2002)
+  itself why the surviving obligation is a special case of the **open** ternary
+  strong coincidence problem and not a corollary of the import, and that a
+  proof routed through transitivity of eventual coincidence would be wrong.
+- `p1a-a1-prime-2026-10-05.md` — #138 research note (unreviewed) on the single
+  obligation Theorem C leaves. **Proposition A**: A1′ is the *residual* half of
+  all-pairs strong coincidence — the endpoints never synchronize in this
+  configuration, so the whole content is interior — hence A1′ holds with zero
+  failures on all 408,798 PIP specimens of the strong-coincidence census,
+  residual level at most 15, and no sharper finite test exists because the
+  hypothesis presupposes a bad edge no verified specimen has. **Corollary C3**:
+  on the catch-up-free `|det M| = 2` class, Theorem C's template makes the
+  aligned vertex a self-loop with no other offset-zero child (Lemma A's
+  contrapositive), so a coincidence can only arrive as a simultaneous birth —
+  **A1′ and T2 are the same statement there**, and #138's aligned branch meets
+  #139's strict-zipper branch. Covers all 210 catch-up-free corpus members.
+  All three are repository-proved. **Proposition B**: why A1′ is not a
+  corollary of the Barge–Diamond import, by the count `d(d-1)/2` of pairs
+  against the one the theorem produces, which also explains in one line why
+  `d = 2` is settled.
 - `p1b-strict-zipper-periodic-pair-2026-10-02.md` — #139 research note
   (unreviewed): two-sided alignment weakening of Proposition 5.47, and the
   reformulation of a strict zipper as two `Phi^r`-fixed legal tilings with a
@@ -177,6 +257,25 @@ These are reference/index additions only. They do not establish #84, #138,
   route check against Baker–Barge–Kwapisz 2006 recorded.
   §5.6h: exact anatomy (`kernel/one_tile_anatomy.mojo`); §5.6i: every scratch
   probe of the session archived with outputs in `archive/2026-10-04/session-probes/`.
+  §5.6c states the closing trichotomy and its two unproved statements T1 and
+  T2; the structure of T1's object is in the next entry.
+- `p1b-leftmost-chain-periodic-pair-2026-10-05.md` — #139 research note
+  (unreviewed), with its own stop/go gate: the leftmost child is a *function*
+  on nonzero-offset vertices, so `CU` is the complement of the basins of that
+  function's terminal cycles, and **Proposition LC** proves every such cycle
+  keeps one offset sign and is a **prefix-vs-interior** periodic pair — a
+  prefix occurrence `sigma^r(i) = i U` on the side whose tile starts later, an
+  interior occurrence `sigma^r(j) = Q j V` on the other, and
+  `w_0 = (I − M^r)^{-1} ab(Q) ∈ Z^A`. It is the half-degenerate companion of
+  Theorem B, which excludes the prefix case. Canonical
+  `kernel/psc/leftmost_chain.mojo`, census `kernel/leftmost_chain_census.mojo`,
+  regression `kernel/tests/test_leftmost_chain.mojo`. It restructures T1 —
+  "reaches `CU`" is an invariant of the box graph's strongly connected
+  components (Corollary LC2) — but **does not prove T1**: the reachability half
+  is still a pointwise hitting problem, and T2 is untouched. The gate records
+  that the cycle principle itself is Siegel–Thuswaldner's zero-expansion graph,
+  whose proposition assumes unimodularity at exactly the step this one carries
+  as an explicit integrality condition.
 - `formal-overlap-carriers-2026-10-04.md` — exact census of formal
   (potential) versus realized overlap carriers; supersedes the unreproducible
   "1,764 formal producer-free cycles / death radius 7" line of the
@@ -190,6 +289,24 @@ These are reference/index additions only. They do not establish #84, #138,
   descendant (Proposition FP), with the remainder after offset zero bounded by
   `S(sigma)`; with Proposition V and Theorem S this is PDS plus all-pairs
   aligned strong coincidence (Corollary FP′). Changes no status.
+- `p1a-excursion-route-literature-gate-2026-10-06.md` — stop/go for the
+  excursions of Theorem K's family: one-counter reachability (Haase et al.)
+  needs a fixed automaton and the closures are lagged, so the counter route
+  stops; it is redirected to Lemma X (endpoint-only monotone crossing, the
+  argument of Lemma Φ2) with the suffix lemmas Φ5 and Φ5′. Decision
+  "redirect, then proceed narrowed".
+- `p1a-tail-literature-gate-2026-10-07.md` — stop/go for Theorem K's tail
+  cells (`|Delta|` large): no power or rotation of a member is in Barge's
+  PDS class (an initial/final-letter parity lemma), so the literature route
+  stops; Lemma P1 shows `Delta` is unbounded over bounded words only for
+  `s = +1, Z_2 <= 1` (two explicit families), which proceed by a parametric
+  certificate. Decision "stop, then proceed narrowed".
+- `p1a-swap-family-literature-gate-2026-10-06.md` — stop/go before Theorem H:
+  Berthé–Bourdon–Jolivet–Siegel (2016) is the closest generic framework for
+  infinite families but is unimodular and product-based; Barge's
+  beta-substitution theorem has a different normal form; Akiyama's
+  equivalence shows strong coincidence alone is not PDS. Decision "proceed,
+  narrowed" to the swap family and the parametric witness-path certificate.
 - `pds-strong-coincidence-literature-gate-2026-10-04.md` — stop/go: Akiyama–Lee
   2014 Corollary 4.5 gives PDS ⇒ all-pairs prefix strong coincidence for
   irreducible Pisot substitutions (non-unit height step via Theorem R);
