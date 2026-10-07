@@ -291,8 +291,11 @@ Each step was re-derived from its statement and not from the notes' proofs.
 
 ## 8. Evidence boundary and guarding
 
-The standing-corpus row is CI-pinned (`vertex-coincidence-census` job, now
-also grepping the Theorem Ω line). The total-length ≤ 8 and images ≤ 4 rows
+The standing-corpus row is CI-pinned: the `vertex-coincidence-census` job now
+also requires `formally productive (Theorem Omega): 4554  not: 0` and a
+deepest box first-coincidence depth of 51 (specimen `1 11 17`). This session's
+run reproduced every earlier line of that job unchanged, in 6.9 minutes on
+4 workers. The total-length ≤ 8 and images ≤ 4 rows
 are guarded by `.github/workflows/box-automaton-evidence.yml`. It runs one
 job for total length ≤ 8 and a matrix of twelve images ≤ 4 slices, each
 under the six-hour job limit, on `workflow_dispatch`, on a weekly schedule,
