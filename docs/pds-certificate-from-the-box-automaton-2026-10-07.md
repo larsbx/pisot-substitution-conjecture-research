@@ -194,6 +194,20 @@ The last column is the counter-calibration
 misses unrealized carriers, so seed productivity is not a substitute for `𝔅`
 in route (a). It suffices only for route (b).
 
+**Fresh one-pass runs (2026-10-07, 4 workers).**
+
+| domain | specimens | formally productive | capped | deepest box `D` | wall-clock |
+| --- | --- | --- | --- | --- | --- |
+| standing corpus | 4,554 | 4,554 | 0 | 51 (`1 11 17`) | 6.9 min |
+| total length ≤ 8 (contains the 120) | 24,486 | 24,486 | 0 | 104 (`1 38 56`) | 50.6 min |
+
+Both runs reproduce every figure that §4 of the vertex note records for these
+rows: the largest box graph, the most recurrent vertices, the recurrent total
+and the deepest `K_V`, with the same specimens. The standing row also
+reproduces the `K_V` histograms that CI pins. The images ≤ 4
+row was not re-run in this session. It rests on the recorded PPVC run together
+with the SC_all census, as described above, until the guarding workflow runs.
+
 The census slices pinned in `kernel/tests/test_vertex_coincidence.mojo`
 (first 300 standing, first 100 images ≤ 4) are all productive, with box `D`
 51 and 38.
