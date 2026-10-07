@@ -441,3 +441,11 @@ by deleting it.
   PR #221 should not merge unchanged because its side-notes entry is missing
   and its base predates the current vendoring state. No claim status changes. ·
   `audit-2026-10-06.md`
+- 2026-10-07 · Dated correction to the October 6 PSC audit entry: PR #221 was
+  rebased, supplied its required benchmark/ledger locator, revalidated, and
+  merged at 00:45:58 UTC as `f09627e377abae49e5a4bf13694cb0e15f11ed36` after
+  green current-head workflows and a no-findings review. Its tooling finding
+  is resolved; the October 6 snapshot and prior ledger entry remain intact.
+  No mathematical claim or review status changes. ·
+  [October 7 follow-up](audit-2026-10-06.md#7-follow-up-2026-10-07);
+  [PR #221 evidence](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/221)
