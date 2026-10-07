@@ -53,6 +53,7 @@ or `pixi run odd-letter-family-certificate`.
 """
 
 from std.sys import argv
+from std.os.path import exists
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
 from std.collections import Dict
@@ -652,7 +653,8 @@ def main() raises:
         print("residue members:", res_total, " in closed shape cells:", res_closed, " left:", res_total - res_closed)
         return
     if len(args) > 2 and String(args[2]) == "cell":
-        # one delta cell by the guided run tree: cell s delta budget max_runs
+        # one delta cell by the guided run tree:
+        # cell s delta budget [max_runs] [tail|xblock|plain] [journal path]
         var s = Int(String(args[3]))
         var d = Int(String(args[4]))
         var budget = Int(String(args[5]))
@@ -660,7 +662,8 @@ def main() raises:
         print("cell s =", s, " Delta =", d, ": guided run tree, region budget", budget, "per pattern, at most", max_runs, "revealed runs", flush=True)
         var tail_cell = len(args) > 7 and String(args[7]) == "tail"
         var xroot = len(args) > 7 and String(args[7]) == "xblock"
-        var leaves = run_tree_guided(s, d, max_runs, budget, True, tail_cell, xroot)
+        var journal = String(args[8]) if len(args) > 8 else String()
+        var leaves = run_tree_guided(s, d, max_runs, budget, True, tail_cell, xroot, journal)
         var closed = 0
         for k in range(len(leaves)):
             if leaves[k].closed:
@@ -3744,11 +3747,37 @@ def suffix_roots(s: Int, delta: Int) -> List[RunPattern]:
     return out^
 
 
-def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Bool = False, tail: Bool = False, xblock_root: Bool = False) raises -> List[RunTreeLeaf]:
+def _journal_load(path: String) raises -> Dict[String, String]:
+    var out = Dict[String, String]()
+    if path.byte_length() == 0 or not exists(path):
+        return out^
+    with open(path, "r") as f:
+        var text = f.read()
+        for line in text.split("\n"):
+            var parts = String(line).split(" => ")
+            if len(parts) == 2:
+                out[String(parts[0])] = String(parts[1])
+    return out^
+
+
+def _journal_add(path: String, key: String, verdict: String) raises:
+    if path.byte_length() == 0:
+        return
+    with open(path, "a") as f:
+        f.write(key + " => " + verdict + "\n")
+
+
+def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Bool = False, tail: Bool = False, xblock_root: Bool = False, journal: String = "") raises -> List[RunTreeLeaf]:
     """The run tree of one delta cell under its suffix roots, each pattern
     covered by certificate-guided partition. With `tail` (s = +1 only), the
-    cell is `Delta >= delta`: w_1 closes with y^(delta + e)."""
+    cell is `Delta >= delta`: w_1 closes with y^(delta + e).
+
+    With a `journal` path, each pattern's verdict is appended to it as it is
+    decided, and verdicts already there are replayed instead of recomputed,
+    so a run interrupted by a restart resumes. A replayed verdict is not
+    re-verified: a run that a proof cites is one without a journal."""
     var out = List[RunTreeLeaf]()
+    var done = _journal_load(journal)
     var stack = List[RunPattern]()
     if s == -1 and (tail or xblock_root):
         # w_2 = v x with x the last 2 - Delta letters, at least two z
@@ -3764,18 +3793,36 @@ def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Boo
         stack = suffix_roots(s, delta)
     while len(stack) > 0:
         var pat = stack.pop()
+        var key = String(pat)
+        if key in done:
+            var verdict = done[key]
+            if verbose:
+                print("    replay ", pat, " ", verdict, flush=True)
+            if verdict == "closed":
+                out.append(RunTreeLeaf(pat.copy(), True, 0, 0, 0))
+                continue
+            if verdict == "open":
+                out.append(RunTreeLeaf(pat.copy(), False, 1, 0, 0))
+                continue
+            var replayed = refine_pattern(pat)
+            for k in range(len(replayed)):
+                stack.append(replayed[k].copy())
+            continue
         var c = cover_pattern_guided(pat, s, delta, budget, tail)
         if c.open == 0:
+            _journal_add(journal, key, "closed")
             if verbose:
                 print("    closed ", pat, "  regions", c.regions, " certified", c.certified, " (line", c.line_certified, ", crossing", c.crossing_certified, ") cut", c.cut, " not member", c.not_member, flush=True)
             out.append(RunTreeLeaf(pat.copy(), True, 0, c.certified, c.cut))
             continue
         var kids = refine_pattern(pat)
         if pat.runs() >= max_runs or len(kids) == 0:
+            _journal_add(journal, key, "open")
             if verbose:
                 print("    OPEN   ", pat, "  regions", c.regions, " open", c.open, " budget" if c.budget_exhausted else "", flush=True)
             out.append(RunTreeLeaf(pat.copy(), False, c.open, c.certified, c.cut))
             continue
+        _journal_add(journal, key, "refine")
         if verbose:
             print("    refine ", pat, "  (open", c.open, ")", flush=True)
         for k in range(len(kids)):
