@@ -120,6 +120,7 @@ comptime DESCENT_STEPS = 64  # guided cover: steps of one member descent
 comptime SMALL_POINT_DRAWS = 100  # guided cover: seeded base-point draws in 0..4, tried first
 comptime FM_ROWS = 4000  # guided cover: rows Fourier-Motzkin may hold before it gives up
 comptime FM_MAGNITUDE = 1 << 40  # and the entry size
+comptime FINITE_POINTS = 400  # guided cover: a region shown to hold at most this many points is enumerated
 comptime VALUE_SPLIT_MAX = 4  # guided cover: a live variable with fewer values is split by value
 comptime ALT_BASE_POINTS = 4  # guided cover: further member points tried before a peel
 comptime FAR_CANDIDATES = 24  # guided tail cover: candidates tried with a moderately large tail variable first
@@ -3003,11 +3004,59 @@ def _normalized(f: List[Int]) -> List[Int]:
     return out^
 
 
+struct FMResult(Copyable, Movable):
+    """`ok` false when a cap was hit (nothing is claimed); `empty` when the
+    rational relaxation is empty; else `rows`, the constraints left on the
+    kept variable."""
+
+    var ok: Bool
+    var empty: Bool
+    var rows: List[List[Int]]
+
+    def __init__(out self, ok: Bool, empty: Bool, var rows: List[List[Int]]):
+        self.ok = ok
+        self.empty = empty
+        self.rows = rows^
+
+
 def fm_infeasible(assume: List[List[Int]], m: Int) -> Bool:
     """Fourier-Motzkin elimination of every variable from the assumptions
     and `n >= 0`: true only when the rational relaxation is empty, which
     makes the region (its integer points) empty. Capped: past `FM_ROWS`
     rows or entries of `FM_MAGNITUDE`, it answers false (unknown)."""
+    var r = fm_eliminate(assume, m, -1)
+    return r.ok and r.empty
+
+
+def fm_bounds(assume: List[List[Int]], m: Int, keep: Int) -> Box:
+    """Integer bounds on variable `keep` over the region's rational
+    relaxation (every other variable eliminated): `lo`/`hi` in a Box of
+    width 1; `empty` when the relaxation is empty; unbounded above when no
+    upper bound survives. A capped elimination claims nothing (lower bound 0,
+    unbounded)."""
+    var box = Box(1)
+    var r = fm_eliminate(assume, m, keep)
+    if not r.ok:
+        return box^
+    if r.empty:
+        box.empty = True
+        return box^
+    for i in range(len(r.rows)):
+        var a = r.rows[i][keep + 1]
+        var c = r.rows[i][0]
+        if a > 0:
+            box.lo[0] = max(box.lo[0], _ceil_div(-c, a))
+        elif a < 0:
+            var h = c // (-a)
+            if not box.bounded[0] or h < box.hi[0]:
+                box.hi[0] = h
+                box.bounded[0] = True
+    if box.bounded[0] and box.lo[0] > box.hi[0]:
+        box.empty = True
+    return box^
+
+
+def fm_eliminate(assume: List[List[Int]], m: Int, keep: Int) -> FMResult:
     var rows = List[List[Int]]()
     for i in range(len(assume)):
         rows.append(_normalized(assume[i]))
@@ -3016,6 +3065,8 @@ def fm_infeasible(assume: List[List[Int]], m: Int) -> Bool:
         e[k + 1] = 1
         rows.append(e^)
     for k in range(m):
+        if k == keep:
+            continue
         var pos = List[List[Int]]()
         var neg = List[List[Int]]()
         var rest = List[List[Int]]()
@@ -3028,7 +3079,7 @@ def fm_infeasible(assume: List[List[Int]], m: Int) -> Bool:
             else:
                 rest.append(rows[i].copy())
         if len(pos) * len(neg) + len(rest) > FM_ROWS:
-            return False
+            return FMResult(False, False, List[List[Int]]())
         for i in range(len(pos)):
             for j in range(len(neg)):
                 var ap = pos[i][k + 1]
@@ -3037,7 +3088,7 @@ def fm_infeasible(assume: List[List[Int]], m: Int) -> Bool:
                 for t in range(m + 1):
                     var v = an * pos[i][t] + ap * neg[j][t]
                     if abs(v) > FM_MAGNITUDE:
-                        return False
+                        return FMResult(False, False, List[List[Int]]())
                     r.append(v)
                 rest.append(_normalized(r))
         # drop constant rows that hold; a constant row that fails is empty
@@ -3050,7 +3101,7 @@ def fm_infeasible(assume: List[List[Int]], m: Int) -> Bool:
                     break
             if constant:
                 if rest[i][0] < 0:
-                    return True
+                    return FMResult(True, True, List[List[Int]]())
                 continue
             var dup = False
             for j in range(len(rows)):
@@ -3059,10 +3110,90 @@ def fm_infeasible(assume: List[List[Int]], m: Int) -> Bool:
                     break
             if not dup:
                 rows.append(rest[i].copy())
-    for i in range(len(rows)):
-        if rows[i][0] < 0:
-            return True
-    return False
+    if keep < 0:
+        for i in range(len(rows)):
+            if rows[i][0] < 0:
+                return FMResult(True, True, List[List[Int]]())
+        return FMResult(True, False, List[List[Int]]())
+    return FMResult(True, False, rows^)
+
+
+def _implied_equality(reg: GuidedRegion, m: Int) -> GuidedRegion:
+    """The region with one assumption it holds with equality substituted
+    away: an assumption `A` with a unit coefficient such that `A >= 1` is
+    infeasible with the rest (Fourier-Motzkin) is `A = 0` at every point, so
+    its unit variable is solved for. Returns the region unchanged (same
+    assumptions) when none is found."""
+    for i in range(len(reg.assume)):
+        ref a = reg.assume[i]
+        var v = -1
+        for k in range(m):
+            if (a[k + 1] == 1 or a[k + 1] == -1) and _region_live(reg, k):
+                v = k
+                break
+        if v < 0 or aff_is_const(a):
+            continue
+        var probe = reg.assume.copy()
+        var up = a.copy()
+        up[0] -= 1
+        probe.append(up^)
+        if not fm_infeasible(probe, m):
+            continue
+        # a = c n_v + R = 0, so n_v = -c R (>= 0 is kept as an assumption)
+        var c = a[v + 1]
+        var r = a.copy()
+        r[v + 1] = 0
+        var repl = aff_scale(r, -c)
+        var piece = _region_subst(reg, v, repl, reg.depth)
+        return _with_assumptions(piece, List[List[Int]]([repl.copy()]))
+    return reg.copy()
+
+
+def _finite_points(reg: GuidedRegion, m: Int) -> List[GuidedRegion]:
+    """The region as its integer points, when Fourier-Motzkin bounds every
+    live variable and the box holds at most `FINITE_POINTS` points: one
+    fully substituted region per point satisfying the assumptions (an exact
+    partition of the region). Empty when the region is not shown finite."""
+    var out = List[GuidedRegion]()
+    var lo = List[Int]()
+    var hi = List[Int]()
+    var live = List[Int]()
+    var size = 1
+    for k in range(m):
+        if not _region_live(reg, k):
+            continue
+        var b = fm_bounds(reg.assume, m, k)
+        if b.empty:
+            return out^
+        if not b.bounded[0]:
+            return List[GuidedRegion]()
+        live.append(k)
+        lo.append(b.lo[0])
+        hi.append(b.hi[0])
+        size *= b.hi[0] - b.lo[0] + 1
+        if size > FINITE_POINTS:
+            return List[GuidedRegion]()
+    # enumerate the box, keep the points of the region
+    var cur = lo.copy()
+    while True:
+        var ns = List[Int](length=m, fill=0)
+        for t in range(len(live)):
+            ns[live[t]] = cur[t]
+        if _satisfies(reg.assume, ns):
+            var piece = reg.copy()
+            for t in range(len(live)):
+                piece = _region_subst(piece, live[t], aff_const(m, cur[t]), piece.depth)
+            out.append(piece^)
+        var t = 0
+        while t < len(live):
+            cur[t] += 1
+            if cur[t] <= hi[t]:
+                break
+            cur[t] = lo[t]
+            t += 1
+        if t == len(live):
+            break
+    return out^
 
 
 def _assume_empty(assume: List[List[Int]], m: Int) -> Bool:
@@ -3458,6 +3589,15 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                 out.not_member += 1
                 continue
             if reg.depth >= GUIDED_PEEL_LIMIT:
+                var pts = _finite_points(reg, m)
+                if len(pts) > 0:
+                    for k in range(len(pts)):
+                        stack.append(pts[k].copy())
+                    continue
+                var flat = _implied_equality(reg, m)
+                if len(flat.assume) != len(reg.assume) or flat.subst != reg.subst:
+                    stack.append(flat^)
+                    continue
                 out.open += 1
                 out.open_forms.append(reg.subst.copy())
                 if verbose:
@@ -3502,7 +3642,18 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
         if not done:
             # no liftable certificate: peel a live variable, n = 0 | n >= 1
             # (a region without one is a single point)
+            var pts = List[GuidedRegion]()
             if any_live and reg.depth >= GUIDED_PEEL_LIMIT:
+                pts = _finite_points(reg, m)
+            var flat = reg.copy()
+            if any_live and reg.depth >= GUIDED_PEEL_LIMIT and len(pts) == 0:
+                flat = _implied_equality(reg, m)
+            if len(pts) > 0:
+                for k in range(len(pts)):
+                    stack.append(pts[k].copy())
+            elif flat.subst != reg.subst:
+                stack.append(flat^)
+            elif any_live and reg.depth >= GUIDED_PEEL_LIMIT:
                 out.open += 1
                 out.open_forms.append(reg.subst.copy())
                 if verbose:
