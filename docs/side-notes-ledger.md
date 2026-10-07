@@ -961,3 +961,19 @@ by deleting it.
   checked against the paper's full text. No claim status changes. ·
   [motivations note](motivations/ternary-literature-context-2026-10-07.md);
   `kernel/tests/test_ternary_literature_specimens.mojo`
+- 2026-10-07 · Adversarial audit of Proposition V and Theorem E found no
+  disproof and no failing proof step. An independent oracle reproduced every
+  computational input: the Theorem E class enumerated to image length 5 stays
+  in the normal form and is coincident; the 27-member residue was reproduced;
+  the Proposition V radii hold with margin ≥ 2. Four presentation fixes were
+  applied to the A1′ note: "position" means prefix length, L_BC's dead
+  `r = q = 0` clause was removed, two endings have det divisible by 4, and
+  §3b.7 line ranges are now explicit. The dead clause stays in the kernel's
+  `lemma_witness`, where it is unreachable. No claim status changes. ·
+  `audit-adversarial-prop-v-theorem-e-2026-10-07.md`,
+  `archive/2026-10-07/session-probes/`
+- 2026-10-07 · Correction to the entry above: the dead L_BC clause is now also
+  removed from `lemma_witness` in `kernel/a1_normal_form_census.mojo`.
+  `tests/test_a1_normal_form.mojo` passes unchanged (453 named witnesses,
+  27-point residue), which confirms the clause never fired. ·
+  `kernel/a1_normal_form_census.mojo`
