@@ -169,6 +169,34 @@ substitutions. It does not close issues #84, #138, #139, G1, or PSC. See
 `docs/lost-depth-indexed-formulation-2026-10-01.md` §9 and the archived
 receipts under `archive/2026-10-02/separation-radius-total-length/`.
 
+## The programme in context
+
+Outside this repository, PSC is **proved for two letters** (Barge–Diamond
+2002, Hollander–Solomyak 2003) and **open for three**, the unimodular case
+included. For `d >= 3` the literature has two kinds of result. It proves
+structured families: β-substitutions (Barge 2018), substitutive Arnoux–Rauzy
+(Berthé–Jolivet–Siegel 2012), and a.e. S-adic Arnoux–Rauzy (Berthé–Steiner–
+Thuswaldner 2019). It also verifies single specimens: Tribonacci (Rauzy
+1982), Kol(3,1) (Baake–Sing 2004), and the Sirvent–Solomyak balanced-pair
+examples.
+
+This programme sits between those two kinds of result:
+
+| | Literature | This repository |
+| --- | --- | --- |
+| general ternary PSC | open | open; one premise left on the shortest route (#84) |
+| ternary size classes | specimen by specimen | PDS on 145,806 PIP specimens (images ≤ 4 or total ≤ 8), conditional on unreviewed Proposition V and Theorem B |
+| ternary strong coincidence | open | 0 failures on 408,798 specimens (total ≤ 10) |
+| PDS vs. BPA finiteness | ABBLS Thm 5.3, "one seed suffices" | PDS ⇒ G1 and every-seed termination (audited, human review pending) |
+| regime | geometric tools mostly unimodular | all PIP; unimodularity never assumed |
+
+Every PIP example in the circulated ternary list is already settled. Each one replays on
+`B_sigma` with termination and coincidence (pinned by
+`kernel/tests/test_ternary_literature_specimens.mojo`). One example from the
+circulated list, `123, 1, 1132`, has `det M = 0` and is not a PSC instance.
+See [`docs/motivations/`](docs/motivations/README.md), in particular
+[`ternary-literature-context-2026-10-07.md`](docs/motivations/ternary-literature-context-2026-10-07.md).
+
 ## Generality firewall
 
 The project deliberately targets the non-unimodular primitive irreducible Pisot setting. A general theorem must not silently add:
