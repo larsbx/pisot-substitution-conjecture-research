@@ -429,3 +429,23 @@ by deleting it.
   CI-pinned summary line and the claim receipts are byte-identical. The
   per-specimen lines are recorded nowhere in the repository. ·
   `kernel/tests/test_oa_overlap_types.mojo`; `kernel/oa_failures_probe.mojo`
+
+- 2026-10-06 · Repository-wide PSC research audit confirms the canonical
+  status is coherent after #153: PSC and `OP_seed`/#84 remain open, and no
+  accidental PSC promotion was found. Highest-priority review debt is the
+  October 4 PDS => PPVC/G1 => all-seed-termination chain, whose live surfaces
+  still say human review pending. Research priority is narrowed to seed-strength
+  #84 plus an occurrence-compatible adelic coverage/alignment theorem for #139;
+  #9 should supply only portable ordered-factorization lemmas. PR #223's
+  Dumont–Thomas streaming regression is resolved at the current FMK pin;
+  PR #221 should not merge unchanged because its side-notes entry is missing
+  and its base predates the current vendoring state. No claim status changes. ·
+  `audit-2026-10-06.md`
+- 2026-10-07 · Dated correction to the October 6 PSC audit entry: PR #221 was
+  rebased, supplied its required benchmark/ledger locator, revalidated, and
+  merged at 00:45:58 UTC as `f09627e377abae49e5a4bf13694cb0e15f11ed36` after
+  green current-head workflows and a no-findings review. Its tooling finding
+  is resolved; the October 6 snapshot and prior ledger entry remain intact.
+  No mathematical claim or review status changes. ·
+  [October 7 follow-up](audit-2026-10-06.md#7-follow-up-2026-10-07);
+  [PR #221 evidence](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/221)
