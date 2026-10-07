@@ -259,6 +259,14 @@ These are reference/index additions only. They do not establish #84, #138,
   probe of the session archived with outputs in `archive/2026-10-04/session-probes/`.
   §5.6c states the closing trichotomy and its two unproved statements T1 and
   T2; the structure of T1's object is in the next entry.
+- `p1b-catch-up-free-ppvc-2026-10-07.md` — #139 on the catch-up-free
+  `|det M| = 2` class, with its stop/go gate: **Proposition Z** assembles
+  recorded results to show that there, outside the open part of Theorem K's
+  family, pure discrete spectrum is equivalent to PPVC, and PPVC gives G1;
+  an exact PPVC census over every parametric family of the class
+  (`kernel/catch_up_free_ppvc_census.mojo`); the symbolic-BPA route is
+  redirected (state lengths grow exponentially), and the next step, digit
+  cycles with a `beta` bracket, is stated with its obstacle.
 - `p1b-leftmost-chain-periodic-pair-2026-10-05.md` — #139 research note
   (unreviewed), with its own stop/go gate: the leftmost child is a *function*
   on nonzero-offset vertices, so `CU` is the complement of the basins of that

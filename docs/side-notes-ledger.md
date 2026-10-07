@@ -79,6 +79,14 @@ by deleting it.
   E letter and a length-1 image: powers provably never work (Lemma B); no
   rotation witness found (0 of 264 at total length ≤ 8). · same, §5.6g
 
+- 2026-10-07 · A symbolic (Sellami-style) balanced-pair run over Theorem E's
+  parameters, as a route to termination on the catch-up-free `|det M| = 2`
+  class: the states are not parametric words. Maximal state length grows
+  exponentially along lines (class A `(n, n − 1, n)`: 480, 2,124, 27,768
+  letters at `n = 4, 5, 6`; class D `(1, 0, 0)`: 7,987). Work on the overlap
+  graph, whose vertices are bounded. · `p1b-catch-up-free-ppvc-2026-10-07.md`
+  §3; scratch `explore.py`
+
 ## 3. Settled by the literature (do not target with new machinery)
 
 - 2026-10-04 · Specimens with a power or common-prefix/suffix conjugate in
@@ -207,6 +215,12 @@ by deleting it.
   also survives on the non-Pisot strict support. Neither finite property
   distinguishes PIP or gives balanced alignment. ·
   `c4-ordered-hub-offset-negative-2026-10-06.md` §§2,5
+
+- 2026-10-07 · Only 70 of the 383 PIP members of Theorem E's classes with
+  `p, q, r <= 11` have the characteristic polynomial of a three-letter
+  simple-Parry β-substitution, a necessary condition for conjugacy to one;
+  the other 313 cannot inherit Barge (2018) that way, and the 70 are not
+  shown conjugate. · `p1b-catch-up-free-ppvc-2026-10-07.md` §3; scratch check
 
 ## 6. Tooling pitfalls
 
