@@ -7,14 +7,16 @@ that occurs makes them affine in `(n, q)`. A region becomes a polyhedron in
 `(n, q)` whose real points are those with `q_j = n_j e` (`lift_point`); the
 McCormick forms `(n_j - lo_j)(e - lo_e) >= 0`, i.e.
 `q_j - lo_e n_j - lo_j e + lo_j lo_e >= 0`, hold at every real point with
-`n >= lo`, so they may be added to the polyhedron. Anything certified on the
+`n >= lo`, so they may be added to the polyhedron; so may `(e - lo_e) g >= 0`
+for any form `g >= 0` of the region over `n` alone (`rlt_forms`), which
+carries a run-length relation through the products. Anything certified on the
 whole polyhedron holds at its real points; the converse is not claimed.
 
 The lift fails closed: a degree-2 monomial that is not `n_j e`, a monomial of
 degree 3 or more, or a variable past `m` raises.
 """
 
-from psc.cone_witness import aff_const
+from psc.cone_witness import aff_const, aff_scale
 from psc.poly_line import MONO_BITS, MONO_MASK, Poly, _mono_degree
 
 
@@ -188,6 +190,34 @@ def mccormick_box_forms(lift: ProductLift, lo: List[Int], hi: List[Int], bounded
                 f[j + 1] -= sg * c2
                 f[e + 1] -= sg * c1
                 out.append(f^)
+    return out^
+
+
+def rlt_forms(lift: ProductLift, g: List[Int], lo_e: Int, hi_e: Int, bounded_e: Bool) raises -> List[List[Int]]:
+    """For a form `g` over `(n, q)` with no product coordinate, the
+    expansions of `(e - lo_e) g >= 0` and, when `bounded_e`,
+    `(hi_e - e) g >= 0`: `+-(g_0 e + sum_k g_k q_k) -+ c g` with
+    `n_k e = q_k` (`q_e = e^2`). Each is a product of two factors `>= 0`,
+    so it holds at every real point with `g >= 0` and
+    `lo_e <= e <= hi_e`; the McCormick forms are the case `g = n_j - lo_j`.
+    Raises when `g` names a product coordinate, or an `n_k` whose `q_k`
+    is not in the lift."""
+    if len(g) != lift.width() + 1:
+        raise Error("a form of the wrong width for the lift")
+    for i in range(lift.m + 1, len(g)):
+        if g[i] != 0:
+            raise Error("a product times the tail is not in the lift")
+    var out = List[List[Int]]()
+    for sg in [1, -1]:
+        if sg < 0 and not bounded_e:
+            continue
+        var c = lo_e if sg > 0 else hi_e
+        var f = aff_scale(g, -sg * c)
+        f[lift.e + 1] += sg * g[0]
+        for k in range(lift.m):
+            if g[k + 1] != 0:
+                f[lift.slot(k)] += sg * g[k + 1]
+        out.append(f^)
     return out^
 
 

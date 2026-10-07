@@ -28,7 +28,7 @@ at its real points.
 from std.collections import Dict
 from std.os import abort
 from finite_exact.rat_q import Q
-from psc.product_lift import ProductLift, lift_affine, lifted_monomial, no_lift
+from psc.product_lift import ProductLift, lift_affine, lift_point, lifted_monomial, no_lift
 from finite_linear_algebra.qlinalg import rref
 from finite_linear_algebra.scalar import q_int, q_is_zero
 from psc.cone_witness import (
@@ -56,6 +56,7 @@ comptime SCREEN_PRIME_1 = 2147483629  # primes below 2^31: products stay within 
 comptime SCREEN_PRIME_2 = 2147483587
 comptime SEARCH_DEGREE = 3  # the degree the lift's candidate search may reach
 comptime LIFT_NODES = 4000  # nodes of the lift's depth-first search over candidates
+comptime COST_BITS = 24  # with a lift: a lift's key is extent << COST_BITS less its capped cost
 
 
 # ---------------------------------------------------------------------------
@@ -560,7 +561,7 @@ def lifts_to_zero(gamma: List[Poly], lift: ProductLift) raises -> Bool:
     return True
 
 
-def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], ly: Int, lz: Int, lift: ProductLift = no_lift()) raises -> PolyLift:
+def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], ly: Int, lz: Int, lift: ProductLift = no_lift(), region: List[List[Int]] = List[List[Int]]()) raises -> PolyLift:
     """`psc.cone_witness.lift_path` over polynomials: replay the point
     family's `steps` on the region family. At each level the candidates are
     built from the point's step (`_lift_candidates`, offsets agreeing with
@@ -569,7 +570,12 @@ def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b
     first; at most `LIFT_NODES` nodes) returns the first lift whose end
     offset has no term of degree >= 2, so that it can vanish on a region
     (with a lift: whose conditions and end offset are affine over `(n, q)`,
-    `ns` then a real point of width `1 + m + m'`)."""
+    `ns` then a real point of width `1 + m + m'`). With a lift the search
+    does not stop at the first such lift: it ranks children by whether
+    their state is affine over `(n, q)` and returns the complete lift of
+    largest `lift_key` on the probe points of `region` (`probe_points`), so
+    a lift that copies the base point's run lengths into its offsets (and
+    so carves a slice) loses to one uniform over the region."""
     var out = PolyLift()
     _check_width(fam, lift)
     # the point path's states, level by level
@@ -602,6 +608,8 @@ def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b
     var deepest = 0
     var non_affine_ends = 0
     var fallback = PolyLift()
+    var best = 0
+    var probes = probe_points(ns, lift, region) if lift.on() else List[List[Int]]()
     while len(stack) > 0 and nodes < LIFT_NODES:
         nodes += 1
         var fr = stack.pop()
@@ -615,11 +623,14 @@ def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b
                 got.steps = fr.steps.copy()
                 got.ineqs = fr.ineqs.copy()
                 got.gamma = fr.gamma.copy()
-                # with a lift, an end offset that vanishes only on a slice of
-                # the region is kept while a lift vanishing on all of it is sought
-                if not lift.on() or lifts_to_zero(fr.gamma, lift):
+                if not lift.on():
                     return got^
-                if not fallback.ok:
+                # with a lift, the complete lift of largest extent on the
+                # region (an end offset vanishing on a slice only is kept
+                # while one vanishing on more is sought)
+                var key = lift_key(got, probes, lift)
+                if not fallback.ok or key > best:
+                    best = key
                     fallback = got^
                 continue
             non_affine_ends += 1
@@ -639,6 +650,10 @@ def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b
             var degree = 0
             for i in range(3):
                 degree = max(degree, poly_degree(rc.gamma[i]))
+            if lift.on():
+                # over (n, q) the products n_j e are free: a state affine
+                # there ranks first whatever its degree in n
+                degree = 0 if _affine_end(rc.gamma, lift) else 1 + degree
             var st = fr.steps.copy()
             st.append(cands[c].copy())
             ranks.append(64 * degree + len(forms) - before)
@@ -656,6 +671,79 @@ def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b
         return fallback^
     out.why = "no lift with an affine end (" + String(nodes) + " nodes, deepest level " + String(deepest) + ", " + String(non_affine_ends) + " non-affine ends)"
     return out^
+
+
+def probe_points(ns: List[Int], lift: ProductLift, region: List[List[Int]]) raises -> List[List[Int]]:
+    """The real points `ns + t d` of `region` (every form `>= 0`), lifted:
+    `d` one of `e_k`, `e_k + e_l`, `e_k - e_l`, `e_l - e_k` over the run
+    variables, `t` in 1, 3, 10, 30, `n >= 0`. They only score lifts
+    (`lift_key`); nothing is certified on them."""
+    var out = List[List[Int]]()
+    var dirs = List[List[Int]]()
+    for k in range(lift.m):
+        dirs.append(List[Int]([k, 1, -1, 0]))
+        for l in range(k + 1, lift.m):
+            dirs.append(List[Int]([k, 1, l, 1]))
+            dirs.append(List[Int]([k, 1, l, -1]))
+            dirs.append(List[Int]([k, -1, l, 1]))
+    for d in dirs:
+        for t in [1, 3, 10, 30]:
+            var x = List[Int](ns[: lift.m])
+            x[d[0]] += t * d[1]
+            if d[2] >= 0:
+                x[d[2]] += t * d[3]
+            if x[d[0]] < 0 or (d[2] >= 0 and x[d[2]] < 0):
+                continue
+            var p = lift_point(lift, x)
+            var inside = True
+            for f in region:
+                if aff_eval(f, p) < 0:
+                    inside = False
+                    break
+            if inside:
+                out.append(p^)
+    return out^
+
+
+def lift_key(lr: PolyLift, probes: List[List[Int]], lift: ProductLift) -> Int:
+    """How well a lift covers its region, larger is better:
+    `extent << COST_BITS` less its cost (capped below `2^COST_BITS`).
+    `extent` counts the probe points where its carving forms hold and its
+    end offset vanishes, both over `(n, q)`; `cost` is the L1 norm of every
+    lifted offset plus 4 times that of the end offset, large when a base
+    point's run length was copied into a constant or coefficient (or an
+    offset is not affine there). An end offset not affine over `(n, q)`
+    scores -1. Only a choice among lifts: each is
+    carved by its own forms and re-verified."""
+    var forms = lr.ineqs.copy()
+    var cost = 0
+    for st in lr.steps:
+        for off in [st.off_a.copy(), st.off_b.copy()]:
+            var f = _lifted(lift, off)
+            if len(f) == 0:
+                cost += 1 << COST_BITS
+            for x in f:
+                cost += abs(x)
+    for i in range(len(lr.gamma)):
+        var g = _lifted(lift, lr.gamma[i])
+        if len(g) == 0:
+            return -1
+        var neg = List[Int]()
+        for x in g:
+            cost += 4 * abs(x)
+            neg.append(-x)
+        forms.append(g^)
+        forms.append(neg^)
+    var extent = 0
+    for p in probes:
+        var ok = True
+        for f in forms:
+            if aff_eval(f, p) < 0:
+                ok = False
+                break
+        if ok:
+            extent += 1
+    return (extent << COST_BITS) - min(cost, (1 << COST_BITS) - 1)
 
 
 def poly_steps(steps: List[WitnessStep]) -> List[PolyStep]:
