@@ -950,6 +950,17 @@ by deleting it.
   No mathematical claim or review status changes. ·
   [October 7 follow-up](audit-2026-10-06.md#7-follow-up-2026-10-07);
   [PR #221 evidence](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/221)
+- 2026-10-07 · Specimens already settled by the literature: Tribonacci,
+  Kol(3,1), the two Sirvent–Solomyak ternary examples, the Arnoux–Rauzy
+  product `σ₁σ₂σ₃`, and the three circulated Rauzy-fractal examples
+  `12,31,1` / `12,23,312` / `123,1,31` all terminate with coincidence on the
+  all-seed `B_sigma`; six of them lie inside the 145,806-specimen
+  finite domain. The circulated `123,1,1132` has `det M = 0` and is not PIP.
+  The Sirvent–Solomyak count of 260 pairs of length 194 is not reproduced
+  under the `(ab,ba)` seed convention (257 / 137); it stays unconfirmed until
+  checked against the paper's full text. No claim status changes. ·
+  [motivations note](motivations/ternary-literature-context-2026-10-07.md);
+  `kernel/tests/test_ternary_literature_specimens.mojo`
 - 2026-10-07 · Adversarial audit of Proposition V and Theorem E found no
   disproof and no failing proof step. An independent oracle reproduced every
   computational input: the Theorem E class enumerated to image length 5 stays
