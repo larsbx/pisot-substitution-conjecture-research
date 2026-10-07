@@ -40,6 +40,14 @@ by deleting it.
 - 2026-06-13 (archive) · Collar certification lemma `R(C) <= L_sigma`:
   refuted. · `archive/2026-09-08/notes_2026_06/COLLAR_LEMMA_REFUTED_2026_06_13.md`
 
+- 2026-10-06 · Hub-guarded nonincrease of the physical cut potential `|i-j|`
+  on target-free PIP occurrence transitions is false: replayed cycle
+  `396,820` has hub word `1,1` and offset `0,1,0`; its first edge selects an
+  actual interior child. The support is productive, so this is a local
+  monovariant negative, not a strict component counterexample. ·
+  `c4-ordered-hub-offset-negative-2026-10-06.md` §3;
+  `evidence/ordered-hub-packets-2026-10-06/`
+
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-03 · Barge's (W) / beta-numeration monotonicity as a route to PPVC:
@@ -122,6 +130,12 @@ by deleting it.
   Do not re-verify. · `kernel/tests/test_overlap_seed_patch.mojo`;
   `audit-2026-10-04.md` §B.3
 
+- 2026-10-06 · All four retained real-secondary packet SCCs and both controls
+  have acyclic nonzero-physical-cut induced graphs; coherent defined hub phase
+  also survives on the non-Pisot strict support. Neither finite property
+  distinguishes PIP or gives balanced alignment. ·
+  `c4-ordered-hub-offset-negative-2026-10-06.md` §§2,5
+
 ## 6. Tooling pitfalls
 
 - 2026-10-04 · `pkill -f PATTERN` inside a shell command whose own text
@@ -186,6 +200,19 @@ by deleting it.
   as well as `-I .`: it imports `tests/polynomial_reference.mojo`. Without it
   the build fails to locate the module, before and after the re-vendor. ·
   `kernel/pisot_polynomial_bench.mojo` line 7
+
+- 2026-10-06 · `PacketGraph.expansions` has two entries per BPA state,
+  indexed by `2*state_id + Int(sign == -1)`; indexing by state ID selects
+  another state's factor row. The new ordered-hub golden regressions caught
+  this during implementation before export. ·
+  `kernel/psc/target_packets.mojo::_prepare`;
+  `kernel/tests/test_packet_hub_analysis.mojo`
+
+- 2026-10-06 · Claim coverage reads live passing receipts. Running governance
+  or the full Python suite before `kernel/run_tests.sh` finishes can report
+  uncovered claims from its incomplete receipt file. Complete the Mojo run
+  first, then audit; the completed 60-file run and subsequent full checks pass.
+  · `c4-ordered-hub-offset-negative-2026-10-06.md` §7
 
 ## 7. Review outcomes
 
