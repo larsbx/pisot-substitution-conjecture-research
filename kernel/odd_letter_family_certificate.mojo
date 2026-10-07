@@ -118,6 +118,8 @@ comptime LIFT_PATH_NODES = 5000  # guided cover: nodes of the point-path enumera
 comptime DESCENT_STARTS = 8  # guided cover: feasible non-member points a member descent starts from
 comptime DESCENT_STEPS = 64  # guided cover: steps of one member descent
 comptime SMALL_POINT_DRAWS = 100  # guided cover: seeded base-point draws in 0..4, tried first
+comptime VALUE_SPLIT_MAX = 4  # guided cover: a live variable with fewer values is split by value
+comptime ALT_BASE_POINTS = 4  # guided cover: further member points tried before a peel
 comptime FAR_CANDIDATES = 24  # guided tail cover: candidates tried with a moderately large tail variable first
 comptime BASE_POINT_SEED = 20261006  # guided cover: seed of the base-point search
 comptime BASE_POINT_DRAWS = 300  # guided cover: generic draws before the constant fallbacks
@@ -3374,11 +3376,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                 if verbose:
                     _trace(out.regions, "open (no point)", List[Int](), reg.subst, reg.assume, 0, 0)
                 continue
-            var pick = _peel_variable_in(reg, m)
-            var shift = aff_const(m, 1)
-            shift[pick + 1] = 1
-            stack.append(_region_subst(reg, pick, aff_const(m, 0), reg.depth + 1))
-            stack.append(_region_subst(reg, pick, shift, reg.depth + 1))
+            _peel(stack, reg, m)
             continue
         # a non-PIP point by Lemma P1: the McCormick quadrant it opens is cut
         # (first, or only once no certificate lifts from the point)
@@ -3402,72 +3400,15 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
             out.line_certified += 1
             out.max_level = max(out.max_level, len(whole_line.steps))
             continue
-        var point = pattern_family(pat, point_subst(reg.subst, ns))
-        var done = False
-        # an exact line-mode path at the point
-        var wp = search_witness_line(point, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z)
-        if wp.found:
-            var lr = lift_path(fam, point, ns, O, Y, wp.steps, OFFSET_BOUND, Y, Z)
-            if verbose and not (lr.ok and lr.a == lr.b):
-                print("  lift failed (path):", lr.why if not lr.ok else "ends off the diagonal")
-            if lr.ok and lr.a == lr.b:
-                var ineqs = lr.ineqs.copy()
-                for i in range(3):
-                    if not _is_zero_form(lr.gamma[i]):
-                        ineqs.append(lr.gamma[i].copy())
-                        ineqs.append(aff_scale(lr.gamma[i], -1))
-                ineqs = _new_forms(_carving_forms(ineqs), reg)
-                if not _satisfies(ineqs, ns):
-                    raise Error("a lifted path does not hold at its own base point")
-                var inside = _with_assumptions(reg, ineqs)
-                if verbose:
-                    _trace(out.regions, "path", ns, reg.subst, ineqs, 1, len(ineqs))
-                if not verify_witness_line(fam, O, Y, lr.steps, Prover(inside.assume.copy())):
-                    raise Error("a carved region does not verify its lifted path")
-                out.certified += 1
-                out.line_certified += 1
-                out.max_level = max(out.max_level, len(lr.steps))
-                _push_complements(stack, reg, ineqs)
-                done = True
-            else:
-                # lift again with candidates built from the point's own step,
-                # over polynomials (the region's M gamma may be quadratic)
-                var levels = _poly_carve(fam, point, ns, wp.steps, reg, stack, verbose, out.regions)
-                if levels > 0:
-                    out.certified += 1
-                    out.line_certified += 1
-                    out.poly_certified += 1
-                    out.max_level = max(out.max_level, levels)
-                    done = True
+        var done = _certify_at(pat, fam, reg, ns, stack, out, verbose)
         if not done:
-            var cp = search_crossing(point, O, Y, OFFSET_BOUND, MAX_LEVEL - 2, Y, Z, Y, Z)
-            if cp.found:
-                var lr = lift_path(fam, point, ns, O, Y, cp.steps, OFFSET_BOUND, Y, Z)
-                if verbose and not lr.ok:
-                    print("  lift failed (crossing):", lr.why)
-                var ineqs = lr.ineqs.copy()
-                if lr.ok and crossing_conditions(fam, lr.a, lr.b, lr.gamma, Y, Z, cp.close[0], ns, ineqs):
-                    ineqs = _new_forms(_carving_forms(ineqs), reg)
-                    if not _satisfies(ineqs, ns):
-                        raise Error("a lifted crossing does not hold at its own base point")
-                    var inside = _with_assumptions(reg, ineqs)
-                    if verbose:
-                        _trace(out.regions, "crossing", ns, reg.subst, ineqs, 1, len(ineqs))
-                    if not verify_crossing(fam, O, Y, lr.steps, cp.close[0], Y, Z, Prover(inside.assume.copy())):
-                        raise Error("a carved region does not verify its lifted crossing")
-                    out.certified += 1
-                    out.crossing_certified += 1
-                    out.max_level = max(out.max_level, len(lr.steps) + 2)
-                    _push_complements(stack, reg, ineqs)
+            # other member points of the region: a certificate that does not
+            # lift from one point may lift from another
+            var alts = _member_points_in(pat, reg, screen, ns, ALT_BASE_POINTS)
+            for k in range(len(alts)):
+                if _certify_at(pat, fam, reg, alts[k], stack, out, verbose):
                     done = True
-                else:
-                    var levels = _poly_crossing_carve(fam, point, ns, cp.steps, cp.close[0], reg, stack, verbose, out.regions)
-                    if levels > 0:
-                        out.certified += 1
-                        out.crossing_certified += 1
-                        out.poly_certified += 1
-                        out.max_level = max(out.max_level, levels)
-                        done = True
+                    break
         if not done and not cut_first and _mccormick_carve(pat, s, reg, ns, stack, verbose, out.regions):
             out.cut += 1
             done = True
@@ -3480,11 +3421,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                 if verbose:
                     _trace(out.regions, "open (no certificate)", ns, reg.subst, reg.assume, 0, 0)
             elif any_live:
-                var pick = _peel_variable_in(reg, m)
-                var shift = aff_const(m, 1)
-                shift[pick + 1] = 1
-                stack.append(_region_subst(reg, pick, aff_const(m, 0), reg.depth + 1))
-                stack.append(_region_subst(reg, pick, shift, reg.depth + 1))
+                _peel(stack, reg, m)
             else:
                 var sigma = fam.instantiate(List[Int](length=m, fill=0))
                 var mat = Mat3(substitution_incidence(sigma))
@@ -3598,6 +3535,110 @@ def _new_forms(forms: List[List[Int]], reg: GuidedRegion) -> List[List[Int]]:
     return out^
 
 
+def _certify_at(pat: RunPattern, fam: ConeFamily, reg: GuidedRegion, ns: List[Int], mut stack: List[GuidedRegion], mut out: ShapeCover, verbose: Bool) raises -> Bool:
+    """Certify part of `reg` from the point `ns`: an exact line-mode path,
+    lifted (affine, then over polynomials), else a Lemma X closure, lifted
+    likewise. On success the carved piece is verified, counted, and its
+    complements pushed."""
+    var point = pattern_family(pat, point_subst(reg.subst, ns))
+    var done = False
+    # an exact line-mode path at the point
+    var wp = search_witness_line(point, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z)
+    if wp.found:
+        var lr = lift_path(fam, point, ns, O, Y, wp.steps, OFFSET_BOUND, Y, Z)
+        if verbose and not (lr.ok and lr.a == lr.b):
+            print("  lift failed (path):", lr.why if not lr.ok else "ends off the diagonal")
+        if lr.ok and lr.a == lr.b:
+            var ineqs = lr.ineqs.copy()
+            for i in range(3):
+                if not _is_zero_form(lr.gamma[i]):
+                    ineqs.append(lr.gamma[i].copy())
+                    ineqs.append(aff_scale(lr.gamma[i], -1))
+            ineqs = _new_forms(_carving_forms(ineqs), reg)
+            if not _satisfies(ineqs, ns):
+                raise Error("a lifted path does not hold at its own base point")
+            var inside = _with_assumptions(reg, ineqs)
+            if verbose:
+                _trace(out.regions, "path", ns, reg.subst, ineqs, 1, len(ineqs))
+            if not verify_witness_line(fam, O, Y, lr.steps, Prover(inside.assume.copy())):
+                raise Error("a carved region does not verify its lifted path")
+            out.certified += 1
+            out.line_certified += 1
+            out.max_level = max(out.max_level, len(lr.steps))
+            _push_complements(stack, reg, ineqs)
+            done = True
+        else:
+            # lift again with candidates built from the point's own step,
+            # over polynomials (the region's M gamma may be quadratic)
+            var levels = _poly_carve(fam, point, ns, wp.steps, reg, stack, verbose, out.regions)
+            if levels > 0:
+                out.certified += 1
+                out.line_certified += 1
+                out.poly_certified += 1
+                out.max_level = max(out.max_level, levels)
+                done = True
+    if not done:
+        var cp = search_crossing(point, O, Y, OFFSET_BOUND, MAX_LEVEL - 2, Y, Z, Y, Z)
+        if cp.found:
+            var lr = lift_path(fam, point, ns, O, Y, cp.steps, OFFSET_BOUND, Y, Z)
+            if verbose and not lr.ok:
+                print("  lift failed (crossing):", lr.why)
+            var ineqs = lr.ineqs.copy()
+            if lr.ok and crossing_conditions(fam, lr.a, lr.b, lr.gamma, Y, Z, cp.close[0], ns, ineqs):
+                ineqs = _new_forms(_carving_forms(ineqs), reg)
+                if not _satisfies(ineqs, ns):
+                    raise Error("a lifted crossing does not hold at its own base point")
+                var inside = _with_assumptions(reg, ineqs)
+                if verbose:
+                    _trace(out.regions, "crossing", ns, reg.subst, ineqs, 1, len(ineqs))
+                if not verify_crossing(fam, O, Y, lr.steps, cp.close[0], Y, Z, Prover(inside.assume.copy())):
+                    raise Error("a carved region does not verify its lifted crossing")
+                out.certified += 1
+                out.crossing_certified += 1
+                out.max_level = max(out.max_level, len(lr.steps) + 2)
+                _push_complements(stack, reg, ineqs)
+                done = True
+            else:
+                var levels = _poly_crossing_carve(fam, point, ns, cp.steps, cp.close[0], reg, stack, verbose, out.regions)
+                if levels > 0:
+                    out.certified += 1
+                    out.crossing_certified += 1
+                    out.poly_certified += 1
+                    out.max_level = max(out.max_level, levels)
+                    done = True
+    return done
+
+
+def _member_points_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, skip: List[Int], count: Int) raises -> List[List[Int]]:
+    """Up to `count` member points of the region other than `skip`, from the
+    base-point candidates (each clamped and walked into the region)."""
+    var out = List[List[Int]]()
+    var m = len(reg.subst[0]) - 1
+    var box = propagate_bounds(reg.assume, m)
+    if box.empty:
+        return out^
+    var tries = _base_candidates(m)
+    for t in range(len(tries)):
+        if len(out) >= count:
+            break
+        var c = tries[t].copy()
+        for k in range(m):
+            c[k] = max(c[k], box.lo[k])
+            if box.bounded[k]:
+                c[k] = min(c[k], box.hi[k])
+        var ns = c.copy() if _satisfies(reg.assume, c) else _repair_into(reg.assume, c)
+        if len(ns) == 0 or ns == skip:
+            continue
+        var seen = False
+        for k in range(len(out)):
+            if out[k] == ns:
+                seen = True
+        if seen or not _member_at(pat, reg.subst, ns, screen):
+            continue
+        out.append(ns^)
+    return out^
+
+
 def _poly_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], steps: List[WitnessStep], reg: GuidedRegion, mut stack: List[GuidedRegion], verbose: Bool, index: Int) raises -> Int:
     """Lift a point path over polynomials (`psc.poly_line`), carve the region
     by its affine forms, re-verify the path on the carved region with
@@ -3689,6 +3730,24 @@ def _push_complements(mut stack: List[GuidedRegion], reg: GuidedRegion, forms: L
         var piece = _with_assumptions(reg, more)
         if not _assume_empty(piece.assume, m):
             stack.append(piece^)
+
+
+def _peel(mut stack: List[GuidedRegion], reg: GuidedRegion, m: Int):
+    """Partition the region one level deeper: by every value of a live
+    variable whose propagated domain is small (at most `VALUE_SPLIT_MAX`
+    values; every integer point of the region lies in it), else by
+    `n = 0 | n >= 1` on the live variable occurring most often."""
+    var box = propagate_bounds(reg.assume, m)
+    for k in range(m):
+        if box.bounded[k] and box.hi[k] > box.lo[k] and box.hi[k] - box.lo[k] < VALUE_SPLIT_MAX and _region_live(reg, k):
+            for v in range(box.lo[k], box.hi[k] + 1):
+                stack.append(_region_subst(reg, k, aff_const(m, v), reg.depth + 1))
+            return
+    var pick = _peel_variable_in(reg, m)
+    var shift = aff_const(m, 1)
+    shift[pick + 1] = 1
+    stack.append(_region_subst(reg, pick, aff_const(m, 0), reg.depth + 1))
+    stack.append(_region_subst(reg, pick, shift, reg.depth + 1))
 
 
 def _peel_variable_in(reg: GuidedRegion, m: Int) -> Int:
