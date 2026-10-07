@@ -659,11 +659,12 @@ def main() raises:
         print("residue members:", res_total, " in closed shape cells:", res_closed, " left:", res_total - res_closed)
         return
     if len(args) > 2 and String(args[2]) == "zcap":
-        # Theorem K's members with Z_2 <= cap, every Delta: zcap s cap budget
+        # Theorem K's members with Z_2 <= cap, every Delta: zcap s cap budget [journal]
         var s = Int(String(args[3]))
         var cap = Int(String(args[4]))
         var budget = Int(String(args[5])) if len(args) > 5 else 5000
-        var c = zcap_cover(s, cap, budget, True)
+        var journal = String(args[6]) if len(args) > 6 else String()
+        var c = zcap_cover(s, cap, budget, True, journal)
         print("s =", s, " Z_2 <=", cap, ", every Delta: patterns", c.patterns, " closed", c.closed, " regions", c.regions, " -> ", "CLOSED" if c.closed == c.patterns else "OPEN", flush=True)
         return
     if len(args) > 2 and String(args[2]) == "cell":
@@ -4209,7 +4210,7 @@ struct ZCapCover(Copyable, Movable):
         self.open_patterns = List[String]()
 
 
-def zcap_cover(s: Int, cap: Int, budget: Int, verbose: Bool = False) raises -> ZCapCover:
+def zcap_cover(s: Int, cap: Int, budget: Int, verbose: Bool = False, journal: String = "") raises -> ZCapCover:
     """Theorem K's members with `Z_2 <= cap`, for every `Delta` of the sign's
     tail (`s = +1`: `Delta = 1 + e`, the core `u` of Lemma Φ5 before
     `y^Delta`; `s = −1`: `Delta = −e`), by finitely many fully revealed run
@@ -4217,8 +4218,10 @@ def zcap_cover(s: Int, cap: Int, budget: Int, verbose: Bool = False) raises -> Z
     z-runs, `w_2` with at most `cap`. Each pattern is covered with the region
     split by the value of `Z_2` and the pieces above `cap` left out
     (`z_cap`). Runs alternate, so every pair lies under exactly one
-    pattern."""
+    pattern. With a `journal`, verdicts are appended and replayed as in
+    `run_tree_guided` (a run a proof cites is one without a journal)."""
     var out = ZCapCover()
+    var done = _journal_load(journal)
     var z1_max = cap + s
     var l1s = List[List[Int]]()
     for n in range(1, 2 * z1_max + 1):
@@ -4239,12 +4242,21 @@ def zcap_cover(s: Int, cap: Int, budget: Int, verbose: Bool = False) raises -> Z
             var pat = RunPattern(l1s[i].copy(), False, l2s[j].copy(), False)
             if s == 1:
                 pat.tail_run1 = 1
-            var c = cover_pattern_guided(pat, s, 1 if s == 1 else 0, budget, True, False, True, 0, cap, True)
+            var key = String(pat) + " (Z_2 <= " + String(cap) + ")"
             out.patterns += 1
+            if key in done:
+                if done[key] == "closed":
+                    out.closed += 1
+                else:
+                    out.open_patterns.append(String(pat))
+                continue
+            var c = cover_pattern_guided(pat, s, 1 if s == 1 else 0, budget, True, False, True, 0, cap, True)
             out.regions += c.regions
             if c.open == 0 and not c.budget_exhausted:
                 out.closed += 1
+                _journal_add(journal, key, "closed")
             else:
+                _journal_add(journal, key, "open")
                 out.open_patterns.append(String(pat))
                 if verbose:
                     print("    OPEN   ", pat, "  regions", c.regions, " open", c.open, " budget" if c.budget_exhausted else "", flush=True)
