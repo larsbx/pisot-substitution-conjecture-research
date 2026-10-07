@@ -1,6 +1,5 @@
 version = 1
 repository = "larsbx/pisot-substitution-conjecture-research"
-branch = "polyglot/migration-v1"
 boundary_id = "psc-bpa-census"
 fail_closed = true
 authority_change = false
@@ -11,7 +10,7 @@ manifest = "ESTATE.toml"
 
 [authority]
 primary_languages = ["Mojo"]
-supporting_languages = ["Lean", "Haskell", "Python", "Julia"]
+supporting_languages = ["Lean", "Python", "TLA+"]
 canonical_status = "existing-authority-preserved"
 
 [roles]
@@ -26,11 +25,3 @@ unknown_critical_fields = "reject"
 schema_mismatch = "reject"
 authority_mismatch = "reject"
 normalization_mismatch = "reject"
-
-[julia]
-role = "supporting-research-engine"
-oracle_path = "oracles/julia"
-spike_path = "experiments/julia"
-acceptance_authority = false
-proof_authority = false
-promotion_requires = "canonical boundary vectors and authoritative checker replay"

@@ -119,7 +119,7 @@ Three things transfer cleanly.
 This is the finding that changed the decision, and it comes from the
 repository's own surfaces rather than from the literature.
 
-`docs/completion-ledger-2026-09-14.md` states the shortest route and its single
+`archive/2026-10-06/status-snapshots/completion-ledger-2026-09-14.md` states the shortest route and its single
 open premise, overlap productivity for one swap seed, and then names the next
 open obligation: context-preserving recognizability **plus** separation in the
 full non-unimodular internal representation.

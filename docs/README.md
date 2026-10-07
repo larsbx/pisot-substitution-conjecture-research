@@ -11,67 +11,45 @@ TOML and regenerate rather than hand-editing the Markdown.
 
 ## Current status
 
-0. `side-notes-ledger.md` — live, append-only record of side findings:
+1. `side-notes-ledger.md` — live, append-only record of side findings:
    refuted mechanisms, redirected routes, specimens settled by the literature,
    withdrawn figures, finite observations and tooling pitfalls. Read it
    before starting a new mechanism, census or route (`AGENTS.md`).
 
-1. `audit-2026-10-04.md` — latest status audit, after the overlap-depth routes
-   and the `PDS ⇒ G1` promotion. It re-derives Propositions 5.46/5.47 and
-   Theorem B, confirms the realization firewall holds, and reproduces the
-   cube-image bounds exactly. **Its findings describe the audited baseline
-   `b661f50` and most were applied in the same change; §A.1 is the resolved
-   list.** Resolved there: the strict-zipper note's header now records what
-   depends on it, the four 2026-10-04 claims now have prose surfaces that
-   governance checks, and `PDS ⇒ G1` with the seedwise bridge is stated on
-   `README.md`, the conjecture ledger, the proof ladder, the architecture note
-   and the claim/source map — and, since 2026-10-05, on the live research
-   roadmap, which that change had missed. The 2026-10-05 follow-up also fixed
-   the two inherited documentation defects of §D.6: the three manuscript
-   statements tagged `\Status{Theorem}, conditional only on its hypothesis`
-   now carry `\Status{Conditional}` with their open hypothesis named, as the
-   vocabulary and every repository surface already said, and
-   `verification-architecture.md` §7 now gives the overlap-productivity
-   frontier instead of calling factorization the deepest gap. Two findings were
-   retracted as wrong on inspection (§§D.2, D.4); the independent 2026-10-04
-   review that §D.2 looked for is recorded in `side-notes-ledger.md` §7, and
-   the closure gap §D.4 described is closed — Theorem R, Proposition F and
-   Theorem B are ledger nodes since 2026-10-05, so `PDSImpliesRepoG1` requires
-   its repository inputs and not only the import. What still stands is the rest
-   of §D.6 — `main` unprotected with no enforced status check, and the 24,486-
-   and 135,990-specimen PPVC runs outside CI — plus one deliberate deferral:
-   the eleven generated claim bindings still target the frozen 2026-09-14
-   weekly snapshot.
-2. `audit-2026-09-27.md` — status/provenance audit, now carrying a 2026-10-01
+2. `audit-2026-10-04.md` — status audit of the overlap-depth routes and
+   `PDS ⇒ G1`; §A.1 records applied findings and §§B/D the independent
+   derivations and remaining review debt. The later resolutions are recorded
+   in `side-notes-ledger.md`, including the October 6 replacement of frozen
+   weekly status bindings with the live proof ladder and roadmap.
+3. `audit-2026-09-27.md` — status/provenance audit, now carrying a 2026-10-01
    resolution note: the PSC-closed premise was withdrawn, PSC remains open,
    #84/#138 are live theorem issues again, and #153 is resolved conservatively.
    The audit also records the adelic/trim frontier and the Markdown source
    corruption repaired by the current maintenance work.
-2. `research-roadmap-2026-09-21.md` — live completion roadmap. Its
+4. `research-roadmap-2026-09-21.md` — live completion roadmap. Its
    2026-10-02 synchronization includes the fixed-edge/alternating-E aligned
    normal form, strict-zipper M-adic carry stop result, conditional G1 routes,
    and complete finite separation evidence; the open gates remain open.
-3. `p1-two-route-map-2026-10-01.md` — current attack map joining the aligned
+5. `p1-two-route-map-2026-10-01.md` — current attack map joining the aligned
    and strict-zipper routes at offset zero and identifying the next reviewable
    theorem targets.
-4. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
+6. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
-5. `completion-ledger-2026-10-02.md` — latest merged weekly completion
+7. `completion-ledger-2026-10-02.md` — latest merged weekly completion
    snapshot, refreshed to `main@ff9e5d3`; mathematical/evidence additions
    through PR #188 and the complete 24,486-specimen separation record.
-6. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
+8. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
-7. `conjecture-ledger.md` — live prose dependency ledger.
+9. `conjecture-ledger.md` — live prose dependency ledger.
    `ledger-index.md` is its generated machine-derived counterpart: one row per
    TLA+ ledger node with kind, source, dependencies, and closure.
-8. `proof-ladder.md` — shortest honest path from established results to the
+10. `proof-ladder.md` — shortest honest path from established results to the
    remaining theorem, plus the stronger parallel structural routes.
-9. `current-proof-architecture-2026-09-14.md` — canonical detailed architecture,
+11. `current-proof-architecture-2026-09-14.md` — canonical detailed architecture,
    explicitly distinguishing the primary overlap route from the finite-BPA and
-   realization programmes. The 2026-09-11 file is retained only as a superseded
-   historical pointer.
-10. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
+   realization programmes.
+12. `../manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form
    state-of-program exposition.
 
 When these disagree, do not choose the strongest wording. Check the latest
@@ -99,7 +77,7 @@ Change the ledger entry and every surface in the same commit.
   arithmetic specification kept in `larsbx/finite-math-kernels`, and the vendoring
   rule enforced by `vendored.toml`.
 - `../claim_governance.toml` — the claim-governance policy read by the
-  vendored `larsbx/claim_governance_tools` package: status vocabulary, claim
+  vendored `tools/claim_governance` package from `larsbx/finite-math-kernels`: status vocabulary, claim
   ledger with its status surfaces, promotion guard, and the floating-point
   ban on the exact kernel.
 - `claim-relationship-graph.json` — the same ledger read as a typed
@@ -323,7 +301,9 @@ G0–G6 audit before citing an equivalence.
   canonical predecessor manuscript.
 - `../archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md` contains
   the restricted degree-three seed theorem.
-- Dated completion ledgers are snapshots, not automatically current.
+- The [September completion snapshots](../archive/2026-10-06/status-snapshots/README.md)
+  retain historical observations and audit citations. The October 2 snapshot
+  remains in `docs/`; live status checks use the proof ladder and roadmap.
 
 Historical files are immutable evidence. Correct their live interpretation in
 the current ledgers rather than rewriting the archive.

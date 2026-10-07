@@ -225,7 +225,7 @@ This phase is complete when:
 - the four repository contracts agree on ownership;
 - the PSC issue names the first theorem and executable obligations;
 - the generic kernel issue is opened upstream;
-- the Julia and Haskell oracle contracts are explicit;
+- any oracle contract states its inputs, conformance checks and non-authoritative role;
 - no new scaffold text claims that a finite computation proves a class theorem.
 
 The next implementation pass begins with the domain-neutral cycle/gain kernel upstream and the PSC adapter that converts `AffinePumpCertificate` data into exact loop gains.

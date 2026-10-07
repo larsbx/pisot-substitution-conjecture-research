@@ -76,7 +76,7 @@ authority = "non_authoritative_reference"
 required = true
 current = ["reference"]
 
-# julia/ (scaffold) and python/ (the census oracles).
+# Independent Python census oracles.
 [[plane]]
 id = "oracles"
 target = "oracles"
@@ -176,12 +176,6 @@ acceptance_authority = false
 name = "TLA+"
 authority = "supporting"
 roles = ["formal_model"]
-acceptance_authority = false
-
-[[language]]
-name = "Julia"
-authority = "supporting"
-roles = ["oracle", "experiment"]
 acceptance_authority = false
 
 [migration]

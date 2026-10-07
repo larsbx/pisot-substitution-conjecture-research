@@ -19,7 +19,7 @@ authority -> mathematical/domain concern -> implementation language
 
 Mojo under `kernel/` is the canonical executable (see `AGENTS.md`). Python under
 `reference/psc_research/` is a non-authoritative reference layer, and the
-oracles under `oracles/` (Python census oracles, a Julia lane) never carry
+oracles under `oracles/` (Python census oracles) never carry
 acceptance. Lean under `proof/PscVerif/` and TLA+ under `proof/tla/` are the
 proof plane: they hold claim state, not acceptance authority over the Mojo
 kernel. Recorded run outputs live in `evidence/` and imported external sources

@@ -13,7 +13,7 @@ from what it would have to import.
 
 ## What is built here, and checked
 
-`kernel/psc/automata.mojo` — deterministic automata over an integer alphabet with
+`kernel/finite_automata/dfa.mojo` — deterministic automata over an integer alphabet with
 total transitions, and the operations a decision procedure needs: intersection,
 union, complement, the subset construction of Rabin and Scott[^1] discharging
 one existential quantifier over a track of a product alphabet, emptiness with a

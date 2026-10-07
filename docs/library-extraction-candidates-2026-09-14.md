@@ -11,23 +11,27 @@ Heads audited, on the shared branch `claude/library-extraction-candidates-d9lp6i
 
 Markers: `[V]` was checked in this session by reading or executing the repository; `[U]` could not be checked here. Both CI workflows are green on their `main` heads `[V]` (NLAP run 679, PSC runs 884/721/665). Locally, PSC's Python suite passes in full and NLAP-JT's passes except the one test that requires a `mojo` binary, which this container lacks `[V]`.
 
-## Execution status (2026-09-15)
+## Execution status (updated 2026-10-06)
 
-| Step (section 8) | State | Where |
-| --- | --- | --- |
-| 1. Harden `finite_exact` in NLAP-JT, extract | done | `larsbx/finite_exact` (`BigZ`, `Q`, probe, oracle, boundary, specification); `poly_z` left in NLAP-JT as a bounded-degree machine-integer module (section 1.3 item 7, second option) |
-| 2. Migrate PSC's `Rat` and `CheckedRat` consumers, delete both | done | `kernel/finite_exact/`, `kernel/interval_q/`, `kernel/psc/exact.mojo`; pins in `vendored.toml` |
-| 3. Extract `substitution_dynamics` | done | `larsbx/substitution_dynamics`; `kernel/substitution_dynamics/` is the vendored copy, `psc/words.mojo`, `psc/bpa.mojo`, `psc/swap_discrepancy.mojo` the alphabet-3 views |
-| 4. Separate exact linear algebra from certificate logic | done | `larsbx/finite_linear_algebra` (`mat3`, `qlinalg`, `tensor3`, general `w3`, `scalar`); `psc/w3.mojo` keeps the printed certificate basis |
-| interval layer (section 3) | done | `larsbx/interval_q`, on `finite_exact` |
-| 5. Specify `finite_proof_records` | specification and Python reference model done; Mojo implementation pending | `larsbx/finite_proof_records` |
-| 6. Extract the audit tooling with per-repository policy | done | `larsbx/claim_governance_tools` (terminology, claims, promotion, numerics, consistency checks over a per-repository `claim_governance.toml`); PSC is the first consumer: claim ledger with status surfaces, exact-kernel float ban, run by CI, `pytest`, and `verify_all.sh`; NLAP-JT's policy expresses its no-trigonometry, no-points, rank-2, and C1-scoped vocabulary rules beside its existing `tools/audit_*.py` |
+All reusable packages now come from `larsbx/finite-math-kernels`, pinned
+in `vendored.toml`. The original standalone-repository names in the dated
+analysis below describe the September extraction plan.
 
-Vendoring is by byte-identical copy, pinned per package by upstream commit and SHA-256 digest in `vendored.toml` and enforced by `tools/check_vendored_sync.py` (shipped by `finite_exact`). The heads and paths quoted below are those of 2026-09-14 and are kept as the audit record.
+| Extraction | Current PSC binding |
+| --- | --- |
+| Exact integers, rationals and closed intervals | `kernel/finite_exact/`; rejected consumer states are handled by `kernel/psc/exact.mojo` |
+| Alphabet-generic substitution dynamics | `kernel/substitution_dynamics/`; thin alphabet-3 views under `kernel/psc/` |
+| Exact linear algebra | `kernel/finite_linear_algebra/`; PSC keeps its printed certificate basis |
+| Proof records and generated ledger surfaces | `tools/proof_records/` and `tools/make_ledger.py` |
+| Claim-governance audits | `tools/claim_governance/` with repository policy in `claim_governance.toml` |
+
+Vendoring is byte-identical and checked by
+`tools/vendoring/check_vendored_sync.py`. The remaining analysis, quoted heads
+and external paths below are the 2026-09-14 audit record.
 
 ## 0. Summary
 
-| Priority | Candidate | Source of truth today | Consumers | Readiness |
+| Priority | Candidate | Source of truth on 2026-09-14 | Consumers | Readiness |
 | --- | --- | --- | --- | --- |
 | P0 | Exact integers and rationals (`finite_exact`) | `NLAP: src/bigint_z.mojo`, `src/rat_q.mojo` | PSC, NLAP-JT, later certificate projects | after the hardening list in section 1.3 |
 | P0 | Substitution-dynamics kernel (`substitution_dynamics`) | `PSC: kernel/psc/{words,bpa,derived_system,...}.mojo` | PSC censuses, other symbolic-dynamics work | after alphabet generalization and uniform symbol validation |

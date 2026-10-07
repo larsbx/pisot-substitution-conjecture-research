@@ -72,9 +72,8 @@ jobs:
             echo 'unexpected strict degree-three component; replay record retained above' >&2
             exit 1
           fi
-          # The catalogue prints its own taxonomy; the former Python oracle
-          # (tools/analyze_degree3_catalog.py) is superseded by
-          # kernel/psc/degree3_taxonomy.mojo and its regression test.
+          # The catalogue prints the taxonomy from kernel/psc/degree3_taxonomy.mojo;
+          # kernel/tests/test_census_library.mojo guards it.
           grep -Fx 'DEGREE3_OCCURRENCES 24' degree3.log
           grep -Fx 'DEGREE3_STATE_RELABEL_CLASSES 4' degree3.log
           grep -Fx 'DEGREE3_SUBSTITUTION_CONJUGACY_CLASSES 2' degree3.log
