@@ -9,7 +9,7 @@ of Proposition V's box (`psc.vertex_coincidence.box_radii` /
 SCC of the formal graph with its coincidence vertices deleted: the maximal set
 carrying coincidence-free (producer-free) cycles. This is the sound object
 behind the ledger's "formal producer-free cycles"
-(`docs/completion-ledger-2026-09-11.md` §V), whose original instrument is not
+(`archive/2026-10-06/status-snapshots/completion-ledger-2026-09-11.md` §V), whose original instrument is not
 in the repository; a carrier, not a simple cycle, is counted, because the
 number of simple cycles is not canonical.
 

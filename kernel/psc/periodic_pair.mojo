@@ -195,11 +195,11 @@ def _position(tables: SeedOverlapTables, w: List[Int]) raises -> CubicElt:
     return x
 
 
-def _child_path(sigma: List[List[Int]], letter: Int, r: Int, index: Int) raises -> List[Int]:
-    """Child indices, top level first, of position `index` in `sigma^r(letter)`."""
-    var sizes = List[List[Int]]()  # sizes[n][a] = |sigma^n(a)|
+def image_sizes(sigma: List[List[Int]], levels: Int) raises -> List[List[Int]]:
+    """`sizes[n][a] = |sigma^n(a)|` for `0 <= n <= levels`."""
+    var sizes = List[List[Int]]()
     sizes.append([1, 1, 1])
-    for n in range(1, r):
+    for n in range(1, levels + 1):
         var row = List[Int]()
         for a in range(3):
             var s = 0
@@ -207,6 +207,12 @@ def _child_path(sigma: List[List[Int]], letter: Int, r: Int, index: Int) raises 
                 s = checked_add(s, sizes[n - 1][sigma[a][c]])
             row.append(s)
         sizes.append(row^)
+    return sizes^
+
+
+def _child_path(sigma: List[List[Int]], letter: Int, r: Int, index: Int) raises -> List[Int]:
+    """Child indices, top level first, of position `index` in `sigma^r(letter)`."""
+    var sizes = image_sizes(sigma, r - 1 if r > 0 else 0)
     var path = List[Int]()
     var x = letter
     var k = index

@@ -11,7 +11,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
-sys.path.insert(0, str(ROOT / "tools"))
 
 import make_ledger  # noqa: E402
 from proof_records import generate_ledgers as gl  # noqa: E402

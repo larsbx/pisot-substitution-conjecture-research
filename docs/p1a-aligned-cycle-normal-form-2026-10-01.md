@@ -148,6 +148,23 @@ This is a strict reduction of #138, not a proof of #138.
 
 ## 5. Next proof obligations
 
+*Update 2026-10-05: A1 and A2 are one obligation.* Theorem C of
+[`p1a-template-collapse-2026-10-05.md`](p1a-template-collapse-2026-10-05.md)
+proves that passing to `\sigma^2` turns every viable template into the case
+where `h` fixes **both** letters of a bad edge pointwise: a fixed edge is
+permuted by `h`, so `h\circ h` fixes it pointwise, and in the alternating
+template `h\circ h` is the identity. Primitivity, irreducibility, the Pisot
+property, the good pair, the badness of the edge and the closed nonproductive
+component all transfer to `\sigma^2`. So **A2 follows from A1 restricted to
+case (i)**, and the surviving obligation is the single statement A1′ there,
+which in classical form reads: *two distinct one-sided fixed points of a PIP
+substitution on three letters, anchored at a common point, share a tile.* That
+note's §4 records, from Barge–Diamond (2002) itself, why A1′ is a special case
+of the open ternary strong coincidence problem rather than a corollary of the
+import. The two subsections below are kept as the original statement of the
+obligations.
+
+
 ### A1 — fixed-edge forcing
 
 Let \(P\in\{\{a,c\},\{b,c\}\}\) be a bad edge with \(H(P)=P\).

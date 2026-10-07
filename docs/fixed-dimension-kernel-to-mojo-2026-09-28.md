@@ -42,7 +42,7 @@ is also the differential. Same container, runs interleaved.
 Two things follow.
 
 **PR #164's optimisation is real.** 3.2× in Python, which matches the "up to 3x"
-its own `.jules/bolt.md` note claims. Nothing here disputes the measurement.
+PR #164's optimisation note claims. Nothing here disputes the measurement.
 
 **It is spent in the wrong place.** After a 3.2× win the oracle is still 4.5×
 slower than the canonical kernel, and 4.2× slower than the canonical kernel's
@@ -65,7 +65,7 @@ reason and no other; `kernel/integer_vector_bench.mojo` is the measurement, and
 
 ## What landed
 
-`kernel/psc/integer_vector.mojo` is the canonical kernel. Two contracts, both
+`kernel/finite_linear_algebra/integer_vector.mojo` is the canonical kernel. Two contracts, both
 inherited from the oracle and both fail-closed:
 
 - a dimension that does not agree raises, never a truncated or zero-padded
@@ -92,7 +92,7 @@ sum agree" is the assumption an unroll exists to violate. Both languages also
 derive the same two corpus checksums independently — `4728` and `1576` over the
 348 distinct incidence matrices — so a divergence surfaces as a number.
 
-`kernel/psc/checked_int.mojo` now holds the checked integer primitives once.
+`kernel/finite_exact/checked_int.mojo` now holds the checked integer primitives once.
 `psc/perron_field3.mojo` had the only other copy and delegates to it; paired
 alternating runs of the coincidence census put that at 42.44 s before and
 41.96 s after, so the indirection is free.
@@ -115,3 +115,7 @@ alternating runs of the coincidence census put that at 42.44 s before and
   one that will drive the next such PR. It is left alone here only because
   PR #164 also edits it and a conflict would be worse than a note; correcting it
   is the obvious follow-up.
+
+2026-10-06 cleanup resolution: the generic `.jules/bolt.md` advice was removed.
+The workload, measured results and reproduction command remain in this note
+and `kernel/integer_vector_bench.mojo`.

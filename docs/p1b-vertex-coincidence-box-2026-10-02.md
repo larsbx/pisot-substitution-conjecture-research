@@ -798,6 +798,21 @@ too (1,174,788).
 T1 and T2 together with the mass lemma give PPVC, hence BH
 (`formal-productivity-reduction-2026-10-04.md`) and G1.
 
+*Structure of the `CU` failures (2026-10-05).* The leftmost child is a
+*function* on nonzero-offset vertices, so `CU` is the set of vertices whose
+leftmost orbit leaves the nonzero offsets and its complement is the basin of
+that function's terminal cycles. Proposition LC of
+[`p1b-leftmost-chain-periodic-pair-2026-10-05.md`](p1b-leftmost-chain-periodic-pair-2026-10-05.md)
+proves that every such cycle keeps one offset sign and is a **prefix-vs-interior**
+periodic pair: a prefix occurrence `sigma^r(i) = i U` on the side whose tile
+starts later, an interior occurrence `sigma^r(j) = Q j V` on the other, and
+`w_0 = (I − M^r)^{-1} ab(Q) ∈ Z^A`. It is the half-degenerate companion of
+Theorem B, where both occurrences are interior. This restructures T1 — by its
+Corollary LC2 "reaches `CU`" is an invariant of the box graph's strongly
+connected components, so T1 is an SCC-level statement — but it does **not**
+prove T1: the reachability half remains a pointwise hitting problem of the
+`AdelicPeriodicOffsetHitting` kind. T2 is untouched.
+
 *Falsification test on a larger domain (exact census).*
 `pixi run one-tile-census total` surveys the 24,486 specimens of total image
 length at most 8 (104 minutes on 4 workers):

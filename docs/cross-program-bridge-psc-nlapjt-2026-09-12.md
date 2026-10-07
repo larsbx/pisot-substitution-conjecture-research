@@ -134,7 +134,7 @@ Each item names the map, what it preserves, what leaks, and its status.
 | `G1` finiteness via `G1b-2` renewal finiteness | no counterpart; `StrictCarrierRefinementWellFounded` substitutes | GAP |
 | withdrawn `V5Thm51`: `beta L(s') <= L(s) + D` (bounded discrepancy does not bound state length) | alignment-audit P0: "finite carrier at each step does not imply absence of an infinite chain" | the same fallacy, independently discovered and retired |
 
-- Status: DEFINITION for the dictionary; the retired-fallacy row is THEOREM-grade negative knowledge on the PSC side (explicit counterexamples: 135 difference vertices, first-return data of length at least 17,078; `docs/completion-ledger-2026-09-11.md` section II) and prose on the NLAP side.
+- Status: DEFINITION for the dictionary; the retired-fallacy row is THEOREM-grade negative knowledge on the PSC side (explicit counterexamples: 135 difference vertices, first-return data of length at least 17,078; `archive/2026-10-06/status-snapshots/completion-ledger-2026-09-11.md` section II) and prose on the NLAP side.
 
 ### I5. Information-losing quotients
 
@@ -231,8 +231,8 @@ Nothing in NLAP is currently verified by its own gate.
 ### C5. PSC: two contradictory policies on the contracting space `[V]`
 
 - `manuscripts/PSC_PROOF_next_source_audit.tex` line 128: "The present work routes around the contracting space entirely."
-- `docs/proof-ladder.md`, `docs/conjecture-ledger.md`, `docs/current-proof-architecture-2026-09-11.md`: the only live `G1b-2` direction is "level-scaled contracting/Rauzy address => uniform discreteness / finite return types".
-- `docs/completion-ledger-2026-09-11.md` section X item 5: the archive's do-not-reattempt list contains "Rauzy/DT address".
+- `docs/proof-ladder.md`, `docs/conjecture-ledger.md`, `docs/current-proof-architecture-2026-09-14.md`: the only live `G1b-2` direction is "level-scaled contracting/Rauzy address => uniform discreteness / finite return types".
+- `archive/2026-10-06/status-snapshots/completion-ledger-2026-09-11.md` section X item 5: the archive's do-not-reattempt list contains "Rauzy/DT address".
 
 The comparison in section 5 B1 shows that the contracting-space formulation is the one in which the finiteness PSC needs is a theorem. The three statements should be reconciled in one place rather than left as a manuscript policy, a ledger target, and an archive prohibition.
 

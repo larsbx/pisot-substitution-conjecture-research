@@ -1,25 +1,25 @@
 # Automated research protocol
 
-## Agent duties
+`AGENTS.md` defines implementation policy, the targeted literature gate and
+side-finding records. `claim_governance.toml` defines the status vocabulary;
+use the live claim/source map and proof ladder when reporting a result.
+Repository proofs, imported theorems, finite-domain certificates, conditional
+implications and open premises remain distinct.
 
-Agents working in this repository should preserve the proof-state distinction:
+Before proposing a theorem:
 
-- **proved**: has a proof in source or precise citation;
-- **conditional**: explicitly names the conjectural dependency;
-- **empirical**: backed by scripts and seeds, but not a theorem;
-- **retired**: known false or structurally blocked.
+1. Complete the targeted literature stop/go check in `AGENTS.md`.
+2. Check `docs/side-notes-ledger.md` for a refuted or retired route.
+3. State exact hypotheses and the proof or primary-source theorem relied on.
+4. Run the relevant regressions and bind executable evidence to its claim or
+   contract, following `docs/test-claim-coverage.md`.
 
-## Required checks before proposing a theorem
+Before editing a manuscript:
 
-1. Run core example tests.
-2. Add a regression test for the claim.
-3. Search the conjecture ledger for matching retired routes.
-4. State exact hypotheses, especially whether unimodularity is absent.
-5. If using a citation, record theorem number and what it actually proves.
-
-## Required checks before editing a manuscript
-
-1. No stale untransposed synthetic-countermodel language; the required form is `N_C = (M_sigma)^T, P = I`.
-2. Do not claim unconditional PSC unless SCC Producer has been proved.
-3. Do not cite BD/BK as proving universal exclusion of recurrent noncoincident cycles.
-4. Boundary synchronization is a normal form/reduction layer, not a completed proof of PSC.
+1. Keep the synthetic countermodel convention `N_C = (M_sigma)^T, P = I`.
+2. On the shortest overlap route, seedwise overlap productivity remains open;
+   finite evidence does not discharge it. On the finite-BPA route, name both
+   G1 and SCC Producer. Use `docs/proof-ladder.md` for the current dependencies.
+3. Do not cite BD/BK as proving universal exclusion of recurrent noncoincident
+   cycles; record theorem numbers and hypotheses for every import.
+4. Boundary synchronization is a normal form/reduction layer. PSC remains open.

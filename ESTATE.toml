@@ -27,7 +27,7 @@ pin = "sha256:7dff31575b2834b937395f3ff6f7ce2e2d1d7927b893cf8229c682ad7f3a99d2"
 # larsbx/finite-math-kernels, hashed together; re-pin whenever a package is re-vendored.
 [[dep]]
 id = "finite-math-kernels"
-pin = "sha256:e4dd7e00252d4e553edcabb1f5f1802f6d6676b9146467b1654f9adca8184327"
+pin = "sha256:2422e71f0f499c49e59167fc85bc4f42ab3f6bccf42ff06594df22064bf0054a"
 
 [exports]
 names = []
@@ -76,7 +76,7 @@ authority = "non_authoritative_reference"
 required = true
 current = ["reference"]
 
-# julia/ (scaffold) and python/ (the census oracles).
+# Independent Python census oracles.
 [[plane]]
 id = "oracles"
 target = "oracles"
@@ -176,12 +176,6 @@ acceptance_authority = false
 name = "TLA+"
 authority = "supporting"
 roles = ["formal_model"]
-acceptance_authority = false
-
-[[language]]
-name = "Julia"
-authority = "supporting"
-roles = ["oracle", "experiment"]
 acceptance_authority = false
 
 [migration]
