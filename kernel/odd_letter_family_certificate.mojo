@@ -1390,8 +1390,9 @@ struct RunPattern(Copyable, Movable, Writable):
     var suffix2: List[Int]  # letters closing w_2 (Lemma Phi5': 2 - Delta letters)
     var tail_run1: Int  # > 0: w_1 closes with y^(tail_run1 + e), e the cell's tail variable
     var xblock: Bool  # w_2 = v x with x a second block (Lemma Phi5': the last 2 - Delta letters)
-    var xl: List[Int]  # the runs of x
-    var xopen: Bool  # x continues with an opaque tail
+    var xl: List[Int]  # the runs of x, in reading order
+    var xopen: Bool  # x has an opaque part
+    var xend: Bool  # x is revealed from its end: its opaque part comes first
 
     def __init__(out self, var l1: List[Int], open1: Bool, var l2: List[Int], open2: Bool, var suffix1: List[Int] = List[Int](), var suffix2: List[Int] = List[Int]()):
         self.l1 = l1^
@@ -1404,6 +1405,7 @@ struct RunPattern(Copyable, Movable, Writable):
         self.xblock = False
         self.xl = List[Int]()
         self.xopen = False
+        self.xend = False
 
     def runs(self) -> Int:
         return len(self.l1) + len(self.l2) + len(self.xl)
@@ -1430,9 +1432,11 @@ struct RunPattern(Copyable, Movable, Writable):
                 w.write(" +y^(", self.tail_run1, "+e)")
             if wi == 1 and self.xblock:
                 w.write(" +[")
+                if self.xopen and self.xend:
+                    w.write("*")
                 for k in range(len(self.xl)):
                     w.write(names[self.xl[k]])
-                if self.xopen:
+                if self.xopen and not self.xend:
                     w.write("*")
                 w.write("]")
             ref suf = self.suffix1 if wi == 0 else self.suffix2
@@ -1473,18 +1477,32 @@ def pattern_family(pat: RunPattern, subst: List[List[Int]]) raises -> ConeFamily
             f[0] += pat.tail_run1
             img.append(run_of(Y, f^))
         if wi == 1 and pat.xblock:
+            # slots: the runs of x, then its opaque part's (y, z); in the
+            # image the opaque part comes last, or first when x is revealed
+            # from its end
+            var runs = List[Segment]()
             for k in range(len(pat.xl)):
                 var f = subst[slot].copy()
                 f[0] += 1
                 slot += 1
-                img.append(run_of(pat.xl[k], f^))
+                runs.append(run_of(pat.xl[k], f^))
             if pat.xopen:
                 var par = List[List[Int]]()
                 par.append(aff_const(m, 0))
                 par.append(subst[slot].copy())
                 par.append(subst[slot + 1].copy())
                 slot += 2
-                img.append(opaque_segment(par^))
+                if pat.xend:
+                    img.append(opaque_segment(par^))
+                    for k in range(len(runs)):
+                        img.append(runs[k].copy())
+                else:
+                    for k in range(len(runs)):
+                        img.append(runs[k].copy())
+                    img.append(opaque_segment(par^))
+            else:
+                for k in range(len(runs)):
+                    img.append(runs[k].copy())
         ref suf = pat.suffix1 if wi == 0 else pat.suffix2
         for k in range(len(suf)):
             img.append(letter_segment(m, suf[k]))
@@ -1998,7 +2016,8 @@ def refine_pattern(pat: RunPattern) -> List[RunPattern]:
     elif pick == 1 and len(pat.l2) > 0:
         last = pat.l2[len(pat.l2) - 1]
     elif pick == 2 and len(pat.xl) > 0:
-        last = pat.xl[len(pat.xl) - 1]
+        # the run next to x's opaque part
+        last = pat.xl[0] if pat.xend else pat.xl[len(pat.xl) - 1]
     var nexts = List[Int]()
     if last < 0:
         nexts.append(Y)
@@ -2019,6 +2038,8 @@ def refine_pattern(pat: RunPattern) -> List[RunPattern]:
             kid.l1.append(nexts[k])
         elif pick == 1:
             kid.l2.append(nexts[k])
+        elif pat.xend:
+            kid.xl.insert(0, nexts[k])
         else:
             kid.xl.append(nexts[k])
         out.append(kid^)
@@ -3784,6 +3805,7 @@ def run_tree_guided(s: Int, delta: Int, max_runs: Int, budget: Int, verbose: Boo
         var root = RunPattern(List[Int]([Z]), True, List[Int](), True)
         root.xblock = True
         root.xopen = True
+        root.xend = True  # the witnesses read x from its end (A1' note 3l)
         stack.append(root^)
     elif tail:
         var root = RunPattern(List[Int]([Z]), True, List[Int](), True)
