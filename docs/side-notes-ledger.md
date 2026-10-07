@@ -88,6 +88,12 @@ by deleting it.
   not re-search; consequence FP ⟺ PDS. ·
   `pds-strong-coincidence-literature-gate-2026-10-04.md`
 
+- 2026-10-07 · Theorem K's family has no power or rotation in Barge's PDS
+  class or its mirror: the initial (and final) letters of `sigma^n` on
+  `o, y, z` alternate `(y, o, o)` / `(o, y, y)`, never injective, never
+  constant, no common first letter. Do not test Theorem K's members against
+  `barge_witness` again. · `p1a-tail-literature-gate-2026-10-07.md` §3
+
 ## 4. Withdrawn or unreproducible figures
 
 - 2026-10-04 · "1,764 formal producer-free cycles; maximum death radius 7;

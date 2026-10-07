@@ -317,6 +317,12 @@ These are reference/index additions only. They do not establish #84, #138,
   stops; it is redirected to Lemma X (endpoint-only monotone crossing, the
   argument of Lemma Φ2) with the suffix lemmas Φ5 and Φ5′. Decision
   "redirect, then proceed narrowed".
+- `p1a-tail-literature-gate-2026-10-07.md` — stop/go for Theorem K's tail
+  cells (`|Delta|` large): no power or rotation of a member is in Barge's
+  PDS class (an initial/final-letter parity lemma), so the literature route
+  stops; Lemma P1 shows `Delta` is unbounded over bounded words only for
+  `s = +1, Z_2 <= 1` (two explicit families), which proceed by a parametric
+  certificate. Decision "stop, then proceed narrowed".
 - `p1a-swap-family-literature-gate-2026-10-06.md` — stop/go before Theorem H:
   Berthé–Bourdon–Jolivet–Siegel (2016) is the closest generic framework for
   infinite families but is unimodular and product-based; Barge's
