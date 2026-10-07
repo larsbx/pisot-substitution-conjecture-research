@@ -429,3 +429,15 @@ by deleting it.
   CI-pinned summary line and the claim receipts are byte-identical. The
   per-specimen lines are recorded nowhere in the repository. ·
   `kernel/tests/test_oa_overlap_types.mojo`; `kernel/oa_failures_probe.mojo`
+
+- 2026-10-06 · Repository-wide PSC research audit confirms the canonical
+  status is coherent after #153: PSC and `OP_seed`/#84 remain open, and no
+  accidental PSC promotion was found. Highest-priority review debt is the
+  October 4 PDS => PPVC/G1 => all-seed-termination chain, whose live surfaces
+  still say human review pending. Research priority is narrowed to seed-strength
+  #84 plus an occurrence-compatible adelic coverage/alignment theorem for #139;
+  #9 should supply only portable ordered-factorization lemmas. PR #223's
+  Dumont–Thomas streaming regression is resolved at the current FMK pin;
+  PR #221 should not merge unchanged because its side-notes entry is missing
+  and its base predates the current vendoring state. No claim status changes. ·
+  `audit-2026-10-06.md`
