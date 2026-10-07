@@ -961,3 +961,8 @@ by deleting it.
   `lemma_witness`, where it is unreachable. No claim status changes. ·
   `audit-adversarial-prop-v-theorem-e-2026-10-07.md`,
   `archive/2026-10-07/session-probes/`
+- 2026-10-07 · Correction to the entry above: the dead L_BC clause is now also
+  removed from `lemma_witness` in `kernel/a1_normal_form_census.mojo`.
+  `tests/test_a1_normal_form.mojo` passes unchanged (453 named witnesses,
+  27-point residue), which confirms the clause never fired. ·
+  `kernel/a1_normal_form_census.mojo`

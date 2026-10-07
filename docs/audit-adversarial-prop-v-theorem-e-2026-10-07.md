@@ -56,7 +56,7 @@ their finite inputs. Those are what this audit attacked.
 
 ## 3. Findings (presentation only)
 
-*Applied 2026-10-07* to [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) §§3b.3, 3b.6 and 3b.7. No statement changed. The unreachable L_BC clause is still in `kernel/a1_normal_form_census.mojo` `lemma_witness`, where it changes no output.
+*Applied 2026-10-07* to [`p1a-a1-prime-2026-10-05.md`](p1a-a1-prime-2026-10-05.md) §§3b.3, 3b.6 and 3b.7. No statement changed. The unreachable L_BC clause has also been removed from `lemma_witness` in `kernel/a1_normal_form_census.mojo`. `test_a1_normal_form.mojo` passes unchanged, with 453 witnesses and the 27-point residue.
 
 1. **Theorem E, "position" is a prefix length.** The lemmas name the position
    of the shared tile as the length of the common prefix (a 0-based index).
