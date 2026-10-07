@@ -121,6 +121,7 @@ comptime SMALL_POINT_DRAWS = 100  # guided cover: seeded base-point draws in 0..
 comptime FM_ROWS = 4000  # guided cover: rows Fourier-Motzkin may hold before it gives up
 comptime FM_MAGNITUDE = 1 << 40  # and the entry size
 comptime FINITE_POINTS = 400  # guided cover: a region shown to hold at most this many points is enumerated
+comptime DECIDE_POINTS = 20000  # at the peel limit: a finite region up to this size is decided point by point
 comptime VALUE_SPLIT_MAX = 4  # guided cover: a live variable with fewer values is split by value
 comptime ALT_BASE_POINTS = 4  # guided cover: further member points tried before a peel
 comptime FAR_CANDIDATES = 24  # guided tail cover: candidates tried with a moderately large tail variable first
@@ -3149,7 +3150,42 @@ def _implied_equality(reg: GuidedRegion, m: Int) -> GuidedRegion:
     return reg.copy()
 
 
-def _finite_points(reg: GuidedRegion, m: Int) -> List[GuidedRegion]:
+def _decide_point(pat: RunPattern, piece: GuidedRegion, m: Int, mut screen: CubicScreen, mut out: ShapeCover) raises:
+    """Case (d) for one point of a region (every live variable substituted):
+    not a member, or coincident by a witness path or Lemma X closure found
+    and verified on the point's own family (b, c), else by
+    `coincidence_level`; a negative raises."""
+    var fam = pattern_family(pat, piece.subst)
+    var sigma = fam.instantiate(List[Int](length=m, fill=0))
+    var mat = Mat3(substitution_incidence(sigma))
+    if abs(mat.det()) != 2 or not screen.is_pip(mat):
+        out.not_member += 1
+        return
+    var wp = search_witness_line(fam, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z)
+    if wp.found and verify_witness_line(fam, O, Y, wp.steps):
+        out.decided += 1
+        out.max_level = max(out.max_level, len(wp.steps))
+        return
+    var cp = search_crossing(fam, O, Y, OFFSET_BOUND, MAX_LEVEL - 2, Y, Z, Y, Z)
+    if cp.found and verify_crossing(fam, O, Y, cp.steps, cp.close[0], Y, Z):
+        out.decided += 1
+        out.max_level = max(out.max_level, len(cp.steps) + 2)
+        return
+    var lev = -1
+    try:
+        lev = coincidence_level(sigma, O, Y)
+    except:
+        # past the exact procedure's bounds: undecided, reported open
+        out.open += 1
+        out.open_forms.append(piece.subst.copy())
+        return
+    if lev < 0:
+        raise Error("SC REFUTED in Theorem K's family: {o, y} is not eventually coincident")
+    out.decided += 1
+    out.max_level = max(out.max_level, lev)
+
+
+def _finite_points(reg: GuidedRegion, m: Int, cap: Int = FINITE_POINTS) -> List[GuidedRegion]:
     """The region as its integer points, when Fourier-Motzkin bounds every
     live variable and the box holds at most `FINITE_POINTS` points: one
     fully substituted region per point satisfying the assumptions (an exact
@@ -3171,7 +3207,7 @@ def _finite_points(reg: GuidedRegion, m: Int) -> List[GuidedRegion]:
         lo.append(b.lo[0])
         hi.append(b.hi[0])
         size *= b.hi[0] - b.lo[0] + 1
-        if size > FINITE_POINTS:
+        if size > cap:
             return List[GuidedRegion]()
     # enumerate the box, keep the points of the region
     var cur = lo.copy()
@@ -3589,10 +3625,10 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                 out.not_member += 1
                 continue
             if reg.depth >= GUIDED_PEEL_LIMIT:
-                var pts = _finite_points(reg, m)
+                var pts = _finite_points(reg, m, DECIDE_POINTS)
                 if len(pts) > 0:
                     for k in range(len(pts)):
-                        stack.append(pts[k].copy())
+                        _decide_point(pat, pts[k], m, screen, out)
                     continue
                 var flat = _implied_equality(reg, m)
                 if len(flat.assume) != len(reg.assume) or flat.subst != reg.subst:
@@ -3644,13 +3680,13 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
             # (a region without one is a single point)
             var pts = List[GuidedRegion]()
             if any_live and reg.depth >= GUIDED_PEEL_LIMIT:
-                pts = _finite_points(reg, m)
+                pts = _finite_points(reg, m, DECIDE_POINTS)
             var flat = reg.copy()
             if any_live and reg.depth >= GUIDED_PEEL_LIMIT and len(pts) == 0:
                 flat = _implied_equality(reg, m)
             if len(pts) > 0:
                 for k in range(len(pts)):
-                    stack.append(pts[k].copy())
+                    _decide_point(pat, pts[k], m, screen, out)
             elif flat.subst != reg.subst:
                 stack.append(flat^)
             elif any_live and reg.depth >= GUIDED_PEEL_LIMIT:
@@ -3661,16 +3697,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
             elif any_live:
                 _peel(stack, reg, m)
             else:
-                var sigma = fam.instantiate(List[Int](length=m, fill=0))
-                var mat = Mat3(substitution_incidence(sigma))
-                if abs(mat.det()) != 2 or not screen.is_pip(mat):
-                    out.not_member += 1
-                    continue
-                var lev = coincidence_level(sigma, O, Y)
-                if lev < 0:
-                    raise Error("SC REFUTED in Theorem K's family: {o, y} is not eventually coincident")
-                out.decided += 1
-                out.max_level = max(out.max_level, lev)
+                _decide_point(pat, reg, m, screen, out)
     return out^
 
 
