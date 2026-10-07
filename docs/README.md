@@ -322,6 +322,14 @@ These are reference/index additions only. They do not establish #84, #138,
   recorded PPVC runs, pure discrete spectrum on the 145,806 specimens with
   images ≤ 4 or total length ≤ 8 (finite evidence; Proposition V unreviewed).
   Driver `kernel/strong_coincidence_census.mojo`.
+- `pds-certificate-from-the-box-automaton-2026-10-07.md` — Theorem Ω:
+  formal productivity of a PIP substitution is the single exact property
+  "every vertex of the box automaton reaches a coincidence"; it gives PDS
+  through Lee–Moody–Solomyak overlap coincidence (literature gate included)
+  and through Theorem 5.38, and termination with coincidence from every swap
+  seed. The 145,806-specimen PDS statement no longer rests on Theorem B or
+  Proposition V(2); the 120 cube-family specimens need no `B_sigma` build.
+  Includes an independent re-derivation of the October 4 chain.
 - `catch-up-hit-witness-enumeration-2026-10-04.md` — occurrence-level
   all-path decision (`psc.hit_witness`): committed stable labels for all
   97,224 simultaneous-only standing vertices, replayable closed certificates,

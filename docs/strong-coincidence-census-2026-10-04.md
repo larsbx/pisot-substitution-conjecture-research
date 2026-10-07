@@ -96,6 +96,13 @@ the two domains share 14,670), has pure discrete spectrum. This rests on
 Proposition V and Theorem B (unreviewed) and on recorded runs that CI does not
 guard (the PPVC rows for the two larger domains and this census).
 
+*Correction 2026-10-07:* the dependency on Proposition V(2) and Theorem B is
+not needed. The census verdict, read as a statement about the box automaton,
+gives BH through step 1 of Proposition V alone, and pure discrete spectrum
+then also follows from Lee–Moody–Solomyak overlap coincidence
+(`pds-certificate-from-the-box-automaton-2026-10-07.md`, Theorem Ω and §5).
+The two larger rows are guarded by `.github/workflows/box-automaton-evidence.yml`.
+
 In particular the catch-up-free specimens without a Barge-class witness
 (132 of 210 on the corpus, 480 of 654 at total length ≤ 8;
 §5.6g of the vertex note) are settled one by one. What remains open for them

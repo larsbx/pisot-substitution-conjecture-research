@@ -950,3 +950,16 @@ by deleting it.
   No mathematical claim or review status changes. ·
   [October 7 follow-up](audit-2026-10-06.md#7-follow-up-2026-10-07);
   [PR #221 evidence](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/221)
+
+- 2026-10-07 · The 145,806-specimen PDS statement does not need Theorem B,
+  Lemma C, Proposition F, Theorem R, Theorem S or Proposition V(2): step 1 of
+  Proposition V (cycle vertices lie in the box, a geometric series) with
+  Proposition FP turns the recorded box verdicts and SC_all into formal
+  productivity, and FP gives PDS both through Lee–Moody–Solomyak overlap
+  coincidence and through Theorem 5.38. It also certifies termination with
+  coincidence from every swap seed, so the 120 budget-exhausting cube-family
+  specimens need no direct `B_sigma` build. The swap-seed graph misses box
+  cycle vertices (38 on the cube specimen), so it cannot replace the box on the
+  literature route. A fresh re-derivation of Lemma C, Theorem B, Proposition F,
+  Theorem R and depth-note Propositions 1/4 found no error. ·
+  `pds-certificate-from-the-box-automaton-2026-10-07.md`

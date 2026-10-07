@@ -25,6 +25,14 @@ and a superset changes no verdict (any closed offset-zero-free set it
 reaches contains a cycle, which is a genuine counterexample). The slab
 |t| < l_max is scanned by exact monotone sign tests; no floating value is
 used. A capped closure is reported as capped, never as a verdict.
+
+The same automaton decides formal productivity (Theorem Omega of
+docs/pds-certificate-from-the-box-automaton-2026-10-07.md): every potential
+overlap reaches a coincidence exactly when every vertex of B does. One
+direction is trivial; for the other, a nonproductive potential overlap has
+finitely many descendants, so a nonproductive path from it repeats a vertex,
+and that cycle vertex lies in B by step 1 of Proposition V alone. Neither
+direction uses Theorem B, Lemma C, Proposition F or Theorem R.
 """
 
 from finite_exact.rat_q import Q
@@ -40,6 +48,7 @@ from psc.overlap_seed_patch import (
     build_overlap_graph_from_seeds,
     build_seed_overlap_tables,
     cached_sign,
+    first_coincidence_depths,
     first_left_aligned_depths,
     interior_overlap_cached,
 )
@@ -317,6 +326,13 @@ struct VertexCoincidenceVerdict(Copyable, Movable, Writable):
     var recurrent: Int
     var deepest: Int
     var witness: OverlapState
+    # Theorem Omega: every box vertex reaches a coincidence (formal productivity)
+    var productive: Bool
+    # largest first-coincidence depth over all box vertices (D of the box)
+    var coincidence_depth: Int
+    # largest first-coincidence depth over the six aligned pairs (i, j, 0): S(sigma)
+    var aligned_depth: Int
+    var nonproductive_witness: OverlapState
 
     def __init__(out self):
         self.holds = False
@@ -327,12 +343,17 @@ struct VertexCoincidenceVerdict(Copyable, Movable, Writable):
         self.recurrent = 0
         self.deepest = -1
         self.witness = OverlapState(0, 0, CubicElt())
+        self.productive = False
+        self.coincidence_depth = -1
+        self.aligned_depth = -1
+        self.nonproductive_witness = OverlapState(0, 0, CubicElt())
 
     def write_to[W: Writer](self, mut w: W):
         w.write(
             "holds=", self.holds, " capped=", self.capped, " radii=", self.radii[0], ",", self.radii[1], ",",
             self.radii[2], " starts=", self.starts, " states=", self.states, " recurrent=", self.recurrent,
-            " deepest=", self.deepest,
+            " deepest=", self.deepest, " productive=", self.productive, " D=", self.coincidence_depth,
+            " S=", self.aligned_depth,
         )
 
 
@@ -376,6 +397,17 @@ def _verdict_on(a: SeedOverlapAutomaton, var v: VertexCoincidenceVerdict) raises
             v.holds = False
             v.witness = a.states[i]
             break
+    var coin = first_coincidence_depths(a)
+    v.productive = True
+    for i in range(a.size()):
+        if coin[i] < 0:
+            if v.productive:
+                v.nonproductive_witness = a.states[i]
+            v.productive = False
+            continue
+        v.coincidence_depth = max(v.coincidence_depth, coin[i])
+        if a.states[i].shift.is_zero() and not a.states[i].is_coincidence():
+            v.aligned_depth = max(v.aligned_depth, coin[i])
     var comps = recurrent_sccs(a)
     for c in range(len(comps)):
         for k in range(len(comps[c])):
