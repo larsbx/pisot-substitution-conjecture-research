@@ -194,6 +194,53 @@ by deleting it.
   `experiments/z2-route/` (`zruns.mojo`, `onepat.mojo`); scratch `qcert.py`;
   `kernel/odd_letter_family_certificate.mojo` (`cover_pattern_guided(z_floor=)`)
 
+- 2026-10-07 · **The q-lift closes the `s = −1` tail leaf `zy | yz`**
+  (`Delta = −2 − e <= −2`, `Z_2 >= 4`): `2 qlift -1 -2 4 5000 zy 0 yz 0`
+  ends with 104 regions, 35 certified (20 by polynomial paths lifted over
+  `(n, q)`), 6 cut, 34 without a real member, **0 open**, in ~50 s; the
+  plain z_floor cover of the same leaf leaves 1 open region of 16. Three
+  things were needed besides the lift itself, each a finding: (1) the
+  point search must reach the path at all: with offset bound 3 it cannot
+  pass `(y, y, −4 e_o)`, and with the line offset bounded it cannot pass
+  `(0, −(a+2), a)` once `a > 3`, so the q-lift searches with bound 4 off
+  the line and the line position free (`search_witness_line(line_cap=)`);
+  (2) the lift must not solve a line coordinate to the point's constant
+  (that pins `lambda = a` and carves the slice `a = const`, an endless
+  staircase), and among lifts it prefers one whose end offset is zero over
+  `(n, q)` (`lift_path_poly(lift=)`); (3) regions without a real point are
+  settled exactly when `e` is bounded, by `search_point` on the forms with
+  `e` fixed (`_point_search`). Beyond `zy | yz` no verdict after ~15 min
+  (budget 5,000, runs stopped): `zy | yzy` walks a staircase in `a` (each
+  lifted path carries a bound `a <= const`; 1,293 regions, 11 open so
+  far), `zy | yzyz` reports regions open, mostly with no real point found
+  (159 of 812 regions so far), and `s = +1` `zy +y^(2+e) | zyzy` (Delta >= 2,
+  Z_2 >= 3) walks a staircase in one run length (187 regions, none open). ·
+  `kernel/odd_letter_family_certificate.mojo` (`cover_pattern_guided(q_lift=)`,
+  main mode `qlift`); `kernel/psc/product_lift.mojo`; `kernel/psc/poly_line.mojo`;
+  `test_the_q_lift_closes_the_zy_yz_tail_leaf`
+
+- 2026-10-07 · The q-lift measured, budget 5,000 per pattern, `timeout
+  1800` per run (four runs side by side on 4 cores): **only `zy | yz`
+  closes; nothing else reached a verdict.** `s = −1` (`Delta <= −2`,
+  `Z_2 >= 4`): `zy | yz` closed (104 regions, 0 open, 49 s); `zy | yzy`
+  timed out after 1,657 regions (354 line and 232 polynomial paths, 11 open
+  with no real point), climbing a staircase that had reached `a = 191`;
+  `zy | yzyz` timed out after 938 regions (103 polynomial paths, 1
+  polynomial crossing, 161 open with no real point, 26 open with no
+  certificate). `s = +1` (`Delta >= 2`, `Z_2 >= 3`): `zy +y^(2+e) | zyzy`
+  timed out after 212 regions (206 paths, none open), a staircase of one
+  region per value of one run length, which had reached 235. Sweeps
+  (`zruns … 4 4 5000 1`, 36 patterns each, timed out): `s = −1` closed the
+  first 12 patterns (11 one region or none, `zy | yz` in 48 s) and then
+  spent the rest of the time on `zy | yzy`; `s = +1` closed the first 13
+  and then spent the rest of the time on `zy +y^(2+e) | yzyz`. **The q-lift
+  is not a uniform improvement.** The plain z_floor cover closed
+  `zy +y^(2+e) | yzyz` in 3 regions, but under the q-lift it climbs a
+  staircase (a 4-minute verbose run: 138 regions, 92 polynomial paths, 42
+  open with no real point). The other 23 patterns of each sweep were never
+  reached. · `experiments/z2-route/zruns.mojo` (optional `qlift` argument);
+  `kernel/odd_letter_family_certificate.mojo` (main mode `qlift`)
+
 ## 4. Withdrawn or unreproducible figures
 
 - 2026-10-04 · "1,764 formal producer-free cycles; maximum death radius 7;
@@ -343,6 +390,10 @@ by deleting it.
   ledgers are preserved byte-for-byte at their new archive locators. ·
   `tools/make_ledger.py`;
   `archive/2026-10-06/status-snapshots/README.md`
+
+- 2026-10-07 · `search_point` enumerates every value of a bounded domain, so
+  on forms with large coefficients (the q-lift's tail-fixed forms) one node
+  pushes thousands of boxes: 14 GB and an OOM kill. Pass `span_cap`.
 
 ## 7. Review outcomes
 

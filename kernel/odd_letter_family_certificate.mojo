@@ -62,6 +62,7 @@ from psc.cone_witness import (
     ConeFamily,
     apply_step,
     Segment,
+    WitnessSearch,
     WitnessStep,
     aff_const,
     letter_segment,
@@ -76,7 +77,8 @@ from psc.cone_witness import (
     witness_position,
 )
 from psc.cone_witness import CrossingClose, aff_add, aff_eval, aff_is_const, aff_nonneg, aff_scale, aff_sub, crossing_conditions, lift_path, monotone_paths_meet, Prover, _q_lin, _qa, _q_nonneg, _q_nonneg_under
-from psc.poly_line import lift_path_poly, poly_affine_part, poly_higher, enumerate_point_paths, poly_is_zero, poly_key, solve_crossing_lift, solve_lift, steps_at, verify_crossing_poly, verify_witness_poly
+from psc.poly_line import lift_path_poly, lifts_to_zero, poly_add, poly_affine_part, poly_from_aff, poly_higher, poly_mul, enumerate_point_paths, poly_is_zero, poly_key, solve_crossing_lift, solve_lift, steps_at, verify_crossing_poly, verify_witness_poly
+from psc.product_lift import ProductLift, full_lift, lift_affine, lift_form, lift_point, mccormick_box_forms, no_lift, product_substitution
 from psc.prng import SplitMix64
 from psc.pisot import CubicScreen
 from a1_normal_form_census import f_at, shared_tile_between
@@ -129,6 +131,9 @@ comptime BASE_POINT_SEED = 20261006  # guided cover: seed of the base-point sear
 comptime BASE_POINT_DRAWS = 300  # guided cover: generic draws before the constant fallbacks
 comptime REVEAL_MAX_LEVEL = 6  # reveal census: witness depth before the Lemma X closure counts
 comptime REVEAL_CAP = 8  # reveal census: largest r tried before reporting capped
+comptime TAIL_VALUES = 64  # q-lift: tail values a real-point search enumerates before it truncates
+comptime LINE_CAP = 1 << 16  # q-lift: the line offset a point search may reach (a run length)
+comptime Q_OFFSET_BOUND = 4  # q-lift: the point search's bound off the line (zy | yz passes (y, y, -4 e_o))
 comptime RUN_TREE_BUDGET = 300  # run_tree: regions examined per pattern before reporting the rest open
 
 
@@ -683,6 +688,24 @@ def main() raises:
             if leaves[k].closed:
                 closed += 1
         print("s =", s, " |Delta| >=", abs(d), " Z_2 >=", floor, ": leaves", len(leaves), " closed", closed, " -> ", "CLOSED" if closed == len(leaves) else "OPEN", flush=True)
+        return
+    if len(args) > 2 and String(args[2]) == "qlift":
+        # one tail pattern by the guided cover over (n, q), q_j = n_j e:
+        # qlift s delta floor budget l1 open1 l2 open2 (l like "zy", "-" empty)
+        var s = Int(String(args[3]))
+        var d = Int(String(args[4]))
+        var floor = Int(String(args[5]))
+        var budget = Int(String(args[6]))
+        var pat = RunPattern(_letters(String(args[7])), String(args[8]) == "1", _letters(String(args[9])), String(args[10]) == "1")
+        if s == 1:
+            pat.tail_run1 = d
+        var c = cover_pattern_guided(pat, s, d, budget, True, True, z_floor=floor, q_lift=True)
+        print(pat, ": regions", c.regions, " certified", c.certified, " line", c.line_certified, " poly", c.poly_certified, " crossing", c.crossing_certified, " cut", c.cut, " decided", c.decided, " not member", c.not_member, " open", c.open, " budget exhausted" if c.budget_exhausted else "", flush=True)
+        for k in range(len(c.open_forms)):
+            var line = String("  open slots")
+            for i in range(len(c.open_forms[k])):
+                line += " [" + _form_str(c.open_forms[k][i]) + "]"
+            print(line)
         return
     if len(args) > 2 and String(args[2]) == "cell":
         # one delta cell by the guided run tree:
@@ -2852,20 +2875,25 @@ def _steps_from_bag(bag: List[List[Int]], first: Int, steps: List[WitnessStep]) 
 
 struct GuidedRegion(Copyable, Movable):
     """A region that carries its own inequalities: the points `n >= 0` with
-    every `assume` form `>= 0`, mapped to slot values by `subst`."""
+    every `assume` form `>= 0`, mapped to slot values by `subst`. With a
+    product lift (`lift.on()`) the variables are `(n, q)`, the slots are
+    forms over `n` alone, and the region stands for its real points
+    `q_j = n_j e`, which every substitution keeps real (`_region_subst`)."""
 
     var subst: List[List[Int]]
     var assume: List[List[Int]]
     var depth: Int  # value peels behind it
     var corner: Int  # uniform McCormick corners already applied
     var split: Bool  # split by the value of Lemma P1's factor a = Z_2 already
+    var lift: ProductLift
 
-    def __init__(out self, var subst: List[List[Int]], var assume: List[List[Int]], depth: Int, corner: Int = 0, split: Bool = False):
+    def __init__(out self, var subst: List[List[Int]], var assume: List[List[Int]], depth: Int, corner: Int = 0, split: Bool = False, var lift: ProductLift = no_lift()):
         self.subst = subst^
         self.assume = assume^
         self.depth = depth
         self.corner = corner
         self.split = split
+        self.lift = lift^
 
 
 def tighten(f: List[Int]) -> List[Int]:
@@ -2893,14 +2921,95 @@ def _with_assumptions(reg: GuidedRegion, more: List[List[Int]]) -> GuidedRegion:
     var a = reg.assume.copy()
     for k in range(len(more)):
         a.append(tighten(more[k]))
-    return GuidedRegion(reg.subst.copy(), a^, reg.depth, reg.corner, reg.split)
+    return GuidedRegion(reg.subst.copy(), a^, reg.depth, reg.corner, reg.split, reg.lift.copy())
 
 
 def _region_subst(reg: GuidedRegion, k: Int, repl: List[Int], depth: Int) -> GuidedRegion:
+    """`n_k := repl`. With a product lift the product coordinates follow
+    (`product_substitution`), so real points stay real; a substitution they
+    cannot follow is imposed as `n_k = repl` (two assumptions) instead."""
+    var sub = _subst_var(reg.subst, k, repl)
     var a = _subst_var(reg.assume, k, repl)
+    if reg.lift.on():
+        var ps = product_substitution(reg.lift, k, repl)
+        if not ps.ok:
+            var d = aff_scale(repl, -1)
+            d[k + 1] += 1
+            var same = GuidedRegion(reg.subst.copy(), reg.assume.copy(), depth, reg.corner, reg.split, reg.lift.copy())
+            return _with_assumptions(same, List[List[Int]]([d.copy(), aff_scale(d, -1)]))
+        for i in range(len(ps.vars)):
+            sub = _subst_var(sub, ps.vars[i], ps.forms[i])
+            a = _subst_var(a, ps.vars[i], ps.forms[i])
     for i in range(len(a)):
         a[i] = tighten(a[i])
-    return GuidedRegion(_subst_var(reg.subst, k, repl), a^, depth, reg.corner, reg.split)
+    return GuidedRegion(sub^, a^, depth, reg.corner, reg.split, reg.lift.copy())
+
+
+def _point_vars(reg: GuidedRegion, m: Int) -> Int:
+    """The variables that pick a point: all `m`, or with a product lift the
+    `n` alone (the first `lift.m`; the `q` follow them)."""
+    return reg.lift.m if reg.lift.on() else m
+
+
+def _realize(reg: GuidedRegion, x: List[Int]) raises -> List[Int]:
+    """With a product lift, the real point over `x`'s `n`: `q_j = n_j e`."""
+    if not reg.lift.on():
+        return x.copy()
+    var ns = List[Int]()
+    for k in range(reg.lift.m):
+        ns.append(x[k])
+    return lift_point(reg.lift, ns)
+
+
+def _tail_fixed_forms(reg: GuidedRegion, ev: Int) -> List[List[Int]]:
+    """The assumptions at the real points with `e = ev`, as forms over `n`
+    (`q_j = ev n_j` is linear there; `e` itself enters the constant)."""
+    ref L = reg.lift
+    var out = List[List[Int]]()
+    for i in range(len(reg.assume)):
+        ref f = reg.assume[i]
+        var g = List[Int]()
+        for k in range(L.m + 1):
+            g.append(f[k])
+        g[0] += f[L.e + 1] * ev
+        g[L.e + 1] = 0
+        for t in range(len(L.prods)):
+            var c = f[1 + L.m + t]
+            if L.prods[t] == L.e:
+                g[0] += c * ev * ev
+            else:
+                g[L.prods[t] + 1] += c * ev
+        out.append(g^)
+    return out^
+
+
+def _walk_in(reg: GuidedRegion, start: List[Int], box: Box) raises -> List[Int]:
+    """`start` clamped to the box and walked into the region by
+    `_repair_into`; empty if it is not reached. With a product lift the walk
+    keeps `e` and moves `n` on the forms `_tail_fixed_forms`, so the point it
+    returns is real."""
+    var m = len(start)
+    var c = start.copy()
+    for k in range(m):
+        c[k] = max(c[k], box.lo[k])
+        if box.bounded[k]:
+            c[k] = min(c[k], box.hi[k])
+    if not reg.lift.on():
+        return c^ if _satisfies(reg.assume, c) else _repair_into(reg.assume, c)
+    var x = _realize(reg, c)
+    if _satisfies(reg.assume, x):
+        return x^
+    var fixed = _tail_fixed_forms(reg, c[reg.lift.e])
+    var ns = List[Int]()
+    for k in range(reg.lift.m):
+        ns.append(c[k])
+    ns = _repair_into(fixed, ns)
+    if len(ns) == 0:
+        return ns^
+    x = lift_point(reg.lift, ns)
+    if not _satisfies(reg.assume, x):
+        raise Error("a real point walked in on the tail-fixed forms is outside the region")
+    return x^
 
 
 def _region_live(reg: GuidedRegion, k: Int) -> Bool:
@@ -3142,15 +3251,24 @@ def _implied_equality(reg: GuidedRegion, m: Int) -> GuidedRegion:
     away: an assumption `A` with a unit coefficient such that `A >= 1` is
     infeasible with the rest (Fourier-Motzkin) is `A = 0` at every point, so
     its unit variable is solved for. Returns the region unchanged (same
-    assumptions) when none is found."""
+    assumptions) when none is found. With a product lift only an `n` the
+    product coordinates can follow is solved for."""
     for i in range(len(reg.assume)):
         ref a = reg.assume[i]
+        if aff_is_const(a):
+            continue
+        # a = c n_v + R = 0, so n_v = -c R (>= 0 is kept as an assumption)
         var v = -1
-        for k in range(m):
+        var repl = List[Int]()
+        for k in range(_point_vars(reg, m)):
             if (a[k + 1] == 1 or a[k + 1] == -1) and _region_live(reg, k):
-                v = k
-                break
-        if v < 0 or aff_is_const(a):
+                var r = a.copy()
+                r[k + 1] = 0
+                repl = aff_scale(r, -a[k + 1])
+                if not reg.lift.on() or product_substitution(reg.lift, k, repl).ok:
+                    v = k
+                    break
+        if v < 0:
             continue
         var probe = reg.assume.copy()
         var up = a.copy()
@@ -3158,14 +3276,18 @@ def _implied_equality(reg: GuidedRegion, m: Int) -> GuidedRegion:
         probe.append(up^)
         if not fm_infeasible(probe, m):
             continue
-        # a = c n_v + R = 0, so n_v = -c R (>= 0 is kept as an assumption)
-        var c = a[v + 1]
-        var r = a.copy()
-        r[v + 1] = 0
-        var repl = aff_scale(r, -c)
         var piece = _region_subst(reg, v, repl, reg.depth)
         return _with_assumptions(piece, List[List[Int]]([repl.copy()]))
     return reg.copy()
+
+
+def _point_line_search(point: ConeFamily, reg: GuidedRegion) -> WitnessSearch:
+    """`search_witness_line` at a point of the region. With a product lift
+    the line offset may grow to a run length (`LINE_CAP`): its lambda is
+    affine in n, and a lift turns lambda M (e_z - e_y) into q."""
+    if reg.lift.on():
+        return search_witness_line(point, O, Y, Q_OFFSET_BOUND, MAX_LEVEL, Y, Z, LINE_CAP)
+    return search_witness_line(point, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z)
 
 
 def _decide_point(pat: RunPattern, piece: GuidedRegion, m: Int, mut screen: CubicScreen, mut out: ShapeCover) raises:
@@ -3179,7 +3301,7 @@ def _decide_point(pat: RunPattern, piece: GuidedRegion, m: Int, mut screen: Cubi
     if abs(mat.det()) != 2 or not screen.is_pip(mat):
         out.not_member += 1
         return
-    var wp = search_witness_line(fam, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z)
+    var wp = _point_line_search(fam, piece)
     if wp.found and verify_witness_line(fam, O, Y, wp.steps):
         out.decided += 1
         out.max_level = max(out.max_level, len(wp.steps))
@@ -3203,17 +3325,18 @@ def _decide_point(pat: RunPattern, piece: GuidedRegion, m: Int, mut screen: Cubi
     out.max_level = max(out.max_level, lev)
 
 
-def _finite_points(reg: GuidedRegion, m: Int, cap: Int = FINITE_POINTS) -> List[GuidedRegion]:
+def _finite_points(reg: GuidedRegion, m: Int, cap: Int = FINITE_POINTS) raises -> List[GuidedRegion]:
     """The region as its integer points, when Fourier-Motzkin bounds every
     live variable and the box holds at most `FINITE_POINTS` points: one
     fully substituted region per point satisfying the assumptions (an exact
-    partition of the region). Empty when the region is not shown finite."""
+    partition of the region). Empty when the region is not shown finite.
+    With a product lift, its real points: the `n` are enumerated."""
     var out = List[GuidedRegion]()
     var lo = List[Int]()
     var hi = List[Int]()
     var live = List[Int]()
     var size = 1
-    for k in range(m):
+    for k in range(_point_vars(reg, m)):
         if not _region_live(reg, k):
             continue
         var b = fm_bounds(reg.assume, m, k)
@@ -3233,7 +3356,7 @@ def _finite_points(reg: GuidedRegion, m: Int, cap: Int = FINITE_POINTS) -> List[
         var ns = List[Int](length=m, fill=0)
         for t in range(len(live)):
             ns[live[t]] = cur[t]
-        if _satisfies(reg.assume, ns):
+        if _satisfies(reg.assume, _realize(reg, ns)):
             var piece = reg.copy()
             for t in range(len(live)):
                 piece = _region_subst(piece, live[t], aff_const(m, cur[t]), piece.depth)
@@ -3432,7 +3555,7 @@ struct PointSearch(Copyable, Movable):
         self.empty = empty
 
 
-def search_point(assume: List[List[Int]], m: Int) -> PointSearch:
+def search_point(assume: List[List[Int]], m: Int, span_cap: Int = 0) -> PointSearch:
     """Depth-first search over values with bound propagation at every node:
     fix the first free variable that occurs in an assumption to each value
     of its domain (at most `SEARCH_SPAN` values when unbounded, which
@@ -3440,7 +3563,8 @@ def search_point(assume: List[List[Int]], m: Int) -> PointSearch:
     every assumption. A variable in no assumption is free and stays at its
     lower bound. Each branching partitions a domain and propagation keeps
     every integer point, so an untruncated search that finds nothing within
-    `SEARCH_NODES` nodes proves the region empty."""
+    `SEARCH_NODES` nodes proves the region empty. With `span_cap > 0` a
+    bounded domain of more values is truncated to its first `span_cap`."""
     var occurs = List[Bool](length=m, fill=False)
     for i in range(len(assume)):
         for k in range(m):
@@ -3472,6 +3596,9 @@ def search_point(assume: List[List[Int]], m: Int) -> PointSearch:
         if not box.bounded[pick]:
             top = box.lo[pick] + SEARCH_SPAN - 1
             truncated = True
+        elif span_cap > 0 and top - box.lo[pick] >= span_cap:
+            top = box.lo[pick] + span_cap - 1
+            truncated = True
         # push larger values first, so the smallest is tried first
         var v = top
         while v >= box.lo[pick]:
@@ -3502,9 +3629,12 @@ def _descend_to_member(pat: RunPattern, reg: GuidedRegion, s: Int, start: List[I
         for k in range(len(x)):
             if x[k] == 0:
                 continue
+            if k >= _point_vars(reg, len(x)):
+                continue
             for v in [x[k] // 2, x[k] - 1]:
                 var y = x.copy()
                 y[k] = v
+                y = _realize(reg, y)
                 if not _satisfies(reg.assume, y):
                     continue
                 var fy = aff_eval(q[0], y) * aff_eval(q[1], y) + aff_eval(q[2], y)
@@ -3542,12 +3672,7 @@ def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, 
             tries.append(near[t].copy())
     var feasible = List[List[Int]]()
     for t in range(len(tries)):
-        var c = tries[t].copy()
-        for k in range(m):
-            c[k] = max(c[k], box.lo[k])
-            if box.bounded[k]:
-                c[k] = min(c[k], box.hi[k])
-        var ns = c.copy() if _satisfies(reg.assume, c) else _repair_into(reg.assume, c)
+        var ns = _walk_in(reg, tries[t], box)
         if len(ns) == 0:
             continue
         if not want_member:
@@ -3562,11 +3687,40 @@ def _base_point_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScreen, 
             if len(d) > 0:
                 return d^
     if not want_member:
-        return search_point(reg.assume, m).point.copy()
+        return _point_search(reg, m).point.copy()
     return List[Int]()
 
 
-def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int, tail: Bool = False, verbose: Bool = False, cut_first: Bool = True, corners: Int = 0, z_split: Int = 0, z_cap: Bool = False, z_floor: Int = 0) raises -> ShapeCover:
+def _point_search(reg: GuidedRegion, m: Int) raises -> PointSearch:
+    """`search_point`, or with a product lift its real points: for each
+    value `ev` of `e` in its propagated range, `search_point` on the forms
+    `_tail_fixed_forms(reg, ev)` over `n`, which hold exactly at the real
+    points with `e = ev`. `empty` (no real point) only when `e` is bounded,
+    takes at most `TAIL_VALUES` values, and every search is exhausted."""
+    if not reg.lift.on():
+        return search_point(reg.assume, m)
+    var box = propagate_bounds(reg.assume, m)
+    if box.empty:
+        return PointSearch(List[Int](), True)
+    ref L = reg.lift
+    var lo = box.lo[L.e]
+    var truncated = not box.bounded[L.e] or box.hi[L.e] - lo >= TAIL_VALUES
+    var hi = lo + TAIL_VALUES - 1 if truncated else box.hi[L.e]
+    for ev in range(lo, hi + 1):
+        var ps = search_point(_tail_fixed_forms(reg, ev), L.m, TAIL_VALUES)
+        if len(ps.point) > 0:
+            var p = ps.point.copy()
+            p[L.e] = ev
+            var x = lift_point(L, p)
+            if not _satisfies(reg.assume, x):
+                raise Error("a real point found on the tail-fixed forms is outside the region")
+            return PointSearch(x^, False)
+        if not ps.empty:
+            truncated = True
+    return PointSearch(List[Int](), not truncated)
+
+
+def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int, tail: Bool = False, verbose: Bool = False, cut_first: Bool = True, corners: Int = 0, z_split: Int = 0, z_cap: Bool = False, z_floor: Int = 0, q_lift: Bool = False) raises -> ShapeCover:
     """Cover the pattern's members in one delta cell by certificate-guided
     partition. Regions carry their own inequalities. At a point of each region
     find a certificate (an exact line-mode path, else a Lemma X closure), lift
@@ -3578,13 +3732,32 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
 
     With `z_floor > 0` the claim is restricted to `Z_2 >= z_floor`, and
     Lemma P1 enters once, linearly (`z_floor_forms`): each start region
-    carries `Z_2 >= z_floor` and the McCormick consequence of `f <= -1`."""
+    carries `Z_2 >= z_floor` and the McCormick consequence of `f <= -1`.
+
+    With `q_lift` (a tail cell; docs §3m) the variables are `(n, q)`,
+    `q_j = n_j e` with `e` the variable of `|Delta| - 1` (`_q_lift_start`,
+    `psc.product_lift`): each start region carries Lemma P1 exactly,
+    `f <= -1` as an affine form over `(n, q)`, and `Z_2 >= z_floor` if
+    asked; every region gets the McCormick envelope of its box; base points
+    are real, found by a point search whose line offset may be a run length
+    (`_point_line_search`); polynomial lifts whose conditions are affine over
+    `(n, q)` are carved by and verified on the whole polyhedron, which holds
+    every real point of the region; and a region whose bounded `e` admits no
+    real point is not a member (`_point_search`). Off by default: without it
+    every step above is the plain cover's."""
     var out = ShapeCover()
     var screen = CubicScreen()
-    var m = pat.slots() + (1 if tail else 0)
+    var mn = pat.slots() + (1 if tail else 0)
+    if q_lift and (not tail or z_split > 0):
+        raise Error("q_lift needs a tail cell and no z_split")
+    var m = 2 * mn if q_lift else mn
     var starts = _pattern_starts(pat, s, delta, tail)
     var stack = List[GuidedRegion]()
     for k in range(len(starts)):
+        if q_lift:
+            stack.append(_q_lift_start(pat, s, starts[k], z_floor))
+            out.cut += 1
+            continue
         var start = GuidedRegion(starts[k].copy(), List[List[Int]](), 0)
         if z_floor > 0:
             var g = z_floor_forms(pattern_counts(pat, starts[k]), s, z_floor)
@@ -3604,6 +3777,7 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
             out.not_member += 1
             continue
         reg = _pin_fixed(reg, m)
+        reg = _with_envelope(reg, m)
         var prover = Prover(reg.assume.copy())
         if pisot_cut_under(pattern_counts(pat, reg.subst), s, prover):
             out.cut += 1
@@ -3636,21 +3810,27 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
             var inside = _with_assumptions(reg, g)
             if not mccormick_cut(pattern_counts(pat, inside.subst), s, g, Prover(inside.assume.copy())):
                 raise Error("a McCormick corner is not cut")
-            var next = GuidedRegion(reg.subst.copy(), reg.assume.copy(), reg.depth, reg.corner + 1, reg.split)
+            var next = GuidedRegion(reg.subst.copy(), reg.assume.copy(), reg.depth, reg.corner + 1, reg.split, reg.lift.copy())
             _push_complements(stack, next, g)
             out.cut += 1
             continue
         var any_live = False
-        for k in range(m):
+        for k in range(_point_vars(reg, m)):
             if _region_live(reg, k):
                 any_live = True
+        if not any_live and reg.lift.on():
+            # a live q_j always comes with its live n_j; a region that broke
+            # that would settle real points as non-members
+            for k in range(_point_vars(reg, m), m):
+                if _region_live(reg, k):
+                    raise Error("a product coordinate is live while no run length is")
         # a member if the candidates hit one, else any point of a live region
-        var far = m - 1 if tail else -1
+        var far = (reg.lift.e if reg.lift.on() else mn - 1) if tail else -1
         var ns = _base_point_in(pat, reg, screen, True, far, s)
         if len(ns) == 0 and any_live:
             ns = _base_point_in(pat, reg, screen, False, far)
         if len(ns) == 0:
-            if not any_live or search_point(reg.assume, m).empty:
+            if not any_live or _point_search(reg, m).empty:
                 out.not_member += 1
                 continue
             if reg.depth >= GUIDED_PEEL_LIMIT:
@@ -3730,12 +3910,89 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
     return out^
 
 
+def _q_lift_start(pat: RunPattern, s: Int, start: List[List[Int]], z_floor: Int) raises -> GuidedRegion:
+    """A start region of the q-lift. Its `e` is the variable of
+    `b = |Delta| - 1 = c + sum lam_i n_i`: with one variable, that one; with
+    several (a split renamed the tail into a sum), all `lam_i >= 0` and some
+    `lam_v = 1`, the unimodular change `t = n_v + sum_(i != v) lam_i n_i`
+    in `n_v`'s place, with `n_v = t - sum lam_i n_i >= 0` kept as an
+    assumption (`t >= 0` holds as every `n_i` does). It carries Lemma P1 as
+    the affine form `-1 - f >= 0` over `(n, q)` and `Z_2 >= z_floor`."""
+    var mn = len(start[0]) - 1
+    var sub = start.copy()
+    var assume = List[List[Int]]()
+    var b = _pisot_quadratic(pattern_counts(pat, sub), s)[1].copy()
+    var v = -1
+    var count = 0
+    for j in range(mn):
+        if b[j + 1] != 0:
+            count += 1
+            if b[j + 1] < 0:
+                raise Error("q_lift needs |Delta| - 1 with nonnegative coefficients")
+            if b[j + 1] == 1 and v < 0:
+                v = j
+    if count > 0 and v < 0:
+        raise Error("q_lift needs a unit coefficient in |Delta| - 1")
+    if count > 1:
+        # n_v := n_v - sum_(i != v) lam_i n_i, and that is >= 0
+        var repl = aff_const(mn, 0)
+        for j in range(mn):
+            repl[j + 1] = -b[j + 1]
+        repl[v + 1] = 1
+        sub = _subst_var(sub, v, repl)
+        assume.append(repl^)
+    var lift = full_lift(mn, v if v >= 0 else mn - 1)
+    var counts = pattern_counts(pat, sub)
+    var q = _pisot_quadratic(counts, s)
+    var f = poly_add(poly_mul(poly_from_aff(q[0]), poly_from_aff(q[1])), poly_from_aff(q[2]))
+    var more = List[List[Int]]()
+    for k in range(len(assume)):
+        more.append(lift_form(lift, assume[k]))
+    more.append(_minus_one_minus(lift_affine(lift, f)))
+    if z_floor > 0:
+        var zf = lift_form(lift, counts[3])
+        zf[0] -= z_floor
+        more.append(zf^)
+    var lifted = List[List[Int]]()
+    for i in range(len(sub)):
+        lifted.append(lift_form(lift, sub[i]))
+    return _with_assumptions(GuidedRegion(lifted^, List[List[Int]](), 0, lift=lift^), more)
+
+
+def _with_envelope(reg: GuidedRegion, m: Int) raises -> GuidedRegion:
+    """With a product lift, the region with the McCormick envelope of every
+    `q_j` on its propagated box of `n` (`mccormick_box_forms`: each holds at
+    every real point of the region), less the forms it already implies."""
+    if not reg.lift.on():
+        return reg.copy()
+    var box = propagate_bounds(reg.assume, m)
+    if box.empty:
+        return reg.copy()
+    ref L = reg.lift
+    var lo = List[Int]()
+    var hi = List[Int]()
+    var bounded = List[Bool]()
+    for k in range(L.m):
+        lo.append(box.lo[k])
+        hi.append(box.hi[k])
+        bounded.append(box.bounded[k])
+    # only where n_j and e are live: a variable substituted away has its q_j
+    # substituted with it, and a form would bring both back as free variables
+    var forms = List[List[Int]]()
+    var all = mccormick_box_forms(L, lo, hi, bounded)
+    for i in range(len(all)):
+        for t in range(len(L.prods)):
+            if all[i][1 + L.m + t] != 0 and _region_live(reg, L.prods[t]) and _region_live(reg, L.e):
+                forms.append(all[i].copy())
+    return _with_assumptions(reg, _new_forms(forms, reg))
+
+
 def _pin_fixed(reg: GuidedRegion, m: Int) -> GuidedRegion:
     """Substitute every variable whose propagated bounds coincide: every
     integer point of the region has that value there."""
     var box = propagate_bounds(reg.assume, m)
     var out = reg.copy()
-    for k in range(m):
+    for k in range(_point_vars(reg, m)):
         if box.bounded[k] and box.lo[k] == box.hi[k] and _region_live(out, k):
             out = _region_subst(out, k, aff_const(m, box.lo[k]), out.depth)
     return out^
@@ -3852,7 +4109,7 @@ def _certify_at(pat: RunPattern, fam: ConeFamily, reg: GuidedRegion, ns: List[In
     var point = pattern_family(pat, point_subst(reg.subst, ns))
     var done = False
     # an exact line-mode path at the point
-    var wp = search_witness_line(point, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z)
+    var wp = _point_line_search(point, reg)
     if wp.found:
         var lr = lift_path(fam, point, ns, O, Y, wp.steps, OFFSET_BOUND, Y, Z)
         if verbose and not (lr.ok and lr.a == lr.b):
@@ -3930,12 +4187,7 @@ def _member_points_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScree
     for t in range(len(tries)):
         if len(out) >= count:
             break
-        var c = tries[t].copy()
-        for k in range(m):
-            c[k] = max(c[k], box.lo[k])
-            if box.bounded[k]:
-                c[k] = min(c[k], box.hi[k])
-        var ns = c.copy() if _satisfies(reg.assume, c) else _repair_into(reg.assume, c)
+        var ns = _walk_in(reg, tries[t], box)
         if len(ns) == 0 or ns == skip:
             continue
         var seen = False
@@ -3953,28 +4205,43 @@ def _poly_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], steps: List[W
     by its affine forms, re-verify the path on the carved region with
     `verify_witness_poly` under the region's inequalities (a failure
     raises), and push the rest. The path's length, or 0 if it does not lift
-    or its end offset keeps a term of degree >= 2."""
-    var lr = solve_lift(fam, point, ns, O, Y, steps)
+    or its end offset keeps a term of degree >= 2. With a product lift, a
+    lift whose end offset vanishes on the whole region is sought over the
+    other point paths before one that vanishes on a slice only."""
+    var lr = solve_lift(fam, point, ns, O, Y, steps, reg.lift)
+    var paths = List[List[WitnessStep]]()
     if not lr.ok:
         # other point paths, other segments: the first that solves
-        var paths = enumerate_point_paths(point, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z, LIFT_PATHS, LIFT_PATH_NODES)
+        paths = enumerate_point_paths(point, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z, LIFT_PATHS, LIFT_PATH_NODES, LINE_CAP if reg.lift.on() else 0)
         var tried = 0
         for k in range(len(paths)):
             tried += 1
-            var alt = solve_lift(fam, point, ns, O, Y, paths[k])
+            var alt = solve_lift(fam, point, ns, O, Y, paths[k], reg.lift)
             if alt.ok:
                 lr = alt^
                 break
         if verbose and not lr.ok:
             print("  linear lift failed on", tried, "point paths:", lr.why)
     if not lr.ok:
-        lr = lift_path_poly(fam, point, ns, O, Y, steps, Y, Z)
+        lr = lift_path_poly(fam, point, ns, O, Y, steps, Y, Z, reg.lift)
+        if reg.lift.on() and not (lr.ok and lifts_to_zero(lr.gamma, reg.lift)):
+            for k in range(len(paths)):
+                var alt = lift_path_poly(fam, point, ns, O, Y, paths[k], Y, Z, reg.lift)
+                if alt.ok and alt.a == alt.b and (lifts_to_zero(alt.gamma, reg.lift) or not lr.ok):
+                    var whole = lifts_to_zero(alt.gamma, reg.lift)
+                    lr = alt^
+                    if whole:
+                        break
     if not lr.ok or lr.a != lr.b:
         if verbose:
             print("  polynomial lift failed:", lr.why if not lr.ok else "ends off the diagonal")
         return 0
     var ineqs = lr.ineqs.copy()
     for i in range(3):
+        if reg.lift.on():
+            ineqs.append(lift_affine(reg.lift, lr.gamma[i]))
+            ineqs.append(aff_scale(ineqs[len(ineqs) - 1], -1))
+            continue
         if not poly_is_zero(poly_higher(lr.gamma[i])):
             if verbose:
                 print("  polynomial lift failed: the end offset is not affine; coordinate", i, "has higher part", poly_key(poly_higher(lr.gamma[i])))
@@ -3989,7 +4256,7 @@ def _poly_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], steps: List[W
     var inside = _with_assumptions(reg, ineqs)
     if verbose:
         _trace(index, "polynomial path", ns, reg.subst, ineqs, 1, len(ineqs))
-    if not verify_witness_poly(fam, O, Y, lr.steps, Prover(inside.assume.copy())):
+    if not verify_witness_poly(fam, O, Y, lr.steps, Prover(inside.assume.copy()), reg.lift):
         raise Error("a carved region does not verify its polynomial path")
     # an independent check in plain arithmetic: the path at the base point
     if not verify_witness_line(point, O, Y, steps_at(lr.steps, ns)):
@@ -4005,7 +4272,7 @@ def _poly_crossing_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], step
     under the region's inequalities and check the closure in plain
     arithmetic at the base point (each failure raises). The level reached,
     or 0."""
-    var lr = solve_crossing_lift(fam, point, ns, O, Y, steps, cl, Y, Z)
+    var lr = solve_crossing_lift(fam, point, ns, O, Y, steps, cl, Y, Z, reg.lift)
     if not lr.ok:
         if verbose:
             print("  linear crossing lift failed:", lr.why)
@@ -4016,7 +4283,7 @@ def _poly_crossing_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], step
     var inside = _with_assumptions(reg, ineqs)
     if verbose:
         _trace(index, "polynomial crossing", ns, reg.subst, ineqs, 1, len(ineqs))
-    if not verify_crossing_poly(fam, O, Y, lr.steps, cl, Y, Z, Prover(inside.assume.copy())):
+    if not verify_crossing_poly(fam, O, Y, lr.steps, cl, Y, Z, Prover(inside.assume.copy()), reg.lift):
         raise Error("a carved region does not verify its polynomial crossing")
     if not verify_crossing(point, O, Y, steps_at(lr.steps, ns), cl, Y, Z):
         raise Error("a polynomial crossing fails at its own base point")
@@ -4047,12 +4314,12 @@ def _peel(mut stack: List[GuidedRegion], reg: GuidedRegion, m: Int):
     values; every integer point of the region lies in it), else by
     `n = 0 | n >= 1` on the live variable occurring most often."""
     var box = propagate_bounds(reg.assume, m)
-    for k in range(m):
+    for k in range(_point_vars(reg, m)):
         if box.bounded[k] and box.hi[k] > box.lo[k] and box.hi[k] - box.lo[k] < VALUE_SPLIT_MAX and _region_live(reg, k):
             for v in range(box.lo[k], box.hi[k] + 1):
                 stack.append(_region_subst(reg, k, aff_const(m, v), reg.depth + 1))
             return
-    var pick = _peel_variable_in(reg, m)
+    var pick = _peel_variable_in(reg, _point_vars(reg, m))
     var shift = aff_const(m, 1)
     shift[pick + 1] = 1
     stack.append(_region_subst(reg, pick, aff_const(m, 0), reg.depth + 1))

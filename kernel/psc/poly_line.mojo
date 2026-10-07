@@ -16,11 +16,19 @@ coefficient `>= 0`, so it is `>= 0` at every point), and the end offset must
 vanish on the region. A lift carves by a condition's affine part only when
 the rest has every coefficient `>= 0` (then the affine part being `>= 0`
 suffices); the re-verification proves each condition again.
+
+With a product lift (`psc.product_lift`, §3m) the region's variables are
+`(n, q)` and every condition and end offset is rewritten exactly as an
+affine form over them (`lift_affine`; anything else is refused), carved by
+and proved with the ordinary affine prover. A polynomial equals its lifted
+form at every real point `q = n e`, so a proof on the whole polyhedron holds
+at its real points.
 """
 
 from std.collections import Dict
 from std.os import abort
 from finite_exact.rat_q import Q
+from psc.product_lift import ProductLift, lift_affine, lifted_monomial, no_lift
 from finite_linear_algebra.qlinalg import rref
 from finite_linear_algebra.scalar import q_int, q_is_zero
 from psc.cone_witness import (
@@ -40,7 +48,7 @@ from psc.cone_witness import (
     _plane_range,
     _line_candidates,
     _multipliers,
-    _within,
+    within_line,
 )
 
 comptime POLY_DEGREE = 8  # the largest degree a state, offset or condition may reach
@@ -260,6 +268,27 @@ def poly_vanishes_under(p: Poly, prover: Prover) raises -> Bool:
     return poly_nonneg_under(p, prover) and poly_nonneg_under(poly_scale(p, -1), prover)
 
 
+def _lifted(lift: ProductLift, p: Poly) -> List[Int]:
+    """`lift_affine`, or empty when `p` is not affine over the lift."""
+    try:
+        return lift_affine(lift, p)
+    except:
+        return List[Int]()
+
+
+def holds_under(p: Poly, prover: Prover, lift: ProductLift) raises -> Bool:
+    """`p >= 0` on the region: `poly_nonneg_under`, or with a lift, its
+    lifted form proved `>= 0` by the affine prover over `(n, q)`."""
+    if not lift.on():
+        return poly_nonneg_under(p, prover)
+    var f = _lifted(lift, p)
+    return len(f) > 0 and prover.nonneg(f)
+
+
+def vanishes_under(p: Poly, prover: Prover, lift: ProductLift) raises -> Bool:
+    return holds_under(p, prover, lift) and holds_under(poly_scale(p, -1), prover, lift)
+
+
 def poly_key(p: Poly) -> String:
     """A canonical rendering, for deduplication and diagnostics."""
     var keys = List[Int]()
@@ -367,10 +396,10 @@ def poly_step(fam: ConeFamily, a: Int, b: Int, gamma: List[Poly], step: PolyStep
     return out^
 
 
-def verify_witness_poly(fam: ConeFamily, a0: Int, b0: Int, steps: List[PolyStep], prover: Prover) raises -> Bool:
+def verify_witness_poly(fam: ConeFamily, a0: Int, b0: Int, steps: List[PolyStep], prover: Prover, lift: ProductLift = no_lift()) raises -> Bool:
     """Re-derive every state from the steps alone; true iff every offset
     condition is proved on the region and the path ends at `(a, a, 0)` with
-    the offset proved to vanish there."""
+    the offset proved to vanish there (over `(n, q)` with a lift)."""
     if len(steps) == 0:
         return False
     var a = a0
@@ -383,7 +412,7 @@ def verify_witness_poly(fam: ConeFamily, a0: Int, b0: Int, steps: List[PolyStep]
         if not r.ok:
             return False
         for k in range(len(r.conds)):
-            if not poly_nonneg_under(r.conds[k], prover):
+            if not holds_under(r.conds[k], prover, lift):
                 return False
         a = r.a
         b = r.b
@@ -391,7 +420,7 @@ def verify_witness_poly(fam: ConeFamily, a0: Int, b0: Int, steps: List[PolyStep]
     if a != b:
         return False
     for i in range(3):
-        if not poly_vanishes_under(gamma[i], prover):
+        if not vanishes_under(gamma[i], prover, lift):
             return False
     return True
 
@@ -410,13 +439,16 @@ def _anchors(fam: ConeFamily, a: Int, s: Int, v: Int, ns: List[Int]) -> List[Pol
     return out^
 
 
-def _lift_candidates(fam: ConeFamily, a: Int, b: Int, gamma: List[Poly], sa: Int, va: Int, sb: Int, vb: Int, target: List[Int], ns: List[Int], ly: Int, lz: Int) raises -> List[PolyStep]:
+def _lift_candidates(fam: ConeFamily, a: Int, b: Int, gamma: List[Poly], sa: Int, va: Int, sb: Int, vb: Int, target: List[Int], ns: List[Int], ly: Int, lz: Int, free_line: Bool = False) raises -> List[PolyStep]:
     """Steps on segments `sa`, `sb` whose offsets take the point's values
     `va`, `vb` at `ns`: each offset anchored at the segment's start or end,
     or solved so that its letter's coordinate of the new state is the
     constant `target` (the point's new state), or, for two runs in the line
     letters, one solved from the other so that the `ly + lz` sum is
-    constant. Candidates are filtered by their values at `ns`."""
+    constant. Candidates are filtered by their values at `ns`. With
+    `free_line` no offset is solved for a constant line coordinate: there
+    the point's position on the line is a run length, and pinning it would
+    carve a slice."""
     var out = List[PolyStep]()
     var mg = m_times_poly(fam, gamma, SEARCH_DEGREE)
     if len(mg) == 0:
@@ -434,9 +466,9 @@ def _lift_candidates(fam: ConeFamily, a: Int, b: Int, gamma: List[Poly], sa: Int
     var lb = gb.letter if gb.is_run() else -1
     var offs_a = _anchors(fam, a, sa, va, ns)
     var offs_b = _anchors(fam, b, sb, vb, ns)
-    if la >= 0 and la != lb:
+    if la >= 0 and la != lb and not (free_line and (la == ly or la == lz)):
         offs_a.append(poly_sub(poly_const(target[la]), d[la]))
-    if lb >= 0 and lb != la:
+    if lb >= 0 and lb != la and not (free_line and (lb == ly or lb == lz)):
         offs_b.append(poly_sub(d[lb], poly_const(target[lb])))
     var base_a = len(offs_a)
     var base_b = len(offs_b)
@@ -475,13 +507,15 @@ struct PolyLift(Copyable, Movable):
         self.why = String()
 
 
-def carving_forms_of(conds: List[Poly], m: Int, ns: List[Int], mut ineqs: List[List[Int]]) raises -> Bool:
+def carving_forms_of(conds: List[Poly], m: Int, ns: List[Int], mut ineqs: List[List[Int]], lift: ProductLift = no_lift()) raises -> Bool:
     """Affine forms implying each condition: its affine part, usable when the
-    rest has every coefficient `>= 0` and the part is `>= 0` at `ns`."""
+    rest has every coefficient `>= 0` and the part is `>= 0` at `ns`; with a
+    lift, the condition's exact form over `(n, q)`, `>= 0` at the real point
+    `ns`."""
     for k in range(len(conds)):
-        if not poly_nonneg(poly_higher(conds[k])):
+        var f = _lifted(lift, conds[k]) if lift.on() else poly_affine_part(conds[k], m)
+        if len(f) == 0 or (not lift.on() and not poly_nonneg(poly_higher(conds[k]))):
             return False
-        var f = poly_affine_part(conds[k], m)
         if aff_eval(f, ns) < 0:
             return False
         if not aff_nonneg(f):
@@ -506,22 +540,38 @@ struct _LiftFrame(Copyable, Movable):
         self.ineqs = ineqs^
 
 
-def _affine_end(gamma: List[Poly]) raises -> Bool:
+def _affine_end(gamma: List[Poly], lift: ProductLift) raises -> Bool:
+    """No term of degree >= 2, or with a lift, affine over `(n, q)`."""
     for i in range(3):
-        if not poly_is_zero(poly_higher(gamma[i])):
+        if lift.on():
+            if len(_lifted(lift, gamma[i])) == 0:
+                return False
+        elif not poly_is_zero(poly_higher(gamma[i])):
             return False
     return True
 
 
-def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], ly: Int, lz: Int) raises -> PolyLift:
+def lifts_to_zero(gamma: List[Poly], lift: ProductLift) raises -> Bool:
+    """Every end offset lifts to the zero form over `(n, q)` (and lifts)."""
+    for i in range(len(gamma)):
+        var f = _lifted(lift, gamma[i])
+        if len(f) == 0 or not _is_zero(List[List[Int]]([f^])):
+            return False
+    return True
+
+
+def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], ly: Int, lz: Int, lift: ProductLift = no_lift()) raises -> PolyLift:
     """`psc.cone_witness.lift_path` over polynomials: replay the point
     family's `steps` on the region family. At each level the candidates are
     built from the point's step (`_lift_candidates`, offsets agreeing with
     the point's) and must reach the point's letters and carve by affine
     forms. A depth-first search over them (lowest degree, then fewest forms,
     first; at most `LIFT_NODES` nodes) returns the first lift whose end
-    offset has no term of degree >= 2, so that it can vanish on a region."""
+    offset has no term of degree >= 2, so that it can vanish on a region
+    (with a lift: whose conditions and end offset are affine over `(n, q)`,
+    `ns` then a real point of width `1 + m + m'`)."""
     var out = PolyLift()
+    _check_width(fam, lift)
     # the point path's states, level by level
     var targets = List[List[Int]]()
     var letters = List[List[Int]]()
@@ -551,23 +601,31 @@ def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b
     var nodes = 0
     var deepest = 0
     var non_affine_ends = 0
+    var fallback = PolyLift()
     while len(stack) > 0 and nodes < LIFT_NODES:
         nodes += 1
         var fr = stack.pop()
         var l = fr.level
         if l == len(steps):
-            if _affine_end(fr.gamma):
-                out.ok = True
-                out.a = fr.a
-                out.b = fr.b
-                out.steps = fr.steps.copy()
-                out.ineqs = fr.ineqs.copy()
-                out.gamma = fr.gamma.copy()
-                return out^
+            if _affine_end(fr.gamma, lift):
+                var got = PolyLift()
+                got.ok = True
+                got.a = fr.a
+                got.b = fr.b
+                got.steps = fr.steps.copy()
+                got.ineqs = fr.ineqs.copy()
+                got.gamma = fr.gamma.copy()
+                # with a lift, an end offset that vanishes only on a slice of
+                # the region is kept while a lift vanishing on all of it is sought
+                if not lift.on() or lifts_to_zero(fr.gamma, lift):
+                    return got^
+                if not fallback.ok:
+                    fallback = got^
+                continue
             non_affine_ends += 1
             continue
         deepest = max(deepest, l)
-        var cands = _lift_candidates(fam, fr.a, fr.b, fr.gamma, steps[l].seg_a, steps[l].off_a[0], steps[l].seg_b, steps[l].off_b[0], targets[l], ns, ly, lz)
+        var cands = _lift_candidates(fam, fr.a, fr.b, fr.gamma, steps[l].seg_a, steps[l].off_a[0], steps[l].seg_b, steps[l].off_b[0], targets[l], ns, ly, lz, lift.on())
         var children = List[_LiftFrame]()
         var ranks = List[Int]()
         for c in range(len(cands)):
@@ -576,7 +634,7 @@ def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b
                 continue
             var forms = fr.ineqs.copy()
             var before = len(forms)
-            if not carving_forms_of(rc.conds, fam.m, ns, forms):
+            if not carving_forms_of(rc.conds, fam.m, ns, forms, lift):
                 continue
             var degree = 0
             for i in range(3):
@@ -594,6 +652,8 @@ def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b
             stack.append(children[worst].copy())
             _ = children.pop(worst)
             _ = ranks.pop(worst)
+    if fallback.ok:
+        return fallback^
     out.why = "no lift with an affine end (" + String(nodes) + " nodes, deepest level " + String(deepest) + ", " + String(non_affine_ends) + " non-affine ends)"
     return out^
 
@@ -689,24 +749,30 @@ def _consistent_mod(rows: List[List[Q]], ncols: Int, p: Int) raises -> Bool:
     return True
 
 
-def solve_lift(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep]) raises -> PolyLift:
+def _check_width(fam: ConeFamily, lift: ProductLift) raises:
+    if lift.on() and lift.width() != fam.m:
+        raise Error("a product lift of another width than the region family's")
+
+
+def solve_lift(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], lift: ProductLift = no_lift()) raises -> PolyLift:
     """The point path's segments, with affine offsets solving `gamma_L = 0`
     identically on the region and agreeing with the point's offsets at `ns`;
     `ineqs` are the offsets' affine bounds not already nonnegative."""
-    return _solve(fam, point, ns, a0, b0, steps, False, CrossingClose(0, 0, 0, 0), -1, -1)
+    return _solve(fam, point, ns, a0, b0, steps, False, CrossingClose(0, 0, 0, 0), -1, -1, lift)
 
 
-def solve_crossing_lift(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], cl: CrossingClose, u: Int, v: Int) raises -> PolyLift:
+def solve_crossing_lift(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], cl: CrossingClose, u: Int, v: Int, lift: ProductLift = no_lift()) raises -> PolyLift:
     """The point path's segments, with affine offsets making Lemma X's third
     coordinate offset vanish identically at the path's end and agreeing with
     the point; `ineqs` adds, to the offsets' bounds, the affine parts of a
     closure variant that holds at `ns` (each usable only when the rest of
     its condition has every coefficient `>= 0`)."""
-    return _solve(fam, point, ns, a0, b0, steps, True, cl, u, v)
+    return _solve(fam, point, ns, a0, b0, steps, True, cl, u, v, lift)
 
 
-def _solve(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], close: Bool, cl: CrossingClose, u: Int, v: Int) raises -> PolyLift:
+def _solve(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], close: Bool, cl: CrossingClose, u: Int, v: Int, lift: ProductLift) raises -> PolyLift:
     var out = PolyLift()
+    _check_width(fam, lift)
     var m = fam.m
     var L = len(steps)
     # the point path: letters and offsets
@@ -824,30 +890,27 @@ def _solve(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, 
             only.append(Poly())
             only.append(Poly())
             parts[j] = only^
-    # equations: every monomial of every closing form vanishes
+    # equations: every monomial of every closing form vanishes (with a lift,
+    # every coefficient of its form over (n, q): n_j e and q_j share one)
     var keys = List[Int]()
     var seen = Dict[Int, Int]()
+    var acc = List[List[Int]]()
     for j in range(count + 1):
         for i in range(3):
             for e in parts[j][i].terms.items():
-                var key = 4 * e.key + i
+                var key = 4 * (lifted_monomial(lift, e.key) if lift.on() else e.key) + i
                 if key not in seen:
                     seen[key] = len(keys)
                     keys.append(key)
+                    acc.append(List[Int](length=count + 1, fill=0))
+                # the constant part goes to the right-hand side
+                acc[seen[key]][count if j == 0 else j - 1] += -e.value if j == 0 else e.value
     var rows = List[List[Q]]()
     for r in range(len(keys)):
         var row = List[Q]()
-        for _ in range(count + 1):
-            row.append(q_int(0))
+        for j in range(count + 1):
+            row.append(q_int(acc[r][j]))
         rows.append(row^)
-    for j in range(count + 1):
-        for i in range(3):
-            for e in parts[j][i].terms.items():
-                var r = seen[4 * e.key + i]
-                if j == 0:
-                    rows[r][count] = q_int(-e.value)  # right-hand side
-                else:
-                    rows[r][j - 1] = q_int(e.value)
     # agreement with the point's offsets
     for l in range(L):
         for side in range(2):
@@ -904,7 +967,7 @@ def _solve(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, 
         if not r.ok:
             out.why = "the solved path does not step"
             return out^
-        if not carving_forms_of(r.conds, m, ns, out.ineqs):
+        if not carving_forms_of(r.conds, m, ns, out.ineqs, lift):
             out.why = "the solved offsets leave the region's runs at the point"
             return out^
         a = r.a
@@ -912,7 +975,8 @@ def _solve(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, 
         gamma = r.gamma.copy()
     if close:
         var cf = poly_crossing_forms(fam, a, b, gamma, u, v, cl)
-        if not cf.ok or not poly_is_zero(cf.off):
+        var off_zero = lifts_to_zero(List[Poly]([cf.off.copy(), Poly(), Poly()]), lift) if lift.on() else poly_is_zero(cf.off)
+        if not cf.ok or not off_zero:
             out.why = "the solved closure does not stand"
             return out^
         var found = False
@@ -921,7 +985,7 @@ def _solve(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, 
             if len(c) == 0:
                 continue
             var forms = List[List[Int]]()
-            if carving_forms_of(c, m, ns, forms):
+            if carving_forms_of(c, m, ns, forms, lift):
                 for k in range(len(forms)):
                     out.ineqs.append(forms[k].copy())
                 found = True
@@ -1008,7 +1072,7 @@ def poly_crossing_forms(fam: ConeFamily, a: Int, b: Int, gamma: List[Poly], u: I
     return out^
 
 
-def verify_crossing_poly(fam: ConeFamily, a0: Int, b0: Int, steps: List[PolyStep], cl: CrossingClose, u: Int, v: Int, prover: Prover) raises -> Bool:
+def verify_crossing_poly(fam: ConeFamily, a0: Int, b0: Int, steps: List[PolyStep], cl: CrossingClose, u: Int, v: Int, prover: Prover, lift: ProductLift = no_lift()) raises -> Bool:
     """Re-derive the path's last state over polynomials (every offset
     condition proved on the region) and check Lemma X there: the third
     coordinate's offset proved to vanish, and every form of some variant
@@ -1023,13 +1087,13 @@ def verify_crossing_poly(fam: ConeFamily, a0: Int, b0: Int, steps: List[PolyStep
         if not r.ok:
             return False
         for k in range(len(r.conds)):
-            if not poly_nonneg_under(r.conds[k], prover):
+            if not holds_under(r.conds[k], prover, lift):
                 return False
         a = r.a
         b = r.b
         gamma = r.gamma.copy()
     var cf = poly_crossing_forms(fam, a, b, gamma, u, v, cl)
-    if not cf.ok or not poly_vanishes_under(cf.off, prover):
+    if not cf.ok or not vanishes_under(cf.off, prover, lift):
         return False
     for variant in range(4):
         ref c = cf.variants[variant]
@@ -1037,7 +1101,7 @@ def verify_crossing_poly(fam: ConeFamily, a0: Int, b0: Int, steps: List[PolyStep
             continue
         var all = True
         for k in range(len(c)):
-            if not poly_nonneg_under(c[k], prover):
+            if not holds_under(c[k], prover, lift):
                 all = False
                 break
         if all:
@@ -1045,12 +1109,12 @@ def verify_crossing_poly(fam: ConeFamily, a0: Int, b0: Int, steps: List[PolyStep
     return False
 
 
-def enumerate_point_paths(point: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int, ly: Int, lz: Int, max_paths: Int, max_nodes: Int) -> List[List[WitnessStep]]:
+def enumerate_point_paths(point: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int, ly: Int, lz: Int, max_paths: Int, max_nodes: Int, line_cap: Int = 0) -> List[List[WitnessStep]]:
     """Witness paths of a point family (constant offsets), by depth-first
     search over the line candidates, shortest first by iterative deepening:
     each depth limit up to `max_level` in turn, at most `max_paths` paths and
     `max_nodes` nodes in all. Distinct paths may share states: `solve_lift`
-    asks only for their segments."""
+    asks only for their segments. `line_cap` as in `within_line`."""
     var out = List[List[WitnessStep]]()
     var nodes = 0
     for depth in range(1, max_level + 1):
@@ -1077,7 +1141,7 @@ def enumerate_point_paths(point: ConeFamily, a0: Int, b0: Int, bound: Int, max_l
             var cands = _line_candidates(point, a, b, g, bound, ly, lz)
             for c in range(len(cands)):
                 var r = apply_step_line(point, a, b, g, cands[c])
-                if not r.ok or not _within(r.gamma, bound):
+                if not r.ok or not within_line(r.gamma, bound, ly, lz, line_cap):
                     continue
                 var p2 = path.copy()
                 p2.append(cands[c].copy())

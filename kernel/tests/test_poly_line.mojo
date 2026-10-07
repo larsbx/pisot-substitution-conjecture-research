@@ -7,7 +7,7 @@ agreement with the affine line verifier wherever both apply.
 
 from std.testing import assert_equal, assert_false, assert_true
 from mojo_smoke.claims import require_contract
-from psc.cone_witness import ConeFamily, Prover, aff_eval, search_witness_line, verify_witness_line
+from psc.cone_witness import ConeFamily, Prover, aff_const, aff_eval, search_witness_line, verify_witness_line
 from psc.poly_line import (
     Poly,
     PolyStep,
@@ -24,12 +24,14 @@ from psc.poly_line import (
     poly_sub,
     poly_vanishes_under,
     enumerate_point_paths,
+    holds_under,
     solve_lift,
     steps_at,
+    vanishes_under,
     verify_witness_poly,
 )
-from psc.product_lift import ProductLift, lift_affine, lift_form, lift_point, mccormick_forms, product_lift_of
-from odd_letter_family_certificate import O, Y, Z, shape_family
+from psc.product_lift import ProductLift, full_lift, lift_affine, lift_form, lift_point, lifted_monomial, mccormick_box_forms, mccormick_forms, product_lift_of, product_substitution
+from odd_letter_family_certificate import O, Y, Z, shape_family, _subst_var
 
 
 def _forms(c_lo: Int, c_hi: Int, a: Int, m: Int) -> List[List[Int]]:
@@ -304,6 +306,110 @@ def test_product_lift_fails_closed() raises:
     assert_true(raised)
 
 
+def _old_point(ns: List[Int], k: Int, repl: List[Int], lift: ProductLift) raises -> List[Int]:
+    """The real point a substitution `n_k := repl` came from, given the new
+    one's `n`: `n_k` replaced by `repl` at the new real point."""
+    var old = ns.copy()
+    old[k] = aff_eval(repl, lift_point(lift, ns))
+    return lift_point(lift, old)
+
+
+def test_product_substitution_keeps_points_real() raises:
+    """Over (n_0, n_1, e = n_2) with every product lifted: for n_0 := 0, 2,
+    n_0 + 1, 2 + n_1 + 2 e, n_1 := 3, n_1 + n_0, e := 0, 3, e + 1, 3 + 2 e,
+    every affine form F over (n, q) with constant 0 and coefficients in
+    -1..1, rewritten by n_k := L and then the product coordinates' forms,
+    takes at each new real point of [0, 3]^3 the value F has at the old real
+    point; e := e + n_0 and a replacement naming a product coordinate are
+    refused."""
+    var lift = full_lift(3, 2)
+    var w = lift.width()
+    # rows: k, then L's constant and coefficients of n_0, n_1, e
+    var specs = List[List[Int]]([List[Int]([0, 0, 0, 0, 0]), List[Int]([0, 2, 0, 0, 0]), List[Int]([0, 1, 1, 0, 0]), List[Int]([0, 2, 0, 1, 2]), List[Int]([1, 3, 0, 0, 0]), List[Int]([1, 0, 1, 1, 0]), List[Int]([2, 0, 0, 0, 0]), List[Int]([2, 3, 0, 0, 0]), List[Int]([2, 1, 0, 0, 1]), List[Int]([2, 3, 0, 0, 2])])
+    var ks = List[Int]()
+    var repls = List[List[Int]]()
+    for t in range(len(specs)):
+        ks.append(specs[t][0])
+        var r = aff_const(w, 0)
+        for i in range(4):
+            r[i] = specs[t][i + 1]
+        repls.append(r^)
+    var forms = _forms(0, 0, 1, w)
+    var checked = 0
+    for t in range(len(ks)):
+        var ps = product_substitution(lift, ks[t], repls[t])
+        assert_true(ps.ok)
+        for f in range(0, len(forms), 7):
+            var g = _subst_var(List[List[Int]]([forms[f].copy()]), ks[t], repls[t])
+            for i in range(len(ps.vars)):
+                g = _subst_var(g, ps.vars[i], ps.forms[i])
+            for code in range(64):
+                var ns = List[Int]([code % 4, (code // 4) % 4, code // 16])
+                assert_equal(aff_eval(g[0], lift_point(lift, ns)), aff_eval(forms[f], _old_point(ns, ks[t], repls[t], lift)))
+                checked += 1
+    assert_true(checked > 0)
+    var mixed = aff_const(w, 0)
+    mixed[1] = 1
+    mixed[3] = 1
+    assert_false(product_substitution(lift, 2, mixed).ok)
+    var through_q = aff_const(w, 0)
+    through_q[4] = 1
+    assert_false(product_substitution(lift, 0, through_q).ok)
+
+
+def test_mccormick_box_forms_hold_at_real_points() raises:
+    """On every box lo <= n <= hi (lo in 0..1, hi = lo + 2 where bounded,
+    every pattern of bounded coordinates) each envelope form of every q_j is
+    >= 0 at every real point of the box, and there are
+    (1 + [n_j bounded]) (1 + [e bounded]) of them per j."""
+    var lift = full_lift(3, 2)
+    for lo0 in range(2):
+        for lo2 in range(2):
+            for mask in range(8):
+                var lo = List[Int]([lo0, 1, lo2])
+                var hi = List[Int]([lo0 + 2, 3, lo2 + 2])
+                var bounded = List[Bool]([mask & 1 != 0, mask & 2 != 0, mask & 4 != 0])
+                var forms = mccormick_box_forms(lift, lo, hi, bounded)
+                var want = 0
+                for j in range(3):
+                    want += (2 if bounded[j] else 1) * (2 if bounded[2] else 1)
+                assert_equal(len(forms), want)
+                for a in range(lo[0], lo[0] + 3):
+                    for b in range(lo[1], lo[1] + 3):
+                        for e in range(lo[2], lo[2] + 3):
+                            var x = lift_point(lift, List[Int]([a, b, e]))
+                            for f in range(len(forms)):
+                                assert_true(aff_eval(forms[f], x) >= 0)
+
+
+def test_lifted_conditions_fail_closed() raises:
+    """With a lift, holds_under proves a polynomial by its form over (n, q):
+    n_0 e and e^2 + n_1 hold on the orthant, -n_0 e does not, n_0 n_1 (not a
+    product with e) is refused even though it is >= 0, and vanishing needs
+    the lifted form to vanish; lifted_monomial sends n_j e to q_j and leaves
+    any other monomial."""
+    var lift = full_lift(3, 2)
+    var n0 = poly_from_aff(List[Int]([0, 1, 0, 0]))
+    var n1 = poly_from_aff(List[Int]([0, 0, 1, 0]))
+    var e = poly_from_aff(List[Int]([0, 0, 0, 1]))
+    var none = Prover()
+    assert_true(holds_under(poly_mul(n0, e), none, lift))
+    assert_true(holds_under(poly_add(poly_mul(e, e), n1), none, lift))
+    assert_false(holds_under(poly_scale(poly_mul(n0, e), -1), none, lift))
+    assert_false(holds_under(poly_mul(n0, n1), none, lift))
+    assert_true(poly_nonneg_under(poly_mul(n0, n1), none))
+    # q_0 = n_0 e vanishes where q_0 <= 0 is assumed
+    var q0_le_0 = List[Int](length=7, fill=0)
+    q0_le_0[4] = -1
+    assert_true(vanishes_under(poly_mul(n0, e), Prover(List[List[Int]]([q0_le_0^])), lift))
+    assert_false(vanishes_under(poly_mul(n0, e), none, lift))
+    assert_equal(lifted_monomial(lift, mono_var(0) | (mono_var(2) << 5)), mono_var(3))
+    assert_equal(lifted_monomial(lift, mono_var(2) | (mono_var(2) << 5)), mono_var(5))
+    var n0n1 = mono_var(0) | (mono_var(1) << 5)
+    assert_equal(lifted_monomial(lift, n0n1), n0n1)
+    assert_equal(lifted_monomial(lift, mono_var(1)), mono_var(1))
+
+
 def main() raises:
     test_polynomial_arithmetic_matches_evaluation()
     print("[PASS] test_polynomial_arithmetic_matches_evaluation")
@@ -319,4 +425,10 @@ def main() raises:
     print("[PASS] test_mccormick_envelope_holds_at_real_points")
     test_product_lift_fails_closed()
     print("[PASS] test_product_lift_fails_closed")
-    require_contract("psc.poly_line, the polynomial line mode of Theorem K's tail cells: polynomial products and sums evaluate as the products of their affine factors on [0, 3]^3, poly_nonneg_under is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2 for products U V + W and (U V + W) U, vanishing needs both signs, and verify_witness_poly agrees with verify_witness_line on the line-mode family (z^a y^b, y^(b+1) z^(a+1)) and on its single-offset perturbations, the path holding at every point of [0, 4]^2 once instantiated; the point-path enumeration returns only verified paths, and solve_lift solves some to a path with a zero end offset that verify_witness_poly accepts on its carved region and that holds at every point of [0, 5]^2 inside it; psc.product_lift makes A + B e affine over (n, q) with q_j = n_j e, agreeing with the polynomial at every real point of [0, 4]^3 and lifting the zy|yz quantities 2a - 2b + ae and f(-1) exactly, its McCormick forms equal (n_j - lo_j)(e - lo_e) >= 0 at every real point above each lower bound in 0..2, and any other degree-2 monomial, any degree 3, a variable past the lift or an absent product raises")
+    test_product_substitution_keeps_points_real()
+    print("[PASS] test_product_substitution_keeps_points_real")
+    test_mccormick_box_forms_hold_at_real_points()
+    print("[PASS] test_mccormick_box_forms_hold_at_real_points")
+    test_lifted_conditions_fail_closed()
+    print("[PASS] test_lifted_conditions_fail_closed")
+    require_contract("psc.poly_line, the polynomial line mode of Theorem K's tail cells: polynomial products and sums evaluate as the products of their affine factors on [0, 3]^3, poly_nonneg_under is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2 for products U V + W and (U V + W) U, vanishing needs both signs, and verify_witness_poly agrees with verify_witness_line on the line-mode family (z^a y^b, y^(b+1) z^(a+1)) and on its single-offset perturbations, the path holding at every point of [0, 4]^2 once instantiated; the point-path enumeration returns only verified paths, and solve_lift solves some to a path with a zero end offset that verify_witness_poly accepts on its carved region and that holds at every point of [0, 5]^2 inside it; psc.product_lift makes A + B e affine over (n, q) with q_j = n_j e, agreeing with the polynomial at every real point of [0, 4]^3 and lifting the zy|yz quantities 2a - 2b + ae and f(-1) exactly, its McCormick forms equal (n_j - lo_j)(e - lo_e) >= 0 at every real point above each lower bound in 0..2, and any other degree-2 monomial, any degree 3, a variable past the lift or an absent product raises; product_substitution keeps every affine form over (n, q) equal at corresponding real points of [0, 3]^3 through n_k := constant, shift or affine combination and e := c + lam e, refusing e := e + n_0 and a replacement naming a product coordinate, the box McCormick envelope (both bounds where present) is >= 0 at every real point of its box, and lifted conditions are proved by their (n, q) forms, refusing n_0 n_1 and needing the lifted form to vanish")

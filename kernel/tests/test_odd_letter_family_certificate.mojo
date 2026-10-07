@@ -20,6 +20,8 @@ from psc.cone_witness import aff_eval, apply_step, WitnessStep, monotone_paths_m
 from std.collections import Dict
 from psc.pisot import is_pip
 from a1_normal_form_census import f_at, shared_tile_between
+from psc.poly_line import lift_path_poly, lifts_to_zero, verify_witness_poly
+from psc.product_lift import full_lift, lift_form, lift_point
 from odd_letter_family_certificate import (
     A_RUN,
     A_TAIL,
@@ -71,8 +73,14 @@ from odd_letter_family_certificate import (
     pisot_carve_forms,
     z_floor_forms,
     _aff_times,
+    _pattern_starts,
     _step,
     _words,
+    LINE_CAP,
+    MAX_LEVEL,
+    Q_OFFSET_BOUND,
+    pattern_family,
+    point_subst,
 )
 
 
@@ -1014,6 +1022,47 @@ def test_the_zy_yz_leaf_path_with_s_minus_one() raises:
     assert_equal(_zy_yz_census(11, 80, 8), List[Int]([4913, 1134]))
 
 
+def test_the_q_lift_closes_the_zy_yz_tail_leaf() raises:
+    """The s = -1 tail leaf zy | yz (Delta = -2 - e <= -2, Z_2 >= 4) over
+    (n, q), q_j = n_j e. At the real point a = 62, b = 436, e = 13 the point
+    search with the bound 4 off the line and the line offset free finds the
+    zy | yz path (0|1, 0|0), (2|2, 388|0), (2|1, 0|58), (2|2, 4|0); lifted
+    with the product coordinates its end offset vanishes on the whole
+    region, and verify_witness_poly proves it over (n, q) on its carved
+    region but not as a polynomial. The q-lift cover then closes the leaf:
+    104 regions, 35 certified (20 by polynomial paths), 6 cut, 34 without
+    a real member, none open. The default cover is unchanged: z_floor alone
+    leaves 1 open region of 16."""
+    var pat = RunPattern(List[Int]([Z, Y]), False, List[Int]([Y, Z]), False)
+    var starts = _pattern_starts(pat, -1, -2, True)
+    assert_equal(len(starts), 1)
+    var lift = full_lift(5, 4)
+    var sub = List[List[Int]]()
+    for i in range(len(starts[0])):
+        sub.append(lift_form(lift, starts[0][i]))
+    var fam = pattern_family(pat, sub)
+    var ns = lift_point(lift, List[Int]([61, 435, 0, 0, 13]))
+    var point = pattern_family(pat, point_subst(sub, ns))
+    var wp = search_witness_line(point, O, Y, Q_OFFSET_BOUND, MAX_LEVEL, Y, Z, LINE_CAP)
+    assert_true(wp.found)
+    var want = List[List[Int]]([List[Int]([0, 0, 1, 0]), List[Int]([2, 388, 2, 0]), List[Int]([2, 0, 1, 58]), List[Int]([2, 4, 2, 0])])
+    assert_equal(len(wp.steps), len(want))
+    for l in range(len(want)):
+        assert_equal(List[Int]([wp.steps[l].seg_a, wp.steps[l].off_a[0], wp.steps[l].seg_b, wp.steps[l].off_b[0]]), want[l])
+    assert_true(verify_witness_line(point, O, Y, wp.steps))
+    var lr = lift_path_poly(fam, point, ns, O, Y, wp.steps, Y, Z, lift)
+    assert_true(lr.ok and lr.a == lr.b and lifts_to_zero(lr.gamma, lift))
+    var prover = Prover(lr.ineqs.copy())
+    assert_true(verify_witness_poly(fam, O, Y, lr.steps, prover, lift))
+    assert_false(verify_witness_poly(fam, O, Y, lr.steps, prover))
+    var c = cover_pattern_guided(pat, -1, -2, 5000, True, False, z_floor=4, q_lift=True)
+    assert_false(c.budget_exhausted)
+    assert_equal(c.open, 0)
+    assert_equal(List[Int]([c.regions, c.certified, c.poly_certified, c.cut, c.not_member, c.decided]), List[Int]([104, 35, 20, 6, 34, 0]))
+    var plain = cover_pattern_guided(pat, -1, -2, 5000, True, False, z_floor=4)
+    assert_equal(List[Int]([plain.regions, plain.certified, plain.line_certified, plain.crossing_certified, plain.cut, plain.not_member, plain.open]), List[Int]([16, 6, 4, 1, 2, 3, 1]))
+
+
 def main() raises:
     test_det_is_twice_the_z_difference()
     print("[PASS] test_det_is_twice_the_z_difference")
@@ -1075,4 +1124,6 @@ def main() raises:
     print("[PASS] test_bounded_z2_closes_for_every_delta")
     test_the_zy_yz_leaf_path_with_s_minus_one()
     print("[PASS] test_the_zy_yz_leaf_path_with_s_minus_one")
-    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones; Lemma Phi4 (Pisot signs of Y_1 - Y_2 against Z_1 - Z_2) and Lemma Phi5 (the Z_1 = Z_2 + 1 non-crossing shape w_1 = u y^(Y_1 - Y_2), pi(u) = pi(w_2) + e_z) hold on all 2,136 members with |w_i| <= 6; at |w_i| <= 7 the Lemma Phi6-Phi8 paths verify on 1,180 of the 1,267 non-crossing members with none failing, the delta = e_z cell leaves only (zz, z) at level 6, (z, empty) is not PIP, and the other cells leave 87 members decided at levels 3 to 6; the run-shape cover: solve_constraint partitions the solutions of sum_pos n - sum_neg n = target exactly (every box solution hit once, targets -3..3), the quadratic Lemma P1 identities f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3 (Z_1 = Z_2 + 1) and f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3 (Z_1 = Z_2 - 1) hold, a line-mode path (offsets affine along e_z - e_y) verifies on (z^a y^b, y^(b+1) z^(a+1)), a >= b + 2, and the shape cells (zy | eps), (zy | z), (zy | yz) with Z_1 = Z_2 + 1 close for Delta = 1, 2, 3 and the tail Delta >= 4 with no open region, while (zy | yz) with Z_1 = Z_2 - 1 closes at Delta = -1 using line mode; induction on runs: refining a run pattern's opaque tail (it ends, or one more run of the other letter and a new tail) partitions the word pairs (31 * 63 pairs with w_1 beginning with z, |w_i| <= 5, each in exactly one leaf), the patterns (zy | zy*), (zy | yz*), (zy* | z), (zy* | y), (zyz* | zy), (zyz* | yz), (z | z*), (z | y*), (z* | eps) -- the nine closed leaves of the run tree -- with Z_1 = Z_2 + 1, Delta = 1 close with no open region (each an infinite family with unboundedly many runs) while (zy* | zy*) does not at the same budget, and common points match their definition, 51 of the 87 residual members at |w_i| <= 7 having only t = 1; Lemma X (monotone lattice paths whose endpoints cross, or touch with a letter following, share a point) holds on every pair of paths of at most 4 steps, a weak end at a word end can leave the only shared point at the last level, the cone search closes 86 of the 87 residual members at |w_i| <= 7 by Lemma X, each confirmed by the exact level, Lemma Phi5' (Z_2 = Z_1 + 1, non-crossing: Delta <= 0, |w_2| = |w_1| + 1 - Delta, at least two z in the last 2 - Delta letters of w_2) holds on every member with |w_i| <= 7, the reveal census needs at most two revealed runs at longer-word lengths 5..7 (77/4, 255/13, 825/54), and cover_pattern certifies regions of zyz* y | zyz* by Lemma X; the certificate-guided partition: impose_nonneg covers {F >= 0} exactly (every form a_0 + a_1 n_1 + a_2 n_2, a_0 in -4..4, a_1, a_2 in -3..3, on the box [0, 5]^2) with F coefficientwise nonnegative on every region, impose_equal covers {E = 0} exactly (a_1, a_2 in -2..2, box [0, 6]^2), and cover_pattern_guided closes the doubly open pattern zy* y | zy* at Z_1 = Z_2 + 1, Delta = 1 with every carved region re-verified under its own inequalities; tighten keeps the integer points of every form a_0 + a_1 n_1 + a_2 n_2 (a_0 in -6..6, a_1, a_2 in -3..3) on [0, 6]^2, the Prover (affine, and quadratic U V + W) is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2, and every McCormick quadrant of Lemma P1 that pisot_carve_forms opens in two-parameter families for s = +1 and s = -1 contains its point, passes mccormick_cut under its tightened forms, and holds no point with f < 0; integer bound propagation keeps every satisfying point of [0, 8]^2 in its box for a stride of three-form systems and declares empty only systems without one, and the exact point search returns only satisfying points, finds one whenever [0, 7]^2 holds one, and proves emptiness only of systems without a point; Fourier-Motzkin declares empty only systems without an integer point (a stride of three-form systems on [0, 6]^3) and refutes a wedge propagation cannot, its projections keeping every point in their intervals; with Z_2 bounded the tails close for every Delta: s = +1, Z_2 <= 1 (24 fully revealed run patterns) and s = -1, Z_2 <= 2 (20); z_floor_forms (Lemma P1 linearized at the McCormick corner (floor, b_lo)) keep every point of [0, 9]^3 with Z_2 >= floor and f <= -1, floors 2..5, s = +1 and s = -1, and the linear region holds points with f >= 0; the s = -1 leaf zy | yz (w_1 = z^a y^b, w_2 = y^(b+2+e) z^(a+1)): on every PIP non-crossing member the level-2 offset d = a e_z - (a+2) e_y has M d = (-4, 2a - 2b + ae, -a), f(-1) = ae + a - 2b + 2 <= -1 and the level-3 gap is k - m = 2 - a - f(-1), and the explicit path (y, z, -e_o) -> (y, z, d) -> (y, y, -4 e_o) -> (y, y, 0) verifies exactly on 312 of the 1,026 members with 3 <= a <= 8, b < 40, e <= 5 and on 1,134 of 4,913 with a <= 11, b < 80, e <= 8")
+    test_the_q_lift_closes_the_zy_yz_tail_leaf()
+    print("[PASS] test_the_q_lift_closes_the_zy_yz_tail_leaf")
+    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones; Lemma Phi4 (Pisot signs of Y_1 - Y_2 against Z_1 - Z_2) and Lemma Phi5 (the Z_1 = Z_2 + 1 non-crossing shape w_1 = u y^(Y_1 - Y_2), pi(u) = pi(w_2) + e_z) hold on all 2,136 members with |w_i| <= 6; at |w_i| <= 7 the Lemma Phi6-Phi8 paths verify on 1,180 of the 1,267 non-crossing members with none failing, the delta = e_z cell leaves only (zz, z) at level 6, (z, empty) is not PIP, and the other cells leave 87 members decided at levels 3 to 6; the run-shape cover: solve_constraint partitions the solutions of sum_pos n - sum_neg n = target exactly (every box solution hit once, targets -3..3), the quadratic Lemma P1 identities f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3 (Z_1 = Z_2 + 1) and f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3 (Z_1 = Z_2 - 1) hold, a line-mode path (offsets affine along e_z - e_y) verifies on (z^a y^b, y^(b+1) z^(a+1)), a >= b + 2, and the shape cells (zy | eps), (zy | z), (zy | yz) with Z_1 = Z_2 + 1 close for Delta = 1, 2, 3 and the tail Delta >= 4 with no open region, while (zy | yz) with Z_1 = Z_2 - 1 closes at Delta = -1 using line mode; induction on runs: refining a run pattern's opaque tail (it ends, or one more run of the other letter and a new tail) partitions the word pairs (31 * 63 pairs with w_1 beginning with z, |w_i| <= 5, each in exactly one leaf), the patterns (zy | zy*), (zy | yz*), (zy* | z), (zy* | y), (zyz* | zy), (zyz* | yz), (z | z*), (z | y*), (z* | eps) -- the nine closed leaves of the run tree -- with Z_1 = Z_2 + 1, Delta = 1 close with no open region (each an infinite family with unboundedly many runs) while (zy* | zy*) does not at the same budget, and common points match their definition, 51 of the 87 residual members at |w_i| <= 7 having only t = 1; Lemma X (monotone lattice paths whose endpoints cross, or touch with a letter following, share a point) holds on every pair of paths of at most 4 steps, a weak end at a word end can leave the only shared point at the last level, the cone search closes 86 of the 87 residual members at |w_i| <= 7 by Lemma X, each confirmed by the exact level, Lemma Phi5' (Z_2 = Z_1 + 1, non-crossing: Delta <= 0, |w_2| = |w_1| + 1 - Delta, at least two z in the last 2 - Delta letters of w_2) holds on every member with |w_i| <= 7, the reveal census needs at most two revealed runs at longer-word lengths 5..7 (77/4, 255/13, 825/54), and cover_pattern certifies regions of zyz* y | zyz* by Lemma X; the certificate-guided partition: impose_nonneg covers {F >= 0} exactly (every form a_0 + a_1 n_1 + a_2 n_2, a_0 in -4..4, a_1, a_2 in -3..3, on the box [0, 5]^2) with F coefficientwise nonnegative on every region, impose_equal covers {E = 0} exactly (a_1, a_2 in -2..2, box [0, 6]^2), and cover_pattern_guided closes the doubly open pattern zy* y | zy* at Z_1 = Z_2 + 1, Delta = 1 with every carved region re-verified under its own inequalities; tighten keeps the integer points of every form a_0 + a_1 n_1 + a_2 n_2 (a_0 in -6..6, a_1, a_2 in -3..3) on [0, 6]^2, the Prover (affine, and quadratic U V + W) is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2, and every McCormick quadrant of Lemma P1 that pisot_carve_forms opens in two-parameter families for s = +1 and s = -1 contains its point, passes mccormick_cut under its tightened forms, and holds no point with f < 0; integer bound propagation keeps every satisfying point of [0, 8]^2 in its box for a stride of three-form systems and declares empty only systems without one, and the exact point search returns only satisfying points, finds one whenever [0, 7]^2 holds one, and proves emptiness only of systems without a point; Fourier-Motzkin declares empty only systems without an integer point (a stride of three-form systems on [0, 6]^3) and refutes a wedge propagation cannot, its projections keeping every point in their intervals; with Z_2 bounded the tails close for every Delta: s = +1, Z_2 <= 1 (24 fully revealed run patterns) and s = -1, Z_2 <= 2 (20); z_floor_forms (Lemma P1 linearized at the McCormick corner (floor, b_lo)) keep every point of [0, 9]^3 with Z_2 >= floor and f <= -1, floors 2..5, s = +1 and s = -1, and the linear region holds points with f >= 0; the s = -1 leaf zy | yz (w_1 = z^a y^b, w_2 = y^(b+2+e) z^(a+1)): on every PIP non-crossing member the level-2 offset d = a e_z - (a+2) e_y has M d = (-4, 2a - 2b + ae, -a), f(-1) = ae + a - 2b + 2 <= -1 and the level-3 gap is k - m = 2 - a - f(-1), and the explicit path (y, z, -e_o) -> (y, z, d) -> (y, y, -4 e_o) -> (y, y, 0) verifies exactly on 312 of the 1,026 members with 3 <= a <= 8, b < 40, e <= 5 and on 1,134 of 4,913 with a <= 11, b < 80, e <= 8; the q-lift (cover_pattern_guided(q_lift=True): variables (n, q), q_j = n_j e, Lemma P1 as the affine form f <= -1 over (n, q), McCormick box envelopes, real base points, lifted certificates proved on the whole polyhedron): at a = 62, b = 436, e = 13 the free-line point search (bound 4) finds that path, its lift has a zero end offset over (n, q) and verifies there but not as a polynomial, and the cover closes zy | yz at Delta <= -2, Z_2 >= 4 with no open region (104 regions, 35 certified, 20 by polynomial paths, 6 cut, 34 without a real member), while the default z_floor cover of the same leaf is unchanged (16 regions, 1 open)")

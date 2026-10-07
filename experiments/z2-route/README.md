@@ -9,7 +9,7 @@ measured.
 | File | What it runs |
 | --- | --- |
 | `onepat.mojo` | `cover_pattern_guided` on one run pattern, in z_floor mode, verbose: `onepat s delta floor budget l1 open1 l2 open2` (`l1`, `l2` like `zy`, `-` for empty, `open` 0/1) |
-| `zruns.mojo` | every fully revealed pattern with `w_1` (or `u`) of at most `r1` runs and `w_2` of at most `r2`, every run length symbolic: `zruns s delta floor r1 r2 budget` |
+| `zruns.mojo` | every fully revealed pattern with `w_1` (or `u`) of at most `r1` runs and `w_2` of at most `r2`, every run length symbolic: `zruns s delta floor r1 r2 budget [qlift]` (`qlift` 1 runs the cover over the product coordinates `q_j = n_j e`) |
 
 Build from `kernel/`:
 
