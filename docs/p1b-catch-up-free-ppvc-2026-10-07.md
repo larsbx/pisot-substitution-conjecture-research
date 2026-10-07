@@ -159,6 +159,15 @@ whether each has an offset-zero witness path that verifies on the whole cone.
 The census of §4 is the negative control: the cover must find every
 recurrent vertex the box graph finds, member by member.
 
+## 5a. Follow-up (same day)
+
+The certificate was built on one line instead of a digit-cycle cover: the
+swap-seed closure removes the need for a trapping region, and along
+`p = 2q + 2`, `r = q + 1` in class B it is a finite symbolic graph with
+constant offsets.
+[`p1b-symbolic-line-2026-10-07.md`](p1b-symbolic-line-2026-10-07.md) proves
+**Theorem L**: pure discrete spectrum and G1 for every member of that line.
+
 ## 6. What this does not establish
 
 - No strict zipper is excluded on any infinite family; PPVC is decided only

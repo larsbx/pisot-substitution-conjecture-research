@@ -39,6 +39,7 @@ from psc.overlap_seed_patch import (
     SeedOverlapTables,
     build_overlap_graph_from_seeds,
     build_seed_overlap_tables,
+    build_seed_overlap_tables_screened,
     cached_sign,
     first_left_aligned_depths,
     interior_overlap_cached,
@@ -390,3 +391,11 @@ def decide_vertex_coincidence(
     sigma: List[List[Int]], max_states: Int = VERTEX_COINCIDENCE_STATE_CAP
 ) raises -> VertexCoincidenceVerdict:
     return decide_vertex_coincidence_from(build_seed_overlap_tables(sigma), max_states)
+
+
+def decide_vertex_coincidence_screened(
+    sigma: List[List[Int]], max_states: Int = VERTEX_COINCIDENCE_STATE_CAP
+) raises -> VertexCoincidenceVerdict:
+    """`decide_vertex_coincidence` outside the audited image-length domain, on
+    the coefficient-screened field (`build_seed_overlap_tables_screened`)."""
+    return decide_vertex_coincidence_from(build_seed_overlap_tables_screened(sigma), max_states)

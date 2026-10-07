@@ -87,6 +87,14 @@ by deleting it.
   graph, whose vertices are bounded. · `p1b-catch-up-free-ppvc-2026-10-07.md`
   §3; scratch `explore.py`
 
+- 2026-10-07 · A one-step contracting trapping region as the finite
+  candidate set for PPVC on a line of class B: finite but not constant (413 to
+  593 lattice points for `q = 2..25` on `p = 2q + 2`, `r = q + 1`), while the
+  true recurrent set is a constant 120 vertices. Use the swap-seed closure
+  instead: pure discrete spectrum needs one seed, G1 needs the three, and
+  neither needs a box. · `p1b-symbolic-line-2026-10-07.md` §2;
+  `archive/2026-10-07/session-probes/trap_float_probe.out`
+
 ## 3. Settled by the literature (do not target with new machinery)
 
 - 2026-10-04 · Specimens with a power or common-prefix/suffix conjugate in
@@ -318,6 +326,20 @@ by deleting it.
   ledgers are preserved byte-for-byte at their new archive locators. ·
   `tools/make_ledger.py`;
   `archive/2026-10-06/status-snapshots/README.md`
+
+- 2026-10-07 · `finite_linear_algebra.mat3.has_rational_root` evaluates `r^3`
+  in unchecked `Int` for every divisor `r` of `det M`; safe at the audited
+  column-sum bound 6 and at entries up to 64, not beyond. Any path that admits
+  larger matrices must use `psc.pisot_screen.has_rational_root` (exact over
+  `Q`, divisor pairs up to `sqrt |det|`), as `screened_perron_field3` now does.
+  · `kernel/psc/perron_field3.mojo`
+
+- 2026-10-07 · Run-position ranges in a symbolic overlap closure: the upper
+  end is the largest `m` with `ell_A − t − m ell_y > 0`, which is (least `m`
+  with `t + m ell_y − ell_A >= 0`) − 1, **non-strict**. Computing it with a
+  strict inequality admits one invalid child exactly when `t + m ell_y = ell_A`
+  identically, and on the class B line it produced 123 vertices (4 without a
+  hit) instead of the exact 119. · `kernel/psc/symbolic_line.mojo` (`least_m`)
 
 ## 7. Review outcomes
 
