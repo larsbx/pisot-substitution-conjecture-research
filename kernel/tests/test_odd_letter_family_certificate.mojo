@@ -14,7 +14,7 @@ and these tests check that no closed leaf mislabels a member.
 from std.testing import assert_equal, assert_false, assert_true
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.coincidence_formula import coincidence_level
 from psc.cone_witness import aff_eval, monotone_paths_meet, Prover, _q_eval, _q_lin, _q_nonneg_under, _qa, search_crossing, search_witness, search_witness_line, verify_crossing, verify_witness, verify_witness_line, witness_position
 from std.collections import Dict

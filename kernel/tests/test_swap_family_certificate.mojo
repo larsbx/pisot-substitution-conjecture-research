@@ -13,7 +13,7 @@ from std.testing import assert_equal, assert_false, assert_true
 from a1_normal_form_census import C, X, Y, f_at, swap_member
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.cone_witness import (
     ConeFamily,
     Segment,

@@ -9,7 +9,7 @@ against its closed form by hand.
 """
 
 from std.testing import assert_equal, assert_false, assert_true
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.leftmost_chain import (
     certify_leftmost_cycles,
     leftmost_step,

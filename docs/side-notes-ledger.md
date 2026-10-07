@@ -148,6 +148,12 @@ by deleting it.
   no McCormick staircase; `2 zfloor s delta floor budget` runs it.
   · `kernel/odd_letter_family_certificate.mojo` (`z_floor_forms`,
   `cover_pattern_guided(z_floor=)`); scratch `lin.py`, `linsamp.py`
+  Correction (2026-10-07): the `s = −1` exhaustive run "in progress" never
+  started (launched from the wrong directory); the `s = −1` exhaustive figure
+  is `|w_1| <= 7`, `|w_2| <= 11`: 1,395 region pairs, all PIP, all coincident
+  by level 5. The seed-2 `s = −1` sample (400 wanted, `Z_2 <= 14`,
+  `|Delta| <= 10`) was killed out of memory (10.5 GB: `first_tile` expands
+  whole level-6 words), so it reports nothing; `s = −1` rests on seed 1 only.
 
 ## 4. Withdrawn or unreproducible figures
 

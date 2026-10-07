@@ -36,7 +36,7 @@ from a1_normal_form_census import (
 )
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.coincidence_formula import coincidence_level, first_letter_merge_level
 from psc.pisot import is_pip
 
