@@ -70,7 +70,7 @@ a certificate, a census, or proof-support code.
 
 ## Vendored packages
 
-Seven logical Mojo packages under `kernel/`, the four Python packages under
+Seven logical Mojo packages under `kernel/`, the five Python packages under
 `tools/`, and `proof/tla/ProofArchitecture.tla` are vendored byte-for-byte from the single
 `larsbx/finite-math-kernels` monorepo and pinned to one commit by SHA-256
 digest in `vendored.toml`;

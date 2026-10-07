@@ -222,6 +222,17 @@ by deleting it.
   first, then audit; the completed 60-file run and subsequent full checks pass.
   · `c4-ordered-hub-offset-negative-2026-10-06.md` §7
 
+- 2026-10-06 · Cleanup decision: subtract unused Julia scaffolds, obsolete
+  boundary-sync integration/task notes, the superseded architecture pointer,
+  duplicate Python optimization advice and repeated workflow paths; the live
+  automation protocol now follows the claim taxonomy and both proof routes. Ten
+  remaining frozen-weekly status bindings now check the live proof ladder and
+  roadmap, resolving the September 14 snapshot debt above; all 71 proof
+  records and claim statuses stay unchanged. September 11/14 completion
+  ledgers are preserved byte-for-byte at their new archive locators. ·
+  `tools/make_ledger.py`;
+  `archive/2026-10-06/status-snapshots/README.md`
+
 ## 7. Review outcomes
 
 - 2026-10-04 · Independent status audit (`audit-2026-10-04.md`) re-derived

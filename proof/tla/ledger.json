@@ -193,7 +193,7 @@
         "window_lines": 2
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
+        "path": "docs/proof-ladder.md",
         "anchor": "=> bounded discrepancy",
         "window_lines": 0
       },
@@ -215,13 +215,13 @@
         "window_lines": 2
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "=> [OPEN] G1b-2 renewal finiteness",
-        "window_lines": 0
+        "path": "docs/proof-ladder.md",
+        "anchor": "## G1b-2 — renewal finiteness",
+        "window_lines": 2
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "| **P3** | G1b-2 renewal finiteness |",
+        "path": "docs/research-roadmap-2026-09-21.md",
+        "anchor": "| **P2** | G1b-2 renewal finiteness |",
         "window_lines": 0
       }
     ],
@@ -263,8 +263,8 @@
         "window_lines": 2
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "| **P4** | General concentration",
+        "path": "docs/research-roadmap-2026-09-21.md",
+        "anchor": "| **P3a** | Concentration, `K2=0` |",
         "window_lines": 0
       }
     ],
@@ -280,8 +280,8 @@
         "window_lines": 2
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "| **P5** | General wedge productivity",
+        "path": "docs/research-roadmap-2026-09-21.md",
+        "anchor": "| **P3b** | Wedge productivity, `K2!=0` |",
         "window_lines": 0
       }
     ],
@@ -297,7 +297,7 @@
         "window_lines": 2
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
+        "path": "docs/proof-ladder.md",
         "anchor": "=> finite seed-patch overlap graph",
         "window_lines": 0
       },
@@ -345,7 +345,7 @@
         "window_lines": 0
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
+        "path": "docs/proof-ladder.md",
         "anchor": "=> coincidence density one / dense good set",
         "window_lines": 0
       },
@@ -362,7 +362,7 @@
         "window_lines": 0
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
+        "path": "docs/proof-ladder.md",
         "anchor": "=> pure discrete spectrum",
         "window_lines": 0
       },
@@ -405,7 +405,7 @@
         "window_lines": 2
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
+        "path": "docs/proof-ladder.md",
         "anchor": "=> one swap seed has only productive reachable overlaps",
         "window_lines": 0
       },
@@ -415,8 +415,8 @@
         "window_lines": 0
       },
       {
-        "path": "docs/completion-ledger-2026-09-14.md",
-        "anchor": "| **P1** | **Seedwise overlap productivity",
+        "path": "docs/research-roadmap-2026-09-21.md",
+        "anchor": "| **P1** | Seedwise overlap productivity (#84) |",
         "window_lines": 0
       }
     ],
