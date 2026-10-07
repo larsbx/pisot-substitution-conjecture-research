@@ -155,6 +155,45 @@ by deleting it.
   `|Delta| <= 10`) was killed out of memory (10.5 GB: `first_tile` expands
   whole level-6 words), so it reports nothing; `s = −1` rests on seed 1 only.
 
+- 2026-10-07 · Unbounded `Z_2`, the z_floor cover run: **what blocks is a
+  product inside the certificates, not Lemma P1's staircase.** (1) The
+  open-tail trees `2 zfloor 1 2 3 5000 8` and `2 zfloor -1 -2 4 5000 8`
+  refine their roots and first children (open regions 12, 59 and 58, 184;
+  10–30 min per pattern) and were stopped after ~1 h without a verdict. The
+  root's open regions are opaque-tail regions with no certificate, so z_floor
+  leaves §3i's doubly open chain where it was. Re-running the cells
+  `(+1, 2)` and `(−1, −2)` after the cover-leak fixes
+  (`2 cell ±1 ±2 30000 8 plain`) walks the same chain: no verdict after 70
+  min. (2) Fully revealed patterns with every run length symbolic, so `Z_2`
+  and `Delta` unbounded, under z_floor (scratch `zruns`, budget 5,000):
+  `s = +1`, `Z_2 >= 3`, `Delta >= 2`: all 17 patterns with `u` of at most 2
+  runs and `w_2` of at most 4 runs close (at most 28 regions, 7 s each)
+  except `zy +y^(2+e) | zyzy`, with no verdict after 40 min. `s = −1`,
+  `Z_2 >= 4`, `Delta <= −2`: 11 close; `zy | yz` and `zy | yzy` end with 1
+  and 2 open regions, and `zy | yzyz` gave no verdict after 25 min.
+  (3) The open region of `zy | yz` is `w_1 = z^a y^b`,
+  `w_2 = y^(b+2+e) z^(a+1)`, `Delta = −2 − e`. Its witnesses
+  `(y, z, −e_o) → (y, z, a e_z − (a+2) e_y) → (y, y, −4 e_o) → (y, y, 0)`
+  have `M d = (−4, 2a − 2b + ae, −a)`: the `a b` terms cancel. So the
+  level-3 positions `k` (in `y^b`) and `m` (in `y^(b+2+e)`) need
+  `k − m = 2b − 2a − ae`. That product is Lemma P1's own:
+  `f(−1) = ae + a − 2b + 2`, and `k − m = 2 − a − f`. The certificate is
+  affine in `(a, b, e, q = ae)` but not in `(a, b, e)`, so lifting by run
+  offsets only carves slices (polynomial line mode's "degree-2 part does
+  not vanish"). This one family, with the level-4 offset `t` in `0..2`,
+  verifies on 1,134 of the 4,913 members with `a <= 11`, `b < 80`, `e <= 8`
+  (brute recomputation, scratch `qcert.py`). In line mode,
+  `M (c_0 + lambda (e_z − e_y)) = M c_0 + lambda (0, −Delta, −s)` with
+  `lambda` affine and `Delta = D ± e`, so every product a line certificate
+  needs has the form `n_j e` (`e` included). **Next:** lift the cover by
+  the coordinates `q_j = n_j e`. Lemma P1 then becomes exactly affine, so
+  no McCormick wedge is left; certificates become affine; regions are
+  polyhedra in `(n, q)` whose real points satisfy `q = n e`, under the
+  envelope `q_j >= lo_j e + lo_e n_j − lo_j lo_e`. Do not spend more budget
+  on z_floor trees or on fixed-`Delta` cells with opaque tails. · scratch
+  `zruns.mojo`, `onepat.mojo`, `qcert.py`;
+  `kernel/odd_letter_family_certificate.mojo` (`cover_pattern_guided(z_floor=)`)
+
 ## 4. Withdrawn or unreproducible figures
 
 - 2026-10-04 · "1,764 formal producer-free cycles; maximum death radius 7;
