@@ -12,10 +12,13 @@ from psc.poly_line import (
     Poly,
     PolyStep,
     poly_add,
+    poly_const,
     poly_degree,
     poly_eval,
     poly_from_aff,
+    mono_var,
     poly_mul,
+    poly_scale,
     poly_nonneg_under,
     poly_steps,
     poly_sub,
@@ -25,6 +28,7 @@ from psc.poly_line import (
     steps_at,
     verify_witness_poly,
 )
+from psc.product_lift import ProductLift, lift_affine, lift_form, lift_point, mccormick_forms, product_lift_of
 from odd_letter_family_certificate import O, Y, Z, shape_family
 
 
@@ -197,6 +201,109 @@ def test_linear_lift_solves_point_paths() raises:
         assert_true(solved >= 1)
 
 
+def _tail_bilinear(forms: List[List[Int]], i: Int, j: Int) raises -> Poly:
+    """`A + B e` over (n_0, n_1, e): forms i and j as A and B."""
+    var tail = poly_from_aff(List[Int]([0, 0, 0, 1]))
+    return poly_add(poly_from_aff(forms[i]), poly_mul(poly_from_aff(forms[j]), tail))
+
+
+def test_product_lift_round_trip() raises:
+    """Over (a, b, e) with tail e: for P = A + B e with A, B affine (all 135 forms with constant in -2..2 and coefficients in -1..1 as
+    A, each paired with a B), the lifted affine form at (n, q(n)) equals P at n on [0, 4]^3, the
+    lift has exactly the products that occur, and the zy|yz quantities
+    2a - 2b + ae and f(-1) = ae + a - 2b + 2 lift to (0, 2, -2, 0, 1) and
+    (2, 1, -2, 0, 1) over (n, q_a)."""
+    var forms = _forms(-2, 2, 1, 3)
+    var checked = 0
+    for i in range(len(forms)):
+        var j = (5 * i + 7) % len(forms)
+        var p = _tail_bilinear(forms, i, j)
+        var lift = product_lift_of(List[Poly]([p.copy()]), 3, 2)
+        var want = List[Int]()
+        for k in range(3):
+            if forms[j][k + 1] != 0:
+                want.append(k)
+        assert_equal(len(lift.prods), len(want))
+        for k in range(len(want)):
+            assert_equal(lift.prods[k], want[k])
+        var f = lift_affine(lift, p)
+        for x in range(5):
+            for y in range(5):
+                for z in range(5):
+                    var ns = List[Int]([x, y, z])
+                    assert_equal(aff_eval(f, lift_point(lift, ns)), poly_eval(p, ns))
+                    assert_equal(aff_eval(lift_form(lift, forms[i]), lift_point(lift, ns)), aff_eval(forms[i], ns))
+        checked += 1
+    assert_equal(checked, 135)
+    var ae = poly_mul(poly_from_aff(List[Int]([0, 1, 0, 0])), poly_from_aff(List[Int]([0, 0, 0, 1])))
+    var md = poly_add(poly_from_aff(List[Int]([0, 2, -2, 0])), ae)
+    var f1 = poly_add(poly_from_aff(List[Int]([2, 1, -2, 0])), ae)
+    var lift = product_lift_of(List[Poly]([md.copy(), f1.copy()]), 3, 2)
+    assert_equal(len(lift.prods), 1)
+    assert_equal(lift.slot(0), 4)
+    assert_true(lift_affine(lift, md) == List[Int]([0, 2, -2, 0, 1]))
+    assert_true(lift_affine(lift, f1) == List[Int]([2, 1, -2, 0, 1]))
+
+
+def test_mccormick_envelope_holds_at_real_points() raises:
+    """With every product of (a, b, e) lifted (e^2 included), for lower
+    bounds in 0..2 per variable, every McCormick form is >= 0 at the real
+    point over each n in [lo, lo + 4]^3, and is 0 where n_j = lo_j or e = lo_e."""
+    var full = List[Poly]()
+    for j in range(3):
+        var unit = List[Int](length=4, fill=0)
+        unit[j + 1] = 1
+        full.append(poly_mul(poly_from_aff(List[Int]([0, 0, 0, 1])), poly_from_aff(unit)))
+    var lift = product_lift_of(full, 3, 2)
+    assert_equal(len(lift.prods), 3)
+    for code in range(27):
+        var lo = List[Int]([code % 3, (code // 3) % 3, code // 9])
+        var env = mccormick_forms(lift, lo)
+        assert_equal(len(env), 3)
+        for x in range(lo[0], lo[0] + 5):
+            for y in range(lo[1], lo[1] + 5):
+                for z in range(lo[2], lo[2] + 5):
+                    var ns = List[Int]([x, y, z])
+                    var pt = lift_point(lift, ns)
+                    for k in range(3):
+                        var v = aff_eval(env[k], pt)
+                        assert_true(v >= 0)
+                        assert_equal(v, (ns[k] - lo[k]) * (z - lo[2]))
+
+
+def _lift_raises(p: Poly, m: Int, e: Int) -> Bool:
+    try:
+        _ = product_lift_of(List[Poly]([p.copy()]), m, e)
+    except:
+        return True
+    return False
+
+
+def test_product_lift_fails_closed() raises:
+    """With tail e = n_2 of three variables, n_0 n_1, n_0^2, n_0 n_1 n_2,
+    e^3 and a variable n_3 raise, a tail outside the variables raises, and
+    lift_affine raises on a product its lift does not carry."""
+    var n0 = poly_from_aff(List[Int]([0, 1, 0, 0]))
+    var n1 = poly_from_aff(List[Int]([0, 0, 1, 0]))
+    var e = poly_from_aff(List[Int]([0, 0, 0, 1]))
+    assert_false(_lift_raises(poly_add(poly_mul(n0, e), poly_mul(e, e)), 3, 2))
+    assert_true(_lift_raises(poly_mul(n0, n1), 3, 2))
+    assert_true(_lift_raises(poly_mul(n0, n0), 3, 2))
+    assert_true(_lift_raises(poly_mul(poly_mul(n0, n1), e), 3, 2))
+    assert_true(_lift_raises(poly_mul(poly_mul(e, e), e), 3, 2))
+    var n3 = Poly()
+    n3.add_term(mono_var(3), 1)
+    assert_true(_lift_raises(n3, 3, 2))
+    assert_true(_lift_raises(poly_const(1), 3, 3))
+    var lift = product_lift_of(List[Poly]([poly_mul(n0, e)]), 3, 2)
+    var raised = False
+    try:
+        _ = lift_affine(lift, poly_add(poly_mul(n1, e), poly_scale(n0, 2)))
+    except:
+        raised = True
+    assert_true(raised)
+
+
 def main() raises:
     test_polynomial_arithmetic_matches_evaluation()
     print("[PASS] test_polynomial_arithmetic_matches_evaluation")
@@ -206,4 +313,10 @@ def main() raises:
     print("[PASS] test_polynomial_mode_agrees_with_line_mode")
     test_linear_lift_solves_point_paths()
     print("[PASS] test_linear_lift_solves_point_paths")
-    require_contract("psc.poly_line, the polynomial line mode of Theorem K's tail cells: polynomial products and sums evaluate as the products of their affine factors on [0, 3]^3, poly_nonneg_under is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2 for products U V + W and (U V + W) U, vanishing needs both signs, and verify_witness_poly agrees with verify_witness_line on the line-mode family (z^a y^b, y^(b+1) z^(a+1)) and on its single-offset perturbations, the path holding at every point of [0, 4]^2 once instantiated; the point-path enumeration returns only verified paths, and solve_lift solves some to a path with a zero end offset that verify_witness_poly accepts on its carved region and that holds at every point of [0, 5]^2 inside it")
+    test_product_lift_round_trip()
+    print("[PASS] test_product_lift_round_trip")
+    test_mccormick_envelope_holds_at_real_points()
+    print("[PASS] test_mccormick_envelope_holds_at_real_points")
+    test_product_lift_fails_closed()
+    print("[PASS] test_product_lift_fails_closed")
+    require_contract("psc.poly_line, the polynomial line mode of Theorem K's tail cells: polynomial products and sums evaluate as the products of their affine factors on [0, 3]^3, poly_nonneg_under is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2 for products U V + W and (U V + W) U, vanishing needs both signs, and verify_witness_poly agrees with verify_witness_line on the line-mode family (z^a y^b, y^(b+1) z^(a+1)) and on its single-offset perturbations, the path holding at every point of [0, 4]^2 once instantiated; the point-path enumeration returns only verified paths, and solve_lift solves some to a path with a zero end offset that verify_witness_poly accepts on its carved region and that holds at every point of [0, 5]^2 inside it; psc.product_lift makes A + B e affine over (n, q) with q_j = n_j e, agreeing with the polynomial at every real point of [0, 4]^3 and lifting the zy|yz quantities 2a - 2b + ae and f(-1) exactly, its McCormick forms equal (n_j - lo_j)(e - lo_e) >= 0 at every real point above each lower bound in 0..2, and any other degree-2 monomial, any degree 3, a variable past the lift or an absent product raises")
