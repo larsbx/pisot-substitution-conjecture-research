@@ -190,8 +190,8 @@ by deleting it.
   no McCormick wedge is left; certificates become affine; regions are
   polyhedra in `(n, q)` whose real points satisfy `q = n e`, under the
   envelope `q_j >= lo_j e + lo_e n_j − lo_j lo_e`. Do not spend more budget
-  on z_floor trees or on fixed-`Delta` cells with opaque tails. · scratch
-  `zruns.mojo`, `onepat.mojo`, `qcert.py`;
+  on z_floor trees or on fixed-`Delta` cells with opaque tails. ·
+  `experiments/z2-route/` (`zruns.mojo`, `onepat.mojo`); scratch `qcert.py`;
   `kernel/odd_letter_family_certificate.mojo` (`cover_pattern_guided(z_floor=)`)
 
 ## 4. Withdrawn or unreproducible figures
