@@ -191,3 +191,13 @@ An eventual proof must specify the target-selection/coverage condition and
 exclude the relevant realizable obstruction, rather than promote this local
 address quotient or its finite examples to part (b). No ledger node or proof
 dependency changes in this diagnostic.
+
+## Ordered-word follow-up — 2026-10-06
+
+The [ordered hub/offset experiment](c4-ordered-hub-offset-negative-2026-10-06.md)
+keeps these receipts intact and adds separate exports. Hub-phase coherence
+survives on the real-secondary recurrent supports, yet the actual two-cycle
+`396,820` has physical offset `0,1,0` and nonzero Parikh defects. All controls
+also have acyclic induced graphs after aligned packets are deleted, so that
+finite property does not distinguish the PIP regime. The follow-up preserves
+a local monovariant negative and keeps issue #9 open.

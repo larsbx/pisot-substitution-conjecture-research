@@ -40,6 +40,14 @@ by deleting it.
 - 2026-06-13 (archive) · Collar certification lemma `R(C) <= L_sigma`:
   refuted. · `archive/2026-09-08/notes_2026_06/COLLAR_LEMMA_REFUTED_2026_06_13.md`
 
+- 2026-10-06 · Hub-guarded nonincrease of the physical cut potential `|i-j|`
+  on target-free PIP occurrence transitions is false: replayed cycle
+  `396,820` has hub word `1,1` and offset `0,1,0`; its first edge selects an
+  actual interior child. The support is productive, so this is a local
+  monovariant negative, not a strict component counterexample. ·
+  `c4-ordered-hub-offset-negative-2026-10-06.md` §3;
+  `evidence/ordered-hub-packets-2026-10-06/`
+
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
@@ -188,6 +196,12 @@ by deleting it.
   Do not re-verify. · `kernel/tests/test_overlap_seed_patch.mojo`;
   `audit-2026-10-04.md` §B.3
 
+- 2026-10-06 · All four retained real-secondary packet SCCs and both controls
+  have acyclic nonzero-physical-cut induced graphs; coherent defined hub phase
+  also survives on the non-Pisot strict support. Neither finite property
+  distinguishes PIP or gives balanced alignment. ·
+  `c4-ordered-hub-offset-negative-2026-10-06.md` §§2,5
+
 ## 6. Tooling pitfalls
 
 - 2026-10-04 · `pkill -f PATTERN` inside a shell command whose own text
@@ -231,6 +245,59 @@ by deleting it.
   snapshot is not a proof source. Left at 09-14 deliberately rather than
   changing what eleven claims are checked against. · `tools/make_ledger.py`
   (`WEEKLY`); `audit-2026-10-04.md` §D.5
+- 2026-10-05 · Vendored `madic_ball.mojo` (finite-math-kernels da41c27) now
+  states that the generators of `M^k Z^n` are the *columns* of the row-major
+  `M`; the row span is a different lattice. `psc/overlap_madic_filter.mojo`
+  does not call `contains_exact` but solves `M^m x = d` with its own
+  adjugate inverse of `qmat_pow(lift_square(incidence))`, where
+  `incidence()[3*i + j]` counts letter `i` in `sigma(j)`; that is the column
+  span, the one `d = M^m w` for Parikh vectors needs. Checked by reading the
+  adjugate entry by entry; nothing changed. ·
+  `kernel/finite_linear_algebra/madic_ball.mojo`;
+  `kernel/psc/overlap_madic_filter.mojo` (`_inverse_lattice3`)
+- 2026-10-05 · The vendoring checker moved to the vendored
+  `tools/vendoring/check_vendored_sync.py`; the old `tools/check_vendored_sync.py`
+  is gone. `CONTRIBUTING.md` (gate 7), `.github/` and `.forgejo/`
+  `PULL_REQUEST_TEMPLATE.md` and `.claude/skills/steward/SKILL.md` still name the
+  old path: they are rendered from `larsbx/agent-icm` and must be corrected
+  there and re-rendered, not hand-edited here. Until then run the new path. ·
+  `vendored.toml`; `tests/test_vendored_sync.py`
+- 2026-10-05 · `mojo build kernel/pisot_polynomial_bench.mojo` needs `-I tests`
+  as well as `-I .`: it imports `tests/polynomial_reference.mojo`. Without it
+  the build fails to locate the module, before and after the re-vendor. ·
+  `kernel/pisot_polynomial_bench.mojo` line 7
+- 2026-10-06 · Python-oracle `_poly_gcd` can reuse exact immutable `Fraction`
+  coefficients while retaining conversion for every other type, including
+  subclasses: 4,800 gcd pairs and all 3,375 cubic screen results agree with
+  `main@c2bd9a0`; median normalization time drops 0.477466 -> 0.031462 s,
+  with a 6.4% full-screen gain on the shared-container run. Keep the exact-type
+  guard and distinguish normalization-only from caller speedup. ·
+  [poly-gcd-fraction-normalization-2026-10-06.md](poly-gcd-fraction-normalization-2026-10-06.md#benchmark-evidence)
+  (source digests and replay in §Reproduce); `tests/test_pisot_screen.py`
+
+- 2026-10-06 · `PacketGraph.expansions` has two entries per BPA state,
+  indexed by `2*state_id + Int(sign == -1)`; indexing by state ID selects
+  another state's factor row. The new ordered-hub golden regressions caught
+  this during implementation before export. ·
+  `kernel/psc/target_packets.mojo::_prepare`;
+  `kernel/tests/test_packet_hub_analysis.mojo`
+
+- 2026-10-06 · Claim coverage reads live passing receipts. Running governance
+  or the full Python suite before `kernel/run_tests.sh` finishes can report
+  uncovered claims from its incomplete receipt file. Complete the Mojo run
+  first, then audit; the completed 60-file run and subsequent full checks pass.
+  · `c4-ordered-hub-offset-negative-2026-10-06.md` §7
+
+- 2026-10-06 · Cleanup decision: subtract unused Julia scaffolds, obsolete
+  boundary-sync integration/task notes, the superseded architecture pointer,
+  duplicate Python optimization advice and repeated workflow paths; the live
+  automation protocol now follows the claim taxonomy and both proof routes. Ten
+  remaining frozen-weekly status bindings now check the live proof ladder and
+  roadmap, resolving the September 14 snapshot debt above; all 71 proof
+  records and claim statuses stay unchanged. September 11/14 completion
+  ledgers are preserved byte-for-byte at their new archive locators. ·
+  `tools/make_ledger.py`;
+  `archive/2026-10-06/status-snapshots/README.md`
 
 ## 7. Review outcomes
 
@@ -753,3 +820,127 @@ by deleting it.
   `overlap-finiteness-and-coincidence-density-2026-09-13.md`) are history, not
   status. · manuscript §4.8; `formal-productivity-reduction-2026-10-04.md`
 
+- 2026-10-05 · Vendoring review caught shared machine-integer and governance
+  defects beyond green consumer CI. FMK #63 repairs checked products and
+  signed-minimum GCD refusal, exact support-based primitivity, alternative-route
+  closure and executable-source coverage. All twelve packages now match landed
+  commit `360bc90c27893900d30718e42d61d14ce255e530`; the boundary-synchronization
+  wrapper propagates upstream refusal. ·
+  <https://github.com/larsbx/finite-math-kernels/pull/63>; `vendored.toml`;
+  `kernel/psc/boundary_sync.mojo`
+- 2026-10-06 · PSC's substitution application and powers now come from the
+  vendored `Substitution.apply` / `apply_n`: the second `apply_substitution`
+  in `oa_overlap_types` and `one_tile._power` are deleted, and
+  `legal_tower.apply_substitution_n` and `dumont_thomas.power_substitution`
+  delegate. The alphabet-generic callers keep the trusted (unvalidated)
+  constructor; the alphabet-3 callers keep `bpa.sigma3`'s abort, at depth 0
+  still unconsulted. `periodic_pair._image` stays: its word cap refuses
+  mid-construction, which `apply_n` cannot. Claim receipts and the full Mojo
+  test log are byte-identical before and after. · `kernel/psc/legal_tower.mojo`;
+  `kernel/run_tests.sh`
+- 2026-10-06 · `pisot.is_primitive(Mat3)` now delegates to the vendored
+  `integer_matrix.is_primitive` (Boolean support powers). The old body
+  multiplied real powers `M^1..M^5` with unchecked `Mat3.__mul__`, so a
+  matrix with entries large enough to wrap could be misjudged; on every
+  matrix whose fifth power fits a machine integer (all incidence matrices
+  here) the verdicts agree, as `test_boundary_sync` already pinned. The
+  vendored test raises only on a dimension mismatch, impossible for a
+  `Mat3`, so the view aborts there. `periodic_pair._checked_mat_mul` is
+  replaced by the checked `integer_matrix.matmul`: it raises exactly when
+  the old one did, though in a contrived case with two overflowing entries
+  the message may name addition where the old named multiplication, or the
+  reverse (loop order i,k,j against i,j,k). · `kernel/psc/pisot.mojo`;
+  `kernel/psc/periodic_pair.mojo`
+- 2026-10-06 · The 2026-10-04 session-probe replay pointed `MOJO_DIR` at the
+  retired `mojo/`; repointed to `kernel/`. All five Mojo probes compile
+  unchanged against the current APIs and reproduce the archived results
+  (vc_try radii 29,17,18 / 61,337 states / 716 recurrent; closure 276 + 72;
+  diagonal 1,080,828 / 1,153,308 of 1,154,040, 180/30; direct 4170 of 4344,
+  29,712 vertices), compared against the README index (the archived
+  `rerun_*.out` files were never committed; the fresh ones carry new
+  timings and were not written back). ·
+  `archive/2026-10-04/session-probes/probes/rerun.sh`
+- 2026-10-06 · `psc.real_root_sign` now builds its Tarski query on the
+  vendored `qpoly` (`normalize`, `derivative`, `mul`, `remainder`, `neg`,
+  `evaluate`, `variation_difference`); its `poly_trim`, `poly_deriv`,
+  `poly_mul` and `poly_rem` are deleted. `tarski_query`, `count_real_roots`,
+  `isolate_real_roots` and `sign_at_isolated_root` stay: `qpoly` has no Tarski
+  query and isolates only the largest root. One semantic difference: the old
+  helpers raised on a rejected rational, `qpoly` aborts (via `q_is_zero`), so
+  `tarski_query` now checks its inputs are accepted and raises first; accepted
+  rationals stay accepted under every operation used. Runtime unchanged:
+  13,530 `sign_at_isolated_root` calls take 15.7 s on each side;
+  `overlap_contracting_census` 615/615 s before, 647/614 s after;
+  `vertex_coincidence_census` 791/647 s before, 855/700 s after (run-to-run
+  noise is about 20%), output byte-identical. · `kernel/psc/real_root_sign.mojo`;
+  `kernel/tests/test_overlap_contracting.mojo`
+- 2026-10-06 · `psc.pisot` and `psc.pisot_screen` take the derivative,
+  negation, gcd and Cauchy root bound from the vendored `qpoly`;
+  `poly_derivative`, `cauchy_bound` (`3 + max floor|p_k/p_n|`, a looser
+  bound than `qpoly.root_bound`'s `1 + max |p_k|/|p_n|`; only ever an
+  enclosing interval, so no count changes), `pisot_screen.poly_gcd` and
+  `int_cauchy_bound` are deleted. Kept local after measurement: `poly_eval`
+  (unrolled; `qpoly.evaluate` is the reference algorithm, about 15% slower
+  in `pisot_polynomial_bench`), `poly_degree` (`qpoly.degree` copies),
+  `poly_rem` (keeps length, returns the dividend for a zero divisor where
+  `qpoly.remainder` aborts; `test_pisot_polynomials` pins it) and
+  `sturm_chain` of `p` itself: `qpoly.sturm_chain` passes to the squarefree
+  part first, and an all-`qpoly` `is_pisot_charpoly` ran about 17% slower on
+  the 3,375 monic cubics with `|c_i| <= 7`. The two chains differ only for
+  non-squarefree `p` with a root at a count endpoint, outside Sturm's
+  hypothesis: the plain chain gives `-1` on `(-1, 1]` for `(x - 1)(x + 1)^2`.
+  `is_pip` tests irreducibility first, and the `is_pisot_charpoly` verdicts
+  agree on all 3,375 cubics. The chain is now built once per cubic rather
+  than once per count: `test_census_library` 13.3/14.0 s to 8.5/8.2 s,
+  `census.mojo` 91/98 s to 84/88 s. Claim receipts and the full Mojo test log
+  are byte-identical before and after. · `kernel/psc/pisot.mojo`;
+  `kernel/psc/pisot_screen.mojo`
+- 2026-10-06 · Tooling pitfall: `tools/verify_all.sh` and a `uv tool`
+  `pytest` fail `manuscript source integrity` when `pypdf` is missing from
+  that interpreter. That is the pinned dev dependency (`pyproject.toml`), not a
+  manuscript defect; install `pypdf==6.19.0` into the interpreter that runs
+  it. · `tests/test_check_manuscript_source.py`
+- 2026-10-06 · Symmetry, endpoint maps, Barge class, bounded BPA, Dumont-Thomas,
+  return lattices and the strong-coincidence automaton moved to the vendored
+  `substitution_dynamics` over an explicit alphabet; only the Perron-field
+  reserve and the C4 A..G names stay here. Pitfalls met: `psc.symmetry.word_key`
+  renders arbitrary integer lists (cycle lengths, counts), so it stays the
+  plain decimal concatenation rather than the package's bracketed letter key;
+  pruning-independence makes the shortest coincidence witness, minimised
+  sizes and coaccessible counts reproducible under any sound bound, which is
+  how the package regressions pin this repository's outputs. Two orbits of a
+  self-map of d letters that meet do so within d - 1 steps (exhaustive,
+  d <= 6). · finite-math-kernels `tests/substitution_dynamics/`
+- 2026-10-06 · Owner decision: the vendored `prolongable_points`
+  (`substitution_dynamics/dumont_thomas.mojo`, finite-math-kernels
+  `d61bcf8`) reports each letter at its minimal prolongable power only (its
+  first return under the first-letter map), as its docstring says, not again
+  at every multiple of its period up to `|A|`. Tribonacci now has one
+  prolongable point `(1, 0)` instead of `(1, 0), (2, 0), (3, 0)`;
+  `test_oa_overlap_types` pins that. In `oa_type_inclusion_census` and
+  `oa_failures_probe` only the `"points"` field of 17 of the 22 per-specimen
+  JSON lines drops (3 -> 1, 5 -> 3, 6 -> 2), where the dropped powers were
+  duplicates giving the same fixed-point word; union types, witnesses, every
+  CI-pinned summary line and the claim receipts are byte-identical. The
+  per-specimen lines are recorded nowhere in the repository. ·
+  `kernel/tests/test_oa_overlap_types.mojo`; `kernel/oa_failures_probe.mojo`
+
+- 2026-10-06 · Repository-wide PSC research audit confirms the canonical
+  status is coherent after #153: PSC and `OP_seed`/#84 remain open, and no
+  accidental PSC promotion was found. Highest-priority review debt is the
+  October 4 PDS => PPVC/G1 => all-seed-termination chain, whose live surfaces
+  still say human review pending. Research priority is narrowed to seed-strength
+  #84 plus an occurrence-compatible adelic coverage/alignment theorem for #139;
+  #9 should supply only portable ordered-factorization lemmas. PR #223's
+  Dumont–Thomas streaming regression is resolved at the current FMK pin;
+  PR #221 should not merge unchanged because its side-notes entry is missing
+  and its base predates the current vendoring state. No claim status changes. ·
+  `audit-2026-10-06.md`
+- 2026-10-07 · Dated correction to the October 6 PSC audit entry: PR #221 was
+  rebased, supplied its required benchmark/ledger locator, revalidated, and
+  merged at 00:45:58 UTC as `f09627e377abae49e5a4bf13694cb0e15f11ed36` after
+  green current-head workflows and a no-findings review. Its tooling finding
+  is resolved; the October 6 snapshot and prior ledger entry remain intact.
+  No mathematical claim or review status changes. ·
+  [October 7 follow-up](audit-2026-10-06.md#7-follow-up-2026-10-07);
+  [PR #221 evidence](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/221)

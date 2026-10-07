@@ -1,7 +1,7 @@
 """Fixed-dimension integer vector arithmetic: the oracle, in one place.
 
 The canonical implementation of this kernel is Mojo, in
-`kernel/psc/integer_vector.mojo` (AGENTS.md: Mojo is canonical, Python is an
+`kernel/finite_linear_algebra/integer_vector.mojo` (vendored; AGENTS.md: Mojo is canonical, Python is an
 oracle). This module is the independent cross-check, and the reason it exists
 as a module rather than as a private helper in each caller is that four callers
 had four copies of it -- `prefix_difference`, `prefix_ancestry`,

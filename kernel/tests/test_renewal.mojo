@@ -1,7 +1,7 @@
 """Canonical Mojo regressions for labelled G1b-2 first-return words."""
 
 from std.testing import assert_equal, assert_false, assert_true
-from psc.claim_tests import require_claim
+from mojo_smoke.claims import require_claim
 from psc.renewal import (
     Diff3,
     label_bottom,

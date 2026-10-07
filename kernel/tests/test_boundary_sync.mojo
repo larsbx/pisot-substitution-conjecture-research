@@ -22,8 +22,8 @@ from psc.boundary_sync import (
     substitution_key,
     synchronizing_cut_count,
 )
-from psc.claim_tests import require_contract, require_claim
-from psc.integer_matrix import is_positive, is_primitive, matmul, wielandt_bound
+from mojo_smoke.claims import require_contract, require_claim
+from finite_linear_algebra.integer_matrix import is_positive, is_primitive, matmul, wielandt_bound
 from psc.pisot import is_primitive as mat3_is_primitive
 from psc.prng import SplitMix64
 from substitution_dynamics.automaton import build, recurrent_noncoincident_sccs

@@ -1,7 +1,7 @@
 """Canonical Mojo regressions for the strict first-child hub phase."""
 
 from std.testing import assert_equal, assert_true
-from psc.claim_tests import require_claim, require_contract
+from mojo_smoke.claims import require_claim, require_contract
 from psc.endpoint_core import endpoint_type
 from psc.hub_selector import (
     compose_map,

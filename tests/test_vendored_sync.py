@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
-import check_vendored_sync as sync  # noqa: E402
+from vendoring import check_vendored_sync as sync  # noqa: E402
 
 PACKAGES = {
     "proof_architecture": ("larsbx/finite-math-kernels", "proof/tla"),
@@ -19,6 +19,11 @@ PACKAGES = {
     "proof_records": ("larsbx/finite-math-kernels", "tools"),
     "oracle_refinement": ("larsbx/finite-math-kernels", "tools"),
     "parallel_fold": ("larsbx/finite-math-kernels", "kernel"),
+    "finite_graph": ("larsbx/finite-math-kernels", "kernel"),
+    "finite_automata": ("larsbx/finite-math-kernels", "kernel"),
+    "mojo_smoke": ("larsbx/finite-math-kernels", "kernel"),
+    "vendoring": ("larsbx/finite-math-kernels", "tools"),
+    "polyglot_envelope": ("larsbx/finite-math-kernels", "tools"),
 }
 
 
@@ -35,15 +40,30 @@ def test_vendored_packages_match_their_pins():
             assert all(rel.startswith(name + "/") for rel in pkg["files"])
     # The inventory is written out so that a re-vendor which quietly adds or drops a file is a
     # test to update rather than a change nobody sees. self_test.py and known_answers.py arrived
-    # with the import-time known-answer gate; the package's Mojo sources and vocabularies.py sit
-    # beside them upstream and are deliberately not taken.
+    # with the import-time known-answer gate. Upstream keeps the package under kernel/proof_records
+    # beside its Mojo sources and ProofArchitecture.tla; only the Python modules are taken here,
+    # every one of them, and the TLA+ module is pinned separately as proof_architecture.
     assert set(packages["proof_records"]["files"]) == {"proof_records/__init__.py", "proof_records/records.py", "proof_records/generate_ledgers.py",
-                                                       "proof_records/graph.py", "proof_records/self_test.py", "proof_records/known_answers.py"}
+                                                       "proof_records/graph.py", "proof_records/self_test.py", "proof_records/known_answers.py",
+                                                       "proof_records/vocabularies.py"}
     assert set(packages["oracle_refinement"]["files"]) == {"oracle_refinement/__init__.py"}
     assert set(packages["parallel_fold"]["files"]) == {
         "parallel_fold/__init__.mojo",
         "parallel_fold/map_fold.mojo",
     }
+    assert set(packages["finite_graph"]["files"]) == {
+        "finite_graph/__init__.mojo",
+        "finite_graph/scc.mojo",
+        "finite_graph/signing.mojo",
+        "finite_graph/union_find.mojo",
+    }
+    # moore_minimisation.mojo and subset_construction.mojo arrived when upstream split named
+    # algorithms into their own modules; dfa.mojo re-exports them.
+    assert set(packages["finite_automata"]["files"]) == {"finite_automata/__init__.mojo", "finite_automata/dfa.mojo",
+                                                         "finite_automata/moore_minimisation.mojo",
+                                                         "finite_automata/subset_construction.mojo"}
+    assert set(packages["mojo_smoke"]["files"]) == {"mojo_smoke/__init__.mojo", "mojo_smoke/claims.mojo", "mojo_smoke/report.mojo"}
+    assert set(packages["vendoring"]["files"]) == {"vendoring/__init__.py", "vendoring/check_vendored_sync.py"}
 
 
 def test_local_patch_is_detected(tmp_path, monkeypatch):
@@ -67,7 +87,10 @@ def test_local_patch_is_detected(tmp_path, monkeypatch):
 
 def test_no_second_arithmetic_or_kernel_lives_beside_the_packages():
     psc = ROOT / "kernel" / "psc"
-    for retired in ["rational.mojo", "rational_interval.mojo", "mat3.mojo", "qlinalg.mojo", "tensor3.mojo"]:
+    # The second group moved upstream at finite-math-kernels da41c27 and is vendored from there.
+    for retired in ["rational.mojo", "rational_interval.mojo", "mat3.mojo", "qlinalg.mojo", "tensor3.mojo",
+                    "checked_int.mojo", "integer_matrix.mojo", "integer_vector.mojo", "automata.mojo", "signing.mojo",
+                    "claim_tests.mojo"]:
         assert not (psc / retired).exists(), retired
     for path in psc.glob("*.mojo"):
         body = path.read_text(encoding="utf-8")

@@ -9,7 +9,7 @@ divisibility a non-unit collapse exhibits.
 
 from std.testing import assert_equal, assert_true
 from psc.bpa import substitution_incidence
-from psc.claim_tests import require_claim
+from mojo_smoke.claims import require_claim
 from psc.corpus import (
     REGIME_NONUNIMODULAR,
     arithmetic_regime,

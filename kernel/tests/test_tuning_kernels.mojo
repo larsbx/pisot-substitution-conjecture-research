@@ -18,7 +18,7 @@ from substitution_dynamics.coincidence import column_coincidence, constant_lengt
 from substitution_dynamics.sadic import apply_directive, compose, directive_composite
 from substitution_dynamics.substitution import Substitution
 from substitution_dynamics.tuning import TuningPattern, dgp_twist, kneading_prefix, star_product
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 
 
 def period_doubling() raises -> TuningPattern:

@@ -3,7 +3,7 @@
 from std.testing import assert_equal, assert_true
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.one_tile import catch_up_free
 from psc.valuation_ascent import NU_INFINITY, lemma_e_shape, letter_classes, m_valuation, valuation_ascent
 

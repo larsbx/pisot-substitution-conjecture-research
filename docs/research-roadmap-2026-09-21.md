@@ -33,6 +33,47 @@ nor irreducibility; one soft link is recorded in
 `coincidence-rank-imports-literature-gate-2026-10-04.md` §4, and the status
 audit is `audit-2026-10-04.md`.
 
+**2026-10-05 weekly completion audit integration (`main@96bed675`, after PR #215):**
+the general conjecture remains **open**, but the completion boundary is now
+concentrated enough to guide proof effort sharply.
+
+- The shortest route still has exactly one open premise: seedwise overlap
+  productivity (#84), split into aligned #138 and strict-zipper #139.
+- Unique decodability, including every substitution power, is **closed** from
+  full incidence rank; it is not a Level-2 hypothesis and must not be re-added
+  as one. The live Level-2 gap is labelled first-return/renewal finiteness
+  (G1b-2), not decoding.
+- Pure discrete spectrum implies G1 and seedwise termination with coincidence
+  from every swap seed; both repository results are independently audited but
+  **human review remains pending**. Thus G1 is necessary for PSC, while it is
+  still not a premise of the shortest #84 route.
+- #139 is the highest-leverage proof branch: its exclusion alone gives G1 by
+  Proposition 5.47/Corollary 5. #138 remains independently necessary for the
+  productivity/PDS assembly unless a stronger theorem bypasses the split.
+- The 2026-10-04 exact evidence materially narrows mechanism search:
+  13,260 formal overlap carriers contain no closed survivor; `SC_all` has no
+  failure on the 408,798 total-image-length-at-most-10 domain; and the recorded
+  PPVC/SC combination yields the finite-domain PDS statement on 145,806
+  substitutions (subject to the stated review and CI caveats below).
+- The proposed one-tile reduction is false: 360 standing-corpus substitutions
+  have recurrent vertices with no catch-up witness and 210 are entirely
+  catch-up-free. The broader total-length-at-most-8 computation has 654
+  catch-up-free specimens. One-step M-adic valuation ascent is false on every
+  one of those 210 and 654 specimens; observed ascent depth reaches 25.
+- Literature use remains hypothesis-sensitive: the Akiyama–Lee
+  overlap/strong-coincidence implication needs its height-group hypothesis;
+  Barge–Kwapisz geometric realization is unimodular-only; non-unit #139 must
+  retain the finite-place coordinates of the Minervino–Thuswaldner
+  representation space; and the Barge coincidence-rank fibre criterion used
+  in `PDS => G1` still has one source-chain item awaiting primary-proof
+  human review.
+
+This roadmap is the weekly completion ledger as well as the live planning
+surface: theorem-level results, conditional implications, finite-domain
+statements, empirical mechanisms, and review dependencies must remain
+separate below. No item in this synchronization promotes #84, #138, #139, G1,
+or general PSC.
+
 **Reference update at `main@ff9e5d3`:** PR #154's
 [Penrose 2D interface bridge](bridges/penrose-2d-to-psc-interface-program.md)
 and PR #157's [Padovan / Plastic-A conjecture program](post-proof-padovan-plastic-a-conjectures-2026-09-23.md)
@@ -158,11 +199,15 @@ balanced-prefix witness. See
 
 #### P1a next proof tasks
 
-1. **Alternating-E interior-witness transport:** force the known interior good-edge
-   witness into a zero-return boundary descendant of one of the two bad hub
-   edges, or derive a contradiction with closed nonproductivity.
-2. **Fixed-edge interior forcing:** eliminate a setwise fixed bad hub edge using
-   substitution-word / balanced-prefix structure beyond the endpoint map.
+1. **A1 — fixed-edge interior forcing (open):** prove the fixed-edge
+   interior-forcing lemma using substitution-word / balanced-prefix structure
+   beyond the endpoint map. Corollary 2.2 does not supply an interior witness
+   for this template.
+2. **A2 — alternating-E interior-witness transport (open):** transport the
+   interior good-edge witness supplied by Corollary 2.2 into a zero-return
+   boundary descendant of one of the two bad hub edges, or derive a
+   contradiction with closed nonproductivity. The established interior
+   witness is specific to A2.
 3. Apply the same reduction to the suffix branch by reversal.
 4. If a proposed argument uses Rauzy geometry, classify every imported step as
    unit-only or non-unit-safe before using it.
@@ -269,7 +314,8 @@ No proof of G1b-2, finite BPA, concentration, wedge productivity, or realization
 
 ## 5. P2 — Level 2 / G1b-2 renewal finiteness
 
-**Status: OPEN, stronger parallel program.**
+**Status: OPEN, stronger parallel program; G1 is now known to be necessary for
+PDS, but G1b-2 is not a dependency of the shortest #84 route.**
 
 The target remains:
 
@@ -279,26 +325,51 @@ G1b-1 bounded discrepancy [PROVED]
 => finite BPA (G1).
 ```
 
-Bounded discrepancy controls the difference walk but not the length or labelled memory of an irreducible balanced pair. The corpus already exhibits this separation: discrepancy is at most 14 while reachable balanced-pair length reaches at least 48,020.
+The decoding issue is closed. Full incidence rank gives `det M != 0`; the
+defect-theorem argument gives unique decodability of
+`{sigma(a): a in A}`, and the same argument applies to every power because
+`det M_{sigma^r} = (det M_sigma)^r != 0`. **UD is therefore a derived theorem,
+not a Level-2 assumption.**
+
+What remains open is memory/return control. Bounded discrepancy controls the
+difference walk but not the length, labels, order, or return memory of an
+irreducible balanced pair. The standing corpus makes the separation explicit:
+maximum reachable discrepancy is 14 while a reachable balanced-pair state has
+length 48,020.
 
 The useful structural program is
 
 ```text
 realizable labelled first-return word
-=> level-scaled contracting/Rauzy address
+=> level-scaled contracting/adelic address
 => finite local return types / uniform discreteness
 => G1b-2.
 ```
 
+**Retired Level-2 inference:** the old upgrade
+`UD => uniformly bounded coincidence padding => finite BPA` is not available.
+The complete-cutting phase argument controls only its own recurrence regime,
+and the former predecessor-contraction inequality fails because a selected
+child can carry only part of the inflated parent while noncoincident mass moves
+to siblings. A replacement theorem must control realizable labelled returns,
+not merely the norm of the cumulative difference.
+
 **Independence/unimodularity firewall:**
 
 - UD is already derived and may not be assumed as an extra premise.
+- Any rational/integer tile-length independence used to identify geometric
+  cuts with Parikh cuts must be derived from the standing irreducible/full-
+  degree setting at the point of use, not added to the theorem statement.
 - A bounded difference alphabet does not imply finite BPA.
 - Do not replace the full non-unit internal space by a Euclidean stable plane.
 - Do not treat `pi_s(Z^A)` as a discrete lattice.
-- Preserve labels and order; the unlabelled cumulative difference walk is not a state classifier.
+- Preserve labels and order; the unlabelled cumulative difference walk is not
+  a state classifier.
 
-**Closure evidence:** a uniform finite-return theorem for every realizable labelled first return in the standing PIP regime.
+**Closure evidence:** a uniform finite-return theorem for every realizable
+labelled first return in the standing PIP regime, with no independent UD,
+tile-length-independence, or unimodularity assumption.
+
 
 ## 6. P3 — finite-BPA SCC route
 
@@ -346,55 +417,133 @@ On the declared 4,554-member ternary short-image PIP corpus:
 - maximum first-coincidence depth: `18`;
 - maximum first left-aligned depth: `17`;
 - maximum prefix/suffix strong-coincidence depth: `15`;
-- ordered letter pairs decided by the coincidence automata: `40,986`, with every witness re-derived;
-- unit/non-unit split on this corpus: 2,628 unimodular and 1,926 determinant-two specimens;
-- proper-power collapse occurs only on the non-unit branch in this domain, but zero-shift-free pumps occur on both branches, including 2,598 of 2,628 unimodular specimens.
+- ordered letter pairs decided by the coincidence automata: `40,986`, with
+  every witness re-derived;
+- unit/non-unit split: 2,628 unimodular and 1,926 determinant-two specimens;
+- maximum reachable balanced-pair discrepancy is 14 while a reachable state
+  reaches length 48,020.
 
-On the broader 24,486-member ternary total-image-length-at-most-8 class, the
-canonical separation sweep completed with no inconclusive specimen at its declared caps:
-23,634 specimens have finite least separation radius (maximum `9`), while 852
-have an exact proper-power collapse witness by level `6`. The radius histogram
-is `1:2264, 2:13688, 3:6092, 4:1230, 5:288, 6:60, 9:12`; an independent driver
-reproduced it. This decides the finite class only. It is not a universal
-recognizability, productivity, G1, or PSC theorem.
+The exact formal-carrier census on the same corpus is a stronger negative
+control than the historical collar heuristic:
 
-The exact cubic arithmetic audit reports zero disagreements against the independent oracle on its declared tests, including wide-magnitude Perron-sign checks.
+- formal carriers: **13,260**;
+- realized / unrealized: **6,078 / 7,182**;
+- closed carriers: **0** in both classes;
+- formal nonproductive states outside the certified box: **0**.
+
+See `evidence/formal-overlap-carriers-2026-10-04/summary.txt`. The old
+unreproducible historical figures for producer-free cycles/collar death are
+not a closure input.
+
+The exact strong-coincidence census reports no `SC_all` failure on:
+
+- the standing 4,554 corpus;
+- the 24,486 total-image-length-at-most-8 domain;
+- the 135,990 image-length-at-most-4 domain;
+- the 408,798 total-image-length-at-most-10 domain.
+
+With the separately recorded PPVC runs, the repository records a
+**finite-domain PDS statement on 145,806 substitutions** (the union of image
+length at most 4 and total image length at most 8). This is not a universal
+theorem: the statement depends on Proposition V and Theorem B at their
+recorded review status, and the two larger PPVC runs are not CI-guarded. See
+`docs/strong-coincidence-census-2026-10-04.md`.
+
+The exact catch-up/hit-witness census falsifies the proposed universal
+one-tile reduction. Among 1,154,040 recurrent nonzero vertices in the standing
+corpus, 1,056,816 reach a catch-up witness and 97,224 are simultaneous-only;
+360 substitutions fail universal catch-up and 210 are entirely catch-up-free.
+The total-image-length-at-most-8 computation contains 654 catch-up-free
+substitutions. The proposed one-step M-adic valuation ascent then fails on all
+210 and all 654 catch-up-free specimens; observed ascent depth reaches 25.
+
+On the broader 24,486-member total-image-length-at-most-8 class, the canonical
+separation sweep completed with no inconclusive specimen at its declared caps:
+23,634 specimens have finite least separation radius (maximum `9`), while
+852 have an exact proper-power collapse witness by level `6`. The radius
+histogram is
+`1:2264, 2:13688, 3:6092, 4:1230, 5:288, 6:60, 9:12`, independently
+reproduced.
+
+The exact cubic arithmetic audit reports zero disagreements against the
+independent oracle on its declared tests, including wide-magnitude
+Perron-sign checks.
 
 ### Generalization warning
 
-The 4,554 corpus is not determinant-representative of the full non-unit problem. The broader image-length-at-most-four screen contains 135,990 specimens and determinant classes `-2,-1,+1,+2,+3`, whereas the declared 4,554 corpus contains only `-1,+1,+2`.
+The 4,554 corpus is not determinant-representative of the full non-unit
+problem. The broader image-length-at-most-four screen contains determinant
+classes `-2,-1,+1,+2,+3`, whereas the standing corpus contains only
+`-1,+1,+2`.
 
-Therefore determinant-two success or failure must not be promoted to "the non-unimodular case."
+Therefore determinant-two success or failure must not be promoted to "the
+non-unimodular case", and no finite-domain depth/radius/collar maximum is a
+universal bound without an independent completeness theorem.
 
 ### Role of computation going forward
 
 Use computation to:
 
-- falsify proposed universal lemmas quickly;
+- falsify a named proposed universal lemma quickly;
 - retain minimal replayable countermodels;
 - measure which extra ordered/address data separate good from bad recurrence;
-- audit source-to-code theorem predicates;
+- audit source-to-code theorem predicates and finite-domain theorem premises;
 - stress non-unit determinant classes outside the original corpus.
 
-Do not use another deeper finite search as the closure condition for P1a, P1b, or G1b-2 unless a separate theorem proves the search complete.
+Do not use another deeper finite search as the closure condition for P1a,
+P1b, or G1b-2 unless a separate theorem proves the search complete.
+
 
 ## 9. Hypothesis and attribution firewall
 
 Every roadmap item must fail review if it silently uses any of the following:
 
 1. **Seed legality:** `ab` need not be a language factor.
-2. **Independent tile-length independence:** derive rational/integer independence from irreducibility where used.
-3. **Independent UD:** UD is already derived.
-4. **FI / boundary injectivity / prefix-suffix permutation:** extra hypotheses unless explicitly stated as a restricted theorem.
-5. **Unimodularity:** `|det M|=1` may define a restricted subtheorem, never the general completion theorem.
-6. **Purely Euclidean non-unit geometry:** forbidden unless finite-place coordinates are proved irrelevant.
-7. **Stable-lattice shortcut:** `pi_s(Z^A)` is not to be treated as a discrete lattice in the needed generality.
-8. **Formal-to-real realization:** a graph cycle is not automatically a realized tiling object.
-9. **Finite-search completeness:** no corpus/collar/depth threshold is universal without an independent theorem.
+2. **Independent tile-length independence:** derive rational/integer
+   independence from the standing irreducible/full-degree setting where used;
+   cite that derivation at every load-bearing balanced-cut step.
+3. **Independent UD:** UD, including UD for powers, is already derived from
+   full incidence rank and may not be promoted to a standing assumption.
+4. **FI / boundary injectivity / prefix-suffix permutation:** extra hypotheses
+   unless explicitly stated as a restricted theorem.
+5. **Unimodularity:** `|det M|=1` may define a restricted subtheorem, never
+   the general completion theorem.
+6. **Purely Euclidean non-unit geometry:** forbidden unless the finite-place
+   coordinates are proved irrelevant. For #139, the Minervino–Thuswaldner
+   adelic representation is the safe ambient model.
+7. **Stable-lattice shortcut:** `pi_s(Z^A)` is not to be treated as a
+   discrete lattice in the needed non-unit generality.
+8. **Formal-to-real realization:** a graph cycle is not automatically a
+   realized tiling object.
+9. **Finite-search completeness:** no corpus/collar/depth threshold is
+   universal without an independent theorem.
 10. **Rank deficiency:** bad overlap SCCs are already known to be full rank.
-11. **Residual spectral gap by naming:** Akiyama–Lee makes the residual spectral comparison load-bearing; `rho=beta` is the hard case.
-12. **Strong-coincidence over-attribution:** do not turn the two-letter Barge–Diamond result into a ternary all-pairs theorem.
-13. **Preprint promotion:** claimed general proofs remain non-load-bearing until their hypotheses and proof status are independently validated.
+11. **Residual spectral gap by naming:** Akiyama–Lee makes the residual
+    spectral comparison load-bearing; `rho=beta` is the hard case, not an
+    automatic contradiction.
+12. **Akiyama–Lee strong-coincidence shortcut:** do not import an
+    overlap-coincidence-to-strong-coincidence implication without its
+    height-group hypothesis. The non-unit project route supplies the needed
+    return/height information only through the separately proved Theorem R,
+    which remains human-review pending.
+13. **Barge–Kwapisz generalization:** their geometric-realization machinery is
+    unimodular; deleting that hypothesis would silently change the theorem.
+14. **Coincidence-rank source-chain overstatement:** `PDS => G1` is
+    repository-proved at the current ledger status, but the imported
+    disjoint-fibre/coincidence-rank item recorded from Barge still has a
+    primary-proof source-chain check pending. Preserve the human-review flag.
+15. **Strong-coincidence over-attribution:** do not turn the two-letter
+    Barge–Diamond result into a ternary all-pairs theorem.
+16. **Special-family promotion:** beta-substitution, injective-initial /
+    constant-final, or other family theorems settle those classes only.
+17. **Preprint promotion:** claimed general proofs remain non-load-bearing
+    until their hypotheses, theorem version, and proof status are independently
+    validated.
+
+The generality audit is part of completion, not editorial cleanup: any proof
+that reaches PSC only after inserting independence, legality, FI, or
+unimodularity has proved a weaker theorem and does not close the roadmap.
+
 
 ## 10. Retired or demoted attacks
 
@@ -402,9 +551,16 @@ Do not spend primary proof effort on:
 
 - `UD => bounded total padding`;
 - bounded discrepancy alone `=>` finite BPA;
+- the old predecessor-contraction inequality for a selected BPA child;
 - naive contraction of the zero-sum hyperplane;
 - uniformly short cores in every long balanced state;
 - unlabelled difference-walk classification;
+- universal exclusion of recurrent noncoincident cycles;
+- one-step descent of a contracting norm as the forcing theorem;
+- endpoint-only hitting;
+- the claim that every recurrent vertex reaches a catch-up witness;
+- one-step M-adic valuation ascent on the catch-up-free class;
+- a universal law `K_V <= c/log(1/mu)` without new structure;
 - rank-deficient bad SCCs;
 - generic Perron-growth contradiction;
 - automatic `rho(residual)<beta`;
@@ -413,108 +569,81 @@ Do not spend primary proof effort on:
 - a unimodular-only argument presented as general PSC;
 - another fixed-size SCC sieve without a path to uniformity.
 
-Countermodels and failed routes remain part of the project evidence and should stay replayable.
+Countermodels and failed routes remain part of the project evidence and should
+stay replayable. A falsified bridge is a closed item in the completion ledger:
+do not quietly resurrect it under a new name.
+
 
 ## 11. Prioritized completion ledger
 
 | Priority | Item | Status | Evidence needed to close | Immediate next deliverable |
 | --- | --- | --- | --- | --- |
-| **P0** | Status/provenance synchronization | refreshed to `main@ff9e5d3`; mathematical/evidence additions through PR #188 | roadmap, proof ladder, claim map, manuscript, ledger and README agree on the same theorem boundary | keep issue #84/#138/#139 wording synchronized as new work lands |
-| **P1a** | Aligned strong coincidence (#138) | **OPEN critical; cycle normal form proved; the two templates are one at the square (Theorem C); case (i) eliminated on the whole catch-up-free determinant-2 class (Theorem E), 2026-10-05; all-pairs strong coincidence on its two-odd-letter part (Corollary H1), 2026-10-06** | uniform proof of A1′: a bad edge whose letters are both `h`-fixed is eventually coincident | prove A1′ — two one-sided `sigma`-fixed points anchored at a common point share a tile — using the fixed-letter hypothesis, and not via transitivity of eventual coincidence |
-| **P1b** | Strict-zipper hitting (#139) | **OPEN critical; literature, cylinder and carry reductions complete; the `CU`-failure witnesses are classified (Proposition LC, 2026-10-05)** | uniform non-unit-safe `AdelicPeriodicOffsetHitting` theorem | prove occurrence-compatible coverage of the reverse zero basin in the full representation; T1 is now an SCC-level statement, and its reachability half is the same hitting problem |
-| **P1** | Seedwise overlap productivity (#84) | **OPEN — only shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad SCC | assemble after branch theorems; do not replace with larger finite sieves |
-| **P2** | G1b-2 renewal finiteness | **OPEN parallel; now the least load-bearing of three G1 routes** | uniform finite-return theorem for realizable labelled first returns | develop non-unit level-scaled address/return theory |
-| **P3a** | Concentration, `K2=0` | **OPEN parallel** | uniform exclusion of strict zero-wedge closed carriers | use ordered/ancestral information absent from current span data |
-| **P3b** | Wedge productivity, `K2!=0` | **OPEN parallel** | theorem converting the surviving recurrence/order constraints into coincidence | identify the missing invariant beyond full wedge span |
-| **P4** | Realization / MEF bridge | **OPEN secondary** | theorem relating formal recurrence to global realization, or excluding realization | seek a uniform realization/collar completeness statement |
-| **Support** | Exact computation and arithmetic | strong finite support | no universal closure by itself | adversarial non-unit screens and countermodel retention |
+| **P0** | Status/provenance synchronization | current through `main@96bed675`; this roadmap is the live weekly completion surface | roadmap, proof ladder, claim map, manuscript, generated ledger and README preserve the same theorem/review boundary | keep #84/#138/#139, PDS=>G1, and finite-domain statements synchronized without promoting review-pending inputs |
+| **P1b** | Strict-zipper hitting (#139) | **OPEN critical; highest leverage** — literature, periodic-pair, cylinder and M-adic carry reductions established | uniform non-unit-safe occurrence-compatible adelic hitting/coverage theorem, or a strictly smaller equivalent theorem | prove that every realized periodic zipper orbit enters its graph-directed reverse zero basin in the full representation |
+| **P1a** | Aligned strong coincidence (#138) | **OPEN critical; the two templates are one at the square (Theorem C, 2026-10-05); A1′ proved on the whole catch-up-free `|det M| = 2` class (Theorem E), with all-pairs strong coincidence on its two-odd-letter part (Corollary H1) and outside one explicit family (Theorem K); inside that family Theorems Φ, Λ, Λ′, Λ″ close four `Delta` cells and Theorem Ζ every `Delta` with `Z_2` bounded (2026-10-07)** | uniform proof of A1′ (a bad edge whose letters are both `h`-fixed is eventually coincident), including reversal | on Theorem K's family, close unbounded `Z_2` (Lemma P1 linearized, `2 zfloor`; A1′ note §3m); in general, prove A1′ from the fixed-letter hypothesis, not via transitivity of eventual coincidence |
+| **P1** | Seedwise overlap productivity (#84) | **OPEN — sole shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad closed SCC | assemble only after branch closure; do not substitute a larger finite census |
+| **Review-0** | `PDS => G1` dependency package | **repository-proved; independently audited; human review pending** | direct human check of Theorem R, Proposition F, Theorem B/Lemma C and the primary proof chain behind the Barge fibre/coincidence-rank criterion | audit Theorem R and the Barge source chain first; both protect the non-unimodular import boundary |
+| **P2** | G1b-2 renewal finiteness | **OPEN parallel; G1 is necessary for PDS but this is the least load-bearing of the three G1 routes** | uniform finite-return theorem for realizable labelled first returns | develop non-unit level-scaled labelled return/address theory; do not reuse UD-padding or predecessor contraction |
+| **P3a** | Concentration, `K2=0` | **OPEN parallel under G1** | uniform exclusion of strict zero-wedge closed carriers | use ordered/ancestral information absent from current span data |
+| **P3b** | Wedge productivity, `K2!=0` | **OPEN parallel under G1** | theorem converting full wedge span plus recurrence/order into coincidence | identify an order-sensitive invariant beyond the existing span classification |
+| **P4** | Realization / MEF bridge | **OPEN secondary** | theorem relating formal recurrence to global realization, or excluding realization uniformly | preserve the formal/realized/collar firewall while testing any candidate bridge |
+| **Support** | Exact computation and arithmetic | **strong finite evidence, not universal closure** — 13,260 formal carriers with no closed survivor; `SC_all` no failure through 408,798; finite-domain PDS statement on 145,806 | no amount of additional depth closes PSC without a completeness theorem | use exact runs to kill named mechanisms and preserve minimal countermodels, especially across non-unit determinant classes |
+| **Estate** | Verification/provenance safeguards | **partially open** — large PPVC runs remain outside CI and branch protection/enforced status checks are administrative gaps | CI/governance coverage matching the claims actually cited | improve verification plumbing without changing mathematical status |
+
 
 ## 12. Highest-value task order
 
 For the next research cycle:
 
-1. **#139 coverage theorem next.** The literature baseline, full-representation
-   cylinder, M-adic compatibility filter, and integral carry recursion are now
-   explicit. Prove that a realized periodic strict-zipper orbit enters the
-   occurrence-compatible reverse zero basin; deeper quotient iteration alone
-   is not progress without a completeness map.
-2. **#138 is now one template, not two.** Theorem C
-   (`p1a-template-collapse-2026-10-05.md`) collapses the fixed-edge cases (i)
-   and (ii) and the alternating-E template onto the single case where `h` fixes
-   both letters of a bad edge, by passing to `sigma^2`. The surviving
-   obligation A1′ is: *two distinct one-sided fixed points of a PIP
-   substitution, anchored at a common point, share a tile.* It is a special
-   case of the open ternary strong coincidence problem — Barge–Diamond's Case 1
-   produces exactly an aligned coincident pair but cannot be aimed at a
-   prescribed pair — so it needs the fixed-letter hypothesis, and any proof
-   that would also give transitivity of eventual coincidence is wrong.
-   `p1a-a1-prime-2026-10-05.md` then places A1′: it is the **residual** half of
-   all-pairs strong coincidence, so it already holds on the 408,798 censused
-   specimens, and on the catch-up-free `|det M| = 2` class it **coincides with
-   T2** of the box note. On that class the aligned and strict-zipper branches
-   are one boundary-hitting statement, which is where a single theorem would
-   buy both. **Theorem E (§3b there) proves A1′ on that whole class** — any two
-   letters fixed by the first-letter map are eventually coincident — so case (i)
-   of the aligned template is eliminated on it, for every substitution in the
-   class. What remains of the aligned branch there is cases (ii) and
-   alternating, which force an image of length one (Corollary D2), and outside
-   the class, A1′ in general. §3c there lifts Theorem E to **all-pairs** strong
-   coincidence on its class by prefix transfer (Corollary E2), proves the same
-   on the two length-one-image families (Proposition Y), and so reduces the
-   catch-up-free `|det M| = 2`, two-odd-letter class to one pair in the swap
-   family (Theorem G), which Theorem H (§3d) proves with parametric witness
-   paths: **strong coincidence for every pair holds on the whole catch-up-free
-   `|det M| = 2` two-odd-letter class** (Corollary H1), and with Proposition O
-   on the whole catch-up-free `|det M| = 2` class except one explicit family
-   (Theorem K, §3e). Inside that family the crossing lemma (§3f) leaves only
-   the non-crossing pairs, and the delta split (§3g) closes their cell
-   `delta = e_z` (Theorem Φ); the run-shape cover (§3h) closes 29 infinite
-   shape cells, among them three shapes for every `Delta` (Theorem Ψ), and the
-   induction on runs (§3i) settles the cell `Z_1 = Z_2 + 1`, `Y_1 = Y_2 + 1`
-   up to two three-run patterns (Theorem Ξ). Where both words keep an open
-   tail the induction does not converge; the residue there is mostly single
-   excursions of the two walks. §3j supplies the argument inside an excursion:
-   Lemma X (monotone crossing, read at endpoints only) with the suffix lemmas
-   Φ5 and Φ5′ gives every non-crossing member through length 10 a certificate
-   that reads a bounded part of its words, and the certificate-guided partition
-   of §3k uniformizes them: Theorems Λ, Λ′ and Λ″ close the cells
-   `(s, Delta) = (+1, 1)`, `(−1, −1)` and `(−1, 0)` (proof derived in full in
-   §3l). What remains is the other cells and the `Delta` tails,
-   and determinant other than 2. The former statement of the obligation follows.
-3. **#138 template exclusion in parallel.** The aligned branch is reduced to a
-   fixed bad hub edge or an alternating type-E template. Exclude those two
-   templates using endpoint/occurrence structure, including reversal.
-4. **Keep the conditional G1 routes separate from closure.** Propositions
-   5.46–5.47 prove implications from all-seed productivity or strict-zipper
-   exclusion; their premises remain open. Note that #139 is the cheaper of the
-   two for finiteness: by Corollary 5 its exclusion alone gives G1, with no
-   appeal to #138.
-5. **Keep #139 effort on interior-vs-interior pairs.** Proposition LC
-   (`p1b-leftmost-chain-periodic-pair-2026-10-05.md` §8b) shows the `CU` /
-   one-tile obstructions are prefix-vs-interior pairs whose centre is never a
-   common vertex by construction — a forced, abundant and harmless family
-   (10,584 on the corpus, while G1 holds throughout). The real obstruction is
-   the interior-vs-interior pair of Theorem B, i.e. `psc.periodic_pair` and
-   PPVC. Corollary LC5 is the leftmost chain's residual value: a cheap
-   sufficient condition discharging finiteness on 1,794 of the 4,554
-   specimens.
-6. **Use the known pumps/collars as mandatory negative controls.**
-   To that list add the two extremes of the leftmost-chain picture
-   (`p1b-leftmost-chain-periodic-pair-2026-10-05.md` §5): Tribonacci, where
-   every nonzero-offset vertex reaches a catch-up and the terminal-cycle set is
-   empty, and the catch-up-free class, where Lemma P forces every one of them
-   into a cycle. A proposed uniform statement about `CU` must come out right on
-   both.
-7. **Keep G1b-2 active but secondary to #84.** It is a stronger structural
-   theorem, not a hidden dependency of PDS — and since 2026-10-04 it is the
-   least load-bearing of three routes to G1, because PDS implies G1 outright
-   and all-seed strict-zipper exclusion (#139) implies it as well. G1 itself
-   is now a necessary condition for PDS, so it cannot be set aside.
-8. **Do not expand fixed-size sieves unless they test a specific proposed uniform lemma.**
+1. **#139 occurrence-compatible adelic coverage first.** The literature
+   baseline, full-representation cylinder, periodic-pair realization, M-adic
+   compatibility filter, and integral carry recursion are explicit. Prove that
+   a realized periodic strict-zipper orbit enters the graph-directed reverse
+   zero basin. Deeper quotient iteration is not progress without a theorem
+   saying why entry must occur.
+2. **#138 template exclusion in parallel.** The aligned recurrent dynamics has
+   only a fixed bad hub edge (A1) or the alternating type-E template (A2).
+   For A1, prove the open fixed-edge interior-forcing lemma using
+   substitution-word / balanced-prefix structure. For A2 only, transport the
+   interior Barge–Diamond-good-edge witness supplied by Corollary 2.2 into a
+   zero-return boundary descendant or derive a contradiction with closed
+   nonproductivity. Handle both suffix cases by reversal. Theorem C
+   (`p1a-template-collapse-2026-10-05.md`) makes the two templates one at the
+   square: the obligation is A1′, *two one-sided fixed points anchored at a
+   common point share a tile*. On the catch-up-free `|det M| = 2` class it is
+   proved (Theorem E), and all-pairs strong coincidence holds there except on
+   one explicit family (Theorem K, `p1a-a1-prime-2026-10-05.md` §3e); inside
+   it the cells `delta = e_z`, `(s, Delta) = (+1, 1), (−1, −1), (−1, 0)` and
+   every `Delta` with `s = +1, Z_2 <= 2` or `s = −1, Z_2 <= 3` are closed
+   (Theorems Φ, Λ, Λ′, Λ″, Ζ; §§3g–3m). Unbounded `Z_2` is the open part,
+   where Lemma P1 is needed only linearly (side-notes ledger, 2026-10-07).
+3. **Human-review the `PDS => G1` chain without delaying P1 proof work.**
+   Follow the Barge coincidence-rank/disjoint-fibre source chain to its primary
+   proofs and recheck Theorem R, Proposition F and Theorem B/Lemma C. This is a
+   review dependency, not a new open mathematical premise.
+4. **Keep G1b-2 active as the Level-2 theorem, not as a hidden PSC dependency.**
+   The target is labelled first-return finiteness in the full non-unit
+   representation. UD is closed; bounded discrepancy and a finite difference
+   alphabet do not control return memory.
+5. **Use the catch-up-free and affine-pump specimens as mandatory negative
+   controls.** Any proposed local monotone, valuation ascent, Euclidean-only
+   hitting theorem, or endpoint-only forcing rule must first survive the 210
+   standing and 654 total-length-at-most-8 catch-up-free cases.
+6. **Do not expand fixed-size sieves unless they test a specific uniform
+   lemma.** The 408,798-substitution `SC_all` result and 145,806 finite-domain
+   PDS statement are calibration evidence, not substitutes for #138/#139.
+7. **Enforce the hypothesis firewall during proof construction, not after it.**
+   Every use of tile-length independence, a lattice, a torus, a Euclidean
+   internal space, strong coincidence, or coincidence rank must carry the
+   derivation/import that makes it valid in the standing non-unit target.
 
 A successful week is not "more specimens passed." It is one of:
 
-- P1a reduced to a strictly smaller named theorem;
-- P1b reduced to a source-checked non-unit recurrence/hitting theorem;
+- P1b reduced to a strictly smaller source-checked non-unit hitting theorem;
+- P1a reduced to a strictly smaller endpoint/occurrence theorem;
 - one of those theorems proved;
-- or a proposed bridge falsified by a retained exact countermodel, thereby shrinking the search space without weakening the hypothesis firewall.
+- the `PDS => G1` human-review chain fully discharged;
+- G1b-2 advanced by a genuine labelled-return finiteness lemma;
+- or a proposed bridge falsified by a retained exact countermodel, thereby
+  shrinking the search space without weakening the hypothesis firewall.
+

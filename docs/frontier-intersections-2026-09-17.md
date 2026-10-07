@@ -93,7 +93,7 @@ logic and compare its verdict with `PSC: kernel/degree3_catalog.mojo` on the sam
 agreement with the verdicts that census already reports; disagreement is a bug in the encoding, not a
 result.
 
-**Started `[V]`.** The engine and the presentation exist: `PSC: kernel/psc/automata.mojo` (total
+**Started `[V]`.** The engine and the presentation exist: `PSC: kernel/finite_automata/dfa.mojo` (total
 deterministic automata with product, complement, subset-construction projection, emptiness with a
 shortest witness, Moore minimisation) and `PSC: kernel/psc/dumont_thomas.mojo` (the Dumont-Thomas
 numeration of a fixed point as an automaton). `PSC: kernel/automatic_route_census.mojo` checks three

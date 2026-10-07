@@ -1,7 +1,7 @@
 """Exact regressions for the return lattices of radius-`n` patches."""
 
 from std.testing import assert_equal, assert_raises, assert_true
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.return_lattice import (
     TriangularLattice,
     covering_level,
@@ -23,7 +23,7 @@ def det_two() -> List[List[Int]]:
 
 
 def test_hermite_form_index() raises:
-    var lattice = TriangularLattice()
+    var lattice = TriangularLattice(3)
     var a: List[Int] = [4, 0, 0]
     var b: List[Int] = [6, 3, 0]
     var c: List[Int] = [0, 5, 1]

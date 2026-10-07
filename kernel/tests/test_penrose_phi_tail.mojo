@@ -2,7 +2,7 @@
 
 from std.testing import assert_equal, assert_true
 
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.penrose_phi_tail import (
     PenrosePhiElt,
     cycle_gain,

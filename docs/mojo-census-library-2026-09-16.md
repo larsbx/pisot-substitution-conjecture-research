@@ -33,7 +33,7 @@ of this research programme, not incidental scaffolding.
 | `kernel/psc/defect_degree.mojo` | streaming `N4` in `O(n)` and the first scattered-subword defect degree |
 | `kernel/psc/degree2_sieve.mojo` | the mod-2 parity sieve and the Newton trace recurrences in `(T, U, D)` |
 | `kernel/psc/degree3_taxonomy.mojo` | the degree-3 catalogue rows and their `DEGREE3_*` summary |
-| `kernel/psc/integer_matrix.mojo` | primitivity of a non-negative integer matrix on any alphabet (Wielandt's bound) |
+| `kernel/finite_linear_algebra/integer_matrix.mojo` | primitivity of a non-negative integer matrix on any alphabet (Wielandt's bound) |
 | `kernel/psc/prng.mojo` | SplitMix64: a reproducible source for exploratory searches only |
 | `kernel/psc/bounded_bpa.mojo` | `B_sigma` under a state-count *and* a state-length budget, reporting which was exhausted |
 | `kernel/psc/oa_overlap_types.mojo` | level-zero overlap types of `(u, S^k u)`, the exact enumeration window, and inclusion reports against the seed patch |

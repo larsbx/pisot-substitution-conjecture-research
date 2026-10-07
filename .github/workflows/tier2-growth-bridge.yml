@@ -8,15 +8,15 @@ on:
       - "kernel/psc/penrose_phi_tail.mojo"
       - "kernel/tests/test_penrose_phi_tail.mojo"
       - "docs/tier2-penrose-phi-cocycle.md"
-      - "kernel/psc/penrose_phi_tail.mojo"
-      - "kernel/tests/test_penrose_phi_tail.mojo"
-      - "docs/tier2-penrose-phi-cocycle.md"
       - "schemas/tier2-loop-gain-fixture.schema.json"
       - ".github/workflows/tier2-growth-bridge.yml"
   pull_request:
     paths:
       - "kernel/psc/tier2_loop_gain_fixture.mojo"
       - "kernel/tests/test_tier2_loop_gain_fixture.mojo"
+      - "kernel/psc/penrose_phi_tail.mojo"
+      - "kernel/tests/test_penrose_phi_tail.mojo"
+      - "docs/tier2-penrose-phi-cocycle.md"
       - "schemas/tier2-loop-gain-fixture.schema.json"
       - ".github/workflows/tier2-growth-bridge.yml"
 

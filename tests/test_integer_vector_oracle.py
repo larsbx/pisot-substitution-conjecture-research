@@ -1,6 +1,6 @@
 """Oracle constants shared with kernel/tests/test_integer_vector.mojo.
 
-The canonical kernel is `kernel/psc/integer_vector.mojo`; this is the independent
+The canonical kernel is `kernel/finite_linear_algebra/integer_vector.mojo` (vendored); this is the independent
 cross-check. Both derive the same two checksums over the same 348 distinct
 incidence matrices of the alphabet-3 PIP corpus, by different implementations in
 different languages, so a divergence in either shows up as a number rather than

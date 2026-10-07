@@ -5,7 +5,7 @@
 # Usage: ./rerun.sh [name ...]   (default: all, quick ones first)
 set -u
 cd "$(dirname "$0")"
-MOJO_DIR=../../../../mojo
+MOJO_DIR=../../../../kernel
 PIXI=${PIXI:-pixi}
 quick_py="a1 a2 a3 a4 col lv box2 mine mine2 plastic radii uhan"
 sample_py="mine3 climb birth3 onetile_s outlier"

@@ -2,7 +2,7 @@
 
 from std.testing import assert_equal, assert_false, assert_true
 from psc.affine_ancestry_trace import affine_ancestry_trace, affine_ancestry_trace_with_tables, build_affine_trace_tables, common_terminal_trace_length, first_proper_repeated_affine_state, first_repeated_affine_state, is_affine_pump_extension, proper_affine_splice_matches_certified_address, same_affine_state
-from psc.claim_tests import require_claim
+from mojo_smoke.claims import require_claim
 from psc.joint_local_type import same_joint_local_type
 from psc.loop_quotient_census import addressed_samples_through_depth
 from psc.renewal import Diff3

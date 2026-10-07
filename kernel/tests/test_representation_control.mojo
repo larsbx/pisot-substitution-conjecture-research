@@ -6,7 +6,7 @@ including the distinct seed versus finite-prefix OA initial conditions.
 """
 
 from std.testing import assert_equal, assert_true
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.representation_control import recompute_counts, specimen_keys
 
 

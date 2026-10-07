@@ -10,7 +10,7 @@ an under-sized window or prefix from silently dropping overlaps.
 
 from std.testing import assert_equal, assert_false, assert_true
 
-from psc.claim_tests import require_contract, require_claim
+from mojo_smoke.claims import require_contract, require_claim
 from psc.oa_overlap_types import (
     extended_inclusion_witness,
     fixed_point_prefix,
@@ -47,12 +47,12 @@ def tau() raises -> List[List[Int]]:
 
 def test_prolongable_points_are_the_first_letter_cycles() raises:
     var points = prolongable_points(tribonacci())
-    # The first-letter map of Tribonacci is constant at 0, so every power
-    # fixes the letter 0 and nothing else is prolongable.
-    assert_equal(len(points), 3)
-    for i in range(len(points)):
-        assert_equal(points[i].power, i + 1)
-        assert_equal(points[i].letter, 0)
+    # The first-letter map of Tribonacci is constant at 0: the letter 0 is
+    # fixed, so it is prolongable at its minimal power 1 only (the higher
+    # powers give the same fixed-point word), and nothing else is prolongable.
+    assert_equal(len(points), 1, "Tribonacci has one prolongable point")
+    assert_equal(points[0].power, 1, "the letter 0 is fixed: minimal power 1")
+    assert_equal(points[0].letter, 0, "only the letter 0 is prolongable")
     assert_equal(prolongable_point(tribonacci()).power, 1)
     assert_equal(prolongable_point(tribonacci()).letter, 0)
 

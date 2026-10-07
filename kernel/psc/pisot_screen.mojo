@@ -17,7 +17,8 @@ rationals. `z = -1` maps to `w = infinity`, which shows up as a degree drop in
 `q`, and `z = 1` maps to `w = 0`; both are settled before the array is built.
 
 Every value is a `finite_exact` rational. No floating point is used anywhere,
-and the polynomial helpers are shared with `psc.pisot` rather than repeated.
+and the polynomial helpers are shared with `psc.pisot` and the vendored
+`finite_linear_algebra.qpoly` (gcd, Cauchy root bound) rather than repeated.
 
 **A refusal is not a negative result, and it is not a positive one either.**
 The array is undecided when a first-column entry vanishes or a row terminates
@@ -40,9 +41,10 @@ differentially tested against is `reference/psc_research/pisot_screen.py`.
 """
 
 from finite_exact.rat_q import Q
+from finite_linear_algebra import qpoly
 from finite_linear_algebra.scalar import q_int, q_is_zero
 from psc.exact import q_poly, q_sign
-from psc.pisot import cauchy_bound, count_roots_in, poly_degree, poly_eval, poly_rem
+from psc.pisot import count_roots_in, poly_degree, poly_eval
 
 comptime SCREEN_PISOT = 1
 comptime SCREEN_NOT_PISOT = 0
@@ -74,16 +76,6 @@ def int_degree(coeffs: List[Int]) -> Int:
 def is_monic_integer(coeffs: List[Int]) -> Bool:
     var n = int_degree(coeffs)
     return n >= 1 and coeffs[n] == 1
-
-
-def int_cauchy_bound(coeffs: List[Int]) -> Q:
-    """A rational `B` with every root of monic `p` strictly inside `|z| < B`."""
-    var n = int_degree(coeffs)
-    var m = 0
-    for i in range(n):
-        if abs(coeffs[i]) > m:
-            m = abs(coeffs[i])
-    return q_int(1 + m)
 
 
 def binomial_power(k: Int, sign: Int) -> List[Q]:
@@ -215,28 +207,11 @@ def routh_right_half_plane_count(q: List[Q]) -> Int:
     return count
 
 
-def poly_gcd(a: List[Q], b: List[Q]) -> List[Q]:
-    """Monic greatest common divisor over the rationals; empty when constant."""
-    var u = a.copy()
-    var v = b.copy()
-    while poly_degree(v) >= 0:
-        var r = poly_rem(u, v)
-        u = v.copy()
-        v = r.copy()
-    var d = poly_degree(u)
-    if d < 0:
-        return List[Q]()
-    var out = List[Q]()
-    for i in range(d + 1):
-        out.append(u[i].div(u[d]))
-    return out^
-
-
 def real_root_count(p: List[Q]) -> Int:
-    """Distinct real roots, by Sturm counting over a Cauchy bound."""
+    """Distinct real roots, by Sturm counting over the Cauchy bound."""
     if poly_degree(p) < 1:
         return 0
-    var bound = cauchy_bound(p)
+    var bound = qpoly.root_bound(p)
     return count_roots_in(p, bound.neg(), bound)
 
 
@@ -271,7 +246,7 @@ def has_root_on_unit_circle(coeffs: List[Int]) -> Bool:
             real_part[k] = q[k].mul(q_int(sign))
         else:
             imag_part[k] = q[k].mul(q_int(sign))
-    var shared = poly_gcd(real_part, imag_part)
+    var shared = qpoly.gcd(real_part, imag_part)
     if poly_degree(shared) < 1:
         return False
     return real_root_count(shared) > 0
@@ -324,7 +299,7 @@ def screen(coeffs: List[Int]) -> Int:
     # positive. p(1) is non-zero, or `outside` would have been undecided.
     var p = q_poly(coeffs)
     var low = poly_eval(p, Q.one())
-    var high = poly_eval(p, int_cauchy_bound(coeffs))
+    var high = poly_eval(p, qpoly.root_bound(p))
     if q_sign(low) == q_sign(high):
         return SCREEN_NOT_PISOT          # the outside root is below -1
     return SCREEN_PISOT

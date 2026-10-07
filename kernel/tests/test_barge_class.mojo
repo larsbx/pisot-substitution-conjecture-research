@@ -11,7 +11,7 @@ from psc.barge_class import (
     rotate_left,
     rotate_right,
 )
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.dumont_thomas import power_substitution
 
 

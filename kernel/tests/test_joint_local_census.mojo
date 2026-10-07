@@ -1,7 +1,7 @@
 """Canonical bounded-corpus regressions for the G1b-2 joint-local census."""
 
 from std.testing import assert_equal, assert_false, assert_true
-from psc.claim_tests import require_claim
+from mojo_smoke.claims import require_claim
 from psc.joint_local_census import (
     JointLocalSample,
     address_is_one_loop_extension,

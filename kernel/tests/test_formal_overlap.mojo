@@ -1,7 +1,7 @@
 """Regressions for the formal-overlap carrier survey (`psc.formal_overlap`)."""
 
 from std.testing import assert_equal, assert_false, assert_true
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.formal_overlap import aligned_pair_depth, recurrent_coincidence_free_sccs, survey_formal_overlaps
 from psc.overlap_obstruction import recurrent_sccs
 from psc.vertex_coincidence import build_box_graph

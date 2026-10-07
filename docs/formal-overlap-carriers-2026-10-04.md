@@ -6,7 +6,7 @@ ledger node, open problem, or PSC status changes.
 
 ## 1. Why this exists
 
-`completion-ledger-2026-09-11.md` §V records "formal producer-free cycles:
+`archive/2026-10-06/status-snapshots/completion-ledger-2026-09-11.md` §V records "formal producer-free cycles:
 1,764; globally surviving at tested collars: 0; maximum death radius 7;
 collar tested to 40". No instrument for that line is in the repository: not
 on `main`, and not in the 2026-09-08 archive bundle, whose nearest relative is

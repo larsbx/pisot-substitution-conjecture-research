@@ -21,6 +21,7 @@ The symbolic synchronous-extension quotient is applied first.  Cokernel counts
 refer only to the residual projection-collision pairs left after that quotient.
 """
 
+from finite_graph.union_find import find_root, union
 from psc.joint_local_census import ObservationKey
 from psc.joint_local_type import JointLocalType, same_joint_local_type
 from psc.loop_quotient_census import (
@@ -253,20 +254,6 @@ def _projection_fingerprint(projection: JointLocalType) -> UInt64:
     return h
 
 
-def _find_root(parent: List[Int], x: Int) -> Int:
-    var root = x
-    while parent[root] != root:
-        root = parent[root]
-    return root
-
-
-def _union(mut parent: List[Int], a: Int, b: Int):
-    var ra = _find_root(parent, a)
-    var rb = _find_root(parent, b)
-    if ra != rb:
-        parent[rb] = ra
-
-
 def audit_sidewise_cokernel(
     samples: List[AddressedJointLocalSample],
     sigma: List[List[Int]],
@@ -382,12 +369,12 @@ def audit_sidewise_cokernel(
                     if address_is_one_synchronous_extension(
                         samples[left].address, samples[right].address
                     ):
-                        _union(parent, left, right)
+                        union(parent, left, right)
                 elif samples[right].depth + 1 == samples[left].depth:
                     if address_is_one_synchronous_extension(
                         samples[right].address, samples[left].address
                     ):
-                        _union(parent, left, right)
+                        union(parent, left, right)
                 right = next_member[right]
             left = next_member[left]
 
@@ -408,7 +395,7 @@ def audit_sidewise_cokernel(
         while left >= 0:
             var right = next_member[left]
             while right >= 0:
-                if _find_root(parent, left) == _find_root(parent, right):
+                if find_root(parent, left) == find_root(parent, right):
                     symbolic_quotiented += 1
                 else:
                     residual_pairs += 1

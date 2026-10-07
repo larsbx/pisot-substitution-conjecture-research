@@ -77,3 +77,9 @@ A second regression flips only the first raw-child orientation of `A`. Endpoint-
 The prefix selector is now fully integrated with the actual strict derived system. The information still not controlled is the **ordered hub-residual word on interior children**.
 
 The next load-bearing theorem must use balanced-factorization geometry, the finite hierarchy-offset state, or both, to constrain those interior residuals. It is not legitimate to extend the selector phase to all children by assumption.
+
+The [October 6 ordered-word/offset diagnostic](c4-ordered-hub-offset-negative-2026-10-06.md)
+mines all four retained real-secondary recurrent packet SCCs and both controls.
+It preserves a PIP golden negative to hub-guarded physical-offset descent, with
+actual ordered factors and repeating local hierarchy snapshots. Those PIP
+supports have productive exits; the strict-component premise here is unchanged.

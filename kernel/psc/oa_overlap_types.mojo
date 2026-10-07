@@ -21,7 +21,6 @@ which is an uncertified factor set: a computed inclusion is evidence about
 that prefix, not a theorem about the whole tiling.
 """
 
-from psc.endpoint_core import prefix_endpoint_map
 from psc.overlap_seed_patch import (
     OverlapState,
     SeedOverlapAutomaton,
@@ -39,51 +38,23 @@ from psc.perron_field3 import (
     sign_at_perron,
 )
 from psc.words import ALPHABET
-
-
-struct ProlongablePoint(Copyable, Movable):
-    """A power `q` and a letter `c` with `sigma^q(c)` beginning with `c`."""
-
-    var power: Int
-    var letter: Int
-
-    def __init__(out self, power: Int, letter: Int):
-        self.power = power
-        self.letter = letter
+from substitution_dynamics import dumont_thomas as sd_dumont_thomas
+from substitution_dynamics.dumont_thomas import ProlongablePoint
+from substitution_dynamics.substitution import Substitution
 
 
 def prolongable_points(sigma: List[List[Int]]) -> List[ProlongablePoint]:
     """Every `(q, c)` with `q <= |A|` minimal for its cycle of the first-letter
     map, in increasing `q` then `c`: exactly the cycles of `sigma_+`."""
-    var first = prefix_endpoint_map(sigma)
-    var out = List[ProlongablePoint]()
-    for q in range(1, len(sigma) + 1):
-        for c in range(len(sigma)):
-            var x = c
-            for _ in range(q):
-                x = first[x]
-            if x == c:
-                out.append(ProlongablePoint(q, c))
-    return out^
+    # Trusted constructor over len(sigma) letters: unvalidated, as before.
+    return sd_dumont_thomas.prolongable_points(Substitution(sigma.copy(), len(sigma)))
 
 
 def prolongable_point(sigma: List[List[Int]]) raises -> ProlongablePoint:
     """The least prolongable `(q, c)`; every substitution with a non-erasing
     image has one, because the first-letter map of a finite alphabet has a
     cycle."""
-    var points = prolongable_points(sigma)
-    if len(points) == 0:
-        raise Error("substitution has no prolongable power")
-    return points[0].copy()
-
-
-def apply_substitution(sigma: List[List[Int]], w: List[Int]) -> List[Int]:
-    var out = List[Int]()
-    for i in range(len(w)):
-        ref image = sigma[w[i]]
-        for j in range(len(image)):
-            out.append(image[j])
-    return out^
+    return sd_dumont_thomas.prolongable_point(Substitution(sigma.copy(), len(sigma)))
 
 
 def fixed_point_prefix(
@@ -91,10 +62,11 @@ def fixed_point_prefix(
 ) -> List[Int]:
     """A prefix of the fixed point of `sigma^q` starting at `c`, at least
     `min_length` letters long."""
+    # Trusted constructor over len(sigma) letters: unvalidated, as before.
+    var tau = Substitution(sigma.copy(), len(sigma))
     var u: List[Int] = [point.letter]
     while len(u) < min_length:
-        for _ in range(point.power):
-            u = apply_substitution(sigma, u)
+        u = tau.apply_n(u, point.power)
     return u^
 
 

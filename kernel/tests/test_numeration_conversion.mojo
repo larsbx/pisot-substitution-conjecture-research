@@ -19,10 +19,10 @@ from std.testing import assert_equal, assert_false, assert_true
 
 from finite_linear_algebra.mat3 import Mat3
 
-from psc.automata import minimised, same_language
+from finite_automata.dfa import minimised, same_language
 from psc.bpa import substitution_incidence
 from psc.pisot_state import incidence_step
-from psc.claim_tests import require_contract
+from mojo_smoke.claims import require_contract
 from psc.dumont_thomas import digits, letter_at
 from psc.linear_numeration import greedy_digits, longest_basis
 from psc.numeration_conversion import (

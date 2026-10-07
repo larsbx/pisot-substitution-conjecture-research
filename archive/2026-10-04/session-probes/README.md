@@ -31,7 +31,9 @@ python3 law_stats.py; python3 len4_rest.py   # written for this archive
 
 The Python probes need only the standard library. `lib.py` is their shared
 helper (float PIP screen, characteristic polynomial, roots). The Mojo probes
-run against `mojo/` through `pixi run --manifest-path`.
+run against `kernel/` through `pixi run --manifest-path` (2026-10-06:
+`rerun.sh`'s `MOJO_DIR` was repointed from the retired `mojo/` to `kernel/`,
+the current include root; no probe source changed).
 
 ## Index
 

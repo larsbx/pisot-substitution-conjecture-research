@@ -1,11 +1,9 @@
 """Does the dimension-three unroll earn its place in the canonical kernel?
 
-The Python oracle's own note (`.jules/bolt.md`) records that unrolling a short
-fixed-size vector operation is up to three times faster *in pure Python*, where
-a generator expression and a `zip` are interpreted. That is a fact about the
-oracle, not about the kernel, and it is why the optimisation belongs here and
-has to be measured here rather than carried across on the strength of the
-Python number.
+The measurements in `docs/fixed-dimension-kernel-to-mojo-2026-09-28.md`
+record a 3.2x speedup for a pure-Python fixed-size vector unroll. Its generator
+expressions and `zip` are interpreted, so the corresponding optimisation in
+the canonical kernel needs its own measurement.
 
 Measurement discipline (docs/census-performance-handoff-2026-09-18.md): each
 loop prints a checksum that depends on every value it computes, so the work
@@ -18,7 +16,7 @@ from std.time import perf_counter_ns
 
 from psc.corpus import pip_corpus
 from psc.bpa import substitution_incidence
-from psc.integer_vector import (
+from finite_linear_algebra.integer_vector import (
     add,
     add_general,
     matvec,

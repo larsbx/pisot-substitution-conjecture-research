@@ -70,7 +70,7 @@ evidence table.
 7. vendored packages still match their pins —
 
    ```sh
-   python tools/check_vendored_sync.py
+   python tools/vendoring/check_vendored_sync.py
    ```
 
 8. suite —

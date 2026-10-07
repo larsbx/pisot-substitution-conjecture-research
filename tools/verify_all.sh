@@ -34,7 +34,7 @@ if sha256sum -c sources/minimal-bad-scc/SHA256SUMS; then
 else
     bad "minimal-bad-SCC proposal source provenance"
 fi
-if python3 tools/check_vendored_sync.py; then
+if python3 tools/vendoring/check_vendored_sync.py; then
     ok "vendored Mojo packages match the commits pinned in vendored.toml"
 else
     bad "vendored package drift (vendored.toml)"
@@ -48,6 +48,11 @@ if python3 tools/make_math_catalogue.py --check >/dev/null; then
     ok "generated mathematical-object catalogue is current"
 else
     bad "mathematical-object catalogue drift (run: python3 tools/make_math_catalogue.py)"
+fi
+if python3 tools/polyglot_envelope/render.py --check >/dev/null; then
+    ok "the polyglot envelope is the rendering of its vendored template"
+else
+    bad "polyglot envelope drift (run: python3 tools/polyglot_envelope/render.py)"
 fi
 if python3 tools/check_manuscript_source.py; then
     ok "manuscript sources are intact LaTeX and PDF"

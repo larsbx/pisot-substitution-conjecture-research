@@ -16,8 +16,8 @@ bound and no false one.
 
 from std.testing import assert_equal, assert_false, assert_true
 
-from psc.automata import Dfa, minimised, same_language
-from psc.claim_tests import require_contract
+from finite_automata.dfa import Dfa, minimised, same_language
+from mojo_smoke.claims import require_contract
 from psc.dumont_thomas import prolongable_form
 from psc.linear_numeration import (
     agrees_with_path_digits,

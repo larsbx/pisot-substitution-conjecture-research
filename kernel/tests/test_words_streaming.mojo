@@ -5,7 +5,7 @@ future optimization cannot silently change the scattered-subword convention.
 """
 
 from std.testing import assert_equal
-from psc.claim_tests import require_claim
+from mojo_smoke.claims import require_claim
 from psc.words import n2, n3
 
 

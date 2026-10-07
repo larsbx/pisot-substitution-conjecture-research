@@ -1,7 +1,7 @@
 """Canonical Mojo regressions for the Barge-Diamond hub-side cocycle."""
 
 from std.testing import assert_equal, assert_false, assert_true
-from psc.claim_tests import require_claim
+from mojo_smoke.claims import require_claim
 from psc.derived_system import build_derived_system
 from psc.hub_cocycle import (
     build_hub_cocycle,
@@ -10,7 +10,7 @@ from psc.hub_cocycle import (
     orientation_signed_edges,
     support_is_strongly_connected,
 )
-from psc.signing import perron_phase
+from finite_graph.signing import perron_phase
 from psc.words import Pair
 
 

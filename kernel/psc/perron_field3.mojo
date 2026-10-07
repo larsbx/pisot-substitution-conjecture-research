@@ -14,7 +14,7 @@ evidence.
 """
 
 from finite_linear_algebra.mat3 import Mat3
-from psc.checked_int import (
+from finite_exact.checked_int import (
     checked_abs as _checked_abs,
     checked_add as _checked_add,
     checked_mul as _checked_mul,
