@@ -149,6 +149,11 @@ Change the ledger entry and every surface in the same commit.
 
 ## Research references
 
+- [`motivations/`](motivations/README.md) — orientation notes. The
+  2026-10-07 note sets ternary PSC in the literature (proved for two letters;
+  structured families and single specimens for three) and replays the
+  circulated ternary examples on `B_sigma`. Its table is pinned by
+  `kernel/tests/test_ternary_literature_specimens.mojo`.
 - [`bridges/penrose-2d-to-psc-interface-program.md`](bridges/penrose-2d-to-psc-interface-program.md)
   — PR #154's non-load-bearing Penrose interface comparison. Its strongest
   analogies concern P2/G1b-2 and P4 realization; the narrower P1b/#139 analogy

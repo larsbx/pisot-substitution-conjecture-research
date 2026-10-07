@@ -11,7 +11,7 @@ Canonical implementation: `kernel/psc/symbolic_line.mojo`, driver
 `kernel/symbolic_line_certificate.mojo` (`pixi run symbolic-line-certificate`),
 regression `kernel/tests/test_symbolic_line.mojo`. The Python series
 prototype that found the method, written independently, is archived with its
-output in `archive/2026-10-07/session-probes/`.
+output in `archive/2026-10-07/symbolic-line-probes/`.
 
 ## 1. What the data said
 

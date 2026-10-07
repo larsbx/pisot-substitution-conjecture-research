@@ -218,16 +218,15 @@ struct NamedWitness(Copyable, Movable):
 def lemma_witness(cls: Int, p: Int, q: Int, r: Int) raises -> NamedWitness:
     """The position Lemma L_BC, L_D or L_A names, or level 0 outside its region.
 
-    L_BC (classes B, C; level 2): p > q, and r >= 1, q >= 1 -- or r = q = 0
-      with s_y = x. Position (p + 2) + q (r + 2) + 1.
+    L_BC (classes B, C; level 2): p > q, r >= 1, q >= 1. Position
+      (p + 2) + q (r + 2) + 1.
     L_D (class D; level 2): |p - q| = 1, min(p, q) >= 1, r >= 2. Position
       p + 3 when p = q + 1, p + 4 when p = q - 1.
     L_A (class A; level 3): p > q, |r - q| = 1, except (1, 0, 1) and the lines
       (p, 1, 0), p >= 3, and (p, 2, 1), p >= 4. Position p + q + 6 + q(r + 2)
       when r = q + 1, p + q + 5 + q(r + 2) when r = q - 1."""
     if cls == CLASS_B or cls == CLASS_C:
-        var sy = class_ending(cls)[3]
-        if p > q and ((r >= 1 and q >= 1) or (r == 0 and q == 0 and sy == X)):
+        if p > q and r >= 1 and q >= 1:
             return NamedWitness(2, (p + 2) + q * (r + 2) + 1)
         return NamedWitness(0, 0)
     if cls == CLASS_D:

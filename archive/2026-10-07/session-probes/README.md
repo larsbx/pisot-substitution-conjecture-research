@@ -1,18 +1,15 @@
-# Session probes behind Theorem L — 2026-10-07
+# Session probes behind the adversarial audit — 2026-10-07
 
-Exploratory scripts behind `docs/p1b-catch-up-free-ppvc-2026-10-07.md` and
-`docs/p1b-symbolic-line-2026-10-07.md`, with saved output. They are
-**provenance, not canonical code** (AGENTS.md). The canonical computation is
-`kernel/psc/symbolic_line.mojo` with `kernel/symbolic_line_certificate.mojo`
-and `kernel/tests/test_symbolic_line.mojo`.
+Provenance for [`docs/audit-adversarial-prop-v-theorem-e-2026-10-07.md`](../../../docs/audit-adversarial-prop-v-theorem-e-2026-10-07.md).
+This is **not canonical code** (AGENTS.md). It is an independently written Python oracle that imports
+nothing from the repository, and it is not a certificate: overlap tests use 60-digit
+floats (mpmath). Needs `sympy`, `numpy` and `mpmath`. Run each script from this directory.
 
-| file | what it is |
-| --- | --- |
-| `symbolic_line_series_prototype.py` | the symbolic seed-overlap closure of the class B line `x -> x y^(2q+2) x, c -> c y^q x, y -> c y^(q+1) x`, deciding signs and floors from Laurent expansions of `beta` in `1/q` (exact rationals; eventual signs only, no threshold) — a different decision method from the Mojo port's parametric Sturm–Tarski queries |
-| `symbolic_line_series_prototype.out` | its output: `beta = q + 4 − 3/q + 14/q^2 − …`, `ell → (2, 1, 1)`, closures of 116, 114 and 117 vertices from the three seeds (119 in union), all offsets constant, every vertex with an offset-zero descendant |
-| `box_graph_float_probe.py`, `box_radii_float_probe.py` | **floating-point** box-graph prototype used only to look for structure past the exact kernel's image-length cap; its counts were checked against the exact kernel on five members before use |
-| `recurrent_set_compare_probe.py` | compares recurrent sets of that prototype across members (found the constant 120-vertex set on the line) |
-| `trap_float_probe.py`, `trap_float_probe.out` | the one-step contracting trapping region along the line: finite but slowly growing (413 to 593 lattice points for `q = 2..25`), which is why the certificate uses the seed closure instead |
-
-**Never a certificate.** The float probes decide realness with a tolerance;
-nothing in a proof rests on them.
+| file | what it does | output |
+| --- | --- | --- |
+| `common.py` | PIP screen; `coincidence_level`, a breadth-first strong-coincidence decider on the overlap graph that returns `None` only after exhausting the finite closure | — |
+| `xcheck.py` | decider vs direct shared-tile scan, 300 random PIP specimens, all 3 pairs | `xcheck.out` |
+| `enum_e.py L` | Theorem E's class enumerated from the definitions (images of length ≤ `L`): Proposition D normal form and `{x, c}` coincidence | `enum_e_L4.out`, `enum_e_L5.out` (≈4 min) |
+| `tables.py` | symbolic `det M`, `f(1)`, `f(−1)` for all 16 endings | `tables.out` |
+| `sweep_nf.py N` | named lemma positions, residue, decisions for `p, q, r ≤ N` | `sweep_nf_N30.out` |
+| `propv.py R` | Proposition V radii, integral centre pairs for `r ≤ R`, shared vertices | `propv_R7.out` |

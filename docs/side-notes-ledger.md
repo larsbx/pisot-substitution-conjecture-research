@@ -93,7 +93,7 @@ by deleting it.
   true recurrent set is a constant 120 vertices. Use the swap-seed closure
   instead: pure discrete spectrum needs one seed, G1 needs the three, and
   neither needs a box. · `p1b-symbolic-line-2026-10-07.md` §2;
-  `archive/2026-10-07/session-probes/trap_float_probe.out`
+  `archive/2026-10-07/symbolic-line-probes/trap_float_probe.out`
 
 ## 3. Settled by the literature (do not target with new machinery)
 
@@ -986,3 +986,30 @@ by deleting it.
   No mathematical claim or review status changes. ·
   [October 7 follow-up](audit-2026-10-06.md#7-follow-up-2026-10-07);
   [PR #221 evidence](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/221)
+- 2026-10-07 · Specimens already settled by the literature: Tribonacci,
+  Kol(3,1), the two Sirvent–Solomyak ternary examples, the Arnoux–Rauzy
+  product `σ₁σ₂σ₃`, and the three circulated Rauzy-fractal examples
+  `12,31,1` / `12,23,312` / `123,1,31` all terminate with coincidence on the
+  all-seed `B_sigma`; six of them lie inside the 145,806-specimen
+  finite domain. The circulated `123,1,1132` has `det M = 0` and is not PIP.
+  The Sirvent–Solomyak count of 260 pairs of length 194 is not reproduced
+  under the `(ab,ba)` seed convention (257 / 137); it stays unconfirmed until
+  checked against the paper's full text. No claim status changes. ·
+  [motivations note](motivations/ternary-literature-context-2026-10-07.md);
+  `kernel/tests/test_ternary_literature_specimens.mojo`
+- 2026-10-07 · Adversarial audit of Proposition V and Theorem E found no
+  disproof and no failing proof step. An independent oracle reproduced every
+  computational input: the Theorem E class enumerated to image length 5 stays
+  in the normal form and is coincident; the 27-member residue was reproduced;
+  the Proposition V radii hold with margin ≥ 2. Four presentation fixes were
+  applied to the A1′ note: "position" means prefix length, L_BC's dead
+  `r = q = 0` clause was removed, two endings have det divisible by 4, and
+  §3b.7 line ranges are now explicit. The dead clause stays in the kernel's
+  `lemma_witness`, where it is unreachable. No claim status changes. ·
+  `audit-adversarial-prop-v-theorem-e-2026-10-07.md`,
+  `archive/2026-10-07/session-probes/`
+- 2026-10-07 · Correction to the entry above: the dead L_BC clause is now also
+  removed from `lemma_witness` in `kernel/a1_normal_form_census.mojo`.
+  `tests/test_a1_normal_form.mojo` passes unchanged (453 named witnesses,
+  27-point residue), which confirms the clause never fired. ·
+  `kernel/a1_normal_form_census.mojo`
