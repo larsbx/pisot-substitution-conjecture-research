@@ -118,6 +118,8 @@ comptime LIFT_PATH_NODES = 5000  # guided cover: nodes of the point-path enumera
 comptime DESCENT_STARTS = 8  # guided cover: feasible non-member points a member descent starts from
 comptime DESCENT_STEPS = 64  # guided cover: steps of one member descent
 comptime SMALL_POINT_DRAWS = 100  # guided cover: seeded base-point draws in 0..4, tried first
+comptime FM_ROWS = 4000  # guided cover: rows Fourier-Motzkin may hold before it gives up
+comptime FM_MAGNITUDE = 1 << 40  # and the entry size
 comptime VALUE_SPLIT_MAX = 4  # guided cover: a live variable with fewer values is split by value
 comptime ALT_BASE_POINTS = 4  # guided cover: further member points tried before a peel
 comptime FAR_CANDIDATES = 24  # guided tail cover: candidates tried with a moderately large tail variable first
@@ -2978,6 +2980,91 @@ def _refutes(f: List[Int]) -> Bool:
     return True
 
 
+def _gcd(a: Int, b: Int) -> Int:
+    var x = abs(a)
+    var y = abs(b)
+    while y != 0:
+        var r = x % y
+        x = y
+        y = r
+    return x
+
+
+def _normalized(f: List[Int]) -> List[Int]:
+    """The row divided by the gcd of its entries (same rational half-space)."""
+    var g = 0
+    for k in range(len(f)):
+        g = _gcd(g, f[k])
+    if g <= 1:
+        return f.copy()
+    var out = List[Int]()
+    for k in range(len(f)):
+        out.append(f[k] // g)
+    return out^
+
+
+def fm_infeasible(assume: List[List[Int]], m: Int) -> Bool:
+    """Fourier-Motzkin elimination of every variable from the assumptions
+    and `n >= 0`: true only when the rational relaxation is empty, which
+    makes the region (its integer points) empty. Capped: past `FM_ROWS`
+    rows or entries of `FM_MAGNITUDE`, it answers false (unknown)."""
+    var rows = List[List[Int]]()
+    for i in range(len(assume)):
+        rows.append(_normalized(assume[i]))
+    for k in range(m):
+        var e = aff_const(m, 0)
+        e[k + 1] = 1
+        rows.append(e^)
+    for k in range(m):
+        var pos = List[List[Int]]()
+        var neg = List[List[Int]]()
+        var rest = List[List[Int]]()
+        for i in range(len(rows)):
+            var a = rows[i][k + 1]
+            if a > 0:
+                pos.append(rows[i].copy())
+            elif a < 0:
+                neg.append(rows[i].copy())
+            else:
+                rest.append(rows[i].copy())
+        if len(pos) * len(neg) + len(rest) > FM_ROWS:
+            return False
+        for i in range(len(pos)):
+            for j in range(len(neg)):
+                var ap = pos[i][k + 1]
+                var an = -neg[j][k + 1]
+                var r = List[Int]()
+                for t in range(m + 1):
+                    var v = an * pos[i][t] + ap * neg[j][t]
+                    if abs(v) > FM_MAGNITUDE:
+                        return False
+                    r.append(v)
+                rest.append(_normalized(r))
+        # drop constant rows that hold; a constant row that fails is empty
+        rows = List[List[Int]]()
+        for i in range(len(rest)):
+            var constant = True
+            for t in range(1, m + 1):
+                if rest[i][t] != 0:
+                    constant = False
+                    break
+            if constant:
+                if rest[i][0] < 0:
+                    return True
+                continue
+            var dup = False
+            for j in range(len(rows)):
+                if rows[j] == rest[i]:
+                    dup = True
+                    break
+            if not dup:
+                rows.append(rest[i].copy())
+    for i in range(len(rows)):
+        if rows[i][0] < 0:
+            return True
+    return False
+
+
 def _assume_empty(assume: List[List[Int]], m: Int) -> Bool:
     """Sufficient for no integer point: an assumption, or the sum of two or
     three, refutes itself; or bound propagation crosses a pair of bounds."""
@@ -2992,7 +3079,7 @@ def _assume_empty(assume: List[List[Int]], m: Int) -> Bool:
             for k in range(j, n):
                 if _refutes(aff_add(fij, assume[k])):
                     return True
-    return propagate_bounds(assume, m).empty
+    return propagate_bounds(assume, m).empty or fm_infeasible(assume, m)
 
 
 def _satisfies(assume: List[List[Int]], ns: List[Int]) -> Bool:
