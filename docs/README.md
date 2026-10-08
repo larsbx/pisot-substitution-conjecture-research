@@ -146,6 +146,14 @@ Change the ledger entry and every surface in the same commit.
 - `cross-pollination-round-three-2026-09-17.md` — the rest of the estate:
   twelve repositories round two never opened, and the six rulings they state
   independently of each other and of this program.
+- `audit-finite-regime-advice-2026-10-08.md` — audit of a 2026-10-08
+  proposal to bring finite-regime machinery (Theorem Ω's box automaton,
+  `finite_graph` cycle closure, Theorem L's symbolic line) to Theorem K's
+  open tail: the box automaton is refuted as a faster per-member oracle
+  (measured slower; kept as a cross-check for its stronger FP verdict), the
+  run-tree cycle argument rests on a translation-invariance claim that is
+  false for Lemma P1, and the symbolic-line route stands with the multi-run
+  generalization it needs. No status changes.
 
 ## Research references
 

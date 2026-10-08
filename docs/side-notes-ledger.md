@@ -465,6 +465,15 @@ by deleting it.
   the other 313 cannot inherit Barge (2018) that way, and the 70 are not
   shown conjugate. · `p1b-catch-up-free-ppvc-2026-10-07.md` §3; scratch check
 
+- 2026-10-08 · Theorem Ω's box automaton is **not** a faster exact decider
+  than `coincidence_level` on Theorem K's members: on the `s = −1` leaf
+  `zy | yz`, 3.9 s against 0.05 s at (3, 3, 0), 105.6 s against 51.9 s at
+  (9, 7, 0), and no verdict within 180 s at (7, 9, 1), which
+  `coincidence_level` decides in 58 s; 27,000–65,000 box states already at
+  `a, b <= 9`. Use it as a cross-check for its stronger FP verdict, not to
+  speed up member decisions. · `audit-finite-regime-advice-2026-10-08.md`;
+  `experiments/z2-route/boxtime.mojo`
+
 ## 6. Tooling pitfalls
 
 - 2026-10-04 · `pkill -f PATTERN` inside a shell command whose own text
