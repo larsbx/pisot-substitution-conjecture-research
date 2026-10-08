@@ -749,6 +749,14 @@ def lift_key(lr: PolyLift, probes: List[List[Int]], lift: ProductLift) -> Int:
     return (extent << COST_BITS) - min(cost, (1 << COST_BITS) - 1)
 
 
+def whole_region_lift(lr: PolyLift, probes: List[List[Int]], lift: ProductLift) raises -> Bool:
+    """The lift's end offset lifts to the zero form over `(n, q)` and its
+    carving forms hold at every probe point (`lift_key`'s extent is all of
+    `probes`): no lift ranks above it but a cheaper one."""
+    # the key is extent << COST_BITS less a cost below 2^COST_BITS
+    return lifts_to_zero(lr.gamma, lift) and (lift_key(lr, probes, lift) + (1 << COST_BITS) - 1) >> COST_BITS == max(len(probes), 1)
+
+
 def poly_steps(steps: List[WitnessStep]) -> List[PolyStep]:
     """Affine steps as polynomial ones."""
     var out = List[PolyStep]()
@@ -1200,48 +1208,101 @@ def verify_crossing_poly(fam: ConeFamily, a0: Int, b0: Int, steps: List[PolyStep
     return False
 
 
-def enumerate_point_paths(point: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int, ly: Int, lz: Int, max_paths: Int, max_nodes: Int, line_cap: Int = 0) -> List[List[WitnessStep]]:
-    """Witness paths of a point family (constant offsets), by depth-first
-    search over the line candidates, shortest first by iterative deepening:
-    each depth limit up to `max_level` in turn, at most `max_paths` paths and
-    `max_nodes` nodes in all. Distinct paths may share states: `solve_lift`
-    asks only for their segments. `line_cap` as in `within_line`."""
-    var out = List[List[WitnessStep]]()
-    var nodes = 0
-    for depth in range(1, max_level + 1):
-        var zero = List[List[Int]]()
-        for _ in range(3):
-            zero.append(aff_const(point.m, 0))
-        # frames: state and the path so far
-        var sa = List[Int]([a0])
-        var sb = List[Int]([b0])
-        var sg = List[List[List[Int]]]()
-        sg.append(zero^)
-        var sp = List[List[WitnessStep]]()
-        sp.append(List[WitnessStep]())
-        while len(sa) > 0:
-            if nodes >= max_nodes or len(out) >= max_paths:
-                return out^
-            nodes += 1
-            var a = sa.pop()
-            var b = sb.pop()
-            var g = sg.pop()
-            var path = sp.pop()
-            if len(path) == depth:
+struct PointPaths(Movable):
+    """`enumerate_point_paths` one path at a time: the same depth-first
+    search by iterative deepening, resumable, so a caller can stop at the
+    first path it accepts. `next` returns False once `max_level` is passed
+    or `max_nodes` nodes are spent; else `path` holds the next path, in the
+    order `enumerate_point_paths` lists them."""
+
+    var a0: Int
+    var b0: Int
+    var bound: Int
+    var max_level: Int
+    var ly: Int
+    var lz: Int
+    var max_nodes: Int
+    var line_cap: Int
+    var depth: Int
+    var nodes: Int
+    var sa: List[Int]
+    var sb: List[Int]
+    var sg: List[List[List[Int]]]
+    var sp: List[List[WitnessStep]]
+    var pending: List[List[WitnessStep]]  # paths found at the last node, in order
+    var path: List[WitnessStep]
+
+    def __init__(out self, a0: Int, b0: Int, bound: Int, max_level: Int, ly: Int, lz: Int, max_nodes: Int, line_cap: Int = 0):
+        self.a0 = a0
+        self.b0 = b0
+        self.bound = bound
+        self.max_level = max_level
+        self.ly = ly
+        self.lz = lz
+        self.max_nodes = max_nodes
+        self.line_cap = line_cap
+        self.depth = 0
+        self.nodes = 0
+        self.sa = List[Int]()
+        self.sb = List[Int]()
+        self.sg = List[List[List[Int]]]()
+        self.sp = List[List[WitnessStep]]()
+        self.pending = List[List[WitnessStep]]()
+        self.path = List[WitnessStep]()
+
+    def next(mut self, point: ConeFamily) -> Bool:
+        while len(self.pending) == 0:
+            if len(self.sa) == 0:
+                if self.depth >= self.max_level:
+                    return False
+                self.depth += 1
+                var zero = List[List[Int]]()
+                for _ in range(3):
+                    zero.append(aff_const(point.m, 0))
+                self.sa.append(self.a0)
+                self.sb.append(self.b0)
+                self.sg.append(zero^)
+                self.sp.append(List[WitnessStep]())
+            if self.nodes >= self.max_nodes:
+                return False
+            self.nodes += 1
+            var a = self.sa.pop()
+            var b = self.sb.pop()
+            var g = self.sg.pop()
+            var path = self.sp.pop()
+            if len(path) == self.depth:
                 continue
-            var cands = _line_candidates(point, a, b, g, bound, ly, lz)
+            var cands = _line_candidates(point, a, b, g, self.bound, self.ly, self.lz)
             for c in range(len(cands)):
                 var r = apply_step_line(point, a, b, g, cands[c])
-                if not r.ok or not within_line(r.gamma, bound, ly, lz, line_cap):
+                if not r.ok or not within_line(r.gamma, self.bound, self.ly, self.lz, self.line_cap):
                     continue
                 var p2 = path.copy()
                 p2.append(cands[c].copy())
                 if r.a == r.b and _is_zero(r.gamma):
-                    if len(p2) == depth:
-                        out.append(p2^)
+                    if len(p2) == self.depth:
+                        self.pending.append(p2^)
                     continue
-                sa.append(r.a)
-                sb.append(r.b)
-                sg.append(r.gamma.copy())
-                sp.append(p2^)
+                self.sa.append(r.a)
+                self.sb.append(r.b)
+                self.sg.append(r.gamma.copy())
+                self.sp.append(p2^)
+        self.path = self.pending.pop(0)
+        return True
+
+
+def enumerate_point_paths(point: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int, ly: Int, lz: Int, max_paths: Int, max_nodes: Int, line_cap: Int = 0) -> List[List[WitnessStep]]:
+    """Witness paths of a point family (constant offsets), by depth-first
+    search over the line candidates, shortest first by iterative deepening:
+    each depth limit up to `max_level` in turn, at most `max_paths` paths
+    (every path closed at the node that reaches the limit is kept) and
+    `max_nodes` nodes in all (`PointPaths`). Distinct paths may share
+    states: `solve_lift` asks only for their segments. `line_cap` as in
+    `within_line`."""
+    var out = List[List[WitnessStep]]()
+    var it = PointPaths(a0, b0, bound, max_level, ly, lz, max_nodes, line_cap)
+    while it.next(point):
+        out.append(it.path.copy())
+        if len(out) >= max_paths and len(it.pending) == 0:
+            break
     return out^
