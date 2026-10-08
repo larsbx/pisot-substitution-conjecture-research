@@ -179,12 +179,26 @@
       }
     },
     {
-      "name": "BoxPDSCertificate",
+      "name": "BoxAutomatonCertificate",
       "status": "proved",
-      "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (a); docs/proof-bank-audit-2026-10-08.md; this is the tiling R-action sufficiency direction only",
+      "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending",
       "dependencies": [
-        "BoxProductivityEquivalence",
-        "PisotFamilyMeyerProperty",
+        "BoxCycleContainment"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "BoxAutomatonPDSCertificate",
+      "status": "proved",
+      "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega consequence (a); docs/review-box-leftmost-ledger-2026-10-08.md, sections 1-2; tiling R-action sufficiency only",
+      "dependencies": [
+        "BoxAutomatonCertificate",
+        "PisotMeyerProperty",
         "OverlapCoincidenceCriterion"
       ],
       "ledger_node": true,
@@ -195,12 +209,10 @@
       }
     },
     {
-      "name": "BoxProductivityEquivalence",
+      "name": "BoxCycleContainment",
       "status": "proved",
-      "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega; docs/proof-bank-audit-2026-10-08.md; internal review complete, human review pending",
-      "dependencies": [
-        "PotentialOverlapFiniteDescent"
-      ],
+      "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Lemma Omega1 (Proposition V step 1; docs/formal-overlap-carriers-2026-10-04.md, section 2 item 5); step 1 audited in docs/audit-adversarial-prop-v-theorem-e-2026-10-07.md; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending",
+      "dependencies": [],
       "ledger_node": true,
       "lean_support": {
         "coverage": "none",
@@ -424,13 +436,41 @@
       }
     },
     {
+      "name": "FormalProductivity",
+      "status": "open",
+      "source": "open conjectural gate; docs/formal-productivity-reduction-2026-10-04.md; docs/pds-certificate-from-the-box-automaton-2026-10-07.md; implied by PDS through Corollary FP'' and Theorem S",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
       "name": "G1",
       "status": "open",
-      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Propositions 4.11, 5.46 and 5.47 and open-problem list",
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Propositions 4.11, 5.46 and 5.47 and open-problem list; docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (c)",
       "dependencies": [
         "G1FromRenewal",
         "G1OverlapRoute",
-        "G1HalfCoincidenceRoute"
+        "G1HalfCoincidenceRoute",
+        "G1FormalProductivityRoute"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "G1FormalProductivityRoute",
+      "status": "conditional",
+      "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (c), with docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending",
+      "dependencies": [
+        "FormalProductivity",
+        "BoxCycleContainment"
       ],
       "ledger_node": true,
       "lean_support": {
@@ -579,12 +619,10 @@
       }
     },
     {
-      "name": "LeftmostChainPeriodicPair",
+      "name": "LeftmostChainCycleStructure",
       "status": "proved",
-      "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Proposition LC; docs/proof-bank-audit-2026-10-08.md; the prefix-side fixed point is one-sided, not a same-fibre two-sided pair",
-      "dependencies": [
-        "LeftmostChainSign"
-      ],
+      "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Lemma S, Proposition LC and Corollary LC4; 10,584 sign/shape checks, 10,128 integral replays and 456 uncomputed offsets on the standing corpus; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending",
+      "dependencies": [],
       "ledger_node": true,
       "lean_support": {
         "coverage": "none",
@@ -593,10 +631,12 @@
       }
     },
     {
-      "name": "LeftmostChainSign",
+      "name": "LeftmostChainG1Certificate",
       "status": "proved",
-      "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Lemma S; docs/proof-bank-audit-2026-10-08.md; internal review complete, human review pending",
-      "dependencies": [],
+      "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Corollary LC5, with manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.47; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending",
+      "dependencies": [
+        "BoxCycleContainment"
+      ],
       "ledger_node": true,
       "lean_support": {
         "coverage": "none",
@@ -770,7 +810,7 @@
     {
       "name": "OverlapCoincidenceCriterion",
       "status": "imported",
-      "source": "Lee-Moody-Solomyak 2003, arXiv:0910.4450, Theorem 4.7 and Lemma 6.9; Akiyama-Lee 2011, arXiv:1003.2898, Theorem 2.5; docs/proof-bank-audit-2026-10-08.md",
+      "source": "Lee-Moody-Solomyak, arXiv:0910.4450, Theorem 4.7 and Lemmas 6.8-6.9; Akiyama-Lee, arXiv:1003.2898, Theorem 2.5; docs/review-box-leftmost-ledger-2026-10-08.md, section 1",
       "dependencies": [],
       "ledger_node": true,
       "lean_support": {
@@ -810,6 +850,37 @@
       "dependencies": [
         "G1",
         "SCCProducer"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "PDSFormalProductivityRoute",
+      "status": "conditional",
+      "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (a); independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending",
+      "dependencies": [
+        "FormalProductivity",
+        "BoxAutomatonPDSCertificate"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "PDSFormalProductivitySeedRoute",
+      "status": "conditional",
+      "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (b), with manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Lemma 5.36 and Theorem 5.38; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending",
+      "dependencies": [
+        "FormalProductivity",
+        "SwapOverlapFiniteness",
+        "DensityToPDSBridge"
       ],
       "ledger_node": true,
       "lean_support": {
@@ -956,21 +1027,9 @@
       }
     },
     {
-      "name": "PisotFamilyMeyerProperty",
+      "name": "PisotMeyerProperty",
       "status": "imported",
-      "source": "Lee-Solomyak 2012, arXiv:1002.0039, Theorem 4.3 and Corollary 2.13; docs/pds-certificate-from-the-box-automaton-2026-10-07.md, section 7; hypotheses rechecked in docs/proof-bank-audit-2026-10-08.md",
-      "dependencies": [],
-      "ledger_node": true,
-      "lean_support": {
-        "coverage": "none",
-        "declarations": [],
-        "note": "No complete Lean proof is registered for this claim."
-      }
-    },
-    {
-      "name": "PotentialOverlapFiniteDescent",
-      "status": "proved",
-      "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Lemma Omega1; docs/proof-bank-audit-2026-10-08.md; internal review complete, human review pending",
+      "source": "Lee-Solomyak, arXiv:1002.0039, Definition 2.3 and Theorem 4.3; docs/review-box-leftmost-ledger-2026-10-08.md, section 1 (scalar expansion hypotheses and return-vector transfer checked)",
       "dependencies": [],
       "ledger_node": true,
       "lean_support": {
@@ -1945,12 +2004,12 @@
     },
     {
       "source": "docs/p1a-a1-prime-2026-10-05.md",
-      "line": 2016,
+      "line": 2028,
       "statement_heading": "## 4. Proposition B: why A1′ is not a corollary of the import"
     },
     {
       "source": "docs/p1a-a1-prime-2026-10-05.md",
-      "line": 2018,
+      "line": 2030,
       "statement_heading": "*Proposition B.* The imported Barge–Diamond theorem cannot give A1′, and the"
     },
     {
@@ -2000,42 +2059,42 @@
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
-      "line": 75,
+      "line": 80,
       "statement_heading": "*Lemma S.* Let `v` have offset `x != 0` and let `v'` be its leftmost child."
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
-      "line": 100,
+      "line": 105,
       "statement_heading": "## 4. Proposition LC"
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
-      "line": 102,
+      "line": 107,
       "statement_heading": "*Proposition LC.* Let `v` be a vertex of nonzero offset whose leftmost chain"
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
-      "line": 266,
+      "line": 275,
       "statement_heading": "*Corollary LC1 (the failure set is leftmost-stable).* `D` is closed under"
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
-      "line": 274,
+      "line": 283,
       "statement_heading": "*Corollary LC2 (\"reaches `CU`\" is an SCC invariant).* Vertices in one strongly"
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
-      "line": 282,
+      "line": 291,
       "statement_heading": "*Corollary LC3 (the obstruction is finitely parameterised).* The cycles of"
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
-      "line": 365,
+      "line": 374,
       "statement_heading": "*Corollary LC4 (cycles come in mirror pairs).* Terminal leftmost cycles are"
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
-      "line": 383,
+      "line": 393,
       "statement_heading": "*Corollary LC5 (a sufficient condition for G1).* If the box graph of `sigma`"
     },
     {
@@ -2114,6 +2173,21 @@
       "statement_heading": "*Corollary B′ (reformulation of #139).* `Z(s) ≠ ∅` iff some interior"
     },
     {
+      "source": "docs/p1b-symbolic-cone-2026-10-08.md",
+      "line": 80,
+      "statement_heading": "*Lemma S′ (soundness).* If the closure finishes on the region `R`, then at"
+    },
+    {
+      "source": "docs/p1b-symbolic-cone-2026-10-08.md",
+      "line": 128,
+      "statement_heading": "## 4. Theorem C"
+    },
+    {
+      "source": "docs/p1b-symbolic-cone-2026-10-08.md",
+      "line": 130,
+      "statement_heading": "**Theorem C.** Let `sigma` be in Theorem E's class B with"
+    },
+    {
       "source": "docs/p1b-symbolic-line-2026-10-07.md",
       "line": 66,
       "statement_heading": "*Lemma S (soundness).* If the run finishes with threshold `T`, then for every"
@@ -2190,12 +2264,12 @@
     },
     {
       "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md",
-      "line": 69,
+      "line": 72,
       "statement_heading": "## 3. Lemma Ω1 (finite descent, and cycles in the box)"
     },
     {
       "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md",
-      "line": 101,
+      "line": 107,
       "statement_heading": "## 4. Theorem Ω (formal productivity is one automaton property)"
     },
     {
@@ -2760,7 +2834,7 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "15b8bace786c4d982d9733d95f21c4e391986c948aa839c9d7a1d664a9e4ff13",
+    "claim_governance.toml": "b8760894fb2246440e0ef63524fe0f748f4a5391d34b08641072eb032d03e893",
     "proof/PscVerif/ProofBankAudit.lean": "711402d19ef8292638841a54f2a9a6a24cf6e9569736022118e71e2eb5dbd2ea",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
@@ -2773,7 +2847,7 @@
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
-    "tools/make_ledger.py": "5ffe07e2a644e915726d6e183ddf934a29f8c92c85cb91edc8267df8e6778c77",
-    "tools/make_proof_bank.py": "125126b71f05fc8ac5c74d14be553af7ece36e98078567dc23ff596b93c867fd"
+    "tools/make_ledger.py": "1d26d2b58e06e3fe3e5a51f52f9be9fb171df6d8712621ecd9b798c738dd9490",
+    "tools/make_proof_bank.py": "c4eada066d7e2de574e4469c0c192450e9f3c6ca1314695899a8ceefabaf3eec"
   }
 }

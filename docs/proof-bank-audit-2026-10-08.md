@@ -68,7 +68,7 @@ If a potential overlap is nonproductive, it has a child and every child
 remains nonproductive. Finite descent gives a nonproductive cycle, which the
 previous bound places in the box. Thus productivity of every box vertex
 implies formal productivity. The reverse direction is inclusion. These are
-the nodes `PotentialOverlapFiniteDescent` and `BoxProductivityEquivalence`.
+the canonical nodes `BoxCycleContainment` and `BoxAutomatonCertificate`.
 They establish implications for each specimen, not their universal premise.
 
 The targeted literature check preserves the note's existing stop/go decision:
@@ -82,7 +82,7 @@ The targeted literature check preserves the note's existing stop/go decision:
 Every actual overlap offset is an integer combination of tile lengths and
 its children agree with the potential-overlap construction. Formal
 productivity therefore covers the actual overlaps. The two imports and
-`BoxPDSCertificate` record this sufficiency route for the tiling R-action.
+`BoxAutomatonPDSCertificate` record this sufficiency route for the tiling R-action.
 The route does not depend on Theorem B, Lemma C, Proposition F, Theorem R,
 Theorem S or Proposition V(2). It does not assert the reverse direction,
 the symbolic Z-action correspondence or productivity outside a replayed
@@ -118,8 +118,8 @@ Independent exact hand replay for `1/12/022`: with
 `sigma(1)=1·2` is the prefix occurrence and `sigma(2)=0·2·2`
 is the interior occurrence. Its mirrored cycle reverses the offset sign.
 The existing canonical regression also guards the vacuous Tribonacci case,
-an uncomputed large-offset case and capped-graph refusal. The two nodes
-`LeftmostChainSign` and `LeftmostChainPeriodicPair` link this evidence. No
+an uncomputed large-offset case and capped-graph refusal. The canonical node
+`LeftmostChainCycleStructure` (grouping Lemma S, LC and LC4) links this evidence. No
 edge is added to a general G1, PPVC or PSC conclusion.
 
 ## Remaining proof work
@@ -131,3 +131,13 @@ tensor intertwining, semisimplicity/Galois spectral passage and all open
 universal premises remain outside that Lean development. New statements
 must enter the source inventory, and new Lean modules must enter the root
 import closure, before the common gate can pass.
+
+## Reconciliation and review repairs
+
+The [reconciliation record](proof-ledger-reconciliation-2026-10-08.md) maps
+the original #237 proposal onto the canonical nodes already merged by #241
+and retains the more detailed #236 review and census-status repair. The
+proof inventory includes root-module declarations. Dependency validation
+rejects tracked staged, unstaged or deleted sources even at the pinned HEAD.
+The seven new negative cases reproduced both P2 findings before the repairs.
+Generated counts are reported by the current bank, not the earlier PR snapshot.

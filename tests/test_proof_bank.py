@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import shutil
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -77,6 +78,65 @@ def test_pins_reject_unpinned_direct_requirements_and_wrong_checkouts(tmp_path):
         pb.check_pins(tmp_path, require_packages=True)
 
 
+def test_root_module_proofs_are_inventoried_and_required_in_the_audit(tmp_path):
+    project = tmp_path / pb.PROJECT
+    shutil.copytree(ROOT / pb.PROJECT, project, ignore=shutil.ignore_patterns(".lake"))
+    root_module = project / "PscVerif.lean"
+    root_module.write_text(root_module.read_text() + "\nnamespace RootBank\n"
+                           "theorem root_theorem : True := trivial\n"
+                           "lemma root_lemma : True := trivial\nend RootBank\n")
+    pb.check_imports(tmp_path)
+    inventory = pb.lean_declarations(tmp_path)
+    names = {d["name"] for d in inventory}
+    assert {"RootBank.root_theorem", "RootBank.root_lemma"} <= names
+    assert all(d["source"] == "proof/PscVerif/PscVerif.lean"
+               for d in inventory if d["name"].startswith("RootBank."))
+    audited = sorted(names - {"RootBank.root_theorem", "RootBank.root_lemma"})
+    log = "".join(audit_line(n) for n in audited)
+    log += f"PSC_AUDIT_COMPLETE\t{len(audited)}\t{len(audited)}\n"
+    with pytest.raises(ValueError, match="Incomplete Lean audit.*RootBank"):
+        pb.check_audit(log, names)
+
+
+@pytest.mark.parametrize("change", ["unstaged", "staged", "deleted"])
+@pytest.mark.parametrize("require_packages", [False, True])
+def test_pinned_dependency_refuses_tracked_changes(tmp_path, change, require_packages):
+    project = tmp_path / pb.PROJECT
+    project.mkdir(parents=True)
+    pin = (ROOT / pb.PROJECT / "lean-toolchain").read_text()
+    (project / "lean-toolchain").write_text(pin)
+    dependency = project / ".lake/packages/mathlib"
+    dependency.mkdir(parents=True)
+    source = dependency / "Fixture.lean"
+    source.write_text("theorem trusted : True := trivial\n")
+    (dependency / "lean-toolchain").write_text(pin)
+
+    def git(*args):
+        return subprocess.check_output(["git", "-C", str(dependency), *args], text=True).strip()
+
+    git("init", "-q")
+    git("add", ".")
+    git("-c", "user.name=Pin Regression", "-c", "user.email=pin-regression@example.invalid",
+        "commit", "-qm", "Pin a dependency fixture")
+    revision = git("rev-parse", "HEAD")
+    url = "https://example.invalid/mathlib.git"
+    (project / "lakefile.toml").write_text(
+        f'[[require]]\nname = "mathlib"\ngit = "{url}"\nrev = "{revision}"\n')
+    (project / "lake-manifest.json").write_text(json.dumps({
+        "packagesDir": ".lake/packages", "packages": [{"name": "mathlib", "type": "git",
+        "url": url, "rev": revision, "inputRev": revision}]}))
+    assert pb.check_pins(tmp_path, require_packages)["packages"][0]["rev"] == revision
+    if change == "deleted":
+        source.unlink()
+    else:
+        source.write_text("theorem trusted : False := by sorry\n")
+        if change == "staged":
+            git("add", "Fixture.lean")
+    assert git("rev-parse", "HEAD") == revision
+    with pytest.raises(ValueError, match="tracked.*changes.*mathlib"):
+        pb.check_pins(tmp_path, require_packages)
+
+
 def audit_line(name="Psc.target1", axioms="propext,Classical.choice,Quot.sound"):
     return f"PSC_AXIOMS\ttheorem\t{name}\t{axioms}\n"
 
@@ -106,11 +166,11 @@ def test_incomplete_cached_or_nonstandard_audit_is_rejected(text):
 def test_box_and_leftmost_nodes_record_implications_without_promoting_psc():
     analysis = gl.analyse(gl.load_ledger(ROOT / "proof/tla/ledger.json"))
     names = {e.name for e in analysis.entries}
-    assert {"PotentialOverlapFiniteDescent", "BoxProductivityEquivalence", "BoxPDSCertificate", "LeftmostChainPeriodicPair"} <= names
-    assert make_ledger.TABLE["BoxPDSCertificate"][3] == ("BoxProductivityEquivalence", "PisotFamilyMeyerProperty", "OverlapCoincidenceCriterion")
-    assert make_ledger.TABLE["LeftmostChainPeriodicPair"][3] == ("LeftmostChainSign",)
-    done = gl.established(analysis, ("PisotFamilyMeyerProperty", "OverlapCoincidenceCriterion"))
-    assert "BoxPDSCertificate" in done
+    assert {"BoxCycleContainment", "BoxAutomatonCertificate", "BoxAutomatonPDSCertificate", "LeftmostChainCycleStructure"} <= names
+    assert make_ledger.TABLE["BoxAutomatonPDSCertificate"][3] == ("BoxAutomatonCertificate", "PisotMeyerProperty", "OverlapCoincidenceCriterion")
+    assert make_ledger.TABLE["LeftmostChainCycleStructure"][3] == ()
+    done = gl.established(analysis, ("PisotMeyerProperty", "OverlapCoincidenceCriterion"))
+    assert "BoxAutomatonPDSCertificate" in done
     assert not {"PDS", "G1", "OverlapProductivity"} & done
 
 

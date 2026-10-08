@@ -654,6 +654,20 @@ def _within(gamma: List[List[Int]], bound: Int) -> Bool:
     return True
 
 
+def within_line(gamma: List[List[Int]], bound: Int, ly: Int, lz: Int, line_cap: Int) -> Bool:
+    """`_within`, or with `line_cap > 0` along the line `e_lz - e_ly` alone:
+    the coordinate off the line and the `ly + lz` sum within `bound`, the
+    position on the line (the `lz` coordinate) within `line_cap`."""
+    if line_cap <= 0:
+        return _within(gamma, bound)
+    var lo = 3 - ly - lz
+    for k in range(len(gamma[0])):
+        var s = gamma[ly][k] + gamma[lz][k]
+        if abs(gamma[lo][k]) > bound or abs(s) > bound or abs(gamma[lz][k]) > line_cap:
+            return False
+    return True
+
+
 def _line_candidates(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], bound: Int, ly: Int, lz: Int) -> List[WitnessStep]:
     """Constant-target steps as in `_candidates`, plus steps that keep the new
     offset on the line `c + lambda (e_lz - e_ly)`: its other coordinate and
@@ -723,9 +737,11 @@ def _line_candidates(fam: ConeFamily, a: Int, b: Int, gamma: List[List[Int]], bo
     return out^
 
 
-def search_witness_line(fam: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int, ly: Int, lz: Int) -> WitnessSearch:
+def search_witness_line(fam: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int, ly: Int, lz: Int, line_cap: Int = 0) -> WitnessSearch:
     """Breadth-first search in line mode: offsets may be affine along
-    `e_lz - e_ly`, with every coefficient within `bound`."""
+    `e_lz - e_ly`, with every coefficient within `bound`; with
+    `line_cap > 0`, the position along the line within `line_cap` instead
+    (`_within_line`: at a point the line offset `lambda` may be a run length)."""
     var out = WitnessSearch()
     var zero = List[List[Int]]()
     for _ in range(3):
@@ -749,7 +765,7 @@ def search_witness_line(fam: ConeFamily, a0: Int, b0: Int, bound: Int, max_level
             var cands = _line_candidates(fam, sa_[f], sb_[f], sg[f], bound, ly, lz)
             for c in range(len(cands)):
                 var r = apply_step_line(fam, sa_[f], sb_[f], sg[f], cands[c])
-                if not r.ok or not _within(r.gamma, bound):
+                if not r.ok or not within_line(r.gamma, bound, ly, lz, line_cap):
                     continue
                 var key = _line_key(r.a, r.b, r.gamma)
                 if key in seen:

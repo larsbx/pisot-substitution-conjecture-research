@@ -36,6 +36,12 @@
     ],
     "AllSeedStrictZipperGateAssumed": [
       "AllSeedStrictZipperExclusion"
+    ],
+    "FormalProductivityGateAssumed": [
+      "FormalProductivity",
+      "PisotMeyerProperty",
+      "OverlapCoincidenceCriterion",
+      "DensityToPDSBridge"
     ]
   },
   "status_classes": {
@@ -155,19 +161,39 @@
     "StrongCoincidenceFromPDS": [
       "overlap coincidence to strong coincidence"
     ],
-    "PotentialOverlapFiniteDescent": [
-      "Lemma Omega1",
+    "BoxCycleContainment": [
       "Lemma Ω1"
     ],
-    "BoxProductivityEquivalence": [
-      "Theorem Omega",
-      "Theorem Ω"
+    "BoxAutomatonCertificate": [
+      "Theorem Ω",
+      "box-automaton certificate"
     ],
-    "BoxPDSCertificate": [
-      "per-specimen box PDS certificate"
+    "FormalProductivity": [
+      "formal productivity"
     ],
-    "LeftmostChainPeriodicPair": [
+    "OverlapCoincidenceCriterion": [
+      "Lee–Moody–Solomyak overlap-coincidence criterion"
+    ],
+    "PDSFormalProductivityRoute": [
+      "consequence (a)"
+    ],
+    "PDSFormalProductivitySeedRoute": [
+      "consequence (b)"
+    ],
+    "G1FormalProductivityRoute": [
+      "consequence (c)"
+    ],
+    "LeftmostChainCycleStructure": [
       "Proposition LC"
+    ],
+    "LeftmostChainG1Certificate": [
+      "Corollary LC5"
+    ],
+    "PisotMeyerProperty": [
+      "Pisot Meyer property"
+    ],
+    "BoxAutomatonPDSCertificate": [
+      "per-specimen box PDS certificate"
     ]
   },
   "surfaces": {
@@ -567,6 +593,83 @@
         "anchor": "| Strong coincidence from PDS |",
         "window_lines": 0
       }
+    ],
+    "BoxCycleContainment": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Cycle vertices lie in the box automaton |",
+        "window_lines": 0
+      }
+    ],
+    "BoxAutomatonCertificate": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Box-automaton certificate for formal productivity |",
+        "window_lines": 0
+      }
+    ],
+    "FormalProductivity": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Formal productivity |",
+        "window_lines": 0
+      }
+    ],
+    "OverlapCoincidenceCriterion": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Overlap-coincidence criterion |",
+        "window_lines": 0
+      }
+    ],
+    "PDSFormalProductivityRoute": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Formal productivity implies PDS (overlap coincidence) |",
+        "window_lines": 0
+      }
+    ],
+    "PDSFormalProductivitySeedRoute": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Formal productivity implies PDS (seed route) |",
+        "window_lines": 0
+      }
+    ],
+    "G1FormalProductivityRoute": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Formal productivity implies finite BPA |",
+        "window_lines": 0
+      }
+    ],
+    "LeftmostChainCycleStructure": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Leftmost-chain cycles are prefix-vs-interior pairs |",
+        "window_lines": 0
+      }
+    ],
+    "LeftmostChainG1Certificate": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| No terminal leftmost cycle implies finite BPA |",
+        "window_lines": 0
+      }
+    ],
+    "PisotMeyerProperty": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Pisot Meyer property |",
+        "window_lines": 0
+      }
+    ],
+    "BoxAutomatonPDSCertificate": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Box-automaton PDS certificate |",
+        "window_lines": 0
+      }
     ]
   },
   "records": {
@@ -926,13 +1029,13 @@
       "tags": []
     },
     "LoadBearingSCC": {
-      "id": "sha256:6a8498f36e1245045d54e2c298a2862ac58d0ba513efa1c344f9dc52327dd108",
+      "id": "sha256:198a7641fe903b033e692a56b7489b97817ae393158080833829839a8970530d",
       "kind": "repository_theorem",
       "statement": "under G1 the load-bearing SCC of the v33/v34 route exists",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:15b5d3826de900462dedad354366b97267133d7287fb18b1e34fc8c7b6ff99cf",
+          "sha256:4712353c2e9108702986fbf828c694677adec495dd6c180100c55585c3dc9be9",
           "finite BPA (G1)",
           "LoadBearingSCC/G1",
           "same",
@@ -966,13 +1069,13 @@
       "tags": []
     },
     "SinkSCCReduction": {
-      "id": "sha256:faf7282af3905897396b6e5d6b99439424b1e36b64dbed3b7d3567f16f5e225c",
+      "id": "sha256:8cf0ba82500779867bfb2eadfb8dfc89bbf3db211369309aac17fa6f83a764f7",
       "kind": "repository_theorem",
       "statement": "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:15b5d3826de900462dedad354366b97267133d7287fb18b1e34fc8c7b6ff99cf",
+          "sha256:4712353c2e9108702986fbf828c694677adec495dd6c180100c55585c3dc9be9",
           "finite BPA (G1)",
           "SinkSCCReduction/G1",
           "same",
@@ -1436,7 +1539,7 @@
       "tags": []
     },
     "G1": {
-      "id": "sha256:15b5d3826de900462dedad354366b97267133d7287fb18b1e34fc8c7b6ff99cf",
+      "id": "sha256:4712353c2e9108702986fbf828c694677adec495dd6c180100c55585c3dc9be9",
       "kind": "repository_theorem",
       "statement": "finite BPA (G1)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -1461,6 +1564,13 @@
           "G1/G1HalfCoincidenceRoute",
           "same",
           "accepted"
+        ],
+        [
+          "sha256:367d725809a78965c6cf562c080f99fa4a5c8fab591bec3217d1a23a0fb7f961",
+          "formal productivity gives finite BPA with termination with coincidence from every swap seed, every reachable state being at most 2 beta^D ell_max long",
+          "G1/G1FormalProductivityRoute",
+          "same",
+          "accepted"
         ]
       ],
       "evidence": [
@@ -1470,15 +1580,15 @@
         ],
         [
           "source",
-          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Propositions 4.11, 5.46 and 5.47 and open-problem list"
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Propositions 4.11, 5.46 and 5.47 and open-problem list; docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (c)"
         ],
         [
           "dependency_alternatives",
-          "[[\"sha256:db5a63820aecae1e4cbb5333ce6a318587ed4796e0512cc955546db4b463cc1b\"],[\"sha256:74127f1410f7adfaae9818cabb18a38c29064bda385e3682a621704d276b3476\"],[\"sha256:518b4c47c5cc2e393deb24c677828fc2337216fc6dcdc298673614ab56dbf928\"]]"
+          "[[\"sha256:db5a63820aecae1e4cbb5333ce6a318587ed4796e0512cc955546db4b463cc1b\"],[\"sha256:74127f1410f7adfaae9818cabb18a38c29064bda385e3682a621704d276b3476\"],[\"sha256:518b4c47c5cc2e393deb24c677828fc2337216fc6dcdc298673614ab56dbf928\"],[\"sha256:367d725809a78965c6cf562c080f99fa4a5c8fab591bec3217d1a23a0fb7f961\"]]"
         ],
         [
           "status_note",
-          "the renewal, all-seed overlap and strict-zipper-exclusion implications are proved alternative establishments of canonical G1; their open premises are not discharged, so G1 itself remains an open conjectural gate"
+          "the renewal, all-seed overlap, strict-zipper-exclusion and formal-productivity implications are proved alternative establishments of canonical G1; their open premises are not discharged, so G1 itself remains an open conjectural gate"
         ]
       ],
       "tags": [
@@ -1870,20 +1980,20 @@
       "tags": []
     },
     "ConcentrationAuxB": {
-      "id": "sha256:819d7c09d7dd1500378714f6da8ba3d06922093b1222908d84d261f62c4e77d2",
+      "id": "sha256:593cf91ccf6bfef70360154bec28ce6725fa10beecbcb82bc1370eb29f50ba8c",
       "kind": "pending_dependency",
       "statement": "no strict component with K2 = 0 exists (concentration / aux-B)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:15b5d3826de900462dedad354366b97267133d7287fb18b1e34fc8c7b6ff99cf",
+          "sha256:4712353c2e9108702986fbf828c694677adec495dd6c180100c55585c3dc9be9",
           "finite BPA (G1)",
           "ConcentrationAuxB/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:faf7282af3905897396b6e5d6b99439424b1e36b64dbed3b7d3567f16f5e225c",
+          "sha256:8cf0ba82500779867bfb2eadfb8dfc89bbf3db211369309aac17fa6f83a764f7",
           "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
           "ConcentrationAuxB/SinkSCCReduction",
           "same",
@@ -1917,13 +2027,13 @@
       "tags": []
     },
     "SpanRichProductivity": {
-      "id": "sha256:83dacde15167296290ff62a88420a4ccffe089ec7af143face99ad3b3f88310b",
+      "id": "sha256:497fa5f19230917999ba98f75b24695e3d48d205ba389b0f48f68e928e0b28de",
       "kind": "pending_dependency",
       "statement": "no strict component with K2 != 0 exists (general wedge productivity)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:819d7c09d7dd1500378714f6da8ba3d06922093b1222908d84d261f62c4e77d2",
+          "sha256:593cf91ccf6bfef70360154bec28ce6725fa10beecbcb82bc1370eb29f50ba8c",
           "no strict component with K2 = 0 exists (concentration / aux-B)",
           "SpanRichProductivity/ConcentrationAuxB",
           "same",
@@ -1946,27 +2056,27 @@
       "tags": []
     },
     "SpectralSCCProducer": {
-      "id": "sha256:45a100ae81083dc08c9abeeeca1285fdfefdd4992af5ab18c6472d921d400800",
+      "id": "sha256:ddad7409b0fa146ff2617e0b34722c3acb9d67905be9d7d88775794528b977ab",
       "kind": "pending_dependency",
       "statement": "the spectral route produces an SCC producer under G1",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:15b5d3826de900462dedad354366b97267133d7287fb18b1e34fc8c7b6ff99cf",
+          "sha256:4712353c2e9108702986fbf828c694677adec495dd6c180100c55585c3dc9be9",
           "finite BPA (G1)",
           "SpectralSCCProducer/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:faf7282af3905897396b6e5d6b99439424b1e36b64dbed3b7d3567f16f5e225c",
+          "sha256:8cf0ba82500779867bfb2eadfb8dfc89bbf3db211369309aac17fa6f83a764f7",
           "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
           "SpectralSCCProducer/SinkSCCReduction",
           "same",
           "accepted"
         ],
         [
-          "sha256:83dacde15167296290ff62a88420a4ccffe089ec7af143face99ad3b3f88310b",
+          "sha256:497fa5f19230917999ba98f75b24695e3d48d205ba389b0f48f68e928e0b28de",
           "no strict component with K2 != 0 exists (general wedge productivity)",
           "SpectralSCCProducer/SpanRichProductivity",
           "same",
@@ -1982,20 +2092,20 @@
       "tags": []
     },
     "PDSSpectralRoute": {
-      "id": "sha256:aadd9c86580b6d5aee60bc58d4ca36b4a47c4f537e04f8f4838a471dc6c8fccc",
+      "id": "sha256:34e6b47f60a6ba32dd4a91eab09361101180c886d7f719da32b303696684b902",
       "kind": "repository_theorem",
       "statement": "under G1 and a spectral SCC producer, pure discrete spectrum follows",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:15b5d3826de900462dedad354366b97267133d7287fb18b1e34fc8c7b6ff99cf",
+          "sha256:4712353c2e9108702986fbf828c694677adec495dd6c180100c55585c3dc9be9",
           "finite BPA (G1)",
           "PDSSpectralRoute/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:45a100ae81083dc08c9abeeeca1285fdfefdd4992af5ab18c6472d921d400800",
+          "sha256:ddad7409b0fa146ff2617e0b34722c3acb9d67905be9d7d88775794528b977ab",
           "the spectral route produces an SCC producer under G1",
           "PDSSpectralRoute/SpectralSCCProducer",
           "same",
@@ -2088,20 +2198,20 @@
       "tags": []
     },
     "SCCProducer": {
-      "id": "sha256:a9f84bbbf09184b4877f3c49b5aa9f4f307424026dade886e14abc73f1862cce",
+      "id": "sha256:90812ec7a456d270f06fb27646c804dcba730266316aaa6227d786ffdff11dd2",
       "kind": "repository_theorem",
       "statement": "SCC Producer / C1 follows from G1, the sink-SCC reduction, and C2",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:15b5d3826de900462dedad354366b97267133d7287fb18b1e34fc8c7b6ff99cf",
+          "sha256:4712353c2e9108702986fbf828c694677adec495dd6c180100c55585c3dc9be9",
           "finite BPA (G1)",
           "SCCProducer/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:faf7282af3905897396b6e5d6b99439424b1e36b64dbed3b7d3567f16f5e225c",
+          "sha256:8cf0ba82500779867bfb2eadfb8dfc89bbf3db211369309aac17fa6f83a764f7",
           "under G1, nonproductivity reduces to a finite closed sink recurrent noncoincident SCC",
           "SCCProducer/SinkSCCReduction",
           "same",
@@ -2134,20 +2244,20 @@
       ]
     },
     "PDS": {
-      "id": "sha256:8508125c536889b9d5eb6efa878ff26edb228359ab3932b2d549536f8a65abaa",
+      "id": "sha256:10f4bf7aee848145bffd6acd1b8ac0e27dbc3eed68ae9a8dd45240743ec3bf9f",
       "kind": "repository_theorem",
       "statement": "pure discrete spectrum follows from G1 and SCC Producer",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:15b5d3826de900462dedad354366b97267133d7287fb18b1e34fc8c7b6ff99cf",
+          "sha256:4712353c2e9108702986fbf828c694677adec495dd6c180100c55585c3dc9be9",
           "finite BPA (G1)",
           "PDS/G1",
           "same",
           "accepted"
         ],
         [
-          "sha256:a9f84bbbf09184b4877f3c49b5aa9f4f307424026dade886e14abc73f1862cce",
+          "sha256:90812ec7a456d270f06fb27646c804dcba730266316aaa6227d786ffdff11dd2",
           "SCC Producer / C1 follows from G1, the sink-SCC reduction, and C2",
           "PDS/SCCProducer",
           "same",
@@ -2373,10 +2483,10 @@
       ],
       "tags": []
     },
-    "PotentialOverlapFiniteDescent": {
-      "id": "sha256:53e7fc95c820f714f76acdc5dcc75b5953705008e6d8a2da31e13df76fc8dec7",
+    "BoxCycleContainment": {
+      "id": "sha256:d8f11628aa7153f6fadbec06425ca2d9b6f976cec208f1251c75143b2f55384a",
       "kind": "repository_theorem",
-      "statement": "each potential overlap of a standing-regime substitution has finitely many descendants, and every cycle overlap lies in the exact finite box automaton",
+      "statement": "every potential overlap has finitely many descendants, and every potential overlap on a cycle of the overlap graph is a vertex of the box automaton",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [],
       "evidence": [
@@ -2386,21 +2496,45 @@
         ],
         [
           "source",
-          "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Lemma Omega1; docs/proof-bank-audit-2026-10-08.md; internal review complete, human review pending"
+          "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Lemma Omega1 (Proposition V step 1; docs/formal-overlap-carriers-2026-10-04.md, section 2 item 5); step 1 audited in docs/audit-adversarial-prop-v-theorem-e-2026-10-07.md; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+        ],
+        [
+          "review_source",
+          "docs/review-box-leftmost-ledger-2026-10-08.md"
+        ],
+        [
+          "additional_review_source",
+          "docs/proof-bank-audit-2026-10-08.md"
+        ],
+        [
+          "review_date",
+          "2026-10-08"
+        ],
+        [
+          "source_revision",
+          "cb9db58c9e25209c2a54ccd6955b509af88e8356"
+        ],
+        [
+          "reconciliation_source",
+          "docs/proof-ledger-reconciliation-2026-10-08.md"
+        ],
+        [
+          "human_review_pending",
+          "true"
         ]
       ],
       "tags": []
     },
-    "BoxProductivityEquivalence": {
-      "id": "sha256:6d6ed7925999e931fa85496ddeb6720f3243d2d229f10065d7fc183f41bef63a",
+    "BoxAutomatonCertificate": {
+      "id": "sha256:c84abe39eca084328738ce39801d084ca90be07c3b5f279e5c542a7d86fcde7e",
       "kind": "repository_theorem",
-      "statement": "for each standing-regime substitution, formal productivity is equivalent to every vertex of its finite box automaton reaching a coincidence",
+      "statement": "a PIP substitution is formally productive iff every vertex of its box automaton reaches a coincidence",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:53e7fc95c820f714f76acdc5dcc75b5953705008e6d8a2da31e13df76fc8dec7",
-          "each potential overlap of a standing-regime substitution has finitely many descendants, and every cycle overlap lies in the exact finite box automaton",
-          "BoxProductivityEquivalence/PotentialOverlapFiniteDescent",
+          "sha256:d8f11628aa7153f6fadbec06425ca2d9b6f976cec208f1251c75143b2f55384a",
+          "every potential overlap has finitely many descendants, and every potential overlap on a cycle of the overlap graph is a vertex of the box automaton",
+          "BoxAutomatonCertificate/BoxCycleContainment",
           "same",
           "accepted"
         ]
@@ -2412,15 +2546,53 @@
         ],
         [
           "source",
-          "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega; docs/proof-bank-audit-2026-10-08.md; internal review complete, human review pending"
+          "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+        ],
+        [
+          "review_source",
+          "docs/review-box-leftmost-ledger-2026-10-08.md"
+        ],
+        [
+          "additional_review_source",
+          "docs/proof-bank-audit-2026-10-08.md"
+        ],
+        [
+          "review_date",
+          "2026-10-08"
+        ],
+        [
+          "source_revision",
+          "cb9db58c9e25209c2a54ccd6955b509af88e8356"
+        ],
+        [
+          "reconciliation_source",
+          "docs/proof-ledger-reconciliation-2026-10-08.md"
+        ],
+        [
+          "human_review_pending",
+          "true"
         ]
       ],
       "tags": []
     },
-    "PisotFamilyMeyerProperty": {
-      "id": "sha256:f5defc85e0789e39ebb0af955022c242c3818c2cf4b3383827d23753f5406137",
+    "FormalProductivity": {
+      "id": "sha256:f0318931eee642fc1c3ff9a2dfd1c4e6b88fcb18b56fdbf6136f77b8003924ef",
+      "kind": "pending_dependency",
+      "statement": "for every PIP substitution every potential overlap is productive (FP)",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "reason",
+          "open conjectural gate; docs/formal-productivity-reduction-2026-10-04.md; docs/pds-certificate-from-the-box-automaton-2026-10-07.md; implied by PDS through Corollary FP'' and Theorem S"
+        ]
+      ],
+      "tags": []
+    },
+    "PisotMeyerProperty": {
+      "id": "sha256:01cef3a4ddcad73131c68bf8ae941193d90cba05d1f2fcba02446c780827cb6a",
       "kind": "imported_theorem",
-      "statement": "the primitive one-dimensional Pisot substitution suspension has the Meyer return-translation property required by the overlap-coincidence criterion",
+      "statement": "a repetitive primitive one-dimensional substitution tiling with Pisot inflation and FLC has Meyer control points and Meyer same-type return vectors",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [],
       "evidence": [
@@ -2430,15 +2602,39 @@
         ],
         [
           "source",
-          "Lee-Solomyak 2012, arXiv:1002.0039, Theorem 4.3 and Corollary 2.13; docs/pds-certificate-from-the-box-automaton-2026-10-07.md, section 7; hypotheses rechecked in docs/proof-bank-audit-2026-10-08.md"
+          "Lee-Solomyak, arXiv:1002.0039, Definition 2.3 and Theorem 4.3; docs/review-box-leftmost-ledger-2026-10-08.md, section 1 (scalar expansion hypotheses and return-vector transfer checked)"
+        ],
+        [
+          "review_source",
+          "docs/review-box-leftmost-ledger-2026-10-08.md"
+        ],
+        [
+          "additional_review_source",
+          "docs/proof-bank-audit-2026-10-08.md"
+        ],
+        [
+          "review_date",
+          "2026-10-08"
+        ],
+        [
+          "source_revision",
+          "cb9db58c9e25209c2a54ccd6955b509af88e8356"
+        ],
+        [
+          "reconciliation_source",
+          "docs/proof-ledger-reconciliation-2026-10-08.md"
+        ],
+        [
+          "human_review_pending",
+          "true"
         ]
       ],
       "tags": []
     },
     "OverlapCoincidenceCriterion": {
-      "id": "sha256:ef40a72d608cc0469b6a6deb9d86ef74ae3b83af77c3c4649e4dbb42d87898fb",
+      "id": "sha256:6bce84fde996ae3315699926fc2b3642634eb813ffba015dd10d132eacf2f017",
       "kind": "imported_theorem",
-      "statement": "a repetitive primitive FLC self-affine substitution tiling with Meyer return translations has pure point dynamical spectrum when every actual overlap reaches a coincidence",
+      "statement": "for a repetitive primitive FLC self-affine tiling with Meyer return vectors, coincidence reachability from every occurring overlap implies pure discrete spectrum of the tiling flow",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [],
       "evidence": [
@@ -2448,35 +2644,59 @@
         ],
         [
           "source",
-          "Lee-Moody-Solomyak 2003, arXiv:0910.4450, Theorem 4.7 and Lemma 6.9; Akiyama-Lee 2011, arXiv:1003.2898, Theorem 2.5; docs/proof-bank-audit-2026-10-08.md"
+          "Lee-Moody-Solomyak, arXiv:0910.4450, Theorem 4.7 and Lemmas 6.8-6.9; Akiyama-Lee, arXiv:1003.2898, Theorem 2.5; docs/review-box-leftmost-ledger-2026-10-08.md, section 1"
+        ],
+        [
+          "review_source",
+          "docs/review-box-leftmost-ledger-2026-10-08.md"
+        ],
+        [
+          "additional_review_source",
+          "docs/proof-bank-audit-2026-10-08.md"
+        ],
+        [
+          "review_date",
+          "2026-10-08"
+        ],
+        [
+          "source_revision",
+          "cb9db58c9e25209c2a54ccd6955b509af88e8356"
+        ],
+        [
+          "reconciliation_source",
+          "docs/proof-ledger-reconciliation-2026-10-08.md"
+        ],
+        [
+          "human_review_pending",
+          "true"
         ]
       ],
       "tags": []
     },
-    "BoxPDSCertificate": {
-      "id": "sha256:17309a7f9bab506e74d9445450ca3bcdfcd53bb820b865a0da7a964fc41bd729",
+    "BoxAutomatonPDSCertificate": {
+      "id": "sha256:e02dc7102f9a4f056edc2a127d98ba9a333dfff8e28ddfa23671878be51cb4d7",
       "kind": "repository_theorem",
-      "statement": "for each standing-regime specimen, if every vertex of its exact finite box automaton reaches a coincidence, its substitution tiling has pure discrete spectrum",
+      "statement": "for each fixed PIP substitution, if every vertex of its complete box automaton reaches a coincidence, its Perron-length suspension tiling flow has pure discrete spectrum",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:6d6ed7925999e931fa85496ddeb6720f3243d2d229f10065d7fc183f41bef63a",
-          "for each standing-regime substitution, formal productivity is equivalent to every vertex of its finite box automaton reaching a coincidence",
-          "BoxPDSCertificate/BoxProductivityEquivalence",
+          "sha256:c84abe39eca084328738ce39801d084ca90be07c3b5f279e5c542a7d86fcde7e",
+          "a PIP substitution is formally productive iff every vertex of its box automaton reaches a coincidence",
+          "BoxAutomatonPDSCertificate/BoxAutomatonCertificate",
           "same",
           "accepted"
         ],
         [
-          "sha256:f5defc85e0789e39ebb0af955022c242c3818c2cf4b3383827d23753f5406137",
-          "the primitive one-dimensional Pisot substitution suspension has the Meyer return-translation property required by the overlap-coincidence criterion",
-          "BoxPDSCertificate/PisotFamilyMeyerProperty",
+          "sha256:01cef3a4ddcad73131c68bf8ae941193d90cba05d1f2fcba02446c780827cb6a",
+          "a repetitive primitive one-dimensional substitution tiling with Pisot inflation and FLC has Meyer control points and Meyer same-type return vectors",
+          "BoxAutomatonPDSCertificate/PisotMeyerProperty",
           "same",
           "accepted"
         ],
         [
-          "sha256:ef40a72d608cc0469b6a6deb9d86ef74ae3b83af77c3c4649e4dbb42d87898fb",
-          "a repetitive primitive FLC self-affine substitution tiling with Meyer return translations has pure point dynamical spectrum when every actual overlap reaches a coincidence",
-          "BoxPDSCertificate/OverlapCoincidenceCriterion",
+          "sha256:6bce84fde996ae3315699926fc2b3642634eb813ffba015dd10d132eacf2f017",
+          "for a repetitive primitive FLC self-affine tiling with Meyer return vectors, coincidence reachability from every occurring overlap implies pure discrete spectrum of the tiling flow",
+          "BoxAutomatonPDSCertificate/OverlapCoincidenceCriterion",
           "same",
           "accepted"
         ]
@@ -2488,15 +2708,145 @@
         ],
         [
           "source",
-          "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (a); docs/proof-bank-audit-2026-10-08.md; this is the tiling R-action sufficiency direction only"
+          "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega consequence (a); docs/review-box-leftmost-ledger-2026-10-08.md, sections 1-2; tiling R-action sufficiency only"
+        ],
+        [
+          "review_source",
+          "docs/review-box-leftmost-ledger-2026-10-08.md"
+        ],
+        [
+          "additional_review_source",
+          "docs/proof-bank-audit-2026-10-08.md"
+        ],
+        [
+          "review_date",
+          "2026-10-08"
+        ],
+        [
+          "source_revision",
+          "cb9db58c9e25209c2a54ccd6955b509af88e8356"
+        ],
+        [
+          "reconciliation_source",
+          "docs/proof-ledger-reconciliation-2026-10-08.md"
+        ],
+        [
+          "human_review_pending",
+          "true"
         ]
       ],
       "tags": []
     },
-    "LeftmostChainSign": {
-      "id": "sha256:7d396ef5ddf7c23d50b61d431eb70314ae8aba7696e2a8092dd60194d5106697",
+    "PDSFormalProductivityRoute": {
+      "id": "sha256:1fca0fbd45d51bd8a3a8a572d91ebfa354366b84d94a5f93185665fe76c2d990",
       "kind": "repository_theorem",
-      "statement": "the leftmost child of a nonzero-offset overlap preserves its strict offset sign or lands on zero, and has index zero on the later-starting parent side",
+      "statement": "formal productivity implies pure discrete spectrum through the overlap-coincidence criterion, without unimodularity",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:f0318931eee642fc1c3ff9a2dfd1c4e6b88fcb18b56fdbf6136f77b8003924ef",
+          "for every PIP substitution every potential overlap is productive (FP)",
+          "PDSFormalProductivityRoute/FormalProductivity",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:e02dc7102f9a4f056edc2a127d98ba9a333dfff8e28ddfa23671878be51cb4d7",
+          "for each fixed PIP substitution, if every vertex of its complete box automaton reaches a coincidence, its Perron-length suspension tiling flow has pure discrete spectrum",
+          "PDSFormalProductivityRoute/BoxAutomatonPDSCertificate",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (a); independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "PDSFormalProductivitySeedRoute": {
+      "id": "sha256:62ba0945db3f24e4275acce0733d3bcce545f20193d082658585254f38a72879",
+      "kind": "repository_theorem",
+      "statement": "formal productivity gives productivity of every overlap reachable from a swap seed, hence pure discrete spectrum by coincidence density one",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:f0318931eee642fc1c3ff9a2dfd1c4e6b88fcb18b56fdbf6136f77b8003924ef",
+          "for every PIP substitution every potential overlap is productive (FP)",
+          "PDSFormalProductivitySeedRoute/FormalProductivity",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:58cf2389acfc61befe8aad13ecde2bb68ae246c243249c1bf340702b096ba9e0",
+          "every swap seed has a finite exact overlap graph",
+          "PDSFormalProductivitySeedRoute/SwapOverlapFiniteness",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:1146fea4a59921812561d69b036af5649744c9373352d76fe7ffe076a9ef3183",
+          "dense eventual coincidence gives pure discrete spectrum",
+          "PDSFormalProductivitySeedRoute/DensityToPDSBridge",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (b), with manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Lemma 5.36 and Theorem 5.38; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "G1FormalProductivityRoute": {
+      "id": "sha256:367d725809a78965c6cf562c080f99fa4a5c8fab591bec3217d1a23a0fb7f961",
+      "kind": "repository_theorem",
+      "statement": "formal productivity gives finite BPA with termination with coincidence from every swap seed, every reachable state being at most 2 beta^D ell_max long",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:f0318931eee642fc1c3ff9a2dfd1c4e6b88fcb18b56fdbf6136f77b8003924ef",
+          "for every PIP substitution every potential overlap is productive (FP)",
+          "G1FormalProductivityRoute/FormalProductivity",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:d8f11628aa7153f6fadbec06425ca2d9b6f976cec208f1251c75143b2f55384a",
+          "every potential overlap has finitely many descendants, and every potential overlap on a cycle of the overlap graph is a vertex of the box automaton",
+          "G1FormalProductivityRoute/BoxCycleContainment",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (c), with docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "LeftmostChainCycleStructure": {
+      "id": "sha256:a6c3654b410d0cc5f0a9c5eb8822dabe4e892d0a14953e997b18c222d336bf1d",
+      "kind": "repository_theorem",
+      "statement": "every terminal cycle of the leftmost-child map on the complete box graph keeps one strict offset sign, with index zero on the later-starting side, and is a prefix-vs-interior occurrence pair sigma^r(i) = i U, sigma^r(j) = Q j V with (I - M^r) w_0 = ab(Q) after orienting the offset negatively; the prefix object is a right-infinite fixed ray and the interior object is a two-sided tiling compared on the right half-line, whose common centre is never a common vertex; the cycles come in mirror pairs",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [],
       "evidence": [
@@ -2506,21 +2856,45 @@
         ],
         [
           "source",
-          "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Lemma S; docs/proof-bank-audit-2026-10-08.md; internal review complete, human review pending"
+          "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Lemma S, Proposition LC and Corollary LC4; 10,584 sign/shape checks, 10,128 integral replays and 456 uncomputed offsets on the standing corpus; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+        ],
+        [
+          "review_source",
+          "docs/review-box-leftmost-ledger-2026-10-08.md"
+        ],
+        [
+          "additional_review_source",
+          "docs/proof-bank-audit-2026-10-08.md"
+        ],
+        [
+          "review_date",
+          "2026-10-08"
+        ],
+        [
+          "source_revision",
+          "cb9db58c9e25209c2a54ccd6955b509af88e8356"
+        ],
+        [
+          "reconciliation_source",
+          "docs/proof-ledger-reconciliation-2026-10-08.md"
+        ],
+        [
+          "human_review_pending",
+          "true"
         ]
       ],
       "tags": []
     },
-    "LeftmostChainPeriodicPair": {
-      "id": "sha256:5fd85d8fa4ff304df1266e8f4343d19078723d888cd5992bf9b68544a848f921",
+    "LeftmostChainG1Certificate": {
+      "id": "sha256:913b3aab0f061018f47627baf5df53ccd68dceb0cca0b9c943d84530df6ab542",
       "kind": "repository_theorem",
-      "statement": "a terminal nonzero-offset leftmost cycle has constant sign, one prefix and one interior periodic occurrence, the integral equation (I - M^r)w = ab(Q) up to side exchange, and a common-centre fixed pair on the right half-line with no common vertex at its centre",
+      "statement": "a PIP substitution whose box graph has no terminal leftmost cycle satisfies all-seed strict-zipper exclusion, hence finite BPA",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:7d396ef5ddf7c23d50b61d431eb70314ae8aba7696e2a8092dd60194d5106697",
-          "the leftmost child of a nonzero-offset overlap preserves its strict offset sign or lands on zero, and has index zero on the later-starting parent side",
-          "LeftmostChainPeriodicPair/LeftmostChainSign",
+          "sha256:d8f11628aa7153f6fadbec06425ca2d9b6f976cec208f1251c75143b2f55384a",
+          "every potential overlap has finitely many descendants, and every potential overlap on a cycle of the overlap graph is a vertex of the box automaton",
+          "LeftmostChainG1Certificate/BoxCycleContainment",
           "same",
           "accepted"
         ]
@@ -2532,7 +2906,31 @@
         ],
         [
           "source",
-          "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Proposition LC; docs/proof-bank-audit-2026-10-08.md; the prefix-side fixed point is one-sided, not a same-fibre two-sided pair"
+          "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Corollary LC5, with manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.47; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+        ],
+        [
+          "review_source",
+          "docs/review-box-leftmost-ledger-2026-10-08.md"
+        ],
+        [
+          "additional_review_source",
+          "docs/proof-bank-audit-2026-10-08.md"
+        ],
+        [
+          "review_date",
+          "2026-10-08"
+        ],
+        [
+          "source_revision",
+          "cb9db58c9e25209c2a54ccd6955b509af88e8356"
+        ],
+        [
+          "reconciliation_source",
+          "docs/proof-ledger-reconciliation-2026-10-08.md"
+        ],
+        [
+          "human_review_pending",
+          "true"
         ]
       ],
       "tags": []

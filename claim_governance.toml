@@ -402,33 +402,60 @@ anchor = "| Boundary-hitting criterion |"
 window_lines = 0
 
 [[claim]]
-name = "BoxPDSCertificate"
+name = "BoxAutomatonCertificate"
+status = "proved"
+aliases = ["Theorem Ω", "box-automaton certificate"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BoxAutomatonCertificate"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BoxAutomatonCertificate |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Box-automaton certificate for formal productivity |"
+window_lines = 0
+
+[[claim]]
+name = "BoxAutomatonPDSCertificate"
 status = "proved"
 aliases = ["per-specimen box PDS certificate"]
 [[claim.surfaces]]
 path = "proof/tla/Ledger.tla"
-anchor = '"BoxPDSCertificate"'
+anchor = '"BoxAutomatonPDSCertificate"'
 section = "ProvedDef == {"
 section_end = "}"
 expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
-anchor = '| BoxPDSCertificate |'
+anchor = '| BoxAutomatonPDSCertificate |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Box-automaton PDS certificate |"
 window_lines = 0
 
 [[claim]]
-name = "BoxProductivityEquivalence"
+name = "BoxCycleContainment"
 status = "proved"
-aliases = ["Theorem Omega", "Theorem Ω"]
+aliases = ["Lemma Ω1"]
 [[claim.surfaces]]
 path = "proof/tla/Ledger.tla"
-anchor = '"BoxProductivityEquivalence"'
+anchor = '"BoxCycleContainment"'
 section = "ProvedDef == {"
 section_end = "}"
 expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
-anchor = '| BoxProductivityEquivalence |'
+anchor = '| BoxCycleContainment |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Cycle vertices lie in the box automaton |"
 window_lines = 0
 
 [[claim]]
@@ -681,6 +708,25 @@ anchor = '| EndpointCore |'
 window_lines = 0
 
 [[claim]]
+name = "FormalProductivity"
+status = "open"
+aliases = ["formal productivity"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"FormalProductivity"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "absent"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| FormalProductivity |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Formal productivity |"
+window_lines = 0
+
+[[claim]]
 name = "G1"
 status = "open"
 aliases = ["finite BPA"]
@@ -702,6 +748,25 @@ window_lines = 0
 path = "docs/conjecture-ledger.md"
 anchor = "## C. Parallel programme — G1 / renewal finiteness"
 window_lines = 4
+
+[[claim]]
+name = "G1FormalProductivityRoute"
+status = "conditional"
+aliases = ["consequence (c)"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"G1FormalProductivityRoute"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| G1FormalProductivityRoute |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Formal productivity implies finite BPA |"
+window_lines = 0
 
 [[claim]]
 name = "G1FromRenewal"
@@ -895,32 +960,41 @@ anchor = '| LatticeLift |'
 window_lines = 0
 
 [[claim]]
-name = "LeftmostChainPeriodicPair"
+name = "LeftmostChainCycleStructure"
 status = "proved"
 aliases = ["Proposition LC"]
 [[claim.surfaces]]
 path = "proof/tla/Ledger.tla"
-anchor = '"LeftmostChainPeriodicPair"'
+anchor = '"LeftmostChainCycleStructure"'
 section = "ProvedDef == {"
 section_end = "}"
 expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
-anchor = '| LeftmostChainPeriodicPair |'
+anchor = '| LeftmostChainCycleStructure |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Leftmost-chain cycles are prefix-vs-interior pairs |"
 window_lines = 0
 
 [[claim]]
-name = "LeftmostChainSign"
+name = "LeftmostChainG1Certificate"
 status = "proved"
+aliases = ["Corollary LC5"]
 [[claim.surfaces]]
 path = "proof/tla/Ledger.tla"
-anchor = '"LeftmostChainSign"'
+anchor = '"LeftmostChainG1Certificate"'
 section = "ProvedDef == {"
 section_end = "}"
 expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
-anchor = '| LeftmostChainSign |'
+anchor = '| LeftmostChainG1Certificate |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| No terminal leftmost cycle implies finite BPA |"
 window_lines = 0
 
 [[claim]]
@@ -1080,6 +1154,7 @@ window_lines = 0
 [[claim]]
 name = "OverlapCoincidenceCriterion"
 status = "imported"
+aliases = ["Lee–Moody–Solomyak overlap-coincidence criterion"]
 [[claim.surfaces]]
 path = "proof/tla/Ledger.tla"
 anchor = '"OverlapCoincidenceCriterion"'
@@ -1089,6 +1164,10 @@ expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| OverlapCoincidenceCriterion |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Overlap-coincidence criterion |"
 window_lines = 0
 
 [[claim]]
@@ -1161,6 +1240,44 @@ expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| PDS |'
+window_lines = 0
+
+[[claim]]
+name = "PDSFormalProductivityRoute"
+status = "conditional"
+aliases = ["consequence (a)"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PDSFormalProductivityRoute"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PDSFormalProductivityRoute |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Formal productivity implies PDS (overlap coincidence) |"
+window_lines = 0
+
+[[claim]]
+name = "PDSFormalProductivitySeedRoute"
+status = "conditional"
+aliases = ["consequence (b)"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PDSFormalProductivitySeedRoute"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PDSFormalProductivitySeedRoute |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Formal productivity implies PDS (seed route) |"
 window_lines = 0
 
 [[claim]]
@@ -1312,32 +1429,22 @@ anchor = '| PhiSemisimplicity |'
 window_lines = 0
 
 [[claim]]
-name = "PisotFamilyMeyerProperty"
+name = "PisotMeyerProperty"
 status = "imported"
+aliases = ["Pisot Meyer property"]
 [[claim.surfaces]]
 path = "proof/tla/Ledger.tla"
-anchor = '"PisotFamilyMeyerProperty"'
+anchor = '"PisotMeyerProperty"'
 section = "ImportedDef == {"
 section_end = "}"
 expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
-anchor = '| PisotFamilyMeyerProperty |'
+anchor = '| PisotMeyerProperty |'
 window_lines = 0
-
-[[claim]]
-name = "PotentialOverlapFiniteDescent"
-status = "proved"
-aliases = ["Lemma Omega1", "Lemma Ω1"]
 [[claim.surfaces]]
-path = "proof/tla/Ledger.tla"
-anchor = '"PotentialOverlapFiniteDescent"'
-section = "ProvedDef == {"
-section_end = "}"
-expect = "present"
-[[claim.surfaces]]
-path = "docs/ledger-index.md"
-anchor = '| PotentialOverlapFiniteDescent |'
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Pisot Meyer property |"
 window_lines = 0
 
 [[claim]]

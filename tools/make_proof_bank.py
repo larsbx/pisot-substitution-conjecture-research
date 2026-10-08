@@ -83,7 +83,13 @@ def lean_code(text: str) -> str:
 
 def lean_declarations(root: Path) -> list[dict]:
     result = []
-    for path in sorted((root / PROJECT / "PscVerif").rglob("*.lean")):
+    project = root / PROJECT
+    # The root module is part of the compiled import closure too. The adjacent
+    # ProofBankAudit.lean is a replay script, not a library module.
+    root_module = project / "PscVerif.lean"
+    paths = ([root_module] if root_module.is_file() else [])
+    paths += sorted((project / "PscVerif").rglob("*.lean"))
+    for path in paths:
         text = path.read_text(encoding="utf-8")
         code = lean_code(text)
         stack: list[str | None] = []
@@ -146,6 +152,13 @@ def check_pins(root: Path, require_packages: bool = False) -> dict:
             run = subprocess.run(["git", "-C", str(checkout), "rev-parse", "HEAD"], capture_output=True, text=True)
             if run.returncode or run.stdout.strip() != package["rev"]:
                 raise ValueError(f"Lake checkout does not match its manifest pin: {package['name']}")
+            status = subprocess.run(
+                ["git", "-C", str(checkout), "status", "--porcelain",
+                 "--untracked-files=no", "--ignore-submodules=none"],
+                capture_output=True, text=True,
+            )
+            if status.returncode or status.stdout.strip():
+                raise ValueError(f"Lake checkout has tracked-file changes or unreadable status: {package['name']}")
     for requirement in config.get("require", []):
         package = by_name.get(requirement["name"])
         if package is None or requirement.get("rev") != package["rev"] or requirement.get("git") != package["url"] or package.get("inputRev") != package["rev"]:
