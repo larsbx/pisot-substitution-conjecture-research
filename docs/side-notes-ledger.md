@@ -338,7 +338,8 @@ by deleting it.
   whole-region lift. At the four no-certificate regions of the
   `zy | yzyz` run (#1150, #1165, #1198, #1338) the deep pass certifies in
   7–8 s each, two carving nothing. Measured (`timeout` as given, 3–4 runs
-  side by side): `zy | yz` 42 regions, 0 open, 11 s (unchanged); `zy | yzy`
+  side by side; the lazy-lift branch alone, before the value split was
+  merged): `zy | yz` 42 regions, 0 open, 11 s (unchanged); `zy | yzy`
   120 regions, 1 open (no point), 91 s (unchanged); `zy | yzyz` timed out
   at 1,800 s at region #1493 with 15 regions certified by the deep pass,
   none failing, 0 open without a certificate, 18 open without a real

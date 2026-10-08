@@ -465,7 +465,8 @@ def test_lift_key_prefers_the_whole_region() raises:
     vanishes everywhere above one whose end offset n_0 - 3 vanishes on a
     slice only, and among lifts of equal extent the one with the smaller
     offsets (copied constants such as 30 cost more) first; whole_region_lift
-    holds for the lifts with a zero end offset and not for the slice."""
+    holds for the lifts with a zero end offset and not for the slice, nor
+    for a zero end offset carved by a form failing at a probe point."""
     var lift = full_lift(3, 2)
     var w = lift.width()
     var lo0 = aff_const(w, -2)
@@ -494,6 +495,11 @@ def test_lift_key_prefers_the_whole_region() raises:
     assert_true(lift_key(whole, probes, lift) > lift_key(cheap, probes, lift))
     assert_true(whole_region_lift(whole, probes, lift) and whole_region_lift(dear, probes, lift))
     assert_false(whole_region_lift(slice, probes, lift))
+    var carved = whole.copy()
+    var cut = aff_const(w, probes[0][0] - 1)
+    cut[1] = -1  # n_0 <= n_0(probes[0]) - 1: fails at probes[0]
+    carved.ineqs.append(cut^)
+    assert_false(whole_region_lift(carved, probes, lift))
 
 
 def _same_steps(a: List[WitnessStep], b: List[WitnessStep]) -> Bool:
@@ -505,30 +511,64 @@ def _same_steps(a: List[WitnessStep], b: List[WitnessStep]) -> Bool:
     return True
 
 
+def _path(offs: List[Int]) -> List[WitnessStep]:
+    """A point path from (seg_a, off_a, seg_b, off_b) quadruples."""
+    var out = List[WitnessStep]()
+    for l in range(0, len(offs), 4):
+        out.append(WitnessStep(offs[l], List[Int]([offs[l + 1]]), offs[l + 2], List[Int]([offs[l + 3]])))
+    return out^
+
+
 def test_point_paths_resume_the_enumeration() raises:
-    """PointPaths yields enumerate_point_paths' paths one at a time: at the
-    line-mode family's points (1, 2) and (2, 1), with 20,000 nodes and with
-    300, the same paths in the same order (more at 20,000), and
-    enumerate_point_paths with a path cap k keeps a prefix of them, at
-    least k long."""
+    """Pinned against the enumeration as it stood at 5c43b85 (before
+    PointPaths): at the line-mode family's points (1, 2) and (2, 1)
+    (bound 3, level 6) the 20,000-node enumeration yields 264 and 216
+    paths (20 and 15 distinct; the search reaches a path more than once)
+    and the 12,000-node one their first 120 and 40 (as many distinct),
+    every one of level 4 and verified by verify_witness_line; the first
+    node to close a path closes 8, with steps (0 0 | 1 0), (2 3 | 2 5),
+    (2 1 | 1 1), (1 t | 1 t+2) for t = 0, 4, 1, 3, 0, 2, 2, 4 at (1, 2) and
+    the same with (2 2 | 2 5), (2 0 | 1 1) at (2, 1). PointPaths yields
+    the paths in that order, and a path cap k keeps the first 8 ceil(k / 8)
+    (every node that closes a path here closes 8), none at k = 0."""
+    var counts = List[List[Int]]([List[Int]([264, 120]), List[Int]([216, 40])])
+    var distinct = List[Int]([20, 15])
     for base in range(2):
         var point = _line_family_at(List[Int]([1, 2]) if base == 0 else List[Int]([2, 1]))
-        var counts = List[Int]()
-        for nodes in [20000, 300]:
+        var first = List[List[WitnessStep]]()
+        for t in [0, 4, 1, 3, 0, 2, 2, 4]:
+            first.append(_path(List[Int]([0, 0, 1, 0, 2, 3 - base, 2, 5, 2, 1 - base, 1, 1, 1, t, 1, t + 2])))
+        var full = List[List[WitnessStep]]()
+        for b in range(2):
+            var nodes = 20000 if b == 0 else 12000
             var all = enumerate_point_paths(point, O, Y, 3, 6, Y, Z, 1 << 30, nodes)
-            counts.append(len(all))
+            assert_equal(len(all), counts[base][b])
+            for k in range(len(first)):
+                assert_true(_same_steps(all[k], first[k]))
+            var new = 0
+            for k in range(len(all)):
+                assert_equal(len(all[k]), 4)
+                assert_true(verify_witness_line(point, O, Y, all[k]))
+                var seen = False
+                for j in range(k):
+                    seen = seen or _same_steps(all[j], all[k])
+                new += 0 if seen else 1
+                if b == 1:
+                    assert_true(_same_steps(all[k], full[k]))
+            assert_equal(new, distinct[base])
             var it = PointPaths(O, Y, 3, 6, Y, Z, nodes)
             var k = 0
             while it.next(point):
                 assert_true(k < len(all) and _same_steps(it.path, all[k]))
                 k += 1
             assert_equal(k, len(all))
-            for cap in range(1, len(all)):
+            for cap in range(25):
                 var some = enumerate_point_paths(point, O, Y, 3, 6, Y, Z, cap, nodes)
-                assert_true(len(some) >= cap)
+                assert_equal(len(some), min(8 * ((cap + 7) // 8), len(all)))
                 for j in range(len(some)):
                     assert_true(_same_steps(some[j], all[j]))
-        assert_true(counts[0] > counts[1])
+            if b == 0:
+                full = all^
 
 
 def main() raises:
@@ -558,4 +598,4 @@ def main() raises:
     print("[PASS] test_lift_key_prefers_the_whole_region")
     test_point_paths_resume_the_enumeration()
     print("[PASS] test_point_paths_resume_the_enumeration")
-    require_contract("psc.poly_line, the polynomial line mode of Theorem K's tail cells: polynomial products and sums evaluate as the products of their affine factors on [0, 3]^3, poly_nonneg_under is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2 for products U V + W and (U V + W) U, vanishing needs both signs, and verify_witness_poly agrees with verify_witness_line on the line-mode family (z^a y^b, y^(b+1) z^(a+1)) and on its single-offset perturbations, the path holding at every point of [0, 4]^2 once instantiated; the point-path enumeration returns only verified paths, and solve_lift solves some to a path with a zero end offset that verify_witness_poly accepts on its carved region and that holds at every point of [0, 5]^2 inside it; psc.product_lift makes A + B e affine over (n, q) with q_j = n_j e, agreeing with the polynomial at every real point of [0, 4]^3 and lifting the zy|yz quantities 2a - 2b + ae and f(-1) exactly, its McCormick forms equal (n_j - lo_j)(e - lo_e) >= 0 at every real point above each lower bound in 0..2, and any other degree-2 monomial, any degree 3, a variable past the lift or an absent product raises; product_substitution keeps every affine form over (n, q) equal at corresponding real points of [0, 3]^3 through n_k := constant, shift or affine combination and e := c + lam e, refusing e := e + n_0 and a replacement naming a product coordinate, the box McCormick envelope (both bounds where present) is >= 0 at every real point of its box, and lifted conditions are proved by their (n, q) forms, refusing n_0 n_1 and needing the lifted form to vanish; rlt_forms equals (e - lo_e) g and (hi_e - e) g at every real point of [0, 4]^3 for every form g over n with constant in -2..2 and coefficients in -1..1 (lo_e in 0..2), only the (e - lo_e) g form when e is unbounded, raising on a form naming a product coordinate or an n_k whose q_k is not in the lift; probe_points returns real points of their region, and lift_key ranks a lift with a zero end offset above one vanishing on a slice, and the smaller offsets first at equal extent, whole_region_lift holding for the zero end offsets and not for the slice; PointPaths yields enumerate_point_paths' paths in the same order at two points and two node budgets (more paths at the larger), and a path cap k keeps a prefix of at least k of them")
+    require_contract("psc.poly_line, the polynomial line mode of Theorem K's tail cells: polynomial products and sums evaluate as the products of their affine factors on [0, 3]^3, poly_nonneg_under is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2 for products U V + W and (U V + W) U, vanishing needs both signs, and verify_witness_poly agrees with verify_witness_line on the line-mode family (z^a y^b, y^(b+1) z^(a+1)) and on its single-offset perturbations, the path holding at every point of [0, 4]^2 once instantiated; the point-path enumeration returns only verified paths, and solve_lift solves some to a path with a zero end offset that verify_witness_poly accepts on its carved region and that holds at every point of [0, 5]^2 inside it; psc.product_lift makes A + B e affine over (n, q) with q_j = n_j e, agreeing with the polynomial at every real point of [0, 4]^3 and lifting the zy|yz quantities 2a - 2b + ae and f(-1) exactly, its McCormick forms equal (n_j - lo_j)(e - lo_e) >= 0 at every real point above each lower bound in 0..2, and any other degree-2 monomial, any degree 3, a variable past the lift or an absent product raises; product_substitution keeps every affine form over (n, q) equal at corresponding real points of [0, 3]^3 through n_k := constant, shift or affine combination and e := c + lam e, refusing e := e + n_0 and a replacement naming a product coordinate, the box McCormick envelope (both bounds where present) is >= 0 at every real point of its box, and lifted conditions are proved by their (n, q) forms, refusing n_0 n_1 and needing the lifted form to vanish; rlt_forms equals (e - lo_e) g and (hi_e - e) g at every real point of [0, 4]^3 for every form g over n with constant in -2..2 and coefficients in -1..1 (lo_e in 0..2), only the (e - lo_e) g form when e is unbounded, raising on a form naming a product coordinate or an n_k whose q_k is not in the lift; probe_points returns real points of their region, and lift_key ranks a lift with a zero end offset above one vanishing on a slice, and the smaller offsets first at equal extent, whole_region_lift holding for the zero end offsets and not for the slice, nor for a zero end offset carved by a form failing at a probe point; at the line-mode family's points (1, 2) and (2, 1) the point-path enumeration yields 264 and 216 verified level-4 paths (20 and 15 distinct) in 20,000 nodes and the first 120 and 40 of them (as many distinct) in 12,000, the first node to close a path closing the 8 pinned paths, PointPaths yields them in the same order, and a path cap k in 0..24 keeps the first 8 ceil(k / 8) of them (none at k = 0)")

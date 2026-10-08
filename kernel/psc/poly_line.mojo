@@ -1294,15 +1294,14 @@ struct PointPaths(Movable):
 def enumerate_point_paths(point: ConeFamily, a0: Int, b0: Int, bound: Int, max_level: Int, ly: Int, lz: Int, max_paths: Int, max_nodes: Int, line_cap: Int = 0) -> List[List[WitnessStep]]:
     """Witness paths of a point family (constant offsets), by depth-first
     search over the line candidates, shortest first by iterative deepening:
-    each depth limit up to `max_level` in turn, at most `max_paths` paths
-    (every path closed at the node that reaches the limit is kept) and
-    `max_nodes` nodes in all (`PointPaths`). Distinct paths may share
-    states: `solve_lift` asks only for their segments. `line_cap` as in
+    each depth limit up to `max_level` in turn, and `max_nodes` nodes in
+    all (`PointPaths`); no node is expanded once `max_paths` paths are kept,
+    so every path closed at the node that reaches the limit is kept, and
+    `max_paths = 0` keeps none. Distinct paths may share states:
+    `solve_lift` asks only for their segments. `line_cap` as in
     `within_line`."""
     var out = List[List[WitnessStep]]()
     var it = PointPaths(a0, b0, bound, max_level, ly, lz, max_nodes, line_cap)
-    while it.next(point):
+    while (len(out) < max_paths or len(it.pending) > 0) and it.next(point):
         out.append(it.path.copy())
-        if len(out) >= max_paths and len(it.pending) == 0:
-            break
     return out^

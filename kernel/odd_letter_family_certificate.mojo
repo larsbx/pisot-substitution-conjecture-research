@@ -3414,14 +3414,15 @@ def _value_split(reg: GuidedRegion, m: Int) raises -> List[GuidedRegion]:
 
 def _value_pieces(reg: GuidedRegion, k: Int, lo: Int, hi: Int, m: Int, c: Int = 0) -> List[GuidedRegion]:
     """The region with `n_k := v + c e` for every `v` in `lo..hi` (with a
-    product lift; `c = 0` otherwise), one level deeper, carrying
-    `v + c e >= 0`: a partition of the real points when every one has
-    `lo <= n_k - c e <= hi`. The products follow (`_region_subst`); a
-    piece with `c = 0` and `v >= 0` needs no assumption."""
+    product lift; `c = 0` otherwise), one level deeper: a partition of the
+    real points when every one has `lo <= n_k - c e <= hi`. The products
+    follow (`_region_subst`). With a product lift a piece carries
+    `v + c e >= 0` unless `c = 0` and `v >= 0`; without one it carries
+    nothing."""
     var out = List[GuidedRegion]()
     for v in range(lo, hi + 1):
         var repl = aff_const(m, v)
-        if c == 0 and v >= 0:
+        if c == 0 and (v >= 0 or not reg.lift.on()):
             out.append(_region_subst(reg, k, repl, reg.depth + 1))
             continue
         if c != 0:
