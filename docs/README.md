@@ -344,6 +344,13 @@ These are reference/index additions only. They do not establish #84, #138,
   (`BoundedPureDiscreteSpectrum`) resting on Theorem Ω of
   `pds-certificate-from-the-box-automaton-2026-10-07.md`, not on Proposition V(2).
   Driver `kernel/strong_coincidence_census.mojo`.
+- `p1-seed-strength-2026-10-08.md` — #84 at seed strength. Proposition SA:
+  a swap seed has exactly three overlaps, one of them a self-overlap of the
+  longer letter. Theorem SC: one productive seed ⟺ every seed ⟺ FP ⟺ PDS,
+  per substitution (through Corollary FP″), so seed strength buys no slack in
+  truth. Lemma RC: the census domains are closed under reversal, which gives
+  two-sided strong coincidence on all 408,798 specimens. Theorem L′: further
+  certified lines of class B, each an infinite family with PDS and G1.
 - `pds-certificate-from-the-box-automaton-2026-10-07.md` — Theorem Ω:
   formal productivity of a PIP substitution is the single exact property
   "every vertex of the box automaton reaches a coincidence"; it gives PDS
