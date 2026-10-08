@@ -4,7 +4,7 @@ productivity on the same automaton (Theorem Omega of
 docs/pds-certificate-from-the-box-automaton-2026-10-07.md)."""
 
 from std.testing import assert_equal, assert_true
-from mojo_smoke.claims import require_contract
+from mojo_smoke.claims import require_claim, require_contract
 from psc.corpus import Specimen, image_words_up_to, pip_corpus, screened_triples
 from psc.overlap_obstruction import recurrent_sccs
 from psc.overlap_seed_patch import build_seed_overlap_graph_from_tables, build_seed_overlap_tables
@@ -198,3 +198,4 @@ def main() raises:
     print("[PASS] test_census_slices_are_pinned")
     require_contract("box-graph vertex coincidence (Proposition V): tribonacci 14/3, cube 1166/17, golden pump 716/15 hold for every r; every integral centre offset and every seed-graph cycle vertex lies in the box; a capped box graph is not a verdict; census slices pinned: first 300 standing specimens 59372 recurrent, K_V 17, 5221392 states; first 100 images-of-length-4 specimens 14180 recurrent, K_V 15, 1116030 states")
     require_contract("box-automaton formal productivity (Theorem Omega): every box vertex reaches a coincidence on tribonacci D 8 S 1, cube D 51 S 7, golden pump D 39 S 6, plastic D 33 S 15; the box holds the six aligned pairs; the seed graph misses 0/38/100/16 box cycle vertices; census slices productive with box D 51 and 38; a capped box graph is not productive")
+    require_claim("BoundedPureDiscreteSpectrum")

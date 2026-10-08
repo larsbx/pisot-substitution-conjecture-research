@@ -102,6 +102,8 @@ gives BH through step 1 of Proposition V alone, and pure discrete spectrum
 then also follows from Lee–Moody–Solomyak overlap coincidence
 (`pds-certificate-from-the-box-automaton-2026-10-07.md`, Theorem Ω and §5).
 The two larger rows are guarded by `.github/workflows/box-automaton-evidence.yml`.
+*Update 2026-10-08:* the statement is recorded in the claim ledger as the
+finite-domain theorem `BoundedPureDiscreteSpectrum`.
 
 In particular the catch-up-free specimens without a Barge-class witness
 (132 of 210 on the corpus, 480 of 654 at total length ≤ 8;

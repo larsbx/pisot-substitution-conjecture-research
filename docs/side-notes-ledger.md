@@ -1025,3 +1025,10 @@ by deleting it.
   literature route. A fresh re-derivation of Lemma C, Theorem B, Proposition F,
   Theorem R and depth-note Propositions 1/4 found no error. ·
   `pds-certificate-from-the-box-automaton-2026-10-07.md`
+- 2026-10-08 · The 145,806-specimen PDS statement is promoted to the claim
+  ledger as the finite-domain theorem `BoundedPureDiscreteSpectrum` (claim
+  map row "Finite-domain pure discrete spectrum"). The proof-dependency
+  ledger is unchanged, because the claim is finite-domain, not a universal
+  implication. ·
+  `pds-certificate-from-the-box-automaton-2026-10-07.md` §§5, 9;
+  `claim_governance.toml`
