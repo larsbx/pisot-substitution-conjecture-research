@@ -1056,7 +1056,8 @@ by deleting it.
 - 2026-10-08 · Rauzy representability of the closed claims: of the 47
   closed repository-proved claims (44 ledger nodes with complete closure plus
   three hand-ledger claims), 11 are natively statements about adelic Rauzy
-  pieces, 3 partly, and 33 not, because they use degree ≥ 2 subword or
-  free-Lie invariants that the Parikh map erases. The shortest PDS route and
+  pieces, 2 partly, and 34 not: they use degree ≥ 2 subword or free-Lie
+  invariants that the Parikh map erases, or stay on `Z^A` without reaching
+  the projection (factoring through ℓ is necessary, not sufficient). The shortest PDS route and
   the #139 frontier lie on the Rauzy side. This is an interpretive map; it
   moves no claim status. · `rauzy-representability-2026-10-08.html`

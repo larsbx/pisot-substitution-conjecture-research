@@ -94,7 +94,7 @@ footer { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--ru
     <div class="stack">
       <span class="eyebrow">pisot-substitution-conjecture-research · main@cb9db58 · 2026-10-08</span>
       <h1>How much of the closed PSC work is a statement about Rauzy fractals?</h1>
-      <p class="answer">About <strong>a quarter</strong>. Of the <span class="num">47</span> closed, repository-proved claims, <strong class="num">11</strong> are natively Rauzy statements and <strong class="num">3</strong> more are partly so. The remaining <span class="num">33</span> are built from invariants that a Rauzy fractal cannot see.</p>
+      <p class="answer">About <strong>a quarter</strong>. Of the <span class="num">47</span> closed, repository-proved claims, <strong class="num">11</strong> are natively Rauzy statements and <strong class="num">2</strong> more are partly so. The remaining <span class="num">34</span> either use invariants that a Rauzy fractal cannot see or stay on Z<sup>A</sup> without reaching the projection.</p>
       <p class="muted">The split matters more than the count. The Rauzy side carries the live route to pure discrete spectrum and the open frontier. The non-Rauzy side mostly carries the alternative G1 + SCC Producer route.</p>
     </div>
     <figure class="plate" style="margin:0">
@@ -105,15 +105,15 @@ footer { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--ru
 
   <section class="stack">
     <h2>The count</h2>
-    <div class="bar" role="img" aria-label="11 of 47 natively Rauzy, 3 partial, 33 not representable">
+    <div class="bar" role="img" aria-label="11 of 47 natively Rauzy, 2 partial, 34 not representable">
       <span style="flex:11;background:var(--r)">11</span>
-      <span style="flex:3;background:var(--rp)">3</span>
-      <span style="flex:33;background:var(--nr)">33</span>
+      <span style="flex:2;background:var(--rp)">2</span>
+      <span style="flex:34;background:var(--nr)">34</span>
     </div>
     <div class="legend">
       <div><span class="sw" style="background:var(--r)"></span><span><b>R</b>: the statement is a claim about adelic Rauzy pieces or the internal space · <span class="num">11 / 47 ≈ 23%</span></span></div>
-      <div><span class="sw" style="background:var(--rp)"></span><span><b>R⁻</b>: geometric core plus an algebraic residue · <span class="num">3 / 47 ≈ 6%</span></span></div>
-      <div><span class="sw" style="background:var(--nr)"></span><span><b>¬R</b>: not representable · <span class="num">33 / 47 ≈ 70%</span></span></div>
+      <div><span class="sw" style="background:var(--rp)"></span><span><b>R⁻</b>: geometric core plus an algebraic residue · <span class="num">2 / 47 ≈ 4%</span></span></div>
+      <div><span class="sw" style="background:var(--nr)"></span><span><b>¬R</b>: not representable · <span class="num">34 / 47 ≈ 72%</span></span></div>
     </div>
     <p class="muted">Base set: the <span class="num">44</span> ledger nodes in <code>docs/ledger-index.md</code> marked Repository-proved with complete dependency closure, plus the three proved hand-ledger claims in <code>claim_governance.toml</code>. Excluded: <span class="num">4</span> imported theorems, <span class="num">11</span> conditional theorems, <span class="num">10</span> open gates, <span class="num">1</span> retired claim, and <code>CoincidenceDensityOne</code>, which is labelled proved but still depends on the open <code>OverlapProductivity</code>.</p>
   </section>
@@ -123,8 +123,10 @@ footer { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--ru
     <h2>Rauzy fractals see only abelian, degree-1 data</h2>
     <p>A Rauzy fractal is the closure of the contracting (or adelic) projections of the Parikh vectors of prefixes. Whatever it records has already passed through the abelianisation map ℓ.</p>
     <div class="formula">X = closure{ π_c(ℓ(p)) : p a prefix of u = σ^ω(a) },   ℓ : A* → Z^A
-R-representable  ⇔  the claim's content factors through ℓ</div>
+R   ⇔  the claim's content factors through π_c ∘ ℓ   (the internal-space image)
+R   ⇒  it factors through ℓ          (necessary, not sufficient)</div>
     <p>The ¬R block uses degree-≥2 scattered-subword and free-Lie invariants: K₂, wedge spans, mid-area and mean-area, the orientation cocycle, and degree-4 defects. These are non-abelian, so ℓ erases them. They are absent from every Rauzy fractal by construction.</p>
+    <p>Factoring through ℓ is necessary but not enough. A claim that stays on Z<sup>A</sup> itself, such as the intertwiner P N = M P or a rational-rank bound, is abelian but says nothing about the projected pieces, so it is ¬R. It is R⁻ when part of its content does pass to the projection.</p>
   </section>
 
   <section class="cols">
@@ -143,7 +145,7 @@ R-representable  ⇔  the claim's content factors through ℓ</div>
       <ul class="tight">
         <li><b>“Rauzy” means adelic.</b> The standing regime includes non-unit PIP. Use K<sub>∞</sub> × ∏<sub>p | det M</sub> K<sub>p</sub> (Siegel; Minervino–Thuswaldner). A Euclidean fractal only works when |det M| = 1. See <code>proof-ladder.md</code> rule 5.</li>
         <li><b>Representable is not novel.</b> The repository records Rauzy-language ancestors for several R claims: Siegel–Thuswaldner's G(0), Arnoux–Ito strong coincidence, compactness of the fractal, Barge–Gambaudo. What is new is the non-unit transfer, the possibly illegal swap seeds, and the PDS ⇒ G1 package.</li>
-        <li><b>Not counted.</b> The box-automaton PDS certificate (2026-10-07), the leftmost-chain proposition (2026-10-05) and the vertex-coincidence box note (marked not yet reviewed) are proved in their notes but are not ledger nodes. All three are native R.</li>
+        <li><b>Not counted.</b> The base set is repository-proved claims only. The box-automaton note's finite-domain consequence is ledgered as <code>BoundedPureDiscreteSpectrum</code> (status finite-domain), so it falls outside that class; its universal Lemma Ω1 and Theorem Ω, the leftmost-chain proposition (2026-10-05) and the vertex-coincidence box note (marked not yet reviewed) are proved in their notes but are not ledger claims. All of them are native R.</li>
       </ul>
     </div>
   </section>
@@ -154,8 +156,8 @@ R-representable  ⇔  the claim's content factors through ℓ</div>
     <div class="filters" role="group" aria-label="Filter by class">
       <button type="button" id="f-all" data-f="all" aria-pressed="true">All <span class="num">47</span></button>
       <button type="button" id="f-R" data-f="R" aria-pressed="false"><span class="sw" style="background:var(--r)"></span>R <span class="num">11</span></button>
-      <button type="button" id="f-Rp" data-f="Rp" aria-pressed="false"><span class="sw" style="background:var(--rp)"></span>R⁻ <span class="num">3</span></button>
-      <button type="button" id="f-NR" data-f="NR" aria-pressed="false"><span class="sw" style="background:var(--nr)"></span>¬R <span class="num">33</span></button>
+      <button type="button" id="f-Rp" data-f="Rp" aria-pressed="false"><span class="sw" style="background:var(--rp)"></span>R⁻ <span class="num">2</span></button>
+      <button type="button" id="f-NR" data-f="NR" aria-pressed="false"><span class="sw" style="background:var(--nr)"></span>¬R <span class="num">34</span></button>
     </div>
     <div class="tablebox">
       <table>
@@ -191,7 +193,6 @@ const CLAIMS = [
   ...G("Partial: geometric core with algebraic residue", "Rp", [
     ["OverlapBadSCCNormalForm", "failure of productivity has a finite child-closed recurrent nonproductive SCC with PF(N_S) = β, full-rank V_S, spec(M) ⊆ spec(N_S)", "The SCC is a GIFS with PF = β, which is geometric. Full rank of V_S and spectral containment are rational-algebraic facts that no picture of the pieces shows."],
     ["ReturnModuleFullRank", "the uncollared return module Λ_ret of a primitive substitution with Q-independent frequencies is Z^A", "It is abelian. Its projection gives the lattice of the periodic Rauzy tiling only in the unit case. Non-unit needs the adelic lattice."],
-    ["UnimodularNoPatchCollapse", "restricted to unimodular σ, no σ^n(ab) is a proper power, by Parikh divisibility through M^n ∈ GL_A(Z)", "It is abelian and on the unit branch, where Euclidean Rauzy applies. But it is an integrality statement on Z^A, not on its projection."],
   ]),
   ...G("Not representable: code theory and words", "NR", [
     ["DefectTheorem", "det M_σ ≠ 0 gives full incidence rank and letter injectivity, so the defect theorem applies to the image code", "A statement about the code σ(A) inside A*. The words are not abelianised."],
@@ -225,6 +226,7 @@ const CLAIMS = [
     ["InterBlockCancellation", "inter-block cancellation on the v33/v34 route", "Cancellation between word blocks on the K₂ route."],
   ]),
   ...G("Not representable: seed spectral module and Parikh-rank algebra", "NR", [
+    ["UnimodularNoPatchCollapse", "restricted to unimodular σ, no σ^n(ab) is a proper power, by Parikh divisibility through M^n ∈ GL_A(Z)", "Abelian, but an integrality statement on Z^A with no projected content, even on the unit branch where Euclidean Rauzy applies."],
     ["ParikhIntertwiner", "for a finite closed nonproductive SCC, P N = M P", "Abelian but purely linear-algebraic. It intertwines count matrices and has no internal-space content."],
     ["OverlapFullRank", "a nonempty child-closed noncoincidence set has full rational intersection-vector rank", "A rational-rank statement. It constrains a hypothetical bad set algebraically, not geometrically."],
     ["ThetaIntertwining", "Θ intertwines the seed spectral operators", "Operators on the seed spectral module, which is built from subword data."],
