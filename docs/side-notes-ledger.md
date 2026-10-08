@@ -1032,3 +1032,29 @@ by deleting it.
   implication. ·
   `pds-certificate-from-the-box-automaton-2026-10-07.md` §§5, 9;
   `claim_governance.toml`
+- 2026-10-08 · Audit of PR #233 final head `72f173d` (already merged as
+  `cb9db58`) found no failed finite-descent/cycle-containment step or overlap
+  kernel defect. The literature bridge now states the substitution-power
+  fixed-point argument, signed overlap dictionary, realized-graph uniformity,
+  and Clark–Sadun flow-to-subshift import. Independent exact replay checks all
+  vertices and child edges on five controls, including the 85,287-vertex cube
+  with determinant 3; an exact Parikh-weighted census confirms the 145,806
+  union and 14,670 intersection. Seven length-4 CI slices are complete in the
+  saved snapshot and five still run. Separate mathematical review and full
+  current-head evidence remain acceptance conditions; no claim status changes. ·
+  `audit-theorem-omega-2026-10-08.md`;
+  `evidence/omega-box-audit-2026-10-08/`
+- 2026-10-08 · Follow-up CI snapshot adds successful length-4 slices 00,
+  05, 06 and 10; eleven slices cover 124,657 specimens and slice 09 still
+  runs. The local canonical suite passes all 68 Mojo test files. Earlier
+  snapshots are retained unchanged. · `audit-theorem-omega-2026-10-08.md`;
+  `evidence/omega-box-audit-2026-10-08/ci-followup.json`
+- 2026-10-08 · Completion snapshot: all thirteen box-evidence jobs and all
+  twenty main research jobs are successful on PR #233 final head `72f173d`.
+  Actual slice outputs sum to 135,990 length-4 specimens, plus 24,486 total-8;
+  exact intersection 14,670 gives union 145,806. No caps or productivity
+  failures. Local Python/TLA+/governance pass; Lake configuration fails locally
+  while source-head CI Lean is green. Independent mathematical acceptance
+  remains pending, without status changes. ·
+  `evidence/omega-box-audit-2026-10-08/ci-completion.json`;
+  `audit-theorem-omega-2026-10-08.md`
