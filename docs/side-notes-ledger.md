@@ -171,6 +171,241 @@ by deleting it.
   `|Delta| <= 10`) was killed out of memory (10.5 GB: `first_tile` expands
   whole level-6 words), so it reports nothing; `s = −1` rests on seed 1 only.
 
+- 2026-10-07 · Unbounded `Z_2`, the z_floor cover run: **what blocks is a
+  product inside the certificates, not Lemma P1's staircase.** (1) The
+  open-tail trees `2 zfloor 1 2 3 5000 8` and `2 zfloor -1 -2 4 5000 8`
+  refine their roots and first children (open regions 12, 59 and 58, 184;
+  10–30 min per pattern) and were stopped after ~1 h without a verdict. The
+  root's open regions are opaque-tail regions with no certificate, so z_floor
+  leaves §3i's doubly open chain where it was. Re-running the cells
+  `(+1, 2)` and `(−1, −2)` after the cover-leak fixes
+  (`2 cell ±1 ±2 30000 8 plain`) walks the same chain: no verdict after 70
+  min. (2) Fully revealed patterns with every run length symbolic, so `Z_2`
+  and `Delta` unbounded, under z_floor (scratch `zruns`, budget 5,000):
+  `s = +1`, `Z_2 >= 3`, `Delta >= 2`: all 17 patterns with `u` of at most 2
+  runs and `w_2` of at most 4 runs close (at most 28 regions, 7 s each)
+  except `zy +y^(2+e) | zyzy`, with no verdict after 40 min. `s = −1`,
+  `Z_2 >= 4`, `Delta <= −2`: 11 close; `zy | yz` and `zy | yzy` end with 1
+  and 2 open regions, and `zy | yzyz` gave no verdict after 25 min.
+  (3) The open region of `zy | yz` is `w_1 = z^a y^b`,
+  `w_2 = y^(b+2+e) z^(a+1)`, `Delta = −2 − e`. Its witnesses
+  `(y, z, −e_o) → (y, z, a e_z − (a+2) e_y) → (y, y, −4 e_o) → (y, y, 0)`
+  have `M d = (−4, 2a − 2b + ae, −a)`: the `a b` terms cancel. So the
+  level-3 positions `k` (in `y^b`) and `m` (in `y^(b+2+e)`) need
+  `k − m = 2b − 2a − ae`. That product is Lemma P1's own:
+  `f(−1) = ae + a − 2b + 2`, and `k − m = 2 − a − f`. The certificate is
+  affine in `(a, b, e, q = ae)` but not in `(a, b, e)`, so lifting by run
+  offsets only carves slices (polynomial line mode's "degree-2 part does
+  not vanish"). This one family, with the level-4 offset `t` in `0..2`,
+  verifies on 1,134 of the 4,913 members with `a <= 11`, `b < 80`, `e <= 8`
+  (brute recomputation, scratch `qcert.py`). In line mode,
+  `M (c_0 + lambda (e_z − e_y)) = M c_0 + lambda (0, −Delta, −s)` with
+  `lambda` affine and `Delta = D ± e`, so every product a line certificate
+  needs has the form `n_j e` (`e` included). **Next:** lift the cover by
+  the coordinates `q_j = n_j e`. Lemma P1 then becomes exactly affine, so
+  no McCormick wedge is left; certificates become affine; regions are
+  polyhedra in `(n, q)` whose real points satisfy `q = n e`, under the
+  envelope `q_j >= lo_j e + lo_e n_j − lo_j lo_e`. Do not spend more budget
+  on z_floor trees or on fixed-`Delta` cells with opaque tails. ·
+  `experiments/z2-route/` (`zruns.mojo`, `onepat.mojo`); scratch `qcert.py`;
+  `kernel/odd_letter_family_certificate.mojo` (`cover_pattern_guided(z_floor=)`)
+
+- 2026-10-07 · **The q-lift closes the `s = −1` tail leaf `zy | yz`**
+  (`Delta = −2 − e <= −2`, `Z_2 >= 4`): `2 qlift -1 -2 4 5000 zy 0 yz 0`
+  ends with 104 regions, 35 certified (20 by polynomial paths lifted over
+  `(n, q)`), 6 cut, 34 without a real member, **0 open**, in ~50 s; the
+  plain z_floor cover of the same leaf leaves 1 open region of 16. Three
+  things were needed besides the lift itself, each a finding: (1) the
+  point search must reach the path at all: with offset bound 3 it cannot
+  pass `(y, y, −4 e_o)`, and with the line offset bounded it cannot pass
+  `(0, −(a+2), a)` once `a > 3`, so the q-lift searches with bound 4 off
+  the line and the line position free (`search_witness_line(line_cap=)`);
+  (2) the lift must not solve a line coordinate to the point's constant
+  (that pins `lambda = a` and carves the slice `a = const`, an endless
+  staircase), and among lifts it prefers one whose end offset is zero over
+  `(n, q)` (`lift_path_poly(lift=)`); (3) regions without a real point are
+  settled exactly when `e` is bounded, by `search_point` on the forms with
+  `e` fixed (`_point_search`). Beyond `zy | yz` no verdict after ~15 min
+  (budget 5,000, runs stopped): `zy | yzy` walks a staircase in `a` (each
+  lifted path carries a bound `a <= const`; 1,293 regions, 11 open so
+  far), `zy | yzyz` reports regions open, mostly with no real point found
+  (159 of 812 regions so far), and `s = +1` `zy +y^(2+e) | zyzy` (Delta >= 2,
+  Z_2 >= 3) walks a staircase in one run length (187 regions, none open). ·
+  `kernel/odd_letter_family_certificate.mojo` (`cover_pattern_guided(q_lift=)`,
+  main mode `qlift`); `kernel/psc/product_lift.mojo`; `kernel/psc/poly_line.mojo`;
+  `test_the_q_lift_closes_the_zy_yz_tail_leaf`
+
+- 2026-10-07 · The q-lift measured, budget 5,000 per pattern, `timeout
+  1800` per run (four runs side by side on 4 cores): **only `zy | yz`
+  closes; nothing else reached a verdict.** `s = −1` (`Delta <= −2`,
+  `Z_2 >= 4`): `zy | yz` closed (104 regions, 0 open, 49 s); `zy | yzy`
+  timed out after 1,657 regions (354 line and 232 polynomial paths, 11 open
+  with no real point), climbing a staircase that had reached `a = 191`;
+  `zy | yzyz` timed out after 938 regions (103 polynomial paths, 1
+  polynomial crossing, 161 open with no real point, 26 open with no
+  certificate). `s = +1` (`Delta >= 2`, `Z_2 >= 3`): `zy +y^(2+e) | zyzy`
+  timed out after 212 regions (206 paths, none open), a staircase of one
+  region per value of one run length, which had reached 235. Sweeps
+  (`zruns … 4 4 5000 1`, 36 patterns each, timed out): `s = −1` closed the
+  first 12 patterns (11 one region or none, `zy | yz` in 48 s) and then
+  spent the rest of the time on `zy | yzy`; `s = +1` closed the first 13
+  and then spent the rest of the time on `zy +y^(2+e) | yzyz`. **The q-lift
+  is not a uniform improvement.** The plain z_floor cover closed
+  `zy +y^(2+e) | yzyz` in 3 regions, but under the q-lift it climbs a
+  staircase (a 4-minute verbose run: 138 regions, 92 polynomial paths, 42
+  open with no real point). The other 23 patterns of each sweep were never
+  reached. · `experiments/z2-route/zruns.mojo` (optional `qlift` argument);
+  `kernel/odd_letter_family_certificate.mojo` (main mode `qlift`)
+
+- 2026-10-07 · The q-lift's staircases are gone and its no-point regions are
+  refuted exactly; **`zy | yzy` now ends with 1 open region, and the q-lift
+  closes 2 more `s = +1` patterns in the sweep.** Four additions, all under
+  `q_lift` only (flag-off output byte-identical): (1) extent-aware lift
+  selection: `lift_path_poly` ranks children by whether the state is affine
+  over `(n, q)` and returns the complete lift with the largest `lift_key`
+  (number of real probe points of the region, `probe_points`, where the
+  carving forms and the zero end offset hold, then lowest offset cost);
+  `_poly_carve` lets the tree lift compete with `solve_lift` by that key, and
+  `_implied_equality` is substituted eagerly. The staircases came from lifts
+  that copy a coordinate of the base point into an offset (pinning `a` in
+  `zy | yzy`, one run length in `zy +y^(2+e) | zyzy`). (2) RLT cuts
+  (`product_lift.rlt_forms`): `(e − lo_e) g >= 0` and `(hi_e − e) g >= 0`
+  for every assumption `g` over `n` alone, expanded with `n_k e = q_k`.
+  (3) An exact phase-1 LP (`psc/farkas_lp.mojo`, Bland's rule over
+  `finite_exact.Q`) whose answer counts only through a Farkas vector checked
+  exactly (`y >= 0`, `yᵀA <= 0`, `yᵀc < 0`), used where a region gets no
+  base point; kernel Fourier–Motzkin keeps redundant rows and hits its
+  4,000-row cap even on 3 live variables. (4) `_value_split`: a variable
+  whose range is bounded by checked certificates is split into its values,
+  an exact partition. Measured (budget 5,000): `sweep.sh`, r1 = r2 = 4, 300
+  s per pattern, the two signs in parallel: `s = +1` (`Delta >= 2`,
+  `Z_2 >= 3`) 30 closed by plain, 2 by the q-lift, 0 open, 4 timeouts
+  (was 30 / 0 / 0 / 6); `zyz +y^(2+e) | yzyz` (q-lift 121 regions, 27 s)
+  and `zyzy +y^(2+e) | yzy` (193 regions, 66 s) went from timeout to closed.
+  `s = −1` (`Delta <= −2`, `Z_2 >= 4`) 25 plain, 1 q-lift, 1 open, 9
+  timeouts (was 25 / 1 / 0 / 10): `zy | yz` closes in 42 regions, 10 s (was
+  104, 49 s), and `zy | yzy` went from timeout to open. The other 69
+  patterns kept their verdicts; every remaining timeout outside `zyz | yz`
+  is killed inside the plain cover, so the q-lift never runs on it (this
+  includes `zy +y^(2+e) | zyzy`, which the q-lift alone closes in 17
+  regions, 3 s). Single runs (`2 qlift -1 -2 4 5000 zy 0 … 0`, `timeout
+  1200`): `zy | yzy` 120 regions (49 certified, 46 line, 44 polynomial, 1
+  crossing, 2 cut, 58 not member), **1 open**, 89 s, terminating; `zy |
+  yzyz` timed out at 1,200 s at region #1293 with 14 open without a real
+  point, 3 open without a certificate and 10 value splits traced. **Open:**
+  `zy | yzy`'s region is LP-feasible over `(n, q)` with no bounded variable;
+  at each fixed `e` it has `n_0 = 3`, `n_1` in `[2e + 11, 2e + 13]`, `n_4` in
+  `[e − 1, e]` and no integer point for `e <= 60`, so it needs `e`-parametric
+  integer reasoning (a split on an affine form such as `n_1 − 2e`, or
+  `e`-parametric Fourier–Motzkin). `zy | yzyz`'s no-certificate regions hold
+  real points; their liftable paths sit at depth 4–5, which the shared
+  5,000-node point-path enumeration in `_poly_carve` never reaches (0 paths
+  at 5,000 nodes, 401 at 2,000,000), so they need a larger or lazy
+  enumeration (and `Q_OFFSET_BOUND` there). **Measured, not shipped:**
+  splitting off the face `e = 0` first (`zy | yzy` 56 regions, 1 open, 28
+  s, but `zy +y^(2+e) | yzyz` 2 → 117 regions and `zy | yz` 42 → 69);
+  peeling `e = lo | e >= lo + 1` up to `lo = 8` (no extra closures, more
+  regions); a value split from Fourier–Motzkin bounds (never fired: FM hits
+  its caps); RLT without the LP (`zy | yzy` 216 regions, 4 open). Not
+  proved: termination of the lift selection; it is measured. ·
+  `kernel/psc/poly_line.mojo` (`lift_path_poly`, `lift_key`,
+  `probe_points`); `kernel/psc/product_lift.mojo` (`rlt_forms`);
+  `kernel/psc/farkas_lp.mojo`; `kernel/odd_letter_family_certificate.mojo`
+  (`_poly_carve`, `_value_split`); `experiments/z2-route/sweep.sh`
+
+- 2026-10-08 · **The q-lift closes `s = −1` `zy | yzy`** (`Delta <= −2`,
+  `Z_2 >= 4`): `2 qlift -1 -2 4 5000 zy 0 yzy 0` ends with 121 regions (49
+  certified, 44 polynomial, 2 cut, 59 not member), **0 open**, 91 s. The last
+  region needed a value split whose probes carry their envelope
+  (`_affine_value_split`): a probe `L >= h + 1` or `L <= h − 1` is refuted
+  on the region plus the probe plus `_with_envelope` of that, by bound
+  propagation or a checked Farkas certificate, for `L = n_k − c e`,
+  `c` in `0..3`; the pieces `n_k := v + c e` (`q_k := v e + c q_e`, with
+  `v + c e >= 0` kept) partition the real points. The previous round's
+  diagnosis was off: on that region's polyhedron over `(n, q)` no form
+  `n_k − c e` (`k` in `{0, 1, 4}`, `c` in `−1..3`) is bounded both ways,
+  `n_1 − 2e` included, since `q` is free of `n e` there. What bounds it is
+  the envelope of the probe (`n_0 >= 4` raises the McCormick floor of
+  `q_0`): `n_0 >= 4` and `n_0 <= 2` are each refuted with their envelopes,
+  so the split is the single value `n_0 = 3` (slope 0), and that piece is
+  refuted outright. `zy | yz` (42 regions, 0 open, 12 s), `zy +y^(2+e) | zyzy` (17,
+  0 open, 3 s) and the flag-off `zcap` runs (byte-identical) are unchanged.
+  `zy | yzyz` still times out (`timeout 900`: region #1037, none open yet,
+  3 value splits; the old cover reaches #1075 in the same time with none
+  open either, so its open regions lie past where 900 s gets). The sloped
+  forms (`c > 0`) are exercised by the seeded test only; no cover run has
+  needed one yet. · `kernel/odd_letter_family_certificate.mojo`
+  (`_affine_value_split`, `_affine_top`, `_refuted_with`, `_value_pieces`);
+  `test_the_affine_value_split_partitions_the_real_points`,
+  `test_the_affine_value_split_refutes_the_zy_yzy_region`,
+  `test_the_q_lift_closes_zy_yzy`
+- 2026-10-08 · **A deep lazy lift gives `zy | yzyz`'s no-certificate regions a
+  certificate; the leaf still times out.** Under `q_lift` only (flag-off
+  `zcap` output byte-identical): `_poly_carve` enumerates point paths with
+  `Q_OFFSET_BOUND` (4) through a resumable `PointPaths` and lifts each as
+  it comes (`_lazy_lift`): the first `solve_lift` that solves wins, else
+  the best `lift_key`, stopping at the first whole-region lift
+  (`whole_region_lift`: end offset lifts to zero, carving forms hold at
+  every probe point). The ordinary pass keeps 5,000 nodes and 40 paths; a
+  region past the peel limit with no certificate gets one deep pass,
+  2,000,000 nodes and no path cap, before it is reported open. Running the
+  deep pass on every failed lift is ruinous: one `zy | yz` region spent
+  175 s (1,320 paths, 155 s in `lift_path_poly`, ~117 ms a path) without a
+  whole-region lift. At the four no-certificate regions of the
+  `zy | yzyz` run (#1150, #1165, #1198, #1338) the deep pass certifies in
+  7–8 s each, two carving nothing. Measured (`timeout` as given, 3–4 runs
+  side by side; the lazy-lift branch alone, before the value split was
+  merged): `zy | yz` 42 regions, 0 open, 11 s (unchanged); `zy | yzy`
+  120 regions, 1 open (no point), 91 s (unchanged); `zy | yzyz` timed out
+  at 1,800 s at region #1493 with 15 regions certified by the deep pass,
+  none failing, 0 open without a certificate, 18 open without a real
+  point, 33 value splits (at 5c43b85, 1,300 s: #1352, 4 / 15 / 16); `s =
+  −1` `zyz | yz` timed out at 900 s at #581, 2 deep certifications, 0 / 13
+  / 15 (at 5c43b85: #1053, 4 / 38 / 20; the runs diverge at #90, the
+  first deep certification). Two of the deep lifts (#1463, #1472) carve
+  slices `n_1 >= 67`, `n_1 >= 60`. Not tried: restricting deep line
+  positions to anchors (the deep pass already finds its lift in seconds).
+  What blocks `zy | yzyz` now is regions with no real point found. ·
+  `kernel/odd_letter_family_certificate.mojo` (`_lazy_lift`,
+  `_certify_at(deep=)`); `kernel/psc/poly_line.mojo` (`PointPaths`,
+  `whole_region_lift`); `test_the_deep_lazy_lift_certifies_a_zy_yzyz_region`
+- 2026-10-08 · Round 3 of the q-lift, measured in the sweep: **3 more
+  patterns close, none opens; 3 `s = +1` and 8 `s = −1` patterns still time
+  out.** Round 3 added the envelope-carrying value split
+  (`_affine_value_split`) and the deep lazy lift (`_lazy_lift`), merged
+  together (entries above), and `sweep.sh` now gives the two stages
+  separate timeouts (`sweep.sh BIN s delta floor r1 r2 budget plain_secs
+  qlift_secs`, through `zruns ... at i plain|qlift`), so a pattern whose
+  plain cover times out still gets the q-lift; before, every timeout killed
+  inside the plain cover never reached it. Measured (budget 5,000, r1 = r2 =
+  4, 300 s plain then 600 s q-lift, the two signs in parallel, the full test
+  suite running beside them for the first ~hour): `s = +1` (`Delta >= 2`,
+  `Z_2 >= 3`) 30 closed by plain, 3 by the q-lift, 0 open, 3 timeouts (was
+  30 / 2 / 0 / 4); `s = −1` (`Delta <= −2`, `Z_2 >= 4`) 25 / 3 / 0 / 8 (was
+  25 / 1 / 1 / 9). The verdict changes, all to closed by the q-lift:
+  `zy +y^(2+e) | zyzy` (timeout → q-lift 17 regions, 3 s, after the plain
+  cover's 300 s), `s = −1` `zy | yzy` (open → 121 regions, 93 s; the value
+  split) and `s = −1` `zyzy | zyz` (timeout → 7 regions, 2 s, after the
+  plain cover's 300 s). The first and third come from the separate
+  timeouts alone; the other 69 patterns keep their verdicts, and the
+  region counts of every pattern closed in both sweeps are unchanged.
+  **Open:** the 11 timeouts, every one killed in the q-lift as well: `s =
+  +1` `zyzy +y^(2+e) | yzyz`, `| zyz`, `| zyzy` (plain and q-lift both
+  killed); `s = −1` `zy | yzyz`, `zyz | yzy`, `zyz | yzyz`, `zyzy | yz`,
+  `zyzy | yzy`, `zyzy | yzyz`, `zyzy | zyzy` (both killed) and `zyz | yz`
+  (plain 45 regions, 1 open, 13 s; q-lift killed at 600 s). `zy | yzyz`
+  alone (`timeout 1800`) reaches region #1215 with 1 region open without a
+  real point; `zyz | yz` (`timeout 900`) reaches #563 with none open; what
+  blocks both is time, then regions with no real point found. **Measured,
+  not shipped:** the lazy lift without the value split reaches further in
+  the same time (`zy | yzyz` #1493 against #1215 in 1,800 s) but leaves 18
+  regions open without a real point (8 by #1215) and `zyz | yz` 13 by #581;
+  the deep pass on every failed lift (one `zy | yz` region 175 s). The
+  sloped forms (`c > 0`) of the value split still fire in no cover run. ·
+  `experiments/z2-route/sweep.sh`, `zruns.mojo` (`at i plain|qlift`);
+  scratch `/tmp/claude-0/r5/sw/sweep-{plus,minus}.txt` (against
+  `/tmp/claude-0/r2/final/sweep-{plus,minus}.txt`)
+
 ## 4. Withdrawn or unreproducible figures
 
 - 2026-10-04 · "1,764 formal producer-free cycles; maximum death radius 7;
@@ -326,6 +561,10 @@ by deleting it.
   ledgers are preserved byte-for-byte at their new archive locators. ·
   `tools/make_ledger.py`;
   `archive/2026-10-06/status-snapshots/README.md`
+
+- 2026-10-07 · `search_point` enumerates every value of a bounded domain, so
+  on forms with large coefficients (the q-lift's tail-fixed forms) one node
+  pushes thousands of boxes: 14 GB and an OOM kill. Pass `span_cap`.
 
 - 2026-10-07 · `finite_linear_algebra.mat3.has_rational_root` evaluates `r^3`
   in unchecked `Int` for every divisor `r` of `det M`; safe at the audited
