@@ -297,6 +297,33 @@ by deleting it.
   `kernel/psc/farkas_lp.mojo`; `kernel/odd_letter_family_certificate.mojo`
   (`_poly_carve`, `_value_split`); `experiments/z2-route/sweep.sh`
 
+- 2026-10-08 · **The q-lift closes `s = −1` `zy | yzy`** (`Delta <= −2`,
+  `Z_2 >= 4`): `2 qlift -1 -2 4 5000 zy 0 yzy 0` ends with 121 regions (49
+  certified, 44 polynomial, 2 cut, 59 not member), **0 open**, 91 s. The last
+  region needed a value split whose probes carry their envelope
+  (`_affine_value_split`): a probe `L >= h + 1` or `L <= h − 1` is refuted
+  on the region plus the probe plus `_with_envelope` of that, by bound
+  propagation or a checked Farkas certificate, for `L = n_k − c e`,
+  `c` in `0..3`; the pieces `n_k := v + c e` (`q_k := v e + c q_e`, with
+  `v + c e >= 0` kept) partition the real points. The previous round's
+  diagnosis was off: on that region's polyhedron over `(n, q)` no form
+  `n_k − c e` (`k` in `{0, 1, 4}`, `c` in `−1..3`) is bounded both ways,
+  `n_1 − 2e` included, since `q` is free of `n e` there. What bounds it is
+  the envelope of the probe (`n_0 >= 4` raises the McCormick floor of
+  `q_0`): `n_0 >= 4` and `n_0 <= 2` are each refuted with their envelopes,
+  so the split is the single value `n_0 = 3` (slope 0), and that piece is
+  refuted outright. `zy | yz` (42 regions, 0 open, 12 s), `zy +y^(2+e) | zyzy` (17,
+  0 open, 3 s) and the flag-off `zcap` runs (byte-identical) are unchanged.
+  `zy | yzyz` still times out (`timeout 900`: region #1037, none open yet,
+  3 value splits; the old cover reaches #1075 in the same time with none
+  open either, so its open regions lie past where 900 s gets). The sloped
+  forms (`c > 0`) are exercised by the seeded test only; no cover run has
+  needed one yet. · `kernel/odd_letter_family_certificate.mojo`
+  (`_affine_value_split`, `_affine_top`, `_refuted_with`, `_value_pieces`);
+  `test_the_affine_value_split_partitions_the_real_points`,
+  `test_the_affine_value_split_refutes_the_zy_yzy_region`,
+  `test_the_q_lift_closes_zy_yzy`
+
 ## 4. Withdrawn or unreproducible figures
 
 - 2026-10-04 · "1,764 formal producer-free cycles; maximum death radius 7;

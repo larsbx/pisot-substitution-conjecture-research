@@ -136,6 +136,8 @@ comptime TAIL_VALUES = 64  # q-lift: tail values a real-point search enumerates 
 comptime LINE_CAP = 1 << 16  # q-lift: the line offset a point search may reach (a run length)
 comptime EAGER_EQUALITIES = 4  # q-lift: implied equalities substituted per region before its envelope
 comptime Q_OFFSET_BOUND = 4  # q-lift: the point search's bound off the line (zy | yz passes (y, y, -4 e_o))
+comptime AFFINE_SLOPES = 3  # q-lift: the e-parametric value split tries L = n_k - c e for c in 0..AFFINE_SLOPES
+comptime AFFINE_REACH = 1 << 16  # q-lift: its search for a bound of L gives up past this value
 comptime RUN_TREE_BUDGET = 300  # run_tree: regions examined per pattern before reporting the rest open
 
 
@@ -3409,13 +3411,114 @@ def _value_split(reg: GuidedRegion, m: Int) raises -> List[GuidedRegion]:
     return _value_pieces(reg, best, box.lo[best], box.lo[best] + best_d, m)
 
 
-def _value_pieces(reg: GuidedRegion, k: Int, lo: Int, hi: Int, m: Int) -> List[GuidedRegion]:
-    """The region with `n_k := v` for every `v` in `lo..hi`, one level
-    deeper: a partition when every integer point has `lo <= n_k <= hi`."""
+def _value_pieces(reg: GuidedRegion, k: Int, lo: Int, hi: Int, m: Int, c: Int = 0) -> List[GuidedRegion]:
+    """The region with `n_k := v + c e` for every `v` in `lo..hi` (with a
+    product lift; `c = 0` otherwise), one level deeper, carrying
+    `v + c e >= 0`: a partition of the real points when every one has
+    `lo <= n_k - c e <= hi`. The products follow (`_region_subst`); a
+    piece with `c = 0` and `v >= 0` needs no assumption."""
     var out = List[GuidedRegion]()
     for v in range(lo, hi + 1):
-        out.append(_region_subst(reg, k, aff_const(m, v), reg.depth + 1))
+        var repl = aff_const(m, v)
+        if c == 0 and v >= 0:
+            out.append(_region_subst(reg, k, repl, reg.depth + 1))
+            continue
+        if c != 0:
+            repl[reg.lift.e + 1] = c
+        var piece = _region_subst(reg, k, repl, reg.depth + 1)
+        out.append(_with_assumptions(piece, List[List[Int]]([repl^])))
     return out^
+
+
+def _refuted_with(reg: GuidedRegion, m: Int, extra: List[Int]) raises -> Bool:
+    """No real point of the region has `extra >= 0`: the region with it and
+    its envelope (`_with_envelope`, valid at every real point there) is
+    refuted by bound propagation or a checked Farkas certificate."""
+    var p = _with_envelope(_with_assumptions(reg, List[List[Int]]([extra.copy()])), m)
+    return propagate_bounds(p.assume, m).empty or lp_infeasible(p.assume, m)
+
+
+def _affine_top(reg: GuidedRegion, m: Int, form: List[Int]) raises -> Int:
+    """A `h` in `-AFFINE_REACH..AFFINE_REACH` such that no real point of the
+    region has `form >= h + 1` (`_refuted_with`), the least such found by
+    doubling from 0 and then bisection; `AFFINE_REACH + 1` when none is.
+    Every `h` returned was refuted at."""
+    var good = AFFINE_REACH + 1  # least value refuted at so far
+    var bad = -AFFINE_REACH - 1  # a value not refuted at
+    var h = 0
+    var step = 1
+    while abs(h) <= AFFINE_REACH:
+        var g = form.copy()
+        g[0] -= h + 1
+        if _refuted_with(reg, m, g):
+            good = h
+            if bad > -AFFINE_REACH - 1:
+                break
+            h -= step
+        else:
+            bad = h
+            if good <= AFFINE_REACH:
+                break
+            h += step
+        step *= 2
+    if good > AFFINE_REACH:
+        return good
+    while good - bad > 1 and bad >= -AFFINE_REACH:
+        var mid = bad + (good - bad) // 2
+        var g = form.copy()
+        g[0] -= mid + 1
+        if _refuted_with(reg, m, g):
+            good = mid
+        else:
+            bad = mid
+    return good
+
+
+def _affine_value_split(reg: GuidedRegion, m: Int) raises -> List[GuidedRegion]:
+    """With a product lift, the region split by the values of an
+    `e`-parametric form `L = n_k - c e` (`c` in `0..AFFINE_SLOPES`, `n_k`
+    live, `k != e` unless `c = 0`) with the fewest values, fewer than
+    `VALUE_SPLIT_MAX`: `L <= hi` from `_affine_top` and `L >= lo` from a
+    refutation of `L <= lo - 1`, each a checked certificate on the region
+    with the probe and its envelope, so every real point has
+    `lo <= L <= hi`. The pieces `n_k := v + c e` (`_value_pieces`) are a
+    partition of the real points, each one run length fewer. Empty when no
+    such form is found."""
+    if not reg.lift.on():
+        return List[GuidedRegion]()
+    var e = reg.lift.e
+    var best_k = -1
+    var best_c = 0
+    var best_lo = 0
+    var best_d = VALUE_SPLIT_MAX
+    for k in range(reg.lift.m):
+        if not _region_live(reg, k):
+            continue
+        for c in range(AFFINE_SLOPES + 1):
+            if k == e and c != 0:
+                continue
+            var form = aff_const(m, 0)
+            form[k + 1] = 1
+            form[e + 1] -= c
+            var hi = _affine_top(reg, m, form)
+            if hi > AFFINE_REACH:
+                continue
+            for d in range(best_d):
+                var below = aff_scale(form, -1)  # L <= hi - d - 1
+                below[0] = hi - d - 1
+                if _refuted_with(reg, m, below):
+                    best_k = k
+                    best_c = c
+                    best_lo = hi - d
+                    best_d = d
+                    break
+            if best_d == 0:
+                break
+        if best_d == 0:
+            break
+    if best_k < 0:
+        return List[GuidedRegion]()
+    return _value_pieces(reg, best_k, best_lo, best_lo + best_d, m, best_c)
 
 
 def _assume_empty(assume: List[List[Int]], m: Int) -> Bool:
@@ -3794,9 +3897,10 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
     the region; a region where no base point is found is not a member when
     a checked Farkas certificate refutes its polyhedron (`lp_infeasible`) or
     its bounded `e` admits no real point (`_point_search`), and else is split
-    by the values of a variable such certificates bound (`_value_split`)
-    before it is reported open. Off by default: without it every step above
-    is the plain cover's."""
+    by the values of a variable such certificates bound (`_value_split`),
+    or of a form `n_k - c e` bounded by certificates on probes that carry
+    their envelope (`_affine_value_split`), before it is reported open.
+    Off by default: without it every step above is the plain cover's."""
     var out = ShapeCover()
     var screen = CubicScreen()
     var mn = pat.slots() + (1 if tail else 0)
@@ -3908,6 +4012,8 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                     continue
                 if reg.lift.on():
                     var pieces = _value_split(reg, m)
+                    if len(pieces) == 0:
+                        pieces = _affine_value_split(reg, m)
                     if len(pieces) > 0:
                         if verbose:
                             _trace(out.regions, "value split (" + String(len(pieces)) + " values)", List[Int](), reg.subst, List[List[Int]](), 0, len(pieces))
