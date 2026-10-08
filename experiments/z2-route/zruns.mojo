@@ -36,6 +36,7 @@ def main() raises:
     # zruns s delta floor r1 r2 budget [qlift 0/1]   every pattern, one cover
     # zruns s delta floor r1 r2 budget count         number of patterns
     # zruns s delta floor r1 r2 budget at <i>        pattern i: plain, then q-lift if open
+    # zruns s delta floor r1 r2 budget at <i> plain|qlift   that one stage alone
     var args = argv()
     var s = Int(String(args[1]))
     var d = Int(String(args[2]))
@@ -50,12 +51,19 @@ def main() raises:
         var i = Int(String(args[8]))
         if i < 0 or i >= len(pats):
             raise Error("pattern index out of range")
+        var stage = String(args[9]) if len(args) > 9 else String("both")
+        if stage != "both" and stage != "plain" and stage != "qlift":
+            raise Error("stage must be plain or qlift")
         print("PATTERN", pats[i], flush=True)
-        var c = run(pats[i], s, d, floor, budget, False)
-        if c.open == 0 and not c.budget_exhausted:
-            print("VERDICT plain")
-            return
-        c = run(pats[i], s, d, floor, budget, True)
+        if stage != "qlift":
+            var c = run(pats[i], s, d, floor, budget, False)
+            if c.open == 0 and not c.budget_exhausted:
+                print("VERDICT plain")
+                return
+            if stage == "plain":
+                print("VERDICT open")
+                return
+        var c = run(pats[i], s, d, floor, budget, True)
         print("VERDICT", "qlift" if c.open == 0 and not c.budget_exhausted else "open")
         return
     var q_lift = mode == "1"
