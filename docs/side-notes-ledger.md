@@ -1053,3 +1053,16 @@ by deleting it.
   gives two-sided SC on 408,798 specimens. Class B lines with slope 3 and
   `r = q − 1` leave PIP (a second eigenvalue of modulus 1, or above it). ·
   `p1-seed-strength-2026-10-08.md`
+- 2026-10-08 · On a two-parameter family, parametric Sturm chains are the
+  wrong tool. Their intermediate entries change sign inside the region even
+  when the answer does not: on class B's wedge, along `d^2 ≈ 8s` (the
+  conjugate pair turns from real to complex) and along the irrational ray
+  `d/s = (1 + sqrt 5)/2`. The replacements are:
+  - Rouché (`|c2| > 1 + |c1| + |c0|`) for PIP;
+  - a certified rational bracket of `beta` for signs at `beta`;
+  - Pólya certificates for polynomial signs on a quadrant.
+
+  Run-position bounds can also be non-affine on a quadrant: one is
+  `2s + d + 3` for `s > d` and `2s + d + 2` otherwise. Testing the run end
+  first avoids most of them, and cutting along `s = d` handles the rest. ·
+  `p1c-symbolic-wedge-2026-10-08.md`

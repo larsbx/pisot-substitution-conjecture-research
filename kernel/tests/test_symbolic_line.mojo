@@ -11,6 +11,7 @@ from std.testing import assert_equal, assert_false, assert_true
 from finite_exact.rat_q import Q
 from finite_linear_algebra.scalar import q_int
 from mojo_smoke.claims import require_contract
+from psc.param_poly import P2, p2_from_s
 from psc.symbolic_line import (
     Eventual,
     Line,
@@ -32,11 +33,11 @@ from symbolic_line_certificate import certified_lines, check_pinned, class_b_lin
 def test_eventual_sign_records_the_largest_root() raises:
     var ev = Eventual()
     # (q - 10)(q - 3) = q^2 - 13 q + 30
-    var s = ev.sign([q_int(30), q_int(-13), q_int(1)])
+    var s = ev.sign(p2_from_s([q_int(30), q_int(-13), q_int(1)]))
     assert_equal(s, 1)
     assert_true(q_int(10).le(ev.threshold))
     assert_equal(ev.sign(qx_const(-4)), -1)
-    assert_equal(ev.sign(List[Q]()), 0)
+    assert_equal(ev.sign(P2()), 0)
 
 
 def test_parametric_signs_agree_with_concrete_signs() raises:

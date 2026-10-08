@@ -41,19 +41,45 @@ from psc.vertex_coincidence import length_matrix, offset_vector
 from a1_normal_form_census import CLASS_B, class_member
 
 
-# A line of class B: p = slope q + k, r = q + branch (|r - q| = 1 is Lemma P1's
-# determinant-2 condition). The default is Theorem L's line.
+# A class B family: p = p0 + pt t + pd d, q = q0 + qt t + qd d, r = q + branch, as
+# [p0, pt, pd, q0, qt, qd, branch] (|r - q| = 1 is Lemma P1's determinant-2
+# condition). A line has pd = qd = 0; the lines of Theorems L and L' have q = t.
+def slope_family(slope: Int, k: Int, branch: Int) -> List[Int]:
+    """The line p = slope q + k, r = q + branch."""
+    return [k, slope, 0, 0, 1, 0, branch]
+
+
+def family_line(f: List[Int]) raises -> Line:
+    var q = qx_affine(f[3], f[4], f[5])
+    return Line([0, 1, 1], [0, 0, 0], [qx_affine(f[0], f[1], f[2]), q.copy(), qx_affine(f[3] + f[6], f[4], f[5])], 2)
+
+
+def family_pqr(f: List[Int], t: Int, d: Int = 0) -> List[Int]:
+    var q = f[3] + f[4] * t + f[5] * d
+    return [f[0] + f[1] * t + f[2] * d, q, q + f[6]]
+
+
+def in_class_b_pqr(pqr: List[Int]) -> Bool:
+    """Theorem E's class B needs `p > q >= 0` and `r >= 0`."""
+    return pqr[1] >= 0 and pqr[0] > pqr[1] and pqr[2] >= 0
+
+
+def family_member(f: List[Int], t: Int, d: Int = 0) raises -> List[List[Int]]:
+    var pqr = family_pqr(f, t, d)
+    return class_member(CLASS_B, pqr[0], pqr[1], pqr[2])
+
+
+# The default is Theorem L's line.
 def class_b_line(slope: Int = 2, k: Int = 2, branch: Int = 1) raises -> Line:
-    return Line([0, 1, 1], [0, 0, 0], [qx_affine(k, slope), qx_affine(0, 1), qx_affine(branch, 1)], 2)
+    return family_line(slope_family(slope, k, branch))
 
 
 def class_b_member(q: Int, slope: Int = 2, k: Int = 2, branch: Int = 1) raises -> List[List[Int]]:
-    return class_member(CLASS_B, slope * q + k, q, q + branch)
+    return family_member(slope_family(slope, k, branch), q)
 
 
 def in_class_b(q: Int, slope: Int, k: Int, branch: Int) -> Bool:
-    """Theorem E's class B needs `p > q >= 0` and `r >= 0`."""
-    return q >= 0 and slope * q + k > q and q + branch >= 0
+    return in_class_b_pqr(family_pqr(slope_family(slope, k, branch), q))
 
 
 def exact_hits(sigma: List[List[Int]]) raises -> Int:
@@ -81,13 +107,13 @@ def exact_vertex_keys(sigma: List[List[Int]]) raises -> List[String]:
     return out^
 
 
-def symbolic_vertex_keys(g: SymbolicLineGraph, q: Int) raises -> List[String]:
+def symbolic_vertex_keys(g: SymbolicLineGraph, q: Int, d: Int = 0) raises -> List[String]:
     var out = List[String]()
     for i in range(g.size()):
         ref v = g.vertices[i]
         var key = String(v.top) + "|" + String(v.bottom) + "|"
         for k in range(3):
-            var x = qx_at(v.w[k], q)
+            var x = qx_at(v.w[k], q, d)
             key += q_string(x) + ("," if k < 2 else "")
         out.append(key^)
     return out^
@@ -122,43 +148,60 @@ struct LineVerdict(Copyable, Movable):
         self.finite_outside = 0
 
 
-def certify_class_b_line(slope: Int = 2, k: Int = 2, branch: Int = 1) raises -> LineVerdict:
-    """Every PIP member of the line has every seed-reachable overlap hitting
-    offset zero, and `|det M| = 2` (the hypothesis of Corollary E2)."""
-    var out = LineVerdict()
-    var g = symbolic_line_graph(class_b_line(slope, k, branch))
+def all_hitting(g: SymbolicLineGraph) raises:
     if not g.pip:
-        raise Error("the line's PIP property was not certified")
+        raise Error("the family's PIP property was not certified")
     var good = offset_zero_reachable(g)
     for i in range(len(good)):
         if not good[i]:
             raise Error("a symbolic seed-reachable vertex has no offset-zero descendant")
+
+
+def require_det_two(sigma: List[List[Int]]) raises:
+    if abs(Mat3(substitution_incidence(sigma)).det()) != 2:
+        raise Error("|det M| != 2, so Corollary E2 does not apply")
+
+
+def certify_family_line(f: List[Int]) raises -> LineVerdict:
+    """Every PIP member of the line `f` (parameter `t >= 0`) has every
+    seed-reachable overlap hitting offset zero, and `|det M| = 2` (the
+    hypothesis of Corollary E2)."""
+    if f[2] != 0 or f[5] != 0:
+        raise Error("a line family has no second parameter")
+    var out = LineVerdict()
+    var g = symbolic_line_graph(family_line(f))
+    all_hitting(g)
     out.symbolic_vertices = g.size()
     out.queries = g.queries
+    out.q0 = g_first_integer_above(g)
+    require_det_two(family_member(f, out.q0))
+    var screen = CubicScreen()
+    for t in range(out.q0):
+        if not in_class_b_pqr(family_pqr(f, t)):
+            out.finite_outside += 1
+            continue
+        var sigma = family_member(f, t)
+        if not screen.is_pip(Mat3(substitution_incidence(sigma))):
+            out.finite_non_pip += 1
+            continue
+        require_det_two(sigma)
+        _ = exact_hits(sigma)
+        out.finite_members += 1
+    for t in [out.q0, out.q0 + 5]:
+        if not same_set(symbolic_vertex_keys(g, t), exact_vertex_keys(family_member(f, t))):
+            raise Error("cross-check: the symbolic graph differs from the exact graph")
+    return out^
+
+
+def g_first_integer_above(g: SymbolicLineGraph) -> Int:
     var n = 0
     while not g.threshold.lt(q_int(n)):
         n += 1
-    out.q0 = n
-    var screen = CubicScreen()
-    if abs(Mat3(substitution_incidence(class_b_member(out.q0, slope, k, branch))).det()) != 2:
-        raise Error("the line's determinant is not +-2, so Corollary E2 does not apply")
-    for q in range(out.q0):
-        if not in_class_b(q, slope, k, branch):
-            out.finite_outside += 1
-            continue
-        var sigma = class_b_member(q, slope, k, branch)
-        var m = Mat3(substitution_incidence(sigma))
-        if not screen.is_pip(m):
-            out.finite_non_pip += 1
-            continue
-        if abs(m.det()) != 2:
-            raise Error("a PIP member has |det M| != 2")
-        _ = exact_hits(sigma)
-        out.finite_members += 1
-    for q in [out.q0, out.q0 + 5]:
-        if not same_set(symbolic_vertex_keys(g, q), exact_vertex_keys(class_b_member(q, slope, k, branch))):
-            raise Error("cross-check: the symbolic graph differs from the exact graph")
-    return out^
+    return n
+
+
+def certify_class_b_line(slope: Int = 2, k: Int = 2, branch: Int = 1) raises -> LineVerdict:
+    return certify_family_line(slope_family(slope, k, branch))
 
 
 # The class B lines certified so far, as (slope, k, branch): p = slope q + k,

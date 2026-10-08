@@ -37,17 +37,42 @@ here returns a partial graph as if it were complete.
 
 from std.collections import Dict
 from finite_exact.rat_q import Q
-from finite_linear_algebra.qpoly import add, degree, evaluate, mul, neg, normalize, scale, sign_of, sub
+from finite_linear_algebra.qpoly import degree, evaluate, normalize, sign_of
 from finite_linear_algebra.scalar import q_int, q_is_zero
 from finite_linear_algebra.cauchy_bound import root_bound
 from finite_linear_algebra.sturm_sequence import largest_root_bracket, sturm_chain, variation_difference
 from psc.exact import q_string
+from psc.param_poly import (
+    P2,
+    p2_add,
+    p2_affine,
+    p2_at,
+    p2_at_int,
+    p2_const,
+    p2_const_value,
+    p2_from_s,
+    p2_has_d,
+    p2_is_const,
+    p2_is_zero,
+    p2_key,
+    p2_mul,
+    p2_neg,
+    p2_norm,
+    p2_scale,
+    p2_sub,
+    quadrant_sign,
+)
 
-comptime QX = List[Q]  # a polynomial in q, ascending
-comptime TPoly = List[List[Q]]  # a polynomial in t whose coefficients are polynomials in q
+comptime QX = P2  # a polynomial in the parameters: q (= s) for a line, (s, d) for a wedge
+comptime TPoly = List[QX]  # a polynomial in t whose coefficients are polynomials in the parameters
 comptime SAMPLE_BASE = 200  # sample points for fitting run-position ranges: once and twice this
 comptime SYMBOLIC_VERTEX_CAP = 20000
 comptime ROOT_STEPS = 400
+comptime QUADRANT_STEPS = 10  # quadrant enlargements tried, up to 2^9 on each axis
+comptime POLYA_DEGREE = 4  # largest Polya multiplier exponent tried
+comptime OPEN_SIGN = 2  # a sign the quadrant does not certify
+comptime MAX_BRACKET_LEVEL = 4
+comptime BRACKET_SEED_RANGE = 8
 
 
 # ---------------------------------------------------------------------------
@@ -56,36 +81,56 @@ comptime ROOT_STEPS = 400
 
 
 def qx_const(c: Int) -> QX:
-    return normalize([q_int(c)])
+    return p2_const(c)
 
 
-def qx_affine(c0: Int, c1: Int) -> QX:
-    return normalize([q_int(c0), q_int(c1)])
+def qx_affine(c0: Int, c1: Int, c2: Int = 0) -> QX:
+    """`c0 + c1 s + c2 d`; on a line `s = q` and `c2 = 0`."""
+    return p2_affine(c0, c1, c2)
 
 
-def qx_at(p: QX, q: Int) -> Q:
-    return evaluate(p, q_int(q))
+def qx_at(p: QX, q: Int, d: Int = 0) -> Q:
+    return p2_at_int(p, q, d)
 
 
 struct Eventual(Copyable, Movable):
-    """Signs of polynomials in `q` for every `q` above a running threshold.
+    """Signs of polynomials in the parameters on a running region.
 
-    `threshold` is a rational strictly above every real root of every
-    polynomial whose sign was read, so the reported sign holds on all
-    `q > threshold`. `queries` counts the polynomials read."""
+    On a line the region is `q > threshold`: `threshold` is a rational strictly
+    above every real root of every polynomial in `q` whose sign was read. On a
+    wedge (parameters `s = q` and `d`) it is the open quadrant
+    `{s > threshold, d > d_threshold}`: a polynomial without `d` is read as on a
+    line, one with `d` by a Polya certificate on the quadrant
+    (`psc.param_poly.quadrant_sign`), enlarging the quadrant geometrically until
+    one holds; none within `QUADRANT_STEPS` raises. The region only ever
+    shrinks, so every sign read earlier still holds on it. `queries` counts
+    the polynomials read."""
 
     var threshold: Q
+    var d_threshold: Q
     var queries: Int
 
     def __init__(out self):
         self.threshold = Q.zero()
+        self.d_threshold = Q.zero()
         self.queries = 0
 
     def sign(mut self, p: QX) raises -> Int:
-        var f = normalize(p)
+        var s = self.try_sign(p)
+        if s == OPEN_SIGN:
+            raise Error("no quadrant certificate for a sign: it may change with the ratio of the parameters")
+        return s
+
+    def try_sign(mut self, p: QX) raises -> Int:
+        """As `sign`, but `OPEN_SIGN` where a polynomial in `d` has no quadrant
+        certificate, leaving the region unchanged."""
+        var f2 = p2_norm(p)
         self.queries += 1
-        if len(f) == 0:
+        if len(f2) == 0:
             return 0
+        if p2_has_d(f2):
+            return self._quadrant(f2)
+        var f = f2[0].copy()
         if degree(f) >= 1 and not self._no_root_above(f, self.threshold):
             var bracket = largest_root_bracket(f, Q.one(), ROOT_STEPS)
             var above = bracket.hi.copy() if bracket.found else root_bound(f)
@@ -93,7 +138,7 @@ struct Eventual(Copyable, Movable):
                 self.threshold = above^
         return sign_of(f[len(f) - 1])
 
-    def _no_root_above(self, f: QX, x: Q) -> Bool:
+    def _no_root_above(self, f: List[Q], x: Q) -> Bool:
         """No real root of `f` in `[x, infinity)`: one Sturm count, the common case
         once the threshold has grown past the roots that matter."""
         if q_is_zero(evaluate(f, x)):
@@ -101,12 +146,40 @@ struct Eventual(Copyable, Movable):
         var chain = sturm_chain(f)
         return variation_difference(chain, x, root_bound(f)) == 0
 
+    def _quadrant(mut self, f: QX) raises -> Int:
+        for k in range(QUADRANT_STEPS):
+            for i in range(k + 1):
+                var a = _grown(self.threshold, i)
+                var b = _grown(self.d_threshold, k - i)
+                var s = quadrant_sign(f, a, b, POLYA_DEGREE)
+                if s != 0:
+                    self.threshold = a^
+                    self.d_threshold = b^
+                    return s
+        return OPEN_SIGN
+
     def first_integer_above(self) -> Int:
         """The least integer `q0` with `q0 > threshold`."""
-        var n = 0
-        while not self.threshold.lt(q_int(n)):
-            n += 1
-        return n
+        return _first_integer_above(self.threshold)
+
+    def first_integer_above_d(self) -> Int:
+        """The least integer `d0` with `d0 > d_threshold`."""
+        return _first_integer_above(self.d_threshold)
+
+
+def _grown(x: Q, i: Int) -> Q:
+    """`x` for `i = 0`, else `max(x, 1) 2^i`."""
+    if i == 0:
+        return x.copy()
+    var base = x.copy() if Q.one().lt(x) else Q.one()
+    return base.mul(q_int(1 << i))
+
+
+def _first_integer_above(x: Q) -> Int:
+    var n = 0
+    while not x.lt(q_int(n)):
+        n += 1
+    return n
 
 
 # ---------------------------------------------------------------------------
@@ -116,11 +189,11 @@ struct Eventual(Copyable, Movable):
 
 def tp_norm(p: TPoly) -> TPoly:
     var width = len(p)
-    while width > 0 and len(normalize(p[width - 1])) == 0:
+    while width > 0 and p2_is_zero(p[width - 1]):
         width -= 1
     var out = TPoly()
     for i in range(width):
-        out.append(normalize(p[i]))
+        out.append(p2_norm(p[i]))
     return out^
 
 
@@ -138,14 +211,14 @@ def tp_add(a: TPoly, b: TPoly) -> TPoly:
     var width = len(a) if len(a) > len(b) else len(b)
     var out = TPoly()
     for k in range(width):
-        out.append(add(tp_coeff(a, k), tp_coeff(b, k)))
+        out.append(p2_add(tp_coeff(a, k), tp_coeff(b, k)))
     return tp_norm(out)
 
 
 def tp_scale(p: TPoly, c: QX) -> TPoly:
     var out = TPoly()
     for k in range(len(p)):
-        out.append(mul(p[k], c))
+        out.append(p2_mul(p[k], c))
     return tp_norm(out)
 
 
@@ -167,7 +240,7 @@ def tp_mul(a: TPoly, b: TPoly) -> TPoly:
         out.append(QX())
     for i in range(len(x)):
         for j in range(len(y)):
-            out[i + j] = add(out[i + j], mul(x[i], y[j]))
+            out[i + j] = p2_add(out[i + j], p2_mul(x[i], y[j]))
     return tp_norm(out)
 
 
@@ -192,33 +265,30 @@ def tp_t() -> TPoly:
 def tp_key(p: TPoly) -> String:
     var out = String("")
     for k in range(len(p)):
-        out += "["
-        for j in range(len(p[k])):
-            out += q_string(p[k][j]) + ","
-        out += "]"
+        out += "[" + p2_key(p[k]) + "]"
     return out^
 
 
 def tp_deriv(p: TPoly) -> TPoly:
     var out = TPoly()
     for k in range(1, len(p)):
-        out.append(scale(p[k], q_int(k)))
+        out.append(p2_scale(p[k], q_int(k)))
     return tp_norm(out)
 
 
 def tp_at_t(p: TPoly, x: Q) -> QX:
-    """Substitute a rational for `t`: a polynomial in `q`."""
+    """Substitute a rational for `t`: a polynomial in the parameters."""
     var total = QX()
     for index in range(len(p)):
-        total = add(scale(total, x), p[len(p) - 1 - index])
+        total = p2_add(p2_scale(total, x), p[len(p) - 1 - index])
     return total^
 
 
-def tp_at_q(p: TPoly, q: Int) -> TPoly:
-    """Substitute an integer for `q`: a polynomial in `t` with constant coefficients."""
+def tp_at_q(p: TPoly, q: Int, d: Int = 0) -> TPoly:
+    """Substitute integers for the parameters: a polynomial in `t` with constant coefficients."""
     var out = TPoly()
     for k in range(len(p)):
-        out.append(normalize([qx_at(p[k], q)]))
+        out.append(p2_from_s([qx_at(p[k], q, d)]))
     return tp_norm(out)
 
 
@@ -247,15 +317,136 @@ def tp_prem(a: TPoly, b: TPoly) raises -> TPoly:
 # ---------------------------------------------------------------------------
 
 
+struct RatP2(Copyable, Movable):
+    """`num / den`, a rational function of the parameters with `den > 0` certified on the region."""
+
+    var num: QX
+    var den: QX
+
+    def __init__(out self, var num: QX, var den: QX):
+        self.num = num^
+        self.den = den^
+
+
+def tp_at_rat(p: TPoly, x: RatP2) -> QX:
+    """`p(x) den^deg p`: the sign of `p` at `x`, since `den > 0`."""
+    var top = len(p) - 1
+    var total = QX()
+    for k in range(len(p)):
+        var term = p[k].copy()
+        for _ in range(k):
+            term = p2_mul(term, x.num)
+        for _ in range(top - k):
+            term = p2_mul(term, x.den)
+        total = p2_add(total, term)
+    return total^
+
+
+def _r_sub(a: RatP2, b: RatP2) -> RatP2:
+    return RatP2(p2_sub(p2_mul(a.num, b.den), p2_mul(b.num, a.den)), p2_mul(a.den, b.den))
+
+
+def _r_mul(a: RatP2, b: RatP2) -> RatP2:
+    return RatP2(p2_mul(a.num, b.num), p2_mul(a.den, b.den))
+
+
+def _r_div(a: RatP2, b: RatP2, mut ev: Eventual) raises -> RatP2:
+    var sb = ev.sign(b.num)
+    if sb == 0:
+        raise Error("bracket refinement divides by zero")
+    var num = p2_mul(a.num, b.den)
+    var den = p2_mul(a.den, b.num)
+    if sb < 0:
+        return RatP2(p2_neg(num), p2_neg(den))
+    return RatP2(num^, den^)
+
+
+def _r_pow(x: QX, n: Int) -> QX:
+    var out = qx_const(1)
+    for _ in range(n):
+        out = p2_mul(out, x)
+    return out^
+
+
+struct Bracket(Copyable, Movable):
+    """`lo < beta < hi` on the region, each certified by the sign of `chi`."""
+
+    var lo: RatP2
+    var hi: RatP2
+
+    def __init__(out self, var lo: RatP2, var hi: RatP2):
+        self.lo = lo^
+        self.hi = hi^
+
+
 struct LineField(Copyable, Movable):
-    """`chi(q, t)` with a certified single root in `(1, infinity)` for `q > threshold`."""
+    """`chi(q, t)` with a certified single root in `(1, infinity)` for `q > threshold`.
+
+    On a wedge, signs at `beta` are read from `brackets` instead of a
+    Sturm--Tarski chain (whose intermediate signs change inside a wedge even
+    when the answer does not): level `k + 1` refines level `k` by a Newton step
+    from above and a chord step from below, each new end certified by the sign
+    of `chi` there."""
 
     var chi: TPoly
     var dchi: TPoly
+    var brackets: List[Bracket]
 
     def __init__(out self, chi: TPoly):
         self.chi = tp_norm(chi)
         self.dchi = tp_deriv(self.chi)
+        self.brackets = List[Bracket]()
+
+    def _chi_at(self, x: RatP2) -> RatP2:
+        return RatP2(tp_at_rat(self.chi, x), _r_pow(x.den, tp_deg(self.chi)))
+
+    def _refine(mut self, mut ev: Eventual) raises -> Bool:
+        """Append the next bracket level; `False` if a new end is not certified."""
+        ref b = self.brackets[len(self.brackets) - 1]
+        var chi_hi = self._chi_at(b.hi)
+        var chi_lo = self._chi_at(b.lo)
+        var dchi_hi = RatP2(tp_at_rat(self.dchi, b.hi), _r_pow(b.hi.den, tp_deg(self.dchi)))
+        if ev.try_sign(dchi_hi.num) != 1:
+            return False
+        var hi = _r_sub(b.hi, _r_div(chi_hi, dchi_hi, ev))
+        var lo = _r_sub(b.lo, _r_div(_r_mul(chi_lo, _r_sub(b.hi, b.lo)), _r_sub(chi_hi, chi_lo), ev))
+        # chi < 0 at a point puts it below beta; chi > 0 does so above beta only
+        # past 1, since chi < 0 on (1, beta) and the other roots lie below 1
+        if ev.try_sign(tp_at_rat(self.chi, lo)) != -1:
+            return False
+        if ev.try_sign(tp_at_rat(self.chi, hi)) != 1 or ev.try_sign(p2_sub(hi.num, hi.den)) != 1:
+            return False
+        self.brackets.append(Bracket(lo^, hi^))
+        return True
+
+    def _sign_bracketed(mut self, r: TPoly, mut ev: Eventual) raises -> Int:
+        """The sign of `r(beta)`, `deg r <= 2`, from a bracket where `r` has one
+        certified sign at both ends and none in between: `r` is monotone there
+        (`r'` has one sign at both ends), or its vertex value has that sign, or
+        it is convex against it (the extremum inside is the other kind)."""
+        var dr = tp_deriv(r)
+        var level = 0
+        while True:
+            var lo = self.brackets[level].lo.copy()
+            var hi = self.brackets[level].hi.copy()
+            var s = ev.try_sign(tp_at_rat(r, lo))
+            if (s == 1 or s == -1) and ev.try_sign(tp_at_rat(r, hi)) == s:
+                if tp_deg(r) <= 1:
+                    return s
+                var dl = ev.try_sign(tp_at_rat(dr, lo))
+                if (dl == 1 or dl == -1) and ev.try_sign(tp_at_rat(dr, hi)) == dl:
+                    return s
+                var sa = ev.try_sign(tp_coeff(r, 2))  # OPEN_SIGN matches neither test below
+                if sa == -s:
+                    return s
+                # vertex value (4 A C - B^2) / (4 A)
+                var disc = p2_sub(p2_scale(p2_mul(tp_coeff(r, 2), tp_coeff(r, 0)), q_int(4)), p2_mul(tp_coeff(r, 1), tp_coeff(r, 1)))
+                if ev.try_sign(disc) * sa == s:
+                    return s
+            level += 1
+            if level == len(self.brackets):
+                if level > MAX_BRACKET_LEVEL or not self._refine(ev):
+                    raise Error("no bracket of beta decides a sign")
 
     def reduce(self, g: TPoly) raises -> TPoly:
         """`g` modulo `chi`, up to a positive factor (an even power of `lc(chi)`)."""
@@ -289,9 +480,12 @@ struct LineField(Copyable, Movable):
             chain.append(nxt^)
         return self._variations(chain, True, ev) - self._variations(chain, False, ev)
 
-    def sign_at_beta(self, g: TPoly, mut ev: Eventual) raises -> Int:
-        if tp_deg(self.reduce(g)) < 0:
+    def sign_at_beta(mut self, g: TPoly, mut ev: Eventual) raises -> Int:
+        var r = self.reduce(g)
+        if tp_deg(r) < 0:
             return 0
+        if len(self.brackets) > 0:
+            return self._sign_bracketed(r, ev)
         return self.tarski_above_one(g, ev)
 
 
@@ -313,15 +507,12 @@ struct SymVertex(Copyable, Movable):
     def key(self) -> String:
         var out = String(self.top) + "|" + String(self.bottom)
         for i in range(3):
-            out += "|"
-            var c = normalize(self.w[i])
-            for k in range(len(c)):
-                out += q_string(c[k]) + ","
+            out += "|" + p2_key(p2_norm(self.w[i]))
         return out^
 
     def is_zero_offset(self) -> Bool:
         for i in range(3):
-            if len(normalize(self.w[i])) > 0:
+            if not p2_is_zero(self.w[i]):
                 return False
         return True
 
@@ -329,14 +520,14 @@ struct SymVertex(Copyable, Movable):
 def w_add(a: List[QX], b: List[QX]) -> List[QX]:
     var out = List[QX]()
     for i in range(3):
-        out.append(add(a[i], b[i]))
+        out.append(p2_add(a[i], b[i]))
     return out^
 
 
 def w_sub(a: List[QX], b: List[QX]) -> List[QX]:
     var out = List[QX]()
     for i in range(3):
-        out.append(sub(a[i], b[i]))
+        out.append(p2_sub(a[i], b[i]))
     return out^
 
 
@@ -358,6 +549,7 @@ struct Line(Copyable, Movable):
     var last: List[Int]
     var run: List[QX]
     var y: Int
+    var wedge: Bool  # some run involves the second parameter `d`
     var m: List[List[QX]]
     var field: LineField
     var ell: List[TPoly]
@@ -367,6 +559,10 @@ struct Line(Copyable, Movable):
         self.last = last.copy()
         self.run = run.copy()
         self.y = y
+        self.wedge = False
+        for b in range(3):
+            if p2_has_d(run[b]):
+                self.wedge = True
         self.m = List[List[QX]]()
         for _ in range(3):
             var row = List[QX]()
@@ -374,9 +570,9 @@ struct Line(Copyable, Movable):
                 row.append(QX())
             self.m.append(row^)
         for b in range(3):
-            self.m[first[b]][b] = add(self.m[first[b]][b], qx_const(1))
-            self.m[last[b]][b] = add(self.m[last[b]][b], qx_const(1))
-            self.m[y][b] = add(self.m[y][b], run[b])
+            self.m[first[b]][b] = p2_add(self.m[first[b]][b], qx_const(1))
+            self.m[last[b]][b] = p2_add(self.m[last[b]][b], qx_const(1))
+            self.m[y][b] = p2_add(self.m[y][b], run[b])
         # chi(t) = det(t I - M)
         var a = List[List[TPoly]]()
         for i in range(3):
@@ -412,7 +608,7 @@ struct Line(Copyable, Movable):
         for i in range(3):
             var s = QX()
             for j in range(3):
-                s = add(s, mul(self.m[i][j], w[j]))
+                s = p2_add(s, p2_mul(self.m[i][j], w[j]))
             out.append(s^)
         return out^
 
@@ -488,7 +684,7 @@ def roots_below(field: LineField, a: Q, mut ev: Eventual) raises -> Int:
     return _variations_at_infinity(chain, False, ev) - _variations_at(chain, a, ev)
 
 
-def certify_line(line: Line, mut ev: Eventual) raises -> LineCertificate:
+def certify_line(mut line: Line, mut ev: Eventual) raises -> LineCertificate:
     """PIP for every `q > threshold`: the support of `M` is eventually fixed and
     primitive; `chi` has no rational root (the determinant must be a constant,
     whose divisors are the only candidates); exactly one root lies in
@@ -497,10 +693,10 @@ def certify_line(line: Line, mut ev: Eventual) raises -> LineCertificate:
     `|beta_2|^2 = |det M| / beta`). Also fixes the sign that makes the tile
     lengths positive at `beta`."""
     var chi = line.field.chi.copy()
-    var det = neg(tp_coeff(chi, 0))  # chi(0) = -det M
-    if degree(det) > 0:
+    var det = p2_neg(tp_coeff(chi, 0))  # chi(0) = -det M
+    if not p2_is_const(det):
         raise Error("the line's determinant is not constant")
-    if len(det) == 0:
+    if p2_is_zero(det):
         return LineCertificate(False, 0)
     # support of M: every entry eventually positive or identically zero
     var support = List[Int]()
@@ -513,7 +709,7 @@ def certify_line(line: Line, mut ev: Eventual) raises -> LineCertificate:
     if not _primitive_support(support):
         return LineCertificate(False, 0)
     # rational roots divide the (constant) determinant
-    var d = det[0].copy()
+    var d = p2_const_value(det)
     var dn = 1
     while q_int(dn).le(d) or q_int(dn).le(d.neg()):
         if d.div(q_int(dn)).mul(q_int(dn)).eq(d):
@@ -526,19 +722,11 @@ def certify_line(line: Line, mut ev: Eventual) raises -> LineCertificate:
             raise Error("determinant too large for the rational-root screen")
     if ev.sign(tp_at_t(chi, Q.one())) == 0:
         return LineCertificate(False, 0)
-    if roots_above(line.field, Q.one(), ev) != 1:
+    if line.wedge:
+        if not _rouche_pisot(chi, ev) or not _seed_bracket(line.field, ev):
+            return LineCertificate(False, 0)
+    elif not _sturm_pisot(line, d, ev):
         return LineCertificate(False, 0)
-    var inside = roots_above(line.field, Q(-1, 1), ev) - roots_above(line.field, Q.one(), ev)
-    if inside != 2:
-        if inside != 0:
-            return LineCertificate(False, 0)
-        var dd = d.copy() if Q.zero().lt(d) else d.neg()
-        var over = tp_sub(tp_t(), tp_const(normalize([dd.copy()])))
-        if line.field.sign_at_beta(over, ev) <= 0:
-            return LineCertificate(False, 0)
-        # and the two non-Perron roots are not real outside the disc: no root below -1
-        if roots_below(line.field, Q(-1, 1), ev) != 0:
-            return LineCertificate(False, 0)
     var s = line.field.sign_at_beta(line.ell[line.y], ev)
     if s == 0:
         return LineCertificate(False, 0)
@@ -546,6 +734,63 @@ def certify_line(line: Line, mut ev: Eventual) raises -> LineCertificate:
         if line.field.sign_at_beta(line.ell[i], ev) != s:
             return LineCertificate(False, 0)
     return LineCertificate(True, s)
+
+
+def _rouche_pisot(chi: TPoly, mut ev: Eventual) raises -> Bool:
+    """`chi = t^3 + c2 t^2 + c1 t + c0` with `|c2| > 1 + |c1| + |c0|`: on `|t| = 1`
+    the term `c2 t^2` dominates the rest strictly, so (Rouche) `chi` has two
+    roots in the open unit disc and none on the circle, like `c2 t^2`. The third
+    root is then real, and it is the Perron root, which is `> 1`. Unlike the
+    Sturm count, this reads no sign that tells a real pair from a complex one,
+    which changes inside a wedge."""
+    if tp_deg(chi) != 3 or not p2_is_const(p2_sub(tp_coeff(chi, 3), qx_const(1))):
+        return False
+    var margin = qx_const(-1)
+    for k in range(3):
+        var c = tp_coeff(chi, k)
+        var sk = ev.sign(c)
+        if k == 2 and sk == 0:
+            return False
+        margin = p2_add(margin, c) if (k == 2) == (sk > 0) else p2_sub(margin, c)
+    return ev.sign(margin) > 0
+
+
+def _seed_bracket(mut field: LineField, mut ev: Eventual) raises -> Bool:
+    """`trace - k < beta < trace + j` for the least `k >= 1`, `j >= 0` (at most
+    `BRACKET_SEED_RANGE`) certified by the sign of `chi`, with the lower end `> 1`."""
+    var trace = p2_neg(tp_coeff(field.chi, 2))
+    var one = qx_const(1)
+    for j in range(BRACKET_SEED_RANGE):
+        var hi = p2_add(trace, qx_const(j))
+        if ev.try_sign(tp_at_rat(field.chi, RatP2(hi.copy(), one.copy()))) != 1:
+            continue
+        for k in range(1, BRACKET_SEED_RANGE):
+            var lo = p2_sub(trace, qx_const(k))
+            if ev.try_sign(p2_sub(lo, one)) != 1:
+                break
+            if ev.try_sign(tp_at_rat(field.chi, RatP2(lo.copy(), one.copy()))) == -1:
+                field.brackets.append(Bracket(RatP2(lo^, one.copy()), RatP2(hi^, one.copy())))
+                return True
+        return False
+    return False
+
+
+def _sturm_pisot(mut line: Line, d: Q, mut ev: Eventual) raises -> Bool:
+    """One root of `chi` in `(1, infinity)` and two in the open unit disc, by Sturm counts."""
+    if roots_above(line.field, Q.one(), ev) != 1:
+        return False
+    var inside = roots_above(line.field, Q(-1, 1), ev) - roots_above(line.field, Q.one(), ev)
+    if inside != 2:
+        if inside != 0:
+            return False
+        var dd = d.copy() if Q.zero().lt(d) else d.neg()
+        var over = tp_sub(tp_t(), tp_const(p2_from_s([dd.copy()])))
+        if line.field.sign_at_beta(over, ev) <= 0:
+            return False
+        # and the two non-Perron roots are not real outside the disc: no root below -1
+        if roots_below(line.field, Q(-1, 1), ev) != 0:
+            return False
+    return True
 
 
 def _primitive_support(s: List[Int]) -> Bool:
@@ -577,6 +822,7 @@ struct SymbolicLineGraph(Copyable, Movable):
     var vertices: List[SymVertex]
     var adj: List[List[Int]]
     var threshold: Q
+    var d_threshold: Q
     var queries: Int
     var pip: Bool
 
@@ -584,6 +830,7 @@ struct SymbolicLineGraph(Copyable, Movable):
         self.vertices = List[SymVertex]()
         self.adj = List[List[Int]]()
         self.threshold = Q.zero()
+        self.d_threshold = Q.zero()
         self.queries = 0
         self.pip = False
 
@@ -668,17 +915,24 @@ struct _Closure:
         """The least integer `m(q)` with `h0 + m h1 > 0` (`>= 0` if not `strict`) at
         beta (`h1 > 0`), as an affine polynomial in `q`, fitted at sample points and
         certified."""
-        var v1 = _least_at(self.line, self.sign, h0, h1, SAMPLE_BASE, strict)
-        var v2 = _least_at(self.line, self.sign, h0, h1, 2 * SAMPLE_BASE, strict)
-        var slope = (v2 - v1) // SAMPLE_BASE
-        if v2 - v1 != slope * SAMPLE_BASE:
+        var b = SAMPLE_BASE
+        var v1 = _least_at(self.line, self.sign, h0, h1, b, b, strict)
+        var v2 = _least_at(self.line, self.sign, h0, h1, 2 * b, b, strict)
+        var slope = (v2 - v1) // b
+        if v2 - v1 != slope * b:
             raise Error("a run-position bound is not affine in q at the samples")
-        var c0 = v1 - slope * SAMPLE_BASE
-        var mu = qx_affine(c0, slope)
+        var d_slope = 0
+        if self.line.wedge:
+            var v3 = _least_at(self.line, self.sign, h0, h1, b, 2 * b, strict)
+            d_slope = (v3 - v1) // b
+            if v3 - v1 != d_slope * b:
+                raise Error("a run-position bound is not affine in d at the samples")
+        var c0 = v1 - slope * b - d_slope * b
+        var mu = qx_affine(c0, slope, d_slope)
         var floor_sign = 1 if strict else 0
         if self.positive(tp_add(h0, tp_scale(h1, mu))) < floor_sign:
             raise Error("a fitted run-position bound fails certification (low side)")
-        if self.positive(tp_add(h0, tp_scale(h1, sub(mu, qx_const(1))))) >= floor_sign:
+        if self.positive(tp_add(h0, tp_scale(h1, p2_sub(mu, qx_const(1))))) >= floor_sign:
             raise Error("a fitted run-position bound fails certification (high side)")
         return mu^
 
@@ -705,27 +959,41 @@ struct _Closure:
                     continue
                 # offset base + m e_y; real iff ell_b2 + t + m ell_y > 0 and ell_a2 - t - m ell_y > 0
                 var t = self.line.t_of(base)
-                var lo = self.least_m(tp_add(ell[b2], t), ell[y], True)
-                var hi_plus = self.least_m(tp_sub(t, ell[a2]), ell[y], False)  # least m with t + m ell_y >= ell_a2
-                var hi = sub(hi_plus, qx_const(1))
+                var low_h = tp_add(ell[b2], t)  # real below: low_h + m ell_y > 0
+                var high_h = tp_sub(t, ell[a2])  # real above: high_h + m ell_y < 0
                 # run positions: m = k_b - k_a with k in [0, run - 1]
-                var rlo = neg(sub(self.line.run[v.top], qx_const(1))) if sa == 1 else QX()
-                var rhi = sub(self.line.run[v.bottom], qx_const(1)) if sb == 1 else QX()
-                var low = lo.copy() if self.ev.sign(sub(lo, rlo)) >= 0 else rlo.copy()
-                var high = hi.copy() if self.ev.sign(sub(rhi, hi)) >= 0 else rhi.copy()
-                var gap = sub(high, low)
-                if degree(gap) > 0:
+                var rlo = p2_neg(p2_sub(self.line.run[v.top], qx_const(1))) if sa == 1 else QX()
+                var rhi = p2_sub(self.line.run[v.bottom], qx_const(1)) if sb == 1 else QX()
+                var low: QX
+                var high: QX
+                if self.line.wedge:
+                    # a run end that is itself real binds, and needs no fitted bound
+                    if self.positive(tp_add(low_h, tp_scale(ell[y], rlo))) > 0:
+                        low = rlo.copy()
+                    else:
+                        low = self.least_m(low_h, ell[y], True)
+                    if self.positive(tp_add(high_h, tp_scale(ell[y], rhi))) < 0:
+                        high = rhi.copy()
+                    else:
+                        high = p2_sub(self.least_m(high_h, ell[y], False), qx_const(1))
+                else:
+                    var lo = self.least_m(low_h, ell[y], True)
+                    var hi = p2_sub(self.least_m(high_h, ell[y], False), qx_const(1))  # least m with t + m ell_y >= ell_a2, less one
+                    low = lo.copy() if self.ev.sign(p2_sub(lo, rlo)) >= 0 else rlo.copy()
+                    high = hi.copy() if self.ev.sign(p2_sub(rhi, hi)) >= 0 else rhi.copy()
+                var gap = p2_sub(high, low)
+                if not p2_is_const(gap):
                     if self.ev.sign(gap) < 0:
                         continue
-                    raise Error("a run-position range grows with q")
+                    raise Error("a run-position range grows with the parameters")
+                var g0 = p2_const_value(gap)
+                if g0.lt(Q.zero()):
+                    continue
                 var width = 0
-                if len(gap) > 0:
-                    if gap[0].lt(Q.zero()):
-                        continue
-                    while q_int(width + 1).le(gap[0]):
-                        width += 1
+                while q_int(width + 1).le(g0):
+                    width += 1
                 for d in range(width + 1):
-                    var mval = add(low, qx_const(d))
+                    var mval = p2_add(low, qx_const(d))
                     var child = w_add(base, w_unit(y, mval))
                     var c = self.intern(SymVertex(a2, b2, child^))
                     self.adj[i].append(c)
@@ -748,16 +1016,16 @@ struct _Closure:
                             _ = self.intern(SymVertex(tops[i], bots[j], w^))
 
 
-def _h_pos(m: Int, field: LineField, g0: TPoly, g1: TPoly, floor_sign: Int, mut ev: Eventual) raises -> Bool:
+def _h_pos(m: Int, mut field: LineField, g0: TPoly, g1: TPoly, floor_sign: Int, mut ev: Eventual) raises -> Bool:
     return field.sign_at_beta(tp_add(g0, tp_scale(g1, qx_const(m))), ev) >= floor_sign
 
 
-def _least_at(line: Line, sign: Int, h0: TPoly, h1: TPoly, q: Int, strict: Bool) raises -> Int:
+def _least_at(line: Line, sign: Int, h0: TPoly, h1: TPoly, q: Int, d: Int, strict: Bool) raises -> Int:
     """Exact least integer `m` with `h0 + m h1 > 0` (`>= 0` if not `strict`) at
-    `beta(q)`, for one concrete `q`."""
-    var field = LineField(tp_at_q(line.field.chi, q))
-    var g0 = tp_scale(tp_at_q(h0, q), qx_const(sign))
-    var g1 = tp_scale(tp_at_q(h1, q), qx_const(sign))
+    `beta(q, d)`, for one concrete parameter point."""
+    var field = LineField(tp_at_q(line.field.chi, q, d))
+    var g0 = tp_scale(tp_at_q(h0, q, d), qx_const(sign))
+    var g1 = tp_scale(tp_at_q(h1, q, d), qx_const(sign))
     var ev = Eventual()
     if field.sign_at_beta(g1, ev) <= 0:
         raise Error("the run-position step is not positive")
@@ -804,6 +1072,7 @@ def symbolic_line_graph(var line: Line) raises -> SymbolicLineGraph:
     if not cert.holds:
         out.pip = False
         out.threshold = ev.threshold.copy()
+        out.d_threshold = ev.d_threshold.copy()
         return out^
     var cl = _Closure(line^, cert.ell_sign, ev^)
     cl.seeds()
@@ -814,6 +1083,7 @@ def symbolic_line_graph(var line: Line) raises -> SymbolicLineGraph:
         cl.expand(i)
     out.pip = True
     out.threshold = cl.ev.threshold.copy()
+    out.d_threshold = cl.ev.d_threshold.copy()
     out.queries = cl.ev.queries
     out.vertices = cl.vertices.copy()
     out.adj = cl.adj.copy()

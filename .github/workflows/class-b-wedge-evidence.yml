@@ -1,0 +1,91 @@
+name: Class B wedge certificate
+# Guards Theorem W (docs/p1c-symbolic-wedge-2026-10-08.md): each cone of the
+# wedge q < p < 2q is certified again and must reproduce its pin in
+# wedge_pins(), and every boundary line derived from the pinned cone
+# thresholds is certified and must reproduce its pin in boundary_pins() of
+# kernel/symbolic_wedge_certificate.mojo (the driver raises otherwise). The
+# cone jobs and the boundary jobs together certify the wedge.
+on:
+  pull_request:
+    # The driver's full import closure, the pixi pins, and this file.
+    paths:
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'kernel/a1_normal_form_census.mojo'
+      - 'kernel/psc/bpa.mojo'
+      - 'kernel/psc/coincidence_formula.mojo'
+      - 'kernel/psc/dumont_thomas.mojo'
+      - 'kernel/psc/exact.mojo'
+      - 'kernel/psc/field3.mojo'
+      - 'kernel/psc/histogram.mojo'
+      - 'kernel/psc/linear_numeration.mojo'
+      - 'kernel/psc/numeration_addition.mojo'
+      - 'kernel/psc/overlap_contracting.mojo'
+      - 'kernel/psc/overlap_obstruction.mojo'
+      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'kernel/psc/param_poly.mojo'
+      - 'kernel/psc/perron_field3.mojo'
+      - 'kernel/psc/perron_root_sign.mojo'
+      - 'kernel/psc/pisot.mojo'
+      - 'kernel/psc/pisot_screen.mojo'
+      - 'kernel/psc/pisot_state.mojo'
+      - 'kernel/psc/real_root_sign.mojo'
+      - 'kernel/psc/symbolic_line.mojo'
+      - 'kernel/psc/vertex_coincidence.mojo'
+      - 'kernel/psc/words.mojo'
+      - 'kernel/symbolic_line_certificate.mojo'
+      - 'kernel/symbolic_wedge_certificate.mojo'
+      - 'kernel/finite_automata/**'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_graph/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/substitution_dynamics/**'
+      - '.github/workflows/class-b-wedge-evidence.yml'
+  schedule:
+    - cron: '53 4 * * 0'
+  workflow_dispatch:
+jobs:
+  cone:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: [1, -1]
+        which: [0, 1]
+    name: class B wedge cone ${{ matrix.branch }} ${{ matrix.which }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Certify the cone against its pinned verdict
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run mojo run -I . symbolic_wedge_certificate.mojo cone ${{ matrix.branch }} ${{ matrix.which }} 2>&1 | tee cone.log
+          grep -Fx '  pinned verdict reproduced' cone.log
+  boundary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: [1, -1]
+        part: [0, 1, 2, 3, 4, 5]
+    name: class B wedge boundary ${{ matrix.branch }} part ${{ matrix.part }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Certify the boundary lines against their pinned verdicts
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run mojo run -I . symbolic_wedge_certificate.mojo boundary ${{ matrix.branch }} ${{ matrix.part }} 6 2>&1 | tee boundary.log
+          grep -F ': pinned verdicts reproduced' boundary.log

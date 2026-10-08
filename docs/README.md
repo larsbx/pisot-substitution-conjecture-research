@@ -351,6 +351,12 @@ These are reference/index additions only. They do not establish #84, #138,
   truth. Lemma RC: the census domains are closed under reversal, which gives
   two-sided strong coincidence on all 408,798 specimens. Theorem L′: further
   certified lines of class B, each an infinite family with PDS and G1.
+- `p1c-symbolic-wedge-2026-10-08.md` — Theorem W: the symbolic overlap graph
+  with two parameters (Pólya quadrant signs, Rouché PIP, bracketed signs at
+  `beta`) certifies two cones of class B's wedge `q < p < 2q` on both branches.
+  With finitely many boundary lines and Theorem L′, every PIP member with
+  `q < p <= 2q + 4` (branch `+1`) or `q < p <= 2q + 3` (branch `−1`) has PDS and
+  G1. Driver `kernel/symbolic_wedge_certificate.mojo`.
 - `pds-certificate-from-the-box-automaton-2026-10-07.md` — Theorem Ω:
   formal productivity of a PIP substitution is the single exact property
   "every vertex of the box automaton reaches a coincidence"; it gives PDS

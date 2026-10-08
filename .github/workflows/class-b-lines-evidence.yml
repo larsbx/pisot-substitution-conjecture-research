@@ -22,6 +22,7 @@ on:
       - 'kernel/psc/overlap_contracting.mojo'
       - 'kernel/psc/overlap_obstruction.mojo'
       - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'kernel/psc/param_poly.mojo'
       - 'kernel/psc/perron_field3.mojo'
       - 'kernel/psc/perron_root_sign.mojo'
       - 'kernel/psc/pisot.mojo'

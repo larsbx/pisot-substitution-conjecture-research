@@ -226,6 +226,11 @@ Both are limits of the one-parameter affine method, not counterexamples.
 1. **`k` symbolic.** The vertex counts stabilise along each line. A
    two-parameter version of `psc.symbolic_line` (polynomials in `q` and `k`
    on the regime `p ≤ 2q + K`) would cover a whole wedge of class B at once.
+   *Update 2026-10-08:* done for the wedge `q < p < 2q`, on both branches, by
+   two cones and finitely many boundary lines. See Theorem W of
+   [`p1c-symbolic-wedge-2026-10-08.md`](p1c-symbolic-wedge-2026-10-08.md).
+   The full `(s, d)` quadrant does not close, because a run bound splits
+   along `s = d`.
 2. **The `p ≫ q` corner** needs expansions in `sqrt(p)`, as Theorem L's §5
    already says.
 3. **The self-overlap of Proposition SA** is a single-tiling object: `sigma^n(a)`
