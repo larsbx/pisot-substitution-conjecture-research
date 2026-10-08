@@ -317,7 +317,7 @@ def tp_prem(a: TPoly, b: TPoly) raises -> TPoly:
 # ---------------------------------------------------------------------------
 
 
-struct RatP2(Copyable, Movable):
+struct FracP2(Copyable, Movable):
     """`num / den`, a rational function of the parameters with `den > 0` certified on the region."""
 
     var num: QX
@@ -328,7 +328,7 @@ struct RatP2(Copyable, Movable):
         self.den = den^
 
 
-def tp_at_rat(p: TPoly, x: RatP2) -> QX:
+def tp_at_rat(p: TPoly, x: FracP2) -> QX:
     """`p(x) den^deg p`: the sign of `p` at `x`, since `den > 0`."""
     var top = len(p) - 1
     var total = QX()
@@ -342,23 +342,23 @@ def tp_at_rat(p: TPoly, x: RatP2) -> QX:
     return total^
 
 
-def _r_sub(a: RatP2, b: RatP2) -> RatP2:
-    return RatP2(p2_sub(p2_mul(a.num, b.den), p2_mul(b.num, a.den)), p2_mul(a.den, b.den))
+def _r_sub(a: FracP2, b: FracP2) -> FracP2:
+    return FracP2(p2_sub(p2_mul(a.num, b.den), p2_mul(b.num, a.den)), p2_mul(a.den, b.den))
 
 
-def _r_mul(a: RatP2, b: RatP2) -> RatP2:
-    return RatP2(p2_mul(a.num, b.num), p2_mul(a.den, b.den))
+def _r_mul(a: FracP2, b: FracP2) -> FracP2:
+    return FracP2(p2_mul(a.num, b.num), p2_mul(a.den, b.den))
 
 
-def _r_div(a: RatP2, b: RatP2, mut ev: Eventual) raises -> RatP2:
+def _r_div(a: FracP2, b: FracP2, mut ev: Eventual) raises -> FracP2:
     var sb = ev.sign(b.num)
     if sb == 0:
         raise Error("bracket refinement divides by zero")
     var num = p2_mul(a.num, b.den)
     var den = p2_mul(a.den, b.num)
     if sb < 0:
-        return RatP2(p2_neg(num), p2_neg(den))
-    return RatP2(num^, den^)
+        return FracP2(p2_neg(num), p2_neg(den))
+    return FracP2(num^, den^)
 
 
 def _r_pow(x: QX, n: Int) -> QX:
@@ -371,10 +371,10 @@ def _r_pow(x: QX, n: Int) -> QX:
 struct Bracket(Copyable, Movable):
     """`lo < beta < hi` on the region, each certified by the sign of `chi`."""
 
-    var lo: RatP2
-    var hi: RatP2
+    var lo: FracP2
+    var hi: FracP2
 
-    def __init__(out self, var lo: RatP2, var hi: RatP2):
+    def __init__(out self, var lo: FracP2, var hi: FracP2):
         self.lo = lo^
         self.hi = hi^
 
@@ -397,15 +397,15 @@ struct LineField(Copyable, Movable):
         self.dchi = tp_deriv(self.chi)
         self.brackets = List[Bracket]()
 
-    def _chi_at(self, x: RatP2) -> RatP2:
-        return RatP2(tp_at_rat(self.chi, x), _r_pow(x.den, tp_deg(self.chi)))
+    def _chi_at(self, x: FracP2) -> FracP2:
+        return FracP2(tp_at_rat(self.chi, x), _r_pow(x.den, tp_deg(self.chi)))
 
     def _refine(mut self, mut ev: Eventual) raises -> Bool:
         """Append the next bracket level; `False` if a new end is not certified."""
         ref b = self.brackets[len(self.brackets) - 1]
         var chi_hi = self._chi_at(b.hi)
         var chi_lo = self._chi_at(b.lo)
-        var dchi_hi = RatP2(tp_at_rat(self.dchi, b.hi), _r_pow(b.hi.den, tp_deg(self.dchi)))
+        var dchi_hi = FracP2(tp_at_rat(self.dchi, b.hi), _r_pow(b.hi.den, tp_deg(self.dchi)))
         if ev.try_sign(dchi_hi.num) != 1:
             return False
         var hi = _r_sub(b.hi, _r_div(chi_hi, dchi_hi, ev))
@@ -762,14 +762,14 @@ def _seed_bracket(mut field: LineField, mut ev: Eventual) raises -> Bool:
     var one = qx_const(1)
     for j in range(BRACKET_SEED_RANGE):
         var hi = p2_add(trace, qx_const(j))
-        if ev.try_sign(tp_at_rat(field.chi, RatP2(hi.copy(), one.copy()))) != 1:
+        if ev.try_sign(tp_at_rat(field.chi, FracP2(hi.copy(), one.copy()))) != 1:
             continue
         for k in range(1, BRACKET_SEED_RANGE):
             var lo = p2_sub(trace, qx_const(k))
             if ev.try_sign(p2_sub(lo, one)) != 1:
                 break
-            if ev.try_sign(tp_at_rat(field.chi, RatP2(lo.copy(), one.copy()))) == -1:
-                field.brackets.append(Bracket(RatP2(lo^, one.copy()), RatP2(hi^, one.copy())))
+            if ev.try_sign(tp_at_rat(field.chi, FracP2(lo.copy(), one.copy()))) == -1:
+                field.brackets.append(Bracket(FracP2(lo^, one.copy()), FracP2(hi^, one.copy())))
                 return True
         return False
     return False

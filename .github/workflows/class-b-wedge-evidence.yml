@@ -74,7 +74,7 @@ jobs:
       fail-fast: false
       matrix:
         branch: [1, -1]
-        part: [0, 1, 2, 3, 4, 5]
+        part: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     name: class B wedge boundary ${{ matrix.branch }} part ${{ matrix.part }}
     steps:
       - uses: actions/checkout@v4
@@ -87,5 +87,5 @@ jobs:
         working-directory: kernel
         run: |
           set -o pipefail
-          pixi run mojo run -I . symbolic_wedge_certificate.mojo boundary ${{ matrix.branch }} ${{ matrix.part }} 6 2>&1 | tee boundary.log
+          pixi run mojo run -I . symbolic_wedge_certificate.mojo boundary ${{ matrix.branch }} ${{ matrix.part }} 12 2>&1 | tee boundary.log
           grep -F ': pinned verdicts reproduced' boundary.log
