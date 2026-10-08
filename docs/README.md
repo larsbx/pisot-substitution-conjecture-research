@@ -271,6 +271,16 @@ These are reference/index additions only. They do not establish #84, #138,
   parametric Sturm–Tarski queries over `Q[q]` with a certified threshold
   (`q >= 52`), plus the exact kernel for `q < 52`
   (`kernel/psc/symbolic_line.mojo`, `kernel/symbolic_line_certificate.mojo`).
+- `p1b-symbolic-cone-2026-10-08.md` — #139 research note. **Theorem C**
+  (Status: repository-proved, computer-assisted, unreviewed): pure discrete
+  spectrum and G1 for every member of class B with `r = q + 1`,
+  `p <= max(2q + 13, (5q + 10)/2)`, or `r = q − 1`,
+  `p <= max(2q + 7, (5q − 5)/2)`, by the swap-seed closure in two parameters:
+  region signs certified by shifted coefficients with Pólya's multiplier, and
+  signs at beta on certified rational brackets of the Perron root (45
+  families, 77 symbolic regions, 490 exact members). It contains Theorem L
+  and every line of Theorem L′; the layer near slope 3 stays open
+  (`kernel/psc/symbolic_cone.mojo`, `kernel/class_b_cone_certificate.mojo`).
 - `p1b-catch-up-free-ppvc-2026-10-07.md` — #139 on the catch-up-free
   `|det M| = 2` class, with its stop/go gate: **Proposition Z** assembles
   recorded results to show that there, outside the open part of Theorem K's
@@ -340,8 +350,25 @@ These are reference/index additions only. They do not establish #84, #138,
   specimens): no failure. Lemma A: on the catch-up-free `|det M| = 2` class the
   aligned route is a hitting statement through nonzero offsets. With the
   recorded PPVC runs, pure discrete spectrum on the 145,806 specimens with
-  images ≤ 4 or total length ≤ 8 (finite evidence; Proposition V unreviewed).
+  images ≤ 4 or total length ≤ 8; since 2026-10-08 a finite-domain theorem
+  (`BoundedPureDiscreteSpectrum`) resting on Theorem Ω of
+  `pds-certificate-from-the-box-automaton-2026-10-07.md`, not on Proposition V(2).
   Driver `kernel/strong_coincidence_census.mojo`.
+- `p1-seed-strength-2026-10-08.md` — #84 at seed strength. Proposition SA:
+  a swap seed has exactly three overlaps, one of them a self-overlap of the
+  longer letter. Theorem SC: one productive seed ⟺ every seed ⟺ FP ⟺ PDS,
+  per substitution (through Corollary FP″), so seed strength buys no slack in
+  truth. Lemma RC: the census domains are closed under reversal, which gives
+  two-sided strong coincidence on all 408,798 specimens. Theorem L′: further
+  certified lines of class B, each an infinite family with PDS and G1.
+- `pds-certificate-from-the-box-automaton-2026-10-07.md` — Theorem Ω:
+  formal productivity of a PIP substitution is the single exact property
+  "every vertex of the box automaton reaches a coincidence"; it gives PDS
+  through Lee–Moody–Solomyak overlap coincidence (literature gate included)
+  and through Theorem 5.38, and termination with coincidence from every swap
+  seed. The 145,806-specimen PDS statement no longer rests on Theorem B or
+  Proposition V(2); the 120 cube-family specimens need no `B_sigma` build.
+  Includes an independent re-derivation of the October 4 chain.
 - `catch-up-hit-witness-enumeration-2026-10-04.md` — occurrence-level
   all-path decision (`psc.hit_witness`): committed stable labels for all
   97,224 simultaneous-only standing vertices, replayable closed certificates,

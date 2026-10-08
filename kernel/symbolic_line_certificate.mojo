@@ -16,11 +16,16 @@ letters `x = 0`, `c = 1`, `y = 2`, `|det M| = 2`. The certificate has three part
 3. A cross-check, not part of the proof: at `q0` and `q0 + 5` the symbolic
    graph with `q` substituted must equal the exact graph, vertex for vertex.
 
-A failure of any part raises. Usage: `mojo run -I . symbolic_line_certificate.mojo`,
-or `pixi run symbolic-line-certificate`.
+A failure of any part raises. Usage: `mojo run -I . symbolic_line_certificate.mojo`
+(Theorem L's line), `... symbolic_line_certificate.mojo SLOPE K BRANCH` (the class B
+line p = SLOPE q + K, r = q + BRANCH), or `... lines` (every line in
+`certified_lines()`); `pixi run symbolic-line-certificate` runs the first. Any
+other argument shape raises. A listed line must also reproduce its pinned
+verdict; `.github/workflows/class-b-lines-evidence.yml` runs every listed line.
 """
 
 from std.collections import Dict
+from std.sys import argv
 from finite_linear_algebra.mat3 import Mat3
 from finite_linear_algebra.scalar import q_int
 from psc.bpa import substitution_incidence
@@ -36,12 +41,19 @@ from psc.vertex_coincidence import length_matrix, offset_vector
 from a1_normal_form_census import CLASS_B, class_member
 
 
-def class_b_line() raises -> Line:
-    return Line([0, 1, 1], [0, 0, 0], [qx_affine(2, 2), qx_affine(0, 1), qx_affine(1, 1)], 2)
+# A line of class B: p = slope q + k, r = q + branch (|r - q| = 1 is Lemma P1's
+# determinant-2 condition). The default is Theorem L's line.
+def class_b_line(slope: Int = 2, k: Int = 2, branch: Int = 1) raises -> Line:
+    return Line([0, 1, 1], [0, 0, 0], [qx_affine(k, slope), qx_affine(0, 1), qx_affine(branch, 1)], 2)
 
 
-def class_b_member(q: Int) raises -> List[List[Int]]:
-    return class_member(CLASS_B, 2 * q + 2, q, q + 1)
+def class_b_member(q: Int, slope: Int = 2, k: Int = 2, branch: Int = 1) raises -> List[List[Int]]:
+    return class_member(CLASS_B, slope * q + k, q, q + branch)
+
+
+def in_class_b(q: Int, slope: Int, k: Int, branch: Int) -> Bool:
+    """Theorem E's class B needs `p > q >= 0` and `r >= 0`."""
+    return q >= 0 and slope * q + k > q and q + branch >= 0
 
 
 def exact_hits(sigma: List[List[Int]]) raises -> Int:
@@ -99,6 +111,7 @@ struct LineVerdict(Copyable, Movable):
     var queries: Int
     var finite_members: Int
     var finite_non_pip: Int
+    var finite_outside: Int
 
     def __init__(out self):
         self.q0 = -1
@@ -106,11 +119,14 @@ struct LineVerdict(Copyable, Movable):
         self.queries = 0
         self.finite_members = 0
         self.finite_non_pip = 0
+        self.finite_outside = 0
 
 
-def certify_class_b_line() raises -> LineVerdict:
+def certify_class_b_line(slope: Int = 2, k: Int = 2, branch: Int = 1) raises -> LineVerdict:
+    """Every PIP member of the line has every seed-reachable overlap hitting
+    offset zero, and `|det M| = 2` (the hypothesis of Corollary E2)."""
     var out = LineVerdict()
-    var g = symbolic_line_graph(class_b_line())
+    var g = symbolic_line_graph(class_b_line(slope, k, branch))
     if not g.pip:
         raise Error("the line's PIP property was not certified")
     var good = offset_zero_reachable(g)
@@ -124,20 +140,114 @@ def certify_class_b_line() raises -> LineVerdict:
         n += 1
     out.q0 = n
     var screen = CubicScreen()
+    if abs(Mat3(substitution_incidence(class_b_member(out.q0, slope, k, branch))).det()) != 2:
+        raise Error("the line's determinant is not +-2, so Corollary E2 does not apply")
     for q in range(out.q0):
-        var sigma = class_b_member(q)
-        if not screen.is_pip(Mat3(substitution_incidence(sigma))):
+        if not in_class_b(q, slope, k, branch):
+            out.finite_outside += 1
+            continue
+        var sigma = class_b_member(q, slope, k, branch)
+        var m = Mat3(substitution_incidence(sigma))
+        if not screen.is_pip(m):
             out.finite_non_pip += 1
             continue
+        if abs(m.det()) != 2:
+            raise Error("a PIP member has |det M| != 2")
         _ = exact_hits(sigma)
         out.finite_members += 1
     for q in [out.q0, out.q0 + 5]:
-        if not same_set(symbolic_vertex_keys(g, q), exact_vertex_keys(class_b_member(q))):
+        if not same_set(symbolic_vertex_keys(g, q), exact_vertex_keys(class_b_member(q, slope, k, branch))):
             raise Error("cross-check: the symbolic graph differs from the exact graph")
     return out^
 
 
+# The class B lines certified so far, as (slope, k, branch): p = slope q + k,
+# r = q + branch. The first is Theorem L; the others are Theorem L' of
+# docs/p1-seed-strength-2026-10-08.md.
+# slope, k, branch, then the pinned verdict: q0, symbolic vertices, PIP members
+# below q0, non-PIP members below q0, parameters below q0 outside class B.
+def certified_lines() -> List[List[Int]]:
+    return [
+        [2, 2, 1, 52, 119, 52, 0, 0],
+        [1, 1, 1, 14, 121, 14, 0, 0],
+        [1, 2, 1, 11, 77, 11, 0, 0],
+        [1, 3, 1, 22, 79, 22, 0, 0],
+        [1, 1, -1, 20, 166, 19, 0, 1],
+        [1, 2, -1, 16, 144, 14, 1, 1],
+        [1, 3, -1, 32, 131, 30, 1, 1],
+        [2, 0, 1, 20, 76, 19, 0, 1],
+        [2, 1, 1, 17, 84, 17, 0, 0],
+        [2, 3, 1, 14, 123, 14, 0, 0],
+        [2, 4, 1, 15, 123, 15, 0, 0],
+        [2, 0, -1, 34, 124, 33, 0, 1],
+        [2, 1, -1, 87, 274, 85, 1, 1],
+        [2, 2, -1, 107, 255, 104, 2, 1],
+        [2, 3, -1, 128, 248, 124, 3, 1],
+    ]
+
+
+def pinned(slope: Int, k: Int, branch: Int) -> List[Int]:
+    """The pinned verdict of a listed line, or an empty list."""
+    var lines = certified_lines()
+    for i in range(len(lines)):
+        if lines[i][0] == slope and lines[i][1] == k and lines[i][2] == branch:
+            return lines[i].copy()
+    return List[Int]()
+
+
+def check_pinned(v: LineVerdict, pin: List[Int]) raises:
+    """A listed line must reproduce its pinned verdict exactly."""
+    if (
+        v.q0 != pin[3]
+        or v.symbolic_vertices != pin[4]
+        or v.finite_members != pin[5]
+        or v.finite_non_pip != pin[6]
+        or v.finite_outside != pin[7]
+    ):
+        raise Error("the line's verdict differs from its pinned verdict in certified_lines()")
+
+
+def report(slope: Int, k: Int, branch: Int) raises:
+    var v = certify_class_b_line(slope, k, branch)
+    print("class B line p =", slope, "q +", k, " r = q +", branch, "(x -> x y^p x, c -> c y^q x, y -> c y^r x):")
+    print("  symbolic graph for every q >=", v.q0, ":", v.symbolic_vertices, "vertices, all with an offset-zero descendant;", v.queries, "certified sign reads")
+    print("  q <", v.q0, ":", v.finite_members, "PIP members decided exactly, all hitting;", v.finite_non_pip, "not PIP;", v.finite_outside, "outside class B")
+    print("  cross-check at q0 and q0 + 5: symbolic graph = exact graph")
+    var pin = pinned(slope, k, branch)
+    if len(pin) > 0:
+        check_pinned(v, pin)
+        print("  pinned verdict reproduced")
+
+
+def mode_of(args: List[String]) raises -> String:
+    """`default` (no argument), `line` (three integers) or `lines`; any other
+    shape raises, so a typo never silently certifies the default line instead."""
+    if len(args) == 0:
+        return "default"
+    if len(args) == 1 and args[0] == "lines":
+        return "lines"
+    if len(args) == 3:
+        for i in range(3):
+            _ = Int(args[i])  # raises unless an integer
+        return "line"
+    raise Error("usage: symbolic_line_certificate.mojo [SLOPE K BRANCH | lines]")
+
+
 def main() raises:
+    var argv_ = argv()
+    var args = List[String]()
+    for i in range(1, len(argv_)):
+        args.append(String(argv_[i]))
+    var mode = mode_of(args)
+    if mode == "line":
+        report(Int(args[0]), Int(args[1]), Int(args[2]))
+        return
+    if mode == "lines":
+        var lines = certified_lines()
+        for i in range(len(lines)):
+            report(lines[i][0], lines[i][1], lines[i][2])
+        print("certified class B lines:", len(lines))
+        return
     var v = certify_class_b_line()
     print("class B line x -> x y^(2q+2) x, c -> c y^q x, y -> c y^(q+1) x")
     print("  symbolic graph for every q >=", v.q0, ":", v.symbolic_vertices, "vertices, all with an offset-zero descendant;", v.queries, "certified sign reads")

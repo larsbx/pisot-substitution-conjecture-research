@@ -387,6 +387,8 @@ jobs:
           (( ${status:-0} == 0 ))  # the output is printed first, so a failed run is diagnosable
           grep -Fx 'Vertex coincidence census (Proposition V), specimens: 4554' <<<"$out"
           grep -Fx 'holds for every r: 4554  capped: 0  fails: 0' <<<"$out"
+          grep -Fx 'formally productive (Theorem Omega): 4554  not: 0' <<<"$out"
+          grep -Fx 'deepest box first-coincidence depth: 51 specimen 1 11 17' <<<"$out"
           grep -Fx 'largest box graph: 249385 states, specimen 6 11 13' <<<"$out"
           grep -Fx 'most recurrent vertices: 2676 specimen 4 11 21' <<<"$out"
           grep -Fx 'deepest recurrent first left-aligned depth: 17 specimen 1 23 21' <<<"$out"

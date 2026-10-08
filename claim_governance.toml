@@ -211,6 +211,15 @@ anchor = "| Corpus determinant split |"
 window_lines = 0
 
 [[claim]]
+name = "BoundedPureDiscreteSpectrum"
+status = "finite-domain"
+aliases = ["finite-domain pure discrete spectrum"]
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Finite-domain pure discrete spectrum |"
+window_lines = 0
+
+[[claim]]
 name = "OrderedAffineCycleIdentity"
 status = "proved"
 aliases = ["ordered affine overlap-cycle identity"]

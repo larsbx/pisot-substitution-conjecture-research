@@ -1013,6 +1013,46 @@ by deleting it.
   `tests/test_a1_normal_form.mojo` passes unchanged (453 named witnesses,
   27-point residue), which confirms the clause never fired. ·
   `kernel/a1_normal_form_census.mojo`
+- 2026-10-07 · The 145,806-specimen PDS statement does not need Theorem B,
+  Lemma C, Proposition F, Theorem R, Theorem S or Proposition V(2): step 1 of
+  Proposition V (cycle vertices lie in the box, a geometric series) with
+  Proposition FP turns the recorded box verdicts and SC_all into formal
+  productivity, and FP gives PDS both through Lee–Moody–Solomyak overlap
+  coincidence and through Theorem 5.38. It also certifies termination with
+  coincidence from every swap seed, so the 120 budget-exhausting cube-family
+  specimens need no direct `B_sigma` build. The swap-seed graph misses box
+  cycle vertices (38 on the cube specimen), so it cannot replace the box on the
+  literature route. A fresh re-derivation of Lemma C, Theorem B, Proposition F,
+  Theorem R and depth-note Propositions 1/4 found no error. ·
+  `pds-certificate-from-the-box-automaton-2026-10-07.md`
+- 2026-10-08 · The 145,806-specimen PDS statement is promoted to the claim
+  ledger as the finite-domain theorem `BoundedPureDiscreteSpectrum` (claim
+  map row "Finite-domain pure discrete spectrum"). The proof-dependency
+  ledger is unchanged, because the claim is finite-domain, not a universal
+  implication. ·
+  `pds-certificate-from-the-box-automaton-2026-10-07.md` §§5, 9;
+  `claim_governance.toml`
+- 2026-10-08 · PR #228's Python oracle `_poly_rem` now caches the exact
+  leading reciprocal and nonzero divisor terms for degree >= 4; small divisors
+  retain dense division after setup overhead was measured. Independent dense
+  quotient/convolution checks cover 4,800 rational pairs (324 cached-path
+  cases); all 3,375 cubic caller results agree. Recorded sparse degree-12/32
+  workloads improve 3.19×/7.43× in elapsed time; no uniform dense or whole-screen
+  speedup is claimed. The unrecorded "14s to 8s" figure is withdrawn and the
+  PR's incorrectly dated `2024-05-18` `.jules/bolt.md` entry is removed.
+  The tracked Markdown-link guard requires a removed file's deletion to be
+  staged before replay. No mathematical claim status changes. ·
+  [scope, regression and replay](poly-rem-sparse-rational-2026-10-08.md);
+  [pinned benchmark](../evidence/poly-rem-sparse-2026-10-08/benchmark.json)
+- 2026-10-08 · Seed strength buys no slack in truth: for each PIP `sigma`,
+  one productive swap seed ⟺ every seed ⟺ FP ⟺ PDS (Theorem 5.38 forward,
+  Corollary FP″ back), so do not look for a seed that avoids an obstruction.
+  The object does depend on the seed: on 444 of 4,554 standing specimens the
+  three seeds reach different recurrent parts, and none is ever empty. The
+  census domains are closed under reversal, so the prefix SC census already
+  gives two-sided SC on 408,798 specimens. Class B lines with slope 3 and
+  `r = q − 1` leave PIP (a second eigenvalue of modulus 1, or above it). ·
+  `p1-seed-strength-2026-10-08.md`
 - 2026-10-08 · Class B swap-seed graphs are constant on sectors of the
   `(q, p)` plane bounded by slopes `1, 3/2, 2, 5/2, …` (74 / 226 vertices for
   `r = q + 1`; 123 / 171 / 217 for `r = q − 1`), with sectors accumulating at

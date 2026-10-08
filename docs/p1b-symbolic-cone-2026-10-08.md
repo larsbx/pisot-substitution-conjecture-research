@@ -160,6 +160,14 @@ Theorem L is the line `C+2`; the cone engine re-proves it from `q >= 6`
 (the Sturm engine needed `q >= 52`), two independent decision methods
 agreeing.
 
+The fourteen lines of Theorem L′
+([`p1-seed-strength-2026-10-08.md`](p1-seed-strength-2026-10-08.md) §5),
+certified independently by the Sturm engine, are the families `J±1..3`,
+`C+0`, `C+1`, `C+3`, `C+4` and `C−0..3` here, and every symbolic vertex count
+agrees (121, 77, 79; 166, 144, 131; 76, 84, 123, 123; 124, 274, 255, 248).
+Theorem C contains them; the cone engine's thresholds on them are at most 24,
+against Sturm's 11 to 128.
+
 ## 5. What it does not establish: the top layer
 
 - **Not all of class B.** Above slope `5/2` the scans show further sectors,
