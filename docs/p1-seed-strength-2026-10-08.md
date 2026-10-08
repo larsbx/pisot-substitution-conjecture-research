@@ -1,4 +1,4 @@
-# #84 at seed strength: what the seed buys, and thirteen new lines — 2026-10-08
+# #84 at seed strength: what the seed buys, and fourteen new lines — 2026-10-08
 
 **Status:** research note for issue #84, following the 2026-10-06 audit's
 recommendation to "attack #84 at seed strength". It contains four results:
@@ -30,7 +30,7 @@ has two parts.
   spectrum (§3).
 - **Some room in how it is proved.** The seed changes the object to be
   controlled (§4). The useful attack at seed strength is therefore a
-  family-uniform certificate on the seed graph. §5 adds thirteen infinite
+  family-uniform certificate on the seed graph. §5 adds fourteen infinite
   families by that method.
 
 ## 2. Proposition SA (anatomy of one seed)
@@ -131,7 +131,7 @@ for its reversal. So **every pair of every member of all four domains is
 eventually coincident from both ends**: 408,798 specimens at total length
 ≤ 10, with no new run. The bi-good target holds there in its strongest form.
 
-## 5. Theorem L′: thirteen more lines of class B
+## 5. Theorem L′: fourteen more lines of class B
 
 The method of Theorem L (`p1b-symbolic-line-2026-10-07.md`) decides one
 class-B line from its **seed** graph, symbolically in `q`. Class B is
@@ -167,7 +167,27 @@ three swap seeds has an offset-zero descendant. Consequently every member has:
 The status matches Theorem L: computer-assisted, unreviewed, and resting on
 Theorem E (unreviewed) and the imported Barge–Štimac–Williams theorem.
 
-LINES_TABLE
+| line | `p` | `r` | symbolic vertices | threshold `q0` | members below `q0`: PIP, all hitting / not PIP / outside class B | sign reads | wall-clock |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Theorem L | `2q + 2` | `q + 1` | 119 | 52 | 52 / 0 / 0 | 3,729 | 228 s |
+| new | `q + 1` | `q + 1` | 121 | 14 | 14 / 0 / 0 | 3,328 | 44 s |
+| new | `q + 2` | `q + 1` | 77 | 11 | 11 / 0 / 0 | 2,288 | 32 s |
+| new | `q + 3` | `q + 1` | 79 | 22 | 22 / 0 / 0 | 2,442 | 34 s |
+| new | `q + 1` | `q − 1` | 166 | 20 | 19 / 0 / 1 | 4,472 | 60 s |
+| new | `q + 2` | `q − 1` | 144 | 16 | 14 / 1 / 1 | 4,110 | 58 s |
+| new | `q + 3` | `q − 1` | 131 | 32 | 30 / 1 / 1 | 4,048 | 65 s |
+| new | `2q` | `q + 1` | 76 | 20 | 19 / 0 / 1 | 2,576 | 23 s |
+| new | `2q + 1` | `q + 1` | 84 | 17 | 17 / 0 / 0 | 2,726 | 42 s |
+| new | `2q + 3` | `q + 1` | 123 | 14 | 14 / 0 / 0 | 3,999 | 58 s |
+| new | `2q + 4` | `q + 1` | 123 | 15 | 15 / 0 / 0 | 3,971 | 74 s |
+| new | `2q` | `q − 1` | 124 | 34 | 33 / 0 / 1 | 3,955 | 98 s |
+| new | `2q + 1` | `q − 1` | 274 | 87 | 85 / 1 / 1 | 8,615 | 831 s |
+| new | `2q + 2` | `q − 1` | 255 | 107 | 104 / 2 / 1 | 8,304 | 1221 s |
+| new | `2q + 3` | `q − 1` | 248 | 128 | 124 / 3 / 1 | 8,107 | 1773 s |
+
+Every line was run through the committed driver
+(`symbolic_line_certificate.mojo SLOPE K BRANCH`, one core each). Every cross-check
+passed. The list is `certified_lines()` in the driver.
 
 **Where the method stops.**
 
@@ -178,7 +198,13 @@ LINES_TABLE
   to 1 (0.86 at `q = 80`), which is the `p ≫ q` corner where Theorem L's §5
   predicts Puiseux expansions are needed.
 
-SLOPE3_STATUS
+On slope 3 with `r = q + 1`, the method fails rather than refuses:
+
+- `k = 0` raises "a run-position bound is not affine in q at the samples";
+- `k = 1` printed nothing within a 50-minute budget, which is an exhausted
+  budget and not a verdict.
+
+Both are limits of the one-parameter affine method, not counterexamples.
 
 ## 6. What this does not establish
 
