@@ -26,7 +26,20 @@ from psc.symbolic_line import (
     tp_sub,
     tp_t,
 )
-from symbolic_line_certificate import certified_lines, check_pinned, class_b_line, certify_class_b_line, mode_of, pinned
+from a1_normal_form_census import CLASS_A, CLASS_B, CLASS_C, CLASS_D, class_member
+from symbolic_line_certificate import (
+    ClassLine,
+    certify,
+    PIN_FIELDS,
+    certified_lines,
+    check_pinned,
+    class_b,
+    class_b_line,
+    certify_class_b_line,
+    mode_of,
+    pinned,
+    spec_of,
+)
 
 
 def test_eventual_sign_records_the_largest_root() raises:
@@ -108,13 +121,50 @@ def test_a_second_line_of_class_b_is_certified() raises:
 
 
 def test_every_listed_line_has_a_pinned_verdict() raises:
-    """Fifteen lines, each with slope, k, branch and a five-field verdict; the
-    evidence workflow runs each one against its pin."""
+    """Each row is a class, six affine coefficients and a five-field verdict,
+    no line is listed twice, and every row names a valid line; the evidence
+    workflow runs each one against its pin."""
     var lines = certified_lines()
-    assert_equal(len(lines), 15)
     for i in range(len(lines)):
-        assert_equal(len(lines[i]), 8)
+        assert_equal(len(lines[i]), PIN_FIELDS)
+        var spec = spec_of(lines[i])
+        assert_equal(len(pinned(spec)), PIN_FIELDS)
+        for j in range(i):
+            assert_false(spec.key() == spec_of(lines[j]).key())
     assert_equal(len(pinned(3, 0, 1)), 0)
+
+
+def test_a_class_line_names_its_normal_form_members() raises:
+    """ClassLine reads p, q, r off its coefficients, builds the normal-form
+    member, and its symbolic images agree with that member's run lengths."""
+    var spec = ClassLine(CLASS_D, [1, 1, 1, 0, 2, 0])  # p = n + 1, q = n, r = 2n
+    var sigma = spec.member(5)
+    assert_true(sigma == class_member(CLASS_D, 6, 5, 10))
+    assert_true(spec.admissible(0))
+    # classes A-C are admissible only where Lemma P1's p > q holds
+    assert_false(ClassLine(CLASS_A, [1, 0, 1, 0, 1, 1]).admissible(3))
+    assert_true(class_b(1, 1, 1).key() == List[Int]([CLASS_B, 1, 1, 1, 0, 1, 1]))
+    var refused = False
+    try:
+        _ = ClassLine(4, [1, 0, 1, 0, 1, 0])
+    except:
+        refused = True
+    assert_true(refused)
+
+
+def test_a_class_d_line_is_certified() raises:
+    """Theorem L'' (docs/p1b-boundary-hitting-progress-2026-10-08.md §4): the
+    class D line p = n + 1, q = n, r = n + 3 is certified by the same method
+    and reproduces its pin; class D has no Lemma P1 cut, so n = 3 counts as
+    not PIP rather than outside."""
+    var spec = ClassLine(CLASS_D, [1, 1, 1, 0, 1, 3])
+    var v = certify(spec)
+    assert_equal(v.q0, 18)
+    assert_equal(v.symbolic_vertices, 97)
+    assert_equal(v.finite_members, 17)
+    assert_equal(v.finite_non_pip, 1)
+    assert_equal(v.finite_outside, 0)
+    check_pinned(v, pinned(spec))
 
 
 def assert_mode_refused(args: List[String]) raises:
@@ -136,6 +186,9 @@ def test_the_command_line_is_strict() raises:
     assert_mode_refused(["foo"])
     assert_mode_refused(["2", "x", "1"])
     assert_mode_refused(["1", "2", "3", "4"])
+    assert_equal(mode_of(["D", "1", "1", "1", "0", "2", "0"]), "class")
+    assert_mode_refused(["E", "1", "1", "1", "0", "2", "0"])
+    assert_mode_refused(["D", "1", "1", "1", "0", "2", "x"])
 
 
 def test_a_line_that_leaves_the_pisot_class_is_refused() raises:
@@ -168,5 +221,10 @@ def main() raises:
     print("[PASS] test_every_listed_line_has_a_pinned_verdict")
     test_the_command_line_is_strict()
     print("[PASS] test_the_command_line_is_strict")
+    test_a_class_line_names_its_normal_form_members()
+    print("[PASS] test_a_class_line_names_its_normal_form_members")
+    test_a_class_d_line_is_certified()
+    print("[PASS] test_a_class_d_line_is_certified")
     require_contract("Theorem L certificate (class B line sigma_q: x -> x y^(2q+2) x, c -> c y^q x, y -> c y^(q+1) x): the symbolic swap-seed overlap graph, decided by parametric Sturm-Tarski queries over Q[q] with certified threshold, has 119 vertices for every q >= 52, all with an offset-zero descendant, and the line is certified PIP there; every q in 0..51 is PIP and its exact seed-reachable graph (screened kernel) has every vertex hitting; at q = 52 and 57 the symbolic graph with q substituted equals the exact graph; parametric signs agree with concrete signs at q = 60; pseudo-remainders keep the sign at beta; a det-0 line is refused")
-    require_contract("Theorem L' certificate: the class B line p = q + 1, r = q + 1 is certified (121 symbolic vertices for every q >= 14, all hitting; q < 14: 14 PIP members, all hitting); the line p = 3q + 1, r = q - 1, which leaves the Pisot class, is refused; certified_lines() pins fifteen verdicts and a verdict off its pin is refused; the command line accepts only no argument, SLOPE K BRANCH or lines")
+    require_contract("Theorem L' certificate: the class B line p = q + 1, r = q + 1 is certified (121 symbolic vertices for every q >= 14, all hitting; q < 14: 14 PIP members, all hitting); the line p = 3q + 1, r = q - 1, which leaves the Pisot class, is refused; certified_lines() pins every listed verdict and a verdict off its pin is refused; the command line accepts only no argument, SLOPE K BRANCH, CLASS AP BP AQ BQ AR BR or lines")
+    require_contract("Theorem L'' driver: a ClassLine of Theorem E's class A, B, C or D builds its normal-form members, Lemma P1's p > q bounds the admissible cone in classes A-C, and every pinned row names a distinct valid line; the class D line p = n + 1, q = n, r = n + 3 is certified (97 symbolic vertices for every n >= 18, all hitting; n < 18: 17 PIP members, all hitting, 1 not PIP) and reproduces its pin")

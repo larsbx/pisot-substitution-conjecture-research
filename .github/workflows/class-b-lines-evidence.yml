@@ -1,6 +1,7 @@
-name: Class B line certificates
-# Guards Theorem L and Theorem L' (docs/p1b-symbolic-line-2026-10-07.md,
-# docs/p1-seed-strength-2026-10-08.md section 5): every line listed in
+name: Theorem E line certificates
+# Guards Theorems L, L' and L'' (docs/p1b-symbolic-line-2026-10-07.md,
+# docs/p1-seed-strength-2026-10-08.md section 5,
+# docs/p1b-boundary-hitting-progress-2026-10-08.md section 4): every line listed in
 # certified_lines() of kernel/symbolic_line_certificate.mojo is certified again
 # and must reproduce its pinned verdict (the driver raises otherwise). One job
 # per line; the slowest take about half an hour.
@@ -49,22 +50,54 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { slope: 2, k: 2, branch: 1 }
-          - { slope: 1, k: 1, branch: 1 }
-          - { slope: 1, k: 2, branch: 1 }
-          - { slope: 1, k: 3, branch: 1 }
-          - { slope: 1, k: 1, branch: -1 }
-          - { slope: 1, k: 2, branch: -1 }
-          - { slope: 1, k: 3, branch: -1 }
-          - { slope: 2, k: 0, branch: 1 }
-          - { slope: 2, k: 1, branch: 1 }
-          - { slope: 2, k: 3, branch: 1 }
-          - { slope: 2, k: 4, branch: 1 }
-          - { slope: 2, k: 0, branch: -1 }
-          - { slope: 2, k: 1, branch: -1 }
-          - { slope: 2, k: 2, branch: -1 }
-          - { slope: 2, k: 3, branch: -1 }
-    name: class B line ${{ matrix.slope }} ${{ matrix.k }} ${{ matrix.branch }}
+          - { line: 'B 2 2 1 0 1 1' }
+          - { line: 'B 1 1 1 0 1 1' }
+          - { line: 'B 1 2 1 0 1 1' }
+          - { line: 'B 1 3 1 0 1 1' }
+          - { line: 'B 1 1 1 0 1 -1' }
+          - { line: 'B 1 2 1 0 1 -1' }
+          - { line: 'B 1 3 1 0 1 -1' }
+          - { line: 'B 2 0 1 0 1 1' }
+          - { line: 'B 2 1 1 0 1 1' }
+          - { line: 'B 2 3 1 0 1 1' }
+          - { line: 'B 2 4 1 0 1 1' }
+          - { line: 'B 2 0 1 0 1 -1' }
+          - { line: 'B 2 1 1 0 1 -1' }
+          - { line: 'B 2 2 1 0 1 -1' }
+          - { line: 'B 2 3 1 0 1 -1' }
+          - { line: 'A 2 0 1 0 1 -1' }
+          - { line: 'A 2 0 1 0 1 1' }
+          - { line: 'A 2 1 1 0 1 -1' }
+          - { line: 'A 2 1 1 0 1 1' }
+          - { line: 'A 2 2 1 0 1 -1' }
+          - { line: 'A 2 2 1 0 1 1' }
+          - { line: 'A 2 3 1 0 1 -1' }
+          - { line: 'A 2 3 1 0 1 1' }
+          - { line: 'C 1 1 1 0 1 -2' }
+          - { line: 'C 1 1 1 0 1 0' }
+          - { line: 'C 1 2 1 0 1 -3' }
+          - { line: 'C 1 2 1 0 1 -1' }
+          - { line: 'C 1 3 1 0 1 -4' }
+          - { line: 'C 1 3 1 0 1 -2' }
+          - { line: 'D 1 -1 1 0 1 -1' }
+          - { line: 'D 1 -1 1 0 1 0' }
+          - { line: 'D 1 -1 1 0 1 1' }
+          - { line: 'D 1 -1 1 0 1 2' }
+          - { line: 'D 1 -1 1 0 1 3' }
+          - { line: 'D 1 -1 1 0 1 4' }
+          - { line: 'D 1 -1 1 0 2 -3' }
+          - { line: 'D 1 -1 1 0 2 -2' }
+          - { line: 'D 1 1 1 0 1 -1' }
+          - { line: 'D 1 1 1 0 1 0' }
+          - { line: 'D 1 1 1 0 1 1' }
+          - { line: 'D 1 1 1 0 1 2' }
+          - { line: 'D 1 1 1 0 1 3' }
+          - { line: 'D 1 1 1 0 1 4' }
+          - { line: 'D 1 1 1 0 2 -1' }
+          - { line: 'D 1 1 1 0 2 0' }
+          - { line: 'D 1 1 1 0 2 1' }
+          - { line: 'D 1 1 1 0 2 2' }
+    name: line ${{ matrix.line }}
     steps:
       - uses: actions/checkout@v4
       - name: Install pixi
@@ -76,5 +109,5 @@ jobs:
         working-directory: kernel
         run: |
           set -o pipefail
-          pixi run mojo run -I . symbolic_line_certificate.mojo ${{ matrix.slope }} ${{ matrix.k }} ${{ matrix.branch }} 2>&1 | tee line.log
+          pixi run mojo run -I . symbolic_line_certificate.mojo ${{ matrix.line }} 2>&1 | tee line.log
           grep -Fx '  pinned verdict reproduced' line.log

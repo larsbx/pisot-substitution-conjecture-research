@@ -1041,3 +1041,11 @@ by deleting it.
   gives two-sided SC on 408,798 specimens. Class B lines with slope 3 and
   `r = q − 1` leave PIP (a second eigenvalue of modulus 1, or above it). ·
   `p1-seed-strength-2026-10-08.md`
+- 2026-10-08 · The line certificate is not class-B specific: on 32 lines of
+  Theorem E's classes A (slope 2), C and D it certifies boundary hitting from
+  every seed (Theorem L″), and every refusal met was a line outside the
+  Pisot class. Class A at slope 1 is different: its seed graph grows linearly
+  in `n` (235 → 915 vertices for `n = 3 → 20` at `p = n + 1`), so the
+  constant-graph method cannot reach it. Do not rerun it there with a larger
+  budget; it needs vertex families indexed by a run position. ·
+  `p1b-boundary-hitting-progress-2026-10-08.md` §§3–4

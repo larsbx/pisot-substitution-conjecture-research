@@ -57,6 +57,15 @@ which is the only pair when `d = 2` and is why the two-letter case is settled.
 None of this proves #84, #138, #139, G1b-2, G1 for the family, or PSC. Each
 note's final section states its own limits.
 
+## #139 at a glance (2026-10-08)
+
+[`p1b-boundary-hitting-progress-2026-10-08.md`](p1b-boundary-hitting-progress-2026-10-08.md)
+is the PR-by-PR account of what has advanced boundary hitting at every
+reachable strict-zipper vertex (#141 → #234), and what is excluded as a
+route. It adds **Theorem L″**: the class-B line certificate, extended to
+Theorem E's four classes, proves pure discrete spectrum and finite BPA on 32
+more infinite families in classes A, C and D. 47 lines are pinned in all.
+
 ## Current status
 
 1. `side-notes-ledger.md` — live, append-only record of side findings:
