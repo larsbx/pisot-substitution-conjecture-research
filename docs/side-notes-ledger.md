@@ -1366,3 +1366,19 @@ by deleting it.
   coincidence. No error found. ·
   `pds-certificate-from-the-box-automaton-2026-10-07.md` §§3–4;
   `p1b-leftmost-chain-periodic-pair-2026-10-05.md` §§3–4, 8a
+- 2026-10-08 · Two two-parameter engines agree on class B's wedge `q < p < 2q`:
+  `psc.symbolic_cone` (Theorem C) and the line engine generalised to
+  `Q[s, d]` (commit `5ee3f0f`, not merged). They were written separately
+  but share `psc.symbolic_line`'s primitives: support primitivity, offset-zero
+  reachability, and the exact Sturm reads at sample points. Every shared
+  vertex count matches. The second engine also showed where the Sturm chains break
+  inside a region:
+  - along `d^2 ≈ 8s`, where the conjugate pair turns from real to complex;
+  - along the irrational ray `d/s = (1 + sqrt 5)/2`, through a leading
+    coefficient.
+
+  Rouché (`|c_2| > 1 + |c_1| + |c_0|`) decides PIP there with three sign reads
+  and no bracket. ·
+  `p1b-symbolic-cone-2026-10-08.md` §4;
+  `archive/2026-10-08/class-b-wedge-crosscheck/`
+
