@@ -49,6 +49,11 @@ if python3 tools/make_math_catalogue.py --check >/dev/null; then
 else
     bad "mathematical-object catalogue drift (run: python3 tools/make_math_catalogue.py)"
 fi
+if python3 tools/make_proof_bank.py --check; then
+    ok "complete proof-bank inventory and Lean pins are current"
+else
+    bad "proof-bank drift or incomplete Lean import coverage"
+fi
 if python3 tools/polyglot_envelope/render.py --check >/dev/null; then
     ok "the polyglot envelope is the rendering of its vendored template"
 else
@@ -139,21 +144,13 @@ fi
 
 section "Lean 4 proofs"
 if command -v lake >/dev/null 2>&1; then
-    cd "$ROOT/proof/PscVerif"
-    out=$(lake build PscVerif 2>&1)
-    if grep -q "Build completed successfully" <<<"$out"; then
-        if grep -q "sorryAx" <<<"$out"; then
-            bad "lake build (sorryAx present)"
-        else
-            ok "lake build + axiom audit"
-        fi
+    if ./tools/check_lean.sh; then
+        ok "lake build + complete compiled-declaration axiom audit"
     else
-        bad "lake build"
-        tail -20 <<<"$out"
+        bad "Lean proof bank (build, inventory or axiom audit)"
     fi
-    cd "$ROOT"
 else
-    skip "Lean layer" "lake not on PATH; install elan"
+    skip "Lean layer" "lake not on PATH; run ./tools/setup_lean.sh and add ~/.elan/bin to PATH"
 fi
 
 printf '\n%d checks run, %d skipped. ' "$ran" "$skipped"

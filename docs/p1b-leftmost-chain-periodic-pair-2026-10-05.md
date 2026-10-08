@@ -17,6 +17,12 @@ one **interior** occurrence, with an explicit integrality condition.
 Canonical implementation: `kernel/psc/leftmost_chain.mojo`, driver
 `kernel/leftmost_chain_census.mojo`, regression `kernel/tests/test_leftmost_chain.mojo`.
 
+**2026-10-08 ledger follow-up:** `LeftmostChainSign` and
+`LeftmostChainPeriodicPair` now record Lemma S and Proposition LC separately.
+The internal [registration review](proof-bank-audit-2026-10-08.md) preserves
+the half-line/one-sided boundary of the fixed pair; human review remains
+pending. Neither node establishes the universal G1, PPVC or PSC target.
+
 ## 1. Why this, and why now
 
 The closing target of the P1b programme is the trichotomy of §5.6c, which

@@ -154,6 +154,20 @@
     ],
     "StrongCoincidenceFromPDS": [
       "overlap coincidence to strong coincidence"
+    ],
+    "PotentialOverlapFiniteDescent": [
+      "Lemma Omega1",
+      "Lemma Ω1"
+    ],
+    "BoxProductivityEquivalence": [
+      "Theorem Omega",
+      "Theorem Ω"
+    ],
+    "BoxPDSCertificate": [
+      "per-specimen box PDS certificate"
+    ],
+    "LeftmostChainPeriodicPair": [
+      "Proposition LC"
     ]
   },
   "surfaces": {
@@ -722,7 +736,7 @@
       "tags": []
     },
     "PhiSemisimplicity": {
-      "id": "sha256:751c4e4b90e7e3b33968524fafd823ba2712dcf8743d02079551e7f77e3e4ce9",
+      "id": "sha256:09a1d33a949b3f328eaca57de3be49923f75a8df09349ceefb72ef461dcda47d",
       "kind": "repository_theorem",
       "statement": "Phi_3 acts semisimply on the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -734,13 +748,13 @@
         ],
         [
           "source",
-          "proof/PscVerif/PscVerif/Spectral.lean"
+          "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 3 semisimplicity lemma; not formalized in Lean"
         ]
       ],
       "tags": []
     },
     "ThetaIntertwining": {
-      "id": "sha256:8647351b4d9ed0b5c6e09beb88e513ad255199703720bc583fd207c161aedc2d",
+      "id": "sha256:225067c57bf11773024c517e73158c179a84ec6f214b33cf0e1863e0bc779591",
       "kind": "repository_theorem",
       "statement": "Theta intertwines the seed spectral operators",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -752,26 +766,26 @@
         ],
         [
           "source",
-          "proof/PscVerif/PscVerif/Spectral.lean"
+          "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 5 certified intertwining identity; kernel/verify.mojo check C7; not formalized in Lean"
         ]
       ],
       "tags": []
     },
     "SeedCentralizer": {
-      "id": "sha256:447d964333585e118ea75a9a44dffec5949fb479f471da421788877641f2129b",
+      "id": "sha256:5012de10c5448d0df77278b3a3d661cd5fae14bb66bb4b2a9c34939e75c72d80",
       "kind": "repository_theorem",
       "statement": "the seed centralizer is as certified",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:8647351b4d9ed0b5c6e09beb88e513ad255199703720bc583fd207c161aedc2d",
+          "sha256:225067c57bf11773024c517e73158c179a84ec6f214b33cf0e1863e0bc779591",
           "Theta intertwines the seed spectral operators",
           "SeedCentralizer/ThetaIntertwining",
           "same",
           "accepted"
         ],
         [
-          "sha256:751c4e4b90e7e3b33968524fafd823ba2712dcf8743d02079551e7f77e3e4ce9",
+          "sha256:09a1d33a949b3f328eaca57de3be49923f75a8df09349ceefb72ef461dcda47d",
           "Phi_3 acts semisimply on the seed spectral module",
           "SeedCentralizer/PhiSemisimplicity",
           "same",
@@ -785,19 +799,19 @@
         ],
         [
           "source",
-          "proof/PscVerif/PscVerif/Spectral.lean"
+          "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, sections 5-7; proof/PscVerif/PscVerif/Centralizer.lean proves the centralizer contradiction only"
         ]
       ],
       "tags": []
     },
     "Target1": {
-      "id": "sha256:c7a0e9f25f58d5a8351557e37ba5dc69a81baaac9b9714a2148c92bb7478978a",
+      "id": "sha256:527aa847d7b7147021ed53ce548fe3750f95da833e77c44a5fa2d8d6967c89e3",
       "kind": "repository_theorem",
       "statement": "Target 1 of the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:447d964333585e118ea75a9a44dffec5949fb479f471da421788877641f2129b",
+          "sha256:5012de10c5448d0df77278b3a3d661cd5fae14bb66bb4b2a9c34939e75c72d80",
           "the seed centralizer is as certified",
           "Target1/SeedCentralizer",
           "same",
@@ -811,19 +825,19 @@
         ],
         [
           "source",
-          "proof/PscVerif/PscVerif/Spectral.lean"
+          "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 7; proof/PscVerif/PscVerif/Centralizer.lean Psc.target1 proves the rational centralizer form only"
         ]
       ],
       "tags": []
     },
     "DominantCubicCapture": {
-      "id": "sha256:86b10aca8eb78b697602d4f80ee833c1fc3df42fb85825a9bc7cdb1f58767083",
+      "id": "sha256:96ac51ddf1515c0d49fcdf51bc1822dadb07b8b93f6249296391b7d81a5bb9c5",
       "kind": "repository_theorem",
       "statement": "dominant cubic capture for the explicitly certified seeds",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:c7a0e9f25f58d5a8351557e37ba5dc69a81baaac9b9714a2148c92bb7478978a",
+          "sha256:527aa847d7b7147021ed53ce548fe3750f95da833e77c44a5fa2d8d6967c89e3",
           "Target 1 of the seed spectral module",
           "DominantCubicCapture/Target1",
           "same",
@@ -843,20 +857,20 @@
       "tags": []
     },
     "SpectralBlackBox": {
-      "id": "sha256:aedba608628f7c3d4e4e0e2dd5f462b4db84fecd73eefa38651bf399b4425348",
+      "id": "sha256:a8f1b9c991ce05695e95c57b0de3efa2518dc211e867aed3da8ceca3eba0fe55",
       "kind": "repository_theorem",
       "statement": "the seed-module spectral black box follows from Target 1 and dominant cubic capture",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:c7a0e9f25f58d5a8351557e37ba5dc69a81baaac9b9714a2148c92bb7478978a",
+          "sha256:527aa847d7b7147021ed53ce548fe3750f95da833e77c44a5fa2d8d6967c89e3",
           "Target 1 of the seed spectral module",
           "SpectralBlackBox/Target1",
           "same",
           "accepted"
         ],
         [
-          "sha256:86b10aca8eb78b697602d4f80ee833c1fc3df42fb85825a9bc7cdb1f58767083",
+          "sha256:96ac51ddf1515c0d49fcdf51bc1822dadb07b8b93f6249296391b7d81a5bb9c5",
           "dominant cubic capture for the explicitly certified seeds",
           "SpectralBlackBox/DominantCubicCapture",
           "same",
@@ -1161,7 +1175,7 @@
       "tags": []
     },
     "W3LowGrowth": {
-      "id": "sha256:3e3d101c1366678df6596861949fca8023f4738d19136cc4c0286894bb693121",
+      "id": "sha256:8e4177d7dc0b99091f2400a1152053f849c201633354e40c60ee46938160f618",
       "kind": "repository_theorem",
       "statement": "the universal low-growth classification in W_3",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -1174,7 +1188,7 @@
           "accepted"
         ],
         [
-          "sha256:751c4e4b90e7e3b33968524fafd823ba2712dcf8743d02079551e7f77e3e4ce9",
+          "sha256:09a1d33a949b3f328eaca57de3be49923f75a8df09349ceefb72ef461dcda47d",
           "Phi_3 acts semisimply on the seed spectral module",
           "W3LowGrowth/PhiSemisimplicity",
           "same",
@@ -2355,6 +2369,170 @@
         [
           "source",
           "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Theorem thm:seedwise; docs/formal-productivity-reduction-2026-10-04.md, Proposition FP and Corollary FP''; manuscript Theorem 5.33(iii),(v); independently audited 2026-10-04, human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "PotentialOverlapFiniteDescent": {
+      "id": "sha256:53e7fc95c820f714f76acdc5dcc75b5953705008e6d8a2da31e13df76fc8dec7",
+      "kind": "repository_theorem",
+      "statement": "each potential overlap of a standing-regime substitution has finitely many descendants, and every cycle overlap lies in the exact finite box automaton",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Lemma Omega1; docs/proof-bank-audit-2026-10-08.md; internal review complete, human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "BoxProductivityEquivalence": {
+      "id": "sha256:6d6ed7925999e931fa85496ddeb6720f3243d2d229f10065d7fc183f41bef63a",
+      "kind": "repository_theorem",
+      "statement": "for each standing-regime substitution, formal productivity is equivalent to every vertex of its finite box automaton reaching a coincidence",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:53e7fc95c820f714f76acdc5dcc75b5953705008e6d8a2da31e13df76fc8dec7",
+          "each potential overlap of a standing-regime substitution has finitely many descendants, and every cycle overlap lies in the exact finite box automaton",
+          "BoxProductivityEquivalence/PotentialOverlapFiniteDescent",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega; docs/proof-bank-audit-2026-10-08.md; internal review complete, human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "PisotFamilyMeyerProperty": {
+      "id": "sha256:f5defc85e0789e39ebb0af955022c242c3818c2cf4b3383827d23753f5406137",
+      "kind": "imported_theorem",
+      "statement": "the primitive one-dimensional Pisot substitution suspension has the Meyer return-translation property required by the overlap-coincidence criterion",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "hypotheses_checked",
+          "true"
+        ],
+        [
+          "source",
+          "Lee-Solomyak 2012, arXiv:1002.0039, Theorem 4.3 and Corollary 2.13; docs/pds-certificate-from-the-box-automaton-2026-10-07.md, section 7; hypotheses rechecked in docs/proof-bank-audit-2026-10-08.md"
+        ]
+      ],
+      "tags": []
+    },
+    "OverlapCoincidenceCriterion": {
+      "id": "sha256:ef40a72d608cc0469b6a6deb9d86ef74ae3b83af77c3c4649e4dbb42d87898fb",
+      "kind": "imported_theorem",
+      "statement": "a repetitive primitive FLC self-affine substitution tiling with Meyer return translations has pure point dynamical spectrum when every actual overlap reaches a coincidence",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "hypotheses_checked",
+          "true"
+        ],
+        [
+          "source",
+          "Lee-Moody-Solomyak 2003, arXiv:0910.4450, Theorem 4.7 and Lemma 6.9; Akiyama-Lee 2011, arXiv:1003.2898, Theorem 2.5; docs/proof-bank-audit-2026-10-08.md"
+        ]
+      ],
+      "tags": []
+    },
+    "BoxPDSCertificate": {
+      "id": "sha256:17309a7f9bab506e74d9445450ca3bcdfcd53bb820b865a0da7a964fc41bd729",
+      "kind": "repository_theorem",
+      "statement": "for each standing-regime specimen, if every vertex of its exact finite box automaton reaches a coincidence, its substitution tiling has pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:6d6ed7925999e931fa85496ddeb6720f3243d2d229f10065d7fc183f41bef63a",
+          "for each standing-regime substitution, formal productivity is equivalent to every vertex of its finite box automaton reaching a coincidence",
+          "BoxPDSCertificate/BoxProductivityEquivalence",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:f5defc85e0789e39ebb0af955022c242c3818c2cf4b3383827d23753f5406137",
+          "the primitive one-dimensional Pisot substitution suspension has the Meyer return-translation property required by the overlap-coincidence criterion",
+          "BoxPDSCertificate/PisotFamilyMeyerProperty",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:ef40a72d608cc0469b6a6deb9d86ef74ae3b83af77c3c4649e4dbb42d87898fb",
+          "a repetitive primitive FLC self-affine substitution tiling with Meyer return translations has pure point dynamical spectrum when every actual overlap reaches a coincidence",
+          "BoxPDSCertificate/OverlapCoincidenceCriterion",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (a); docs/proof-bank-audit-2026-10-08.md; this is the tiling R-action sufficiency direction only"
+        ]
+      ],
+      "tags": []
+    },
+    "LeftmostChainSign": {
+      "id": "sha256:7d396ef5ddf7c23d50b61d431eb70314ae8aba7696e2a8092dd60194d5106697",
+      "kind": "repository_theorem",
+      "statement": "the leftmost child of a nonzero-offset overlap preserves its strict offset sign or lands on zero, and has index zero on the later-starting parent side",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Lemma S; docs/proof-bank-audit-2026-10-08.md; internal review complete, human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "LeftmostChainPeriodicPair": {
+      "id": "sha256:5fd85d8fa4ff304df1266e8f4343d19078723d888cd5992bf9b68544a848f921",
+      "kind": "repository_theorem",
+      "statement": "a terminal nonzero-offset leftmost cycle has constant sign, one prefix and one interior periodic occurrence, the integral equation (I - M^r)w = ab(Q) up to side exchange, and a common-centre fixed pair on the right half-line with no common vertex at its centre",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:7d396ef5ddf7c23d50b61d431eb70314ae8aba7696e2a8092dd60194d5106697",
+          "the leftmost child of a nonzero-offset overlap preserves its strict offset sign or lands on zero, and has index zero on the later-starting parent side",
+          "LeftmostChainPeriodicPair/LeftmostChainSign",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Proposition LC; docs/proof-bank-audit-2026-10-08.md; the prefix-side fixed point is one-sided, not a same-fibre two-sided pair"
         ]
       ],
       "tags": []

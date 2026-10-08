@@ -54,10 +54,10 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "AlgebraicEmbedding": (T, "the algebraic embedding of the symbolic side", f"{MANUSCRIPT}, symbolic side", ("UniqueDecodability",), ()),
     "WedgeBound": (T, "the wedge bound", f"{MANUSCRIPT}, symbolic side", ("AlgebraicEmbedding", "MassBalanceK2Obstruction"), ()),
     # --- seed spectral module ---------------------------------------------------------
-    "PhiSemisimplicity": (T, "Phi_3 acts semisimply on the seed spectral module", "proof/PscVerif/PscVerif/Spectral.lean", (), ()),
-    "ThetaIntertwining": (T, "Theta intertwines the seed spectral operators", "proof/PscVerif/PscVerif/Spectral.lean", (), ()),
-    "SeedCentralizer": (T, "the seed centralizer is as certified", "proof/PscVerif/PscVerif/Spectral.lean", ("ThetaIntertwining", "PhiSemisimplicity"), ()),
-    "Target1": (T, "Target 1 of the seed spectral module", "proof/PscVerif/PscVerif/Spectral.lean", ("SeedCentralizer",), ()),
+    "PhiSemisimplicity": (T, "Phi_3 acts semisimply on the seed spectral module", "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 3 semisimplicity lemma; not formalized in Lean", (), ()),
+    "ThetaIntertwining": (T, "Theta intertwines the seed spectral operators", "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 5 certified intertwining identity; kernel/verify.mojo check C7; not formalized in Lean", (), ()),
+    "SeedCentralizer": (T, "the seed centralizer is as certified", "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, sections 5-7; proof/PscVerif/PscVerif/Centralizer.lean proves the centralizer contradiction only", ("ThetaIntertwining", "PhiSemisimplicity"), ()),
+    "Target1": (T, "Target 1 of the seed spectral module", "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 7; proof/PscVerif/PscVerif/Centralizer.lean Psc.target1 proves the rational centralizer form only", ("SeedCentralizer",), ()),
     "DominantCubicCapture": (T, "dominant cubic capture for the explicitly certified seeds",
                              "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, sections 8-10 (historical restricted theorem)", ("Target1",), ()),
     "SpectralBlackBox": (T, "the seed-module spectral black box follows from Target 1 and dominant cubic capture",
@@ -172,6 +172,23 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                       f"{MANUSCRIPT}, Theorem thm:seedwise; docs/formal-productivity-reduction-2026-10-04.md, Proposition FP and Corollary FP''; "
                                       "manuscript Theorem 5.33(iii),(v); independently audited 2026-10-04, human review pending",
                                       ("PDSImpliesRepoG1", "StrongCoincidenceFromPDS"), ()),
+    # --- explicit finite-box and leftmost-chain implications --------------------------
+    # These nodes name proved implications for an arbitrary specimen. None asserts
+    # the universal productivity premise or adds a route establishing general PDS.
+    "PotentialOverlapFiniteDescent": (T, "each potential overlap of a standing-regime substitution has finitely many descendants, and every cycle overlap lies in the exact finite box automaton",
+                                      "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Lemma Omega1; docs/proof-bank-audit-2026-10-08.md; internal review complete, human review pending", (), ()),
+    "BoxProductivityEquivalence": (T, "for each standing-regime substitution, formal productivity is equivalent to every vertex of its finite box automaton reaching a coincidence",
+                                    "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega; docs/proof-bank-audit-2026-10-08.md; internal review complete, human review pending", ("PotentialOverlapFiniteDescent",), ()),
+    "PisotFamilyMeyerProperty": (I, "the primitive one-dimensional Pisot substitution suspension has the Meyer return-translation property required by the overlap-coincidence criterion",
+                                 "Lee-Solomyak 2012, arXiv:1002.0039, Theorem 4.3 and Corollary 2.13; docs/pds-certificate-from-the-box-automaton-2026-10-07.md, section 7; hypotheses rechecked in docs/proof-bank-audit-2026-10-08.md", (), ()),
+    "OverlapCoincidenceCriterion": (I, "a repetitive primitive FLC self-affine substitution tiling with Meyer return translations has pure point dynamical spectrum when every actual overlap reaches a coincidence",
+                                   "Lee-Moody-Solomyak 2003, arXiv:0910.4450, Theorem 4.7 and Lemma 6.9; Akiyama-Lee 2011, arXiv:1003.2898, Theorem 2.5; docs/proof-bank-audit-2026-10-08.md", (), ()),
+    "BoxPDSCertificate": (T, "for each standing-regime specimen, if every vertex of its exact finite box automaton reaches a coincidence, its substitution tiling has pure discrete spectrum",
+                           "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (a); docs/proof-bank-audit-2026-10-08.md; this is the tiling R-action sufficiency direction only", ("BoxProductivityEquivalence", "PisotFamilyMeyerProperty", "OverlapCoincidenceCriterion"), ()),
+    "LeftmostChainSign": (T, "the leftmost child of a nonzero-offset overlap preserves its strict offset sign or lands on zero, and has index zero on the later-starting parent side",
+                           "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Lemma S; docs/proof-bank-audit-2026-10-08.md; internal review complete, human review pending", (), ()),
+    "LeftmostChainPeriodicPair": (T, "a terminal nonzero-offset leftmost cycle has constant sign, one prefix and one interior periodic occurrence, the integral equation (I - M^r)w = ab(Q) up to side exchange, and a common-centre fixed pair on the right half-line with no common vertex at its centre",
+                                   "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Proposition LC; docs/proof-bank-audit-2026-10-08.md; the prefix-side fixed point is one-sided, not a same-fibre two-sided pair", ("LeftmostChainSign",), ()),
     # --- retracted ------------------------------------------------------------------------
     "V5Thm51": (P, "v5 Theorem 5.1", "retired: the v5 Theorem 5.1 argument is withdrawn", (), (gl.WITHDRAWN_TAG,)),
 }
@@ -215,6 +232,10 @@ ALIASES = {
     "ReturnModuleFullRank": ["full-rank return module", "Theorem R"], "PeriodicPairOneFibre": ["periodic pairs in one fibre", "Proposition F"],
     "StrictZipperPeriodicPairForm": ["periodic-pair form of a strict zipper", "Theorem B"],
     "PDSImpliesSeedwiseTermination": ["seedwise bridge"], "StrongCoincidenceFromPDS": ["overlap coincidence to strong coincidence"],
+    "PotentialOverlapFiniteDescent": ["Lemma Omega1", "Lemma Ω1"],
+    "BoxProductivityEquivalence": ["Theorem Omega", "Theorem Ω"],
+    "BoxPDSCertificate": ["per-specimen box PDS certificate"],
+    "LeftmostChainPeriodicPair": ["Proposition LC"],
 }
 
 

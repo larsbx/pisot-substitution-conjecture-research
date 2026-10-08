@@ -12,6 +12,13 @@ review. The finite-domain consequence of §5 is recorded in the claim ledger
 as the finite-domain theorem `BoundedPureDiscreteSpectrum` (2026-10-08); no
 proof-dependency (TLA+) node changes, and PSC stays open.
 
+**2026-10-08 ledger follow-up:** the sufficiency implications are now separate
+proof-dependency nodes: `PotentialOverlapFiniteDescent` (Lemma Ω1),
+`BoxProductivityEquivalence` (Theorem Ω), and `BoxPDSCertificate` with its
+explicit Meyer and overlap-coincidence imports. The registration review is
+[`proof-bank-audit-2026-10-08.md`](proof-bank-audit-2026-10-08.md). It does not
+promote the universal productivity premise or replace pending human review.
+
 ## 1. The point
 
 The finite-domain statement of `strong-coincidence-census-2026-10-04.md` §4,

@@ -1032,6 +1032,17 @@ by deleting it.
   implication. ·
   `pds-certificate-from-the-box-automaton-2026-10-07.md` §§5, 9;
   `claim_governance.toml`
+- 2026-10-08 · The Lean session hook was missing, and a selected or cached
+  `#print axioms` build is not a complete proof-bank audit. Provisioning now
+  uses the exact Lean/Lake pins and checksum-verified elan 4.2.4; the common
+  gate replays an audit of every compiled local declaration. The bank makes
+  partial Lean support explicit and corrects two ledger sources that cited
+  `Spectral.lean` for results it excludes. Lemma Ω1, Theorem Ω, the per-specimen
+  box PDS sufficiency route and Lemma S/Proposition LC now have ledger nodes;
+  the latter preserves its one-sided half-line scope. Internal review only,
+  human review pending; no universal PSC/G1 promotion. ·
+  `proof-bank-audit-2026-10-08.md`, `proof-bank.md`,
+  `tools/setup_lean.sh`, `proof/PscVerif/ProofBankAudit.lean`
 - 2026-10-08 · PR #228's Python oracle `_poly_rem` now caches the exact
   leading reciprocal and nonzero divisor terms for degree >= 4; small divisors
   retain dense division after setup overhead was measured. Independent dense

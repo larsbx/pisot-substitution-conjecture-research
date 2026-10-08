@@ -402,6 +402,36 @@ anchor = "| Boundary-hitting criterion |"
 window_lines = 0
 
 [[claim]]
+name = "BoxPDSCertificate"
+status = "proved"
+aliases = ["per-specimen box PDS certificate"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BoxPDSCertificate"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BoxPDSCertificate |'
+window_lines = 0
+
+[[claim]]
+name = "BoxProductivityEquivalence"
+status = "proved"
+aliases = ["Theorem Omega", "Theorem Ω"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BoxProductivityEquivalence"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BoxProductivityEquivalence |'
+window_lines = 0
+
+[[claim]]
 name = "C2"
 status = "conditional"
 [[claim.surfaces]]
@@ -865,6 +895,35 @@ anchor = '| LatticeLift |'
 window_lines = 0
 
 [[claim]]
+name = "LeftmostChainPeriodicPair"
+status = "proved"
+aliases = ["Proposition LC"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"LeftmostChainPeriodicPair"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| LeftmostChainPeriodicPair |'
+window_lines = 0
+
+[[claim]]
+name = "LeftmostChainSign"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"LeftmostChainSign"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| LeftmostChainSign |'
+window_lines = 0
+
+[[claim]]
 name = "LoadBearingSCC"
 status = "conditional"
 [[claim.surfaces]]
@@ -1016,6 +1075,20 @@ window_lines = 0
 [[claim.surfaces]]
 path = "docs/claim-status-and-source-map-2026-09-13.md"
 anchor = "| Boundary obstruction / strict zipper dichotomy |"
+window_lines = 0
+
+[[claim]]
+name = "OverlapCoincidenceCriterion"
+status = "imported"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"OverlapCoincidenceCriterion"'
+section = "ImportedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| OverlapCoincidenceCriterion |'
 window_lines = 0
 
 [[claim]]
@@ -1236,6 +1309,35 @@ expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| PhiSemisimplicity |'
+window_lines = 0
+
+[[claim]]
+name = "PisotFamilyMeyerProperty"
+status = "imported"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PisotFamilyMeyerProperty"'
+section = "ImportedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PisotFamilyMeyerProperty |'
+window_lines = 0
+
+[[claim]]
+name = "PotentialOverlapFiniteDescent"
+status = "proved"
+aliases = ["Lemma Omega1", "Lemma Ω1"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PotentialOverlapFiniteDescent"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PotentialOverlapFiniteDescent |'
 window_lines = 0
 
 [[claim]]
