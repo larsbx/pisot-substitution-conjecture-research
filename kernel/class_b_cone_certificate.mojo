@@ -37,7 +37,7 @@ from psc.symbolic_cone import (
     Cone,
     ConeGraph,
     P2,
-    Rat2,
+    Frac2,
     Region,
     cone_offset_zero_reachable,
     p2_add,
@@ -124,7 +124,7 @@ def class_b_cone(f: Family) raises -> Cone:
     var q = f.q.poly()
     var r = f.r.poly()
     var x0 = r2_const(p2_add(r, p2_const(1)))
-    var xs = List[Rat2]()
+    var xs = List[Frac2]()
     xs.append(x0.copy())
     for _ in range(3):
         ref x = xs[len(xs) - 1]

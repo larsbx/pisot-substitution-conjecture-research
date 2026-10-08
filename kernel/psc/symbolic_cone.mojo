@@ -396,7 +396,7 @@ def t2_at_point(p: TP2, s1: Int, s2: Int) -> TPoly:
 # ---------------------------------------------------------------------------
 
 
-struct Rat2(Copyable, Movable):
+struct Frac2(Copyable, Movable):
     """`num / den`; `den` is certified positive on the region before use."""
 
     var num: P2
@@ -407,31 +407,31 @@ struct Rat2(Copyable, Movable):
         self.den = den^
 
 
-def r2_const(p: P2) -> Rat2:
-    return Rat2(p.copy(), p2_const(1))
+def r2_const(p: P2) -> Frac2:
+    return Frac2(p.copy(), p2_const(1))
 
 
-def r2_add(a: Rat2, b: Rat2) -> Rat2:
-    return Rat2(p2_add(p2_mul(a.num, b.den), p2_mul(b.num, a.den)), p2_mul(a.den, b.den))
+def r2_add(a: Frac2, b: Frac2) -> Frac2:
+    return Frac2(p2_add(p2_mul(a.num, b.den), p2_mul(b.num, a.den)), p2_mul(a.den, b.den))
 
 
-def r2_sub(a: Rat2, b: Rat2) -> Rat2:
-    return Rat2(p2_sub(p2_mul(a.num, b.den), p2_mul(b.num, a.den)), p2_mul(a.den, b.den))
+def r2_sub(a: Frac2, b: Frac2) -> Frac2:
+    return Frac2(p2_sub(p2_mul(a.num, b.den), p2_mul(b.num, a.den)), p2_mul(a.den, b.den))
 
 
-def r2_mul(a: Rat2, b: Rat2) -> Rat2:
-    return Rat2(p2_mul(a.num, b.num), p2_mul(a.den, b.den))
+def r2_mul(a: Frac2, b: Frac2) -> Frac2:
+    return Frac2(p2_mul(a.num, b.num), p2_mul(a.den, b.den))
 
 
-def r2_div(a: Rat2, b: Rat2) -> Rat2:
-    return Rat2(p2_mul(a.num, b.den), p2_mul(a.den, b.num))
+def r2_div(a: Frac2, b: Frac2) -> Frac2:
+    return Frac2(p2_mul(a.num, b.den), p2_mul(a.den, b.num))
 
 
 struct Bracket(Copyable, Movable):
-    var lo: Rat2
-    var hi: Rat2
+    var lo: Frac2
+    var hi: Frac2
 
-    def __init__(out self, var lo: Rat2, var hi: Rat2):
+    def __init__(out self, var lo: Frac2, var hi: Frac2):
         self.lo = lo^
         self.hi = hi^
 
