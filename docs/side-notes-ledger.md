@@ -1013,3 +1013,22 @@ by deleting it.
   `tests/test_a1_normal_form.mojo` passes unchanged (453 named witnesses,
   27-point residue), which confirms the clause never fired. ·
   `kernel/a1_normal_form_census.mojo`
+- 2026-10-08 · Class B swap-seed graphs are constant on sectors of the
+  `(q, p)` plane bounded by slopes `1, 3/2, 2, 5/2, …` (74 / 226 vertices for
+  `r = q + 1`; 123 / 171 / 217 for `r = q − 1`), with sectors accumulating at
+  slope 3; along `p = 3q + 11 − d`, `d` fixed, the graph grows linearly in `q`
+  (`d = 0`: 2,655 → 4,893 vertices for `q = 8 → 28`). Do not look for a finite
+  symbolic graph on the top layer: it needs an index variable. Scans are
+  scratch exact-kernel runs at `q = 12, 20, 21, 28, 40`. ·
+  [cone note §1, §5](p1b-symbolic-cone-2026-10-08.md)
+- 2026-10-08 · Retired for two parameters: the parametric Sturm–Tarski sign
+  reader of `psc.symbolic_line`. Its sequence entries need not keep one sign
+  on a 2D region even when the query does; the cone engine brackets `beta`
+  between certified rational functions instead. On Theorem L's line the
+  bracket method certifies from `q >= 6`, where Sturm needed `q >= 52`. ·
+  `kernel/psc/symbolic_cone.mojo`
+- 2026-10-08 · Tooling pitfall: Pólya's multiplier cannot certify a
+  polynomial whose top form vanishes on a ray of the orthant (e.g.
+  `(s1 − s2)^2 + s1 + 1`, or a one-variable polynomial lifted by
+  `1 + u + v`); the region reader lifts only by the coordinates that occur. ·
+  `kernel/tests/test_symbolic_cone.mojo`

@@ -172,6 +172,11 @@ swap-seed closure removes the need for a trapping region, and along
 constant offsets.
 [`p1b-symbolic-line-2026-10-07.md`](p1b-symbolic-line-2026-10-07.md) proves
 **Theorem L**: pure discrete spectrum and G1 for every member of that line.
+On 2026-10-08 the same closure in two parameters, with `beta` bracketed
+between certified rational functions, gave **Theorem C** of
+[`p1b-symbolic-cone-2026-10-08.md`](p1b-symbolic-cone-2026-10-08.md): pure
+discrete spectrum and G1 on every member of class B below slope `5/2`; the
+layer near slope 3 stays open.
 
 ## 6. What this does not establish
 
