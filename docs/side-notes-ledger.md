@@ -1328,3 +1328,41 @@ by deleting it.
   the projection (factoring through ℓ is necessary, not sufficient). The shortest PDS route and
   the #139 frontier lie on the Rauzy side. This is an interpretive map; it
   moves no claim status. · `rauzy-representability-2026-10-08.html`
+- 2026-10-08 · Correction to the 2026-10-08 `BoundedPureDiscreteSpectrum`
+  entry above ("the proof-dependency ledger is unchanged"): the two notes' proved results are
+  now proof-dependency (TLA+) nodes. Box note: `BoxCycleContainment` (Lemma Ω1),
+  `BoxAutomatonCertificate` (Theorem Ω), the open gate `FormalProductivity`,
+  the import `OverlapCoincidenceCriterion` (LMS 2003 Lemma 6.9 + Thm 4.7, LS
+  2012 Thm 4.3), and consequences (a), (b), (c) as `PDSFormalProductivityRoute`,
+  `PDSFormalProductivitySeedRoute` and `G1FormalProductivityRoute`; the last
+  is a fourth alternative establishment of canonical G1. Leftmost note:
+  `LeftmostChainCycleStructure` (Lemma S, Proposition LC, Corollary LC4) and
+  `LeftmostChainG1Certificate` (Corollary LC5). Routes (b), (c) and LC5 cite
+  Theorem 5.38 and Propositions 5.46/5.47 for their mechanism but do not depend
+  on those nodes, which bundle the weaker open seed gates (the D.4
+  resolution). New model `MCLedgerFormalProductivityGateAssumed`: FP with the
+  two imports reaches G1 and both PDS routes, and leaves PDS, SCC Producer and
+  every seed gate unestablished; all 15 TLC models hold. No status of PSC, G1
+  or any gate changes. ·
+  `tools/make_ledger.py`; claim-map rows from "Cycle vertices lie in the box
+  automaton" and "Leftmost-chain cycles are prefix-vs-interior pairs"
+- 2026-10-08 · Review of the two notes before promotion, from the statements:
+  Lemma Ω1(1) needs the map `w -> (<ell, w>, (sigma_k <ell, w>)_k)` to be
+  invertible over `R`, not only injective on `Z^3`; it is, since it factors as
+  a Vandermonde matrix of the distinct conjugates of `beta` times the rational
+  coordinate matrix of `ell`, which is invertible by `Q`-independence. Ω1(2)'s
+  bound uses `|1 - sigma_k(beta)^p| >= 1 - mu_k^p` and
+  `sum_{n<p} mu_k^n <= (1 - mu_k^p)/(1 - mu_k)`. Theorem Ω's descent needs every
+  non-coincident overlap to have a child, which holds because the sub-tiles
+  of each image cover their tile up to finitely many points. In Proposition LC
+  claim 5, "the composite fixes `c = 0`" follows directly from the definition of
+  the leftmost child (each edge maps the parent's left region end to the
+  child's), so Lemma C step 1 is not needed, and the M-adic-centre remark
+  (Proposition P″(a)) is not load-bearing. `LeftmostChainCycleStructure` thus
+  has no ledger dependency. Corollary LC4's involution maps the leftmost child
+  to the leftmost child because it translates the region by `-t`. Corollary
+  LC5 uses Lemma Ω1(2) for "terminal-SCC vertices lie in the box", and needs
+  each `Z(s)` vertex to have a child, which holds because it is not a
+  coincidence. No error found. ·
+  `pds-certificate-from-the-box-automaton-2026-10-07.md` §§3–4;
+  `p1b-leftmost-chain-periodic-pair-2026-10-05.md` §§3–4, 8a

@@ -14,6 +14,11 @@ combinatorial condition "this vertex is not in `CU`" by an arithmetic witness:
 a periodic pair of `Φ^r`-fixed tilings built from one **prefix** occurrence and
 one **interior** occurrence, with an explicit integrality condition.
 
+Ledger (2026-10-08): Lemma S, Proposition LC and Corollary LC4 are the
+repository-proved node `LeftmostChainCycleStructure`; Corollary LC5 is the
+repository-proved node `LeftmostChainG1Certificate`, a per-specimen statement
+that is not an alternative establishment of uniform G1 (§9).
+
 Canonical implementation: `kernel/psc/leftmost_chain.mojo`, driver
 `kernel/leftmost_chain_census.mojo`, regression `kernel/tests/test_leftmost_chain.mojo`.
 

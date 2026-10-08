@@ -9,8 +9,12 @@ uses manuscript Theorem 5.38. Consequence (c) uses Proposition 1 of
 Theorem B, Proposition F, Theorem R, Theorem S). That re-derivation found no
 error. It is one more internal review and does not replace the pending human
 review. The finite-domain consequence of §5 is recorded in the claim ledger
-as the finite-domain theorem `BoundedPureDiscreteSpectrum` (2026-10-08); no
-proof-dependency (TLA+) node changes, and PSC stays open.
+as the finite-domain theorem `BoundedPureDiscreteSpectrum` (2026-10-08).
+Lemma Ω1, Theorem Ω and consequences (a)–(c) are proof-dependency (TLA+)
+ledger nodes since 2026-10-08 (`BoxCycleContainment`,
+`BoxAutomatonCertificate`, `PDSFormalProductivityRoute`,
+`PDSFormalProductivitySeedRoute`, `G1FormalProductivityRoute`, with the open
+gate `FormalProductivity`). PSC stays open.
 
 ## 1. The point
 
@@ -335,5 +339,9 @@ recorded runs, as before.
 - It promotes only the finite-domain statement of §5, as the claim-ledger
   entry `BoundedPureDiscreteSpectrum` (status finite-domain, guarded by
   `kernel/tests/test_vertex_coincidence.mojo`, the CI census job and
-  `box-automaton-evidence.yml`). It adds no proof-dependency node: the claim
-  is about a finite domain, not a universal implication.
+  `box-automaton-evidence.yml`). That claim is about a finite domain and is
+  not a proof-dependency node. The universal statements are (2026-10-08):
+  Lemma Ω1 and Theorem Ω are repository-proved nodes; consequences (a)–(c)
+  are conditional nodes whose only open premise is the gate
+  `FormalProductivity`, and (c) is an alternative establishment of G1. None
+  of this proves FP, G1 or PDS.
