@@ -9,7 +9,7 @@ against its closed form by hand.
 """
 
 from std.testing import assert_equal, assert_false, assert_true
-from mojo_smoke.claims import require_contract
+from mojo_smoke.claims import require_claim, require_contract
 from psc.leftmost_chain import (
     certify_leftmost_cycles,
     leftmost_step,
@@ -198,3 +198,4 @@ def main() raises:
     test_a_capped_graph_is_not_a_verdict()
     print("[PASS] test_a_capped_graph_is_not_a_verdict")
     require_contract("Proposition LC (leftmost-chain periodic pairs): the leftmost step keeps the parent's offset sign or lands on zero and zeroes the index on the side whose tile starts first (Lemma S, checked per step on three box graphs); every terminal leftmost cycle is a prefix-vs-interior occurrence pair. Pins: Tribonacci 01/02/0 has 0 cycles and in_cu = recurrent; 1/12/022 has 2 cycles of length 1, prefix letter 1 at 0 of sigma(1) (length 2), interior letter 2 at 1 of sigma(2) (length 3), ab(Q) = e_0, and (I - M) w0 = ab(Q) with w0 = (0, 1, -1) re-derived from the closed form; catch-up-free 1/012/010 has 2 cycles with r = 6 and both offsets certified over Z, 1/22/012 has 2 cycles with r = 15 whose offsets are past the exact integer range and are reported as uncomputed, never as a pass; max_integral_r = 0 moves every offset to the beyond column; a capped box graph is capped and holds() is false")
+    require_claim("LeftmostChainCycleStructure")
