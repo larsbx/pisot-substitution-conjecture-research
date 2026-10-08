@@ -124,3 +124,20 @@ def test_check_lean_obeys_a_failed_build_even_if_output_says_success(tmp_path):
     run = subprocess.run(["bash", str(ROOT / "tools/check_lean.sh")], cwd=tmp_path,
                          env={**os.environ, "PATH": f"{fake_bin}:{os.environ['PATH']}"}, capture_output=True, text=True)
     assert run.returncode == 7, run.stdout + run.stderr
+
+
+def test_cached_successful_build_still_requires_a_fresh_audit(tmp_path):
+    fake_bin = tmp_path / "bin"
+    fake_bin.mkdir()
+    calls = tmp_path / "lake-calls"
+    lake = fake_bin / "lake"
+    import shlex
+    lake.write_text('#!/bin/sh\nprintf "%s\\n" "$*" >> ' + shlex.quote(str(calls)) +
+                    '\necho "Build completed successfully"\nexit 0\n')
+    lake.chmod(0o755)
+    import os
+    run = subprocess.run(["bash", str(ROOT / "tools/check_lean.sh")], cwd=tmp_path,
+                         env={**os.environ, "PATH": f"{fake_bin}:{os.environ['PATH']}"}, capture_output=True, text=True)
+    assert run.returncode != 0, run.stdout + run.stderr
+    assert calls.read_text().splitlines() == ["build PscVerif", "env lean ProofBankAudit.lean"]
+    assert "Incomplete Lean audit" in run.stderr

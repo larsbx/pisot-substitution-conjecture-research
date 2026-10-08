@@ -2761,15 +2761,19 @@
   ],
   "input_digests": {
     "claim_governance.toml": "15b8bace786c4d982d9733d95f21c4e391986c948aa839c9d7a1d664a9e4ff13",
+    "proof/PscVerif/ProofBankAudit.lean": "711402d19ef8292638841a54f2a9a6a24cf6e9569736022118e71e2eb5dbd2ea",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
     "proof/PscVerif/PscVerif/Seeds.lean": "224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747",
     "proof/PscVerif/PscVerif/Shuffle.lean": "fe99c7b71174cd665633b425c0f9d1e6f6893f541387e261fb5d945bba48614c",
+    "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
+    "proof/PscVerif/PscVerif.lean": "4287b05bebcea7f4381939e6438098438d99a38b76f192b81e819c893c8cfe19",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
-    "tools/make_ledger.py": "5ffe07e2a644e915726d6e183ddf934a29f8c92c85cb91edc8267df8e6778c77"
+    "tools/make_ledger.py": "5ffe07e2a644e915726d6e183ddf934a29f8c92c85cb91edc8267df8e6778c77",
+    "tools/make_proof_bank.py": "125126b71f05fc8ac5c74d14be553af7ece36e98078567dc23ff596b93c867fd"
   }
 }

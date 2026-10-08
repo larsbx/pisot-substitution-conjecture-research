@@ -210,9 +210,11 @@ def bank(root: Path = ROOT) -> dict:
                         "dependencies": list(node[3]) if node else [], "ledger_node": bool(node),
                         "lean_support": supports.get(name, {"coverage": "none", "declarations": [],
                                                              "note": "No complete Lean proof is registered for this claim."})})
-    inputs = [root / "claim_governance.toml", root / "tools/make_ledger.py", root / "proof/proof-bank.toml"]
+    inputs = [root / "claim_governance.toml", root / "tools/make_ledger.py",
+              root / "tools/make_proof_bank.py", root / "proof/proof-bank.toml"]
     inputs += sorted((root / PROJECT).glob("*.toml")) + [root / PROJECT / "lean-toolchain", root / PROJECT / "lake-manifest.json"]
-    inputs += [root / d["source"] for d in formal]
+    inputs += sorted((root / PROJECT).glob("*.lean"))
+    inputs += sorted((root / PROJECT / "PscVerif").rglob("*.lean"))
     return {"format": "psc-proof-bank-v1", "scope": "All governed claims, apparent source statement openings under the claim policy, and named theorems/lemmas in every local Lean module.",
             "authority": "Inventory only; claim statuses retain their existing authority. Source openings may be proposals or repeated statements, not new reviewed theorems.",
             "pins": pins, "claims": entries, "lean_declarations": formal,
