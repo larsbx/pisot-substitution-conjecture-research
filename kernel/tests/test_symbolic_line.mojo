@@ -85,6 +85,28 @@ def test_the_class_b_line_certificate() raises:
     assert_equal(v.finite_non_pip, 0)
 
 
+def test_a_second_line_of_class_b_is_certified() raises:
+    """Theorem L' (docs/p1-seed-strength-2026-10-08.md): the line p = q + 1,
+    r = q + 1 is certified by the same method, with its own threshold."""
+    var v = certify_class_b_line(1, 1, 1)
+    assert_equal(v.q0, 14)
+    assert_equal(v.symbolic_vertices, 121)
+    assert_equal(v.finite_members, 14)
+    assert_equal(v.finite_non_pip, 0)
+    assert_equal(v.finite_outside, 0)
+
+
+def test_a_line_that_leaves_the_pisot_class_is_refused() raises:
+    """p = 3 q + 1, r = q - 1 has a second eigenvalue outside the unit disc for
+    large q: the certificate must refuse it at the PIP step."""
+    var refused = False
+    try:
+        _ = certify_class_b_line(3, 1, -1)
+    except:
+        refused = True
+    assert_true(refused)
+
+
 def main() raises:
     test_eventual_sign_records_the_largest_root()
     print("[PASS] test_eventual_sign_records_the_largest_root")
@@ -96,4 +118,9 @@ def main() raises:
     print("[PASS] test_a_line_with_determinant_zero_is_not_certified")
     test_the_class_b_line_certificate()
     print("[PASS] test_the_class_b_line_certificate")
+    test_a_second_line_of_class_b_is_certified()
+    print("[PASS] test_a_second_line_of_class_b_is_certified")
+    test_a_line_that_leaves_the_pisot_class_is_refused()
+    print("[PASS] test_a_line_that_leaves_the_pisot_class_is_refused")
     require_contract("Theorem L certificate (class B line sigma_q: x -> x y^(2q+2) x, c -> c y^q x, y -> c y^(q+1) x): the symbolic swap-seed overlap graph, decided by parametric Sturm-Tarski queries over Q[q] with certified threshold, has 119 vertices for every q >= 52, all with an offset-zero descendant, and the line is certified PIP there; every q in 0..51 is PIP and its exact seed-reachable graph (screened kernel) has every vertex hitting; at q = 52 and 57 the symbolic graph with q substituted equals the exact graph; parametric signs agree with concrete signs at q = 60; pseudo-remainders keep the sign at beta; a det-0 line is refused")
+    require_contract("Theorem L' certificate: the class B line p = q + 1, r = q + 1 is certified (121 symbolic vertices for every q >= 14, all hitting; q < 14: 14 PIP members, all hitting); the line p = 3q + 1, r = q - 1, which leaves the Pisot class, is refused")

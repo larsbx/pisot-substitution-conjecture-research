@@ -1032,3 +1032,12 @@ by deleting it.
   implication. ·
   `pds-certificate-from-the-box-automaton-2026-10-07.md` §§5, 9;
   `claim_governance.toml`
+- 2026-10-08 · Seed strength buys no slack in truth: for each PIP `sigma`,
+  one productive swap seed ⟺ every seed ⟺ FP ⟺ PDS (Theorem 5.38 forward,
+  Corollary FP″ back), so do not look for a seed that avoids an obstruction.
+  The object does depend on the seed: on 444 of 4,554 standing specimens the
+  three seeds reach different recurrent parts, and none is ever empty. The
+  census domains are closed under reversal, so the prefix SC census already
+  gives two-sided SC on 408,798 specimens. Class B lines with slope 3 and
+  `r = q − 1` leave PIP (a second eigenvalue of modulus 1, or above it). ·
+  `p1-seed-strength-2026-10-08.md`
