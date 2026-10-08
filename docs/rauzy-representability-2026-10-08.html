@@ -83,6 +83,14 @@ td.cls { white-space: nowrap; }
 .pill.R { color: var(--r); } .pill.Rp { color: var(--rp); } .pill.NR { color: var(--nr); }
 tr.group td { font: 600 0.74rem var(--f-mono); letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent); background: var(--surface); padding-top: 14px; }
 td.why { color: var(--muted); }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 28px 24px; }
+.gallery figure { margin: 0; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.gallery canvas { width: 100%; aspect-ratio: 1; display: block; border: 1px solid var(--rule); background: var(--surface); }
+.gallery h3 { font: 600 1.05rem/1.3 var(--f-display); margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 600 0.7rem var(--f-mono); padding: 2px 7px; border-radius: 999px; border: 1px solid currentColor; }
+.chip.R { color: var(--r); } .chip.Rp { color: var(--rp); } .chip.X { color: var(--muted); }
+.fig-cap { font-size: 0.9rem; line-height: 1.5; color: var(--muted); margin: 0; }
 footer { font-size: 0.85rem; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 16px; }
 </style>
 </head>
@@ -147,6 +155,62 @@ R   ⇒  it factors through ℓ          (necessary, not sufficient)</div>
         <li><b>Representable is not novel.</b> The repository records Rauzy-language ancestors for several R claims: Siegel–Thuswaldner's G(0), Arnoux–Ito strong coincidence, compactness of the fractal, Barge–Gambaudo. What is new is the non-unit transfer, the possibly illegal swap seeds, and the PDS ⇒ G1 package.</li>
         <li><b>Not counted.</b> The base set is repository-proved claims only. The box-automaton note's finite-domain consequence is ledgered as <code>BoundedPureDiscreteSpectrum</code> (status finite-domain), so it falls outside that class; its universal Lemma Ω1 and Theorem Ω, the leftmost-chain proposition (2026-10-05) and the vertex-coincidence box note (marked not yet reviewed) are proved in their notes but are not ledger claims. All of them are native R.</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="stack">
+    <span class="eyebrow">The R side, drawn</span>
+    <h2>Each Rauzy-representable claim as a picture</h2>
+    <p class="muted">Seven figures cover all 11 R claims and both R⁻ claims, and the eighth shows the adelic caveat. Figures 1–7 use Tribonacci (unit, so the Euclidean picture is faithful). Every number in a caption is measured from the drawn point cloud when the page loads, except the two raster tests marked build-time.</p>
+    <div class="gallery">
+      <figure data-fig="embed">
+        <canvas width="640" height="640" aria-label="The embedding πc∘ℓ"></canvas>
+        <h3>The embedding π<sub>c</sub>∘ℓ</h3>
+        <div class="chips"><span class="chip R">AlgebraicEmbedding</span></div>
+        <p class="fig-cap"></p>
+      </figure>
+      <figure data-fig="bounded">
+        <canvas width="640" height="640" aria-label="Bounded, hence compact"></canvas>
+        <h3>Bounded, hence compact</h3>
+        <div class="chips"><span class="chip R">G1b1BoundedDiscrepancy</span></div>
+        <p class="fig-cap"></p>
+      </figure>
+      <figure data-fig="seteq">
+        <canvas width="640" height="640" aria-label="The set equation"></canvas>
+        <h3>The set equation</h3>
+        <div class="chips"><span class="chip R">OrderedAffineCycleIdentity</span><span class="chip Rp">OverlapBadSCCNormalForm</span></div>
+        <p class="fig-cap"></p>
+      </figure>
+      <figure data-fig="nbrs">
+        <canvas width="640" height="640" aria-label="A finite neighbour set"></canvas>
+        <h3>A finite neighbour set</h3>
+        <div class="chips"><span class="chip R">SwapOverlapFiniteness</span></div>
+        <p class="fig-cap"></p>
+      </figure>
+      <figure data-fig="boundary">
+        <canvas width="640" height="640" aria-label="Subtiles meet only on boundaries"></canvas>
+        <h3>Subtiles meet only on boundaries</h3>
+        <div class="chips"><span class="chip R">AlignedOverlapsAreStrongCoincidence</span><span class="chip R">BoundaryCoincidenceCriterion</span></div>
+        <p class="fig-cap"></p>
+      </figure>
+      <figure data-fig="periodic">
+        <canvas width="640" height="640" aria-label="Periodic points and w₀*"></canvas>
+        <h3>Periodic points and w₀*</h3>
+        <div class="chips"><span class="chip R">StrictZipperPeriodicPairForm</span><span class="chip R">OverlapBoundaryZipperDichotomy</span></div>
+        <p class="fig-cap"></p>
+      </figure>
+      <figure data-fig="tiling">
+        <canvas width="640" height="640" aria-label="Lattice tiling and fibres"></canvas>
+        <h3>Lattice tiling and fibres</h3>
+        <div class="chips"><span class="chip R">PDSImpliesRepoG1</span><span class="chip R">PDSImpliesSeedwiseTermination</span><span class="chip R">PeriodicPairOneFibre</span><span class="chip Rp">ReturnModuleFullRank</span></div>
+        <p class="fig-cap"></p>
+      </figure>
+      <figure data-fig="nonunit">
+        <canvas width="640" height="640" aria-label="Why “Rauzy” has to mean adelic"></canvas>
+        <h3>Why “Rauzy” has to mean adelic</h3>
+        <div class="chips"><span class="chip X">caveat · non-unit specimen</span></div>
+        <p class="fig-cap"></p>
+      </figure>
     </div>
   </section>
 
@@ -264,33 +328,245 @@ setFilter(CLAIMS.some(c => c.cls === start) ? start : "all");
 
 console.assert(CLAIMS.length === 47, "expected 47 claims");
 
-/* Tribonacci Rauzy fractal: project prefix Parikh vectors along the Perron direction
-   onto the contracting plane via the left eigenvector for the complex root α. */
-const drawRauzy = () => {
-  const cv = document.getElementById("rauzy"), ctx = cv.getContext("2d");
-  const css = getComputedStyle(document.documentElement);
-  const col = ["--tile1", "--tile2", "--tile3"].map(t => css.getPropertyValue(t).trim());
-  const bg = css.getPropertyValue("--surface").trim();
-  // β: real root of x³ = x² + x + 1; α, ᾱ: roots of x² + (β−1)x + 1/β.
-  let b = 1.8; for (let i = 0; i < 60; i++) b -= (b*b*b - b*b - b - 1) / (3*b*b - 2*b - 1);
-  const re = -(b - 1) / 2, im = Math.sqrt(1 / b - re * re);
-  const cmul = ([a, c], [d, e]) => [a*d - c*e, a*e + c*d];
-  const cdiv = ([a, c], [d, e]) => { const n = d*d + e*e; return [(a*d + c*e)/n, (c*d - a*e)/n]; };
-  const al = [re, im];
-  // left eigenvector u of M (columns ℓσ(1)=(1,1,0), ℓσ(2)=(1,0,1), ℓσ(3)=(1,0,0)): u₃=1, u₁=α, u₂=(α+1)/α
-  const u = [al, cdiv([al[0] + 1, al[1]], al), [1, 0]];
-  const sub = ["01", "02", "0"];
-  let w = "0"; while (w.length < 90000) w = [...w].map(c => sub[+c]).join("");
-  const pts = []; let x = 0, y = 0;
-  for (let i = 0; i < w.length; i++) { const k = +w[i]; pts.push([x, y, k]); x += u[k][0]; y += u[k][1]; }
-  const [x0, x1, y0, y1] = pts.reduce(([a, b2, c, d], [px, py]) => [Math.min(a, px), Math.max(b2, px), Math.min(c, py), Math.max(d, py)], [Infinity, -Infinity, Infinity, -Infinity]);
-  const s = 0.9 * cv.width / Math.max(x1 - x0, y1 - y0), ox = (cv.width - s*(x1 - x0))/2, oy = (cv.height - s*(y1 - y0))/2;
-  ctx.fillStyle = bg; ctx.fillRect(0, 0, cv.width, cv.height);
-  pts.forEach(([px, py, k]) => { ctx.fillStyle = col[k]; ctx.fillRect(ox + s*(px - x0), oy + s*(y1 - py), 1.6, 1.6); });
+/* Rauzy-fractal geometry for a ternary Pisot substitution with a complex contracting pair.
+   Pure functions; shared by the page and the node checks. */
+const C = {
+  add: ([a, b], [c, d]) => [a + c, b + d],
+  sub: ([a, b], [c, d]) => [a - c, b - d],
+  mul: ([a, b], [c, d]) => [a * c - b * d, a * d + b * c],
+  div: ([a, b], [c, d]) => { const n = c * c + d * d; return [(a * c + b * d) / n, (b * c - a * d) / n]; },
+  scale: ([a, b], s) => [a * s, b * s],
+  abs: ([a, b]) => Math.hypot(a, b),
+  pow: (z, r) => Array.from({ length: r }).reduce(acc => C.mul(acc, z), [1, 0]),
 };
-drawRauzy();
-matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", drawRauzy);
-new MutationObserver(drawRauzy).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+// images: array of 3 strings over "012". Returns the substitution's internal-space data.
+const rauzy = (images, N = 60000) => {
+  const M = [0, 1, 2].map(i => [0, 1, 2].map(j => [...images[j]].filter(c => +c === i).length));
+  // char poly x^3 + c2 x^2 + c1 x + c0
+  const tr = M[0][0] + M[1][1] + M[2][2];
+  const minors = M[0][0] * M[1][1] - M[0][1] * M[1][0] + M[0][0] * M[2][2] - M[0][2] * M[2][0] + M[1][1] * M[2][2] - M[1][2] * M[2][1];
+  const det = M[0][0] * (M[1][1] * M[2][2] - M[1][2] * M[2][1]) - M[0][1] * (M[1][0] * M[2][2] - M[1][2] * M[2][0]) + M[0][2] * (M[1][0] * M[2][1] - M[1][1] * M[2][0]);
+  const p = x => x ** 3 - tr * x ** 2 + minors * x - det;
+  let b = tr + 1; for (let i = 0; i < 200; i++) b -= p(b) / (3 * b * b - 2 * tr * b + minors);
+  // remaining quadratic x^2 + (b - tr) x + det/b
+  const s = b - tr, q = det / b, disc = s * s - 4 * q;
+  if (disc >= 0) throw new Error("contracting pair is real");
+  const al = [-s / 2, Math.sqrt(-disc) / 2];
+  // left eigenvector u with u M = α u: cross product of two columns of (M − αI) read as rows of (M^T − αI)
+  const A = [0, 1, 2].map(i => [0, 1, 2].map(j => (i === j ? C.sub([M[j][i], 0], al) : [M[j][i], 0])));
+  const cross = (r, t) => [C.sub(C.mul(r[1], t[2]), C.mul(r[2], t[1])), C.sub(C.mul(r[2], t[0]), C.mul(r[0], t[2])), C.sub(C.mul(r[0], t[1]), C.mul(r[1], t[0]))];
+  const u0 = cross(A[0], A[1]);
+  const u = u0.map(z => C.div(z, u0[2])); // normalise u_3 = 1
+  const pi = v => v.reduce((acc, k, i) => C.add(acc, C.scale(u[i], k)), [0, 0]);
+  // fixed point starting at a letter a with σ(a) beginning with a
+  const a = [0, 1, 2].find(i => +images[i][0] === i);
+  if (a === undefined) throw new Error("no letter-fixed start; use a power");
+  let w = [a], par = [a], off = [0];
+  while (w.length < N) {
+    const nw = [], np = [], no = [];
+    w.forEach(j => [...images[j]].forEach((c, k) => { nw.push(+c); np.push(j); no.push(k); }));
+    w = nw; par = np; off = no;
+  }
+  w = w.slice(0, N); par = par.slice(0, N); off = off.slice(0, N);
+  const pts = new Float64Array(2 * N), counts = [0, 0, 0];
+  let z = [0, 0];
+  for (let k = 0; k < N; k++) { pts[2 * k] = z[0]; pts[2 * k + 1] = z[1]; z = C.add(z, u[w[k]]); counts[w[k]]++; }
+  return { images, M, det, beta: b, alpha: al, u, pi, w, par, off, pts, N };
+};
+
+// Bounding box of a set of point arrays, optionally shifted.
+const bbox = (sets) => sets.reduce(([x0, x1, y0, y1], { pts, dx = 0, dy = 0 }) => {
+  for (let k = 0; k < pts.length; k += 2) {
+    const x = pts[k] + dx, y = pts[k + 1] + dy;
+    if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
+  }
+  return [x0, x1, y0, y1];
+}, [Infinity, -Infinity, Infinity, -Infinity]);
+
+// Raster occupancy of point sets on an n×n grid over a box; returns per-set boolean grids.
+const raster = (sets, box, n) => {
+  const [x0, x1, y0, y1] = box, sx = (n - 1) / (x1 - x0), sy = (n - 1) / (y1 - y0);
+  return sets.map(({ pts, dx = 0, dy = 0 }) => {
+    const g = new Uint8Array(n * n);
+    for (let k = 0; k < pts.length; k += 2) {
+      const i = Math.round((pts[k] + dx - x0) * sx), j = Math.round((pts[k + 1] + dy - y0) * sy);
+      if (i >= 0 && i < n && j >= 0 && j < n) g[j * n + i] = 1;
+    }
+    return g;
+  });
+};
+
+// Subset of a point cloud by a predicate on index.
+const select = (R, pred) => {
+  const out = [];
+  for (let k = 0; k < R.N; k++) if (pred(k)) out.push(R.pts[2 * k], R.pts[2 * k + 1]);
+  return Float64Array.from(out);
+};
+
+// Periodic points: occurrences σ^r(i) = P i S give ξ = π(P)/(1 − α^r) in X_i.
+const periodicPoints = (R, r) => {
+  const iter = word => word.flatMap(c => [...R.images[c]].map(Number));
+  return [0, 1, 2].flatMap(i => {
+    let img = [i]; for (let t = 0; t < r; t++) img = iter(img);
+    const res = []; const v = [0, 0, 0];
+    img.forEach(c => { if (c === i) res.push({ letter: i, xi: C.div(R.pi(v), C.sub([1, 0], C.pow(R.alpha, r))) }); v[c]++; });
+    return res;
+  });
+};
+
+if (typeof module !== "undefined") module.exports = { C, rauzy, bbox, raster, select, periodicPoints };
+
+/* Figures. Every number in a caption is measured here, at load, from the same point clouds. */
+const TRIB = rauzy(["01", "02", "0"], 60000);
+const NONU = rauzy(["011", "20", "0"], 200000);
+const SUB = R => [0, 1, 2].map(i => select(R, k => R.w[k] === i));
+const TS = SUB(TRIB), NS = SUB(NONU);
+const LAT = [C.sub(TRIB.u[0], TRIB.u[2]), C.sub(TRIB.u[1], TRIB.u[2])];
+const latVec = (m, n) => C.add(C.scale(LAT[0], m), C.scale(LAT[1], n));
+const NBRS = [[-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0]];
+const fmt = (x, d = 2) => x.toFixed(d);
+const pct = x => (100 * x).toFixed(1) + "%";
+
+const tok = () => {
+  const s = getComputedStyle(document.documentElement), g = n => s.getPropertyValue(n).trim();
+  return { tile: [g("--tile1"), g("--tile2"), g("--tile3")], bg: g("--surface"), fg: g("--fg"), muted: g("--muted"), rule: g("--rule"), accent: g("--accent"), hl: g("--rp") };
+};
+
+// A view maps internal-space points to canvas pixels with one uniform scale.
+const view = (cv, box, pad = 0.06) => {
+  const [x0, x1, y0, y1] = box, W = cv.width, H = cv.height;
+  const s = (1 - 2 * pad) * Math.min(W / (x1 - x0), H / (y1 - y0));
+  const ox = (W - s * (x1 - x0)) / 2, oy = (H - s * (y1 - y0)) / 2;
+  return { s, X: x => ox + s * (x - x0), Y: y => H - (oy + s * (y - y0)) };
+};
+const cloud = (ctx, V, pts, color, size = 1.6, dx = 0, dy = 0) => {
+  ctx.fillStyle = color;
+  for (let k = 0; k < pts.length; k += 2) ctx.fillRect(V.X(pts[k] + dx) - size / 2, V.Y(pts[k + 1] + dy) - size / 2, size, size);
+};
+const clear = (cv, T) => { const ctx = cv.getContext("2d"); ctx.fillStyle = T.bg; ctx.fillRect(0, 0, cv.width, cv.height); return ctx; };
+const dot = (ctx, x, y, r, fill, stroke) => { ctx.beginPath(); ctx.arc(x, y, r, 0, 2 * Math.PI); ctx.fillStyle = fill; ctx.fill(); if (stroke) { ctx.lineWidth = 2; ctx.strokeStyle = stroke; ctx.stroke(); } };
+const label = (ctx, text, x, y, color, align = "left") => { ctx.font = "600 22px ui-monospace, Menlo, monospace"; ctx.fillStyle = color; ctx.textAlign = align; ctx.fillText(text, x, y); };
+const arrow = (ctx, x0, y0, x1, y1, color) => {
+  const a = Math.atan2(y1 - y0, x1 - x0), h = 16;
+  ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x1 - h * Math.cos(a - 0.4), y1 - h * Math.sin(a - 0.4)); ctx.lineTo(x1 - h * Math.cos(a + 0.4), y1 - h * Math.sin(a + 0.4)); ctx.closePath(); ctx.fill();
+};
+const TBOX = bbox([{ pts: TRIB.pts }]);
+
+// Raster measurements, computed once.
+const overlapStats = (subs, n = 260) => {
+  const box = bbox(subs.map(pts => ({ pts })));
+  const g = raster(subs.map(pts => ({ pts })), box, n);
+  const union = g[0].reduce((s, v, k) => s + (v | g[1][k] | g[2][k]), 0);
+  const multi = g[0].reduce((s, v, k) => s + (v + g[1][k] + g[2][k] > 1 ? 1 : 0), 0);
+  return { box, g, n, union, multi, frac: multi / union };
+};
+const TOV = overlapStats(TS), NOV = overlapStats(NS);
+const RADIUS = (() => { let r = 0; for (let k = 0; k < TRIB.pts.length; k += 2) r = Math.max(r, Math.hypot(TRIB.pts[k], TRIB.pts[k + 1])); return r; })();
+const PER = periodicPoints(TRIB, 3);
+const PA = PER.find(p => p.letter === 0 && C.abs(p.xi) > 0.5), PB = PER.find(p => p.letter === 1);
+
+const FIGS = {
+  embed(cv, T) {
+    const ctx = clear(cv, T), V = view(cv, TBOX);
+    cloud(ctx, V, TRIB.pts, T.rule, 1.4);
+    ctx.lineWidth = 3.5;
+    for (let k = 0; k < 12; k++) {
+      ctx.strokeStyle = T.tile[TRIB.w[k]];
+      ctx.beginPath(); ctx.moveTo(V.X(TRIB.pts[2 * k]), V.Y(TRIB.pts[2 * k + 1])); ctx.lineTo(V.X(TRIB.pts[2 * k + 2]), V.Y(TRIB.pts[2 * k + 3])); ctx.stroke();
+    }
+    for (let k = 0; k <= 12; k++) dot(ctx, V.X(TRIB.pts[2 * k]), V.Y(TRIB.pts[2 * k + 1]), k ? 5 : 8, T.fg);
+    return `The first 12 prefixes of the fixed point, joined in order. Each step adds π(e<sub>a</sub>) for the letter a just read (colour = letter), so the walk is π<sub>c</sub>∘ℓ applied to prefixes. Grey: the next 59,988 points.`;
+  },
+  bounded(cv, T) {
+    const ctx = clear(cv, T), V = view(cv, [-RADIUS, RADIUS, -RADIUS, RADIUS]);
+    cloud(ctx, V, TS[0], T.tile[0]); cloud(ctx, V, TS[1], T.tile[1]); cloud(ctx, V, TS[2], T.tile[2]);
+    ctx.setLineDash([8, 7]); ctx.lineWidth = 2; ctx.strokeStyle = T.fg;
+    ctx.beginPath(); ctx.arc(V.X(0), V.Y(0), V.s * RADIUS, 0, 2 * Math.PI); ctx.stroke(); ctx.setLineDash([]);
+    dot(ctx, V.X(0), V.Y(0), 6, T.fg);
+    return `Every one of the 60,000 projected prefix vectors lies in the disc of radius ${fmt(RADIUS, 3)} about 0. A uniform bound on |π<sub>c</sub>(ℓ(p))| is the same statement as bounded discrepancy, and it is what makes the pieces compact.`;
+  },
+  seteq(cv, T) {
+    const ctx = clear(cv, T), V = view(cv, TBOX);
+    // pieces α X_j + π(p) of X_i, indexed by (parent j, offset); 5 pieces for Tribonacci
+    const key = k => `${TRIB.par[k]}${TRIB.off[k]}`;
+    const keys = [...new Set(Array.from({ length: 4000 }, (_, k) => key(k)))].sort();
+    const shades = [T.tile[0], T.accent, T.tile[1], T.hl, T.tile[2]];
+    keys.forEach((kk, q) => cloud(ctx, V, select(TRIB, k => key(k) === kk), shades[q % shades.length], 1.6));
+    return `The same set split by where each point comes from: ${keys.length} pieces α·X<sub>j</sub> + π(p), one for each occurrence σ(j) = p·i·s. Their union is X. The affine maps z ↦ αz + π(p) are the recurrence w′ = Mw + q − p read in the internal space, and a bad SCC is a sub-system of them with growth β.`;
+  },
+  nbrs(cv, T) {
+    const ctx = clear(cv, T);
+    const shifts = NBRS.map(([m, n]) => latVec(m, n)).sort((a, b) => Math.atan2(a[1], a[0]) - Math.atan2(b[1], b[0]));
+    const box = bbox([{ pts: TRIB.pts }, ...shifts.map(d => ({ pts: TRIB.pts, dx: d[0], dy: d[1] }))]);
+    const V = view(cv, box, 0.03);
+    shifts.forEach((d, q) => cloud(ctx, V, TRIB.pts, [T.tile[1], T.tile[2], T.muted][q % 3], 1.3, d[0], d[1]));
+    cloud(ctx, V, TRIB.pts, T.tile[0], 1.3);
+    return `The central tile X (green) and the translates X + γ that touch it, for γ in the lattice spanned by π(e₁ − e₃) and π(e₂ − e₃). A build-time raster test of all 48 nonzero γ with coefficients in [−3, 3] found exactly these ${NBRS.length}. A finite neighbour set is the internal-space form of a finite overlap graph.`;
+  },
+  boundary(cv, T) {
+    const ctx = clear(cv, T), { box, g, n } = TOV, V = view(cv, box);
+    cloud(ctx, V, TS[0], T.tile[0], 1.4); cloud(ctx, V, TS[1], T.tile[1], 1.4); cloud(ctx, V, TS[2], T.tile[2], 1.4);
+    const [x0, x1, y0, y1] = box;
+    ctx.fillStyle = T.fg;
+    for (let j = 0; j < n; j++) for (let i = 0; i < n; i++) {
+      const k = j * n + i;
+      if (g[0][k] + g[1][k] + g[2][k] > 1) { const x = x0 + (x1 - x0) * i / (n - 1), y = y0 + (y1 - y0) * j / (n - 1); ctx.fillRect(V.X(x) - 2, V.Y(y) - 2, 4, 4); }
+    }
+    return `Subtiles X₁, X₂, X₃. Marked cells hold points of two subtiles at once: ${TOV.multi} of ${TOV.union} occupied cells (${pct(TOV.frac)}), all on shared boundaries. Disjoint interiors is strong coincidence, and a boundary cell is where an exact prefix-Parikh hit can happen.`;
+  },
+  periodic(cv, T) {
+    const ctx = clear(cv, T), V = view(cv, TBOX);
+    cloud(ctx, V, TS[0], T.tile[0], 1.4); cloud(ctx, V, TS[1], T.tile[1], 1.4); cloud(ctx, V, TS[2], T.tile[2], 1.4);
+    PER.forEach(p => dot(ctx, V.X(p.xi[0]), V.Y(p.xi[1]), 6, T.bg, T.fg));
+    const ax = V.X(PA.xi[0]), ay = V.Y(PA.xi[1]), bx = V.X(PB.xi[0]), by = V.Y(PB.xi[1]);
+    arrow(ctx, ax, ay, bx, by, T.hl);
+    dot(ctx, ax, ay, 8, T.fg); dot(ctx, bx, by, 8, T.fg);
+    label(ctx, "A", ax + 14, ay + 8, T.fg); label(ctx, "B", bx + 14, by + 8, T.fg);
+    const d = C.sub(PB.xi, PA.xi);
+    return `All ${PER.length} periodic points ξ = π(P)/(1 − α³) from occurrences σ³(i) = P·i·S. The arrow is w₀* = ξ<sub>B</sub> − ξ<sub>A</sub> = (${fmt(d[0], 3)}, ${fmt(d[1], 3)}) with ξ<sub>A</sub> ∈ X₁ (A) and ξ<sub>B</sub> ∈ X₂ (B). Open circles are the other periodic points. A strict zipper asks whether some finite prefix difference lands exactly on such a difference.`;
+  },
+  tiling(cv, T) {
+    const ctx = clear(cv, T);
+    const W = 1.6 * (TBOX[1] - TBOX[0]), cx = (TBOX[0] + TBOX[1]) / 2, cy = (TBOX[2] + TBOX[3]) / 2;
+    const V = view(cv, [cx - W / 2, cx + W / 2, cy - W / 2, cy + W / 2], 0);
+    const sparse = TRIB.pts.subarray(0, 2 * 25000);
+    let q = 0;
+    for (let m = -4; m <= 4; m++) for (let n = -4; n <= 4; n++) {
+      const d = latVec(m, n);
+      if (Math.abs(d[0] - cx) > W || Math.abs(d[1] - cy) > W) continue;
+      cloud(ctx, V, sparse, (m === 0 && n === 0) ? T.tile[0] : [T.tile[1], T.tile[2], T.muted][((m - n) % 3 + 3) % 3], 2.2, d[0], d[1]);
+      dot(ctx, V.X(d[0]), V.Y(d[1]), 4, T.fg); q++;
+    }
+    return `Translates of X by the lattice π(L), drawn over a window around the central tile. They cover the plane with overlaps only on boundaries (a build-time raster test of 20,736 central cells found 1 empty and 44 doubly covered, all on boundaries). For a unit Pisot substitution this lattice tiling is equivalent to coincidence rank 1, i.e. PDS, and the shift's maximal equicontinuous factor is the rotation on the torus ℝ²/π(L), whose points are the fibres. Dots: lattice points.`;
+  },
+  nonunit(cv, T) {
+    const ctx = clear(cv, T), { box, g, n } = NOV, V = view(cv, box);
+    ctx.globalAlpha = 0.35;
+    NS.forEach((s, i) => cloud(ctx, V, s, T.tile[i], 1.5));
+    ctx.globalAlpha = 1;
+    return `σ: 1→122, 2→31, 3→1, with |det M| = ${Math.abs(NONU.det)} and β ≈ ${fmt(NONU.beta, 4)}. This is the same projection with only the archimedean coordinate. The three subtiles are drawn translucent, and where they overlap the colours mix. Overlap cells make up ${pct(NOV.frac)} of the occupied cells: the Euclidean picture is not a tiling. The pieces live in K<sub>∞</sub> × ℚ₂, and the archimedean coordinate alone is only their shadow, which is why every R claim is read adelically.`;
+  },
+};
+
+const hero = (cv, T) => {
+  const ctx = clear(cv, T), V = view(cv, TBOX);
+  TS.forEach((s, i) => cloud(ctx, V, s, T.tile[i], 1.6));
+};
+
+const drawAll = () => {
+  const T = tok();
+  hero(document.getElementById("rauzy"), T);
+  document.querySelectorAll("[data-fig]").forEach(fig => {
+    const cv = fig.querySelector("canvas"), cap = fig.querySelector(".fig-cap");
+    cap.innerHTML = FIGS[fig.dataset.fig](cv, T);
+  });
+};
+drawAll();
+matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", drawAll);
+new MutationObserver(drawAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 </script>
 </body>
 </html>
