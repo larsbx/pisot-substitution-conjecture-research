@@ -22,7 +22,8 @@ from finite_exact.checked_int import (
     checked_sub as _checked_sub,
 )
 from psc.perron_root_sign import perron_sign_by_enclosure
-from psc.pisot import is_pip
+from psc.pisot import is_pip, is_pisot_charpoly, is_primitive
+from psc.pisot_screen import has_rational_root
 
 
 struct CubicElt(ImplicitlyCopyable, Copyable, Movable, Equatable, Hashable, Writable):
@@ -182,6 +183,45 @@ def _validate_bounded_incidence_domain(m: Mat3) raises:
                 "cubic Perron PIP validation is certified only for non-erasing image lengths at most "
                 + String(MAX_CERTIFIED_COLUMN_SUM)
             )
+
+
+# Entry bound of the coefficient-screened field below: wide enough for any
+# power of a three-letter substitution and for the parametric lines of the
+# catch-up-free class (docs/p1b-symbolic-line-2026-10-07.md), narrow enough that
+# the characteristic polynomial's intermediates stay small: each coefficient is
+# a sum of at most six products of three entries, so at most 6 * 4096^3 < 2^39,
+# far inside Int. Everything downstream of the field is checked arithmetic.
+comptime SCREENED_ENTRY_BOUND = 4096
+
+
+def screened_perron_field3(m: Mat3, entry_bound: Int = SCREENED_ENTRY_BOUND) raises -> PerronField3:
+    """The cubic Perron field of `m`, screened on its characteristic polynomial.
+
+    `build_perron_field3` is certified only on its audited domain (column sums
+    at most `MAX_CERTIFIED_COLUMN_SUM`), because it runs the matrix-level PIP
+    predicate. What the field needs is the characteristic polynomial, so this
+    entry point screens that polynomial with the exact coefficient tests the
+    corpus screen uses -- irreducibility by rational roots, the Pisot property
+    by Sturm counting, both over unbounded rationals -- and decides
+    primitivity on Boolean support powers, which cannot overflow. Entries beyond `entry_bound` (at most
+    `SCREENED_ENTRY_BOUND`; a caller may state a narrower domain of its own) are refused.
+    Everything downstream of the field is checked arithmetic and raises on
+    overflow rather than wrapping."""
+    if entry_bound > SCREENED_ENTRY_BOUND:
+        raise Error("an entry bound above SCREENED_ENTRY_BOUND is outside the audited arithmetic")
+    for row in range(3):
+        for col in range(3):
+            var entry = m.at(row, col)
+            if entry < 0 or entry > entry_bound:
+                raise Error("incidence entry outside the screened-field bound")
+    if not is_primitive(m):
+        raise Error("the screened field needs a primitive matrix")
+    var chi = m.charpoly()
+    if has_rational_root(chi):  # exact over Q, unlike the fixed-width matrix-level test
+        raise Error("the characteristic polynomial is reducible")
+    if not is_pisot_charpoly(chi):
+        raise Error("the characteristic polynomial is not Pisot")
+    return PerronField3(chi[0], chi[1], chi[2])
 
 
 def build_perron_field3(m: Mat3) raises -> PerronField3:

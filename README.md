@@ -8,9 +8,9 @@ Repository structure and authority planes are declared in `ESTATE.toml`
 
 ## Implementation default
 
-**Mojo is the canonical implementation language for executable research code in this repository.** New algorithms, exact finite-state machinery, census code, and performance-sensitive proof instrumentation should land in `kernel/` first and use Mojo-native data/layout optimizations.
+**Mojo is the canonical implementation language for executable research code in this repository.** New algorithms, exact finite-state machinery, census code, and performance-sensitive proof instrumentation should land in [`kernel/`](kernel/) first and use Mojo-native data/layout optimizations.
 
-Python under `reference/psc_research/` is a secondary reference/oracle and prototyping layer. Once a Mojo implementation exists, the Mojo module is the executable source of truth. See `AGENTS.md` for the detailed policy.
+Python under [`reference/psc_research/`](reference/psc_research/) is a secondary reference/oracle and prototyping layer. Once a Mojo implementation exists, the Mojo module is the executable source of truth. See `AGENTS.md` for the detailed policy.
 
 The generated [mathematical-object catalogue](docs/mathematical-object-catalogue.md)
 provides a browsable taxonomy with explicit canonical-Mojo and independent-oracle
@@ -89,7 +89,7 @@ irreducibility. See `docs/bpa-termination-by-overlap-depth-2026-10-02.md`,
 `docs/side-notes-ledger.md` §7 for the review record, and
 `docs/audit-2026-10-04.md` §B for an independent re-derivation.
 
-Keep the two productivity hypotheses separate. Theorem 5.38 needs only `OP_seed`: every overlap reachable from one selected swap seed is productive. Manuscript Open Problem 5.35 states the stronger `OP_all`: every vertex of the union overlap graph is productive. Proposition 5.39(iii), the all-pairs strong-coincidence consequence, the every-vertex hitting formulation, and the unimodular equivalence with PDS apply to `OP_all`, not to `OP_seed`. No one-seed-to-all-vertices implication is claimed. See `docs/audit-2026-09-20.md` §C.
+Keep the two productivity hypotheses separate. Theorem 5.38 needs only `OP_seed`: every overlap reachable from one selected swap seed is productive. Manuscript Open Problem 5.35 states the stronger `OP_all`: every vertex of the union overlap graph is productive. Proposition 5.39(iii), the all-pairs strong-coincidence consequence, the every-vertex hitting formulation, and the unimodular equivalence with PDS apply to `OP_all`, not to `OP_seed`. No one-seed-to-all-vertices implication is claimed. See `docs/audit-2026-09-20.md` §C. *Correction 2026-10-08:* one does hold through pure discrete spectrum, at the review status of the October 4 chain: `OP_seed` for one seed gives PDS (Theorem 5.38), and PDS gives productivity of every potential overlap (Corollary FP″). Theorem SC of `docs/p1-seed-strength-2026-10-08.md` records the equivalence. The two hypotheses still differ as proof targets, but not in truth.
 
 The current strict-zipper attack retains actual ordered child occurrences and
 certifies their exact affine recurrence `w'=Mw+q-p`. A productive
@@ -167,7 +167,35 @@ sweep is also complete at its declared caps:
 This is exact finite-domain evidence, not a completeness theorem for arbitrary
 substitutions. It does not close issues #84, #138, #139, G1, or PSC. See
 `docs/lost-depth-indexed-formulation-2026-10-01.md` §9 and the archived
-receipts under `archive/2026-10-02/separation-radius-total-length/`.
+receipts under [`archive/2026-10-02/separation-radius-total-length/`](archive/2026-10-02/separation-radius-total-length/).
+
+## The programme in context
+
+Outside this repository, PSC is **proved for two letters** (Barge–Diamond
+2002, Hollander–Solomyak 2003) and **open for three**, the unimodular case
+included. For `d >= 3` the literature has two kinds of result. It proves
+structured families: β-substitutions (Barge 2018), substitutive Arnoux–Rauzy
+(Berthé–Jolivet–Siegel 2012), and a.e. S-adic Arnoux–Rauzy (Berthé–Steiner–
+Thuswaldner 2019). It also verifies single specimens: Tribonacci (Rauzy
+1982), Kol(3,1) (Baake–Sing 2004), and the Sirvent–Solomyak balanced-pair
+examples.
+
+This programme sits between those two kinds of result:
+
+| | Literature | This repository |
+| --- | --- | --- |
+| general ternary PSC | open | open; one premise left on the shortest route (#84) |
+| ternary size classes | specimen by specimen | PDS on 145,806 PIP specimens (images ≤ 4 or total ≤ 8), conditional on unreviewed Proposition V and Theorem B |
+| ternary strong coincidence | open | 0 failures on 408,798 specimens (total ≤ 10) |
+| PDS vs. BPA finiteness | ABBLS Thm 5.3, "one seed suffices" | PDS ⇒ G1 and every-seed termination (audited, human review pending) |
+| regime | geometric tools mostly unimodular | all PIP; unimodularity never assumed |
+
+Every PIP example in the circulated ternary list is already settled. Each one replays on
+`B_sigma` with termination and coincidence (pinned by
+`kernel/tests/test_ternary_literature_specimens.mojo`). One example from the
+circulated list, `123, 1, 1132`, has `det M = 0` and is not a PSC instance.
+See [`docs/motivations/`](docs/motivations/README.md), in particular
+[`ternary-literature-context-2026-10-07.md`](docs/motivations/ternary-literature-context-2026-10-07.md).
 
 ## Generality firewall
 
@@ -236,12 +264,12 @@ Issue #45 is therefore closed as a completed status/source reconciliation task. 
 
 | Priority | Layer | Tool | Scope |
 |---|---|---|---|
-| **Canonical executable** | `kernel/` | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. The reusable kernels under `kernel/finite_exact/`, `kernel/substitution_dynamics/`, `kernel/finite_linear_algebra/`, `kernel/parallel_fold/`, `kernel/finite_graph/`, `kernel/finite_automata/`, and `kernel/mojo_smoke/` are vendored from one pinned `larsbx/finite-math-kernels` commit. |
-| Formal state/dependency | `proof/tla/` | TLA+ / TLC | BPA state-machine models and the machine-checked proof-dependency ledger, generated from the proof-record table in `tools/make_ledger.py` (`proof/tla/ledger.json` is its serialized output). |
-| Deductive finite algebra | `proof/PscVerif/` | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
-| Secondary oracle | `reference/psc_research/` + `tests/` | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |
+| **Canonical executable** | [`kernel/`](kernel/) | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. The reusable kernels under [`kernel/finite_exact/`](kernel/finite_exact/), [`kernel/substitution_dynamics/`](kernel/substitution_dynamics/), [`kernel/finite_linear_algebra/`](kernel/finite_linear_algebra/), [`kernel/parallel_fold/`](kernel/parallel_fold/), [`kernel/finite_graph/`](kernel/finite_graph/), [`kernel/finite_automata/`](kernel/finite_automata/), and [`kernel/mojo_smoke/`](kernel/mojo_smoke/) are vendored from one pinned `larsbx/finite-math-kernels` commit. |
+| Formal state/dependency | [`proof/tla/`](proof/tla/) | TLA+ / TLC | BPA state-machine models and the machine-checked proof-dependency ledger, generated from the proof-record table in `tools/make_ledger.py` (`proof/tla/ledger.json` is its serialized output). |
+| Deductive finite algebra | [`proof/PscVerif/`](proof/PscVerif/) | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
+| Secondary oracle | [`reference/psc_research/`](reference/psc_research/) + [`tests/`](tests/) | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |
 
-The thirteen logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `tools/vendoring/check_vendored_sync.py` (itself vendored) in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under `tools/claim_governance`. The TLA+ ledger, its TLC models, `proof/tla/ledger.json`, the claim entries of every ledger node, `docs/ledger-index.md`, and the typed relationship graph `docs/claim-relationship-graph.json` are generated from the one table of proof records in `tools/make_ledger.py` through the vendored `tools/proof_records` package; edit that table and regenerate, since CI fails if any output is stale or hand-edited. Every Mojo test names the ledger claim or the contract it guards (the vendored `kernel/mojo_smoke/claims.mojo`), and the `coverage` check reads the receipts of the run, so a claim whose warrant is a finite computation cannot lose its regression unnoticed.
+The thirteen logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `tools/vendoring/check_vendored_sync.py` (itself vendored) in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under [`tools/claim_governance`](tools/claim_governance). The TLA+ ledger, its TLC models, `proof/tla/ledger.json`, the claim entries of every ledger node, `docs/ledger-index.md`, and the typed relationship graph `docs/claim-relationship-graph.json` are generated from the one table of proof records in `tools/make_ledger.py` through the vendored [`tools/proof_records`](tools/proof_records) package; edit that table and regenerate, since CI fails if any output is stale or hand-edited. Every Mojo test names the ledger claim or the contract it guards (the vendored `kernel/mojo_smoke/claims.mojo`), and the `coverage` check reads the receipts of the run, so a claim whose warrant is a finite computation cannot lose its regression unnoticed.
 
 Run everything:
 
@@ -253,37 +281,35 @@ Unavailable toolchains are reported as skipped; a skip is not a passing proof.
 
 ## Repository layout
 
-```text
-.                               # planes and authority: ESTATE.toml, ARCHITECTURE.md
-├── kernel/                     # canonical Mojo kernel + finite censuses (pixi workspace)
-│   ├── finite_exact/           # BigZ, Q, closed intervals (vendored, finite-math-kernels)
-│   ├── substitution_dynamics/  # words, balanced pairs, automaton (vendored)
-│   ├── finite_linear_algebra/  # Mat3, RREF, rank-three tensors, W_3, integer vectors (vendored)
-│   ├── parallel_fold/          # deterministic MAX-backed ordered map/fold (vendored)
-│   ├── finite_graph/           # SCCs, union-find, F2 signing (vendored)
-│   ├── finite_automata/        # deterministic finite automata (vendored)
-│   ├── mojo_smoke/             # claim and contract receipts of a test (vendored)
-│   ├── psc/                    # reusable Mojo research kernel
-│   └── tests/                  # canonical executable regressions
-├── proof/
-│   ├── PscVerif/               # Lean 4 + Mathlib finite-algebra proofs
-│   └── tla/                    # TLA+ BPA models; Ledger.tla, MCLedger*, ledger.json generated by tools/make_ledger.py
-├── reference/psc_research/     # non-authoritative Python reference layer
-├── oracles/                    # independent Python census oracles; never acceptance
-├── experiments/                # growing PIP research corpus
-├── schemas/                    # contracts: fixture schemas, p1b JSON contracts
-├── tests/                      # Python oracle/regression tests
-├── evidence/                   # recorded run outputs, pinned by SHA256SUMS
-├── sources/                    # imported external sources, pinned by SHA256SUMS
-├── tools/                      # repository tooling (verify_all.sh, generators, checks) + vendored audit, ledger and vendoring packages
-├── docs/                       # live proof architecture, audits, ledgers; catalogues/ source
-├── manuscripts/                # publication drafts and referee records
-├── archive/                    # superseded records, verbatim
-├── ESTATE.toml                 # estate manifest (estate-repository-v2, pinned audit)
-├── claim_governance.toml       # claim ledger policy
-├── vendored.toml               # commit and digest pins of the vendored packages
-└── AGENTS.md                   # Mojo-first implementation and optimization policy
-```
+- `.` — planes and authority: ESTATE.toml, ARCHITECTURE.md
+- [`kernel/`](kernel/) — canonical Mojo kernel + finite censuses (pixi workspace)
+  - [`finite_exact/`](kernel/finite_exact/) — BigZ, Q, closed intervals (vendored, finite-math-kernels)
+  - [`substitution_dynamics/`](kernel/substitution_dynamics/) — words, balanced pairs, automaton (vendored)
+  - [`finite_linear_algebra/`](kernel/finite_linear_algebra/) — Mat3, RREF, rank-three tensors, W_3, integer vectors (vendored)
+  - [`parallel_fold/`](kernel/parallel_fold/) — deterministic MAX-backed ordered map/fold (vendored)
+  - [`finite_graph/`](kernel/finite_graph/) — SCCs, union-find, F2 signing (vendored)
+  - [`finite_automata/`](kernel/finite_automata/) — deterministic finite automata (vendored)
+  - [`mojo_smoke/`](kernel/mojo_smoke/) — claim and contract receipts of a test (vendored)
+  - [`psc/`](kernel/psc/) — reusable Mojo research kernel
+  - [`tests/`](kernel/tests/) — canonical executable regressions
+- [`proof/`](proof/)
+  - [`PscVerif/`](proof/PscVerif/) — Lean 4 + Mathlib finite-algebra proofs
+  - [`tla/`](proof/tla/) — TLA+ BPA models; Ledger.tla, MCLedger*, ledger.json generated by tools/make_ledger.py
+- [`reference/psc_research/`](reference/psc_research/) — non-authoritative Python reference layer
+- [`oracles/`](oracles/) — independent Python census oracles; never acceptance
+- [`experiments/`](experiments/) — growing PIP research corpus
+- [`schemas/`](schemas/) — contracts: fixture schemas, p1b JSON contracts
+- [`tests/`](tests/) — Python oracle/regression tests
+- [`evidence/`](evidence/) — recorded run outputs, pinned by SHA256SUMS
+- [`sources/`](sources/) — imported external sources, pinned by SHA256SUMS
+- [`tools/`](tools/) — repository tooling (verify_all.sh, generators, checks) + vendored audit, ledger and vendoring packages
+- [`docs/`](docs/) — live proof architecture, audits, ledgers; catalogues/ source
+- [`manuscripts/`](manuscripts/) — publication drafts and referee records
+- [`archive/`](archive/) — superseded records, verbatim
+- [`ESTATE.toml`](ESTATE.toml) — estate manifest (estate-repository-v2, pinned audit)
+- [`claim_governance.toml`](claim_governance.toml) — claim ledger policy
+- [`vendored.toml`](vendored.toml) — commit and digest pins of the vendored packages
+- [`AGENTS.md`](AGENTS.md) — Mojo-first implementation and optimization policy
 
 ## Quick start — Mojo
 

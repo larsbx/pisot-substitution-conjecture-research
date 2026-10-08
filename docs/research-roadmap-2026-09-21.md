@@ -54,7 +54,7 @@ concentrated enough to guide proof effort sharply.
   13,260 formal overlap carriers contain no closed survivor; `SC_all` has no
   failure on the 408,798 total-image-length-at-most-10 domain; and the recorded
   PPVC/SC combination yields the finite-domain PDS statement on 145,806
-  substitutions (subject to the stated review and CI caveats below).
+  substitutions, a finite-domain theorem since 2026-10-08 (see below).
 - The proposed one-tile reduction is false: 360 standing-corpus substitutions
   have recurrent vertices with no catch-up witness and 210 are entirely
   catch-up-free. The broader total-length-at-most-8 computation has 654
@@ -445,8 +445,12 @@ The exact strong-coincidence census reports no `SC_all` failure on:
 With the separately recorded PPVC runs, the repository records a
 **finite-domain PDS statement on 145,806 substitutions** (the union of image
 length at most 4 and total image length at most 8). This is not a universal
-theorem: the statement depends on Proposition V and Theorem B at their
-recorded review status, and the two larger PPVC runs are not CI-guarded. See
+theorem. *Update 2026-10-08:* it is recorded as the finite-domain theorem
+`BoundedPureDiscreteSpectrum`. It no longer depends on Proposition V(2) or
+Theorem B: Theorem Ω of `docs/pds-certificate-from-the-box-automaton-2026-10-07.md`
+needs only the elementary step 1 of Proposition V, and either the imported
+Lee–Moody–Solomyak criterion or Theorem 5.38. The two larger rows are guarded
+by `.github/workflows/box-automaton-evidence.yml`. See also
 `docs/strong-coincidence-census-2026-10-04.md`.
 
 The exact catch-up/hit-witness census falsifies the proposed universal
