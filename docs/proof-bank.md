@@ -260,11 +260,11 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:80](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L80) | *Lemma S.* Let v have offset x != 0 and let v' be its leftmost child. |
 | [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:105](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L105) | ## 4. Proposition LC |
 | [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:107](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L107) | *Proposition LC.* Let v be a vertex of nonzero offset whose leftmost chain |
-| [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:275](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L275) | *Corollary LC1 (the failure set is leftmost-stable).* D is closed under |
-| [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:283](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L283) | *Corollary LC2 ("reaches CU" is an SCC invariant).* Vertices in one strongly |
-| [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:291](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L291) | *Corollary LC3 (the obstruction is finitely parameterised).* The cycles of |
-| [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:374](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L374) | *Corollary LC4 (cycles come in mirror pairs).* Terminal leftmost cycles are |
-| [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:393](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L393) | *Corollary LC5 (a sufficient condition for G1).* If the box graph of sigma |
+| [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:276](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L276) | *Corollary LC1 (the failure set is leftmost-stable).* D is closed under |
+| [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:284](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L284) | *Corollary LC2 ("reaches CU" is an SCC invariant).* Vertices in one strongly |
+| [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:292](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L292) | *Corollary LC3 (the obstruction is finitely parameterised).* The cycles of |
+| [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:375](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L375) | *Corollary LC4 (cycles come in mirror pairs).* Terminal leftmost cycles are |
+| [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:394](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L394) | *Corollary LC5 (a sufficient condition for G1).* If the box graph of sigma |
 | [docs/p1b-madic-carry-reduction-2026-10-01.md:44](../docs/p1b-madic-carry-reduction-2026-10-01.md#L44) | Thus the strict-zipper target is exactly eventual membership of its realized |
 | [docs/p1b-madic-carry-reduction-2026-10-01.md:73](../docs/p1b-madic-carry-reduction-2026-10-01.md#L73) | d = M^m z for a unique integral z, and the hit occurs only when z = w. |
 | [docs/p1b-overlap-realization-bridge.md:206](../docs/p1b-overlap-realization-bridge.md#L206) | - fail closed on a rejected enclosure and on interval division across zero; |

@@ -166,7 +166,8 @@ Then, writing `i` for A's letter at `y_0` and `j` for B's:
    identifies it rather than assuming integrality of an arbitrary occurrence.
 
 5. The cycle's composite contraction `E` is a composition of `r` leftmost
-   edges, so by Lemma C step 1 it fixes the left end of `R_{y_0}`, which is
+   edges. By definition each maps the parent's left region end to the child's,
+   so the composite fixes the left end of `R_{y_0}`, which is
    `c = 0`. The two occurrences of 2 and 3 are exactly the data of the Theorem B
    construction, read with `P = ∅` on the A side: `T(i, ∅)` has centre
    `<ell, ab(∅)>/(beta^r − 1) = 0`, and `T(j, Q)` has centre

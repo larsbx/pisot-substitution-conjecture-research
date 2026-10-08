@@ -1379,3 +1379,7 @@ by deleting it.
   negative cases reproduce these P2 defects on #237 and pass after repair. ·
   [reconciliation and source mapping](proof-ledger-reconciliation-2026-10-08.md);
   `tests/test_proof_bank.py`; `kernel/tests/test_leftmost_chain.mojo`
+- 2026-10-08 · LC claim 5 fixes the region end directly by the definition of
+  each leftmost child; its prose proof now states this, matching #241's review
+  and dependency-free cycle-structure node, without invoking Lemma C. ·
+  `p1b-leftmost-chain-periodic-pair-2026-10-05.md`, Proposition LC proof step 5

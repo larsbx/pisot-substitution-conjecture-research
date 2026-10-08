@@ -2074,27 +2074,27 @@
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
-      "line": 275,
+      "line": 276,
       "statement_heading": "*Corollary LC1 (the failure set is leftmost-stable).* `D` is closed under"
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
-      "line": 283,
+      "line": 284,
       "statement_heading": "*Corollary LC2 (\"reaches `CU`\" is an SCC invariant).* Vertices in one strongly"
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
-      "line": 291,
+      "line": 292,
       "statement_heading": "*Corollary LC3 (the obstruction is finitely parameterised).* The cycles of"
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
-      "line": 374,
+      "line": 375,
       "statement_heading": "*Corollary LC4 (cycles come in mirror pairs).* Terminal leftmost cycles are"
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
-      "line": 393,
+      "line": 394,
       "statement_heading": "*Corollary LC5 (a sufficient condition for G1).* If the box graph of `sigma`"
     },
     {
