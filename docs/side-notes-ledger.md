@@ -79,6 +79,22 @@ by deleting it.
   E letter and a length-1 image: powers provably never work (Lemma B); no
   rotation witness found (0 of 264 at total length ≤ 8). · same, §5.6g
 
+- 2026-10-07 · A symbolic (Sellami-style) balanced-pair run over Theorem E's
+  parameters, as a route to termination on the catch-up-free `|det M| = 2`
+  class: the states are not parametric words. Maximal state length grows
+  exponentially along lines (class A `(n, n − 1, n)`: 480, 2,124, 27,768
+  letters at `n = 4, 5, 6`; class D `(1, 0, 0)`: 7,987). Work on the overlap
+  graph, whose vertices are bounded. · `p1b-catch-up-free-ppvc-2026-10-07.md`
+  §3; scratch `explore.py`
+
+- 2026-10-07 · A one-step contracting trapping region as the finite
+  candidate set for PPVC on a line of class B: finite but not constant (413 to
+  593 lattice points for `q = 2..25` on `p = 2q + 2`, `r = q + 1`), while the
+  true recurrent set is a constant 120 vertices. Use the swap-seed closure
+  instead: pure discrete spectrum needs one seed, G1 needs the three, and
+  neither needs a box. · `p1b-symbolic-line-2026-10-07.md` §2;
+  `archive/2026-10-07/symbolic-line-probes/trap_float_probe.out`
+
 ## 3. Settled by the literature (do not target with new machinery)
 
 - 2026-10-04 · Specimens with a power or common-prefix/suffix conjugate in
@@ -443,6 +459,12 @@ by deleting it.
   distinguishes PIP or gives balanced alignment. ·
   `c4-ordered-hub-offset-negative-2026-10-06.md` §§2,5
 
+- 2026-10-07 · Only 70 of the 383 PIP members of Theorem E's classes with
+  `p, q, r <= 11` have the characteristic polynomial of a three-letter
+  simple-Parry β-substitution, a necessary condition for conjugacy to one;
+  the other 313 cannot inherit Barge (2018) that way, and the 70 are not
+  shown conjugate. · `p1b-catch-up-free-ppvc-2026-10-07.md` §3; scratch check
+
 ## 6. Tooling pitfalls
 
 - 2026-10-04 · `pkill -f PATTERN` inside a shell command whose own text
@@ -543,6 +565,20 @@ by deleting it.
 - 2026-10-07 · `search_point` enumerates every value of a bounded domain, so
   on forms with large coefficients (the q-lift's tail-fixed forms) one node
   pushes thousands of boxes: 14 GB and an OOM kill. Pass `span_cap`.
+
+- 2026-10-07 · `finite_linear_algebra.mat3.has_rational_root` evaluates `r^3`
+  in unchecked `Int` for every divisor `r` of `det M`; safe at the audited
+  column-sum bound 6 and at entries up to 64, not beyond. Any path that admits
+  larger matrices must use `psc.pisot_screen.has_rational_root` (exact over
+  `Q`, divisor pairs up to `sqrt |det|`), as `screened_perron_field3` now does.
+  · `kernel/psc/perron_field3.mojo`
+
+- 2026-10-07 · Run-position ranges in a symbolic overlap closure: the upper
+  end is the largest `m` with `ell_A − t − m ell_y > 0`, which is (least `m`
+  with `t + m ell_y − ell_A >= 0`) − 1, **non-strict**. Computing it with a
+  strict inequality admits one invalid child exactly when `t + m ell_y = ell_A`
+  identically, and on the class B line it produced 123 vertices (4 without a
+  hit) instead of the exact 119. · `kernel/psc/symbolic_line.mojo` (`least_m`)
 
 ## 7. Review outcomes
 
@@ -1189,3 +1225,70 @@ by deleting it.
   No mathematical claim or review status changes. ·
   [October 7 follow-up](audit-2026-10-06.md#7-follow-up-2026-10-07);
   [PR #221 evidence](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/221)
+- 2026-10-07 · Specimens already settled by the literature: Tribonacci,
+  Kol(3,1), the two Sirvent–Solomyak ternary examples, the Arnoux–Rauzy
+  product `σ₁σ₂σ₃`, and the three circulated Rauzy-fractal examples
+  `12,31,1` / `12,23,312` / `123,1,31` all terminate with coincidence on the
+  all-seed `B_sigma`; six of them lie inside the 145,806-specimen
+  finite domain. The circulated `123,1,1132` has `det M = 0` and is not PIP.
+  The Sirvent–Solomyak count of 260 pairs of length 194 is not reproduced
+  under the `(ab,ba)` seed convention (257 / 137); it stays unconfirmed until
+  checked against the paper's full text. No claim status changes. ·
+  [motivations note](motivations/ternary-literature-context-2026-10-07.md);
+  `kernel/tests/test_ternary_literature_specimens.mojo`
+- 2026-10-07 · Adversarial audit of Proposition V and Theorem E found no
+  disproof and no failing proof step. An independent oracle reproduced every
+  computational input: the Theorem E class enumerated to image length 5 stays
+  in the normal form and is coincident; the 27-member residue was reproduced;
+  the Proposition V radii hold with margin ≥ 2. Four presentation fixes were
+  applied to the A1′ note: "position" means prefix length, L_BC's dead
+  `r = q = 0` clause was removed, two endings have det divisible by 4, and
+  §3b.7 line ranges are now explicit. The dead clause stays in the kernel's
+  `lemma_witness`, where it is unreachable. No claim status changes. ·
+  `audit-adversarial-prop-v-theorem-e-2026-10-07.md`,
+  `archive/2026-10-07/session-probes/`
+- 2026-10-07 · Correction to the entry above: the dead L_BC clause is now also
+  removed from `lemma_witness` in `kernel/a1_normal_form_census.mojo`.
+  `tests/test_a1_normal_form.mojo` passes unchanged (453 named witnesses,
+  27-point residue), which confirms the clause never fired. ·
+  `kernel/a1_normal_form_census.mojo`
+- 2026-10-07 · The 145,806-specimen PDS statement does not need Theorem B,
+  Lemma C, Proposition F, Theorem R, Theorem S or Proposition V(2): step 1 of
+  Proposition V (cycle vertices lie in the box, a geometric series) with
+  Proposition FP turns the recorded box verdicts and SC_all into formal
+  productivity, and FP gives PDS both through Lee–Moody–Solomyak overlap
+  coincidence and through Theorem 5.38. It also certifies termination with
+  coincidence from every swap seed, so the 120 budget-exhausting cube-family
+  specimens need no direct `B_sigma` build. The swap-seed graph misses box
+  cycle vertices (38 on the cube specimen), so it cannot replace the box on the
+  literature route. A fresh re-derivation of Lemma C, Theorem B, Proposition F,
+  Theorem R and depth-note Propositions 1/4 found no error. ·
+  `pds-certificate-from-the-box-automaton-2026-10-07.md`
+- 2026-10-08 · The 145,806-specimen PDS statement is promoted to the claim
+  ledger as the finite-domain theorem `BoundedPureDiscreteSpectrum` (claim
+  map row "Finite-domain pure discrete spectrum"). The proof-dependency
+  ledger is unchanged, because the claim is finite-domain, not a universal
+  implication. ·
+  `pds-certificate-from-the-box-automaton-2026-10-07.md` §§5, 9;
+  `claim_governance.toml`
+- 2026-10-08 · PR #228's Python oracle `_poly_rem` now caches the exact
+  leading reciprocal and nonzero divisor terms for degree >= 4; small divisors
+  retain dense division after setup overhead was measured. Independent dense
+  quotient/convolution checks cover 4,800 rational pairs (324 cached-path
+  cases); all 3,375 cubic caller results agree. Recorded sparse degree-12/32
+  workloads improve 3.19×/7.43× in elapsed time; no uniform dense or whole-screen
+  speedup is claimed. The unrecorded "14s to 8s" figure is withdrawn and the
+  PR's incorrectly dated `2024-05-18` `.jules/bolt.md` entry is removed.
+  The tracked Markdown-link guard requires a removed file's deletion to be
+  staged before replay. No mathematical claim status changes. ·
+  [scope, regression and replay](poly-rem-sparse-rational-2026-10-08.md);
+  [pinned benchmark](../evidence/poly-rem-sparse-2026-10-08/benchmark.json)
+- 2026-10-08 · Seed strength buys no slack in truth: for each PIP `sigma`,
+  one productive swap seed ⟺ every seed ⟺ FP ⟺ PDS (Theorem 5.38 forward,
+  Corollary FP″ back), so do not look for a seed that avoids an obstruction.
+  The object does depend on the seed: on 444 of 4,554 standing specimens the
+  three seeds reach different recurrent parts, and none is ever empty. The
+  census domains are closed under reversal, so the prefix SC census already
+  gives two-sided SC on 408,798 specimens. Class B lines with slope 3 and
+  `r = q − 1` leave PIP (a second eigenvalue of modulus 1, or above it). ·
+  `p1-seed-strength-2026-10-08.md`

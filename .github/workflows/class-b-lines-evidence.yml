@@ -1,0 +1,80 @@
+name: Class B line certificates
+# Guards Theorem L and Theorem L' (docs/p1b-symbolic-line-2026-10-07.md,
+# docs/p1-seed-strength-2026-10-08.md section 5): every line listed in
+# certified_lines() of kernel/symbolic_line_certificate.mojo is certified again
+# and must reproduce its pinned verdict (the driver raises otherwise). One job
+# per line; the slowest take about half an hour.
+on:
+  pull_request:
+    # The driver's full import closure, the pixi pins, and this file.
+    paths:
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'kernel/a1_normal_form_census.mojo'
+      - 'kernel/psc/bpa.mojo'
+      - 'kernel/psc/coincidence_formula.mojo'
+      - 'kernel/psc/dumont_thomas.mojo'
+      - 'kernel/psc/exact.mojo'
+      - 'kernel/psc/field3.mojo'
+      - 'kernel/psc/histogram.mojo'
+      - 'kernel/psc/linear_numeration.mojo'
+      - 'kernel/psc/numeration_addition.mojo'
+      - 'kernel/psc/overlap_contracting.mojo'
+      - 'kernel/psc/overlap_obstruction.mojo'
+      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'kernel/psc/perron_field3.mojo'
+      - 'kernel/psc/perron_root_sign.mojo'
+      - 'kernel/psc/pisot.mojo'
+      - 'kernel/psc/pisot_screen.mojo'
+      - 'kernel/psc/pisot_state.mojo'
+      - 'kernel/psc/real_root_sign.mojo'
+      - 'kernel/psc/symbolic_line.mojo'
+      - 'kernel/psc/vertex_coincidence.mojo'
+      - 'kernel/psc/words.mojo'
+      - 'kernel/symbolic_line_certificate.mojo'
+      - 'kernel/finite_automata/**'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_graph/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/substitution_dynamics/**'
+      - '.github/workflows/class-b-lines-evidence.yml'
+  schedule:
+    - cron: '41 4 * * 0'
+  workflow_dispatch:
+jobs:
+  line:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { slope: 2, k: 2, branch: 1 }
+          - { slope: 1, k: 1, branch: 1 }
+          - { slope: 1, k: 2, branch: 1 }
+          - { slope: 1, k: 3, branch: 1 }
+          - { slope: 1, k: 1, branch: -1 }
+          - { slope: 1, k: 2, branch: -1 }
+          - { slope: 1, k: 3, branch: -1 }
+          - { slope: 2, k: 0, branch: 1 }
+          - { slope: 2, k: 1, branch: 1 }
+          - { slope: 2, k: 3, branch: 1 }
+          - { slope: 2, k: 4, branch: 1 }
+          - { slope: 2, k: 0, branch: -1 }
+          - { slope: 2, k: 1, branch: -1 }
+          - { slope: 2, k: 2, branch: -1 }
+          - { slope: 2, k: 3, branch: -1 }
+    name: class B line ${{ matrix.slope }} ${{ matrix.k }} ${{ matrix.branch }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Certify the line against its pinned verdict
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run mojo run -I . symbolic_line_certificate.mojo ${{ matrix.slope }} ${{ matrix.k }} ${{ matrix.branch }} 2>&1 | tee line.log
+          grep -Fx '  pinned verdict reproduced' line.log

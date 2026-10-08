@@ -149,6 +149,11 @@ Change the ledger entry and every surface in the same commit.
 
 ## Research references
 
+- [`motivations/`](motivations/README.md) — orientation notes. The
+  2026-10-07 note sets ternary PSC in the literature (proved for two letters;
+  structured families and single specimens for three) and replays the
+  circulated ternary examples on `B_sigma`. Its table is pinned by
+  `kernel/tests/test_ternary_literature_specimens.mojo`.
 - [`bridges/penrose-2d-to-psc-interface-program.md`](bridges/penrose-2d-to-psc-interface-program.md)
   — PR #154's non-load-bearing Penrose interface comparison. Its strongest
   analogies concern P2/G1b-2 and P4 realization; the narrower P1b/#139 analogy
@@ -259,6 +264,21 @@ These are reference/index additions only. They do not establish #84, #138,
   probe of the session archived with outputs in `archive/2026-10-04/session-probes/`.
   §5.6c states the closing trichotomy and its two unproved statements T1 and
   T2; the structure of T1's object is in the next entry.
+- `p1b-symbolic-line-2026-10-07.md` — #139 research note. **Theorem L**
+  (Status: repository-proved, computer-assisted, unreviewed): pure discrete spectrum and G1 for every member of the infinite
+  non-unimodular line `x -> x y^(2q+2) x, c -> c y^q x, y -> c y^(q+1) x`
+  (Theorem E's class B), by a symbolic swap-seed overlap graph decided by
+  parametric Sturm–Tarski queries over `Q[q]` with a certified threshold
+  (`q >= 52`), plus the exact kernel for `q < 52`
+  (`kernel/psc/symbolic_line.mojo`, `kernel/symbolic_line_certificate.mojo`).
+- `p1b-catch-up-free-ppvc-2026-10-07.md` — #139 on the catch-up-free
+  `|det M| = 2` class, with its stop/go gate: **Proposition Z** assembles
+  recorded results to show that there, outside the open part of Theorem K's
+  family, pure discrete spectrum is equivalent to PPVC, and PPVC gives G1;
+  an exact PPVC census over every parametric family of the class
+  (`kernel/catch_up_free_ppvc_census.mojo`); the symbolic-BPA route is
+  redirected (state lengths grow exponentially), and the next step, digit
+  cycles with a `beta` bracket, is stated with its obstacle.
 - `p1b-leftmost-chain-periodic-pair-2026-10-05.md` — #139 research note
   (unreviewed), with its own stop/go gate: the leftmost child is a *function*
   on nonzero-offset vertices, so `CU` is the complement of the basins of that
@@ -320,8 +340,25 @@ These are reference/index additions only. They do not establish #84, #138,
   specimens): no failure. Lemma A: on the catch-up-free `|det M| = 2` class the
   aligned route is a hitting statement through nonzero offsets. With the
   recorded PPVC runs, pure discrete spectrum on the 145,806 specimens with
-  images ≤ 4 or total length ≤ 8 (finite evidence; Proposition V unreviewed).
+  images ≤ 4 or total length ≤ 8; since 2026-10-08 a finite-domain theorem
+  (`BoundedPureDiscreteSpectrum`) resting on Theorem Ω of
+  `pds-certificate-from-the-box-automaton-2026-10-07.md`, not on Proposition V(2).
   Driver `kernel/strong_coincidence_census.mojo`.
+- `p1-seed-strength-2026-10-08.md` — #84 at seed strength. Proposition SA:
+  a swap seed has exactly three overlaps, one of them a self-overlap of the
+  longer letter. Theorem SC: one productive seed ⟺ every seed ⟺ FP ⟺ PDS,
+  per substitution (through Corollary FP″), so seed strength buys no slack in
+  truth. Lemma RC: the census domains are closed under reversal, which gives
+  two-sided strong coincidence on all 408,798 specimens. Theorem L′: further
+  certified lines of class B, each an infinite family with PDS and G1.
+- `pds-certificate-from-the-box-automaton-2026-10-07.md` — Theorem Ω:
+  formal productivity of a PIP substitution is the single exact property
+  "every vertex of the box automaton reaches a coincidence"; it gives PDS
+  through Lee–Moody–Solomyak overlap coincidence (literature gate included)
+  and through Theorem 5.38, and termination with coincidence from every swap
+  seed. The 145,806-specimen PDS statement no longer rests on Theorem B or
+  Proposition V(2); the 120 cube-family specimens need no `B_sigma` build.
+  Includes an independent re-derivation of the October 4 chain.
 - `catch-up-hit-witness-enumeration-2026-10-04.md` — occurrence-level
   all-path decision (`psc.hit_witness`): committed stable labels for all
   97,224 simultaneous-only standing vertices, replayable closed certificates,
