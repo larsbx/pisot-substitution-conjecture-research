@@ -6,10 +6,31 @@ name: Box-automaton PDS evidence
 # (about 5.8 worker-hours) runs as twelve slices, each inside the job limit.
 on:
   pull_request:
+    # The census's full import closure: a change anywhere in it can move the
+    # surveyed domains, the box radii, the edges or the reachability verdicts.
     paths:
-      - 'kernel/psc/vertex_coincidence.mojo'
-      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
       - 'kernel/vertex_coincidence_census.mojo'
+      - 'kernel/psc/bpa.mojo'
+      - 'kernel/psc/corpus.mojo'
+      - 'kernel/psc/exact.mojo'
+      - 'kernel/psc/field3.mojo'
+      - 'kernel/psc/overlap_contracting.mojo'
+      - 'kernel/psc/overlap_obstruction.mojo'
+      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'kernel/psc/perron_field3.mojo'
+      - 'kernel/psc/perron_root_sign.mojo'
+      - 'kernel/psc/pisot.mojo'
+      - 'kernel/psc/pisot_screen.mojo'
+      - 'kernel/psc/real_root_sign.mojo'
+      - 'kernel/psc/vertex_coincidence.mojo'
+      - 'kernel/psc/words.mojo'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_graph/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'kernel/parallel_fold/**'
+      - 'kernel/substitution_dynamics/**'
       - 'docs/pds-certificate-from-the-box-automaton-2026-10-07.md'
       - '.github/workflows/box-automaton-evidence.yml'
   schedule:
