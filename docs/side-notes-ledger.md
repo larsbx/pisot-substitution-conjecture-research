@@ -1366,6 +1366,22 @@ by deleting it.
   coincidence. No error found. ·
   `pds-certificate-from-the-box-automaton-2026-10-07.md` §§3–4;
   `p1b-leftmost-chain-periodic-pair-2026-10-05.md` §§3–4, 8a
+- 2026-10-08 · Two two-parameter engines agree on class B's wedge `q < p < 2q`:
+  `psc.symbolic_cone` (Theorem C) and the line engine generalised to
+  `Q[s, d]` (commit `5ee3f0f`, not merged). They were written separately
+  but share `psc.symbolic_line`'s primitives: support primitivity, offset-zero
+  reachability, and the exact Sturm reads at sample points. Every shared
+  vertex count matches. The second engine also showed where the Sturm chains break
+  inside a region:
+  - along `d^2 ≈ 8s`, where the conjugate pair turns from real to complex;
+  - along the irrational ray `d/s = (1 + sqrt 5)/2`, through a leading
+    coefficient.
+
+  Rouché (`|c_2| > 1 + |c_1| + |c_0|`) decides PIP there with three sign reads
+  and no bracket. ·
+  `p1b-symbolic-cone-2026-10-08.md` §4;
+  `archive/2026-10-08/class-b-wedge-crosscheck/`
+
 
 - 2026-10-08 · Reconcile #236/#237 after #241 merged at `33a1b8b`: keep
   its Ω1/Ω/LC grouping and formal-productivity model, retain both independent
@@ -1410,3 +1426,6 @@ by deleting it.
 - 2026-10-08 — The root-module repair did not alone make all valid Lean headers visible: `nonrec`, `public`, other pinned declaration modifiers and multiline headers/attributes could omit named proofs. Inventory the complete pinned modifier vocabulary and balanced attributes across line breaks. Six failing-before/passing-after controls require each proof in the source bank and reject its omission from an audit receipt; all twenty-five inventory/dependency negative controls pass. Evidence: PR #237 discussion 4225149030, Lean v4.34.0-rc2 `Parser.Command.declModifiers`, and `tests/test_proof_bank.py`.
 - 2026-10-08 — Compact scoped Lean commands can put a theorem after `open ... in` or `set_option ... in`, beyond the supported source-header grammar. Detect every otherwise unaccounted theorem/lemma header and refuse inventory rather than silently omit it. Two additional negative controls reproduce the omission before this guard; twenty-seven inventory/dependency controls now pass. Evidence: `tests/test_proof_bank.py`, `tools/make_proof_bank.py`.
 - 2026-10-08 — Private Lean proof names are internally mangled, so direct source-name comparison rejected valid private theorems/lemmas. Audit replay now emits Lean's native `privateToUserName` normalization alongside the unique compiled name and origin module. Reconcile source proofs by module/name while retaining raw declaration/theorem counts; support identical private helper names in distinct modules and refuse ambiguous claim bindings. Reproduced the original missing-name failure and added private theorem/lemma compatibility plus missing-module controls. Evidence: PR #237 discussion 4225196994, `proof/PscVerif/ProofBankAudit.lean`, and `tests/test_proof_bank.py`.
+- 2026-10-08 — Final review raced with main's merge of #244 at `d98e027f8f22400fd827fbce8635d3f6a8ea2e6d`. Integrate its class-B cross-check documentation and archived logs byte-for-byte, preserve both independent append-only side findings, and regenerate the source inventory. Its shared-primitives and provenance-versus-proof boundary stays explicit; no PSC/G1/PDS premise changes. Evidence: `docs/proof-ledger-reconciliation-2026-10-08.md`, `archive/2026-10-08/class-b-wedge-crosscheck/README.md`.
+
+2026-10-08 — Current-head cache review: source pins do not attest ignored compiled dependencies. Lean verification now discards caller compiled caches/configuration, clones and byte-checks fresh pinned dependencies, and uses a fixed upstream Mathlib source-hash cache in an empty temporary directory before compiling PSC and replaying its axiom audit. A forged-artifact/metadata and environment-override regression fails against the prior dispatcher; compiler and upstream cache trust remain explicit. No mathematical claim status changes.

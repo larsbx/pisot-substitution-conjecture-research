@@ -3,11 +3,19 @@
 **Scope:** reconcile PRs [#236](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/236),
 [#237](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/237), and
 [#241](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/241).
-The live baseline is `main@33a1b8b6cffc10c7f1e5be41a22325897a5072e4`:
+The canonical registration baseline is
+`main@33a1b8b6cffc10c7f1e5be41a22325897a5072e4`:
 #241 was already merged before this reconciliation. Its nine canonical names,
 four G1 alternatives and formal-productivity assumption model are retained.
 The remaining contributions are integrated in #237; #236 is superseded only
 after the integration is validated and merged.
+
+During final review main advanced to
+`d98e027f8f22400fd827fbce8635d3f6a8ea2e6d` through PR #244. Its class-B
+cross-check documentation and archived outputs are retained byte-for-byte;
+both append-only side-notes additions are preserved. The cross-check's shared
+primitive boundary and distinction from proof remain explicit. This update
+changes no theorem node or formal source; the source inventory is regenerated.
 
 Inspected source heads: #236 `608f4b4978a8297c345587c622bd5e7afdaae762`,
 #237 `9e99184156e52e80a32c7457222572367af80a93`, and #241
@@ -130,6 +138,22 @@ pairs; declaration/theorem totals still count unique compiled declarations.
 Two compatibility controls cover private theorem/lemma names and the same
 private helper names in different modules, including refusal when one module's
 proof is missing. Claim bindings with ambiguous source names refuse verification.
+A final cache review showed that clean source checkouts alone cannot justify
+reusing ignored compiled dependencies with matching hash/trace metadata.
+`check_lean.sh` now copies only project source/configuration into a new temporary
+workspace. It clones and verifies pinned dependencies, disables inherited
+Lean paths and Lake cache/configuration overrides, and bootstraps the pinned
+Mathlib cache tool from those clean sources. Downloads come from the fixed
+upstream source-hash namespace into a new empty cache. Neither caller dependency
+artifacts nor local Lake configuration enter the build. The pinned compiler
+and that upstream HTTPS cache remain explicit trust inputs; source checking
+alone is not described as attesting downloaded binaries. PSC is compiled and
+audited in this workspace, which is deleted afterward. The negative dispatcher
+regression plants compiled artifacts with coherent metadata in both project
+and dependency caches, sets caller cache/path overrides, and fails against the
+previous dispatcher. The repaired dispatcher excludes them while retaining
+actual temporary-Git pin/byte checks and audit-receipt validation in the test.
+
 The proof bank is an inventory of governed claims, named source proofs and
 apparent statement openings. Actual Lean evidence requires the fresh compiled
 audit; source inventory completeness conveys no mathematical proof authority.

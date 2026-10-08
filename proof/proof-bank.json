@@ -2901,7 +2901,8 @@
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
+    "tools/check_lean.sh": "49dc3c8c6ac1832766f6753a00d69c93ae7a6d9ad663c8cdbe7f2130d36ed286",
     "tools/make_ledger.py": "f938962a48801fdf96497c3d7b732da9220c9222133cbfb888424f342df818b4",
-    "tools/make_proof_bank.py": "0ed67587fd5cdab0dd3cf3edda4df74d0604aa5741f822d62afe95a1258c42b5"
+    "tools/make_proof_bank.py": "10b765032dd2a0f5567cd998827e9846b57832799359a5e1dc0251338212ca2d"
   }
 }

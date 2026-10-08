@@ -168,6 +168,39 @@ agrees (121, 77, 79; 166, 144, 131; 76, 84, 123, 123; 124, 274, 255, 248).
 Theorem C contains them; the cone engine's thresholds on them are at most 24,
 against Sturm's 11 to 128.
 
+*Independent cross-check, 2026-10-08.* A second engine certified the part of
+Theorem C with `q < p <= 2q + 4` (`r = q + 1`) and `q < p <= 2q + 3`
+(`r = q − 1`). It was written in parallel, as the line engine generalised to coefficients in
+`Q[s, d]`. Its decision procedures are separate from `psc.symbolic_cone`'s:
+- region signs by its own Pólya reader;
+- PIP by Rouché, `|c_2| > 1 + |c_1| + |c_0|`, instead of Jury;
+- `beta` brackets refined by Newton and chord steps.
+
+It is not code-independent, though. Both engines rest on `psc.symbolic_line`'s
+primitives: the support-primitivity test `primitive_support`, the offset-zero
+reachability that is now `zero_descendants`, and the exact Sturm reads at sample
+points. A bug in those would be common to both. The exact kernel's
+cross-checks are shared as well.
+
+It cut the wedge `q < p < 2q` into two cones, `s >= d` and `s < d`, plus 54
+boundary lines. Every overlapping vertex count agrees with this note:
+
+| branch | families of this note | counts |
+| --- | --- | --- |
+| `+1` | `J+1..4` | 121, 77, 79, 76 |
+| `+1` | `A+` (both cones and 21 lines) | 74 |
+| `−1` | `J−1..4` | 166, 144, 131, 125 |
+| `−1` | `A−` (cone `s < d`; lines `p = q + j`, `j = 5..8`; lines `2j = q − e`, `e = 2..4`) | 123 |
+| `−1` | `M−(−1)..3` (lines `2j = q + d`) | 125, 125, 133, 164, 175 |
+| `−1` | `B−` (cone `s >= d`; lines `2j = q + e`, `e = 4..8`; lines `p = 2q − d`, `d = 6..8`) | 171 |
+| `−1` | `C−(−5)..(−1)` (lines `p = 2q − d`) | 173, 175, 186, 195, 112 |
+
+Logs: `archive/2026-10-08/class-b-wedge-crosscheck/`. The engine is not
+merged, because it duplicates this one. It is reachable at commit `5ee3f0f`.
+Two engines with different PIP certificates, sign readers and bracket schemes
+agreeing is a cross-check of those decision procedures, not of the shared
+primitives, and not part of the proof.
+
 ## 5. What it does not establish: the top layer
 
 - **Not all of class B.** Above slope `5/2` the scans show further sectors,

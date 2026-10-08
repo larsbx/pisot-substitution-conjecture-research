@@ -281,30 +281,129 @@ def test_box_and_leftmost_nodes_record_implications_without_promoting_psc():
     assert not {"PDS", "G1", "OverlapProductivity"} & done
 
 
-def test_check_lean_obeys_a_failed_build_even_if_output_says_success(tmp_path):
+def lean_script_fixture(tmp_path):
+    """Mock the compiler/network, retaining real cache isolation and Git checks."""
+    import os
+
+    root = tmp_path / "repo"
+    tools = root / "tools"
+    tools.mkdir(parents=True)
+    script = Path(os.environ.get("PSC_CHECK_LEAN_SOURCE", ROOT / "tools/check_lean.sh"))
+    shutil.copyfile(script, tools / "check_lean.sh")
+    project = root / pb.PROJECT
+    (project / "PscVerif").mkdir(parents=True)
+    (project / "lean-toolchain").write_text("leanprover/lean4:v4.34.0-rc2\n")
+    (project / "lakefile.toml").write_text('name = "PscVerif"\n')
+    (project / "PscVerif.lean").write_text("import PscVerif.Test\n")
+    (project / "PscVerif/Test.lean").write_text("namespace Fixture\ntheorem trusted : True := trivial\n")
+    (project / "ProofBankAudit.lean").write_text("-- audit fixture\n")
+    dependency = tmp_path / "dependency"
+    dependency.mkdir()
+    (dependency / "A.lean").write_text("theorem original : True := trivial\n")
+    (dependency / ".gitignore").write_text(".lake/\n")
+    for args in (["init", "-q"], ["add", "."],
+                 ["-c", "user.name=Fixture", "-c", "user.email=fixture@example.test", "commit", "-qm", "pin"]):
+        subprocess.run(["git", "-C", str(dependency), *args], check=True, capture_output=True)
+    revision = subprocess.check_output(["git", "-C", str(dependency), "rev-parse", "HEAD"], text=True).strip()
+    (project / "lake-manifest.json").write_text(json.dumps({"packagesDir": ".lake/packages", "packages": [
+        {"name": "fixture", "type": "git", "rev": revision, "url": str(dependency)}]}))
+    # The fixture substitutes only governance unrelated to this dispatcher;
+    # source-only copying, pin/byte checks and receipt validation stay real.
+    (tools / "make_proof_bank.py").write_text(f'''import importlib.util, pathlib, sys
+spec = importlib.util.spec_from_file_location("actual_bank", {str(ROOT / "tools/make_proof_bank.py")!r})
+actual = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = actual
+spec.loader.exec_module(actual)
+check_pins = actual.check_pins
+if __name__ == "__main__":
+    root = pathlib.Path(__file__).resolve().parents[1]
+    check_pins(root)
+    if "--prepare-audit-workspace" in sys.argv:
+        actual.prepare_audit_workspace(root, pathlib.Path(sys.argv[sys.argv.index("--prepare-audit-workspace") + 1]))
+    if "--audit-log" in sys.argv:
+        actual.check_audit(pathlib.Path(sys.argv[sys.argv.index("--audit-log") + 1]).read_text(), {{("PscVerif.Test", "Fixture.trusted")}})
+''')
     fake_bin = tmp_path / "bin"
     fake_bin.mkdir()
+    calls = tmp_path / "lake-calls.jsonl"
     lake = fake_bin / "lake"
-    lake.write_text('#!/bin/sh\necho "Build completed successfully"\nexit 7\n')
+    lake.write_text("#!" + sys.executable + "\n" + fr'''import json, os, pathlib, subprocess, sys
+cwd = pathlib.Path.cwd()
+args = sys.argv[1:]
+with open({str(calls)!r}, "a") as out:
+    out.write(json.dumps({{"args": args, "cwd": str(cwd)}}) + "\n")
+# Poisoned olean plus matching hash/trace is treated as reusable by this stub.
+# A pre-fix dispatcher reaches it; the isolated dispatcher must never do so.
+if any(cwd.glob(".lake/**/Injected.olean")):
+    print("reused caller's forged artifact", file=sys.stderr)
+    sys.exit(86)
+if args[-2:] == ["env", "true"]:
+    package = cwd / ".lake/packages/fixture"
+    package.parent.mkdir(parents=True, exist_ok=True)
+    subprocess.run(["git", "clone", "-q", {str(dependency)!r}, str(package)], check=True)
+if args[-3:] == ["exe", "cache", "get"]:
+    assert os.environ.get("LAKE_CONFIG") == ""
+    assert os.environ.get("LAKE_CACHE_DIR") == ""
+    assert os.environ.get("LAKE_ARTIFACT_CACHE") == "false"
+    assert os.environ.get("LAKE_RESTORE_ARTIFACTS") == "false"
+    assert "LEAN_PATH" not in os.environ and "LAKE_PKG_URL_MAP" not in os.environ
+    assert os.environ["MATHLIB_CACHE_GET_URL"] == "https://cache.mathlib.org/mathlib4-master"
+    cache = pathlib.Path(os.environ["MATHLIB_CACHE_DIR"])
+    assert not cache.exists() or not any(cache.iterdir())
+    assert cache.parent == cwd.parents[1]
+if args[-2:] == ["build", "PscVerif"] and os.environ.get("PSC_TEST_LAKE_MODE") == "failed-build":
+    print("Build completed successfully")
+    sys.exit(7)
+if args[-3:] == ["env", "lean", "ProofBankAudit.lean"] and os.environ.get("PSC_TEST_LAKE_MODE") != "empty-audit":
+    print("PSC_AXIOMS\ttheorem\tPscVerif.Test\tFixture.trusted\tFixture.trusted\t")
+    print("PSC_AUDIT_COMPLETE\t1\t1")
+else:
+    print("Build completed successfully")
+''')
     lake.chmod(0o755)
-    import os
-    run = subprocess.run(["bash", str(ROOT / "tools/check_lean.sh")], cwd=tmp_path,
-                         env={**os.environ, "PATH": f"{fake_bin}:{os.environ['PATH']}"}, capture_output=True, text=True)
+    env = {**os.environ, "PATH": f"{fake_bin}:{os.environ['PATH']}"}
+    return tools / "check_lean.sh", project, calls, env
+
+
+def test_check_lean_obeys_a_failed_build_even_if_output_says_success(tmp_path):
+    script, _, _, env = lean_script_fixture(tmp_path)
+    run = subprocess.run(["bash", str(script)], cwd=tmp_path,
+                         env={**env, "PSC_TEST_LAKE_MODE": "failed-build"}, capture_output=True, text=True)
     assert run.returncode == 7, run.stdout + run.stderr
 
 
 def test_cached_successful_build_still_requires_a_fresh_audit(tmp_path):
-    fake_bin = tmp_path / "bin"
-    fake_bin.mkdir()
-    calls = tmp_path / "lake-calls"
-    lake = fake_bin / "lake"
-    import shlex
-    lake.write_text('#!/bin/sh\nprintf "%s\\n" "$*" >> ' + shlex.quote(str(calls)) +
-                    '\necho "Build completed successfully"\nexit 0\n')
-    lake.chmod(0o755)
-    import os
-    run = subprocess.run(["bash", str(ROOT / "tools/check_lean.sh")], cwd=tmp_path,
-                         env={**os.environ, "PATH": f"{fake_bin}:{os.environ['PATH']}"}, capture_output=True, text=True)
+    script, _, calls, env = lean_script_fixture(tmp_path)
+    run = subprocess.run(["bash", str(script)], cwd=tmp_path,
+                         env={**env, "PSC_TEST_LAKE_MODE": "empty-audit"}, capture_output=True, text=True)
     assert run.returncode != 0, run.stdout + run.stderr
-    assert calls.read_text().splitlines() == ["build PscVerif", "env lean ProofBankAudit.lean"]
+    assert [json.loads(row)["args"] for row in calls.read_text().splitlines()] == [
+        ["--no-cache", "env", "true"], ["--no-cache", "exe", "cache", "get"],
+        ["--no-cache", "build", "PscVerif"], ["--no-cache", "env", "lean", "ProofBankAudit.lean"]]
     assert "Incomplete Lean audit" in run.stderr
+
+
+def test_forged_dependency_cache_and_caller_cache_overrides_cannot_enter_audit(tmp_path):
+    script, project, calls, env = lean_script_fixture(tmp_path)
+    package = project / ".lake/packages/fixture"
+    package.parent.mkdir(parents=True)
+    subprocess.run(["git", "clone", "-q", str(tmp_path / "dependency"), str(package)], check=True)
+    for location in (".lake/build/lib/lean", ".lake/config", ".lake/packages/fixture/.lake/build/lib/lean"):
+        cache = project / location
+        cache.mkdir(parents=True, exist_ok=True)
+        for suffix in ("olean", "hash", "trace"):
+            (cache / f"Injected.{suffix}").write_text("forged compiled artifact and coherent metadata\n")
+    overrides = {"LEAN_PATH": str(project / ".lake/build/lib/lean"),
+                 "LAKE_CONFIG": str(project / ".lake/config/Injected.olean"),
+                 "LAKE_CACHE_DIR": str(project / ".lake/build"),
+                 "LAKE_PKG_URL_MAP": '{"upstream": "local-override"}',
+                 "MATHLIB_CACHE_DIR": str(project / ".lake/build"),
+                 "MATHLIB_CACHE_GET_URL": "https://untrusted.example.test/cache"}
+    run = subprocess.run(["bash", str(script)], cwd=tmp_path,
+                         env={**env, **overrides}, capture_output=True, text=True)
+    assert run.returncode == 0, run.stdout + run.stderr
+    records = [json.loads(row) for row in calls.read_text().splitlines()]
+    assert len(records) == 4
+    assert all(Path(row["cwd"]) != project for row in records)
+    assert not Path(records[0]["cwd"]).parents[1].exists(), "audit workspace must be cleaned"
+    assert (project / ".lake/build/lib/lean/Injected.olean").is_file()
