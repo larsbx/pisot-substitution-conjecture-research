@@ -241,6 +241,62 @@ by deleting it.
   reached. · `experiments/z2-route/zruns.mojo` (optional `qlift` argument);
   `kernel/odd_letter_family_certificate.mojo` (main mode `qlift`)
 
+- 2026-10-07 · The q-lift's staircases are gone and its no-point regions are
+  refuted exactly; **`zy | yzy` now ends with 1 open region, and the q-lift
+  closes 2 more `s = +1` patterns in the sweep.** Four additions, all under
+  `q_lift` only (flag-off output byte-identical): (1) extent-aware lift
+  selection: `lift_path_poly` ranks children by whether the state is affine
+  over `(n, q)` and returns the complete lift with the largest `lift_key`
+  (number of real probe points of the region, `probe_points`, where the
+  carving forms and the zero end offset hold, then lowest offset cost);
+  `_poly_carve` lets the tree lift compete with `solve_lift` by that key, and
+  `_implied_equality` is substituted eagerly. The staircases came from lifts
+  that copy a coordinate of the base point into an offset (pinning `a` in
+  `zy | yzy`, one run length in `zy +y^(2+e) | zyzy`). (2) RLT cuts
+  (`product_lift.rlt_forms`): `(e − lo_e) g >= 0` and `(hi_e − e) g >= 0`
+  for every assumption `g` over `n` alone, expanded with `n_k e = q_k`.
+  (3) An exact phase-1 LP (`psc/farkas_lp.mojo`, Bland's rule over
+  `finite_exact.Q`) whose answer counts only through a Farkas vector checked
+  exactly (`y >= 0`, `yᵀA <= 0`, `yᵀc < 0`), used where a region gets no
+  base point; kernel Fourier–Motzkin keeps redundant rows and hits its
+  4,000-row cap even on 3 live variables. (4) `_value_split`: a variable
+  whose range is bounded by checked certificates is split into its values,
+  an exact partition. Measured (budget 5,000): `sweep.sh`, r1 = r2 = 4, 300
+  s per pattern, the two signs in parallel: `s = +1` (`Delta >= 2`,
+  `Z_2 >= 3`) 30 closed by plain, 2 by the q-lift, 0 open, 4 timeouts
+  (was 30 / 0 / 0 / 6); `zyz +y^(2+e) | yzyz` (q-lift 121 regions, 27 s)
+  and `zyzy +y^(2+e) | yzy` (193 regions, 66 s) went from timeout to closed.
+  `s = −1` (`Delta <= −2`, `Z_2 >= 4`) 25 plain, 1 q-lift, 1 open, 9
+  timeouts (was 25 / 1 / 0 / 10): `zy | yz` closes in 42 regions, 10 s (was
+  104, 49 s), and `zy | yzy` went from timeout to open. The other 69
+  patterns kept their verdicts; every remaining timeout outside `zyz | yz`
+  is killed inside the plain cover, so the q-lift never runs on it (this
+  includes `zy +y^(2+e) | zyzy`, which the q-lift alone closes in 17
+  regions, 3 s). Single runs (`2 qlift -1 -2 4 5000 zy 0 … 0`, `timeout
+  1200`): `zy | yzy` 120 regions (49 certified, 46 line, 44 polynomial, 1
+  crossing, 2 cut, 58 not member), **1 open**, 89 s, terminating; `zy |
+  yzyz` timed out at 1,200 s at region #1293 with 14 open without a real
+  point, 3 open without a certificate and 10 value splits traced. **Open:**
+  `zy | yzy`'s region is LP-feasible over `(n, q)` with no bounded variable;
+  at each fixed `e` it has `n_0 = 3`, `n_1` in `[2e + 11, 2e + 13]`, `n_4` in
+  `[e − 1, e]` and no integer point for `e <= 60`, so it needs `e`-parametric
+  integer reasoning (a split on an affine form such as `n_1 − 2e`, or
+  `e`-parametric Fourier–Motzkin). `zy | yzyz`'s no-certificate regions hold
+  real points; their liftable paths sit at depth 4–5, which the shared
+  5,000-node point-path enumeration in `_poly_carve` never reaches (0 paths
+  at 5,000 nodes, 401 at 2,000,000), so they need a larger or lazy
+  enumeration (and `Q_OFFSET_BOUND` there). **Measured, not shipped:**
+  splitting off the face `e = 0` first (`zy | yzy` 56 regions, 1 open, 28
+  s, but `zy +y^(2+e) | yzyz` 2 → 117 regions and `zy | yz` 42 → 69);
+  peeling `e = lo | e >= lo + 1` up to `lo = 8` (no extra closures, more
+  regions); a value split from Fourier–Motzkin bounds (never fired: FM hits
+  its caps); RLT without the LP (`zy | yzy` 216 regions, 4 open). Not
+  proved: termination of the lift selection; it is measured. ·
+  `kernel/psc/poly_line.mojo` (`lift_path_poly`, `lift_key`,
+  `probe_points`); `kernel/psc/product_lift.mojo` (`rlt_forms`);
+  `kernel/psc/farkas_lp.mojo`; `kernel/odd_letter_family_certificate.mojo`
+  (`_poly_carve`, `_value_split`); `experiments/z2-route/sweep.sh`
+
 ## 4. Withdrawn or unreproducible figures
 
 - 2026-10-04 · "1,764 formal producer-free cycles; maximum death radius 7;
