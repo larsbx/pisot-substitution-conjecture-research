@@ -70,6 +70,15 @@ procedures replaced:
   `v = det M / beta`), read as `beta^2 + (c_2 + 1) beta + det M > 0` and
   `−beta^2 + (1 − c_2) beta + det M > 0`. Then the two other roots lie in the
   open unit disc, `chi` is irreducible, and `beta` is the root in each bracket.
+  *Update 2026-10-08:* the disc condition is now tried first by Rouché
+  (`rouche_disc`): `|c_2| > 1 + |c_1| + |c_0|` read as three plain region
+  signs, with no sign at `beta`. Jury runs only where those signs are not
+  certified. Re-running `class_b_cone_certificate.mojo plus` and `minus`
+  with the change reproduces the archived run exactly: the same certified
+  regions at the same shifts, and the same totals (32 regions and 198 exact
+  members on `+1`; 45 and 292 on `−1`). On `−1` the exact members also
+  match one for one; the archived `+1` log does not list them. The port
+  simplifies the PIP step and changes no verdict.
 - **Run positions.** Before fitting an interval end, the run ends are tried:
   if the first (last) run position already satisfies the lower (upper)
   realness condition, the run end clips the interval and no fit is made;
