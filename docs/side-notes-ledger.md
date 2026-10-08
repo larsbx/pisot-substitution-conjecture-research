@@ -1013,3 +1013,22 @@ by deleting it.
   `tests/test_a1_normal_form.mojo` passes unchanged (453 named witnesses,
   27-point residue), which confirms the clause never fired. ·
   `kernel/a1_normal_form_census.mojo`
+- 2026-10-07 · The 145,806-specimen PDS statement does not need Theorem B,
+  Lemma C, Proposition F, Theorem R, Theorem S or Proposition V(2): step 1 of
+  Proposition V (cycle vertices lie in the box, a geometric series) with
+  Proposition FP turns the recorded box verdicts and SC_all into formal
+  productivity, and FP gives PDS both through Lee–Moody–Solomyak overlap
+  coincidence and through Theorem 5.38. It also certifies termination with
+  coincidence from every swap seed, so the 120 budget-exhausting cube-family
+  specimens need no direct `B_sigma` build. The swap-seed graph misses box
+  cycle vertices (38 on the cube specimen), so it cannot replace the box on the
+  literature route. A fresh re-derivation of Lemma C, Theorem B, Proposition F,
+  Theorem R and depth-note Propositions 1/4 found no error. ·
+  `pds-certificate-from-the-box-automaton-2026-10-07.md`
+- 2026-10-08 · The 145,806-specimen PDS statement is promoted to the claim
+  ledger as the finite-domain theorem `BoundedPureDiscreteSpectrum` (claim
+  map row "Finite-domain pure discrete spectrum"). The proof-dependency
+  ledger is unchanged, because the claim is finite-domain, not a universal
+  implication. ·
+  `pds-certificate-from-the-box-automaton-2026-10-07.md` §§5, 9;
+  `claim_governance.toml`

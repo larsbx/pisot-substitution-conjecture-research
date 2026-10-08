@@ -8,6 +8,12 @@ integral centre offset shares a vertex. A failing specimen would be a strict
 zipper and is printed with its witness vertex; a capped graph is reported as
 capped and is not a verdict.
 
+The same automaton decides formal productivity (every box vertex reaches a
+coincidence), which by Theorem Omega of
+docs/pds-certificate-from-the-box-automaton-2026-10-07.md certifies overlap
+coincidence, hence pure discrete spectrum, without Theorem B. A specimen with
+a nonproductive box vertex is printed with that vertex.
+
 Usage: `mojo run -I . vertex_coincidence_census.mojo [total | len4 START END] [records]`
 surveys the 4554 standing specimens; with `total` the 24486 specimens of total
 image length at most 8; with `len4 START END` the slice `[START, END)` of the
@@ -34,6 +40,10 @@ comptime REGIMES = 4
 struct VertexCensus(Copyable, Movable):
     var specimens: Int
     var holds: Int
+    var productive: Int
+    var nonproductive: List[Int]
+    var max_coincidence: Int
+    var max_coincidence_index: Int
     var capped: Int
     var failing: List[Int]
     var failed_index: Int
@@ -52,6 +62,10 @@ struct VertexCensus(Copyable, Movable):
     def __init__(out self):
         self.specimens = 0
         self.holds = 0
+        self.productive = 0
+        self.nonproductive = List[Int]()
+        self.max_coincidence = -1
+        self.max_coincidence_index = -1
         self.capped = 0
         self.failing = List[Int]()
         self.failed_index = -1
@@ -70,6 +84,12 @@ def merge(a: VertexCensus, b: VertexCensus) -> VertexCensus:
     var out = a.copy()
     out.specimens += b.specimens
     out.holds += b.holds
+    out.productive += b.productive
+    for i in range(len(b.nonproductive)):
+        out.nonproductive.append(b.nonproductive[i])
+    if b.max_coincidence > out.max_coincidence:
+        out.max_coincidence = b.max_coincidence
+        out.max_coincidence_index = b.max_coincidence_index
     out.capped += b.capped
     for i in range(len(b.failing)):
         out.failing.append(b.failing[i])
@@ -105,6 +125,12 @@ def evaluate(index: Int, spec: Specimen) -> VertexCensus:
             out.holds = 1
         else:
             out.failing.append(index)
+        if v.productive:
+            out.productive = 1
+        else:
+            out.nonproductive.append(index)
+        out.max_coincidence = v.coincidence_depth
+        out.max_coincidence_index = index
         out.max_states = v.states
         out.max_states_index = index
         out.max_recurrent = v.recurrent
@@ -153,6 +179,12 @@ def main() raises:
     for i in range(len(r.failing)):
         var spec = corpus[r.failing[i]].copy()
         print("STRICT ZIPPER specimen:", spec.label(), decide_vertex_coincidence(spec.sigma).witness)
+    print("formally productive (Theorem Omega):", r.productive, " not:", len(r.nonproductive))
+    for i in range(len(r.nonproductive)):
+        var spec = corpus[r.nonproductive[i]].copy()
+        print("NONPRODUCTIVE box vertex, specimen:", spec.label(), decide_vertex_coincidence(spec.sigma).nonproductive_witness)
+    if r.max_coincidence_index >= 0:
+        print("deepest box first-coincidence depth:", r.max_coincidence, "specimen", corpus[r.max_coincidence_index].label())
     if r.max_states_index >= 0:
         print("largest box graph:", r.max_states, "states, specimen", corpus[r.max_states_index].label())
         print("most recurrent vertices:", r.max_recurrent, "specimen", corpus[r.max_recurrent_index].label())
