@@ -1383,3 +1383,9 @@ by deleting it.
   each leftmost child; its prose proof now states this, matching #241's review
   and dependency-free cycle-structure node, without invoking Lemma C. ·
   `p1b-leftmost-chain-periodic-pair-2026-10-05.md`, Proposition LC proof step 5
+- 2026-10-08 · Current-head review of the reconciliation found an additional
+  dependency gap: hiding untracked files lets an injected Lean source pass at
+  the correct HEAD. Pin verification now rejects nonignored untracked files;
+  two additional negative controls reproduce the gap before repair, while
+  ignored build-cache artifacts remain usable. · `tests/test_proof_bank.py`;
+  `tools/make_proof_bank.py`

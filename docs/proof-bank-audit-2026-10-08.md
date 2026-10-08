@@ -138,6 +138,7 @@ The [reconciliation record](proof-ledger-reconciliation-2026-10-08.md) maps
 the original #237 proposal onto the canonical nodes already merged by #241
 and retains the more detailed #236 review and census-status repair. The
 proof inventory includes root-module declarations. Dependency validation
-rejects tracked staged, unstaged or deleted sources even at the pinned HEAD.
-The seven new negative cases reproduced both P2 findings before the repairs.
+rejects staged, unstaged, deleted or untracked sources even at the pinned HEAD.
+Seven original negative cases reproduced both P2 findings; two more reproduce
+the untracked-source gap identified by current-head review.
 Generated counts are reported by the current bank, not the earlier PR snapshot.

@@ -154,11 +154,11 @@ def check_pins(root: Path, require_packages: bool = False) -> dict:
                 raise ValueError(f"Lake checkout does not match its manifest pin: {package['name']}")
             status = subprocess.run(
                 ["git", "-C", str(checkout), "status", "--porcelain",
-                 "--untracked-files=no", "--ignore-submodules=none"],
+                 "--untracked-files=all", "--ignore-submodules=none"],
                 capture_output=True, text=True,
             )
             if status.returncode or status.stdout.strip():
-                raise ValueError(f"Lake checkout has tracked-file changes or unreadable status: {package['name']}")
+                raise ValueError(f"Lake checkout has tracked or untracked changes or unreadable status: {package['name']}")
     for requirement in config.get("require", []):
         package = by_name.get(requirement["name"])
         if package is None or requirement.get("rev") != package["rev"] or requirement.get("git") != package["url"] or package.get("inputRev") != package["rev"]:

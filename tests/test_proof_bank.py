@@ -98,7 +98,7 @@ def test_root_module_proofs_are_inventoried_and_required_in_the_audit(tmp_path):
         pb.check_audit(log, names)
 
 
-@pytest.mark.parametrize("change", ["unstaged", "staged", "deleted"])
+@pytest.mark.parametrize("change", ["unstaged", "staged", "deleted", "untracked"])
 @pytest.mark.parametrize("require_packages", [False, True])
 def test_pinned_dependency_refuses_tracked_changes(tmp_path, change, require_packages):
     project = tmp_path / pb.PROJECT
@@ -110,6 +110,7 @@ def test_pinned_dependency_refuses_tracked_changes(tmp_path, change, require_pac
     source = dependency / "Fixture.lean"
     source.write_text("theorem trusted : True := trivial\n")
     (dependency / "lean-toolchain").write_text(pin)
+    (dependency / ".gitignore").write_text(".lake/\n")
 
     def git(*args):
         return subprocess.check_output(["git", "-C", str(dependency), *args], text=True).strip()
@@ -125,8 +126,13 @@ def test_pinned_dependency_refuses_tracked_changes(tmp_path, change, require_pac
     (project / "lake-manifest.json").write_text(json.dumps({
         "packagesDir": ".lake/packages", "packages": [{"name": "mathlib", "type": "git",
         "url": url, "rev": revision, "inputRev": revision}]}))
+    cache = dependency / ".lake/build/cache.olean"
+    cache.parent.mkdir(parents=True)
+    cache.write_bytes(b"ignored build cache")
     assert pb.check_pins(tmp_path, require_packages)["packages"][0]["rev"] == revision
-    if change == "deleted":
+    if change == "untracked":
+        (dependency / "Injected.lean").write_text("theorem injected : False := by sorry\n")
+    elif change == "deleted":
         source.unlink()
     else:
         source.write_text("theorem trusted : False := by sorry\n")
