@@ -352,6 +352,42 @@ by deleting it.
   `kernel/odd_letter_family_certificate.mojo` (`_lazy_lift`,
   `_certify_at(deep=)`); `kernel/psc/poly_line.mojo` (`PointPaths`,
   `whole_region_lift`); `test_the_deep_lazy_lift_certifies_a_zy_yzyz_region`
+- 2026-10-08 · Round 3 of the q-lift, measured in the sweep: **3 more
+  patterns close, none opens; 3 `s = +1` and 8 `s = −1` patterns still time
+  out.** Round 3 added the envelope-carrying value split
+  (`_affine_value_split`) and the deep lazy lift (`_lazy_lift`), merged
+  together (entries above), and `sweep.sh` now gives the two stages
+  separate timeouts (`sweep.sh BIN s delta floor r1 r2 budget plain_secs
+  qlift_secs`, through `zruns ... at i plain|qlift`), so a pattern whose
+  plain cover times out still gets the q-lift; before, every timeout killed
+  inside the plain cover never reached it. Measured (budget 5,000, r1 = r2 =
+  4, 300 s plain then 600 s q-lift, the two signs in parallel, the full test
+  suite running beside them for the first ~hour): `s = +1` (`Delta >= 2`,
+  `Z_2 >= 3`) 30 closed by plain, 3 by the q-lift, 0 open, 3 timeouts (was
+  30 / 2 / 0 / 4); `s = −1` (`Delta <= −2`, `Z_2 >= 4`) 25 / 3 / 0 / 8 (was
+  25 / 1 / 1 / 9). The verdict changes, all to closed by the q-lift:
+  `zy +y^(2+e) | zyzy` (timeout → q-lift 17 regions, 3 s, after the plain
+  cover's 300 s), `s = −1` `zy | yzy` (open → 121 regions, 93 s; the value
+  split) and `s = −1` `zyzy | zyz` (timeout → 7 regions, 2 s, after the
+  plain cover's 300 s). The first and third come from the separate
+  timeouts alone; the other 69 patterns keep their verdicts, and the
+  region counts of every pattern closed in both sweeps are unchanged.
+  **Open:** the 11 timeouts, every one killed in the q-lift as well: `s =
+  +1` `zyzy +y^(2+e) | yzyz`, `| zyz`, `| zyzy` (plain and q-lift both
+  killed); `s = −1` `zy | yzyz`, `zyz | yzy`, `zyz | yzyz`, `zyzy | yz`,
+  `zyzy | yzy`, `zyzy | yzyz`, `zyzy | zyzy` (both killed) and `zyz | yz`
+  (plain 45 regions, 1 open, 13 s; q-lift killed at 600 s). `zy | yzyz`
+  alone (`timeout 1800`) reaches region #1215 with 1 region open without a
+  real point; `zyz | yz` (`timeout 900`) reaches #563 with none open; what
+  blocks both is time, then regions with no real point found. **Measured,
+  not shipped:** the lazy lift without the value split reaches further in
+  the same time (`zy | yzyz` #1493 against #1215 in 1,800 s) but leaves 18
+  regions open without a real point (8 by #1215) and `zyz | yz` 13 by #581;
+  the deep pass on every failed lift (one `zy | yz` region 175 s). The
+  sloped forms (`c > 0`) of the value split still fire in no cover run. ·
+  `experiments/z2-route/sweep.sh`, `zruns.mojo` (`at i plain|qlift`);
+  scratch `/tmp/claude-0/r5/sw/sweep-{plus,minus}.txt` (against
+  `/tmp/claude-0/r2/final/sweep-{plus,minus}.txt`)
 
 ## 4. Withdrawn or unreproducible figures
 
