@@ -40,7 +40,7 @@ The two-letter periodic swap patch uses distinct tile types; `ab` need not be a 
 
 **OPEN (Open Problem 5.35).** For every PIP substitution it is enough to prove existence of distinct letters `a != b` such that every overlap reachable from the seed overlaps of `(ab,ba)` is productive. (The manuscript states Open Problem 5.35 for every vertex of the overlap graph; this one-seed form is the weaker statement Theorem 5.38 needs.)
 
-Do not transfer conclusions from the stronger all-vertex premise to this one-seed gate. Proposition 5.39(iii)'s two-sided strong-coincidence consequence, the every-vertex Corollary 5.41 hitting formulation, and the cited unimodular equivalence with PDS apply to all-vertex productivity. No one-seed-to-all-vertices implication is claimed.
+Do not transfer conclusions from the stronger all-vertex premise to this one-seed gate. Proposition 5.39(iii)'s two-sided strong-coincidence consequence, the every-vertex Corollary 5.41 hitting formulation, and the cited unimodular equivalence with PDS apply to all-vertex productivity. No one-seed-to-all-vertices implication is claimed. *Correction 2026-10-08:* through PDS one does hold (Theorem 5.38 forward, Corollary FP″ back, at the October 4 chain's review status); see Theorem SC of `docs/p1-seed-strength-2026-10-08.md`. The seed still matters for the proof, not for the truth.
 
 The seed-relative growth accounting needed for this attack is now exact:
 `docs/p1-overlap-seed-growth-bridge-2026-09-17.md` proves that the
