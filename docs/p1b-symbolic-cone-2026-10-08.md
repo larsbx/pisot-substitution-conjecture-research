@@ -8,7 +8,8 @@ line to every member of class B below slope `5/2`. The literature gate of
 [`p1b-catch-up-free-ppvc-2026-10-07.md`](p1b-catch-up-free-ppvc-2026-10-07.md)
 §3 governs (its decision names exactly this target: "a parametric certificate
 on the overlap graph" for Theorem E's classes); §6 adds the method's own prior
-art. No ledger node or manuscript statement changes.
+art. No ledger node changes. The manuscript states the result as Theorem
+`thm:class-B-sectors` (Section `sec:class-B-sectors`, added the same day).
 
 Canonical implementation: `kernel/psc/symbolic_cone.mojo`, driver
 `kernel/class_b_cone_certificate.mojo` (`pixi run class-b-cone-certificate`),
