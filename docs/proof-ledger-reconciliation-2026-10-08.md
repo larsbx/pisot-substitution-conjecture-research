@@ -14,6 +14,17 @@ Inspected source heads: #236 `608f4b4978a8297c345587c622bd5e7afdaae762`,
 `ebc815f1b1bf2ba32b11a94462f9b575762954d7`. This reconciliation changes no
 open mathematical premise to proved and changes no finite-domain claim scope.
 
+During validation #236 was independently rebased to
+`3eb62008d39aa3a531b27980615972e0d5b80a44`. That current head was also compared:
+its census implementation and scope corrections are retained; its additional
+vertex-certificate test declarations and explicit reconciled-baseline evidence
+are incorporated. Its regrouping bundles the Meyer result with overlap
+coincidence, whereas this integration keeps the two already-reviewed imports
+separate. #237's corrected partial spectral locators and #241's direct
+leftmost-child fixed-end argument remain authoritative. The independent
+derivations in #236's review are unchanged by that rebase and remain here,
+with the live grouping explained below.
+
 ## One representation of each result
 
 | Source definitions | Canonical representation | Reason |
@@ -96,7 +107,10 @@ A further review reproduced an ignored-source injection. Four more controls
 cover ignored Lean sources and cache-adjacent configuration inputs in both
 pin-check modes. Four byte-comparison controls also reproduce edits hidden by assume-unchanged
 and skip-worktree flags. Tracked file bytes, types and executable permissions
-are now compared directly with the pinned Git tree. All seventeen negative
+are now compared directly with the pinned Git tree. Git replacement objects
+are disabled for every dependency inspection; two further controls replace a
+pinned commit while retaining its HEAD SHA and apparently clean status, and
+reproduce acceptance before the fix. All nineteen negative
 cases pass with these repairs. Existing audit controls still reject missing
 receipts, incomplete cached output, nonstandard axioms and failed builds.
 The proof bank is an inventory of governed claims, named source proofs and

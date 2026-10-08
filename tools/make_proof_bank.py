@@ -42,6 +42,12 @@ def ignored_build_artifact(path: str, package: str) -> bool:
     if package == "proofwidgets" and path.count("/") == 1 and path.startswith("widget/") \
             and path.endswith((".log.json", ".hash")):
         return True
+    # Lake emits module setup receipts in its IR cache and downloads Reservoir
+    # build barrels beside build/. These are generated artifacts, not sources.
+    if path in {".lake/build.barrel", ".lake/build.barrel.trace"}:
+        return True
+    if path.startswith(".lake/build/ir/") and path.endswith(".setup.json"):
+        return True
     if Path(path).suffix.lower() in {".toml", ".json", ".yaml", ".yml", ".cfg", ".ini", ".py", ".sh"}:
         return False
     return path.startswith((".lake/build/", ".lake/config/"))
@@ -49,7 +55,7 @@ def ignored_build_artifact(path: str, package: str) -> bool:
 
 def check_tracked_bytes(checkout: Path, package: str) -> None:
     """Compare actual files with HEAD even when index flags hide differences."""
-    tree = subprocess.run(["git", "-C", str(checkout), "ls-tree", "-rz", "--full-tree", "HEAD"],
+    tree = subprocess.run(["git", "--no-replace-objects", "-C", str(checkout), "ls-tree", "-rz", "--full-tree", "HEAD"],
                           capture_output=True)
     if tree.returncode:
         raise ValueError(f"Lake checkout has an unreadable pinned tree: {package}")
@@ -194,18 +200,18 @@ def check_pins(root: Path, require_packages: bool = False) -> dict:
             raise ValueError(f"Unpinned Lake dependency: {package['name']}")
         checkout = project / manifest["packagesDir"] / package["name"]
         if require_packages or checkout.exists():
-            run = subprocess.run(["git", "-C", str(checkout), "rev-parse", "HEAD"], capture_output=True, text=True)
+            run = subprocess.run(["git", "--no-replace-objects", "-C", str(checkout), "rev-parse", "HEAD"], capture_output=True, text=True)
             if run.returncode or run.stdout.strip() != package["rev"]:
                 raise ValueError(f"Lake checkout does not match its manifest pin: {package['name']}")
             status = subprocess.run(
-                ["git", "-C", str(checkout), "status", "--porcelain",
+                ["git", "--no-replace-objects", "-C", str(checkout), "status", "--porcelain",
                  "--untracked-files=all", "--ignore-submodules=none"],
                 capture_output=True, text=True,
             )
             if status.returncode or status.stdout.strip():
                 raise ValueError(f"Lake checkout has tracked or untracked changes or unreadable status: {package['name']}")
             ignored = subprocess.run(
-                ["git", "-C", str(checkout), "ls-files", "--others", "--ignored",
+                ["git", "--no-replace-objects", "-C", str(checkout), "ls-files", "--others", "--ignored",
                  "--exclude-standard", "-z"], capture_output=True, text=True,
             )
             if ignored.returncode:

@@ -42,6 +42,7 @@ LEFTMOST = "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md"
 REVIEWED = "independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
 BOX_LC_REVIEW = "docs/review-box-leftmost-ledger-2026-10-08.md"
 BOX_LC_BASELINE = "cb9db58c9e25209c2a54ccd6955b509af88e8356"
+BOX_LC_RECONCILED_BASELINE = "33a1b8b6cffc10c7f1e5be41a22325897a5072e4"
 RECONCILIATION = "docs/proof-ledger-reconciliation-2026-10-08.md"
 BOX_LC_REVIEWED = frozenset({
     "BoxCycleContainment", "BoxAutomatonCertificate", "PisotMeyerProperty",
@@ -354,6 +355,7 @@ def records() -> dict[str, Record]:
                          ("additional_review_source", "docs/proof-bank-audit-2026-10-08.md"),
                          ("review_date", "2026-10-08"),
                          ("source_revision", BOX_LC_BASELINE),
+                         ("reconciled_source_revision", BOX_LC_RECONCILED_BASELINE),
                          ("reconciliation_source", RECONCILIATION),
                          ("human_review_pending", "true"))
         if name == "G1":

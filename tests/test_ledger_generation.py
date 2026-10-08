@@ -184,6 +184,7 @@ def test_review_evidence_remains_bound_to_each_reconciled_record():
         assert record.field("review_source") == make_ledger.BOX_LC_REVIEW
         assert record.field("review_date") == "2026-10-08"
         assert record.field("source_revision") == make_ledger.BOX_LC_BASELINE
+        assert record.field("reconciled_source_revision") == make_ledger.BOX_LC_RECONCILED_BASELINE
         assert record.field("human_review_pending") == "true"
         for field in ("review_source", "additional_review_source", "reconciliation_source"):
             assert (ROOT / record.field(field)).is_file()

@@ -100,7 +100,7 @@ def test_root_module_proofs_are_inventoried_and_required_in_the_audit(tmp_path):
 
 @pytest.mark.parametrize("change", ["unstaged", "staged", "deleted", "untracked",
                                     "ignored_source", "ignored_config",
-                                    "assume_unchanged", "skip_worktree"])
+                                    "assume_unchanged", "skip_worktree", "replace_object"])
 @pytest.mark.parametrize("require_packages", [False, True])
 def test_pinned_dependency_refuses_tracked_changes(tmp_path, change, require_packages):
     project = tmp_path / pb.PROJECT
@@ -131,8 +131,26 @@ def test_pinned_dependency_refuses_tracked_changes(tmp_path, change, require_pac
     cache = dependency / ".lake/build/cache.olean"
     cache.parent.mkdir(parents=True)
     cache.write_bytes(b"ignored build cache")
+    # A real Lake build emits these beside/inside build/. Refusal of ordinary
+    # build outputs would prevent the post-build pin audit from ever passing.
+    setup = dependency / ".lake/build/ir/Fixture.setup.json"
+    setup.parent.mkdir(parents=True)
+    setup.write_text('{"name": "Fixture", "imports": []}\n')
+    (dependency / ".lake/build.barrel").write_bytes(b"Reservoir build archive")
+    (dependency / ".lake/build.barrel.trace").write_text("generated archive trace\n")
     assert pb.check_pins(tmp_path, require_packages)["packages"][0]["rev"] == revision
-    if change in {"assume_unchanged", "skip_worktree"}:
+    if change == "replace_object":
+        source.write_text("theorem trusted : False := by sorry\n")
+        git("add", "Fixture.lean")
+        git("-c", "user.name=Pin Regression", "-c", "user.email=pin-regression@example.invalid",
+            "commit", "-qm", "Build an unpinned replacement object")
+        replacement = git("rev-parse", "HEAD")
+        git("reset", "--hard", revision)
+        git("replace", revision, replacement)
+        git("reset", "--hard", revision)
+        assert "False" in source.read_text()
+        assert not git("status", "--porcelain", "--untracked-files=all")
+    elif change in {"assume_unchanged", "skip_worktree"}:
         git("update-index", "--assume-unchanged" if change == "assume_unchanged" else "--skip-worktree",
             "Fixture.lean")
         source.write_text("theorem trusted : False := by sorry\n")
