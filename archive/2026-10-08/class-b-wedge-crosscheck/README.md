@@ -1,11 +1,14 @@
 # Class B wedge cross-check — 2026-10-08
 
-An independent second certificate of part of Theorem C
+A second certificate of part of Theorem C
 (`docs/p1b-symbolic-cone-2026-10-08.md`), written in parallel with it. It used a
-different engine: the line engine `psc.symbolic_line` with its coefficient ring
-generalised to `Q[s, d]`. That engine is not on `main`, because it duplicates
-`psc.symbolic_cone`. It is kept at commit `5ee3f0f`, which `main`'s history
-reaches through an `ours` merge. Reproduce with `git checkout 5ee3f0f`, then
+second engine: the line engine `psc.symbolic_line` with its coefficient ring
+generalised to `Q[s, d]`. Its decision procedures are separate from Theorem C's,
+but it shares `symbolic_line`'s primitives with `psc.symbolic_cone` (see that
+note §4). That engine is not on `main`, because it duplicates
+`psc.symbolic_cone`. It is kept at commit `5ee3f0f`, the second parent of the
+`ours` merge `8a9c88a`. That merge is in `main`'s history because the PR was
+merged with a merge commit, not squashed. Reproduce with `git checkout 5ee3f0f`, then
 `cd kernel`, then:
 
     mojo run -I . symbolic_wedge_certificate.mojo wedge 1
