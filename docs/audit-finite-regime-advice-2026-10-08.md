@@ -74,7 +74,7 @@ so the times are wall-clock and approximate.
 | (4, 4, 0) | 27,157 states, productive, D = 8, 4.4 s | level 4, 0.05 s |
 | (9, 7, 0) | 64,997 states, productive, D = 10, 105.6 s | level 4, 51.9 s |
 | (7, 9, 1) | did not finish in 180 s | level 4, 58.2 s |
-| (9, 30, 4) | did not finish in 180 s | not run |
+| (9, 30, 4) | did not finish in 180 s | did not finish in 180 s |
 
 (5, 6, 1) was also tried. Its characteristic polynomial is reducible, so it
 is not a member, and both deciders refuse it.
@@ -95,7 +95,8 @@ is not a member, and both deciders refuse it.
 ## 4. What this note does not establish
 
 - It audits advice. It proves nothing about Theorem K's family.
-- The timing figures are five single runs on one leaf, with a 180 s cap. A
-  capped run is inconclusive, not a verdict.
+- The timing figures are single runs of each decider on five points of one
+  leaf, with a 180 s cap; three runs were capped. A capped run is
+  inconclusive, not a verdict.
 - 2a is finite evidence. 2b is a counterexample to the claim *as stated*. It
   does not show that no type abstraction can work.
