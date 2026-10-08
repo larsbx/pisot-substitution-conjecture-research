@@ -84,7 +84,10 @@ Put `mu_k = |sigma_k(beta)| < 1`, `C_k = max_{c ∈ F} |sigma_k(c)|` and
 
 Part 2 is step 1 of Proposition V. Part 1 is item 5 of
 `formal-overlap-carriers-2026-10-04.md` §2, restated for the box radii.
-Neither uses Theorem B, Lemma C or any periodic-tiling construction.
+Neither uses Theorem B, Lemma C or any periodic-tiling construction. The
+adversarial audit `audit-adversarial-prop-v-theorem-e-2026-10-07.md` checked
+step 1 independently and found it sound. Its recomputed radii also leave every
+enumerated integral centre offset at no more than 0.48 of its radius.
 
 ## 4. Theorem Ω (formal productivity is one automaton property)
 

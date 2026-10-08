@@ -23,6 +23,8 @@ from psc.perron_field3 import (
     cubic_mul_beta,
     cubic_sub_checked,
     left_perron_tile_lengths,
+    perron_tile_lengths_in,
+    screened_perron_field3,
     sign_at_perron,
 )
 
@@ -113,6 +115,20 @@ def build_seed_overlap_tables(sigma: List[List[Int]]) raises -> SeedOverlapTable
     _validate_sigma(sigma)
     var m = Mat3(substitution_incidence(sigma))
     return _tables_from(sigma, build_perron_field3(m), left_perron_tile_lengths(m))
+
+
+def build_seed_overlap_tables_screened(sigma: List[List[Int]]) raises -> SeedOverlapTables:
+    """`build_seed_overlap_tables` outside the audited image-length domain.
+
+    The field comes from `screened_perron_field3`, which screens the
+    characteristic polynomial exactly instead of running the matrix-level
+    predicate that `build_perron_field3` is certified for, and the tile lengths
+    from `perron_tile_lengths_in`, which re-checks that field against the
+    matrix. All later arithmetic is checked and raises on overflow."""
+    _validate_sigma(sigma)
+    var m = Mat3(substitution_incidence(sigma))
+    var field = screened_perron_field3(m)
+    return _tables_from(sigma, field, perron_tile_lengths_in(field, m))
 
 
 def _tables_from(
