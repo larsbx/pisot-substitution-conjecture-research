@@ -11,6 +11,8 @@ import argparse
 import hashlib
 import json
 import re
+import os
+import stat
 import subprocess
 import sys
 import tomllib
@@ -26,6 +28,49 @@ from claim_governance.repo import Repo  # noqa: E402
 
 PROJECT = Path("proof/PscVerif")
 STANDARD_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
+
+
+def ignored_build_artifact(path: str, package: str) -> bool:
+    """Only generated caches may escape the dependency source refusal check."""
+    name = Path(path).name
+    if path.lower().endswith(".lean") or name.lower() in {"lakefile.toml", "lean-toolchain", "lake-manifest.json"}:
+        return False
+    # ProofWidgets' frontend cache is not a Lean/Lake input. Its pinned build
+    # writes dist/ and node_modules/ beside the sources rather than under .lake.
+    if package == "proofwidgets" and path.startswith(("widget/dist/", "widget/node_modules/")):
+        return True
+    if package == "proofwidgets" and path.count("/") == 1 and path.startswith("widget/") \
+            and path.endswith((".log.json", ".hash")):
+        return True
+    if Path(path).suffix.lower() in {".toml", ".json", ".yaml", ".yml", ".cfg", ".ini", ".py", ".sh"}:
+        return False
+    return path.startswith((".lake/build/", ".lake/config/"))
+
+
+def check_tracked_bytes(checkout: Path, package: str) -> None:
+    """Compare actual files with HEAD even when index flags hide differences."""
+    tree = subprocess.run(["git", "-C", str(checkout), "ls-tree", "-rz", "--full-tree", "HEAD"],
+                          capture_output=True)
+    if tree.returncode:
+        raise ValueError(f"Lake checkout has an unreadable pinned tree: {package}")
+    for entry in filter(None, tree.stdout.split(b"\0")):
+        meta, path_bytes = entry.split(b"\t", 1)
+        mode, kind, expected = meta.split()
+        path = checkout / os.fsdecode(path_bytes)
+        info = path.lstat()
+        if kind != b"blob":
+            raise ValueError(f"Lake checkout has an unsupported tree entry: {package}/{path}")
+        if mode == b"120000" and stat.S_ISLNK(info.st_mode):
+            contents = os.fsencode(os.readlink(path))
+        elif mode in {b"100644", b"100755"} and stat.S_ISREG(info.st_mode):
+            if bool(info.st_mode & 0o111) != (mode == b"100755"):
+                raise ValueError(f"Lake checkout has changed tracked permissions: {package}/{path}")
+            contents = path.read_bytes()
+        else:
+            raise ValueError(f"Lake checkout has changed tracked file type: {package}/{path}")
+        actual = hashlib.sha1(b"blob " + str(len(contents)).encode() + b"\0" + contents).hexdigest().encode()
+        if actual != expected:
+            raise ValueError(f"Lake checkout has changed tracked bytes: {package}/{path}")
 
 
 def digest(path: Path) -> str:
@@ -159,6 +204,16 @@ def check_pins(root: Path, require_packages: bool = False) -> dict:
             )
             if status.returncode or status.stdout.strip():
                 raise ValueError(f"Lake checkout has tracked or untracked changes or unreadable status: {package['name']}")
+            ignored = subprocess.run(
+                ["git", "-C", str(checkout), "ls-files", "--others", "--ignored",
+                 "--exclude-standard", "-z"], capture_output=True, text=True,
+            )
+            if ignored.returncode:
+                raise ValueError(f"Lake checkout has unreadable ignored-file status: {package['name']}")
+            for path in filter(None, ignored.stdout.split("\0")):
+                if not ignored_build_artifact(path, package["name"]):
+                    raise ValueError(f"Lake checkout has an ignored input outside permitted build artifacts: {package['name']}/{path}")
+            check_tracked_bytes(checkout, package["name"])
     for requirement in config.get("require", []):
         package = by_name.get(requirement["name"])
         if package is None or requirement.get("rev") != package["rev"] or requirement.get("git") != package["url"] or package.get("inputRev") != package["rev"]:

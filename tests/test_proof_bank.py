@@ -98,7 +98,9 @@ def test_root_module_proofs_are_inventoried_and_required_in_the_audit(tmp_path):
         pb.check_audit(log, names)
 
 
-@pytest.mark.parametrize("change", ["unstaged", "staged", "deleted", "untracked"])
+@pytest.mark.parametrize("change", ["unstaged", "staged", "deleted", "untracked",
+                                    "ignored_source", "ignored_config",
+                                    "assume_unchanged", "skip_worktree"])
 @pytest.mark.parametrize("require_packages", [False, True])
 def test_pinned_dependency_refuses_tracked_changes(tmp_path, change, require_packages):
     project = tmp_path / pb.PROJECT
@@ -130,7 +132,18 @@ def test_pinned_dependency_refuses_tracked_changes(tmp_path, change, require_pac
     cache.parent.mkdir(parents=True)
     cache.write_bytes(b"ignored build cache")
     assert pb.check_pins(tmp_path, require_packages)["packages"][0]["rev"] == revision
-    if change == "untracked":
+    if change in {"assume_unchanged", "skip_worktree"}:
+        git("update-index", "--assume-unchanged" if change == "assume_unchanged" else "--skip-worktree",
+            "Fixture.lean")
+        source.write_text("theorem trusted : False := by sorry\n")
+    elif change.startswith("ignored_"):
+        relative = "Mathlib/Injected.lean" if change == "ignored_source" else ".lake/build/injected.toml"
+        injected = dependency / relative
+        injected.parent.mkdir(parents=True, exist_ok=True)
+        injected.write_text("-- an unpinned input\n")
+        exclude = dependency / ".git/info/exclude"
+        exclude.write_text(exclude.read_text() + f"\n{relative}\n")
+    elif change == "untracked":
         (dependency / "Injected.lean").write_text("theorem injected : False := by sorry\n")
     elif change == "deleted":
         source.unlink()
@@ -139,7 +152,7 @@ def test_pinned_dependency_refuses_tracked_changes(tmp_path, change, require_pac
         if change == "staged":
             git("add", "Fixture.lean")
     assert git("rev-parse", "HEAD") == revision
-    with pytest.raises(ValueError, match="tracked.*changes.*mathlib"):
+    with pytest.raises(ValueError, match="Lake checkout.*mathlib"):
         pb.check_pins(tmp_path, require_packages)
 
 

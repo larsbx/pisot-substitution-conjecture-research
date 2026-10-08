@@ -1389,3 +1389,17 @@ by deleting it.
   two additional negative controls reproduce the gap before repair, while
   ignored build-cache artifacts remain usable. · `tests/test_proof_bank.py`;
   `tools/make_proof_bank.py`
+- 2026-10-08 · The ignored-file review extends dependency refusal beyond
+  ordinary Git status: a local Git exclusion can hide an injected Lean source.
+  Ignored files are now enumerated separately; source/configuration inputs and
+  ignored files outside the declared build-artifact paths refuse verification.
+  Four new negative controls cover ignored Lean and cache-adjacent TOML inputs
+  in both pin-check modes. The thirteen root/pin negative cases pass. ·
+  `tests/test_proof_bank.py`; `tools/make_proof_bank.py`
+- 2026-10-08 · Git status alone also hides tracked edits marked
+  assume-unchanged or skip-worktree. Dependency verification now compares
+  actual tracked bytes, file types and executable modes with HEAD's tree,
+  without changing the index. Four negative controls reproduce these flag
+  bypasses; all seventeen root/pin cases pass, as do the real nine manifest
+  checkouts. This is source/pin verification, not a compiler or proof receipt. ·
+  `tests/test_proof_bank.py`; `tools/make_proof_bank.py`

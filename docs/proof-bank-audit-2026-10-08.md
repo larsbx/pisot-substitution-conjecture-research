@@ -138,7 +138,16 @@ The [reconciliation record](proof-ledger-reconciliation-2026-10-08.md) maps
 the original #237 proposal onto the canonical nodes already merged by #241
 and retains the more detailed #236 review and census-status repair. The
 proof inventory includes root-module declarations. Dependency validation
-rejects staged, unstaged, deleted or untracked sources even at the pinned HEAD.
+rejects staged, unstaged, deleted, untracked or ignored inputs even at the
+pinned HEAD, while permitting the declared ignored build-artifact caches.
 Seven original negative cases reproduced both P2 findings; two more reproduce
-the untracked-source gap identified by current-head review.
+the untracked-source gap identified by current-head review. Four additional
+controls cover ignored Lean/configuration injection, including local Git
+exclusions and configuration under a cache path.
 Generated counts are reported by the current bank, not the earlier PR snapshot.
+
+Tracked bytes are also compared with the pinned tree, independently of the
+Git index flags. Four negative controls reproduce edits hidden by
+assume-unchanged/skip-worktree flags; the full root/pin refusal matrix contains
+seventeen passing negative cases. The real nine manifest checkouts pass the
+exact-byte/pin checks; this does not credit an unavailable Lean compilation.

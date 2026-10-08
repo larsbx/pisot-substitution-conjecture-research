@@ -81,15 +81,23 @@ The box/LC theorems and literature imports have no complete Lean binding.
    inserts a root theorem and lemma and requires both in the inventory and
    compiled-audit receipt.
 2. Lake checkout verification compares HEAD and rejects tracked index or
-   working-tree changes, including deletions and untracked files; an unreadable Git status also
+   working-tree changes, including deletions, untracked files and ignored inputs; an unreadable Git status also
    refuses verification. Real temporary Git checkouts test both pin-check
    modes with staged, unstaged, deleted and untracked sources at an unchanged
-   pinned HEAD. Ignored build caches are allowed.
+   pinned HEAD. Ignored Lean sources and configuration inputs are refused,
+   including files hidden by local Git exclusions. Only the declared Lean/Lake
+   and ProofWidgets frontend build-artifact paths may contain ignored cache
+   files; Lean/Lake source inputs remain forbidden there.
 
 The original seven P2 regression cases failed against the #237 checker.
 Current-head review then found the untracked-source gap in the first repair;
 two additional negative cases reproduce it before the final refusal check.
-All nine cases pass with these repairs. Existing audit controls still reject missing
+A further review reproduced an ignored-source injection. Four more controls
+cover ignored Lean sources and cache-adjacent configuration inputs in both
+pin-check modes. Four byte-comparison controls also reproduce edits hidden by assume-unchanged
+and skip-worktree flags. Tracked file bytes, types and executable permissions
+are now compared directly with the pinned Git tree. All seventeen negative
+cases pass with these repairs. Existing audit controls still reject missing
 receipts, incomplete cached output, nonstandard axioms and failed builds.
 The proof bank is an inventory of governed claims, named source proofs and
 apparent statement openings. Actual Lean evidence requires the fresh compiled
