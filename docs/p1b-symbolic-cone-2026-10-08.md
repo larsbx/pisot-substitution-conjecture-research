@@ -122,7 +122,7 @@ they contain every lattice point of their sector.
 `c = j − q`; the rest is `B+`. For `r = q − 1`: `j <= 4`; else `2j <= q − 2`
 (`A−`); else `2j <= q + 3` (`M−`); else `j <= q − 6` (`B−`); else
 `c = p − 2q >= −5`, and `c <= 7` (`C−`) or `2p <= 5q − 5` (`D−`). The driver
-also checks this by enumeration up to `q = 60` (no gap; a gap appears as soon
+also checks this by enumeration up to `q = 200`, solving each family's affine equations exactly (no gap; a gap appears as soon
 as the claimed region is enlarged by one line).
 
 ## 4. Theorem C

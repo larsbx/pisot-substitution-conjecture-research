@@ -287,22 +287,36 @@ def minus_branch() -> List[Family]:
 
 
 def contains(f: Family, p: Int, q: Int, r: Int) -> Bool:
-    """Whether `(p, q, r)` is the member of `f` at some `s >= (l1, l2)`."""
+    """Whether `(p, q, r)` is the member of `f` at some `s >= (l1, l2)`, by an
+    exact solve of the affine equations `(p, q) = c0 + s1 c1 + s2 c2`."""
     var u1 = f.uses(1)
     var u2 = f.uses(2)
-    for s1 in range(f.l1, f.l1 + 400 if u1 else f.l1 + 1):
-        var s2v = 0
-        if u2:
-            var rest = q - f.q.c0 - f.q.c1 * s1
-            if f.q.c2 == 0 or rest % f.q.c2 != 0:
-                continue
-            s2v = rest // f.q.c2
-            if s2v < f.l2:
-                continue
-        var a = s1 if u1 else 0
-        if f.p.at(a, s2v) == p and f.q.at(a, s2v) == q and f.r.at(a, s2v) == r:
-            return True
-    return False
+    var dp = p - f.p.c0
+    var dq = q - f.q.c0
+    var s1 = 0
+    var s2 = 0
+    if u1 and u2:
+        var det = f.p.c1 * f.q.c2 - f.p.c2 * f.q.c1
+        if det == 0:
+            return False
+        var n1 = dp * f.q.c2 - f.p.c2 * dq
+        var n2 = f.p.c1 * dq - dp * f.q.c1
+        if n1 % det != 0 or n2 % det != 0:
+            return False
+        s1 = n1 // det
+        s2 = n2 // det
+    elif u1 or u2:
+        var cp = f.p.c1 if u1 else f.p.c2
+        var cq = f.q.c1 if u1 else f.q.c2
+        var num = dq if cq != 0 else dp
+        var den = cq if cq != 0 else cp
+        if den == 0 or num % den != 0:
+            return False
+        s1 = num // den if u1 else 0
+        s2 = num // den if u2 else 0
+    if (u1 and s1 < f.l1) or (u2 and s2 < f.l2):
+        return False
+    return f.p.at(s1, s2) == p and f.q.at(s1, s2) == q and f.r.at(s1, s2) == r
 
 
 def coverage_gaps(fams: List[Family], plus: Bool, qmax: Int) -> Int:
@@ -336,7 +350,7 @@ def main() raises:
     elif which == "minus":
         fams = minus_branch()
     elif which == "gaps":
-        print("coverage gaps up to q = 60: plus", coverage_gaps(plus_branch(), True, 60), " minus", coverage_gaps(minus_branch(), False, 60))
+        print("coverage gaps up to q = 200: plus", coverage_gaps(plus_branch(), True, 200), " minus", coverage_gaps(minus_branch(), False, 200))
         return
     elif which == "A":
         fams.append(Family("A+", Aff(11, 2, 1), Aff(6, 1, 1), Aff(7, 1, 1), 0, 0))

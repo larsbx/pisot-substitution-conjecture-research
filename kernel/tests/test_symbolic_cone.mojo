@@ -30,6 +30,7 @@ from class_b_cone_certificate import (
     Family,
     class_b_cone,
     cover,
+    contains,
     coverage_gaps,
     minus_branch,
     plus_branch,
@@ -94,8 +95,19 @@ def test_the_cone_engine_reproduces_theorem_l() raises:
 
 
 def test_the_branch_decompositions_cover_their_regions() raises:
-    assert_equal(coverage_gaps(plus_branch(), True, 60), 0)
-    assert_equal(coverage_gaps(minus_branch(), False, 60), 0)
+    assert_equal(coverage_gaps(plus_branch(), True, 200), 0)
+    assert_equal(coverage_gaps(minus_branch(), False, 200), 0)
+
+
+def test_membership_is_solved_exactly() raises:
+    """Far from the apex, with no search bound: (1500, 1000, 1001) is A+ at s = (495, 499)."""
+    var a = Family("A+", Aff(11, 2, 1), Aff(6, 1, 1), Aff(7, 1, 1), 0, 0)
+    assert_true(contains(a, 1500, 1000, 1001))
+    assert_false(contains(a, 1500, 1000, 999))  # wrong branch
+    assert_false(contains(a, 2000, 1000, 1001))  # j = q: outside the sector
+    var line = Family("C+2", Aff(2, 2, 0), Aff(0, 1, 0), Aff(1, 1, 0), 0, 0)
+    assert_true(contains(line, 2002, 1000, 1001))
+    assert_false(contains(line, 2003, 1000, 1001))
 
 
 def test_sector_a_plus() raises:
@@ -118,6 +130,8 @@ def main() raises:
     print("[PASS] test_the_cone_engine_reproduces_theorem_l")
     test_the_branch_decompositions_cover_their_regions()
     print("[PASS] test_the_branch_decompositions_cover_their_regions")
+    test_membership_is_solved_exactly()
+    print("[PASS] test_membership_is_solved_exactly")
     test_sector_a_plus()
     print("[PASS] test_sector_a_plus")
-    require_contract("Symbolic cone certificate (class B sectors): region signs certified by shifted coefficients with Polya's multiplier, a sign-changing polynomial left undecided; parametric signs at beta on certified brackets agree with exact signs at a member; a p = q family is refused; the cone engine reproduces Theorem L's 119-vertex line from q >= 6; the two branch decompositions leave no gap up to q = 60; sector A+ (q + 5 <= p <= 2q - 1, r = q + 1) is covered by 5 symbolic regions of 74 vertices and 4 exact members, every vertex hitting")
+    require_contract("Symbolic cone certificate (class B sectors): region signs certified by shifted coefficients with Polya's multiplier, a sign-changing polynomial left undecided; parametric signs at beta on certified brackets agree with exact signs at a member; a p = q family is refused; the cone engine reproduces Theorem L's 119-vertex line from q >= 6; the two branch decompositions leave no gap up to q = 200, family membership solved exactly; sector A+ (q + 5 <= p <= 2q - 1, r = q + 1) is covered by 5 symbolic regions of 74 vertices and 4 exact members, every vertex hitting")
