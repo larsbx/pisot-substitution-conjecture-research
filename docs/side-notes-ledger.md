@@ -1032,6 +1032,18 @@ by deleting it.
   implication. ·
   `pds-certificate-from-the-box-automaton-2026-10-07.md` §§5, 9;
   `claim_governance.toml`
+- 2026-10-08 · PR #228's Python oracle `_poly_rem` now caches the exact
+  leading reciprocal and nonzero divisor terms for degree >= 4; small divisors
+  retain dense division after setup overhead was measured. Independent dense
+  quotient/convolution checks cover 4,800 rational pairs (324 cached-path
+  cases); all 3,375 cubic caller results agree. Recorded sparse degree-12/32
+  workloads improve 3.19×/7.43× in elapsed time; no uniform dense or whole-screen
+  speedup is claimed. The unrecorded "14s to 8s" figure is withdrawn and the
+  PR's incorrectly dated `2024-05-18` `.jules/bolt.md` entry is removed.
+  The tracked Markdown-link guard requires a removed file's deletion to be
+  staged before replay. No mathematical claim status changes. ·
+  [scope, regression and replay](poly-rem-sparse-rational-2026-10-08.md);
+  [pinned benchmark](../evidence/poly-rem-sparse-2026-10-08/benchmark.json)
 - 2026-10-08 · Seed strength buys no slack in truth: for each PIP `sigma`,
   one productive swap seed ⟺ every seed ⟺ FP ⟺ PDS (Theorem 5.38 forward,
   Corollary FP″ back), so do not look for a seed that avoids an obstruction.

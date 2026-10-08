@@ -211,13 +211,26 @@ def _poly_rem(a: Sequence[Fraction], b: Sequence[Fraction]) -> list[Fraction]:
     # Optimization: Cache degree(a) and decrement inline to avoid O(N^2) backward scan overhead
     a, db = list(a), degree(b)
     da = degree(a)
-    while da >= db >= 0:
-        factor = a[da] / b[db]
-        for i in range(db + 1):
-            a[da - db + i] -= factor * b[i]
-        a[da] = Fraction(0)
-        while da >= 0 and a[da] == 0:
-            da -= 1
+    if db >= 4 and da >= db:
+        # Small divisors do not amortize this setup; keep their dense loop below.
+        # Cache exact reciprocal and nonzero terms only when division is needed.
+        inv_b = Fraction(b[db].denominator, b[db].numerator)
+        b_non_zeros = [(i, b[i]) for i in range(db + 1) if b[i] != 0]
+        while da >= db:
+            factor = a[da] * inv_b
+            for i, b_i in b_non_zeros:
+                a[da - db + i] -= factor * b_i
+            a[da] = Fraction(0)
+            while da >= 0 and a[da] == 0:
+                da -= 1
+    else:
+        while da >= db >= 0:
+            factor = a[da] / b[db]
+            for i in range(db + 1):
+                a[da - db + i] -= factor * b[i]
+            a[da] = Fraction(0)
+            while da >= 0 and a[da] == 0:
+                da -= 1
     return a[:db] if db > 0 else []
 
 
