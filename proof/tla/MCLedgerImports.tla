@@ -7,6 +7,7 @@ Reachable == {
     "AlignedOverlapsAreStrongCoincidence",
     "BoundaryCoincidenceCriterion",
     "BoxAutomatonCertificate",
+    "BoxAutomatonPDSCertificate",
     "BoxCycleContainment",
     "C3Locality",
     "CoincidenceRankFibreTheorems",

@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import make_ledger  # noqa: E402
 from proof_records import generate_ledgers as gl  # noqa: E402
 
-MODELS = ("Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
+MODELS = ("Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed", "FormalProductivityGateAssumed")
 
 
 def reachable(model: str) -> set[str]:
@@ -140,6 +140,52 @@ def test_alternative_routes_are_bound_to_the_canonical_record_identity():
     removed = identified(replace(g1, id="", evidence=tuple((k,v) for k,v in g1.evidence if k != "dependency_alternatives")))
     assert removed.id != g1.id
     assert all(e.record_id != removed.id for e in records["SinkSCCReduction"].depends_on)
+
+
+def test_box_certificate_tracks_only_its_reviewed_sufficiency_dependencies():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof" / "tla" / "ledger.json"))
+    entries = {e.name: e for e in analysis.entries}
+    certificate = entries["BoxAutomatonPDSCertificate"]
+    names = {e.record.id: e.name for e in analysis.entries}
+    closure = {names[record_id] for record_id in certificate.closure.reached}
+    assert closure == {
+        "BoxAutomatonPDSCertificate", "BoxAutomatonCertificate",
+        "BoxCycleContainment", "OverlapCoincidenceCriterion",
+    }
+    assert certificate.status == "proved"
+    assert "BoxAutomatonPDSCertificate" not in reachable("Open")
+    assert "BoxAutomatonPDSCertificate" in reachable("Imports")
+    assert "BoxAutomatonPDSCertificate" in gl.established(analysis, ("OverlapCoincidenceCriterion",))
+
+
+def test_per_specimen_certificates_cannot_discharge_uniform_open_gates():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof" / "tla" / "ledger.json"))
+    entries = {e.name: e for e in analysis.entries}
+    for name in ("BoxAutomatonCertificate", "LeftmostChainCycleStructure", "LeftmostChainG1Certificate"):
+        assert entries[name].status == "proved"
+        assert name in reachable("Open")
+    assert "if every vertex" in entries["BoxAutomatonPDSCertificate"].record.statement
+    assert "no terminal leftmost cycle" in entries["LeftmostChainG1Certificate"].record.statement
+    assert "right-infinite" in entries["LeftmostChainCycleStructure"].record.statement
+    uniform_gates = {"FormalProductivity", "G1", "PDS", "OverlapProductivity", "AllSeedOverlapProductivity", "AllSeedStrictZipperExclusion"}
+    assert not uniform_gates & reachable("Open")
+    assert not uniform_gates & reachable("Imports")
+    # Even treating the new certificate implications as available assumptions
+    # must not supply their per-specimen hypotheses or assert them uniformly.
+    assert not uniform_gates & gl.established(analysis, tuple(make_ledger.BOX_LC_REVIEWED))
+
+
+def test_box_and_leftmost_review_evidence_is_bound_into_each_record():
+    records = make_ledger.records()
+    for name in make_ledger.BOX_LC_REVIEWED:
+        record = records[name]
+        assert record.field("review_source") == make_ledger.BOX_LC_REVIEW
+        assert (ROOT / record.field("review_source")).is_file()
+        assert record.field("review_date") == "2026-10-08"
+        assert record.field("source_revision") == make_ledger.BOX_LC_BASELINE
+        assert record.field("reconciled_source_revision") == make_ledger.BOX_LC_RECONCILED_BASELINE
+        assert record.field("human_review_pending") == "true"
+
 
 
 def test_model_rejects_false_g1_nonestablishment_with_tlc(tmp_path):

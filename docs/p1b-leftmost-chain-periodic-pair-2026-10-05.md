@@ -1,9 +1,16 @@
 # P1b: the leftmost chain is functional, and its cycles are prefix-vs-interior pairs — 2026-10-05
 
-**Status:** one proposition and three corollaries proved here, with an exact
-certificate on the standing corpus: Proposition LC holds on every one of the
-10,584 terminal leftmost cycles of all 4,554 specimens, none capped, none
-failing. Corollary LC5 gives **G1 outright for the 1,794 specimens whose box
+**Status:** Proposition LC and Corollaries LC1–LC5 are proved here. The dated
+internal review is
+[`review-box-leftmost-ledger-2026-10-08.md`](review-box-leftmost-ledger-2026-10-08.md);
+human review remains pending. The proof-dependency nodes are
+`LeftmostChainCycleStructure` (Lemma S, LC and LC4), and
+`LeftmostChainG1Certificate` (LC5), with `BoxCycleContainment` supplying LC5's
+finite-descent and cycle-bound dependency.
+On the standing corpus, claims 1–3 are checked on all 10,584 terminal leftmost
+cycles of all 4,554 specimens, none capped, none failing. Claim 4 is replayed
+over `Z` on 10,128 cycles; the other 456 offsets are uncomputed, and their
+integrality rests on the proof. Corollary LC5 gives **G1 outright for the 1,794 specimens whose box
 graph has no terminal cycle**, by a route needing only the leftmost function —
 though G1 is already certified on that whole corpus by the Proposition V
 census, so this is a cheaper certificate, not a new finite-domain result. It
@@ -11,8 +18,8 @@ settles neither T1 nor T2 of
 [`p1b-vertex-coincidence-box-2026-10-02.md`](p1b-vertex-coincidence-box-2026-10-02.md)
 §5.6c, neither PPVC, nor #139, G1 or PSC. What it does is replace the
 combinatorial condition "this vertex is not in `CU`" by an arithmetic witness:
-a periodic pair of `Φ^r`-fixed tilings built from one **prefix** occurrence and
-one **interior** occurrence, with an explicit integrality condition.
+a `Φ^r`-fixed ray/tiling pair built from one **prefix** occurrence and one
+**interior** occurrence, with an explicit integrality condition.
 
 Ledger (2026-10-08): Lemma S, Proposition LC and Corollary LC4 are the
 repository-proved node `LeftmostChainCycleStructure`; Corollary LC5 is the
@@ -113,8 +120,9 @@ Then, writing `i` for A's letter at `y_0` and `j` for B's:
 4. the offset vector satisfies the cycle equation `(I − M^r) w_0 = ab(Q)`
    (up to the sign exchange), so `w_0 = (I − M^r)^{-1} ab(Q) ∈ Z^A` and
    `ab(Q) ∈ (I − M^r) Z^A`;
-5. the pair `T_A = T(i, ∅)`, `T_B = T(j, Q) + <ell, w_0>` consists of two
-   `Phi_c^r`-fixed tilings with the common centre `c = 0`; `c` is a vertex of
+5. `T_A = T(i, ∅)` is a right-infinite fixed point and
+   `T_B = T(j, Q) + <ell, w_0>` is a two-sided `Phi_c^r`-fixed tiling. The
+   pair is compared on `[0, ∞)` with common centre `c = 0`; `c` is a vertex of
    `T_A` of infinite level, `c` is interior to every level tile of `T_B`, and
    `c` is never a common vertex of the pair.
 
@@ -153,7 +161,10 @@ Then, writing `i` for A's letter at `y_0` and `j` for B's:
    interior occurrence, and its composite index `|Q|` is strictly between `0`
    and `|sigma^r(j)| − 1`.
 
-4. Proved in 3.
+4. Proved in 3. The matrix `I − M^r` is invertible: its eigenvalues are
+   `1 − beta^r` and `1 − beta_k^r` at the contracting conjugates, none zero.
+   The initial cycle offset is already integral; the inverse equation
+   identifies it rather than assuming integrality of an arbitrary occurrence.
 
 5. The cycle's composite contraction `E` is a composition of `r` leftmost
    edges, so by Lemma C step 1 it fixes the left end of `R_{y_0}`, which is
@@ -169,8 +180,8 @@ Then, writing `i` for A's letter at `y_0` and `j` for B's:
    point of `sigma^r` beginning with `i`, while `T(j, Q)` is two-sided; the
    pair, and the claim below, live on `[0, ∞)`, which is where the region is.
    `c = 0` is the start of A's tile at every level `rn`, hence a vertex of
-   `T_A` of level `>= rn` for every `n`, i.e. of infinite level; by
-   Proposition P″(a) of §5.6b it is therefore the M-adic centre `c_{T_A}`. On
+   `T_A` of level `>= rn` for every `n`, i.e. of infinite level in the ray's
+   displayed substitution hierarchy. On
    the B side `c` is interior to the level-`rn` tile `j` for every `n`, by 3,
    so `c` is not a vertex of `T_B`; a point that is not a vertex of `T_B` is
    not a common vertex. `square`
@@ -282,7 +293,7 @@ of §5.6c already applies.
 Proposition LC are indexed by tuples `(r, i, j, Q)` with `f^r(i) = i`,
 `sigma^r(j) = Q j V` interior, and `ab(Q) ∈ (I − M^r) Z^A`. At most three
 letters are `f`-periodic, so the prefix side contributes at most three
-tilings, one per `f`-cycle.
+fixed rays, one per periodic starting letter of `f`.
 
 **What does not follow.** Proposition LC says what a failure of `CU` looks
 like; it says nothing about which vertices are in the basin of such a cycle.
@@ -371,8 +382,9 @@ commuting with inflation. It translates the region by `−t`, so it carries the
 child containing the parent's left end to the child containing the parent's
 left end: leftmost chains go to leftmost chains, and terminal cycles to
 terminal cycles. It negates the offset, so by claim 1 it reverses a cycle's
-sign; a cycle fixed by it would need `t = −t`, hence `t = 0`, which its
-vertices do not have. So the involution is free and the cycles pair off.
+sign. The whole original cycle has one strict sign and its image has the
+opposite strict sign, so the two cycles cannot coincide even as unbased
+cycles. Thus the involution is free on cycles and they pair off.
 `square`
 
 This is why the catch-up-free counts above are 2, 4, 6, 8, 10 and never 1, 3,

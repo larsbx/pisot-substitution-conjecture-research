@@ -1366,3 +1366,28 @@ by deleting it.
   coincidence. No error found. ·
   `pds-certificate-from-the-box-automaton-2026-10-07.md` §§3–4;
   `p1b-leftmost-chain-periodic-pair-2026-10-05.md` §§3–4, 8a
+- 2026-10-08 · Follow-up to the finite-domain entry above: Ω's universal per-specimen
+  equivalence/PDS implication and LC's structure/LC5 implication now have
+  proof-dependency nodes after a separate review of the arguments and four
+  primary sources. The finite-domain claim remains separate and uniform G1
+  and PSC remain open. Clarifications: the prefix object is a right-infinite
+  ray, the zero leftmost index belongs to the later-starting tile, and the
+  456 long-cycle offsets in the LC census are uncomputed, with integrality
+  supported by the proof. ·
+  [dated review](review-box-leftmost-ledger-2026-10-08.md);
+  `tools/make_ledger.py`
+- 2026-10-08 · The LC census's capped branch printed `INCONCLUSIVE` but
+  returned success (the still-open PR #227 cap-status review). Its completion
+  gate now raises on a cap or a failed sign/shape/integral replay and is covered
+  by the LC regression; deliberately uncomputed offsets stay separate. ·
+  `kernel/leftmost_chain_census.mojo`,
+  `kernel/tests/test_leftmost_chain.mojo`;
+  [review](review-box-leftmost-ledger-2026-10-08.md#4-implementation-and-evidence-boundary)
+- 2026-10-08 · PR #236 rebased onto `main@33a1b8b` after #241 registered
+  the overlapping results. Retain the canonical Ω1/Ω/LC/LC5 names, the
+  open `FormalProductivity` gate and its model; attach the separate dated
+  review to those records. The local `BoxAutomatonPDSCertificate` keeps its
+  executable premise inside the implication and cannot establish a uniform
+  gate. Duplicate branch-only lemma names are consolidated, and generated
+  surfaces are regenerated from the reconciled table. ·
+  `review-box-leftmost-ledger-2026-10-08.md` §5; `tools/make_ledger.py`

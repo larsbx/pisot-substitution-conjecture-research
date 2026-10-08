@@ -98,6 +98,17 @@
       "source": "source: docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
     },
     {
+      "id": "BoxAutomatonPDSCertificate",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for each fixed PIP substitution, if every vertex of its complete box automaton reaches a coincidence, its Perron-length suspension tiling flow has pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega consequence (a); docs/review-box-leftmost-ledger-2026-10-08.md, sections 1-2",
+      "leaks": "premises not established: OverlapCoincidenceCriterion"
+    },
+    {
       "id": "BoxCycleContainment",
       "kind": "claim",
       "label": "Repository-proved",
@@ -384,10 +395,10 @@
       "kind": "claim",
       "label": "Repository-proved",
       "provenance": "theorem-backed",
-      "statement": "every terminal cycle of the leftmost-child map on the box graph keeps one strict offset sign and is a prefix-vs-interior occurrence pair sigma^r(i) = i U, sigma^r(j) = Q j V with (I - M^r) w_0 = ab(Q), whose common centre is never a common vertex; the cycles come in mirror pairs",
+      "statement": "every terminal cycle of the leftmost-child map on the box graph keeps one strict offset sign and is a prefix-vs-interior occurrence pair sigma^r(i) = i U, sigma^r(j) = Q j V with (I - M^r) w_0 = ab(Q); the prefix fixed point is right-infinite and the translated interior tiling is two-sided with common centre zero, which is never a common vertex; the cycles come in mirror pairs",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Lemma S, Proposition LC and Corollary LC4; exact certificate on all 10,584 terminal cycles of the standing corpus; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+      "source": "source: docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Lemma S, Proposition LC and Corollary LC4; standing corpus: 10,584 sign/shape checks, 10,128 integral replays, 456 uncomputed offsets; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
     },
     {
       "id": "LeftmostChainG1Certificate",
@@ -505,7 +516,7 @@
       "kind": "claim",
       "label": "Imported theorem",
       "provenance": "imported-theorem",
-      "statement": "a self-similar tiling of the line with Pisot inflation has pure discrete spectrum when from every overlap there is a path to a coincidence",
+      "statement": "a repetitive primitive FLC self-similar tiling of the line with Pisot inflation has Meyer return vectors and its tiling flow has pure discrete spectrum when every occurring overlap reaches a coincidence",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "imported_theorem",
       "source": "source: Lee-Moody-Solomyak, DCG 29 (2003), Lemma 6.9 and Theorem 4.7; Meyer property by Lee-Solomyak, DCDS-A 32 (2012), Theorem 4.3; docs/pds-certificate-from-the-box-automaton-2026-10-07.md, section 7"
@@ -1466,6 +1477,14 @@
     },
     {
       "type": "implicative",
+      "source": "BoxAutomatonCertificate",
+      "target": "BoxAutomatonPDSCertificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "BoxAutomatonPDSCertificate/BoxAutomatonCertificate"
+    },
+    {
+      "type": "implicative",
       "source": "BoxCycleContainment",
       "target": "BoxAutomatonCertificate",
       "provenance": "theorem-backed",
@@ -1862,6 +1881,15 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "OverlapBoundaryZipperDichotomy/OverlapBadSCCNormalForm"
+    },
+    {
+      "type": "implicative",
+      "source": "OverlapCoincidenceCriterion",
+      "target": "BoxAutomatonPDSCertificate",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "BoxAutomatonPDSCertificate/OverlapCoincidenceCriterion",
+      "leaks": "premise is imported-theorem"
     },
     {
       "type": "implicative",

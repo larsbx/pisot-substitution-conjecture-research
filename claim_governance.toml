@@ -421,6 +421,24 @@ anchor = "| Box-automaton certificate for formal productivity |"
 window_lines = 0
 
 [[claim]]
+name = "BoxAutomatonPDSCertificate"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BoxAutomatonPDSCertificate"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BoxAutomatonPDSCertificate |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Box-automaton PDS certificate |"
+window_lines = 0
+
+[[claim]]
 name = "BoxCycleContainment"
 status = "proved"
 aliases = ["Lemma Ω1"]

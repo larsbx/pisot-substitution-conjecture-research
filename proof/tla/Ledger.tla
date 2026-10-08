@@ -15,6 +15,7 @@ ResultSet == {
     "AllStatesProductiveViaOverlaps",
     "BoundaryCoincidenceCriterion",
     "BoxAutomatonCertificate",
+    "BoxAutomatonPDSCertificate",
     "BoxCycleContainment",
     "C2",
     "C3Local",
@@ -98,6 +99,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "AllStatesProductiveViaOverlaps" -> {{"OverlapProductivity", "SwapOverlapFiniteness"}}
       [] r = "BoundaryCoincidenceCriterion" -> {{}}
       [] r = "BoxAutomatonCertificate" -> {{"BoxCycleContainment"}}
+      [] r = "BoxAutomatonPDSCertificate" -> {{"BoxAutomatonCertificate", "OverlapCoincidenceCriterion"}}
       [] r = "BoxCycleContainment" -> {{}}
       [] r = "C2" -> {{"C3Local"}}
       [] r = "C3Local" -> {{"C4", "C3Locality"}}
@@ -178,6 +180,7 @@ ProvedDef == {
     "AllStatesProductiveViaOverlaps",
     "BoundaryCoincidenceCriterion",
     "BoxAutomatonCertificate",
+    "BoxAutomatonPDSCertificate",
     "BoxCycleContainment",
     "C2",
     "C3Local",
@@ -302,6 +305,7 @@ AllSeedStrictZipperExclusionNotEstablished == "AllSeedStrictZipperExclusion" \no
 AllStatesProductiveViaOverlapsNotEstablished == "AllStatesProductiveViaOverlaps" \notin established
 BoundaryCoincidenceCriterionNotEstablished == "BoundaryCoincidenceCriterion" \notin established
 BoxAutomatonCertificateNotEstablished == "BoxAutomatonCertificate" \notin established
+BoxAutomatonPDSCertificateNotEstablished == "BoxAutomatonPDSCertificate" \notin established
 BoxCycleContainmentNotEstablished == "BoxCycleContainment" \notin established
 C2NotEstablished == "C2" \notin established
 C3LocalNotEstablished == "C3Local" \notin established

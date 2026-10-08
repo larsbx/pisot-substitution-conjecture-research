@@ -40,6 +40,9 @@ FIBRE = "docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md"
 BOX = "docs/pds-certificate-from-the-box-automaton-2026-10-07.md"
 LEFTMOST = "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md"
 REVIEWED = "independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+BOX_LC_REVIEW = "docs/review-box-leftmost-ledger-2026-10-08.md"
+BOX_LC_BASELINE = "cb9db58c9e25209c2a54ccd6955b509af88e8356"
+BOX_LC_RECONCILED_BASELINE = "33a1b8b6cffc10c7f1e5be41a22325897a5072e4"
 
 # name -> (kind, statement, source or reason, dependencies, tags)
 # Dependencies are one-way proof sufficiency, never a converse implication
@@ -190,7 +193,7 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                 f"{BOX}, Theorem Omega; {REVIEWED}", ("BoxCycleContainment",), ()),
     "FormalProductivity": (P, "for every PIP substitution every potential overlap is productive (FP)",
                            f"open conjectural gate; docs/formal-productivity-reduction-2026-10-04.md; {BOX}; implied by PDS through Corollary FP'' and Theorem S", (), ()),
-    "OverlapCoincidenceCriterion": (I, "a self-similar tiling of the line with Pisot inflation has pure discrete spectrum when from every overlap there is a path to a coincidence",
+    "OverlapCoincidenceCriterion": (I, "a repetitive primitive FLC self-similar tiling of the line with Pisot inflation has Meyer return vectors and its tiling flow has pure discrete spectrum when every occurring overlap reaches a coincidence",
                                     f"Lee-Moody-Solomyak, DCG 29 (2003), Lemma 6.9 and Theorem 4.7; Meyer property by Lee-Solomyak, DCDS-A 32 (2012), Theorem 4.3; {BOX}, section 7", (), ()),
     "PDSFormalProductivityRoute": (T, "formal productivity implies pure discrete spectrum through the overlap-coincidence criterion, without unimodularity",
                                    f"{BOX}, consequence (a); {REVIEWED}", ("FormalProductivity", "OverlapCoincidenceCriterion"), ()),
@@ -200,14 +203,24 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "G1FormalProductivityRoute": (T, "formal productivity gives finite BPA with termination with coincidence from every swap seed, every reachable state being at most 2 beta^D ell_max long",
                                   f"{BOX}, consequence (c), with docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1; {REVIEWED}",
                                   ("FormalProductivity", "BoxCycleContainment"), ()),
+    # The local executable premise stays inside this proved implication. It
+    # does not supply the separate uniform FormalProductivity gate above.
+    "BoxAutomatonPDSCertificate": (T, "for each fixed PIP substitution, if every vertex of its complete box automaton reaches a coincidence, its Perron-length suspension tiling flow has pure discrete spectrum",
+                                  f"{BOX}, Theorem Omega consequence (a); {BOX_LC_REVIEW}, sections 1-2",
+                                  ("BoxAutomatonCertificate", "OverlapCoincidenceCriterion"), ()),
     # --- leftmost chain: the structure of catch-up failure ---------------------------
-    "LeftmostChainCycleStructure": (T, "every terminal cycle of the leftmost-child map on the box graph keeps one strict offset sign and is a prefix-vs-interior occurrence pair sigma^r(i) = i U, sigma^r(j) = Q j V with (I - M^r) w_0 = ab(Q), whose common centre is never a common vertex; the cycles come in mirror pairs",
-                                    f"{LEFTMOST}, Lemma S, Proposition LC and Corollary LC4; exact certificate on all 10,584 terminal cycles of the standing corpus; {REVIEWED}", (), ()),
+    "LeftmostChainCycleStructure": (T, "every terminal cycle of the leftmost-child map on the box graph keeps one strict offset sign and is a prefix-vs-interior occurrence pair sigma^r(i) = i U, sigma^r(j) = Q j V with (I - M^r) w_0 = ab(Q); the prefix fixed point is right-infinite and the translated interior tiling is two-sided with common centre zero, which is never a common vertex; the cycles come in mirror pairs",
+                                    f"{LEFTMOST}, Lemma S, Proposition LC and Corollary LC4; standing corpus: 10,584 sign/shape checks, 10,128 integral replays, 456 uncomputed offsets; {REVIEWED}", (), ()),
     "LeftmostChainG1Certificate": (T, "a PIP substitution whose box graph has no terminal leftmost cycle satisfies all-seed strict-zipper exclusion, hence finite BPA",
                                    f"{LEFTMOST}, Corollary LC5, with {MANUSCRIPT}, Proposition 5.47; {REVIEWED}", ("BoxCycleContainment",), ()),
     # --- retracted ------------------------------------------------------------------------
     "V5Thm51": (P, "v5 Theorem 5.1", "retired: the v5 Theorem 5.1 argument is withdrawn", (), (gl.WITHDRAWN_TAG,)),
 }
+
+BOX_LC_REVIEWED = frozenset({
+    "BoxCycleContainment", "BoxAutomatonCertificate", "OverlapCoincidenceCriterion",
+    "BoxAutomatonPDSCertificate", "LeftmostChainCycleStructure", "LeftmostChainG1Certificate",
+})
 
 STATUS_NOTES = {
     "G1": "the renewal, all-seed overlap, strict-zipper-exclusion and formal-productivity implications are proved alternative establishments of canonical G1; their open premises are not discharged, so G1 itself remains an open conjectural gate",
@@ -308,6 +321,7 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "StrongCoincidenceFromPDS": [surface(MAP, "| Strong coincidence from PDS |")],
     "BoxCycleContainment": [surface(MAP, "| Cycle vertices lie in the box automaton |")],
     "BoxAutomatonCertificate": [surface(MAP, "| Box-automaton certificate for formal productivity |")],
+    "BoxAutomatonPDSCertificate": [surface(MAP, "| Box-automaton PDS certificate |")],
     "FormalProductivity": [surface(MAP, "| Formal productivity |")],
     "OverlapCoincidenceCriterion": [surface(MAP, "| Overlap-coincidence criterion |")],
     "PDSFormalProductivityRoute": [surface(MAP, "| Formal productivity implies PDS (overlap coincidence) |")],
@@ -332,6 +346,11 @@ def records() -> dict[str, Record]:
             evidence = (("hypotheses_checked", "true"), ("source", source))
         else:
             evidence = (("proof_reviewed", "true"), ("source", source))
+        if name in BOX_LC_REVIEWED:
+            evidence += (("review_source", BOX_LC_REVIEW), ("review_date", "2026-10-08"),
+                         ("source_revision", BOX_LC_BASELINE),
+                         ("reconciled_source_revision", BOX_LC_RECONCILED_BASELINE),
+                         ("human_review_pending", "true"))
         if name == "G1":
             evidence += (("dependency_alternatives", json.dumps(
                 [[build(r).id] for r in ("G1FromRenewal", "G1OverlapRoute", "G1HalfCoincidenceRoute", "G1FormalProductivityRoute")],
