@@ -323,6 +323,35 @@ by deleting it.
   `test_the_affine_value_split_partitions_the_real_points`,
   `test_the_affine_value_split_refutes_the_zy_yzy_region`,
   `test_the_q_lift_closes_zy_yzy`
+- 2026-10-08 · **A deep lazy lift gives `zy | yzyz`'s no-certificate regions a
+  certificate; the leaf still times out.** Under `q_lift` only (flag-off
+  `zcap` output byte-identical): `_poly_carve` enumerates point paths with
+  `Q_OFFSET_BOUND` (4) through a resumable `PointPaths` and lifts each as
+  it comes (`_lazy_lift`): the first `solve_lift` that solves wins, else
+  the best `lift_key`, stopping at the first whole-region lift
+  (`whole_region_lift`: end offset lifts to zero, carving forms hold at
+  every probe point). The ordinary pass keeps 5,000 nodes and 40 paths; a
+  region past the peel limit with no certificate gets one deep pass,
+  2,000,000 nodes and no path cap, before it is reported open. Running the
+  deep pass on every failed lift is ruinous: one `zy | yz` region spent
+  175 s (1,320 paths, 155 s in `lift_path_poly`, ~117 ms a path) without a
+  whole-region lift. At the four no-certificate regions of the
+  `zy | yzyz` run (#1150, #1165, #1198, #1338) the deep pass certifies in
+  7–8 s each, two carving nothing. Measured (`timeout` as given, 3–4 runs
+  side by side): `zy | yz` 42 regions, 0 open, 11 s (unchanged); `zy | yzy`
+  120 regions, 1 open (no point), 91 s (unchanged); `zy | yzyz` timed out
+  at 1,800 s at region #1493 with 15 regions certified by the deep pass,
+  none failing, 0 open without a certificate, 18 open without a real
+  point, 33 value splits (at 5c43b85, 1,300 s: #1352, 4 / 15 / 16); `s =
+  −1` `zyz | yz` timed out at 900 s at #581, 2 deep certifications, 0 / 13
+  / 15 (at 5c43b85: #1053, 4 / 38 / 20; the runs diverge at #90, the
+  first deep certification). Two of the deep lifts (#1463, #1472) carve
+  slices `n_1 >= 67`, `n_1 >= 60`. Not tried: restricting deep line
+  positions to anchors (the deep pass already finds its lift in seconds).
+  What blocks `zy | yzyz` now is regions with no real point found. ·
+  `kernel/odd_letter_family_certificate.mojo` (`_lazy_lift`,
+  `_certify_at(deep=)`); `kernel/psc/poly_line.mojo` (`PointPaths`,
+  `whole_region_lift`); `test_the_deep_lazy_lift_certifies_a_zy_yzyz_region`
 
 ## 4. Withdrawn or unreproducible figures
 

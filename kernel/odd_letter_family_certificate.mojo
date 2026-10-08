@@ -77,7 +77,7 @@ from psc.cone_witness import (
     witness_position,
 )
 from psc.cone_witness import CrossingClose, aff_add, aff_eval, aff_is_const, aff_nonneg, aff_scale, aff_sub, crossing_conditions, lift_path, monotone_paths_meet, Prover, _q_lin, _qa, _q_nonneg, _q_nonneg_under
-from psc.poly_line import PolyLift, lift_key, lift_path_poly, probe_points, poly_add, poly_affine_part, poly_from_aff, poly_higher, poly_mul, enumerate_point_paths, poly_is_zero, poly_key, solve_crossing_lift, solve_lift, steps_at, verify_crossing_poly, verify_witness_poly
+from psc.poly_line import PointPaths, PolyLift, lift_key, whole_region_lift, lift_path_poly, probe_points, poly_add, poly_affine_part, poly_from_aff, poly_higher, poly_mul, enumerate_point_paths, poly_is_zero, poly_key, solve_crossing_lift, solve_lift, steps_at, verify_crossing_poly, verify_witness_poly
 from psc.product_lift import ProductLift, full_lift, lift_affine, lift_form, lift_point, mccormick_box_forms, no_lift, product_substitution, rlt_forms
 from psc.prng import SplitMix64
 from psc.farkas_lp import lp_infeasible
@@ -138,6 +138,7 @@ comptime EAGER_EQUALITIES = 4  # q-lift: implied equalities substituted per regi
 comptime Q_OFFSET_BOUND = 4  # q-lift: the point search's bound off the line (zy | yz passes (y, y, -4 e_o))
 comptime AFFINE_SLOPES = 3  # q-lift: the e-parametric value split tries L = n_k - c e for c in 0..AFFINE_SLOPES
 comptime AFFINE_REACH = 1 << 16  # q-lift: its search for a bound of L gives up past this value
+comptime LAZY_PATH_NODES = 2000000  # q-lift: nodes of the lazy point-path enumeration before a region is reported open
 comptime RUN_TREE_BUDGET = 300  # run_tree: regions examined per pattern before reporting the rest open
 
 
@@ -3899,8 +3900,10 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
     its bounded `e` admits no real point (`_point_search`), and else is split
     by the values of a variable such certificates bound (`_value_split`),
     or of a form `n_k - c e` bounded by certificates on probes that carry
-    their envelope (`_affine_value_split`), before it is reported open.
-    Off by default: without it every step above is the plain cover's."""
+    their envelope (`_affine_value_split`), before it is reported open; a
+    region past the peel limit where no certificate lifts gets one deep
+    lazy lift (`_lazy_lift`) from its base point before it is reported
+    open. Off by default: without it every step above is the plain cover's."""
     var out = ShapeCover()
     var screen = CubicScreen()
     var mn = pat.slots() + (1 if tail else 0)
@@ -4078,6 +4081,11 @@ def cover_pattern_guided(pat: RunPattern, s: Int, delta: Int, region_budget: Int
                     _decide_point(pat, pts[k], m, screen, out)
             elif flat.subst != reg.subst:
                 stack.append(flat^)
+            elif any_live and reg.depth >= GUIDED_PEEL_LIMIT and reg.lift.on() and _certify_at(pat, fam, reg, ns, stack, out, verbose, True):
+                # q-lift, before reporting it open: the deep lazy lift
+                # (liftable paths of zy | yzyz sit at levels 4-5)
+                if verbose:
+                    print("  #" + String(out.regions), "certified by the deep lazy lift", flush=True)
             elif any_live and reg.depth >= GUIDED_PEEL_LIMIT:
                 out.open += 1
                 out.open_forms.append(reg.subst.copy())
@@ -4297,11 +4305,12 @@ def _new_forms(forms: List[List[Int]], reg: GuidedRegion) -> List[List[Int]]:
     return out^
 
 
-def _certify_at(pat: RunPattern, fam: ConeFamily, reg: GuidedRegion, ns: List[Int], mut stack: List[GuidedRegion], mut out: ShapeCover, verbose: Bool) raises -> Bool:
+def _certify_at(pat: RunPattern, fam: ConeFamily, reg: GuidedRegion, ns: List[Int], mut stack: List[GuidedRegion], mut out: ShapeCover, verbose: Bool, deep: Bool = False) raises -> Bool:
     """Certify part of `reg` from the point `ns`: an exact line-mode path,
     lifted (affine, then over polynomials), else a Lemma X closure, lifted
     likewise. On success the carved piece is verified, counted, and its
-    complements pushed."""
+    complements pushed. `deep`: the q-lift's lazy point-path search runs
+    to `LAZY_PATH_NODES` nodes with no path cap (`_lazy_lift`)."""
     var point = pattern_family(pat, point_subst(reg.subst, ns))
     var done = False
     # an exact line-mode path at the point
@@ -4332,7 +4341,7 @@ def _certify_at(pat: RunPattern, fam: ConeFamily, reg: GuidedRegion, ns: List[In
         else:
             # lift again with candidates built from the point's own step,
             # over polynomials (the region's M gamma may be quadratic)
-            var levels = _poly_carve(fam, point, ns, wp.steps, reg, stack, verbose, out.regions)
+            var levels = _poly_carve(fam, point, ns, wp.steps, reg, stack, verbose, out.regions, deep)
             if levels > 0:
                 out.certified += 1
                 out.line_certified += 1
@@ -4396,7 +4405,41 @@ def _member_points_in(pat: RunPattern, reg: GuidedRegion, mut screen: CubicScree
     return out^
 
 
-def _poly_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], steps: List[WitnessStep], reg: GuidedRegion, mut stack: List[GuidedRegion], verbose: Bool, index: Int) raises -> Int:
+def _lazy_lift(fam: ConeFamily, point: ConeFamily, ns: List[Int], reg: GuidedRegion, probes: List[List[Int]], deep: Bool) raises -> PolyLift:
+    """q-lift: the other point paths, lifted as they are enumerated
+    (`PointPaths`, bound `Q_OFFSET_BOUND` off the line, the line offset
+    free, at most `LIFT_PATHS` paths and `LIFT_PATH_NODES` nodes, or if
+    `deep` `LAZY_PATH_NODES` nodes and no path cap). The first path
+    `solve_lift` solves is returned; else each path's candidate-tree lift
+    (`lift_path_poly`) ending on the diagonal competes by `lift_key`, and
+    the search stops at the first whole-region lift (`whole_region_lift`).
+    Only a choice: the caller carves by the lift's forms and re-verifies
+    it."""
+    var it = PointPaths(O, Y, Q_OFFSET_BOUND, MAX_LEVEL, Y, Z, LAZY_PATH_NODES if deep else LIFT_PATH_NODES, LINE_CAP)
+    var best = PolyLift()
+    best.why = "no point path lifts"
+    var key = 0
+    var paths = 0
+    while (deep or paths < LIFT_PATHS) and it.next(point):
+        paths += 1
+        var alt = solve_lift(fam, point, ns, O, Y, it.path, reg.lift)
+        if alt.ok:
+            return alt^
+        alt = lift_path_poly(fam, point, ns, O, Y, it.path, Y, Z, reg.lift, probes)
+        if not alt.ok or alt.a != alt.b:
+            continue
+        if whole_region_lift(alt, probes, reg.lift):
+            return alt^
+        var k = lift_key(alt, probes, reg.lift)
+        if not best.ok or k > key:
+            key = k
+            best = alt^
+    if not best.ok:
+        best.why = "none of " + String(paths) + " point paths lifts (" + String(it.nodes) + " nodes)"
+    return best^
+
+
+def _poly_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], steps: List[WitnessStep], reg: GuidedRegion, mut stack: List[GuidedRegion], verbose: Bool, index: Int, deep: Bool = False) raises -> Int:
     """Lift a point path over polynomials (`psc.poly_line`), carve the region
     by its affine forms, re-verify the path on the carved region with
     `verify_witness_poly` under the region's inequalities (a failure
@@ -4405,20 +4448,22 @@ def _poly_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], steps: List[W
     candidate tree's lift competes with the solved one by `lift_key` on the
     region's probe points (`solve_lift` sets its free unknowns to 0, which
     can pin a free line parameter to its value at the point and carve a
-    slice), and when neither solves, the candidate tree's lifts of the
-    other point paths compete with it the same way."""
+    slice), and when neither solves, the other point paths are lifted as
+    they are enumerated (`_lazy_lift`)."""
     var lr = solve_lift(fam, point, ns, O, Y, steps, reg.lift)
     var probes = List[List[Int]]()
-    var lp = PolyLift()
     if reg.lift.on():
         probes = probe_points(ns, reg.lift, reg.assume)
-        lp = lift_path_poly(fam, point, ns, O, Y, steps, Y, Z, reg.lift, probes)
+        var lp = lift_path_poly(fam, point, ns, O, Y, steps, Y, Z, reg.lift, probes)
         if lp.ok and lp.a == lp.b and (not lr.ok or lift_key(lp, probes, reg.lift) > lift_key(lr, probes, reg.lift)):
-            lr = lp.copy()
-    var paths = List[List[WitnessStep]]()
-    if not lr.ok:
+            lr = lp^
+    if not lr.ok and reg.lift.on():
+        lr = _lazy_lift(fam, point, ns, reg, probes, deep)
+        if verbose and not lr.ok:
+            print("  lazy lift failed:", lr.why)
+    elif not lr.ok:
         # other point paths, other segments: the first that solves
-        paths = enumerate_point_paths(point, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z, LIFT_PATHS, LIFT_PATH_NODES, LINE_CAP if reg.lift.on() else 0)
+        var paths = enumerate_point_paths(point, O, Y, OFFSET_BOUND, MAX_LEVEL, Y, Z, LIFT_PATHS, LIFT_PATH_NODES)
         var tried = 0
         for k in range(len(paths)):
             tried += 1
@@ -4428,22 +4473,8 @@ def _poly_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], steps: List[W
                 break
         if verbose and not lr.ok:
             print("  linear lift failed on", tried, "point paths:", lr.why)
-    if not lr.ok and not reg.lift.on():
-        lr = lift_path_poly(fam, point, ns, O, Y, steps, Y, Z)
-    elif not lr.ok:
-        # the candidate tree's lift on the other point paths, by `lift_key`
-        lr = lp^
-        var have = lr.ok and lr.a == lr.b
-        var best = lift_key(lr, probes, reg.lift) if have else 0
-        for k in range(len(paths)):
-            var alt = lift_path_poly(fam, point, ns, O, Y, paths[k], Y, Z, reg.lift, probes)
-            if not alt.ok or alt.a != alt.b:
-                continue
-            var key = lift_key(alt, probes, reg.lift)
-            if not have or key > best:
-                best = key
-                have = True
-                lr = alt^
+        if not lr.ok:
+            lr = lift_path_poly(fam, point, ns, O, Y, steps, Y, Z)
     if not lr.ok or lr.a != lr.b:
         if verbose:
             print("  polynomial lift failed:", lr.why if not lr.ok else "ends off the diagonal")
