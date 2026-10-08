@@ -226,6 +226,12 @@ Both are limits of the one-parameter affine method, not counterexamples.
 1. **`k` symbolic.** The vertex counts stabilise along each line. A
    two-parameter version of `psc.symbolic_line` (polynomials in `q` and `k`
    on the regime `p ≤ 2q + K`) would cover a whole wedge of class B at once.
+   **Follow-up (2026-10-08):** done, with `beta` bracketed rather than
+   Sturm queries, as Theorem C of
+   [`p1b-symbolic-cone-2026-10-08.md`](p1b-symbolic-cone-2026-10-08.md):
+   class B below slope `5/2` on both branches, containing every line above.
+   The `p ≫ q` corner does not occur (Lemma P1: `p < 3q + 12`); what stays open
+   is the layer near slope 3.
 2. **The `p ≫ q` corner** needs expansions in `sqrt(p)`, as Theorem L's §5
    already says.
 3. **The self-overlap of Proposition SA** is a single-tiling object: `sigma^n(a)`
