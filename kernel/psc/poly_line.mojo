@@ -561,7 +561,7 @@ def lifts_to_zero(gamma: List[Poly], lift: ProductLift) raises -> Bool:
     return True
 
 
-def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], ly: Int, lz: Int, lift: ProductLift = no_lift(), region: List[List[Int]] = List[List[Int]]()) raises -> PolyLift:
+def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b0: Int, steps: List[WitnessStep], ly: Int, lz: Int, lift: ProductLift = no_lift(), probes: List[List[Int]] = List[List[Int]]()) raises -> PolyLift:
     """`psc.cone_witness.lift_path` over polynomials: replay the point
     family's `steps` on the region family. At each level the candidates are
     built from the point's step (`_lift_candidates`, offsets agreeing with
@@ -573,7 +573,7 @@ def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b
     `ns` then a real point of width `1 + m + m'`). With a lift the search
     does not stop at the first such lift: it ranks children by whether
     their state is affine over `(n, q)` and returns the complete lift of
-    largest `lift_key` on the probe points of `region` (`probe_points`), so
+    largest `lift_key` on `probes` (`probe_points` of the region), so
     a lift that copies the base point's run lengths into its offsets (and
     so carves a slice) loses to one uniform over the region."""
     var out = PolyLift()
@@ -609,7 +609,6 @@ def lift_path_poly(fam: ConeFamily, point: ConeFamily, ns: List[Int], a0: Int, b
     var non_affine_ends = 0
     var fallback = PolyLift()
     var best = 0
-    var probes = probe_points(ns, lift, region) if lift.on() else List[List[Int]]()
     while len(stack) > 0 and nodes < LIFT_NODES:
         nodes += 1
         var fr = stack.pop()
@@ -712,11 +711,14 @@ def lift_key(lr: PolyLift, probes: List[List[Int]], lift: ProductLift) -> Int:
     end offset vanishes, both over `(n, q)`; `cost` is the L1 norm of every
     lifted offset plus 4 times that of the end offset, large when a base
     point's run length was copied into a constant or coefficient (or an
-    offset is not affine there). An end offset not affine over `(n, q)`
+    offset is not affine there). With no probe point, `extent` is 1 when
+    the end offset lifts to zero, so a lift vanishing on the whole region
+    still ranks first. An end offset not affine over `(n, q)`
     scores -1. Only a choice among lifts: each is
     carved by its own forms and re-verified."""
     var forms = lr.ineqs.copy()
     var cost = 0
+    var end_cost = 0
     for st in lr.steps:
         for off in [st.off_a.copy(), st.off_b.copy()]:
             var f = _lifted(lift, off)
@@ -730,11 +732,12 @@ def lift_key(lr: PolyLift, probes: List[List[Int]], lift: ProductLift) -> Int:
             return -1
         var neg = List[Int]()
         for x in g:
-            cost += 4 * abs(x)
+            end_cost += 4 * abs(x)
             neg.append(-x)
         forms.append(g^)
         forms.append(neg^)
-    var extent = 0
+    cost += end_cost
+    var extent = 1 if len(probes) == 0 and end_cost == 0 else 0
     for p in probes:
         var ok = True
         for f in forms:

@@ -20,7 +20,7 @@ from psc.cone_witness import aff_const, aff_eval, apply_step, WitnessStep, monot
 from std.collections import Dict
 from psc.pisot import is_pip
 from a1_normal_form_census import f_at, shared_tile_between
-from psc.poly_line import lift_path_poly, lifts_to_zero, verify_witness_poly
+from psc.poly_line import lift_path_poly, lifts_to_zero, probe_points, verify_witness_poly
 from psc.product_lift import full_lift, lift_form, lift_point, mccormick_box_forms
 from psc.farkas_lp import farkas_certificate, farkas_refutes, lp_infeasible
 from finite_exact.rat_q import Q
@@ -89,6 +89,7 @@ from odd_letter_family_certificate import (
     _with_envelope,
     _assume_empty,
     _value_split,
+    _satisfies,
 )
 
 
@@ -947,13 +948,6 @@ def test_fourier_motzkin_is_sound() raises:
     assert_true(fm_infeasible(wedge, 3))
 
 
-def _holds(sys: List[List[Int]], x: List[Int]) -> Bool:
-    for f in sys:
-        if aff_eval(f, x) < 0:
-            return False
-    return True
-
-
 def test_the_real_point_search_is_exact() raises:
     """_point_search on lifted systems over (n, q), q_j = n_j e (2 and 3
     run variables, the last the tail e; 2-4 forms with constants in -3..3
@@ -994,7 +988,7 @@ def test_the_real_point_search_is_exact() raises:
                 found += 1
                 assert_false(ps.empty)
                 assert_equal(ps.point, lift_point(lift, List[Int](ps.point[:mn])))
-                assert_true(_holds(sys, ps.point))
+                assert_true(_satisfies(sys, ps.point))
             if ps.empty:
                 empty += 1
                 if len(search_point(sys, w).point) > 0:
@@ -1007,7 +1001,7 @@ def test_the_real_point_search_is_exact() raises:
                 for _ in range(mn):
                     ns.append(c % 7)
                     c //= 7
-                if _holds(sys, lift_point(lift, ns)):
+                if _satisfies(sys, lift_point(lift, ns)):
                     any = True
                     break
             if any:
@@ -1017,7 +1011,7 @@ def test_the_real_point_search_is_exact() raises:
     assert_equal(List[Int]([found, empty, real_only]), List[Int]([1665, 1313, 452]))
     var lift = full_lift(2, 1)
     var hand = List[List[Int]]([List[Int]([0, -1, 0, 0, 0]), List[Int]([-1, 0, 0, 1, 0]), List[Int]([3, 0, -1, 0, 0])])
-    assert_true(_holds(hand, List[Int]([0, 0, 1, 0])))
+    assert_true(_satisfies(hand, List[Int]([0, 0, 1, 0])))
     assert_true(_point_search(GuidedRegion(List[List[Int]](), hand.copy(), 0, lift=lift.copy()), 4).empty)
 
 
@@ -1027,7 +1021,8 @@ def test_the_farkas_lp_agrees_with_fourier_motzkin() raises:
     Farkas certificate exactly when uncapped Fourier-Motzkin finds the
     system empty (1,747 of them), each certificate passes farkas_refutes,
     and no point of [0, 6]^3 satisfies a refuted system; the zero vector and
-    a negated certificate fail the check. On the 16 forms over (n, q) of a
+    a negated certificate fail the check, and a form of the wrong width or
+    a multiplier vector not one per form raises. On the 16 forms over (n, q) of a
     region of the zy | yzyz q-lift (n_1, n_3, n_5 live), Fourier-Motzkin
     passes its row cap and claims nothing while a checked certificate
     refutes the polyhedron."""
@@ -1055,8 +1050,21 @@ def test_the_farkas_lp_agrees_with_fourier_motzkin() raises:
         assert_false(farkas_refutes(sys, 3, neg))
         assert_false(farkas_refutes(sys, 3, zero))
         for code in range(343):
-            assert_false(_holds(sys, List[Int]([code % 7, (code // 7) % 7, code // 49])))
+            assert_false(_satisfies(sys, List[Int]([code % 7, (code // 7) % 7, code // 49])))
     assert_equal(refuted, 1747)
+    # a form of the wrong width, or a multiplier vector not one per form, raises
+    var one = List[List[Int]]([List[Int]([-1, 1, 0, 0])])
+    var wide = List[List[Int]]([List[Int]([-1, 1, 0])])
+    var raised = 0
+    try:
+        _ = farkas_refutes(wide, 3, List[Q]([Q.zero()]))
+    except:
+        raised += 1
+    try:
+        _ = farkas_refutes(one, 3, List[Q]())
+    except:
+        raised += 1
+    assert_equal(raised, 2)
     var region = List[List[Int]]([List[Int]([6, 0, 2, 0, -1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([-2, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([-8, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([-13, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([13, 0, -1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([-7, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([-8, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([15, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([14, 0, -1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([-5, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([5, 0, 1, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([-7, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([18, 0, 4, 0, -3, 0, -3, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([-11, 0, -4, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([11, 0, 4, 0, -2, 0, -3, 0, 0, 0, 0, 0, 0, 0, 0]), List[Int]([-9, 0, -3, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0])])
     assert_false(fm_infeasible(region, 14))
     assert_true(lp_infeasible(region, 14))
@@ -1071,8 +1079,9 @@ def test_the_envelope_refutes_only_regions_without_a_real_point() raises:
     (coefficients -1..1), e >= 1 and, on every other region, e <= 2..4 and
     n_k <= 4. Every real point with n in [0, 6]^m that satisfies the
     region satisfies every envelope form, and a region _assume_empty
-    refutes with its envelope has no such point -- on the bounded regions,
-    whose real points all lie in the box, no real point at all. Of 4,000
+    refutes with its envelope has no real point with n in [0, 6]^m (only
+    these are checked on the unbounded regions; on the bounded ones, whose
+    real points all lie in [0, 6]^m, the check is exhaustive). Of 4,000
     regions 1,378 hold a real point and 2,597 are refuted, 274 of them only
     once the envelope is added; 10 bounded regions without a real point
     are not refuted (the envelope is not complete). A hand case:
@@ -1124,9 +1133,9 @@ def test_the_envelope_refutes_only_regions_without_a_real_point() raises:
                     ns.append(c % 7)
                     c //= 7
                 var x = lift_point(lift, ns)
-                if _holds(sys, x):
+                if _satisfies(sys, x):
                     any = True
-                    assert_true(_holds(env.assume, x))
+                    assert_true(_satisfies(env.assume, x))
             if any:
                 with_point += 1
                 assert_false(empty)
@@ -1146,10 +1155,11 @@ def test_the_value_split_partitions_the_real_points() raises:
     """_value_split on 2,000 seeded lifted regions over (n, q) (2 and 3
     run variables, the last the tail e; 2-4 forms with constants -3..5 and
     coefficients -1..1, the first over n alone, and e >= 1) whose slots
-    are the run variables: when it splits, it splits one variable by
-    values, and a real point with n in [0, 6]^m lies in the region exactly
-    when that variable takes one of the values there and the point lies in
-    that value's piece -- the pieces partition the region's real points.
+    are the run variables: when it splits, every piece fixes the same
+    variable, each to a distinct value, and a real point with n in [0, 6]^m
+    lies in exactly one piece (the variable taking that piece's value) when
+    it lies in the region and in none otherwise -- the pieces partition the
+    region's real points.
     915 regions are split."""
     var seed = 20261009
     var split = 0
@@ -1188,6 +1198,13 @@ def test_the_value_split_partitions_the_real_points() raises:
                 if fixed:
                     k = i
             assert_true(k >= 0)
+            # every piece fixes n_k, each to its own value
+            var values = List[Int]()
+            for p in pieces:
+                for j in range(1, w + 1):
+                    assert_equal(p.subst[k][j], 0)
+                assert_false(p.subst[k][0] in values)
+                values.append(p.subst[k][0])
             for code in range(7 ** mn):
                 var ns = List[Int]()
                 var c = code
@@ -1195,11 +1212,11 @@ def test_the_value_split_partitions_the_real_points() raises:
                     ns.append(c % 7)
                     c //= 7
                 var x = lift_point(lift, ns)
-                var inside = False
+                var hits = 0
                 for p in pieces:
-                    if p.subst[k][0] == ns[k] and _holds(p.assume, x):
-                        inside = True
-                assert_equal(_holds(sys, x), inside)
+                    if p.subst[k][0] == ns[k] and _satisfies(p.assume, x):
+                        hits += 1
+                assert_equal(hits, 1 if _satisfies(sys, x) else 0)
     assert_equal(split, 915)
 
 
@@ -1208,14 +1225,22 @@ def test_every_zy_yz_member_lies_in_the_q_lift_claim() raises:
     Z_2 = a + 1 >= 4): every PIP non-crossing member w_1 = z^a y^b,
     w_2 = y^(b+2+e) z^(a+1) with 3 <= a <= 9, b < 50, e <= 6 (1,772 of them)
     is a real point of the q-lift's start region -- n = (a-1, b-1, 0, 0, e),
-    q_j = n_j e, its slots (a-1, b-1, b+1+e, a, e), Lemma P1's f <= -1 and
-    Z_2 >= 4 holding there -- so the cover's claim reaches it; and the
+    q_j = n_j e, its slots (a-1, b-1, b+1+e, a, e) -- and the region assumes
+    Lemma P1 and the floor as the hand-lifted forms -1 - f(-1) >= 0
+    (f(-1) = q_0 + n_0 - 2 n_1 + e + 1) and n_0 - 2 >= 0, which hold there:
+    f(-1) of the member's matrix is <= -1 and is the lifted form's value, and
+    Z_2 = a + 1 >= 4 -- so the cover's claim reaches it; and the
     members with a <= 7, b <= 8 (39 of them) are decided coincident by
     coincidence_level, independent of every cover step. The cover does not
     report its certified regions, so membership in a certified region is
     not checked here."""
     var pat = RunPattern(List[Int]([Z, Y]), False, List[Int]([Y, Z]), False)
     var start = _q_lift_start(pat, -1, _pattern_starts(pat, -1, -2, True)[0], 4)
+    # -1 - f(-1) >= 0 with f(-1) = ae + a - 2b + 2 = q_0 + n_0 - 2 n_1 + e + 1
+    # (a = n_0 + 1, b = n_1 + 1, ae = q_0 + e), and Z_2 - 4 = n_0 - 2 >= 0
+    var p1 = List[Int]([-2, -1, 2, 0, 0, -1, -1, 0, 0, 0, 0])
+    var floor = List[Int]([-2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    assert_true(p1 in start.assume and floor in start.assume)
     var members = 0
     var decided = 0
     for a in range(3, 10):
@@ -1226,7 +1251,12 @@ def test_every_zy_yz_member_lies_in_the_q_lift_claim() raises:
                     continue
                 members += 1
                 var x = lift_point(start.lift, List[Int]([a - 1, b - 1, 0, 0, e]))
-                assert_true(_holds(start.assume, x))
+                assert_true(_satisfies(start.assume, x))
+                # Lemma P1 and the floor, lifted by hand, hold at x and are assumed
+                var fm = f_at(Mat3(substitution_incidence(sigma)), -1)
+                assert_true(fm <= -1 and a + 1 >= 4)
+                assert_equal(aff_eval(p1, x), -1 - fm)
+                assert_equal(aff_eval(floor, x), a + 1 - 4)
                 var slots = List[Int]()
                 for f in start.subst:
                     slots.append(aff_eval(f, x))
@@ -1358,7 +1388,7 @@ def test_the_q_lift_closes_the_zy_yz_tail_leaf() raises:
     for l in range(len(want)):
         assert_equal(List[Int]([wp.steps[l].seg_a, wp.steps[l].off_a[0], wp.steps[l].seg_b, wp.steps[l].off_b[0]]), want[l])
     assert_true(verify_witness_line(point, O, Y, wp.steps))
-    var lr = lift_path_poly(fam, point, ns, O, Y, wp.steps, Y, Z, lift)
+    var lr = lift_path_poly(fam, point, ns, O, Y, wp.steps, Y, Z, lift, probe_points(ns, lift, List[List[Int]]()))
     assert_true(lr.ok and lr.a == lr.b and lifts_to_zero(lr.gamma, lift))
     var prover = Prover(lr.ineqs.copy())
     assert_true(verify_witness_poly(fam, O, Y, lr.steps, prover, lift))
@@ -1466,4 +1496,4 @@ def main() raises:
     print("[PASS] test_the_value_split_partitions_the_real_points")
     test_lifts_chosen_by_extent_close_the_s_plus_one_staircases()
     print("[PASS] test_lifts_chosen_by_extent_close_the_s_plus_one_staircases")
-    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones; Lemma Phi4 (Pisot signs of Y_1 - Y_2 against Z_1 - Z_2) and Lemma Phi5 (the Z_1 = Z_2 + 1 non-crossing shape w_1 = u y^(Y_1 - Y_2), pi(u) = pi(w_2) + e_z) hold on all 2,136 members with |w_i| <= 6; at |w_i| <= 7 the Lemma Phi6-Phi8 paths verify on 1,180 of the 1,267 non-crossing members with none failing, the delta = e_z cell leaves only (zz, z) at level 6, (z, empty) is not PIP, and the other cells leave 87 members decided at levels 3 to 6; the run-shape cover: solve_constraint partitions the solutions of sum_pos n - sum_neg n = target exactly (every box solution hit once, targets -3..3), the quadratic Lemma P1 identities f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3 (Z_1 = Z_2 + 1) and f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3 (Z_1 = Z_2 - 1) hold, a line-mode path (offsets affine along e_z - e_y) verifies on (z^a y^b, y^(b+1) z^(a+1)), a >= b + 2, and the shape cells (zy | eps), (zy | z), (zy | yz) with Z_1 = Z_2 + 1 close for Delta = 1, 2, 3 and the tail Delta >= 4 with no open region, while (zy | yz) with Z_1 = Z_2 - 1 closes at Delta = -1 using line mode; induction on runs: refining a run pattern's opaque tail (it ends, or one more run of the other letter and a new tail) partitions the word pairs (31 * 63 pairs with w_1 beginning with z, |w_i| <= 5, each in exactly one leaf), the patterns (zy | zy*), (zy | yz*), (zy* | z), (zy* | y), (zyz* | zy), (zyz* | yz), (z | z*), (z | y*), (z* | eps) -- the nine closed leaves of the run tree -- with Z_1 = Z_2 + 1, Delta = 1 close with no open region (each an infinite family with unboundedly many runs) while (zy* | zy*) does not at the same budget, and common points match their definition, 51 of the 87 residual members at |w_i| <= 7 having only t = 1; Lemma X (monotone lattice paths whose endpoints cross, or touch with a letter following, share a point) holds on every pair of paths of at most 4 steps, a weak end at a word end can leave the only shared point at the last level, the cone search closes 86 of the 87 residual members at |w_i| <= 7 by Lemma X, each confirmed by the exact level, Lemma Phi5' (Z_2 = Z_1 + 1, non-crossing: Delta <= 0, |w_2| = |w_1| + 1 - Delta, at least two z in the last 2 - Delta letters of w_2) holds on every member with |w_i| <= 7, the reveal census needs at most two revealed runs at longer-word lengths 5..7 (77/4, 255/13, 825/54), and cover_pattern certifies regions of zyz* y | zyz* by Lemma X; the certificate-guided partition: impose_nonneg covers {F >= 0} exactly (every form a_0 + a_1 n_1 + a_2 n_2, a_0 in -4..4, a_1, a_2 in -3..3, on the box [0, 5]^2) with F coefficientwise nonnegative on every region, impose_equal covers {E = 0} exactly (a_1, a_2 in -2..2, box [0, 6]^2), and cover_pattern_guided closes the doubly open pattern zy* y | zy* at Z_1 = Z_2 + 1, Delta = 1 with every carved region re-verified under its own inequalities; tighten keeps the integer points of every form a_0 + a_1 n_1 + a_2 n_2 (a_0 in -6..6, a_1, a_2 in -3..3) on [0, 6]^2, the Prover (affine, and quadratic U V + W) is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2, and every McCormick quadrant of Lemma P1 that pisot_carve_forms opens in two-parameter families for s = +1 and s = -1 contains its point, passes mccormick_cut under its tightened forms, and holds no point with f < 0; integer bound propagation keeps every satisfying point of [0, 8]^2 in its box for a stride of three-form systems and declares empty only systems without one, and the exact point search returns only satisfying points, finds one whenever [0, 7]^2 holds one, and proves emptiness only of systems without a point; Fourier-Motzkin declares empty only systems without an integer point (a stride of three-form systems on [0, 6]^3) and refutes a wedge propagation cannot, its projections keeping every point in their intervals; with Z_2 bounded the tails close for every Delta: s = +1, Z_2 <= 1 (24 fully revealed run patterns) and s = -1, Z_2 <= 2 (20); z_floor_forms (Lemma P1 linearized at the McCormick corner (floor, b_lo)) keep every point of [0, 9]^3 with Z_2 >= floor and f <= -1, floors 2..5, s = +1 and s = -1, and the linear region holds points with f >= 0; the s = -1 leaf zy | yz (w_1 = z^a y^b, w_2 = y^(b+2+e) z^(a+1)): on every PIP non-crossing member the level-2 offset d = a e_z - (a+2) e_y has M d = (-4, 2a - 2b + ae, -a), f(-1) = ae + a - 2b + 2 <= -1 and the level-3 gap is k - m = 2 - a - f(-1), and the explicit path (y, z, -e_o) -> (y, z, d) -> (y, y, -4 e_o) -> (y, y, 0) verifies exactly on 312 of the 1,026 members with 3 <= a <= 8, b < 40, e <= 5 and on 1,134 of 4,913 with a <= 11, b < 80, e <= 8; the q-lift (cover_pattern_guided(q_lift=True): variables (n, q), q_j = n_j e, Lemma P1 as the affine form f <= -1 over (n, q), McCormick box envelopes, real base points, lifted certificates proved on the whole polyhedron): at a = 62, b = 436, e = 13 the free-line point search (bound 4) finds that path, its lift has a zero end offset over (n, q) and verifies there but not as a polynomial, and the cover closes zy | yz at Delta <= -2, Z_2 >= 4 with no open region (42 regions, 34 certified, 18 by polynomial paths, 1 cut, 8 without a real member), while the default z_floor cover of the same leaf is unchanged (16 regions, 1 open); the q-lift's real-point search (_point_search) on 3,000 seeded lifted systems over (n, q) with 2 or 3 run variables, e <= 1..3 and 2-4 small forms returns only real points (q_j = n_j e) satisfying every form, finds one whenever a real point with n in [0, 6]^m does, and with every n bounded reports empty exactly when no real point exists (1,665 found, 1,313 empty, 452 of them empty only because the point must be real), and refutes n_0 <= 0, q_0 >= 1 although its polyhedron holds (0, 0, 1, 0); every one of the 1,772 PIP non-crossing members of zy | yz with 3 <= a <= 9, b < 50, e <= 6 is a real point of the q-lift start region (slots (a-1, b-1, b+1+e, a, e), lifted f <= -1 and Z_2 >= 4 holding), and the 39 with a <= 7, b <= 8 are decided coincident by coincidence_level; the cover does not report its certified regions, so per-region membership is not checked; with lifts chosen by their extent on probe points of the region (the candidate tree's lift competing with solve_lift) and implied equalities substituted eagerly, the q-lift closes the s = +1 tail leaves zy +y^(2+e) | zyzy (17 regions, 9 certified, 2 by polynomial paths, 1 cut, 6 without a real member) and zy +y^(2+e) | yzyz (2 regions, both certified) at Delta >= 2, Z_2 >= 3, which climbed staircases before; psc.farkas_lp finds a checked Farkas certificate on exactly the 1,747 of 3,000 seeded three-variable systems that uncapped Fourier-Motzkin finds empty, none with a point in [0, 6]^3, the zero vector and negated certificates failing the check, and refutes a 16-form q-lift region of zy | yzyz on which capped Fourier-Motzkin claims nothing; the q-lift envelope with RLT cuts (e - lo_e) g, (hi_e - e) g holds at every real point of [0, 6]^m of 4,000 seeded lifted regions and makes _assume_empty refute 2,597 of them (274 only with the envelope), none holding a real point, 10 bounded regions without one left unrefuted, and refutes n_0 + n_1 <= 2, q_0 + q_1 >= 3e, e >= 1, which its polyhedron and its McCormick box envelope do not; and _value_split, bounding a variable by checked certificates, splits 915 of 2,000 seeded lifted regions into pieces that partition their real points of [0, 6]^m")
+    require_contract("Theorem K's open family sigma(o) = y, sigma(y) = o w_1 o, sigma(z) = o w_2 o: det M = 2 (Z_1 - Z_2); the crossing test agrees with brute force; at |w_i| <= 5 there are 532 PIP members, Lemma Phi1 (w_1 begins with y) names verified level-2/3 paths on 274 and Lemma Phi2 (the Parikh walks of w_1 and w_2 + e_y cross) on 138, none failing, and the 120 non-crossing members are decided coincident at levels 3 to 6; an opaque-tail cone w_1 = y^(1+n) z T_1, w_2 = T_2 carries a level-3 path naming real shared tiles; the exploratory pattern tree at depth 6 has 14 certified, 8 empty, 19 Lemma P1 cut, 1 non-member and 34 open leaves, no closed leaf holds a PIP member it should not, and of the 532 members 413 lie in certified leaves (each at most the leaf level) and 119 in open ones; Lemma Phi4 (Pisot signs of Y_1 - Y_2 against Z_1 - Z_2) and Lemma Phi5 (the Z_1 = Z_2 + 1 non-crossing shape w_1 = u y^(Y_1 - Y_2), pi(u) = pi(w_2) + e_z) hold on all 2,136 members with |w_i| <= 6; at |w_i| <= 7 the Lemma Phi6-Phi8 paths verify on 1,180 of the 1,267 non-crossing members with none failing, the delta = e_z cell leaves only (zz, z) at level 6, (z, empty) is not PIP, and the other cells leave 87 members decided at levels 3 to 6; the run-shape cover: solve_constraint partitions the solutions of sum_pos n - sum_neg n = target exactly (every box solution hit once, targets -3..3), the quadratic Lemma P1 identities f(1) = Z_2 (Delta - 1) - 2 Y_2 - Delta - 3 (Z_1 = Z_2 + 1) and f(-1) = Z_2 (|Delta| - 1) - 2 Y_1 - |Delta| + 3 (Z_1 = Z_2 - 1) hold, a line-mode path (offsets affine along e_z - e_y) verifies on (z^a y^b, y^(b+1) z^(a+1)), a >= b + 2, and the shape cells (zy | eps), (zy | z), (zy | yz) with Z_1 = Z_2 + 1 close for Delta = 1, 2, 3 and the tail Delta >= 4 with no open region, while (zy | yz) with Z_1 = Z_2 - 1 closes at Delta = -1 using line mode; induction on runs: refining a run pattern's opaque tail (it ends, or one more run of the other letter and a new tail) partitions the word pairs (31 * 63 pairs with w_1 beginning with z, |w_i| <= 5, each in exactly one leaf), the patterns (zy | zy*), (zy | yz*), (zy* | z), (zy* | y), (zyz* | zy), (zyz* | yz), (z | z*), (z | y*), (z* | eps) -- the nine closed leaves of the run tree -- with Z_1 = Z_2 + 1, Delta = 1 close with no open region (each an infinite family with unboundedly many runs) while (zy* | zy*) does not at the same budget, and common points match their definition, 51 of the 87 residual members at |w_i| <= 7 having only t = 1; Lemma X (monotone lattice paths whose endpoints cross, or touch with a letter following, share a point) holds on every pair of paths of at most 4 steps, a weak end at a word end can leave the only shared point at the last level, the cone search closes 86 of the 87 residual members at |w_i| <= 7 by Lemma X, each confirmed by the exact level, Lemma Phi5' (Z_2 = Z_1 + 1, non-crossing: Delta <= 0, |w_2| = |w_1| + 1 - Delta, at least two z in the last 2 - Delta letters of w_2) holds on every member with |w_i| <= 7, the reveal census needs at most two revealed runs at longer-word lengths 5..7 (77/4, 255/13, 825/54), and cover_pattern certifies regions of zyz* y | zyz* by Lemma X; the certificate-guided partition: impose_nonneg covers {F >= 0} exactly (every form a_0 + a_1 n_1 + a_2 n_2, a_0 in -4..4, a_1, a_2 in -3..3, on the box [0, 5]^2) with F coefficientwise nonnegative on every region, impose_equal covers {E = 0} exactly (a_1, a_2 in -2..2, box [0, 6]^2), and cover_pattern_guided closes the doubly open pattern zy* y | zy* at Z_1 = Z_2 + 1, Delta = 1 with every carved region re-verified under its own inequalities; tighten keeps the integer points of every form a_0 + a_1 n_1 + a_2 n_2 (a_0 in -6..6, a_1, a_2 in -3..3) on [0, 6]^2, the Prover (affine, and quadratic U V + W) is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2, and every McCormick quadrant of Lemma P1 that pisot_carve_forms opens in two-parameter families for s = +1 and s = -1 contains its point, passes mccormick_cut under its tightened forms, and holds no point with f < 0; integer bound propagation keeps every satisfying point of [0, 8]^2 in its box for a stride of three-form systems and declares empty only systems without one, and the exact point search returns only satisfying points, finds one whenever [0, 7]^2 holds one, and proves emptiness only of systems without a point; Fourier-Motzkin declares empty only systems without an integer point (a stride of three-form systems on [0, 6]^3) and refutes a wedge propagation cannot, its projections keeping every point in their intervals; with Z_2 bounded the tails close for every Delta: s = +1, Z_2 <= 1 (24 fully revealed run patterns) and s = -1, Z_2 <= 2 (20); z_floor_forms (Lemma P1 linearized at the McCormick corner (floor, b_lo)) keep every point of [0, 9]^3 with Z_2 >= floor and f <= -1, floors 2..5, s = +1 and s = -1, and the linear region holds points with f >= 0; the s = -1 leaf zy | yz (w_1 = z^a y^b, w_2 = y^(b+2+e) z^(a+1)): on every PIP non-crossing member the level-2 offset d = a e_z - (a+2) e_y has M d = (-4, 2a - 2b + ae, -a), f(-1) = ae + a - 2b + 2 <= -1 and the level-3 gap is k - m = 2 - a - f(-1), and the explicit path (y, z, -e_o) -> (y, z, d) -> (y, y, -4 e_o) -> (y, y, 0) verifies exactly on 312 of the 1,026 members with 3 <= a <= 8, b < 40, e <= 5 and on 1,134 of 4,913 with a <= 11, b < 80, e <= 8; the q-lift (cover_pattern_guided(q_lift=True): variables (n, q), q_j = n_j e, Lemma P1 as the affine form f <= -1 over (n, q), McCormick box envelopes, real base points, lifted certificates proved on the whole polyhedron): at a = 62, b = 436, e = 13 the free-line point search (bound 4) finds that path, its lift has a zero end offset over (n, q) and verifies there but not as a polynomial, and the cover closes zy | yz at Delta <= -2, Z_2 >= 4 with no open region (42 regions, 34 certified, 18 by polynomial paths, 1 cut, 8 without a real member), while the default z_floor cover of the same leaf is unchanged (16 regions, 1 open); the q-lift's real-point search (_point_search) on 3,000 seeded lifted systems over (n, q) with 2 or 3 run variables, e <= 1..3 and 2-4 small forms returns only real points (q_j = n_j e) satisfying every form, finds one whenever a real point with n in [0, 6]^m does, and with every n bounded reports empty exactly when no real point exists (1,665 found, 1,313 empty, 452 of them empty only because the point must be real), and refutes n_0 <= 0, q_0 >= 1 although its polyhedron holds (0, 0, 1, 0); every one of the 1,772 PIP non-crossing members of zy | yz with 3 <= a <= 9, b < 50, e <= 6 is a real point of the q-lift start region (slots (a-1, b-1, b+1+e, a, e)), whose assumptions include the hand-lifted forms -1 - f(-1) >= 0 and Z_2 >= 4, each holding there with f(-1) of the member's matrix <= -1 equal to the lifted value, and the 39 with a <= 7, b <= 8 are decided coincident by coincidence_level; the cover does not report its certified regions, so per-region membership is not checked; with lifts chosen by their extent on probe points of the region (the candidate tree's lift competing with solve_lift) and implied equalities substituted eagerly, the q-lift closes the s = +1 tail leaves zy +y^(2+e) | zyzy (17 regions, 9 certified, 2 by polynomial paths, 1 cut, 6 without a real member) and zy +y^(2+e) | yzyz (2 regions, both certified) at Delta >= 2, Z_2 >= 3, which climbed staircases before; psc.farkas_lp finds a checked Farkas certificate on exactly the 1,747 of 3,000 seeded three-variable systems that uncapped Fourier-Motzkin finds empty, none with a point in [0, 6]^3, the zero vector and negated certificates failing the check and a form of the wrong width or a multiplier vector not one per form raising, and refutes a 16-form q-lift region of zy | yzyz on which capped Fourier-Motzkin claims nothing; the q-lift envelope with RLT cuts (e - lo_e) g, (hi_e - e) g holds at every real point of [0, 6]^m of 4,000 seeded lifted regions and makes _assume_empty refute 2,597 of them (274 only with the envelope), none holding a real point of [0, 6]^m (on the bounded regions, whose real points all lie there, none at all), 10 bounded regions without a real point left unrefuted, and refutes n_0 + n_1 <= 2, q_0 + q_1 >= 3e, e >= 1, which its polyhedron and its McCormick box envelope do not; and _value_split, bounding a variable by checked certificates, splits 915 of 2,000 seeded lifted regions into pieces fixing one variable to distinct values, each real point of [0, 6]^m in exactly one piece when it lies in the region and in none otherwise")

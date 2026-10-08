@@ -15,26 +15,23 @@ check raises.
 
 from finite_exact.rat_q import Q
 from finite_linear_algebra.scalar import q_int, q_is_zero
+from psc.exact import q_sign
 
 comptime LP_PIVOTS = 20000  # pivots before the search gives up (reports nothing)
 
 
-def _neg(x: Q) -> Bool:
-    return x.lt(Q.zero())
-
-
-def _pos(x: Q) -> Bool:
-    return Q.zero().lt(x)
-
-
-def farkas_refutes(forms: List[List[Int]], m: Int, y: List[Q]) -> Bool:
+def farkas_refutes(forms: List[List[Int]], m: Int, y: List[Q]) raises -> Bool:
     """`y` proves `c + A x >= 0` (rows `forms`, `[c, a_1..a_m]`) has no
     point `x >= 0`: `y >= 0`, `sum_i y_i a_ij <= 0` for every `j`, and
-    `sum_i y_i c_i < 0`, in exact arithmetic. A rejected value fails."""
+    `sum_i y_i c_i < 0`, in exact arithmetic. A rejected value fails; a
+    form not of width `m + 1`, or a `y` not one per form, raises."""
     if len(y) != len(forms):
-        return False
+        raise Error("a Farkas multiplier vector not one per form")
+    for i in range(len(forms)):
+        if len(forms[i]) != m + 1:
+            raise Error("a form of the wrong width for the LP")
     for i in range(len(y)):
-        if y[i].rejected or _neg(y[i]):
+        if y[i].rejected or q_sign(y[i]) < 0:
             return False
     for j in range(m + 1):
         var acc = Q.zero()
@@ -43,9 +40,9 @@ def farkas_refutes(forms: List[List[Int]], m: Int, y: List[Q]) -> Bool:
                 acc = acc.add(y[i].mul(q_int(forms[i][j])))
         if acc.rejected:
             return False
-        if j == 0 and not _neg(acc):
+        if j == 0 and q_sign(acc) >= 0:
             return False
-        if j > 0 and _pos(acc):
+        if j > 0 and q_sign(acc) > 0:
             return False
     return True
 
@@ -85,7 +82,7 @@ def farkas_certificate(forms: List[List[Int]], m: Int) raises -> List[Q]:
     while True:
         var enter = -1
         for j in range(cols):
-            if _neg(red[j]):
+            if q_sign(red[j]) < 0:
                 enter = j
                 break
         if enter < 0:
@@ -97,7 +94,7 @@ def farkas_certificate(forms: List[List[Int]], m: Int) raises -> List[Q]:
         var leave = -1
         var best = Q.zero()
         for i in range(n):
-            if not _pos(rows[i][enter]):
+            if q_sign(rows[i][enter]) <= 0:
                 continue
             var ratio = rhs[i].div(rows[i][enter])
             if leave < 0 or ratio.lt(best) or (ratio.eq(best) and basis[i] < basis[leave]):
@@ -126,7 +123,7 @@ def farkas_certificate(forms: List[List[Int]], m: Int) raises -> List[Q]:
     for i in range(n):
         if basis[i] < 0:
             z = z.add(rhs[i])
-    if not _pos(z):
+    if q_sign(z) <= 0:
         return List[Q]()
     var y = List[Q]()
     for i in range(n):

@@ -77,7 +77,7 @@ from psc.cone_witness import (
     witness_position,
 )
 from psc.cone_witness import CrossingClose, aff_add, aff_eval, aff_is_const, aff_nonneg, aff_scale, aff_sub, crossing_conditions, lift_path, monotone_paths_meet, Prover, _q_lin, _qa, _q_nonneg, _q_nonneg_under
-from psc.poly_line import lift_key, lift_path_poly, lifts_to_zero, probe_points, poly_add, poly_affine_part, poly_from_aff, poly_higher, poly_mul, enumerate_point_paths, poly_is_zero, poly_key, solve_crossing_lift, solve_lift, steps_at, verify_crossing_poly, verify_witness_poly
+from psc.poly_line import PolyLift, lift_key, lift_path_poly, probe_points, poly_add, poly_affine_part, poly_from_aff, poly_higher, poly_mul, enumerate_point_paths, poly_is_zero, poly_key, solve_crossing_lift, solve_lift, steps_at, verify_crossing_poly, verify_witness_poly
 from psc.product_lift import ProductLift, full_lift, lift_affine, lift_form, lift_point, mccormick_box_forms, no_lift, product_substitution, rlt_forms
 from psc.prng import SplitMix64
 from psc.farkas_lp import lp_infeasible
@@ -3404,10 +3404,17 @@ def _value_split(reg: GuidedRegion, m: Int) raises -> List[GuidedRegion]:
                 break
         if best_d == 0:
             break
+    if best < 0:
+        return List[GuidedRegion]()
+    return _value_pieces(reg, best, box.lo[best], box.lo[best] + best_d, m)
+
+
+def _value_pieces(reg: GuidedRegion, k: Int, lo: Int, hi: Int, m: Int) -> List[GuidedRegion]:
+    """The region with `n_k := v` for every `v` in `lo..hi`, one level
+    deeper: a partition when every integer point has `lo <= n_k <= hi`."""
     var out = List[GuidedRegion]()
-    if best >= 0:
-        for v in range(box.lo[best], box.lo[best] + best_d + 1):
-            out.append(_region_subst(reg, best, aff_const(m, v), reg.depth + 1))
+    for v in range(lo, hi + 1):
+        out.append(_region_subst(reg, k, aff_const(m, v), reg.depth + 1))
     return out^
 
 
@@ -4288,19 +4295,20 @@ def _poly_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], steps: List[W
     by its affine forms, re-verify the path on the carved region with
     `verify_witness_poly` under the region's inequalities (a failure
     raises), and push the rest. The path's length, or 0 if it does not lift
-    or its end offset keeps a term of degree >= 2. With a product lift, a
-    lift whose end offset vanishes on the whole region is sought over the
-    other point paths before one that vanishes on a slice only, and the
-    candidate tree's lift competes with the solved one by `lift_key`:
-    `solve_lift` sets its free unknowns to 0, which can pin a free line
-    parameter to its value at the point and carve a slice."""
+    or its end offset keeps a term of degree >= 2. With a product lift the
+    candidate tree's lift competes with the solved one by `lift_key` on the
+    region's probe points (`solve_lift` sets its free unknowns to 0, which
+    can pin a free line parameter to its value at the point and carve a
+    slice), and when neither solves, the candidate tree's lifts of the
+    other point paths compete with it the same way."""
     var lr = solve_lift(fam, point, ns, O, Y, steps, reg.lift)
+    var probes = List[List[Int]]()
+    var lp = PolyLift()
     if reg.lift.on():
-        var lp = lift_path_poly(fam, point, ns, O, Y, steps, Y, Z, reg.lift, reg.assume)
-        if lp.ok and lp.a == lp.b:
-            var probes = probe_points(ns, reg.lift, reg.assume)
-            if not lr.ok or lift_key(lp, probes, reg.lift) > lift_key(lr, probes, reg.lift):
-                lr = lp^
+        probes = probe_points(ns, reg.lift, reg.assume)
+        lp = lift_path_poly(fam, point, ns, O, Y, steps, Y, Z, reg.lift, probes)
+        if lp.ok and lp.a == lp.b and (not lr.ok or lift_key(lp, probes, reg.lift) > lift_key(lr, probes, reg.lift)):
+            lr = lp.copy()
     var paths = List[List[WitnessStep]]()
     if not lr.ok:
         # other point paths, other segments: the first that solves
@@ -4314,16 +4322,22 @@ def _poly_carve(fam: ConeFamily, point: ConeFamily, ns: List[Int], steps: List[W
                 break
         if verbose and not lr.ok:
             print("  linear lift failed on", tried, "point paths:", lr.why)
-    if not lr.ok:
-        lr = lift_path_poly(fam, point, ns, O, Y, steps, Y, Z, reg.lift, reg.assume)
-        if reg.lift.on() and not (lr.ok and lifts_to_zero(lr.gamma, reg.lift)):
-            for k in range(len(paths)):
-                var alt = lift_path_poly(fam, point, ns, O, Y, paths[k], Y, Z, reg.lift, reg.assume)
-                if alt.ok and alt.a == alt.b and (lifts_to_zero(alt.gamma, reg.lift) or not lr.ok):
-                    var whole = lifts_to_zero(alt.gamma, reg.lift)
-                    lr = alt^
-                    if whole:
-                        break
+    if not lr.ok and not reg.lift.on():
+        lr = lift_path_poly(fam, point, ns, O, Y, steps, Y, Z)
+    elif not lr.ok:
+        # the candidate tree's lift on the other point paths, by `lift_key`
+        lr = lp^
+        var have = lr.ok and lr.a == lr.b
+        var best = lift_key(lr, probes, reg.lift) if have else 0
+        for k in range(len(paths)):
+            var alt = lift_path_poly(fam, point, ns, O, Y, paths[k], Y, Z, reg.lift, probes)
+            if not alt.ok or alt.a != alt.b:
+                continue
+            var key = lift_key(alt, probes, reg.lift)
+            if not have or key > best:
+                best = key
+                have = True
+                lr = alt^
     if not lr.ok or lr.a != lr.b:
         if verbose:
             print("  polynomial lift failed:", lr.why if not lr.ok else "ends off the diagonal")
@@ -4408,8 +4422,7 @@ def _peel(mut stack: List[GuidedRegion], reg: GuidedRegion, m: Int):
     var box = propagate_bounds(reg.assume, m)
     for k in range(_point_vars(reg, m)):
         if box.bounded[k] and box.hi[k] > box.lo[k] and box.hi[k] - box.lo[k] < VALUE_SPLIT_MAX and _region_live(reg, k):
-            for v in range(box.lo[k], box.hi[k] + 1):
-                stack.append(_region_subst(reg, k, aff_const(m, v), reg.depth + 1))
+            stack.extend(_value_pieces(reg, k, box.lo[k], box.hi[k], m))
             return
     var pick = _peel_variable_in(reg, _point_vars(reg, m))
     var shift = aff_const(m, 1)

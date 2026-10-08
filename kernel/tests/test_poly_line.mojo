@@ -418,8 +418,9 @@ def test_rlt_forms_are_products_at_real_points() raises:
     over n with constant in -2..2 and coefficients in -1..1, lo_e in 0..2
     and hi_e = lo_e + 2, rlt_forms gives exactly (e - lo_e) g and
     (hi_e - e) g at every real point of [0, 4]^3 (so each is >= 0 wherever
-    g >= 0 and lo_e <= e <= hi_e), only the first when e is unbounded, and
-    raises on a form naming a product coordinate."""
+    g >= 0 and lo_e <= e <= hi_e), exactly the first form when e is
+    unbounded, and raises on a form naming a product coordinate and on one
+    naming n_1 in a lift without q_1."""
     var lift = full_lift(3, 2)
     var w = lift.width()
     var gs = _forms(-2, 2, 1, 3)
@@ -430,7 +431,7 @@ def test_rlt_forms_are_products_at_real_points() raises:
             var hi = lo + 2
             var both = rlt_forms(lift, g, lo, hi, True)
             assert_equal(len(both), 2)
-            assert_equal(len(rlt_forms(lift, g, lo, 0, False)), 1)
+            assert_equal(rlt_forms(lift, g, lo, 0, False), List[List[Int]]([both[0].copy()]))
             for code in range(125):
                 var ns = List[Int]([code % 5, (code // 5) % 5, code // 25])
                 var x = lift_point(lift, ns)
@@ -441,12 +442,18 @@ def test_rlt_forms_are_products_at_real_points() raises:
     assert_equal(checked, 125 * 3 * len(gs))
     var named = aff_const(w, 1)
     named[4] = 1
-    var raised = False
+    var raised = 0
     try:
         _ = rlt_forms(lift, named, 0, 0, False)
     except:
-        raised = True
-    assert_true(raised)
+        raised += 1
+    # without q_1 in the lift, a form naming n_1 has no expansion
+    var partial = ProductLift(3, 2, List[Int]([0, 2]))
+    try:
+        _ = rlt_forms(partial, List[Int]([0, 0, 1, 0, 0, 0]), 0, 0, False)
+    except:
+        raised += 1
+    assert_equal(raised, 2)
 
 
 def test_lift_key_prefers_the_whole_region() raises:
@@ -509,4 +516,4 @@ def main() raises:
     print("[PASS] test_rlt_forms_are_products_at_real_points")
     test_lift_key_prefers_the_whole_region()
     print("[PASS] test_lift_key_prefers_the_whole_region")
-    require_contract("psc.poly_line, the polynomial line mode of Theorem K's tail cells: polynomial products and sums evaluate as the products of their affine factors on [0, 3]^3, poly_nonneg_under is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2 for products U V + W and (U V + W) U, vanishing needs both signs, and verify_witness_poly agrees with verify_witness_line on the line-mode family (z^a y^b, y^(b+1) z^(a+1)) and on its single-offset perturbations, the path holding at every point of [0, 4]^2 once instantiated; the point-path enumeration returns only verified paths, and solve_lift solves some to a path with a zero end offset that verify_witness_poly accepts on its carved region and that holds at every point of [0, 5]^2 inside it; psc.product_lift makes A + B e affine over (n, q) with q_j = n_j e, agreeing with the polynomial at every real point of [0, 4]^3 and lifting the zy|yz quantities 2a - 2b + ae and f(-1) exactly, its McCormick forms equal (n_j - lo_j)(e - lo_e) >= 0 at every real point above each lower bound in 0..2, and any other degree-2 monomial, any degree 3, a variable past the lift or an absent product raises; product_substitution keeps every affine form over (n, q) equal at corresponding real points of [0, 3]^3 through n_k := constant, shift or affine combination and e := c + lam e, refusing e := e + n_0 and a replacement naming a product coordinate, the box McCormick envelope (both bounds where present) is >= 0 at every real point of its box, and lifted conditions are proved by their (n, q) forms, refusing n_0 n_1 and needing the lifted form to vanish; rlt_forms equals (e - lo_e) g and (hi_e - e) g at every real point of [0, 4]^3 for every form g over n with constant in -2..2 and coefficients in -1..1 (lo_e in 0..2), raising on a form naming a product coordinate; probe_points returns real points of their region, and lift_key ranks a lift with a zero end offset above one vanishing on a slice, and the smaller offsets first at equal extent")
+    require_contract("psc.poly_line, the polynomial line mode of Theorem K's tail cells: polynomial products and sums evaluate as the products of their affine factors on [0, 3]^3, poly_nonneg_under is sound under every pair of assumptions with coefficients in -1..1 on [0, 5]^2 for products U V + W and (U V + W) U, vanishing needs both signs, and verify_witness_poly agrees with verify_witness_line on the line-mode family (z^a y^b, y^(b+1) z^(a+1)) and on its single-offset perturbations, the path holding at every point of [0, 4]^2 once instantiated; the point-path enumeration returns only verified paths, and solve_lift solves some to a path with a zero end offset that verify_witness_poly accepts on its carved region and that holds at every point of [0, 5]^2 inside it; psc.product_lift makes A + B e affine over (n, q) with q_j = n_j e, agreeing with the polynomial at every real point of [0, 4]^3 and lifting the zy|yz quantities 2a - 2b + ae and f(-1) exactly, its McCormick forms equal (n_j - lo_j)(e - lo_e) >= 0 at every real point above each lower bound in 0..2, and any other degree-2 monomial, any degree 3, a variable past the lift or an absent product raises; product_substitution keeps every affine form over (n, q) equal at corresponding real points of [0, 3]^3 through n_k := constant, shift or affine combination and e := c + lam e, refusing e := e + n_0 and a replacement naming a product coordinate, the box McCormick envelope (both bounds where present) is >= 0 at every real point of its box, and lifted conditions are proved by their (n, q) forms, refusing n_0 n_1 and needing the lifted form to vanish; rlt_forms equals (e - lo_e) g and (hi_e - e) g at every real point of [0, 4]^3 for every form g over n with constant in -2..2 and coefficients in -1..1 (lo_e in 0..2), only the (e - lo_e) g form when e is unbounded, raising on a form naming a product coordinate or an n_k whose q_k is not in the lift; probe_points returns real points of their region, and lift_key ranks a lift with a zero end offset above one vanishing on a slice, and the smaller offsets first at equal extent")
