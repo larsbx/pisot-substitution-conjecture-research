@@ -79,6 +79,22 @@ by deleting it.
   E letter and a length-1 image: powers provably never work (Lemma B); no
   rotation witness found (0 of 264 at total length ≤ 8). · same, §5.6g
 
+- 2026-10-07 · A symbolic (Sellami-style) balanced-pair run over Theorem E's
+  parameters, as a route to termination on the catch-up-free `|det M| = 2`
+  class: the states are not parametric words. Maximal state length grows
+  exponentially along lines (class A `(n, n − 1, n)`: 480, 2,124, 27,768
+  letters at `n = 4, 5, 6`; class D `(1, 0, 0)`: 7,987). Work on the overlap
+  graph, whose vertices are bounded. · `p1b-catch-up-free-ppvc-2026-10-07.md`
+  §3; scratch `explore.py`
+
+- 2026-10-07 · A one-step contracting trapping region as the finite
+  candidate set for PPVC on a line of class B: finite but not constant (413 to
+  593 lattice points for `q = 2..25` on `p = 2q + 2`, `r = q + 1`), while the
+  true recurrent set is a constant 120 vertices. Use the swap-seed closure
+  instead: pure discrete spectrum needs one seed, G1 needs the three, and
+  neither needs a box. · `p1b-symbolic-line-2026-10-07.md` §2;
+  `archive/2026-10-07/symbolic-line-probes/trap_float_probe.out`
+
 ## 3. Settled by the literature (do not target with new machinery)
 
 - 2026-10-04 · Specimens with a power or common-prefix/suffix conjugate in
@@ -208,6 +224,12 @@ by deleting it.
   distinguishes PIP or gives balanced alignment. ·
   `c4-ordered-hub-offset-negative-2026-10-06.md` §§2,5
 
+- 2026-10-07 · Only 70 of the 383 PIP members of Theorem E's classes with
+  `p, q, r <= 11` have the characteristic polynomial of a three-letter
+  simple-Parry β-substitution, a necessary condition for conjugacy to one;
+  the other 313 cannot inherit Barge (2018) that way, and the 70 are not
+  shown conjugate. · `p1b-catch-up-free-ppvc-2026-10-07.md` §3; scratch check
+
 ## 6. Tooling pitfalls
 
 - 2026-10-04 · `pkill -f PATTERN` inside a shell command whose own text
@@ -304,6 +326,20 @@ by deleting it.
   ledgers are preserved byte-for-byte at their new archive locators. ·
   `tools/make_ledger.py`;
   `archive/2026-10-06/status-snapshots/README.md`
+
+- 2026-10-07 · `finite_linear_algebra.mat3.has_rational_root` evaluates `r^3`
+  in unchecked `Int` for every divisor `r` of `det M`; safe at the audited
+  column-sum bound 6 and at entries up to 64, not beyond. Any path that admits
+  larger matrices must use `psc.pisot_screen.has_rational_root` (exact over
+  `Q`, divisor pairs up to `sqrt |det|`), as `screened_perron_field3` now does.
+  · `kernel/psc/perron_field3.mojo`
+
+- 2026-10-07 · Run-position ranges in a symbolic overlap closure: the upper
+  end is the largest `m` with `ell_A − t − m ell_y > 0`, which is (least `m`
+  with `t + m ell_y − ell_A >= 0`) − 1, **non-strict**. Computing it with a
+  strict inequality admits one invalid child exactly when `t + m ell_y = ell_A`
+  identically, and on the class B line it produced 123 vertices (4 without a
+  hit) instead of the exact 119. · `kernel/psc/symbolic_line.mojo` (`least_m`)
 
 ## 7. Review outcomes
 

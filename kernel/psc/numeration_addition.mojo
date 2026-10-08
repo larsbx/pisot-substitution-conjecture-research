@@ -57,14 +57,19 @@ from finite_linear_algebra.mat3 import Mat3
 from finite_automata.dfa import BoundedAutomaton, Dfa, refusal
 from psc.bpa import substitution_incidence
 from psc.linear_numeration import basis, basis_obeys_recurrence, recurrence
-from psc.perron_field3 import CubicElt, PerronField3, cubic_sub_checked, sign_at_perron
-from psc.pisot import is_irreducible_cubic, is_pisot_charpoly, is_primitive
+from psc.perron_field3 import CubicElt, PerronField3, cubic_sub_checked, screened_perron_field3, sign_at_perron
 
 
 def _key(a: Int, b: Int, c: Int) -> String:
     return String(a) + "," + String(b) + "," + String(c)
 
 
+
+
+# This module's stated executable domain for powered substitutions: entries at
+# most 64, the documented bound that psc.coincidence_level_bound relies on and
+# kernel/tests/test_coincidence_level_bound.mojo pins. Narrower than the
+# screened field's own arithmetic bound on purpose.
 comptime POWERED_ENTRY_BOUND = 64
 
 
@@ -83,24 +88,11 @@ def powered_field(tau: List[List[Int]]) raises -> PerronField3:
     screen here is on that polynomial, with the same exact tests the corpus
     screen uses: irreducibility by rational roots, and the Pisot property by
     Sturm counting. Both take coefficients, and neither is the unchecked
-    matrix-level predicate the other domain restricts. The entry bound is this
-    module's own stated boundary, wide enough for any power of a three-letter
-    substitution and narrow enough that the characteristic polynomial's
-    intermediates stay small."""
-    var m = Mat3(substitution_incidence(tau))
-    for row in range(3):
-        for col in range(3):
-            var entry = m.at(row, col)
-            if entry < 0 or entry > POWERED_ENTRY_BOUND:
-                raise Error("incidence entry outside the powered-substitution bound")
-    if not is_primitive(m):
-        raise Error("the numeration needs a primitive substitution")
-    var chi = m.charpoly()
-    if not is_irreducible_cubic(chi):
-        raise Error("the powered characteristic polynomial is reducible")
-    if not is_pisot_charpoly(chi):
-        raise Error("the powered characteristic polynomial is not Pisot")
-    return PerronField3(chi[0], chi[1], chi[2])
+    matrix-level predicate the other domain restricts. The construction lives in
+    `psc.perron_field3.screened_perron_field3`, shared with the overlap kernel's
+    wide-domain entry point; the entry bound is this module's own,
+    `POWERED_ENTRY_BOUND`."""
+    return screened_perron_field3(Mat3(substitution_incidence(tau)), POWERED_ENTRY_BOUND)
 
 
 def _completable(field: PerronField3, v0: Int, v1: Int, v2: Int, reserve: Int) raises -> Bool:
