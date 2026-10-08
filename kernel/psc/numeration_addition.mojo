@@ -66,6 +66,13 @@ def _key(a: Int, b: Int, c: Int) -> String:
 
 
 
+# This module's stated executable domain for powered substitutions: entries at
+# most 64, the documented bound that psc.coincidence_level_bound relies on and
+# kernel/tests/test_coincidence_level_bound.mojo pins. Narrower than the
+# screened field's own arithmetic bound on purpose.
+comptime POWERED_ENTRY_BOUND = 64
+
+
 def powered_field(tau: List[List[Int]]) raises -> PerronField3:
     """The cubic field of a substitution that may be a power of another.
 
@@ -81,10 +88,11 @@ def powered_field(tau: List[List[Int]]) raises -> PerronField3:
     screen here is on that polynomial, with the same exact tests the corpus
     screen uses: irreducibility by rational roots, and the Pisot property by
     Sturm counting. Both take coefficients, and neither is the unchecked
-    matrix-level predicate the other domain restricts. The construction and its
-    entry bound live in `psc.perron_field3.screened_perron_field3`, shared with
-    the overlap kernel's wide-domain entry point."""
-    return screened_perron_field3(Mat3(substitution_incidence(tau)))
+    matrix-level predicate the other domain restricts. The construction lives in
+    `psc.perron_field3.screened_perron_field3`, shared with the overlap kernel's
+    wide-domain entry point; the entry bound is this module's own,
+    `POWERED_ENTRY_BOUND`."""
+    return screened_perron_field3(Mat3(substitution_incidence(tau)), POWERED_ENTRY_BOUND)
 
 
 def _completable(field: PerronField3, v0: Int, v1: Int, v2: Int, reserve: Int) raises -> Bool:

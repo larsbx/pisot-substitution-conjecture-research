@@ -40,7 +40,7 @@ def test_eventual_sign_records_the_largest_root() raises:
 
 
 def test_parametric_signs_agree_with_concrete_signs() raises:
-    """beta = q + 4 - 3/q + ...: below q + 4, above q + 3, for every large q;
+    """Beta = q + 4 - 3/q + ...: below q + 4, above q + 3, for every large q;
     the same queries at q = 60 with constant coefficients agree."""
     var line = class_b_line()
     var ev = Eventual()
@@ -71,7 +71,7 @@ def test_pseudo_remainder_keeps_the_sign_at_beta() raises:
 
 
 def test_a_line_with_determinant_zero_is_not_certified() raises:
-    """runs q, q, q with endings (x, x, c, x): det M = 2 (r - q) = 0."""
+    """Runs q, q, q with endings (x, x, c, x): det M = 2 (r - q) = 0."""
     var line = Line([0, 1, 1], [0, 0, 0], [qx_affine(0, 1), qx_affine(0, 1), qx_affine(0, 1)], 2)
     var ev = Eventual()
     assert_false(certify_line(line, ev).holds)

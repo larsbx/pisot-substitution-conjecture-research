@@ -194,7 +194,7 @@ def _validate_bounded_incidence_domain(m: Mat3) raises:
 comptime SCREENED_ENTRY_BOUND = 4096
 
 
-def screened_perron_field3(m: Mat3) raises -> PerronField3:
+def screened_perron_field3(m: Mat3, entry_bound: Int = SCREENED_ENTRY_BOUND) raises -> PerronField3:
     """The cubic Perron field of `m`, screened on its characteristic polynomial.
 
     `build_perron_field3` is certified only on its audited domain (column sums
@@ -203,13 +203,16 @@ def screened_perron_field3(m: Mat3) raises -> PerronField3:
     entry point screens that polynomial with the exact coefficient tests the
     corpus screen uses -- irreducibility by rational roots, the Pisot property
     by Sturm counting, both over unbounded rationals -- and decides
-    primitivity on Boolean support powers, which cannot overflow. Entries beyond `SCREENED_ENTRY_BOUND` are refused.
+    primitivity on Boolean support powers, which cannot overflow. Entries beyond `entry_bound` (at most
+    `SCREENED_ENTRY_BOUND`; a caller may state a narrower domain of its own) are refused.
     Everything downstream of the field is checked arithmetic and raises on
     overflow rather than wrapping."""
+    if entry_bound > SCREENED_ENTRY_BOUND:
+        raise Error("an entry bound above SCREENED_ENTRY_BOUND is outside the audited arithmetic")
     for row in range(3):
         for col in range(3):
             var entry = m.at(row, col)
-            if entry < 0 or entry > SCREENED_ENTRY_BOUND:
+            if entry < 0 or entry > entry_bound:
                 raise Error("incidence entry outside the screened-field bound")
     if not is_primitive(m):
         raise Error("the screened field needs a primitive matrix")
