@@ -23,7 +23,8 @@ run_cmd do
     count := count + 1
     if info.isTheorem then theorems := theorems + 1
     let kind := if info.isTheorem then "theorem" else "declaration"
+    let userName := privateToUserName name
     let names := String.intercalate "," (axioms.toList.map toString)
-    liftIO <| IO.println s!"PSC_AXIOMS\t{kind}\t{name}\t{names}"
+    liftIO <| IO.println s!"PSC_AXIOMS\t{kind}\t{mod}\t{name}\t{userName}\t{names}"
   if theorems == 0 then throwError "The proof bank contains no theorems"
   liftIO <| IO.println s!"PSC_AUDIT_COMPLETE\t{count}\t{theorems}"

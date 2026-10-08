@@ -112,35 +112,35 @@ A partial Lean binding proves only the listed algebraic component. A source-only
 
 Each declaration below must be present in a fresh compiled-environment audit. Generated helpers and definitions are audited too.
 
-| Declaration | Source |
-|---|---|
-| `Psc.ind_self` | [proof/PscVerif/PscVerif/Basic.lean:26](../proof/PscVerif/PscVerif/Basic.lean#L26) |
-| `Psc.ind_eq_zero` | [proof/PscVerif/PscVerif/Basic.lean:28](../proof/PscVerif/PscVerif/Basic.lean#L28) |
-| `Psc.ind_mul` | [proof/PscVerif/PscVerif/Basic.lean:32](../proof/PscVerif/PscVerif/Basic.lean#L32) |
-| `Psc.BalancedPair.K₁_eq_zero` | [proof/PscVerif/PscVerif/Basic.lean:73](../proof/PscVerif/PscVerif/Basic.lean#L73) |
-| `Psc.no_commuting_of_no_eigenvalue` | [proof/PscVerif/PscVerif/Centralizer.lean:35](../proof/PscVerif/PscVerif/Centralizer.lean#L35) |
-| `Psc.ones_ne_zero` | [proof/PscVerif/PscVerif/Centralizer.lean:50](../proof/PscVerif/PscVerif/Centralizer.lean#L50) |
-| `Psc.Aq_mulVec_ones` | [proof/PscVerif/PscVerif/Centralizer.lean:60](../proof/PscVerif/PscVerif/Centralizer.lean#L60) |
-| `Psc.Aq_eigenspace` | [proof/PscVerif/PscVerif/Centralizer.lean:70](../proof/PscVerif/PscVerif/Centralizer.lean#L70) |
-| `Psc.target1` | [proof/PscVerif/PscVerif/Centralizer.lean:86](../proof/PscVerif/PscVerif/Centralizer.lean#L86) |
-| `Psc.no_equal_row_sums` | [proof/PscVerif/PscVerif/Centralizer.lean:94](../proof/PscVerif/PscVerif/Centralizer.lean#L94) |
-| `Psc.seed_K₂_zero` | [proof/PscVerif/PscVerif/Seeds.lean:59](../proof/PscVerif/PscVerif/Seeds.lean#L59) |
-| `Psc.seed_length` | [proof/PscVerif/PscVerif/Seeds.lean:63](../proof/PscVerif/PscVerif/Seeds.lean#L63) |
-| `Psc.theta_seed` | [proof/PscVerif/PscVerif/Seeds.lean:67](../proof/PscVerif/PscVerif/Seeds.lean#L67) |
-| `Psc.trace_A` | [proof/PscVerif/PscVerif/Seeds.lean:71](../proof/PscVerif/PscVerif/Seeds.lean#L71) |
-| `Psc.trace_sq_A` | [proof/PscVerif/PscVerif/Seeds.lean:76](../proof/PscVerif/PscVerif/Seeds.lean#L76) |
-| `Psc.det_A_ne_zero` | [proof/PscVerif/PscVerif/Seeds.lean:80](../proof/PscVerif/PscVerif/Seeds.lean#L80) |
-| `Psc.A_ne_zero` | [proof/PscVerif/PscVerif/Seeds.lean:84](../proof/PscVerif/PscVerif/Seeds.lean#L84) |
-| `Psc.seed_K₃_mem_W₃` | [proof/PscVerif/PscVerif/Seeds.lean:93](../proof/PscVerif/PscVerif/Seeds.lean#L93) |
-| `Psc.N_mul_N` | [proof/PscVerif/PscVerif/Shuffle.lean:22](../proof/PscVerif/PscVerif/Shuffle.lean#L22) |
-| `Psc.N_mul_N₂` | [proof/PscVerif/PscVerif/Shuffle.lean:32](../proof/PscVerif/PscVerif/Shuffle.lean#L32) |
-| `Psc.BalancedPair.K₃_shuffle_zero` | [proof/PscVerif/PscVerif/Shuffle.lean:53](../proof/PscVerif/PscVerif/Shuffle.lean#L53) |
-| `Psc.trace_sq_cyclicPlus` | [proof/PscVerif/PscVerif/TraceLemma.lean:32](../proof/PscVerif/PscVerif/TraceLemma.lean#L32) |
-| `Psc.trace_sq_cyclicMinus` | [proof/PscVerif/PscVerif/TraceLemma.lean:37](../proof/PscVerif/PscVerif/TraceLemma.lean#L37) |
-| `Psc.trace_sq_Aq` | [proof/PscVerif/PscVerif/TraceLemma.lean:42](../proof/PscVerif/PscVerif/TraceLemma.lean#L42) |
-| `Psc.trace_sq_conj` | [proof/PscVerif/PscVerif/TraceLemma.lean:49](../proof/PscVerif/PscVerif/TraceLemma.lean#L49) |
-| `Psc.Aq_not_conj_cyclicPlus` | [proof/PscVerif/PscVerif/TraceLemma.lean:59](../proof/PscVerif/PscVerif/TraceLemma.lean#L59) |
-| `Psc.Aq_not_conj_cyclicMinus` | [proof/PscVerif/PscVerif/TraceLemma.lean:67](../proof/PscVerif/PscVerif/TraceLemma.lean#L67) |
+| Source name | Module | Private modifier | Source |
+|---|---|---|---|
+| `Psc.ind_self` | `PscVerif.Basic` | no | [proof/PscVerif/PscVerif/Basic.lean:26](../proof/PscVerif/PscVerif/Basic.lean#L26) |
+| `Psc.ind_eq_zero` | `PscVerif.Basic` | no | [proof/PscVerif/PscVerif/Basic.lean:28](../proof/PscVerif/PscVerif/Basic.lean#L28) |
+| `Psc.ind_mul` | `PscVerif.Basic` | no | [proof/PscVerif/PscVerif/Basic.lean:32](../proof/PscVerif/PscVerif/Basic.lean#L32) |
+| `Psc.BalancedPair.K₁_eq_zero` | `PscVerif.Basic` | no | [proof/PscVerif/PscVerif/Basic.lean:73](../proof/PscVerif/PscVerif/Basic.lean#L73) |
+| `Psc.no_commuting_of_no_eigenvalue` | `PscVerif.Centralizer` | no | [proof/PscVerif/PscVerif/Centralizer.lean:35](../proof/PscVerif/PscVerif/Centralizer.lean#L35) |
+| `Psc.ones_ne_zero` | `PscVerif.Centralizer` | no | [proof/PscVerif/PscVerif/Centralizer.lean:50](../proof/PscVerif/PscVerif/Centralizer.lean#L50) |
+| `Psc.Aq_mulVec_ones` | `PscVerif.Centralizer` | no | [proof/PscVerif/PscVerif/Centralizer.lean:60](../proof/PscVerif/PscVerif/Centralizer.lean#L60) |
+| `Psc.Aq_eigenspace` | `PscVerif.Centralizer` | no | [proof/PscVerif/PscVerif/Centralizer.lean:70](../proof/PscVerif/PscVerif/Centralizer.lean#L70) |
+| `Psc.target1` | `PscVerif.Centralizer` | no | [proof/PscVerif/PscVerif/Centralizer.lean:86](../proof/PscVerif/PscVerif/Centralizer.lean#L86) |
+| `Psc.no_equal_row_sums` | `PscVerif.Centralizer` | no | [proof/PscVerif/PscVerif/Centralizer.lean:94](../proof/PscVerif/PscVerif/Centralizer.lean#L94) |
+| `Psc.seed_K₂_zero` | `PscVerif.Seeds` | no | [proof/PscVerif/PscVerif/Seeds.lean:59](../proof/PscVerif/PscVerif/Seeds.lean#L59) |
+| `Psc.seed_length` | `PscVerif.Seeds` | no | [proof/PscVerif/PscVerif/Seeds.lean:63](../proof/PscVerif/PscVerif/Seeds.lean#L63) |
+| `Psc.theta_seed` | `PscVerif.Seeds` | no | [proof/PscVerif/PscVerif/Seeds.lean:67](../proof/PscVerif/PscVerif/Seeds.lean#L67) |
+| `Psc.trace_A` | `PscVerif.Seeds` | no | [proof/PscVerif/PscVerif/Seeds.lean:71](../proof/PscVerif/PscVerif/Seeds.lean#L71) |
+| `Psc.trace_sq_A` | `PscVerif.Seeds` | no | [proof/PscVerif/PscVerif/Seeds.lean:76](../proof/PscVerif/PscVerif/Seeds.lean#L76) |
+| `Psc.det_A_ne_zero` | `PscVerif.Seeds` | no | [proof/PscVerif/PscVerif/Seeds.lean:80](../proof/PscVerif/PscVerif/Seeds.lean#L80) |
+| `Psc.A_ne_zero` | `PscVerif.Seeds` | no | [proof/PscVerif/PscVerif/Seeds.lean:84](../proof/PscVerif/PscVerif/Seeds.lean#L84) |
+| `Psc.seed_K₃_mem_W₃` | `PscVerif.Seeds` | no | [proof/PscVerif/PscVerif/Seeds.lean:93](../proof/PscVerif/PscVerif/Seeds.lean#L93) |
+| `Psc.N_mul_N` | `PscVerif.Shuffle` | no | [proof/PscVerif/PscVerif/Shuffle.lean:22](../proof/PscVerif/PscVerif/Shuffle.lean#L22) |
+| `Psc.N_mul_N₂` | `PscVerif.Shuffle` | no | [proof/PscVerif/PscVerif/Shuffle.lean:32](../proof/PscVerif/PscVerif/Shuffle.lean#L32) |
+| `Psc.BalancedPair.K₃_shuffle_zero` | `PscVerif.Shuffle` | no | [proof/PscVerif/PscVerif/Shuffle.lean:53](../proof/PscVerif/PscVerif/Shuffle.lean#L53) |
+| `Psc.trace_sq_cyclicPlus` | `PscVerif.TraceLemma` | no | [proof/PscVerif/PscVerif/TraceLemma.lean:32](../proof/PscVerif/PscVerif/TraceLemma.lean#L32) |
+| `Psc.trace_sq_cyclicMinus` | `PscVerif.TraceLemma` | no | [proof/PscVerif/PscVerif/TraceLemma.lean:37](../proof/PscVerif/PscVerif/TraceLemma.lean#L37) |
+| `Psc.trace_sq_Aq` | `PscVerif.TraceLemma` | no | [proof/PscVerif/PscVerif/TraceLemma.lean:42](../proof/PscVerif/PscVerif/TraceLemma.lean#L42) |
+| `Psc.trace_sq_conj` | `PscVerif.TraceLemma` | no | [proof/PscVerif/PscVerif/TraceLemma.lean:49](../proof/PscVerif/PscVerif/TraceLemma.lean#L49) |
+| `Psc.Aq_not_conj_cyclicPlus` | `PscVerif.TraceLemma` | no | [proof/PscVerif/PscVerif/TraceLemma.lean:59](../proof/PscVerif/PscVerif/TraceLemma.lean#L59) |
+| `Psc.Aq_not_conj_cyclicMinus` | `PscVerif.TraceLemma` | no | [proof/PscVerif/PscVerif/TraceLemma.lean:67](../proof/PscVerif/PscVerif/TraceLemma.lean#L67) |
 
 ## Source statement inventory
 

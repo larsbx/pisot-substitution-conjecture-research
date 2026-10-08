@@ -1350,162 +1350,216 @@
   "lean_declarations": [
     {
       "name": "Psc.ind_self",
+      "module": "PscVerif.Basic",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Basic.lean",
       "line": 26,
       "declaration": "@[simp] theorem ind_self (a : Letter) : ind a a = 1 := by simp [ind]"
     },
     {
       "name": "Psc.ind_eq_zero",
+      "module": "PscVerif.Basic",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Basic.lean",
       "line": 28,
       "declaration": "theorem ind_eq_zero {x a : Letter} (h : x ≠ a) : ind x a = 0 := by simp [ind, h]"
     },
     {
       "name": "Psc.ind_mul",
+      "module": "PscVerif.Basic",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Basic.lean",
       "line": 32,
       "declaration": "theorem ind_mul (x a b : Letter) : ind x a * ind x b = ind a b * ind x a := by"
     },
     {
       "name": "Psc.BalancedPair.K₁_eq_zero",
+      "module": "PscVerif.Basic",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Basic.lean",
       "line": 73,
       "declaration": "@[simp] theorem K₁_eq_zero (a : Letter) : s.K₁ a = 0 := by"
     },
     {
       "name": "Psc.no_commuting_of_no_eigenvalue",
+      "module": "PscVerif.Centralizer",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Centralizer.lean",
       "line": 35,
       "declaration": "theorem no_commuting_of_no_eigenvalue"
     },
     {
       "name": "Psc.ones_ne_zero",
+      "module": "PscVerif.Centralizer",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Centralizer.lean",
       "line": 50,
       "declaration": "theorem ones_ne_zero : (ones : Fin 3 → ℚ) ≠ 0 := by"
     },
     {
       "name": "Psc.Aq_mulVec_ones",
+      "module": "PscVerif.Centralizer",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Centralizer.lean",
       "line": 60,
       "declaration": "theorem Aq_mulVec_ones (k : Fin 6) : (Aq k) *ᵥ ones = ((lam k : ℚ)) • ones := by"
     },
     {
       "name": "Psc.Aq_eigenspace",
+      "module": "PscVerif.Centralizer",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Centralizer.lean",
       "line": 70,
       "declaration": "theorem Aq_eigenspace (k : Fin 6) (w : Fin 3 → ℚ)"
     },
     {
       "name": "Psc.target1",
+      "module": "PscVerif.Centralizer",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Centralizer.lean",
       "line": 86,
       "declaration": "theorem target1 (M : Matrix (Fin 3) (Fin 3) ℚ) (hM : NoEigenvalue M) (k : Fin 6)"
     },
     {
       "name": "Psc.no_equal_row_sums",
+      "module": "PscVerif.Centralizer",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Centralizer.lean",
       "line": 94,
       "declaration": "theorem no_equal_row_sums (M : Matrix (Fin 3) (Fin 3) ℚ) (hM : NoEigenvalue M)"
     },
     {
       "name": "Psc.seed_K₂_zero",
+      "module": "PscVerif.Seeds",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Seeds.lean",
       "line": 59,
       "declaration": "theorem seed_K₂_zero (k : Fin 6) (i j : Letter) : (seed k).K₂ i j = 0 := by"
     },
     {
       "name": "Psc.seed_length",
+      "module": "PscVerif.Seeds",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Seeds.lean",
       "line": 63,
       "declaration": "theorem seed_length (k : Fin 6) : (seed k).u.length = 7 := by fin_cases k <;> rfl"
     },
     {
       "name": "Psc.theta_seed",
+      "module": "PscVerif.Seeds",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Seeds.lean",
       "line": 67,
       "declaration": "theorem theta_seed (k : Fin 6) (i j : Fin 3) : Θ (seed k).K₃ i j = Atab k i j := by"
     },
     {
       "name": "Psc.trace_A",
+      "module": "PscVerif.Seeds",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Seeds.lean",
       "line": 71,
       "declaration": "theorem trace_A (k : Fin 6) : (Atab k).trace = 0 := by"
     },
     {
       "name": "Psc.trace_sq_A",
+      "module": "PscVerif.Seeds",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Seeds.lean",
       "line": 76,
       "declaration": "theorem trace_sq_A (k : Fin 6) : ((Atab k) * (Atab k)).trace = 6 := by"
     },
     {
       "name": "Psc.det_A_ne_zero",
+      "module": "PscVerif.Seeds",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Seeds.lean",
       "line": 80,
       "declaration": "theorem det_A_ne_zero (k : Fin 6) : (Atab k).det ≠ 0 := by"
     },
     {
       "name": "Psc.A_ne_zero",
+      "module": "PscVerif.Seeds",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Seeds.lean",
       "line": 84,
       "declaration": "theorem A_ne_zero (k : Fin 6) : Atab k ≠ 0 := by"
     },
     {
       "name": "Psc.seed_K₃_mem_W₃",
+      "module": "PscVerif.Seeds",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Seeds.lean",
       "line": 93,
       "declaration": "theorem seed_K₃_mem_W₃ (k : Fin 6) (a b c : Letter) :"
     },
     {
       "name": "Psc.N_mul_N",
+      "module": "PscVerif.Shuffle",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Shuffle.lean",
       "line": 22,
       "declaration": "theorem N_mul_N (a c : Letter) (w : Word) :"
     },
     {
       "name": "Psc.N_mul_N₂",
+      "module": "PscVerif.Shuffle",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Shuffle.lean",
       "line": 32,
       "declaration": "theorem N_mul_N₂ (a b c : Letter) (w : Word) :"
     },
     {
       "name": "Psc.BalancedPair.K₃_shuffle_zero",
+      "module": "PscVerif.Shuffle",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/Shuffle.lean",
       "line": 53,
       "declaration": "theorem K₃_shuffle_zero (s : BalancedPair) (h₂ : ∀ i j, s.K₂ i j = 0)"
     },
     {
       "name": "Psc.trace_sq_cyclicPlus",
+      "module": "PscVerif.TraceLemma",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/TraceLemma.lean",
       "line": 32,
       "declaration": "theorem trace_sq_cyclicPlus (a b c : K) :"
     },
     {
       "name": "Psc.trace_sq_cyclicMinus",
+      "module": "PscVerif.TraceLemma",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/TraceLemma.lean",
       "line": 37,
       "declaration": "theorem trace_sq_cyclicMinus (a b c : K) :"
     },
     {
       "name": "Psc.trace_sq_Aq",
+      "module": "PscVerif.TraceLemma",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/TraceLemma.lean",
       "line": 42,
       "declaration": "theorem trace_sq_Aq (k : Fin 6) : ((Aq k) * (Aq k)).trace = 6 := by"
     },
     {
       "name": "Psc.trace_sq_conj",
+      "module": "PscVerif.TraceLemma",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/TraceLemma.lean",
       "line": 49,
       "declaration": "theorem trace_sq_conj (P Q X : Matrix (Fin 3) (Fin 3) ℚ) (hQP : Q * P = 1) :"
     },
     {
       "name": "Psc.Aq_not_conj_cyclicPlus",
+      "module": "PscVerif.TraceLemma",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/TraceLemma.lean",
       "line": 59,
       "declaration": "theorem Aq_not_conj_cyclicPlus (k : Fin 6) (P Q : Matrix (Fin 3) (Fin 3) ℚ)"
     },
     {
       "name": "Psc.Aq_not_conj_cyclicMinus",
+      "module": "PscVerif.TraceLemma",
+      "private": false,
       "source": "proof/PscVerif/PscVerif/TraceLemma.lean",
       "line": 67,
       "declaration": "theorem Aq_not_conj_cyclicMinus (k : Fin 6) (P Q : Matrix (Fin 3) (Fin 3) ℚ)"
@@ -2835,7 +2889,7 @@
   ],
   "input_digests": {
     "claim_governance.toml": "b8760894fb2246440e0ef63524fe0f748f4a5391d34b08641072eb032d03e893",
-    "proof/PscVerif/ProofBankAudit.lean": "711402d19ef8292638841a54f2a9a6a24cf6e9569736022118e71e2eb5dbd2ea",
+    "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
     "proof/PscVerif/PscVerif/Seeds.lean": "224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747",
@@ -2848,6 +2902,6 @@
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
     "tools/make_ledger.py": "f938962a48801fdf96497c3d7b732da9220c9222133cbfb888424f342df818b4",
-    "tools/make_proof_bank.py": "24b87287b37ec01e0299274c2f1151bd35000b5c05190d0e8cbb7ea993a78597"
+    "tools/make_proof_bank.py": "0ed67587fd5cdab0dd3cf3edda4df74d0604aa5741f822d62afe95a1258c42b5"
   }
 }

@@ -91,11 +91,12 @@ def test_root_module_proofs_are_inventoried_and_required_in_the_audit(tmp_path):
     assert {"RootBank.root_theorem", "RootBank.root_lemma"} <= names
     assert all(d["source"] == "proof/PscVerif/PscVerif.lean"
                for d in inventory if d["name"].startswith("RootBank."))
-    audited = sorted(names - {"RootBank.root_theorem", "RootBank.root_lemma"})
-    log = "".join(audit_line(n) for n in audited)
+    expected = {(d["module"], d["name"]) for d in inventory}
+    audited = [d for d in inventory if not d["name"].startswith("RootBank.")]
+    log = "".join(audit_line(d["name"], module=d["module"]) for d in audited)
     log += f"PSC_AUDIT_COMPLETE\t{len(audited)}\t{len(audited)}\n"
     with pytest.raises(ValueError, match="Incomplete Lean audit.*RootBank"):
-        pb.check_audit(log, names)
+        pb.check_audit(log, expected)
 
 
 @pytest.mark.parametrize("header", [
@@ -117,11 +118,12 @@ def test_lean_modifier_and_multiline_proofs_cannot_escape_inventory(tmp_path, he
     assert "ModifierBank.modified" in names
     declaration = next(d for d in inventory if d["name"] == "ModifierBank.modified")
     assert declaration["source"] == "proof/PscVerif/PscVerif.lean"
-    audited = sorted(names - {"ModifierBank.modified"})
-    log = "".join(audit_line(n) for n in audited)
+    expected = {(d["module"], d["name"]) for d in inventory}
+    audited = [d for d in inventory if d["name"] != "ModifierBank.modified"]
+    log = "".join(audit_line(d["name"], module=d["module"]) for d in audited)
     log += f"PSC_AUDIT_COMPLETE\t{len(audited)}\t{len(audited)}\n"
     with pytest.raises(ValueError, match="Incomplete Lean audit.*ModifierBank.modified"):
-        pb.check_audit(log, names)
+        pb.check_audit(log, expected)
 
 
 @pytest.mark.parametrize("prefix", ["set_option maxRecDepth 1000 in", "open Nat in"])
@@ -210,15 +212,47 @@ def test_pinned_dependency_refuses_tracked_changes(tmp_path, change, require_pac
         pb.check_pins(tmp_path, require_packages)
 
 
-def audit_line(name="Psc.target1", axioms="propext,Classical.choice,Quot.sound"):
-    return f"PSC_AXIOMS\ttheorem\t{name}\t{axioms}\n"
+def audit_line(name="Psc.target1", axioms="propext,Classical.choice,Quot.sound", *,
+               module="PscVerif", raw_name=None):
+    return f"PSC_AXIOMS\ttheorem\t{module}\t{raw_name or name}\t{name}\t{axioms}\n"
+
+
+@pytest.mark.parametrize("modules", [["PrivateA"], ["PrivateA", "PrivateB"]])
+def test_private_proofs_reconcile_by_source_name_and_module_without_collapsing_counts(tmp_path, modules):
+    project = tmp_path / pb.PROJECT
+    shutil.copytree(ROOT / pb.PROJECT, project, ignore=shutil.ignore_patterns(".lake"))
+    root = project / "PscVerif.lean"
+    root.write_text("".join(f"import PscVerif.{m}\n" for m in modules) + root.read_text())
+    for module in modules:
+        (project / "PscVerif" / f"{module}.lean").write_text(
+            "namespace PrivateBank\nprivate theorem helper : True := trivial\n"
+            "private lemma helper_lemma : True := trivial\nend PrivateBank\n")
+    pb.check_imports(tmp_path)
+    inventory = pb.lean_declarations(tmp_path)
+    private = [d for d in inventory if d["private"]]
+    assert len(private) == 2 * len(modules)
+    expected = {(d["module"], d["name"]) for d in inventory}
+
+    def line(d):
+        raw = f"_private.{d['module']}.0.{d['name']}" if d["private"] else d["name"]
+        return audit_line(d["name"], module=d["module"], raw_name=raw)
+
+    log = "".join(line(d) for d in inventory)
+    log += f"PSC_AUDIT_COMPLETE\t{len(inventory)}\t{len(inventory)}\n"
+    assert pb.check_audit(log, expected) == (len(inventory), len(inventory))
+    omitted = private[0]
+    incomplete = [d for d in inventory if d is not omitted]
+    log = "".join(line(d) for d in incomplete)
+    log += f"PSC_AUDIT_COMPLETE\t{len(incomplete)}\t{len(incomplete)}\n"
+    with pytest.raises(ValueError, match=f"Incomplete Lean audit.*{omitted['module']}"):
+        pb.check_audit(log, expected)
 
 
 def test_audit_accepts_standard_axioms_and_requires_every_named_proof():
     text = audit_line() + "PSC_AUDIT_COMPLETE\t1\t1\n"
-    assert pb.check_audit(text, {"Psc.target1"}) == (1, 1)
+    assert pb.check_audit(text, {("PscVerif", "Psc.target1")}) == (1, 1)
     with pytest.raises(ValueError, match="Incomplete"):
-        pb.check_audit(text, {"Psc.target1", "Psc.unseen"})
+        pb.check_audit(text, {("PscVerif", "Psc.target1"), ("PscVerif", "Psc.unseen")})
 
 
 @pytest.mark.parametrize("text", [
@@ -233,7 +267,7 @@ def test_audit_accepts_standard_axioms_and_requires_every_named_proof():
 ])
 def test_incomplete_cached_or_nonstandard_audit_is_rejected(text):
     with pytest.raises(ValueError):
-        pb.check_audit(text, {"Psc.target1"})
+        pb.check_audit(text, {("PscVerif", "Psc.target1")})
 
 
 def test_box_and_leftmost_nodes_record_implications_without_promoting_psc():

@@ -123,6 +123,13 @@ Two further negative controls show that compact scoped commands (`open ... in`
 or `set_option ... in`) must refuse an unsupported inventory instead of silently
 omitting their proofs. Every unaccounted theorem/lemma header now refuses the
 scan. All twenty-seven inventory/dependency negative controls pass.
+Private proofs retain their source-facing names and module identities in the
+bank. Audit replay uses Lean's native `privateToUserName`, emitting both the
+unique compiled name and normalized source name. Coverage matches module/name
+pairs; declaration/theorem totals still count unique compiled declarations.
+Two compatibility controls cover private theorem/lemma names and the same
+private helper names in different modules, including refusal when one module's
+proof is missing. Claim bindings with ambiguous source names refuse verification.
 The proof bank is an inventory of governed claims, named source proofs and
 apparent statement openings. Actual Lean evidence requires the fresh compiled
 audit; source inventory completeness conveys no mathematical proof authority.

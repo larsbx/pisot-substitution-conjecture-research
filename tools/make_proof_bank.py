@@ -164,8 +164,8 @@ def lean_declarations(root: Path) -> list[dict]:
             i = end
         code = "".join(masked)
         headers = re.compile(
-            r"(?m)^[ \t]*(?:(?:private|public|protected|meta|noncomputable|unsafe|partial|nonrec)\s+)*"
-            r"(?:theorem|lemma)\s+([^\s(:]+)"
+            r"(?m)^[ \t]*(?P<modifiers>(?:(?:private|public|protected|meta|noncomputable|unsafe|partial|nonrec)\s+)*)"
+            r"(?:theorem|lemma)\s+(?P<name>[^\s(:]+)"
         )
         matches = list(headers.finditer(code))
         # A scoped command or future grammar form must refuse inventory, not
@@ -175,7 +175,9 @@ def lean_declarations(root: Path) -> list[dict]:
             if not any(match.start() <= token.start() < match.end() for match in matches):
                 number = code.count("\n", 0, token.start()) + 1
                 raise ValueError(f"Unaccounted Lean proof header: {path}:{number}")
-        declarations = {code.count("\n", 0, match.start()) + 1: match[1] for match in matches}
+        declarations = {code.count("\n", 0, match.start()) + 1:
+                        (match["name"], "private" in match["modifiers"].split()) for match in matches}
+        module = ".".join(path.relative_to(project).with_suffix("").parts)
         stack: list[str | None] = []
         for number, line in enumerate(code.splitlines(), 1):
             opening = re.match(r"\s*(namespace|section)(?:\s+(\S+))?\s*$", line)
@@ -186,12 +188,14 @@ def lean_declarations(root: Path) -> list[dict]:
                     raise ValueError(f"Unmatched namespace/section end: {path}:{number}")
                 stack.pop()
             if number in declarations:
-                name = ".".join([s for s in stack if s] + [declarations[number]])
-                result.append({"name": name, "source": path.relative_to(root).as_posix(),
+                identifier, private = declarations[number]
+                name = ".".join([s for s in stack if s] + [identifier])
+                result.append({"name": name, "module": module, "private": private,
+                               "source": path.relative_to(root).as_posix(),
                                "line": number, "declaration": text.splitlines()[number-1].strip()})
         if stack:
             raise ValueError(f"Unclosed namespace/section: {path}")
-    if not result or len({d["name"] for d in result}) != len(result):
+    if not result or len({(d["module"], d["name"]) for d in result}) != len(result):
         raise ValueError("Empty or duplicate Lean declaration inventory")
     return result
 
@@ -303,6 +307,8 @@ def bank(root: Path = ROOT) -> dict:
             raise ValueError(f"Unknown or duplicate Lean support claim: {support['claim']}")
         if support["coverage"] not in {"partial", "full"} or not set(support["declarations"]) <= names:
             raise ValueError(f"Invalid Lean support binding: {support['claim']}")
+        if any(sum(d["name"] == name for d in formal) != 1 for name in support["declarations"]):
+            raise ValueError(f"Ambiguous Lean support binding: {support['claim']}")
         supports[support["claim"]] = support
     entries = []
     for name, claim in sorted(claims.items()):
@@ -338,9 +344,9 @@ def markdown(data: dict) -> str:
         source = c["source"].replace("|", "\\|").replace("\n", " ")
         lines.append(f"| {c['name']} | {c['status']} | {c['lean_support']['coverage']} | {source} |")
     lines += ["", "## Named Lean proofs", "", "Each declaration below must be present in a fresh compiled-environment audit. Generated helpers and definitions are audited too.", "",
-              "| Declaration | Source |", "|---|---|"]
+              "| Source name | Module | Private modifier | Source |", "|---|---|---|---|"]
     for d in data["lean_declarations"]:
-        lines.append(f"| `{d['name']}` | [{d['source']}:{d['line']}](../{d['source']}#L{d['line']}) |")
+        lines.append(f"| `{d['name']}` | `{d['module']}` | {'yes' if d['private'] else 'no'} | [{d['source']}:{d['line']}](../{d['source']}#L{d['line']}) |")
     lines += ["", "## Source statement inventory", "", "These are apparent statement openings, including open targets, imported results and repeated headings. Their inclusion grants no proof status. Exact machine-readable locators are in [`proof-bank.json`](../proof/proof-bank.json).", "",
               "| Source | Statement opening |", "|---|---|"]
     for d in data["source_statements"]:
@@ -349,27 +355,30 @@ def markdown(data: dict) -> str:
     return "\n".join(lines) + "\n"
 
 
-def check_audit(text: str, expected: set[str]) -> tuple[int, int]:
-    declarations: dict[str, str] = {}
+def check_audit(text: str, expected: set[tuple[str, str]]) -> tuple[int, int]:
+    declarations: dict[str, tuple[str, str, str]] = {}
     receipt = None
     for line in text.splitlines():
         if line.startswith("PSC_AXIOMS\t"):
             fields = line.split("\t")
-            if len(fields) != 4 or fields[1] not in {"theorem", "declaration"} or not fields[2] or fields[2] in declarations:
+            if len(fields) != 6 or fields[1] not in {"theorem", "declaration"} \
+                    or not all(fields[2:5]) or fields[3] in declarations \
+                    or not (fields[2] == "PscVerif" or fields[2].startswith("PscVerif.")):
                 raise ValueError("Malformed or duplicate Lean audit declaration")
-            if set(filter(None, fields[3].split(","))) - STANDARD_AXIOMS:
-                raise ValueError(f"Nonstandard axioms in {fields[2]}: {fields[3]}")
+            if set(filter(None, fields[5].split(","))) - STANDARD_AXIOMS:
+                raise ValueError(f"Nonstandard axioms in {fields[3]}: {fields[5]}")
             if receipt is not None:
                 raise ValueError("Lean declarations after completion receipt")
-            declarations[fields[2]] = fields[1]
+            declarations[fields[3]] = (fields[1], fields[2], fields[4])
         elif line.startswith("PSC_AUDIT_COMPLETE\t"):
             fields = line.split("\t")
             if receipt is not None or len(fields) != 3:
                 raise ValueError("Malformed or duplicate Lean audit completion receipt")
             receipt = (int(fields[1]), int(fields[2]))
-    theorems = {n for n, k in declarations.items() if k == "theorem"}
-    if receipt != (len(declarations), len(theorems)) or not theorems or not expected <= theorems:
-        raise ValueError(f"Incomplete Lean audit: missing={sorted(expected-theorems)}, receipt={receipt}")
+    theorems = {n for n, (kind, _, _) in declarations.items() if kind == "theorem"}
+    reached = {(module, user_name) for kind, module, user_name in declarations.values() if kind == "theorem"}
+    if receipt != (len(declarations), len(theorems)) or not theorems or not expected <= reached:
+        raise ValueError(f"Incomplete Lean audit: missing={sorted(expected-reached)}, receipt={receipt}")
     return receipt
 
 
@@ -395,7 +404,8 @@ def main(argv: list[str] | None = None) -> int:
             else:
                 path.write_text(text, encoding="utf-8")
         if args.audit_log:
-            counts = check_audit(args.audit_log.read_text(encoding="utf-8"), {d["name"] for d in data["lean_declarations"]})
+            counts = check_audit(args.audit_log.read_text(encoding="utf-8"),
+                                 {(d["module"], d["name"]) for d in data["lean_declarations"]})
             print(f"Lean axiom audit: {counts[0]} declarations, {counts[1]} theorems; all named proofs reached")
         print(f"Proof bank: {len(data['claims'])} claims, {len(data['lean_declarations'])} named Lean proofs, {len(data['source_statements'])} source openings")
         return 0
