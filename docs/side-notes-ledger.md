@@ -1311,3 +1311,11 @@ by deleting it.
   `(s1 − s2)^2 + s1 + 1`, or a one-variable polynomial lifted by
   `1 + u + v`); the region reader lifts only by the coordinates that occur. ·
   `kernel/tests/test_symbolic_cone.mojo`
+- 2026-10-08 · Rauzy representability of the closed claims: of the 47
+  closed repository-proved claims (44 ledger nodes with complete closure plus
+  three hand-ledger claims), 11 are natively statements about adelic Rauzy
+  pieces, 2 partly, and 34 not: they use degree ≥ 2 subword or free-Lie
+  invariants that the Parikh map erases, or stay on `Z^A` without reaching
+  the projection (factoring through ℓ is necessary, not sufficient). The shortest PDS route and
+  the #139 frontier lie on the Rauzy side. This is an interpretive map; it
+  moves no claim status. · `rauzy-representability-2026-10-08.html`
