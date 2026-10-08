@@ -113,6 +113,16 @@ pinned commit while retaining its HEAD SHA and apparently clean status, and
 reproduce acceptance before the fix. All nineteen negative
 cases pass with these repairs. Existing audit controls still reject missing
 receipts, incomplete cached output, nonstandard axioms and failed builds.
+The subsequent modifier review found that valid `nonrec`/`public` headers
+could still evade the source scan. The inventory now covers every modifier
+in the pinned Lean declaration grammar, balanced multiline attributes and
+multiline headers. Six more negative controls require those named proofs in
+both the source inventory and audit receipt; all twenty-five inventory/pin
+controls pass. Compilation still decides declaration validity and proof status.
+Two further negative controls show that compact scoped commands (`open ... in`
+or `set_option ... in`) must refuse an unsupported inventory instead of silently
+omitting their proofs. Every unaccounted theorem/lemma header now refuses the
+scan. All twenty-seven inventory/dependency negative controls pass.
 The proof bank is an inventory of governed claims, named source proofs and
 apparent statement openings. Actual Lean evidence requires the fresh compiled
 audit; source inventory completeness conveys no mathematical proof authority.
@@ -122,5 +132,14 @@ audit; source inventory completeness conveys no mathematical proof authority.
 Current validation and any unavailable toolchain are recorded in #237's
 updated evidence table before merge. Generated ledger, TLA+, governance,
 relationship and proof-bank artifacts are regenerated from their sources.
+Pinned Lean provisioning and the complete library build succeeded locally;
+fresh audit replay inspected 146 local declarations, including 92 theorems,
+reached all 27 named source proofs, and accepted only `propext`,
+`Classical.choice` and `Quot.sound`. A scratch-only executable-path shim
+mapped Lean's own numeric `/proc/<pid>/exe` lookup to `/proc/self/exe`; no
+compiler, verifier or dependency source changed. GitHub runs remained queued.
+The real pixi activation test was attempted but package downloads failed at
+the container's DNS/proxy boundary; direct pinned-Mojo tests and the 4,554
+specimen census passed. This network limitation is not credited as a pass.
 The run does not claim human peer review, a proof of PSC, a uniform G1/PDS
 verdict, or completed tensor/spectral formalization.

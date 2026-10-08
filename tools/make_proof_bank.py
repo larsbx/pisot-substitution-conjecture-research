@@ -143,6 +143,39 @@ def lean_declarations(root: Path) -> list[dict]:
     for path in paths:
         text = path.read_text(encoding="utf-8")
         code = lean_code(text)
+        # Lean's pinned Parser.Command.declModifiers accepts visibility,
+        # protected, meta/noncomputable, unsafe and partial/nonrec, with
+        # arbitrary intervening whitespace. Blank balanced attribute lists so
+        # multiline attributes cannot conceal the following declaration.
+        masked = list(code)
+        i = 0
+        while i < len(code):
+            if not code.startswith("@[", i):
+                i += 1
+                continue
+            depth, end = 1, i + 2
+            while end < len(code) and depth:
+                if code[end] == "[": depth += 1
+                elif code[end] == "]": depth -= 1
+                end += 1
+            if depth:
+                raise ValueError(f"Unterminated Lean attribute: {path}")
+            masked[i:end] = ["\n" if c == "\n" else " " for c in code[i:end]]
+            i = end
+        code = "".join(masked)
+        headers = re.compile(
+            r"(?m)^[ \t]*(?:(?:private|public|protected|meta|noncomputable|unsafe|partial|nonrec)\s+)*"
+            r"(?:theorem|lemma)\s+([^\s(:]+)"
+        )
+        matches = list(headers.finditer(code))
+        # A scoped command or future grammar form must refuse inventory, not
+        # silently drop its named proof. The compiled audit's extra generated
+        # theorems cannot alone detect such a source-inventory omission.
+        for token in re.finditer(r"\b(?:theorem|lemma)\s+[^\s(:]+", code):
+            if not any(match.start() <= token.start() < match.end() for match in matches):
+                number = code.count("\n", 0, token.start()) + 1
+                raise ValueError(f"Unaccounted Lean proof header: {path}:{number}")
+        declarations = {code.count("\n", 0, match.start()) + 1: match[1] for match in matches}
         stack: list[str | None] = []
         for number, line in enumerate(code.splitlines(), 1):
             opening = re.match(r"\s*(namespace|section)(?:\s+(\S+))?\s*$", line)
@@ -152,9 +185,8 @@ def lean_declarations(root: Path) -> list[dict]:
                 if not stack:
                     raise ValueError(f"Unmatched namespace/section end: {path}:{number}")
                 stack.pop()
-            match = re.match(r"\s*(?:@\[[^\n]*\]\s*)*(?:(?:private|protected)\s+)?(?:theorem|lemma)\s+([^\s(:]+)", line)
-            if match:
-                name = ".".join([s for s in stack if s] + [match[1]])
+            if number in declarations:
+                name = ".".join([s for s in stack if s] + [declarations[number]])
                 result.append({"name": name, "source": path.relative_to(root).as_posix(),
                                "line": number, "declaration": text.splitlines()[number-1].strip()})
         if stack:

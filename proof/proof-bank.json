@@ -2848,6 +2848,6 @@
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
     "tools/make_ledger.py": "f938962a48801fdf96497c3d7b732da9220c9222133cbfb888424f342df818b4",
-    "tools/make_proof_bank.py": "998156201fbf22f8a5d1afd8d164e47b7286c1e02da24c73a36444d2f5d52f49"
+    "tools/make_proof_bank.py": "24b87287b37ec01e0299274c2f1151bd35000b5c05190d0e8cbb7ea993a78597"
   }
 }

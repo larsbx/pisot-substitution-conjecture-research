@@ -98,6 +98,42 @@ def test_root_module_proofs_are_inventoried_and_required_in_the_audit(tmp_path):
         pb.check_audit(log, names)
 
 
+@pytest.mark.parametrize("header", [
+    "nonrec theorem",
+    "public protected nonrec theorem",
+    "noncomputable nonrec lemma",
+    "public protected meta unsafe partial theorem",
+    "@[\n  simp\n] public nonrec theorem",
+    "nonrec\ntheorem\n",
+])
+def test_lean_modifier_and_multiline_proofs_cannot_escape_inventory(tmp_path, header):
+    project = tmp_path / pb.PROJECT
+    shutil.copytree(ROOT / pb.PROJECT, project, ignore=shutil.ignore_patterns(".lake"))
+    module = project / "PscVerif.lean"
+    module.write_text(module.read_text() + f"\nnamespace ModifierBank\n{header}"
+                      " modified : True := trivial\nend ModifierBank\n")
+    inventory = pb.lean_declarations(tmp_path)
+    names = {d["name"] for d in inventory}
+    assert "ModifierBank.modified" in names
+    declaration = next(d for d in inventory if d["name"] == "ModifierBank.modified")
+    assert declaration["source"] == "proof/PscVerif/PscVerif.lean"
+    audited = sorted(names - {"ModifierBank.modified"})
+    log = "".join(audit_line(n) for n in audited)
+    log += f"PSC_AUDIT_COMPLETE\t{len(audited)}\t{len(audited)}\n"
+    with pytest.raises(ValueError, match="Incomplete Lean audit.*ModifierBank.modified"):
+        pb.check_audit(log, names)
+
+
+@pytest.mark.parametrize("prefix", ["set_option maxRecDepth 1000 in", "open Nat in"])
+def test_unrecognized_scoped_proof_headers_refuse_an_incomplete_inventory(tmp_path, prefix):
+    project = tmp_path / pb.PROJECT
+    shutil.copytree(ROOT / pb.PROJECT, project, ignore=shutil.ignore_patterns(".lake"))
+    module = project / "PscVerif.lean"
+    module.write_text(module.read_text() + f"\n{prefix} nonrec theorem omitted : True := trivial\n")
+    with pytest.raises(ValueError, match="Unaccounted Lean proof header"):
+        pb.lean_declarations(tmp_path)
+
+
 @pytest.mark.parametrize("change", ["unstaged", "staged", "deleted", "untracked",
                                     "ignored_source", "ignored_config",
                                     "assume_unchanged", "skip_worktree", "replace_object"])
