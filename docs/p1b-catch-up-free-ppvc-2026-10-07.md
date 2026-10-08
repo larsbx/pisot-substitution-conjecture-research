@@ -1,7 +1,7 @@
 # P1b: the strict zipper on the catch-up-free determinant-2 class — 2026-10-07
 
 **Status:** stop/go literature check (AGENTS.md review gate), one reduction
-assembled from existing results (§2), and an exact finite census (§4). No
+assembled from existing results (§2), and an exact bounded family survey (§4). No
 claim, ledger node or manuscript status changes. PSC, G1, #84 and #139 stay
 open.
 
@@ -78,12 +78,17 @@ property; endpoint hitting fails on the golden pump).
 
 **Decision: proceed, narrowed** to PPVC on the explicit parametric families
 of the class (Theorem E's classes A–D, the swap family, Proposition Y's two
-families, small members of `F`), by exact census first and, if the census
+families, small members of `F`), by an exact family survey first and, if the survey
 supports it, a parametric certificate on the overlap graph. No source
 inspected proves PPVC, balanced-pair termination or pure discrete spectrum
 for these families.
 
-## 4. Census (exact)
+## 4. Family survey (exact)
+
+A bounded survey of parameter presentations, not a corpus census in the sense
+of AGENTS.md: it enumerates the families' presentations at a bound and screens
+each, and most members lie outside the standing corpus. The class's 210 corpus
+members are covered by the standing PPVC census.
 
 `decide_vertex_coincidence` (Proposition V) decides PPVC for every `r` at
 once on one finite box graph per member, so a failure is a verdict and the
@@ -108,7 +113,7 @@ D `(1, 0, 0)` at depth 13. These members have images of length up to 6, past
 the image-length-4 and total-length-8 PPVC censuses. For the 228 members
 outside `F`, Theorem K supplies SC_all, so by Proposition Z each is a new
 finite certificate of pure discrete spectrum (resting on the unreviewed
-inputs listed in §6). For the 130 members of `F` this census gives G1; their
+inputs listed in §6). For the 130 members of `F` this survey gives G1; their
 SC_all is proved only where Theorem K's cells reach and is not re-checked
 here.
 
@@ -156,7 +161,7 @@ The next step is (1) on one class: enumerate, per cone, the ordered digit
 cycles of length at most the observed cycle lengths whose centre offset is
 integral and whose interval conditions hold on a `beta` bracket, and test
 whether each has an offset-zero witness path that verifies on the whole cone.
-The census of §4 is the negative control: the cover must find every
+The survey of §4 is the negative control: the cover must find every
 recurrent vertex the box graph finds, member by member.
 
 ## 5a. Follow-up (same day)

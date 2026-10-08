@@ -1,4 +1,12 @@
-"""Exact census of PeriodicPairVertexCoincidence on the catch-up-free `|det M| = 2` class.
+"""Exact family survey of PeriodicPairVertexCoincidence on the catch-up-free `|det M| = 2` class.
+
+**A bounded family survey, not a corpus census** (AGENTS.md, "The census
+library"). It does not walk `pip_corpus()`: it enumerates parameter
+presentations of the class's families, most of whose members lie outside the
+standing corpus (images up to length 6), and screens each with `CubicScreen`,
+as `a1_normal_form_census.mojo` does for the same families. Its counts describe
+those presentations at the stated bound, not the 4,554-specimen corpus; the
+corpus members of the class are covered by the standing PPVC census.
 
 docs/p1b-catch-up-free-ppvc-2026-10-07.md. On this class Theorem K of
 docs/p1a-a1-prime-2026-10-05.md proves all-pairs strong coincidence (SC_all)
@@ -26,7 +34,7 @@ decided.
 
 What it reports per family: members decided, skipped, and the histogram of
 `deepest`, the largest first offset-zero depth over the recurrent vertices.
-The question the census is for is whether that depth stays bounded as the
+The question the survey is for is whether that depth stays bounded as the
 parameters grow -- the precondition of a parametric certificate.
 
 Usage: `mojo run -I . catch_up_free_ppvc_census.mojo [bound]` (default 3), or
