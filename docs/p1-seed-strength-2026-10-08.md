@@ -187,7 +187,12 @@ Theorem E (unreviewed) and the imported Barge–Štimac–Williams theorem.
 
 Every line was run through the committed driver
 (`symbolic_line_certificate.mojo SLOPE K BRANCH`, one core each). Every cross-check
-passed. The list is `certified_lines()` in the driver.
+passed. The list is `certified_lines()` in the driver, and each entry pins its
+verdict: the threshold, the vertex count, and the member counts. Certifying a
+listed line raises unless it reproduces that pin.
+`.github/workflows/class-b-lines-evidence.yml` re-certifies every listed line,
+one job each, on pull requests that touch the driver's import closure, weekly,
+and on demand.
 
 **Where the method stops.**
 

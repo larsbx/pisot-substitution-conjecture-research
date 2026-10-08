@@ -26,7 +26,7 @@ from psc.symbolic_line import (
     tp_sub,
     tp_t,
 )
-from symbolic_line_certificate import class_b_line, certify_class_b_line
+from symbolic_line_certificate import certified_lines, check_pinned, class_b_line, certify_class_b_line, mode_of, pinned
 
 
 def test_eventual_sign_records_the_largest_root() raises:
@@ -83,6 +83,7 @@ def test_the_class_b_line_certificate() raises:
     assert_equal(v.symbolic_vertices, 119)
     assert_equal(v.finite_members, 52)
     assert_equal(v.finite_non_pip, 0)
+    check_pinned(v, pinned(2, 2, 1))
 
 
 def test_a_second_line_of_class_b_is_certified() raises:
@@ -94,6 +95,47 @@ def test_a_second_line_of_class_b_is_certified() raises:
     assert_equal(v.finite_members, 14)
     assert_equal(v.finite_non_pip, 0)
     assert_equal(v.finite_outside, 0)
+    check_pinned(v, pinned(1, 1, 1))
+    # a verdict that differs from its pin is refused
+    var off = v.copy()
+    off.symbolic_vertices += 1
+    var refused = False
+    try:
+        check_pinned(off, pinned(1, 1, 1))
+    except:
+        refused = True
+    assert_true(refused)
+
+
+def test_every_listed_line_has_a_pinned_verdict() raises:
+    """Fifteen lines, each with slope, k, branch and a five-field verdict; the
+    evidence workflow runs each one against its pin."""
+    var lines = certified_lines()
+    assert_equal(len(lines), 15)
+    for i in range(len(lines)):
+        assert_equal(len(lines[i]), 8)
+    assert_equal(len(pinned(3, 0, 1)), 0)
+
+
+def assert_mode_refused(args: List[String]) raises:
+    var refused = False
+    try:
+        _ = mode_of(args)
+    except:
+        refused = True
+    assert_true(refused)
+
+
+def test_the_command_line_is_strict() raises:
+    """No argument, three integers, or `lines`; anything else raises instead of
+    silently certifying the default line."""
+    assert_equal(mode_of(List[String]()), "default")
+    assert_equal(mode_of(["lines"]), "lines")
+    assert_equal(mode_of(["1", "2", "-1"]), "line")
+    assert_mode_refused(["2", "2"])
+    assert_mode_refused(["foo"])
+    assert_mode_refused(["2", "x", "1"])
+    assert_mode_refused(["1", "2", "3", "4"])
 
 
 def test_a_line_that_leaves_the_pisot_class_is_refused() raises:
@@ -122,5 +164,9 @@ def main() raises:
     print("[PASS] test_a_second_line_of_class_b_is_certified")
     test_a_line_that_leaves_the_pisot_class_is_refused()
     print("[PASS] test_a_line_that_leaves_the_pisot_class_is_refused")
+    test_every_listed_line_has_a_pinned_verdict()
+    print("[PASS] test_every_listed_line_has_a_pinned_verdict")
+    test_the_command_line_is_strict()
+    print("[PASS] test_the_command_line_is_strict")
     require_contract("Theorem L certificate (class B line sigma_q: x -> x y^(2q+2) x, c -> c y^q x, y -> c y^(q+1) x): the symbolic swap-seed overlap graph, decided by parametric Sturm-Tarski queries over Q[q] with certified threshold, has 119 vertices for every q >= 52, all with an offset-zero descendant, and the line is certified PIP there; every q in 0..51 is PIP and its exact seed-reachable graph (screened kernel) has every vertex hitting; at q = 52 and 57 the symbolic graph with q substituted equals the exact graph; parametric signs agree with concrete signs at q = 60; pseudo-remainders keep the sign at beta; a det-0 line is refused")
-    require_contract("Theorem L' certificate: the class B line p = q + 1, r = q + 1 is certified (121 symbolic vertices for every q >= 14, all hitting; q < 14: 14 PIP members, all hitting); the line p = 3q + 1, r = q - 1, which leaves the Pisot class, is refused")
+    require_contract("Theorem L' certificate: the class B line p = q + 1, r = q + 1 is certified (121 symbolic vertices for every q >= 14, all hitting; q < 14: 14 PIP members, all hitting); the line p = 3q + 1, r = q - 1, which leaves the Pisot class, is refused; certified_lines() pins fifteen verdicts and a verdict off its pin is refused; the command line accepts only no argument, SLOPE K BRANCH or lines")

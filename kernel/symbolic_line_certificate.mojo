@@ -19,7 +19,9 @@ letters `x = 0`, `c = 1`, `y = 2`, `|det M| = 2`. The certificate has three part
 A failure of any part raises. Usage: `mojo run -I . symbolic_line_certificate.mojo`
 (Theorem L's line), `... symbolic_line_certificate.mojo SLOPE K BRANCH` (the class B
 line p = SLOPE q + K, r = q + BRANCH), or `... lines` (every line in
-`certified_lines()`); `pixi run symbolic-line-certificate` runs the first.
+`certified_lines()`); `pixi run symbolic-line-certificate` runs the first. Any
+other argument shape raises. A listed line must also reproduce its pinned
+verdict; `.github/workflows/class-b-lines-evidence.yml` runs every listed line.
 """
 
 from std.collections import Dict
@@ -162,12 +164,47 @@ def certify_class_b_line(slope: Int = 2, k: Int = 2, branch: Int = 1) raises -> 
 # The class B lines certified so far, as (slope, k, branch): p = slope q + k,
 # r = q + branch. The first is Theorem L; the others are Theorem L' of
 # docs/p1-seed-strength-2026-10-08.md.
+# slope, k, branch, then the pinned verdict: q0, symbolic vertices, PIP members
+# below q0, non-PIP members below q0, parameters below q0 outside class B.
 def certified_lines() -> List[List[Int]]:
     return [
-        [2, 2, 1],
-        [1, 1, 1], [1, 2, 1], [1, 3, 1], [1, 1, -1], [1, 2, -1], [1, 3, -1],
-        [2, 0, 1], [2, 1, 1], [2, 3, 1], [2, 4, 1], [2, 0, -1], [2, 1, -1], [2, 2, -1], [2, 3, -1],
+        [2, 2, 1, 52, 119, 52, 0, 0],
+        [1, 1, 1, 14, 121, 14, 0, 0],
+        [1, 2, 1, 11, 77, 11, 0, 0],
+        [1, 3, 1, 22, 79, 22, 0, 0],
+        [1, 1, -1, 20, 166, 19, 0, 1],
+        [1, 2, -1, 16, 144, 14, 1, 1],
+        [1, 3, -1, 32, 131, 30, 1, 1],
+        [2, 0, 1, 20, 76, 19, 0, 1],
+        [2, 1, 1, 17, 84, 17, 0, 0],
+        [2, 3, 1, 14, 123, 14, 0, 0],
+        [2, 4, 1, 15, 123, 15, 0, 0],
+        [2, 0, -1, 34, 124, 33, 0, 1],
+        [2, 1, -1, 87, 274, 85, 1, 1],
+        [2, 2, -1, 107, 255, 104, 2, 1],
+        [2, 3, -1, 128, 248, 124, 3, 1],
     ]
+
+
+def pinned(slope: Int, k: Int, branch: Int) -> List[Int]:
+    """The pinned verdict of a listed line, or an empty list."""
+    var lines = certified_lines()
+    for i in range(len(lines)):
+        if lines[i][0] == slope and lines[i][1] == k and lines[i][2] == branch:
+            return lines[i].copy()
+    return List[Int]()
+
+
+def check_pinned(v: LineVerdict, pin: List[Int]) raises:
+    """A listed line must reproduce its pinned verdict exactly."""
+    if (
+        v.q0 != pin[3]
+        or v.symbolic_vertices != pin[4]
+        or v.finite_members != pin[5]
+        or v.finite_non_pip != pin[6]
+        or v.finite_outside != pin[7]
+    ):
+        raise Error("the line's verdict differs from its pinned verdict in certified_lines()")
 
 
 def report(slope: Int, k: Int, branch: Int) raises:
@@ -176,14 +213,36 @@ def report(slope: Int, k: Int, branch: Int) raises:
     print("  symbolic graph for every q >=", v.q0, ":", v.symbolic_vertices, "vertices, all with an offset-zero descendant;", v.queries, "certified sign reads")
     print("  q <", v.q0, ":", v.finite_members, "PIP members decided exactly, all hitting;", v.finite_non_pip, "not PIP;", v.finite_outside, "outside class B")
     print("  cross-check at q0 and q0 + 5: symbolic graph = exact graph")
+    var pin = pinned(slope, k, branch)
+    if len(pin) > 0:
+        check_pinned(v, pin)
+        print("  pinned verdict reproduced")
+
+
+def mode_of(args: List[String]) raises -> String:
+    """`default` (no argument), `line` (three integers) or `lines`; any other
+    shape raises, so a typo never silently certifies the default line instead."""
+    if len(args) == 0:
+        return "default"
+    if len(args) == 1 and args[0] == "lines":
+        return "lines"
+    if len(args) == 3:
+        for i in range(3):
+            _ = Int(args[i])  # raises unless an integer
+        return "line"
+    raise Error("usage: symbolic_line_certificate.mojo [SLOPE K BRANCH | lines]")
 
 
 def main() raises:
-    var args = argv()
-    if len(args) == 4:
-        report(Int(String(args[1])), Int(String(args[2])), Int(String(args[3])))
+    var argv_ = argv()
+    var args = List[String]()
+    for i in range(1, len(argv_)):
+        args.append(String(argv_[i]))
+    var mode = mode_of(args)
+    if mode == "line":
+        report(Int(args[0]), Int(args[1]), Int(args[2]))
         return
-    if len(args) == 2 and String(args[1]) == "lines":
+    if mode == "lines":
         var lines = certified_lines()
         for i in range(len(lines)):
             report(lines[i][0], lines[i][1], lines[i][2])
