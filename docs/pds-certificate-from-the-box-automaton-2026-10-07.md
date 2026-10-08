@@ -214,8 +214,11 @@ Both runs reproduce every figure that §4 of the vertex note records for these
 rows: the largest box graph, the most recurrent vertices, the recurrent total
 and the deepest `K_V`, with the same specimens. The standing row also
 reproduces the `K_V` histograms that CI pins. The images ≤ 4
-row was not re-run in this session. It rests on the recorded PPVC run together
-with the SC_all census, as described above, until the guarding workflow runs.
+row was not re-run in this session. *Update 2026-10-08:* the guarding workflow
+`box-automaton-evidence.yml` has since run on PR #233's merged head
+(`72f173d`). All twelve images ≤ 4 slices and the total-length ≤ 8 job passed,
+each requiring every specimen formally productive and none capped, so the
+images ≤ 4 row is now CI-confirmed.
 
 The census slices pinned in `kernel/tests/test_vertex_coincidence.mojo`
 (first 300 standing, first 100 images ≤ 4) are all productive, with box `D`
