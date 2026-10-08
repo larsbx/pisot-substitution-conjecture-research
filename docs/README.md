@@ -271,6 +271,16 @@ These are reference/index additions only. They do not establish #84, #138,
   parametric Sturm–Tarski queries over `Q[q]` with a certified threshold
   (`q >= 52`), plus the exact kernel for `q < 52`
   (`kernel/psc/symbolic_line.mojo`, `kernel/symbolic_line_certificate.mojo`).
+- `p1b-symbolic-cone-2026-10-08.md` — #139 research note. **Theorem C**
+  (Status: repository-proved, computer-assisted, unreviewed): pure discrete
+  spectrum and G1 for every member of class B with `r = q + 1`,
+  `p <= max(2q + 13, (5q + 10)/2)`, or `r = q − 1`,
+  `p <= max(2q + 7, (5q − 5)/2)`, by the swap-seed closure in two parameters:
+  region signs certified by shifted coefficients with Pólya's multiplier, and
+  signs at beta on certified rational brackets of the Perron root (45
+  families, 77 symbolic regions, 490 exact members). It contains Theorem L
+  and every line of Theorem L′; the layer near slope 3 stays open
+  (`kernel/psc/symbolic_cone.mojo`, `kernel/class_b_cone_certificate.mojo`).
 - `p1b-catch-up-free-ppvc-2026-10-07.md` — #139 on the catch-up-free
   `|det M| = 2` class, with its stop/go gate: **Proposition Z** assembles
   recorded results to show that there, outside the open part of Theorem K's

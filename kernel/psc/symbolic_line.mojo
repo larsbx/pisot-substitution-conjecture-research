@@ -510,7 +510,7 @@ def certify_line(line: Line, mut ev: Eventual) raises -> LineCertificate:
             if s < 0:
                 return LineCertificate(False, 0)
             support.append(1 if s > 0 else 0)
-    if not _primitive_support(support):
+    if not primitive_support(support):
         return LineCertificate(False, 0)
     # rational roots divide the (constant) determinant
     var d = det[0].copy()
@@ -548,7 +548,7 @@ def certify_line(line: Line, mut ev: Eventual) raises -> LineCertificate:
     return LineCertificate(True, s)
 
 
-def _primitive_support(s: List[Int]) -> Bool:
+def primitive_support(s: List[Int]) -> Bool:
     """Some power of the 0/1 support matrix is positive (Wielandt: power 5 suffices)."""
     var p = s.copy()
     for _ in range(5):
@@ -756,8 +756,12 @@ def _least_at(line: Line, sign: Int, h0: TPoly, h1: TPoly, q: Int, strict: Bool)
     """Exact least integer `m` with `h0 + m h1 > 0` (`>= 0` if not `strict`) at
     `beta(q)`, for one concrete `q`."""
     var field = LineField(tp_at_q(line.field.chi, q))
-    var g0 = tp_scale(tp_at_q(h0, q), qx_const(sign))
-    var g1 = tp_scale(tp_at_q(h1, q), qx_const(sign))
+    return least_integer_at(field, tp_scale(tp_at_q(h0, q), qx_const(sign)), tp_scale(tp_at_q(h1, q), qx_const(sign)), strict)
+
+
+def least_integer_at(field: LineField, g0: TPoly, g1: TPoly, strict: Bool) raises -> Int:
+    """Exact least integer `m` with `g0 + m g1 > 0` (`>= 0` if not `strict`) at the
+    root of `field.chi` in `(1, infinity)`, all coefficients constant."""
     var ev = Eventual()
     if field.sign_at_beta(g1, ev) <= 0:
         raise Error("the run-position step is not positive")
@@ -822,17 +826,25 @@ def symbolic_line_graph(var line: Line) raises -> SymbolicLineGraph:
 
 def offset_zero_reachable(g: SymbolicLineGraph) -> List[Bool]:
     """Whether each vertex has an offset-zero descendant (itself included)."""
-    var n = g.size()
+    var zero = List[Bool]()
+    for i in range(g.size()):
+        zero.append(g.vertices[i].is_zero_offset())
+    return zero_descendants(g.adj, zero)
+
+
+def zero_descendants(adj: List[List[Int]], zero: List[Bool]) -> List[Bool]:
+    """Whether each vertex reaches a vertex flagged in `zero` (itself included)."""
+    var n = len(adj)
     var good = List[Bool](length=n, fill=False)
     var rev = List[List[Int]]()
     for _ in range(n):
         rev.append(List[Int]())
     for i in range(n):
-        for j in range(len(g.adj[i])):
-            rev[g.adj[i][j]].append(i)
+        for j in range(len(adj[i])):
+            rev[adj[i][j]].append(i)
     var stack = List[Int]()
     for i in range(n):
-        if g.vertices[i].is_zero_offset():
+        if zero[i]:
             good[i] = True
             stack.append(i)
     while len(stack) > 0:

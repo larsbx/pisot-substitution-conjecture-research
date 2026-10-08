@@ -142,3 +142,9 @@ only through a conjugacy to a β-substitution, which is not checked here.
   corner.
 - Nothing about the other classes, the swap family or Theorem K's family.
 - No review beyond its author.
+
+**Follow-up (2026-10-08).** The second parameter is done for class B below
+slope `5/2`: Theorem C of
+[`p1b-symbolic-cone-2026-10-08.md`](p1b-symbolic-cone-2026-10-08.md). The
+`p ≫ q` corner above does not occur in class B (Lemma P1 gives `p < 3q + 12`);
+the real obstruction is the layer near slope 3, recorded there in §5.
