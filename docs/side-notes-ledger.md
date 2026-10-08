@@ -1328,3 +1328,17 @@ by deleting it.
   the projection (factoring through ℓ is necessary, not sufficient). The shortest PDS route and
   the #139 frontier lie on the Rauzy side. This is an interpretive map; it
   moves no claim status. · `rauzy-representability-2026-10-08.html`
+- 2026-10-08 · Two independently written two-parameter engines agree on class
+  B's wedge `q < p < 2q`: `psc.symbolic_cone` (Theorem C) and the line engine
+  generalised to `Q[s, d]` (commit `5ee3f0f`, not merged). Every shared vertex
+  count matches. The second engine also showed where the Sturm chains break
+  inside a region:
+  - along `d^2 ≈ 8s`, where the conjugate pair turns from real to complex;
+  - along the irrational ray `d/s = (1 + sqrt 5)/2`, through a leading
+    coefficient.
+
+  Rouché (`|c_2| > 1 + |c_1| + |c_0|`) decides PIP there with three sign reads
+  and no bracket. ·
+  `p1b-symbolic-cone-2026-10-08.md` §4;
+  `archive/2026-10-08/class-b-wedge-crosscheck/`
+

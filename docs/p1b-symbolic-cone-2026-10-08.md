@@ -168,6 +168,31 @@ agrees (121, 77, 79; 166, 144, 131; 76, 84, 123, 123; 124, 274, 255, 248).
 Theorem C contains them; the cone engine's thresholds on them are at most 24,
 against Sturm's 11 to 128.
 
+*Independent cross-check, 2026-10-08.* A second engine certified the part of
+Theorem C with `q < p <= 2q + 4` (`r = q + 1`) and `q < p <= 2q + 3`
+(`r = q − 1`). It was written in parallel and does not share code with
+`psc.symbolic_cone`: it is the line engine generalised to coefficients in
+`Q[s, d]`. It decides PIP by Rouché, `|c_2| > 1 + |c_1| + |c_0|`, instead of
+Jury, and refines its `beta` brackets by Newton and chord steps.
+
+It cut the wedge `q < p < 2q` into two cones, `s >= d` and `s < d`, plus 54
+boundary lines. Every overlapping vertex count agrees with this note:
+
+| branch | families of this note | counts |
+| --- | --- | --- |
+| `+1` | `J+1..4` | 121, 77, 79, 76 |
+| `+1` | `A+` (both cones and 21 lines) | 74 |
+| `−1` | `J−1..4` | 166, 144, 131, 125 |
+| `−1` | `A−` (cone `s < d`; lines `p = q + j`, `j = 5..8`; lines `2j = q − e`, `e = 2..4`) | 123 |
+| `−1` | `M−(−1)..3` (lines `2j = q + d`) | 125, 125, 133, 164, 175 |
+| `−1` | `B−` (cone `s >= d`; lines `2j = q + e`, `e = 4..8`; lines `p = 2q − d`, `d = 6..8`) | 171 |
+| `−1` | `C−(−5)..(−1)` (lines `p = 2q − d`) | 173, 175, 186, 195, 112 |
+
+Logs: `archive/2026-10-08/class-b-wedge-crosscheck/`. The engine is not
+merged, because it duplicates this one. It is reachable at commit `5ee3f0f`.
+Two engines with different PIP certificates and different bracket schemes
+agreeing is a cross-check, not part of the proof.
+
 ## 5. What it does not establish: the top layer
 
 - **Not all of class B.** Above slope `5/2` the scans show further sectors,
