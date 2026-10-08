@@ -6,6 +6,7 @@ import random
 import sys
 from cProfile import Profile
 from fractions import Fraction
+from itertools import product
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -179,6 +180,85 @@ def test_poly_rem_cached_degree_matches_scan_after_multi_zero_cancellation():
     assert ps._poly_rem(dividend, divisor) == repeated_degree_scan(
         dividend, divisor
     )
+
+
+def _dense_division_remainder(a, b):
+    """Independent exact division: solve quotient coefficients, then subtract q*b.
+
+    No production degree helper, cached reciprocal, sparse terms or mutable
+    remainder is used. Preserve the oracle's untrimmed remainder layout and
+    its legacy empty result for a zero or constant divisor.
+    """
+    db = next((i for i in range(len(b) - 1, -1, -1) if b[i] != 0), -1)
+    if db <= 0:
+        return []
+    quotient = [Fraction(0)] * max(0, len(a) - db)
+    for shift in range(len(quotient) - 1, -1, -1):
+        contributions = sum(
+            (quotient[j] * b[shift + db - j]
+             for j in range(shift + 1, min(len(quotient), shift + db + 1))),
+            Fraction(0),
+        )
+        quotient[shift] = (a[shift + db] - contributions) / b[db]
+    return [
+        a[k] - sum((quotient[j] * b[k - j]
+                    for j in range(min(k + 1, len(quotient)))), Fraction(0))
+        for k in range(min(db, len(a)))
+    ]
+
+
+def test_poly_rem_sparse_rational_divisor_matches_independent_division():
+    divisor = [Fraction(2, 3), Fraction(0), Fraction(-5, 7), Fraction(0),
+               Fraction(0), Fraction(-11, 13), Fraction(0)]
+    quotient = [Fraction(3, 5), Fraction(0), Fraction(-7, 11), Fraction(2, 9)]
+    expected = [Fraction(-2, 17), Fraction(0), Fraction(4, 19), Fraction(0),
+                Fraction(0)]
+    dividend = expected + [Fraction(0)] * (len(quotient) + 5 - len(expected))
+    # A dense convolution supplies a known identity a = q*b + r. The negative,
+    # non-unit rational leading coefficient exercises the cached reciprocal;
+    # the gaps exercise skipped terms, and the final zero is outside degree(b).
+    for i, q in enumerate(quotient):
+        for j, c in enumerate(divisor[:6]):
+            dividend[i + j] += q * c
+    snapshot = (list(dividend), list(divisor))
+    result = ps._poly_rem(dividend, divisor)
+    assert result == expected == _dense_division_remainder(dividend, divisor)
+    assert all(type(c) is Fraction for c in result)
+    assert (dividend, divisor) == snapshot
+
+
+def test_poly_rem_matches_independent_division_on_deterministic_grid():
+    polys = [[]] + [list(c) for n in range(1, 4)
+                    for c in product((-1, 0, 1), repeat=n)]
+    encodings = (
+        lambda p: [Fraction(c) for c in p],
+        lambda p: [Fraction(c, i + 2) for i, c in enumerate(p)],
+        lambda p: [value for i, c in enumerate(p)
+                   for value in (Fraction(c, i + 2), Fraction(0), Fraction(0))][:-2],
+    )
+    for encode in encodings:
+        for a, b in product(polys, repeat=2):
+            a, b = encode(a), encode(b)
+            snapshot = (list(a), list(b))
+            expected = _dense_division_remainder(a, b)
+            result = ps._poly_rem(a, b)
+            assert result == expected, (a, b)
+            assert all(type(c) is Fraction for c in result)
+            assert (a, b) == snapshot
+
+
+def test_poly_rem_sparse_path_reduces_exact_arithmetic_work():
+    # Count arithmetic dispatch, not wall time. This fails on the dense-loop
+    # baseline while pinning the work avoided by the optimization itself.
+    divisor = [Fraction(-2, 3), Fraction(0), Fraction(0), Fraction(0),
+               Fraction(5, 7)]
+    dividend = [Fraction(i + 1, i + 2) for i in range(13)]
+    with Profile() as profile:
+        result = ps._poly_rem(dividend, divisor)
+    assert result == _dense_division_remainder(dividend, divisor)
+    calls = {entry.code: entry.callcount for entry in profile.getstats()}
+    assert calls.get(Fraction._div.__code__, 0) == 0
+    assert calls.get(Fraction._sub.__code__, 0) == 18  # 9 steps, 2 nonzero terms
 
 
 def _ordinary_fraction_horner(coeffs, x: Fraction) -> Fraction:
