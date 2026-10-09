@@ -2103,28 +2103,33 @@
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 119,
+      "line": 120,
       "statement_heading": "## 4. Theorem L″: lines of classes A, C and D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 138,
+      "line": 139,
       "statement_heading": "*Theorem L″.* For each line below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 197,
+      "line": 198,
       "statement_heading": "## 4b. Theorem W: two-parameter wedges of class D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 274,
+      "line": 275,
       "statement_heading": "*Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 291,
+      "line": 292,
       "statement_heading": "*Corollary W1.* **Every PIP member of class D with `r ≥ q − 1` has pure"
+    },
+    {
+      "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
+      "line": 336,
+      "statement_heading": "*Corollary W2.* **Every PIP member of Theorem E's class D has pure discrete"
     },
     {
       "source": "docs/p1b-catch-up-free-ppvc-2026-10-07.md",
@@ -2135,6 +2140,26 @@
       "source": "docs/p1b-catch-up-free-ppvc-2026-10-07.md",
       "line": 174,
       "statement_heading": "**Theorem L**: pure discrete spectrum and G1 for every member of that line."
+    },
+    {
+      "source": "docs/p1b-edge-progressions-2026-10-09.md",
+      "line": 36,
+      "statement_heading": "## 2. Lemma EP (edge progressions)"
+    },
+    {
+      "source": "docs/p1b-edge-progressions-2026-10-09.md",
+      "line": 62,
+      "statement_heading": "*Corollary EP′ (index dynamics).* Choose a coordinate functional `φ` with"
+    },
+    {
+      "source": "docs/p1b-edge-progressions-2026-10-09.md",
+      "line": 102,
+      "statement_heading": "**Conjecture EP.** Near each Lemma P1 edge, on a line of fixed `k_±`:"
+    },
+    {
+      "source": "docs/p1b-edge-progressions-2026-10-09.md",
+      "line": 199,
+      "statement_heading": "**Theorem P.** On the class A line `(p, q, r) = (n + 1, n, n + 1)`, with"
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",

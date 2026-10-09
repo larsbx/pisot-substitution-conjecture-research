@@ -3,7 +3,9 @@
 **Status:** research note. Lemma EP (§2) is proved here, and its proof is
 elementary. §3 is exact data from the kernel (scratch probes through
 `build_seed_overlap_graph_from_tables`). §4 states a conjecture and a plan.
-No ledger node or manuscript statement changes. #139 and PSC stay open.
+§6 is the progression certificate and Theorem P: the class A slope-1 line
+`(n + 1, n, n + 1)`, certified for every `n` (computer-assisted). No ledger
+node or manuscript statement changes. #139 and PSC stay open.
 
 ## 1. The question
 
@@ -142,3 +144,84 @@ finite in any compact range of `δ`, but this is not proved.
 3. **Lemma EP for the families outside Theorem E** (the swap family,
    Proposition Y, Theorem K's family). Their parameters also sit in one row,
    or not, and that decides whether the vectors stay parameter-free.
+
+## 6. The progression certificate (Theorem P)
+
+`kernel/psc/progression_line.mojo` implements §5.1. The driver runs it as
+
+    symbolic_line_certificate.mojo progression CLASS AP BP AQ BQ AR BR U0 U1 U2 S
+
+**Data.** A *state* is `(a, b, w₀)` with `φ(w₀) = 0`. Its members are
+`w₀ + j u` for `j` in a finite union of integer intervals whose ends are
+affine in the line parameter. An *edge* carries a constant drift `c` and a
+validity set `V` of the source's `j`. For every `j ∈ V` the child exists and
+has index `c + s j`. Every decision is a sign read of the line engine
+(`SymbolicClosure` and its `Eventual`), so each holds for every parameter
+above one certified threshold `q₀`.
+
+**Edges.** Lemma EP gives `M(w₀ + j u) = M w₀ + j(s u + k e_y)`.
+
+- A non-run child `B₀ + j(s u + k e_y)` is real for a window of `j` whose
+  width is constant. The certificate checks that the width is constant. Each
+  `j` in the window gives its own state.
+- A run child at run position `m` becomes the state `(a′, b′, base₀ + m′e_y)`
+  with `m′ = m + jk`.
+- `m′` is pinned to a constant-width window. For `s = +1`, child − parent
+  `= t(B₀) − t(w₀) + m′ℓ_y` lies in `(−ℓ_{b′} − ℓ_a, ℓ_{a′} + ℓ_b)`. For
+  `s = −1`, child + parent `= t(B₀) + t(w₀) + m′ℓ_y` lies in
+  `(−ℓ_{b′} − ℓ_b, ℓ_{a′} + ℓ_a)`.
+- Within the window, `V` is the child's realness, taken back to the
+  parent's `j`, intersected with the run bounds `r_lo ≤ m′ − jk ≤ r_hi`
+  and with the parent's realness.
+
+Every child of every member is therefore an edge.
+
+**Members.** States and index sets are closed together from the seeds. A
+state is expanded once it has a member. After four changes a state's set is
+widened to its realness interval. The result is a superset of the
+seed-reachable overlaps, and each element is a real overlap.
+
+**Hitting.** The steps are the edges for `s = +1`. For `s = −1` they are the
+composites of two edges (`σ²`): `j ↦ j + (c₂ − c₁)`, valid on
+`{j ∈ V₁ : c₁ − j ∈ V₂}`. Let `d` be the largest step drift and
+`j₀ = max(1, ⌊d/2⌋)`; this is the least `j₀ ≥ 1` with `2(j₀ + 1) > d`.
+
+- Every member with `|j| > j₀` has a step that strictly lowers `|j|`, or a
+  drift-0 step to a member already ranked. The second clause is a monotone
+  fixed point.
+- The members with `|j| ≤ j₀` are finitely many explicit vertices. Each
+  reaches offset zero inside the core.
+
+A path along ranked steps lowers `(|j|, rank)` until it enters the core, and
+the core hits. Any failure raises. So does a run bound that `k` does not divide,
+a non-constant drift, or a window that grows with the parameter.
+
+**Theorem P.** On the class A line `(p, q, r) = (n + 1, n, n + 1)`, with
+`u = u₋ = (1, −1, 0)` and `s = +1`, every PIP member has every seed-reachable
+strict-zipper overlap reaching offset zero. Each member therefore has pure
+discrete spectrum and a finite BPA (Corollary E2: `|det M| = 2`).
+
+- For `n ≥ 12`: 287 states and 3,722 edges. Every member with `|j| ≥ 2` is
+  ranked, and the 279 core members hit inside the core.
+- For `n < 12`: 12 PIP members, decided exactly, all hitting.
+- Pinned in `certified_progressions()` and re-run by the evidence workflow.
+
+This is the first line the bounded-graph method could not reach: its seed
+graphs have `40n + 115` vertices.
+
+**Cross-check against an independent computation.** The exact seed graphs
+(`build_seed_overlap_graph_from_tables`) at `n = 20, 30, 40, 50` have 915,
+1,315, 1,715 and 2,115 vertices on 75 skeleton states. Every one of them is
+a member of the symbolic sets; 0 are missing. The symbolic sets are
+3,583 … 8,413 (287 states). The surplus is the widening, and it is sound
+because the certificate proves hitting for the whole superset. The driver
+repeats this containment check at `q₀` and `q₀ + 5` on every run.
+
+**Not established.** Theorem P is computer-assisted and unreviewed. It rests
+on Theorem E, the line engine's soundness (Lemma S) and the imported
+Barge–Štimac–Williams theorem. The reflection case (`s = −1`, class C, §4)
+is implemented but not yet certified on any line. For `k > 1` the run
+bounds become `⌈(m′ − r_hi)/k⌉ ≤ j ≤ ⌊(m′ − r_lo)/k⌋`. These are affine
+when `k` divides their parameter coefficient; otherwise the certificate
+refuses, and the line must be restricted to a sublattice. That path is
+implemented but not yet exercised.

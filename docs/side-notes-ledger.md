@@ -1467,3 +1467,16 @@ by deleting it.
   Probe along lines in boundary-parallel coordinates before calling a
   region irregular. · `p1b-boundary-hitting-progress-2026-10-08.md` §4d
 
+- 2026-10-09 · Progression certificates. Two pitfalls when writing them.
+  (1) A run child's index is `phi(B₀) + s j`, with `B₀ = M w₀ + prefixes`.
+  The drift must be kept in both the run window and the realness interval:
+  `t(child) = t(B₀) + m′ℓ_y + s j ⟨ℓ, u⟩`, not `t(base₀) + …`. The child's
+  realness is first an interval in the child's own index and has to be
+  mapped back to the parent's `j` before it is intersected. A first draft
+  that dropped the drift would have lost children, which is unsound; the
+  exact-graph containment check (every exact vertex is a member) is the
+  guard. (2) Expanding states without members makes the state closure
+  follow edges that no member ever takes. Expand a state only once it has a
+  member. Separately, class C has `det M = 2e`, so the `k = 1` reflection
+  lines need `e = ±1`, e.g. `(3n + 1, 2n + 1, n)`. ·
+  `p1b-edge-progressions-2026-10-09.md` §6

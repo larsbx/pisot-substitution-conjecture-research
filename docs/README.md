@@ -76,6 +76,11 @@ with six more wedges and 13 lines **for every PIP member of class D**
 (Corollary W2, coverage checked by exact enumeration to `q = 60`). Its engine
 reads signs at `β` by norm; Theorem C's class-B sectors use brackets
 (§4c compares the two).
+`p1b-edge-progressions-2026-10-09.md` explains why seed graphs grow at
+Lemma P1's edges (Lemma EP: one parameter-free vector per edge) and adds the
+**progression certificate**. Its first result, **Theorem P**, is the class A
+slope-1 line `(n + 1, n, n + 1)`, certified for every `n`; the bounded-graph
+method could not reach it.
 
 ## Current status
 

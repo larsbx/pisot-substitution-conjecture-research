@@ -901,7 +901,7 @@ struct SymbolicLineGraph(Copyable, Movable):
         return len(self.vertices)
 
 
-struct _Closure:
+struct SymbolicClosure:
     var line: Line
     var sign: Int  # +1 or -1: the orientation that makes ell positive at beta
     var ev: Eventual
@@ -1133,7 +1133,7 @@ def symbolic_line_graph(var line: Line) raises -> SymbolicLineGraph:
         out.threshold = ev.threshold.copy()
         out.b_floor = ev.b_floor
         return out^
-    var cl = _Closure(line^, cert.ell_sign, ev^)
+    var cl = SymbolicClosure(line^, cert.ell_sign, ev^)
     cl.seeds()
     var done = 0
     while done < len(cl.queue):

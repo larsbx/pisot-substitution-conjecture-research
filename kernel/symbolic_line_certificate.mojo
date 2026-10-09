@@ -42,6 +42,7 @@ from psc.overlap_seed_patch import (
     first_left_aligned_depths,
 )
 from psc.pisot import CubicScreen
+from psc.progression_line import ProgressionLine
 from psc.symbolic_line import QX, Line, SymbolicLineGraph, offset_zero_reachable, qx_affine, qx_affine2, qx_at, symbolic_line_graph
 from psc.vertex_coincidence import length_matrix, offset_vector
 from a1_normal_form_census import C, CLASS_A, CLASS_B, CLASS_C, CLASS_D, X, Y, class_ending, class_member
@@ -137,15 +138,25 @@ def exact_hits(sigma: List[List[Int]]) raises -> Int:
     return g.size()
 
 
-def exact_vertex_keys(sigma: List[List[Int]]) raises -> List[String]:
+def exact_vertices(sigma: List[List[Int]]) raises -> List[List[Int]]:
+    """The exact seed-reachable overlaps as `[top, bottom, w0, w1, w2]`."""
     var tables = build_seed_overlap_tables_screened(sigma)
     var g = build_seed_overlap_graph_from_tables(tables, 200000)
+    if g.capped:
+        raise Error("exact seed graph capped: an exhausted budget, not a verdict")
     var lm = length_matrix(tables)
-    var out = List[String]()
+    var out = List[List[Int]]()
     for i in range(g.size()):
-        var s = g.states[i]
-        var w = offset_vector(lm, s.shift)
-        out.append(String(s.top) + "|" + String(s.bottom) + "|" + String(w[0]) + "," + String(w[1]) + "," + String(w[2]))
+        var w = offset_vector(lm, g.states[i].shift)
+        out.append([g.states[i].top, g.states[i].bottom, w[0], w[1], w[2]])
+    return out^
+
+
+def exact_vertex_keys(sigma: List[List[Int]]) raises -> List[String]:
+    var vs = exact_vertices(sigma)
+    var out = List[String]()
+    for i in range(len(vs)):
+        out.append(String(vs[i][0]) + "|" + String(vs[i][1]) + "|" + String(vs[i][2]) + "," + String(vs[i][3]) + "," + String(vs[i][4]))
     return out^
 
 
@@ -190,6 +201,27 @@ struct LineVerdict(Copyable, Movable):
         self.finite_outside = 0
 
 
+def check_below_threshold(spec: ClassLine, mut out: LineVerdict) raises:
+    """`|det M| = 2` (the hypothesis of Corollary E2), and every PIP member below
+    the certified threshold `out.q0` decided exactly, all hitting."""
+    var screen = CubicScreen()
+    if abs(Mat3(substitution_incidence(spec.member(out.q0))).det()) != 2:
+        raise Error("the line's determinant is not +-2, so Corollary E2 does not apply")
+    for q in range(out.q0):
+        if not spec.admissible(q):
+            out.finite_outside += 1
+            continue
+        var sigma = spec.member(q)
+        var m = Mat3(substitution_incidence(sigma))
+        if not screen.is_pip(m):
+            out.finite_non_pip += 1
+            continue
+        if abs(m.det()) != 2:
+            raise Error("a PIP member has |det M| != 2")
+        _ = exact_hits(sigma)
+        out.finite_members += 1
+
+
 def certify(spec: ClassLine) raises -> LineVerdict:
     """Every PIP member of the line has every seed-reachable overlap hitting
     offset zero, and `|det M| = 2` (the hypothesis of Corollary E2)."""
@@ -207,22 +239,7 @@ def certify(spec: ClassLine) raises -> LineVerdict:
     while not g.threshold.lt(q_int(n)):
         n += 1
     out.q0 = n
-    var screen = CubicScreen()
-    if abs(Mat3(substitution_incidence(spec.member(out.q0))).det()) != 2:
-        raise Error("the line's determinant is not +-2, so Corollary E2 does not apply")
-    for q in range(out.q0):
-        if not spec.admissible(q):
-            out.finite_outside += 1
-            continue
-        var sigma = spec.member(q)
-        var m = Mat3(substitution_incidence(sigma))
-        if not screen.is_pip(m):
-            out.finite_non_pip += 1
-            continue
-        if abs(m.det()) != 2:
-            raise Error("a PIP member has |det M| != 2")
-        _ = exact_hits(sigma)
-        out.finite_members += 1
+    check_below_threshold(spec, out)
     for q in [out.q0, out.q0 + 5]:
         if not same_set(symbolic_vertex_keys(g, q), exact_vertex_keys(spec.member(q))):
             raise Error("cross-check: the symbolic graph differs from the exact graph")
@@ -367,6 +384,36 @@ def certify_wedge(spec: ClassWedge) raises -> WedgeVerdict:
 # admissible cone. Class B rows are Theorem L (first) and Theorem L' of
 # docs/p1-seed-strength-2026-10-08.md; rows of classes A, C, D are Theorem L''
 # of docs/p1b-boundary-hitting-progress-2026-10-08.md.
+struct ProgressionVerdict(Copyable, Movable):
+    var line: LineVerdict  # q0, finite counts; symbolic_vertices = states, queries = edges
+    var core: Int
+
+    def __init__(out self):
+        self.line = LineVerdict()
+        self.core = 0
+
+
+def certify_progression(spec: ClassLine, u: List[Int], s: Int) raises -> ProgressionVerdict:
+    """Every PIP member of a line whose seed graph grows (docs/p1b-edge-progressions-2026-10-09.md):
+    the progression certificate for every `n >= q0`, the exact check below it, and
+    every exact vertex at `q0` and `q0 + 5` a progression member."""
+    var pl = ProgressionLine(spec.line(), u, s)
+    var pv = pl.certify()
+    var out = ProgressionVerdict()
+    out.line.q0 = pv.q0
+    out.line.symbolic_vertices = pv.states
+    out.line.queries = pv.edges
+    out.core = pv.core
+    check_below_threshold(spec, out.line)
+    for q in [pv.q0, pv.q0 + 5]:
+        var keys = pl.state_keys_at(q)
+        var vs = exact_vertices(spec.member(q))
+        for i in range(len(vs)):
+            if not pl.has_member_at(vs[i][0], vs[i][1], part(vs[i], 2, 5), q, keys):
+                raise Error("cross-check: an exact vertex is not a progression member")
+    return out^
+
+
 comptime PIN_FIELDS = 12
 
 
@@ -738,6 +785,58 @@ def report_wedge(spec: ClassWedge) raises:
         print("  pinned verdict reproduced")
 
 
+# Lines certified by an edge progression (Lemma EP), whose seed graph grows with
+# the parameter: class, the six coefficients (norm mode), the Lemma EP vector u
+# and sign s, then the pinned verdict: q0, states, edges, core members, PIP
+# members below q0 (all hitting), non-PIP, outside the cone.
+# docs/p1b-edge-progressions-2026-10-09.md.
+comptime PROGRESSION_PIN_FIELDS = 18
+
+
+def certified_progressions() -> List[List[Int]]:
+    return [
+        [CLASS_A, 1, 1, 1, 0, 1, 1, 1, -1, 0, 1, 12, 287, 3722, 279, 12, 0, 0],
+    ]
+
+
+def progression_key(spec: ClassLine, u: List[Int], s: Int) -> List[Int]:
+    var out = spec.key()
+    out.extend(u.copy())
+    out.append(s)
+    return out^
+
+
+def progression_pinned(key: List[Int]) -> List[Int]:
+    var rows = certified_progressions()
+    for i in range(len(rows)):
+        if part(rows[i], 0, 11) == key:
+            return rows[i].copy()
+    return List[Int]()
+
+
+def check_progression_pinned(v: ProgressionVerdict, pin: List[Int]) raises:
+    var got = List[Int]([v.line.q0, v.line.symbolic_vertices, v.line.queries, v.core, v.line.finite_members, v.line.finite_non_pip, v.line.finite_outside])
+    if len(pin) != PROGRESSION_PIN_FIELDS or got != part(pin, 11, PROGRESSION_PIN_FIELDS):
+        raise Error("the progression verdict differs from its pin in certified_progressions()")
+
+
+def report_progression(spec: ClassLine, u: List[Int], s: Int) raises:
+    var v = certify_progression(spec, u, s)
+    print(spec.describe(), "with u =", u[0], u[1], u[2], "s =", s, "(Lemma EP progression):")
+    print("  every n >=", v.line.q0, ":", v.line.symbolic_vertices, "states,", v.line.queries, "edges; every member with |j| > j0 ranked, the", v.core, "core members hit inside the core")
+    print("  n <", v.line.q0, ":", v.line.finite_members, "PIP members decided exactly, all hitting;", v.line.finite_non_pip, "not PIP;", v.line.finite_outside, "outside the admissible cone")
+    print("  cross-check at q0 and q0 + 5: every exact vertex is a progression member")
+    print("  pin:", v.line.q0, v.line.symbolic_vertices, v.line.queries, v.core, v.line.finite_members, v.line.finite_non_pip, v.line.finite_outside)
+    var pin = progression_pinned(progression_key(spec, u, s))
+    if len(pin) > 0:
+        check_progression_pinned(v, pin)
+        print("  pinned verdict reproduced")
+
+
+def progression_of(row: List[Int]) raises -> ClassLine:
+    return ClassLine(row[0], part(row, 1, 7), True)
+
+
 def class_of(name: String) raises -> Int:
     for c in range(CLASS_A, CLASS_D + 1):
         if name == String(chr(ord("A") + c)):
@@ -767,12 +866,17 @@ def mode_of(args: List[String]) raises -> String:
         for i in range(2, 8):
             _ = Int(args[i])
         return "norm"
+    if len(args) == 12 and args[0] == "progression":
+        _ = class_of(args[1])
+        for i in range(2, 12):
+            _ = Int(args[i])
+        return "progression"
     if len(args) == 11 and args[0] == "wedge":
         _ = class_of(args[1])
         for i in range(2, 11):
             _ = Int(args[i])
         return "wedge"
-    raise Error("usage: symbolic_line_certificate.mojo [SLOPE K BRANCH | [norm] CLASS AP BP AQ BQ AR BR | wedge CLASS P0 PA PB Q0 QA QB R0 RA RB | lines]")
+    raise Error("usage: symbolic_line_certificate.mojo [SLOPE K BRANCH | [norm] CLASS AP BP AQ BQ AR BR | wedge CLASS P0 PA PB Q0 QA QB R0 RA RB | progression CLASS AP BP AQ BQ AR BR U0 U1 U2 S | lines]")
 
 
 def spec_from(args: List[String], mode: String) raises -> ClassLine:
@@ -797,6 +901,12 @@ def main() raises:
             coef.append(Int(args[i]))
         report_wedge(ClassWedge(class_of(args[1]), coef))
         return
+    if mode == "progression":
+        var ints = List[Int]()
+        for i in range(2, 12):
+            ints.append(Int(args[i]))
+        report_progression(ClassLine(class_of(args[1]), part(ints, 0, 6), True), part(ints, 6, 9), ints[9])
+        return
     if mode == "lines":
         var lines = certified_lines()
         for i in range(len(lines)):
@@ -807,6 +917,9 @@ def main() raises:
         var wedges = certified_wedges()
         for i in range(len(wedges)):
             report_wedge(wedge_of(wedges[i]))
-        print("certified lines:", len(lines), " in norm mode:", len(norm_lines), " wedges:", len(wedges))
+        var progressions = certified_progressions()
+        for i in range(len(progressions)):
+            report_progression(progression_of(progressions[i]), part(progressions[i], 7, 10), progressions[i][10])
+        print("certified lines:", len(lines), " in norm mode:", len(norm_lines), " wedges:", len(wedges), " progressions:", len(progressions))
         return
     report(class_b() if mode == "default" else spec_from(args, mode))
