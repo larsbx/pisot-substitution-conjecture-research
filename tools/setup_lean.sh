@@ -41,8 +41,20 @@ cd "$PSC_ROOT/proof/PscVerif"
 PSC_PIN=$(cat lean-toolchain)
 elan toolchain install "$PSC_PIN"
 # Probe both applications: an installed but unusable toolchain is a failure.
-lean --version
-lake --version
+for PSC_ENV_VAR in "${!LEAN_@}" "${!LAKE_@}" "${!MATHLIB_CACHE_@}"; do
+    if [[ -n "$PSC_ENV_VAR" ]]; then unset "$PSC_ENV_VAR"; fi
+done
+export LAKE_CONFIG="" LAKE_CACHE_DIR="" LAKE_ARTIFACT_CACHE=false LAKE_RESTORE_ARTIFACTS=false
+export MATHLIB_CACHE_GET_URL="https://cache.mathlib.org/mathlib4-master"
+PSC_RELEASE=${PSC_PIN#leanprover/lean4:v}
+PSC_LEAN_VERSION=$(elan run "$PSC_PIN" lean --version)
+PSC_LAKE_VERSION=$(elan run "$PSC_PIN" lake --version)
+if [[ "$PSC_LEAN_VERSION" != "Lean (version $PSC_RELEASE,"* ]] \
+   || [[ "$PSC_LAKE_VERSION" != *"(Lean version $PSC_RELEASE)" ]]; then
+    echo "Lean/Lake executable version does not match the pinned release $PSC_RELEASE" >&2
+    exit 1
+fi
+printf '%s\n%s\n' "$PSC_LEAN_VERSION" "$PSC_LAKE_VERSION"
 
 PSC_PIN_TMP=$(mktemp -d)
 trap 'rm -rf "${PSC_ELAN_TMP:-}" "$PSC_PIN_TMP"' EXIT
@@ -50,7 +62,7 @@ for pin in lean-toolchain lakefile.toml lake-manifest.json; do
     cp "$pin" "$PSC_PIN_TMP/$pin"
 done
 # Lake clones exactly the manifest revisions; never run lake update here.
-lake exe cache get
+elan run "$PSC_PIN" lake --no-cache exe cache get
 for pin in lean-toolchain lakefile.toml lake-manifest.json; do
     if ! cmp -s "$pin" "$PSC_PIN_TMP/$pin"; then
         echo "Lean provisioning changed $pin; refusing to credit the environment." >&2

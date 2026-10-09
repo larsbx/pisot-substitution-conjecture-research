@@ -2903,6 +2903,7 @@
     "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
     "tools/check_lean.sh": "04078a19300533b800e2cca6f0a3573fe8b116fec0ae8ace8a2d4ffc1ae9613b",
     "tools/make_ledger.py": "f938962a48801fdf96497c3d7b732da9220c9222133cbfb888424f342df818b4",
-    "tools/make_proof_bank.py": "c0d1797b6bc2438480f8328afaddb31c53b450252aa7d599179eda684d4d2161"
+    "tools/make_proof_bank.py": "d41bd8ecb4d51964b6acfb1783d3c7c6aa1fce67ad502f9b4c1c6fb94dceec13",
+    "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
   }
 }

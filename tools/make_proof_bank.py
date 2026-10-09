@@ -340,7 +340,8 @@ def bank(root: Path = ROOT) -> dict:
                         "lean_support": supports.get(name, {"coverage": "none", "declarations": [],
                                                              "note": "No complete Lean proof is registered for this claim."})})
     inputs = [root / "claim_governance.toml", root / "tools/make_ledger.py",
-              root / "tools/make_proof_bank.py", root / "tools/check_lean.sh", root / "proof/proof-bank.toml"]
+              root / "tools/make_proof_bank.py", root / "tools/check_lean.sh",
+              root / "tools/setup_lean.sh", root / "proof/proof-bank.toml"]
     inputs += sorted((root / PROJECT).glob("*.toml")) + [root / PROJECT / "lean-toolchain", root / PROJECT / "lake-manifest.json"]
     inputs += sorted((root / PROJECT).glob("*.lean"))
     inputs += sorted((root / PROJECT / "PscVerif").rglob("*.lean"))

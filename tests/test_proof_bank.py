@@ -317,7 +317,7 @@ spec.loader.exec_module(actual)
 check_pins = actual.check_pins
 if __name__ == "__main__":
     root = pathlib.Path(__file__).resolve().parents[1]
-    check_pins(root)
+    check_pins(root, require_packages="--require-packages" in sys.argv)
     if "--prepare-audit-workspace" in sys.argv:
         actual.prepare_audit_workspace(root, pathlib.Path(sys.argv[sys.argv.index("--prepare-audit-workspace") + 1]))
     if "--audit-log" in sys.argv:
@@ -345,11 +345,12 @@ if args == ["--version"]:
 if any(cwd.glob(".lake/**/Injected.olean")):
     print("reused caller's forged artifact", file=sys.stderr)
     sys.exit(86)
-if args[-2:] == ["env", "true"]:
+if args[-2:] == ["env", "true"] or args[-3:] == ["exe", "cache", "get"]:
     package = cwd / ".lake/packages/fixture"
-    package.parent.mkdir(parents=True, exist_ok=True)
-    subprocess.run(["git", "clone", "-q", {str(dependency)!r}, str(package)], check=True)
-if args[-3:] == ["exe", "cache", "get"]:
+    if not package.exists():
+        package.parent.mkdir(parents=True, exist_ok=True)
+        subprocess.run(["git", "clone", "-q", {str(dependency)!r}, str(package)], check=True)
+if args[-3:] == ["exe", "cache", "get"] and os.environ.get("PSC_TEST_ISOLATED", "1") == "1":
     assert os.environ.get("LAKE_CONFIG") == ""
     assert os.environ.get("LAKE_CACHE_DIR") == ""
     assert os.environ.get("LAKE_ARTIFACT_CACHE") == "false"
@@ -371,6 +372,12 @@ else:
     lake.chmod(0o755)
     elan = fake_bin / "elan"
     elan.write_text("#!" + sys.executable + "\n" + f'''import os, subprocess, sys
+if sys.argv[1:] == ["--version"]:
+    print("elan 4.2.4 (fixture)")
+    sys.exit(0)
+if sys.argv[1:3] == ["toolchain", "install"]:
+    assert sys.argv[3:] == ["leanprover/lean4:v4.34.0-rc2"]
+    sys.exit(0)
 assert sys.argv[1:3] == ["run", "leanprover/lean4:v4.34.0-rc2"], sys.argv
 env = {{**os.environ, "ELAN_TOOLCHAIN": sys.argv[2]}}
 if sys.argv[3] == "lean":
@@ -447,6 +454,52 @@ def test_caller_toolchain_overrides_cannot_receive_certificate_credit(tmp_path, 
 @pytest.mark.parametrize("mismatch", ["PSC_TEST_BAD_LEAN_VERSION", "PSC_TEST_BAD_LAKE_VERSION"])
 def test_compiler_version_mismatch_refuses_before_build_or_audit(tmp_path, mismatch):
     script, _, calls, env = lean_script_fixture(tmp_path)
+    run = subprocess.run(["bash", str(script)], cwd=tmp_path,
+                         env={**env, mismatch: "1"}, capture_output=True, text=True)
+    assert run.returncode != 0, run.stdout + run.stderr
+    assert "does not match the pinned release" in run.stderr
+    assert [json.loads(row)["args"] for row in calls.read_text().splitlines()] == [["--version"]]
+
+
+def setup_script_fixture(tmp_path):
+    import os
+
+    check, project, calls, env = lean_script_fixture(tmp_path)
+    setup = check.with_name("setup_lean.sh")
+    shutil.copyfile(Path(os.environ.get("PSC_SETUP_LEAN_SOURCE", ROOT / "tools/setup_lean.sh")), setup)
+    elan_home = tmp_path / "elan-home"
+    (elan_home / "bin").mkdir(parents=True)
+    for name in ("elan", "lake"):
+        shutil.copy2(tmp_path / "bin" / name, elan_home / "bin" / name)
+    lean = elan_home / "bin/lean"
+    lean.write_text("#!" + sys.executable + "\n" + '''import os, sys
+selected = os.environ.get("ELAN_TOOLCHAIN") or os.environ.get("PSC_TEST_DIR_OVERRIDE")
+if selected and os.environ.get("PSC_TEST_REQUIRE_PIN"):
+    print("selected caller's unpinned compiler", file=sys.stderr)
+    sys.exit(87)
+version = "4.0.0" if os.environ.get("PSC_TEST_BAD_LEAN_VERSION") else "4.34.0-rc2"
+print(f"Lean (version {version}, fixture)")
+''')
+    lean.chmod(0o755)
+    return setup, project, calls, {**env, "ELAN_HOME": str(elan_home), "PSC_TEST_ISOLATED": "0"}
+
+
+@pytest.mark.parametrize("override", ["ELAN_TOOLCHAIN", "PSC_TEST_DIR_OVERRIDE"])
+def test_setup_forces_pinned_compiler_despite_caller_override(tmp_path, override):
+    script, _, calls, env = setup_script_fixture(tmp_path)
+    env.pop("ELAN_TOOLCHAIN", None)
+    run = subprocess.run(["bash", str(script)], cwd=tmp_path,
+                         env={**env, override: "psc-locally-linked-compiler", "PSC_TEST_REQUIRE_PIN": "1"},
+                         capture_output=True, text=True)
+    assert run.returncode == 0, run.stdout + run.stderr
+    records = [json.loads(row) for row in calls.read_text().splitlines()]
+    assert [row["args"] for row in records] == [["--version"], ["--no-cache", "exe", "cache", "get"]]
+    assert all(row["selected"] == "leanprover/lean4:v4.34.0-rc2" for row in records)
+
+
+@pytest.mark.parametrize("mismatch", ["PSC_TEST_BAD_LEAN_VERSION", "PSC_TEST_BAD_LAKE_VERSION"])
+def test_setup_refuses_compiler_version_mismatch_before_cache(tmp_path, mismatch):
+    script, _, calls, env = setup_script_fixture(tmp_path)
     run = subprocess.run(["bash", str(script)], cwd=tmp_path,
                          env={**env, mismatch: "1"}, capture_output=True, text=True)
     assert run.returncode != 0, run.stdout + run.stderr

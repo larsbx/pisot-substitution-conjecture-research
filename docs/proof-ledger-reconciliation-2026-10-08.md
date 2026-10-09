@@ -170,6 +170,15 @@ versions. These controls model Elan/compiler dispatch without requiring a
 second installed compiler; the native isolated run separately exercises the
 pinned release with an invalid inherited `ELAN_TOOLCHAIN` override.
 
+The provisioning path now applies the same explicit compiler selection and
+version refusals before its cache command. Four additional setup controls
+reproduce environment/directory overrides and both executable-version gaps
+against the prior setup script. Setup clears inherited Lean/Lake/cache
+configuration overrides; it prepares development artifacts and grants no
+formal audit credit. The Lean README now points to the isolated checker and
+records partial formalization boundaries instead of crediting a build and a
+few printed axiom lines as the complete verification gate.
+
 The proof bank is an inventory of governed claims, named source proofs and
 apparent statement openings. Actual Lean evidence requires the fresh compiled
 audit; source inventory completeness conveys no mathematical proof authority.
