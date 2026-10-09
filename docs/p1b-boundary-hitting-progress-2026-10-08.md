@@ -325,11 +325,17 @@ convergent iteration for `β`, which class B has in closed form. The norm
 method needs the norm to avoid zero on the region. A query either method
 cannot settle raises in both. **Two engines is DRY debt.** The natural
 consolidation is one closure over `Q[s1, s2]` with both sign readers behind
-one interface, norm first and brackets as fallback. It is not done here,
-because each theorem's pins would have to be reproduced through it. Until
-then, the engines are useful cross-checks of each other: running class D's
-cones through the bracket engine, and class B's through the norm engine, is
-cheap independent evidence.
+one interface, norm first and brackets as fallback. Its first step is done:
+the algebra both engines run on (polynomials in the two parameters, polynomials
+in `t` over them, weight vectors) is one module, `psc/param_poly.mojo`, with
+the cone's `(s1, s2)` read as `(b, a)`; both engines' tests reproduce their
+output byte for byte through it. Still separate: the Pólya certificate (the
+cone multiplies by `1 +` the coordinates that occur, cap 24; the line by
+`1 + a + b`, cap 40), the sign readers (`Region`, `Eventual`), the two PIP
+tests and the two closures. Unifying those needs each theorem's pins
+reproduced through the shared code. Until then, the engines are useful
+cross-checks of each other: running class D's cones through the bracket
+engine, and class B's through the norm engine, is cheap independent evidence.
 
 ## 5. Next, in order
 

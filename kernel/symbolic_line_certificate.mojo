@@ -42,7 +42,8 @@ from psc.overlap_seed_patch import (
     first_left_aligned_depths,
 )
 from psc.pisot import CubicScreen
-from psc.symbolic_line import QX, Line, SymbolicLineGraph, offset_zero_reachable, qx_affine, qx_affine2, qx_at, symbolic_line_graph
+from psc.param_poly import QX, qx_affine, qx_affine2, qx_at
+from psc.symbolic_line import Line, SymbolicLineGraph, offset_zero_reachable, symbolic_line_graph
 from psc.vertex_coincidence import length_matrix, offset_vector
 from a1_normal_form_census import C, CLASS_A, CLASS_B, CLASS_C, CLASS_D, X, Y, class_ending, class_member
 

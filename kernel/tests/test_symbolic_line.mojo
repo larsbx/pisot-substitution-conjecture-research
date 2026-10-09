@@ -11,28 +11,30 @@ from std.testing import assert_equal, assert_false, assert_true
 from finite_exact.rat_q import Q
 from finite_linear_algebra.scalar import q_int
 from mojo_smoke.claims import require_contract
-from psc.symbolic_line import (
-    Eventual,
+from psc.param_poly import (
     QX,
-    qx_at,
-    qx_shift,
-    Line,
-    LineField,
-    certify_line,
     qx_affine,
+    qx_at,
     qx_const,
+    qx_shift,
     tp_add,
     tp_at_q,
+    tp_at_t,
     tp_const,
     tp_prem,
     tp_scale,
     tp_sub,
     tp_t,
 )
+from psc.symbolic_line import (
+    Eventual,
+    Line,
+    LineField,
+    certify_line,
+)
 from a1_normal_form_census import CLASS_A, CLASS_B, CLASS_C, CLASS_D, class_member
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
-from psc.symbolic_line import tp_at_t
 from symbolic_line_certificate import (
     ClassLine,
     ClassWedge,
