@@ -2,7 +2,7 @@
 
 **Status:** status synchronisation for issue #139. It also adds two
 computer-assisted results, both unreviewed: Theorem L″ (§4), 32 one-parameter
-families, and Theorem W (§4b), the first two-parameter families, on which
+families, and Theorem W (§4b), two-parameter families of class D, on which
 #139's obligation is proved and so pure discrete spectrum and finite BPA
 hold. No ledger node or manuscript statement changes. #84, #138, #139,
 G1 and PSC stay open.
@@ -54,7 +54,7 @@ such.
 | #232 | 10-08 | Proposition Z: on the class (outside `F`'s open part) `PSC ⟺ PPVC`, so the strict zipper is *the* problem there. Survey: PPVC on 358 parametric members, depth ≤ 14, not growing. **Theorem L:** BH from every seed on the infinite class-B line `p = 2q + 2, r = q + 1`, so PDS and G1 for all of it. This is the first infinite family on which #139's obligation is proved. | **theorem on an infinite family** |
 | #233 | 10-08 | Theorem Ω: BH plus `SC_all` on the box gives PDS through Lee–Moody–Solomyak plus Proposition V step 1, which is elementary. So the finite-domain BH verdicts no longer rest on Theorem B. `BoundedPureDiscreteSpectrum` holds on 145,806 specimens. | finite-domain theorem |
 | #234 (open) | 10-08 | Theorem SC: one productive seed ⟺ every seed ⟺ FP ⟺ PDS. Choosing the seed gives no slack, only a different object. **Theorem L′:** fourteen more class-B lines. | theorem on 14 families |
-| this note | 10-08 | **Theorem L″:** the same certificate on 32 lines of classes A, C and D. **Theorem W:** the first two-parameter certificates, on six wedges of class D; with the lines, every PIP member of class D with `r ≥ q − 1` (Corollary W1). Class A at slope 1 is recorded as out of reach of the constant-graph method. | theorems on new one- and two-parameter families |
+| this note | 10-08 | **Theorem L″:** the same certificate on 32 lines of classes A, C and D. **Theorem W:** two-parameter certificates on six wedges of class D, independent of the class-B sectors of Theorem C (`p1b-symbolic-cone-2026-10-08.md`, landed meanwhile); with the lines, every PIP member of class D with `r ≥ q − 1` (Corollary W1). Class A at slope 1 is recorded as out of reach of the constant-graph method. | theorems on new one- and two-parameter families |
 
 Summarised: on 2026-09-21 #139 was an adelic hitting problem with no
 decision procedure. Today it is:
@@ -295,8 +295,41 @@ discrete spectrum and a finite balanced-pair automaton.** On the branch
 `q − 1 ≤ r ≤ 2q − 2`. On the branch `p = q + 1`, the lines `r = q − 1, …,
 q + 3`, the sub-wedges (`q + 4 ≤ r ≤ 2q`) and the lines `r = 2q + 1, 2q + 2`
 cover `q − 1 ≤ r ≤ 2q + 2`. Above that, `r ≥ 2p + 1` and Lemma P1
-(`f(1) = −2p + r − 1 < 0`) rules out PIP. These are the first two-parameter
-families in this programme on which #139's obligation is proved.
+(`f(1) = −2p + r − 1 < 0`) rules out PIP. With Theorem C of
+`p1b-symbolic-cone-2026-10-08.md` (class B below slope `5/2`), these are the
+two-parameter families on which #139's obligation is proved so far.
+
+## 4c. Two two-parameter engines
+
+Theorem C's engine (`psc/symbolic_cone.mojo`, class B) and Theorem W's
+(`psc/symbolic_line.mojo` in two-parameter mode, class D) were written
+independently and landed on the same day. They agree on the parts that must
+agree:
+
+- Pólya-certified signs on a shifted quadrant;
+- unimodular cones;
+- run positions fitted at the same three samples and certified;
+- boundary strips handled as one-parameter families.
+
+They differ in how a sign at `β` and the PIP property are read:
+
+| | Theorem C (`symbolic_cone`) | Theorem W (`symbolic_line`, norm mode) |
+| --- | --- | --- |
+| sign of `G(β)` | rational brackets `L(s) < β < U(s)` from a fixed-point iteration; `G` monotone or extremal at the ends | nonvanishing norm `det G(M)` on the region, then one exact sample point (continuity of `β`) |
+| PIP | brackets, then Rouché (`\|c₂\| > 1 + \|c₁\| + \|c₀\|`), else Jury on the quotient | `χ(−1), χ(1), χ(2) < 0`, equivalent to Pisot when `\|det M\| = 2` |
+| boundary strips | one-parameter cones of the same engine | norm-mode lines of the line driver (`certified_norm_lines()`) |
+| what it needs | a bracket for `β` per family | nothing family-specific |
+
+Neither engine is a special case of the other. The bracket method needs a
+convergent iteration for `β`, which class B has in closed form. The norm
+method needs the norm to avoid zero on the region. A query either method
+cannot settle raises in both. **Two engines is DRY debt.** The natural
+consolidation is one closure over `Q[s1, s2]` with both sign readers behind
+one interface, norm first and brackets as fallback. It is not done here,
+because each theorem's pins would have to be reproduced through it. Until
+then, the engines are useful cross-checks of each other: running class D's
+cones through the bracket engine, and class B's through the norm engine, is
+cheap independent evidence.
 
 ## 5. Next, in order
 
@@ -306,12 +339,11 @@ families in this programme on which #139's obligation is proved.
    slope 3. The second cone is the next wedge. The fringe needs either
    vertex families (item 3) or a proof that its graphs come from finitely
    many patterns.
-2. **Wedges of classes A, B, C.** Theorem W's three ingredients (the quadrant
-   certificate, the `χ(−1), χ(1), χ(2)` PIP test, signs by norm) are not
-   class-D specific. The first targets are the class-B wedge
-   `n + 1 ≤ p ≤ 2n + 4` (#234 §7.1) and the class-C lines `p = q + d`,
-   `r = q − d ± 1`, which form a two-parameter family in `(q, d)`. Each needs
-   the same grid probe first, because the method needs a constant graph.
+2. **Wedges of classes A and C.** Class B is covered below slope `5/2` by
+   Theorem C (`p1b-symbolic-cone-2026-10-08.md`). Class C's lines
+   `p = q + d`, `r = q − d ± 1` form a two-parameter family in `(q, d)`, and
+   class A's slope-2 lines suggest a wedge `2q ≤ p ≤ 2q + k`. Each needs the
+   grid probe first, because both engines need a constant graph.
 3. **Growing seed graphs (class A, slope 1).** The vertices come in families
    indexed by a run position `0 ≤ j ≤ n`. The symbolic object is a vertex
    *family* `(a, b, w_0 + j·u)`, with children decided uniformly in `j`. This

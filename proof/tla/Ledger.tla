@@ -14,6 +14,9 @@ ResultSet == {
     "AllSeedStrictZipperExclusion",
     "AllStatesProductiveViaOverlaps",
     "BoundaryCoincidenceCriterion",
+    "BoxAutomatonCertificate",
+    "BoxAutomatonPDSCertificate",
+    "BoxCycleContainment",
     "C2",
     "C3Local",
     "C3Locality",
@@ -28,7 +31,9 @@ ResultSet == {
     "DominantCubicCapture",
     "DominantK2Source",
     "EndpointCore",
+    "FormalProductivity",
     "G1",
+    "G1FormalProductivityRoute",
     "G1FromRenewal",
     "G1HalfCoincidenceRoute",
     "G1OverlapRoute",
@@ -38,6 +43,8 @@ ResultSet == {
     "GlobalEndpointSync",
     "InterBlockCancellation",
     "LatticeLift",
+    "LeftmostChainCycleStructure",
+    "LeftmostChainG1Certificate",
     "LoadBearingSCC",
     "LocalWitnessInjectivity",
     "MassBalanceK2Obstruction",
@@ -48,9 +55,12 @@ ResultSet == {
     "OrientationSpectrum",
     "OverlapBadSCCNormalForm",
     "OverlapBoundaryZipperDichotomy",
+    "OverlapCoincidenceCriterion",
     "OverlapFullRank",
     "OverlapProductivity",
     "PDS",
+    "PDSFormalProductivityRoute",
+    "PDSFormalProductivitySeedRoute",
     "PDSImpliesRepoG1",
     "PDSImpliesSeedwiseTermination",
     "PDSOverlapRoute",
@@ -59,6 +69,7 @@ ResultSet == {
     "ParitySieve",
     "PeriodicPairOneFibre",
     "PhiSemisimplicity",
+    "PisotMeyerProperty",
     "RepoSeedUnionBridge",
     "ReturnModuleFullRank",
     "SCCProducer",
@@ -88,6 +99,9 @@ RequiresDef == [r \in ResultSet |->
       [] r = "AllSeedStrictZipperExclusion" -> {{}}
       [] r = "AllStatesProductiveViaOverlaps" -> {{"OverlapProductivity", "SwapOverlapFiniteness"}}
       [] r = "BoundaryCoincidenceCriterion" -> {{}}
+      [] r = "BoxAutomatonCertificate" -> {{"BoxCycleContainment"}}
+      [] r = "BoxAutomatonPDSCertificate" -> {{"BoxAutomatonCertificate", "PisotMeyerProperty", "OverlapCoincidenceCriterion"}}
+      [] r = "BoxCycleContainment" -> {{}}
       [] r = "C2" -> {{"C3Local"}}
       [] r = "C3Local" -> {{"C4", "C3Locality"}}
       [] r = "C3Locality" -> {{}}
@@ -102,7 +116,9 @@ RequiresDef == [r \in ResultSet |->
       [] r = "DominantCubicCapture" -> {{"Target1"}}
       [] r = "DominantK2Source" -> {{}}
       [] r = "EndpointCore" -> {{}}
-      [] r = "G1" -> {{"G1FromRenewal"}, {"G1OverlapRoute"}, {"G1HalfCoincidenceRoute"}}
+      [] r = "FormalProductivity" -> {{}}
+      [] r = "G1" -> {{"G1FromRenewal"}, {"G1OverlapRoute"}, {"G1HalfCoincidenceRoute"}, {"G1FormalProductivityRoute"}}
+      [] r = "G1FormalProductivityRoute" -> {{"FormalProductivity", "BoxCycleContainment"}}
       [] r = "G1FromRenewal" -> {{"G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"}}
       [] r = "G1HalfCoincidenceRoute" -> {{"AllSeedStrictZipperExclusion", "SwapOverlapFiniteness"}}
       [] r = "G1OverlapRoute" -> {{"AllSeedOverlapProductivity", "SwapOverlapFiniteness"}}
@@ -112,6 +128,8 @@ RequiresDef == [r \in ResultSet |->
       [] r = "GlobalEndpointSync" -> {{"EndpointCore"}}
       [] r = "InterBlockCancellation" -> {{}}
       [] r = "LatticeLift" -> {{"MeanAreaLift"}}
+      [] r = "LeftmostChainCycleStructure" -> {{}}
+      [] r = "LeftmostChainG1Certificate" -> {{"BoxCycleContainment"}}
       [] r = "LoadBearingSCC" -> {{"G1", "DominantK2Source", "InterBlockCancellation"}}
       [] r = "LocalWitnessInjectivity" -> {{}}
       [] r = "MassBalanceK2Obstruction" -> {{}}
@@ -122,9 +140,12 @@ RequiresDef == [r \in ResultSet |->
       [] r = "OrientationSpectrum" -> {{"OrientationMonodromy", "ParikhIntertwiner"}}
       [] r = "OverlapBadSCCNormalForm" -> {{"SwapOverlapFiniteness", "OverlapFullRank"}}
       [] r = "OverlapBoundaryZipperDichotomy" -> {{"OverlapBadSCCNormalForm", "AlignedOverlapsAreStrongCoincidence", "BoundaryCoincidenceCriterion"}}
+      [] r = "OverlapCoincidenceCriterion" -> {{}}
       [] r = "OverlapFullRank" -> {{}}
       [] r = "OverlapProductivity" -> {{}}
       [] r = "PDS" -> {{"G1", "SCCProducer"}}
+      [] r = "PDSFormalProductivityRoute" -> {{"FormalProductivity", "BoxAutomatonPDSCertificate"}}
+      [] r = "PDSFormalProductivitySeedRoute" -> {{"FormalProductivity", "SwapOverlapFiniteness", "DensityToPDSBridge"}}
       [] r = "PDSImpliesRepoG1" -> {{"CoincidenceRankFibreTheorems", "PeriodicPairOneFibre", "StrictZipperPeriodicPairForm"}}
       [] r = "PDSImpliesSeedwiseTermination" -> {{"PDSImpliesRepoG1", "StrongCoincidenceFromPDS"}}
       [] r = "PDSOverlapRoute" -> {{"CoincidenceDensityOne", "DensityToPDSBridge"}}
@@ -133,6 +154,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "ParitySieve" -> {{"DefectIntertwiner"}}
       [] r = "PeriodicPairOneFibre" -> {{"ReturnModuleFullRank"}}
       [] r = "PhiSemisimplicity" -> {{}}
+      [] r = "PisotMeyerProperty" -> {{}}
       [] r = "RepoSeedUnionBridge" -> {{}}
       [] r = "ReturnModuleFullRank" -> {{}}
       [] r = "SCCProducer" -> {{"G1", "SinkSCCReduction", "C2"}}
@@ -159,6 +181,9 @@ ProvedDef == {
     "AlignedOverlapsAreStrongCoincidence",
     "AllStatesProductiveViaOverlaps",
     "BoundaryCoincidenceCriterion",
+    "BoxAutomatonCertificate",
+    "BoxAutomatonPDSCertificate",
+    "BoxCycleContainment",
     "C2",
     "C3Local",
     "C3Locality",
@@ -170,6 +195,7 @@ ProvedDef == {
     "DominantK2Source",
     "EndpointCore",
     "G1",
+    "G1FormalProductivityRoute",
     "G1FromRenewal",
     "G1HalfCoincidenceRoute",
     "G1OverlapRoute",
@@ -178,6 +204,8 @@ ProvedDef == {
     "GlobalEndpointSync",
     "InterBlockCancellation",
     "LatticeLift",
+    "LeftmostChainCycleStructure",
+    "LeftmostChainG1Certificate",
     "LoadBearingSCC",
     "LocalWitnessInjectivity",
     "MassBalanceK2Obstruction",
@@ -190,6 +218,8 @@ ProvedDef == {
     "OverlapBoundaryZipperDichotomy",
     "OverlapFullRank",
     "PDS",
+    "PDSFormalProductivityRoute",
+    "PDSFormalProductivitySeedRoute",
     "PDSImpliesRepoG1",
     "PDSImpliesSeedwiseTermination",
     "PDSOverlapRoute",
@@ -218,6 +248,8 @@ ProvedDef == {
 ImportedDef == {
     "CoincidenceRankFibreTheorems",
     "DensityToPDSBridge",
+    "OverlapCoincidenceCriterion",
+    "PisotMeyerProperty",
     "StandardBPAEquivalence",
     "StrongCoincidenceFromPDS"
 }
@@ -235,6 +267,12 @@ AllSeedOverlapGateAssumed == {
 }
 AllSeedStrictZipperGateAssumed == {
     "AllSeedStrictZipperExclusion"
+}
+FormalProductivityGateAssumed == {
+    "FormalProductivity",
+    "PisotMeyerProperty",
+    "OverlapCoincidenceCriterion",
+    "DensityToPDSBridge"
 }
 G1AndC4 == {
     "G1",
@@ -270,6 +308,9 @@ AllSeedOverlapProductivityNotEstablished == "AllSeedOverlapProductivity" \notin 
 AllSeedStrictZipperExclusionNotEstablished == "AllSeedStrictZipperExclusion" \notin established
 AllStatesProductiveViaOverlapsNotEstablished == "AllStatesProductiveViaOverlaps" \notin established
 BoundaryCoincidenceCriterionNotEstablished == "BoundaryCoincidenceCriterion" \notin established
+BoxAutomatonCertificateNotEstablished == "BoxAutomatonCertificate" \notin established
+BoxAutomatonPDSCertificateNotEstablished == "BoxAutomatonPDSCertificate" \notin established
+BoxCycleContainmentNotEstablished == "BoxCycleContainment" \notin established
 C2NotEstablished == "C2" \notin established
 C3LocalNotEstablished == "C3Local" \notin established
 C3LocalityNotEstablished == "C3Locality" \notin established
@@ -284,7 +325,9 @@ DensityToPDSBridgeNotEstablished == "DensityToPDSBridge" \notin established
 DominantCubicCaptureNotEstablished == "DominantCubicCapture" \notin established
 DominantK2SourceNotEstablished == "DominantK2Source" \notin established
 EndpointCoreNotEstablished == "EndpointCore" \notin established
+FormalProductivityNotEstablished == "FormalProductivity" \notin established
 G1NotEstablished == "G1" \notin established
+G1FormalProductivityRouteNotEstablished == "G1FormalProductivityRoute" \notin established
 G1FromRenewalNotEstablished == "G1FromRenewal" \notin established
 G1HalfCoincidenceRouteNotEstablished == "G1HalfCoincidenceRoute" \notin established
 G1OverlapRouteNotEstablished == "G1OverlapRoute" \notin established
@@ -294,6 +337,8 @@ GaloisWedgePropagationNotEstablished == "GaloisWedgePropagation" \notin establis
 GlobalEndpointSyncNotEstablished == "GlobalEndpointSync" \notin established
 InterBlockCancellationNotEstablished == "InterBlockCancellation" \notin established
 LatticeLiftNotEstablished == "LatticeLift" \notin established
+LeftmostChainCycleStructureNotEstablished == "LeftmostChainCycleStructure" \notin established
+LeftmostChainG1CertificateNotEstablished == "LeftmostChainG1Certificate" \notin established
 LoadBearingSCCNotEstablished == "LoadBearingSCC" \notin established
 LocalWitnessInjectivityNotEstablished == "LocalWitnessInjectivity" \notin established
 MassBalanceK2ObstructionNotEstablished == "MassBalanceK2Obstruction" \notin established
@@ -304,9 +349,12 @@ OrientationMonodromyNotEstablished == "OrientationMonodromy" \notin established
 OrientationSpectrumNotEstablished == "OrientationSpectrum" \notin established
 OverlapBadSCCNormalFormNotEstablished == "OverlapBadSCCNormalForm" \notin established
 OverlapBoundaryZipperDichotomyNotEstablished == "OverlapBoundaryZipperDichotomy" \notin established
+OverlapCoincidenceCriterionNotEstablished == "OverlapCoincidenceCriterion" \notin established
 OverlapFullRankNotEstablished == "OverlapFullRank" \notin established
 OverlapProductivityNotEstablished == "OverlapProductivity" \notin established
 PDSNotEstablished == "PDS" \notin established
+PDSFormalProductivityRouteNotEstablished == "PDSFormalProductivityRoute" \notin established
+PDSFormalProductivitySeedRouteNotEstablished == "PDSFormalProductivitySeedRoute" \notin established
 PDSImpliesRepoG1NotEstablished == "PDSImpliesRepoG1" \notin established
 PDSImpliesSeedwiseTerminationNotEstablished == "PDSImpliesSeedwiseTermination" \notin established
 PDSOverlapRouteNotEstablished == "PDSOverlapRoute" \notin established
@@ -315,6 +363,7 @@ ParikhIntertwinerNotEstablished == "ParikhIntertwiner" \notin established
 ParitySieveNotEstablished == "ParitySieve" \notin established
 PeriodicPairOneFibreNotEstablished == "PeriodicPairOneFibre" \notin established
 PhiSemisimplicityNotEstablished == "PhiSemisimplicity" \notin established
+PisotMeyerPropertyNotEstablished == "PisotMeyerProperty" \notin established
 RepoSeedUnionBridgeNotEstablished == "RepoSeedUnionBridge" \notin established
 ReturnModuleFullRankNotEstablished == "ReturnModuleFullRank" \notin established
 SCCProducerNotEstablished == "SCCProducer" \notin established

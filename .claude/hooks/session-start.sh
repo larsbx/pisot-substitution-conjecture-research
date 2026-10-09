@@ -1,7 +1,7 @@
 #!/bin/bash
 # Provision a Claude Code on the web container for the repository gates:
 # Python oracles and pytest (as CI does), and the Mojo toolchain exactly as
-# pinned by kernel/pixi.lock, with `mojo` itself on PATH.
+# pinned by kernel/pixi.lock, plus the pinned Lean/Lake proof project.
 set -euo pipefail
 
 [ "${CLAUDE_CODE_REMOTE:-}" = "true" ] || exit 0
@@ -11,6 +11,9 @@ REPO=$(cd "$(dirname "$0")/../.." && pwd -P)
 cd "$REPO"
 
 python3 -m pip install -q -e '.[dev]'
+
+"$REPO/tools/setup_lean.sh"
+PSC_LEAN_BIN="${ELAN_HOME:-$HOME/.elan}/bin"
 
 # Pinned pixi; reinstalled when the binary is missing or at another version.
 PIXI_VERSION=0.81.0
@@ -42,10 +45,11 @@ for k, v in sorted(env.items()):
         print(f"export {k}={shlex.quote(v)}")' "$REPO/kernel/.pixi/envs/default" >> "$CLAUDE_ENV_FILE"
 
 # The pip-installed pytest (with pypdf) must shadow any preinstalled tool copy.
-printf 'export PATH=%q:"$PATH"\n' "$(python3 -c 'import sysconfig; print(sysconfig.get_path("scripts"))'):$MOJO_BIN:$PIXI_BIN" >> "$CLAUDE_ENV_FILE"
+printf 'export PATH=%q:"$PATH"\n' "$(python3 -c 'import sysconfig; print(sysconfig.get_path("scripts"))'):$MOJO_BIN:$PIXI_BIN:$PSC_LEAN_BIN" >> "$CLAUDE_ENV_FILE"
 
 # Fail the hook, not the first gate, if the toolchain cannot compile.
 PROBE=$(mktemp --suffix=.mojo)
 trap 'rm -f "$PROBE"' EXIT
 echo 'def main(): print("mojo ok")' > "$PROBE"
 (source "$CLAUDE_ENV_FILE" && mojo --version && mojo run "$PROBE")
+(source "$CLAUDE_ENV_FILE" && "$REPO/tools/check_lean.sh")

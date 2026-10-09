@@ -88,6 +88,37 @@
       "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.40 and Corollary 5.41; PR #82"
     },
     {
+      "id": "BoxAutomatonCertificate",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "a PIP substitution is formally productive iff every vertex of its box automaton reaches a coincidence",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+    },
+    {
+      "id": "BoxAutomatonPDSCertificate",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for each fixed PIP substitution, if every vertex of its complete box automaton reaches a coincidence, its Perron-length suspension tiling flow has pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega consequence (a); docs/review-box-leftmost-ledger-2026-10-08.md, sections 1-2; tiling R-action sufficiency only",
+      "leaks": "premises not established: OverlapCoincidenceCriterion, PisotMeyerProperty"
+    },
+    {
+      "id": "BoxCycleContainment",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "every potential overlap has finitely many descendants, and every potential overlap on a cycle of the overlap graph is a vertex of the box automaton",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Lemma Omega1 (Proposition V step 1; docs/formal-overlap-carriers-2026-10-04.md, section 2 item 5); step 1 audited in docs/audit-adversarial-prop-v-theorem-e-2026-10-07.md; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+    },
+    {
       "id": "C2",
       "kind": "claim",
       "label": "Conditional theorem",
@@ -233,6 +264,17 @@
       "source": "source: docs/c4-endpoint-core-program.md"
     },
     {
+      "id": "FormalProductivity",
+      "kind": "claim",
+      "label": "Open conjectural gate",
+      "provenance": "open",
+      "statement": "for every PIP substitution every potential overlap is productive (FP)",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "pending_dependency",
+      "source": "reason: open conjectural gate; docs/formal-productivity-reduction-2026-10-04.md; docs/pds-certificate-from-the-box-automaton-2026-10-07.md; implied by PDS through Corollary FP'' and Theorem S",
+      "leaks": "open conjectural gate; docs/formal-productivity-reduction-2026-10-04.md; docs/pds-certificate-from-the-box-automaton-2026-10-07.md; implied by PDS through Corollary FP'' and Theorem S"
+    },
+    {
       "id": "G1",
       "kind": "claim",
       "label": "Open conjectural gate",
@@ -240,8 +282,19 @@
       "statement": "finite BPA (G1)",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Propositions 4.11, 5.46 and 5.47 and open-problem list",
-      "leaks": "premises not established: G1FromRenewal, G1HalfCoincidenceRoute, G1OverlapRoute"
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Propositions 4.11, 5.46 and 5.47 and open-problem list; docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (c)",
+      "leaks": "premises not established: G1FormalProductivityRoute, G1FromRenewal, G1HalfCoincidenceRoute, G1OverlapRoute"
+    },
+    {
+      "id": "G1FormalProductivityRoute",
+      "kind": "claim",
+      "label": "Conditional theorem",
+      "provenance": "conditional",
+      "statement": "formal productivity gives finite BPA with termination with coincidence from every swap seed, every reachable state being at most 2 beta^D ell_max long",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (c), with docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending",
+      "leaks": "premises not established: FormalProductivity"
     },
     {
       "id": "G1FromRenewal",
@@ -336,6 +389,26 @@
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
       "source": "source: docs/c4-degree2-lattice-lift.md"
+    },
+    {
+      "id": "LeftmostChainCycleStructure",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "every terminal cycle of the leftmost-child map on the complete box graph keeps one strict offset sign, with index zero on the later-starting side, and is a prefix-vs-interior occurrence pair sigma^r(i) = i U, sigma^r(j) = Q j V with (I - M^r) w_0 = ab(Q) after orienting the offset negatively; the prefix object is a right-infinite fixed ray and the interior object is a two-sided tiling compared on the right half-line, whose common centre is never a common vertex; the cycles come in mirror pairs",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Lemma S, Proposition LC and Corollary LC4; 10,584 sign/shape checks, 10,128 integral replays and 456 uncomputed offsets on the standing corpus; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+    },
+    {
+      "id": "LeftmostChainG1Certificate",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "a PIP substitution whose box graph has no terminal leftmost cycle satisfies all-seed strict-zipper exclusion, hence finite BPA",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Corollary LC5, with manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.47; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
     },
     {
       "id": "LoadBearingSCC",
@@ -439,6 +512,16 @@
       "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.44 and Lemma 5.45; docs/p1-overlap-minimal-obstruction-2026-09-14.md, Proposition 3.1; PR #88"
     },
     {
+      "id": "OverlapCoincidenceCriterion",
+      "kind": "claim",
+      "label": "Imported theorem",
+      "provenance": "imported-theorem",
+      "statement": "for a repetitive primitive FLC self-affine tiling with Meyer return vectors, coincidence reachability from every occurring overlap implies pure discrete spectrum of the tiling flow",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "imported_theorem",
+      "source": "source: Lee-Moody-Solomyak, arXiv:0910.4450, Theorem 4.7 and Lemmas 6.8-6.9; Akiyama-Lee, arXiv:1003.2898, Theorem 2.5; docs/review-box-leftmost-ledger-2026-10-08.md, section 1"
+    },
+    {
       "id": "OverlapFullRank",
       "kind": "claim",
       "label": "Repository-proved",
@@ -469,6 +552,28 @@
       "record_kind": "repository_theorem",
       "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary route",
       "leaks": "premises not established: G1, SCCProducer"
+    },
+    {
+      "id": "PDSFormalProductivityRoute",
+      "kind": "claim",
+      "label": "Conditional theorem",
+      "provenance": "conditional",
+      "statement": "formal productivity implies pure discrete spectrum through the overlap-coincidence criterion, without unimodularity",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (a); independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending",
+      "leaks": "premises not established: FormalProductivity"
+    },
+    {
+      "id": "PDSFormalProductivitySeedRoute",
+      "kind": "claim",
+      "label": "Conditional theorem",
+      "provenance": "conditional",
+      "statement": "formal productivity gives productivity of every overlap reachable from a swap seed, hence pure discrete spectrum by coincidence density one",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (b), with manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Lemma 5.36 and Theorem 5.38; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending",
+      "leaks": "premises not established: DensityToPDSBridge, FormalProductivity"
     },
     {
       "id": "PDSImpliesRepoG1",
@@ -552,7 +657,17 @@
       "statement": "Phi_3 acts semisimply on the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
+      "source": "source: archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 3 semisimplicity lemma; not formalized in Lean"
+    },
+    {
+      "id": "PisotMeyerProperty",
+      "kind": "claim",
+      "label": "Imported theorem",
+      "provenance": "imported-theorem",
+      "statement": "a repetitive primitive one-dimensional substitution tiling with Pisot inflation and FLC has Meyer control points and Meyer same-type return vectors",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "imported_theorem",
+      "source": "source: Lee-Solomyak, arXiv:1002.0039, Definition 2.3 and Theorem 4.3; docs/review-box-leftmost-ledger-2026-10-08.md, section 1 (scalar expansion hypotheses and return-vector transfer checked)"
     },
     {
       "id": "RepoSeedUnionBridge",
@@ -593,7 +708,7 @@
       "statement": "the seed centralizer is as certified",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
+      "source": "source: archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, sections 5-7; proof/PscVerif/PscVerif/Centralizer.lean proves the centralizer contradiction only"
     },
     {
       "id": "SignatureReduction",
@@ -696,7 +811,7 @@
       "statement": "Target 1 of the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
+      "source": "source: archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 7; proof/PscVerif/PscVerif/Centralizer.lean Psc.target1 proves the rational centralizer form only"
     },
     {
       "id": "ThetaIntertwining",
@@ -706,7 +821,7 @@
       "statement": "Theta intertwines the seed spectral operators",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
+      "source": "source: archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 5 certified intertwining identity; kernel/verify.mojo check C7; not formalized in Lean"
     },
     {
       "id": "UDForPowers",
@@ -796,6 +911,42 @@
       ]
     },
     {
+      "id": "Theorem Ω",
+      "kind": "alias",
+      "label": "Theorem Ω",
+      "provenance": "declared",
+      "members": [
+        "BoxAutomatonCertificate"
+      ]
+    },
+    {
+      "id": "box-automaton certificate",
+      "kind": "alias",
+      "label": "box-automaton certificate",
+      "provenance": "declared",
+      "members": [
+        "BoxAutomatonCertificate"
+      ]
+    },
+    {
+      "id": "per-specimen box PDS certificate",
+      "kind": "alias",
+      "label": "per-specimen box PDS certificate",
+      "provenance": "declared",
+      "members": [
+        "BoxAutomatonPDSCertificate"
+      ]
+    },
+    {
+      "id": "Lemma Ω1",
+      "kind": "alias",
+      "label": "Lemma Ω1",
+      "provenance": "declared",
+      "members": [
+        "BoxCycleContainment"
+      ]
+    },
+    {
       "id": "coincidence density one",
       "kind": "alias",
       "label": "coincidence density one",
@@ -868,12 +1019,30 @@
       ]
     },
     {
+      "id": "formal productivity",
+      "kind": "alias",
+      "label": "formal productivity",
+      "provenance": "declared",
+      "members": [
+        "FormalProductivity"
+      ]
+    },
+    {
       "id": "finite BPA",
       "kind": "alias",
       "label": "finite BPA",
       "provenance": "declared",
       "members": [
         "G1"
+      ]
+    },
+    {
+      "id": "consequence (c)",
+      "kind": "alias",
+      "label": "consequence (c)",
+      "provenance": "declared",
+      "members": [
+        "G1FormalProductivityRoute"
       ]
     },
     {
@@ -940,6 +1109,24 @@
       ]
     },
     {
+      "id": "Proposition LC",
+      "kind": "alias",
+      "label": "Proposition LC",
+      "provenance": "declared",
+      "members": [
+        "LeftmostChainCycleStructure"
+      ]
+    },
+    {
+      "id": "Corollary LC5",
+      "kind": "alias",
+      "label": "Corollary LC5",
+      "provenance": "declared",
+      "members": [
+        "LeftmostChainG1Certificate"
+      ]
+    },
+    {
       "id": "closed irreducible bad-overlap normal form",
       "kind": "alias",
       "label": "closed irreducible bad-overlap normal form",
@@ -955,6 +1142,15 @@
       "provenance": "declared",
       "members": [
         "OverlapBoundaryZipperDichotomy"
+      ]
+    },
+    {
+      "id": "Lee–Moody–Solomyak overlap-coincidence criterion",
+      "kind": "alias",
+      "label": "Lee–Moody–Solomyak overlap-coincidence criterion",
+      "provenance": "declared",
+      "members": [
+        "OverlapCoincidenceCriterion"
       ]
     },
     {
@@ -991,6 +1187,24 @@
       "provenance": "declared",
       "members": [
         "OverlapProductivity"
+      ]
+    },
+    {
+      "id": "consequence (a)",
+      "kind": "alias",
+      "label": "consequence (a)",
+      "provenance": "declared",
+      "members": [
+        "PDSFormalProductivityRoute"
+      ]
+    },
+    {
+      "id": "consequence (b)",
+      "kind": "alias",
+      "label": "consequence (b)",
+      "provenance": "declared",
+      "members": [
+        "PDSFormalProductivitySeedRoute"
       ]
     },
     {
@@ -1045,6 +1259,15 @@
       "provenance": "declared",
       "members": [
         "PeriodicPairOneFibre"
+      ]
+    },
+    {
+      "id": "Pisot Meyer property",
+      "kind": "alias",
+      "label": "Pisot Meyer property",
+      "provenance": "declared",
+      "members": [
+        "PisotMeyerProperty"
       ]
     },
     {
@@ -1165,6 +1388,18 @@
       ]
     },
     {
+      "id": "FormalProductivityGateAssumed",
+      "kind": "assumption_set",
+      "label": "assumption set",
+      "provenance": "declared",
+      "members": [
+        "DensityToPDSBridge",
+        "FormalProductivity",
+        "OverlapCoincidenceCriterion",
+        "PisotMeyerProperty"
+      ]
+    },
+    {
       "id": "G1AndC4",
       "kind": "assumption_set",
       "label": "assumption set",
@@ -1271,6 +1506,46 @@
     },
     {
       "type": "implicative",
+      "source": "BoxAutomatonCertificate",
+      "target": "BoxAutomatonPDSCertificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "BoxAutomatonPDSCertificate/BoxAutomatonCertificate"
+    },
+    {
+      "type": "implicative",
+      "source": "BoxAutomatonPDSCertificate",
+      "target": "PDSFormalProductivityRoute",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "PDSFormalProductivityRoute/BoxAutomatonPDSCertificate"
+    },
+    {
+      "type": "implicative",
+      "source": "BoxCycleContainment",
+      "target": "BoxAutomatonCertificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "BoxAutomatonCertificate/BoxCycleContainment"
+    },
+    {
+      "type": "implicative",
+      "source": "BoxCycleContainment",
+      "target": "G1FormalProductivityRoute",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "G1FormalProductivityRoute/BoxCycleContainment"
+    },
+    {
+      "type": "implicative",
+      "source": "BoxCycleContainment",
+      "target": "LeftmostChainG1Certificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "LeftmostChainG1Certificate/BoxCycleContainment"
+    },
+    {
+      "type": "implicative",
       "source": "C2",
       "target": "SCCProducer",
       "provenance": "conditional",
@@ -1374,6 +1649,15 @@
     {
       "type": "implicative",
       "source": "DensityToPDSBridge",
+      "target": "PDSFormalProductivitySeedRoute",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "PDSFormalProductivitySeedRoute/DensityToPDSBridge",
+      "leaks": "premise is imported-theorem"
+    },
+    {
+      "type": "implicative",
+      "source": "DensityToPDSBridge",
       "target": "PDSOverlapRoute",
       "provenance": "imported-theorem",
       "certainty": 1,
@@ -1411,6 +1695,33 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "SignatureReduction/EndpointCore"
+    },
+    {
+      "type": "implicative",
+      "source": "FormalProductivity",
+      "target": "G1FormalProductivityRoute",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "G1FormalProductivityRoute/FormalProductivity",
+      "leaks": "premise is open"
+    },
+    {
+      "type": "implicative",
+      "source": "FormalProductivity",
+      "target": "PDSFormalProductivityRoute",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "PDSFormalProductivityRoute/FormalProductivity",
+      "leaks": "premise is open"
+    },
+    {
+      "type": "implicative",
+      "source": "FormalProductivity",
+      "target": "PDSFormalProductivitySeedRoute",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "PDSFormalProductivitySeedRoute/FormalProductivity",
+      "leaks": "premise is open"
     },
     {
       "type": "implicative",
@@ -1474,6 +1785,15 @@
       "certainty": 1,
       "use_site": "SpectralSCCProducer/G1",
       "leaks": "premise is conditional"
+    },
+    {
+      "type": "implicative",
+      "source": "G1FormalProductivityRoute",
+      "target": "G1",
+      "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "G1/G1FormalProductivityRoute",
+      "leaks": "premise is conditional; alternative dependency branch(es): 4"
     },
     {
       "type": "implicative",
@@ -1601,6 +1921,15 @@
     },
     {
       "type": "implicative",
+      "source": "OverlapCoincidenceCriterion",
+      "target": "BoxAutomatonPDSCertificate",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "BoxAutomatonPDSCertificate/OverlapCoincidenceCriterion",
+      "leaks": "premise is imported-theorem"
+    },
+    {
+      "type": "implicative",
       "source": "OverlapFullRank",
       "target": "OverlapBadSCCNormalForm",
       "provenance": "theorem-backed",
@@ -1672,6 +2001,15 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "W3LowGrowth/PhiSemisimplicity"
+    },
+    {
+      "type": "implicative",
+      "source": "PisotMeyerProperty",
+      "target": "BoxAutomatonPDSCertificate",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "BoxAutomatonPDSCertificate/PisotMeyerProperty",
+      "leaks": "premise is imported-theorem"
     },
     {
       "type": "implicative",
@@ -1802,6 +2140,14 @@
     },
     {
       "type": "implicative",
+      "source": "SwapOverlapFiniteness",
+      "target": "PDSFormalProductivitySeedRoute",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "PDSFormalProductivitySeedRoute/SwapOverlapFiniteness"
+    },
+    {
+      "type": "implicative",
       "source": "Target1",
       "target": "DominantCubicCapture",
       "provenance": "theorem-backed",
@@ -1850,6 +2196,14 @@
     },
     {
       "type": "synonymous",
+      "source": "Corollary LC5",
+      "target": "LeftmostChainG1Certificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "FullIncidenceRank",
       "target": "DefectTheorem",
       "provenance": "theorem-backed",
@@ -1874,6 +2228,22 @@
     },
     {
       "type": "synonymous",
+      "source": "Lee–Moody–Solomyak overlap-coincidence criterion",
+      "target": "OverlapCoincidenceCriterion",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "Lemma Ω1",
+      "target": "BoxCycleContainment",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "Open Problem 5.35",
       "target": "OverlapProductivity",
       "provenance": "open",
@@ -1890,8 +2260,24 @@
     },
     {
       "type": "synonymous",
+      "source": "Pisot Meyer property",
+      "target": "PisotMeyerProperty",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "Proposition F",
       "target": "PeriodicPairOneFibre",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "Proposition LC",
+      "target": "LeftmostChainCycleStructure",
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"
@@ -1938,6 +2324,14 @@
     },
     {
       "type": "synonymous",
+      "source": "Theorem Ω",
+      "target": "BoxAutomatonCertificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "all-seed overlap productivity",
       "target": "AllSeedOverlapProductivity",
       "provenance": "open",
@@ -1978,6 +2372,14 @@
     },
     {
       "type": "synonymous",
+      "source": "box-automaton certificate",
+      "target": "BoxAutomatonCertificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "closed irreducible bad-overlap normal form",
       "target": "OverlapBadSCCNormalForm",
       "provenance": "theorem-backed",
@@ -1997,6 +2399,30 @@
       "source": "coincidence-rank fibre theorems",
       "target": "CoincidenceRankFibreTheorems",
       "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "consequence (a)",
+      "target": "PDSFormalProductivityRoute",
+      "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "consequence (b)",
+      "target": "PDSFormalProductivitySeedRoute",
+      "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "consequence (c)",
+      "target": "G1FormalProductivityRoute",
+      "provenance": "conditional",
       "certainty": 1,
       "use_site": "aliases"
     },
@@ -2029,6 +2455,14 @@
       "source": "finite BPA",
       "target": "G1",
       "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "formal productivity",
+      "target": "FormalProductivity",
+      "provenance": "open",
       "certainty": 1,
       "use_site": "aliases"
     },
@@ -2101,6 +2535,14 @@
       "source": "overlap-depth route to finite BPA",
       "target": "G1OverlapRoute",
       "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "per-specimen box PDS certificate",
+      "target": "BoxAutomatonPDSCertificate",
+      "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"
     },
@@ -2219,8 +2661,24 @@
     {
       "type": "part-whole",
       "source": "DensityToPDSBridge",
+      "target": "FormalProductivityGateAssumed",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "DensityToPDSBridge",
       "target": "OverlapGateAssumed",
       "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "FormalProductivity",
+      "target": "FormalProductivityGateAssumed",
+      "provenance": "open",
       "certainty": 1,
       "use_site": "assumption_sets"
     },
@@ -2274,9 +2732,25 @@
     },
     {
       "type": "part-whole",
+      "source": "OverlapCoincidenceCriterion",
+      "target": "FormalProductivityGateAssumed",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
       "source": "OverlapProductivity",
       "target": "OverlapGateAssumed",
       "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "PisotMeyerProperty",
+      "target": "FormalProductivityGateAssumed",
+      "provenance": "imported-theorem",
       "certainty": 1,
       "use_site": "assumption_sets"
     },
