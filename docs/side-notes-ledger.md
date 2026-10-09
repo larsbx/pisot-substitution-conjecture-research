@@ -1435,3 +1435,28 @@ by deleting it.
 2026-10-09 — Main advanced to 8d91e48 through #245 during final review. Reconciliation retains its Rouche-first symbolic-cone certificate, Jury fallback and regression, with the changed Mojo test rerun and its actual receipt refreshed. Canonical ledger nodes and Lean sources are unchanged; governed inventories are regenerated on the new main.
 
 2026-10-09 — Current-head review found compiler overrides also affected provisioning. Setup now forces the exact checked-in Elan toolchain, refuses Lean/Lake version mismatches and clears inherited Lean/Lake/cache configuration before cache preparation. Four failing-before/passing-after setup controls cover both overrides and version probes. Development setup grants no formal audit credit; the Lean README routes verification to the isolated complete audit and preserves partial formalization boundaries.
+- 2026-10-08 · The line certificate is not class-B specific: on 32 lines of
+  Theorem E's classes A (slope 2), C and D it certifies boundary hitting from
+  every seed (Theorem L″), and every refusal met was a line outside the
+  Pisot class. Class A at slope 1 is different: its seed graph grows linearly
+  in `n` (235 → 915 vertices for `n = 3 → 20` at `p = n + 1`), so the
+  constant-graph method cannot reach it. Do not rerun it there with a larger
+  budget; it needs vertex families indexed by a run position. ·
+  `p1b-boundary-hitting-progress-2026-10-08.md` §§3–4
+- 2026-10-08 · Two-parameter certificates need three changes from the line
+  method, each forced by a concrete failure on class D. (1) Per-entry Sturm
+  signs fail: the PIP test's last Sturm entry is the discriminant, which
+  changes sign on a parabolic region `b ≲ √(2a)` along an edge. Use instead
+  `χ(−1), χ(1), χ(2) < 0`, which is equivalent to Pisot when `|det M| = 2`.
+  (2) Sturm–Tarski entries for realness signs change sign along irrational
+  rays (slopes `2√2`, `(3 ± √17)/2`), which no rational split avoids. Read
+  `sign h(β)` from a nonvanishing norm `det h(M)` plus one sample point. (3)
+  Coefficient positivity alone misses forms like `a² − ab + b²`, so add a
+  Pólya multiplier. Separately, a whole class-D cone cannot be one wedge,
+  because a run-position bound changes regime along `3r = 4q`. Split it at
+  the Farey directions `(1,1), (3,4), (2,3), (1,2)`. The same norm reading
+  also helps lines that lie beside such a ray. A boundary line on
+  `3r − 4q = −9` has threshold 196 by Sturm entries (about 5 h of exact
+  finite part) but 4 by norm. Certify wedge edges in norm mode. ·
+  `p1b-boundary-hitting-progress-2026-10-08.md` §4b
+

@@ -2102,6 +2102,31 @@
       "statement_heading": "*Corollary C2 (A1′ in classical form).* `h(x) = x` and `h(c) = c` mean"
     },
     {
+      "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
+      "line": 119,
+      "statement_heading": "## 4. Theorem L″: lines of classes A, C and D"
+    },
+    {
+      "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
+      "line": 138,
+      "statement_heading": "*Theorem L″.* For each line below, every PIP member is catch-up-free with"
+    },
+    {
+      "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
+      "line": 197,
+      "statement_heading": "## 4b. Theorem W: two-parameter wedges of class D"
+    },
+    {
+      "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
+      "line": 274,
+      "statement_heading": "*Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with"
+    },
+    {
+      "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
+      "line": 291,
+      "statement_heading": "*Corollary W1.* **Every PIP member of class D with `r ≥ q − 1` has pure"
+    },
+    {
       "source": "docs/p1b-catch-up-free-ppvc-2026-10-07.md",
       "line": 37,
       "statement_heading": "*Proposition Z (assembled; every input already recorded).* Let `sigma` be PIP,"

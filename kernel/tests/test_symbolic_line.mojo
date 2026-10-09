@@ -13,6 +13,9 @@ from finite_linear_algebra.scalar import q_int
 from mojo_smoke.claims import require_contract
 from psc.symbolic_line import (
     Eventual,
+    QX,
+    qx_at,
+    qx_shift,
     Line,
     LineField,
     certify_line,
@@ -26,17 +29,38 @@ from psc.symbolic_line import (
     tp_sub,
     tp_t,
 )
-from symbolic_line_certificate import certified_lines, check_pinned, class_b_line, certify_class_b_line, mode_of, pinned
+from a1_normal_form_census import CLASS_A, CLASS_B, CLASS_C, CLASS_D, class_member
+from finite_linear_algebra.mat3 import Mat3
+from psc.bpa import substitution_incidence
+from psc.symbolic_line import tp_at_t
+from symbolic_line_certificate import (
+    ClassLine,
+    ClassWedge,
+    WEDGE_PIN_FIELDS,
+    certified_wedges,
+    wedge_edges,
+    wedge_of,
+    certify,
+    PIN_FIELDS,
+    certified_lines,
+    check_pinned,
+    class_b,
+    class_b_line,
+    certify_class_b_line,
+    mode_of,
+    pinned,
+    spec_of,
+)
 
 
 def test_eventual_sign_records_the_largest_root() raises:
     var ev = Eventual()
     # (q - 10)(q - 3) = q^2 - 13 q + 30
-    var s = ev.sign([q_int(30), q_int(-13), q_int(1)])
+    var s = ev.sign([[q_int(30), q_int(-13), q_int(1)]])
     assert_equal(s, 1)
     assert_true(q_int(10).le(ev.threshold))
     assert_equal(ev.sign(qx_const(-4)), -1)
-    assert_equal(ev.sign(List[Q]()), 0)
+    assert_equal(ev.sign(QX()), 0)
 
 
 def test_parametric_signs_agree_with_concrete_signs() raises:
@@ -108,13 +132,125 @@ def test_a_second_line_of_class_b_is_certified() raises:
 
 
 def test_every_listed_line_has_a_pinned_verdict() raises:
-    """Fifteen lines, each with slope, k, branch and a five-field verdict; the
-    evidence workflow runs each one against its pin."""
+    """Each row is a class, six affine coefficients and a five-field verdict,
+    no line is listed twice, and every row names a valid line; the evidence
+    workflow runs each one against its pin."""
     var lines = certified_lines()
-    assert_equal(len(lines), 15)
     for i in range(len(lines)):
-        assert_equal(len(lines[i]), 8)
+        assert_equal(len(lines[i]), PIN_FIELDS)
+        var spec = spec_of(lines[i])
+        assert_equal(len(pinned(spec)), PIN_FIELDS)
+        for j in range(i):
+            assert_false(spec.key() == spec_of(lines[j]).key())
     assert_equal(len(pinned(3, 0, 1)), 0)
+
+
+def test_a_class_line_names_its_normal_form_members() raises:
+    """ClassLine reads p, q, r off its coefficients, builds the normal-form
+    member, and its symbolic images agree with that member's run lengths."""
+    var spec = ClassLine(CLASS_D, [1, 1, 1, 0, 2, 0])  # p = n + 1, q = n, r = 2n
+    var sigma = spec.member(5)
+    assert_true(sigma == class_member(CLASS_D, 6, 5, 10))
+    assert_true(spec.admissible(0))
+    # classes A-C are admissible only where Lemma P1's p > q holds
+    assert_false(ClassLine(CLASS_A, [1, 0, 1, 0, 1, 1]).admissible(3))
+    assert_true(class_b(1, 1, 1).key() == List[Int]([CLASS_B, 1, 1, 1, 0, 1, 1]))
+    var refused = False
+    try:
+        _ = ClassLine(4, [1, 0, 1, 0, 1, 0])
+    except:
+        refused = True
+    assert_true(refused)
+
+
+def test_two_parameter_polynomials_and_quadrant_signs() raises:
+    """qx_shift is substitution; the quadrant certificate reads a positive
+    polynomial with a negative coefficient through a Polya multiplier, and
+    refuses one whose sign changes on the quadrant."""
+    var p = QX()
+    p.append([q_int(3), q_int(-1), q_int(1)])  # 3 - a + a^2
+    p.append([q_int(0), q_int(-1)])  # - a b
+    p.append([q_int(1)])  # + b^2
+    var shifted = qx_shift(p, 2, 5)
+    for ab in [(0, 0), (1, 3), (4, 2)]:
+        assert_true(qx_at(shifted, ab[0], ab[1]).eq(qx_at(p, ab[0] + 2, ab[1] + 5)))
+    var ev = Eventual()
+    assert_equal(ev.sign(p), 1)  # a^2 - ab + b^2 + 3 - a > 0: needs (1 + a + b)^N
+    var changes = QX()
+    changes.append([q_int(-1), q_int(0), q_int(-2)])  # -1 - 2a^2
+    changes.append([q_int(0), q_int(-1)])  # - a b
+    changes.append([q_int(1)])  # + b^2
+    var refused = False
+    try:
+        _ = ev.sign(changes)
+    except:
+        refused = True
+    assert_true(refused)
+
+
+def test_the_norm_is_the_product_over_the_roots() raises:
+    """det g(M) for g = t is det M, and for g = t - 1 it is -chi(1)."""
+    var w = ClassWedge(CLASS_D, [12, 3, 2, 13, 3, 2, 18, 4, 3])
+    var line = w.line()
+    var n_t = line.norm(tp_t())
+    assert_true(qx_at(n_t, 3, 7).eq(q_int(Mat3(substitution_incidence(w.member(3, 7))).det())))
+    var g = tp_sub(tp_t(), tp_const(qx_affine(1, 0)))
+    var chi1 = tp_at_t(line.field.chi, Q.one())
+    assert_true(qx_at(line.norm(g), 2, 5).eq(qx_at(chi1, 2, 5).neg()))
+
+
+def test_every_wedge_edge_is_a_pinned_line() raises:
+    """Theorem W: a wedge is its certified core (the quadrant a >= a0, b >= b0)
+    together with its boundary lines a = i < a0 and b = j < b0, every one of
+    which must be a pinned line. A wedge is not complete without them."""
+    var rows = certified_wedges()
+    assert_true(len(rows) >= 6)
+    for i in range(len(rows)):
+        assert_equal(len(rows[i]), WEDGE_PIN_FIELDS)
+        var edges = wedge_edges(wedge_of(rows[i]), rows[i][10], rows[i][11])
+        for j in range(len(edges)):
+            assert_equal(len(pinned(edges[j])), PIN_FIELDS)
+    # the edges cover the wedge outside the quadrant: every point (a, b) with
+    # a < a0 or b < b0 is a member of one of them
+    var w = wedge_of(rows[0])
+    var edges = wedge_edges(w, rows[0][10], rows[0][11])
+    for a in range(rows[0][10] + 2):
+        for b in range(rows[0][11] + 2):
+            if a >= rows[0][10] and b >= rows[0][11]:
+                continue
+            var found = False
+            for j in range(len(edges)):
+                for n in range(a + b + 1):
+                    if edges[j].member(n) == w.member(a, b):
+                        found = True
+            assert_true(found)
+
+
+def test_norm_mode_shrinks_a_threshold_near_the_asymptote() raises:
+    """The boundary line a = 10 of the first p = q - 1 sub-wedge lies on
+    3r - 4q = -9, beside the ray where the Sturm entries change sign. Read by
+    Sturm entries its threshold is 196 (docs §4b); read by norm it is 4, and
+    the line reproduces its pin in certified_norm_lines()."""
+    var spec = ClassLine(CLASS_D, [3, 14, 3, 15, 4, 17], True)
+    var v = certify(spec)
+    assert_equal(v.q0, 4)
+    assert_equal(v.symbolic_vertices, 105)
+    check_pinned(v, pinned(spec))
+
+
+def test_a_class_d_line_is_certified() raises:
+    """Theorem L'' (docs/p1b-boundary-hitting-progress-2026-10-08.md §4): the
+    class D line p = n + 1, q = n, r = n + 3 is certified by the same method
+    and reproduces its pin; class D has no Lemma P1 cut, so n = 3 counts as
+    not PIP rather than outside."""
+    var spec = ClassLine(CLASS_D, [1, 1, 1, 0, 1, 3])
+    var v = certify(spec)
+    assert_equal(v.q0, 18)
+    assert_equal(v.symbolic_vertices, 97)
+    assert_equal(v.finite_members, 17)
+    assert_equal(v.finite_non_pip, 1)
+    assert_equal(v.finite_outside, 0)
+    check_pinned(v, pinned(spec))
 
 
 def assert_mode_refused(args: List[String]) raises:
@@ -136,6 +272,12 @@ def test_the_command_line_is_strict() raises:
     assert_mode_refused(["foo"])
     assert_mode_refused(["2", "x", "1"])
     assert_mode_refused(["1", "2", "3", "4"])
+    assert_equal(mode_of(["D", "1", "1", "1", "0", "2", "0"]), "class")
+    assert_equal(mode_of(["norm", "D", "3", "14", "3", "15", "4", "17"]), "norm")
+    assert_equal(mode_of(["wedge", "D", "4", "1", "3", "5", "1", "3", "7", "1", "4"]), "wedge")
+    assert_mode_refused(["norm", "D", "3", "14", "3", "15", "4"])
+    assert_mode_refused(["E", "1", "1", "1", "0", "2", "0"])
+    assert_mode_refused(["D", "1", "1", "1", "0", "2", "x"])
 
 
 def test_a_line_that_leaves_the_pisot_class_is_refused() raises:
@@ -168,5 +310,19 @@ def main() raises:
     print("[PASS] test_every_listed_line_has_a_pinned_verdict")
     test_the_command_line_is_strict()
     print("[PASS] test_the_command_line_is_strict")
+    test_a_class_line_names_its_normal_form_members()
+    print("[PASS] test_a_class_line_names_its_normal_form_members")
+    test_a_class_d_line_is_certified()
+    print("[PASS] test_a_class_d_line_is_certified")
+    test_two_parameter_polynomials_and_quadrant_signs()
+    print("[PASS] test_two_parameter_polynomials_and_quadrant_signs")
+    test_every_wedge_edge_is_a_pinned_line()
+    print("[PASS] test_every_wedge_edge_is_a_pinned_line")
+    test_norm_mode_shrinks_a_threshold_near_the_asymptote()
+    print("[PASS] test_norm_mode_shrinks_a_threshold_near_the_asymptote")
+    test_the_norm_is_the_product_over_the_roots()
+    print("[PASS] test_the_norm_is_the_product_over_the_roots")
     require_contract("Theorem L certificate (class B line sigma_q: x -> x y^(2q+2) x, c -> c y^q x, y -> c y^(q+1) x): the symbolic swap-seed overlap graph, decided by parametric Sturm-Tarski queries over Q[q] with certified threshold, has 119 vertices for every q >= 52, all with an offset-zero descendant, and the line is certified PIP there; every q in 0..51 is PIP and its exact seed-reachable graph (screened kernel) has every vertex hitting; at q = 52 and 57 the symbolic graph with q substituted equals the exact graph; parametric signs agree with concrete signs at q = 60; pseudo-remainders keep the sign at beta; a det-0 line is refused")
-    require_contract("Theorem L' certificate: the class B line p = q + 1, r = q + 1 is certified (121 symbolic vertices for every q >= 14, all hitting; q < 14: 14 PIP members, all hitting); the line p = 3q + 1, r = q - 1, which leaves the Pisot class, is refused; certified_lines() pins fifteen verdicts and a verdict off its pin is refused; the command line accepts only no argument, SLOPE K BRANCH or lines")
+    require_contract("Theorem L' certificate: the class B line p = q + 1, r = q + 1 is certified (121 symbolic vertices for every q >= 14, all hitting; q < 14: 14 PIP members, all hitting); the line p = 3q + 1, r = q - 1, which leaves the Pisot class, is refused; certified_lines() pins every listed verdict and a verdict off its pin is refused; the command line accepts only no argument, SLOPE K BRANCH, CLASS AP BP AQ BQ AR BR or lines")
+    require_contract("Theorem W machinery: parameter polynomials in (a, b) substitute correctly under qx_shift; the quadrant certificate reads a positive polynomial with a negative coefficient through a Polya multiplier and refuses one that changes sign on the quadrant; the norm det g(M) is det M for g = t and -chi(1) for g = t - 1; every boundary line of every pinned wedge is a pinned norm-mode line, and the boundary lines cover the wedge outside its quadrant; the norm-mode line D (3n + 14, 3n + 15, 4n + 17) is certified with threshold 4 and reproduces its pin")
+    require_contract("Theorem L'' driver: a ClassLine of Theorem E's class A, B, C or D builds its normal-form members, Lemma P1's p > q bounds the admissible cone in classes A-C, and every pinned row names a distinct valid line; the class D line p = n + 1, q = n, r = n + 3 is certified (97 symbolic vertices for every n >= 18, all hitting; n < 18: 17 PIP members, all hitting, 1 not PIP) and reproduces its pin")

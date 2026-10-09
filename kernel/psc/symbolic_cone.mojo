@@ -46,9 +46,20 @@ from finite_exact.rat_q import Q
 from finite_linear_algebra.qpoly import add, evaluate, mul, neg, normalize, scale, sign_of, sub
 from finite_linear_algebra.scalar import q_int
 from psc.exact import q_string
-from psc.symbolic_line import QX, TPoly, LineField, least_integer_at, primitive_support, qx_affine, qx_const, zero_descendants
+from psc.symbolic_line import TPoly, LineField, least_integer_at, primitive_support, qx_of, zero_descendants
 
-comptime P2 = List[QX]  # sum_i row_i(s2) s1^i
+comptime UX = List[Q]  # a polynomial in s2, ascending (the rows of P2)
+
+
+def ux_const(c: Int) -> UX:
+    return normalize([q_int(c)])
+
+
+def ux_affine(c0: Int, c1: Int) -> UX:
+    """`c0 + c1 s2`."""
+    return normalize([q_int(c0), q_int(c1)])
+
+comptime P2 = List[UX]  # sum_i row_i(s2) s1^i
 comptime TP2 = List[P2]  # a polynomial in t over Q[s1, s2], ascending
 comptime CONE_SAMPLE = 200
 comptime CONE_VERTEX_CAP = 20000
@@ -70,10 +81,10 @@ def p2_norm(p: P2) -> P2:
     return out^
 
 
-def p2_row(p: P2, i: Int) -> QX:
+def p2_row(p: P2, i: Int) -> UX:
     if i < len(p):
         return p[i].copy()
-    return QX()
+    return UX()
 
 
 def p2_add(a: P2, b: P2) -> P2:
@@ -102,7 +113,7 @@ def p2_mul(a: P2, b: P2) -> P2:
         return P2()
     var out = P2()
     for _ in range(len(x) + len(y) - 1):
-        out.append(QX())
+        out.append(UX())
     for i in range(len(x)):
         for j in range(len(y)):
             out[i + j] = add(out[i + j], mul(x[i], y[j]))
@@ -117,12 +128,12 @@ def p2_scale(p: P2, c: Q) -> P2:
 
 
 def p2_const(c: Int) -> P2:
-    return p2_norm([qx_const(c)])
+    return p2_norm([ux_const(c)])
 
 
 def p2_affine(c0: Int, c1: Int, c2: Int) -> P2:
     """`c0 + c1 s1 + c2 s2`."""
-    return p2_norm([qx_affine(c0, c2), qx_const(c1)])
+    return p2_norm([ux_affine(c0, c2), ux_const(c1)])
 
 
 def p2_deg(p: P2) -> Int:
@@ -160,10 +171,10 @@ def p2_key(p: P2) -> String:
     return out^
 
 
-def _qx_shift(f: QX, n: Int) -> QX:
+def _ux_shift(f: UX, n: Int) -> UX:
     """`f(n + v)` as a polynomial in `v`."""
-    var out = QX()
-    var x = qx_affine(n, 1)
+    var out = UX()
+    var x = ux_affine(n, 1)
     for index in range(len(f)):
         out = add(mul(out, x), [f[len(f) - 1 - index].copy()])
     return normalize(out)
@@ -174,7 +185,7 @@ def p2_shift(p: P2, n1: Int, n2: Int) -> P2:
     var out = P2()
     var x = p2_affine(n1, 1, 0)
     for index in range(len(p)):
-        out = p2_add(p2_mul(out, x), p2_norm([_qx_shift(p[len(p) - 1 - index], n2)]))
+        out = p2_add(p2_mul(out, x), p2_norm([_ux_shift(p[len(p) - 1 - index], n2)]))
     return out^
 
 
@@ -383,7 +394,7 @@ def t2_at_point(p: TP2, s1: Int, s2: Int) -> TPoly:
     in the line engine's representation."""
     var out = TPoly()
     for k in range(len(p)):
-        out.append(normalize([p2_at(p[k], s1, s2)]))
+        out.append(qx_of(p2_at(p[k], s1, s2)))
     var width = len(out)
     while width > 0 and len(out[width - 1]) == 0:
         width -= 1
