@@ -3,7 +3,7 @@
 docs/p1b-edge-progressions-2026-10-09.md. Near a Lemma P1 edge the seed graph
 of a line is not bounded: it is a finite *skeleton* times an index. Lemma EP
 gives a parameter-free integer vector `u` with `M u = s u + k e_y` (`s = +1` at
-the `f(1)` edge, `-1` at the `f(-1)` edge, `k = -f(+-1) >= 1`), and every
+the `f(1)` edge, `-1` at the `f(-1)` edge, `k >= 1`), and every
 overlap is `w = w0 + j u` with `j = phi(w)` for a coordinate functional `phi`
 (`phi(u) = 1`, `phi(e_y) = 0`). A *state* is `(a, b, w0)` with `phi(w0) = 0`;
 its members are `w0 + j u` for `j` in a set of integer intervals whose ends are
@@ -318,6 +318,8 @@ struct ProgressionLine:
     var trace: Bool  # one diagnostic line per closure round
 
     def __init__(out self, var line: Line, u: List[Int], s: Int) raises:
+        if len(u) != 3 or (s != 1 and s != -1):
+            raise Error("a progression needs a three-coordinate u and s = +1 or -1")
         var ev = Eventual()
         var cert = certify_wedge_pisot(line, ev) if line.norm_mode() else certify_line(line, ev)
         if not cert.holds:
@@ -340,7 +342,8 @@ struct ProgressionLine:
                 break
         if self.phi_index < 0:
             raise Error("u has no unit coordinate off the run letter")
-        # M u = s u + k e_y with k a positive constant (Lemma EP)
+        # M u = s u + k e_y with k a positive constant (Lemma EP).
+        # For adj(M - s I) e_y = g u, k = -f(s) / g.
         var uq = self._uq()
         var r = w_sub(self.cl.line.mw(uq), self._scaled(uq, s))
         for i in range(3):
@@ -351,7 +354,7 @@ struct ProgressionLine:
         var kq = qx_const_term(r[self.cl.line.y])
         self.k = small_int(kq)
         if self.k < 1:
-            raise Error("k = -f(+-1) must be positive (Lemma P1)")
+            raise Error("k in M u = s u + k e_y must be positive (Lemma P1)")
         self.eps = self.cl.line.t_of(uq)
         if self.cl.positive(self.eps) <= 0:
             raise Error("<ell, u> is not positive at beta")
