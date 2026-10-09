@@ -1460,3 +1460,17 @@ by deleting it.
   finite part) but 4 by norm. Certify wedge edges in norm mode. ·
   `p1b-boundary-hitting-progress-2026-10-08.md` §4b
 
+2026-10-09 — Isolated #247's parameter-algebra refactor (`a3f1b15`) against
+#246's pinned pre-refactoring head (`e068c4c`). Both earlier engines inherited
+noncanonical `t`-polynomial keys for trailing zero terms; the shared module's
+key contract now strips that padding, with a failing-before regression.
+Independent monomial evaluation, specialized Euclidean division, denominator
+boundaries and three killed coordinate-reversal controls guard the conversion
+`(s1, s2) = (b, a)`. Direct replay agrees on the asymmetric 74-vertex class-B
+graph (including edges and hitting decisions) and the 105-vertex class-D wedge
+(corner `(1, 0)`, 1818 sign reads). This records computational preservation;
+#246's separate mathematical review and Corollary W1 acceptance boundary are
+unchanged. Evidence: `kernel/tests/test_param_poly.mojo`,
+`kernel/tests/test_symbolic_cone.mojo`, `kernel/tests/test_symbolic_line.mojo`,
+and the scoped review on PR #247.
+

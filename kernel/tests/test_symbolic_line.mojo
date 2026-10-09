@@ -11,28 +11,30 @@ from std.testing import assert_equal, assert_false, assert_true
 from finite_exact.rat_q import Q
 from finite_linear_algebra.scalar import q_int
 from mojo_smoke.claims import require_contract
-from psc.symbolic_line import (
-    Eventual,
+from psc.param_poly import (
     QX,
-    qx_at,
-    qx_shift,
-    Line,
-    LineField,
-    certify_line,
     qx_affine,
+    qx_at,
     qx_const,
+    qx_shift,
     tp_add,
     tp_at_q,
+    tp_at_t,
     tp_const,
     tp_prem,
     tp_scale,
     tp_sub,
     tp_t,
 )
+from psc.symbolic_line import (
+    Eventual,
+    Line,
+    LineField,
+    certify_line,
+)
 from a1_normal_form_census import CLASS_A, CLASS_B, CLASS_C, CLASS_D, class_member
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
-from psc.symbolic_line import tp_at_t
 from symbolic_line_certificate import (
     ClassLine,
     ClassWedge,
@@ -199,6 +201,34 @@ def test_the_norm_is_the_product_over_the_roots() raises:
     assert_true(qx_at(line.norm(g), 2, 5).eq(qx_at(chi1, 2, 5).neg()))
 
 
+def test_asymmetric_wedge_and_boundary_specializations() raises:
+    """The two axes name distinct runs; both boundary lines retain that meaning."""
+    var w = ClassWedge(CLASS_D, [12, 3, 2, 13, 3, 2, 18, 4, 3])
+    var line = w.line()
+    for pt in [(0, 5), (7, 0), (2, 9), (9, 2), (1, 0)]:
+        var a = pt[0]
+        var b = pt[1]
+        var coeff = Mat3(substitution_incidence(w.member(a, b))).charpoly()
+        for k in range(4):
+            assert_true(qx_at(line.field.chi[k], a, b).eq(q_int(coeff[k])))
+        assert_true(w.edge_a(a).member(b) == w.member(a, b))
+        assert_true(w.edge_b(b).member(a) == w.member(a, b))
+        var ea = w.edge_a(a).line()
+        var eb = w.edge_b(b).line()
+        for k in range(4):
+            assert_true(qx_at(ea.field.chi[k], b).eq(q_int(coeff[k])))
+            assert_true(qx_at(eb.field.chi[k], a).eq(q_int(coeff[k])))
+    assert_false(qx_at(line.field.chi[2], 2, 9).eq(qx_at(line.field.chi[2], 9, 2)))
+    # Distinct corner floors remain distinct when the quadrant sign is read.
+    var ev = Eventual()
+    ev.threshold = q_int(1)
+    ev.b_floor = 5
+    var positive: QX = [[q_int(-68), q_int(7)], [q_int(11)]]
+    assert_equal(ev.sign(positive), 1)
+    assert_equal(ev.first_integer_above(), 2)
+    assert_equal(ev.b_floor, 5)
+
+
 def test_every_wedge_edge_is_a_pinned_line() raises:
     """Theorem W: a wedge is its certified core (the quadrant a >= a0, b >= b0)
     together with its boundary lines a = i < a0 and b = j < b0, every one of
@@ -292,6 +322,9 @@ def test_a_line_that_leaves_the_pisot_class_is_refused() raises:
 
 
 def main() raises:
+    test_asymmetric_wedge_and_boundary_specializations()
+    print("[PASS] test_asymmetric_wedge_and_boundary_specializations")
+    require_contract("Theorem W coordinate regression only: asymmetric class-D wedge characteristic polynomials match concrete integer incidence matrices on both axes and unequal parameter points; edge_a and edge_b retain their coordinate and characteristic polynomial; an asymmetric quadrant corner is unchanged by a positive sign query")
     test_eventual_sign_records_the_largest_root()
     print("[PASS] test_eventual_sign_records_the_largest_root")
     test_parametric_signs_agree_with_concrete_signs()
