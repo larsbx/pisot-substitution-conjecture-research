@@ -33,9 +33,11 @@ from a1_normal_form_census import CLASS_A, CLASS_B, CLASS_C, CLASS_D, class_memb
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
 from psc.symbolic_line import tp_at_t
+from psc.pisot import CubicScreen
 from symbolic_line_certificate import (
     ClassLine,
     ClassWedge,
+    certified_norm_lines,
     WEDGE_PIN_FIELDS,
     certified_wedges,
     wedge_edges,
@@ -238,6 +240,57 @@ def test_norm_mode_shrinks_a_threshold_near_the_asymptote() raises:
     check_pinned(v, pinned(spec))
 
 
+def class_d_pieces() raises -> Tuple[List[ClassLine], List[ClassWedge]]:
+    var lines = List[ClassLine]()
+    var rows = certified_lines()
+    for i in range(len(rows)):
+        if rows[i][0] == CLASS_D:
+            lines.append(spec_of(rows[i]))
+    var norm_rows = certified_norm_lines()
+    for i in range(len(norm_rows)):
+        if norm_rows[i][0] == CLASS_D:
+            lines.append(spec_of(norm_rows[i], True))
+    var wedges = List[ClassWedge]()
+    var w = certified_wedges()
+    for i in range(len(w)):
+        if w[i][0] == CLASS_D:
+            wedges.append(wedge_of(w[i]))
+    return (lines^, wedges^)
+
+
+def test_every_pip_member_of_class_d_is_covered() raises:
+    """Corollary W2's coverage, checked by enumeration: every PIP member of
+    class D with q <= 60 (so p = q -+ 1 and, by Lemma P1, r <= 2p) is a
+    member of a pinned line or wedge, membership solved exactly. Lemma P1
+    also bounds r below, so the enumeration over r <= 2p + 2 is complete."""
+    var pieces = class_d_pieces()
+    var screen = CubicScreen()
+    var members = 0
+    for q in range(0, 61):
+        for dp in [-1, 1]:
+            var p = q + dp
+            if p < 0:
+                continue
+            for r in range(0, 2 * p + 3):
+                var m = Mat3(substitution_incidence(class_member(CLASS_D, p, q, r)))
+                if not screen.is_pip(m):
+                    continue
+                members += 1
+                var pqr = List[Int]([p, q, r])
+                var found = False
+                for i in range(len(pieces[0])):
+                    if pieces[0][i].contains(pqr):
+                        found = True
+                        break
+                if not found:
+                    for i in range(len(pieces[1])):
+                        if pieces[1][i].contains(pqr):
+                            found = True
+                            break
+                assert_true(found)
+    assert_true(members > 1000)
+
+
 def test_a_class_d_line_is_certified() raises:
     """Theorem L'' (docs/p1b-boundary-hitting-progress-2026-10-08.md §4): the
     class D line p = n + 1, q = n, r = n + 3 is certified by the same method
@@ -320,9 +373,11 @@ def main() raises:
     print("[PASS] test_every_wedge_edge_is_a_pinned_line")
     test_norm_mode_shrinks_a_threshold_near_the_asymptote()
     print("[PASS] test_norm_mode_shrinks_a_threshold_near_the_asymptote")
+    test_every_pip_member_of_class_d_is_covered()
+    print("[PASS] test_every_pip_member_of_class_d_is_covered")
     test_the_norm_is_the_product_over_the_roots()
     print("[PASS] test_the_norm_is_the_product_over_the_roots")
     require_contract("Theorem L certificate (class B line sigma_q: x -> x y^(2q+2) x, c -> c y^q x, y -> c y^(q+1) x): the symbolic swap-seed overlap graph, decided by parametric Sturm-Tarski queries over Q[q] with certified threshold, has 119 vertices for every q >= 52, all with an offset-zero descendant, and the line is certified PIP there; every q in 0..51 is PIP and its exact seed-reachable graph (screened kernel) has every vertex hitting; at q = 52 and 57 the symbolic graph with q substituted equals the exact graph; parametric signs agree with concrete signs at q = 60; pseudo-remainders keep the sign at beta; a det-0 line is refused")
     require_contract("Theorem L' certificate: the class B line p = q + 1, r = q + 1 is certified (121 symbolic vertices for every q >= 14, all hitting; q < 14: 14 PIP members, all hitting); the line p = 3q + 1, r = q - 1, which leaves the Pisot class, is refused; certified_lines() pins every listed verdict and a verdict off its pin is refused; the command line accepts only no argument, SLOPE K BRANCH, CLASS AP BP AQ BQ AR BR or lines")
-    require_contract("Theorem W machinery: parameter polynomials in (a, b) substitute correctly under qx_shift; the quadrant certificate reads a positive polynomial with a negative coefficient through a Polya multiplier and refuses one that changes sign on the quadrant; the norm det g(M) is det M for g = t and -chi(1) for g = t - 1; every boundary line of every pinned wedge is a pinned norm-mode line, and the boundary lines cover the wedge outside its quadrant; the norm-mode line D (3n + 14, 3n + 15, 4n + 17) is certified with threshold 4 and reproduces its pin")
+    require_contract("Theorem W machinery: parameter polynomials in (a, b) substitute correctly under qx_shift; the quadrant certificate reads a positive polynomial with a negative coefficient through a Polya multiplier and refuses one that changes sign on the quadrant; the norm det g(M) is det M for g = t and -chi(1) for g = t - 1; every boundary line of every pinned wedge is a pinned norm-mode line, and the boundary lines cover the wedge outside its quadrant; every PIP member of class D with q <= 60 is a member of a pinned line or wedge (membership solved exactly); the norm-mode line D (3n + 14, 3n + 15, 4n + 17) is certified with threshold 4 and reproduces its pin")
     require_contract("Theorem L'' driver: a ClassLine of Theorem E's class A, B, C or D builds its normal-form members, Lemma P1's p > q bounds the admissible cone in classes A-C, and every pinned row names a distinct valid line; the class D line p = n + 1, q = n, r = n + 3 is certified (97 symbolic vertices for every n >= 18, all hitting; n < 18: 17 PIP members, all hitting, 1 not PIP) and reproduces its pin")

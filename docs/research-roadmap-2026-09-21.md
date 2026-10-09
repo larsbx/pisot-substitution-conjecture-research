@@ -297,8 +297,8 @@ the whole of PSC, outside the open part of Theorem K's family (#232,
 Proposition Z). It is proved on 47 infinite one-parameter families of
 Theorem E's classes: Theorem L (#232), Theorem L′ (#234) and Theorem L″
 (`p1b-boundary-hitting-progress-2026-10-08.md`). By Theorem W of the same
-note, it is also proved on two-parameter wedges: every PIP member of class D
-with `r ≥ q − 1`. The universal, uniform-in-`|S|` statement is untouched. The PR-by-PR account and the ordered next steps
+note, it is also proved on two-parameter wedges, and with them on **all of
+Theorem E's class D** (Corollary W2). The universal, uniform-in-`|S|` statement is untouched. The PR-by-PR account and the ordered next steps
 (two-parameter wedges, vertex families for class A at slope 1, a uniform
 depth bound on the class) are in that note.
 

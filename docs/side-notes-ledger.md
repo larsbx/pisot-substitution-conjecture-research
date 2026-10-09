@@ -1459,4 +1459,11 @@ by deleting it.
   `3r − 4q = −9` has threshold 196 by Sturm entries (about 5 h of exact
   finite part) but 4 by norm. Certify wedge edges in norm mode. ·
   `p1b-boundary-hitting-progress-2026-10-08.md` §4b
+- 2026-10-09 · Class D's apparent fringe along the Pisot boundary is not
+  irregular. In `k = q − r`, `m = 3r − 2q + c` (`c = 0` or `4` by branch),
+  the PIP region is `m ≥ 0`. Seed graphs are constant on one cone per
+  branch and along finitely many lines `m = const` and `k = const`. Grid
+  ids that seemed to vary were these lines, repeating with period 3 in `q`.
+  Probe along lines in boundary-parallel coordinates before calling a
+  region irregular. · `p1b-boundary-hitting-progress-2026-10-08.md` §4d
 

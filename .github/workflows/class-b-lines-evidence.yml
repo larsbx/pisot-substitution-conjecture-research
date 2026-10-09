@@ -194,6 +194,129 @@ jobs:
           - { line: 'wedge D 12 1 3 11 1 3 15 1 4' }
           - { line: 'wedge D 14 3 2 13 3 2 18 4 3' }
           - { line: 'wedge D -1 2 1 -2 2 1 -4 3 2' }
+          - { line: 'norm D 1 3 1 2 1 0' }
+          - { line: 'norm D 1 5 1 6 1 4' }
+          - { line: 'norm D 1 6 1 5 1 2' }
+          - { line: 'norm D 1 8 1 9 1 6' }
+          - { line: 'norm D 1 9 1 8 1 4' }
+          - { line: 'norm D 3 -1 3 -2 2 -2' }
+          - { line: 'norm D 3 -1 3 0 2 0' }
+          - { line: 'norm D 3 -2 3 -3 2 -3' }
+          - { line: 'norm D 3 -3 3 -4 2 -4' }
+          - { line: 'norm D 3 0 3 -1 2 -1' }
+          - { line: 'norm D 3 0 3 1 2 1' }
+          - { line: 'norm D 3 1 3 0 2 0' }
+          - { line: 'norm D 3 2 3 1 2 1' }
+          - { line: 'norm D 1 13 1 14 1 10' }
+          - { line: 'norm D 1 18 1 17 1 12' }
+          - { line: 'norm D 1 18 1 19 1 14' }
+          - { line: 'norm D 1 23 1 22 1 16' }
+          - { line: 'norm D 1 23 1 24 1 18' }
+          - { line: 'norm D 1 28 1 27 1 20' }
+          - { line: 'norm D 1 28 1 29 1 22' }
+          - { line: 'norm D 1 33 1 34 1 26' }
+          - { line: 'norm D 1 38 1 39 1 30' }
+          - { line: 'norm D 1 43 1 44 1 34' }
+          - { line: 'norm D 1 48 1 49 1 38' }
+          - { line: 'norm D 1 53 1 54 1 42' }
+          - { line: 'norm D 1 58 1 59 1 46' }
+          - { line: 'norm D 1 63 1 64 1 50' }
+          - { line: 'norm D 1 68 1 69 1 54' }
+          - { line: 'norm D 1 73 1 74 1 58' }
+          - { line: 'norm D 1 78 1 79 1 62' }
+          - { line: 'norm D 1 83 1 84 1 66' }
+          - { line: 'norm D 3 13 3 14 2 10' }
+          - { line: 'norm D 3 17 3 18 2 13' }
+          - { line: 'norm D 3 18 3 17 2 12' }
+          - { line: 'norm D 3 21 3 22 2 16' }
+          - { line: 'norm D 3 22 3 21 2 15' }
+          - { line: 'norm D 3 25 3 26 2 19' }
+          - { line: 'norm D 3 26 3 25 2 18' }
+          - { line: 'norm D 3 29 3 30 2 22' }
+          - { line: 'norm D 3 33 3 34 2 25' }
+          - { line: 'norm D 3 37 3 38 2 28' }
+          - { line: 'norm D 3 41 3 42 2 31' }
+          - { line: 'norm D 3 45 3 46 2 34' }
+          - { line: 'norm D 3 49 3 50 2 37' }
+          - { line: 'norm D 3 53 3 54 2 40' }
+          - { line: 'norm D 3 57 3 58 2 43' }
+          - { line: 'norm D 3 61 3 62 2 46' }
+          - { line: 'norm D 3 65 3 66 2 49' }
+          - { line: 'norm D 3 69 3 70 2 52' }
+          - { line: 'norm D 4 13 4 14 3 10' }
+          - { line: 'norm D 4 16 4 17 3 12' }
+          - { line: 'norm D 4 18 4 17 3 12' }
+          - { line: 'norm D 4 18 4 19 3 14' }
+          - { line: 'norm D 4 19 4 20 3 14' }
+          - { line: 'norm D 4 21 4 20 3 14' }
+          - { line: 'norm D 4 23 4 22 3 16' }
+          - { line: 'norm D 4 23 4 24 3 18' }
+          - { line: 'norm D 4 24 4 23 3 16' }
+          - { line: 'norm D 4 28 4 27 3 20' }
+          - { line: 'norm D 4 33 4 32 3 24' }
+          - { line: 'norm D 4 38 4 37 3 28' }
+          - { line: 'norm D 4 43 4 42 3 32' }
+          - { line: 'norm D 4 48 4 47 3 36' }
+          - { line: 'norm D 4 53 4 52 3 40' }
+          - { line: 'norm D 4 58 4 57 3 44' }
+          - { line: 'norm D 4 63 4 62 3 48' }
+          - { line: 'norm D 4 68 4 67 3 52' }
+          - { line: 'norm D 4 73 4 72 3 56' }
+          - { line: 'norm D 4 78 4 77 3 60' }
+          - { line: 'norm D 4 83 4 82 3 64' }
+          - { line: 'norm D 4 88 4 87 3 68' }
+          - { line: 'norm D 5 13 5 14 4 10' }
+          - { line: 'norm D 5 14 5 15 4 11' }
+          - { line: 'norm D 5 15 5 16 4 12' }
+          - { line: 'norm D 5 16 5 17 4 13' }
+          - { line: 'norm D 5 17 5 18 4 13' }
+          - { line: 'norm D 5 17 5 18 4 14' }
+          - { line: 'norm D 5 18 5 17 4 12' }
+          - { line: 'norm D 5 18 5 19 4 15' }
+          - { line: 'norm D 5 19 5 18 4 13' }
+          - { line: 'norm D 5 19 5 20 4 16' }
+          - { line: 'norm D 5 20 5 19 4 14' }
+          - { line: 'norm D 5 20 5 21 4 17' }
+          - { line: 'norm D 5 21 5 22 4 16' }
+          - { line: 'norm D 5 21 5 22 4 18' }
+          - { line: 'norm D 5 22 5 21 4 15' }
+          - { line: 'norm D 5 22 5 23 4 19' }
+          - { line: 'norm D 5 23 5 24 4 20' }
+          - { line: 'norm D 5 24 5 25 4 21' }
+          - { line: 'norm D 5 25 5 26 4 19' }
+          - { line: 'norm D 5 25 5 26 4 22' }
+          - { line: 'norm D 5 26 5 25 4 18' }
+          - { line: 'norm D 5 26 5 27 4 23' }
+          - { line: 'norm D 5 27 5 28 4 24' }
+          - { line: 'norm D 5 28 5 29 4 25' }
+          - { line: 'norm D 5 29 5 30 4 22' }
+          - { line: 'norm D 5 29 5 30 4 26' }
+          - { line: 'norm D 5 30 5 29 4 21' }
+          - { line: 'norm D 5 30 5 31 4 27' }
+          - { line: 'norm D 5 31 5 32 4 28' }
+          - { line: 'norm D 5 32 5 33 4 29' }
+          - { line: 'norm D 5 33 5 34 4 25' }
+          - { line: 'norm D 5 33 5 34 4 30' }
+          - { line: 'norm D 5 34 5 33 4 24' }
+          - { line: 'norm D 5 34 5 35 4 31' }
+          - { line: 'norm D 5 35 5 36 4 32' }
+          - { line: 'norm D 5 36 5 37 4 33' }
+          - { line: 'norm D 5 37 5 38 4 28' }
+          - { line: 'norm D 5 37 5 38 4 34' }
+          - { line: 'norm D 5 38 5 37 4 27' }
+          - { line: 'norm D 5 38 5 39 4 35' }
+          - { line: 'norm D 5 39 5 40 4 36' }
+          - { line: 'norm D 5 40 5 41 4 37' }
+          - { line: 'norm D 5 41 5 42 4 38' }
+          - { line: 'norm D 5 42 5 41 4 30' }
+          - { line: 'norm D 5 42 5 43 4 39' }
+          - { line: 'norm D 5 43 5 44 4 40' }
+          - { line: 'wedge D 13 4 3 14 4 3 10 3 2' }
+          - { line: 'wedge D 13 1 5 14 1 5 10 1 4' }
+          - { line: 'wedge D 13 5 4 14 5 4 10 4 3' }
+          - { line: 'wedge D 18 4 3 17 4 3 12 3 2' }
+          - { line: 'wedge D 18 1 5 17 1 5 12 1 4' }
+          - { line: 'wedge D 18 5 4 17 5 4 12 4 3' }
     name: ${{ matrix.line }}
     steps:
       - uses: actions/checkout@v4

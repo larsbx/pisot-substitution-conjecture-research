@@ -2,7 +2,8 @@
 
 **Status:** status synchronisation for issue #139. It also adds two
 computer-assisted results, both unreviewed: Theorem L″ (§4), 32 one-parameter
-families, and Theorem W (§4b), two-parameter families of class D, on which
+families, and Theorem W (§4b, §4d), two-parameter families that with the
+lines cover **every PIP member of class D**, on which
 #139's obligation is proved and so pure discrete spectrum and finite BPA
 hold. No ledger node or manuscript statement changes. #84, #138, #139,
 G1 and PSC stay open.
@@ -299,6 +300,58 @@ cover `q − 1 ≤ r ≤ 2q + 2`. Above that, `r ≥ 2p + 1` and Lemma P1
 `p1b-symbolic-cone-2026-10-08.md` (class B below slope `5/2`), these are the
 two-parameter families on which #139's obligation is proved so far.
 
+## 4d. The rest of class D: Corollary W2
+
+Below `r = q − 1` the grid data (§4b) suggested one more cone per branch and
+then an irregular fringe. Exact probes along lines settle it. In the
+coordinates `k = q − r` and `m = 3r − 2q + c`, with `c = 0` for `p = q − 1`
+and `c = 4` for `p = q + 1`, Lemma P1's `f(−1) < 0` is exactly `m ≥ 0`. The
+exact seed graph is constant on the cone, and constant along each remaining
+line once `k` passes a small bound:
+
+| branch | constant-graph cone (vertices) | remaining lines |
+| --- | --- | --- |
+| `p = q − 1` | `m ≥ 2`, `k ≥ 4` (137) | `k = 2, 3`; `m = 0, 1` |
+| `p = q + 1` | `m ≥ 6`, `k ≥ 5` (164) | `k = 2, 3, 4`; `m = 0, …, 5` |
+
+So the "fringe" along the Pisot boundary is a few lines parallel to it,
+`3r − 2q = const`, on which `χ(−1)` is a fixed negative constant. Each cone
+is `(q, r) = base + a(1, 1) + b(3, 2)`. Whole, it fails as the upper cones
+did: a run-position bound changes regime inside it, and on one half a sign
+changes inside it. Recursive Farey splitting at the mediants `(4, 3)` and
+then `(5, 4)` certifies every piece:
+
+| branch | sub-wedge `(q, r)` | symbolic vertices | quadrant `a ≥ a0, b ≥ b0` | boundary lines |
+| --- | --- | --- | --- | --- |
+| `p = q − 1` | `(14, 10) + a(1, 1) + b(5, 4)` | 137 | `31, 15` | 46 |
+| `p = q − 1` | `(14, 10) + a(5, 4) + b(4, 3)` | 137 | `3, 7` | 10 |
+| `p = q − 1` | `(14, 10) + a(4, 3) + b(3, 2)` | 137 | `15, 3` | 18 |
+| `p = q + 1` | `(17, 12) + a(1, 1) + b(5, 4)` | 164 | `3, 3` | 6 |
+| `p = q + 1` | `(17, 12) + a(5, 4) + b(4, 3)` | 164 | `15, 7` | 22 |
+| `p = q + 1` | `(17, 12) + a(4, 3) + b(3, 2)` | 164 | `3, 3` | 6 |
+
+The 13 remaining lines and the 104 boundary lines are certified in norm
+mode and pinned in `certified_norm_lines()`.
+
+*Corollary W2.* **Every PIP member of Theorem E's class D has pure discrete
+spectrum and a finite balanced-pair automaton.** The pieces cover the class:
+
+- `r ≥ q − 1` is Corollary W1;
+- `r ≤ q − 2` with `m ≥ 0` is the union of the lines and sub-wedges above;
+- everything else fails Lemma P1 (`f(1) < 0` or `f(−1) < 0`), or has
+  `|det M| ≠ 2`.
+
+`test_every_pip_member_of_class_d_is_covered` checks this coverage by
+enumeration. It visits every PIP member with `q ≤ 60`, 5,043 of them, and
+solves membership in a pinned line or wedge exactly; all are covered.
+Removing one sub-wedge (D− W2) leaves 184 uncovered, so the test is not
+vacuous.
+
+Status as for Theorem W: computer-assisted and unreviewed, resting on
+Theorem E, the Barge–Štimac–Williams import, and §4b's soundness arguments.
+It is the first of Theorem E's four classes settled completely. Classes A,
+B and C are covered only on lines, and B also on Theorem C's sectors.
+
 ## 4c. Two two-parameter engines
 
 Theorem C's engine (`psc/symbolic_cone.mojo`, class B) and Theorem W's
@@ -333,12 +386,9 @@ cheap independent evidence.
 
 ## 5. Next, in order
 
-1. **The rest of class D.** Below `r = q − 1`, each branch has a second
-   constant-graph cone (grid data, §4b) and then a fringe along the Pisot
-   boundary `f(−1) = 0`, where the graphs keep changing, like class B at
-   slope 3. The second cone is the next wedge. The fringe needs either
-   vertex families (item 3) or a proof that its graphs come from finitely
-   many patterns.
+1. **Done: all of class D** (§4d, Corollary W2). What made it work there is
+   the template for the other classes: lines parallel to the Pisot boundary
+   absorb the "fringe", and the cones split at Farey mediants.
 2. **Wedges of classes A and C.** Class B is covered below slope `5/2` by
    Theorem C (`p1b-symbolic-cone-2026-10-08.md`). Class C's lines
    `p = q + d`, `r = q − d ± 1` form a two-parameter family in `(q, d)`, and

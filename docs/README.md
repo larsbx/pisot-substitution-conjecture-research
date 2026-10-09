@@ -71,7 +71,9 @@ Theorem E's four classes, proves pure discrete spectrum and finite BPA on 32
 more infinite families in classes A, C and D; 47 lines are pinned in all.
 It also adds **Theorem W**, two-parameter certificates on six wedges of
 class D which, with the lines, give **pure discrete spectrum and finite BPA
-for every PIP member of class D with `r ≥ q − 1`** (Corollary W1). Its engine
+for every PIP member of class D with `r ≥ q − 1`** (Corollary W1), and
+with six more wedges and 13 lines **for every PIP member of class D**
+(Corollary W2, coverage checked by exact enumeration to `q = 60`). Its engine
 reads signs at `β` by norm; Theorem C's class-B sectors use brackets
 (§4c compares the two).
 
