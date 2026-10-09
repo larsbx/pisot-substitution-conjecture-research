@@ -64,7 +64,10 @@ is the PR-by-PR account of what has advanced boundary hitting at every
 reachable strict-zipper vertex (#141 → #234), and what is excluded as a
 route. It adds **Theorem L″**: the class-B line certificate, extended to
 Theorem E's four classes, proves pure discrete spectrum and finite BPA on 32
-more infinite families in classes A, C and D. 47 lines are pinned in all.
+more infinite families in classes A, C and D; 47 lines are pinned in all.
+It also adds **Theorem W**, the first *two-parameter* certificates: six
+wedges of class D which, with the lines, give **pure discrete spectrum and
+finite BPA for every PIP member of class D with `r ≥ q − 1`** (Corollary W1).
 
 ## Current status
 

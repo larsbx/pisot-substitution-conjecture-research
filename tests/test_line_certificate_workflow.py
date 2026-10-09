@@ -1,9 +1,11 @@
-"""The evidence workflow re-certifies exactly the lines the driver pins.
+"""The evidence workflow re-certifies exactly the lines and wedges the driver pins.
 
-`certified_lines()` in kernel/symbolic_line_certificate.mojo is the single list
-of certified Theorem E lines; .github/workflows/class-b-lines-evidence.yml must
-run each of them once, in the driver's `CLASS AP BP AQ BQ AR BR` form, and
-nothing else.
+`certified_lines()`, `certified_norm_lines()` and `certified_wedges()` in
+kernel/symbolic_line_certificate.mojo are the single lists of certified
+Theorem E lines, norm-mode lines (the wedges' boundary lines) and wedge cores;
+.github/workflows/class-b-lines-evidence.yml must run each of them once, in
+the driver's `CLASS AP BP AQ BQ AR BR`, `norm CLASS ...` and
+`wedge CLASS P0 PA PB Q0 QA QB R0 RA RB` forms, and nothing else.
 """
 
 import re
@@ -14,15 +16,24 @@ DRIVER = ROOT / "kernel" / "symbolic_line_certificate.mojo"
 WORKFLOW = ROOT / ".github" / "workflows" / "class-b-lines-evidence.yml"
 
 ROW = re.compile(r"^\s*\[CLASS_([ABCD]),((?:\s*-?\d+,){10}\s*-?\d+)\],?\s*$", re.M)
+WEDGE_ROW = re.compile(r"^\s*\[CLASS_([ABCD]),((?:\s*-?\d+,){11}\s*-?\d+)\],?\s*$", re.M)
 LINE = re.compile(r"^\s*- \{ line: '([^']+)' \}\s*$", re.M)
 
 
-def pinned_lines():
-    body = DRIVER.read_text(encoding="utf-8").split("def certified_lines()", 1)[1].split("\n\n\n", 1)[0]
+def pinned(function, row, width, prefix=()):
+    body = DRIVER.read_text(encoding="utf-8").split(f"def {function}()", 1)[1].split("\n\n\n", 1)[0]
     return [
-        " ".join([cls, *(x.strip() for x in ints.split(",")[:6])])
-        for cls, ints in ROW.findall(body)
+        " ".join([*prefix, cls, *(x.strip() for x in ints.split(",")[:width])])
+        for cls, ints in row.findall(body)
     ]
+
+
+def pinned_lines():
+    return (
+        pinned("certified_lines", ROW, 6)
+        + pinned("certified_norm_lines", ROW, 6, ("norm",))
+        + pinned("certified_wedges", WEDGE_ROW, 9, ("wedge",))
+    )
 
 
 def workflow_lines():

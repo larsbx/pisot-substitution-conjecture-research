@@ -1,8 +1,10 @@
 # P1b: boundary hitting at every reachable strict-zipper vertex — progress, 2026-09-21 → 2026-10-08
 
-**Status:** status synchronisation for issue #139. It also adds one
-computer-assisted result in the style of Theorem L′ (Theorem L″, §4): 32
-infinite families with pure discrete spectrum and finite BPA, unreviewed. No ledger node or manuscript statement changes. #84, #138, #139,
+**Status:** status synchronisation for issue #139. It also adds two
+computer-assisted results, both unreviewed: Theorem L″ (§4), 32 one-parameter
+families, and Theorem W (§4b), the first two-parameter families, on which
+#139's obligation is proved and so pure discrete spectrum and finite BPA
+hold. No ledger node or manuscript statement changes. #84, #138, #139,
 G1 and PSC stay open.
 
 Canonical implementation for §4: `kernel/symbolic_line_certificate.mojo`
@@ -52,7 +54,7 @@ such.
 | #232 | 10-08 | Proposition Z: on the class (outside `F`'s open part) `PSC ⟺ PPVC`, so the strict zipper is *the* problem there. Survey: PPVC on 358 parametric members, depth ≤ 14, not growing. **Theorem L:** BH from every seed on the infinite class-B line `p = 2q + 2, r = q + 1`, so PDS and G1 for all of it. This is the first infinite family on which #139's obligation is proved. | **theorem on an infinite family** |
 | #233 | 10-08 | Theorem Ω: BH plus `SC_all` on the box gives PDS through Lee–Moody–Solomyak plus Proposition V step 1, which is elementary. So the finite-domain BH verdicts no longer rest on Theorem B. `BoundedPureDiscreteSpectrum` holds on 145,806 specimens. | finite-domain theorem |
 | #234 (open) | 10-08 | Theorem SC: one productive seed ⟺ every seed ⟺ FP ⟺ PDS. Choosing the seed gives no slack, only a different object. **Theorem L′:** fourteen more class-B lines. | theorem on 14 families |
-| this note | 10-08 | **Theorem L″:** the same certificate on 32 lines of classes A, C and D. Class A at slope 1 is recorded as out of reach of the constant-graph method. | theorem on new families |
+| this note | 10-08 | **Theorem L″:** the same certificate on 32 lines of classes A, C and D. **Theorem W:** the first two-parameter certificates, on six wedges of class D; with the lines, every PIP member of class D with `r ≥ q − 1` (Corollary W1). Class A at slope 1 is recorded as out of reach of the constant-graph method. | theorems on new one- and two-parameter families |
 
 Summarised: on 2026-09-21 #139 was an adelic hitting problem with no
 decision procedure. Today it is:
@@ -62,7 +64,8 @@ decision procedure. Today it is:
 2. **the whole of PSC** on the catch-up-free `|det M| = 2` class, outside
    `F`'s open part (#232).
 3. **proved on infinitely many infinite families**: lines of Theorem E's classes
-   (#232, #234, §4). It is not proved on any two-parameter region.
+   (#232, #234, §4), and two-parameter wedges covering every PIP member of
+   class D with `r ≥ q − 1` (§4b).
 
 The universal statement is untouched. No uniform-in-`|S|` mechanism has been
 found, and the acceptance criterion of #139 is not met.
@@ -191,20 +194,132 @@ conjugacy to a β-substitution, which is not checked here.
 
 (Float spectra at `n = 20, 80`, as a scratch diagnosis of the refusals; the refusal itself is the exact certificate's.) No PIP line of classes C or D that was tried failed to certify.
 
+## 4b. Theorem W: two-parameter wedges of class D
+
+Class D (`sigma(x) = x y^p c`, `sigma(c) = c y^q x`, `sigma(y) = c y^r c`) has
+`|det M| = 2` exactly when `p = q ± 1`, so each branch is a two-parameter
+family in `(q, r)`. Lemma P1's `f(1) = −2p + r − 1 < 0` bounds it by `r ≤ 2p`,
+and `f(−1) = −2p + 4q − 3r − 3 < 0` by roughly `r > 2q/3`.
+
+**The data.** On a grid (`q = 8, 12, …, 40`, every admissible `r`; scratch
+probe through the exact kernel), the exact seed graph is **the same graph**,
+with the same letters and the same integer offsets, on a whole cone of each
+branch:
+
+| branch | cone with one seed graph | vertices | outside it, toward `r = 2p` | below it |
+| --- | --- | --- | --- | --- |
+| `p = q − 1` | `q + 2 ≤ r ≤ 2q − 3` | 105 | the line `r = 2q − 2` (certified, §4) | lines `r = q − 1, q, q + 1` (certified), then a second constant cone, then a Pisot-boundary fringe |
+| `p = q + 1` | `q + 4 ≤ r ≤ 2q` | 93 | lines `r = 2q + 1, 2q + 2` (certified) | lines `r = q − 1 … q + 3` (certified), then likewise |
+
+So the symbolic object is a finite graph that does not depend on the
+parameters at all. Only the sign decisions do.
+
+**The method.** `psc.symbolic_line` now works over `Q[a, b]`. A wedge is
+`(p, q, r)` affine in `(a, b) ∈ Z_{≥0}^2` along a unimodular pair of
+directions, so the integer points `(a, b)` are exactly the integer points of
+a cone in the `(q, r)` plane. Three changes make the decisions sound in two
+variables. A line has no `b`, so none of them touches a line, and every line
+pin is reproduced unchanged.
+
+1. *Quadrant signs.* A polynomial in `a, b` is read on `a ≥ A, b ≥ B` by
+   substituting `a → A + a′, b → B + b′` and asking for one coefficient sign
+   with a nonzero constant term, after multiplying by `(1 + a′ + b′)^N` if
+   needed (Pólya). The certificate holds for all **real** `a′, b′ ≥ 0`. If no
+   corner works up to a cap, it raises.
+2. *A discriminant-free PIP test.* With `|det M| = 2`, a real monic cubic has
+   one root in `(2, ∞)` and two in the open unit disc **iff**
+   `χ(−1) < 0`, `χ(1) < 0` and `χ(2) < 0`. (Given a root `β > 2`, the other
+   two are the roots of `x² + ux + v = χ(x)/(x − β)` with `|v| = 2/β < 1`, and
+   Jury's test asks `χ(±1)/(±1 − β) > 0`. Conversely `β > 2` because the other
+   two have product of modulus `< 1`.) With `χ(−2) ≠ 0` there is no rational
+   root. The Sturm-count test of the line method fails here: its last entry
+   is the discriminant, which changes sign where the two small roots switch
+   between real and complex, and on the `p = q + 1` branch it does so on a
+   parabolic region `b ≲ √(2a)` that no set of boundary lines removes.
+3. *Signs at β by norm.* By item 2, at every real point of the region β is
+   the unique root above 1 and depends continuously on `(a, b)`. So `h(β)`
+   keeps one sign wherever it does not vanish. If the norm
+   `det h(M) = Π h(θᵢ)` has a certified nonzero sign on the region, `h(β)`
+   never vanishes, and its sign is read exactly at one integer point. The
+   Sturm–Tarski query of the line method fails here too, because its
+   intermediate entries change sign along curves with **irrational**
+   asymptotes (slopes `2√2`, `(3 ± √17)/2` were met), which no rational split
+   avoids. The norm only has to avoid zeros, not sign changes of subresultants.
+
+The integer points outside the certified quadrant lie on finitely many
+boundary lines `a = i < A` and `b = j < B`. A wedge is therefore pinned as its
+**core** (`wedge …` reproduces `a0`, `b0` and the vertex count) together with
+its boundary lines. Each boundary line is certified as a line, which also
+decides its finite part exactly, and is pinned in `certified_norm_lines()`.
+`test_every_wedge_edge_is_a_pinned_line` checks that no edge is missing and
+that the edges cover the wedge outside its quadrant.
+
+The boundary lines are certified in **norm mode**: as lines, but with items
+2 and 3 in place of the Sturm-entry readings. This is not cosmetic. The
+boundary lines include those beside the asymptote, and there the line
+method's Sturm entries have large real roots. The line `a = 10` of the first
+`p = q − 1` sub-wedge (`3r − 4q = −9`) gets threshold `q0 = 196` read by
+Sturm entries. Its exact finite part then costs about 5 hours, with members
+growing like `n^1.6` (78 s at `n = 100`). Read by norm, the threshold is
+`q0 = 4`, and all 89 boundary lines certify in at most 125 s each. The 47
+lines of Theorems L, L′ and L″ keep their Sturm-mode pins, so their recorded
+thresholds stay reproducible.
+
+One more obstruction forces a split. On a whole cone a run-position bound is
+not one affine function: it changes regime along the ray `3r = 4q`, and the
+fitted bound fails certification. Each branch is therefore cut into three
+unimodular sub-wedges along the Farey directions `(1,1)`, `(3,4)`, `(2,3)`,
+`(1,2)`, which tile the cone exactly.
+
+*Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with
+`|det M| = 2`, and every overlap reachable from any of its three swap seeds
+has an offset-zero descendant. So every member has pure discrete spectrum
+and a finite balanced-pair automaton (as for Theorem L″). Status:
+computer-assisted, unreviewed. It rests on Theorem E and the
+Barge–Štimac–Williams import as Theorem L does, and on the soundness of items
+1–3 above (proved here, unreviewed).
+
+| branch | sub-wedge `(q, r)` | symbolic vertices | quadrant `a ≥ a0, b ≥ b0` | boundary lines | their parts below threshold: PIP, all hitting / not PIP / outside | sign reads (core) |
+| --- | --- | --- | --- | --- | --- | --- |
+| `p = q − 1` | `(5, 7) + a(1, 1) + b(3, 4)` | 105 | `15, 7` | 22 | 200 / 0 / 0 | 1,818 |
+| `p = q − 1` | `(13, 18) + a(3, 4) + b(2, 3)` | 105 | `1, 0` | 1 | 1 / 0 / 0 | 1,818 |
+| `p = q − 1` | `(4, 5) + a(2, 3) + b(1, 2)` | 105 | `7, 7` | 14 | 65 / 0 / 0 | 1,818 |
+| `p = q + 1` | `(11, 15) + a(1, 1) + b(3, 4)` | 93 | `1, 3` | 4 | 5 / 0 / 0 | 1,619 |
+| `p = q + 1` | `(13, 18) + a(3, 4) + b(2, 3)` | 93 | `15, 15` | 30 | 197 / 0 / 0 | 1,619 |
+| `p = q + 1` | `(-2, -4) + a(2, 3) + b(1, 2)` | 93 | `3, 15` | 18 | 124 / 0 / 6 | 1,619 |
+
+*Corollary W1.* **Every PIP member of class D with `r ≥ q − 1` has pure
+discrete spectrum and a finite balanced-pair automaton.** On the branch
+`p = q − 1`, the certified lines `r = q − 1, q, q + 1`, the three sub-wedges
+(`q + 2 ≤ r ≤ 2q − 3`) and the certified line `r = 2q − 2` cover
+`q − 1 ≤ r ≤ 2q − 2`. On the branch `p = q + 1`, the lines `r = q − 1, …,
+q + 3`, the sub-wedges (`q + 4 ≤ r ≤ 2q`) and the lines `r = 2q + 1, 2q + 2`
+cover `q − 1 ≤ r ≤ 2q + 2`. Above that, `r ≥ 2p + 1` and Lemma P1
+(`f(1) = −2p + r − 1 < 0`) rules out PIP. These are the first two-parameter
+families in this programme on which #139's obligation is proved.
+
 ## 5. Next, in order
 
-1. **Two-parameter wedges.** On each class, the vertex counts settle along every
-   certified line, and they do so for each offset `k`. Making `k` symbolic
-   gives sign queries over `Q[n, k]`. This needs a cylindrical
-   decomposition in two variables, not the eventual-sign reader. The first
-   target is the class-B wedge `n + 1 ≤ p ≤ 2n + 4` (#234 §7.1).
-2. **Growing seed graphs (class A, slope 1).** The vertices come in families
+1. **The rest of class D.** Below `r = q − 1`, each branch has a second
+   constant-graph cone (grid data, §4b) and then a fringe along the Pisot
+   boundary `f(−1) = 0`, where the graphs keep changing, like class B at
+   slope 3. The second cone is the next wedge. The fringe needs either
+   vertex families (item 3) or a proof that its graphs come from finitely
+   many patterns.
+2. **Wedges of classes A, B, C.** Theorem W's three ingredients (the quadrant
+   certificate, the `χ(−1), χ(1), χ(2)` PIP test, signs by norm) are not
+   class-D specific. The first targets are the class-B wedge
+   `n + 1 ≤ p ≤ 2n + 4` (#234 §7.1) and the class-C lines `p = q + d`,
+   `r = q − d ± 1`, which form a two-parameter family in `(q, d)`. Each needs
+   the same grid probe first, because the method needs a constant graph.
+3. **Growing seed graphs (class A, slope 1).** The vertices come in families
    indexed by a run position `0 ≤ j ≤ n`. The symbolic object is a vertex
    *family* `(a, b, w_0 + j·u)`, with children decided uniformly in `j`. This
    is Theorem H's parametric witness paths applied to vertices, not only to
    witnesses.
-3. **The uniform mechanism.** Every certified line so far has hitting depth
-   ≤ 14 and a bounded seed graph. A uniform depth bound `K` on the
-   catch-up-free `|det M| = 2` class would make BH there a finite statement
-   about `M^K w ∈ D_K(i, j)` (#232 §5.2). That is the first statement in this
-   programme of the uniform kind #139's acceptance criterion asks for.
+4. **The uniform mechanism.** Every certified line and wedge so far has a
+   bounded seed graph and small hitting depth. A uniform depth bound `K` on
+   the catch-up-free `|det M| = 2` class would make BH there a finite
+   statement about `M^K w ∈ D_K(i, j)` (#232 §5.2). That is the first
+   statement in this programme of the uniform kind #139's acceptance
+   criterion asks for.

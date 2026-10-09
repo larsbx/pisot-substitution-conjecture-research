@@ -1049,3 +1049,20 @@ by deleting it.
   constant-graph method cannot reach it. Do not rerun it there with a larger
   budget; it needs vertex families indexed by a run position. ·
   `p1b-boundary-hitting-progress-2026-10-08.md` §§3–4
+- 2026-10-08 · Two-parameter certificates need three changes from the line
+  method, each forced by a concrete failure on class D. (1) Per-entry Sturm
+  signs fail: the PIP test's last Sturm entry is the discriminant, which
+  changes sign on a parabolic region `b ≲ √(2a)` along an edge. Use instead
+  `χ(−1), χ(1), χ(2) < 0`, which is equivalent to Pisot when `|det M| = 2`.
+  (2) Sturm–Tarski entries for realness signs change sign along irrational
+  rays (slopes `2√2`, `(3 ± √17)/2`), which no rational split avoids. Read
+  `sign h(β)` from a nonvanishing norm `det h(M)` plus one sample point. (3)
+  Coefficient positivity alone misses forms like `a² − ab + b²`, so add a
+  Pólya multiplier. Separately, a whole class-D cone cannot be one wedge,
+  because a run-position bound changes regime along `3r = 4q`. Split it at
+  the Farey directions `(1,1), (3,4), (2,3), (1,2)`. The same norm reading
+  also helps lines that lie beside such a ray. A boundary line on
+  `3r − 4q = −9` has threshold 196 by Sturm entries (about 5 h of exact
+  finite part) but 4 by norm. Certify wedge edges in norm mode. ·
+  `p1b-boundary-hitting-progress-2026-10-08.md` §4b
+
