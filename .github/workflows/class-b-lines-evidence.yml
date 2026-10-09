@@ -30,6 +30,7 @@ on:
       - 'kernel/psc/pisot.mojo'
       - 'kernel/psc/pisot_screen.mojo'
       - 'kernel/psc/pisot_state.mojo'
+      - 'kernel/psc/progression_line.mojo'
       - 'kernel/psc/real_root_sign.mojo'
       - 'kernel/psc/symbolic_line.mojo'
       - 'kernel/psc/vertex_coincidence.mojo'

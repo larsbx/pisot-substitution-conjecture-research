@@ -1493,3 +1493,11 @@ by deleting it.
   return to the same lifted vertex. ·
   `p1b-edge-progressions-2026-10-09.md` §7;
   `kernel/tests/test_progression_line.mojo`
+
+- 2026-10-09 · The progression driver imports `psc/progression_line.mojo`,
+  but that file was absent from the symbolic-evidence workflow's path
+  filter, so changing the certificate kernel alone would skip its pinned
+  evidence matrix. Add the path and a failing-before regression requiring
+  every direct `psc` driver import to match a workflow trigger. ·
+  `.github/workflows/class-b-lines-evidence.yml`;
+  `tests/test_line_certificate_workflow.py`
