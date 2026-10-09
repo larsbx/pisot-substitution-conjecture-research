@@ -1382,3 +1382,56 @@ by deleting it.
   `p1b-symbolic-cone-2026-10-08.md` §4;
   `archive/2026-10-08/class-b-wedge-crosscheck/`
 
+
+- 2026-10-08 · Reconcile #236/#237 after #241 merged at `33a1b8b`: keep
+  its Ω1/Ω/LC grouping and formal-productivity model, retain both independent
+  review notes, add separate Meyer/import and per-specimen box-PDS evidence,
+  and preserve the open uniform gates. LC's prefix object is a right-infinite
+  ray; zero child indices are on the later-starting side. The census completion
+  gate now raises on caps and refuted sign/shape or integral replays; 456 long
+  offsets remain uncomputed. Source-inventory and compiled Lean audit are
+  separate: root `PscVerif.lean` proofs must be inventoried, and a dependency
+  at its pinned HEAD with tracked edits must refuse verification. Seven added
+  negative cases reproduce these P2 defects on #237 and pass after repair. ·
+  [reconciliation and source mapping](proof-ledger-reconciliation-2026-10-08.md);
+  `tests/test_proof_bank.py`; `kernel/tests/test_leftmost_chain.mojo`
+- 2026-10-08 · LC claim 5 fixes the region end directly by the definition of
+  each leftmost child; its prose proof now states this, matching #241's review
+  and dependency-free cycle-structure node, without invoking Lemma C. ·
+  `p1b-leftmost-chain-periodic-pair-2026-10-05.md`, Proposition LC proof step 5
+- 2026-10-08 · Current-head review of the reconciliation found an additional
+  dependency gap: hiding untracked files lets an injected Lean source pass at
+  the correct HEAD. Pin verification now rejects nonignored untracked files;
+  two additional negative controls reproduce the gap before repair, while
+  ignored build-cache artifacts remain usable. · `tests/test_proof_bank.py`;
+  `tools/make_proof_bank.py`
+- 2026-10-08 · The ignored-file review extends dependency refusal beyond
+  ordinary Git status: a local Git exclusion can hide an injected Lean source.
+  Ignored files are now enumerated separately; source/configuration inputs and
+  ignored files outside the declared build-artifact paths refuse verification.
+  Four new negative controls cover ignored Lean and cache-adjacent TOML inputs
+  in both pin-check modes. The thirteen root/pin negative cases pass. ·
+  `tests/test_proof_bank.py`; `tools/make_proof_bank.py`
+- 2026-10-08 · Git status alone also hides tracked edits marked
+  assume-unchanged or skip-worktree. Dependency verification now compares
+  actual tracked bytes, file types and executable modes with HEAD's tree,
+  without changing the index. Four negative controls reproduce these flag
+  bypasses; all seventeen root/pin cases pass, as do the real nine manifest
+  checkouts. This is source/pin verification, not a compiler or proof receipt. ·
+  `tests/test_proof_bank.py`; `tools/make_proof_bank.py`
+
+- 2026-10-08 — A fresh pinned Lake build exposed normal ignored outputs outside the initial cache allowance: `.lake/build/ir/**/*.setup.json`, `.lake/build.barrel`, and `.lake/build.barrel.trace`. Permit only those generated paths in addition to the existing caches; dependency regressions now carry these real output shapes while still refusing all source/configuration injections. Local Lean startup required a scratch-only shim mapping its own numeric `/proc/<pid>/exe` lookup to the identical permitted `/proc/self/exe`; no compiler, kernel, or dependency source was changed.
+- 2026-10-08 — During integration validation, #236 was independently rebased to `3eb62008d39aa3a531b27980615972e0d5b80a44`. Compare that current head as well: retain its two added vertex-test claim declarations and reconciled-baseline metadata, keep the explicit Meyer import and partial Lean spectral locators, and preserve #241's direct leftmost-child fixed-end proof. No new mathematical premise is discharged. Evidence: `docs/proof-ledger-reconciliation-2026-10-08.md`, `kernel/tests/test_vertex_coincidence.mojo`, and `tests/test_ledger_generation.py`.
+- 2026-10-08 — Current-head review reproduced another source-integrity bypass: Git replacement refs make a pinned HEAD and clean status expose an altered tree. Disable replacement objects for every dependency inspection. Two real replacement-commit controls fail before the repair and pass afterward; nineteen root/dependency negative cases now cover the original P2s and follow-up findings. Evidence: PR #237 discussion 4225106073, `tests/test_proof_bank.py`, and `tools/make_proof_bank.py`.
+- 2026-10-08 — The root-module repair did not alone make all valid Lean headers visible: `nonrec`, `public`, other pinned declaration modifiers and multiline headers/attributes could omit named proofs. Inventory the complete pinned modifier vocabulary and balanced attributes across line breaks. Six failing-before/passing-after controls require each proof in the source bank and reject its omission from an audit receipt; all twenty-five inventory/dependency negative controls pass. Evidence: PR #237 discussion 4225149030, Lean v4.34.0-rc2 `Parser.Command.declModifiers`, and `tests/test_proof_bank.py`.
+- 2026-10-08 — Compact scoped Lean commands can put a theorem after `open ... in` or `set_option ... in`, beyond the supported source-header grammar. Detect every otherwise unaccounted theorem/lemma header and refuse inventory rather than silently omit it. Two additional negative controls reproduce the omission before this guard; twenty-seven inventory/dependency controls now pass. Evidence: `tests/test_proof_bank.py`, `tools/make_proof_bank.py`.
+- 2026-10-08 — Private Lean proof names are internally mangled, so direct source-name comparison rejected valid private theorems/lemmas. Audit replay now emits Lean's native `privateToUserName` normalization alongside the unique compiled name and origin module. Reconcile source proofs by module/name while retaining raw declaration/theorem counts; support identical private helper names in distinct modules and refuse ambiguous claim bindings. Reproduced the original missing-name failure and added private theorem/lemma compatibility plus missing-module controls. Evidence: PR #237 discussion 4225196994, `proof/PscVerif/ProofBankAudit.lean`, and `tests/test_proof_bank.py`.
+- 2026-10-08 — Final review raced with main's merge of #244 at `d98e027f8f22400fd827fbce8635d3f6a8ea2e6d`. Integrate its class-B cross-check documentation and archived logs byte-for-byte, preserve both independent append-only side findings, and regenerate the source inventory. Its shared-primitives and provenance-versus-proof boundary stays explicit; no PSC/G1/PDS premise changes. Evidence: `docs/proof-ledger-reconciliation-2026-10-08.md`, `archive/2026-10-08/class-b-wedge-crosscheck/README.md`.
+
+2026-10-08 — Current-head cache review: source pins do not attest ignored compiled dependencies. Lean verification now discards caller compiled caches/configuration, clones and byte-checks fresh pinned dependencies, and uses a fixed upstream Mathlib source-hash cache in an empty temporary directory before compiling PSC and replaying its axiom audit. A forged-artifact/metadata and environment-override regression fails against the prior dispatcher; compiler and upstream cache trust remain explicit. No mathematical claim status changes.
+
+2026-10-09 — Current-head compiler-selection review: inherited Elan environment/directory overrides outrank lean-toolchain files. Verification now invokes every Lake command through the explicit checked-in Elan toolchain and refuses mismatched Lean/Lake executable versions before building. Four negative controls reproduce the override/version mechanisms; no mathematical claim status changes.
+
+2026-10-09 — Main advanced to 8d91e48 through #245 during final review. Reconciliation retains its Rouche-first symbolic-cone certificate, Jury fallback and regression, with the changed Mojo test rerun and its actual receipt refreshed. Canonical ledger nodes and Lean sources are unchanged; governed inventories are regenerated on the new main.
+
+2026-10-09 — Current-head review found compiler overrides also affected provisioning. Setup now forces the exact checked-in Elan toolchain, refuses Lean/Lake version mismatches and clears inherited Lean/Lake/cache configuration before cache preparation. Four failing-before/passing-after setup controls cover both overrides and version probes. Development setup grants no formal audit credit; the Lean README routes verification to the isolated complete audit and preserves partial formalization boundaries.

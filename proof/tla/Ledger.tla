@@ -15,6 +15,7 @@ ResultSet == {
     "AllStatesProductiveViaOverlaps",
     "BoundaryCoincidenceCriterion",
     "BoxAutomatonCertificate",
+    "BoxAutomatonPDSCertificate",
     "BoxCycleContainment",
     "C2",
     "C3Local",
@@ -68,6 +69,7 @@ ResultSet == {
     "ParitySieve",
     "PeriodicPairOneFibre",
     "PhiSemisimplicity",
+    "PisotMeyerProperty",
     "RepoSeedUnionBridge",
     "ReturnModuleFullRank",
     "SCCProducer",
@@ -98,6 +100,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "AllStatesProductiveViaOverlaps" -> {{"OverlapProductivity", "SwapOverlapFiniteness"}}
       [] r = "BoundaryCoincidenceCriterion" -> {{}}
       [] r = "BoxAutomatonCertificate" -> {{"BoxCycleContainment"}}
+      [] r = "BoxAutomatonPDSCertificate" -> {{"BoxAutomatonCertificate", "PisotMeyerProperty", "OverlapCoincidenceCriterion"}}
       [] r = "BoxCycleContainment" -> {{}}
       [] r = "C2" -> {{"C3Local"}}
       [] r = "C3Local" -> {{"C4", "C3Locality"}}
@@ -141,7 +144,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "OverlapFullRank" -> {{}}
       [] r = "OverlapProductivity" -> {{}}
       [] r = "PDS" -> {{"G1", "SCCProducer"}}
-      [] r = "PDSFormalProductivityRoute" -> {{"FormalProductivity", "OverlapCoincidenceCriterion"}}
+      [] r = "PDSFormalProductivityRoute" -> {{"FormalProductivity", "BoxAutomatonPDSCertificate"}}
       [] r = "PDSFormalProductivitySeedRoute" -> {{"FormalProductivity", "SwapOverlapFiniteness", "DensityToPDSBridge"}}
       [] r = "PDSImpliesRepoG1" -> {{"CoincidenceRankFibreTheorems", "PeriodicPairOneFibre", "StrictZipperPeriodicPairForm"}}
       [] r = "PDSImpliesSeedwiseTermination" -> {{"PDSImpliesRepoG1", "StrongCoincidenceFromPDS"}}
@@ -151,6 +154,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "ParitySieve" -> {{"DefectIntertwiner"}}
       [] r = "PeriodicPairOneFibre" -> {{"ReturnModuleFullRank"}}
       [] r = "PhiSemisimplicity" -> {{}}
+      [] r = "PisotMeyerProperty" -> {{}}
       [] r = "RepoSeedUnionBridge" -> {{}}
       [] r = "ReturnModuleFullRank" -> {{}}
       [] r = "SCCProducer" -> {{"G1", "SinkSCCReduction", "C2"}}
@@ -178,6 +182,7 @@ ProvedDef == {
     "AllStatesProductiveViaOverlaps",
     "BoundaryCoincidenceCriterion",
     "BoxAutomatonCertificate",
+    "BoxAutomatonPDSCertificate",
     "BoxCycleContainment",
     "C2",
     "C3Local",
@@ -244,6 +249,7 @@ ImportedDef == {
     "CoincidenceRankFibreTheorems",
     "DensityToPDSBridge",
     "OverlapCoincidenceCriterion",
+    "PisotMeyerProperty",
     "StandardBPAEquivalence",
     "StrongCoincidenceFromPDS"
 }
@@ -264,6 +270,7 @@ AllSeedStrictZipperGateAssumed == {
 }
 FormalProductivityGateAssumed == {
     "FormalProductivity",
+    "PisotMeyerProperty",
     "OverlapCoincidenceCriterion",
     "DensityToPDSBridge"
 }
@@ -302,6 +309,7 @@ AllSeedStrictZipperExclusionNotEstablished == "AllSeedStrictZipperExclusion" \no
 AllStatesProductiveViaOverlapsNotEstablished == "AllStatesProductiveViaOverlaps" \notin established
 BoundaryCoincidenceCriterionNotEstablished == "BoundaryCoincidenceCriterion" \notin established
 BoxAutomatonCertificateNotEstablished == "BoxAutomatonCertificate" \notin established
+BoxAutomatonPDSCertificateNotEstablished == "BoxAutomatonPDSCertificate" \notin established
 BoxCycleContainmentNotEstablished == "BoxCycleContainment" \notin established
 C2NotEstablished == "C2" \notin established
 C3LocalNotEstablished == "C3Local" \notin established
@@ -355,6 +363,7 @@ ParikhIntertwinerNotEstablished == "ParikhIntertwiner" \notin established
 ParitySieveNotEstablished == "ParitySieve" \notin established
 PeriodicPairOneFibreNotEstablished == "PeriodicPairOneFibre" \notin established
 PhiSemisimplicityNotEstablished == "PhiSemisimplicity" \notin established
+PisotMeyerPropertyNotEstablished == "PisotMeyerProperty" \notin established
 RepoSeedUnionBridgeNotEstablished == "RepoSeedUnionBridge" \notin established
 ReturnModuleFullRankNotEstablished == "ReturnModuleFullRank" \notin established
 SCCProducerNotEstablished == "SCCProducer" \notin established

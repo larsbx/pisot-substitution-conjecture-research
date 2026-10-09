@@ -9,6 +9,10 @@ For definitions and implementation authority, use the generated
 single structured source is `catalogues/mathematical_objects.toml`; edit the
 TOML and regenerate rather than hand-editing the Markdown.
 
+For source-linked proof coverage, use the generated [proof bank](proof-bank.md).
+Its [audit](proof-bank-audit-2026-10-08.md) records the Lean provisioning hook,
+the complete compiled-declaration audit, and the Ω/LC ledger registration.
+
 ## What the 2026-10-05 and 2026-10-06 results establish
 
 The results of 2026-10-05 and 2026-10-06 are below, each with an exact

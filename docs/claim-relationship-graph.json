@@ -98,6 +98,17 @@
       "source": "source: docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
     },
     {
+      "id": "BoxAutomatonPDSCertificate",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for each fixed PIP substitution, if every vertex of its complete box automaton reaches a coincidence, its Perron-length suspension tiling flow has pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Theorem Omega consequence (a); docs/review-box-leftmost-ledger-2026-10-08.md, sections 1-2; tiling R-action sufficiency only",
+      "leaks": "premises not established: OverlapCoincidenceCriterion, PisotMeyerProperty"
+    },
+    {
       "id": "BoxCycleContainment",
       "kind": "claim",
       "label": "Repository-proved",
@@ -384,10 +395,10 @@
       "kind": "claim",
       "label": "Repository-proved",
       "provenance": "theorem-backed",
-      "statement": "every terminal cycle of the leftmost-child map on the box graph keeps one strict offset sign and is a prefix-vs-interior occurrence pair sigma^r(i) = i U, sigma^r(j) = Q j V with (I - M^r) w_0 = ab(Q), whose common centre is never a common vertex; the cycles come in mirror pairs",
+      "statement": "every terminal cycle of the leftmost-child map on the complete box graph keeps one strict offset sign, with index zero on the later-starting side, and is a prefix-vs-interior occurrence pair sigma^r(i) = i U, sigma^r(j) = Q j V with (I - M^r) w_0 = ab(Q) after orienting the offset negatively; the prefix object is a right-infinite fixed ray and the interior object is a two-sided tiling compared on the right half-line, whose common centre is never a common vertex; the cycles come in mirror pairs",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Lemma S, Proposition LC and Corollary LC4; exact certificate on all 10,584 terminal cycles of the standing corpus; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+      "source": "source: docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md, Lemma S, Proposition LC and Corollary LC4; 10,584 sign/shape checks, 10,128 integral replays and 456 uncomputed offsets on the standing corpus; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
     },
     {
       "id": "LeftmostChainG1Certificate",
@@ -505,10 +516,10 @@
       "kind": "claim",
       "label": "Imported theorem",
       "provenance": "imported-theorem",
-      "statement": "a self-similar tiling of the line with Pisot inflation has pure discrete spectrum when from every overlap there is a path to a coincidence",
+      "statement": "for a repetitive primitive FLC self-affine tiling with Meyer return vectors, coincidence reachability from every occurring overlap implies pure discrete spectrum of the tiling flow",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "imported_theorem",
-      "source": "source: Lee-Moody-Solomyak, DCG 29 (2003), Lemma 6.9 and Theorem 4.7; Meyer property by Lee-Solomyak, DCDS-A 32 (2012), Theorem 4.3; docs/pds-certificate-from-the-box-automaton-2026-10-07.md, section 7"
+      "source": "source: Lee-Moody-Solomyak, arXiv:0910.4450, Theorem 4.7 and Lemmas 6.8-6.9; Akiyama-Lee, arXiv:1003.2898, Theorem 2.5; docs/review-box-leftmost-ledger-2026-10-08.md, section 1"
     },
     {
       "id": "OverlapFullRank",
@@ -551,7 +562,7 @@
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
       "source": "source: docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (a); independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending",
-      "leaks": "premises not established: FormalProductivity, OverlapCoincidenceCriterion"
+      "leaks": "premises not established: FormalProductivity"
     },
     {
       "id": "PDSFormalProductivitySeedRoute",
@@ -646,7 +657,17 @@
       "statement": "Phi_3 acts semisimply on the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
+      "source": "source: archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 3 semisimplicity lemma; not formalized in Lean"
+    },
+    {
+      "id": "PisotMeyerProperty",
+      "kind": "claim",
+      "label": "Imported theorem",
+      "provenance": "imported-theorem",
+      "statement": "a repetitive primitive one-dimensional substitution tiling with Pisot inflation and FLC has Meyer control points and Meyer same-type return vectors",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "imported_theorem",
+      "source": "source: Lee-Solomyak, arXiv:1002.0039, Definition 2.3 and Theorem 4.3; docs/review-box-leftmost-ledger-2026-10-08.md, section 1 (scalar expansion hypotheses and return-vector transfer checked)"
     },
     {
       "id": "RepoSeedUnionBridge",
@@ -687,7 +708,7 @@
       "statement": "the seed centralizer is as certified",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
+      "source": "source: archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, sections 5-7; proof/PscVerif/PscVerif/Centralizer.lean proves the centralizer contradiction only"
     },
     {
       "id": "SignatureReduction",
@@ -790,7 +811,7 @@
       "statement": "Target 1 of the seed spectral module",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
+      "source": "source: archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 7; proof/PscVerif/PscVerif/Centralizer.lean Psc.target1 proves the rational centralizer form only"
     },
     {
       "id": "ThetaIntertwining",
@@ -800,7 +821,7 @@
       "statement": "Theta intertwines the seed spectral operators",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: proof/PscVerif/PscVerif/Spectral.lean"
+      "source": "source: archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 5 certified intertwining identity; kernel/verify.mojo check C7; not formalized in Lean"
     },
     {
       "id": "UDForPowers",
@@ -905,6 +926,15 @@
       "provenance": "declared",
       "members": [
         "BoxAutomatonCertificate"
+      ]
+    },
+    {
+      "id": "per-specimen box PDS certificate",
+      "kind": "alias",
+      "label": "per-specimen box PDS certificate",
+      "provenance": "declared",
+      "members": [
+        "BoxAutomatonPDSCertificate"
       ]
     },
     {
@@ -1232,6 +1262,15 @@
       ]
     },
     {
+      "id": "Pisot Meyer property",
+      "kind": "alias",
+      "label": "Pisot Meyer property",
+      "provenance": "declared",
+      "members": [
+        "PisotMeyerProperty"
+      ]
+    },
+    {
       "id": "Theorem R",
       "kind": "alias",
       "label": "Theorem R",
@@ -1356,7 +1395,8 @@
       "members": [
         "DensityToPDSBridge",
         "FormalProductivity",
-        "OverlapCoincidenceCriterion"
+        "OverlapCoincidenceCriterion",
+        "PisotMeyerProperty"
       ]
     },
     {
@@ -1463,6 +1503,22 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "OverlapBoundaryZipperDichotomy/BoundaryCoincidenceCriterion"
+    },
+    {
+      "type": "implicative",
+      "source": "BoxAutomatonCertificate",
+      "target": "BoxAutomatonPDSCertificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "BoxAutomatonPDSCertificate/BoxAutomatonCertificate"
+    },
+    {
+      "type": "implicative",
+      "source": "BoxAutomatonPDSCertificate",
+      "target": "PDSFormalProductivityRoute",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "PDSFormalProductivityRoute/BoxAutomatonPDSCertificate"
     },
     {
       "type": "implicative",
@@ -1866,10 +1922,10 @@
     {
       "type": "implicative",
       "source": "OverlapCoincidenceCriterion",
-      "target": "PDSFormalProductivityRoute",
+      "target": "BoxAutomatonPDSCertificate",
       "provenance": "imported-theorem",
       "certainty": 1,
-      "use_site": "PDSFormalProductivityRoute/OverlapCoincidenceCriterion",
+      "use_site": "BoxAutomatonPDSCertificate/OverlapCoincidenceCriterion",
       "leaks": "premise is imported-theorem"
     },
     {
@@ -1945,6 +2001,15 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "W3LowGrowth/PhiSemisimplicity"
+    },
+    {
+      "type": "implicative",
+      "source": "PisotMeyerProperty",
+      "target": "BoxAutomatonPDSCertificate",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "BoxAutomatonPDSCertificate/PisotMeyerProperty",
+      "leaks": "premise is imported-theorem"
     },
     {
       "type": "implicative",
@@ -2190,6 +2255,14 @@
       "source": "PDS implies G1",
       "target": "PDSImpliesRepoG1",
       "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "Pisot Meyer property",
+      "target": "PisotMeyerProperty",
+      "provenance": "imported-theorem",
       "certainty": 1,
       "use_site": "aliases"
     },
@@ -2467,6 +2540,14 @@
     },
     {
       "type": "synonymous",
+      "source": "per-specimen box PDS certificate",
+      "target": "BoxAutomatonPDSCertificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "periodic pairs in one fibre",
       "target": "PeriodicPairOneFibre",
       "provenance": "theorem-backed",
@@ -2662,6 +2743,14 @@
       "source": "OverlapProductivity",
       "target": "OverlapGateAssumed",
       "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "PisotMeyerProperty",
+      "target": "FormalProductivityGateAssumed",
+      "provenance": "imported-theorem",
       "certainty": 1,
       "use_site": "assumption_sets"
     },
