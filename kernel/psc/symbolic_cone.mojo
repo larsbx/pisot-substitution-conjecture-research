@@ -22,7 +22,9 @@ not use it. Instead the Perron root is **bracketed**: the caller supplies
 rational functions `L(s) < U(s)` and the module certifies `chi(L) < 0 < chi(U)`
 with `L > |det M|`. Together with the Jury conditions on the quotient
 `chi(t) / (t - beta)` this proves that the family is PIP on the region and that
-`beta` is the root of `chi` in `(L, U)`. An element `G` of `Q[s][t] / (chi)`,
+`beta` is the root of `chi` in `(L, U)`; where Rouche's dominant-coefficient
+condition is certified on the region it replaces the Jury reads (`rouche_disc`).
+An element `G` of `Q[s][t] / (chi)`,
 reduced to degree at most 2, then has the sign at `beta` of `G(L)` and `G(U)`
 when those agree and `G` is monotone on `[L, U]` (its derivative has one sign at
 both ends) or bends away from zero (`sign(lc G) != sign G(L)`). Several brackets
@@ -602,9 +604,10 @@ def certify_cone(cone: Cone, mut region: Region) raises -> ConeCertificate:
 
     Support fixed and primitive; `det M` a nonzero constant whose divisors are not
     roots of `chi`; for every bracket `|det M| < L`, `chi(L) < 0 < chi(U)` (a
-    root in `(L, U)`); and the Jury conditions `|v| < 1`, `|u| < 1 + v` on the
-    quotient `t^2 + u t + v = chi / (t - beta)` (`u = c_2 + beta`, `v = det M /
-    beta`), which put the other two roots in the open unit disc. Then `chi` is
+    root in `(L, U)`); and the other two roots in the open unit disc, by Rouche
+    (`rouche_disc`) where its three signs are certified, else by the Jury
+    conditions `|v| < 1`, `|u| < 1 + v` on the quotient
+    `t^2 + u t + v = chi / (t - beta)` (`u = c_2 + beta`, `v = det M / beta`). Then `chi` is
     irreducible, `beta` is its only root outside the disc and the root in every
     bracket. Also fixes the sign that makes the tile lengths positive."""
     var chi = cone.chi.copy()
@@ -648,12 +651,13 @@ def certify_cone(cone: Cone, mut region: Region) raises -> ConeCertificate:
             return ConeCertificate(False, 0, "chi(L) is not negative")
         if region.sign(t2_homog_at(chi, br.hi.num, br.hi.den, 3)) <= 0:
             return ConeCertificate(False, 0, "chi(U) is not positive")
-    var c2 = chi[2].copy()
-    var dpoly = p2_norm([[det.copy()]])
-    var jury_plus = t2_norm([dpoly.copy(), p2_add(c2, p2_const(1)), p2_const(1)])  # beta^2 + (c2 + 1) beta + det
-    var jury_minus = t2_norm([dpoly.copy(), p2_sub(p2_const(1), c2), p2_const(-1)])  # -beta^2 + (1 - c2) beta + det
-    if cone.sign_at_beta(jury_plus, region) <= 0 or cone.sign_at_beta(jury_minus, region) <= 0:
-        return ConeCertificate(False, 0, "a Jury condition fails")
+    if not rouche_disc(chi, region):
+        var c2 = chi[2].copy()
+        var dpoly = p2_norm([[det.copy()]])
+        var jury_plus = t2_norm([dpoly.copy(), p2_add(c2, p2_const(1)), p2_const(1)])  # beta^2 + (c2 + 1) beta + det
+        var jury_minus = t2_norm([dpoly.copy(), p2_sub(p2_const(1), c2), p2_const(-1)])  # -beta^2 + (1 - c2) beta + det
+        if cone.sign_at_beta(jury_plus, region) <= 0 or cone.sign_at_beta(jury_minus, region) <= 0:
+            return ConeCertificate(False, 0, "a Jury condition fails")
     var s = cone.sign_at_beta(cone.ell[cone.y], region)
     if s == 0:
         return ConeCertificate(False, 0, "a tile length vanishes")
@@ -661,6 +665,22 @@ def certify_cone(cone: Cone, mut region: Region) raises -> ConeCertificate:
         if cone.sign_at_beta(cone.ell[i], region) != s:
             return ConeCertificate(False, 0, "tile lengths of mixed sign")
     return ConeCertificate(True, s, "")
+
+
+def rouche_disc(chi: TP2, mut region: Region) -> Bool:
+    """`chi = t^3 + c2 t^2 + c1 t + c0` with `|c2| > 1 + |c1| + |c0|` on the
+    region, certified by three plain region signs and none at beta. On
+    `|t| = 1` the term `c2 t^2` then dominates the rest strictly, so (Rouche)
+    `chi` has two roots in the open unit disc and none on the circle, as
+    `c2 t^2` does. This is what the Jury conditions give, read without a bracket.
+    `False` when a sign is not certified: the caller falls back to Jury."""
+    var margin = p2_const(-1)
+    for k in range(3):
+        var sk = region.try_sign(chi[k])
+        if sk == 2 or (k == 2 and sk == 0):
+            return False
+        margin = p2_add(margin, chi[k]) if (k == 2) == (sk > 0) else p2_sub(margin, chi[k])
+    return region.try_sign(margin) == 1
 
 
 struct ConeGraph(Copyable, Movable):
