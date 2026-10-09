@@ -1,6 +1,7 @@
 """Provisioning contracts, plus a real locked-Mojo integration check in CI.
 
-Network/installer boundaries are faked in the unit cases. Set
+Network/installer boundaries and Lean helpers are faked in these cases. The
+lean-proofs CI job checks the real pinned build and complete axiom audit. Set
 PSC_SESSION_START_REAL_PIXI to a pinned pixi binary to require real installation,
 activation, compilation and execution (the mojo-kernel CI job does this).
 PSC_SESSION_START_HOOK can select a historical hook for negative calibration.
@@ -71,6 +72,27 @@ def record(tool):
     with log.open("a") as f:
         f.write(json.dumps([tool, str(pathlib.Path.cwd()), sys.argv[1:]]) + "\\n")
 '''
+    lean_bin = home / ".elan/bin"
+    for tool in ("lean", "lake"):
+        script(lean_bin / tool, prelude + f'''
+record({tool!r})
+assert sys.argv[1:] == ["--version"]
+print("mock {tool}")
+''')
+    script(repo / "tools/setup_lean.sh", prelude + f'''
+record("lean-setup")
+assert pathlib.Path.cwd() == repo
+if {failure!r} == "lean-setup":
+    sys.exit(25)
+''')
+    script(repo / "tools/check_lean.sh", prelude + f'''
+record("lean-check")
+assert pathlib.Path.cwd() == repo
+for tool in ("lean", "lake"):
+    assert pathlib.Path(__import__("shutil").which(tool)).parent == pathlib.Path({str(lean_bin)!r})
+if {failure!r} == "lean-check":
+    sys.exit(26)
+''')
     script(bins / "python3", prelude + f'''
 if sys.argv[1:3] == ["-m", "pip"]:
     record("pip")
@@ -153,7 +175,8 @@ def bare_probe(repo, env_file):
     return subprocess.run([
         "/bin/bash", "--noprofile", "--norc", "-c",
         'set -eu; source "$1"; test -z "${PIXI_IN_SHELL:-}"; '
-        'test -z "${PIXI_PROMPT:-}"; test "${PATH##*:}" = /caller-tail; mojo run "$2"',
+        'test -z "${PIXI_PROMPT:-}"; test "${PATH##*:}" = /caller-tail; '
+        'lean --version; lake --version; mojo run "$2"',
         "probe", str(env_file), str(probe),
     ], env={"HOME": str(repo.parent), "PATH": "/usr/bin:/bin:/caller-tail"},
         cwd=repo.parent, text=True, capture_output=True, timeout=120)
@@ -177,6 +200,10 @@ def test_hook_provisions_locked_activation_from_its_own_repository(tmp_path, ins
     assert sum(call[0] == "installer" for call in calls) == (installed != PIN)
     assert sum(call[0] == "pixi" and call[2] == ["install", "--locked"] for call in calls) == 2
     assert sum(call[0] == "pixi" and call[2] == ["shell-hook", "--locked", "--json"] for call in calls) == 2
+    assert sum(call[0] == "lean-setup" for call in calls) == 2
+    assert sum(call[0] == "lean-check" for call in calls) == 2
+    assert sum(call[0] == "lean" for call in calls) == 2
+    assert sum(call[0] == "lake" for call in calls) == 2
     assert (repo / "kernel/pixi.lock").read_bytes() == lock
     # The hook removes each temporary compilation probe on exit.
     for tool, _, args in calls:
@@ -184,15 +211,27 @@ def test_hook_provisions_locked_activation_from_its_own_repository(tmp_path, ins
             assert not Path(args[1]).exists()
 
 
-@pytest.mark.parametrize("failure", ["install", "shell-hook", "probe", "installer-version", "activation-prefix"])
+@pytest.mark.parametrize("failure", ["lean-setup", "install", "shell-hook", "probe", "installer-version", "activation-prefix", "lean-check"])
 def test_hook_refuses_provisioning_or_compilation_failure(tmp_path, failure):
     repo, hook, env_file, log, env = sandbox(tmp_path, installed=PIN, failure=failure)
     result = run_hook(hook, env, repo.parent)
     assert result.returncode != 0, result.stdout + result.stderr
+    calls = [json.loads(line) for line in log.read_text().splitlines()]
+    if failure == "lean-setup":
+        assert result.returncode == 25
+        assert env_file.read_bytes() == b""
+        assert not any(call[0] in {"installer", "pixi", "lean-check"} for call in calls)
+    elif failure == "lean-check":
+        assert result.returncode == 26
+        assert any(call[0] == "lean-check" for call in calls)
+    else:
+        # Ensure a missing fixture cannot make an earlier failure pass vacuously.
+        assert any(call[0] == "pixi" for call in calls)
+        assert not any(call[0] == "lean-check" for call in calls)
     if failure == "activation-prefix":
         assert "activation prefix differs" in result.stderr
         assert env_file.read_bytes() == b""
-    for tool, _, args in map(json.loads, log.read_text().splitlines()):
+    for tool, _, args in calls:
         if tool == "mojo" and args[0] == "run":
             assert not Path(args[1]).exists()
 

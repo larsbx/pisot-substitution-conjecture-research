@@ -279,6 +279,14 @@ Run everything:
 
 Unavailable toolchains are reported as skipped; a skip is not a passing proof.
 
+The generated [proof bank](docs/proof-bank.md) inventories every governed
+claim, named Lean proof and apparent source statement in the claim-policy
+scope, with explicit evidence and partial-formalization boundaries. Provision
+the pinned Lean/Lake project with `./tools/setup_lean.sh`, add
+`${ELAN_HOME:-$HOME/.elan}/bin` to `PATH`, then run `./tools/check_lean.sh`.
+The remote session hook provisions it automatically. CI and local verification
+replay the same complete axiom audit even when the library build is cached.
+
 ## Repository layout
 
 - `.` — planes and authority: ESTATE.toml, ARCHITECTURE.md

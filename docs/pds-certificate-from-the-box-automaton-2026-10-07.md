@@ -9,8 +9,16 @@ uses manuscript Theorem 5.38. Consequence (c) uses Proposition 1 of
 Theorem B, Proposition F, Theorem R, Theorem S). That re-derivation found no
 error. It is one more internal review and does not replace the pending human
 review. The finite-domain consequence of §5 is recorded in the claim ledger
-as the finite-domain theorem `BoundedPureDiscreteSpectrum` (2026-10-08); no
-proof-dependency (TLA+) node changes, and PSC stays open.
+as the finite-domain theorem `BoundedPureDiscreteSpectrum` (2026-10-08).
+Lemma Ω1, Theorem Ω and consequences (a)–(c) are proof-dependency (TLA+)
+ledger nodes since 2026-10-08 (`BoxCycleContainment`,
+`BoxAutomatonCertificate`, `PDSFormalProductivityRoute`,
+`PDSFormalProductivitySeedRoute`, `G1FormalProductivityRoute`, with the open
+gate `FormalProductivity`). The per-specimen consequence (a) is
+`BoxAutomatonPDSCertificate`, with separate `PisotMeyerProperty` and
+`OverlapCoincidenceCriterion` imports. The merged names and review evidence are
+reconciled in [the dated record](proof-ledger-reconciliation-2026-10-08.md).
+PSC stays open.
 
 ## 1. The point
 
@@ -42,8 +50,10 @@ wanted (consequence (c)), without building `B_sigma`.
 ## 2. Setting
 
 `sigma` is primitive irreducible Pisot on `{0,1,2}`. It has incidence `M`,
-Perron root `beta`, and tile lengths `ell` (`ell M = beta ell`) with
-`Q`-independent coordinates.
+Perron root `beta`, and tile lengths `ell` (`ell M = beta ell`), normalized
+in `Q(beta)`, with `Q`-independent coordinates. These three coordinates form
+a `Q`-basis of the cubic field. For a complex conjugate pair, the embedding
+coordinates below are read as their real and imaginary parts.
 
 - **Potential overlap.** A triple `x = (i, j, t)` with `t = <ell, w>`,
   `w ∈ Z^3`, and `−ell_j < t < ell_i`, so that the open tiles `(0, ell_i)`
@@ -77,7 +87,10 @@ Put `mu_k = |sigma_k(beta)| < 1`, `C_k = max_{c ∈ F} |sigma_k(c)|` and
 1. The map `w ↦ (<ell, w>, (sigma_k(<ell, w>))_k)` embeds `Z^3` as a lattice
    in `R^3`. It is injective because the coordinates of `ell` are
    `Q`-independent, and its image is discrete because it is a full-rank
-   image of `Z^3`. So only finitely many `w` satisfy the bounds above.
+   image of `Z^3`: the embedding matrix of a field basis is nonsingular
+   (equivalently, its trace pairing is nondegenerate). So only finitely many
+   `w` satisfy the bounds above. A finite start set therefore also has finite
+   inflation closure.
 2. On a cycle of period `p`, iterating the recursion gives
    `sigma_k(t_0) (1 − sigma_k(beta)^p) = sum_{n<p} sigma_k(beta)^n sigma_k(c_{p−1−n})`.
    Hence `|sigma_k(t_0)| <= B_k`. With `|t_0| < ell_max` and
@@ -122,11 +135,18 @@ contains SC_all, and `S(sigma)` can be read off `𝔅`
   `y ∈ Ξ` (translations between tiles of one type), and the supports of
   `y + T` and `S` meet in an interior point. In dimension one their classes
   are determined by `(i, j, t)` with `t ∈ Z⟨ell⟩` (LMS Lemma 6.8, proof).
-  Their edges are exactly our children. So every LMS overlap is a potential
+  Fixing one tile start as origin, every other tile-start displacement is an
+  integral sum of tile lengths; the same holds for `y` and hence for the
+  offset of this triple. Their edges are exactly our children. So every LMS overlap is a potential
   overlap, and FP gives condition (iii) of LMS Lemma 6.9: from each vertex of
   `G_O(T)` there is a path to a coincidence.
-  - `Ξ` is Meyer because `beta` is Pisot (Lee–Solomyak 2012, Thm 4.3; in
-    `d = 1` a Pisot family means a Pisot number).
+  - Use a repetitive legal fixed tiling for a power of the substitution;
+    its hull is the same primitive substitution tiling space. `Ξ` is Meyer
+    because `beta` is Pisot (Lee–Solomyak 2012, Thm 4.3; the scalar
+    expansion is diagonalizable and has one eigenvalue of multiplicity one).
+    Same-type return vectors are contained in the difference set of the Meyer
+    control points, so the Meyer hypothesis of LMS holds. Passing to a power
+    groups child steps and preserves coincidence reachability.
   - LMS Lemma 6.9 with Theorem 4.7 (equivalently Akiyama–Lee 2011,
     Thm 2.5) then gives pure discrete spectrum of the tiling flow.
 
@@ -332,8 +352,12 @@ recorded runs, as before.
   per-specimen certificate, and #84, #138 and #139 are untouched.
 - It does not review the Barge coincidence-rank imports. Those matter only
   for the converse direction.
-- It promotes only the finite-domain statement of §5, as the claim-ledger
+- The finite-domain statement of §5 remains the claim-ledger
   entry `BoundedPureDiscreteSpectrum` (status finite-domain, guarded by
   `kernel/tests/test_vertex_coincidence.mojo`, the CI census job and
-  `box-automaton-evidence.yml`). It adds no proof-dependency node: the claim
-  is about a finite domain, not a universal implication.
+  `box-automaton-evidence.yml`). That claim is about a finite domain and is
+  not a proof-dependency node. The universal statements are (2026-10-08):
+  Lemma Ω1 and Theorem Ω are repository-proved nodes; consequences (a)–(c)
+  are conditional nodes whose only open premise is the gate
+  `FormalProductivity`, and (c) is an alternative establishment of G1. None
+  of this proves FP, G1 or PDS.

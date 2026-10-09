@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import make_ledger  # noqa: E402
 from proof_records import generate_ledgers as gl  # noqa: E402
 
-MODELS = ("Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
+MODELS = ("FormalProductivityGateAssumed", "Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
 
 
 def reachable(model: str) -> set[str]:
@@ -78,7 +78,7 @@ def test_all_seed_overlap_route_establishes_canonical_g1_and_downstream():
     analysis = gl.analyse(gl.load_ledger(ROOT / "proof" / "tla" / "ledger.json"))
     by_name = {e.name: e for e in analysis.entries}
     g1 = by_name["G1"]
-    assert g1.routes == (("G1FromRenewal",), ("G1OverlapRoute",), ("G1HalfCoincidenceRoute",))
+    assert g1.routes == (("G1FromRenewal",), ("G1OverlapRoute",), ("G1HalfCoincidenceRoute",), ("G1FormalProductivityRoute",))
     assert g1.status == "open"
     done = gl.established(analysis, ("AllSeedOverlapProductivity",))
     assert {"G1OverlapRoute", "G1", "SinkSCCReduction", "LoadBearingSCC"} <= done
@@ -106,16 +106,88 @@ def test_strict_zipper_exclusion_route_establishes_canonical_g1_without_producti
     assert "G1HalfCoincidenceRoute" not in reachable("AllSeedOverlapGateAssumed")  # the gates are separate nodes
 
 
+def test_formal_productivity_reaches_g1_and_both_pds_routes_but_not_pds():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof" / "tla" / "ledger.json"))
+    gate = ("FormalProductivity", "PisotMeyerProperty", "OverlapCoincidenceCriterion", "DensityToPDSBridge")
+    done = gl.established(analysis, gate)
+    assert done == reachable("FormalProductivityGateAssumed")
+    assert {"G1FormalProductivityRoute", "G1", "PDSFormalProductivityRoute", "PDSFormalProductivitySeedRoute"} <= done
+    # FP discharges the routes directly; it does not establish the weaker seed gates
+    assert not {"PDS", "SCCProducer", "OverlapProductivity", "AllSeedOverlapProductivity", "AllSeedStrictZipperExclusion",
+                "PDSOverlapRoute", "G1OverlapRoute", "G1HalfCoincidenceRoute"} & done
+    # each PDS route needs its own import
+    alone = gl.established(analysis, ("FormalProductivity",))
+    assert "G1" in alone and not {"PDSFormalProductivityRoute", "PDSFormalProductivitySeedRoute"} & alone
+
+
+def test_box_and_leftmost_certificates_are_unconditional_and_not_g1_routes():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof" / "tla" / "ledger.json"))
+    unconditional = {"BoxCycleContainment", "BoxAutomatonCertificate", "LeftmostChainCycleStructure", "LeftmostChainG1Certificate"}
+    assert unconditional <= reachable("Open")
+    assert "FormalProductivity" not in reachable("Open")
+    # Corollary LC5 is per specimen; its uniform form is false, so it is no G1 branch
+    g1 = {e.name: e for e in analysis.entries}["G1"]
+    assert all("LeftmostChainG1Certificate" not in branch for branch in g1.routes)
+
+
 def test_alternative_routes_are_bound_to_the_canonical_record_identity():
     from dataclasses import replace
     from proof_records.records import identified
     records = make_ledger.records()
     g1 = records["G1"]
     branches = json.loads(g1.field("dependency_alternatives"))
-    assert branches == [[records["G1FromRenewal"].id], [records["G1OverlapRoute"].id], [records["G1HalfCoincidenceRoute"].id]]
+    assert branches == [[records[r].id] for r in ("G1FromRenewal", "G1OverlapRoute", "G1HalfCoincidenceRoute", "G1FormalProductivityRoute")]
     removed = identified(replace(g1, id="", evidence=tuple((k,v) for k,v in g1.evidence if k != "dependency_alternatives")))
     assert removed.id != g1.id
     assert all(e.record_id != removed.id for e in records["SinkSCCReduction"].depends_on)
+
+
+def test_per_specimen_pds_certificate_needs_both_imports_and_only_the_shortcut():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof/tla/ledger.json"))
+    entries = {e.name: e for e in analysis.entries}
+    names = {e.record.id: e.name for e in analysis.entries}
+    certificate = entries["BoxAutomatonPDSCertificate"]
+    assert {names[r] for r in certificate.closure.reached} == {
+        "BoxAutomatonPDSCertificate", "BoxAutomatonCertificate", "BoxCycleContainment",
+        "PisotMeyerProperty", "OverlapCoincidenceCriterion",
+    }
+    assert certificate.status == "proved"
+    assert "BoxAutomatonPDSCertificate" not in reachable("Open")
+    assert "BoxAutomatonPDSCertificate" in reachable("Imports")
+    for single_import in ("PisotMeyerProperty", "OverlapCoincidenceCriterion"):
+        done = gl.established(analysis, (single_import, "FormalProductivity"))
+        assert not {"BoxAutomatonPDSCertificate", "PDSFormalProductivityRoute"} & done
+
+
+def test_reconciled_certificates_do_not_supply_their_uniform_premises():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof/tla/ledger.json"))
+    records = make_ledger.records()
+    assert "if every vertex" in records["BoxAutomatonPDSCertificate"].statement
+    assert "right-infinite" in records["LeftmostChainCycleStructure"].statement
+    assert "no terminal leftmost cycle" in records["LeftmostChainG1Certificate"].statement
+    gates = {"PDS", "G1", "FormalProductivity", "OverlapProductivity",
+             "AllSeedOverlapProductivity", "AllSeedStrictZipperExclusion"}
+    for done in (reachable("Open"), reachable("Imports"),
+                 gl.established(analysis, tuple(make_ledger.BOX_LC_REVIEWED))):
+        assert not gates & done
+    # Competing registrations map to these canonical nodes, rather than becoming
+    # additional claims that could drift independently.
+    assert not {"PotentialOverlapFiniteDescent", "OverlapCycleBoxBound",
+                "BoxFormalProductivityEquivalence", "BoxProductivityEquivalence",
+                "BoxPDSCertificate", "PisotFamilyMeyerProperty", "LeftmostChainSign",
+                "LeftmostChainSignPreservation", "LeftmostChainPeriodicPair"} & set(records)
+
+
+def test_review_evidence_remains_bound_to_each_reconciled_record():
+    for name in make_ledger.BOX_LC_REVIEWED:
+        record = make_ledger.records()[name]
+        assert record.field("review_source") == make_ledger.BOX_LC_REVIEW
+        assert record.field("review_date") == "2026-10-08"
+        assert record.field("source_revision") == make_ledger.BOX_LC_BASELINE
+        assert record.field("reconciled_source_revision") == make_ledger.BOX_LC_RECONCILED_BASELINE
+        assert record.field("human_review_pending") == "true"
+        for field in ("review_source", "additional_review_source", "reconciliation_source"):
+            assert (ROOT / record.field(field)).is_file()
 
 
 def test_model_rejects_false_g1_nonestablishment_with_tlc(tmp_path):
