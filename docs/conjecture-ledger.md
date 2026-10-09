@@ -1,6 +1,6 @@
 # Conjecture ledger
 
-The machine-checked dependency form is `proof/tla/Ledger.tla`. This prose ledger distinguishes repository proofs, imported theorems, finite-domain theorems, open gates, open bridges, empirical evidence, and retired claims. The concise status/source index is `docs/claim-status-and-source-map-2026-09-13.md`; the current architecture is `docs/current-proof-architecture-2026-09-14.md`; the live completion priorities are `docs/research-roadmap-2026-09-21.md`; the latest merged weekly snapshot is `docs/completion-ledger-2026-10-02.md`.
+The machine-checked dependency form is `proof/tla/Ledger.tla`. This prose ledger distinguishes repository proofs, imported theorems, finite-domain theorems, open gates, open bridges, empirical evidence, and retired claims. The concise status/source index is `docs/claim-status-and-source-map-2026-09-13.md`; the current architecture is `docs/current-proof-architecture-2026-09-14.md`; the live completion priorities are `docs/research-roadmap-2026-09-21.md`; the latest merged weekly snapshot is `docs/completion-ledger-2026-10-09.md`.
 
 ## Executive status — one shortest-path gate, several stronger parallel programmes
 
@@ -25,6 +25,22 @@ Three stronger programmes remain open in parallel:
 3. **Realization / coincidence-rank route:** audited open bridge obligations G0–G6.
 
 These are not hidden assumptions of the primary overlap route.
+
+## Scoped finite-domain and family closure — 2026-10-09
+
+The following results sit below the universal open gate and must retain their
+scope:
+
+| Result | Status | Scope | Universal gap |
+| --- | --- | --- | --- |
+| Theorem Ω completed box certificates | **Finite-domain theorem** | PDS for exactly 145,806 ternary PIP substitutions with images length at most 4 or total length at most 8 | No all-PIP completeness theorem |
+| Theorems L/L′/L″ | **Computer-assisted family theorems; human review pending** | Boundary hitting on 47 declared one-parameter determinant-two lines | Does not cover all parameter cells or #139 uniformly |
+| Theorem W / Corollary W1 | **Computer-assisted family theorem; human review pending** | Declared class-D wedges; all PIP class-D members with `r >= q - 1` | Class D below the boundary and other classes remain |
+
+The box theorem's sufficiency path uses the imported overlap-coincidence and
+Meyer-property results and no longer depends on Proposition V(2) or Theorem B.
+None of these rows closes seedwise overlap productivity, formal productivity,
+G1, issues #84/#138/#139, or general PSC.
 
 ## A. Stable base
 
