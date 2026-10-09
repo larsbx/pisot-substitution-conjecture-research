@@ -1501,3 +1501,13 @@ by deleting it.
   every direct `psc` driver import to match a workflow trigger. ·
   `.github/workflows/class-b-lines-evidence.yml`;
   `tests/test_line_certificate_workflow.py`
+
+- 2026-10-09 · Opening the review PR exposed a second evidence-workflow
+  problem: 266 pinned rows shared one matrix, exceeding GitHub's documented
+  [256-job matrix limit](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstrategymatrix).
+  The run failed before starting a job. Keep the 60 line/wedge/progression
+  rows and 206 norm-mode rows in separate matrices, retaining every pin
+  exactly once and the same per-row verdict check. A failing-before
+  regression checks the limit and the verifier step for each matrix. ·
+  `.github/workflows/class-b-lines-evidence.yml`;
+  `tests/test_line_certificate_workflow.py`

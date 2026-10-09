@@ -68,3 +68,18 @@ def test_direct_driver_imports_trigger_the_evidence_workflow():
         if not any(fnmatchcase(path, pattern) for pattern in patterns)
     )
     assert missing == [], f"certificate imports omitted from workflow triggers: {missing}"
+
+
+def test_each_evidence_matrix_fits_the_github_job_limit():
+    """GitHub rejects an entire matrix above 256 jobs before any pin runs."""
+    jobs = WORKFLOW.read_text(encoding="utf-8").split("jobs:\n", 1)[1]
+    blocks = re.findall(r"^  ([\w-]+):\n(.*?)(?=^  [\w-]+:\n|\Z)", jobs, re.M | re.S)
+    assert blocks
+    for name, body in blocks:
+        matrix = body.split("      matrix:\n", 1)[1].split("    name:", 1)[0]
+        assert matrix.startswith("        include:\n")  # explicit rows, no extra axes
+        assert all(LINE.fullmatch(row) for row in matrix.splitlines()[1:])
+        rows = LINE.findall(matrix)
+        assert 0 < len(rows) <= 256, f"{name}: {len(rows)} jobs exceeds the matrix limit"
+        assert "symbolic_line_certificate.mojo ${{ matrix.line }}" in body
+        assert "grep -Fx '  pinned verdict reproduced' line.log" in body
