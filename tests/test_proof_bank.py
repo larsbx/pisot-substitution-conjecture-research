@@ -330,8 +330,16 @@ if __name__ == "__main__":
     lake.write_text("#!" + sys.executable + "\n" + fr'''import json, os, pathlib, subprocess, sys
 cwd = pathlib.Path.cwd()
 args = sys.argv[1:]
+selected = os.environ.get("ELAN_TOOLCHAIN") or os.environ.get("PSC_TEST_DIR_OVERRIDE") or "leanprover/lean4:v4.34.0-rc2"
 with open({str(calls)!r}, "a") as out:
-    out.write(json.dumps({{"args": args, "cwd": str(cwd)}}) + "\n")
+    out.write(json.dumps({{"args": args, "cwd": str(cwd), "selected": selected}}) + "\n")
+if os.environ.get("PSC_TEST_REQUIRE_PIN") and selected != "leanprover/lean4:v4.34.0-rc2":
+    print("selected caller's unpinned compiler", file=sys.stderr)
+    sys.exit(87)
+if args == ["--version"]:
+    version = "4.0.0" if os.environ.get("PSC_TEST_BAD_LAKE_VERSION") else "4.34.0-rc2"
+    print(f"Lake version fixture (Lean version {{version}})")
+    sys.exit(0)
 # Poisoned olean plus matching hash/trace is treated as reusable by this stub.
 # A pre-fix dispatcher reaches it; the isolated dispatcher must never do so.
 if any(cwd.glob(".lake/**/Injected.olean")):
@@ -361,6 +369,19 @@ else:
     print("Build completed successfully")
 ''')
     lake.chmod(0o755)
+    elan = fake_bin / "elan"
+    elan.write_text("#!" + sys.executable + "\n" + f'''import os, subprocess, sys
+assert sys.argv[1:3] == ["run", "leanprover/lean4:v4.34.0-rc2"], sys.argv
+env = {{**os.environ, "ELAN_TOOLCHAIN": sys.argv[2]}}
+if sys.argv[3] == "lean":
+    assert sys.argv[4:] == ["--version"]
+    version = "4.0.0" if os.environ.get("PSC_TEST_BAD_LEAN_VERSION") else "4.34.0-rc2"
+    print(f"Lean (version {{version}}, fixture)")
+else:
+    assert sys.argv[3] == "lake"
+    sys.exit(subprocess.call([{str(lake)!r}, *sys.argv[4:]], env=env))
+''')
+    elan.chmod(0o755)
     env = {**os.environ, "PATH": f"{fake_bin}:{os.environ['PATH']}"}
     return tools / "check_lean.sh", project, calls, env
 
@@ -378,6 +399,7 @@ def test_cached_successful_build_still_requires_a_fresh_audit(tmp_path):
                          env={**env, "PSC_TEST_LAKE_MODE": "empty-audit"}, capture_output=True, text=True)
     assert run.returncode != 0, run.stdout + run.stderr
     assert [json.loads(row)["args"] for row in calls.read_text().splitlines()] == [
+        ["--version"],
         ["--no-cache", "env", "true"], ["--no-cache", "exe", "cache", "get"],
         ["--no-cache", "build", "PscVerif"], ["--no-cache", "env", "lean", "ProofBankAudit.lean"]]
     assert "Incomplete Lean audit" in run.stderr
@@ -403,7 +425,30 @@ def test_forged_dependency_cache_and_caller_cache_overrides_cannot_enter_audit(t
                          env={**env, **overrides}, capture_output=True, text=True)
     assert run.returncode == 0, run.stdout + run.stderr
     records = [json.loads(row) for row in calls.read_text().splitlines()]
-    assert len(records) == 4
+    assert len(records) == 5
     assert all(Path(row["cwd"]) != project for row in records)
     assert not Path(records[0]["cwd"]).parents[1].exists(), "audit workspace must be cleaned"
     assert (project / ".lake/build/lib/lean/Injected.olean").is_file()
+
+
+@pytest.mark.parametrize("override", ["ELAN_TOOLCHAIN", "PSC_TEST_DIR_OVERRIDE"])
+def test_caller_toolchain_overrides_cannot_receive_certificate_credit(tmp_path, override):
+    script, _, calls, env = lean_script_fixture(tmp_path)
+    env.pop("ELAN_TOOLCHAIN", None)
+    run = subprocess.run(["bash", str(script)], cwd=tmp_path,
+                         env={**env, override: "psc-locally-linked-compiler", "PSC_TEST_REQUIRE_PIN": "1"},
+                         capture_output=True, text=True)
+    assert run.returncode == 0, run.stdout + run.stderr
+    records = [json.loads(row) for row in calls.read_text().splitlines()]
+    assert len(records) == 5
+    assert all(row["selected"] == "leanprover/lean4:v4.34.0-rc2" for row in records)
+
+
+@pytest.mark.parametrize("mismatch", ["PSC_TEST_BAD_LEAN_VERSION", "PSC_TEST_BAD_LAKE_VERSION"])
+def test_compiler_version_mismatch_refuses_before_build_or_audit(tmp_path, mismatch):
+    script, _, calls, env = lean_script_fixture(tmp_path)
+    run = subprocess.run(["bash", str(script)], cwd=tmp_path,
+                         env={**env, mismatch: "1"}, capture_output=True, text=True)
+    assert run.returncode != 0, run.stdout + run.stderr
+    assert "does not match the pinned release" in run.stderr
+    assert [json.loads(row)["args"] for row in calls.read_text().splitlines()] == [["--version"]]

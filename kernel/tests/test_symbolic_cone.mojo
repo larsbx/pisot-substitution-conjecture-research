@@ -11,6 +11,7 @@ from std.testing import assert_equal, assert_false, assert_true
 from finite_linear_algebra.scalar import q_int
 from mojo_smoke.claims import require_contract
 from psc.symbolic_cone import (
+    rouche_disc,
     Region,
     certify_cone,
     p2_add,
@@ -19,6 +20,7 @@ from psc.symbolic_cone import (
     p2_mul,
     p2_sub,
     t2_at_point,
+    t2_norm,
     t2_const,
     t2_sub,
     t2_t,
@@ -73,6 +75,19 @@ def test_signs_at_beta_agree_with_concrete_signs() raises:
     assert_equal(field.sign_at_beta(t2_at_point(above, 9, 4), ev), -1)
 
 
+def test_rouche_puts_two_roots_in_the_disc() raises:
+    """On sector A+, `|c2| - 1 - |c1| - |c0| = j - 4 >= 1`: Rouche certifies the
+    two non-Perron roots in the open disc with plain region signs. With
+    `c2 = -s1`, `c1 = s2`, `c0 = -2` the margin `s1 - s2 - 3` changes sign on
+    every region, so Rouche declines and the caller falls back to Jury."""
+    var cone = class_b_cone(Family("A+", Aff(11, 2, 1), Aff(6, 1, 1), Aff(7, 1, 1), 0, 0))
+    var region = Region(2, 2)
+    assert_true(rouche_disc(cone.chi, region))
+    var mixed = t2_norm([p2_const(-2), p2_affine(0, 0, 1), p2_affine(0, -1, 0), p2_const(1)])
+    var wide = Region(4, 4)
+    assert_false(rouche_disc(mixed, wide))
+
+
 def test_a_family_off_the_class_is_refused() raises:
     """`p = q` violates Lemma P1, and the cone is not certified PIP."""
     var f = Family("p=q", Aff(0, 1, 0), Aff(0, 1, 0), Aff(1, 1, 0), 0, 0)
@@ -124,6 +139,8 @@ def main() raises:
     print("[PASS] test_region_signs")
     test_signs_at_beta_agree_with_concrete_signs()
     print("[PASS] test_signs_at_beta_agree_with_concrete_signs")
+    test_rouche_puts_two_roots_in_the_disc()
+    print("[PASS] test_rouche_puts_two_roots_in_the_disc")
     test_a_family_off_the_class_is_refused()
     print("[PASS] test_a_family_off_the_class_is_refused")
     test_the_cone_engine_reproduces_theorem_l()
@@ -134,4 +151,4 @@ def main() raises:
     print("[PASS] test_membership_is_solved_exactly")
     test_sector_a_plus()
     print("[PASS] test_sector_a_plus")
-    require_contract("Symbolic cone certificate (class B sectors): region signs certified by shifted coefficients with Polya's multiplier, a sign-changing polynomial left undecided; parametric signs at beta on certified brackets agree with exact signs at a member; a p = q family is refused; the cone engine reproduces Theorem L's 119-vertex line from q >= 6; the two branch decompositions leave no gap up to q = 200, family membership solved exactly; sector A+ (q + 5 <= p <= 2q - 1, r = q + 1) is covered by 5 symbolic regions of 74 vertices and 4 exact members, every vertex hitting")
+    require_contract("Symbolic cone certificate (class B sectors): region signs certified by shifted coefficients with Polya's multiplier, a sign-changing polynomial left undecided; parametric signs at beta on certified brackets agree with exact signs at a member; Rouche (|c2| > 1 + |c1| + |c0|) certifies the disc on sector A+ and declines a sign-changing margin; a p = q family is refused; the cone engine reproduces Theorem L's 119-vertex line from q >= 6; the two branch decompositions leave no gap up to q = 200, family membership solved exactly; sector A+ (q + 5 <= p <= 2q - 1, r = q + 1) is covered by 5 symbolic regions of 74 vertices and 4 exact members, every vertex hitting")

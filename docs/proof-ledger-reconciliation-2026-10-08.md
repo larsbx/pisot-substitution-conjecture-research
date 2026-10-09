@@ -17,6 +17,13 @@ both append-only side-notes additions are preserved. The cross-check's shared
 primitive boundary and distinction from proof remain explicit. This update
 changes no theorem node or formal source; the source inventory is regenerated.
 
+
+Main then advanced to `8d91e48a6149bdab91e2a7d0cdc82873a829a50b` through
+PR #245. Its Rouché-first unit-disc certificate and Jury fallback, documentation,
+and symbolic-cone regression are retained. The changed Mojo test is rerun;
+its actual receipt replaces the earlier receipt for that test alone. This
+current-main contribution changes no proof-ledger node or Lean source.
+
 Inspected source heads: #236 `608f4b4978a8297c345587c622bd5e7afdaae762`,
 #237 `9e99184156e52e80a32c7457222572367af80a93`, and #241
 `ebc815f1b1bf2ba32b11a94462f9b575762954d7`. This reconciliation changes no
@@ -153,6 +160,15 @@ regression plants compiled artifacts with coherent metadata in both project
 and dependency caches, sets caller cache/path overrides, and fails against the
 previous dispatcher. The repaired dispatcher excludes them while retaining
 actual temporary-Git pin/byte checks and audit-receipt validation in the test.
+
+The subsequent compiler-selection review reproduced inherited Elan environment
+and directory overrides. Every Lake invocation now uses `elan run` with the
+explicit checked-in toolchain; both Lean and Lake executable version receipts
+must match that release before cloning, building or auditing. Four negative
+controls cover environment/directory overrides and mismatched Lean/Lake
+versions. These controls model Elan/compiler dispatch without requiring a
+second installed compiler; the native isolated run separately exercises the
+pinned release with an invalid inherited `ELAN_TOOLCHAIN` override.
 
 The proof bank is an inventory of governed claims, named source proofs and
 apparent statement openings. Actual Lean evidence requires the fresh compiled

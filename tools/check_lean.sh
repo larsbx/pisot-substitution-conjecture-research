@@ -18,6 +18,17 @@ export LAKE_CONFIG="" LAKE_CACHE_DIR="" LAKE_ARTIFACT_CACHE=false LAKE_RESTORE_A
 export MATHLIB_CACHE_DIR="$PSC_VERIFY_TMP/download-cache"
 export MATHLIB_CACHE_GET_URL="https://cache.mathlib.org/mathlib4-master"
 cd "$PSC_VERIFY_TMP/proof/PscVerif"
+PSC_TOOLCHAIN=$(cat lean-toolchain)
+PSC_RELEASE=${PSC_TOOLCHAIN#leanprover/lean4:v}
+run_pinned_lake() { elan run "$PSC_TOOLCHAIN" lake "$@"; }
+PSC_LEAN_VERSION=$(elan run "$PSC_TOOLCHAIN" lean --version)
+PSC_LAKE_VERSION=$(run_pinned_lake --version)
+if [[ "$PSC_LEAN_VERSION" != "Lean (version $PSC_RELEASE,"* ]] \
+   || [[ "$PSC_LAKE_VERSION" != *"(Lean version $PSC_RELEASE)" ]]; then
+    echo "Lean/Lake executable version does not match the pinned release $PSC_RELEASE" >&2
+    exit 1
+fi
+printf '%s\n%s\n' "$PSC_LEAN_VERSION" "$PSC_LAKE_VERSION"
 check_fresh_pins() {
     python3 - "$PSC_ROOT" "$PSC_VERIFY_TMP" <<'PY'
 import pathlib, sys
@@ -27,10 +38,10 @@ check_pins(pathlib.Path(sys.argv[2]), require_packages=True)
 PY
 }
 # Load the manifest and clone dependencies before compiling the cache tool.
-lake --no-cache env true
+run_pinned_lake --no-cache env true
 check_fresh_pins
-lake --no-cache exe cache get
-lake --no-cache build PscVerif
+run_pinned_lake --no-cache exe cache get
+run_pinned_lake --no-cache build PscVerif
 check_fresh_pins
-lake --no-cache env lean ProofBankAudit.lean | tee "$PSC_AUDIT_LOG"
+run_pinned_lake --no-cache env lean ProofBankAudit.lean | tee "$PSC_AUDIT_LOG"
 python3 "$PSC_ROOT/tools/make_proof_bank.py" --check --audit-log "$PSC_AUDIT_LOG"
