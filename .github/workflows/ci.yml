@@ -545,19 +545,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install elan
+      - name: Provision pinned Lean, Lake and Mathlib
         run: |
-          curl -fsSL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o elan.sh
-          sh elan.sh -y --default-toolchain none
+          ./tools/setup_lean.sh
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Fetch Mathlib cache
-        working-directory: proof/PscVerif
-        run: lake exe cache get
-      - name: Build and audit axioms
-        working-directory: proof/PscVerif
-        run: |
-          set -o pipefail
-          lake build PscVerif 2>&1 | tee build.log
-          if grep -q sorryAx build.log; then
-            echo "sorryAx found in axiom audit"; exit 1
-          fi
+      - name: Build the complete proof bank and replay its axiom audit
+        run: ./tools/check_lean.sh

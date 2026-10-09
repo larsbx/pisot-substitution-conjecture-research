@@ -37,6 +37,18 @@ LADDER = "docs/proof-ladder.md"
 ROADMAP = "docs/research-roadmap-2026-09-21.md"
 ZIPPER = "docs/p1b-strict-zipper-periodic-pair-2026-10-02.md"
 FIBRE = "docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md"
+BOX = "docs/pds-certificate-from-the-box-automaton-2026-10-07.md"
+LEFTMOST = "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md"
+REVIEWED = "independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+BOX_LC_REVIEW = "docs/review-box-leftmost-ledger-2026-10-08.md"
+BOX_LC_BASELINE = "cb9db58c9e25209c2a54ccd6955b509af88e8356"
+BOX_LC_RECONCILED_BASELINE = "33a1b8b6cffc10c7f1e5be41a22325897a5072e4"
+RECONCILIATION = "docs/proof-ledger-reconciliation-2026-10-08.md"
+BOX_LC_REVIEWED = frozenset({
+    "BoxCycleContainment", "BoxAutomatonCertificate", "PisotMeyerProperty",
+    "OverlapCoincidenceCriterion", "BoxAutomatonPDSCertificate",
+    "LeftmostChainCycleStructure", "LeftmostChainG1Certificate",
+})
 
 # name -> (kind, statement, source or reason, dependencies, tags)
 # Dependencies are one-way proof sufficiency, never a converse implication
@@ -54,10 +66,10 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "AlgebraicEmbedding": (T, "the algebraic embedding of the symbolic side", f"{MANUSCRIPT}, symbolic side", ("UniqueDecodability",), ()),
     "WedgeBound": (T, "the wedge bound", f"{MANUSCRIPT}, symbolic side", ("AlgebraicEmbedding", "MassBalanceK2Obstruction"), ()),
     # --- seed spectral module ---------------------------------------------------------
-    "PhiSemisimplicity": (T, "Phi_3 acts semisimply on the seed spectral module", "proof/PscVerif/PscVerif/Spectral.lean", (), ()),
-    "ThetaIntertwining": (T, "Theta intertwines the seed spectral operators", "proof/PscVerif/PscVerif/Spectral.lean", (), ()),
-    "SeedCentralizer": (T, "the seed centralizer is as certified", "proof/PscVerif/PscVerif/Spectral.lean", ("ThetaIntertwining", "PhiSemisimplicity"), ()),
-    "Target1": (T, "Target 1 of the seed spectral module", "proof/PscVerif/PscVerif/Spectral.lean", ("SeedCentralizer",), ()),
+    "PhiSemisimplicity": (T, "Phi_3 acts semisimply on the seed spectral module", "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 3 semisimplicity lemma; not formalized in Lean", (), ()),
+    "ThetaIntertwining": (T, "Theta intertwines the seed spectral operators", "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 5 certified intertwining identity; kernel/verify.mojo check C7; not formalized in Lean", (), ()),
+    "SeedCentralizer": (T, "the seed centralizer is as certified", "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, sections 5-7; proof/PscVerif/PscVerif/Centralizer.lean proves the centralizer contradiction only", ("ThetaIntertwining", "PhiSemisimplicity"), ()),
+    "Target1": (T, "Target 1 of the seed spectral module", "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 7; proof/PscVerif/PscVerif/Centralizer.lean Psc.target1 proves the rational centralizer form only", ("SeedCentralizer",), ()),
     "DominantCubicCapture": (T, "dominant cubic capture for the explicitly certified seeds",
                              "archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, sections 8-10 (historical restricted theorem)", ("Target1",), ()),
     "SpectralBlackBox": (T, "the seed-module spectral black box follows from Target 1 and dominant cubic capture",
@@ -91,7 +103,8 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "G1b2RenewalFiniteness": (P, "only finitely many realizable irreducible balanced pairs occur inside the established discrepancy bound",
                               "open conjectural gate; manuscript Level-2 open problem; issue #44", ("G1b1BoundedDiscrepancy",), ()),
     "G1FromRenewal": (T, "G1b-1 and G1b-2 together give finite BPA", f"{MANUSCRIPT}, Proposition 4.11", ("G1b1BoundedDiscrepancy", "G1b2RenewalFiniteness"), ()),
-    "G1": (T, "finite BPA (G1)", f"{MANUSCRIPT}, Propositions 4.11, 5.46 and 5.47 and open-problem list", ("G1FromRenewal", "G1OverlapRoute", "G1HalfCoincidenceRoute"), ("status:open",)),
+    "G1": (T, "finite BPA (G1)", f"{MANUSCRIPT}, Propositions 4.11, 5.46 and 5.47 and open-problem list; {BOX}, consequence (c)",
+           ("G1FromRenewal", "G1OverlapRoute", "G1HalfCoincidenceRoute", "G1FormalProductivityRoute"), ("status:open",)),
     # --- overlap route (finite graph, no G1) ----------------------------------------
     "SwapOverlapFiniteness": (T, "every swap seed has a finite exact overlap graph",
                               "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md; manuscript Theorem 4.22; PR #72", ("G1b1BoundedDiscrepancy",), ()),
@@ -172,12 +185,46 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                       f"{MANUSCRIPT}, Theorem thm:seedwise; docs/formal-productivity-reduction-2026-10-04.md, Proposition FP and Corollary FP''; "
                                       "manuscript Theorem 5.33(iii),(v); independently audited 2026-10-04, human review pending",
                                       ("PDSImpliesRepoG1", "StrongCoincidenceFromPDS"), ()),
+    # --- box automaton: one finite automaton decides formal productivity --------------
+    # Lemma Omega1 and Theorem Omega are per-specimen statements with no open
+    # premise. The three consequences are the routes FP opens: two to PDS that
+    # share no step after FP, and one to finite BPA. Routes (b) and (c) cite
+    # Theorem 5.38 and Proposition 5.46 for their mechanism but do not depend on
+    # PDSOverlapRoute or G1OverlapRoute, which bundle the weaker open seed gates
+    # that FP discharges directly (the D.4 resolution, as for PDSImpliesRepoG1).
+    "BoxCycleContainment": (T, "every potential overlap has finitely many descendants, and every potential overlap on a cycle of the overlap graph is a vertex of the box automaton",
+                            f"{BOX}, Lemma Omega1 (Proposition V step 1; docs/formal-overlap-carriers-2026-10-04.md, section 2 item 5); "
+                            f"step 1 audited in docs/audit-adversarial-prop-v-theorem-e-2026-10-07.md; {REVIEWED}", (), ()),
+    "BoxAutomatonCertificate": (T, "a PIP substitution is formally productive iff every vertex of its box automaton reaches a coincidence",
+                                f"{BOX}, Theorem Omega; {REVIEWED}", ("BoxCycleContainment",), ()),
+    "FormalProductivity": (P, "for every PIP substitution every potential overlap is productive (FP)",
+                           f"open conjectural gate; docs/formal-productivity-reduction-2026-10-04.md; {BOX}; implied by PDS through Corollary FP'' and Theorem S", (), ()),
+    "PisotMeyerProperty": (I, "a repetitive primitive one-dimensional substitution tiling with Pisot inflation and FLC has Meyer control points and Meyer same-type return vectors",
+                          f"Lee-Solomyak, arXiv:1002.0039, Definition 2.3 and Theorem 4.3; {BOX_LC_REVIEW}, section 1 (scalar expansion hypotheses and return-vector transfer checked)", (), ()),
+    "OverlapCoincidenceCriterion": (I, "for a repetitive primitive FLC self-affine tiling with Meyer return vectors, coincidence reachability from every occurring overlap implies pure discrete spectrum of the tiling flow",
+                                   f"Lee-Moody-Solomyak, arXiv:0910.4450, Theorem 4.7 and Lemmas 6.8-6.9; Akiyama-Lee, arXiv:1003.2898, Theorem 2.5; {BOX_LC_REVIEW}, section 1", (), ()),
+    "BoxAutomatonPDSCertificate": (T, "for each fixed PIP substitution, if every vertex of its complete box automaton reaches a coincidence, its Perron-length suspension tiling flow has pure discrete spectrum",
+                                  f"{BOX}, Theorem Omega consequence (a); {BOX_LC_REVIEW}, sections 1-2; tiling R-action sufficiency only",
+                                  ("BoxAutomatonCertificate", "PisotMeyerProperty", "OverlapCoincidenceCriterion"), ()),
+    "PDSFormalProductivityRoute": (T, "formal productivity implies pure discrete spectrum through the overlap-coincidence criterion, without unimodularity",
+                                   f"{BOX}, consequence (a); {REVIEWED}", ("FormalProductivity", "BoxAutomatonPDSCertificate"), ()),
+    "PDSFormalProductivitySeedRoute": (T, "formal productivity gives productivity of every overlap reachable from a swap seed, hence pure discrete spectrum by coincidence density one",
+                                       f"{BOX}, consequence (b), with {MANUSCRIPT}, Lemma 5.36 and Theorem 5.38; {REVIEWED}",
+                                       ("FormalProductivity", "SwapOverlapFiniteness", "DensityToPDSBridge"), ()),
+    "G1FormalProductivityRoute": (T, "formal productivity gives finite BPA with termination with coincidence from every swap seed, every reachable state being at most 2 beta^D ell_max long",
+                                  f"{BOX}, consequence (c), with docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1; {REVIEWED}",
+                                  ("FormalProductivity", "BoxCycleContainment"), ()),
+    # --- leftmost chain: the structure of catch-up failure ---------------------------
+    "LeftmostChainCycleStructure": (T, "every terminal cycle of the leftmost-child map on the complete box graph keeps one strict offset sign, with index zero on the later-starting side, and is a prefix-vs-interior occurrence pair sigma^r(i) = i U, sigma^r(j) = Q j V with (I - M^r) w_0 = ab(Q) after orienting the offset negatively; the prefix object is a right-infinite fixed ray and the interior object is a two-sided tiling compared on the right half-line, whose common centre is never a common vertex; the cycles come in mirror pairs",
+                                    f"{LEFTMOST}, Lemma S, Proposition LC and Corollary LC4; 10,584 sign/shape checks, 10,128 integral replays and 456 uncomputed offsets on the standing corpus; {REVIEWED}", (), ()),
+    "LeftmostChainG1Certificate": (T, "a PIP substitution whose box graph has no terminal leftmost cycle satisfies all-seed strict-zipper exclusion, hence finite BPA",
+                                   f"{LEFTMOST}, Corollary LC5, with {MANUSCRIPT}, Proposition 5.47; {REVIEWED}", ("BoxCycleContainment",), ()),
     # --- retracted ------------------------------------------------------------------------
     "V5Thm51": (P, "v5 Theorem 5.1", "retired: the v5 Theorem 5.1 argument is withdrawn", (), (gl.WITHDRAWN_TAG,)),
 }
 
 STATUS_NOTES = {
-    "G1": "the renewal, all-seed overlap and strict-zipper-exclusion implications are proved alternative establishments of canonical G1; their open premises are not discharged, so G1 itself remains an open conjectural gate",
+    "G1": "the renewal, all-seed overlap, strict-zipper-exclusion and formal-productivity implications are proved alternative establishments of canonical G1; their open premises are not discharged, so G1 itself remains an open conjectural gate",
     "SCCProducer": "the implication from G1, the sink-SCC reduction, and C2 is proved; SCC Producer / C1 is an open theorem target",
     "CoincidenceDensityOne": "the equivalence of Lemma 5.36 is repository-proved; the ledger node is its conclusion, which needs overlap productivity",
 }
@@ -194,6 +241,9 @@ ASSUMPTION_SETS = {
     "OverlapGateAssumed": ["OverlapProductivity", "DensityToPDSBridge"],
     "AllSeedOverlapGateAssumed": ["AllSeedOverlapProductivity"],
     "AllSeedStrictZipperGateAssumed": ["AllSeedStrictZipperExclusion"],
+    # FP alone reaches G1 and the seed route to PDS (through the imported
+    # density bridge); the overlap-coincidence route needs its LMS import.
+    "FormalProductivityGateAssumed": ["FormalProductivity", "PisotMeyerProperty", "OverlapCoincidenceCriterion", "DensityToPDSBridge"],
 }
 
 STATUS_LABELS = {"proved": "Repository-proved", "imported": "Imported theorem", "conditional": "Conditional theorem", "open": "Open conjectural gate",
@@ -215,6 +265,12 @@ ALIASES = {
     "ReturnModuleFullRank": ["full-rank return module", "Theorem R"], "PeriodicPairOneFibre": ["periodic pairs in one fibre", "Proposition F"],
     "StrictZipperPeriodicPairForm": ["periodic-pair form of a strict zipper", "Theorem B"],
     "PDSImpliesSeedwiseTermination": ["seedwise bridge"], "StrongCoincidenceFromPDS": ["overlap coincidence to strong coincidence"],
+    "BoxCycleContainment": ["Lemma Ω1"], "BoxAutomatonCertificate": ["Theorem Ω", "box-automaton certificate"],
+    "FormalProductivity": ["formal productivity"], "OverlapCoincidenceCriterion": ["Lee–Moody–Solomyak overlap-coincidence criterion"],
+    "PDSFormalProductivityRoute": ["consequence (a)"], "PDSFormalProductivitySeedRoute": ["consequence (b)"], "G1FormalProductivityRoute": ["consequence (c)"],
+    "LeftmostChainCycleStructure": ["Proposition LC"], "LeftmostChainG1Certificate": ["Corollary LC5"],
+    "PisotMeyerProperty": ["Pisot Meyer property"],
+    "BoxAutomatonPDSCertificate": ["per-specimen box PDS certificate"],
 }
 
 
@@ -266,6 +322,17 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "PeriodicPairOneFibre": [surface(MAP, "| Periodic pairs lie in one fibre |")],
     "StrictZipperPeriodicPairForm": [surface(MAP, "| Periodic-pair form of a strict zipper |")],
     "StrongCoincidenceFromPDS": [surface(MAP, "| Strong coincidence from PDS |")],
+    "BoxCycleContainment": [surface(MAP, "| Cycle vertices lie in the box automaton |")],
+    "BoxAutomatonCertificate": [surface(MAP, "| Box-automaton certificate for formal productivity |")],
+    "FormalProductivity": [surface(MAP, "| Formal productivity |")],
+    "OverlapCoincidenceCriterion": [surface(MAP, "| Overlap-coincidence criterion |")],
+    "PDSFormalProductivityRoute": [surface(MAP, "| Formal productivity implies PDS (overlap coincidence) |")],
+    "PDSFormalProductivitySeedRoute": [surface(MAP, "| Formal productivity implies PDS (seed route) |")],
+    "G1FormalProductivityRoute": [surface(MAP, "| Formal productivity implies finite BPA |")],
+    "LeftmostChainCycleStructure": [surface(MAP, "| Leftmost-chain cycles are prefix-vs-interior pairs |")],
+    "LeftmostChainG1Certificate": [surface(MAP, "| No terminal leftmost cycle implies finite BPA |")],
+    "PisotMeyerProperty": [surface(MAP, "| Pisot Meyer property |")],
+    "BoxAutomatonPDSCertificate": [surface(MAP, "| Box-automaton PDS certificate |")],
 }
 
 
@@ -283,9 +350,17 @@ def records() -> dict[str, Record]:
             evidence = (("hypotheses_checked", "true"), ("source", source))
         else:
             evidence = (("proof_reviewed", "true"), ("source", source))
+        if name in BOX_LC_REVIEWED:
+            evidence += (("review_source", BOX_LC_REVIEW),
+                         ("additional_review_source", "docs/proof-bank-audit-2026-10-08.md"),
+                         ("review_date", "2026-10-08"),
+                         ("source_revision", BOX_LC_BASELINE),
+                         ("reconciled_source_revision", BOX_LC_RECONCILED_BASELINE),
+                         ("reconciliation_source", RECONCILIATION),
+                         ("human_review_pending", "true"))
         if name == "G1":
             evidence += (("dependency_alternatives", json.dumps(
-                [[build("G1FromRenewal").id], [build("G1OverlapRoute").id], [build("G1HalfCoincidenceRoute").id]],
+                [[build(r).id] for r in ("G1FromRenewal", "G1OverlapRoute", "G1HalfCoincidenceRoute", "G1FormalProductivityRoute")],
                 separators=(",", ":"))),)
         if name in STATUS_NOTES:
             evidence += (("status_note", STATUS_NOTES[name]),)

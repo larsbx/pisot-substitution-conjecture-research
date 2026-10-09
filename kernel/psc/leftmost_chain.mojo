@@ -9,7 +9,7 @@ offsets. Every terminal cycle of that function therefore witnesses a vertex
 that is *not* in `CU`, and this module certifies the shape of those witnesses:
 
 - the offset keeps one strict sign along the whole chain, so the index used on
-  the side whose tile starts first is `0` at every step (`certify_sign`);
+  the side whose tile starts later is `0` at every step (`certify_sign`);
 - over a cycle of length `r` the composite index on that side is `0`, giving a
   **prefix** occurrence `sigma^r(i) = i U` with `U` nonempty, so `i` lies on a
   cycle of the first-letter map `a -> sigma(a)[0]`;
@@ -75,7 +75,7 @@ def leftmost_step(
     indices. `state` must have nonzero offset: an offset-zero vertex is already
     a common vertex and takes no catch-up step.
 
-    The sign of the offset decides which tile starts first, and the child on
+    The sign of the offset decides which tile starts later, and the child on
     that side is its index `0`. The surviving child keeps the parent's sign, so
     the chain never crosses zero -- it either lands on zero (a catch-up hit) or
     keeps the sign forever."""

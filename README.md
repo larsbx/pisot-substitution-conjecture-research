@@ -89,7 +89,7 @@ irreducibility. See `docs/bpa-termination-by-overlap-depth-2026-10-02.md`,
 `docs/side-notes-ledger.md` §7 for the review record, and
 `docs/audit-2026-10-04.md` §B for an independent re-derivation.
 
-Keep the two productivity hypotheses separate. Theorem 5.38 needs only `OP_seed`: every overlap reachable from one selected swap seed is productive. Manuscript Open Problem 5.35 states the stronger `OP_all`: every vertex of the union overlap graph is productive. Proposition 5.39(iii), the all-pairs strong-coincidence consequence, the every-vertex hitting formulation, and the unimodular equivalence with PDS apply to `OP_all`, not to `OP_seed`. No one-seed-to-all-vertices implication is claimed. See `docs/audit-2026-09-20.md` §C.
+Keep the two productivity hypotheses separate. Theorem 5.38 needs only `OP_seed`: every overlap reachable from one selected swap seed is productive. Manuscript Open Problem 5.35 states the stronger `OP_all`: every vertex of the union overlap graph is productive. Proposition 5.39(iii), the all-pairs strong-coincidence consequence, the every-vertex hitting formulation, and the unimodular equivalence with PDS apply to `OP_all`, not to `OP_seed`. No one-seed-to-all-vertices implication is claimed. See `docs/audit-2026-09-20.md` §C. *Correction 2026-10-08:* one does hold through pure discrete spectrum, at the review status of the October 4 chain: `OP_seed` for one seed gives PDS (Theorem 5.38), and PDS gives productivity of every potential overlap (Corollary FP″). Theorem SC of `docs/p1-seed-strength-2026-10-08.md` records the equivalence. The two hypotheses still differ as proof targets, but not in truth.
 
 The current strict-zipper attack retains actual ordered child occurrences and
 certifies their exact affine recurrence `w'=Mw+q-p`. A productive
@@ -278,6 +278,14 @@ Run everything:
 ```
 
 Unavailable toolchains are reported as skipped; a skip is not a passing proof.
+
+The generated [proof bank](docs/proof-bank.md) inventories every governed
+claim, named Lean proof and apparent source statement in the claim-policy
+scope, with explicit evidence and partial-formalization boundaries. Provision
+the pinned Lean/Lake project with `./tools/setup_lean.sh`, add
+`${ELAN_HOME:-$HOME/.elan}/bin` to `PATH`, then run `./tools/check_lean.sh`.
+The remote session hook provisions it automatically. CI and local verification
+replay the same complete axiom audit even when the library build is cached.
 
 ## Repository layout
 

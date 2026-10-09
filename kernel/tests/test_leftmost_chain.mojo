@@ -9,7 +9,8 @@ against its closed form by hand.
 """
 
 from std.testing import assert_equal, assert_false, assert_true
-from mojo_smoke.claims import require_contract
+from mojo_smoke.claims import require_claim, require_contract
+from leftmost_chain_census import LeftmostCensus, require_complete_census
 from psc.leftmost_chain import (
     certify_leftmost_cycles,
     leftmost_step,
@@ -146,7 +147,7 @@ def test_an_uncomputed_offset_is_never_a_pass() raises:
 def test_the_leftmost_step_keeps_its_sign_and_zeroes_one_index() raises:
     """Lemma S, per step, on every nonzero-offset vertex of two box graphs:
     the child's offset keeps the parent's sign or is zero, and the index on the
-    side whose tile starts first is 0."""
+    side whose tile starts later is 0."""
     var specimens = List[List[List[Int]]]()
     specimens.append(sigma_of([0, 1], [0, 2], [0]))
     specimens.append(sigma_of([1], [1, 2], [0, 2, 2]))
@@ -184,6 +185,33 @@ def test_a_capped_graph_is_not_a_verdict() raises:
     assert_equal(v.cycles, 0)
 
 
+def test_the_census_completion_gate_refuses_incomplete_or_failed_results() raises:
+    var complete = LeftmostCensus()
+    complete.specimens = 1
+    complete.cycles = 2
+    complete.sign_constant = 2
+    complete.prefix_vs_interior = 2
+    # A deliberately uncomputed offset is separate from a failed replay.
+    complete.offsets_beyond_range = 2
+    require_complete_census(complete)
+    for failure_case in range(4):
+        var bad = complete.copy()
+        if failure_case == 0:
+            bad.capped = 1
+        elif failure_case == 1:
+            bad.sign_constant = 1
+        elif failure_case == 2:
+            bad.prefix_vs_interior = 1
+        else:
+            bad.offset_failures = 1
+        var refused = False
+        try:
+            require_complete_census(bad)
+        except:
+            refused = True
+        assert_true(refused)
+
+
 def main() raises:
     test_tribonacci_has_no_terminal_cycle()
     print("[PASS] test_tribonacci_has_no_terminal_cycle")
@@ -197,4 +225,9 @@ def main() raises:
     print("[PASS] test_the_leftmost_step_keeps_its_sign_and_zeroes_one_index")
     test_a_capped_graph_is_not_a_verdict()
     print("[PASS] test_a_capped_graph_is_not_a_verdict")
-    require_contract("Proposition LC (leftmost-chain periodic pairs): the leftmost step keeps the parent's offset sign or lands on zero and zeroes the index on the side whose tile starts first (Lemma S, checked per step on three box graphs); every terminal leftmost cycle is a prefix-vs-interior occurrence pair. Pins: Tribonacci 01/02/0 has 0 cycles and in_cu = recurrent; 1/12/022 has 2 cycles of length 1, prefix letter 1 at 0 of sigma(1) (length 2), interior letter 2 at 1 of sigma(2) (length 3), ab(Q) = e_0, and (I - M) w0 = ab(Q) with w0 = (0, 1, -1) re-derived from the closed form; catch-up-free 1/012/010 has 2 cycles with r = 6 and both offsets certified over Z, 1/22/012 has 2 cycles with r = 15 whose offsets are past the exact integer range and are reported as uncomputed, never as a pass; max_integral_r = 0 moves every offset to the beyond column; a capped box graph is capped and holds() is false")
+    test_the_census_completion_gate_refuses_incomplete_or_failed_results()
+    print("[PASS] test_the_census_completion_gate_refuses_incomplete_or_failed_results")
+    require_contract("leftmost-chain census completion: a capped graph, inconsistent sign/shape counts, or failed integral replay raises; offsets beyond the replay range remain explicitly uncomputed")
+    require_claim("LeftmostChainCycleStructure")
+    require_claim("LeftmostChainG1Certificate")
+    require_contract("Proposition LC (leftmost-chain periodic pairs): the leftmost step keeps the parent's offset sign or lands on zero and zeroes the index on the side whose tile starts later (Lemma S, checked per step on three box graphs); every terminal leftmost cycle is a prefix-vs-interior occurrence pair. Pins: Tribonacci 01/02/0 has 0 cycles and in_cu = recurrent; 1/12/022 has 2 cycles of length 1, prefix letter 1 at 0 of sigma(1) (length 2), interior letter 2 at 1 of sigma(2) (length 3), ab(Q) = e_0, and (I - M) w0 = ab(Q) with w0 = (0, 1, -1) re-derived from the closed form; catch-up-free 1/012/010 has 2 cycles with r = 6 and both offsets certified over Z, 1/22/012 has 2 cycles with r = 15 whose offsets are past the exact integer range and are reported as uncomputed, never as a pass; max_integral_r = 0 moves every offset to the beyond column; a capped box graph is capped and holds() is false")

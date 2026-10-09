@@ -9,6 +9,10 @@ For definitions and implementation authority, use the generated
 single structured source is `catalogues/mathematical_objects.toml`; edit the
 TOML and regenerate rather than hand-editing the Markdown.
 
+For source-linked proof coverage, use the generated [proof bank](proof-bank.md).
+Its [audit](proof-bank-audit-2026-10-08.md) records the Lean provisioning hook,
+the complete compiled-declaration audit, and the Ω/LC ledger registration.
+
 ## What the 2026-10-05 and 2026-10-06 results establish
 
 The results of 2026-10-05 and 2026-10-06 are below, each with an exact
@@ -146,6 +150,14 @@ Change the ledger entry and every surface in the same commit.
 - `cross-pollination-round-three-2026-09-17.md` — the rest of the estate:
   twelve repositories round two never opened, and the six rulings they state
   independently of each other and of this program.
+- `audit-finite-regime-advice-2026-10-08.md` — audit of a 2026-10-08
+  proposal to bring finite-regime machinery (Theorem Ω's box automaton,
+  `finite_graph` cycle closure, Theorem L's symbolic line) to Theorem K's
+  open tail: the box automaton is refuted as a faster per-member oracle
+  (measured slower; kept as a cross-check for its stronger FP verdict), the
+  run-tree cycle argument rests on a translation-invariance claim that is
+  false for Lemma P1, and the symbolic-line route stands with the multi-run
+  generalization it needs. No status changes.
 
 ## Research references
 
@@ -271,6 +283,16 @@ These are reference/index additions only. They do not establish #84, #138,
   parametric Sturm–Tarski queries over `Q[q]` with a certified threshold
   (`q >= 52`), plus the exact kernel for `q < 52`
   (`kernel/psc/symbolic_line.mojo`, `kernel/symbolic_line_certificate.mojo`).
+- `p1b-symbolic-cone-2026-10-08.md` — #139 research note. **Theorem C**
+  (Status: repository-proved, computer-assisted, unreviewed): pure discrete
+  spectrum and G1 for every member of class B with `r = q + 1`,
+  `p <= max(2q + 13, (5q + 10)/2)`, or `r = q − 1`,
+  `p <= max(2q + 7, (5q − 5)/2)`, by the swap-seed closure in two parameters:
+  region signs certified by shifted coefficients with Pólya's multiplier, and
+  signs at beta on certified rational brackets of the Perron root (45
+  families, 77 symbolic regions, 490 exact members). It contains Theorem L
+  and every line of Theorem L′; the layer near slope 3 stays open
+  (`kernel/psc/symbolic_cone.mojo`, `kernel/class_b_cone_certificate.mojo`).
 - `p1b-catch-up-free-ppvc-2026-10-07.md` — #139 on the catch-up-free
   `|det M| = 2` class, with its stop/go gate: **Proposition Z** assembles
   recorded results to show that there, outside the open part of Theorem K's
@@ -344,6 +366,13 @@ These are reference/index additions only. They do not establish #84, #138,
   (`BoundedPureDiscreteSpectrum`) resting on Theorem Ω of
   `pds-certificate-from-the-box-automaton-2026-10-07.md`, not on Proposition V(2).
   Driver `kernel/strong_coincidence_census.mojo`.
+- `p1-seed-strength-2026-10-08.md` — #84 at seed strength. Proposition SA:
+  a swap seed has exactly three overlaps, one of them a self-overlap of the
+  longer letter. Theorem SC: one productive seed ⟺ every seed ⟺ FP ⟺ PDS,
+  per substitution (through Corollary FP″), so seed strength buys no slack in
+  truth. Lemma RC: the census domains are closed under reversal, which gives
+  two-sided strong coincidence on all 408,798 specimens. Theorem L′: further
+  certified lines of class B, each an infinite family with PDS and G1.
 - `pds-certificate-from-the-box-automaton-2026-10-07.md` — Theorem Ω:
   formal productivity of a PIP substitution is the single exact property
   "every vertex of the box automaton reaches a coincidence"; it gives PDS

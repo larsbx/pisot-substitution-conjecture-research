@@ -193,3 +193,32 @@ mathematical bridge; automated code review is not human mathematical acceptance.
 The completed census supplies a current-head direct computational certificate
 for the stated finite domain. The universal PSC and its open gates remain
 open, and the converse route retains its independent literature-review debt.
+
+## Follow-up — 2026-10-09: integration with current main
+
+PR #235 now integrates main `fac4415c1036236e68da4f0da86ce7294f2a7d23`.
+The PDS note retains main's proof-ledger registrations, nondegenerate
+trace-pairing justification, finite-start closure and Meyer return-vector
+argument, together with this audit's signed overlap dictionary, explicit
+substitution-power construction, witness padding and Clark–Sadun bridge.
+Both branches' dated side findings are retained; main's complete ledger is
+an unchanged prefix of the reconciled ledger. The generated proof bank is
+refreshed only for the two moved source-statement line locators; its 95 claim
+records and 27 named Lean declarations are unchanged.
+
+The October 8 audit and its source-head CI receipts remain a historical
+record for `72f173d`. The entire `omega-box-audit-2026-10-08` packet is
+byte-identical to PR #235's prior head `f7f210a`; no old run is credited as
+a new-head run. Main has since registered the Ω/Ω1/PDS dependency nodes,
+as the note now states. This integration makes no further claim-status or
+proof-dependency changes relative to current main and leaves the uniform
+formal-productivity and universal PSC gates open. Independent human
+mathematical acceptance of the corrected literature bridge remains pending.
+
+Reconciliation verification passed all 13 run checks, including the complete
+Python suite, all 15 TLA+ models, governance, provenance and generated-surface
+checks. The Mojo and Lean layers were explicitly skipped: Pixi and Lake are
+absent from this environment, and the retained Mojo binary cannot load its
+shared libraries. No new compiled-language or census credit is claimed.
+The separate dated verification packet is
+[`evidence/omega-audit-reconciliation-2026-10-09/`](../evidence/omega-audit-reconciliation-2026-10-09/README.md).

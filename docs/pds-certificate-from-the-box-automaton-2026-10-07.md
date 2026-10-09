@@ -10,8 +10,16 @@ uses manuscript Theorem 5.38. Consequence (c) uses Proposition 1 of
 Theorem B, Proposition F, Theorem R, Theorem S). That re-derivation found no
 error. It is one more internal review and does not replace the pending human
 review. The finite-domain consequence of §5 is recorded in the claim ledger
-as the finite-domain theorem `BoundedPureDiscreteSpectrum` (2026-10-08); no
-proof-dependency (TLA+) node changes, and PSC stays open.
+as the finite-domain theorem `BoundedPureDiscreteSpectrum` (2026-10-08).
+Lemma Ω1, Theorem Ω and consequences (a)–(c) are proof-dependency (TLA+)
+ledger nodes since 2026-10-08 (`BoxCycleContainment`,
+`BoxAutomatonCertificate`, `PDSFormalProductivityRoute`,
+`PDSFormalProductivitySeedRoute`, `G1FormalProductivityRoute`, with the open
+gate `FormalProductivity`). The per-specimen consequence (a) is
+`BoxAutomatonPDSCertificate`, with separate `PisotMeyerProperty` and
+`OverlapCoincidenceCriterion` imports. The merged names and review evidence are
+reconciled in [the dated record](proof-ledger-reconciliation-2026-10-08.md).
+PSC stays open.
 
 ## 1. The point
 
@@ -44,9 +52,10 @@ wanted (consequence (c)), without building `B_sigma`.
 
 `sigma` is primitive irreducible Pisot on `{0,1,2}`. It has incidence `M`,
 Perron root `beta`, and tile lengths `ell` (`ell M = beta ell`) with
-`Q`-independent coordinates.
-Choose their common positive scale so that `ell ∈ Q(beta)^3`, as in the
-kernel. The three lengths are then a rational basis of the cubic field.
+`Q`-independent coordinates. Choose their common positive scale so that
+`ell ∈ Q(beta)^3`, as in the kernel. The three lengths are then a rational
+basis of the cubic field. For a complex conjugate pair, use real and
+imaginary parts as the embedding coordinates below.
 
 - **Potential overlap.** A triple `x = (i, j, t)` with `t = <ell, w>`,
   `w ∈ Z^3`, and `−ell_j < t < ell_i`, so that the open tiles `(0, ell_i)`
@@ -82,9 +91,11 @@ by `beta`, since `beta <ell,w> = <ell,Mw>`. Along a path
 1. Use the Minkowski embedding of `Q(beta)`: all three real embeddings,
    or the Perron embedding together with the real and imaginary parts of
    one complex embedding. Since the lengths are a rational basis, the
-   embedding matrix is invertible over `R`. Its image of `Z^3` is therefore
-   a full-rank lattice in `R^3`. Only finitely many `w` lie in the compact
-   region bounded above. Injectivity alone would not imply discreteness.
+   embedding matrix is invertible over `R` (equivalently, the field's trace
+   pairing is nondegenerate). Its image of `Z^3` is therefore a full-rank
+   lattice in `R^3`. Only finitely many `w` lie in the compact region bounded
+   above. Injectivity alone would not imply discreteness. A finite start set
+   therefore also has finite inflation closure.
 2. On a cycle of period `p`, iterating the recursion gives
    `sigma_k(t_0) (1 − sigma_k(beta)^p) = sum_{n<p} sigma_k(beta)^n sigma_k(c_{p−1−n})`.
    Hence `|sigma_k(t_0)| <= B_k`. With `|t_0| < ell_max` and
@@ -149,11 +160,14 @@ contains SC_all, and `S(sigma)` can be read off `𝔅`
   Every coincidence persists under further substitution, so pad its witness
   depth to a multiple of `p`. The realized `sigma^p` overlap graph consequently
   satisfies LMS Lemma 6.9(iii). Its edges are length-`p` paths of geometric
-  children, and its expansion is `beta^p`, still Pisot.
+  children, and its expansion is `beta^p`, still Pisot. Its hull is the same
+  primitive substitution tiling space.
   - `Ξ` is Meyer because `beta^p` is Pisot (Akiyama–Lee 2011, Thm 2.7;
     Lee–Solomyak 2012, Thm 4.3 and Cor. 2.13 give the control-point form).
     In `d = 1` the scalar expansion is diagonalizable and its sole eigenvalue
-    has multiplicity one, so the algebraic-conjugacy/multiplicity hypotheses hold.
+    has multiplicity one, so the algebraic-conjugacy/multiplicity hypotheses
+    hold. Same-type return vectors are contained in the difference set of
+    the Meyer control points, which also supplies the Meyer hypothesis of LMS.
   - LMS Lemma 6.9 with Theorem 4.7 (equivalently Akiyama–Lee 2011,
     Thm 2.5) then gives pure discrete spectrum of the tiling flow.
 
@@ -249,8 +263,11 @@ Both runs reproduce every figure that §4 of the vertex note records for these
 rows: the largest box graph, the most recurrent vertices, the recurrent total
 and the deepest `K_V`, with the same specimens. The standing row also
 reproduces the `K_V` histograms that CI pins. The images ≤ 4
-row was not re-run in this session. It rests on the recorded PPVC run together
-with the SC_all census, as described above, until the guarding workflow runs.
+row was not re-run in this session. *Update 2026-10-08:* the guarding workflow
+`box-automaton-evidence.yml` has since run on PR #233's merged head
+(`72f173d`). All twelve images ≤ 4 slices and the total-length ≤ 8 job passed,
+each requiring every specimen formally productive and none capped, so the
+images ≤ 4 row is now CI-confirmed.
 
 The census slices pinned in `kernel/tests/test_vertex_coincidence.mojo`
 (first 300 standing, first 100 images ≤ 4) are all productive, with box `D`
@@ -389,8 +406,12 @@ Independent review and completed evidence runs remain acceptance conditions.
   per-specimen certificate, and #84, #138 and #139 are untouched.
 - It does not review the Barge coincidence-rank imports. Those matter only
   for the converse direction.
-- It promotes only the finite-domain statement of §5, as the claim-ledger
+- The finite-domain statement of §5 remains the claim-ledger
   entry `BoundedPureDiscreteSpectrum` (status finite-domain, guarded by
   `kernel/tests/test_vertex_coincidence.mojo`, the CI census job and
-  `box-automaton-evidence.yml`). It adds no proof-dependency node: the claim
-  is about a finite domain, not a universal implication.
+  `box-automaton-evidence.yml`). That claim is about a finite domain and is
+  not a proof-dependency node. The universal statements are (2026-10-08):
+  Lemma Ω1 and Theorem Ω are repository-proved nodes; consequences (a)–(c)
+  are conditional nodes whose only open premise is the gate
+  `FormalProductivity`, and (c) is an alternative establishment of G1. None
+  of this proves FP, G1 or PDS.

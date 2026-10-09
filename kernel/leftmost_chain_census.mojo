@@ -8,7 +8,7 @@ or runs into a terminal cycle, and those cycles are exactly the witnesses that
 terminal cycle of that function and checks the proposition's two assertions:
 
 - the offset keeps one strict sign along the cycle, so the index used on the
-  side whose tile starts first is `0` at every step;
+  side whose tile starts later is `0` at every step;
 - composed over the cycle, that side's index in `sigma^r` is `0` with a
   nonempty tail -- a prefix occurrence `sigma^r(i) = i U` -- and the other
   side's index is strictly interior -- an interior occurrence
@@ -93,6 +93,18 @@ def merge(a: LeftmostCensus, b: LeftmostCensus) -> LeftmostCensus:
     return out^
 
 
+def require_complete_census(r: LeftmostCensus) raises:
+    """A capped or refuted census must refuse a successful process verdict.
+
+    Offsets beyond the declared replay range remain a separate, uncomputed
+    column; this gate certifies sign/shape and the integral replays performed.
+    """
+    if r.capped != 0:
+        raise Error("leftmost-chain census: a capped box graph is inconclusive")
+    if r.sign_constant != r.cycles or r.prefix_vs_interior != r.cycles or r.offset_failures != 0:
+        raise Error("Proposition LC refuted on this domain")
+
+
 def main() raises:
     var args = argv()
     var corpus = corpus_for(String(args[1]) if len(args) > 1 else String(""))
@@ -152,7 +164,5 @@ def main() raises:
         print("catch-up-free with no terminal cycle:", corpus[r.free_without_cycles[i]].label())
     if r.capped != 0:
         print("INCONCLUSIVE: a capped box graph is an exhausted budget, not a verdict")
-    elif r.sign_constant == r.cycles and r.prefix_vs_interior == r.cycles and r.offset_failures == 0:
-        print("Proposition LC holds on every terminal leftmost cycle of this domain")
-    else:
-        raise Error("Proposition LC refuted on this domain")
+    require_complete_census(r)
+    print("Proposition LC holds on every terminal leftmost cycle of this domain")
