@@ -9,6 +9,8 @@ line, and the sector cover and its coverage pinned.
 
 from std.testing import assert_equal, assert_false, assert_true
 from finite_linear_algebra.scalar import q_int
+from finite_linear_algebra.mat3 import Mat3
+from psc.bpa import substitution_incidence
 from mojo_smoke.claims import require_contract
 from psc.symbolic_cone import (
     rouche_disc,
@@ -18,6 +20,7 @@ from psc.symbolic_cone import (
 from psc.param_poly import (
     qx_add,
     qx_affine2,
+    qx_at,
     qx_const,
     qx_mul,
     qx_sub,
@@ -75,6 +78,31 @@ def test_signs_at_beta_agree_with_concrete_signs() raises:
     var ev = Eventual()
     assert_equal(field.sign_at_beta(tp_at_q(below, 4, 9), ev), 1)
     assert_equal(field.sign_at_beta(tp_at_q(above, 4, 9), ev), -1)
+
+
+def test_asymmetric_corners_and_family_axes() raises:
+    """Boundary zeros refuse strict certification; s1 = b and s2 = a."""
+    var region = Region(2, 5)
+    assert_equal(region.try_sign(qx_affine2(-2, 0, 1)), 2)  # s1 - 2
+    assert_equal(region.sign(qx_affine2(-4, 1, 0)), 1)  # s2 - 4
+    assert_equal(region.try_sign(qx_affine2(-5, 1, 0)), 2)  # s2 - 5
+    assert_equal(region.sign(qx_affine2(-1, 0, 1)), 1)  # s1 - 1
+    var reverse = Region(5, 2)
+    assert_equal(reverse.sign(qx_affine2(-2, 0, 1)), 1)
+    assert_equal(reverse.try_sign(qx_affine2(-4, 1, 0)), 2)
+    var aff = Aff(5, 7, 11)
+    assert_true(qx_at(aff.poly(), 3, 2).eq(q_int(52)))
+    for pt in [(0, 5), (7, 0), (2, 9), (9, 2)]:
+        assert_true(qx_at(aff.poly(), pt[1], pt[0]).eq(q_int(aff.at(pt[0], pt[1]))))
+        assert_true(qx_at(aff.fix1(2).poly(), pt[1], 0).eq(q_int(aff.at(2, pt[1]))))
+        assert_true(qx_at(aff.fix2(5).poly(), 0, pt[0]).eq(q_int(aff.at(pt[0], 5))))
+    var f = Family("A+", Aff(11, 2, 1), Aff(6, 1, 1), Aff(7, 1, 1), 0, 0)
+    var cone = class_b_cone(f)
+    for pt in [(2, 5), (5, 2), (9, 4)]:
+        var coeff = Mat3(substitution_incidence(f.sigma(pt[0], pt[1]))).charpoly()
+        for k in range(4):
+            assert_true(qx_at(cone.chi[k], pt[1], pt[0]).eq(q_int(coeff[k])))
+    assert_false(qx_at(cone.chi[1], 2, 5).eq(qx_at(cone.chi[1], 5, 2)))
 
 
 def test_rouche_puts_two_roots_in_the_disc() raises:
@@ -139,6 +167,9 @@ def test_sector_a_plus() raises:
 def main() raises:
     test_region_signs()
     print("[PASS] test_region_signs")
+    test_asymmetric_corners_and_family_axes()
+    print("[PASS] test_asymmetric_corners_and_family_axes")
+    require_contract("Theorem C coordinate regression: Region(2, 5) and Region(5, 2) distinguish strict positive signs from boundary zeros and sign changes; cone Aff/fix1/fix2 evaluate on the intended axis; asymmetric class-B characteristic polynomials match the concrete integer incidence matrix under (a, b) = (s2, s1)")
     test_signs_at_beta_agree_with_concrete_signs()
     print("[PASS] test_signs_at_beta_agree_with_concrete_signs")
     test_rouche_puts_two_roots_in_the_disc()

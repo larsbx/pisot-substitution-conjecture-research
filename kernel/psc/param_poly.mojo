@@ -9,9 +9,9 @@ involves `b`, and then every operation reduces to `qpoly` on row 0. A `TPoly`
 is a polynomial in `t` with `QX` coefficients, ascending; three `QX`
 coordinates are a weight vector.
 
-Every function returns a normalized value (no trailing zero rows or terms), so
-equal polynomials have equal `qx_key` / `tp_key`. Nothing here decides a sign:
-that is the engines' business.
+Polynomial arithmetic returns normalized values (no trailing zero rows or
+terms), and `qx_key` / `tp_key` ignore zero padding in their inputs. Nothing
+here decides a sign: that is the engines' business.
 """
 
 from finite_exact.rat_q import Q
@@ -235,9 +235,10 @@ def tp_t() -> TPoly:
 
 
 def tp_key(p: TPoly) -> String:
+    var f = tp_norm(p)
     var out = String("")
-    for k in range(len(p)):
-        out += "[" + qx_key(p[k]) + "]"
+    for k in range(len(f)):
+        out += "[" + qx_key(f[k]) + "]"
     return out^
 
 

@@ -9,6 +9,7 @@ by them.
 
 from std.testing import assert_equal, assert_false, assert_true
 from finite_exact.rat_q import Q
+from finite_linear_algebra.qpoly import evaluate, remainder
 from finite_linear_algebra.scalar import q_int
 from mojo_smoke.claims import require_contract
 from psc.param_poly import (
@@ -25,14 +26,19 @@ from psc.param_poly import (
     qx_key,
     qx_mul,
     qx_neg,
+    qx_of,
+    qx_scale,
     qx_shift,
     qx_sub,
     tp_at_t,
+    tp_at_q,
     tp_const,
     tp_homog_at,
+    tp_key,
     tp_mod_monic,
     tp_mul,
     tp_norm,
+    tp_prem,
     tp_sub,
     tp_t,
 )
@@ -56,6 +62,43 @@ def _grid() -> List[Tuple[Int, Int]]:
         for b in range(-1, 3):
             out.append((a, b))
     return out^
+
+
+def _direct_at(p: QX, a: Int, b: Int) -> Q:
+    """Independent monomial sum, rather than the production Horner evaluator."""
+    var total = Q.zero()
+    var bp = Q.one()
+    for j in range(len(p)):
+        var ap = Q.one()
+        for i in range(len(p[j])):
+            total = total.add(p[j][i].mul(ap).mul(bp))
+            ap = ap.mul(q_int(a))
+        bp = bp.mul(q_int(b))
+    return total^
+
+
+def _concrete_coefficients(p: TPoly, a: Int, b: Int) -> List[Q]:
+    var out = List[Q]()
+    for k in range(len(p)):
+        out.append(_direct_at(p[k], a, b))
+    return out^
+
+
+def test_sparse_rational_coefficients_and_asymmetric_axes() raises:
+    # Empty interior row, unequal degrees and fractional coefficients.
+    var p: QX = [[Q(1, 2), Q(-7, 3), Q.zero(), Q(5, 4)], [], [Q(11, 6), Q(-2, 5)], []]
+    for pt in _grid():
+        var a = pt[0]
+        var b = pt[1]
+        assert_true(qx_at(p, a, b).eq(_direct_at(p, a, b)))
+        assert_true(qx_at(qx_shift(p, -3, 5), a, b).eq(_direct_at(p, a - 3, b + 5)))
+        assert_true(qx_at(qx_scale(p, Q(-2, 7)), a, b).eq(_direct_at(p, a, b).mul(Q(-2, 7))))
+    # The cone's old 5 + 7 s1 + 11 s2 at (2, 3), read as (a, b) = (3, 2).
+    var cone_affine = qx_affine2(5, 11, 7)
+    assert_true(qx_at(cone_affine, 3, 2).eq(q_int(52)))
+    assert_false(qx_at(cone_affine, 2, 3).eq(q_int(52)))
+    assert_equal(qx_key(qx_of(Q(2, 4))), qx_key(qx_of(Q(1, 2))))
+    assert_equal(qx_key([[Q.one(), Q.zero()], [], [Q.zero()]]), qx_key(qx_const(1)))
 
 
 def test_ring_operations_commute_with_evaluation() raises:
@@ -90,6 +133,9 @@ def test_keys_are_canonical() raises:
     assert_equal(qx_key(qx_mul(s, s)), qx_key(expanded))
     assert_equal(qx_key(qx_sub(expanded, expanded)), qx_key(QX()))
     assert_equal(qx_key(qx_neg(qx_neg(expanded))), qx_key(expanded))
+    var padded: TPoly = [expanded.copy(), QX(), qx_const(0)]
+    assert_equal(tp_key(padded), tp_key(tp_const(expanded)))
+    assert_equal(tp_key([QX(), qx_const(0)]), tp_key(TPoly()))
 
 
 def test_degree_and_constants() raises:
@@ -123,6 +169,37 @@ def test_reduction_modulo_a_monic_cubic() raises:
     except:
         raised = True
     assert_true(raised)
+    # Independent Euclidean division after specialization, including axes
+    # where a parameter coefficient vanishes. This does not call the reducer
+    # again to establish its own correctness.
+    for pt in _grid():
+        var expected = remainder(_concrete_coefficients(t5, pt[0], pt[1]), _concrete_coefficients(chi, pt[0], pt[1]))
+        var actual = tp_at_q(r, pt[0], pt[1])
+        assert_equal(len(actual), len(expected))
+        for k in range(len(expected)):
+            assert_true(qx_at(actual[k], 0, 0).eq(expected[k]))
+    assert_equal(len(tp_mod_monic(t5, tp_const(qx_const(1)))), 0)
+    raised = False
+    try:
+        _ = tp_mod_monic(t5, TPoly())
+    except:
+        raised = True
+    assert_true(raised)
+
+
+def test_pseudo_remainder_even_scaling_with_negative_leading_coefficient() raises:
+    var lead = qx_affine2(-5, 1, 2)
+    var num = qx_affine2(3, -2, 1)
+    var t = tp_t()
+    var t3 = tp_mul(tp_mul(t, t), t)
+    var divisor = tp_norm([qx_neg(num), lead.copy()])
+    var r = tp_prem(t3, divisor)
+    assert_equal(len(r), 1)
+    for pt in _grid():
+        var l = _direct_at(lead, pt[0], pt[1])
+        var n = _direct_at(num, pt[0], pt[1])
+        # Three division steps plus the parity correction: lc^4 (num/lc)^3.
+        assert_true(qx_at(r[0], pt[0], pt[1]).eq(l.mul(n).mul(n).mul(n)))
 
 
 def test_homogenized_value_is_den_power_times_value() raises:
@@ -137,10 +214,23 @@ def test_homogenized_value_is_den_power_times_value() raises:
         if b == -1:
             continue
         var x = Q(Int64(1 + 2 * a), Int64(1 + b))
-        var value = qx_at(tp_at_t(p, x), a, b)
+        var value = evaluate(_concrete_coefficients(p, a, b), x)
         var d3 = q_int((1 + b) * (1 + b) * (1 + b))
         assert_true(qx_at(h, a, b).eq(value.mul(d3)))
     assert_equal(qx_key(tp_homog_at(tp_const(qx_const(4)), num, den, 0)), qx_key(qx_const(4)))
+    # Homogeneous substitution is defined at den = 0; no rational division is used.
+    assert_true(qx_at(h, 2, -1).eq(q_int(125)))
+    var negative_den = qx_affine2(-3, 0, 1)
+    for d in [3, 4, 5]:
+        var hd = tp_homog_at(p, num, negative_den, d)
+        for pt in _grid():
+            var n = _direct_at(num, pt[0], pt[1])
+            var dn = _direct_at(negative_den, pt[0], pt[1])
+            var dp = Q.one()
+            for _ in range(d):
+                dp = dp.mul(dn)
+            var expected = evaluate(_concrete_coefficients(p, pt[0], pt[1]), n.div(dn)).mul(dp)
+            assert_true(qx_at(hd, pt[0], pt[1]).eq(expected))
 
 
 def main() raises:
@@ -150,10 +240,15 @@ def main() raises:
     print("[PASS] test_affine_and_shift_follow_the_coordinates")
     test_keys_are_canonical()
     print("[PASS] test_keys_are_canonical")
+    test_sparse_rational_coefficients_and_asymmetric_axes()
+    print("[PASS] test_sparse_rational_coefficients_and_asymmetric_axes")
     test_degree_and_constants()
     print("[PASS] test_degree_and_constants")
     test_reduction_modulo_a_monic_cubic()
     print("[PASS] test_reduction_modulo_a_monic_cubic")
+    test_pseudo_remainder_even_scaling_with_negative_leading_coefficient()
+    print("[PASS] test_pseudo_remainder_even_scaling_with_negative_leading_coefficient")
     test_homogenized_value_is_den_power_times_value()
     print("[PASS] test_homogenized_value_is_den_power_times_value")
+    require_contract("Shared algebra independent oracle: monomial-sum evaluation with sparse rational coefficients and unequal axes, the cone (s1, s2) = (2, 3) maps to (a, b) = (3, 2); padded QX and TPoly keys are canonical; specialized monic remainders equal vendored Euclidean division, zero divisors refuse; pseudo-remainders use an even leading-coefficient power, including negative leading coefficients; homogeneous substitution agrees with independent rational evaluation for both denominator signs and retains its value at a zero denominator")
     require_contract("Parameter polynomials (psc.param_poly, shared by the symbolic line and cone engines): sum, difference and product commute with evaluation on an integer grid; qx_affine2 and qx_shift follow the (a, b) coordinates; equal polynomials have equal keys; total degree and constant term; reduction modulo a monic cubic leaves a multiple of it and refuses a non-monic modulus; den^d p(num / den) matches rational evaluation")

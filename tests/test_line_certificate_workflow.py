@@ -48,3 +48,7 @@ def test_the_workflow_runs_every_pinned_line_once():
     pins, runs = pinned_lines(), workflow_lines()
     assert len(runs) == len(set(runs))
     assert sorted(runs) == sorted(pins)
+
+
+def test_shared_algebra_changes_trigger_the_symbolic_evidence_matrix():
+    assert "      - 'kernel/psc/param_poly.mojo'" in WORKFLOW.read_text(encoding="utf-8")
