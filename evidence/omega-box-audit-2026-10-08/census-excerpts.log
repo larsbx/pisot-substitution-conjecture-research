@@ -1,0 +1,215 @@
+2026-10-08T10:23:53.8052985Z Vertex coincidence census (Proposition V), specimens: 4554
+2026-10-08T10:23:53.8053449Z holds for every r: 4554  capped: 0  fails: 0
+2026-10-08T10:23:53.8053862Z formally productive (Theorem Omega): 4554  not: 0
+2026-10-08T10:23:53.8054357Z deepest box first-coincidence depth: 51 specimen 1 11 17
+2026-10-08T10:23:53.8054833Z largest box graph: 249385 states, specimen 6 11 13
+2026-10-08T10:23:53.8055614Z most recurrent vertices: 2676 specimen 4 11 21
+2026-10-08T10:23:53.8056396Z deepest recurrent first left-aligned depth: 17 specimen 1 23 21
+2026-10-08T10:23:53.8056841Z recurrent vertices in total: 1174788
+2026-10-08T10:23:53.8057445Z K_V by specimen, nonunimodular: 4:24 5:138 6:252 7:288 8:360 9:228 10:192 11:120 12:36 13:48 14:72 15:120 16:36 17:12
+2026-10-08T10:23:53.8058343Z K_V by specimen, unimodular real: 2:108 3:198 4:234 5:102 6:6
+2026-10-08T10:23:53.8059082Z K_V by specimen, unimodular complex: 2:210 3:612 4:588 5:336 6:120 7:84 8:18 14:12
+2026-10-08T10:23:53.8059914Z Vertex coincidence census (Proposition V), specimens: 4554
+2026-10-08T10:23:53.8060696Z holds for every r: 4554  capped: 0  fails: 0
+2026-10-08T10:23:53.8068686Z formally productive (Theorem Omega): 4554  not: 0
+2026-10-08T10:23:53.8079818Z deepest box first-coincidence depth: 51 specimen 1 11 17
+2026-10-08T10:23:53.8090377Z largest box graph: 249385 states, specimen 6 11 13
+2026-10-08T10:23:53.8101011Z most recurrent vertices: 2676 specimen 4 11 21
+2026-10-08T10:23:53.8111712Z deepest recurrent first left-aligned depth: 17 specimen 1 23 21
+2026-10-08T10:23:53.8122234Z recurrent vertices in total: 1174788
+2026-10-08T10:23:53.8133338Z K_V by specimen, nonunimodular: 4:24 5:138 6:252 7:288 8:360 9:228 10:192 11:120 12:36 13:48 14:72 15:120 16:36 17:12
+2026-10-08T10:23:53.8145634Z K_V by specimen, unimodular real: 2:108 3:198 4:234 5:102 6:6
+2026-10-08T10:23:53.8156019Z K_V by specimen, unimodular complex: 2:210 3:612 4:588 5:336 6:120 7:84 8:18 14:12
+2026-10-08T10:23:53.8289161Z Post job cleanup.
+2026-10-08T10:23:53.9116142Z [command]/usr/bin/git version
+2026-10-08T10:23:53.9157717Z git version 2.55.0
+2026-10-08T10:23:53.9206572Z Temporarily overriding HOME='/home/runner/work/_temp/ceee7920-69ce-4748-965e-a0873b4eebe3' before making global git config changes
+2026-10-08T10:23:53.9207789Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-08T10:23:53.9209224Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research
+2026-10-08T10:23:53.9247296Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-08T10:23:53.9278468Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-08T10:23:53.9482717Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-08T10:23:53.9508546Z http.https://github.com/.extraheader
+2026-10-08T10:23:53.9520981Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-08T10:23:53.9552586Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-08T10:23:53.9784138Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-08T10:23:53.9816823Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-08T10:23:54.0165019Z Cleaning up orphan processes
+2026-10-08T10:23:54.0467404Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+
+2026-10-08T09:53:18.2662505Z Vertex coincidence census (Proposition V), specimens: 24486
+2026-10-08T09:53:18.2665143Z holds for every r: 24486  capped: 0  fails: 0
+2026-10-08T09:53:18.2665390Z formally productive (Theorem Omega): 24486  not: 0
+2026-10-08T09:53:18.2665600Z deepest box first-coincidence depth: 104 specimen 1 38 56
+2026-10-08T09:53:18.2665816Z largest box graph: 1342201 states, specimen 1 38 56
+2026-10-08T09:53:18.2666031Z most recurrent vertices: 14938 specimen 1 254 4
+2026-10-08T09:53:18.2666240Z deepest recurrent first left-aligned depth: 25 specimen 1 38 56
+2026-10-08T09:53:18.2666440Z recurrent vertices in total: 7891548
+2026-10-08T09:53:18.2666829Z K_V by specimen, nonunimodular: 2:12 3:192 4:1146 5:2346 6:2394 7:1662 8:1002 9:780 10:984 11:612 12:336 13:342 14:288 15:420 16:204 17:72 18:36 19:12 20:48 21:12 23:108 24:60 25:24
+2026-10-08T09:53:18.2667228Z K_V by specimen, unimodular real: 2:486 3:1230 4:750 5:198 6:66 7:6
+2026-10-08T09:53:18.2667899Z K_V by specimen, unimodular complex: 1:48 2:1626 3:3144 4:2016 5:1116 6:408 7:168 8:54 9:60 10:6 14:12
+2026-10-08T09:53:18.3041456Z Vertex coincidence census (Proposition V), specimens: 24486
+2026-10-08T09:53:18.3050611Z holds for every r: 24486  capped: 0  fails: 0
+2026-10-08T09:53:18.3059769Z formally productive (Theorem Omega): 24486  not: 0
+2026-10-08T09:53:18.3108683Z ##[group]Run actions/upload-artifact@v4
+2026-10-08T09:53:18.3108843Z with:
+2026-10-08T09:53:18.3108962Z   name: box-automaton-total-8
+2026-10-08T09:53:18.3109107Z   path: kernel/box-total-8.log
+2026-10-08T09:53:18.3109245Z   if-no-files-found: warn
+2026-10-08T09:53:18.3109371Z   compression-level: 6
+2026-10-08T09:53:18.3109490Z   overwrite: false
+2026-10-08T09:53:18.3109607Z   include-hidden-files: false
+2026-10-08T09:38:46.2613567Z Vertex coincidence census (Proposition V), specimens: 11327
+2026-10-08T09:38:46.2614071Z holds for every r: 11327  capped: 0  fails: 0
+2026-10-08T09:38:46.2614411Z formally productive (Theorem Omega): 11327  not: 0
+2026-10-08T09:38:46.2614789Z deepest box first-coincidence depth: 75 specimen 106 16 25
+2026-10-08T09:38:46.2615194Z largest box graph: 1432357 states, specimen 117 74 25
+2026-10-08T09:38:46.2615646Z most recurrent vertices: 27692 specimen 114 17 25
+2026-10-08T09:38:46.2616082Z deepest recurrent first left-aligned depth: 26 specimen 106 22 25
+2026-10-08T09:38:46.2616504Z recurrent vertices in total: 8332554
+2026-10-08T09:38:46.2617104Z K_V by specimen, nonunimodular: 2:4 3:192 4:1127 5:1810 6:1333 7:630 8:249 9:194 10:348 11:738 12:413 13:108 14:123 15:89 16:61 17:16 18:6 19:4 20:2 22:6 23:10 24:14 25:14 26:4
+2026-10-08T09:38:46.2618093Z K_V by specimen, unimodular real: 2:86 3:328 4:372 5:215 6:211 7:53
+2026-10-08T09:38:46.2618680Z K_V by specimen, unimodular complex: 1:4 2:218 3:1073 4:833 5:345 6:74 7:16 8:1 9:3
+2026-10-08T09:38:46.2894679Z Vertex coincidence census (Proposition V), specimens: 11327
+2026-10-08T09:38:46.2904168Z holds for every r: 11327  capped: 0  fails: 0
+2026-10-08T09:38:46.2912187Z formally productive (Theorem Omega): 11327  not: 0
+2026-10-08T09:38:46.2975663Z ##[group]Run actions/upload-artifact@v4
+2026-10-08T09:38:46.2975971Z with:
+2026-10-08T09:38:46.2976243Z   name: box-automaton-len4-11
+2026-10-08T09:38:46.2976506Z   path: kernel/box-len4-11.log
+2026-10-08T09:38:46.2976764Z   if-no-files-found: warn
+2026-10-08T09:38:46.2977000Z   compression-level: 6
+2026-10-08T09:38:46.2977240Z   overwrite: false
+2026-10-08T09:38:46.2977474Z   include-hidden-files: false
+2026-10-08T10:10:00.3366256Z Vertex coincidence census (Proposition V), specimens: 11333
+2026-10-08T10:10:00.3367150Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:10:00.3368170Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T10:10:00.3368819Z deepest box first-coincidence depth: 89 specimen 72 12 1
+2026-10-08T10:10:00.3369462Z largest box graph: 1432357 states, specimen 78 38 97
+2026-10-08T10:10:00.3370331Z most recurrent vertices: 19638 specimen 80 34 12
+2026-10-08T10:10:00.3371043Z deepest recurrent first left-aligned depth: 26 specimen 80 22 25
+2026-10-08T10:10:00.3371697Z recurrent vertices in total: 7428620
+2026-10-08T10:10:00.3372764Z K_V by specimen, nonunimodular: 2:8 3:230 4:1381 5:1776 6:1193 7:521 8:250 9:240 10:291 11:633 12:447 13:79 14:88 15:90 16:52 17:18 18:11 19:2 22:5 23:14 24:6 25:6 26:1
+2026-10-08T10:10:00.3374450Z K_V by specimen, unimodular real: 2:96 3:424 4:462 5:230 6:171 7:38
+2026-10-08T10:10:00.3375280Z K_V by specimen, unimodular complex: 1:7 2:280 3:1050 4:836 5:313 6:58 7:21 8:2 9:3
+2026-10-08T10:10:00.3811558Z Vertex coincidence census (Proposition V), specimens: 11333
+2026-10-08T10:10:00.3824608Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:10:00.3837980Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T10:10:00.3910864Z ##[group]Run actions/upload-artifact@v4
+2026-10-08T10:10:00.3911176Z with:
+2026-10-08T10:10:00.3911388Z   name: box-automaton-len4-08
+2026-10-08T10:10:00.3911647Z   path: kernel/box-len4-08.log
+2026-10-08T10:10:00.3911896Z   if-no-files-found: warn
+2026-10-08T10:10:00.3912125Z   compression-level: 6
+2026-10-08T10:10:00.3912340Z   overwrite: false
+2026-10-08T10:10:00.3912554Z   include-hidden-files: false
+2026-10-08T09:52:31.6789115Z Vertex coincidence census (Proposition V), specimens: 11333
+2026-10-08T09:52:31.6789808Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T09:52:31.6790356Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T09:52:31.6793424Z deepest box first-coincidence depth: 65 specimen 13 38 48
+2026-10-08T09:52:31.6794291Z largest box graph: 911329 states, specimen 13 38 66
+2026-10-08T09:52:31.6795339Z most recurrent vertices: 19638 specimen 13 38 66
+2026-10-08T09:52:31.6796270Z deepest recurrent first left-aligned depth: 26 specimen 13 57 12
+2026-10-08T09:52:31.6797078Z recurrent vertices in total: 4201450
+2026-10-08T09:52:31.6798775Z K_V by specimen, nonunimodular: 2:6 3:180 4:969 5:1882 6:1861 7:1097 8:374 9:184 10:204 11:205 12:167 13:119 14:88 15:125 16:62 17:15 18:12 19:6 20:4 23:4 24:4 25:5 26:2
+2026-10-08T09:52:31.6800707Z K_V by specimen, unimodular real: 2:230 3:603 4:307 5:146 6:42 7:10
+2026-10-08T09:52:31.6801297Z K_V by specimen, unimodular complex: 1:4 2:305 3:937 4:704 5:314 6:112 7:28 8:8 9:4 14:4
+2026-10-08T09:52:31.7208311Z Vertex coincidence census (Proposition V), specimens: 11333
+2026-10-08T09:52:31.7220465Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T09:52:31.7234066Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T09:52:31.7307457Z ##[group]Run actions/upload-artifact@v4
+2026-10-08T09:52:31.7307765Z with:
+2026-10-08T09:52:31.7307969Z   name: box-automaton-len4-01
+2026-10-08T09:52:31.7308228Z   path: kernel/box-len4-01.log
+2026-10-08T09:52:31.7308481Z   if-no-files-found: warn
+2026-10-08T09:52:31.7308708Z   compression-level: 6
+2026-10-08T09:52:31.7308917Z   overwrite: false
+2026-10-08T09:52:31.7309131Z   include-hidden-files: false
+2026-10-08T10:22:21.8479487Z Vertex coincidence census (Proposition V), specimens: 11333
+2026-10-08T10:22:21.8480203Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:22:21.8480758Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T10:22:21.8481391Z deepest box first-coincidence depth: 104 specimen 25 97 0
+2026-10-08T10:22:21.8482050Z largest box graph: 1432357 states, specimen 25 84 41
+2026-10-08T10:22:21.8482640Z most recurrent vertices: 27692 specimen 23 12 97
+2026-10-08T10:22:21.8483349Z deepest recurrent first left-aligned depth: 26 specimen 21 45 12
+2026-10-08T10:22:21.8484323Z recurrent vertices in total: 8273900
+2026-10-08T10:22:21.8485479Z K_V by specimen, nonunimodular: 2:3 3:143 4:1167 5:1234 6:1025 7:557 8:401 9:386 10:424 11:410 12:357 13:149 14:137 15:119 16:49 17:16 18:22 19:15 20:6 22:20 23:54 24:44 25:29 26:5
+2026-10-08T10:22:21.8487226Z K_V by specimen, unimodular real: 2:169 3:593 4:566 5:252 6:69 7:23
+2026-10-08T10:22:21.8488005Z K_V by specimen, unimodular complex: 1:2 2:290 3:1069 4:993 5:429 6:85 7:16 8:3 9:2
+2026-10-08T10:22:21.8903338Z Vertex coincidence census (Proposition V), specimens: 11333
+2026-10-08T10:22:21.8915286Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:22:21.8927978Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T10:22:21.8997087Z ##[group]Run actions/upload-artifact@v4
+2026-10-08T10:22:21.8997400Z with:
+2026-10-08T10:22:21.8997613Z   name: box-automaton-len4-03
+2026-10-08T10:22:21.8997868Z   path: kernel/box-len4-03.log
+2026-10-08T10:22:21.8998118Z   if-no-files-found: warn
+2026-10-08T10:22:21.8998347Z   compression-level: 6
+2026-10-08T10:22:21.8998560Z   overwrite: false
+2026-10-08T10:22:21.8998769Z   include-hidden-files: false
+2026-10-08T09:59:31.8608507Z Vertex coincidence census (Proposition V), specimens: 11333
+2026-10-08T09:59:31.8609334Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T09:59:31.8610014Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T09:59:31.8610788Z deepest box first-coincidence depth: 75 specimen 30 12 48
+2026-10-08T09:59:31.8611877Z largest box graph: 1337441 states, specimen 30 41 25
+2026-10-08T09:59:31.8612512Z most recurrent vertices: 27692 specimen 31 12 77
+2026-10-08T09:59:31.8613331Z deepest recurrent first left-aligned depth: 26 specimen 30 12 42
+2026-10-08T09:59:31.8614008Z recurrent vertices in total: 5626204
+2026-10-08T09:59:31.8615165Z K_V by specimen, nonunimodular: 2:5 3:180 4:1389 5:1404 6:1026 7:455 8:197 9:182 10:248 11:425 12:302 13:104 14:99 15:59 16:27 17:10 18:6 19:3 20:2 22:7 23:11 24:16 25:9 26:1
+2026-10-08T09:59:31.8616872Z K_V by specimen, unimodular real: 1:1 2:223 3:728 4:650 5:389 6:116 7:29
+2026-10-08T09:59:31.8617739Z K_V by specimen, unimodular complex: 1:6 2:384 3:1314 4:937 5:311 6:60 7:15 8:1 9:2
+2026-10-08T09:59:31.9034841Z Vertex coincidence census (Proposition V), specimens: 11333
+2026-10-08T09:59:31.9047418Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T09:59:31.9060144Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T09:59:31.9131945Z ##[group]Run actions/upload-artifact@v4
+2026-10-08T09:59:31.9132276Z with:
+2026-10-08T09:59:31.9132487Z   name: box-automaton-len4-04
+2026-10-08T09:59:31.9132747Z   path: kernel/box-len4-04.log
+2026-10-08T09:59:31.9133012Z   if-no-files-found: warn
+2026-10-08T09:59:31.9133239Z   compression-level: 6
+2026-10-08T09:59:31.9133456Z   overwrite: false
+2026-10-08T09:59:31.9133669Z   include-hidden-files: false
+2026-10-08T10:02:47.6354035Z Vertex coincidence census (Proposition V), specimens: 11333
+2026-10-08T10:02:47.6355082Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:02:47.6355956Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T10:02:47.6357458Z deepest box first-coincidence depth: 96 specimen 68 12 1
+2026-10-08T10:02:47.6358244Z largest box graph: 1432357 states, specimen 56 118 12
+2026-10-08T10:02:47.6358755Z most recurrent vertices: 27692 specimen 56 33 25
+2026-10-08T10:02:47.6359310Z deepest recurrent first left-aligned depth: 25 specimen 60 2 12
+2026-10-08T10:02:47.6359845Z recurrent vertices in total: 6077956
+2026-10-08T10:02:47.6360799Z K_V by specimen, nonunimodular: 2:8 3:266 4:2018 5:1731 6:1085 7:509 8:280 9:241 10:320 11:446 12:328 13:81 14:56 15:65 16:37 17:12 18:5 19:5 20:3 22:5 23:6 24:10 25:5
+2026-10-08T10:02:47.6362161Z K_V by specimen, unimodular real: 2:199 3:574 4:413 5:238 6:106 7:29
+2026-10-08T10:02:47.6362840Z K_V by specimen, unimodular complex: 1:1 2:301 3:962 4:627 5:273 6:71 7:15 9:2
+2026-10-08T10:02:47.6687380Z Vertex coincidence census (Proposition V), specimens: 11333
+2026-10-08T10:02:47.6699810Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:02:47.6712062Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T10:02:47.6787600Z ##[group]Run actions/upload-artifact@v4
+2026-10-08T10:02:47.6787939Z with:
+2026-10-08T10:02:47.6788156Z   name: box-automaton-len4-07
+2026-10-08T10:02:47.6788421Z   path: kernel/box-len4-07.log
+2026-10-08T10:02:47.6788675Z   if-no-files-found: warn
+2026-10-08T10:02:47.6788907Z   compression-level: 6
+2026-10-08T10:02:47.6789118Z   overwrite: false
+2026-10-08T10:02:47.6789330Z   include-hidden-files: false
+2026-10-08T10:20:41.4579911Z Vertex coincidence census (Proposition V), specimens: 11333
+2026-10-08T10:20:41.4580590Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:20:41.4581122Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T10:20:41.4581698Z deepest box first-coincidence depth: 70 specimen 17 12 81
+2026-10-08T10:20:41.4582259Z largest box graph: 915081 states, specimen 15 38 40
+2026-10-08T10:20:41.4582763Z most recurrent vertices: 24768 specimen 17 12 97
+2026-10-08T10:20:41.4583348Z deepest recurrent first left-aligned depth: 26 specimen 15 41 12
+2026-10-08T10:20:41.4583900Z recurrent vertices in total: 6355858
+2026-10-08T10:20:41.4584897Z K_V by specimen, nonunimodular: 2:6 3:101 4:1022 5:1253 6:1118 7:461 8:205 9:146 10:234 11:564 12:302 13:101 14:99 15:103 16:26 17:18 18:8 19:12 22:10 23:22 24:16 25:13 26:4
+2026-10-08T10:20:41.4586426Z K_V by specimen, unimodular real: 2:198 3:747 4:641 5:245 6:174 7:37
+2026-10-08T10:20:41.4587300Z K_V by specimen, unimodular complex: 1:4 2:415 3:1436 4:1152 5:365 6:61 7:11 8:3
+2026-10-08T10:20:41.5034657Z Vertex coincidence census (Proposition V), specimens: 11333
+2026-10-08T10:20:41.5048263Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:20:41.5061754Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T10:20:41.5132582Z ##[group]Run actions/upload-artifact@v4
+2026-10-08T10:20:41.5132876Z with:
+2026-10-08T10:20:41.5133088Z   name: box-automaton-len4-02
+2026-10-08T10:20:41.5133343Z   path: kernel/box-len4-02.log
+2026-10-08T10:20:41.5133596Z   if-no-files-found: warn
+2026-10-08T10:20:41.5133826Z   compression-level: 6
+2026-10-08T10:20:41.5134041Z   overwrite: false
+2026-10-08T10:20:41.5134255Z   include-hidden-files: false

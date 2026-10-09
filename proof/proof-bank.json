@@ -2318,12 +2318,12 @@
     },
     {
       "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md",
-      "line": 72,
+      "line": 74,
       "statement_heading": "## 3. Lemma Ω1 (finite descent, and cycles in the box)"
     },
     {
       "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md",
-      "line": 107,
+      "line": 112,
       "statement_heading": "## 4. Theorem Ω (formal productivity is one automaton property)"
     },
     {

@@ -298,8 +298,8 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/p1b-vertex-coincidence-box-2026-10-02.md:879](../docs/p1b-vertex-coincidence-box-2026-10-02.md#L879) | this places T2 where the rest of this note places PPVC: in exact interleaving |
 | [docs/p1b-vertex-coincidence-box-2026-10-02.md:958](../docs/p1b-vertex-coincidence-box-2026-10-02.md#L958) | aligned strong coincidence it is not weaker than tile coincidence of the §1 |
 | [docs/p1b-vertex-coincidence-box-2026-10-02.md:1063](../docs/p1b-vertex-coincidence-box-2026-10-02.md#L1063) | substitution (no witness) and 0 -> 1, 1 -> 22, 2 -> 012, the first total Q1 |
-| [docs/pds-certificate-from-the-box-automaton-2026-10-07.md:72](../docs/pds-certificate-from-the-box-automaton-2026-10-07.md#L72) | ## 3. Lemma Ω1 (finite descent, and cycles in the box) |
-| [docs/pds-certificate-from-the-box-automaton-2026-10-07.md:107](../docs/pds-certificate-from-the-box-automaton-2026-10-07.md#L107) | ## 4. Theorem Ω (formal productivity is one automaton property) |
+| [docs/pds-certificate-from-the-box-automaton-2026-10-07.md:74](../docs/pds-certificate-from-the-box-automaton-2026-10-07.md#L74) | ## 3. Lemma Ω1 (finite descent, and cycles in the box) |
+| [docs/pds-certificate-from-the-box-automaton-2026-10-07.md:112](../docs/pds-certificate-from-the-box-automaton-2026-10-07.md#L112) | ## 4. Theorem Ω (formal productivity is one automaton property) |
 | [docs/prefix-translation-normal-form-2026-09-18.md:47](../docs/prefix-translation-normal-form-2026-09-18.md#L47) | **Proposition 2.1 (characteristic-recurrence normal form).** For every |
 | [docs/proof-ladder.md:91](../docs/proof-ladder.md#L91) | child closure and nonproductivity with the exact cycle identity, not loop |
 | [docs/sink-scc-reduction.md:19](../docs/sink-scc-reduction.md#L19) | ### Lemma 1 |

@@ -1,0 +1,11 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+[PASS] test_named_specimens_hold_for_every_r
+[PASS] test_the_box_holds_every_aligned_pair
+[PASS] test_the_seed_graph_is_not_a_formal_certificate
+[PASS] test_every_integral_centre_offset_lies_in_the_box
+[PASS] test_seed_graph_cycles_lie_in_the_box_graph
+[PASS] test_a_capped_box_graph_is_never_a_verdict
+[PASS] test_census_slices_are_pinned
+contract-receipt: box-graph vertex coincidence (Proposition V): tribonacci 14/3, cube 1166/17, golden pump 716/15 hold for every r; every integral centre offset and every seed-graph cycle vertex lies in the box; a capped box graph is not a verdict; census slices pinned: first 300 standing specimens 59372 recurrent, K_V 17, 5221392 states; first 100 images-of-length-4 specimens 14180 recurrent, K_V 15, 1116030 states
+contract-receipt: box-automaton formal productivity (Theorem Omega): every box vertex reaches a coincidence on tribonacci D 8 S 1, cube D 51 S 7, golden pump D 39 S 6, plastic D 33 S 15; the box holds the six aligned pairs; the seed graph misses 0/38/100/16 box cycle vertices; census slices productive with box D 51 and 38; a capped box graph is not productive
+claim-receipt: BoundedPureDiscreteSpectrum

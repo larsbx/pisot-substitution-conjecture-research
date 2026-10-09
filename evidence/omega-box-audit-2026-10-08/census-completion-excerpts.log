@@ -1,0 +1,12 @@
+JOB 113228208858
+2026-10-08T09:45:33.8720675Z [36;1mgrep -Fx 'holds for every r: 11333  capped: 0  fails: 0' box-len4-09.log[0m
+2026-10-08T09:45:33.8721270Z [36;1mgrep -Fx 'formally productive (Theorem Omega): 11333  not: 0' box-len4-09.log[0m
+2026-10-08T10:39:06.2644882Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:39:06.2645567Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T10:39:06.2667602Z deepest box first-coincidence depth: 104 specimen 84 2 12
+2026-10-08T10:39:06.2668462Z largest box graph: 1383391 states, specimen 81 40 1
+2026-10-08T10:39:06.2669102Z most recurrent vertices: 27692 specimen 81 38 19
+2026-10-08T10:39:06.2670125Z deepest recurrent first left-aligned depth: 26 specimen 82 16 25
+2026-10-08T10:39:06.2670841Z recurrent vertices in total: 6806776
+2026-10-08T10:39:06.3075354Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:39:06.3087877Z formally productive (Theorem Omega): 11333  not: 0

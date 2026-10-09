@@ -1,8 +1,9 @@
 # A per-specimen PDS certificate from one finite automaton — 2026-10-07
 
 **Status:** research note. Lemma Ω1 and Theorem Ω are proved here from
-elementary facts. Consequence (a) imports Lee–Moody–Solomyak 2003 and
-Lee–Solomyak 2012 (§7 is the stop/go record for that import). Consequence (b)
+elementary facts. Consequence (a) imports Lee–Moody–Solomyak 2003,
+Lee–Solomyak 2012, Akiyama–Lee 2011 and Clark–Sadun 2003 (§7 records the
+literature stop/go). Consequence (b)
 uses manuscript Theorem 5.38. Consequence (c) uses Proposition 1 of
 `bpa-termination-by-overlap-depth-2026-10-02.md`, which is re-derived in §6.
 §6 also re-derives, independently, the October 4 necessity chain (Lemma C,
@@ -50,10 +51,11 @@ wanted (consequence (c)), without building `B_sigma`.
 ## 2. Setting
 
 `sigma` is primitive irreducible Pisot on `{0,1,2}`. It has incidence `M`,
-Perron root `beta`, and tile lengths `ell` (`ell M = beta ell`), normalized
-in `Q(beta)`, with `Q`-independent coordinates. These three coordinates form
-a `Q`-basis of the cubic field. For a complex conjugate pair, the embedding
-coordinates below are read as their real and imaginary parts.
+Perron root `beta`, and tile lengths `ell` (`ell M = beta ell`) with
+`Q`-independent coordinates. Choose their common positive scale so that
+`ell ∈ Q(beta)^3`, as in the kernel. The three lengths are then a rational
+basis of the cubic field. For a complex conjugate pair, use real and
+imaginary parts as the embedding coordinates below.
 
 - **Potential overlap.** A triple `x = (i, j, t)` with `t = <ell, w>`,
   `w ∈ Z^3`, and `−ell_j < t < ell_i`, so that the open tiles `(0, ell_i)`
@@ -79,18 +81,21 @@ Proposition V (`psc.vertex_coincidence.box_radii`, all bounds exact).
 
 *Proof.* Let `sigma_k` range over the contracting embeddings of `Q(beta)`.
 Put `mu_k = |sigma_k(beta)| < 1`, `C_k = max_{c ∈ F} |sigma_k(c)|` and
-`B_k = C_k / (1 − mu_k)`. Along a path `t_{n+1} = beta t_n + c_n` we have
+`B_k = C_k / (1 − mu_k)`. The length lattice is stable under multiplication
+by `beta`, since `beta <ell,w> = <ell,Mw>`. Along a path
+`t_{n+1} = beta t_n + c_n` we have
 `|sigma_k(t_{n+1})| <= mu_k |sigma_k(t_n)| + C_k`. Hence
 `|sigma_k(t_n)| <= max(|sigma_k(t_0)|, B_k)` for every `n`, and
 `|t_n| < ell_max` because the tiles meet.
 
-1. The map `w ↦ (<ell, w>, (sigma_k(<ell, w>))_k)` embeds `Z^3` as a lattice
-   in `R^3`. It is injective because the coordinates of `ell` are
-   `Q`-independent, and its image is discrete because it is a full-rank
-   image of `Z^3`: the embedding matrix of a field basis is nonsingular
-   (equivalently, its trace pairing is nondegenerate). So only finitely many
-   `w` satisfy the bounds above. A finite start set therefore also has finite
-   inflation closure.
+1. Use the Minkowski embedding of `Q(beta)`: all three real embeddings,
+   or the Perron embedding together with the real and imaginary parts of
+   one complex embedding. Since the lengths are a rational basis, the
+   embedding matrix is invertible over `R` (equivalently, the field's trace
+   pairing is nondegenerate). Its image of `Z^3` is therefore a full-rank
+   lattice in `R^3`. Only finitely many `w` lie in the compact region bounded
+   above. Injectivity alone would not imply discreteness. A finite start set
+   therefore also has finite inflation closure.
 2. On a cycle of period `p`, iterating the recursion gives
    `sigma_k(t_0) (1 − sigma_k(beta)^p) = sum_{n<p} sigma_k(beta)^n sigma_k(c_{p−1−n})`.
    Hence `|sigma_k(t_0)| <= B_k`. With `|t_0| < ell_max` and
@@ -133,28 +138,56 @@ contains SC_all, and `S(sigma)` can be read off `𝔅`
 - **(a) PDS by the literature only.** The overlaps of Lee–Moody–Solomyak are
   triples `(T, y, S)`. Here `T` and `S` are tiles of the self-similar tiling,
   `y ∈ Ξ` (translations between tiles of one type), and the supports of
-  `y + T` and `S` meet in an interior point. In dimension one their classes
-  are determined by `(i, j, t)` with `t ∈ Z⟨ell⟩` (LMS Lemma 6.8, proof).
-  Fixing one tile start as origin, every other tile-start displacement is an
-  integral sum of tile lengths; the same holds for `y` and hence for the
-  offset of this triple. Their edges are exactly our children. So every LMS overlap is a potential
-  overlap, and FP gives condition (iii) of LMS Lemma 6.9: from each vertex of
-  `G_O(T)` there is a path to a coincidence.
-  - Use a repetitive legal fixed tiling for a power of the substitution;
-    its hull is the same primitive substitution tiling space. `Ξ` is Meyer
-    because `beta` is Pisot (Lee–Solomyak 2012, Thm 4.3; the scalar
-    expansion is diagonalizable and has one eigenvalue of multiplicity one).
-    Same-type return vectors are contained in the difference set of the Meyer
-    control points, so the Meyer hypothesis of LMS holds. Passing to a power
-    groups child steps and preserves coincidence reachability.
+  `y + T` and `S` meet in an interior point. Write their left endpoints as
+  `u_i+y` and `u_j`. Anchoring the first at zero gives our signed offset
+  `t = u_j-u_i-y`. Endpoint differences and same-type return translations
+  are integer sums of tile lengths, so `t ∈ Z⟨ell⟩`. The classes are
+  determined by these types and offset (LMS Lemma 6.8, proof); the published
+  offset `u_i+y-u_j` is `-t`. Child offsets are exactly
+  `beta t + prefix_bottom-prefix_top`, and coincidence is equal types with
+  zero offset. Thus every realized overlap and its descendants are included
+  in our formal overlap graph. No equality of the two whole graphs is needed.
+
+  LMS requires a repetitive fixed tiling. Choose a power `sigma^p` admitting
+  one: choose `sigma^p(a) = u a v` with both `u` and `v` nonempty, possible
+  by primitivity and growth. With `Q = beta^p`, place the tile `a` at left
+  endpoint `-x`, where `x = length(u)/(Q-1)` lies strictly inside that tile.
+  Its substituted copy of `a` has the same endpoint, so inflation gives
+  nested legal patches exhausting both directions. Primitivity supplies
+  repetitivity, and finite tile types give FLC. This power step is needed
+  for some named specimens; the first-letter map of the cube specimen is a
+  three-cycle.
+  Every coincidence persists under further substitution, so pad its witness
+  depth to a multiple of `p`. The realized `sigma^p` overlap graph consequently
+  satisfies LMS Lemma 6.9(iii). Its edges are length-`p` paths of geometric
+  children, and its expansion is `beta^p`, still Pisot. Its hull is the same
+  primitive substitution tiling space.
+  - `Ξ` is Meyer because `beta^p` is Pisot (Akiyama–Lee 2011, Thm 2.7;
+    Lee–Solomyak 2012, Thm 4.3 and Cor. 2.13 give the control-point form).
+    In `d = 1` the scalar expansion is diagonalizable and its sole eigenvalue
+    has multiplicity one, so the algebraic-conjugacy/multiplicity hypotheses
+    hold. Same-type return vectors are contained in the difference set of
+    the Meyer control points, which also supplies the Meyer hypothesis of LMS.
   - LMS Lemma 6.9 with Theorem 4.7 (equivalently Akiyama–Lee 2011,
     Thm 2.5) then gives pure discrete spectrum of the tiling flow.
 
-  Neither unimodularity nor irreducibility is used beyond Pisot inflation.
+  Neither unimodularity nor irreducibility is needed for this tiling-flow
+  conclusion beyond Pisot inflation.
+  For the symbolic conclusion, use Clark–Sadun 2003, Thm 3.1 and Cor. 3.2:
+  for a primitive aperiodic substitution with only one incidence eigenvalue
+  of modulus at least one, its Perron-length flow is conjugate to a
+  constant-roof suspension after rescaling. PIP has precisely that spectrum
+  and is aperiodic: periodic letter frequencies would be rational and force
+  a rational Perron root.
+  The time-`c` map of a roof-`c` suspension is the subshift map times the
+  identity on the roof coordinate. Functions depending only on the subshift
+  coordinate form an invariant subspace of this pure-point unitary operator,
+  so the subshift also has PDS. This bridge does use
+  the full PIP spectral hypothesis, and assumes no unimodularity.
 - **(b) PDS by the manuscript route.** Every overlap reachable from a swap
   seed is a potential overlap, so FP gives `OP_seed`. Theorem 5.38 (Lemma
   5.36 and the imported Barge–Štimac–Williams theorem) gives PDS. Routes (a)
-  and (b) share no step after FP.
+  and (b) use different flow-level sufficiency theorems after FP.
 - **(c) Termination with coincidence from every swap seed.** FP gives
   productivity of the whole seed-patch graph from every seed. Proposition 1
   of the depth note then bounds every state of `B_sigma` reached at level
@@ -304,29 +337,37 @@ Each step was re-derived from its statement and not from the notes' proofs.
     is determined by `i`, `j` and `u_i + y − u_j`); Lemma 6.9 ((i) density
     one ⇔ (iii) from each vertex of `G_O(T)` a path to a coincidence).
   - Lee–Solomyak, *Pisot family self-affine tilings, discrete spectrum, and
-    the Meyer property*, DCDS-A 32 (2012), arXiv:1002.0039: Def. 2.3,
+    the Meyer property*, DCDS-A 32 (2012), arXiv:1002.0039: Def. 2.7,
     Thm 4.3 ((i) Pisot family ⇔ (iv) control points Meyer), Cor. 2.13.
   - Akiyama–Lee, *Algorithm for determining pure pointedness of self-affine
     tilings*, Adv. Math. 226 (2011), arXiv:1003.2898: Def. 2.4, Thm 2.5,
     Thm 2.7.
+  - Clark–Sadun, *When size matters: subshifts and their related tiling
+    spaces*, ETDS 23 (2003), arXiv:math/0201152: Thm 3.1 and Cor. 3.2
+    (length-change conjugacy under the PIP incidence spectrum).
   - Solomyak 1997, Thm 6.2, is the `d <= 2` original. Its full text was not
     obtained, and LMS is the cited source.
 - **Transfers.** The hypotheses (primitive tile substitution, repetitive
-  fixed point, FLC, `Ξ` Meyer, expanding `Q = beta`) all hold for the
-  suspension of a primitive Pisot substitution with left Perron lengths. No
-  unimodularity appears.
+  fixed point, FLC, `Ξ` Meyer, expanding `Q = beta^p`) hold for a legal
+  repetitive fixed tiling of a suitable substitution power, as described in
+  (a). Its tiling space is the same as that of `sigma`. No unimodularity
+  appears.
 - **Boundaries.**
   - The theorems quantify over overlaps that occur. FP quantifies over a
     superset, which is fine for sufficiency only.
   - "Reaches a coincidence" means that some path does.
-  - Uniformity of the depth follows from finiteness (LMS Lemma 6.9, proof;
-    here also Lemma Ω1).
-  - The conclusion is for the `R`-action. The passage to the `Z`-subshift
-    is the standard one already used by the manuscript.
+  - Uniformity of the depth on the realized overlap classes follows from
+    their finiteness under the Meyer hypothesis (LMS Lemmas 6.8–6.9).
+    Lemma Ω1 proves finiteness separately for each formal starting overlap;
+    it does not assert a uniform depth over all formal starting offsets.
+  - The literature criterion concludes PDS for the `R`-action. The passage
+    to the `Z`-subshift uses Clark–Sadun Cor. 3.2 and the constant-roof
+    suspension argument in (a), with the full PIP incidence spectrum.
 - **Negative control.** Akiyama–Lee 2014 Example 4.7 (reducible) has
   overlap coincidence but fails strong coincidence. Irreducibility is not
-  needed for (a), but SC_all is not a consequence of PDS without it. This
-  note uses SC_all only as part of (ii), which it checks.
+  needed for the overlap-to-flow implication, but the symbolic bridge in (a)
+  uses the full PIP spectrum, and SC_all is not a consequence of PDS without
+  irreducibility. This note uses SC_all only as part of (ii), which it checks.
 - **Decision: proceed.** Record (a) as a literature-backed sufficiency
   route. Restrict novelty to Lemma Ω1 + Theorem Ω, the one-automaton
   certificate.
@@ -346,7 +387,20 @@ and on pull requests that touch the kernel or this note. Each job requires
 not: 0`. Until that workflow has run green, the two larger rows remain
 recorded runs, as before.
 
+**2026-10-08 completion:** all thirteen larger-domain jobs and all twenty
+main research jobs are green at PR #233 final head `72f173d`. The twelve
+images ≤ 4 slices directly certify 135,990 productive specimens, and the
+total-length ≤ 8 job certifies 24,486, with no caps or failures. Exact
+intersection counting gives the 145,806-member union. The dated snapshots,
+verbatim output excerpts and remaining independent-review gate are in
+[`audit-theorem-omega-2026-10-08.md`](audit-theorem-omega-2026-10-08.md).
+
 ## 9. What this does not do
+
+The audit of PR #233's final head, including the power/fixed-point bridge,
+signed dictionary, exact replay and current-head CI observations, is in
+[`audit-theorem-omega-2026-10-08.md`](audit-theorem-omega-2026-10-08.md).
+Independent review and completed evidence runs remain acceptance conditions.
 
 - It proves neither FP nor PDS for all PIP substitutions. Theorem Ω is a
   per-specimen certificate, and #84, #138 and #139 are untouched.

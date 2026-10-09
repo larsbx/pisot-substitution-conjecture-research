@@ -1,0 +1,52 @@
+
+[1m== Source provenance ==[0m
+sources/issue-45/p1a-concentration-aux-b-program.md: OK
+sources/issue-45/p1a-v34-concentration-audit.md: OK
+archive/2026-09-08/manuscripts/PSC_PROOF_v15.tex: OK
+archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md: OK
+  [32mPASS[0m  Issue #45 snapshots match preserved source commits
+sources/minimal-bad-scc/MINIMAL_BAD_SCC_SETUP_NOTE.pdf: OK
+  [32mPASS[0m  minimal-bad-SCC historical proposal snapshot is intact
+OK: vendored packages match their pins (finite_exact, substitution_dynamics, finite_linear_algebra, claim_governance, proof_records, oracle_refinement, parallel_fold, proof_architecture, finite_graph, finite_automata, mojo_smoke, vendoring, polyglot_envelope).
+  [32mPASS[0m  vendored Mojo packages match the commits pinned in vendored.toml
+  [32mPASS[0m  generated ledger surfaces are current (tools/make_ledger.py --check)
+  [32mPASS[0m  generated mathematical-object catalogue is current
+  [32mPASS[0m  the polyglot envelope is the rendering of its vendored template
+OK manuscript sources: 6 required files present, 3 .tex/.pdf checked
+  [32mPASS[0m  manuscript sources are intact LaTeX and PDF
+OK Markdown source integrity: 157 file(s) checked
+  [32mPASS[0m  theorem/research Markdown contains no unexpected C0 controls
+OK standing: 97224 labelled failures in 360 specimens
+OK total8-first1000: 21390 labelled failures in 64 specimens
+OK len4-first1000: 31768 labelled failures in 47 specimens
+  [32mPASS[0m  committed finite-box hit-witness exports match their digests and stable labels
+  [32mPASS[0m  status surfaces agree with the claim ledger (claim_governance.toml)
+
+[1m== Mojo canonical exact implementation ==[0m
+  [33mSKIP[0m  Mojo layer (pixi not installed; curl -fsSL https://pixi.sh/install.sh | bash)
+
+[1m== Python secondary reference/oracle ==[0m
+  [32mPASS[0m  pytest oracle regressions
+
+[1m== TLA+ models ==[0m
+[PASS] MCTribonacci  all invariants hold
+[PASS] MCFlippedTribonacci  all invariants hold
+[PASS] MCSmith  all invariants hold
+[PASS] MCNonProductive  Productive violated as expected
+[PASS] MCLedgerOpen  all invariants hold
+[PASS] MCLedgerImports  all invariants hold
+[PASS] MCLedgerG1AndProducer  all invariants hold
+[PASS] MCLedgerG1Only  all invariants hold
+[PASS] MCLedgerG1AndC4  all invariants hold
+[PASS] MCLedgerRenewalGateAssumed  all invariants hold
+[PASS] MCLedgerSpectralGateAssumed  all invariants hold
+[PASS] MCLedgerOverlapGateAssumed  all invariants hold
+[PASS] MCLedgerAllSeedOverlapGateAssumed  all invariants hold
+[PASS] MCLedgerAllSeedStrictZipperGateAssumed  all invariants hold
+  [32mPASS[0m  all models
+
+[1m== Lean 4 proofs ==[0m
+  [31mFAIL[0m  lake build
+error: could not detect the configuration of the Lake installation
+
+13 checks run, 1 skipped. FAILURES above.

@@ -1,0 +1,4 @@
+REJECTED deleted child edge multiset differs at 0
+REJECTED wrong depth independent shortest depths differ
+REJECTED wrong field independent incidence polynomial differs
+REJECTED missing start duplicate state
