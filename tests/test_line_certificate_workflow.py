@@ -11,6 +11,7 @@ the driver's `CLASS AP BP AQ BQ AR BR`, `norm CLASS ...` and
 """
 
 import re
+from fnmatch import fnmatchcase
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -52,3 +53,33 @@ def test_the_workflow_runs_every_pinned_line_once():
     pins, runs = pinned_lines(), workflow_lines()
     assert len(runs) == len(set(runs))
     assert sorted(runs) == sorted(pins)
+
+
+def test_direct_driver_imports_trigger_the_evidence_workflow():
+    """Changing an imported certificate kernel must rerun its pinned rows."""
+    body = WORKFLOW.read_text(encoding="utf-8").split("    paths:\n", 1)[1].split("  schedule:", 1)[0]
+    patterns = re.findall(r"^\s*- '([^']+)'\s*$", body, re.M)
+    imports = re.findall(r"^from (psc\.\w+) import", DRIVER.read_text(encoding="utf-8"), re.M)
+    assert imports
+    required = {"kernel/" + module.replace(".", "/") + ".mojo" for module in imports}
+    missing = sorted(
+        path
+        for path in required
+        if not any(fnmatchcase(path, pattern) for pattern in patterns)
+    )
+    assert missing == [], f"certificate imports omitted from workflow triggers: {missing}"
+
+
+def test_each_evidence_matrix_fits_the_github_job_limit():
+    """GitHub rejects an entire matrix above 256 jobs before any pin runs."""
+    jobs = WORKFLOW.read_text(encoding="utf-8").split("jobs:\n", 1)[1]
+    blocks = re.findall(r"^  ([\w-]+):\n(.*?)(?=^  [\w-]+:\n|\Z)", jobs, re.M | re.S)
+    assert blocks
+    for name, body in blocks:
+        matrix = body.split("      matrix:\n", 1)[1].split("    name:", 1)[0]
+        assert matrix.startswith("        include:\n")  # explicit rows, no extra axes
+        assert all(LINE.fullmatch(row) for row in matrix.splitlines()[1:])
+        rows = LINE.findall(matrix)
+        assert 0 < len(rows) <= 256, f"{name}: {len(rows)} jobs exceeds the matrix limit"
+        assert "symbolic_line_certificate.mojo ${{ matrix.line }}" in body
+        assert "grep -Fx '  pinned verdict reproduced' line.log" in body

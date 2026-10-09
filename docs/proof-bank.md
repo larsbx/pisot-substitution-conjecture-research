@@ -264,9 +264,9 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/p1b-catch-up-free-ppvc-2026-10-07.md:37](../docs/p1b-catch-up-free-ppvc-2026-10-07.md#L37) | *Proposition Z (assembled; every input already recorded).* Let sigma be PIP, |
 | [docs/p1b-catch-up-free-ppvc-2026-10-07.md:174](../docs/p1b-catch-up-free-ppvc-2026-10-07.md#L174) | **Theorem L**: pure discrete spectrum and G1 for every member of that line. |
 | [docs/p1b-edge-progressions-2026-10-09.md:36](../docs/p1b-edge-progressions-2026-10-09.md#L36) | ## 2. Lemma EP (edge progressions) |
-| [docs/p1b-edge-progressions-2026-10-09.md:62](../docs/p1b-edge-progressions-2026-10-09.md#L62) | *Corollary EP′ (index dynamics).* Choose a coordinate functional φ with |
-| [docs/p1b-edge-progressions-2026-10-09.md:102](../docs/p1b-edge-progressions-2026-10-09.md#L102) | **Conjecture EP.** Near each Lemma P1 edge, on a line of fixed k_±: |
-| [docs/p1b-edge-progressions-2026-10-09.md:199](../docs/p1b-edge-progressions-2026-10-09.md#L199) | **Theorem P.** On the class A line (p, q, r) = (n + 1, n, n + 1), with |
+| [docs/p1b-edge-progressions-2026-10-09.md:64](../docs/p1b-edge-progressions-2026-10-09.md#L64) | *Corollary EP′ (index dynamics).* Choose a coordinate functional φ with |
+| [docs/p1b-edge-progressions-2026-10-09.md:112](../docs/p1b-edge-progressions-2026-10-09.md#L112) | **Conjecture EP.** Near each Lemma P1 edge, on a line of fixed k_±: |
+| [docs/p1b-edge-progressions-2026-10-09.md:211](../docs/p1b-edge-progressions-2026-10-09.md#L211) | **Theorem P.** On the class A line (p, q, r) = (n + 1, n, n + 1), with |
 | [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:80](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L80) | *Lemma S.* Let v have offset x != 0 and let v' be its leftmost child. |
 | [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:105](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L105) | ## 4. Proposition LC |
 | [docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md:107](../docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md#L107) | *Proposition LC.* Let v be a vertex of nonzero offset whose leftmost chain |

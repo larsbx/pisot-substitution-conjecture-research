@@ -1480,3 +1480,34 @@ by deleting it.
   member. Separately, class C has `det M = 2e`, so the `k = 1` reflection
   lines need `e = ±1`, e.g. `(3n + 1, 2n + 1, n)`. ·
   `p1b-edge-progressions-2026-10-09.md` §6
+
+- 2026-10-09 · Progression handoff review at `24cf15d`: bounded widening
+  growth and timeout reports are inconclusive; guarded cycle acceleration
+  requires prefix-map preimages, repeated guard checks, residue preservation
+  and propagation of intermediate states. An exact cycle does not establish
+  a finite skeleton or termination of the full worklist. The residual check
+  admitted `s = 0`, `u = (0,−1,1)` on Theorem P's line (`M u = e_y`), outside
+  the interval/reflection contract. Refuse unsupported signs explicitly and
+  retain the original valid-line pin. Correct Lemma EP's Perron pairing to
+  include `ℓ_y` before normalization and distinguish a skeleton cycle from
+  return to the same lifted vertex. ·
+  `p1b-edge-progressions-2026-10-09.md` §7;
+  `kernel/tests/test_progression_line.mojo`
+
+- 2026-10-09 · The progression driver imports `psc/progression_line.mojo`,
+  but that file was absent from the symbolic-evidence workflow's path
+  filter, so changing the certificate kernel alone would skip its pinned
+  evidence matrix. Add the path and a failing-before regression requiring
+  every direct `psc` driver import to match a workflow trigger. ·
+  `.github/workflows/class-b-lines-evidence.yml`;
+  `tests/test_line_certificate_workflow.py`
+
+- 2026-10-09 · Opening the review PR exposed a second evidence-workflow
+  problem: 266 pinned rows shared one matrix, exceeding GitHub's documented
+  [256-job matrix limit](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstrategymatrix).
+  The run failed before starting a job. Keep the 60 line/wedge/progression
+  rows and 206 norm-mode rows in separate matrices, retaining every pin
+  exactly once and the same per-row verdict check. A failing-before
+  regression checks the limit and the verifier step for each matrix. ·
+  `.github/workflows/class-b-lines-evidence.yml`;
+  `tests/test_line_certificate_workflow.py`

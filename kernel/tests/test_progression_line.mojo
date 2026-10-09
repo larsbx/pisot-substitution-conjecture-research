@@ -90,6 +90,19 @@ def test_every_pinned_progression_is_well_formed() raises:
             assert_false(part(rows[i], 0, 11) == part(rows[j], 0, 11))
 
 
+def test_unsupported_index_sign_is_refused() raises:
+    """M(0, -1, 1) = e_y on the same line: the EP residual check alone
+    admits s = 0, but the interval maps and two-step composition require
+    s = +1 or -1. Refuse this before building a certificate."""
+    var spec = ClassLine(CLASS_A, [1, 1, 1, 0, 1, 1], True)
+    var refused = False
+    try:
+        _ = ProgressionLine(spec.line(), [0, -1, 1], 0)
+    except:
+        refused = True
+    assert_true(refused)
+
+
 def main() raises:
     test_index_sets_merge_map_and_split()
     print("[PASS] test_index_sets_merge_map_and_split")
@@ -99,4 +112,6 @@ def main() raises:
     print("[PASS] test_lemma_ep_on_the_class_a_slope_one_line")
     test_every_pinned_progression_is_well_formed()
     print("[PASS] test_every_pinned_progression_is_well_formed")
-    require_contract("progression certificate (Lemma EP): integer index sets with ends affine in q merge, translate, reflect and split exactly; M u = s u + k e_y is verified on the line (k = 1 for class A (n + 1, n, n + 1), u = (1, -1, 0)) and a vector that is not a Lemma EP vector is refused; every pinned progression row is well formed and distinct")
+    test_unsupported_index_sign_is_refused()
+    print("[PASS] test_unsupported_index_sign_is_refused")
+    require_contract("progression certificate (Lemma EP): integer index sets with ends affine in q merge, translate, reflect and split exactly; M u = s u + k e_y is verified on the line (k = 1 for class A (n + 1, n, n + 1), u = (1, -1, 0)) and a vector that is not a Lemma EP vector is refused; unsupported index signs are refused even when the residual identity holds; every pinned progression row is well formed and distinct")

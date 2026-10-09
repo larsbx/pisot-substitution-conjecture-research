@@ -43,7 +43,8 @@ Let `M` be the incidence matrix of a member of Theorem E's normal form
 
 1. `u₊` and `u₋` do not depend on `(p, q, r)`.
 2. `M u₊ = −u₊ − f(−1) e_y` and `M u₋ = u₋ − f(1) e_y`.
-3. `⟨ℓ, u₊⟩ = −f(−1)/(β + 1)` and `⟨ℓ, u₋⟩ = −f(1)/(β − 1)`.
+3. `⟨ℓ, u₊⟩ = −f(−1)ℓ_y/(β + 1)` and
+   `⟨ℓ, u₋⟩ = −f(1)ℓ_y/(β − 1)`.
 
 *Proof.*
 
@@ -55,7 +56,8 @@ Let `M` be the incidence matrix of a member of Theorem E's normal form
 
 Lemma P1 says that PIP forces `f(±1) < 0`. So `k₊ = −f(−1) ≥ 1` and
 `k₋ = −f(1) ≥ 1`, and both are small exactly near the corresponding edge.
-There `⟨ℓ, u_±⟩ = k_±/(β ± 1)` is tiny. A translate of an overlap by `j·u_±`
+Normalize `ℓ_y = 1` for the estimates below. Then
+`⟨ℓ, u_±⟩ = k_±/(β ± 1)` is tiny. A translate of an overlap by `j·u_±`
 moves `t = ⟨ℓ, w⟩` by only `j k_±/(β ± 1)`, so whole progressions
 `w₀ + j·u_±` stay real, with `|j|` up to about `β/k_±`. **That is the growth.**
 
@@ -76,6 +78,14 @@ The vectors, for the three classes met:
 | C | `f(−1)` (`d → q/2`) | `u₊ = (2, −6, 6) = 2·(1, −3, 3)` | reflection |
 | B | `f(−1)` (`p → 3q`) | `u₊ = (−1, −3, 6)` | reflection |
 | A | `f(1)` (slope 1, `p − q` fixed) | `u₋ = (1, −1, 0)` | translation |
+
+For an integer index, the implementation may use a primitive vector `u`
+with `u_± = g u`. Then `M u = ∓u + k e_y` with
+`k = −f(∓1)/g`, rather than the unscaled `k_± = −f(∓1)`.
+In class C the primitive vector is `(1,−3,3)` and `g = 2`.
+The certificate requires a unit coordinate off `y` so its coordinate
+functional gives an integer index for every integer overlap, and it checks
+the residual identity and positive constant `k` directly.
 
 ## 3. Data (exact kernel, scratch probes)
 
@@ -106,13 +116,15 @@ of `q`. As `k` varies, a common core persists: 161 states are shared by
 - `j` is exactly reflected or translated along every edge;
 - `j` lies in a window whose ends are affine in `q`.
 
-If so, boundary hitting along the whole line is a **finite skeleton
-condition**, uniform in `q`:
-
-- an odd cycle fixes `j`;
-- an even cycle (reflection), or any cycle (translation), must have zero
-  net drift;
-- the skeleton and its drifts are fixed data.
+The skeleton and its drifts would then be fixed data, but the validity
+guards and index sets still matter. A reflection cycle of odd length acts
+as `j ↦ C − j`; it fixes an integer index only when `2j = C`. A reflection
+cycle of even length, or any translation cycle, acts as `j ↦ j + D`.
+Repeating it returns to the same lifted vertex only when `D = 0`, while
+nonzero drift may yield valid finite paths of length growing with `q`.
+These affine identities do not by themselves decide boundary hitting or
+prove that the parameter-uniform closure terminates; §6 gives one
+sufficient certificate and §7 specifies the next closure experiment.
 
 Lemma EP and Corollary EP′ already prove the dynamics. What remains is to
 prove that the skeleton is finite and independent of `q`. That is: the run
@@ -125,7 +137,7 @@ unbounded part of each Theorem E class into finitely many skeletons. Class D
 is already settled (Corollary W2). Its edge lines (`m = 0, 1` and so on) were
 exactly where the graphs grew slowly.
 
-**Not established.** No new member is certified by this note. The skeleton
+**Not established by §§2–4.** The skeleton
 finiteness is shown by data only, on the lines listed. How the skeleton
 depends on `k` is only partly mapped. The sectors between the edges are
 finite in any compact range of `δ`, but this is not proved.
@@ -225,3 +237,84 @@ bounds become `⌈(m′ − r_hi)/k⌉ ≤ j ≤ ⌊(m′ − r_lo)/k⌋`. These
 when `k` divides their parameter coefficient; otherwise the certificate
 refuses, and the line must be restricted to a sublattice. That path is
 implemented but not yet exercised.
+
+## 7. Closure handoff and guarded cycle acceleration
+
+**Current implementation.** The pinned Theorem P computation still uses
+the full-realness widening in §6. The endpoint-only experiment described
+in the session handoff is an uncommitted build; it is not evidence for
+this tree, and no pin has been updated from it.
+
+The handoff reports 7,000-second timeouts on class A
+`(n + 1, n, n − 1)` and class C `(3n + 1, 2n + 1, n)`, followed by growth
+under traced widening. Its last reported sizes are 1,085 states / 22,971
+edges and 1,483 states / 27,473 edges, respectively. The claimed 225-state
+exact skeleton for the latter is a handoff observation, not an archived
+replay here. These bounded runs establish neither nontermination nor a
+counterexample to hitting. They justify investigating the overapproximation
+before spending another long run on a widening threshold.
+
+**Literature stop/go, 2026-10-09.** Proposed experiment: replace the member
+widening with exact iteration of witnessed guarded cycles while retaining
+the existing edge construction, eventual sign decisions and hitting check.
+Three primary sources delimit the transfer:
+
+| Source | Relevant result | Transfer boundary |
+| --- | --- | --- |
+| [Cousot–Cousot (1977), §9](https://cs.nyu.edu/~pcousot/COUSOTpapers/POPL77.shtml) | Sound approximations of fixpoints may enlarge the represented set. | Full-realness widening can remain sound for hitting over the entire resulting superset; its size says nothing about exact seed reachability. |
+| [Bardin–Finkel–Leroux–Schnoebelen (2005), §§3–5](https://www.labri.fr/perso/leroux/papiers/BFLS05-atva.pdf) | Acceleration computes the iteration of selected control paths; their exact symbolic framework requires exact unions and images. | An interval hull that loses a cycle's residue constraint cannot be described as exact acceleration. |
+| [Leroux–Sutre (2006), §3, Theorem 3.4](https://drops.dagstuhl.de/storage/16dagstuhl-seminar-proceedings/dsp-vol06081/DagSemProc.06081.4/DagSemProc.06081.4.pdf) | Terminating exact accelerated reachability returns the reachable set; termination requires additional flatness conditions and a suitable strategy. | PSC skeleton finiteness, a suitable finite symbolic representation and termination have not been established for the two failed lines. |
+
+**Decision: proceed with a narrowed experiment.** Guarded cycle iteration
+is standard prior art. Only its exact specialization and independently
+replayed PSC receipts would be new evidence. No general termination claim
+or new class A/C certificate is made.
+
+**Cycle contract.** For a witnessed closed path `e₀,…,e_{m−1}`, let
+`F₀(j) = j` and `F_{r+1}(j) = c_{e_r} + s_{e_r} F_r(j)`, with
+`s_{e_r} ∈ {−1,+1}`. Its one-traversal source guard is
+
+    D(q) = ⋂_{r=0}^{m−1} F_r⁻¹(V_{e_r}(q)).
+
+The preimages are essential: guards expressed at different states cannot
+be intersected in their local coordinates. For a translation cycle with
+`F_m(j) = j + d`, the exact accelerated returns from a known reachable
+source set `X(q)` are
+
+    {j + h d : j ∈ X(q), h ∈ ℕ,
+               j + t d ∈ D(q) for every 0 ≤ t < h}.
+
+This condition checks every traversal and includes zero traversals. The
+last returned endpoint need not lie in `D`: for `j = 0`, `d = 2` and
+`D = [0,4]`, the returns are `{0,2,4,6}`. A single traversal may leave the
+repeatable-source domain while remaining a valid path. Intermediate
+states on every repeated traversal must also be added or reached by the
+ordinary edge propagation before asserting full closure.
+
+Preserve `j mod |d|` for nonzero drift, using residue-restricted intervals
+or an equivalent exact representation. The hull `[0,6]` in the example
+adds unreachable odd indices. A zero-drift cycle adds no new return
+indices. An odd reflection cycle has map `j ↦ C − j`, whose square is
+the identity, with two-traversal source guard
+`D ∩ {j : C − j ∈ D}`; a nonzero-drift translation arises from an even
+reflection cycle, including two distinct reflection edges.
+
+**Review and replay obligations.** Before replacing the pinned algorithm,
+add canonical Mojo guard-composition and exact acceleration tests for
+both drift signs, zero drift, odd reflection, disjoint validity domains,
+residue gaps and the final valid endpoint beyond the source guard. Compare
+cycle iterates with independent literal integer replay. Exactness for
+each selected cycle does not imply exactness or termination of the whole
+worklist: retain all seeds and ordinary edges, add only witnessed reachable
+members, and verify seed containment and edge closure at the final fixed
+point. Resource caps remain inconclusive outcomes. Reproduce Theorem P's
+entire verdict, including its exact finite part, before changing a pin;
+account for #247's shared `psc/param_poly` imports when integrating.
+
+**Constructor review.** The residual identity alone allowed `s = 0`,
+`u = (0,−1,1)` on Theorem P's line: `M u = e_y`. The later interval map
+and reflection composition assume `s = ±1`. The constructor now refuses
+unsupported signs and vectors of the wrong dimension explicitly, and
+`test_unsupported_index_sign_is_refused` guards the concrete accepted-before
+case. This repairs input refusal; it does not change the valid pinned
+progression or claim that an incorrect theorem verdict was produced.
