@@ -32,7 +32,7 @@ Start here:
 1. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the #138 aligned branch, #139 strict-zipper branch, Level 2, hypothesis firewall, and prioritized closure criteria.
 2. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
 3. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
-4. `docs/completion-ledger-2026-10-02.md` — latest merged weekly completion snapshot, refreshed to `main@ff9e5d3`; mathematical/evidence additions through PR #188 and the complete 24,486-specimen separation record.
+4. `docs/completion-ledger-2026-10-09.md` — latest merged weekly completion snapshot, refreshed to `main@4caca9a`; includes the finite-domain PDS theorem and the scoped determinant-two line/wedge results through PR #246.
 5. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
 6. `docs/tier2-bridge-salvage-2026-09-23.md` — research-taxonomy note separating termination-style Descent Bridges from recurrent arithmetic Growth Bridges; moves no theorem status.
 7. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
@@ -52,6 +52,23 @@ primitive irreducible Pisot
 ```
 
 The only open premise on this route is **seedwise overlap productivity (Open Problem 5.35, issue #84)**. Manuscript Theorem 5.38 therefore no longer requires finite BPA / G1.
+
+### October 9 scoped advances — no universal closure
+
+- **Finite-domain theorem:** Theorem Ω's complete box-automaton certificate
+  proves PDS on exactly 145,806 ternary PIP substitutions, the union of the
+  image-length-at-most-4 and total-image-length-at-most-8 domains. Its
+  sufficiency proof uses the explicit overlap-coincidence and Meyer-property
+  imports; it is no longer conditional on Proposition V(2) or Theorem B.
+- **Computer-assisted family theorems, human review pending:** Theorems L,
+  L′ and L″ establish boundary hitting on 47 one-parameter lines in the
+  catch-up-free determinant-two classification. Theorem W establishes it on
+  two-parameter class-D wedges, including every PIP class-D member with
+  `r >= q - 1`.
+- **Still open:** these bounded-domain and structured-family results do not
+  close #84, the universal aligned branch #138, the universal strict-zipper
+  branch #139, formal productivity, G1, or general PSC. No accepted general
+  proof with immutable provenance is present on `main`.
 
 ### Finiteness is now tied to the conjecture, not to the method
 
@@ -185,7 +202,7 @@ This programme sits between those two kinds of result:
 | | Literature | This repository |
 | --- | --- | --- |
 | general ternary PSC | open | open; one premise left on the shortest route (#84) |
-| ternary size classes | specimen by specimen | PDS on 145,806 PIP specimens (images ≤ 4 or total ≤ 8), conditional on unreviewed Proposition V and Theorem B |
+| ternary size classes | specimen by specimen | exact finite-domain PDS theorem on 145,806 PIP specimens (images ≤ 4 or total ≤ 8), via Theorem Ω and explicit overlap/Meyer imports; human review pending |
 | ternary strong coincidence | open | 0 failures on 408,798 specimens (total ≤ 10) |
 | PDS vs. BPA finiteness | ABBLS Thm 5.3, "one seed suffices" | PDS ⇒ G1 and every-seed termination (audited, human review pending) |
 | regime | geometric tools mostly unimodular | all PIP; unimodularity never assumed |

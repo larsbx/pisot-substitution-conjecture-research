@@ -4,6 +4,15 @@
 
 **Standing target:** pure discrete spectrum for primitive irreducible Pisot substitutions in the repository's standing regime, **without** silently adding seed legality, unique decodability, finite injectivity, rational/integer independence, or unimodularity.
 
+**2026-10-09 synchronization (`main@4caca9a`, through PR #246):** general PSC,
+#84, #138, #139, formal productivity and G1 remain open. Theorem Ω now
+supports an exact finite-domain PDS theorem on 145,806 substitutions, while
+Theorems L/L′/L″ and W give computer-assisted, human-review-pending boundary
+hitting on 47 one-parameter lines and declared two-parameter class-D wedges
+(including every PIP class-D member with `r >= q - 1`). These are scoped
+closures, not evidence for promoting a universal claim. The current provenance
+and obligation boundary is recorded in `completion-ledger-2026-10-09.md`.
+
 **2026-10-02 synchronization:** PRs #181–#188 add the aligned fixed-edge /
 alternating-E normal form, exact M-adic carry reduction, two conditional routes
 from overlap hypotheses to G1 (manuscript Propositions 5.46–5.47), and complete
@@ -298,22 +307,23 @@ Proposition Z). It is proved on 47 infinite one-parameter families of
 Theorem E's classes: Theorem L (#232), Theorem L′ (#234) and Theorem L″
 (`p1b-boundary-hitting-progress-2026-10-08.md`). By Theorem W of the same
 note, it is also proved on two-parameter wedges: every PIP member of class D
-with `r ≥ q − 1`. The universal, uniform-in-`|S|` statement is untouched. The PR-by-PR account and the ordered next steps
-(two-parameter wedges, vertex families for class A at slope 1, a uniform
-depth bound on the class) are in that note.
+with `r ≥ q − 1`. These results are computer-assisted and human-review
+pending. The universal, uniform-in-`|S|` statement is untouched. The PR-by-PR
+account and the ordered next steps are in that note.
 
 #### P1b next proof tasks
 
-1. Require a proved completeness or coverage map for any finite-quotient
-   closure argument; quotient-depth accumulation alone does not supply it.
-2. Prove the **occurrence-compatible adelic coverage lemma**: a realized
-   periodic strict-zipper orbit must enter the graph-directed prefix-difference
-   subtile corresponding to its reverse zero basin.
-3. Keep the determinant-two affine pump, collar collision, unimodular control,
-   and a genuine non-unit finite-place specimen as mandatory negative/positive
-   controls.
-4. Preserve ordered child occurrences and exact arithmetic in any executable
-   theorem interface.
+1. Cover the rest of class D below `r = q - 1`: first the second
+   constant-graph cone, then its Pisot-boundary fringe.
+2. Establish two-parameter wedges in classes A and C.
+3. Treat the growing seed graphs on the class-A slope-one boundary by vertex
+   families rather than a fixed graph.
+4. Extract a uniform boundary-hitting depth `K` for the catch-up-free
+   determinant-two class. This is the first listed step that would meet #139's
+   uniform acceptance criterion on that class.
+5. For any broader argument, require a proved occurrence-compatible adelic
+   coverage map; preserve ordered child occurrences, exact arithmetic, and the
+   existing pump/collar/non-unit controls.
 
 **Closure evidence:** a uniform full-representation hitting/coverage theorem
 eliminating every strict-zipper bad SCC, or a further exact reduction that
@@ -596,8 +606,8 @@ do not quietly resurrect it under a new name.
 
 | Priority | Item | Status | Evidence needed to close | Immediate next deliverable |
 | --- | --- | --- | --- | --- |
-| **P0** | Status/provenance synchronization | current through `main@96bed675`; this roadmap is the live weekly completion surface | roadmap, proof ladder, claim map, manuscript, generated ledger and README preserve the same theorem/review boundary | keep #84/#138/#139, PDS=>G1, and finite-domain statements synchronized without promoting review-pending inputs |
-| **P1b** | Strict-zipper hitting (#139) | **OPEN critical; highest leverage** — literature, periodic-pair, cylinder and M-adic carry reductions established | uniform non-unit-safe occurrence-compatible adelic hitting/coverage theorem, or a strictly smaller equivalent theorem | prove that every realized periodic zipper orbit enters its graph-directed reverse zero basin in the full representation |
+| **P0** | Status/provenance synchronization | current through `main@4caca9a`; this roadmap is the live weekly completion surface | roadmap, proof ladder, claim map, manuscript, generated ledger and README preserve the same theorem/review boundary | keep universal open claims separate from the 145,806 finite-domain theorem and review-pending line/wedge theorems |
+| **P1b** | Strict-zipper hitting (#139) | **OPEN critical; highest leverage** — boundary hitting is proved on 47 lines and class-D wedges with `r >= q - 1`, but not uniformly | uniform non-unit-safe occurrence-compatible hitting/coverage theorem, or a uniform depth bound on the catch-up-free determinant-two class | cover class D below `r = q - 1`, then A/C wedges and the class-A slope-one vertex families; extract uniform depth `K` |
 | **P1a** | Aligned strong coincidence (#138) | **OPEN critical; the two templates are one at the square (Theorem C, 2026-10-05); A1′ proved on the whole catch-up-free `|det M| = 2` class (Theorem E), with all-pairs strong coincidence on its two-odd-letter part (Corollary H1) and outside one explicit family (Theorem K); inside that family Theorems Φ, Λ, Λ′, Λ″ close four `Delta` cells and Theorem Ζ every `Delta` with `Z_2` bounded (2026-10-07)** | uniform proof of A1′ (a bad edge whose letters are both `h`-fixed is eventually coincident), including reversal | on Theorem K's family, close unbounded `Z_2` (Lemma P1 linearized, `2 zfloor`; A1′ note §3m); in general, prove A1′ from the fixed-letter hypothesis, not via transitivity of eventual coincidence |
 | **P1** | Seedwise overlap productivity (#84) | **OPEN — sole shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad closed SCC | assemble only after branch closure; do not substitute a larger finite census |
 | **Review-0** | `PDS => G1` dependency package | **repository-proved; independently audited; human review pending** | direct human check of Theorem R, Proposition F, Theorem B/Lemma C and the primary proof chain behind the Barge fibre/coincidence-rank criterion | audit Theorem R and the Barge source chain first; both protect the non-unimodular import boundary |
@@ -613,12 +623,13 @@ do not quietly resurrect it under a new name.
 
 For the next research cycle:
 
-1. **#139 occurrence-compatible adelic coverage first.** The literature
-   baseline, full-representation cylinder, periodic-pair realization, M-adic
-   compatibility filter, and integral carry recursion are explicit. Prove that
-   a realized periodic strict-zipper orbit enters the graph-directed reverse
-   zero basin. Deeper quotient iteration is not progress without a theorem
-   saying why entry must occur.
+1. **#139: turn the family certificates into uniform coverage.** Finish class
+   D below `r = q - 1` (second constant-graph cone, then Pisot-boundary
+   fringe), extend the wedge analysis to A/C, and treat class A's slope-one
+   growing graphs by vertex families. The first class-level closure target is
+   a uniform boundary-hitting depth `K` for the catch-up-free determinant-two
+   class. Any extension beyond it still needs occurrence-compatible adelic
+   coverage rather than deeper quotient iteration alone.
 2. **#138 template exclusion in parallel.** The aligned recurrent dynamics has
    only a fixed bad hub edge (A1) or the alternating type-E template (A2).
    For A1, prove the open fixed-edge interior-forcing lemma using

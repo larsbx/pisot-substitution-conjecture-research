@@ -2,7 +2,24 @@
 
 The current shortest route to the Pisot Substitution Conjecture in the standing regime has **one open mathematical premise**: seedwise overlap productivity. The finite-BPA/G1 and closed-carrier programmes remain important stronger structural routes, but they are no longer prerequisites of the shortest PDS sufficiency theorem.
 
-For detailed claim status use `docs/claim-status-and-source-map-2026-09-13.md`; for the live completion priorities use `docs/research-roadmap-2026-09-21.md`; for the latest merged weekly snapshot use `docs/completion-ledger-2026-10-02.md`; theorem statements and imported hypotheses are in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
+For detailed claim status use `docs/claim-status-and-source-map-2026-09-13.md`; for the live completion priorities use `docs/research-roadmap-2026-09-21.md`; for the latest merged weekly snapshot use `docs/completion-ledger-2026-10-09.md`; theorem statements and imported hypotheses are in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
+
+## Scoped closure below the universal rung (2026-10-09)
+
+These results establish PDS only on their stated domains; none fills the open
+universal rung above.
+
+- **Finite-domain theorem:** Theorem Ω and the completed box certificates give
+  PDS on the union of 145,806 ternary PIP substitutions with images of length
+  at most 4 or total image length at most 8. The route uses explicit imported
+  overlap-coincidence and Meyer-property theorems and no longer depends on
+  Proposition V(2) or Theorem B.
+- **Computer-assisted family theorems, human review pending:** Theorems L, L′
+  and L″ cover 47 one-parameter determinant-two lines; Theorem W covers the
+  declared class-D wedges, in particular all PIP members with `r >= q - 1`.
+- **Provenance limit:** no accepted source on `main` proves boundary hitting,
+  overlap productivity, formal productivity, G1 or PDS uniformly for every
+  PIP substitution.
 
 # Stable base — incidence rank, UD, and bounded discrepancy
 

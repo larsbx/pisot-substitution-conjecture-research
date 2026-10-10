@@ -39,6 +39,7 @@ ZIPPER = "docs/p1b-strict-zipper-periodic-pair-2026-10-02.md"
 FIBRE = "docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md"
 BOX = "docs/pds-certificate-from-the-box-automaton-2026-10-07.md"
 LEFTMOST = "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md"
+BOUNDARY_PROGRESS = "docs/p1b-boundary-hitting-progress-2026-10-08.md"
 REVIEWED = "independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
 BOX_LC_REVIEW = "docs/review-box-leftmost-ledger-2026-10-08.md"
 BOX_LC_BASELINE = "cb9db58c9e25209c2a54ccd6955b509af88e8356"
@@ -136,6 +137,13 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                             f"{MANUSCRIPT}, Proposition 5.39; PR #82", (), ()),
     "BoundaryCoincidenceCriterion": (T, "an overlap reaches an offset-zero descendant exactly on an exact prefix-Parikh / common-left-endpoint hit",
                                      f"{MANUSCRIPT}, Proposition 5.40 and Corollary 5.41; PR #82", (), ()),
+    # --- scoped catch-up-free determinant-two family theorems ------------------------
+    # These records assert boundary hitting only on the parameter regions named in
+    # their statements.  They do not discharge the universal #139 node above.
+    "DetTwoBoundaryHittingLines": (T, "boundary hitting holds for every PIP member of the 47 one-parameter catch-up-free determinant-two lines declared by Theorems L, L' and L''",
+                                    f"{BOUNDARY_PROGRESS}, Theorems L, L' and L''; computer-assisted, human review pending; merged through PR #246", (), ()),
+    "ClassDWedgeBoundaryHitting": (T, "boundary hitting holds on the six declared two-parameter class-D wedges; in particular for every PIP class-D member with r >= q - 1",
+                                    f"{BOUNDARY_PROGRESS}, Theorem W and Corollary W1; computer-assisted, human review pending; merged through PR #246", (), ()),
     # --- strongest Level-3 spectral route ----------------------------------------------
     "ConcentrationAuxB": (P, "no strict component with K2 = 0 exists (concentration / aux-B)", "open conjectural gate, not source-pending; manuscript open problem; issue #43",
                           ("G1", "SinkSCCReduction"), ()),
@@ -271,6 +279,8 @@ ALIASES = {
     "LeftmostChainCycleStructure": ["Proposition LC"], "LeftmostChainG1Certificate": ["Corollary LC5"],
     "PisotMeyerProperty": ["Pisot Meyer property"],
     "BoxAutomatonPDSCertificate": ["per-specimen box PDS certificate"],
+    "DetTwoBoundaryHittingLines": ["Theorems L/L′/L″", "47 determinant-two lines"],
+    "ClassDWedgeBoundaryHitting": ["Theorem W", "class-D wedge boundary hitting"],
 }
 
 
@@ -303,6 +313,8 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "PDSOverlapRoute": [surface(MAP, "| One-seed overlap productivity implies PDS |")],
     "AlignedOverlapsAreStrongCoincidence": [surface(MAP, "| Endpoint-aligned overlaps = strong-coincidence boundary cases |")],
     "BoundaryCoincidenceCriterion": [surface(MAP, "| Boundary-hitting criterion |")],
+    "DetTwoBoundaryHittingLines": [surface(MAP, "| Determinant-two boundary hitting on 47 lines |")],
+    "ClassDWedgeBoundaryHitting": [surface(MAP, "| Class-D wedge boundary hitting |")],
     "OverlapProductivity": [surface(MAP, "| Seedwise overlap productivity / Open Problem 5.35 |"), surface(LEDGER_DOC, "### Overlap productivity / Open Problem 5.35", 2),
                             surface(LADDER, "=> one swap seed has only productive reachable overlaps"), surface("README.md", "=> one swap seed has only productive reachable overlaps"),
                             surface(ROADMAP, "| **P1** | Seedwise overlap productivity (#84) |")],
@@ -358,6 +370,9 @@ def records() -> dict[str, Record]:
                          ("reconciled_source_revision", BOX_LC_RECONCILED_BASELINE),
                          ("reconciliation_source", RECONCILIATION),
                          ("human_review_pending", "true"))
+        if name in {"DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting"}:
+            evidence += (("human_review_pending", "true"),
+                         ("computer_assisted", "true"))
         if name == "G1":
             evidence += (("dependency_alternatives", json.dumps(
                 [[build(r).id] for r in ("G1FromRenewal", "G1OverlapRoute", "G1HalfCoincidenceRoute", "G1FormalProductivityRoute")],

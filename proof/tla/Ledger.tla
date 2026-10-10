@@ -21,6 +21,7 @@ ResultSet == {
     "C3Local",
     "C3Locality",
     "C4",
+    "ClassDWedgeBoundaryHitting",
     "CoincidenceDensityOne",
     "CoincidenceRankFibreTheorems",
     "ConcentrationAuxB",
@@ -28,6 +29,7 @@ ResultSet == {
     "DefectTheorem",
     "Degree4Floor",
     "DensityToPDSBridge",
+    "DetTwoBoundaryHittingLines",
     "DominantCubicCapture",
     "DominantK2Source",
     "EndpointCore",
@@ -106,6 +108,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "C3Local" -> {{"C4", "C3Locality"}}
       [] r = "C3Locality" -> {{}}
       [] r = "C4" -> {{}}
+      [] r = "ClassDWedgeBoundaryHitting" -> {{}}
       [] r = "CoincidenceDensityOne" -> {{"OverlapProductivity", "SwapOverlapFiniteness"}}
       [] r = "CoincidenceRankFibreTheorems" -> {{}}
       [] r = "ConcentrationAuxB" -> {{"G1", "SinkSCCReduction"}}
@@ -113,6 +116,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "DefectTheorem" -> {{}}
       [] r = "Degree4Floor" -> {{"DefectIntertwiner"}}
       [] r = "DensityToPDSBridge" -> {{}}
+      [] r = "DetTwoBoundaryHittingLines" -> {{}}
       [] r = "DominantCubicCapture" -> {{"Target1"}}
       [] r = "DominantK2Source" -> {{}}
       [] r = "EndpointCore" -> {{}}
@@ -187,10 +191,12 @@ ProvedDef == {
     "C2",
     "C3Local",
     "C3Locality",
+    "ClassDWedgeBoundaryHitting",
     "CoincidenceDensityOne",
     "DefectIntertwiner",
     "DefectTheorem",
     "Degree4Floor",
+    "DetTwoBoundaryHittingLines",
     "DominantCubicCapture",
     "DominantK2Source",
     "EndpointCore",
@@ -315,6 +321,7 @@ C2NotEstablished == "C2" \notin established
 C3LocalNotEstablished == "C3Local" \notin established
 C3LocalityNotEstablished == "C3Locality" \notin established
 C4NotEstablished == "C4" \notin established
+ClassDWedgeBoundaryHittingNotEstablished == "ClassDWedgeBoundaryHitting" \notin established
 CoincidenceDensityOneNotEstablished == "CoincidenceDensityOne" \notin established
 CoincidenceRankFibreTheoremsNotEstablished == "CoincidenceRankFibreTheorems" \notin established
 ConcentrationAuxBNotEstablished == "ConcentrationAuxB" \notin established
@@ -322,6 +329,7 @@ DefectIntertwinerNotEstablished == "DefectIntertwiner" \notin established
 DefectTheoremNotEstablished == "DefectTheorem" \notin established
 Degree4FloorNotEstablished == "Degree4Floor" \notin established
 DensityToPDSBridgeNotEstablished == "DensityToPDSBridge" \notin established
+DetTwoBoundaryHittingLinesNotEstablished == "DetTwoBoundaryHittingLines" \notin established
 DominantCubicCaptureNotEstablished == "DominantCubicCapture" \notin established
 DominantK2SourceNotEstablished == "DominantK2Source" \notin established
 EndpointCoreNotEstablished == "EndpointCore" \notin established

@@ -1474,3 +1474,21 @@ unchanged. Evidence: `kernel/tests/test_param_poly.mojo`,
 `kernel/tests/test_symbolic_cone.mojo`, `kernel/tests/test_symbolic_line.mojo`,
 and the scoped review on PR #247.
 
+
+2026-10-10 — PR #250 Python-oracle matrix unrolling preserves the exact
+integer map: each output is the same three products in the same order;
+81 matrix-unit pairs and asymmetric signed, zero/identity, 256-bit boundary,
+rational and seeded mixed-entry regressions guard indexing and nonmutation.
+The pinned original full module and revised module differ in AST only at
+`mul`; all 4,554 ordered corpus entries agree at warm-up and every timed run.
+Seven alternating full-corpus pairs on Python 3.12.14 / AMD EPYC 9V74,
+one CPU affinity, give median 2.6361 s before and 1.7996 s after (31.73%
+elapsed reduction on this shared host). The original ~7.9/~4.8 s and 40%
+claim lacks preserved context and is not independently reproduced; historical
+2024-05-18 dates and broad polynomial optimization claims from `.jules/bolt.md`
+are unverified for this experiment. Remove that competing log; no polynomial
+algorithm changes or new mathematical claims are made. Evidence:
+`tests/test_pip_matrix_mul.py`, `oracles/python/pip_mul_benchmark.py`
+(replay from repository root with Python and the pinned git history), and
+`evidence/pip-mul-2026-10-10/benchmark.json` (machine context, raw wall/CPU
+samples, source/replay digests and ordered-corpus digest).
