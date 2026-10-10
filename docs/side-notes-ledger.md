@@ -1492,3 +1492,17 @@ algorithm changes or new mathematical claims are made. Evidence:
 (replay from repository root with Python and the pinned git history), and
 `evidence/pip-mul-2026-10-10/benchmark.json` (machine context, raw wall/CPU
 samples, source/replay digests and ordered-corpus digest).
+
+2026-10-10 — PR #250 replay correction: fresh review found that Python `-O`
+stripped `assert` provenance guards. Replace them with explicit exceptions;
+optimized-mode negative controls reject unrelated source drift and a corrupt
+matrix kernel without emitting a report. The first `benchmark.json` remains
+verbatim and names its original replay digest; the corrected replay under
+`python -O` is separately preserved as `benchmark-guards-r2.json`, with its
+new replay digest and optimization level. Its seven-pair medians are 2.5266 s
+before / 1.7929 s after (29.04% reduction); performance is host/run-dependent,
+not a fixed 40% promise. Pin both recorded outputs in the packet's
+`SHA256SUMS`, as required by the recorded-data integrity guard. Evidence:
+`tests/test_pip_mul_benchmark_guards.py`,
+`oracles/python/pip_mul_benchmark.py`,
+`evidence/pip-mul-2026-10-10/benchmark-guards-r2.json`.

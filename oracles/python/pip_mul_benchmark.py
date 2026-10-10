@@ -31,15 +31,18 @@ def main():
     trees = [ast.parse(s) for s in sources.values()]
     for tree in trees:
         tree.body = [n for n in tree.body if not isinstance(n, ast.FunctionDef) or n.name != 'mul']
-    assert ast.dump(trees[0]) == ast.dump(trees[1]), 'unrelated semantic change'
+    if ast.dump(trees[0]) != ast.dump(trees[1]):
+        raise RuntimeError('unrelated semantic change')
     modules = {}
     for label, source in sources.items():
         module = types.ModuleType(label)
         exec(compile(source, label, 'exec'), module.__dict__)
         modules[label] = module
     expected = modules['before'].pip_corpus()
-    assert expected == modules['after'].pip_corpus()
-    assert len(expected) == 4554
+    if expected != modules['after'].pip_corpus():
+        raise RuntimeError('ordered warm-up corpus mismatch')
+    if len(expected) != 4554:
+        raise RuntimeError('unexpected corpus size')
     seconds = {k: [] for k in modules}
     cpu = {k: [] for k in modules}
     for repeat in range(7):
@@ -48,10 +51,11 @@ def main():
             result = modules[label].pip_corpus()
             cpu[label].append(time.process_time() - process)
             seconds[label].append(time.perf_counter() - start)
-            assert result == expected
+            if result != expected:
+                raise RuntimeError(f'ordered corpus mismatch: {label}, pair {repeat}')
     medians = {k: statistics.median(v) for k, v in seconds.items()}
     report = {'measured_at_utc': datetime.now(timezone.utc).isoformat(), 'baseline_commit': BASE,
-              'python': sys.version, 'platform': platform.platform(), 'processor': platform.processor(),
+              'python': sys.version, 'optimization_level': sys.flags.optimize, 'platform': platform.platform(), 'processor': platform.processor(),
               'cpu_info': Path('/proc/cpuinfo').read_text().split('\n\n')[0] if Path('/proc/cpuinfo').exists() else None,
               'affinity_cpu': affinity, 'hash_seed': os.environ.get('PYTHONHASHSEED', 'unset'),
               'source_sha256': {k: hashlib.sha256(v.encode()).hexdigest() for k,v in sources.items()},
