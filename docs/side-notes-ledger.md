@@ -1506,3 +1506,12 @@ not a fixed 40% promise. Pin both recorded outputs in the packet's
 `tests/test_pip_mul_benchmark_guards.py`,
 `oracles/python/pip_mul_benchmark.py`,
 `evidence/pip-mul-2026-10-10/benchmark-guards-r2.json`.
+
+2026-10-10 — PR #250 CI replay-test correction: Actions uses a shallow
+checkout, so negative-control tests must not request the pinned historical
+module through git. Stub the baseline read with the local source, then inject
+an unrelated AST node or a zero matrix kernel; both optimized-mode refusal
+paths remain exercised without history. The actual benchmark intentionally
+requires the pinned baseline history and continues to fail if it is absent.
+Evidence: `tests/test_pip_mul_benchmark_guards.py` and failed Actions job
+`114294069121` (515 other tests passed; two history-dependent controls failed).
