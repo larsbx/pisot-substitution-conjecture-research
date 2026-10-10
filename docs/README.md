@@ -102,9 +102,10 @@ reads signs at `β` by norm; Theorem C's class-B sectors use brackets
 6. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
-7. `completion-ledger-2026-10-02.md` — latest merged weekly completion
-   snapshot, refreshed to `main@ff9e5d3`; mathematical/evidence additions
-   through PR #188 and the complete 24,486-specimen separation record.
+7. `completion-ledger-2026-10-09.md` — latest merged weekly completion
+   snapshot, refreshed to `main@4caca9a`; it separates universal open claims,
+   finite-domain closure, review-pending family theorems and computation
+   through PR #246.
 8. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
 9. `conjecture-ledger.md` — live prose dependency ledger.

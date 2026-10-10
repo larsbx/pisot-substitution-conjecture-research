@@ -162,6 +162,16 @@
       "leaks": "open sufficiency premise of the C4 route"
     },
     {
+      "id": "ClassDWedgeBoundaryHitting",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds on the six declared two-parameter class-D wedges; in particular for every PIP class-D member with r >= q - 1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-boundary-hitting-progress-2026-10-08.md, Theorem W and Corollary W1; computer-assisted, human review pending; merged through PR #246"
+    },
+    {
       "id": "CoincidenceDensityOne",
       "kind": "claim",
       "label": "Repository-proved",
@@ -232,6 +242,16 @@
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "imported_theorem",
       "source": "source: Barge, Stimac, and Williams; manuscript Imported Theorem 5.37; PR #77"
+    },
+    {
+      "id": "DetTwoBoundaryHittingLines",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every PIP member of the 47 one-parameter catch-up-free determinant-two lines declared by Theorems L, L' and L''",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-boundary-hitting-progress-2026-10-08.md, Theorems L, L' and L''; computer-assisted, human review pending; merged through PR #246"
     },
     {
       "id": "DominantCubicCapture",
@@ -947,6 +967,24 @@
       ]
     },
     {
+      "id": "Theorem W",
+      "kind": "alias",
+      "label": "Theorem W",
+      "provenance": "declared",
+      "members": [
+        "ClassDWedgeBoundaryHitting"
+      ]
+    },
+    {
+      "id": "class-D wedge boundary hitting",
+      "kind": "alias",
+      "label": "class-D wedge boundary hitting",
+      "provenance": "declared",
+      "members": [
+        "ClassDWedgeBoundaryHitting"
+      ]
+    },
+    {
       "id": "coincidence density one",
       "kind": "alias",
       "label": "coincidence density one",
@@ -1016,6 +1054,24 @@
       "provenance": "declared",
       "members": [
         "DensityToPDSBridge"
+      ]
+    },
+    {
+      "id": "47 determinant-two lines",
+      "kind": "alias",
+      "label": "47 determinant-two lines",
+      "provenance": "declared",
+      "members": [
+        "DetTwoBoundaryHittingLines"
+      ]
+    },
+    {
+      "id": "Theorems L/L′/L″",
+      "kind": "alias",
+      "label": "Theorems L/L′/L″",
+      "provenance": "declared",
+      "members": [
+        "DetTwoBoundaryHittingLines"
       ]
     },
     {
@@ -2188,6 +2244,14 @@
     },
     {
       "type": "synonymous",
+      "source": "47 determinant-two lines",
+      "target": "DetTwoBoundaryHittingLines",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "Barge–Štimac–Williams theorem",
       "target": "DensityToPDSBridge",
       "provenance": "imported-theorem",
@@ -2324,8 +2388,24 @@
     },
     {
       "type": "synonymous",
+      "source": "Theorem W",
+      "target": "ClassDWedgeBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "Theorem Ω",
       "target": "BoxAutomatonCertificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "Theorems L/L′/L″",
+      "target": "DetTwoBoundaryHittingLines",
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"
@@ -2374,6 +2454,14 @@
       "type": "synonymous",
       "source": "box-automaton certificate",
       "target": "BoxAutomatonCertificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "class-D wedge boundary hitting",
+      "target": "ClassDWedgeBoundaryHitting",
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"
