@@ -222,6 +222,19 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "G1FormalProductivityRoute": (T, "formal productivity gives finite BPA with termination with coincidence from every swap seed, every reachable state being at most 2 beta^D ell_max long",
                                   f"{BOX}, consequence (c), with docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1; {REVIEWED}",
                                   ("FormalProductivity", "BoxCycleContainment"), ()),
+    # --- flow-to-symbolic transfer and the S-adic imports (docs/sadic-transfer-literature-gate-2026-10-11.md) ---
+    "SirventSolomyakTransfer": (I, "for a substitution of Pisot type (primitive, Pisot Perron-Frobenius eigenvalue, irreducible characteristic polynomial), pure discrete spectrum of the self-similar tiling R-action with Perron left-eigenvector tile lengths implies pure discrete spectrum of the substitutive Z-action",
+                                "Sirvent-Solomyak, Canad. Math. Bull. 45 (2002), p. 699 definition, Section 4 and Corollary 5.2; no unimodularity; docs/sadic-transfer-literature-gate-2026-10-11.md, sections 2-3", (), ()),
+    "BargeClassFlowPDS": (I, "a primitive non-periodic substitution with Pisot inflation that is injective on initial letters and eventually constant on final letters has a tiling flow with pure discrete spectrum",
+                          "Barge, DCDS-A 36 (2016), Theorem 3.13 and Remark 3.14; no irreducibility or unimodularity; docs/sadic-transfer-literature-gate-2026-10-11.md, section 2", (), ()),
+    "BoxAutomatonSymbolicPDSCertificate": (T, "for each fixed PIP substitution, if every vertex of its complete box automaton reaches a coincidence, its substitutive Z-action has pure discrete spectrum",
+                                           "docs/sadic-transfer-literature-gate-2026-10-11.md, section 3: PIP is Sirvent-Solomyak's Pisot type and the box certificate's Perron-length suspension is their R-action",
+                                           ("BoxAutomatonPDSCertificate", "SirventSolomyakTransfer"), ()),
+    "BargeClassSymbolicPDS": (T, "a PIP substitution with a power, or a maximal common-prefix/suffix rotation of a power, in Barge's class or its mirror has a substitutive Z-action with pure discrete spectrum",
+                              "docs/sadic-transfer-literature-gate-2026-10-11.md, section 3: powers and rotations generate the same subshift and stay PIP, reversal conjugates the shift to its inverse; membership decided by psc/barge_class.mojo",
+                              ("BargeClassFlowPDS", "SirventSolomyakTransfer"), ()),
+    "BrunCompositeSymbolicPDS": (I, "in every dimension, every primitive composite of an admissible unordered Brun word whose characteristic polynomial is irreducible and Pisot has a substitutive Z-action with pure discrete spectrum",
+                                 "larsbx/s-adic-pisot-conjecture-research@c379703, docs/sadic-g6-brun-higher-census.md, Theorem B, Lemma Rev and Corollary B'' (Barge 2016 Theorem 3.13 with the Sirvent-Solomyak transfer); cross-programme family theorem, docs/sadic-transfer-literature-gate-2026-10-11.md, sections 2-3", (), ()),
     # --- leftmost chain: the structure of catch-up failure ---------------------------
     "LeftmostChainCycleStructure": (T, "every terminal cycle of the leftmost-child map on the complete box graph keeps one strict offset sign, with index zero on the later-starting side, and is a prefix-vs-interior occurrence pair sigma^r(i) = i U, sigma^r(j) = Q j V with (I - M^r) w_0 = ab(Q) after orienting the offset negatively; the prefix object is a right-infinite fixed ray and the interior object is a two-sided tiling compared on the right half-line, whose common centre is never a common vertex; the cycles come in mirror pairs",
                                     f"{LEFTMOST}, Lemma S, Proposition LC and Corollary LC4; 10,584 sign/shape checks, 10,128 integral replays and 456 uncomputed offsets on the standing corpus; {REVIEWED}", (), ()),
@@ -279,6 +292,10 @@ ALIASES = {
     "LeftmostChainCycleStructure": ["Proposition LC"], "LeftmostChainG1Certificate": ["Corollary LC5"],
     "PisotMeyerProperty": ["Pisot Meyer property"],
     "BoxAutomatonPDSCertificate": ["per-specimen box PDS certificate"],
+    "SirventSolomyakTransfer": ["Sirvent–Solomyak transfer", "flow-to-symbolic transfer"],
+    "BargeClassFlowPDS": ["Barge class theorem"], "BargeClassSymbolicPDS": ["Barge-class symbolic PDS"],
+    "BoxAutomatonSymbolicPDSCertificate": ["per-specimen box symbolic PDS certificate"],
+    "BrunCompositeSymbolicPDS": ["Corollary B″", "Brun composites have symbolic PDS"],
     "DetTwoBoundaryHittingLines": ["Theorems L/L′/L″", "47 determinant-two lines"],
     "ClassDWedgeBoundaryHitting": ["Theorem W", "class-D wedge boundary hitting"],
 }
@@ -345,6 +362,11 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "LeftmostChainG1Certificate": [surface(MAP, "| No terminal leftmost cycle implies finite BPA |")],
     "PisotMeyerProperty": [surface(MAP, "| Pisot Meyer property |")],
     "BoxAutomatonPDSCertificate": [surface(MAP, "| Box-automaton PDS certificate |")],
+    "SirventSolomyakTransfer": [surface(MAP, "| Sirvent–Solomyak flow-to-symbolic transfer |")],
+    "BargeClassFlowPDS": [surface(MAP, "| Barge class theorem |")],
+    "BoxAutomatonSymbolicPDSCertificate": [surface(MAP, "| Box-automaton symbolic PDS certificate |")],
+    "BargeClassSymbolicPDS": [surface(MAP, "| Barge-class symbolic PDS |")],
+    "BrunCompositeSymbolicPDS": [surface(MAP, "| Brun composites have symbolic PDS (S-adic Corollary B″) |")],
 }
 
 

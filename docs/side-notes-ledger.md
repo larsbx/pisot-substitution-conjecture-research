@@ -95,6 +95,15 @@ by deleting it.
   neither needs a box. · `p1b-symbolic-line-2026-10-07.md` §2;
   `archive/2026-10-07/symbolic-line-probes/trap_float_probe.out`
 
+- 2026-10-11 · Durand return-word derivation as a route into Barge's class
+  for Theorem K's family: of the 130 primitive Pisot members with
+  `|det M| = 2` and `|w_1|, |w_2| <= 4`, no derived substitution at any
+  letter, nor its square, is in Barge's class or its mirror. Extends the
+  2026-10-07 no-witness entry beyond powers and rotations. Scratch probe with
+  a float Pisot screen, not a registered claim; the splitting move
+  `tau rho -> rho tau` is untested. ·
+  `sadic-transfer-literature-gate-2026-10-11.md` §4
+
 ## 3. Settled by the literature (do not target with new machinery)
 
 - 2026-10-04 · Specimens with a power or common-prefix/suffix conjugate in
@@ -117,6 +126,18 @@ by deleting it.
   `o, y, z` alternate `(y, o, o)` / `(o, y, y)`, never injective, never
   constant, no common first letter. Do not test Theorem K's members against
   `barge_witness` again. · `p1a-tail-literature-gate-2026-10-07.md` §3
+
+- 2026-10-11 · Flow-to-symbolic: Sirvent–Solomyak 2002 Corollary 5.2 needs
+  exactly PIP ("Pisot type") and no unimodularity, so every flow-PDS result
+  here (Theorem Ω's 145,806 specimens, the 1,248 Barge-class specimens) is a
+  symbolic `Z`-action result too. Primary text verified in the S-adic
+  programme's gate §9. Do not re-gate Clark–Sadun or Barge–Kwapisz for this. ·
+  `sadic-transfer-literature-gate-2026-10-11.md`
+
+- 2026-10-11 · Brun composites (unordered, admissible, every dimension) with
+  irreducible Pisot characteristic polynomial have symbolic PDS: S-adic
+  Corollary B″, mirror Barge class. Do not run balanced pairs on them. ·
+  `sadic-transfer-literature-gate-2026-10-11.md`
 
 - 2026-10-07 · **Bounded `Z_2` closes the tails for every `Delta`.** With
   `Z_2 <= cap` the members' run patterns are finitely many and fully
