@@ -104,6 +104,12 @@ by deleting it.
   `tau rho -> rho tau` is untested. ·
   `sadic-transfer-literature-gate-2026-10-11.md` §4
 
+- 2026-10-11 · Porting the S-adic Lemma S (swap walk bounded by the balance
+  constant) to shrink PSC certificates: nothing consumes `D_sigma`. The box
+  radii come from contraction on formal overlaps, and the seed graph is an
+  exact closure. Zero gain by construction. Do not re-attempt. ·
+  `sadic-transfer-literature-gate-2026-10-11.md` §6
+
 ## 3. Settled by the literature (do not target with new machinery)
 
 - 2026-10-04 · Specimens with a power or common-prefix/suffix conjugate in

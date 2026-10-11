@@ -86,3 +86,32 @@ which of that programme's results are PSC claims and with what status.
 | `BrunCompositeSymbolicPDS` | imported (cross-programme) | S-adic Corollary B″ (Theorem B, Lemma Rev, Barge 16, SS02) |
 
 No open premise moves. PSC remains open.
+
+## 6. Addendum: porting the S-adic Lemma S — stop
+
+*Proposed.* Replace G1b-1's spectral constant `D_sigma` by the S-adic
+programme's Lemma S bound (`‖Δ(j)‖_∞ <= C` for every swap pair, `C` the
+balance constant of `L_sigma`; `docs/t1-uniform-overlap-finiteness.md` there)
+and measure how much the PSC certificates shrink.
+
+*Finding.* No certificate consumes `D_sigma`:
+
+- Theorem Ω's box automaton is the inflation closure of the start set
+  `|w_m| <= R_m`, whose radii come from Pisot contraction on **formal**
+  overlaps (Lemma Ω1, `psc.vertex_coincidence.box_radii`). Lemma S bounds
+  only **realized** swap walks `sigma^N(ab)`, `sigma^N(ba)`, so it cannot
+  bound the box.
+- The seed-patch overlap graph is built by exact breadth-first closure from
+  the seeds. Its size is a property of `sigma`, not of an a priori cap, and
+  `kernel/swap_discrepancy_census.mojo` already evaluates the reachable
+  supremum exactly ("no computation verifies its constant `D_sigma`").
+- For a single substitution, an exact `C` is itself obtained from Pisot
+  contraction of the fixed point's discrepancy, which is G1b-1's mechanism.
+  Lemma S earns its keep in the S-adic setting only because there is no
+  single matrix to contract.
+
+*Decision.* **Stop.** The measured shrinkage is zero by construction. The one
+residual value is robustness: Lemma S composed with a balance theorem for
+primitive irreducible Pisot languages (Adamczewski, TCS 307 (2003), cited,
+not gated) would give a second proof of G1b-1 without unimodularity. That is
+not pursued, since G1b-1 is already proved (PR #69).
