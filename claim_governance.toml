@@ -515,6 +515,25 @@ anchor = '| C4 |'
 window_lines = 0
 
 [[claim]]
+name = "ClassDWedgeBoundaryHitting"
+status = "proved"
+aliases = ["Theorem W", "class-D wedge boundary hitting"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"ClassDWedgeBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| ClassDWedgeBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Class-D wedge boundary hitting |"
+window_lines = 0
+
+[[claim]]
 name = "CoincidenceDensityOne"
 status = "proved"
 aliases = ["coincidence density one"]
@@ -663,6 +682,25 @@ window_lines = 0
 [[claim.surfaces]]
 path = "README.md"
 anchor = "=> pure discrete spectrum"
+window_lines = 0
+
+[[claim]]
+name = "DetTwoBoundaryHittingLines"
+status = "proved"
+aliases = ["Theorems L/L′/L″", "47 determinant-two lines"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"DetTwoBoundaryHittingLines"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| DetTwoBoundaryHittingLines |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Determinant-two boundary hitting on 47 lines |"
 window_lines = 0
 
 [[claim]]

@@ -152,6 +152,8 @@ contains SC_all, and `S(sigma)` can be read off `𝔅`
   one: choose `sigma^p(a) = u a v` with both `u` and `v` nonempty, possible
   by primitivity and growth. With `Q = beta^p`, place the tile `a` at left
   endpoint `-x`, where `x = length(u)/(Q-1)` lies strictly inside that tile.
+  Indeed `length(u) + ell_a + length(v) = Q ell_a`, so
+  `0 < x < ell_a`; the substituted endpoint is `-Q x + length(u) = -x`.
   Its substituted copy of `a` has the same endpoint, so inflation gives
   nested legal patches exhausting both directions. Primitivity supplies
   repetitivity, and finite tile types give FLC. This power step is needed
@@ -229,7 +231,9 @@ therefore rests on:**
 
 - Lemma Ω1, Theorem Ω and Proposition FP (elementary);
 - the exact runs;
-- either LMS 2003 with LS 2012, or Theorem 5.38.
+- for route (a), LMS 2003 with the Pisot–Meyer import (LS 2012 /
+  Akiyama–Lee 2011) **and Clark–Sadun 2003** for symbolic PDS;
+- alternatively, Theorem 5.38 for route (b).
 
 It does not use Theorem B, Lemma C, Proposition F, Theorem R, Theorem S or
 Proposition V(2).

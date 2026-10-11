@@ -1,6 +1,6 @@
 # Current PSC proof architecture — 2026-09-14
 
-**Canonical architecture summary.** For theorem status and provenance use `docs/claim-status-and-source-map-2026-09-13.md`; for live priorities use `docs/research-roadmap-2026-09-21.md` and for the latest dated snapshot use `docs/completion-ledger-2026-10-02.md`; for full statements use `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
+**Canonical architecture summary.** For theorem status and provenance use `docs/claim-status-and-source-map-2026-09-13.md`; for live priorities use `docs/research-roadmap-2026-09-21.md` and for the latest dated snapshot use `docs/completion-ledger-2026-10-09.md`; for full statements use `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
 
 ## Headline
 

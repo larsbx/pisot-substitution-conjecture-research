@@ -36,20 +36,22 @@ from psc.symbolic_cone import (
     Bracket,
     Cone,
     ConeGraph,
-    P2,
     Frac2,
     Region,
     cone_offset_zero_reachable,
-    p2_add,
-    p2_affine,
-    p2_at,
-    p2_const,
-    p2_sub,
     r2_add,
     r2_const,
     r2_div,
     r2_sub,
     symbolic_cone_graph,
+)
+from psc.param_poly import (
+    QX,
+    qx_add,
+    qx_affine2,
+    qx_at,
+    qx_const,
+    qx_sub,
 )
 from symbolic_line_certificate import exact_hits, exact_vertex_keys, same_set
 from a1_normal_form_census import CLASS_B, class_member
@@ -76,8 +78,8 @@ struct Aff(Copyable, Movable):
     def at(self, s1: Int, s2: Int) -> Int:
         return self.c0 + self.c1 * s1 + self.c2 * s2
 
-    def poly(self) -> P2:
-        return p2_affine(self.c0, self.c1, self.c2)
+    def poly(self) -> QX:
+        return qx_affine2(self.c0, self.c2, self.c1)
 
     def fix1(self, v: Int) -> Aff:
         return Aff(self.c0 + self.c1 * v, 0, self.c2)
@@ -123,12 +125,12 @@ def class_b_cone(f: Family) raises -> Cone:
     var p = f.p.poly()
     var q = f.q.poly()
     var r = f.r.poly()
-    var x0 = r2_const(p2_add(r, p2_const(1)))
+    var x0 = r2_const(qx_add(r, qx_const(1)))
     var xs = List[Frac2]()
     xs.append(x0.copy())
     for _ in range(3):
         ref x = xs[len(xs) - 1]
-        var nxt = r2_add(r2_add(x0, r2_div(r2_const(p2_sub(q, r)), x)), r2_div(r2_const(p), r2_sub(x, r2_const(p2_const(2)))))
+        var nxt = r2_add(r2_add(x0, r2_div(r2_const(qx_sub(q, r)), x)), r2_div(r2_const(p), r2_sub(x, r2_const(qx_const(2)))))
         xs.append(nxt^)
     var brs = List[Bracket]()
     brs.append(Bracket(xs[2].copy(), xs[1].copy()))
@@ -142,7 +144,7 @@ def cone_vertex_keys(g: ConeGraph, s1: Int, s2: Int) -> List[String]:
         ref v = g.vertices[i]
         var key = String(v.top) + "|" + String(v.bottom) + "|"
         for k in range(3):
-            key += q_string(p2_at(v.w[k], s1, s2)) + ("," if k < 2 else "")
+            key += q_string(qx_at(v.w[k], s2, s1)) + ("," if k < 2 else "")
         out.append(key^)
     return out^
 

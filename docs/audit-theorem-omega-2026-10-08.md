@@ -222,3 +222,14 @@ absent from this environment, and the retained Mojo binary cannot load its
 shared libraries. No new compiled-language or census credit is claimed.
 The separate dated verification packet is
 [`evidence/omega-audit-reconciliation-2026-10-09/`](../evidence/omega-audit-reconciliation-2026-10-09/README.md).
+
+
+## Follow-up — 2026-10-11 reconciliation and sufficiency examination
+
+The [October 11 review](audit-theorem-omega-2026-10-11.md) reconciles this
+branch with main `66df3e4`, checks the primary-source hypotheses and signed
+correspondence, and records the completed October 9 exact-head Mojo, Lean and
+box-census CI outputs. These completed outputs supplement the October 9
+integration record above without rewriting it. The new packet separates local
+reconciliation checks and environment failures from that earlier execution.
+Human mathematical acceptance remains pending; no claim status changes.

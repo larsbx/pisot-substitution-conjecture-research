@@ -1,0 +1,148 @@
+Job 113774248981
+2026-10-09T11:13:17.8390355Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T11:37:08.2304081Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T11:37:08.2304488Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-09T11:37:08.2304803Z deepest box first-coincidence depth: 104 specimen 1 38 56
+2026-10-09T11:37:08.2305103Z largest box graph: 1383391 states, specimen 1 118 77
+2026-10-09T11:37:08.2305764Z deepest recurrent first left-aligned depth: 25 specimen 1 38 56
+2026-10-09T11:37:08.2697916Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T11:37:08.2710157Z formally productive (Theorem Omega): 11333  not: 0
+
+Job 113774249264
+2026-10-09T11:17:04.6617540Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T12:07:00.9267915Z holds for every r: 11327  capped: 0  fails: 0
+2026-10-09T12:07:00.9268368Z formally productive (Theorem Omega): 11327  not: 0
+2026-10-09T12:07:00.9268848Z deepest box first-coincidence depth: 75 specimen 106 16 25
+2026-10-09T12:07:00.9269362Z largest box graph: 1432357 states, specimen 117 74 25
+2026-10-09T12:07:00.9270362Z deepest recurrent first left-aligned depth: 26 specimen 106 22 25
+2026-10-09T12:07:00.9608320Z holds for every r: 11327  capped: 0  fails: 0
+2026-10-09T12:07:00.9619302Z formally productive (Theorem Omega): 11327  not: 0
+
+Job 113774249310
+2026-10-09T11:13:57.1313863Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T11:56:23.7037391Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T11:56:23.7038189Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-09T11:56:23.7038965Z deepest box first-coincidence depth: 65 specimen 13 38 48
+2026-10-09T11:56:23.7039652Z largest box graph: 911329 states, specimen 13 38 66
+2026-10-09T11:56:23.7041479Z deepest recurrent first left-aligned depth: 26 specimen 13 57 12
+2026-10-09T11:56:23.7382395Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T11:56:23.7394761Z formally productive (Theorem Omega): 11333  not: 0
+
+Job 113774249328
+2026-10-09T11:14:11.4403621Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T12:01:51.6570667Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:01:51.6570991Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-09T12:01:51.6571300Z deepest box first-coincidence depth: 89 specimen 72 12 1
+2026-10-09T12:01:51.6571589Z largest box graph: 1432357 states, specimen 78 38 97
+2026-10-09T12:01:51.6572149Z deepest recurrent first left-aligned depth: 26 specimen 80 22 25
+2026-10-09T12:01:51.6909684Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:01:51.6919726Z formally productive (Theorem Omega): 11333  not: 0
+
+Job 113774249361
+2026-10-09T11:23:33.9111551Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T12:18:29.4063302Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:18:29.4063821Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-09T12:18:29.4064490Z deepest box first-coincidence depth: 104 specimen 25 97 0
+2026-10-09T12:18:29.4065102Z largest box graph: 1432357 states, specimen 25 84 41
+2026-10-09T12:18:29.4066692Z deepest recurrent first left-aligned depth: 26 specimen 21 45 12
+2026-10-09T12:18:29.4479949Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:18:29.4493347Z formally productive (Theorem Omega): 11333  not: 0
+
+Job 113774249371
+2026-10-09T11:33:54.9760434Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T12:26:31.5430048Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:26:31.5430609Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-09T12:26:31.5431242Z deepest box first-coincidence depth: 104 specimen 38 0 74
+2026-10-09T12:26:31.5431943Z largest box graph: 1432357 states, specimen 38 40 102
+2026-10-09T12:26:31.5433187Z deepest recurrent first left-aligned depth: 26 specimen 38 65 35
+2026-10-09T12:26:31.5786297Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:26:31.5800742Z formally productive (Theorem Omega): 11333  not: 0
+
+Job 113774249391
+2026-10-09T11:35:31.1565755Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T12:15:04.5260131Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:15:04.5260464Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-09T12:15:04.5260854Z deepest box first-coincidence depth: 94 specimen 44 12 1
+2026-10-09T12:15:04.5261242Z largest box graph: 1093359 states, specimen 53 40 1
+2026-10-09T12:15:04.5262148Z deepest recurrent first left-aligned depth: 25 specimen 44 12 1
+2026-10-09T12:15:04.5637607Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:15:04.5648464Z formally productive (Theorem Omega): 11333  not: 0
+
+Job 113774249417
+2026-10-09T11:18:21.9132358Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T12:24:10.7504617Z holds for every r: 24486  capped: 0  fails: 0
+2026-10-09T12:24:10.7504937Z formally productive (Theorem Omega): 24486  not: 0
+2026-10-09T12:24:10.7505383Z deepest box first-coincidence depth: 104 specimen 1 38 56
+2026-10-09T12:24:10.7505979Z largest box graph: 1342201 states, specimen 1 38 56
+2026-10-09T12:24:10.7506743Z deepest recurrent first left-aligned depth: 25 specimen 1 38 56
+2026-10-09T12:24:10.7895947Z holds for every r: 24486  capped: 0  fails: 0
+2026-10-09T12:24:10.7906813Z formally productive (Theorem Omega): 24486  not: 0
+
+Job 113774249437
+2026-10-09T11:36:05.4778983Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T12:16:56.4547635Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:16:56.4548015Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-09T12:16:56.4548464Z deepest box first-coincidence depth: 104 specimen 102 12 1
+2026-10-09T12:16:56.4548886Z largest box graph: 1379033 states, specimen 97 12 80
+2026-10-09T12:16:56.4549728Z deepest recurrent first left-aligned depth: 25 specimen 97 38 27
+2026-10-09T12:16:56.4922483Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:16:56.4933194Z formally productive (Theorem Omega): 11333  not: 0
+
+Job 113774249460
+2026-10-09T11:23:50.0012584Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T11:50:40.8365830Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T11:50:40.8366070Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-09T11:50:40.8366294Z deepest box first-coincidence depth: 70 specimen 17 12 81
+2026-10-09T11:50:40.8366593Z largest box graph: 915081 states, specimen 15 38 40
+2026-10-09T11:50:40.8367198Z deepest recurrent first left-aligned depth: 26 specimen 15 41 12
+2026-10-09T11:50:40.8692762Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T11:50:40.8702345Z formally productive (Theorem Omega): 11333  not: 0
+
+Job 113774249462
+2026-10-09T11:21:40.6195413Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T12:12:10.1617018Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:12:10.1617550Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-09T12:12:10.1617973Z deepest box first-coincidence depth: 96 specimen 68 12 1
+2026-10-09T12:12:10.1618384Z largest box graph: 1432357 states, specimen 56 118 12
+2026-10-09T12:12:10.1619094Z deepest recurrent first left-aligned depth: 25 specimen 60 2 12
+2026-10-09T12:12:10.2031737Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:12:10.2043815Z formally productive (Theorem Omega): 11333  not: 0
+
+Job 113774249559
+2026-10-09T11:38:42.7556025Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T12:40:28.3981400Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:40:28.3981951Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-09T12:40:28.3982807Z deepest box first-coincidence depth: 104 specimen 84 2 12
+2026-10-09T12:40:28.3983463Z largest box graph: 1383391 states, specimen 81 40 1
+2026-10-09T12:40:28.3984651Z deepest recurrent first left-aligned depth: 26 specimen 82 16 25
+2026-10-09T12:40:28.4297649Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:40:28.4307318Z formally productive (Theorem Omega): 11333  not: 0
+
+Job 113774249705
+2026-10-09T11:40:45.5911804Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T12:29:16.1523125Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:29:16.1523821Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-09T12:29:16.1524622Z deepest box first-coincidence depth: 75 specimen 30 12 48
+2026-10-09T12:29:16.1525437Z largest box graph: 1337441 states, specimen 30 41 25
+2026-10-09T12:29:16.1527022Z deepest recurrent first left-aligned depth: 26 specimen 30 12 42
+2026-10-09T12:29:16.1932461Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-09T12:29:16.1945079Z formally productive (Theorem Omega): 11333  not: 0
+
+Job 113774249702
+2026-10-09T11:23:56.7908921Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T11:24:37.6783244Z [PASS] test_the_deepest_member_is_the_one_the_note_names
+2026-10-09T11:24:43.6698118Z contract-receipt: Theorem E certificate (A1' on the catch-up-free |det M| = 2 class): the eight surviving endings are four mirror classes A-D and the other eight have no PIP member (four non-primitive, two det 0, two with left eigenvector (1,-1,0) for eigenvalue 2); f(1) and f(-1) are affine in (p,q,r) and every PIP point has both negative; lemmas L_BC and L_D (level 2) and L_A (level 3) name explicit positions, and at bound 11 all 453 named witnesses are shared tiles with none failing, over 383 PIP points; the PIP points no lemma covers are exactly the 27 listed (A 3, B 12, C 4, D 8), and the exact coincidence_level decides every one coincident at levels 3 to 7; the B line (n,0,1) has f(-1) = n - 12 and the D line (1,0,n) has f(1) = n - 3, so neither is PIP past its bound; the x <-> c mirror preserves PIP, |det M| and the level. Also the earlier sweep pins: A' holds at bounds 5 and 8 (174 and 420 members), deepest level 7, level-4-and-up rows identical (8/2/2/2) while levels 2 and 3 grow; no member merged at the endpoint; p = q = r = 0 members have all column sums 2 and none is PIP; deepest member sigma(x) = xyc, sigma(c) = cx, sigma(y) = cyc; a bound past MAX_BOUND is refused. Corollary E2 and Proposition Y: on Theorem E's class {x,y} and {c,y} are coincident within one level of {x,c} (87 PIP members at bound 5); the sigma(x) = y family F1 (det -2) and family F2 (det 2) have L_y at position 2 for r >= 2 and, in F1, L_cy at position q + r^2 + r + 1 for q > r >= 1 with no PIP point outside it; at bound 10 F1 has 30 PIP points and F2 73, all with f(1), f(-1) < 0; the residue is F1 (2,1) at levels {x,y} 4, {c,y} 2, {x,c} 3 and F2 (1,1), (2,1) at {x,y} level 3; the six other sigma(x) = y endings have no PIP member. Swap-family sweep (exploratory, exact): 328 and 724 PIP |det M| = 2 members at bounds 6 and 9 over ten endings, all {x,c}-coincident, deepest level 7 at (0,1,0) ending (x,c,x,x) and its mirror, level 5-7 rows 8/6/2 identical at both bounds
+2026-10-09T11:25:50.0098012Z contract-receipt: Catch-up-free PPVC census (finite, exact): PeriodicPairVertexCoincidence decided by the Proposition V box graph on every PIP |det M| = 2 member of Theorem E's classes A-D, the swap family, Proposition Y's F1/F2 and Theorem K's family; at bound 2 the counts are 17, 40, 6 and 5 decided, none skipped, all holding, deepest first offset-zero depth over recurrent vertices 13 (Theorem E classes) and 14 (swap family); class D (1,0,0) holds at depth 13 and class B (2,1,2) at depth 4; a failing or capped member raises; bounds outside 0..6 are refused
+2026-10-09T11:26:42.0490439Z [PASS] test_the_plastic_class_and_the_deepest_length_four_specimen_hold
+2026-10-09T11:26:42.0582761Z contract-receipt: depth laws decided exactly from a rational bracket of mu^2: a fast-contraction floor (K_V = 6, mu ~ 0.51) violates K_V <= 3.2/log(1/mu) and 4/log(1/mu); the plastic class (K_V 14) and the deepest length-4 specimen (K_V 26) hold all three; a deficient depth violates K_V <= 7 + 1/log(1/mu)
+2026-10-09T11:40:20.0379060Z [PASS] test_eventual_sign_records_the_largest_root
+2026-10-09T11:46:15.8567711Z 70 Mojo test files run; receipts in build/claim-receipts.tsv.
+2026-10-09T11:46:15.8568498Z All passed.
+2026-10-09T11:47:42.8990708Z   largest |B_sigma|: 1502
+
+Job 113774249707
+2026-10-09T11:32:25.9611152Z HEAD is now at 6c440aa Merge 7e13a28ec0962a2e09c7666d83ab360962f07b8f into fac4415c1036236e68da4f0da86ce7294f2a7d23
+2026-10-09T11:39:43.6045198Z PSC_AUDIT_COMPLETE	146	92
+2026-10-09T11:39:45.9806862Z Lean axiom audit: 146 declarations, 92 theorems; all named proofs reached
+
+

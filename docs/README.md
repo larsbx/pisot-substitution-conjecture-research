@@ -61,6 +61,20 @@ which is the only pair when `d = 2` and is why the two-letter case is settled.
 None of this proves #84, #138, #139, G1b-2, G1 for the family, or PSC. Each
 note's final section states its own limits.
 
+## #139 at a glance (2026-10-08)
+
+[`p1b-boundary-hitting-progress-2026-10-08.md`](p1b-boundary-hitting-progress-2026-10-08.md)
+is the PR-by-PR account of what has advanced boundary hitting at every
+reachable strict-zipper vertex (#141 → #234), and what is excluded as a
+route. It adds **Theorem L″**: the class-B line certificate, extended to
+Theorem E's four classes, proves pure discrete spectrum and finite BPA on 32
+more infinite families in classes A, C and D; 47 lines are pinned in all.
+It also adds **Theorem W**, two-parameter certificates on six wedges of
+class D which, with the lines, give **pure discrete spectrum and finite BPA
+for every PIP member of class D with `r ≥ q − 1`** (Corollary W1). Its engine
+reads signs at `β` by norm; Theorem C's class-B sectors use brackets
+(§4c compares the two).
+
 ## Current status
 
 1. `side-notes-ledger.md` — live, append-only record of side findings:
@@ -88,9 +102,10 @@ note's final section states its own limits.
 6. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
-7. `completion-ledger-2026-10-02.md` — latest merged weekly completion
-   snapshot, refreshed to `main@ff9e5d3`; mathematical/evidence additions
-   through PR #188 and the complete 24,486-specimen separation record.
+7. `completion-ledger-2026-10-09.md` — latest merged weekly completion
+   snapshot, refreshed to `main@4caca9a`; it separates universal open claims,
+   finite-domain closure, review-pending family theorems and computation
+   through PR #246.
 8. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
 9. `conjecture-ledger.md` — live prose dependency ledger.

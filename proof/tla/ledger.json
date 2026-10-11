@@ -194,6 +194,14 @@
     ],
     "BoxAutomatonPDSCertificate": [
       "per-specimen box PDS certificate"
+    ],
+    "DetTwoBoundaryHittingLines": [
+      "Theorems L/L′/L″",
+      "47 determinant-two lines"
+    ],
+    "ClassDWedgeBoundaryHitting": [
+      "Theorem W",
+      "class-D wedge boundary hitting"
     ]
   },
   "surfaces": {
@@ -430,6 +438,20 @@
       {
         "path": "docs/claim-status-and-source-map-2026-09-13.md",
         "anchor": "| Boundary-hitting criterion |",
+        "window_lines": 0
+      }
+    ],
+    "DetTwoBoundaryHittingLines": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Determinant-two boundary hitting on 47 lines |",
+        "window_lines": 0
+      }
+    ],
+    "ClassDWedgeBoundaryHitting": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Class-D wedge boundary hitting |",
         "window_lines": 0
       }
     ],
@@ -1975,6 +1997,58 @@
         [
           "source",
           "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.40 and Corollary 5.41; PR #82"
+        ]
+      ],
+      "tags": []
+    },
+    "DetTwoBoundaryHittingLines": {
+      "id": "sha256:a5ab3f78160bcd982c0c5e6866e19b12e71551f11d17462d1e195606bfc99e53",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every PIP member of the 47 one-parameter catch-up-free determinant-two lines declared by Theorems L, L' and L''",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-boundary-hitting-progress-2026-10-08.md, Theorems L, L' and L''; computer-assisted, human review pending; merged through PR #246"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "ClassDWedgeBoundaryHitting": {
+      "id": "sha256:6567bad719a6e71ff55bc79003d32705d9d8783671d84eedfb639d306fe742b8",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds on the six declared two-parameter class-D wedges; in particular for every PIP class-D member with r >= q - 1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-boundary-hitting-progress-2026-10-08.md, Theorem W and Corollary W1; computer-assisted, human review pending; merged through PR #246"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
         ]
       ],
       "tags": []

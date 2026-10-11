@@ -1,0 +1,27 @@
+........................................................................ [ 13%]
+........................................................................ [ 27%]
+........................................................................ [ 41%]
+........................................s............................... [ 55%]
+........................................................................ [ 69%]
+....................................................................F... [ 82%]
+.................................s...................................... [ 96%]
+.................                                                        [100%]
+=================================== FAILURES ===================================
+_____________________ test_every_evidence_packet_is_pinned _____________________
+
+    def test_every_evidence_packet_is_pinned():
+        packets = [p for p in (ROOT / "evidence").iterdir() if p.is_dir()]
+>       assert packets and all((p / "SHA256SUMS").is_file() for p in packets)
+E       AssertionError: assert ([PosixPath('/workspace/scratch/2ba0c4f32d9f/psc/evidence/omega-box-audit-2026-10-08'), PosixPath('/workspace/scratch/2...ets-2026-10-06'), PosixPath('/workspace/scratch/2ba0c4f32d9f/psc/evidence/omega-audit-reconciliation-2026-10-09'), ...] and False)
+E        +  where False = all(<generator object test_every_evidence_packet_is_pinned.<locals>.<genexpr> at 0x7f615c3d3d30>)
+
+tests/test_recorded_data_integrity.py:27: AssertionError
+=============================== warnings summary ===============================
+tests/test_audit_manuscript.py:25
+  /workspace/scratch/2ba0c4f32d9f/psc/tests/test_audit_manuscript.py:25: SyntaxWarning: invalid escape sequence '\s'
+    The matrix acts on an invariant subspace as a similar copy of $M_\sigma$.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_recorded_data_integrity.py::test_every_evidence_packet_is_pinned
+1 failed, 518 passed, 2 skipped, 1 warning in 250.22s (0:04:10)

@@ -73,7 +73,7 @@ The numbers that do check: `|λ₂| = |λ₃| ≈ 0.891` for `12, 223, 11`, and
 
 | This repository | Literature counterpart | Relation |
 | --- | --- | --- |
-| PDS for all 145,806 ternary PIP substitutions with images of length ≤ 4 or total length ≤ 8 (`strong-coincidence-census-2026-10-04.md` §4) | specimen-by-specimen verifications | an exhaustive size class rather than a family. The statement rests on Proposition V and Theorem B (unreviewed) and on recorded PPVC runs that CI does not guard. |
+| PDS for all 145,806 ternary PIP substitutions with images of length ≤ 4 or total length ≤ 8 (`pds-certificate-from-the-box-automaton-2026-10-07.md`, Theorem Ω and §5) | specimen-by-specimen verifications | an exact finite-domain theorem rather than a family. It uses the complete box certificate and explicit imported overlap-coincidence/Meyer results; it does not depend on Proposition V(2) or Theorem B. The larger domains are CI-guarded. |
 | SC_all exact on total length ≤ 10: 408,798 specimens, 0 failures | ternary strong coincidence conjecture, open | finite evidence; no counterexample in range |
 | finite `B_sigma` on total length ≤ 8 via the overlap sweep and Proposition 1 (`bpa-termination-by-overlap-depth-2026-10-02.md` §4) | BPA termination, decided one specimen at a time | covers the 120 specimens whose direct builds exhaust the state budget (length bound of order 10¹⁰), where a direct BPA run is impractical |
 | PDS ⇒ G1, and PDS ⇒ TwC from every seed (`prop:PDS-implies-G1`, `thm:seedwise`) | ABBLS Thm 5.3's "one seed suffices" | repository-proved, independently audited, human review pending; settles the every-seed reading |
@@ -95,8 +95,9 @@ failing SC_all or G1 refutes PSC (`strong-coincidence-census-2026-10-04.md`
 ## 4. What this note does not establish
 
 - PDS, G1 or SC_all beyond their stated finite domains.
-- Any upgrade of the §3 finite-domain PDS statement: its dependencies on
-  Proposition V and Theorem B are unchanged.
+- Any upgrade of the §3 finite-domain PDS statement beyond its declared
+  145,806-specimen domain. Theorem Ω removes the former Proposition V(2) and
+  Theorem B dependencies but supplies no universal completeness theorem.
 - The Sirvent–Solomyak counts: the comparison above uses this repository's
   seed convention throughout.
 

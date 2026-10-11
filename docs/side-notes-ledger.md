@@ -1435,6 +1435,87 @@ by deleting it.
 2026-10-09 — Main advanced to 8d91e48 through #245 during final review. Reconciliation retains its Rouche-first symbolic-cone certificate, Jury fallback and regression, with the changed Mojo test rerun and its actual receipt refreshed. Canonical ledger nodes and Lean sources are unchanged; governed inventories are regenerated on the new main.
 
 2026-10-09 — Current-head review found compiler overrides also affected provisioning. Setup now forces the exact checked-in Elan toolchain, refuses Lean/Lake version mismatches and clears inherited Lean/Lake/cache configuration before cache preparation. Four failing-before/passing-after setup controls cover both overrides and version probes. Development setup grants no formal audit credit; the Lean README routes verification to the isolated complete audit and preserves partial formalization boundaries.
+- 2026-10-08 · The line certificate is not class-B specific: on 32 lines of
+  Theorem E's classes A (slope 2), C and D it certifies boundary hitting from
+  every seed (Theorem L″), and every refusal met was a line outside the
+  Pisot class. Class A at slope 1 is different: its seed graph grows linearly
+  in `n` (235 → 915 vertices for `n = 3 → 20` at `p = n + 1`), so the
+  constant-graph method cannot reach it. Do not rerun it there with a larger
+  budget; it needs vertex families indexed by a run position. ·
+  `p1b-boundary-hitting-progress-2026-10-08.md` §§3–4
+- 2026-10-08 · Two-parameter certificates need three changes from the line
+  method, each forced by a concrete failure on class D. (1) Per-entry Sturm
+  signs fail: the PIP test's last Sturm entry is the discriminant, which
+  changes sign on a parabolic region `b ≲ √(2a)` along an edge. Use instead
+  `χ(−1), χ(1), χ(2) < 0`, which is equivalent to Pisot when `|det M| = 2`.
+  (2) Sturm–Tarski entries for realness signs change sign along irrational
+  rays (slopes `2√2`, `(3 ± √17)/2`), which no rational split avoids. Read
+  `sign h(β)` from a nonvanishing norm `det h(M)` plus one sample point. (3)
+  Coefficient positivity alone misses forms like `a² − ab + b²`, so add a
+  Pólya multiplier. Separately, a whole class-D cone cannot be one wedge,
+  because a run-position bound changes regime along `3r = 4q`. Split it at
+  the Farey directions `(1,1), (3,4), (2,3), (1,2)`. The same norm reading
+  also helps lines that lie beside such a ray. A boundary line on
+  `3r − 4q = −9` has threshold 196 by Sturm entries (about 5 h of exact
+  finite part) but 4 by norm. Certify wedge edges in norm mode. ·
+  `p1b-boundary-hitting-progress-2026-10-08.md` §4b
+
+2026-10-09 — Isolated #247's parameter-algebra refactor (`a3f1b15`) against
+#246's pinned pre-refactoring head (`e068c4c`). Both earlier engines inherited
+noncanonical `t`-polynomial keys for trailing zero terms; the shared module's
+key contract now strips that padding, with a failing-before regression.
+Independent monomial evaluation, specialized Euclidean division, denominator
+boundaries and three killed coordinate-reversal controls guard the conversion
+`(s1, s2) = (b, a)`. Direct replay agrees on the asymmetric 74-vertex class-B
+graph (including edges and hitting decisions) and the 105-vertex class-D wedge
+(corner `(1, 0)`, 1818 sign reads). This records computational preservation;
+#246's separate mathematical review and Corollary W1 acceptance boundary are
+unchanged. Evidence: `kernel/tests/test_param_poly.mojo`,
+`kernel/tests/test_symbolic_cone.mojo`, `kernel/tests/test_symbolic_line.mojo`,
+and the scoped review on PR #247.
+
+
+2026-10-10 — PR #250 Python-oracle matrix unrolling preserves the exact
+integer map: each output is the same three products in the same order;
+81 matrix-unit pairs and asymmetric signed, zero/identity, 256-bit boundary,
+rational and seeded mixed-entry regressions guard indexing and nonmutation.
+The pinned original full module and revised module differ in AST only at
+`mul`; all 4,554 ordered corpus entries agree at warm-up and every timed run.
+Seven alternating full-corpus pairs on Python 3.12.14 / AMD EPYC 9V74,
+one CPU affinity, give median 2.6361 s before and 1.7996 s after (31.73%
+elapsed reduction on this shared host). The original ~7.9/~4.8 s and 40%
+claim lacks preserved context and is not independently reproduced; historical
+2024-05-18 dates and broad polynomial optimization claims from `.jules/bolt.md`
+are unverified for this experiment. Remove that competing log; no polynomial
+algorithm changes or new mathematical claims are made. Evidence:
+`tests/test_pip_matrix_mul.py`, `oracles/python/pip_mul_benchmark.py`
+(replay from repository root with Python and the pinned git history), and
+`evidence/pip-mul-2026-10-10/benchmark.json` (machine context, raw wall/CPU
+samples, source/replay digests and ordered-corpus digest).
+
+2026-10-10 — PR #250 replay correction: fresh review found that Python `-O`
+stripped `assert` provenance guards. Replace them with explicit exceptions;
+optimized-mode negative controls reject unrelated source drift and a corrupt
+matrix kernel without emitting a report. The first `benchmark.json` remains
+verbatim and names its original replay digest; the corrected replay under
+`python -O` is separately preserved as `benchmark-guards-r2.json`, with its
+new replay digest and optimization level. Its seven-pair medians are 2.5266 s
+before / 1.7929 s after (29.04% reduction); performance is host/run-dependent,
+not a fixed 40% promise. Pin both recorded outputs in the packet's
+`SHA256SUMS`, as required by the recorded-data integrity guard. Evidence:
+`tests/test_pip_mul_benchmark_guards.py`,
+`oracles/python/pip_mul_benchmark.py`,
+`evidence/pip-mul-2026-10-10/benchmark-guards-r2.json`.
+
+2026-10-10 — PR #250 CI replay-test correction: Actions uses a shallow
+checkout, so negative-control tests must not request the pinned historical
+module through git. Stub the baseline read with the local source, then inject
+an unrelated AST node or a zero matrix kernel; both optimized-mode refusal
+paths remain exercised without history. The actual benchmark intentionally
+requires the pinned baseline history and continues to fail if it is absent.
+Evidence: `tests/test_pip_mul_benchmark_guards.py` and failed Actions job
+`114294069121` (515 other tests passed; two history-dependent controls failed).
+
 - 2026-10-08 · Audit of PR #233 final head `72f173d` (already merged as
   `cb9db58`) found no failed finite-descent/cycle-containment step or overlap
   kernel defect. The literature bridge now states the substitution-power
@@ -1472,3 +1553,14 @@ by deleting it.
   checks and all 15 TLA+ models; Mojo and Lean are explicitly skipped. ·
   `evidence/omega-audit-reconciliation-2026-10-09/`;
   `audit-theorem-omega-2026-10-08.md#follow-up--2026-10-09-integration-with-current-main`
+
+2026-10-11 — PR #235 reconciled with main `66df3e4`, preserving main as an
+exact ledger prefix, its claim/dependency/Lean surfaces and both prior audit
+packets. A fresh assistant examination of the four primary-source bridges
+found no failed sufficiency step and no unimodularity requirement; it is not
+human acceptance. Make the interior fixed-tile inequality and Clark–Sadun
+dependency in the finite-domain list explicit. Retrieved October 9 CI outputs
+confirm the existing head’s 70-file Mojo suite, 146-declaration Lean audit and
+all thirteen box jobs. New local Mojo/Lean provisioning fails, without
+execution credit. Evidence: `audit-theorem-omega-2026-10-11.md` and
+`evidence/omega-audit-reconciliation-2026-10-11/`.
