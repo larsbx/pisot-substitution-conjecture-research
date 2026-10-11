@@ -95,6 +95,22 @@ by deleting it.
   neither needs a box. · `p1b-symbolic-line-2026-10-07.md` §2;
   `archive/2026-10-07/symbolic-line-probes/trap_float_probe.out`
 
+- 2026-10-11 · Durand return-word derivation as a route into Barge's class
+  for Theorem K's family: of the 130 primitive Pisot members with
+  `|det M| = 2` and `|w_1|, |w_2| <= 4`, no derived substitution at any
+  letter, nor its square, is in Barge's class or its mirror. Extends the
+  2026-10-07 no-witness entry beyond powers and rotations. Archived probe with
+  a float Pisot screen, not a registered claim; the splitting move
+  `tau rho -> rho tau` is untested. ·
+  `sadic-transfer-literature-gate-2026-10-11.md` §4;
+  `archive/2026-10-11/return-word-barge-probe/`
+
+- 2026-10-11 · Porting the S-adic Lemma S (swap walk bounded by the balance
+  constant) to shrink PSC certificates: nothing consumes `D_sigma`. The box
+  radii come from contraction on formal overlaps, and the seed graph is an
+  exact closure. Zero gain by construction. Do not re-attempt. ·
+  `sadic-transfer-literature-gate-2026-10-11.md` §6
+
 ## 3. Settled by the literature (do not target with new machinery)
 
 - 2026-10-04 · Specimens with a power or common-prefix/suffix conjugate in
@@ -117,6 +133,18 @@ by deleting it.
   `o, y, z` alternate `(y, o, o)` / `(o, y, y)`, never injective, never
   constant, no common first letter. Do not test Theorem K's members against
   `barge_witness` again. · `p1a-tail-literature-gate-2026-10-07.md` §3
+
+- 2026-10-11 · Flow-to-symbolic: Sirvent–Solomyak 2002 Corollary 5.2 needs
+  exactly PIP ("Pisot type") and no unimodularity, so every flow-PDS result
+  here (Theorem Ω's 145,806 specimens, the 1,248 Barge-class specimens) is a
+  symbolic `Z`-action result too. Primary text verified in the S-adic
+  programme's gate §9. Do not re-gate Clark–Sadun or Barge–Kwapisz for this. ·
+  `sadic-transfer-literature-gate-2026-10-11.md`
+
+- 2026-10-11 · Brun composites (unordered, admissible, every dimension) with
+  irreducible Pisot characteristic polynomial have symbolic PDS: S-adic
+  Corollary B″, mirror Barge class. Do not run balanced pairs on them. ·
+  `sadic-transfer-literature-gate-2026-10-11.md`
 
 - 2026-10-07 · **Bounded `Z_2` closes the tails for every `Delta`.** With
   `Z_2 <= cap` the members' run patterns are finitely many and fully
@@ -1474,3 +1502,44 @@ unchanged. Evidence: `kernel/tests/test_param_poly.mojo`,
 `kernel/tests/test_symbolic_cone.mojo`, `kernel/tests/test_symbolic_line.mojo`,
 and the scoped review on PR #247.
 
+
+2026-10-10 — PR #250 Python-oracle matrix unrolling preserves the exact
+integer map: each output is the same three products in the same order;
+81 matrix-unit pairs and asymmetric signed, zero/identity, 256-bit boundary,
+rational and seeded mixed-entry regressions guard indexing and nonmutation.
+The pinned original full module and revised module differ in AST only at
+`mul`; all 4,554 ordered corpus entries agree at warm-up and every timed run.
+Seven alternating full-corpus pairs on Python 3.12.14 / AMD EPYC 9V74,
+one CPU affinity, give median 2.6361 s before and 1.7996 s after (31.73%
+elapsed reduction on this shared host). The original ~7.9/~4.8 s and 40%
+claim lacks preserved context and is not independently reproduced; historical
+2024-05-18 dates and broad polynomial optimization claims from `.jules/bolt.md`
+are unverified for this experiment. Remove that competing log; no polynomial
+algorithm changes or new mathematical claims are made. Evidence:
+`tests/test_pip_matrix_mul.py`, `oracles/python/pip_mul_benchmark.py`
+(replay from repository root with Python and the pinned git history), and
+`evidence/pip-mul-2026-10-10/benchmark.json` (machine context, raw wall/CPU
+samples, source/replay digests and ordered-corpus digest).
+
+2026-10-10 — PR #250 replay correction: fresh review found that Python `-O`
+stripped `assert` provenance guards. Replace them with explicit exceptions;
+optimized-mode negative controls reject unrelated source drift and a corrupt
+matrix kernel without emitting a report. The first `benchmark.json` remains
+verbatim and names its original replay digest; the corrected replay under
+`python -O` is separately preserved as `benchmark-guards-r2.json`, with its
+new replay digest and optimization level. Its seven-pair medians are 2.5266 s
+before / 1.7929 s after (29.04% reduction); performance is host/run-dependent,
+not a fixed 40% promise. Pin both recorded outputs in the packet's
+`SHA256SUMS`, as required by the recorded-data integrity guard. Evidence:
+`tests/test_pip_mul_benchmark_guards.py`,
+`oracles/python/pip_mul_benchmark.py`,
+`evidence/pip-mul-2026-10-10/benchmark-guards-r2.json`.
+
+2026-10-10 — PR #250 CI replay-test correction: Actions uses a shallow
+checkout, so negative-control tests must not request the pinned historical
+module through git. Stub the baseline read with the local source, then inject
+an unrelated AST node or a zero matrix kernel; both optimized-mode refusal
+paths remain exercised without history. The actual benchmark intentionally
+requires the pinned baseline history and continues to fail if it is absent.
+Evidence: `tests/test_pip_mul_benchmark_guards.py` and failed Actions job
+`114294069121` (515 other tests passed; two history-dependent controls failed).

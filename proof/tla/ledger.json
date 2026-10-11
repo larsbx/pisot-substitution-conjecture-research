@@ -195,6 +195,23 @@
     "BoxAutomatonPDSCertificate": [
       "per-specimen box PDS certificate"
     ],
+    "SirventSolomyakTransfer": [
+      "Sirvent–Solomyak transfer",
+      "flow-to-symbolic transfer"
+    ],
+    "BargeClassFlowPDS": [
+      "Barge class theorem"
+    ],
+    "BargeClassSymbolicPDS": [
+      "Barge-class symbolic PDS"
+    ],
+    "BoxAutomatonSymbolicPDSCertificate": [
+      "per-specimen box symbolic PDS certificate"
+    ],
+    "BrunCompositeSymbolicPDS": [
+      "Corollary B″",
+      "Brun composites have symbolic PDS"
+    ],
     "DetTwoBoundaryHittingLines": [
       "Theorems L/L′/L″",
       "47 determinant-two lines"
@@ -690,6 +707,41 @@
       {
         "path": "docs/claim-status-and-source-map-2026-09-13.md",
         "anchor": "| Box-automaton PDS certificate |",
+        "window_lines": 0
+      }
+    ],
+    "SirventSolomyakTransfer": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Sirvent–Solomyak flow-to-symbolic transfer |",
+        "window_lines": 0
+      }
+    ],
+    "BargeClassFlowPDS": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Barge class theorem |",
+        "window_lines": 0
+      }
+    ],
+    "BoxAutomatonSymbolicPDSCertificate": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Box-automaton symbolic PDS certificate |",
+        "window_lines": 0
+      }
+    ],
+    "BargeClassSymbolicPDS": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Barge-class symbolic PDS |",
+        "window_lines": 0
+      }
+    ],
+    "BrunCompositeSymbolicPDS": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Brun composites have symbolic PDS (S-adic Corollary B″) |",
         "window_lines": 0
       }
     ]
@@ -2933,6 +2985,126 @@
         [
           "source",
           "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (c), with docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "SirventSolomyakTransfer": {
+      "id": "sha256:362e9c141a978d77e27f746eb7c7129f1cf5b9aa8ba995a879e14f9edb891bd1",
+      "kind": "imported_theorem",
+      "statement": "for a substitution of Pisot type (primitive, Pisot Perron-Frobenius eigenvalue, irreducible characteristic polynomial), pure discrete spectrum of the self-similar tiling R-action with Perron left-eigenvector tile lengths implies pure discrete spectrum of the substitutive Z-action",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "hypotheses_checked",
+          "true"
+        ],
+        [
+          "source",
+          "Sirvent-Solomyak, Canad. Math. Bull. 45 (2002), p. 699 definition, Section 4 and Corollary 5.2; no unimodularity; docs/sadic-transfer-literature-gate-2026-10-11.md, sections 2-3"
+        ]
+      ],
+      "tags": []
+    },
+    "BargeClassFlowPDS": {
+      "id": "sha256:60b82d4ced77a6aa71d2ed809616f7a8b1d2510dd3e7b31c13b46f054624dd31",
+      "kind": "imported_theorem",
+      "statement": "a primitive non-periodic substitution with Pisot inflation that is injective on initial letters and eventually constant on final letters has a tiling flow with pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "hypotheses_checked",
+          "true"
+        ],
+        [
+          "source",
+          "Barge, DCDS-A 36 (2016), Theorem 3.13 and Remark 3.14; no irreducibility or unimodularity; docs/sadic-transfer-literature-gate-2026-10-11.md, section 2"
+        ]
+      ],
+      "tags": []
+    },
+    "BoxAutomatonSymbolicPDSCertificate": {
+      "id": "sha256:1f5235cf7e90a252319332b0980ce080b8e9c53938213a1189c2a088470f51e6",
+      "kind": "repository_theorem",
+      "statement": "for each fixed PIP substitution, if every vertex of its complete box automaton reaches a coincidence, its substitutive Z-action has pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:9527876667e5d67a87ee54a480418bbfc9180b0b75a5dadf8276c7bbcad21eb7",
+          "for each fixed PIP substitution, if every vertex of its complete box automaton reaches a coincidence, its Perron-length suspension tiling flow has pure discrete spectrum",
+          "BoxAutomatonSymbolicPDSCertificate/BoxAutomatonPDSCertificate",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:362e9c141a978d77e27f746eb7c7129f1cf5b9aa8ba995a879e14f9edb891bd1",
+          "for a substitution of Pisot type (primitive, Pisot Perron-Frobenius eigenvalue, irreducible characteristic polynomial), pure discrete spectrum of the self-similar tiling R-action with Perron left-eigenvector tile lengths implies pure discrete spectrum of the substitutive Z-action",
+          "BoxAutomatonSymbolicPDSCertificate/SirventSolomyakTransfer",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/sadic-transfer-literature-gate-2026-10-11.md, section 3: PIP is Sirvent-Solomyak's Pisot type and the box certificate's Perron-length suspension is their R-action"
+        ]
+      ],
+      "tags": []
+    },
+    "BargeClassSymbolicPDS": {
+      "id": "sha256:2b7d5d0e30eb9090761f61082c920b6723d2ff64db68e04604a434cb399148ca",
+      "kind": "repository_theorem",
+      "statement": "a PIP substitution with a power, or a maximal common-prefix/suffix rotation of a power, in Barge's class or its mirror has a substitutive Z-action with pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:60b82d4ced77a6aa71d2ed809616f7a8b1d2510dd3e7b31c13b46f054624dd31",
+          "a primitive non-periodic substitution with Pisot inflation that is injective on initial letters and eventually constant on final letters has a tiling flow with pure discrete spectrum",
+          "BargeClassSymbolicPDS/BargeClassFlowPDS",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:362e9c141a978d77e27f746eb7c7129f1cf5b9aa8ba995a879e14f9edb891bd1",
+          "for a substitution of Pisot type (primitive, Pisot Perron-Frobenius eigenvalue, irreducible characteristic polynomial), pure discrete spectrum of the self-similar tiling R-action with Perron left-eigenvector tile lengths implies pure discrete spectrum of the substitutive Z-action",
+          "BargeClassSymbolicPDS/SirventSolomyakTransfer",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/sadic-transfer-literature-gate-2026-10-11.md, section 3: powers and rotations generate the same subshift and stay PIP, reversal conjugates the shift to its inverse; membership decided by psc/barge_class.mojo"
+        ]
+      ],
+      "tags": []
+    },
+    "BrunCompositeSymbolicPDS": {
+      "id": "sha256:6cb82c11f772955fda66196567a56029c074e544368d7fb60b7e75c23d9e8c4b",
+      "kind": "imported_theorem",
+      "statement": "in every dimension, every primitive composite of an admissible unordered Brun word whose characteristic polynomial is irreducible and Pisot has a substitutive Z-action with pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "hypotheses_checked",
+          "true"
+        ],
+        [
+          "source",
+          "larsbx/s-adic-pisot-conjecture-research@c379703, docs/sadic-g6-brun-higher-census.md, Theorem B, Lemma Rev and Corollary B'' (Barge 2016 Theorem 3.13 with the Sirvent-Solomyak transfer); cross-programme family theorem, docs/sadic-transfer-literature-gate-2026-10-11.md, sections 2-3"
         ]
       ],
       "tags": []

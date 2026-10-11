@@ -131,6 +131,33 @@
       }
     },
     {
+      "name": "BargeClassFlowPDS",
+      "status": "imported",
+      "source": "Barge, DCDS-A 36 (2016), Theorem 3.13 and Remark 3.14; no irreducibility or unimodularity; docs/sadic-transfer-literature-gate-2026-10-11.md, section 2",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "BargeClassSymbolicPDS",
+      "status": "proved",
+      "source": "docs/sadic-transfer-literature-gate-2026-10-11.md, section 3: powers and rotations generate the same subshift and stay PIP, reversal conjugates the shift to its inverse; membership decided by psc/barge_class.mojo",
+      "dependencies": [
+        "BargeClassFlowPDS",
+        "SirventSolomyakTransfer"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
       "name": "BoundaryCoincidenceCriterion",
       "status": "proved",
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Proposition 5.40 and Corollary 5.41; PR #82",
@@ -209,9 +236,36 @@
       }
     },
     {
+      "name": "BoxAutomatonSymbolicPDSCertificate",
+      "status": "proved",
+      "source": "docs/sadic-transfer-literature-gate-2026-10-11.md, section 3: PIP is Sirvent-Solomyak's Pisot type and the box certificate's Perron-length suspension is their R-action",
+      "dependencies": [
+        "BoxAutomatonPDSCertificate",
+        "SirventSolomyakTransfer"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
       "name": "BoxCycleContainment",
       "status": "proved",
       "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Lemma Omega1 (Proposition V step 1; docs/formal-overlap-carriers-2026-10-04.md, section 2 item 5); step 1 audited in docs/audit-adversarial-prop-v-theorem-e-2026-10-07.md; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "BrunCompositeSymbolicPDS",
+      "status": "imported",
+      "source": "larsbx/s-adic-pisot-conjecture-research@c379703, docs/sadic-g6-brun-higher-census.md, Theorem B, Lemma Rev and Corollary B'' (Barge 2016 Theorem 3.13 with the Sirvent-Solomyak transfer); cross-programme family theorem, docs/sadic-transfer-literature-gate-2026-10-11.md, sections 2-3",
       "dependencies": [],
       "ledger_node": true,
       "lean_support": {
@@ -1155,6 +1209,18 @@
       "dependencies": [
         "G1"
       ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "SirventSolomyakTransfer",
+      "status": "imported",
+      "source": "Sirvent-Solomyak, Canad. Math. Bull. 45 (2002), p. 699 definition, Section 4 and Corollary 5.2; no unimodularity; docs/sadic-transfer-literature-gate-2026-10-11.md, sections 2-3",
+      "dependencies": [],
       "ledger_node": true,
       "lean_support": {
         "coverage": "none",
@@ -2937,7 +3003,7 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "d0e7651146d690b76a0c84904f1d089d61f2343ee134c99b55d86f1065c1ce95",
+    "claim_governance.toml": "97f089ccab2e923f16a74db2bd6333f10de9f6a8a23144a1d63ab54d053a0ced",
     "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
@@ -2951,7 +3017,7 @@
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
     "tools/check_lean.sh": "04078a19300533b800e2cca6f0a3573fe8b116fec0ae8ace8a2d4ffc1ae9613b",
-    "tools/make_ledger.py": "b9c13273ef544c17bcfaf4b37336d595f0a016eca858c6217f1da2e3e7efe746",
+    "tools/make_ledger.py": "90087d16efa74b3f208364fb5ff6cda35906881150ac5e57f97e53ddd1665f86",
     "tools/make_proof_bank.py": "d41bd8ecb4d51964b6acfb1783d3c7c6aa1fce67ad502f9b4c1c6fb94dceec13",
     "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
   }

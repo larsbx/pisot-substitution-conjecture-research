@@ -1,0 +1,64 @@
+{
+  "measured_at_utc": "2026-10-10T19:19:36.033646+00:00",
+  "baseline_commit": "e37d99ea6615f040208f6c079672ef4f05a23d5c",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "processor": "x86_64",
+  "cpu_info": "processor\t: 0\nvendor_id\t: AuthenticAMD\ncpu family\t: 25\nmodel\t\t: 17\nmodel name\t: AMD EPYC 9V74 80-Core Processor\nstepping\t: 1\nmicrocode\t: 0x1000065\ncpu MHz\t\t: 2596.138\ncache size\t: 1024 KB\nphysical id\t: 0\nsiblings\t: 9\ncore id\t\t: 0\ncpu cores\t: 9\napicid\t\t: 0\ninitial apicid\t: 0\nfpu\t\t: yes\nfpu_exception\t: yes\ncpuid level\t: 28\nwp\t\t: yes\nflags\t\t: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves avx512_bf16 clzero xsaveerptr arat npt nrip_save tsc_scale vmcb_clean flushbyasid pausefilter pfthreshold v_vmsave_vmload avx512vbmi umip avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid fsrm arch_capabilities\nbugs\t\t: sysret_ss_attrs null_seg spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa\nbogomips\t: 5192.27\nTLB size\t: 3584 4K pages\nclflush size\t: 64\ncache_alignment\t: 64\naddress sizes\t: 46 bits physical, 48 bits virtual\npower management:",
+  "affinity_cpu": 0,
+  "hash_seed": "unset",
+  "source_sha256": {
+    "before": "796e2573f0a1bf6b1fe3e45e1ec1db7655a6e02a6935f8092a88726dbb62ca21",
+    "after": "bdc2c36e454452292b768c1e70eb43a707fe67290fd5798bcdbe7c27d1ebaf10"
+  },
+  "replay_sha256": "431067ccb50e7b4288ba178375ac1203a6c11cc2116efd125984146d85c97a30",
+  "protocol": "full corpus; warm-up each; seven alternating pairs; perf_counter and process_time; shared host",
+  "corpus_count": 4554,
+  "ordered_corpus_sha256": "47b9f7700c88117cdaa3cbeda2ed0c4c9d163387568c7d127e0731ba79197882",
+  "exact_ordered_equality_every_run": true,
+  "wall_seconds": {
+    "before": [
+      2.5275000279998494,
+      2.6568862770000123,
+      2.6587949479999224,
+      2.7448064380000687,
+      2.6360912059999464,
+      2.5445160580002266,
+      2.544831051000074
+    ],
+    "after": [
+      1.8695211560002463,
+      1.7995954200000597,
+      1.8261579589998291,
+      1.6937460829999509,
+      1.779694113000005,
+      1.835368242000186,
+      1.7519723890000023
+    ]
+  },
+  "process_seconds": {
+    "before": [
+      2.5270003710000006,
+      2.656504797,
+      2.658551031000002,
+      2.7440428320000017,
+      2.6357789400000016,
+      2.5418873019999992,
+      2.5447100969999994
+    ],
+    "after": [
+      1.8693610959999996,
+      1.799495813,
+      1.8256392320000003,
+      1.6934925369999974,
+      1.7796390240000015,
+      1.8350651529999986,
+      1.7518772869999992
+    ]
+  },
+  "median_wall_seconds": {
+    "before": 2.6360912059999464,
+    "after": 1.7995954200000597
+  },
+  "elapsed_reduction_percent": 31.732429594847023
+}
