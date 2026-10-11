@@ -99,10 +99,11 @@ by deleting it.
   for Theorem K's family: of the 130 primitive Pisot members with
   `|det M| = 2` and `|w_1|, |w_2| <= 4`, no derived substitution at any
   letter, nor its square, is in Barge's class or its mirror. Extends the
-  2026-10-07 no-witness entry beyond powers and rotations. Scratch probe with
+  2026-10-07 no-witness entry beyond powers and rotations. Archived probe with
   a float Pisot screen, not a registered claim; the splitting move
   `tau rho -> rho tau` is untested. ·
-  `sadic-transfer-literature-gate-2026-10-11.md` §4
+  `sadic-transfer-literature-gate-2026-10-11.md` §4;
+  `archive/2026-10-11/return-word-barge-probe/`
 
 - 2026-10-11 · Porting the S-adic Lemma S (swap walk bounded by the balance
   constant) to shrink PSC certificates: nothing consumes `D_sigma`. The box

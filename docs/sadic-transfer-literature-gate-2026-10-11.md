@@ -62,12 +62,13 @@ which of that programme's results are PSC claims and with what status.
 ## 4. Negative controls
 
 - **No Barge witness on Theorem K's open family** (side-notes ledger §3,
-  2026-10-07): powers and rotations do not help there. A scratch probe of
+  2026-10-07): powers and rotations do not help there. An archived probe of
   2026-10-11 extends this to Durand's return-word derivation: of the 130
   primitive Pisot members with `|det M| = 2` and `|w_1|, |w_2| <= 4`, no
   derived substitution at any letter, or its square, is in Barge's class or
   its mirror. Exploratory, float screen for Pisot, not a registered claim
-  (side-notes ledger §2).
+  (side-notes ledger §2). Driver, budget and per-member output:
+  `archive/2026-10-11/return-word-barge-probe/`.
 - **The direction is PSC → S-adic.** The S-adic metric theorems (BST23
   Theorem 3.1, S-adic Theorems S, C, C′) are almost-everywhere statements;
   constant directive sequences form a null set, and BST23 consumes a PDS
