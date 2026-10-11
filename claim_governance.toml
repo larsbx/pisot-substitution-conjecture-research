@@ -383,6 +383,44 @@ anchor = '| AllStatesProductiveViaOverlaps |'
 window_lines = 0
 
 [[claim]]
+name = "BargeClassFlowPDS"
+status = "imported"
+aliases = ["Barge class theorem"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BargeClassFlowPDS"'
+section = "ImportedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BargeClassFlowPDS |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Barge class theorem |"
+window_lines = 0
+
+[[claim]]
+name = "BargeClassSymbolicPDS"
+status = "proved"
+aliases = ["Barge-class symbolic PDS"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BargeClassSymbolicPDS"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BargeClassSymbolicPDS |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Barge-class symbolic PDS |"
+window_lines = 0
+
+[[claim]]
 name = "BoundaryCoincidenceCriterion"
 status = "proved"
 aliases = ["boundary-hitting criterion"]
@@ -440,6 +478,25 @@ anchor = "| Box-automaton PDS certificate |"
 window_lines = 0
 
 [[claim]]
+name = "BoxAutomatonSymbolicPDSCertificate"
+status = "proved"
+aliases = ["per-specimen box symbolic PDS certificate"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BoxAutomatonSymbolicPDSCertificate"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BoxAutomatonSymbolicPDSCertificate |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Box-automaton symbolic PDS certificate |"
+window_lines = 0
+
+[[claim]]
 name = "BoxCycleContainment"
 status = "proved"
 aliases = ["Lemma Ω1"]
@@ -456,6 +513,25 @@ window_lines = 0
 [[claim.surfaces]]
 path = "docs/claim-status-and-source-map-2026-09-13.md"
 anchor = "| Cycle vertices lie in the box automaton |"
+window_lines = 0
+
+[[claim]]
+name = "BrunCompositeSymbolicPDS"
+status = "imported"
+aliases = ["Corollary B″", "Brun composites have symbolic PDS"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BrunCompositeSymbolicPDS"'
+section = "ImportedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BrunCompositeSymbolicPDS |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Brun composites have symbolic PDS (S-adic Corollary B″) |"
 window_lines = 0
 
 [[claim]]
@@ -1582,6 +1658,25 @@ window_lines = 0
 [[claim.surfaces]]
 path = "docs/claim-status-and-source-map-2026-09-13.md"
 anchor = "| Sink-SCC reduction under G1 |"
+window_lines = 0
+
+[[claim]]
+name = "SirventSolomyakTransfer"
+status = "imported"
+aliases = ["Sirvent–Solomyak transfer", "flow-to-symbolic transfer"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"SirventSolomyakTransfer"'
+section = "ImportedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| SirventSolomyakTransfer |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Sirvent–Solomyak flow-to-symbolic transfer |"
 window_lines = 0
 
 [[claim]]
