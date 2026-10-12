@@ -1543,3 +1543,52 @@ paths remain exercised without history. The actual benchmark intentionally
 requires the pinned baseline history and continues to fail if it is absent.
 Evidence: `tests/test_pip_mul_benchmark_guards.py` and failed Actions job
 `114294069121` (515 other tests passed; two history-dependent controls failed).
+
+- 2026-10-08 · Audit of PR #233 final head `72f173d` (already merged as
+  `cb9db58`) found no failed finite-descent/cycle-containment step or overlap
+  kernel defect. The literature bridge now states the substitution-power
+  fixed-point argument, signed overlap dictionary, realized-graph uniformity,
+  and Clark–Sadun flow-to-subshift import. Independent exact replay checks all
+  vertices and child edges on five controls, including the 85,287-vertex cube
+  with determinant 3; an exact Parikh-weighted census confirms the 145,806
+  union and 14,670 intersection. Seven length-4 CI slices are complete in the
+  saved snapshot and five still run. Separate mathematical review and full
+  current-head evidence remain acceptance conditions; no claim status changes. ·
+  `audit-theorem-omega-2026-10-08.md`;
+  `evidence/omega-box-audit-2026-10-08/`
+- 2026-10-08 · Follow-up CI snapshot adds successful length-4 slices 00,
+  05, 06 and 10; eleven slices cover 124,657 specimens and slice 09 still
+  runs. The local canonical suite passes all 68 Mojo test files. Earlier
+  snapshots are retained unchanged. · `audit-theorem-omega-2026-10-08.md`;
+  `evidence/omega-box-audit-2026-10-08/ci-followup.json`
+- 2026-10-08 · Completion snapshot: all thirteen box-evidence jobs and all
+  twenty main research jobs are successful on PR #233 final head `72f173d`.
+  Actual slice outputs sum to 135,990 length-4 specimens, plus 24,486 total-8;
+  exact intersection 14,670 gives union 145,806. No caps or productivity
+  failures. Local Python/TLA+/governance pass; Lake configuration fails locally
+  while source-head CI Lean is green. Independent mathematical acceptance
+  remains pending, without status changes. ·
+  `evidence/omega-box-audit-2026-10-08/ci-completion.json`;
+  `audit-theorem-omega-2026-10-08.md`
+- 2026-10-09 · Resolve PR #235's conflicts with main `fac4415` by retaining
+  its registered box/PDS proof nodes and proof clarifications alongside the
+  signed-overlap, substitution-power/padding and Clark–Sadun audit repairs.
+  Main's entire side-findings ledger remains an exact prefix, and all three
+  prior audit entries are retained. Regenerate the proof bank's two moved
+  statement locators; claim records, Lean declarations and the complete
+  October 8 audit-evidence packet are unchanged. No further claim promotion
+  or universal gate discharge. Reconciliation verification passes 13 run
+  checks and all 15 TLA+ models; Mojo and Lean are explicitly skipped. ·
+  `evidence/omega-audit-reconciliation-2026-10-09/`;
+  `audit-theorem-omega-2026-10-08.md#follow-up--2026-10-09-integration-with-current-main`
+
+2026-10-11 — PR #235 reconciled with main `66df3e4`, preserving main as an
+exact ledger prefix, its claim/dependency/Lean surfaces and both prior audit
+packets. A fresh assistant examination of the four primary-source bridges
+found no failed sufficiency step and no unimodularity requirement; it is not
+human acceptance. Make the interior fixed-tile inequality and Clark–Sadun
+dependency in the finite-domain list explicit. Retrieved October 9 CI outputs
+confirm the existing head’s 70-file Mojo suite, 146-declaration Lean audit and
+all thirteen box jobs. New local Mojo/Lean provisioning fails, without
+execution credit. Evidence: `audit-theorem-omega-2026-10-11.md` and
+`evidence/omega-audit-reconciliation-2026-10-11/`.
