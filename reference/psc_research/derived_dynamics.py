@@ -17,6 +17,7 @@ from __future__ import annotations
 from collections import deque
 from math import gcd
 from typing import Hashable, Mapping, TypeVar
+import itertools
 
 S = TypeVar("S", bound=Hashable)
 DerivedMap = Mapping[S, tuple[S, ...]]
@@ -31,7 +32,9 @@ def validate_non_erasing_substitution(tau: DerivedMap[S]) -> None:
             raise ValueError(f"derived substitution erases {state!r}")
         unknown = [child for child in word if child not in alphabet]
         if unknown:
-            raise ValueError(f"derived word references states outside alphabet: {unknown!r}")
+            raise ValueError(
+                f"derived word references states outside alphabet: {unknown!r}"
+            )
 
 
 def derived_adjacency(tau: DerivedMap[S]) -> dict[S, frozenset[S]]:
@@ -117,12 +120,12 @@ def cyclic_class_labels(tau: DerivedMap[S]) -> dict[S, int]:
 
 def apply_derived_generic(tau: DerivedMap[S], word: tuple[S, ...]) -> tuple[S, ...]:
     validate_non_erasing_substitution(tau)
-    out: list[S] = []
-    for state in word:
-        if state not in tau:
-            raise ValueError("word contains symbol outside derived substitution")
-        out.extend(tau[state])
-    return tuple(out)
+    try:
+        # Optimization: itertools.chain.from_iterable inside a tuple constructor avoids list
+        # allocations and list.extend() overhead, making it significantly faster and more memory-efficient.
+        return tuple(itertools.chain.from_iterable(tau[state] for state in word))
+    except KeyError as e:
+        raise ValueError("word contains symbol outside derived substitution") from e
 
 
 def iterate_derived_generic(tau: DerivedMap[S], state: S, depth: int) -> tuple[S, ...]:

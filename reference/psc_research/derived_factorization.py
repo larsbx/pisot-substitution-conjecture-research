@@ -18,6 +18,7 @@ needed.
 from __future__ import annotations
 
 from dataclasses import dataclass
+import itertools
 from typing import Mapping, Sequence
 
 from .bpa import (
@@ -75,18 +76,20 @@ def strict_derived_substitution(
             if cu == cv:
                 raise ValueError("strict component has a coincidence child")
             if child not in states:
-                raise ValueError("strict component has a noncoincident child outside the component")
+                raise ValueError(
+                    "strict component has a noncoincident child outside the component"
+                )
         tau[state] = cs
     return tau
 
 
 def apply_derived(tau: DerivedSubstitution, word: Sequence[State]) -> DerivedWord:
-    out: list[State] = []
-    for state in word:
-        if state not in tau:
-            raise ValueError("derived word contains a state outside tau")
-        out.extend(tau[state])
-    return tuple(out)
+    try:
+        # Optimization: itertools.chain.from_iterable inside a tuple constructor avoids list
+        # allocations and list.extend() overhead, making it significantly faster and more memory-efficient.
+        return tuple(itertools.chain.from_iterable(tau[state] for state in word))
+    except KeyError as e:
+        raise ValueError("derived word contains a state outside tau") from e
 
 
 def iterate_derived(tau: DerivedSubstitution, state: State, depth: int) -> DerivedWord:
