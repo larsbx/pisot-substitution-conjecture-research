@@ -48,6 +48,21 @@ by deleting it.
   `c4-ordered-hub-offset-negative-2026-10-06.md` §3;
   `evidence/ordered-hub-packets-2026-10-06/`
 
+- 2026-10-12 · **Withdrawn box-walk radius-eight extremum.** The reported
+  constrained exhaustive `n=3, L=3` maximum of 8 lacks a preserved
+  family predicate, saturation proof, original program, run budget, and
+  output; a plateau is not transition closure. Exact deterministic
+  **single-specimen, aligned-prefix** replay on
+  `sigma=(001,22,220)`, swap `01|10`, depths `0..9`, budget
+  `30000` symbols per side, has radii `8` at depths 6–8 but `10`
+  at depth 9, first attained at cut `9054` with defect `(5,5,-10)`.
+  This refutes 8 for that observable only, not an undefined historical
+  comp-set quotient. No `R*(3,3)` extremum or universal radius law is
+  certified; further depth beyond the budget is not a saturation verdict. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §4;
+  `evidence/boxwalk-radius8-depth9.json`;
+  `kernel/boxwalk_radius_probe.mojo`
+
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
