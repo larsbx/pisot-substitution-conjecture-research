@@ -63,6 +63,23 @@ by deleting it.
   `evidence/boxwalk-radius8-depth9.json`;
   `kernel/boxwalk_radius_probe.mojo`
 
+- 2026-10-12 · **Progress-indexed radius hypothesis preserved.** The
+  withdrawn radius-eight *global maximum* may instead have been a running
+  maximum limited by inflation depth or enumeration progress; the original
+  cursor, family, and stopping rule are unavailable, so this is an **open
+  interpretation**, not a recovered exhaustive result. For the specified
+  aligned-cut witness, the fully measured cumulative envelope
+  `R_<=D=max_{d<=D} r_d` is `8` at `D=8` and `10` at `D=9`;
+  it is nondecreasing **by definition** and is only a lower bound on the
+  eventual radius. In a family scan the running maximum over completed
+  specimens is likewise a lower bound until all specified jobs finish;
+  neither progress plateau proves saturation. Progress-dependent
+  `R_<=D <= f(n,L,D)` bounds or certified state-progress stopping
+  criteria remain viable **research targets**, not established laws. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §4,
+  "Progress-dependent bounds remain a live possibility";
+  `evidence/boxwalk-radius8-depth9.json`
+
 - 2026-10-12 · **Do not revive the box-walk one-step shortcuts.**
   Spectral contraction to zero ignores affine prefix forcing; common-boundary
   gap `<= L`, child-box subset inclusion, a specimen-independent absolute
