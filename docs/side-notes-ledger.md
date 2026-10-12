@@ -63,6 +63,19 @@ by deleting it.
   `evidence/boxwalk-radius8-depth9.json`;
   `kernel/boxwalk_radius_probe.mojo`
 
+- 2026-10-12 · **Do not revive the box-walk one-step shortcuts.**
+  Spectral contraction to zero ignores affine prefix forcing; common-boundary
+  gap `<= L`, child-box subset inclusion, a specimen-independent absolute
+  radius, and one-step length/first-letter monovariants were rejected by the
+  October 11 thread. The thread's raw counterexample runs are not preserved,
+  so treat them as **unverified research negatives**, not individually
+  certified disproofs. The sampled formulas `2(L-2)` and
+  `(n-1)(L-1)`, and a depth-`<=5` saturation shortcut, remain unproved;
+  the explicit depth-nine aligned-cut witness separately refutes any such
+  proposed bound below 10 **when applied to that observable**. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §§"Claims retracted or
+  not to re-attempt", "Extremal-search reframing"
+
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
