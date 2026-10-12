@@ -48,6 +48,19 @@ by deleting it.
   `c4-ordered-hub-offset-negative-2026-10-06.md` §3;
   `evidence/ordered-hub-packets-2026-10-06/`
 
+- 2026-10-12 · **Retired: predecessor contraction for full BPA closure.**
+  The proposed parent-bound `beta * L(s') <= L(s) + D` from one selected
+  child `s` of `sigma(s')` is invalid: Parikh-contact decomposition can
+  distribute inflated parent mass among multiple children. Do not use it
+  to infer finite reachable balanced-pair closure or G1. **Retain only the
+  conditional K2 result:** a dominant length-two swap source and K2
+  additivity imply that *if its reachable balanced-pair closure is finite*,
+  some recurrent SCC has transition spectral radius at least
+  `beta * |beta_2|`; finiteness is still an unproved hypothesis. ·
+  `docs/k2-load-bearing-scc-salvage-2026-10-11.md` §§"Conditional theorem:
+  load-bearing SCC under finite closure", "Retired proof pattern:
+  predecessor contraction"
+
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
