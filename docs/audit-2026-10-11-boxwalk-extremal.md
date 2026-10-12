@@ -80,13 +80,68 @@ The box-size problem should now be phrased as:
 For fixed n and L, determine the maximum stabilized imbalance radius among primitive irreducible Pisot substitutions with max image length L.
 ```
 
-Sampling is not reliable for this quantity: the large-radius cases are sparse tail/extremal objects.  The constructive route found a constrained exhaustive `n=3, L=3` worst case of radius 8, achieved by a front-loaded skew substitution of the form
+Sampling cannot certify an extremal or saturation bound. **The previously
+reported “constrained exhaustive `n=3, L=3` maximum radius 8” is withdrawn
+as a mathematical result.** The original constrained enumeration's membership
+predicate, search order, saturation/closure criterion, depth and memory
+budgets, source program, and output are not preserved. In particular, a
+finite-depth plateau does not establish transition closure or stabilization.
+Do not cite 8 as an extremum, use it as a proved upper bound, or infer failure
+of general radius formulas from that unreplayable report.
+
+We retain the historical example as a **named, reproducible negative
+control**, not as a saturated box certificate:
 
 ```text
 sigma = ((0,0,1), (2,2), (2,2,0))
+seed = ((0,1), (1,0))
+A_d = sigma^d(0,1), B_d = sigma^d(1,0)
+r_d = max_{0 <= q <= |A_d|} ||pi(A_d[:q]) - pi(B_d[:q])||_infty
 ```
 
-within the constrained search family.  This is enough to kill the earlier linear candidates and to show random sampling missed the tail.  It is not enough to infer a closed law.
+Here the search family is **exactly this one substitution and this one
+balanced length-two swap seed**. Every cut `q` is an aligned common-index
+prefix cut, measured using exact integer Parikh counts. The deterministic
+bounded replay checks **every such cut** for each depth 0 through 9;
+`max_depth=9` and `max_symbols_per_side=30000` are hard budgets. It
+generates no random samples. The per-depth sequence of
+`(word length, aligned radius)` is
+
+```text
+d:        0     1     2     3      4      5      6       7       8        9
+length:   2     5    14    40    114    324    920    2612    7416    21056
+radius:   1     2     4     6      6      6      8       8       8       10
+```
+
+The first radius-10 cut at depth 9 is `q=9054`, with exact difference
+`(5,5,-10)`. Thus the **aligned-prefix** statistic remains at 8 for
+depths 6–8 and *increases to 10 at depth 9*. In particular, radius 8
+cannot be an upper bound for this clearly specified aligned-cut statistic
+on the named substitution. This does not reconstruct or disprove a
+*differently defined* restricted “comp-set” statistic from the missing
+historical search: there is no recovered definition to test.
+
+**Replay from the repository root** (canonical Mojo; Python is an independent
+oracle, not theorem-support authority):
+
+```sh
+cd kernel && mojo run -I . boxwalk_radius_probe.mojo
+# Or, from the repository root:
+python3 oracles/python/boxwalk_radius_probe.py --max-depth 9 --max-symbols 30000
+python3 -m pytest -q tests/test_boxwalk_radius_probe_oracle.py
+```
+
+Code/output locators:
+`kernel/psc/boxwalk_radius_probe.mojo`,
+`kernel/boxwalk_radius_probe.mojo`,
+`kernel/tests/test_boxwalk_radius_probe.mojo`,
+`oracles/python/boxwalk_radius_probe.py`, and
+`evidence/boxwalk-radius8-depth9.json` (all exact integer computations).
+The Oracle/JSON fixture includes first-maximizing cuts and imbalance vectors
+at each depth. Exceeding the resource budget is a **refusal**, not a
+mathematical verdict; reaching the chosen depth cap without a witness is
+also not a saturation certificate. No closure, all-substitution enumeration,
+or global `R*(3,3)`/`R*(3,4)` bound is established.
 
 ## Claims retracted or not to re-attempt
 
@@ -100,7 +155,7 @@ The thread explicitly falsified or failed the following proof routes.  They shou
 
 4. **Absolute specimen-independent box radius.**  No absolute constant should be claimed.  The radius grows with image length and, in extremal cases, more quickly than early random samples suggested.
 
-5. **Closed forms `2(L-2)`, `(n-1)(L-1)`, and depth <= 5.**  These were artifacts of restricted sampling/depth.  The current audit should treat all sampled closed forms as unproven and likely false outside their tested range.
+5. **Closed forms `2(L-2)`, `(n-1)(L-1)`, and depth <= 5.**  The historical sweep did not give replayable disproofs. Treat these formulas as unproved, not independently refuted by the withdrawn “maximum 8.” For any proposed **aligned-prefix** upper bound below 10 at `(n,L)=(3,3)`, the depth-nine witness above is an exact finite counterexample. Other radius definitions require their own replay and quantifiers.
 
 6. **One-step local monovariants.**  Minimum child length, first-letter diagonalization, and one-step length-1 injection all fail as general mechanisms.  The exit is multi-step and recurrence-based.
 
@@ -168,6 +223,7 @@ The useful contribution is narrower:
 - It does not prove SCC Producer.
 - It does not prove a uniform box-radius theorem.
 - It does not validate any closed-form `R_infty(n,L)` bound.
+- It withdraws the historical constrained-family radius-eight maximum; it supplies only an exact, explicitly budgeted single-specimen aligned-prefix negative control.
 - It does not promote the uploaded Python scripts to repository evidence.
 
 The PR should therefore be reviewed as a research-status and roadmap update, not as theorem support.
