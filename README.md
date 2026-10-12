@@ -27,6 +27,22 @@ drivers now look up instead of recomputing.
 
 ## Current mathematical state
 
+### Review policy — non-blocking until closure
+
+**Independent human review is a final validation gate, not a research-progress gate.**
+A result may remain labelled `human review pending` while downstream proof work
+continues from its repository status. Pending independent review does **not**
+block research progress, provisional dependency use, or assembly of a complete
+closure candidate. It is non-blocking validation debt.
+
+Once a complete closure candidate is assembled, independent human review is a
+final validation phase for the whole chain. Until that review occurs, status
+surfaces must remain literal: do not call a result independently reviewed when
+it is not, and do not promote an open mathematical premise merely because the
+project is allowed to reason provisionally from an unreviewed repository proof.
+The machine-readable source of this rule is
+`claim_governance.toml [review_policy]`.
+
 Start here:
 
 1. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the #138 aligned branch, #139 strict-zipper branch, Level 2, hypothesis firewall, and prioritized closure criteria.
