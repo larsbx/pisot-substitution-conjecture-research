@@ -121,6 +121,55 @@ on the named substitution. This does not reconstruct or disprove a
 *differently defined* restricted “comp-set” statistic from the missing
 historical search: there is no recovered definition to test.
 
+### Progress-dependent bounds remain a live possibility
+
+**The value 8 may describe the progress of an exploration, rather than
+the final extremum.** It was the exact aligned-prefix maximum through
+inflation depth 8 in the named replay; at depth 9 the maximum becomes 10.
+This distinction should not be lost when withdrawing the unsupported
+*exhaustive* maximum. The historical constrained-family value 8 might
+likewise have been the largest **observed so far** at a particular
+enumeration cursor, depth cutoff, or state/length budget, but the
+original search metadata are missing and that interpretation remains
+**hypothetical**, not reconstructed evidence.
+
+There are two distinct, potentially useful notions of *progress*:
+
+1. **Mathematical depth.** For a fixed substitution and seed, write
+   `r_d(sigma,seed)` for the aligned-cut radius at exact inflation depth
+   `d`, and `R_<=D = max_{0<=d<=D} r_d` for the cumulative
+   progress-indexed radius. `R_<=D` is necessarily nondecreasing in
+   `D`, even though monotonicity of the individual `r_d` is not
+   established. It gives a **certified lower bound** on
+   `sup_d r_d` after all cuts up to `D` have been checked, never an
+   infinite-depth upper bound without an independent saturation/closure
+   proof. Here `R_<=8 = 8` but `R_<=9 = 10`.
+2. **Enumeration progress.** For an explicitly defined family `F`
+   and fully evaluated prefix `F_t`, the running record
+   `B_t = max_{sigma in F_t} R_<=D(sigma,seed)` is only a lower
+   bound on the full-family maximum. It becomes an exact
+   **finite-depth finite-family** maximum only when `F_t=F`, every
+   member and cut has been examined, the depth budget is stated,
+   and every budget refusal is resolved. Neither family exhaustion
+   nor finite-depth exhaustion establishes eventual box-walk
+   saturation. An unprocessed specimen is not evidence that the
+   current record is final.
+
+Thus a **progress-sensitive growth law or computable bound**
+`R_<=D <= f(n,L,D)`, or a rigorously justified stopping criterion
+derived from graph-state progress, is a legitimate *open research
+direction*. It is not ruled out by the failure of a constant bound;
+for this particular aligned-cut witness any proposed such
+`f(3,3,9)` must be at least 10. No formula, monotonicity of
+`r_d`, or finite saturation criterion is asserted here.
+
+Future run receipts must record `F`'s exact membership predicate,
+source/commit identifier, ordering or seeded stride, completed
+specimens, last enumeration cursor, depth reached, per-state and
+word-size budgets, explicit `BUDGET_EXHAUSTED` counts, and distinct
+`DEPTH_COMPLETE`, `FAMILY_EXHAUSTED`, and `SATURATED` verdicts.
+Only the evidence supporting the stated verdict may be promoted.
+
 **Replay from the repository root** (canonical Mojo; Python is an independent
 oracle, not theorem-support authority):
 
