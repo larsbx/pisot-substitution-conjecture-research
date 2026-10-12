@@ -1543,3 +1543,5 @@ paths remain exercised without history. The actual benchmark intentionally
 requires the pinned baseline history and continues to fail if it is absent.
 Evidence: `tests/test_pip_mul_benchmark_guards.py` and failed Actions job
 `114294069121` (515 other tests passed; two history-dependent controls failed).
+
+2026-10-12 — Mercat–Akiyama (arXiv:1810.03500v1) provides a unit-Pisot interior-language/PDS equivalence and effective automata construction (Thms 3.3/5.12, Cor. 5.14), plus already-proved ordered families and an everywhere-directive S-adic positive example. A zero-language automaton (Thm 5.21) does not extend the spectral equivalence to non-units. Redirect prospective #139 connection to a unit-only occurrence-preserving calibration before any adelic extension; no new PSC or PDS claim. Gate: `docs/mercat-akiyama-interior-language-gate-2026-10-12.md`.
