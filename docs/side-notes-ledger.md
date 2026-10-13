@@ -1543,3 +1543,5 @@ paths remain exercised without history. The actual benchmark intentionally
 requires the pinned baseline history and continues to fail if it is absent.
 Evidence: `tests/test_pip_mul_benchmark_guards.py` and failed Actions job
 `114294069121` (515 other tests passed; two history-dependent controls failed).
+
+2026-10-13 — Nakaishi arXiv:2401.07771v1 §13 Proposition 5 equates first simultaneous C×C entry with first second-coordinate C entry along N_i, despite a positive-measure early second-coordinate-only event at N_0; the measure partition used against Proposition 4 is unproved as written. This is a source-audit objection, not a PSC counterexample or final refutation. The paper's mixing / special-cylinder / Garsia separation mechanisms remain research leads for exact occurrence-compatible #139 hitting, contingent on repaired conditioning and non-unit adelic transfer; no theorem import or status promotion. Evidence: `docs/nakaishi-2024-first-entry-audit-2026-10-13.md`, arXiv:2401.07771v1 §§12–13, eqs. (24), (29), Proposition 5.
