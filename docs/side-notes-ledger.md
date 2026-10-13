@@ -1553,3 +1553,14 @@ Evidence: `tests/test_pip_mul_benchmark_guards.py` and failed Actions job
   surfaces: `README.md`, `AGENTS.md`, `docs/README.md`,
   `docs/research-roadmap-2026-09-21.md`, and
   `docs/verification-architecture.md`.
+
+2026-10-13 — Nakaishi arXiv:2401.07771v1 §13 Proposition 5 equates first simultaneous C×C entry with first second-coordinate C entry along N_i, despite a positive-measure early second-coordinate-only event at N_0; the measure partition used against Proposition 4 is unproved as written. This is a source-audit objection, not a PSC counterexample or final refutation. The paper's mixing / special-cylinder / Garsia separation mechanisms remain research leads for exact occurrence-compatible #139 hitting, contingent on repaired conditioning and non-unit adelic transfer; no theorem import or status promotion. Evidence: `docs/nakaishi-2024-first-entry-audit-2026-10-13.md`, arXiv:2401.07771v1 §§12–13, eqs. (24), (29), Proposition 5.
+
+2026-10-13 — PR #258 validation repair: all four failing jobs (python-tests,
+source-provenance, lean-proofs, exact-kernels) refused a stale proof-bank input
+digest after the review-policy edit. The Lean job stopped before compilation;
+exact equivalence, Mojo regressions and census checks passed. Regeneration changes
+only the claim_governance.toml digest, preserving claim statuses, dependency edges
+and named Lean proofs. Preserve both append-only entries when merging main.
+Evidence: Actions runs `38294266656`, `38294266627`,
+`proof/proof-bank.json`, `tests/test_review_policy.py`.

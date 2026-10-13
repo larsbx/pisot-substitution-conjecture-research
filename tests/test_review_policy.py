@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import json
 import tomllib
 from pathlib import Path
 
@@ -28,3 +30,13 @@ def test_independent_human_review_is_nonblocking_until_final_validation() -> Non
         path = ROOT / relative
         assert path.is_file(), relative
         assert HUMAN_RULE in path.read_text(encoding="utf-8"), relative
+
+
+def test_review_policy_is_pinned_without_promoting_claims() -> None:
+    policy = tomllib.loads(POLICY.read_text(encoding="utf-8"))
+    bank = json.loads((ROOT / "proof/proof-bank.json").read_text(encoding="utf-8"))
+    # Governance-only changes still invalidate the proof inventory input pin.
+    assert bank["input_digests"]["claim_governance.toml"] == hashlib.sha256(POLICY.read_bytes()).hexdigest()
+    statuses = {claim["name"]: claim["status"] for claim in policy["claim"]}
+    assert {claim["name"]: claim["status"] for claim in bank["claims"]} == statuses
+    assert statuses["PSC"] == "open"
