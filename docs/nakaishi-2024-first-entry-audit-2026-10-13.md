@@ -274,6 +274,8 @@ w\in P_d(a_d)-P_d(b_d).
 \]
 For the paper's special cylinder, both depth-\(d\) symbols are \(I=(u_0:\emptyset)\); the source therefore gives \(a_d=b_d=u_0\) at that visit, so (U) is in particular a **same-ancestor-letter** prefix-difference relation.
 
+**Ordered-word calibration.** For the Tribonacci substitution \(\sigma(a)=ab,\ \sigma(b)=ac,\ \sigma(c)=a\), take a legal length-two ancestry \(a_2=a\to a_1=b\to a_0=c\) with \(p_1=a,\ p_0=a\). The actual parent word is \(\sigma^2(a)=abac\), and (A) yields \(U_2=\sigma(a)a=aba\), a proper prefix immediately before the \(c\). Reversing the concatenation to \(p_0\sigma(p_1)=aab\) gives a word that is **not** a prefix of \(abac\), even though its Parikh vector is identical. Thus word order and the occurrence identifier are essential when transporting an algebraic equality into #139's ordered graph. This verifies a nontrivial two-level special case of (A), not a new completeness result.
+
 ### Why this is not yet #139 — exact scaling and realization firewall
 
 The repository's strict-zipper acceptance predicate is
