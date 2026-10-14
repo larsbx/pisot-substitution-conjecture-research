@@ -36,6 +36,11 @@ No boundary-hitting theorem for those quadrants is claimed.
 4. Extend coverage to the remaining classes and then the standing universal
    target. Class-level closure alone does not establish general #139.
 
+The nearest boundary has a conjugate in `(-1,-1+1/d)` for every `d>=4`
+(§4e of the family note). A fixed contraction margin below one cannot
+cover it. Keep the parameter visible in the hitting proof; this does not
+rule out a uniform first-hit depth obtained by another mechanism.
+
 Human review remains pending and nonblocking throughout these proof steps.
 
 # Stable base — incidence rank, UD, and bounded discrepancy

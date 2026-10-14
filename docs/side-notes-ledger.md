@@ -1587,3 +1587,11 @@ is claimed. Evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md`
 
 2026-10-14 — **Correction/refinement of 2026-10-13 Nakaishi source audit (do not delete the earlier entry).** The exact §12/§13 measure identity is `sum_{k=1}^j m(tau2(x,omega)=N_k on Z) = s_j - m(E0) + m(E0 intersect H_j)` with `E0 = {omega in Z: T^N0 omega in C}`, `H_j = union_{k=1}^j {omega in Z: T^Nk omega in C}`. Since `m(E0)=alpha^(-L)m(Z)>0` and joint recurrence on the paper's selected fibre gives `m(E0 intersect H_j) -> m(E0)`, the purported contradiction with Proposition 4 reduces to an identity; no proof of universal tiling/PDS follows from this step. Stop direct import of the weak-mixing-to-cancellation step; independent algebraic control of *early-only then joint* returns is the missing repair. This does not refute PSC or disqualify other source lemmas. Evidence: `docs/nakaishi-2024-first-entry-audit-2026-10-13.md` section 'Exact corrected stopping-time partition (2026-10-14 continuation)', arXiv:2401.07771v1 §§12–13, equations (23)–(25),(29), Propositions 4–5.
 
+
+2026-10-14 — Retire a uniform contracting-conjugate margin as a proof
+ingredient for the whole residual class-D family: on either `b=0` branch,
+for every `d>=4`, a conjugate lies in `(-1,-1+1/d)`, hence no single
+`mu<1` bounds them all and `1/(1-|lambda|)>d`. This is an exact symbolic
+negative result, not a BH failure or a proof of unbounded hitting depth,
+graph size or box radius. Continue parameter-aware occurrence hitting;
+evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md` §4e.

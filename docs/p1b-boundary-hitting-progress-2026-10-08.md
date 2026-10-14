@@ -406,6 +406,67 @@ along the boundary. Any proposed finite partition must cover all `a,b>=0`,
 including the infinite `b=0` edge. A finite probe, or a core with uncovered
 edges, cannot establish that obligation.
 
+## 4e. The nearest Pisot boundary has no uniform contraction margin — 2026-10-14
+
+**Status:** exact negative result for one proposed proof ingredient,
+internally derived; human review pending. No boundary-hitting failure is
+asserted. This uses the polynomial and complete family of §4d, not a new
+spectral import or a floating-point experiment.
+
+On `b=0`, write `d=a+2` and retain `s=±1`. Then
+
+```text
+r = 2d - 2s - 2
+chi(X) = X^3 - (r+2)X^2 - 2dX - 2s
+chi(-1) = -1.
+```
+
+For every integer `d>=4`, the polynomial has a real conjugate `lambda_d`
+satisfying
+
+`-1 < lambda_d < -1 + 1/d`.
+
+*Proof.* Direct expansion at `X=-1+z` gives
+
+```text
+chi(-1+z) = -1 + (2r-2d+7)z - (r+5)z^2 + z^3.
+chi(-1+1/d) = 1 + (1-4s)/d - (3-2s)/d^2 + 1/d^3.
+```
+
+For `s=+1`, multiplying the latter by `d^3` gives
+`d^3-3d^2-d+1 = d^2(d-3)-d+1 > 0` for `d>=4`.
+For `s=-1`, it gives `d^3+5d^2-5d+1 > 0` for `d>=4`.
+The intermediate-value theorem, together with `chi(-1)=-1`, supplies a
+root in the stated interval. Section 4d proves that every member is PIP;
+this negative root is therefore a contracting conjugate rather than the
+Perron root. In fact it is the only root in this interval: on
+`-1 <= X <= -1+1/d` the derivative is positive, since
+`chi'(X)=3X^2-2(r+2)X-2d >= 2(r+2)(1-1/d)-2d`,
+which is positive for both branches when `d>=4`.
+
+Consequently `|lambda_d| > 1-1/d`, so **there is no constant `mu<1`
+bounding all contracting conjugates on either residual quadrant**.
+For any proposed `mu<1`, choose an integer `d>=4` with `d>1/(1-mu)`;
+the corresponding member on `b=0` violates that bound.
+
+This also gives
+
+`1/(1-|lambda_d|) > d`.
+
+Thus a geometric-series estimate containing this denominator has no
+parameter-independent denominator bound on this edge. This statement
+does not assert divergence of a full box radius: its numerator and
+trace-dual factors still have to be analyzed, and cancellation is possible.
+It also does not prove unbounded first-hit depth, unbounded seed-graph
+size, failure of a finite symbolic partition, or failure of BH.
+
+**Stop/go refinement.** Retire a fixed global conjugate-contraction margin
+as the reason the residual family must hit. Continue the occurrence-compatible
+vertex-family or exact prefix-hitting argument with `d` visible in the
+estimates. A uniform hitting-depth theorem may still hold; it cannot be
+inferred solely from a contraction constant that is uniform on this family.
+The explicit witnesses are the two `b=0`, `d>=4` affine families of §4d.
+
 ## 5. Next, in order
 
 1. **The rest of class D.** Below `r = q − 1`, each branch has a second
