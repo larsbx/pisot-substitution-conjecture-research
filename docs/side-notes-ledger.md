@@ -1700,3 +1700,20 @@ Mojo execution remains uncredited pending a successful receipt.
 preserve main's Nakaishi reverse-address/ non-unit exact-diagonal finding
 and all previous append-only entries, then append the boundary work.
 No history rewrite, archived packet replacement or universal claim promotion.
+
+2026-10-14 — Complete scoped candidate for class D's minus b=0 line:
+eliminating the parameter from the normalized tile lengths gives quadratic
+integer sign predicates in beta. The exhaustive nine-segment child closure
+certifies a constant 145-vertex, 781-edge graph for all integer a>=4, with
+half-depth distribution 6,15,50,72,2 at depths 0..4. Exact uncapped graphs
+cover a=0..3, each at maximum depth four; full directed support (not merely
+vertices) matches the independent field graphs at a=4,8. The lowered sign
+floor a=3 is undecided, not a mathematical graph-change verdict. Canonical
+Mojo implementation/driver/regression are present but unexecuted locally;
+the exact integer Python replay is a separate oracle, so the candidate is
+not promoted to a repository theorem. A deliberately deleted edge with the
+same vertex set must fail the support cross-check. Existing evidence packets
+remain unchanged. Evidence: docs/p1b-boundary-hitting-progress-2026-10-08.md
+section 4i; evidence/class-d-minus-template-2026-10-14/;
+kernel/psc/class_d_boundary_template.mojo. The plus boundary and b>0
+interiors remain open; continue those proofs without a human-review gate.

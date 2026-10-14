@@ -51,6 +51,16 @@ witness subgraph is not child-closed. The next rung still requires every
 reachable vertex, including all other outgoing children; these paths do
 not establish whole-line BH or a universal depth bound.
 
+**Complete minus-edge candidate (§4i):** a specialized exact sign reduction
+now constructs the whole graph uniformly for `a>=4` (145 vertices, 781
+directed edges, every half-depth at most four) and covers `a=0..3` by exact
+finite graphs. The independent integer oracle and full field-support
+cross-checks at `a=4,8` pass. Run `class_d_boundary_certificate.mojo` and its
+regression to obtain the still-missing canonical execution receipt. On
+acceptance, compose with Theorem E and the existing L/W reductions for
+scoped PDS/G1. The plus boundary and both `b>0` interiors remain open;
+human review remains pending and does not block continuing those tasks.
+
 # Stable base — incidence rank, UD, and bounded discrepancy
 
 Established on `main`:

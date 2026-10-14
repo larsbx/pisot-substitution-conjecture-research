@@ -666,11 +666,17 @@ For the next research cycle:
    The two support-change parents now have uniform seed paths, and their
    specified children have three-step offset-zero paths (§4h); completing
    that witness subgraph does not cover its other outgoing children.
-   For the minus `b=0` line, run the existing full symbolic certificate
-   from `kernel/` as `mojo run -I . symbolic_line_certificate.mojo norm D 3 5 3 6 2 4`.
-   Accept a line closure only after its uniform child closure, exact finite
-   prefix below the certified threshold, and parameter cross-checks succeed.
-   No successful execution of this command is yet recorded here.
+   Section 4i now provides a complete minus `b=0` closure candidate:
+   uniform child closure for `a>=4` (145 vertices, 781 directed edges,
+   maximum half-depth four), exact finite prefix `a=0..3`, and full
+   directed-support cross-checks at `a=4,8`. The independent integer oracle
+   passes. Obtain the pending canonical receipt from `kernel/` with
+   `mojo run -I . class_d_boundary_certificate.mojo` and its regression;
+   then compose the existing Theorem E/L/W reductions for scoped PDS/G1.
+   The general norm driver remains an alternative cross-check:
+   `mojo run -I . symbolic_line_certificate.mojo norm D 3 5 3 6 2 4`.
+   Continue proof development on the plus boundary and both `b>0`
+   interiors without waiting for human review; their coverage is still open.
    Certify a constant-graph core and all its edges, or use
    vertex families for the changing-graph fringe; the infinite `b=0` edge
    must be covered. On that edge a contracting root lies in
