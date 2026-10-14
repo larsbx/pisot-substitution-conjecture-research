@@ -4,6 +4,22 @@
 
 **Standing target:** pure discrete spectrum for primitive irreducible Pisot substitutions in the repository's standing regime, **without** silently adding seed legality, unique decodability, finite injectivity, rational/integer independence, or unimodularity.
 
+**Review policy:** **Independent human review is a final validation gate, not a research-progress gate.** A `human review pending` label is non-blocking validation debt: proof development, provisional dependency use, and assembly of a complete closure candidate continue. Independent review is performed on the assembled closure chain afterward. The label itself remains truthful and no open mathematical premise is promoted by this policy. Machine source: `claim_governance.toml [review_policy]`.
+
+**2026-10-14 Ω/G1 continuation (`main@7a84a914` inspected):** Ω is a
+repository-proved per-specimen equivalence, not uniform productivity. The
+existing depth note now assembles the weaker complete-box offset-zero
+certificate directly into all-seed G1, using only Ω1 and Proposition 4, and
+gives the all-level integer bound `2 L^(K+2)` (§7 of
+[bpa-termination-by-overlap-depth-2026-10-02.md](bpa-termination-by-overlap-depth-2026-10-02.md)).
+This bypasses the PDS/necessity imports for G1 certification; it does not
+prove the universal common-boundary predicate. Work on #139 therefore
+continues immediately using the unreviewed repository implications, with
+#138 separately required for Ω's productivity/PDS assembly. Preserve the
+distinction between seed-graph depth and box recurrent depth, and preserve
+the catch-up-free controls: a terminal leftmost cycle is not a strict-zipper
+obstruction. General PSC, G1 and the hitting gates remain open.
+
 **2026-10-09 synchronization (`main@4caca9a`, through PR #246):** general PSC,
 #84, #138, #139, formal productivity and G1 remain open. Theorem Ω now
 supports an exact finite-domain PDS theorem on 145,806 substitutions, while
@@ -269,6 +285,23 @@ Issue #139 requires a source-by-source transfer audit:
 | Barge 2016/2018 family results | identify classes where PDS is proved and the mechanism used | family theorems do not close the universal PIP branch |
 
 The transfer table is now complete in `p1b-strict-zipper-literature-gate-2026-09-21.md`, with machine-readable hypotheses in `p1b-strict-zipper-transfer-matrix.json`. It leaves one named open obligation, **AdelicPeriodicOffsetHitting**: force a realized purely periodic offset orbit to meet the actual prefix-difference cylinder in the full non-unit representation space.
+
+**2026-10-14 Nakaishi source-transfer stop/go:** The first-entry contradiction used in arXiv:2401.07771v1, §13 Proposition 5 is **not available as an imported recurrence lemma**. Its §12 first-second-coordinate measure satisfies \(s_j=m(E_0\cup H_j)\), while the cumulative first-*joint*-entry measure is \(m(H_j)\). The exact identity includes the additional \(m(E_0\cap H_j)\) term; on the paper's own recurrent fibre that correction converges to \(m(E_0)>0\), so the purported contradiction disappears. **Stop** importing this recurrence-to-polynomial-cancellation implication unchanged. **Proceed** only if a separately proved, hypothesis-sensitive algebraic argument excludes joint returns after an early second-coordinate-only visit, or produces an exact occurrence-compatible target hit without that subtraction. Retain the full non-unit/adelic and ordered-occurrence obligations of #139. Evidence: `nakaishi-2024-first-entry-audit-2026-10-13.md` (2026-10-14 continuation); general PSC, #84, #138, #139 and G1 remain open.
+
+
+**2026-10-14 Quantifier/scale repair gate (PR #261 reconciliation):** A fully mixing binary SFT already exhibits the positive-measure early-only-then-joint event missing in Nakaishi Proposition 5; its exact rational first-hit probabilities are in the existing Nakaishi audit. A repair via Theorem 3 cannot rest on the single chosen pair (x,y): it must prove **positive-measure algebraic support** (persistent nonvanishing for a measured set, not one point) and **shrinking-scale membership** in \(O_{N_k+1}\) at the actual simultaneous return times (the source's fixed \(B(\epsilon)\) does not imply this). A conditional positive-measure return-exclusion lemma is stated and proved in the audit. Even a repaired symbolic conclusion must provide a fixed-offset, occurrence-labelled witness before transfer to #139. This is a source-transfer refinement, not #139 closure or a new dependency of the shortest route. No enlargement of the current finite census is justified by it.
+
+**2026-10-14 Theorem-3 radius/source and address-projection gate:** A further primary-source audit of Nakaishi arXiv:2401.07771v1 found an **independent statement/proof mismatch**: Definition 9's Archimedean radius for \(O_{d+1}\) scales by \(c^{1/d}\), while Theorem 3's proof equation (16) requires \(c^{1/(n-1)}\), with \(0<c<1\); for visit times \(d\ge n\), the printed neighborhood is **larger** and the proof's claimed bound does not follow. \(O_1\) is undefined by the printed formula. The theorem must not be imported in its printed strength without repair. A restricted exact-diagonal conclusion is recoverable **conditional on the source's Garsia and special-cylinder tail estimates**: synchronized address pairs whose *full adelic images already coincide* satisfy the exact integral identity
+\[
+ \sum_{k<d}M^k(\pi(p_k)-\pi(q_k))=w.
+\]
+Irreducibility makes \(z\mapsto\langle z,v\rangle\) injective; legal prefix-suffix paths turn the sum into an occurrence-labelled **unscaled** prefix difference for the depth-\(d\) ancestor letters. The special cylinder makes those two ancestors equal, whereas #139 asks for \(M^d w_{\mathrm{PSC}}\) with the specified fixed realized vertex/letters. Even Fibonacci gives a countercalibration to silently replacing \(w\in D_d\) by \(M^d w\in D_d\). **Proceed** with a strictly stated *diagonal-compatible ancestry and affine-offset transport* lemma, not generic weak mixing or an unproved shift of exponent. In addition, the shrinking-radius limsup of scale-matched joint visits lies on the exact diagonal, so recurrence of a generic positive-measure pair set cannot by itself supply infinitely many such visits. The revised existing audit gives proofs, hypotheses and exact negative control. Nothing here closes #139, #84, #138, G1 or PSC.
+
+**2026-10-14 Exact affine-transport obstruction:** Nakaishi's source prefix-suffix digits have the reverse temporal order from our forward overlap inflation. For prescribed initial integer offset \(u\), replay of those **ordered** digit occurrences yields
+\[
+u_d=M^d u-\sum_{k<d}M^k(\pi(p_k)-\pi(q_k)).
+\]
+Thus even an exact source-diagonal polynomial cancellation \(W_d=w_{\rm src}\) forces a zero-offset child only with \(w_{\rm src}=M^d u\), not merely because \(w_{\rm src}\in P_d(i)-P_d(j)\). This is a *proved exact transport criterion*, conditional on occurrence legality for the graph. Moreover, the non-unit quadratic PIP substitution \(a\mapsto aaab,\ b\mapsto ab\), \(M=\left(\begin{smallmatrix}3&1\\1&1\end{smallmatrix}\right)\), admits for every \(d\ge1\) **actual legal SFT address pairs** agreeing from \(d\) onward, with exact adelic diagonal displacement \(W_t=M^{d-1}e_a\) for all \(t\ge d\) and infinitely many synchronized special-cylinder visits, but \(W_t\notin M^t\mathbb Z^2\) at any such \(t\). This *rules out automatic integer-offset ancestry transport from an arbitrary Nakaishi SFT diagonal*, not a transport theorem restricted to seed-patch-realized overlap/tiling Gamma classes. **Proceed** only with a geometric-realization-dependent theorem forcing the correct \(M\)-adic residue, prescribed offset, orientation and actual graph replay; reuse the existing finite-cokernel kernel as a diagnostic, not an oracle for universal forcing. The old need for a scale-matched visit remains if approaching through nonexact pairs. See `nakaishi-2024-first-entry-audit-2026-10-13.md`, §"Exact reverse-address affine transport and a non-unit obstruction". General #139, #84, #138, G1 and PSC remain OPEN.
 
 #### P1b non-unimodular theorem target
 
@@ -610,7 +643,7 @@ do not quietly resurrect it under a new name.
 | **P1b** | Strict-zipper hitting (#139) | **OPEN critical; highest leverage** — boundary hitting is proved on 47 lines and class-D wedges with `r >= q - 1`, but not uniformly | uniform non-unit-safe occurrence-compatible hitting/coverage theorem, or a uniform depth bound on the catch-up-free determinant-two class | cover class D below `r = q - 1`, then A/C wedges and the class-A slope-one vertex families; extract uniform depth `K` |
 | **P1a** | Aligned strong coincidence (#138) | **OPEN critical; the two templates are one at the square (Theorem C, 2026-10-05); A1′ proved on the whole catch-up-free `|det M| = 2` class (Theorem E), with all-pairs strong coincidence on its two-odd-letter part (Corollary H1) and outside one explicit family (Theorem K); inside that family Theorems Φ, Λ, Λ′, Λ″ close four `Delta` cells and Theorem Ζ every `Delta` with `Z_2` bounded (2026-10-07)** | uniform proof of A1′ (a bad edge whose letters are both `h`-fixed is eventually coincident), including reversal | on Theorem K's family, close unbounded `Z_2` (Lemma P1 linearized, `2 zfloor`; A1′ note §3m); in general, prove A1′ from the fixed-letter hypothesis, not via transitivity of eventual coincidence |
 | **P1** | Seedwise overlap productivity (#84) | **OPEN — sole shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad closed SCC | assemble only after branch closure; do not substitute a larger finite census |
-| **Review-0** | `PDS => G1` dependency package | **repository-proved; independently audited; human review pending** | direct human check of Theorem R, Proposition F, Theorem B/Lemma C and the primary proof chain behind the Barge fibre/coincidence-rank criterion | audit Theorem R and the Barge source chain first; both protect the non-unimodular import boundary |
+| **Validation** | Independent human review, including the `PDS => G1` dependency package | **NON-BLOCKING validation debt** — repository statuses remain usable for continued proof construction while review is pending | after a complete closure candidate exists, independently review the assembled chain, including Theorem R, Proposition F, Theorem B/Lemma C and the Barge fibre/coincidence-rank source chain | do not divert P1 work to review gating; preserve truthful `human review pending` labels and perform final review after closure assembly |
 | **P2** | G1b-2 renewal finiteness | **OPEN parallel; G1 is necessary for PDS but this is the least load-bearing of the three G1 routes** | uniform finite-return theorem for realizable labelled first returns | develop non-unit level-scaled labelled return/address theory; do not reuse UD-padding or predecessor contraction |
 | **P3a** | Concentration, `K2=0` | **OPEN parallel under G1** | uniform exclusion of strict zero-wedge closed carriers | use ordered/ancestral information absent from current span data |
 | **P3b** | Wedge productivity, `K2!=0` | **OPEN parallel under G1** | theorem converting full wedge span plus recurrence/order into coincidence | identify an order-sensitive invariant beyond the existing span classification |
@@ -624,8 +657,12 @@ do not quietly resurrect it under a new name.
 For the next research cycle:
 
 1. **#139: turn the family certificates into uniform coverage.** Finish class
-   D below `r = q - 1` (second constant-graph cone, then Pisot-boundary
-   fringe), extend the wedge analysis to A/C, and treat class A's slope-one
+   D below `r = q - 1` using the complete two-quadrant parameter cover in
+   `p1b-boundary-hitting-progress-2026-10-08.md` §4d: each branch has
+   `a,b >= 0`, with `b` the exact Pisot-boundary margin and `a` growth along
+   that boundary. Certify a constant-graph core and all its edges, or use
+   vertex families for the changing-graph fringe; the infinite `b=0` edge
+   must be covered. Then extend the wedge analysis to A/C, and treat class A's slope-one
    growing graphs by vertex families. The first class-level closure target is
    a uniform boundary-hitting depth `K` for the catch-up-free determinant-two
    class. Any extension beyond it still needs occurrence-compatible adelic
@@ -646,10 +683,12 @@ For the next research cycle:
    every `Delta` with `s = +1, Z_2 <= 2` or `s = −1, Z_2 <= 3` are closed
    (Theorems Φ, Λ, Λ′, Λ″, Ζ; §§3g–3m). Unbounded `Z_2` is the open part,
    where Lemma P1 is needed only linearly (side-notes ledger, 2026-10-07).
-3. **Human-review the `PDS => G1` chain without delaying P1 proof work.**
-   Follow the Barge coincidence-rank/disjoint-fibre source chain to its primary
-   proofs and recheck Theorem R, Proposition F and Theorem B/Lemma C. This is a
-   review dependency, not a new open mathematical premise.
+3. **Keep review debt off the mathematical critical path.**
+   Continue directly toward complete closure using correctly classified
+   repository proofs and imports even when they remain `human review pending`.
+   Preserve those labels, collect the source-chain obligations, and perform
+   independent human review on the assembled closure chain as the final
+   validation phase rather than as a prerequisite for P1 work.
 4. **Keep G1b-2 active as the Level-2 theorem, not as a hidden PSC dependency.**
    The target is labelled first-return finiteness in the full non-unit
    representation. UD is closed; bounded discrepancy and a finite difference
@@ -671,7 +710,7 @@ A successful week is not "more specimens passed." It is one of:
 - P1b reduced to a strictly smaller source-checked non-unit hitting theorem;
 - P1a reduced to a strictly smaller endpoint/occurrence theorem;
 - one of those theorems proved;
-- the `PDS => G1` human-review chain fully discharged;
+- a complete closure candidate assembled with its pending human-review items collected for final validation;
 - G1b-2 advanced by a genuine labelled-return finiteness lemma;
 - or a proposed bridge falsified by a retained exact countermodel, thereby
   shrinking the search space without weakening the hypothesis firewall.

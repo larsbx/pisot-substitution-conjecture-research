@@ -48,6 +48,51 @@ by deleting it.
   `c4-ordered-hub-offset-negative-2026-10-06.md` §3;
   `evidence/ordered-hub-packets-2026-10-06/`
 
+- 2026-10-12 · **Withdrawn box-walk radius-eight extremum.** The reported
+  constrained exhaustive `n=3, L=3` maximum of 8 lacks a preserved
+  family predicate, saturation proof, original program, run budget, and
+  output; a plateau is not transition closure. Exact deterministic
+  **single-specimen, aligned-prefix** replay on
+  `sigma=(001,22,220)`, swap `01|10`, depths `0..9`, budget
+  `30000` symbols per side, has radii `8` at depths 6–8 but `10`
+  at depth 9, first attained at cut `9054` with defect `(5,5,-10)`.
+  This refutes 8 for that observable only, not an undefined historical
+  comp-set quotient. No `R*(3,3)` extremum or universal radius law is
+  certified; further depth beyond the budget is not a saturation verdict. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §4;
+  `evidence/boxwalk-radius8-depth9.json`;
+  `kernel/boxwalk_radius_probe.mojo`
+
+- 2026-10-12 · **Progress-indexed radius hypothesis preserved.** The
+  withdrawn radius-eight *global maximum* may instead have been a running
+  maximum limited by inflation depth or enumeration progress; the original
+  cursor, family, and stopping rule are unavailable, so this is an **open
+  interpretation**, not a recovered exhaustive result. For the specified
+  aligned-cut witness, the fully measured cumulative envelope
+  `R_<=D=max_{d<=D} r_d` is `8` at `D=8` and `10` at `D=9`;
+  it is nondecreasing **by definition** and is only a lower bound on the
+  eventual radius. In a family scan the running maximum over completed
+  specimens is likewise a lower bound until all specified jobs finish;
+  neither progress plateau proves saturation. Progress-dependent
+  `R_<=D <= f(n,L,D)` bounds or certified state-progress stopping
+  criteria remain viable **research targets**, not established laws. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §4,
+  "Progress-dependent bounds remain a live possibility";
+  `evidence/boxwalk-radius8-depth9.json`
+
+- 2026-10-12 · **Do not revive the box-walk one-step shortcuts.**
+  Spectral contraction to zero ignores affine prefix forcing; common-boundary
+  gap `<= L`, child-box subset inclusion, a specimen-independent absolute
+  radius, and one-step length/first-letter monovariants were rejected by the
+  October 11 thread. The thread's raw counterexample runs are not preserved,
+  so treat them as **unverified research negatives**, not individually
+  certified disproofs. The sampled formulas `2(L-2)` and
+  `(n-1)(L-1)`, and a depth-`<=5` saturation shortcut, remain unproved;
+  the explicit depth-nine aligned-cut witness separately refutes any such
+  proposed bound below 10 **when applied to that observable**. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §§"Claims retracted or
+  not to re-attempt", "Extremal-search reframing"
+
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
@@ -1543,5 +1588,54 @@ paths remain exercised without history. The actual benchmark intentionally
 requires the pinned baseline history and continues to fail if it is absent.
 Evidence: `tests/test_pip_mul_benchmark_guards.py` and failed Actions job
 `114294069121` (515 other tests passed; two history-dependent controls failed).
+
+- 2026-10-12 · governance: independent human review is a final validation gate,
+  not a research-progress gate. `human review pending` is non-blocking
+  validation debt: repository proof development, provisional dependency use,
+  and closure construction continue; truthful status labels remain mandatory,
+  and the assembled closure chain receives independent review afterward.
+  Machine source: `claim_governance.toml [review_policy]`; synchronized human
+  surfaces: `README.md`, `AGENTS.md`, `docs/README.md`,
+  `docs/research-roadmap-2026-09-21.md`, and
+  `docs/verification-architecture.md`.
+
+2026-10-13 — Nakaishi arXiv:2401.07771v1 §13 Proposition 5 equates first simultaneous C×C entry with first second-coordinate C entry along N_i, despite a positive-measure early second-coordinate-only event at N_0; the measure partition used against Proposition 4 is unproved as written. This is a source-audit objection, not a PSC counterexample or final refutation. The paper's mixing / special-cylinder / Garsia separation mechanisms remain research leads for exact occurrence-compatible #139 hitting, contingent on repaired conditioning and non-unit adelic transfer; no theorem import or status promotion. Evidence: `docs/nakaishi-2024-first-entry-audit-2026-10-13.md`, arXiv:2401.07771v1 §§12–13, eqs. (24), (29), Proposition 5.
+
+2026-10-13 — PR #258 validation repair: all four failing jobs (python-tests,
+source-provenance, lean-proofs, exact-kernels) refused a stale proof-bank input
+digest after the review-policy edit. The Lean job stopped before compilation;
+exact equivalence, Mojo regressions and census checks passed. Regeneration changes
+only the claim_governance.toml digest, preserving claim statuses, dependency edges
+and named Lean proofs. Preserve both append-only entries when merging main.
+Evidence: Actions runs `38294266656`, `38294266627`,
+`proof/proof-bank.json`, `tests/test_review_policy.py`.
+
+2026-10-14 — Ω/G1 continuation: complete-box offset-zero reachability,
+all-potential-overlap offset-zero reachability and cycle boundary hitting
+are equivalent by Ω1 finite descent. Their direct G1 sufficiency uses
+Proposition 4, without SC_all, leftmost-cycle exclusion or spectral imports.
+Derived all-level symbolic bound: `2 L^(K+2)`, with `K` the maximum
+all-seed first-half-coincidence depth; box recurrent depth cannot replace
+it. This assembles existing implications and does not discharge universal
+hitting or promote G1/PSC. Human review remains non-blocking validation
+debt. Evidence: `docs/bpa-termination-by-overlap-depth-2026-10-02.md` §7;
+`docs/research-roadmap-2026-09-21.md`, October 14 synchronization.
+
+2026-10-14 — Exact class-D residual cover: below `r=q-1`, each
+determinant-two branch is a complete unimodular quadrant. For `p=q+s`,
+`a=q-r-2`, `b=3r-2q+2s+2` are nonnegative exactly on the residual PIP
+region; `chi(-1)=-b-1`. The infinite `b=0` edge is the nearest Pisot
+boundary and cannot be omitted from a core certificate. This is parameter
+coverage, not a hitting certificate; no sampled grid or class-level closure
+is claimed. Evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md`
+§4d; updated `docs/proof-ladder.md` and live roadmap §12.
+
+2026-10-14 — **Correction/refinement of 2026-10-13 Nakaishi source audit (do not delete the earlier entry).** The exact §12/§13 measure identity is `sum_{k=1}^j m(tau2(x,omega)=N_k on Z) = s_j - m(E0) + m(E0 intersect H_j)` with `E0 = {omega in Z: T^N0 omega in C}`, `H_j = union_{k=1}^j {omega in Z: T^Nk omega in C}`. Since `m(E0)=alpha^(-L)m(Z)>0` and joint recurrence on the paper's selected fibre gives `m(E0 intersect H_j) -> m(E0)`, the purported contradiction with Proposition 4 reduces to an identity; no proof of universal tiling/PDS follows from this step. Stop direct import of the weak-mixing-to-cancellation step; independent algebraic control of *early-only then joint* returns is the missing repair. This does not refute PSC or disqualify other source lemmas. Evidence: `docs/nakaishi-2024-first-entry-audit-2026-10-13.md` section 'Exact corrected stopping-time partition (2026-10-14 continuation)', arXiv:2401.07771v1 §§12–13, equations (23)–(25),(29), Propositions 4–5.
+
+2026-10-14 — Mixing-SFT negative control and Theorem 3 transfer gate: reconciled the distinct original #261 countercalibration with main's corrected stopping-time partition. In the primitive full two-shift with C=[11], Z=[1], x=0(110)^infinity, the exact conditional H_j masses are 1/4, 7/16, 37/64 for j=1,2,3 while the defective early-subtracted formula gives 0,1/8,7/32; all 4,32,256 finite tails were independently recounted. Under actual source hypotheses the intersection term tends to m(E0), and conditioning on Z minus E0 changes both limits equally. A valid replacement via source Theorem 3 needs (i) positive-measure algebraic nonvanishing support, (ii) O_(d+1) shrinking-scale membership at the same joint times, and for PSC #139 (iii) a realized occurrence-labelled affine target witness. No such bridges are proved; the full-shift control is not a Pisot-substitution counterexample and general PSC stays open. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md section 'Additional independent calibration and repair criterion', arXiv:2401.07771v1 §§8–13, Definition 9, Theorem 3, Proposition 5; original pre-reconciliation PR #261 preserved at archive/pr261-before-main-reconciliation-2026-10-14.
+
+2026-10-14 — Nakaishi Theorem 3 radius/source mismatch and exact-diagonal salvage. In arXiv:2401.07771v1 PDF p.16 Definition 9, the Archimedean radius of O_(d+1) contains c^(1/d), while the proof (p.17 Eq.16 and p.18) requires c^(1/(n−1)), c=(1−alpha^(−1))/M in (0,1). At times d>=n the printed tube is strictly larger; O_1 has undefined exponent. No direct import of Theorem 3 as printed. Corrected-tube/zero-distance pointwise use is conditional on the source's Garsia and tail estimates, and yields the integral certificate sum_(k<d) M^k(pi(p_k)−pi(q_k))=w from a *synchronized exact-diagonal* pair by irreducible spectral injectivity. This yields unscaled ancestor-prefix equality, not automatically #139's M^d w_PSC equality; the special cylinder enforces same ancestor, and exact Fibonacci/Tribonacci fixtures guard scaling and word order. Scale-matched shrinking-target limsup lies in the exact diagonal; weak mixing alone cannot supply infinitely many such hits off it. The open bridge is a realized occurrence-labelled affine-offset transport (or an independent proof avoiding Nakaishi). Source/evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md, section 'Theorem 3 radius and pointwise address audit (2026-10-14 continuation)', arXiv:2401.07771v1 §§9–13, Definition 8–9, Theorem 3, Eq.16; docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md. No universal claim promotion.
+
+2026-10-14 — Nakaishi reverse-address affine transport: in the repo's forward child-offset convention, reversing a legal source depth-d ancestry gives u_d=M^d u−W_d, W_d=sum_(k<d) M^k(pi(p_k)−pi(q_k)); exact source polynomial cancellation W_d=w_src is not the fixed-PSC boundary hit unless w_src=M^d w_PSC and the ordered occurrence chain is actually realized. For the genuine non-unit PIP substitution a->aaab, b->ab (M=[[3,1],[1,1]], charpoly X^2−4X+2, det=2), legal source SFT pairs with one second-a prefix at level d−1 and identical empty-prefix tails from d onward lie on the exact full-adelic diagonal and synchronously revisit the special cylinder for every t>=d, yet their fixed displacement w_src=M^(d−1)e_a is outside M^t Z^2 for every t>=d (M^(-1)e_a=(1/2,−1/2)). This rules out arbitrary source-diagonal-to-integral-PSC-offset transport, NOT a transport lemma under extra realized tiling/overlap conditions or PSC itself. Needed next: a geometric source-to-overlap realization bridge that forces the correct M-adic residue and *prescribed* fixed offset, plus legal occurrence/endpoint replay. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md 'Exact reverse-address affine transport and a non-unit obstruction'; docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md §7 control 5; arXiv:2401.07771v1 §§3,6,9–10. All universal PSC/G1/#84/#138/#139 claims remain OPEN.
 
 2026-10-12 — Mercat–Akiyama (arXiv:1810.03500v1) provides a unit-Pisot interior-language/PDS equivalence and effective automata construction (Thms 3.3/5.12, Cor. 5.14), plus already-proved ordered families and an everywhere-directive S-adic positive example. A zero-language automaton (Thm 5.21) does not extend the spectral equivalence to non-units. Redirect prospective #139 connection to a unit-only occurrence-preserving calibration before any adelic extension; no new PSC or PDS claim. Gate: `docs/mercat-akiyama-interior-language-gate-2026-10-12.md`.

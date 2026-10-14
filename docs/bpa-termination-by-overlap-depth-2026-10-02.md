@@ -197,3 +197,83 @@ Proposition 4 bounds every state by `2 beta^17 ell_max / ell_min`, at most
   it as Proposition 5.46 and cross-references it from the abstract, the
   headline status, the discussion of Conjecture `conj:density`, the remark
   after Theorem 5.38, the open-statement list and the conclusion.
+
+## 7. Direct box-to-G1 assembly and an integer size bound — 2026-10-14
+
+**Status:** derived refinement of Proposition 4 and Corollary 5, using
+Lemma Ω1 of `pds-certificate-from-the-box-automaton-2026-10-07.md`.
+Internal derivation; human review pending; no Lean formalization or fresh
+census is claimed. This adds no universal hitting assertion and changes no
+claim status. It supplies a constructive bound for the existing conditional
+`G1HalfCoincidenceRoute`, not a new proof of uniform G1.
+
+### Direct half-coincidence certificate
+
+For a fixed PIP substitution, the following three predicates are equivalent:
+
+1. Every potential overlap has an offset-zero descendant.
+2. Every vertex of the complete box automaton has an offset-zero descendant.
+3. Every cycle vertex of the potential-overlap graph has an offset-zero
+   descendant (BH).
+
+*Proof.* (1) implies (2) and (3). Lemma Ω1 places every cycle vertex
+in the box, so (2) implies (3). If (3) holds but (1) fails, start at an
+overlap with no offset-zero descendant. It is nonzero and has a child;
+every child again has no offset-zero descendant. Lemma Ω1 gives finite
+descent, so an infinite child path repeats a vertex. That cycle vertex
+has no offset-zero descendant, contradicting (3).
+
+Thus the kernel's **uncapped** `holds` verdict itself suffices for finite
+BPA from every swap seed, by Proposition 4. It is unnecessary to establish
+SC_all, to eliminate terminal leftmost cycles, or to invoke Theorem B,
+Theorem S, PDS, realization, or a spectral import for this implication.
+The box has to contain every cycle vertex and be child-complete; a capped
+graph supplies no certificate. This is an elementary assembly of existing
+results, not a new BH/PPVC equivalence via periodic tilings.
+
+### All-level symbolic bound
+
+Let `L = max_a |sigma(a)|`, and let `K` be the maximum first offset-zero
+depth on the complete, finite all-swap-seed overlap graph. Under any of the
+three equivalent predicates above, `K` is finite. Then every reachable
+balanced-pair state `(u,v)`, including states reached before level `K`, obeys
+
+`|u| = |v| <= H := 2 L^(K+2)`.
+
+*Proof.* Primitivity makes the directed letter-occurrence graph strongly
+connected. Between any two distinct letters on three letters there is a
+simple path of length at most two. If `b` occurs in `sigma(a)`, the Perron
+length relation gives `ell_b <= beta ell_a`. Following a path from a
+minimum-length letter to a maximum-length letter therefore gives
+`ell_max / ell_min <= beta^2`. Also `beta <= L`, by the maximum column-sum
+bound on the incidence matrix. Proposition 4 bounds the symbolic length at
+levels `n >= K` by `2 beta^K ell_max / ell_min <= 2 L^(K+2)`.
+At levels `n < K`, each state is a piece of a seed inflation, whose whole
+side has length at most `2 L^n <= 2 L^K <= H`. This covers every level.
+
+Consequently a coarse combinatorial state bound is
+
+`|B_sigma| <= sum_{m=1}^H 9^m = (9^(H+1)-9)/8`.
+
+It overcounts all ordered pairs of ternary words of equal positive length;
+balance, irreducibility and reachability only decrease it. The bounds are
+integer expressions, not rounded algebraic approximations. They are proof
+bounds, not a recommendation to allocate or enumerate that many states.
+No new executable algorithm is introduced.
+
+**Depth firewall.** `K` here is the maximum over the all-seed graph. The
+box's printed recurrent depth `K_V`, its coincidence depth `D`, and its
+aligned-pair depth `S` are different quantities. Cycles lie in the box, but
+transient seed vertices need not; box depth alone is not substituted for
+`K`. The existing cube half-coincidence regression gives `K = 17`, `L = 4`,
+so this coarse all-level bound is `2 * 4^19 = 549755813888` letters. The
+algebraic bound in §5 is much sharper; the new bound supplies a simple
+integer guarantee, not an improved numerical estimate.
+
+**Remaining closure obligation.** To obtain uniform G1 through this route,
+prove the common-boundary predicate for every substitution in the standing
+regime (or the weaker all-seed strict-zipper exclusion already registered).
+Finiteness of each overlap closure proves existence of a graph to inspect;
+it does not prove the hitting predicate. To obtain PDS through Ω, also
+discharge aligned strong coincidence, or prove formal productivity directly.
+Pending human review blocks neither derivation nor this next proof work.

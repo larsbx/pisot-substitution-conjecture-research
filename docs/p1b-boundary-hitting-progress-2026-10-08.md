@@ -337,6 +337,75 @@ reproduced through the shared code. Until then, the engines are useful
 cross-checks of each other: running class D's cones through the bracket
 engine, and class B's through the norm engine, is cheap independent evidence.
 
+## 4d. Exact cover of the remaining class-D region — 2026-10-14
+
+**Status:** algebraic parameter reduction, internally derived; human review
+pending. No boundary-hitting certificate, new census, or claim promotion.
+This continues §4b's existing determinant-two/Jury contract and literature
+gate; it introduces no new diagnostic or spectral import. Its role is to
+make the residual family a complete, explicit proof target.
+
+Use letter order `(x,c,y)`. The class-D incidence matrix and polynomial are
+
+```text
+M = [[1,1,0], [1,1,2], [p,q,r]]
+chi(X) = X(X-2)(X-r) - 2q(X-1) - 2p.
+```
+
+Set `p = q + s`, with `s` equal to `+1` or `-1`. Then
+
+```text
+chi(-1) = 2q - 2s - 3r - 3
+chi(1)  = -2q - 2s + r - 1
+chi(2)  = -4q - 2s
+chi(-2) = -16 - 8r + 4q - 2s.
+```
+
+The still-uncovered region has `r < q-1`, hence `d := q-r >= 2`.
+For nonnegative parameters in this region, the exact PIP condition is
+
+`r >= 2d - 2s - 2`.
+
+*Derivation.* Necessity of `chi(-1)<0` follows from the Pisot roots; replacing
+`q` by `r+d` and using integrality gives the displayed inequality. Conversely,
+that inequality makes `chi(-1)<0`. Also `chi(1)=-r-2d-2s-1<0` and
+`chi(2)<0`. The determinant has modulus two, so the Jury criterion of §4b
+gives exactly one root above two and two roots in the open unit disc.
+Irreducibility is automatic: the only possible rational roots of this monic
+cubic with constant term `-2s` are `±1,±2`; the three sign tests exclude
+`-1,1,2`, and `chi(-2)` is nonzero because it is `2` modulo `4`.
+The substitution is primitive: `p,q>0`, its occurrence graph is strongly
+connected, and `x` has a self-loop. Thus there is no additional PIP screen
+hidden in the parameter cover.
+
+Put `a = d-2` and `b = r-2d+2s+2`. Both are nonnegative integers, and
+every residual PIP member occurs **exactly once** in the following table:
+
+| branch | `p` | `q` | `r` | inverse coordinates |
+| --- | --- | --- | --- | --- |
+| `s=+1` | `3+3a+b` | `2+3a+b` | `2a+b` | `a=q-r-2`, `b=3r-2q+4` |
+| `s=-1` | `5+3a+b` | `6+3a+b` | `4+2a+b` | `a=q-r-2`, `b=3r-2q` |
+
+In the `(q,r)` plane the directions are `(3,2)` and `(1,1)`, with
+determinant one. This is a full lattice cover, not a sampled grid or a
+real cone with unaccounted integer residues. The nearest Pisot boundary is
+`b=0`, where `chi(-1)=-1`; throughout the quadrant `chi(-1)=-b-1`.
+The already-certified edge `r=q-1` is `d=1`, outside this residual cover.
+
+**Proof obligation after reduction.** Establish all-seed common-boundary
+hitting on both complete quadrants. By §4b/Corollary W1 and the direct
+half-coincidence argument in the depth note §7, that would close G1 on the
+whole determinant-two class D; with Theorem E it would give PDS there. It
+would still leave other classes and universal #139 open.
+
+A constant-graph core can only be claimed after exact certification and
+complete edge coverage. The observed boundary fringe has changing graphs,
+so do not assume this entire quadrant has one graph. The coordinates make
+that next step precise: `b` measures the Pisot-boundary margin; `a` grows
+along the boundary. Any proposed finite partition must cover all `a,b>=0`,
+including the infinite `b=0` edge. A finite probe, or a core with uncovered
+edges, cannot establish that obligation.
+
 ## 5. Next, in order
 
 1. **The rest of class D.** Below `r = q − 1`, each branch has a second
