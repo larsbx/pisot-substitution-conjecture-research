@@ -48,6 +48,18 @@ by deleting it.
   `c4-ordered-hub-offset-negative-2026-10-06.md` §3;
   `evidence/ordered-hub-packets-2026-10-06/`
 
+- 2026-10-12 · **Retired: predecessor contraction for full BPA closure.**
+  The proposed parent-bound `beta * L(s') <= L(s) + D` from one selected
+  child `s` of `sigma(s')` is invalid: Parikh-contact decomposition can
+  distribute inflated parent mass among multiple children. Do not use it
+  to infer finite reachable balanced-pair closure or G1. **Retain only the
+  conditional K2 result:** a dominant length-two swap source and K2
+  additivity imply that *if its reachable balanced-pair closure is finite*,
+  some recurrent SCC has transition spectral radius at least
+  `beta * |beta_2|`; finiteness is still an unproved hypothesis. ·
+  `docs/k2-load-bearing-scc-salvage-2026-10-11.md` §§"Conditional theorem:
+  load-bearing SCC under finite closure", "Retired proof pattern:
+  predecessor contraction"
 - 2026-10-12 · **Withdrawn box-walk radius-eight extremum.** The reported
   constrained exhaustive `n=3, L=3` maximum of 8 lacks a preserved
   family predicate, saturation proof, original program, run budget, and
@@ -1640,6 +1652,16 @@ is claimed. Evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md`
 
 2026-10-12 — Mercat–Akiyama (arXiv:1810.03500v1) provides a unit-Pisot interior-language/PDS equivalence and effective automata construction (Thms 3.3/5.12, Cor. 5.14), plus already-proved ordered families and an everywhere-directive S-adic positive example. A zero-language automaton (Thm 5.21) does not extend the spectral equivalence to non-units. Redirect prospective #139 connection to a unit-only occurrence-preserving calibration before any adelic extension; no new PSC or PDS claim. Gate: `docs/mercat-akiyama-interior-language-gate-2026-10-12.md`.
 
+2026-10-14 — PR #254 integration after #253: preserve all current-main ledger
+entries and both distinct salvage results. Clarify that the conditional K2
+argument counts child occurrences with multiplicity and retains raw-pair
+orientation signs; for complex conjugates its dominant real subspace is a
+plane. The finite-closure hypothesis remains open and the predecessor
+contraction remains retired. Regenerate the proof inventory without changing
+claim statuses or named Lean proofs. Evidence:
+`docs/k2-load-bearing-scc-salvage-2026-10-11.md`,
+`tests/test_defect_intertwiner.py`, `tests/test_boxwalk_radius_probe_oracle.py`.
+
 2026-10-14 — Retire a uniform contracting-conjugate margin as a proof
 ingredient for the whole residual class-D family: on either `b=0` branch,
 for every `d>=4`, a conjugate lies in `(-1,-1+1/d)`, hence no single
@@ -1745,3 +1767,8 @@ graph. The new plus packet freezes its sources when created. All three
 prior packets remain byte-for-byte intact. Reconciled main@b9fbb32 with
 its complete append-only ledger, preserving the Mercat–Akiyama transfer-gate
 finding; no branch-history rewrite or mathematical-status promotion.
+
+2026-10-14 — Reconcile PR #263 after main advanced to 891240e: preserve
+the K2 conditional salvage note, its occurrence-counting conventions, and
+all main ledger entries. Regenerate the proof inventory; both boundary
+candidates and their sealed evidence remain unchanged.
