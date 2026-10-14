@@ -99,6 +99,82 @@ An event-level negative control is already \(x\)'s indicator \((0,1,1)\) and \(\
 
 **Repair boundary.** Proposition 5 would require an *additional* argument showing that, in the hypothesized nonvanishing-polynomial scenario, the positive-mass early-hit set cannot undergo subsequent joint returns (for example, \(m(E_0\cap H_\infty)=0\)). That is not a consequence of ordinary weak mixing: the paper's Lemma 10 implies the opposite under the standing fibre construction. A plausible alternative must establish a new **hypothesis-dependent algebraic obstruction** to those returns, or bypass this subtraction entirely. Neither repair is supplied here. This result refutes the displayed event identification, **not** the general PSC, nor the abstract validity of the Garsia and geometric ingredients separately.
 
+## Additional independent calibration and repair criterion (2026-10-14)
+
+The earlier set-theoretic correction stands. The following uses an actual primitive mixing SFT to rule out a generic weak-mixing repair and checks the separate algebraic requirements against Theorem 3.
+
+### Primitive mixing SFT countercalibration (preserved from the original PR #261)
+
+Use the one-sided full binary shift with fair Bernoulli (Parry) measure,
+\(\mathcal C=[11]\), \(Z=[1]\), \(N_0=0\), and
+\(x=0(110)^\infty\). All later \(x\)-entry times are
+\(N_k=1+3(k-1)\). There is no joint hit through \(N_0\).
+Let \(p(E)=m(E)/m(Z)\); the following table uses \(p\), not \(m\).
+
+| \(j\) | \(s_j/m(Z)\) | \(p(A_0)\) | \(p(H_j)\) | \(p(A_0\cap H_j)\) | printed \(s_j/m(Z)-p(A_0)\) |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 1/2 | 1/2 | 1/4 | 1/4 | 0 |
+| 2 | 5/8 | 1/2 | 7/16 | 5/16 | 1/8 |
+| 3 | 23/32 | 1/2 | 37/64 | 23/64 | 7/32 |
+
+For example, the subcylinder \([111]\subset Z\) has second-coordinate first
+entry at zero and joint first entry at one. Its conditional mass is \(1/4\).
+This is not a null-set discrepancy. For \(k\geq2\), the candidate two-symbol
+blocks are mutually disjoint and independent, with hit probability \(1/4\).
+The probability of avoiding \(r\) such blocks is \((3/4)^r\to0\);
+the same tail argument proves infinitely many joint hits almost surely.
+In particular, the early-hit group also eventually hits jointly.
+
+Closed forms for \(j\geq1\) independently replay the table and the limit:
+\[
+ p(H_j)=1-(3/4)^j,\quad
+ p(A_0\cap H_j)=1/2-(1/4)(3/4)^{j-1},\quad
+ s_j/m(Z)=1-(1/2)(3/4)^{j-1}.
+\]
+The full shift is mixing, but the fixed \(x\) is periodic; recurrence here
+is proved explicitly, not inferred by applying Fubini to an arbitrary \(x\).
+This control tests the event equivalence with an overlapping cylinder.
+It is **not** a Pisot substitution/Rauzy counterexample, does not realize the
+paper's geometric construction or numerical size constraints, and tests
+no polynomial-cancellation conclusion.
+
+Exact scratch calibration on October 14 enumerated every fair binary tail
+through coordinate \(N_j+1\), conditional on coordinate zero being 1:
+4, 32 and 256 tails for \(j=1,2,3\). Integer counts divided by those
+denominators reproduce every table entry. A separate Boolean check enumerated
+all 1,020 membership patterns for \(A_0,\ldots,A_j\), \(1\leq j\leq8\),
+checking the disjoint partitions and inclusion-exclusion identity. No random
+sampling, capped search, floating arithmetic, or infinite-limit simulation
+was used. These are auxiliary finite checks of a directly proved identity,
+not a canonical research-code certificate; the definitions and closed forms
+above provide a replayable basis without a new Python-only kernel.
+
+### Removing the early-event set does not resurrect the contradiction
+
+On (Z'=Z\setminus E_0), the first second-coordinate time and first joint time agree, but both cumulative distributions converge to (m(Z')=m(Z)-m(E_0)). Their normalized conditional distributions both converge to one. Conversely, requiring (m(E_0\cap H_\infty)=0) directly contradicts the selected recurrent fiber together with (m(E_0)>0); this is a source-level contradiction, not a rate-of-mixing consideration.
+
+
+### Theorem 3 transfer audit: two independent missing bridges
+
+A corrected stopping-time identity alone does not rescue Proposition 5. More significantly, Theorem 3 in §10 says that, **for a particular pair that simultaneously enters the special cylinder at time d**, nonzero polynomial part implies failure of membership in the shrinking adelic neighborhood at level d+1. Equivalently,
+
+\[
+\big((T^d x,T^d\omega)\in\mathcal C\times\mathcal C\big)
+\ \wedge\ \big(\Psi(\omega)+\gamma\in O_{d+1}(\Psi(x))\big)
+\quad\Longrightarrow\quad F_d(x,\omega;\gamma)=0. \tag{F}
+\]
+
+There are two separate, unproved transfers in any attempt to use (F) to contradict the recurrence of a **positive-measure** cylinder.
+
+1. **Quantifier/support bridge.** The contradiction assumption of Proposition 5 concerns the selected pair (x,y). It does not say that the polynomial parts are nonzero for almost every other \(\omega\) in the cylinder \(Z\). At each *fixed* time d, the polynomial part depends on finitely many prefix-suffix symbols, and may be locally constant on a sufficiently refined cylinder. But the intersection of such cylinders over **all** d can have zero Parry measure: in the fair binary shift, the decreasing cylinders \([0^d]\) all have positive measure \(2^{-d}\), while their intersection is the measure-zero singleton \(0^\infty\). A proof needs to construct a positive-measure family on which the relevant nonvanishing is preserved, or derive another measure-level algebraic obstruction. Single-pair information alone is insufficient.
+2. **Shrinking-scale bridge.** Equation (23) supplies only the *fixed* neighborhood condition \(\Psi(Z)+\gamma\subset B(\Psi(x),\epsilon)\). Theorem 3 requires the **time-dependent smaller** condition \(\Psi(\omega)+\gamma\in O_{d+1}(\Psi(x))\) at the same d as a joint cylinder hit. Definition 9 makes the radii of these neighborhoods decay in the contracting places as d increases. For late \(N_k>N_0\), membership in the fixed ball does not imply membership in \(O_{N_k+1}\). The argument for ruling out early returns of (x,y) therefore cannot be promoted to late returns of arbitrary (x,\omega).
+
+**Positive-measure return-exclusion lemma (conditional, elementary).** Suppose \(Z\) is measurable with \(m(Z)>0\) and, as in the paper's selected recurrent fiber, \(m(Z\setminus H_\infty)=0\). Suppose a measurable \(U\subset Z\) has \(m(U)>0\) and for almost every \(\omega\in U\), **every** joint visit at an \(N_k\) satisfies both shrinking-neighborhood membership and nonvanishing polynomial part at that time. Then (F) rules out every such visit for almost every point in U, so \(m(U\cap H_\infty)=0\), while recurrence gives \(m(U\cap H_\infty)=m(U)>0\), a contradiction. The proof uses countability of the visits and the measure-zero exceptional set; it uses no independence. **This is a valid conditional proof template, not a completed construction of U.**
+
+The obligations are therefore explicit: (i) derive a positive-measure, algebraically controlled support set from the assumed nonvanishing *at the selected pair*, and (ii) prove appropriate shrinking-scale control at the **same** joint-return times. Source §§8–10 only show geometric perturbation into a fixed ball and separation conditional on a shrinking neighborhood; they do not establish (i) or (ii) for all later returns. A hypothetical repair must also map an algebraic cancellation obtained on a perturbed pair back to the **fixed realized, occurrence-labelled affine offset** of #139, retaining non-unit finite-place coordinates. An ordinary SFT product pair is not automatically a valid edge/witness in our seed-patch overlap graph.
+
+This separates three checkable steps instead of calling weak mixing a coincidence theorem: positive-measure algebraic support, scale-matched cylinder return, and occurrence-compatible exact projection. Failure of any step blocks the proposed transfer; satisfying the steps would give a genuine new avenue. No universal claim status changes.
+
 ## Transfer to #139: exact hitting is the gate
 
 The paper's proposed mechanism is geometric overlap → symbolic positive-measure pair set → mixing/recurrence to special cylinders → Garsia/polynomial cancellation → geometric coincidence. Our exact target is
@@ -109,7 +185,7 @@ for an **occurrence-compatible** prefix-pair witness of a realized strict-zipper
 
 ### Narrow next obligation (stop/go before new executable work)
 
-1. Write disjoint measurable stopping-time events for the first \(\omega\)-hit along \(N_i\) and first **joint** hit, explicitly conditioning out early \(\omega\)-only hits; either repair Proposition 5 or produce a concrete symbolic negative control.
+1. **Completed as an audit of the invalid inference, not as a PSC theorem:** the disjoint partitions, corrected intersection term, and primitive mixing-SFT countercalibration rule out the printed deficit argument. Any replacement must establish a positive-measure algebraically controlled support set and shrinking-scale membership at actual joint-return times (Theorem 3 transfer audit above).
 2. Separately test whether its special-cylinder polynomial/Garsia separation gives an **exact, occurrence-compatible** witness for the affine replay offsets in #139. Identify every hypothesis, especially non-unimodular finite places and the measure/pair-support assumptions.
 3. Only if a proof-complete new implication survives, write a precise theorem with a replayable small specimen/counter-calibration before Mojo-first implementation; independently audit imports. Do not promote this note to PSC evidence.
 
