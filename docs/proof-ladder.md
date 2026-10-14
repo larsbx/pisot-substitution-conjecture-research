@@ -58,8 +58,16 @@ finite graphs. The independent integer oracle and full field-support
 cross-checks at `a=4,8` pass. Run `class_d_boundary_certificate.mojo` and its
 regression to obtain the still-missing canonical execution receipt. On
 acceptance, compose with Theorem E and the existing L/W reductions for
-scoped PDS/G1. The plus boundary and both `b>0` interiors remain open;
-human review remains pending and does not block continuing those tasks.
+scoped PDS/G1. Human review remains pending and nonblocking.
+
+**Complete plus-edge candidate (§4j):** the shared engine now also
+constructs the whole plus graph for `a>=7` (718 vertices, 4,326 edges,
+maximum half-depth six), with exact `a=0..6` coverage including the empty
+run at zero. The independent replay and full-support checks at `a=7,8`
+pass; `class_d_plus_boundary_certificate.mojo` still needs a canonical
+execution receipt. Both `b=0` boundaries therefore have complete scoped
+candidates. Continue the mathematical work on both **`b>0` interiors**;
+Both entire quadrants and general PSC/G1 remain open.
 
 # Stable base — incidence rank, UD, and bounded discrepancy
 

@@ -490,8 +490,8 @@ The independent oracle uses the existing rational-field implementation
 `oracles/python/class_d_boundary_probe.py`. Its actual local receipt is
 `evidence/class-d-boundary-2026-10-14/oracle.json`; source digests, replay
 command and scope are recorded in the same sealed evidence packet.
-**Local Mojo execution is not claimed:** neither Mojo nor pixi is installed
-in this environment. The new canonical regression needs a successful CI
+**Local Mojo execution is not claimed:** the pinned Mojo environment is
+unavailable in this checkout. The canonical regression needs a successful CI
 receipt before it earns execution credit. The Python receipt is independent
 calibration only; it is not promoted to canonical theorem evidence.
 
@@ -698,8 +698,8 @@ successful receipt; no canonical execution is credited by a written test.
 ## 4i. Complete minus-boundary template candidate — 2026-10-14
 
 **Status: complete scoped closure candidate, canonical execution pending.**
-The exact integer Python oracle completes the construction below; neither
-Mojo nor pixi is available locally, so the canonical implementation and
+The exact integer Python oracle completes the construction below; the pinned
+Mojo environment is unavailable locally, so the canonical implementation and
 regressions have no execution credit. No ledger promotion is made.
 The target is the complete all-swap
 seed-reachable graph on `p=3a+5, q=3a+6, r=2a+4`, above an explicit
@@ -815,17 +815,103 @@ Theorem E then supplies the aligned-coincidence half on this class;
 the same existing reductions as Theorems L/W assemble PDS and G1 for this
 line. Those consequences remain conditional here on accepting the complete
 candidate; they are not newly promoted ledger claims. Human review is
-nonblocking. The remaining mathematical family tasks are the plus `b=0`
-line and both two-parameter interiors `b>0`, followed by the other classes.
+nonblocking. Section 4j supplies the subsequent plus `b=0` candidate;
+both two-parameter interiors `b>0` and the other classes remain open.
+
+## 4j. Complete plus-boundary template candidate — 2026-10-14
+
+**Status:** complete scoped candidate, independent exact-integer replay
+complete; canonical Mojo execution pending. No theorem status promotion.
+
+Continue the same exact symbolic-graph construction on `s=+1,b=0`,
+`p=3a+3,q=3a+2,r=2a`. The primary-source gate of §4h/§4i applies to
+the same overlap object and class, with no new spectral import. Proceed
+with complete child closure and exact parameter inequalities; refuse
+undecided signs and exhausted resources. The plus-branch finite graphs
+have different sizes, so a minus-branch table cannot be reused as a proof.
+The zero-length y-run at `a=0` belongs in a separately checked finite
+prefix, not the positive-run tail argument.
+
+On this branch, with `D=2 beta(beta+1)>0`, the same Perron equations give
+`ell_x=(3 beta^2+6 beta+4)/D`,
+`ell_c=(3 beta^2+4 beta+2)/D`, and `ell_y=1`.
+Thus `G_w` has coefficients
+`(3w_x+3w_c+2w_y, 6w_x+4w_c+2w_y, 4w_x+2w_c)`
+in descending powers of beta. Here `2a+3<beta<2a+4`.
+For a tail starting at `A>=1`, all lengths lie in `[1,2)`, so the
+same exhaustive integer bound `B=2+2(|u|+|v|)` applies. Certify signs
+after shifting `beta=(2A+3)+z`, `z>0`; do not substitute the minus
+branch's length polynomial or root bound.
+
+The root bounds are exact: for
+`chi(X)=X^3-(r+2)X^2-(r+4)X-2`,
+`chi(r+3)=-(r+3)-2<0` and `chi(r+4)=(r+4)^2-2>0`.
+The PIP result identifies the intervening root as beta. On `a>=1`,
+beta is greater than five; `ell_x<2` is equivalent to
+`beta^2-2 beta-4>0`, while `ell_x>ell_c>1`. Hence an interior child
+has `|w_y|<2(1+|u|+|v|)`, establishing the claimed exhaustive bound.
+The induction and actual run-index construction in §4i apply unchanged.
+
+At **A=7**, all geometry and occurrence decisions certify uniformly:
+
+| quantity | result |
+| --- | --- |
+| parameter range | every integer `a>=7`, `s=+1`, `b=0` |
+| labelled vertices | 718 |
+| simple directed edges | 4,326 |
+| minimum half-depth populations at 0,1,2,3,4,5,6 | 6,27,102,243,196,136,8 |
+| target-free vertices | 0 |
+| finite prefix `a=0..6`, vertex counts | 1026,977,887,868,746,726,718 |
+| finite prefix maximum half-depth | 6 for every member, uncapped |
+| full labelled directed-support cross-checks | exact field graphs at `a=7,8` agree |
+
+Thus every parameter is accounted for in the **candidate**: the exact
+finite prefix ends at six, and the uniform tail starts at seven. The
+smaller proposed floor six is refused by an occurrence inequality that
+changes later. This is not a graph-change theorem; it is a limit of that
+uniform decision partition. The empty y-run at zero is checked by the
+exact finite graph, and is explicitly refused as a positive-run tail.
+
+Both branches now use `kernel/psc/class_d_boundary_template.mojo`, with
+branch-specific length coefficients, incidence constants and root bounds.
+The default minus branch still reproduces its sealed 145/781 table.
+The plus driver is
+`cd kernel && mojo run -I . class_d_plus_boundary_certificate.mojo`,
+with `kernel/tests/test_class_d_plus_template.mojo` guarding the contract.
+The oracle command is
+`python3 oracles/python/class_d_boundary_template.py --plus`.
+Both branches compare complete labelled directed support. The sign of
+`ell_x-ell_c=s/beta` is a negative control for accidentally interchanging
+branches; other controls cover a lowered threshold, future range change,
+state cap, and deleted edge with unchanged vertices.
+
+The sealed `evidence/class-d-plus-template-2026-10-14/` packet contains
+the complete graph and rank certificate, finite-prefix rows and frozen
+source bytes. All three earlier evidence packets remain byte-for-byte
+unchanged. Their source versions remain historical: the minus packet's
+13 pinned sources are preserved separately in
+`archive/2026-10-14/class-d-minus-template-sources/`, recovered exactly
+from commit `38b87af`. Source-hash checks use that snapshot while the
+current shared engine must still replay the original graph. This avoids
+treating an old experiment's source digests as a prohibition on later work.
+
+On successful canonical replay/acceptance, the existing Theorem E/L/W
+composition would give scoped PDS and G1 on both entire `b=0` lines,
+with half-depth bounds four (minus) and six (plus). No such promotion is
+made here without the canonical receipt. Human review remains pending
+and nonblocking; proof development continues on **both `b>0` interiors**.
+Those interiors and general class-D/PSC/G1 closure remain open.
 
 ## 5. Next, in order
 
-1. **The rest of class D.** Below `r = q − 1`, each branch has a second
-   constant-graph cone (grid data, §4b) and then a fringe along the Pisot
-   boundary `f(−1) = 0`, where the graphs keep changing, like class B at
-   slope 3. The second cone is the next wedge. The fringe needs either
-   vertex families (item 3) or a proof that its graphs come from finitely
-   many patterns.
+1. **The two residual interiors of class D.** Sections 4i/4j give complete
+   candidates for both `b=0` boundaries; obtain their canonical receipts
+   while continuing the proof on `a>=0,b>=1`. Below `r=q-1`, the second
+   constant-graph cones suggested in §4b need uniform sign and occurrence
+   certificates, together with all regions outside those cones. Use the
+   complete quadrant coordinates of §4d; boundary coverage does not cover
+   an interior. Changing graphs require vertex families (item 3) or a
+   certified finite partition, rather than extrapolation from repeated sizes.
 2. **Wedges of classes A and C.** Class B is covered below slope `5/2` by
    Theorem C (`p1b-symbolic-cone-2026-10-08.md`). Class C's lines
    `p = q + d`, `r = q − d ± 1` form a two-parameter family in `(q, d)`, and

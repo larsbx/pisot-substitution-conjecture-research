@@ -26,12 +26,12 @@ def report():
 
 
 
-def labelled_support(a):
+def labelled_support(a, s=-1):
     """Independently recover integral Parikh offsets by exact Gauss inversion."""
     from fractions import Fraction
-    if not 0 <= a <= 8:
+    if s not in (-1, 1) or not 0 <= a <= 8:
         raise ValueError("outside declared parameter budget")
-    p,q,r=5+3*a,6+3*a,4+2*a
+    p,q,r=4+3*a-s,4+3*a-2*s,2+2*a-2*s
     g=OverlapGraph({1:(1,)+(3,)*p+(2,),2:(2,)+(3,)*q+(1,),3:(2,)+(3,)*r+(2,)},20000)
     if g.capped:
         raise RuntimeError("STATE_BUDGET_EXHAUSTED")

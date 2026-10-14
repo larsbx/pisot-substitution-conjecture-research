@@ -1,6 +1,6 @@
-"""Exact symbolic child closure on class D's minus b=0 line, a>=4.
+"""Exact symbolic child closure on both class-D b=0 lines.
 
-The proof/sign contracts are in the family note section 4i. Every child is
+The proof/sign contracts are in the family note sections 4i/4j. Every child is
 accounted for by nine segment pairs, an exhaustive third-coordinate bound,
 and uniform quadratic/affine signs. No fitted graph or floating predicate.
 Resource guards bound all intermediate integers below 150 million; an
@@ -12,13 +12,15 @@ from psc.overlap_seed_patch import build_seed_overlap_tables_screened, build_see
 from psc.vertex_coincidence import length_matrix, offset_vector
 
 
-def offset_sign(x: Int, y: Int, z: Int, floor: Int) raises -> Int:
+def offset_sign(x: Int, y: Int, z: Int, floor: Int, s: Int = -1) raises -> Int:
+    if s != -1 and s != 1:
+        raise Error("boundary branch must be -1 or +1")
     if floor < 0 or floor > 64 or x < -1000 or x > 1000 or y < -1000 or y > 1000 or z < -1000 or z > 1000:
         raise Error("symbolic sign arithmetic budget exceeded")
-    var t = 2*floor+6
+    var t = 2*floor+(6 if s == -1 else 3)
     var c2 = 3*x+3*y+2*z
-    var c1 = -2*x+2*z
-    var c0 = -4*x-2*y
+    var c1 = (2+4*s)*x+(2+2*s)*y+2*z
+    var c0 = 4*s*x+2*s*y
     var d0 = c0+c1*t+c2*t*t
     var d1 = c1+2*c2*t
     if d0 == 0 and d1 == 0 and c2 == 0:
@@ -27,7 +29,7 @@ def offset_sign(x: Int, y: Int, z: Int, floor: Int) raises -> Int:
         return 1
     if d0 <= 0 and d1 <= 0 and c2 <= 0:
         return -1
-    raise Error("UNDECIDED quadratic sign on beta>2*floor+6")
+    raise Error("UNDECIDED quadratic sign above branch root bound")
 
 
 def affine_nonnegative(slope: Int, base: Int, floor: Int) raises -> Bool:
@@ -52,33 +54,33 @@ def label_key(v: List[Int]) raises -> Int:
     return key
 
 
-def real_label(v: List[Int], floor: Int) raises -> Bool:
+def real_label(v: List[Int], floor: Int, s: Int = -1) raises -> Bool:
     _ = label_key(v)
     var lo = List[Int]([v[2],v[3],v[4]])
     var hi = List[Int]([-v[2],-v[3],-v[4]])
     lo[v[1]] += 1
     hi[v[0]] += 1
-    return offset_sign(lo[0],lo[1],lo[2],floor) > 0 and offset_sign(hi[0],hi[1],hi[2],floor) > 0
+    return offset_sign(lo[0],lo[1],lo[2],floor,s) > 0 and offset_sign(hi[0],hi[1],hi[2],floor,s) > 0
 
 
 def run_slope(letter: Int) -> Int:
     return 2 if letter == 2 else 3
 
 
-def run_base(letter: Int) -> Int:
-    return 4 if letter == 2 else 5+letter
+def run_base(letter: Int, s: Int = -1) -> Int:
+    return 2-2*s if letter == 2 else 4-s*(letter+1)
 
 
-def segment(letter: Int, part: Int) -> List[Int]:
+def segment(letter: Int, part: Int, s: Int = -1) -> List[Int]:
     # [child letter, prefix x, prefix c, prefix y slope, prefix y base].
     var first = 0 if letter == 0 else 1
     var last = 0 if letter == 1 else 1
     if part == 0:
         return [first,0,0,0,0]
-    return [2 if part == 1 else last, 1 if first == 0 else 0, 1 if first == 1 else 0, run_slope(letter) if part == 2 else 0, run_base(letter) if part == 2 else 0]
+    return [2 if part == 1 else last, 1 if first == 0 else 0, 1 if first == 1 else 0, run_slope(letter) if part == 2 else 0, run_base(letter,s) if part == 2 else 0]
 
 
-def symbolic_children(v: List[Int], floor: Int) raises -> List[List[Int]]:
+def symbolic_children(v: List[Int], floor: Int, s: Int = -1) raises -> List[List[Int]]:
     _ = label_key(v)
     var out = List[List[Int]]()
     if v[0] == v[1] and v[2] == 0 and v[3] == 0 and v[4] == 0:
@@ -88,23 +90,23 @@ def symbolic_children(v: List[Int], floor: Int) raises -> List[List[Int]]:
     var y = v[3]
     var z = v[4]
     for top_part in range(3):
-        var top = segment(v[0],top_part)
+        var top = segment(v[0],top_part,s)
         for bottom_part in range(3):
-            var bottom = segment(v[1],bottom_part)
+            var bottom = segment(v[1],bottom_part,s)
             var u = x+y+bottom[1]-top[1]
             var w = x+y+2*z+bottom[2]-top[2]
             var slope = 3*x+3*y+2*z+bottom[3]-top[3]
-            var base = 5*x+6*y+4*z+bottom[4]-top[4]
+            var base = (4-s)*x+(4-2*s)*y+(2-2*s)*z+bottom[4]-top[4]
             var lo_slope = -run_slope(v[0]) if top_part == 1 else 0
-            var lo_base = 1-run_base(v[0]) if top_part == 1 else 0
+            var lo_base = 1-run_base(v[0],s) if top_part == 1 else 0
             var hi_slope = run_slope(v[1]) if bottom_part == 1 else 0
-            var hi_base = run_base(v[1])-1 if bottom_part == 1 else 0
+            var hi_base = run_base(v[1],s)-1 if bottom_part == 1 else 0
             var bound = 2+2*(abs(u)+abs(w))
             if bound > 100:
                 raise Error("symbolic child-coordinate budget exceeded")
             for c in range(-bound,bound+1):
                 var child = List[Int]([top[0],bottom[0],u,w,c])
-                if not real_label(child,floor):
+                if not real_label(child,floor,s):
                     continue
                 # m=c-(slope*a+base); all integer differences in [lo,hi]
                 # are realized by actual pairs of run positions.
@@ -121,13 +123,15 @@ def symbolic_children(v: List[Int], floor: Int) raises -> List[List[Int]]:
 
 struct BoundaryTemplate(Copyable, Movable):
     var floor: Int
+    var branch: Int
     var vertices: List[List[Int]]
     var adj: List[List[Int]]
     var index: Dict[Int, Int]
     var cap: Int
 
-    def __init__(out self, floor: Int, cap: Int):
+    def __init__(out self, floor: Int, cap: Int, s: Int = -1):
         self.floor = floor
+        self.branch = s
         self.cap = cap
         self.vertices = List[List[Int]]()
         self.adj = List[List[Int]]()
@@ -152,10 +156,12 @@ struct BoundaryTemplate(Copyable, Movable):
         return n
 
 
-def boundary_template(floor: Int = 4, cap: Int = 20000) raises -> BoundaryTemplate:
+def boundary_template(floor: Int = 4, cap: Int = 20000, s: Int = -1) raises -> BoundaryTemplate:
+    if (s != -1 and s != 1) or (s == 1 and floor < 1):
+        raise Error("invalid branch or plus tail includes the empty run at a=0")
     if floor < 0 or floor > 64 or cap < 1 or cap > 20000:
         raise Error("symbolic closure budget outside declared range")
-    var g = BoundaryTemplate(floor,cap)
+    var g = BoundaryTemplate(floor,cap,s)
     for a in range(3):
         for b in range(a+1,3):
             for top_pos in range(2):
@@ -165,11 +171,11 @@ def boundary_template(floor: Int = 4, cap: Int = 20000) raises -> BoundaryTempla
                         v[2+a] -= 1
                     if bottom_pos == 1:
                         v[2+b] += 1
-                    if real_label(v,floor):
+                    if real_label(v,floor,s):
                         _ = g.intern(v)
     var head = 0
     while head < len(g.vertices):
-        var children = symbolic_children(g.vertices[head],floor)
+        var children = symbolic_children(g.vertices[head],floor,s)
         var edges = List[Int]()
         for child in children:
             edges.append(g.intern(child))
@@ -207,7 +213,7 @@ def template_depths(g: BoundaryTemplate) raises -> List[Int]:
 def check_exact_support(g: BoundaryTemplate, a: Int) raises:
     if a < g.floor:
         raise Error("cross-check is below the certified parameter floor")
-    var tables = build_seed_overlap_tables_screened(boundary_member(-1,a))
+    var tables = build_seed_overlap_tables_screened(boundary_member(g.branch,a))
     var exact = build_seed_overlap_graph_from_tables(tables,20000)
     if exact.capped or exact.size() != len(g.vertices):
         raise Error("exact/template graph size mismatch or cap")
@@ -231,19 +237,29 @@ def check_exact_support(g: BoundaryTemplate, a: Int) raises:
                 raise Error("symbolic edge absent from exact directed support")
 
 
-def certify_minus_boundary() raises -> BoundaryTemplate:
-    var g = boundary_template()
+def certify_boundary(s: Int) raises -> BoundaryTemplate:
+    var floor = 4 if s == -1 else 7
+    var bound = 4 if s == -1 else 6
+    var g = boundary_template(floor,20000,s)
     var depths = template_depths(g)
     for d in depths:
-        if d < 0 or d > 4:
-            raise Error("symbolic vertex fails the claimed four-step hitting bound")
+        if d < 0 or d > bound:
+            raise Error("symbolic vertex fails the branch hitting bound")
     # Exact finite prefix joins the uniform tail without a gap.
     for a in range(g.floor):
-        var tables = build_seed_overlap_tables_screened(boundary_member(-1,a))
+        var tables = build_seed_overlap_tables_screened(boundary_member(s,a))
         var exact = build_seed_overlap_graph_from_tables(tables,20000)
         for d in first_left_aligned_depths(exact):
-            if d < 0 or d > 4:
-                raise Error("finite-prefix vertex fails the claimed four-step hitting bound")
-    check_exact_support(g,4)
+            if d < 0 or d > bound:
+                raise Error("finite-prefix vertex fails the branch hitting bound")
+    check_exact_support(g,floor)
     check_exact_support(g,8)
     return g^
+
+
+def certify_minus_boundary() raises -> BoundaryTemplate:
+    return certify_boundary(-1)
+
+
+def certify_plus_boundary() raises -> BoundaryTemplate:
+    return certify_boundary(1)

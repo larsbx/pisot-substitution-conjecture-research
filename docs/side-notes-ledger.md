@@ -1638,6 +1638,8 @@ is claimed. Evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md`
 
 2026-10-14 — Nakaishi reverse-address affine transport: in the repo's forward child-offset convention, reversing a legal source depth-d ancestry gives u_d=M^d u−W_d, W_d=sum_(k<d) M^k(pi(p_k)−pi(q_k)); exact source polynomial cancellation W_d=w_src is not the fixed-PSC boundary hit unless w_src=M^d w_PSC and the ordered occurrence chain is actually realized. For the genuine non-unit PIP substitution a->aaab, b->ab (M=[[3,1],[1,1]], charpoly X^2−4X+2, det=2), legal source SFT pairs with one second-a prefix at level d−1 and identical empty-prefix tails from d onward lie on the exact full-adelic diagonal and synchronously revisit the special cylinder for every t>=d, yet their fixed displacement w_src=M^(d−1)e_a is outside M^t Z^2 for every t>=d (M^(-1)e_a=(1/2,−1/2)). This rules out arbitrary source-diagonal-to-integral-PSC-offset transport, NOT a transport lemma under extra realized tiling/overlap conditions or PSC itself. Needed next: a geometric source-to-overlap realization bridge that forces the correct M-adic residue and *prescribed* fixed offset, plus legal occurrence/endpoint replay. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md 'Exact reverse-address affine transport and a non-unit obstruction'; docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md §7 control 5; arXiv:2401.07771v1 §§3,6,9–10. All universal PSC/G1/#84/#138/#139 claims remain OPEN.
 
+2026-10-12 — Mercat–Akiyama (arXiv:1810.03500v1) provides a unit-Pisot interior-language/PDS equivalence and effective automata construction (Thms 3.3/5.12, Cor. 5.14), plus already-proved ordered families and an everywhere-directive S-adic positive example. A zero-language automaton (Thm 5.21) does not extend the spectral equivalence to non-units. Redirect prospective #139 connection to a unit-only occurrence-preserving calibration before any adelic extension; no new PSC or PDS claim. Gate: `docs/mercat-akiyama-interior-language-gate-2026-10-12.md`.
+
 2026-10-14 — Retire a uniform contracting-conjugate margin as a proof
 ingredient for the whole residual class-D family: on either `b=0` branch,
 for every `d>=4`, a conjugate lies in `(-1,-1+1/d)`, hence no single
@@ -1717,3 +1719,29 @@ remain unchanged. Evidence: docs/p1b-boundary-hitting-progress-2026-10-08.md
 section 4i; evidence/class-d-minus-template-2026-10-14/;
 kernel/psc/class_d_boundary_template.mojo. The plus boundary and b>0
 interiors remain open; continue those proofs without a human-review gate.
+
+2026-10-14 — Complete scoped candidate for the other class-D boundary:
+s=+1,b=0 has an exhaustive 718-vertex, 4,326-edge symbolic graph for every
+integer a>=7, with half-depth populations 6,27,102,243,196,136,8 at 0..6.
+Exact uncapped field graphs cover a=0..6, including the empty y-run at
+zero, each with maximum half-depth six. Full labelled directed support
+matches at a=7,8. Branch-specific Perron quadratic coefficients and beta
+bounds feed the shared engine; ell_x-ell_c=s/beta guards branch inversion.
+The floor-six range decision changes later and refuses; this is not a
+counterexample. The minus 145/781 packet still replays exactly. Canonical
+Mojo execution remains pending, so both complete boundary candidates stay
+unpromoted; continue both b>0 interiors without waiting for human review.
+Evidence: docs/p1b-boundary-hitting-progress-2026-10-08.md section 4j;
+evidence/class-d-plus-template-2026-10-14/;
+kernel/psc/class_d_boundary_template.mojo.
+
+2026-10-14 — Preserve reproducibility while extending the shared engine:
+the minus packet's 13 original source files were recovered from 38b87af
+and verified against every original SHA-256, then frozen under
+archive/2026-10-14/class-d-minus-template-sources/. Tests verify those
+historical bytes independently of current-source edits, including in
+shallow CI checkouts, while current code must still reproduce the sealed
+graph. The new plus packet freezes its sources when created. All three
+prior packets remain byte-for-byte intact. Reconciled main@b9fbb32 with
+its complete append-only ledger, preserving the Mercat–Akiyama transfer-gate
+finding; no branch-history rewrite or mathematical-status promotion.

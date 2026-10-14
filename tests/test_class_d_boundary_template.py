@@ -1,5 +1,6 @@
 """Independent complete-template replay, graph integrity and countercontrols."""
 import copy
+import gzip
 import hashlib
 import importlib.util
 import json
@@ -74,5 +75,9 @@ def test_packet_bytes_and_sources_are_pinned():
     for line in (PACKET / 'SHA256SUMS').read_text().splitlines():
         digest, name = line.split('  ', 1)
         assert hashlib.sha256((PACKET / name).read_bytes()).hexdigest() == digest
-    for name, digest in json.loads((PACKET / 'source-digests.json').read_text()).items():
-        assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == digest
+    frozen = json.loads(gzip.decompress((ROOT / 'archive/2026-10-14/class-d-minus-template-sources/sources.json.gz').read_bytes()))
+    assert frozen['source_commit'] == '38b87af7697c07641995e2ffe3be2b4cef275ded'
+    pins = json.loads((PACKET / 'source-digests.json').read_text())
+    assert set(frozen['sources']) == set(pins)
+    for name, digest in pins.items():
+        assert hashlib.sha256(frozen['sources'][name].encode()).hexdigest() == digest

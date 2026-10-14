@@ -675,8 +675,13 @@ For the next research cycle:
    then compose the existing Theorem E/L/W reductions for scoped PDS/G1.
    The general norm driver remains an alternative cross-check:
    `mojo run -I . symbolic_line_certificate.mojo norm D 3 5 3 6 2 4`.
-   Continue proof development on the plus boundary and both `b>0`
-   interiors without waiting for human review; their coverage is still open.
+   Section 4j also supplies the complete plus `b=0` candidate: uniform
+   `a>=7` graph (718 vertices, 4,326 edges, maximum half-depth six),
+   exact prefix `a=0..6`, and full-support checks at `a=7,8`.
+   Its canonical command is `mojo run -I . class_d_plus_boundary_certificate.mojo`.
+   The independent replay passes; both canonical receipts are pending.
+   Continue proof development on both **`b>0` interiors** without waiting
+   for human review. Boundary candidates do not cover either interior.
    Certify a constant-graph core and all its edges, or use
    vertex families for the changing-graph fringe; the infinite `b=0` edge
    must be covered. On that edge a contracting root lies in
