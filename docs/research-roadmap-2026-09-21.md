@@ -640,8 +640,12 @@ do not quietly resurrect it under a new name.
 For the next research cycle:
 
 1. **#139: turn the family certificates into uniform coverage.** Finish class
-   D below `r = q - 1` (second constant-graph cone, then Pisot-boundary
-   fringe), extend the wedge analysis to A/C, and treat class A's slope-one
+   D below `r = q - 1` using the complete two-quadrant parameter cover in
+   `p1b-boundary-hitting-progress-2026-10-08.md` §4d: each branch has
+   `a,b >= 0`, with `b` the exact Pisot-boundary margin and `a` growth along
+   that boundary. Certify a constant-graph core and all its edges, or use
+   vertex families for the changing-graph fringe; the infinite `b=0` edge
+   must be covered. Then extend the wedge analysis to A/C, and treat class A's slope-one
    growing graphs by vertex families. The first class-level closure target is
    a uniform boundary-hitting depth `K` for the catch-up-free determinant-two
    class. Any extension beyond it still needs occurrence-compatible adelic

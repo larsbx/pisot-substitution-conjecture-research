@@ -21,6 +21,23 @@ universal rung above.
   overlap productivity, formal productivity, G1 or PDS uniformly for every
   PIP substitution.
 
+## Next scoped rung: the residual class-D quadrants (2026-10-14)
+
+The exact parameter cover in
+`p1b-boundary-hitting-progress-2026-10-08.md` §4d reduces every PIP class-D
+member below `r=q-1` to one of two complete affine quadrants `a,b>=0`.
+No boundary-hitting theorem for those quadrants is claimed.
+
+1. Prove common-boundary hitting for all seed-reachable overlaps on both
+   quadrants, including their changing-graph `b=0` edges.
+2. Combine with Corollary W1 to cover all determinant-two class D.
+3. Apply the depth note §7 for G1 on that class; with Theorem E, assemble
+   PDS on that class.
+4. Extend coverage to the remaining classes and then the standing universal
+   target. Class-level closure alone does not establish general #139.
+
+Human review remains pending and nonblocking throughout these proof steps.
+
 # Stable base — incidence rank, UD, and bounded discrepancy
 
 Established on `main`:
