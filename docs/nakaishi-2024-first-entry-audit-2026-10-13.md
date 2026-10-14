@@ -301,7 +301,7 @@ The unscaled \(w=(1,0)\) is in that set, whereas \(Mw=(1,1)\) is not. Hence \(w\
 
 **Diagonal-compatible ancestry recurrence (OPEN, not a new claim in the proof ledger):** starting from a *realized* bad strict-zipper state, find a pair of legal address sequences with (a) exact adelic coincidence, (b) an actual simultaneous special-cylinder visit, and (c) an **explicit commuting diagram** from their labelled length-\(d\) prefixes and source offset \(w\) to the prescribed target \(M^d w_{\mathrm{PSC}}\) and endpoint types. Alternatively, avoid the special \(I\)-cylinder and establish the same exact witness with an occurrence-compatible different-cylinder construction.
 
-This is deliberately narrower and more checkable than claiming ordinary product mixing forces coincidence. First attempt an exact symbolic/algebraic bridge using the already available occurrence-labelled prefix and affine replay contracts in \`docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md\`; a test is warranted only after such a bridge is *stated*, with the known determinant-two pump and non-unit finite-place regression as negative controls. Do not turn a failure to find a witness at bounded depth into a mathematical negative verdict. General #84/#138/#139, G1, and PSC remain OPEN.
+This is deliberately narrower and more checkable than claiming ordinary product mixing forces coincidence. First attempt an exact symbolic/algebraic bridge using the already available occurrence-labelled prefix and affine replay contracts in `docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md`; a test is warranted only after such a bridge is *stated*, with the known determinant-two pump and non-unit finite-place regression as negative controls. Do not turn a failure to find a witness at bounded depth into a mathematical negative verdict. General #84/#138/#139, G1, and PSC remain OPEN.
 
 ## Transfer to #139: exact hitting is the gate
 
@@ -314,7 +314,7 @@ for an **occurrence-compatible** prefix-pair witness of a realized strict-zipper
 ### Narrow next obligation (stop/go before new executable work)
 
 1. **Completed as an audit of the invalid inference, not as a PSC theorem:** the disjoint partitions, corrected intersection term, and primitive mixing-SFT countercalibration rule out the printed deficit argument. Any replacement must establish a positive-measure algebraically controlled support set and shrinking-scale membership at actual joint-return times (Theorem 3 transfer audit above).
-2. Separately test whether its special-cylinder polynomial/Garsia separation gives an **exact, occurrence-compatible** witness for the affine replay offsets in #139. Identify every hypothesis, especially non-unimodular finite places and the measure/pair-support assumptions.
+2. **Partially resolved only under new explicit hypotheses:** synchronized **exact-diagonal** source addresses give an unscaled integral prefix certificate, conditional on the source's Garsia/tail estimates (and subject to the Definition 9 radius mismatch for general neighborhoods). A source-to-#139 scaled-offset, endpoint-type, occurrence-labelled **realization bridge remains OPEN**, especially in the non-unimodular adelic regime.
 3. Only if a proof-complete new implication survives, write a precise theorem with a replayable small specimen/counter-calibration before Mojo-first implementation; independently audit imports. Do not promote this note to PSC evidence.
 
 ## Source and status caution
