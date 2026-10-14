@@ -645,7 +645,9 @@ For the next research cycle:
    `a,b >= 0`, with `b` the exact Pisot-boundary margin and `a` growth along
    that boundary. Certify a constant-graph core and all its edges, or use
    vertex families for the changing-graph fringe; the infinite `b=0` edge
-   must be covered. Then extend the wedge analysis to A/C, and treat class A's slope-one
+   must be covered. On that edge a contracting root lies in
+   `(-1,-1+1/d)` for `d>=4` (§4e), so do not assume a parameter-independent
+   contraction margin; keep `d` visible in vertex-family/hitting estimates. Then extend the wedge analysis to A/C, and treat class A's slope-one
    growing graphs by vertex families. The first class-level closure target is
    a uniform boundary-hitting depth `K` for the catch-up-free determinant-two
    class. Any extension beyond it still needs occurrence-compatible adelic

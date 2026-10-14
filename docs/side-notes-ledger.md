@@ -1584,3 +1584,11 @@ boundary and cannot be omitted from a core certificate. This is parameter
 coverage, not a hitting certificate; no sampled grid or class-level closure
 is claimed. Evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md`
 §4d; updated `docs/proof-ladder.md` and live roadmap §12.
+
+2026-10-14 — Retire a uniform contracting-conjugate margin as a proof
+ingredient for the whole residual class-D family: on either `b=0` branch,
+for every `d>=4`, a conjugate lies in `(-1,-1+1/d)`, hence no single
+`mu<1` bounds them all and `1/(1-|lambda|)>d`. This is an exact symbolic
+negative result, not a BH failure or a proof of unbounded hitting depth,
+graph size or box radius. Continue parameter-aware occurrence hitting;
+evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md` §4e.
