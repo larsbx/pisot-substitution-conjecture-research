@@ -1564,3 +1564,5 @@ only the claim_governance.toml digest, preserving claim statuses, dependency edg
 and named Lean proofs. Preserve both append-only entries when merging main.
 Evidence: Actions runs `38294266656`, `38294266627`,
 `proof/proof-bank.json`, `tests/test_review_policy.py`.
+
+2026-10-14 — Nakaishi Proposition 5 follow-up: disjoint joint-first-entry events omit the early second-coordinate exclusion. The exact identity is m(H_j)=s_j-m(A_0)+m(A_0∩H_j); the selected recurrent fiber contains the entire cylinder by (23), so the intersection term tends to m(A_0) and the proposed contradiction with Proposition 4 disappears. Conditioning out A_0 changes both limit masses equally and does not restore the contradiction. A full-binary-shift [11] control and exact finite membership checks confirm the accounting. This establishes a defect in this argument, not impossibility of an alternative repair, a PSC counterexample or a universal closure. Evidence: `docs/nakaishi-2024-first-entry-audit-2026-10-13.md`, October 14 follow-up, arXiv:2401.07771v1 §§11–13, (21), (23)–(25), (29).
