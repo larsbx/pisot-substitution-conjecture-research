@@ -818,6 +818,204 @@ candidate; they are not newly promoted ledger claims. Human review is
 nonblocking. The remaining mathematical family tasks are the plus `b=0`
 line and both two-parameter interiors `b>0`, followed by the other classes.
 
+## 4j. Target-aware certificates without graph equality — 2026-10-14
+
+**Reconciliation with the updated PR #263.** Section 4i was added upstream
+at `38b87af` while this independent target-aware construction was in progress.
+Preserve that complete-graph candidate. This section supplies a complementary
+certificate: it covers `a>=2` without deciding equality of full edge support,
+whereas §4i certifies the complete 781-edge graph at `a>=4`. Both use the
+same 145 labels and agree on all ranks; every selected edge here occurs in
+§4i's archived graph. Neither has a canonical execution receipt yet.
+The sealed target-spine packet and source comments calling this section
+"4i" refer to its original numbering at `98dc0ca`; they remain unchanged as
+provenance. The current locator is **§4j**.
+
+**Targeted stop/go check (before new diagnostics).** Investigate a covered
+state family with selected, occurrence-labelled paths of decreasing rank;
+do not require equality of full graphs at successive parameters. Rechecked
+[Barge, arXiv:1505.04408v2](https://arxiv.org/abs/1505.04408v2)
+(beta-substitutions only),
+[Berthé–Bourdon–Jolivet–Siegel, arXiv:1401.0704v2](https://arxiv.org/abs/1401.0704v2)
+(generation graphs for Brun/Jacobi–Perron products), and
+[Akiyama–Gähler–Lee, DMTCS 16:3](https://dmtcs.episciences.org/articles/2089)
+(overlap algorithms and the trace-at-most-two census). The latter citation
+corrects the volume given in §4h. None identifies these determinant-two
+boundary families with its certified families. Transfer only exact overlap
+recurrence and ordinary directed reachability, not a new PDS import.
+
+**Proceed**, with two separate obligations: an upper cover containing all
+seed-reachable children, and a lower set of actual occurrence paths leading
+to offset zero. Test exact integral labels and proper-prefix indices, not
+counts. Negative controls: forward graph morphisms can introduce spurious
+paths; positive ranks without strict descent can cycle; graph equality
+already fails at minus `a=2,3`; offset zero is weaker than coincidence.
+Finite comparisons propose a certificate; they cannot discharge its
+all-parameter coverage or occurrence inequalities.
+
+### Lemma TS (target-aware cover and descent)
+
+Fix a parameter value. Let `C` be a set of genuine overlap states, containing
+all swap seeds, closed under every nonterminal child occurrence (same-letter
+zero-offset coincidences are terminal, as in the repository graph). Give each
+state a natural-number rank, with rank zero exactly at offset zero. For every
+positive-rank state choose a valid child occurrence in `C` of smaller rank.
+Then every seed-reachable state has an offset-zero descendant, in at most
+its rank steps.
+
+*Proof.* Induction on inflation depth puts every reachable state in `C`.
+Induction on rank constructs the selected path. Proper-prefix indices,
+child letters, the exact offset recurrence, and positive interior overlap
+make each step an actual subdivision occurrence. This is existential path
+hitting, not a claim that every infinite choice of children hits. The cover
+can contain extra states; it need not equal the reachable graph. `square`
+
+Applied separately for every admissible parameter, the lemma needs no
+parameter-independent rank bound, no morphism between successive full
+graphs, and no uniform spectral contraction. If a finite common rank table
+happens to work, it additionally supplies a uniform depth bound on that
+specific family. A forward morphism to a productive quotient is insufficient:
+the bad loop `u->u` and good target loop `z->z` can be mapped to distinct
+vertices of a quotient that also has an extra `f(u)->f(z)` edge. Every quotient
+vertex hits, but `u` does not. The missing property is lifting the selected
+edge from **each** represented state, with target reflection.
+
+### Minus boundary: a complete finite parametric certificate candidate
+
+**Status: conditional family result; candidate pending canonical replay.**
+The independent Python oracle verifies the following universal algebraic
+obligations. The canonical Mojo checker and regressions are supplied, but
+the locked Mojo environment could not be installed: the conda-forge package
+fetch for `protobuf-6.33.5-py314h61e7c5f_2.conda` failed with a tunnel error.
+No branch-level claim is promoted
+on Python authority; no universal PSC/G1 node changes. This candidate is a
+strict advance over §4h's non-closed witness subgraph: it verifies the missing
+seed coverage and full child closure for its explicit proposed cover.
+
+Let `s=-1`, `b=0`, `a>=2`, `r=2a+4`, and `t=1/beta`. The polynomial is
+`beta^3-(r+2)beta^2-r beta+2=0`. Its values at `r+2` and `r+3` have opposite
+signs. Since the member is PIP by §4d, its unique root above one obeys
+`r+2<beta<r+3`; hence `0<t<1/10`. Set `epsilon=beta-r-2`. The polynomial
+implies `(1+t)epsilon=1-2t-2t^2`. Normalizing `ell_y=1` gives
+
+```text
+2(1+t) ell_x = 3-2t-4t^2
+2(1+t) ell_c = 3-2t^2
+2(1+t) ell_y = 2+2t.
+```
+
+These formulas also give `1<ell_x<ell_c<3/2`. All geometry is now a quadratic
+polynomial inequality on the single fixed interval `0<t<1/10`; treating every
+t in that interval is a safe overapproximation of the actual Perron values.
+
+The explicit table in
+[`certificate.json`](../evidence/class-d-target-spine-2026-10-14/certificate.json)
+and `kernel/psc/class_d_minus_spine_data.mojo` consists of 145 constant
+`(top,bottom,wx,wc,wy)` labels, their ranks, and one affine pair of whole-image
+indices `(i(a),j(a))` at each of the 139 non-target rows. Its rank histogram
+is `0:6, 1:15, 2:50, 3:72, 4:2`.
+
+For a quadratic `P(t)=c+bt+at^2`, the three degree-two Bernstein coefficients
+on `[0,1/10]`, multiplied by 100, are
+
+`100c, 100c+5b, 100c+10b+a`.
+
+Nonnegative coefficients, with at least one positive, prove strict positivity
+on the **open** interval. All nonpositive coefficients prove nonpositivity.
+Mixed signs prove neither and the checker must refuse unless another coverage
+condition resolves the case. No float comparison or root sample is used.
+
+The checker establishes five independently necessary obligations:
+
+1. **Geometry.** For each label, both `ell.w+ell_bottom` and
+   `ell_top-ell.w`, after multiplication by `2(1+t)`, have a strict positive
+   Bernstein certificate. These are exactly the interior-overlap inequalities.
+2. **Seeds.** Enumerate all four overlaps of each of the three two-tile swap
+   patches. Exclude only a proved non-interior candidate. The nine remaining
+   seed occurrences have labels in the cover.
+3. **Full child closure.** Split each image into its first letter, y-run,
+   and last letter. For every nonterminal parent, enumerate all nine segment
+   pairs. The first two child-offset coordinates `(u,v)` are fixed; the third
+   coordinate `z` lies in an explicitly computed affine integer interval
+   from the run-prefix ranges and `Mw`. Since every tile length is at most
+   `3/2` and `ell_y=1`, every genuine child satisfies
+   `|z| < 3(|u|+|v|+1)/2`. Enumerate that finite integer enclosure. Exclude a
+   candidate only if its affine run interval misses it for **every** `a>=2`,
+   or one overlap inequality is proved nonpositive on `0<t<1/10`. Every
+   remaining label must occur in the cover. The checker examines 18,779
+   candidate integers, with no uncovered case. This is exhaustive symbolic
+   segment coverage, not a sampling of parameter values.
+4. **Occurrences.** Each proposed index is identically zero, identically the
+   last index, or lies throughout the y-run. For an affine inequality
+   `ma+b>=0` on integers `a>=2`, checking `m>=0` and `2m+b>=0` suffices.
+   Prefix coordinates are then affine, and the checker verifies coefficient
+   by coefficient `w'=M(a)w+prefix_bottom(j)-prefix_top(i)` and both letters.
+   The geometry in (1) makes each chosen child an interior occurrence.
+5. **Descent/targets.** Every chosen child has strictly smaller nonnegative
+   rank. The six rank-zero labels have offset zero; some have distinct
+   letters, so they are half-coincidences, not same-letter coincidences.
+
+**Conditional corollary.** Successful canonical validation of that table,
+combined with the explicit algebra above and the certificate lemma, proves
+all-seed BH with depth at most four on the entire minus `b=0`, `a>=2` tail.
+The driver separately runs the exact, uncapped seed graphs at `a=0,1`; both
+already have independent finite evidence of depth four. Successful validation
+of those base cases too supplies the complete minus boundary line. By the
+existing half-coincidence-to-G1 and class-D strong-coincidence bridges, that
+would feed G1/PDS on that line at the bridges' recorded review status. It
+would not cover `s=+1`, either quadrant's `b>0` interior, or general PSC.
+
+Replay from `kernel/`:
+
+```sh
+mojo run -I . class_d_minus_certificate.mojo
+mojo run -I . tests/test_class_d_minus_certificate.mojo
+mojo run -I . class_d_hitting_spine.mojo
+```
+
+Independent replay from the root:
+
+```sh
+python oracles/python/class_d_minus_certificate.py
+python oracles/python/class_d_target_spine_probe.py
+python -m pytest -q tests/test_class_d_minus_certificate.py
+```
+
+### Successive-parameter evidence and rejected shortcuts
+
+The bounded comparison `s=-1`, `a=2..8` gives equal 145-label sets, directed
+support sizes `779,781,781,781,781,781,781`, and a common 779-edge subgraph
+with every vertex hitting by rank four. The 139 selected affine occurrences
+are replayed against the independent exact field graph at `a=2,3,8`;
+all table labels equal the complete seed-reachable sets there. These replays
+are cross-checks of the parametric obligations, not their justification.
+
+Negative controls retained with the certificate:
+
+- The fit `i(a)=9-a` in a c-image passes the y-run test for all `a=2..8`.
+  It is the first c at `a=9` and out of range at `a=10`. The universal run
+  checker rejects it; the accepted table uses different occurrences.
+- In the common lower graph, 486 edges from positive-rank states do **not**
+  decrease this rank. Requiring descent along all children is overstrong;
+  allowing only non-strict descent on the chosen child is insufficient.
+- Tests reject false zero ranks, self-successors, perturbed indices,
+  missing labels, duplicate labels and empty covers. Boundary-only contacts
+  and mixed-sign Bernstein polynomials are not silently accepted.
+- Equal vertex counts still do not imply graph equality (§4g); a rank-zero
+  distinct-letter pair is not silently promoted to a coincidence.
+
+On `s=+1`, the fresh exact bounded checks at `a=4..8` give respectively
+`746,726,718,718,718` states, each with maximum half-depth six and no missing
+target. The count plateau alone supplies neither a label correspondence nor
+an occurrence-compatible recurrence. **The positive boundary remains open.**
+The next targeted step is to construct and certify its own cover and chosen
+paths, allowing parameter-dependent state families or ranks if necessary;
+do not extrapolate the minus table or a universal depth-six claim.
+
+The immutable packet is
+[`class-d-target-spine-2026-10-14`](../evidence/class-d-target-spine-2026-10-14/README.md).
+The earlier two PR #263 packets remain byte-for-byte intact.
+
 ## 5. Next, in order
 
 1. **The rest of class D.** Below `r = q − 1`, each branch has a second

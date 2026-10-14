@@ -2217,6 +2217,11 @@
       "statement_heading": "*Corollary W1.* **Every PIP member of class D with `r ≥ q − 1` has pure"
     },
     {
+      "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
+      "line": 842,
+      "statement_heading": "(overlap algorithms and the trace-at-most-two census). The latter citation"
+    },
+    {
       "source": "docs/p1b-catch-up-free-ppvc-2026-10-07.md",
       "line": 37,
       "statement_heading": "*Proposition Z (assembled; every input already recorded).* Let `sigma` be PIP,"
@@ -2448,7 +2453,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 148,
+      "line": 159,
       "statement_heading": "child closure and nonproductivity with the exact cycle identity, not loop"
     },
     {
