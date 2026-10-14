@@ -116,6 +116,24 @@ Python copies may remain as independent reference oracles during migration, but 
 
 ## Review gate
 
+### Independent human review is not a research gate
+
+**Independent human review is a final validation gate, not a research-progress gate.**
+Do not stop proof development, computation, provisional dependency use, or
+closure assembly solely because a repository-proved or otherwise correctly
+labelled result still says `human review pending`. Carry that label forward as
+non-blocking validation debt and continue toward a complete closure candidate.
+
+After complete closure is assembled, independent human review validates the
+whole chain. Review status remains truthful throughout: an unreviewed result
+must not be called independently reviewed, and this policy does not turn an
+open premise into a proved one.
+
+This rule is machine-readable in `claim_governance.toml [review_policy]`.
+It does **not** waive the targeted literature stop/go check below; that check
+is a research-design gate against known prior art and hypothesis mismatch, not
+the independent-human-review phase.
+
 ### Targeted literature stop/go check
 
 Before implementing a new theorem-facing diagnostic, testing a proposed
