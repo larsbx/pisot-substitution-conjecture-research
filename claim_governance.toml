@@ -15,6 +15,27 @@
 [repository]
 name = "larsbx/pisot-substitution-conjecture-research"
 
+[review_policy]
+# Independent human review is intentionally downstream of proof construction.
+# It validates a complete closure candidate; it does not gate continued
+# mathematics, provisional dependency use, or assembly of that candidate.
+mode = "post-closure-validation"
+blocks_research_progress = false
+blocks_provisional_dependency_use = false
+blocks_closure_construction = false
+final_validation_required = true
+truthful_status_labels_required = true
+independently_reviewed_label_requires_completed_review = true
+review_pending_classification = "non-blocking-validation-debt"
+human_surfaces = [
+  "README.md",
+  "AGENTS.md",
+  "docs/README.md",
+  "docs/research-roadmap-2026-09-21.md",
+  "docs/verification-architecture.md",
+]
+
+
 [scan]
 prose = ["README.md", "docs/**/*.md", "manuscripts/*.tex", "manuscripts/*.md"]
 source = ["kernel/psc/**/*.mojo", "kernel/*.mojo", "kernel/tests/*.mojo", "reference/psc_research/*.py"]
