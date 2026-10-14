@@ -4,6 +4,8 @@
 
 **Standing target:** pure discrete spectrum for primitive irreducible Pisot substitutions in the repository's standing regime, **without** silently adding seed legality, unique decodability, finite injectivity, rational/integer independence, or unimodularity.
 
+**Review policy:** **Independent human review is a final validation gate, not a research-progress gate.** A `human review pending` label is non-blocking validation debt: proof development, provisional dependency use, and assembly of a complete closure candidate continue. Independent review is performed on the assembled closure chain afterward. The label itself remains truthful and no open mathematical premise is promoted by this policy. Machine source: `claim_governance.toml [review_policy]`.
+
 **2026-10-09 synchronization (`main@4caca9a`, through PR #246):** general PSC,
 #84, #138, #139, formal productivity and G1 remain open. Theorem Ω now
 supports an exact finite-domain PDS theorem on 145,806 substitutions, while
@@ -610,7 +612,7 @@ do not quietly resurrect it under a new name.
 | **P1b** | Strict-zipper hitting (#139) | **OPEN critical; highest leverage** — boundary hitting is proved on 47 lines and class-D wedges with `r >= q - 1`, but not uniformly | uniform non-unit-safe occurrence-compatible hitting/coverage theorem, or a uniform depth bound on the catch-up-free determinant-two class | cover class D below `r = q - 1`, then A/C wedges and the class-A slope-one vertex families; extract uniform depth `K` |
 | **P1a** | Aligned strong coincidence (#138) | **OPEN critical; the two templates are one at the square (Theorem C, 2026-10-05); A1′ proved on the whole catch-up-free `|det M| = 2` class (Theorem E), with all-pairs strong coincidence on its two-odd-letter part (Corollary H1) and outside one explicit family (Theorem K); inside that family Theorems Φ, Λ, Λ′, Λ″ close four `Delta` cells and Theorem Ζ every `Delta` with `Z_2` bounded (2026-10-07)** | uniform proof of A1′ (a bad edge whose letters are both `h`-fixed is eventually coincident), including reversal | on Theorem K's family, close unbounded `Z_2` (Lemma P1 linearized, `2 zfloor`; A1′ note §3m); in general, prove A1′ from the fixed-letter hypothesis, not via transitivity of eventual coincidence |
 | **P1** | Seedwise overlap productivity (#84) | **OPEN — sole shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad closed SCC | assemble only after branch closure; do not substitute a larger finite census |
-| **Review-0** | `PDS => G1` dependency package | **repository-proved; independently audited; human review pending** | direct human check of Theorem R, Proposition F, Theorem B/Lemma C and the primary proof chain behind the Barge fibre/coincidence-rank criterion | audit Theorem R and the Barge source chain first; both protect the non-unimodular import boundary |
+| **Validation** | Independent human review, including the `PDS => G1` dependency package | **NON-BLOCKING validation debt** — repository statuses remain usable for continued proof construction while review is pending | after a complete closure candidate exists, independently review the assembled chain, including Theorem R, Proposition F, Theorem B/Lemma C and the Barge fibre/coincidence-rank source chain | do not divert P1 work to review gating; preserve truthful `human review pending` labels and perform final review after closure assembly |
 | **P2** | G1b-2 renewal finiteness | **OPEN parallel; G1 is necessary for PDS but this is the least load-bearing of the three G1 routes** | uniform finite-return theorem for realizable labelled first returns | develop non-unit level-scaled labelled return/address theory; do not reuse UD-padding or predecessor contraction |
 | **P3a** | Concentration, `K2=0` | **OPEN parallel under G1** | uniform exclusion of strict zero-wedge closed carriers | use ordered/ancestral information absent from current span data |
 | **P3b** | Wedge productivity, `K2!=0` | **OPEN parallel under G1** | theorem converting full wedge span plus recurrence/order into coincidence | identify an order-sensitive invariant beyond the existing span classification |
@@ -646,10 +648,12 @@ For the next research cycle:
    every `Delta` with `s = +1, Z_2 <= 2` or `s = −1, Z_2 <= 3` are closed
    (Theorems Φ, Λ, Λ′, Λ″, Ζ; §§3g–3m). Unbounded `Z_2` is the open part,
    where Lemma P1 is needed only linearly (side-notes ledger, 2026-10-07).
-3. **Human-review the `PDS => G1` chain without delaying P1 proof work.**
-   Follow the Barge coincidence-rank/disjoint-fibre source chain to its primary
-   proofs and recheck Theorem R, Proposition F and Theorem B/Lemma C. This is a
-   review dependency, not a new open mathematical premise.
+3. **Keep review debt off the mathematical critical path.**
+   Continue directly toward complete closure using correctly classified
+   repository proofs and imports even when they remain `human review pending`.
+   Preserve those labels, collect the source-chain obligations, and perform
+   independent human review on the assembled closure chain as the final
+   validation phase rather than as a prerequisite for P1 work.
 4. **Keep G1b-2 active as the Level-2 theorem, not as a hidden PSC dependency.**
    The target is labelled first-return finiteness in the full non-unit
    representation. UD is closed; bounded discrepancy and a finite difference
@@ -671,7 +675,7 @@ A successful week is not "more specimens passed." It is one of:
 - P1b reduced to a strictly smaller source-checked non-unit hitting theorem;
 - P1a reduced to a strictly smaller endpoint/occurrence theorem;
 - one of those theorems proved;
-- the `PDS => G1` human-review chain fully discharged;
+- a complete closure candidate assembled with its pending human-review items collected for final validation;
 - G1b-2 advanced by a genuine labelled-return finiteness lemma;
 - or a proposed bridge falsified by a retained exact countermodel, thereby
   shrinking the search space without weakening the hypothesis firewall.
