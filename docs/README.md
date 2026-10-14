@@ -77,6 +77,14 @@ reads signs at `β` by norm; Theorem C's class-B sectors use brackets
 
 ## Current status
 
+**Independent human review is a final validation gate, not a research-progress gate.**
+Entries marked `human review pending` may remain load-bearing for continued
+repository proof development according to their recorded theorem status; the
+pending review is non-blocking validation debt, not an additional mathematical
+premise. The project continues through complete closure construction first and
+reviews the assembled chain afterward. Status wording must remain truthful.
+The machine-readable rule is `../claim_governance.toml [review_policy]`.
+
 1. `side-notes-ledger.md` — live, append-only record of side findings:
    refuted mechanisms, redirected routes, specimens settled by the literature,
    withdrawn figures, finite observations and tooling pitfalls. Read it

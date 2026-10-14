@@ -60,6 +60,50 @@ by deleting it.
   `docs/k2-load-bearing-scc-salvage-2026-10-11.md` §§"Conditional theorem:
   load-bearing SCC under finite closure", "Retired proof pattern:
   predecessor contraction"
+- 2026-10-12 · **Withdrawn box-walk radius-eight extremum.** The reported
+  constrained exhaustive `n=3, L=3` maximum of 8 lacks a preserved
+  family predicate, saturation proof, original program, run budget, and
+  output; a plateau is not transition closure. Exact deterministic
+  **single-specimen, aligned-prefix** replay on
+  `sigma=(001,22,220)`, swap `01|10`, depths `0..9`, budget
+  `30000` symbols per side, has radii `8` at depths 6–8 but `10`
+  at depth 9, first attained at cut `9054` with defect `(5,5,-10)`.
+  This refutes 8 for that observable only, not an undefined historical
+  comp-set quotient. No `R*(3,3)` extremum or universal radius law is
+  certified; further depth beyond the budget is not a saturation verdict. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §4;
+  `evidence/boxwalk-radius8-depth9.json`;
+  `kernel/boxwalk_radius_probe.mojo`
+
+- 2026-10-12 · **Progress-indexed radius hypothesis preserved.** The
+  withdrawn radius-eight *global maximum* may instead have been a running
+  maximum limited by inflation depth or enumeration progress; the original
+  cursor, family, and stopping rule are unavailable, so this is an **open
+  interpretation**, not a recovered exhaustive result. For the specified
+  aligned-cut witness, the fully measured cumulative envelope
+  `R_<=D=max_{d<=D} r_d` is `8` at `D=8` and `10` at `D=9`;
+  it is nondecreasing **by definition** and is only a lower bound on the
+  eventual radius. In a family scan the running maximum over completed
+  specimens is likewise a lower bound until all specified jobs finish;
+  neither progress plateau proves saturation. Progress-dependent
+  `R_<=D <= f(n,L,D)` bounds or certified state-progress stopping
+  criteria remain viable **research targets**, not established laws. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §4,
+  "Progress-dependent bounds remain a live possibility";
+  `evidence/boxwalk-radius8-depth9.json`
+
+- 2026-10-12 · **Do not revive the box-walk one-step shortcuts.**
+  Spectral contraction to zero ignores affine prefix forcing; common-boundary
+  gap `<= L`, child-box subset inclusion, a specimen-independent absolute
+  radius, and one-step length/first-letter monovariants were rejected by the
+  October 11 thread. The thread's raw counterexample runs are not preserved,
+  so treat them as **unverified research negatives**, not individually
+  certified disproofs. The sampled formulas `2(L-2)` and
+  `(n-1)(L-1)`, and a depth-`<=5` saturation shortcut, remain unproved;
+  the explicit depth-nine aligned-cut witness separately refutes any such
+  proposed bound below 10 **when applied to that observable**. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §§"Claims retracted or
+  not to re-attempt", "Extremal-search reframing"
 
 ## 2. Redirected routes (no lever there; see the decision)
 
@@ -1556,3 +1600,24 @@ paths remain exercised without history. The actual benchmark intentionally
 requires the pinned baseline history and continues to fail if it is absent.
 Evidence: `tests/test_pip_mul_benchmark_guards.py` and failed Actions job
 `114294069121` (515 other tests passed; two history-dependent controls failed).
+
+- 2026-10-12 · governance: independent human review is a final validation gate,
+  not a research-progress gate. `human review pending` is non-blocking
+  validation debt: repository proof development, provisional dependency use,
+  and closure construction continue; truthful status labels remain mandatory,
+  and the assembled closure chain receives independent review afterward.
+  Machine source: `claim_governance.toml [review_policy]`; synchronized human
+  surfaces: `README.md`, `AGENTS.md`, `docs/README.md`,
+  `docs/research-roadmap-2026-09-21.md`, and
+  `docs/verification-architecture.md`.
+
+2026-10-13 — Nakaishi arXiv:2401.07771v1 §13 Proposition 5 equates first simultaneous C×C entry with first second-coordinate C entry along N_i, despite a positive-measure early second-coordinate-only event at N_0; the measure partition used against Proposition 4 is unproved as written. This is a source-audit objection, not a PSC counterexample or final refutation. The paper's mixing / special-cylinder / Garsia separation mechanisms remain research leads for exact occurrence-compatible #139 hitting, contingent on repaired conditioning and non-unit adelic transfer; no theorem import or status promotion. Evidence: `docs/nakaishi-2024-first-entry-audit-2026-10-13.md`, arXiv:2401.07771v1 §§12–13, eqs. (24), (29), Proposition 5.
+
+2026-10-13 — PR #258 validation repair: all four failing jobs (python-tests,
+source-provenance, lean-proofs, exact-kernels) refused a stale proof-bank input
+digest after the review-policy edit. The Lean job stopped before compilation;
+exact equivalence, Mojo regressions and census checks passed. Regeneration changes
+only the claim_governance.toml digest, preserving claim statuses, dependency edges
+and named Lean proofs. Preserve both append-only entries when merging main.
+Evidence: Actions runs `38294266656`, `38294266627`,
+`proof/proof-bank.json`, `tests/test_review_policy.py`.

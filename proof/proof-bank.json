@@ -1752,6 +1752,16 @@
       "statement_heading": "exactly all-pairs aligned strong coincidence: three letter pairs, each a"
     },
     {
+      "source": "docs/k2-load-bearing-scc-salvage-2026-10-11.md",
+      "line": 44,
+      "statement_heading": "s_13 = ((1,3),(3,1))"
+    },
+    {
+      "source": "docs/k2-load-bearing-scc-salvage-2026-10-11.md",
+      "line": 63,
+      "statement_heading": "subspace, the dominant projection would be the zero map."
+    },
+    {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
       "line": 35,
       "statement_heading": "**Lemma 1.1 (occurrence).** Every vertex of `O_sigma` is the type of an"
@@ -3003,7 +3013,7 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "97f089ccab2e923f16a74db2bd6333f10de9f6a8a23144a1d63ab54d053a0ced",
+    "claim_governance.toml": "69f87f897233d151b79eb0bbe8d3dfb2eab79b26cab42c7dac1b52bd456bb50f",
     "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
