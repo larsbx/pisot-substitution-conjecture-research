@@ -48,6 +48,51 @@ by deleting it.
   `c4-ordered-hub-offset-negative-2026-10-06.md` §3;
   `evidence/ordered-hub-packets-2026-10-06/`
 
+- 2026-10-12 · **Withdrawn box-walk radius-eight extremum.** The reported
+  constrained exhaustive `n=3, L=3` maximum of 8 lacks a preserved
+  family predicate, saturation proof, original program, run budget, and
+  output; a plateau is not transition closure. Exact deterministic
+  **single-specimen, aligned-prefix** replay on
+  `sigma=(001,22,220)`, swap `01|10`, depths `0..9`, budget
+  `30000` symbols per side, has radii `8` at depths 6–8 but `10`
+  at depth 9, first attained at cut `9054` with defect `(5,5,-10)`.
+  This refutes 8 for that observable only, not an undefined historical
+  comp-set quotient. No `R*(3,3)` extremum or universal radius law is
+  certified; further depth beyond the budget is not a saturation verdict. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §4;
+  `evidence/boxwalk-radius8-depth9.json`;
+  `kernel/boxwalk_radius_probe.mojo`
+
+- 2026-10-12 · **Progress-indexed radius hypothesis preserved.** The
+  withdrawn radius-eight *global maximum* may instead have been a running
+  maximum limited by inflation depth or enumeration progress; the original
+  cursor, family, and stopping rule are unavailable, so this is an **open
+  interpretation**, not a recovered exhaustive result. For the specified
+  aligned-cut witness, the fully measured cumulative envelope
+  `R_<=D=max_{d<=D} r_d` is `8` at `D=8` and `10` at `D=9`;
+  it is nondecreasing **by definition** and is only a lower bound on the
+  eventual radius. In a family scan the running maximum over completed
+  specimens is likewise a lower bound until all specified jobs finish;
+  neither progress plateau proves saturation. Progress-dependent
+  `R_<=D <= f(n,L,D)` bounds or certified state-progress stopping
+  criteria remain viable **research targets**, not established laws. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §4,
+  "Progress-dependent bounds remain a live possibility";
+  `evidence/boxwalk-radius8-depth9.json`
+
+- 2026-10-12 · **Do not revive the box-walk one-step shortcuts.**
+  Spectral contraction to zero ignores affine prefix forcing; common-boundary
+  gap `<= L`, child-box subset inclusion, a specimen-independent absolute
+  radius, and one-step length/first-letter monovariants were rejected by the
+  October 11 thread. The thread's raw counterexample runs are not preserved,
+  so treat them as **unverified research negatives**, not individually
+  certified disproofs. The sampled formulas `2(L-2)` and
+  `(n-1)(L-1)`, and a depth-`<=5` saturation shortcut, remain unproved;
+  the explicit depth-nine aligned-cut witness separately refutes any such
+  proposed bound below 10 **when applied to that observable**. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §§"Claims retracted or
+  not to re-attempt", "Extremal-search reframing"
+
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
