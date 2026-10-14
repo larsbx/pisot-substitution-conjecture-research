@@ -1,5 +1,6 @@
 """Bounded replay of the two residual class-D b=0 families; no universal verdict."""
-from psc.overlap_seed_patch import build_seed_overlap_graph, first_left_aligned_depths
+from psc.overlap_seed_patch import build_seed_overlap_graph, first_left_aligned_depths, build_seed_overlap_tables, build_seed_overlap_graph_from_tables
+from psc.vertex_coincidence import length_matrix, offset_vector
 
 
 def boundary_member(s: Int, a: Int) raises -> List[List[Int]]:
@@ -43,3 +44,38 @@ def boundary_probe(s: Int, a: Int, max_states: Int = 20000) raises -> List[Int]:
         else:
             deepest = max(deepest, depths[i])
     return [4+3*a-s, 4+3*a-2*s, 2+2*a-2*s, graph.size(), deepest, missing]
+
+
+# Two actual support changes on s=-1, between a=2 and a=3. Labels are
+# (top,bottom,w0,w1,w2), with canonical letters x=0,c=1,y=2.
+def boundary_edge_flags(a: Int, max_states: Int = 20000) raises -> List[Bool]:
+    if max_states < 1 or max_states > 20000:
+        raise Error("boundary state cap outside 1..20000")
+    var tables = build_seed_overlap_tables(boundary_member(-1, a))
+    var graph = build_seed_overlap_graph_from_tables(tables, max_states)
+    if graph.capped:
+        raise Error("STATE_BUDGET_EXHAUSTED: no support comparison")
+    var lengths = length_matrix(tables)
+    var parents: List[List[Int]] = [[0,0,0,0,1], [1,0,-1,1,1]]
+    var children: List[List[Int]] = [[2,2,0,2,-3], [2,2,1,1,-3]]
+    var found: List[Bool] = [False, False]
+    var present: List[Bool] = [False, False]
+    for i in range(graph.size()):
+        var v = graph.states[i]
+        var w = offset_vector(lengths, v.shift)
+        for k in range(2):
+            if v.top != parents[k][0] or v.bottom != parents[k][1]:
+                continue
+            if w != List[Int]([parents[k][2],parents[k][3],parents[k][4]]):
+                continue
+            found[k] = True
+            for j in graph.adj[i]:
+                var c = graph.states[j]
+                if c.top != children[k][0] or c.bottom != children[k][1]:
+                    continue
+                var cw = offset_vector(lengths, c.shift)
+                if cw == List[Int]([children[k][2],children[k][3],children[k][4]]):
+                    present[k] = True
+    if not found[0] or not found[1]:
+        raise Error("support witness parent absent; no comparison")
+    return present^

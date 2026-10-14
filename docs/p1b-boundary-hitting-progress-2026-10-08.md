@@ -502,6 +502,98 @@ G1/PSC. A change in graph size must be retained rather than normalized away
 as an assumed constant-graph core. The next proof step remains an exact
 occurrence-compatible description covering all boundary parameters.
 
+## 4g. Equal vertex counts do not certify a constant graph — 2026-10-14
+
+**Status:** bounded negative control, independently replayed by the Python
+field oracle; canonical Mojo checks are written but await execution. Same
+object, target and stop/go gate as §4f. No family-wide conclusion.
+
+On the minus branch at `b=0`, the members `a=2` and `a=3` each have
+145 vertices. Exact conversion of every field offset back to its integral
+Parikh coordinates shows that their **labelled vertex sets are equal**.
+Their directed supports are nevertheless different. In canonical letter
+order `(x,c,y)=(0,1,2)`, the following edges are absent at `a=2` and present
+at `a=3`:
+
+| parent `(top,bottom,w)` | child `(top,bottom,w)` |
+| --- | --- |
+| `(x,x,(0,0,1))` | `(y,y,(0,2,-3))` |
+| `(c,x,(-1,1,1))` | `(y,y,(1,1,-3))` |
+
+This difference remains after discarding parallel-edge multiplicities.
+Both endpoints exist in both graphs; the negative is a transition change,
+not relabelling or a different vertex total. The oracle solves the full
+three-coordinate length-basis system over rationals and checks the inverse
+by reconstruction. The canonical witness query uses the existing exact
+`length_matrix`/`offset_vector` inverse and uncapped graph adjacency.
+
+Replay: `python3 oracles/python/class_d_boundary_probe.py --support`.
+Receipt and source digests: `evidence/class-d-support-change-2026-10-14/`.
+The original eight-member packet of §4f is retained byte-for-byte; this new
+packet records the added support comparison and revised source bytes.
+
+### Exact occurrence threshold for these two transitions
+
+The finite difference has an elementary uniform explanation. On the minus
+branch put `p=3a+5`, `q=3a+6`, `r=2a+4`, `d=a+2`. Normalize `ell_y=1`.
+The Perron relations give
+
+`ell_c=(beta-r)/2`, `ell_x=ell_c-1/beta`.
+
+Here `r+2 < beta < r+3`: for
+`chi(X)=X^3-(r+2)X^2-2dX+2`, evaluation at `r+2` is negative,
+and evaluation at `r+3` is `3(r+3)+2>0`. The PIP result of §4d
+identifies the intervening root as beta. Put `epsilon=beta-r-2`, so
+`0<epsilon<1` and the root equation gives
+`beta*epsilon=2d-2/beta>2`.
+
+Consequently both displayed parents and children are genuine interior
+overlaps for every `a>=0`. The parent offsets are `1` and `1+1/beta`,
+less than `ell_x` and `ell_c` respectively because
+`epsilon/2>1/beta`. The child offsets are `epsilon-1` and
+`epsilon-1-1/beta`; both lie strictly between `-1` and `0`, since
+`epsilon>1/beta`.
+
+Number a y-occurrence by its zero-based index in its whole image. Its
+indices range from `1` to the run length. For the first transition, select
+indices `i` in the top x-image and `j` in the bottom x-image. Its integer
+offset equation is
+
+```text
+M(0,0,1) + prefix_x(j) - prefix_x(i) = (0,2,r+j-i).
+```
+
+The target `(0,2,-3)` therefore requires `i-j=r+3`. Such occurrences
+exist exactly when `p-1>=r+3`, equivalently `a>=3`. A uniform witness is
+`j=1`, `i=r+4=2a+8`.
+
+For the second transition the top parent is c and the bottom parent is x:
+
+```text
+M(-1,1,1) + prefix_x(j) - prefix_c(i) = (1,1,r+1+j-i).
+```
+
+Its target `(1,1,-3)` requires `i-j=r+4`. Such occurrences exist
+exactly when `q-1>=r+4`, again `a>=3`. A witness is
+`j=1`, `i=r+5=2a+9`. All y-children in these parent images lie in their
+displayed runs, so these inequalities prove necessity as well as sufficiency.
+No division by a potentially zero quantity occurs: beta is greater than two.
+
+Thus **both local transitions occur iff `a>=3`**, on the entire minus
+boundary family. This is an occurrence-level threshold, not an assertion
+that their parents are seed-reachable for all parameters. It proves neither
+a global graph template nor boundary hitting. It does provide two exact
+parameter inequalities that a complete template proof must respect. Human
+review of this local derivation remains pending and nonblocking.
+
+**Consequence for the next proof step.** Do not fit a uniform graph from
+the repeated number 145, or even from equality of the vertex sets. A
+constant-core proof must certify the actual child-support inequalities
+uniformly over a stated parameter interval and account for its edges.
+The two finite graphs still reach offset zero by depth four; their support
+difference is not a BH failure and proves no obstruction to eventual
+stabilization or to a uniform depth theorem.
+
 ## 5. Next, in order
 
 1. **The rest of class D.** Below `r = q − 1`, each branch has a second

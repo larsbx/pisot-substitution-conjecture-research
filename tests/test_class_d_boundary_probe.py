@@ -22,3 +22,13 @@ def test_capped_graph_refuses_a_verdict():
 def test_invalid_budget_is_rejected(s,a,cap):
     with pytest.raises(ValueError):
         oracle.probe(s,a,cap)
+
+
+def test_equal_vertex_counts_do_not_certify_equal_support():
+    actual=json.loads(json.dumps(oracle.support_report()))
+    expected=json.loads((ROOT / "evidence/class-d-support-change-2026-10-14/oracle.json").read_text())
+    assert actual==expected
+    assert actual["vertices"]==[145,145]
+    assert actual["vertex_labels_equal"]
+    assert not actual["support_equal"]
+    assert all(not w["present_at_a2"] and w["present_at_a3"] for w in actual["witnesses"])

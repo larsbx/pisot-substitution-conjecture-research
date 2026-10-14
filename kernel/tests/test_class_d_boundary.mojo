@@ -1,7 +1,7 @@
 """Scope and exact graph/depth calibration for the residual b=0 edge."""
 from std.testing import assert_equal, assert_true
 from mojo_smoke.claims import require_contract
-from psc.class_d_boundary import boundary_member, boundary_probe
+from psc.class_d_boundary import boundary_member, boundary_probe, boundary_edge_flags
 
 
 def main() raises:
@@ -17,6 +17,8 @@ def main() raises:
     assert_equal(boundary_probe(1, 3), List[Int]([12, 11, 6, 868, 6, 0]))
     assert_equal(boundary_probe(-1, 2), List[Int]([11, 12, 8, 145, 4, 0]))
     assert_equal(boundary_probe(-1, 3), List[Int]([14, 15, 10, 145, 4, 0]))
+    assert_equal(boundary_edge_flags(2), List[Bool]([False,False]))
+    assert_equal(boundary_edge_flags(3), List[Bool]([True,True]))
     var refused = False
     try:
         _ = boundary_probe(1, 0, 1)
@@ -29,4 +31,4 @@ def main() raises:
     except:
         refused = True
     assert_true(refused)
-    require_contract("bounded class-D b=0 replay: eight parameter members, all-seed graph sizes and half-depths, state-cap and parameter-limit refusal; no family-wide hitting claim")
+    require_contract("bounded class-D b=0 replay: eight parameter members, exact support-change witnesses despite equal 145-vertex counts, all-seed graph sizes and half-depths, state-cap and parameter-limit refusal; no family-wide hitting claim")

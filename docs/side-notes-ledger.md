@@ -1659,3 +1659,23 @@ depth, constant graph or family exhaustion is inferred. Evidence:
 `docs/p1b-boundary-hitting-progress-2026-10-08.md` §4f,
 `evidence/class-d-boundary-2026-10-14/`, and
 `kernel/tests/test_class_d_boundary.mojo`.
+
+2026-10-14 — Countercalibration for a constant boundary graph inferred from
+145 vertices: on class D's minus branch `b=0`, `a=2` and `a=3` have equal
+labelled vertex sets but different directed support (two explicit edge
+witnesses, after ignoring multiplicity). Both still hit by depth four.
+This retires count/vertex-set equality as a certificate of graph equality,
+not eventual stabilization or uniform hitting. Python exact replay executed;
+Mojo witness checks remain unexecuted locally. Evidence:
+`docs/p1b-boundary-hitting-progress-2026-10-08.md` §4g;
+`evidence/class-d-support-change-2026-10-14/`.
+
+2026-10-14 — Exact local refinement of the class-D support countercontrol:
+on the entire minus `b=0` family, the two displayed y/y transitions exist
+iff `a>=3`. Ordered prefix offsets force `i-j=r+3` and `i-j=r+4`; the
+run limits make both thresholds exactly three. Explicit witnesses are
+`(i,j)=(2a+8,1)` and `(2a+9,1)`. Positive Perron-length inequalities
+verify both endpoints as interior overlaps for all `a>=0`. This is a
+uniform local occurrence statement, not uniform seed reachability or BH.
+Evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md` §4g,
+'Exact occurrence threshold for these two transitions'.

@@ -654,7 +654,10 @@ For the next research cycle:
    D below `r = q - 1` using the complete two-quadrant parameter cover in
    `p1b-boundary-hitting-progress-2026-10-08.md` §4d: each branch has
    `a,b >= 0`, with `b` the exact Pisot-boundary margin and `a` growth along
-   that boundary. Certify a constant-graph core and all its edges, or use
+   that boundary. Equal vertex counts or even equal vertex sets do not
+   certify a constant graph: the minus-branch `a=2,3`, `b=0` controls
+   each have 145 vertices but different directed support (§4g).
+   Certify a constant-graph core and all its edges, or use
    vertex families for the changing-graph fringe; the infinite `b=0` edge
    must be covered. On that edge a contracting root lies in
    `(-1,-1+1/d)` for `d>=4` (§4e), so do not assume a parameter-independent
