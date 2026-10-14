@@ -1584,3 +1584,6 @@ boundary and cannot be omitted from a core certificate. This is parameter
 coverage, not a hitting certificate; no sampled grid or class-level closure
 is claimed. Evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md`
 §4d; updated `docs/proof-ladder.md` and live roadmap §12.
+
+2026-10-14 — **Correction/refinement of 2026-10-13 Nakaishi source audit (do not delete the earlier entry).** The exact §12/§13 measure identity is `sum_{k=1}^j m(tau2(x,omega)=N_k on Z) = s_j - m(E0) + m(E0 intersect H_j)` with `E0 = {omega in Z: T^N0 omega in C}`, `H_j = union_{k=1}^j {omega in Z: T^Nk omega in C}`. Since `m(E0)=alpha^(-L)m(Z)>0` and joint recurrence on the paper's selected fibre gives `m(E0 intersect H_j) -> m(E0)`, the purported contradiction with Proposition 4 reduces to an identity; no proof of universal tiling/PDS follows from this step. Stop direct import of the weak-mixing-to-cancellation step; independent algebraic control of *early-only then joint* returns is the missing repair. This does not refute PSC or disqualify other source lemmas. Evidence: `docs/nakaishi-2024-first-entry-audit-2026-10-13.md` section 'Exact corrected stopping-time partition (2026-10-14 continuation)', arXiv:2401.07771v1 §§12–13, equations (23)–(25),(29), Propositions 4–5.
+
