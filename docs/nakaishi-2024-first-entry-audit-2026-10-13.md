@@ -261,7 +261,7 @@ No division by eigenvector coordinates and no floating-point recognition of zero
 
 **Prefix-path interpretation (proved combinatorially).** By \(\sigma(a_{k+1})=p_k a_k s_k\), induction gives
 \[
-U_d(x)=p_0\,\sigma(p_1)\cdots\sigma^{d-1}(p_{d-1})
+U_d(x)=\sigma^{d-1}(p_{d-1})\cdots\sigma(p_1)\,p_0
 \quad\prec\quad \sigma^d(a_d),
 \quad
 \pi(U_d(x))=\sum_{k<d}M^k\pi(p_k),
