@@ -43,6 +43,14 @@ rule out a uniform first-hit depth obtained by another mechanism.
 
 Human review remains pending and nonblocking throughout these proof steps.
 
+**Completed local rung (§4h of the family note):** on the minus `b=0`
+branch, the two support-change parents are seed-reachable for every `a>=0`;
+their prescribed children have three-step offset-zero paths for every
+`a>=0`, giving four-step paths from those parents when `a>=3`. The finite
+witness subgraph is not child-closed. The next rung still requires every
+reachable vertex, including all other outgoing children; these paths do
+not establish whole-line BH or a universal depth bound.
+
 # Stable base — incidence rank, UD, and bounded discrepancy
 
 Established on `main`:

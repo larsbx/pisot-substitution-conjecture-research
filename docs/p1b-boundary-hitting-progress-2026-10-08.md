@@ -594,6 +594,107 @@ The two finite graphs still reach offset zero by depth four; their support
 difference is not a BH failure and proves no obstruction to eventual
 stabilization or to a uniform depth theorem.
 
+## 4h. The transition witnesses have uniform seed and hitting paths — 2026-10-14
+
+**Status:** exact occurrence-level derivation, human review pending. This
+closes the seed-reachability qualification for the two parents in §4g; it
+does not describe the complete seed-reachable graph.
+
+**Targeted stop/go check.** The target is two prescribed seed paths and a
+shared three-step offset-zero path, not a new overlap criterion. Rechecked
+[Barge, arXiv:1505.04408v2](https://arxiv.org/abs/1505.04408v2) (the strongest
+nearby non-unit family theorem requires a beta-substitution),
+[Berthé–Bourdon–Jolivet–Siegel, arXiv:1401.0704v2](https://arxiv.org/abs/1401.0704v2)
+(finite generation graphs for Brun/Jacobi–Perron product families), and
+[Akiyama–Gähler–Lee, DMTCS 17(1)](https://dmtcs.episciences.org/en/articles/2089)
+(finite overlap computation, including trace at most two). None supplies
+the required family identification here: our determinant is -2 and trace
+is `2a+6`. The standard child-prefix recurrence transfers; no unimodular
+inverse or beta-language hypothesis is imported. The negative control is
+§4g's support change, and an occurrence index outside its run must be
+rejected. **Proceed with explicit paths only**, under the existing §4b/§4f
+gate; graph exhaustion remains a separate obligation.
+
+Retain the minus branch `p=3a+5`, `q=3a+6`, `r=2a+4`, `a>=0`.
+Write states as `(top,bottom,w)` and use zero-based whole-image occurrence
+indices `(i,j)`, top first. Define
+
+| name | state |
+| --- | --- |
+| S | `(x,c,(0,0,0))` |
+| P | `(x,x,(0,0,1))` |
+| Q | `(c,x,(-1,1,1))` |
+| U | `(y,y,(0,2,-3))` |
+| V | `(y,y,(1,1,-3))` |
+| R | `(c,y,(2,-3,1))` |
+| T | `(y,c,(-1,1,0))` |
+| Z | `(c,y,(0,0,0))` |
+
+**Seed reachability.** S is the leftmost overlap of the swap patch
+`(xc,cx)`. P is the overlap between its two x-tiles in `(xy,yx)`, since
+the bottom x starts at `ell_y=1<ell_x`. Choosing the last occurrences
+in S, `(i,j)=(p+1,q+1)`, gives Q: the prefix difference is
+`(e_c+q e_y)-(e_x+p e_y)=-e_x+e_c+e_y`. Section 4g proves P and Q
+are interior overlaps for every `a>=0`. Hence **both parents are
+seed-reachable throughout the entire minus boundary family**, without
+using a finite graph census.
+
+**Hitting paths.** Each row below specifies an actual child occurrence.
+All rows except the two marked ones hold for every `a>=0`.
+
+| transition | top index i | bottom index j | parameter condition |
+| --- | --- | --- | --- |
+| S to Q | `p+1` | `q+1` | `a>=0` |
+| P to U | `r+4` | `1` | `a>=3` (exact threshold, §4g) |
+| Q to V | `r+5` | `1` | `a>=3` (exact threshold, §4g) |
+| U to R | `0` | `2` | `a>=0` |
+| V to R | `0` | `3` | `a>=0` |
+| R to T | `a+1` | `r+1` | `a>=0` |
+| T to Z | `r+1` | `r` | `a>=0` |
+
+Here `i=0` and `i=r+1` in a y-image select its first and last c,
+respectively. The remaining y-occurrences lie in their runs: `r>=4`,
+`1<=a+1<=q`, and `1<=r<=q`. The two exceptional rows need
+`r+4<=p` and `r+5<=q`, respectively, both equivalent to `a>=3`.
+
+The four new affine identities, using `w'=Mw+prefix_bottom(j)-prefix_top(i)`,
+are short enough to check directly:
+
+```text
+M(0,2,-3) = (2,-4,0);   forcing U to R = (0,1,1).
+M(1,1,-3) = (2,-4,-1);  forcing V to R = (0,1,2).
+M(2,-3,1) = (-1,1,-a-4); forcing R to T = (0,0,a+4).
+M(-1,1,0) = (0,0,1);   forcing T to Z = (0,0,-1).
+```
+
+To check geometry, normalize `ell_y=1` and use §4g's
+`ell_c=1+epsilon/2`, `ell_x=ell_c-1/beta`, `0<epsilon<1`,
+`beta>r+2>=6`, `beta*epsilon>2`. The new state R has displacement
+`2ell_x-3ell_c+1=-epsilon/2-2/beta`, strictly between `-1` and `0`
+because `epsilon/2+2/beta<1/2+1/3<1`. State T has displacement
+`1/beta`, strictly between `0` and `ell_y`. Z has displacement zero.
+Thus all three are interior overlaps; U and V were checked in §4g.
+Every intermediate occurrence is consequently geometrically admissible,
+and composition uses exactly the displayed child letters.
+
+It follows that U and V have offset-zero descendants in **at most three
+steps for every `a>=0`**. For every `a>=3`, P and Q have such descendants
+in **at most four steps**, and the two threshold transitions are edges of
+the actual seed-reachable graph. Z is an offset-zero c/y pair, not yet a
+same-letter coincidence; the distinction is required for the BH-to-PDS
+ladder. The construction is a finite witness subgraph, not child-closed:
+other outgoing children still need coverage. No bound for every reachable
+vertex, whole-line BH, G1 or PDS follows from these paths alone.
+
+**Replay boundary.** The canonical ordered-occurrence kernel is reused by
+`kernel/tests/test_class_d_boundary.mojo` to check the prescribed indices,
+states and seed membership at `a=0..8`, including failure of both threshold
+edges below three and a perturbed-index negative control. Independent
+Python tests use the existing rational-field oracle. Those finite replays
+guard the formulas; the universal quantifier above is justified by the
+displayed identities and inequalities. Mojo execution still needs a
+successful receipt; no canonical execution is credited by a written test.
+
 ## 5. Next, in order
 
 1. **The rest of class D.** Below `r = q − 1`, each branch has a second

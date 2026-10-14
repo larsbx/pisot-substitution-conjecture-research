@@ -1636,6 +1636,8 @@ is claimed. Evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md`
 
 2026-10-14 — Nakaishi Theorem 3 radius/source mismatch and exact-diagonal salvage. In arXiv:2401.07771v1 PDF p.16 Definition 9, the Archimedean radius of O_(d+1) contains c^(1/d), while the proof (p.17 Eq.16 and p.18) requires c^(1/(n−1)), c=(1−alpha^(−1))/M in (0,1). At times d>=n the printed tube is strictly larger; O_1 has undefined exponent. No direct import of Theorem 3 as printed. Corrected-tube/zero-distance pointwise use is conditional on the source's Garsia and tail estimates, and yields the integral certificate sum_(k<d) M^k(pi(p_k)−pi(q_k))=w from a *synchronized exact-diagonal* pair by irreducible spectral injectivity. This yields unscaled ancestor-prefix equality, not automatically #139's M^d w_PSC equality; the special cylinder enforces same ancestor, and exact Fibonacci/Tribonacci fixtures guard scaling and word order. Scale-matched shrinking-target limsup lies in the exact diagonal; weak mixing alone cannot supply infinitely many such hits off it. The open bridge is a realized occurrence-labelled affine-offset transport (or an independent proof avoiding Nakaishi). Source/evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md, section 'Theorem 3 radius and pointwise address audit (2026-10-14 continuation)', arXiv:2401.07771v1 §§9–13, Definition 8–9, Theorem 3, Eq.16; docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md. No universal claim promotion.
 
+2026-10-14 — Nakaishi reverse-address affine transport: in the repo's forward child-offset convention, reversing a legal source depth-d ancestry gives u_d=M^d u−W_d, W_d=sum_(k<d) M^k(pi(p_k)−pi(q_k)); exact source polynomial cancellation W_d=w_src is not the fixed-PSC boundary hit unless w_src=M^d w_PSC and the ordered occurrence chain is actually realized. For the genuine non-unit PIP substitution a->aaab, b->ab (M=[[3,1],[1,1]], charpoly X^2−4X+2, det=2), legal source SFT pairs with one second-a prefix at level d−1 and identical empty-prefix tails from d onward lie on the exact full-adelic diagonal and synchronously revisit the special cylinder for every t>=d, yet their fixed displacement w_src=M^(d−1)e_a is outside M^t Z^2 for every t>=d (M^(-1)e_a=(1/2,−1/2)). This rules out arbitrary source-diagonal-to-integral-PSC-offset transport, NOT a transport lemma under extra realized tiling/overlap conditions or PSC itself. Needed next: a geometric source-to-overlap realization bridge that forces the correct M-adic residue and *prescribed* fixed offset, plus legal occurrence/endpoint replay. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md 'Exact reverse-address affine transport and a non-unit obstruction'; docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md §7 control 5; arXiv:2401.07771v1 §§3,6,9–10. All universal PSC/G1/#84/#138/#139 claims remain OPEN.
+
 2026-10-14 — Retire a uniform contracting-conjugate margin as a proof
 ingredient for the whole residual class-D family: on either `b=0` branch,
 for every `d>=4`, a conjugate lies in `(-1,-1+1/d)`, hence no single
@@ -1679,3 +1681,22 @@ verify both endpoints as interior overlaps for all `a>=0`. This is a
 uniform local occurrence statement, not uniform seed reachability or BH.
 Evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md` §4g,
 'Exact occurrence threshold for these two transitions'.
+
+2026-10-14 — Close the local seed-realization gap in the class-D minus
+boundary support witnesses: P=(x,x,e_y) is a swap-(xy,yx) seed and
+Q=(c,x,-e_x+e_c+e_y) is one last/last child of the swap-(xc,cx) zero-offset
+seed, for every a>=0. Both prescribed y/y children have a common
+three-step offset-zero continuation for every a>=0; the threshold edges
+give four-step hitting paths from P,Q for a>=3. The terminal c/y pair has
+offset zero but is not a coincidence. The witness subgraph is not
+child-closed; all other reachable vertices remain an open coverage task.
+Exact identities and interior/run inequalities, refreshed three-source
+stop/go check, and bounded canonical/independent regressions:
+docs/p1b-boundary-hitting-progress-2026-10-08.md section 4h,
+kernel/tests/test_class_d_boundary.mojo, tests/test_class_d_boundary_probe.py.
+Mojo execution remains uncredited pending a successful receipt.
+
+2026-10-14 — Reconcile PR #263 again after main advanced to f87d005:
+preserve main's Nakaishi reverse-address/ non-unit exact-diagonal finding
+and all previous append-only entries, then append the boundary work.
+No history rewrite, archived packet replacement or universal claim promotion.

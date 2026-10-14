@@ -172,6 +172,8 @@ Every proposed recurrence lemma must be checked against:
 3. a unimodular specimen, to ensure the adelic definition specializes to the Archimedean one without making unimodularity an assumption;
 4. a non-unit specimen with a nontrivial finite-place coordinate, to ensure an Archimedean collision is not accepted as equality in \(K_\sigma\).
 
+5. a synchronized SFT exact-diagonal but non-divisible **source address** (distinct from a realized overlap): \(\sigma(a)=aaab,\ \sigma(b)=ab\) has \(M=\left(\begin{smallmatrix}3&1\\1&1\end{smallmatrix}\right)\), \(\det M=2\). Two legal addresses equal to \((a:\emptyset)^\infty\), except that one uses \((a:a)\) at level \(d-1\), have exact full-adelic translation \(W_t=M^{d-1}e_a\) for every synchronized depth \(t\ge d\), but \(W_t\notin M^t\mathbb Z^2\). Do not transfer source polynomial cancellation to the repository's \(M^t w_{\mathrm{PSC}}\)-hitting predicate without an *exact* lattice/congruence and occurrence-realization bridge. See the existing Nakaishi source audit under "Exact reverse-address affine transport and a non-unit obstruction".
+
 These controls falsify overstrong lemmas; passing them does not prove AdelicPeriodicOffsetHitting.
 
 ## 8. Implementation gate
