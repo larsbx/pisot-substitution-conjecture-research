@@ -1717,3 +1717,34 @@ remain unchanged. Evidence: docs/p1b-boundary-hitting-progress-2026-10-08.md
 section 4i; evidence/class-d-minus-template-2026-10-14/;
 kernel/psc/class_d_boundary_template.mojo. The plus boundary and b>0
 interiors remain open; continue those proofs without a human-review gate.
+
+2026-10-14 — Target-aware class-D continuation of PR #263: minus b=0 a=2..8
+has the same 145 labels, full support 779 then 781 edges, and a common
+779-edge subgraph with rank at most four; 486 positive-rank-source edges do
+not descend, so the certificate must select a descending occurrence rather
+than require every child to descend. Deriving t=1/beta puts the entire
+minus a>=2 tail in 0<t<1/10 with quadratic rational length formulas.
+An explicit 145-label table passes the independent universal Bernstein,
+affine occurrence, seed-coverage and full child-closure checks (18,779
+candidate integers); canonical Mojo checker/regressions supplied but
+unexecuted, so the whole-line result remains a conditional candidate.
+Negative control: c-image index 9-a fits every a=2..8 but exits the y-run
+at a=9; universal range checks reject it. Plus a=4..8 gives sizes
+746,726,718,718,718 and half-depth six, only finite calibration. No positive
+boundary, b>0 interior or universal PSC closure. Evidence and exact proof
+contract: docs/p1b-boundary-hitting-progress-2026-10-08.md section 4i and
+evidence/class-d-target-spine-2026-10-14/. Earlier packets unchanged.
+The refreshed primary-source metadata also corrects Akiyama–Gähler–Lee's
+journal volume in section 4h to DMTCS 16:3 (see section 4i).
+
+2026-10-14 — Reconcile the target-aware follow-up with PR #263's concurrent
+38b87af complete-template candidate. Retain its new section 4i, all source
+files and sealed packet; place the complementary target-aware construction
+at section 4j. The preceding target-spine ledger/packet references to 4i
+are historical numbering, corrected here. The candidates agree on all 145
+labels, all ranks and every selected edge. The target-aware certificate
+starts its symbolic tail at a=2 and permits changing edge support; the
+complete-template certificate starts at a=4 and decides all 781 edges.
+Both still await canonical execution. Neither old packet is rewritten.
+Evidence: tests/test_class_d_certificate_agreement.py and the family note
+sections 4i–4j. This rebase changes only the follow-up branch, not PR #263.

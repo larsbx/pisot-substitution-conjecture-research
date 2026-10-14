@@ -61,6 +61,17 @@ acceptance, compose with Theorem E and the existing L/W reductions for
 scoped PDS/G1. The plus boundary and both `b>0` interiors remain open;
 human review remains pending and does not block continuing those tasks.
 
+**Complementary target-aware rung (§4j):** a target-aware certificate candidate covers
+all minus-branch `b=0`, `a>=2` parameters with 145 constant labels and rank
+at most four. The independent oracle verifies universal interior inequalities,
+all swap seeds, full segment-pair child closure and affine occurrence descent.
+This is an independent cover/descent check of the same 145 labels and ranks
+as §4i, with the tail starting at two and no full-edge-equality requirement.
+Canonical Mojo replay, including exact base cases `a=0,1`, is still outstanding;
+no line-closure claim is promoted on Python authority. The positive boundary
+and both `b>0` interiors remain open. Eventual hitting only requires a finite
+rank for each member; a uniform rank bound is an optional stronger result.
+
 # Stable base — incidence rank, UD, and bounded discrepancy
 
 Established on `main`:

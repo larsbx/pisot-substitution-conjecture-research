@@ -673,6 +673,16 @@ For the next research cycle:
    passes. Obtain the pending canonical receipt from `kernel/` with
    `mojo run -I . class_d_boundary_certificate.mojo` and its regression;
    then compose the existing Theorem E/L/W reductions for scoped PDS/G1.
+   Section 4j independently verifies a target-aware upper cover for `a>=2`
+   with the same 145 labels/ranks and 139 affine descending occurrences,
+   without requiring full support to be constant. Run
+   `mojo run -I . class_d_minus_certificate.mojo` for this complementary
+   certificate and its `a=0,1` exact base cases. Its oracle passes; canonical
+   execution is uncredited. The two archived certificates agree on labels,
+   ranks and selected edges. Plus `a=4..8` counts `746,726,718,718,718`
+   and half-depth six remain finite evidence; construct its own symbolic
+   cover next, allowing parameter-dependent ranks rather than requiring
+   a uniform depth bound.
    The general norm driver remains an alternative cross-check:
    `mojo run -I . symbolic_line_certificate.mojo norm D 3 5 3 6 2 4`.
    Continue proof development on the plus boundary and both `b>0`
@@ -683,8 +693,9 @@ For the next research cycle:
    `(-1,-1+1/d)` for `d>=4` (§4e), so do not assume a parameter-independent
    contraction margin; keep `d` visible in vertex-family/hitting estimates. Then extend the wedge analysis to A/C, and treat class A's slope-one
    growing graphs by vertex families. The first class-level closure target is
-   a uniform boundary-hitting depth `K` for the catch-up-free determinant-two
-   class. Any extension beyond it still needs occurrence-compatible adelic
+   eventual all-seed boundary hitting for every member of the catch-up-free
+   determinant-two class; a uniform depth `K` would be a stronger result.
+   Any extension beyond it still needs occurrence-compatible adelic
    coverage rather than deeper quotient iteration alone.
 2. **#138 template exclusion in parallel.** The aligned recurrent dynamics has
    only a fixed bad hub edge (A1) or the alternating type-E template (A2).
