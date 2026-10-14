@@ -467,6 +467,41 @@ estimates. A uniform hitting-depth theorem may still hold; it cannot be
 inferred solely from a contraction constant that is uniform on this family.
 The explicit witnesses are the two `b=0`, `d>=4` affine families of §4d.
 
+## 4f. Bounded boundary-edge replay — 2026-10-14
+
+**Stop/go:** proceed with a parameter wrapper around the existing exact
+all-swap-seed graph and first-half-coincidence routines. The literature gate
+of §4b and the line-certificate note governs this same overlap object and
+target; no new invariant, spectral import or universal hitting theorem is
+introduced. The negative control is a capped graph, which must refuse a
+verdict. The contraction result of §4e forbids interpreting a small tested
+depth as a proof based on a uniform contraction margin.
+
+The canonical replay is `kernel/class_d_boundary_probe.mojo`, backed by
+`psc.class_d_boundary` and `kernel/tests/test_class_d_boundary.mojo`. It
+checks exactly eight members, `s=±1`, `a=0..3`, `b=0`, with a 20,000-vertex
+cap per graph. Parameter construction rejects `a` outside `0..8`; that
+resource guard is not a mathematical exclusion. The cap and out-of-budget
+parameter refusals are regressions. No random generator or saturation test
+is involved.
+
+The independent oracle uses the existing rational-field implementation
+`reference/psc_research/overlap_graph.py` through
+`oracles/python/class_d_boundary_probe.py`. Its actual local receipt is
+`evidence/class-d-boundary-2026-10-14/oracle.json`; source digests, replay
+command and scope are recorded in the same sealed evidence packet.
+**Local Mojo execution is not claimed:** neither Mojo nor pixi is installed
+in this environment. The new canonical regression needs a successful CI
+receipt before it earns execution credit. The Python receipt is independent
+calibration only; it is not promoted to canonical theorem evidence.
+
+These rows test graph shape and first-half-coincidence depth across the
+boundary, including `d=4,5` where §4e applies. They do not exhaust either
+family, produce a uniform bound, prove the residual quadrant, or establish
+G1/PSC. A change in graph size must be retained rather than normalized away
+as an assumed constant-graph core. The next proof step remains an exact
+occurrence-compatible description covering all boundary parameters.
+
 ## 5. Next, in order
 
 1. **The rest of class D.** Below `r = q − 1`, each branch has a second

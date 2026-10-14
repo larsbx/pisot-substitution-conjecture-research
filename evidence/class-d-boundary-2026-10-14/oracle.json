@@ -1,0 +1,100 @@
+{
+  "status": "BOUNDED_CALIBRATION_COMPLETE",
+  "authority": "independent-python-oracle",
+  "canonical_replay": "kernel/class_d_boundary_probe.mojo",
+  "canonical_execution": "NOT_RUN_LOCALLY",
+  "domain": "s in {+1,-1}, a in {0,1,2,3}, b=0",
+  "state_cap_per_graph": 20000,
+  "rng": "NONE",
+  "family_exhaustion": false,
+  "rows": [
+    {
+      "s": 1,
+      "a": 0,
+      "b": 0,
+      "p": 3,
+      "q": 2,
+      "r": 0,
+      "states": 1026,
+      "max_half_depth": 6,
+      "missing": 0
+    },
+    {
+      "s": 1,
+      "a": 1,
+      "b": 0,
+      "p": 6,
+      "q": 5,
+      "r": 2,
+      "states": 977,
+      "max_half_depth": 6,
+      "missing": 0
+    },
+    {
+      "s": 1,
+      "a": 2,
+      "b": 0,
+      "p": 9,
+      "q": 8,
+      "r": 4,
+      "states": 887,
+      "max_half_depth": 6,
+      "missing": 0
+    },
+    {
+      "s": 1,
+      "a": 3,
+      "b": 0,
+      "p": 12,
+      "q": 11,
+      "r": 6,
+      "states": 868,
+      "max_half_depth": 6,
+      "missing": 0
+    },
+    {
+      "s": -1,
+      "a": 0,
+      "b": 0,
+      "p": 5,
+      "q": 6,
+      "r": 4,
+      "states": 148,
+      "max_half_depth": 4,
+      "missing": 0
+    },
+    {
+      "s": -1,
+      "a": 1,
+      "b": 0,
+      "p": 8,
+      "q": 9,
+      "r": 6,
+      "states": 145,
+      "max_half_depth": 4,
+      "missing": 0
+    },
+    {
+      "s": -1,
+      "a": 2,
+      "b": 0,
+      "p": 11,
+      "q": 12,
+      "r": 8,
+      "states": 145,
+      "max_half_depth": 4,
+      "missing": 0
+    },
+    {
+      "s": -1,
+      "a": 3,
+      "b": 0,
+      "p": 14,
+      "q": 15,
+      "r": 10,
+      "states": 145,
+      "max_half_depth": 4,
+      "missing": 0
+    }
+  ]
+}

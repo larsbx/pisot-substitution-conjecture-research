@@ -1649,3 +1649,13 @@ append-only ledger, including both Nakaishi follow-ups, then append the
 class-D contraction finding. Regenerate the proof bank after integrating
 main; no mathematical status or proof dependency changes. Evidence:
 `docs/p1b-boundary-hitting-progress-2026-10-08.md` §4e and PR #263.
+
+2026-10-14 — Add bounded all-seed boundary-edge replay for class D:
+`s=±1`, `a=0..3`, `b=0`, capped at 20,000 vertices per graph, using the
+existing exact graph/half-coincidence contracts. Canonical Mojo driver and
+regressions are present but unexecuted locally; the separately written
+Python field oracle supplies only bounded calibration. No uniform hitting
+depth, constant graph or family exhaustion is inferred. Evidence:
+`docs/p1b-boundary-hitting-progress-2026-10-08.md` §4f,
+`evidence/class-d-boundary-2026-10-14/`, and
+`kernel/tests/test_class_d_boundary.mojo`.
