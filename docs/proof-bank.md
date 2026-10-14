@@ -174,8 +174,8 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/formal-productivity-reduction-2026-10-04.md:33](../docs/formal-productivity-reduction-2026-10-04.md#L33) | **Proposition FP.** |
 | [docs/formal-productivity-reduction-2026-10-04.md:65](../docs/formal-productivity-reduction-2026-10-04.md#L65) | **Corollary FP′** (dependencies as listed in the status line). For PIP |
 | [docs/formal-productivity-reduction-2026-10-04.md:83](../docs/formal-productivity-reduction-2026-10-04.md#L83) | exactly all-pairs aligned strong coincidence: three letter pairs, each a |
-| [docs/k2-load-bearing-scc-salvage-2026-10-11.md:44](../docs/k2-load-bearing-scc-salvage-2026-10-11.md#L44) | s_13 = ((1,3),(3,1)) |
-| [docs/k2-load-bearing-scc-salvage-2026-10-11.md:63](../docs/k2-load-bearing-scc-salvage-2026-10-11.md#L63) | subspace, the dominant projection would be the zero map. |
+| [docs/k2-load-bearing-scc-salvage-2026-10-11.md:46](../docs/k2-load-bearing-scc-salvage-2026-10-11.md#L46) | s_13 = ((1,3),(3,1)) |
+| [docs/k2-load-bearing-scc-salvage-2026-10-11.md:65](../docs/k2-load-bearing-scc-salvage-2026-10-11.md#L65) | subspace, the dominant projection would be the zero map. |
 | [docs/overlap-finiteness-and-coincidence-density-2026-09-13.md:35](../docs/overlap-finiteness-and-coincidence-density-2026-09-13.md#L35) | **Lemma 1.1 (occurrence).** Every vertex of O_sigma is the type of an |
 | [docs/overlap-finiteness-and-coincidence-density-2026-09-13.md:51](../docs/overlap-finiteness-and-coincidence-density-2026-09-13.md#L51) | **Theorem 2.1 (finiteness of the seed-patch overlap graph).** Let sigma be |
 | [docs/overlap-finiteness-and-coincidence-density-2026-09-13.md:92](../docs/overlap-finiteness-and-coincidence-density-2026-09-13.md#L92) | the manuscript's Lemma 2.3 (Q-independence of the l_a, which needs |
@@ -315,7 +315,7 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/pds-certificate-from-the-box-automaton-2026-10-07.md:72](../docs/pds-certificate-from-the-box-automaton-2026-10-07.md#L72) | ## 3. Lemma Ω1 (finite descent, and cycles in the box) |
 | [docs/pds-certificate-from-the-box-automaton-2026-10-07.md:107](../docs/pds-certificate-from-the-box-automaton-2026-10-07.md#L107) | ## 4. Theorem Ω (formal productivity is one automaton property) |
 | [docs/prefix-translation-normal-form-2026-09-18.md:47](../docs/prefix-translation-normal-form-2026-09-18.md#L47) | **Proposition 2.1 (characteristic-recurrence normal form).** For every |
-| [docs/proof-ladder.md:108](../docs/proof-ladder.md#L108) | child closure and nonproductivity with the exact cycle identity, not loop |
+| [docs/proof-ladder.md:125](../docs/proof-ladder.md#L125) | child closure and nonproductivity with the exact cycle identity, not loop |
 | [docs/sink-scc-reduction.md:19](../docs/sink-scc-reduction.md#L19) | ### Lemma 1 |
 | [docs/sink-scc-reduction.md:29](../docs/sink-scc-reduction.md#L29) | ### Lemma 2 |
 | [docs/sink-scc-reduction.md:37](../docs/sink-scc-reduction.md#L37) | ### Lemma 3 |

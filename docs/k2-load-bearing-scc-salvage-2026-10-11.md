@@ -31,7 +31,9 @@ warning against the failed contraction route.
 
 Work on alphabet `{1,2,3}`. Let `M` be the incidence matrix of a primitive
 irreducible Pisot substitution, with Perron eigenvalue `beta` and second
-conjugate modulus `|beta_2|`. Let
+conjugate modulus `|beta_2|`, ordered so that `|beta_2| >= |beta_3|`.
+For a nonreal conjugate pair, the dominant subspace means the real invariant
+plane corresponding to both conjugate eigenvalues, not a single real eigenline. Let
 
 ```text
 Phi_2 = Lambda^2 M.
@@ -93,7 +95,12 @@ matrix level.
 
 Assume the balanced-pair closure `B_sigma(s_0)` reachable from a dominant
 length-two source `s_0` is finite. Let `N` be the transition matrix on this
-finite reachable graph. Then
+finite reachable graph. Here `N[t,s]` counts **child occurrences with
+multiplicity**, not just adjacency. Steps 2–4 use ordered raw pairs. If states
+are normalized by swapping the two sides, each raw child contributes its
+orientation sign to the `K2` sum; the triangle inequality still bounds this
+signed sum by the same unsigned occurrence count. No unsigned normalized
+intertwining identity is assumed (see `tests/test_defect_intertwiner.py`). Then
 
 ```text
 rho(N) >= beta * |beta_2|.

@@ -1621,3 +1621,43 @@ only the claim_governance.toml digest, preserving claim statuses, dependency edg
 and named Lean proofs. Preserve both append-only entries when merging main.
 Evidence: Actions runs `38294266656`, `38294266627`,
 `proof/proof-bank.json`, `tests/test_review_policy.py`.
+
+2026-10-14 — Ω/G1 continuation: complete-box offset-zero reachability,
+all-potential-overlap offset-zero reachability and cycle boundary hitting
+are equivalent by Ω1 finite descent. Their direct G1 sufficiency uses
+Proposition 4, without SC_all, leftmost-cycle exclusion or spectral imports.
+Derived all-level symbolic bound: `2 L^(K+2)`, with `K` the maximum
+all-seed first-half-coincidence depth; box recurrent depth cannot replace
+it. This assembles existing implications and does not discharge universal
+hitting or promote G1/PSC. Human review remains non-blocking validation
+debt. Evidence: `docs/bpa-termination-by-overlap-depth-2026-10-02.md` §7;
+`docs/research-roadmap-2026-09-21.md`, October 14 synchronization.
+
+2026-10-14 — Exact class-D residual cover: below `r=q-1`, each
+determinant-two branch is a complete unimodular quadrant. For `p=q+s`,
+`a=q-r-2`, `b=3r-2q+2s+2` are nonnegative exactly on the residual PIP
+region; `chi(-1)=-b-1`. The infinite `b=0` edge is the nearest Pisot
+boundary and cannot be omitted from a core certificate. This is parameter
+coverage, not a hitting certificate; no sampled grid or class-level closure
+is claimed. Evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md`
+§4d; updated `docs/proof-ladder.md` and live roadmap §12.
+
+2026-10-14 — **Correction/refinement of 2026-10-13 Nakaishi source audit (do not delete the earlier entry).** The exact §12/§13 measure identity is `sum_{k=1}^j m(tau2(x,omega)=N_k on Z) = s_j - m(E0) + m(E0 intersect H_j)` with `E0 = {omega in Z: T^N0 omega in C}`, `H_j = union_{k=1}^j {omega in Z: T^Nk omega in C}`. Since `m(E0)=alpha^(-L)m(Z)>0` and joint recurrence on the paper's selected fibre gives `m(E0 intersect H_j) -> m(E0)`, the purported contradiction with Proposition 4 reduces to an identity; no proof of universal tiling/PDS follows from this step. Stop direct import of the weak-mixing-to-cancellation step; independent algebraic control of *early-only then joint* returns is the missing repair. This does not refute PSC or disqualify other source lemmas. Evidence: `docs/nakaishi-2024-first-entry-audit-2026-10-13.md` section 'Exact corrected stopping-time partition (2026-10-14 continuation)', arXiv:2401.07771v1 §§12–13, equations (23)–(25),(29), Propositions 4–5.
+
+2026-10-14 — Mixing-SFT negative control and Theorem 3 transfer gate: reconciled the distinct original #261 countercalibration with main's corrected stopping-time partition. In the primitive full two-shift with C=[11], Z=[1], x=0(110)^infinity, the exact conditional H_j masses are 1/4, 7/16, 37/64 for j=1,2,3 while the defective early-subtracted formula gives 0,1/8,7/32; all 4,32,256 finite tails were independently recounted. Under actual source hypotheses the intersection term tends to m(E0), and conditioning on Z minus E0 changes both limits equally. A valid replacement via source Theorem 3 needs (i) positive-measure algebraic nonvanishing support, (ii) O_(d+1) shrinking-scale membership at the same joint times, and for PSC #139 (iii) a realized occurrence-labelled affine target witness. No such bridges are proved; the full-shift control is not a Pisot-substitution counterexample and general PSC stays open. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md section 'Additional independent calibration and repair criterion', arXiv:2401.07771v1 §§8–13, Definition 9, Theorem 3, Proposition 5; original pre-reconciliation PR #261 preserved at archive/pr261-before-main-reconciliation-2026-10-14.
+
+2026-10-14 — Nakaishi Theorem 3 radius/source mismatch and exact-diagonal salvage. In arXiv:2401.07771v1 PDF p.16 Definition 9, the Archimedean radius of O_(d+1) contains c^(1/d), while the proof (p.17 Eq.16 and p.18) requires c^(1/(n−1)), c=(1−alpha^(−1))/M in (0,1). At times d>=n the printed tube is strictly larger; O_1 has undefined exponent. No direct import of Theorem 3 as printed. Corrected-tube/zero-distance pointwise use is conditional on the source's Garsia and tail estimates, and yields the integral certificate sum_(k<d) M^k(pi(p_k)−pi(q_k))=w from a *synchronized exact-diagonal* pair by irreducible spectral injectivity. This yields unscaled ancestor-prefix equality, not automatically #139's M^d w_PSC equality; the special cylinder enforces same ancestor, and exact Fibonacci/Tribonacci fixtures guard scaling and word order. Scale-matched shrinking-target limsup lies in the exact diagonal; weak mixing alone cannot supply infinitely many such hits off it. The open bridge is a realized occurrence-labelled affine-offset transport (or an independent proof avoiding Nakaishi). Source/evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md, section 'Theorem 3 radius and pointwise address audit (2026-10-14 continuation)', arXiv:2401.07771v1 §§9–13, Definition 8–9, Theorem 3, Eq.16; docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md. No universal claim promotion.
+
+2026-10-14 — Nakaishi reverse-address affine transport: in the repo's forward child-offset convention, reversing a legal source depth-d ancestry gives u_d=M^d u−W_d, W_d=sum_(k<d) M^k(pi(p_k)−pi(q_k)); exact source polynomial cancellation W_d=w_src is not the fixed-PSC boundary hit unless w_src=M^d w_PSC and the ordered occurrence chain is actually realized. For the genuine non-unit PIP substitution a->aaab, b->ab (M=[[3,1],[1,1]], charpoly X^2−4X+2, det=2), legal source SFT pairs with one second-a prefix at level d−1 and identical empty-prefix tails from d onward lie on the exact full-adelic diagonal and synchronously revisit the special cylinder for every t>=d, yet their fixed displacement w_src=M^(d−1)e_a is outside M^t Z^2 for every t>=d (M^(-1)e_a=(1/2,−1/2)). This rules out arbitrary source-diagonal-to-integral-PSC-offset transport, NOT a transport lemma under extra realized tiling/overlap conditions or PSC itself. Needed next: a geometric source-to-overlap realization bridge that forces the correct M-adic residue and *prescribed* fixed offset, plus legal occurrence/endpoint replay. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md 'Exact reverse-address affine transport and a non-unit obstruction'; docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md §7 control 5; arXiv:2401.07771v1 §§3,6,9–10. All universal PSC/G1/#84/#138/#139 claims remain OPEN.
+
+2026-10-12 — Mercat–Akiyama (arXiv:1810.03500v1) provides a unit-Pisot interior-language/PDS equivalence and effective automata construction (Thms 3.3/5.12, Cor. 5.14), plus already-proved ordered families and an everywhere-directive S-adic positive example. A zero-language automaton (Thm 5.21) does not extend the spectral equivalence to non-units. Redirect prospective #139 connection to a unit-only occurrence-preserving calibration before any adelic extension; no new PSC or PDS claim. Gate: `docs/mercat-akiyama-interior-language-gate-2026-10-12.md`.
+
+2026-10-14 — PR #254 integration after #253: preserve all current-main ledger
+entries and both distinct salvage results. Clarify that the conditional K2
+argument counts child occurrences with multiplicity and retains raw-pair
+orientation signs; for complex conjugates its dominant real subspace is a
+plane. The finite-closure hypothesis remains open and the predecessor
+contraction remains retired. Regenerate the proof inventory without changing
+claim statuses or named Lean proofs. Evidence:
+`docs/k2-load-bearing-scc-salvage-2026-10-11.md`,
+`tests/test_defect_intertwiner.py`, `tests/test_boxwalk_radius_probe_oracle.py`.
