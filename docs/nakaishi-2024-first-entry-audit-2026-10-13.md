@@ -151,7 +151,7 @@ above provide a replayable basis without a new Python-only kernel.
 
 ### Removing the early-event set does not resurrect the contradiction
 
-On (Z'=Z\setminus E_0), the first second-coordinate time and first joint time agree, but both cumulative distributions converge to (m(Z')=m(Z)-m(E_0)). Their normalized conditional distributions both converge to one. Conversely, requiring (m(E_0\cap H_\infty)=0) directly contradicts the selected recurrent fiber together with (m(E_0)>0); this is a source-level contradiction, not a rate-of-mixing consideration.
+On \(Z'=Z\setminus E_0\), the first second-coordinate time and first joint time agree, but both cumulative distributions converge to \(m(Z')=m(Z)-m(E_0)\). Their normalized conditional distributions both converge to one. Conversely, requiring \(m(E_0\cap H_\infty)=0\) directly contradicts the selected recurrent fiber together with \(m(E_0)>0\); this is a source-level contradiction, not a rate-of-mixing consideration.
 
 
 ### Theorem 3 transfer audit: two independent missing bridges
