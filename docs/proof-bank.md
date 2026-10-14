@@ -313,7 +313,7 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/pds-certificate-from-the-box-automaton-2026-10-07.md:72](../docs/pds-certificate-from-the-box-automaton-2026-10-07.md#L72) | ## 3. Lemma Ω1 (finite descent, and cycles in the box) |
 | [docs/pds-certificate-from-the-box-automaton-2026-10-07.md:107](../docs/pds-certificate-from-the-box-automaton-2026-10-07.md#L107) | ## 4. Theorem Ω (formal productivity is one automaton property) |
 | [docs/prefix-translation-normal-form-2026-09-18.md:47](../docs/prefix-translation-normal-form-2026-09-18.md#L47) | **Proposition 2.1 (characteristic-recurrence normal form).** For every |
-| [docs/proof-ladder.md:108](../docs/proof-ladder.md#L108) | child closure and nonproductivity with the exact cycle identity, not loop |
+| [docs/proof-ladder.md:125](../docs/proof-ladder.md#L125) | child closure and nonproductivity with the exact cycle identity, not loop |
 | [docs/sink-scc-reduction.md:19](../docs/sink-scc-reduction.md#L19) | ### Lemma 1 |
 | [docs/sink-scc-reduction.md:29](../docs/sink-scc-reduction.md#L29) | ### Lemma 2 |
 | [docs/sink-scc-reduction.md:37](../docs/sink-scc-reduction.md#L37) | ### Lemma 3 |

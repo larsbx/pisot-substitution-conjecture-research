@@ -1564,3 +1564,23 @@ only the claim_governance.toml digest, preserving claim statuses, dependency edg
 and named Lean proofs. Preserve both append-only entries when merging main.
 Evidence: Actions runs `38294266656`, `38294266627`,
 `proof/proof-bank.json`, `tests/test_review_policy.py`.
+
+2026-10-14 — Ω/G1 continuation: complete-box offset-zero reachability,
+all-potential-overlap offset-zero reachability and cycle boundary hitting
+are equivalent by Ω1 finite descent. Their direct G1 sufficiency uses
+Proposition 4, without SC_all, leftmost-cycle exclusion or spectral imports.
+Derived all-level symbolic bound: `2 L^(K+2)`, with `K` the maximum
+all-seed first-half-coincidence depth; box recurrent depth cannot replace
+it. This assembles existing implications and does not discharge universal
+hitting or promote G1/PSC. Human review remains non-blocking validation
+debt. Evidence: `docs/bpa-termination-by-overlap-depth-2026-10-02.md` §7;
+`docs/research-roadmap-2026-09-21.md`, October 14 synchronization.
+
+2026-10-14 — Exact class-D residual cover: below `r=q-1`, each
+determinant-two branch is a complete unimodular quadrant. For `p=q+s`,
+`a=q-r-2`, `b=3r-2q+2s+2` are nonnegative exactly on the residual PIP
+region; `chi(-1)=-b-1`. The infinite `b=0` edge is the nearest Pisot
+boundary and cannot be omitted from a core certificate. This is parameter
+coverage, not a hitting certificate; no sampled grid or class-level closure
+is claimed. Evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md`
+§4d; updated `docs/proof-ladder.md` and live roadmap §12.

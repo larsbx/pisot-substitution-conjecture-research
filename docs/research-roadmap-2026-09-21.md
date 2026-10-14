@@ -6,6 +6,20 @@
 
 **Review policy:** **Independent human review is a final validation gate, not a research-progress gate.** A `human review pending` label is non-blocking validation debt: proof development, provisional dependency use, and assembly of a complete closure candidate continue. Independent review is performed on the assembled closure chain afterward. The label itself remains truthful and no open mathematical premise is promoted by this policy. Machine source: `claim_governance.toml [review_policy]`.
 
+**2026-10-14 Ω/G1 continuation (`main@7a84a914` inspected):** Ω is a
+repository-proved per-specimen equivalence, not uniform productivity. The
+existing depth note now assembles the weaker complete-box offset-zero
+certificate directly into all-seed G1, using only Ω1 and Proposition 4, and
+gives the all-level integer bound `2 L^(K+2)` (§7 of
+[bpa-termination-by-overlap-depth-2026-10-02.md](bpa-termination-by-overlap-depth-2026-10-02.md)).
+This bypasses the PDS/necessity imports for G1 certification; it does not
+prove the universal common-boundary predicate. Work on #139 therefore
+continues immediately using the unreviewed repository implications, with
+#138 separately required for Ω's productivity/PDS assembly. Preserve the
+distinction between seed-graph depth and box recurrent depth, and preserve
+the catch-up-free controls: a terminal leftmost cycle is not a strict-zipper
+obstruction. General PSC, G1 and the hitting gates remain open.
+
 **2026-10-09 synchronization (`main@4caca9a`, through PR #246):** general PSC,
 #84, #138, #139, formal productivity and G1 remain open. Theorem Ω now
 supports an exact finite-domain PDS theorem on 145,806 substitutions, while
@@ -626,8 +640,12 @@ do not quietly resurrect it under a new name.
 For the next research cycle:
 
 1. **#139: turn the family certificates into uniform coverage.** Finish class
-   D below `r = q - 1` (second constant-graph cone, then Pisot-boundary
-   fringe), extend the wedge analysis to A/C, and treat class A's slope-one
+   D below `r = q - 1` using the complete two-quadrant parameter cover in
+   `p1b-boundary-hitting-progress-2026-10-08.md` §4d: each branch has
+   `a,b >= 0`, with `b` the exact Pisot-boundary margin and `a` growth along
+   that boundary. Certify a constant-graph core and all its edges, or use
+   vertex families for the changing-graph fringe; the infinite `b=0` edge
+   must be covered. Then extend the wedge analysis to A/C, and treat class A's slope-one
    growing graphs by vertex families. The first class-level closure target is
    a uniform boundary-hitting depth `K` for the catch-up-free determinant-two
    class. Any extension beyond it still needs occurrence-compatible adelic
