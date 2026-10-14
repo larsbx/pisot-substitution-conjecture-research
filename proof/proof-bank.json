@@ -1752,6 +1752,16 @@
       "statement_heading": "exactly all-pairs aligned strong coincidence: three letter pairs, each a"
     },
     {
+      "source": "docs/k2-load-bearing-scc-salvage-2026-10-11.md",
+      "line": 46,
+      "statement_heading": "s_13 = ((1,3),(3,1))"
+    },
+    {
+      "source": "docs/k2-load-bearing-scc-salvage-2026-10-11.md",
+      "line": 65,
+      "statement_heading": "subspace, the dominant projection would be the zero map."
+    },
+    {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
       "line": 35,
       "statement_heading": "**Lemma 1.1 (occurrence).** Every vertex of `O_sigma` is the type of an"
