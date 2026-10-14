@@ -303,6 +303,162 @@ The unscaled \(w=(1,0)\) is in that set, whereas \(Mw=(1,1)\) is not. Hence \(w\
 
 This is deliberately narrower and more checkable than claiming ordinary product mixing forces coincidence. First attempt an exact symbolic/algebraic bridge using the already available occurrence-labelled prefix and affine replay contracts in `docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md`; a test is warranted only after such a bridge is *stated*, with the known determinant-two pump and non-unit finite-place regression as negative controls. Do not turn a failure to find a witness at bounded depth into a mathematical negative verdict. General #84/#138/#139, G1, and PSC remain OPEN.
 
+## Exact reverse-address affine transport and a non-unit obstruction (2026-10-14 continuation)
+
+**Status:** the affine transport formula below is an exact algebraic/combinatorial identity under the repository's established occurrence convention; the counterfamily consists of **actual legal prefix-suffix SFT addresses** for a primitive irreducible non-unit Pisot substitution. It refutes an *automatic* implication from source exact-diagonal synchronized addresses to \(M^d\)-divisible PSC boundary-hitting offsets. It does **not** refute Nakaishi Theorem 3, the original PSC, or the possibility of a separate geometric/realization hypothesis forcing divisibility.
+
+### A commuting diagram, with the correct time orientation
+
+In Nakaishi's source notation, a legal depth-\(d\) ancestry is
+\(\sigma(a_{k+1})=p_k a_k s_k\) and
+\(\sigma(b_{k+1})=q_k b_k t_k\), for \(0\le k<d\).
+Its integer prefix displacement is
+\[
+ W_d=\sum_{k=0}^{d-1} M^k\big(\pi(p_k)-\pi(q_k)\big).
+ \tag{T1}
+\]
+The previous conditional exact-diagonal cancellation establishes \(W_d=w_{\rm src}\).
+To interpret the **same occurrence choices chronologically** in the
+repository's overlap graph, start with an *integer* ancestor offset
+\(u\in\mathbb Z^n\) on letters \((a_d,b_d)\).
+The first child choices are \(p_{d-1},q_{d-1}\), not \(p_0,q_0\).
+For \(0\le r<d\), the exact integer update is
+\[
+ u_{r+1}=Mu_r+\pi(q_{d-1-r})-\pi(p_{d-1-r}),\qquad u_0=u.
+ \tag{T2}
+\]
+Telescoping gives the complete transport formula
+\[
+ \boxed{u_d=M^d u-W_d.} \tag{T3}
+\]
+Indeed, the coefficient of the digit read at chronological step \(r\) is
+\(M^{d-1-r}\), which becomes \(M^k\) for \(k=d-1-r\).
+The source's polynomial cancellation is therefore **not** the entire
+zero-offset condition:
+\[
+ \boxed{u_d=0\iff W_d=M^d u.} \tag{T4}
+\]
+For *fixed* \(u=w_{\rm PSC}\), the necessary and sufficient **integer
+displacement** test on this prescribed occurrence chain is the exact
+residual \(R_d=W_d-M^d w_{\rm PSC}=0\). This does not by itself certify that
+each intermediate pair of tiles has an interior overlap, is in the
+seed-patch graph, or is a permissible occurrence chain; those remain
+separate **realization and orientation** checks.
+
+There is an immediate **non-unit divisibility gate**: to obtain *any*
+integral ancestor offset from this source word, one needs
+\(W_d\in M^d\mathbb Z^n\).
+For \(|\det M|>1\),
+\(\mathbb Z^n/M^d\mathbb Z^n\) has order
+\(|\det M|^d\); an equality in the real Perron field is not a certificate
+that the residue vanishes in this finite cokernel.
+For unimodular \(M\), this particular lattice gate is automatic, but the
+prescribed \(w_{\rm PSC}\), occurrence legality and graph realization
+are *not* automatic.
+
+### An infinite exact-diagonal SFT counterfamily inside a non-unit PIP substitution
+
+Take the two-letter substitution
+\[
+ \sigma(a)=aaab,\qquad \sigma(b)=ab,\qquad
+ M=\begin{pmatrix}3&1\\1&1\end{pmatrix}.
+ \tag{N1}
+\]
+The matrix is positive, so the substitution is primitive;
+\(\chi_M(X)=X^2-4X+2\) is irreducible over \(\mathbb Q\), and its
+roots are \(2+\sqrt2>1\) and \(0<2-\sqrt2<1\).
+Thus it is a **primitive irreducible non-unit Pisot** substitution with
+\(\det M=2\).
+
+Let \(I=(a:\emptyset)\) denote the first \(a\) occurrence in \(\sigma(a)\),
+and \(J=(a:a)\) the second \(a\) occurrence. Both choose child \(a\);
+\(I\to I\), \(J\to I\) are legal prefix-suffix automaton transitions.
+For **every** \(d\ge1\), choose two infinite *legal* addresses
+\[
+ y_k=I\quad(k\ge0),\qquad
+ x_k=\begin{cases}J&k=d-1,\\I&k\ne d-1.\end{cases}
+ \tag{N2}
+\]
+They agree from level \(d\) onward, so \(T^t x=T^t y=I^\infty\)
+for **every** \(t\ge d\): the source's special cylinder is visited
+simultaneously at arbitrarily many depths for any chosen \(L\).
+They differ in precisely one proper-prefix digit,
+\(\pi(p_{d-1})-\pi(q_{d-1})=e_a=(1,0)^{\mathsf T}\).
+Hence, **exactly in the full adelic representation**,
+\[
+ \Psi(x)-\Psi(y)
+ =\Phi'_\sigma(\langle M^{d-1}e_a,v\rangle)
+ =:\gamma_d.
+ \tag{N3}
+\]
+There is no approximation, appeal to mixing, or discarded finite-place
+coordinate. The corresponding source translation and polynomial-part
+certificate are
+\[
+ w_{\rm src}=W_t=M^{d-1}e_a
+ \quad\text{for every }t\ge d,\qquad F_t(\alpha)=0.
+ \tag{N4}
+\]
+
+But
+\[
+ M^{-1}e_a=\tfrac12(1,-1)^{\mathsf T}\notin\mathbb Z^2.
+\]
+Equivalently, modulo 2 both rows of \(M\) are \((1,1)\), so
+\(M\mathbb Z^2\) has equal coordinate parities, whereas \(e_a\)
+does not. For any \(t\ge d\), if
+\(M^{d-1}e_a=M^t u\) for \(u\in\mathbb Z^2\), rational invertibility of
+\(M\) would imply \(e_a=M^{t-d+1}u\in M\mathbb Z^2\), contradiction.
+Thus
+\[
+ \boxed{W_t\notin M^t\mathbb Z^2\quad\text{for every }t\ge d.}
+ \tag{N5}
+\]
+
+This is a **source-compatible exact diagonal, with infinitely many
+synchronized visits**, whose exact polynomial cancellation supplies no
+integral ancestor offset at any such depth under the direct reverse-address
+transport. It is stronger than the earlier Fibonacci *set-theoretic*
+unscaled/scaled negative control: these are explicit admissible
+prefix-suffix SFT paths satisfying the diagonal equality, not arbitrary
+elements of \(P_d(a)-P_d(a)\).
+For \(d=1,2,3\) the translations are respectively
+\((1,0),(3,1),(10,4)\), and the unique rational would-be
+depth-\(d\) ancestor is always
+\(M^{-d}W_d=(\tfrac12,-\tfrac12)\).
+The last equality holds for all \(d\), not only the displayed examples.
+
+**Scope firewall.** The constructed pair is not claimed to be an interior
+overlap of the seed-patch graph or to use a translation already certified
+in the source's geometric tiling index set \(\Gamma\).
+It falsifies only the proposed **source-SFT-address-only** transport
+implication. A stronger theorem explicitly assuming geometric realization
+or a particular return-translation class might still force the needed
+\(M\)-adic divisibility; that is precisely what remains to prove.
+
+### General form and next theorem obligation
+
+The construction works whenever a substitution has a fixed self-occurrence
+\(I=(a:\emptyset)\) and a second self-occurrence \(J=(a:p)\), with
+\(z=\pi(p)\notin M\mathbb Z^n\): insert \(J\) at position \(d-1\)
+between \(I\)-symbols; then the exact-diagonal displacement
+\(M^{d-1}z\) is not in \(M^t\mathbb Z^n\) for any \(t\ge d\).
+The proof above uses no two-letter peculiarity other than the concrete
+calibration matrix.
+
+The next acceptable closure bridge for PSC #139 must supply, from an
+**actually realized recurrent strict-zipper overlap**, all of:
+(1) a correctly oriented, occurrence-labelled ancestry pair;
+(2) *a priori* congruence \(W_d\equiv0\pmod{M^d\mathbb Z^n}\),
+and indeed the prescribed equality \(W_d=M^d w_{\rm PSC}\);
+(3) interior overlap/seed-patch graph membership through the complete
+forward child chain; and (4) a theorem forcing such an arrangement for
+at least one realized bad SCC, rather than selecting an arbitrary
+SFT address. A congruence check, as such, is decidable with existing
+exact finite-cokernel machinery; **the universal reason why it must pass
+is still open**. Do not enlarge bounded searches or assert PSC closure
+from (T3)–(N5).
+
 ## Transfer to #139: exact hitting is the gate
 
 The paper's proposed mechanism is geometric overlap → symbolic positive-measure pair set → mixing/recurrence to special cylinders → Garsia/polynomial cancellation → geometric coincidence. Our exact target is
