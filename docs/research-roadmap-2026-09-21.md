@@ -286,6 +286,9 @@ Issue #139 requires a source-by-source transfer audit:
 
 The transfer table is now complete in `p1b-strict-zipper-literature-gate-2026-09-21.md`, with machine-readable hypotheses in `p1b-strict-zipper-transfer-matrix.json`. It leaves one named open obligation, **AdelicPeriodicOffsetHitting**: force a realized purely periodic offset orbit to meet the actual prefix-difference cylinder in the full non-unit representation space.
 
+**2026-10-14 Nakaishi source-transfer stop/go:** The first-entry contradiction used in arXiv:2401.07771v1, §13 Proposition 5 is **not available as an imported recurrence lemma**. Its §12 first-second-coordinate measure satisfies \(s_j=m(E_0\cup H_j)\), while the cumulative first-*joint*-entry measure is \(m(H_j)\). The exact identity includes the additional \(m(E_0\cap H_j)\) term; on the paper's own recurrent fibre that correction converges to \(m(E_0)>0\), so the purported contradiction disappears. **Stop** importing this recurrence-to-polynomial-cancellation implication unchanged. **Proceed** only if a separately proved, hypothesis-sensitive algebraic argument excludes joint returns after an early second-coordinate-only visit, or produces an exact occurrence-compatible target hit without that subtraction. Retain the full non-unit/adelic and ordered-occurrence obligations of #139. Evidence: `nakaishi-2024-first-entry-audit-2026-10-13.md` (2026-10-14 continuation); general PSC, #84, #138, #139 and G1 remain open.
+
+
 #### P1b non-unimodular theorem target
 
 The desired theorem must be formulated in the full contracting representation needed by the non-unit case: Euclidean contracting embeddings together with the required finite-place/non-Archimedean factors. A purely Euclidean proof is acceptable only if it separately proves that the omitted finite-place coordinates are irrelevant.
