@@ -537,6 +537,114 @@ This closes the **realization-only** shortcut, not issue #139. The latter hypoth
 
 A certificate for this lemma must quantify over *all* outgoing overlap children and preserve the labelled realization, not select one self-loop. It must either prove a uniform coverage/carry-resolution theorem or yield a concrete bad closed SCC. The earlier §5.6d valuation-ascent census already falsifies **one-step** ascent even in the ternary catch-up-free class; do not reintroduce that negative mechanism as a universal argument. The example here sharpens Nakaishi-transfer hypotheses and is **not claimed novel as a general existence of productive affine pumps** (the repository already documents a determinant-two six-edge pump). Preserve the separate universality requirements of #138 and #139.
 
+## Infinite ternary non-unit Pisot family: an explicit all-child escape (2026-10-15)
+
+**Status: proved elementary scoped family lemma and exact negative control, not general PSC.** This continuation moves the previous *quadratic* realized-loop example into the repository's **three-letter primitive irreducible Pisot regime** and replaces a mere finite example with a symbolic **two-parameter infinite family**. The key positive statement is a uniform labelled half-coincidence in **one** inflation and a genuine tile coincidence in **two** inflations from the exhibited swap-seed overlap. No claim is made about productivity of *all* vertices for the family.
+
+### Family and exact Pisot screening
+
+For all integers \(k\ge3\) and \(2\le h\le k\), set
+\[
+\sigma_{k,h}:\quad
+a\mapsto a^k b c^h,\qquad
+b\mapsto ab,\qquad c\mapsto a,
+\quad
+M=\begin{pmatrix}k&1&1\\1&1&0\\h&0&0\end{pmatrix}.
+\tag{F1}
+\]
+The incidence matrix has determinant \(-h\), so the family is **non-unimodular**, and \(M^2>0\), so it is primitive. Its characteristic polynomial is
+\[
+f_{k,h}(X)=X^3-(k+1)X^2+(k-1-h)X+h .
+\tag{F2}
+\]
+Direct integer evaluations are
+\[
+\begin{aligned}
+ f(-1)&=2h-2k-1<0,& f(0)&=h>0,&f(1)&=-1<0,\\
+ f(k)&=h-k(h+1)<0,&
+ f(k+2)&=2k^2-kh+5k-h+2>0 .
+\end{aligned}
+\tag{F3}
+\]
+Thus \(f\) has **three distinct real** roots, one in \((-1,0)\), one in \((0,1)\), and the Perron root \(\beta\in(k,k+2)\). Its only possible integer root in that last interval is \(k+1\), yet
+\[
+f(k+1)=k(k-h)-1\ne0\quad(k\ge3,\ 2\le h\le k).
+\]
+There are no integer roots in the other two intervals. As \(f\) is monic cubic, this proves irreducibility over \(\mathbb Q\), with both non-Perron conjugates strictly inside the unit circle. Hence **every declared parameter pair** is primitive irreducible Pisot; neither an unreviewed numerical PIP oracle nor a finite-sample extrapolation is used.
+
+A left Perron eigenvector, normalized by \(\ell_a=1\), is
+\[
+\ell=(1,\ (\beta-1)^{-1},\ \beta^{-1}),
+\tag{F4}
+\]
+as follows from (F2) and \(M^{\mathsf T}\ell=\beta\ell\). In particular
+\(0<\ell_b<1\).
+
+### Constructive good exit versus recurrent nonzero path
+
+The top seed patch \(ab\) has an \(a\) tile on \([0,1]\), and the bottom swapped patch \(ba\) has its \(a\) tile beginning at \(\ell_b\). Thus the exact **interior** overlap
+\[
+S=(a,a,e_b)
+\tag{F5}
+\]
+is reached directly from the seed (and is not an ungrounded potential or SFT-only overlap).
+
+**Bad-looking but productive recurrence.** Select the **second** \(a\) occurrence in the top \(\sigma(a)\) and the **first** \(a\) occurrence in the bottom. Their prefix Parikh difference is \(e_a\), while \(Me_b=e_a+e_b\), so
+\[
+ S\xrightarrow{(\mathrm{top}\ a\#2,\ \mathrm{bottom}\ a\#1)} S.
+\tag{F6}
+\]
+This is an actual ordered child edge between positive-length interior overlapping \(a\)-tiles; it may be repeated indefinitely.
+
+**Uniform good edge from the same state.** Instead, select the **first** \(c\) occurrence in the top \(\sigma(a)\), whose prefix is \(a^k b\), and the **last** \(a\) occurrence in the bottom \(\sigma(a)\), whose prefix is \(a^{k-1}\). Their exact difference is \(-e_a-e_b\) in the child-offset convention. Consequently
+\[
+ S\xrightarrow{(\mathrm{top}\ c\#1,\ \mathrm{bottom}\ a\#k)}
+ U=(c,a,0),
+\qquad
+U\xrightarrow{(\mathrm{first}\ a,\mathrm{first}\ a)}
+ C=(a,a,0).
+\tag{F7}
+\]
+The first arrow uses \(Me_b-e_a-e_b=0\); the second uses two empty prefixes because \(\sigma(c)=a\) and \(\sigma(a)\) begins with \(a\).
+All endpoints are **interior overlaps** (zero offset, positive lengths for \(U,C\)). Here \(U\) is a *half-coincidence/common start but not a tile coincidence* because its letters differ; \(C\) is an actual coincidence.
+The first-hit depths along this explicit path are therefore **one to offset zero, two to coincidence**, uniformly in **both** \(k\) and \(h\).
+
+### The loop is M-adically nondivisible at every depth >=2
+
+Along \(t\ge1\) repetitions of (F6) the source-prefix sum is
+\[
+ W_t=\sum_{j=0}^{t-1}M^j e_a=(M^t-I)e_b,
+\quad M^t e_b-W_t=e_b\ne0.
+\tag{F8}
+\]
+Since
+\[
+M^{-1}e_b=e_b-e_c\in\mathbb Z^3,\qquad
+M^{-1}(e_b-e_c)\notin\mathbb Z^3
+\]
+(the \(c\)-coordinate equation is \(h z_a=-1\) and \(h\ge2\)),
+we have \(e_b\notin M^2\mathbb Z^3\).
+If \(W_t\in M^t\mathbb Z^3\) then
+\(e_b=M^t e_b-W_t\in M^t\mathbb Z^3\subset M^2\mathbb Z^3\), a contradiction for every \(t\ge2\). Therefore
+\[
+\boxed{W_t\notin M^t\mathbb Z^3\quad(t\ge2)}
+\tag{F9}
+\]
+for **every** member of this infinite ternary non-unit family, although
+**the exact same interior state \(S\) reaches zero offset after one step and full coincidence after two steps through different children**.
+
+At \(t=1\) the residue is **not** obstructed: \(W_1=e_a=Me_c\in M\mathbb Z^3\). This exception is important and makes (F9) different from the preceding quadratic example. An integer zero-class survivor is still not the *prescribed* offset \(e_b\); the actual self-loop remains nonzero.
+
+### Scope, prior art, and next productive proof step
+
+This is an explicitly checked **family theorem about the exhibited vertex and two labelled child chains**. It does **not** establish the full overlap-productivity theorem for \(\sigma_{k,h}\), much less uniform #139. It does not assert that a never-colliding path implies a bad SCC: our exhibited path is productive, and the two-step escape refutes the needed *child-closed* hypothesis.
+
+The prior literature gate (Akiyama–Lee residual overlap graph, Minervino–Thuswaldner non-unit internal space) and the repository's earlier six-edge productive affine pump already explain why a single cycle is insufficient. The advance here is a **constructive, uniform in two unbounded parameters, ternary PIP calibration** showing the exact all-child information that the Nakaishi-to-PSC transport question cannot discard. This is not presented as a novel universal coincidence theorem.
+
+**Go/no-go:** stop further source-SFT-only or individual-cycle congruence refinements. Advance #139 only through a statement quantifying over an entire **child-closed nonproductive** recurrent component (or a stronger direct coverage theorem). Its proof must explain why *some labelled child branch* like (F7) exists in **every** hypothetical component, not merely in this explicit family. The family illustrates the distinction between (i) a nonresolving *selected* path and (ii) a resolving **existential** path, but supplies no all-PIP forcing mechanism. The known ternary valuation-ascent failures remain separate negative controls.
+
+**Implementation boundary:** at \(k=3,h=2\), the longest image has length six and lies within the checked cubic PIP kernel's declared image-length domain. For \(k>3\) or \(h>2\), the symbolic theorem remains valid but a Mojo test must not silently call an image-length-six-screened constructor outside its audited range. No new executable experiment is claimed or needed for (F1)–(F9).
+
 ## Transfer to #139: exact hitting is the gate
 
 The paper's proposed mechanism is geometric overlap → symbolic positive-measure pair set → mixing/recurrence to special cylinders → Garsia/polynomial cancellation → geometric coincidence. Our exact target is
