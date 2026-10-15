@@ -1662,6 +1662,8 @@ claim statuses or named Lean proofs. Evidence:
 `docs/k2-load-bearing-scc-salvage-2026-10-11.md`,
 `tests/test_defect_intertwiner.py`, `tests/test_boxwalk_radius_probe_oracle.py`.
 
+2026-10-15 — Nakaishi-to-PSC realized-ancestry shortcut refuted in a seed-patch overlap (stronger than the previous SFT-only negative control). For sigma(a)=aaab, sigma(b)=ab, beta=2+sqrt(2), lengths ell=(1,sqrt(2)-1), the initial ab/ba swapped patches contain an interior (a,a,e_b) overlap S. The ordered child pair (top second a, bottom first a) maps S to itself exactly because M e_b-e_a=e_b, so it is a realizable recurrent nonzero-offset path of arbitrary duration. Along r repetitions W_r=sum_(k<r) M^k e_a=(M^r-I)e_b and W_r is outside M^r Z^2 since e_b is outside M Z^2 by parity. Yet S is productive: top third a / bottom first a maps it to T=(a,a,-e_a+e_b), and top first a / bottom third a maps T to coincidence (a,a,0); all overlap interiors are exact from 0<sqrt(2)-1<1. This *does not* exhibit a closed bad SCC or refute PSC. A proof must use the all-children, child-closed nonproductive hypothesis (and the exact orientation/offset) rather than realization plus an arbitrarily chosen recurrent path. Existing M-adic valuation-ascent failures and affine-pump negative controls remain in force; this one specifically audits the Nakaishi realization-transfer shortcut. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md (2026-10-15 realized loop); docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md negative control 6; docs/research-roadmap-2026-09-21.md live P1b boundary.
+
 2026-10-14 — Retire a uniform contracting-conjugate margin as a proof
 ingredient for the whole residual class-D family: on either `b=0` branch,
 for every `d>=4`, a conjugate lies in `(-1,-1+1/d)`, hence no single
@@ -1813,3 +1815,12 @@ image-length-six guard. Updated the live family note, proof ladder and
 roadmap to credit these executions; no theorem or historical packet changed.
 Later heads require their own CI results. Evidence and remaining scoped
 acceptance/composition obligation: `p1b-boundary-hitting-progress-2026-10-08.md` §4k.
+
+2026-10-15 — Reconcile PR #263 with main@57fc26e after PR #268: preserve
+main's realized productive-loop countercontrol and its complete ledger prefix,
+then retain every class-D boundary entry. At 7cf8897, the 75-file Mojo suite,
+receipt coverage, both standalone certificates, polynomial-kernel and target-aware
+workflows passed; the one-tile census is still running. The new merge requires
+its own CI. No executable code, sealed packet or mathematical status changes.
+Evidence: docs/p1b-boundary-hitting-progress-2026-10-08.md section 4k;
+https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38797225015/job/116636686858 .

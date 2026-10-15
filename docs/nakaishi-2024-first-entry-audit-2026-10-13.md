@@ -459,6 +459,84 @@ exact finite-cokernel machinery; **the universal reason why it must pass
 is still open**. Do not enlarge bounded searches or assert PSC closure
 from (T3)–(N5).
 
+## Realized overlap loop: geometric realization is not sufficient (2026-10-15)
+
+**Status:** an exact finite, seed-patch-realized counter-calibration for the *stronger proposed bridge* "actual interior overlap + recurrent occurrence-labelled ancestry forces \(M\)-adic divisibility / a synchronized special-cylinder visit". The bridge is **false without the closed nonproductive-SCC hypothesis or an additional global selection mechanism**. This is not a PSC counterexample. Unlike the preceding source-SFT-only family, the states and every displayed child edge below are actual interior tile overlaps reachable from a swapped seed.
+
+### A minimal non-unit PIP witness with no numerical geometry
+
+Retain the two-letter substitution from the preceding subsection:
+\[
+\sigma(a)=aaab,\qquad \sigma(b)=ab,\qquad
+M=\begin{pmatrix}3&1\\1&1\end{pmatrix},\quad\det M=2.
+\]
+Its Perron eigenvalue is \(\beta=2+\sqrt2\). Normalize the **left** eigenvector of tile lengths as
+\[
+\ell_a=1,\qquad \ell_b=\sqrt2-1,\qquad
+(\ell_a,\ell_b)M=\beta(\ell_a,\ell_b).
+\]
+Since \(0<\ell_b<1\), in the swapped seed patches
+\[
+ab\quad\text{and}\quad ba
+\]
+whose left boundaries coincide, the top \(a\)-tile is \([0,1]\) and the bottom \(a\)-tile is \([\ell_b,1+\ell_b]\). Their intersection has positive length \(1-\ell_b\). Thus
+\[
+S=(a,a,e_b),\quad e_a=(1,0)^{\mathsf T},\
+e_b=(0,1)^{\mathsf T}
+\tag{R1}
+\]
+is an **actually seed-reachable interior overlap** in the repository's offset convention (bottom start minus top start).
+
+The following three ordered child edges all satisfy the exact recurrence
+\(u'=Mu+\pi(q)-\pi(p)\):
+\[
+\begin{array}{c|c|c|c}
+\text{edge}&\text{top occurrence }p&\text{bottom occurrence }q
+ &\text{child offset}\\
+\hline
+S\to S & a\text{ (second }a\text{)}&\emptyset\text{ (first }a\text{)}
+ &Me_b-e_a=e_b\\
+S\to T & aa\text{ (third }a\text{)}&\emptyset\text{ (first }a\text{)}
+ &Me_b-2e_a=-e_a+e_b\\
+T\to C &\emptyset\text{ (first }a\text{)}&aa\text{ (third }a\text{)}
+ &M(-e_a+e_b)+2e_a=0.
+\end{array}
+\tag{R2}
+\]
+Here \(T=(a,a,-e_a+e_b)\) has physical offset
+\(\ell_b-\ell_a=\sqrt2-2\in(-1,0)\), so its two \(a\)-tiles overlap in positive length. The endpoints of the \(S\to S\) and \(S\to T\) edges also have proper interiors because \(0<\ell_b<1\). Finally \(C=(a,a,0)\) is a genuine **tile coincidence**.
+
+Consequently the *same source state* supports both (i) a **nonzero periodic realized overlap path of arbitrary duration**, obtained by repeating the \(S\to S\) occurrence edge, and (ii) a fully occurrence-labelled two-step path \(S\to T\to C\) ending in coincidence. The loop is **not** a child-closed bad component; it is productive. This is why the example is consistent with the known two-letter PSC and the repository's sink-obstruction reduction.
+
+### Its exact integer obstruction persists through every loop repetition
+
+For the self-loop, the source-prefix digit difference is \(z=e_a\). After repeating it \(r\ge1\) times, the source address sum is
+\[
+ W_r=\sum_{k=0}^{r-1}M^k e_a.
+\tag{R3}
+\]
+The identity \(e_a=(M-I)e_b\) telescopes to
+\[
+\boxed{W_r=(M^r-I)e_b,\qquad M^r e_b-W_r=e_b\ne0.}
+\tag{R4}
+\]
+Modulo 2 both columns of \(M\) are \((1,1)^{\mathsf T}\), so the coordinates of an integer vector in \(M\mathbb Z^2\) have equal parity. Since \(e_b=(0,1)^{\mathsf T}\notin M\mathbb Z^2\), it follows for **every** \(r\ge1\) that
+\[
+ \boxed{W_r\notin M^r\mathbb Z^2.}
+\tag{R5}
+\]
+Indeed, otherwise \(e_b=M^r z-W_r\in M^r\mathbb Z^2\subset M\mathbb Z^2\), contradicting parity. Thus **both geometric realizability and periodicity of the selected path fail to force a zero-class residue**. For direct finite calibration, \(W_1=(1,0)\), \(W_2=(4,1)\), \(W_3=(14,5)\), but (R4)–(R5) are exact all-\(r\) proofs, not extrapolations.
+
+The infinite symbolic itinerary along the self-loop would pair the second-\(a\) source edge \(J=(a:a)\) with the first-\(a\) edge \(I=(a:\emptyset)\) at every level: it **never simultaneously enters** Nakaishi's common special cylinder \(I\). Thus a realized geometric overlap cycle does not automatically provide the *synchronized-cylinder* input required by the earlier conditional pointwise source argument either. We use the finite period equations above as the certificate; no convergence/limit is required.
+
+### What remains genuinely open
+
+This closes the **realization-only** shortcut, not issue #139. The latter hypothesizes a **closed, child-closed, nonproductive** recurrent strict-zipper component. \(S\) fails that hypothesis, since \(S\to T\to C\). The precise viable target is therefore *not* "every realized recurrent address is good"; it is:
+
+> **Closed-component obstruction lemma (OPEN).** Show that a realized child-closed recurrent set of noncoincident interior overlaps cannot avoid both the offset-zero basin and every occurrence-compatible \(M\)-adic residue-cancellation mechanism.
+
+A certificate for this lemma must quantify over *all* outgoing overlap children and preserve the labelled realization, not select one self-loop. It must either prove a uniform coverage/carry-resolution theorem or yield a concrete bad closed SCC. The earlier §5.6d valuation-ascent census already falsifies **one-step** ascent even in the ternary catch-up-free class; do not reintroduce that negative mechanism as a universal argument. The example here sharpens Nakaishi-transfer hypotheses and is **not claimed novel as a general existence of productive affine pumps** (the repository already documents a determinant-two six-edge pump). Preserve the separate universality requirements of #138 and #139.
+
 ## Transfer to #139: exact hitting is the gate
 
 The paper's proposed mechanism is geometric overlap → symbolic positive-measure pair set → mixing/recurrence to special cylinders → Garsia/polynomial cancellation → geometric coincidence. Our exact target is
