@@ -303,6 +303,13 @@ u_d=M^d u-\sum_{k<d}M^k(\pi(p_k)-\pi(q_k)).
 \]
 Thus even an exact source-diagonal polynomial cancellation \(W_d=w_{\rm src}\) forces a zero-offset child only with \(w_{\rm src}=M^d u\), not merely because \(w_{\rm src}\in P_d(i)-P_d(j)\). This is a *proved exact transport criterion*, conditional on occurrence legality for the graph. Moreover, the non-unit quadratic PIP substitution \(a\mapsto aaab,\ b\mapsto ab\), \(M=\left(\begin{smallmatrix}3&1\\1&1\end{smallmatrix}\right)\), admits for every \(d\ge1\) **actual legal SFT address pairs** agreeing from \(d\) onward, with exact adelic diagonal displacement \(W_t=M^{d-1}e_a\) for all \(t\ge d\) and infinitely many synchronized special-cylinder visits, but \(W_t\notin M^t\mathbb Z^2\) at any such \(t\). This *rules out automatic integer-offset ancestry transport from an arbitrary Nakaishi SFT diagonal*, not a transport theorem restricted to seed-patch-realized overlap/tiling Gamma classes. **Proceed** only with a geometric-realization-dependent theorem forcing the correct \(M\)-adic residue, prescribed offset, orientation and actual graph replay; reuse the existing finite-cokernel kernel as a diagnostic, not an oracle for universal forcing. The old need for a scale-matched visit remains if approaching through nonexact pairs. See `nakaishi-2024-first-entry-audit-2026-10-13.md`, §"Exact reverse-address affine transport and a non-unit obstruction". General #139, #84, #138, G1 and PSC remain OPEN.
 
+**2026-10-15 realized-overlap calibration:** An explicit seed-patch interior overlap for the non-unit quadratic substitution a->aaab, b->ab has a recurring nonzero-offset child path.
+At the state S=(a,a,e_b), the top-second-a / bottom-first-a child choice returns S.
+For every r repetitions, the exact prefix difference is W_r=(M^r-I)e_b, which is not in M^r Z^2 by the parity obstruction e_b not in M Z^2.
+The same realized state is productive: S -> (a,a,-e_a+e_b) -> (a,a,0), using different ordered child occurrences.
+Thus realized recurrence alone is insufficient for forcing the proposed Nakaishi-to-PSC M-adic transport; the genuinely open target is a child-closed nonproductive SCC, with its entire collection of outgoing realized children.
+This is a negative control, not a PSC counterexample or a proof of issue #139. See the updated Nakaishi audit and P1b adelic target specification.
+
 #### P1b non-unimodular theorem target
 
 The desired theorem must be formulated in the full contracting representation needed by the non-unit case: Euclidean contracting embeddings together with the required finite-place/non-Archimedean factors. A purely Euclidean proof is acceptable only if it separately proves that the omitted finite-place coordinates are irrelevant.
