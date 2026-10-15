@@ -105,6 +105,33 @@ by deleting it.
   `docs/audit-2026-10-11-boxwalk-extremal.md` §§"Claims retracted or
   not to re-attempt", "Extremal-search reframing"
 
+
+- 2026-10-15 · **Correction to box-walk reachability claim (2026-10-12 notes and PR #253).**
+  The historical `box_walk_recurrence.py` zero-stuck count comes from
+  reverse reachability to the *zero imbalance vector*, although a genuine
+  diagonal child requires zero imbalance **before equal next letters**.
+  Example `12|21` has a terminal zero return and no diagonal child.
+  Projected vector edges collected across different occurrences can also
+  splice nonrealizable paths; observed depth-wise edge plateaus do not prove
+  substitution successor closure. “Every vector can reach zero” is therefore
+  **not** a matched-origin or SCC-productivity certificate. Correct
+  conditions: occurrence/address-compatible path lifting, target-aware
+  equal-letter zero-return, complete finite successor closure and explicit
+  seed/vertex quantifier coverage. Existential escape does not mean every
+  infinite path must hit a target. No PSC/G1/SCC Producer claim changes. ·
+  `docs/boxwalk-reachability-realizability-audit-2026-10-15.md`;
+  `docs/audit-2026-10-11-boxwalk-extremal.md` (2026-10-15 correction)
+
+- 2026-10-15 · **Scope of exact depth-nine radius witness.** The replayed
+  `sigma=(001,22,220)` has characteristic polynomial
+  `x^3-4x^2+4x-2` and a **complex** secondary pair. Its aligned-cut
+  depth-nine radius `10` refutes a radius-eight bound *for that observable*
+  but alone says nothing decisive about a proposed **real-secondary-only**
+  radius bound or the unrecovered staircase/comp-set statistic. Do not
+  transfer across observable, seed, or spectral regime. ·
+  `docs/boxwalk-reachability-realizability-audit-2026-10-15.md`;
+  `evidence/boxwalk-radius8-depth9.json`
+
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
