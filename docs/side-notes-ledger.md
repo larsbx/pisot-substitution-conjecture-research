@@ -1800,3 +1800,16 @@ and all three standalone boundary drivers before the full suite, exposing
 any further failure without waiting for unrelated censuses. No historical
 packet or mathematical claim status is changed. Failure evidence:
 https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38766765126/job/116531891822 .
+
+2026-10-15 — PR #263 canonical execution audit: the corrected `f6e1a5b`
+branch and CI merge `c175c60` have identical tree `c22a6b3a84e466998d40b800af2c8177fd70babc`.
+Mojo job 116624307426 emitted both formerly missing historical boundary
+contracts, both complete-template contracts and both standalone certificate
+results; all 75 test files and the receipt-based coverage audit passed.
+The polynomial-kernel verification job also passed. The existing exact
+coefficient screen covers every historical boundary incidence entry (at most
+30) within its audited 4096-entry limit, without relaxing the legacy
+image-length-six guard. Updated the live family note, proof ladder and
+roadmap to credit these executions; no theorem or historical packet changed.
+Later heads require their own CI results. Evidence and remaining scoped
+acceptance/composition obligation: `p1b-boundary-hitting-progress-2026-10-08.md` §4k.

@@ -692,15 +692,15 @@ states and seed membership at `a=0..8`, including failure of both threshold
 edges below three and a perturbed-index negative control. Independent
 Python tests use the existing rational-field oracle. Those finite replays
 guard the formulas; the universal quantifier above is justified by the
-displayed identities and inequalities. Mojo execution still needs a
-successful receipt; no canonical execution is credited by a written test.
+displayed identities and inequalities. The successful canonical execution
+receipts are now recorded in §4k; a written test alone earns no execution credit.
 
 ## 4i. Complete minus-boundary template candidate — 2026-10-14
 
-**Status: complete scoped closure candidate, canonical execution pending.**
-The exact integer Python oracle completes the construction below; the pinned
-Mojo environment is unavailable locally, so the canonical implementation and
-regressions have no execution credit. No ledger promotion is made.
+**Status: complete scoped closure candidate with canonical execution evidence.**
+The exact integer Python oracle completes the construction below; §4k records
+the successful canonical Mojo regression and standalone driver at the corrected
+commit. Local Mojo execution is not claimed. No ledger promotion is made.
 The target is the complete all-swap
 seed-reachable graph on `p=3a+5, q=3a+6, r=2a+4`, above an explicit
 integer threshold, plus its finite prefix. The three primary sources
@@ -806,8 +806,8 @@ all vertices. Full directed support is compared, not just vertex sets.
 The independent oracle is `oracles/python/class_d_boundary_template.py`.
 Both earlier evidence packets remain unchanged.
 
-**Acceptance and composition.** A successful canonical run, matching this
-packet and its regression contract, would complete the scoped assertion:
+**Acceptance and composition.** The successful canonical run in §4k matches
+the packet and regression contract supporting the scoped assertion:
 every all-swap-seed-reachable overlap on the entire minus `b=0` line has
 an offset-zero descendant within four steps. The displayed algebra and
 finite-certificate interpretation are internally derived and unreviewed.
@@ -821,7 +821,7 @@ both two-parameter interiors `b>0` and the other classes remain open.
 ## 4j. Complete plus-boundary template candidate — 2026-10-14
 
 **Status:** complete scoped candidate, independent exact-integer replay
-complete; canonical Mojo execution pending. No theorem status promotion.
+and canonical Mojo execution complete (see §4k). No theorem status promotion.
 
 Continue the same exact symbolic-graph construction on `s=+1,b=0`,
 `p=3a+3,q=3a+2,r=2a`. The primary-source gate of §4h/§4i applies to
@@ -895,18 +895,70 @@ from commit `38b87af`. Source-hash checks use that snapshot while the
 current shared engine must still replay the original graph. This avoids
 treating an old experiment's source digests as a prohibition on later work.
 
-On successful canonical replay/acceptance, the existing Theorem E/L/W
+After scoped mathematical acceptance, the existing Theorem E/L/W
 composition would give scoped PDS and G1 on both entire `b=0` lines,
 with half-depth bounds four (minus) and six (plus). No such promotion is
-made here without the canonical receipt. Human review remains pending
+made here solely from the canonical receipts in §4k. Human review remains pending
 and nonblocking; proof development continues on **both `b>0` interiors**.
 Those interiors and general class-D/PSC/G1 closure remain open.
+
+## 4k. Canonical execution and screen-domain audit — 2026-10-15
+
+The historical occurrence regression at `a=0..8` does not require widening
+the legacy matrix-level PIP predicate. `build_perron_field3` still refuses
+non-erasing image lengths above six, its audited fixed-width domain.
+The existing `build_seed_overlap_tables_screened` instead checks Boolean-support
+primitivity, cubic irreducibility by exact rational-root tests over unbounded
+rationals, and the Pisot property by exact Sturm/root-location tests. It
+refuses matrix entries above 4096; the characteristic-polynomial intermediates
+are bounded by `6 * 4096^3 < 2^39`, and downstream field arithmetic is checked.
+For both boundary families at `0<=a<=8`, every incidence entry is at most 30
+and every image length is at most 32. Thus these tests lie within the existing
+screen's justified domain. No family-membership assertion substitutes for a
+PIP decision, and the infinite-tail certificate is not inferred from this
+finite screen.
+
+Commit `f6e1a5b239d1f485b94960da07ddea44924379e3` routes both bounded
+graph/support probes through that constructor. The historical occurrence
+test already used it. The added regression compares tile lengths with the
+legacy constructor on the shared domain and confirms that the legacy
+constructor still rejects the plus `a=1` member with image length eight.
+All occurrence indices, the perturbed-index countercontrol, the two
+equal-vertex/different-edge witnesses, parameter limits and cap refusals remain.
+
+[PSC research checks, Mojo job 116624307426](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38793642799/job/116624307426)
+checked out merge commit `c175c600f380fbc0ed880a5db0de72bdb1b5e4c7`.
+Its tree and the corrected branch tree are both
+`c22a6b3a84e466998d40b800af2c8177fd70babc`.
+The log records:
+
+- 19:28:17 UTC: all three boundary contracts, including both formerly
+  missing bounded-replay and `a=0..8` occurrence receipts, were emitted.
+- 19:28:28 and 19:28:34 UTC: the minus and plus standalone drivers reported
+  complete line certificates with `145/781/4` and `718/4326/6`
+  vertices/edges/maximum half-depth, respectively.
+- 19:29:49–19:30:02 UTC: the full suite emitted the historical boundary
+  receipts again and both complete-template regression receipts.
+- 19:43:58 UTC: all 75 Mojo test files passed and the receipt-based coverage
+  audit passed. `kernel/run_tests.sh` rewrites its receipt file from empty
+  and only collects declarations from successful tests.
+
+The [polynomial-kernel workflow](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38793642958)
+also passed its complete verification-gates step at this tree. Its TLA+/Lean
+substeps reported unavailable toolchains; the separate PSC research-checks
+TLA+ and Lean jobs passed. This records actual execution, not a claim that
+all workflows or later commits inherit a green status. Subsequent head commits
+must pass their own gates before integration. The sealed historical packets
+are unchanged. Both boundary claims remain scoped candidates pending their
+mathematical acceptance/composition update; neither interior nor general
+PSC/G1 is promoted.
 
 ## 5. Next, in order
 
 1. **The two residual interiors of class D.** Sections 4i/4j give complete
-   candidates for both `b=0` boundaries; obtain their canonical receipts
-   while continuing the proof on `a>=0,b>=1`. Below `r=q-1`, the second
+   candidates for both `b=0` boundaries with canonical receipts in §4k;
+   complete their scoped acceptance/composition while continuing the proof on
+   `a>=0,b>=1`. Below `r=q-1`, the second
    constant-graph cones suggested in §4b need uniform sign and occurrence
    certificates, together with all regions outside those cones. Use the
    complete quadrant coordinates of §4d; boundary coverage does not cover
