@@ -670,16 +670,22 @@ For the next research cycle:
    uniform child closure for `a>=4` (145 vertices, 781 directed edges,
    maximum half-depth four), exact finite prefix `a=0..3`, and full
    directed-support cross-checks at `a=4,8`. The independent integer oracle
-   passes. Obtain the pending canonical receipt from `kernel/` with
-   `mojo run -I . class_d_boundary_certificate.mojo` and its regression;
-   then compose the existing Theorem E/L/W reductions for scoped PDS/G1.
+   passes. The canonical regression emitted a successful receipt in
+   [CI job 116136526013](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38647093922/job/116136526013)
+   on 2026-10-15 at branch commit `6709813`; the suite failed separately
+   on the older boundary-path test helper. The standalone driver
+   `mojo run -I . class_d_boundary_certificate.mojo` remains uncredited.
+   After candidate acceptance, compose the existing Theorem E/L/W
+   reductions for scoped PDS/G1.
    The general norm driver remains an alternative cross-check:
    `mojo run -I . symbolic_line_certificate.mojo norm D 3 5 3 6 2 4`.
    Section 4j also supplies the complete plus `b=0` candidate: uniform
    `a>=7` graph (718 vertices, 4,326 edges, maximum half-depth six),
    exact prefix `a=0..6`, and full-support checks at `a=7,8`.
    Its canonical command is `mojo run -I . class_d_plus_boundary_certificate.mojo`.
-   The independent replay passes; both canonical receipts are pending.
+   The independent replay passes; both canonical regression receipts were
+   observed in that CI job. A green suite and standalone driver receipts
+   remain outstanding; these receipts alone do not promote theorem status.
    Continue proof development on both **`b>0` interiors** without waiting
    for human review. Boundary candidates do not cover either interior.
    Certify a constant-graph core and all its edges, or use

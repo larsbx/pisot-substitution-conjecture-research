@@ -5,10 +5,11 @@ from psc.class_d_boundary import boundary_member, boundary_probe, boundary_edge_
 from psc.overlap_seed_patch import OverlapState, SeedOverlapTables, build_seed_overlap_tables_screened, interior_overlap, seed_overlap_states
 from psc.overlap_zipper import ordered_child_occurrences
 from psc.vertex_coincidence import offset_of
+from psc.perron_field3 import CubicElt
 
 
 def labelled_state(tables: SeedOverlapTables, label: List[Int]) raises -> OverlapState:
-    var lengths = [tables.lengths.at(0), tables.lengths.at(1), tables.lengths.at(2)]
+    var lengths: List[CubicElt] = [tables.lengths.at(0), tables.lengths.at(1), tables.lengths.at(2)]
     return OverlapState(label[0], label[1], offset_of(lengths, [label[2],label[3],label[4]]))
 
 

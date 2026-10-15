@@ -55,18 +55,23 @@ not establish whole-line BH or a universal depth bound.
 now constructs the whole graph uniformly for `a>=4` (145 vertices, 781
 directed edges, every half-depth at most four) and covers `a=0..3` by exact
 finite graphs. The independent integer oracle and full field-support
-cross-checks at `a=4,8` pass. Run `class_d_boundary_certificate.mojo` and its
-regression to obtain the still-missing canonical execution receipt. On
-acceptance, compose with Theorem E and the existing L/W reductions for
-scoped PDS/G1. Human review remains pending and nonblocking.
+cross-checks at `a=4,8` pass. The canonical regression emitted its successful
+receipt in [CI job 116136526013](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38647093922/job/116136526013)
+on 2026-10-15 at branch commit `6709813`. That suite failed separately on
+the older boundary-path test helper, so this receipt does not establish a
+green suite. The standalone `class_d_boundary_certificate.mojo` driver
+remains uncredited. Compose with Theorem E and the existing L/W reductions
+for scoped PDS/G1 after candidate acceptance; human review remains pending
+and nonblocking.
 
 **Complete plus-edge candidate (§4j):** the shared engine now also
 constructs the whole plus graph for `a>=7` (718 vertices, 4,326 edges,
 maximum half-depth six), with exact `a=0..6` coverage including the empty
 run at zero. The independent replay and full-support checks at `a=7,8`
-pass; `class_d_plus_boundary_certificate.mojo` still needs a canonical
-execution receipt. Both `b=0` boundaries therefore have complete scoped
-candidates. Continue the mathematical work on both **`b>0` interiors**;
+pass. The plus canonical regression also emitted its successful receipt in
+the CI job above; the standalone `class_d_plus_boundary_certificate.mojo`
+driver remains uncredited. Both `b=0` boundaries have complete scoped
+candidates; no theorem status is promoted by these execution receipts. Continue the mathematical work on both **`b>0` interiors**;
 Both entire quadrants and general PSC/G1 remain open.
 
 # Stable base — incidence rank, UD, and bounded discrepancy

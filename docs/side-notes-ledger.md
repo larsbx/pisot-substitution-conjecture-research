@@ -1772,3 +1772,16 @@ finding; no branch-history rewrite or mathematical-status promotion.
 the K2 conditional salvage note, its occurrence-counting conventions, and
 all main ledger entries. Regenerate the proof inventory; both boundary
 candidates and their sealed evidence remain unchanged.
+
+2026-10-15 — PR #263 CI repair: all three failed job types (`mojo-kernel`,
+`exact-kernels`, `diagnostic`) share the same compilation failure in
+`kernel/tests/test_class_d_boundary.mojo`: an untyped literal inferred
+`Array[CubicElt,3]`, while `offset_of` requires `List[CubicElt]`. Declare
+that list explicitly; preserve every assertion and receipt. The missing
+coverage receipts are a consequence of the compile failure. Both complete
+boundary-template regressions already emitted successful canonical receipts
+at branch head 6709813 in CI job 116136526013 (merge checkout 00bf0cf);
+that does not make the whole suite green or credit the standalone drivers.
+Local locked environment provisioning failed at a conda package download,
+so no local Mojo execution is claimed. Historical evidence is unchanged.
+Evidence: https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38647093922/job/116136526013 .
