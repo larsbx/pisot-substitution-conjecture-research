@@ -59,6 +59,50 @@ def _contains_int(xs: List[Int], x: Int) -> Bool:
     return False
 
 
+def test_ternary_nonunit_good_exit_is_an_actual_labelled_overlap() raises:
+    # k=3, h=2 in the symbolic two-parameter PIP family:
+    # a -> aaabcc, b -> ab, c -> a (image lengths <= audited bound 6).
+    # This pins only the actual seed state and its two DISTINCT child paths:
+    # a nonzero self-loop and an offset-zero child followed by a coincidence.
+    var sigma = List[List[Int]]()
+    var a: List[Int] = [0, 0, 0, 1, 2, 2]
+    var b: List[Int] = [0, 1]
+    var c: List[Int] = [0]
+    sigma.append(a^)
+    sigma.append(b^)
+    sigma.append(c^)
+    var tables = build_seed_overlap_tables(sigma)
+    var initial = OverlapState(0, 0, tables.lengths.at(1))
+    var half = OverlapState(2, 0, CubicElt())
+    var coincidence = OverlapState(0, 0, CubicElt())
+    var seeds = seed_overlap_states(tables)
+    var in_seed = False
+    for i in range(len(seeds)):
+        if seeds[i] == initial:
+            in_seed = True
+    assert_true(in_seed)
+
+    var children = overlap_children(tables, initial)
+    var has_loop = False
+    var has_half = False
+    for i in range(len(children)):
+        if children[i] == initial:
+            has_loop = True
+        if children[i] == half:
+            has_half = True
+    assert_true(has_loop)
+    assert_true(has_half)
+    assert_false(initial.is_coincidence())
+    assert_false(half.is_coincidence())
+    var next_children = overlap_children(tables, half)
+    var has_coincidence = False
+    for i in range(len(next_children)):
+        if next_children[i] == coincidence:
+            has_coincidence = True
+    assert_true(has_coincidence)
+    assert_true(coincidence.is_coincidence())
+
+
 def test_perron_order_is_exact_on_basic_elements() raises:
     var sigma = determinant_two_sigma()
     var m = Mat3(substitution_incidence(sigma))
@@ -417,6 +461,8 @@ def test_the_cube_image_specimen_reaches_a_half_coincidence_by_depth_17() raises
 
 
 def main() raises:
+    test_ternary_nonunit_good_exit_is_an_actual_labelled_overlap()
+    print("[PASS] test_ternary_nonunit_good_exit_is_an_actual_labelled_overlap")
     test_perron_order_is_exact_on_basic_elements()
     print("[PASS] test_perron_order_is_exact_on_basic_elements")
     test_canonical_seed_overlap_graph_is_productive()
@@ -447,7 +493,8 @@ def main() raises:
     print("[PASS] test_the_cube_image_specimen_has_a_productive_depth_19_overlap_graph")
     test_the_cube_image_specimen_reaches_a_half_coincidence_by_depth_17()
     print("[PASS] test_the_cube_image_specimen_reaches_a_half_coincidence_by_depth_17")
-    print("15 seed-patch-overlap Mojo tests passed.")
+    print("16 seed-patch-overlap Mojo tests passed.")
+    require_contract("for a->aaabcc, b->ab, c->a the seed overlap (a,a,e_b) has a nonzero self-loop and an offset-zero child reaching tile coincidence in one more step")
     require_claim("SwapOverlapFiniteness")
     require_claim("AlignedOverlapsAreStrongCoincidence")
     require_claim("BoundaryCoincidenceCriterion")
