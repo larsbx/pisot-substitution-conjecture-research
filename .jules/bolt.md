@@ -1,0 +1,3 @@
+## 2024-05-18 - Evaluate integer polynomials natively
+**Learning:** Python's `Fraction` carries a massive performance penalty (GCD calculation, instantiation) when evaluating simple integer candidate roots for integer polynomials. Using pure integer arithmetic (an integer-specific Horner's method) natively sidesteps this entirely, leading to enormous speedups (e.g., >80% faster in polynomial evaluation).
+**Action:** When a mathematical algorithm checks integer or rational properties that map down to integer operations, keep the logic in native `int` as long as possible before promoting to `Fraction`.

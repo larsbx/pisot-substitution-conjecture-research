@@ -363,10 +363,28 @@ def _has_rational_root(coeffs: Sequence[int]) -> bool:
     constant = coeffs[0]
     if constant == 0:
         return True  # zero is a root
-    for divisor in _divisors(abs(constant)):
-        for candidate in (divisor, -divisor):
-            if evaluate(coeffs, Fraction(candidate)) == 0:
+
+    n = degree(coeffs)
+
+    # Optimization: Evaluate integer polynomials using Horner method directly for ints!
+    # This avoids Fraction instantiation for each candidate.
+    def evaluate_int(x: int) -> int:
+        acc = 0
+        for c in reversed(coeffs[: n + 1]):
+            acc = acc * x + c
+        return acc
+
+    val = abs(constant)
+    d = 1
+    while d * d <= val:
+        if val % d == 0:
+            if evaluate_int(d) == 0 or evaluate_int(-d) == 0:
                 return True
+            d2 = val // d
+            if d != d2:
+                if evaluate_int(d2) == 0 or evaluate_int(-d2) == 0:
+                    return True
+        d += 1
     return False
 
 
