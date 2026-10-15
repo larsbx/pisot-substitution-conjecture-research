@@ -4,23 +4,25 @@ Date: 2026-10-11
 
 Status: research audit / salvage note.  This document records what should be kept from the latest PSC thread and what should not be promoted.  It is intentionally theorem-conservative: the thread produced useful proof coordinates and finite-certificate framing, but it did not close SCC Producer or the real-secondary seed-forcing theorem.
 
+> **2026-10-15 semantic correction:** The imbalance-only recurrence check behind the original “finite box-walk certificate” does not establish a matched-letter target or a realizable, composable path. Reverse reachability to the zero **vector** is insufficient, and equality of sampled edge sets at two depths does not prove closure. See [target-aware reachability and lifting audit](boxwalk-reachability-realizability-audit-2026-10-15.md). All apparent A2/Branch B equivalences below are a proposed program contingent on a proved path-lifting/quantifier interface, not a completed theorem.
+
 ## Executive summary
 
-The useful salvage is a sharpened finite-reachability formulation:
+The useful salvage is a candidate finite-reachability formulation, **not an established equivalence for the projected box graph**:
 
 ```text
 real-secondary seed forcing
-  = no closed length >= 2 block-child subsystem
-  = finite box-walk recurrence to a matched-letter origin.
+  [candidate interface] absence of a closed target-free block-child subsystem
+  [requires occurrence lifting] matched-letter target reachability.
 ```
 
 The correct proof object is not spectral contraction, not a one-step monovariant, and not a sampled closed-form box bound.  It is a finite transition graph on imbalance states, with a per-specimen certificate:
 
 1. the imbalance walk is confined to a finite box;
 2. deeper inflations add no new box-walk states/edges after saturation;
-3. every reachable nonzero box state reaches the matched-letter origin.
+3. every claimed reachability witness is a composable actual occurrence path to a matched-letter zero-return, with specified seed/state coverage.
 
-If those hold, the SCC emits a length-1 child and is not closed nonproductive.
+Only a closed, occurrence-realizable transition system with these stronger conditions can certify a length-1 child; a vector-only graph can supply exploratory evidence, not that conclusion.
 
 The major remaining global gap is an a-priori bound on the size/saturation depth of that finite box.  The thread produced several false candidate bounds and one robust next direction: treat the box-size problem as an extremal construction problem rather than a random-sampling curve fit.
 
@@ -56,19 +58,21 @@ Keep this identity.  It is the right coordinate system.
 
 The right conditional lemma is:
 
-> If a recurrent noncoincident SCC has a saturated finite imbalance transition graph and every reachable nonzero imbalance state can reach the matched-letter origin, then the SCC is productive.
+> **Corrected conditional formulation:** If a specified finite occurrence-aware transition system is proved closed and its transitions and paths lift to actual inflation/child occurrences, then a replayed finite path from the required seed/state to a cut with zero prefix imbalance **and equal next letters** certifies a single-tile coincidence child. To claim all-state productivity, provide the corresponding all-state coverage and link to the exact overlap/BPA semantics. Reverse BFS in a vector-only projection does not supply these hypotheses.
 
-This is the useful replacement for all failed monotonicity and contraction attempts.  Off-origin cycles are harmless if every such cycle retains an escape path to the origin.
+Off-origin cycles may coexist with an **existential** escape path. That does not mean every infinite walk is forced to escape. Unavoidable hitting, existential productivity, and coincidence density have different quantifiers.
 
 ### 3. Branch A / Branch B unification
 
-The real-secondary permutation-first-letter branch and the block-child branch are the same finite-reachability core:
+The real-secondary permutation-first-letter branch and the block-child branch suggest a **possible shared occurrence-level obstruction**:
 
 ```text
-A2: every recurrent NC SCC eventually seeds
-  <=> no length >= 2 closed block-child subsystem
-  <=> no off-origin trapped component in the box-walk graph.
+A2: required seeds/states eventually produce a matched child
+  [needs exact quantifier proof] no target-free closed block-child subsystem
+  [needs lifting] no target-free closed occurrence class in a box-walk model.
 ```
+
+These are not equivalent statements for the currently projected imbalance-vector graph without additional realization and coverage lemmas.
 
 A1, the BPA reach-to-seed statement inside an SCC, is a separate connectivity statement and should be tracked separately.
 
