@@ -36,7 +36,46 @@ No boundary-hitting theorem for those quadrants is claimed.
 4. Extend coverage to the remaining classes and then the standing universal
    target. Class-level closure alone does not establish general #139.
 
+The nearest boundary has a conjugate in `(-1,-1+1/d)` for every `d>=4`
+(§4e of the family note). A fixed contraction margin below one cannot
+cover it. Keep the parameter visible in the hitting proof; this does not
+rule out a uniform first-hit depth obtained by another mechanism.
+
 Human review remains pending and nonblocking throughout these proof steps.
+
+**Completed local rung (§4h of the family note):** on the minus `b=0`
+branch, the two support-change parents are seed-reachable for every `a>=0`;
+their prescribed children have three-step offset-zero paths for every
+`a>=0`, giving four-step paths from those parents when `a>=3`. The finite
+witness subgraph is not child-closed. The next rung still requires every
+reachable vertex, including all other outgoing children; these paths do
+not establish whole-line BH or a universal depth bound.
+
+**Complete minus-edge candidate (§4i):** a specialized exact sign reduction
+now constructs the whole graph uniformly for `a>=4` (145 vertices, 781
+directed edges, every half-depth at most four) and covers `a=0..3` by exact
+finite graphs. The independent integer oracle and full field-support
+cross-checks at `a=4,8` pass. At corrected branch commit `f6e1a5b`,
+[CI job 116624307426](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38793642799/job/116624307426)
+executed the boundary regression, both template regressions and both standalone
+certificate drivers successfully. All 75 Mojo test files and the execution-receipt
+coverage audit passed. The merge checkout `c175c60` has exactly the same tree
+as `f6e1a5b`; see the family note §4k for the constructor-domain audit and
+receipt provenance. Compose with Theorem E and the existing L/W reductions
+for scoped PDS/G1 after candidate acceptance; human review remains pending
+and nonblocking.
+
+**Complete plus-edge candidate (§4j):** the shared engine now also
+constructs the whole plus graph for `a>=7` (718 vertices, 4,326 edges,
+maximum half-depth six), with exact `a=0..6` coverage including the empty
+run at zero. The independent replay and full-support checks at `a=7,8`
+pass. The plus canonical regression and standalone
+`class_d_plus_boundary_certificate.mojo` driver both passed in the same job.
+Both `b=0` boundaries have complete scoped candidates with canonical execution
+evidence; theorem acceptance and the E/L/W composition still need a scoped
+claim update. These receipts alone do not promote theorem status. Continue
+the mathematical work on both **`b>0` interiors**; both entire quadrants and
+general PSC/G1 remain open.
 
 # Stable base — incidence rank, UD, and bounded discrepancy
 

@@ -667,9 +667,41 @@ For the next research cycle:
    D below `r = q - 1` using the complete two-quadrant parameter cover in
    `p1b-boundary-hitting-progress-2026-10-08.md` §4d: each branch has
    `a,b >= 0`, with `b` the exact Pisot-boundary margin and `a` growth along
-   that boundary. Certify a constant-graph core and all its edges, or use
+   that boundary. Equal vertex counts or even equal vertex sets do not
+   certify a constant graph: the minus-branch `a=2,3`, `b=0` controls
+   each have 145 vertices but different directed support (§4g).
+   The two support-change parents now have uniform seed paths, and their
+   specified children have three-step offset-zero paths (§4h); completing
+   that witness subgraph does not cover its other outgoing children.
+   Section 4i now provides a complete minus `b=0` closure candidate:
+   uniform child closure for `a>=4` (145 vertices, 781 directed edges,
+   maximum half-depth four), exact finite prefix `a=0..3`, and full
+   directed-support cross-checks at `a=4,8`. The independent integer oracle
+   passes. At corrected branch commit `f6e1a5b`,
+   [CI job 116624307426](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38793642799/job/116624307426)
+   passed all 75 Mojo test files, the execution-receipt coverage audit,
+   the historical occurrence regression and both standalone certificate drivers.
+   The tested merge checkout `c175c60` has the same tree as that branch commit.
+   Family note §4k records the preserved screen domains and receipt provenance.
+   After candidate acceptance, compose the existing Theorem E/L/W
+   reductions for scoped PDS/G1.
+   The general norm driver remains an alternative cross-check:
+   `mojo run -I . symbolic_line_certificate.mojo norm D 3 5 3 6 2 4`.
+   Section 4j also supplies the complete plus `b=0` candidate: uniform
+   `a>=7` graph (718 vertices, 4,326 edges, maximum half-depth six),
+   exact prefix `a=0..6`, and full-support checks at `a=7,8`.
+   Its canonical command is `mojo run -I . class_d_plus_boundary_certificate.mojo`.
+   The independent replay, both canonical regressions and both standalone
+   drivers pass. The computational execution gap is repaired; these receipts
+   alone do not promote theorem status. Complete the scoped mathematical
+   acceptance/composition and corresponding claim update separately.
+   Continue proof development on both **`b>0` interiors** without waiting
+   for human review. Boundary candidates do not cover either interior.
+   Certify a constant-graph core and all its edges, or use
    vertex families for the changing-graph fringe; the infinite `b=0` edge
-   must be covered. Then extend the wedge analysis to A/C, and treat class A's slope-one
+   must be covered. On that edge a contracting root lies in
+   `(-1,-1+1/d)` for `d>=4` (§4e), so do not assume a parameter-independent
+   contraction margin; keep `d` visible in vertex-family/hitting estimates. Then extend the wedge analysis to A/C, and treat class A's slope-one
    growing graphs by vertex families. The first class-level closure target is
    a uniform boundary-hitting depth `K` for the catch-up-free determinant-two
    class. Any extension beyond it still needs occurrence-compatible adelic

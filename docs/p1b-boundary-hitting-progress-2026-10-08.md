@@ -406,14 +406,564 @@ along the boundary. Any proposed finite partition must cover all `a,b>=0`,
 including the infinite `b=0` edge. A finite probe, or a core with uncovered
 edges, cannot establish that obligation.
 
+## 4e. The nearest Pisot boundary has no uniform contraction margin — 2026-10-14
+
+**Status:** exact negative result for one proposed proof ingredient,
+internally derived; human review pending. No boundary-hitting failure is
+asserted. This uses the polynomial and complete family of §4d, not a new
+spectral import or a floating-point experiment.
+
+On `b=0`, write `d=a+2` and retain `s=±1`. Then
+
+```text
+r = 2d - 2s - 2
+chi(X) = X^3 - (r+2)X^2 - 2dX - 2s
+chi(-1) = -1.
+```
+
+For every integer `d>=4`, the polynomial has a real conjugate `lambda_d`
+satisfying
+
+`-1 < lambda_d < -1 + 1/d`.
+
+*Proof.* Direct expansion at `X=-1+z` gives
+
+```text
+chi(-1+z) = -1 + (2r-2d+7)z - (r+5)z^2 + z^3.
+chi(-1+1/d) = 1 + (1-4s)/d - (3-2s)/d^2 + 1/d^3.
+```
+
+For `s=+1`, multiplying the latter by `d^3` gives
+`d^3-3d^2-d+1 = d^2(d-3)-d+1 > 0` for `d>=4`.
+For `s=-1`, it gives `d^3+5d^2-5d+1 > 0` for `d>=4`.
+The intermediate-value theorem, together with `chi(-1)=-1`, supplies a
+root in the stated interval. Section 4d proves that every member is PIP;
+this negative root is therefore a contracting conjugate rather than the
+Perron root. In fact it is the only root in this interval: on
+`-1 <= X <= -1+1/d` the derivative is positive, since
+`chi'(X)=3X^2-2(r+2)X-2d >= 2(r+2)(1-1/d)-2d`,
+which is positive for both branches when `d>=4`.
+
+Consequently `|lambda_d| > 1-1/d`, so **there is no constant `mu<1`
+bounding all contracting conjugates on either residual quadrant**.
+For any proposed `mu<1`, choose an integer `d>=4` with `d>1/(1-mu)`;
+the corresponding member on `b=0` violates that bound.
+
+This also gives
+
+`1/(1-|lambda_d|) > d`.
+
+Thus a geometric-series estimate containing this denominator has no
+parameter-independent denominator bound on this edge. This statement
+does not assert divergence of a full box radius: its numerator and
+trace-dual factors still have to be analyzed, and cancellation is possible.
+It also does not prove unbounded first-hit depth, unbounded seed-graph
+size, failure of a finite symbolic partition, or failure of BH.
+
+**Stop/go refinement.** Retire a fixed global conjugate-contraction margin
+as the reason the residual family must hit. Continue the occurrence-compatible
+vertex-family or exact prefix-hitting argument with `d` visible in the
+estimates. A uniform hitting-depth theorem may still hold; it cannot be
+inferred solely from a contraction constant that is uniform on this family.
+The explicit witnesses are the two `b=0`, `d>=4` affine families of §4d.
+
+## 4f. Bounded boundary-edge replay — 2026-10-14
+
+**Stop/go:** proceed with a parameter wrapper around the existing exact
+all-swap-seed graph and first-half-coincidence routines. The literature gate
+of §4b and the line-certificate note governs this same overlap object and
+target; no new invariant, spectral import or universal hitting theorem is
+introduced. The negative control is a capped graph, which must refuse a
+verdict. The contraction result of §4e forbids interpreting a small tested
+depth as a proof based on a uniform contraction margin.
+
+The canonical replay is `kernel/class_d_boundary_probe.mojo`, backed by
+`psc.class_d_boundary` and `kernel/tests/test_class_d_boundary.mojo`. It
+checks exactly eight members, `s=±1`, `a=0..3`, `b=0`, with a 20,000-vertex
+cap per graph. Parameter construction rejects `a` outside `0..8`; that
+resource guard is not a mathematical exclusion. The cap and out-of-budget
+parameter refusals are regressions. No random generator or saturation test
+is involved.
+
+The independent oracle uses the existing rational-field implementation
+`reference/psc_research/overlap_graph.py` through
+`oracles/python/class_d_boundary_probe.py`. Its actual local receipt is
+`evidence/class-d-boundary-2026-10-14/oracle.json`; source digests, replay
+command and scope are recorded in the same sealed evidence packet.
+**Local Mojo execution is not claimed:** the pinned Mojo environment is
+unavailable in this checkout. The canonical regression needs a successful CI
+receipt before it earns execution credit. The Python receipt is independent
+calibration only; it is not promoted to canonical theorem evidence.
+
+These rows test graph shape and first-half-coincidence depth across the
+boundary, including `d=4,5` where §4e applies. They do not exhaust either
+family, produce a uniform bound, prove the residual quadrant, or establish
+G1/PSC. A change in graph size must be retained rather than normalized away
+as an assumed constant-graph core. The next proof step remains an exact
+occurrence-compatible description covering all boundary parameters.
+
+## 4g. Equal vertex counts do not certify a constant graph — 2026-10-14
+
+**Status:** bounded negative control, independently replayed by the Python
+field oracle; canonical Mojo checks are written but await execution. Same
+object, target and stop/go gate as §4f. No family-wide conclusion.
+
+On the minus branch at `b=0`, the members `a=2` and `a=3` each have
+145 vertices. Exact conversion of every field offset back to its integral
+Parikh coordinates shows that their **labelled vertex sets are equal**.
+Their directed supports are nevertheless different. In canonical letter
+order `(x,c,y)=(0,1,2)`, the following edges are absent at `a=2` and present
+at `a=3`:
+
+| parent `(top,bottom,w)` | child `(top,bottom,w)` |
+| --- | --- |
+| `(x,x,(0,0,1))` | `(y,y,(0,2,-3))` |
+| `(c,x,(-1,1,1))` | `(y,y,(1,1,-3))` |
+
+This difference remains after discarding parallel-edge multiplicities.
+Both endpoints exist in both graphs; the negative is a transition change,
+not relabelling or a different vertex total. The oracle solves the full
+three-coordinate length-basis system over rationals and checks the inverse
+by reconstruction. The canonical witness query uses the existing exact
+`length_matrix`/`offset_vector` inverse and uncapped graph adjacency.
+
+Replay: `python3 oracles/python/class_d_boundary_probe.py --support`.
+Receipt and source digests: `evidence/class-d-support-change-2026-10-14/`.
+The original eight-member packet of §4f is retained byte-for-byte; this new
+packet records the added support comparison and revised source bytes.
+
+### Exact occurrence threshold for these two transitions
+
+The finite difference has an elementary uniform explanation. On the minus
+branch put `p=3a+5`, `q=3a+6`, `r=2a+4`, `d=a+2`. Normalize `ell_y=1`.
+The Perron relations give
+
+`ell_c=(beta-r)/2`, `ell_x=ell_c-1/beta`.
+
+Here `r+2 < beta < r+3`: for
+`chi(X)=X^3-(r+2)X^2-2dX+2`, evaluation at `r+2` is negative,
+and evaluation at `r+3` is `3(r+3)+2>0`. The PIP result of §4d
+identifies the intervening root as beta. Put `epsilon=beta-r-2`, so
+`0<epsilon<1` and the root equation gives
+`beta*epsilon=2d-2/beta>2`.
+
+Consequently both displayed parents and children are genuine interior
+overlaps for every `a>=0`. The parent offsets are `1` and `1+1/beta`,
+less than `ell_x` and `ell_c` respectively because
+`epsilon/2>1/beta`. The child offsets are `epsilon-1` and
+`epsilon-1-1/beta`; both lie strictly between `-1` and `0`, since
+`epsilon>1/beta`.
+
+Number a y-occurrence by its zero-based index in its whole image. Its
+indices range from `1` to the run length. For the first transition, select
+indices `i` in the top x-image and `j` in the bottom x-image. Its integer
+offset equation is
+
+```text
+M(0,0,1) + prefix_x(j) - prefix_x(i) = (0,2,r+j-i).
+```
+
+The target `(0,2,-3)` therefore requires `i-j=r+3`. Such occurrences
+exist exactly when `p-1>=r+3`, equivalently `a>=3`. A uniform witness is
+`j=1`, `i=r+4=2a+8`.
+
+For the second transition the top parent is c and the bottom parent is x:
+
+```text
+M(-1,1,1) + prefix_x(j) - prefix_c(i) = (1,1,r+1+j-i).
+```
+
+Its target `(1,1,-3)` requires `i-j=r+4`. Such occurrences exist
+exactly when `q-1>=r+4`, again `a>=3`. A witness is
+`j=1`, `i=r+5=2a+9`. All y-children in these parent images lie in their
+displayed runs, so these inequalities prove necessity as well as sufficiency.
+No division by a potentially zero quantity occurs: beta is greater than two.
+
+Thus **both local transitions occur iff `a>=3`**, on the entire minus
+boundary family. This is an occurrence-level threshold, not an assertion
+that their parents are seed-reachable for all parameters. It proves neither
+a global graph template nor boundary hitting. It does provide two exact
+parameter inequalities that a complete template proof must respect. Human
+review of this local derivation remains pending and nonblocking.
+
+**Consequence for the next proof step.** Do not fit a uniform graph from
+the repeated number 145, or even from equality of the vertex sets. A
+constant-core proof must certify the actual child-support inequalities
+uniformly over a stated parameter interval and account for its edges.
+The two finite graphs still reach offset zero by depth four; their support
+difference is not a BH failure and proves no obstruction to eventual
+stabilization or to a uniform depth theorem.
+
+## 4h. The transition witnesses have uniform seed and hitting paths — 2026-10-14
+
+**Status:** exact occurrence-level derivation, human review pending. This
+closes the seed-reachability qualification for the two parents in §4g; it
+does not describe the complete seed-reachable graph.
+
+**Targeted stop/go check.** The target is two prescribed seed paths and a
+shared three-step offset-zero path, not a new overlap criterion. Rechecked
+[Barge, arXiv:1505.04408v2](https://arxiv.org/abs/1505.04408v2) (the strongest
+nearby non-unit family theorem requires a beta-substitution),
+[Berthé–Bourdon–Jolivet–Siegel, arXiv:1401.0704v2](https://arxiv.org/abs/1401.0704v2)
+(finite generation graphs for Brun/Jacobi–Perron product families), and
+[Akiyama–Gähler–Lee, DMTCS 17(1)](https://dmtcs.episciences.org/en/articles/2089)
+(finite overlap computation, including trace at most two). None supplies
+the required family identification here: our determinant is -2 and trace
+is `2a+6`. The standard child-prefix recurrence transfers; no unimodular
+inverse or beta-language hypothesis is imported. The negative control is
+§4g's support change, and an occurrence index outside its run must be
+rejected. **Proceed with explicit paths only**, under the existing §4b/§4f
+gate; graph exhaustion remains a separate obligation.
+
+Retain the minus branch `p=3a+5`, `q=3a+6`, `r=2a+4`, `a>=0`.
+Write states as `(top,bottom,w)` and use zero-based whole-image occurrence
+indices `(i,j)`, top first. Define
+
+| name | state |
+| --- | --- |
+| S | `(x,c,(0,0,0))` |
+| P | `(x,x,(0,0,1))` |
+| Q | `(c,x,(-1,1,1))` |
+| U | `(y,y,(0,2,-3))` |
+| V | `(y,y,(1,1,-3))` |
+| R | `(c,y,(2,-3,1))` |
+| T | `(y,c,(-1,1,0))` |
+| Z | `(c,y,(0,0,0))` |
+
+**Seed reachability.** S is the leftmost overlap of the swap patch
+`(xc,cx)`. P is the overlap between its two x-tiles in `(xy,yx)`, since
+the bottom x starts at `ell_y=1<ell_x`. Choosing the last occurrences
+in S, `(i,j)=(p+1,q+1)`, gives Q: the prefix difference is
+`(e_c+q e_y)-(e_x+p e_y)=-e_x+e_c+e_y`. Section 4g proves P and Q
+are interior overlaps for every `a>=0`. Hence **both parents are
+seed-reachable throughout the entire minus boundary family**, without
+using a finite graph census.
+
+**Hitting paths.** Each row below specifies an actual child occurrence.
+All rows except the two marked ones hold for every `a>=0`.
+
+| transition | top index i | bottom index j | parameter condition |
+| --- | --- | --- | --- |
+| S to Q | `p+1` | `q+1` | `a>=0` |
+| P to U | `r+4` | `1` | `a>=3` (exact threshold, §4g) |
+| Q to V | `r+5` | `1` | `a>=3` (exact threshold, §4g) |
+| U to R | `0` | `2` | `a>=0` |
+| V to R | `0` | `3` | `a>=0` |
+| R to T | `a+1` | `r+1` | `a>=0` |
+| T to Z | `r+1` | `r` | `a>=0` |
+
+Here `i=0` and `i=r+1` in a y-image select its first and last c,
+respectively. The remaining y-occurrences lie in their runs: `r>=4`,
+`1<=a+1<=q`, and `1<=r<=q`. The two exceptional rows need
+`r+4<=p` and `r+5<=q`, respectively, both equivalent to `a>=3`.
+
+The four new affine identities, using `w'=Mw+prefix_bottom(j)-prefix_top(i)`,
+are short enough to check directly:
+
+```text
+M(0,2,-3) = (2,-4,0);   forcing U to R = (0,1,1).
+M(1,1,-3) = (2,-4,-1);  forcing V to R = (0,1,2).
+M(2,-3,1) = (-1,1,-a-4); forcing R to T = (0,0,a+4).
+M(-1,1,0) = (0,0,1);   forcing T to Z = (0,0,-1).
+```
+
+To check geometry, normalize `ell_y=1` and use §4g's
+`ell_c=1+epsilon/2`, `ell_x=ell_c-1/beta`, `0<epsilon<1`,
+`beta>r+2>=6`, `beta*epsilon>2`. The new state R has displacement
+`2ell_x-3ell_c+1=-epsilon/2-2/beta`, strictly between `-1` and `0`
+because `epsilon/2+2/beta<1/2+1/3<1`. State T has displacement
+`1/beta`, strictly between `0` and `ell_y`. Z has displacement zero.
+Thus all three are interior overlaps; U and V were checked in §4g.
+Every intermediate occurrence is consequently geometrically admissible,
+and composition uses exactly the displayed child letters.
+
+It follows that U and V have offset-zero descendants in **at most three
+steps for every `a>=0`**. For every `a>=3`, P and Q have such descendants
+in **at most four steps**, and the two threshold transitions are edges of
+the actual seed-reachable graph. Z is an offset-zero c/y pair, not yet a
+same-letter coincidence; the distinction is required for the BH-to-PDS
+ladder. The construction is a finite witness subgraph, not child-closed:
+other outgoing children still need coverage. No bound for every reachable
+vertex, whole-line BH, G1 or PDS follows from these paths alone.
+
+**Replay boundary.** The canonical ordered-occurrence kernel is reused by
+`kernel/tests/test_class_d_boundary.mojo` to check the prescribed indices,
+states and seed membership at `a=0..8`, including failure of both threshold
+edges below three and a perturbed-index negative control. Independent
+Python tests use the existing rational-field oracle. Those finite replays
+guard the formulas; the universal quantifier above is justified by the
+displayed identities and inequalities. The successful canonical execution
+receipts are now recorded in §4k; a written test alone earns no execution credit.
+
+## 4i. Complete minus-boundary template candidate — 2026-10-14
+
+**Status: complete scoped closure candidate with canonical execution evidence.**
+The exact integer Python oracle completes the construction below; §4k records
+the successful canonical Mojo regression and standalone driver at the corrected
+commit. Local Mojo execution is not claimed. No ledger promotion is made.
+The target is the complete all-swap
+seed-reachable graph on `p=3a+5, q=3a+6, r=2a+4`, above an explicit
+integer threshold, plus its finite prefix. The three primary sources
+rechecked in §4h and the symbolic-graph soundness argument of
+`p1b-symbolic-line-2026-10-07.md` §2 govern this extension. The standard
+finite-state method transfers, while a beta-substitution identification,
+unimodular inverse and trace-at-most-two census do not. The negative
+controls remain unequal support at `a=2,3`, out-of-range occurrences,
+and any capped or undecided closure. **Proceed with a narrowed, exact
+specialization of the existing symbolic-graph method.** A finite graph
+sample is only a cross-check, and no new theorem status is assigned here.
+
+The cubic equation and §4g's normalization eliminate `a` from the tile
+length ratios themselves. With `D=2 beta (beta+1)>0`,
+
+```text
+ell_x = (3 beta^2 - 2 beta - 4)/D,
+ell_c = (3 beta^2 - 2)/D,
+ell_y = (2 beta^2 + 2 beta)/D = 1.
+```
+
+Indeed `epsilon=beta-r-2` obeys
+`epsilon*(beta+1)=beta-2-2/beta`; substitution in
+`ell_c=1+epsilon/2`, `ell_x=ell_c-1/beta` gives the formulas.
+Consequently the sign of an integral offset `<ell,w>` is the sign of
+
+`G_w(beta)=(3w_x+3w_c+2w_y) beta^2+(-2w_x+2w_y) beta-4w_x-2w_c`.
+
+For `a>=A`, beta is strictly greater than `2A+6`. A nonzero polynomial
+whose coefficients after `beta=(2A+6)+z` have one weak sign has that
+strict sign for every `z>0`. Mixed coefficients refuse that decision.
+The interior predicate uses `G_(w+e_bottom)>0` and
+`G_(e_top-w)>0`; an identically zero polynomial is a boundary contact.
+
+All tile lengths lie in `[1,3/2)`. Thus every interior child with fixed
+first two coordinates `u,v` has
+`|w_y| < (3/2)(1+|u|+|v|)`. The larger integer interval
+`[-B,B]`, `B=2+2(|u|+|v|)`, is a finite exhaustive candidate set,
+not a sampled radius. For each of the nine first/run/last segment pairs,
+the third coordinate before the run-index difference is affine in `a`.
+Its equality with a candidate `w_y` gives an affine difference `m(a)`.
+Actual occurrences exist exactly when
+`-(n_top-1)<=m<=n_bottom-1`, omitting either contribution when that
+segment is not a run. Those two affine inequalities must hold or fail
+uniformly for `a>=A`; a decision that changes later is refused.
+
+### Soundness and the complete candidate
+
+For each segment pair, let `m=k_bottom-k_top`, with a non-run position
+fixed at zero. Every integer in the displayed difference interval is
+realized: if both segments are runs, use
+`k_top=max(0,-m)`, `k_bottom=max(0,m)`; the one-run cases are the same
+formula with the other index zero. Therefore the range test proves actual
+occurrence existence, not just an equality of free Parikh vectors.
+
+The seed predicates are exactly those of the three swap patches. For
+each accepted vertex, the nine segment pairs exhaust both substituted
+images. The length bound exhausts all possible integral third coordinates;
+the sign and range certificates decide each candidate uniformly. Induction
+through the queue proves both directions: every generated vertex/edge is
+realized for each integer `a>=A`, and every seed-reachable vertex/edge is
+generated. A rejected sign or budget cannot supply a partial certificate.
+Coincident states are terminal, as in the existing seed-graph convention.
+
+At the fixed threshold **A=4**, the independent exact-integer replay
+finishes with the following complete symbolic object:
+
+| quantity | result |
+| --- | --- |
+| parameter range | every integer `a>=4`, `s=-1`, `b=0` |
+| labelled vertices | 145 |
+| simple directed edges | 781 |
+| exact minimum half-depth 0,1,2,3,4 | 6,15,50,72,2 vertices |
+| target-free vertices | 0 |
+| finite prefix `a=0,1,2,3` | 148,145,145,145 vertices; each maximum half-depth 4 |
+| full labelled directed-support cross-checks | exact field graphs at `a=4,8` agree |
+
+This is not a fit to the cross-check parameters. All decisions in the
+tail use coefficient signs at `beta>14` and affine inequalities for
+`a>=4`. The finite prefix is separately computed, uncapped. Its endpoint
+`a=3` and the tail's start `a=4` leave no uncovered parameter. The sign
+method refuses at the proposed floor three; this refusal does not imply
+the graph actually changes there, and the exact prefix handles that member.
+
+The sealed packet `evidence/class-d-minus-template-2026-10-14/` contains
+the entire labelled graph, seed indices, adjacency and minimum half-depths,
+as well as the four finite-prefix rows. A rank-zero row is exactly an
+offset-zero vertex. Every positive-rank row has an actual outgoing edge to
+a row of rank one lower; the independent replay also checks that every
+listed vertex is reachable from the seeds. This finite decreasing-rank
+certificate accounts for every vertex, unlike §4h's witness subgraph.
+
+Canonical code: `kernel/psc/class_d_boundary_template.mojo`; driver:
+`cd kernel && mojo run -I . class_d_boundary_certificate.mojo`.
+It uses compact integral vertex keys, the exact sign/range predicates,
+exhaustive child closure, reverse breadth-first hitting depths, and the
+existing screened field graph for the finite prefix and cross-checks.
+Explicit coordinate/threshold/state guards keep intermediate integers
+below 150 million and refuse larger requests; they do not truncate a graph.
+The tests reject mixed signs, a future affine sign change, an exhausted
+cap, the unsupported lower floor, and deletion of an edge while retaining
+all vertices. Full directed support is compared, not just vertex sets.
+The independent oracle is `oracles/python/class_d_boundary_template.py`.
+Both earlier evidence packets remain unchanged.
+
+**Acceptance and composition.** The successful canonical run in §4k matches
+the packet and regression contract supporting the scoped assertion:
+every all-swap-seed-reachable overlap on the entire minus `b=0` line has
+an offset-zero descendant within four steps. The displayed algebra and
+finite-certificate interpretation are internally derived and unreviewed.
+Theorem E then supplies the aligned-coincidence half on this class;
+the same existing reductions as Theorems L/W assemble PDS and G1 for this
+line. Those consequences remain conditional here on accepting the complete
+candidate; they are not newly promoted ledger claims. Human review is
+nonblocking. Section 4j supplies the subsequent plus `b=0` candidate;
+both two-parameter interiors `b>0` and the other classes remain open.
+
+## 4j. Complete plus-boundary template candidate — 2026-10-14
+
+**Status:** complete scoped candidate, independent exact-integer replay
+and canonical Mojo execution complete (see §4k). No theorem status promotion.
+
+Continue the same exact symbolic-graph construction on `s=+1,b=0`,
+`p=3a+3,q=3a+2,r=2a`. The primary-source gate of §4h/§4i applies to
+the same overlap object and class, with no new spectral import. Proceed
+with complete child closure and exact parameter inequalities; refuse
+undecided signs and exhausted resources. The plus-branch finite graphs
+have different sizes, so a minus-branch table cannot be reused as a proof.
+The zero-length y-run at `a=0` belongs in a separately checked finite
+prefix, not the positive-run tail argument.
+
+On this branch, with `D=2 beta(beta+1)>0`, the same Perron equations give
+`ell_x=(3 beta^2+6 beta+4)/D`,
+`ell_c=(3 beta^2+4 beta+2)/D`, and `ell_y=1`.
+Thus `G_w` has coefficients
+`(3w_x+3w_c+2w_y, 6w_x+4w_c+2w_y, 4w_x+2w_c)`
+in descending powers of beta. Here `2a+3<beta<2a+4`.
+For a tail starting at `A>=1`, all lengths lie in `[1,2)`, so the
+same exhaustive integer bound `B=2+2(|u|+|v|)` applies. Certify signs
+after shifting `beta=(2A+3)+z`, `z>0`; do not substitute the minus
+branch's length polynomial or root bound.
+
+The root bounds are exact: for
+`chi(X)=X^3-(r+2)X^2-(r+4)X-2`,
+`chi(r+3)=-(r+3)-2<0` and `chi(r+4)=(r+4)^2-2>0`.
+The PIP result identifies the intervening root as beta. On `a>=1`,
+beta is greater than five; `ell_x<2` is equivalent to
+`beta^2-2 beta-4>0`, while `ell_x>ell_c>1`. Hence an interior child
+has `|w_y|<2(1+|u|+|v|)`, establishing the claimed exhaustive bound.
+The induction and actual run-index construction in §4i apply unchanged.
+
+At **A=7**, all geometry and occurrence decisions certify uniformly:
+
+| quantity | result |
+| --- | --- |
+| parameter range | every integer `a>=7`, `s=+1`, `b=0` |
+| labelled vertices | 718 |
+| simple directed edges | 4,326 |
+| minimum half-depth populations at 0,1,2,3,4,5,6 | 6,27,102,243,196,136,8 |
+| target-free vertices | 0 |
+| finite prefix `a=0..6`, vertex counts | 1026,977,887,868,746,726,718 |
+| finite prefix maximum half-depth | 6 for every member, uncapped |
+| full labelled directed-support cross-checks | exact field graphs at `a=7,8` agree |
+
+Thus every parameter is accounted for in the **candidate**: the exact
+finite prefix ends at six, and the uniform tail starts at seven. The
+smaller proposed floor six is refused by an occurrence inequality that
+changes later. This is not a graph-change theorem; it is a limit of that
+uniform decision partition. The empty y-run at zero is checked by the
+exact finite graph, and is explicitly refused as a positive-run tail.
+
+Both branches now use `kernel/psc/class_d_boundary_template.mojo`, with
+branch-specific length coefficients, incidence constants and root bounds.
+The default minus branch still reproduces its sealed 145/781 table.
+The plus driver is
+`cd kernel && mojo run -I . class_d_plus_boundary_certificate.mojo`,
+with `kernel/tests/test_class_d_plus_template.mojo` guarding the contract.
+The oracle command is
+`python3 oracles/python/class_d_boundary_template.py --plus`.
+Both branches compare complete labelled directed support. The sign of
+`ell_x-ell_c=s/beta` is a negative control for accidentally interchanging
+branches; other controls cover a lowered threshold, future range change,
+state cap, and deleted edge with unchanged vertices.
+
+The sealed `evidence/class-d-plus-template-2026-10-14/` packet contains
+the complete graph and rank certificate, finite-prefix rows and frozen
+source bytes. All three earlier evidence packets remain byte-for-byte
+unchanged. Their source versions remain historical: the minus packet's
+13 pinned sources are preserved separately in
+`archive/2026-10-14/class-d-minus-template-sources/`, recovered exactly
+from commit `38b87af`. Source-hash checks use that snapshot while the
+current shared engine must still replay the original graph. This avoids
+treating an old experiment's source digests as a prohibition on later work.
+
+After scoped mathematical acceptance, the existing Theorem E/L/W
+composition would give scoped PDS and G1 on both entire `b=0` lines,
+with half-depth bounds four (minus) and six (plus). No such promotion is
+made here solely from the canonical receipts in §4k. Human review remains pending
+and nonblocking; proof development continues on **both `b>0` interiors**.
+Those interiors and general class-D/PSC/G1 closure remain open.
+
+## 4k. Canonical execution and screen-domain audit — 2026-10-15
+
+The historical occurrence regression at `a=0..8` does not require widening
+the legacy matrix-level PIP predicate. `build_perron_field3` still refuses
+non-erasing image lengths above six, its audited fixed-width domain.
+The existing `build_seed_overlap_tables_screened` instead checks Boolean-support
+primitivity, cubic irreducibility by exact rational-root tests over unbounded
+rationals, and the Pisot property by exact Sturm/root-location tests. It
+refuses matrix entries above 4096; the characteristic-polynomial intermediates
+are bounded by `6 * 4096^3 < 2^39`, and downstream field arithmetic is checked.
+For both boundary families at `0<=a<=8`, every incidence entry is at most 30
+and every image length is at most 32. Thus these tests lie within the existing
+screen's justified domain. No family-membership assertion substitutes for a
+PIP decision, and the infinite-tail certificate is not inferred from this
+finite screen.
+
+Commit `f6e1a5b239d1f485b94960da07ddea44924379e3` routes both bounded
+graph/support probes through that constructor. The historical occurrence
+test already used it. The added regression compares tile lengths with the
+legacy constructor on the shared domain and confirms that the legacy
+constructor still rejects the plus `a=1` member with image length eight.
+All occurrence indices, the perturbed-index countercontrol, the two
+equal-vertex/different-edge witnesses, parameter limits and cap refusals remain.
+
+[PSC research checks, Mojo job 116624307426](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38793642799/job/116624307426)
+checked out merge commit `c175c600f380fbc0ed880a5db0de72bdb1b5e4c7`.
+Its tree and the corrected branch tree are both
+`c22a6b3a84e466998d40b800af2c8177fd70babc`.
+The log records:
+
+- 19:28:17 UTC: all three boundary contracts, including both formerly
+  missing bounded-replay and `a=0..8` occurrence receipts, were emitted.
+- 19:28:28 and 19:28:34 UTC: the minus and plus standalone drivers reported
+  complete line certificates with `145/781/4` and `718/4326/6`
+  vertices/edges/maximum half-depth, respectively.
+- 19:29:49–19:30:02 UTC: the full suite emitted the historical boundary
+  receipts again and both complete-template regression receipts.
+- 19:43:58 UTC: all 75 Mojo test files passed and the receipt-based coverage
+  audit passed. `kernel/run_tests.sh` rewrites its receipt file from empty
+  and only collects declarations from successful tests.
+
+The [polynomial-kernel workflow](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38793642958)
+also passed its complete verification-gates step at this tree. Its TLA+/Lean
+substeps reported unavailable toolchains; the separate PSC research-checks
+TLA+ and Lean jobs passed. This records actual execution, not a claim that
+all workflows or later commits inherit a green status. Subsequent head commits
+must pass their own gates before integration. The sealed historical packets
+are unchanged. Both boundary claims remain scoped candidates pending their
+mathematical acceptance/composition update; neither interior nor general
+PSC/G1 is promoted.
+
 ## 5. Next, in order
 
-1. **The rest of class D.** Below `r = q − 1`, each branch has a second
-   constant-graph cone (grid data, §4b) and then a fringe along the Pisot
-   boundary `f(−1) = 0`, where the graphs keep changing, like class B at
-   slope 3. The second cone is the next wedge. The fringe needs either
-   vertex families (item 3) or a proof that its graphs come from finitely
-   many patterns.
+1. **The two residual interiors of class D.** Sections 4i/4j give complete
+   candidates for both `b=0` boundaries with canonical receipts in §4k;
+   complete their scoped acceptance/composition while continuing the proof on
+   `a>=0,b>=1`. Below `r=q-1`, the second
+   constant-graph cones suggested in §4b need uniform sign and occurrence
+   certificates, together with all regions outside those cones. Use the
+   complete quadrant coordinates of §4d; boundary coverage does not cover
+   an interior. Changing graphs require vertex families (item 3) or a
+   certified finite partition, rather than extrapolation from repeated sizes.
 2. **Wedges of classes A and C.** Class B is covered below slope `5/2` by
    Theorem C (`p1b-symbolic-cone-2026-10-08.md`). Class C's lines
    `p = q + d`, `r = q − d ± 1` form a two-parameter family in `(q, d)`, and

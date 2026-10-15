@@ -1663,3 +1663,164 @@ claim statuses or named Lean proofs. Evidence:
 `tests/test_defect_intertwiner.py`, `tests/test_boxwalk_radius_probe_oracle.py`.
 
 2026-10-15 — Nakaishi-to-PSC realized-ancestry shortcut refuted in a seed-patch overlap (stronger than the previous SFT-only negative control). For sigma(a)=aaab, sigma(b)=ab, beta=2+sqrt(2), lengths ell=(1,sqrt(2)-1), the initial ab/ba swapped patches contain an interior (a,a,e_b) overlap S. The ordered child pair (top second a, bottom first a) maps S to itself exactly because M e_b-e_a=e_b, so it is a realizable recurrent nonzero-offset path of arbitrary duration. Along r repetitions W_r=sum_(k<r) M^k e_a=(M^r-I)e_b and W_r is outside M^r Z^2 since e_b is outside M Z^2 by parity. Yet S is productive: top third a / bottom first a maps it to T=(a,a,-e_a+e_b), and top first a / bottom third a maps T to coincidence (a,a,0); all overlap interiors are exact from 0<sqrt(2)-1<1. This *does not* exhibit a closed bad SCC or refute PSC. A proof must use the all-children, child-closed nonproductive hypothesis (and the exact orientation/offset) rather than realization plus an arbitrarily chosen recurrent path. Existing M-adic valuation-ascent failures and affine-pump negative controls remain in force; this one specifically audits the Nakaishi realization-transfer shortcut. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md (2026-10-15 realized loop); docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md negative control 6; docs/research-roadmap-2026-09-21.md live P1b boundary.
+
+2026-10-14 — Retire a uniform contracting-conjugate margin as a proof
+ingredient for the whole residual class-D family: on either `b=0` branch,
+for every `d>=4`, a conjugate lies in `(-1,-1+1/d)`, hence no single
+`mu<1` bounds them all and `1/(1-|lambda|)>d`. This is an exact symbolic
+negative result, not a BH failure or a proof of unbounded hitting depth,
+graph size or box radius. Continue parameter-aware occurrence hitting;
+evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md` §4e.
+
+2026-10-14 — PR #263 conflict reconciliation: retain current main’s complete
+append-only ledger, including both Nakaishi follow-ups, then append the
+class-D contraction finding. Regenerate the proof bank after integrating
+main; no mathematical status or proof dependency changes. Evidence:
+`docs/p1b-boundary-hitting-progress-2026-10-08.md` §4e and PR #263.
+
+2026-10-14 — Add bounded all-seed boundary-edge replay for class D:
+`s=±1`, `a=0..3`, `b=0`, capped at 20,000 vertices per graph, using the
+existing exact graph/half-coincidence contracts. Canonical Mojo driver and
+regressions are present but unexecuted locally; the separately written
+Python field oracle supplies only bounded calibration. No uniform hitting
+depth, constant graph or family exhaustion is inferred. Evidence:
+`docs/p1b-boundary-hitting-progress-2026-10-08.md` §4f,
+`evidence/class-d-boundary-2026-10-14/`, and
+`kernel/tests/test_class_d_boundary.mojo`.
+
+2026-10-14 — Countercalibration for a constant boundary graph inferred from
+145 vertices: on class D's minus branch `b=0`, `a=2` and `a=3` have equal
+labelled vertex sets but different directed support (two explicit edge
+witnesses, after ignoring multiplicity). Both still hit by depth four.
+This retires count/vertex-set equality as a certificate of graph equality,
+not eventual stabilization or uniform hitting. Python exact replay executed;
+Mojo witness checks remain unexecuted locally. Evidence:
+`docs/p1b-boundary-hitting-progress-2026-10-08.md` §4g;
+`evidence/class-d-support-change-2026-10-14/`.
+
+2026-10-14 — Exact local refinement of the class-D support countercontrol:
+on the entire minus `b=0` family, the two displayed y/y transitions exist
+iff `a>=3`. Ordered prefix offsets force `i-j=r+3` and `i-j=r+4`; the
+run limits make both thresholds exactly three. Explicit witnesses are
+`(i,j)=(2a+8,1)` and `(2a+9,1)`. Positive Perron-length inequalities
+verify both endpoints as interior overlaps for all `a>=0`. This is a
+uniform local occurrence statement, not uniform seed reachability or BH.
+Evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md` §4g,
+'Exact occurrence threshold for these two transitions'.
+
+2026-10-14 — Close the local seed-realization gap in the class-D minus
+boundary support witnesses: P=(x,x,e_y) is a swap-(xy,yx) seed and
+Q=(c,x,-e_x+e_c+e_y) is one last/last child of the swap-(xc,cx) zero-offset
+seed, for every a>=0. Both prescribed y/y children have a common
+three-step offset-zero continuation for every a>=0; the threshold edges
+give four-step hitting paths from P,Q for a>=3. The terminal c/y pair has
+offset zero but is not a coincidence. The witness subgraph is not
+child-closed; all other reachable vertices remain an open coverage task.
+Exact identities and interior/run inequalities, refreshed three-source
+stop/go check, and bounded canonical/independent regressions:
+docs/p1b-boundary-hitting-progress-2026-10-08.md section 4h,
+kernel/tests/test_class_d_boundary.mojo, tests/test_class_d_boundary_probe.py.
+Mojo execution remains uncredited pending a successful receipt.
+
+2026-10-14 — Reconcile PR #263 again after main advanced to f87d005:
+preserve main's Nakaishi reverse-address/ non-unit exact-diagonal finding
+and all previous append-only entries, then append the boundary work.
+No history rewrite, archived packet replacement or universal claim promotion.
+
+2026-10-14 — Complete scoped candidate for class D's minus b=0 line:
+eliminating the parameter from the normalized tile lengths gives quadratic
+integer sign predicates in beta. The exhaustive nine-segment child closure
+certifies a constant 145-vertex, 781-edge graph for all integer a>=4, with
+half-depth distribution 6,15,50,72,2 at depths 0..4. Exact uncapped graphs
+cover a=0..3, each at maximum depth four; full directed support (not merely
+vertices) matches the independent field graphs at a=4,8. The lowered sign
+floor a=3 is undecided, not a mathematical graph-change verdict. Canonical
+Mojo implementation/driver/regression are present but unexecuted locally;
+the exact integer Python replay is a separate oracle, so the candidate is
+not promoted to a repository theorem. A deliberately deleted edge with the
+same vertex set must fail the support cross-check. Existing evidence packets
+remain unchanged. Evidence: docs/p1b-boundary-hitting-progress-2026-10-08.md
+section 4i; evidence/class-d-minus-template-2026-10-14/;
+kernel/psc/class_d_boundary_template.mojo. The plus boundary and b>0
+interiors remain open; continue those proofs without a human-review gate.
+
+2026-10-14 — Complete scoped candidate for the other class-D boundary:
+s=+1,b=0 has an exhaustive 718-vertex, 4,326-edge symbolic graph for every
+integer a>=7, with half-depth populations 6,27,102,243,196,136,8 at 0..6.
+Exact uncapped field graphs cover a=0..6, including the empty y-run at
+zero, each with maximum half-depth six. Full labelled directed support
+matches at a=7,8. Branch-specific Perron quadratic coefficients and beta
+bounds feed the shared engine; ell_x-ell_c=s/beta guards branch inversion.
+The floor-six range decision changes later and refuses; this is not a
+counterexample. The minus 145/781 packet still replays exactly. Canonical
+Mojo execution remains pending, so both complete boundary candidates stay
+unpromoted; continue both b>0 interiors without waiting for human review.
+Evidence: docs/p1b-boundary-hitting-progress-2026-10-08.md section 4j;
+evidence/class-d-plus-template-2026-10-14/;
+kernel/psc/class_d_boundary_template.mojo.
+
+2026-10-14 — Preserve reproducibility while extending the shared engine:
+the minus packet's 13 original source files were recovered from 38b87af
+and verified against every original SHA-256, then frozen under
+archive/2026-10-14/class-d-minus-template-sources/. Tests verify those
+historical bytes independently of current-source edits, including in
+shallow CI checkouts, while current code must still reproduce the sealed
+graph. The new plus packet freezes its sources when created. All three
+prior packets remain byte-for-byte intact. Reconciled main@b9fbb32 with
+its complete append-only ledger, preserving the Mercat–Akiyama transfer-gate
+finding; no branch-history rewrite or mathematical-status promotion.
+
+2026-10-14 — Reconcile PR #263 after main advanced to 891240e: preserve
+the K2 conditional salvage note, its occurrence-counting conventions, and
+all main ledger entries. Regenerate the proof inventory; both boundary
+candidates and their sealed evidence remain unchanged.
+
+2026-10-15 — PR #263 CI repair: all three failed job types (`mojo-kernel`,
+`exact-kernels`, `diagnostic`) share the same compilation failure in
+`kernel/tests/test_class_d_boundary.mojo`: an untyped literal inferred
+`Array[CubicElt,3]`, while `offset_of` requires `List[CubicElt]`. Declare
+that list explicitly; preserve every assertion and receipt. The missing
+coverage receipts are a consequence of the compile failure. Both complete
+boundary-template regressions already emitted successful canonical receipts
+at branch head 6709813 in CI job 116136526013 (merge checkout 00bf0cf);
+that does not make the whole suite green or credit the standalone drivers.
+Local locked environment provisioning failed at a conda package download,
+so no local Mojo execution is claimed. Historical evidence is unchanged.
+Evidence: https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38647093922/job/116136526013 .
+
+2026-10-15 — Follow-up to the PR #263 type repair: CI at 5dc59e4 compiles
+but the bounded boundary probe then refuses long images through the legacy
+matrix-level PIP constructor (audited image lengths at most six). Both
+`boundary_probe` and `boundary_edge_flags` now use the existing exact
+coefficient-screened table constructor, as the passing template certificates
+already do. This retains exact primitivity/irreducibility/Pisot checks,
+checked arithmetic, entry bounds, parameter limits and state-cap refusal;
+the bounded constructor's domain is not widened. A canonical regression
+compares both constructors on their shared domain and retains rejection of
+a length-eight image by the bounded constructor. CI runs the boundary test
+and all three standalone boundary drivers before the full suite, exposing
+any further failure without waiting for unrelated censuses. No historical
+packet or mathematical claim status is changed. Failure evidence:
+https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38766765126/job/116531891822 .
+
+2026-10-15 — PR #263 canonical execution audit: the corrected `f6e1a5b`
+branch and CI merge `c175c60` have identical tree `c22a6b3a84e466998d40b800af2c8177fd70babc`.
+Mojo job 116624307426 emitted both formerly missing historical boundary
+contracts, both complete-template contracts and both standalone certificate
+results; all 75 test files and the receipt-based coverage audit passed.
+The polynomial-kernel verification job also passed. The existing exact
+coefficient screen covers every historical boundary incidence entry (at most
+30) within its audited 4096-entry limit, without relaxing the legacy
+image-length-six guard. Updated the live family note, proof ladder and
+roadmap to credit these executions; no theorem or historical packet changed.
+Later heads require their own CI results. Evidence and remaining scoped
+acceptance/composition obligation: `p1b-boundary-hitting-progress-2026-10-08.md` §4k.
+
+2026-10-15 — Reconcile PR #263 with main@57fc26e after PR #268: preserve
+main's realized productive-loop countercontrol and its complete ledger prefix,
+then retain every class-D boundary entry. At 7cf8897, the 75-file Mojo suite,
+receipt coverage, both standalone certificates, polynomial-kernel and target-aware
+workflows passed; the one-tile census is still running. The new merge requires
+its own CI. No executable code, sealed packet or mathematical status changes.
+Evidence: docs/p1b-boundary-hitting-progress-2026-10-08.md section 4k;
+https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38797225015/job/116636686858 .
