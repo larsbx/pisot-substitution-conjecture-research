@@ -2,7 +2,7 @@
 from std.testing import assert_equal, assert_true
 from mojo_smoke.claims import require_contract
 from psc.class_d_boundary import boundary_member, boundary_probe, boundary_edge_flags
-from psc.overlap_seed_patch import OverlapState, SeedOverlapTables, build_seed_overlap_tables_screened, interior_overlap, seed_overlap_states
+from psc.overlap_seed_patch import OverlapState, SeedOverlapTables, build_seed_overlap_tables, build_seed_overlap_tables_screened, interior_overlap, seed_overlap_states
 from psc.overlap_zipper import ordered_child_occurrences
 from psc.vertex_coincidence import offset_of
 from psc.perron_field3 import CubicElt
@@ -57,7 +57,25 @@ def test_uniform_path_formulas_at_bounded_parameters() raises:
         assert_true(not z.is_coincidence())
 
 
+def test_screened_field_preserves_the_audited_domain_guard() raises:
+    # The two constructors agree where both contracts apply (image length <=6).
+    var short = boundary_member(1, 0)
+    var bounded = build_seed_overlap_tables(short)
+    var screened = build_seed_overlap_tables_screened(short)
+    for i in range(3):
+        assert_equal(bounded.lengths.at(i), screened.lengths.at(i))
+    # The length-eight member must still be refused by the bounded constructor.
+    # The boundary_probe assertions below cover it through the exact screen.
+    var refused = False
+    try:
+        _ = build_seed_overlap_tables(boundary_member(1, 1))
+    except:
+        refused = True
+    assert_true(refused)
+
+
 def main() raises:
+    test_screened_field_preserves_the_audited_domain_guard()
     test_uniform_path_formulas_at_bounded_parameters()
     var x = boundary_member(1, 0)
     assert_equal(x[0], List[Int]([0, 2, 2, 2, 1]))
@@ -87,3 +105,4 @@ def main() raises:
     assert_true(refused)
     require_contract("bounded class-D b=0 replay: eight parameter members, exact support-change witnesses despite equal 145-vertex counts, all-seed graph sizes and half-depths, state-cap and parameter-limit refusal; no family-wide hitting claim")
     require_contract("class-D minus b=0 witness paths at a=0..8: exact seed membership, prescribed child occurrences to offset zero, threshold edges absent below three, and rejection of a perturbed occurrence index; finite calibration of section 4h, not complete-graph closure")
+    require_contract("class-D boundary probes use the exact coefficient-screened field for long images; tile lengths agree with the bounded constructor on the shared domain and its image-length-six guard still refuses the length-eight member")

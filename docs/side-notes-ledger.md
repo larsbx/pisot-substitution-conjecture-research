@@ -1785,3 +1785,18 @@ that does not make the whole suite green or credit the standalone drivers.
 Local locked environment provisioning failed at a conda package download,
 so no local Mojo execution is claimed. Historical evidence is unchanged.
 Evidence: https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38647093922/job/116136526013 .
+
+2026-10-15 — Follow-up to the PR #263 type repair: CI at 5dc59e4 compiles
+but the bounded boundary probe then refuses long images through the legacy
+matrix-level PIP constructor (audited image lengths at most six). Both
+`boundary_probe` and `boundary_edge_flags` now use the existing exact
+coefficient-screened table constructor, as the passing template certificates
+already do. This retains exact primitivity/irreducibility/Pisot checks,
+checked arithmetic, entry bounds, parameter limits and state-cap refusal;
+the bounded constructor's domain is not widened. A canonical regression
+compares both constructors on their shared domain and retains rejection of
+a length-eight image by the bounded constructor. CI runs the boundary test
+and all three standalone boundary drivers before the full suite, exposing
+any further failure without waiting for unrelated censuses. No historical
+packet or mathematical claim status is changed. Failure evidence:
+https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/38766765126/job/116531891822 .

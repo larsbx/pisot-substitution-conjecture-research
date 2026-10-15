@@ -1,5 +1,5 @@
 """Bounded replay of the two residual class-D b=0 families; no universal verdict."""
-from psc.overlap_seed_patch import build_seed_overlap_graph, first_left_aligned_depths, build_seed_overlap_tables, build_seed_overlap_graph_from_tables
+from psc.overlap_seed_patch import first_left_aligned_depths, build_seed_overlap_tables_screened, build_seed_overlap_graph_from_tables
 from psc.vertex_coincidence import length_matrix, offset_vector
 
 
@@ -32,7 +32,11 @@ def boundary_member(s: Int, a: Int) raises -> List[List[Int]]:
 def boundary_probe(s: Int, a: Int, max_states: Int = 20000) raises -> List[Int]:
     if max_states < 1 or max_states > 20000:
         raise Error("boundary probe state cap must be in 1..20000")
-    var graph = build_seed_overlap_graph(boundary_member(s, a), max_states)
+    # Boundary images exceed the matrix-level validator's audited length six.
+    # The existing coefficient screen checks primitivity, irreducibility and
+    # Pisot exactly, retaining checked arithmetic and its own entry bound.
+    var tables = build_seed_overlap_tables_screened(boundary_member(s, a))
+    var graph = build_seed_overlap_graph_from_tables(tables, max_states)
     if graph.capped:
         raise Error("STATE_BUDGET_EXHAUSTED: no boundary-hitting verdict")
     var depths = first_left_aligned_depths(graph)
@@ -51,7 +55,7 @@ def boundary_probe(s: Int, a: Int, max_states: Int = 20000) raises -> List[Int]:
 def boundary_edge_flags(a: Int, max_states: Int = 20000) raises -> List[Bool]:
     if max_states < 1 or max_states > 20000:
         raise Error("boundary state cap outside 1..20000")
-    var tables = build_seed_overlap_tables(boundary_member(-1, a))
+    var tables = build_seed_overlap_tables_screened(boundary_member(-1, a))
     var graph = build_seed_overlap_graph_from_tables(tables, max_states)
     if graph.capped:
         raise Error("STATE_BUDGET_EXHAUSTED: no support comparison")

@@ -73,6 +73,13 @@ jobs:
         run: |
           python -m pip install pytest
           PSC_SESSION_START_REAL_PIXI="$HOME/.pixi/bin/pixi" python -m pytest tests/test_session_start.py
+      - name: Class-D boundary regression and standalone certificates
+        working-directory: kernel
+        run: |
+          pixi run mojo run -I . tests/test_class_d_boundary.mojo
+          pixi run mojo run -I . class_d_boundary_probe.mojo
+          pixi run mojo run -I . class_d_boundary_certificate.mojo
+          pixi run mojo run -I . class_d_plus_boundary_certificate.mojo
       - name: Canonical Mojo regression tests
         working-directory: kernel
         run: pixi run test
