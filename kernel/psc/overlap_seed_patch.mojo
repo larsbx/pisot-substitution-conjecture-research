@@ -277,6 +277,32 @@ def seed_overlap_states(tables: SeedOverlapTables) raises -> List[OverlapState]:
     return seed_overlap_states_cached(tables, cache)
 
 
+def _child_at_prefixes(
+    top: Int, bottom: Int, scaled_shift: CubicElt,
+    top_prefix: CubicElt, bottom_prefix: CubicElt,
+) raises -> OverlapState:
+    return OverlapState(top, bottom, cubic_sub_checked(
+        cubic_add_checked(scaled_shift, bottom_prefix), top_prefix
+    ))
+
+
+def selected_overlap_child(
+    tables: SeedOverlapTables, state: OverlapState, top_index: Int, bottom_index: Int
+) raises -> OverlapState:
+    """One ordered occurrence choice, before the interior-overlap filter.
+
+    Shared affine arithmetic with graph generation. Prefix lookup validates
+    both child indices and parent types before any image indexing. The caller
+    must separately validate the parent's and child's interior intersections.
+    """
+    var top_prefix = tables.prefix(state.top, top_index)
+    var bottom_prefix = tables.prefix(state.bottom, bottom_index)
+    return _child_at_prefixes(
+        tables.sigma[state.top][top_index], tables.sigma[state.bottom][bottom_index],
+        cubic_mul_beta(tables.field, state.shift), top_prefix, bottom_prefix,
+    )
+
+
 def overlap_children_cached(
     tables: SeedOverlapTables,
     mut cache: Dict[CubicElt, Int],
@@ -292,11 +318,8 @@ def overlap_children_cached(
         for j in range(len(tables.sigma[state.bottom])):
             var bottom_child = tables.sigma[state.bottom][j]
             var bottom_prefix = tables.prefix(state.bottom, j)
-            var shifted = cubic_add_checked(scaled_shift, bottom_prefix)
-            var child = OverlapState(
-                top_child,
-                bottom_child,
-                cubic_sub_checked(shifted, top_prefix),
+            var child = _child_at_prefixes(
+                top_child, bottom_child, scaled_shift, top_prefix, bottom_prefix
             )
             if interior_overlap_cached(tables, cache, child):
                 out.append(child)
