@@ -16,7 +16,7 @@ Then count right-half-plane roots of `q` with a Routh array over exact
 rationals. `z = -1` maps to `w = infinity`, which shows up as a degree drop in
 `q`, and `z = 1` maps to `w = 0`; both are settled before the array is built.
 
-Every value is a `finite_exact` rational. No floating point is used anywhere,
+Values use `finite_exact` rationals or unbounded integers. No floating point is used anywhere,
 and the polynomial helpers are shared with `psc.pisot` and the vendored
 `finite_linear_algebra.qpoly` (gcd, Cauchy root bound) rather than repeated.
 
@@ -41,6 +41,7 @@ differentially tested against is `reference/psc_research/pisot_screen.py`.
 """
 
 from finite_exact.rat_q import Q
+from finite_exact.bigint_z import BigZ, bigz_from_i64, bigz_add, bigz_mul, bigz_neg
 from finite_linear_algebra import qpoly
 from finite_linear_algebra.scalar import q_int, q_is_zero
 from psc.exact import q_poly, q_sign
@@ -305,24 +306,44 @@ def screen(coeffs: List[Int]) -> Int:
     return SCREEN_PISOT
 
 
+def _integer_root(coeffs: List[BigZ], x: BigZ) -> Bool:
+    # BigZ addition and multiplication are total: no machine-word overflow or
+    # rational rejection flag can be mistaken for equality with zero.
+    var acc = BigZ()
+    for i in range(len(coeffs) - 1, -1, -1):
+        acc = bigz_add(bigz_mul(acc, x), coeffs[i])
+    return acc.is_zero()
+
+
+def _signed_root_pair(coeffs: List[BigZ], magnitude: UInt64) -> Bool:
+    # magnitude <= 2^63. Construct its negative without narrowing 2^63 to Int64.
+    var negative = bigz_from_i64(-Int64(magnitude - 1) - 1)
+    return _integer_root(coeffs, bigz_neg(negative)) or _integer_root(coeffs, negative)
+
+
 def has_rational_root(coeffs: List[Int]) -> Bool:
-    """Any degree, exact. A rational root of a monic integer polynomial is an
-    integer dividing the constant term."""
+    """Exact integer-root test for a nonempty monic integer polynomial.
+
+    Rational roots are signed divisors of the constant. Integer Horner uses
+    vendored unbounded BigZ, never unchecked machine-integer arithmetic.
+    """
     if coeffs[0] == 0:
-        return True                      # zero is a root
-    var p = q_poly(coeffs)
-    var c = abs(coeffs[0])
-    var d = 1
-    while d * d <= c:
+        return True
+    var p = List[BigZ]()
+    for coefficient in coeffs:
+        p.append(bigz_from_i64(Int64(coefficient)))
+    # abs(Int.MIN) and d*d can overflow; magnitude and the quotient bound cannot.
+    var constant = coeffs[0]
+    var c = UInt64(constant)
+    if constant < 0:
+        c = UInt64(-(constant + 1)) + 1
+    var d = UInt64(1)
+    while d <= c // d:
         if c % d == 0:
+            if _signed_root_pair(p, d):
+                return True
             var other = c // d
-            if q_is_zero(poly_eval(p, q_int(d))):
-                return True
-            if q_is_zero(poly_eval(p, q_int(-d))):
-                return True
-            if q_is_zero(poly_eval(p, q_int(other))):
-                return True
-            if q_is_zero(poly_eval(p, q_int(-other))):
+            if other != d and _signed_root_pair(p, other):
                 return True
         d += 1
     return False

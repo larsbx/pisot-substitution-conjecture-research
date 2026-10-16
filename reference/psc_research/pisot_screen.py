@@ -360,13 +360,33 @@ def irreducibility(coeffs: Sequence[int]) -> str:
 
 
 def _has_rational_root(coeffs: Sequence[int]) -> bool:
+    """Integer-root test; callers establish the monic integer contract."""
     constant = coeffs[0]
     if constant == 0:
         return True  # zero is a root
-    for divisor in _divisors(abs(constant)):
-        for candidate in (divisor, -divisor):
-            if evaluate(coeffs, Fraction(candidate)) == 0:
-                return True
+    # is_monic_integer accepts int subclasses (including bool). Preserve the
+    # exact evaluator and visitation order for those inputs: overloaded native
+    # arithmetic must not enter the fast path or silently change a verdict.
+    if any(type(c) is not int for c in coeffs):
+        for divisor in _divisors(abs(constant)):
+            for candidate in (divisor, -divisor):
+                if evaluate(coeffs, Fraction(candidate)) == 0:
+                    return True
+        return False
+
+    value = abs(constant)
+    d = 1
+    while d * d <= value:
+        if value % d == 0:
+            other = value // d
+            candidates = (d, -d) if d == other else (d, -d, other, -other)
+            for candidate in candidates:
+                acc = 0
+                for c in reversed(coeffs):
+                    acc = acc * candidate + c
+                if acc == 0:
+                    return True
+        d += 1
     return False
 
 
