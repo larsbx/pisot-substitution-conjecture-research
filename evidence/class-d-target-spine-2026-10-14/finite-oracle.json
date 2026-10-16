@@ -1,0 +1,87 @@
+{
+  "authority": "independent-python-oracle",
+  "canonical_execution": "NOT_RUN_LOCALLY",
+  "family_exhaustion": false,
+  "minus": {
+    "parameters": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "states": 145,
+    "edge_counts": [
+      779,
+      781,
+      781,
+      781,
+      781,
+      781,
+      781
+    ],
+    "common_edges": 779,
+    "targets": 6,
+    "max_rank": 4,
+    "nondecreasing_edges": 486
+  },
+  "plus": [
+    {
+      "s": 1,
+      "a": 4,
+      "b": 0,
+      "p": 15,
+      "q": 14,
+      "r": 8,
+      "states": 746,
+      "max_half_depth": 6,
+      "missing": 0
+    },
+    {
+      "s": 1,
+      "a": 5,
+      "b": 0,
+      "p": 18,
+      "q": 17,
+      "r": 10,
+      "states": 726,
+      "max_half_depth": 6,
+      "missing": 0
+    },
+    {
+      "s": 1,
+      "a": 6,
+      "b": 0,
+      "p": 21,
+      "q": 20,
+      "r": 12,
+      "states": 718,
+      "max_half_depth": 6,
+      "missing": 0
+    },
+    {
+      "s": 1,
+      "a": 7,
+      "b": 0,
+      "p": 24,
+      "q": 23,
+      "r": 14,
+      "states": 718,
+      "max_half_depth": 6,
+      "missing": 0
+    },
+    {
+      "s": 1,
+      "a": 8,
+      "b": 0,
+      "p": 27,
+      "q": 26,
+      "r": 16,
+      "states": 718,
+      "max_half_depth": 6,
+      "missing": 0
+    }
+  ]
+}
