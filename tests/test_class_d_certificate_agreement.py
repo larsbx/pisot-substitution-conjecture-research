@@ -60,3 +60,25 @@ def test_class_d_residual_coverage_partition_is_exact_on_integer_controls():
                 # not by extrapolating a sampled b>0 interior point.
                 if b == 0:
                     assert (r == 2*a+4) if s == -1 else (r == 2*a)
+
+
+def test_naive_positive_b_extension_changes_a_selected_edge():
+    # The minus b=0 spine contains the c/y state w=(-2,4,-3) whose chosen
+    # child reads both FIRST occurrences. That edge is exact for b=0 only.
+    # Increasing positive-b contributes b*(sum w)*e_y, here -b*e_y.
+    # No first-occurrence prefix depends on b. This is a strict algebraic
+    # refusal of a literal reuse of this selected edge at b>=1, NOT a
+    # counterexample to BH or to a different target-aware b>=1 certificate.
+    rows = json.loads((ROOT / "evidence/class-d-target-spine-2026-10-14/certificate.json").read_text())["rows"]
+    row = next(r for r in rows if r[:5] == [1, 2, -2, 4, -3])
+    assert row[5] > 0 and row[7:11] == [0, 0, 0, 0]
+    w = row[2:5]
+    assert sum(w) == -1
+    for a in (2, 3, 8):
+        def mv(b):
+            p, q, r = 3*a+5+b, 3*a+6+b, 2*a+4+b
+            return [w[0]+w[1],
+                    w[0]+w[1]+2*w[2],
+                    p*w[0]+q*w[1]+r*w[2]]
+        at_boundary, at_interior = mv(0), mv(1)
+        assert at_interior == [at_boundary[0], at_boundary[1], at_boundary[2]-1]
