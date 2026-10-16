@@ -160,6 +160,34 @@ def test_projected_context_splice() raises:
     assert_true(caught)
 
 
+    # Nonzero prefix projection: A=012|210 has no matched target. B=021|201
+    # has the same residual d=e0-e2 at cut 1, but its next step returns to
+    # zero at cut 2, where 1/1 matches. Splice A:0->1 with B:1->2 and the
+    # projected prefix graph suggests a target unreachable in identity(A).
+    var a3 = Pair([0, 1, 2], [2, 1, 0])
+    var b3 = Pair([0, 2, 1], [2, 0, 1])
+    var a_at_one = Pair([a3.u[0]], [a3.v[0]])
+    var b_at_one = Pair([b3.u[0]], [b3.v[0]])
+    assert_true(k1(a_at_one) == k1(b_at_one))
+    assert_true(k1(a_at_one) != k1(Pair([], [])))
+    for q in range(4):
+        assert_false(matched_target(a3, q))
+    assert_true(matched_target(b3, 2))
+    var keep_a = WordEdge(a3, ImageHead(0, 0), ImageHead(0, 0), 3, a3)
+    var take_b = WordEdge(b3, ImageHead(2, 0), ImageHead(2, 0), 3, Pair([1], [1]))
+    var a_only: List[WordEdge] = [keep_a.copy()]
+    var b_only: List[WordEdge] = [take_b.copy()]
+    assert_true(replay_word_path(sigma, a3, a_only) == a3)
+    certify_word_path(sigma, b3, b_only)
+    var spliced: List[WordEdge] = [keep_a^, take_b^]
+    caught = False
+    try:
+        certify_word_path(sigma, a3, spliced)
+    except:
+        caught = True
+    assert_true(caught)
+
+
 def test_paired_heads_and_word_refusals() raises:
     var sigma: List[List[Int]] = [[0, 1], [0], [2]]
     var seed = Pair([0, 1], [1, 0])

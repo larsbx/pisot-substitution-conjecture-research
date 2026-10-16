@@ -147,7 +147,13 @@ receipt. No new mathematical claim receipt is invented.
    to zero, so the projected edges compose, but the anchored composition fails:
    after the first edge the word context is A, not C. Every iterate of A is A,
    with no matched target. This synthetic non-PIP fixture isolates projection
-   unsoundness; it is not a Pisot counterexample. A second overlap fixture
+   unsoundness; it is not a Pisot counterexample. A nonzero-prefix variant uses
+   `A=012|210`, `B=021|201`: both have residual `e_0-e_2` at cut 1, but only
+   B returns to zero at cut 2 with a next `1/1` match. The projected walk
+   splices A's cut-0-to-1 edge with B's cut-1-to-2 edge. A has no matched target
+   at any cut and is fixed by the identity substitution. Both actual local
+   balanced-child selections replay, but a certificate switching from A to B
+   is refused. A second overlap fixture
    attempts to splice `(c,a,0)` into `(a,a,0)` as the next source and is rejected.
 3. **Actual non-unit PIP control:** for `a->aaabcc,b->ab,c->a`, the anchored
    seed `swap(0,1), heads(0,1)` gives `S=(a,a,ell_b)`. Choice `(1,0)` loops
