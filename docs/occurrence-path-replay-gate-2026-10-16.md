@@ -56,3 +56,12 @@ as already PDS by the existing mirror-Barge imports. This reinforces the
 original narrow go decision: keep it as a loop/exit certificate calibration,
 never as new family-level PSC coverage. The merged source correction and its
 new Barge witness regression are preserved in this branch.
+
+The concurrently added attainment register prompted an explicit interface
+cross-check with `psc.target_packets`: it already replays occurrence-sensitive
+paths in a **complete BPA graph**. Retain that machinery and add only the
+graph-independent witness boundary and the overlap-labelled search. An
+integration regression exports its immediate successful factors into the new
+checker. Its optional synchronization target is intentionally not identified
+with immediate equality. This narrows reuse/novelty claims, not mathematical
+coverage.

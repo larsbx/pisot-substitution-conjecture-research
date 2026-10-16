@@ -33,6 +33,25 @@ image-length-at-most-six input domain. It does not widen the cubic screen.
 Larger family parameters require a separately justified constructor/extension.
 All exact-field arithmetic/sign refusals propagate as errors.
 
+### Relationship to existing target packets
+
+`psc.target_packets` already supplies occurrence-sensitive BPA graphs, addresses,
+`verify_packet`, `replay_edge`, `replay_path`, and shortest successful paths.
+Those are retained. `build_packets` requires a complete BPA automaton and
+validates its complete seed closure. The missing interface filled here is a
+**standalone finite witness checker without a completed BPA graph**, together
+with labelled geometric overlap replay and bounded overlap witness search.
+Both word layers reuse canonical balanced cuts; no second packet graph or SCC
+implementation is introduced.
+
+The integration regression in `test_target_packets.mojo` exports every success
+in its existing unsynchronized fixture as an ordered `WordEdge` from the actual
+parent, then independently certifies the child and tests the global matched cut.
+Packet success has a stricter interior-cut condition (`q>0`), whereas the new
+local predicate permits `q=0`. The packet engine's optional `synchronize=True`
+mode is an eventual endpoint-synchronization predicate, not an immediate
+matched-letter certificate, and is deliberately not treated as interchangeable.
+
 ### Word paths and paired read heads
 
 A `WordEdge` contains the full ordered source pair, the top and bottom
