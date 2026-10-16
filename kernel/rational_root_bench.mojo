@@ -44,4 +44,12 @@ def main() raises:
     var zero = List[List[Int]]()
     zero.append([0, -7, 0, 1])
     measure("zero_constant", zero, 10000)
+    var high = List[Int](length=129, fill=0)
+    high[0] = 5040
+    high[1] = -2520
+    high[127] = -2
+    high[128] = 1
+    var high_corpus = List[List[Int]]()
+    high_corpus.append(high^)
+    measure("small_root_degree_128", high_corpus, 5)
     print("Exact per-polynomial results and all timed checksums agree")

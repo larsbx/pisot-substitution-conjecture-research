@@ -2,6 +2,7 @@
 from cProfile import Profile
 from fractions import Fraction
 from itertools import product
+import sys
 
 import pytest
 from psc_research import pisot_screen as ps
@@ -96,3 +97,25 @@ def test_plain_integer_path_avoids_fraction_construction():
         assert not ps._has_rational_root([5040, -100, 20, -5, 1])
     assert not any(entry.code is Fraction.__new__.__code__
                    for entry in profile.getstats())
+
+
+def test_high_degree_small_root_keeps_ascending_candidates():
+    # Review counterexample: (x-2)(x^4999-2520). Evaluating +/-5040 before
+    # finding 2 grows needlessly huge integers. Ascending divisors avoid it.
+    p = [5040, -2520] + [0] * 4997 + [-2, 1]
+    assert len(p) == 5001
+    # Observe visited magnitudes without a wall-time threshold. The rejected
+    # streaming implementation fails here as soon as it selects 5040.
+    def bounded_candidates(frame, event, arg):
+        if frame.f_code is ps._has_rational_root.__code__ and event == "line":
+            candidate = frame.f_locals.get("candidate", 0)
+            assert abs(candidate) <= 2, "large candidate before the root 2"
+        return bounded_candidates
+
+    previous_trace = sys.gettrace()
+    try:
+        sys.settrace(bounded_candidates)
+        assert ps._has_rational_root(p) is True
+    finally:
+        sys.settrace(previous_trace)
+    assert reference_root(p) is True

@@ -43,7 +43,9 @@ def paired(old, new, corpus, number):
                     raise RuntimeError('timed exact mismatch')
             samples[label]['cpu_ns'].append(time.process_time_ns() - cpu_start)
             samples[label]['wall_ns'].append(time.perf_counter_ns() - start)
-    return {'polynomials': corpus, 'iterations_per_sample': number, 'raw': samples,
+    return {'polynomial_count': len(corpus),
+            'corpus_sha256': hashlib.sha256(json.dumps(corpus, separators=(',', ':')).encode()).hexdigest(),
+            'iterations_per_sample': number, 'raw': samples,
             'median_wall_speedup': statistics.median(samples['before']['wall_ns']) / statistics.median(samples['after']['wall_ns']),
             'median_cpu_speedup': statistics.median(samples['before']['cpu_ns']) / statistics.median(samples['after']['cpu_ns'])}
 
@@ -69,7 +71,9 @@ def main():
     screens = [new.screen(p) for p in cubics]
     if screens != [old.screen(p) for p in cubics]:
         raise RuntimeError('screen mismatch')
+    high = [5040, -2520] + [0] * 4997 + [-2, 1]
     families = {
+        'small_root_degree_5000': ([high], 10),
         'cubic_grid': (cubics, 10),
         'many_divisors_no_root': ([[5040, -100, 20, -5, 1], [36, 0, 1]], 1000),
         'large_signed_roots': ([[-1000003, 1, -1000003, 1], [1000003, 1, 1000003, 1]], 100),

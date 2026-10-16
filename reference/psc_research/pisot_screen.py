@@ -364,29 +364,21 @@ def _has_rational_root(coeffs: Sequence[int]) -> bool:
     constant = coeffs[0]
     if constant == 0:
         return True  # zero is a root
-    # is_monic_integer accepts int subclasses (including bool). Preserve the
-    # exact evaluator and visitation order for those inputs: overloaded native
-    # arithmetic must not enter the fast path or silently change a verdict.
-    if any(type(c) is not int for c in coeffs):
-        for divisor in _divisors(abs(constant)):
-            for candidate in (divisor, -divisor):
-                if evaluate(coeffs, Fraction(candidate)) == 0:
-                    return True
-        return False
-
-    value = abs(constant)
-    d = 1
-    while d * d <= value:
-        if value % d == 0:
-            other = value // d
-            candidates = (d, -d) if d == other else (d, -d, other, -other)
-            for candidate in candidates:
+    # Keep ascending divisors: a large complementary candidate before a small
+    # root can cause enormous unnecessary intermediates at high degree.
+    # Subclasses (including bool) retain the original exact evaluator, since
+    # is_monic_integer accepts them and native arithmetic may be overloaded.
+    plain_integers = all(type(c) is int for c in coeffs)
+    for divisor in _divisors(abs(constant)):
+        for candidate in (divisor, -divisor):
+            if plain_integers:
                 acc = 0
                 for c in reversed(coeffs):
                     acc = acc * candidate + c
                 if acc == 0:
                     return True
-        d += 1
+            elif evaluate(coeffs, Fraction(candidate)) == 0:
+                return True
     return False
 
 

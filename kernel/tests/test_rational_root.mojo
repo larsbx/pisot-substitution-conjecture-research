@@ -58,6 +58,13 @@ def main() raises:
     assert_equal(screen(salem), SCREEN_NOT_PISOT)
     # The old machine abs(Int.MIN) silently skipped enumeration. Test the exact
     # witness directly, not that unsafe baseline's incorrect negative answer.
-    var minimum: List[Int] = [-9223372036854775807 - 1, 1]
+    var minimum: List[Int] = [-9223372036854775807 - 1, 9223372036854775807, 1]
     assert_true(has_rational_root(minimum))
+    # (x-2)(x^127-2520): small root before costly large candidates.
+    var high = List[Int](length=129, fill=0)
+    high[0] = 5040
+    high[1] = -2520
+    high[127] = -2
+    high[128] = 1
+    check(high, True)
     require_contract("Integer rational-root equivalence and fail-closed irreducibility")

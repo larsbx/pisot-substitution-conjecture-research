@@ -337,15 +337,22 @@ def has_rational_root(coeffs: List[Int]) -> Bool:
     var c = UInt64(constant)
     if constant < 0:
         c = UInt64(-(constant + 1)) + 1
+    var large = List[UInt64]()
     var d = UInt64(1)
     while d <= c // d:
         if c % d == 0:
             if _signed_root_pair(p, d):
                 return True
             var other = c // d
-            if other != d and _signed_root_pair(p, other):
-                return True
+            if other != d:
+                large.append(other)
         d += 1
+    # Small divisors were visited ascending. Their complements were collected
+    # descending: defer and reverse them to avoid huge Horner intermediates
+    # before a small root, especially at high degree. Squares occur once.
+    for i in range(len(large) - 1, -1, -1):
+        if _signed_root_pair(p, large[i]):
+            return True
     return False
 
 
