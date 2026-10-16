@@ -363,22 +363,21 @@ def _has_rational_root(coeffs: Sequence[int]) -> bool:
     constant = coeffs[0]
     if constant == 0:
         return True  # zero is a root
-    for divisor in _divisors(abs(constant)):
-        for candidate in (divisor, -divisor):
-            if evaluate(coeffs, Fraction(candidate)) == 0:
-                return True
-    return False
 
-
-def _divisors(value: int) -> list[int]:
-    out, d = [], 1
-    while d * d <= value:
-        if value % d == 0:
-            out.append(d)
-            if d != value // d:
-                out.append(value // d)
+    val = abs(constant)
+    d = 1
+    while d * d <= val:
+        if val % d == 0:
+            q = val // d
+            candidates = (d, -d) if d == q else (d, -d, q, -q)
+            for candidate in candidates:
+                acc = 0
+                for c in reversed(coeffs):
+                    acc = acc * candidate + c
+                if acc == 0:
+                    return True
         d += 1
-    return sorted(out)
+    return False
 
 
 # --- non-claims -----------------------------------------------------------------
