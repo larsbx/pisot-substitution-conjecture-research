@@ -13,6 +13,25 @@ For source-linked proof coverage, use the generated [proof bank](proof-bank.md).
 Its [audit](proof-bank-audit-2026-10-08.md) records the Lean provisioning hook,
 the complete compiled-declaration audit, and the Ω/LC ledger registration.
 
+## What the 2026-10-11 through 2026-10-16 work establishes
+
+- The imported Sirvent–Solomyak transfer carries established tiling-flow PDS
+  to the symbolic action for PIP substitutions. Combined with the imported
+  Barge class theorem, it gives symbolic PDS on the exact detected
+  power/rotation/mirror class; 1,248 of 4,554 standing-corpus specimens have a
+  witness. The Brun-composite corollary is likewise restricted to its declared
+  family.
+- The residual PIP class-D region below `r = q - 1` is exactly two parameter
+  quadrants. This is a complete reduction of the parameter target, not a
+  boundary-hitting theorem for the quadrants.
+- The Nakaishi, projected-walk, radius, K2, and ternary good-exit results are
+  audits, negative controls, or conditional theorems. They require compatible
+  occurrence replay and whole child-closed-set reasoning; none closes #84,
+  #138, #139, formal productivity, G1, or general PSC.
+
+See [`completion-ledger-2026-10-16.md`](completion-ledger-2026-10-16.md) for
+the exact provenance gaps, open-PR boundary, and next obligations.
+
 ## What the 2026-10-05 and 2026-10-06 results establish
 
 The results of 2026-10-05 and 2026-10-06 are below, each with an exact
@@ -110,10 +129,10 @@ The machine-readable rule is `../claim_governance.toml [review_policy]`.
 6. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
-7. `completion-ledger-2026-10-09.md` — latest merged weekly completion
-   snapshot, refreshed to `main@4caca9a`; it separates universal open claims,
-   finite-domain closure, review-pending family theorems and computation
-   through PR #246.
+7. `completion-ledger-2026-10-16.md` — latest merged weekly completion
+   snapshot, refreshed to `main@b378392`; it separates imported symbolic and
+   Barge-class scope, conditional reductions, exact negative controls, open
+   PR candidates, and the unchanged universal provenance gaps.
 8. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
 9. `conjecture-ledger.md` — live prose dependency ledger.

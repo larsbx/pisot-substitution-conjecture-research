@@ -1,7 +1,7 @@
 # Claim status and source map
 
-**Status date:** 2026-10-09
-**Current baseline:** `main@4caca9aef3ec87c2c8d18ade113517aab5b905ee` (through merged PR #246). The box/leftmost reconciliation is recorded in `docs/proof-ledger-reconciliation-2026-10-08.md`; earlier rows retain their historical audit. The 2026-10-02 rows (Propositions 5.46/5.47), the 2026-10-04 rows (`PDS` implies G1 and seedwise termination), the finite-domain PDS theorem, and the 2026-10-08 family results are included; the status-audit record is `docs/audit-2026-10-04.md`.
+**Status date:** 2026-10-16
+**Current baseline:** `main@b378392f64f6d5d64c53a17c6d134315bb079416`. The map includes the imported Sirvent–Solomyak flow-to-symbolic transfer, the imported Barge-class and Brun-composite results, the repository box/Barge symbolic corollaries, and the exact October 14–16 reductions and audits. Those audits do not promote a universal claim: general PSC, #84, #138, #139, formal productivity, and G1 remain open. In particular, the audited Nakaishi preprint is not accepted-proof provenance for general PSC. The current weekly boundary is `docs/completion-ledger-2026-10-16.md`; earlier rows retain their historical audit.
 
 This is the short authoritative index for deciding whether a mathematical statement is proved, imported, computationally certified on a finite domain, conditional, or open. It supplements the full exposition in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`, the dependency structure in `docs/proof-ladder.md`, and the current architecture in `docs/current-proof-architecture-2026-09-14.md`.
 

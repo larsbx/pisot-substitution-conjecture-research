@@ -6,6 +6,20 @@
 
 **Review policy:** **Independent human review is a final validation gate, not a research-progress gate.** A `human review pending` label is non-blocking validation debt: proof development, provisional dependency use, and assembly of a complete closure candidate continue. Independent review is performed on the assembled closure chain afterward. The label itself remains truthful and no open mathematical premise is promoted by this policy. Machine source: `claim_governance.toml [review_policy]`.
 
+**2026-10-16 synchronization (`main@b378392`):** general PSC, #84, #138,
+#139, formal productivity, and G1 remain open; no immutable accepted proof of
+the general conjecture is present on `main`. The merged Sirvent–Solomyak
+transfer and Barge-class imports add exact symbolic-PDS scope, including 1,248
+standing-corpus detector witnesses, without changing a universal gate. The
+residual PIP class-D region is now exactly two parameter quadrants, but neither
+has a merged boundary-hitting theorem. The Nakaishi source audit, radius-10
+boxwalk witness, projected-path semantics correction, K2 conditional result,
+and ternary good-exit family are negative controls or conditional reductions,
+not closure. Exact occurrence replay and the whole child-closed set of outgoing
+branches are now mandatory for #139 work. The current provenance boundary is
+`completion-ledger-2026-10-16.md`; open PRs #263, #266, and #273 are candidate
+work only.
+
 **2026-10-14 Ω/G1 continuation (`main@7a84a914` inspected):** Ω is a
 repository-proved per-specimen equivalence, not uniform productivity. The
 existing depth note now assembles the weaker complete-box offset-zero
@@ -650,8 +664,8 @@ do not quietly resurrect it under a new name.
 
 | Priority | Item | Status | Evidence needed to close | Immediate next deliverable |
 | --- | --- | --- | --- | --- |
-| **P0** | Status/provenance synchronization | current through `main@4caca9a`; this roadmap is the live weekly completion surface | roadmap, proof ladder, claim map, manuscript, generated ledger and README preserve the same theorem/review boundary | keep universal open claims separate from the 145,806 finite-domain theorem and review-pending line/wedge theorems |
-| **P1b** | Strict-zipper hitting (#139) | **OPEN critical; highest leverage** — boundary hitting is proved on 47 lines and class-D wedges with `r >= q - 1`, but not uniformly | uniform non-unit-safe occurrence-compatible hitting/coverage theorem, or a uniform depth bound on the catch-up-free determinant-two class | cover class D below `r = q - 1`, then A/C wedges and the class-A slope-one vertex families; extract uniform depth `K` |
+| **P0** | Status/provenance synchronization | current through `main@b378392`; this roadmap is the live weekly completion surface | roadmap, proof ladder, claim map, manuscript, generated ledger and README preserve the same theorem/review boundary | keep imported/scoped theorems, conditional reductions, negative controls, open PR candidates, and universal open claims distinct |
+| **P1b** | Strict-zipper hitting (#139) | **OPEN critical; highest leverage** — boundary hitting is proved on 47 lines and class-D wedges with `r >= q - 1`; the residual class-D region is exactly two quadrants, but no uniform theorem is merged | occurrence-compatible replay/lifting plus a uniform good-branch or boundary-hitting theorem for every child-closed realized candidate | prove both residual class-D quadrants including `b=0`; require compatible occurrence replay for projected matched-target paths; then extend to A/C and extract uniform depth `K` |
 | **P1a** | Aligned strong coincidence (#138) | **OPEN critical; the two templates are one at the square (Theorem C, 2026-10-05); A1′ proved on the whole catch-up-free `|det M| = 2` class (Theorem E), with all-pairs strong coincidence on its two-odd-letter part (Corollary H1) and outside one explicit family (Theorem K); inside that family Theorems Φ, Λ, Λ′, Λ″ close four `Delta` cells and Theorem Ζ every `Delta` with `Z_2` bounded (2026-10-07)** | uniform proof of A1′ (a bad edge whose letters are both `h`-fixed is eventually coincident), including reversal | on Theorem K's family, close unbounded `Z_2` (Lemma P1 linearized, `2 zfloor`; A1′ note §3m); in general, prove A1′ from the fixed-letter hypothesis, not via transitivity of eventual coincidence |
 | **P1** | Seedwise overlap productivity (#84) | **OPEN — sole shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad closed SCC | assemble only after branch closure; do not substitute a larger finite census |
 | **Validation** | Independent human review, including the `PDS => G1` dependency package | **NON-BLOCKING validation debt** — repository statuses remain usable for continued proof construction while review is pending | after a complete closure candidate exists, independently review the assembled chain, including Theorem R, Proposition F, Theorem B/Lemma C and the Barge fibre/coincidence-rank source chain | do not divert P1 work to review gating; preserve truthful `human review pending` labels and perform final review after closure assembly |
@@ -667,7 +681,7 @@ do not quietly resurrect it under a new name.
 
 For the next research cycle:
 
-1. **#139: turn the family certificates into uniform coverage.** Finish class
+1. **#139: prove occurrence-aware good-branch coverage.** Finish class
    D below `r = q - 1` using the complete two-quadrant parameter cover in
    `p1b-boundary-hitting-progress-2026-10-08.md` §4d: each branch has
    `a,b >= 0`, with `b` the exact Pisot-boundary margin and `a` growth along
@@ -676,8 +690,10 @@ For the next research cycle:
    must be covered. Then extend the wedge analysis to A/C, and treat class A's slope-one
    growing graphs by vertex families. The first class-level closure target is
    a uniform boundary-hitting depth `K` for the catch-up-free determinant-two
-   class. Any extension beyond it still needs occurrence-compatible adelic
-   coverage rather than deeper quotient iteration alone.
+   class. Every projected matched-target path must replay as one compatible
+   ordered occurrence path. The Nakaishi audit and ternary good-exit family
+   rule out replacing this whole-set obligation by recurrence of one path or
+   by source-diagonal cancellation alone.
 2. **#138 template exclusion in parallel.** The aligned recurrent dynamics has
    only a fixed bad hub edge (A1) or the alternating type-E template (A2).
    For A1, prove the open fixed-edge interior-forcing lemma using

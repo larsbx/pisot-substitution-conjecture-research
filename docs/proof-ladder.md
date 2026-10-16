@@ -2,9 +2,9 @@
 
 The current shortest route to the Pisot Substitution Conjecture in the standing regime has **one open mathematical premise**: seedwise overlap productivity. The finite-BPA/G1 and closed-carrier programmes remain important stronger structural routes, but they are no longer prerequisites of the shortest PDS sufficiency theorem.
 
-For detailed claim status use `docs/claim-status-and-source-map-2026-09-13.md`; for the live completion priorities use `docs/research-roadmap-2026-09-21.md`; for the latest merged weekly snapshot use `docs/completion-ledger-2026-10-09.md`; theorem statements and imported hypotheses are in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
+For detailed claim status use `docs/claim-status-and-source-map-2026-09-13.md`; for the live completion priorities use `docs/research-roadmap-2026-09-21.md`; for the latest merged weekly snapshot use `docs/completion-ledger-2026-10-16.md`; theorem statements and imported hypotheses are in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
 
-## Scoped closure below the universal rung (2026-10-09)
+## Scoped closure below the universal rung (through 2026-10-16)
 
 These results establish PDS only on their stated domains; none fills the open
 universal rung above.
@@ -17,6 +17,11 @@ universal rung above.
 - **Computer-assisted family theorems, human review pending:** Theorems L, L′
   and L″ cover 47 one-parameter determinant-two lines; Theorem W covers the
   declared class-D wedges, in particular all PIP members with `r >= q - 1`.
+- **Imported family scope:** Sirvent–Solomyak transfers tiling-flow PDS to the
+  symbolic action for PIP substitutions. With Barge's class theorem and the
+  exact repository detector this yields symbolic PDS on the declared
+  power/rotation/mirror class (1,248 standing-corpus witnesses), while the
+  imported Brun-composite corollary covers its own structured family.
 - **Provenance limit:** no accepted source on `main` proves boundary hitting,
   overlap productivity, formal productivity, G1 or PDS uniformly for every
   PIP substitution.
@@ -37,6 +42,25 @@ No boundary-hitting theorem for those quadrants is claimed.
    target. Class-level closure alone does not establish general #139.
 
 Human review remains pending and nonblocking throughout these proof steps.
+
+## October 16 evidence boundary
+
+The merged source audits narrow what can legitimately fill the next rung.
+Nakaishi's printed general-proof route cannot be imported: its first-entry
+identity omits an intersection term, its Theorem 3 radius does not match the
+proof scale, and an exact source-address cancellation does not automatically
+transport the prescribed forward integer offset. Likewise, projected
+imbalance zero is not coincidence and projected paths can splice incompatible
+occurrences. A positive path must be replayed with one compatible sequence of
+ordered child occurrences.
+
+The exact ternary non-unit calibration reinforces the correct quantifier: one
+reachable vertex can have an indefinitely repeatable nonzero loop and still
+have alternative legal children reaching zero and coincidence immediately.
+The open object is therefore an entire child-closed nonproductive realized
+component, not an individual recurrent path. The calibration family itself is
+already PDS by the imported mirror-Barge route and supplies no new universal
+closure.
 
 # Stable base — incidence rank, UD, and bounded discrepancy
 
@@ -341,7 +365,7 @@ Every proposed completion proof must preserve:
 
 1. **P0 — synchronization.** Keep manuscript, claim/source map, conjecture ledger, proof ladder, README, roadmap, issue statements and TLA dependency comments aligned.
 2. **P1a — aligned branch (#138).** Prove the ternary two-sided strong-coincidence statement needed to eliminate every aligned bad SCC, or reduce it to a strictly smaller named theorem. Keep the Barge–Diamond two-letter/general-existence scopes distinct.
-3. **P1b — strict-zipper branch (#139).** The literature transfer audit is complete. Define the full adelic prefix-difference cylinder, then prove a uniform `AdelicPeriodicOffsetHitting` recurrence/coverage lemma for realized closed SCCs.
+3. **P1b — strict-zipper branch (#139).** Prove an occurrence-compatible matched-target replay/lifting theorem and then a uniform good-branch or boundary-hitting theorem for every realized child-closed candidate, including both residual class-D quadrants and their changing-graph `b=0` edges. Do not infer this from a projected path or one recurrent branch.
 4. **P1 — overlap productivity (#84).** Assemble P1a and P1b, or replace them with one stronger theorem excluding every bad closed irreducible SCC. This remains the only open premise on the current shortest PDS route.
 5. **P2 — G1b-2.** Continue as a stronger theorem on BPA finiteness, with the non-unimodular and label/order firewalls intact. G1 now has three sufficient premises — G1b-2, all-seed overlap productivity (overlap-depth route), or all-seed strict-zipper exclusion alone (half-coincidence route) — and is in any case a necessary consequence of PDS, so G1b-2 is the least load-bearing of the three.
 6. **P3 — concentration and wedge productivity.** Continue as the alternative finite-BPA/SCC route only when new invariants add information beyond child counts and full wedge span.
