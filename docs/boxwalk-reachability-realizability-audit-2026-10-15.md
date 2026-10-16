@@ -81,3 +81,11 @@ Implement canonical code and tests in `kernel/psc/` and `kernel/tests/` only aft
 ## 5. What this does not establish
 
 No general SSC/PSC, SCC Producer, G1, renewal finiteness, uniform box radius, saturation bound, or overlap productivity is proved. The thread's 0-stuck statistics are retained as vector-graph observations only; they cannot presently support a theorem-facing matched-origin reachability claim. No change to the authoritative proof ladder or generated claim records follows from this audit.
+
+## October 16 implementation follow-up
+
+The [occurrence-path component](occurrence-path-replay-2026-10-16.md) now
+implements the finite path-replay and exact matched-target obligations in §4,
+with explicit failure statuses and adversarial controls. It does not implement
+a universal successor-closure or state-coverage theorem. The historical audit
+and its withdrawn interpretations remain intact.
