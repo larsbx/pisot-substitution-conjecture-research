@@ -95,6 +95,17 @@ that generator retains its precomputed scaled shift and prefix loop layout.
 
 Induction on the chosen indices constructs actual descendants of the anchored
 patch tiles. An accepted endpoint has equal starts **and equal tile types**.
+For this irreducible ternary entrypoint, a geometric coincidence also gives
+an actual aligned matched-letter cut in the inflated full swap pair. Its two
+absolute starts are Perron lengths of integer prefix-Parikh vectors. The
+Perron length map on `Q^3` is injective: its rational kernel is M-invariant
+since `ell M = beta ell`; a nonzero proper rational invariant subspace would
+factor the irreducible characteristic cubic. Exact zero displacement therefore
+implies equal prefix-Parikh vectors, hence equal prefix word lengths and one
+aligned cut q. The selected tiles supply the equal next letters, so q is
+nonterminal. This argument uses the entrypoint's screened irreducibility; it
+is not asserted for arbitrary reducible geometric models.
+
 The search interns full `(top,bottom,shift)` types and keeps predecessor indices.
 This quotient has an explicit lifting argument: two occurrences with these
 same three data differ only by common translation, and every fixed ordered
@@ -160,6 +171,8 @@ receipt. No new mathematical claim receipt is invented.
    at S. Choice `(4,2)` gives `H=(c,a,0)` and choice `(0,0)` at H gives
    `(a,a,0)`. Tests replay five loops then the exit; loop-only and half-target
    paths fail certification. The bounded search also finds a depth-two witness.
+   Independent full-word inflation confirms its target at cut 20 in the
+   length-30 pair `sigma^2(ab)|sigma^2(ba)`.
 4. **Refusals:** wrong source, tampered target, invalid or terminal image head,
    disjoint child choice, skipped irreducible cuts, unbalanced/invalid input,
    and exhausted state/choice/depth/word/step budgets. A valid two-step word

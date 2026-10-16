@@ -13,6 +13,7 @@ from psc.overlap_seed_patch import (
 )
 from psc.perron_field3 import CubicElt
 from psc.words import Pair, k1
+from psc.bpa import inflate_pair
 
 
 def family() -> List[List[Int]]:
@@ -70,6 +71,11 @@ def test_recurrent_loop_and_productive_exit() raises:
     path.append(OccurrenceEdge(h, 0, 0, c))
     certify_overlap_path(sigma, seed, path)
     assert_equal(len(path), 7)
+    # Independently locate the direct two-step exit in the full inflated
+    # swap words: proper occurrence choices (4,2), then (0,0) give cut 20.
+    var inflated_swap = inflate_pair(sigma, inflate_pair(sigma, Pair([0, 1], [1, 0])))
+    assert_equal(len(inflated_swap.u), 30)
+    assert_true(matched_target(inflated_swap, 20))
 
     # Exact labelled enumeration agrees occurrence-for-occurrence, including
     # multiplicities, with the canonical graph child generator.
