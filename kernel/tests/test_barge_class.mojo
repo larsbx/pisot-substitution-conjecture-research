@@ -15,6 +15,45 @@ from mojo_smoke.claims import require_contract
 from psc.dumont_thomas import power_substitution
 
 
+def _ternary_good_exit(k: Int, h: Int) -> List[List[Int]]:
+    # a -> a^k b c^h, b -> ab, c -> a. Endpoint predicates are
+    # word-combinatorial, so this intentionally does NOT run the screened
+    # cubic PIP classifier at the longer k=6, h=5 parameter.
+    var a = List[Int]()
+    for _ in range(k):
+        a.append(0)
+    a.append(1)
+    for _ in range(h):
+        a.append(2)
+    var b: List[Int] = [0, 1]
+    var c: List[Int] = [0]
+    var sigma = List[List[Int]]()
+    sigma.append(a^)
+    sigma.append(b^)
+    sigma.append(c^)
+    return sigma^
+
+
+def test_ternary_good_exit_family_is_direct_mirror_barge() raises:
+    # k=3,h=2 is the overlap regression; k=6,h=5 is an out-of-screen
+    # family member. Both have constant first letter a and pairwise
+    # distinct last letters c,b,a, so reversal satisfies Barge Thm 3.13.
+    for t in range(2):
+        var k = 3
+        var h = 2
+        if t == 1:
+            k = 6
+            h = 5
+        var sigma = _ternary_good_exit(k, h)
+        assert_true(in_mirror_class(sigma))
+        assert_false(in_barge_class(sigma))
+        var w = barge_witness(sigma, 1)
+        assert_true(w.found())
+        assert_equal(w.power, 1)
+        assert_equal(w.kind, KIND_DIRECT)
+        assert_true(w.mirror)
+
+
 def test_tribonacci_is_in_the_mirror_class() raises:
     """`0 -> 01, 1 -> 02, 2 -> 0`: constant on initial letters, injective on
     final letters (a classical pure-discrete-spectrum case)."""
@@ -61,9 +100,11 @@ def test_plastic_has_no_witness() raises:
 
 
 def main() raises:
+    test_ternary_good_exit_family_is_direct_mirror_barge()
     test_tribonacci_is_in_the_mirror_class()
     test_catch_up_free_specimen_has_a_square_in_barges_class()
     test_left_rotation_by_the_common_prefix()
     test_plastic_has_no_witness()
     print("[PASS] Barge-class witnesses: mirror control, catch-up-free square, rotation, no-witness control")
+    require_contract("a -> a^k b c^h, b -> ab, c -> a is directly in mirror Barge class for (k,h)=(3,2) and (6,5), with no need for powers or rotation; no long-image PIP screening")
     require_contract("Barge-class membership of a power or maximal common-prefix/suffix rotation is decided exactly; Tribonacci is in the mirror class, 0 -> 1, 1 -> 22, 2 -> 012 has its square in Barge's class, the plastic substitution has no witness up to power 6")
