@@ -105,6 +105,33 @@ by deleting it.
   `docs/audit-2026-10-11-boxwalk-extremal.md` §§"Claims retracted or
   not to re-attempt", "Extremal-search reframing"
 
+
+- 2026-10-15 · **Correction to box-walk reachability claim (2026-10-12 notes and PR #253).**
+  The historical `box_walk_recurrence.py` zero-stuck count comes from
+  reverse reachability to the *zero imbalance vector*, although a genuine
+  diagonal child requires zero imbalance **before equal next letters**.
+  Example `12|21` has a terminal zero return and no diagonal child.
+  Projected vector edges collected across different occurrences can also
+  splice nonrealizable paths; observed depth-wise edge plateaus do not prove
+  substitution successor closure. “Every vector can reach zero” is therefore
+  **not** a matched-origin or SCC-productivity certificate. Correct
+  conditions: occurrence/address-compatible path lifting, target-aware
+  equal-letter zero-return, complete finite successor closure and explicit
+  seed/vertex quantifier coverage. Existential escape does not mean every
+  infinite path must hit a target. No PSC/G1/SCC Producer claim changes. ·
+  `docs/boxwalk-reachability-realizability-audit-2026-10-15.md`;
+  `docs/audit-2026-10-11-boxwalk-extremal.md` (2026-10-15 correction)
+
+- 2026-10-15 · **Scope of exact depth-nine radius witness.** The replayed
+  `sigma=(001,22,220)` has characteristic polynomial
+  `x^3-4x^2+4x-2` and a **complex** secondary pair. Its aligned-cut
+  depth-nine radius `10` refutes a radius-eight bound *for that observable*
+  but alone says nothing decisive about a proposed **real-secondary-only**
+  radius bound or the unrecovered staircase/comp-set statistic. Do not
+  transfer across observable, seed, or spectral regime. ·
+  `docs/boxwalk-reachability-realizability-audit-2026-10-15.md`;
+  `evidence/boxwalk-radius8-depth9.json`
+
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
@@ -1661,3 +1688,13 @@ contraction remains retired. Regenerate the proof inventory without changing
 claim statuses or named Lean proofs. Evidence:
 `docs/k2-load-bearing-scc-salvage-2026-10-11.md`,
 `tests/test_defect_intertwiner.py`, `tests/test_boxwalk_radius_probe_oracle.py`.
+
+2026-10-15 — Nakaishi-to-PSC realized-ancestry shortcut refuted in a seed-patch overlap (stronger than the previous SFT-only negative control). For sigma(a)=aaab, sigma(b)=ab, beta=2+sqrt(2), lengths ell=(1,sqrt(2)-1), the initial ab/ba swapped patches contain an interior (a,a,e_b) overlap S. The ordered child pair (top second a, bottom first a) maps S to itself exactly because M e_b-e_a=e_b, so it is a realizable recurrent nonzero-offset path of arbitrary duration. Along r repetitions W_r=sum_(k<r) M^k e_a=(M^r-I)e_b and W_r is outside M^r Z^2 since e_b is outside M Z^2 by parity. Yet S is productive: top third a / bottom first a maps it to T=(a,a,-e_a+e_b), and top first a / bottom third a maps T to coincidence (a,a,0); all overlap interiors are exact from 0<sqrt(2)-1<1. This *does not* exhibit a closed bad SCC or refute PSC. A proof must use the all-children, child-closed nonproductive hypothesis (and the exact orientation/offset) rather than realization plus an arbitrarily chosen recurrent path. Existing M-adic valuation-ascent failures and affine-pump negative controls remain in force; this one specifically audits the Nakaishi realization-transfer shortcut. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md (2026-10-15 realized loop); docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md negative control 6; docs/research-roadmap-2026-09-21.md live P1b boundary.
+
+2026-10-15 — Infinite ternary non-unit PIP good-edge family: for every k>=3 and 2<=h<=k, sigma(a)=a^k b c^h, sigma(b)=ab, sigma(c)=a has M=[[k,1,1],[1,1,0],[h,0,0]], det=-h and irreducible Pisot cubic X^3-(k+1)X^2+(k-1-h)X+h (root brackets (-1,0),(0,1),(k,k+2), with k+1 not a root). The actual swap-seed overlap S=(a,a,e_b) self-loops under top second a/bottom first a, giving W_t=(M^t-I)e_b outside M^t Z^3 for every t>=2 because M^-1 e_b=e_b-e_c but M^-2 e_b is nonintegral. Yet a DIFFERENT labelled child pair (top first c, bottom last a) reaches (c,a,0) at depth one and the common first a/a child reaches tile coincidence (a,a,0) at depth two, uniformly in both parameters. This is a scoped one-vertex constructive family theorem plus an infinite bad-path/good-exit calibration, not a closed nonproductive SCC, not universal BH/PDS and not a novelty claim for general pump failures. Scratch exact SymPy matrix/root-sign calibration passed at (k,h)=(3,2),(4,2),(4,3),(6,5),(8,8), with 2<=t<10 residue checks; the full family follows the displayed symbolic proof. Larger k/h exceed the audited Mojo cubic screen's length-six input precondition and must not be sent through it unchanged. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md (infinite ternary family); docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md negative control 7; live P1b roadmap. #139/#84/#138/G1/PSC remain open.
+
+2026-10-16 — Correction to 2026-10-15 ternary good-exit family: The local exact one-vertex self-loop / two-step good-exit theorem remains valid, but **the entire family is already PDS by prior art**. All substitutions a->a^k b c^h, b->ab, c->a (k>=3, 2<=h<=k) begin with a and have distinct terminal letters c,b,a. Word reversal is therefore injective on initial letters and constant on final letters; primitivity/irreducible Pisot and nonperiodicity transfer. Barge, DCDS-A 36 (2016), Theorem 3.13 (arXiv:1403.7826) yields flow PDS with no unit restriction, and mirror conjugacy preserves it. For the substitutive Z-action the *existing* imported Sirvent–Solomyak 2002 Corollary 5.2 supplies flow-to-symbolic transfer on irreducible Pisot substitutions. This prior-art route is already governed by BargeClassFlowPDS and BargeClassSymbolicPDS and tested by psc.barge_class. The October 15 result is a nonresolving-selected-path vs productive-alternative-child calibration, NOT novel family PSC/PDS coverage; no universal #139 or depth bound follows. Do not spend the next cycle trying to close PDS for this mirror-Barge family; move to non-Barge residual classes. A new exact Mojo test checks the direct mirror-class witness for (k,h)=(3,2) and (6,5), without screening the latter's oversized image through the cubic legacy classifier. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md October 16 correction, docs/sadic-transfer-literature-gate-2026-10-11.md §§2–3, kernel/tests/test_barge_class.mojo. Append-only correction; retain 2026-10-15 research record; general PSC/#84/#138/#139 remain OPEN.
+
+2026-10-16 — **Audit-priority attainment checkpoint.** For the box-walk/extremal audit (#253), exact `R*(3,4)` and extremizer structure remain **not obtained** (bounded depth-nine, complex-secondary `L=3` aligned-cut negative control only). For the K2 salvage (#254), finite reachable closure / bounded-K2 substitute / a closure-free truncation theorem remain **not obtained**; the load-bearing SCC spectral conclusion is conditional. For the matched-origin/path-lifting audit (#269), exact target semantics and finite occurrence-aware target-packet Mojo receipts already exist, but a complete sound lift/closure/coverage theorem for the proposed box-walk and universal productive SCCs is **not obtained**; finite diagnostic progress is partial. New PR #270 supplies a distinct *single-vertex* uniform two-parameter family good exit, not all-children closure. These are degrees of **the stated mathematical priorities**, not of audit-document merge completion; no PSC/G1/#84/#138/#139 status changes. Evidence: `docs/audit-priority-attainment-register-2026-10-16.md` (priority quotations, scoped attainment, blockers, next receipts).
+
+2026-10-16 — Class-D Barge power/rotation stop theorem: for every p,q,r>=0, the substitution x->x y^p c, c->c y^q x, y->c y^r c has first-letter map f=(x,c,c) with f^n=f for all n>=1, and last-letter map g=(c,x,c), g^n=(c,x,c) for odd n and (x,c,x) for even n. All powers have two distinct first letters (x,c), two distinct last letters (c,x or x,c), and noninjectivity at both ends; thus no power belongs to Barge's initial-injective/final-constant class or its mirror. Every power has zero common-prefix AND common-suffix length, so the repository's allowed maximal common-word rotations cannot change this. The negative result is uniform across class-D determinant-two PIP residual quadrants, including both pending b=0 boundaries and b>0 interiors; it rules out only this imported theorem route, not arbitrary conjugacies, PSC, #139, or the pending class-D certificates of PRs #263/#266. The proof is exact endpoint algebra, with a new canonical Mojo regression on sample powers 1..3, not a depth-limited claim. Contrast PR #271's already-PDS direct mirror-Barge ternary family. Evidence: docs/p1b-class-d-barge-power-rotation-stop-2026-10-16.md, kernel/tests/test_barge_class.mojo, docs/sadic-transfer-literature-gate-2026-10-11.md. Next: finish occurrence-labelled boundary coverage rather than repeat Barge witness searches.

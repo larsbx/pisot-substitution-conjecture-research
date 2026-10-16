@@ -459,6 +459,242 @@ exact finite-cokernel machinery; **the universal reason why it must pass
 is still open**. Do not enlarge bounded searches or assert PSC closure
 from (T3)–(N5).
 
+## Realized overlap loop: geometric realization is not sufficient (2026-10-15)
+
+**Status:** an exact finite, seed-patch-realized counter-calibration for the *stronger proposed bridge* "actual interior overlap + recurrent occurrence-labelled ancestry forces \(M\)-adic divisibility / a synchronized special-cylinder visit". The bridge is **false without the closed nonproductive-SCC hypothesis or an additional global selection mechanism**. This is not a PSC counterexample. Unlike the preceding source-SFT-only family, the states and every displayed child edge below are actual interior tile overlaps reachable from a swapped seed.
+
+### A minimal non-unit PIP witness with no numerical geometry
+
+Retain the two-letter substitution from the preceding subsection:
+\[
+\sigma(a)=aaab,\qquad \sigma(b)=ab,\qquad
+M=\begin{pmatrix}3&1\\1&1\end{pmatrix},\quad\det M=2.
+\]
+Its Perron eigenvalue is \(\beta=2+\sqrt2\). Normalize the **left** eigenvector of tile lengths as
+\[
+\ell_a=1,\qquad \ell_b=\sqrt2-1,\qquad
+(\ell_a,\ell_b)M=\beta(\ell_a,\ell_b).
+\]
+Since \(0<\ell_b<1\), in the swapped seed patches
+\[
+ab\quad\text{and}\quad ba
+\]
+whose left boundaries coincide, the top \(a\)-tile is \([0,1]\) and the bottom \(a\)-tile is \([\ell_b,1+\ell_b]\). Their intersection has positive length \(1-\ell_b\). Thus
+\[
+S=(a,a,e_b),\quad e_a=(1,0)^{\mathsf T},\
+e_b=(0,1)^{\mathsf T}
+\tag{R1}
+\]
+is an **actually seed-reachable interior overlap** in the repository's offset convention (bottom start minus top start).
+
+The following three ordered child edges all satisfy the exact recurrence
+\(u'=Mu+\pi(q)-\pi(p)\):
+\[
+\begin{array}{c|c|c|c}
+\text{edge}&\text{top occurrence }p&\text{bottom occurrence }q
+ &\text{child offset}\\
+\hline
+S\to S & a\text{ (second }a\text{)}&\emptyset\text{ (first }a\text{)}
+ &Me_b-e_a=e_b\\
+S\to T & aa\text{ (third }a\text{)}&\emptyset\text{ (first }a\text{)}
+ &Me_b-2e_a=-e_a+e_b\\
+T\to C &\emptyset\text{ (first }a\text{)}&aa\text{ (third }a\text{)}
+ &M(-e_a+e_b)+2e_a=0.
+\end{array}
+\tag{R2}
+\]
+Here \(T=(a,a,-e_a+e_b)\) has physical offset
+\(\ell_b-\ell_a=\sqrt2-2\in(-1,0)\), so its two \(a\)-tiles overlap in positive length. The endpoints of the \(S\to S\) and \(S\to T\) edges also have proper interiors because \(0<\ell_b<1\). Finally \(C=(a,a,0)\) is a genuine **tile coincidence**.
+
+Consequently the *same source state* supports both (i) a **nonzero periodic realized overlap path of arbitrary duration**, obtained by repeating the \(S\to S\) occurrence edge, and (ii) a fully occurrence-labelled two-step path \(S\to T\to C\) ending in coincidence. The loop is **not** a child-closed bad component; it is productive. This is why the example is consistent with the known two-letter PSC and the repository's sink-obstruction reduction.
+
+### Its exact integer obstruction persists through every loop repetition
+
+For the self-loop, the source-prefix digit difference is \(z=e_a\). After repeating it \(r\ge1\) times, the source address sum is
+\[
+ W_r=\sum_{k=0}^{r-1}M^k e_a.
+\tag{R3}
+\]
+The identity \(e_a=(M-I)e_b\) telescopes to
+\[
+\boxed{W_r=(M^r-I)e_b,\qquad M^r e_b-W_r=e_b\ne0.}
+\tag{R4}
+\]
+Modulo 2 both columns of \(M\) are \((1,1)^{\mathsf T}\), so the coordinates of an integer vector in \(M\mathbb Z^2\) have equal parity. Since \(e_b=(0,1)^{\mathsf T}\notin M\mathbb Z^2\), it follows for **every** \(r\ge1\) that
+\[
+ \boxed{W_r\notin M^r\mathbb Z^2.}
+\tag{R5}
+\]
+Indeed, otherwise \(e_b=M^r z-W_r\in M^r\mathbb Z^2\subset M\mathbb Z^2\), contradicting parity. Thus **both geometric realizability and periodicity of the selected path fail to force a zero-class residue**. For direct finite calibration, \(W_1=(1,0)\), \(W_2=(4,1)\), \(W_3=(14,5)\), but (R4)–(R5) are exact all-\(r\) proofs, not extrapolations.
+
+The infinite symbolic itinerary along the self-loop would pair the second-\(a\) source edge \(J=(a:a)\) with the first-\(a\) edge \(I=(a:\emptyset)\) at every level: it **never simultaneously enters** Nakaishi's common special cylinder \(I\). Thus a realized geometric overlap cycle does not automatically provide the *synchronized-cylinder* input required by the earlier conditional pointwise source argument either. We use the finite period equations above as the certificate; no convergence/limit is required.
+
+### What remains genuinely open
+
+This closes the **realization-only** shortcut, not issue #139. The latter hypothesizes a **closed, child-closed, nonproductive** recurrent strict-zipper component. \(S\) fails that hypothesis, since \(S\to T\to C\). The precise viable target is therefore *not* "every realized recurrent address is good"; it is:
+
+> **Closed-component obstruction lemma (OPEN).** Show that a realized child-closed recurrent set of noncoincident interior overlaps cannot avoid both the offset-zero basin and every occurrence-compatible \(M\)-adic residue-cancellation mechanism.
+
+A certificate for this lemma must quantify over *all* outgoing overlap children and preserve the labelled realization, not select one self-loop. It must either prove a uniform coverage/carry-resolution theorem or yield a concrete bad closed SCC. The earlier §5.6d valuation-ascent census already falsifies **one-step** ascent even in the ternary catch-up-free class; do not reintroduce that negative mechanism as a universal argument. The example here sharpens Nakaishi-transfer hypotheses and is **not claimed novel as a general existence of productive affine pumps** (the repository already documents a determinant-two six-edge pump). Preserve the separate universality requirements of #138 and #139.
+
+## Infinite ternary non-unit Pisot family: an explicit all-child escape (2026-10-15)
+
+**Status: proved elementary scoped family lemma and exact negative control, not general PSC; this whole family's PDS was already covered by mirror Barge (2016), as identified in the October 16 correction below.** This continuation moves the previous *quadratic* realized-loop example into the repository's **three-letter primitive irreducible Pisot regime** and replaces a mere finite example with a symbolic **two-parameter infinite family**. The key positive statement is a uniform labelled half-coincidence in **one** inflation and a genuine tile coincidence in **two** inflations from the exhibited swap-seed overlap. No claim is made about productivity of *all* vertices for the family.
+
+### Family and exact Pisot screening
+
+For all integers \(k\ge3\) and \(2\le h\le k\), set
+\[
+\sigma_{k,h}:\quad
+a\mapsto a^k b c^h,\qquad
+b\mapsto ab,\qquad c\mapsto a,
+\quad
+M=\begin{pmatrix}k&1&1\\1&1&0\\h&0&0\end{pmatrix}.
+\tag{F1}
+\]
+The incidence matrix has determinant \(-h\), so the family is **non-unimodular**, and \(M^2>0\), so it is primitive. Its characteristic polynomial is
+\[
+f_{k,h}(X)=X^3-(k+1)X^2+(k-1-h)X+h .
+\tag{F2}
+\]
+Direct integer evaluations are
+\[
+\begin{aligned}
+ f(-1)&=2h-2k-1<0,& f(0)&=h>0,&f(1)&=-1<0,\\
+ f(k)&=h-k(h+1)<0,&
+ f(k+2)&=2k^2-kh+5k-h+2>0 .
+\end{aligned}
+\tag{F3}
+\]
+Thus \(f\) has **three distinct real** roots, one in \((-1,0)\), one in \((0,1)\), and the Perron root \(\beta\in(k,k+2)\). Its only possible integer root in that last interval is \(k+1\), yet
+\[
+f(k+1)=k(k-h)-1\ne0\quad(k\ge3,\ 2\le h\le k).
+\]
+There are no integer roots in the other two intervals. As \(f\) is monic cubic, this proves irreducibility over \(\mathbb Q\), with both non-Perron conjugates strictly inside the unit circle. Hence **every declared parameter pair** is primitive irreducible Pisot; neither an unreviewed numerical PIP oracle nor a finite-sample extrapolation is used.
+
+A left Perron eigenvector, normalized by \(\ell_a=1\), is
+\[
+\ell=(1,\ (\beta-1)^{-1},\ \beta^{-1}),
+\tag{F4}
+\]
+as follows from (F2) and \(M^{\mathsf T}\ell=\beta\ell\). In particular
+\(0<\ell_b<1\).
+
+### Constructive good exit versus recurrent nonzero path
+
+The top seed patch \(ab\) has an \(a\) tile on \([0,1]\), and the bottom swapped patch \(ba\) has its \(a\) tile beginning at \(\ell_b\). Thus the exact **interior** overlap
+\[
+S=(a,a,e_b)
+\tag{F5}
+\]
+is reached directly from the seed (and is not an ungrounded potential or SFT-only overlap).
+
+**Bad-looking but productive recurrence.** Select the **second** \(a\) occurrence in the top \(\sigma(a)\) and the **first** \(a\) occurrence in the bottom. Their prefix Parikh difference is \(e_a\), while \(Me_b=e_a+e_b\), so
+\[
+ S\xrightarrow{(\mathrm{top}\ a\#2,\ \mathrm{bottom}\ a\#1)} S.
+\tag{F6}
+\]
+This is an actual ordered child edge between positive-length interior overlapping \(a\)-tiles; it may be repeated indefinitely.
+
+**Uniform good edge from the same state.** Instead, select the **first** \(c\) occurrence in the top \(\sigma(a)\), whose prefix is \(a^k b\), and the **last** \(a\) occurrence in the bottom \(\sigma(a)\), whose prefix is \(a^{k-1}\). Their exact difference is \(-e_a-e_b\) in the child-offset convention. Consequently
+\[
+ S\xrightarrow{(\mathrm{top}\ c\#1,\ \mathrm{bottom}\ a\#k)}
+ U=(c,a,0),
+\qquad
+U\xrightarrow{(\mathrm{first}\ a,\mathrm{first}\ a)}
+ C=(a,a,0).
+\tag{F7}
+\]
+The first arrow uses \(Me_b-e_a-e_b=0\); the second uses two empty prefixes because \(\sigma(c)=a\) and \(\sigma(a)\) begins with \(a\).
+All endpoints are **interior overlaps** (zero offset, positive lengths for \(U,C\)). Here \(U\) is a *half-coincidence/common start but not a tile coincidence* because its letters differ; \(C\) is an actual coincidence.
+The first-hit depths along this explicit path are therefore **one to offset zero, two to coincidence**, uniformly in **both** \(k\) and \(h\).
+
+### The loop is M-adically nondivisible at every depth >=2
+
+Along \(t\ge1\) repetitions of (F6) the source-prefix sum is
+\[
+ W_t=\sum_{j=0}^{t-1}M^j e_a=(M^t-I)e_b,
+\quad M^t e_b-W_t=e_b\ne0.
+\tag{F8}
+\]
+Since
+\[
+M^{-1}e_b=e_b-e_c\in\mathbb Z^3,\qquad
+M^{-1}(e_b-e_c)\notin\mathbb Z^3
+\]
+(the \(c\)-coordinate equation is \(h z_a=-1\) and \(h\ge2\)),
+we have \(e_b\notin M^2\mathbb Z^3\).
+If \(W_t\in M^t\mathbb Z^3\) then
+\(e_b=M^t e_b-W_t\in M^t\mathbb Z^3\subset M^2\mathbb Z^3\), a contradiction for every \(t\ge2\). Therefore
+\[
+\boxed{W_t\notin M^t\mathbb Z^3\quad(t\ge2)}
+\tag{F9}
+\]
+for **every** member of this infinite ternary non-unit family, although
+**the exact same interior state \(S\) reaches zero offset after one step and full coincidence after two steps through different children**.
+
+At \(t=1\) the residue is **not** obstructed: \(W_1=e_a=Me_c\in M\mathbb Z^3\). This exception is important and makes (F9) different from the preceding quadratic example. An integer zero-class survivor is still not the *prescribed* offset \(e_b\); the actual self-loop remains nonzero.
+
+### Scope, prior art, and next productive proof step
+
+This is an explicitly checked **family theorem about the exhibited vertex and two labelled child chains**. It does **not** establish the full overlap-productivity theorem for \(\sigma_{k,h}\), much less uniform #139. It does not assert that a never-colliding path implies a bad SCC: our exhibited path is productive, and the two-step escape refutes the needed *child-closed* hypothesis.
+
+The prior literature gate (Akiyama–Lee residual overlap graph, Minervino–Thuswaldner non-unit internal space) and the repository's earlier six-edge productive affine pump already explain why a single cycle is insufficient. The advance here is a **constructive, uniform in two unbounded parameters, ternary PIP calibration** showing the exact all-child information that the Nakaishi-to-PSC transport question cannot discard. This is not presented as a novel universal coincidence theorem.
+
+**Go/no-go:** stop further source-SFT-only or individual-cycle congruence refinements. Advance #139 only through a statement quantifying over an entire **child-closed nonproductive** recurrent component (or a stronger direct coverage theorem). Its proof must explain why *some labelled child branch* like (F7) exists in **every** hypothetical component, not merely in this explicit family. The family illustrates the distinction between (i) a nonresolving *selected* path and (ii) a resolving **existential** path, but supplies no all-PIP forcing mechanism. The known ternary valuation-ascent failures remain separate negative controls.
+
+**Implementation boundary:** at \(k=3,h=2\), the longest image has length six and lies within the checked cubic PIP kernel's declared image-length domain. The canonical Mojo regression in `kernel/tests/test_overlap_seed_patch.mojo` now checks that this state really occurs among the swapped-patch seeds, that its **two distinct exact child destinations** include the stationary nonzero loop and `(c,a,0)`, and that `(c,a,0)` has a child tile coincidence. This pins a single domain-valid instance of the family lemma, not its universal quantifiers. The mathematical proof of (F1)–(F9) is the authority for all parameters; for \(k>3\) or \(h>2\), do not silently call an image-length-six-screened constructor outside its audited range. Mojo execution must be reported separately from this symbolic proof.
+
+## Prior-art correction: the entire ternary family is already PDS (2026-10-16)
+
+**Decision: stop treating this family as an unresolved PDS or PSC test family.** The October 15 two-parameter good-edge theorem above is a correct **local, explicit** overlap certificate, but the *global pure-discrete-spectrum theorem* for every substitution in this family follows immediately from a **published pre-existing result**. The source transfer is already recorded in the repository's proof ledger, and the mirror-class detector is already implemented. This is a literature-priority correction, not a new proof of the general Pisot conjecture.
+
+**Primary source and exact theorem.** Marcy Barge, *Pure discrete spectrum for a class of one-dimensional substitution tiling systems*, DCDS-A 36 (2016), 1159–1173, **Theorem 3.13**, arXiv:1403.7826; for a primitive, non-periodic Pisot substitution **injective on initial letters and constant on final letters**, the associated Perron-length tiling \(\mathbb R\)-action has pure discrete spectrum. The theorem does **not** require \(|\det M|=1\). Existing hypothesis and transfer audits: `docs/sadic-transfer-literature-gate-2026-10-11.md` §§2–3, ledger nodes `BargeClassFlowPDS` (imported), `SirventSolomyakTransfer` (imported), `BargeClassSymbolicPDS` (repository composition). The repository's `psc.barge_class.in_mirror_class` tests precisely the required mirrored endpoint condition.
+
+### The entire parameter domain lies in the mirror class
+
+For \(\sigma_{k,h}\), \(k\ge3,\ 2\le h\le k\), the **initial-letter map is constant**:
+\[
+\mathrm{first}(\sigma(a))=\mathrm{first}(\sigma(b))
+=\mathrm{first}(\sigma(c))=a.
+\]
+Its **final-letter map** is the bijection
+\[
+\mathrm{last}(\sigma(a))=c,\quad
+\mathrm{last}(\sigma(b))=b,\quad
+\mathrm{last}(\sigma(c))=a.
+\]
+Reverse every image word to obtain the substitution
+\[
+\sigma_{k,h}^{\rm rev}:\quad
+a\longmapsto c^h b a^k,\qquad b\longmapsto ba,\qquad c\longmapsto a.
+\tag{B1}
+\]
+It has **injective first-letter map** \(a\mapsto c,\ b\mapsto b,\ c\mapsto a\)
+and **constant final-letter map** \(a\mapsto a\) on all three letters.
+Its incidence matrix is still \(M\), so all primitive/Pisot properties proved in (F1)–(F3) transfer unchanged. No substitution power, rotation, or numeric eigenvalue threshold is needed: this is a **power-one direct mirrored witness** for every member.
+
+**Non-periodicity.** A primitive periodic symbolic system has rational letter frequencies, hence a nonzero rational right Perron eigenvector for \(M\). Such an eigenvector forces its eigenvalue \(\beta\) to be rational, hence an integer (being an algebraic integer). But the family has irreducible degree-three characteristic polynomial, so \(\beta\) is not rational. Thus the system is non-periodic. Equivalently, irreducible Pisot substitutions of degree \(>1\) meet this aperiodicity hypothesis. Reversal preserves it.
+
+**Consequence (imported/classical, with explicit conjugacy).** Barge's Theorem 3.13 applies to \(\sigma_{k,h}^{\rm rev}\); reflecting geometric tilings about the origin conjugates the original translation flow at time \(t\) to the reversed substitution's flow at time \(-t\). An eigenfunction of one flow becomes an eigenfunction of the other with opposite eigenfrequency; pure point spectral type is therefore preserved. Hence
+\[
+\boxed{
+\text{for all }k\ge3,\ 2\le h\le k,\quad
+(\Omega_{\sigma_{k,h}},\mathbb R)
+\text{ has pure discrete spectrum.}}
+\tag{B2}
+\]
+Moreover, because \(M\) is irreducible Pisot, **Sirvent–Solomyak (2002), Corollary 5.2**, as audited in the repository's S-adic transfer note, gives pure discrete spectrum for the **substitutive \(\mathbb Z\)-action** as well. No unimodularity hypothesis is added.
+
+### Logical separation and changed research priority
+
+- **Published/previously imported:** flow PDS for this *entire* infinite family by Barge (2016) + mirror conjugacy, and symbolic PDS by the separately imported Sirvent–Solomyak transfer.
+- **New local construction only:** the parameter-uniform \(S\to(c,a,0)\to(a,a,0)\) occurrence-labelled certificate, and the nondivisible, indefinitely repeatable \(S\to S\) itinerary. These remain valid **negative controls** for single-path arguments; they do **not** supply an independent general proof of the family's spectral conclusion.
+- **Repository consequence, review pending:** the repo's Theorem S / Corollary FP″ imply PPVC, G1, and formal overlap productivity from PDS in the standing irreducible Pisot regime. That dependency remains marked **human review pending**. This note uses *Barge* to assert PDS and does not silently upgrade those downstream repository proofs or assert a parameter-uniform bound on the hitting depth of *every* overlap.
+- **Stop/go:** no further PDS/PSC discovery search on this particular mirror-Barge family. Keep its one-vertex fixture to test child-closedness versus selected-path nondivisibility; advance #139 with genuinely **non-Barge** catch-up-free determinant-two open families, class-D boundary work, or a uniform complete outgoing-child forcing lemma. An irreducible PIP with no mirror/power/rotation Barge witness is still outside this prior-art shortcut.
+
+This repairs the **scope/prior-art classification** of the October 15 family note. It does not retract its elementary exact claims, and it does not prove #139 or general PSC.
+
 ## Transfer to #139: exact hitting is the gate
 
 The paper's proposed mechanism is geometric overlap → symbolic positive-measure pair set → mixing/recurrence to special cylinders → Garsia/polynomial cancellation → geometric coincidence. Our exact target is
