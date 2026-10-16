@@ -539,7 +539,7 @@ A certificate for this lemma must quantify over *all* outgoing overlap children 
 
 ## Infinite ternary non-unit Pisot family: an explicit all-child escape (2026-10-15)
 
-**Status: proved elementary scoped family lemma and exact negative control, not general PSC.** This continuation moves the previous *quadratic* realized-loop example into the repository's **three-letter primitive irreducible Pisot regime** and replaces a mere finite example with a symbolic **two-parameter infinite family**. The key positive statement is a uniform labelled half-coincidence in **one** inflation and a genuine tile coincidence in **two** inflations from the exhibited swap-seed overlap. No claim is made about productivity of *all* vertices for the family.
+**Status: proved elementary scoped family lemma and exact negative control, not general PSC; this whole family's PDS was already covered by mirror Barge (2016), as identified in the October 16 correction below.** This continuation moves the previous *quadratic* realized-loop example into the repository's **three-letter primitive irreducible Pisot regime** and replaces a mere finite example with a symbolic **two-parameter infinite family**. The key positive statement is a uniform labelled half-coincidence in **one** inflation and a genuine tile coincidence in **two** inflations from the exhibited swap-seed overlap. No claim is made about productivity of *all* vertices for the family.
 
 ### Family and exact Pisot screening
 
@@ -644,6 +644,56 @@ The prior literature gate (Akiyama–Lee residual overlap graph, Minervino–Thu
 **Go/no-go:** stop further source-SFT-only or individual-cycle congruence refinements. Advance #139 only through a statement quantifying over an entire **child-closed nonproductive** recurrent component (or a stronger direct coverage theorem). Its proof must explain why *some labelled child branch* like (F7) exists in **every** hypothetical component, not merely in this explicit family. The family illustrates the distinction between (i) a nonresolving *selected* path and (ii) a resolving **existential** path, but supplies no all-PIP forcing mechanism. The known ternary valuation-ascent failures remain separate negative controls.
 
 **Implementation boundary:** at \(k=3,h=2\), the longest image has length six and lies within the checked cubic PIP kernel's declared image-length domain. The canonical Mojo regression in `kernel/tests/test_overlap_seed_patch.mojo` now checks that this state really occurs among the swapped-patch seeds, that its **two distinct exact child destinations** include the stationary nonzero loop and `(c,a,0)`, and that `(c,a,0)` has a child tile coincidence. This pins a single domain-valid instance of the family lemma, not its universal quantifiers. The mathematical proof of (F1)–(F9) is the authority for all parameters; for \(k>3\) or \(h>2\), do not silently call an image-length-six-screened constructor outside its audited range. Mojo execution must be reported separately from this symbolic proof.
+
+## Prior-art correction: the entire ternary family is already PDS (2026-10-16)
+
+**Decision: stop treating this family as an unresolved PDS or PSC test family.** The October 15 two-parameter good-edge theorem above is a correct **local, explicit** overlap certificate, but the *global pure-discrete-spectrum theorem* for every substitution in this family follows immediately from a **published pre-existing result**. The source transfer is already recorded in the repository's proof ledger, and the mirror-class detector is already implemented. This is a literature-priority correction, not a new proof of the general Pisot conjecture.
+
+**Primary source and exact theorem.** Marcy Barge, *Pure discrete spectrum for a class of one-dimensional substitution tiling systems*, DCDS-A 36 (2016), 1159–1173, **Theorem 3.13**, arXiv:1403.7826; for a primitive, non-periodic Pisot substitution **injective on initial letters and constant on final letters**, the associated Perron-length tiling \(\mathbb R\)-action has pure discrete spectrum. The theorem does **not** require \(|\det M|=1\). Existing hypothesis and transfer audits: \`docs/sadic-transfer-literature-gate-2026-10-11.md\` §§2–3, ledger nodes \`BargeClassFlowPDS\` (imported), \`SirventSolomyakTransfer\` (imported), \`BargeClassSymbolicPDS\` (repository composition). The repository's \`psc.barge_class.in_mirror_class\` tests precisely the required mirrored endpoint condition.
+
+### The entire parameter domain lies in the mirror class
+
+For \(\sigma_{k,h}\), \(k\ge3,\ 2\le h\le k\), the **initial-letter map is constant**:
+\[
+\mathrm{first}(\sigma(a))=\mathrm{first}(\sigma(b))
+=\mathrm{first}(\sigma(c))=a.
+\]
+Its **final-letter map** is the bijection
+\[
+\mathrm{last}(\sigma(a))=c,\quad
+\mathrm{last}(\sigma(b))=b,\quad
+\mathrm{last}(\sigma(c))=a.
+\]
+Reverse every image word to obtain the substitution
+\[
+\sigma_{k,h}^{\rm rev}:\quad
+a\longmapsto c^h b a^k,\qquad b\longmapsto ba,\qquad c\longmapsto a.
+\tag{B1}
+\]
+It has **injective first-letter map** \(a\mapsto c,\ b\mapsto b,\ c\mapsto a\)
+and **constant final-letter map** \(a\mapsto a\) on all three letters.
+Its incidence matrix is still \(M\), so all primitive/Pisot properties proved in (F1)–(F3) transfer unchanged. No substitution power, rotation, or numeric eigenvalue threshold is needed: this is a **power-one direct mirrored witness** for every member.
+
+**Non-periodicity.** A primitive periodic symbolic system has rational letter frequencies, hence a nonzero rational right Perron eigenvector for \(M\). Such an eigenvector forces its eigenvalue \(\beta\) to be rational, hence an integer (being an algebraic integer). But the family has irreducible degree-three characteristic polynomial, so \(\beta\) is not rational. Thus the system is non-periodic. Equivalently, irreducible Pisot substitutions of degree \(>1\) meet this aperiodicity hypothesis. Reversal preserves it.
+
+**Consequence (imported/classical, with explicit conjugacy).** Barge's Theorem 3.13 applies to \(\sigma_{k,h}^{\rm rev}\); reflecting geometric tilings about the origin conjugates the original translation flow at time \(t\) to the reversed substitution's flow at time \(-t\). An eigenfunction of one flow becomes an eigenfunction of the other with opposite eigenfrequency; pure point spectral type is therefore preserved. Hence
+\[
+\boxed{
+\text{for all }k\ge3,\ 2\le h\le k,\quad
+(\Omega_{\sigma_{k,h}},\mathbb R)
+\text{ has pure discrete spectrum.}}
+\tag{B2}
+\]
+Moreover, because \(M\) is irreducible Pisot, **Sirvent–Solomyak (2002), Corollary 5.2**, as audited in the repository's S-adic transfer note, gives pure discrete spectrum for the **substitutive \(\mathbb Z\)-action** as well. No unimodularity hypothesis is added.
+
+### Logical separation and changed research priority
+
+- **Published/previously imported:** flow PDS for this *entire* infinite family by Barge (2016) + mirror conjugacy, and symbolic PDS by the separately imported Sirvent–Solomyak transfer.
+- **New local construction only:** the parameter-uniform \(S\to(c,a,0)\to(a,a,0)\) occurrence-labelled certificate, and the nondivisible, indefinitely repeatable \(S\to S\) itinerary. These remain valid **negative controls** for single-path arguments; they do **not** supply an independent general proof of the family's spectral conclusion.
+- **Repository consequence, review pending:** the repo's Theorem S / Corollary FP″ imply PPVC, G1, and formal overlap productivity from PDS in the standing irreducible Pisot regime. That dependency remains marked **human review pending**. This note uses *Barge* to assert PDS and does not silently upgrade those downstream repository proofs or assert a parameter-uniform bound on the hitting depth of *every* overlap.
+- **Stop/go:** no further PDS/PSC discovery search on this particular mirror-Barge family. Keep its one-vertex fixture to test child-closedness versus selected-path nondivisibility; advance #139 with genuinely **non-Barge** catch-up-free determinant-two open families, class-D boundary work, or a uniform complete outgoing-child forcing lemma. An irreducible PIP with no mirror/power/rotation Barge witness is still outside this prior-art shortcut.
+
+This repairs the **scope/prior-art classification** of the October 15 family note. It does not retract its elementary exact claims, and it does not prove #139 or general PSC.
 
 ## Transfer to #139: exact hitting is the gate
 
