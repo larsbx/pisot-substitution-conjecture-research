@@ -93,13 +93,31 @@ def evaluate(coeffs: Sequence[Fraction | int], x: Fraction) -> Fraction:
 
 def is_monic_integer(coeffs: Sequence[int]) -> bool:
     n = degree(coeffs)
-    return n >= 1 and coeffs[n] == 1 and all(isinstance(c, int) for c in coeffs)
+    if n < 1 or coeffs[n] != 1:
+        return False
+    # Optimization: Use an inline loop instead of all() and isinstance()
+    # to avoid generator and function call overhead.
+    for c in coeffs:
+        if not isinstance(c, int):
+            return False
+    return True
 
 
 def cauchy_bound(coeffs: Sequence[int]) -> Fraction:
     """A rational `B` with every root of monic `p` strictly inside `|z| < B`."""
     n = degree(coeffs)
-    return Fraction(1 + max((abs(coeffs[i]) for i in range(n)), default=0))
+    if n <= 0:
+        return Fraction(1)
+    # Optimization: Use inline loop and conditional logic instead of max() and abs()
+    # to avoid generator and built-in function overhead.
+    m = 0
+    for i in range(n):
+        v = coeffs[i]
+        if v < 0:
+            v = -v
+        if v > m:
+            m = v
+    return Fraction(1 + m)
 
 
 def halfplane_transform(coeffs: Sequence[int]) -> list[Fraction]:
