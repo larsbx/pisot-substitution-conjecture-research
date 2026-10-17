@@ -26,7 +26,9 @@ def test_two_parametric_candidates_agree_on_labels_ranks_and_selected_edges():
         "closure_candidates": 18779, "max_rank": 4,
     }
     # Independently regenerate the complete directed support for a>=4.
-    generated = full_oracle.report()
+    # Compare at the recorded JSON boundary: oracle vertices are tuples,
+    # whereas JSON necessarily decodes them as lists.
+    generated = json.loads(json.dumps(full_oracle.report()))
     assert generated == full
 
     index = {tuple(v): i for i, v in enumerate(full["vertices"])}
