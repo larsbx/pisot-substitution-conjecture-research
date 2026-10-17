@@ -1,0 +1,19 @@
+{
+  "base_commit": "cb48214b08fb618959ae0c7c3728e69195e3ddee",
+  "sha256": {
+    "kernel/psc/overlap_seed_patch.mojo": "dd10ddbacc0726441a22ab7b0f859ac5bfbcf7d7d7183923702cb58810e1bbea",
+    "kernel/psc/overlap_zipper.mojo": "27465d61a526f80c94d36023206bed0afb02ba3e60ae606d578d7be60c6e620b",
+    "kernel/psc/class_d_boundary.mojo": "8a68c3331ff1c76a3745310c5124433ff47831257bd274643304000c06f13579",
+    "kernel/psc/boundary_hitting_spine.mojo": "4899d94be58e89afef09bcfce342f9d22c08c0f74818e148f108e199c0da7c74",
+    "kernel/psc/class_d_minus_spine_data.mojo": "51893c57df68b77e92331a02fbd32488ae1242de8b394cc045b6973782aa4304",
+    "kernel/psc/class_d_minus_certificate.mojo": "32caa2b1661abb981145e7694fb65ba8f1180ded2703a9526c6b7c1aeb402646",
+    "kernel/class_d_hitting_spine.mojo": "ed5ec91483d5db763cefd47e404b1048f92323c617d9270699ddd02b2e35a7cd",
+    "kernel/class_d_minus_certificate.mojo": "55e01d531a0091fae75cd2a94390ea25b108a3dfd29f4512178b1989fff16c73",
+    "kernel/tests/test_class_d_minus_certificate.mojo": "db75ee1b1c7b8480daf6354f09c21c867a6f78f4b02915e31f1b79a3d125e3d3",
+    "oracles/python/class_d_boundary_probe.py": "ca2d553baa68a81839c8388d66fe543cca16eba8caee0401f7d131a7694bf8eb",
+    "oracles/python/class_d_minus_certificate.py": "797595577a0ee3fd9b3922e0e8cdb7a3020705562992a9e172eb99429219b7f8",
+    "oracles/python/class_d_target_spine_probe.py": "0ce27ac5eee6ba35b9ff0ede65d9f3b6b304db2c9b65c45253eae1766ca6de7a",
+    "reference/psc_research/overlap_graph.py": "6f27bb5cbfd0fb66d40ec431fcd3497d75521f3dd450c3d09cd897becd8ee226",
+    "tests/test_class_d_minus_certificate.py": "73b3d7783dddf16ec6e674c5dfbc924c5b4420bc93c2cf2e1377cff5a3339e5b"
+  }
+}

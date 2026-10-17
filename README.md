@@ -48,7 +48,7 @@ Start here:
 1. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the #138 aligned branch, #139 strict-zipper branch, Level 2, hypothesis firewall, and prioritized closure criteria.
 2. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
 3. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
-4. `docs/completion-ledger-2026-10-09.md` — latest merged weekly completion snapshot, refreshed to `main@4caca9a`; includes the finite-domain PDS theorem and the scoped determinant-two line/wedge results through PR #246.
+4. `docs/completion-ledger-2026-10-16.md` — latest merged weekly completion snapshot, refreshed to `main@b378392`; separates the new imported symbolic/Barge scope, conditional class-D/G1 reductions, and negative audits from universal closure.
 5. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
 6. `docs/tier2-bridge-salvage-2026-09-23.md` — research-taxonomy note separating termination-style Descent Bridges from recurrent arithmetic Growth Bridges; moves no theorem status.
 7. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
@@ -68,6 +68,29 @@ primitive irreducible Pisot
 ```
 
 The only open premise on this route is **seedwise overlap productivity (Open Problem 5.35, issue #84)**. Manuscript Theorem 5.38 therefore no longer requires finite BPA / G1.
+
+### October 16 status — imported scope and sharper open obligations
+
+- **Imported and scoped:** the Sirvent–Solomyak flow-to-symbolic transfer now
+  makes the completed box certificates symbolic PDS certificates too. The
+  imported Barge class theorem plus the repository detector proves symbolic
+  PDS for its exact class (1,248 of the 4,554 standing-corpus specimens have a
+  witness), and the imported Brun-composite corollary covers its declared
+  family. None extends to arbitrary PIP substitutions.
+- **Conditional/reductive progress:** a complete box common-boundary depth
+  gives all-seed G1 with integer bound `2 L^(K+2)`, and the residual PIP
+  class-D region is reduced exactly to two parameter quadrants `a,b >= 0`.
+  The universal depth premise and boundary hitting on those quadrants remain
+  open.
+- **Audited stops:** the radius-8 plateau inference is retired by an exact
+  radius-10 witness; projected vector paths require occurrence replay; and the
+  audited Nakaishi general-proof route has unresolved first-entry, radius, and
+  integer-offset transport defects. A recurrent path is not a child-closed bad
+  SCC.
+- **Provenance limit:** open PRs, issue plans, computations, and unaccepted
+  preprints are not theorem-level closure. No authoritative accepted proof of
+  general PSC is present on `main`; #84, #138, #139, formal productivity and
+  G1 remain open.
 
 ### October 9 scoped advances — no universal closure
 

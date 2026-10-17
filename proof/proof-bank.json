@@ -2237,6 +2237,11 @@
       "statement_heading": "**Theorem L**: pure discrete spectrum and G1 for every member of that line."
     },
     {
+      "source": "docs/p1b-class-d-barge-power-rotation-stop-2026-10-16.md",
+      "line": 56,
+      "statement_heading": "**Corollary (scope of the stop).** Every determinant-two PIP class-D member, on the already certified region \\(r\\ge q-1\\), on either pending \\(b=0\\) boundary, and throughout the unproved \\(b>0\\) interiors, lacks **this** Barge power/rotation witness. Thus class D is a legitimate testing ground for genuinely new #139 boundary-hitting machinery, unlike the October 15 \\(\\sigma_{k,h}:a\\mapsto a^kbc^h,\\ b\\mapsto ab,\\ c\\mapsto a\\) family, which was corrected on October 16 as *directly mirror-Barge*."
+    },
+    {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
       "line": 80,
       "statement_heading": "*Lemma S.* Let `v` have offset `x != 0` and let `v'` be its leftmost child."
@@ -2458,7 +2463,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 125,
+      "line": 149,
       "statement_heading": "child closure and nonproductivity with the exact cycle identity, not loop"
     },
     {

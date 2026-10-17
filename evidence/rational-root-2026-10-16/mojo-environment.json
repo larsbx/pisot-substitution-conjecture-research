@@ -1,0 +1,21 @@
+{
+  "baseline_commit": "f6e181d1d4fe4a4f02f8dbb09bbb28538ad1b8f9",
+  "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+  "protocol": "seven alternating before/after batches, warm-up comparison for each polynomial; timed checksums agree; no CPU pin; shared host, no timing thresholds",
+  "source_sha256": {
+    "kernel/psc/pisot_screen.mojo": "24764c6ecf50e1d1b24441d7980b9c2478ca33ff1de8b4bb44097127efda77a3",
+    "kernel/tests/rational_root_reference.mojo": "da0fcc563ca7ba04b1a5b95f9abdffade5f6fa95f501e355d13cc7bdd0b14d87",
+    "kernel/tests/test_rational_root.mojo": "9537132116d5f70bcfcb96ff67fbde04f1d9d41590cd393aa239c035ae700857",
+    "kernel/rational_root_bench.mojo": "db57896093a42bed4ebcf3267e09b208f540c0127e1fab66658ae32c426a848e",
+    "kernel/pixi.lock": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8"
+  },
+  "median_speedup": {
+    "cubic_grid": 109.39376747279114,
+    "many_divisors_no_root": 35.44196013643006,
+    "large_signed_roots": 23.174230150985462,
+    "zero_constant": 1.106027747657575
+  },
+  "local_toolchain": "Pinned compiler 1.1.0.dev2026090805 (34562fa1), extracted package installation; pixi provisioning attempted but conda-forge dependency attrs download unavailable. Explicit std/runtime paths used via /tmp/psc-test-bin/mojo."
+}
