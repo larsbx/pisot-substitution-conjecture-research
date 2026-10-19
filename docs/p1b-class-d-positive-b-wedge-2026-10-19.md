@@ -283,7 +283,7 @@ chi(r+2) = -2(Dr+2D+s) < 0,
 
 throughout the residual positive-`b` region. Since `chi(X)->+infinity`
 and the PIP root `beta` is the unique real root above one,
-`beta>r+2), hence `d>2`.
+`beta>r+2`, hence `d>2`.
 
 For the derivative we need the stronger inequality
 `beta(d-2)>D`. Set
@@ -480,3 +480,178 @@ passed. The unchanged base also has separate governance blockers: a
 `proof/proof-bank.json`, and malformed/trailing manuscript content detected by
 `check_manuscript_source.py` at line 1357. These were recorded, not silently
 waived; full CI/Lean/TLA validation and merge acceptance are not claimed.
+
+## 11. Post-audit repair: empty blocks and conditional descent geometry
+
+The execution audit in §10 exposed two logically different failures.  They
+must be repaired separately.
+
+### 11.1 Empty occurrence blocks are clipped before fitting
+
+The old `symbolic_line._Closure.expand` first fitted the unconstrained
+geometric run interval and only afterward intersected it with the legal run
+positions.  That is stronger than the mathematics requires and is wrong for
+an empty legal block: an empty set has no boundary that needs an affine fit.
+
+The repaired order now matches `symbolic_cone._ConeClosure.expand`.
+
+For a run-position difference `m`, write
+
+```text
+lower(m) = ell_bottom + t + m ell_y,
+upper(m) = t - ell_top + m ell_y.
+```
+
+The actual run interval is `m in [rlo,rhi]`.  Before any call to
+`least_m`, the engine proves
+
+```text
+lower(rhi) <= 0  => block empty,
+upper(rlo) >= 0  => block empty.
+```
+
+Only a surviving geometric boundary is fitted; if a legal run endpoint is
+already inside the real interval, that endpoint is used directly.
+
+This exactly disposes of the two first PR #283 refusals.
+
+- Plus source `(x,x,e_c)`, FIRST/RUN: at the first legal run position
+  `m=0`, the shift is `beta ell_c + ell_x > ell_x`, so
+  `upper(0)>0`.  Every legal `m>=0` is still farther past the upper wall.
+- Minus source `(c,c,-e_x)`, RUN/FIRST: the largest legal position is
+  `m=0`, where the shift is `-beta ell_x-ell_c < -ell_c`, so
+  `lower(0)<0`.  Every legal `m<=0` is still below the lower wall.
+
+`kernel/tests/test_symbolic_line_empty_blocks.mojo` asks the same uniform
+Perron-sign prover used by the certificate to verify these two endpoint
+inequalities.  The old non-affine sample values remain pinned separately in
+`test_class_d_positive_b_obstructions.mojo`; the repair does not erase the
+negative calibration.
+
+### 11.2 #287 is algebraic descent; geometry is conditional
+
+The merged positive-`b` spine verifier proves valid child-index formulas and
+the exact lower-rank child **state**.  It did not independently prove that the
+selected target tiles overlap geometrically at every parameter.  The source
+and contract wording are corrected accordingly.
+
+For the minus residual this missing geometry can be proved without parameter
+chambers.
+
+Normalize `ell_y=1`, put
+
+```text
+d = beta-r,
+u = 1/beta.
+```
+
+On the #287 domain `a>=2,b>=1`, set `D=a+2>=4`.  Exact evaluations of the
+class-D cubic give
+
+```text
+chi(r+2) < 0,
+chi(r+3) = 2Db + 6D + b^2 + 6b + 11 > 0,
+chi(10) = -2(110D + 50b - 401) < 0.
+```
+
+The PIP root is the unique root above two, hence
+
+```text
+2 < d < 3,
+0 < u < 1/10.
+```
+
+The Mojo geometry checker also certifies these three Perron comparisons on
+the whole shifted ClassWedge region `a>=2,c=b-1>=0`; it refuses if its sign
+proof shrinks that declared region.
+
+Now put
+
+```text
+X = d-2,
+Y = 10u.
+```
+
+Then `0<X<1`, `0<Y<1`, and twenty times every overlap-realness margin of a
+fixed integral label is an integer-affine form in `X,Y`:
+
+```text
+20 ell_x = 20 + 10X - 2Y,
+20 ell_c = 20 + 10X,
+20 ell_y = 20.
+```
+
+For each selected #287 source/target pair, the exact checker assumes the
+closed box
+
+```text
+0 <= X <= 1,
+0 <= Y <= 1
+```
+
+and the two closed source-realness margins.  For each target margin `T`, it
+then asks the checked rational Farkas kernel to refute
+
+```text
+T <= 2.
+```
+
+Thus the conclusion is stronger than interiority:
+
+```text
+source real  =>  each target physical margin > 2/20 = 1/10.
+```
+
+There are 141 source/branch cases because rows 123 and 141 have separate
+`b=1` and `b>=2` targets, and therefore 282 checked margin implications.
+The canonical code is
+`kernel/psc/class_d_positive_b_geometry.mojo`; its driver prints
+`CLASS_D_MINUS_POSITIVE_B_GEOMETRY_CERTIFIED`.
+
+The exact dependency for the minus quadrant is consequently
+
+```text
+#287 valid child indices + exact lower-rank state
++ conditional target realness (>1/10 margins)
++ conditional carrier closure
+=> BH in at most four rank steps.
+```
+
+Only the third line remains open.
+
+### 11.3 Plus row 12 still requires chambers or a conditional cover
+
+Nothing in the empty-block repair removes the genuine plus-support change.
+For row 12 `(x,c,-5,11,-8)` the lower margin is
+
+```text
+L = 7d/2 - 8 - 5/beta
+  = -1 + (7D-5)/beta + 7/beta^2.
+```
+
+Hence its zero condition at the Perron root is
+
+```text
+beta^2 - (7D-5) beta - 7 = 0.
+```
+
+Eliminating `beta` with the cubic gives the parameter resultant
+
+```text
+49 b^2 - 217 D b - 140 D^2 + 127 b + 262 D - 329 = 0.
+```
+
+This resultant is a useful algebraic superset of the possible sign-change
+locus; it is **not** by itself asserted to be exactly the Perron chamber wall,
+because a resultant may also vanish through a non-Perron conjugate.
+
+The plus continuation must therefore do one of two things:
+
+1. split the parameter domain by certified Perron-sign chambers and cover all
+   chamber interfaces; or
+2. prove a conditional upper relation that never needs a uniform
+   real/non-real classification of row 12.
+
+No cover enlargement is justified by the audit: no escaped actual child was
+found.
+
