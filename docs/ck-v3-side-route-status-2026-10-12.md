@@ -107,3 +107,7 @@ Do not import any of the following from the diagnostic thread as theorem stateme
 Keep this material as finite-BPA side-route science. The only durable target extracted from the thread is CK-v3 / SCC Producer in the form stated above.
 
 The live proof priority remains seedwise overlap productivity. Any future theorem-facing use of the diagnostics in this note needs its own literature gate, exact object contract, implementation/proof boundary, and counter-calibration under the repository verification policy.
+
+## 2026-10-19 literature follow-up — prefix/suffix and Branch B
+
+See [the Branch-B prefix/suffix literature gate](branch-b-prefix-suffix-literature-gate-2026-10-19.md) for the sourced distinction between endpoint maps and the classical prefix-suffix automaton, Barge's initial-injective/final-constant theorem, and the open bi-injective Branch-B exclusion question. The proposed Boundary-Injection Exclusion and collision-realization statements remain **separate open side-route lemmas**. Neither changes CK-v3, G1, #138/#139, #84, or PSC status; the empirical SCC tallies cited in discussions were not re-certified by this documentation update.
