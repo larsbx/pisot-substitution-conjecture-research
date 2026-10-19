@@ -4,6 +4,50 @@
 
 **Standing target:** pure discrete spectrum for primitive irreducible Pisot substitutions in the repository's standing regime, **without** silently adding seed legality, unique decodability, finite injectivity, rational/integer independence, or unimodularity.
 
+
+## PRIMARY COMPLETION THEOREM — 2026-10-19
+
+The project is now organized around one theorem and two universal lemmas.
+
+> **Two-obstruction completion theorem.** For a ternary PIP substitution,
+> if **(A)** every aligned pair of distinct letters is eventually coincident
+> and **(B)** every cyclic vertex of the unconditionally finite seed-patch
+> overlap graph has an offset-zero descendant, then every seed-reachable
+> overlap is productive and the tiling flow has pure discrete spectrum.
+
+The proof is now in the manuscript as
+`thm:two-obstruction-completion`. It is short because the surrounding
+architecture is already closed: seed-patch overlap finiteness,
+closed-obstruction extraction, the boundary-coincidence dictionary and the
+density-to-PDS spectral bridge are established inputs.
+
+For ternary PIP, the two universal lemmas are already reduced to the exact
+forms below:
+
+1. **A1′ / #138 — residual hub-word theorem.** By the endpoint normal form and
+   the squaring reduction, a universal proof only has to exclude the
+   fixed-letter bad hub edge: if two letters fixed by the first-letter map
+   form the residual bad edge, they must be eventually coincident. Reversal
+   supplies the suffix version.
+2. **BH / #139 — occurrence-compatible coverage theorem.** Every cyclic
+   seed-reachable strict-zipper overlap must enter the reverse offset-zero
+   basin through a composable ordered occurrence path. In the non-unit case
+   this must respect the full representation; a Euclidean-only or
+   unimodular-lattice argument is not sufficient.
+
+These are the **primary mathematical tasks**. G1b-2, SCC Producer, K2,
+realization and further censuses are now secondary unless they directly prove
+A1′ or BH. The spectral bridge, finite-box sufficiency, necessity of G1 and
+the mathematical meaning of the exact certificates are accepted load-bearing
+inputs under the project-progression convention; do not reopen them as routine
+research tasks.
+
+**Completion criterion:** prove A1′ and BH universally with no independent
+tile-length-independence, legality, FI or unimodularity assumption. Then #84
+closes and the general PDS conclusion follows immediately from
+`thm:two-obstruction-completion`.
+
+
 **Review policy:** **Independent human review is a final validation gate, not a research-progress gate.** A `human review pending` label is non-blocking validation debt: proof development, provisional dependency use, and assembly of a complete closure candidate continue. Independent review is performed on the assembled closure chain afterward. The label itself remains truthful and no open mathematical premise is promoted by this policy. Machine source: `claim_governance.toml [review_policy]`.
 
 **Project-acceptance convention (2026-10-19):** when a repository theorem or
