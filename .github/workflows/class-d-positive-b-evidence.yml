@@ -8,6 +8,17 @@ on:
       - 'kernel/psc/param_poly.mojo'
       - 'kernel/psc/symbolic_line.mojo'
       - 'kernel/symbolic_line_certificate.mojo'
+      - 'kernel/class_d_positive_b_certificate.mojo'
+      - 'kernel/class_d_minus_positive_b_cover.mojo'
+      - 'kernel/class_d_plus_positive_b_cover.mojo'
+      - 'kernel/psc/class_d_minus_spine_data.mojo'
+      - 'kernel/psc/class_d_plus_cover_data.mojo'
+      - 'evidence/class-d-target-spine-2026-10-14/**'
+      - 'evidence/class-d-plus-template-2026-10-14/**'
+      - 'oracles/python/class_d_positive_b_support.py'
+      - 'tests/test_class_d_positive_b_spine_transport.py'
+      - 'tests/test_class_d_positive_b_support.py'
+      - 'tests/test_class_d_plus_cover_data.py'
       - '.github/workflows/class-d-positive-b-evidence.yml'
   workflow_dispatch:
 
