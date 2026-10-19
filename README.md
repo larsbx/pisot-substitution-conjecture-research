@@ -86,10 +86,11 @@ The only open premise on this route is **seedwise overlap productivity (Open Pro
   witness), and the imported Brun-composite corollary covers its declared
   family. None extends to arbitrary PIP substitutions.
 - **Conditional/reductive progress:** a complete box common-boundary depth
-  gives all-seed G1 with integer bound `2 L^(K+2)`, and the residual PIP
-  class-D region is reduced exactly to two parameter quadrants `a,b >= 0`.
-  The universal depth premise and boundary hitting on those quadrants remain
-  open.
+  gives all-seed G1 with integer bound `2 L^(K+2)`. For residual class D,
+  merged PR #277 certifies both infinite `b=0` boundary lines; the exact
+  remaining target is the two positive-`b` interiors
+  `s=±1, a>=0, b>=1`. The universal depth premise and those two interiors
+  remain open.
 - **Audited stops:** the radius-8 plateau inference is retired by an exact
   radius-10 witness; projected vector paths require occurrence replay; and the
   audited Nakaishi general-proof route has unresolved first-entry, radius, and
