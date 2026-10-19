@@ -266,6 +266,41 @@ def _occurrence_fixed_b(
     return out^
 
 
+def positive_b_target_row(rows: List[List[Int]], source: Int, branch: Int = 2) raises -> Int:
+    """Target row used by the certified positive-b descent.
+
+    branch=1 means the exceptional b=1 line; branch=2 means the b>=2
+    quadrant. For rows without a piecewise exceptional target, both branches
+    return the same row.
+    """
+    if source < 0 or source >= len(rows):
+        raise Error("positive-b target source out of range")
+    if branch != 1 and branch != 2:
+        raise Error("positive-b target branch must be 1 or 2")
+    if rows[source][6] < 0:
+        return -1
+    if source == 49:
+        return 116
+    if source == 70:
+        return 102
+    if source == 96:
+        return 65
+    if source == 117:
+        return 50
+    if source == 122:
+        return 69
+    if source == 142:
+        return 97
+    if source == 129:
+        return 71
+    if source == 135:
+        return 95
+    if source == 123:
+        return 45 if branch == 1 else 71
+    if source == 141:
+        return 34 if branch == 1 else 95
+    return rows[source][6]
+
 def verify_minus_positive_b_spine() raises -> List[Int]:
     var rows = minus_spine_rows()
     if len(rows) != 145:
