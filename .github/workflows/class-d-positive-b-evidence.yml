@@ -39,3 +39,21 @@ jobs:
           pixi run mojo run -I . symbolic_line_certificate.mojo ${{ matrix.args }} 2>&1 | tee positive-b.log
           grep -F 'symbolic graph for every a >=' positive-b.log
           grep -F 'cross-check at (a0, b0) and (a0 + 5, b0 + 3): symbolic graph = exact graph' positive-b.log
+
+  complete-residual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Certify both complete positive-b quadrants
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run mojo run -I . class_d_positive_b_certificate.mojo 2>&1 | tee complete-positive-b.log
+          grep -F 'COMPLETE_POSITIVE_B_WEDGE s=+1' complete-positive-b.log
+          grep -F 'COMPLETE_POSITIVE_B_WEDGE s=-1' complete-positive-b.log
