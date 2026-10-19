@@ -27,14 +27,6 @@ final_validation_required = true
 truthful_status_labels_required = true
 independently_reviewed_label_requires_completed_review = true
 review_pending_classification = "non-blocking-validation-debt"
-# Project convention adopted 2026-10-19: when a repository result is already
-# mechanically sufficient at its recorded scope (proof/certificate complete,
-# exact hypotheses preserved, required replay/CI receipts present), it is
-# implicitly approved for continued project progression and may be load-bearing.
-# This is project acceptance, not evidence that an independent human review occurred.
-implicit_project_approval_for_mechanically_sufficient_results = true
-mechanically_sufficient_results_may_be_load_bearing = true
-implicit_project_approval_implies_independent_human_review = false
 human_surfaces = [
   "README.md",
   "AGENTS.md",
