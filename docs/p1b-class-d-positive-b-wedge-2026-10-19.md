@@ -1,6 +1,9 @@
 # Class-D positive-b residual: exact wedge test — 2026-10-19
 
-**Status:** active proof attempt for issue #139. This note introduces no theorem
+**Status:** active proof attempt for issue #139. The pull request for this
+work is governed by the repository's enforced show-your-work policy:
+assumptions, derivation, replay evidence, negative controls, and non-claims are
+all explicit in the PR body and must remain so as the proof evolves. This note introduces no theorem
 until the exact two-parameter closure runs succeed. It reuses the already
 audited Theorem W engine rather than adding a new quotient or sampled census.
 
