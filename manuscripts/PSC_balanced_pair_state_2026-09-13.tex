@@ -302,16 +302,26 @@ We use only the forward implication stated. The equivalence between \PDS{} of th
 
 \section{Principal statements}\label{sec:principal}
 
-\begin{theorem}[Conditional main theorem; \Status{Conditional}]\label{thm:main-conditional}
+The primary result is Theorem~\ref{thm:two-obstruction-completion}: on the
+direct route, general ternary PSC is reduced to the aligned A1' lemma and the
+occurrence-compatible boundary-hitting lemma.  The results in this section are
+the older structural routes and the theorem inputs from which that reduction
+was assembled.  They remain useful independently, but they are no longer
+presented as the main completion architecture.
+
+\begin{theorem}[Conditional finite-BPA route; \Status{Conditional}]\label{thm:main-conditional}
 Let $\sigma$ be PIP. If $\B_\sigma$ is finite (Hypothesis~\ref{hyp:G1}) and Conjecture~\ref{conj:producer} holds for $\sigma$, then $(\Omega_\sigma,\R)$ has \PDS{}.
 \end{theorem}
 \begin{proof}
 Fix $a\ne b$. The forward orbit of the seed $(ab,ba)$ in the finite graph $\B_\sigma$ reaches only finitely many states, and every infinite forward path enters a recurrent SCC. If that SCC contains a coincidence block, the corresponding state is productive. Otherwise Conjecture~\ref{conj:producer} gives a productive state in it, and strong connectedness makes every state of the SCC productive. Since every state reachable from the seed either is a coincidence block, or leads to a recurrent SCC, or lies in one, every reachable state is productive, i.e.\ the algorithm from $(ab,ba)$ terminates with coincidence. Imported Theorem~\ref{thm:bridge} concludes.
 \end{proof}
 
-Theorem~\ref{thm:main-density} below (Section~\ref{sec:density}) replaces the two hypotheses by one: productivity of the overlaps reachable from a single seed, with no finiteness assumption.
-
-The rest of the paper concerns the two hypotheses. The following statements summarise what is proved about each; proofs are in Sections~\ref{sec:level2} and~\ref{sec:level3}.
+Theorem~\ref{thm:main-density} below (Section~\ref{sec:density}) removes the
+finiteness hypothesis entirely.  Together with the finite overlap graph,
+the endpoint normal form and the boundary-hitting dictionary it yields
+Theorem~\ref{thm:two-obstruction-completion}.  The statements below summarize
+the stronger parallel finiteness/SCC structure; proofs are in
+Sections~\ref{sec:level2} and~\ref{sec:level3}.
 
 \begin{theorem}[Sink reduction; \Status{Conditional} on G1]\label{thm:sink-summary}
 If $\B_\sigma$ is finite and some state is nonproductive, then $\B_\sigma$ contains a finite closed nonproductive recurrent noncoincident SCC.
