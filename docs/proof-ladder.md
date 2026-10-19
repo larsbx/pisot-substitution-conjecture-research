@@ -14,7 +14,7 @@ universal rung above.
   at most 4 or total image length at most 8. The route uses explicit imported
   overlap-coincidence and Meyer-property theorems and no longer depends on
   Proposition V(2) or Theorem B.
-- **Computer-assisted family theorems, human review pending:** Theorems L, L′
+- **Computer-assisted family theorems, project-accepted for progression; independent human validation outstanding:** Theorems L, L′
   and L″ cover 47 one-parameter determinant-two lines; Theorem W covers the
   declared class-D wedges, in particular all PIP members with `r >= q - 1`.
 - **Imported family scope:** Sirvent–Solomyak transfers tiling-flow PDS to the
@@ -26,22 +26,33 @@ universal rung above.
   overlap productivity, formal productivity, G1 or PDS uniformly for every
   PIP substitution.
 
-## Next scoped rung: the residual class-D quadrants (2026-10-14)
+## Next scoped rung: the residual positive-b class-D interiors (2026-10-19)
 
-The exact parameter cover in
-`p1b-boundary-hitting-progress-2026-10-08.md` §4d reduces every PIP class-D
-member below `r=q-1` to one of two complete affine quadrants `a,b>=0`.
-No boundary-hitting theorem for those quadrants is claimed.
+The exact parameter cover reduces every PIP class-D member below `r=q-1` to
+two affine quadrants `a,b>=0`. Merged PR #277 now certifies both infinite
+`b=0` boundary lines with exact occurrence-aware machinery. The remaining
+class-D target is therefore exactly
 
-1. Prove common-boundary hitting for all seed-reachable overlaps on both
-   quadrants, including their changing-graph `b=0` edges.
-2. Combine with Corollary W1 to cover all determinant-two class D.
-3. Apply the depth note §7 for G1 on that class; with Theorem E, assemble
-   PDS on that class.
+```text
+s = -1, a >= 0, b >= 1
+s = +1, a >= 0, b >= 1.
+```
+
+The sealed `b=0` target spine is not a two-parameter proof: the recorded
+rank-one matrix update changes a selected child by `(sum w)e_y` unless the
+occurrence choice changes with `b`.
+
+1. Prove a genuinely two-parameter occurrence-labelled common-boundary
+   theorem on both positive-`b` interiors.
+2. Combine it with Corollary W1 and the merged `b=0` lines to cover all
+   determinant-two class D.
+3. Apply the depth note §7 for G1 on that class; with the required #138 input,
+   assemble PDS on the corresponding scope.
 4. Extend coverage to the remaining classes and then the standing universal
    target. Class-level closure alone does not establish general #139.
 
-Human review remains pending and nonblocking throughout these proof steps.
+Mechanically sufficient scoped results are project-accepted for progression;
+independent human review remains final validation and is not being claimed.
 
 ## October 16 evidence boundary
 
@@ -213,7 +224,7 @@ A coincidence has offset zero, so `K' <= D` and this premise is implied by all-s
 
 ## PDS implies G1, so G1 is necessary
 
-**Repository-proved** (manuscript Proposition `prop:PDS-implies-G1`; ledger `PDSImpliesRepoG1`, the Theorem S route of `docs/p1b-vertex-coincidence-box-2026-10-02.md` §5.1; independently audited 2026-10-04, **human review pending**, `docs/side-notes-ledger.md` §7).
+**Repository-proved** (manuscript Proposition `prop:PDS-implies-G1`; ledger `PDSImpliesRepoG1`, the Theorem S route of `docs/p1b-vertex-coincidence-box-2026-10-02.md` §5.1; internally/adversarially audited 2026-10-04, **project-accepted for progression; independent human validation outstanding**, `docs/side-notes-ledger.md` §7).
 
 ```text
 pure discrete spectrum
