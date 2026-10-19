@@ -6,6 +6,7 @@ low unimodular wedges, six affine lines c=5a+j (j=1..6), and one high
 unimodular wedge.  Each wedge core and every boundary strip it leaves are
 certified by the existing exact ClassWedge/ClassLine engines.
 """
+from std.sys import argv
 from symbolic_line_certificate import ClassLine, ClassWedge, certify, certify_wedge, wedge_edges
 from a1_normal_form_census import CLASS_D
 
@@ -33,11 +34,15 @@ def _interface_line(j: Int) raises -> ClassLine:
 
 
 def _complete_wedge(spec: ClassWedge) raises -> List[Int]:
+    print("BEGIN_WEDGE_CORE", spec.describe())
     var core = certify_wedge(spec)
+    print("WEDGE_CORE_CERTIFIED", "u0=", core.a0, "v0=", core.b0, "vertices=", core.symbolic_vertices)
     var edges = wedge_edges(spec,core.a0,core.b0)
     var finite = 0
     for i in range(len(edges)):
+        print("BEGIN_BOUNDARY_LINE", i, edges[i].describe())
         var v = certify(edges[i])
+        print("BOUNDARY_LINE_CERTIFIED", i, "q0=", v.q0, "finite_pip=", v.finite_members)
         finite += v.finite_members
     return [core.a0,core.b0,core.symbolic_vertices,len(edges),finite]
 
@@ -77,6 +82,7 @@ def certify_plus_positive_b_chambers() raises -> List[Int]:
     var max_vertices = 0
 
     for k in range(5):
+        print("BEGIN_LOW_WEDGE", k)
         var w = _complete_wedge(_low_wedge(k))
         wedges += 1
         boundary_lines += w[3]
@@ -90,6 +96,7 @@ def certify_plus_positive_b_chambers() raises -> List[Int]:
     max_vertices = max(max_vertices,h[2])
 
     for j in range(1,7):
+        print("BEGIN_INTERFACE_LINE", j)
         var v = certify(_interface_line(j))
         explicit_lines += 1
         finite_prefix += v.finite_members
@@ -101,6 +108,28 @@ def certify_plus_positive_b_chambers() raises -> List[Int]:
 
 
 def main() raises:
+    # Component runs expose later refusals even if the aggregate stops early.
+    # They never emit the whole-quadrant receipt.
+    var args = argv()
+    if len(args) > 1:
+        var kind = String(args[1])
+        if kind == "low" and len(args) == 3:
+            var k = Int(String(args[2]))
+            print("BEGIN_LOW_WEDGE", k)
+            var w = _complete_wedge(_low_wedge(k))
+            print("PLUS_CHAMBER_COMPONENT_CERTIFIED", "low", k, "boundary_lines=", w[3])
+            return
+        if kind == "high" and len(args) == 2:
+            var w = _complete_wedge(_high_wedge())
+            print("PLUS_CHAMBER_COMPONENT_CERTIFIED", "high", "boundary_lines=", w[3])
+            return
+        if kind == "line" and len(args) == 3:
+            var j = Int(String(args[2]))
+            print("BEGIN_INTERFACE_LINE", j)
+            var v = certify(_interface_line(j))
+            print("PLUS_CHAMBER_COMPONENT_CERTIFIED", "line", j, "q0=", v.q0, "vertices=", v.symbolic_vertices, "finite_pip=", v.finite_members)
+            return
+        raise Error("usage: class_d_plus_positive_b_chambers.mojo [low 0..4 | high | line 1..6]")
     var out = certify_plus_positive_b_chambers()
     print(
         "CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED",

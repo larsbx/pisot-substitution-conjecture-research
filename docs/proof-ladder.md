@@ -14,7 +14,7 @@ PIP
  + BH: every cyclic strict zipper hits offset zero               [OPEN: #139]
 => every seed-reachable overlap is productive                    [PROVED assembly]
 => dense eventual coincidence                                   [PROVED]
-=> pure discrete spectrum                                       [IMPORTED bridge]
+=> pure discrete spectrum                                       [IMPORTED theorem]
 ```
 
 The two open lines are the primary proof obligations. The aligned endpoint
@@ -76,6 +76,20 @@ occurrence choice changes with `b`.
    assemble PDS on the corresponding scope.
 4. Extend coverage to the remaining classes and then the standing universal
    target. Class-level closure alone does not establish general #139.
+
+The [October 19 chamber execution audit](p1b-class-d-chamber-execution-2026-10-19.md)
+preserves the exact plus cover and records successful local receipts for all
+six explicit interface lines and all six wedge cores. Of 69 distinct returned
+boundary lines, 67 pass; the two low-1 lines with fixed v=13,14 remain
+unverified after resource/session limits. It also repairs two
+auxiliary sign-reader refusals with exact coefficient arguments. Boundary-strip
+and high-wedge outcomes are pinned in its execution manifest. These runs used
+Mojo 1.1.0 after locked provisioning failed; the dedicated original CI run was
+still queued. No positive-b family status is promoted. On the minus route,
+#287 algebraic descent and #288 conditional target realness still require
+a uniform carrier argument. Concurrent PR #290 narrows its sufficient target
+to recurrent-carrier inclusion RC-; full child closure is stronger. The a>=2
+transport domain remains explicit.
 
 Mechanically sufficient scoped results are project-accepted for progression;
 independent human review remains final validation and is not being claimed.

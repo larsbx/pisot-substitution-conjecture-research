@@ -2238,8 +2238,18 @@
     },
     {
       "source": "docs/p1b-class-d-barge-power-rotation-stop-2026-10-16.md",
-      "line": 56,
+      "line": 62,
       "statement_heading": "**Corollary (scope of the stop).** Every determinant-two PIP class-D member, on the already certified region \\(r\\ge q-1\\), on either pending \\(b=0\\) boundary, and throughout the unproved \\(b>0\\) interiors, lacks **this** Barge power/rotation witness. Thus class D is a legitimate testing ground for genuinely new #139 boundary-hitting machinery, unlike the October 15 \\(\\sigma_{k,h}:a\\mapsto a^kbc^h,\\ b\\mapsto ab,\\ c\\mapsto a\\) family, which was corrected on October 16 as *directly mirror-Barge*."
+    },
+    {
+      "source": "docs/p1b-class-d-positive-b-wedge-2026-10-19.md",
+      "line": 180,
+      "statement_heading": "distance from the run end (b-coefficient 1). First occurrences have coefficient"
+    },
+    {
+      "source": "docs/p1b-class-d-positive-b-wedge-2026-10-19.md",
+      "line": 215,
+      "statement_heading": "141, b=1 -> 34: top 0,         bottom 2a+6"
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
@@ -2463,8 +2473,8 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 149,
-      "statement_heading": "child closure and nonproductivity with the exact cycle identity, not loop"
+      "line": 191,
+      "statement_heading": "The second branch preserves information erased by the child-count matrix: the ordered sequence of top/bottom subdivision boundary events. The next contradiction should use that order together with full rank and exact prefix-Parikh geometry."
     },
     {
       "source": "docs/sink-scc-reduction.md",
@@ -2643,377 +2653,1137 @@
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 115,
+      "line": 147,
+      "statement_heading": "\\begin{theorem}[Two-obstruction completion theorem; \\Status{Conditional} on A and B]\\label{thm:two-obstruction-completion}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 168,
+      "statement_heading": "\\begin{corollary}[Universal completion criterion; \\Status{Conditional}]\\label{cor:universal-completion}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 210,
       "statement_heading": "\\begin{lemma}[\\Status{Theorem}]\\label{lem:det}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 124,
+      "line": 219,
       "statement_heading": "\\begin{lemma}[$\\Z$-independence of tile lengths; \\Status{Theorem}]\\label{lem:Zindep}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 133,
+      "line": 228,
       "statement_heading": "\\begin{lemma}[Aperiodicity; \\Status{Theorem}]\\label{lem:aperiodic}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 156,
+      "line": 251,
       "statement_heading": "\\begin{theorem}[Unique decodability; \\Status{Theorem}]\\label{thm:UD}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 171,
+      "line": 266,
       "statement_heading": "\\begin{lemma}[\\Status{Theorem}]\\label{lem:inherited}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 182,
+      "line": 277,
       "statement_heading": "\\begin{lemma}[Depth-$n$ descendants; \\Status{Theorem}]\\label{lem:descendants}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 193,
+      "line": 288,
       "statement_heading": "\\begin{hypothesis}[G1, finiteness; \\Status{Open}]\\label{hyp:G1}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 197,
+      "line": 292,
       "statement_heading": "\\begin{conjecture}[SCC Producer; \\Status{Open}]\\label{conj:producer}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 213,
-      "statement_heading": "\\begin{theorem}[Conditional main theorem; \\Status{Conditional}]\\label{thm:main-conditional}"
+      "line": 315,
+      "statement_heading": "\\begin{theorem}[Conditional finite-BPA route; \\Status{Conditional}]\\label{thm:main-conditional}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 224,
+      "line": 329,
       "statement_heading": "\\begin{theorem}[Sink reduction; \\Status{Conditional} on G1]\\label{thm:sink-summary}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 228,
+      "line": 333,
       "statement_heading": "\\begin{theorem}[Structure of a finite closed nonproductive component; \\Status{Theorem}]\\label{thm:structure-summary}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 232,
+      "line": 337,
       "statement_heading": "\\begin{theorem}[Signed defect intertwiners; \\Status{Theorem}]\\label{thm:defect-summary}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 236,
+      "line": 341,
       "statement_heading": "\\begin{theorem}[Uniform return and ancestry finiteness; \\Status{Theorem}]\\label{thm:return-summary}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 240,
+      "line": 345,
       "statement_heading": "\\begin{proposition}[Wedge dichotomy, $d=3$; \\Status{Theorem}]\\label{prop:wedge-summary}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 248,
+      "line": 353,
       "statement_heading": "\\begin{lemma}[Unique hierarchy inside supertiles; \\Status{Theorem}]\\label{lem:unique-hierarchy}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 265,
+      "line": 370,
       "statement_heading": "\\begin{theorem}[G1b-1, bounded discrepancy; \\Status{Theorem}]\\label{thm:G1b1}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 271,
+      "line": 376,
       "statement_heading": "\\begin{lemma}[Summable decay]\\label{lem:decay}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 278,
+      "line": 383,
       "statement_heading": "\\begin{lemma}[Prefix decomposition]\\label{lem:prefix-decomp}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 286,
+      "line": 391,
       "statement_heading": "\\begin{lemma}[Bounded contracting component]\\label{lem:rauzy-bounded}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 299,
+      "line": 404,
       "statement_heading": "\\begin{lemma}[Zero symbolic length controls the Perron component]\\label{lem:zero-length}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 320,
+      "line": 425,
       "statement_heading": "\\begin{proposition}[\\Status{Theorem}]\\label{lem:G1-assembly}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 347,
+      "line": 452,
       "statement_heading": "\\begin{proposition}[A regular family of zero returns; \\Status{Theorem}]\\label{prop:regular-family}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 354,
+      "line": 459,
       "statement_heading": "\\begin{corollary}[\\Status{Theorem}]\\label{cor:windows-not-injective}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 364,
+      "line": 469,
       "statement_heading": "\\begin{lemma}[Prefix-difference inflation; \\Status{Theorem}]\\label{lem:inflation}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 373,
+      "line": 478,
       "statement_heading": "\\begin{corollary}[Finite one-step ancestry; \\Status{Theorem}]\\label{cor:one-step}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 379,
+      "line": 484,
       "statement_heading": "\\begin{theorem}[Pisot ancestry finiteness; \\Status{Theorem}]\\label{thm:ancestry}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 408,
+      "line": 513,
       "statement_heading": "\\begin{conjecture}[Relative density of simultaneous boundaries; \\Status{Conjectural bridge}]\\label{conj:density}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 416,
+      "line": 521,
       "statement_heading": "\\begin{theorem}[Finiteness of the seed-patch overlap graph; \\Status{Theorem}]\\label{thm:overlap-finite}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 429,
+      "line": 534,
       "statement_heading": "\\begin{proposition}[Seed union; \\Status{Theorem}]\\label{prop:seed-union}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 436,
+      "line": 541,
       "statement_heading": "\\begin{theorem}[Seedwise bridge; \\Status{Theorem}]\\label{thm:seedwise}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 444,
+      "line": 549,
       "statement_heading": "\\begin{proposition}[\\PDS{} implies G1; \\Status{Theorem}]\\label{prop:PDS-implies-G1}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 466,
+      "line": 571,
       "statement_heading": "\\begin{theorem}[\\Status{Conditional} on G1; Theorem~\\ref{thm:sink-summary}]\\label{thm:sink}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 479,
+      "line": 584,
       "statement_heading": "\\begin{theorem}[\\Status{Theorem}; part of Theorem~\\ref{thm:structure-summary}]\\label{thm:parikh}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 494,
+      "line": 599,
       "statement_heading": "\\begin{lemma}[Boundary synchronization; \\Status{Theorem}]\\label{lem:boundary-sync}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 501,
+      "line": 606,
       "statement_heading": "\\begin{theorem}[Global endpoint synchronization; \\Status{Theorem}, no PIP hypothesis]\\label{thm:global-sync}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 508,
+      "line": 613,
       "statement_heading": "\\begin{lemma}[Newborn locality; \\Status{Theorem}]\\label{lem:locality}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 523,
+      "line": 628,
       "statement_heading": "\\begin{proposition}[One-way chain; \\Status{Theorem}]\\label{prop:chain}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 552,
+      "line": 657,
       "statement_heading": "\\begin{proposition}[\\Status{Theorem}]\\label{prop:endpoint-types}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 559,
+      "line": 664,
       "statement_heading": "\\begin{corollary}[Signature bound; \\Status{Theorem}]\\label{cor:signature}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 570,
+      "line": 675,
       "statement_heading": "\\begin{theorem}[Barge--Diamond eliminator; \\Status{Theorem}, $d=3$]\\label{thm:BD-eliminator}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 583,
+      "line": 688,
       "statement_heading": "\\begin{proposition}[Orientation cocycle; \\Status{Theorem}]\\label{prop:cocycle}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 592,
+      "line": 697,
       "statement_heading": "\\begin{lemma}[Concatenation and substitution; \\Status{Theorem}]\\label{lem:conc-subst}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 599,
+      "line": 704,
       "statement_heading": "\\begin{theorem}[First-defect intertwiner; \\Status{Theorem}; part of Theorem~\\ref{thm:defect-summary}]\\label{thm:defect-intertwiner}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 606,
+      "line": 711,
       "statement_heading": "\\begin{theorem}[Degrees two and three, $d=3$; \\Status{Theorem}]\\label{thm:deg23}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 618,
+      "line": 723,
       "statement_heading": "\\begin{theorem}[Higher degrees, $d=3$; \\Status{Theorem}]\\label{thm:sieve}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 633,
+      "line": 738,
       "statement_heading": "\\begin{proposition}[\\Status{Theorem}]\\label{prop:midarea}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 649,
+      "line": 754,
       "statement_heading": "\\begin{proposition}[Wedge dichotomy; \\Status{Theorem}; Proposition~\\ref{prop:wedge-summary}]\\label{prop:wedge-dichotomy}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 656,
+      "line": 761,
       "statement_heading": "\\begin{proposition}[Wedge growth in a finite closed component; \\Status{Conditional} on finiteness of $\\cC$]\\label{prop:v34}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 679,
+      "line": 784,
       "statement_heading": "\\begin{lemma}[Uniform return gaps; \\Status{Theorem}, no Pisot hypothesis]\\label{lem:return-gap}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 686,
+      "line": 791,
       "statement_heading": "\\begin{theorem}[Legal ancestry towers; \\Status{Theorem}]\\label{thm:towers}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 693,
+      "line": 798,
       "statement_heading": "\\begin{theorem}[Derived recognizability; \\Status{Theorem}]\\label{thm:derived-recog}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 704,
+      "line": 809,
       "statement_heading": "\\begin{proposition}[Finite relative hierarchy-offset state; \\Status{Theorem}]\\label{prop:offset}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 721,
+      "line": 826,
       "statement_heading": "\\begin{lemma}[Zero returns are common vertices; \\Status{Theorem}]\\label{lem:common-vertex}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 728,
+      "line": 833,
       "statement_heading": "\\begin{lemma}[Common tiles are coincidence blocks; \\Status{Theorem}]\\label{lem:common-tile}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 737,
+      "line": 842,
       "statement_heading": "\\begin{theorem}[Coincidence density; \\Status{Theorem}]\\label{thm:density}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 759,
+      "line": 864,
       "statement_heading": "\\begin{corollary}[Mass balance on overlaps; \\Status{Theorem}]\\label{cor:overlap-mass}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 766,
+      "line": 871,
       "statement_heading": "\\begin{corollary}[Full rank on closed overlap sets; \\Status{Theorem}]\\label{cor:overlap-rank}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 785,
+      "line": 890,
       "statement_heading": "\\begin{lemma}[Three forms of the density condition; \\Status{Theorem}]\\label{lem:three-forms}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 800,
+      "line": 905,
       "statement_heading": "\\begin{theorem}[Main theorem without finiteness; \\Status{Conditional} on one-seed overlap productivity]\\label{thm:main-density}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 813,
+      "line": 918,
       "statement_heading": "\\begin{proposition}[Endpoint-aligned overlaps; \\Status{Theorem}]\\label{prop:aligned-overlaps}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 833,
+      "line": 938,
       "statement_heading": "\\begin{proposition}[Boundary coincidences; \\Status{Theorem}]\\label{prop:boundary-coincidence}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 847,
+      "line": 952,
       "statement_heading": "\\begin{corollary}[Reduction under strong coincidence; \\Status{Theorem}]\\label{cor:scc-reduction}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 861,
+      "line": 966,
       "statement_heading": "\\begin{proposition}[Contracting lower bound; \\Status{Theorem}]\\label{prop:contracting-bound}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 884,
+      "line": 989,
       "statement_heading": "\\begin{proposition}[Closed irreducible obstruction; \\Status{Theorem}]\\label{prop:obstruction-normal-form}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 895,
+      "line": 1000,
       "statement_heading": "\\begin{proposition}[Aligned obstruction or strict zipper; \\Status{Theorem}]\\label{prop:zipper-dichotomy}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 916,
+      "line": 1021,
       "statement_heading": "\\begin{lemma}[Ordered cycle equation; \\Status{Theorem}]\\label{lem:ordered-cycle}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 947,
+      "line": 1052,
       "statement_heading": "\\begin{proposition}[Finiteness from overlap depth; \\Status{Conditional} on all-vertex overlap productivity]\\label{prop:G1-from-overlaps}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 958,
+      "line": 1063,
       "statement_heading": "\\begin{proposition}[Finiteness from half-coincidences; \\Status{Conditional} on strict-zipper exclusion]\\label{prop:G1-from-half-coincidences}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 983,
+      "line": 1088,
       "statement_heading": "\\begin{proposition}[Parity normal form; \\Status{Theorem}]\\label{prop:parity-form}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 990,
+      "line": 1095,
       "statement_heading": "\\begin{lemma}[Prefix transfer; \\Status{Theorem}]\\label{lem:prefix-transfer}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 999,
+      "line": 1104,
       "statement_heading": "\\begin{theorem}[A1$'$ on the class; \\Status{Theorem}]\\label{thm:A1-class}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 1012,
+      "line": 1117,
       "statement_heading": "\\begin{lemma}[Witness paths; \\Status{Theorem}]\\label{lem:witness-path}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 1021,
+      "line": 1126,
       "statement_heading": "\\begin{theorem}[The swap family; \\Status{Theorem}]\\label{thm:swap-family}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 1028,
+      "line": 1133,
       "statement_heading": "\\begin{theorem}[The catch-up-free determinant-two class; \\Status{Theorem}]\\label{thm:K}"
     },
     {
       "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
-      "line": 1041,
+      "line": 1146,
+      "statement_heading": "\\begin{theorem}[Closed parts of $\\mathcal F$; \\Status{Theorem}, computer-assisted]\\label{thm:K-cells}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1409,
+      "statement_heading": "\\begin{lemma}[\\Status{Theorem}]\\label{lem:det}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1418,
+      "statement_heading": "\\begin{lemma}[$\\Z$-independence of tile lengths; \\Status{Theorem}]\\label{lem:Zindep}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1427,
+      "statement_heading": "\\begin{lemma}[Aperiodicity; \\Status{Theorem}]\\label{lem:aperiodic}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1450,
+      "statement_heading": "\\begin{theorem}[Unique decodability; \\Status{Theorem}]\\label{thm:UD}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1465,
+      "statement_heading": "\\begin{lemma}[\\Status{Theorem}]\\label{lem:inherited}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1476,
+      "statement_heading": "\\begin{lemma}[Depth-$n$ descendants; \\Status{Theorem}]\\label{lem:descendants}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1487,
+      "statement_heading": "\\begin{hypothesis}[G1, finiteness; \\Status{Open}]\\label{hyp:G1}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1491,
+      "statement_heading": "\\begin{conjecture}[SCC Producer; \\Status{Open}]\\label{conj:producer}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1514,
+      "statement_heading": "\\begin{theorem}[Conditional finite-BPA route; \\Status{Conditional}]\\label{thm:main-conditional}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1528,
+      "statement_heading": "\\begin{theorem}[Sink reduction; \\Status{Conditional} on G1]\\label{thm:sink-summary}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1532,
+      "statement_heading": "\\begin{theorem}[Structure of a finite closed nonproductive component; \\Status{Theorem}]\\label{thm:structure-summary}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1536,
+      "statement_heading": "\\begin{theorem}[Signed defect intertwiners; \\Status{Theorem}]\\label{thm:defect-summary}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1540,
+      "statement_heading": "\\begin{theorem}[Uniform return and ancestry finiteness; \\Status{Theorem}]\\label{thm:return-summary}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1544,
+      "statement_heading": "\\begin{proposition}[Wedge dichotomy, $d=3$; \\Status{Theorem}]\\label{prop:wedge-summary}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1552,
+      "statement_heading": "\\begin{lemma}[Unique hierarchy inside supertiles; \\Status{Theorem}]\\label{lem:unique-hierarchy}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1569,
+      "statement_heading": "\\begin{theorem}[G1b-1, bounded discrepancy; \\Status{Theorem}]\\label{thm:G1b1}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1575,
+      "statement_heading": "\\begin{lemma}[Summable decay]\\label{lem:decay}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1582,
+      "statement_heading": "\\begin{lemma}[Prefix decomposition]\\label{lem:prefix-decomp}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1590,
+      "statement_heading": "\\begin{lemma}[Bounded contracting component]\\label{lem:rauzy-bounded}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1603,
+      "statement_heading": "\\begin{lemma}[Zero symbolic length controls the Perron component]\\label{lem:zero-length}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1624,
+      "statement_heading": "\\begin{proposition}[\\Status{Theorem}]\\label{lem:G1-assembly}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1651,
+      "statement_heading": "\\begin{proposition}[A regular family of zero returns; \\Status{Theorem}]\\label{prop:regular-family}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1658,
+      "statement_heading": "\\begin{corollary}[\\Status{Theorem}]\\label{cor:windows-not-injective}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1668,
+      "statement_heading": "\\begin{lemma}[Prefix-difference inflation; \\Status{Theorem}]\\label{lem:inflation}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1677,
+      "statement_heading": "\\begin{corollary}[Finite one-step ancestry; \\Status{Theorem}]\\label{cor:one-step}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1683,
+      "statement_heading": "\\begin{theorem}[Pisot ancestry finiteness; \\Status{Theorem}]\\label{thm:ancestry}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1712,
+      "statement_heading": "\\begin{conjecture}[Relative density of simultaneous boundaries; \\Status{Conjectural bridge}]\\label{conj:density}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1720,
+      "statement_heading": "\\begin{theorem}[Finiteness of the seed-patch overlap graph; \\Status{Theorem}]\\label{thm:overlap-finite}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1733,
+      "statement_heading": "\\begin{proposition}[Seed union; \\Status{Theorem}]\\label{prop:seed-union}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1740,
+      "statement_heading": "\\begin{theorem}[Seedwise bridge; \\Status{Theorem}]\\label{thm:seedwise}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1748,
+      "statement_heading": "\\begin{proposition}[\\PDS{} implies G1; \\Status{Theorem}]\\label{prop:PDS-implies-G1}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1770,
+      "statement_heading": "\\begin{theorem}[\\Status{Conditional} on G1; Theorem~\\ref{thm:sink-summary}]\\label{thm:sink}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1783,
+      "statement_heading": "\\begin{theorem}[\\Status{Theorem}; part of Theorem~\\ref{thm:structure-summary}]\\label{thm:parikh}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1798,
+      "statement_heading": "\\begin{lemma}[Boundary synchronization; \\Status{Theorem}]\\label{lem:boundary-sync}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1805,
+      "statement_heading": "\\begin{theorem}[Global endpoint synchronization; \\Status{Theorem}, no PIP hypothesis]\\label{thm:global-sync}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1812,
+      "statement_heading": "\\begin{lemma}[Newborn locality; \\Status{Theorem}]\\label{lem:locality}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1827,
+      "statement_heading": "\\begin{proposition}[One-way chain; \\Status{Theorem}]\\label{prop:chain}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1856,
+      "statement_heading": "\\begin{proposition}[\\Status{Theorem}]\\label{prop:endpoint-types}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1863,
+      "statement_heading": "\\begin{corollary}[Signature bound; \\Status{Theorem}]\\label{cor:signature}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1874,
+      "statement_heading": "\\begin{theorem}[Barge--Diamond eliminator; \\Status{Theorem}, $d=3$]\\label{thm:BD-eliminator}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1887,
+      "statement_heading": "\\begin{proposition}[Orientation cocycle; \\Status{Theorem}]\\label{prop:cocycle}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1896,
+      "statement_heading": "\\begin{lemma}[Concatenation and substitution; \\Status{Theorem}]\\label{lem:conc-subst}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1903,
+      "statement_heading": "\\begin{theorem}[First-defect intertwiner; \\Status{Theorem}; part of Theorem~\\ref{thm:defect-summary}]\\label{thm:defect-intertwiner}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1910,
+      "statement_heading": "\\begin{theorem}[Degrees two and three, $d=3$; \\Status{Theorem}]\\label{thm:deg23}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1922,
+      "statement_heading": "\\begin{theorem}[Higher degrees, $d=3$; \\Status{Theorem}]\\label{thm:sieve}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1937,
+      "statement_heading": "\\begin{proposition}[\\Status{Theorem}]\\label{prop:midarea}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1953,
+      "statement_heading": "\\begin{proposition}[Wedge dichotomy; \\Status{Theorem}; Proposition~\\ref{prop:wedge-summary}]\\label{prop:wedge-dichotomy}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1960,
+      "statement_heading": "\\begin{proposition}[Wedge growth in a finite closed component; \\Status{Conditional} on finiteness of $\\cC$]\\label{prop:v34}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1983,
+      "statement_heading": "\\begin{lemma}[Uniform return gaps; \\Status{Theorem}, no Pisot hypothesis]\\label{lem:return-gap}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1990,
+      "statement_heading": "\\begin{theorem}[Legal ancestry towers; \\Status{Theorem}]\\label{thm:towers}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 1997,
+      "statement_heading": "\\begin{theorem}[Derived recognizability; \\Status{Theorem}]\\label{thm:derived-recog}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2008,
+      "statement_heading": "\\begin{proposition}[Finite relative hierarchy-offset state; \\Status{Theorem}]\\label{prop:offset}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2025,
+      "statement_heading": "\\begin{lemma}[Zero returns are common vertices; \\Status{Theorem}]\\label{lem:common-vertex}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2032,
+      "statement_heading": "\\begin{lemma}[Common tiles are coincidence blocks; \\Status{Theorem}]\\label{lem:common-tile}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2041,
+      "statement_heading": "\\begin{theorem}[Coincidence density; \\Status{Theorem}]\\label{thm:density}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2063,
+      "statement_heading": "\\begin{corollary}[Mass balance on overlaps; \\Status{Theorem}]\\label{cor:overlap-mass}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2070,
+      "statement_heading": "\\begin{corollary}[Full rank on closed overlap sets; \\Status{Theorem}]\\label{cor:overlap-rank}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2089,
+      "statement_heading": "\\begin{lemma}[Three forms of the density condition; \\Status{Theorem}]\\label{lem:three-forms}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2104,
+      "statement_heading": "\\begin{theorem}[Main theorem without finiteness; \\Status{Conditional} on one-seed overlap productivity]\\label{thm:main-density}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2117,
+      "statement_heading": "\\begin{proposition}[Endpoint-aligned overlaps; \\Status{Theorem}]\\label{prop:aligned-overlaps}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2137,
+      "statement_heading": "\\begin{proposition}[Boundary coincidences; \\Status{Theorem}]\\label{prop:boundary-coincidence}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2151,
+      "statement_heading": "\\begin{corollary}[Reduction under strong coincidence; \\Status{Theorem}]\\label{cor:scc-reduction}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2165,
+      "statement_heading": "\\begin{proposition}[Contracting lower bound; \\Status{Theorem}]\\label{prop:contracting-bound}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2188,
+      "statement_heading": "\\begin{proposition}[Closed irreducible obstruction; \\Status{Theorem}]\\label{prop:obstruction-normal-form}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2199,
+      "statement_heading": "\\begin{proposition}[Aligned obstruction or strict zipper; \\Status{Theorem}]\\label{prop:zipper-dichotomy}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2220,
+      "statement_heading": "\\begin{lemma}[Ordered cycle equation; \\Status{Theorem}]\\label{lem:ordered-cycle}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2251,
+      "statement_heading": "\\begin{proposition}[Finiteness from overlap depth; \\Status{Conditional} on all-vertex overlap productivity]\\label{prop:G1-from-overlaps}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2262,
+      "statement_heading": "\\begin{proposition}[Finiteness from half-coincidences; \\Status{Conditional} on strict-zipper exclusion]\\label{prop:G1-from-half-coincidences}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2287,
+      "statement_heading": "\\begin{proposition}[Parity normal form; \\Status{Theorem}]\\label{prop:parity-form}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2294,
+      "statement_heading": "\\begin{lemma}[Prefix transfer; \\Status{Theorem}]\\label{lem:prefix-transfer}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2303,
+      "statement_heading": "\\begin{theorem}[A1$'$ on the class; \\Status{Theorem}]\\label{thm:A1-class}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2316,
+      "statement_heading": "\\begin{lemma}[Witness paths; \\Status{Theorem}]\\label{lem:witness-path}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2325,
+      "statement_heading": "\\begin{theorem}[The swap family; \\Status{Theorem}]\\label{thm:swap-family}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2332,
+      "statement_heading": "\\begin{theorem}[The catch-up-free determinant-two class; \\Status{Theorem}]\\label{thm:K}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2345,
+      "statement_heading": "\\begin{theorem}[Closed parts of $\\mathcal F$; \\Status{Theorem}, computer-assisted]\\label{thm:K-cells}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2601,
+      "statement_heading": "\\begin{lemma}[\\Status{Theorem}]\\label{lem:det}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2610,
+      "statement_heading": "\\begin{lemma}[$\\Z$-independence of tile lengths; \\Status{Theorem}]\\label{lem:Zindep}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2619,
+      "statement_heading": "\\begin{lemma}[Aperiodicity; \\Status{Theorem}]\\label{lem:aperiodic}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2642,
+      "statement_heading": "\\begin{theorem}[Unique decodability; \\Status{Theorem}]\\label{thm:UD}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2657,
+      "statement_heading": "\\begin{lemma}[\\Status{Theorem}]\\label{lem:inherited}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2668,
+      "statement_heading": "\\begin{lemma}[Depth-$n$ descendants; \\Status{Theorem}]\\label{lem:descendants}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2679,
+      "statement_heading": "\\begin{hypothesis}[G1, finiteness; \\Status{Open}]\\label{hyp:G1}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2683,
+      "statement_heading": "\\begin{conjecture}[SCC Producer; \\Status{Open}]\\label{conj:producer}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2706,
+      "statement_heading": "\\begin{theorem}[Conditional finite-BPA route; \\Status{Conditional}]\\label{thm:main-conditional}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2720,
+      "statement_heading": "\\begin{theorem}[Sink reduction; \\Status{Conditional} on G1]\\label{thm:sink-summary}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2724,
+      "statement_heading": "\\begin{theorem}[Structure of a finite closed nonproductive component; \\Status{Theorem}]\\label{thm:structure-summary}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2728,
+      "statement_heading": "\\begin{theorem}[Signed defect intertwiners; \\Status{Theorem}]\\label{thm:defect-summary}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2732,
+      "statement_heading": "\\begin{theorem}[Uniform return and ancestry finiteness; \\Status{Theorem}]\\label{thm:return-summary}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2736,
+      "statement_heading": "\\begin{proposition}[Wedge dichotomy, $d=3$; \\Status{Theorem}]\\label{prop:wedge-summary}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2744,
+      "statement_heading": "\\begin{lemma}[Unique hierarchy inside supertiles; \\Status{Theorem}]\\label{lem:unique-hierarchy}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2761,
+      "statement_heading": "\\begin{theorem}[G1b-1, bounded discrepancy; \\Status{Theorem}]\\label{thm:G1b1}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2767,
+      "statement_heading": "\\begin{lemma}[Summable decay]\\label{lem:decay}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2774,
+      "statement_heading": "\\begin{lemma}[Prefix decomposition]\\label{lem:prefix-decomp}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2782,
+      "statement_heading": "\\begin{lemma}[Bounded contracting component]\\label{lem:rauzy-bounded}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2795,
+      "statement_heading": "\\begin{lemma}[Zero symbolic length controls the Perron component]\\label{lem:zero-length}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2816,
+      "statement_heading": "\\begin{proposition}[\\Status{Theorem}]\\label{lem:G1-assembly}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2843,
+      "statement_heading": "\\begin{proposition}[A regular family of zero returns; \\Status{Theorem}]\\label{prop:regular-family}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2850,
+      "statement_heading": "\\begin{corollary}[\\Status{Theorem}]\\label{cor:windows-not-injective}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2860,
+      "statement_heading": "\\begin{lemma}[Prefix-difference inflation; \\Status{Theorem}]\\label{lem:inflation}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2869,
+      "statement_heading": "\\begin{corollary}[Finite one-step ancestry; \\Status{Theorem}]\\label{cor:one-step}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2875,
+      "statement_heading": "\\begin{theorem}[Pisot ancestry finiteness; \\Status{Theorem}]\\label{thm:ancestry}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2904,
+      "statement_heading": "\\begin{conjecture}[Relative density of simultaneous boundaries; \\Status{Conjectural bridge}]\\label{conj:density}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2912,
+      "statement_heading": "\\begin{theorem}[Finiteness of the seed-patch overlap graph; \\Status{Theorem}]\\label{thm:overlap-finite}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2925,
+      "statement_heading": "\\begin{proposition}[Seed union; \\Status{Theorem}]\\label{prop:seed-union}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2932,
+      "statement_heading": "\\begin{theorem}[Seedwise bridge; \\Status{Theorem}]\\label{thm:seedwise}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2940,
+      "statement_heading": "\\begin{proposition}[\\PDS{} implies G1; \\Status{Theorem}]\\label{prop:PDS-implies-G1}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2962,
+      "statement_heading": "\\begin{theorem}[\\Status{Conditional} on G1; Theorem~\\ref{thm:sink-summary}]\\label{thm:sink}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2975,
+      "statement_heading": "\\begin{theorem}[\\Status{Theorem}; part of Theorem~\\ref{thm:structure-summary}]\\label{thm:parikh}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2990,
+      "statement_heading": "\\begin{lemma}[Boundary synchronization; \\Status{Theorem}]\\label{lem:boundary-sync}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 2997,
+      "statement_heading": "\\begin{theorem}[Global endpoint synchronization; \\Status{Theorem}, no PIP hypothesis]\\label{thm:global-sync}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3004,
+      "statement_heading": "\\begin{lemma}[Newborn locality; \\Status{Theorem}]\\label{lem:locality}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3019,
+      "statement_heading": "\\begin{proposition}[One-way chain; \\Status{Theorem}]\\label{prop:chain}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3048,
+      "statement_heading": "\\begin{proposition}[\\Status{Theorem}]\\label{prop:endpoint-types}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3055,
+      "statement_heading": "\\begin{corollary}[Signature bound; \\Status{Theorem}]\\label{cor:signature}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3066,
+      "statement_heading": "\\begin{theorem}[Barge--Diamond eliminator; \\Status{Theorem}, $d=3$]\\label{thm:BD-eliminator}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3079,
+      "statement_heading": "\\begin{proposition}[Orientation cocycle; \\Status{Theorem}]\\label{prop:cocycle}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3088,
+      "statement_heading": "\\begin{lemma}[Concatenation and substitution; \\Status{Theorem}]\\label{lem:conc-subst}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3095,
+      "statement_heading": "\\begin{theorem}[First-defect intertwiner; \\Status{Theorem}; part of Theorem~\\ref{thm:defect-summary}]\\label{thm:defect-intertwiner}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3102,
+      "statement_heading": "\\begin{theorem}[Degrees two and three, $d=3$; \\Status{Theorem}]\\label{thm:deg23}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3114,
+      "statement_heading": "\\begin{theorem}[Higher degrees, $d=3$; \\Status{Theorem}]\\label{thm:sieve}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3129,
+      "statement_heading": "\\begin{proposition}[\\Status{Theorem}]\\label{prop:midarea}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3145,
+      "statement_heading": "\\begin{proposition}[Wedge dichotomy; \\Status{Theorem}; Proposition~\\ref{prop:wedge-summary}]\\label{prop:wedge-dichotomy}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3152,
+      "statement_heading": "\\begin{proposition}[Wedge growth in a finite closed component; \\Status{Conditional} on finiteness of $\\cC$]\\label{prop:v34}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3175,
+      "statement_heading": "\\begin{lemma}[Uniform return gaps; \\Status{Theorem}, no Pisot hypothesis]\\label{lem:return-gap}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3182,
+      "statement_heading": "\\begin{theorem}[Legal ancestry towers; \\Status{Theorem}]\\label{thm:towers}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3189,
+      "statement_heading": "\\begin{theorem}[Derived recognizability; \\Status{Theorem}]\\label{thm:derived-recog}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3200,
+      "statement_heading": "\\begin{proposition}[Finite relative hierarchy-offset state; \\Status{Theorem}]\\label{prop:offset}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3217,
+      "statement_heading": "\\begin{lemma}[Zero returns are common vertices; \\Status{Theorem}]\\label{lem:common-vertex}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3224,
+      "statement_heading": "\\begin{lemma}[Common tiles are coincidence blocks; \\Status{Theorem}]\\label{lem:common-tile}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3233,
+      "statement_heading": "\\begin{theorem}[Coincidence density; \\Status{Theorem}]\\label{thm:density}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3255,
+      "statement_heading": "\\begin{corollary}[Mass balance on overlaps; \\Status{Theorem}]\\label{cor:overlap-mass}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3262,
+      "statement_heading": "\\begin{corollary}[Full rank on closed overlap sets; \\Status{Theorem}]\\label{cor:overlap-rank}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3281,
+      "statement_heading": "\\begin{lemma}[Three forms of the density condition; \\Status{Theorem}]\\label{lem:three-forms}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3296,
+      "statement_heading": "\\begin{theorem}[Main theorem without finiteness; \\Status{Conditional} on one-seed overlap productivity]\\label{thm:main-density}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3309,
+      "statement_heading": "\\begin{proposition}[Endpoint-aligned overlaps; \\Status{Theorem}]\\label{prop:aligned-overlaps}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3329,
+      "statement_heading": "\\begin{proposition}[Boundary coincidences; \\Status{Theorem}]\\label{prop:boundary-coincidence}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3343,
+      "statement_heading": "\\begin{corollary}[Reduction under strong coincidence; \\Status{Theorem}]\\label{cor:scc-reduction}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3357,
+      "statement_heading": "\\begin{proposition}[Contracting lower bound; \\Status{Theorem}]\\label{prop:contracting-bound}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3380,
+      "statement_heading": "\\begin{proposition}[Closed irreducible obstruction; \\Status{Theorem}]\\label{prop:obstruction-normal-form}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3391,
+      "statement_heading": "\\begin{proposition}[Aligned obstruction or strict zipper; \\Status{Theorem}]\\label{prop:zipper-dichotomy}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3412,
+      "statement_heading": "\\begin{lemma}[Ordered cycle equation; \\Status{Theorem}]\\label{lem:ordered-cycle}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3443,
+      "statement_heading": "\\begin{proposition}[Finiteness from overlap depth; \\Status{Conditional} on all-vertex overlap productivity]\\label{prop:G1-from-overlaps}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3454,
+      "statement_heading": "\\begin{proposition}[Finiteness from half-coincidences; \\Status{Conditional} on strict-zipper exclusion]\\label{prop:G1-from-half-coincidences}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3479,
+      "statement_heading": "\\begin{proposition}[Parity normal form; \\Status{Theorem}]\\label{prop:parity-form}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3486,
+      "statement_heading": "\\begin{lemma}[Prefix transfer; \\Status{Theorem}]\\label{lem:prefix-transfer}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3495,
+      "statement_heading": "\\begin{theorem}[A1$'$ on the class; \\Status{Theorem}]\\label{thm:A1-class}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3508,
+      "statement_heading": "\\begin{lemma}[Witness paths; \\Status{Theorem}]\\label{lem:witness-path}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3517,
+      "statement_heading": "\\begin{theorem}[The swap family; \\Status{Theorem}]\\label{thm:swap-family}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3524,
+      "statement_heading": "\\begin{theorem}[The catch-up-free determinant-two class; \\Status{Theorem}]\\label{thm:K}"
+    },
+    {
+      "source": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+      "line": 3537,
       "statement_heading": "\\begin{theorem}[Closed parts of $\\mathcal F$; \\Status{Theorem}, computer-assisted]\\label{thm:K-cells}"
     }
   ],

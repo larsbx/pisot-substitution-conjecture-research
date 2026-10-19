@@ -1,0 +1,14 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+/workspace/scratch/ab9c5633bda5/pisot-substitution-conjecture-research/kernel/tests/test_symbolic_line.mojo:169:8: warning: doc string summary should begin with a capital letter or non-alpha character, but this begins with 'q'
+    """qx_shift is substitution; the quadrant certificate reads a positive
+       ^
+/workspace/scratch/ab9c5633bda5/pisot-substitution-conjecture-research/kernel/tests/test_symbolic_line.mojo:194:8: warning: doc string summary should begin with a capital letter or non-alpha character, but this begins with 'd'
+    """det g(M) for g = t is det M, and for g = t - 1 it is -chi(1)."""
+       ^
+/workspace/scratch/ab9c5633bda5/pisot-substitution-conjecture-research/kernel/tests/test_symbolic_line.mojo:314:8: warning: doc string summary should begin with a capital letter or non-alpha character, but this begins with 'p'
+    """p = 3 q + 1, r = q - 1 has a second eigenvalue outside the unit disc for
+       ^
+[PASS] test_asymmetric_wedge_and_boundary_specializations
+contract-receipt: Theorem W coordinate regression only: asymmetric class-D wedge characteristic polynomials match concrete integer incidence matrices on both axes and unequal parameter points; edge_a and edge_b retain their coordinate and characteristic polynomial; an asymmetric quadrant corner is unchanged by a positive sign query
+[PASS] test_eventual_sign_records_the_largest_root
+[PASS] test_parametric_signs_agree_with_concrete_signs
