@@ -14,7 +14,7 @@ universal rung above.
   at most 4 or total image length at most 8. The route uses explicit imported
   overlap-coincidence and Meyer-property theorems and no longer depends on
   Proposition V(2) or Theorem B.
-- **Computer-assisted family theorems, project-accepted for progression; independent human validation outstanding:** Theorems L, L′
+- **Computer-assisted family theorems, human review pending; project-accepted for progression:** Theorems L, L′
   and L″ cover 47 one-parameter determinant-two lines; Theorem W covers the
   declared class-D wedges, in particular all PIP members with `r >= q - 1`.
 - **Imported family scope:** Sirvent–Solomyak transfers tiling-flow PDS to the
