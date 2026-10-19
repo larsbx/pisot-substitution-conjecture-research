@@ -345,3 +345,138 @@ The uniform support theorem still requires exact sign control; the complete
 ClassWedge certificate and the independent exact Q(beta) oracle remain the
 authoritative routes.
 
+## 10. Execution audit: the current candidates refuse
+
+The audit of PR #283 at `b28ed5f` (with the diagnostic/copy repairs in this
+revision) ran the canonical Mojo programs using the available **Mojo 1.1.0
+(8189361e)** release compiler. This is supplemental execution, not a receipt
+from the pinned `1.1.0.dev2026090805` compiler: `pixi install --locked` failed
+while fetching a conda-forge dependency, and direct retrieval of the pinned
+compiler timed out. The observed GitHub Actions runs were queued. Reproduction
+commands, source digests and verbatim refusal logs are under
+`evidence/class-d-positive-b-audit-2026-10-19/`.
+
+**Neither complete quadrant certified. No boundary strip was reached.**
+The complete driver now accepts `plus`, `minus`, or `both` (default), and CI
+runs the two signs independently, so the first plus refusal cannot hide the
+minus result. The sealed-cover drivers needed explicit `SymVertex.copy()`
+calls to compile; those repairs do not alter the proposed covers.
+
+### First exact obstructions
+
+Here `c=b-1` is the second ClassWedge coordinate; letters are `(x,c,y)` in
+the offset labels (the letter `c` is distinct from the parameter `c`).
+
+| Program | First source | Refusal |
+| --- | --- | --- |
+| Complete plus | `(x,x,0,1,0)` | Strict least-run bound at `(a,c)=(200,200),(400,200),(200,400)` is `-808,-1408,-1007`; the second-coordinate difference is `-199`, not divisible by the sample step `200`. |
+| Complete minus | `(c,c,-1,0,0)` | Nonstrict least-run bound at `(200,200),(400,200)` is `811,1412`; the difference is `601`, not divisible by `200`. |
+| Minus sealed cover | row 1, `(x,c,-1,3,-2)` | Realness reader cannot certify `c^2+3ac-2a^2-35a-62` on a shifted quadrant. |
+| Plus sealed cover | row 0, `(x,x,-5,8,-4)` | Realness reader cannot certify `2c^2+(6a+34)c-4a^2+70a+126` on a shifted quadrant. |
+
+Both first fitted bounds come from empty occurrence blocks, before the
+engine intersects with the legal run range. For the plus source `(x,x,e_c)`,
+top FIRST / bottom RUN has child translation
+`beta*ell_c+ell_x+k*ell_y>ell_x` for `k>=0`, so it is never real. For the
+minus source `(c,c,-e_x)`, top RUN / bottom FIRST has translation
+`-beta*ell_x-ell_c-k*ell_y<-ell_c`, also never real. Clipping or rejecting
+these empty blocks **before fitting** is therefore a justified correction,
+with no cover enlargement and no change to the mathematical child relation.
+It does not resolve the later sign-reader and changing-support obstructions.
+
+The last two polynomials change sign arbitrarily far out: along `c=a` their
+leading coefficient in `a` is positive; along `c=a/2` it is negative (take
+even integer `a`). A larger corner or cap cannot give either polynomial a
+constant sign. These are **auxiliary sign-reader obstructions**, not escaped
+children, nor a counterexample to BH. In particular, the minus reader has not
+even finished registering the cover, and neither checker reaches its
+all-child inclusion test.
+
+This distinction can be checked directly. The characteristic polynomial
+simplifies to
+
+```text
+chi(X) = X^3-(r+2)X^2-2DX-2s,
+beta(d-2) = 2D + 2s/beta,     d=beta-r, D=a+2.
+```
+
+For the minus row, normalizing `ell_y=1` gives
+`t=d-2+1/beta`. Its realness margins are
+`3d/2-2+1/beta>0` and
+`2-d/2-2/beta = 1-(D+2)/beta+1/beta^2>0`, since
+`beta>r+2=2D+b+2>D+2`. Thus this row really is an overlap on the whole
+minus positive-b family despite the auxiliary polynomial's sign change.
+For plus row 0, `t=3d/2-4-5/beta`; its margins are
+`2d-4-4/beta=4(D-1)/beta+4/beta^2>0` and
+`4-d+6/beta=2+(6-2D)/beta-2/beta^2>0`. The latter follows from
+`beta>r+2>=2D-1>=3`. Again the failed auxiliary sign is not a failed
+geometric inequality.
+
+### A genuine obstruction to one fixed real subcover
+
+The plus sealed row 12 is `(x,c,-5,11,-8)`. Its normalized realness margins
+are
+
+```text
+lower = 7d/2-8-5/beta,
+upper = 8-5d/2+6/beta.
+```
+
+Along `b=lambda*a` with fixed positive `lambda`, the preceding exact root
+identity gives `d -> 2+2/(2+lambda)`: `beta>=r+2` first bounds `d`, then
+`beta/a -> 2+lambda`. Along `b=a` the lower and upper margins both tend to
+`4/3`, so the label is real for all sufficiently large `a`. Along `b=10a`
+the lower margin tends to `-5/12`, so the label is not real. Both rays enter
+every shifted quadrant. Therefore the plus checker cannot classify *every*
+sealed label as uniformly real or uniformly non-real on a single eventual
+quadrant. This concerns the proposed upper-cover strategy; it does not assert
+that row 12 is seed-reachable at every parameter.
+
+The new canonical regression
+`kernel/tests/test_class_d_positive_b_obstructions.mojo` reproduces the exact
+least-run sample values and the row-12 sign change at `(a,b)=(200,200)` and
+`(200,2000)`. It declares a counter-calibration contract, not a BH claim.
+The existing literal-spine negative control and 129/4/6 transport tests remain
+in force; their regression suite, including the 56-member exact support grid,
+passed in this audit.
+
+### Correct next proof obligation
+
+There is no observed cover escape to justify enlarging the 145 or 718 labels.
+The next correction must address the representation of the decisions:
+
+1. Clip occurrence ranges against the actual run endpoints before requiring
+   affine geometric endpoints. `psc.symbolic_cone._ConeClosure.expand` already
+   implements this exact strategy. A new specialization must preserve all
+   old pinned verdicts, or explicitly account for changed certified corners.
+2. Use Perron-root inequalities/brackets for genuinely uniform margins such
+   as the two first sealed rows above. A changing conjugate norm or
+   Sturm-sequence entry must not be mistaken for a changing Perron sign.
+3. For genuinely changing support, certify parameter chambers (including
+   their interface lines), or construct an upper relation whose **every
+   actual child** is covered and whose selected descending occurrences are
+   valid on their declared regions. A fixed selected graph alone is not enough.
+4. Only after a core succeeds, certify every `a<a0` and `c<c0` line and its
+   finite prefix. If the minus transported rank is used, its `a>=2` hypothesis
+   must be included in the core and `a=0,1` handled separately.
+
+This is a narrowed continuation of the existing parametric-overlap stop/go
+in `p1b-catch-up-free-ppvc-2026-10-07.md` section 3 and the established
+line/cone certificate contracts, not a new general PSC mechanism or a novelty
+claim. The workflow now covers all kernel imports, both oracle layers, the
+sealed evidence and tests, and uploads failure logs as well as success logs.
+All certificate errors and missing completion receipts remain fatal.
+
+**Status:** both positive-b quadrants remain open; no scoped class-D theorem,
+ledger promotion, manuscript theorem update, #139 closure, or PSC conclusion
+is warranted by these runs. Existing `b=0` and W1 results are unchanged.
+
+Validation also reproduced the existing full symbolic-line Mojo regression,
+including its pinned successful class-B/class-D lines and negative controls,
+under the available release compiler. Generated ledger/math-catalogue checks,
+vendoring pins, Markdown integrity, plus-carrier binding and transport tests
+passed. The unchanged base also has separate governance blockers: a
+`DensityToPDSBridge` status-anchor mismatch in `docs/proof-ladder.md:17`, stale
+`proof/proof-bank.json`, and malformed/trailing manuscript content detected by
+`check_manuscript_source.py` at line 1357. These were recorded, not silently
+waived; full CI/Lean/TLA validation and merge acceptance are not claimed.

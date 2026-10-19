@@ -61,30 +61,37 @@ def certify_minus_positive_b_cover() raises -> CoverVerdict:
     var real_ids = List[Int]()
     for i in range(len(rows)):
         var v = _const_vertex(rows[i])
-        if cl.real(v.top, v.bottom, v.w):
+        var is_real: Bool
+        try:
+            is_real = cl.real(v.top, v.bottom, v.w)
+        except e:
+            raise Error(String("sealed-cover realness row=", i, " label=", v.key(), ": ", e))
+        if is_real:
             real_ids.append(cl.intern(v^))
 
     # Every uniformly-real seed must already be in the sealed carrier, unless it
     # is an actual coincidence (which is terminal and harmless for BH).
     cl.seeds()
     for i in range(len(cl.vertices)):
-        var v = cl.vertices[i]
+        var v = cl.vertices[i].copy()
         if v.key() not in cover and not (v.top == v.bottom and v.is_zero_offset()):
             raise Error("positive-b seed escapes sealed cover")
 
-    var before = len(cl.vertices)
     for i in real_ids:
-        cl.expand(i)
+        try:
+            cl.expand(i)
+        except e:
+            raise Error(String("sealed-cover source=", cl.vertices[i].key(), ": ", e))
 
     var extras = 0
     for i in range(len(cl.vertices)):
-        var v = cl.vertices[i]
+        var v = cl.vertices[i].copy()
         if v.key() in cover:
             continue
         if v.top == v.bottom and v.is_zero_offset():
             extras += 1
             continue
-        raise Error("positive-b child escapes sealed 145-label cover")
+        raise Error("positive-b child escapes sealed 145-label cover: " + v.key())
 
     var out = CoverVerdict()
     out.real_cover_vertices = len(real_ids)

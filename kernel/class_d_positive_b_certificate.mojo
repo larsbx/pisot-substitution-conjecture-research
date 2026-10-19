@@ -6,6 +6,7 @@ finite family of parameter lines covering its complement; certify(line) proves
 each line including its exact finite prefix. Any undecided sign, cap, non-PIP
 mismatch or failed hitting verdict raises.
 """
+from std.sys import argv
 from symbolic_line_certificate import (
     ClassWedge, certify_wedge, wedge_edges, certify,
 )
@@ -50,14 +51,20 @@ def _certify_complete(name: String, spec: ClassWedge) raises:
 
 
 def main() raises:
+    var args = argv()
+    var branch = String("both")
+    if len(args) == 2:
+        branch = String(args[1])
+    if len(args) > 2 or (branch != "both" and branch != "plus" and branch != "minus"):
+        raise Error("usage: class_d_positive_b_certificate.mojo [both|plus|minus]")
     # c = b - 1 >= 0 in the residual coordinates of the roadmap.
-    # s=+1: (p,q,r)=(4,3,1)+a(3,3,2)+c(1,1,1)
-    _certify_complete(
-        "s=+1",
-        ClassWedge(CLASS_D, [4,3,1, 3,3,1, 1,2,1]),
-    )
-    # s=-1: (p,q,r)=(6,7,5)+a(3,3,2)+c(1,1,1)
-    _certify_complete(
-        "s=-1",
-        ClassWedge(CLASS_D, [6,3,1, 7,3,1, 5,2,1]),
-    )
+    if branch != "minus":
+        _certify_complete(
+            "s=+1",
+            ClassWedge(CLASS_D, [4,3,1, 3,3,1, 1,2,1]),
+        )
+    if branch != "plus":
+        _certify_complete(
+            "s=-1",
+            ClassWedge(CLASS_D, [6,3,1, 7,3,1, 5,2,1]),
+        )

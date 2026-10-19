@@ -2,23 +2,16 @@ name: Class-D positive-b wedge candidates
 
 on:
   pull_request:
+    # Include future transitive imports, sealed carriers, and both oracle layers.
+    # A changed certificate dependency must never retain a stale green receipt.
     paths:
-      - 'kernel/pixi.toml'
-      - 'kernel/pixi.lock'
-      - 'kernel/psc/param_poly.mojo'
-      - 'kernel/psc/symbolic_line.mojo'
-      - 'kernel/symbolic_line_certificate.mojo'
-      - 'kernel/class_d_positive_b_certificate.mojo'
-      - 'kernel/class_d_minus_positive_b_cover.mojo'
-      - 'kernel/class_d_plus_positive_b_cover.mojo'
-      - 'kernel/psc/class_d_minus_spine_data.mojo'
-      - 'kernel/psc/class_d_plus_cover_data.mojo'
-      - 'evidence/class-d-target-spine-2026-10-14/**'
-      - 'evidence/class-d-plus-template-2026-10-14/**'
-      - 'oracles/python/class_d_positive_b_support.py'
-      - 'tests/test_class_d_positive_b_spine_transport.py'
-      - 'tests/test_class_d_positive_b_support.py'
-      - 'tests/test_class_d_plus_cover_data.py'
+      - 'kernel/**'
+      - 'reference/**'
+      - 'oracles/python/**'
+      - 'tests/**'
+      - 'evidence/class-d-*/**'
+      - 'pyproject.toml'
+      - 'vendored.toml'
       - '.github/workflows/class-d-positive-b-evidence.yml'
   workflow_dispatch:
 
@@ -50,10 +43,22 @@ jobs:
           pixi run mojo run -I . symbolic_line_certificate.mojo ${{ matrix.args }} 2>&1 | tee positive-b.log
           grep -F 'symbolic graph for every a >=' positive-b.log
           grep -F 'cross-check at (a0, b0) and (a0 + 5, b0 + 3): symbolic graph = exact graph' positive-b.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: positive-b-${{ matrix.name }}
+          path: kernel/positive-b.log
+          if-no-files-found: error
 
   complete-residual:
     runs-on: ubuntu-latest
     timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { branch: plus, sign: 's=+1' }
+          - { branch: minus, sign: 's=-1' }
     steps:
       - uses: actions/checkout@v4
       - name: Install pixi
@@ -61,22 +66,41 @@ jobs:
           set -o pipefail
           curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
           echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
-      - name: Certify both complete positive-b quadrants
+      - name: Replay exact obstruction controls
+        working-directory: kernel
+        run: pixi run mojo run -I . tests/test_class_d_positive_b_obstructions.mojo
+      - name: Certify complete ${{ matrix.branch }} positive-b quadrant
         working-directory: kernel
         run: |
           set -o pipefail
-          pixi run mojo run -I . class_d_positive_b_certificate.mojo 2>&1 | tee complete-positive-b.log
-          grep -F 'COMPLETE_POSITIVE_B_WEDGE s=+1' complete-positive-b.log
-          grep -F 'COMPLETE_POSITIVE_B_WEDGE s=-1' complete-positive-b.log
+          pixi run mojo run -I . class_d_positive_b_certificate.mojo ${{ matrix.branch }} 2>&1 | tee complete-positive-b.log
+          grep -F 'COMPLETE_POSITIVE_B_WEDGE ${{ matrix.sign }}' complete-positive-b.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: complete-positive-b-${{ matrix.branch }}
+          path: kernel/complete-positive-b.log
+          if-no-files-found: error
   exact-support-grid:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install oracle test runner
+        run: python3 -m pip install pytest
       - name: Run independent exact Q(beta) support calibration
         run: |
           set -o pipefail
           python3 oracles/python/class_d_positive_b_support.py > positive-b-support.json
-          python3 -m pytest -q tests/test_class_d_positive_b_support.py
+          python3 -m pytest -q tests/test_class_d_positive_b_support.py tests/test_class_d_positive_b_spine_transport.py tests/test_class_d_certificate_agreement.py tests/test_class_d_plus_cover_data.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: positive-b-support
+          path: positive-b-support.json
+          if-no-files-found: error
   minus-sealed-cover:
     runs-on: ubuntu-latest
     timeout-minutes: 300
@@ -93,6 +117,12 @@ jobs:
           set -o pipefail
           pixi run mojo run -I . class_d_minus_positive_b_cover.mojo 2>&1 | tee minus-cover.log
           grep -F 'COMPLETE_MINUS_POSITIVE_B_COVER' minus-cover.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: minus-positive-b-cover
+          path: kernel/minus-cover.log
+          if-no-files-found: error
   plus-sealed-cover:
     runs-on: ubuntu-latest
     timeout-minutes: 300
@@ -109,3 +139,9 @@ jobs:
           set -o pipefail
           pixi run mojo run -I . class_d_plus_positive_b_cover.mojo 2>&1 | tee plus-cover.log
           grep -F 'COMPLETE_PLUS_POSITIVE_B_COVER' plus-cover.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: plus-positive-b-cover
+          path: kernel/plus-cover.log
+          if-no-files-found: error
