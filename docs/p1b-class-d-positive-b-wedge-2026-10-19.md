@@ -63,7 +63,24 @@ bound or state-cap obstruction. No failure is to be interpreted as a
 counterexample to boundary hitting unless the exact mathematical predicate
 itself is falsified.
 
-## 4. Acceptance after a successful run
+## 4. Complete-quadrant certificate
+
+`kernel/class_d_positive_b_certificate.mojo` now composes the existing exact
+proof objects instead of stopping at the wedge core:
+
+1. `certify_wedge` proves BH on one eventual quadrant
+   `a>=a0, c>=c0`;
+2. `wedge_edges` enumerates every parameter line covering the complement;
+3. `certify(line)` proves each such line, including its exact finite prefix.
+
+Therefore a successful driver run covers **every integer point** of both
+positive-`b` residual quadrants. It prints
+`COMPLETE_POSITIVE_B_WEDGE` only after every core and boundary-line proof has
+completed without refusal.
+
+This still remains scoped class-D closure, not universal #139.
+
+## 5. Acceptance after a successful run
 
 Success of a wedge core alone is not yet the whole quadrant if the engine moves
 its certified corner to `a>=a0, c>=c0`. The finite strips outside that core
@@ -80,7 +97,7 @@ closed completely by combining:
 
 That would close #139 on all determinant-two class D, not universal #139.
 
-## 5. Firewalls
+## 6. Firewalls
 
 - no uniform contraction margin is assumed;
 - no unimodularity is introduced;
@@ -89,7 +106,7 @@ That would close #139 on all determinant-two class D, not universal #139.
 - no finite sample is a theorem;
 - a capped/undecided exact run refuses promotion.
 
-## 6. Rank-one b-direction and the occurrence compensation law
+## 7. Rank-one b-direction and the occurrence compensation law
 
 The positive-b direction adds one extra `y` to **every** image. In letter
 order `(x,c,y)` the incidence matrix therefore has the exact form
