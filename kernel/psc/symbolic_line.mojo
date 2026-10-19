@@ -747,13 +747,13 @@ struct _Closure:
         var v2 = _least_at(self.line, self.sign, h0, h1, 2 * SAMPLE_BASE, SAMPLE_BASE, strict)
         var slope = (v2 - v1) // SAMPLE_BASE
         if v2 - v1 != slope * SAMPLE_BASE:
-            raise Error("a run-position bound is not affine in q at the samples")
+            raise Error(String("a run-position bound is not affine in q at the samples: base=", SAMPLE_BASE, " values=", v1, ",", v2, " strict=", strict, " h0=", tp_key(h0), " h1=", tp_key(h1)))
         var slope_b = 0
         if tp_has_b(h0) or tp_has_b(h1) or tp_has_b(self.line.field.chi):
             var v3 = _least_at(self.line, self.sign, h0, h1, SAMPLE_BASE, 2 * SAMPLE_BASE, strict)
             slope_b = (v3 - v1) // SAMPLE_BASE
             if v3 - v1 != slope_b * SAMPLE_BASE:
-                raise Error("a run-position bound is not affine in b at the samples")
+                raise Error(String("a run-position bound is not affine in b at the samples: base=", SAMPLE_BASE, " values=", v1, ",", v2, ",", v3, " strict=", strict, " h0=", tp_key(h0), " h1=", tp_key(h1)))
         var c0 = v1 - (slope + slope_b) * SAMPLE_BASE
         var mu = qx_affine2(c0, slope, slope_b)
         var floor_sign = 1 if strict else 0
@@ -897,7 +897,10 @@ def symbolic_line_graph(var line: Line) raises -> SymbolicLineGraph:
     while done < len(cl.queue):
         var i = cl.queue[done]
         done += 1
-        cl.expand(i)
+        try:
+            cl.expand(i)
+        except e:
+            raise Error(String("symbolic closure source=", cl.vertices[i].key(), ": ", e))
     out.pip = True
     out.threshold = cl.ev.threshold.copy()
     out.b_floor = cl.ev.b_floor

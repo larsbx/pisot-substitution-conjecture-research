@@ -1,0 +1,67 @@
+{
+  "status": "REFUSED_NOT_CERTIFIED",
+  "baseline_commit": "b28ed5f5d07ef44ccb46e6780a7b39cc025643c5",
+  "compiler": "Mojo 1.1.0 (8189361e)",
+  "pinned_compiler": "1.1.0.dev2026090805",
+  "pinned_environment_reproduced": false,
+  "pinned_environment_blocker": "pixi install --locked failed fetching tomli-2.4.1-pyhcf101f3_0.conda (proxy tunnel); direct pinned compiler retrieval timed out",
+  "source_sha256": {
+    "kernel/class_d_positive_b_certificate.mojo": "e0242026d3272c5ddc2543f1569089503122cc8d244c925982e9beac71a8d0aa",
+    "kernel/class_d_minus_positive_b_cover.mojo": "66276e93eceedd59dae4989e6d50fec1329d81d9f2e29f6669085def5b12a80f",
+    "kernel/class_d_plus_positive_b_cover.mojo": "20f511663c6fb4c4e0e552341037b6e2a73437d761e2b0cf56d029d282e985b7",
+    "kernel/psc/symbolic_line.mojo": "6bcd567177de4ba53723f93067776705207c791665dd8a85aaeb70674d29ec02",
+    "kernel/tests/test_class_d_positive_b_obstructions.mojo": "43b69efb95375faa2710cd73cea89db855b8b8e40de0171064c62c26904c2499"
+  },
+  "runs": [
+    {
+      "source": "kernel/class_d_positive_b_certificate.mojo",
+      "argument": "plus",
+      "exit_code": 1,
+      "log": "plus-complete.log"
+    },
+    {
+      "source": "kernel/class_d_positive_b_certificate.mojo",
+      "argument": "minus",
+      "exit_code": 1,
+      "log": "minus-complete.log"
+    },
+    {
+      "source": "kernel/class_d_plus_positive_b_cover.mojo",
+      "exit_code": 1,
+      "log": "plus-cover-diagnostic.log"
+    },
+    {
+      "source": "kernel/class_d_minus_positive_b_cover.mojo",
+      "exit_code": 1,
+      "log": "minus-cover-diagnostic.log"
+    },
+    {
+      "source": "kernel/tests/test_class_d_positive_b_obstructions.mojo",
+      "exit_code": 0,
+      "log": "obstruction-controls.log"
+    }
+  ],
+  "boundary_strips_reached": false,
+  "complete_receipts": [],
+  "python_validation": {
+    "command": "python -m pytest -q tests/test_class_d_positive_b_spine_transport.py tests/test_class_d_positive_b_support.py tests/test_class_d_certificate_agreement.py",
+    "result": "6 passed; includes exact 56-specimen minus grid",
+    "uniform_closure": false
+  },
+  "integration_parent": "778721c4b3bc67194a63204b6315e113bd44bf29",
+  "additional_validation": {
+    "symbolic_line_regression": "PASS, full kernel/tests/test_symbolic_line.mojo with Mojo 1.1.0; verbatim log retained",
+    "plus_carrier_and_transport": "3 tests passed after reconciliation with concurrent commits",
+    "workflow": "YAML parsed; all class-b kernel triggers included; independent plus/minus jobs and always-upload artifacts checked",
+    "ledger_generation": "26 generated surfaces current",
+    "math_catalogue": "PASS",
+    "vendored_pins": "PASS",
+    "markdown_integrity": "PASS",
+    "full_ci": "not completed; pinned toolchain unavailable and certificate candidates refuse",
+    "preexisting_base_findings": [
+      "claim-governance: docs/proof-ladder.md:17 DensityToPDSBridge anchor lacks accepted status label",
+      "proof-bank.json stale under --check",
+      "manuscript source guard: end{document} at line 1357 closes no open environment; trailing duplicated text follows in unchanged base source"
+    ]
+  }
+}
