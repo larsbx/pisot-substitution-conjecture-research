@@ -56,6 +56,8 @@ ResultSet == {
     "MassBalanceK2Obstruction",
     "MeanAreaLift",
     "MidArea",
+    "MinusClassDPositiveBBoundaryHitting",
+    "MinusClassDPositiveBCycleSum",
     "Mod3Sieve",
     "OrientationMonodromy",
     "OrientationSpectrum",
@@ -148,6 +150,8 @@ RequiresDef == [r \in ResultSet |->
       [] r = "MassBalanceK2Obstruction" -> {{}}
       [] r = "MeanAreaLift" -> {{"MidArea", "ParikhIntertwiner"}}
       [] r = "MidArea" -> {{}}
+      [] r = "MinusClassDPositiveBBoundaryHitting" -> {{"MinusClassDPositiveBCycleSum", "SwapOverlapFiniteness"}}
+      [] r = "MinusClassDPositiveBCycleSum" -> {{}}
       [] r = "Mod3Sieve" -> {{"DefectIntertwiner"}}
       [] r = "OrientationMonodromy" -> {{}}
       [] r = "OrientationSpectrum" -> {{"OrientationMonodromy", "ParikhIntertwiner"}}
@@ -229,6 +233,7 @@ ProvedDef == {
     "MassBalanceK2Obstruction",
     "MeanAreaLift",
     "MidArea",
+    "MinusClassDPositiveBBoundaryHitting",
     "Mod3Sieve",
     "OrientationMonodromy",
     "OrientationSpectrum",
@@ -306,6 +311,9 @@ G1AndProducer == {
 G1Only == {
     "G1"
 }
+MinusCycleSumAssumed == {
+    "MinusClassDPositiveBCycleSum"
+}
 OverlapGateAssumed == {
     "OverlapProductivity",
     "DensityToPDSBridge"
@@ -371,6 +379,8 @@ LocalWitnessInjectivityNotEstablished == "LocalWitnessInjectivity" \notin establ
 MassBalanceK2ObstructionNotEstablished == "MassBalanceK2Obstruction" \notin established
 MeanAreaLiftNotEstablished == "MeanAreaLift" \notin established
 MidAreaNotEstablished == "MidArea" \notin established
+MinusClassDPositiveBBoundaryHittingNotEstablished == "MinusClassDPositiveBBoundaryHitting" \notin established
+MinusClassDPositiveBCycleSumNotEstablished == "MinusClassDPositiveBCycleSum" \notin established
 Mod3SieveNotEstablished == "Mod3Sieve" \notin established
 OrientationMonodromyNotEstablished == "OrientationMonodromy" \notin established
 OrientationSpectrumNotEstablished == "OrientationSpectrum" \notin established

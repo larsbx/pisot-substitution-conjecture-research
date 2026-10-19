@@ -39,8 +39,8 @@ def _child(
     mw.append([3*x+3*c+2*y,5*x+6*c+4*y,x+c+y])
     var out = List[Int]([top[0][0],bottom[0][0]])
     for k in range(3):
-        var pt = top[1+k]
-        var pb = bottom[1+k]
+        var pt = top[1+k].copy()
+        var pb = bottom[1+k].copy()
         var ca = mw[k][0]+pb[0]-pt[0]
         var c0 = mw[k][1]+pb[1]-pt[1]
         var cb = mw[k][2]+pb[2]-pt[2]
@@ -64,8 +64,8 @@ def _child_b1(
     mw.append([3*x+3*c+2*y,5*x+6*c+4*y+(x+c+y)])
     var out = List[Int]([top[0][0],bottom[0][0]])
     for k in range(3):
-        var pt = top[1+k]
-        var pb = bottom[1+k]
+        var pt = top[1+k].copy()
+        var pb = bottom[1+k].copy()
         var ca = mw[k][0]+pb[0]-pt[0]
         var c0 = mw[k][1]+pb[1]-pt[1]
         if ca != 0:
@@ -117,12 +117,12 @@ def verify_minus_exceptional_productivity() raises -> List[Int]:
     _verify_minus_root_box()
     var rows = minus_spine_rows()
 
-    var U = [2,1,-2,4,-3]
-    var Ub = [1,2,2,-4,3]
-    var V = [2,1,3,-6,4]
-    var Vb = [1,2,-3,6,-4]
-    var A = [2,2,-3,5,-3]
-    var Ab = [2,2,3,-5,3]
+    var U: List[Int] = [2,1,-2,4,-3]
+    var Ub: List[Int] = [1,2,2,-4,3]
+    var V: List[Int] = [2,1,3,-6,4]
+    var Vb: List[Int] = [1,2,-3,6,-4]
+    var A: List[Int] = [2,2,-3,5,-3]
+    var Ab: List[Int] = [2,2,3,-5,3]
 
     # U -> sealed row 69: top FIRST, bottom run occurrence b.
     if _child(U,[0,0,0],[0,0,1]) != _label(rows[69]):

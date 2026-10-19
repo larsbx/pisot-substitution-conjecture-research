@@ -92,26 +92,33 @@ def _shift_corner(f: List[Int]) -> List[Int]:
     return [f[1]+2*f[0]+f[2],f[0],f[2]]
 
 
-def _edge_possible(
+def edge_forms(
     state: CycleState, st: List[List[Int]], sb: List[List[Int]], sp: Int
-) raises -> Bool:
+) raises -> List[List[Int]]:
     var s = state.x+state.c+state.y
     var A = 3*state.x+3*state.c+2*state.y
     var C = 7*state.x+8*state.c+6*state.y
     # Required j-i = sp - (A*a + s*b + C).
-    var req = [-A,sp-C,-s]
+    var req: List[Int] = [-A,sp-C,-s]
     var lower = _sub3(sb[2],st[3])
     var upper = _sub3(sb[3],st[2])
     var forms = List[List[Int]]()
     forms.append(_shift_corner(_sub3(req,lower)))
     forms.append(_shift_corner(_sub3(upper,req)))
+    return forms^
+
+
+def _edge_possible(
+    state: CycleState, st: List[List[Int]], sb: List[List[Int]], sp: Int
+) raises -> Bool:
+    var forms = edge_forms(state,st,sb,sp)
     # If exact Farkas arithmetic cannot refute the region, retain the edge.
     # This is deliberately an overapproximation.
     return not lp_infeasible(forms,2)
 
 
 def _boundary_only(v: CycleState) -> Bool:
-    var row = [v.top,v.bottom,v.x,v.c,v.y]
+    var row: List[Int] = [v.top,v.bottom,v.x,v.c,v.y]
     var m = _margins20(row)
     for k in range(2):
         if m[k][0] == 0 and m[k][1] == 0 and m[k][2] == 0:
@@ -155,7 +162,7 @@ def verify_minus_cycle_superset() raises -> List[Int]:
         adj.append(List[Int]())
 
     for i in range(len(states)):
-        var v = states[i]
+        var v = states[i].copy()
         var s = v.x+v.c+v.y
         var m = v.x+v.c
         for kt in range(3):
@@ -190,6 +197,8 @@ def verify_minus_cycle_superset() raises -> List[Int]:
     var recurrent = 0
     var carrier = 0
     var zero = 0
+    var zero_coincidence = 0
+    var zero_noncoincidence = 0
     var boundary = 0
     var exceptional = 0
     for comp in comps:
@@ -197,10 +206,20 @@ def verify_minus_cycle_superset() raises -> List[Int]:
             continue
         for at in comp:
             recurrent += 1
-            var v = states[at]
+            var v = states[at].copy()
             if v.key() in cover:
                 carrier += 1
             elif v.is_zero_offset():
+                # Explicit known BH targets, not a blanket coincidence filter.
+                if v.top == v.bottom:
+                    if v.key() != "0:0:0,0,0":
+                        raise Error("unexpected noncarrier terminal coincidence")
+                    zero_coincidence += 1
+                else:
+                    if v.key() != "1:0:0,0,0":
+                        raise Error("unexpected noncarrier zero-offset noncoincidence")
+                    zero_noncoincidence += 1
+                print("SUPERSET_ZERO_TARGET",v.key(),"coincidence=",v.top == v.bottom)
                 zero += 1
             elif _boundary_only(v):
                 boundary += 1
@@ -209,6 +228,8 @@ def verify_minus_cycle_superset() raises -> List[Int]:
             else:
                 raise Error("unclassified recurrent cycle-superset state: "+v.key())
 
+    if zero_coincidence != 1 or zero_noncoincidence != 1:
+        raise Error("zero-target coincidence partition changed")
     if recurrent != 145 or carrier != 131 or zero != 2 or boundary != 8 or exceptional != 4:
         raise Error("minus cycle-superset recurrent classification changed")
 

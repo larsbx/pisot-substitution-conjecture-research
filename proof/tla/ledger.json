@@ -6,6 +6,9 @@
   "index_path": "docs/ledger-index.md",
   "graph_path": "docs/claim-relationship-graph.json",
   "assumption_sets": {
+    "MinusCycleSumAssumed": [
+      "MinusClassDPositiveBCycleSum"
+    ],
     "G1AndProducer": [
       "G1",
       "SCCProducer"
@@ -222,6 +225,20 @@
     ]
   },
   "surfaces": {
+    "MinusClassDPositiveBCycleSum": [
+      {
+        "path": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md",
+        "anchor": "| Minus cycle-sum bound |",
+        "window_lines": 0
+      }
+    ],
+    "MinusClassDPositiveBBoundaryHitting": [
+      {
+        "path": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md",
+        "anchor": "| Minus positive-b boundary hitting |",
+        "window_lines": 0
+      }
+    ],
     "DefectTheorem": [
       {
         "path": "docs/claim-status-and-source-map-2026-09-13.md",
@@ -2093,6 +2110,61 @@
         [
           "source",
           "docs/p1b-boundary-hitting-progress-2026-10-08.md, Theorem W and Corollary W1; computer-assisted, human review pending; merged through PR #246"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusClassDPositiveBCycleSum": {
+      "id": "sha256:bc6cde098d18831647f270e3ee036a045d0d02b89195f6598388ba16edaeb939",
+      "kind": "pending_dependency",
+      "statement": "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "reason",
+          "open CycleSum- premise; docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md; shared-parameter guards refute only supplied cycles, not all cycles"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusClassDPositiveBBoundaryHitting": {
+      "id": "sha256:7f8ca119d21c936213462043f3b03dfd56ed9d71c8541d393d49b578c57a2228",
+      "kind": "repository_theorem",
+      "statement": "assuming CycleSum-, boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:bc6cde098d18831647f270e3ee036a045d0d02b89195f6598388ba16edaeb939",
+          "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
+          "MinusClassDPositiveBBoundaryHitting/MinusClassDPositiveBCycleSum",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:58cf2389acfc61befe8aad13ecde2bb68ae246c243249c1bf340702b096ba9e0",
+          "every swap seed has a finite exact overlap graph",
+          "MinusClassDPositiveBBoundaryHitting/SwapOverlapFiniteness",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md sections 5 and 9; exact 1971-state guarded superset, exceptional exits, ranked carrier and finite-graph reduction; human review pending"
         ],
         [
           "human_review_pending",

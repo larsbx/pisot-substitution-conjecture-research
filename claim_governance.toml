@@ -1203,6 +1203,42 @@ anchor = '| MidArea |'
 window_lines = 0
 
 [[claim]]
+name = "MinusClassDPositiveBBoundaryHitting"
+status = "conditional"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDPositiveBBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDPositiveBBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Minus positive-b boundary hitting |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassDPositiveBCycleSum"
+status = "open"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDPositiveBCycleSum"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "absent"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDPositiveBCycleSum |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Minus cycle-sum bound |"
+window_lines = 0
+
+[[claim]]
 name = "Mod3Sieve"
 status = "proved"
 [[claim.surfaces]]

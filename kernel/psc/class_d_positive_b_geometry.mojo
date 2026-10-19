@@ -42,7 +42,7 @@ def _margins20(row: List[Int]) -> List[List[Int]]:
     var x = row[2]
     var c = row[3]
     var y = row[4]
-    var shift = [20*(x+c+y), 10*(x+c), -2*x]
+    var shift: List[Int] = [20*(x+c+y), 10*(x+c), -2*x]
     var lower = _add(shift,_length20(row[1]))
     var upper = _add(_length20(row[0]),_neg(shift))
     return [lower^,upper^]

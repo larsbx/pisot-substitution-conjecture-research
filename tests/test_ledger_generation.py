@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import make_ledger  # noqa: E402
 from proof_records import generate_ledgers as gl  # noqa: E402
 
-MODELS = ("FormalProductivityGateAssumed", "Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
+MODELS = ("MinusCycleSumAssumed", "FormalProductivityGateAssumed", "Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
 
 
 def reachable(model: str) -> set[str]:
@@ -205,3 +205,15 @@ def test_model_rejects_false_g1_nonestablishment_with_tlc(tmp_path):
     out = subprocess.run(["java", "-XX:+UseSerialGC", "-cp", jar, "tlc2.TLC", "-workers", "1", model],
                          cwd=tmp_path, capture_output=True, text=True, timeout=60)
     assert "Invariant G1NotEstablished is violated" in out.stdout, out.stdout + out.stderr
+
+
+def test_minus_cyclesum_closes_only_the_scoped_conditional_family_result():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof/tla/ledger.json"))
+    by_name = {e.name:e for e in analysis.entries}
+    assert by_name["MinusClassDPositiveBCycleSum"].status == "open"
+    assert by_name["MinusClassDPositiveBBoundaryHitting"].status == "conditional"
+    assert "MinusClassDPositiveBBoundaryHitting" not in reachable("Open")
+    done = gl.established(analysis,("MinusClassDPositiveBCycleSum",))
+    assert done == reachable("MinusCycleSumAssumed")
+    assert "MinusClassDPositiveBBoundaryHitting" in done
+    assert not {"AllSeedStrictZipperExclusion","OverlapProductivity", "AllSeedOverlapProductivity", "G1", "PDS"} & done

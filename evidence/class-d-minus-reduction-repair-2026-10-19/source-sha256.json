@@ -1,0 +1,15 @@
+{
+  "kernel/psc/class_d_minus_cycle_superset.mojo": "f8281d659a72aec62e54c859428a554dfa1f6cf954af5ed5d427a31eac447f81",
+  "kernel/psc/class_d_minus_exceptional_cycles.mojo": "17a41a9845a9338272d7365a7018b0c68d1882c3c17d9ec5504446b96d58008a",
+  "kernel/psc/class_d_positive_b_geometry.mojo": "59e32272cab32fa1c062b501b0e48161d8e731f1ed921a6c97dc78b857590420",
+  "kernel/psc/class_d_minus_recurrent_support.mojo": "9f922ac7520a9ec0ba73e085a53dd946f3caba566b6f0787bb9d7e0752d564c4",
+  "kernel/psc/class_d_minus_shared_cycles.mojo": "aefdadf2a29d72f3fe5d9e4a1d0bf832c3fb719832d12143ffe58c3b5e9fe740",
+  "kernel/class_d_minus_cycle_reduction.mojo": "48f32238c42a72e8afe51d1e3f912023f1daaeba5d5afd2172393ef7c9700ad8",
+  "kernel/class_d_minus_recurrent_support.mojo": "ee253f2e928908b1baaf3fbac5d980c5dc8e36827acfca8f17a5a9f594cb75c8",
+  "kernel/class_d_minus_shared_cycles.mojo": "2b4959a969fe22e0f1cc3db0adab82e88df41613f7666997184c1f95e834e309",
+  "kernel/tests/test_class_d_minus_cycle_reduction.mojo": "c01d056fb2c2cc31dcdde7fa77fd453e517cf3853e52af43d4d52bf0d68f186d",
+  "kernel/tests/test_class_d_minus_recurrent_support.mojo": "a726fc0fa094b73a228aef6e4846d2e3b142f0d6460c9a224341b1e3a1258804",
+  "kernel/tests/test_class_d_minus_shared_cycles.mojo": "051a3d90ac71cc763910c98211fb0a880bafab6da1a6803c1ffe2611ef0e88c1",
+  "oracles/python/class_d_positive_b_recurrent_support.py": "02b5b06aa18a4b058aad4233db1b0d5f4dd30e4e563fb972327582192688d39d",
+  "oracles/python/class_d_minus_shared_cycles.py": "6d4a63da8ca22e7304f2cc21090e24e9db34e07834745bfe82979d765dec6f2f"
+}

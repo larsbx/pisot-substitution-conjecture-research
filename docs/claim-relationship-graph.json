@@ -524,6 +524,28 @@
       "source": "source: docs/c4-degree2-midarea-factorization.md"
     },
     {
+      "id": "MinusClassDPositiveBBoundaryHitting",
+      "kind": "claim",
+      "label": "Conditional theorem",
+      "provenance": "conditional",
+      "statement": "assuming CycleSum-, boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md sections 5 and 9; exact 1971-state guarded superset, exceptional exits, ranked carrier and finite-graph reduction; human review pending",
+      "leaks": "premises not established: MinusClassDPositiveBCycleSum"
+    },
+    {
+      "id": "MinusClassDPositiveBCycleSum",
+      "kind": "claim",
+      "label": "Open conjectural gate",
+      "provenance": "open",
+      "statement": "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "pending_dependency",
+      "source": "reason: open CycleSum- premise; docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md; shared-parameter guards refute only supplied cycles, not all cycles",
+      "leaks": "open CycleSum- premise; docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md; shared-parameter guards refute only supplied cycles, not all cycles"
+    },
+    {
       "id": "Mod3Sieve",
       "kind": "claim",
       "label": "Repository-proved",
@@ -1600,6 +1622,15 @@
       ]
     },
     {
+      "id": "MinusCycleSumAssumed",
+      "kind": "assumption_set",
+      "label": "assumption set",
+      "provenance": "declared",
+      "members": [
+        "MinusClassDPositiveBCycleSum"
+      ]
+    },
+    {
       "id": "OverlapGateAssumed",
       "kind": "assumption_set",
       "label": "assumption set",
@@ -2085,6 +2116,15 @@
     },
     {
       "type": "implicative",
+      "source": "MinusClassDPositiveBCycleSum",
+      "target": "MinusClassDPositiveBBoundaryHitting",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "MinusClassDPositiveBBoundaryHitting/MinusClassDPositiveBCycleSum",
+      "leaks": "premise is open"
+    },
+    {
+      "type": "implicative",
       "source": "OrientationMonodromy",
       "target": "DefectIntertwiner",
       "provenance": "theorem-backed",
@@ -2335,6 +2375,14 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "G1OverlapRoute/SwapOverlapFiniteness"
+    },
+    {
+      "type": "implicative",
+      "source": "SwapOverlapFiniteness",
+      "target": "MinusClassDPositiveBBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDPositiveBBoundaryHitting/SwapOverlapFiniteness"
     },
     {
       "type": "implicative",
@@ -3020,6 +3068,14 @@
       "type": "part-whole",
       "source": "G1b2RenewalFiniteness",
       "target": "RenewalGateAssumed",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "MinusClassDPositiveBCycleSum",
+      "target": "MinusCycleSumAssumed",
       "provenance": "open",
       "certainty": 1,
       "use_site": "assumption_sets"

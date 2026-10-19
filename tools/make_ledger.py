@@ -144,6 +144,11 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                     f"{BOUNDARY_PROGRESS}, Theorems L, L' and L''; computer-assisted, human review pending; merged through PR #246", (), ()),
     "ClassDWedgeBoundaryHitting": (T, "boundary hitting holds on the six declared two-parameter class-D wedges; in particular for every PIP class-D member with r >= q - 1",
                                     f"{BOUNDARY_PROGRESS}, Theorem W and Corollary W1; computer-assisted, human review pending; merged through PR #246", (), ()),
+    "MinusClassDPositiveBCycleSum": (P, "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
+                                     "open CycleSum- premise; docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md; shared-parameter guards refute only supplied cycles, not all cycles", (), ()),
+    "MinusClassDPositiveBBoundaryHitting": (T, "assuming CycleSum-, boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1",
+                                           "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md sections 5 and 9; exact 1971-state guarded superset, exceptional exits, ranked carrier and finite-graph reduction; human review pending",
+                                           ("MinusClassDPositiveBCycleSum", "SwapOverlapFiniteness"), ()),
     # --- strongest Level-3 spectral route ----------------------------------------------
     "ConcentrationAuxB": (P, "no strict component with K2 = 0 exists (concentration / aux-B)", "open conjectural gate, not source-pending; manuscript open problem; issue #43",
                           ("G1", "SinkSCCReduction"), ()),
@@ -251,6 +256,7 @@ STATUS_NOTES = {
 }
 
 ASSUMPTION_SETS = {
+    "MinusCycleSumAssumed": ["MinusClassDPositiveBCycleSum"],
     "G1AndProducer": ["G1", "SCCProducer"],
     "G1Only": ["G1"],
     "G1AndC4": ["G1", "C4"],
@@ -308,6 +314,8 @@ def surface(path: str, anchor: str, window_lines: int = 0) -> dict:
 # Status checks bind live prose. Frozen completion snapshots belong in the
 # archive and must not become a dependency of the current status ledger.
 SURFACES = {  # prose surfaces on which each claim's status is spelled out (labelled by the consumer vocabulary)
+    "MinusClassDPositiveBCycleSum": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Minus cycle-sum bound |")],
+    "MinusClassDPositiveBBoundaryHitting": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Minus positive-b boundary hitting |")],
     "DefectTheorem": [surface(MAP, "| Full incidence rank from"), surface(LEDGER_DOC, "### Full incidence rank and unique decodability", 2)],
     "UniqueDecodability": [surface(MAP, "| Unique decodability of substitution images and powers |"), surface("README.md", "**Unique decodability:**")],
     "G1b1BoundedDiscrepancy": [surface(MAP, "| G1b-1 bounded discrepancy |"), surface(LEDGER_DOC, "### G1b-1 bounded discrepancy", 2),
@@ -392,7 +400,7 @@ def records() -> dict[str, Record]:
                          ("reconciled_source_revision", BOX_LC_RECONCILED_BASELINE),
                          ("reconciliation_source", RECONCILIATION),
                          ("human_review_pending", "true"))
-        if name in {"DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting"}:
+        if name in {"DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting", "MinusClassDPositiveBBoundaryHitting"}:
             evidence += (("human_review_pending", "true"),
                          ("computer_assisted", "true"))
         if name == "G1":

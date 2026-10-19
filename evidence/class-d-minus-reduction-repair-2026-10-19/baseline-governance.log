@@ -1,0 +1,4 @@
+docs/proof-ladder.md:17: [consistency/DensityToPDSBridge] no status label within 0 lines of the anchor
+kernel/tests/test_symbolic_line_empty_blocks.mojo: [coverage/declaration] test names no ledger claim and no contract
+
+claim governance audit of larsbx/pisot-substitution-conjecture-research failed: 2 finding(s) [terminology, claims, coverage, promotion, numerics, consistency]
