@@ -153,6 +153,8 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                     f"{BOUNDARY_PROGRESS}, Theorems L, L' and L''; computer-assisted, human review pending; merged through PR #246", (), ()),
     "ClassDWedgeBoundaryHitting": (T, "boundary hitting holds on the six declared two-parameter class-D wedges; in particular for every PIP class-D member with r >= q - 1",
                                     f"{BOUNDARY_PROGRESS}, Theorem W and Corollary W1; computer-assisted, human review pending; merged through PR #246", (), ()),
+    "MinusHighSumFormalCycleRay": (T, "for every integer k>=2 the minus class-D member a=2k-1,b=1 has the real-interior formal occurrence two-cycle U_k=(y,c,-2k,4k,-3k) and its mirror, with absolute sum k; seed reachability is not asserted",
+                                 "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 13; kernel/psc/class_d_minus_high_sum_cycles.mojo exact symbolic occurrence and Perron-sign certificate; human review pending", (), ()),
     "MinusSixEdgeFamilyExclusion": (T, "for every integer k>=2 and every a>=2,b>=1 the six-state minus class-D itinerary in section 12 with sums (-k,k-1,-k,k-1,-k,k) cannot be realized with one shared parameter pair; occurrence guard rows 0 and 5 sum identically to -7-u",
                                   "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 12; kernel/psc/class_d_minus_cycle_family.mojo exact polynomial replay; one itinerary family only; human review pending", (), ()),
     "MinusClassDPositiveBCycleSum": (P, "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
@@ -326,6 +328,7 @@ def surface(path: str, anchor: str, window_lines: int = 0) -> dict:
 # Status checks bind live prose. Frozen completion snapshots belong in the
 # archive and must not become a dependency of the current status ledger.
 SURFACES = {  # prose surfaces on which each claim's status is spelled out (labelled by the consumer vocabulary)
+    "MinusHighSumFormalCycleRay": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Unbounded real-interior formal two-cycle ray |")],
     "MinusSixEdgeFamilyExclusion": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Six-edge unbounded family exclusion |")],
     "TwoObstructionCompletion": [surface(MAP, "| Two-obstruction completion theorem / universal completion criterion |")],
     "MinusClassDPositiveBCycleSum": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Minus cycle-sum bound |")],

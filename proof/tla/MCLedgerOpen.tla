@@ -28,6 +28,7 @@ Reachable == {
     "MassBalanceK2Obstruction",
     "MeanAreaLift",
     "MidArea",
+    "MinusHighSumFormalCycleRay",
     "MinusSixEdgeFamilyExclusion",
     "Mod3Sieve",
     "OrientationMonodromy",

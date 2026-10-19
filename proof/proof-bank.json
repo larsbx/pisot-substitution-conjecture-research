@@ -817,6 +817,18 @@
       }
     },
     {
+      "name": "MinusHighSumFormalCycleRay",
+      "status": "proved",
+      "source": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 13; kernel/psc/class_d_minus_high_sum_cycles.mojo exact symbolic occurrence and Perron-sign certificate; human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
       "name": "MinusSixEdgeFamilyExclusion",
       "status": "proved",
       "source": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 12; kernel/psc/class_d_minus_cycle_family.mojo exact polynomial replay; one itinerary family only; human review pending",
@@ -2324,7 +2336,7 @@
     },
     {
       "source": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md",
-      "line": 374,
+      "line": 375,
       "statement_heading": "pixi run mojo run -I . tests/test_class_d_minus_recurrent_support.mojo"
     },
     {
@@ -3124,7 +3136,7 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "f8dc878326022c8216d73bf0bce0d6d00038799b085ef63d89a10682ddfb2b5a",
+    "claim_governance.toml": "25ea157bd4a1c5b4993170d10afc1a5b7b8829c8a908c5657e18d8d52107830c",
     "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
@@ -3138,7 +3150,7 @@
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
     "tools/check_lean.sh": "04078a19300533b800e2cca6f0a3573fe8b116fec0ae8ace8a2d4ffc1ae9613b",
-    "tools/make_ledger.py": "ae2c50a37a9e2f2554f31288232feb5aa686b6738897cf9bce0ebb46ec4a0969",
+    "tools/make_ledger.py": "db74d89848569a6bfc8b2556ccf8028beba2490b37801c909dc4115501324739",
     "tools/make_proof_bank.py": "d41bd8ecb4d51964b6acfb1783d3c7c6aa1fce67ad502f9b4c1c6fb94dceec13",
     "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
   }

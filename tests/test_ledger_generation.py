@@ -237,3 +237,10 @@ def test_unbounded_six_edge_family_does_not_discharge_cyclesum():
     assert "MinusSixEdgeFamilyExclusion" in reachable("Open")
     assert not {"MinusClassDPositiveBCycleSum", "MinusClassDPositiveBBoundaryHitting",
                 "UniversalBoundaryHitting", "TwoObstructionCompletion", "PDS"} & reachable("Open")
+
+
+def test_high_sum_formal_cycle_ray_is_not_a_seed_counterexample_or_cyclesum_proof():
+    assert "MinusHighSumFormalCycleRay" in reachable("Open")
+    assert not {"MinusClassDPositiveBCycleSum", "MinusClassDPositiveBBoundaryHitting",
+                "UniversalBoundaryHitting", "OverlapProductivity", "PDS"} & reachable("Open")
+    assert "seed reachability is not asserted" in make_ledger.records()["MinusHighSumFormalCycleRay"].statement

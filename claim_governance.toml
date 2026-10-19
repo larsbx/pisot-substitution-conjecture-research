@@ -1239,6 +1239,24 @@ anchor = "| Minus cycle-sum bound |"
 window_lines = 0
 
 [[claim]]
+name = "MinusHighSumFormalCycleRay"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusHighSumFormalCycleRay"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusHighSumFormalCycleRay |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Unbounded real-interior formal two-cycle ray |"
+window_lines = 0
+
+[[claim]]
 name = "MinusSixEdgeFamilyExclusion"
 status = "proved"
 [[claim.surfaces]]

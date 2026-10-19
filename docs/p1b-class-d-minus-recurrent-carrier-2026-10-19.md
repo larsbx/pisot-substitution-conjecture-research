@@ -240,8 +240,9 @@ v <= u,
 with `u=a-2,v=b-1`, which is impossible. Thus common-parameter compatibility
 around a cycle is essential.
 
-The next proof should exploit this shared-parameter constraint, not enlarge
-the overlap carrier.
+Common parameters are necessary, but not sufficient: section 13 constructs
+real-interior higher-sum formal cycles at one shared parameter pair. The next
+proof must additionally use seed reachability.
 
 ## 7. Finite calibrations
 
@@ -418,16 +419,16 @@ occurrence cycle for any one parameter pair a>=2,b>=1.
 including closure. Put u=a-2,v=b-1. The lower occurrence-difference guard on
 edge 0 and upper guard on edge 2 are respectively
 
-\[
+$$
  f_0=2k-11-2u+(k-1)v\ge0,\qquad
  f_5=4-2k+u+(1-k)v\ge0.
-\]
+$$
 
 Adding them with nonnegative multipliers 1,1 gives
 
-\[
+$$
  0\le f_0+f_5=-7-u<0,
-\]
+$$
 
 a contradiction. Every real occurrence must satisfy these guards, so no
 geometric or seed-reachability assumption is needed for the exclusion.
@@ -482,3 +483,141 @@ uniform structural coverage argument, or a different uniform separating
 certificate. The independent sums of an arbitrary cycle have not been reduced
 to this one-parameter pattern. Neither universal #139 nor PSC is advanced to
 a proved status by this lemma.
+
+## 13. Scalar reconstruction exposes unbounded real-interior formal cycles
+
+**New route correction:** shared-parameter compatibility and real interior
+geometry do not imply CycleSum- without seed reachability. There are formal
+occurrence two-cycles with arbitrarily large sums that pass both conditions.
+Here “real-interior formal” means integral affine child replay and strictly
+positive interval-overlap margins. It does not assert occurrence in a legal
+tiling, full non-unit realization, or membership in a swap-seed graph.
+
+### 13.1 Reconstruction for an arbitrary closed itinerary
+
+For the edge from row n to row n+1, write delta_x,n and delta_c,n for the
+bottom-minus-top proper-prefix counts of x,c. They depend only on the typed
+FIRST/RUN/LAST choices. Put eta_n=delta_x,n+delta_c,n. All subscripts below
+are cyclic, including periods one and two. The child update gives
+
+$$
+ m_{n+1}=2s_n+\eta_n,\qquad x_{n+1}=m_n+\delta_{x,n}.
+$$
+
+Therefore every integral closed itinerary has the uniquely forced coordinates
+
+$$
+\begin{aligned}
+ m_n&=2s_{n-1}+\eta_{n-1},\\
+ x_n&=2s_{n-2}+\eta_{n-2}+\delta_{x,n-1},\\
+ c_n&=m_n-x_n,\qquad y_n=s_n-m_n.
+\end{aligned}
+$$
+
+Conversely these formulas satisfy the x/c child equations for every cyclic
+integer word s and every compatible typed segment itinerary. There is no
+parity condition or choice of an additional offset coordinate. The remaining
+y equation is exactly the occurrence-index-difference equation. For top and
+bottom occurrence indices i_n,j_n it becomes
+
+$$
+\begin{aligned}
+s_{n+1}={}&(2a+b+6)s_n+(2a+4)s_{n-1}-2s_{n-2}\\
+ &+(a+2)\eta_{n-1}-\eta_{n-2}-\delta_{x,n-1}+(j_n-i_n).
+\end{aligned}
+$$
+
+All edges retain ONE a,b. Legal index intervals give the same two guards as
+`edge_forms`. These are necessary for any seed-reachable cycle, but geometry
+and a seed path remain separate obligations. This exact scalar reduction does
+not bound the period or scalar alphabet.
+
+### 13.2 A compatible higher-sum two-cycle
+
+The itinerary LAST/RUN then RUN/LAST on types (y,c),(c,y) has eta=delta_x=0.
+Choosing the scalar word (-k,k) reconstructs
+
+$$
+ U_k=(y,c,-2k,4k,-3k),\qquad
+ \overline U_k=(c,y,2k,-4k,3k).
+$$
+
+For the forward edge the required bottom-minus-top index difference is
+k(b+1). Its upper legal bound is q-(r+1)=a+1. Thus the two-cycle guards are
+compatible whenever k(b+1)<=a+1. In particular, take
+
+$$
+ a=2k-1,\quad b=1,\quad k\ge2.
+$$
+
+Then p=6k+3, q=6k+4, r=4k+3. The actual forward indices are (r+1,q)=(4k+4,6k+4),
+and the reverse indices are exchanged. Both are legal occurrences for the
+same substitution. Direct multiplication gives
+
+$$
+ M(-2k,4k,-3k)=(2k,-4k,k),
+$$
+
+and the prefix difference is (0,0,2k), giving the required mirror. Negating
+and reversing proves the closing edge. The sums are -k and k.
+
+### 13.3 Uniform strict interiority on this ray
+
+Normalize ell_y=1, set d=beta-r, and use the already certified minus Perron
+bounds 2<d<3 and beta>r+2. Then ell_c=d/2, ell_x=d/2-1/beta. The Perron
+identities give beta(d-2)=2a+4-2/beta, so the displacement of U_k on this ray is
+
+$$
+ t=k(d-3+2/\beta)=-\frac{k(d-1+2/\beta)}{\beta}.
+$$
+
+It is negative. Since beta>4k+5 and d<3,
+
+$$
+ 2k(d-1+2/\beta)<4k+4k/\beta<4k+1<\beta,
+$$
+
+and hence -1/2<t<0. Both margins ell_c+t and ell_y-t are strictly positive;
+mirroring exchanges them. Every member is PIP by the existing exact
+symbolic PIP certificate, with k>=2 checked without an increased threshold.
+
+| Obligation | Governed status |
+| --- | --- |
+| Unbounded real-interior formal two-cycle ray | Repository-proved: `MinusHighSumFormalCycleRay`; k>=2, a=2k-1,b=1; seed reachability unproved; human review pending |
+
+The canonical module `kernel/psc/class_d_minus_high_sum_cycles.mojo` checks
+the incidence/prefix identities as exact polynomials in k, the declared
+endpoint types, both strict Perron margins and -1/2<t<0. The executable fails
+if any sign proof raises the k threshold above 2. No finite sampling supplies
+the unbounded quantifier.
+
+### 13.4 Seed qualification and the remaining task
+
+Canonical Mojo and independent Q(beta) Python replay at k=2,3,8 use complete
+swap-seed graphs with 139 states each; neither member of these three pairs
+is seed reachable. This is a finite nonmembership observation, not a proof
+of nonreachability for every k. Graph caps refuse, and any found membership
+emits an actual seed path and closed-cycle counterexample. The recurrent
+classifier continues to call U_k with k>=2 unexplained; it is not whitelisted.
+
+The simplest negative control is a=3,b=1,k=2:
+
+$$
+ (y,c,-4,8,-6)\xrightarrow{(12,16)}(c,y,4,-8,6)
+ \xrightarrow{(16,12)}(y,c,-4,8,-6).
+$$
+
+**Stop:** do not seek a certificate excluding every higher-sum formal cycle
+using only common parameters, occurrence legality and real interiority. Such
+a certificate is false already for this two-cycle, and fails at unbounded
+sums along the ray.
+
+**Redirect:** prove a seed-preserved constraint (or a predecessor/address
+obstruction) that excludes these compatible formal cycles from all actual
+swap-seed descendants, and then control the remaining scalar itineraries.
+An induction needs complete occurrence-child coverage, not just one selected
+productive path. Until such a constraint is established, CycleSum- stays
+open. The 1,971-state classification and its four exceptional candidates
+remain conditional on |s|<=1; they never claimed to classify the higher-sum
+states constructed here. No unconditional minus-BH, universal #139/#84 or
+PSC conclusion follows.

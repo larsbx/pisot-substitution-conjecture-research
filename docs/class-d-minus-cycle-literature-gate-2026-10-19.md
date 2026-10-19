@@ -77,3 +77,27 @@ has this itinerary or sum pattern. Retain the k=2 individually feasible-edge
 control, the feasible U/Ubar control, and closing-edge mutation refusal.
 No cycle enumeration, universal invariant test, or claim promotion is licensed
 by this family calculation alone.
+
+## Next decision: scalar reconstruction and a stronger-claim control
+
+Revisit the same three primary sources for the distinction between formal
+occurrence cycles, interior geometry and seed reachability. The next proposed
+step eliminates x/c coordinates from a cyclic itinerary using the last two
+scalar sums and endpoint-prefix differences. This is an elementary consequence
+of the affine child update, not a new overlap-coincidence theorem.
+
+Before seeking a universal shared-guard refutation, test its necessary stronger
+claim: that all genuine formal cycles have |s|<=1, even without seed
+reachability. The two-cycle itinerary LAST/RUN then RUN/LAST suggests scaled
+states U_k=(y,c,-2k,4k,-3k) and their mirrors. Its guards allow
+k(b+1)<=a+1 with ONE common a,b. On the ray a=2k-1,b=1, k>=2, check the
+occurrence identities symbolically and both interior margins exactly. If this
+succeeds, stop trying to exclude all higher-sum formal cycles by shared guards
+alone; redirect to the seed-reachability premise. Keep the canonical seed
+diagnostic fail-closed on any observed seed-reachable higher-sum label.
+
+**Proceed with this negative control and scalar derivation only.** Distinguish
+an unbounded formal-cycle theorem from finite seed-graph membership checks.
+Neither the earlier six-edge exclusion nor a feasible formal cycle decides
+CycleSum- without its seed qualifier. Non-unit representation hypotheses remain
+unchanged; no published theorem supplies that missing qualifier here.

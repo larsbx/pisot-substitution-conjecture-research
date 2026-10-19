@@ -230,6 +230,13 @@
     ]
   },
   "surfaces": {
+    "MinusHighSumFormalCycleRay": [
+      {
+        "path": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md",
+        "anchor": "| Unbounded real-interior formal two-cycle ray |",
+        "window_lines": 0
+      }
+    ],
     "MinusSixEdgeFamilyExclusion": [
       {
         "path": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md",
@@ -2219,6 +2226,24 @@
         [
           "computer_assisted",
           "true"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusHighSumFormalCycleRay": {
+      "id": "sha256:341b44ace6366e8e237295b3e52bf07c4e80d99fef07ee76dbcc47ded6a1a270",
+      "kind": "repository_theorem",
+      "statement": "for every integer k>=2 the minus class-D member a=2k-1,b=1 has the real-interior formal occurrence two-cycle U_k=(y,c,-2k,4k,-3k) and its mirror, with absolute sum k; seed reachability is not asserted",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 13; kernel/psc/class_d_minus_high_sum_cycles.mojo exact symbolic occurrence and Perron-sign certificate; human review pending"
         ]
       ],
       "tags": []
