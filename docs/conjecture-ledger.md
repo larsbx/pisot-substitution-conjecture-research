@@ -26,6 +26,26 @@ Three stronger programmes remain open in parallel:
 
 These are not hidden assumptions of the primary overlap route.
 
+## Primary universal completion criterion
+
+**Status: Conditional theorem.** The manuscript's
+`thm:two-obstruction-completion` and `cor:universal-completion` isolate the
+general ternary completion problem to exactly two premises:
+
+1. **A1′ (#138):** the residual fixed-letter bad hub edge is eventually
+   coincident;
+2. **BH (#139):** every cyclic seed-reachable strict zipper has an
+   occurrence-compatible offset-zero descendant.
+
+Theorem C reduces every aligned obstruction to A1′ after passing to a square;
+the two-obstruction theorem then turns A1′ + BH into productivity of the
+finite seed-overlap graph and hence PDS. No G1, G1b-2, SCC-Producer, K2,
+realization, independent tile-length-independence or unimodularity assumption
+is part of this completion criterion.
+
+This is the primary universal theorem architecture. The two premises remain
+open universally; scoped and finite certificates below do not enlarge them.
+
 ## Scoped finite-domain and family closure — reconciled 2026-10-19
 
 **Progression policy:** mechanically sufficient repository results at their exact
