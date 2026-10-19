@@ -88,3 +88,52 @@ That would close #139 on all determinant-two class D, not universal #139.
 - the failed literal transport of the sealed `b=0` spine is not reused;
 - no finite sample is a theorem;
 - a capped/undecided exact run refuses promotion.
+
+## 6. Rank-one b-direction and the occurrence compensation law
+
+The positive-b direction adds one extra `y` to **every** image. In letter
+order `(x,c,y)` the incidence matrix therefore has the exact form
+
+```text
+M(a,b) = M(a,0) + b e_y 1^T.
+```
+
+For an overlap offset vector `w` this gives
+
+```text
+M(a,b) w = M(a,0) w + b (1^T w) e_y.
+```
+
+Hence an occurrence-labelled child
+
+```text
+w' = M(a,b)w + prefix_bottom - prefix_top
+```
+
+can retain a b-independent target only if the selected prefix difference
+absorbs the term
+
+```text
+-b (1^T w) e_y.
+```
+
+This is the exact compensation law. It explains the PR #277 negative control:
+the sealed boundary row `(c,y,-2,4,-3)` has `1^T w=-1` and keeps FIRST/FIRST
+prefixes, so it supplies no compensating `+b e_y` and the edge moves.
+
+A successful two-parameter certificate therefore has only two legitimate
+forms:
+
+1. let the symbolic child state itself depend affinely on b; or
+2. choose occurrence indices whose y-prefix difference changes by exactly
+   `-b(1^T w)`.
+
+No new quotient is needed. The existing ClassWedge engine already allows
+affine state coordinates and affine run positions, so the candidate workflow
+is testing precisely whether this compensation closes on a finite symbolic
+family.
+
+If the wedge engine fails, its first uncaptured run-position/sign decision
+should be interpreted against this law before introducing any additional
+state coordinate.
+
