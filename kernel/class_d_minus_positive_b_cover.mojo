@@ -6,7 +6,7 @@ returned for the existing exact line engine. No graph discovery or sampled
 plateau is used.
 """
 from std.collections import Dict
-from psc.param_poly import qx_const
+from psc.param_poly import QX, qx_const
 from psc.symbolic_line import Eventual, SymVertex, _Closure, certify_wedge_pisot
 from psc.class_d_minus_spine_data import minus_spine_rows
 from symbolic_line_certificate import ClassWedge, wedge_edges, certify
@@ -29,7 +29,7 @@ struct CoverVerdict(Copyable, Movable):
 
 
 def _const_vertex(row: List[Int]) -> SymVertex:
-    var w = List()
+    var w = List[QX]()
     w.append(qx_const(row[2]))
     w.append(qx_const(row[3]))
     w.append(qx_const(row[4]))
