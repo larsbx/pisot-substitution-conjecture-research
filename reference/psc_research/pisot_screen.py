@@ -152,30 +152,80 @@ def routh_right_half_plane_count(q: Sequence[Fraction]) -> int | None:
     ]
     while rows[-1] and len(rows) <= n:
         above, current = rows[-2], rows[-1]
-        if all(x == 0 for x in current):
+
+        is_zero_row = True
+        for x in current:
+            if x != 0:
+                is_zero_row = False
+                break
+
+        if is_zero_row:
             # A vanishing row means `q` has roots placed symmetrically about the
             # origin, which in `z` is a reciprocal pair. The classical remedy is
             # to continue from the derivative of the auxiliary polynomial the row
             # above represents. Without it the array stops and every reciprocal
             # Pisot polynomial, `x^2 - 3x + 1` among them, is refused.
-            rows[-1] = current = _auxiliary_derivative(above, n - (len(rows) - 2))
-            if not current or all(x == 0 for x in current):
+            top_deg = n - (len(rows) - 2)
+            out = []
+            for i, value in enumerate(above):
+                power = top_deg - 2 * i
+                if power <= 0:
+                    break
+                out.append(value * power)
+            rows[-1] = current = out
+
+            if not current:
                 return None
-        if current[0] == 0:
+            is_zero_row2 = True
+            for x in current:
+                if x != 0:
+                    is_zero_row2 = False
+                    break
+            if is_zero_row2:
+                return None
+
+        c0 = current[0]
+        if c0 == 0:
             return None  # first-column zero, not a whole row
+
+        a0 = above[0]
         nxt = []
-        for i in range(1, max(len(above), len(current))):
-            a = above[i] if i < len(above) else Fraction(0)
-            b = current[i] if i < len(current) else Fraction(0)
-            nxt.append((current[0] * a - above[0] * b) / current[0])
+        len_a = len(above)
+        len_c = len(current)
+        m_len = len_a if len_a > len_c else len_c
+
+        # Avoid expensive fraction divisions by substituting a0/c0 directly
+        inv_c0 = (
+            Fraction(c0.denominator, c0.numerator)
+            if type(c0) is Fraction
+            else Fraction(1, c0)
+        )
+        factor = -a0 * inv_c0
+
+        if factor == 0:
+            for i in range(1, m_len):
+                nxt.append(above[i] if i < len_a else Fraction(0))
+        else:
+            for i in range(1, m_len):
+                a = above[i] if i < len_a else Fraction(0)
+                b = current[i] if i < len_c else Fraction(0)
+                if b == 0:
+                    nxt.append(a)
+                else:
+                    nxt.append(a + b * factor)
+
         while nxt and nxt[-1] == 0:
             nxt.pop()
         if not nxt:
             break
         rows.append(nxt)
+
     column = [row[0] for row in rows if row]
-    if len(column) < n + 1 or any(x == 0 for x in column):
-        return None  # early termination or a zero
+    if len(column) < n + 1:
+        return None
+    for x in column:
+        if x == 0:
+            return None
     return sum(1 for i in range(n) if (column[i] > 0) != (column[i + 1] > 0))
 
 
@@ -214,20 +264,27 @@ def _poly_rem(a: Sequence[Fraction], b: Sequence[Fraction]) -> list[Fraction]:
     if db >= 4 and da >= db:
         # Small divisors do not amortize this setup; keep their dense loop below.
         # Cache exact reciprocal and nonzero terms only when division is needed.
-        inv_b = Fraction(b[db].denominator, b[db].numerator)
+        inv_b = (
+            Fraction(b[db].denominator, b[db].numerator)
+            if type(b[db]) is Fraction
+            else Fraction(1, b[db])
+        )
         b_non_zeros = [(i, b[i]) for i in range(db + 1) if b[i] != 0]
         while da >= db:
             factor = a[da] * inv_b
-            for i, b_i in b_non_zeros:
-                a[da - db + i] -= factor * b_i
+            if factor != 0:
+                for i, b_i in b_non_zeros:
+                    a[da - db + i] -= factor * b_i
             a[da] = Fraction(0)
             while da >= 0 and a[da] == 0:
                 da -= 1
     else:
         while da >= db >= 0:
             factor = a[da] / b[db]
-            for i in range(db + 1):
-                a[da - db + i] -= factor * b[i]
+            if factor != 0:
+                for i in range(db + 1):
+                    if b[i] != 0:
+                        a[da - db + i] -= factor * b[i]
             a[da] = Fraction(0)
             while da >= 0 and a[da] == 0:
                 da -= 1
@@ -369,7 +426,35 @@ def _has_rational_root(coeffs: Sequence[int]) -> bool:
     # Subclasses (including bool) retain the original exact evaluator, since
     # is_monic_integer accepts them and native arithmetic may be overloaded.
     plain_integers = all(type(c) is int for c in coeffs)
-    for divisor in _divisors(abs(constant)):
+
+    n = len(coeffs)
+    abs_constant = abs(constant)
+
+    # Fast paths for low-degree polynomials with explicit unrolled Horner evaluation
+    if plain_integers:
+        if n == 2:
+            c0, c1 = coeffs
+            for divisor in _divisors(abs_constant):
+                for x in (divisor, -divisor):
+                    if c1 * x + c0 == 0:
+                        return True
+            return False
+        elif n == 3:
+            c0, c1, c2 = coeffs
+            for divisor in _divisors(abs_constant):
+                for x in (divisor, -divisor):
+                    if (c2 * x + c1) * x + c0 == 0:
+                        return True
+            return False
+        elif n == 4:
+            c0, c1, c2, c3 = coeffs
+            for divisor in _divisors(abs_constant):
+                for x in (divisor, -divisor):
+                    if ((c3 * x + c2) * x + c1) * x + c0 == 0:
+                        return True
+            return False
+
+    for divisor in _divisors(abs_constant):
         for candidate in (divisor, -divisor):
             if plain_integers:
                 acc = 0
@@ -383,14 +468,19 @@ def _has_rational_root(coeffs: Sequence[int]) -> bool:
 
 
 def _divisors(value: int) -> list[int]:
-    out, d = [], 1
+    out = []
+    complements = []
+    d = 1
     while d * d <= value:
         if value % d == 0:
             out.append(d)
-            if d != value // d:
-                out.append(value // d)
+            q = value // d
+            if d != q:
+                complements.append(q)
         d += 1
-    return sorted(out)
+    complements.reverse()
+    out.extend(complements)
+    return out
 
 
 # --- non-claims -----------------------------------------------------------------
