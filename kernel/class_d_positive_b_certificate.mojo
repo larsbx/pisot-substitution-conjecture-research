@@ -7,8 +7,9 @@ each line including its exact finite prefix. Any undecided sign, cap, non-PIP
 mismatch or failed hitting verdict raises.
 """
 from symbolic_line_certificate import (
-    ClassWedge, certify_wedge, wedge_edges, certify, CLASS_D,
+    ClassWedge, certify_wedge, wedge_edges, certify,
 )
+from a1_normal_form_census import CLASS_D
 
 
 def _certify_complete(name: String, spec: ClassWedge) raises:
