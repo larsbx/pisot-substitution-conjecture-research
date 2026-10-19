@@ -655,3 +655,165 @@ The plus continuation must therefore do one of two things:
 No cover enlargement is justified by the audit: no escaped actual child was
 found.
 
+## 12. Plus row-12 chamber collapses to six wedges and six lines
+
+The first genuine plus-cover obstruction from §10 is row 12
+`(x,c,-5,11,-8)`.  Put `D=a+2` and
+
+```text
+A = 7D-5,
+g(X) = X^2 - A X - 7.
+```
+
+Its changing lower realness margin is positive exactly when `g(beta)<0`.
+The positive root of `g` lies strictly between `A` and `A+1`, because
+
+```text
+g(A)   = -7,
+g(A+1) = A-6 > 0.
+```
+
+Since `beta` is the unique cubic root above two, the two easy outer
+comparisons are decided by `chi(A)` and `chi(A+1)`.  As functions of the
+**original** positive-b parameter `b`, their zero thresholds are
+
+```text
+b0(D) =
+ (245 D^3 - 511 D^2 + 345 D - 77) / (7D-5)^2,
+
+b1(D) =
+ (245 D^3 - 392 D^2 + 200 D - 34) / (7D-4)^2.
+```
+
+The location of these thresholds relative to the integer lattice is exact:
+
+```text
+b0-(5D-4)
+ = (35D^2-60D+23)/(7D-5)^2 > 0,
+
+(5D-3)-b0
+ = 2(7D^2-5D+1)/(7D-5)^2 > 0,
+
+b1-(5D-3)
+ = (35D^2-48D+14)/(7D-4)^2 > 0,
+
+(5D-2)-b1
+ = 2(7D^2-4D+1)/(7D-4)^2 > 0.
+```
+
+Every numerator is positive for `D>=2`.  Therefore
+
+```text
+5D-4 < b0 < 5D-3 < b1 < 5D-2.
+```
+
+So on the **integer** parameter lattice the only possible middle value is
+
+```text
+b = 5D-3.
+```
+
+Recall the ClassWedge coordinate `c=b-1`; with `D=a+2` this becomes
+
+```text
+low outer region:  c <= 5a+5,
+interface line:    c  = 5a+6,
+high outer region: c >= 5a+7.
+```
+
+No nonlinear infinite chamber family is required.
+
+### 12.1 Exact lattice decomposition
+
+First cover the cone
+
+```text
+0 <= c <= 5a
+```
+
+by five adjacent unimodular wedges.  For `k=0,...,4` put
+
+```text
+(a,c) = u(1,k) + v(1,k+1),   u,v>=0.
+```
+
+The inverse is
+
+```text
+u = (k+1)a-c,
+v = c-ka.
+```
+
+On the sector `ka <= c <= (k+1)a`, `u,v` are nonnegative integers, and
+the determinant of consecutive directions is one.  Thus these five wedges
+cover every lattice point with `0<=c<=5a`, with no missing residue classes.
+
+Substitution runs on wedge `k` are
+
+```text
+p = 4 + (3+k)u + (4+k)v,
+q = 3 + (3+k)u + (4+k)v,
+r = 1 + (2+k)u + (3+k)v.
+```
+
+The remaining low/interface points are the six affine lines
+
+```text
+c = 5a+j,    j=1,...,6,
+```
+
+on which
+
+```text
+p = 8a + 4+j,
+q = 8a + 3+j,
+r = 7a + 1+j.
+```
+
+Finally the high region has the single unimodular parameterization
+
+```text
+(a,c) = (0,7) + u(1,5) + v(0,1),   u,v>=0,
+```
+
+hence
+
+```text
+p = 11 + 8u + v,
+q = 10 + 8u + v,
+r =  8 + 7u + v.
+```
+
+The determinant of `(1,5),(0,1)` is one, so this is again an exact lattice
+cover.
+
+Therefore the entire plus positive-b quadrant is the finite union of
+
+```text
+5 low two-parameter wedges
++ 6 affine lines
++ 1 high two-parameter wedge.
+```
+
+### 12.2 Candidate certificate
+
+`kernel/class_d_plus_positive_b_chambers.mojo` certifies each of the six
+wedges using the existing exact `certify_wedge` engine.  If a wedge core
+moves to `u>=u0,v>=v0`, every omitted strip is enumerated by
+`wedge_edges` and certified by the existing exact line engine, including
+its finite prefix.  The six explicit chamber/interface lines are also run
+through `certify` in norm mode.
+
+Thus a successful
+`CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED` receipt covers every integer
+point of the plus positive-b residual, not merely an asymptotic chamber core.
+
+`kernel/tests/test_class_d_plus_positive_b_chambers.mojo` independently
+reconstructs the original residual substitution from the chamber inverse on a
+large lattice grid.  That regression is a calibration; the universal lattice
+coverage is the explicit inverse formulas above.
+
+This chamber certificate remains a **candidate** until canonical execution
+succeeds.  It does not change the status of class D, universal #139, #84 or
+PSC.
+
