@@ -1,5 +1,31 @@
 # Proof ladder
 
+## Primary ladder: two universal lemmas
+
+The project now treats seedwise overlap productivity (#84) through the
+manuscript's **Two-obstruction completion theorem**
+(`thm:two-obstruction-completion`). The shortest honest ladder is:
+
+```text
+PIP
+=> finite exact seed-patch overlap graph                         [PROVED]
+=> closed recurrent obstruction normal form                     [PROVED]
+=> A1′: residual fixed-letter hub edge cannot remain bad         [OPEN: #138]
+ + BH: every cyclic strict zipper hits offset zero               [OPEN: #139]
+=> every seed-reachable overlap is productive                    [PROVED assembly]
+=> dense eventual coincidence                                   [PROVED]
+=> pure discrete spectrum                                       [IMPORTED bridge]
+```
+
+The two open lines are the primary proof obligations. The aligned endpoint
+normal form reduces #138 to A1′ (and reversal), while #139 is the
+occurrence-compatible coverage theorem in the full non-unit representation.
+If both close without an independent tile-length-independence, legality, FI
+or unimodularity hypothesis, #84 closes and the PDS conclusion follows
+immediately. G1b-2, SCC Producer/K2 and realization remain valuable parallel
+theorems, but they are not prerequisites of this direct route.
+
+
 The current shortest route to the Pisot Substitution Conjecture in the standing regime has **one open mathematical premise**: seedwise overlap productivity. The finite-BPA/G1 and closed-carrier programmes remain important stronger structural routes, but they are no longer prerequisites of the shortest PDS sufficiency theorem.
 
 For detailed claim status use `docs/claim-status-and-source-map-2026-09-13.md`; for the live completion priorities use `docs/research-roadmap-2026-09-21.md`; for the latest merged weekly snapshot use `docs/completion-ledger-2026-10-16.md`; theorem statements and imported hypotheses are in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
