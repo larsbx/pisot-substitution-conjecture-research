@@ -1,0 +1,94 @@
+name: Show your work policy
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+
+jobs:
+  evidence-policy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Enforce inspectable work on theorem-facing changes
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          EVENT_PATH: ${{ github.event_path }}
+        run: |
+          python3 - <<'PY'
+          from __future__ import annotations
+          import json
+          import os
+          import re
+          import subprocess
+          import tomllib
+          from pathlib import Path
+
+          root = Path(".")
+          policy = tomllib.loads((root / "research_evidence_policy.toml").read_text())
+          required = policy["required_pr_headings"]
+          theorem = tuple(policy["theorem_facing_prefixes"])
+          excluded = tuple(policy["excluded_prefixes"])
+
+          base = os.environ["BASE_REF"]
+          changed = subprocess.check_output(
+              ["git", "diff", "--name-only", f"origin/{base}...HEAD"],
+              text=True,
+          ).splitlines()
+
+          def theorem_facing(path: str) -> bool:
+              if any(path.startswith(p) for p in excluded):
+                  return False
+              return any(path.startswith(p) for p in theorem)
+
+          affected = [p for p in changed if theorem_facing(p)]
+          if not affected:
+              print("No theorem-facing files changed; show-your-work body gate not required.")
+              raise SystemExit(0)
+
+          event = json.loads(Path(os.environ["EVENT_PATH"]).read_text())
+          body = (event.get("pull_request", {}).get("body") or "").replace("\r\n", "\n")
+
+          failures = []
+          if "## Work shown" not in body:
+              failures.append("missing '## Work shown'")
+
+          positions = []
+          for heading in required:
+              pos = body.find(heading)
+              if pos < 0:
+                  failures.append(f"missing {heading!r}")
+              positions.append((heading, pos))
+
+          # A heading copied from the template with only an HTML comment beneath
+          # it does not count as showing work.
+          for i, (heading, pos) in enumerate(positions):
+              if pos < 0:
+                  continue
+              start = pos + len(heading)
+              later = [p for _, p in positions[i+1:] if p >= 0]
+              end = min(later) if later else len(body)
+              section = body[start:end]
+              section = re.sub(r"<!--.*?-->", "", section, flags=re.S)
+              section = re.sub(r"^#+ .*?$", "", section, flags=re.M).strip()
+              if len(section) < 20:
+                  failures.append(f"{heading!r} has no substantive visible evidence")
+
+          if failures:
+              print("Theorem-facing files changed:")
+              for p in affected:
+                  print(f"  - {p}")
+              print("\nShow-your-work policy failures:")
+              for f in failures:
+                  print(f"  - {f}")
+              print("\nRequired headings:")
+              for h in required:
+                  print(f"  {h}")
+              raise SystemExit(1)
+
+          print("Show-your-work evidence gate passed for theorem-facing changes:")
+          for p in affected:
+              print(f"  - {p}")
+          PY
