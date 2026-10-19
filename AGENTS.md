@@ -124,6 +124,17 @@ closure assembly solely because a repository-proved or otherwise correctly
 labelled result still says `human review pending`. Carry that label forward as
 non-blocking validation debt and continue toward a complete closure candidate.
 
+**Project progression convention (2026-10-19).** A result that is mechanically
+sufficient at its exact recorded scope — its proof/certificate is complete,
+its hypotheses are preserved, and its required exact replay/CI receipts are
+present — is implicitly approved for continued project progression and may be
+used as a load-bearing dependency without waiting for a separate human-review
+event. Call this *project-accepted for progression* or *mechanically
+certified*, not *independently human reviewed*. The convention never upgrades
+a finite-domain result to a universal theorem, never supplies a missing
+hypothesis, and never waives the independence/unimodularity/realization
+firewalls.
+
 After complete closure is assembled, independent human review validates the
 whole chain. Review status remains truthful throughout: an unreviewed result
 must not be called independently reviewed, and this policy does not turn an
