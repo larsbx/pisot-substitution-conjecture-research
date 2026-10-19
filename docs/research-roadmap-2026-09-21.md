@@ -6,19 +6,39 @@
 
 **Review policy:** **Independent human review is a final validation gate, not a research-progress gate.** A `human review pending` label is non-blocking validation debt: proof development, provisional dependency use, and assembly of a complete closure candidate continue. Independent review is performed on the assembled closure chain afterward. The label itself remains truthful and no open mathematical premise is promoted by this policy. Machine source: `claim_governance.toml [review_policy]`.
 
+**Project-acceptance convention (2026-10-19):** when a repository theorem or
+finite/scoped certificate is mechanically sufficient at its exact recorded
+scope — proof/certificate complete, hypotheses preserved, and required exact
+replay/CI receipts present — it is implicitly approved for continued project
+progression and may be load-bearing. This is **not** a claim of completed
+independent human review. Independent human validation remains the final
+validation phase, while finite-domain and family-scoped quantifiers remain
+unchanged.
+
+**2026-10-19 reconciliation (`main@e062e330`, after merged PR #277):**
+general PSC, #84, #138, #139, formal productivity and G1 remain open. The two
+class-D `b=0` boundary lines are no longer pending candidates: PR #277 merged
+their complete scoped certificate machinery and exact occurrence-agreement
+checks. What remains in class D is exactly the two positive-`b` interiors
+`s=±1, a>=0, b>=1`; a literal transport of the `b=0` occurrence spine is
+refuted by the recorded rank-one update, so the next theorem must be genuinely
+two-parameter and occurrence-aware. Issue #9's 2026-10-07 `completed` closure
+is routing/track completion only: C4 itself was not proved, and its residual
+hub-word/alignment obligations live in the current C4 notes and successor
+issues. Mechanically sufficient scoped results are project-accepted for
+progression under the policy above; this changes no universal quantifier and
+does not claim independent human review.
+
 **2026-10-16 synchronization (`main@b378392`):** general PSC, #84, #138,
 #139, formal productivity, and G1 remain open; no immutable accepted proof of
 the general conjecture is present on `main`. The merged Sirvent–Solomyak
 transfer and Barge-class imports add exact symbolic-PDS scope, including 1,248
-standing-corpus detector witnesses, without changing a universal gate. The
-residual PIP class-D region is now exactly two parameter quadrants, but neither
-has a merged boundary-hitting theorem. The Nakaishi source audit, radius-10
+standing-corpus detector witnesses, without changing a universal gate. At that historical snapshot, the residual PIP class-D region had been reduced to two parameter quadrants and the boundary certificates were still unmerged; the 2026-10-19 reconciliation above supersedes that planning state. The Nakaishi source audit, radius-10
 boxwalk witness, projected-path semantics correction, K2 conditional result,
 and ternary good-exit family are negative controls or conditional reductions,
 not closure. Exact occurrence replay and the whole child-closed set of outgoing
 branches are now mandatory for #139 work. The current provenance boundary is
-`completion-ledger-2026-10-16.md`; open PRs #263, #266, and #273 are candidate
-work only.
+`completion-ledger-2026-10-16.md`; PRs #263/#266 were later integrated by merged PR #277; PR #273 remains candidate work.
 
 **2026-10-14 Ω/G1 continuation (`main@7a84a914` inspected):** Ω is a
 repository-proved per-specimen equivalence, not uniform productivity. The
@@ -328,11 +348,11 @@ This is a negative control, not a PSC counterexample or a proof of issue #139. S
 
 **2026-10-16 prior-art correction (stop on family PDS):** The full two-parameter ternary family in the preceding October 15 paragraph is **already globally pure discrete by published literature**, not a new family-level PSC advance. Its images all begin with `a` and end respectively in `c,b,a`; reversal yields `a -> c^h b a^k, b -> ba, c -> a` with **injective initial-letter map and constant final letter**. Since the family is primitive nonperiodic Pisot, **Barge (2016), Theorem 3.13**, gives pure discrete tiling flow for every allowed `k,h`, and reflection preserves that spectrum. **Sirvent–Solomyak (2002), Corollary 5.2** transfers the flow conclusion to the symbolic action for the irreducible Pisot family. These are **already imported** through `docs/sadic-transfer-literature-gate-2026-10-11.md`, ledger `BargeClassFlowPDS`/`BargeClassSymbolicPDS`, and the canonical `psc.barge_class` detector; this is not a new theorem import. The October 15 uniformly short path for one chosen overlap remains an exact local calibration, but does not independently prove the entire family is productive or establish a uniform depth bound for other vertices. Further work on this family as a candidate counterexample to PSC/#139 is **stopped**. Use it only to test proposed all-child good-edge mechanisms, while prioritizing outside-mirror-Barge open class-D/#139 regions. The repository's derived `PDS => PPVC/G1/FP` consequences retain their review-pending status. Full correction: `docs/nakaishi-2024-first-entry-audit-2026-10-13.md` (October 16). The general PSC, #84, #138, and #139 remain OPEN.
 
-**2026-10-16 class-D prior-art stop:** Every class-D word system `x -> x y^p c, c -> c y^q x, y -> c y^r c` has first-letter map `f=(x,c,c)` and last-letter map `g=(c,x,c)`. Their powers satisfy `f^n=f`, `g^odd=(c,x,c)`, `g^even=(x,c,x)`. Thus **for all parameter values and powers**, both first and last letter maps are noninjective and nonconstant; images of `x,c` have different first and last letters, so no common-prefix/suffix rotation exists. This **proves the Barge-class power/rotation shortcut is unavailable on the whole determinant-two class D**, including the unmerged `b=0` boundary candidates in PRs #263/#266 and the `b>0` interiors. This is a literature-applicability stop, not a PDS obstruction; other conjugacies are not excluded. See `p1b-class-d-barge-power-rotation-stop-2026-10-16.md` for the elementary all-powers proof and exact sample Mojo regression. **Continue** on actual uniform boundary-hitting certificates/coverage, not `barge_witness` power sweeps. Universal PSC/#139 statuses remain open.
+**2026-10-16 class-D prior-art stop:** Every class-D word system `x -> x y^p c, c -> c y^q x, y -> c y^r c` has first-letter map `f=(x,c,c)` and last-letter map `g=(c,x,c)`. Their powers satisfy `f^n=f`, `g^odd=(c,x,c)`, `g^even=(x,c,x)`. Thus **for all parameter values and powers**, both first and last letter maps are noninjective and nonconstant; images of `x,c` have different first and last letters, so no common-prefix/suffix rotation exists. This **proves the Barge-class power/rotation shortcut is unavailable on the whole determinant-two class D**, including the now-merged `b=0` boundary certificates (integrated by PR #277) and the still-open `b>0` interiors. This is a literature-applicability stop, not a PDS obstruction; other conjugacies are not excluded. See `p1b-class-d-barge-power-rotation-stop-2026-10-16.md` for the elementary all-powers proof and exact sample Mojo regression. **Continue** on actual uniform boundary-hitting certificates/coverage, not `barge_witness` power sweeps. Universal PSC/#139 statuses remain open.
 
-**2026-10-16 class-D certificate reconciliation (review-pending, no universal promotion):** The full directed-support candidate from PR #263 and the independent occurrence-labelled target-aware cover from PR #266 are integrated as separate canonical Mojo engines with their original sealed evidence packets preserved. On the minus `b=0` line, the complete-template certificate covers every integer `a>=4` (145 vertices, 781 directed edges, offset-zero depth <=4) plus finite prefix `a=0..3`. The target-aware certificate independently covers every `a>=2` using a 145-label seed-containing child-closed upper cover, 139 selected **whole-image occurrence** edges of strict descent and maximum depth 4; its smaller `a=2,3` full graphs differ in directed edge support. Both agree on all labelled states, rank values, and selected edges for `a>=4` under a new independent reconciliation check. The plus `b=0` complete-template candidate covers `a>=7` (718 vertices, 4326 edges, maximum half-depth 6) plus `a=0..6` by uncapped exact field graphs. These are **complete boundary line parameterizations**, not coverage of the two-dimensional residual region.
+**2026-10-16 class-D certificate reconciliation (merged by PR #277; project-accepted for progression at its scoped certificate level, no universal promotion):** The full directed-support candidate from PR #263 and the independent occurrence-labelled target-aware cover from PR #266 are integrated as separate canonical Mojo engines with their original sealed evidence packets preserved. On the minus `b=0` line, the complete-template certificate covers every integer `a>=4` (145 vertices, 781 directed edges, offset-zero depth <=4) plus finite prefix `a=0..3`. The target-aware certificate independently covers every `a>=2` using a 145-label seed-containing child-closed upper cover, 139 selected **whole-image occurrence** edges of strict descent and maximum depth 4; its smaller `a=2,3` full graphs differ in directed edge support. Both agree on all labelled states, rank values, and selected edges for `a>=4` under a new independent reconciliation check. The plus `b=0` complete-template candidate covers `a>=7` (718 vertices, 4326 edges, maximum half-depth 6) plus `a=0..6` by uncapped exact field graphs. These are **complete boundary line parameterizations**, not coverage of the two-dimensional residual region.
 
-The exact residual Pisot parameter map from §4d is `s=p-q in {-1,+1}; d=q-r>=2; a=d-2>=0; b=r-2d+2s+2>=0`. It covers every residual PIP class-D member once. Existing Corollary W1 covers `r>=q-1`; the reconciled new certificates address precisely `b=0`, on both signs. **Both interiors `s=±1, a>=0,b>=1` remain OPEN**—neither PR establishes full class-D boundary hitting or general #139. The candidate boundary-line theorem is conditional on successful **current integration-head** canonical certificate replay/receipt coverage and scoped mathematical acceptance, not on an old branch's CI. The family note `p1b-boundary-hitting-progress-2026-10-08.md` §§4e–4m records full occurrence and parameter proofs, the independent comparison, numerical counts, refusal controls, provenance and next exact uniform (a,b) obligation. Human review is nonblocking but theorem status remains truthful. Do not promote G1/PDS or universal PSC based solely on line candidates.
+The exact residual Pisot parameter map from §4d is `s=p-q in {-1,+1}; d=q-r>=2; a=d-2>=0; b=r-2d+2s+2>=0`. It covers every residual PIP class-D member once. Existing Corollary W1 covers `r>=q-1`; the reconciled new certificates address precisely `b=0`, on both signs. **Both interiors `s=±1, a>=0,b>=1` remain OPEN**—neither PR establishes full class-D boundary hitting or general #139. The boundary-line certificates are merged and their integration/reconciliation receipts are part of PR #277; they are project-accepted for progression at this scoped level. This does not cover either positive-`b` interior or promote general #139. The family note `p1b-boundary-hitting-progress-2026-10-08.md` §§4e–4m records full occurrence and parameter proofs, the independent comparison, numerical counts, refusal controls, provenance and next exact uniform (a,b) obligation. Human review is nonblocking but theorem status remains truthful. Do not promote G1/PDS or universal PSC based solely on line candidates.
 
 #### P1b non-unimodular theorem target
 
@@ -670,11 +690,11 @@ do not quietly resurrect it under a new name.
 
 | Priority | Item | Status | Evidence needed to close | Immediate next deliverable |
 | --- | --- | --- | --- | --- |
-| **P0** | Status/provenance synchronization | current through `main@b378392`; this roadmap is the live weekly completion surface | roadmap, proof ladder, claim map, manuscript, generated ledger and README preserve the same theorem/review boundary | keep imported/scoped theorems, conditional reductions, negative controls, open PR candidates, and universal open claims distinct |
-| **P1b** | Strict-zipper hitting (#139) | **OPEN critical; highest leverage** — boundary hitting is proved on 47 lines and class-D wedges with `r >= q - 1`; the residual class-D region is exactly two quadrants, but no uniform theorem is merged | occurrence-compatible replay/lifting plus a uniform good-branch or boundary-hitting theorem for every child-closed realized candidate | prove both residual class-D quadrants including `b=0`; require compatible occurrence replay for projected matched-target paths; then extend to A/C and extract uniform depth `K` |
+| **P0** | Status/provenance synchronization | reconciled through `main@e062e330`; this roadmap is the live completion surface | roadmap, proof ladder, claim map, manuscript, generated ledger and README preserve the same theorem/review boundary | keep imported/scoped theorems, conditional reductions, negative controls, open PR candidates, and universal open claims distinct |
+| **P1b** | Strict-zipper hitting (#139) | **OPEN critical; highest leverage** — boundary hitting is proved on 47 lines, the class-D wedges with `r >= q - 1`, and both class-D `b=0` boundary lines; the exact residual is the two positive-`b` interiors | occurrence-compatible two-parameter replay/lifting plus a uniform good-branch or boundary-hitting theorem for every child-closed realized candidate | prove both `s=±1, a>=0, b>=1` interiors; do not reuse the refuted literal `b=0` spine transport; then extend to A/C and extract uniform depth `K` |
 | **P1a** | Aligned strong coincidence (#138) | **OPEN critical; the two templates are one at the square (Theorem C, 2026-10-05); A1′ proved on the whole catch-up-free `|det M| = 2` class (Theorem E), with all-pairs strong coincidence on its two-odd-letter part (Corollary H1) and outside one explicit family (Theorem K); inside that family Theorems Φ, Λ, Λ′, Λ″ close four `Delta` cells and Theorem Ζ every `Delta` with `Z_2` bounded (2026-10-07)** | uniform proof of A1′ (a bad edge whose letters are both `h`-fixed is eventually coincident), including reversal | on Theorem K's family, close unbounded `Z_2` (Lemma P1 linearized, `2 zfloor`; A1′ note §3m); in general, prove A1′ from the fixed-letter hypothesis, not via transitivity of eventual coincidence |
 | **P1** | Seedwise overlap productivity (#84) | **OPEN — sole shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad closed SCC | assemble only after branch closure; do not substitute a larger finite census |
-| **Validation** | Independent human review, including the `PDS => G1` dependency package | **NON-BLOCKING validation debt** — repository statuses remain usable for continued proof construction while review is pending | after a complete closure candidate exists, independently review the assembled chain, including Theorem R, Proposition F, Theorem B/Lemma C and the Barge fibre/coincidence-rank source chain | do not divert P1 work to review gating; preserve truthful `human review pending` labels and perform final review after closure assembly |
+| **Validation** | Independent human review, including the `PDS => G1` dependency package | **FINAL validation debt, non-blocking** — mechanically sufficient results are project-accepted for progression at their exact scopes; this is not an independent-human-review claim | after a complete closure candidate exists, independently review the assembled chain, including Theorem R, Proposition F, Theorem B/Lemma C and the Barge fibre/coincidence-rank source chain | do not divert P1 work to review gating; preserve truthful `human review pending` labels and perform final review after closure assembly |
 | **P2** | G1b-2 renewal finiteness | **OPEN parallel; G1 is necessary for PDS but this is the least load-bearing of the three G1 routes** | uniform finite-return theorem for realizable labelled first returns | develop non-unit level-scaled labelled return/address theory; do not reuse UD-padding or predecessor contraction |
 | **P3a** | Concentration, `K2=0` | **OPEN parallel under G1** | uniform exclusion of strict zero-wedge closed carriers | use ordered/ancestral information absent from current span data |
 | **P3b** | Wedge productivity, `K2!=0` | **OPEN parallel under G1** | theorem converting full wedge span plus recurrence/order into coincidence | identify an order-sensitive invariant beyond the existing span classification |
@@ -687,13 +707,13 @@ do not quietly resurrect it under a new name.
 
 For the next research cycle:
 
-1. **#139: prove occurrence-aware good-branch coverage.** Finish class
-   D below `r = q - 1` using the complete two-quadrant parameter cover in
-   `p1b-boundary-hitting-progress-2026-10-08.md` §4d: each branch has
-   `a,b >= 0`, with `b` the exact Pisot-boundary margin and `a` growth along
-   that boundary. Certify a constant-graph core and all its edges, or use
-   vertex families for the changing-graph fringe; the infinite `b=0` edge
-   must be covered. Then extend the wedge analysis to A/C, and treat class A's slope-one
+1. **#139: prove occurrence-aware good-branch coverage in the positive-`b`
+   class-D interiors.** PR #277 already covers both infinite `b=0` boundary
+   lines. The exact remaining class-D target is
+   `s=±1, a>=0, b>=1`. Build a genuinely two-parameter occurrence-labelled
+   cover or vertex-family theorem; the recorded rank-one update proves the
+   sealed `b=0` selected spine cannot simply be relabelled as an interior
+   theorem. Then extend the wedge analysis to A/C, and treat class A's slope-one
    growing graphs by vertex families. The first class-level closure target is
    a uniform boundary-hitting depth `K` for the catch-up-free determinant-two
    class. Every projected matched-target path must replay as one compatible
