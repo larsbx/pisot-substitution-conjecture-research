@@ -27,8 +27,9 @@ forms below:
 1. **A1′ / #138 — residual hub-word theorem.** By the endpoint normal form and
    the squaring reduction, a universal proof only has to exclude the
    fixed-letter bad hub edge: if two letters fixed by the first-letter map
-   form the residual bad edge, they must be eventually coincident. Reversal
-   supplies the suffix version.
+   form the residual bad edge, they must be eventually coincident. This
+   one-sided statement is sufficient for the completion theorem; reversal is
+   not a separate universal premise.
 2. **BH / #139 — occurrence-compatible coverage theorem.** Every cyclic
    seed-reachable strict-zipper overlap must enter the reverse offset-zero
    basin through a composable ordered occurrence path. In the non-unit case
@@ -42,7 +43,7 @@ the mathematical meaning of the exact certificates are accepted load-bearing
 inputs under the project-progression convention; do not reopen them as routine
 research tasks.
 
-**Completion criterion:** prove A1′ and BH universally with no independent
+**Completion criterion:** prove one-sided A1′ and BH universally with no independent
 tile-length-independence, legality, FI or unimodularity assumption. Then #84
 closes and the general PDS conclusion follows immediately from
 `thm:two-obstruction-completion`.
