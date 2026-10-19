@@ -21,9 +21,11 @@ the complete compiled-declaration audit, and the Ω/LC ledger registration.
   power/rotation/mirror class; 1,248 of 4,554 standing-corpus specimens have a
   witness. The Brun-composite corollary is likewise restricted to its declared
   family.
-- The residual PIP class-D region below `r = q - 1` is exactly two parameter
-  quadrants. This is a complete reduction of the parameter target, not a
-  boundary-hitting theorem for the quadrants.
+- The residual PIP class-D region below `r = q - 1` is parameterized by two
+  affine quadrants. Merged PR #277 now certifies both infinite `b=0`
+  boundary lines; the exact unresolved class-D target is the two positive-`b`
+  interiors `s=±1, a>=0, b>=1`. This scoped progress does not establish
+  universal #139.
 - The Nakaishi, projected-walk, radius, K2, and ternary good-exit results are
   audits, negative controls, or conditional theorems. They require compatible
   occurrence replay and whole child-closed-set reasoning; none closes #84,
