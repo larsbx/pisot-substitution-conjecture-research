@@ -126,8 +126,13 @@ def _kind_choices(letter: Int, m: Int, k: Int) raises -> List[Int]:
         return [0]  # first
     if m == run[0] and k == run[1]+1:
         return [1]  # last
-    # b=0 verifier already proves this is an interior y occurrence. Tracking
-    # either the run start or run end stays interior for all b>=1.
+    # Prove directly that m*a+k is an interior y occurrence for every a>=2
+    # on b=0 before transporting it.  Then b coefficient 0 tracks the run
+    # start and coefficient 1 tracks the run end.
+    if not _affine_nonnegative(m, k-1, 0, 2, 0):
+        raise Error("sealed occurrence is not uniformly after the first letter")
+    if not _affine_nonnegative(run[0]-m, run[1]-k, 0, 2, 0):
+        raise Error("sealed occurrence is not uniformly inside its y-run")
     return [0,1]
 
 
@@ -267,10 +272,12 @@ def verify_minus_positive_b_spine() raises -> List[Int]:
     var direct = 0
     var alt = 0
     var special = 0
+    var maximum = 0
     for i in range(len(rows)):
+        maximum = max(maximum, rows[i][5])
         if rows[i][6] < 0:
-            if rows[i][5] != 0:
-                raise Error("non-target row has no child")
+            if rows[i][5] != 0 or rows[i][2] != 0 or rows[i][3] != 0 or rows[i][4] != 0:
+                raise Error("target row is not rank-zero offset-zero")
             targets += 1
             continue
         if _direct_transport(rows,i):
@@ -283,6 +290,6 @@ def verify_minus_positive_b_spine() raises -> List[Int]:
             special += 1
             continue
         raise Error("positive-b spine row has no certified rank descent: " + String(i))
-    if targets != 6 or direct != 129 or alt != 4 or special != 6:
-        raise Error("positive-b spine partition changed")
-    return [len(rows),targets,direct,alt,special,4]
+    if targets != 6 or direct != 129 or alt != 4 or special != 6 or maximum != 4:
+        raise Error("positive-b spine partition or rank bound changed")
+    return [len(rows),targets,direct,alt,special,maximum]
