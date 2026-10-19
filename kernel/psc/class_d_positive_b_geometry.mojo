@@ -13,8 +13,8 @@ from psc.class_d_minus_spine_data import minus_spine_rows
 from psc.class_d_positive_b_spine import positive_b_target_row
 from finite_linear_algebra.scalar import q_int
 from psc.farkas_lp import lp_infeasible
-from psc.param_poly import qx_add, qx_const, tp_const, tp_sub, tp_t
-from psc.symbolic_line import Eventual, NORM_UNDECIDED, certify_wedge_pisot, norm_sign
+from psc.param_poly import TPoly, qx_add, qx_const, tp_const, tp_sub, tp_t
+from psc.symbolic_line import Eventual, Line, NORM_UNDECIDED, certify_wedge_pisot, norm_sign
 from symbolic_line_certificate import ClassWedge
 from a1_normal_form_census import CLASS_D
 
@@ -75,7 +75,7 @@ def _prove_case(rows: List[List[Int]], source: Int, branch: Int) raises:
     _prove_target_margin(rows[source],tm[1])
 
 
-def _perron_sign(line, h, mut ev: Eventual) raises -> Int:
+def _perron_sign(line: Line, h: TPoly, mut ev: Eventual) raises -> Int:
     var s = norm_sign(line,h,ev)
     if s == NORM_UNDECIDED:
         s = line.field.sign_at_beta(h,ev)
