@@ -35,6 +35,14 @@ continues from its repository status. Pending independent review does **not**
 block research progress, provisional dependency use, or assembly of a complete
 closure candidate. It is non-blocking validation debt.
 
+As of 2026-10-19, mechanically sufficient results at their exact recorded
+scope are **project-accepted for progression**: they may be load-bearing when
+the proof/certificate is complete, the hypotheses are preserved, and the
+required exact replay/CI receipts are present. This is the repository's
+implicit project-approval convention; it does **not** assert that an
+independent human review occurred and it does not promote finite or scoped
+results beyond their quantified domains.
+
 Once a complete closure candidate is assembled, independent human review is a
 final validation phase for the whole chain. Until that review occurs, status
 surfaces must remain literal: do not call a result independently reviewed when
@@ -48,7 +56,7 @@ Start here:
 1. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the #138 aligned branch, #139 strict-zipper branch, Level 2, hypothesis firewall, and prioritized closure criteria.
 2. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
 3. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
-4. `docs/completion-ledger-2026-10-16.md` — latest merged weekly completion snapshot, refreshed to `main@b378392`; separates the new imported symbolic/Barge scope, conditional class-D/G1 reductions, and negative audits from universal closure.
+4. `docs/completion-ledger-2026-10-16.md` — weekly snapshot at `main@b378392`, now carrying a dated 2026-10-19 reconciliation for post-snapshot class-D integration and the project-acceptance convention. Current repository head for that reconciliation is `main@e062e330`.
 5. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
 6. `docs/tier2-bridge-salvage-2026-09-23.md` — research-taxonomy note separating termination-style Descent Bridges from recurrent arithmetic Growth Bridges; moves no theorem status.
 7. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
@@ -99,7 +107,7 @@ The only open premise on this route is **seedwise overlap productivity (Open Pro
   image-length-at-most-4 and total-image-length-at-most-8 domains. Its
   sufficiency proof uses the explicit overlap-coincidence and Meyer-property
   imports; it is no longer conditional on Proposition V(2) or Theorem B.
-- **Computer-assisted family theorems, human review pending:** Theorems L,
+- **Computer-assisted family theorems, project-accepted for progression; independent human validation outstanding:** Theorems L,
   L′ and L″ establish boundary hitting on 47 one-parameter lines in the
   catch-up-free determinant-two classification. Theorem W establishes it on
   two-parameter class-D wedges, including every PIP class-D member with
@@ -118,8 +126,8 @@ to everything else.
 1. **G1 is a necessary condition for PDS, not an artefact of the
    balanced-pair method.** Pure discrete spectrum implies finite `B_sigma`
    (manuscript Proposition `prop:PDS-implies-G1`, ledger `PDSImpliesRepoG1`,
-   proved by the Theorem S route; *independently audited 2026-10-04, human
-   review pending*). So the conditional main theorem (`thm:main-conditional`,
+   proved by the Theorem S route; *internally/adversarially audited 2026-10-04,
+   project-accepted for progression; independent human validation outstanding*). So the conditional main theorem (`thm:main-conditional`,
    G1 plus SCC Producer gives PDS) is not merely one sufficient route among
    possible others: any proof of PSC makes G1 true as well, and a substitution
    with an infinite `B_sigma` would be a counterexample to PSC.
