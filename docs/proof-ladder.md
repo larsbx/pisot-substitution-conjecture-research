@@ -14,7 +14,7 @@ PIP
  + BH: every cyclic strict zipper hits offset zero               [OPEN: #139]
 => every seed-reachable overlap is productive                    [PROVED assembly]
 => dense eventual coincidence                                   [PROVED]
-=> pure discrete spectrum                                       [IMPORTED bridge]
+=> pure discrete spectrum                                       [IMPORTED theorem]
 ```
 
 The two open lines are the primary proof obligations. The aligned endpoint

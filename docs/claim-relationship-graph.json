@@ -546,6 +546,16 @@
       "leaks": "open CycleSum- premise; docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md; shared-parameter guards refute only supplied cycles, not all cycles"
     },
     {
+      "id": "MinusSixEdgeFamilyExclusion",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for every integer k>=2 and every a>=2,b>=1 the six-state minus class-D itinerary in section 12 with sums (-k,k-1,-k,k-1,-k,k) cannot be realized with one shared parameter pair; occurrence guard rows 0 and 5 sum identically to -7-u",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 12; kernel/psc/class_d_minus_cycle_family.mojo exact polynomial replay; one itinerary family only; human review pending"
+    },
+    {
       "id": "Mod3Sieve",
       "kind": "claim",
       "label": "Repository-proved",
@@ -918,6 +928,17 @@
       "source": "source: archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 5 certified intertwining identity; kernel/verify.mojo check C7; not formalized in Lean"
     },
     {
+      "id": "TwoObstructionCompletion",
+      "kind": "claim",
+      "label": "Conditional theorem",
+      "provenance": "conditional",
+      "statement": "assuming universal aligned lemma A and universal boundary-hitting lemma B, every seed-patch overlap is productive and every ternary PIP tiling flow has pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, thm:two-obstruction-completion and cor:universal-completion; existing conditional assembly, not a proof of A or B; human review pending",
+      "leaks": "premises not established: DensityToPDSBridge, UniversalAlignedCoincidence, UniversalBoundaryHitting"
+    },
+    {
       "id": "UDForPowers",
       "kind": "claim",
       "label": "Repository-proved",
@@ -936,6 +957,28 @@
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
       "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Theorem 2.8"
+    },
+    {
+      "id": "UniversalAlignedCoincidence",
+      "kind": "claim",
+      "label": "Open conjectural gate",
+      "provenance": "open",
+      "statement": "for every ternary PIP substitution every pair of distinct letters is eventually prefix coincident (aligned lemma A; reduced to residual fixed-letter A1-prime by squaring)",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "pending_dependency",
+      "source": "reason: open issue #138; manuscripts/PSC_balanced_pair_state_2026-09-13.tex, section headline-status; docs/p1a-template-collapse-2026-10-05.md, Theorem C",
+      "leaks": "open issue #138; manuscripts/PSC_balanced_pair_state_2026-09-13.tex, section headline-status; docs/p1a-template-collapse-2026-10-05.md, Theorem C"
+    },
+    {
+      "id": "UniversalBoundaryHitting",
+      "kind": "claim",
+      "label": "Open conjectural gate",
+      "provenance": "open",
+      "statement": "for every ternary PIP substitution every cyclic vertex of every seed-patch overlap graph has an occurrence-compatible offset-zero descendant",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "pending_dependency",
+      "source": "reason: open issue #139; manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary-hitting lemma B; full non-unit representation hypotheses retained",
+      "leaks": "open issue #139; manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary-hitting lemma B; full non-unit representation hypotheses retained"
     },
     {
       "id": "V5Thm51",
@@ -1661,6 +1704,17 @@
         "SpanRichProductivity",
         "SpectralSCCProducer"
       ]
+    },
+    {
+      "id": "TwoObstructionsAssumed",
+      "kind": "assumption_set",
+      "label": "assumption set",
+      "provenance": "declared",
+      "members": [
+        "DensityToPDSBridge",
+        "UniversalAlignedCoincidence",
+        "UniversalBoundaryHitting"
+      ]
     }
   ],
   "edges": [
@@ -1679,6 +1733,14 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "OverlapBoundaryZipperDichotomy/AlignedOverlapsAreStrongCoincidence"
+    },
+    {
+      "type": "implicative",
+      "source": "AlignedOverlapsAreStrongCoincidence",
+      "target": "TwoObstructionCompletion",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "TwoObstructionCompletion/AlignedOverlapsAreStrongCoincidence"
     },
     {
       "type": "implicative",
@@ -1881,6 +1943,15 @@
       "provenance": "imported-theorem",
       "certainty": 1,
       "use_site": "PDSOverlapRoute/DensityToPDSBridge",
+      "leaks": "premise is imported-theorem"
+    },
+    {
+      "type": "implicative",
+      "source": "DensityToPDSBridge",
+      "target": "TwoObstructionCompletion",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "TwoObstructionCompletion/DensityToPDSBridge",
       "leaks": "premise is imported-theorem"
     },
     {
@@ -2402,6 +2473,14 @@
     },
     {
       "type": "implicative",
+      "source": "SwapOverlapFiniteness",
+      "target": "TwoObstructionCompletion",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "TwoObstructionCompletion/SwapOverlapFiniteness"
+    },
+    {
+      "type": "implicative",
       "source": "Target1",
       "target": "DominantCubicCapture",
       "provenance": "theorem-backed",
@@ -2439,6 +2518,24 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "UDForPowers/UniqueDecodability"
+    },
+    {
+      "type": "implicative",
+      "source": "UniversalAlignedCoincidence",
+      "target": "TwoObstructionCompletion",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "TwoObstructionCompletion/UniversalAlignedCoincidence",
+      "leaks": "premise is open"
+    },
+    {
+      "type": "implicative",
+      "source": "UniversalBoundaryHitting",
+      "target": "TwoObstructionCompletion",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "TwoObstructionCompletion/UniversalBoundaryHitting",
+      "leaks": "premise is open"
     },
     {
       "type": "synonymous",
@@ -3018,6 +3115,14 @@
     },
     {
       "type": "part-whole",
+      "source": "DensityToPDSBridge",
+      "target": "TwoObstructionsAssumed",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
       "source": "FormalProductivity",
       "target": "FormalProductivityGateAssumed",
       "provenance": "open",
@@ -3124,6 +3229,22 @@
       "type": "part-whole",
       "source": "SpectralSCCProducer",
       "target": "SpectralGateAssumed",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "UniversalAlignedCoincidence",
+      "target": "TwoObstructionsAssumed",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "UniversalBoundaryHitting",
+      "target": "TwoObstructionsAssumed",
       "provenance": "open",
       "certainty": 1,
       "use_site": "assumption_sets"

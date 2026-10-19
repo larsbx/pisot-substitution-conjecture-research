@@ -390,3 +390,95 @@ all classifications against Python, and uploads logs/JSON with `if: always()`.
 The literature decision is in `class-d-minus-cycle-literature-gate-2026-10-19.md`.
 Validation receipts and toolchain limitations are recorded in
 `../evidence/class-d-minus-reduction-repair-2026-10-19/README.md`.
+
+## 12. An unbounded family excluded with the same two guards
+
+| Obligation | Governed status |
+| --- | --- |
+| Six-edge unbounded family exclusion | Repository-proved: `MinusSixEdgeFamilyExclusion`; exact symbolic identities; human review pending |
+
+The k=2 control generalizes to **every integer k>=2**, without a search cap
+in k. Fix the following ordered itinerary (letters x,c,y; FIRST/RUN/LAST).
+The outgoing segment pair is attached to its source, and the last edge
+returns to row 0.
+
+| Row | Types | Offset (wx,wc,wy) | Sum | Outgoing segments |
+| --- | --- | --- | --- | --- |
+| 0 | c,c | (-2k,4k-1,1-3k) | -k | FIRST/LAST |
+| 1 | c,x | (2k-1,2-4k,3k-2) | k-1 | FIRST/FIRST |
+| 2 | c,x | (1-2k,4k-3,2-3k) | -k | FIRST/RUN |
+| 3 | c,y | (2k-1,2-4k,3k-2) | k-1 | FIRST/FIRST |
+| 4 | c,c | (1-2k,4k-3,2-3k) | -k | RUN/RUN |
+| 5 | y,y | (2k-2,2-4k,3k) | k | LAST/FIRST |
+
+**Lemma (this itinerary only).** No member of this family is an actual
+occurrence cycle for any one parameter pair a>=2,b>=1.
+
+**Proof.** The x/c child identities hold identically in k on all six edges,
+including closure. Put u=a-2,v=b-1. The lower occurrence-difference guard on
+edge 0 and upper guard on edge 2 are respectively
+
+\[
+ f_0=2k-11-2u+(k-1)v\ge0,\qquad
+ f_5=4-2k+u+(1-k)v\ge0.
+\]
+
+Adding them with nonnegative multipliers 1,1 gives
+
+\[
+ 0\le f_0+f_5=-7-u<0,
+\]
+
+a contradiction. Every real occurrence must satisfy these guards, so no
+geometric or seed-reachability assumption is needed for the exclusion.
+For k=2 these are precisely v=2u+7 (edge 0 also has its opposite guard)
+and v<=u. For general k the same cancellation persists.
+
+The unbounded even subfamily k=2t, t>=1, sharpens the negative control: every
+edge separately has a nonnegative **integer** parameter witness:
+
+| Edge | Its own (u,v) witness |
+| --- | --- |
+| 0 | (9(t-1),7) |
+| 1 | (8(t-1),2) |
+| 2 | (4(t-1),0) |
+| 3 | (8(t-1),2) |
+| 4 | (4t-3,0) |
+| 5 | (6(t-1),4) |
+
+Substitution into each edge's two guards gives nonnegative polynomials for
+t>=1. The canonical checker verifies this coefficientwise after shifting
+k=2+h, and integrality follows on even k. Thus even arbitrarily large sums
+can survive a check that reselects parameters on each edge, while the whole
+cycle is impossible. These six different valuations must never be assembled
+into a common-parameter witness. For odd k edge 0 already has an integer
+parity obstruction; we do not claim individual integer feasibility then.
+
+This is also a reusable **guard-pattern exclusion**: any longer walk with one
+shared valuation that includes these two rows with the same k is impossible.
+Changing the starting vertex, traversing the itinerary repeatedly, or adding
+more constraints cannot make the conjunction feasible. This statement does
+not permit k or u,v to change between the two rows.
+
+Canonical implementation: `kernel/psc/class_d_minus_cycle_family.mojo` uses
+the existing exact `QX`/vendored rational-polynomial kernels, with k as a
+formal indeterminate. It reconstructs all 12 guard rows and verifies the
+coefficient identities of their sum, rather than evaluating a finite list of
+k values. The test compares k=2 to the separately implemented supplied-cycle
+checker and refuses a corrupted closing edge. The independent Python oracle
+calibrates k=2,3,7,100,100000, which is additional finite evidence only.
+
+Replay, with the repository environment installed, from `kernel/`:
+
+```sh
+MODULAR_TELEMETRY_ENABLED=false MODULAR_CRASH_REPORTING_ENABLED=false pixi run mojo run -I . tests/test_class_d_minus_cycle_family.mojo
+MODULAR_TELEMETRY_ENABLED=false MODULAR_CRASH_REPORTING_ENABLED=false pixi run mojo run -I . class_d_minus_cycle_family.mojo
+```
+
+**Coverage gap.** This removes an unbounded set of higher-sum candidates, but
+no argument shows that all higher-sum cycles contain this guard pattern or
+belong to this itinerary family. A proof of CycleSum- still requires such a
+uniform structural coverage argument, or a different uniform separating
+certificate. The independent sums of an arbitrary cycle have not been reduced
+to this one-parameter pattern. Neither universal #139 nor PSC is advanced to
+a proved status by this lemma.

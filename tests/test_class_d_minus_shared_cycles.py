@@ -37,3 +37,26 @@ def test_closing_edge_and_budget_are_checked():
         oracle.cycle_forms(oracle.NEGATIVE_STATES,pairs)
     with pytest.raises(ValueError,match="incomplete"):
         oracle.cycle_forms([],[])
+
+
+@pytest.mark.parametrize("k", [2, 3, 7, 100, 100000])
+def test_unbounded_family_independent_finite_calibration(k):
+    states = oracle.negative_family(k)
+    assert [sum(s[2:]) for s in states] == [-k,k-1,-k,k-1,-k,k]
+    forms = oracle.cycle_forms(states,oracle.NEGATIVE_SEGMENTS)
+    assert forms[0] == (2*k-11,-2,k-1)
+    assert forms[5] == (4-2*k,1,1-k)
+    assert tuple(a+b for a,b in zip(forms[0],forms[5])) == (-7,-1,0)
+    assert oracle.farkas_refutes(forms,[int(i in (0,5)) for i in range(12)])
+    if k == 2:
+        assert states == oracle.NEGATIVE_STATES
+
+
+@pytest.mark.parametrize("t", [1, 2, 17, 50000])
+def test_even_family_has_individual_integer_edge_witnesses(t):
+    forms = oracle.cycle_forms(oracle.negative_family(2*t),oracle.NEGATIVE_SEGMENTS)
+    points = [(9*(t-1),7),(8*(t-1),2),(4*(t-1),0),
+              (8*(t-1),2),(4*t-3,0),(6*(t-1),4)]
+    for i,(u,v) in enumerate(points):
+        assert u>=0 and v>=0
+        assert all(c+a*u+b*v>=0 for c,a,b in forms[2*i:2*i+2])

@@ -52,3 +52,15 @@ def farkas_refutes(forms, multipliers):
         return False
     total = [sum(Fraction(y)*f[j] for f,y in zip(forms,multipliers)) for j in range(3)]
     return total[0]<0 and all(x<=0 for x in total[1:])
+
+
+def negative_family(k):
+    """Independent calibration inputs; the unbounded proof is symbolic Mojo."""
+    if not isinstance(k, int) or k < 2:
+        raise ValueError("family calibration requires integer k>=2")
+    return [(1,1,-2*k,4*k-1,1-3*k),
+            (1,0,2*k-1,2-4*k,3*k-2),
+            (1,0,1-2*k,4*k-3,2-3*k),
+            (1,2,2*k-1,2-4*k,3*k-2),
+            (1,1,1-2*k,4*k-3,2-3*k),
+            (2,2,2*k-2,2-4*k,3*k)]

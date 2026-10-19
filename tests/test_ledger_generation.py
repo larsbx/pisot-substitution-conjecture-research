@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import make_ledger  # noqa: E402
 from proof_records import generate_ledgers as gl  # noqa: E402
 
-MODELS = ("MinusCycleSumAssumed", "FormalProductivityGateAssumed", "Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
+MODELS = ("TwoObstructionsAssumed", "MinusCycleSumAssumed", "FormalProductivityGateAssumed", "Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
 
 
 def reachable(model: str) -> set[str]:
@@ -217,3 +217,23 @@ def test_minus_cyclesum_closes_only_the_scoped_conditional_family_result():
     assert done == reachable("MinusCycleSumAssumed")
     assert "MinusClassDPositiveBBoundaryHitting" in done
     assert not {"AllSeedStrictZipperExclusion","OverlapProductivity", "AllSeedOverlapProductivity", "G1", "PDS"} & done
+
+
+def test_two_obstruction_assembly_keeps_both_universal_premises_open():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof/tla/ledger.json"))
+    entries = {e.name: e for e in analysis.entries}
+    assert entries["TwoObstructionCompletion"].status == "conditional"
+    for gate in ("UniversalAlignedCoincidence", "UniversalBoundaryHitting"):
+        assert entries[gate].status == "open"
+        assert "TwoObstructionCompletion" not in gl.established(analysis, (gate, "DensityToPDSBridge"))
+    assumed = ("UniversalAlignedCoincidence", "UniversalBoundaryHitting", "DensityToPDSBridge")
+    assert gl.established(analysis, assumed) == reachable("TwoObstructionsAssumed")
+    assert "TwoObstructionCompletion" in reachable("TwoObstructionsAssumed")
+    for model in ("Open", "Imports", "MinusCycleSumAssumed"):
+        assert not {"UniversalAlignedCoincidence", "UniversalBoundaryHitting", "TwoObstructionCompletion"} & reachable(model)
+
+
+def test_unbounded_six_edge_family_does_not_discharge_cyclesum():
+    assert "MinusSixEdgeFamilyExclusion" in reachable("Open")
+    assert not {"MinusClassDPositiveBCycleSum", "MinusClassDPositiveBBoundaryHitting",
+                "UniversalBoundaryHitting", "TwoObstructionCompletion", "PDS"} & reachable("Open")

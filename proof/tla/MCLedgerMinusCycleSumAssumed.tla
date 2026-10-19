@@ -30,6 +30,7 @@ Reachable == {
     "MidArea",
     "MinusClassDPositiveBBoundaryHitting",
     "MinusClassDPositiveBCycleSum",
+    "MinusSixEdgeFamilyExclusion",
     "Mod3Sieve",
     "OrientationMonodromy",
     "OrientationSpectrum",

@@ -58,3 +58,22 @@ Fail closed on caps, arithmetic rejection, unexplained recurrent labels, or
 failed exceptional exits. Do not delete edges on failure to find a Farkas
 certificate. Leave CycleSum-, universal #139/#84, and PSC open. Novelty is
 restricted to this family's classification, replay data and checked reduction.
+
+## Continuation decision: one unbounded six-edge family
+
+The three primary sources above were revisited before implementing this
+extension. Narrow the target to the documented six-edge segment itinerary,
+with cyclic sums `(-k,k-1,-k,k-1,-k,k)` for an arbitrary integer `k>=2`.
+Use the x/c predecessor identities to reconstruct its offsets symbolically,
+then derive the occurrence guards as exact polynomials in `k`, affine in the
+ONE shared `u,v`. Check whether the same two unit multipliers cancel `k`
+and `v` identically. This is specialization of affine guard conjunction and
+a constant Farkas certificate, not a parameter-synthesis or completeness
+theorem. The non-unit and seed-realization limitations remain unchanged.
+
+**Proceed, narrowly:** a polynomial identity can exclude this whole unbounded
+family without a finite k cap. It does not show that every higher-sum cycle
+has this itinerary or sum pattern. Retain the k=2 individually feasible-edge
+control, the feasible U/Ubar control, and closing-edge mutation refusal.
+No cycle enumeration, universal invariant test, or claim promotion is licensed
+by this family calculation alone.

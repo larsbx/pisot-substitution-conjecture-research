@@ -1239,6 +1239,24 @@ anchor = "| Minus cycle-sum bound |"
 window_lines = 0
 
 [[claim]]
+name = "MinusSixEdgeFamilyExclusion"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusSixEdgeFamilyExclusion"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusSixEdgeFamilyExclusion |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Six-edge unbounded family exclusion |"
+window_lines = 0
+
+[[claim]]
 name = "Mod3Sieve"
 status = "proved"
 [[claim.surfaces]]
@@ -1903,6 +1921,24 @@ anchor = '| ThetaIntertwining |'
 window_lines = 0
 
 [[claim]]
+name = "TwoObstructionCompletion"
+status = "conditional"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"TwoObstructionCompletion"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| TwoObstructionCompletion |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Two-obstruction completion theorem / universal completion criterion |"
+window_lines = 0
+
+[[claim]]
 name = "UDForPowers"
 status = "proved"
 [[claim.surfaces]]
@@ -1937,6 +1973,34 @@ window_lines = 0
 [[claim.surfaces]]
 path = "README.md"
 anchor = "**Unique decodability:**"
+window_lines = 0
+
+[[claim]]
+name = "UniversalAlignedCoincidence"
+status = "open"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"UniversalAlignedCoincidence"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "absent"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| UniversalAlignedCoincidence |'
+window_lines = 0
+
+[[claim]]
+name = "UniversalBoundaryHitting"
+status = "open"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"UniversalBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "absent"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| UniversalBoundaryHitting |'
 window_lines = 0
 
 [[claim]]

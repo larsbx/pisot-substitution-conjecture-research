@@ -5,6 +5,7 @@ requested: the corresponding legal run-position blocks are geometrically empty
 on the whole certified wedge region.
 """
 from std.testing import assert_true
+from mojo_smoke.claims import require_contract
 from psc.param_poly import QX, qx_const, tp_add, tp_sub, w_add, w_sub
 from psc.symbolic_line import Eventual, SymVertex, _Closure, certify_wedge_pisot
 from symbolic_line_certificate import ClassWedge
@@ -49,3 +50,4 @@ def main() raises:
     var mt = mcl.line.t_of(mbase)
     var mlower = tp_add(mcl.line.ell[mcl.letter(mv.bottom,0)], mt)
     assert_true(mcl.positive(mlower) <= 0)
+    require_contract("positive-b class-D first non-affine occurrence blocks are uniformly geometrically empty on their certified wedges")

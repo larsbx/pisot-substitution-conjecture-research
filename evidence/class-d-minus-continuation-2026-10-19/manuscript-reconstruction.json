@@ -1,0 +1,12 @@
+{
+  "source_commit": "b10e1137f0b17bc405721ae968e7af934fdc2e8c",
+  "path": "manuscripts/PSC_balanced_pair_state_2026-09-13.tex",
+  "before_sha256": "17d06a1b2042cd27e8270d7f9bba763a8f2ad2b2d28ec9dbeb67245a38dc8504",
+  "after_sha256": "8187af54191e47e95f34abc3c15fad4517896b33797f9899b43896a9f58b2c01",
+  "repeated_block_sha256": "d920215fc4983454e5765ef2f48ed8d3632754aa661599d66df59adcaa4a315c",
+  "repeated_block_bytes": 183857,
+  "identical_copies": 3,
+  "removed_injected_copies": 2,
+  "replacement_each": "$'",
+  "preserved_third_copy": true
+}

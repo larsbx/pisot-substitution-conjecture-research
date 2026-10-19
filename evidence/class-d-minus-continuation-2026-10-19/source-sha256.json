@@ -1,0 +1,16 @@
+{
+  "kernel/psc/class_d_minus_cycle_family.mojo": "9548202db62e845ece3d6b448d1f362a953be19537f6c40a0b69950a245327d6",
+  "kernel/class_d_minus_cycle_family.mojo": "f151a00be23c71676d6965ef0ec7ec50c248f03586e323badca14ca88b6cb189",
+  "kernel/tests/test_class_d_minus_cycle_family.mojo": "26dd22f2f13c15ac325e8992d635e0f0cff9b0802e1b792cf169d317dd0909ae",
+  "kernel/psc/class_d_minus_shared_cycles.mojo": "aefdadf2a29d72f3fe5d9e4a1d0bf832c3fb719832d12143ffe58c3b5e9fe740",
+  "kernel/psc/class_d_minus_cycle_superset.mojo": "f8281d659a72aec62e54c859428a554dfa1f6cf954af5ed5d427a31eac447f81",
+  "kernel/psc/param_poly.mojo": "7f98c2e875962263b69940f12f6e0a5dc3f63b85c940ad0b5fbb7db60f685fc4",
+  "oracles/python/class_d_minus_shared_cycles.py": "decd7dc0323928e8316c3b961c92fbfd148d585014f6b53f1c49cd282ca0957c",
+  "tests/test_class_d_minus_shared_cycles.py": "2dc746e55159a3e9724bce4becc8c8dbf9276161a9dcfcd508fc735b7a29d65d",
+  "kernel/tests/test_symbolic_line_empty_blocks.mojo": "cc6a66798eb47276011196eab5e5c13daf0b859c64dc31fa064569df28269ad9",
+  "tools/make_ledger.py": "ae2c50a37a9e2f2554f31288232feb5aa686b6738897cf9bce0ebb46ec4a0969",
+  "tests/test_ledger_generation.py": "b6f2809ac51250414b37a7ac65a5bede44120804c0448c83d93cca2f9806f395",
+  "tests/test_show_your_work_policy.py": "d0a647095ba8f0ddbc9a4147844f3ea9837d7de2d8a3c94ec4c6408242ba5f97",
+  "manuscripts/PSC_balanced_pair_state_2026-09-13.tex": "8187af54191e47e95f34abc3c15fad4517896b33797f9899b43896a9f58b2c01",
+  ".github/workflows/class-d-minus-recurrent-carrier.yml": "75f67b140c7470008fd831441160b1830a6ccb187e63f8fb52c3f8869e006005"
+}
