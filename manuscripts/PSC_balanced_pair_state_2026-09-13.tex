@@ -61,10 +61,11 @@ made.  We prove unconditionally that the exact seed-patch overlap graph is
 finite, that productivity of the overlaps reachable from one swap seed implies
 pure discrete spectrum, and that every hypothetical failure reduces to a
 finite closed recurrent nonproductive overlap component.  The key synthesis
-is a two-obstruction completion theorem: if (A) every aligned pair of distinct
-letters is eventually coincident and (B) every cyclic overlap has an
-offset-zero descendant, then every potential overlap is productive and the
-tiling flow has pure discrete spectrum.  In the established ternary endpoint
+is a two-obstruction completion theorem on the unconditionally finite
+seed-patch overlap graph: if (A) every aligned pair of distinct letters is
+eventually coincident and (B) every cyclic seed-reachable overlap has an
+offset-zero descendant, then every seed-reachable overlap is productive and
+the tiling flow has pure discrete spectrum.  In the established ternary endpoint
 normal form, (A) reduces after passing to a square to one residual fixed-letter
 hub-word statement (A1'); (B) is the occurrence-compatible boundary-hitting
 problem for strict zippers.  Thus, at the current project theorem boundary,
@@ -134,7 +135,8 @@ bad edge, and must nevertheless be eventually coincident.  Applying the same
 statement to the reversed substitution handles the right endpoint.
 
 \item[Boundary-hitting lemma B (issue \#139).]
-Every overlap lying on a directed cycle has a descendant of offset zero.
+Every vertex of the finite seed-patch overlap graph lying on a directed cycle
+has a descendant of offset zero.
 Equivalently, every realized strict-zipper periodic orbit enters the
 occurrence-compatible reverse zero basin.  In the non-unit case this statement
 must respect the full representation space; a Euclidean-only or
@@ -143,24 +145,23 @@ unimodular-lattice replacement is not permitted.
 
 \begin{theorem}[Two-obstruction completion theorem; \Status{Conditional} on A and B]\label{thm:two-obstruction-completion}
 Let $\sigma$ be PIP on three letters.  If aligned lemma A and
-boundary-hitting lemma B hold for $\sigma$, then every potential overlap is
+boundary-hitting lemma B hold for $\sigma$, then every vertex of the seed-patch overlap graph is
 productive.  Consequently every swap seed is productive and
 $(\Omega_\sigma,\R)$ has \PDS{}.
 \end{theorem}
 
 \begin{proof}
-Assume that a potential overlap $x$ is nonproductive.  Every child of a
-nonproductive overlap is nonproductive, and a noncoincidence overlap has at
-least one child.  Since the potential-overlap carrier containing all cycle
-vertices is finite, an infinite descendant path from $x$ reaches a directed
-cycle; let $v$ be a nonproductive overlap on that cycle.  By lemma B, $v$ has
+Assume that a vertex $x$ of $\mathcal O_\sigma$ is nonproductive.  Every
+child of a nonproductive overlap is nonproductive, and a noncoincidence
+overlap has at least one child.  The graph $\mathcal O_\sigma$ is finite by
+Theorem~\ref{thm:overlap-finite}, so an infinite descendant path from $x$
+reaches a directed cycle; let $v$ be a nonproductive overlap on that cycle.  By lemma B, $v$ has
 an offset-zero descendant $y$.  If $y$ is a coincidence then $v$ is
 productive, a contradiction.  Otherwise $y=(i,j,0)$ with $i\ne j$.  By lemma
 A the pair $\{i,j\}$ is eventually coincident, so
 Proposition~\ref{prop:aligned-overlaps}(i) makes $y$ productive, hence $v$
-productive, again a contradiction.  Thus every potential overlap is
-productive.  In particular every overlap reachable from any swap seed is
-productive, and Theorem~\ref{thm:main-density} gives \PDS{}.
+productive, again a contradiction.  Thus every vertex of $\mathcal O_\sigma$ is productive, and
+Theorem~\ref{thm:main-density} gives \PDS{}.
 \end{proof}
 
 This theorem is the organizing result of the paper.  The spectral bridge,
