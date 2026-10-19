@@ -16,6 +16,10 @@ from psc.class_d_positive_b_spine import _occurrence, _occurrence_fixed_b
 from psc.class_d_positive_b_geometry import _margins20, _verify_minus_root_box
 
 
+
+def _label(row: List[Int]) -> List[Int]:
+    return [row[0],row[1],row[2],row[3],row[4]]
+
 def _same(a: List[Int], b: List[Int]) -> Bool:
     return len(a) == len(b) and a == b
 
@@ -121,14 +125,14 @@ def verify_minus_exceptional_productivity() raises -> List[Int]:
     var Ab = [2,2,3,-5,3]
 
     # U -> sealed row 69: top FIRST, bottom run occurrence b.
-    if _child(U,[0,0,0],[0,0,1]) != rows[69][0:5]:
+    if _child(U,[0,0,0],[0,0,1]) != _label(rows[69]):
         raise Error("U exceptional exit changed")
-    _uniform_real(rows[69][0:5])
+    _uniform_real(_label(rows[69]))
 
     # Ubar -> sealed row 97: top run occurrence b, bottom FIRST.
-    if _child(Ub,[0,0,1],[0,0,0]) != rows[97][0:5]:
+    if _child(Ub,[0,0,1],[0,0,0]) != _label(rows[97]):
         raise Error("Ubar exceptional exit changed")
-    _uniform_real(rows[97][0:5])
+    _uniform_real(_label(rows[97]))
 
     # V -> A: top run b, bottom run a+2.
     if _child(V,[0,0,1],[1,2,0]) != A:
@@ -136,12 +140,12 @@ def verify_minus_exceptional_productivity() raises -> List[Int]:
     _source_implies_target(V,A)
 
     # For b=1, A -> row 44 by FIRST/FIRST.
-    if _child_b1(A,[0,0,0],[0,0,0]) != rows[44][0:5]:
+    if _child_b1(A,[0,0,0],[0,0,0]) != _label(rows[44]):
         raise Error("V b=1 exceptional exit changed")
-    _uniform_real(rows[44][0:5])
+    _uniform_real(_label(rows[44]))
 
     # For b>=2, A -> row 69 by top FIRST, bottom run b-1.
-    if _child(A,[0,0,0],[0,-1,1],2,2) != rows[69][0:5]:
+    if _child(A,[0,0,0],[0,-1,1],2,2) != _label(rows[69]):
         raise Error("V b>=2 exceptional exit changed")
 
     # Mirror path.
@@ -149,11 +153,11 @@ def verify_minus_exceptional_productivity() raises -> List[Int]:
         raise Error("Vbar first exceptional step changed")
     _source_implies_target(Vb,Ab)
 
-    if _child_b1(Ab,[0,0,0],[0,0,0]) != rows[35][0:5]:
+    if _child_b1(Ab,[0,0,0],[0,0,0]) != _label(rows[35]):
         raise Error("Vbar b=1 exceptional exit changed")
-    _uniform_real(rows[35][0:5])
+    _uniform_real(_label(rows[35]))
 
-    if _child(Ab,[0,-1,1],[0,0,0],2,2) != rows[97][0:5]:
+    if _child(Ab,[0,-1,1],[0,0,0],2,2) != _label(rows[97]):
         raise Error("Vbar b>=2 exceptional exit changed")
 
     # All carrier targets above have rank <=2.
