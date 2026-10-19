@@ -231,17 +231,17 @@ cover).  The complete ClassWedge driver in §4 attacks exactly that obligation.
 Once cover closure is proved, the displayed rank is a terminating BH
 certificate of depth at most four.
 
-## 9. Minus-branch Perron-gap monotonicity
+## 9. Class-D Perron-gap monotonicity on both residual signs
 
-There is a simple analytic reason the positive-`b` support tends to shrink.
+There is a shared analytic reason the positive-`b` support tends to shrink.
 
 Put
 
 ```text
 D = a+2 >= 2,
-r = 2D+b,
 q = r+D,
-p = q-1,
+p = q+s,      s in {-1,+1},
+r = 2D-2s-2+b,
 beta = r+d.
 ```
 
@@ -249,14 +249,14 @@ Thus `d=beta-r` and, after normalizing `ell_y=1`,
 
 ```text
 ell_c = d/2,
-ell_x = d/2 - 1/beta
+ell_x = d/2 + s/beta,
 ```
 
-because `p-q=-1`.
+because `p-q=s`.
 
 ### Lemma
 
-For fixed integer `D>=2`, along the minus residual family:
+For fixed integer `D>=2` and either residual sign `s=±1`:
 
 ```text
 d > 2,
@@ -269,62 +269,60 @@ and d -> 2 as b -> infinity.
 The characteristic polynomial is
 
 ```text
-chi(X)=X(X-2)(X-r)-2(r+D)(X-1)-2(r+D-1).
+chi(X)=X(X-2)(X-r)-2(r+D)(X-1)-2(r+D+s).
 ```
 
 First,
 
 ```text
-chi(r+2) = -2(Dr+2D-1) < 0,
+chi(r+2) = -2(Dr+2D+s) < 0,
 ```
 
-while `chi(X)->+infinity`; since the PIP root `beta` is the unique real
-root above one, `beta>r+2), hence `d>2`.
+throughout the residual positive-`b` region. Since `chi(X)->+infinity`
+and the PIP root `beta` is the unique real root above one,
+`beta>r+2), hence `d>2`.
 
 For the derivative we need the stronger inequality
-`beta(d-2)>D`.  Set
+`beta(d-2)>D`. Set
 
 ```text
 x0 = r+2 + D/(r+2).
 ```
 
-A direct simplification gives
+Direct simplification gives
 
 ```text
 chi(x0)
- = [ D^3 + (r+2)^3 (2-D(r+2)) ] / (r+2)^3.
+ = [D^3 - D(r+2)^4 - 2s(r+2)^3] / (r+2)^3.
 ```
 
-Here `r>=2D`, `D>=2`, so the numerator is strictly negative. Therefore
-`beta>x0`, hence
+On both positive-`b` residuals `r+2>D`. For `s=+1` the numerator is
+immediately negative. For `s=-1` it is
+`D^3-(r+2)^3(D(r+2)-2)`, also negative because
+`r+2>D` and `D(r+2)-2>1`. Therefore `beta>x0`, hence
 
 ```text
 d-2 > D/(r+2) > D/beta,
 ```
 
-which is the desired inequality.
+so `beta(d-2)>D`.
 
-Now regard the root equation as `F(r,d)=chi_r(r+d)=0` with `D` fixed.
-Direct differentiation at fixed `d` gives
-
-```text
-partial_r F = 2( beta(d-2)-D ) > 0.
-```
-
-Also
+Regard the root equation as `F(r,d)=chi_r(r+d)=0` with `D,s` fixed.
+In both signs,
 
 ```text
-partial_d F = chi'(beta) > 0,
+partial_r F = 2(beta(d-2)-D) > 0,
+partial_d F = chi'(beta) > 0.
 ```
 
-because the Perron root is simple and larger than the other two roots.
-Implicit differentiation yields
+The second inequality holds because the Perron root is simple and larger than
+the other two roots. Thus
 
 ```text
 dd/dr = -(partial_r F)/(partial_d F) < 0.
 ```
 
-Since `r=2D+b`, this is also `dd/db<0`.
+Since `r` increases with slope one in `b`, `dd/db<0`.
 
 Finally `d>2` and monotonicity give a limit `L>=2`. In the exact root
 equation the coefficient of `r^2` is `d-2`; if `L>2`, that positive
@@ -333,16 +331,14 @@ QED.
 
 ### Consequence for the closure proof
 
-The two non-`y` tile lengths contract monotonically toward the common
-unit-length scale in the dominant `d/2` term while the rank-one occurrence
-compensation law keeps the selected spine offsets fixed. This does **not** by
-itself prove support inclusion, because the `-1/beta` correction in
-`ell_x` and the offset evaluation must still be checked together. It does,
-however, rule out a fixed positive lower contraction margin as the relevant
-mechanism and explains why the exact positive-`b` graphs observed so far
-lose labels rather than gain them.
+Both residual signs approach a common unit-scale limit while retaining the
+same rank-one `b` update. This does **not** by itself prove support inclusion:
+the `s/beta` correction in `ell_x` and each offset inequality must still be
+checked together. It does prove that no new proof should depend on a fixed
+positive contraction margin, and it explains why the exact positive-`b`
+graphs observed so far shed boundary labels and approach smaller stable cores.
 
-The uniform support-inclusion theorem still requires exact sign control; the
-ClassWedge certificate and the independent Q(beta) oracle remain the
+The uniform support theorem still requires exact sign control; the complete
+ClassWedge certificate and the independent exact Q(beta) oracle remain the
 authoritative routes.
 
