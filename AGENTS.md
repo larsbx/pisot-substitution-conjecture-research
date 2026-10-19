@@ -114,6 +114,37 @@ The current C4 recognizability/factorization work is being migrated to this poli
 
 Python copies may remain as independent reference oracles during migration, but new results should cite the Mojo implementation as canonical.
 
+## Show your work — enforced research-evidence policy
+
+**Show the inspectable work behind every theorem-facing contribution.** This
+means repository-visible derivations, hypotheses, exact evidence, replay
+instructions, negative controls, and explicit non-claims. It does **not** mean
+publishing private chain-of-thought or hidden scratch reasoning.
+
+A theorem-facing pull request must include a `## Work shown` section with all
+of these headings:
+
+- `### Assumptions and hypotheses`
+- `### Derivation / reduction`
+- `### Evidence and replay`
+- `### Negative controls`
+- `### Non-claims / remaining gaps`
+
+The content under those headings must expose enough of the mathematical
+argument or certificate semantics for another researcher to reconstruct what
+was done. A final theorem statement, green CI badge, generated table, or
+numerical verdict without its derivation and scope boundary is not sufficient.
+
+For executable work, show the finite object and quantifiers being certified,
+the deterministic replay command, caps/thresholds, fail-closed behavior and
+the exact contract guarded by the test. Preserve failed stronger variants and
+counterexamples rather than deleting them.
+
+The machine-readable source is `research_evidence_policy.toml`; the human
+policy is `docs/research-evidence-policy.md`; the pull-request gate is
+`.github/workflows/show-your-work.yml`. Claim status remains governed
+separately by `claim_governance.toml`.
+
 ## Review gate
 
 ### Independent human review is not a research gate
