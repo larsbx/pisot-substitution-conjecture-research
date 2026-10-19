@@ -33,7 +33,8 @@ For ternary PIP substitutions, the direct proof of PSC has only two universal
 mathematical obligations left:
 
 1. **#138 / A1′:** the residual fixed-letter hub-word pair is eventually
-   coincident (and likewise after reversal);
+   coincident. The completion theorem needs this one-sided statement; reversal
+   is not an additional premise;
 2. **#139 / BH:** every cyclic strict-zipper overlap has an
    occurrence-compatible descendant of offset zero.
 
