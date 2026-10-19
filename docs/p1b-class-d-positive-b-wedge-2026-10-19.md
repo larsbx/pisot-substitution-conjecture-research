@@ -154,3 +154,80 @@ If the wedge engine fails, its first uncaptured run-position/sign decision
 should be interpreted against this law before introducing any additional
 state coordinate.
 
+## 8. Positive-b rank-spine transport theorem (minus branch)
+
+The sealed minus `b=0` spine has 145 labels, six rank-zero targets and 139
+selected strict-rank descents.  Write `w=(w_x,w_c,w_y)` and
+`s(w)=w_x+w_c+w_y`.  Exhaustion of the sealed rows gives
+
+```text
+s(w) in {-1,0,+1}
+for every one of the 145 labels.
+```
+
+Adding one unit of the residual parameter `b` adds one `y` to every
+substitution image, hence
+
+```text
+M(a,b) = M(a,0) + b e_y 1^T.
+```
+
+An occurrence inside a `y` run may be transported in exactly two uniform
+ways: keep its distance from the run start (b-coefficient 0) or keep its
+distance from the run end (b-coefficient 1). First occurrences have coefficient
+0 and last occurrences coefficient 1. Therefore the old child is preserved
+whenever
+
+```text
+n_bottom - n_top = -s(w).
+```
+
+This directly transports 129 selected spine edges.
+
+Four further rows use a different edge already present in the complete
+`b=0` support:
+
+```text
+row 49  -> 116: top 2a+5,       bottom 2a+5+b
+row 70  -> 102: top a+2+b,      bottom 0
+row 96  ->  65: top 0,          bottom a+2+b
+row 117 ->  50: top 2a+5+b,     bottom 2a+5.
+```
+
+Each target has strictly smaller sealed rank.
+
+The remaining six rows are `y/y` states and admit explicit positive-`b`
+descents:
+
+```text
+122 -> 69: top 0,              bottom b
+142 -> 97: top b,              bottom 0
+
+129 -> 71: top 2a+5+b,         bottom b
+135 -> 95: top b,              bottom 2a+5+b
+
+123, b=1 -> 45: top 2a+6,      bottom 0
+123, b>=2 -> 71: top 2a+5+b,   bottom b-1
+
+141, b=1 -> 34: top 0,         bottom 2a+6
+141, b>=2 -> 95: top b-1,      bottom 2a+5+b.
+```
+
+The target ranks are respectively below the source ranks.  The exact integer
+regression
+`tests/test_class_d_positive_b_spine_transport.py` evaluates the child
+formula from the actual words and verifies the 129/4/6 partition and every
+displayed strict descent.
+
+**Proposition (scoped rank descent).** For every integer `a>=2,b>=1`, every
+non-target label of the sealed 145-row minus spine has an explicit
+occurrence-labelled child in the same label set of strictly smaller sealed
+rank.
+
+This proposition is **not yet the minus-quadrant BH theorem**.  The remaining
+logical obligation is **positive-b cover closure**: every seed-reachable child
+must remain in the 145-label upper cover (or in a proved enlarged finite
+cover).  The complete ClassWedge driver in §4 attacks exactly that obligation.
+Once cover closure is proved, the displayed rank is a terminating BH
+certificate of depth at most four.
+
