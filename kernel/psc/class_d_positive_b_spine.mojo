@@ -1,9 +1,11 @@
 """Exact two-parameter transport of the 145-row minus class-D rank spine.
 
-For every non-target row this module proves, coefficient by coefficient, an
-actual occurrence-labelled child of strictly lower sealed rank for every
-integer a>=2,b>=1.  It does not prove positive-b child closure of the 145-label
-carrier; that is a separate #139 obligation.
+For every non-target row this module proves, coefficient by coefficient, a
+valid pair of child indices whose computed overlap state is a sealed label of
+strictly lower rank for every integer a>=2,b>=1.  This is an algebraic
+occurrence-state certificate: it does not by itself prove that the selected
+child tiles overlap geometrically at every parameter. Positive-b carrier
+closure and conditional child realness are separate #139 obligations.
 
 Index triples are [a_coefficient, constant, b_coefficient].
 """
