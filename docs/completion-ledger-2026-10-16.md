@@ -6,6 +6,18 @@ source. Claim status is governed by `claim_governance.toml`, the generated
 ledger surfaces, `docs/claim-status-and-source-map-2026-09-13.md`, and the
 cited manuscript/proof sources.
 
+**2026-10-19 post-snapshot reconciliation (`main@e062e330`):** preserve this
+file's October 16 baseline as historical provenance, but supersede three stale
+planning statements below. Merged PR #277 now integrates both class-D `b=0`
+boundary certificate systems; the remaining class-D target is exactly the two
+positive-`b` interiors `s=±1, a>=0, b>=1`. The phrase "unimodular parameter
+quadrants" below is corrected to **integral affine parameter quadrants**:
+class D here is determinant two and non-unimodular. Finally, mechanically
+sufficient results at their exact recorded scope are project-accepted for
+progression under `claim_governance.toml [review_policy]`; this is not a
+claim that independent human review occurred and it changes no universal
+open status.
+
 ## Executive status
 
 General PSC remains **open**. No immutable accepted-proof source on `main`
@@ -56,9 +68,10 @@ neither G1 nor PSC is promoted.
 ### Residual determinant-two class D
 
 The exact parameter algebra reduces the remaining PIP class-D region below
-`r = q - 1` to two complete unimodular parameter quadrants `a,b >= 0`, with
-changing-graph Pisot-boundary edges at `b = 0`. This is a reduction of the
-next proof target, not a boundary-hitting theorem for either quadrant.
+`r = q - 1` to two complete **integral affine** parameter quadrants `a,b >= 0`.
+At the October 16 snapshot the `b=0` certificates were not yet integrated;
+merged PR #277 now certifies both boundary lines. The remaining target is the
+two positive-`b` interiors.
 
 ## Corrections and negative controls
 
@@ -83,7 +96,7 @@ entire child-closed nonproductive SCC.
 | Barge-class detector | **Exact finite classification feeding an imported theorem** | 1,248 of the 4,554 standing-corpus specimens have a power/rotation/mirror witness | Barge-class membership or PDS for arbitrary PIP substitutions |
 | Two-sided strong coincidence | **Exact finite evidence** | 408,798 ternary PIP substitutions with total image length at most 10; zero failures | A uniform strong-coincidence theorem |
 | Closed formal carriers | **Exact finite evidence** | 13,260 formal overlap carriers; zero closed survivors | Universal formal productivity |
-| Theorems L/L'/L'' and W | **Computer-assisted family theorems; review pending** | 47 declared lines and the declared class-D wedges, including PIP class D with `r >= q - 1` | The two residual class-D quadrants or #139 uniformly |
+| Theorems L/L'/L'' and W | **Computer-assisted family theorems; project-accepted for progression; independent human validation outstanding** | 47 declared lines and the declared class-D wedges, including PIP class D with `r >= q - 1` | The two residual class-D quadrants or #139 uniformly |
 
 ## Open claims and exact provenance gaps
 
@@ -95,15 +108,15 @@ entire child-closed nonproductive SCC.
 | Strict-zipper branch (#139) | **Open universally** | Need an occurrence-compatible, non-unit-safe common-boundary theorem for every realized closed obstruction; current line/wedge results and source audits are partial. |
 | Formal productivity | **Open universally** | Completed finite domains and carrier exclusions have no all-PIP completeness theorem. |
 | G1 | **Open universally** | Complete-box, productivity, strict-zipper, and G1b-2 routes remain conditional on open universal premises. |
-| `PDS => G1` package | **Repository-proved; human review pending** | Independent review remains validation debt; it is not an extra mathematical premise and does not promote PDS or G1 universally. |
+| `PDS => G1` package | **Repository-proved; project-accepted for progression; independent human validation outstanding** | Final independent review remains validation debt; it is not an extra mathematical premise and does not promote PDS or G1 universally. |
 
 ## Open pull requests and issues
 
-Open PRs are evidence or candidate work, not part of this baseline. In
-particular, #263 and #266 propose class-D boundary certificates, #273 proposes
-occurrence-path replay and matched-target certificates, and #235 audits the
-Theorem Ω PDS bridge. None may be used to promote a claim until merged and
-reconciled with the proof sources and generated ledger. The performance PRs
+At this snapshot, open PRs were evidence or candidate work. Post-snapshot,
+#263/#266 were integrated by merged PR #277 and are now load-bearing only at
+their exact scoped `b=0` certificate level. #273 remains proposed
+occurrence-path replay/matched-target work; #235 remains an audit contribution.
+A merge still does not enlarge a claim beyond its proof/certificate scope. The performance PRs
 #252, #257, and #267 are claim-neutral.
 
 The governing mathematical issues remain open: #84 (seedwise overlap
@@ -118,12 +131,14 @@ productivity), #138 (aligned branch), #139 (strict zipper), #44 (G1b-2), #43
 2. Require exact occurrence-aware replay for every projected matched-target
    path, and prove the projection-lifting/closure statement rather than
    inferring it from vector reachability.
-3. Prove boundary hitting on both residual class-D quadrants, including their
-   changing-graph `b = 0` edges, then combine with Corollary W1.
+3. Prove boundary hitting on the two residual positive-`b` class-D interiors
+   `s=±1, a>=0, b>=1`; both `b=0` boundary lines are already integrated by
+   PR #277. Then combine with Corollary W1.
 4. Pursue extremal-radius or K2 arguments only with their precise statistic,
    stopping theorem, and finite-closure premise exposed.
-5. Keep independent human review as non-blocking validation debt until a
-   complete closure candidate exists, without mislabelling it as completed.
+5. Use mechanically sufficient results as project-accepted load-bearing inputs
+   at their exact scopes; retain independent human review as final validation
+   debt and never label it completed unless it actually occurs.
 
 ## Provenance boundary
 
