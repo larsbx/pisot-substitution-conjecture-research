@@ -41,7 +41,7 @@ def _complete_wedge(spec: ClassWedge) raises -> List[Int]:
     var finite = 0
     for i in range(len(edges)):
         print("BEGIN_BOUNDARY_LINE", i, edges[i].describe())
-        var v = certify(edges[i])
+        var v = certify(edges[i], True)
         print("BOUNDARY_LINE_CERTIFIED", i, "q0=", v.q0, "finite_pip=", v.finite_members)
         finite += v.finite_members
     return [core.a0,core.b0,core.symbolic_vertices,len(edges),finite]
@@ -97,7 +97,7 @@ def certify_plus_positive_b_chambers() raises -> List[Int]:
 
     for j in range(1,7):
         print("BEGIN_INTERFACE_LINE", j)
-        var v = certify(_interface_line(j))
+        var v = certify(_interface_line(j), True)
         explicit_lines += 1
         finite_prefix += v.finite_members
         max_vertices = max(max_vertices,v.symbolic_vertices)
@@ -126,7 +126,7 @@ def main() raises:
         if kind == "line" and len(args) == 3:
             var j = Int(String(args[2]))
             print("BEGIN_INTERFACE_LINE", j)
-            var v = certify(_interface_line(j))
+            var v = certify(_interface_line(j), True)
             print("PLUS_CHAMBER_COMPONENT_CERTIFIED", "line", j, "q0=", v.q0, "vertices=", v.symbolic_vertices, "finite_pip=", v.finite_members)
             return
         raise Error("usage: class_d_plus_positive_b_chambers.mojo [low 0..4 | high | line 1..6]")

@@ -1,6 +1,8 @@
 # Class-D positive-b chamber execution — 2026-10-19
 
-Status: execution audit and sign-reader repair; **no family theorem promotion**.
+Status: **complete local component replay with the lock-matched Mojo compiler/runtime**; no family theorem promotion.
+The latest result is six cores, all 73 returned strip obligations (69 distinct
+lines), and all six explicit lines. Earlier partial runs below remain historical.
 Base: `85fafd3383a2837785199ad7f66e913c0e86c2a7` (merged PR #289).
 The dedicated original run is [39292497570](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/39292497570).
 Execution receipts, source variants and replay instructions are in
@@ -137,7 +139,7 @@ preserved rather than overwritten by repaired runs.
 | Plus positive-b closure | Requires all six cores, all returned strips and six explicit lines; local partial receipts do not promote it |
 | Minus selected lower-rank state | Separate PR #287 algebraic result |
 | Minus conditional target realness | Separate PR #288 implication; not carrier closure |
-| Minus positive-b closure | Uniform recurrent-carrier inclusion RC- is the current sufficient target in separate PR #290; conditional all-child closure is stronger. Its a>=2 transport domain does not silently cover a=0,1 |
+| Minus positive-b closure | PR #290 now requires uniform CycleSum- (|wx+wc+wy|<=1 on genuine seed-reachable cycles); RC- was refuted by four productive noncarrier cyclic states. Conditional all-child closure is a separate stronger route. Its a>=2 transport domain does not silently cover a=0,1 |
 | Universal #139 / #84 | Open; a class-D contribution is not universal hitting |
 | General PSC / G1 | Open; no quantifier or spectral import is enlarged |
 
@@ -175,16 +177,18 @@ Main advanced to `c0c5f9d10f3025d8fab8df07e4a300b1b173a70a` during this run
 (PR #292, two documentation files). This branch incorporates it; no executed
 kernel dependency changed from the recorded `85fafd3` base.
 
-Issue #139's newer comment and open PR #290 narrow the minus sufficient
-obligation to uniform **recurrent-carrier inclusion RC-**, together with
-#287 algebraic descent and #288 conditional target realness. Full child
-closure is a stronger sufficient route, not a necessary premise of that
-new reduction. The finite SCC calibration in #290 is not a uniform proof.
+Issue #139's subsequent correction and PR #290 refute **RC-**: the
+four genuine noncarrier cyclic states U/Ubar/V/Vbar have productive exits.
+The current sufficient premise is **CycleSum-**, the bound |wx+wc+wy|<=1
+on genuine seed-reachable cycles. The guarded 1,971-state superset and
+exceptional exits in that separate branch reduce minus BH to this open
+premise, using #287 algebraic descent and #288 conditional target realness.
+Finite SCC calibration does not prove CycleSum-.
 Open PR #291 separately implements the row-12 integer squeeze. This
 contribution complements that work with actual chamber execution and does
 not duplicate its squeeze implementation or the minus SCC investigation.
 
-## Final local execution result
+## Historical local execution result (before continuation)
 
 | Component | Certified core `(u0,v0)` | Vertices | Completed boundary lines / required |
 | --- | --- | ---: | ---: |
@@ -201,7 +205,7 @@ those 69 distinct lines completed**; equivalently, 71 of 73 strip obligations
 are discharged locally. Duplicate lines are credited only after their exact
 six-coefficient tuples agree with canonical `wedge_edges` output.
 
-The two unresolved lines are low wedge 1 with `v=13` and `v=14`:
+At that checkpoint the two unresolved lines were low wedge 1 with `v=13` and `v=14`:
 
 ```bash
 cd kernel
@@ -225,8 +229,117 @@ runs are not globally credited; individual completed calls are identified.
 
 **No whole-quadrant receipt was emitted.** No final-head pinned execution or
 family theorem is claimed. The original CI run remained queued on recheck.
-The next execution obligations are precisely the two lines above followed
-by the locked full driver; the existing line-pin and manuscript integrity
+The next execution obligations at that checkpoint were the two lines above
+followed by the locked full driver; the existing line-pin and manuscript integrity
 failures must also remain visible for integration. No new chamber wall,
 conditional geometric exception, or escaped carrier child was found after
 the two sign-reader repairs in the completed work.
+
+## Continuation: finite-prefix execution cost
+
+The traced v=14 boundary call completes its symbolic tail with 164 vertices
+and q0=56 before spending its remaining budget in exact finite-prefix graphs.
+The existing concrete child routine enumerates every pair of image tiles.
+The continuation preserves the existing overlap contract and replaces only
+that enumeration by a monotone interval sweep. This is an implementation
+optimization of the already reviewed contract, not a new universal invariant
+or a new theorem-facing diagnostic; the literature gate cited above applies.
+
+For positive tile lengths, both image partitions have strictly increasing
+endpoints. A bottom tile ending at or before the current top start cannot
+intersect this or any later top tile. A bottom tile starting at or after the
+current top end cannot intersect this top tile, nor can any later bottom tile.
+Keep a monotone first-bottom index, enumerate the surviving interval, and use
+the original exact interior predicate before appending. This preserves top-major
+occurrence order, duplicates, strict endpoint exclusion and exact field arithmetic.
+Work changes from O(m*n) candidate pairs to O(m+n+K), where K is the number
+of intersecting occurrence pairs. A differential regression compares the full
+ordered output against the former nested loops, including equal endpoints and
+non-overlap rejection. No cap or proof obligation is relaxed.
+
+### Two formerly unresolved strips now complete
+
+The continuation obtained the exact lock-matched compiler/runtime packages
+by their lockfile URLs and verified both SHA-256 hashes before use. The
+compiler is Mojo 1.1.0.dev2026090805 (34562fa1). Full `pixi install --locked`
+still failed on a dbus dependency; this is a minimal compiler/runtime replay,
+not a claim that the whole Modular/Pixi environment installed.
+
+| Low-1 strip | Tail threshold | Symbolic vertices | Finite PIP members | Cross-check parameters | Result |
+| --- | ---: | ---: | ---: | --- | --- |
+| v=13 | 53 | 164 | 53 | 53,58 | pass |
+| v=14 | 56 | 164 | 56 | 56,61 | pass |
+
+The runs return zero in 189.6 and 210.4 seconds respectively, using the
+interval-sweep implementation and exact sign-reader repairs. Neither has
+a non-PIP or inadmissible finite-prefix member. Their earlier timeouts were
+execution-cost gaps; no additional chamber, conditional realness exception,
+or carrier extension was needed for these two calls. The 1,096-state
+ordered differential test and all 16 seed-overlap regressions pass under
+the same pinned compiler/runtime. The complete same-source campaign is
+recorded separately below; earlier receipts retain their source identities.
+
+### Continuation validation boundary
+
+The full symbolic-line regression fails with q0=21 versus the historical
+class-D pin18 under the pinned compiler. Executing the previously hidden
+suffix reveals the norm-line threshold6 versus pin4. The unchanged merged
+#289 checkout (`85fafd3`) reproduces both outcomes under this same compiler:
+`BASELINE_CLASS_D_PIN 21 97 20 1` and `BASELINE_NORM_PIN 6 105 6 0`.
+Neither mismatch was introduced by the interval sweep or tracing. Both pins
+remain unchanged, and neither failed full test receives a success receipt.
+The remaining norm-product test passes when invoked separately.
+
+Provenance passes the generated ledger, refreshed proof bank, vendoring,
+claim governance, Markdown integrity and historical evidence checks, but
+continues to reject the unchanged manuscript's unmatched end at line1357.
+The four targeted Python files complete (32 passed, one skipped).
+The dedicated CI workflow now includes the ordered-sweep and existing
+seed-overlap regressions before attempting the complete certificate.
+
+## Complete same-source component result
+
+All twelve component invocations return zero using the same
+`psc-continuation-chambers` binary and Mojo 1.1.0.dev2026090805 (34562fa1):
+
+| Component | Certified core | Vertices | Returned strips certified |
+| --- | --- | ---: | ---: |
+| Low0 | (1,7) | 164 | 8/8 |
+| Low1 | (7,15) | 164 | 22/22 |
+| Low2 | (1,7) | 164 | 8/8 |
+| Low3 | (3,7) | 164 | 10/10 |
+| Low4 | (3,15) | 164 | 18/18 |
+| High | (7,0) | 164 | 7/7 |
+
+All six explicit lines also return zero: j=1..5 have threshold 12 and j=6
+has threshold 13, each with 164 symbolic vertices and every finite-prefix
+member PIP and hitting. These are uniform tail certificates plus their
+complete finite prefixes, not a finite parameter grid.
+
+The 66 low-strip obligations match the previously emitted canonical
+`wedge_edges` plan, including wedge/axis/value provenance; the seven high
+strips match `[1,11+8k,1,10+8k,1,8+7k]`, k=0..6. Altogether this is
+73 obligations and 69 distinct affine lines. Source hashes, binary hashes,
+all logs and exit codes, and the reconciliation are in
+[`evidence/class-d-chamber-continuation-2026-10-19/`](../evidence/class-d-chamber-continuation-2026-10-19/).
+
+The separate serial aggregate was manually interrupted as duplicate work
+(exit 130); it is not a failed mathematical certificate and does not receive
+a successful aggregate receipt. No
+`CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED` marker is synthesized from the
+component logs. The source's original fail-closed aggregate gate remains
+unchanged and the dedicated full-Pixi CI replay is still required for
+integration. The local component computation is complete; full environment/CI
+validation and the inherited pin/manuscript failures remain separate debts.
+
+The exact sweep benchmark on a noncoincident swap seed at the v=14 line's
+n=30 member produces the same ordered list of 390 children. The former
+production loop takes 1.967 seconds and the sweep 0.0150 seconds in that run
+(about 131x); no general timing guarantee is inferred from one specimen.
+The declared candidate-pair complexity changes from O(m*n) to O(m+n+K).
+
+No additional exact mathematical obstruction arose after the two sign-reader
+repairs. The established lattice cover and all existing caps/checks are
+preserved; no carrier extension is introduced. The current minus-side
+CycleSum- obligation, universal boundary hitting, and general PSC remain
+logically separate and open. No governed claim status is promoted.

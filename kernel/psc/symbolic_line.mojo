@@ -946,7 +946,7 @@ def least_integer_at(field: LineField, g0: TPoly, g1: TPoly, strict: Bool) raise
     return hi
 
 
-def symbolic_line_graph(var line: Line) raises -> SymbolicLineGraph:
+def symbolic_line_graph(var line: Line, progress: Bool = False) raises -> SymbolicLineGraph:
     """The swap-seed overlap graph of the line for all `q > threshold`; see the module docstring."""
     var ev = Eventual()
     var cert = certify_wedge_pisot(line, ev) if line.norm_mode() else certify_line(line, ev)
@@ -957,11 +957,15 @@ def symbolic_line_graph(var line: Line) raises -> SymbolicLineGraph:
         out.b_floor = ev.b_floor
         return out^
     var cl = _Closure(line^, cert.ell_sign, ev^)
+    if progress:
+        print("BEGIN_SYMBOLIC_SEEDS")
     cl.seeds()
     var done = 0
     while done < len(cl.queue):
         var i = cl.queue[done]
         done += 1
+        if progress:
+            print("BEGIN_SYMBOLIC_VERTEX", i, "queued=", len(cl.queue), cl.vertices[i].key())
         try:
             cl.expand(i)
         except e:

@@ -18,6 +18,8 @@ on:
       - 'kernel/class_d_plus_positive_b_chambers.mojo'
       - 'kernel/tests/test_class_d_plus_positive_b_chambers.mojo'
       - 'kernel/tests/test_class_d_chamber_sign.mojo'
+      - 'kernel/tests/test_overlap_child_sweep.mojo'
+      - 'kernel/tests/test_overlap_seed_patch.mojo'
       - 'kernel/tests/test_symbolic_line*.mojo'
       - 'docs/p1b-class-d-positive-b-wedge-2026-10-19.md'
       - '.github/workflows/class-d-plus-positive-b-chambers.yml'
@@ -45,6 +47,8 @@ jobs:
           pixi run --locked mojo run -I . tests/test_class_d_plus_positive_b_chambers.mojo 2>&1 | tee plus-partition.log
           pixi run --locked mojo run -I . tests/test_class_d_chamber_sign.mojo 2>&1 | tee plus-sign-regression.log
           pixi run --locked mojo run -I . tests/test_symbolic_line_empty_blocks.mojo 2>&1 | tee plus-empty-blocks.log
+          pixi run --locked mojo run -I . tests/test_overlap_child_sweep.mojo 2>&1 | tee plus-sweep-regression.log
+          pixi run --locked mojo run -I . tests/test_overlap_seed_patch.mojo 2>&1 | tee plus-overlap-regression.log
       - name: Certify all plus chambers and boundary strips
         timeout-minutes: 150
         working-directory: kernel

@@ -78,18 +78,25 @@ occurrence choice changes with `b`.
    target. Class-level closure alone does not establish general #139.
 
 The [October 19 chamber execution audit](p1b-class-d-chamber-execution-2026-10-19.md)
-preserves the exact plus cover and records successful local receipts for all
-six explicit interface lines and all six wedge cores. Of 69 distinct returned
-boundary lines, 67 pass; the two low-1 lines with fixed v=13,14 remain
-unverified after resource/session limits. It also repairs two
-auxiliary sign-reader refusals with exact coefficient arguments. Boundary-strip
-and high-wedge outcomes are pinned in its execution manifest. These runs used
-Mojo 1.1.0 after locked provisioning failed; the dedicated original CI run was
-still queued. No positive-b family status is promoted. On the minus route,
-#287 algebraic descent and #288 conditional target realness still require
-a uniform carrier argument. Concurrent PR #290 narrows its sufficient target
-to recurrent-carrier inclusion RC-; full child closure is stronger. The a>=2
-transport domain remains explicit.
+now records a complete **local component replay**: six wedge cores, all 73
+returned strip obligations (69 distinct lines), and all six explicit lines,
+with one source version and the lock-matched Mojo 1.1.0.dev2026090805
+compiler/runtime. The two formerly unresolved low-1 strips pass with
+thresholds 53/56 and 164 vertices each, including every finite-prefix member
+and both exact graph cross-checks. An exact interval sweep removes the
+concrete occurrence-pair bottleneck, with ordered agreement on 1,096 states.
+The [evidence packet](../evidence/class-d-chamber-continuation-2026-10-19/)
+retains raw logs, source identities, controls and the exact boundary mapping.
+
+Full Pixi provisioning remains blocked; dedicated CI remains queued. The
+serial aggregate was interrupted as duplicate work and has no success marker.
+The inherited symbolic-line threshold pins and manuscript integrity gate
+still fail. Thus no positive-b family status is promoted here. On the minus
+route, PR #290 now requires **CycleSum-** on genuine seed-reachable cycles.
+RC- is false: U/Ubar/V/Vbar are genuine noncarrier cycles with productive
+exits. This remains separate from #287 algebraic descent, #288 conditional
+target realness, plus component execution, and universal #139/#84/PSC.
+The a>=2 minus transport domain remains explicit.
 
 Mechanically sufficient scoped results are project-accepted for progression;
 independent human review remains final validation and is not being claimed.

@@ -173,11 +173,13 @@ struct LineVerdict(Copyable, Movable):
         self.finite_outside = 0
 
 
-def certify(spec: ClassLine) raises -> LineVerdict:
+def certify(spec: ClassLine, progress: Bool = False) raises -> LineVerdict:
     """Every PIP member of the line has every seed-reachable overlap hitting
     offset zero, and `|det M| = 2` (the hypothesis of Corollary E2)."""
     var out = LineVerdict()
-    var g = symbolic_line_graph(spec.line())
+    if progress:
+        print("BEGIN_LINE_SYMBOLIC", spec.describe())
+    var g = symbolic_line_graph(spec.line(), progress)
     if not g.pip:
         raise Error("the line's PIP property was not certified")
     var good = offset_zero_reachable(g)
@@ -190,10 +192,14 @@ def certify(spec: ClassLine) raises -> LineVerdict:
     while not g.threshold.lt(q_int(n)):
         n += 1
     out.q0 = n
+    if progress:
+        print("LINE_SYMBOLIC_CERTIFIED", "q0=", n, "vertices=", g.size())
     var screen = CubicScreen()
     if abs(Mat3(substitution_incidence(spec.member(out.q0))).det()) != 2:
         raise Error("the line's determinant is not +-2, so Corollary E2 does not apply")
     for q in range(out.q0):
+        if progress:
+            print("BEGIN_LINE_PREFIX", q, "of", out.q0)
         if not spec.admissible(q):
             out.finite_outside += 1
             continue
@@ -207,6 +213,8 @@ def certify(spec: ClassLine) raises -> LineVerdict:
         _ = exact_hits(sigma)
         out.finite_members += 1
     for q in [out.q0, out.q0 + 5]:
+        if progress:
+            print("BEGIN_LINE_CROSS_CHECK", q)
         if not same_set(symbolic_vertex_keys(g, q), exact_vertex_keys(spec.member(q))):
             raise Error("cross-check: the symbolic graph differs from the exact graph")
     return out^
@@ -548,7 +556,7 @@ def check_wedge_pinned(v: WedgeVerdict, pin: List[Int]) raises:
 
 
 def report(spec: ClassLine) raises:
-    var v = certify(spec)
+    var v = certify(spec, True)
     print(spec.describe(), "(Theorem E normal form):")
     print("  symbolic graph for every n >=", v.q0, ":", v.symbolic_vertices, "vertices, all with an offset-zero descendant;", v.queries, "certified sign reads")
     print("  n <", v.q0, ":", v.finite_members, "PIP members decided exactly, all hitting;", v.finite_non_pip, "not PIP;", v.finite_outside, "outside the admissible cone")

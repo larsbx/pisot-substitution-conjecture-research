@@ -73,6 +73,19 @@ At the October 16 snapshot the `b=0` certificates were not yet integrated;
 merged PR #277 now certifies both boundary lines. The remaining target is the
 two positive-`b` interiors.
 
+**October 19 execution continuation (draft PR #293):** the plus-side
+component computation now completes all six chamber cores, all 73 returned
+strip obligations (69 distinct lines), and six explicit lines using the
+lock-matched Mojo compiler/runtime at one source version. The two slow
+low-1 lines pass including their complete finite prefixes. This is local
+execution evidence; full Pixi/CI integration and inherited validation failures
+remain outstanding, and no family status is promoted. The separate serial
+aggregate was interrupted as duplicate work and supplies no success marker.
+The minus target is the open CycleSum- premise in PR #290; RC- was refuted
+by productive noncarrier cycles. Universal #139/#84 and general PSC stay open.
+See the [execution note](p1b-class-d-chamber-execution-2026-10-19.md) and
+[evidence index](../evidence/class-d-chamber-continuation-2026-10-19/README.md).
+
 ## Corrections and negative controls
 
 | Finding | Logical role | Consequence |
