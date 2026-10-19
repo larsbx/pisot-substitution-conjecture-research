@@ -40,10 +40,10 @@ scope:
 | Result | Status | Scope | Universal gap |
 | --- | --- | --- | --- |
 | Theorem Ω completed box certificates | **Finite-domain theorem** | PDS for exactly 145,806 ternary PIP substitutions with images length at most 4 or total length at most 8 | No all-PIP completeness theorem |
-| Theorems L/L′/L″ | **Computer-assisted family theorems; project-accepted for progression; independent human validation outstanding** | Boundary hitting on 47 declared one-parameter determinant-two lines | Does not cover all parameter cells or #139 uniformly |
-| Theorem W / Corollary W1 | **Computer-assisted family theorem; project-accepted for progression; independent human validation outstanding** | Declared class-D wedges; all PIP class-D members with `r >= q - 1` | Class D below the boundary and other classes remain |
+| Theorems L/L′/L″ | **Computer-assisted family theorems; human review pending** | Boundary hitting on 47 declared one-parameter determinant-two lines | Does not cover all parameter cells or #139 uniformly |
+| Theorem W / Corollary W1 | **Computer-assisted family theorem; human review pending** | Declared class-D wedges; all PIP class-D members with `r >= q - 1` | Class D below the boundary and other classes remain |
 | Sirvent–Solomyak flow-to-symbolic transfer | **Imported theorem** | PIP substitutions with tiling-flow PDS | Does not prove tiling-flow PDS; irreducibility remains essential |
-| Barge-class symbolic PDS | **Repository-proved from imported theorems; project-accepted for progression; independent human validation outstanding** | Exact power/rotation/mirror class; 1,248 of 4,554 standing-corpus specimens have a detector witness | No membership or PDS statement for arbitrary PIP substitutions |
+| Barge-class symbolic PDS | **Repository-proved from imported theorems; human review pending** | Exact power/rotation/mirror class; 1,248 of 4,554 standing-corpus specimens have a detector witness | No membership or PDS statement for arbitrary PIP substitutions |
 | Brun composites | **Imported family theorem** | Primitive admissible unordered Brun composites with irreducible Pisot characteristic polynomial | Says nothing outside the declared family or about #84 |
 
 The box theorem's sufficiency path uses the imported overlap-coincidence and
@@ -205,7 +205,7 @@ productivity and for pure discrete spectrum, but not for G1.
 
 ### PDS implies G1
 
-**Status: repository-proved; project-accepted for progression** (manuscript Proposition `prop:PDS-implies-G1`;
+**Status: repository-proved; human review pending** (manuscript Proposition `prop:PDS-implies-G1`;
 ledger `PDSImpliesRepoG1`, the Theorem S route; internally/adversarially audited
 2026-10-04; independent human validation remains outstanding — `docs/side-notes-ledger.md` §7).
 
