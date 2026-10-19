@@ -25,6 +25,26 @@ rather than a private copy of it. `kernel/pixi.toml` has one task per driver and
 `docs/mojo-lookup-caches-2026-09-17.md` for the exact-arithmetic results the
 drivers now look up instead of recomputing.
 
+## Primary theorem target
+
+The project is now centered on the manuscript's
+**Two-obstruction completion theorem** (`thm:two-obstruction-completion`).
+For ternary PIP substitutions, the direct proof of PSC has only two universal
+mathematical obligations left:
+
+1. **#138 / A1′:** the residual fixed-letter hub-word pair is eventually
+   coincident (and likewise after reversal);
+2. **#139 / BH:** every cyclic strict-zipper overlap has an
+   occurrence-compatible descendant of offset zero.
+
+Once those two statements are proved at full non-unit generality, #84 closes
+and the already-established density-to-PDS chain gives the general theorem.
+The older G1b-2, SCC-Producer/K2 and realization programmes remain useful
+secondary structure, but they are not prerequisites of this direct route.
+
+This is a strong reduction, not a declaration that the two universal lemmas
+have already been proved. Finite and family certificates remain scoped.
+
 ## Current mathematical state
 
 ### Review policy — non-blocking until closure
