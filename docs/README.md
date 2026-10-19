@@ -104,6 +104,13 @@ premise. The project continues through complete closure construction first and
 reviews the assembled chain afterward. Status wording must remain truthful.
 The machine-readable rule is `../claim_governance.toml [review_policy]`.
 
+**2026-10-19 project convention:** mechanically sufficient results at their
+exact recorded scope are implicitly approved for continued project progression
+and may be load-bearing once their proof/certificate, hypotheses and required
+exact replay/CI receipts are complete. This is *project acceptance*, not a
+claim that independent human review occurred. Finite-domain, conditional,
+family-scoped and universal claims retain their existing quantifiers.
+
 1. `side-notes-ledger.md` — live, append-only record of side findings:
    refuted mechanisms, redirected routes, specimens settled by the literature,
    withdrawn figures, finite observations and tooling pitfalls. Read it
@@ -129,10 +136,9 @@ The machine-readable rule is `../claim_governance.toml [review_policy]`.
 6. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
-7. `completion-ledger-2026-10-16.md` — latest merged weekly completion
-   snapshot, refreshed to `main@b378392`; it separates imported symbolic and
-   Barge-class scope, conditional reductions, exact negative controls, open
-   PR candidates, and the unchanged universal provenance gaps.
+7. `completion-ledger-2026-10-16.md` — weekly snapshot at `main@b378392`, with a
+   dated 2026-10-19 reconciliation for the merged class-D boundary work and
+   the project-acceptance convention; current reconciled head is `main@e062e330`.
 8. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
 9. `conjecture-ledger.md` — live prose dependency ledger.
