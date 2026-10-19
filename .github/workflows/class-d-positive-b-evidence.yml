@@ -66,3 +66,19 @@ jobs:
           set -o pipefail
           python3 oracles/python/class_d_positive_b_support.py > positive-b-support.json
           python3 -m pytest -q tests/test_class_d_positive_b_support.py
+  minus-sealed-cover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Certify sealed minus cover and its finite boundary strips
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run mojo run -I . class_d_minus_positive_b_cover.mojo 2>&1 | tee minus-cover.log
+          grep -F 'COMPLETE_MINUS_POSITIVE_B_COVER' minus-cover.log
