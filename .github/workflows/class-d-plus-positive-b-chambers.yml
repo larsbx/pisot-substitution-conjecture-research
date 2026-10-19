@@ -1,0 +1,35 @@
+name: Class-D plus positive-b chambers
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'kernel/psc/symbolic_line.mojo'
+      - 'kernel/symbolic_line_certificate.mojo'
+      - 'kernel/class_d_plus_positive_b_chambers.mojo'
+      - 'kernel/tests/test_class_d_plus_positive_b_chambers.mojo'
+      - 'docs/p1b-class-d-positive-b-wedge-2026-10-19.md'
+      - '.github/workflows/class-d-plus-positive-b-chambers.yml'
+  workflow_dispatch:
+
+jobs:
+  chambers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Check exact lattice partition
+        working-directory: kernel
+        run: pixi run mojo run -I . tests/test_class_d_plus_positive_b_chambers.mojo
+      - name: Certify all plus chambers and boundary strips
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run mojo run -I . class_d_plus_positive_b_chambers.mojo 2>&1 | tee plus-chambers.log
+          grep -F 'CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED' plus-chambers.log
