@@ -231,3 +231,118 @@ cover).  The complete ClassWedge driver in §4 attacks exactly that obligation.
 Once cover closure is proved, the displayed rank is a terminating BH
 certificate of depth at most four.
 
+## 9. Minus-branch Perron-gap monotonicity
+
+There is a simple analytic reason the positive-`b` support tends to shrink.
+
+Put
+
+```text
+D = a+2 >= 2,
+r = 2D+b,
+q = r+D,
+p = q-1,
+beta = r+d.
+```
+
+Thus `d=beta-r` and, after normalizing `ell_y=1`,
+
+```text
+ell_c = d/2,
+ell_x = d/2 - 1/beta
+```
+
+because `p-q=-1`.
+
+### Lemma
+
+For fixed integer `D>=2`, along the minus residual family:
+
+```text
+d > 2,
+d is strictly decreasing in b,
+and d -> 2 as b -> infinity.
+```
+
+### Proof
+
+The characteristic polynomial is
+
+```text
+chi(X)=X(X-2)(X-r)-2(r+D)(X-1)-2(r+D-1).
+```
+
+First,
+
+```text
+chi(r+2) = -2(Dr+2D-1) < 0,
+```
+
+while `chi(X)->+infinity`; since the PIP root `beta` is the unique real
+root above one, `beta>r+2), hence `d>2`.
+
+For the derivative we need the stronger inequality
+`beta(d-2)>D`.  Set
+
+```text
+x0 = r+2 + D/(r+2).
+```
+
+A direct simplification gives
+
+```text
+chi(x0)
+ = [ D^3 + (r+2)^3 (2-D(r+2)) ] / (r+2)^3.
+```
+
+Here `r>=2D`, `D>=2`, so the numerator is strictly negative. Therefore
+`beta>x0`, hence
+
+```text
+d-2 > D/(r+2) > D/beta,
+```
+
+which is the desired inequality.
+
+Now regard the root equation as `F(r,d)=chi_r(r+d)=0` with `D` fixed.
+Direct differentiation at fixed `d` gives
+
+```text
+partial_r F = 2( beta(d-2)-D ) > 0.
+```
+
+Also
+
+```text
+partial_d F = chi'(beta) > 0,
+```
+
+because the Perron root is simple and larger than the other two roots.
+Implicit differentiation yields
+
+```text
+dd/dr = -(partial_r F)/(partial_d F) < 0.
+```
+
+Since `r=2D+b`, this is also `dd/db<0`.
+
+Finally `d>2` and monotonicity give a limit `L>=2`. In the exact root
+equation the coefficient of `r^2` is `d-2`; if `L>2`, that positive
+quadratic term cannot be cancelled as `r->infinity`. Hence `L=2`.
+QED.
+
+### Consequence for the closure proof
+
+The two non-`y` tile lengths contract monotonically toward the common
+unit-length scale in the dominant `d/2` term while the rank-one occurrence
+compensation law keeps the selected spine offsets fixed. This does **not** by
+itself prove support inclusion, because the `-1/beta` correction in
+`ell_x` and the offset evaluation must still be checked together. It does,
+however, rule out a fixed positive lower contraction margin as the relevant
+mechanism and explains why the exact positive-`b` graphs observed so far
+lose labels rather than gain them.
+
+The uniform support-inclusion theorem still requires exact sign control; the
+ClassWedge certificate and the independent Q(beta) oracle remain the
+authoritative routes.
+
