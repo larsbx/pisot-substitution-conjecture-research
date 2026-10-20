@@ -230,6 +230,34 @@
     ]
   },
   "surfaces": {
+    "MinusClassDBoundaryLine": [
+      {
+        "path": "docs/p1b-minus-boundary-strips-2026-10-20.md",
+        "anchor": "| Minus b=0 boundary |",
+        "window_lines": 0
+      }
+    ],
+    "MinusClassDBoundaryStrips": [
+      {
+        "path": "docs/p1b-minus-boundary-strips-2026-10-20.md",
+        "anchor": "| Minus a=0,1 strips |",
+        "window_lines": 0
+      }
+    ],
+    "MinusClassDResidualBoundaryHitting": [
+      {
+        "path": "docs/p1b-minus-boundary-strips-2026-10-20.md",
+        "anchor": "| Entire minus residual |",
+        "window_lines": 0
+      }
+    ],
+    "MinusClassDBoundaryHitting": [
+      {
+        "path": "docs/p1b-minus-boundary-strips-2026-10-20.md",
+        "anchor": "| Entire minus class D |",
+        "window_lines": 0
+      }
+    ],
     "MinusClassDSeedCarrierClosure": [
       {
         "path": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md",
@@ -2269,6 +2297,147 @@
         [
           "source",
           "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 12; kernel/psc/class_d_minus_cycle_family.mojo exact polynomial replay; one itinerary family only; human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusClassDBoundaryLine": {
+      "id": "sha256:40bdb290f6c5ee8578843124acc8fd4d198d049597025eadee2893876fec6854",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every minus class-D residual member a>=0,b=0",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "merged PR #277; kernel/psc/class_d_boundary_template.mojo; docs/p1b-minus-boundary-strips-2026-10-20.md; complete symbolic tail, finite prefix and support replay with the lock-matched compiler; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusClassDBoundaryStrips": {
+      "id": "sha256:4325808381af5017d1581ba9f53fd6a14a6dd793fdb31c5e0f84b859c551f2a3",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for both entire minus class-D residual strips a=0 or a=1, b>=1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_boundary_strips.mojo; symbolic tails n=b-1>=42 and n>=72, all finite-prefix members hitting, exact graph cross-checks; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusClassDResidualBoundaryHitting": {
+      "id": "sha256:a2b592a4e257b7e188b6ef8a25a300c1de22758d668b6fbec46b318307953cc2",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every minus class-D residual member p=3a+5+b,q=3a+6+b,r=2a+4+b with integers a,b>=0",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:40bdb290f6c5ee8578843124acc8fd4d198d049597025eadee2893876fec6854",
+          "boundary hitting holds for every minus class-D residual member a>=0,b=0",
+          "MinusClassDResidualBoundaryHitting/MinusClassDBoundaryLine",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:4325808381af5017d1581ba9f53fd6a14a6dd793fdb31c5e0f84b859c551f2a3",
+          "boundary hitting holds for both entire minus class-D residual strips a=0 or a=1, b>=1",
+          "MinusClassDResidualBoundaryHitting/MinusClassDBoundaryStrips",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:e1d54fe989aded0808ec1e25860588926077839e1163452c881604832f39e3c5",
+          "boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1; the historical conditional reduction now has its CycleSum premise discharged by uniform seed closure",
+          "MinusClassDResidualBoundaryHitting/MinusClassDPositiveBBoundaryHitting",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_complete.mojo; disjoint b=0, a=0/b>=1, a=1/b>=1 and a>=2/b>=1 assembly; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusClassDBoundaryHitting": {
+      "id": "sha256:31a7424da0986e33160ea0b0e437eafebac6c278b8036198296f5353db19dc0c",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every PIP member of class D with p=q-1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:a2b592a4e257b7e188b6ef8a25a300c1de22758d668b6fbec46b318307953cc2",
+          "boundary hitting holds for every minus class-D residual member p=3a+5+b,q=3a+6+b,r=2a+4+b with integers a,b>=0",
+          "MinusClassDBoundaryHitting/MinusClassDResidualBoundaryHitting",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:6567bad719a6e71ff55bc79003d32705d9d8783671d84eedfb639d306fe742b8",
+          "boundary hitting holds on the six declared two-parameter class-D wedges; in particular for every PIP class-D member with r >= q - 1",
+          "MinusClassDBoundaryHitting/ClassDWedgeBoundaryHitting",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-minus-boundary-strips-2026-10-20.md; exact case split r>=q-1 versus d=q-r>=2 with a=d-2,b=3r-2q>=0; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
         ]
       ],
       "tags": []

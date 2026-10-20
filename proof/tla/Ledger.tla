@@ -56,8 +56,12 @@ ResultSet == {
     "MassBalanceK2Obstruction",
     "MeanAreaLift",
     "MidArea",
+    "MinusClassDBoundaryHitting",
+    "MinusClassDBoundaryLine",
+    "MinusClassDBoundaryStrips",
     "MinusClassDPositiveBBoundaryHitting",
     "MinusClassDPositiveBCycleSum",
+    "MinusClassDResidualBoundaryHitting",
     "MinusClassDSeedCarrierClosure",
     "MinusHighSumFormalCycleRay",
     "MinusSixEdgeFamilyExclusion",
@@ -156,8 +160,12 @@ RequiresDef == [r \in ResultSet |->
       [] r = "MassBalanceK2Obstruction" -> {{}}
       [] r = "MeanAreaLift" -> {{"MidArea", "ParikhIntertwiner"}}
       [] r = "MidArea" -> {{}}
+      [] r = "MinusClassDBoundaryHitting" -> {{"MinusClassDResidualBoundaryHitting", "ClassDWedgeBoundaryHitting"}}
+      [] r = "MinusClassDBoundaryLine" -> {{}}
+      [] r = "MinusClassDBoundaryStrips" -> {{}}
       [] r = "MinusClassDPositiveBBoundaryHitting" -> {{"MinusClassDPositiveBCycleSum", "SwapOverlapFiniteness"}}
       [] r = "MinusClassDPositiveBCycleSum" -> {{"MinusClassDSeedCarrierClosure"}}
+      [] r = "MinusClassDResidualBoundaryHitting" -> {{"MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDPositiveBBoundaryHitting"}}
       [] r = "MinusClassDSeedCarrierClosure" -> {{}}
       [] r = "MinusHighSumFormalCycleRay" -> {{}}
       [] r = "MinusSixEdgeFamilyExclusion" -> {{}}
@@ -245,8 +253,12 @@ ProvedDef == {
     "MassBalanceK2Obstruction",
     "MeanAreaLift",
     "MidArea",
+    "MinusClassDBoundaryHitting",
+    "MinusClassDBoundaryLine",
+    "MinusClassDBoundaryStrips",
     "MinusClassDPositiveBBoundaryHitting",
     "MinusClassDPositiveBCycleSum",
+    "MinusClassDResidualBoundaryHitting",
     "MinusClassDSeedCarrierClosure",
     "MinusHighSumFormalCycleRay",
     "MinusSixEdgeFamilyExclusion",
@@ -401,8 +413,12 @@ LocalWitnessInjectivityNotEstablished == "LocalWitnessInjectivity" \notin establ
 MassBalanceK2ObstructionNotEstablished == "MassBalanceK2Obstruction" \notin established
 MeanAreaLiftNotEstablished == "MeanAreaLift" \notin established
 MidAreaNotEstablished == "MidArea" \notin established
+MinusClassDBoundaryHittingNotEstablished == "MinusClassDBoundaryHitting" \notin established
+MinusClassDBoundaryLineNotEstablished == "MinusClassDBoundaryLine" \notin established
+MinusClassDBoundaryStripsNotEstablished == "MinusClassDBoundaryStrips" \notin established
 MinusClassDPositiveBBoundaryHittingNotEstablished == "MinusClassDPositiveBBoundaryHitting" \notin established
 MinusClassDPositiveBCycleSumNotEstablished == "MinusClassDPositiveBCycleSum" \notin established
+MinusClassDResidualBoundaryHittingNotEstablished == "MinusClassDResidualBoundaryHitting" \notin established
 MinusClassDSeedCarrierClosureNotEstablished == "MinusClassDSeedCarrierClosure" \notin established
 MinusHighSumFormalCycleRayNotEstablished == "MinusHighSumFormalCycleRay" \notin established
 MinusSixEdgeFamilyExclusionNotEstablished == "MinusSixEdgeFamilyExclusion" \notin established

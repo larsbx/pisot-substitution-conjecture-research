@@ -9,6 +9,8 @@ on:
       - 'tests/test_class_d_minus_high_sum_cycles.py'
       - 'oracles/python/class_d_minus_seed_cover.py'
       - 'tests/test_class_d_minus_seed_cover.py'
+      - 'oracles/python/class_d_minus_boundary_strips.py'
+      - 'tests/test_class_d_minus_boundary_strips.py'
       - 'tests/test_class_d_positive_b_recurrent_support.py'
       - 'tests/test_class_d_minus_shared_cycles.py'
       - 'evidence/class-d-target-spine-2026-10-14/**'
@@ -113,6 +115,15 @@ jobs:
           pixi run mojo run -I . class_d_minus_seed_cover.mojo 2>&1 | tee minus-seed-cover.log
           python ../oracles/python/class_d_minus_seed_cover.py --mojo-log minus-seed-cover.log | tee minus-seed-cover.json
           CLASS_D_SEED_COVER_REPORT=minus-seed-cover.json CLASS_D_SEED_COVER_MOJO_LOG=minus-seed-cover.log python -m pytest -q ../tests/test_class_d_minus_seed_cover.py 2>&1 | tee minus-seed-cover-python-tests.log
+      - name: Certify the complete minus residual including both omitted strips
+        if: always()
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_class_d_minus_boundary_strips.mojo 2>&1 | tee minus-complete-tests.log
+          grep -F 'CLASS_D_MINUS_RESIDUAL_BH_CERTIFIED a>=0 b>=0 components=4 universal_139=open' minus-complete-tests.log
+          python ../oracles/python/class_d_minus_boundary_strips.py --mojo-log minus-complete-tests.log | tee minus-strips-calibration.json
+          CLASS_D_MINUS_STRIPS_REPORT=minus-strips-calibration.json CLASS_D_MINUS_COMPLETE_LOG=minus-complete-tests.log python -m pytest -q ../tests/test_class_d_minus_boundary_strips.py 2>&1 | tee minus-strips-python-tests.log
       - name: Verify genuine higher-sum formal cycles and finite seed nonmembership
         if: always()
         working-directory: kernel
@@ -130,4 +141,5 @@ jobs:
             kernel/minus-*.log
             kernel/minus-high-sum.json
             kernel/minus-seed-cover.json
+            kernel/minus-strips-calibration.json
           if-no-files-found: warn

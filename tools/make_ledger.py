@@ -157,6 +157,16 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                  "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 13; kernel/psc/class_d_minus_high_sum_cycles.mojo exact symbolic occurrence and Perron-sign certificate; human review pending", (), ()),
     "MinusSixEdgeFamilyExclusion": (T, "for every integer k>=2 and every a>=2,b>=1 the six-state minus class-D itinerary in section 12 with sums (-k,k-1,-k,k-1,-k,k) cannot be realized with one shared parameter pair; occurrence guard rows 0 and 5 sum identically to -7-u",
                                   "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 12; kernel/psc/class_d_minus_cycle_family.mojo exact polynomial replay; one itinerary family only; human review pending", (), ()),
+    "MinusClassDBoundaryLine": (T, "boundary hitting holds for every minus class-D residual member a>=0,b=0",
+                               "merged PR #277; kernel/psc/class_d_boundary_template.mojo; docs/p1b-minus-boundary-strips-2026-10-20.md; complete symbolic tail, finite prefix and support replay with the lock-matched compiler; human review pending", (), ()),
+    "MinusClassDBoundaryStrips": (T, "boundary hitting holds for both entire minus class-D residual strips a=0 or a=1, b>=1",
+                                 "docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_boundary_strips.mojo; symbolic tails n=b-1>=42 and n>=72, all finite-prefix members hitting, exact graph cross-checks; human review pending", (), ()),
+    "MinusClassDResidualBoundaryHitting": (T, "boundary hitting holds for every minus class-D residual member p=3a+5+b,q=3a+6+b,r=2a+4+b with integers a,b>=0",
+                                         "docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_complete.mojo; disjoint b=0, a=0/b>=1, a=1/b>=1 and a>=2/b>=1 assembly; human review pending",
+                                         ("MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDPositiveBBoundaryHitting"), ()),
+    "MinusClassDBoundaryHitting": (T, "boundary hitting holds for every PIP member of class D with p=q-1",
+                                 "docs/p1b-minus-boundary-strips-2026-10-20.md; exact case split r>=q-1 versus d=q-r>=2 with a=d-2,b=3r-2q>=0; human review pending",
+                                 ("MinusClassDResidualBoundaryHitting", "ClassDWedgeBoundaryHitting"), ()),
     "MinusClassDSeedCarrierClosure": (T, "for every minus class-D member a>=2,b>=1, every real swap-seed overlap and every descendant before terminal coincidence lies in the sealed 145-label carrier; every such label has absolute coordinate sum at most one",
                                     "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; kernel/psc/class_d_minus_seed_cover.mojo exact Perron identities, all-seed and all-child Farkas certificates; local Mojo and independent Fraction replay; pinned CI and human review pending", (), ()),
     "MinusClassDPositiveBCycleSum": (T, "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
@@ -330,6 +340,10 @@ def surface(path: str, anchor: str, window_lines: int = 0) -> dict:
 # Status checks bind live prose. Frozen completion snapshots belong in the
 # archive and must not become a dependency of the current status ledger.
 SURFACES = {  # prose surfaces on which each claim's status is spelled out (labelled by the consumer vocabulary)
+    "MinusClassDBoundaryLine": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Minus b=0 boundary |")],
+    "MinusClassDBoundaryStrips": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Minus a=0,1 strips |")],
+    "MinusClassDResidualBoundaryHitting": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Entire minus residual |")],
+    "MinusClassDBoundaryHitting": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Entire minus class D |")],
     "MinusClassDSeedCarrierClosure": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Uniform minus seed carrier |")],
     "MinusHighSumFormalCycleRay": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Unbounded real-interior formal two-cycle ray |")],
     "MinusSixEdgeFamilyExclusion": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Six-edge unbounded family exclusion |")],
@@ -420,7 +434,7 @@ def records() -> dict[str, Record]:
                          ("reconciled_source_revision", BOX_LC_RECONCILED_BASELINE),
                          ("reconciliation_source", RECONCILIATION),
                          ("human_review_pending", "true"))
-        if name in {"DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting", "MinusClassDPositiveBBoundaryHitting", "MinusClassDSeedCarrierClosure", "MinusClassDPositiveBCycleSum"}:
+        if name in {"DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting", "MinusClassDPositiveBBoundaryHitting", "MinusClassDSeedCarrierClosure", "MinusClassDPositiveBCycleSum", "MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDResidualBoundaryHitting", "MinusClassDBoundaryHitting"}:
             evidence += (("human_review_pending", "true"),
                          ("computer_assisted", "true"))
         if name == "G1":

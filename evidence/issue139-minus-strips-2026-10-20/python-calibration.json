@@ -1,0 +1,48 @@
+{
+  "authority": "independent-Q(beta)-Python",
+  "uniform_proof": false,
+  "samples": [
+    {
+      "a": 0,
+      "b": 1,
+      "states": 142,
+      "max_depth": 3,
+      "non_hitting_indices": []
+    },
+    {
+      "a": 0,
+      "b": 2,
+      "states": 140,
+      "max_depth": 3,
+      "non_hitting_indices": []
+    },
+    {
+      "a": 0,
+      "b": 73,
+      "states": 140,
+      "max_depth": 3,
+      "non_hitting_indices": []
+    },
+    {
+      "a": 1,
+      "b": 1,
+      "states": 139,
+      "max_depth": 3,
+      "non_hitting_indices": []
+    },
+    {
+      "a": 1,
+      "b": 2,
+      "states": 137,
+      "max_depth": 3,
+      "non_hitting_indices": []
+    },
+    {
+      "a": 1,
+      "b": 73,
+      "states": 137,
+      "max_depth": 3,
+      "non_hitting_indices": []
+    }
+  ]
+}

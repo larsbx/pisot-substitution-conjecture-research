@@ -524,6 +524,36 @@
       "source": "source: docs/c4-degree2-midarea-factorization.md"
     },
     {
+      "id": "MinusClassDBoundaryHitting",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every PIP member of class D with p=q-1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-minus-boundary-strips-2026-10-20.md; exact case split r>=q-1 versus d=q-r>=2 with a=d-2,b=3r-2q>=0; human review pending"
+    },
+    {
+      "id": "MinusClassDBoundaryLine",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every minus class-D residual member a>=0,b=0",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: merged PR #277; kernel/psc/class_d_boundary_template.mojo; docs/p1b-minus-boundary-strips-2026-10-20.md; complete symbolic tail, finite prefix and support replay with the lock-matched compiler; human review pending"
+    },
+    {
+      "id": "MinusClassDBoundaryStrips",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for both entire minus class-D residual strips a=0 or a=1, b>=1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_boundary_strips.mojo; symbolic tails n=b-1>=42 and n>=72, all finite-prefix members hitting, exact graph cross-checks; human review pending"
+    },
+    {
       "id": "MinusClassDPositiveBBoundaryHitting",
       "kind": "claim",
       "label": "Repository-proved",
@@ -542,6 +572,16 @@
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
       "source": "source: docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; follows from the uniform seed carrier, not formal-cycle exclusions; pinned CI and human review pending"
+    },
+    {
+      "id": "MinusClassDResidualBoundaryHitting",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every minus class-D residual member p=3a+5+b,q=3a+6+b,r=2a+4+b with integers a,b>=0",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_complete.mojo; disjoint b=0, a=0/b>=1, a=1/b>=1 and a>=2/b>=1 assembly; human review pending"
     },
     {
       "id": "MinusClassDSeedCarrierClosure",
@@ -1880,6 +1920,14 @@
     },
     {
       "type": "implicative",
+      "source": "ClassDWedgeBoundaryHitting",
+      "target": "MinusClassDBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDBoundaryHitting/ClassDWedgeBoundaryHitting"
+    },
+    {
+      "type": "implicative",
       "source": "CoincidenceDensityOne",
       "target": "PDSOverlapRoute",
       "provenance": "conditional",
@@ -2205,11 +2253,43 @@
     },
     {
       "type": "implicative",
+      "source": "MinusClassDBoundaryLine",
+      "target": "MinusClassDResidualBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDResidualBoundaryHitting/MinusClassDBoundaryLine"
+    },
+    {
+      "type": "implicative",
+      "source": "MinusClassDBoundaryStrips",
+      "target": "MinusClassDResidualBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDResidualBoundaryHitting/MinusClassDBoundaryStrips"
+    },
+    {
+      "type": "implicative",
+      "source": "MinusClassDPositiveBBoundaryHitting",
+      "target": "MinusClassDResidualBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDResidualBoundaryHitting/MinusClassDPositiveBBoundaryHitting"
+    },
+    {
+      "type": "implicative",
       "source": "MinusClassDPositiveBCycleSum",
       "target": "MinusClassDPositiveBBoundaryHitting",
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "MinusClassDPositiveBBoundaryHitting/MinusClassDPositiveBCycleSum"
+    },
+    {
+      "type": "implicative",
+      "source": "MinusClassDResidualBoundaryHitting",
+      "target": "MinusClassDBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDBoundaryHitting/MinusClassDResidualBoundaryHitting"
     },
     {
       "type": "implicative",

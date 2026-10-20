@@ -244,3 +244,12 @@ def test_high_sum_formal_cycle_ray_is_not_a_seed_counterexample_or_cyclesum_proo
     assert "MinusHighSumFormalCycleRay" in reachable("Open")
     assert not {"UniversalBoundaryHitting", "OverlapProductivity", "PDS"} & reachable("Open")
     assert "seed reachability is not asserted" in make_ledger.records()["MinusHighSumFormalCycleRay"].statement
+
+
+def test_complete_minus_class_d_does_not_close_universal_boundary_hitting():
+    done=reachable("Open")
+    assert {"MinusClassDBoundaryLine", "MinusClassDBoundaryStrips",
+            "MinusClassDResidualBoundaryHitting", "MinusClassDBoundaryHitting"} <= done
+    assert set(make_ledger.TABLE["MinusClassDResidualBoundaryHitting"][3]) == {
+        "MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDPositiveBBoundaryHitting"}
+    assert not {"UniversalBoundaryHitting", "UniversalAlignedCoincidence", "TwoObstructionCompletion", "PDS", "G1"} & done
