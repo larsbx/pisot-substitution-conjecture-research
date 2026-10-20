@@ -92,8 +92,11 @@ ResultSet == {
     "SwapOverlapFiniteness",
     "Target1",
     "ThetaIntertwining",
+    "TwoObstructionCompletion",
     "UDForPowers",
     "UniqueDecodability",
+    "UniversalAlignedCoincidence",
+    "UniversalBoundaryHitting",
     "V5Thm51",
     "W3LowGrowth",
     "WedgeBound"
@@ -184,8 +187,11 @@ RequiresDef == [r \in ResultSet |->
       [] r = "SwapOverlapFiniteness" -> {{"G1b1BoundedDiscrepancy"}}
       [] r = "Target1" -> {{"SeedCentralizer"}}
       [] r = "ThetaIntertwining" -> {{}}
+      [] r = "TwoObstructionCompletion" -> {{"UniversalAlignedCoincidence", "UniversalBoundaryHitting", "SwapOverlapFiniteness", "AlignedOverlapsAreStrongCoincidence", "DensityToPDSBridge"}}
       [] r = "UDForPowers" -> {{"UniqueDecodability"}}
       [] r = "UniqueDecodability" -> {{"DefectTheorem"}}
+      [] r = "UniversalAlignedCoincidence" -> {{}}
+      [] r = "UniversalBoundaryHitting" -> {{}}
       [] r = "V5Thm51" -> {{}}
       [] r = "W3LowGrowth" -> {{"DefectIntertwiner", "PhiSemisimplicity"}}
       [] r = "WedgeBound" -> {{"AlgebraicEmbedding", "MassBalanceK2Obstruction"}}]
@@ -257,6 +263,7 @@ ProvedDef == {
     "SwapOverlapFiniteness",
     "Target1",
     "ThetaIntertwining",
+    "TwoObstructionCompletion",
     "UDForPowers",
     "UniqueDecodability",
     "W3LowGrowth",
@@ -319,6 +326,11 @@ SpectralGateAssumed == {
     "ConcentrationAuxB",
     "SpanRichProductivity",
     "SpectralSCCProducer"
+}
+TwoObstructionsAssumed == {
+    "UniversalAlignedCoincidence",
+    "UniversalBoundaryHitting",
+    "DensityToPDSBridge"
 }
 
 (* Observables: one per result, asserting that it is not established. A model *)
@@ -407,8 +419,11 @@ StrongCoincidenceFromPDSNotEstablished == "StrongCoincidenceFromPDS" \notin esta
 SwapOverlapFinitenessNotEstablished == "SwapOverlapFiniteness" \notin established
 Target1NotEstablished == "Target1" \notin established
 ThetaIntertwiningNotEstablished == "ThetaIntertwining" \notin established
+TwoObstructionCompletionNotEstablished == "TwoObstructionCompletion" \notin established
 UDForPowersNotEstablished == "UDForPowers" \notin established
 UniqueDecodabilityNotEstablished == "UniqueDecodability" \notin established
+UniversalAlignedCoincidenceNotEstablished == "UniversalAlignedCoincidence" \notin established
+UniversalBoundaryHittingNotEstablished == "UniversalBoundaryHitting" \notin established
 V5Thm51NotEstablished == "V5Thm51" \notin established
 W3LowGrowthNotEstablished == "W3LowGrowth" \notin established
 WedgeBoundNotEstablished == "WedgeBound" \notin established

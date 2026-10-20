@@ -1,0 +1,14 @@
+{
+  "native_receipt_count": 1,
+  "aggregate_exit": 0,
+  "wedges": 6,
+  "strip_obligations": 73,
+  "distinct_boundary_lines": 69,
+  "explicit_lines": 6,
+  "finite_prefix_pip_obligations": 952,
+  "native_max_symbolic_vertices": 164,
+  "observed_max_line_symbolic_vertices": 465,
+  "native_max_field_scope": "wedge cores and explicit interfaces; boundary-line graph sizes are not accumulated by the driver",
+  "matches_previous_complete_component_campaign": true,
+  "mathematical_source": "aggregate.log (native Mojo driver), not this script"
+}

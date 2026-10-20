@@ -194,6 +194,16 @@ conjugacy to a β-substitution, which is not checked here.
 
 (Float spectra at `n = 20, 80`, as a scratch diagnosis of the refusals; the refusal itself is the exact certificate's.) No PIP line of classes C or D that was tried failed to certify.
 
+**Replay correction (2026-10-20).** The table above records the original
+execution. After PR #288's endpoint-clipping repair, the class-D row
+`(n+1,n,n+3)` has sufficient threshold 21 and finite counts 20/1/0,
+with the same 97 symbolic vertices. The norm-mode example below similarly
+moves from threshold 4 to 6, with six finite PIP members and 105 vertices.
+The complete line certificates cover the added finite members; the historical
+thresholds are not silently substituted into the current computation.
+See the [pin reconciliation and exact replay](class-d-chamber-validation-2026-10-20.md).
+No statement here recertifies every historical pin with the later engine.
+
 ## 4b. Theorem W: two-parameter wedges of class D
 
 Class D (`sigma(x) = x y^p c`, `sigma(c) = c y^q x`, `sigma(y) = c y^r c`) has

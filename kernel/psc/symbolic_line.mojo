@@ -567,6 +567,42 @@ def primitive_support(s: List[Int]) -> Bool:
     return True
 
 
+def coefficient_sign_at_positive_root(h: TPoly, ev: Eventual) -> Int:
+    """Sufficient sign test at beta>0 on the ALREADY certified region.
+
+    Every nonzero beta coefficient must have one strict sign after shifting
+    to the current corner. No threshold, cap, or geometric decision changes.
+    Mixed/undecided coefficients fall through to the existing exact readers.
+    """
+    var sign = 0
+    var a0 = ev.first_integer_above()
+    for i in range(len(h)):
+        if qx_is_zero(h[i]):
+            continue
+        var s = _uniform_sign(qx_shift(h[i], a0, ev.b_floor))
+        if s == 0 or (sign != 0 and sign != s):
+            return NORM_UNDECIDED
+        sign = s
+    return sign
+
+
+def coefficient_sign_above_two(line: Line, h: TPoly, ev: Eventual) -> Int:
+    """Same sufficient test in z=beta-2, only after certifying chi(2)<0.
+
+    The standing monic characteristic polynomial and Perron root give
+    beta>2 from chi(2)<0. Horner translation is a polynomial identity.
+    A vanishing or undecided chi(2) never licenses this bound.
+    """
+    var at_two = tp_at_t(line.field.chi, q_int(2))
+    if _uniform_sign(qx_shift(at_two, ev.first_integer_above(), ev.b_floor)) != -1:
+        return NORM_UNDECIDED
+    var shifted = TPoly()
+    var z_plus_two = tp_norm([qx_const(2), qx_const(1)])
+    for k in range(len(h)):
+        shifted = tp_add(tp_mul(shifted,z_plus_two),tp_const(h[len(h)-1-k]))
+    return coefficient_sign_at_positive_root(shifted,ev)
+
+
 def norm_sign(line: Line, h: TPoly, mut ev: Eventual) raises -> Int:
     """Sign of `h(beta)` on a wedge, or `NORM_UNDECIDED`.
 
@@ -692,7 +728,22 @@ struct _Closure:
             return self.memo[k]
         var s = norm_sign(self.line, h, self.ev) if self.wedge else NORM_UNDECIDED
         if s == NORM_UNDECIDED:
-            s = self.line.field.sign_at_beta(h, self.ev)
+            try:
+                s = self.line.field.sign_at_beta(h, self.ev)
+            except e:
+                # Only an undecided quadrant sign is recoverable here.
+                # Arithmetic/invariant errors must remain errors.
+                if String(e).find("no quadrant corner certifies the sign of ") != 0:
+                    raise Error(String("Perron sign reader failed: ", e))
+                # An auxiliary norm/PRS polynomial may change sign even
+                # though every coefficient of the actual query is negative.
+                # Preserve successful historical paths and only rescue a
+                # refusal with this independent sufficient certificate.
+                s = coefficient_sign_at_positive_root(h, self.ev)
+                if s == NORM_UNDECIDED:
+                    s = coefficient_sign_above_two(self.line, h, self.ev)
+                if s == NORM_UNDECIDED:
+                    raise Error(String("undecided Perron query h=", k, ": ", e))
         self.memo[k] = s
         return s
 
@@ -895,7 +946,7 @@ def least_integer_at(field: LineField, g0: TPoly, g1: TPoly, strict: Bool) raise
     return hi
 
 
-def symbolic_line_graph(var line: Line) raises -> SymbolicLineGraph:
+def symbolic_line_graph(var line: Line, progress: Bool = False) raises -> SymbolicLineGraph:
     """The swap-seed overlap graph of the line for all `q > threshold`; see the module docstring."""
     var ev = Eventual()
     var cert = certify_wedge_pisot(line, ev) if line.norm_mode() else certify_line(line, ev)
@@ -906,11 +957,15 @@ def symbolic_line_graph(var line: Line) raises -> SymbolicLineGraph:
         out.b_floor = ev.b_floor
         return out^
     var cl = _Closure(line^, cert.ell_sign, ev^)
+    if progress:
+        print("BEGIN_SYMBOLIC_SEEDS")
     cl.seeds()
     var done = 0
     while done < len(cl.queue):
         var i = cl.queue[done]
         done += 1
+        if progress:
+            print("BEGIN_SYMBOLIC_VERTEX", i, "queued=", len(cl.queue), cl.vertices[i].key())
         try:
             cl.expand(i)
         except e:

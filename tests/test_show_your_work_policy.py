@@ -54,6 +54,6 @@ def test_show_your_work_policy_has_enforcement_scope() -> None:
     assert "oracles/" in prefixes
 
     workflow = (ROOT / ".github/workflows/show-your-work.yml").read_text(encoding="utf-8")
-    assert "git", "diff", "--name-only"" in workflow
+    assert '["git", "diff", "--name-only",' in workflow
     assert "no substantive visible evidence" in workflow
     assert "raise SystemExit(1)" in workflow

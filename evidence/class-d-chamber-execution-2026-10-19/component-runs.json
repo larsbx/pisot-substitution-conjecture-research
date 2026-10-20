@@ -1,0 +1,169 @@
+[
+  {
+    "component": "low-0",
+    "command": [
+      "stdbuf",
+      "-oL",
+      "-eL",
+      "/tmp/psc-plus-chambers-audit",
+      "low",
+      "0"
+    ],
+    "exit_code": 124,
+    "elapsed_seconds": 360.01,
+    "log": "low-0.log"
+  },
+  {
+    "component": "low-1",
+    "command": [
+      "stdbuf",
+      "-oL",
+      "-eL",
+      "/tmp/psc-plus-chambers-audit",
+      "low",
+      "1"
+    ],
+    "exit_code": 1,
+    "elapsed_seconds": 30.12,
+    "log": "low-1.log"
+  },
+  {
+    "component": "low-2",
+    "command": [
+      "stdbuf",
+      "-oL",
+      "-eL",
+      "/tmp/psc-plus-chambers-audit",
+      "low",
+      "2"
+    ],
+    "exit_code": 124,
+    "elapsed_seconds": 360.01,
+    "log": "low-2.log"
+  },
+  {
+    "component": "low-3",
+    "command": [
+      "stdbuf",
+      "-oL",
+      "-eL",
+      "/tmp/psc-plus-chambers-audit",
+      "low",
+      "3"
+    ],
+    "exit_code": 124,
+    "elapsed_seconds": 360.01,
+    "log": "low-3.log"
+  },
+  {
+    "component": "low-4",
+    "command": [
+      "stdbuf",
+      "-oL",
+      "-eL",
+      "/tmp/psc-plus-chambers-audit",
+      "low",
+      "4"
+    ],
+    "exit_code": 124,
+    "elapsed_seconds": 360.01,
+    "log": "low-4.log"
+  },
+  {
+    "component": "high",
+    "command": [
+      "stdbuf",
+      "-oL",
+      "-eL",
+      "/tmp/psc-plus-chambers-audit",
+      "high"
+    ],
+    "exit_code": 1,
+    "elapsed_seconds": 54.02,
+    "log": "high.log"
+  },
+  {
+    "component": "line-1",
+    "command": [
+      "stdbuf",
+      "-oL",
+      "-eL",
+      "/tmp/psc-plus-chambers-audit",
+      "line",
+      "1"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 159.59,
+    "log": "line-1.log"
+  },
+  {
+    "component": "line-2",
+    "command": [
+      "stdbuf",
+      "-oL",
+      "-eL",
+      "/tmp/psc-plus-chambers-audit",
+      "line",
+      "2"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 160.39,
+    "log": "line-2.log"
+  },
+  {
+    "component": "line-3",
+    "command": [
+      "stdbuf",
+      "-oL",
+      "-eL",
+      "/tmp/psc-plus-chambers-audit",
+      "line",
+      "3"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 87.68,
+    "log": "line-3.log"
+  },
+  {
+    "component": "line-4",
+    "command": [
+      "stdbuf",
+      "-oL",
+      "-eL",
+      "/tmp/psc-plus-chambers-audit",
+      "line",
+      "4"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 102.7,
+    "log": "line-4.log"
+  },
+  {
+    "component": "line-5",
+    "command": [
+      "stdbuf",
+      "-oL",
+      "-eL",
+      "/tmp/psc-plus-chambers-audit",
+      "line",
+      "5"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 86.72,
+    "log": "line-5.log"
+  },
+  {
+    "component": "line-6",
+    "command": [
+      "stdbuf",
+      "-oL",
+      "-eL",
+      "/tmp/psc-plus-chambers-audit",
+      "line",
+      "6"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 96.68,
+    "log": "line-6.log"
+  }
+]

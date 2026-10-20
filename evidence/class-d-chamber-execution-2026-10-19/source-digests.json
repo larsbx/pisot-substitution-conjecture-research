@@ -1,0 +1,26 @@
+{
+  "baseline": {
+    "kernel/class_d_plus_positive_b_chambers.mojo": "99da8ead0c777f6d8207ecc98a7d417338388ab70c27665932be06231f80dc2f",
+    "kernel/psc/symbolic_line.mojo": "94e871056a6e733a91a4ea4f8695887356c7f0c6e3923f1c7ba1d3465b06e649"
+  },
+  "coefficient-fallback": {
+    "kernel/class_d_plus_positive_b_chambers.mojo": "050ac0068ef3b3ab96d94dfed2d3c551e685aed0d46841f6a0d143bd0d8bc6f3",
+    "kernel/psc/symbolic_line.mojo": "eb074da742965d0f8cb4c318ea97fcfe6862d7688c5b152ddf4654ab6afca8c4"
+  },
+  "components": {
+    "kernel/class_d_plus_positive_b_chambers.mojo": "050ac0068ef3b3ab96d94dfed2d3c551e685aed0d46841f6a0d143bd0d8bc6f3",
+    "kernel/psc/symbolic_line.mojo": "94e871056a6e733a91a4ea4f8695887356c7f0c6e3923f1c7ba1d3465b06e649"
+  },
+  "query-context": {
+    "kernel/class_d_plus_positive_b_chambers.mojo": "050ac0068ef3b3ab96d94dfed2d3c551e685aed0d46841f6a0d143bd0d8bc6f3",
+    "kernel/psc/symbolic_line.mojo": "5f668ceddddbf9314538605db3b40af967c4b94e0ed9c3fd6a37f448523b9520"
+  },
+  "shifted-fallback": {
+    "kernel/class_d_plus_positive_b_chambers.mojo": "050ac0068ef3b3ab96d94dfed2d3c551e685aed0d46841f6a0d143bd0d8bc6f3",
+    "kernel/psc/symbolic_line.mojo": "eecbcc2ce6000a7c98d1034b1f7707f0e8111f16e9e8b1110905abcbfbd9bdb1"
+  },
+  "guarded-fallback": {
+    "kernel/psc/symbolic_line.mojo": "86661a9f205368912ab828afed9f7e76653b2341e938cecaa33be31b15e07650",
+    "kernel/class_d_plus_positive_b_chambers.mojo": "050ac0068ef3b3ab96d94dfed2d3c551e685aed0d46841f6a0d143bd0d8bc6f3"
+  }
+}

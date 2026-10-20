@@ -1,0 +1,28 @@
+{
+  "component": "high last strip u=6",
+  "coefficients": [
+    1,
+    59,
+    1,
+    58,
+    1,
+    50
+  ],
+  "command": [
+    "stdbuf",
+    "-oL",
+    "-eL",
+    "/tmp/psc-line-chamber-final",
+    "norm",
+    "D",
+    "1",
+    "59",
+    "1",
+    "58",
+    "1",
+    "50"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 27.08,
+  "log": "high-last-strip.log"
+}

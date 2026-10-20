@@ -1,0 +1,17 @@
+BEGIN_WEDGE_CORE class D wedge p = 11 + 8a + 1b q = 10 + 8a + 1b r = 8 + 7a + 1b
+WEDGE_CORE_CERTIFIED u0= 7 v0= 0 vertices= 164
+BEGIN_BOUNDARY_LINE 0 class D line (norm mode) p = 1n + 11 q = 1n + 10 r = 1n + 8
+BOUNDARY_LINE_CERTIFIED 0 q0= 1 finite_pip= 1
+BEGIN_BOUNDARY_LINE 1 class D line (norm mode) p = 1n + 19 q = 1n + 18 r = 1n + 15
+BOUNDARY_LINE_CERTIFIED 1 q0= 1 finite_pip= 1
+BEGIN_BOUNDARY_LINE 2 class D line (norm mode) p = 1n + 27 q = 1n + 26 r = 1n + 22
+BOUNDARY_LINE_CERTIFIED 2 q0= 1 finite_pip= 1
+BEGIN_BOUNDARY_LINE 3 class D line (norm mode) p = 1n + 35 q = 1n + 34 r = 1n + 29
+BOUNDARY_LINE_CERTIFIED 3 q0= 1 finite_pip= 1
+BEGIN_BOUNDARY_LINE 4 class D line (norm mode) p = 1n + 43 q = 1n + 42 r = 1n + 36
+BOUNDARY_LINE_CERTIFIED 4 q0= 1 finite_pip= 1
+BEGIN_BOUNDARY_LINE 5 class D line (norm mode) p = 1n + 51 q = 1n + 50 r = 1n + 43
+BOUNDARY_LINE_CERTIFIED 5 q0= 1 finite_pip= 1
+BEGIN_BOUNDARY_LINE 6 class D line (norm mode) p = 1n + 59 q = 1n + 58 r = 1n + 50
+
+RESOURCE_LIMIT: 1200-second diagnostic timeout; no verdict.

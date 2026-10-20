@@ -1,0 +1,14 @@
+{
+  "component": "low-2",
+  "command": [
+    "stdbuf",
+    "-oL",
+    "-eL",
+    "/tmp/psc-plus-chambers-final",
+    "low",
+    "2"
+  ],
+  "exit_code": 124,
+  "elapsed_seconds": 1200.01,
+  "log": "low-2.log"
+}

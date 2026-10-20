@@ -1,0 +1,40 @@
+{
+  "result": "PASS",
+  "canonical_strip_obligations": 66,
+  "distinct_lines": 62,
+  "source": "wedge_edges(_low_wedge(k),u0,v0)",
+  "core_cutoffs": [
+    [
+      0,
+      1,
+      7
+    ],
+    [
+      1,
+      7,
+      15
+    ],
+    [
+      2,
+      1,
+      7
+    ],
+    [
+      3,
+      3,
+      7
+    ],
+    [
+      4,
+      3,
+      15
+    ]
+  ],
+  "high_core_cutoff": [
+    7,
+    0
+  ],
+  "high_boundary_obligations": 7,
+  "total_boundary_obligations": 73,
+  "distinct_boundary_lines": 69
+}
