@@ -67,6 +67,34 @@ def test_trial_8381_component_is_branch_b_but_gauge_vacuous() raises:
     assert_equal(seen, 1)
 
 
+def test_biinjective_reducible_primitive_has_a_branch_b_scc() raises:
+    # 0->102, 1->210, 2->021 is primitive, with incidence M = all-ones,
+    # characteristic polynomial t^2(t-3). Both endpoint maps are
+    # permutations, yet the exact six-state BPA has a closed, recurrent
+    # Branch-B SCC of size three with no endpoint-diagonal state.
+    # Hence primitive + bi-injective does NOT exclude Branch B:
+    # irreducibility/Pisot is a genuinely load-bearing hypothesis.
+    var sigma = parse_substitution_key("102/210/021")
+    assert_true(injective([1, 2, 0]))
+    assert_true(injective([2, 0, 1]))
+    var graph = build(sigma, 20000)
+    assert_false(graph.capped)
+    assert_equal(graph.size(), 6)
+    var comps = recurrent_noncoincident_sccs(graph)
+    var found = 0
+    for ci in range(len(comps)):
+        if not profile_component(graph, comps[ci]).is_sink():
+            continue
+        var result = audit_closed_component(sigma, graph, comps[ci])
+        assert_equal(result.branch, BRANCH_B)
+        assert_equal(result.states, 3)
+        assert_equal(result.occurrences, 9)
+        assert_false(result.has_endpoint_diagonal)
+        assert_false(result.has_duplicate_profiles)
+        found += 1
+    assert_equal(found, 1)
+
+
 def test_tribonacci_closed_scc_is_not_a_strict_carrier() raises:
     var sigma = parse_substitution_key("01/02/0")
     var graph = build(sigma, 20000)
@@ -106,6 +134,8 @@ def main() raises:
     print("[PASS] trial 8381 refutes per-state Branch-B productivity")
     test_trial_8381_component_is_branch_b_but_gauge_vacuous()
     print("[PASS] trial 8381: Branch B but endpoint-gauge success is vacuous")
+    test_biinjective_reducible_primitive_has_a_branch_b_scc()
+    print("[PASS] primitive bi-injective non-PIP Branch B counterexample")
     test_tribonacci_closed_scc_is_not_a_strict_carrier()
     print("[PASS] exact SCC child signing and closure flags")
     test_bi_injective_endpoint_control_has_no_endpoint_diagonal()
