@@ -101,3 +101,31 @@ an unbounded formal-cycle theorem from finite seed-graph membership checks.
 Neither the earlier six-edge exclusion nor a feasible formal cycle decides
 CycleSum- without its seed qualifier. Non-unit representation hypotheses remain
 unchanged; no published theorem supplies that missing qualifier here.
+
+## Seed-closure decision (2026-10-20 UTC)
+
+Revisited the three primary sources above before this experiment. Akiyama–Lee's
+inflation closure motivates checking every interior occurrence child; selected
+paths into a ranked carrier do not prove forward invariance. The non-unit
+representation and realization hypotheses remain untransferred. Parametric
+guards must refer to one fixed substitution throughout a seed path.
+
+**Proceed narrowly:** inspect complete swap-seed graphs, then test whether the
+sealed carrier augmented by seed/terminal labels is a conditional forward
+upper cover for all a>=2,b>=1. A cover label need not be real at every parameter;
+only real sources and their real children impose closure obligations. First
+try the existing exact normalized root box, preserving any relaxed-geometry
+escape and any actual parameter witness. Do not assume that a finite grid or
+selected ranked exits imply closure. The feasible U_k high-sum cycles are the
+negative control: a seed invariant must exclude them for a reason beyond
+shared occurrence guards and interiority. A failed cover is a research result,
+not grounds for asserting CycleSum- or deleting an edge. Any successful proof
+must cover initial seeds and all child segments without parameter switching.
+
+**Outcome:** the narrowed route succeeds using two correlated Perron bounds.
+The result is a seed-specific forward carrier, not unrestricted formal-cycle
+inclusion or a new general tiling-spectrum theorem. The exact geometry and
+all-child induction are in section 14 of the research note. The original
+shared-guard and high-sum formal controls remain valid; no realization or
+unimodularity hypothesis is waived. The scoped CycleSum claim now follows
+from this separate seed certificate, with pinned CI/human validation pending.

@@ -36,7 +36,7 @@ def compare_mojo(rows, path):
     symbolic_receipt = False
     for line in Path(path).read_text().splitlines():
         fields = line.split()
-        if line == "HIGH_SUM_FORMAL_RAY_CERTIFIED k>=2 a=2k-1 b=1 abs_sum=k interior=true period=2 seed_reachability=unproved":
+        if line == "HIGH_SUM_FORMAL_RAY_CERTIFIED k>=2 a=2k-1 b=1 abs_sum=k interior=true period=2 seed_reachability=not_asserted_by_this_certificate":
             symbolic_receipt = True
         if fields and fields[0] == "HIGH_SUM_SEED_SAMPLE":
             if len(fields)!=10 or (fields[2],fields[4],fields[6],fields[8]) != ("a","b","complete_states","reachable_pair_vertices"):

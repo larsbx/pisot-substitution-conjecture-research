@@ -210,9 +210,11 @@ def test_model_rejects_false_g1_nonestablishment_with_tlc(tmp_path):
 def test_minus_cyclesum_closes_only_the_scoped_conditional_family_result():
     analysis = gl.analyse(gl.load_ledger(ROOT / "proof/tla/ledger.json"))
     by_name = {e.name:e for e in analysis.entries}
-    assert by_name["MinusClassDPositiveBCycleSum"].status == "open"
-    assert by_name["MinusClassDPositiveBBoundaryHitting"].status == "conditional"
-    assert "MinusClassDPositiveBBoundaryHitting" not in reachable("Open")
+    assert make_ledger.TABLE["MinusClassDPositiveBCycleSum"][3] == ("MinusClassDSeedCarrierClosure",)
+    assert by_name["MinusClassDSeedCarrierClosure"].status == "proved"
+    assert by_name["MinusClassDPositiveBCycleSum"].status == "proved"
+    assert by_name["MinusClassDPositiveBBoundaryHitting"].status == "proved"
+    assert "MinusClassDPositiveBBoundaryHitting" in reachable("Open")
     done = gl.established(analysis,("MinusClassDPositiveBCycleSum",))
     assert done == reachable("MinusCycleSumAssumed")
     assert "MinusClassDPositiveBBoundaryHitting" in done
@@ -235,12 +237,10 @@ def test_two_obstruction_assembly_keeps_both_universal_premises_open():
 
 def test_unbounded_six_edge_family_does_not_discharge_cyclesum():
     assert "MinusSixEdgeFamilyExclusion" in reachable("Open")
-    assert not {"MinusClassDPositiveBCycleSum", "MinusClassDPositiveBBoundaryHitting",
-                "UniversalBoundaryHitting", "TwoObstructionCompletion", "PDS"} & reachable("Open")
+    assert not {"UniversalBoundaryHitting", "TwoObstructionCompletion", "PDS"} & reachable("Open")
 
 
 def test_high_sum_formal_cycle_ray_is_not_a_seed_counterexample_or_cyclesum_proof():
     assert "MinusHighSumFormalCycleRay" in reachable("Open")
-    assert not {"MinusClassDPositiveBCycleSum", "MinusClassDPositiveBBoundaryHitting",
-                "UniversalBoundaryHitting", "OverlapProductivity", "PDS"} & reachable("Open")
+    assert not {"UniversalBoundaryHitting", "OverlapProductivity", "PDS"} & reachable("Open")
     assert "seed reachability is not asserted" in make_ledger.records()["MinusHighSumFormalCycleRay"].statement

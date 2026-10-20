@@ -1,0 +1,16 @@
+{
+  "kernel/psc/class_d_minus_seed_cover.mojo": "c7ab35855a868cea77e2e1d0458697551c8c4b01e4ad8639dc6f1298518af658",
+  "kernel/class_d_minus_seed_cover.mojo": "7fc207854d639f76c62fa2200907fd8b12eab00574ed4dcca10532e8aa354a40",
+  "kernel/tests/test_class_d_minus_seed_cover.mojo": "67a2547fe59e70b6238289c78674e9b1a54e0bad1c749ae216bdf30eccbbe59d",
+  "oracles/python/class_d_minus_seed_cover.py": "0c5e0349d1f02e3e4b5beac41b9cdccbb528c0d173cb2c2838c7e445fcb9da4e",
+  "tests/test_class_d_minus_seed_cover.py": "929cb473bbeffb05c92e0582f6db1082af53d95e36990c5bf3752a9d68fd2e91",
+  "kernel/psc/class_d_minus_spine_data.mojo": "51893c57df68b77e92331a02fbd32488ae1242de8b394cc045b6973782aa4304",
+  "kernel/psc/class_d_minus_cycle_superset.mojo": "f8281d659a72aec62e54c859428a554dfa1f6cf954af5ed5d427a31eac447f81",
+  "kernel/psc/class_d_positive_b_geometry.mojo": "59e32272cab32fa1c062b501b0e48161d8e731f1ed921a6c97dc78b857590420",
+  "kernel/psc/farkas_lp.mojo": "c56b09723c0e73ff3d2ad981643271533ac4a4564ffc333bd9576135fe3cf224",
+  "kernel/psc/overlap_seed_patch.mojo": "2fe9316c7f2c385c84ac864acb3f888ec32bfea0dcca3adc4c91024d32dfe3e1",
+  "tools/make_ledger.py": "ab64cf42dcfcaddaf77fe278d4071df940b7aba3dc83e3582e698f5a3c21bf09",
+  "tests/test_ledger_generation.py": "1071cfd560fb55fb3a81129899d52eecb0dfd567de12ae74dff58d3c7140bc5a",
+  ".github/workflows/class-d-minus-recurrent-carrier.yml": "5c763a34e59d103dca6b743f95317a2d181d96e5b824f22f57faa752ffa37760",
+  "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md": "502a53c499ee162506dcf0989a7d0a013f97456016f4e416259329eb8c1e0dcb"
+}

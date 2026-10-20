@@ -58,6 +58,7 @@ ResultSet == {
     "MidArea",
     "MinusClassDPositiveBBoundaryHitting",
     "MinusClassDPositiveBCycleSum",
+    "MinusClassDSeedCarrierClosure",
     "MinusHighSumFormalCycleRay",
     "MinusSixEdgeFamilyExclusion",
     "Mod3Sieve",
@@ -156,7 +157,8 @@ RequiresDef == [r \in ResultSet |->
       [] r = "MeanAreaLift" -> {{"MidArea", "ParikhIntertwiner"}}
       [] r = "MidArea" -> {{}}
       [] r = "MinusClassDPositiveBBoundaryHitting" -> {{"MinusClassDPositiveBCycleSum", "SwapOverlapFiniteness"}}
-      [] r = "MinusClassDPositiveBCycleSum" -> {{}}
+      [] r = "MinusClassDPositiveBCycleSum" -> {{"MinusClassDSeedCarrierClosure"}}
+      [] r = "MinusClassDSeedCarrierClosure" -> {{}}
       [] r = "MinusHighSumFormalCycleRay" -> {{}}
       [] r = "MinusSixEdgeFamilyExclusion" -> {{}}
       [] r = "Mod3Sieve" -> {{"DefectIntertwiner"}}
@@ -244,6 +246,8 @@ ProvedDef == {
     "MeanAreaLift",
     "MidArea",
     "MinusClassDPositiveBBoundaryHitting",
+    "MinusClassDPositiveBCycleSum",
+    "MinusClassDSeedCarrierClosure",
     "MinusHighSumFormalCycleRay",
     "MinusSixEdgeFamilyExclusion",
     "Mod3Sieve",
@@ -399,6 +403,7 @@ MeanAreaLiftNotEstablished == "MeanAreaLift" \notin established
 MidAreaNotEstablished == "MidArea" \notin established
 MinusClassDPositiveBBoundaryHittingNotEstablished == "MinusClassDPositiveBBoundaryHitting" \notin established
 MinusClassDPositiveBCycleSumNotEstablished == "MinusClassDPositiveBCycleSum" \notin established
+MinusClassDSeedCarrierClosureNotEstablished == "MinusClassDSeedCarrierClosure" \notin established
 MinusHighSumFormalCycleRayNotEstablished == "MinusHighSumFormalCycleRay" \notin established
 MinusSixEdgeFamilyExclusionNotEstablished == "MinusSixEdgeFamilyExclusion" \notin established
 Mod3SieveNotEstablished == "Mod3Sieve" \notin established

@@ -67,7 +67,7 @@ def verify_high_sum_ray() raises:
     if ev.first_integer_above() != 2 or ev.b_floor != 0:
         print("HIGH_SUM_RAY_UNDECLARED_CUT",ev.first_integer_above(),ev.b_floor)
         raise Error("high-sum ray certificate narrowed k>=2")
-    print("HIGH_SUM_FORMAL_RAY_CERTIFIED k>=2 a=2k-1 b=1 abs_sum=k interior=true period=2 seed_reachability=unproved")
+    print("HIGH_SUM_FORMAL_RAY_CERTIFIED k>=2 a=2k-1 b=1 abs_sum=k interior=true period=2 seed_reachability=not_asserted_by_this_certificate")
 
 
 

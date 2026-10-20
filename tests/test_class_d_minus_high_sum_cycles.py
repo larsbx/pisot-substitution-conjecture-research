@@ -44,7 +44,7 @@ def test_capped_seed_graph_and_parameter_overflow_refuse():
 
 
 def test_mojo_receipt_agreement_fails_on_missing_or_wrong_sample(tmp_path,reports):
-    receipt = "HIGH_SUM_FORMAL_RAY_CERTIFIED k>=2 a=2k-1 b=1 abs_sum=k interior=true period=2 seed_reachability=unproved\n"
+    receipt = "HIGH_SUM_FORMAL_RAY_CERTIFIED k>=2 a=2k-1 b=1 abs_sum=k interior=true period=2 seed_reachability=not_asserted_by_this_certificate\n"
     text = receipt + "\n".join(f'HIGH_SUM_SEED_SAMPLE {r["k"]} a {r["a"]} b 1 complete_states 139 reachable_pair_vertices 0' for r in reports)
     log = tmp_path/"mojo.log"
     log.write_text(text)

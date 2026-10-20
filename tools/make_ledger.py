@@ -157,10 +157,12 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                  "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 13; kernel/psc/class_d_minus_high_sum_cycles.mojo exact symbolic occurrence and Perron-sign certificate; human review pending", (), ()),
     "MinusSixEdgeFamilyExclusion": (T, "for every integer k>=2 and every a>=2,b>=1 the six-state minus class-D itinerary in section 12 with sums (-k,k-1,-k,k-1,-k,k) cannot be realized with one shared parameter pair; occurrence guard rows 0 and 5 sum identically to -7-u",
                                   "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 12; kernel/psc/class_d_minus_cycle_family.mojo exact polynomial replay; one itinerary family only; human review pending", (), ()),
-    "MinusClassDPositiveBCycleSum": (P, "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
-                                     "open CycleSum- premise; docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md; shared-parameter guards refute only supplied cycles, not all cycles", (), ()),
-    "MinusClassDPositiveBBoundaryHitting": (T, "assuming CycleSum-, boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1",
-                                           "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md sections 5 and 9; exact 1971-state guarded superset, exceptional exits, ranked carrier and finite-graph reduction; human review pending",
+    "MinusClassDSeedCarrierClosure": (T, "for every minus class-D member a>=2,b>=1, every real swap-seed overlap and every descendant before terminal coincidence lies in the sealed 145-label carrier; every such label has absolute coordinate sum at most one",
+                                    "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; kernel/psc/class_d_minus_seed_cover.mojo exact Perron identities, all-seed and all-child Farkas certificates; local Mojo and independent Fraction replay; pinned CI and human review pending", (), ()),
+    "MinusClassDPositiveBCycleSum": (T, "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
+                                     "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; follows from the uniform seed carrier, not formal-cycle exclusions; pinned CI and human review pending", ("MinusClassDSeedCarrierClosure",), ()),
+    "MinusClassDPositiveBBoundaryHitting": (T, "boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1; the historical conditional reduction now has its CycleSum premise discharged by uniform seed closure",
+                                           "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md sections 5, 9 and 14; conditional 1971-state reduction plus proved seed carrier, or direct ranked descent; pinned CI and human review pending",
                                            ("MinusClassDPositiveBCycleSum", "SwapOverlapFiniteness"), ()),
     # --- strongest Level-3 spectral route ----------------------------------------------
     "ConcentrationAuxB": (P, "no strict component with K2 = 0 exists (concentration / aux-B)", "open conjectural gate, not source-pending; manuscript open problem; issue #43",
@@ -328,6 +330,7 @@ def surface(path: str, anchor: str, window_lines: int = 0) -> dict:
 # Status checks bind live prose. Frozen completion snapshots belong in the
 # archive and must not become a dependency of the current status ledger.
 SURFACES = {  # prose surfaces on which each claim's status is spelled out (labelled by the consumer vocabulary)
+    "MinusClassDSeedCarrierClosure": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Uniform minus seed carrier |")],
     "MinusHighSumFormalCycleRay": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Unbounded real-interior formal two-cycle ray |")],
     "MinusSixEdgeFamilyExclusion": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Six-edge unbounded family exclusion |")],
     "TwoObstructionCompletion": [surface(MAP, "| Two-obstruction completion theorem / universal completion criterion |")],
@@ -417,7 +420,7 @@ def records() -> dict[str, Record]:
                          ("reconciled_source_revision", BOX_LC_RECONCILED_BASELINE),
                          ("reconciliation_source", RECONCILIATION),
                          ("human_review_pending", "true"))
-        if name in {"DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting", "MinusClassDPositiveBBoundaryHitting"}:
+        if name in {"DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting", "MinusClassDPositiveBBoundaryHitting", "MinusClassDSeedCarrierClosure", "MinusClassDPositiveBCycleSum"}:
             evidence += (("human_review_pending", "true"),
                          ("computer_assisted", "true"))
         if name == "G1":

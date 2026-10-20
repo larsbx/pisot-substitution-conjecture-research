@@ -8,4 +8,4 @@ def main() raises:
         var report = high_sum_seed_sample(k)
         if report[1] != 0:
             raise Error("seed-reachable high-sum counterexample; replay printed above")
-    print("HIGH_SUM_CONTROLS_OK specimens=3 formal_ray=unbounded CycleSum=open")
+    print("HIGH_SUM_CONTROLS_OK specimens=3 formal_ray=unbounded CycleSum=separate_seed_cover")

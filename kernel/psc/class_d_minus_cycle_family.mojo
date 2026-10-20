@@ -121,4 +121,4 @@ def verify_six_edge_family() raises:
             raise Error("symbolic family unit-multiplier certificate failed")
     # Unit multipliers are nonnegative for every k. The resulting -7-u is
     # strictly negative for u>=0. This excludes all integer k>=2, without cap.
-    print("SIX_EDGE_FAMILY_REFUTED all_integer_k_ge_2=true k_cap=none rows=0,5 sum=-7-u CycleSum=open")
+    print("SIX_EDGE_FAMILY_REFUTED all_integer_k_ge_2=true k_cap=none rows=0,5 sum=-7-u CycleSum=separate_seed_cover")

@@ -21,4 +21,4 @@ def main() raises:
     assert_equal(exc[3],2)
 
     require_claim("MinusClassDPositiveBBoundaryHitting")
-    require_contract("minus class-D positive-b conditional cycle reduction: assuming every genuine cyclic overlap has |1^T w|<=1, the exact guarded 1971-state superset has 145 recurrent vertices classified as 131 sealed-carrier states, two offset-zero states, eight boundary-only impossible states, and four explicitly productive exceptions with verified exits into carrier rank<=2; the cycle-sum premise remains open")
+    require_contract("minus class-D positive-b conditional cycle reduction: assuming every genuine cyclic overlap has |1^T w|<=1, the exact guarded 1971-state superset has 145 recurrent vertices classified as 131 sealed-carrier states, two offset-zero states, eight boundary-only impossible states, and four explicitly productive exceptions with verified exits into carrier rank<=2; the cycle-sum premise is discharged separately by the uniform seed-carrier certificate")

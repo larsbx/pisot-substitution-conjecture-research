@@ -1,8 +1,15 @@
 # Minus positive-b class D: cycle-sum reduction — 2026-10-19
 
-**Status:** conditional reduction for issue #139. The earlier candidate premise
-"every cyclic state lies in the sealed 145-label carrier" is **false** and is
-superseded here. No class-D, #139, #84 or PSC theorem is promoted.
+**Status:** 2026-10-20 UTC. section 14 supplies an exact uniform seed-carrier
+certificate for the minus residual a>=2,b>=1. It discharges CycleSum- on that
+domain and, with the ranked descent, gives scoped boundary hitting. Available
+local Mojo and independent rational replay pass; pinned CI and independent
+human review remain pending. Universal #139/#84 and PSC remain open.
+
+Sections 1–13 preserve the historical conditional reduction and its negative
+controls. Unrestricted cyclic-carrier inclusion remains **false**. The new
+positive statement concerns actual swap-seed descendants only; it does not
+reclassify the formal exceptional cycles as seed reachable.
 
 ## 1. Inputs already on main
 
@@ -118,7 +125,7 @@ The carrier targets are uniformly real on the minus Perron box.
 `kernel/psc/class_d_minus_exceptional_cycles.mojo` verifies all eight
 occurrence edges and the corresponding geometric implications.
 
-## 4. The remaining scalar premise
+## 4. The scalar premise of the original reduction
 
 Write
 
@@ -148,7 +155,7 @@ forces
 |tau| <= 10.
 ```
 
-This motivates the final open lemma.
+This motivated the then-open lemma, discharged at the stated scope in §14.
 
 > **CycleSum-.** Every genuine seed-reachable cyclic overlap in the minus
 > positive-b residual satisfies `|wx+wc+wy|<=1`.
@@ -205,7 +212,7 @@ Hence:
 
 The selected-path depth after entering the ranked carrier is at most four.
 
-## 6. Why the sum lemma is genuinely the last gap on this route
+## 6. The original sum-lemma gap
 
 For a child chosen at top/bottom word indices `i,j`,
 
@@ -250,9 +257,9 @@ The independent exact Q(beta) SCC oracle remains useful as a calibration, but
 its former RC- interpretation is retired. Finite grids do not prove
 CycleSum-.
 
-## 8. Non-claims
+## 8. Historical non-claims (before the section 14 certificate)
 
-- CycleSum- remains open.
+- CycleSum- was open at this stage; §14 now supplies its seed-qualified proof.
 - The old RC- premise is false and must not be cited.
 - The finite 1,971-state superset is conditional on CycleSum-.
 - The plus branch is separate and uses the merged finite chamber decomposition.
@@ -263,8 +270,8 @@ CycleSum-.
 
 | Obligation | Governed status |
 | --- | --- |
-| Minus cycle-sum bound | Open conjectural gate: `MinusClassDPositiveBCycleSum` |
-| Minus positive-b boundary hitting | Conditional theorem: `MinusClassDPositiveBBoundaryHitting`, dependent on CycleSum- and seed-graph finiteness |
+| Minus cycle-sum bound | Repository-proved: `MinusClassDPositiveBCycleSum`, by the uniform seed carrier in §14; pinned CI and human review pending |
+| Minus positive-b boundary hitting | Repository-proved: `MinusClassDPositiveBBoundaryHitting`, only a>=2,b>=1; historical conditional assembly now has CycleSum- discharged; pinned CI and human review pending |
 | Universal boundary hitting, issue #139 | Open; this family implication does not discharge it |
 | General PSC / #84 | Open; no implication from this finite grid is asserted |
 
@@ -306,7 +313,7 @@ zero offset. Its forward-reachable subgraph is finite, has no terminal
 coincidence, and every genuine overlap has a child. It therefore contains a
 directed cycle. CycleSum- puts that cycle in the guarded box; the classification
 and verified exits give a zero-offset descendant, a contradiction. This proves
-the **conditional** family implication, not its open premise.
+the **conditional** family implication; the separate §14 seed certificate now discharges its premise.
 
 ## 10. Shared-parameter incompatibility across complete cycles
 
@@ -414,6 +421,8 @@ returns to row 0.
 
 **Lemma (this itinerary only).** No member of this family is an actual
 occurrence cycle for any one parameter pair a>=2,b>=1.
+
+[PROVED] Exact symbolic identity; independent human review pending.
 
 **Proof.** The x/c child identities hold identically in k on all six edges,
 including closure. Put u=a-2,v=b-1. The lower occurrence-difference guard on
@@ -583,7 +592,7 @@ symbolic PIP certificate, with k>=2 checked without an increased threshold.
 
 | Obligation | Governed status |
 | --- | --- |
-| Unbounded real-interior formal two-cycle ray | Repository-proved: `MinusHighSumFormalCycleRay`; k>=2, a=2k-1,b=1; seed reachability unproved; human review pending |
+| Unbounded real-interior formal two-cycle ray | Repository-proved: `MinusHighSumFormalCycleRay`; k>=2, a=2k-1,b=1; this lemma asserts no seed reachability; §14 excludes it uniformly; human review pending |
 
 The canonical module `kernel/psc/class_d_minus_high_sum_cycles.mojo` checks
 the incidence/prefix identities as exact polynomials in k, the declared
@@ -591,7 +600,7 @@ endpoint types, both strict Perron margins and -1/2<t<0. The executable fails
 if any sign proof raises the k threshold above 2. No finite sampling supplies
 the unbounded quantifier.
 
-### 13.4 Seed qualification and the remaining task
+### 13.4 Seed qualification and the then-remaining task
 
 Canonical Mojo and independent Q(beta) Python replay at k=2,3,8 use complete
 swap-seed graphs with 139 states each; neither member of these three pairs
@@ -621,3 +630,173 @@ open. The 1,971-state classification and its four exceptional candidates
 remain conditional on |s|<=1; they never claimed to classify the higher-sum
 states constructed here. No unconditional minus-BH, universal #139/#84 or
 PSC conclusion follows.
+
+
+## 14. Uniform seed-carrier closure (2026-10-20 UTC)
+
+| Obligation | Governed status |
+| --- | --- |
+| Uniform minus seed carrier | Repository-proved: `MinusClassDSeedCarrierClosure`; a>=2,b>=1, actual swap seeds and complete occurrence closure; pinned CI and human review pending |
+
+### 14.1 Statement and quantifiers
+
+Fix **one** integer pair a>=2,b>=1 for the entire seed path. Let C be the
+sealed 145 typed integral labels in `class_d_minus_spine_data.mojo`. Every
+interior swap-seed overlap is in C. Every interior occurrence child of an
+interior nonterminal member of C is in C. Hence every vertex of the exact
+swap-seed graph is in C, and every such vertex has |wx+wc+wy|<=1.
+
+A terminal state requires **equal letters and zero displacement**. The graph
+stops at coincidences. Distinct-letter zero states are expanded normally.
+Expanding a genuine coincidence further only produces coincidences, which
+also have sum zero. Thus stopping at them does not hide a high-sum cycle.
+The upper cover is conditional on source realness: its labels need not all
+be real simultaneously. This avoids the failed fixed-real-subcover route.
+
+### 14.2 Exact correlated Perron region
+
+Put d=beta-r, X=d-2 and Y=10/beta. The existing certified root box gives
+0<X<1 and 0<Y<1 throughout the declared domain. Normalized tile lengths are
+
+$$
+ (\ell_x,\ell_c,\ell_y)=(1+X/2-Y/10,\ 1+X/2,\ 1).
+$$
+
+The new certificate checks the positive left eigenvector
+(beta*d-2,beta*d,2beta) modulo the exact incidence characteristic polynomial,
+so these lengths are bound to the actual substitution, not an auxiliary
+geometry. The characteristic identity is
+
+$$
+ \beta^3-(r+2)\beta^2-(2a+4)\beta+2=0.
+$$
+
+It gives the two checked polynomial identities
+
+$$
+ \beta X=2a+4-2/\beta,\qquad
+ \beta(1-X)=b+2+X+2/\beta.
+$$
+
+Since beta>10 and a>=2, the first right side is greater than 8-1/5>7.
+Since b>=1 and X>0, the second is greater than 3. Therefore
+
+$$
+ 10X>7Y,\qquad 10-10X>3Y.
+$$
+
+These correlations are essential. Direct norm-sign search on the new margins
+refused on a sign-changing auxiliary polynomial; the preserved refusal is
+not a mathematical counterexample. The polynomial identities plus the already
+certified root box establish the inequalities without a quadrant cut.
+
+For w=(x,c,y), write s=x+c+y and m=x+c. Its displacement is
+s+mX/2-xY/10. Both interior margins, multiplied by 20, are integer-affine
+forms in X,Y. The same X,Y is used for source and child. They are **strictly**
+positive; boundary contact is not accepted as interior.
+
+### 14.3 All seeds and all children, without assuming CycleSum
+
+The three canonically oriented swap pairs a<b each give four candidate overlaps. Their
+types are (a,b), (a,a), (b,b), (b,a), with offsets 0, e_b, -e_a, e_b-e_a.
+Nine are in C. The other three are (x,x,e_c), (y,y,-e_x), (y,y,-e_c).
+Their interior margins cannot be positive in the correlated region. Thus
+all real seeds are included, without assuming any reachability conclusion.
+Reversing both rows mirrors every offset and child occurrence. That reverses
+the sign of s, so the same absolute-sum conclusion holds for reverse-oriented
+swap graphs, even where their mirrored labels differ from C.
+
+For each nonterminal carrier state, partition each image into FIRST, RUN and
+LAST. All nine segment pairs are checked. For each pair, its proper-prefix
+x/c differences delta_x,delta_c fix
+
+$$
+ x'=x+c+\delta_x,\qquad c'=x+c+2y+\delta_c.
+$$
+
+Set m'=x'+c'. Because every normalized tile length is less than 3/2, any
+interior child, with s'=x'+c'+y', necessarily satisfies
+
+$$
+ |s'|<3/2+|m'|/2+|x'|/10.
+$$
+
+Consequently enumerating every integer s' from -B through B, where
+B=2+|m'|+|x'|, covers **all** possible children. This is a derived geometric
+bound, not the desired |s'|<=1 premise. Every candidate has
+w'=(x',c',s'-m') and the segment's child types.
+
+A candidate is accepted only if it is already in C. Otherwise the checker
+must prove one of two impossibilities:
+
+1. Source and child cannot both be interior in the correlated Perron region.
+2. Their required index difference cannot occur for any a>=2,b>=1 in the
+   segment intervals. The exact two occurrence guards use u=a-2,v=b-1>=0.
+
+Each exclusion is universal on an outer region. Combining them does not
+choose new parameters on successive edges: the conclusion holds for each
+fixed original parameter pair, and induction preserves that pair.
+
+For strict geometry f_i(X,Y)>0, choose epsilon>0 below every f_i. The
+nonnegative variables (X/epsilon,Y/epsilon,1/epsilon) then satisfy the closed
+system -1+a_i*z_1+b_i*z_2+c_i*z_3>=0. A checked exact Farkas certificate
+refutes it. This treats zero margins correctly without introducing an
+arbitrary positive numerical tolerance. Failure to find a certificate leaves
+an unresolved obligation and aborts the positive certificate.
+
+The exhaustive counts agree between canonical Mojo Farkas arithmetic and an
+independent Python Fraction vertex method:
+
+| Check | Count |
+| --- | ---: |
+| Carrier labels | 145 |
+| Seed candidates in carrier / excluded as nonreal | 9 / 3 |
+| Equal-letter zero terminal labels | 2 |
+| Nonterminal source / segment pairs | 1,287 |
+| All bounded child candidates | 12,255 |
+| Candidates already in carrier | 1,218 |
+| Excluded by strict geometry | 9,034 |
+| Excluded by occurrence guards | 2,003 |
+| Unresolved obligations | 0 |
+
+### 14.4 Consequences and retained negative controls
+
+Induction from the seeds proves carrier inclusion **for seed descendants**.
+Every carrier label has |s|<=1, so CycleSum- follows, including all cyclic
+vertices. This is stronger than the recurrence-only premise. The selected
+ranked exits of #287/#288 give boundary hitting directly; alternatively the
+historical conditional 1,971-state reduction now has its premise discharged.
+The maximum selected descent depth from these seed labels is four.
+
+U/Ubar/V/Vbar and the unbounded U_k formal cycles remain genuine interior
+formal cycles outside C. The seed-closure proof now excludes them uniformly
+from these swap-seed graphs. It does not invalidate their occurrence cycles
+or exceptional exits, and the diagnostic continues to recognize productive
+exceptions rather than reverting to the retired unrestricted RC- assertion.
+
+The independent coarse-box probe leaves 148 child obligations at 19 distinct
+outside labels and one seed obligation. These are relaxed-geometry witnesses,
+**not** actual counterexamples. The regression preserves a source/child pair
+with a strict coarse-box witness and verifies its exclusion after adding the
+correlations. Removing the real child target (y,y,0) forces canonical refusal.
+The earlier shared-parameter impossible six-edge family and feasible high-sum
+formal ray remain unchanged negative controls.
+
+### 14.5 Replay, validation and scope boundary
+
+Canonical implementation: `kernel/psc/class_d_minus_seed_cover.mojo`;
+driver and regression have the same basename under `kernel/` and
+`kernel/tests/`. Independent calibration:
+`oracles/python/class_d_minus_seed_cover.py`. Evidence and commands:
+`evidence/class-d-minus-seed-cover-2026-10-20/README.md`.
+
+This is an exact finite certificate for an unbounded parameter domain, with
+no sampled-parameter bound in the proof. The five complete graph samples are
+retained only as exploratory provenance. Local available Mojo replay and
+independent rational calibration establish the recorded certificate; they
+are not labelled pinned-nightly CI or independent human review. Those
+validation gates remain pending. The updated TLA+ ledger establishes only the
+scoped seed-carrier, CycleSum- and minus residual BH nodes; universal aligned
+coincidence, universal #139, the two-obstruction completion and PSC remain
+unestablished in the open model. No full non-unit tiling realization or
+universal spectrum theorem is imported from this seed certificate.

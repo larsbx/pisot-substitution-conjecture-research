@@ -526,24 +526,32 @@
     {
       "id": "MinusClassDPositiveBBoundaryHitting",
       "kind": "claim",
-      "label": "Conditional theorem",
-      "provenance": "conditional",
-      "statement": "assuming CycleSum-, boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1; the historical conditional reduction now has its CycleSum premise discharged by uniform seed closure",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
-      "source": "source: docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md sections 5 and 9; exact 1971-state guarded superset, exceptional exits, ranked carrier and finite-graph reduction; human review pending",
-      "leaks": "premises not established: MinusClassDPositiveBCycleSum"
+      "source": "source: docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md sections 5, 9 and 14; conditional 1971-state reduction plus proved seed carrier, or direct ranked descent; pinned CI and human review pending"
     },
     {
       "id": "MinusClassDPositiveBCycleSum",
       "kind": "claim",
-      "label": "Open conjectural gate",
-      "provenance": "open",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
       "statement": "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
-      "record_kind": "pending_dependency",
-      "source": "reason: open CycleSum- premise; docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md; shared-parameter guards refute only supplied cycles, not all cycles",
-      "leaks": "open CycleSum- premise; docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md; shared-parameter guards refute only supplied cycles, not all cycles"
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; follows from the uniform seed carrier, not formal-cycle exclusions; pinned CI and human review pending"
+    },
+    {
+      "id": "MinusClassDSeedCarrierClosure",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for every minus class-D member a>=2,b>=1, every real swap-seed overlap and every descendant before terminal coincidence lies in the sealed 145-label carrier; every such label has absolute coordinate sum at most one",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; kernel/psc/class_d_minus_seed_cover.mojo exact Perron identities, all-seed and all-child Farkas certificates; local Mojo and independent Fraction replay; pinned CI and human review pending"
     },
     {
       "id": "MinusHighSumFormalCycleRay",
@@ -2199,10 +2207,17 @@
       "type": "implicative",
       "source": "MinusClassDPositiveBCycleSum",
       "target": "MinusClassDPositiveBBoundaryHitting",
-      "provenance": "open",
+      "provenance": "theorem-backed",
       "certainty": 1,
-      "use_site": "MinusClassDPositiveBBoundaryHitting/MinusClassDPositiveBCycleSum",
-      "leaks": "premise is open"
+      "use_site": "MinusClassDPositiveBBoundaryHitting/MinusClassDPositiveBCycleSum"
+    },
+    {
+      "type": "implicative",
+      "source": "MinusClassDSeedCarrierClosure",
+      "target": "MinusClassDPositiveBCycleSum",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDPositiveBCycleSum/MinusClassDSeedCarrierClosure"
     },
     {
       "type": "implicative",
@@ -3191,7 +3206,7 @@
       "type": "part-whole",
       "source": "MinusClassDPositiveBCycleSum",
       "target": "MinusCycleSumAssumed",
-      "provenance": "open",
+      "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "assumption_sets"
     },
