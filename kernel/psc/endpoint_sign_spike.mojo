@@ -129,7 +129,8 @@ def audit_closed_component(
 
             # A more drastic obstruction to factoring b(e) through *only*
             # parent/child external endpoints, even before vertex gauge.
-            var pk = profiles[i] * (len(sigma) ** 4) + profiles[dst]
+            var radix = len(sigma) * len(sigma) * len(sigma) * len(sigma)
+            var pk = profiles[i] * radix + profiles[dst]
             if pk in profile_sign and profile_sign[pk] != bit:
                 profile_conflict = True
             else:
