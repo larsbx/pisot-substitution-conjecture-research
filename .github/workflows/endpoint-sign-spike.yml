@@ -1,0 +1,45 @@
+name: Endpoint/sign-factor exploratory spike
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/endpoint_sign_spike.mojo'
+      - 'kernel/prefix_suffix_sign_spike.mojo'
+      - 'kernel/tests/test_endpoint_sign_spike.mojo'
+      - '.github/workflows/endpoint-sign-spike.yml'
+      - 'kernel/pixi.toml'
+  workflow_dispatch:
+
+jobs:
+  exact-spike:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Mojo toolchain with pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Exact Mojo regression and trial 8381 negative control
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -o pipefail
+          pixi run mojo run -I . tests/test_endpoint_sign_spike.mojo 2>&1 | tee endpoint-sign-tests.log
+      - name: Exact 4554-member PIP spike (budget refusal is explicit)
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -o pipefail
+          pixi run mojo run -I . prefix_suffix_sign_spike.mojo --limit 4554 --state-cap 20000 2>&1 | tee endpoint-sign-spike.log
+          grep -F 'ENDPOINT_SIGN_SPIKE_COMPLETE finite_evidence_only=1' endpoint-sign-spike.log
+      - name: Preserve empirical receipts even if a step fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: endpoint-sign-spike-logs
+          path: |
+            kernel/endpoint-sign-tests.log
+            kernel/endpoint-sign-spike.log
+          if-no-files-found: warn
