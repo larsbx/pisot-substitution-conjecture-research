@@ -39,6 +39,8 @@ Its exact base-\(3\) encoding is injective on ordered four-tuples and cannot con
 - **Literal edge-label factoring:** if two actual child occurrences have the same \((E(s),E(t))\) but opposite \(b\)-bits, the sign cannot be a function solely of those endpoint-profile pairs. This obstructs a naive local endpoint-only cocycle; it does not obstruct a richer ancestor-context cocycle.
 - **Branch-B vertex-gauge factoring:** when the entire SCC is Perron-compatible, compute the finite \(F_2\) gauge \(x_C\) from the existing \`finite_graph.signing.compatibility_potential\` routine. Check whether \(x_C(s)=x_C(t)\) whenever \(E(s)=E(t)\). On a strongly connected support the potential at fixed Perron phase is unique up to one global bit, so equality within fibers is gauge-independent. Failure shows **this particular gauge** cannot descend to four external endpoint letters. Success does not establish a natural geometric endpoint holonomy or (BI).
 
+**Nonvacuity guard.** Gauge descent through (E) is automatically true when every state in (C) has a distinct four-letter profile. The driver therefore separately counts Branch-B SCCs with **duplicate** endpoint profiles, how many of *those* admit an endpoint-constant Perron gauge, and the maximum Branch-B SCC size. A gross gauge-success fraction without this denominator is not evidence for endpoint holonomy.
+
 The same census records whether any Branch-B state has matching \(\sigma\)-image **first** or **last** letter. This is the SCC-Diagonal property, separate from BI: shared endpoint images somewhere in \(\sigma\) do **not** ensure a given SCC realizes the colliding pair. The spike can falsify the observed implication but never prove it universally.
 
 ## Finite quantifiers, exact replay, and budget accounting
