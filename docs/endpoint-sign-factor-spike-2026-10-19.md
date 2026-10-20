@@ -65,6 +65,22 @@ A separate, small, integer-only balanced-pair decomposition check of **trial 838
 
 The new canonical **Mojo regression** now explicitly asserts these replay figures. The result is an independent local calibration, not a fresh large-corpus Mojo receipt; the CI job must verify the code and its numeric corpus totals before either is cited as confirmed by the repository. This is a concrete example of the reason to count `B_duplicate_profiles` separately.
 
+## Second spike: permutative endpoints without the Pisot/irreducibility screen
+
+To determine whether endpoint injectivity *alone* could exclude Branch B, an independent bounded word-enumeration oracle explored **all 2,958** substitutions over three letters with nonempty images of length at most three and with **both** endpoint maps bijective. Of these, **2,064** had a primitive incidence matrix. The oracle used a hard limit of 160 states and refused any inflation exceeding length 80; only **306 primitive substitutions** completed under that oracle's exact budget. Those 306 exhibited **48 Branch-B SCCs**, all in substitutions with **reducible** incidence characteristic polynomial. The observed factorization counts among those 48 SCCs were:
+
+| Characteristic polynomial | Branch-B SCCs in completed bounded oracle |
+| --- | ---: |
+| \(t(t-1)(t-3)\) | 24 |
+| \(t^2(t-3)\) | 12 |
+| \((t-2)(t-1)(t+1)\) | 12 |
+
+**These are independent exploratory-oracle counts, NOT canonical Mojo receipts or a complete census of all primitive substitutions.** The remaining **1,758 primitive substitutions** were *inconclusive* under that oracle's resource budget. The canonical Mojo implementation [\`kernel/biinjective_sign_spike.mojo\`](../kernel/biinjective_sign_spike.mojo) now encodes the 2,958-member exact word universe, the upstream exact primitivity screen, a bounded BPA with explicit state/length refusal, the same occurrence-signed Branch A/B/C decision, and exact reducibility of the monic cubic incidence characteristic polynomial by the rational-root theorem. Because budget semantics may differ slightly between the simple oracle and the canonical BPA, **do not assume the final Mojo's 306/48 counts until its own CI log says so**.
+
+**New direct negative control:** \(0\mapsto102,\ 1\mapsto210,\ 2\mapsto021\) has \(\sigma_+=(1,2,0)\) and \(\sigma_-=(2,0,1)\), both permutations. Its incidence matrix is the all-ones matrix, \(\chi_M(t)=t^2(t-3)\), so it is primitive but **not irreducible Pisot**. A complete six-state balanced-pair graph has a closed three-state **Branch-B** component with nine signed child occurrences and *no* endpoint diagonal. The new Mojo regression insists on this exact outcome, proving by a finite explicit counterexample that **primitivity plus two injective ends alone cannot imply absence of Branch B**. Any successful theorem must exploit additional arithmetic/spectral hypotheses or genuine stronger structural constraints.
+
+The observed reducible-only pattern makes incidence **irreducibility** a worthwhile independent predictor to test alongside Pisot contraction. It does not prove that irreducibility alone suffices, and it does not establish a Perron-eigenvector/endpoint cocycle identity.
+
 ## Negative controls
 
 1. **Trial 8381:** \(1\mapsto132,\ 2\mapsto32,\ 3\mapsto21\); \(s=((2,3),(3,2))\). One inflation gives \((3,2,2,1)\mid(2,1,3,2)\) as one noncoincident block. No per-state productivity claim is legitimate, even for Branch B.
