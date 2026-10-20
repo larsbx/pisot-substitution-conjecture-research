@@ -1,19 +1,27 @@
 # Current PSC proof architecture — 2026-09-14
 
-**Canonical architecture summary.** For theorem status and provenance use `docs/claim-status-and-source-map-2026-09-13.md`; for live priorities use `docs/research-roadmap-2026-09-21.md` and for the latest dated snapshot use `docs/completion-ledger-2026-10-09.md`; for full statements use `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
+**Canonical architecture summary.** For theorem status and provenance use `docs/claim-status-and-source-map-2026-09-13.md`; for live priorities use `docs/research-roadmap-2026-09-21.md` and for the latest dated snapshot use `docs/completion-ledger-2026-10-16.md`; for full statements use `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
 
 ## Headline
 
-The shortest current route to pure discrete spectrum is G1-free and has one open premise:
+The manuscript now packages the one open seed-productivity premise into the
+**Two-obstruction completion theorem**.  For ternary PIP substitutions the
+primary route is:
 
 ```text
 PIP
-=> G1b-1 bounded discrepancy                         [PROVED]
 => finite seed-patch overlap graph                   [PROVED]
-=> productive overlaps from one swap seed            [OPEN: Open Problem 5.35]
+=> closed recurrent obstruction normal form          [PROVED]
+=> A1′: residual fixed-letter hub edge is coincident [OPEN: #138]
+ + BH: every cyclic strict zipper hits offset zero   [OPEN: #139]
+=> all seed-reachable overlaps productive            [PROVED assembly]
 => coincidence density one / dense good set          [PROVED]
 => PDS                                                [IMPORTED: Barge–Štimac–Williams]
 ```
+
+This is the primary completion architecture.  The former statement "one open
+premise: seedwise overlap productivity" remains true logically, but #84 is now
+resolved into these two exact universal lemmas for proof development.
 
 The swap seed uses any two distinct tile types; no assumption that `ab` is a legal factor of the substitution language is part of Theorem 5.38.
 
@@ -36,10 +44,17 @@ Current constraints on a bad obstruction `S`:
 5. **Boundary/zipper dichotomy (PR #88).** Either `S` contains an offset-zero state, exposing a non-eventually-coincident letter pair, or no substituted top/bottom child starts ever tie and every child factorization in `S` is a strict monotone prefix-grid zipper.
 6. **Strong finite evidence.** In the exact 4,554-member corpus, all 1,118,850 overlap vertices are productive; largest graph 2,640; largest first-coincidence depth 18; first left-aligned depth at most 17; prefix/suffix strong-coincidence depth at most 15.
 
-The preferred next theorem now splits cleanly:
+The preferred next theorem is no longer a generic "split".  Its two named
+lemmas are fixed:
 
-- **aligned branch:** force the exposed non-eventually-coincident pair into the available strong-coincidence structure;
-- **strict-zipper branch:** retain ordered boundary-source data through inflation and use full rank plus exact prefix geometry to force a boundary hit or an impossible recurrent zipper.
+- **A1′ / #138:** if the first-letter map fixes the two letters of the residual
+  bad hub edge, then that pair is eventually coincident.  This one-sided
+  statement is enough for the completion theorem.
+- **BH / #139:** every cyclic strict-zipper overlap reaches offset zero by a
+  composable ordered occurrence path in the full non-unit setting.
+
+Any side programme is primary only if it proves one of these statements or a
+strictly stronger theorem that eliminates both.
 
 Generic Perron growth alone is insufficient: the residual real-overlap graph can carry the full expansion spectral radius. Do not infer `rho(N_S)<beta` merely by calling the bad component a boundary graph.
 

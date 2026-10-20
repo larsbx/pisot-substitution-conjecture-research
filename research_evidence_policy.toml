@@ -1,0 +1,42 @@
+version = 1
+name = "show-your-work"
+canonical_rule = "Show the inspectable work behind every theorem-facing contribution."
+
+# This policy requires repository-visible evidence, not private chain-of-thought.
+private_reasoning_required = false
+
+required_pr_headings = [
+  "### Assumptions and hypotheses",
+  "### Derivation / reduction",
+  "### Evidence and replay",
+  "### Negative controls",
+  "### Non-claims / remaining gaps",
+]
+
+theorem_facing_prefixes = [
+  "manuscripts/",
+  "docs/",
+  "kernel/psc/",
+  "kernel/tests/",
+  "kernel/",
+  "proof/",
+  "oracles/",
+  "reference/",
+  "tools/make_ledger.py",
+  "claim_governance.toml",
+]
+
+# Pure policy/metadata changes may use the same template, but only theorem-facing
+# changes make the headings a merge gate.
+excluded_prefixes = [
+  "archive/",
+  ".github/",
+]
+
+[requirements]
+assumptions = "State every mathematical and imported hypothesis actually used; distinguish derived facts from standing assumptions."
+derivation = "Expose the inspectable derivation, reduction, or proof skeleton sufficient for another researcher to reconstruct the argument."
+evidence = "Give exact source locations and, for executable evidence, deterministic replay commands, receipts, or fail-closed certificate semantics."
+negative_controls = "Record known counterexamples, rejected stronger variants, budget/cap refusals, and other controls that bound the claim."
+non_claims = "State what the work does not prove, including remaining universal quantifiers, review debt, and scope limitations."
+status_discipline = "Never promote a claim beyond the evidence shown; finite, conditional, family-scoped, imported, and universal claims remain distinct."

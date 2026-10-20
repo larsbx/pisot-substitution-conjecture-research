@@ -46,15 +46,50 @@
 \newcommand{\Status}[1]{\textup{[\textit{#1}]}}
 \newcommand{\shuffle}{\mathbin{\sqcup\mkern-7mu\sqcup}}
 
-\title[Balanced pairs and the Pisot substitution conjecture]{The balanced-pair route to the Pisot substitution conjecture:\\ finite obstructions, two open gates, and the current frontier}
+\title[Two obstructions for the Pisot substitution conjecture]{Two obstruction mechanisms for the ternary Pisot substitution conjecture:\\ aligned coincidence and occurrence-compatible boundary hitting}
 \author{Lars Bendixen}
-\thanks{Draft of 13 September 2026, revised the same day in response to an external referee report. Affiliation and correspondence address to be supplied.}
-\date{13 September 2026; revised 7 October 2026}
+\thanks{Research draft. Affiliation and correspondence address to be supplied.}
+\date{13 September 2026; substantially reorganized 19 October 2026}
 
 \begin{document}
 
 \begin{abstract}
-We give a self-contained account of the balanced-pair approach to the Pisot substitution conjecture for primitive substitutions with irreducible characteristic polynomial and Pisot dilation, without any unimodularity assumption. The approach reduces \PDS{} of the associated tiling flow to two statements about the balanced-pair automaton $\B_\sigma$: finiteness of $\B_\sigma$ (G1) and productivity of every recurrent noncoincident strongly connected component (SCC Producer). We prove the reduction and then analyse both statements. On the finiteness side we show that unique decodability of the image code follows from $\det M_\sigma\neq 0$ alone, we record why it does not imply finiteness, we prove that the discrepancy of every reachable state is bounded by an explicit constant depending only on $\sigma$ (bounded discrepancy, G1b-1), so that finiteness is equivalent to a renewal-finiteness statement (G1b-2) that is open; we prove a uniform finiteness theorem for multi-level cut ancestries under the Pisot hypothesis and identify, by explicit examples, which finite invariants of return words cannot be injective. On the coincidence side we prove a sink-SCC reduction, an exact intertwining $P_\cC N_\cC=M_\sigma P_\cC$ forcing $\rho(N_\cC)=\beta$ and $|\cC|\ge|\A|$ for any finite closed nonproductive component, an unconditional endpoint-synchronization eliminator, a Barge--Diamond eliminator for three letters, a $\Z/2$ orientation cocycle with signed first-defect intertwiners $Q_rS=\Phi_rQ_r$, and spectral sieves on the first nonzero scattered-subword defect. We prove that the seed-patch overlap graph of every swap pair is finite unconditionally, and that productivity of all its vertices is equivalent to coincidence density one and implies productivity of every state of $\B_\sigma$ without any finiteness hypothesis, and also finiteness of $\B_\sigma$ (G1), which places the coincidence problem on a finite graph independently of G1; combined with a theorem of Barge, \v{S}timac and Williams on densely eventually coincident patches this gives a main theorem with no finiteness hypothesis: productivity of the overlaps reachable from one swap seed implies pure discrete spectrum. The endpoint-aligned overlaps are exactly the strong coincidence condition of Arnoux and Ito, so the overlap problem contains it, and under strong coincidence the problem reduces to a hitting problem for prefix Parikh vectors: an overlap is productive if and only if some inflation of its offset is a difference of prefix Parikh vectors of the two inflated tiles. We prove a wedge dichotomy for closed nonproductive components which shows that the ``concentration'' step of the spectral route is equivalent to the statement that no such component has vanishing degree-two defect, and that the remaining step of that route is equivalent to the statement that no such component has nonvanishing degree-two defect; both statements remain open, and together they are the coincidence problem itself. We prove the strong coincidence condition for every pair of letters on the infinite non-unimodular class of catch-up-free ternary PIP substitutions with $|\det M_\sigma|=2$, except possibly on one explicit family, large parts of which we also close by computer-assisted certificates that cover infinite parameter families. Exhaustive exact computations on all $4{,}554$ primitive irreducible Pisot substitutions on three letters with image lengths at most three are reported as finite evidence with their exact hypotheses. The Pisot substitution conjecture remains open; G1 and G1b-2 remain open; no finite computation reported here is a finiteness theorem.
+We isolate the remaining universal mathematics in the ternary Pisot
+substitution conjecture.  Let $\sigma$ be primitive with irreducible
+characteristic polynomial and Pisot dilation; no unimodularity hypothesis is
+made.  We prove unconditionally that the exact seed-patch overlap graph is
+finite, that productivity of the overlaps reachable from one swap seed implies
+pure discrete spectrum, and that every hypothetical failure reduces to a
+finite closed recurrent nonproductive overlap component.  The key synthesis
+is a two-obstruction completion theorem on the unconditionally finite
+seed-patch overlap graph: if (A) every aligned pair of distinct letters is
+eventually coincident and (B) every cyclic seed-reachable overlap has an
+offset-zero descendant, then every seed-reachable overlap is productive and
+the tiling flow has pure discrete spectrum.  In the established ternary endpoint
+normal form, (A) reduces after passing to a square to one residual fixed-letter
+hub-word statement (A1'); (B) is the occurrence-compatible boundary-hitting
+problem for strict zippers.  Thus, at the current project theorem boundary,
+these are the two universal proof obligations left on the direct route.
+
+We develop both sides with exact, replayable finite-state machinery.  On the
+aligned side we prove A1' on the full catch-up-free $|\det M|=2$ class and
+strong coincidence on large infinite subclasses, reducing the remaining
+family to explicit word combinatorics.  On the strict side we formulate the
+full non-unit adelic hitting obligation, prove exact affine and $M$-adic carry
+identities, and give computer-assisted proofs on forty-seven one-parameter
+families, six two-parameter class-D wedges, and both class-D $b=0$ boundary
+lines.  The residual class-D proving ground is exactly the two positive-$b$
+quadrants.  Separately, a finite box automaton gives an exact per-substitution
+formal-productivity certificate and yields pure discrete spectrum on 145,806
+explicitly enumerated ternary PIP substitutions.
+
+Unique decodability is derived from nonsingularity and is not an extra
+hypothesis; bounded discrepancy does not imply finite balanced-pair closure;
+and no step below assumes rational/integer independence independently of
+irreducibility or replaces the non-unit representation by a unimodular one.
+The general conjecture is not declared proved here: its completion is reduced
+to the two stated universal lemmas, and all finite or family-level
+certificates retain their exact scope.
 \end{abstract}
 
 \maketitle
@@ -85,14 +120,91 @@ Every numbered statement below carries one of the following tags.
 \end{itemize}
 We are deliberately conservative about novelty. Several of the structural results below (unique decodability from the defect theorem, the Parikh intertwining, the sink-SCC reduction) are elementary once formulated, and closely related ideas appear in the literature on return words~\cite{Durand}, on overlap coincidence~\cite{Solomyak97,AL}, and on the balanced-pair algorithm~\cite{SS,ABBLS}; we claim only the specific formulations and proofs given here.
 
-\subsection{Explicit status of the two headline questions}\label{sec:headline-status}
-\begin{itemize}[leftmargin=*]
-\item \textbf{The Pisot substitution conjecture is open.} Theorem~\ref{thm:main-conditional} proves \PDS{} under the two hypotheses G1 (finiteness of $\B_\sigma$) and SCC Producer, and Theorem~\ref{thm:main-density} under the single hypothesis that every overlap reachable from one swap seed is productive (Open Problem~\ref{prob:overlap-productivity}), with no finiteness assumption. None of these hypotheses is proved for general $|\A|\ge 3$, and nothing in this paper reduces any of them to a proved statement.
-\item \textbf{G1b-2 (renewal finiteness, Open Problem~\ref{prob:G1b2}) is open.} Bounded discrepancy (Theorem~\ref{thm:G1b1}) is proved, and with it G1b-2 is \emph{equivalent} to G1 (Proposition~\ref{lem:G1-assembly}); it is the exact remaining obligation on the finiteness side. No bounded-norm argument can close it (Section~\ref{sec:retired-level2}); the exact computations of Section~\ref{sec:finite-level2} show why, and prove nothing about it.
-\item \textbf{The route to \PDS{} no longer needs G1 (Theorem~\ref{thm:main-density}).} The seed-patch overlap graph is finite for every PIP $\sigma$ (Theorem~\ref{thm:overlap-finite}); productivity of the overlaps reachable from one seed is equivalent to coincidence density one and to density of the good set (Lemma~\ref{lem:three-forms}), and by a theorem of Barge, \v{S}timac and Williams (Imported Theorem~\ref{thm:bsw}) it implies \PDS{} outright. The single remaining obligation on this route is Open Problem~\ref{prob:overlap-productivity}, which is open and contains the strong coincidence condition as its endpoint-aligned case (Proposition~\ref{prop:aligned-overlaps}); G1 itself remains open and is not settled by this, but its all-vertex form implies G1 (Proposition~\ref{prop:G1-from-overlaps}).
-\item \textbf{The strongest spectral route to SCC Producer contains no proved implication from wedge data to productivity.} We show (Proposition~\ref{prop:wedge-dichotomy}) that its ``concentration'' step is equivalent to excluding closed nonproductive components with $K_2\equiv0$ (Open Problem~\ref{prob:concentration}), and that its final step is equivalent to excluding those with $K_2\not\equiv0$ (Open Problem~\ref{prob:wedge-productivity}). Neither is proved; the higher-degree sieves of Section~\ref{sec:orientation} constrain the first case but do not close it.
-\item \textbf{Strong coincidence holds on an infinite non-unimodular class, with one family partly open.} Every PIP catch-up-free substitution on three letters with $|\det M|=2$ satisfies the strong coincidence condition for every pair of letters, except possibly on the explicit family $\mathcal F$ of Theorem~\ref{thm:K}, inside which Theorem~\ref{thm:K-cells} closes whole cells for words of every length (Section~\ref{sec:catchup-free}). These results are recent, partly computer-assisted, and unreviewed beyond their authors. Strong coincidence is necessary, not sufficient, for \PDS{}; nothing here bears on G1, on the strict-zipper case, or on \PDS{} for this class.
-\end{itemize}
+\subsection{The completion theorem and the two remaining universal lemmas}\label{sec:headline-status}
+
+The direct route no longer has a diffuse list of unrelated conjectural steps.
+Its universal content is concentrated in two statements.
+
+\begin{description}[leftmargin=2.4em,style=nextline]
+\item[Aligned lemma A (issue \#138).]
+Every pair of distinct letters is eventually coincident.  For ternary PIP
+substitutions the endpoint normal form and the squaring reduction of
+Section~\ref{sec:level3} reduce a hypothetical failure to the fixed-letter
+hub-word configuration A1': two letters fixed by the first-letter map form a
+bad edge, and must nevertheless be eventually coincident.  No separate
+suffix theorem is needed for the completion theorem: lemma B first moves any
+cyclic obstruction to offset zero, where the left-aligned statement applies.
+
+\item[Boundary-hitting lemma B (issue \#139).]
+Every vertex of the finite seed-patch overlap graph lying on a directed cycle
+has a descendant of offset zero.
+Equivalently, every realized strict-zipper periodic orbit enters the
+occurrence-compatible reverse zero basin.  In the non-unit case this statement
+must respect the full representation space; a Euclidean-only or
+unimodular-lattice replacement is not permitted.
+\end{description}
+
+\begin{theorem}[Two-obstruction completion theorem; \Status{Conditional} on A and B]\label{thm:two-obstruction-completion}
+Let $\sigma$ be PIP on three letters.  If aligned lemma A and
+boundary-hitting lemma B hold for $\sigma$, then every vertex of the seed-patch overlap graph is
+productive.  Consequently every swap seed is productive and
+$(\Omega_\sigma,\R)$ has \PDS{}.
+\end{theorem}
+
+\begin{proof}
+Assume that a vertex $x$ of $\mathcal O_\sigma$ is nonproductive.  Every
+child of a nonproductive overlap is nonproductive, and a noncoincidence
+overlap has at least one child.  The graph $\mathcal O_\sigma$ is finite by
+Theorem~\ref{thm:overlap-finite}, so an infinite descendant path from $x$
+reaches a directed cycle; let $v$ be a nonproductive overlap on that cycle.  By lemma B, $v$ has
+an offset-zero descendant $y$.  If $y$ is a coincidence then $v$ is
+productive, a contradiction.  Otherwise $y=(i,j,0)$ with $i\ne j$.  By lemma
+A the pair $\{i,j\}$ is eventually coincident, so
+Proposition~\ref{prop:aligned-overlaps}(i) makes $y$ productive, hence $v$
+productive, again a contradiction.  Thus every vertex of $\mathcal O_\sigma$ is productive, and
+Theorem~\ref{thm:main-density} gives \PDS{}.
+\end{proof}
+
+\begin{corollary}[Universal completion criterion; \Status{Conditional}]\label{cor:universal-completion}
+Suppose the following two statements hold for every ternary PIP substitution:
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*]
+\item A1$'$ holds: whenever the first-letter map fixes both letters of the
+residual bad hub edge supplied by the aligned obstruction normal form, that
+pair is eventually coincident;
+\item BH holds: every cyclic vertex of the finite seed-patch overlap graph has
+an occurrence-compatible descendant of offset zero.
+\end{enumerate}
+Then the ternary Pisot substitution conjecture holds.
+\end{corollary}
+\begin{proof}
+If aligned lemma A failed for some ternary PIP substitution, Theorem C of
+\texttt{docs/p1a-template-collapse-2026-10-05.md} passes to a square
+substitution, preserving PIP, the good pair, the bad edge and nonproductivity,
+and reduces the failure to A1$'$.  Hypothesis (i) rules this out.  Thus aligned
+lemma A holds.  Hypothesis (ii) is boundary-hitting lemma B, so
+Theorem~\ref{thm:two-obstruction-completion} gives pure discrete spectrum.
+\end{proof}
+
+This theorem is the organizing result of the paper.  The spectral bridge,
+finite seed-overlap graph, reduction to a finite recurrent obstruction,
+unique-decodability theorem, and the necessity of G1 are not remaining
+universal proof obligations on this direct route.  The work still required
+for general PSC is to prove the one-sided A1' statement uniformly and to prove
+the occurrence-compatible boundary-hitting lemma uniformly, without inserting
+independence, finite injectivity, legality, or unimodularity assumptions.
+The stronger G1b-2 and SCC-Producer programmes remain structurally valuable
+parallel theorems, but they are not prerequisites of
+Theorem~\ref{thm:two-obstruction-completion}.
+
+\paragraph{Current scoped closure.}
+The box-automaton certificate proves PDS on 145,806 explicitly enumerated
+ternary PIP substitutions.  The aligned lemma is proved on the full
+catch-up-free determinant-two class and on further infinite subclasses.
+Boundary hitting is proved on forty-seven one-parameter lines, six
+two-parameter class-D wedges, and both class-D $b=0$ boundary lines; the
+remaining class-D proving ground is exactly $s=\pm1$, $a\ge0$, $b\ge1$.
+These are theorem-level results only at their stated scopes and do not replace
+the universal quantifiers in A or B.
 
 \subsection{Organisation}
 Section~\ref{sec:prelim} fixes hypotheses, proves unique decodability and aperiodicity, and defines the automaton and the bridge. Section~\ref{sec:principal} states the principal results. Sections~\ref{sec:level2} and~\ref{sec:level3} treat finiteness and coincidence respectively. Section~\ref{sec:finite} states the exact finite computations. Section~\ref{sec:obstructions} records counterexamples and retired routes. Section~\ref{sec:open} lists the unresolved statements precisely, and Section~\ref{sec:discussion} discusses what would close them.
@@ -210,16 +322,26 @@ We use only the forward implication stated. The equivalence between \PDS{} of th
 
 \section{Principal statements}\label{sec:principal}
 
-\begin{theorem}[Conditional main theorem; \Status{Conditional}]\label{thm:main-conditional}
+The primary result is Theorem~\ref{thm:two-obstruction-completion}: on the
+direct route, general ternary PSC is reduced to the aligned A1' lemma and the
+occurrence-compatible boundary-hitting lemma.  The results in this section are
+the older structural routes and the theorem inputs from which that reduction
+was assembled.  They remain useful independently, but they are no longer
+presented as the main completion architecture.
+
+\begin{theorem}[Conditional finite-BPA route; \Status{Conditional}]\label{thm:main-conditional}
 Let $\sigma$ be PIP. If $\B_\sigma$ is finite (Hypothesis~\ref{hyp:G1}) and Conjecture~\ref{conj:producer} holds for $\sigma$, then $(\Omega_\sigma,\R)$ has \PDS{}.
 \end{theorem}
 \begin{proof}
 Fix $a\ne b$. The forward orbit of the seed $(ab,ba)$ in the finite graph $\B_\sigma$ reaches only finitely many states, and every infinite forward path enters a recurrent SCC. If that SCC contains a coincidence block, the corresponding state is productive. Otherwise Conjecture~\ref{conj:producer} gives a productive state in it, and strong connectedness makes every state of the SCC productive. Since every state reachable from the seed either is a coincidence block, or leads to a recurrent SCC, or lies in one, every reachable state is productive, i.e.\ the algorithm from $(ab,ba)$ terminates with coincidence. Imported Theorem~\ref{thm:bridge} concludes.
 \end{proof}
 
-Theorem~\ref{thm:main-density} below (Section~\ref{sec:density}) replaces the two hypotheses by one: productivity of the overlaps reachable from a single seed, with no finiteness assumption.
-
-The rest of the paper concerns the two hypotheses. The following statements summarise what is proved about each; proofs are in Sections~\ref{sec:level2} and~\ref{sec:level3}.
+Theorem~\ref{thm:main-density} below (Section~\ref{sec:density}) removes the
+finiteness hypothesis entirely.  Together with the finite overlap graph,
+the endpoint normal form and the boundary-hitting dictionary it yields
+Theorem~\ref{thm:two-obstruction-completion}.  The statements below summarize
+the stronger parallel finiteness/SCC structure; proofs are in
+Sections~\ref{sec:level2} and~\ref{sec:level3}.
 
 \begin{theorem}[Sink reduction; \Status{Conditional} on G1]\label{thm:sink-summary}
 If $\B_\sigma$ is finite and some state is nonproductive, then $\B_\sigma$ contains a finite closed nonproductive recurrent noncoincident SCC.

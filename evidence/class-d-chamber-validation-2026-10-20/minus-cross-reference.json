@@ -1,0 +1,12 @@
+{
+  "inspected_pr": 290,
+  "inspected_head": "3b16b5447aa9b3ecdecfdabb5033a381580f230e",
+  "recorded_compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "source_hashes_verified": 335,
+  "evidence_hashes_verified": 16,
+  "recorded_native_aggregate": "CLASS_D_MINUS_RESIDUAL_BH_CERTIFIED a>=0 b>=0 components=4 universal_139=open",
+  "recorded_aggregate_exit": 0,
+  "independently_executed_in_this_plus_session": false,
+  "plus_binary_imports_minus_proof": false,
+  "scope": "Separate committed local minus residual certificate; complete minus-branch assembly uses the existing r>=q-1 theorem. Full Pixi/CI remains pending; no universal inference."
+}

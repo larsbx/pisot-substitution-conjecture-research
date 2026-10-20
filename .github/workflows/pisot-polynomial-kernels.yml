@@ -16,6 +16,15 @@ jobs:
       - name: Before and after canonical Mojo benchmark
         working-directory: kernel
         run: pixi run mojo run -I . -I tests pisot_polynomial_bench.mojo
+      - name: Rational-root equivalence and paired canonical benchmark
+        working-directory: kernel
+        run: |
+          pixi run mojo run -I . -I tests tests/test_rational_root.mojo
+          pixi run mojo run -I . -I tests rational_root_bench.mojo | tee rational-root-benchmark.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rational-root-benchmark
+          path: kernel/rational-root-benchmark.txt
       - name: Repository verification gates
         run: |
           pip install -e .[dev]

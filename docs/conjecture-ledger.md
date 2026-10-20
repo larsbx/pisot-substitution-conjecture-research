@@ -1,6 +1,6 @@
 # Conjecture ledger
 
-The machine-checked dependency form is `proof/tla/Ledger.tla`. This prose ledger distinguishes repository proofs, imported theorems, finite-domain theorems, open gates, open bridges, empirical evidence, and retired claims. The concise status/source index is `docs/claim-status-and-source-map-2026-09-13.md`; the current architecture is `docs/current-proof-architecture-2026-09-14.md`; the live completion priorities are `docs/research-roadmap-2026-09-21.md`; the latest merged weekly snapshot is `docs/completion-ledger-2026-10-09.md`.
+The machine-checked dependency form is `proof/tla/Ledger.tla`. This prose ledger distinguishes repository proofs, imported theorems, finite-domain theorems, open gates, open bridges, empirical evidence, and retired claims. The concise status/source index is `docs/claim-status-and-source-map-2026-09-13.md`; the current architecture is `docs/current-proof-architecture-2026-09-14.md`; the live completion priorities are `docs/research-roadmap-2026-09-21.md`; the latest merged weekly snapshot is `docs/completion-ledger-2026-10-16.md`.
 
 ## Executive status — one shortest-path gate, several stronger parallel programmes
 
@@ -26,7 +26,33 @@ Three stronger programmes remain open in parallel:
 
 These are not hidden assumptions of the primary overlap route.
 
-## Scoped finite-domain and family closure — 2026-10-09
+## Primary universal completion criterion
+
+**Status: Conditional theorem.** The manuscript's
+`thm:two-obstruction-completion` and `cor:universal-completion` isolate the
+general ternary completion problem to exactly two premises:
+
+1. **A1′ (#138):** the residual fixed-letter bad hub edge is eventually
+   coincident;
+2. **BH (#139):** every cyclic seed-reachable strict zipper has an
+   occurrence-compatible offset-zero descendant.
+
+Theorem C reduces every aligned obstruction to A1′ after passing to a square;
+the two-obstruction theorem then turns A1′ + BH into productivity of the
+finite seed-overlap graph and hence PDS. No G1, G1b-2, SCC-Producer, K2,
+realization, independent tile-length-independence or unimodularity assumption
+is part of this completion criterion.
+
+This is the primary universal theorem architecture. The two premises remain
+open universally; scoped and finite certificates below do not enlarge them.
+
+## Scoped finite-domain and family closure — reconciled 2026-10-19
+
+**Progression policy:** mechanically sufficient repository results at their exact
+recorded scope are load-bearing for continued work under the implicit project-
+approval convention. This does not mean independent human review occurred and
+does not enlarge any finite-domain or family-scoped quantifier.
+
 
 The following results sit below the universal open gate and must retain their
 scope:
@@ -36,11 +62,20 @@ scope:
 | Theorem Ω completed box certificates | **Finite-domain theorem** | PDS for exactly 145,806 ternary PIP substitutions with images length at most 4 or total length at most 8 | No all-PIP completeness theorem |
 | Theorems L/L′/L″ | **Computer-assisted family theorems; human review pending** | Boundary hitting on 47 declared one-parameter determinant-two lines | Does not cover all parameter cells or #139 uniformly |
 | Theorem W / Corollary W1 | **Computer-assisted family theorem; human review pending** | Declared class-D wedges; all PIP class-D members with `r >= q - 1` | Class D below the boundary and other classes remain |
+| Sirvent–Solomyak flow-to-symbolic transfer | **Imported theorem** | PIP substitutions with tiling-flow PDS | Does not prove tiling-flow PDS; irreducibility remains essential |
+| Barge-class symbolic PDS | **Repository-proved from imported theorems; human review pending** | Exact power/rotation/mirror class; 1,248 of 4,554 standing-corpus specimens have a detector witness | No membership or PDS statement for arbitrary PIP substitutions |
+| Brun composites | **Imported family theorem** | Primitive admissible unordered Brun composites with irreducible Pisot characteristic polynomial | Says nothing outside the declared family or about #84 |
 
 The box theorem's sufficiency path uses the imported overlap-coincidence and
 Meyer-property results and no longer depends on Proposition V(2) or Theorem B.
 None of these rows closes seedwise overlap productivity, formal productivity,
 G1, issues #84/#138/#139, or general PSC.
+
+The October 14–16 Nakaishi, projected-walk, radius, and local-family audits are
+negative controls or reductions, not new closure rows. They require exact
+occurrence replay, reject one-path recurrence as a substitute for a
+child-closed bad SCC, and leave the accepted-proof provenance gap for general
+PSC unchanged.
 
 ## A. Stable base
 
@@ -190,9 +225,9 @@ productivity and for pure discrete spectrum, but not for G1.
 
 ### PDS implies G1
 
-**Status: repository-proved** (manuscript Proposition `prop:PDS-implies-G1`;
-ledger `PDSImpliesRepoG1`, the Theorem S route; independently audited
-2026-10-04, **human review pending** — `docs/side-notes-ledger.md` §7).
+**Status: repository-proved; human review pending** (manuscript Proposition `prop:PDS-implies-G1`;
+ledger `PDSImpliesRepoG1`, the Theorem S route; internally/adversarially audited
+2026-10-04; independent human validation remains outstanding — `docs/side-notes-ledger.md` §7).
 
 ```text
 pure discrete spectrum

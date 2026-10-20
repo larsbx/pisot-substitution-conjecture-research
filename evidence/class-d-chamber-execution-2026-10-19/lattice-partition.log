@@ -1,0 +1,5 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+/workspace/scratch/ab9c5633bda5/pisot-substitution-conjecture-research/kernel/tests/test_class_d_plus_positive_b_chambers.mojo:20:38: warning: assignment to 'got' was never used; assign to '_' instead?
+            var got = List[List[Int]]()
+                                     ^
+contract-receipt: plus class-D positive-b chamber partition: c<=5a is covered by five unimodular wedges, c=5a+j for j=1..6 by six exact lines, and c>=5a+7 by one unimodular high wedge; sampled lattice reconstruction agrees exactly with the residual substitution formulas

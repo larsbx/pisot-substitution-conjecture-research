@@ -1,0 +1,51 @@
+{
+  "scope": "s=-1, b=0, a=2 versus a=3",
+  "authority": "independent-python-oracle",
+  "canonical_execution": "NOT_RUN_LOCALLY",
+  "state_cap_per_graph": 20000,
+  "vertices": [
+    145,
+    145
+  ],
+  "vertex_labels_equal": true,
+  "support_equal": false,
+  "witnesses": [
+    {
+      "parent": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "child": [
+        2,
+        2,
+        0,
+        2,
+        -3
+      ],
+      "present_at_a2": false,
+      "present_at_a3": true
+    },
+    {
+      "parent": [
+        1,
+        0,
+        -1,
+        1,
+        1
+      ],
+      "child": [
+        2,
+        2,
+        1,
+        1,
+        -3
+      ],
+      "present_at_a2": false,
+      "present_at_a3": true
+    }
+  ],
+  "family_exhaustion": false
+}

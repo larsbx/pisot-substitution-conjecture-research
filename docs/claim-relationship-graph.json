@@ -78,6 +78,27 @@
       "leaks": "premises not established: OverlapProductivity"
     },
     {
+      "id": "BargeClassFlowPDS",
+      "kind": "claim",
+      "label": "Imported theorem",
+      "provenance": "imported-theorem",
+      "statement": "a primitive non-periodic substitution with Pisot inflation that is injective on initial letters and eventually constant on final letters has a tiling flow with pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "imported_theorem",
+      "source": "source: Barge, DCDS-A 36 (2016), Theorem 3.13 and Remark 3.14; no irreducibility or unimodularity; docs/sadic-transfer-literature-gate-2026-10-11.md, section 2"
+    },
+    {
+      "id": "BargeClassSymbolicPDS",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "a PIP substitution with a power, or a maximal common-prefix/suffix rotation of a power, in Barge's class or its mirror has a substitutive Z-action with pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/sadic-transfer-literature-gate-2026-10-11.md, section 3: powers and rotations generate the same subshift and stay PIP, reversal conjugates the shift to its inverse; membership decided by psc/barge_class.mojo",
+      "leaks": "premises not established: BargeClassFlowPDS, SirventSolomyakTransfer"
+    },
+    {
       "id": "BoundaryCoincidenceCriterion",
       "kind": "claim",
       "label": "Repository-proved",
@@ -109,6 +130,17 @@
       "leaks": "premises not established: OverlapCoincidenceCriterion, PisotMeyerProperty"
     },
     {
+      "id": "BoxAutomatonSymbolicPDSCertificate",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for each fixed PIP substitution, if every vertex of its complete box automaton reaches a coincidence, its substitutive Z-action has pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/sadic-transfer-literature-gate-2026-10-11.md, section 3: PIP is Sirvent-Solomyak's Pisot type and the box certificate's Perron-length suspension is their R-action",
+      "leaks": "premises not established: SirventSolomyakTransfer"
+    },
+    {
       "id": "BoxCycleContainment",
       "kind": "claim",
       "label": "Repository-proved",
@@ -117,6 +149,16 @@
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
       "source": "source: docs/pds-certificate-from-the-box-automaton-2026-10-07.md, Lemma Omega1 (Proposition V step 1; docs/formal-overlap-carriers-2026-10-04.md, section 2 item 5); step 1 audited in docs/audit-adversarial-prop-v-theorem-e-2026-10-07.md; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+    },
+    {
+      "id": "BrunCompositeSymbolicPDS",
+      "kind": "claim",
+      "label": "Imported theorem",
+      "provenance": "imported-theorem",
+      "statement": "in every dimension, every primitive composite of an admissible unordered Brun word whose characteristic polynomial is irreducible and Pisot has a substitutive Z-action with pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "imported_theorem",
+      "source": "source: larsbx/s-adic-pisot-conjecture-research@c379703, docs/sadic-g6-brun-higher-census.md, Theorem B, Lemma Rev and Corollary B'' (Barge 2016 Theorem 3.13 with the Sirvent-Solomyak transfer); cross-programme family theorem, docs/sadic-transfer-literature-gate-2026-10-11.md, sections 2-3"
     },
     {
       "id": "C2",
@@ -752,6 +794,16 @@
       "leaks": "premises not established: G1"
     },
     {
+      "id": "SirventSolomyakTransfer",
+      "kind": "claim",
+      "label": "Imported theorem",
+      "provenance": "imported-theorem",
+      "statement": "for a substitution of Pisot type (primitive, Pisot Perron-Frobenius eigenvalue, irreducible characteristic polynomial), pure discrete spectrum of the self-similar tiling R-action with Perron left-eigenvector tile lengths implies pure discrete spectrum of the substitutive Z-action",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "imported_theorem",
+      "source": "source: Sirvent-Solomyak, Canad. Math. Bull. 45 (2002), p. 699 definition, Section 4 and Corollary 5.2; no unimodularity; docs/sadic-transfer-literature-gate-2026-10-11.md, sections 2-3"
+    },
+    {
       "id": "SpanRichProductivity",
       "kind": "claim",
       "label": "Open conjectural gate",
@@ -844,6 +896,17 @@
       "source": "source: archive/2026-09-08/certificates_patched/PROOF_CERTIFICATE.md, section 5 certified intertwining identity; kernel/verify.mojo check C7; not formalized in Lean"
     },
     {
+      "id": "TwoObstructionCompletion",
+      "kind": "claim",
+      "label": "Conditional theorem",
+      "provenance": "conditional",
+      "statement": "assuming universal aligned lemma A and universal boundary-hitting lemma B, every seed-patch overlap is productive and every ternary PIP tiling flow has pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, thm:two-obstruction-completion and cor:universal-completion; existing conditional assembly, not a proof of A or B; human review pending",
+      "leaks": "premises not established: DensityToPDSBridge, UniversalAlignedCoincidence, UniversalBoundaryHitting"
+    },
+    {
       "id": "UDForPowers",
       "kind": "claim",
       "label": "Repository-proved",
@@ -862,6 +925,28 @@
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "repository_theorem",
       "source": "source: manuscripts/PSC_balanced_pair_state_2026-09-13.tex, Theorem 2.8"
+    },
+    {
+      "id": "UniversalAlignedCoincidence",
+      "kind": "claim",
+      "label": "Open conjectural gate",
+      "provenance": "open",
+      "statement": "for every ternary PIP substitution every pair of distinct letters is eventually prefix coincident (aligned lemma A; reduced to residual fixed-letter A1-prime by squaring)",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "pending_dependency",
+      "source": "reason: open issue #138; manuscripts/PSC_balanced_pair_state_2026-09-13.tex, section headline-status; docs/p1a-template-collapse-2026-10-05.md, Theorem C",
+      "leaks": "open issue #138; manuscripts/PSC_balanced_pair_state_2026-09-13.tex, section headline-status; docs/p1a-template-collapse-2026-10-05.md, Theorem C"
+    },
+    {
+      "id": "UniversalBoundaryHitting",
+      "kind": "claim",
+      "label": "Open conjectural gate",
+      "provenance": "open",
+      "statement": "for every ternary PIP substitution every cyclic vertex of every seed-patch overlap graph has an occurrence-compatible offset-zero descendant",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "pending_dependency",
+      "source": "reason: open issue #139; manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary-hitting lemma B; full non-unit representation hypotheses retained",
+      "leaks": "open issue #139; manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary-hitting lemma B; full non-unit representation hypotheses retained"
     },
     {
       "id": "V5Thm51",
@@ -922,6 +1007,24 @@
       ]
     },
     {
+      "id": "Barge class theorem",
+      "kind": "alias",
+      "label": "Barge class theorem",
+      "provenance": "declared",
+      "members": [
+        "BargeClassFlowPDS"
+      ]
+    },
+    {
+      "id": "Barge-class symbolic PDS",
+      "kind": "alias",
+      "label": "Barge-class symbolic PDS",
+      "provenance": "declared",
+      "members": [
+        "BargeClassSymbolicPDS"
+      ]
+    },
+    {
       "id": "boundary-hitting criterion",
       "kind": "alias",
       "label": "boundary-hitting criterion",
@@ -958,12 +1061,39 @@
       ]
     },
     {
+      "id": "per-specimen box symbolic PDS certificate",
+      "kind": "alias",
+      "label": "per-specimen box symbolic PDS certificate",
+      "provenance": "declared",
+      "members": [
+        "BoxAutomatonSymbolicPDSCertificate"
+      ]
+    },
+    {
       "id": "Lemma Ω1",
       "kind": "alias",
       "label": "Lemma Ω1",
       "provenance": "declared",
       "members": [
         "BoxCycleContainment"
+      ]
+    },
+    {
+      "id": "Brun composites have symbolic PDS",
+      "kind": "alias",
+      "label": "Brun composites have symbolic PDS",
+      "provenance": "declared",
+      "members": [
+        "BrunCompositeSymbolicPDS"
+      ]
+    },
+    {
+      "id": "Corollary B″",
+      "kind": "alias",
+      "label": "Corollary B″",
+      "provenance": "declared",
+      "members": [
+        "BrunCompositeSymbolicPDS"
       ]
     },
     {
@@ -1363,6 +1493,24 @@
       ]
     },
     {
+      "id": "Sirvent–Solomyak transfer",
+      "kind": "alias",
+      "label": "Sirvent–Solomyak transfer",
+      "provenance": "declared",
+      "members": [
+        "SirventSolomyakTransfer"
+      ]
+    },
+    {
+      "id": "flow-to-symbolic transfer",
+      "kind": "alias",
+      "label": "flow-to-symbolic transfer",
+      "provenance": "declared",
+      "members": [
+        "SirventSolomyakTransfer"
+      ]
+    },
+    {
       "id": "general wedge productivity",
       "kind": "alias",
       "label": "general wedge productivity",
@@ -1515,6 +1663,17 @@
         "SpanRichProductivity",
         "SpectralSCCProducer"
       ]
+    },
+    {
+      "id": "TwoObstructionsAssumed",
+      "kind": "assumption_set",
+      "label": "assumption set",
+      "provenance": "declared",
+      "members": [
+        "DensityToPDSBridge",
+        "UniversalAlignedCoincidence",
+        "UniversalBoundaryHitting"
+      ]
     }
   ],
   "edges": [
@@ -1536,6 +1695,14 @@
     },
     {
       "type": "implicative",
+      "source": "AlignedOverlapsAreStrongCoincidence",
+      "target": "TwoObstructionCompletion",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "TwoObstructionCompletion/AlignedOverlapsAreStrongCoincidence"
+    },
+    {
+      "type": "implicative",
       "source": "AllSeedOverlapProductivity",
       "target": "G1OverlapRoute",
       "provenance": "open",
@@ -1554,6 +1721,15 @@
     },
     {
       "type": "implicative",
+      "source": "BargeClassFlowPDS",
+      "target": "BargeClassSymbolicPDS",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "BargeClassSymbolicPDS/BargeClassFlowPDS",
+      "leaks": "premise is imported-theorem"
+    },
+    {
+      "type": "implicative",
       "source": "BoundaryCoincidenceCriterion",
       "target": "OverlapBoundaryZipperDichotomy",
       "provenance": "theorem-backed",
@@ -1567,6 +1743,14 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "BoxAutomatonPDSCertificate/BoxAutomatonCertificate"
+    },
+    {
+      "type": "implicative",
+      "source": "BoxAutomatonPDSCertificate",
+      "target": "BoxAutomatonSymbolicPDSCertificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "BoxAutomatonSymbolicPDSCertificate/BoxAutomatonPDSCertificate"
     },
     {
       "type": "implicative",
@@ -1718,6 +1902,15 @@
       "provenance": "imported-theorem",
       "certainty": 1,
       "use_site": "PDSOverlapRoute/DensityToPDSBridge",
+      "leaks": "premise is imported-theorem"
+    },
+    {
+      "type": "implicative",
+      "source": "DensityToPDSBridge",
+      "target": "TwoObstructionCompletion",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "TwoObstructionCompletion/DensityToPDSBridge",
       "leaks": "premise is imported-theorem"
     },
     {
@@ -2121,6 +2314,24 @@
     },
     {
       "type": "implicative",
+      "source": "SirventSolomyakTransfer",
+      "target": "BargeClassSymbolicPDS",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "BargeClassSymbolicPDS/SirventSolomyakTransfer",
+      "leaks": "premise is imported-theorem"
+    },
+    {
+      "type": "implicative",
+      "source": "SirventSolomyakTransfer",
+      "target": "BoxAutomatonSymbolicPDSCertificate",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "BoxAutomatonSymbolicPDSCertificate/SirventSolomyakTransfer",
+      "leaks": "premise is imported-theorem"
+    },
+    {
+      "type": "implicative",
       "source": "SpanRichProductivity",
       "target": "SpectralSCCProducer",
       "provenance": "open",
@@ -2204,6 +2415,14 @@
     },
     {
       "type": "implicative",
+      "source": "SwapOverlapFiniteness",
+      "target": "TwoObstructionCompletion",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "TwoObstructionCompletion/SwapOverlapFiniteness"
+    },
+    {
+      "type": "implicative",
       "source": "Target1",
       "target": "DominantCubicCapture",
       "provenance": "theorem-backed",
@@ -2243,6 +2462,24 @@
       "use_site": "UDForPowers/UniqueDecodability"
     },
     {
+      "type": "implicative",
+      "source": "UniversalAlignedCoincidence",
+      "target": "TwoObstructionCompletion",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "TwoObstructionCompletion/UniversalAlignedCoincidence",
+      "leaks": "premise is open"
+    },
+    {
+      "type": "implicative",
+      "source": "UniversalBoundaryHitting",
+      "target": "TwoObstructionCompletion",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "TwoObstructionCompletion/UniversalBoundaryHitting",
+      "leaks": "premise is open"
+    },
+    {
       "type": "synonymous",
       "source": "47 determinant-two lines",
       "target": "DetTwoBoundaryHittingLines",
@@ -2252,8 +2489,40 @@
     },
     {
       "type": "synonymous",
+      "source": "Barge class theorem",
+      "target": "BargeClassFlowPDS",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "Barge-class symbolic PDS",
+      "target": "BargeClassSymbolicPDS",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "Barge–Štimac–Williams theorem",
       "target": "DensityToPDSBridge",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "Brun composites have symbolic PDS",
+      "target": "BrunCompositeSymbolicPDS",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "Corollary B″",
+      "target": "BrunCompositeSymbolicPDS",
       "provenance": "imported-theorem",
       "certainty": 1,
       "use_site": "aliases"
@@ -2351,6 +2620,14 @@
       "source": "SCC Producer",
       "target": "SCCProducer",
       "provenance": "conditional",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "Sirvent–Solomyak transfer",
+      "target": "SirventSolomyakTransfer",
+      "provenance": "imported-theorem",
       "certainty": 1,
       "use_site": "aliases"
     },
@@ -2548,6 +2825,14 @@
     },
     {
       "type": "synonymous",
+      "source": "flow-to-symbolic transfer",
+      "target": "SirventSolomyakTransfer",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
       "source": "formal productivity",
       "target": "FormalProductivity",
       "provenance": "open",
@@ -2630,6 +2915,14 @@
       "type": "synonymous",
       "source": "per-specimen box PDS certificate",
       "target": "BoxAutomatonPDSCertificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "per-specimen box symbolic PDS certificate",
+      "target": "BoxAutomatonSymbolicPDSCertificate",
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"
@@ -2764,6 +3057,14 @@
     },
     {
       "type": "part-whole",
+      "source": "DensityToPDSBridge",
+      "target": "TwoObstructionsAssumed",
+      "provenance": "imported-theorem",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
       "source": "FormalProductivity",
       "target": "FormalProductivityGateAssumed",
       "provenance": "open",
@@ -2862,6 +3163,22 @@
       "type": "part-whole",
       "source": "SpectralSCCProducer",
       "target": "SpectralGateAssumed",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "UniversalAlignedCoincidence",
+      "target": "TwoObstructionsAssumed",
+      "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "UniversalBoundaryHitting",
+      "target": "TwoObstructionsAssumed",
       "provenance": "open",
       "certainty": 1,
       "use_site": "assumption_sets"

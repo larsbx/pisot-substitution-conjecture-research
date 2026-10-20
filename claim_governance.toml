@@ -15,6 +15,27 @@
 [repository]
 name = "larsbx/pisot-substitution-conjecture-research"
 
+[review_policy]
+# Independent human review is intentionally downstream of proof construction.
+# It validates a complete closure candidate; it does not gate continued
+# mathematics, provisional dependency use, or assembly of that candidate.
+mode = "post-closure-validation"
+blocks_research_progress = false
+blocks_provisional_dependency_use = false
+blocks_closure_construction = false
+final_validation_required = true
+truthful_status_labels_required = true
+independently_reviewed_label_requires_completed_review = true
+review_pending_classification = "non-blocking-validation-debt"
+human_surfaces = [
+  "README.md",
+  "AGENTS.md",
+  "docs/README.md",
+  "docs/research-roadmap-2026-09-21.md",
+  "docs/verification-architecture.md",
+]
+
+
 [scan]
 prose = ["README.md", "docs/**/*.md", "manuscripts/*.tex", "manuscripts/*.md"]
 source = ["kernel/psc/**/*.mojo", "kernel/*.mojo", "kernel/tests/*.mojo", "reference/psc_research/*.py"]
@@ -383,6 +404,44 @@ anchor = '| AllStatesProductiveViaOverlaps |'
 window_lines = 0
 
 [[claim]]
+name = "BargeClassFlowPDS"
+status = "imported"
+aliases = ["Barge class theorem"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BargeClassFlowPDS"'
+section = "ImportedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BargeClassFlowPDS |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Barge class theorem |"
+window_lines = 0
+
+[[claim]]
+name = "BargeClassSymbolicPDS"
+status = "proved"
+aliases = ["Barge-class symbolic PDS"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BargeClassSymbolicPDS"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BargeClassSymbolicPDS |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Barge-class symbolic PDS |"
+window_lines = 0
+
+[[claim]]
 name = "BoundaryCoincidenceCriterion"
 status = "proved"
 aliases = ["boundary-hitting criterion"]
@@ -440,6 +499,25 @@ anchor = "| Box-automaton PDS certificate |"
 window_lines = 0
 
 [[claim]]
+name = "BoxAutomatonSymbolicPDSCertificate"
+status = "proved"
+aliases = ["per-specimen box symbolic PDS certificate"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BoxAutomatonSymbolicPDSCertificate"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BoxAutomatonSymbolicPDSCertificate |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Box-automaton symbolic PDS certificate |"
+window_lines = 0
+
+[[claim]]
 name = "BoxCycleContainment"
 status = "proved"
 aliases = ["Lemma Ω1"]
@@ -456,6 +534,25 @@ window_lines = 0
 [[claim.surfaces]]
 path = "docs/claim-status-and-source-map-2026-09-13.md"
 anchor = "| Cycle vertices lie in the box automaton |"
+window_lines = 0
+
+[[claim]]
+name = "BrunCompositeSymbolicPDS"
+status = "imported"
+aliases = ["Corollary B″", "Brun composites have symbolic PDS"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BrunCompositeSymbolicPDS"'
+section = "ImportedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BrunCompositeSymbolicPDS |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Brun composites have symbolic PDS (S-adic Corollary B″) |"
 window_lines = 0
 
 [[claim]]
@@ -1585,6 +1682,25 @@ anchor = "| Sink-SCC reduction under G1 |"
 window_lines = 0
 
 [[claim]]
+name = "SirventSolomyakTransfer"
+status = "imported"
+aliases = ["Sirvent–Solomyak transfer", "flow-to-symbolic transfer"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"SirventSolomyakTransfer"'
+section = "ImportedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| SirventSolomyakTransfer |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Sirvent–Solomyak flow-to-symbolic transfer |"
+window_lines = 0
+
+[[claim]]
 name = "SpanRichProductivity"
 status = "open"
 aliases = ["general wedge productivity"]
@@ -1751,6 +1867,24 @@ anchor = '| ThetaIntertwining |'
 window_lines = 0
 
 [[claim]]
+name = "TwoObstructionCompletion"
+status = "conditional"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"TwoObstructionCompletion"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| TwoObstructionCompletion |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Two-obstruction completion theorem / universal completion criterion |"
+window_lines = 0
+
+[[claim]]
 name = "UDForPowers"
 status = "proved"
 [[claim.surfaces]]
@@ -1785,6 +1919,34 @@ window_lines = 0
 [[claim.surfaces]]
 path = "README.md"
 anchor = "**Unique decodability:**"
+window_lines = 0
+
+[[claim]]
+name = "UniversalAlignedCoincidence"
+status = "open"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"UniversalAlignedCoincidence"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "absent"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| UniversalAlignedCoincidence |'
+window_lines = 0
+
+[[claim]]
+name = "UniversalBoundaryHitting"
+status = "open"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"UniversalBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "absent"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| UniversalBoundaryHitting |'
 window_lines = 0
 
 [[claim]]

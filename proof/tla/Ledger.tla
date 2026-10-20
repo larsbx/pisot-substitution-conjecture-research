@@ -13,10 +13,14 @@ ResultSet == {
     "AllSeedOverlapProductivity",
     "AllSeedStrictZipperExclusion",
     "AllStatesProductiveViaOverlaps",
+    "BargeClassFlowPDS",
+    "BargeClassSymbolicPDS",
     "BoundaryCoincidenceCriterion",
     "BoxAutomatonCertificate",
     "BoxAutomatonPDSCertificate",
+    "BoxAutomatonSymbolicPDSCertificate",
     "BoxCycleContainment",
+    "BrunCompositeSymbolicPDS",
     "C2",
     "C3Local",
     "C3Locality",
@@ -78,6 +82,7 @@ ResultSet == {
     "SeedCentralizer",
     "SignatureReduction",
     "SinkSCCReduction",
+    "SirventSolomyakTransfer",
     "SpanRichProductivity",
     "SpectralBlackBox",
     "SpectralSCCProducer",
@@ -87,8 +92,11 @@ ResultSet == {
     "SwapOverlapFiniteness",
     "Target1",
     "ThetaIntertwining",
+    "TwoObstructionCompletion",
     "UDForPowers",
     "UniqueDecodability",
+    "UniversalAlignedCoincidence",
+    "UniversalBoundaryHitting",
     "V5Thm51",
     "W3LowGrowth",
     "WedgeBound"
@@ -100,10 +108,14 @@ RequiresDef == [r \in ResultSet |->
       [] r = "AllSeedOverlapProductivity" -> {{}}
       [] r = "AllSeedStrictZipperExclusion" -> {{}}
       [] r = "AllStatesProductiveViaOverlaps" -> {{"OverlapProductivity", "SwapOverlapFiniteness"}}
+      [] r = "BargeClassFlowPDS" -> {{}}
+      [] r = "BargeClassSymbolicPDS" -> {{"BargeClassFlowPDS", "SirventSolomyakTransfer"}}
       [] r = "BoundaryCoincidenceCriterion" -> {{}}
       [] r = "BoxAutomatonCertificate" -> {{"BoxCycleContainment"}}
       [] r = "BoxAutomatonPDSCertificate" -> {{"BoxAutomatonCertificate", "PisotMeyerProperty", "OverlapCoincidenceCriterion"}}
+      [] r = "BoxAutomatonSymbolicPDSCertificate" -> {{"BoxAutomatonPDSCertificate", "SirventSolomyakTransfer"}}
       [] r = "BoxCycleContainment" -> {{}}
+      [] r = "BrunCompositeSymbolicPDS" -> {{}}
       [] r = "C2" -> {{"C3Local"}}
       [] r = "C3Local" -> {{"C4", "C3Locality"}}
       [] r = "C3Locality" -> {{}}
@@ -165,6 +177,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "SeedCentralizer" -> {{"ThetaIntertwining", "PhiSemisimplicity"}}
       [] r = "SignatureReduction" -> {{"EndpointCore"}}
       [] r = "SinkSCCReduction" -> {{"G1"}}
+      [] r = "SirventSolomyakTransfer" -> {{}}
       [] r = "SpanRichProductivity" -> {{"ConcentrationAuxB", "GaloisWedgePropagation"}}
       [] r = "SpectralBlackBox" -> {{"Target1", "DominantCubicCapture"}}
       [] r = "SpectralSCCProducer" -> {{"G1", "SinkSCCReduction", "SpanRichProductivity"}}
@@ -174,8 +187,11 @@ RequiresDef == [r \in ResultSet |->
       [] r = "SwapOverlapFiniteness" -> {{"G1b1BoundedDiscrepancy"}}
       [] r = "Target1" -> {{"SeedCentralizer"}}
       [] r = "ThetaIntertwining" -> {{}}
+      [] r = "TwoObstructionCompletion" -> {{"UniversalAlignedCoincidence", "UniversalBoundaryHitting", "SwapOverlapFiniteness", "AlignedOverlapsAreStrongCoincidence", "DensityToPDSBridge"}}
       [] r = "UDForPowers" -> {{"UniqueDecodability"}}
       [] r = "UniqueDecodability" -> {{"DefectTheorem"}}
+      [] r = "UniversalAlignedCoincidence" -> {{}}
+      [] r = "UniversalBoundaryHitting" -> {{}}
       [] r = "V5Thm51" -> {{}}
       [] r = "W3LowGrowth" -> {{"DefectIntertwiner", "PhiSemisimplicity"}}
       [] r = "WedgeBound" -> {{"AlgebraicEmbedding", "MassBalanceK2Obstruction"}}]
@@ -184,9 +200,11 @@ ProvedDef == {
     "AlgebraicEmbedding",
     "AlignedOverlapsAreStrongCoincidence",
     "AllStatesProductiveViaOverlaps",
+    "BargeClassSymbolicPDS",
     "BoundaryCoincidenceCriterion",
     "BoxAutomatonCertificate",
     "BoxAutomatonPDSCertificate",
+    "BoxAutomatonSymbolicPDSCertificate",
     "BoxCycleContainment",
     "C2",
     "C3Local",
@@ -245,6 +263,7 @@ ProvedDef == {
     "SwapOverlapFiniteness",
     "Target1",
     "ThetaIntertwining",
+    "TwoObstructionCompletion",
     "UDForPowers",
     "UniqueDecodability",
     "W3LowGrowth",
@@ -252,10 +271,13 @@ ProvedDef == {
 }
 
 ImportedDef == {
+    "BargeClassFlowPDS",
+    "BrunCompositeSymbolicPDS",
     "CoincidenceRankFibreTheorems",
     "DensityToPDSBridge",
     "OverlapCoincidenceCriterion",
     "PisotMeyerProperty",
+    "SirventSolomyakTransfer",
     "StandardBPAEquivalence",
     "StrongCoincidenceFromPDS"
 }
@@ -305,6 +327,11 @@ SpectralGateAssumed == {
     "SpanRichProductivity",
     "SpectralSCCProducer"
 }
+TwoObstructionsAssumed == {
+    "UniversalAlignedCoincidence",
+    "UniversalBoundaryHitting",
+    "DensityToPDSBridge"
+}
 
 (* Observables: one per result, asserting that it is not established. A model *)
 (* lists those its assumptions leave unreachable; TLC then checks the closure.  *)
@@ -313,10 +340,14 @@ AlignedOverlapsAreStrongCoincidenceNotEstablished == "AlignedOverlapsAreStrongCo
 AllSeedOverlapProductivityNotEstablished == "AllSeedOverlapProductivity" \notin established
 AllSeedStrictZipperExclusionNotEstablished == "AllSeedStrictZipperExclusion" \notin established
 AllStatesProductiveViaOverlapsNotEstablished == "AllStatesProductiveViaOverlaps" \notin established
+BargeClassFlowPDSNotEstablished == "BargeClassFlowPDS" \notin established
+BargeClassSymbolicPDSNotEstablished == "BargeClassSymbolicPDS" \notin established
 BoundaryCoincidenceCriterionNotEstablished == "BoundaryCoincidenceCriterion" \notin established
 BoxAutomatonCertificateNotEstablished == "BoxAutomatonCertificate" \notin established
 BoxAutomatonPDSCertificateNotEstablished == "BoxAutomatonPDSCertificate" \notin established
+BoxAutomatonSymbolicPDSCertificateNotEstablished == "BoxAutomatonSymbolicPDSCertificate" \notin established
 BoxCycleContainmentNotEstablished == "BoxCycleContainment" \notin established
+BrunCompositeSymbolicPDSNotEstablished == "BrunCompositeSymbolicPDS" \notin established
 C2NotEstablished == "C2" \notin established
 C3LocalNotEstablished == "C3Local" \notin established
 C3LocalityNotEstablished == "C3Locality" \notin established
@@ -378,6 +409,7 @@ SCCProducerNotEstablished == "SCCProducer" \notin established
 SeedCentralizerNotEstablished == "SeedCentralizer" \notin established
 SignatureReductionNotEstablished == "SignatureReduction" \notin established
 SinkSCCReductionNotEstablished == "SinkSCCReduction" \notin established
+SirventSolomyakTransferNotEstablished == "SirventSolomyakTransfer" \notin established
 SpanRichProductivityNotEstablished == "SpanRichProductivity" \notin established
 SpectralBlackBoxNotEstablished == "SpectralBlackBox" \notin established
 SpectralSCCProducerNotEstablished == "SpectralSCCProducer" \notin established
@@ -387,8 +419,11 @@ StrongCoincidenceFromPDSNotEstablished == "StrongCoincidenceFromPDS" \notin esta
 SwapOverlapFinitenessNotEstablished == "SwapOverlapFiniteness" \notin established
 Target1NotEstablished == "Target1" \notin established
 ThetaIntertwiningNotEstablished == "ThetaIntertwining" \notin established
+TwoObstructionCompletionNotEstablished == "TwoObstructionCompletion" \notin established
 UDForPowersNotEstablished == "UDForPowers" \notin established
 UniqueDecodabilityNotEstablished == "UniqueDecodability" \notin established
+UniversalAlignedCoincidenceNotEstablished == "UniversalAlignedCoincidence" \notin established
+UniversalBoundaryHittingNotEstablished == "UniversalBoundaryHitting" \notin established
 V5Thm51NotEstablished == "V5Thm51" \notin established
 W3LowGrowthNotEstablished == "W3LowGrowth" \notin established
 WedgeBoundNotEstablished == "WedgeBound" \notin established

@@ -1,0 +1,8 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+PASS two_parameter_polynomials_and_quadrant_signs
+PASS every_wedge_edge_is_a_pinned_line
+stack trace was not collected. Enable stack trace collection with environment variable `MODULAR_DEBUG=stack-trace-on-error`
+Unhandled exception caught during execution: At kernel/tests/test_symbolic_line.mojo:266:17: AssertionError: `left == right` comparison failed:
+   left: 6
+  right: 4
+/tmp/psc-pinned-mojo/bin/mojo: error: execution exited with a non-zero result: 1

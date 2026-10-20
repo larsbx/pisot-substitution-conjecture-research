@@ -2,6 +2,23 @@
 
 The repository uses several complementary verification layers. No layer is allowed to claim more than it actually checks.
 
+## Independent human review boundary
+
+**Independent human review is a final validation gate, not a research-progress gate.**
+The dependency and verification architecture therefore permits continued proof
+development and provisional downstream use of correctly classified
+repository results while independent human review is pending. That pending
+review is **non-blocking validation debt**; it is not inserted as a synthetic
+mathematical premise in the TLA+ dependency graph and does not delay work on
+#139, #138, #84, G1b-2, or other closure routes.
+
+A complete closure candidate is reviewed as a whole in the final validation
+phase. This does not relax epistemic labels: `human review pending` remains
+visible, `independently reviewed` may be used only after that event, and open
+mathematical premises remain open until their own proof obligations are
+discharged. The machine-readable policy is
+`claim_governance.toml [review_policy]`.
+
 ## 0. Canonical executable language
 
 **Mojo is the canonical executable implementation layer.** New algorithms, exact finite-state machinery, census drivers, and performance-sensitive theorem-support code should be implemented in `kernel/` first. Python is retained as an independent reference/oracle and prototyping layer, not as the default implementation surface.

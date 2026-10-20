@@ -48,6 +48,90 @@ by deleting it.
   `c4-ordered-hub-offset-negative-2026-10-06.md` §3;
   `evidence/ordered-hub-packets-2026-10-06/`
 
+- 2026-10-12 · **Retired: predecessor contraction for full BPA closure.**
+  The proposed parent-bound `beta * L(s') <= L(s) + D` from one selected
+  child `s` of `sigma(s')` is invalid: Parikh-contact decomposition can
+  distribute inflated parent mass among multiple children. Do not use it
+  to infer finite reachable balanced-pair closure or G1. **Retain only the
+  conditional K2 result:** a dominant length-two swap source and K2
+  additivity imply that *if its reachable balanced-pair closure is finite*,
+  some recurrent SCC has transition spectral radius at least
+  `beta * |beta_2|`; finiteness is still an unproved hypothesis. ·
+  `docs/k2-load-bearing-scc-salvage-2026-10-11.md` §§"Conditional theorem:
+  load-bearing SCC under finite closure", "Retired proof pattern:
+  predecessor contraction"
+- 2026-10-12 · **Withdrawn box-walk radius-eight extremum.** The reported
+  constrained exhaustive `n=3, L=3` maximum of 8 lacks a preserved
+  family predicate, saturation proof, original program, run budget, and
+  output; a plateau is not transition closure. Exact deterministic
+  **single-specimen, aligned-prefix** replay on
+  `sigma=(001,22,220)`, swap `01|10`, depths `0..9`, budget
+  `30000` symbols per side, has radii `8` at depths 6–8 but `10`
+  at depth 9, first attained at cut `9054` with defect `(5,5,-10)`.
+  This refutes 8 for that observable only, not an undefined historical
+  comp-set quotient. No `R*(3,3)` extremum or universal radius law is
+  certified; further depth beyond the budget is not a saturation verdict. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §4;
+  `evidence/boxwalk-radius8-depth9.json`;
+  `kernel/boxwalk_radius_probe.mojo`
+
+- 2026-10-12 · **Progress-indexed radius hypothesis preserved.** The
+  withdrawn radius-eight *global maximum* may instead have been a running
+  maximum limited by inflation depth or enumeration progress; the original
+  cursor, family, and stopping rule are unavailable, so this is an **open
+  interpretation**, not a recovered exhaustive result. For the specified
+  aligned-cut witness, the fully measured cumulative envelope
+  `R_<=D=max_{d<=D} r_d` is `8` at `D=8` and `10` at `D=9`;
+  it is nondecreasing **by definition** and is only a lower bound on the
+  eventual radius. In a family scan the running maximum over completed
+  specimens is likewise a lower bound until all specified jobs finish;
+  neither progress plateau proves saturation. Progress-dependent
+  `R_<=D <= f(n,L,D)` bounds or certified state-progress stopping
+  criteria remain viable **research targets**, not established laws. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §4,
+  "Progress-dependent bounds remain a live possibility";
+  `evidence/boxwalk-radius8-depth9.json`
+
+- 2026-10-12 · **Do not revive the box-walk one-step shortcuts.**
+  Spectral contraction to zero ignores affine prefix forcing; common-boundary
+  gap `<= L`, child-box subset inclusion, a specimen-independent absolute
+  radius, and one-step length/first-letter monovariants were rejected by the
+  October 11 thread. The thread's raw counterexample runs are not preserved,
+  so treat them as **unverified research negatives**, not individually
+  certified disproofs. The sampled formulas `2(L-2)` and
+  `(n-1)(L-1)`, and a depth-`<=5` saturation shortcut, remain unproved;
+  the explicit depth-nine aligned-cut witness separately refutes any such
+  proposed bound below 10 **when applied to that observable**. ·
+  `docs/audit-2026-10-11-boxwalk-extremal.md` §§"Claims retracted or
+  not to re-attempt", "Extremal-search reframing"
+
+
+- 2026-10-15 · **Correction to box-walk reachability claim (2026-10-12 notes and PR #253).**
+  The historical `box_walk_recurrence.py` zero-stuck count comes from
+  reverse reachability to the *zero imbalance vector*, although a genuine
+  diagonal child requires zero imbalance **before equal next letters**.
+  Example `12|21` has a terminal zero return and no diagonal child.
+  Projected vector edges collected across different occurrences can also
+  splice nonrealizable paths; observed depth-wise edge plateaus do not prove
+  substitution successor closure. “Every vector can reach zero” is therefore
+  **not** a matched-origin or SCC-productivity certificate. Correct
+  conditions: occurrence/address-compatible path lifting, target-aware
+  equal-letter zero-return, complete finite successor closure and explicit
+  seed/vertex quantifier coverage. Existential escape does not mean every
+  infinite path must hit a target. No PSC/G1/SCC Producer claim changes. ·
+  `docs/boxwalk-reachability-realizability-audit-2026-10-15.md`;
+  `docs/audit-2026-10-11-boxwalk-extremal.md` (2026-10-15 correction)
+
+- 2026-10-15 · **Scope of exact depth-nine radius witness.** The replayed
+  `sigma=(001,22,220)` has characteristic polynomial
+  `x^3-4x^2+4x-2` and a **complex** secondary pair. Its aligned-cut
+  depth-nine radius `10` refutes a radius-eight bound *for that observable*
+  but alone says nothing decisive about a proposed **real-secondary-only**
+  radius bound or the unrecovered staircase/comp-set statistic. Do not
+  transfer across observable, seed, or spectral regime. ·
+  `docs/boxwalk-reachability-realizability-audit-2026-10-15.md`;
+  `evidence/boxwalk-radius8-depth9.json`
+
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
@@ -95,6 +179,22 @@ by deleting it.
   neither needs a box. · `p1b-symbolic-line-2026-10-07.md` §2;
   `archive/2026-10-07/symbolic-line-probes/trap_float_probe.out`
 
+- 2026-10-11 · Durand return-word derivation as a route into Barge's class
+  for Theorem K's family: of the 130 primitive Pisot members with
+  `|det M| = 2` and `|w_1|, |w_2| <= 4`, no derived substitution at any
+  letter, nor its square, is in Barge's class or its mirror. Extends the
+  2026-10-07 no-witness entry beyond powers and rotations. Archived probe with
+  a float Pisot screen, not a registered claim; the splitting move
+  `tau rho -> rho tau` is untested. ·
+  `sadic-transfer-literature-gate-2026-10-11.md` §4;
+  `archive/2026-10-11/return-word-barge-probe/`
+
+- 2026-10-11 · Porting the S-adic Lemma S (swap walk bounded by the balance
+  constant) to shrink PSC certificates: nothing consumes `D_sigma`. The box
+  radii come from contraction on formal overlaps, and the seed graph is an
+  exact closure. Zero gain by construction. Do not re-attempt. ·
+  `sadic-transfer-literature-gate-2026-10-11.md` §6
+
 ## 3. Settled by the literature (do not target with new machinery)
 
 - 2026-10-04 · Specimens with a power or common-prefix/suffix conjugate in
@@ -117,6 +217,18 @@ by deleting it.
   `o, y, z` alternate `(y, o, o)` / `(o, y, y)`, never injective, never
   constant, no common first letter. Do not test Theorem K's members against
   `barge_witness` again. · `p1a-tail-literature-gate-2026-10-07.md` §3
+
+- 2026-10-11 · Flow-to-symbolic: Sirvent–Solomyak 2002 Corollary 5.2 needs
+  exactly PIP ("Pisot type") and no unimodularity, so every flow-PDS result
+  here (Theorem Ω's 145,806 specimens, the 1,248 Barge-class specimens) is a
+  symbolic `Z`-action result too. Primary text verified in the S-adic
+  programme's gate §9. Do not re-gate Clark–Sadun or Barge–Kwapisz for this. ·
+  `sadic-transfer-literature-gate-2026-10-11.md`
+
+- 2026-10-11 · Brun composites (unordered, admissible, every dimension) with
+  irreducible Pisot characteristic polynomial have symbolic PDS: S-adic
+  Corollary B″, mirror Barge class. Do not run balanced pairs on them. ·
+  `sadic-transfer-literature-gate-2026-10-11.md`
 
 - 2026-10-07 · **Bounded `Z_2` closes the tails for every `Delta`.** With
   `Z_2 <= cap` the members' run patterns are finitely many and fully
@@ -1474,3 +1586,194 @@ unchanged. Evidence: `kernel/tests/test_param_poly.mojo`,
 `kernel/tests/test_symbolic_cone.mojo`, `kernel/tests/test_symbolic_line.mojo`,
 and the scoped review on PR #247.
 
+
+2026-10-10 — PR #250 Python-oracle matrix unrolling preserves the exact
+integer map: each output is the same three products in the same order;
+81 matrix-unit pairs and asymmetric signed, zero/identity, 256-bit boundary,
+rational and seeded mixed-entry regressions guard indexing and nonmutation.
+The pinned original full module and revised module differ in AST only at
+`mul`; all 4,554 ordered corpus entries agree at warm-up and every timed run.
+Seven alternating full-corpus pairs on Python 3.12.14 / AMD EPYC 9V74,
+one CPU affinity, give median 2.6361 s before and 1.7996 s after (31.73%
+elapsed reduction on this shared host). The original ~7.9/~4.8 s and 40%
+claim lacks preserved context and is not independently reproduced; historical
+2024-05-18 dates and broad polynomial optimization claims from `.jules/bolt.md`
+are unverified for this experiment. Remove that competing log; no polynomial
+algorithm changes or new mathematical claims are made. Evidence:
+`tests/test_pip_matrix_mul.py`, `oracles/python/pip_mul_benchmark.py`
+(replay from repository root with Python and the pinned git history), and
+`evidence/pip-mul-2026-10-10/benchmark.json` (machine context, raw wall/CPU
+samples, source/replay digests and ordered-corpus digest).
+
+2026-10-10 — PR #250 replay correction: fresh review found that Python `-O`
+stripped `assert` provenance guards. Replace them with explicit exceptions;
+optimized-mode negative controls reject unrelated source drift and a corrupt
+matrix kernel without emitting a report. The first `benchmark.json` remains
+verbatim and names its original replay digest; the corrected replay under
+`python -O` is separately preserved as `benchmark-guards-r2.json`, with its
+new replay digest and optimization level. Its seven-pair medians are 2.5266 s
+before / 1.7929 s after (29.04% reduction); performance is host/run-dependent,
+not a fixed 40% promise. Pin both recorded outputs in the packet's
+`SHA256SUMS`, as required by the recorded-data integrity guard. Evidence:
+`tests/test_pip_mul_benchmark_guards.py`,
+`oracles/python/pip_mul_benchmark.py`,
+`evidence/pip-mul-2026-10-10/benchmark-guards-r2.json`.
+
+2026-10-10 — PR #250 CI replay-test correction: Actions uses a shallow
+checkout, so negative-control tests must not request the pinned historical
+module through git. Stub the baseline read with the local source, then inject
+an unrelated AST node or a zero matrix kernel; both optimized-mode refusal
+paths remain exercised without history. The actual benchmark intentionally
+requires the pinned baseline history and continues to fail if it is absent.
+Evidence: `tests/test_pip_mul_benchmark_guards.py` and failed Actions job
+`114294069121` (515 other tests passed; two history-dependent controls failed).
+
+- 2026-10-12 · governance: independent human review is a final validation gate,
+  not a research-progress gate. `human review pending` is non-blocking
+  validation debt: repository proof development, provisional dependency use,
+  and closure construction continue; truthful status labels remain mandatory,
+  and the assembled closure chain receives independent review afterward.
+  Machine source: `claim_governance.toml [review_policy]`; synchronized human
+  surfaces: `README.md`, `AGENTS.md`, `docs/README.md`,
+  `docs/research-roadmap-2026-09-21.md`, and
+  `docs/verification-architecture.md`.
+
+2026-10-13 — Nakaishi arXiv:2401.07771v1 §13 Proposition 5 equates first simultaneous C×C entry with first second-coordinate C entry along N_i, despite a positive-measure early second-coordinate-only event at N_0; the measure partition used against Proposition 4 is unproved as written. This is a source-audit objection, not a PSC counterexample or final refutation. The paper's mixing / special-cylinder / Garsia separation mechanisms remain research leads for exact occurrence-compatible #139 hitting, contingent on repaired conditioning and non-unit adelic transfer; no theorem import or status promotion. Evidence: `docs/nakaishi-2024-first-entry-audit-2026-10-13.md`, arXiv:2401.07771v1 §§12–13, eqs. (24), (29), Proposition 5.
+
+2026-10-13 — PR #258 validation repair: all four failing jobs (python-tests,
+source-provenance, lean-proofs, exact-kernels) refused a stale proof-bank input
+digest after the review-policy edit. The Lean job stopped before compilation;
+exact equivalence, Mojo regressions and census checks passed. Regeneration changes
+only the claim_governance.toml digest, preserving claim statuses, dependency edges
+and named Lean proofs. Preserve both append-only entries when merging main.
+Evidence: Actions runs `38294266656`, `38294266627`,
+`proof/proof-bank.json`, `tests/test_review_policy.py`.
+
+2026-10-14 — Ω/G1 continuation: complete-box offset-zero reachability,
+all-potential-overlap offset-zero reachability and cycle boundary hitting
+are equivalent by Ω1 finite descent. Their direct G1 sufficiency uses
+Proposition 4, without SC_all, leftmost-cycle exclusion or spectral imports.
+Derived all-level symbolic bound: `2 L^(K+2)`, with `K` the maximum
+all-seed first-half-coincidence depth; box recurrent depth cannot replace
+it. This assembles existing implications and does not discharge universal
+hitting or promote G1/PSC. Human review remains non-blocking validation
+debt. Evidence: `docs/bpa-termination-by-overlap-depth-2026-10-02.md` §7;
+`docs/research-roadmap-2026-09-21.md`, October 14 synchronization.
+
+2026-10-14 — Exact class-D residual cover: below `r=q-1`, each
+determinant-two branch is a complete unimodular quadrant. For `p=q+s`,
+`a=q-r-2`, `b=3r-2q+2s+2` are nonnegative exactly on the residual PIP
+region; `chi(-1)=-b-1`. The infinite `b=0` edge is the nearest Pisot
+boundary and cannot be omitted from a core certificate. This is parameter
+coverage, not a hitting certificate; no sampled grid or class-level closure
+is claimed. Evidence: `docs/p1b-boundary-hitting-progress-2026-10-08.md`
+§4d; updated `docs/proof-ladder.md` and live roadmap §12.
+
+2026-10-14 — **Correction/refinement of 2026-10-13 Nakaishi source audit (do not delete the earlier entry).** The exact §12/§13 measure identity is `sum_{k=1}^j m(tau2(x,omega)=N_k on Z) = s_j - m(E0) + m(E0 intersect H_j)` with `E0 = {omega in Z: T^N0 omega in C}`, `H_j = union_{k=1}^j {omega in Z: T^Nk omega in C}`. Since `m(E0)=alpha^(-L)m(Z)>0` and joint recurrence on the paper's selected fibre gives `m(E0 intersect H_j) -> m(E0)`, the purported contradiction with Proposition 4 reduces to an identity; no proof of universal tiling/PDS follows from this step. Stop direct import of the weak-mixing-to-cancellation step; independent algebraic control of *early-only then joint* returns is the missing repair. This does not refute PSC or disqualify other source lemmas. Evidence: `docs/nakaishi-2024-first-entry-audit-2026-10-13.md` section 'Exact corrected stopping-time partition (2026-10-14 continuation)', arXiv:2401.07771v1 §§12–13, equations (23)–(25),(29), Propositions 4–5.
+
+2026-10-14 — Mixing-SFT negative control and Theorem 3 transfer gate: reconciled the distinct original #261 countercalibration with main's corrected stopping-time partition. In the primitive full two-shift with C=[11], Z=[1], x=0(110)^infinity, the exact conditional H_j masses are 1/4, 7/16, 37/64 for j=1,2,3 while the defective early-subtracted formula gives 0,1/8,7/32; all 4,32,256 finite tails were independently recounted. Under actual source hypotheses the intersection term tends to m(E0), and conditioning on Z minus E0 changes both limits equally. A valid replacement via source Theorem 3 needs (i) positive-measure algebraic nonvanishing support, (ii) O_(d+1) shrinking-scale membership at the same joint times, and for PSC #139 (iii) a realized occurrence-labelled affine target witness. No such bridges are proved; the full-shift control is not a Pisot-substitution counterexample and general PSC stays open. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md section 'Additional independent calibration and repair criterion', arXiv:2401.07771v1 §§8–13, Definition 9, Theorem 3, Proposition 5; original pre-reconciliation PR #261 preserved at archive/pr261-before-main-reconciliation-2026-10-14.
+
+2026-10-14 — Nakaishi Theorem 3 radius/source mismatch and exact-diagonal salvage. In arXiv:2401.07771v1 PDF p.16 Definition 9, the Archimedean radius of O_(d+1) contains c^(1/d), while the proof (p.17 Eq.16 and p.18) requires c^(1/(n−1)), c=(1−alpha^(−1))/M in (0,1). At times d>=n the printed tube is strictly larger; O_1 has undefined exponent. No direct import of Theorem 3 as printed. Corrected-tube/zero-distance pointwise use is conditional on the source's Garsia and tail estimates, and yields the integral certificate sum_(k<d) M^k(pi(p_k)−pi(q_k))=w from a *synchronized exact-diagonal* pair by irreducible spectral injectivity. This yields unscaled ancestor-prefix equality, not automatically #139's M^d w_PSC equality; the special cylinder enforces same ancestor, and exact Fibonacci/Tribonacci fixtures guard scaling and word order. Scale-matched shrinking-target limsup lies in the exact diagonal; weak mixing alone cannot supply infinitely many such hits off it. The open bridge is a realized occurrence-labelled affine-offset transport (or an independent proof avoiding Nakaishi). Source/evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md, section 'Theorem 3 radius and pointwise address audit (2026-10-14 continuation)', arXiv:2401.07771v1 §§9–13, Definition 8–9, Theorem 3, Eq.16; docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md. No universal claim promotion.
+
+2026-10-14 — Nakaishi reverse-address affine transport: in the repo's forward child-offset convention, reversing a legal source depth-d ancestry gives u_d=M^d u−W_d, W_d=sum_(k<d) M^k(pi(p_k)−pi(q_k)); exact source polynomial cancellation W_d=w_src is not the fixed-PSC boundary hit unless w_src=M^d w_PSC and the ordered occurrence chain is actually realized. For the genuine non-unit PIP substitution a->aaab, b->ab (M=[[3,1],[1,1]], charpoly X^2−4X+2, det=2), legal source SFT pairs with one second-a prefix at level d−1 and identical empty-prefix tails from d onward lie on the exact full-adelic diagonal and synchronously revisit the special cylinder for every t>=d, yet their fixed displacement w_src=M^(d−1)e_a is outside M^t Z^2 for every t>=d (M^(-1)e_a=(1/2,−1/2)). This rules out arbitrary source-diagonal-to-integral-PSC-offset transport, NOT a transport lemma under extra realized tiling/overlap conditions or PSC itself. Needed next: a geometric source-to-overlap realization bridge that forces the correct M-adic residue and *prescribed* fixed offset, plus legal occurrence/endpoint replay. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md 'Exact reverse-address affine transport and a non-unit obstruction'; docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md §7 control 5; arXiv:2401.07771v1 §§3,6,9–10. All universal PSC/G1/#84/#138/#139 claims remain OPEN.
+
+2026-10-12 — Mercat–Akiyama (arXiv:1810.03500v1) provides a unit-Pisot interior-language/PDS equivalence and effective automata construction (Thms 3.3/5.12, Cor. 5.14), plus already-proved ordered families and an everywhere-directive S-adic positive example. A zero-language automaton (Thm 5.21) does not extend the spectral equivalence to non-units. Redirect prospective #139 connection to a unit-only occurrence-preserving calibration before any adelic extension; no new PSC or PDS claim. Gate: `docs/mercat-akiyama-interior-language-gate-2026-10-12.md`.
+
+2026-10-14 — PR #254 integration after #253: preserve all current-main ledger
+entries and both distinct salvage results. Clarify that the conditional K2
+argument counts child occurrences with multiplicity and retains raw-pair
+orientation signs; for complex conjugates its dominant real subspace is a
+plane. The finite-closure hypothesis remains open and the predecessor
+contraction remains retired. Regenerate the proof inventory without changing
+claim statuses or named Lean proofs. Evidence:
+`docs/k2-load-bearing-scc-salvage-2026-10-11.md`,
+`tests/test_defect_intertwiner.py`, `tests/test_boxwalk_radius_probe_oracle.py`.
+
+2026-10-15 — Nakaishi-to-PSC realized-ancestry shortcut refuted in a seed-patch overlap (stronger than the previous SFT-only negative control). For sigma(a)=aaab, sigma(b)=ab, beta=2+sqrt(2), lengths ell=(1,sqrt(2)-1), the initial ab/ba swapped patches contain an interior (a,a,e_b) overlap S. The ordered child pair (top second a, bottom first a) maps S to itself exactly because M e_b-e_a=e_b, so it is a realizable recurrent nonzero-offset path of arbitrary duration. Along r repetitions W_r=sum_(k<r) M^k e_a=(M^r-I)e_b and W_r is outside M^r Z^2 since e_b is outside M Z^2 by parity. Yet S is productive: top third a / bottom first a maps it to T=(a,a,-e_a+e_b), and top first a / bottom third a maps T to coincidence (a,a,0); all overlap interiors are exact from 0<sqrt(2)-1<1. This *does not* exhibit a closed bad SCC or refute PSC. A proof must use the all-children, child-closed nonproductive hypothesis (and the exact orientation/offset) rather than realization plus an arbitrarily chosen recurrent path. Existing M-adic valuation-ascent failures and affine-pump negative controls remain in force; this one specifically audits the Nakaishi realization-transfer shortcut. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md (2026-10-15 realized loop); docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md negative control 6; docs/research-roadmap-2026-09-21.md live P1b boundary.
+
+2026-10-15 — Infinite ternary non-unit PIP good-edge family: for every k>=3 and 2<=h<=k, sigma(a)=a^k b c^h, sigma(b)=ab, sigma(c)=a has M=[[k,1,1],[1,1,0],[h,0,0]], det=-h and irreducible Pisot cubic X^3-(k+1)X^2+(k-1-h)X+h (root brackets (-1,0),(0,1),(k,k+2), with k+1 not a root). The actual swap-seed overlap S=(a,a,e_b) self-loops under top second a/bottom first a, giving W_t=(M^t-I)e_b outside M^t Z^3 for every t>=2 because M^-1 e_b=e_b-e_c but M^-2 e_b is nonintegral. Yet a DIFFERENT labelled child pair (top first c, bottom last a) reaches (c,a,0) at depth one and the common first a/a child reaches tile coincidence (a,a,0) at depth two, uniformly in both parameters. This is a scoped one-vertex constructive family theorem plus an infinite bad-path/good-exit calibration, not a closed nonproductive SCC, not universal BH/PDS and not a novelty claim for general pump failures. Scratch exact SymPy matrix/root-sign calibration passed at (k,h)=(3,2),(4,2),(4,3),(6,5),(8,8), with 2<=t<10 residue checks; the full family follows the displayed symbolic proof. Larger k/h exceed the audited Mojo cubic screen's length-six input precondition and must not be sent through it unchanged. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md (infinite ternary family); docs/p1b-adelic-prefix-difference-cylinder-2026-09-21.md negative control 7; live P1b roadmap. #139/#84/#138/G1/PSC remain open.
+
+2026-10-16 — Correction to 2026-10-15 ternary good-exit family: The local exact one-vertex self-loop / two-step good-exit theorem remains valid, but **the entire family is already PDS by prior art**. All substitutions a->a^k b c^h, b->ab, c->a (k>=3, 2<=h<=k) begin with a and have distinct terminal letters c,b,a. Word reversal is therefore injective on initial letters and constant on final letters; primitivity/irreducible Pisot and nonperiodicity transfer. Barge, DCDS-A 36 (2016), Theorem 3.13 (arXiv:1403.7826) yields flow PDS with no unit restriction, and mirror conjugacy preserves it. For the substitutive Z-action the *existing* imported Sirvent–Solomyak 2002 Corollary 5.2 supplies flow-to-symbolic transfer on irreducible Pisot substitutions. This prior-art route is already governed by BargeClassFlowPDS and BargeClassSymbolicPDS and tested by psc.barge_class. The October 15 result is a nonresolving-selected-path vs productive-alternative-child calibration, NOT novel family PSC/PDS coverage; no universal #139 or depth bound follows. Do not spend the next cycle trying to close PDS for this mirror-Barge family; move to non-Barge residual classes. A new exact Mojo test checks the direct mirror-class witness for (k,h)=(3,2) and (6,5), without screening the latter's oversized image through the cubic legacy classifier. Evidence: docs/nakaishi-2024-first-entry-audit-2026-10-13.md October 16 correction, docs/sadic-transfer-literature-gate-2026-10-11.md §§2–3, kernel/tests/test_barge_class.mojo. Append-only correction; retain 2026-10-15 research record; general PSC/#84/#138/#139 remain OPEN.
+
+2026-10-16 — **Audit-priority attainment checkpoint.** For the box-walk/extremal audit (#253), exact `R*(3,4)` and extremizer structure remain **not obtained** (bounded depth-nine, complex-secondary `L=3` aligned-cut negative control only). For the K2 salvage (#254), finite reachable closure / bounded-K2 substitute / a closure-free truncation theorem remain **not obtained**; the load-bearing SCC spectral conclusion is conditional. For the matched-origin/path-lifting audit (#269), exact target semantics and finite occurrence-aware target-packet Mojo receipts already exist, but a complete sound lift/closure/coverage theorem for the proposed box-walk and universal productive SCCs is **not obtained**; finite diagnostic progress is partial. New PR #270 supplies a distinct *single-vertex* uniform two-parameter family good exit, not all-children closure. These are degrees of **the stated mathematical priorities**, not of audit-document merge completion; no PSC/G1/#84/#138/#139 status changes. Evidence: `docs/audit-priority-attainment-register-2026-10-16.md` (priority quotations, scoped attainment, blockers, next receipts).
+
+2026-10-16 — Class-D Barge power/rotation stop theorem: for every p,q,r>=0, the substitution x->x y^p c, c->c y^q x, y->c y^r c has first-letter map f=(x,c,c) with f^n=f for all n>=1, and last-letter map g=(c,x,c), g^n=(c,x,c) for odd n and (x,c,x) for even n. All powers have two distinct first letters (x,c), two distinct last letters (c,x or x,c), and noninjectivity at both ends; thus no power belongs to Barge's initial-injective/final-constant class or its mirror. Every power has zero common-prefix AND common-suffix length, so the repository's allowed maximal common-word rotations cannot change this. The negative result is uniform across class-D determinant-two PIP residual quadrants, including both pending b=0 boundaries and b>0 interiors; it rules out only this imported theorem route, not arbitrary conjugacies, PSC, #139, or the pending class-D certificates of PRs #263/#266. The proof is exact endpoint algebra, with a new canonical Mojo regression on sample powers 1..3, not a depth-limited claim. Contrast PR #271's already-PDS direct mirror-Barge ternary family. Evidence: docs/p1b-class-d-barge-power-rotation-stop-2026-10-16.md, kernel/tests/test_barge_class.mojo, docs/sadic-transfer-literature-gate-2026-10-11.md. Next: finish occurrence-labelled boundary coverage rather than repeat Barge witness searches.
+
+2026-10-16 — Class-D certificate reconciliation (PRs #263/#266): integrated the *distinct* b=0 evidence contracts without overwriting sealed packets or later main research. PR #263's complete occurrence-aware directed-support templates certify (as scoped execution-backed candidates) the minus boundary p=3a+5,q=3a+6,r=2a+4 for a>=4, 145 vertices/781 edges/max offset-zero depth 4 and finite a=0..3, and the plus boundary p=3a+3,q=3a+2,r=2a for a>=7, 718 vertices/4326 edges/max depth 6 and finite a=0..6. PR #266's independent 145-row upper-cover/selected-occurrence spine handles the minus line already from a>=2: 6 offset-zero targets, 139 affine whole-image selected child paths, exact rank descent <=4, 18779 exhaustively classified symbolic child candidates. Full directed support differs at a=2 (779 edges) from a>=3 (781 edges), so it must NOT be treated as a constant graph from a=2. Reconciliation preserved both sources/evidence as originally sealed; verified independent spine's 145 labels, ranks and 139 selected child edges against full support at a>=4, plus independent exact integer replay of all 139 chosen occurrences at a=2,3,4,8,12 (695 checks, zero discrepancies). The exact residual PIP parameter inversion is s=p-q=±1, d=q-r>=2, a=d-2>=0,b=r-2d+2s+2>=0; the two boundary lines cover b=0 only. Previously certified W1 handles r>=q-1. **Both b>=1 quadrants remain OPEN and neither PR proves full class-D PDS/G1 or general PSC**. Integration-head Mojo, provenance, policy and generated proof-bank checks still need completion; earlier green PR263 receipts and failed historical PR266 CI are not equivalent to a green integrated head. Evidence: docs/p1b-boundary-hitting-progress-2026-10-08.md §§4e–4m; evidence/class-d-minus-template-2026-10-14/, class-d-plus-template-2026-10-14/, class-d-target-spine-2026-10-14/; tests/test_class_d_certificate_agreement.py; original #263/#266 branches. No claim status promotion.
+
+2026-10-16 — **Positive-b literal-spine-transfer no-go.** On the minus class-D residual, increasing the positive-b parameter by one changes the incidence matrix by the rank-one integer update e_y(1,1,1). For an offset w, the child under an unchanged occurrence pair therefore changes by (sum w) e_y unless the chosen prefix occurrences themselves move with b. The sealed minus b=0 145-row target-aware spine contains the nonzero-rank state (c,y,−2,4,−3) choosing FIRST/FIRST indices on both sides. Since sum w=−1 and both prefixes remain zero, its selected child shifts by −b e_y at b>0 and cannot remain the same fixed target. This is an all-b *algebraic failure of that literal edge transport*, not a claim that the state is geometrically reachable on every interior member or that BH fails there. Thus 139 affine a-only edges must not be relabeled a two-parameter theorem; a valid interior proof must track b-sensitive occurrence indices and provide all-child cover and descending paths. Evidence: docs/p1b-boundary-hitting-progress-2026-10-08.md §4m and tests/test_class_d_certificate_agreement.py. Both b>=1 quadrants remain OPEN.
+
+2026-10-16 — Reconciled #267/#275 as alternative integer-Horner rational-root optimizations, with canonical BigZ Mojo, exact Python subclass fallback, deterministic equivalence and paired benchmarks against main@f6e181d. Python cubic root checks measured 3.29× (not a reproduced universal sixfold claim); full screen control 1.01×. The original Mojo signed abs(Int.MIN) skips divisors and gives a false negative for [-2^63,1]; unsigned magnitude/quotient bounds now avoid this and d*d overflow, with a direct witness regression. The 2024 dates and broad speed claims in both proposed .jules/bolt.md files are unverified and are not imported. Tooling lesson: exclude disposable scratch scripts but retain intentional reproducible benchmarks; no parallel ledger. Evidence: docs/rational-root-optimization-2026-10-16.md, tests/test_rational_root.py, kernel/tests/test_rational_root.mojo, evidence/rational-root-2026-10-16/.
+
+2026-10-16 — Consolidation validation also reproduced main@f6e181d's unrelated class-D agreement-test failure: full_oracle.report() emits tuple vertices but the stored JSON loads list vertices. Normalize only the test's generated report through JSON before exact equality; the oracle, certificate bytes and mathematical assertions are unchanged. The same main had one missing generated proof-bank opening from #276; tools/make_proof_bank.py restores it. Evidence: tests/test_class_d_certificate_agreement.py and regenerated docs/proof-bank.md/proof/proof-bank.json.
+
+2026-10-16 — Correction to the initial #267/#275 consolidation above: #278 review found immediate complementary-divisor visits can regress high-degree small-root inputs (x-2)(x^(n-1)-2520) by creating huge intermediates at ±5040 before reaching root 2. Retain ascending Python divisors; canonical Mojo defers complements until all smaller divisors. Revised degree-5,000 Python / degree-128 Mojo controls and paired measurements are in evidence/rational-root-2026-10-16-r2/; the original evidence packet is preserved but superseded. The selected Python cubic-grid gain is 2.61×, full-screen control 0.96× (unchanged code/noise); the initial 48.84× large-root speed claim is withdrawn for this selection. The final Int.MIN test uses [-2^63,2^63-1,1], root 1, to avoid a multi-billion-step full divisor search. Evidence: docs/rational-root-optimization-2026-10-16.md and the revised regression/benchmark programs.
+
+2026-10-19 — **Project progression acceptance convention.** For continued PSC
+proof development, a result that is mechanically sufficient at its exact
+recorded scope (proof/certificate complete, hypotheses preserved, required
+exact replay/CI receipts present) is implicitly project-approved and may be
+load-bearing without waiting for a separate human-review event. This is an
+operational interpretation of the existing non-blocking review policy, not a
+claim that independent human review occurred. Keep finite-domain, conditional,
+family-scoped and universal quantifiers unchanged; independent human review
+remains final validation. Evidence/status surfaces: `AGENTS.md`, `README.md`,
+`docs/README.md`, live roadmap, proof ladder and claim/source map.
+
+2026-10-19 — **Issue #9 closure clarification.** Issue #9 was closed
+`completed` on 2026-10-07, but its thread contains no theorem-bearing closure
+argument and its preceding canonical notes explicitly left C4/Part (b) open.
+Interpret the closure as completion/routing of that research track, not proof
+of C4. The surviving obligations are word-level: occurrence/address-compatible
+realizability, ordered hub-residual words across actual interior children, and
+alignment/coverage strong enough to force the good edge. Algebraic quotient
+compatibility, a projected zero, or one replayable path is insufficient. Keep
+G1 extraction separate: C4 is about a supplied finite strict SCC; G1 is the
+separate global finiteness/extraction problem. Canonical locations:
+`docs/c4-good-edge-system-bridge.md`,
+`docs/target-aware-bpa-diagnostic-2026-10-02.md`, successor #84/#138/#139.
+
+2026-10-19 — **Post-#277 class-D status correction.** PR #277 merged the
+distinct class-D `b=0` certificate systems and their occurrence-agreement
+checks. Both infinite boundary lines are therefore available as scoped,
+mechanically certified inputs for project progression. The exact residual
+class-D target is the two positive-`b` interiors
+`s=±1, a>=0, b>=1`. Do not call these determinant-two domains "unimodular
+parameter quadrants"; use **integral affine parameter quadrants**. The recorded
+rank-one update refutes literal transport of the sealed `b=0` occurrence
+spine into `b>0`, so the next certificate must be genuinely two-parameter.
+General #139/#84/G1/PSC remain open. Evidence: merged PR #277,
+`docs/p1b-boundary-hitting-progress-2026-10-08.md` §§4e–4m,
+`tests/test_class_d_certificate_agreement.py`.
+
+2026-10-19 — **PR #283 executed refusal audit.** With available Mojo 1.1.0 (8189361e), both complete positive-b drivers refuse their first integer-affine run fit (plus -808/-1408/-1007; minus 811/1412). After explicit-copy compile repairs, the sealed-cover checkers refuse at minus row 1 and plus row 0 on auxiliary polynomials that change sign on every shifted quadrant; both rows nevertheless have positive geometric margins by the exact Perron identity beta(d-2)=2D+2s/beta. No escaped child was reached, so no carrier enlargement is justified. Plus row 12 changes actual realness along b=a versus b=10a, ruling out its classification by a fixed real subcover on a single quadrant. Preserve caps/exact arithmetic and the literal-spine negative control; proceed by clipping/chambers or conditional upper-cover arguments, not larger corner guesses. Pinned pixi environment could not be installed; GitHub jobs observed queued. Evidence: docs/p1b-class-d-positive-b-wedge-2026-10-19.md section 10; evidence/class-d-positive-b-audit-2026-10-19/; kernel/tests/test_class_d_positive_b_obstructions.mojo. No claim promotion or merge-as-proved.
+
+2026-10-19 — **PR #283 base validation findings.** The audit found unchanged-base claim-governance status-anchor drift (docs/proof-ladder.md:17, DensityToPDSBridge), stale proof-bank.json, and malformed/trailing manuscript content rejected at line 1357. These are distinct from positive-b mathematical refusals; generated ledger/math catalogue, vendoring and Markdown checks passed. Evidence: docs/p1b-class-d-positive-b-wedge-2026-10-19.md section 10 and evidence/class-d-positive-b-audit-2026-10-19/run-context.json. No gate waived.
+
+2026-10-19 — **Post-#289 chamber execution.** The merged complete driver passes low wedge 0 and then refuses at low wedge 1 on an auxiliary polynomial with opposite signs along u=v and u=4v; the actual query -4-(5+2u+2v)beta-(3u+4v)beta² is strictly negative. The high wedge's first query factors as (beta-2)((u+2)beta+2)>0. Exact coefficient fallbacks repair these reader failures without changing the lattice cover, caps or child relation. All six explicit interface lines and five low cores have local receipts; full boundary/high outcomes and source variants are in the execution manifest. Mojo 1.1.0 was used after locked provisioning failed; original CI remains queued. No carrier extension or family/universal promotion is inferred. Evidence: docs/p1b-class-d-chamber-execution-2026-10-19.md; evidence/class-d-chamber-execution-2026-10-19/.
+
+2026-10-19 — **Chamber audit governance reconciliation.** Base main also lacked a contract declaration in test_symbolic_line_empty_blocks.mojo and used an unrecognized imported-bridge label in proof-ladder.md. Add the declaration after its assertions and use the existing [IMPORTED theorem] vocabulary; neither changes mathematical status. Regenerate the stale proof inventory. The unchanged manuscript source still fails at line 1357 and receives no waived integrity credit. Evidence: the chamber audit provenance log and final validation manifest.
+
+2026-10-19 — **Inherited class-D line pin drift confirmed.** The full symbolic-line regression expects q0=18 for D (n+1,n,n+3), but untouched main@85fafd3 and the chamber repair both compute q0=21 (97 vertices, 20 finite PIP members, one non-PIP). This is a reproducible base mismatch, not a new coefficient-fallback failure. Preserve the pin and report the red regression pending a separately justified reconciliation; no missing contract receipt is credited. Evidence: evidence/class-d-chamber-execution-2026-10-19/base-class-d-pin.log and symbolic-line-regression.log.
+
+2026-10-19 — **Concurrent frontier reconciliation during chamber execution.** Preserve main@c0c5f9d (PR #292 documentation). Issue #139 / open PR #290 now use uniform recurrent-carrier inclusion RC- as the sufficient minus obligation; full child closure is stronger and is not asserted necessary. Open PR #291 owns the Mojo integer-squeeze certificate. The chamber execution contribution stays on the plus closure route and does not duplicate either active investigation. No new uniform minus or PSC conclusion follows from the finite SCC calibration.
+
+2026-10-19 — **Final chamber execution boundary.** Under explicitly unpinned Mojo 1.1.0, all six cores and six interface lines pass, and 67/69 distinct boundary lines (71/73 strip obligations) pass. Low-1 v=13,14, with coefficients (4,69,4,68,3,53) and (4,74,4,73,3,57), time out at 1200 seconds; isolated retries lose the execution session without a verdict. High core (7,0) and all seven strips pass by recorded component replay. No aggregate receipt, pinned replay or family promotion exists. Preserve these exact two outstanding lines; the first observed reader obstructions were not escaped children. Evidence: final table and run-context.json in the chamber execution packet.
+
+2026-10-19 — **Chamber continuation: recover the pinned Mojo compiler and resolve the two slow strips.** Full Pixi provisioning still fails on a conda-forge dependency, but the lock-matched `mojo-compiler` and `mojo-python` archives download directly and verify against their locked SHA-256 digests. The exact compiler/runtime is Mojo 1.1.0.dev2026090805 (34562fa1). Low-1 v=13,14 were finite-prefix execution-cost gaps, not additional mathematical obstructions: the tails have 164 vertices and thresholds 53,56. An exact monotone occurrence-interval sweep preserves ordered children (1,096-state differential plus 16 existing seed-overlap regressions) and completes both lines including every finite-prefix member and both graph cross-checks. The old q0=18 class-D test still returns21 with the pinned compiler; the gate is not waived. PR #290 subsequently refuted RC- using productive U/Ubar/V/Vbar cycles; the current open minus premise is CycleSum-, separate from plus certification. Evidence: `evidence/class-d-chamber-continuation-2026-10-19/`, `docs/p1b-class-d-chamber-execution-2026-10-19.md`. No universal #139/#84/PSC promotion.
+
+2026-10-19 — **Pinned regression follow-through.** Replaying tests after the inherited class-D pin failure exposes the second historical norm-line pin mismatch (6 obtained, 4 expected). Untouched merged #289 with the pinned compiler reproduces both 21/18 and 6/4 mismatches. Do not attribute them to the chamber fallback or interval sweep, and do not credit the full symbolic-line suite; the final norm-product test passes independently. Evidence: `evidence/class-d-chamber-continuation-2026-10-19/pinned-baseline-pins.log`, `symbolic-line-suffix.log`, `norm-property-only.log`.
+
+2026-10-19 — **Complete same-source plus component replay.** All six wedge calls (including all 73 returned strips, 69 distinct lines) and all six explicit line calls return zero under the lock-matched compiler/runtime. The canonical low-strip map and seven high-strip formulas reconcile exactly. The duplicate serial aggregate was manually interrupted (exit130); no aggregate marker is synthesized. Full Pixi/CI validation and inherited regression/manuscript gates remain separate integration debt, with no governed theorem promotion. Evidence: `evidence/class-d-chamber-continuation-2026-10-19/coverage-reconciliation.json`, component logs, and `docs/p1b-class-d-chamber-execution-2026-10-19.md`.
+
+2026-10-20 — **Inherited clipping pins reconciled without changing coverage.** The parent of PR #288's clipping commit reproduces thresholds18/4 under the locked nightly; merged #289 reproduces21/6. The clipping endpoint queries enlarge sufficient sign thresholds, not the parameter domain. Complete line certification plus exact transition vertex-set checks at n=18,19,20 and n=4,5 justify the two updated pins; the full symbolic-line regression now reaches every contract. Preserve both historical receipts and avoid claiming a replay of every other pin. The pin edit leaves the aggregate binary byte-identical. Evidence: `docs/class-d-chamber-validation-2026-10-20.md`, `evidence/class-d-chamber-validation-2026-10-20/`.
+
+2026-10-20 — **Reuse the independently located source reconstruction, with hash checks.** PR #290 commit 5e9391d repairs two identical manuscript-tail injections and the malformed show-your-work regression string. This branch verifies the original, duplicated-block and corrected hashes and reproduces that source byte for byte; no unique manuscript text or archived PDF is removed. Integrity and provenance now pass. The repair is not a review of the mathematical arguments. Evidence: the validation packet's `manuscript-reconstruction.json`, `manuscript-integrity.log`, and `provenance.log`.
+
+2026-10-20 — **Correction to earlier RC- diagnosis.** PR #290 at 00c0cb8 clarifies that its 56-specimen complete seed grid has no escaped recurrent labels. Formal productive exceptions refute unrestricted carrier inclusion; those formal cycles alone do not establish seed reachability. Seed-qualified CycleSum- remains open, and real-interior shared-parameter formal cycles can have unbounded sums. Earlier entries asserting an observed seed-qualified RC- counterexample were too strong. The plus work supplies neither that counterexample nor the missing minus lemma. Locator: PR #290 and `docs/class-d-chamber-validation-2026-10-20.md`.
+
+2026-10-20 — **Restore the missing conditional completion record, without satisfying its premises.** A broader governance regression finds the existing two-obstruction claim-map row unregistered (189 other tests pass). Reuse the three-record registration from PR #290 commit 5e9391d: universal aligned coincidence and universal boundary hitting stay open; their assembly stays conditional. Generate the surfaces and two-premise TLA+ model from `tools/make_ledger.py`; regression checks reject inference from either premise alone or from existing scoped class-D lines/wedges. The repaired focused suite passes (73 passed, one optional TLC mutation test skipped). No plus/minus family or universal premise is promoted. Evidence: `evidence/class-d-chamber-validation-2026-10-20/integrity-governance-tests.log` and `ledger-governance-repaired.log`.
+
+2026-10-20 — **Concurrent minus proof advanced during the serial plus replay.** PR #290 at 3b16b5447aa9b3ecdecfdabb5033a381580f230e now records a uniform seed-carrier proof supplying CycleSum- for a>=2,b>=1, the a=0,1 strips, and a native complete-minus-residual receipt. Its existing-wedge assembly covers the PIP minus branch. Source inspection verifies the gated aggregate call sequence and committed exit0, all 335 source hashes and 16 evidence hashes; this plus session does not rerun or import that proof. Earlier open-CycleSum entries describe the prior frontier. Both contributions still distinguish local locked-runtime evidence from full Pixi/CI integration, and neither supplies universal #139/#84 or general PSC. Evidence: `evidence/class-d-chamber-validation-2026-10-20/minus-cross-reference.json` and PR #290's `evidence/issue139-minus-strips-2026-10-20/`.
+
+2026-10-20 — **Native plus aggregate completed.** One uninterrupted lock-matched Mojo run returns exit0 after 3564 seconds and emits the native whole-domain marker only after all six wedge cores, 73 strips (69 distinct lines), six interfaces and 952 finite-prefix PIP obligations complete. Log identities match the earlier same-binary component campaign exactly. The old exit130 aggregate is preserved as interrupted; no receipt is synthesized or relabelled. The native max-vertices field covers only cores/interfaces, while line graphs reach 465 vertices. Full Pixi provisioning still fails and dedicated CI remains queued, so no governed plus-family promotion is made. The latest separate minus result is recorded in PR #290; universal #139/#84 and general PSC remain open. Evidence: `evidence/class-d-chamber-validation-2026-10-20/aggregate.log`, `aggregate-reconciliation.json`, and `docs/class-d-chamber-validation-2026-10-20.md`.

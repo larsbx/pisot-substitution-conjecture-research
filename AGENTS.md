@@ -114,7 +114,67 @@ The current C4 recognizability/factorization work is being migrated to this poli
 
 Python copies may remain as independent reference oracles during migration, but new results should cite the Mojo implementation as canonical.
 
+## Show your work — enforced research-evidence policy
+
+**Show the inspectable work behind every theorem-facing contribution.** This
+means repository-visible derivations, hypotheses, exact evidence, replay
+instructions, negative controls, and explicit non-claims. It does **not** mean
+publishing private chain-of-thought or hidden scratch reasoning.
+
+A theorem-facing pull request must include a `## Work shown` section with all
+of these headings:
+
+- `### Assumptions and hypotheses`
+- `### Derivation / reduction`
+- `### Evidence and replay`
+- `### Negative controls`
+- `### Non-claims / remaining gaps`
+
+The content under those headings must expose enough of the mathematical
+argument or certificate semantics for another researcher to reconstruct what
+was done. A final theorem statement, green CI badge, generated table, or
+numerical verdict without its derivation and scope boundary is not sufficient.
+
+For executable work, show the finite object and quantifiers being certified,
+the deterministic replay command, caps/thresholds, fail-closed behavior and
+the exact contract guarded by the test. Preserve failed stronger variants and
+counterexamples rather than deleting them.
+
+The machine-readable source is `research_evidence_policy.toml`; the human
+policy is `docs/research-evidence-policy.md`; the pull-request gate is
+`.github/workflows/show-your-work.yml`. Claim status remains governed
+separately by `claim_governance.toml`.
+
 ## Review gate
+
+### Independent human review is not a research gate
+
+**Independent human review is a final validation gate, not a research-progress gate.**
+Do not stop proof development, computation, provisional dependency use, or
+closure assembly solely because a repository-proved or otherwise correctly
+labelled result still says `human review pending`. Carry that label forward as
+non-blocking validation debt and continue toward a complete closure candidate.
+
+**Project progression convention (2026-10-19).** A result that is mechanically
+sufficient at its exact recorded scope — its proof/certificate is complete,
+its hypotheses are preserved, and its required exact replay/CI receipts are
+present — is implicitly approved for continued project progression and may be
+used as a load-bearing dependency without waiting for a separate human-review
+event. Call this *project-accepted for progression* or *mechanically
+certified*, not *independently human reviewed*. The convention never upgrades
+a finite-domain result to a universal theorem, never supplies a missing
+hypothesis, and never waives the independence/unimodularity/realization
+firewalls.
+
+After complete closure is assembled, independent human review validates the
+whole chain. Review status remains truthful throughout: an unreviewed result
+must not be called independently reviewed, and this policy does not turn an
+open premise into a proved one.
+
+This rule is machine-readable in `claim_governance.toml [review_policy]`.
+It does **not** waive the targeted literature stop/go check below; that check
+is a research-design gate against known prior art and hypothesis mismatch, not
+the independent-human-review phase.
 
 ### Targeted literature stop/go check
 

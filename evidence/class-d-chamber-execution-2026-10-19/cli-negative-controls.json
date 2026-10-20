@@ -1,0 +1,29 @@
+[
+  {
+    "arguments": [
+      "low",
+      "5"
+    ],
+    "exit_code": 1,
+    "stdout": "BEGIN_LOW_WEDGE 5\n",
+    "stderr": "stack trace was not collected. Enable stack trace collection with environment variable `MODULAR_DEBUG=stack-trace-on-error`\nUnhandled exception caught during execution: low chamber index must be 0..4\n"
+  },
+  {
+    "arguments": [
+      "line",
+      "0"
+    ],
+    "exit_code": 1,
+    "stdout": "BEGIN_INTERFACE_LINE 0\n",
+    "stderr": "stack trace was not collected. Enable stack trace collection with environment variable `MODULAR_DEBUG=stack-trace-on-error`\nUnhandled exception caught during execution: plus chamber line index must be 1..6\n"
+  },
+  {
+    "arguments": [
+      "high",
+      "extra"
+    ],
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "stack trace was not collected. Enable stack trace collection with environment variable `MODULAR_DEBUG=stack-trace-on-error`\nUnhandled exception caught during execution: usage: class_d_plus_positive_b_chambers.mojo [low 0..4 | high | line 1..6]\n"
+  }
+]

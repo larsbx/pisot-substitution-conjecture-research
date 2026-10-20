@@ -25,14 +25,59 @@ rather than a private copy of it. `kernel/pixi.toml` has one task per driver and
 `docs/mojo-lookup-caches-2026-09-17.md` for the exact-arithmetic results the
 drivers now look up instead of recomputing.
 
+## Primary theorem target
+
+The project is now centered on the manuscript's
+**Two-obstruction completion theorem** (`thm:two-obstruction-completion`).
+For ternary PIP substitutions, the direct proof of PSC has only two universal
+mathematical obligations left:
+
+1. **#138 / A1′:** the residual fixed-letter hub-word pair is eventually
+   coincident. The completion theorem needs this one-sided statement; reversal
+   is not an additional premise;
+2. **#139 / BH:** every cyclic strict-zipper overlap has an
+   occurrence-compatible descendant of offset zero.
+
+Once those two statements are proved at full non-unit generality, #84 closes
+and the already-established density-to-PDS chain gives the general theorem.
+The older G1b-2, SCC-Producer/K2 and realization programmes remain useful
+secondary structure, but they are not prerequisites of this direct route.
+
+This is a strong reduction, not a declaration that the two universal lemmas
+have already been proved. Finite and family certificates remain scoped.
+
 ## Current mathematical state
+
+### Review policy — non-blocking until closure
+
+**Independent human review is a final validation gate, not a research-progress gate.**
+A result may remain labelled `human review pending` while downstream proof work
+continues from its repository status. Pending independent review does **not**
+block research progress, provisional dependency use, or assembly of a complete
+closure candidate. It is non-blocking validation debt.
+
+As of 2026-10-19, mechanically sufficient results at their exact recorded
+scope are **project-accepted for progression**: they may be load-bearing when
+the proof/certificate is complete, the hypotheses are preserved, and the
+required exact replay/CI receipts are present. This is the repository's
+implicit project-approval convention; it does **not** assert that an
+independent human review occurred and it does not promote finite or scoped
+results beyond their quantified domains.
+
+Once a complete closure candidate is assembled, independent human review is a
+final validation phase for the whole chain. Until that review occurs, status
+surfaces must remain literal: do not call a result independently reviewed when
+it is not, and do not promote an open mathematical premise merely because the
+project is allowed to reason provisionally from an unreviewed repository proof.
+The machine-readable source of this rule is
+`claim_governance.toml [review_policy]`.
 
 Start here:
 
 1. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the #138 aligned branch, #139 strict-zipper branch, Level 2, hypothesis firewall, and prioritized closure criteria.
 2. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
 3. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
-4. `docs/completion-ledger-2026-10-09.md` — latest merged weekly completion snapshot, refreshed to `main@4caca9a`; includes the finite-domain PDS theorem and the scoped determinant-two line/wedge results through PR #246.
+4. `docs/completion-ledger-2026-10-16.md` — weekly snapshot at `main@b378392`, now carrying a dated 2026-10-19 reconciliation for post-snapshot class-D integration and the project-acceptance convention. Current repository head for that reconciliation is `main@e062e330`.
 5. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
 6. `docs/tier2-bridge-salvage-2026-09-23.md` — research-taxonomy note separating termination-style Descent Bridges from recurrent arithmetic Growth Bridges; moves no theorem status.
 7. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
@@ -53,6 +98,30 @@ primitive irreducible Pisot
 
 The only open premise on this route is **seedwise overlap productivity (Open Problem 5.35, issue #84)**. Manuscript Theorem 5.38 therefore no longer requires finite BPA / G1.
 
+### October 16 status — imported scope and sharper open obligations
+
+- **Imported and scoped:** the Sirvent–Solomyak flow-to-symbolic transfer now
+  makes the completed box certificates symbolic PDS certificates too. The
+  imported Barge class theorem plus the repository detector proves symbolic
+  PDS for its exact class (1,248 of the 4,554 standing-corpus specimens have a
+  witness), and the imported Brun-composite corollary covers its declared
+  family. None extends to arbitrary PIP substitutions.
+- **Conditional/reductive progress:** a complete box common-boundary depth
+  gives all-seed G1 with integer bound `2 L^(K+2)`. For residual class D,
+  merged PR #277 certifies both infinite `b=0` boundary lines; the exact
+  remaining target is the two positive-`b` interiors
+  `s=±1, a>=0, b>=1`. The universal depth premise and those two interiors
+  remain open.
+- **Audited stops:** the radius-8 plateau inference is retired by an exact
+  radius-10 witness; projected vector paths require occurrence replay; and the
+  audited Nakaishi general-proof route has unresolved first-entry, radius, and
+  integer-offset transport defects. A recurrent path is not a child-closed bad
+  SCC.
+- **Provenance limit:** open PRs, issue plans, computations, and unaccepted
+  preprints are not theorem-level closure. No authoritative accepted proof of
+  general PSC is present on `main`; #84, #138, #139, formal productivity and
+  G1 remain open.
+
 ### October 9 scoped advances — no universal closure
 
 - **Finite-domain theorem:** Theorem Ω's complete box-automaton certificate
@@ -60,7 +129,7 @@ The only open premise on this route is **seedwise overlap productivity (Open Pro
   image-length-at-most-4 and total-image-length-at-most-8 domains. Its
   sufficiency proof uses the explicit overlap-coincidence and Meyer-property
   imports; it is no longer conditional on Proposition V(2) or Theorem B.
-- **Computer-assisted family theorems, human review pending:** Theorems L,
+- **Computer-assisted family theorems, project-accepted for progression; independent human validation outstanding:** Theorems L,
   L′ and L″ establish boundary hitting on 47 one-parameter lines in the
   catch-up-free determinant-two classification. Theorem W establishes it on
   two-parameter class-D wedges, including every PIP class-D member with
@@ -79,8 +148,8 @@ to everything else.
 1. **G1 is a necessary condition for PDS, not an artefact of the
    balanced-pair method.** Pure discrete spectrum implies finite `B_sigma`
    (manuscript Proposition `prop:PDS-implies-G1`, ledger `PDSImpliesRepoG1`,
-   proved by the Theorem S route; *independently audited 2026-10-04, human
-   review pending*). So the conditional main theorem (`thm:main-conditional`,
+   proved by the Theorem S route; *internally/adversarially audited 2026-10-04,
+   project-accepted for progression; independent human validation outstanding*). So the conditional main theorem (`thm:main-conditional`,
    G1 plus SCC Producer gives PDS) is not merely one sufficient route among
    possible others: any proof of PSC makes G1 true as well, and a substitution
    with an infinite `B_sigma` would be a counterexample to PSC.
