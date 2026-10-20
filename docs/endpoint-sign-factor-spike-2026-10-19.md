@@ -59,6 +59,12 @@ The run in [\`.github/workflows/endpoint-sign-spike.yml\`](../.github/workflows/
 
 The project census has only \(|\mathcal A|=3\) and each substitution image length \(\le3\). Even a complete run **does not explore alphabet 4** or the long-image perturbation family; conclusions must carry that selection limit.
 
+## Exact micro-calibration (independent small oracle; Mojo replay required)
+
+A separate, small, integer-only balanced-pair decomposition check of **trial 8381** gave a complete 11-vertex reachable graph. Its unique closed recurrent noncoincident SCC has **three states** and **five internal child occurrences**, **all five with negative orientation** relative to lexicographically normalized states. Its period is one, so the sign class is Perron-compatible with phase bit 1 (Branch B). It has an SCC-level endpoint diagonal, but the three states have **three distinct external four-letter profiles**. Consequently, a four-letter endpoint gauge test that reports "success" here is **vacuous**, not evidence for endpoint holonomy.
+
+The new canonical **Mojo regression** now explicitly asserts these replay figures. The result is an independent local calibration, not a fresh large-corpus Mojo receipt; the CI job must verify the code and its numeric corpus totals before either is cited as confirmed by the repository. This is a concrete example of the reason to count `B_duplicate_profiles` separately.
+
 ## Negative controls
 
 1. **Trial 8381:** \(1\mapsto132,\ 2\mapsto32,\ 3\mapsto21\); \(s=((2,3),(3,2))\). One inflation gives \((3,2,2,1)\mid(2,1,3,2)\) as one noncoincident block. No per-state productivity claim is legitimate, even for Branch B.
