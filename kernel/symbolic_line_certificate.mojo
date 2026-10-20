@@ -384,7 +384,9 @@ def certified_lines() -> List[List[Int]]:
         [CLASS_D, 1, 1, 1, 0, 1, 0, 19, 246, 19, 0, 0],
         [CLASS_D, 1, 1, 1, 0, 1, 1, 21, 181, 21, 0, 0],
         [CLASS_D, 1, 1, 1, 0, 1, 2, 22, 132, 22, 0, 0],
-        [CLASS_D, 1, 1, 1, 0, 1, 3, 18, 97, 17, 1, 0],
+        # PR #288 endpoint clipping adds sign reads: q0 18 -> 21; the
+        # extra finite members certify exactly (validation note 2026-10-20).
+        [CLASS_D, 1, 1, 1, 0, 1, 3, 21, 97, 20, 1, 0],
         [CLASS_D, 1, 1, 1, 0, 1, 4, 49, 93, 47, 2, 0],
         [CLASS_D, 1, 1, 1, 0, 2, -1, 22, 93, 21, 0, 1],
         [CLASS_D, 1, 1, 1, 0, 2, 0, 15, 93, 15, 0, 0],
@@ -414,7 +416,8 @@ def certified_norm_lines() -> List[List[Int]]:
         [CLASS_D, 3, 11, 3, 12, 4, 14, 2, 105, 2, 0, 0],
         [CLASS_D, 3, 12, 3, 13, 4, 15, 2, 105, 2, 0, 0],
         [CLASS_D, 3, 13, 3, 14, 4, 16, 2, 105, 2, 0, 0],
-        [CLASS_D, 3, 14, 3, 15, 4, 17, 4, 105, 4, 0, 0],
+        # Same clipping-induced threshold reconciliation: 4 -> 6.
+        [CLASS_D, 3, 14, 3, 15, 4, 17, 6, 105, 6, 0, 0],
         [CLASS_D, 3, 15, 3, 16, 4, 18, 10, 105, 10, 0, 0],
         [CLASS_D, 3, 16, 3, 17, 4, 19, 12, 105, 12, 0, 0],
         [CLASS_D, 3, 17, 3, 18, 4, 20, 19, 105, 19, 0, 0],

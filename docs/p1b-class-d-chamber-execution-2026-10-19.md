@@ -1,8 +1,10 @@
 # Class-D positive-b chamber execution — 2026-10-19
 
-Status: **complete local component replay with the lock-matched Mojo compiler/runtime**; no family theorem promotion.
-The latest result is six cores, all 73 returned strip obligations (69 distinct
-lines), and all six explicit lines. Earlier partial runs below remain historical.
+Status: **complete native aggregate replay with the lock-matched Mojo compiler/runtime**; no family theorem promotion.
+The October 20 native aggregate returns exit0 after all six cores, all 73
+returned strip obligations (69 distinct lines), all six explicit lines and
+952 finite-prefix PIP checks. See the [latest validation and scope note](class-d-chamber-validation-2026-10-20.md).
+Earlier partial, interrupted and failed-validation runs below remain historical.
 Base: `85fafd3383a2837785199ad7f66e913c0e86c2a7` (merged PR #289).
 The dedicated original run is [39292497570](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/39292497570).
 Execution receipts, source variants and replay instructions are in
@@ -139,7 +141,7 @@ preserved rather than overwritten by repaired runs.
 | Plus positive-b closure | Requires all six cores, all returned strips and six explicit lines; local partial receipts do not promote it |
 | Minus selected lower-rank state | Separate PR #287 algebraic result |
 | Minus conditional target realness | Separate PR #288 implication; not carrier closure |
-| Minus positive-b closure | PR #290 now requires uniform CycleSum- (|wx+wc+wy|<=1 on genuine seed-reachable cycles); RC- was refuted by four productive noncarrier cyclic states. Conditional all-child closure is a separate stronger route. Its a>=2 transport domain does not silently cover a=0,1 |
+| Minus positive-b closure | Separate PR #290 at 3b16b54 now records a uniform seed-carrier proof on a>=2,b>=1, complete a=0,1 strips, and a native minus-residual aggregate. Its full Pixi/CI integration remains pending; no minus proof is imported into this plus contribution |
 | Universal #139 / #84 | Open; a class-D contribution is not universal hitting |
 | General PSC / G1 | Open; no quantifier or spectral import is enlarged |
 
@@ -177,8 +179,11 @@ Main advanced to `c0c5f9d10f3025d8fab8df07e4a300b1b173a70a` during this run
 (PR #292, two documentation files). This branch incorporates it; no executed
 kernel dependency changed from the recorded `85fafd3` base.
 
-Issue #139's subsequent correction and PR #290 refute **RC-**: the
-four genuine noncarrier cyclic states U/Ubar/V/Vbar have productive exits.
+The earlier PR #290 diagnosis said **RC-** was refuted by productive
+U/Ubar/V/Vbar cycles. Its later correction at `00c0cb8` distinguishes
+formal cycles from seed reachability: the checked 56-specimen seed grid has
+no escaped recurrent labels. Unrestricted carrier inclusion fails, but that
+is not an observed counterexample to the seed-qualified premise.
 The current sufficient premise is **CycleSum-**, the bound |wx+wc+wy|<=1
 on genuine seed-reachable cycles. The guarded 1,971-state superset and
 exceptional exits in that separate branch reduce minus BH to this open
@@ -340,6 +345,31 @@ The declared candidate-pair complexity changes from O(m*n) to O(m+n+K).
 
 No additional exact mathematical obstruction arose after the two sign-reader
 repairs. The established lattice cover and all existing caps/checks are
-preserved; no carrier extension is introduced. The current minus-side
-CycleSum- obligation, universal boundary hitting, and general PSC remain
-logically separate and open. No governed claim status is promoted.
+preserved; no carrier extension is introduced. The separate minus-side contribution has since advanced to the native
+residual certificate recorded in PR #290 at 3b16b54; see the October 20
+validation note for the inspected receipt and scope. Universal boundary
+hitting and general PSC remain open. No governed plus-family status is promoted.
+
+## October 20 native aggregate and validation completion
+
+The uninterrupted serial driver now emits its own
+`CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED` receipt and returns exit0.
+All six cores, 73 strips (69 distinct lines), six interfaces and 952 finite-prefix
+PIP obligations reconcile exactly with the earlier same-binary component
+campaign. The old interrupted serial run is retained and not relabelled.
+
+The full pinned symbolic-line regression now passes after tracing and
+reconciling PR #288's two inherited sufficient-threshold changes. Exact
+transition checks and complete finite prefixes preserve coverage. The
+hash-verified manuscript reconstruction and existing conditional completion
+record are reused from PR #290; manuscript/provenance checks, focused
+governance regressions and all 16 TLA+ models pass. No universal premise is
+supplied by that registration.
+
+Full Pixi installation still fails at a dependency download and the dedicated
+CI runs remain queued at the recorded recheck. PR #293 stays draft with no
+governed plus-family promotion. PR #290 now separately records its complete
+minus residual certificate and minus-branch assembly at 3b16b54; its source and
+evidence hashes were inspected, not rerun here. Universal #139/#84 and general
+PSC remain open. See the [validation note](class-d-chamber-validation-2026-10-20.md)
+and [new evidence packet](../evidence/class-d-chamber-validation-2026-10-20/).

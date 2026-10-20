@@ -73,18 +73,25 @@ At the October 16 snapshot the `b=0` certificates were not yet integrated;
 merged PR #277 now certifies both boundary lines. The remaining target is the
 two positive-`b` interiors.
 
-**October 19 execution continuation (draft PR #293):** the plus-side
-component computation now completes all six chamber cores, all 73 returned
-strip obligations (69 distinct lines), and six explicit lines using the
-lock-matched Mojo compiler/runtime at one source version. The two slow
-low-1 lines pass including their complete finite prefixes. This is local
-execution evidence; full Pixi/CI integration and inherited validation failures
-remain outstanding, and no family status is promoted. The separate serial
-aggregate was interrupted as duplicate work and supplies no success marker.
-The minus target is the open CycleSum- premise in PR #290; RC- was refuted
-by productive noncarrier cycles. Universal #139/#84 and general PSC stay open.
-See the [execution note](p1b-class-d-chamber-execution-2026-10-19.md) and
-[evidence index](../evidence/class-d-chamber-continuation-2026-10-19/README.md).
+**October 20 native execution continuation (draft PR #293):** the complete
+plus aggregate returns exit0 and emits its own receipt after six cores,
+73 returned strips (69 distinct lines), six explicit interface lines and
+952 finite-prefix PIP obligations. The lock-matched compiler/runtime and
+byte-identical pre/post-pin-repair aggregate builds are recorded. The full
+symbolic-line regression, repaired manuscript integrity, focused ledger
+checks and all 16 TLA+ models pass. Earlier failures and interrupted runs
+remain archived. Full Pixi/CI integration is pending; no governed plus-family
+status is promoted.
+
+The separate PR #290 at 3b16b54 now records the seed-carrier proof supplying
+CycleSum- on its core domain, complete omitted boundary strips, and a native
+minus-residual certificate; its existing-wedge assembly covers the PIP minus
+branch. This session verifies its source/evidence hashes and receipt, without
+rerunning or importing it. The two scoped contributions are not universal
+#139/#84 or general PSC. Those targets remain open, with universal aligned
+coincidence and boundary hitting separately open in the conditional completion
+ledger. See the [validation note](class-d-chamber-validation-2026-10-20.md)
+and [evidence index](../evidence/class-d-chamber-validation-2026-10-20/README.md).
 
 ## Corrections and negative controls
 
