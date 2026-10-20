@@ -747,13 +747,13 @@ struct _Closure:
         var v2 = _least_at(self.line, self.sign, h0, h1, 2 * SAMPLE_BASE, SAMPLE_BASE, strict)
         var slope = (v2 - v1) // SAMPLE_BASE
         if v2 - v1 != slope * SAMPLE_BASE:
-            raise Error("a run-position bound is not affine in q at the samples")
+            raise Error(String("a run-position bound is not affine in q at the samples: base=", SAMPLE_BASE, " values=", v1, ",", v2, " strict=", strict, " h0=", tp_key(h0), " h1=", tp_key(h1)))
         var slope_b = 0
         if tp_has_b(h0) or tp_has_b(h1) or tp_has_b(self.line.field.chi):
             var v3 = _least_at(self.line, self.sign, h0, h1, SAMPLE_BASE, 2 * SAMPLE_BASE, strict)
             slope_b = (v3 - v1) // SAMPLE_BASE
             if v3 - v1 != slope_b * SAMPLE_BASE:
-                raise Error("a run-position bound is not affine in b at the samples")
+                raise Error(String("a run-position bound is not affine in b at the samples: base=", SAMPLE_BASE, " values=", v1, ",", v2, ",", v3, " strict=", strict, " h0=", tp_key(h0), " h1=", tp_key(h1)))
         var c0 = v1 - (slope + slope_b) * SAMPLE_BASE
         var mu = qx_affine2(c0, slope, slope_b)
         var floor_sign = 1 if strict else 0
@@ -784,16 +784,30 @@ struct _Closure:
                         var c = self.intern(SymVertex(a2, b2, base^))
                         self.adj[i].append(c)
                     continue
-                # offset base + m e_y; real iff ell_b2 + t + m ell_y > 0 and ell_a2 - t - m ell_y > 0
+                # offset base + m e_y, with actual run-position interval
+                # m in [rlo,rhi].  Test geometric emptiness at those legal
+                # endpoints BEFORE fitting any unconstrained geometric bound.
+                # This is the same ordering used by symbolic_cone: an empty
+                # occurrence block has no boundary that needs an affine fit.
                 var t = self.line.t_of(base)
-                var lo = self.least_m(tp_add(ell[b2], t), ell[y], True)
-                var hi_plus = self.least_m(tp_sub(t, ell[a2]), ell[y], False)  # least m with t + m ell_y >= ell_a2
-                var hi = qx_sub(hi_plus, qx_const(1))
-                # run positions: m = k_b - k_a with k in [0, run - 1]
+                var lower = tp_add(ell[b2], t)       # lower(m) = ell_b2+t+m ell_y > 0
+                var upper = tp_sub(t, ell[a2])       # upper(m) = t-ell_a2+m ell_y < 0
                 var rlo = qx_neg(qx_sub(self.line.run[v.top], qx_const(1))) if sa == 1 else QX()
                 var rhi = qx_sub(self.line.run[v.bottom], qx_const(1)) if sb == 1 else QX()
-                var low = lo.copy() if self.ev.sign(qx_sub(lo, rlo)) >= 0 else rlo.copy()
-                var high = hi.copy() if self.ev.sign(qx_sub(rhi, hi)) >= 0 else rhi.copy()
+                if self.positive(tp_add(lower, tp_scale(ell[y], rhi))) <= 0:
+                    continue  # even the last legal run position is not real
+                if self.positive(tp_add(upper, tp_scale(ell[y], rlo))) >= 0:
+                    continue  # even the first legal run position is past the upper wall
+
+                # Clip by a run endpoint whenever that endpoint is already
+                # inside the real interval.  Fit only a surviving geometric
+                # boundary; never fit the boundary of an empty block.
+                var low = rlo.copy()
+                if self.positive(tp_add(lower, tp_scale(ell[y], rlo))) <= 0:
+                    low = self.least_m(lower, ell[y], True)
+                var high = rhi.copy()
+                if self.positive(tp_add(upper, tp_scale(ell[y], rhi))) >= 0:
+                    high = qx_sub(self.least_m(upper, ell[y], False), qx_const(1))
                 var gap = qx_sub(high, low)
                 if not qx_is_const(gap):
                     if self.ev.sign(gap) < 0:
@@ -897,7 +911,10 @@ def symbolic_line_graph(var line: Line) raises -> SymbolicLineGraph:
     while done < len(cl.queue):
         var i = cl.queue[done]
         done += 1
-        cl.expand(i)
+        try:
+            cl.expand(i)
+        except e:
+            raise Error(String("symbolic closure source=", cl.vertices[i].key(), ": ", e))
     out.pip = True
     out.threshold = cl.ev.threshold.copy()
     out.b_floor = cl.ev.b_floor

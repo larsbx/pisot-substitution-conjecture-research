@@ -21,9 +21,11 @@ the complete compiled-declaration audit, and the Ω/LC ledger registration.
   power/rotation/mirror class; 1,248 of 4,554 standing-corpus specimens have a
   witness. The Brun-composite corollary is likewise restricted to its declared
   family.
-- The residual PIP class-D region below `r = q - 1` is exactly two parameter
-  quadrants. This is a complete reduction of the parameter target, not a
-  boundary-hitting theorem for the quadrants.
+- The residual PIP class-D region below `r = q - 1` is parameterized by two
+  affine quadrants. Merged PR #277 now certifies both infinite `b=0`
+  boundary lines; the exact unresolved class-D target is the two positive-`b`
+  interiors `s=±1, a>=0, b>=1`. This scoped progress does not establish
+  universal #139.
 - The Nakaishi, projected-walk, radius, K2, and ternary good-exit results are
   audits, negative controls, or conditional theorems. They require compatible
   occurrence replay and whole child-closed-set reasoning; none closes #84,
@@ -104,6 +106,13 @@ premise. The project continues through complete closure construction first and
 reviews the assembled chain afterward. Status wording must remain truthful.
 The machine-readable rule is `../claim_governance.toml [review_policy]`.
 
+**2026-10-19 project convention:** mechanically sufficient results at their
+exact recorded scope are implicitly approved for continued project progression
+and may be load-bearing once their proof/certificate, hypotheses and required
+exact replay/CI receipts are complete. This is *project acceptance*, not a
+claim that independent human review occurred. Finite-domain, conditional,
+family-scoped and universal claims retain their existing quantifiers.
+
 1. `side-notes-ledger.md` — live, append-only record of side findings:
    refuted mechanisms, redirected routes, specimens settled by the literature,
    withdrawn figures, finite observations and tooling pitfalls. Read it
@@ -129,10 +138,9 @@ The machine-readable rule is `../claim_governance.toml [review_policy]`.
 6. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
-7. `completion-ledger-2026-10-16.md` — latest merged weekly completion
-   snapshot, refreshed to `main@b378392`; it separates imported symbolic and
-   Barge-class scope, conditional reductions, exact negative controls, open
-   PR candidates, and the unchanged universal provenance gaps.
+7. `completion-ledger-2026-10-16.md` — weekly snapshot at `main@b378392`, with a
+   dated 2026-10-19 reconciliation for the merged class-D boundary work and
+   the project-acceptance convention; current reconciled head is `main@e062e330`.
 8. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
 9. `conjecture-ledger.md` — live prose dependency ledger.

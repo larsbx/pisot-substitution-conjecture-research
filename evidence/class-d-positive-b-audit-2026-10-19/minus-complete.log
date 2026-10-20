@@ -1,0 +1,3 @@
+BEGIN s=-1
+stack trace was not collected. Enable stack trace collection with environment variable `MODULAR_DEBUG=stack-trace-on-error`
+Unhandled exception caught during execution: symbolic closure source=1|1|{-1,}||: a run-position bound is not affine in q at the samples: base=200 values=811,1412 strict=False h0=[{1,}][{-6,-3,}{-1,}][{-7,-3,}{-1,}] h1=[][{-2,}][{1,}]

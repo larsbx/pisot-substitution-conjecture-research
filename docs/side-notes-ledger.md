@@ -1708,3 +1708,44 @@ claim statuses or named Lean proofs. Evidence:
 2026-10-16 — Consolidation validation also reproduced main@f6e181d's unrelated class-D agreement-test failure: full_oracle.report() emits tuple vertices but the stored JSON loads list vertices. Normalize only the test's generated report through JSON before exact equality; the oracle, certificate bytes and mathematical assertions are unchanged. The same main had one missing generated proof-bank opening from #276; tools/make_proof_bank.py restores it. Evidence: tests/test_class_d_certificate_agreement.py and regenerated docs/proof-bank.md/proof/proof-bank.json.
 
 2026-10-16 — Correction to the initial #267/#275 consolidation above: #278 review found immediate complementary-divisor visits can regress high-degree small-root inputs (x-2)(x^(n-1)-2520) by creating huge intermediates at ±5040 before reaching root 2. Retain ascending Python divisors; canonical Mojo defers complements until all smaller divisors. Revised degree-5,000 Python / degree-128 Mojo controls and paired measurements are in evidence/rational-root-2026-10-16-r2/; the original evidence packet is preserved but superseded. The selected Python cubic-grid gain is 2.61×, full-screen control 0.96× (unchanged code/noise); the initial 48.84× large-root speed claim is withdrawn for this selection. The final Int.MIN test uses [-2^63,2^63-1,1], root 1, to avoid a multi-billion-step full divisor search. Evidence: docs/rational-root-optimization-2026-10-16.md and the revised regression/benchmark programs.
+
+2026-10-19 — **Project progression acceptance convention.** For continued PSC
+proof development, a result that is mechanically sufficient at its exact
+recorded scope (proof/certificate complete, hypotheses preserved, required
+exact replay/CI receipts present) is implicitly project-approved and may be
+load-bearing without waiting for a separate human-review event. This is an
+operational interpretation of the existing non-blocking review policy, not a
+claim that independent human review occurred. Keep finite-domain, conditional,
+family-scoped and universal quantifiers unchanged; independent human review
+remains final validation. Evidence/status surfaces: `AGENTS.md`, `README.md`,
+`docs/README.md`, live roadmap, proof ladder and claim/source map.
+
+2026-10-19 — **Issue #9 closure clarification.** Issue #9 was closed
+`completed` on 2026-10-07, but its thread contains no theorem-bearing closure
+argument and its preceding canonical notes explicitly left C4/Part (b) open.
+Interpret the closure as completion/routing of that research track, not proof
+of C4. The surviving obligations are word-level: occurrence/address-compatible
+realizability, ordered hub-residual words across actual interior children, and
+alignment/coverage strong enough to force the good edge. Algebraic quotient
+compatibility, a projected zero, or one replayable path is insufficient. Keep
+G1 extraction separate: C4 is about a supplied finite strict SCC; G1 is the
+separate global finiteness/extraction problem. Canonical locations:
+`docs/c4-good-edge-system-bridge.md`,
+`docs/target-aware-bpa-diagnostic-2026-10-02.md`, successor #84/#138/#139.
+
+2026-10-19 — **Post-#277 class-D status correction.** PR #277 merged the
+distinct class-D `b=0` certificate systems and their occurrence-agreement
+checks. Both infinite boundary lines are therefore available as scoped,
+mechanically certified inputs for project progression. The exact residual
+class-D target is the two positive-`b` interiors
+`s=±1, a>=0, b>=1`. Do not call these determinant-two domains "unimodular
+parameter quadrants"; use **integral affine parameter quadrants**. The recorded
+rank-one update refutes literal transport of the sealed `b=0` occurrence
+spine into `b>0`, so the next certificate must be genuinely two-parameter.
+General #139/#84/G1/PSC remain open. Evidence: merged PR #277,
+`docs/p1b-boundary-hitting-progress-2026-10-08.md` §§4e–4m,
+`tests/test_class_d_certificate_agreement.py`.
+
+2026-10-19 — **PR #283 executed refusal audit.** With available Mojo 1.1.0 (8189361e), both complete positive-b drivers refuse their first integer-affine run fit (plus -808/-1408/-1007; minus 811/1412). After explicit-copy compile repairs, the sealed-cover checkers refuse at minus row 1 and plus row 0 on auxiliary polynomials that change sign on every shifted quadrant; both rows nevertheless have positive geometric margins by the exact Perron identity beta(d-2)=2D+2s/beta. No escaped child was reached, so no carrier enlargement is justified. Plus row 12 changes actual realness along b=a versus b=10a, ruling out its classification by a fixed real subcover on a single quadrant. Preserve caps/exact arithmetic and the literal-spine negative control; proceed by clipping/chambers or conditional upper-cover arguments, not larger corner guesses. Pinned pixi environment could not be installed; GitHub jobs observed queued. Evidence: docs/p1b-class-d-positive-b-wedge-2026-10-19.md section 10; evidence/class-d-positive-b-audit-2026-10-19/; kernel/tests/test_class_d_positive_b_obstructions.mojo. No claim promotion or merge-as-proved.
+
+2026-10-19 — **PR #283 base validation findings.** The audit found unchanged-base claim-governance status-anchor drift (docs/proof-ladder.md:17, DensityToPDSBridge), stale proof-bank.json, and malformed/trailing manuscript content rejected at line 1357. These are distinct from positive-b mathematical refusals; generated ledger/math catalogue, vendoring and Markdown checks passed. Evidence: docs/p1b-class-d-positive-b-wedge-2026-10-19.md section 10 and evidence/class-d-positive-b-audit-2026-10-19/run-context.json. No gate waived.

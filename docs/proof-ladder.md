@@ -1,5 +1,31 @@
 # Proof ladder
 
+## Primary ladder: two universal lemmas
+
+The project now treats seedwise overlap productivity (#84) through the
+manuscript's **Two-obstruction completion theorem**
+(`thm:two-obstruction-completion`). The shortest honest ladder is:
+
+```text
+PIP
+=> finite exact seed-patch overlap graph                         [PROVED]
+=> closed recurrent obstruction normal form                     [PROVED]
+=> A1′: residual fixed-letter hub edge cannot remain bad         [OPEN: #138]
+ + BH: every cyclic strict zipper hits offset zero               [OPEN: #139]
+=> every seed-reachable overlap is productive                    [PROVED assembly]
+=> dense eventual coincidence                                   [PROVED]
+=> pure discrete spectrum                                       [IMPORTED bridge]
+```
+
+The two open lines are the primary proof obligations. The aligned endpoint
+normal form reduces #138 to A1′ (and reversal), while #139 is the
+occurrence-compatible coverage theorem in the full non-unit representation.
+If both close without an independent tile-length-independence, legality, FI
+or unimodularity hypothesis, #84 closes and the PDS conclusion follows
+immediately. G1b-2, SCC Producer/K2 and realization remain valuable parallel
+theorems, but they are not prerequisites of this direct route.
+
+
 The current shortest route to the Pisot Substitution Conjecture in the standing regime has **one open mathematical premise**: seedwise overlap productivity. The finite-BPA/G1 and closed-carrier programmes remain important stronger structural routes, but they are no longer prerequisites of the shortest PDS sufficiency theorem.
 
 For detailed claim status use `docs/claim-status-and-source-map-2026-09-13.md`; for the live completion priorities use `docs/research-roadmap-2026-09-21.md`; for the latest merged weekly snapshot use `docs/completion-ledger-2026-10-16.md`; theorem statements and imported hypotheses are in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
@@ -14,7 +40,7 @@ universal rung above.
   at most 4 or total image length at most 8. The route uses explicit imported
   overlap-coincidence and Meyer-property theorems and no longer depends on
   Proposition V(2) or Theorem B.
-- **Computer-assisted family theorems, human review pending:** Theorems L, L′
+- **Computer-assisted family theorems, human review pending; project-accepted for progression:** Theorems L, L′
   and L″ cover 47 one-parameter determinant-two lines; Theorem W covers the
   declared class-D wedges, in particular all PIP members with `r >= q - 1`.
 - **Imported family scope:** Sirvent–Solomyak transfers tiling-flow PDS to the
@@ -26,22 +52,33 @@ universal rung above.
   overlap productivity, formal productivity, G1 or PDS uniformly for every
   PIP substitution.
 
-## Next scoped rung: the residual class-D quadrants (2026-10-14)
+## Next scoped rung: the residual positive-b class-D interiors (2026-10-19)
 
-The exact parameter cover in
-`p1b-boundary-hitting-progress-2026-10-08.md` §4d reduces every PIP class-D
-member below `r=q-1` to one of two complete affine quadrants `a,b>=0`.
-No boundary-hitting theorem for those quadrants is claimed.
+The exact parameter cover reduces every PIP class-D member below `r=q-1` to
+two affine quadrants `a,b>=0`. Merged PR #277 now certifies both infinite
+`b=0` boundary lines with exact occurrence-aware machinery. The remaining
+class-D target is therefore exactly
 
-1. Prove common-boundary hitting for all seed-reachable overlaps on both
-   quadrants, including their changing-graph `b=0` edges.
-2. Combine with Corollary W1 to cover all determinant-two class D.
-3. Apply the depth note §7 for G1 on that class; with Theorem E, assemble
-   PDS on that class.
+```text
+s = -1, a >= 0, b >= 1
+s = +1, a >= 0, b >= 1.
+```
+
+The sealed `b=0` target spine is not a two-parameter proof: the recorded
+rank-one matrix update changes a selected child by `(sum w)e_y` unless the
+occurrence choice changes with `b`.
+
+1. Prove a genuinely two-parameter occurrence-labelled common-boundary
+   theorem on both positive-`b` interiors.
+2. Combine it with Corollary W1 and the merged `b=0` lines to cover all
+   determinant-two class D.
+3. Apply the depth note §7 for G1 on that class; with the required #138 input,
+   assemble PDS on the corresponding scope.
 4. Extend coverage to the remaining classes and then the standing universal
    target. Class-level closure alone does not establish general #139.
 
-Human review remains pending and nonblocking throughout these proof steps.
+Mechanically sufficient scoped results are project-accepted for progression;
+independent human review remains final validation and is not being claimed.
 
 ## October 16 evidence boundary
 
@@ -213,7 +250,7 @@ A coincidence has offset zero, so `K' <= D` and this premise is implied by all-s
 
 ## PDS implies G1, so G1 is necessary
 
-**Repository-proved** (manuscript Proposition `prop:PDS-implies-G1`; ledger `PDSImpliesRepoG1`, the Theorem S route of `docs/p1b-vertex-coincidence-box-2026-10-02.md` §5.1; independently audited 2026-10-04, **human review pending**, `docs/side-notes-ledger.md` §7).
+**Repository-proved** (manuscript Proposition `prop:PDS-implies-G1`; ledger `PDSImpliesRepoG1`, the Theorem S route of `docs/p1b-vertex-coincidence-box-2026-10-02.md` §5.1; internally/adversarially audited 2026-10-04, **project-accepted for progression; independent human validation outstanding**, `docs/side-notes-ledger.md` §7).
 
 ```text
 pure discrete spectrum
@@ -365,7 +402,7 @@ Every proposed completion proof must preserve:
 
 1. **P0 — synchronization.** Keep manuscript, claim/source map, conjecture ledger, proof ladder, README, roadmap, issue statements and TLA dependency comments aligned.
 2. **P1a — aligned branch (#138).** Prove the ternary two-sided strong-coincidence statement needed to eliminate every aligned bad SCC, or reduce it to a strictly smaller named theorem. Keep the Barge–Diamond two-letter/general-existence scopes distinct.
-3. **P1b — strict-zipper branch (#139).** Prove an occurrence-compatible matched-target replay/lifting theorem and then a uniform good-branch or boundary-hitting theorem for every realized child-closed candidate, including both residual class-D quadrants and their changing-graph `b=0` edges. Do not infer this from a projected path or one recurrent branch.
+3. **P1b — strict-zipper branch (#139).** Prove an occurrence-compatible matched-target replay/lifting theorem and then a uniform good-branch or boundary-hitting theorem for every realized child-closed candidate. In class D, merged PR #277 already covers both `b=0` boundary lines; the exact residual is `s=±1, a>=0, b>=1`. Do not infer this from a projected path, one recurrent branch, or literal transport of the boundary spine.
 4. **P1 — overlap productivity (#84).** Assemble P1a and P1b, or replace them with one stronger theorem excluding every bad closed irreducible SCC. This remains the only open premise on the current shortest PDS route.
 5. **P2 — G1b-2.** Continue as a stronger theorem on BPA finiteness, with the non-unimodular and label/order firewalls intact. G1 now has three sufficient premises — G1b-2, all-seed overlap productivity (overlap-depth route), or all-seed strict-zipper exclusion alone (half-coincidence route) — and is in any case a necessary consequence of PDS, so G1b-2 is the least load-bearing of the three.
 6. **P3 — concentration and wedge productivity.** Continue as the alternative finite-BPA/SCC route only when new invariants add information beyond child counts and full wedge span.

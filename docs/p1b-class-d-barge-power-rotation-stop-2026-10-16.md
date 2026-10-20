@@ -2,7 +2,13 @@
 
 **Status:** exact symbolic endpoint-map theorem; **negative stop/go**, not pure-discrete-spectrum or #139 closure. This closes a *prior-art applicability question*, not a Pisot-conjecture premise.
 
-**Target:** the unsettled portion of class D of Theorem E, including the complete determinant-two \(b=0\) boundaries in the two residual parameter quadrants and their \(b>0\) interiors. Open review contributions #263 and #266 develop distinct exact target-aware certificates for parts of that region; nothing in this note imports or promotes those unmerged results.
+**2026-10-19 status correction:** PRs #263/#266 are no longer open review
+candidates; their distinct `b=0` certificate systems were integrated by
+merged PR #277. The theorem in this note is unchanged. The remaining class-D
+boundary-hitting target is the two positive-`b` interiors
+`s=±1, a>=0, b>=1`.
+
+**Target:** the unsettled portion of class D of Theorem E, including the complete determinant-two \(b=0\) boundaries in the two residual parameter quadrants and their \(b>0\) interiors. At the time this note was written, #263/#266 were open review contributions. They were later integrated by merged PR #277; this note itself neither proves nor depends on those boundary certificates.
 
 ## 1. Primary prior art and precise scope
 
@@ -65,6 +71,6 @@ that the first/last maps of powers \(n=1,2,3\) match (2), that every such power 
 
 The contrasting *positive* regression from PR #271 checks direct mirror-Barge witnesses on two members of its own family. Both controls should remain together: class-D is not accidentally classified as a prior-art family, and the already-solved mirror family is not accidentally promoted as new.
 
-**Fail-closed research decision:** do not rerun \`barge_witness\` on growing class-D parameters in the hope that a higher power or one of the *supported* common-word rotations eventually succeeds. Such an attempt is ruled out for all powers by (2). Instead retain class-D's established explicit overlap witnesses and advance the independent occurrence-labelled symbolic/target-aware boundary certificates. PRs #263/#266 are **review candidates** until their exact provenance and integrations are accepted; this note does not authorize merging them or turn their pending \(b=0\) certificates into theorem authority.
+**Fail-closed research decision:** do not rerun \`barge_witness\` on growing class-D parameters in the hope that a higher power or one of the *supported* common-word rotations eventually succeeds. Such an attempt is ruled out for all powers by (2). Instead retain class-D's established explicit overlap witnesses and advance the independent occurrence-labelled symbolic/target-aware boundary certificates. Historical note: #263/#266 were review candidates when this stop/go was written. Merged PR #277 later integrated their scoped \(b=0\) certificate machinery; the positive-\(b\) interiors remain open.
 
 The remaining mathematical obligation remains universal #139 (or a scoped class-D uniform boundary-hitting theorem with complete parameter coverage). Neither this theorem nor its tests prove a child-closed bad-SCC contradiction, PDS, G1 or general PSC.
