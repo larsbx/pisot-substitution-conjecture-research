@@ -39,6 +39,34 @@ def test_trial_8381_is_not_per_state_immediate_productivity() raises:
     assert_false(parts[0].is_coincidence())
 
 
+def test_trial_8381_component_is_branch_b_but_gauge_vacuous() raises:
+    # Independently cross-checked by a direct small BPA factorization oracle:
+    # 11 reachable states, one noncoincident-closed recurrent component of
+    # size 3, all five within-SCC child occurrences oriented negatively.
+    # This is period-one phase -1 (phase bit 1), hence Branch B.
+    var sigma = parse_substitution_key("021/21/10")
+    var graph = build(sigma, 20000)
+    assert_false(graph.capped)
+    assert_equal(graph.size(), 11)
+    var comps = recurrent_noncoincident_sccs(graph)
+    var seen = 0
+    for ci in range(len(comps)):
+        if not profile_component(graph, comps[ci]).is_sink():
+            continue
+        var record = audit_closed_component(sigma, graph, comps[ci])
+        assert_equal(record.states, 3)
+        assert_equal(record.occurrences, 5)
+        assert_equal(record.branch, BRANCH_B)
+        assert_true(record.direct_producer)
+        assert_true(record.has_endpoint_diagonal)
+        assert_true(record.endpoint_gauge)
+        # Critical: the positive gauge result is *vacuous* here because all
+        # three external endpoint profiles are distinct.
+        assert_false(record.has_duplicate_profiles)
+        seen += 1
+    assert_equal(seen, 1)
+
+
 def test_tribonacci_closed_scc_is_not_a_strict_carrier() raises:
     var sigma = parse_substitution_key("01/02/0")
     var graph = build(sigma, 20000)
@@ -76,6 +104,8 @@ def main() raises:
     print("[PASS] endpoint profiles preserve all four ordered letters")
     test_trial_8381_is_not_per_state_immediate_productivity()
     print("[PASS] trial 8381 refutes per-state Branch-B productivity")
+    test_trial_8381_component_is_branch_b_but_gauge_vacuous()
+    print("[PASS] trial 8381: Branch B but endpoint-gauge success is vacuous")
     test_tribonacci_closed_scc_is_not_a_strict_carrier()
     print("[PASS] exact SCC child signing and closure flags")
     test_bi_injective_endpoint_control_has_no_endpoint_diagonal()
