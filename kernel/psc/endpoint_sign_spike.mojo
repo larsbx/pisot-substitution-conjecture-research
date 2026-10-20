@@ -59,11 +59,13 @@ struct SignedComponent(Copyable, Movable):
     var direct_producer: Bool
     var endpoint_gauge: Bool
     var conflicting_profile_edges: Bool
+    var has_duplicate_profiles: Bool
 
     def __init__(
         out self, branch: Int, states: Int, occurrences: Int,
         has_endpoint_diagonal: Bool, direct_producer: Bool,
-        endpoint_gauge: Bool, conflicting_profile_edges: Bool
+        endpoint_gauge: Bool, conflicting_profile_edges: Bool,
+        has_duplicate_profiles: Bool
     ):
         self.branch = branch
         self.states = states
@@ -72,6 +74,7 @@ struct SignedComponent(Copyable, Movable):
         self.direct_producer = direct_producer
         self.endpoint_gauge = endpoint_gauge
         self.conflicting_profile_edges = conflicting_profile_edges
+        self.has_duplicate_profiles = has_duplicate_profiles
 
 
 def audit_closed_component(
@@ -91,10 +94,17 @@ def audit_closed_component(
     var prefix = prefix_endpoint_map(sigma)
     var suffix = suffix_endpoint_map(sigma)
     var diagonal = False
+    var duplicate_profiles = False
+    var seen_profiles = Dict[Int, Bool]()
     for i in range(n):
         ref s = graph.states[comp[i]]
         index[s.key()] = i
-        profiles.append(profile_key(s, len(sigma)))
+        var profile = profile_key(s, len(sigma))
+        if profile in seen_profiles:
+            duplicate_profiles = True
+        else:
+            seen_profiles[profile] = True
+        profiles.append(profile)
         if endpoint_diagonal(s, prefix, suffix):
             diagonal = True
 
@@ -165,7 +175,7 @@ def audit_closed_component(
 
     return SignedComponent(
         branch, n, len(edges), diagonal, shape.direct_coincidence,
-        gauge, profile_conflict
+        gauge, profile_conflict, duplicate_profiles
     )
 
 
@@ -185,6 +195,9 @@ struct SpikeTotals(Copyable, Movable):
     var b_no_endpoint_diagonal: Int
     var b_endpoint_gauge: Int
     var b_no_endpoint_gauge: Int
+    var b_duplicate_profiles: Int
+    var b_duplicate_profiles_endpoint_gauge: Int
+    var b_max_size: Int
     var a_profile_conflict: Int
     var c_profile_conflict: Int
 
@@ -204,6 +217,9 @@ struct SpikeTotals(Copyable, Movable):
         self.b_no_endpoint_diagonal = 0
         self.b_endpoint_gauge = 0
         self.b_no_endpoint_gauge = 0
+        self.b_duplicate_profiles = 0
+        self.b_duplicate_profiles_endpoint_gauge = 0
+        self.b_max_size = 0
         self.a_profile_conflict = 0
         self.c_profile_conflict = 0
 
@@ -224,6 +240,9 @@ struct SpikeTotals(Copyable, Movable):
             " B_no_endpoint_diagonal=", self.b_no_endpoint_diagonal,
             " B_endpoint_gauge=", self.b_endpoint_gauge,
             " B_no_endpoint_gauge=", self.b_no_endpoint_gauge,
+            " B_duplicate_profiles=", self.b_duplicate_profiles,
+            " B_duplicate_profiles_endpoint_gauge=", self.b_duplicate_profiles_endpoint_gauge,
+            " B_max_size=", self.b_max_size,
             " A_profile_conflict=", self.a_profile_conflict,
             " C_profile_conflict=", self.c_profile_conflict,
         )
@@ -269,6 +288,12 @@ def audit_specimen(
                 totals.c_profile_conflict += 1
         else:
             totals.branch_b += 1
+            if info.states > totals.b_max_size:
+                totals.b_max_size = info.states
+            if info.has_duplicate_profiles:
+                totals.b_duplicate_profiles += 1
+                if info.endpoint_gauge:
+                    totals.b_duplicate_profiles_endpoint_gauge += 1
             if biinjective:
                 totals.biinjective_b += 1
             if info.has_endpoint_diagonal:
@@ -292,6 +317,7 @@ def audit_specimen(
                 " biinjective=", biinjective,
                 " endpoint_diagonal=", info.has_endpoint_diagonal,
                 " endpoint_gauge=", info.endpoint_gauge,
+                " duplicate_profiles=", info.has_duplicate_profiles,
             )
             for z in range(len(comps[k])):
                 var node = comps[k][z]
