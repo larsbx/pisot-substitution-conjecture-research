@@ -13,6 +13,8 @@ from mojo_smoke.claims import require_contract
 from psc.perron_field3 import build_perron_field3, cubic_add_checked, perron_tile_lengths_in
 from psc.rauzy_torus import (
     FREQUENCY_SCALE,
+    LIFT_SPAN,
+    MAX_LIFTS_PER_CELL,
     _scaled_floor,
     transpose3,
     MAX_POINTS,
@@ -113,6 +115,27 @@ def test_tribonacci_lift_profile_regression() raises:
     assert_equal(sup_discrepancy_bound(points), 920370025771)
 
 
+def test_histogram_covers_every_encodable_lift_count() raises:
+    # One torus cell met in all 256 lifts (grid * l, 0), l = -128..127: a
+    # count of 256, one past the old capacity.
+    var grid = 4
+    var half = LIFT_SPAN // 2
+    var row = List[List[Int]]()
+    for l in range(-half, half):
+        row.append([grid * l, 0])
+    var wide = lift_profile_of_cells(row, grid).histogram()
+    assert_equal(wide.count(LIFT_SPAN), 1)
+    # The maximum: every lift pair of the encoded window, LIFT_SPAN^2 of them.
+    var all = List[List[Int]]()
+    for lx in range(-half, half):
+        for ly in range(-half, half):
+            all.append([grid * lx, grid * ly])
+    var full = lift_profile_of_cells(all, grid).histogram()
+    assert_equal(MAX_LIFTS_PER_CELL, LIFT_SPAN * LIFT_SPAN)
+    assert_equal(full.count(MAX_LIFTS_PER_CELL), 1)
+    assert_equal(full.maximum(), MAX_LIFTS_PER_CELL)
+
+
 def main() raises:
     test_tribonacci_frequency_floors()
     print("[PASS] Tribonacci frequency floors certified and oracle-pinned")
@@ -126,6 +149,8 @@ def main() raises:
     print("[PASS] straddling enclosures are undecided, never assigned")
     test_lift_profile_separates_one_and_two_lift_covers()
     print("[PASS] lift profile: one-lift cover vs two-lift negative control")
+    test_histogram_covers_every_encodable_lift_count()
+    print("[PASS] histogram holds every lift count up to LIFT_SPAN^2")
     test_tribonacci_lift_profile_regression()
     print("[PASS] Tribonacci 8192-point lift profile on a 64-grid")
     require_contract("rauzy torus kernel: certified floor(2^40 f_i) letter frequencies, exact discrepancy enclosures D_n = p_n - n f on the fixed-point stepped line, fail-closed cell assignment, distinct-lift profile on T^2 = H/H_Z; non-unimodular refused; diagnostic only, certifies no covering degree")

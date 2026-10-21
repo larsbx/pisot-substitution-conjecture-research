@@ -52,6 +52,8 @@ comptime FREQUENCY_SCALE = 1 << FREQUENCY_SCALE_BITS
 comptime MAX_POINTS = 1 << 16
 # Lifts are encoded in a `LIFT_SPAN x LIFT_SPAN` window centred on the origin.
 comptime LIFT_SPAN = 256
+# A torus cell can be met in at most every encodable lift pair.
+comptime MAX_LIFTS_PER_CELL = LIFT_SPAN * LIFT_SPAN
 comptime MAX_FIXED_POINT_ROUNDS = 64
 
 
@@ -105,7 +107,8 @@ struct LiftProfile(Copyable, Movable):
         return n
 
     def histogram(self) raises -> Histogram:
-        var h = Histogram(LIFT_SPAN)
+        """Cells by lift count; keys `1..MAX_LIFTS_PER_CELL`, the maximum included."""
+        var h = Histogram(MAX_LIFTS_PER_CELL + 1)
         for c in self.lifts:
             if c > 0:
                 h.record(c)
