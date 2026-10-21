@@ -1,0 +1,955 @@
+[
+  {
+    "id": 119058204076,
+    "run_id": 39550452540,
+    "workflow_name": "Scoped class-D assembly",
+    "head_branch": "research/class-d-minus-recurrent-carrier-2026-10-19",
+    "run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452540",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOUS2iIs8AAAAbuGwFrA",
+    "head_sha": "a9457d9a08e971d57a635e68086a558fcff88e11",
+    "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/jobs/119058204076",
+    "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452540/job/119058204076",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-21T05:35:53Z",
+    "started_at": "2026-10-21T05:36:01Z",
+    "completed_at": "2026-10-21T05:38:46Z",
+    "name": "scoped-assembly",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-21T05:36:01Z",
+        "completed_at": "2026-10-21T05:36:02Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-21T05:36:02Z",
+        "completed_at": "2026-10-21T05:36:04Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-21T05:36:04Z",
+        "completed_at": "2026-10-21T05:36:04Z"
+      },
+      {
+        "name": "Install independent calibration dependencies",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-10-21T05:36:04Z",
+        "completed_at": "2026-10-21T05:36:07Z"
+      },
+      {
+        "name": "Run prefix-dev/setup-pixi@v0.9.1",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-10-21T05:36:07Z",
+        "completed_at": "2026-10-21T05:36:23Z"
+      },
+      {
+        "name": "Verify committed native receipt provenance",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-21T05:36:23Z",
+        "completed_at": "2026-10-21T05:36:23Z"
+      },
+      {
+        "name": "Replay the complete minus aggregate and seed controls",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-21T05:36:23Z",
+        "completed_at": "2026-10-21T05:37:09Z"
+      },
+      {
+        "name": "Independent rational calibration and receipt agreement",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-10-21T05:37:09Z",
+        "completed_at": "2026-10-21T05:38:31Z"
+      },
+      {
+        "name": "Assemble immutable plus receipt with fresh minus and full plus boundary",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-10-21T05:38:31Z",
+        "completed_at": "2026-10-21T05:38:37Z"
+      },
+      {
+        "name": "Repository provenance and governance",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-10-21T05:38:37Z",
+        "completed_at": "2026-10-21T05:38:41Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-10-21T05:38:41Z",
+        "completed_at": "2026-10-21T05:38:42Z"
+      },
+      {
+        "name": "Post Run prefix-dev/setup-pixi@v0.9.1",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 20,
+        "started_at": "2026-10-21T05:38:42Z",
+        "completed_at": "2026-10-21T05:38:44Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 21,
+        "started_at": "2026-10-21T05:38:44Z",
+        "completed_at": "2026-10-21T05:38:44Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 22,
+        "started_at": "2026-10-21T05:38:44Z",
+        "completed_at": "2026-10-21T05:38:44Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 23,
+        "started_at": "2026-10-21T05:38:44Z",
+        "completed_at": "2026-10-21T05:38:44Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/check-runs/119058204076",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000056831,
+    "runner_name": "GitHub Actions 1000056831",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 119058204598,
+    "run_id": 39550452644,
+    "workflow_name": "Class-D plus positive-b chambers",
+    "head_branch": "research/class-d-minus-recurrent-carrier-2026-10-19",
+    "run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452644",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOUS2iIs8AAAAbuGwHtg",
+    "head_sha": "a9457d9a08e971d57a635e68086a558fcff88e11",
+    "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/jobs/119058204598",
+    "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452644/job/119058204598",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-21T05:35:53Z",
+    "started_at": "2026-10-21T05:38:41Z",
+    "completed_at": "2026-10-21T06:45:59Z",
+    "name": "chambers",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-21T05:38:42Z",
+        "completed_at": "2026-10-21T05:38:42Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-21T05:38:42Z",
+        "completed_at": "2026-10-21T05:38:44Z"
+      },
+      {
+        "name": "Install pixi",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-21T05:38:44Z",
+        "completed_at": "2026-10-21T05:38:45Z"
+      },
+      {
+        "name": "Check exact lattice partition",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-10-21T05:38:45Z",
+        "completed_at": "2026-10-21T05:45:04Z"
+      },
+      {
+        "name": "Certify all plus chambers and boundary strips",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-10-21T05:45:04Z",
+        "completed_at": "2026-10-21T06:45:56Z"
+      },
+      {
+        "name": "Inspect every component after a certificate refusal",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 6,
+        "started_at": "2026-10-21T06:45:56Z",
+        "completed_at": "2026-10-21T06:45:56Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-21T06:45:56Z",
+        "completed_at": "2026-10-21T06:45:57Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-10-21T06:45:57Z",
+        "completed_at": "2026-10-21T06:45:57Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-10-21T06:45:57Z",
+        "completed_at": "2026-10-21T06:45:57Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/check-runs/119058204598",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000056851,
+    "runner_name": "GitHub Actions 1000056851",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 119058204005,
+    "run_id": 39550452521,
+    "workflow_name": "Class-D complete residual certificates",
+    "head_branch": "research/class-d-minus-recurrent-carrier-2026-10-19",
+    "run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452521",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOUS2iIs8AAAAbuGwFZQ",
+    "head_sha": "a9457d9a08e971d57a635e68086a558fcff88e11",
+    "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/jobs/119058204005",
+    "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452521/job/119058204005",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-21T05:35:53Z",
+    "started_at": "2026-10-21T05:36:06Z",
+    "completed_at": "2026-10-21T06:11:38Z",
+    "name": "complete-residual (plus)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-21T05:36:07Z",
+        "completed_at": "2026-10-21T05:36:08Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-21T05:36:08Z",
+        "completed_at": "2026-10-21T05:36:09Z"
+      },
+      {
+        "name": "Run prefix-dev/setup-pixi@v0.9.1",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-21T05:36:09Z",
+        "completed_at": "2026-10-21T05:36:22Z"
+      },
+      {
+        "name": "Replay exact failed-proposal obstruction controls",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-10-21T05:36:22Z",
+        "completed_at": "2026-10-21T05:36:27Z"
+      },
+      {
+        "name": "Complete minus residual including strips and ranked geometry",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 5,
+        "started_at": "2026-10-21T05:36:27Z",
+        "completed_at": "2026-10-21T05:36:27Z"
+      },
+      {
+        "name": "Complete plus boundary and every positive-b chamber and strip",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-21T05:36:27Z",
+        "completed_at": "2026-10-21T06:11:33Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-21T06:11:33Z",
+        "completed_at": "2026-10-21T06:11:34Z"
+      },
+      {
+        "name": "Post Run prefix-dev/setup-pixi@v0.9.1",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-10-21T06:11:34Z",
+        "completed_at": "2026-10-21T06:11:36Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-10-21T06:11:36Z",
+        "completed_at": "2026-10-21T06:11:36Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-10-21T06:11:36Z",
+        "completed_at": "2026-10-21T06:11:36Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/check-runs/119058204005",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000056833,
+    "runner_name": "GitHub Actions 1000056833",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 119058204198,
+    "run_id": 39550452521,
+    "workflow_name": "Class-D complete residual certificates",
+    "head_branch": "research/class-d-minus-recurrent-carrier-2026-10-19",
+    "run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452521",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOUS2iIs8AAAAbuGwGJg",
+    "head_sha": "a9457d9a08e971d57a635e68086a558fcff88e11",
+    "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/jobs/119058204198",
+    "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452521/job/119058204198",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-21T05:35:53Z",
+    "started_at": "2026-10-21T05:37:46Z",
+    "completed_at": "2026-10-21T05:43:41Z",
+    "name": "exact-support-grid",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-21T05:37:46Z",
+        "completed_at": "2026-10-21T05:37:48Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-21T05:37:48Z",
+        "completed_at": "2026-10-21T05:37:49Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-21T05:37:49Z",
+        "completed_at": "2026-10-21T05:37:49Z"
+      },
+      {
+        "name": "Install oracle test runner",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-10-21T05:37:49Z",
+        "completed_at": "2026-10-21T05:37:52Z"
+      },
+      {
+        "name": "Run independent exact Q(beta) support calibration",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-10-21T05:37:52Z",
+        "completed_at": "2026-10-21T05:43:38Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-21T05:43:38Z",
+        "completed_at": "2026-10-21T05:43:39Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-10-21T05:43:39Z",
+        "completed_at": "2026-10-21T05:43:39Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-10-21T05:43:39Z",
+        "completed_at": "2026-10-21T05:43:39Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-10-21T05:43:39Z",
+        "completed_at": "2026-10-21T05:43:39Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/check-runs/119058204198",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000056844,
+    "runner_name": "GitHub Actions 1000056844",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 119058204237,
+    "run_id": 39550452521,
+    "workflow_name": "Class-D complete residual certificates",
+    "head_branch": "research/class-d-minus-recurrent-carrier-2026-10-19",
+    "run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452521",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOUS2iIs8AAAAbuGwGTQ",
+    "head_sha": "a9457d9a08e971d57a635e68086a558fcff88e11",
+    "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/jobs/119058204237",
+    "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452521/job/119058204237",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-21T05:35:53Z",
+    "started_at": "2026-10-21T05:37:18Z",
+    "completed_at": "2026-10-21T05:38:20Z",
+    "name": "complete-residual (minus)",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-21T05:37:18Z",
+        "completed_at": "2026-10-21T05:37:19Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-21T05:37:19Z",
+        "completed_at": "2026-10-21T05:37:21Z"
+      },
+      {
+        "name": "Run prefix-dev/setup-pixi@v0.9.1",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-21T05:37:21Z",
+        "completed_at": "2026-10-21T05:37:37Z"
+      },
+      {
+        "name": "Replay exact failed-proposal obstruction controls",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-10-21T05:37:37Z",
+        "completed_at": "2026-10-21T05:37:42Z"
+      },
+      {
+        "name": "Complete minus residual including strips and ranked geometry",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-10-21T05:37:42Z",
+        "completed_at": "2026-10-21T05:38:15Z"
+      },
+      {
+        "name": "Complete plus boundary and every positive-b chamber and strip",
+        "status": "completed",
+        "conclusion": "skipped",
+        "number": 6,
+        "started_at": "2026-10-21T05:38:15Z",
+        "completed_at": "2026-10-21T05:38:15Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-21T05:38:15Z",
+        "completed_at": "2026-10-21T05:38:16Z"
+      },
+      {
+        "name": "Post Run prefix-dev/setup-pixi@v0.9.1",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-10-21T05:38:16Z",
+        "completed_at": "2026-10-21T05:38:18Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-10-21T05:38:18Z",
+        "completed_at": "2026-10-21T05:38:18Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-10-21T05:38:18Z",
+        "completed_at": "2026-10-21T05:38:18Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/check-runs/119058204237",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000056838,
+    "runner_name": "GitHub Actions 1000056838",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 119058204493,
+    "run_id": 39550452554,
+    "workflow_name": "Class-D minus recurrent reduction",
+    "head_branch": "research/class-d-minus-recurrent-carrier-2026-10-19",
+    "run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452554",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOUS2iIs8AAAAbuGwHTQ",
+    "head_sha": "a9457d9a08e971d57a635e68086a558fcff88e11",
+    "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/jobs/119058204493",
+    "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452554/job/119058204493",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-21T05:35:53Z",
+    "started_at": "2026-10-21T05:38:22Z",
+    "completed_at": "2026-10-21T05:44:28Z",
+    "name": "recurrent-grid",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-21T05:38:23Z",
+        "completed_at": "2026-10-21T05:38:24Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-21T05:38:24Z",
+        "completed_at": "2026-10-21T05:38:25Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-21T05:38:25Z",
+        "completed_at": "2026-10-21T05:38:25Z"
+      },
+      {
+        "name": "Install independent calibration dependencies",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-10-21T05:38:25Z",
+        "completed_at": "2026-10-21T05:38:28Z"
+      },
+      {
+        "name": "Install pixi",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-10-21T05:38:28Z",
+        "completed_at": "2026-10-21T05:38:29Z"
+      },
+      {
+        "name": "Canonical exact recurrent-support calibration",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-21T05:38:29Z",
+        "completed_at": "2026-10-21T05:38:57Z"
+      },
+      {
+        "name": "Independent exact Q(beta) calibration and agreement",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-21T05:38:57Z",
+        "completed_at": "2026-10-21T05:44:18Z"
+      },
+      {
+        "name": "Classification and counterexample regressions",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-10-21T05:44:18Z",
+        "completed_at": "2026-10-21T05:44:25Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-10-21T05:44:25Z",
+        "completed_at": "2026-10-21T05:44:26Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17,
+        "started_at": "2026-10-21T05:44:26Z",
+        "completed_at": "2026-10-21T05:44:26Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18,
+        "started_at": "2026-10-21T05:44:26Z",
+        "completed_at": "2026-10-21T05:44:26Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19,
+        "started_at": "2026-10-21T05:44:26Z",
+        "completed_at": "2026-10-21T05:44:26Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/check-runs/119058204493",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000056848,
+    "runner_name": "GitHub Actions 1000056848",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 119058204741,
+    "run_id": 39550452554,
+    "workflow_name": "Class-D minus recurrent reduction",
+    "head_branch": "research/class-d-minus-recurrent-carrier-2026-10-19",
+    "run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452554",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOUS2iIs8AAAAbuGwIRQ",
+    "head_sha": "a9457d9a08e971d57a635e68086a558fcff88e11",
+    "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/jobs/119058204741",
+    "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452554/job/119058204741",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-21T05:35:53Z",
+    "started_at": "2026-10-21T05:38:59Z",
+    "completed_at": "2026-10-21T05:44:41Z",
+    "name": "conditional-cycle-reduction",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-21T05:39:00Z",
+        "completed_at": "2026-10-21T05:39:01Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-21T05:39:01Z",
+        "completed_at": "2026-10-21T05:39:03Z"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-21T05:39:03Z",
+        "completed_at": "2026-10-21T05:39:03Z"
+      },
+      {
+        "name": "Install high-sum calibration dependencies",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-10-21T05:39:03Z",
+        "completed_at": "2026-10-21T05:39:06Z"
+      },
+      {
+        "name": "Install pixi",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-10-21T05:39:06Z",
+        "completed_at": "2026-10-21T05:39:07Z"
+      },
+      {
+        "name": "Verify guarded cycle superset and exceptional exits",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-21T05:39:07Z",
+        "completed_at": "2026-10-21T05:39:45Z"
+      },
+      {
+        "name": "Verify shared-parameter cycle guards",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-21T05:39:45Z",
+        "completed_at": "2026-10-21T05:39:55Z"
+      },
+      {
+        "name": "Verify unbounded six-edge family identity",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-10-21T05:39:55Z",
+        "completed_at": "2026-10-21T05:40:04Z"
+      },
+      {
+        "name": "Verify uniform seed carrier and CycleSum on the minus residual",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9,
+        "started_at": "2026-10-21T05:40:04Z",
+        "completed_at": "2026-10-21T05:40:41Z"
+      },
+      {
+        "name": "Certify the complete minus residual including both omitted strips",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-10-21T05:40:41Z",
+        "completed_at": "2026-10-21T05:43:46Z"
+      },
+      {
+        "name": "Verify genuine higher-sum formal cycles and finite seed nonmembership",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-10-21T05:43:46Z",
+        "completed_at": "2026-10-21T05:44:37Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 12,
+        "started_at": "2026-10-21T05:44:37Z",
+        "completed_at": "2026-10-21T05:44:38Z"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 23,
+        "started_at": "2026-10-21T05:44:38Z",
+        "completed_at": "2026-10-21T05:44:38Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 24,
+        "started_at": "2026-10-21T05:44:38Z",
+        "completed_at": "2026-10-21T05:44:39Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 25,
+        "started_at": "2026-10-21T05:44:39Z",
+        "completed_at": "2026-10-21T05:44:39Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/check-runs/119058204741",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000056855,
+    "runner_name": "GitHub Actions 1000056855",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  {
+    "id": 119058203980,
+    "run_id": 39550452641,
+    "workflow_name": "Canonical Pisot polynomial kernels",
+    "head_branch": "research/class-d-minus-recurrent-carrier-2026-10-19",
+    "run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452641",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOUS2iIs8AAAAbuGwFTA",
+    "head_sha": "a9457d9a08e971d57a635e68086a558fcff88e11",
+    "url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/jobs/119058203980",
+    "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/39550452641/job/119058203980",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-10-21T05:35:53Z",
+    "started_at": "2026-10-21T05:38:49Z",
+    "completed_at": "2026-10-21T06:30:04Z",
+    "name": "exact-kernels",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-21T05:38:49Z",
+        "completed_at": "2026-10-21T05:38:50Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-21T05:38:51Z",
+        "completed_at": "2026-10-21T05:38:52Z"
+      },
+      {
+        "name": "Run prefix-dev/setup-pixi@v0.9.1",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-21T05:38:52Z",
+        "completed_at": "2026-10-21T05:39:04Z"
+      },
+      {
+        "name": "Exact equivalence regression",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-10-21T05:39:04Z",
+        "completed_at": "2026-10-21T05:39:09Z"
+      },
+      {
+        "name": "Before and after canonical Mojo benchmark",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-10-21T05:39:09Z",
+        "completed_at": "2026-10-21T05:39:18Z"
+      },
+      {
+        "name": "Rational-root equivalence and paired canonical benchmark",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-21T05:39:18Z",
+        "completed_at": "2026-10-21T05:39:30Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-21T05:39:30Z",
+        "completed_at": "2026-10-21T05:39:31Z"
+      },
+      {
+        "name": "Repository verification gates",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8,
+        "started_at": "2026-10-21T05:39:31Z",
+        "completed_at": "2026-10-21T06:30:00Z"
+      },
+      {
+        "name": "Post Run prefix-dev/setup-pixi@v0.9.1",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-10-21T06:30:00Z",
+        "completed_at": "2026-10-21T06:30:02Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 16,
+        "started_at": "2026-10-21T06:30:02Z",
+        "completed_at": "2026-10-21T06:30:02Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 17,
+        "started_at": "2026-10-21T06:30:02Z",
+        "completed_at": "2026-10-21T06:30:02Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/check-runs/119058203980",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000056852,
+    "runner_name": "GitHub Actions 1000056852",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  }
+]
+

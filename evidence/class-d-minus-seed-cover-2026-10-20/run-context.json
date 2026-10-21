@@ -1,0 +1,20 @@
+{
+  "parent": "00c0cb86a2d9902a3e1beaf4163bff2a326a7a9e",
+  "date_utc": "2026-10-20",
+  "local_mojo": "1.1.0 (8189361e)",
+  "pinned_nightly_replayed": false,
+  "telemetry_enabled": false,
+  "crash_reporting_enabled": false,
+  "focused_python": {
+    "passed": 40,
+    "skipped": 1
+  },
+  "final_ledger_seed_subset": {
+    "passed": 22,
+    "skipped": 1
+  },
+  "tla_models_passed": 17,
+  "coarse_oracle_expected_exit": 1,
+  "parent_ci": "11 queued; no completed receipts",
+  "independent_human_review": "pending"
+}

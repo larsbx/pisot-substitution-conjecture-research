@@ -328,6 +328,33 @@
       }
     },
     {
+      "name": "ClassDBoundaryHitting",
+      "status": "proved",
+      "source": "docs/class-d-assembly-audit-2026-10-21.md; canonical kernel/class_d_assembly.mojo consumes provenance-checked exact component receipts and replays plus b=0; no class-A/C or universal hitting premise is supplied; human review pending",
+      "dependencies": [
+        "PlusClassDBoundaryHitting",
+        "MinusClassDBoundaryHitting"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "ClassDIntegrationAcceptance",
+      "status": "proved",
+      "source": "docs/class-d-assembly-audit-2026-10-21.md; evidence/class-d-integration-accepted-2026-10-21/; all 64 checks at a9457d9 pass, identical tested PR merge and main merge trees; project-accepted for progression, independent human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
       "name": "ClassDWedgeBoundaryHitting",
       "status": "proved",
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md, Theorem W and Corollary W1; computer-assisted, human review pending; merged through PR #246",
@@ -790,6 +817,126 @@
       }
     },
     {
+      "name": "MinusClassDBoundaryHitting",
+      "status": "proved",
+      "source": "docs/p1b-minus-boundary-strips-2026-10-20.md; exact case split r>=q-1 versus d=q-r>=2 with a=d-2,b=3r-2q>=0; human review pending",
+      "dependencies": [
+        "MinusClassDResidualBoundaryHitting",
+        "ClassDWedgeBoundaryHitting"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "MinusClassDBoundaryLine",
+      "status": "proved",
+      "source": "merged PR #277; kernel/psc/class_d_boundary_template.mojo; docs/p1b-minus-boundary-strips-2026-10-20.md; complete symbolic tail, finite prefix and support replay with the lock-matched compiler; human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "MinusClassDBoundaryStrips",
+      "status": "proved",
+      "source": "docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_boundary_strips.mojo; symbolic tails n=b-1>=42 and n>=72, all finite-prefix members hitting, exact graph cross-checks; human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "MinusClassDPositiveBBoundaryHitting",
+      "status": "proved",
+      "source": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md sections 5, 9 and 14; conditional 1971-state reduction plus proved seed carrier, or direct ranked descent; pinned CI accepted at a9457d9 (evidence/class-d-integration-accepted-2026-10-21/); human review pending",
+      "dependencies": [
+        "MinusClassDPositiveBCycleSum",
+        "SwapOverlapFiniteness"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "MinusClassDPositiveBCycleSum",
+      "status": "proved",
+      "source": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; follows from the uniform seed carrier, not formal-cycle exclusions; pinned CI accepted at a9457d9 (evidence/class-d-integration-accepted-2026-10-21/); human review pending",
+      "dependencies": [
+        "MinusClassDSeedCarrierClosure"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "MinusClassDResidualBoundaryHitting",
+      "status": "proved",
+      "source": "docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_complete.mojo; disjoint b=0, a=0/b>=1, a=1/b>=1 and a>=2/b>=1 assembly; human review pending",
+      "dependencies": [
+        "MinusClassDBoundaryLine",
+        "MinusClassDBoundaryStrips",
+        "MinusClassDPositiveBBoundaryHitting"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "MinusClassDSeedCarrierClosure",
+      "status": "proved",
+      "source": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; kernel/psc/class_d_minus_seed_cover.mojo exact Perron identities, all-seed and all-child Farkas certificates; local Mojo and independent Fraction replay; pinned CI accepted at a9457d9 (evidence/class-d-integration-accepted-2026-10-21/); human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "MinusHighSumFormalCycleRay",
+      "status": "proved",
+      "source": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 13; kernel/psc/class_d_minus_high_sum_cycles.mojo exact symbolic occurrence and Perron-sign certificate; human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "MinusSixEdgeFamilyExclusion",
+      "status": "proved",
+      "source": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 12; kernel/psc/class_d_minus_cycle_family.mojo exact polynomial replay; one itinerary family only; human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
       "name": "Mod3Sieve",
       "status": "proved",
       "source": "docs/c4-multidegree-spectral-sieve.md",
@@ -1109,6 +1256,48 @@
       "status": "imported",
       "source": "Lee-Solomyak, arXiv:1002.0039, Definition 2.3 and Theorem 4.3; docs/review-box-leftmost-ledger-2026-10-08.md, section 1 (scalar expansion hypotheses and return-vector transfer checked)",
       "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "PlusClassDBoundaryHitting",
+      "status": "proved",
+      "source": "docs/class-d-assembly-audit-2026-10-21.md; complete b=0 and positive-b residual plus existing r>=q-1 wedges; human review pending",
+      "dependencies": [
+        "PlusClassDBoundaryLine",
+        "PlusClassDPositiveBBoundaryHitting",
+        "ClassDWedgeBoundaryHitting"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "PlusClassDBoundaryLine",
+      "status": "proved",
+      "source": "docs/class-d-assembly-audit-2026-10-21.md; merged boundary template, native complete tail a>=7, exact a=0..6 and full support at a=7,8; independent oracle replay; human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "PlusClassDPositiveBBoundaryHitting",
+      "status": "proved",
+      "source": "docs/class-d-assembly-audit-2026-10-21.md; PR293 immutable native aggregate with six cores, 73 strips, six interfaces, 952 finite-prefix obligations and unchanged entire import closure; fresh complete locked CI at accepted tree c325aa5, integration gate discharged by separate receipts; human review pending",
+      "dependencies": [
+        "ClassDIntegrationAcceptance"
+      ],
       "ledger_node": true,
       "lean_support": {
         "coverage": "none",
@@ -2245,27 +2434,27 @@
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 119,
+      "line": 153,
       "statement_heading": "## 4. Theorem L″: lines of classes A, C and D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 138,
+      "line": 172,
       "statement_heading": "*Theorem L″.* For each line below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 207,
+      "line": 241,
       "statement_heading": "## 4b. Theorem W: two-parameter wedges of class D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 284,
+      "line": 318,
       "statement_heading": "*Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 301,
+      "line": 335,
       "statement_heading": "*Corollary W1.* **Every PIP member of class D with `r ≥ q − 1` has pure"
     },
     {
@@ -2282,6 +2471,11 @@
       "source": "docs/p1b-class-d-barge-power-rotation-stop-2026-10-16.md",
       "line": 62,
       "statement_heading": "**Corollary (scope of the stop).** Every determinant-two PIP class-D member, on the already certified region \\(r\\ge q-1\\), on either pending \\(b=0\\) boundary, and throughout the unproved \\(b>0\\) interiors, lacks **this** Barge power/rotation witness. Thus class D is a legitimate testing ground for genuinely new #139 boundary-hitting machinery, unlike the October 15 \\(\\sigma_{k,h}:a\\mapsto a^kbc^h,\\ b\\mapsto ab,\\ c\\mapsto a\\) family, which was corrected on October 16 as *directly mirror-Barge*."
+    },
+    {
+      "source": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md",
+      "line": 384,
+      "statement_heading": "pixi run mojo run -I . tests/test_class_d_minus_recurrent_support.mojo"
     },
     {
       "source": "docs/p1b-class-d-positive-b-wedge-2026-10-19.md",
@@ -2515,7 +2709,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 203,
+      "line": 225,
       "statement_heading": "The second branch preserves information erased by the child-count matrix: the ordered sequence of top/bottom subdivision boundary events. The next contradiction should use that order together with full rank and exact prefix-Parikh geometry."
     },
     {
@@ -3080,7 +3274,7 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "a3821b87ec153c98f82a5f0d78f59ce84a133e652fa382b096b6fa1653b4a06d",
+    "claim_governance.toml": "f8e1abe80c2185fd4d6cda5d9ea77fcf16f95528f5fc6bc2da4321132f1cc081",
     "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
@@ -3094,7 +3288,7 @@
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
     "tools/check_lean.sh": "04078a19300533b800e2cca6f0a3573fe8b116fec0ae8ace8a2d4ffc1ae9613b",
-    "tools/make_ledger.py": "bb7a1e4f641186e6e935753c843ab1117b74d0c8d789cfbcc43ad65c71a2f413",
+    "tools/make_ledger.py": "6f54f92887c9fd69352b3bb8c0e28df22eff374de6355d14bbf71beff940e266",
     "tools/make_proof_bank.py": "d41bd8ecb4d51964b6acfb1783d3c7c6aa1fce67ad502f9b4c1c6fb94dceec13",
     "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
   }

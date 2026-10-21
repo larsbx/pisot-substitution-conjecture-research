@@ -1,0 +1,11 @@
+HIGH_SUM_FORMAL_RAY_CERTIFIED k>=2 a=2k-1 b=1 abs_sum=k interior=true period=2 seed_reachability=unproved
+HIGH_SUM_OCCURRENCE 3 1 2:1:-4,8,-6 12 16 1:2:4,-8,6
+HIGH_SUM_OCCURRENCE 3 1 1:2:4,-8,6 16 12 2:1:-4,8,-6
+HIGH_SUM_SEED_SAMPLE 2 a 3 b 1 complete_states 139 reachable_pair_vertices 0
+HIGH_SUM_OCCURRENCE 5 1 2:1:-6,12,-9 16 22 1:2:6,-12,9
+HIGH_SUM_OCCURRENCE 5 1 1:2:6,-12,9 22 16 2:1:-6,12,-9
+HIGH_SUM_SEED_SAMPLE 3 a 5 b 1 complete_states 139 reachable_pair_vertices 0
+HIGH_SUM_OCCURRENCE 15 1 2:1:-16,32,-24 36 52 1:2:16,-32,24
+HIGH_SUM_OCCURRENCE 15 1 1:2:16,-32,24 52 36 2:1:-16,32,-24
+HIGH_SUM_SEED_SAMPLE 8 a 15 b 1 complete_states 139 reachable_pair_vertices 0
+HIGH_SUM_CONTROLS_OK specimens=3 formal_ray=unbounded CycleSum=open

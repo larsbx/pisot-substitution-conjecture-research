@@ -18,12 +18,34 @@ PIP
 ```
 
 The two open lines are the primary proof obligations. The aligned endpoint
-normal form reduces #138 to A1′ (and reversal), while #139 is the
+normal form reduces #138 to one-sided A1′ (reversal is not an additional
+premise of this completion theorem), while #139 is the
 occurrence-compatible coverage theorem in the full non-unit representation.
 If both close without an independent tile-length-independence, legality, FI
 or unimodularity hypothesis, #84 closes and the PDS conclusion follows
 immediately. G1b-2, SCC Producer/K2 and realization remain valuable parallel
 theorems, but they are not prerequisites of this direct route.
+
+**October 20 interface advance:** the
+[exact length-window lemma](two-obstruction-moment-interface-2026-10-20.md)
+shows that three scalar length observations determine a ternary PIP Parikh
+defect. A same-position block need not stay aligned under inflation; the
+recorded PIP control has drift `(0,-1,-3)`. An occurrence-address reader
+independently checks supplied zero-defect paths and distinguishes boundary
+hitting from equal-letter coincidence. These are proof interfaces and finite
+controls, not existence or carrier-closure theorems; both universal lines
+above remain open. Local execution provenance and the pinned replay boundary
+are recorded in the linked note.
+
+The separate class-D work has advanced beyond the historical planning section
+below: PR #293 records a completed local native plus-chamber aggregate, and
+PR #290 records a complete local minus-branch certificate. Full Pixi/CI
+integration remains separate; neither contribution supplies a universal
+premise here.
+The original pre-repair plus CI run 39292497570 now fails on the archived
+low-1 reader exception after passing the lattice check; repaired-head run
+39356406683 remains queued. The new evidence packet preserves that exact
+exception match, so this failure is not relabelled a new carrier obstruction.
 
 
 The current shortest route to the Pisot Substitution Conjecture in the standing regime has **one open mathematical premise**: seedwise overlap productivity. The finite-BPA/G1 and closed-carrier programmes remain important stronger structural routes, but they are no longer prerequisites of the shortest PDS sufficiency theorem.

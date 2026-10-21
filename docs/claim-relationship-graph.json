@@ -204,6 +204,26 @@
       "leaks": "open sufficiency premise of the C4 route"
     },
     {
+      "id": "ClassDBoundaryHitting",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every PIP determinant-two normal-form member of class D with p-q in {-1,+1}, after required combined integration acceptance; targets are offset-zero descendants, not necessarily equal-letter coincidences",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/class-d-assembly-audit-2026-10-21.md; canonical kernel/class_d_assembly.mojo consumes provenance-checked exact component receipts and replays plus b=0; no class-A/C or universal hitting premise is supplied; human review pending"
+    },
+    {
+      "id": "ClassDIntegrationAcceptance",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "the combined class-D implementation at accepted tree c325aa5345e1f49b2fb50b37565bd2902104aab7 has passed required locked environment, native replay, independent calibration and repository CI acceptance gates",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/class-d-assembly-audit-2026-10-21.md; evidence/class-d-integration-accepted-2026-10-21/; all 64 checks at a9457d9 pass, identical tested PR merge and main merge trees; project-accepted for progression, independent human review pending"
+    },
+    {
       "id": "ClassDWedgeBoundaryHitting",
       "kind": "claim",
       "label": "Repository-proved",
@@ -524,6 +544,96 @@
       "source": "source: docs/c4-degree2-midarea-factorization.md"
     },
     {
+      "id": "MinusClassDBoundaryHitting",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every PIP member of class D with p=q-1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-minus-boundary-strips-2026-10-20.md; exact case split r>=q-1 versus d=q-r>=2 with a=d-2,b=3r-2q>=0; human review pending"
+    },
+    {
+      "id": "MinusClassDBoundaryLine",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every minus class-D residual member a>=0,b=0",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: merged PR #277; kernel/psc/class_d_boundary_template.mojo; docs/p1b-minus-boundary-strips-2026-10-20.md; complete symbolic tail, finite prefix and support replay with the lock-matched compiler; human review pending"
+    },
+    {
+      "id": "MinusClassDBoundaryStrips",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for both entire minus class-D residual strips a=0 or a=1, b>=1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_boundary_strips.mojo; symbolic tails n=b-1>=42 and n>=72, all finite-prefix members hitting, exact graph cross-checks; human review pending"
+    },
+    {
+      "id": "MinusClassDPositiveBBoundaryHitting",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1; the historical conditional reduction now has its CycleSum premise discharged by uniform seed closure",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md sections 5, 9 and 14; conditional 1971-state reduction plus proved seed carrier, or direct ranked descent; pinned CI accepted at a9457d9 (evidence/class-d-integration-accepted-2026-10-21/); human review pending"
+    },
+    {
+      "id": "MinusClassDPositiveBCycleSum",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; follows from the uniform seed carrier, not formal-cycle exclusions; pinned CI accepted at a9457d9 (evidence/class-d-integration-accepted-2026-10-21/); human review pending"
+    },
+    {
+      "id": "MinusClassDResidualBoundaryHitting",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every minus class-D residual member p=3a+5+b,q=3a+6+b,r=2a+4+b with integers a,b>=0",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_complete.mojo; disjoint b=0, a=0/b>=1, a=1/b>=1 and a>=2/b>=1 assembly; human review pending"
+    },
+    {
+      "id": "MinusClassDSeedCarrierClosure",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for every minus class-D member a>=2,b>=1, every real swap-seed overlap and every descendant before terminal coincidence lies in the sealed 145-label carrier; every such label has absolute coordinate sum at most one",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; kernel/psc/class_d_minus_seed_cover.mojo exact Perron identities, all-seed and all-child Farkas certificates; local Mojo and independent Fraction replay; pinned CI accepted at a9457d9 (evidence/class-d-integration-accepted-2026-10-21/); human review pending"
+    },
+    {
+      "id": "MinusHighSumFormalCycleRay",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for every integer k>=2 the minus class-D member a=2k-1,b=1 has the real-interior formal occurrence two-cycle U_k=(y,c,-2k,4k,-3k) and its mirror, with absolute sum k; seed reachability is not asserted",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 13; kernel/psc/class_d_minus_high_sum_cycles.mojo exact symbolic occurrence and Perron-sign certificate; human review pending"
+    },
+    {
+      "id": "MinusSixEdgeFamilyExclusion",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for every integer k>=2 and every a>=2,b>=1 the six-state minus class-D itinerary in section 12 with sums (-k,k-1,-k,k-1,-k,k) cannot be realized with one shared parameter pair; occurrence guard rows 0 and 5 sum identically to -7-u",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 12; kernel/psc/class_d_minus_cycle_family.mojo exact polynomial replay; one itinerary family only; human review pending"
+    },
+    {
       "id": "Mod3Sieve",
       "kind": "claim",
       "label": "Repository-proved",
@@ -730,6 +840,36 @@
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "record_kind": "imported_theorem",
       "source": "source: Lee-Solomyak, arXiv:1002.0039, Definition 2.3 and Theorem 4.3; docs/review-box-leftmost-ledger-2026-10-08.md, section 1 (scalar expansion hypotheses and return-vector transfer checked)"
+    },
+    {
+      "id": "PlusClassDBoundaryHitting",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every PIP determinant-two normal-form member of class D with p=q+1, after required combined integration acceptance",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/class-d-assembly-audit-2026-10-21.md; complete b=0 and positive-b residual plus existing r>=q-1 wedges; human review pending"
+    },
+    {
+      "id": "PlusClassDBoundaryLine",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every plus class-D residual member a>=0,b=0, including the empty y-run at a=0",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/class-d-assembly-audit-2026-10-21.md; merged boundary template, native complete tail a>=7, exact a=0..6 and full support at a=7,8; independent oracle replay; human review pending"
+    },
+    {
+      "id": "PlusClassDPositiveBBoundaryHitting",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every plus class-D residual member a>=0,b>=1, after required combined integration acceptance",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/class-d-assembly-audit-2026-10-21.md; PR293 immutable native aggregate with six cores, 73 strips, six interfaces, 952 finite-prefix obligations and unchanged entire import closure; fresh complete locked CI at accepted tree c325aa5, integration gate discharged by separate receipts; human review pending"
     },
     {
       "id": "RepoSeedUnionBridge",
@@ -1592,6 +1732,15 @@
       ]
     },
     {
+      "id": "ClassDIntegrationAssumed",
+      "kind": "assumption_set",
+      "label": "assumption set",
+      "provenance": "declared",
+      "members": [
+        "ClassDIntegrationAcceptance"
+      ]
+    },
+    {
       "id": "FormalProductivityGateAssumed",
       "kind": "assumption_set",
       "label": "assumption set",
@@ -1630,6 +1779,15 @@
       "provenance": "declared",
       "members": [
         "G1"
+      ]
+    },
+    {
+      "id": "MinusCycleSumAssumed",
+      "kind": "assumption_set",
+      "label": "assumption set",
+      "provenance": "declared",
+      "members": [
+        "MinusClassDPositiveBCycleSum"
       ]
     },
     {
@@ -1818,6 +1976,30 @@
       "certainty": 1,
       "use_site": "C3Local/C4",
       "leaks": "premise is open"
+    },
+    {
+      "type": "implicative",
+      "source": "ClassDIntegrationAcceptance",
+      "target": "PlusClassDPositiveBBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "PlusClassDPositiveBBoundaryHitting/ClassDIntegrationAcceptance"
+    },
+    {
+      "type": "implicative",
+      "source": "ClassDWedgeBoundaryHitting",
+      "target": "MinusClassDBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDBoundaryHitting/ClassDWedgeBoundaryHitting"
+    },
+    {
+      "type": "implicative",
+      "source": "ClassDWedgeBoundaryHitting",
+      "target": "PlusClassDBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "PlusClassDBoundaryHitting/ClassDWedgeBoundaryHitting"
     },
     {
       "type": "implicative",
@@ -2146,6 +2328,62 @@
     },
     {
       "type": "implicative",
+      "source": "MinusClassDBoundaryHitting",
+      "target": "ClassDBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "ClassDBoundaryHitting/MinusClassDBoundaryHitting"
+    },
+    {
+      "type": "implicative",
+      "source": "MinusClassDBoundaryLine",
+      "target": "MinusClassDResidualBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDResidualBoundaryHitting/MinusClassDBoundaryLine"
+    },
+    {
+      "type": "implicative",
+      "source": "MinusClassDBoundaryStrips",
+      "target": "MinusClassDResidualBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDResidualBoundaryHitting/MinusClassDBoundaryStrips"
+    },
+    {
+      "type": "implicative",
+      "source": "MinusClassDPositiveBBoundaryHitting",
+      "target": "MinusClassDResidualBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDResidualBoundaryHitting/MinusClassDPositiveBBoundaryHitting"
+    },
+    {
+      "type": "implicative",
+      "source": "MinusClassDPositiveBCycleSum",
+      "target": "MinusClassDPositiveBBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDPositiveBBoundaryHitting/MinusClassDPositiveBCycleSum"
+    },
+    {
+      "type": "implicative",
+      "source": "MinusClassDResidualBoundaryHitting",
+      "target": "MinusClassDBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDBoundaryHitting/MinusClassDResidualBoundaryHitting"
+    },
+    {
+      "type": "implicative",
+      "source": "MinusClassDSeedCarrierClosure",
+      "target": "MinusClassDPositiveBCycleSum",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDPositiveBCycleSum/MinusClassDSeedCarrierClosure"
+    },
+    {
+      "type": "implicative",
       "source": "OrientationMonodromy",
       "target": "DefectIntertwiner",
       "provenance": "theorem-backed",
@@ -2259,6 +2497,30 @@
       "certainty": 1,
       "use_site": "BoxAutomatonPDSCertificate/PisotMeyerProperty",
       "leaks": "premise is imported-theorem"
+    },
+    {
+      "type": "implicative",
+      "source": "PlusClassDBoundaryHitting",
+      "target": "ClassDBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "ClassDBoundaryHitting/PlusClassDBoundaryHitting"
+    },
+    {
+      "type": "implicative",
+      "source": "PlusClassDBoundaryLine",
+      "target": "PlusClassDBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "PlusClassDBoundaryHitting/PlusClassDBoundaryLine"
+    },
+    {
+      "type": "implicative",
+      "source": "PlusClassDPositiveBBoundaryHitting",
+      "target": "PlusClassDBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "PlusClassDBoundaryHitting/PlusClassDPositiveBBoundaryHitting"
     },
     {
       "type": "implicative",
@@ -2396,6 +2658,14 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "G1OverlapRoute/SwapOverlapFiniteness"
+    },
+    {
+      "type": "implicative",
+      "source": "SwapOverlapFiniteness",
+      "target": "MinusClassDPositiveBBoundaryHitting",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "MinusClassDPositiveBBoundaryHitting/SwapOverlapFiniteness"
     },
     {
       "type": "implicative",
@@ -3033,6 +3303,14 @@
     },
     {
       "type": "part-whole",
+      "source": "ClassDIntegrationAcceptance",
+      "target": "ClassDIntegrationAssumed",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
       "source": "ConcentrationAuxB",
       "target": "SpectralGateAssumed",
       "provenance": "open",
@@ -3116,6 +3394,14 @@
       "source": "G1b2RenewalFiniteness",
       "target": "RenewalGateAssumed",
       "provenance": "open",
+      "certainty": 1,
+      "use_site": "assumption_sets"
+    },
+    {
+      "type": "part-whole",
+      "source": "MinusClassDPositiveBCycleSum",
+      "target": "MinusCycleSumAssumed",
+      "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "assumption_sets"
     },

@@ -1,0 +1,33 @@
+{
+  "commit": "54c67739f0a502216fbfb1bff5260b0841511cb9",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "tools/make_proof_bank.py",
+        "--check"
+      ],
+      "exit": 1,
+      "output": "Proof bank rejected: Stale proof bank: proof/proof-bank.json; run tools/make_proof_bank.py\n"
+    },
+    {
+      "command": [
+        "python",
+        "tools/check_manuscript_source.py"
+      ],
+      "exit": 1,
+      "output": "FAIL /tmp/psc-moment-baseline/manuscripts/PSC_balanced_pair_state_2026-09-13.tex: \\end{document} on line 1357 closes no open environment; the guard cannot follow it\n"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "claim_governance.cli",
+        "--root",
+        "."
+      ],
+      "exit": 1,
+      "output": "docs/proof-ladder.md:17: [consistency/DensityToPDSBridge] no status label within 0 lines of the anchor\nkernel/tests/test_symbolic_line_empty_blocks.mojo: [coverage/declaration] test names no ledger claim and no contract\n\nclaim governance audit of larsbx/pisot-substitution-conjecture-research failed: 2 finding(s) [terminology, claims, coverage, promotion, numerics, consistency]\n"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "bin/mojo": "0d5f0b700b0543223a10c47e818bc4f43f3228166c34ab13d52ab7f2ad02ffcd",
+  "lib/libAsyncRTRuntimeGlobals.so": "89e2a0bb0931b33b403259665d2fe952f0c6ab79838e39735615ea289621ff40",
+  "lib/libKGENCompilerRTShared.so": "8e125cb5bcd0850ae1ab32622f5b703480b8a2d79395723161f8e4c862ddc7de",
+  "lib/libMSupportGlobals.so": "3095c31589c65d166efd0938bf0e06dbe991719714a2d7fadc747f779d0bb4f7",
+  "lib/mojo/std.mojoc": "97ee3fc6ee37fbf3daf54a4a9182c0b0a489defe76da8b91ca4ad5541a029e41"
+}

@@ -1,0 +1,15 @@
+{
+  "minus_source_revision": "3b16b5447aa9b3ecdecfdabb5033a381580f230e",
+  "main_reconciled": "d91969e",
+  "plus_receipt_source_revision": "53a4021c0e534958c8088ff82f136913d3f08df8",
+  "date": "2026-10-21",
+  "native_compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "plus_full_aggregate": "reused immutable exact native receipt, 47-file import closure unchanged; not rerun",
+  "new_minus_complete": "fresh successful native replay on reconciled source",
+  "new_assembly": "native candidate, integration pending; explicit inherited ClassDWedgeBoundaryHitting dependency",
+  "full_local_pixi_install": false,
+  "historical_github_locked_install": true,
+  "current_head_ci_accepted": false,
+  "independent_human_review": false,
+  "all_repository_test_layers_newly_run": false
+}

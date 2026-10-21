@@ -1,0 +1,38 @@
+Imported from /workspace/scratch/70d1494339ab/repo/kernel/tests/test_class_d_minus_boundary_strips.mojo:5:
+Imported from kernel/psc/class_d_minus_complete.mojo:4:
+kernel/psc/class_d_positive_b_spine.mojo:211:41: error: invalid call to '_occurrence_fixed_b': value passed to 'index' cannot be converted from 'Array[Int, Int(3)]' to 'List[Int]'
+    var top = _occurrence_fixed_b(r[0], ti, bvalue)
+              ~~~~~~~~~~~~~~~~~~~       ^~
+Imported from /workspace/scratch/70d1494339ab/repo/kernel/tests/test_class_d_minus_boundary_strips.mojo:5:
+Imported from kernel/psc/class_d_minus_complete.mojo:4:
+kernel/psc/class_d_positive_b_spine.mojo:233:5: note: function declared here
+def _occurrence_fixed_b(
+    ^
+Imported from /workspace/scratch/70d1494339ab/repo/kernel/tests/test_class_d_minus_boundary_strips.mojo:5:
+Imported from kernel/psc/class_d_minus_complete.mojo:4:
+kernel/psc/class_d_positive_b_spine.mojo:212:44: error: invalid call to '_occurrence_fixed_b': value passed to 'index' cannot be converted from 'Array[Int, Int(3)]' to 'List[Int]'
+    var bottom = _occurrence_fixed_b(r[1], bi, bvalue)
+                 ~~~~~~~~~~~~~~~~~~~       ^~
+Imported from /workspace/scratch/70d1494339ab/repo/kernel/tests/test_class_d_minus_boundary_strips.mojo:5:
+Imported from kernel/psc/class_d_minus_complete.mojo:4:
+kernel/psc/class_d_positive_b_spine.mojo:233:5: note: function declared here
+def _occurrence_fixed_b(
+    ^
+Imported from /workspace/scratch/70d1494339ab/repo/kernel/tests/test_class_d_minus_boundary_strips.mojo:5:
+Imported from kernel/psc/class_d_minus_complete.mojo:4:
+kernel/psc/class_d_positive_b_spine.mojo:83:15: error: value of type 'List[Int]' cannot be implicitly copied, it does not conform to 'ImplicitlyCopyable'
+    return occ[1+coord]
+           ~~~^~~~~~~~~
+Imported from /workspace/scratch/70d1494339ab/repo/kernel/tests/test_class_d_minus_boundary_strips.mojo:5:
+Imported from kernel/psc/class_d_minus_complete.mojo:4:
+kernel/psc/class_d_positive_b_spine.mojo:83:15: note: consider transferring the value with '^'
+    return occ[1+coord]
+              ^
+                       ^
+Imported from /workspace/scratch/70d1494339ab/repo/kernel/tests/test_class_d_minus_boundary_strips.mojo:5:
+Imported from kernel/psc/class_d_minus_complete.mojo:4:
+kernel/psc/class_d_positive_b_spine.mojo:83:15: note: you can copy it explicitly with '.copy()'
+    return occ[1+coord]
+              ^
+                       .copy()
+/tmp/psc-pinned-mojo/bin/mojo: error: failed to parse the provided Mojo source module

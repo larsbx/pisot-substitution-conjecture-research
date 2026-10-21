@@ -1,0 +1,9 @@
+{
+  "provenance_valid": true,
+  "plus_reused_from": "53a4021c0e534958c8088ff82f136913d3f08df8",
+  "minus_original_revision": "3b16b5447aa9b3ecdecfdabb5033a381580f230e",
+  "plus_import_files": 47,
+  "current_head_ci_accepted": false,
+  "independent_human_review": false,
+  "authority": "provenance-only; canonical assembly in kernel/class_d_assembly.mojo"
+}
