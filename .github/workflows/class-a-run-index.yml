@@ -1,0 +1,49 @@
+name: Class-A run-index investigation
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_run_index.mojo'
+      - 'kernel/class_a_run_index.mojo'
+      - 'kernel/tests/test_class_a_run_index.mojo'
+      - 'oracles/python/class_a_run_index.py'
+      - 'tests/test_class_a_run_index.py'
+      - '.github/workflows/class-a-run-index.yml'
+      - 'kernel/pixi.lock'
+  workflow_dispatch:
+
+jobs:
+  exact-run-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Locked native identities, controls and bounded graph survey
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/class-a-run-index
+          pixi run --locked mojo run -I . tests/test_class_a_run_index.mojo 2>&1 | tee build/class-a-run-index/tests.log
+          pixi run --locked mojo build -I . class_a_run_index.mojo -o build/class-a-run-index/driver
+          build/class-a-run-index/driver 24 | tee build/class-a-run-index/survey.log
+          build/class-a-run-index/driver export 18 > build/class-a-run-index/graph-n18.log
+      - name: Independent complete graph calibration
+        run: python oracles/python/class_a_run_index.py kernel/build/class-a-run-index/graph-n18.log > kernel/build/class-a-run-index/oracle-n18.json
+      - name: Preserve fresh receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-run-index-receipts
+          path: |
+            kernel/build/class-a-run-index/*.log
+            kernel/build/class-a-run-index/*.json
+          if-no-files-found: warn

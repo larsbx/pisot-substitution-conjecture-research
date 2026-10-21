@@ -29,6 +29,23 @@ remaining-class-D item in the historical next-work list is superseded.
 Current work proceeds to the recorded A/C regions and general uniform
 hitting mechanism, preserving realization and coincidence hypotheses.
 
+## Beyond class D: run-index obstruction (2026-10-21)
+
+The new [class-A investigation](p1b-class-a-run-index-2026-10-21.md) gives
+exact residual A/C parameter domains and an explicit recurrent seed family
+on A `(p,q,r)=(n+1,n,n+1)`. For every n>=4, A_n=(c,y,n,-n,0) is reachable
+in 2n steps, lies on a two-cycle, and has n/10 < L(A_n) <= n+2.
+The written uniform proof has coefficient-checked Mojo identities and exact
+geometric replay; independent human review remains pending. This refutes the
+parameter-independent K suggested in historical §5.4. It does not refute BH.
+
+The complete finite graphs for n=1..24 all hit, with maximum depth rising
+from 4 to 19. The independent exact oracle checks every labelled occurrence
+and depth at n=18. These finite results do not establish all-state coverage
+for arbitrary n. The next step is a run-indexed carrier with a
+parameter-dependent descending rank, then the remaining A/C regions.
+Class-D acceptance and the open universal #139/#138 premises are unchanged.
+
 ## Current continuation: entire minus class D (2026-10-20 UTC)
 
 The exact minus residual a,b>=0 now has a native all-component certificate:
@@ -1261,7 +1278,8 @@ s=-1\text{ or }s=+1,\qquad a\ge0,\ b\ge1.
    *family* `(a, b, w_0 + j·u)`, with children decided uniformly in `j`. This
    is Theorem H's parametric witness paths applied to vertices, not only to
    witnesses.
-4. **The uniform mechanism.** Every certified line and wedge so far has a
+4. **The uniform mechanism (historical fixed-K proposal; refuted by the
+   October 21 class-A family above).** Every certified line and wedge so far has a
    bounded seed graph and small hitting depth. A uniform depth bound `K` on
    the catch-up-free `|det M| = 2` class would make BH there a finite
    statement about `M^K w ∈ D_K(i, j)` (#232 §5.2). That is the first

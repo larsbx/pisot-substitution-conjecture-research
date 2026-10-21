@@ -1799,3 +1799,17 @@ General #139/#84/G1/PSC remain open. Evidence: merged PR #277,
 2026-10-21 — **PR #295 conflict reconciliation.** Merge main@d91969e into the length-moment branch, retaining both independently appended side-note histories. Regenerate the proof inventory after combining the status notes. The length-moment implementation, its tests, and the October 20 evidence packet remain unchanged; historical runtime and CI observations remain historical. The universal #138/#139 premises remain open.
 
 2026-10-21 — **Merged class D now passes complete CI.** PR #290 merged as 4996d21. All 64 checks on head a9457d9 succeed, including the last general one-tile census; the tested PR merge, accepted head and main merge have identical tree c325aa5. Full locked Pixi provisioning and fresh full plus/minus/assembly/calibration receipts discharge the separate integration gate at this exact source scope. Preserve the earlier false/pending snapshots and local proxy failure; human review remains pending. The ledger now establishes scoped determinant-two class D without an assumption, while Python and TLA firewalls keep universal #139/#138, G1 and PSC open. Historical class-D next-work items are superseded; A/C and uniform hitting remain. Evidence: `evidence/class-d-integration-accepted-2026-10-21/`; provenance: `tools/check_class_d_integration_ci.py`.
+
+
+2026-10-21 — **Class-A fixed-depth obstruction beyond accepted class D.**
+On A `(p,q,r)=(n+1,n,n+1)`, the explicit A_n=(c,y,n,-n,0) is seed-reachable
+in 2n steps and recurrent for every n>=4. A polynomial eigenvector and the
+contracting root alpha>1-2/n give n/10<L(A_n); the actual occurrence descent
+A_n->B_n->...->B_0->coincidence gives L(A_n)<=n+2. This refutes the historical
+parameter-independent K proposal, not BH, and supplies a usable variable-rank
+family. Complete graphs n=1..24 hit; the independent Q(beta) oracle matches
+all 835 vertices and 17,178 ordered occurrences at n=18. Arbitrary-n all-state
+coverage and the remaining A/C domains are open. Class-D #298 acceptance is
+unchanged; independent human review of the new written argument is pending.
+Locators: `docs/p1b-class-a-run-index-2026-10-21.md`,
+`kernel/psc/class_a_run_index.mojo`, `evidence/class-a-run-index-2026-10-21/`.
