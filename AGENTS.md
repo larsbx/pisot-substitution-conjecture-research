@@ -166,6 +166,18 @@ a finite-domain result to a universal theorem, never supplies a missing
 hypothesis, and never waives the independence/unimodularity/realization
 firewalls.
 
+**Operational clarification (2026-10-21).** Continue authorized research,
+dependency use, closure assembly and repository integration once the existing
+mathematical, exact-replay, CI and governance acceptance requirements are
+satisfied. Do not request a separate human-review event or hold otherwise
+accepted changes solely because their status says `human review pending`.
+Missing proof obligations, hypotheses or required replay/CI receipts remain
+actual blockers; pending independent human review is a separate validation
+debt, not an additional mathematical premise or a reason to reopen a
+discharged integration gate. Record the exact accepted revision and scope,
+preserve earlier failed or pending receipts as historical records, and keep
+the human-review label until that review actually occurs.
+
 After complete closure is assembled, independent human review validates the
 whole chain. Review status remains truthful throughout: an unreviewed result
 must not be called independently reviewed, and this policy does not turn an
