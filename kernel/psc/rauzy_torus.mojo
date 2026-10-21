@@ -50,8 +50,10 @@ comptime FREQUENCY_SCALE_BITS = 40
 comptime FREQUENCY_SCALE = 1 << FREQUENCY_SCALE_BITS
 # `n <= 2^16` keeps the enclosure width `n / S <= 2^-24` and `S p_n` inside `Int`.
 comptime MAX_POINTS = 1 << 16
-# Lifts are encoded in a `LIFT_SPAN x LIFT_SPAN` window centred on the origin.
+# Lifts are encoded in a `LIFT_SPAN x LIFT_SPAN` window centred on the origin,
+# so one torus cell meets at most `LIFT_SPAN * LIFT_SPAN` distinct lifts.
 comptime LIFT_SPAN = 256
+comptime MAX_LIFTS_PER_CELL = LIFT_SPAN * LIFT_SPAN
 comptime MAX_FIXED_POINT_ROUNDS = 64
 
 
@@ -105,7 +107,9 @@ struct LiftProfile(Copyable, Movable):
         return n
 
     def histogram(self) raises -> Histogram:
-        var h = Histogram(LIFT_SPAN)
+        """Occupied cells by lift count; sized for every count the encoded
+        window admits, so a valid profile never raises here."""
+        var h = Histogram(MAX_LIFTS_PER_CELL + 1)
         for c in self.lifts:
             if c > 0:
                 h.record(c)

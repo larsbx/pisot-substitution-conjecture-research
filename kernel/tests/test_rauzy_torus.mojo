@@ -10,9 +10,11 @@ covering degree or the Pisot conjecture for any substitution.
 from std.testing import assert_equal, assert_true
 
 from mojo_smoke.claims import require_contract
+from psc.histogram import Histogram
 from psc.perron_field3 import build_perron_field3, cubic_add_checked, perron_tile_lengths_in
 from psc.rauzy_torus import (
     FREQUENCY_SCALE,
+    LIFT_SPAN,
     _scaled_floor,
     transpose3,
     MAX_POINTS,
@@ -100,6 +102,27 @@ def test_lift_profile_separates_one_and_two_lift_covers() raises:
     assert_equal(two.histogram().count(1), 0)
 
 
+def test_histogram_holds_every_encodable_lift_count() raises:
+    # One torus cell met in every lift along one axis of the encoded window:
+    # the count reaches LIFT_SPAN, and the histogram must hold it rather than
+    # raise on a valid profile (Codex finding on PR #304).
+    var cells = List[List[Int]]()
+    var half = LIFT_SPAN // 2
+    for l in range(-half, half):
+        cells.append([4 * l, 0])
+    var profile = lift_profile_of_cells(cells, 4)
+    assert_equal(profile.occupied(), 1)
+    var h = profile.histogram()
+    assert_equal(h.count(LIFT_SPAN), 1)
+    assert_equal(h.maximum(), LIFT_SPAN)
+    assert_equal(h.total(), 1)
+    # The window's full lift count LIFT_SPAN^2 is the largest key the
+    # histogram is ever asked to hold.
+    var full = Histogram(LIFT_SPAN * LIFT_SPAN + 1)
+    full.record(LIFT_SPAN * LIFT_SPAN)
+    assert_equal(full.maximum(), LIFT_SPAN * LIFT_SPAN)
+
+
 def test_tribonacci_lift_profile_regression() raises:
     var frame = frequency_frame(incidence_of(_tribonacci()))
     var points = rauzy_points(_tribonacci(), frame, 8192)
@@ -126,6 +149,8 @@ def main() raises:
     print("[PASS] straddling enclosures are undecided, never assigned")
     test_lift_profile_separates_one_and_two_lift_covers()
     print("[PASS] lift profile: one-lift cover vs two-lift negative control")
+    test_histogram_holds_every_encodable_lift_count()
+    print("[PASS] lift histogram holds every encodable lift count")
     test_tribonacci_lift_profile_regression()
     print("[PASS] Tribonacci 8192-point lift profile on a 64-grid")
     require_contract("rauzy torus kernel: certified floor(2^40 f_i) letter frequencies, exact discrepancy enclosures D_n = p_n - n f on the fixed-point stepped line, fail-closed cell assignment, distinct-lift profile on T^2 = H/H_Z; non-unimodular refused; diagnostic only, certifies no covering degree")
