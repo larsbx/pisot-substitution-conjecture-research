@@ -3,13 +3,11 @@ name: Class-A run-index investigation
 on:
   pull_request:
     paths:
-      - 'kernel/psc/class_a_run_index.mojo'
-      - 'kernel/class_a_run_index.mojo'
-      - 'kernel/tests/test_class_a_run_index.mojo'
+      - 'kernel/**'
+      - 'reference/**'
       - 'oracles/python/class_a_run_index.py'
       - 'tests/test_class_a_run_index.py'
       - '.github/workflows/class-a-run-index.yml'
-      - 'kernel/pixi.lock'
   workflow_dispatch:
 
 jobs:

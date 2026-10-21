@@ -66,3 +66,28 @@ def test_source_and_receipt_scope_cannot_shrink():
     manifest['log_sha256']['119058204076.log'] = '0'*64
     with pytest.raises(ValueError, match='raw job log changed'):
         ci.validate(manifest, checks, jobs)
+
+
+def test_scope_is_historical_not_a_current_workflow_directory_scan(monkeypatch):
+    original = Path.glob
+    def no_current_workflow_scan(path, pattern):
+        if path == ROOT / '.github/workflows':
+            raise AssertionError('historical acceptance cannot depend on current workflow listing')
+        return original(path, pattern)
+    monkeypatch.setattr(Path, 'glob', no_current_workflow_scan)
+    assert ci.validate(*packet())['class_d_project_accepted']
+    manifest, checks, jobs = packet()
+    manifest['source_sha256']['.github/workflows/later-unrelated.yml'] = '0'*64
+    with pytest.raises(ValueError, match='incomplete accepted source'):
+        ci.validate(manifest, checks, jobs)
+
+
+def test_changed_accepted_workflow_bytes_still_refuse(monkeypatch):
+    manifest, checks, jobs = packet()
+    workflow = next(p for p in manifest['source_sha256'] if p.startswith('.github/workflows/'))
+    original = Path.read_bytes
+    def damaged(path):
+        return b'changed accepted workflow' if path == ROOT / workflow else original(path)
+    monkeypatch.setattr(Path, 'read_bytes', damaged)
+    with pytest.raises(ValueError, match='source, lock or workflow changed'):
+        ci.validate(manifest, checks, jobs)

@@ -91,7 +91,12 @@ def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
     old = json.loads((ROOT/'evidence/class-d-assembly-audit-2026-10-21/manifest.json').read_text())
     validate_components(old)
     expected_paths = set(old['plus_source_sha256']) | set(old['replay_source_sha256'])
-    expected_paths.update(str(p.relative_to(ROOT)) for p in (ROOT/'.github/workflows').glob('*.yml'))
+    # The acceptance scope is historical. Later unrelated workflows must not
+    # enlarge it, but every workflow present at acceptance remains hash-checked.
+    accepted_workflows = subprocess.check_output(
+        ['git', 'ls-tree', '-r', '--name-only', HEAD, '--', '.github/workflows'],
+        cwd=ROOT, text=True).splitlines()
+    expected_paths.update(p for p in accepted_workflows if p.endswith('.yml'))
     expected_paths.update(('kernel/pixi.toml', 'pyproject.toml', 'tools/check_class_d_assembly_evidence.py',
                            'oracles/python/class_d_minus_boundary_strips.py', 'oracles/python/class_d_minus_seed_cover.py'))
     if set(manifest['source_sha256']) != expected_paths:
