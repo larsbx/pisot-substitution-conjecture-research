@@ -46,6 +46,8 @@ strong-coincidence-census = "mojo run -I . strong_coincidence_census.mojo"
 one-tile-anatomy = "mojo run -I . one_tile_anatomy.mojo"
 hit-witness-census = "mojo run -I . catch_up_witness_census.mojo"
 return-lattice-census = "mojo run -I . return_lattice_census.mojo"
+rauzy-torus-named = "mojo run -I . rauzy_torus_census.mojo named"
+rauzy-torus-corpus = "mojo run -I . rauzy_torus_census.mojo corpus"
 
 # Finite classifications with no substitution input.
 endpoint-core-catalog = "mojo run -I . endpoint_core_catalog.mojo"
