@@ -1,0 +1,2 @@
+CLASS_D_POSITIVE_B_OBSTRUCTION_CONTROLS_PASS
+contract-receipt: Class-D positive-b proposal: exact least-run bounds at (200,200),(400,200),(200,400) refute the attempted integer-affine fits; plus upper-cover row (x,c,-5,11,-8) changes realness between (a,b)=(200,200) and (200,2000); no BH counterexample or uniform closure is asserted

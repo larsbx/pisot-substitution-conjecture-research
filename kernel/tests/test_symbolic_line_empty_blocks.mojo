@@ -50,4 +50,4 @@ def main() raises:
     var mt = mcl.line.t_of(mbase)
     var mlower = tp_add(mcl.line.ell[mcl.letter(mv.bottom,0)], mt)
     assert_true(mcl.positive(mlower) <= 0)
-    require_contract("positive-b class-D empty occurrence blocks: the plus FIRST/RUN and minus RUN/FIRST blocks are uniformly outside the real overlap interval at their extreme legal run positions; reject before fitting an unconstrained boundary")
+    require_contract("positive-b class-D first non-affine occurrence blocks are uniformly geometrically empty on their certified wedges")

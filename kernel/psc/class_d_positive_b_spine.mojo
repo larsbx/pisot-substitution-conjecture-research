@@ -80,7 +80,7 @@ def _occurrence(
 
 
 def _prefix_component(occ: List[List[Int]], coord: Int) -> List[Int]:
-    return occ[1+coord]
+    return occ[1+coord].copy()
 
 
 def _verify_edge(
@@ -206,8 +206,8 @@ def _verify_fixed_b(
         raise Error("fixed-b edge does not strictly decrease rank")
 
     # Substitute b=bvalue into the occurrence index before validating it.
-    var ti = [top_index[0], top_index[1]+top_index[2]*bvalue, 0]
-    var bi = [bottom_index[0], bottom_index[1]+bottom_index[2]*bvalue, 0]
+    var ti: List[Int] = [top_index[0], top_index[1]+top_index[2]*bvalue, 0]
+    var bi: List[Int] = [bottom_index[0], bottom_index[1]+bottom_index[2]*bvalue, 0]
     var top = _occurrence_fixed_b(r[0], ti, bvalue)
     var bottom = _occurrence_fixed_b(r[1], bi, bvalue)
     if top[0][0] != t[0] or bottom[0][0] != t[1]:
@@ -222,8 +222,8 @@ def _verify_fixed_b(
     mw.append([3*x+3*c+2*y, 5*x+6*c+4*y + bvalue*(x+c+y)])
 
     for coord in range(3):
-        var pt = top[1+coord]
-        var pb = bottom[1+coord]
+        ref pt = top[1+coord]
+        ref pb = bottom[1+coord]
         var ca = mw[coord][0] + pb[0] - pt[0]
         var c0 = mw[coord][1] + pb[1] - pt[1]
         if ca != 0 or c0 != t[2+coord]:

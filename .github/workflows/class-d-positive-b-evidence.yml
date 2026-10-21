@@ -1,9 +1,7 @@
-name: Class-D positive-b wedge candidates
+name: Class-D complete residual certificates
 
 on:
   pull_request:
-    # Include future transitive imports, sealed carriers, and both oracle layers.
-    # A changed certificate dependency must never retain a stale green receipt.
     paths:
       - 'kernel/**'
       - 'reference/**'
@@ -16,71 +14,50 @@ on:
   workflow_dispatch:
 
 jobs:
-  residual-wedge:
-    runs-on: ubuntu-latest
-    timeout-minutes: 300
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          # Residual class D after shifting b' = b - 1 >= 0.
-          # s=+1: (p,q,r)=(4,3,1)+a(3,3,2)+b'(1,1,1)
-          - { name: 'plus-positive-b', args: 'wedge D 4 3 1 3 3 1 1 2 1' }
-          # s=-1: (p,q,r)=(6,7,5)+a(3,3,2)+b'(1,1,1)
-          - { name: 'minus-positive-b', args: 'wedge D 6 3 1 7 3 1 5 2 1' }
-    name: ${{ matrix.name }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install pixi
-        run: |
-          set -o pipefail
-          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
-          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
-      - name: Run exact two-parameter closure
-        working-directory: kernel
-        run: |
-          set -o pipefail
-          pixi run mojo run -I . symbolic_line_certificate.mojo ${{ matrix.args }} 2>&1 | tee positive-b.log
-          grep -F 'symbolic graph for every a >=' positive-b.log
-          grep -F 'cross-check at (a0, b0) and (a0 + 5, b0 + 3): symbolic graph = exact graph' positive-b.log
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: positive-b-${{ matrix.name }}
-          path: kernel/positive-b.log
-          if-no-files-found: error
-
+  # The six former single-quadrant/fixed-carrier attempts are preserved as
+  # historical refusals. Actual acceptance now runs their complete replacements:
+  # minus seed closure + strips + descent, and every plus chamber + boundary.
   complete-residual:
     runs-on: ubuntu-latest
     timeout-minutes: 300
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - { branch: plus, sign: 's=+1' }
-          - { branch: minus, sign: 's=-1' }
+        branch: [plus, minus]
     steps:
       - uses: actions/checkout@v4
-      - name: Install pixi
-        run: |
-          set -o pipefail
-          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
-          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
-      - name: Replay exact obstruction controls
-        working-directory: kernel
-        run: pixi run mojo run -I . tests/test_class_d_positive_b_obstructions.mojo
-      - name: Certify complete ${{ matrix.branch }} positive-b quadrant
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          manifest-path: kernel/pixi.toml
+      - name: Replay exact failed-proposal obstruction controls
         working-directory: kernel
         run: |
           set -o pipefail
-          pixi run mojo run -I . class_d_positive_b_certificate.mojo ${{ matrix.branch }} 2>&1 | tee complete-positive-b.log
-          grep -F 'COMPLETE_POSITIVE_B_WEDGE ${{ matrix.sign }}' complete-positive-b.log
+          pixi run --locked mojo run -I . tests/test_class_d_positive_b_obstructions.mojo 2>&1 | tee residual-obstructions.log
+          grep -Fx 'CLASS_D_POSITIVE_B_OBSTRUCTION_CONTROLS_PASS' residual-obstructions.log
+      - name: Complete minus residual including strips and ranked geometry
+        if: matrix.branch == 'minus'
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_class_d_minus_boundary_strips.mojo 2>&1 | tee residual-minus.log
+          grep -Fx 'CLASS_D_MINUS_RESIDUAL_BH_CERTIFIED a>=0 b>=0 components=4 universal_139=open' residual-minus.log
+      - name: Complete plus boundary and every positive-b chamber and strip
+        if: matrix.branch == 'plus'
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_class_d_plus_template.mojo 2>&1 | tee residual-plus-boundary.log
+          pixi run --locked mojo run -I . tests/test_class_d_plus_positive_b_chambers.mojo 2>&1 | tee residual-plus-partition.log
+          pixi run --locked mojo run -I . class_d_plus_positive_b_chambers.mojo 2>&1 | tee residual-plus.log
+          grep -Fx 'CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED wedges= 6 explicit_lines= 6 boundary_lines= 73 finite_prefix_pip= 952 max_symbolic_vertices= 164' residual-plus.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: complete-positive-b-${{ matrix.branch }}
-          path: kernel/complete-positive-b.log
+          name: complete-residual-${{ matrix.branch }}
+          path: kernel/residual-*.log
           if-no-files-found: error
+
   exact-support-grid:
     runs-on: ubuntu-latest
     steps:
@@ -93,55 +70,11 @@ jobs:
       - name: Run independent exact Q(beta) support calibration
         run: |
           set -o pipefail
-          python3 oracles/python/class_d_positive_b_support.py > positive-b-support.json
+          python3 oracles/python/class_d_positive_b_support.py | tee positive-b-support.json
           python3 -m pytest -q tests/test_class_d_positive_b_support.py tests/test_class_d_positive_b_spine_transport.py tests/test_class_d_certificate_agreement.py tests/test_class_d_plus_cover_data.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: positive-b-support
           path: positive-b-support.json
-          if-no-files-found: error
-  minus-sealed-cover:
-    runs-on: ubuntu-latest
-    timeout-minutes: 300
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install pixi
-        run: |
-          set -o pipefail
-          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
-          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
-      - name: Certify sealed minus cover and its finite boundary strips
-        working-directory: kernel
-        run: |
-          set -o pipefail
-          pixi run mojo run -I . class_d_minus_positive_b_cover.mojo 2>&1 | tee minus-cover.log
-          grep -F 'COMPLETE_MINUS_POSITIVE_B_COVER' minus-cover.log
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: minus-positive-b-cover
-          path: kernel/minus-cover.log
-          if-no-files-found: error
-  plus-sealed-cover:
-    runs-on: ubuntu-latest
-    timeout-minutes: 300
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install pixi
-        run: |
-          set -o pipefail
-          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
-          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
-      - name: Certify sealed plus cover and its finite boundary strips
-        working-directory: kernel
-        run: |
-          set -o pipefail
-          pixi run mojo run -I . class_d_plus_positive_b_cover.mojo 2>&1 | tee plus-cover.log
-          grep -F 'COMPLETE_PLUS_POSITIVE_B_COVER' plus-cover.log
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: plus-positive-b-cover
-          path: kernel/plus-cover.log
           if-no-files-found: error

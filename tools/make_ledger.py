@@ -153,6 +153,40 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                     f"{BOUNDARY_PROGRESS}, Theorems L, L' and L''; computer-assisted, human review pending; merged through PR #246", (), ()),
     "ClassDWedgeBoundaryHitting": (T, "boundary hitting holds on the six declared two-parameter class-D wedges; in particular for every PIP class-D member with r >= q - 1",
                                     f"{BOUNDARY_PROGRESS}, Theorem W and Corollary W1; computer-assisted, human review pending; merged through PR #246", (), ()),
+    "MinusHighSumFormalCycleRay": (T, "for every integer k>=2 the minus class-D member a=2k-1,b=1 has the real-interior formal occurrence two-cycle U_k=(y,c,-2k,4k,-3k) and its mirror, with absolute sum k; seed reachability is not asserted",
+                                 "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 13; kernel/psc/class_d_minus_high_sum_cycles.mojo exact symbolic occurrence and Perron-sign certificate; human review pending", (), ()),
+    "MinusSixEdgeFamilyExclusion": (T, "for every integer k>=2 and every a>=2,b>=1 the six-state minus class-D itinerary in section 12 with sums (-k,k-1,-k,k-1,-k,k) cannot be realized with one shared parameter pair; occurrence guard rows 0 and 5 sum identically to -7-u",
+                                  "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 12; kernel/psc/class_d_minus_cycle_family.mojo exact polynomial replay; one itinerary family only; human review pending", (), ()),
+    "ClassDIntegrationAcceptance": (P, "current combined class-D implementation has passed its required locked environment, native replay, independent calibration and repository CI acceptance gates",
+                                   "docs/class-d-assembly-audit-2026-10-21.md; current-head full Pixi/CI remains pending; historical locked install success is not current acceptance; human review remains separately labelled", (), ()),
+    "PlusClassDBoundaryLine": (T, "boundary hitting holds for every plus class-D residual member a>=0,b=0, including the empty y-run at a=0",
+                              "docs/class-d-assembly-audit-2026-10-21.md; merged boundary template, native complete tail a>=7, exact a=0..6 and full support at a=7,8; independent oracle replay; human review pending", (), ()),
+    "PlusClassDPositiveBBoundaryHitting": (T, "boundary hitting holds for every plus class-D residual member a>=0,b>=1, after required combined integration acceptance",
+                                         "docs/class-d-assembly-audit-2026-10-21.md; PR293 immutable native aggregate with six cores, 73 strips, six interfaces, 952 finite-prefix obligations and unchanged entire import closure; integration gate retained; human review pending",
+                                         ("ClassDIntegrationAcceptance",), ()),
+    "PlusClassDBoundaryHitting": (T, "boundary hitting holds for every PIP determinant-two normal-form member of class D with p=q+1, after required combined integration acceptance",
+                                "docs/class-d-assembly-audit-2026-10-21.md; complete b=0 and positive-b residual plus existing r>=q-1 wedges; human review pending",
+                                ("PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "ClassDWedgeBoundaryHitting"), ()),
+    "ClassDBoundaryHitting": (T, "boundary hitting holds for every PIP determinant-two normal-form member of class D with p-q in {-1,+1}, after required combined integration acceptance; targets are offset-zero descendants, not necessarily equal-letter coincidences",
+                            "docs/class-d-assembly-audit-2026-10-21.md; canonical kernel/class_d_assembly.mojo consumes provenance-checked exact component receipts and replays plus b=0; no class-A/C or universal hitting premise is supplied; human review pending",
+                            ("PlusClassDBoundaryHitting", "MinusClassDBoundaryHitting"), ()),
+    "MinusClassDBoundaryLine": (T, "boundary hitting holds for every minus class-D residual member a>=0,b=0",
+                               "merged PR #277; kernel/psc/class_d_boundary_template.mojo; docs/p1b-minus-boundary-strips-2026-10-20.md; complete symbolic tail, finite prefix and support replay with the lock-matched compiler; human review pending", (), ()),
+    "MinusClassDBoundaryStrips": (T, "boundary hitting holds for both entire minus class-D residual strips a=0 or a=1, b>=1",
+                                 "docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_boundary_strips.mojo; symbolic tails n=b-1>=42 and n>=72, all finite-prefix members hitting, exact graph cross-checks; human review pending", (), ()),
+    "MinusClassDResidualBoundaryHitting": (T, "boundary hitting holds for every minus class-D residual member p=3a+5+b,q=3a+6+b,r=2a+4+b with integers a,b>=0",
+                                         "docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_complete.mojo; disjoint b=0, a=0/b>=1, a=1/b>=1 and a>=2/b>=1 assembly; human review pending",
+                                         ("MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDPositiveBBoundaryHitting"), ()),
+    "MinusClassDBoundaryHitting": (T, "boundary hitting holds for every PIP member of class D with p=q-1",
+                                 "docs/p1b-minus-boundary-strips-2026-10-20.md; exact case split r>=q-1 versus d=q-r>=2 with a=d-2,b=3r-2q>=0; human review pending",
+                                 ("MinusClassDResidualBoundaryHitting", "ClassDWedgeBoundaryHitting"), ()),
+    "MinusClassDSeedCarrierClosure": (T, "for every minus class-D member a>=2,b>=1, every real swap-seed overlap and every descendant before terminal coincidence lies in the sealed 145-label carrier; every such label has absolute coordinate sum at most one",
+                                    "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; kernel/psc/class_d_minus_seed_cover.mojo exact Perron identities, all-seed and all-child Farkas certificates; local Mojo and independent Fraction replay; pinned CI and human review pending", (), ()),
+    "MinusClassDPositiveBCycleSum": (T, "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
+                                     "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; follows from the uniform seed carrier, not formal-cycle exclusions; pinned CI and human review pending", ("MinusClassDSeedCarrierClosure",), ()),
+    "MinusClassDPositiveBBoundaryHitting": (T, "boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1; the historical conditional reduction now has its CycleSum premise discharged by uniform seed closure",
+                                           "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md sections 5, 9 and 14; conditional 1971-state reduction plus proved seed carrier, or direct ranked descent; pinned CI and human review pending",
+                                           ("MinusClassDPositiveBCycleSum", "SwapOverlapFiniteness"), ()),
     # --- strongest Level-3 spectral route ----------------------------------------------
     "ConcentrationAuxB": (P, "no strict component with K2 = 0 exists (concentration / aux-B)", "open conjectural gate, not source-pending; manuscript open problem; issue #43",
                           ("G1", "SinkSCCReduction"), ()),
@@ -260,7 +294,9 @@ STATUS_NOTES = {
 }
 
 ASSUMPTION_SETS = {
+    "ClassDIntegrationAssumed": ["ClassDIntegrationAcceptance"],
     "TwoObstructionsAssumed": ["UniversalAlignedCoincidence", "UniversalBoundaryHitting", "DensityToPDSBridge"],
+    "MinusCycleSumAssumed": ["MinusClassDPositiveBCycleSum"],
     "G1AndProducer": ["G1", "SCCProducer"],
     "G1Only": ["G1"],
     "G1AndC4": ["G1", "C4"],
@@ -318,7 +354,21 @@ def surface(path: str, anchor: str, window_lines: int = 0) -> dict:
 # Status checks bind live prose. Frozen completion snapshots belong in the
 # archive and must not become a dependency of the current status ledger.
 SURFACES = {  # prose surfaces on which each claim's status is spelled out (labelled by the consumer vocabulary)
+    "ClassDIntegrationAcceptance": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Combined integration acceptance |")],
+    "PlusClassDBoundaryLine": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Plus b=0 boundary |")],
+    "PlusClassDPositiveBBoundaryHitting": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Plus positive-b residual |")],
+    "PlusClassDBoundaryHitting": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Entire plus class D |")],
+    "ClassDBoundaryHitting": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Combined determinant-two class D |")],
+    "MinusClassDBoundaryLine": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Minus b=0 boundary |")],
+    "MinusClassDBoundaryStrips": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Minus a=0,1 strips |")],
+    "MinusClassDResidualBoundaryHitting": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Entire minus residual |")],
+    "MinusClassDBoundaryHitting": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Entire minus class D |")],
+    "MinusClassDSeedCarrierClosure": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Uniform minus seed carrier |")],
+    "MinusHighSumFormalCycleRay": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Unbounded real-interior formal two-cycle ray |")],
+    "MinusSixEdgeFamilyExclusion": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Six-edge unbounded family exclusion |")],
     "TwoObstructionCompletion": [surface(MAP, "| Two-obstruction completion theorem / universal completion criterion |")],
+    "MinusClassDPositiveBCycleSum": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Minus cycle-sum bound |")],
+    "MinusClassDPositiveBBoundaryHitting": [surface("docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md", "| Minus positive-b boundary hitting |")],
     "DefectTheorem": [surface(MAP, "| Full incidence rank from"), surface(LEDGER_DOC, "### Full incidence rank and unique decodability", 2)],
     "UniqueDecodability": [surface(MAP, "| Unique decodability of substitution images and powers |"), surface("README.md", "**Unique decodability:**")],
     "G1b1BoundedDiscrepancy": [surface(MAP, "| G1b-1 bounded discrepancy |"), surface(LEDGER_DOC, "### G1b-1 bounded discrepancy", 2),
@@ -403,7 +453,7 @@ def records() -> dict[str, Record]:
                          ("reconciled_source_revision", BOX_LC_RECONCILED_BASELINE),
                          ("reconciliation_source", RECONCILIATION),
                          ("human_review_pending", "true"))
-        if name in {"DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting"}:
+        if name in {"ClassDBoundaryHitting", "PlusClassDBoundaryHitting", "PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting", "MinusClassDPositiveBBoundaryHitting", "MinusClassDSeedCarrierClosure", "MinusClassDPositiveBCycleSum", "MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDResidualBoundaryHitting", "MinusClassDBoundaryHitting"}:
             evidence += (("human_review_pending", "true"),
                          ("computer_assisted", "true"))
         if name == "G1":

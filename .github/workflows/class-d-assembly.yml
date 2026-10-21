@@ -1,0 +1,65 @@
+name: Scoped class-D assembly
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/**'
+      - 'tools/check_class_d_assembly_evidence.py'
+      - 'tools/make_ledger.py'
+      - 'tests/test_class_d_assembly_evidence.py'
+      - 'tests/test_ledger_generation.py'
+      - 'pyproject.toml'
+      - 'evidence/class-d-assembly-audit-2026-10-21/**'
+      - '.github/workflows/class-d-assembly.yml'
+  workflow_dispatch:
+
+jobs:
+  scoped-assembly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      MODULAR_TELEMETRY_ENABLED: 'false'
+      MODULAR_CRASH_REPORTING_ENABLED: 'false'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install independent calibration dependencies
+        run: python -m pip install -e '.[dev]'
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          manifest-path: kernel/pixi.toml
+      - name: Verify committed native receipt provenance
+        run: python tools/check_class_d_assembly_evidence.py
+      - name: Replay the complete minus aggregate and seed controls
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_class_d_minus_boundary_strips.mojo 2>&1 | tee ../assembly-minus.log
+          pixi run --locked mojo run -I . tests/test_class_d_minus_seed_cover.mojo 2>&1 | tee ../assembly-seed.log
+          pixi run --locked mojo run -I . tests/test_class_d_assembly.mojo 2>&1 | tee ../assembly-test.log
+      - name: Independent rational calibration and receipt agreement
+        run: |
+          set -o pipefail
+          python oracles/python/class_d_minus_boundary_strips.py --mojo-log assembly-minus.log | tee assembly-strips.json
+          python oracles/python/class_d_minus_seed_cover.py --mojo-log assembly-seed.log | tee assembly-seed.json
+          CLASS_D_MINUS_STRIPS_REPORT=assembly-strips.json CLASS_D_MINUS_COMPLETE_LOG=assembly-minus.log CLASS_D_SEED_COVER_REPORT=assembly-seed.json CLASS_D_SEED_COVER_MOJO_LOG=assembly-seed.log python -m pytest -q tests/test_class_d_minus_boundary_strips.py tests/test_class_d_minus_seed_cover.py tests/test_class_d_assembly_evidence.py tests/test_ledger_generation.py
+      - name: Assemble immutable plus receipt with fresh minus and full plus boundary
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . class_d_assembly.mojo ../evidence/class-d-chamber-validation-2026-10-20/aggregate.log ../assembly-minus.log 2>&1 | tee ../assembly-native.log
+          grep -Fx 'CLASS_D_ASSEMBLY_CANDIDATE plus_positive_b=complete minus_residual=complete plus_b0=complete inherited_wedges=ClassDWedgeBoundaryHitting target=offset_zero integration=pending universal_139=open' ../assembly-native.log
+      - name: Repository provenance and governance
+        run: bash tools/verify_all.sh provenance
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scoped-class-d-assembly
+          path: |
+            assembly-*.log
+            assembly-*.json
+          if-no-files-found: warn

@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import make_ledger  # noqa: E402
 from proof_records import generate_ledgers as gl  # noqa: E402
 
-MODELS = ("TwoObstructionsAssumed", "FormalProductivityGateAssumed", "Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
+MODELS = ("ClassDIntegrationAssumed", "TwoObstructionsAssumed", "MinusCycleSumAssumed", "FormalProductivityGateAssumed", "Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
 
 
 def reachable(model: str) -> set[str]:
@@ -207,6 +207,20 @@ def test_model_rejects_false_g1_nonestablishment_with_tlc(tmp_path):
     assert "Invariant G1NotEstablished is violated" in out.stdout, out.stdout + out.stderr
 
 
+def test_minus_cyclesum_closes_only_the_scoped_conditional_family_result():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof/tla/ledger.json"))
+    by_name = {e.name:e for e in analysis.entries}
+    assert make_ledger.TABLE["MinusClassDPositiveBCycleSum"][3] == ("MinusClassDSeedCarrierClosure",)
+    assert by_name["MinusClassDSeedCarrierClosure"].status == "proved"
+    assert by_name["MinusClassDPositiveBCycleSum"].status == "proved"
+    assert by_name["MinusClassDPositiveBBoundaryHitting"].status == "proved"
+    assert "MinusClassDPositiveBBoundaryHitting" in reachable("Open")
+    done = gl.established(analysis,("MinusClassDPositiveBCycleSum",))
+    assert done == reachable("MinusCycleSumAssumed")
+    assert "MinusClassDPositiveBBoundaryHitting" in done
+    assert not {"AllSeedStrictZipperExclusion","OverlapProductivity", "AllSeedOverlapProductivity", "G1", "PDS"} & done
+
+
 def test_two_obstruction_assembly_keeps_both_universal_premises_open():
     analysis = gl.analyse(gl.load_ledger(ROOT / "proof/tla/ledger.json"))
     entries = {e.name: e for e in analysis.entries}
@@ -217,7 +231,39 @@ def test_two_obstruction_assembly_keeps_both_universal_premises_open():
     assumed = ("UniversalAlignedCoincidence", "UniversalBoundaryHitting", "DensityToPDSBridge")
     assert gl.established(analysis, assumed) == reachable("TwoObstructionsAssumed")
     assert "TwoObstructionCompletion" in reachable("TwoObstructionsAssumed")
-    for model in ("Open", "Imports"):
+    for model in ("Open", "Imports", "MinusCycleSumAssumed"):
         assert not {"UniversalAlignedCoincidence", "UniversalBoundaryHitting", "TwoObstructionCompletion"} & reachable(model)
-    # Existing scoped class-D line/wedge results cannot supply either universal gate.
     assert {"DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting"} <= reachable("Open")
+
+
+def test_unbounded_six_edge_family_does_not_discharge_cyclesum():
+    assert "MinusSixEdgeFamilyExclusion" in reachable("Open")
+    assert not {"UniversalBoundaryHitting", "TwoObstructionCompletion", "PDS"} & reachable("Open")
+
+
+def test_high_sum_formal_cycle_ray_is_not_a_seed_counterexample_or_cyclesum_proof():
+    assert "MinusHighSumFormalCycleRay" in reachable("Open")
+    assert not {"UniversalBoundaryHitting", "OverlapProductivity", "PDS"} & reachable("Open")
+    assert "seed reachability is not asserted" in make_ledger.records()["MinusHighSumFormalCycleRay"].statement
+
+
+def test_complete_minus_class_d_does_not_close_universal_boundary_hitting():
+    done=reachable("Open")
+    assert {"MinusClassDBoundaryLine", "MinusClassDBoundaryStrips",
+            "MinusClassDResidualBoundaryHitting", "MinusClassDBoundaryHitting"} <= done
+    assert set(make_ledger.TABLE["MinusClassDResidualBoundaryHitting"][3]) == {
+        "MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDPositiveBBoundaryHitting"}
+    assert not {"UniversalBoundaryHitting", "UniversalAlignedCoincidence", "TwoObstructionCompletion", "PDS", "G1"} & done
+
+
+def test_class_d_assembly_preserves_integration_and_universal_firewalls():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof/tla/ledger.json"))
+    entries = {entry.name: entry for entry in analysis.entries}
+    assert entries["ClassDIntegrationAcceptance"].status == "open"
+    assert entries["ClassDBoundaryHitting"].status == "conditional"
+    assert {"MinusClassDBoundaryHitting", "PlusClassDBoundaryLine"} <= reachable("Open")
+    assert "ClassDBoundaryHitting" not in reachable("Open")
+    assembled = reachable("ClassDIntegrationAssumed")
+    assert gl.established(analysis,("ClassDIntegrationAcceptance",)) == assembled
+    assert {"PlusClassDBoundaryHitting", "MinusClassDBoundaryHitting", "ClassDBoundaryHitting"} <= assembled
+    assert not {"UniversalBoundaryHitting", "UniversalAlignedCoincidence", "TwoObstructionCompletion", "G1", "PDS"} & assembled

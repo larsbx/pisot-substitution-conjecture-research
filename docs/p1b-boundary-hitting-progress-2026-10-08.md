@@ -12,6 +12,34 @@ Canonical implementation for §4: `kernel/symbolic_line_certificate.mojo`
 `kernel/tests/test_symbolic_line.mojo`, evidence workflow
 `.github/workflows/class-b-lines-evidence.yml`.
 
+## Current assembly audit (2026-10-21)
+
+The complete plus positive-b native receipt from merged #293 and the freshly
+replayed complete minus residual now support a determinant-two class-D
+assembly candidate, together with both b=0 boundaries and the existing
+r>=q-1 theorem. The exact cover, overlap conventions, full import-closure
+provenance and remaining integration gate are recorded in
+`class-d-assembly-audit-2026-10-21.md`. The combined ledger result is
+**conditional** on current combined integration acceptance; no component
+requirement is waived. Class A/C and universal #139 remain open.
+
+## Current continuation: entire minus class D (2026-10-20 UTC)
+
+The exact minus residual a,b>=0 now has a native all-component certificate:
+merged b=0, the two complete a=0,1 positive-b lines, and PR #290's uniform
+seed carrier plus ranked descent/conditional geometry for a>=2,b>=1. The
+strips have thresholds n=b-1>=42/72 and 140/137 symbolic vertices; all 114
+finite-prefix members are PIP and hitting. Execution uses the lock-matched
+Mojo compiler/runtime, with full Pixi/CI and human validation still pending.
+The exact residual parameter map below and existing r>=q-1 wedges then give
+boundary hitting on every PIP minus class-D member p=q-1. This supersedes the
+historical statement that both positive-b interiors are mathematically open.
+
+The plus branch remains separately governed by #293's completed component
+campaign and its integration gates. Universal #139/#84 and PSC remain open.
+Derivation, evidence and current ledger:
+`p1b-minus-boundary-strips-2026-10-20.md`.
+
 ## 0. The obligation, stated once
 
 For PIP `sigma` on three letters, let `Reach(s)` be the overlaps reachable from

@@ -1,0 +1,12 @@
+{
+  "kernel/psc/class_d_minus_high_sum_cycles.mojo": "1bd0fe97ebea799e38e55a6bf6e8f495deb5648166603b0b6450ea0c6ea6bbb0",
+  "kernel/class_d_minus_high_sum_cycles.mojo": "44ea5a0a62c68002aee1f30ca1004362a8e9de883d8ec5949e5fe4a6f353c90d",
+  "kernel/tests/test_class_d_minus_high_sum_cycles.mojo": "e08a992a59dd59c685448817afa84abcac1f3e8838a1994dd7c6f0bd24d61c07",
+  "oracles/python/class_d_minus_high_sum_cycles.py": "466e4bee21d03929ab72bd7c2eca94a990c4cf14bd737231c1858ef8f326dc96",
+  "tests/test_class_d_minus_high_sum_cycles.py": "091d91fcb61505c6e493f4fdf0b75c0e834eddf5f4b21a9d894d51a9983ec358",
+  "kernel/psc/class_d_minus_shared_cycles.mojo": "aefdadf2a29d72f3fe5d9e4a1d0bf832c3fb719832d12143ffe58c3b5e9fe740",
+  "kernel/psc/class_d_positive_b_geometry.mojo": "59e32272cab32fa1c062b501b0e48161d8e731f1ed921a6c97dc78b857590420",
+  "tools/make_ledger.py": "db74d89848569a6bfc8b2556ccf8028beba2490b37801c909dc4115501324739",
+  "tests/test_ledger_generation.py": "a00a9815b5d6fd049c6204953277f65b479171ee82cc864fa2fc41eb91331bbc",
+  ".github/workflows/class-d-minus-recurrent-carrier.yml": "535c6fed95366b50aaaf71cc024daf863e418efc8d4c5ca312fb5dec26f49e69"
+}

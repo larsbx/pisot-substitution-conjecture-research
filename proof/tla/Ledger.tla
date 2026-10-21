@@ -25,6 +25,8 @@ ResultSet == {
     "C3Local",
     "C3Locality",
     "C4",
+    "ClassDBoundaryHitting",
+    "ClassDIntegrationAcceptance",
     "ClassDWedgeBoundaryHitting",
     "CoincidenceDensityOne",
     "CoincidenceRankFibreTheorems",
@@ -56,6 +58,15 @@ ResultSet == {
     "MassBalanceK2Obstruction",
     "MeanAreaLift",
     "MidArea",
+    "MinusClassDBoundaryHitting",
+    "MinusClassDBoundaryLine",
+    "MinusClassDBoundaryStrips",
+    "MinusClassDPositiveBBoundaryHitting",
+    "MinusClassDPositiveBCycleSum",
+    "MinusClassDResidualBoundaryHitting",
+    "MinusClassDSeedCarrierClosure",
+    "MinusHighSumFormalCycleRay",
+    "MinusSixEdgeFamilyExclusion",
     "Mod3Sieve",
     "OrientationMonodromy",
     "OrientationSpectrum",
@@ -76,6 +87,9 @@ ResultSet == {
     "PeriodicPairOneFibre",
     "PhiSemisimplicity",
     "PisotMeyerProperty",
+    "PlusClassDBoundaryHitting",
+    "PlusClassDBoundaryLine",
+    "PlusClassDPositiveBBoundaryHitting",
     "RepoSeedUnionBridge",
     "ReturnModuleFullRank",
     "SCCProducer",
@@ -120,6 +134,8 @@ RequiresDef == [r \in ResultSet |->
       [] r = "C3Local" -> {{"C4", "C3Locality"}}
       [] r = "C3Locality" -> {{}}
       [] r = "C4" -> {{}}
+      [] r = "ClassDBoundaryHitting" -> {{"PlusClassDBoundaryHitting", "MinusClassDBoundaryHitting"}}
+      [] r = "ClassDIntegrationAcceptance" -> {{}}
       [] r = "ClassDWedgeBoundaryHitting" -> {{}}
       [] r = "CoincidenceDensityOne" -> {{"OverlapProductivity", "SwapOverlapFiniteness"}}
       [] r = "CoincidenceRankFibreTheorems" -> {{}}
@@ -151,6 +167,15 @@ RequiresDef == [r \in ResultSet |->
       [] r = "MassBalanceK2Obstruction" -> {{}}
       [] r = "MeanAreaLift" -> {{"MidArea", "ParikhIntertwiner"}}
       [] r = "MidArea" -> {{}}
+      [] r = "MinusClassDBoundaryHitting" -> {{"MinusClassDResidualBoundaryHitting", "ClassDWedgeBoundaryHitting"}}
+      [] r = "MinusClassDBoundaryLine" -> {{}}
+      [] r = "MinusClassDBoundaryStrips" -> {{}}
+      [] r = "MinusClassDPositiveBBoundaryHitting" -> {{"MinusClassDPositiveBCycleSum", "SwapOverlapFiniteness"}}
+      [] r = "MinusClassDPositiveBCycleSum" -> {{"MinusClassDSeedCarrierClosure"}}
+      [] r = "MinusClassDResidualBoundaryHitting" -> {{"MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDPositiveBBoundaryHitting"}}
+      [] r = "MinusClassDSeedCarrierClosure" -> {{}}
+      [] r = "MinusHighSumFormalCycleRay" -> {{}}
+      [] r = "MinusSixEdgeFamilyExclusion" -> {{}}
       [] r = "Mod3Sieve" -> {{"DefectIntertwiner"}}
       [] r = "OrientationMonodromy" -> {{}}
       [] r = "OrientationSpectrum" -> {{"OrientationMonodromy", "ParikhIntertwiner"}}
@@ -171,6 +196,9 @@ RequiresDef == [r \in ResultSet |->
       [] r = "PeriodicPairOneFibre" -> {{"ReturnModuleFullRank"}}
       [] r = "PhiSemisimplicity" -> {{}}
       [] r = "PisotMeyerProperty" -> {{}}
+      [] r = "PlusClassDBoundaryHitting" -> {{"PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "ClassDWedgeBoundaryHitting"}}
+      [] r = "PlusClassDBoundaryLine" -> {{}}
+      [] r = "PlusClassDPositiveBBoundaryHitting" -> {{"ClassDIntegrationAcceptance"}}
       [] r = "RepoSeedUnionBridge" -> {{}}
       [] r = "ReturnModuleFullRank" -> {{}}
       [] r = "SCCProducer" -> {{"G1", "SinkSCCReduction", "C2"}}
@@ -209,6 +237,7 @@ ProvedDef == {
     "C2",
     "C3Local",
     "C3Locality",
+    "ClassDBoundaryHitting",
     "ClassDWedgeBoundaryHitting",
     "CoincidenceDensityOne",
     "DefectIntertwiner",
@@ -235,6 +264,15 @@ ProvedDef == {
     "MassBalanceK2Obstruction",
     "MeanAreaLift",
     "MidArea",
+    "MinusClassDBoundaryHitting",
+    "MinusClassDBoundaryLine",
+    "MinusClassDBoundaryStrips",
+    "MinusClassDPositiveBBoundaryHitting",
+    "MinusClassDPositiveBCycleSum",
+    "MinusClassDResidualBoundaryHitting",
+    "MinusClassDSeedCarrierClosure",
+    "MinusHighSumFormalCycleRay",
+    "MinusSixEdgeFamilyExclusion",
     "Mod3Sieve",
     "OrientationMonodromy",
     "OrientationSpectrum",
@@ -252,6 +290,9 @@ ProvedDef == {
     "ParitySieve",
     "PeriodicPairOneFibre",
     "PhiSemisimplicity",
+    "PlusClassDBoundaryHitting",
+    "PlusClassDBoundaryLine",
+    "PlusClassDPositiveBBoundaryHitting",
     "RepoSeedUnionBridge",
     "ReturnModuleFullRank",
     "SCCProducer",
@@ -296,6 +337,9 @@ AllSeedOverlapGateAssumed == {
 AllSeedStrictZipperGateAssumed == {
     "AllSeedStrictZipperExclusion"
 }
+ClassDIntegrationAssumed == {
+    "ClassDIntegrationAcceptance"
+}
 FormalProductivityGateAssumed == {
     "FormalProductivity",
     "PisotMeyerProperty",
@@ -312,6 +356,9 @@ G1AndProducer == {
 }
 G1Only == {
     "G1"
+}
+MinusCycleSumAssumed == {
+    "MinusClassDPositiveBCycleSum"
 }
 OverlapGateAssumed == {
     "OverlapProductivity",
@@ -352,6 +399,8 @@ C2NotEstablished == "C2" \notin established
 C3LocalNotEstablished == "C3Local" \notin established
 C3LocalityNotEstablished == "C3Locality" \notin established
 C4NotEstablished == "C4" \notin established
+ClassDBoundaryHittingNotEstablished == "ClassDBoundaryHitting" \notin established
+ClassDIntegrationAcceptanceNotEstablished == "ClassDIntegrationAcceptance" \notin established
 ClassDWedgeBoundaryHittingNotEstablished == "ClassDWedgeBoundaryHitting" \notin established
 CoincidenceDensityOneNotEstablished == "CoincidenceDensityOne" \notin established
 CoincidenceRankFibreTheoremsNotEstablished == "CoincidenceRankFibreTheorems" \notin established
@@ -383,6 +432,15 @@ LocalWitnessInjectivityNotEstablished == "LocalWitnessInjectivity" \notin establ
 MassBalanceK2ObstructionNotEstablished == "MassBalanceK2Obstruction" \notin established
 MeanAreaLiftNotEstablished == "MeanAreaLift" \notin established
 MidAreaNotEstablished == "MidArea" \notin established
+MinusClassDBoundaryHittingNotEstablished == "MinusClassDBoundaryHitting" \notin established
+MinusClassDBoundaryLineNotEstablished == "MinusClassDBoundaryLine" \notin established
+MinusClassDBoundaryStripsNotEstablished == "MinusClassDBoundaryStrips" \notin established
+MinusClassDPositiveBBoundaryHittingNotEstablished == "MinusClassDPositiveBBoundaryHitting" \notin established
+MinusClassDPositiveBCycleSumNotEstablished == "MinusClassDPositiveBCycleSum" \notin established
+MinusClassDResidualBoundaryHittingNotEstablished == "MinusClassDResidualBoundaryHitting" \notin established
+MinusClassDSeedCarrierClosureNotEstablished == "MinusClassDSeedCarrierClosure" \notin established
+MinusHighSumFormalCycleRayNotEstablished == "MinusHighSumFormalCycleRay" \notin established
+MinusSixEdgeFamilyExclusionNotEstablished == "MinusSixEdgeFamilyExclusion" \notin established
 Mod3SieveNotEstablished == "Mod3Sieve" \notin established
 OrientationMonodromyNotEstablished == "OrientationMonodromy" \notin established
 OrientationSpectrumNotEstablished == "OrientationSpectrum" \notin established
@@ -403,6 +461,9 @@ ParitySieveNotEstablished == "ParitySieve" \notin established
 PeriodicPairOneFibreNotEstablished == "PeriodicPairOneFibre" \notin established
 PhiSemisimplicityNotEstablished == "PhiSemisimplicity" \notin established
 PisotMeyerPropertyNotEstablished == "PisotMeyerProperty" \notin established
+PlusClassDBoundaryHittingNotEstablished == "PlusClassDBoundaryHitting" \notin established
+PlusClassDBoundaryLineNotEstablished == "PlusClassDBoundaryLine" \notin established
+PlusClassDPositiveBBoundaryHittingNotEstablished == "PlusClassDPositiveBBoundaryHitting" \notin established
 RepoSeedUnionBridgeNotEstablished == "RepoSeedUnionBridge" \notin established
 ReturnModuleFullRankNotEstablished == "ReturnModuleFullRank" \notin established
 SCCProducerNotEstablished == "SCCProducer" \notin established

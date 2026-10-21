@@ -612,6 +612,42 @@ anchor = '| C4 |'
 window_lines = 0
 
 [[claim]]
+name = "ClassDBoundaryHitting"
+status = "conditional"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"ClassDBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| ClassDBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/class-d-assembly-audit-2026-10-21.md"
+anchor = "| Combined determinant-two class D |"
+window_lines = 0
+
+[[claim]]
+name = "ClassDIntegrationAcceptance"
+status = "open"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"ClassDIntegrationAcceptance"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "absent"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| ClassDIntegrationAcceptance |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/class-d-assembly-audit-2026-10-21.md"
+anchor = "| Combined integration acceptance |"
+window_lines = 0
+
+[[claim]]
 name = "ClassDWedgeBoundaryHitting"
 status = "proved"
 aliases = ["Theorem W", "class-D wedge boundary hitting"]
@@ -1203,6 +1239,168 @@ anchor = '| MidArea |'
 window_lines = 0
 
 [[claim]]
+name = "MinusClassDBoundaryHitting"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-minus-boundary-strips-2026-10-20.md"
+anchor = "| Entire minus class D |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassDBoundaryLine"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDBoundaryLine"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDBoundaryLine |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-minus-boundary-strips-2026-10-20.md"
+anchor = "| Minus b=0 boundary |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassDBoundaryStrips"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDBoundaryStrips"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDBoundaryStrips |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-minus-boundary-strips-2026-10-20.md"
+anchor = "| Minus a=0,1 strips |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassDPositiveBBoundaryHitting"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDPositiveBBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDPositiveBBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Minus positive-b boundary hitting |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassDPositiveBCycleSum"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDPositiveBCycleSum"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDPositiveBCycleSum |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Minus cycle-sum bound |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassDResidualBoundaryHitting"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDResidualBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDResidualBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-minus-boundary-strips-2026-10-20.md"
+anchor = "| Entire minus residual |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassDSeedCarrierClosure"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDSeedCarrierClosure"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDSeedCarrierClosure |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Uniform minus seed carrier |"
+window_lines = 0
+
+[[claim]]
+name = "MinusHighSumFormalCycleRay"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusHighSumFormalCycleRay"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusHighSumFormalCycleRay |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Unbounded real-interior formal two-cycle ray |"
+window_lines = 0
+
+[[claim]]
+name = "MinusSixEdgeFamilyExclusion"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusSixEdgeFamilyExclusion"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusSixEdgeFamilyExclusion |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Six-edge unbounded family exclusion |"
+window_lines = 0
+
+[[claim]]
 name = "Mod3Sieve"
 status = "proved"
 [[claim.surfaces]]
@@ -1580,6 +1778,60 @@ window_lines = 0
 [[claim.surfaces]]
 path = "docs/claim-status-and-source-map-2026-09-13.md"
 anchor = "| Pisot Meyer property |"
+window_lines = 0
+
+[[claim]]
+name = "PlusClassDBoundaryHitting"
+status = "conditional"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PlusClassDBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PlusClassDBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/class-d-assembly-audit-2026-10-21.md"
+anchor = "| Entire plus class D |"
+window_lines = 0
+
+[[claim]]
+name = "PlusClassDBoundaryLine"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PlusClassDBoundaryLine"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PlusClassDBoundaryLine |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/class-d-assembly-audit-2026-10-21.md"
+anchor = "| Plus b=0 boundary |"
+window_lines = 0
+
+[[claim]]
+name = "PlusClassDPositiveBBoundaryHitting"
+status = "conditional"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PlusClassDPositiveBBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PlusClassDPositiveBBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/class-d-assembly-audit-2026-10-21.md"
+anchor = "| Plus positive-b residual |"
 window_lines = 0
 
 [[claim]]

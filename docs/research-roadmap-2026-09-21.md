@@ -322,6 +322,18 @@ explicitly and no FI, legality, or unimodularity assumption.
 
 ### P1b — strict-zipper branch: issue #139
 
+**2026-10-20 UTC scoped advance:** the entire PIP minus class-D branch
+p=q-1 now has a boundary-hitting certificate. PR #290 supplies the uniform
+a>=2,b>=1 seed carrier; the two omitted strips a=0,1 certify at n=b-1
+thresholds 42/72, with every finite prefix checked. A native aggregate replays
+b=0, both strips, the core, ranked descent and conditional geometry using the
+lock-matched Mojo compiler. Combined with the existing r>=q-1 wedge theorem,
+this covers all minus class D. See `p1b-minus-boundary-strips-2026-10-20.md`.
+Full Pixi/CI integration and independent human review remain pending. PR #293
+reports all plus components complete; its validation/aggregate integration is
+separate. Universal #139 remains open, with A/C and growing vertex families
+still outside these class-D results.
+
 **Target:** eliminate a closed irreducible nonproductive overlap SCC with no offset-zero vertex by forcing a prefix-Parikh boundary hit.
 
 For an overlap offset `w`, the required hit is
@@ -736,7 +748,7 @@ do not quietly resurrect it under a new name.
 | Priority | Item | Status | Evidence needed to close | Immediate next deliverable |
 | --- | --- | --- | --- | --- |
 | **P0** | Status/provenance synchronization | reconciled through `main@e062e330`; this roadmap is the live completion surface | roadmap, proof ladder, claim map, manuscript, generated ledger and README preserve the same theorem/review boundary | keep imported/scoped theorems, conditional reductions, negative controls, open PR candidates, and universal open claims distinct |
-| **P1b** | Strict-zipper hitting (#139) | **OPEN critical; highest leverage** — boundary hitting is proved on 47 lines, the class-D wedges with `r >= q - 1`, and both class-D `b=0` boundary lines; the exact residual is the two positive-`b` interiors | occurrence-compatible two-parameter replay/lifting plus a uniform good-branch or boundary-hitting theorem for every child-closed realized candidate | prove both `s=±1, a>=0, b>=1` interiors; do not reuse the refuted literal `b=0` spine transport; then extend to A/C and extract uniform depth `K` |
+| **P1b** | Strict-zipper hitting (#139) | **OPEN critical; highest leverage** — scoped certificates cover all minus class D; plus component execution is complete in #293 but integration remains pending | integrate the complete plus certificate, then prove uniform occurrence-compatible coverage beyond class D | resolve plus validation debt; extend to A/C and growing vertex families, retaining the universal depth/coverage obligation |
 | **P1a** | Aligned strong coincidence (#138) | **OPEN critical; the two templates are one at the square (Theorem C, 2026-10-05); A1′ proved on the whole catch-up-free `|det M| = 2` class (Theorem E), with all-pairs strong coincidence on its two-odd-letter part (Corollary H1) and outside one explicit family (Theorem K); inside that family Theorems Φ, Λ, Λ′, Λ″ close four `Delta` cells and Theorem Ζ every `Delta` with `Z_2` bounded (2026-10-07)** | uniform proof of A1′ (a bad edge whose letters are both `h`-fixed is eventually coincident), including reversal | on Theorem K's family, close unbounded `Z_2` (Lemma P1 linearized, `2 zfloor`; A1′ note §3m); in general, prove A1′ from the fixed-letter hypothesis, not via transitivity of eventual coincidence |
 | **P1** | Seedwise overlap productivity (#84) | **OPEN — sole shortest-route premise** | P1a + P1b, or one stronger theorem excluding every bad closed SCC | assemble only after branch closure; do not substitute a larger finite census |
 | **Validation** | Independent human review, including the `PDS => G1` dependency package | **FINAL validation debt, non-blocking** — mechanically sufficient results are project-accepted for progression at their exact scopes; this is not an independent-human-review claim | after a complete closure candidate exists, independently review the assembled chain, including Theorem R, Proposition F, Theorem B/Lemma C and the Barge fibre/coincidence-rank source chain | do not divert P1 work to review gating; preserve truthful `human review pending` labels and perform final review after closure assembly |
@@ -752,19 +764,17 @@ do not quietly resurrect it under a new name.
 
 For the next research cycle:
 
-1. **#139: prove occurrence-aware good-branch coverage in the positive-`b`
-   class-D interiors.** PR #277 already covers both infinite `b=0` boundary
-   lines. The exact remaining class-D target is
-   `s=±1, a>=0, b>=1`. Build a genuinely two-parameter occurrence-labelled
-   cover or vertex-family theorem; the recorded rank-one update proves the
-   sealed `b=0` selected spine cannot simply be relabelled as an interior
-   theorem. Then extend the wedge analysis to A/C, and treat class A's slope-one
-   growing graphs by vertex families. The first class-level closure target is
-   a uniform boundary-hitting depth `K` for the catch-up-free determinant-two
-   class. Every projected matched-target path must replay as one compatible
-   ordered occurrence path. The Nakaishi audit and ternary good-exit family
-   rule out replacing this whole-set obligation by recurrence of one path or
-   by source-diagonal cancellation alone.
+1. **#139: integrate the plus certificate, then extend beyond class D.**
+   The minus branch is covered by the exact seed carrier, both a=0,1 strips,
+   b=0 and the existing wedge theorem; see the October 20 note above. PR #293
+   reports all plus chamber components complete under the locked compiler,
+   with its integration and inherited regression gates still separate. Keep
+   the successful family proofs available for research progression while
+   preserving validation debt. Then extend the wedge analysis to A/C and
+   treat class A's slope-one growing graphs by vertex families. The universal
+   target still needs occurrence-compatible all-child good-branch coverage,
+   not a cycle-only or quotient-only sieve. Every projected target path must
+   replay as one ordered occurrence path for the same substitution.
 2. **#138 template exclusion in parallel.** The aligned recurrent dynamics has
    only a fixed bad hub edge (A1) or the alternating type-E template (A2).
    For A1, prove the open fixed-edge interior-forcing lemma using

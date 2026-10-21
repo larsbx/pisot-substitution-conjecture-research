@@ -1,0 +1,8 @@
+MINUS_CORRELATED_ROOT_REGION 0<X,Y<1 10X>7Y 10-10X>3Y a>=2 b>=1
+MINUS_SEED_COVER_COUNTS 145 9 3 2 1287 12255 1218 9034 2003
+MINUS_SEED_COVER_CERTIFIED a>=2 b>=1 all_real_seed_descendants_in_carrier=true abs_sum<=1 parameter_cap=none
+SEED_COVER_UNRESOLVED_CHILD 0:2:-1,2,-1 1 1 2:2:0,0,0
+SEED_COVER_UNRESOLVED_SEED 2:2:-1,0,0
+contract-receipt: uniform minus class-D a>=2,b>=1: all 12 swap-seed candidates covered or exactly nonreal; every legal real child of a nonterminal real carrier state remains in the sealed 145-label sum<=1 carrier; no assumed child sum bound; exact correlated root region; coarse geometry and removed target refuse
+claim-receipt: MinusClassDSeedCarrierClosure
+claim-receipt: MinusClassDPositiveBCycleSum

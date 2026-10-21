@@ -1,0 +1,19 @@
+{
+  "status": "EXACT_CARRIER_CLOSURE_CALIBRATION",
+  "authority": "independent-Fraction-vertex-oracle",
+  "refined_region": true,
+  "counts": [
+    145,
+    9,
+    3,
+    2,
+    1287,
+    12255,
+    1218,
+    9034,
+    2003
+  ],
+  "unresolved": [],
+  "parameter_grid": false,
+  "perron_region_proof": "kernel/psc/class_d_minus_seed_cover.mojo"
+}

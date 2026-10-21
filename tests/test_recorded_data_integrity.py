@@ -7,6 +7,7 @@ records; all are verbatim, so a checksum mismatch is a modified record, never a 
 from __future__ import annotations
 
 import hashlib
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -37,3 +38,12 @@ def test_checksums_verify(sums):
     if sums.is_relative_to(ROOT / "evidence"):
         held = {p for p in sums.parent.rglob("*") if p.is_file() and p != sums}
         assert held == set(pinned), "an evidence packet pins exactly the files it holds"
+
+
+def test_pinned_records_are_tracked_for_clean_checkout():
+    tracked = set(subprocess.check_output(
+        ["git", "ls-files", "-z"], cwd=ROOT, text=True
+    ).split("\0"))
+    required = {path.relative_to(ROOT).as_posix() for sums in SUMS
+                for path in (sums, *entries(sums))}
+    assert required <= tracked, "pinned evidence omitted from Git: " + repr(sorted(required - tracked))
