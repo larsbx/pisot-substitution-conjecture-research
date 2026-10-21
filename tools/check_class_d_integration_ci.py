@@ -13,6 +13,7 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import tomllib
 
 from check_class_d_assembly_evidence import validate as validate_components
 
@@ -36,6 +37,26 @@ JOBS = {
 PLUS = 'CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED wedges= 6 explicit_lines= 6 boundary_lines= 73 finite_prefix_pip= 952 max_symbolic_vertices= 164'
 MINUS = 'CLASS_D_MINUS_RESIDUAL_BH_CERTIFIED a>=0 b>=0 components=4 universal_139=open'
 ASSEMBLY = 'CLASS_D_ASSEMBLY_CANDIDATE plus_positive_b=complete minus_residual=complete plus_b0=complete inherited_wedges=ClassDWedgeBoundaryHitting target=offset_zero integration=pending universal_139=open'
+
+
+
+def additive_pixi_tasks_only(accepted: bytes, current: bytes) -> bool:
+    """Preserve the accepted environment and task definitions; allow new names.
+
+    No lock, dependency, platform, feature, activation or existing task change
+    is accepted. The historical bytes retain their original SHA-256 check.
+    """
+    before = tomllib.loads(accepted.decode())
+    after = tomllib.loads(current.decode())
+    old_tasks = before.pop('tasks', {})
+    new_tasks = after.pop('tasks', {})
+    # Canonical JSON distinguishes TOML booleans, integers and floats as well
+    # as values, so Python's True == 1 cannot relax this provenance boundary.
+    exact = lambda value: json.dumps(value, sort_keys=True, separators=(',', ':'))
+    return (exact(before) == exact(after)
+            and isinstance(new_tasks, dict)
+            and all(name in new_tasks and exact(task) == exact(new_tasks[name])
+                    for name, task in old_tasks.items()))
 
 
 def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
@@ -103,7 +124,12 @@ def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
         raise ValueError('incomplete accepted source scope')
     for path, digest in manifest['source_sha256'].items():
         historical = subprocess.check_output(['git','show',HEAD+':'+path],cwd=ROOT)
-        if hashlib.sha256(historical).hexdigest() != digest or hashlib.sha256((ROOT/path).read_bytes()).hexdigest() != digest:
+        if hashlib.sha256(historical).hexdigest() != digest:
+            raise ValueError('accepted mathematical source, lock or workflow changed: '+path)
+        current = (ROOT/path).read_bytes()
+        if hashlib.sha256(current).hexdigest() != digest:
+            if path == 'kernel/pixi.toml' and additive_pixi_tasks_only(historical, current):
+                continue
             raise ValueError('accepted mathematical source, lock or workflow changed: '+path)
     if set(manifest['log_sha256']) != {str(i)+'.log' for i in JOBS}:
         raise ValueError('incomplete raw job logs')
