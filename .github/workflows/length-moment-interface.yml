@@ -1,0 +1,36 @@
+name: Exact length-moment proof interfaces
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/length_moments.mojo'
+      - 'kernel/tests/test_length_moments.mojo'
+      - '.github/workflows/length-moment-interface.yml'
+      - 'kernel/pixi.lock'
+  workflow_dispatch:
+
+jobs:
+  exact-interface:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Replay exact controls with the locked toolchain
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_length_moments.mojo 2>&1 | tee length-moments.log
+          grep -F 'LENGTH_MOMENT_INTERFACE_CONTROLS_PASSED' length-moments.log
+      - name: Preserve raw execution evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: length-moment-interface-log
+          path: kernel/length-moments.log
+          if-no-files-found: warn
