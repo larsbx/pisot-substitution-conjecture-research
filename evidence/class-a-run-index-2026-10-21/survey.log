@@ -1,0 +1,47 @@
+CLASS_A_SYMBOLIC_IDENTITIES bootstrap_ladder_cycle_descent=true eigenvector=true conjugate_bracket=true
+SUMMARY 1 181 4 178 4 3
+SUMMARY 2 211 5 208 5 4
+SUMMARY 3 235 5 232 5 4
+SUMMARY 4 275 5 272 5 5
+FAMILY 4 seed_steps 8 cycle_steps 2 hit_upper 6 hit_lower_strict 4 /10
+SUMMARY 5 315 6 312 6 6
+FAMILY 5 seed_steps 10 cycle_steps 2 hit_upper 7 hit_lower_strict 5 /10
+SUMMARY 6 355 7 352 7 6
+FAMILY 6 seed_steps 12 cycle_steps 2 hit_upper 8 hit_lower_strict 6 /10
+SUMMARY 7 395 7 392 7 7
+FAMILY 7 seed_steps 14 cycle_steps 2 hit_upper 9 hit_lower_strict 7 /10
+SUMMARY 8 435 8 432 8 8
+FAMILY 8 seed_steps 16 cycle_steps 2 hit_upper 10 hit_lower_strict 8 /10
+SUMMARY 9 475 9 472 9 8
+FAMILY 9 seed_steps 18 cycle_steps 2 hit_upper 11 hit_lower_strict 9 /10
+SUMMARY 10 515 9 512 9 9
+FAMILY 10 seed_steps 20 cycle_steps 2 hit_upper 12 hit_lower_strict 10 /10
+SUMMARY 11 555 10 552 10 10
+FAMILY 11 seed_steps 22 cycle_steps 2 hit_upper 13 hit_lower_strict 11 /10
+SUMMARY 12 595 11 592 11 10
+FAMILY 12 seed_steps 24 cycle_steps 2 hit_upper 14 hit_lower_strict 12 /10
+SUMMARY 13 635 11 632 11 11
+FAMILY 13 seed_steps 26 cycle_steps 2 hit_upper 15 hit_lower_strict 13 /10
+SUMMARY 14 675 12 672 12 12
+FAMILY 14 seed_steps 28 cycle_steps 2 hit_upper 16 hit_lower_strict 14 /10
+SUMMARY 15 715 13 712 13 12
+FAMILY 15 seed_steps 30 cycle_steps 2 hit_upper 17 hit_lower_strict 15 /10
+SUMMARY 16 755 13 752 13 13
+FAMILY 16 seed_steps 32 cycle_steps 2 hit_upper 18 hit_lower_strict 16 /10
+SUMMARY 17 795 14 792 14 14
+FAMILY 17 seed_steps 34 cycle_steps 2 hit_upper 19 hit_lower_strict 17 /10
+SUMMARY 18 835 15 832 15 14
+FAMILY 18 seed_steps 36 cycle_steps 2 hit_upper 20 hit_lower_strict 18 /10
+SUMMARY 19 875 15 872 15 15
+FAMILY 19 seed_steps 38 cycle_steps 2 hit_upper 21 hit_lower_strict 19 /10
+SUMMARY 20 915 16 912 16 16
+FAMILY 20 seed_steps 40 cycle_steps 2 hit_upper 22 hit_lower_strict 20 /10
+SUMMARY 21 955 17 952 17 16
+FAMILY 21 seed_steps 42 cycle_steps 2 hit_upper 23 hit_lower_strict 21 /10
+SUMMARY 22 995 17 992 17 17
+FAMILY 22 seed_steps 44 cycle_steps 2 hit_upper 24 hit_lower_strict 22 /10
+SUMMARY 23 1035 18 1032 18 18
+FAMILY 23 seed_steps 46 cycle_steps 2 hit_upper 25 hit_lower_strict 23 /10
+SUMMARY 24 1075 19 1072 19 18
+FAMILY 24 seed_steps 48 cycle_steps 2 hit_upper 26 hit_lower_strict 24 /10
+FINITE_SURVEY_COMPLETE 24 universal_BH=false

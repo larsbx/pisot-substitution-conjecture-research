@@ -1,0 +1,3 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+CLASS_A_COVER_IDENTITIES transformed_cubic=true eigenlengths=true occurrence=true strict_margins=true scope=formal_rectangle_countermodel
+CLASS_A_COVER_ESCAPE 18 source 0 1 -19 22 -2 indices 0 3 child 0 2 -18 21 -1 source_sum 1 child_sum 2 seed_reachability=not_asserted
