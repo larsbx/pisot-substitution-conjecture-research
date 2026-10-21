@@ -164,10 +164,18 @@ def routh_right_half_plane_count(q: Sequence[Fraction]) -> int | None:
         if current[0] == 0:
             return None  # first-column zero, not a whole row
         nxt = []
-        for i in range(1, max(len(above), len(current))):
-            a = above[i] if i < len(above) else Fraction(0)
-            b = current[i] if i < len(current) else Fraction(0)
-            nxt.append((current[0] * a - above[0] * b) / current[0])
+        # Optimization: Pre-calculate exact inverse and avoid bounds checking/Fraction(0) instantiations
+        len_a, len_c = len(above), len(current)
+        a0, c0 = above[0], current[0]
+        inv_c0 = Fraction(c0.denominator, c0.numerator)
+        min_len = len_a if len_a < len_c else len_c
+
+        for i in range(1, min_len):
+            nxt.append((c0 * above[i] - a0 * current[i]) * inv_c0)
+        for i in range(min_len, len_a):
+            nxt.append(above[i])
+        for i in range(min_len, len_c):
+            nxt.append((-a0 * current[i]) * inv_c0)
         while nxt and nxt[-1] == 0:
             nxt.pop()
         if not nxt:
