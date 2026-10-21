@@ -12,6 +12,17 @@ Canonical implementation for §4: `kernel/symbolic_line_certificate.mojo`
 `kernel/tests/test_symbolic_line.mojo`, evidence workflow
 `.github/workflows/class-b-lines-evidence.yml`.
 
+## Current assembly audit (2026-10-21)
+
+The complete plus positive-b native receipt from merged #293 and the freshly
+replayed complete minus residual now support a determinant-two class-D
+assembly candidate, together with both b=0 boundaries and the existing
+r>=q-1 theorem. The exact cover, overlap conventions, full import-closure
+provenance and remaining integration gate are recorded in
+`class-d-assembly-audit-2026-10-21.md`. The combined ledger result is
+**conditional** on current combined integration acceptance; no component
+requirement is waived. Class A/C and universal #139 remain open.
+
 ## Current continuation: entire minus class D (2026-10-20 UTC)
 
 The exact minus residual a,b>=0 now has a native all-component certificate:
@@ -210,6 +221,16 @@ conjugacy to a β-substitution, which is not checked here.
 - class D, `p = n + 1`, `q = n`, `r = 3n` and `3n + 1`: a second eigenvalue of modulus about 1.3.
 
 (Float spectra at `n = 20, 80`, as a scratch diagnosis of the refusals; the refusal itself is the exact certificate's.) No PIP line of classes C or D that was tried failed to certify.
+
+**Replay correction (2026-10-20).** The table above records the original
+execution. After PR #288's endpoint-clipping repair, the class-D row
+`(n+1,n,n+3)` has sufficient threshold 21 and finite counts 20/1/0,
+with the same 97 symbolic vertices. The norm-mode example below similarly
+moves from threshold 4 to 6, with six finite PIP members and 105 vertices.
+The complete line certificates cover the added finite members; the historical
+thresholds are not silently substituted into the current computation.
+See the [pin reconciliation and exact replay](class-d-chamber-validation-2026-10-20.md).
+No statement here recertifies every historical pin with the later engine.
 
 ## 4b. Theorem W: two-parameter wedges of class D
 

@@ -1,0 +1,25 @@
+[
+  {
+    "args": [
+      "low",
+      "5"
+    ],
+    "exit": 1,
+    "aggregate_receipt": false
+  },
+  {
+    "args": [
+      "line",
+      "0"
+    ],
+    "exit": 1,
+    "aggregate_receipt": false
+  },
+  {
+    "args": [
+      "unknown"
+    ],
+    "exit": 1,
+    "aggregate_receipt": false
+  }
+]

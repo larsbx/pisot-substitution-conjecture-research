@@ -173,11 +173,13 @@ struct LineVerdict(Copyable, Movable):
         self.finite_outside = 0
 
 
-def certify(spec: ClassLine) raises -> LineVerdict:
+def certify(spec: ClassLine, progress: Bool = False) raises -> LineVerdict:
     """Every PIP member of the line has every seed-reachable overlap hitting
     offset zero, and `|det M| = 2` (the hypothesis of Corollary E2)."""
     var out = LineVerdict()
-    var g = symbolic_line_graph(spec.line())
+    if progress:
+        print("BEGIN_LINE_SYMBOLIC", spec.describe())
+    var g = symbolic_line_graph(spec.line(), progress)
     if not g.pip:
         raise Error("the line's PIP property was not certified")
     var good = offset_zero_reachable(g)
@@ -190,10 +192,14 @@ def certify(spec: ClassLine) raises -> LineVerdict:
     while not g.threshold.lt(q_int(n)):
         n += 1
     out.q0 = n
+    if progress:
+        print("LINE_SYMBOLIC_CERTIFIED", "q0=", n, "vertices=", g.size())
     var screen = CubicScreen()
     if abs(Mat3(substitution_incidence(spec.member(out.q0))).det()) != 2:
         raise Error("the line's determinant is not +-2, so Corollary E2 does not apply")
     for q in range(out.q0):
+        if progress:
+            print("BEGIN_LINE_PREFIX", q, "of", out.q0)
         if not spec.admissible(q):
             out.finite_outside += 1
             continue
@@ -207,6 +213,8 @@ def certify(spec: ClassLine) raises -> LineVerdict:
         _ = exact_hits(sigma)
         out.finite_members += 1
     for q in [out.q0, out.q0 + 5]:
+        if progress:
+            print("BEGIN_LINE_CROSS_CHECK", q)
         if not same_set(symbolic_vertex_keys(g, q), exact_vertex_keys(spec.member(q))):
             raise Error("cross-check: the symbolic graph differs from the exact graph")
     return out^
@@ -376,7 +384,9 @@ def certified_lines() -> List[List[Int]]:
         [CLASS_D, 1, 1, 1, 0, 1, 0, 19, 246, 19, 0, 0],
         [CLASS_D, 1, 1, 1, 0, 1, 1, 21, 181, 21, 0, 0],
         [CLASS_D, 1, 1, 1, 0, 1, 2, 22, 132, 22, 0, 0],
-        [CLASS_D, 1, 1, 1, 0, 1, 3, 18, 97, 17, 1, 0],
+        # PR #288 endpoint clipping adds sign reads: q0 18 -> 21; the
+        # extra finite members certify exactly (validation note 2026-10-20).
+        [CLASS_D, 1, 1, 1, 0, 1, 3, 21, 97, 20, 1, 0],
         [CLASS_D, 1, 1, 1, 0, 1, 4, 49, 93, 47, 2, 0],
         [CLASS_D, 1, 1, 1, 0, 2, -1, 22, 93, 21, 0, 1],
         [CLASS_D, 1, 1, 1, 0, 2, 0, 15, 93, 15, 0, 0],
@@ -406,7 +416,8 @@ def certified_norm_lines() -> List[List[Int]]:
         [CLASS_D, 3, 11, 3, 12, 4, 14, 2, 105, 2, 0, 0],
         [CLASS_D, 3, 12, 3, 13, 4, 15, 2, 105, 2, 0, 0],
         [CLASS_D, 3, 13, 3, 14, 4, 16, 2, 105, 2, 0, 0],
-        [CLASS_D, 3, 14, 3, 15, 4, 17, 4, 105, 4, 0, 0],
+        # Same clipping-induced threshold reconciliation: 4 -> 6.
+        [CLASS_D, 3, 14, 3, 15, 4, 17, 6, 105, 6, 0, 0],
         [CLASS_D, 3, 15, 3, 16, 4, 18, 10, 105, 10, 0, 0],
         [CLASS_D, 3, 16, 3, 17, 4, 19, 12, 105, 12, 0, 0],
         [CLASS_D, 3, 17, 3, 18, 4, 20, 19, 105, 19, 0, 0],
@@ -548,7 +559,7 @@ def check_wedge_pinned(v: WedgeVerdict, pin: List[Int]) raises:
 
 
 def report(spec: ClassLine) raises:
-    var v = certify(spec)
+    var v = certify(spec, True)
     print(spec.describe(), "(Theorem E normal form):")
     print("  symbolic graph for every n >=", v.q0, ":", v.symbolic_vertices, "vertices, all with an offset-zero descendant;", v.queries, "certified sign reads")
     print("  n <", v.q0, ":", v.finite_members, "PIP members decided exactly, all hitting;", v.finite_non_pip, "not PIP;", v.finite_outside, "outside the admissible cone")

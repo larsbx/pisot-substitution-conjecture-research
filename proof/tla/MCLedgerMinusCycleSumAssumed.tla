@@ -47,6 +47,7 @@ Reachable == {
     "ParitySieve",
     "PeriodicPairOneFibre",
     "PhiSemisimplicity",
+    "PlusClassDBoundaryLine",
     "RepoSeedUnionBridge",
     "ReturnModuleFullRank",
     "SeedCentralizer",

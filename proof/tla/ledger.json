@@ -6,6 +6,9 @@
   "index_path": "docs/ledger-index.md",
   "graph_path": "docs/claim-relationship-graph.json",
   "assumption_sets": {
+    "ClassDIntegrationAssumed": [
+      "ClassDIntegrationAcceptance"
+    ],
     "TwoObstructionsAssumed": [
       "UniversalAlignedCoincidence",
       "UniversalBoundaryHitting",
@@ -230,6 +233,41 @@
     ]
   },
   "surfaces": {
+    "ClassDIntegrationAcceptance": [
+      {
+        "path": "docs/class-d-assembly-audit-2026-10-21.md",
+        "anchor": "| Combined integration acceptance |",
+        "window_lines": 0
+      }
+    ],
+    "PlusClassDBoundaryLine": [
+      {
+        "path": "docs/class-d-assembly-audit-2026-10-21.md",
+        "anchor": "| Plus b=0 boundary |",
+        "window_lines": 0
+      }
+    ],
+    "PlusClassDPositiveBBoundaryHitting": [
+      {
+        "path": "docs/class-d-assembly-audit-2026-10-21.md",
+        "anchor": "| Plus positive-b residual |",
+        "window_lines": 0
+      }
+    ],
+    "PlusClassDBoundaryHitting": [
+      {
+        "path": "docs/class-d-assembly-audit-2026-10-21.md",
+        "anchor": "| Entire plus class D |",
+        "window_lines": 0
+      }
+    ],
+    "ClassDBoundaryHitting": [
+      {
+        "path": "docs/class-d-assembly-audit-2026-10-21.md",
+        "anchor": "| Combined determinant-two class D |",
+        "window_lines": 0
+      }
+    ],
     "MinusClassDBoundaryLine": [
       {
         "path": "docs/p1b-minus-boundary-strips-2026-10-20.md",
@@ -2297,6 +2335,169 @@
         [
           "source",
           "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 12; kernel/psc/class_d_minus_cycle_family.mojo exact polynomial replay; one itinerary family only; human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "ClassDIntegrationAcceptance": {
+      "id": "sha256:1b376a73bbc50283c7aa1758c797fe3fe767a16953b0bc87dc7ed634e9184054",
+      "kind": "pending_dependency",
+      "statement": "current combined class-D implementation has passed its required locked environment, native replay, independent calibration and repository CI acceptance gates",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "reason",
+          "docs/class-d-assembly-audit-2026-10-21.md; current-head full Pixi/CI remains pending; historical locked install success is not current acceptance; human review remains separately labelled"
+        ]
+      ],
+      "tags": []
+    },
+    "PlusClassDBoundaryLine": {
+      "id": "sha256:34d579cef29c9888699731f5b42305d495e0a5bc7d36873da1c164e140643bd5",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every plus class-D residual member a>=0,b=0, including the empty y-run at a=0",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/class-d-assembly-audit-2026-10-21.md; merged boundary template, native complete tail a>=7, exact a=0..6 and full support at a=7,8; independent oracle replay; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "PlusClassDPositiveBBoundaryHitting": {
+      "id": "sha256:b6556280a254b9551eaf535f93c62bacb4501f0969e9789fdeb726b301a25b10",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every plus class-D residual member a>=0,b>=1, after required combined integration acceptance",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:1b376a73bbc50283c7aa1758c797fe3fe767a16953b0bc87dc7ed634e9184054",
+          "current combined class-D implementation has passed its required locked environment, native replay, independent calibration and repository CI acceptance gates",
+          "PlusClassDPositiveBBoundaryHitting/ClassDIntegrationAcceptance",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/class-d-assembly-audit-2026-10-21.md; PR293 immutable native aggregate with six cores, 73 strips, six interfaces, 952 finite-prefix obligations and unchanged entire import closure; integration gate retained; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "PlusClassDBoundaryHitting": {
+      "id": "sha256:b80a8a42feda1a42f4f50703d17f5fe01ed5904b0876fc0b1173cfc3664421b6",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every PIP determinant-two normal-form member of class D with p=q+1, after required combined integration acceptance",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:34d579cef29c9888699731f5b42305d495e0a5bc7d36873da1c164e140643bd5",
+          "boundary hitting holds for every plus class-D residual member a>=0,b=0, including the empty y-run at a=0",
+          "PlusClassDBoundaryHitting/PlusClassDBoundaryLine",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:b6556280a254b9551eaf535f93c62bacb4501f0969e9789fdeb726b301a25b10",
+          "boundary hitting holds for every plus class-D residual member a>=0,b>=1, after required combined integration acceptance",
+          "PlusClassDBoundaryHitting/PlusClassDPositiveBBoundaryHitting",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:6567bad719a6e71ff55bc79003d32705d9d8783671d84eedfb639d306fe742b8",
+          "boundary hitting holds on the six declared two-parameter class-D wedges; in particular for every PIP class-D member with r >= q - 1",
+          "PlusClassDBoundaryHitting/ClassDWedgeBoundaryHitting",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/class-d-assembly-audit-2026-10-21.md; complete b=0 and positive-b residual plus existing r>=q-1 wedges; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "ClassDBoundaryHitting": {
+      "id": "sha256:0173f84be764192988c1370c8d5b9e9a9b73a52fadd4cbbcaa7920a178b0d557",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every PIP determinant-two normal-form member of class D with p-q in {-1,+1}, after required combined integration acceptance; targets are offset-zero descendants, not necessarily equal-letter coincidences",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:b80a8a42feda1a42f4f50703d17f5fe01ed5904b0876fc0b1173cfc3664421b6",
+          "boundary hitting holds for every PIP determinant-two normal-form member of class D with p=q+1, after required combined integration acceptance",
+          "ClassDBoundaryHitting/PlusClassDBoundaryHitting",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:31a7424da0986e33160ea0b0e437eafebac6c278b8036198296f5353db19dc0c",
+          "boundary hitting holds for every PIP member of class D with p=q-1",
+          "ClassDBoundaryHitting/MinusClassDBoundaryHitting",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/class-d-assembly-audit-2026-10-21.md; canonical kernel/class_d_assembly.mojo consumes provenance-checked exact component receipts and replays plus b=0; no class-A/C or universal hitting premise is supplied; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
         ]
       ],
       "tags": []

@@ -135,3 +135,12 @@ when those obligations are met. After class D, the class-A slope-one growing
 graphs and the remaining A/C regions still require uniform vertex-family or
 all-child good-branch arguments. No additional cycle-only or quotient-only
 sieve closes that gap. Universal #139/#84/G1/PSC stay open.
+
+## Subsequent reconciliation (2026-10-21)
+
+Merged #293 has the complete plus native aggregate; the assembly audit now
+checks its immutable full local import closure and replays this entire minus
+aggregate on reconciled main. See `class-d-assembly-audit-2026-10-21.md`. The
+new combined class-D ledger node retains an explicit open integration gate.
+Historical statements above about the plus aggregate describe the earlier
+frontier; they do not override this later record. Universal #139 stays open.

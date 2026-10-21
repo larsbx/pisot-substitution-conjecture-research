@@ -1,0 +1,18 @@
+{
+  "workflow_run": 39352929916,
+  "job": 118401083796,
+  "tested_merge": "d4806dcf6cf4a91539d73a7bd5fdae51cc9eb8f6",
+  "source_head": "3b16b5447aa9b3ecdecfdabb5033a381580f230e",
+  "conclusion": "failure",
+  "locked_install_succeeded_historical_merge": true,
+  "current_head_ci_success": false,
+  "excerpts": [
+    "2026-10-21T01:19:48.3317370Z ##[group]pixi install --locked",
+    "2026-10-21T01:19:48.3321243Z [command]/home/runner/.pixi/bin/pixi install --locked --manifest-path /home/runner/work/pisot-substitution-conjecture-research/pisot-substitution-conjecture-research/kernel/pixi.toml --color always",
+    "2026-10-21T01:19:48.5568777Z \u001b[32m\u2714 \u001b[0mThe \u001b[35mdefault\u001b[0m environment has been installed.",
+    "2026-10-21T01:40:53.8115484Z    left: 21",
+    "2026-10-21T01:40:53.8115675Z   right: 18",
+    "2026-10-21T01:43:16.1187118Z FAILED: tests/test_symbolic_line.mojo",
+    "2026-10-21T01:44:29.0778146Z E   ModuleNotFoundError: No module named 'oracles'"
+  ]
+}

@@ -328,6 +328,33 @@
       }
     },
     {
+      "name": "ClassDBoundaryHitting",
+      "status": "conditional",
+      "source": "docs/class-d-assembly-audit-2026-10-21.md; canonical kernel/class_d_assembly.mojo consumes provenance-checked exact component receipts and replays plus b=0; no class-A/C or universal hitting premise is supplied; human review pending",
+      "dependencies": [
+        "PlusClassDBoundaryHitting",
+        "MinusClassDBoundaryHitting"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "ClassDIntegrationAcceptance",
+      "status": "open",
+      "source": "docs/class-d-assembly-audit-2026-10-21.md; current-head full Pixi/CI remains pending; historical locked install success is not current acceptance; human review remains separately labelled",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
       "name": "ClassDWedgeBoundaryHitting",
       "status": "proved",
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md, Theorem W and Corollary W1; computer-assisted, human review pending; merged through PR #246",
@@ -1229,6 +1256,48 @@
       "status": "imported",
       "source": "Lee-Solomyak, arXiv:1002.0039, Definition 2.3 and Theorem 4.3; docs/review-box-leftmost-ledger-2026-10-08.md, section 1 (scalar expansion hypotheses and return-vector transfer checked)",
       "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "PlusClassDBoundaryHitting",
+      "status": "conditional",
+      "source": "docs/class-d-assembly-audit-2026-10-21.md; complete b=0 and positive-b residual plus existing r>=q-1 wedges; human review pending",
+      "dependencies": [
+        "PlusClassDBoundaryLine",
+        "PlusClassDPositiveBBoundaryHitting",
+        "ClassDWedgeBoundaryHitting"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "PlusClassDBoundaryLine",
+      "status": "proved",
+      "source": "docs/class-d-assembly-audit-2026-10-21.md; merged boundary template, native complete tail a>=7, exact a=0..6 and full support at a=7,8; independent oracle replay; human review pending",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "PlusClassDPositiveBBoundaryHitting",
+      "status": "conditional",
+      "source": "docs/class-d-assembly-audit-2026-10-21.md; PR293 immutable native aggregate with six cores, 73 strips, six interfaces, 952 finite-prefix obligations and unchanged entire import closure; integration gate retained; human review pending",
+      "dependencies": [
+        "ClassDIntegrationAcceptance"
+      ],
       "ledger_node": true,
       "lean_support": {
         "coverage": "none",
@@ -2365,27 +2434,27 @@
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 136,
+      "line": 147,
       "statement_heading": "## 4. Theorem L″: lines of classes A, C and D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 155,
+      "line": 166,
       "statement_heading": "*Theorem L″.* For each line below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 214,
+      "line": 235,
       "statement_heading": "## 4b. Theorem W: two-parameter wedges of class D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 291,
+      "line": 312,
       "statement_heading": "*Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 308,
+      "line": 329,
       "statement_heading": "*Corollary W1.* **Every PIP member of class D with `r ≥ q − 1` has pure"
     },
     {
@@ -2640,7 +2709,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 177,
+      "line": 203,
       "statement_heading": "The second branch preserves information erased by the child-count matrix: the ordered sequence of top/bottom subdivision boundary events. The next contradiction should use that order together with full rank and exact prefix-Parikh geometry."
     },
     {
@@ -3205,7 +3274,7 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "e505980ff46d4db2240e35411a864517c83a9d8435baf92157f7afe6015256ad",
+    "claim_governance.toml": "7fc9b59ea129bbd271833a645f09471b5d2cf3469c4b9518135d2b2e57ddcbbe",
     "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
@@ -3219,7 +3288,7 @@
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
     "tools/check_lean.sh": "04078a19300533b800e2cca6f0a3573fe8b116fec0ae8ace8a2d4ffc1ae9613b",
-    "tools/make_ledger.py": "9402a8c454454a314c1e99afb47ac6ac01113895591b14b510ec8fe3e54ca5ed",
+    "tools/make_ledger.py": "853b98557426a2699300b9c44a867b51e85d286127d1fc320f58745926f34f4e",
     "tools/make_proof_bank.py": "d41bd8ecb4d51964b6acfb1783d3c7c6aa1fce67ad502f9b4c1c6fb94dceec13",
     "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
   }

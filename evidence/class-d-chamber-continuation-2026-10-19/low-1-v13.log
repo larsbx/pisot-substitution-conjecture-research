@@ -1,0 +1,4 @@
+class D line (norm mode) p = 4n + 69 q = 4n + 68 r = 3n + 53 (Theorem E normal form):
+  symbolic graph for every n >= 53 : 164 vertices, all with an offset-zero descendant; 1322 certified sign reads
+  n < 53 : 53 PIP members decided exactly, all hitting; 0 not PIP; 0 outside the admissible cone
+  cross-check at q0 and q0 + 5: symbolic graph = exact graph

@@ -31,6 +31,7 @@ from psc.symbolic_line import (
     Line,
     LineField,
     certify_line,
+    symbolic_line_graph,
 )
 from a1_normal_form_census import CLASS_A, CLASS_B, CLASS_C, CLASS_D, class_member
 from finite_linear_algebra.mat3 import Mat3
@@ -52,6 +53,9 @@ from symbolic_line_certificate import (
     mode_of,
     pinned,
     spec_of,
+    exact_vertex_keys,
+    symbolic_vertex_keys,
+    same_set,
 )
 
 
@@ -259,13 +263,21 @@ def test_every_wedge_edge_is_a_pinned_line() raises:
 def test_norm_mode_shrinks_a_threshold_near_the_asymptote() raises:
     """The boundary line a = 10 of the first p = q - 1 sub-wedge lies on
     3r - 4q = -9, beside the ray where the Sturm entries change sign. Read by
-    Sturm entries its threshold is 196 (docs §4b); read by norm it is 4, and
-    the line reproduces its pin in certified_norm_lines()."""
+    Sturm entries its historical threshold is 196 (docs §4b); read by norm
+    with endpoint clipping it is 6 (formerly 4). Both added finite members
+    certify, and the line reproduces its pin in certified_norm_lines()."""
     var spec = ClassLine(CLASS_D, [3, 14, 3, 15, 4, 17], True)
     var v = certify(spec)
-    assert_equal(v.q0, 4)
+    assert_equal(v.q0, 6)
     assert_equal(v.symbolic_vertices, 105)
+    assert_equal(v.finite_members, 6)
+    assert_equal(v.finite_non_pip, 0)
+    assert_equal(v.finite_outside, 0)
     check_pinned(v, pinned(spec))
+    var g = symbolic_line_graph(spec.line())
+    for n in range(4, 6):
+        assert_true(same_set(symbolic_vertex_keys(g, n), exact_vertex_keys(spec.member(n))))
+        print("PIN_TRANSITION_VERTEX_SET_CHECKED norm", n, "vertices=", g.size())
 
 
 def test_a_class_d_line_is_certified() raises:
@@ -275,12 +287,16 @@ def test_a_class_d_line_is_certified() raises:
     not PIP rather than outside."""
     var spec = ClassLine(CLASS_D, [1, 1, 1, 0, 1, 3])
     var v = certify(spec)
-    assert_equal(v.q0, 18)
+    assert_equal(v.q0, 21)
     assert_equal(v.symbolic_vertices, 97)
-    assert_equal(v.finite_members, 17)
+    assert_equal(v.finite_members, 20)
     assert_equal(v.finite_non_pip, 1)
     assert_equal(v.finite_outside, 0)
     check_pinned(v, pinned(spec))
+    var g = symbolic_line_graph(spec.line())
+    for n in range(18, 21):
+        assert_true(same_set(symbolic_vertex_keys(g, n), exact_vertex_keys(spec.member(n))))
+        print("PIN_TRANSITION_VERTEX_SET_CHECKED sturm", n, "vertices=", g.size())
 
 
 def assert_mode_refused(args: List[String]) raises:
@@ -357,5 +373,5 @@ def main() raises:
     print("[PASS] test_the_norm_is_the_product_over_the_roots")
     require_contract("Theorem L certificate (class B line sigma_q: x -> x y^(2q+2) x, c -> c y^q x, y -> c y^(q+1) x): the symbolic swap-seed overlap graph, decided by parametric Sturm-Tarski queries over Q[q] with certified threshold, has 119 vertices for every q >= 52, all with an offset-zero descendant, and the line is certified PIP there; every q in 0..51 is PIP and its exact seed-reachable graph (screened kernel) has every vertex hitting; at q = 52 and 57 the symbolic graph with q substituted equals the exact graph; parametric signs agree with concrete signs at q = 60; pseudo-remainders keep the sign at beta; a det-0 line is refused")
     require_contract("Theorem L' certificate: the class B line p = q + 1, r = q + 1 is certified (121 symbolic vertices for every q >= 14, all hitting; q < 14: 14 PIP members, all hitting); the line p = 3q + 1, r = q - 1, which leaves the Pisot class, is refused; certified_lines() pins every listed verdict and a verdict off its pin is refused; the command line accepts only no argument, SLOPE K BRANCH, CLASS AP BP AQ BQ AR BR or lines")
-    require_contract("Theorem W machinery: parameter polynomials in (a, b) substitute correctly under qx_shift; the quadrant certificate reads a positive polynomial with a negative coefficient through a Polya multiplier and refuses one that changes sign on the quadrant; the norm det g(M) is det M for g = t and -chi(1) for g = t - 1; every boundary line of every pinned wedge is a pinned norm-mode line, and the boundary lines cover the wedge outside its quadrant; the norm-mode line D (3n + 14, 3n + 15, 4n + 17) is certified with threshold 4 and reproduces its pin")
-    require_contract("Theorem L'' driver: a ClassLine of Theorem E's class A, B, C or D builds its normal-form members, Lemma P1's p > q bounds the admissible cone in classes A-C, and every pinned row names a distinct valid line; the class D line p = n + 1, q = n, r = n + 3 is certified (97 symbolic vertices for every n >= 18, all hitting; n < 18: 17 PIP members, all hitting, 1 not PIP) and reproduces its pin")
+    require_contract("Theorem W machinery: parameter polynomials in (a, b) substitute correctly under qx_shift; the quadrant certificate reads a positive polynomial with a negative coefficient through a Polya multiplier and refuses one that changes sign on the quadrant; the norm det g(M) is det M for g = t and -chi(1) for g = t - 1; every boundary line of every pinned wedge is a pinned norm-mode line, and the boundary lines cover the wedge outside its quadrant; the norm-mode line D (3n + 14, 3n + 15, 4n + 17) is certified with threshold 6 and six finite PIP members, reproduces its pin, and matches the exact vertex set at the historical transition n = 4, 5")
+    require_contract("Theorem L'' driver: a ClassLine of Theorem E's class A, B, C or D builds its normal-form members, Lemma P1's p > q bounds the admissible cone in classes A-C, and every pinned row names a distinct valid line; the class D line p = n + 1, q = n, r = n + 3 is certified (97 symbolic vertices for every n >= 21, all hitting; n < 21: 20 PIP members, all hitting, 1 not PIP), reproduces its pin, and matches the exact vertex set at the historical transition n = 18, 19, 20")

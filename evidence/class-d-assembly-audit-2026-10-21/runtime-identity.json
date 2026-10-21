@@ -1,0 +1,12 @@
+{
+  "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "compiler_archive_sha256": "0d71889abb0887e2fa8a556c1081af4026034cdf98d27ad05b57cb096d7ad4f6",
+  "mojo_python_archive_sha256": "113c7d202236f943c91fdcb115f0a278e9c6027e1b7783bbc8b9a2076bb43838",
+  "lock_sha256": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8",
+  "tla_jar_sha256": "5bd7b64db99ae4c6c35f290de5e809c0ee41af43f8699cf696099ffb6452b1e2",
+  "full_local_pixi_install": false,
+  "historical_ci_locked_install": true,
+  "current_head_ci_acceptance": false,
+  "initial_urllib_bootstrap": "403 redirect refusal preserved in runtime-bootstrap.log; curl fetched identical lock-matched archive bytes",
+  "compiler_binary_sha256": "0d5f0b700b0543223a10c47e818bc4f43f3228166c34ab13d52ab7f2ad02ffcd"
+}

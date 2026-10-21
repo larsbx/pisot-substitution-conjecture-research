@@ -68,14 +68,40 @@ The sealed `b=0` target spine is not a two-parameter proof: the recorded
 rank-one matrix update changes a selected child by `(sum w)e_y` unless the
 occurrence choice changes with `b`.
 
-1. Prove a genuinely two-parameter occurrence-labelled common-boundary
-   theorem on both positive-`b` interiors.
+1. Validate and integrate the separate occurrence-labelled positive-`b`
+   contributions, keeping their local native receipts and CI gates distinct.
 2. Combine it with Corollary W1 and the merged `b=0` lines to cover all
    determinant-two class D.
 3. Apply the depth note §7 for G1 on that class; with the required #138 input,
    assemble PDS on the corresponding scope.
 4. Extend coverage to the remaining classes and then the standing universal
    target. Class-level closure alone does not establish general #139.
+
+The [October 20 chamber validation](class-d-chamber-validation-2026-10-20.md)
+records a complete **native local aggregate receipt** under the lock-matched
+Mojo 1.1.0.dev2026090805 compiler/runtime: six wedge cores, all 73 returned
+strip obligations (69 distinct lines), six explicit interfaces and 952
+finite-prefix PIP checks. Every obligation finishes before the driver emits
+`CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED`; the process returns exit0.
+The earlier component receipts and interrupted duplicate aggregate are retained.
+No additional chamber or carrier extension is needed after the exact reader
+repairs and ordered interval sweep. The [evidence packet](../evidence/class-d-chamber-validation-2026-10-20/)
+records source/runtime identities, raw logs, mapping reconciliation and replay.
+
+The two inherited threshold pins are reconciled to PR #288's clipping change;
+the complete pinned symbolic-line regression now passes. The reused
+hash-verified manuscript repair and existing conditional completion record
+also pass their validation gates, including all 16 TLA+ models. Both universal
+premises of that completion criterion remain open.
+
+Full Pixi provisioning remains blocked and dedicated CI remains queued.
+No governed plus-family status is promoted. Separately, PR #290 at 3b16b54
+now records a uniform seed-carrier proof, both formerly omitted a=0,1 strips,
+and a native complete-minus-residual receipt; its assembly with the existing
+wedge theorem covers the PIP minus branch. This plus session inspected that
+receipt and its source/evidence hashes, without executing or importing the
+minus proof. Both scoped contributions retain their full Pixi/CI integration
+gates. Universal #139/#84 and general PSC remain separate and open.
 
 Mechanically sufficient scoped results are project-accepted for progression;
 independent human review remains final validation and is not being claimed.

@@ -1,0 +1,11 @@
+{
+  "low_obligations_match_canonical_plan": 66,
+  "high_obligations_match_canonical_formula": 7,
+  "total_strip_obligations": 73,
+  "distinct_boundary_lines": 69,
+  "explicit_lines": 6,
+  "all_twelve_component_exit_codes": 0,
+  "aggregate_receipt": false,
+  "aggregate_status": "operator-interrupted duplicate serial run, exit130",
+  "family_status_promoted": false
+}

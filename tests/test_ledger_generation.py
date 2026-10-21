@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import make_ledger  # noqa: E402
 from proof_records import generate_ledgers as gl  # noqa: E402
 
-MODELS = ("TwoObstructionsAssumed", "MinusCycleSumAssumed", "FormalProductivityGateAssumed", "Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
+MODELS = ("ClassDIntegrationAssumed", "TwoObstructionsAssumed", "MinusCycleSumAssumed", "FormalProductivityGateAssumed", "Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
 
 
 def reachable(model: str) -> set[str]:
@@ -233,6 +233,7 @@ def test_two_obstruction_assembly_keeps_both_universal_premises_open():
     assert "TwoObstructionCompletion" in reachable("TwoObstructionsAssumed")
     for model in ("Open", "Imports", "MinusCycleSumAssumed"):
         assert not {"UniversalAlignedCoincidence", "UniversalBoundaryHitting", "TwoObstructionCompletion"} & reachable(model)
+    assert {"DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting"} <= reachable("Open")
 
 
 def test_unbounded_six_edge_family_does_not_discharge_cyclesum():
@@ -253,3 +254,16 @@ def test_complete_minus_class_d_does_not_close_universal_boundary_hitting():
     assert set(make_ledger.TABLE["MinusClassDResidualBoundaryHitting"][3]) == {
         "MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDPositiveBBoundaryHitting"}
     assert not {"UniversalBoundaryHitting", "UniversalAlignedCoincidence", "TwoObstructionCompletion", "PDS", "G1"} & done
+
+
+def test_class_d_assembly_preserves_integration_and_universal_firewalls():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof/tla/ledger.json"))
+    entries = {entry.name: entry for entry in analysis.entries}
+    assert entries["ClassDIntegrationAcceptance"].status == "open"
+    assert entries["ClassDBoundaryHitting"].status == "conditional"
+    assert {"MinusClassDBoundaryHitting", "PlusClassDBoundaryLine"} <= reachable("Open")
+    assert "ClassDBoundaryHitting" not in reachable("Open")
+    assembled = reachable("ClassDIntegrationAssumed")
+    assert gl.established(analysis,("ClassDIntegrationAcceptance",)) == assembled
+    assert {"PlusClassDBoundaryHitting", "MinusClassDBoundaryHitting", "ClassDBoundaryHitting"} <= assembled
+    assert not {"UniversalBoundaryHitting", "UniversalAlignedCoincidence", "TwoObstructionCompletion", "G1", "PDS"} & assembled

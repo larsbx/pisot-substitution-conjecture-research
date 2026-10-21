@@ -57,6 +57,7 @@ Reachable == {
     "PeriodicPairOneFibre",
     "PhiSemisimplicity",
     "PisotMeyerProperty",
+    "PlusClassDBoundaryLine",
     "RepoSeedUnionBridge",
     "ReturnModuleFullRank",
     "SeedCentralizer",

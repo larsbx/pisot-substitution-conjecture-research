@@ -1,0 +1,8 @@
+{
+  "status": "operator-interrupted",
+  "reported_exit": 130,
+  "exit_source": "write_stdin for session 92655 returned exit_code 130 after Ctrl-C; the wrapper did not reach its exit-file write",
+  "observed_at": "2026-10-19T22:35:47Z",
+  "reason": "stop duplicate serial execution while the independent same-source component campaign completes; every remaining serial obligation is covered by that campaign",
+  "aggregate_receipt": false
+}

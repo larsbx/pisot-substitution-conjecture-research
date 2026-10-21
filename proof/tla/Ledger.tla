@@ -25,6 +25,8 @@ ResultSet == {
     "C3Local",
     "C3Locality",
     "C4",
+    "ClassDBoundaryHitting",
+    "ClassDIntegrationAcceptance",
     "ClassDWedgeBoundaryHitting",
     "CoincidenceDensityOne",
     "CoincidenceRankFibreTheorems",
@@ -85,6 +87,9 @@ ResultSet == {
     "PeriodicPairOneFibre",
     "PhiSemisimplicity",
     "PisotMeyerProperty",
+    "PlusClassDBoundaryHitting",
+    "PlusClassDBoundaryLine",
+    "PlusClassDPositiveBBoundaryHitting",
     "RepoSeedUnionBridge",
     "ReturnModuleFullRank",
     "SCCProducer",
@@ -129,6 +134,8 @@ RequiresDef == [r \in ResultSet |->
       [] r = "C3Local" -> {{"C4", "C3Locality"}}
       [] r = "C3Locality" -> {{}}
       [] r = "C4" -> {{}}
+      [] r = "ClassDBoundaryHitting" -> {{"PlusClassDBoundaryHitting", "MinusClassDBoundaryHitting"}}
+      [] r = "ClassDIntegrationAcceptance" -> {{}}
       [] r = "ClassDWedgeBoundaryHitting" -> {{}}
       [] r = "CoincidenceDensityOne" -> {{"OverlapProductivity", "SwapOverlapFiniteness"}}
       [] r = "CoincidenceRankFibreTheorems" -> {{}}
@@ -189,6 +196,9 @@ RequiresDef == [r \in ResultSet |->
       [] r = "PeriodicPairOneFibre" -> {{"ReturnModuleFullRank"}}
       [] r = "PhiSemisimplicity" -> {{}}
       [] r = "PisotMeyerProperty" -> {{}}
+      [] r = "PlusClassDBoundaryHitting" -> {{"PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "ClassDWedgeBoundaryHitting"}}
+      [] r = "PlusClassDBoundaryLine" -> {{}}
+      [] r = "PlusClassDPositiveBBoundaryHitting" -> {{"ClassDIntegrationAcceptance"}}
       [] r = "RepoSeedUnionBridge" -> {{}}
       [] r = "ReturnModuleFullRank" -> {{}}
       [] r = "SCCProducer" -> {{"G1", "SinkSCCReduction", "C2"}}
@@ -227,6 +237,7 @@ ProvedDef == {
     "C2",
     "C3Local",
     "C3Locality",
+    "ClassDBoundaryHitting",
     "ClassDWedgeBoundaryHitting",
     "CoincidenceDensityOne",
     "DefectIntertwiner",
@@ -279,6 +290,9 @@ ProvedDef == {
     "ParitySieve",
     "PeriodicPairOneFibre",
     "PhiSemisimplicity",
+    "PlusClassDBoundaryHitting",
+    "PlusClassDBoundaryLine",
+    "PlusClassDPositiveBBoundaryHitting",
     "RepoSeedUnionBridge",
     "ReturnModuleFullRank",
     "SCCProducer",
@@ -322,6 +336,9 @@ AllSeedOverlapGateAssumed == {
 }
 AllSeedStrictZipperGateAssumed == {
     "AllSeedStrictZipperExclusion"
+}
+ClassDIntegrationAssumed == {
+    "ClassDIntegrationAcceptance"
 }
 FormalProductivityGateAssumed == {
     "FormalProductivity",
@@ -382,6 +399,8 @@ C2NotEstablished == "C2" \notin established
 C3LocalNotEstablished == "C3Local" \notin established
 C3LocalityNotEstablished == "C3Locality" \notin established
 C4NotEstablished == "C4" \notin established
+ClassDBoundaryHittingNotEstablished == "ClassDBoundaryHitting" \notin established
+ClassDIntegrationAcceptanceNotEstablished == "ClassDIntegrationAcceptance" \notin established
 ClassDWedgeBoundaryHittingNotEstablished == "ClassDWedgeBoundaryHitting" \notin established
 CoincidenceDensityOneNotEstablished == "CoincidenceDensityOne" \notin established
 CoincidenceRankFibreTheoremsNotEstablished == "CoincidenceRankFibreTheorems" \notin established
@@ -442,6 +461,9 @@ ParitySieveNotEstablished == "ParitySieve" \notin established
 PeriodicPairOneFibreNotEstablished == "PeriodicPairOneFibre" \notin established
 PhiSemisimplicityNotEstablished == "PhiSemisimplicity" \notin established
 PisotMeyerPropertyNotEstablished == "PisotMeyerProperty" \notin established
+PlusClassDBoundaryHittingNotEstablished == "PlusClassDBoundaryHitting" \notin established
+PlusClassDBoundaryLineNotEstablished == "PlusClassDBoundaryLine" \notin established
+PlusClassDPositiveBBoundaryHittingNotEstablished == "PlusClassDPositiveBBoundaryHitting" \notin established
 RepoSeedUnionBridgeNotEstablished == "RepoSeedUnionBridge" \notin established
 ReturnModuleFullRankNotEstablished == "ReturnModuleFullRank" \notin established
 SCCProducerNotEstablished == "SCCProducer" \notin established
