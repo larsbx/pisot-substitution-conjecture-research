@@ -1,0 +1,20 @@
+[
+  {
+    "n": 4,
+    "complete_seed_vertices": 275,
+    "strict_edge_equal": true,
+    "source_in_seed_graph": false,
+    "child_in_seed_graph": false,
+    "changed_index_detected": true,
+    "scope": "finite calibration; no uniform seed exclusion or BH failure"
+  },
+  {
+    "n": 18,
+    "complete_seed_vertices": 835,
+    "strict_edge_equal": true,
+    "source_in_seed_graph": false,
+    "child_in_seed_graph": false,
+    "changed_index_detected": true,
+    "scope": "finite calibration; no uniform seed exclusion or BH failure"
+  }
+]
