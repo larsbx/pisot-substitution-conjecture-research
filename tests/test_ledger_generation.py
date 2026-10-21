@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 import make_ledger  # noqa: E402
 from proof_records import generate_ledgers as gl  # noqa: E402
 
-MODELS = ("FormalProductivityGateAssumed", "Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
+MODELS = ("TwoObstructionsAssumed", "FormalProductivityGateAssumed", "Open", "Imports", "G1AndProducer", "G1Only", "G1AndC4", "RenewalGateAssumed", "SpectralGateAssumed", "OverlapGateAssumed", "AllSeedOverlapGateAssumed", "AllSeedStrictZipperGateAssumed")
 
 
 def reachable(model: str) -> set[str]:
@@ -205,3 +205,19 @@ def test_model_rejects_false_g1_nonestablishment_with_tlc(tmp_path):
     out = subprocess.run(["java", "-XX:+UseSerialGC", "-cp", jar, "tlc2.TLC", "-workers", "1", model],
                          cwd=tmp_path, capture_output=True, text=True, timeout=60)
     assert "Invariant G1NotEstablished is violated" in out.stdout, out.stdout + out.stderr
+
+
+def test_two_obstruction_assembly_keeps_both_universal_premises_open():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof/tla/ledger.json"))
+    entries = {e.name: e for e in analysis.entries}
+    assert entries["TwoObstructionCompletion"].status == "conditional"
+    for gate in ("UniversalAlignedCoincidence", "UniversalBoundaryHitting"):
+        assert entries[gate].status == "open"
+        assert "TwoObstructionCompletion" not in gl.established(analysis, (gate, "DensityToPDSBridge"))
+    assumed = ("UniversalAlignedCoincidence", "UniversalBoundaryHitting", "DensityToPDSBridge")
+    assert gl.established(analysis, assumed) == reachable("TwoObstructionsAssumed")
+    assert "TwoObstructionCompletion" in reachable("TwoObstructionsAssumed")
+    for model in ("Open", "Imports"):
+        assert not {"UniversalAlignedCoincidence", "UniversalBoundaryHitting", "TwoObstructionCompletion"} & reachable(model)
+    # Existing scoped class-D line/wedge results cannot supply either universal gate.
+    assert {"DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting"} <= reachable("Open")

@@ -137,6 +137,15 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                             f"{MANUSCRIPT}, Proposition 5.39; PR #82", (), ()),
     "BoundaryCoincidenceCriterion": (T, "an overlap reaches an offset-zero descendant exactly on an exact prefix-Parikh / common-left-endpoint hit",
                                      f"{MANUSCRIPT}, Proposition 5.40 and Corollary 5.41; PR #82", (), ()),
+    # Register the existing manuscript assembly without discharging either
+    # universal premise or identifying it with a scoped class-D result.
+    "UniversalAlignedCoincidence": (P, "for every ternary PIP substitution every pair of distinct letters is eventually prefix coincident (aligned lemma A; reduced to residual fixed-letter A1-prime by squaring)",
+                                   f"open issue #138; {MANUSCRIPT}, section headline-status; docs/p1a-template-collapse-2026-10-05.md, Theorem C", (), ()),
+    "UniversalBoundaryHitting": (P, "for every ternary PIP substitution every cyclic vertex of every seed-patch overlap graph has an occurrence-compatible offset-zero descendant",
+                               f"open issue #139; {MANUSCRIPT}, boundary-hitting lemma B; full non-unit representation hypotheses retained", (), ()),
+    "TwoObstructionCompletion": (T, "assuming universal aligned lemma A and universal boundary-hitting lemma B, every seed-patch overlap is productive and every ternary PIP tiling flow has pure discrete spectrum",
+                                f"{MANUSCRIPT}, thm:two-obstruction-completion and cor:universal-completion; existing conditional assembly, not a proof of A or B; human review pending",
+                                ("UniversalAlignedCoincidence", "UniversalBoundaryHitting", "SwapOverlapFiniteness", "AlignedOverlapsAreStrongCoincidence", "DensityToPDSBridge"), ()),
     # --- scoped catch-up-free determinant-two family theorems ------------------------
     # These records assert boundary hitting only on the parameter regions named in
     # their statements.  They do not discharge the universal #139 node above.
@@ -251,6 +260,7 @@ STATUS_NOTES = {
 }
 
 ASSUMPTION_SETS = {
+    "TwoObstructionsAssumed": ["UniversalAlignedCoincidence", "UniversalBoundaryHitting", "DensityToPDSBridge"],
     "G1AndProducer": ["G1", "SCCProducer"],
     "G1Only": ["G1"],
     "G1AndC4": ["G1", "C4"],
@@ -308,6 +318,7 @@ def surface(path: str, anchor: str, window_lines: int = 0) -> dict:
 # Status checks bind live prose. Frozen completion snapshots belong in the
 # archive and must not become a dependency of the current status ledger.
 SURFACES = {  # prose surfaces on which each claim's status is spelled out (labelled by the consumer vocabulary)
+    "TwoObstructionCompletion": [surface(MAP, "| Two-obstruction completion theorem / universal completion criterion |")],
     "DefectTheorem": [surface(MAP, "| Full incidence rank from"), surface(LEDGER_DOC, "### Full incidence rank and unique decodability", 2)],
     "UniqueDecodability": [surface(MAP, "| Unique decodability of substitution images and powers |"), surface("README.md", "**Unique decodability:**")],
     "G1b1BoundedDiscrepancy": [surface(MAP, "| G1b-1 bounded discrepancy |"), surface(LEDGER_DOC, "### G1b-1 bounded discrepancy", 2),
