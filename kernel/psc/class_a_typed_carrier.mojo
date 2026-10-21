@@ -1,6 +1,6 @@
 """Typed semilinear candidate for the unbounded class-A seed carrier (#139).
 
-The 85 affine intervals are synthesized from exact complete n=4 and n=18
+The 89 affine intervals are synthesized from exact complete n=4 and n=18
 graph exports and are *not* a uniform-in-n theorem. In particular, the
 finite verifier below must not be mistaken for an all-n closure proof.
 Source and rejection notes: docs/class-a-typed-carrier-2026-10-21.md.
@@ -13,7 +13,6 @@ from psc.overlap_seed_patch import (
     interior_overlap, seed_overlap_states,
 )
 from psc.overlap_zipper import ordered_child_occurrences
-from psc.vertex_coincidence import length_matrix, offset_vector
 
 
 def template_rows() -> List[List[Int]]:
@@ -138,7 +137,6 @@ def certify_finite_rows(n: Int, rows: List[List[Int]]) raises -> List[Int]:
     var g=build_seed_overlap_graph_from_tables(tables,20000)
     if g.capped:
         raise Error("STATE_BUDGET_EXHAUSTED: no typed-carrier verdict")
-    var lm=length_matrix(tables)
     var candidate=Dict[OverlapState,Int]()
     for row in rows:
         if len(row)!=8 or row[0]<0 or row[0]>2 or row[1]<0 or row[1]>2:
@@ -160,20 +158,14 @@ def certify_finite_rows(n: Int, rows: List[List[Int]]) raises -> List[Int]:
         raise Error("typed carrier candidate count disagrees with affine identity")
     if g.size()!=len(candidate):
         raise Error("finite seed graph cardinality differs from typed candidate")
-    var indexed=Dict[OverlapState,Int]()
-    for i in range(g.size()):
-        var st=g.states[i]
+    # Equal finite cardinalities plus graph inclusion imply label-set equality.
+    for st in g.states:
         if st not in candidate:
             raise Error("seed graph escapes typed carrier")
-        indexed[st]=i
-    for st in candidate:
-        if st not in indexed:
-            raise Error("extra formal overlap in candidate; no graph equality")
         if st.is_coincidence():
             continue
         for occurrence in ordered_child_occurrences(tables,st):
-            var child=occurrence.state
-            if child not in candidate:
+            if occurrence.state not in candidate:
                 raise Error("finite ordered occurrence escapes typed candidate")
     for seed in seed_overlap_states(tables):
         if seed not in candidate:
