@@ -1,0 +1,27 @@
+{
+  "observed_at": "2026-10-20",
+  "runs": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "id": 39292497570,
+        "status": "completed",
+        "conclusion": "failure",
+        "head_sha": "30dc38d1e79c5a94fd7e7f5337ba39cabd571e34",
+        "updated_at": "2026-10-20T08:52:17Z",
+        "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/39292497570"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "id": 39356406683,
+        "status": "queued",
+        "conclusion": null,
+        "head_sha": "53a4021c0e534958c8088ff82f136913d3f08df8",
+        "updated_at": "2026-10-20T01:58:57Z",
+        "html_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/39356406683"
+      }
+    }
+  ]
+}

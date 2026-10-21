@@ -128,3 +128,15 @@ If false, retain the first exact PIP countermodel and identify the missing
 finite datum.
 
 The objective is A1-Prox, not another broad strong-coincidence census.
+
+## 7. October 20: inherited block alignment is a load-bearing premise
+
+The [length-window interface](two-obstruction-moment-interface-2026-10-20.md)
+isolates the position constraint in the proposed radius-increase experiment.
+Inflating the same common block shifts its starts by `1^T M^r delta`, where
+`delta` is the preceding Parikh defect. In dimension three, equal starts at
+levels `0,r,2r` force `delta=0`, so this inherited block already carries a
+strong coincidence. A PIP fixed-ray control has drift `(0,-1,-3)`.
+Consequently the proposed recurrence must either prove the balanced prefix
+condition or explicitly justify the reselected equal-position occurrences;
+word growth alone does not give proximality. This does not refute A1-Prox.

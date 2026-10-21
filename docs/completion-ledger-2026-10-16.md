@@ -20,6 +20,14 @@ open status.
 
 ## Executive status
 
+**2026-10-20 two-question continuation:** the
+[length-window/interface note](two-obstruction-moment-interface-2026-10-20.md)
+proves an exact finite observation lemma, exposes the position drift in
+inherited common-block inflation, and supplies an occurrence-address verifier
+for boundary witnesses. It supplies neither universal existence premise.
+The separate local plus/minus certificate receipts are in PRs #293/#290;
+their integration state is separate from #138, #139 and general PSC.
+
 General PSC remains **open**. No immutable accepted-proof source on `main`
 establishes PSC, seedwise overlap productivity, the universal aligned branch,
 the universal strict-zipper branch, formal productivity, or G1. In particular,

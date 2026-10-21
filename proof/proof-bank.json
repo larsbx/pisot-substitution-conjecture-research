@@ -2709,7 +2709,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 203,
+      "line": 225,
       "statement_heading": "The second branch preserves information erased by the child-count matrix: the ordered sequence of top/bottom subdivision boundary events. The next contradiction should use that order together with full rank and exact prefix-Parikh geometry."
     },
     {
