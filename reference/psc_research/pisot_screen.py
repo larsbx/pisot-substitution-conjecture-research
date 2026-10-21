@@ -364,33 +364,87 @@ def _has_rational_root(coeffs: Sequence[int]) -> bool:
     constant = coeffs[0]
     if constant == 0:
         return True  # zero is a root
+
     # Keep ascending divisors: a large complementary candidate before a small
     # root can cause enormous unnecessary intermediates at high degree.
     # Subclasses (including bool) retain the original exact evaluator, since
     # is_monic_integer accepts them and native arithmetic may be overloaded.
     plain_integers = all(type(c) is int for c in coeffs)
-    for divisor in _divisors(abs(constant)):
-        for candidate in (divisor, -divisor):
-            if plain_integers:
-                acc = 0
-                for c in reversed(coeffs):
-                    acc = acc * candidate + c
-                if acc == 0:
-                    return True
-            elif evaluate(coeffs, Fraction(candidate)) == 0:
-                return True
-    return False
+    value = abs(constant)
+    n = len(coeffs)
+    limit = math.isqrt(value)
 
+    if plain_integers:
+        # Optimization: Avoid allocating a list of divisors and reversed loops.
+        # Keep ascending divisors: check small divisors then large ones.
+        if n == 4:
+            c0, c1, c2, c3 = coeffs[0], coeffs[1], coeffs[2], coeffs[3]
+            for d in range(1, limit + 1):
+                if value % d == 0:
+                    if ((c3 * d + c2) * d + c1) * d + c0 == 0:
+                        return True
+                    if ((c3 * -d + c2) * -d + c1) * -d + c0 == 0:
+                        return True
+            for d in range(limit, 0, -1):
+                if value % d == 0:
+                    q = value // d
+                    if q != d:
+                        if ((c3 * q + c2) * q + c1) * q + c0 == 0:
+                            return True
+                        if ((c3 * -q + c2) * -q + c1) * -q + c0 == 0:
+                            return True
+            return False
+        elif n == 3:
+            c0, c1, c2 = coeffs[0], coeffs[1], coeffs[2]
+            for d in range(1, limit + 1):
+                if value % d == 0:
+                    if (c2 * d + c1) * d + c0 == 0:
+                        return True
+                    if (c2 * -d + c1) * -d + c0 == 0:
+                        return True
+            for d in range(limit, 0, -1):
+                if value % d == 0:
+                    q = value // d
+                    if q != d:
+                        if (c2 * q + c1) * q + c0 == 0:
+                            return True
+                        if (c2 * -q + c1) * -q + c0 == 0:
+                            return True
+            return False
+        else:
+            for d in range(1, limit + 1):
+                if value % d == 0:
+                    for candidate in (d, -d):
+                        acc = 0
+                        for c in reversed(coeffs):
+                            acc = acc * candidate + c
+                        if acc == 0:
+                            return True
+            for d in range(limit, 0, -1):
+                if value % d == 0:
+                    q = value // d
+                    if q != d:
+                        for candidate in (q, -q):
+                            acc = 0
+                            for c in reversed(coeffs):
+                                acc = acc * candidate + c
+                            if acc == 0:
+                                return True
+            return False
 
-def _divisors(value: int) -> list[int]:
-    out, d = [], 1
-    while d * d <= value:
+    for d in range(1, limit + 1):
         if value % d == 0:
-            out.append(d)
-            if d != value // d:
-                out.append(value // d)
-        d += 1
-    return sorted(out)
+            for candidate in (d, -d):
+                if evaluate(coeffs, Fraction(candidate)) == 0:
+                    return True
+    for d in range(limit, 0, -1):
+        if value % d == 0:
+            q = value // d
+            if q != d:
+                for candidate in (q, -q):
+                    if evaluate(coeffs, Fraction(candidate)) == 0:
+                        return True
+    return False
 
 
 # --- non-claims -----------------------------------------------------------------
