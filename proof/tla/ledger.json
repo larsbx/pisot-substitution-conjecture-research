@@ -2340,15 +2340,19 @@
       "tags": []
     },
     "ClassDIntegrationAcceptance": {
-      "id": "sha256:1b376a73bbc50283c7aa1758c797fe3fe767a16953b0bc87dc7ed634e9184054",
-      "kind": "pending_dependency",
-      "statement": "current combined class-D implementation has passed its required locked environment, native replay, independent calibration and repository CI acceptance gates",
+      "id": "sha256:0b3254707c324a6ca3207a011a3de20ef34bf2f597e29977bc67ffce23d32e72",
+      "kind": "repository_theorem",
+      "statement": "the combined class-D implementation at accepted tree c325aa5345e1f49b2fb50b37565bd2902104aab7 has passed required locked environment, native replay, independent calibration and repository CI acceptance gates",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [],
       "evidence": [
         [
-          "reason",
-          "docs/class-d-assembly-audit-2026-10-21.md; current-head full Pixi/CI remains pending; historical locked install success is not current acceptance; human review remains separately labelled"
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/class-d-assembly-audit-2026-10-21.md; evidence/class-d-integration-accepted-2026-10-21/; all 64 checks at a9457d9 pass, identical tested PR merge and main merge trees; project-accepted for progression, independent human review pending"
         ]
       ],
       "tags": []
@@ -2380,14 +2384,14 @@
       "tags": []
     },
     "PlusClassDPositiveBBoundaryHitting": {
-      "id": "sha256:b6556280a254b9551eaf535f93c62bacb4501f0969e9789fdeb726b301a25b10",
+      "id": "sha256:6580a86d03358976a972fc58d31d736866c43914149487f6eb38ca5b8ee7d498",
       "kind": "repository_theorem",
       "statement": "boundary hitting holds for every plus class-D residual member a>=0,b>=1, after required combined integration acceptance",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:1b376a73bbc50283c7aa1758c797fe3fe767a16953b0bc87dc7ed634e9184054",
-          "current combined class-D implementation has passed its required locked environment, native replay, independent calibration and repository CI acceptance gates",
+          "sha256:0b3254707c324a6ca3207a011a3de20ef34bf2f597e29977bc67ffce23d32e72",
+          "the combined class-D implementation at accepted tree c325aa5345e1f49b2fb50b37565bd2902104aab7 has passed required locked environment, native replay, independent calibration and repository CI acceptance gates",
           "PlusClassDPositiveBBoundaryHitting/ClassDIntegrationAcceptance",
           "same",
           "accepted"
@@ -2400,7 +2404,7 @@
         ],
         [
           "source",
-          "docs/class-d-assembly-audit-2026-10-21.md; PR293 immutable native aggregate with six cores, 73 strips, six interfaces, 952 finite-prefix obligations and unchanged entire import closure; integration gate retained; human review pending"
+          "docs/class-d-assembly-audit-2026-10-21.md; PR293 immutable native aggregate with six cores, 73 strips, six interfaces, 952 finite-prefix obligations and unchanged entire import closure; fresh complete locked CI at accepted tree c325aa5, integration gate discharged by separate receipts; human review pending"
         ],
         [
           "human_review_pending",
@@ -2414,7 +2418,7 @@
       "tags": []
     },
     "PlusClassDBoundaryHitting": {
-      "id": "sha256:b80a8a42feda1a42f4f50703d17f5fe01ed5904b0876fc0b1173cfc3664421b6",
+      "id": "sha256:95e9c57df07b652fd427813e056a2106f934ed7f0abdd4f715a14d74cf47c05c",
       "kind": "repository_theorem",
       "statement": "boundary hitting holds for every PIP determinant-two normal-form member of class D with p=q+1, after required combined integration acceptance",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -2427,7 +2431,7 @@
           "accepted"
         ],
         [
-          "sha256:b6556280a254b9551eaf535f93c62bacb4501f0969e9789fdeb726b301a25b10",
+          "sha256:6580a86d03358976a972fc58d31d736866c43914149487f6eb38ca5b8ee7d498",
           "boundary hitting holds for every plus class-D residual member a>=0,b>=1, after required combined integration acceptance",
           "PlusClassDBoundaryHitting/PlusClassDPositiveBBoundaryHitting",
           "same",
@@ -2462,20 +2466,20 @@
       "tags": []
     },
     "ClassDBoundaryHitting": {
-      "id": "sha256:0173f84be764192988c1370c8d5b9e9a9b73a52fadd4cbbcaa7920a178b0d557",
+      "id": "sha256:5af9608d641391684d67e8457a567432a6868a9b22a64d0bcfc5479d81ee49f3",
       "kind": "repository_theorem",
       "statement": "boundary hitting holds for every PIP determinant-two normal-form member of class D with p-q in {-1,+1}, after required combined integration acceptance; targets are offset-zero descendants, not necessarily equal-letter coincidences",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:b80a8a42feda1a42f4f50703d17f5fe01ed5904b0876fc0b1173cfc3664421b6",
+          "sha256:95e9c57df07b652fd427813e056a2106f934ed7f0abdd4f715a14d74cf47c05c",
           "boundary hitting holds for every PIP determinant-two normal-form member of class D with p=q+1, after required combined integration acceptance",
           "ClassDBoundaryHitting/PlusClassDBoundaryHitting",
           "same",
           "accepted"
         ],
         [
-          "sha256:31a7424da0986e33160ea0b0e437eafebac6c278b8036198296f5353db19dc0c",
+          "sha256:9b25c2886abfe712fe855477acb0294977f116283ae89dfedf25081a5e0b01ef",
           "boundary hitting holds for every PIP member of class D with p=q-1",
           "ClassDBoundaryHitting/MinusClassDBoundaryHitting",
           "same",
@@ -2555,7 +2559,7 @@
       "tags": []
     },
     "MinusClassDResidualBoundaryHitting": {
-      "id": "sha256:a2b592a4e257b7e188b6ef8a25a300c1de22758d668b6fbec46b318307953cc2",
+      "id": "sha256:c537602fdc441ccc961266e88edc267b831102cd30869d5d9ee6114d91c46f1d",
       "kind": "repository_theorem",
       "statement": "boundary hitting holds for every minus class-D residual member p=3a+5+b,q=3a+6+b,r=2a+4+b with integers a,b>=0",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -2575,7 +2579,7 @@
           "accepted"
         ],
         [
-          "sha256:e1d54fe989aded0808ec1e25860588926077839e1163452c881604832f39e3c5",
+          "sha256:953fb0cb87a22334b47fa75cfeb5f22395039e79e13cb97fe38e3e273bc150b5",
           "boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1; the historical conditional reduction now has its CycleSum premise discharged by uniform seed closure",
           "MinusClassDResidualBoundaryHitting/MinusClassDPositiveBBoundaryHitting",
           "same",
@@ -2603,13 +2607,13 @@
       "tags": []
     },
     "MinusClassDBoundaryHitting": {
-      "id": "sha256:31a7424da0986e33160ea0b0e437eafebac6c278b8036198296f5353db19dc0c",
+      "id": "sha256:9b25c2886abfe712fe855477acb0294977f116283ae89dfedf25081a5e0b01ef",
       "kind": "repository_theorem",
       "statement": "boundary hitting holds for every PIP member of class D with p=q-1",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:a2b592a4e257b7e188b6ef8a25a300c1de22758d668b6fbec46b318307953cc2",
+          "sha256:c537602fdc441ccc961266e88edc267b831102cd30869d5d9ee6114d91c46f1d",
           "boundary hitting holds for every minus class-D residual member p=3a+5+b,q=3a+6+b,r=2a+4+b with integers a,b>=0",
           "MinusClassDBoundaryHitting/MinusClassDResidualBoundaryHitting",
           "same",
@@ -2644,7 +2648,7 @@
       "tags": []
     },
     "MinusClassDSeedCarrierClosure": {
-      "id": "sha256:621ea0ec9a2e000f2d7dba2ea81959d8689d606a14d7bf3782fc046e0ce7c200",
+      "id": "sha256:4501c0dafa57f5da9b56a913f9cc9068c9fc9be765715d339990fa8f2cbc8482",
       "kind": "repository_theorem",
       "statement": "for every minus class-D member a>=2,b>=1, every real swap-seed overlap and every descendant before terminal coincidence lies in the sealed 145-label carrier; every such label has absolute coordinate sum at most one",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
@@ -2656,7 +2660,7 @@
         ],
         [
           "source",
-          "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; kernel/psc/class_d_minus_seed_cover.mojo exact Perron identities, all-seed and all-child Farkas certificates; local Mojo and independent Fraction replay; pinned CI and human review pending"
+          "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; kernel/psc/class_d_minus_seed_cover.mojo exact Perron identities, all-seed and all-child Farkas certificates; local Mojo and independent Fraction replay; pinned CI accepted at a9457d9 (evidence/class-d-integration-accepted-2026-10-21/); human review pending"
         ],
         [
           "human_review_pending",
@@ -2670,13 +2674,13 @@
       "tags": []
     },
     "MinusClassDPositiveBCycleSum": {
-      "id": "sha256:7a6ca14e816c8af74915b0cdc4ad7c1024d57d6c3cdbadc69e77f1a709c37a2d",
+      "id": "sha256:9ede6bc9ec0c9d3ba76fc8fe0628cb2bf39783e5643dd049b9fbb52d4a5c73f0",
       "kind": "repository_theorem",
       "statement": "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:621ea0ec9a2e000f2d7dba2ea81959d8689d606a14d7bf3782fc046e0ce7c200",
+          "sha256:4501c0dafa57f5da9b56a913f9cc9068c9fc9be765715d339990fa8f2cbc8482",
           "for every minus class-D member a>=2,b>=1, every real swap-seed overlap and every descendant before terminal coincidence lies in the sealed 145-label carrier; every such label has absolute coordinate sum at most one",
           "MinusClassDPositiveBCycleSum/MinusClassDSeedCarrierClosure",
           "same",
@@ -2690,7 +2694,7 @@
         ],
         [
           "source",
-          "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; follows from the uniform seed carrier, not formal-cycle exclusions; pinned CI and human review pending"
+          "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; follows from the uniform seed carrier, not formal-cycle exclusions; pinned CI accepted at a9457d9 (evidence/class-d-integration-accepted-2026-10-21/); human review pending"
         ],
         [
           "human_review_pending",
@@ -2704,13 +2708,13 @@
       "tags": []
     },
     "MinusClassDPositiveBBoundaryHitting": {
-      "id": "sha256:e1d54fe989aded0808ec1e25860588926077839e1163452c881604832f39e3c5",
+      "id": "sha256:953fb0cb87a22334b47fa75cfeb5f22395039e79e13cb97fe38e3e273bc150b5",
       "kind": "repository_theorem",
       "statement": "boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1; the historical conditional reduction now has its CycleSum premise discharged by uniform seed closure",
       "scope": "primitive irreducible Pisot substitutions in the standing regime",
       "depends_on": [
         [
-          "sha256:7a6ca14e816c8af74915b0cdc4ad7c1024d57d6c3cdbadc69e77f1a709c37a2d",
+          "sha256:9ede6bc9ec0c9d3ba76fc8fe0628cb2bf39783e5643dd049b9fbb52d4a5c73f0",
           "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
           "MinusClassDPositiveBBoundaryHitting/MinusClassDPositiveBCycleSum",
           "same",
@@ -2731,7 +2735,7 @@
         ],
         [
           "source",
-          "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md sections 5, 9 and 14; conditional 1971-state reduction plus proved seed carrier, or direct ranked descent; pinned CI and human review pending"
+          "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md sections 5, 9 and 14; conditional 1971-state reduction plus proved seed carrier, or direct ranked descent; pinned CI accepted at a9457d9 (evidence/class-d-integration-accepted-2026-10-21/); human review pending"
         ],
         [
           "human_review_pending",

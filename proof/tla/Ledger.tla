@@ -238,6 +238,7 @@ ProvedDef == {
     "C3Local",
     "C3Locality",
     "ClassDBoundaryHitting",
+    "ClassDIntegrationAcceptance",
     "ClassDWedgeBoundaryHitting",
     "CoincidenceDensityOne",
     "DefectIntertwiner",

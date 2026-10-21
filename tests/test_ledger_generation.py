@@ -256,14 +256,14 @@ def test_complete_minus_class_d_does_not_close_universal_boundary_hitting():
     assert not {"UniversalBoundaryHitting", "UniversalAlignedCoincidence", "TwoObstructionCompletion", "PDS", "G1"} & done
 
 
-def test_class_d_assembly_preserves_integration_and_universal_firewalls():
+def test_accepted_class_d_assembly_preserves_universal_firewalls():
     analysis = gl.analyse(gl.load_ledger(ROOT / "proof/tla/ledger.json"))
     entries = {entry.name: entry for entry in analysis.entries}
-    assert entries["ClassDIntegrationAcceptance"].status == "open"
-    assert entries["ClassDBoundaryHitting"].status == "conditional"
+    assert entries["ClassDIntegrationAcceptance"].status == "proved"
+    assert entries["ClassDBoundaryHitting"].status == "proved"
     assert {"MinusClassDBoundaryHitting", "PlusClassDBoundaryLine"} <= reachable("Open")
-    assert "ClassDBoundaryHitting" not in reachable("Open")
+    assert "ClassDBoundaryHitting" in reachable("Open")
     assembled = reachable("ClassDIntegrationAssumed")
-    assert gl.established(analysis,("ClassDIntegrationAcceptance",)) == assembled
+    assert gl.established(analysis,("ClassDIntegrationAcceptance",)) == assembled == reachable("Open")
     assert {"PlusClassDBoundaryHitting", "MinusClassDBoundaryHitting", "ClassDBoundaryHitting"} <= assembled
     assert not {"UniversalBoundaryHitting", "UniversalAlignedCoincidence", "TwoObstructionCompletion", "G1", "PDS"} & assembled

@@ -3,8 +3,10 @@
 **Status:** 2026-10-20 UTC. section 14 supplies an exact uniform seed-carrier
 certificate for the minus residual a>=2,b>=1. It discharges CycleSum- on that
 domain and, with the ranked descent, gives scoped boundary hitting. Available
-local Mojo and independent rational replay pass; pinned CI and independent
-human review remain pending. Universal #139/#84 and PSC remain open.
+local Mojo and independent rational replay pass. As of 2026-10-21, pinned CI
+and the combined class-D integration gate are accepted at a9457d9, merged
+as 4996d21; independent human review remains pending. Complete receipts:
+`evidence/class-d-integration-accepted-2026-10-21/`. Universal #139/#84 and PSC remain open.
 
 Sections 1–13 preserve the historical conditional reduction and its negative
 controls. Unrestricted cyclic-carrier inclusion remains **false**. The new
@@ -270,8 +272,8 @@ CycleSum-.
 
 | Obligation | Governed status |
 | --- | --- |
-| Minus cycle-sum bound | Repository-proved: `MinusClassDPositiveBCycleSum`, by the uniform seed carrier in §14; pinned CI and human review pending |
-| Minus positive-b boundary hitting | Repository-proved: `MinusClassDPositiveBBoundaryHitting`, only a>=2,b>=1; historical conditional assembly now has CycleSum- discharged; pinned CI and human review pending |
+| Minus cycle-sum bound | Repository-proved: `MinusClassDPositiveBCycleSum`, by the uniform seed carrier in §14; pinned CI accepted at a9457d9; human review pending |
+| Minus positive-b boundary hitting | Repository-proved: `MinusClassDPositiveBBoundaryHitting`, only a>=2,b>=1; historical conditional assembly now has CycleSum- discharged; pinned CI accepted at a9457d9; human review pending |
 | Universal boundary hitting, issue #139 | Open; this family implication does not discharge it |
 | General PSC / #84 | Open; no implication from this finite grid is asserted |
 
@@ -636,7 +638,7 @@ PSC conclusion follows.
 
 | Obligation | Governed status |
 | --- | --- |
-| Uniform minus seed carrier | Repository-proved: `MinusClassDSeedCarrierClosure`; a>=2,b>=1, actual swap seeds and complete occurrence closure; pinned CI and human review pending |
+| Uniform minus seed carrier | Repository-proved: `MinusClassDSeedCarrierClosure`; a>=2,b>=1, actual swap seeds and complete occurrence closure; pinned CI accepted at a9457d9; human review pending |
 
 ### 14.1 Statement and quantifiers
 
@@ -800,3 +802,15 @@ scoped seed-carrier, CycleSum- and minus residual BH nodes; universal aligned
 coincidence, universal #139, the two-obstruction completion and PSC remain
 unestablished in the open model. No full non-unit tiling realization or
 universal spectrum theorem is imported from this seed certificate.
+
+### 14.6 Subsequent full CI acceptance (2026-10-21)
+
+The local-only statements in §14.5 describe the original evidence event.
+All 64 checks at a9457d9 have since succeeded; main merge 4996d21 and the
+GitHub-tested PR merge have the same accepted source tree. Full locked Pixi,
+uniform carrier and strip replays, ranked descent, independent calibration,
+complete plus aggregate and scoped assembly now supply integration acceptance.
+The ledger establishes scoped determinant-two class D without an assumption,
+while every universal firewall in §14.5 remains. Human review is still pending.
+See `class-d-assembly-audit-2026-10-21.md` and
+`evidence/class-d-integration-accepted-2026-10-21/`.

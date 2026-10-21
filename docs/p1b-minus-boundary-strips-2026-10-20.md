@@ -1,6 +1,6 @@
 # Issue #139: completing the minus residual boundary strips
 
-**Status:** exact strip certificates completed with the lock-matched Mojo compiler; complete minus assembly and governance replay recorded below. Independent human review and CI integration pending; universal #139 and PSC open.
+**Status:** exact strip certificates completed with the lock-matched Mojo compiler; complete minus assembly and governance replay recorded below. Full locked CI and combined class-D integration accepted on 2026-10-21 (receipts below); independent human review pending; universal #139 and PSC open.
 
 ## Target and literature decision
 
@@ -141,6 +141,10 @@ sieve closes that gap. Universal #139/#84/G1/PSC stay open.
 Merged #293 has the complete plus native aggregate; the assembly audit now
 checks its immutable full local import closure and replays this entire minus
 aggregate on reconciled main. See `class-d-assembly-audit-2026-10-21.md`. The
-new combined class-D ledger node retains an explicit open integration gate.
+combined class-D ledger node now has its separately recorded integration gate
+discharged: all 64 checks at a9457d9 pass, and main merge 4996d21 has the same
+source tree. Complete locked Pixi, fresh native plus/minus aggregates and
+independent calibration are archived in
+`evidence/class-d-integration-accepted-2026-10-21/`. Human review is pending.
 Historical statements above about the plus aggregate describe the earlier
 frontier; they do not override this later record. Universal #139 stays open.
