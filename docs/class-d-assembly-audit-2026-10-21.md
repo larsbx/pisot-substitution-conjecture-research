@@ -1,20 +1,19 @@
 # Class-D boundary-hitting assembly audit — 2026-10-21
 
-The exact component certificates support a **scoped class-D closure candidate**.
-The refreshed native minus aggregate and plus b=0 boundary pass with Mojo
-1.1.0.dev2026090805 (34562fa1). The plus positive-b aggregate from merged PR
-#293 is reused at its exact immutable revision, with its complete local
-import closure checked. Full acceptance of the combined implementation is
-still a separate open gate. Independent human review is pending.
+The exact component certificates and complete CI support **mechanically certified
+boundary hitting for determinant-two class D**, project-accepted for progression
+under AGENTS.md. PR #290 merged as 4996d21f18b24f4e45f6b30a7dbf92901cd35bd8.
+All 64 checks on head a9457d9 passed; its source tree is identical to both the
+GitHub-tested PR merge and the main merge. Independent human review is pending.
 
 | Claim | Governed status |
 | --- | --- |
-| Combined integration acceptance | [OPEN] `ClassDIntegrationAcceptance`; current-head full locked Pixi/CI acceptance is pending |
+| Combined integration acceptance | Repository-proved: `ClassDIntegrationAcceptance`; exact accepted tree c325aa5345e1f49b2fb50b37565bd2902104aab7; complete locked Pixi/CI receipts archived |
 | Plus b=0 boundary | Repository-proved: `PlusClassDBoundaryLine`; full native and independent oracle replay, human review pending |
-| Plus positive-b residual | Conditional theorem: `PlusClassDPositiveBBoundaryHitting`; complete exact native receipt exists; combined integration gate retained |
-| Entire plus class D | Conditional theorem: `PlusClassDBoundaryHitting`; positive-b residual, b=0 boundary and existing large-r theorem |
-| Combined determinant-two class D | Conditional theorem: `ClassDBoundaryHitting`; plus and minus assembly, integration gate retained |
-| Entire minus class D | Repository-proved: `MinusClassDBoundaryHitting`, at its recorded seed-graph scope; current native replay passes; full integration and human review remain validation debt |
+| Plus positive-b residual | Repository-proved: `PlusClassDPositiveBBoundaryHitting`; original immutable receipt and two fresh complete native CI aggregates; integration gate discharged |
+| Entire plus class D | Repository-proved: `PlusClassDBoundaryHitting`; positive-b residual, b=0 boundary and existing large-r theorem |
+| Combined determinant-two class D | Repository-proved: `ClassDBoundaryHitting`; exact plus and minus assembly, offset-zero target, human review pending |
+| Entire minus class D | Repository-proved: `MinusClassDBoundaryHitting`, at its recorded seed-graph scope; complete native CI and independent calibration accepted, human review pending |
 | Universal strict-zipper hitting | Open: `UniversalBoundaryHitting`, Issue #139 |
 
 ## Assumptions and hypotheses
@@ -150,7 +149,9 @@ this direct ranked argument.
 receipts, checks exact cover identities, and replays the entire plus b=0
 certificate. The inherited large-r theorem remains a named ledger dependency.
 It emits `CLASS_D_ASSEMBLY_CANDIDATE`, explicitly saying integration is
-pending and universal #139 is open. It never emits a spectrum, universal
+pending and universal #139 is open. This deliberately conservative native
+component receipt is unchanged: later integration acceptance is recorded by the
+separate CI provenance packet, not synthesized by rewriting its output. It never emits a spectrum, universal
 hitting or independent-review receipt.
 
 `tools/check_class_d_assembly_evidence.py` is provenance tooling, not a second
@@ -164,8 +165,8 @@ use the provenance wrapper first. No synthesized marker replaces native work.
 
 ## Validation and mergeability
 
-PR #290 at 3b16b5447aa9b3ecdecfdabb5033a381580f230e conflicts with current
-main. The reconciliation preserves #293's sign reader, ordered interval
+PR #290 at 3b16b5447aa9b3ecdecfdabb5033a381580f230e conflicted with
+main before reconciliation. The merged reconciliation preserves #293's sign reader, ordered interval
 sweep and justified pins, #290's typed/borrowed spine repairs, both append-only
 side-note histories and the later estate-governance update. Generated proof
 and ledger surfaces are regenerated from their source tables. No vendored
@@ -188,6 +189,37 @@ TLA model outcomes and exact limitations are recorded in
 `../evidence/class-d-assembly-audit-2026-10-21/README.md`. Human review is
 nonblocking validation debt under AGENTS.md, not claimed as completed.
 
+## Completed CI acceptance (2026-10-21)
+
+The later packet `../evidence/class-d-integration-accepted-2026-10-21/`
+archives the complete 64-check snapshot, job/step records and nine unedited
+compressed job logs. `python tools/check_class_d_integration_ci.py` checks
+source/lock/workflow pins against accepted head a9457d9 and the live files,
+all required successful checks, native outputs, independent calibration steps
+and the Git object binding the tested tree. Missing, failed, cancelled,
+pending, wrong-head, skipped-calibration or changed-source records refuse.
+It is provenance tooling; the mathematical authority remains the native
+certificates and named inherited theorem. This is acceptance of the named
+source tree, not an evergreen grant to later changed mathematics.
+
+| Acceptance item | Exact receipt |
+| --- | --- |
+| Tested PR merge | 31b5d1e73f7becd34a4ecfe99eb6df186a88fafa; tree c325aa5345e1f49b2fb50b37565bd2902104aab7 |
+| Main merge | 4996d21f18b24f4e45f6b30a7dbf92901cd35bd8; the same tree |
+| Locked environment | Full `pixi install --locked` succeeded in scoped assembly, chambers, both residual matrix jobs and exact-kernels |
+| Plus positive-b | Jobs 119058204598 and 119058204005 each complete all six cores, 73 strips, six interfaces and 952 prefix obligations |
+| Minus residual | Jobs 119058204237 and 119058204076 replay all four disjoint regions, seed closure, ranks and both full finite prefixes |
+| Assembly / calibration | Job 119058204076 passes the exact assembly, full plus b=0 replay, independent Q(beta)/Fraction calibration and governance |
+| Full suites | Python: 649 passed, 2 skipped, 1 warning; Mojo regression and coverage, Lean, all TLA models and estate/source checks pass |
+| General census | Last pending job 119058204966 completes at 06:57:25 UTC; all 4,554 standing specimens complete, capped=0; all committed failure labels agree |
+
+The exact-kernels verification reports 16 checks run and two skipped;
+separate Lean/TLA jobs pass. The Python skips and warning are preserved in
+the raw log. Local full Pixi still fails at the proxy download; successful
+GitHub provisioning resolves the repository CI gate without relabelling that
+local limitation. Earlier pending manifests and failed/interrupted logs are
+unchanged. Human review remains outstanding.
+
 ## Negative controls and remaining obligations
 
 Retain both kinds of zero-offset state, endpoint exclusion, removed real
@@ -197,9 +229,9 @@ seed reachability is essential. The assembly refuses missing/duplicate or
 changed component receipts and source hashes. The full plus campaign is
 reused only with unchanged mathematical source and all original obligations.
 
-The ledger keeps a separate **open integration gate**. Under that gate the
-class-D assembly becomes available, while tests and a TLA model ensure it
-still supplies neither universal aligned coincidence nor universal boundary
+The ledger records the separately discharged **integration acceptance gate**.
+The class-D assembly is now available without assuming that gate; regression
+tests and all TLA models still ensure it supplies neither universal aligned coincidence nor universal boundary
 hitting, G1 or PSC. General class-A slope-one growing graphs and the remaining
 class-A/C regions need uniform arguments; neither finite experiments nor
 this class-D cover supplies them. Issue #139 stays open until its general,

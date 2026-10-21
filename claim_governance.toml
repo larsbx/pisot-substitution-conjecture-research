@@ -613,7 +613,7 @@ window_lines = 0
 
 [[claim]]
 name = "ClassDBoundaryHitting"
-status = "conditional"
+status = "proved"
 [[claim.surfaces]]
 path = "proof/tla/Ledger.tla"
 anchor = '"ClassDBoundaryHitting"'
@@ -631,13 +631,13 @@ window_lines = 0
 
 [[claim]]
 name = "ClassDIntegrationAcceptance"
-status = "open"
+status = "proved"
 [[claim.surfaces]]
 path = "proof/tla/Ledger.tla"
 anchor = '"ClassDIntegrationAcceptance"'
 section = "ProvedDef == {"
 section_end = "}"
-expect = "absent"
+expect = "present"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| ClassDIntegrationAcceptance |'
@@ -1782,7 +1782,7 @@ window_lines = 0
 
 [[claim]]
 name = "PlusClassDBoundaryHitting"
-status = "conditional"
+status = "proved"
 [[claim.surfaces]]
 path = "proof/tla/Ledger.tla"
 anchor = '"PlusClassDBoundaryHitting"'
@@ -1818,7 +1818,7 @@ window_lines = 0
 
 [[claim]]
 name = "PlusClassDPositiveBBoundaryHitting"
-status = "conditional"
+status = "proved"
 [[claim.surfaces]]
 path = "proof/tla/Ledger.tla"
 anchor = '"PlusClassDPositiveBBoundaryHitting"'

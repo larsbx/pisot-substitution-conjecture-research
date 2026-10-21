@@ -14,14 +14,20 @@ Canonical implementation for §4: `kernel/symbolic_line_certificate.mojo`
 
 ## Current assembly audit (2026-10-21)
 
-The complete plus positive-b native receipt from merged #293 and the freshly
-replayed complete minus residual now support a determinant-two class-D
-assembly candidate, together with both b=0 boundaries and the existing
-r>=q-1 theorem. The exact cover, overlap conventions, full import-closure
-provenance and remaining integration gate are recorded in
-`class-d-assembly-audit-2026-10-21.md`. The combined ledger result is
-**conditional** on current combined integration acceptance; no component
-requirement is waived. Class A/C and universal #139 remain open.
+The complete plus and minus certificates now have full locked-environment,
+native replay, independent calibration and repository CI acceptance: all 64
+checks on PR #290 head a9457d9 passed, and main merge 4996d21 has the same
+source tree. `ClassDBoundaryHitting` is repository-proved for the exact
+PIP determinant-two class-D normal form, project-accepted for progression;
+independent human review remains pending. This is offset-zero hitting on the
+canonical swap-seed graph. Class A/C, universal #139, #138 and #84 remain open.
+
+The derivation and current status are in `class-d-assembly-audit-2026-10-21.md`;
+acceptance receipts are in `evidence/class-d-integration-accepted-2026-10-21/`.
+The dated subsections below record earlier frontiers. In particular the
+remaining-class-D item in the historical next-work list is superseded.
+Current work proceeds to the recorded A/C regions and general uniform
+hitting mechanism, preserving realization and coincidence hypotheses.
 
 ## Current continuation: entire minus class D (2026-10-20 UTC)
 
