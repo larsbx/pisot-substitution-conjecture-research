@@ -330,3 +330,11 @@ a productive descending choice. The present selected paths do not prove
 that cover. Then address the remaining A domains and C's residual `d>=4`
 region. General #139/#84/#138, universal aligned coincidence and general PSC
 remain open. Accepted class-D integration is unchanged.
+
+## Forward-cover continuation
+
+The [rectangular cover countermodel](class-a-cover-obstruction-2026-10-21.md)
+shows uniformly that strict geometry plus separate bounds on run index, y
+offset and coordinate sum do not form a child-closed carrier. It provides
+exact normalized coordinates and a real escaping edge; seed reachability is
+not asserted. The arbitrary-n all-state cover and its descent remain open.
