@@ -1,0 +1,1138 @@
+[
+  {
+    "coefficients": [
+      4,
+      4,
+      4,
+      3,
+      3,
+      1
+    ],
+    "covers": [
+      {
+        "low_wedge": 0,
+        "fixed_axis": "u",
+        "value": 0
+      },
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 0
+      }
+    ],
+    "existing_receipt_log": "repaired/low-0.log"
+  },
+  {
+    "coefficients": [
+      3,
+      4,
+      3,
+      3,
+      2,
+      1
+    ],
+    "covers": [
+      {
+        "low_wedge": 0,
+        "fixed_axis": "v",
+        "value": 0
+      }
+    ],
+    "existing_receipt_log": "repaired/low-0.log"
+  },
+  {
+    "coefficients": [
+      3,
+      8,
+      3,
+      7,
+      2,
+      4
+    ],
+    "covers": [
+      {
+        "low_wedge": 0,
+        "fixed_axis": "v",
+        "value": 1
+      }
+    ],
+    "existing_receipt_log": "low-0.log"
+  },
+  {
+    "coefficients": [
+      3,
+      12,
+      3,
+      11,
+      2,
+      7
+    ],
+    "covers": [
+      {
+        "low_wedge": 0,
+        "fixed_axis": "v",
+        "value": 2
+      }
+    ],
+    "existing_receipt_log": "low-0.log"
+  },
+  {
+    "coefficients": [
+      3,
+      16,
+      3,
+      15,
+      2,
+      10
+    ],
+    "covers": [
+      {
+        "low_wedge": 0,
+        "fixed_axis": "v",
+        "value": 3
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      3,
+      20,
+      3,
+      19,
+      2,
+      13
+    ],
+    "covers": [
+      {
+        "low_wedge": 0,
+        "fixed_axis": "v",
+        "value": 4
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      3,
+      24,
+      3,
+      23,
+      2,
+      16
+    ],
+    "covers": [
+      {
+        "low_wedge": 0,
+        "fixed_axis": "v",
+        "value": 5
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      3,
+      28,
+      3,
+      27,
+      2,
+      19
+    ],
+    "covers": [
+      {
+        "low_wedge": 0,
+        "fixed_axis": "v",
+        "value": 6
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      5,
+      4,
+      5,
+      3,
+      4,
+      1
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "u",
+        "value": 0
+      },
+      {
+        "low_wedge": 2,
+        "fixed_axis": "v",
+        "value": 0
+      }
+    ],
+    "existing_receipt_log": "repaired/low-2.log"
+  },
+  {
+    "coefficients": [
+      5,
+      8,
+      5,
+      7,
+      4,
+      4
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "u",
+        "value": 1
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      5,
+      12,
+      5,
+      11,
+      4,
+      7
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "u",
+        "value": 2
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      5,
+      16,
+      5,
+      15,
+      4,
+      10
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "u",
+        "value": 3
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      5,
+      20,
+      5,
+      19,
+      4,
+      13
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "u",
+        "value": 4
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      5,
+      24,
+      5,
+      23,
+      4,
+      16
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "u",
+        "value": 5
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      5,
+      28,
+      5,
+      27,
+      4,
+      19
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "u",
+        "value": 6
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      9,
+      4,
+      8,
+      3,
+      5
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 1
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      14,
+      4,
+      13,
+      3,
+      9
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 2
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      19,
+      4,
+      18,
+      3,
+      13
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 3
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      24,
+      4,
+      23,
+      3,
+      17
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 4
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      29,
+      4,
+      28,
+      3,
+      21
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 5
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      34,
+      4,
+      33,
+      3,
+      25
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 6
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      39,
+      4,
+      38,
+      3,
+      29
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 7
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      44,
+      4,
+      43,
+      3,
+      33
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 8
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      49,
+      4,
+      48,
+      3,
+      37
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 9
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      54,
+      4,
+      53,
+      3,
+      41
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 10
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      59,
+      4,
+      58,
+      3,
+      45
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 11
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      64,
+      4,
+      63,
+      3,
+      49
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 12
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      69,
+      4,
+      68,
+      3,
+      53
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 13
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      4,
+      74,
+      4,
+      73,
+      3,
+      57
+    ],
+    "covers": [
+      {
+        "low_wedge": 1,
+        "fixed_axis": "v",
+        "value": 14
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      6,
+      4,
+      6,
+      3,
+      5,
+      1
+    ],
+    "covers": [
+      {
+        "low_wedge": 2,
+        "fixed_axis": "u",
+        "value": 0
+      },
+      {
+        "low_wedge": 3,
+        "fixed_axis": "v",
+        "value": 0
+      }
+    ],
+    "existing_receipt_log": "repaired/low-2.log"
+  },
+  {
+    "coefficients": [
+      5,
+      10,
+      5,
+      9,
+      4,
+      6
+    ],
+    "covers": [
+      {
+        "low_wedge": 2,
+        "fixed_axis": "v",
+        "value": 1
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      5,
+      16,
+      5,
+      15,
+      4,
+      11
+    ],
+    "covers": [
+      {
+        "low_wedge": 2,
+        "fixed_axis": "v",
+        "value": 2
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      5,
+      22,
+      5,
+      21,
+      4,
+      16
+    ],
+    "covers": [
+      {
+        "low_wedge": 2,
+        "fixed_axis": "v",
+        "value": 3
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      5,
+      28,
+      5,
+      27,
+      4,
+      21
+    ],
+    "covers": [
+      {
+        "low_wedge": 2,
+        "fixed_axis": "v",
+        "value": 4
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      5,
+      34,
+      5,
+      33,
+      4,
+      26
+    ],
+    "covers": [
+      {
+        "low_wedge": 2,
+        "fixed_axis": "v",
+        "value": 5
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      5,
+      40,
+      5,
+      39,
+      4,
+      31
+    ],
+    "covers": [
+      {
+        "low_wedge": 2,
+        "fixed_axis": "v",
+        "value": 6
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      4,
+      7,
+      3,
+      6,
+      1
+    ],
+    "covers": [
+      {
+        "low_wedge": 3,
+        "fixed_axis": "u",
+        "value": 0
+      },
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 0
+      }
+    ],
+    "existing_receipt_log": "repaired/low-3.log"
+  },
+  {
+    "coefficients": [
+      7,
+      10,
+      7,
+      9,
+      6,
+      6
+    ],
+    "covers": [
+      {
+        "low_wedge": 3,
+        "fixed_axis": "u",
+        "value": 1
+      }
+    ],
+    "existing_receipt_log": "repaired/low-3.log"
+  },
+  {
+    "coefficients": [
+      7,
+      16,
+      7,
+      15,
+      6,
+      11
+    ],
+    "covers": [
+      {
+        "low_wedge": 3,
+        "fixed_axis": "u",
+        "value": 2
+      }
+    ],
+    "existing_receipt_log": "low-3.log"
+  },
+  {
+    "coefficients": [
+      6,
+      11,
+      6,
+      10,
+      5,
+      7
+    ],
+    "covers": [
+      {
+        "low_wedge": 3,
+        "fixed_axis": "v",
+        "value": 1
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      6,
+      18,
+      6,
+      17,
+      5,
+      13
+    ],
+    "covers": [
+      {
+        "low_wedge": 3,
+        "fixed_axis": "v",
+        "value": 2
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      6,
+      25,
+      6,
+      24,
+      5,
+      19
+    ],
+    "covers": [
+      {
+        "low_wedge": 3,
+        "fixed_axis": "v",
+        "value": 3
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      6,
+      32,
+      6,
+      31,
+      5,
+      25
+    ],
+    "covers": [
+      {
+        "low_wedge": 3,
+        "fixed_axis": "v",
+        "value": 4
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      6,
+      39,
+      6,
+      38,
+      5,
+      31
+    ],
+    "covers": [
+      {
+        "low_wedge": 3,
+        "fixed_axis": "v",
+        "value": 5
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      6,
+      46,
+      6,
+      45,
+      5,
+      37
+    ],
+    "covers": [
+      {
+        "low_wedge": 3,
+        "fixed_axis": "v",
+        "value": 6
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      8,
+      4,
+      8,
+      3,
+      7,
+      1
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "u",
+        "value": 0
+      }
+    ],
+    "existing_receipt_log": "repaired/low-4.log"
+  },
+  {
+    "coefficients": [
+      8,
+      11,
+      8,
+      10,
+      7,
+      7
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "u",
+        "value": 1
+      }
+    ],
+    "existing_receipt_log": "repaired/low-4.log"
+  },
+  {
+    "coefficients": [
+      8,
+      18,
+      8,
+      17,
+      7,
+      13
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "u",
+        "value": 2
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      12,
+      7,
+      11,
+      6,
+      8
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 1
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      20,
+      7,
+      19,
+      6,
+      15
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 2
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      28,
+      7,
+      27,
+      6,
+      22
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 3
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      36,
+      7,
+      35,
+      6,
+      29
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 4
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      44,
+      7,
+      43,
+      6,
+      36
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 5
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      52,
+      7,
+      51,
+      6,
+      43
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 6
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      60,
+      7,
+      59,
+      6,
+      50
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 7
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      68,
+      7,
+      67,
+      6,
+      57
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 8
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      76,
+      7,
+      75,
+      6,
+      64
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 9
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      84,
+      7,
+      83,
+      6,
+      71
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 10
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      92,
+      7,
+      91,
+      6,
+      78
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 11
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      100,
+      7,
+      99,
+      6,
+      85
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 12
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      108,
+      7,
+      107,
+      6,
+      92
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 13
+      }
+    ],
+    "existing_receipt_log": null
+  },
+  {
+    "coefficients": [
+      7,
+      116,
+      7,
+      115,
+      6,
+      99
+    ],
+    "covers": [
+      {
+        "low_wedge": 4,
+        "fixed_axis": "v",
+        "value": 14
+      }
+    ],
+    "existing_receipt_log": null
+  }
+]

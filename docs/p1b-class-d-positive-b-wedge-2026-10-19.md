@@ -817,3 +817,12 @@ This chamber certificate remains a **candidate** until canonical execution
 succeeds.  It does not change the status of class D, universal #139, #84 or
 PSC.
 
+
+## 13. Execution follow-up and exact sign-reader refusals
+
+The [October 19 execution audit](p1b-class-d-chamber-execution-2026-10-19.md)
+replays the merged chamber driver, exposes its first auxiliary sign refusal,
+and preserves exact failed and repaired outputs. The lattice cover in §12 is
+unchanged. Its six explicit lines have completed local exact replay; the
+remaining component/boundary results and toolchain limits are recorded there.
+No complete plus-quadrant theorem or universal #139 result is promoted.

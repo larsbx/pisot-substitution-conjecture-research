@@ -1,0 +1,8 @@
+Error:   × failed to fetch pydantic-extra-types-2.11.1-pyhcf101f3_0.conda
+  ├─▶ failed to interact with the package cache layer.
+  ├─▶ Request failed after 3 retries
+  ├─▶ error sending request for url (https://conda.anaconda.org/conda-forge/
+  │   noarch/pydantic-extra-types-2.11.1-pyhcf101f3_0.conda)
+  ├─▶ client error (Connect)
+  ╰─▶ tunnel error: unsuccessful
+

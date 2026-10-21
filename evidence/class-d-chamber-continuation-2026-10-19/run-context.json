@@ -1,0 +1,50 @@
+{
+  "base_commit": "2af1b9630331e75ebbf1ce23db2e3b1da9d9525e",
+  "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "environment": "lock-matched mojo-compiler + mojo-python packages, host Python 3.12; full Pixi install failed",
+  "compiler_archive_sha256": "0d71889abb0887e2fa8a556c1081af4026034cdf98d27ad05b57cb096d7ad4f6",
+  "mojo_python_archive_sha256": "113c7d202236f943c91fdcb115f0a278e9c6027e1b7783bbc8b9a2076bb43838",
+  "source_sha256": {
+    "kernel/psc/symbolic_line.mojo": "ed7f235ba5d77fad32195acd614cf65c3eddd7a398c8f3277bf7d679386d22e6",
+    "kernel/symbolic_line_certificate.mojo": "43c5dc020cf2d3fc5aa0073a7861118da78392993dd070ea0a3379db05ce397d",
+    "kernel/psc/overlap_seed_patch.mojo": "03541f062c104a61511a95b89755372d974c6f4a297f72e98bfb6c0d342c789b",
+    "kernel/class_d_plus_positive_b_chambers.mojo": "f527ec30a034e3e584dbc5b1dc9f778c86ef6360c9e93065a8a5c9c0dd028ebb",
+    "kernel/tests/test_overlap_child_sweep.mojo": "d1e9dfe00c317f06bbce4d610a1275dec7e668e04d88046d488fc481c3da21ed",
+    "baseline/kernel/psc/overlap_seed_patch.mojo": "2fe9316c7f2c385c84ac864acb3f888ec32bfea0dcca3adc4c91024d32dfe3e1"
+  },
+  "binary_sha256": {
+    "/tmp/psc-continuation-chambers": "72d3a54dd2a956302a149317d582d780353008e4dd36dc7575490d8e857fb138",
+    "/tmp/psc-continuation-line-sweep": "0a0e48f7afd6b32b9fa144add8c6241ca506e6ae19e6b5e9fb6a19239e77f364",
+    "/tmp/psc-continuation-line-pinned": "8f6da514079c8e556f81360fa299ce5cb675d04196addfe6b193e7404dfc8b04"
+  },
+  "scope": "no whole-quadrant receipt until the entire driver returns successfully; no universal #139 or PSC promotion",
+  "execution_variants": {
+    "low-1-v13.log": "base commit 2af1b96, unpinned Mojo 1.1.0, original nested enumeration; exit0",
+    "low-1-v14-trace.log": "base plus saved tracing in symbolic_line and line driver; original nested enumeration, unpinned Mojo 1.1.0; timeout300, exit124",
+    "pinned-low-1-v13-baseline.log": "saved tracing, baseline/overlap_seed_patch.mojo from source snapshot; pinned compiler/runtime, original nested enumeration; exit0",
+    "pinned-low-1-v13-sweep.log": "final saved source, pinned compiler/runtime; exit0",
+    "pinned-low-1-v14-sweep.log": "final saved source, pinned compiler/runtime; exit0",
+    "pinned-component-*.log": "final saved source, one identical pinned-runtime chambers binary",
+    "pinned-complete-chambers.log": "final saved source, same binary as components; serial aggregate attempt"
+  },
+  "aggregate_attempt": {
+    "status": "operator-interrupted",
+    "reported_exit": 130,
+    "exit_source": "write_stdin for session 92655 returned exit_code 130 after Ctrl-C; the wrapper did not reach its exit-file write",
+    "observed_at": "2026-10-19T22:35:47Z",
+    "reason": "stop duplicate serial execution while the independent same-source component campaign completes; every remaining serial obligation is covered by that campaign",
+    "aggregate_receipt": false
+  },
+  "component_campaign_completed_observed_at": "2026-10-19T22:36:53Z",
+  "result": {
+    "wedge_components": 6,
+    "boundary_obligations": 73,
+    "distinct_boundary_lines": 69,
+    "explicit_lines": 6,
+    "component_invocations_exit_zero": 12,
+    "aggregate_receipt": false,
+    "full_pixi_install": false,
+    "theorem_promotion": false
+  },
+  "benchmark_source_sha256": "ea7d332b96d0d6f83d2541ba440c86b833f2ab0ebc2ce5dc4685a3a73bb25503"
+}

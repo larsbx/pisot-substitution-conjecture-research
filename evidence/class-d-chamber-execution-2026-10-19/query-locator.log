@@ -1,0 +1,5 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+QUERY_MATCH 0 segments 1 2 probe 1
+QUERY_MATCH 0 segments 2 1 probe 0
+QUERY_MATCH 1 segments 0 1 probe 1
+QUERY_MATCH 1 segments 1 0 probe 0
