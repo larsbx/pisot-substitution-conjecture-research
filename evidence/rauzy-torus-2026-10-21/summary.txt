@@ -1,0 +1,11 @@
+Rauzy torus corpus survey, schema psc-rauzy-torus/v1, status diagnostic
+specimens: 4554  diagnostic: 2628  refused (non-unimodular): 1926
+regimes: nonunimodular:1926 unimodular-complex:1980 unimodular-real:648
+per specimen: 4096 fixed-point prefixes, 32x32 grid on T^2, undecided points in total: 0
+max lift per specimen: 2:419 3:1482 4:659 5:68
+one-lift share of occupied cells: min 0.0430 median 0.6689 max 0.9580
+named tribonacci: 8192 points, 64x64 grid, lifts 1:3957 2:47 3:1, undecided 0
+named flipped_tribonacci: 8192 points, 64x64 grid, lifts 1:3937 2:67 3:1, undecided 0
+named smith: 8192 points, 64x64 grid, lifts 1:3779 2:317, undecided 0
+named nonunit_control: refused (the torus picture needs a unimodular incidence matrix (|det M| = 1))
+A lift profile certifies no covering degree; low one-lift shares are resolution-limited (see README.md).
