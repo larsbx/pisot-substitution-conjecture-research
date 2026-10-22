@@ -12,6 +12,7 @@ import sys
 
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from class_a_d2_uniform_geometry import inferred,certify
+from class_a_d2_parity_carrier import reference_profile
 
 L=((1,2,2,0),(1,0,0,0),(1,1,0,0))
 
@@ -164,11 +165,37 @@ def residue(proposed,r,l0=3,window=5):
             "all_n_child_closure":True,"all_n_hitting":False}
 
 
+def finite_prefix(e,o):
+    """Complete independent Q(beta) graphs: n=4..11, no cap-as-success.
+
+    For n>=7 compare EVERY maximal typed interval with the corresponding
+    parity candidate at that n, not merely graph cardinality.
+    """
+    seen=[]
+    for n in range(4,12):
+        source=reference_profile(n)
+        if source["states"]<=0 or source["max_hit"]<0:
+            raise Undecided("finite base incomplete or nonhitting")
+        if n>=7:
+            m=n//2
+            predicted=[
+                (*row[:4],row[4]*m+row[5],row[6]*m+row[7])
+                for row in (e if n%2==0 else o)
+            ]
+            if predicted!=source["intervals"]:
+                raise Undecided(("finite base carrier != complete graph",n))
+        seen.append({"n":n,"states":source["states"],
+                     "max_hit":source["max_hit"]})
+    return seen
+
+
 def prove():
     e,o=inferred(0),inferred(1)
     certify(e,0)
     certify(o,1)
-    return [residue(e if r%2==0 else o,r) for r in range(4)]
+    prefix=finite_prefix(e,o)
+    return {"finite_prefix":prefix,
+            "uniform_residues":[residue(e if r%2==0 else o,r) for r in range(4)]}
 
 
 if __name__=="__main__":
