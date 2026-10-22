@@ -12,6 +12,10 @@ on:
       - 'kernel/psc/class_a_carrier_descent.mojo'
       - 'kernel/class_a_residue_ray.mojo'
       - 'kernel/tests/test_class_a_residue_rays.mojo'
+      - 'kernel/psc/class_a_d2_plus_line.mojo'
+      - 'kernel/psc/class_a_d2_parity_carrier.mojo'
+      - 'kernel/class_a_d2_plus_line.mojo'
+      - 'kernel/tests/test_class_a_d2_plus_line.mojo'
       - 'oracles/python/class_a_carrier_closure.py'
       - 'oracles/python/class_a_descent_table.py'
       - 'tests/test_class_a_residue_rays.py'
@@ -53,6 +57,21 @@ jobs:
           pixi run --locked mojo run -I . tests/test_class_a_residue_rays.mojo 2>&1 | tee build/class-a-residue-rays/native-tests.log
           pixi run --locked mojo run -I . tests/test_class_a_carrier_closure.mojo 2>&1 | tee build/class-a-residue-rays/gap-one-plus-tests.log
           pixi run --locked mojo run -I . tests/test_class_a_minus_line.mojo 2>&1 | tee build/class-a-residue-rays/gap-one-minus-tests.log
+          pixi run --locked mojo run -I . tests/test_class_a_d2_plus_line.mojo 2>&1 | tee build/class-a-residue-rays/d2-plus-line-tests.log
+      - name: d=2 plus line theorem and shown witnesses, compared with the archived packet
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          E=../evidence/class-a-d2-plus-rays-2026-10-22
+          mkdir -p build/class-a-residue-rays/witness
+          pixi run --locked mojo build -I . class_a_d2_plus_line.mojo -o build/d2p
+          build/d2p theorem 2>&1 | tee build/class-a-residue-rays/theorem.log
+          diff "$E/theorem.log" build/class-a-residue-rays/theorem.log
+          for n in $(seq 13 24); do
+            build/d2p witness "$n" > "build/class-a-residue-rays/witness/witness-n$n.log" 2>&1
+            diff "$E/witness/witness-n$n.log" "build/class-a-residue-rays/witness/witness-n$n.log"
+          done
       - name: Preserve fresh receipts
         if: always()
         uses: actions/upload-artifact@v4

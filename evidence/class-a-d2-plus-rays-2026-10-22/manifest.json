@@ -53,21 +53,25 @@
     }
   ],
   "finite_base": "exact complete graphs n=1..30 (survey.log), every first offset-zero depth finite, cap not reached; native test re-surveys every n below each floor",
-  "calibration": "ray rows equal the independent #312 Fraction-field typed-interval profile at n=8,9,12,13 (pytest) and 16,17,22,23 (session check)",
+  "calibration": "ray rows equal the #312 parity templates inferred_template(8,12)/(9,13) as exact affine tables (Mojo, theorem.log); the independent Fraction-field oracle agrees at n=8,9,12,13 (pytest)",
   "source_sha256": {
     "kernel/psc/class_a_ray_d2p.mojo": "ac2eb0b00c4014e9d397347ef2f674603db65abf9d463918599c55a78d96e169",
     "kernel/psc/class_a_ray_tables.mojo": "f102cfb0c873c754e0554b74f2ba7df0576e8b85350a036811094b0365d647bb",
     "kernel/psc/class_a_line.mojo": "1784a468d0fb56748390c4df1e3a9fcd70897dd09e5ba0fd7099e9c606d14011",
     "kernel/psc/class_a_line_graph.mojo": "10204dc16761dcb8217cb42a3bf0b97337ec6210e689ae1959a7e134d353b8dd",
     "kernel/psc/class_a_carrier_closure.mojo": "04dfb95d4478f65d64c42be673b0734d78556d0a21650835a850966f781e613e",
-    "kernel/psc/class_a_carrier_descent.mojo": "ba65b9345d821d338526b997fdb833f5950b3254a97cf4d007a907c35ea0a79f",
+    "kernel/psc/class_a_carrier_descent.mojo": "8f144983be5cbe53898cfdff0edf5432f8850288c0370c03a1d2b231dca3d8df",
     "kernel/class_a_residue_ray.mojo": "7f40325683b50feceef6036c7965e06bcd297c64841cbdee669ad04e48c400d1",
     "kernel/tests/test_class_a_residue_rays.mojo": "a7fd6b295079bab2599efcd3ae33493d945bb510cf1cc16f8af124ace4fb263f",
     "oracles/python/class_a_carrier_closure.py": "5c2bea5a88122e1a15fcb98c4e0c3d3903a7abe802a2534d5758503a4c77588c",
     "oracles/python/class_a_descent_table.py": "cb6e09106685ec1e42ac70f53b0d4f558f51986ff8d86641d6e30842ea9459a2",
     "oracles/python/class_a_d2_parity_carrier.py": "455ef0e0e78693fc47fef9bcbc59bd33b7175b7a659560382eab0f882e43a5d4",
     "tests/test_class_a_residue_rays.py": "022ed24f746b95663a9129b2371a7f3951433f1a90f15cf626ec533fd200a9e2",
-    "tests/test_class_a_d2_plus_ray_carrier.py": "1e3f413abc646ecec609f018f504d015887610c47072fadc84f40f3c40ab8ea4"
+    "tests/test_class_a_d2_plus_ray_carrier.py": "1e3f413abc646ecec609f018f504d015887610c47072fadc84f40f3c40ab8ea4",
+    "kernel/psc/class_a_d2_plus_line.mojo": "172377e2b1871f597c328de6161199b796c976aaf9ab5c28856a4d063ced7f02",
+    "kernel/class_a_d2_plus_line.mojo": "7e10de05d80fd088923c492c32af63854bc72a8e62e0088e438bf65841516c3f",
+    "kernel/tests/test_class_a_d2_plus_line.mojo": "2c10401b21b6dbe50c37bce1c2e0af45839cd6445a2515e5b496551c3703205e",
+    "kernel/psc/class_a_d2_parity_carrier.mojo": "404e7a70df030ff3e38e74a4c6f53e2d09617def7b0fe55fca7ef7a5e661dc34"
   },
   "non_claims": [
     "other class-A gaps d>=4",
@@ -76,5 +80,11 @@
     "G1",
     "PSC",
     "independent human review"
-  ]
+  ],
+  "witnesses": {
+    "n": "13..24",
+    "hand_checked_steps": 5598,
+    "labels_equal_graph_vertices": true,
+    "seeds_traced": 9
+  }
 }

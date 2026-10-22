@@ -6,6 +6,14 @@ residue rays `n = 2l + r` certified by the generic certificate of
 `docs/class-a-residue-rays-2026-10-22.md` (even floor 14, odd floor 13), and
 an exact complete graph for every smaller `n`.
 
+- `theorem.log` / `.exit`: `kernel/class_a_d2_plus_line.mojo theorem`, the
+  assembled proof with one receipt per part (finite base, both rays, least
+  floors, carrier = #312 template).
+- `witness/witness-nN.log`, N=13..24: `class_a_d2_plus_line.mojo witness N`:
+  every carrier label's chosen occurrence and child, each re-derived from the
+  integral incidence identity; carrier = complete graph vertex set; every seed
+  path to offset zero. CI diffs fresh runs against these files.
+- `d2-plus-line-tests.log` / `.exit`: `kernel/tests/test_class_a_d2_plus_line.mojo`.
 - `driver.log`: `kernel/class_a_residue_ray.mojo certify 2 1 R N0` for both rays.
 - `survey.log` / `.exit`: `survey 2 1 30` (exact complete graphs n=1..30).
 - `native-tests.log` / `.exit`: `kernel/tests/test_class_a_residue_rays.mojo`
@@ -28,6 +36,9 @@ Local execution used the lock-matched compiler in `mojo-version.txt`; this is
 not a CI receipt.
 
 ```sh
+(cd kernel && pixi run --locked mojo run -I . class_a_d2_plus_line.mojo theorem)
+(cd kernel && pixi run --locked mojo run -I . class_a_d2_plus_line.mojo witness 14)
+(cd kernel && pixi run --locked mojo run -I . tests/test_class_a_d2_plus_line.mojo)
 (cd kernel && pixi run --locked mojo run -I . tests/test_class_a_residue_rays.mojo)
 (cd kernel && pixi run --locked mojo run -I . class_a_residue_ray.mojo certify 2 1 0 14)
 python oracles/python/class_a_carrier_closure.py 13 --ray 2,1,1

@@ -1,0 +1,26 @@
+SUMMARY 1 189 4 186
+SUMMARY 2 161 4 158
+SUMMARY 3 155 4 152
+SUMMARY 4 183 4 180
+SUMMARY 5 193 5 190
+SUMMARY 6 225 5 222
+SUMMARY 7 231 5 228
+SUMMARY 8 265 5 262
+SUMMARY 9 271 6 268
+SUMMARY 10 305 6 302
+SUMMARY 11 311 7 308
+SUMMARY 12 345 7 342
+D2P_FINITE_BASE n=1..12 all_vertices_hit=true max_first_hit 7
+CLASS_A_CARRIER_CLOSURE n>=14 line=(n+2,n,n+1) n=2l+0 rows 93 segments 837 y_cases 9207 covered 3576 gap_geometry 3100 window_checks 1674 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=14 line=(n+2,n,n+1) n=2l+0 pieces 149 targets 8 descent_rows 207 hit_depth_bound 2l+9
+CLASS_A_RAY_BOUNDARY_HITTING n>=14 line=(n+2,n,n+1) n=2l+0 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=12 line=(n+2,n,n+1) n=2l+0 rows 93 segments 837 y_cases 9207 covered 3576 gap_geometry 3100 window_checks 1674 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+D2P_FLOOR_LEAST r=0 floor 14 refused_at 12
+D2P_CARRIER_IS_PARITY_TEMPLATE r=0 rows 93 identical=true
+CLASS_A_CARRIER_CLOSURE n>=13 line=(n+2,n,n+1) n=2l+1 rows 87 segments 783 y_cases 8613 covered 3378 gap_geometry 2942 window_checks 1566 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=13 line=(n+2,n,n+1) n=2l+1 pieces 141 targets 8 descent_rows 186 hit_depth_bound 2l+11
+CLASS_A_RAY_BOUNDARY_HITTING n>=13 line=(n+2,n,n+1) n=2l+1 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=11 line=(n+2,n,n+1) n=2l+1 rows 87 segments 783 y_cases 8613 covered 3378 gap_geometry 2942 window_checks 1566 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+D2P_FLOOR_LEAST r=1 floor 13 refused_at 11
+D2P_CARRIER_IS_PARITY_TEMPLATE r=1 rows 87 identical=true
+CLASS_A_D2_PLUS_LINE_BOUNDARY_HITTING n>=1 line=(n+2,n,n+1) finite_base=1..12 rays=2l:14,2l+1:13 universal_139=false

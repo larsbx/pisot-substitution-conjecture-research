@@ -95,20 +95,77 @@ chosen actual children until an offset-zero target. For `1<=n<=12`, below
 both floors: the exact complete graph, cap not reached, every
 first-hit depth finite. ∎
 
-The carrier cardinalities coincide with those inferred in #312, and the ray
-rows *are* the #312 parity carriers: evaluated at `l = n div 2`, they equal
-the typed-interval profile of the independent Fraction-field oracle
-`oracles/python/class_a_d2_parity_carrier.py` at `n = 8,9,12,13` (pinned by
-`tests/test_class_a_d2_plus_ray_carrier.py`) and at `n = 16,17,22,23` (session
-check). Hence the 80- and 598-state productive subsets of #318/#319 are
-contained in carriers now proved productive in full; they remain correct but
-are no longer load-bearing for this line.
+The ray rows *are* the #312 parity carriers, as exact affine tables:
+`carrier_is_parity_template` in `kernel/psc/class_a_d2_plus_line.mojo`
+compares them row for row and coefficient for coefficient with
+`psc.class_a_d2_parity_carrier.inferred_template(8,12)` and `(9,13)` (affine in
+`m = floor(n/2) = l`). The independent Fraction-field oracle agrees with the
+ray rows at `n = 8,9,12,13` (`tests/test_class_a_d2_plus_ray_carrier.py`).
+Hence the 80- and 598-state productive subsets of #318/#319 lie inside
+carriers now proved productive in full; they remain correct but are no longer
+load-bearing for this line.
+
+### Shown in Mojo: one command per part, one receipt per part
+
+The whole argument is assembled by one canonical Mojo driver,
+`kernel/class_a_d2_plus_line.mojo` (module `psc.class_a_d2_plus_line`):
+
+```sh
+cd kernel
+pixi run --locked mojo run -I . class_a_d2_plus_line.mojo theorem
+pixi run --locked mojo run -I . class_a_d2_plus_line.mojo witness 14
+```
+
+`theorem` prints one receipt per proof part, in proof order:
+
+| receipt | what it establishes |
+| --- | --- |
+| `SUMMARY n …` ×12, `D2P_FINITE_BASE n=1..12` | exact complete graphs, cap-refusing, every vertex hits (max first-hit depth 7) |
+| `CLASS_A_CARRIER_CLOSURE n>=14 … n=2l+0` | Theorem A on the even ray |
+| `CLASS_A_CARRIER_DESCENT n>=14 … hit_depth_bound 2l+9` | Theorem B on the even ray |
+| `D2P_FLOOR_LEAST r=0 floor 14 refused_at 12` | the certificate refuses at the preceding ray member 12 (its closure line prints, then descent stops at an undecided sign) |
+| `D2P_CARRIER_IS_PARITY_TEMPLATE r=0 rows 93 identical=true` | even ray carrier = #312 even template |
+| the same four for `r=1`, floor 13, refused at 11 | odd ray |
+| `CLASS_A_D2_PLUS_LINE_BOUNDARY_HITTING n>=1 …` | the theorem, printed only after every part passed |
+
+`witness N` (`13 <= N <= 24`; below the floor the evidence is the exact
+graph) instantiates the certificate at one `n` and prints every step:
+
+```text
+W 14 (0,0,0,1,-2) X 9 piece 0 --(0,17)-> (0,0,0,-1,0) X 6
+…
+SEED 14 (2,2,0,-1,0) --(0,16)-> (0,1,0,-1,1) --(2,1)-> (2,2,-1,1,0) --(0,3)-> (0,2,0,1,0) --(16,0)-> (2,0,0,1,-1) --(1,2)-> (2,2,0,0,0) steps 5
+D2P_WITNESS 14 labels 385 targets 8 graph_vertices 385 seeds 9 longest_seed_path 5 longest_chain 11 hand_checked_steps 377
+```
+
+A label is `(top,bottom,k,c,y)` with letters `x,c,y = 0,1,2`. Each `W` line is
+a carrier label, its potential `X`, its piece, the chosen ordered occurrence
+`(i,j)` (zero-based indices into `sigma_n(top)`, `sigma_n(bottom)`) and the
+child with its potential. Each line is checked twice:
+
+1. by the exact Perron-field engine (`descent_witnesses_line` in
+   `psc.class_a_carrier_descent`: the occurrence is an actual ordered child,
+   both ends strict, `X' <= X-1`); and
+2. by hand (`hand_step`), from the integral incidence identity alone:
+   `w' = (k+s, s-k, n s+2k+y) + prefix(sigma(bottom), j) - prefix(sigma(top), i)`,
+   with child letters `sigma(top)[i]` and `sigma(bottom)[j]`.
+   For the first line above: `s = 1-2 = -1`, `i = 0`, and `j = 17` is the final
+   `x` of `x y^16 x`, whose prefix has abelianization `(1,0,16)`. So
+   `w' = (0-1+1, -1-0+0, -14+0-2+16) = (0,-1,0)` with letters `(x,x)`.
+
+The witness then checks that the label set equals the vertex set of the exact
+complete graph. It follows every chosen chain to an offset-zero target, refuses
+any chain longer than its potential, and prints the path of each of the nine
+canonical swap seeds. Archived traces: `evidence/class-a-d2-plus-rays-2026-10-22/witness/`
+for every `n = 13..24` (5,598 hand-checked steps in all). CI rebuilds the
+driver and `diff`s `theorem` and every witness against the archive.
 
 ### Evidence and replay
 
 From `kernel/`:
 
 ```sh
+pixi run --locked mojo run -I . tests/test_class_a_d2_plus_line.mojo
 pixi run --locked mojo run -I . tests/test_class_a_residue_rays.mojo
 pixi run --locked mojo run -I . class_a_residue_ray.mojo certify 2 1 0 14
 pixi run --locked mojo run -I . class_a_residue_ray.mojo certify 2 1 1 13
@@ -136,7 +193,10 @@ registry and therefore runs both new rays.
 The shared native and Python suites apply, per tabulated ray: a removed carrier
 row escapes closure; the other residue's carrier does not fit; a raised child
 potential, a mislabelled child `y'` and a missing descent row refuse. The new
-calibration test checks that the odd carrier differs from the `n=12` profile. Below the floors the
+calibration test checks that the odd carrier differs from the `n=12` profile.
+`tests/test_class_a_d2_plus_line.mojo` refuses a corrupted child coordinate
+or letter and a shifted occurrence index in `hand_step`, a witness below
+either floor, and a third residue, and fails if a floor stops being least. Below the floors the
 certificate refuses rather than concluding: `certify 2 1 0 12` and
 `certify 2 1 1 11` pass closure and stop at an undecided Sturm sign (root
 inside `(0,q]`) in descent; generating the even descent table from `n=10`
