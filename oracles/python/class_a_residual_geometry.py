@@ -82,7 +82,6 @@ def class_a(sign):
 
 def d2_witness():
     F,L,M=class_a(1)
-    p2=Poly({tuple([0,2,0,0,0,0]):0}) # exact zero, no special case
     # Substitute d=2 (the d polynomial is linear).
     def at_gap(two_parameter_poly,gap):
         out=defaultdict(int)
@@ -97,7 +96,7 @@ def d2_witness():
     root=1-(ncase+1)*h-(ncase+2)*h*h-2*h**3
     assert F2==root
     # The row [2,2,0,-2,-1,0,0,0] includes k=-n, c=n+2.
-    raw=at_gap(L[1],2)+2*(-n)*h*(1+h)-2*h
+    raw=at_gap(L[2],2)+2*(-n)*h*(1+h)-2*h
     reduced=-1+h+4*h*h+4*h**3
     assert raw==reduced+2*F2
     # f_n(0)=1, f_n(1/5)=(88-30n)/125<0 for n>=4.
