@@ -106,7 +106,7 @@ def read_profile(path):
         if parts[0]=="D2_FINITE_SUMMARY":
             if header is not None:
                 raise ValueError("duplicate profile completion")
-            if len(parts)!=12 or parts[2]!="states" or parts[4]!="intervals" or parts[6]!="max_first_hit":
+            if len(parts)!=10 or parts[2]!="states" or parts[4]!="intervals" or parts[6]!="max_first_hit":
                 raise ValueError("malformed finite profile summary")
             if parts[8]!="all_states_hitting=true" or parts[9]!="universal=false":
                 raise ValueError("truncated or dishonest finite status")
