@@ -1,0 +1,46 @@
+name: Class-A uniform typed geometry
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_uniform_geometry.mojo'
+      - 'kernel/tests/test_class_a_uniform_geometry.mojo'
+      - 'kernel/psc/class_a_typed_carrier.mojo'
+      - 'tests/test_class_a_uniform_geometry.py'
+      - '.github/workflows/class-a-uniform-geometry.yml'
+  workflow_dispatch:
+
+jobs:
+  uniform-geometry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare independent polynomial oracle
+        run: python -m pip install 'pytest>=7'
+      - name: All-parameter polynomial and seed controls
+        run: |
+          set -euo pipefail
+          mkdir -p kernel/build/class-a-uniform-geometry
+          python -m pytest -q tests/test_class_a_uniform_geometry.py 2>&1 | tee kernel/build/class-a-uniform-geometry/python.log
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Locked canonical all-n coefficient certificates
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_class_a_uniform_geometry.mojo 2>&1 | tee build/class-a-uniform-geometry/mojo.log
+      - name: Preserve fresh receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-uniform-geometry-receipts
+          path: kernel/build/class-a-uniform-geometry/
+          if-no-files-found: warn

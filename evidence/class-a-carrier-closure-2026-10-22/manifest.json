@@ -12,7 +12,7 @@
     "oracles/python/class_a_descent_table.py": "99b32abd498ab7341b1702b32051bcd4c1740a1b7015e09e0705c75419070142",
     "tests/test_class_a_carrier_closure.py": "2752e619537e5bf2038c2478b598bca77188f074064bc94c2df82d0b96d0a0c9",
     ".github/workflows/class-a-carrier-closure.yml": "a791ed424a958fed60900baccf9c1f69facacdcf582c4e35d46648560a62c665",
-    "docs/class-a-carrier-closure-2026-10-22.md": "f7bd88c8d8e300daff1fcd00ee209b31ba64d6b0622fa54c6024781597e9eb7c",
+    "docs/class-a-carrier-closure-2026-10-22.md": "e23c192136619b87af5767fdf561bec8dab1bb397826b7f9b74e1aaf8f3618d7",
     "kernel/psc/class_a_typed_carrier.mojo": "76d3d1b84d97d7ade8b863f4dee4652089e38c3d891ac57b91c6a1acf856f7c7"
   },
   "runtime": {
@@ -60,5 +60,6 @@
   "other_class_a_regions_closed": false,
   "class_c_residual_closed": false,
   "issue_139_closed": false,
-  "ledger_claim_promoted": false
+  "ledger_claim_promoted": false,
+  "merged_main": "8827b9c (PRs #307, #308, #309 integrated); closure here is an independent second certificate of the #309 statement, descent is new"
 }

@@ -1,6 +1,6 @@
 60859c55957be334a75a0342f26510c807d0c39bc8ec88663008b2dc96586eb1  evidence/class-a-carrier-closure-2026-10-22/README.md
 95952ae5056f48d51728b966e03aa2e157cd67427234e0bee6b4e3f83e6dfe14  evidence/class-a-carrier-closure-2026-10-22/descent-table.json
-f7bd88c8d8e300daff1fcd00ee209b31ba64d6b0622fa54c6024781597e9eb7c  evidence/class-a-carrier-closure-2026-10-22/docs-class-a-carrier-closure-2026-10-22.md.txt
+e23c192136619b87af5767fdf561bec8dab1bb397826b7f9b74e1aaf8f3618d7  evidence/class-a-carrier-closure-2026-10-22/docs-class-a-carrier-closure-2026-10-22.md.txt
 9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa  evidence/class-a-carrier-closure-2026-10-22/driver.exit
 387d23962db43ebf00b3b7bcd9c4fc842184ae67feabacd8ae8781cc214c63df  evidence/class-a-carrier-closure-2026-10-22/driver.log
 9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa  evidence/class-a-carrier-closure-2026-10-22/generator.exit
@@ -14,7 +14,7 @@ dfd7fa2d2caabbe7ee8708fb06462f540ff6cb94c80a891c30076c6fca8607f4  evidence/class
 936bb51682f3846440099232f02cf6209c01ea8a3e423ee0366e23397d2aedf3  evidence/class-a-carrier-closure-2026-10-22/kernel-psc-class_a_descent_data.mojo.txt
 eea6ee97f921f03b60195a78c54760e5c81c69ccbeb21125492be17e54b1c975  evidence/class-a-carrier-closure-2026-10-22/kernel-source-sha256.json
 bf939e8fc4f5037399fdbcb3ffb3d860b20a5bac6e654b5b8ec72a9a4c218eee  evidence/class-a-carrier-closure-2026-10-22/kernel-tests-test_class_a_carrier_closure.mojo.txt
-9d373d90de0c20541cf3805c14730931be6fb1f8883097effaa942d52e40ae84  evidence/class-a-carrier-closure-2026-10-22/manifest.json
+e54d4925df7887d1dc302e619eb441d82bb757f8c0b0af4ca9f98d977878c417  evidence/class-a-carrier-closure-2026-10-22/manifest.json
 9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa  evidence/class-a-carrier-closure-2026-10-22/native-tests.exit
 8ea3085c1a448d8205ff5ea3db6fa0c24a82c300c0b340bc93790fd318b1028d  evidence/class-a-carrier-closure-2026-10-22/native-tests.log
 9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa  evidence/class-a-carrier-closure-2026-10-22/oracle.exit

@@ -1969,52 +1969,52 @@
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 66,
+      "line": 77,
       "statement_heading": "`kernel/psc/class_a_typed_carrier.mojo`: a row `(top,bottom,s,y,a,b,c,d)`"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 68,
+      "line": 79,
       "statement_heading": "and `c = s - k - y`. Rows of one typed slice `(top,bottom,s,y)` are disjoint."
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 77,
+      "line": 88,
       "statement_heading": "Strip the factors of `h` (positive on the interval). If `Q(q) != 0` and the"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 84,
+      "line": 95,
       "statement_heading": "for every such `n` iff `u_1 >= v_1` and `u(n0) > v(n0)`; otherwise the order"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 116,
+      "line": 127,
       "statement_heading": "Proof: `w' = M w + pi(prefix_b) - pi(prefix_t)` is the shared affine update"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 116,
+      "line": 127,
       "statement_heading": "Proof: `w' = M w + pi(prefix_b) - pi(prefix_t)` is the shared affine update"
-    },
-    {
-      "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 177,
-      "statement_heading": "| cases with a realizable range / gaps excluded by geometry | 3,802 / 3,334 | 3,947 / 3,479 |"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
       "line": 190,
+      "statement_heading": "| cases with a realizable range / gaps excluded by geometry | 3,802 / 3,334 | 3,947 / 3,479 |"
+    },
+    {
+      "source": "docs/class-a-carrier-closure-2026-10-22.md",
+      "line": 203,
       "statement_heading": "pieces of `kernel/psc/class_a_descent_data.mojo` partition every row; eight"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 226,
+      "line": 239,
       "statement_heading": "affine pieces (it is *not* affine on a row: period-three plateaus), the target"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 227,
+      "line": 240,
       "statement_heading": "is split into its own piece, and for each piece one child type was chosen that"
     },
     {

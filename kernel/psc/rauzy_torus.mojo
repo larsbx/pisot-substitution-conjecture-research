@@ -50,8 +50,10 @@ comptime FREQUENCY_SCALE_BITS = 40
 comptime FREQUENCY_SCALE = 1 << FREQUENCY_SCALE_BITS
 # `n <= 2^16` keeps the enclosure width `n / S <= 2^-24` and `S p_n` inside `Int`.
 comptime MAX_POINTS = 1 << 16
-# Lifts are encoded in a `LIFT_SPAN x LIFT_SPAN` window centred on the origin.
+# Lifts are encoded in a `LIFT_SPAN x LIFT_SPAN` window centred on the origin,
+# so one torus cell meets at most `LIFT_SPAN * LIFT_SPAN` distinct lifts.
 comptime LIFT_SPAN = 256
+comptime MAX_LIFTS_PER_CELL = LIFT_SPAN * LIFT_SPAN
 comptime MAX_FIXED_POINT_ROUNDS = 64
 
 
@@ -105,7 +107,16 @@ struct LiftProfile(Copyable, Movable):
         return n
 
     def histogram(self) raises -> Histogram:
-        var h = Histogram(LIFT_SPAN)
+        """Occupied cells by lift count, with capacity from the observed
+        maximum. Refuse impossible counts instead of allocating outside the
+        encoded lift window."""
+        var maximum = 0
+        for c in self.lifts:
+            if c < 0 or c > MAX_LIFTS_PER_CELL:
+                raise Error("a torus cell has an invalid lift count")
+            if c > maximum:
+                maximum = c
+        var h = Histogram(maximum + 1)
         for c in self.lifts:
             if c > 0:
                 h.record(c)
@@ -278,10 +289,14 @@ def _floor_mod(a: Int, b: Int) -> Int:
 
 def lift_profile_of_cells(cells: List[List[Int]], grid: Int, undecided: Int = 0) raises -> LiftProfile:
     """Distinct-lift counts per torus cell, for cells `(cx, cy)` of the plane."""
+    if grid < 1:
+        raise Error("the torus grid must be positive")
     var lifts = List[Int](length=grid * grid, fill=0)
     var seen = Dict[Int, Bool]()
     var half = LIFT_SPAN // 2
     for c in cells:
+        if len(c) != 2:
+            raise Error("each planar cell must have exactly two coordinates")
         var lx = c[0] // grid
         var ly = c[1] // grid
         if lx < -half or lx >= half or ly < -half or ly >= half:

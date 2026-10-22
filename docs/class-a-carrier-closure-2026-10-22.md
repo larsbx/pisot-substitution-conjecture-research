@@ -8,7 +8,7 @@ this one-parameter family. The other class-A regions, the class-C residual,
 universal #139/#84, G1 and PSC remain open. No ledger claim is promoted by this
 note; the status above is the status of the executable certificate.
 
-## Stop/go before implementation
+## Stop/go before implementation, and the concurrent closure proofs
 
 The targeted literature decision of
 [p1b-class-a-run-index-2026-10-21.md](p1b-class-a-run-index-2026-10-21.md)
@@ -18,18 +18,29 @@ uniform family argument here, and nothing is imported from them. The repository
 precedent for the method is the class-D symbolic closure of
 [p1b-class-d-minus-recurrent-carrier-2026-10-19.md](p1b-class-d-minus-recurrent-carrier-2026-10-19.md)
 §14.3 and `kernel/psc/class_d_boundary_template.mojo`: nine first/run/last
-segment pairs, exact signs, a derived child window. The new ingredients are
-(a) an unbounded integer index inside every carrier row, handled by affine
-forms in `n` and in the row index, and (b) the elimination of `n` from every
-Perron inequality through `n h(1+h) = 1-h-h^2-h^3`, which turns each margin
-into one integer polynomial whose sign an exact Sturm count decides on a
-whole interval. The explicit obligation came from
-[class-a-typed-carrier-2026-10-21.md](class-a-typed-carrier-2026-10-21.md):
+segment pairs, exact signs, a derived child window. The explicit obligation
+came from [class-a-typed-carrier-2026-10-21.md](class-a-typed-carrier-2026-10-21.md):
 all-n seed inclusion, strict geometry, all-child closure, then a
 parameter-dependent descent for every state. Decision: **proceed** with
 exactly that target. The [rectangle countermodel](class-a-cover-obstruction-2026-10-21.md)
 is the standing negative control: a cover that forgets letter types or offset
 correlations is not child-closed, so every check below is at label level.
+
+Concurrently with this work, PR #308
+([class-a-uniform-geometry-2026-10-22.md](class-a-uniform-geometry-2026-10-22.md))
+proved strict geometry, the nine seeds and the cardinality `40n+115` of the
+same carrier for every `n>=4`, and PR #309
+([class-a-uniform-forward-closure-2026-10-22.md](class-a-uniform-forward-closure-2026-10-22.md))
+proved its forward closure for every `n>=4` with a positive-power
+(Bernstein-coefficient) certificate on `0<h<1/9` for `n>=8` and the exact
+finite certificates at `n=4..7`. Theorem A below is therefore an
+**independent second proof** of the same closure statement, by a different
+decision procedure (Sturm root counts on `(0,1/(n0+1)]` rather than
+coefficient positivity after a Möbius substitution), in a different case
+decomposition (child `y'` over a window rather than child sum `q` over
+`{-2,..,2}`), and in two independently written implementations; the two
+proofs agree. What is new here is Theorem B: the parameter-dependent descent
+that #309 names as the decisive remaining obligation, and with it Corollary C.
 
 ## Setting
 
@@ -132,9 +143,11 @@ complete swap-seed graph `G_n` is contained in the carrier `C_n`. For
 
 **Status:** repository-proved (exact executable certificate
 `kernel/psc/class_a_carrier_closure.mojo`, independently re-proved by
-`oracles/python/class_a_carrier_closure.py`; independent human review pending).
-Containment `G_n ⊆ C_n`, not label-set equality, is what is proved for
-arbitrary `n`; equality holds at the exact finite graphs `n = 4..24`.
+`oracles/python/class_a_carrier_closure.py`, and in agreement with the
+independent certificate of `kernel/psc/class_a_uniform_closure.mojo` (PR #309);
+independent human review pending). Containment `G_n ⊆ C_n`, not label-set
+equality, is what is proved for arbitrary `n`; equality holds at the exact
+finite graphs `n = 4..24`.
 
 Proof. Fix `n0 in {5, 8}` and `q = 1/(n0+1)`; every sign below is decided by
 Lemmas 1–2 on `(0,q]`, every comparison by Lemma 3.
