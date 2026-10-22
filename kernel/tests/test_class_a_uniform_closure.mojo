@@ -16,7 +16,7 @@ def main() raises:
     # A narrowed target row omits an actual strict occurrence for n>=8;
     # the whole symbolic closure must refuse, not downgrade to finite evidence.
     var broken=template_rows()
-    broken[0][7]=0
+    broken[0]=List[Int]([0,0,-1,-1,0,0,0,0])
     var refused=False
     try:
         _=certify_tail_rows(broken)
