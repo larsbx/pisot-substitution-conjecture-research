@@ -112,7 +112,7 @@ def certify_rows(rows: List[List[Int]], parity: Int) raises -> List[Int]:
     var constants=0
     var slices=0
     for i in range(len(rows)):
-        var row=rows[i]
+        var row=rows[i].copy()
         if len(row)!=8:
             raise Error("malformed d2 parity interval")
         var top=row[0]
@@ -126,7 +126,7 @@ def certify_rows(rows: List[List[Int]], parity: Int) raises -> List[Int]:
         constants+=row[7]-row[5]+1
         var new_slice=True
         for j in range(i):
-            var earlier=rows[j]
+            var earlier=rows[j].copy()
             if earlier[0]!=top or earlier[1]!=bottom or earlier[2]!=row[2] or earlier[3]!=row[3]:
                 continue
             new_slice=False
