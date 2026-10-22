@@ -1973,6 +1973,11 @@
       "statement_heading": "**Proposition (repository-proved, scoped written argument with coefficient-checked"
     },
     {
+      "source": "docs/class-a-typed-carrier-2026-10-21.md",
+      "line": 14,
+      "statement_heading": "**Proposition.** For every integer `n>=4`, the canonical exact swap-seed overlap graph has at least `6n-2` distinct vertices."
+    },
+    {
       "source": "docs/formal-productivity-reduction-2026-10-04.md",
       "line": 33,
       "statement_heading": "**Proposition FP.**"
