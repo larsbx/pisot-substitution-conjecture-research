@@ -132,8 +132,35 @@ by deleting it.
   `docs/boxwalk-reachability-realizability-audit-2026-10-15.md`;
   `evidence/boxwalk-radius8-depth9.json`
 
-- 2026-10-22 · **D2 Class-A whole-row target-normalized affine rank is impossible on the centered x/x slice.** Both formal parity candidates (even n>=8, odd n>=7) contain typed (x,x,s=0,y=0) with k=-1,0,+1. If X(k)=A(n)+B(n)k, X(0)=0 and X(±1)>=1 for non-targets, then -B>=1 and B>=1, contradiction. This refutes only the target-zero *single-piece* ansatz, not general affine ranks with nonzero target or d2 hitting. Split a target singleton or change rank form. · `docs/class-a-d2-descent-obligations-2026-10-22.md` § Uniform obstruction; `kernel/psc/class_a_d2_descent_probe.mojo`.
+- 2026-10-22 · **Class-A literal d=1-to-d=2 carrier transfer refuted uniformly.**
+  The accepted 89-row strict-overlap carrier for `d=1, eps=+1` cannot be
+  transplanted unchanged to `d=2, eps=+1`, for any integer `n>=4` (within
+  the plus PIP domain `n>=0, 1<=d<=2n+11`). Its historical row
+  `(top,bottom,s,y,a,b,A,B)=(y,y,0,-2,-1,0,0,0)` includes the formal state
+  `(y,y,w)` with `w=(-n,n+2,-2)`. At the unique positive root of
+  `P_2(n,h)=1-(n+1)h-(n+2)h^2-2h^3`, `h=1/(beta-1)`, monotonicity and
+  `125 P_2(n,1/5)=88-30n<0` give `0<h<1/5`. The necessary strict-overlap
+  margin is `T(w)+L_y=1-h-2n h(1+h)=-1+h+4h^2+4h^3<-76/125<0`:
+  the tiles are disjoint, not boundary-touching. This retires the literal
+  carrier transfer, **not boundary hitting**; it asserts neither seed
+  reachability of the formal witness nor nonproductivity or a PSC
+  counterexample. The accepted d=1 proof is unaffected; a d-dependent,
+  sign-aware carrier remains the constructive target. Evidence: written
+  all-parameter argument in `docs/class-a-residual-geometry-2026-10-22.md`,
+  "A uniform obstruction to transporting the 89-row gap-one carrier";
+  canonical `kernel/psc/class_a_residual_geometry.mojo`
+  (`_check_d2_nontransfer_rows`), with the historical row in
+  `kernel/psc/class_a_typed_carrier.mojo` (`template_rows`);
+  independent sparse-polynomial oracle
+  `oracles/python/class_a_residual_geometry.py` (`d2_witness`);
+  `kernel/tests/test_class_a_residual_geometry.mojo` (exact native
+  `n=4,d=2` strict-overlap refusal, invalid-sign and missing-row controls)
+  and `tests/test_class_a_residual_geometry.py` (both-sign identities and
+  corrupted-identity controls). Replay: the note's "Replay, negative
+  controls and precise next obligation" and
+  `.github/workflows/class-a-residual-geometry.yml`. No claim status changes.
 
+- 2026-10-22 · **D2 Class-A whole-row target-normalized affine rank is impossible on the centered x/x slice.** Both formal parity candidates (even n>=8, odd n>=7) contain typed (x,x,s=0,y=0) with k=-1,0,+1. If X(k)=A(n)+B(n)k, X(0)=0 and X(±1)>=1 for non-targets, then -B>=1 and B>=1, contradiction. This refutes only the target-zero *single-piece* ansatz, not general affine ranks with nonzero target or d2 hitting. Split a target singleton or change rank form. · `docs/class-a-d2-descent-obligations-2026-10-22.md` § Uniform obstruction; `kernel/psc/class_a_d2_descent_probe.mojo`.
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
@@ -589,9 +616,7 @@ by deleting it.
   `experiments/z2-route/boxtime.mojo`
 
 - 2026-10-22 · **D2 Class-A exact finite ordered descent evidence and a uniform two-step subfamily.** Complete n=7..12 graphs have 231/265/271/305/311/345 states, each with 8 zero-offset targets, and maximum first-hit depths 5/5/6/6/7/7. Every other vertex has an explicit depth-decreasing ordered occurrence (independent Fraction-field oracle preserves both proper-prefix indices). In the centered x/x slice k=-1,0,+1 the depths are 2,0,2. **Uniform result (not extrapolation):** for every n>=4, (x,x,-1,1,0)→(x,y,0,1,-1)→(y,y,0) through index pairs (0,2),(1,2); and (x,x,1,-1,0)→(y,x,0,-1,1)→(y,y,0) via (2,0),(2,1). All states are strict by explicit coefficient-positive Perron margins; s=0 cancels the n coefficient in the exact child update. These two paths do not close the other d2 states. · `docs/class-a-d2-descent-obligations-2026-10-22.md`, `oracles/python/class_a_d2_center_paths.py`, `oracles/python/class_a_d2_descent_probe.py`, PR #315 (fresh CI pending).
-
 - 2026-10-22 · **Uniform 80-state productive absorbing corridor for Class-A d=2 (not full-carrier hitting).** The constant-labelled subgraph at offset sum s=0 contains 80 specified strict real overlaps (8 offset-zero targets, rank histogram 8/20/26/22/4). Every non-target state has one chosen actual proper-prefix occurrence with both indices <=4 that reduces the integer rank exactly by one, so **each of these 80 states hits offset zero in <=4 inflations for every n>=4**. Uniformity follows because n*s cancels in the incidence update, and all 160 strict Perron margins have exact nonnegative positive-power coefficients on 0<h<1/5. Each state also lies in both formal parity candidates on their infinite rays. **No universal seed-reachability of the 80 states, no forward closure under every outgoing edge, and no hitting theorem for all d=2 carrier labels** is asserted. Discovering the table from n8 is not its proof; the pinned table is checked by exact all-n arithmetic and independently compared against complete Q(beta) graphs. This fixed productive subset is a useful absorption target for the still-open parity-piece descent. · `docs/class-a-d2-fixed-corridor-2026-10-22.md`, `kernel/psc/class_a_d2_fixed_corridor.mojo`, `oracles/python/class_a_d2_fixed_corridor.py`, PR #316 (fresh CI pending).
-
 ## 6. Tooling pitfalls
 
 - 2026-10-04 · `pkill -f PATTERN` inside a shell command whose own text
@@ -1835,3 +1860,6 @@ Locators: `docs/p1b-class-a-run-index-2026-10-21.md`,
 2026-10-22 — **Tooling pitfalls met while packaging the class-A closure.** (a) The claim-governance status scanner matches only the synonym keys of `claim_governance.toml [status.synonyms]` (`repository-proved`, `[PROVED]`, …), not the bare class word `proved`; a `**Status:** proved (…)` line therefore satisfies nothing, which is why PR #307's typed-carrier proposition was still reported unlabelled, now repaired to `repository-proved`. A `**Status:**` line within the first ten lines declares a file-level status. (b) `tools/make_proof_bank.py` records statement line numbers computed on the masked text, so in a note with fenced code blocks the recorded lines and quoted headings drift (several entries of `docs/class-a-carrier-closure-2026-10-22.md` quote prose lines); the inventory is deterministic and regenerated, not hand-edited. (c) `tests/test_claim_governance.py` reads `kernel/build/claim-receipts.tsv`, which `kernel/run_tests.sh` rewrites from empty, so it fails while the Mojo suite is mid-run.
 
 2026-10-22 — **Merged #308/#309 Mojo modules do not compile under the locked compiler.** `kernel/psc/class_a_uniform_closure.mojo` and `kernel/psc/class_a_uniform_geometry.mojo` landed on main (8827b9c) while their CI was still queued; `Mojo 1.1.0.dev2026090805` rejects fifteen implicit copies of `Affine`, `Segment` and `List[Int]` values ("does not conform to 'ImplicitlyCopyable'"), so the kernel suite and both dedicated workflows are red on main. Ported the minimal repair on the class-A descent branch: `Affine` and `Segment` declared `ImplicitlyCopyable` (two plain-`Int` and two-`Affine` records), one `^` transfer of the returned list, two explicit `.copy()` of carrier rows; no logic changes. Both tests and the driver then pass with their printed receipts unchanged. Independent of this, the merged #309 statement agrees with the Sturm-interval closure certificate of this branch.
+
+
+2026-10-22 — **Theorem Ω historical sufficiency audit reconciled on PR #235, not accepted as new human review.** Preserve the October 8, 9, and 11 immutable packet histories, exact cardinality oracle (135,990 images<=4, 24,486 total<=8, overlap 14,670, union 145,806) and five independently replayed exact representative box graphs. The historical refinement makes Minkowski full-rank, the signed realized-overlap embedding, the substitution-power fixed tiling and coincidence padding, and Clark–Sadun flow-to-symbolic transfer explicit. Newer main already records a Sirvent–Solomyak transfer, which is not silently replaced. Historical CI evidence is scoped to its recorded revisions; current-head CI and governed statuses must be checked separately. Human mathematical review stays pending and is nonblocking research-validation debt under AGENTS.md, not a claim of independent acceptance. Locators: `docs/audit-theorem-omega-2026-10-08.md`, `docs/audit-theorem-omega-2026-10-11.md`, `evidence/omega-box-audit-2026-10-08/`, `evidence/omega-audit-reconciliation-2026-10-09/`, `evidence/omega-audit-reconciliation-2026-10-11/`.
