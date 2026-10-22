@@ -11,7 +11,10 @@ spec.loader.exec_module(oracle)
 
 
 def test_all_four_residues():
-    findings=oracle.prove()
+    result=oracle.prove()
+    findings=result["uniform_residues"]
+    assert [r["n"] for r in result["finite_prefix"]]==list(range(4,12))
+    assert all(r["max_hit"]>=0 for r in result["finite_prefix"])
     assert [x["stats"]["gaps"] for x in findings]==[2483,2363,2483,2363]
     assert [x["stats"]["cells"] for x in findings]==[3005,2845,3005,2845]
     assert [x["stats"]["window"] for x in findings]==[1710,1602,1710,1602]
