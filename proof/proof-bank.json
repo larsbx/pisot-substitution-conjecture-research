@@ -2063,6 +2063,11 @@
       "statement_heading": "**Proposition.** For every integer `n>=4`, the canonical exact swap-seed overlap graph has at least `6n-2` distinct vertices."
     },
     {
+      "source": "docs/class-d-g1-corollary-2026-10-22.md",
+      "line": 96,
+      "statement_heading": "**Corollary.** For every PIP member of the determinant-two class-D normal"
+    },
+    {
       "source": "docs/formal-productivity-reduction-2026-10-04.md",
       "line": 33,
       "statement_heading": "**Proposition FP.**"
@@ -2529,27 +2534,27 @@
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 170,
+      "line": 184,
       "statement_heading": "## 4. Theorem L″: lines of classes A, C and D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 189,
+      "line": 203,
       "statement_heading": "*Theorem L″.* For each line below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 258,
+      "line": 272,
       "statement_heading": "## 4b. Theorem W: two-parameter wedges of class D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 335,
+      "line": 349,
       "statement_heading": "*Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 352,
+      "line": 366,
       "statement_heading": "*Corollary W1.* **Every PIP member of class D with `r ≥ q − 1` has pure"
     },
     {
@@ -2809,7 +2814,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 225,
+      "line": 242,
       "statement_heading": "The second branch preserves information erased by the child-count matrix: the ordered sequence of top/bottom subdivision boundary events. The next contradiction should use that order together with full rank and exact prefix-Parikh geometry."
     },
     {

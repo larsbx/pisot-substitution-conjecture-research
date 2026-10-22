@@ -277,3 +277,13 @@ Finiteness of each overlap closure proves existence of a graph to inspect;
 it does not prove the hitting predicate. To obtain PDS through Ω, also
 discharge aligned strong coincidence, or prove formal productivity directly.
 Pending human review blocks neither derivation nor this next proof work.
+
+## 8. Accepted class-D specialization — 2026-10-22
+
+PR #298 supplies the all-seed hitting premise on the determinant-two class-D
+normal form. Proposition 4 therefore gives scoped finite BPA; it does not
+discharge the universal premise of `G1HalfCoincidenceRoute`. The
+[explicit corollary](class-d-g1-corollary-2026-10-22.md) records the proof,
+acceptance provenance and non-claims. On `b=0`, certified depths four and
+six give the all-level bounds `2(3a+8)^6` (minus) and `2(3a+5)^8` (plus).
+No spectral or realized-tiling bridge is required for this consequence.
