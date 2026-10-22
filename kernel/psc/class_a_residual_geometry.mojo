@@ -106,19 +106,24 @@ def _check_child_columns(sign: Int) raises:
         var s=1
         var got_k=qx_const(k+s)
         var got_c=qx_const(s-k)
-        var got_y=qx_add(qx_add(n,qx_const(sign*y)),
-                         qx_const(0) if k==0 else d)
+        var got_y=qx_add(n,qx_const(sign*y))
+        if k==1:
+            got_y=qx_add(got_y,d)
         var want_k=qx_const(2 if basis==0 else 1)
         var want_c=qx_const(0 if basis==0 else 1)
-        var want_y=qx_add(n,
-            d if basis==0 else qx_const(sign if basis==2 else 0))
+        var want_y=n.copy()
+        if basis==0:
+            want_y=qx_add(want_y,d)
+        elif basis==2:
+            want_y=qx_add(want_y,qx_const(sign))
         _require_qx_equal(got_k,want_k)
         _require_qx_equal(got_c,want_c)
         _require_qx_equal(got_y,want_y)
         # Child coordinate sum before the proper-prefix correction.
-        _require_qx_equal(qx_add(qx_add(got_k,got_c),got_y),
-            qx_add(qx_add(qx_add(n,qx_const(2)),qx_const(sign*y)),
-                   d if k==1 else qx_const(0)))
+        var expected_sum=qx_add(n,qx_const(2+sign*y))
+        if k==1:
+            expected_sum=qx_add(expected_sum,d)
+        _require_qx_equal(qx_add(qx_add(got_k,got_c),got_y),expected_sum)
 
 
 def _check_d2_nontransfer_rows(rows: List[List[Int]]) raises:
