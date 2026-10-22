@@ -62,7 +62,7 @@ def exact_profile(n: Int, emit: Bool=False) raises -> List[List[Int]]:
             ranges.append(List[Int]([record[0],record[1],record[2],record[3],record[4],record[4]]))
             continue
         var last=len(ranges)-1
-        var old=ranges[last]
+        var old=ranges[last].copy()
         var key_equal=(old[0]==record[0] and old[1]==record[1] and
                        old[2]==record[2] and old[3]==record[3])
         if key_equal and old[5]==record[4]:
@@ -149,7 +149,12 @@ def certify_finite_parity(n: Int, candidate: List[List[Int]]) raises -> List[Int
 def finite_parity_study() raises:
     var even=inferred_template(8,12)
     var odd=inferred_template(9,13)
-    for n in [6,8,10,14,18,24]:
+    # n=6 has the same finite vertex count but two adjacent singleton
+    # intervals coalesce: compare its complete graph separately.
+    var prefix=exact_profile(6,True)
+    if len(prefix)!=89:
+        raise Error("d2 even-prefix interval count changed")
+    for n in [8,10,14,18,24]:
         _=certify_finite_parity(n,even)
     for n in [7,9,11,15,19,25]:
         _=certify_finite_parity(n,odd)
