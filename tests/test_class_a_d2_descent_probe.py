@@ -27,6 +27,10 @@ def test_complete_finite_descent_occurrence_packet(n,states,deep):
 
 def test_corrupt_actual_edge_indices_or_rank_refused():
     genuine=oracle.build_finite(8)
+    digest_corrupt=dict(genuine)
+    digest_corrupt["witness_sha256"]="0"*64
+    with pytest.raises(ValueError,match="digest"):
+        oracle.validate_witness(8,digest_corrupt)
     tamper=dict(genuine)
     rows=genuine["_witness"].copy()
     parent,child,i,j,depth=rows[0]
