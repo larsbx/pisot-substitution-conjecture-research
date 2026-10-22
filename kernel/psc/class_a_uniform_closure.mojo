@@ -12,7 +12,7 @@ from psc.class_a_typed_carrier import template_rows, certify_finite
 from psc.class_a_uniform_geometry import certify_uniform_components
 
 
-struct Affine(Copyable, Movable):
+struct Affine(ImplicitlyCopyable, Copyable, Movable):
     var a: Int
     var b: Int
 
@@ -21,7 +21,7 @@ struct Affine(Copyable, Movable):
         self.b=b
 
 
-struct Segment(Copyable, Movable):
+struct Segment(ImplicitlyCopyable, Copyable, Movable):
     var lo: Affine
     var hi: Affine
 
@@ -269,4 +269,4 @@ def certify_uniform_forward_closure() raises -> List[Int]:
     print("CLASS_A_UNIFORM_FORWARD_CLOSURE", "all_n_ge_4=true",
           "finite_base=4..7","strict_geometry_depends_on=class_a_uniform_geometry",
           "all_seed_depends_on=class_a_uniform_geometry","all_state_hitting=false")
-    return tail
+    return tail^

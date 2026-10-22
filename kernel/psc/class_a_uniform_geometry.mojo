@@ -149,9 +149,9 @@ def certify_uniform_components_rows(rows: List[List[Int]]) raises -> List[Int]:
     # Require every two intervals of the same typed slice to remain
     # disjoint at n=4 and as n increases; either ordering is allowed.
     for i in range(len(rows)):
-        var a=rows[i]
+        var a=rows[i].copy()
         for j in range(i+1,len(rows)):
-            var b=rows[j]
+            var b=rows[j].copy()
             if a[0]!=b[0] or a[1]!=b[1] or a[2]!=b[2] or a[3]!=b[3]:
                 continue
             var b_after_a=b[4]-a[6]

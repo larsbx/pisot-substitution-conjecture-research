@@ -63,3 +63,12 @@ pixi run --locked mojo run -I . class_a_typed_carrier.mojo 18
 The next **mathematical** obligation is to prove, for **every integer n>=4**, that this 89-row candidate contains every canonical seed, that every candidate is a valid strict overlap, and that *all actual ordered children* land in one of the rows, with no sampling or 20,000-state cap. This could be discharged by a finite family of exhaustive affine-index and exact Perron-root inequality cases with replayable certificates. The visible table of rows is an explicit quantified proof target; a finite sample is not a substitute. Once closure is established, find a parameter-dependent ranking or a guaranteed exit from every closed component, **not merely one path on the A/B/Y ladder**. The special s=±1 slices and the row-boundary/corner occurrences deserve separate counterexample controls.
 
 This programme has not discharged the remaining A family regions or any C residual, and does not affect class D, aligned #138, general #139/#84, G1 or PSC. No governed theorem status or ledger promotion is justified by this candidate.
+
+## Continuation (2026-10-22)
+
+The all-n obligation above is discharged for every integer `n>=4` in
+[class-a-carrier-closure-2026-10-22.md](class-a-carrier-closure-2026-10-22.md):
+uniform forward closure of these 89 rows by exact Sturm signs, and a 155-piece
+affine potential with 221 descent occurrences giving first-hit depth at most
+`2n+9` for `n>=8`, with `n=4..7` as exact finite certificates. The candidate
+status of this note is historical.
