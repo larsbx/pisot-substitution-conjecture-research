@@ -132,6 +132,34 @@ by deleting it.
   `docs/boxwalk-reachability-realizability-audit-2026-10-15.md`;
   `evidence/boxwalk-radius8-depth9.json`
 
+- 2026-10-22 · **Class-A literal d=1-to-d=2 carrier transfer refuted uniformly.**
+  The accepted 89-row strict-overlap carrier for `d=1, eps=+1` cannot be
+  transplanted unchanged to `d=2, eps=+1`, for any integer `n>=4` (within
+  the plus PIP domain `n>=0, 1<=d<=2n+11`). Its historical row
+  `(top,bottom,s,y,a,b,A,B)=(y,y,0,-2,-1,0,0,0)` includes the formal state
+  `(y,y,w)` with `w=(-n,n+2,-2)`. At the unique positive root of
+  `P_2(n,h)=1-(n+1)h-(n+2)h^2-2h^3`, `h=1/(beta-1)`, monotonicity and
+  `125 P_2(n,1/5)=88-30n<0` give `0<h<1/5`. The necessary strict-overlap
+  margin is `T(w)+L_y=1-h-2n h(1+h)=-1+h+4h^2+4h^3<-76/125<0`:
+  the tiles are disjoint, not boundary-touching. This retires the literal
+  carrier transfer, **not boundary hitting**; it asserts neither seed
+  reachability of the formal witness nor nonproductivity or a PSC
+  counterexample. The accepted d=1 proof is unaffected; a d-dependent,
+  sign-aware carrier remains the constructive target. Evidence: written
+  all-parameter argument in `docs/class-a-residual-geometry-2026-10-22.md`,
+  "A uniform obstruction to transporting the 89-row gap-one carrier";
+  canonical `kernel/psc/class_a_residual_geometry.mojo`
+  (`_check_d2_nontransfer_rows`), with the historical row in
+  `kernel/psc/class_a_typed_carrier.mojo` (`template_rows`);
+  independent sparse-polynomial oracle
+  `oracles/python/class_a_residual_geometry.py` (`d2_witness`);
+  `kernel/tests/test_class_a_residual_geometry.mojo` (exact native
+  `n=4,d=2` strict-overlap refusal, invalid-sign and missing-row controls)
+  and `tests/test_class_a_residual_geometry.py` (both-sign identities and
+  corrupted-identity controls). Replay: the note's "Replay, negative
+  controls and precise next obligation" and
+  `.github/workflows/class-a-residual-geometry.yml`. No claim status changes.
+
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
