@@ -1,0 +1,64 @@
+{
+  "format": "class-a-carrier-closure-v1",
+  "base_revision": "2beafb35a9956035884061c71bb2df2df0eac183",
+  "base_main": "25bddd407edea0458f654a1b82f1c00d2710b14e",
+  "source_sha256": {
+    "kernel/psc/class_a_carrier_closure.mojo": "3f913e0402ddc3b103ad2adb59397b9492d5a36c6a774114a6b8b7a4dd6118a3",
+    "kernel/psc/class_a_carrier_descent.mojo": "1ad8a08b8b62c21079e7ae03e5261227a78dc0d9c8c3d9a34db93f19f411cb3f",
+    "kernel/psc/class_a_descent_data.mojo": "936bb51682f3846440099232f02cf6209c01ea8a3e423ee0366e23397d2aedf3",
+    "kernel/class_a_carrier_closure.mojo": "417782851750c2aec26c6f9d5ae2bb367deb815fc6f38a566db224b9c82ec027",
+    "kernel/tests/test_class_a_carrier_closure.mojo": "bf939e8fc4f5037399fdbcb3ffb3d860b20a5bac6e654b5b8ec72a9a4c218eee",
+    "oracles/python/class_a_carrier_closure.py": "db3b004164e35939a5464d52f0674a3448cf501db9bc059290c1dbd5a622b01c",
+    "oracles/python/class_a_descent_table.py": "99b32abd498ab7341b1702b32051bcd4c1740a1b7015e09e0705c75419070142",
+    "tests/test_class_a_carrier_closure.py": "2752e619537e5bf2038c2478b598bca77188f074064bc94c2df82d0b96d0a0c9",
+    ".github/workflows/class-a-carrier-closure.yml": "a791ed424a958fed60900baccf9c1f69facacdcf582c4e35d46648560a62c665",
+    "docs/class-a-carrier-closure-2026-10-22.md": "f7bd88c8d8e300daff1fcd00ee209b31ba64d6b0622fa54c6024781597e9eb7c",
+    "kernel/psc/class_a_typed_carrier.mojo": "76d3d1b84d97d7ade8b863f4dee4652089e38c3d891ac57b91c6a1acf856f7c7"
+  },
+  "runtime": {
+    "version": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+    "compiler_sha256": "0d5f0b700b0543223a10c47e818bc4f43f3228166c34ab13d52ab7f2ad02ffcd",
+    "pixi_lock_sha256": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8",
+    "installation": "reused lock-matched compiler/std/runtime of the accepted class-D receipts; not a fresh full Pixi install or CI receipt"
+  },
+  "proof_scope": "class-A line (n+1,n,n+1): uniform carrier closure for n>=5 (no clip from n>=8) and uniform descent with first-hit depth <= 2n+9 for n>=8; exact finite certificates n=4..7; human review pending",
+  "closure_counts_n0_8": {
+    "rows": 89,
+    "segments": 801,
+    "y_cases": 8811,
+    "covered": 3802,
+    "gap_geometry": 3334,
+    "window_checks": 1602,
+    "seeds_real": 9,
+    "seeds_unreal": 3,
+    "clip_fallbacks": 0,
+    "terminal_splits": 65
+  },
+  "closure_counts_n0_5": {
+    "covered": 3947,
+    "gap_geometry": 3479,
+    "clip_fallbacks": 277,
+    "terminal_splits": 65
+  },
+  "descent_counts_n0_8": {
+    "pieces": 155,
+    "targets": 8,
+    "descent_rows": 221,
+    "hit_depth_bound": "2n+9"
+  },
+  "finite_exact_certificates": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "finite_differential_replays": [
+    8,
+    11
+  ],
+  "generator_inputs": "exact graph exports n=8..24 (digests in graph-exports-sha256.txt; graph-n8.log retained, n=4 and n=18 archived in class-a-run-index-2026-10-21)",
+  "other_class_a_regions_closed": false,
+  "class_c_residual_closed": false,
+  "issue_139_closed": false,
+  "ledger_claim_promoted": false
+}

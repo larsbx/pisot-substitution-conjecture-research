@@ -13,7 +13,7 @@ Work in the determinant-two PIP class-A line
 
 **Proposition.** For every integer `n>=4`, the canonical exact swap-seed overlap graph has at least `6n-2` distinct vertices.
 
-**Status:** proved (scoped uniform graph-size lower bound from existing coefficient-checked run-index paths and exact reversal symmetry; independent human review pending). This does not establish universal typed-carrier closure or arbitrary-parameter hitting.
+**Status:** repository-proved (scoped uniform graph-size lower bound from existing coefficient-checked run-index paths and exact reversal symmetry; independent human review pending). This does not establish universal typed-carrier closure or arbitrary-parameter hitting.
 
 The existing coefficient-checked formulas in [the run-index proof](p1b-class-a-run-index-2026-10-21.md) provide seed-reachable states
 `A_k=(c,y,k,-k,0)` and `Y_k=(y,y,k,-k,0)` for `2<=k<=n`, and `B_k=(y,x,k,-k-1,1)` for `0<=k<=n`. The four-step bootstrap reaches `A_2`; the `Y_(k+1)` ladder reaches `A_n`; the exit from `A_n` reaches `B_n` and every `B_k` by descending edges. Every listed occurrence is strict, and the prior proof checks its zero-based indices for all `n>=4`.
@@ -63,3 +63,12 @@ pixi run --locked mojo run -I . class_a_typed_carrier.mojo 18
 The next **mathematical** obligation is to prove, for **every integer n>=4**, that this 89-row candidate contains every canonical seed, that every candidate is a valid strict overlap, and that *all actual ordered children* land in one of the rows, with no sampling or 20,000-state cap. This could be discharged by a finite family of exhaustive affine-index and exact Perron-root inequality cases with replayable certificates. The visible table of rows is an explicit quantified proof target; a finite sample is not a substitute. Once closure is established, find a parameter-dependent ranking or a guaranteed exit from every closed component, **not merely one path on the A/B/Y ladder**. The special s=±1 slices and the row-boundary/corner occurrences deserve separate counterexample controls.
 
 This programme has not discharged the remaining A family regions or any C residual, and does not affect class D, aligned #138, general #139/#84, G1 or PSC. No governed theorem status or ledger promotion is justified by this candidate.
+
+## Continuation (2026-10-22)
+
+The all-n obligation above is discharged for every integer `n>=4` in
+[class-a-carrier-closure-2026-10-22.md](class-a-carrier-closure-2026-10-22.md):
+uniform forward closure of these 89 rows by exact Sturm signs, and a 155-piece
+affine potential with 221 descent occurrences giving first-hit depth at most
+`2n+9` for `n>=8`, with `n=4..7` as exact finite certificates. The candidate
+status of this note is historical.

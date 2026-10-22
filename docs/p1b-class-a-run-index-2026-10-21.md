@@ -338,3 +338,7 @@ shows uniformly that strict geometry plus separate bounds on run index, y
 offset and coordinate sum do not form a child-closed carrier. It provides
 exact normalized coordinates and a real escaping edge; seed reachability is
 not asserted. The arbitrary-n all-state cover and its descent remain open.
+
+The arbitrary-n all-state cover and its descent on this line are supplied by
+[class-a-carrier-closure-2026-10-22.md](class-a-carrier-closure-2026-10-22.md);
+the other A regions and the C residual remain open.
