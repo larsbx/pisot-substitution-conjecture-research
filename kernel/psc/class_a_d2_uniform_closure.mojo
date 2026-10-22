@@ -302,8 +302,12 @@ def certify_d2_all_n_closure() raises -> List[Int]:
             _=certify_finite_parity(n,odd)
     var summary=List[Int]()
     for r in range(4):
-        var row=certify_residue(even if r%2==0 else odd,r)
-        summary.append(row[1])
+        if r%2==0:
+            var row=certify_residue(even,r)
+            summary.append(row[1])
+        else:
+            var row=certify_residue(odd,r)
+            summary.append(row[1])
     print("CLASS_A_D2_UNIFORM_FORWARD_CLOSURE",
           "n>=4", "all_reachable_children_covered=true",
           "uniform_hitting=false","candidate_equals_all_reachable=not_asserted")
