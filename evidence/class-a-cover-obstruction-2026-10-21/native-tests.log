@@ -1,0 +1,10 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+CLASS_A_COVER_IDENTITIES transformed_cubic=true eigenlengths=true occurrence=true strict_margins=true scope=formal_rectangle_countermodel
+CLASS_A_COVER_ESCAPE 4 source 0 1 -5 8 -2 indices 0 3 child 0 2 -4 7 -1 source_sum 1 child_sum 2 seed_reachability=not_asserted
+CLASS_A_COVER_ESCAPE 8 source 0 1 -9 12 -2 indices 0 3 child 0 2 -8 11 -1 source_sum 1 child_sum 2 seed_reachability=not_asserted
+CLASS_A_COVER_ESCAPE 18 source 0 1 -19 22 -2 indices 0 3 child 0 2 -18 21 -1 source_sum 1 child_sum 2 seed_reachability=not_asserted
+CLASS_A_COVER_ESCAPE 64 source 0 1 -65 68 -2 indices 0 3 child 0 2 -64 67 -1 source_sum 1 child_sum 2 seed_reachability=not_asserted
+CLASS_A_COVER_ESCAPE 256 source 0 1 -257 260 -2 indices 0 3 child 0 2 -256 259 -1 source_sum 1 child_sum 2 seed_reachability=not_asserted
+CLASS_A_COVER_FINITE_NONMEMBERSHIP 4 275 source=false child=false universal=not_asserted
+CLASS_A_COVER_FINITE_NONMEMBERSHIP 18 835 source=false child=false universal=not_asserted
+contract-receipt: class-A rectangular formal cover is not forward closed: uniform polynomial length/edge/margin identities and strict ordered replay; finite seed nonmembership only; index, orientation, type and polynomial refusals; no reachable escape or BH failure asserted

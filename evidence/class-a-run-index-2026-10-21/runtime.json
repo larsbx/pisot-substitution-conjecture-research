@@ -1,0 +1,9 @@
+{
+  "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "compiler_sha256": "0d5f0b700b0543223a10c47e818bc4f43f3228166c34ab13d52ab7f2ad02ffcd",
+  "stdlib_sha256": "97ee3fc6ee37fbf3daf54a4a9182c0b0a489defe76da8b91ca4ad5541a029e41",
+  "pixi_lock_sha256": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8",
+  "full_pixi_install_claimed": false,
+  "new_ci_acceptance_claimed": false,
+  "base_commit": "d46ebe6421837ad49365fefbf30d161577b70b24"
+}

@@ -1,0 +1,43 @@
+name: Class-A cover obstruction
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/**'
+      - 'reference/**'
+      - 'oracles/python/class_a_run_index.py'
+      - 'oracles/python/class_a_cover_obstruction.py'
+      - '.github/workflows/class-a-cover-obstruction.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-cover-obstruction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Locked native identities and negative controls
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/class-a-cover-obstruction
+          pixi run --locked mojo run -I . tests/test_class_a_cover_obstruction.mojo 2>&1 | tee build/class-a-cover-obstruction/tests.log
+          pixi run --locked mojo run -I . class_a_cover_obstruction.mojo 18 | tee build/class-a-cover-obstruction/driver.log
+      - name: Independent strict-edge and seed-nonmembership calibration
+        run: python oracles/python/class_a_cover_obstruction.py > kernel/build/class-a-cover-obstruction/oracle.json
+      - name: Preserve fresh receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-cover-obstruction-receipts
+          path: kernel/build/class-a-cover-obstruction/
+          if-no-files-found: warn
