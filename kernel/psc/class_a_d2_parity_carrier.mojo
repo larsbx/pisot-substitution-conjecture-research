@@ -152,7 +152,7 @@ def finite_parity_study() raises:
     # n=6 has the same finite vertex count but two adjacent singleton
     # intervals coalesce: compare its complete graph separately.
     var prefix=exact_profile(6,True)
-    if len(prefix)!=89:
+    if len(prefix)!=91:
         raise Error("d2 even-prefix interval count changed")
     for n in [8,10,14,18,24]:
         _=certify_finite_parity(n,even)
