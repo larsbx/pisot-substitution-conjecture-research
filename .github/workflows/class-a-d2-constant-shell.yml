@@ -1,0 +1,56 @@
+name: Class-A d2 all-n constant one-step shell
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_d2_constant_shell_data.mojo'
+      - 'kernel/psc/class_a_d2_constant_shell.mojo'
+      - 'kernel/class_a_d2_constant_shell.mojo'
+      - 'kernel/tests/test_class_a_d2_constant_shell.mojo'
+      - 'oracles/python/class_a_d2_constant_shell.py'
+      - 'tests/test_class_a_d2_constant_shell.py'
+      - 'docs/class-a-d2-constant-shell-2026-10-22.md'
+      - 'kernel/psc/class_a_d2_fixed_corridor_data.mojo'
+      - 'kernel/psc/class_a_d2_fixed_corridor.mojo'
+      - 'oracles/python/class_a_d2_fixed_corridor.py'
+      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'oracles/python/class_a_d2_parity_carrier.py'
+      - '.github/workflows/class-a-d2-constant-shell.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-constant-shell:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare independent polynomial oracle
+        run: python -m pip install 'pytest>=7'
+      - name: Independent exact all-n integer certificates and finite Qbeta differential
+        run: |
+          set -euo pipefail
+          mkdir -p kernel/build/class-a-d2-constant-shell
+          python oracles/python/class_a_d2_constant_shell.py 2>&1 | tee kernel/build/class-a-d2-constant-shell/oracle.json
+          python -m pytest -q tests/test_class_a_d2_constant_shell.py 2>&1 | tee kernel/build/class-a-d2-constant-shell/python-tests.log
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Pinned canonical all-n 518-state proof and mutation tests
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_class_a_d2_constant_shell.mojo 2>&1 | tee build/class-a-d2-constant-shell/mojo-tests.log
+          pixi run --locked mojo run -I . class_a_d2_constant_shell.mojo 2>&1 | tee build/class-a-d2-constant-shell/mojo-driver.log
+      - name: Preserve exact source-scoped receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-d2-constant-shell-receipts
+          path: kernel/build/class-a-d2-constant-shell/
+          if-no-files-found: warn
