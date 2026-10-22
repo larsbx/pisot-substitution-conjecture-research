@@ -1,0 +1,56 @@
+name: Class-A d2 finite ordered-descent evidence
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_d2_descent_probe.mojo'
+      - 'kernel/class_a_d2_descent_probe.mojo'
+      - 'kernel/tests/test_class_a_d2_descent_probe.mojo'
+      - 'kernel/psc/class_a_d2_parity_carrier.mojo'
+      - 'kernel/psc/class_a_d2_uniform_closure.mojo'
+      - 'oracles/python/class_a_d2_descent_probe.py'
+      - 'oracles/python/class_a_d2_center_paths.py'
+      - 'oracles/python/class_a_d2_parity_carrier.py'
+      - 'tests/test_class_a_d2_descent_probe.py'
+      - 'tests/test_class_a_d2_center_paths.py'
+      - 'docs/class-a-d2-descent-obligations-2026-10-22.md'
+      - '.github/workflows/class-a-d2-descent-probe.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-d2-finite-descent:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare independent exact tests
+        run: python -m pip install 'pytest>=7'
+      - name: Independent Fraction-field proper-prefix occurrence certificates
+        run: |
+          set -euo pipefail
+          mkdir -p kernel/build/class-a-d2-descent-probe
+          python oracles/python/class_a_d2_descent_probe.py 7 8 9 10 11 12 2>&1 | tee kernel/build/class-a-d2-descent-probe/oracle-packet.json
+          python oracles/python/class_a_d2_center_paths.py 2>&1 | tee kernel/build/class-a-d2-descent-probe/uniform-center-paths.json
+          python -m pytest -q tests/test_class_a_d2_descent_probe.py tests/test_class_a_d2_center_paths.py 2>&1 | tee kernel/build/class-a-d2-descent-probe/python-tests.log
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Locked canonical finite exact descending-edge replay and rank obstruction
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_class_a_d2_descent_probe.mojo 2>&1 | tee build/class-a-d2-descent-probe/mojo-tests.log
+          pixi run --locked mojo run -I . class_a_d2_descent_probe.mojo 2>&1 | tee build/class-a-d2-descent-probe/mojo-driver.log
+      - name: Preserve non-promoting exact finite evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-d2-finite-descent-receipts
+          path: kernel/build/class-a-d2-descent-probe/
+          if-no-files-found: warn

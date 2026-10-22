@@ -132,6 +132,8 @@ by deleting it.
   `docs/boxwalk-reachability-realizability-audit-2026-10-15.md`;
   `evidence/boxwalk-radius8-depth9.json`
 
+- 2026-10-22 · **D2 Class-A whole-row target-normalized affine rank is impossible on the centered x/x slice.** Both formal parity candidates (even n>=8, odd n>=7) contain typed (x,x,s=0,y=0) with k=-1,0,+1. If X(k)=A(n)+B(n)k, X(0)=0 and X(±1)>=1 for non-targets, then -B>=1 and B>=1, contradiction. This refutes only the target-zero *single-piece* ansatz, not general affine ranks with nonzero target or d2 hitting. Split a target singleton or change rank form. · `docs/class-a-d2-descent-obligations-2026-10-22.md` § Uniform obstruction; `kernel/psc/class_a_d2_descent_probe.mojo`.
+
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
@@ -585,6 +587,8 @@ by deleting it.
   `a, b <= 9`. Use it as a cross-check for its stronger FP verdict, not to
   speed up member decisions. · `audit-finite-regime-advice-2026-10-08.md`;
   `experiments/z2-route/boxtime.mojo`
+
+- 2026-10-22 · **D2 Class-A exact finite ordered descent evidence and a uniform two-step subfamily.** Complete n=7..12 graphs have 231/265/271/305/311/345 states, each with 8 zero-offset targets, and maximum first-hit depths 5/5/6/6/7/7. Every other vertex has an explicit depth-decreasing ordered occurrence (independent Fraction-field oracle preserves both proper-prefix indices). In the centered x/x slice k=-1,0,+1 the depths are 2,0,2. **Uniform result (not extrapolation):** for every n>=4, (x,x,-1,1,0)→(x,y,0,1,-1)→(y,y,0) through index pairs (0,2),(1,2); and (x,x,1,-1,0)→(y,x,0,-1,1)→(y,y,0) via (2,0),(2,1). All states are strict by explicit coefficient-positive Perron margins; s=0 cancels the n coefficient in the exact child update. These two paths do not close the other d2 states. · `docs/class-a-d2-descent-obligations-2026-10-22.md`, `oracles/python/class_a_d2_center_paths.py`, `oracles/python/class_a_d2_descent_probe.py`, PR #315 (fresh CI pending).
 
 ## 6. Tooling pitfalls
 
