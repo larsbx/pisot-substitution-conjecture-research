@@ -40,7 +40,7 @@ The independently evaluated exact rational-root enumeration motivating the candi
 | 11 | 311 | 87 | 7 |
 | 12 | 345 | 93 | 7 |
 | 14 | 385 | 93 | 7 |
-| 18 | 465 | 93 | 8 |
+| 18 | 465 | 93 | 9 |
 | 24 | 585 | 93 | 11 |
 
 **These are finite observations; the new canonical locked CI must replay the specified parameters before the repository treats them as accepted evidence.** None is extrapolated to all n. The exact source rejects incomplete graph builds instead of inventing a no-counterexample verdict.
