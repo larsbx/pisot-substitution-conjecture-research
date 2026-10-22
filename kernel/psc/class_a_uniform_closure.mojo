@@ -9,6 +9,7 @@ No arbitrary-n hitting, carrier=reachable assertion, or universal #139
 promotion follows. See docs/class-a-uniform-forward-closure-2026-10-22.md.
 """
 from psc.class_a_typed_carrier import template_rows, certify_finite
+from psc.class_a_uniform_geometry import certify_uniform_components
 
 
 struct Affine(Copyable, Movable):
@@ -168,6 +169,14 @@ def certify_tail_rows(rows: List[List[Int]]) raises -> List[Int]:
         var bottom=source[1]
         var s=source[2]
         var y=source[3]
+        # Required for the proof that a positive-interior child has
+        # coordinate sum q in {-2,-1,0,1,2}; enforce for every row.
+        if abs(s)>1:
+            raise Error("child-sum bound requires |s|<=1")
+        if source[4]<-1 or 4*(source[4]+1)+source[5]<-1:
+            raise Error("child-sum bound requires k>=-n-1")
+        if source[6]>1 or 4*(1-source[6])+1-source[7]<0:
+            raise Error("child-sum bound requires k<=n+1")
         var parent_segments=List[Segment]()
         var full=Segment(Affine(source[4],source[5]),Affine(source[6],source[7]))
         if top==bottom and s==0 and y==0:
@@ -245,6 +254,11 @@ def certify_tail_rows(rows: List[List[Int]]) raises -> List[Int]:
 
 def certify_uniform_forward_closure() raises -> List[Int]:
     var rows=template_rows()
+    # The exact previous component proof is an executable prerequisite:
+    # strict geometry, all nine seeds, and the 40*n+115 cardinality.
+    var components=certify_uniform_components()
+    if components!=List[Int]([89,178,9,40,115]):
+        raise Error("uniform geometry and seed prerequisite failed")
     # The accepted component proof establishes strict geometry and all seeds;
     # these four small parameters close the complete finite prefix exactly.
     for n in [4,5,6,7]:
