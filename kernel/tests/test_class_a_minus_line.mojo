@@ -48,7 +48,7 @@ def main() raises:
     check_line_identity(minus_line())
     var refused = False
     try:
-        check_line_identity(ALine(0))
+        check_line_identity(ALine(1, 0, 0))
     except:
         refused = True
     assert_true(refused)

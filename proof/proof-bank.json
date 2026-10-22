@@ -2048,6 +2048,16 @@
       "statement_heading": "first-hit plateaus shift with `n mod 3` (right of the target the depths run"
     },
     {
+      "source": "docs/class-a-residue-rays-2026-10-22.md",
+      "line": 83,
+      "statement_heading": "| `(n+3,n,n+1)` | `n=3l+2` | 17 | 78 | `40l+98` | 3,026 / 2,569 | 116 / 8 / 157 | `2l+11` |"
+    },
+    {
+      "source": "docs/class-a-residue-rays-2026-10-22.md",
+      "line": 88,
+      "statement_heading": "**Theorem R.** For each tabulated ray and every `n >= floor` on it, the"
+    },
+    {
       "source": "docs/class-a-typed-carrier-2026-10-21.md",
       "line": 14,
       "statement_heading": "**Proposition.** For every integer `n>=4`, the canonical exact swap-seed overlap graph has at least `6n-2` distinct vertices."

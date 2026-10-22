@@ -1,0 +1,49 @@
++ oracles/python/class_a_descent_table.py GRAPHS/g2m 8 --ray 2,-1,0 --nhi 34 --rows-mojo
+rows: 97 slices: 94
++ oracles/python/class_a_descent_table.py GRAPHS/g2m 8 --ray 2,-1,1 --nhi 34 --rows-mojo
+rows: 111 slices: 110
++ oracles/python/class_a_descent_table.py GRAPHS/g2m 14 --ray 2,-1,0 --nhi 34 --mojo
+row 92 fitted with slack 1
+pieces: 145
+NLO 14 pieces 145 failures: 0  descent rows: 208
++ oracles/python/class_a_descent_table.py GRAPHS/g2m 15 --ray 2,-1,1 --nhi 34 --mojo
+row 106 fitted with slack 1
+pieces: 157
+NLO 15 pieces 157 failures: 0  descent rows: 221
+regenerated class_a_ray_d2m.mojo identical
++ oracles/python/class_a_descent_table.py GRAPHS/g3m 11 --ray 3,-1,0 --nhi 35 --rows-mojo
+rows: 93 slices: 91
++ oracles/python/class_a_descent_table.py GRAPHS/g3m 11 --ray 3,-1,1 --nhi 35 --rows-mojo
+rows: 113 slices: 113
++ oracles/python/class_a_descent_table.py GRAPHS/g3m 11 --ray 3,-1,2 --nhi 35 --rows-mojo
+rows: 105 slices: 105
++ oracles/python/class_a_descent_table.py GRAPHS/g3m 12 --ray 3,-1,0 --nhi 35 --mojo
+row 88 fitted with slack 1
+pieces: 129
+NLO 12 pieces 129 failures: 0  descent rows: 182
++ oracles/python/class_a_descent_table.py GRAPHS/g3m 12 --ray 3,-1,1 --nhi 35 --mojo
+row 107 fitted with slack 1
+pieces: 153
+NLO 12 pieces 153 failures: 0  descent rows: 204
++ oracles/python/class_a_descent_table.py GRAPHS/g3m 12 --ray 3,-1,2 --nhi 35 --mojo
+pieces: 139
+NLO 12 pieces 139 failures: 0  descent rows: 188
+regenerated class_a_ray_d3m.mojo identical
++ oracles/python/class_a_descent_table.py GRAPHS/g3p 11 --ray 3,1,0 --nhi 35 --rows-mojo
+rows: 88 slices: 81
++ oracles/python/class_a_descent_table.py GRAPHS/g3p 11 --ray 3,1,1 --nhi 35 --rows-mojo
+rows: 84 slices: 81
++ oracles/python/class_a_descent_table.py GRAPHS/g3p 11 --ray 3,1,2 --nhi 35 --rows-mojo
+rows: 78 slices: 76
++ oracles/python/class_a_descent_table.py GRAPHS/g3p 12 --ray 3,1,0 --nhi 35 --mojo
+pieces: 134
+NLO 12 pieces 134 failures: 0  descent rows: 184
++ oracles/python/class_a_descent_table.py GRAPHS/g3p 12 --ray 3,1,1 --nhi 35 --mojo
+row 79 fitted with slack 1
+pieces: 124
+NLO 12 pieces 124 failures: 0  descent rows: 162
++ oracles/python/class_a_descent_table.py GRAPHS/g3p 12 --ray 3,1,2 --nhi 35 --mojo
+row 73 fitted with slack 1
+pieces: 116
+NLO 12 pieces 116 failures: 0  descent rows: 157
+regenerated class_a_ray_d3p.mojo identical
