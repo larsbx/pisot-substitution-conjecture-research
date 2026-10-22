@@ -70,6 +70,13 @@ def check(parameter=None, template=None):
     """parameter=None proves all n>=8; otherwise checks exactly that n."""
     rr=list(rows() if template is None else template)
     if len(rr)!=89:raise ValueError("requires 89 source intervals")
+    # The finite q=-2..2 universe is complete only under these exact
+    # row bounds, not under an arbitrary malformed input carrier.
+    for top,bottom,s,y,al,bl,au,bu in rr:
+        if abs(s)>1 or al < -1 or 4*(al+1)+bl < -1:
+            raise ValueError("row violates the uniform child-sum bound")
+        if au > 1 or 4*(1-au)+1-bu < 0:
+            raise ValueError("row violates the uniform child-sum bound")
     n=8 if parameter is None else parameter
     if parameter is not None and not 4<=n<=7:
         raise ValueError("finite prefix 4..7 only")
