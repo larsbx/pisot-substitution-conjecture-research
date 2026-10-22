@@ -1,0 +1,14 @@
+{
+  "status": "PARAMETRIC_CERTIFICATE_ORACLE_VERIFIED",
+  "authority": "independent-python-oracle",
+  "canonical_execution": "NOT_RUN_LOCALLY",
+  "parameter_domain": "s=-1, b=0, every integer a>=2",
+  "universal_branch_status": "CANDIDATE_PENDING_CANONICAL_REPLAY",
+  "positive_branch": "OPEN",
+  "universal_PSC": "OPEN",
+  "states": 145,
+  "targets": 6,
+  "seed_occurrences": 9,
+  "closure_candidates": 18779,
+  "max_rank": 4
+}

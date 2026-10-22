@@ -1,0 +1,23 @@
+{
+  "baseline_commit": "f6e181d1d4fe4a4f02f8dbb09bbb28538ad1b8f9",
+  "supersedes_measurements": "evidence/rational-root-2026-10-16",
+  "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+  "protocol": "seven alternating before/after batches, warm-up comparison for each polynomial; timed checksums agree; no CPU pin; shared host, no timing thresholds",
+  "source_sha256": {
+    "kernel/psc/pisot_screen.mojo": "c29861cdd8dc5b8c8e838077d0660c67e20e18fc53dea1725b0d3045c4bda3cc",
+    "kernel/tests/rational_root_reference.mojo": "da0fcc563ca7ba04b1a5b95f9abdffade5f6fa95f501e355d13cc7bdd0b14d87",
+    "kernel/tests/test_rational_root.mojo": "e35303f0a2c827f92b8e18f70985de81be8713aa8762b38db8d3a4e2414f0940",
+    "kernel/rational_root_bench.mojo": "1615727114b1fe757e72063a24cafb7098884e66b973fac30c2393125484847c",
+    "kernel/pixi.lock": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8"
+  },
+  "median_speedup": {
+    "cubic_grid": 37.23426870043321,
+    "many_divisors_no_root": 30.461007001212806,
+    "large_signed_roots": 7.482970430556662,
+    "zero_constant": 0.9227674190382729,
+    "small_root_degree_128": 103.56829757573696
+  },
+  "local_toolchain": "Pinned extracted compiler with explicit std/runtime paths; pixi provisioning blocked on conda-forge attrs dependency download."
+}

@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/26799cb9a3f7/psc-live/tools/check_class_d_integration_ci.py", line 137, in <module>
+    main()
+  File "/workspace/scratch/26799cb9a3f7/psc-live/tools/check_class_d_integration_ci.py", line 133, in main
+    print(json.dumps(validate(manifest, checks, jobs), indent=2))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/26799cb9a3f7/psc-live/tools/check_class_d_integration_ci.py", line 107, in validate
+    raise ValueError('accepted mathematical source, lock or workflow changed: '+path)
+ValueError: accepted mathematical source, lock or workflow changed: kernel/pixi.toml

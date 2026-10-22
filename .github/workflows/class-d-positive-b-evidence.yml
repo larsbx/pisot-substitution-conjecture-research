@@ -1,0 +1,80 @@
+name: Class-D complete residual certificates
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/**'
+      - 'reference/**'
+      - 'oracles/python/**'
+      - 'tests/**'
+      - 'evidence/class-d-*/**'
+      - 'pyproject.toml'
+      - 'vendored.toml'
+      - '.github/workflows/class-d-positive-b-evidence.yml'
+  workflow_dispatch:
+
+jobs:
+  # The six former single-quadrant/fixed-carrier attempts are preserved as
+  # historical refusals. Actual acceptance now runs their complete replacements:
+  # minus seed closure + strips + descent, and every plus chamber + boundary.
+  complete-residual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: [plus, minus]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          manifest-path: kernel/pixi.toml
+      - name: Replay exact failed-proposal obstruction controls
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_class_d_positive_b_obstructions.mojo 2>&1 | tee residual-obstructions.log
+          grep -Fx 'CLASS_D_POSITIVE_B_OBSTRUCTION_CONTROLS_PASS' residual-obstructions.log
+      - name: Complete minus residual including strips and ranked geometry
+        if: matrix.branch == 'minus'
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_class_d_minus_boundary_strips.mojo 2>&1 | tee residual-minus.log
+          grep -Fx 'CLASS_D_MINUS_RESIDUAL_BH_CERTIFIED a>=0 b>=0 components=4 universal_139=open' residual-minus.log
+      - name: Complete plus boundary and every positive-b chamber and strip
+        if: matrix.branch == 'plus'
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run --locked mojo run -I . tests/test_class_d_plus_template.mojo 2>&1 | tee residual-plus-boundary.log
+          pixi run --locked mojo run -I . tests/test_class_d_plus_positive_b_chambers.mojo 2>&1 | tee residual-plus-partition.log
+          pixi run --locked mojo run -I . class_d_plus_positive_b_chambers.mojo 2>&1 | tee residual-plus.log
+          grep -Fx 'CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED wedges= 6 explicit_lines= 6 boundary_lines= 73 finite_prefix_pip= 952 max_symbolic_vertices= 164' residual-plus.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: complete-residual-${{ matrix.branch }}
+          path: kernel/residual-*.log
+          if-no-files-found: error
+
+  exact-support-grid:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install oracle test runner
+        run: python3 -m pip install pytest
+      - name: Run independent exact Q(beta) support calibration
+        run: |
+          set -o pipefail
+          python3 oracles/python/class_d_positive_b_support.py | tee positive-b-support.json
+          python3 -m pytest -q tests/test_class_d_positive_b_support.py tests/test_class_d_positive_b_spine_transport.py tests/test_class_d_certificate_agreement.py tests/test_class_d_plus_cover_data.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: positive-b-support
+          path: positive-b-support.json
+          if-no-files-found: error

@@ -1,0 +1,43 @@
+SHARED_PARAMETER_NEGATIVE_CONTROL_CERTIFIED combination=-7-u multipliers=1,0,1
+SHARED_CYCLE 6 variables=u,v parameter_scope=whole_cycle
+CYCLE_EDGE 0 1:1:-4,7,-5 0 2 1:0:3,-6,4
+CYCLE_EDGE 1 1:0:3,-6,4 0 0 1:0:-3,5,-4
+CYCLE_EDGE 2 1:0:-3,5,-4 0 1 1:2:3,-6,4
+CYCLE_EDGE 3 1:2:3,-6,4 0 0 1:1:-3,5,-4
+CYCLE_EDGE 4 1:1:-3,5,-4 1 1 2:2:2,-6,6
+CYCLE_EDGE 5 2:2:2,-6,6 2 0 1:1:-4,7,-5
+CYCLE_GUARD 0 -7 -2 1
+CYCLE_GUARD 1 7 2 -1
+CYCLE_GUARD 2 2 1 -1
+CYCLE_GUARD 3 -2 -1 1
+CYCLE_GUARD 4 11 2 2
+CYCLE_GUARD 5 0 1 -1
+CYCLE_GUARD 6 2 1 -1
+CYCLE_GUARD 7 -2 -1 1
+CYCLE_GUARD 8 25 5 3
+CYCLE_GUARD 9 -1 1 -1
+CYCLE_GUARD 10 4 2 -1
+CYCLE_GUARD 11 -4 -2 1
+FARKAS_MULTIPLIER 0 1
+FARKAS_MULTIPLIER 1 0
+FARKAS_MULTIPLIER 2 0
+FARKAS_MULTIPLIER 3 1
+FARKAS_MULTIPLIER 4 0
+FARKAS_MULTIPLIER 5 3
+FARKAS_MULTIPLIER 6 0
+FARKAS_MULTIPLIER 7 1
+FARKAS_MULTIPLIER 8 0
+FARKAS_MULTIPLIER 9 1
+FARKAS_MULTIPLIER 10 0
+FARKAS_MULTIPLIER 11 1
+CYCLE_REFUTED_SHARED_PARAMETERS
+SIX_EDGE_CONTROL_CERTIFIED each_edge_integer_feasible=true whole_cycle_refuted=true explicit_rows=0,5 sum=-7-u
+SHARED_CYCLE 2 variables=u,v parameter_scope=whole_cycle
+CYCLE_EDGE 0 2:1:-2,4,-3 2 1 1:2:2,-4,3
+CYCLE_EDGE 1 1:2:2,-4,3 1 2 2:1:-2,4,-3
+CYCLE_GUARD 0 11 2 2
+CYCLE_GUARD 1 1 1 -1
+CYCLE_GUARD 2 1 1 -1
+CYCLE_GUARD 3 11 2 2
+CYCLE_NOT_REFUTED integer_feasibility_geometry_and_seed_reachability_unresolved
+contract-receipt: minus class-D shared-parameter cycle guards: replay every typed affine edge including closure; checked Farkas refutation over one u,v; six individually feasible edges jointly require v=2u+7 and v<=u; retain genuine U/Ubar cycle; bounded supplied cycles do not prove CycleSum

@@ -1,0 +1,16 @@
+Mojo 1.1.0.dev2026090805 (34562fa1)
+Python 3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]
+Linux x86_64
+1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8  kernel/pixi.lock
+7c52f1b1755fb33a7a1cf967fc69c0eb4a8877c90f9b5a708b58b4e404472a77  vendored.toml
+0d71889abb0887e2fa8a556c1081af4026034cdf98d27ad05b57cb096d7ad4f6  /tmp/psc-pinned-mojo-compiler.conda
+113c7d202236f943c91fdcb115f0a278e9c6027e1b7783bbc8b9a2076bb43838  /tmp/psc-pinned-mojo-python.conda
+	linux-vdso.so.1 (0x00007fb8a2a8d000)
+	libKGENCompilerRTShared.so => /tmp/psc-pinned-mojo/lib/libKGENCompilerRTShared.so (0x00007fb8a28c7000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fb8a26ac000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fb8a25c3000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fb8a2345000)
+	libMSupportGlobals.so => /tmp/psc-pinned-mojo/lib/libMSupportGlobals.so (0x00007fb8a2334000)
+	libAsyncRTRuntimeGlobals.so => /tmp/psc-pinned-mojo/lib/libAsyncRTRuntimeGlobals.so (0x00007fb8a1827000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fb8a17f9000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fb8a2a8f000)

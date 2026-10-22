@@ -13,14 +13,20 @@ ResultSet == {
     "AllSeedOverlapProductivity",
     "AllSeedStrictZipperExclusion",
     "AllStatesProductiveViaOverlaps",
+    "BargeClassFlowPDS",
+    "BargeClassSymbolicPDS",
     "BoundaryCoincidenceCriterion",
     "BoxAutomatonCertificate",
     "BoxAutomatonPDSCertificate",
+    "BoxAutomatonSymbolicPDSCertificate",
     "BoxCycleContainment",
+    "BrunCompositeSymbolicPDS",
     "C2",
     "C3Local",
     "C3Locality",
     "C4",
+    "ClassDBoundaryHitting",
+    "ClassDIntegrationAcceptance",
     "ClassDWedgeBoundaryHitting",
     "CoincidenceDensityOne",
     "CoincidenceRankFibreTheorems",
@@ -52,6 +58,15 @@ ResultSet == {
     "MassBalanceK2Obstruction",
     "MeanAreaLift",
     "MidArea",
+    "MinusClassDBoundaryHitting",
+    "MinusClassDBoundaryLine",
+    "MinusClassDBoundaryStrips",
+    "MinusClassDPositiveBBoundaryHitting",
+    "MinusClassDPositiveBCycleSum",
+    "MinusClassDResidualBoundaryHitting",
+    "MinusClassDSeedCarrierClosure",
+    "MinusHighSumFormalCycleRay",
+    "MinusSixEdgeFamilyExclusion",
     "Mod3Sieve",
     "OrientationMonodromy",
     "OrientationSpectrum",
@@ -72,12 +87,16 @@ ResultSet == {
     "PeriodicPairOneFibre",
     "PhiSemisimplicity",
     "PisotMeyerProperty",
+    "PlusClassDBoundaryHitting",
+    "PlusClassDBoundaryLine",
+    "PlusClassDPositiveBBoundaryHitting",
     "RepoSeedUnionBridge",
     "ReturnModuleFullRank",
     "SCCProducer",
     "SeedCentralizer",
     "SignatureReduction",
     "SinkSCCReduction",
+    "SirventSolomyakTransfer",
     "SpanRichProductivity",
     "SpectralBlackBox",
     "SpectralSCCProducer",
@@ -87,8 +106,11 @@ ResultSet == {
     "SwapOverlapFiniteness",
     "Target1",
     "ThetaIntertwining",
+    "TwoObstructionCompletion",
     "UDForPowers",
     "UniqueDecodability",
+    "UniversalAlignedCoincidence",
+    "UniversalBoundaryHitting",
     "V5Thm51",
     "W3LowGrowth",
     "WedgeBound"
@@ -100,14 +122,20 @@ RequiresDef == [r \in ResultSet |->
       [] r = "AllSeedOverlapProductivity" -> {{}}
       [] r = "AllSeedStrictZipperExclusion" -> {{}}
       [] r = "AllStatesProductiveViaOverlaps" -> {{"OverlapProductivity", "SwapOverlapFiniteness"}}
+      [] r = "BargeClassFlowPDS" -> {{}}
+      [] r = "BargeClassSymbolicPDS" -> {{"BargeClassFlowPDS", "SirventSolomyakTransfer"}}
       [] r = "BoundaryCoincidenceCriterion" -> {{}}
       [] r = "BoxAutomatonCertificate" -> {{"BoxCycleContainment"}}
       [] r = "BoxAutomatonPDSCertificate" -> {{"BoxAutomatonCertificate", "PisotMeyerProperty", "OverlapCoincidenceCriterion"}}
+      [] r = "BoxAutomatonSymbolicPDSCertificate" -> {{"BoxAutomatonPDSCertificate", "SirventSolomyakTransfer"}}
       [] r = "BoxCycleContainment" -> {{}}
+      [] r = "BrunCompositeSymbolicPDS" -> {{}}
       [] r = "C2" -> {{"C3Local"}}
       [] r = "C3Local" -> {{"C4", "C3Locality"}}
       [] r = "C3Locality" -> {{}}
       [] r = "C4" -> {{}}
+      [] r = "ClassDBoundaryHitting" -> {{"PlusClassDBoundaryHitting", "MinusClassDBoundaryHitting"}}
+      [] r = "ClassDIntegrationAcceptance" -> {{}}
       [] r = "ClassDWedgeBoundaryHitting" -> {{}}
       [] r = "CoincidenceDensityOne" -> {{"OverlapProductivity", "SwapOverlapFiniteness"}}
       [] r = "CoincidenceRankFibreTheorems" -> {{}}
@@ -139,6 +167,15 @@ RequiresDef == [r \in ResultSet |->
       [] r = "MassBalanceK2Obstruction" -> {{}}
       [] r = "MeanAreaLift" -> {{"MidArea", "ParikhIntertwiner"}}
       [] r = "MidArea" -> {{}}
+      [] r = "MinusClassDBoundaryHitting" -> {{"MinusClassDResidualBoundaryHitting", "ClassDWedgeBoundaryHitting"}}
+      [] r = "MinusClassDBoundaryLine" -> {{}}
+      [] r = "MinusClassDBoundaryStrips" -> {{}}
+      [] r = "MinusClassDPositiveBBoundaryHitting" -> {{"MinusClassDPositiveBCycleSum", "SwapOverlapFiniteness"}}
+      [] r = "MinusClassDPositiveBCycleSum" -> {{"MinusClassDSeedCarrierClosure"}}
+      [] r = "MinusClassDResidualBoundaryHitting" -> {{"MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDPositiveBBoundaryHitting"}}
+      [] r = "MinusClassDSeedCarrierClosure" -> {{}}
+      [] r = "MinusHighSumFormalCycleRay" -> {{}}
+      [] r = "MinusSixEdgeFamilyExclusion" -> {{}}
       [] r = "Mod3Sieve" -> {{"DefectIntertwiner"}}
       [] r = "OrientationMonodromy" -> {{}}
       [] r = "OrientationSpectrum" -> {{"OrientationMonodromy", "ParikhIntertwiner"}}
@@ -159,12 +196,16 @@ RequiresDef == [r \in ResultSet |->
       [] r = "PeriodicPairOneFibre" -> {{"ReturnModuleFullRank"}}
       [] r = "PhiSemisimplicity" -> {{}}
       [] r = "PisotMeyerProperty" -> {{}}
+      [] r = "PlusClassDBoundaryHitting" -> {{"PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "ClassDWedgeBoundaryHitting"}}
+      [] r = "PlusClassDBoundaryLine" -> {{}}
+      [] r = "PlusClassDPositiveBBoundaryHitting" -> {{"ClassDIntegrationAcceptance"}}
       [] r = "RepoSeedUnionBridge" -> {{}}
       [] r = "ReturnModuleFullRank" -> {{}}
       [] r = "SCCProducer" -> {{"G1", "SinkSCCReduction", "C2"}}
       [] r = "SeedCentralizer" -> {{"ThetaIntertwining", "PhiSemisimplicity"}}
       [] r = "SignatureReduction" -> {{"EndpointCore"}}
       [] r = "SinkSCCReduction" -> {{"G1"}}
+      [] r = "SirventSolomyakTransfer" -> {{}}
       [] r = "SpanRichProductivity" -> {{"ConcentrationAuxB", "GaloisWedgePropagation"}}
       [] r = "SpectralBlackBox" -> {{"Target1", "DominantCubicCapture"}}
       [] r = "SpectralSCCProducer" -> {{"G1", "SinkSCCReduction", "SpanRichProductivity"}}
@@ -174,8 +215,11 @@ RequiresDef == [r \in ResultSet |->
       [] r = "SwapOverlapFiniteness" -> {{"G1b1BoundedDiscrepancy"}}
       [] r = "Target1" -> {{"SeedCentralizer"}}
       [] r = "ThetaIntertwining" -> {{}}
+      [] r = "TwoObstructionCompletion" -> {{"UniversalAlignedCoincidence", "UniversalBoundaryHitting", "SwapOverlapFiniteness", "AlignedOverlapsAreStrongCoincidence", "DensityToPDSBridge"}}
       [] r = "UDForPowers" -> {{"UniqueDecodability"}}
       [] r = "UniqueDecodability" -> {{"DefectTheorem"}}
+      [] r = "UniversalAlignedCoincidence" -> {{}}
+      [] r = "UniversalBoundaryHitting" -> {{}}
       [] r = "V5Thm51" -> {{}}
       [] r = "W3LowGrowth" -> {{"DefectIntertwiner", "PhiSemisimplicity"}}
       [] r = "WedgeBound" -> {{"AlgebraicEmbedding", "MassBalanceK2Obstruction"}}]
@@ -184,13 +228,17 @@ ProvedDef == {
     "AlgebraicEmbedding",
     "AlignedOverlapsAreStrongCoincidence",
     "AllStatesProductiveViaOverlaps",
+    "BargeClassSymbolicPDS",
     "BoundaryCoincidenceCriterion",
     "BoxAutomatonCertificate",
     "BoxAutomatonPDSCertificate",
+    "BoxAutomatonSymbolicPDSCertificate",
     "BoxCycleContainment",
     "C2",
     "C3Local",
     "C3Locality",
+    "ClassDBoundaryHitting",
+    "ClassDIntegrationAcceptance",
     "ClassDWedgeBoundaryHitting",
     "CoincidenceDensityOne",
     "DefectIntertwiner",
@@ -217,6 +265,15 @@ ProvedDef == {
     "MassBalanceK2Obstruction",
     "MeanAreaLift",
     "MidArea",
+    "MinusClassDBoundaryHitting",
+    "MinusClassDBoundaryLine",
+    "MinusClassDBoundaryStrips",
+    "MinusClassDPositiveBBoundaryHitting",
+    "MinusClassDPositiveBCycleSum",
+    "MinusClassDResidualBoundaryHitting",
+    "MinusClassDSeedCarrierClosure",
+    "MinusHighSumFormalCycleRay",
+    "MinusSixEdgeFamilyExclusion",
     "Mod3Sieve",
     "OrientationMonodromy",
     "OrientationSpectrum",
@@ -234,6 +291,9 @@ ProvedDef == {
     "ParitySieve",
     "PeriodicPairOneFibre",
     "PhiSemisimplicity",
+    "PlusClassDBoundaryHitting",
+    "PlusClassDBoundaryLine",
+    "PlusClassDPositiveBBoundaryHitting",
     "RepoSeedUnionBridge",
     "ReturnModuleFullRank",
     "SCCProducer",
@@ -245,6 +305,7 @@ ProvedDef == {
     "SwapOverlapFiniteness",
     "Target1",
     "ThetaIntertwining",
+    "TwoObstructionCompletion",
     "UDForPowers",
     "UniqueDecodability",
     "W3LowGrowth",
@@ -252,10 +313,13 @@ ProvedDef == {
 }
 
 ImportedDef == {
+    "BargeClassFlowPDS",
+    "BrunCompositeSymbolicPDS",
     "CoincidenceRankFibreTheorems",
     "DensityToPDSBridge",
     "OverlapCoincidenceCriterion",
     "PisotMeyerProperty",
+    "SirventSolomyakTransfer",
     "StandardBPAEquivalence",
     "StrongCoincidenceFromPDS"
 }
@@ -274,6 +338,9 @@ AllSeedOverlapGateAssumed == {
 AllSeedStrictZipperGateAssumed == {
     "AllSeedStrictZipperExclusion"
 }
+ClassDIntegrationAssumed == {
+    "ClassDIntegrationAcceptance"
+}
 FormalProductivityGateAssumed == {
     "FormalProductivity",
     "PisotMeyerProperty",
@@ -291,6 +358,9 @@ G1AndProducer == {
 G1Only == {
     "G1"
 }
+MinusCycleSumAssumed == {
+    "MinusClassDPositiveBCycleSum"
+}
 OverlapGateAssumed == {
     "OverlapProductivity",
     "DensityToPDSBridge"
@@ -305,6 +375,11 @@ SpectralGateAssumed == {
     "SpanRichProductivity",
     "SpectralSCCProducer"
 }
+TwoObstructionsAssumed == {
+    "UniversalAlignedCoincidence",
+    "UniversalBoundaryHitting",
+    "DensityToPDSBridge"
+}
 
 (* Observables: one per result, asserting that it is not established. A model *)
 (* lists those its assumptions leave unreachable; TLC then checks the closure.  *)
@@ -313,14 +388,20 @@ AlignedOverlapsAreStrongCoincidenceNotEstablished == "AlignedOverlapsAreStrongCo
 AllSeedOverlapProductivityNotEstablished == "AllSeedOverlapProductivity" \notin established
 AllSeedStrictZipperExclusionNotEstablished == "AllSeedStrictZipperExclusion" \notin established
 AllStatesProductiveViaOverlapsNotEstablished == "AllStatesProductiveViaOverlaps" \notin established
+BargeClassFlowPDSNotEstablished == "BargeClassFlowPDS" \notin established
+BargeClassSymbolicPDSNotEstablished == "BargeClassSymbolicPDS" \notin established
 BoundaryCoincidenceCriterionNotEstablished == "BoundaryCoincidenceCriterion" \notin established
 BoxAutomatonCertificateNotEstablished == "BoxAutomatonCertificate" \notin established
 BoxAutomatonPDSCertificateNotEstablished == "BoxAutomatonPDSCertificate" \notin established
+BoxAutomatonSymbolicPDSCertificateNotEstablished == "BoxAutomatonSymbolicPDSCertificate" \notin established
 BoxCycleContainmentNotEstablished == "BoxCycleContainment" \notin established
+BrunCompositeSymbolicPDSNotEstablished == "BrunCompositeSymbolicPDS" \notin established
 C2NotEstablished == "C2" \notin established
 C3LocalNotEstablished == "C3Local" \notin established
 C3LocalityNotEstablished == "C3Locality" \notin established
 C4NotEstablished == "C4" \notin established
+ClassDBoundaryHittingNotEstablished == "ClassDBoundaryHitting" \notin established
+ClassDIntegrationAcceptanceNotEstablished == "ClassDIntegrationAcceptance" \notin established
 ClassDWedgeBoundaryHittingNotEstablished == "ClassDWedgeBoundaryHitting" \notin established
 CoincidenceDensityOneNotEstablished == "CoincidenceDensityOne" \notin established
 CoincidenceRankFibreTheoremsNotEstablished == "CoincidenceRankFibreTheorems" \notin established
@@ -352,6 +433,15 @@ LocalWitnessInjectivityNotEstablished == "LocalWitnessInjectivity" \notin establ
 MassBalanceK2ObstructionNotEstablished == "MassBalanceK2Obstruction" \notin established
 MeanAreaLiftNotEstablished == "MeanAreaLift" \notin established
 MidAreaNotEstablished == "MidArea" \notin established
+MinusClassDBoundaryHittingNotEstablished == "MinusClassDBoundaryHitting" \notin established
+MinusClassDBoundaryLineNotEstablished == "MinusClassDBoundaryLine" \notin established
+MinusClassDBoundaryStripsNotEstablished == "MinusClassDBoundaryStrips" \notin established
+MinusClassDPositiveBBoundaryHittingNotEstablished == "MinusClassDPositiveBBoundaryHitting" \notin established
+MinusClassDPositiveBCycleSumNotEstablished == "MinusClassDPositiveBCycleSum" \notin established
+MinusClassDResidualBoundaryHittingNotEstablished == "MinusClassDResidualBoundaryHitting" \notin established
+MinusClassDSeedCarrierClosureNotEstablished == "MinusClassDSeedCarrierClosure" \notin established
+MinusHighSumFormalCycleRayNotEstablished == "MinusHighSumFormalCycleRay" \notin established
+MinusSixEdgeFamilyExclusionNotEstablished == "MinusSixEdgeFamilyExclusion" \notin established
 Mod3SieveNotEstablished == "Mod3Sieve" \notin established
 OrientationMonodromyNotEstablished == "OrientationMonodromy" \notin established
 OrientationSpectrumNotEstablished == "OrientationSpectrum" \notin established
@@ -372,12 +462,16 @@ ParitySieveNotEstablished == "ParitySieve" \notin established
 PeriodicPairOneFibreNotEstablished == "PeriodicPairOneFibre" \notin established
 PhiSemisimplicityNotEstablished == "PhiSemisimplicity" \notin established
 PisotMeyerPropertyNotEstablished == "PisotMeyerProperty" \notin established
+PlusClassDBoundaryHittingNotEstablished == "PlusClassDBoundaryHitting" \notin established
+PlusClassDBoundaryLineNotEstablished == "PlusClassDBoundaryLine" \notin established
+PlusClassDPositiveBBoundaryHittingNotEstablished == "PlusClassDPositiveBBoundaryHitting" \notin established
 RepoSeedUnionBridgeNotEstablished == "RepoSeedUnionBridge" \notin established
 ReturnModuleFullRankNotEstablished == "ReturnModuleFullRank" \notin established
 SCCProducerNotEstablished == "SCCProducer" \notin established
 SeedCentralizerNotEstablished == "SeedCentralizer" \notin established
 SignatureReductionNotEstablished == "SignatureReduction" \notin established
 SinkSCCReductionNotEstablished == "SinkSCCReduction" \notin established
+SirventSolomyakTransferNotEstablished == "SirventSolomyakTransfer" \notin established
 SpanRichProductivityNotEstablished == "SpanRichProductivity" \notin established
 SpectralBlackBoxNotEstablished == "SpectralBlackBox" \notin established
 SpectralSCCProducerNotEstablished == "SpectralSCCProducer" \notin established
@@ -387,8 +481,11 @@ StrongCoincidenceFromPDSNotEstablished == "StrongCoincidenceFromPDS" \notin esta
 SwapOverlapFinitenessNotEstablished == "SwapOverlapFiniteness" \notin established
 Target1NotEstablished == "Target1" \notin established
 ThetaIntertwiningNotEstablished == "ThetaIntertwining" \notin established
+TwoObstructionCompletionNotEstablished == "TwoObstructionCompletion" \notin established
 UDForPowersNotEstablished == "UDForPowers" \notin established
 UniqueDecodabilityNotEstablished == "UniqueDecodability" \notin established
+UniversalAlignedCoincidenceNotEstablished == "UniversalAlignedCoincidence" \notin established
+UniversalBoundaryHittingNotEstablished == "UniversalBoundaryHitting" \notin established
 V5Thm51NotEstablished == "V5Thm51" \notin established
 W3LowGrowthNotEstablished == "W3LowGrowth" \notin established
 WedgeBoundNotEstablished == "WedgeBound" \notin established

@@ -1,0 +1,3531 @@
+{
+  "base_commit": "85fafd3383a2837785199ad7f66e913c0e86c2a7",
+  "compiler": "Mojo 1.1.0 (8189361e)",
+  "required_compiler": "1.1.0.dev2026090805",
+  "pinned_environment_reproduced": false,
+  "lock_sha256": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8",
+  "local_controls": {
+    "lattice_partition": "PASS",
+    "coefficient_sign_controls_final_source": "PASS",
+    "empty_block_regression": "PASS",
+    "invalid_component_arguments": "PASS; three invalid requests, no aggregate receipt",
+    "targeted_python": {
+      "command": "python -m pytest -q tests/test_class_d_positive_b_spine_transport.py tests/test_class_d_positive_b_support.py tests/test_class_d_certificate_agreement.py tests/test_class_d_plus_cover_data.py",
+      "exit_code": 0
+    },
+    "full_symbolic_line": {
+      "exit_code": 1,
+      "failed_test": "test_a_class_d_line_is_certified",
+      "expected_q0": 18,
+      "actual_q0": 21,
+      "untouched_base_replay_q0": 21,
+      "later_tests": "not reached"
+    },
+    "governance": "PASS after contract/status-label reconciliation",
+    "manuscript_integrity": "FAIL on unchanged base source, line 1357",
+    "coefficient_sign_controls_log": "sign-regression-occurrence.log",
+    "provenance_final": "FAIL only at unchanged manuscript line 1357; governance, generated surfaces, vendoring and source evidence checks pass"
+  },
+  "source_variants": "source-variants.json.gz",
+  "original_ci": "original-ci-observation.json",
+  "complete_receipts": [],
+  "integration_base_commit": "c0c5f9d10f3025d8fab8df07e4a300b1b173a70a",
+  "integration_base_changes": "two documentation files only; executed kernel dependencies unchanged",
+  "status": "PARTIAL_COMPONENTS_PINNED_REPLAY_PENDING",
+  "wedge_cores": [
+    {
+      "name": "low-0",
+      "u0": 1,
+      "v0": 7,
+      "symbolic_vertices": 164,
+      "core": "certified",
+      "boundary_obligations": 8,
+      "boundary_lines_certified": 8,
+      "boundary_lines_unresolved": 0,
+      "log": "repaired/low-0.log",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "name": "low-1",
+      "u0": 7,
+      "v0": 15,
+      "symbolic_vertices": 164,
+      "core": "certified",
+      "boundary_obligations": 22,
+      "boundary_lines_certified": 20,
+      "boundary_lines_unresolved": 2,
+      "log": "repaired/low-1.log",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "name": "low-2",
+      "u0": 1,
+      "v0": 7,
+      "symbolic_vertices": 164,
+      "core": "certified",
+      "boundary_obligations": 8,
+      "boundary_lines_certified": 8,
+      "boundary_lines_unresolved": 0,
+      "log": "repaired/low-2.log",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "name": "low-3",
+      "u0": 3,
+      "v0": 7,
+      "symbolic_vertices": 164,
+      "core": "certified",
+      "boundary_obligations": 10,
+      "boundary_lines_certified": 10,
+      "boundary_lines_unresolved": 0,
+      "log": "repaired/low-3.log",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "name": "low-4",
+      "u0": 3,
+      "v0": 15,
+      "symbolic_vertices": 164,
+      "core": "certified",
+      "boundary_obligations": 18,
+      "boundary_lines_certified": 18,
+      "boundary_lines_unresolved": 0,
+      "log": "repaired/low-4.log",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "name": "high",
+      "u0": 7,
+      "v0": 0,
+      "symbolic_vertices": 164,
+      "core": "certified",
+      "boundary_obligations": 7,
+      "boundary_lines_certified": 7,
+      "boundary_lines_unresolved": 0,
+      "log": "shifted/high.log",
+      "source_variant": "shifted-fallback"
+    }
+  ],
+  "low_boundary_lines": [
+    {
+      "coefficients": [
+        4,
+        4,
+        4,
+        3,
+        3,
+        1
+      ],
+      "covers": [
+        {
+          "low_wedge": 0,
+          "fixed_axis": "u",
+          "value": 0
+        },
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 0
+        }
+      ],
+      "existing_receipt_log": "repaired/low-0.log",
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 0 q0= 11 finite_pip= 11",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "coefficients": [
+        3,
+        4,
+        3,
+        3,
+        2,
+        1
+      ],
+      "covers": [
+        {
+          "low_wedge": 0,
+          "fixed_axis": "v",
+          "value": 0
+        }
+      ],
+      "existing_receipt_log": "repaired/low-0.log",
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 1 q0= 8 finite_pip= 8",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "coefficients": [
+        3,
+        8,
+        3,
+        7,
+        2,
+        4
+      ],
+      "covers": [
+        {
+          "low_wedge": 0,
+          "fixed_axis": "v",
+          "value": 1
+        }
+      ],
+      "existing_receipt_log": "low-0.log",
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 2 q0= 10 finite_pip= 10",
+      "source_variant": "components"
+    },
+    {
+      "coefficients": [
+        3,
+        12,
+        3,
+        11,
+        2,
+        7
+      ],
+      "covers": [
+        {
+          "low_wedge": 0,
+          "fixed_axis": "v",
+          "value": 2
+        }
+      ],
+      "existing_receipt_log": "low-0.log",
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 3 q0= 5 finite_pip= 5",
+      "source_variant": "components"
+    },
+    {
+      "coefficients": [
+        3,
+        16,
+        3,
+        15,
+        2,
+        10
+      ],
+      "covers": [
+        {
+          "low_wedge": 0,
+          "fixed_axis": "v",
+          "value": 3
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-3-16-3-15-2-10.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          3,
+          16,
+          3,
+          15,
+          2,
+          10
+        ],
+        "covers": [
+          {
+            "low_wedge": 0,
+            "fixed_axis": "v",
+            "value": 3
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "3",
+          "16",
+          "3",
+          "15",
+          "2",
+          "10"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 121.11,
+        "log": "line-3-16-3-15-2-10.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        3,
+        20,
+        3,
+        19,
+        2,
+        13
+      ],
+      "covers": [
+        {
+          "low_wedge": 0,
+          "fixed_axis": "v",
+          "value": 4
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-3-20-3-19-2-13.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          3,
+          20,
+          3,
+          19,
+          2,
+          13
+        ],
+        "covers": [
+          {
+            "low_wedge": 0,
+            "fixed_axis": "v",
+            "value": 4
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "3",
+          "20",
+          "3",
+          "19",
+          "2",
+          "13"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 73.91,
+        "log": "line-3-20-3-19-2-13.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        3,
+        24,
+        3,
+        23,
+        2,
+        16
+      ],
+      "covers": [
+        {
+          "low_wedge": 0,
+          "fixed_axis": "v",
+          "value": 5
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-3-24-3-23-2-16.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          3,
+          24,
+          3,
+          23,
+          2,
+          16
+        ],
+        "covers": [
+          {
+            "low_wedge": 0,
+            "fixed_axis": "v",
+            "value": 5
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "3",
+          "24",
+          "3",
+          "23",
+          "2",
+          "16"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 74.81,
+        "log": "line-3-24-3-23-2-16.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        3,
+        28,
+        3,
+        27,
+        2,
+        19
+      ],
+      "covers": [
+        {
+          "low_wedge": 0,
+          "fixed_axis": "v",
+          "value": 6
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-3-28-3-27-2-19.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          3,
+          28,
+          3,
+          27,
+          2,
+          19
+        ],
+        "covers": [
+          {
+            "low_wedge": 0,
+            "fixed_axis": "v",
+            "value": 6
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "3",
+          "28",
+          "3",
+          "27",
+          "2",
+          "19"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 108.18,
+        "log": "line-3-28-3-27-2-19.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        5,
+        4,
+        5,
+        3,
+        4,
+        1
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "u",
+          "value": 0
+        },
+        {
+          "low_wedge": 2,
+          "fixed_axis": "v",
+          "value": 0
+        }
+      ],
+      "existing_receipt_log": "repaired/low-2.log",
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 1 q0= 20 finite_pip= 20",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "coefficients": [
+        5,
+        8,
+        5,
+        7,
+        4,
+        4
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "u",
+          "value": 1
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-5-8-5-7-4-4.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          5,
+          8,
+          5,
+          7,
+          4,
+          4
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "u",
+            "value": 1
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "5",
+          "8",
+          "5",
+          "7",
+          "4",
+          "4"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 163.14,
+        "log": "line-5-8-5-7-4-4.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        5,
+        12,
+        5,
+        11,
+        4,
+        7
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "u",
+          "value": 2
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-5-12-5-11-4-7.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          5,
+          12,
+          5,
+          11,
+          4,
+          7
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "u",
+            "value": 2
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "5",
+          "12",
+          "5",
+          "11",
+          "4",
+          "7"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 123.12,
+        "log": "line-5-12-5-11-4-7.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        5,
+        16,
+        5,
+        15,
+        4,
+        10
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "u",
+          "value": 3
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-5-16-5-15-4-10.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          5,
+          16,
+          5,
+          15,
+          4,
+          10
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "u",
+            "value": 3
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "5",
+          "16",
+          "5",
+          "15",
+          "4",
+          "10"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 126.83,
+        "log": "line-5-16-5-15-4-10.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        5,
+        20,
+        5,
+        19,
+        4,
+        13
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "u",
+          "value": 4
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-5-20-5-19-4-13.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          5,
+          20,
+          5,
+          19,
+          4,
+          13
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "u",
+            "value": 4
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "5",
+          "20",
+          "5",
+          "19",
+          "4",
+          "13"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 125.53,
+        "log": "line-5-20-5-19-4-13.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        5,
+        24,
+        5,
+        23,
+        4,
+        16
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "u",
+          "value": 5
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-5-24-5-23-4-16.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          5,
+          24,
+          5,
+          23,
+          4,
+          16
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "u",
+            "value": 5
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "5",
+          "24",
+          "5",
+          "23",
+          "4",
+          "16"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 134.33,
+        "log": "line-5-24-5-23-4-16.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        5,
+        28,
+        5,
+        27,
+        4,
+        19
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "u",
+          "value": 6
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-5-28-5-27-4-19.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          5,
+          28,
+          5,
+          27,
+          4,
+          19
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "u",
+            "value": 6
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "5",
+          "28",
+          "5",
+          "27",
+          "4",
+          "19"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 124.7,
+        "log": "line-5-28-5-27-4-19.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        9,
+        4,
+        8,
+        3,
+        5
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 1
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-4-9-4-8-3-5.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          4,
+          9,
+          4,
+          8,
+          3,
+          5
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 1
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "9",
+          "4",
+          "8",
+          "3",
+          "5"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 160.58,
+        "log": "line-4-9-4-8-3-5.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        14,
+        4,
+        13,
+        3,
+        9
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 2
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-4-14-4-13-3-9.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          4,
+          14,
+          4,
+          13,
+          3,
+          9
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 2
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "14",
+          "4",
+          "13",
+          "3",
+          "9"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 260.19,
+        "log": "line-4-14-4-13-3-9.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        19,
+        4,
+        18,
+        3,
+        13
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 3
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-4-19-4-18-3-13.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          4,
+          19,
+          4,
+          18,
+          3,
+          13
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 3
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "19",
+          "4",
+          "18",
+          "3",
+          "13"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 276.98,
+        "log": "line-4-19-4-18-3-13.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        24,
+        4,
+        23,
+        3,
+        17
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 4
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-4-24-4-23-3-17.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          4,
+          24,
+          4,
+          23,
+          3,
+          17
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 4
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "24",
+          "4",
+          "23",
+          "3",
+          "17"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 343.91,
+        "log": "line-4-24-4-23-3-17.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        29,
+        4,
+        28,
+        3,
+        21
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 5
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-4-29-4-28-3-21.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          4,
+          29,
+          4,
+          28,
+          3,
+          21
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 5
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "29",
+          "4",
+          "28",
+          "3",
+          "21"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 567.29,
+        "log": "line-4-29-4-28-3-21.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        34,
+        4,
+        33,
+        3,
+        25
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 6
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-4-34-4-33-3-25.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          4,
+          34,
+          4,
+          33,
+          3,
+          25
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 6
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "34",
+          "4",
+          "33",
+          "3",
+          "25"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 711.94,
+        "log": "line-4-34-4-33-3-25.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        39,
+        4,
+        38,
+        3,
+        29
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 7
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-4-39-4-38-3-29.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          4,
+          39,
+          4,
+          38,
+          3,
+          29
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 7
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "39",
+          "4",
+          "38",
+          "3",
+          "29"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 783.5,
+        "log": "line-4-39-4-38-3-29.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        44,
+        4,
+        43,
+        3,
+        33
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 8
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-4-44-4-43-3-33.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          4,
+          44,
+          4,
+          43,
+          3,
+          33
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 8
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "44",
+          "4",
+          "43",
+          "3",
+          "33"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 896.26,
+        "log": "line-4-44-4-43-3-33.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        49,
+        4,
+        48,
+        3,
+        37
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 9
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-4-49-4-48-3-37.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          4,
+          49,
+          4,
+          48,
+          3,
+          37
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 9
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "49",
+          "4",
+          "48",
+          "3",
+          "37"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 963.36,
+        "log": "line-4-49-4-48-3-37.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        54,
+        4,
+        53,
+        3,
+        41
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 10
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-4-54-4-53-3-41.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          4,
+          54,
+          4,
+          53,
+          3,
+          41
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 10
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "54",
+          "4",
+          "53",
+          "3",
+          "41"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 1026.74,
+        "log": "line-4-54-4-53-3-41.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        59,
+        4,
+        58,
+        3,
+        45
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 11
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-4-59-4-58-3-45.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          4,
+          59,
+          4,
+          58,
+          3,
+          45
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 11
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "59",
+          "4",
+          "58",
+          "3",
+          "45"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 1097.22,
+        "log": "line-4-59-4-58-3-45.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        64,
+        4,
+        63,
+        3,
+        49
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 12
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-4-64-4-63-3-49.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          4,
+          64,
+          4,
+          63,
+          3,
+          49
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 12
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "64",
+          "4",
+          "63",
+          "3",
+          "49"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 1183.94,
+        "log": "line-4-64-4-63-3-49.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        69,
+        4,
+        68,
+        3,
+        53
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 13
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": {
+        "coefficients": [
+          4,
+          69,
+          4,
+          68,
+          3,
+          53
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 13
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "69",
+          "4",
+          "68",
+          "3",
+          "53"
+        ],
+        "exit_code": 124,
+        "elapsed_seconds": 1200.0,
+        "log": "line-4-69-4-68-3-53.log"
+      },
+      "execution_log": "boundary-retries/line-4-69-4-68-3-53.log",
+      "status": "execution_incomplete",
+      "execution": {
+        "coefficients": [
+          4,
+          69,
+          4,
+          68,
+          3,
+          53
+        ],
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "69",
+          "4",
+          "68",
+          "3",
+          "53"
+        ],
+        "exit_code": null,
+        "status": "session_lost_no_receipt",
+        "resource_budget_seconds": 1800,
+        "elapsed_seconds": null,
+        "observed_on": "2026-10-19",
+        "tool_error": "write_stdin failed: Unknown process id 77030",
+        "log": "line-4-69-4-68-3-53.log",
+        "reason_for_retry": "previous 1200-second concurrent sweep timed out; no mathematical refusal",
+        "credit": false
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        4,
+        74,
+        4,
+        73,
+        3,
+        57
+      ],
+      "covers": [
+        {
+          "low_wedge": 1,
+          "fixed_axis": "v",
+          "value": 14
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": {
+        "coefficients": [
+          4,
+          74,
+          4,
+          73,
+          3,
+          57
+        ],
+        "covers": [
+          {
+            "low_wedge": 1,
+            "fixed_axis": "v",
+            "value": 14
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "74",
+          "4",
+          "73",
+          "3",
+          "57"
+        ],
+        "exit_code": 124,
+        "elapsed_seconds": 1200.0,
+        "log": "line-4-74-4-73-3-57.log"
+      },
+      "execution_log": "boundary-retries/line-4-74-4-73-3-57.log",
+      "status": "execution_incomplete",
+      "execution": {
+        "coefficients": [
+          4,
+          74,
+          4,
+          73,
+          3,
+          57
+        ],
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "4",
+          "74",
+          "4",
+          "73",
+          "3",
+          "57"
+        ],
+        "exit_code": null,
+        "status": "session_lost_no_receipt",
+        "resource_budget_seconds": 1800,
+        "elapsed_seconds": null,
+        "observed_on": "2026-10-19",
+        "tool_error": "write_stdin failed: Unknown process id 77030",
+        "log": "line-4-74-4-73-3-57.log",
+        "reason_for_retry": "previous 1200-second concurrent sweep timed out; no mathematical refusal",
+        "credit": false
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        6,
+        4,
+        6,
+        3,
+        5,
+        1
+      ],
+      "covers": [
+        {
+          "low_wedge": 2,
+          "fixed_axis": "u",
+          "value": 0
+        },
+        {
+          "low_wedge": 3,
+          "fixed_axis": "v",
+          "value": 0
+        }
+      ],
+      "existing_receipt_log": "repaired/low-2.log",
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 0 q0= 8 finite_pip= 8",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "coefficients": [
+        5,
+        10,
+        5,
+        9,
+        4,
+        6
+      ],
+      "covers": [
+        {
+          "low_wedge": 2,
+          "fixed_axis": "v",
+          "value": 1
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-5-10-5-9-4-6.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          5,
+          10,
+          5,
+          9,
+          4,
+          6
+        ],
+        "covers": [
+          {
+            "low_wedge": 2,
+            "fixed_axis": "v",
+            "value": 1
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "5",
+          "10",
+          "5",
+          "9",
+          "4",
+          "6"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 279.21,
+        "log": "line-5-10-5-9-4-6.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        5,
+        16,
+        5,
+        15,
+        4,
+        11
+      ],
+      "covers": [
+        {
+          "low_wedge": 2,
+          "fixed_axis": "v",
+          "value": 2
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-5-16-5-15-4-11.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          5,
+          16,
+          5,
+          15,
+          4,
+          11
+        ],
+        "covers": [
+          {
+            "low_wedge": 2,
+            "fixed_axis": "v",
+            "value": 2
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "5",
+          "16",
+          "5",
+          "15",
+          "4",
+          "11"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 422.25,
+        "log": "line-5-16-5-15-4-11.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        5,
+        22,
+        5,
+        21,
+        4,
+        16
+      ],
+      "covers": [
+        {
+          "low_wedge": 2,
+          "fixed_axis": "v",
+          "value": 3
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-5-22-5-21-4-16.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          5,
+          22,
+          5,
+          21,
+          4,
+          16
+        ],
+        "covers": [
+          {
+            "low_wedge": 2,
+            "fixed_axis": "v",
+            "value": 3
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "5",
+          "22",
+          "5",
+          "21",
+          "4",
+          "16"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 341.54,
+        "log": "line-5-22-5-21-4-16.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        5,
+        28,
+        5,
+        27,
+        4,
+        21
+      ],
+      "covers": [
+        {
+          "low_wedge": 2,
+          "fixed_axis": "v",
+          "value": 4
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-5-28-5-27-4-21.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          5,
+          28,
+          5,
+          27,
+          4,
+          21
+        ],
+        "covers": [
+          {
+            "low_wedge": 2,
+            "fixed_axis": "v",
+            "value": 4
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "5",
+          "28",
+          "5",
+          "27",
+          "4",
+          "21"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 105.71,
+        "log": "line-5-28-5-27-4-21.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        5,
+        34,
+        5,
+        33,
+        4,
+        26
+      ],
+      "covers": [
+        {
+          "low_wedge": 2,
+          "fixed_axis": "v",
+          "value": 5
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-5-34-5-33-4-26.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          5,
+          34,
+          5,
+          33,
+          4,
+          26
+        ],
+        "covers": [
+          {
+            "low_wedge": 2,
+            "fixed_axis": "v",
+            "value": 5
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "5",
+          "34",
+          "5",
+          "33",
+          "4",
+          "26"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 91.65,
+        "log": "line-5-34-5-33-4-26.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        5,
+        40,
+        5,
+        39,
+        4,
+        31
+      ],
+      "covers": [
+        {
+          "low_wedge": 2,
+          "fixed_axis": "v",
+          "value": 6
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-5-40-5-39-4-31.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          5,
+          40,
+          5,
+          39,
+          4,
+          31
+        ],
+        "covers": [
+          {
+            "low_wedge": 2,
+            "fixed_axis": "v",
+            "value": 6
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "5",
+          "40",
+          "5",
+          "39",
+          "4",
+          "31"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 121.84,
+        "log": "line-5-40-5-39-4-31.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        4,
+        7,
+        3,
+        6,
+        1
+      ],
+      "covers": [
+        {
+          "low_wedge": 3,
+          "fixed_axis": "u",
+          "value": 0
+        },
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 0
+        }
+      ],
+      "existing_receipt_log": "repaired/low-3.log",
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 0 q0= 9 finite_pip= 9",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        10,
+        7,
+        9,
+        6,
+        6
+      ],
+      "covers": [
+        {
+          "low_wedge": 3,
+          "fixed_axis": "u",
+          "value": 1
+        }
+      ],
+      "existing_receipt_log": "repaired/low-3.log",
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 1 q0= 8 finite_pip= 8",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        16,
+        7,
+        15,
+        6,
+        11
+      ],
+      "covers": [
+        {
+          "low_wedge": 3,
+          "fixed_axis": "u",
+          "value": 2
+        }
+      ],
+      "existing_receipt_log": "low-3.log",
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 2 q0= 7 finite_pip= 7",
+      "source_variant": "components"
+    },
+    {
+      "coefficients": [
+        6,
+        11,
+        6,
+        10,
+        5,
+        7
+      ],
+      "covers": [
+        {
+          "low_wedge": 3,
+          "fixed_axis": "v",
+          "value": 1
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-6-11-6-10-5-7.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          6,
+          11,
+          6,
+          10,
+          5,
+          7
+        ],
+        "covers": [
+          {
+            "low_wedge": 3,
+            "fixed_axis": "v",
+            "value": 1
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "6",
+          "11",
+          "6",
+          "10",
+          "5",
+          "7"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 130.25,
+        "log": "line-6-11-6-10-5-7.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        6,
+        18,
+        6,
+        17,
+        5,
+        13
+      ],
+      "covers": [
+        {
+          "low_wedge": 3,
+          "fixed_axis": "v",
+          "value": 2
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-6-18-6-17-5-13.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          6,
+          18,
+          6,
+          17,
+          5,
+          13
+        ],
+        "covers": [
+          {
+            "low_wedge": 3,
+            "fixed_axis": "v",
+            "value": 2
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "6",
+          "18",
+          "6",
+          "17",
+          "5",
+          "13"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 104.33,
+        "log": "line-6-18-6-17-5-13.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        6,
+        25,
+        6,
+        24,
+        5,
+        19
+      ],
+      "covers": [
+        {
+          "low_wedge": 3,
+          "fixed_axis": "v",
+          "value": 3
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-6-25-6-24-5-19.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          6,
+          25,
+          6,
+          24,
+          5,
+          19
+        ],
+        "covers": [
+          {
+            "low_wedge": 3,
+            "fixed_axis": "v",
+            "value": 3
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "6",
+          "25",
+          "6",
+          "24",
+          "5",
+          "19"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 99.25,
+        "log": "line-6-25-6-24-5-19.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        6,
+        32,
+        6,
+        31,
+        5,
+        25
+      ],
+      "covers": [
+        {
+          "low_wedge": 3,
+          "fixed_axis": "v",
+          "value": 4
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-6-32-6-31-5-25.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          6,
+          32,
+          6,
+          31,
+          5,
+          25
+        ],
+        "covers": [
+          {
+            "low_wedge": 3,
+            "fixed_axis": "v",
+            "value": 4
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "6",
+          "32",
+          "6",
+          "31",
+          "5",
+          "25"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 107.98,
+        "log": "line-6-32-6-31-5-25.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        6,
+        39,
+        6,
+        38,
+        5,
+        31
+      ],
+      "covers": [
+        {
+          "low_wedge": 3,
+          "fixed_axis": "v",
+          "value": 5
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-6-39-6-38-5-31.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          6,
+          39,
+          6,
+          38,
+          5,
+          31
+        ],
+        "covers": [
+          {
+            "low_wedge": 3,
+            "fixed_axis": "v",
+            "value": 5
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "6",
+          "39",
+          "6",
+          "38",
+          "5",
+          "31"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 111.28,
+        "log": "line-6-39-6-38-5-31.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        6,
+        46,
+        6,
+        45,
+        5,
+        37
+      ],
+      "covers": [
+        {
+          "low_wedge": 3,
+          "fixed_axis": "v",
+          "value": 6
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-6-46-6-45-5-37.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          6,
+          46,
+          6,
+          45,
+          5,
+          37
+        ],
+        "covers": [
+          {
+            "low_wedge": 3,
+            "fixed_axis": "v",
+            "value": 6
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "6",
+          "46",
+          "6",
+          "45",
+          "5",
+          "37"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 109.46,
+        "log": "line-6-46-6-45-5-37.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        8,
+        4,
+        8,
+        3,
+        7,
+        1
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "u",
+          "value": 0
+        }
+      ],
+      "existing_receipt_log": "repaired/low-4.log",
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 0 q0= 11 finite_pip= 11",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "coefficients": [
+        8,
+        11,
+        8,
+        10,
+        7,
+        7
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "u",
+          "value": 1
+        }
+      ],
+      "existing_receipt_log": "repaired/low-4.log",
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 1 q0= 10 finite_pip= 10",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "coefficients": [
+        8,
+        18,
+        8,
+        17,
+        7,
+        13
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "u",
+          "value": 2
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-8-18-8-17-7-13.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          8,
+          18,
+          8,
+          17,
+          7,
+          13
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "u",
+            "value": 2
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "8",
+          "18",
+          "8",
+          "17",
+          "7",
+          "13"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 132.15,
+        "log": "line-8-18-8-17-7-13.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        12,
+        7,
+        11,
+        6,
+        8
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 1
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-12-7-11-6-8.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          12,
+          7,
+          11,
+          6,
+          8
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 1
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "12",
+          "7",
+          "11",
+          "6",
+          "8"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 122.77,
+        "log": "line-7-12-7-11-6-8.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        20,
+        7,
+        19,
+        6,
+        15
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 2
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-20-7-19-6-15.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          20,
+          7,
+          19,
+          6,
+          15
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 2
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "20",
+          "7",
+          "19",
+          "6",
+          "15"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 120.4,
+        "log": "line-7-20-7-19-6-15.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        28,
+        7,
+        27,
+        6,
+        22
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 3
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-28-7-27-6-22.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          28,
+          7,
+          27,
+          6,
+          22
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 3
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "28",
+          "7",
+          "27",
+          "6",
+          "22"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 123.21,
+        "log": "line-7-28-7-27-6-22.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        36,
+        7,
+        35,
+        6,
+        29
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 4
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-36-7-35-6-29.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          36,
+          7,
+          35,
+          6,
+          29
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 4
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "36",
+          "7",
+          "35",
+          "6",
+          "29"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 169.2,
+        "log": "line-7-36-7-35-6-29.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        44,
+        7,
+        43,
+        6,
+        36
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 5
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-44-7-43-6-36.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          44,
+          7,
+          43,
+          6,
+          36
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 5
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "44",
+          "7",
+          "43",
+          "6",
+          "36"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 128.53,
+        "log": "line-7-44-7-43-6-36.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        52,
+        7,
+        51,
+        6,
+        43
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 6
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-52-7-51-6-43.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          52,
+          7,
+          51,
+          6,
+          43
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 6
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "52",
+          "7",
+          "51",
+          "6",
+          "43"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 163.79,
+        "log": "line-7-52-7-51-6-43.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        60,
+        7,
+        59,
+        6,
+        50
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 7
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-60-7-59-6-50.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          60,
+          7,
+          59,
+          6,
+          50
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 7
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "60",
+          "7",
+          "59",
+          "6",
+          "50"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 126.61,
+        "log": "line-7-60-7-59-6-50.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        68,
+        7,
+        67,
+        6,
+        57
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 8
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-68-7-67-6-57.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          68,
+          7,
+          67,
+          6,
+          57
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 8
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "68",
+          "7",
+          "67",
+          "6",
+          "57"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 123.5,
+        "log": "line-7-68-7-67-6-57.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        76,
+        7,
+        75,
+        6,
+        64
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 9
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-76-7-75-6-64.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          76,
+          7,
+          75,
+          6,
+          64
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 9
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "76",
+          "7",
+          "75",
+          "6",
+          "64"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 147.11,
+        "log": "line-7-76-7-75-6-64.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        84,
+        7,
+        83,
+        6,
+        71
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 10
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-84-7-83-6-71.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          84,
+          7,
+          83,
+          6,
+          71
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 10
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "84",
+          "7",
+          "83",
+          "6",
+          "71"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 111.86,
+        "log": "line-7-84-7-83-6-71.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        92,
+        7,
+        91,
+        6,
+        78
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 11
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-92-7-91-6-78.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          92,
+          7,
+          91,
+          6,
+          78
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 11
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "92",
+          "7",
+          "91",
+          "6",
+          "78"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 133.54,
+        "log": "line-7-92-7-91-6-78.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        100,
+        7,
+        99,
+        6,
+        85
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 12
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-100-7-99-6-85.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          100,
+          7,
+          99,
+          6,
+          85
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 12
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "100",
+          "7",
+          "99",
+          "6",
+          "85"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 109.79,
+        "log": "line-7-100-7-99-6-85.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        108,
+        7,
+        107,
+        6,
+        92
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 13
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-108-7-107-6-92.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          108,
+          7,
+          107,
+          6,
+          92
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 13
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "108",
+          "7",
+          "107",
+          "6",
+          "92"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 72.97,
+        "log": "line-7-108-7-107-6-92.log"
+      },
+      "source_variant": "shifted-fallback"
+    },
+    {
+      "coefficients": [
+        7,
+        116,
+        7,
+        115,
+        6,
+        99
+      ],
+      "covers": [
+        {
+          "low_wedge": 4,
+          "fixed_axis": "v",
+          "value": 14
+        }
+      ],
+      "existing_receipt_log": null,
+      "prior_attempt": null,
+      "execution_log": "boundary-lines-final/line-7-116-7-115-6-99.log",
+      "status": "certified",
+      "execution": {
+        "coefficients": [
+          7,
+          116,
+          7,
+          115,
+          6,
+          99
+        ],
+        "covers": [
+          {
+            "low_wedge": 4,
+            "fixed_axis": "v",
+            "value": 14
+          }
+        ],
+        "existing_receipt_log": null,
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "7",
+          "116",
+          "7",
+          "115",
+          "6",
+          "99"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 68.62,
+        "log": "line-7-116-7-115-6-99.log"
+      },
+      "source_variant": "shifted-fallback"
+    }
+  ],
+  "high_boundary_lines": [
+    {
+      "coefficients": [
+        1,
+        11,
+        1,
+        10,
+        1,
+        8
+      ],
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 0 q0= 1 finite_pip= 1",
+      "log": "shifted/high.log"
+    },
+    {
+      "coefficients": [
+        1,
+        19,
+        1,
+        18,
+        1,
+        15
+      ],
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 1 q0= 1 finite_pip= 1",
+      "log": "shifted/high.log"
+    },
+    {
+      "coefficients": [
+        1,
+        27,
+        1,
+        26,
+        1,
+        22
+      ],
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 2 q0= 1 finite_pip= 1",
+      "log": "shifted/high.log"
+    },
+    {
+      "coefficients": [
+        1,
+        35,
+        1,
+        34,
+        1,
+        29
+      ],
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 3 q0= 1 finite_pip= 1",
+      "log": "shifted/high.log"
+    },
+    {
+      "coefficients": [
+        1,
+        43,
+        1,
+        42,
+        1,
+        36
+      ],
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 4 q0= 1 finite_pip= 1",
+      "log": "shifted/high.log"
+    },
+    {
+      "coefficients": [
+        1,
+        51,
+        1,
+        50,
+        1,
+        43
+      ],
+      "status": "certified",
+      "receipt": "BOUNDARY_LINE_CERTIFIED 5 q0= 1 finite_pip= 1",
+      "log": "shifted/high.log"
+    },
+    {
+      "coefficients": [
+        1,
+        59,
+        1,
+        58,
+        1,
+        50
+      ],
+      "status": "certified",
+      "execution": {
+        "component": "high last strip u=6",
+        "coefficients": [
+          1,
+          59,
+          1,
+          58,
+          1,
+          50
+        ],
+        "command": [
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/tmp/psc-line-chamber-final",
+          "norm",
+          "D",
+          "1",
+          "59",
+          "1",
+          "58",
+          "1",
+          "50"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 27.08,
+        "log": "high-last-strip.log"
+      }
+    }
+  ],
+  "interface_lines": [
+    {
+      "j": 1,
+      "status": "certified",
+      "q0": 12,
+      "symbolic_vertices": 164,
+      "log": "repaired/line-1.log",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "j": 2,
+      "status": "certified",
+      "q0": 12,
+      "symbolic_vertices": 164,
+      "log": "repaired/line-2.log",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "j": 3,
+      "status": "certified",
+      "q0": 12,
+      "symbolic_vertices": 164,
+      "log": "repaired/line-3.log",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "j": 4,
+      "status": "certified",
+      "q0": 12,
+      "symbolic_vertices": 164,
+      "log": "repaired/line-4.log",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "j": 5,
+      "status": "certified",
+      "q0": 12,
+      "symbolic_vertices": 164,
+      "log": "repaired/line-5.log",
+      "source_variant": "coefficient-fallback"
+    },
+    {
+      "j": 6,
+      "status": "certified",
+      "q0": 13,
+      "symbolic_vertices": 164,
+      "log": "repaired/line-6.log",
+      "source_variant": "coefficient-fallback"
+    }
+  ],
+  "total_boundary_obligations": 73,
+  "distinct_boundary_lines": 69,
+  "distinct_boundary_lines_certified": 67,
+  "component_cover_complete": false,
+  "whole_quadrant_receipt_emitted": false,
+  "project_family_status_promoted": false,
+  "minus_carrier_closure": "open",
+  "universal_boundary_hitting": "open",
+  "general_psc": "open",
+  "minus_uniform_recurrent_carrier_inclusion": "open; separate PR #290",
+  "remaining_lines": [
+    [
+      4,
+      69,
+      4,
+      68,
+      3,
+      53
+    ],
+    [
+      4,
+      74,
+      4,
+      73,
+      3,
+      57
+    ]
+  ],
+  "boundary_obligations_certified": 71
+}

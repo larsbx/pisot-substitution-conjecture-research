@@ -1,0 +1,36 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+/workspace/scratch/518517c07353/pisot-substitution-conjecture-research/kernel/tests/test_symbolic_line.mojo:173:8: warning: doc string summary should begin with a capital letter or non-alpha character, but this begins with 'q'
+    """qx_shift is substitution; the quadrant certificate reads a positive
+       ^
+/workspace/scratch/518517c07353/pisot-substitution-conjecture-research/kernel/tests/test_symbolic_line.mojo:198:8: warning: doc string summary should begin with a capital letter or non-alpha character, but this begins with 'd'
+    """det g(M) for g = t is det M, and for g = t - 1 it is -chi(1)."""
+       ^
+/workspace/scratch/518517c07353/pisot-substitution-conjecture-research/kernel/tests/test_symbolic_line.mojo:330:8: warning: doc string summary should begin with a capital letter or non-alpha character, but this begins with 'p'
+    """p = 3 q + 1, r = q - 1 has a second eigenvalue outside the unit disc for
+       ^
+[PASS] test_asymmetric_wedge_and_boundary_specializations
+contract-receipt: Theorem W coordinate regression only: asymmetric class-D wedge characteristic polynomials match concrete integer incidence matrices on both axes and unequal parameter points; edge_a and edge_b retain their coordinate and characteristic polynomial; an asymmetric quadrant corner is unchanged by a positive sign query
+[PASS] test_eventual_sign_records_the_largest_root
+[PASS] test_parametric_signs_agree_with_concrete_signs
+[PASS] test_pseudo_remainder_keeps_the_sign_at_beta
+[PASS] test_a_line_with_determinant_zero_is_not_certified
+[PASS] test_the_class_b_line_certificate
+[PASS] test_a_second_line_of_class_b_is_certified
+[PASS] test_a_line_that_leaves_the_pisot_class_is_refused
+[PASS] test_every_listed_line_has_a_pinned_verdict
+[PASS] test_the_command_line_is_strict
+[PASS] test_a_class_line_names_its_normal_form_members
+PIN_TRANSITION_VERTEX_SET_CHECKED sturm 18 vertices= 97
+PIN_TRANSITION_VERTEX_SET_CHECKED sturm 19 vertices= 97
+PIN_TRANSITION_VERTEX_SET_CHECKED sturm 20 vertices= 97
+[PASS] test_a_class_d_line_is_certified
+[PASS] test_two_parameter_polynomials_and_quadrant_signs
+[PASS] test_every_wedge_edge_is_a_pinned_line
+PIN_TRANSITION_VERTEX_SET_CHECKED norm 4 vertices= 105
+PIN_TRANSITION_VERTEX_SET_CHECKED norm 5 vertices= 105
+[PASS] test_norm_mode_shrinks_a_threshold_near_the_asymptote
+[PASS] test_the_norm_is_the_product_over_the_roots
+contract-receipt: Theorem L certificate (class B line sigma_q: x -> x y^(2q+2) x, c -> c y^q x, y -> c y^(q+1) x): the symbolic swap-seed overlap graph, decided by parametric Sturm-Tarski queries over Q[q] with certified threshold, has 119 vertices for every q >= 52, all with an offset-zero descendant, and the line is certified PIP there; every q in 0..51 is PIP and its exact seed-reachable graph (screened kernel) has every vertex hitting; at q = 52 and 57 the symbolic graph with q substituted equals the exact graph; parametric signs agree with concrete signs at q = 60; pseudo-remainders keep the sign at beta; a det-0 line is refused
+contract-receipt: Theorem L' certificate: the class B line p = q + 1, r = q + 1 is certified (121 symbolic vertices for every q >= 14, all hitting; q < 14: 14 PIP members, all hitting); the line p = 3q + 1, r = q - 1, which leaves the Pisot class, is refused; certified_lines() pins every listed verdict and a verdict off its pin is refused; the command line accepts only no argument, SLOPE K BRANCH, CLASS AP BP AQ BQ AR BR or lines
+contract-receipt: Theorem W machinery: parameter polynomials in (a, b) substitute correctly under qx_shift; the quadrant certificate reads a positive polynomial with a negative coefficient through a Polya multiplier and refuses one that changes sign on the quadrant; the norm det g(M) is det M for g = t and -chi(1) for g = t - 1; every boundary line of every pinned wedge is a pinned norm-mode line, and the boundary lines cover the wedge outside its quadrant; the norm-mode line D (3n + 14, 3n + 15, 4n + 17) is certified with threshold 6 and six finite PIP members, reproduces its pin, and matches the exact vertex set at the historical transition n = 4, 5
+contract-receipt: Theorem L'' driver: a ClassLine of Theorem E's class A, B, C or D builds its normal-form members, Lemma P1's p > q bounds the admissible cone in classes A-C, and every pinned row names a distinct valid line; the class D line p = n + 1, q = n, r = n + 3 is certified (97 symbolic vertices for every n >= 21, all hitting; n < 21: 20 PIP members, all hitting, 1 not PIP), reproduces its pin, and matches the exact vertex set at the historical transition n = 18, 19, 20

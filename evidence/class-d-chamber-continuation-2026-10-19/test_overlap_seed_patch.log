@@ -1,0 +1,26 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+[PASS] test_ternary_nonunit_good_exit_is_an_actual_labelled_overlap
+[PASS] test_perron_order_is_exact_on_basic_elements
+canonical seed-overlap initial states: 9
+canonical seed-overlap graph states: 628
+[PASS] test_canonical_seed_overlap_graph_is_productive
+[PASS] test_capped_productivity_query_fails_closed
+[PASS] test_non_pip_substitution_is_rejected
+[PASS] test_large_incidence_is_rejected_before_unchecked_pip_arithmetic
+[PASS] test_first_coincidence_depths_pin_exact_values
+[PASS] test_left_aligned_and_strong_coincidence_depths_pin_exact_values
+[PASS] test_common_child_starts_are_exactly_zero_shift_children
+[PASS] test_nonproductive_sink_obstruction_is_extracted_exactly
+[PASS] test_the_perron_cache_rebuilds_the_tables_it_shares
+[PASS] test_the_perron_cache_refuses_what_a_bare_build_refuses
+[PASS] test_the_certified_domain_ends_at_column_sum_six
+[PASS] test_the_perron_cache_keeps_refusing_after_a_failed_build
+[PASS] test_the_cube_image_specimen_has_a_productive_depth_19_overlap_graph
+[PASS] test_the_cube_image_specimen_reaches_a_half_coincidence_by_depth_17
+16 seed-patch-overlap Mojo tests passed.
+contract-receipt: for a->aaabcc, b->ab, c->a the seed overlap (a,a,e_b) has a nonzero self-loop and an offset-zero child reaching tile coincidence in one more step
+claim-receipt: SwapOverlapFiniteness
+claim-receipt: AlignedOverlapsAreStrongCoincidence
+claim-receipt: BoundaryCoincidenceCriterion
+contract-receipt: 0 -> 1, 1 -> 222, 2 -> 0222 has an uncapped productive seed-patch overlap graph of 1142 states with maximum first-coincidence depth 19
+contract-receipt: every seed-patch overlap of 0 -> 1, 1 -> 222, 2 -> 0222 has an offset-zero descendant, with maximum first left-aligned depth 17

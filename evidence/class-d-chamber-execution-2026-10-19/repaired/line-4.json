@@ -1,0 +1,14 @@
+{
+  "component": "line-4",
+  "command": [
+    "stdbuf",
+    "-oL",
+    "-eL",
+    "/tmp/psc-plus-chambers-final",
+    "line",
+    "4"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 163.74,
+  "log": "line-4.log"
+}

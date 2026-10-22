@@ -1,0 +1,6 @@
+OK: 30 generated surfaces are current.
+Proof bank: 109 claims, 27 named Lean proofs, 277 source openings
+OK manuscript sources: 6 required files present, 3 .tex/.pdf checked
+OK Markdown source integrity: 184 file(s) checked
+OK: vendored packages match their pins (finite_exact, substitution_dynamics, finite_linear_algebra, claim_governance, proof_records, oracle_refinement, parallel_fold, proof_architecture, finite_graph, finite_automata, mojo_smoke, vendoring, polyglot_envelope).
+OK: claim governance audit of larsbx/pisot-substitution-conjecture-research passed [terminology, claims, coverage, promotion, numerics, consistency]

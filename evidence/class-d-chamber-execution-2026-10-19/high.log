@@ -1,0 +1,3 @@
+BEGIN_WEDGE_CORE class D wedge p = 11 + 8a + 1b q = 10 + 8a + 1b r = 8 + 7a + 1b
+stack trace was not collected. Enable stack trace collection with environment variable `MODULAR_DEBUG=stack-trace-on-error`
+Unhandled exception caught during execution: symbolic closure source=1|0||{1,}|{-1,}: no quadrant corner certifies the sign of {-187968,-560496,-663292,-383168,-101556,-5652,1568,}{-69608,-167120,-148948,-56736,-6440,644,}{-9880,-17740,-10436,-1868,88,}{-640,-744,-208,4,}{-16,-8,}

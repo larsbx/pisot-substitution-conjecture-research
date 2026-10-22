@@ -1,0 +1,7 @@
+/workspace/scratch/18b9f676dfcd/psc/kernel/tests/test_class_d_assembly.mojo:11:44: error: aliasing values passed immutably to 'self' argument and passed mutably to 'other' argument in '__add__' call
+    for bad in [String(""),plus.copy(),plus+plus]:
+                                       ~~~~^~~~~
+/workspace/scratch/18b9f676dfcd/psc/kernel/tests/test_class_d_assembly.mojo:11:44: note: 'origin_of(plus)' memory accessed through reference embedded in value of type 'StringSpan[origin_of(plus)]'
+    for bad in [String(""),plus.copy(),plus+plus]:
+                                           ^
+/tmp/psc-audit-runtime/bin/mojo: error: failed to parse the provided Mojo source module

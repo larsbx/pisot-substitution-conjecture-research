@@ -28,6 +28,9 @@ MODELS=(
     # and canonical G1 under AllSeedOverlapProductivity, PDS under G1 and SCC Producer,
     # LoadBearingSCC under G1, SpectralBlackBox unconditionally) are read off
     # the Reachable sets rather than off expected violations.
+    "MCLedgerClassDIntegrationAssumed:HOLD"
+    "MCLedgerTwoObstructionsAssumed:HOLD"
+    "MCLedgerMinusCycleSumAssumed:HOLD"
     "MCLedgerOpen:HOLD"
     "MCLedgerImports:HOLD"
     "MCLedgerG1AndProducer:HOLD"

@@ -15,6 +15,27 @@
 [repository]
 name = "larsbx/pisot-substitution-conjecture-research"
 
+[review_policy]
+# Independent human review is intentionally downstream of proof construction.
+# It validates a complete closure candidate; it does not gate continued
+# mathematics, provisional dependency use, or assembly of that candidate.
+mode = "post-closure-validation"
+blocks_research_progress = false
+blocks_provisional_dependency_use = false
+blocks_closure_construction = false
+final_validation_required = true
+truthful_status_labels_required = true
+independently_reviewed_label_requires_completed_review = true
+review_pending_classification = "non-blocking-validation-debt"
+human_surfaces = [
+  "README.md",
+  "AGENTS.md",
+  "docs/README.md",
+  "docs/research-roadmap-2026-09-21.md",
+  "docs/verification-architecture.md",
+]
+
+
 [scan]
 prose = ["README.md", "docs/**/*.md", "manuscripts/*.tex", "manuscripts/*.md"]
 source = ["kernel/psc/**/*.mojo", "kernel/*.mojo", "kernel/tests/*.mojo", "reference/psc_research/*.py"]
@@ -383,6 +404,44 @@ anchor = '| AllStatesProductiveViaOverlaps |'
 window_lines = 0
 
 [[claim]]
+name = "BargeClassFlowPDS"
+status = "imported"
+aliases = ["Barge class theorem"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BargeClassFlowPDS"'
+section = "ImportedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BargeClassFlowPDS |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Barge class theorem |"
+window_lines = 0
+
+[[claim]]
+name = "BargeClassSymbolicPDS"
+status = "proved"
+aliases = ["Barge-class symbolic PDS"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BargeClassSymbolicPDS"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BargeClassSymbolicPDS |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Barge-class symbolic PDS |"
+window_lines = 0
+
+[[claim]]
 name = "BoundaryCoincidenceCriterion"
 status = "proved"
 aliases = ["boundary-hitting criterion"]
@@ -440,6 +499,25 @@ anchor = "| Box-automaton PDS certificate |"
 window_lines = 0
 
 [[claim]]
+name = "BoxAutomatonSymbolicPDSCertificate"
+status = "proved"
+aliases = ["per-specimen box symbolic PDS certificate"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BoxAutomatonSymbolicPDSCertificate"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BoxAutomatonSymbolicPDSCertificate |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Box-automaton symbolic PDS certificate |"
+window_lines = 0
+
+[[claim]]
 name = "BoxCycleContainment"
 status = "proved"
 aliases = ["Lemma Ω1"]
@@ -456,6 +534,25 @@ window_lines = 0
 [[claim.surfaces]]
 path = "docs/claim-status-and-source-map-2026-09-13.md"
 anchor = "| Cycle vertices lie in the box automaton |"
+window_lines = 0
+
+[[claim]]
+name = "BrunCompositeSymbolicPDS"
+status = "imported"
+aliases = ["Corollary B″", "Brun composites have symbolic PDS"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"BrunCompositeSymbolicPDS"'
+section = "ImportedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| BrunCompositeSymbolicPDS |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Brun composites have symbolic PDS (S-adic Corollary B″) |"
 window_lines = 0
 
 [[claim]]
@@ -512,6 +609,42 @@ expect = "absent"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| C4 |'
+window_lines = 0
+
+[[claim]]
+name = "ClassDBoundaryHitting"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"ClassDBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| ClassDBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/class-d-assembly-audit-2026-10-21.md"
+anchor = "| Combined determinant-two class D |"
+window_lines = 0
+
+[[claim]]
+name = "ClassDIntegrationAcceptance"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"ClassDIntegrationAcceptance"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| ClassDIntegrationAcceptance |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/class-d-assembly-audit-2026-10-21.md"
+anchor = "| Combined integration acceptance |"
 window_lines = 0
 
 [[claim]]
@@ -1106,6 +1239,168 @@ anchor = '| MidArea |'
 window_lines = 0
 
 [[claim]]
+name = "MinusClassDBoundaryHitting"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-minus-boundary-strips-2026-10-20.md"
+anchor = "| Entire minus class D |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassDBoundaryLine"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDBoundaryLine"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDBoundaryLine |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-minus-boundary-strips-2026-10-20.md"
+anchor = "| Minus b=0 boundary |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassDBoundaryStrips"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDBoundaryStrips"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDBoundaryStrips |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-minus-boundary-strips-2026-10-20.md"
+anchor = "| Minus a=0,1 strips |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassDPositiveBBoundaryHitting"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDPositiveBBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDPositiveBBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Minus positive-b boundary hitting |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassDPositiveBCycleSum"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDPositiveBCycleSum"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDPositiveBCycleSum |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Minus cycle-sum bound |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassDResidualBoundaryHitting"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDResidualBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDResidualBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-minus-boundary-strips-2026-10-20.md"
+anchor = "| Entire minus residual |"
+window_lines = 0
+
+[[claim]]
+name = "MinusClassDSeedCarrierClosure"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusClassDSeedCarrierClosure"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusClassDSeedCarrierClosure |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Uniform minus seed carrier |"
+window_lines = 0
+
+[[claim]]
+name = "MinusHighSumFormalCycleRay"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusHighSumFormalCycleRay"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusHighSumFormalCycleRay |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Unbounded real-interior formal two-cycle ray |"
+window_lines = 0
+
+[[claim]]
+name = "MinusSixEdgeFamilyExclusion"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"MinusSixEdgeFamilyExclusion"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| MinusSixEdgeFamilyExclusion |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md"
+anchor = "| Six-edge unbounded family exclusion |"
+window_lines = 0
+
+[[claim]]
 name = "Mod3Sieve"
 status = "proved"
 [[claim.surfaces]]
@@ -1486,6 +1781,60 @@ anchor = "| Pisot Meyer property |"
 window_lines = 0
 
 [[claim]]
+name = "PlusClassDBoundaryHitting"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PlusClassDBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PlusClassDBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/class-d-assembly-audit-2026-10-21.md"
+anchor = "| Entire plus class D |"
+window_lines = 0
+
+[[claim]]
+name = "PlusClassDBoundaryLine"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PlusClassDBoundaryLine"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PlusClassDBoundaryLine |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/class-d-assembly-audit-2026-10-21.md"
+anchor = "| Plus b=0 boundary |"
+window_lines = 0
+
+[[claim]]
+name = "PlusClassDPositiveBBoundaryHitting"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"PlusClassDPositiveBBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| PlusClassDPositiveBBoundaryHitting |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/class-d-assembly-audit-2026-10-21.md"
+anchor = "| Plus positive-b residual |"
+window_lines = 0
+
+[[claim]]
 name = "RepoSeedUnionBridge"
 status = "proved"
 [[claim.surfaces]]
@@ -1582,6 +1931,25 @@ window_lines = 0
 [[claim.surfaces]]
 path = "docs/claim-status-and-source-map-2026-09-13.md"
 anchor = "| Sink-SCC reduction under G1 |"
+window_lines = 0
+
+[[claim]]
+name = "SirventSolomyakTransfer"
+status = "imported"
+aliases = ["Sirvent–Solomyak transfer", "flow-to-symbolic transfer"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"SirventSolomyakTransfer"'
+section = "ImportedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| SirventSolomyakTransfer |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Sirvent–Solomyak flow-to-symbolic transfer |"
 window_lines = 0
 
 [[claim]]
@@ -1751,6 +2119,24 @@ anchor = '| ThetaIntertwining |'
 window_lines = 0
 
 [[claim]]
+name = "TwoObstructionCompletion"
+status = "conditional"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"TwoObstructionCompletion"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| TwoObstructionCompletion |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Two-obstruction completion theorem / universal completion criterion |"
+window_lines = 0
+
+[[claim]]
 name = "UDForPowers"
 status = "proved"
 [[claim.surfaces]]
@@ -1785,6 +2171,34 @@ window_lines = 0
 [[claim.surfaces]]
 path = "README.md"
 anchor = "**Unique decodability:**"
+window_lines = 0
+
+[[claim]]
+name = "UniversalAlignedCoincidence"
+status = "open"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"UniversalAlignedCoincidence"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "absent"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| UniversalAlignedCoincidence |'
+window_lines = 0
+
+[[claim]]
+name = "UniversalBoundaryHitting"
+status = "open"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"UniversalBoundaryHitting"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "absent"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| UniversalBoundaryHitting |'
 window_lines = 0
 
 [[claim]]

@@ -1,0 +1,59 @@
+name: Class-A d2 parity carrier finite candidate
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_d2_parity_carrier.mojo'
+      - 'kernel/class_a_d2_parity_carrier.mojo'
+      - 'kernel/tests/test_class_a_d2_parity_carrier.mojo'
+      - 'oracles/python/class_a_d2_parity_carrier.py'
+      - 'tests/test_class_a_d2_parity_carrier.py'
+      - 'docs/class-a-d2-parity-carrier-2026-10-22.md'
+      - '.github/workflows/class-a-d2-parity-carrier.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-d2-parity-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install independent Python test runner
+        run: python -m pip install 'pytest>=7'
+      - name: Independent exact Q(beta) graphs, transient/parity controls
+        run: |
+          set -euo pipefail
+          mkdir -p kernel/build/class-a-d2-parity
+          python -m pytest -q tests/test_class_a_d2_parity_carrier.py 2>&1 | tee kernel/build/class-a-d2-parity/python-tests.log
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Locked canonical Mojo candidate and failure controls
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_class_a_d2_parity_carrier.mojo 2>&1 | tee build/class-a-d2-parity/native-tests.log
+          pixi run --locked mojo build -I . class_a_d2_parity_carrier.mojo -o build/class-a-d2-parity/driver
+          build/class-a-d2-parity/driver 2>&1 | tee build/class-a-d2-parity/study.log
+          build/class-a-d2-parity/driver export 8 > build/class-a-d2-parity/n8.log
+          build/class-a-d2-parity/driver export 9 > build/class-a-d2-parity/n9.log
+      - name: Independent exact labels and depth for native exports
+        run: |
+          set -euo pipefail
+          python oracles/python/class_a_d2_parity_carrier.py kernel/build/class-a-d2-parity/n8.log 2>&1 | tee kernel/build/class-a-d2-parity/calibration-n8.json
+          python oracles/python/class_a_d2_parity_carrier.py kernel/build/class-a-d2-parity/n9.log 2>&1 | tee kernel/build/class-a-d2-parity/calibration-n9.json
+      - name: Preserve exact finite evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-d2-parity-receipts
+          path: |
+            kernel/build/class-a-d2-parity/*.log
+            kernel/build/class-a-d2-parity/*.json
+          if-no-files-found: warn

@@ -1,0 +1,114 @@
+{
+  "authority": "independent-Q(beta)-python-calibration",
+  "rows": [
+    {
+      "k": 2,
+      "a": 3,
+      "b": 1,
+      "labels": [
+        [
+          2,
+          1,
+          -4,
+          8,
+          -6
+        ],
+        [
+          1,
+          2,
+          4,
+          -8,
+          6
+        ]
+      ],
+      "occurrences": [
+        [
+          12,
+          16
+        ],
+        [
+          16,
+          12
+        ]
+      ],
+      "interior": true,
+      "states": 139,
+      "reachable_pair_vertices": 0,
+      "counterexamples": [],
+      "seed_nonreachability_scope": "this complete finite graph only"
+    },
+    {
+      "k": 3,
+      "a": 5,
+      "b": 1,
+      "labels": [
+        [
+          2,
+          1,
+          -6,
+          12,
+          -9
+        ],
+        [
+          1,
+          2,
+          6,
+          -12,
+          9
+        ]
+      ],
+      "occurrences": [
+        [
+          16,
+          22
+        ],
+        [
+          22,
+          16
+        ]
+      ],
+      "interior": true,
+      "states": 139,
+      "reachable_pair_vertices": 0,
+      "counterexamples": [],
+      "seed_nonreachability_scope": "this complete finite graph only"
+    },
+    {
+      "k": 8,
+      "a": 15,
+      "b": 1,
+      "labels": [
+        [
+          2,
+          1,
+          -16,
+          32,
+          -24
+        ],
+        [
+          1,
+          2,
+          16,
+          -32,
+          24
+        ]
+      ],
+      "occurrences": [
+        [
+          36,
+          52
+        ],
+        [
+          52,
+          36
+        ]
+      ],
+      "interior": true,
+      "states": 139,
+      "reachable_pair_vertices": 0,
+      "counterexamples": [],
+      "seed_nonreachability_scope": "this complete finite graph only"
+    }
+  ],
+  "uniform_seed_theorem": false
+}

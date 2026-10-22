@@ -1,0 +1,15 @@
+{
+  "docs/p1b-boundary-hitting-progress-2026-10-08.md": "316be51291a9cbadd8bbccf5322fe62a21249f3140749915647872747219b1cf",
+  "kernel/class_d_boundary_certificate.mojo": "ea2cef12f3b28b6c673f7375bad198ab2c5cbbca07ec31fb587259df2900820a",
+  "kernel/psc/class_d_boundary.mojo": "8a68c3331ff1c76a3745310c5124433ff47831257bd274643304000c06f13579",
+  "kernel/psc/class_d_boundary_template.mojo": "fec5e1a035238c5d2a2af1cb64117c23ee040678930084c5a931606a860c08ea",
+  "kernel/psc/overlap_seed_patch.mojo": "dd10ddbacc0726441a22ab7b0f859ac5bfbcf7d7d7183923702cb58810e1bbea",
+  "kernel/psc/perron_field3.mojo": "a3fc64f3ad41e1ea29b9e772264ffb1d962bce1e81226d7e343ea2fe863e8bb9",
+  "kernel/psc/pisot_screen.mojo": "65e92c86f1d00df385f86e822e6c79080527a97e16cd463118045accfa2d59ec",
+  "kernel/psc/vertex_coincidence.mojo": "7a1535a107a5c0083160319d49cff658a0eccc1f9e0b29c6903e0b89d5237797",
+  "kernel/tests/test_class_d_boundary_template.mojo": "8d9912ad9d6c5d468efc5f242d34c1f46616fd4805d1dab257ad7ef09bbac95e",
+  "oracles/python/class_d_boundary_probe.py": "ca2d553baa68a81839c8388d66fe543cca16eba8caee0401f7d131a7694bf8eb",
+  "oracles/python/class_d_boundary_template.py": "7c3e27b46a40b42f5569f01ba5ab22463006721e04467da12c2af6623706f834",
+  "reference/psc_research/overlap_graph.py": "6f27bb5cbfd0fb66d40ec431fcd3497d75521f3dd450c3d09cd897becd8ee226",
+  "tests/test_class_d_boundary_template.py": "35b852c20a8401d4630024ef2d4d0fd87a6638687b3e260824bd931225348725"
+}

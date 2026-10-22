@@ -1,0 +1,12 @@
+{
+  "matches_prior_exact_exception": true,
+  "prior_packet_commit": "2af1b9630331e75ebbf1ce23db2e3b1da9d9525e",
+  "matching_logs": [
+    "low-1.log",
+    "complete-driver-mojo-1.1.0.log"
+  ],
+  "ci_run": 39292497570,
+  "job": 118196473049,
+  "ci_head": "30dc38d1e79c5a94fd7e7f5337ba39cabd571e34",
+  "interpretation": "Original pre-repair CI reproduces the archived sign-reader refusal; no new escaped-child or carrier obstruction is inferred."
+}

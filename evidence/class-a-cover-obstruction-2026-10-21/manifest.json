@@ -1,0 +1,32 @@
+{
+  "format": "class-a-cover-obstruction-v1",
+  "base_revision": "dda0a00152d6a2db3692ac8f922098fc03f6909e",
+  "source_sha256": {
+    "kernel/psc/class_a_cover_obstruction.mojo": "cb8a8d31d97394ec57170dfb10b1d0c8ba5df43f91c9f3c2cdec41b5f3e4e9c0",
+    "kernel/class_a_cover_obstruction.mojo": "128904fb28ef8ed95224009894109a995917ed05bdcfa1f7fffd05a65a79a01e",
+    "kernel/tests/test_class_a_cover_obstruction.mojo": "8eec2f82e5087bb35659d9b87f22b02147452b4f6b3d99d15782879ebb9ec38a",
+    "oracles/python/class_a_cover_obstruction.py": "faeefe59fe451e16f9bba7e9d50d7a0c58b975a96daba26c5189f3141c5f6080",
+    ".github/workflows/class-a-cover-obstruction.yml": "5e1fa4302b54a5c4ce6b502cb57748d516e0d185faefebc00d8dc1a21d5efc87",
+    "docs/class-a-cover-obstruction-2026-10-21.md": "a83e04ada6c8055373c19daa9e1af79d32790905e8e072e08880340a6b24e12c"
+  },
+  "runtime": {
+    "version": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+    "compiler_sha256": "0d5f0b700b0543223a10c47e818bc4f43f3228166c34ab13d52ab7f2ad02ffcd",
+    "installation": "reused lock-matched minimal compiler/std/runtime; not a fresh full Pixi receipt"
+  },
+  "proof_scope": "formal rectangular cover fails for every integer n>=4; human review pending",
+  "finite_replays": [
+    4,
+    8,
+    18,
+    64,
+    256
+  ],
+  "independent_complete_graph_calibrations": [
+    4,
+    18
+  ],
+  "universal_seed_nonmembership": false,
+  "boundary_hitting_counterexample": false,
+  "issue_139_closed": false
+}

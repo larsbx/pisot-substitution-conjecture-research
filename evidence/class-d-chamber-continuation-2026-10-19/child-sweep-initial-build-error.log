@@ -1,0 +1,17 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+/workspace/scratch/518517c07353/pisot-substitution-conjecture-research/kernel/tests/test_overlap_child_sweep.mojo:40:66: error: no matching function in initialization
+        var tables = build_seed_overlap_tables_screened(ClassLine(CLASS_D,coef,True).member(0))
+                                                        ~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+Imported from /workspace/scratch/518517c07353/pisot-substitution-conjecture-research/kernel/tests/test_overlap_child_sweep.mojo:11:
+kernel/symbolic_line_certificate.mojo:59:9: note: candidate not viable: value passed to 'coef' cannot be converted from '_ArrayIterOwned[Array[Int, Int(6)], Int(4)].Element' to 'List[Int]'
+    def __init__(out self, cls: Int, coef: List[Int], by_norm: Bool = False) raises:
+        ^
+Imported from /workspace/scratch/518517c07353/pisot-substitution-conjecture-research/kernel/tests/test_overlap_child_sweep.mojo:11:
+kernel/symbolic_line_certificate.mojo:54:1: note: candidate not viable: missing required argument: 'move'
+def __init__(out self, *, deinit move: Self)    # note - generated function
+^
+Imported from /workspace/scratch/518517c07353/pisot-substitution-conjecture-research/kernel/tests/test_overlap_child_sweep.mojo:11:
+kernel/symbolic_line_certificate.mojo:54:1: note: candidate not viable: missing required argument: 'copy'
+def __init__(out self, *, copy: Self)    # note - generated function
+^
+/tmp/psc-pinned-mojo/bin/mojo: error: failed to parse the provided Mojo source module

@@ -1,0 +1,7 @@
+Error:   × failed to fetch max-benchmark-26.6.0.dev2026090805-release.conda
+  ├─▶ failed to interact with the package cache layer.
+  ├─▶ Request failed after 3 retries
+  ├─▶ error sending request for url (https://conda.modular.com/max-nightly/
+  │   noarch/max-benchmark-26.6.0.dev2026090805-release.conda)
+  ├─▶ client error (Connect)
+  ╰─▶ tunnel error: unsuccessful

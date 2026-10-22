@@ -6,6 +6,17 @@
   "index_path": "docs/ledger-index.md",
   "graph_path": "docs/claim-relationship-graph.json",
   "assumption_sets": {
+    "ClassDIntegrationAssumed": [
+      "ClassDIntegrationAcceptance"
+    ],
+    "TwoObstructionsAssumed": [
+      "UniversalAlignedCoincidence",
+      "UniversalBoundaryHitting",
+      "DensityToPDSBridge"
+    ],
+    "MinusCycleSumAssumed": [
+      "MinusClassDPositiveBCycleSum"
+    ],
     "G1AndProducer": [
       "G1",
       "SCCProducer"
@@ -195,6 +206,23 @@
     "BoxAutomatonPDSCertificate": [
       "per-specimen box PDS certificate"
     ],
+    "SirventSolomyakTransfer": [
+      "Sirvent–Solomyak transfer",
+      "flow-to-symbolic transfer"
+    ],
+    "BargeClassFlowPDS": [
+      "Barge class theorem"
+    ],
+    "BargeClassSymbolicPDS": [
+      "Barge-class symbolic PDS"
+    ],
+    "BoxAutomatonSymbolicPDSCertificate": [
+      "per-specimen box symbolic PDS certificate"
+    ],
+    "BrunCompositeSymbolicPDS": [
+      "Corollary B″",
+      "Brun composites have symbolic PDS"
+    ],
     "DetTwoBoundaryHittingLines": [
       "Theorems L/L′/L″",
       "47 determinant-two lines"
@@ -205,6 +233,111 @@
     ]
   },
   "surfaces": {
+    "ClassDIntegrationAcceptance": [
+      {
+        "path": "docs/class-d-assembly-audit-2026-10-21.md",
+        "anchor": "| Combined integration acceptance |",
+        "window_lines": 0
+      }
+    ],
+    "PlusClassDBoundaryLine": [
+      {
+        "path": "docs/class-d-assembly-audit-2026-10-21.md",
+        "anchor": "| Plus b=0 boundary |",
+        "window_lines": 0
+      }
+    ],
+    "PlusClassDPositiveBBoundaryHitting": [
+      {
+        "path": "docs/class-d-assembly-audit-2026-10-21.md",
+        "anchor": "| Plus positive-b residual |",
+        "window_lines": 0
+      }
+    ],
+    "PlusClassDBoundaryHitting": [
+      {
+        "path": "docs/class-d-assembly-audit-2026-10-21.md",
+        "anchor": "| Entire plus class D |",
+        "window_lines": 0
+      }
+    ],
+    "ClassDBoundaryHitting": [
+      {
+        "path": "docs/class-d-assembly-audit-2026-10-21.md",
+        "anchor": "| Combined determinant-two class D |",
+        "window_lines": 0
+      }
+    ],
+    "MinusClassDBoundaryLine": [
+      {
+        "path": "docs/p1b-minus-boundary-strips-2026-10-20.md",
+        "anchor": "| Minus b=0 boundary |",
+        "window_lines": 0
+      }
+    ],
+    "MinusClassDBoundaryStrips": [
+      {
+        "path": "docs/p1b-minus-boundary-strips-2026-10-20.md",
+        "anchor": "| Minus a=0,1 strips |",
+        "window_lines": 0
+      }
+    ],
+    "MinusClassDResidualBoundaryHitting": [
+      {
+        "path": "docs/p1b-minus-boundary-strips-2026-10-20.md",
+        "anchor": "| Entire minus residual |",
+        "window_lines": 0
+      }
+    ],
+    "MinusClassDBoundaryHitting": [
+      {
+        "path": "docs/p1b-minus-boundary-strips-2026-10-20.md",
+        "anchor": "| Entire minus class D |",
+        "window_lines": 0
+      }
+    ],
+    "MinusClassDSeedCarrierClosure": [
+      {
+        "path": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md",
+        "anchor": "| Uniform minus seed carrier |",
+        "window_lines": 0
+      }
+    ],
+    "MinusHighSumFormalCycleRay": [
+      {
+        "path": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md",
+        "anchor": "| Unbounded real-interior formal two-cycle ray |",
+        "window_lines": 0
+      }
+    ],
+    "MinusSixEdgeFamilyExclusion": [
+      {
+        "path": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md",
+        "anchor": "| Six-edge unbounded family exclusion |",
+        "window_lines": 0
+      }
+    ],
+    "TwoObstructionCompletion": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Two-obstruction completion theorem / universal completion criterion |",
+        "window_lines": 0
+      }
+    ],
+    "MinusClassDPositiveBCycleSum": [
+      {
+        "path": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md",
+        "anchor": "| Minus cycle-sum bound |",
+        "window_lines": 0
+      }
+    ],
+    "MinusClassDPositiveBBoundaryHitting": [
+      {
+        "path": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md",
+        "anchor": "| Minus positive-b boundary hitting |",
+        "window_lines": 0
+      }
+    ],
     "DefectTheorem": [
       {
         "path": "docs/claim-status-and-source-map-2026-09-13.md",
@@ -690,6 +823,41 @@
       {
         "path": "docs/claim-status-and-source-map-2026-09-13.md",
         "anchor": "| Box-automaton PDS certificate |",
+        "window_lines": 0
+      }
+    ],
+    "SirventSolomyakTransfer": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Sirvent–Solomyak flow-to-symbolic transfer |",
+        "window_lines": 0
+      }
+    ],
+    "BargeClassFlowPDS": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Barge class theorem |",
+        "window_lines": 0
+      }
+    ],
+    "BoxAutomatonSymbolicPDSCertificate": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Box-automaton symbolic PDS certificate |",
+        "window_lines": 0
+      }
+    ],
+    "BargeClassSymbolicPDS": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Barge-class symbolic PDS |",
+        "window_lines": 0
+      }
+    ],
+    "BrunCompositeSymbolicPDS": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Brun composites have symbolic PDS (S-adic Corollary B″) |",
         "window_lines": 0
       }
     ]
@@ -2001,6 +2169,88 @@
       ],
       "tags": []
     },
+    "UniversalAlignedCoincidence": {
+      "id": "sha256:4fe470900f494dc44ffd7abf0bf94863119795fdd0be3c52a85721826b7efb95",
+      "kind": "pending_dependency",
+      "statement": "for every ternary PIP substitution every pair of distinct letters is eventually prefix coincident (aligned lemma A; reduced to residual fixed-letter A1-prime by squaring)",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "reason",
+          "open issue #138; manuscripts/PSC_balanced_pair_state_2026-09-13.tex, section headline-status; docs/p1a-template-collapse-2026-10-05.md, Theorem C"
+        ]
+      ],
+      "tags": []
+    },
+    "UniversalBoundaryHitting": {
+      "id": "sha256:3efc288dd496c0ecaccd1532bed9c6e6667e4ae5d306530fd98908160bb8c77c",
+      "kind": "pending_dependency",
+      "statement": "for every ternary PIP substitution every cyclic vertex of every seed-patch overlap graph has an occurrence-compatible offset-zero descendant",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "reason",
+          "open issue #139; manuscripts/PSC_balanced_pair_state_2026-09-13.tex, boundary-hitting lemma B; full non-unit representation hypotheses retained"
+        ]
+      ],
+      "tags": []
+    },
+    "TwoObstructionCompletion": {
+      "id": "sha256:48d57e9c8efb4ae76bea8726ca05d705ae71c862928c881742311adb78744d60",
+      "kind": "repository_theorem",
+      "statement": "assuming universal aligned lemma A and universal boundary-hitting lemma B, every seed-patch overlap is productive and every ternary PIP tiling flow has pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:4fe470900f494dc44ffd7abf0bf94863119795fdd0be3c52a85721826b7efb95",
+          "for every ternary PIP substitution every pair of distinct letters is eventually prefix coincident (aligned lemma A; reduced to residual fixed-letter A1-prime by squaring)",
+          "TwoObstructionCompletion/UniversalAlignedCoincidence",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:3efc288dd496c0ecaccd1532bed9c6e6667e4ae5d306530fd98908160bb8c77c",
+          "for every ternary PIP substitution every cyclic vertex of every seed-patch overlap graph has an occurrence-compatible offset-zero descendant",
+          "TwoObstructionCompletion/UniversalBoundaryHitting",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:58cf2389acfc61befe8aad13ecde2bb68ae246c243249c1bf340702b096ba9e0",
+          "every swap seed has a finite exact overlap graph",
+          "TwoObstructionCompletion/SwapOverlapFiniteness",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:0d4322a64a0efc37c8c5efa33b1b8e5f836b6d1677fb7e339ea8e16d43de1ca0",
+          "offset-zero and right-aligned seed overlaps are productive exactly in the prefix/suffix strong-coincidence cases",
+          "TwoObstructionCompletion/AlignedOverlapsAreStrongCoincidence",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:1146fea4a59921812561d69b036af5649744c9373352d76fe7ffe076a9ef3183",
+          "dense eventual coincidence gives pure discrete spectrum",
+          "TwoObstructionCompletion/DensityToPDSBridge",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "manuscripts/PSC_balanced_pair_state_2026-09-13.tex, thm:two-obstruction-completion and cor:universal-completion; existing conditional assembly, not a proof of A or B; human review pending"
+        ]
+      ],
+      "tags": []
+    },
     "DetTwoBoundaryHittingLines": {
       "id": "sha256:a5ab3f78160bcd982c0c5e6866e19b12e71551f11d17462d1e195606bfc99e53",
       "kind": "repository_theorem",
@@ -2041,6 +2291,451 @@
         [
           "source",
           "docs/p1b-boundary-hitting-progress-2026-10-08.md, Theorem W and Corollary W1; computer-assisted, human review pending; merged through PR #246"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusHighSumFormalCycleRay": {
+      "id": "sha256:341b44ace6366e8e237295b3e52bf07c4e80d99fef07ee76dbcc47ded6a1a270",
+      "kind": "repository_theorem",
+      "statement": "for every integer k>=2 the minus class-D member a=2k-1,b=1 has the real-interior formal occurrence two-cycle U_k=(y,c,-2k,4k,-3k) and its mirror, with absolute sum k; seed reachability is not asserted",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 13; kernel/psc/class_d_minus_high_sum_cycles.mojo exact symbolic occurrence and Perron-sign certificate; human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusSixEdgeFamilyExclusion": {
+      "id": "sha256:1ff5dd95d323cd06c5a44a1b9c8d4b2a90d715c27d7b5806a90c7a50e63ceac1",
+      "kind": "repository_theorem",
+      "statement": "for every integer k>=2 and every a>=2,b>=1 the six-state minus class-D itinerary in section 12 with sums (-k,k-1,-k,k-1,-k,k) cannot be realized with one shared parameter pair; occurrence guard rows 0 and 5 sum identically to -7-u",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 12; kernel/psc/class_d_minus_cycle_family.mojo exact polynomial replay; one itinerary family only; human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "ClassDIntegrationAcceptance": {
+      "id": "sha256:0b3254707c324a6ca3207a011a3de20ef34bf2f597e29977bc67ffce23d32e72",
+      "kind": "repository_theorem",
+      "statement": "the combined class-D implementation at accepted tree c325aa5345e1f49b2fb50b37565bd2902104aab7 has passed required locked environment, native replay, independent calibration and repository CI acceptance gates",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/class-d-assembly-audit-2026-10-21.md; evidence/class-d-integration-accepted-2026-10-21/; all 64 checks at a9457d9 pass, identical tested PR merge and main merge trees; project-accepted for progression, independent human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "PlusClassDBoundaryLine": {
+      "id": "sha256:34d579cef29c9888699731f5b42305d495e0a5bc7d36873da1c164e140643bd5",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every plus class-D residual member a>=0,b=0, including the empty y-run at a=0",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/class-d-assembly-audit-2026-10-21.md; merged boundary template, native complete tail a>=7, exact a=0..6 and full support at a=7,8; independent oracle replay; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "PlusClassDPositiveBBoundaryHitting": {
+      "id": "sha256:6580a86d03358976a972fc58d31d736866c43914149487f6eb38ca5b8ee7d498",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every plus class-D residual member a>=0,b>=1, after required combined integration acceptance",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:0b3254707c324a6ca3207a011a3de20ef34bf2f597e29977bc67ffce23d32e72",
+          "the combined class-D implementation at accepted tree c325aa5345e1f49b2fb50b37565bd2902104aab7 has passed required locked environment, native replay, independent calibration and repository CI acceptance gates",
+          "PlusClassDPositiveBBoundaryHitting/ClassDIntegrationAcceptance",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/class-d-assembly-audit-2026-10-21.md; PR293 immutable native aggregate with six cores, 73 strips, six interfaces, 952 finite-prefix obligations and unchanged entire import closure; fresh complete locked CI at accepted tree c325aa5, integration gate discharged by separate receipts; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "PlusClassDBoundaryHitting": {
+      "id": "sha256:95e9c57df07b652fd427813e056a2106f934ed7f0abdd4f715a14d74cf47c05c",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every PIP determinant-two normal-form member of class D with p=q+1, after required combined integration acceptance",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:34d579cef29c9888699731f5b42305d495e0a5bc7d36873da1c164e140643bd5",
+          "boundary hitting holds for every plus class-D residual member a>=0,b=0, including the empty y-run at a=0",
+          "PlusClassDBoundaryHitting/PlusClassDBoundaryLine",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:6580a86d03358976a972fc58d31d736866c43914149487f6eb38ca5b8ee7d498",
+          "boundary hitting holds for every plus class-D residual member a>=0,b>=1, after required combined integration acceptance",
+          "PlusClassDBoundaryHitting/PlusClassDPositiveBBoundaryHitting",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:6567bad719a6e71ff55bc79003d32705d9d8783671d84eedfb639d306fe742b8",
+          "boundary hitting holds on the six declared two-parameter class-D wedges; in particular for every PIP class-D member with r >= q - 1",
+          "PlusClassDBoundaryHitting/ClassDWedgeBoundaryHitting",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/class-d-assembly-audit-2026-10-21.md; complete b=0 and positive-b residual plus existing r>=q-1 wedges; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "ClassDBoundaryHitting": {
+      "id": "sha256:5af9608d641391684d67e8457a567432a6868a9b22a64d0bcfc5479d81ee49f3",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every PIP determinant-two normal-form member of class D with p-q in {-1,+1}, after required combined integration acceptance; targets are offset-zero descendants, not necessarily equal-letter coincidences",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:95e9c57df07b652fd427813e056a2106f934ed7f0abdd4f715a14d74cf47c05c",
+          "boundary hitting holds for every PIP determinant-two normal-form member of class D with p=q+1, after required combined integration acceptance",
+          "ClassDBoundaryHitting/PlusClassDBoundaryHitting",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:9b25c2886abfe712fe855477acb0294977f116283ae89dfedf25081a5e0b01ef",
+          "boundary hitting holds for every PIP member of class D with p=q-1",
+          "ClassDBoundaryHitting/MinusClassDBoundaryHitting",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/class-d-assembly-audit-2026-10-21.md; canonical kernel/class_d_assembly.mojo consumes provenance-checked exact component receipts and replays plus b=0; no class-A/C or universal hitting premise is supplied; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusClassDBoundaryLine": {
+      "id": "sha256:40bdb290f6c5ee8578843124acc8fd4d198d049597025eadee2893876fec6854",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every minus class-D residual member a>=0,b=0",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "merged PR #277; kernel/psc/class_d_boundary_template.mojo; docs/p1b-minus-boundary-strips-2026-10-20.md; complete symbolic tail, finite prefix and support replay with the lock-matched compiler; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusClassDBoundaryStrips": {
+      "id": "sha256:4325808381af5017d1581ba9f53fd6a14a6dd793fdb31c5e0f84b859c551f2a3",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for both entire minus class-D residual strips a=0 or a=1, b>=1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_boundary_strips.mojo; symbolic tails n=b-1>=42 and n>=72, all finite-prefix members hitting, exact graph cross-checks; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusClassDResidualBoundaryHitting": {
+      "id": "sha256:c537602fdc441ccc961266e88edc267b831102cd30869d5d9ee6114d91c46f1d",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every minus class-D residual member p=3a+5+b,q=3a+6+b,r=2a+4+b with integers a,b>=0",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:40bdb290f6c5ee8578843124acc8fd4d198d049597025eadee2893876fec6854",
+          "boundary hitting holds for every minus class-D residual member a>=0,b=0",
+          "MinusClassDResidualBoundaryHitting/MinusClassDBoundaryLine",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:4325808381af5017d1581ba9f53fd6a14a6dd793fdb31c5e0f84b859c551f2a3",
+          "boundary hitting holds for both entire minus class-D residual strips a=0 or a=1, b>=1",
+          "MinusClassDResidualBoundaryHitting/MinusClassDBoundaryStrips",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:953fb0cb87a22334b47fa75cfeb5f22395039e79e13cb97fe38e3e273bc150b5",
+          "boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1; the historical conditional reduction now has its CycleSum premise discharged by uniform seed closure",
+          "MinusClassDResidualBoundaryHitting/MinusClassDPositiveBBoundaryHitting",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-minus-boundary-strips-2026-10-20.md; kernel/psc/class_d_minus_complete.mojo; disjoint b=0, a=0/b>=1, a=1/b>=1 and a>=2/b>=1 assembly; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusClassDBoundaryHitting": {
+      "id": "sha256:9b25c2886abfe712fe855477acb0294977f116283ae89dfedf25081a5e0b01ef",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every PIP member of class D with p=q-1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:c537602fdc441ccc961266e88edc267b831102cd30869d5d9ee6114d91c46f1d",
+          "boundary hitting holds for every minus class-D residual member p=3a+5+b,q=3a+6+b,r=2a+4+b with integers a,b>=0",
+          "MinusClassDBoundaryHitting/MinusClassDResidualBoundaryHitting",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:6567bad719a6e71ff55bc79003d32705d9d8783671d84eedfb639d306fe742b8",
+          "boundary hitting holds on the six declared two-parameter class-D wedges; in particular for every PIP class-D member with r >= q - 1",
+          "MinusClassDBoundaryHitting/ClassDWedgeBoundaryHitting",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-minus-boundary-strips-2026-10-20.md; exact case split r>=q-1 versus d=q-r>=2 with a=d-2,b=3r-2q>=0; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusClassDSeedCarrierClosure": {
+      "id": "sha256:4501c0dafa57f5da9b56a913f9cc9068c9fc9be765715d339990fa8f2cbc8482",
+      "kind": "repository_theorem",
+      "statement": "for every minus class-D member a>=2,b>=1, every real swap-seed overlap and every descendant before terminal coincidence lies in the sealed 145-label carrier; every such label has absolute coordinate sum at most one",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; kernel/psc/class_d_minus_seed_cover.mojo exact Perron identities, all-seed and all-child Farkas certificates; local Mojo and independent Fraction replay; pinned CI accepted at a9457d9 (evidence/class-d-integration-accepted-2026-10-21/); human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusClassDPositiveBCycleSum": {
+      "id": "sha256:9ede6bc9ec0c9d3ba76fc8fe0628cb2bf39783e5643dd049b9fbb52d4a5c73f0",
+      "kind": "repository_theorem",
+      "statement": "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:4501c0dafa57f5da9b56a913f9cc9068c9fc9be765715d339990fa8f2cbc8482",
+          "for every minus class-D member a>=2,b>=1, every real swap-seed overlap and every descendant before terminal coincidence lies in the sealed 145-label carrier; every such label has absolute coordinate sum at most one",
+          "MinusClassDPositiveBCycleSum/MinusClassDSeedCarrierClosure",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 14; follows from the uniform seed carrier, not formal-cycle exclusions; pinned CI accepted at a9457d9 (evidence/class-d-integration-accepted-2026-10-21/); human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "MinusClassDPositiveBBoundaryHitting": {
+      "id": "sha256:953fb0cb87a22334b47fa75cfeb5f22395039e79e13cb97fe38e3e273bc150b5",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every seed-reachable overlap of the minus class-D residual a>=2,b>=1; the historical conditional reduction now has its CycleSum premise discharged by uniform seed closure",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:9ede6bc9ec0c9d3ba76fc8fe0628cb2bf39783e5643dd049b9fbb52d4a5c73f0",
+          "for every minus class-D positive-b member a>=2,b>=1, every genuine seed-reachable cyclic overlap satisfies |wx+wc+wy|<=1",
+          "MinusClassDPositiveBBoundaryHitting/MinusClassDPositiveBCycleSum",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:58cf2389acfc61befe8aad13ecde2bb68ae246c243249c1bf340702b096ba9e0",
+          "every swap seed has a finite exact overlap graph",
+          "MinusClassDPositiveBBoundaryHitting/SwapOverlapFiniteness",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md sections 5, 9 and 14; conditional 1971-state reduction plus proved seed carrier, or direct ranked descent; pinned CI accepted at a9457d9 (evidence/class-d-integration-accepted-2026-10-21/); human review pending"
         ],
         [
           "human_review_pending",
@@ -2933,6 +3628,126 @@
         [
           "source",
           "docs/pds-certificate-from-the-box-automaton-2026-10-07.md, consequence (c), with docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 1; independently reviewed 2026-10-08 (docs/side-notes-ledger.md), human review pending"
+        ]
+      ],
+      "tags": []
+    },
+    "SirventSolomyakTransfer": {
+      "id": "sha256:362e9c141a978d77e27f746eb7c7129f1cf5b9aa8ba995a879e14f9edb891bd1",
+      "kind": "imported_theorem",
+      "statement": "for a substitution of Pisot type (primitive, Pisot Perron-Frobenius eigenvalue, irreducible characteristic polynomial), pure discrete spectrum of the self-similar tiling R-action with Perron left-eigenvector tile lengths implies pure discrete spectrum of the substitutive Z-action",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "hypotheses_checked",
+          "true"
+        ],
+        [
+          "source",
+          "Sirvent-Solomyak, Canad. Math. Bull. 45 (2002), p. 699 definition, Section 4 and Corollary 5.2; no unimodularity; docs/sadic-transfer-literature-gate-2026-10-11.md, sections 2-3"
+        ]
+      ],
+      "tags": []
+    },
+    "BargeClassFlowPDS": {
+      "id": "sha256:60b82d4ced77a6aa71d2ed809616f7a8b1d2510dd3e7b31c13b46f054624dd31",
+      "kind": "imported_theorem",
+      "statement": "a primitive non-periodic substitution with Pisot inflation that is injective on initial letters and eventually constant on final letters has a tiling flow with pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "hypotheses_checked",
+          "true"
+        ],
+        [
+          "source",
+          "Barge, DCDS-A 36 (2016), Theorem 3.13 and Remark 3.14; no irreducibility or unimodularity; docs/sadic-transfer-literature-gate-2026-10-11.md, section 2"
+        ]
+      ],
+      "tags": []
+    },
+    "BoxAutomatonSymbolicPDSCertificate": {
+      "id": "sha256:1f5235cf7e90a252319332b0980ce080b8e9c53938213a1189c2a088470f51e6",
+      "kind": "repository_theorem",
+      "statement": "for each fixed PIP substitution, if every vertex of its complete box automaton reaches a coincidence, its substitutive Z-action has pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:9527876667e5d67a87ee54a480418bbfc9180b0b75a5dadf8276c7bbcad21eb7",
+          "for each fixed PIP substitution, if every vertex of its complete box automaton reaches a coincidence, its Perron-length suspension tiling flow has pure discrete spectrum",
+          "BoxAutomatonSymbolicPDSCertificate/BoxAutomatonPDSCertificate",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:362e9c141a978d77e27f746eb7c7129f1cf5b9aa8ba995a879e14f9edb891bd1",
+          "for a substitution of Pisot type (primitive, Pisot Perron-Frobenius eigenvalue, irreducible characteristic polynomial), pure discrete spectrum of the self-similar tiling R-action with Perron left-eigenvector tile lengths implies pure discrete spectrum of the substitutive Z-action",
+          "BoxAutomatonSymbolicPDSCertificate/SirventSolomyakTransfer",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/sadic-transfer-literature-gate-2026-10-11.md, section 3: PIP is Sirvent-Solomyak's Pisot type and the box certificate's Perron-length suspension is their R-action"
+        ]
+      ],
+      "tags": []
+    },
+    "BargeClassSymbolicPDS": {
+      "id": "sha256:2b7d5d0e30eb9090761f61082c920b6723d2ff64db68e04604a434cb399148ca",
+      "kind": "repository_theorem",
+      "statement": "a PIP substitution with a power, or a maximal common-prefix/suffix rotation of a power, in Barge's class or its mirror has a substitutive Z-action with pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:60b82d4ced77a6aa71d2ed809616f7a8b1d2510dd3e7b31c13b46f054624dd31",
+          "a primitive non-periodic substitution with Pisot inflation that is injective on initial letters and eventually constant on final letters has a tiling flow with pure discrete spectrum",
+          "BargeClassSymbolicPDS/BargeClassFlowPDS",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:362e9c141a978d77e27f746eb7c7129f1cf5b9aa8ba995a879e14f9edb891bd1",
+          "for a substitution of Pisot type (primitive, Pisot Perron-Frobenius eigenvalue, irreducible characteristic polynomial), pure discrete spectrum of the self-similar tiling R-action with Perron left-eigenvector tile lengths implies pure discrete spectrum of the substitutive Z-action",
+          "BargeClassSymbolicPDS/SirventSolomyakTransfer",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/sadic-transfer-literature-gate-2026-10-11.md, section 3: powers and rotations generate the same subshift and stay PIP, reversal conjugates the shift to its inverse; membership decided by psc/barge_class.mojo"
+        ]
+      ],
+      "tags": []
+    },
+    "BrunCompositeSymbolicPDS": {
+      "id": "sha256:6cb82c11f772955fda66196567a56029c074e544368d7fb60b7e75c23d9e8c4b",
+      "kind": "imported_theorem",
+      "statement": "in every dimension, every primitive composite of an admissible unordered Brun word whose characteristic polynomial is irreducible and Pisot has a substitutive Z-action with pure discrete spectrum",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "hypotheses_checked",
+          "true"
+        ],
+        [
+          "source",
+          "larsbx/s-adic-pisot-conjecture-research@c379703, docs/sadic-g6-brun-higher-census.md, Theorem B, Lemma Rev and Corollary B'' (Barge 2016 Theorem 3.13 with the Sirvent-Solomyak transfer); cross-programme family theorem, docs/sadic-transfer-literature-gate-2026-10-11.md, sections 2-3"
         ]
       ],
       "tags": []

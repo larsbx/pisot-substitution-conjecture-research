@@ -1,0 +1,3 @@
+SUPERSET_ZERO_TARGET 0:0:0,0,0 coincidence= True
+SUPERSET_ZERO_TARGET 1:0:0,0,0 coincidence= False
+CLASS_D_MINUS_POSITIVE_B_CYCLE_REDUCTION_CERTIFIED states= 1971 recurrent= 145 carrier= 131 zero= 2 boundary_only= 8 exceptional= 4 exceptional_edges= 8 open_premise=cycle_sum_abs_le_1
