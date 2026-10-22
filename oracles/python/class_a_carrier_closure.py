@@ -30,11 +30,20 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-EPS = -1 if "--line" in sys.argv and sys.argv[sys.argv.index("--line") + 1] == "minus" else 1
-ROWS_SRC = ROOT / ("kernel/psc/class_a_typed_carrier.mojo" if EPS == 1 else "kernel/psc/class_a_minus_carrier.mojo")
-DATA_SRC = ROOT / ("kernel/psc/class_a_descent_data.mojo" if EPS == 1 else "kernel/psc/class_a_minus_descent_data.mojo")
-ROWS_FN, ROW_COUNT = ("template_rows", 89) if EPS == 1 else ("minus_rows", 104)
-PREFIX = "" if EPS == 1 else "minus_"
+if "--ray" in sys.argv:
+    # residue ray n = GAP l + RES of the line (n+GAP, n, n+EPS); every table entry affine in l
+    GAP, EPS, RES = map(int, sys.argv[sys.argv.index("--ray") + 1].split(","))
+    ROWS_SRC = DATA_SRC = ROOT / ("kernel/psc/class_a_ray_d%d%s.mojo" % (GAP, "p" if EPS == 1 else "m"))
+    ROWS_FN, ROW_COUNT = "rows_r%d" % RES, None
+    PIECES_FN, DESCENTS_FN = "pieces_r%d" % RES, "descents_r%d" % RES
+else:
+    GAP, RES = 1, 0
+    EPS = -1 if "--line" in sys.argv and sys.argv[sys.argv.index("--line") + 1] == "minus" else 1
+    ROWS_SRC = ROOT / ("kernel/psc/class_a_typed_carrier.mojo" if EPS == 1 else "kernel/psc/class_a_minus_carrier.mojo")
+    DATA_SRC = ROOT / ("kernel/psc/class_a_descent_data.mojo" if EPS == 1 else "kernel/psc/class_a_minus_descent_data.mojo")
+    ROWS_FN, ROW_COUNT = ("template_rows", 89) if EPS == 1 else ("minus_rows", 104)
+    PIECES_FN = ("" if EPS == 1 else "minus_") + "piece_rows"
+    DESCENTS_FN = ("" if EPS == 1 else "minus_") + "descent_rows"
 
 
 # ---------------------------------------------------------------------------
@@ -117,10 +126,10 @@ def sign_on_interval(p, q):
 # line data, re-derived from the images x->x y^(n+1) x, c->c y^n x, y->x y^(n+eps) c
 # ---------------------------------------------------------------------------
 # column j of the incidence matrix = letter counts of sigma(j), as (const, n-coefficient)
-INCIDENCE = {0: [(2, 0), (0, 0), (1, 1)], 1: [(1, 0), (1, 0), (0, 1)], 2: [(1, 0), (1, 0), (EPS, 1)]}
-L_POLY = {0: [1, 2 - EPS, 1], 1: [1, 1 - EPS], 2: [1, 1]}
+INCIDENCE = {0: [(2, 0), (0, 0), (GAP, 1)], 1: [(1, 0), (1, 0), (0, 1)], 2: [(1, 0), (1, 0), (EPS, 1)]}
+L_POLY = {0: [1, GAP + 1 - EPS, GAP], 1: [1, 1 - EPS], 2: [1, 1]}
 # P(n,h) = h^3 chi(1 + 1/h) = P_A(h) + n P_B(h)
-P_A, P_B = [1, -EPS, EPS - 2, -1], [0, -1, -1]
+P_A, P_B = [1, -EPS, EPS - GAP - 1, -GAP], [0, -1, -1]
 N_NUM = pscale(P_A, 1)    # n h (1+h) = P_A, from P = 0 and P_B = -h(1+h)
 D_DEN = [0, 1, 1]
 
@@ -165,7 +174,7 @@ def _check_line():
 
 def interval(n0):
     """q with P(n0, q) < 0: then h_n in (0, q) for every n >= n0 (P decreasing in n and h)."""
-    q = F(1, n0 + 1) if EPS == 1 else F(1, n0)
+    q = F(1, n0 + 1) if EPS == 1 and GAP == 1 else F(1, n0)
     if peval(P_A, q) + n0 * peval(P_B, q) >= 0:
         raise ValueError("interval does not contain h_n")
     return q
@@ -187,10 +196,11 @@ class AffH:
 
 
 def times(coef, poly):
-    return AffH(pscale(poly, coef[1]), pscale(poly, coef[0]))
+    """GAP (a l + b) poly = (a n + (GAP b - a RES)) poly, with n = GAP l + RES."""
+    return AffH(pscale(poly, GAP * coef[1] - coef[0] * RES), pscale(poly, coef[0]))
 
 
-LENGTH = {i: AffH(L_POLY[i]) for i in range(3)}
+LENGTH = {i: AffH(pscale(L_POLY[i], GAP)) for i in range(3)}   # GAP L: the common positive scale
 
 
 def displacement(s, k, y):
@@ -236,7 +246,7 @@ def a_min(u, v, n0):
 
 FIRST = {0: 0, 1: 1, 2: 0}
 LAST = {0: 0, 1: 0, 2: 1}
-RUN = {0: (1, 1), 1: (1, 0), 2: (1, EPS)}
+RUN = {0: (GAP, RES + GAP), 1: (GAP, RES), 2: (GAP, RES + EPS)}   # in l
 
 
 def segment(letter, part):
@@ -264,17 +274,17 @@ def _lists(src: Path, name: str, width: int):
 
 def carrier_rows():
     rows = _lists(ROWS_SRC, ROWS_FN, 8)
-    if len(rows) != ROW_COUNT:
+    if ROW_COUNT is not None and len(rows) != ROW_COUNT:
         raise ValueError("expected %d carrier rows" % ROW_COUNT)
     return rows
 
 
 def pieces():
-    return _lists(DATA_SRC, PREFIX + "piece_rows", 8)
+    return _lists(DATA_SRC, PIECES_FN, 8)
 
 
 def descents():
-    return _lists(DATA_SRC, PREFIX + "descent_rows", 9)
+    return _lists(DATA_SRC, DESCENTS_FN, 9)
 
 
 def slices(rows):
@@ -291,11 +301,35 @@ def strict(top, bottom, t, q):
     return (LENGTH[top] - t).sign(q) > 0 and (t + LENGTH[bottom]).sign(q) > 0
 
 
-def verify_closure(rows, n0, window=6):
-    if n0 < 4:
+def ray(n_floor):
+    """(l0, n_min): the least l with GAP l + RES >= n_floor, and its n."""
+    l0 = 0
+    while GAP * l0 + RES < n_floor:
+        l0 += 1
+    n_min = GAP * l0 + RES
+    if GAP > 2 * n_min + 6 * EPS + 5:
+        raise ValueError("outside the determinant-two PIP domain")
+    return l0, n_min
+
+
+def div_ceil(u):
+    if u[0] % GAP:
+        raise ValueError("slope not divisible by the gap")
+    return (u[0] // GAP, -((-u[1]) // GAP))
+
+
+def div_floor(u):
+    if u[0] % GAP:
+        raise ValueError("slope not divisible by the gap")
+    return (u[0] // GAP, u[1] // GAP)
+
+
+def verify_closure(rows, n_floor, window=6):
+    if n_floor < 4:
         raise ValueError("n0 >= 4 required")
     _check_line()
-    q = interval(n0)
+    n0, n_min = ray(n_floor)   # n0 is the ray floor in l from here on
+    q = interval(n_min)
     sl = slices(rows)
     st = dict(seeds_real=0, seeds_unreal=0, member_checks=0, segments=0, y_cases=0,
               covered=0, gap_geometry=0, window_checks=0, clip_fallbacks=0, terminal_splits=0)
@@ -338,7 +372,7 @@ def verify_closure(rows, n0, window=6):
                 cb, fxb, fcb, mb_lo, mb_hi = segment(b, pb)
                 dx, dc = fxb - fxt, fcb - fct
                 k0 = (al, bl + s + dx)
-                base = (al + s, bl + EPS * y)
+                base = (GAP * (al + s), GAP * bl + RES * s + EPS * y)
                 d_lo, d_hi = a_sub(mb_lo, mt_hi), a_sub(mb_hi, mt_lo)
                 st["segments"] += 1
                 for yw in (window, -window):
@@ -354,8 +388,8 @@ def verify_closure(rows, n0, window=6):
                 for y2 in range(-window + 1, window):
                     s2 = 2 * s + dx + dc + y2
                     st["y_cases"] += 1
-                    r_lo = a_sub(a_sub((0, y2), base), d_hi)
-                    r_hi = a_sub(a_sub((0, y2), base), d_lo)
+                    r_lo = div_ceil(a_sub(a_sub((0, y2), base), d_hi))
+                    r_hi = div_floor(a_sub(a_sub((0, y2), base), d_lo))
                     try:
                         lo = a_max(r_lo, (0, 0), n0)
                     except ValueError:
@@ -437,8 +471,9 @@ def is_target(row, piece):
     return row[2] == 0 and row[3] == 0 and piece[1:3] == piece[3:5] and row[4] + piece[1] == 0 and row[5] + piece[2] == 0
 
 
-def verify_descent(rows, P, D, n0):
-    q = interval(n0)
+def verify_descent(rows, P, D, n_floor):
+    n0, n_min = ray(n_floor)   # ray floor in l
+    q = interval(n_min)
     by_row = {}
     for p in P:
         by_row.setdefault(p[0], []).append(((p[1], p[2]), (p[3], p[4])))
@@ -479,9 +514,10 @@ def verify_descent(rows, P, D, n0):
         shift = a_sub(k0, (crow[4], crow[5]))
         if not nonneg(a_sub(a_add(s_lo, shift), (child[1], child[2])), n0) or not nonneg(a_sub((child[3], child[4]), a_add(s_hi, shift)), n0):
             raise ValueError("child leaves its piece")
-        base = (row[4] + row[2], row[5] + EPS * row[3])
+        base = (GAP * (row[4] + row[2]), GAP * row[5] + RES * row[2] + EPS * row[3])
+        s_lo_d, s_hi_d = (GAP * s_lo[0], GAP * s_lo[1]), (GAP * s_hi[0], GAP * s_hi[1])
         d_lo, d_hi = a_sub(mb_lo, mt_hi), a_sub(mb_hi, mt_lo)
-        if not nonneg(a_sub(a_sub(a_sub((0, yp), base), s_hi), d_lo), n0) or not nonneg(a_sub(d_hi, a_sub(a_sub((0, yp), base), s_lo)), n0):
+        if not nonneg(a_sub(a_sub(a_sub((0, yp), base), s_hi_d), d_lo), n0) or not nonneg(a_sub(d_hi, a_sub(a_sub((0, yp), base), s_lo_d)), n0):
             raise ValueError("occurrence not realizable")
         for j in (s_lo, s_hi):
             if not strict(row[0], row[1], displacement((0, row[2]), a_add(k_lo, j), (0, row[3])), q):
@@ -496,12 +532,12 @@ def verify_descent(rows, P, D, n0):
 
 
 def main(argv):
-    args = [a for i, a in enumerate(argv[1:], 1) if not a.startswith("--") and argv[i - 1] != "--line"]
+    args = [a for i, a in enumerate(argv[1:], 1) if not a.startswith("--") and argv[i - 1] not in ("--line", "--ray")]
     n0 = int(args[0]) if args else 8
     rows = carrier_rows()
     closure = verify_closure(rows, n0)
     descent = verify_descent(rows, pieces(), descents(), n0)
-    line = "(n+1,n,n+1)" if EPS == 1 else "(n+1,n,n-1)"
+    line = "(n+%d,n,n%+d)" % (GAP, EPS) + ("" if GAP == 1 else " n=%dl+%d" % (GAP, RES))
     print(json.dumps(dict(n0=n0, closure=closure, descent=descent,
                           scope="class-A line %s: seed graph in carrier and uniform hit depth <= bound for every n>=n0; other A/C regions and universal #139 open" % line), indent=2))
 

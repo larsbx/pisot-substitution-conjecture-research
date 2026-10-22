@@ -131,35 +131,43 @@ struct AffH(Copyable, Movable):
         return len(self.a) == 0 and len(self.b) == 0
 
 
-def aff_times(coefficient: List[Int], poly: List[Int]) -> AffH:
-    """`(a n + b) * poly(h)` for the affine pair `coefficient = [a, b]`."""
-    return AffH(pscale(poly, coefficient[1]), pscale(poly, coefficient[0]))
+def aff_times(line: ALine, coefficient: List[Int], poly: List[Int]) -> AffH:
+    """`d (a l + b) * poly(h)` for the affine pair `coefficient = [a, b]` in `l`,
+    as `A + n B` (`line.to_n`); for `d = 1` this is `(a n + b) * poly`."""
+    var c = line.to_n(coefficient)
+    return AffH(pscale(poly, c[1]), pscale(poly, c[0]))
 
 
 def scaled_length(line: ALine, letter: Int) raises -> AffH:
-    return AffH(line.length(letter), [])
+    """`d L_letter`: every displacement and length carries the same factor `d > 0`."""
+    return AffH(pscale(line.length(letter), line.d), [])
 
 
 def displacement(line: ALine, s: List[Int], k: List[Int], y: List[Int]) raises -> AffH:
-    """`T = k L_x + c L_c + y L_y = s L_c + k (L_x-L_c) + y (L_y-L_c)` for
-    affine `s, k, y`; on the plus line `T = s + k h(1+h) + y h`."""
+    """`d T`, `T = k L_x + c L_c + y L_y = s L_c + k (L_x-L_c) + y (L_y-L_c)` for
+    affine `s, k, y` in `l`; on the gap-one plus line `T = s + k h(1+h) + y h`."""
     var lc = line.length(1)
-    return (aff_times(s, lc).add(aff_times(k, psub(line.length(0), lc)))
-            .add(aff_times(y, psub(line.length(2), lc))))
+    return (aff_times(line, s, lc).add(aff_times(line, k, psub(line.length(0), lc)))
+            .add(aff_times(line, y, psub(line.length(2), lc))))
+
+
+def perron_polynomial(line: ALine) -> AffH:
+    """`P(n,h) = 1 - (n+eps) h - (n+d+1-eps) h^2 - d h^3` as `A + n B`."""
+    return AffH([1, -line.eps, line.eps - line.d - 1, -line.d], [0, -1, -1])
 
 
 def check_line_identity(line: ALine) raises:
     """`h (M^T L)_j - (1+h) L_j = -P(n,h)` for each letter `j`, coefficient-wise
-    in `n` and `h`, where `M^T L = (2L_x + (n+1)L_y, L_x+L_c+nL_y,
-    L_x+L_c+(n+eps)L_y)` is read off the images, and `P = 1-(n+eps)h-(n+2-eps)h^2-h^3`.
+    in `n` and `h`, where `M^T L = (2L_x + (n+d)L_y, L_x+L_c+nL_y,
+    L_x+L_c+(n+eps)L_y)` is read off the images and `P = perron_polynomial(line)`.
     Also checks that `line.elimination()` is `n h(1+h)` solved from `P = 0`."""
     line.check()
     var lx = line.length(0)
     var lc = line.length(1)
     var ly = line.length(2)
-    var p = AffH([1, -line.eps, line.eps - 2, -1], [0, -1, -1])
+    var p = perron_polynomial(line)
     var mt = List[AffH]()
-    mt.append(AffH(padd(pscale(lx, 2), ly), ly))
+    mt.append(AffH(padd(pscale(lx, 2), pscale(ly, line.d)), ly))
     mt.append(AffH(padd(lx, lc), ly))
     mt.append(AffH(padd(padd(lx, lc), pscale(ly, line.eps)), ly))
     var ls = List[List[Int]]([lx.copy(), lc.copy(), ly.copy()])
@@ -174,13 +182,14 @@ def check_line_identity(line: ALine) raises:
 def check_bound(line: ALine, n0: Int, q: Q) raises:
     """`P(n0, q) < 0`; since `P(n, q)` decreases in `n`, `P(n, 0) = 1` and
     `P(n, .)` decreases on `h > 0`, the root `h_n` lies in `(0, q)` for all `n >= n0`."""
-    var p = AffH([1, -line.eps, line.eps - 2, -1], [0, -1, -1])
+    var p = perron_polynomial(line)
     if q_sign(evaluate(q_poly(padd(p.a, pscale(p.b, n0))), q)) >= 0:
         raise Error("interval bound does not contain the Perron parameter h_n")
 
 
 # ---------------------------------------------------------------------------
-# Affine integers a n + b on the integer ray n >= n0.
+# Affine integers a l + b on the integer ray l >= l0 (the parameter `n0` of
+# the comparisons below is that ray floor; `l = n` when `d = 1`).
 # ---------------------------------------------------------------------------
 
 def aff(a: Int, b: Int) -> List[Int]:
@@ -203,6 +212,21 @@ def a_le(u: List[Int], v: List[Int], n0: Int) -> Int:
     if u[0] >= v[0] and u[0] * n0 + u[1] > v[0] * n0 + v[1]:
         return 0
     return -1
+
+
+def a_div_ceil(u: List[Int], d: Int) raises -> List[Int]:
+    """`ceil(u / d)` for an affine `u` whose slope is a multiple of `d`."""
+    if u[0] % d != 0:
+        raise Error("affine slope not divisible by the gap")
+    var q = u[1] // d
+    return [u[0] // d, q + (1 if q * d < u[1] else 0)]
+
+
+def a_div_floor(u: List[Int], d: Int) raises -> List[Int]:
+    """`floor(u / d)` for an affine `u` whose slope is a multiple of `d`."""
+    if u[0] % d != 0:
+        raise Error("affine slope not divisible by the gap")
+    return [u[0] // d, u[1] // d]
 
 
 def a_max(u: List[Int], v: List[Int], n0: Int) raises -> List[Int]:
@@ -411,9 +435,10 @@ def check_row_closure(line: ALine, rows: List[List[Int]], sl: Dict[Int, List[Int
             var dc = seg_bottom.pc - seg_top.pc
             var child_top = seg_top.child
             var child_bottom = seg_bottom.child
-            # k' = k + s + dx = k_lo + s + dx + j ; y' = k + n s + eps y + (m_b - m_t)
+            # k' = k + s + dx = k_lo + s + dx + j ;
+            # y' = d k + n s + eps y + (m_b - m_t) = base + d j + (m_b - m_t), n = d l + r
             var k0 = a_add(k_lo, aff(0, s + dx))
-            var base = aff(row[4] + s, row[5] + line.eps * y)
+            var base = aff(line.d * (row[4] + s), line.d * row[5] + line.r * s + line.eps * y)
             var d_lo = a_sub(seg_bottom.m_lo, seg_top.m_hi)
             var d_hi = a_sub(seg_bottom.m_hi, seg_top.m_lo)
             # Window edges: at y' = +window the child is at or beyond the right
@@ -434,9 +459,9 @@ def check_row_closure(line: ALine, rows: List[List[Int]], sl: Dict[Int, List[Int
             for y2 in range(-window + 1, window):
                 var s2 = 2 * s + dx + dc + y2
                 stats.y_cases += 1
-                # Realizable j: y2 - base - j in [d_lo, d_hi].
-                var r_lo = a_sub(a_sub(aff(0, y2), base), d_hi)
-                var r_hi = a_sub(a_sub(aff(0, y2), base), d_lo)
+                # Realizable j: y2 - base - d j in [d_lo, d_hi].
+                var r_lo = a_div_ceil(a_sub(a_sub(aff(0, y2), base), d_hi), line.d)
+                var r_hi = a_div_floor(a_sub(a_sub(aff(0, y2), base), d_lo), line.d)
                 var lo = zero.copy()
                 var hi = j_max.copy()
                 if a_le(r_lo, zero, n0) == 1:
@@ -508,9 +533,10 @@ def check_row_closure(line: ALine, rows: List[List[Int]], sl: Dict[Int, List[Int
 
 
 def certify_closure_line(line: ALine, n0: Int, rows: List[List[Int]], window: Int = 6) raises -> List[Int]:
-    """Prove, for every integer n>=n0, that the typed carrier is a strict
-    forward-closed superset of the complete seed graph of `line`. Raises on
-    any undecided sign or comparison and on any escaping child."""
+    """Prove, for every integer n>=n0 on the residue ray of `line`, that the
+    typed carrier (rows affine in `l`, `n = d l + r`) is a strict forward-closed
+    superset of the complete seed graph. Raises on any undecided sign or
+    comparison and on any escaping child."""
     if n0 < 4 or n0 > 64:
         raise Error("uniform closure floor must satisfy 4<=n0<=64")
     if window < 3 or window > 12:
@@ -518,22 +544,33 @@ def certify_closure_line(line: ALine, n0: Int, rows: List[List[Int]], window: In
     if len(rows) == 0:
         raise Error("empty typed carrier")
     check_line_identity(line)
-    var q = line.bound(n0)
-    check_bound(line, n0, q)
+    var l0 = ray_floor(line, n0)
+    var n_min = line.n_of(l0)
+    line.check_domain(n_min)
+    var q = line.bound(n_min)
+    check_bound(line, n_min, q)
     var sl = slices(rows)
     var stats = ClosureStats()
-    check_seeds(line, rows, sl, n0, q, stats)
+    check_seeds(line, rows, sl, l0, q, stats)
     for ri in range(len(rows)):
         stats.rows += 1
-        check_row_members(line, rows[ri], n0, q, stats)
-        check_row_closure(line, rows, sl, ri, n0, q, window, stats)
-    var tag = "" if line.eps == 1 else " line=" + line.name()
-    print("CLASS_A_CARRIER_CLOSURE n>=" + String(n0) + tag, "rows", stats.rows, "segments", stats.segments,
+        check_row_members(line, rows[ri], l0, q, stats)
+        check_row_closure(line, rows, sl, ri, l0, q, window, stats)
+    var tag = "" if line.eps == 1 and line.d == 1 else " line=" + line.name()
+    print("CLASS_A_CARRIER_CLOSURE n>=" + String(n_min) + tag, "rows", stats.rows, "segments", stats.segments,
           "y_cases", stats.y_cases, "covered", stats.covered, "gap_geometry", stats.gap_geometry,
           "window_checks", stats.window_checks, "seeds_real", stats.seeds_real,
           "seeds_unreal", stats.seeds_unreal, "clip_fallbacks", stats.clip_fallbacks,
           "terminal_splits", stats.terminal_splits)
     return stats.as_list()
+
+
+def ray_floor(line: ALine, n0: Int) -> Int:
+    """Least `l` with `d l + r >= n0`."""
+    var l0 = 0
+    while line.n_of(l0) < n0:
+        l0 += 1
+    return l0
 
 
 def certify_closure_rows(n0: Int, rows: List[List[Int]], window: Int = 6) raises -> List[Int]:

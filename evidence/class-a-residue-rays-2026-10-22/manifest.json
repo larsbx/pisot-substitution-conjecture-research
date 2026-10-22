@@ -1,0 +1,226 @@
+{
+  "scope": "boundary hitting (every vertex of the complete canonical swap-seed graph has an offset-zero descendant) on the class-A lines (n+2,n,n-1) for n>=2, (n+3,n,n-1) for n>=2 and (n+3,n,n+1) for n>=1",
+  "base_commit": "d6cc694fe73fa7a356580aca456990ec6fa3b483",
+  "runtime": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "rays": [
+    {
+      "scope": "class-A line (n+2,n,n-1) n=2l+0: seed graph in carrier and uniform hit depth <= bound for every n>=n0; other A/C regions and universal #139 open",
+      "n0": 14,
+      "closure": {
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "member_checks": 194,
+        "segments": 873,
+        "y_cases": 9603,
+        "covered": 3869,
+        "gap_geometry": 3278,
+        "window_checks": 1746,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 145,
+        "targets": 8,
+        "descent_rows": 208,
+        "bound_slope": 2,
+        "bound_const": 9
+      }
+    },
+    {
+      "scope": "class-A line (n+2,n,n-1) n=2l+1: seed graph in carrier and uniform hit depth <= bound for every n>=n0; other A/C regions and universal #139 open",
+      "n0": 15,
+      "closure": {
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "member_checks": 222,
+        "segments": 999,
+        "y_cases": 10989,
+        "covered": 4361,
+        "gap_geometry": 3710,
+        "window_checks": 1998,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 157,
+        "targets": 8,
+        "descent_rows": 221,
+        "bound_slope": 2,
+        "bound_const": 8
+      }
+    },
+    {
+      "scope": "class-A line (n+3,n,n-1) n=3l+0: seed graph in carrier and uniform hit depth <= bound for every n>=n0; other A/C regions and universal #139 open",
+      "n0": 15,
+      "closure": {
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "member_checks": 186,
+        "segments": 837,
+        "y_cases": 9207,
+        "covered": 3652,
+        "gap_geometry": 3061,
+        "window_checks": 1674,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 129,
+        "targets": 8,
+        "descent_rows": 182,
+        "bound_slope": 2,
+        "bound_const": 9
+      }
+    },
+    {
+      "scope": "class-A line (n+3,n,n-1) n=3l+1: seed graph in carrier and uniform hit depth <= bound for every n>=n0; other A/C regions and universal #139 open",
+      "n0": 19,
+      "closure": {
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "member_checks": 226,
+        "segments": 1017,
+        "y_cases": 11187,
+        "covered": 4404,
+        "gap_geometry": 3713,
+        "window_checks": 2034,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 153,
+        "targets": 8,
+        "descent_rows": 204,
+        "bound_slope": 2,
+        "bound_const": 7
+      }
+    },
+    {
+      "scope": "class-A line (n+3,n,n-1) n=3l+2: seed graph in carrier and uniform hit depth <= bound for every n>=n0; other A/C regions and universal #139 open",
+      "n0": 20,
+      "closure": {
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "member_checks": 210,
+        "segments": 945,
+        "y_cases": 10395,
+        "covered": 4062,
+        "gap_geometry": 3429,
+        "window_checks": 1890,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 139,
+        "targets": 8,
+        "descent_rows": 188,
+        "bound_slope": 2,
+        "bound_const": 8
+      }
+    },
+    {
+      "scope": "class-A line (n+3,n,n+1) n=3l+0: seed graph in carrier and uniform hit depth <= bound for every n>=n0; other A/C regions and universal #139 open",
+      "n0": 18,
+      "closure": {
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "member_checks": 176,
+        "segments": 792,
+        "y_cases": 8712,
+        "covered": 3392,
+        "gap_geometry": 2857,
+        "window_checks": 1584,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 134,
+        "targets": 8,
+        "descent_rows": 184,
+        "bound_slope": 2,
+        "bound_const": 9
+      }
+    },
+    {
+      "scope": "class-A line (n+3,n,n+1) n=3l+1: seed graph in carrier and uniform hit depth <= bound for every n>=n0; other A/C regions and universal #139 open",
+      "n0": 16,
+      "closure": {
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "member_checks": 168,
+        "segments": 756,
+        "y_cases": 8316,
+        "covered": 3238,
+        "gap_geometry": 2741,
+        "window_checks": 1512,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 124,
+        "targets": 8,
+        "descent_rows": 162,
+        "bound_slope": 2,
+        "bound_const": 11
+      }
+    },
+    {
+      "scope": "class-A line (n+3,n,n+1) n=3l+2: seed graph in carrier and uniform hit depth <= bound for every n>=n0; other A/C regions and universal #139 open",
+      "n0": 17,
+      "closure": {
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "member_checks": 156,
+        "segments": 702,
+        "y_cases": 7722,
+        "covered": 3026,
+        "gap_geometry": 2569,
+        "window_checks": 1404,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 116,
+        "targets": 8,
+        "descent_rows": 157,
+        "bound_slope": 2,
+        "bound_const": 11
+      }
+    }
+  ],
+  "finite": {
+    "complete_graphs": "every n below each ray floor (native-tests.log) and n<=30 on all three lines (survey.log)",
+    "carrier_equals_graph": "first two members of every ray",
+    "differential_replay": "first two members of every ray"
+  },
+  "gap_one_regression": "gap-one-plus-tests.log and gap-one-minus-tests.log identical to the archived native logs",
+  "sources": {
+    "kernel/psc/class_a_line.mojo": "1784a468d0fb56748390c4df1e3a9fcd70897dd09e5ba0fd7099e9c606d14011",
+    "kernel/psc/class_a_line_graph.mojo": "10204dc16761dcb8217cb42a3bf0b97337ec6210e689ae1959a7e134d353b8dd",
+    "kernel/psc/class_a_ray_tables.mojo": "9962f4f6b6e66f4a354f4efb16f4bb38896a0374071132767c0cd5280f702cf7",
+    "kernel/psc/class_a_ray_d2m.mojo": "549b6ced2cd8d8acc6b00ce3fa51147b1ab4b1612c8bcb22879377a7044fdd72",
+    "kernel/psc/class_a_ray_d3m.mojo": "debe12669caf2aff71d007e0572af0e910bac5bab494ee1f3dca6c78333a900a",
+    "kernel/psc/class_a_ray_d3p.mojo": "8cb828a632aba1c2a89faf47871a68ff99bdf58ed97177db4a3436d49b912c5d",
+    "kernel/psc/class_a_carrier_closure.mojo": "04dfb95d4478f65d64c42be673b0734d78556d0a21650835a850966f781e613e",
+    "kernel/psc/class_a_carrier_descent.mojo": "ba65b9345d821d338526b997fdb833f5950b3254a97cf4d007a907c35ea0a79f",
+    "kernel/psc/class_a_typed_carrier.mojo": "b8fc96f04d0d8dce3d10c6a45bcc040abfe7ed8fffdb95359f98b841f8fe9e7b",
+    "kernel/class_a_residue_ray.mojo": "7f40325683b50feceef6036c7965e06bcd297c64841cbdee669ad04e48c400d1",
+    "kernel/tests/test_class_a_residue_rays.mojo": "a7fd6b295079bab2599efcd3ae33493d945bb510cf1cc16f8af124ace4fb263f",
+    "kernel/tests/test_class_a_minus_line.mojo": "dc2dcf726bf0d73d6e8bcfe434f2f3b4dff6aaba26f92ee4b1fedde169a2368b",
+    "oracles/python/class_a_carrier_closure.py": "5c2bea5a88122e1a15fcb98c4e0c3d3903a7abe802a2534d5758503a4c77588c",
+    "oracles/python/class_a_descent_table.py": "cb6e09106685ec1e42ac70f53b0d4f558f51986ff8d86641d6e30842ea9459a2",
+    "tests/test_class_a_residue_rays.py": "022ed24f746b95663a9129b2371a7f3951433f1a90f15cf626ec533fd200a9e2",
+    "docs/class-a-residue-rays-2026-10-22.md": "292907b72a10c95ccd9d23cf48c14fec7adf0272818f9044f9faf4c99a7971c1",
+    ".github/workflows/class-a-residue-rays.yml": "710d7e72d3d24f7dc1d8fd31246b1113c2cde5bd341b64df79cbd37192de1df2"
+  },
+  "non_claims": [
+    "the d=2 plus line (PRs #312-#319)",
+    "gaps d>=4 and the rest of the class-A residual",
+    "class-C residual d>=4",
+    "aligned #138, universal #139/#84, G1, PSC",
+    "the finite-survey cardinality formulas",
+    "Lean formalization",
+    "independent human review (pending)"
+  ],
+  "note": "The generator is not evidence; the Mojo certificate and the independent Python verifier are. Local lock-matched runtime, not a CI receipt."
+}

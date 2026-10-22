@@ -140,6 +140,7 @@ def certify_finite_line(line: ALine, n: Int, rows: List[List[Int]], slope: Int, 
     if n < 4 or n > 24:
         raise Error("finite typed-carrier replay permits 4<=n<=24")
     var tables=build_seed_overlap_tables_screened(line.member(n))
+    var ln=line.l_of(n)   # rows are affine in l = (n - r)/d
     var g=build_seed_overlap_graph_from_tables(tables,20000)
     if g.capped:
         raise Error("STATE_BUDGET_EXHAUSTED: no typed-carrier verdict")
@@ -147,8 +148,8 @@ def certify_finite_line(line: ALine, n: Int, rows: List[List[Int]], slope: Int, 
     for row in rows:
         if len(row)!=8 or row[0]<0 or row[0]>2 or row[1]<0 or row[1]>2:
             raise Error("invalid typed-carrier row")
-        var lo=row[4]*n+row[5]
-        var hi=row[6]*n+row[7]
+        var lo=row[4]*ln+row[5]
+        var hi=row[6]*ln+row[7]
         if lo>hi:
             raise Error("empty affine interval")
         for k in range(lo,hi+1):
@@ -160,7 +161,7 @@ def certify_finite_line(line: ALine, n: Int, rows: List[List[Int]], slope: Int, 
             if not interior_overlap(tables,st):
                 raise Error("typed carrier contains a non-strict overlap")
             candidate[st]=1
-    if len(candidate)!=slope*n+constant:
+    if len(candidate)!=slope*ln+constant:
         raise Error("typed carrier candidate count disagrees with affine identity")
     if g.size()!=len(candidate):
         raise Error("finite seed graph cardinality differs from typed candidate")
@@ -182,7 +183,7 @@ def certify_finite_line(line: ALine, n: Int, rows: List[List[Int]], slope: Int, 
         if depth<0:
             raise Error("finite candidate has a non-hitting seed descendant")
         deepest=max(deepest,depth)
-    var tag="" if line.eps==1 else " line="+line.name()
+    var tag="" if line.eps==1 and line.d==1 else " line="+line.name()
     print("CLASS_A_TYPED_CARRIER_FINITE"+tag,n,"candidate",len(candidate),"graph",g.size(),"max_hit",deepest,"uniform_closure=false")
     return [len(candidate),g.size(),deepest]
 

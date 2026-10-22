@@ -27,7 +27,7 @@ exact finite graphs and are evidence only through this verifier. The sign
 machinery is shared with the closure module and fails closed.
 """
 from psc.class_a_carrier_closure import (
-    AffH, Segment, a_add, a_le, a_sub, aff, displacement, strict_inside,
+    AffH, Segment, a_add, a_le, a_sub, aff, displacement, strict_inside, ray_floor,
 )
 from psc.class_a_line import ALine, plus_line
 from psc.class_a_typed_carrier import template_rows
@@ -73,14 +73,18 @@ def is_target_piece(row: List[Int], piece: List[Int]) -> Bool:
             and row[4] + piece[1] == 0 and row[5] + piece[2] == 0)
 
 
-def certify_descent_line(line: ALine, n0: Int, rows: List[List[Int]], pieces: List[List[Int]],
+def certify_descent_line(line: ALine, n_floor: Int, rows: List[List[Int]], pieces: List[List[Int]],
                          descents: List[List[Int]]) raises -> List[Int]:
     """Returns `[pieces, target pieces, descent rows, bound slope, bound constant]`:
     every carrier label reaches offset zero within `bound slope * n + bound constant`
     inflations for every integer `n >= n0`. Raises on any failed obligation."""
-    if n0 < 4 or n0 > 64:
+    if n_floor < 4 or n_floor > 64:
         raise Error("uniform descent floor must satisfy 4<=n0<=64")
-    var q = line.bound(n0)
+    var n_min = line.n_of(ray_floor(line, n_floor))
+    line.check_domain(n_min)
+    var q = line.bound(n_min)
+    # Every affine comparison below is on the ray l >= l0 (l = n when d = 1).
+    var n0 = ray_floor(line, n_floor)
     # Pieces partition every row.
     var by_row = List[List[List[Int]]]()
     for _ in range(len(rows)):
@@ -147,13 +151,14 @@ def certify_descent_line(line: ALine, n0: Int, rows: List[List[Int]], pieces: Li
             raise Error("descent child leaves its piece below")
         if not _nonneg(a_sub(aff(child[3], child[4]), a_add(s_hi, shift)), n0):
             raise Error("descent child leaves its piece above")
-        # Realizable: y' - (k + n s + eps y) - j in [m_b - m_t range] for every member.
-        var base = aff(row[4] + row[2], row[5] + line.eps * row[3])
+        # Realizable: y' - (d k_lo + n s + eps y) - d j in [m_b - m_t range] for every member.
+        var dd = line.d
+        var base = aff(dd * (row[4] + row[2]), dd * row[5] + line.r * row[2] + line.eps * row[3])
         var d_lo = a_sub(seg_bottom.m_lo, seg_top.m_hi)
         var d_hi = a_sub(seg_bottom.m_hi, seg_top.m_lo)
-        if not _nonneg(a_sub(a_sub(a_sub(aff(0, yp), base), s_hi), d_lo), n0):
+        if not _nonneg(a_sub(a_sub(a_sub(aff(0, yp), base), aff(dd * s_hi[0], dd * s_hi[1])), d_lo), n0):
             raise Error("descent occurrence is not realizable (lower run bound)")
-        if not _nonneg(a_sub(d_hi, a_sub(a_sub(aff(0, yp), base), s_lo)), n0):
+        if not _nonneg(a_sub(d_hi, a_sub(a_sub(aff(0, yp), base), aff(dd * s_lo[0], dd * s_lo[1]))), n0):
             raise Error("descent occurrence is not realizable (upper run bound)")
         # Parent and child are strict overlaps at both ends of the affine range.
         for j in [s_lo.copy(), s_hi.copy()]:
@@ -168,9 +173,10 @@ def certify_descent_line(line: ALine, n0: Int, rows: List[List[Int]], pieces: Li
             if not _nonneg(drop, n0):
                 raise Error("descent does not lower the potential")
     var bound_const = bound_at_n0 - bound_slope * n0
-    var tag = "" if line.eps == 1 else " line=" + line.name()
-    print("CLASS_A_CARRIER_DESCENT n>=" + String(n0) + tag, "pieces", len(pieces), "targets", targets,
-          "descent_rows", len(descents), "hit_depth_bound", String(bound_slope) + "n" + ("+" if bound_const >= 0 else "") + String(bound_const))
+    var tag = "" if line.eps == 1 and line.d == 1 else " line=" + line.name()
+    var var_name = "n" if line.d == 1 else "l"
+    print("CLASS_A_CARRIER_DESCENT n>=" + String(n_min) + tag, "pieces", len(pieces), "targets", targets,
+          "descent_rows", len(descents), "hit_depth_bound", String(bound_slope) + var_name + ("+" if bound_const >= 0 else "") + String(bound_const))
     return [len(pieces), targets, len(descents), bound_slope, bound_const]
 
 
@@ -199,17 +205,18 @@ def replay_descent_finite_line(line: ALine, n: Int, rows: List[List[Int]], piece
         raise Error("finite descent replay permits 4<=n<=24")
     var tables = build_seed_overlap_tables_screened(line.member(n))
     var lm = length_matrix(tables)
+    var ln = line.l_of(n)   # every table entry is affine in l = (n - r)/d
     var labels = 0
     var targets = 0
     var edges = 0
     for pi in range(len(pieces)):
         var p = pieces[pi].copy()
         var row = rows[p[0]].copy()
-        var lo = p[1] * n + p[2]
-        var hi = p[3] * n + p[4]
+        var lo = p[1] * ln + p[2]
+        var hi = p[3] * ln + p[4]
         for j in range(lo, hi + 1):
             labels += 1
-            var k = row[4] * n + row[5] + j
+            var k = row[4] * ln + row[5] + j
             var c = row[2] - k - row[3]
             var parent = labelled(tables, row[0], row[1], k, c, row[3])
             if not interior_overlap(tables, parent):
@@ -221,12 +228,12 @@ def replay_descent_finite_line(line: ALine, n: Int, rows: List[List[Int]], piece
                 continue
             var found = 0
             for d in descents:
-                if d[0] != pi or j < d[1] * n + d[2] or j > d[3] * n + d[4]:
+                if d[0] != pi or j < d[1] * ln + d[2] or j > d[3] * ln + d[4]:
                     continue
                 found += 1
                 var child = pieces[d[8]].copy()
                 var crow = rows[child[0]].copy()
-                var x_parent = p[5] * n + p[6] * j + p[7]
+                var x_parent = p[5] * ln + p[6] * j + p[7]
                 var matched = False
                 for occurrence in ordered_child_occurrences(tables, parent):
                     var ti = occurrence.top_index
@@ -240,10 +247,10 @@ def replay_descent_finite_line(line: ALine, n: Int, rows: List[List[Int]], piece
                     var w = offset_vector(lm, occurrence.state.shift)
                     if occurrence.state.top != crow[0] or occurrence.state.bottom != crow[1] or w[2] != d[7]:
                         continue
-                    var cj = w[0] - (crow[4] * n + crow[5])
-                    if w[0] + w[1] + w[2] != crow[2] or cj < child[1] * n + child[2] or cj > child[3] * n + child[4]:
+                    var cj = w[0] - (crow[4] * ln + crow[5])
+                    if w[0] + w[1] + w[2] != crow[2] or cj < child[1] * ln + child[2] or cj > child[3] * ln + child[4]:
                         continue
-                    var x_child = child[5] * n + child[6] * cj + child[7]
+                    var x_child = child[5] * ln + child[6] * cj + child[7]
                     if x_child > x_parent - 1:
                         raise Error("finite descent member does not drop the potential")
                     matched = True
@@ -252,8 +259,8 @@ def replay_descent_finite_line(line: ALine, n: Int, rows: List[List[Int]], piece
                 edges += 1
             if found != 1:
                 raise Error("finite non-target label is not covered by exactly one descent row")
-    if labels != slope * n + constant:
+    if labels != slope * ln + constant:
         raise Error("finite piece enumeration disagrees with the carrier cardinality")
-    var tag = "" if line.eps == 1 else " line=" + line.name()
+    var tag = "" if line.eps == 1 and line.d == 1 else " line=" + line.name()
     print("CLASS_A_DESCENT_FINITE" + tag, n, "labels", labels, "targets", targets, "checked_edges", edges)
     return [labels, targets, edges]
