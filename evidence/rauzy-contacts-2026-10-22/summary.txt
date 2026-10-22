@@ -1,0 +1,11 @@
+Rauzy contacts corpus survey, schema psc-rauzy-contacts/v1, status exact
+specimens: 4554  exact (unimodular): 2628  refused (non-unimodular): 1926
+box productive (Theorem Omega): 2628 of 2628
+lattice neighbours per specimen: 4:12 6:1014 8:588 10:264 12:288 14:186 16:126 18:102 20:24 22:24
+contacts per specimen: min 22  max 224
+named tribonacci: box 743 states, productive true, D 8, 28 contacts, 6 lattice neighbours
+named flipped_tribonacci: box 2913 states, productive true, D 12, 28 contacts, 6 lattice neighbours
+named smith: box 1871 states, productive true, D 9, 52 contacts, 8 lattice neighbours
+named specimen_3742: box 2801 states, productive true, D 11, 148 contacts, 20 lattice neighbours
+named nonunit_control: refused (the torus picture needs a unimodular incidence matrix (|det M| = 1))
+Contacts rest on the cited Siegel-Thuswaldner criterion; covering degree 1 is cited (Ito-Rao; Barge-Kwapisz), not asserted.
