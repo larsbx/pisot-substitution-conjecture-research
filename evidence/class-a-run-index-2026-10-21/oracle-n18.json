@@ -1,0 +1,9 @@
+{
+  "n": 18,
+  "vertices": 835,
+  "occurrence_edges": 17178,
+  "max_first_hit": 15,
+  "all_labels_depths_seeds_and_edges_equal": true,
+  "arithmetic": "independent Fraction field, rational isolation signs",
+  "scope": "one complete finite seed graph; not universal BH"
+}

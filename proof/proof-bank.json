@@ -1968,6 +1968,66 @@
       "statement_heading": "### Theorem"
     },
     {
+      "source": "docs/class-a-carrier-closure-2026-10-22.md",
+      "line": 77,
+      "statement_heading": "`kernel/psc/class_a_typed_carrier.mojo`: a row `(top,bottom,s,y,a,b,c,d)`"
+    },
+    {
+      "source": "docs/class-a-carrier-closure-2026-10-22.md",
+      "line": 79,
+      "statement_heading": "and `c = s - k - y`. Rows of one typed slice `(top,bottom,s,y)` are disjoint."
+    },
+    {
+      "source": "docs/class-a-carrier-closure-2026-10-22.md",
+      "line": 88,
+      "statement_heading": "Strip the factors of `h` (positive on the interval). If `Q(q) != 0` and the"
+    },
+    {
+      "source": "docs/class-a-carrier-closure-2026-10-22.md",
+      "line": 95,
+      "statement_heading": "for every such `n` iff `u_1 >= v_1` and `u(n0) > v(n0)`; otherwise the order"
+    },
+    {
+      "source": "docs/class-a-carrier-closure-2026-10-22.md",
+      "line": 127,
+      "statement_heading": "Proof: `w' = M w + pi(prefix_b) - pi(prefix_t)` is the shared affine update"
+    },
+    {
+      "source": "docs/class-a-carrier-closure-2026-10-22.md",
+      "line": 127,
+      "statement_heading": "Proof: `w' = M w + pi(prefix_b) - pi(prefix_t)` is the shared affine update"
+    },
+    {
+      "source": "docs/class-a-carrier-closure-2026-10-22.md",
+      "line": 190,
+      "statement_heading": "| cases with a realizable range / gaps excluded by geometry | 3,802 / 3,334 | 3,947 / 3,479 |"
+    },
+    {
+      "source": "docs/class-a-carrier-closure-2026-10-22.md",
+      "line": 203,
+      "statement_heading": "pieces of `kernel/psc/class_a_descent_data.mojo` partition every row; eight"
+    },
+    {
+      "source": "docs/class-a-carrier-closure-2026-10-22.md",
+      "line": 239,
+      "statement_heading": "affine pieces (it is *not* affine on a row: period-three plateaus), the target"
+    },
+    {
+      "source": "docs/class-a-carrier-closure-2026-10-22.md",
+      "line": 240,
+      "statement_heading": "is split into its own piece, and for each piece one child type was chosen that"
+    },
+    {
+      "source": "docs/class-a-cover-obstruction-2026-10-21.md",
+      "line": 56,
+      "statement_heading": "**Proposition (repository-proved, scoped written argument with coefficient-checked"
+    },
+    {
+      "source": "docs/class-a-typed-carrier-2026-10-21.md",
+      "line": 14,
+      "statement_heading": "**Proposition.** For every integer `n>=4`, the canonical exact swap-seed overlap graph has at least `6n-2` distinct vertices."
+    },
+    {
       "source": "docs/formal-productivity-reduction-2026-10-04.md",
       "line": 33,
       "statement_heading": "**Proposition FP.**"
@@ -2434,27 +2494,27 @@
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 153,
+      "line": 170,
       "statement_heading": "## 4. Theorem L″: lines of classes A, C and D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 172,
+      "line": 189,
       "statement_heading": "*Theorem L″.* For each line below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 241,
+      "line": 258,
       "statement_heading": "## 4b. Theorem W: two-parameter wedges of class D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 318,
+      "line": 335,
       "statement_heading": "*Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 335,
+      "line": 352,
       "statement_heading": "*Corollary W1.* **Every PIP member of class D with `r ≥ q − 1` has pure"
     },
     {
@@ -2466,6 +2526,11 @@
       "source": "docs/p1b-catch-up-free-ppvc-2026-10-07.md",
       "line": 174,
       "statement_heading": "**Theorem L**: pure discrete spectrum and G1 for every member of that line."
+    },
+    {
+      "source": "docs/p1b-class-a-run-index-2026-10-21.md",
+      "line": 100,
+      "statement_heading": "**Proposition (repository-proved, scoped written proof with coefficient-checked Mojo identities;"
     },
     {
       "source": "docs/p1b-class-d-barge-power-rotation-stop-2026-10-16.md",
