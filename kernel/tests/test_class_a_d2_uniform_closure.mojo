@@ -50,4 +50,4 @@ def main() raises:
     except:
         refused=True
     assert_true(refused)
-    require_contract("class-A d2 every n>=4 parity carrier forward-closed: n4..11 exact finite bases, four n mod4 all-n affine transfer partitions, 120? endpoint-window and 9692 strict-geometry-excluded gaps, exact ceil/floor integer run indices, corrupted row, source-sum and crossing-order refusals; no universal d2 hitting or #139 promotion")
+    require_contract("class-A d2 every n>=4 parity carrier forward-closed: n4..11 exact finite bases, four n mod4 all-n affine transfer partitions, 6624 endpoint-window checks and 9692 strict-geometry-excluded gaps, exact ceil/floor integer run indices, corrupted row, source-sum and crossing-order refusals; no universal d2 hitting or #139 promotion")
