@@ -1,0 +1,5 @@
+# plus-line regression of the line-parametric refactor (byte comparisons against evidence/class-a-carrier-closure-2026-10-22/)
+native-tests.log identical (blank lines aside)
+oracle.json identical
+re-exported plus graphs n=8..24 have the archived digests
+generator output (descent data module and descent-table.json) identical

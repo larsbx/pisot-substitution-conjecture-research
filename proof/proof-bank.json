@@ -2023,6 +2023,31 @@
       "statement_heading": "**Proposition (repository-proved, scoped written argument with coefficient-checked"
     },
     {
+      "source": "docs/class-a-minus-line-2026-10-22.md",
+      "line": 106,
+      "statement_heading": "synthesis is not evidence. The result, `kernel/psc/class_a_minus_carrier.mojo`,"
+    },
+    {
+      "source": "docs/class-a-minus-line-2026-10-22.md",
+      "line": 106,
+      "statement_heading": "synthesis is not evidence. The result, `kernel/psc/class_a_minus_carrier.mojo`,"
+    },
+    {
+      "source": "docs/class-a-minus-line-2026-10-22.md",
+      "line": 131,
+      "statement_heading": "| cases with a realizable range / gaps excluded by geometry | 4,508 / 3,842 | 4,446 / 3,780 |"
+    },
+    {
+      "source": "docs/class-a-minus-line-2026-10-22.md",
+      "line": 131,
+      "statement_heading": "| cases with a realizable range / gaps excluded by geometry | 4,508 / 3,842 | 4,446 / 3,780 |"
+    },
+    {
+      "source": "docs/class-a-minus-line-2026-10-22.md",
+      "line": 157,
+      "statement_heading": "first-hit plateaus shift with `n mod 3` (right of the target the depths run"
+    },
+    {
       "source": "docs/class-a-typed-carrier-2026-10-21.md",
       "line": 14,
       "statement_heading": "**Proposition.** For every integer `n>=4`, the canonical exact swap-seed overlap graph has at least `6n-2` distinct vertices."

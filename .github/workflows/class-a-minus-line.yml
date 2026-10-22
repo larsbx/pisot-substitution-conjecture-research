@@ -1,0 +1,59 @@
+name: Class-A minus line closure and descent
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_line.mojo'
+      - 'kernel/psc/class_a_line_graph.mojo'
+      - 'kernel/psc/class_a_minus_carrier.mojo'
+      - 'kernel/psc/class_a_minus_descent_data.mojo'
+      - 'kernel/psc/class_a_typed_carrier.mojo'
+      - 'kernel/psc/class_a_carrier_closure.mojo'
+      - 'kernel/psc/class_a_carrier_descent.mojo'
+      - 'kernel/class_a_minus_line.mojo'
+      - 'kernel/tests/test_class_a_minus_line.mojo'
+      - 'oracles/python/class_a_carrier_closure.py'
+      - 'oracles/python/class_a_descent_table.py'
+      - 'tests/test_class_a_minus_line.py'
+      - 'evidence/class-a-minus-line-2026-10-22/**'
+      - 'docs/class-a-minus-line-2026-10-22.md'
+      - '.github/workflows/class-a-minus-line.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-minus-line:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare independent oracle
+        run: python -m pip install 'pytest>=7'
+      - name: Independent symbolic closure and descent verification
+        run: |
+          set -euo pipefail
+          mkdir -p kernel/build/class-a-minus-line
+          python oracles/python/class_a_carrier_closure.py 8 --line minus | tee kernel/build/class-a-minus-line/oracle.json
+          python -m pytest -q tests/test_class_a_minus_line.py 2>&1 | tee kernel/build/class-a-minus-line/python-tests.log
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Locked native certificate, refusals, finite members and differential replay
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_class_a_minus_line.mojo 2>&1 | tee build/class-a-minus-line/native-tests.log
+          pixi run --locked mojo run -I . class_a_minus_line.mojo certify 8 2>&1 | tee build/class-a-minus-line/driver.log
+          pixi run --locked mojo run -I . class_a_minus_line.mojo survey 24 2>&1 | tee build/class-a-minus-line/survey.log
+      - name: Preserve fresh receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-minus-line-receipts
+          path: kernel/build/class-a-minus-line/
+          if-no-files-found: warn
