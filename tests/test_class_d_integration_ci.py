@@ -116,3 +116,16 @@ def test_changed_accepted_pixi_task_still_refuses_in_full_audit(monkeypatch):
     monkeypatch.setattr(Path, 'read_bytes', changed_task)
     with pytest.raises(ValueError, match='source, lock or workflow changed'):
         ci.validate(manifest, checks, jobs)
+
+
+def test_only_an_added_concurrency_block_preserves_an_accepted_workflow():
+    accepted = b'name: X\non:\n  push:\n\njobs:\n  a:\n    runs-on: ubuntu-latest\n'
+    block = (b'concurrency:\n  # supersede older commits\n'
+             b'  group: x-${{ github.ref }}\n  cancel-in-progress: true\n\n')
+    current = accepted.replace(b'jobs:', block + b'jobs:')
+    assert ci.added_concurrency_block_only(accepted, current)
+    # Any other change, a second block, or an accepted workflow that already had one refuses.
+    assert not ci.added_concurrency_block_only(accepted, current.replace(b'ubuntu-latest', b'self-hosted'))
+    assert not ci.added_concurrency_block_only(accepted, current.replace(b'jobs:', block + b'jobs:'))
+    assert not ci.added_concurrency_block_only(current, current)
+    assert not ci.added_concurrency_block_only(accepted, current + b'  extra: true\n')
