@@ -68,7 +68,9 @@ def exact_profile(n: Int, emit: Bool=False) raises -> List[List[Int]]:
         if key_equal and old[5]==record[4]:
             raise Error("duplicate typed d2 exact vertex")
         if key_equal and old[5]+1==record[4]:
-            ranges[last][5]=record[4]
+            var updated=ranges[last].copy()
+            updated[5]=record[4]
+            ranges[last]=updated
         else:
             ranges.append(List[Int]([record[0],record[1],record[2],record[3],record[4],record[4]]))
     var depths=first_left_aligned_depths(graph)
