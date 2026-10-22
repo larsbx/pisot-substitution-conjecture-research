@@ -75,18 +75,30 @@ def carrier_is_parity_template(r: Int) raises:
     print("D2P_CARRIER_IS_PARITY_TEMPLATE r=" + String(r), "rows", len(rows), "identical=true")
 
 
+comptime UNDECIDED = "UNDECIDED sign"
+
+
+def expected_floor_refusal(reason: String) raises -> String:
+    """Only an undecided Perron sign counts as the below-floor refusal."""
+    if reason.find(UNDECIDED) != 0:
+        raise Error("unexpected refusal below the floor: " + reason)
+    return reason
+
+
 def floor_is_least(r: Int) raises:
-    """Below the floor the certificate must refuse; a pass there would move the floor."""
+    """Below the floor the certificate must refuse with an undecided Perron sign;
+    a pass there would move the floor, and any other error is propagated rather
+    than read as that refusal."""
     var spec = ray_spec(r)
     var below = spec[3] - 2
-    var refused = False
+    var reason = String()
     try:
         _ = certify_ray(d2p(r), below)
-    except:
-        refused = True
-    if not refused:
+    except e:
+        reason = expected_floor_refusal(String(e))
+    if not reason:
         raise Error("certificate accepted below the recorded floor: the floor is not least")
-    print("D2P_FLOOR_LEAST r=" + String(r), "floor", spec[3], "refused_at", below)
+    print("D2P_FLOOR_LEAST r=" + String(r), "floor", spec[3], "refused_at", below, "reason=\"" + reason + "\"")
 
 
 def theorem() raises:

@@ -1,7 +1,7 @@
 """Class-A d=2 plus line (n+2,n,n+1): the assembled theorem and its shown witnesses."""
 from std.testing import assert_equal, assert_true
 from mojo_smoke.claims import require_contract
-from psc.class_a_d2_plus_line import d2p, hand_step, ray_spec, theorem, witness
+from psc.class_a_d2_plus_line import d2p, expected_floor_refusal, hand_step, ray_spec, theorem, witness
 from psc.class_a_d2_parity_carrier import inferred_template
 from psc.class_a_ray_tables import ray_tables
 from psc.overlap_seed_patch import build_seed_overlap_tables_screened
@@ -55,6 +55,14 @@ def main() raises:
     except:
         refused = True
     assert_true(refused)
+    # Only an undecided Perron sign is read as the below-floor refusal.
+    _ = expected_floor_refusal("UNDECIDED sign: root inside (0, q]")
+    var foreign = False
+    try:
+        _ = expected_floor_refusal("malformed descent row")
+    except:
+        foreign = True
+    assert_true(foreign)
     # The template identity is residue-sensitive.
     assert_true(len(ray_tables(d2p(0))[0]) != len(inferred_template(9, 13)))
-    require_contract("class-A d=2 plus line (n+2,n,n+1): boundary hitting for every n>=1 assembled from exact complete graphs n=1..12 and the residue-ray certificate on n=2l (floor 14) and n=2l+1 (floor 13); both floors least; ray carriers equal the #312 parity templates as exact affine tables; per-n witnesses re-derive every chosen child by the integral incidence identity, equal the complete graph vertex set and trace every seed to offset zero; corrupted children, a shifted occurrence, sub-floor witnesses and a third residue refuse; other gaps, class C and universal #139 open")
+    require_contract("class-A d=2 plus line (n+2,n,n+1): boundary hitting for every n>=1 assembled from exact complete graphs n=1..12 and the residue-ray certificate on n=2l (floor 14) and n=2l+1 (floor 13); both floors least (only an undecided-sign refusal counts); ray carriers equal the #312 parity templates as exact affine tables; per-n witnesses re-derive every chosen child by the integral incidence identity, equal the complete graph vertex set and trace every seed to offset zero; corrupted children, a shifted occurrence, sub-floor witnesses and a third residue refuse; other gaps, class C and universal #139 open")

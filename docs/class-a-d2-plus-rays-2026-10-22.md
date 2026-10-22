@@ -196,7 +196,10 @@ potential, a mislabelled child `y'` and a missing descent row refuse. The new
 calibration test checks that the odd carrier differs from the `n=12` profile.
 `tests/test_class_a_d2_plus_line.mojo` refuses a corrupted child coordinate
 or letter and a shifted occurrence index in `hand_step`, a witness below
-either floor, and a third residue, and fails if a floor stops being least. Below the floors the
+either floor, and a third residue, and fails if a floor stops being least.
+Only an undecided Perron sign is accepted as the below-floor refusal
+(`expected_floor_refusal`); any other error propagates, and the receipt
+records the refusal reason. Below the floors the
 certificate refuses rather than concluding: `certify 2 1 0 12` and
 `certify 2 1 1 11` pass closure and stop at an undecided Sturm sign (root
 inside `(0,q]`) in descent; generating the even descent table from `n=10`
