@@ -1,0 +1,52 @@
+name: Class-A d2 uniform parity candidate geometry
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_d2_uniform_geometry.mojo'
+      - 'kernel/tests/test_class_a_d2_uniform_geometry.mojo'
+      - 'kernel/class_a_d2_uniform_geometry.mojo'
+      - 'kernel/psc/class_a_d2_parity_carrier.mojo'
+      - 'oracles/python/class_a_d2_uniform_geometry.py'
+      - 'oracles/python/class_a_d2_parity_carrier.py'
+      - 'tests/test_class_a_d2_uniform_geometry.py'
+      - 'docs/class-a-d2-uniform-geometry-2026-10-22.md'
+      - '.github/workflows/class-a-d2-uniform-geometry.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-uniform-d2-geometry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare independent exact polynomial oracle
+        run: python -m pip install 'pytest>=7'
+      - name: Independent all-n row and seed certificates
+        run: |
+          set -euo pipefail
+          mkdir -p kernel/build/class-a-d2-uniform
+          python oracles/python/class_a_d2_uniform_geometry.py 2>&1 | tee kernel/build/class-a-d2-uniform/python-oracle.log
+          python -m pytest -q tests/test_class_a_d2_uniform_geometry.py 2>&1 | tee kernel/build/class-a-d2-uniform/python-tests.log
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Locked canonical all-parameter Mojo certificates and refusals
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_class_a_d2_uniform_geometry.mojo 2>&1 | tee build/class-a-d2-uniform/mojo-tests.log
+          pixi run --locked mojo run -I . class_a_d2_uniform_geometry.mojo 2>&1 | tee build/class-a-d2-uniform/driver.log
+      - name: Preserve exact uniform sign evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-d2-uniform-geometry-receipts
+          path: kernel/build/class-a-d2-uniform/
+          if-no-files-found: warn
