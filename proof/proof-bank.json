@@ -2023,6 +2023,11 @@
       "statement_heading": "**Proposition (repository-proved, scoped written argument with coefficient-checked"
     },
     {
+      "source": "docs/class-a-d2-plus-rays-2026-10-22.md",
+      "line": 84,
+      "statement_heading": "`depth <= floor(X/3) <= depth+1`, the dominate-and-drop relaxation recorded for"
+    },
+    {
       "source": "docs/class-a-minus-line-2026-10-22.md",
       "line": 106,
       "statement_heading": "synthesis is not evidence. The result, `kernel/psc/class_a_minus_carrier.mojo`,"

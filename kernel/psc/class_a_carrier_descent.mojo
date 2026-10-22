@@ -194,47 +194,48 @@ def replay_descent_finite(n: Int, rows: List[List[Int]], pieces: List[List[Int]]
     return replay_descent_finite_line(plus_line(), n, rows, pieces, descents, 40, 115)
 
 
-def replay_descent_finite_line(line: ALine, n: Int, rows: List[List[Int]], pieces: List[List[Int]],
-                               descents: List[List[Int]], slope: Int, constant: Int) raises -> List[Int]:
-    """Differential control at one n in 4..24: every descent member's named
-    child occurrence is an actual ordered child occurrence of the exact
-    Perron-field engine, with the stated prefix segments and child label, and
-    the potential drops there; `slope n + constant` is the carrier cardinality.
-    Returns `[labels, targets, checked edges]`."""
+def descent_witnesses_line(line: ALine, n: Int, rows: List[List[Int]], pieces: List[List[Int]],
+                           descents: List[List[Int]]) raises -> List[List[Int]]:
+    """The certificate instantiated at one n in 4..24, checked against the exact
+    Perron-field engine. One record per carrier label, in piece order:
+    `[top, bottom, k, c, y, piece, X, top_index, bottom_index,
+      child top, child bottom, child k, child c, child y, child X]`.
+    A target records `top_index = bottom_index = -1` and itself as child. For a
+    non-target, exactly one descent row covers it, and the record carries the
+    first exact ordered child occurrence matching that row's prefix segments
+    and child label; every matching occurrence must drop the potential."""
     if n < 4 or n > 24:
         raise Error("finite descent replay permits 4<=n<=24")
     var tables = build_seed_overlap_tables_screened(line.member(n))
     var lm = length_matrix(tables)
     var ln = line.l_of(n)   # every table entry is affine in l = (n - r)/d
-    var labels = 0
-    var targets = 0
-    var edges = 0
+    var out = List[List[Int]]()
     for pi in range(len(pieces)):
         var p = pieces[pi].copy()
         var row = rows[p[0]].copy()
         var lo = p[1] * ln + p[2]
         var hi = p[3] * ln + p[4]
         for j in range(lo, hi + 1):
-            labels += 1
             var k = row[4] * ln + row[5] + j
             var c = row[2] - k - row[3]
+            var x_parent = p[5] * ln + p[6] * j + p[7]
             var parent = labelled(tables, row[0], row[1], k, c, row[3])
             if not interior_overlap(tables, parent):
                 raise Error("finite piece member is not a strict overlap")
             if is_target_piece(row, p):
                 if not parent.shift.is_zero():
                     raise Error("target piece member has nonzero offset")
-                targets += 1
+                out.append([row[0], row[1], k, c, row[3], pi, x_parent, -1, -1,
+                            row[0], row[1], k, c, row[3], x_parent])
                 continue
             var found = 0
+            var record = List[Int]()
             for d in descents:
                 if d[0] != pi or j < d[1] * ln + d[2] or j > d[3] * ln + d[4]:
                     continue
                 found += 1
                 var child = pieces[d[8]].copy()
                 var crow = rows[child[0]].copy()
-                var x_parent = p[5] * ln + p[6] * j + p[7]
-                var matched = False
                 for occurrence in ordered_child_occurrences(tables, parent):
                     var ti = occurrence.top_index
                     var bi = occurrence.bottom_index
@@ -253,13 +254,32 @@ def replay_descent_finite_line(line: ALine, n: Int, rows: List[List[Int]], piece
                     var x_child = child[5] * ln + child[6] * cj + child[7]
                     if x_child > x_parent - 1:
                         raise Error("finite descent member does not drop the potential")
-                    matched = True
-                if not matched:
+                    if len(record) == 0:
+                        record = [row[0], row[1], k, c, row[3], pi, x_parent, ti, bi,
+                                  crow[0], crow[1], w[0], w[1], w[2], x_child]
+                if len(record) == 0:
                     raise Error("finite descent member has no matching exact child occurrence")
-                edges += 1
             if found != 1:
                 raise Error("finite non-target label is not covered by exactly one descent row")
-    if labels != slope * ln + constant:
+            out.append(record^)
+    return out^
+
+
+def replay_descent_finite_line(line: ALine, n: Int, rows: List[List[Int]], pieces: List[List[Int]],
+                               descents: List[List[Int]], slope: Int, constant: Int) raises -> List[Int]:
+    """Differential control at one n in 4..24: every descent member's named
+    child occurrence is an actual ordered child occurrence of the exact
+    Perron-field engine, with the stated prefix segments and child label, and
+    the potential drops there (`descent_witnesses_line`); `slope n + constant`
+    is the carrier cardinality. Returns `[labels, targets, checked edges]`."""
+    var witnesses = descent_witnesses_line(line, n, rows, pieces, descents)
+    var targets = 0
+    for w in witnesses:
+        if w[7] < 0:
+            targets += 1
+    var labels = len(witnesses)
+    var edges = labels - targets
+    if labels != slope * line.l_of(n) + constant:
         raise Error("finite piece enumeration disagrees with the carrier cardinality")
     var tag = "" if line.eps == 1 and line.d == 1 else " line=" + line.name()
     print("CLASS_A_DESCENT_FINITE" + tag, n, "labels", labels, "targets", targets, "checked_edges", edges)
