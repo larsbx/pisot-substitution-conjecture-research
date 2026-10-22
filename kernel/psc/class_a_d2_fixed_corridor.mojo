@@ -112,8 +112,8 @@ def certify_corridor_rows(rows: List[List[Int]]) raises -> List[Int]:
         var row=rows[i].copy()
         if len(row)!=9 or row[5]<0 or row[5]>4:
             raise Error("malformed d2 corridor row or rank")
-        if i>0:
-            var previous=rows[i-1].copy()
+        for earlier_i in range(i):
+            var previous=rows[earlier_i].copy()
             var equal=True
             for q in range(5):
                 if previous[q]!=row[q]:
@@ -174,10 +174,11 @@ def certify_uniform_candidate_inclusion(rows: List[List[Int]]) raises -> List[In
         raise Error("d2 uniform inclusion requires all fixed corridor labels")
     var even=inferred_template(8,12)
     var odd=inferred_template(9,13)
-    for state in rows:
-        if not _contains_at_all_m(even,4,state):
+    for i in range(len(rows)):
+        var state=rows[i].copy()
+        if not _contains_at_all_m(even.copy(),4,state.copy()):
             raise Error("fixed corridor label omitted on an even parameter ray")
-        if not _contains_at_all_m(odd,3,state):
+        if not _contains_at_all_m(odd.copy(),3,state.copy()):
             raise Error("fixed corridor label omitted on an odd parameter ray")
     print("CLASS_A_D2_FIXED_CORRIDOR_IN_CANDIDATES", "all_80=true",
           "even_n>=8", "odd_n>=7","reachability_not_proved=true")
