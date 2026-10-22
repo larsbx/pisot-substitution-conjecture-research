@@ -15,6 +15,7 @@ See docs/class-a-residual-geometry-2026-10-22.md.
 from psc.param_poly import (
     QX, TPoly, qx_const, qx_affine, qx_affine2, qx_add, qx_sub,
     tp_const, tp_t, tp_add, tp_sub, tp_scale, tp_mul, tp_deg,
+    qx_is_zero,
 )
 
 
@@ -24,7 +25,6 @@ def _require_poly_equal(left: TPoly, right: TPoly) raises:
 
 
 def _require_qx_equal(left: QX, right: QX) raises:
-    from psc.param_poly import qx_is_zero
     if not qx_is_zero(qx_sub(left,right)):
         raise Error("uniform class-A integral-update identity failed")
 
@@ -70,9 +70,9 @@ def _check_columns(sign: Int) raises:
     var ml0=tp_add(tp_scale(L[0],qx_const(2)),tp_scale(L[2],qx_add(n,d)))
     var ml1=tp_add(tp_add(L[0],L[1]),tp_scale(L[2],n))
     var ml2=tp_add(tp_add(L[0],L[1]),tp_scale(L[2],qx_add(n,qx_const(sign))))
-    for i in range(3):
-        var col=ml0 if i==0 else ml1 if i==1 else ml2
-        _require_poly_equal(tp_add(tp_sub(tp_mul(h,col),tp_mul(beta_h,L[i])),P),tp_const(qx_const(0)))
+    _require_poly_equal(tp_add(tp_sub(tp_mul(h,ml0),tp_mul(beta_h,L[0])),P),tp_const(qx_const(0)))
+    _require_poly_equal(tp_add(tp_sub(tp_mul(h,ml1),tp_mul(beta_h,L[1])),P),tp_const(qx_const(0)))
+    _require_poly_equal(tp_add(tp_sub(tp_mul(h,ml2),tp_mul(beta_h,L[2])),P),tp_const(qx_const(0)))
     # Expand h^3 f(1+1/h), where f(t) is the exact incidence cubic.
     var plus=tp_add(one,h)
     var cube=tp_mul(tp_mul(plus,plus),plus)
@@ -120,7 +120,7 @@ def _check_child_columns(sign: Int) raises:
                    d if k==1 else qx_const(0)))
 
 
-def _check_d2_nontransfer() raises:
+def _check_d2_nontransfer_rows(rows: List[List[Int]]) raises:
     """The d=1 y,y row with (s,y,k)=(0,-2,-n) fails for d=2.
 
     The row is [2,2,0,-2,-1,0,0,0] from the 89-row template.
@@ -128,9 +128,8 @@ def _check_d2_nontransfer() raises:
     -1+h+4h^2+4h^3 at the unique positive root of P(n,h).
     For n>=4, that root lies in (0,1/5), so the margin is <=-76/125<0.
     """
-    from psc.class_a_typed_carrier import template_rows
     var exists=False
-    for row in template_rows():
+    for row in rows:
         if len(row)==8 and row[0]==2 and row[1]==2 and row[2]==0 and row[3]==-2 and row[4]==-1 and row[5]==0 and row[6]==0 and row[7]==0:
             exists=True
     if not exists:
@@ -154,6 +153,11 @@ def _check_d2_nontransfer() raises:
         raise Error("uniform nontransfer inequality budget failed")
     print("CLASS_A_D2_NONTRANSFER", "all_n>=4", "source_d1_row=y,y,0,-2,-n",
           "strict_lower_margin_negative=true", "not_a_hitting_counterexample=true")
+
+
+def _check_d2_nontransfer() raises:
+    from psc.class_a_typed_carrier import template_rows
+    _check_d2_nontransfer_rows(template_rows())
 
 
 def certify_general_class_a_geometry() raises:
