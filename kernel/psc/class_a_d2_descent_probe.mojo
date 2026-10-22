@@ -173,7 +173,7 @@ def _strict_real_uniform(vertex: List[Int]) raises:
     var b=vertex[1]
     if t<0 or t>2 or b<0 or b>2:
         raise Error("wrong chosen path letter")
-    var L=List[List[Int]]([[1,2,2],[1,0,0],[1,1,0]])
+    var L=List[List[Int]]([List[Int]([1,2,2]),List[Int]([1,0,0]),List[Int]([1,1,0])])
     var k=vertex[2]
     var c=vertex[3]
     var y=vertex[4]
@@ -195,7 +195,7 @@ def certify_d2_uniform_center_paths() raises -> List[Int]:
     var r=List[Int]([0,0,1,-1,0])
     var r1=List[Int]([2,0,0,-1,1])
     var target=List[Int]([2,2,0,0,0])
-    for st in [l.copy(),l1.copy(),r.copy(),r1.copy(),target.copy()]:
+    for st in List[List[Int]]([l.copy(),l1.copy(),r.copy(),r1.copy(),target.copy()]):
         _strict_real_uniform(st)
     if _two_step_child(l,0,2)!=l1:
         raise Error("left centered path first symbolic occurrence changed")
