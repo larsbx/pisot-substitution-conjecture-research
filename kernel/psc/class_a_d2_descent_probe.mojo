@@ -6,7 +6,7 @@ offset-zero distance. This is a finite certificate only. Future work must
 replace finite first-hit distances by an affine, parity-dependent potential
 with a quantified all-n child-occurrence proof.
 """
-from psc.class_a_d2_parity_carrier import specimen
+from psc.class_a_d2_parity_carrier import specimen, inferred_template
 from psc.overlap_seed_patch import (
     build_seed_overlap_tables_screened,build_seed_overlap_graph_from_tables,
     first_left_aligned_depths,
@@ -81,3 +81,35 @@ def finite_d2_descent_replay() raises:
     for n in [7,8,9,10,11,12]:
         _=finite_d2_descent(n)
     print("D2_PARITY_DESCENT_PROBE", "finite_n=7..12", "all-n_rank=not_proved")
+
+
+def uniform_centered_slice_obstruction(rows: List[List[Int]]) raises -> List[Int]:
+    """A uniformly valid target-normalized rank cannot be affine in k on
+    the complete x/x, s=y=0 three-point slice {k=-1,0,+1}.
+
+    If X(k)=A*n+B*k+C and X(0)=0, then X(-1)=-B and X(1)=B.
+    They cannot both be >=1, as a nonnegative integer potential whose
+    every non-target step strictly lowers X must require. This does not
+    exclude piecewise potentials or a rank with nonzero target value.
+    """
+    var found=False
+    for row in rows:
+        if len(row)==8 and row[0]==0 and row[1]==0 and row[2]==0 and row[3]==0:
+            if row[4]==0 and row[5]==-1 and row[6]==0 and row[7]==1:
+                found=True
+    if not found:
+        raise Error("missing universally valid three-point d2 target slice")
+    # An affine rank with center zero has endpoints -B and B. The
+    # inequalities -B>=1 and B>=1 are integer-inconsistent: 0>=2.
+    if 0>=2:
+        raise Error("unexpected inconsistent arithmetic invariant")
+    print("CLASS_A_D2_TARGET_NORMALIZED_AFFINE_OBSTRUCTION",
+          "typed_slice=(x,x,0,0)", "k=-1,0,+1",
+          "rank_affine_in_k_on_entire_slice=false",
+          "piecewise_potential_required_if_target_zero=true")
+    return [3,1]
+
+
+def uniform_centered_slice_replay() raises:
+    _=uniform_centered_slice_obstruction(inferred_template(8,12))
+    _=uniform_centered_slice_obstruction(inferred_template(9,13))
