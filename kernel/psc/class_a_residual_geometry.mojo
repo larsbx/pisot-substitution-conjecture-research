@@ -12,6 +12,7 @@ A uniform countermodel also proves the accepted 89-row d=1 carrier is
 NOT a real-overlap carrier for the next d=2 plus line, for all n>=4.
 See docs/class-a-residual-geometry-2026-10-22.md.
 """
+from psc.class_a_typed_carrier import template_rows
 from psc.param_poly import (
     QX, TPoly, qx_const, qx_affine, qx_affine2, qx_add, qx_sub,
     tp_const, tp_t, tp_add, tp_sub, tp_scale, tp_mul, tp_deg,
@@ -156,7 +157,6 @@ def _check_d2_nontransfer_rows(rows: List[List[Int]]) raises:
 
 
 def _check_d2_nontransfer() raises:
-    from psc.class_a_typed_carrier import template_rows
     _check_d2_nontransfer_rows(template_rows())
 
 
