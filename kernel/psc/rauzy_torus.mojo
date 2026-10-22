@@ -107,9 +107,16 @@ struct LiftProfile(Copyable, Movable):
         return n
 
     def histogram(self) raises -> Histogram:
-        """Occupied cells by lift count; sized for every count the encoded
-        window admits, so a valid profile never raises here."""
-        var h = Histogram(MAX_LIFTS_PER_CELL + 1)
+        """Occupied cells by lift count, with capacity from the observed
+        maximum. Refuse impossible counts instead of allocating outside the
+        encoded lift window."""
+        var maximum = 0
+        for c in self.lifts:
+            if c < 0 or c > MAX_LIFTS_PER_CELL:
+                raise Error("a torus cell has an invalid lift count")
+            if c > maximum:
+                maximum = c
+        var h = Histogram(maximum + 1)
         for c in self.lifts:
             if c > 0:
                 h.record(c)
@@ -282,10 +289,14 @@ def _floor_mod(a: Int, b: Int) -> Int:
 
 def lift_profile_of_cells(cells: List[List[Int]], grid: Int, undecided: Int = 0) raises -> LiftProfile:
     """Distinct-lift counts per torus cell, for cells `(cx, cy)` of the plane."""
+    if grid < 1:
+        raise Error("the torus grid must be positive")
     var lifts = List[Int](length=grid * grid, fill=0)
     var seen = Dict[Int, Bool]()
     var half = LIFT_SPAN // 2
     for c in cells:
+        if len(c) != 2:
+            raise Error("each planar cell must have exactly two coordinates")
         var lx = c[0] // grid
         var ly = c[1] // grid
         if lx < -half or lx >= half or ly < -half or ly >= half:
