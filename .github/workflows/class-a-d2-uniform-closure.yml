@@ -4,6 +4,12 @@ on:
   pull_request:
     paths:
       - 'kernel/psc/class_a_d2_uniform_closure.mojo'
+      - 'kernel/psc/class_a_d2_parity_carrier.mojo'
+      - 'kernel/psc/class_a_d2_uniform_geometry.mojo'
+      - 'oracles/python/class_a_d2_parity_carrier.py'
+      - 'oracles/python/class_a_d2_uniform_geometry.py'
+      - 'tests/test_class_a_d2_parity_carrier.py'
+      - 'tests/test_class_a_d2_uniform_geometry.py'
       - 'kernel/class_a_d2_uniform_closure.mojo'
       - 'kernel/tests/test_class_a_d2_uniform_closure.mojo'
       - 'oracles/python/class_a_d2_uniform_closure.py'
