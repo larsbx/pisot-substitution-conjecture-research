@@ -13,6 +13,8 @@ Work in the determinant-two PIP class-A line
 
 **Proposition.** For every integer `n>=4`, the canonical exact swap-seed overlap graph has at least `6n-2` distinct vertices.
 
+**Status:** proved (scoped uniform graph-size lower bound from existing coefficient-checked run-index paths and exact reversal symmetry; independent human review pending). This does not establish universal typed-carrier closure or arbitrary-parameter hitting.
+
 The existing coefficient-checked formulas in [the run-index proof](p1b-class-a-run-index-2026-10-21.md) provide seed-reachable states
 `A_k=(c,y,k,-k,0)` and `Y_k=(y,y,k,-k,0)` for `2<=k<=n`, and `B_k=(y,x,k,-k-1,1)` for `0<=k<=n`. The four-step bootstrap reaches `A_2`; the `Y_(k+1)` ladder reaches `A_n`; the exit from `A_n` reaches `B_n` and every `B_k` by descending edges. Every listed occurrence is strict, and the prior proof checks its zero-based indices for all `n>=4`.
 
