@@ -1,0 +1,111 @@
+{
+  "source_head": "72f173dbc8dc0de1e5e13503b2911e0411d1fda8",
+  "recorded_at_utc": "2026-10-08T10:38:24.896Z",
+  "run_id": 37752294014,
+  "jobs": [
+    {
+      "id": 113228208513,
+      "name": "box automaton total-8",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-08T09:53:21Z",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/37752294014/job/113228208513"
+    },
+    {
+      "id": 113228208749,
+      "name": "box automaton len4-11",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-08T09:38:48Z",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/37752294014/job/113228208749"
+    },
+    {
+      "id": 113228208760,
+      "name": "box automaton len4-08",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-08T10:10:04Z",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/37752294014/job/113228208760"
+    },
+    {
+      "id": 113228208795,
+      "name": "box automaton len4-01",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-08T09:52:34Z",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/37752294014/job/113228208795"
+    },
+    {
+      "id": 113228208814,
+      "name": "box automaton len4-03",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-08T10:22:25Z",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/37752294014/job/113228208814"
+    },
+    {
+      "id": 113228208833,
+      "name": "box automaton len4-04",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-08T09:59:34Z",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/37752294014/job/113228208833"
+    },
+    {
+      "id": 113228208858,
+      "name": "box automaton len4-09",
+      "status": "in_progress",
+      "conclusion": null,
+      "completed_at": null,
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/37752294014/job/113228208858"
+    },
+    {
+      "id": 113228208941,
+      "name": "box automaton len4-07",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-08T10:02:51Z",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/37752294014/job/113228208941"
+    },
+    {
+      "id": 113228208942,
+      "name": "box automaton len4-02",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-08T10:20:44Z",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/37752294014/job/113228208942"
+    },
+    {
+      "id": 113228209031,
+      "name": "box automaton len4-00",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-08T10:35:37Z",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/37752294014/job/113228209031"
+    },
+    {
+      "id": 113228209042,
+      "name": "box automaton len4-05",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-08T10:37:20Z",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/37752294014/job/113228209042"
+    },
+    {
+      "id": 113228209098,
+      "name": "box automaton len4-06",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-08T10:36:10Z",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/37752294014/job/113228209098"
+    },
+    {
+      "id": 113228209301,
+      "name": "box automaton len4-10",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-10-08T10:35:21Z",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/37752294014/job/113228209301"
+    }
+  ]
+}

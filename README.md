@@ -271,7 +271,7 @@ This programme sits between those two kinds of result:
 | | Literature | This repository |
 | --- | --- | --- |
 | general ternary PSC | open | open; one premise left on the shortest route (#84) |
-| ternary size classes | specimen by specimen | exact finite-domain PDS theorem on 145,806 PIP specimens (images ≤ 4 or total ≤ 8), via Theorem Ω and explicit overlap/Meyer imports; human review pending |
+| ternary size classes | specimen by specimen | exact finite-domain PDS theorem on 145,806 PIP specimens (images ≤ 4 or total ≤ 8), via Theorem Ω with overlap/Meyer and flow-to-symbolic imports; [October 8–11 audit](docs/audit-theorem-omega-2026-10-08.md), human review pending |
 | ternary strong coincidence | open | 0 failures on 408,798 specimens (total ≤ 10) |
 | PDS vs. BPA finiteness | ABBLS Thm 5.3, "one seed suffices" | PDS ⇒ G1 and every-seed termination (audited, human review pending) |
 | regime | geometric tools mostly unimodular | all PIP; unimodularity never assumed |
