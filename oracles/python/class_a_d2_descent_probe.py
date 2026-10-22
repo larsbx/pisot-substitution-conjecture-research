@@ -113,6 +113,9 @@ def validate_witness(n,proof):
     selected=proof["_witness"]
     if len(selected)!=len(g.states)-proof["targets"]:
         raise ValueError("truncated witness list")
+    actual_digest=sha256(json.dumps(selected,separators=(",",":")).encode()).hexdigest()
+    if actual_digest!=proof["witness_sha256"]:
+        raise ValueError("exact ordered-edge witness digest changed")
     covered=set()
     for parent,child,ti,bi,depth in selected:
         if parent in covered or not 0<=parent<len(g.states) or not 0<=child<len(g.states):
