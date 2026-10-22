@@ -1,0 +1,80 @@
+{
+  "scope": "boundary hitting (every vertex of the complete canonical swap-seed graph has an offset-zero descendant) on the class-A d=2 plus line (n+2,n,n+1), sigma_n=(x y^(n+2) x, c y^n x, x y^(n+1) c), for every n>=1; n=0 lies on the previously certified line p=2q+2",
+  "base_commit": "785a45b9c6da8ccc50b6ecaab5946fb6204b7b8d",
+  "runtime": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "rays": [
+    {
+      "ray": "n=2l+0",
+      "n0": 14,
+      "closure": {
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "member_checks": 186,
+        "segments": 837,
+        "y_cases": 9207,
+        "covered": 3576,
+        "gap_geometry": 3100,
+        "window_checks": 1674,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 149,
+        "targets": 8,
+        "descent_rows": 207,
+        "bound_slope": 2,
+        "bound_const": 9
+      },
+      "scope": "class-A line (n+2,n,n+1) n=2l+0: seed graph in carrier and uniform hit depth <= bound for every n>=n0; other A/C regions and universal #139 open"
+    },
+    {
+      "ray": "n=2l+1",
+      "n0": 13,
+      "closure": {
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "member_checks": 174,
+        "segments": 783,
+        "y_cases": 8613,
+        "covered": 3378,
+        "gap_geometry": 2942,
+        "window_checks": 1566,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 141,
+        "targets": 8,
+        "descent_rows": 186,
+        "bound_slope": 2,
+        "bound_const": 11
+      },
+      "scope": "class-A line (n+2,n,n+1) n=2l+1: seed graph in carrier and uniform hit depth <= bound for every n>=n0; other A/C regions and universal #139 open"
+    }
+  ],
+  "finite_base": "exact complete graphs n=1..30 (survey.log), every first offset-zero depth finite, cap not reached; native test re-surveys every n below each floor",
+  "calibration": "ray rows equal the independent #312 Fraction-field typed-interval profile at n=8,9,12,13 (pytest) and 16,17,22,23 (session check)",
+  "source_sha256": {
+    "kernel/psc/class_a_ray_d2p.mojo": "ac2eb0b00c4014e9d397347ef2f674603db65abf9d463918599c55a78d96e169",
+    "kernel/psc/class_a_ray_tables.mojo": "f102cfb0c873c754e0554b74f2ba7df0576e8b85350a036811094b0365d647bb",
+    "kernel/psc/class_a_line.mojo": "1784a468d0fb56748390c4df1e3a9fcd70897dd09e5ba0fd7099e9c606d14011",
+    "kernel/psc/class_a_line_graph.mojo": "10204dc16761dcb8217cb42a3bf0b97337ec6210e689ae1959a7e134d353b8dd",
+    "kernel/psc/class_a_carrier_closure.mojo": "04dfb95d4478f65d64c42be673b0734d78556d0a21650835a850966f781e613e",
+    "kernel/psc/class_a_carrier_descent.mojo": "ba65b9345d821d338526b997fdb833f5950b3254a97cf4d007a907c35ea0a79f",
+    "kernel/class_a_residue_ray.mojo": "7f40325683b50feceef6036c7965e06bcd297c64841cbdee669ad04e48c400d1",
+    "kernel/tests/test_class_a_residue_rays.mojo": "a7fd6b295079bab2599efcd3ae33493d945bb510cf1cc16f8af124ace4fb263f",
+    "oracles/python/class_a_carrier_closure.py": "5c2bea5a88122e1a15fcb98c4e0c3d3903a7abe802a2534d5758503a4c77588c",
+    "oracles/python/class_a_descent_table.py": "cb6e09106685ec1e42ac70f53b0d4f558f51986ff8d86641d6e30842ea9459a2",
+    "oracles/python/class_a_d2_parity_carrier.py": "455ef0e0e78693fc47fef9bcbc59bd33b7175b7a659560382eab0f882e43a5d4",
+    "tests/test_class_a_residue_rays.py": "022ed24f746b95663a9129b2371a7f3951433f1a90f15cf626ec533fd200a9e2",
+    "tests/test_class_a_d2_plus_ray_carrier.py": "1e3f413abc646ecec609f018f504d015887610c47072fadc84f40f3c40ab8ea4"
+  },
+  "non_claims": [
+    "other class-A gaps d>=4",
+    "class-C residual",
+    "universal #139/#84/#138",
+    "G1",
+    "PSC",
+    "independent human review"
+  ]
+}

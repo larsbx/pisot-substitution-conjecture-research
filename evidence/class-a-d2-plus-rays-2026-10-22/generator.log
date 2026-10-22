@@ -1,0 +1,12 @@
++ oracles/python/class_a_descent_table.py GRAPHS/g2p 8 --ray 2,1,0 --nhi 34 --rows-mojo
+rows: 93 slices: 82
++ oracles/python/class_a_descent_table.py GRAPHS/g2p 8 --ray 2,1,1 --nhi 34 --rows-mojo
+rows: 87 slices: 80
++ oracles/python/class_a_descent_table.py GRAPHS/g2p 12 --ray 2,1,0 --nhi 34 --mojo
+pieces: 149
+NLO 12 pieces 149 failures: 0  descent rows: 207
++ oracles/python/class_a_descent_table.py GRAPHS/g2p 11 --ray 2,1,1 --nhi 34 --mojo
+row 83 fitted with slack 1
+pieces: 141
+NLO 11 pieces 141 failures: 0  descent rows: 186
+regenerated class_a_ray_d2p.mojo identical

@@ -1,0 +1,6 @@
+CLASS_A_CARRIER_CLOSURE n>=14 line=(n+2,n,n+1) n=2l+0 rows 93 segments 837 y_cases 9207 covered 3576 gap_geometry 3100 window_checks 1674 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=14 line=(n+2,n,n+1) n=2l+0 pieces 149 targets 8 descent_rows 207 hit_depth_bound 2l+9
+CLASS_A_RAY_BOUNDARY_HITTING n>=14 line=(n+2,n,n+1) n=2l+0 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=13 line=(n+2,n,n+1) n=2l+1 rows 87 segments 783 y_cases 8613 covered 3378 gap_geometry 2942 window_checks 1566 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=13 line=(n+2,n,n+1) n=2l+1 pieces 141 targets 8 descent_rows 186 hit_depth_bound 2l+11
+CLASS_A_RAY_BOUNDARY_HITTING n>=13 line=(n+2,n,n+1) n=2l+1 closure=true descent=true universal_139=false

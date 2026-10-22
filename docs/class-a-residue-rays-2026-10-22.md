@@ -165,3 +165,9 @@ class-A residual, the class-C residual `d>=4`, aligned #138, universal
 the generator is not evidence. Not Lean-formalized; independent human review
 pending. The `ALine` remark of the minus-line note that only `d=1` is
 represented is superseded by this note.
+
+**Addendum (2026-10-22, later).** The `d=2` plus line is now tabulated in the
+same registry (rays `n=2l` floor 14 and `n=2l+1` floor 13); see
+[class-a-d2-plus-rays-2026-10-22.md](class-a-d2-plus-rays-2026-10-22.md). The
+non-claim above is superseded for that line only; the eight rays and their
+receipts in this note are unchanged.
