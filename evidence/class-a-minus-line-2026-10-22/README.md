@@ -45,7 +45,7 @@ Replay from the repository root:
 (cd kernel && pixi run --locked mojo run -I . class_a_minus_line.mojo certify 8)
 python oracles/python/class_a_carrier_closure.py 8 --line minus
 python -m pytest -q tests/test_class_a_minus_line.py
-sha256sum -c evidence/class-a-minus-line-2026-10-22/SHA256SUMS
+(cd evidence/class-a-minus-line-2026-10-22 && sha256sum -c SHA256SUMS)
 ```
 
 `SHA256SUMS` covers every file in this packet except itself.

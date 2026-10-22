@@ -202,7 +202,7 @@ From the repository root:
 ```bash
 python oracles/python/class_a_carrier_closure.py 8 --line minus
 python -m pytest -q tests/test_class_a_minus_line.py tests/test_class_a_carrier_closure.py
-sha256sum -c evidence/class-a-minus-line-2026-10-22/SHA256SUMS
+(cd evidence/class-a-minus-line-2026-10-22 && sha256sum -c SHA256SUMS)
 ```
 
 Packet: `evidence/class-a-minus-line-2026-10-22/`. The Mojo certificate and the
