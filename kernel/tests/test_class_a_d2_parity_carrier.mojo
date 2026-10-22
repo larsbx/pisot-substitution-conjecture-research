@@ -32,7 +32,10 @@ def main() raises:
     for n in [4,5]:
         refused=False
         try:
-            _=certify_finite_parity(n,even if n%2==0 else odd)
+            if n%2==0:
+                _=certify_finite_parity(n,even)
+            else:
+                _=certify_finite_parity(n,odd)
         except:
             refused=True
         assert_true(refused)
@@ -50,7 +53,9 @@ def main() raises:
         refused=True
     assert_true(refused)
     var damaged=even.copy()
-    damaged[0][5]+=1
+    var first=damaged[0].copy()
+    first[5]+=1
+    damaged[0]=first
     refused=False
     try:
         _=certify_finite_parity(14,damaged)
