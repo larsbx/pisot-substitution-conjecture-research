@@ -114,7 +114,7 @@ def prove_candidate_inclusion(table=None):
         found=0
         for t,b,k,c,y,*_ in table:
             if any(
-                key==(t,b,k+c+y,y) and al<=0<=au
+                tuple(key)==(t,b,k+c+y,y) and al<=0<=au
                 and al*floor+bl<=k<=au*floor+bu
                 for *key,al,bl,au,bu in template
             ):
