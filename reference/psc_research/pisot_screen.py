@@ -152,6 +152,7 @@ def routh_right_half_plane_count(q: Sequence[Fraction]) -> int | None:
     ]
     while rows[-1] and len(rows) <= n:
         above, current = rows[-2], rows[-1]
+
         if all(x == 0 for x in current):
             # A vanishing row means `q` has roots placed symmetrically about the
             # origin, which in `z` is a reciprocal pair. The classical remedy is
@@ -161,21 +162,44 @@ def routh_right_half_plane_count(q: Sequence[Fraction]) -> int | None:
             rows[-1] = current = _auxiliary_derivative(above, n - (len(rows) - 2))
             if not current or all(x == 0 for x in current):
                 return None
-        if current[0] == 0:
+
+        c0 = current[0]
+        if c0 == 0:
             return None  # first-column zero, not a whole row
+
         nxt = []
-        for i in range(1, max(len(above), len(current))):
-            a = above[i] if i < len(above) else Fraction(0)
-            b = current[i] if i < len(current) else Fraction(0)
-            nxt.append((current[0] * a - above[0] * b) / current[0])
+        # Optimization: Cache Fraction inverse outside the inner loop to replace slow divisions
+        # with multiplications.
+        inv_c0 = Fraction(c0.denominator, c0.numerator)
+
+        len_above, len_current = len(above), len(current)
+        a0 = above[0]
+
+        # Optimization: Unroll max() handling into discrete loops
+        # to avoid instantiating countless `Fraction(0)` defaults.
+        if len_above < len_current:
+            min_len = len_above
+            for i in range(1, min_len):
+                nxt.append((c0 * above[i] - a0 * current[i]) * inv_c0)
+            for i in range(min_len, len_current):
+                nxt.append((-a0 * current[i]) * inv_c0)
+        else:
+            min_len = len_current
+            for i in range(1, min_len):
+                nxt.append((c0 * above[i] - a0 * current[i]) * inv_c0)
+            for i in range(min_len, len_above):
+                nxt.append(above[i])
+
         while nxt and nxt[-1] == 0:
             nxt.pop()
         if not nxt:
             break
         rows.append(nxt)
+
     column = [row[0] for row in rows if row]
     if len(column) < n + 1 or any(x == 0 for x in column):
         return None  # early termination or a zero
+
     return sum(1 for i in range(n) if (column[i] > 0) != (column[i + 1] > 0))
 
 
