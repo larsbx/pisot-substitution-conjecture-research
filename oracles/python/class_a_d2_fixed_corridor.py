@@ -8,7 +8,9 @@ A complete finite Q(beta) graph is only an additional differential control.
 from collections import Counter
 from pathlib import Path
 import re
+import sys
 
+sys.path.insert(0,str(Path(__file__).resolve().parent))
 ROOT=Path(__file__).resolve().parents[2]
 DATA=ROOT/"kernel/psc/class_a_d2_fixed_corridor_data.mojo"
 LENGTH=((1,2,2),(1,0,0),(1,1,0))
@@ -53,7 +55,9 @@ def prefix(t,index):
 
 def child_type(t,index):
     prefix(t,index)
-    return 1 if t==1 else 0 if index==0 else 2
+    if index==0:
+        return 1 if t==1 else 0
+    return 2
 
 
 def actual_child(parent,ti,bi):
