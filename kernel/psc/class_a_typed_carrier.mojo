@@ -6,7 +6,8 @@ finite verifier below must not be mistaken for an all-n closure proof.
 Source and rejection notes: docs/class-a-typed-carrier-2026-10-21.md.
 """
 from std.collections import Dict
-from psc.class_a_run_index import member, labelled
+from psc.class_a_run_index import labelled
+from psc.class_a_line import ALine, plus_line
 from psc.overlap_seed_patch import (
     OverlapState, build_seed_overlap_tables_screened,
     build_seed_overlap_graph_from_tables, first_left_aligned_depths,
@@ -130,10 +131,15 @@ def contains(n: Int, top: Int, bottom: Int, k: Int, c: Int, y: Int) raises -> Bo
 
 
 def certify_finite_rows(n: Int, rows: List[List[Int]]) raises -> List[Int]:
-    """EXACT finite replay only; n is explicitly bounded. No universal promotion."""
+    return certify_finite_line(plus_line(),n,rows,40,115)
+
+
+def certify_finite_line(line: ALine, n: Int, rows: List[List[Int]], slope: Int, constant: Int) raises -> List[Int]:
+    """EXACT finite replay only; n is explicitly bounded. No universal promotion.
+    `slope n + constant` is the carrier cardinality from its affine row identity."""
     if n < 4 or n > 24:
         raise Error("finite typed-carrier replay permits 4<=n<=24")
-    var tables=build_seed_overlap_tables_screened(member(n))
+    var tables=build_seed_overlap_tables_screened(line.member(n))
     var g=build_seed_overlap_graph_from_tables(tables,20000)
     if g.capped:
         raise Error("STATE_BUDGET_EXHAUSTED: no typed-carrier verdict")
@@ -154,7 +160,7 @@ def certify_finite_rows(n: Int, rows: List[List[Int]]) raises -> List[Int]:
             if not interior_overlap(tables,st):
                 raise Error("typed carrier contains a non-strict overlap")
             candidate[st]=1
-    if len(candidate)!=40*n+115:
+    if len(candidate)!=slope*n+constant:
         raise Error("typed carrier candidate count disagrees with affine identity")
     if g.size()!=len(candidate):
         raise Error("finite seed graph cardinality differs from typed candidate")
@@ -176,7 +182,8 @@ def certify_finite_rows(n: Int, rows: List[List[Int]]) raises -> List[Int]:
         if depth<0:
             raise Error("finite candidate has a non-hitting seed descendant")
         deepest=max(deepest,depth)
-    print("CLASS_A_TYPED_CARRIER_FINITE",n,"candidate",len(candidate),"graph",g.size(),"max_hit",deepest,"uniform_closure=false")
+    var tag="" if line.eps==1 else " line="+line.name()
+    print("CLASS_A_TYPED_CARRIER_FINITE"+tag,n,"candidate",len(candidate),"graph",g.size(),"max_hit",deepest,"uniform_closure=false")
     return [len(candidate),g.size(),deepest]
 
 

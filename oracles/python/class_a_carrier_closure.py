@@ -11,6 +11,15 @@ the canonical result is the Mojo one.
 Conventions (bottom minus top offsets, scaled lengths L=(1+h+h^2,1,1+h),
 displacement T = s + k h(1+h) + y h, n h(1+h) = 1-h-h^2-h^3) are derived in
 docs/class-a-carrier-closure-2026-10-22.md.
+
+`--line minus` verifies the minus line (n+1,n,n-1) instead: the 104 rows of
+`kernel/psc/class_a_minus_carrier.mojo` and the tables of
+`kernel/psc/class_a_minus_descent_data.mojo`, with L=(1+3h+h^2,1+2h,1+h),
+T = k L_x + c L_c + y L_y, n h(1+h) = 1+h-3h^2-h^3, the run of sigma(y) of
+length n-1 and h in (0, 1/n0]; see docs/class-a-minus-line-2026-10-22.md.
+Before using them the verifier re-derives that L is a left Perron
+eigenvector and that the elimination and the interval follow from the
+characteristic polynomial of the incidence matrix it reads off the images.
 """
 from __future__ import annotations
 
@@ -21,8 +30,11 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-ROWS_SRC = ROOT / "kernel/psc/class_a_typed_carrier.mojo"
-DATA_SRC = ROOT / "kernel/psc/class_a_descent_data.mojo"
+EPS = -1 if "--line" in sys.argv and sys.argv[sys.argv.index("--line") + 1] == "minus" else 1
+ROWS_SRC = ROOT / ("kernel/psc/class_a_typed_carrier.mojo" if EPS == 1 else "kernel/psc/class_a_minus_carrier.mojo")
+DATA_SRC = ROOT / ("kernel/psc/class_a_descent_data.mojo" if EPS == 1 else "kernel/psc/class_a_minus_descent_data.mojo")
+ROWS_FN, ROW_COUNT = ("template_rows", 89) if EPS == 1 else ("minus_rows", 104)
+PREFIX = "" if EPS == 1 else "minus_"
 
 
 # ---------------------------------------------------------------------------
@@ -101,8 +113,62 @@ def sign_on_interval(p, q):
     return 1 if at_q > 0 else -1
 
 
-N_NUM = [1, -1, -1, -1]   # n h (1+h) = 1 - h - h^2 - h^3
+# ---------------------------------------------------------------------------
+# line data, re-derived from the images x->x y^(n+1) x, c->c y^n x, y->x y^(n+eps) c
+# ---------------------------------------------------------------------------
+# column j of the incidence matrix = letter counts of sigma(j), as (const, n-coefficient)
+INCIDENCE = {0: [(2, 0), (0, 0), (1, 1)], 1: [(1, 0), (1, 0), (0, 1)], 2: [(1, 0), (1, 0), (EPS, 1)]}
+L_POLY = {0: [1, 2 - EPS, 1], 1: [1, 1 - EPS], 2: [1, 1]}
+# P(n,h) = h^3 chi(1 + 1/h) = P_A(h) + n P_B(h)
+P_A, P_B = [1, -EPS, EPS - 2, -1], [0, -1, -1]
+N_NUM = pscale(P_A, 1)    # n h (1+h) = P_A, from P = 0 and P_B = -h(1+h)
 D_DEN = [0, 1, 1]
+
+
+def _check_line():
+    """chi(t) from the incidence matrix (exact, as polynomials in n), then
+    h^3 chi(1+1/h) = P_A + n P_B, then h M^T L - (1+h) L = -P for each letter."""
+    # entries a + b n; characteristic polynomial coefficients via traces of the 3x3
+    def m(i, j):
+        return INCIDENCE[j][i]
+    def mul(u, v):  # polynomials in n, ascending
+        return pmul(list(u), list(v))
+    e = [[pnorm(list(m(i, j))) for j in range(3)] for i in range(3)]
+    tr = padd(padd(e[0][0], e[1][1]), e[2][2])
+    minors = [padd(mul(e[a][a], e[b][b]), pscale(mul(e[a][b], e[b][a]), -1)) for a, b in ((0, 1), (0, 2), (1, 2))]
+    c2 = padd(padd(minors[0], minors[1]), minors[2])
+    det = []
+    for p_, sg in (((0, 1, 2), 1), ((1, 2, 0), 1), ((2, 0, 1), 1), ((0, 2, 1), -1), ((2, 1, 0), -1), ((1, 0, 2), -1)):
+        det = padd(det, pscale(mul(mul(e[0][p_[0]], e[1][p_[1]]), e[2][p_[2]]), sg))
+    # chi(t) = t^3 - tr t^2 + c2 t - det; h^3 chi(1+1/h) = (1+h)^3 - tr (1+h)^2 h + c2 (1+h) h^2 - det h^3
+    def coef(npoly, hpoly):   # npoly(n) * hpoly(h) -> (A, B) when npoly is affine in n
+        npoly = npoly + [0] * (2 - len(npoly))
+        if len(npoly) > 2:
+            raise ValueError("characteristic coefficient not affine in n")
+        return pscale(hpoly, npoly[0]), pscale(hpoly, npoly[1])
+    A, B = [1, 3, 3, 1], []
+    for npoly, hpoly in ((pscale(tr, -1), [0, 1, 2, 1]), (c2, [0, 0, 1, 1]), (pscale(det, -1), [0, 0, 0, 1])):
+        a, b = coef(npoly, hpoly)
+        A, B = padd(A, a), padd(B, b)
+    if (A, B) != (pnorm(P_A), pnorm(P_B)):
+        raise ValueError("P(n,h) disagrees with the characteristic polynomial of the line")
+    for j in range(3):
+        ta, tb = [], []
+        for i in range(3):
+            c0, c1 = INCIDENCE[j][i]
+            ta, tb = padd(ta, pscale(L_POLY[i], c0)), padd(tb, pscale(L_POLY[i], c1))
+        ra = padd(pmul(ta, [0, 1]), pscale(pmul(L_POLY[j], [1, 1]), -1))
+        rb = pmul(tb, [0, 1])
+        if (padd(ra, P_A), padd(rb, P_B)) != ([], []):
+            raise ValueError("L is not a left Perron eigenvector of the line")
+
+
+def interval(n0):
+    """q with P(n0, q) < 0: then h_n in (0, q) for every n >= n0 (P decreasing in n and h)."""
+    q = F(1, n0 + 1) if EPS == 1 else F(1, n0)
+    if peval(P_A, q) + n0 * peval(P_B, q) >= 0:
+        raise ValueError("interval does not contain h_n")
+    return q
 
 
 class AffH:
@@ -124,11 +190,13 @@ def times(coef, poly):
     return AffH(pscale(poly, coef[1]), pscale(poly, coef[0]))
 
 
-LENGTH = {0: AffH([1, 1, 1]), 1: AffH([1]), 2: AffH([1, 1])}
+LENGTH = {i: AffH(L_POLY[i]) for i in range(3)}
 
 
 def displacement(s, k, y):
-    return times(s, [1]) + times(k, [0, 1, 1]) + times(y, [0, 1])
+    """T = k L_x + c L_c + y L_y with c = s - k - y."""
+    lc = L_POLY[1]
+    return times(s, lc) + times(k, padd(L_POLY[0], pscale(lc, -1))) + times(y, padd(L_POLY[2], pscale(lc, -1)))
 
 
 # ---------------------------------------------------------------------------
@@ -168,7 +236,7 @@ def a_min(u, v, n0):
 
 FIRST = {0: 0, 1: 1, 2: 0}
 LAST = {0: 0, 1: 0, 2: 1}
-RUN = {0: (1, 1), 1: (1, 0), 2: (1, 1)}
+RUN = {0: (1, 1), 1: (1, 0), 2: (1, EPS)}
 
 
 def segment(letter, part):
@@ -195,18 +263,18 @@ def _lists(src: Path, name: str, width: int):
 
 
 def carrier_rows():
-    rows = _lists(ROWS_SRC, "template_rows", 8)
-    if len(rows) != 89:
-        raise ValueError("expected 89 carrier rows")
+    rows = _lists(ROWS_SRC, ROWS_FN, 8)
+    if len(rows) != ROW_COUNT:
+        raise ValueError("expected %d carrier rows" % ROW_COUNT)
     return rows
 
 
 def pieces():
-    return _lists(DATA_SRC, "piece_rows", 8)
+    return _lists(DATA_SRC, PREFIX + "piece_rows", 8)
 
 
 def descents():
-    return _lists(DATA_SRC, "descent_rows", 9)
+    return _lists(DATA_SRC, PREFIX + "descent_rows", 9)
 
 
 def slices(rows):
@@ -226,7 +294,8 @@ def strict(top, bottom, t, q):
 def verify_closure(rows, n0, window=6):
     if n0 < 4:
         raise ValueError("n0 >= 4 required")
-    q = F(1, n0 + 1)
+    _check_line()
+    q = interval(n0)
     sl = slices(rows)
     st = dict(seeds_real=0, seeds_unreal=0, member_checks=0, segments=0, y_cases=0,
               covered=0, gap_geometry=0, window_checks=0, clip_fallbacks=0, terminal_splits=0)
@@ -269,7 +338,7 @@ def verify_closure(rows, n0, window=6):
                 cb, fxb, fcb, mb_lo, mb_hi = segment(b, pb)
                 dx, dc = fxb - fxt, fcb - fct
                 k0 = (al, bl + s + dx)
-                base = (al + s, bl + y)
+                base = (al + s, bl + EPS * y)
                 d_lo, d_hi = a_sub(mb_lo, mt_hi), a_sub(mb_hi, mt_lo)
                 st["segments"] += 1
                 for yw in (window, -window):
@@ -369,7 +438,7 @@ def is_target(row, piece):
 
 
 def verify_descent(rows, P, D, n0):
-    q = F(1, n0 + 1)
+    q = interval(n0)
     by_row = {}
     for p in P:
         by_row.setdefault(p[0], []).append(((p[1], p[2]), (p[3], p[4])))
@@ -410,7 +479,7 @@ def verify_descent(rows, P, D, n0):
         shift = a_sub(k0, (crow[4], crow[5]))
         if not nonneg(a_sub(a_add(s_lo, shift), (child[1], child[2])), n0) or not nonneg(a_sub((child[3], child[4]), a_add(s_hi, shift)), n0):
             raise ValueError("child leaves its piece")
-        base = (row[4] + row[2], row[5] + row[3])
+        base = (row[4] + row[2], row[5] + EPS * row[3])
         d_lo, d_hi = a_sub(mb_lo, mt_hi), a_sub(mb_hi, mt_lo)
         if not nonneg(a_sub(a_sub(a_sub((0, yp), base), s_hi), d_lo), n0) or not nonneg(a_sub(d_hi, a_sub(a_sub((0, yp), base), s_lo)), n0):
             raise ValueError("occurrence not realizable")
@@ -427,12 +496,14 @@ def verify_descent(rows, P, D, n0):
 
 
 def main(argv):
-    n0 = int(argv[1]) if len(argv) > 1 else 8
+    args = [a for i, a in enumerate(argv[1:], 1) if not a.startswith("--") and argv[i - 1] != "--line"]
+    n0 = int(args[0]) if args else 8
     rows = carrier_rows()
     closure = verify_closure(rows, n0)
     descent = verify_descent(rows, pieces(), descents(), n0)
+    line = "(n+1,n,n+1)" if EPS == 1 else "(n+1,n,n-1)"
     print(json.dumps(dict(n0=n0, closure=closure, descent=descent,
-                          scope="class-A line (n+1,n,n+1): seed graph in carrier and uniform hit depth <= bound for every n>=n0; other A/C regions and universal #139 open"), indent=2))
+                          scope="class-A line %s: seed graph in carrier and uniform hit depth <= bound for every n>=n0; other A/C regions and universal #139 open" % line), indent=2))
 
 
 if __name__ == "__main__":

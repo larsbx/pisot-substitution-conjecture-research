@@ -311,4 +311,4 @@ def certify_d2_all_n_closure() raises -> List[Int]:
     print("CLASS_A_D2_UNIFORM_FORWARD_CLOSURE",
           "n>=4", "all_reachable_children_covered=true",
           "uniform_hitting=false","candidate_equals_all_reachable=not_asserted")
-    return summary
+    return summary^

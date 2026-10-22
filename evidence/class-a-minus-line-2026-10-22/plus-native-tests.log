@@ -1,0 +1,10 @@
+CLASS_A_CARRIER_CLOSURE n>=8 rows 89 segments 801 y_cases 8811 covered 3802 gap_geometry 3334 window_checks 1602 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_CLOSURE n>=5 rows 89 segments 801 y_cases 8811 covered 3947 gap_geometry 3479 window_checks 1602 seeds_real 9 seeds_unreal 3 clip_fallbacks 277 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=8 pieces 155 targets 8 descent_rows 221 hit_depth_bound 2n+9
+CLASS_A_TYPED_CARRIER_FINITE 4 candidate 275 graph 275 max_hit 5 uniform_closure=false
+CLASS_A_TYPED_CARRIER_FINITE 5 candidate 315 graph 315 max_hit 6 uniform_closure=false
+CLASS_A_TYPED_CARRIER_FINITE 6 candidate 355 graph 355 max_hit 7 uniform_closure=false
+CLASS_A_TYPED_CARRIER_FINITE 7 candidate 395 graph 395 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE 8 labels 435 targets 8 checked_edges 427
+CLASS_A_DESCENT_FINITE 11 labels 555 targets 8 checked_edges 547
+contract-receipt: class-A line (n+1,n,n+1) boundary hitting for every n>=4: uniform forward closure of the 89-row typed carrier and a 155-piece affine potential with 221 descent occurrences for n>=8 by exact Sturm signs on (0,1/9], exact finite certificates at n=4..7, differential replay at n=8,11; undecided sign, removed row, damaged potential and mislabelled child refuse; other A/C regions and universal #139 open

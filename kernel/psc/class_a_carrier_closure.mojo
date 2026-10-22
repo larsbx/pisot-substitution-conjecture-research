@@ -1,7 +1,12 @@
-"""Uniform forward closure of the typed class-A carrier for every integer n>=n0 (#139).
+"""Uniform forward closure of a typed class-A carrier for every integer n>=n0 (#139).
 
-The carrier is the 89-row typed candidate of `psc.class_a_typed_carrier` on
-the determinant-two line `x->xy^(n+1)x, c->cy^nx, y->xy^(n+1)c`. With
+The line data (images, run lengths, scaled lengths, the elimination of `n`)
+are those of `psc.class_a_line.ALine`, one of the two gap-one lines
+`(n+1,n,n+eps)`. The text below describes the plus line, whose carrier is
+the 89-row typed candidate of `psc.class_a_typed_carrier` on
+`x->xy^(n+1)x, c->cy^nx, y->xy^(n+1)c`; the minus line is the 104-row carrier
+of `psc.class_a_minus_carrier`, with `L = (1+3h+h^2, 1+2h, 1+h)`,
+`T = s(1+2h) + k h(1+h) - y h` and `n h(1+h) = 1+h-3h^2-h^3`. With
 `h = 1/(beta-1)` the Perron root satisfies `P(n,h) = h^3+(n+1)(h^2+h)-1 = 0`,
 so `n h(1+h) = 1-h-h^2-h^3` and `0 < h < 1/(n+1)`. In units scaled by `1+h`
 the tile lengths are `L = (1+h+h^2, 1, 1+h)` and the bottom-minus-top
@@ -31,6 +36,7 @@ from finite_linear_algebra.qpoly import evaluate
 from psc.exact import q_poly, q_sign
 from psc.pisot import count_roots_in
 from psc.class_a_typed_carrier import template_rows
+from psc.class_a_line import ALine, plus_line
 
 
 # ---------------------------------------------------------------------------
@@ -97,7 +103,7 @@ def sign_on_interval(p: List[Int], q: Q) raises -> Int:
 
 
 # ---------------------------------------------------------------------------
-# A(h) + n B(h), with n h(1+h) = 1 - h - h^2 - h^3.
+# A(h) + n B(h), with n h(1+h) = line.elimination().
 # ---------------------------------------------------------------------------
 
 struct AffH(Copyable, Movable):
@@ -114,12 +120,15 @@ struct AffH(Copyable, Movable):
     def sub(self, o: AffH) -> AffH:
         return AffH(psub(self.a, o.a), psub(self.b, o.b))
 
-    def numerator(self) -> List[Int]:
-        """`A h(1+h) + (1-h-h^2-h^3) B`, whose sign is the sign of `A + nB`."""
-        return padd(pmul(self.a, [0, 1, 1]), pmul([1, -1, -1, -1], self.b))
+    def numerator(self, line: ALine) -> List[Int]:
+        """`A h(1+h) + E B` with `E = n h(1+h)`, whose sign is the sign of `A + nB`."""
+        return padd(pmul(self.a, [0, 1, 1]), pmul(line.elimination(), self.b))
 
-    def sign(self, q: Q) raises -> Int:
-        return sign_on_interval(self.numerator(), q)
+    def sign(self, q: Q, line: ALine) raises -> Int:
+        return sign_on_interval(self.numerator(line), q)
+
+    def is_zero(self) -> Bool:
+        return len(self.a) == 0 and len(self.b) == 0
 
 
 def aff_times(coefficient: List[Int], poly: List[Int]) -> AffH:
@@ -127,19 +136,47 @@ def aff_times(coefficient: List[Int], poly: List[Int]) -> AffH:
     return AffH(pscale(poly, coefficient[1]), pscale(poly, coefficient[0]))
 
 
-def scaled_length(letter: Int) raises -> AffH:
-    if letter == 0:
-        return AffH([1, 1, 1], [])
-    if letter == 1:
-        return AffH([1], [])
-    if letter == 2:
-        return AffH([1, 1], [])
-    raise Error("tile letter outside 0..2")
+def scaled_length(line: ALine, letter: Int) raises -> AffH:
+    return AffH(line.length(letter), [])
 
 
-def displacement(s: List[Int], k: List[Int], y: List[Int]) -> AffH:
-    """`T = s + k h(1+h) + y h` for affine `s, k, y`."""
-    return aff_times(s, [1]).add(aff_times(k, [0, 1, 1])).add(aff_times(y, [0, 1]))
+def displacement(line: ALine, s: List[Int], k: List[Int], y: List[Int]) raises -> AffH:
+    """`T = k L_x + c L_c + y L_y = s L_c + k (L_x-L_c) + y (L_y-L_c)` for
+    affine `s, k, y`; on the plus line `T = s + k h(1+h) + y h`."""
+    var lc = line.length(1)
+    return (aff_times(s, lc).add(aff_times(k, psub(line.length(0), lc)))
+            .add(aff_times(y, psub(line.length(2), lc))))
+
+
+def check_line_identity(line: ALine) raises:
+    """`h (M^T L)_j - (1+h) L_j = -P(n,h)` for each letter `j`, coefficient-wise
+    in `n` and `h`, where `M^T L = (2L_x + (n+1)L_y, L_x+L_c+nL_y,
+    L_x+L_c+(n+eps)L_y)` is read off the images, and `P = 1-(n+eps)h-(n+2-eps)h^2-h^3`.
+    Also checks that `line.elimination()` is `n h(1+h)` solved from `P = 0`."""
+    line.check()
+    var lx = line.length(0)
+    var lc = line.length(1)
+    var ly = line.length(2)
+    var p = AffH([1, -line.eps, line.eps - 2, -1], [0, -1, -1])
+    var mt = List[AffH]()
+    mt.append(AffH(padd(pscale(lx, 2), ly), ly))
+    mt.append(AffH(padd(lx, lc), ly))
+    mt.append(AffH(padd(padd(lx, lc), pscale(ly, line.eps)), ly))
+    var ls = List[List[Int]]([lx.copy(), lc.copy(), ly.copy()])
+    for j in range(3):
+        var lhs = AffH(pmul(mt[j].a, [0, 1]), pmul(mt[j].b, [0, 1])).sub(AffH(pmul(ls[j], [1, 1]), []))
+        if not lhs.add(p).is_zero():
+            raise Error("scaled lengths are not the left Perron eigenvector of the line")
+    if len(psub(line.elimination(), p.a)) != 0 or len(padd(p.b, [0, 1, 1])) != 0:
+        raise Error("elimination identity disagrees with the Perron polynomial")
+
+
+def check_bound(line: ALine, n0: Int, q: Q) raises:
+    """`P(n0, q) < 0`; since `P(n, q)` decreases in `n`, `P(n, 0) = 1` and
+    `P(n, .)` decreases on `h > 0`, the root `h_n` lies in `(0, q)` for all `n >= n0`."""
+    var p = AffH([1, -line.eps, line.eps - 2, -1], [0, -1, -1])
+    if q_sign(evaluate(q_poly(padd(p.a, pscale(p.b, n0))), q)) >= 0:
+        raise Error("interval bound does not contain the Perron parameter h_n")
 
 
 # ---------------------------------------------------------------------------
@@ -185,7 +222,7 @@ def a_min(u: List[Int], v: List[Int], n0: Int) raises -> List[Int]:
 
 
 # ---------------------------------------------------------------------------
-# Substitution data: images x->x y^(n+1) x, c->c y^n x, y->x y^(n+1) c.
+# Substitution data: images x->x y^(n+1) x, c->c y^n x, y->x y^(n+eps) c.
 # ---------------------------------------------------------------------------
 
 def first_letter(letter: Int) -> Int:
@@ -196,8 +233,6 @@ def last_letter(letter: Int) -> Int:
     return 1 if letter == 2 else 0
 
 
-def run_length(letter: Int) -> List[Int]:
-    return aff(1, 0) if letter == 1 else aff(1, 1)
 
 
 struct Segment(Copyable, Movable):
@@ -210,7 +245,7 @@ struct Segment(Copyable, Movable):
     var m_lo: List[Int]
     var m_hi: List[Int]
 
-    def __init__(out self, letter: Int, part: Int) raises:
+    def __init__(out self, line: ALine, letter: Int, part: Int) raises:
         if letter < 0 or letter > 2 or part < 0 or part > 2:
             raise Error("invalid segment")
         if part == 0:
@@ -222,7 +257,7 @@ struct Segment(Copyable, Movable):
             return
         self.px = 1 if first_letter(letter) == 0 else 0
         self.pc = 1 - self.px
-        var run = run_length(letter)
+        var run = line.run(letter)
         if part == 1:
             self.child = 2
             self.m_lo = aff(0, 0)
@@ -284,26 +319,26 @@ struct ClosureStats(Copyable, Movable):
                 self.clip_fallbacks, self.terminal_splits]
 
 
-def _strict_inside(top: Int, bottom: Int, t: AffH, q: Q) raises -> Bool:
-    return scaled_length(top).sub(t).sign(q) > 0 and t.add(scaled_length(bottom)).sign(q) > 0
+def strict_inside(line: ALine, top: Int, bottom: Int, t: AffH, q: Q) raises -> Bool:
+    return scaled_length(line, top).sub(t).sign(q, line) > 0 and t.add(scaled_length(line, bottom)).sign(q, line) > 0
 
 
-def _unreal_on(top: Int, bottom: Int, s2: Int, k0: List[Int], y2: Int,
+def _unreal_on(line: ALine, top: Int, bottom: Int, s2: Int, k0: List[Int], y2: Int,
                j_lo: List[Int], j_hi: List[Int], q: Q) raises -> Bool:
     """The child `(top,bottom)` with sum `s2`, `k' = k0 + j`, `y' = y2` is not
     a strict overlap for any `j` in `[j_lo, j_hi]`: its displacement is
     affine increasing in `j`, so it suffices that it is at or beyond the
     right boundary at `j_lo`, or at or before the left boundary at `j_hi`."""
-    var t_hi = displacement(aff(0, s2), a_add(k0, j_hi), aff(0, y2))
-    if t_hi.add(scaled_length(bottom)).sign(q) <= 0:
+    var t_hi = displacement(line, aff(0, s2), a_add(k0, j_hi), aff(0, y2))
+    if t_hi.add(scaled_length(line, bottom)).sign(q, line) <= 0:
         return True
-    var t_lo = displacement(aff(0, s2), a_add(k0, j_lo), aff(0, y2))
-    if scaled_length(top).sub(t_lo).sign(q) <= 0:
+    var t_lo = displacement(line, aff(0, s2), a_add(k0, j_lo), aff(0, y2))
+    if scaled_length(line, top).sub(t_lo).sign(q, line) <= 0:
         return True
     return False
 
 
-def check_seeds(rows: List[List[Int]], sl: Dict[Int, List[Int]], n0: Int, q: Q,
+def check_seeds(line: ALine, rows: List[List[Int]], sl: Dict[Int, List[Int]], n0: Int, q: Q,
                 mut stats: ClosureStats) raises:
     """The twelve candidate seed overlaps of the three oriented swap pairs:
     `(a,b,0)`, `(a,a,e_b)`, `(b,b,-e_a)`, `(b,a,e_b-e_a)`. Each is either a
@@ -320,8 +355,8 @@ def check_seeds(rows: List[List[Int]], sl: Dict[Int, List[Int]], n0: Int, q: Q,
                 if which == 2 or which == 3:
                     w[a] -= 1
                 var s = w[0] + w[1] + w[2]
-                var t = displacement(aff(0, s), aff(0, w[0]), aff(0, w[2]))
-                if _strict_inside(top, bottom, t, q):
+                var t = displacement(line, aff(0, s), aff(0, w[0]), aff(0, w[2]))
+                if strict_inside(line, top, bottom, t, q):
                     stats.seeds_real += 1
                     var found = False
                     var key = slice_key(top, bottom, s, w[2])
@@ -338,20 +373,20 @@ def check_seeds(rows: List[List[Int]], sl: Dict[Int, List[Int]], n0: Int, q: Q,
                     stats.seeds_unreal += 1
 
 
-def check_row_members(row: List[Int], n0: Int, q: Q, mut stats: ClosureStats) raises:
+def check_row_members(line: ALine, row: List[Int], n0: Int, q: Q, mut stats: ClosureStats) raises:
     var lo = aff(row[4], row[5])
     var hi = aff(row[6], row[7])
     if a_le(lo, hi, n0) != 1:
         raise Error("typed carrier row is empty for some n>=n0")
     var ends = List[List[Int]]([lo.copy(), hi.copy()])
     for k in ends:
-        var t = displacement(aff(0, row[2]), k, aff(0, row[3]))
-        if not _strict_inside(row[0], row[1], t, q):
+        var t = displacement(line, aff(0, row[2]), k, aff(0, row[3]))
+        if not strict_inside(line, row[0], row[1], t, q):
             raise Error("typed carrier row member is not a strict overlap")
         stats.member_checks += 1
 
 
-def check_row_closure(rows: List[List[Int]], sl: Dict[Int, List[Int]], ri: Int,
+def check_row_closure(line: ALine, rows: List[List[Int]], sl: Dict[Int, List[Int]], ri: Int,
                       n0: Int, q: Q, window: Int, mut stats: ClosureStats) raises:
     var row = rows[ri].copy()
     var top = row[0]
@@ -368,17 +403,17 @@ def check_row_closure(rows: List[List[Int]], sl: Dict[Int, List[Int]], ri: Int,
         has_terminal = True
         terminal = aff(-row[4], -row[5])
     for part_top in range(3):
-        var seg_top = Segment(top, part_top)
+        var seg_top = Segment(line, top, part_top)
         for part_bottom in range(3):
-            var seg_bottom = Segment(bottom, part_bottom)
+            var seg_bottom = Segment(line, bottom, part_bottom)
             stats.segments += 1
             var dx = seg_bottom.px - seg_top.px
             var dc = seg_bottom.pc - seg_top.pc
             var child_top = seg_top.child
             var child_bottom = seg_bottom.child
-            # k' = k + s + dx = k_lo + s + dx + j ; y' = k + n s + y + (m_b - m_t)
+            # k' = k + s + dx = k_lo + s + dx + j ; y' = k + n s + eps y + (m_b - m_t)
             var k0 = a_add(k_lo, aff(0, s + dx))
-            var base = aff(row[4] + s, row[5] + y)
+            var base = aff(row[4] + s, row[5] + line.eps * y)
             var d_lo = a_sub(seg_bottom.m_lo, seg_top.m_hi)
             var d_hi = a_sub(seg_bottom.m_hi, seg_top.m_lo)
             # Window edges: at y' = +window the child is at or beyond the right
@@ -387,13 +422,13 @@ def check_row_closure(rows: List[List[Int]], sl: Dict[Int, List[Int]], ri: Int,
             for sign in range(2):
                 var yw = window if sign == 0 else -window
                 var s2 = 2 * s + dx + dc + yw
-                var t0 = displacement(aff(0, s2), k0, aff(0, yw))
-                var tj = displacement(aff(0, s2), a_add(k0, j_max), aff(0, yw))
+                var t0 = displacement(line, aff(0, s2), k0, aff(0, yw))
+                var tj = displacement(line, aff(0, s2), a_add(k0, j_max), aff(0, yw))
                 if yw > 0:
-                    if scaled_length(child_top).sub(t0).sign(q) > 0 or scaled_length(child_top).sub(tj).sign(q) > 0:
+                    if scaled_length(line, child_top).sub(t0).sign(q, line) > 0 or scaled_length(line, child_top).sub(tj).sign(q, line) > 0:
                         raise Error("child window edge is a strict overlap")
                 else:
-                    if t0.add(scaled_length(child_bottom)).sign(q) > 0 or tj.add(scaled_length(child_bottom)).sign(q) > 0:
+                    if t0.add(scaled_length(line, child_bottom)).sign(q, line) > 0 or tj.add(scaled_length(line, child_bottom)).sign(q, line) > 0:
                         raise Error("child window edge is a strict overlap")
                 stats.window_checks += 1
             for y2 in range(-window + 1, window):
@@ -465,37 +500,44 @@ def check_row_closure(rows: List[List[Int]], sl: Dict[Int, List[Int]], ri: Int,
                     var g_hi = a_min(aff(g[2], g[3]), hi, n0)
                     if a_le(g_lo, g_hi, n0) == 0:
                         continue
-                    if _unreal_on(child_top, child_bottom, s2, k0, y2, g_lo, g_hi, q):
+                    if _unreal_on(line, child_top, child_bottom, s2, k0, y2, g_lo, g_hi, q):
                         stats.gap_geometry += 1
                     else:
                         raise Error("ESCAPE: a real ordered child leaves the typed carrier")
                 stats.covered += 1
 
 
-def certify_closure_rows(n0: Int, rows: List[List[Int]], window: Int = 6) raises -> List[Int]:
+def certify_closure_line(line: ALine, n0: Int, rows: List[List[Int]], window: Int = 6) raises -> List[Int]:
     """Prove, for every integer n>=n0, that the typed carrier is a strict
-    forward-closed superset of the complete seed graph. Raises on any
-    undecided sign or comparison and on any escaping child."""
+    forward-closed superset of the complete seed graph of `line`. Raises on
+    any undecided sign or comparison and on any escaping child."""
     if n0 < 4 or n0 > 64:
         raise Error("uniform closure floor must satisfy 4<=n0<=64")
     if window < 3 or window > 12:
         raise Error("child y-window outside the declared range")
     if len(rows) == 0:
         raise Error("empty typed carrier")
-    var q = Q(1, Int64(n0 + 1))
+    check_line_identity(line)
+    var q = line.bound(n0)
+    check_bound(line, n0, q)
     var sl = slices(rows)
     var stats = ClosureStats()
-    check_seeds(rows, sl, n0, q, stats)
+    check_seeds(line, rows, sl, n0, q, stats)
     for ri in range(len(rows)):
         stats.rows += 1
-        check_row_members(rows[ri], n0, q, stats)
-        check_row_closure(rows, sl, ri, n0, q, window, stats)
-    print("CLASS_A_CARRIER_CLOSURE n>=" + String(n0), "rows", stats.rows, "segments", stats.segments,
+        check_row_members(line, rows[ri], n0, q, stats)
+        check_row_closure(line, rows, sl, ri, n0, q, window, stats)
+    var tag = "" if line.eps == 1 else " line=" + line.name()
+    print("CLASS_A_CARRIER_CLOSURE n>=" + String(n0) + tag, "rows", stats.rows, "segments", stats.segments,
           "y_cases", stats.y_cases, "covered", stats.covered, "gap_geometry", stats.gap_geometry,
           "window_checks", stats.window_checks, "seeds_real", stats.seeds_real,
           "seeds_unreal", stats.seeds_unreal, "clip_fallbacks", stats.clip_fallbacks,
           "terminal_splits", stats.terminal_splits)
     return stats.as_list()
+
+
+def certify_closure_rows(n0: Int, rows: List[List[Int]], window: Int = 6) raises -> List[Int]:
+    return certify_closure_line(plus_line(), n0, rows, window)
 
 
 def certify_closure(n0: Int = 5, window: Int = 6) raises -> List[Int]:

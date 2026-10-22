@@ -39,7 +39,7 @@ def _sort_rows(mut data: List[List[Int]]) raises:
         while j>0 and _cmp(data[j-1],selected)>0:
             data[j]=data[j-1].copy()
             j-=1
-        data[j]=selected
+        data[j]=selected.copy()
 
 
 def exact_profile(n: Int, emit: Bool=False) raises -> List[List[Int]]:
@@ -70,7 +70,7 @@ def exact_profile(n: Int, emit: Bool=False) raises -> List[List[Int]]:
         if key_equal and old[5]+1==record[4]:
             var updated=ranges[last].copy()
             updated[5]=record[4]
-            ranges[last]=updated
+            ranges[last]=updated.copy()
         else:
             ranges.append(List[Int]([record[0],record[1],record[2],record[3],record[4],record[4]]))
     var depths=first_left_aligned_depths(graph)
@@ -84,7 +84,7 @@ def exact_profile(n: Int, emit: Bool=False) raises -> List[List[Int]]:
               "all_states_hitting=true","universal=false")
         for row in ranges:
             print("D2_INTERVAL",n,row[0],row[1],row[2],row[3],row[4],row[5])
-    return ranges
+    return ranges^
 
 
 def inferred_template(n0: Int, n1: Int) raises -> List[List[Int]]:
@@ -100,8 +100,8 @@ def inferred_template(n0: Int, n1: Int) raises -> List[List[Int]]:
         raise Error("invalid parity-index delta")
     var out=List[List[Int]]()
     for i in range(len(a)):
-        var left=a[i]
-        var right=b[i]
+        var left=a[i].copy()
+        var right=b[i].copy()
         for j in range(4):
             if left[j]!=right[j]:
                 raise Error("parity typed slice/order changed between source graphs")
@@ -117,7 +117,7 @@ def inferred_template(n0: Int, n1: Int) raises -> List[List[Int]]:
     var expected=93 if n0==8 else 87
     if len(out)!=expected:
         raise Error("unexpected parity carrier interval count")
-    return out
+    return out^
 
 
 def certify_finite_parity(n: Int, candidate: List[List[Int]]) raises -> List[Int]:
@@ -130,8 +130,8 @@ def certify_finite_parity(n: Int, candidate: List[List[Int]]) raises -> List[Int
     var m=n//2
     var total=0
     for i in range(len(observed)):
-        var pred=candidate[i]
-        var actual=observed[i]
+        var pred=candidate[i].copy()
+        var actual=observed[i].copy()
         if len(pred)!=8 or len(actual)!=6:
             raise Error("malformed d2 candidate or observation row")
         for j in range(4):

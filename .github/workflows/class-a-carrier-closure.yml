@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'kernel/psc/class_a_typed_carrier.mojo'
+      - 'kernel/psc/class_a_line.mojo'
       - 'kernel/psc/class_a_carrier_closure.mojo'
       - 'kernel/psc/class_a_carrier_descent.mojo'
       - 'kernel/psc/class_a_descent_data.mojo'

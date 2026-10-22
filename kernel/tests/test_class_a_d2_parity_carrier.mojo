@@ -55,7 +55,7 @@ def main() raises:
     var damaged=even.copy()
     var first=damaged[0].copy()
     first[5]+=1
-    damaged[0]=first
+    damaged[0]=first.copy()
     refused=False
     try:
         _=certify_finite_parity(14,damaged)

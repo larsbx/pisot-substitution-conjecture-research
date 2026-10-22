@@ -26,7 +26,7 @@ def main() raises:
     var damaged=even.copy()
     var first=damaged[0].copy()
     first[7]-=1
-    damaged[0]=first
+    damaged[0]=first.copy()
     var refused=False
     try:
         _=certify_residue(damaged,0)
@@ -43,7 +43,7 @@ def main() raises:
     var wrong=even.copy()
     var item=wrong[0].copy()
     item[2]=2
-    wrong[0]=item
+    wrong[0]=item.copy()
     refused=False
     try:
         _=certify_residue(wrong,0)

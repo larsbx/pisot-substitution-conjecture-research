@@ -19,22 +19,23 @@ Since `X` is a non-negative integer that strictly decreases along the chosen
 children, every carrier label reaches an offset-zero label after at most
 `X` inflations. Combined with `psc.class_a_carrier_closure` (the seed graph
 lies in the carrier) this is boundary hitting on the whole class-A line
-`x->xy^(n+1)x, c->cy^nx, y->xy^(n+1)c` for every `n>=n0`.
+`x->xy^(n+1)x, c->cy^nx, y->xy^(n+eps)c` of `psc.class_a_line.ALine` for every
+`n>=n0` (tables: plus line here, minus line in `psc.class_a_minus_descent_data`).
 
 The tables live in `psc.class_a_descent_data`; they were synthesized from
 exact finite graphs and are evidence only through this verifier. The sign
 machinery is shared with the closure module and fails closed.
 """
 from psc.class_a_carrier_closure import (
-    AffH, Segment, a_add, a_le, a_sub, aff, displacement, scaled_length,
+    AffH, Segment, a_add, a_le, a_sub, aff, displacement, strict_inside,
 )
+from psc.class_a_line import ALine, plus_line
 from psc.class_a_typed_carrier import template_rows
 from psc.class_a_descent_data import piece_rows, descent_rows
-from psc.class_a_run_index import member, labelled
+from psc.class_a_run_index import labelled
 from psc.overlap_seed_patch import build_seed_overlap_tables_screened, interior_overlap
 from psc.overlap_zipper import ordered_child_occurrences
 from psc.vertex_coincidence import length_matrix, offset_vector
-from finite_exact.rat_q import Q
 
 
 def _nonneg(u: List[Int], n0: Int) -> Bool:
@@ -72,14 +73,14 @@ def is_target_piece(row: List[Int], piece: List[Int]) -> Bool:
             and row[4] + piece[1] == 0 and row[5] + piece[2] == 0)
 
 
-def certify_descent_rows(n0: Int, rows: List[List[Int]], pieces: List[List[Int]],
+def certify_descent_line(line: ALine, n0: Int, rows: List[List[Int]], pieces: List[List[Int]],
                          descents: List[List[Int]]) raises -> List[Int]:
     """Returns `[pieces, target pieces, descent rows, bound slope, bound constant]`:
     every carrier label reaches offset zero within `bound slope * n + bound constant`
     inflations for every integer `n >= n0`. Raises on any failed obligation."""
     if n0 < 4 or n0 > 64:
         raise Error("uniform descent floor must satisfy 4<=n0<=64")
-    var q = Q(1, Int64(n0 + 1))
+    var q = line.bound(n0)
     # Pieces partition every row.
     var by_row = List[List[List[Int]]]()
     for _ in range(len(rows)):
@@ -130,8 +131,8 @@ def certify_descent_rows(n0: Int, rows: List[List[Int]], pieces: List[List[Int]]
         var crow = rows[child[0]].copy()
         var s_lo = aff(d[1], d[2])
         var s_hi = aff(d[3], d[4])
-        var seg_top = Segment(row[0], d[5])
-        var seg_bottom = Segment(row[1], d[6])
+        var seg_top = Segment(line, row[0], d[5])
+        var seg_bottom = Segment(line, row[1], d[6])
         var yp = d[7]
         var dx = seg_bottom.px - seg_top.px
         var dc = seg_bottom.pc - seg_top.pc
@@ -146,8 +147,8 @@ def certify_descent_rows(n0: Int, rows: List[List[Int]], pieces: List[List[Int]]
             raise Error("descent child leaves its piece below")
         if not _nonneg(a_sub(aff(child[3], child[4]), a_add(s_hi, shift)), n0):
             raise Error("descent child leaves its piece above")
-        # Realizable: y' - (k + n s + y) - j in [m_b - m_t range] for every member.
-        var base = aff(row[4] + row[2], row[5] + row[3])
+        # Realizable: y' - (k + n s + eps y) - j in [m_b - m_t range] for every member.
+        var base = aff(row[4] + row[2], row[5] + line.eps * row[3])
         var d_lo = a_sub(seg_bottom.m_lo, seg_top.m_hi)
         var d_hi = a_sub(seg_bottom.m_hi, seg_top.m_lo)
         if not _nonneg(a_sub(a_sub(a_sub(aff(0, yp), base), s_hi), d_lo), n0):
@@ -156,20 +157,26 @@ def certify_descent_rows(n0: Int, rows: List[List[Int]], pieces: List[List[Int]]
             raise Error("descent occurrence is not realizable (upper run bound)")
         # Parent and child are strict overlaps at both ends of the affine range.
         for j in [s_lo.copy(), s_hi.copy()]:
-            var t_parent = displacement(aff(0, row[2]), a_add(k_lo, j), aff(0, row[3]))
-            if scaled_length(row[0]).sub(t_parent).sign(q) <= 0 or t_parent.add(scaled_length(row[1])).sign(q) <= 0:
+            var t_parent = displacement(line, aff(0, row[2]), a_add(k_lo, j), aff(0, row[3]))
+            if not strict_inside(line, row[0], row[1], t_parent, q):
                 raise Error("descent source is not a strict overlap")
-            var t_child = displacement(aff(0, s2), a_add(k0, j), aff(0, yp))
-            if scaled_length(crow[0]).sub(t_child).sign(q) <= 0 or t_child.add(scaled_length(crow[1])).sign(q) <= 0:
+            var t_child = displacement(line, aff(0, s2), a_add(k0, j), aff(0, yp))
+            if not strict_inside(line, crow[0], crow[1], t_child, q):
                 raise Error("descent child is not a strict overlap")
             # X_parent(j) - X_child(j + shift) - 1 >= 0.
             var drop = a_sub(a_sub(_potential(parent, j), _potential(child, a_add(j, shift))), aff(0, 1))
             if not _nonneg(drop, n0):
                 raise Error("descent does not lower the potential")
     var bound_const = bound_at_n0 - bound_slope * n0
-    print("CLASS_A_CARRIER_DESCENT n>=" + String(n0), "pieces", len(pieces), "targets", targets,
+    var tag = "" if line.eps == 1 else " line=" + line.name()
+    print("CLASS_A_CARRIER_DESCENT n>=" + String(n0) + tag, "pieces", len(pieces), "targets", targets,
           "descent_rows", len(descents), "hit_depth_bound", String(bound_slope) + "n" + ("+" if bound_const >= 0 else "") + String(bound_const))
     return [len(pieces), targets, len(descents), bound_slope, bound_const]
+
+
+def certify_descent_rows(n0: Int, rows: List[List[Int]], pieces: List[List[Int]],
+                         descents: List[List[Int]]) raises -> List[Int]:
+    return certify_descent_line(plus_line(), n0, rows, pieces, descents)
 
 
 def certify_descent(n0: Int = 8) raises -> List[Int]:
@@ -178,13 +185,19 @@ def certify_descent(n0: Int = 8) raises -> List[Int]:
 
 def replay_descent_finite(n: Int, rows: List[List[Int]], pieces: List[List[Int]],
                           descents: List[List[Int]]) raises -> List[Int]:
+    return replay_descent_finite_line(plus_line(), n, rows, pieces, descents, 40, 115)
+
+
+def replay_descent_finite_line(line: ALine, n: Int, rows: List[List[Int]], pieces: List[List[Int]],
+                               descents: List[List[Int]], slope: Int, constant: Int) raises -> List[Int]:
     """Differential control at one n in 4..24: every descent member's named
     child occurrence is an actual ordered child occurrence of the exact
     Perron-field engine, with the stated prefix segments and child label, and
-    the potential drops there. Returns `[labels, targets, checked edges]`."""
+    the potential drops there; `slope n + constant` is the carrier cardinality.
+    Returns `[labels, targets, checked edges]`."""
     if n < 4 or n > 24:
         raise Error("finite descent replay permits 4<=n<=24")
-    var tables = build_seed_overlap_tables_screened(member(n))
+    var tables = build_seed_overlap_tables_screened(line.member(n))
     var lm = length_matrix(tables)
     var labels = 0
     var targets = 0
@@ -239,7 +252,8 @@ def replay_descent_finite(n: Int, rows: List[List[Int]], pieces: List[List[Int]]
                 edges += 1
             if found != 1:
                 raise Error("finite non-target label is not covered by exactly one descent row")
-    if labels != 40 * n + 115:
+    if labels != slope * n + constant:
         raise Error("finite piece enumeration disagrees with the carrier cardinality")
-    print("CLASS_A_DESCENT_FINITE", n, "labels", labels, "targets", targets, "checked_edges", edges)
+    var tag = "" if line.eps == 1 else " line=" + line.name()
+    print("CLASS_A_DESCENT_FINITE" + tag, n, "labels", labels, "targets", targets, "checked_edges", edges)
     return [labels, targets, edges]

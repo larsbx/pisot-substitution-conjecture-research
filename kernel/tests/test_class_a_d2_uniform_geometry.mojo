@@ -32,7 +32,7 @@ def main() raises:
     var mutated=even.copy()
     var first=mutated[0].copy()
     first[7]+=20
-    mutated[0]=first
+    mutated[0]=first.copy()
     var rejected=False
     try:
         _=certify_rows(mutated,0)
