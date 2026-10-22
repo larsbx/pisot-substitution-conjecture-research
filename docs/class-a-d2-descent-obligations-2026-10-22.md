@@ -1,6 +1,6 @@
 # Class A d=2: first descent proof obligations and a uniform rank obstruction (2026-10-22)
 
-**Status:** finite-domain exact path-witness research with a scoped uniform integer-affine *negative lemma*; no all-n hitting result and no universal PSC promotion. Independent human review and fresh CI acceptance pending.
+**Status:** finite-domain exact path-witness research with scoped uniform integer-affine *negative and two-step positive lemmas*; no all-n hitting result and no universal PSC promotion. Independent human review and fresh CI acceptance pending.
 
 ## Scope and targeted literature/method gate
 
@@ -26,6 +26,37 @@ X_n(-1)=-B(n)>=1,    X_n(+1)=B(n)>=1,
 which implies `0>=2`, impossible for every n. Thus **the target-normalized affine-single-piece strategy is refuted uniformly** for both parity candidates. At minimum that construction must split this typed slice at the target, use a nonlinear rank, or relax its normalization. It does **not** refute other affine rankings with nonzero target values, nor uniform productivity.
 
 This is not merely a numerical observation: the algebraic contradiction is parameter-independent, and the exact source-row member conditions show the three candidate labels persist on both infinite rays. Canonical `uniform_centered_slice_obstruction` and the independent test guard the witness row.
+
+## Exact uniform two-step paths on the center slice
+
+There is also a **positive, all-parameter hitting result for two explicit non-target states**, distinct from any finite graph survey. For every integer `n>=4`, define
+
+```
+S_- = (x,x, -1, 1, 0)      S_+ = (x,x, 1,-1,0)
+A_- = (x,y,  0, 1,-1)      A_+ = (y,x, 0,-1,1)
+Z   = (y,y,  0, 0, 0).
+```
+
+Here the last three entries are the integral bottom-minus-top shift `(k,c,y)`. With the canonical `0`-based occurrence indices, the **same two ordered paths work for every n>=4**:
+
+```
+S_- --(top 0,bottom 2)--> A_- --(top 1,bottom 2)--> Z
+S_+ --(top 2,bottom 0)--> A_+ --(top 2,bottom 1)--> Z.
+```
+
+All mentioned indices exist because both `sigma_n(x)` and `sigma_n(y)` start with x followed by at least five or more y symbols when `n>=4`: the first three child types at positions 0,1,2 are `x,y,y`. Their proper-prefix abelianizations are exactly `0`, `e_x`, `e_x+e_y`, independent of n.
+
+The exact d=2 integral incidence update is
+
+```
+M_n(k,c,y)=(k+s,s-k,n*s+2k+y),    s=k+c+y.
+```
+
+Every state on these paths has **s=0**, so the parameter term `n*s` vanishes identically. Subtracting the two actual proper-prefix vectors gives precisely the listed children, coefficient by coefficient, for all n. The canonical `_two_step_child` checks these integer identities directly; a companion Fraction-field oracle separately reconstructs and replays the actual ordered occurrences at n=4,7,8,9,12.
+
+Both paths consist entirely of *strict real overlaps*. In the d=2 plus Perron scaling, `L=(1+2h+2h²,1,1+h)` for `h=1/(beta-1)>0`. The displacement polynomial for a state is `T=(k+c+y)+(2k+y)h+2k h²`. For each of `S_-,S_+,A_-,A_+,Z`, the two margins `L_bottom+T` and `L_top-T` have **strictly positive constant and nonnegative remaining coefficients**. They are therefore positive for all h>0; this is a quantified sign proof, not numerical evaluation. The canonical and independent modules both enforce those ten exact polynomial inequalities.
+
+Consequently, both S_- and S_+ have an offset-zero descendant in **at most two** actual inflation steps for every integer n>=4. This explicitly closes a small but nontrivial part of the desired d=2 exit theorem. It neither proves that these two labels are canonical swap-seed-reachable at every n, nor extends to the rest of the carrier; that remains a separate all-n descent obligation. The earlier negative observation about a **single target-normalized affine rank on the entire three-point slice** is therefore a limitation of the rank representation, *not* a nonproductivity obstruction. Isolating the central target and assigning distinct flanking rank pieces is the appropriate refinement.
 
 ## Exact finite descent evidence, retaining occurrence indices
 
@@ -62,7 +93,7 @@ The appropriate next rank ansatz parallels the accepted gap-one potential **with
 4. Prove on each infinite residue ray that the chosen child is **real and realizable**, remains in the named destination piece, and has **`X_child<=X_parent-1`** throughout the entire subinterval. Use the existing exact d=2 Perron polynomial/Sturm or nonnegative-coefficient sign machinery. Refuse a crossing or incomplete certificate.
 5. Only once the piece partition and every ordered descent are uniformly checked may d=2 boundary hitting be asserted, via the finite bases n=4..11 plus the four infinite rays. No general Class-A/C or #139/#84 promotion follows automatically.
 
-This PR implements the **finite typed, ordered-edge evidence and obstruction/negative controls**, not steps 1–5's completed infinite-family proof. Fresh CI on the exact head is required before treating the implementation itself as accepted.
+This PR implements the **finite typed, ordered-edge evidence, a uniform centered two-step hitting corridor and obstruction/negative controls**, not steps 1–5's completed infinite-family proof. Fresh CI on the exact head is required before treating the implementation itself as accepted.
 
 ## Reproduction and receipts
 
@@ -70,7 +101,8 @@ Canonical Mojo: `kernel/psc/class_a_d2_descent_probe.mojo`, native test `kernel/
 
 ```sh
 python oracles/python/class_a_d2_descent_probe.py 7 8 9 10 11 12
-python -m pytest -q tests/test_class_a_d2_descent_probe.py
+python oracles/python/class_a_d2_center_paths.py
+python -m pytest -q tests/test_class_a_d2_descent_probe.py tests/test_class_a_d2_center_paths.py
 cd kernel
 pixi run --locked mojo run -I . tests/test_class_a_d2_descent_probe.mojo
 ```
