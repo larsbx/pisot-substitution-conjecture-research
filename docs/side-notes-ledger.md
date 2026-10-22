@@ -132,6 +132,34 @@ by deleting it.
   `docs/boxwalk-reachability-realizability-audit-2026-10-15.md`;
   `evidence/boxwalk-radius8-depth9.json`
 
+- 2026-10-22 · **Class-A literal d=1-to-d=2 carrier transfer refuted uniformly.**
+  The accepted 89-row strict-overlap carrier for `d=1, eps=+1` cannot be
+  transplanted unchanged to `d=2, eps=+1`, for any integer `n>=4` (within
+  the plus PIP domain `n>=0, 1<=d<=2n+11`). Its historical row
+  `(top,bottom,s,y,a,b,A,B)=(y,y,0,-2,-1,0,0,0)` includes the formal state
+  `(y,y,w)` with `w=(-n,n+2,-2)`. At the unique positive root of
+  `P_2(n,h)=1-(n+1)h-(n+2)h^2-2h^3`, `h=1/(beta-1)`, monotonicity and
+  `125 P_2(n,1/5)=88-30n<0` give `0<h<1/5`. The necessary strict-overlap
+  margin is `T(w)+L_y=1-h-2n h(1+h)=-1+h+4h^2+4h^3<-76/125<0`:
+  the tiles are disjoint, not boundary-touching. This retires the literal
+  carrier transfer, **not boundary hitting**; it asserts neither seed
+  reachability of the formal witness nor nonproductivity or a PSC
+  counterexample. The accepted d=1 proof is unaffected; a d-dependent,
+  sign-aware carrier remains the constructive target. Evidence: written
+  all-parameter argument in `docs/class-a-residual-geometry-2026-10-22.md`,
+  "A uniform obstruction to transporting the 89-row gap-one carrier";
+  canonical `kernel/psc/class_a_residual_geometry.mojo`
+  (`_check_d2_nontransfer_rows`), with the historical row in
+  `kernel/psc/class_a_typed_carrier.mojo` (`template_rows`);
+  independent sparse-polynomial oracle
+  `oracles/python/class_a_residual_geometry.py` (`d2_witness`);
+  `kernel/tests/test_class_a_residual_geometry.mojo` (exact native
+  `n=4,d=2` strict-overlap refusal, invalid-sign and missing-row controls)
+  and `tests/test_class_a_residual_geometry.py` (both-sign identities and
+  corrupted-identity controls). Replay: the note's "Replay, negative
+  controls and precise next obligation" and
+  `.github/workflows/class-a-residual-geometry.yml`. No claim status changes.
+
 ## 2. Redirected routes (no lever there; see the decision)
 
 - 2026-10-05 · The `CU` / one-tile route cannot reach #139, and Proposition LC
@@ -1830,6 +1858,11 @@ Locators: `docs/p1b-class-a-run-index-2026-10-21.md`,
 
 2026-10-22 — **Merged #308/#309 Mojo modules do not compile under the locked compiler.** `kernel/psc/class_a_uniform_closure.mojo` and `kernel/psc/class_a_uniform_geometry.mojo` landed on main (8827b9c) while their CI was still queued; `Mojo 1.1.0.dev2026090805` rejects fifteen implicit copies of `Affine`, `Segment` and `List[Int]` values ("does not conform to 'ImplicitlyCopyable'"), so the kernel suite and both dedicated workflows are red on main. Ported the minimal repair on the class-A descent branch: `Affine` and `Segment` declared `ImplicitlyCopyable` (two plain-`Int` and two-`Affine` records), one `^` transfer of the returned list, two explicit `.copy()` of carrier rows; no logic changes. Both tests and the driver then pass with their printed receipts unchanged. Independent of this, the merged #309 statement agrees with the Sturm-interval closure certificate of this branch.
 
+
+2026-10-22 — **Theorem Ω historical sufficiency audit reconciled on PR #235, not accepted as new human review.** Preserve the October 8, 9, and 11 immutable packet histories, exact cardinality oracle (135,990 images<=4, 24,486 total<=8, overlap 14,670, union 145,806) and five independently replayed exact representative box graphs. The historical refinement makes Minkowski full-rank, the signed realized-overlap embedding, the substitution-power fixed tiling and coincidence padding, and Clark–Sadun flow-to-symbolic transfer explicit. Newer main already records a Sirvent–Solomyak transfer, which is not silently replaced. Historical CI evidence is scoped to its recorded revisions; current-head CI and governed statuses must be checked separately. Human mathematical review stays pending and is nonblocking research-validation debt under AGENTS.md, not a claim of independent acceptance. Locators: `docs/audit-theorem-omega-2026-10-08.md`, `docs/audit-theorem-omega-2026-10-11.md`, `evidence/omega-box-audit-2026-10-08/`, `evidence/omega-audit-reconciliation-2026-10-09/`, `evidence/omega-audit-reconciliation-2026-10-11/`.
+
 2026-10-22 — **Class-A minus line (n+1,n,n-1): boundary hitting for every n>=1, by the #310 method on a line-parametric certificate.** With h=1/(beta-1), P=1-(n-1)h-(n+3)h^2-h^3, n h(1+h)=1+h-3h^2-h^3, h_n in (1/(n+1),1/n) (larger than on the plus line, so the Sturm interval is (0,1/n0], not (0,1/(n0+1)]), L=(1+3h+h^2,1+2h,1+h) and T=s(1+2h)+k h(1+h)-y h; y'=k+ns-y+Δm and the y run of sigma(y) has length n-1. A 104-row/99-slice typed carrier, fitted exactly to exports n=5..24 (n=4 splits two slices differently), is forward closed for n>=8 (56 conservative clips; none from n>=10; n0=7 closes, n0<=6 refuses), and a 176-piece potential with 265 descent occurrences gives first-hit depth <= 2n+11 for n>=8; n=1..7 are exact complete graphs. The Python verifier re-derives P from the incidence matrix and matches every count. Finite observations: |G_n|=40n+138 for n>=5, max first hit = ceil(2n/3)+3 for 4<=n<=24. Gap d>=2, other A regions, the C residual and universal #139 open; human review pending. Locators: `docs/class-a-minus-line-2026-10-22.md`, `kernel/psc/class_a_line.mojo`, `kernel/psc/class_a_minus_carrier.mojo`, `evidence/class-a-minus-line-2026-10-22/`.
 
 2026-10-22 — **Descent-table generator pitfalls on the minus line.** (a) The exact `depth = floor(X/3)` fit has no solution on the minus target row (y,y,0,0): its first-hit plateaus shift with n mod 3 (0/3/4 unit decrements at k=-n for n=2/0/1 mod 3), so no affine piece boundary separates them. A potential only needs to dominate and strictly drop, so the generator now retries such a row with `depth <= floor(X/3) <= depth+1`; the generated header names the slack rows. (b) That row has width 2n, and its uniform-type sub-interval ends at 2n-1, outside the breakpoint slopes {-1,0,1}; breakpoints `hi-1, hi-2` relative to the piece end were added. Both changes leave the plus-line tables byte-identical (regenerated from re-exported graphs whose digests equal the archived ones). Locator: `oracles/python/class_a_descent_table.py`.
+
+2026-10-22 — **Merged d=2 class-A Mojo sources (#312/#313/#314) do not compile under the locked compiler.** `Mojo 1.1.0.dev2026090805` rejects thirteen implicit copies of `List[Int]`/`List[List[Int]]` values in `kernel/psc/class_a_d2_parity_carrier.mojo`, `kernel/psc/class_a_d2_uniform_closure.mojo` and the three `kernel/tests/test_class_a_d2_*.mojo`, so those tests and drivers are red on main (46a6fae), reproduced on a clean main worktree. Ported the minimal repair while merging main into the minus-line branch: explicit `.copy()` on element reads/assignments, `^` on returned locals; no logic change. All three tests and the four d=2/residual drivers then pass. Same class of pitfall as the #308/#309 entry above.

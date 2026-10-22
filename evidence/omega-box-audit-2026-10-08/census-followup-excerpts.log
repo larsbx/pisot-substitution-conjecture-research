@@ -1,0 +1,44 @@
+JOB 113228209031
+2026-10-08T09:54:37.3353562Z [36;1mgrep -Fx 'holds for every r: 11333  capped: 0  fails: 0' box-len4-00.log[0m
+2026-10-08T09:54:37.3354144Z [36;1mgrep -Fx 'formally productive (Theorem Omega): 11333  not: 0' box-len4-00.log[0m
+2026-10-08T10:35:28.3897300Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:35:28.3898058Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T10:35:28.3899845Z largest box graph: 1383391 states, specimen 1 118 77
+2026-10-08T10:35:28.3900661Z most recurrent vertices: 6740 specimen 1 38 74
+2026-10-08T10:35:28.3901542Z deepest recurrent first left-aligned depth: 25 specimen 1 38 56
+2026-10-08T10:35:28.3902377Z recurrent vertices in total: 3226052
+2026-10-08T10:35:28.4332644Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:35:28.4344788Z formally productive (Theorem Omega): 11333  not: 0
+JOB 113228209042
+2026-10-08T09:43:34.6597187Z [36;1mgrep -Fx 'holds for every r: 11333  capped: 0  fails: 0' box-len4-05.log[0m
+2026-10-08T09:43:34.6597779Z [36;1mgrep -Fx 'formally productive (Theorem Omega): 11333  not: 0' box-len4-05.log[0m
+2026-10-08T10:37:16.9099613Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:37:16.9100089Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T10:37:16.9101166Z largest box graph: 1432357 states, specimen 38 40 102
+2026-10-08T10:37:16.9101677Z most recurrent vertices: 27692 specimen 38 46 27
+2026-10-08T10:37:16.9102248Z deepest recurrent first left-aligned depth: 26 specimen 38 65 35
+2026-10-08T10:37:16.9102809Z recurrent vertices in total: 7123698
+2026-10-08T10:37:16.9550928Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:37:16.9564330Z formally productive (Theorem Omega): 11333  not: 0
+JOB 113228209098
+2026-10-08T09:45:44.8492617Z [36;1mgrep -Fx 'holds for every r: 11333  capped: 0  fails: 0' box-len4-06.log[0m
+2026-10-08T09:45:44.8493236Z [36;1mgrep -Fx 'formally productive (Theorem Omega): 11333  not: 0' box-len4-06.log[0m
+2026-10-08T10:36:08.2552445Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:36:08.2552981Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T10:36:08.2554174Z largest box graph: 1093359 states, specimen 53 40 1
+2026-10-08T10:36:08.2554726Z most recurrent vertices: 24768 specimen 56 27 25
+2026-10-08T10:36:08.2555334Z deepest recurrent first left-aligned depth: 25 specimen 44 12 1
+2026-10-08T10:36:08.2555909Z recurrent vertices in total: 5855772
+2026-10-08T10:36:08.2996812Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:36:08.3010336Z formally productive (Theorem Omega): 11333  not: 0
+JOB 113228209301
+2026-10-08T09:55:15.7888660Z [36;1mgrep -Fx 'holds for every r: 11333  capped: 0  fails: 0' box-len4-10.log[0m
+2026-10-08T09:55:15.7889240Z [36;1mgrep -Fx 'formally productive (Theorem Omega): 11333  not: 0' box-len4-10.log[0m
+2026-10-08T10:35:18.3586062Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:35:18.3586461Z formally productive (Theorem Omega): 11333  not: 0
+2026-10-08T10:35:18.3587370Z largest box graph: 1379033 states, specimen 97 12 80
+2026-10-08T10:35:18.3587723Z most recurrent vertices: 18474 specimen 97 38 23
+2026-10-08T10:35:18.3588157Z deepest recurrent first left-aligned depth: 25 specimen 97 38 27
+2026-10-08T10:35:18.3588598Z recurrent vertices in total: 5771776
+2026-10-08T10:35:18.3892496Z holds for every r: 11333  capped: 0  fails: 0
+2026-10-08T10:35:18.3902095Z formally productive (Theorem Omega): 11333  not: 0
