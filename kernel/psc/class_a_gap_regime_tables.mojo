@@ -16,6 +16,25 @@ from psc.class_a_gap_regime_rows_minus import regimes_minus, rows_minus
 from psc.class_a_gap_regime_rows_plus import regimes_plus, rows_plus
 from psc.class_a_gap_regime_descents_minus import (
     pieces_low0 as m_pieces_low0, descents_low0 as m_descents_low0,
+    pieces_low1 as m_pieces_low1, descents_low1 as m_descents_low1,
+    pieces_low2 as m_pieces_low2, descents_low2 as m_descents_low2,
+    pieces_high1 as m_pieces_high1, descents_high1 as m_descents_high1,
+    pieces_high2 as m_pieces_high2, descents_high2 as m_descents_high2,
+    pieces_high3 as m_pieces_high3, descents_high3 as m_descents_high3,
+    pieces_middle as m_pieces_middle, descents_middle as m_descents_middle,
+)
+from psc.class_a_gap_regime_descents_plus import (
+    pieces_low0 as p_pieces_low0, descents_low0 as p_descents_low0,
+    pieces_low1 as p_pieces_low1, descents_low1 as p_descents_low1,
+    pieces_low2 as p_pieces_low2, descents_low2 as p_descents_low2,
+    pieces_low3 as p_pieces_low3, descents_low3 as p_descents_low3,
+    pieces_low4 as p_pieces_low4, descents_low4 as p_descents_low4,
+    pieces_high1 as p_pieces_high1, descents_high1 as p_descents_high1,
+    pieces_high2 as p_pieces_high2, descents_high2 as p_descents_high2,
+    pieces_high3 as p_pieces_high3, descents_high3 as p_descents_high3,
+    pieces_high4 as p_pieces_high4, descents_high4 as p_descents_high4,
+    pieces_high5 as p_pieces_high5, descents_high5 as p_descents_high5,
+    pieces_middle as p_pieces_middle, descents_middle as p_descents_middle,
 )
 
 
@@ -44,6 +63,40 @@ def regime_pieces(reg: Regime) raises -> List[List[Int]]:
     """Potential pieces `[row, j_lo l-slope, j_lo constant, j_hi l-slope, j_hi constant, X_l, X_j, X_c]`."""
     if reg.eps == -1 and reg.kind == KIND_LOW and reg.j == 0:
         return m_pieces_low0()
+    if reg.eps == -1 and reg.kind == KIND_LOW and reg.j == 1:
+        return m_pieces_low1()
+    if reg.eps == -1 and reg.kind == KIND_LOW and reg.j == 2:
+        return m_pieces_low2()
+    if reg.eps == -1 and reg.kind == KIND_HIGH and reg.j == 1:
+        return m_pieces_high1()
+    if reg.eps == -1 and reg.kind == KIND_HIGH and reg.j == 2:
+        return m_pieces_high2()
+    if reg.eps == -1 and reg.kind == KIND_HIGH and reg.j == 3:
+        return m_pieces_high3()
+    if reg.eps == -1 and reg.kind == KIND_MIDDLE:
+        return m_pieces_middle()
+    if reg.eps == 1 and reg.kind == KIND_LOW and reg.j == 0:
+        return p_pieces_low0()
+    if reg.eps == 1 and reg.kind == KIND_LOW and reg.j == 1:
+        return p_pieces_low1()
+    if reg.eps == 1 and reg.kind == KIND_LOW and reg.j == 2:
+        return p_pieces_low2()
+    if reg.eps == 1 and reg.kind == KIND_LOW and reg.j == 3:
+        return p_pieces_low3()
+    if reg.eps == 1 and reg.kind == KIND_LOW and reg.j == 4:
+        return p_pieces_low4()
+    if reg.eps == 1 and reg.kind == KIND_HIGH and reg.j == 1:
+        return p_pieces_high1()
+    if reg.eps == 1 and reg.kind == KIND_HIGH and reg.j == 2:
+        return p_pieces_high2()
+    if reg.eps == 1 and reg.kind == KIND_HIGH and reg.j == 3:
+        return p_pieces_high3()
+    if reg.eps == 1 and reg.kind == KIND_HIGH and reg.j == 4:
+        return p_pieces_high4()
+    if reg.eps == 1 and reg.kind == KIND_HIGH and reg.j == 5:
+        return p_pieces_high5()
+    if reg.eps == 1 and reg.kind == KIND_MIDDLE:
+        return p_pieces_middle()
     raise Error("no generated descent tables for regime " + reg.name() + " of eps " + String(reg.eps))
 
 
@@ -51,6 +104,40 @@ def regime_descents(reg: Regime) raises -> List[List[Int]]:
     """Descent occurrences `[piece, j_lo l-slope, j_lo constant, j_hi l-slope, j_hi constant, top part, bottom part, child y, child piece]`."""
     if reg.eps == -1 and reg.kind == KIND_LOW and reg.j == 0:
         return m_descents_low0()
+    if reg.eps == -1 and reg.kind == KIND_LOW and reg.j == 1:
+        return m_descents_low1()
+    if reg.eps == -1 and reg.kind == KIND_LOW and reg.j == 2:
+        return m_descents_low2()
+    if reg.eps == -1 and reg.kind == KIND_HIGH and reg.j == 1:
+        return m_descents_high1()
+    if reg.eps == -1 and reg.kind == KIND_HIGH and reg.j == 2:
+        return m_descents_high2()
+    if reg.eps == -1 and reg.kind == KIND_HIGH and reg.j == 3:
+        return m_descents_high3()
+    if reg.eps == -1 and reg.kind == KIND_MIDDLE:
+        return m_descents_middle()
+    if reg.eps == 1 and reg.kind == KIND_LOW and reg.j == 0:
+        return p_descents_low0()
+    if reg.eps == 1 and reg.kind == KIND_LOW and reg.j == 1:
+        return p_descents_low1()
+    if reg.eps == 1 and reg.kind == KIND_LOW and reg.j == 2:
+        return p_descents_low2()
+    if reg.eps == 1 and reg.kind == KIND_LOW and reg.j == 3:
+        return p_descents_low3()
+    if reg.eps == 1 and reg.kind == KIND_LOW and reg.j == 4:
+        return p_descents_low4()
+    if reg.eps == 1 and reg.kind == KIND_HIGH and reg.j == 1:
+        return p_descents_high1()
+    if reg.eps == 1 and reg.kind == KIND_HIGH and reg.j == 2:
+        return p_descents_high2()
+    if reg.eps == 1 and reg.kind == KIND_HIGH and reg.j == 3:
+        return p_descents_high3()
+    if reg.eps == 1 and reg.kind == KIND_HIGH and reg.j == 4:
+        return p_descents_high4()
+    if reg.eps == 1 and reg.kind == KIND_HIGH and reg.j == 5:
+        return p_descents_high5()
+    if reg.eps == 1 and reg.kind == KIND_MIDDLE:
+        return p_descents_middle()
     raise Error("no generated descent tables for regime " + reg.name() + " of eps " + String(reg.eps))
 
 

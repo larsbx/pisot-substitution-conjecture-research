@@ -40,6 +40,11 @@ iff `g(l0,d0) >= 0`, `cl + cld d0 >= 0`, `cd + cld l0 >= 0` and `cld >= 0`.
 The four conditions make every term non-negative. Conversely `l -> oo` at
 `d = d0` forces `cl + cld d0 >= 0`, `d -> oo` at `l = l0` forces
 `cd + cld l0 >= 0`, both `-> oo` forces `cld >= 0`, and `(l0,d0)` itself the first.
+Only the "if" direction carries soundness (`nonneg`, `le = 1`, `le = 0`); the
+converse only keeps `le` from answering `-1` where a uniform order exists. A
+finite window cannot test the converse (`g = -7 - l + 4d` is non-negative on
+`[5,13] x [5,13]` and first negative at `(14, 5)`), so the test asserts
+criterion => window and window failure => criterion failure.
 
 **Regime reduction for `r`.** `F` is affine in `r` at fixed `(l,d)`, so
 `F >= 0` on the regime iff it holds after substituting `r = j` (low),
@@ -72,6 +77,15 @@ and the division **refuses** in every other case.
 - middle, `|cr| >= 2`: refuse (`v` spans more than one multiple of `d` once
   `d > 2(j0 + j1)`).
 
+*Proof.* `N/d = cld l + cd + v(r)/d` exactly. Each listed case pins `v/d` to
+one unit interval for every `d >= d0` and every `r` of the regime, so the
+rounding is the stated constant; the remaining cases are refused, not decided.
+(Step (a) observed that the *label sets* are `l`-affine; that is a statement
+about unions over parents and does not make every per-parent realizable
+index range `l`-affine. The refusals are not rare: at every fitted floor
+Lemma 2 refuses on row 0, and on the middle regimes `|cr| = 2` occurs for
+every row with `s != 0`, so the consumer needs Lemma 2' below.)
+
 The middle regime requires `d0 >= j0 + j1`, so that it is non-empty at `d0`.
 Regime hypotheses in general (enforced by `Regime.check`): `l0 >= 1`;
 low `0 <= j < d0`; high `1 <= j <= d0`; middle `j0 >= 0`, `j1 >= 1`,
@@ -97,13 +111,15 @@ exactly as the ray certificate treats an undecided clip (`a_le == -1`).
 Soundness is unchanged, since every realizable child is still examined;
 the price is that an unrealizable index in a gap must also be shown
 unreal geometrically, or the closure reports an escape it cannot
-distinguish from a real one.
+distinguish from a real one. On the 18 fitted tables every regime closure
+certifies with this fallback from its floor (none reports an escape), so
+the price was not paid. The geometric test `_unreal_on` is a disjunction of
+two one-sided margins; `regime_sign` evaluates one margin at both `r h`
+endpoints and refuses unless the signs agree, so each disjunct is "this
+margin is `<= 0` at both endpoints", and the disjunction stands outside the
+conjunction over endpoints (the other order would be unsound: a child could
+sweep through the strict interval at an intermediate residue).
 
-*Proof.* `N/d = cld l + cd + v(r)/d` exactly. Each listed case pins `v/d` to
-one unit interval for every `d >= d0` and every `r` of the regime, so the
-rounding is the stated constant; the remaining cases are refused, not decided.
-Hence, after division, every realizable child index is `l`-affine and free of
-`d` and `r`, which is what step (a) observed for the label sets.
 
 ## Perron side: polynomials in (h, u), signs on a box
 
@@ -114,17 +130,33 @@ row coordinate `k = a l + b`:
     k d h(1+h) = a n h(1+h) + (d b - a r) h(1+h) = a n h(1+h) + b u (1+h) - a (r h)(1+h).
 
 A displacement or length is therefore `A + n B + (r h) C` with
-`A, B, C` in `Z[h,u]`, `C` divisible by `h` whenever it is nonzero. The sign
+`A, B, C` in `Z[h,u]`; the coefficient of `r` is `h C`, divisible by `h`,
+while `C` itself need not be (for the displacement above `C = -a(1+h)`). The sign
 of `A + nB + (rh)C` is the sign of `A h(1+h) + E B + (rh) C h(1+h)` with
 `E = n h(1+h)` as above (multiplying by `h(1+h) > 0`), and `r h` is `j h`
 (low), `u - j h` (high), or ranges over `[j0 h, u - j1 h]` (middle; the
-margin is affine in `r h`, so both endpoints are checked).
+margin is affine in `r h`, so both endpoints are checked). Precisely: a
+margin is `> 0` on the regime iff it is `> 0` at both endpoints, and `<= 0`
+iff it is `<= 0` at both; a child is unreal iff for *one* of the two margins
+(bottom at `j_hi`, or top at `j_lo`) the sign at both endpoints is `<= 0`,
+and a strict overlap needs both margins `> 0` at both endpoints. Mixing a
+margin at one endpoint with the other margin at the other endpoint proves
+nothing about intermediate residues; `regime_sign` refuses a margin whose
+endpoint signs differ, which rules the mixed pattern out by construction.
 
 **Lemma 3 (sign on a box).** For every member `(d, n = d l + r)` of a regime
-with `l >= l0`, `d >= d0`: `h_n < 1/n` (since `n^3 P(n,1/n) = -(1+eps)n^2 -
-(d+1-eps)n - d < 0` and `P(n,.)` decreases on `h > 0` from `P(n,0) = 1`),
+with `l >= l0`, `d >= d0`: every member has `n >= d0 l0 >= 1`, so `n + eps >= 0`
+and `P_h(n,h) = -(n+eps) - 2(n+d+1-eps)h - 3d h^2 < 0` on `h > 0`, i.e.
+`P(n,.)` strictly decreases from `P(n,0) = 1` and has one positive root `h_n`;
+since `n^3 P(n,1/n) = -(1+eps)n^2 - (d+1-eps)n - d < 0`, `h_n < 1/n`,
 hence `u = d h_n < d/n <= 1/l <= 1/l0`, and `t := 1/d` lies in `(0, 1/d0]`.
 So `(u, t)` lies in the box `B = (0, 1/l0) x (0, 1/d0]`, where `h = u t`.
+`B` is strictly larger than the hull of the member images (the constraint
+`n >= d l0`, i.e. `E >= l0 u (1+h)`, is not encoded), so a margin positive at
+every member can still be refused as UNDECIDED near the corner
+`(u -> 1/l0, t = 1/d0)`; such a refusal is a box artefact, never a
+counterexample, and the remedy would be the exact side condition
+`E - l0 u(1+h) >= 0`, not a larger `l0`.
 Let `G(u,t) = F(u t, u)` for `F` in `Z[h,u]`, with common monomial factors
 `u^a t^b` stripped (positive on `B`). `B` is covered by closed cells
 `Q = [u0,u1] x [t0,t1]` obtained by bisecting the box alternately in `u` and
@@ -154,8 +186,10 @@ every member; positivity of `G` at a member is positivity of `F` there.
 **Lemma 4 (identities, re-proved by the certificate).** Coefficient-wise in
 `(h, u, n)`: `h (M^T L)_j - (1+h) L_j = -P` for each letter, with
 `M^T L = (2L_x + n L_y + d L_y, L_x + L_c + n L_y, L_x + L_c + (n+eps) L_y)`
-and `d L_y h = u (1+h)`; and `n^3 P(n, 1/n)` has every coefficient `<= 0` as a
-polynomial in `(n, d)` and is not zero.
+and `d L_y h = u (1+h)`; and `n^3 P(n, 1/n) = -(1+eps) n^2 - n d - (1-eps) n - d`
+has every coefficient `<= 0` as a polynomial in `(n, d)` and is not zero, so
+it is negative at every member, where `n >= 1` and `d >= 1` make each
+monomial positive.
 
 ## What the uniform verifier does
 
@@ -166,12 +200,23 @@ run lengths become gap forms, and the `n0`-based checks become `(l0, d0)`.
 Output: `CLASS_A_REGIME_CLOSURE`, `CLASS_A_REGIME_DESCENT` and
 `CLASS_A_REGIME_BOUNDARY_HITTING eps=.. regime=.. l>=l0 d>=d0` receipts.
 
-**Theorem shape (target).** For each sign, the fitted regimes cover every
-`(d, r)` with `d >= D(eps)` (`D(-1) = 5`, `D(+1) = 11`); together with the
-finite exceptional `(d, r)` below `D(eps)` (ray tables, as for `d <= 4`) and
-exact complete graphs below the floors, this would give boundary hitting on
-every class-A line of gap `d >= 5`, hence on all of determinant-two class A.
-Nothing of this is claimed until the verifier accepts the tables.
+**Theorem shape.** For each sign, the fitted regimes cover every residue of
+every gap `d >= D(eps)` (`D(-1) = 7`, `D(+1) = 11`, the largest fitted floor;
+`psc.class_a_gap_theorem.eventual_cover` proves the covering pattern once for
+all larger gaps). A regime certifies from its *uniform* floor `d0`, which may
+exceed its fitted floor; the gaps in between are finite rays certified on the
+same tables by the ray certificate, with exact complete graphs below the ray
+floor. The residues of `5 <= d < D(eps)` that no fitted regime reaches (seven
+rays of the plus sign: `(d, r) = (5,1), (5,2), (6,1), (6,2), (7,2), (7,3),
+(8,3)`) carry their own ray tables, as for `d <= 4`. All of this is quantified
+over `l >= l0` (`l0 = 5`, where the regime rows were fitted): the theorem is
+boundary hitting on every class-A line of gap `d >= 5` for every member
+`n = d l + r >= 5 d`. The strip `n < 5 d` (every gap `d > n/5` up to the PIP
+bound `d <= 2n + 6 eps + 5`) is **not** covered: for each fixed `l < 5` it is
+again a two-parameter family in `(d, r)`, and its label sets have not been
+fitted. It is the recorded remaining gap of class A, not a finite list of
+exceptions. Nothing is claimed beyond what `kernel/class_a_gap_theorem.mojo
+certify-all 5` accepts.
 
 ## Module contract (for the implementation)
 
@@ -180,6 +225,9 @@ Nothing of this is claimed until the verifier accepts the tables.
   `__init__(out self, c1, cl, cd, cld, cr)`; `add`, `sub`, `scale(Int)`; `const(Int)`,
   `lin(a, b)` (= `a l + b`) constructors (module-level `def`s).
 - `struct Regime(ImplicitlyCopyable, Copyable, Movable)`: `eps, kind (0 low, 1 high, 2 middle), j, j1, l0, d0: Int`;
+  of its comparisons the certificate uses only `nonneg` (descent realizability)
+  and the divisions; after division every comparison is on `l`-affine forms
+  through the ray `a_le` at `n0 = l0`, so `le`, `max`, `min` are tested but unused;
   `check()`; `name() -> String`; `r_endpoints() -> List[GapForm]` (one or two forms);
   `nonneg(f: GapForm) -> Bool` (Lemma 1 after the r-reduction);
   `le(u, v: GapForm) -> Int` (1 / 0 / -1 as above);
