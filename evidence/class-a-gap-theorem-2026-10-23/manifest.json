@@ -1,0 +1,655 @@
+{
+  "scope": "boundary hitting (every vertex of the complete canonical swap-seed graph has an offset-zero descendant) on every class-A line (n+d,n,n+eps) of gap d>=5, both signs, for every member n = d l + r with l>=5 (n>=5d); one d-uniform certificate per residue regime, ray certificates for the finite gaps and the seven exceptional plus residues, exact complete graphs below the ray floors",
+  "base_commit": "738b0707ac5bb2139a8f07d656126df066700360",
+  "runtime": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "theorem": [
+    {
+      "eps": -1,
+      "l0": 5,
+      "first_gap": 5,
+      "regimes": 7,
+      "regimes_cover_from_d": 7,
+      "finite_rays": 4,
+      "exceptional_rays": 0,
+      "exact_graphs": 2
+    },
+    {
+      "eps": 1,
+      "l0": 5,
+      "first_gap": 5,
+      "regimes": 11,
+      "regimes_cover_from_d": 11,
+      "finite_rays": 0,
+      "exceptional_rays": 7,
+      "exact_graphs": 1
+    }
+  ],
+  "regimes": [
+    {
+      "eps": -1,
+      "regime": "low:r=0",
+      "l0": 5,
+      "d0": 5,
+      "closure": {
+        "rows": 93,
+        "segments": 837,
+        "y_cases": 9207,
+        "covered": 3652,
+        "gap_geometry": 3068,
+        "window_checks": 1674,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 3000,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 127,
+        "targets": 8,
+        "descent_rows": 172,
+        "bound_slope": 2,
+        "bound_const": 9
+      }
+    },
+    {
+      "eps": -1,
+      "regime": "low:r=1",
+      "l0": 5,
+      "d0": 8,
+      "closure": {
+        "rows": 119,
+        "segments": 1071,
+        "y_cases": 11781,
+        "covered": 4535,
+        "gap_geometry": 3789,
+        "window_checks": 2142,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 356,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 157,
+        "targets": 8,
+        "descent_rows": 200,
+        "bound_slope": 2,
+        "bound_const": 7
+      }
+    },
+    {
+      "eps": -1,
+      "regime": "low:r=2",
+      "l0": 5,
+      "d0": 6,
+      "closure": {
+        "rows": 115,
+        "segments": 1035,
+        "y_cases": 11385,
+        "covered": 4431,
+        "gap_geometry": 3715,
+        "window_checks": 2070,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 3137,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 153,
+        "targets": 8,
+        "descent_rows": 193,
+        "bound_slope": 2,
+        "bound_const": 6
+      }
+    },
+    {
+      "eps": -1,
+      "regime": "high:r=d-1",
+      "l0": 5,
+      "d0": 6,
+      "closure": {
+        "rows": 105,
+        "segments": 945,
+        "y_cases": 10395,
+        "covered": 3935,
+        "gap_geometry": 3307,
+        "window_checks": 1890,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 2864,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 137,
+        "targets": 8,
+        "descent_rows": 176,
+        "bound_slope": 2,
+        "bound_const": 8
+      }
+    },
+    {
+      "eps": -1,
+      "regime": "high:r=d-2",
+      "l0": 5,
+      "d0": 5,
+      "closure": {
+        "rows": 109,
+        "segments": 981,
+        "y_cases": 10791,
+        "covered": 4300,
+        "gap_geometry": 3640,
+        "window_checks": 1962,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 6576,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 147,
+        "targets": 8,
+        "descent_rows": 185,
+        "bound_slope": 2,
+        "bound_const": 7
+      }
+    },
+    {
+      "eps": -1,
+      "regime": "high:r=d-3",
+      "l0": 5,
+      "d0": 5,
+      "closure": {
+        "rows": 113,
+        "segments": 1017,
+        "y_cases": 11187,
+        "covered": 4542,
+        "gap_geometry": 3846,
+        "window_checks": 2034,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 8516,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 151,
+        "targets": 8,
+        "descent_rows": 191,
+        "bound_slope": 2,
+        "bound_const": 6
+      }
+    },
+    {
+      "eps": -1,
+      "regime": "middle:3<=r<=d-4",
+      "l0": 5,
+      "d0": 7,
+      "closure": {
+        "rows": 115,
+        "segments": 1035,
+        "y_cases": 11385,
+        "covered": 4459,
+        "gap_geometry": 3743,
+        "window_checks": 2070,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 9165,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 153,
+        "targets": 8,
+        "descent_rows": 191,
+        "bound_slope": 2,
+        "bound_const": 6
+      }
+    },
+    {
+      "eps": 1,
+      "regime": "low:r=0",
+      "l0": 5,
+      "d0": 5,
+      "closure": {
+        "rows": 84,
+        "segments": 756,
+        "y_cases": 8316,
+        "covered": 3676,
+        "gap_geometry": 3112,
+        "window_checks": 1512,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 2434,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 128,
+        "targets": 8,
+        "descent_rows": 176,
+        "bound_slope": 2,
+        "bound_const": 9
+      }
+    },
+    {
+      "eps": 1,
+      "regime": "low:r=1",
+      "l0": 5,
+      "d0": 7,
+      "closure": {
+        "rows": 96,
+        "segments": 864,
+        "y_cases": 9504,
+        "covered": 3827,
+        "gap_geometry": 3197,
+        "window_checks": 1728,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 1163,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 138,
+        "targets": 8,
+        "descent_rows": 171,
+        "bound_slope": 2,
+        "bound_const": 8
+      }
+    },
+    {
+      "eps": 1,
+      "regime": "low:r=2",
+      "l0": 5,
+      "d0": 8,
+      "closure": {
+        "rows": 100,
+        "segments": 900,
+        "y_cases": 9900,
+        "covered": 3995,
+        "gap_geometry": 3341,
+        "window_checks": 1800,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 1483,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 140,
+        "targets": 8,
+        "descent_rows": 174,
+        "bound_slope": 2,
+        "bound_const": 8
+      }
+    },
+    {
+      "eps": 1,
+      "regime": "low:r=3",
+      "l0": 5,
+      "d0": 9,
+      "closure": {
+        "rows": 100,
+        "segments": 900,
+        "y_cases": 9900,
+        "covered": 3957,
+        "gap_geometry": 3307,
+        "window_checks": 1800,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 1893,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 140,
+        "targets": 8,
+        "descent_rows": 170,
+        "bound_slope": 2,
+        "bound_const": 6
+      }
+    },
+    {
+      "eps": 1,
+      "regime": "low:r=4",
+      "l0": 5,
+      "d0": 10,
+      "closure": {
+        "rows": 98,
+        "segments": 882,
+        "y_cases": 9702,
+        "covered": 3861,
+        "gap_geometry": 3225,
+        "window_checks": 1764,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 2111,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 138,
+        "targets": 8,
+        "descent_rows": 168,
+        "bound_slope": 2,
+        "bound_const": 6
+      }
+    },
+    {
+      "eps": 1,
+      "regime": "high:r=d-1",
+      "l0": 5,
+      "d0": 5,
+      "closure": {
+        "rows": 74,
+        "segments": 666,
+        "y_cases": 7326,
+        "covered": 3262,
+        "gap_geometry": 2774,
+        "window_checks": 1332,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 2227,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 110,
+        "targets": 8,
+        "descent_rows": 143,
+        "bound_slope": 2,
+        "bound_const": 11
+      }
+    },
+    {
+      "eps": 1,
+      "regime": "high:r=d-2",
+      "l0": 5,
+      "d0": 5,
+      "closure": {
+        "rows": 76,
+        "segments": 684,
+        "y_cases": 7524,
+        "covered": 3424,
+        "gap_geometry": 2920,
+        "window_checks": 1368,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 3085,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 112,
+        "targets": 8,
+        "descent_rows": 146,
+        "bound_slope": 2,
+        "bound_const": 11
+      }
+    },
+    {
+      "eps": 1,
+      "regime": "high:r=d-3",
+      "l0": 5,
+      "d0": 6,
+      "closure": {
+        "rows": 88,
+        "segments": 792,
+        "y_cases": 8712,
+        "covered": 3687,
+        "gap_geometry": 3139,
+        "window_checks": 1584,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 3555,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 122,
+        "targets": 8,
+        "descent_rows": 153,
+        "bound_slope": 2,
+        "bound_const": 8
+      }
+    },
+    {
+      "eps": 1,
+      "regime": "high:r=d-4",
+      "l0": 5,
+      "d0": 8,
+      "closure": {
+        "rows": 92,
+        "segments": 828,
+        "y_cases": 9108,
+        "covered": 3673,
+        "gap_geometry": 3091,
+        "window_checks": 1656,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 2791,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 132,
+        "targets": 8,
+        "descent_rows": 162,
+        "bound_slope": 2,
+        "bound_const": 7
+      }
+    },
+    {
+      "eps": 1,
+      "regime": "high:r=d-5",
+      "l0": 5,
+      "d0": 9,
+      "closure": {
+        "rows": 96,
+        "segments": 864,
+        "y_cases": 9504,
+        "covered": 3831,
+        "gap_geometry": 3213,
+        "window_checks": 1728,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 3333,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 136,
+        "targets": 8,
+        "descent_rows": 166,
+        "bound_slope": 2,
+        "bound_const": 6
+      }
+    },
+    {
+      "eps": 1,
+      "regime": "middle:5<=r<=d-6",
+      "l0": 5,
+      "d0": 11,
+      "closure": {
+        "rows": 98,
+        "segments": 882,
+        "y_cases": 9702,
+        "covered": 3855,
+        "gap_geometry": 3219,
+        "window_checks": 1764,
+        "seeds_real": 9,
+        "seeds_unreal": 3,
+        "clip_fallbacks": 4992,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 138,
+        "targets": 8,
+        "descent_rows": 168,
+        "bound_slope": 2,
+        "bound_const": 6
+      }
+    }
+  ],
+  "exceptional_rays": [
+    {
+      "line": "(n+5,n,n+1)",
+      "ray": "n=5l+1",
+      "n0": 26,
+      "rows": 90,
+      "closure": {
+        "covered": 3518,
+        "gap_geometry": 2934,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 132,
+        "targets": 8,
+        "descent_rows": 165,
+        "bound_slope": 2,
+        "bound_const": 8
+      }
+    },
+    {
+      "line": "(n+5,n,n+1)",
+      "ray": "n=5l+2",
+      "n0": 22,
+      "rows": 90,
+      "closure": {
+        "covered": 3438,
+        "gap_geometry": 2886,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 124,
+        "targets": 8,
+        "descent_rows": 157,
+        "bound_slope": 2,
+        "bound_const": 8
+      }
+    },
+    {
+      "line": "(n+6,n,n+1)",
+      "ray": "n=6l+1",
+      "n0": 31,
+      "rows": 94,
+      "closure": {
+        "covered": 3693,
+        "gap_geometry": 3077,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 136,
+        "targets": 8,
+        "descent_rows": 170,
+        "bound_slope": 2,
+        "bound_const": 8
+      }
+    },
+    {
+      "line": "(n+6,n,n+1)",
+      "ray": "n=6l+2",
+      "n0": 32,
+      "rows": 94,
+      "closure": {
+        "covered": 3695,
+        "gap_geometry": 3095,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 134,
+        "targets": 8,
+        "descent_rows": 168,
+        "bound_slope": 2,
+        "bound_const": 8
+      }
+    },
+    {
+      "line": "(n+7,n,n+1)",
+      "ray": "n=7l+2",
+      "n0": 44,
+      "rows": 98,
+      "closure": {
+        "covered": 3885,
+        "gap_geometry": 3249,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 138,
+        "targets": 8,
+        "descent_rows": 173,
+        "bound_slope": 2,
+        "bound_const": 8
+      }
+    },
+    {
+      "line": "(n+7,n,n+1)",
+      "ray": "n=7l+3",
+      "n0": 31,
+      "rows": 94,
+      "closure": {
+        "covered": 3673,
+        "gap_geometry": 3083,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 134,
+        "targets": 8,
+        "descent_rows": 164,
+        "bound_slope": 2,
+        "bound_const": 7
+      }
+    },
+    {
+      "line": "(n+8,n,n+1)",
+      "ray": "n=8l+3",
+      "n0": 43,
+      "rows": 98,
+      "closure": {
+        "covered": 3839,
+        "gap_geometry": 3209,
+        "clip_fallbacks": 0,
+        "terminal_splits": 65
+      },
+      "descent": {
+        "pieces": 138,
+        "targets": 8,
+        "descent_rows": 169,
+        "bound_slope": 2,
+        "bound_const": 6
+      }
+    }
+  ],
+  "finite_base": "exact complete graphs (cap-refusing, every vertex hitting) for 5 <= l below each finite or exceptional ray's floor (theorem.log); label datasets d=1..20, l=5..9 (evidence/class-a-gap-labels-2026-10-23)",
+  "source_sha256": {
+    "kernel/psc/gap_form.mojo": "c96d4dd71cbca61d7a02da9e0872af35b6b58df7f94200738da64d9afb37be59",
+    "kernel/psc/poly_hu.mojo": "232e0361b229f413c523f0ed543ba3eba9943894413e3a6eae33a18e3f005e01",
+    "kernel/psc/class_a_gap_uniform.mojo": "f4cde507b23db1190e3add4037a6cb09260d6aab322ffe7e61c3e3517de4af7a",
+    "kernel/psc/class_a_gap_theorem.mojo": "6da2900c9414d704a5d8c29befe99e5f5a7707953c89f15d1eeb14b414a952a2",
+    "kernel/psc/class_a_gap_regime_tables.mojo": "a9607325d2a53c4dc26d8a76725c48cd90db25f368c26b565dba4543a6ee3e98",
+    "kernel/psc/class_a_gap_regime_rows_minus.mojo": "1d60a3a020f892a525b14ddc280e80018f76c6e3591068e625b7885b0fc6ec57",
+    "kernel/psc/class_a_gap_regime_rows_plus.mojo": "823ae8a87065f9b6d11497143d2278e0058fba91e82b64431f8902a18cb4f17d",
+    "kernel/psc/class_a_gap_regime_descents_minus.mojo": "86fba7531ec027dc147d89a159119ba6aeaef4adb04920765f348f88c446f503",
+    "kernel/psc/class_a_gap_regime_descents_plus.mojo": "c23b37f2144bf50034020e7b32d4601ecf373af67c8d39fea0f21dd46a6cadc4",
+    "kernel/psc/class_a_ray_tables.mojo": "b4fa2160c2f18a7b8d46c1b01eab5adab1f459df6671fcc156ebaaa434d5648d",
+    "kernel/psc/class_a_ray_d5p.mojo": "16e160198d7cb51448795376602b49c06455b3793319f3e48ec03c1c1e2df548",
+    "kernel/psc/class_a_ray_d6p.mojo": "508f46a19d037802d7f79f38940db03e820bccfa53b8159d6b57dcada3d35463",
+    "kernel/psc/class_a_ray_d7p.mojo": "5d13e62bb7ab60285115ff7c00017653a214a6d98072e31b6d18195cb64fa89d",
+    "kernel/psc/class_a_ray_d8p.mojo": "6b234df7aa6bf4eac739086f8716bb539fa402c18f08cfd6fc308501ce61459b",
+    "kernel/psc/class_a_carrier_closure.mojo": "b9b265ea117f41c8c692c1921ea68f8080877c3cab66c2ffb7997a12ddbbd230",
+    "kernel/psc/class_a_carrier_descent.mojo": "e21c5356223ea0904bce489331b6e84e5b3446ec4704fb3f8644e8f35e634499",
+    "kernel/psc/class_a_line.mojo": "68ed96027c86338a711fcbd43d6c68c781dce572766a78afd8e1c493f5ef573c",
+    "kernel/psc/class_a_line_graph.mojo": "f7c81787a1b1cf8dfa4b23c772b2bfaf8606ae856372e50aff6543205f922cdd",
+    "kernel/psc/overlap_zipper.mojo": "263bf1d7f7fb6979e256d50077a0aed61e55bd1f40d9c2b53ff8bf4f0a1941d5",
+    "kernel/class_a_gap_theorem.mojo": "0e41432869f293dd031dd31bdd765738e928f5b5a6d6754f8313107d5a4f6961",
+    "kernel/class_a_gap_uniform.mojo": "7398fe5cd8bcda6063f5ad28e4278c01adfc42f93b59a0dba8dfd2eff035bc19",
+    "kernel/class_a_residue_ray.mojo": "83da956e0cd8148115872390b28fcadd10a1bf38a0ba630376d1ca1349d83ef3",
+    "kernel/tests/test_class_a_gap_theorem.mojo": "3755cc75180d942b4537c6758c6e51ad358bbdbe39cd4852922eaf436024c750",
+    "kernel/tests/test_class_a_gap_regime_descent.mojo": "f6736c2b9c6feae580a7c6c9fa4bd025091c4e264951577f416d3961bbe6b2f1",
+    "kernel/tests/test_class_a_gap_uniform.mojo": "f760c5d347155cabb0131ec4ea8f8f2f95204afea5af0b5ec4993cb0c9024b53",
+    "kernel/tests/test_gap_form.mojo": "b9bb8343d765814123265612dd3b0a3babdb6c764ef5fa8b6cc9b2bbb546d902",
+    "kernel/tests/test_poly_hu.mojo": "d3ebf286616a9caf52300ca7e78e9a150eb5d6e53adb080bfb952b1575300d81",
+    "kernel/tests/test_class_a_residue_rays.mojo": "95192b3afd3b497b66d78120cf3c27deba6e498a717d68fc894d6b13d0e170dc",
+    "oracles/python/class_a_descent_table.py": "240d9248b3a693d496d6967a42e6bd7aca14d3d1143b7f6e6ec57b6088dcc92f",
+    "oracles/python/class_a_carrier_closure.py": "5c2bea5a88122e1a15fcb98c4e0c3d3903a7abe802a2534d5758503a4c77588c"
+  },
+  "non_claims": [
+    "members with l < 5 (n < 5d) of every gap",
+    "class-C residual",
+    "universal #139/#84/#138",
+    "G1",
+    "PSC",
+    "independent human review"
+  ]
+}

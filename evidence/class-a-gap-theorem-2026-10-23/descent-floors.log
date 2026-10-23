@@ -1,0 +1,36 @@
+CLASS_A_REGIME_DESCENT eps=-1 regime=low:r=0 l>=5 d>=5 pieces 127 targets 8 descent_rows 172 hit_depth_bound 2l+9
+CLASS_A_REGIME_DESCENT_FLOOR eps=-1 regime=low:r=0 fitted_d>=5 uniform_d>=5 l>=5
+CLASS_A_REGIME_DESCENT eps=-1 regime=low:r=1 l>=5 d>=5 pieces 157 targets 8 descent_rows 200 hit_depth_bound 2l+7
+CLASS_A_REGIME_DESCENT_FLOOR eps=-1 regime=low:r=1 fitted_d>=5 uniform_d>=5 l>=5
+CLASS_A_REGIME_DESCENT eps=-1 regime=low:r=2 l>=5 d>=6 pieces 153 targets 8 descent_rows 193 hit_depth_bound 2l+6
+CLASS_A_REGIME_DESCENT_FLOOR eps=-1 regime=low:r=2 fitted_d>=6 uniform_d>=6 l>=5
+CLASS_A_REGIME_DESCENT eps=-1 regime=high:r=d-1 l>=5 d>=5 pieces 137 targets 8 descent_rows 176 hit_depth_bound 2l+8
+CLASS_A_REGIME_DESCENT_FLOOR eps=-1 regime=high:r=d-1 fitted_d>=5 uniform_d>=5 l>=5
+CLASS_A_REGIME_DESCENT eps=-1 regime=high:r=d-2 l>=5 d>=5 pieces 147 targets 8 descent_rows 185 hit_depth_bound 2l+7
+CLASS_A_REGIME_DESCENT_FLOOR eps=-1 regime=high:r=d-2 fitted_d>=5 uniform_d>=5 l>=5
+CLASS_A_REGIME_DESCENT eps=-1 regime=high:r=d-3 l>=5 d>=5 pieces 151 targets 8 descent_rows 191 hit_depth_bound 2l+6
+CLASS_A_REGIME_DESCENT_FLOOR eps=-1 regime=high:r=d-3 fitted_d>=5 uniform_d>=5 l>=5
+CLASS_A_REGIME_DESCENT eps=-1 regime=middle:3<=r<=d-4 l>=5 d>=7 pieces 153 targets 8 descent_rows 191 hit_depth_bound 2l+6
+CLASS_A_REGIME_DESCENT_FLOOR eps=-1 regime=middle:3<=r<=d-4 fitted_d>=7 uniform_d>=7 l>=5
+CLASS_A_REGIME_DESCENT eps=1 regime=low:r=0 l>=5 d>=5 pieces 128 targets 8 descent_rows 176 hit_depth_bound 2l+9
+CLASS_A_REGIME_DESCENT_FLOOR eps=1 regime=low:r=0 fitted_d>=5 uniform_d>=5 l>=5
+CLASS_A_REGIME_DESCENT eps=1 regime=low:r=1 l>=5 d>=7 pieces 138 targets 8 descent_rows 171 hit_depth_bound 2l+8
+CLASS_A_REGIME_DESCENT_FLOOR eps=1 regime=low:r=1 fitted_d>=7 uniform_d>=7 l>=5
+CLASS_A_REGIME_DESCENT eps=1 regime=low:r=2 l>=5 d>=8 pieces 140 targets 8 descent_rows 174 hit_depth_bound 2l+8
+CLASS_A_REGIME_DESCENT_FLOOR eps=1 regime=low:r=2 fitted_d>=8 uniform_d>=8 l>=5
+CLASS_A_REGIME_DESCENT eps=1 regime=low:r=3 l>=5 d>=9 pieces 140 targets 8 descent_rows 170 hit_depth_bound 2l+6
+CLASS_A_REGIME_DESCENT_FLOOR eps=1 regime=low:r=3 fitted_d>=9 uniform_d>=9 l>=5
+CLASS_A_REGIME_DESCENT eps=1 regime=low:r=4 l>=5 d>=10 pieces 138 targets 8 descent_rows 168 hit_depth_bound 2l+6
+CLASS_A_REGIME_DESCENT_FLOOR eps=1 regime=low:r=4 fitted_d>=10 uniform_d>=10 l>=5
+CLASS_A_REGIME_DESCENT eps=1 regime=high:r=d-1 l>=5 d>=5 pieces 110 targets 8 descent_rows 143 hit_depth_bound 2l+11
+CLASS_A_REGIME_DESCENT_FLOOR eps=1 regime=high:r=d-1 fitted_d>=5 uniform_d>=5 l>=5
+CLASS_A_REGIME_DESCENT eps=1 regime=high:r=d-2 l>=5 d>=5 pieces 112 targets 8 descent_rows 146 hit_depth_bound 2l+11
+CLASS_A_REGIME_DESCENT_FLOOR eps=1 regime=high:r=d-2 fitted_d>=5 uniform_d>=5 l>=5
+CLASS_A_REGIME_DESCENT eps=1 regime=high:r=d-3 l>=5 d>=6 pieces 122 targets 8 descent_rows 153 hit_depth_bound 2l+8
+CLASS_A_REGIME_DESCENT_FLOOR eps=1 regime=high:r=d-3 fitted_d>=6 uniform_d>=6 l>=5
+CLASS_A_REGIME_DESCENT eps=1 regime=high:r=d-4 l>=5 d>=8 pieces 132 targets 8 descent_rows 162 hit_depth_bound 2l+7
+CLASS_A_REGIME_DESCENT_FLOOR eps=1 regime=high:r=d-4 fitted_d>=8 uniform_d>=8 l>=5
+CLASS_A_REGIME_DESCENT eps=1 regime=high:r=d-5 l>=5 d>=9 pieces 136 targets 8 descent_rows 166 hit_depth_bound 2l+6
+CLASS_A_REGIME_DESCENT_FLOOR eps=1 regime=high:r=d-5 fitted_d>=9 uniform_d>=9 l>=5
+CLASS_A_REGIME_DESCENT eps=1 regime=middle:5<=r<=d-6 l>=5 d>=11 pieces 138 targets 8 descent_rows 168 hit_depth_bound 2l+6
+CLASS_A_REGIME_DESCENT_FLOOR eps=1 regime=middle:5<=r<=d-6 fitted_d>=11 uniform_d>=11 l>=5

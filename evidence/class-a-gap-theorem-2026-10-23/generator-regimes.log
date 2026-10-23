@@ -1,0 +1,76 @@
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e-1_k0_j0 25 --ray 5,-1,0 --nhi 60 --tail-floor 25 --src kernel/psc/class_a_gap_regime_rows_minus.mojo --rows-fn rows_low0 --mojo kernel/psc/class_a_gap_regime_descents_minus.mojo
+row 88 fitted with slack 1
+pieces: 127
+NLO 25 pieces 127 failures: 0  descent rows: 172
+exit 0 minus low0
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e-1_k0_j1 41 --ray 8,-1,1 --nhi 97 --tail-floor 41 --src kernel/psc/class_a_gap_regime_rows_minus.mojo --rows-fn rows_low1 --mojo kernel/psc/class_a_gap_regime_descents_minus.mojo
+row 111 fitted with slack 1
+pieces: 157
+NLO 41 pieces 157 failures: 0  descent rows: 200
+exit 0 minus low1
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e-1_k0_j2 32 --ray 6,-1,2 --nhi 74 --tail-floor 32 --src kernel/psc/class_a_gap_regime_rows_minus.mojo --rows-fn rows_low2 --mojo kernel/psc/class_a_gap_regime_descents_minus.mojo
+pieces: 153
+NLO 32 pieces 153 failures: 0  descent rows: 193
+exit 0 minus low2
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e-1_k1_j1 35 --ray 6,-1,5 --nhi 77 --tail-floor 35 --src kernel/psc/class_a_gap_regime_rows_minus.mojo --rows-fn rows_high1 --mojo kernel/psc/class_a_gap_regime_descents_minus.mojo
+pieces: 137
+NLO 35 pieces 137 failures: 0  descent rows: 176
+exit 0 minus high1
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e-1_k1_j2 28 --ray 5,-1,3 --nhi 63 --tail-floor 28 --src kernel/psc/class_a_gap_regime_rows_minus.mojo --rows-fn rows_high2 --mojo kernel/psc/class_a_gap_regime_descents_minus.mojo
+pieces: 147
+NLO 28 pieces 147 failures: 0  descent rows: 185
+exit 0 minus high2
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e-1_k1_j3 27 --ray 5,-1,2 --nhi 62 --tail-floor 27 --src kernel/psc/class_a_gap_regime_rows_minus.mojo --rows-fn rows_high3 --mojo kernel/psc/class_a_gap_regime_descents_minus.mojo
+pieces: 151
+NLO 27 pieces 151 failures: 0  descent rows: 191
+exit 0 minus high3
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e-1_k2_j3 38 --ray 7,-1,3 --nhi 87 --tail-floor 38 --src kernel/psc/class_a_gap_regime_rows_minus.mojo --rows-fn rows_middle --mojo kernel/psc/class_a_gap_regime_descents_minus.mojo
+pieces: 153
+NLO 38 pieces 153 failures: 0  descent rows: 191
+exit 0 minus middle
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e1_k0_j0 25 --ray 5,1,0 --nhi 60 --tail-floor 25 --src kernel/psc/class_a_gap_regime_rows_plus.mojo --rows-fn rows_low0 --mojo kernel/psc/class_a_gap_regime_descents_plus.mojo
+pieces: 128
+NLO 25 pieces 128 failures: 0  descent rows: 176
+exit 0 plus low0
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e1_k0_j1 36 --ray 7,1,1 --nhi 85 --tail-floor 36 --src kernel/psc/class_a_gap_regime_rows_plus.mojo --rows-fn rows_low1 --mojo kernel/psc/class_a_gap_regime_descents_plus.mojo
+pieces: 138
+NLO 36 pieces 138 failures: 0  descent rows: 171
+exit 0 plus low1
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e1_k0_j2 42 --ray 8,1,2 --nhi 98 --tail-floor 42 --src kernel/psc/class_a_gap_regime_rows_plus.mojo --rows-fn rows_low2 --mojo kernel/psc/class_a_gap_regime_descents_plus.mojo
+pieces: 140
+NLO 42 pieces 140 failures: 0  descent rows: 174
+exit 0 plus low2
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e1_k0_j3 48 --ray 9,1,3 --nhi 111 --tail-floor 48 --src kernel/psc/class_a_gap_regime_rows_plus.mojo --rows-fn rows_low3 --mojo kernel/psc/class_a_gap_regime_descents_plus.mojo
+pieces: 140
+NLO 48 pieces 140 failures: 0  descent rows: 170
+exit 0 plus low3
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e1_k0_j4 54 --ray 10,1,4 --nhi 124 --tail-floor 54 --src kernel/psc/class_a_gap_regime_rows_plus.mojo --rows-fn rows_low4 --mojo kernel/psc/class_a_gap_regime_descents_plus.mojo
+pieces: 138
+NLO 54 pieces 138 failures: 0  descent rows: 168
+exit 0 plus low4
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e1_k1_j1 29 --ray 5,1,4 --nhi 64 --tail-floor 29 --src kernel/psc/class_a_gap_regime_rows_plus.mojo --rows-fn rows_high1 --mojo kernel/psc/class_a_gap_regime_descents_plus.mojo
+row 69 fitted with slack 1
+pieces: 110
+NLO 29 pieces 110 failures: 0  descent rows: 143
+exit 0 plus high1
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e1_k1_j2 28 --ray 5,1,3 --nhi 63 --tail-floor 28 --src kernel/psc/class_a_gap_regime_rows_plus.mojo --rows-fn rows_high2 --mojo kernel/psc/class_a_gap_regime_descents_plus.mojo
+row 71 fitted with slack 1
+pieces: 112
+NLO 28 pieces 112 failures: 0  descent rows: 146
+exit 0 plus high2
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e1_k1_j3 33 --ray 6,1,3 --nhi 75 --tail-floor 33 --src kernel/psc/class_a_gap_regime_rows_plus.mojo --rows-fn rows_high3 --mojo kernel/psc/class_a_gap_regime_descents_plus.mojo
+pieces: 122
+NLO 33 pieces 122 failures: 0  descent rows: 153
+exit 0 plus high3
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e1_k1_j4 44 --ray 8,1,4 --nhi 100 --tail-floor 44 --src kernel/psc/class_a_gap_regime_rows_plus.mojo --rows-fn rows_high4 --mojo kernel/psc/class_a_gap_regime_descents_plus.mojo
+pieces: 132
+NLO 44 pieces 132 failures: 0  descent rows: 162
+exit 0 plus high4
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e1_k1_j5 49 --ray 9,1,4 --nhi 112 --tail-floor 49 --src kernel/psc/class_a_gap_regime_rows_plus.mojo --rows-fn rows_high5 --mojo kernel/psc/class_a_gap_regime_descents_plus.mojo
+pieces: 136
+NLO 49 pieces 136 failures: 0  descent rows: 166
+exit 0 plus high5
++ oracles/python/class_a_descent_table.py GRAPHS/reg_e1_k2_j5 60 --ray 11,1,5 --nhi 137 --tail-floor 60 --src kernel/psc/class_a_gap_regime_rows_plus.mojo --rows-fn rows_middle --mojo kernel/psc/class_a_gap_regime_descents_plus.mojo
+pieces: 138
+NLO 60 pieces 138 failures: 0  descent rows: 168
+exit 0 plus middle
