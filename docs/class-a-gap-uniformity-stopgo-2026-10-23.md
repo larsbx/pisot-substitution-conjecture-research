@@ -112,6 +112,44 @@ not affine; or a two-variable margin is undecidable on every subdivision near
 a box corner. Each of these would redirect the work to a different
 parametrization, for example `m = n - d l` with `d` unbounded.
 
+## Step (a) result (2026-10-23): the regime fit holds
+
+`kernel/class_a_gap_regimes.mojo build D EPS 5 9 DIR` recorded the exact
+complete graph of every member `n = d l + r`, `5 <= l <= 9`, of both lines
+for `d = 1..16`, and of the plus line at `d = 17` (the minus line at `d = 17`
+has 80 of 85 members; `d = 18..20` are not started). The run uses
+`parallel_fold` workers and stores labels as typed k-intervals.
+`fit EPS DIR 5 16 J 5 OUT` then fitted every row endpoint of every regime
+exactly over Q.
+
+| sign | J | regimes fitted (least gap) | middle regime |
+| --- | --- | --- | --- |
+| `-1` | 3 | `r=0,1` (5), `r=2` (6); `r=d-1,d-2,d-3` (5) | `3<=r<=d-4`: 10 gaps, 275 members, 115 rows, rank 5 |
+| `+1` | 5 | `r=0..4` (5,7,8,9,10); `r=d-1..d-5` (5,5,6,8,9) | `5<=r<=d-6`: 6 gaps (`d=11..16`), 105 members, 98 rows, rank 5 |
+
+**Coverage.** For the minus line, every `(d, r)` with `d >= 5` lies in a
+fitted regime. For the plus line, every `(d, r)` with `d >= 11` does. The
+remaining plus residues at `d = 5..10` are finitely many and suit ray-by-ray
+tables, as for `d = 4`.
+
+**Sensitivity.** `J = 4` (minus) and `J = 6` (plus) also fit. `J = 3, 4`
+(plus) refuse: the middle row count changes (`fit-eps1-J4.log`).
+
+**Simplification.** No fitted endpoint uses `n`, `d` or `r`, only `l` and the
+constant. Every fit has full rank (4 on boundary regimes, 5 on the middle), so
+those zeros are determined, not chosen. In the k-coordinates, each regime's
+label set is the **same `l`-affine table for every gap** `d >= d_min`. A
+d-uniform certificate therefore needs one table per regime, of the existing
+ray-table shape. Design item 1 (affine forms over a polyhedral
+`(l, d, r)`-region) reduces to comparisons in `l`. Design item 2 is now the
+whole new obligation: Perron margins as polynomials in `(h, u = d h)` with `d`
+unbounded, and the child-index rounding by `d`.
+
+**Decision:** continue to step (b), the bivariate sign lemma, with the 18
+regime tables in `evidence/class-a-gap-labels-2026-10-23/fits/` as targets.
+They are finite observations on `l = 5..9`, `d <= 16`. No certificate exists
+yet, and no theorem about any gap `d >= 5` is claimed.
+
 ## Non-claims
 
 - No theorem about any gap `d >= 5`.
