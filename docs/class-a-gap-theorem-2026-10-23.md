@@ -106,7 +106,17 @@ Exceptional plus rays (own tables, `class_a_residue_ray.mojo certify D 1 R N0`):
 On every ray and regime: 9 real seeds in the carrier and 3 non-strict seed
 candidates, 65 terminal splits.
 
-ASSEMBLY_PLACEHOLDER
+Assembly receipts (`class_a_gap_theorem.mojo certify-all 5`, `theorem.log`):
+
+```text
+CLASS_A_GAP_THEOREM eps=-1 l>=5 d>=5 regimes 7 regimes_cover_from_d 7 finite_rays 4 exceptional_rays 0 exact_graphs 2 universal_139=false
+CLASS_A_GAP_THEOREM eps=1 l>=5 d>=5 regimes 11 regimes_cover_from_d 11 finite_rays 0 exceptional_rays 7 exact_graphs 1 universal_139=false
+```
+
+The four minus finite rays are `(5,1)`, `(6,1)`, `(7,1)` (low `r=1`, uniform
+from `d = 8`) and `(5,4)` (high `r=d-1`, uniform from `d = 6`); `(5,1)` and
+`(6,1)` certify from `l = 6` with the member `l = 5` an exact graph, the
+others from `l = 5`. The one plus exact graph is `n = 37` of `(7,2)`.
 
 Finite observations (not claims): every descent table was generated from one
 sample ray of its regime (`d` = the closure floor, `l = 5..12`) and then
