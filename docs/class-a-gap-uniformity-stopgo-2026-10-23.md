@@ -37,7 +37,8 @@ whether every such member lies on the fit. Packet:
 `evidence/class-a-gap-profile-2026-10-23/` (`d = 1..16`, both signs). On every
 tabulated ray (`d<=4`), the profile equals the proved carrier cardinality
 (`kernel/tests/test_class_a_gap_profile.mojo`). Every graph hits, and the
-largest first-hit depth falls with `d`: 30 at `d=1`, 5–9 for `d>=8`.
+largest first-hit depth falls with `d`: 46 at `d=1`, 5–9 for `d>=8`
+(`n<=64`).
 
 Once `d` is large enough for the window `n <= 64` to reach the stable
 regime, the constants settle (slope 40 throughout):
@@ -48,8 +49,14 @@ regime, the constants settle (slope 40 throughout):
 | `+1` (`d>=12`) | 86 | 98 | 118 | 114 | 112 | 108 | 100 | 96 | 86 | 90 |
 
 Two limitations:
-- At `d>=13` some middle residues have too few members `l>=2` within
-  `n<=64`, and are omitted or flagged. That is the budget, not a break.
+- **Flags and the l-threshold.** A profile flag (`affine 0`) means that not
+  every member with `l>=2` lies on the fit. The proved rays need `l>=4..7`
+  (floors 13–25 at `d=2..4`), so the flags record an l-threshold, not a
+  break. The window `n<=64` reaches `l>=7` only for `d<=9`. At `d>=14` it
+  holds `l=2..4` only, and the fits there (slopes 26–38) are pre-threshold
+  artefacts. The table above is read off `d<=13`, where the middle values
+  are already constant. The next experiment needs `n` up to about `8d` per
+  gap.
 - The table counts vertices only. Whether the **label sets** themselves
   (row endpoints) are affine in `(l, d, r)` per regime is the next
   experiment; counts do not decide it.
