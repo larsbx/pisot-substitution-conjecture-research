@@ -2133,6 +2133,16 @@
       "statement_heading": "## Lemma B: K2 additivity over balanced decomposition"
     },
     {
+      "source": "docs/lateral-generalization-strategy-2026-10-23.md",
+      "line": 86,
+      "statement_heading": "**Proposition (conjugacy chain).** The conjugacy class of a class-B member is"
+    },
+    {
+      "source": "docs/lateral-generalization-strategy-2026-10-23.md",
+      "line": 111,
+      "statement_heading": "**Corollary (lateral transfer).** Let `σ` satisfy Theorem C's hypothesis."
+    },
+    {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
       "line": 35,
       "statement_heading": "**Lemma 1.1 (occurrence).** Every vertex of `O_sigma` is the type of an"

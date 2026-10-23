@@ -1,0 +1,10 @@
+lateral conjugacy census, p,q,r <= 30
+class A: PIP det2 members 685, with nontrivial conjugates 0, conjugates beyond sigma 0, largest class 1
+class B: PIP det2 members 685, with nontrivial conjugates 685, conjugates beyond sigma 8709, largest class 31
+class C: PIP det2 members 327, with nontrivial conjugates 0, conjugates beyond sigma 0, largest class 1
+class D: PIP det2 members 829, with nontrivial conjugates 0, conjugates beyond sigma 0, largest class 1
+Theorem C members 667; their conjugates beyond sigma 8576 (catch-up-free 0, outside Omega 8571); members with a Barge power/rotation witness 0; conjugates outside Omega and without Barge witness 8571
+
+real	0m4.361s
+user	0m4.148s
+sys	0m0.178s
