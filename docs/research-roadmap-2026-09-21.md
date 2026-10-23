@@ -4,6 +4,13 @@
 
 **Standing target:** pure discrete spectrum for primitive irreducible Pisot substitutions in the repository's standing regime, **without** silently adding seed legality, unique decodability, finite injectivity, rational/integer independence, or unimodularity.
 
+**2026-10-23 narrowed targets (read first):** the
+[direct-attack frontier](direct-attack-frontier-2026-10-23.md) states how #84,
+#138 and #139 have narrowed: #84 is exactly A1′ ∧ BH, #138 is one-sided A1′,
+and #139 is the existential occurrence-compatible BH. It also records what is
+settled inside each target and ranks the remaining direct lines of attack.
+Orientation only; no status change.
+
 **2026-10-23 #139 tracker repair (latest, supersedes tracker status only):**
 [issue #139](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/139)
 was GitHub-closed as completed at 10:09:55 UTC without satisfying the universal
