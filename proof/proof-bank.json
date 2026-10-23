@@ -2028,6 +2028,11 @@
       "statement_heading": "`depth <= floor(X/3) <= depth+1`, the dominate-and-drop relaxation recorded for"
     },
     {
+      "source": "docs/class-a-d4-rays-2026-10-23.md",
+      "line": 70,
+      "statement_heading": "| `(n+4,n,n-1)` | `n=4l+3` | 23 | 105 | `40l+125` | 4,001 / 3,377 / 1,890 | 139 / 8 / 190 | `2l+8` |"
+    },
+    {
       "source": "docs/class-a-minus-line-2026-10-22.md",
       "line": 106,
       "statement_heading": "synthesis is not evidence. The result, `kernel/psc/class_a_minus_carrier.mojo`,"
