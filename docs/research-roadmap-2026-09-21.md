@@ -4,6 +4,42 @@
 
 **Standing target:** pure discrete spectrum for primitive irreducible Pisot substitutions in the repository's standing regime, **without** silently adding seed legality, unique decodability, finite injectivity, rational/integer independence, or unimodularity.
 
+**2026-10-23 narrowed targets (read first):** the
+[direct-attack frontier](direct-attack-frontier-2026-10-23.md) states how #84,
+#138 and #139 have narrowed: #84 is exactly A1′ ∧ BH, #138 is one-sided A1′,
+and #139 is the existential occurrence-compatible BH. It also records what is
+settled inside each target and ranks the remaining direct lines of attack.
+Orientation only; no status change.
+
+**2026-10-23 #139 tracker repair (latest, supersedes tracker status only):**
+[issue #139](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/139)
+was GitHub-closed as completed at 10:09:55 UTC without satisfying the universal
+BH proof obligation and was **reopened** at 17:45:32 UTC. Universal strict-zipper
+offset-zero hitting for all cyclic seed-reachable overlaps in ternary PIP
+(including non-unit cases) remains **OPEN**. Accepted family-specific hitting
+certificates and finite-domain replays do not change that statement; other
+historical snapshots below remain unchanged. Exact evidence and closure
+criterion: [issue-139 reconciliation](issue-139-tracker-mathematics-reconciliation-2026-10-23.md).
+This update changes no claim-status record or mathematical theorem.
+
+**2026-10-23 #138 historical status clarification:** GitHub #138 was closed on
+2026-09-26 at 06:15:09 UTC and reopened on 2026-10-01 at 20:50:15 UTC; it
+was already **open** at this audit. An earlier closing event is not a
+proved theorem. The current indispensable aligned lemma is *one-sided* A1′
+for the residual fixed-letter hub pair; the two-sided/suffix statement
+remains optional stronger scope. [Dated evidence](issue-138-tracker-history-2026-10-23.md).
+No mathematical status or proof-ledger output is changed.
+
+**2026-10-23 G1 status clarification:** do not say the proven relation
+`PDS ⇒ G1` remains open. Since 2026-10-04, `PDSImpliesRepoG1` has
+status **repository-proved**; `PDSImpliesSeedwiseTermination` is also
+repository-proved. Universal `G1` is **open** only in the distinct
+unconditional sense because universal PDS/PSC and alternative universal
+sufficient premises remain open. These statements are consistent, not
+conflicting tracker states. See
+[G1/PDS necessity status](g1-pds-necessity-status-2026-10-23.md).
+Neither #138's nor #139's tracker correction may demote those completed nodes.
+
 
 ## October 21 continuation beyond accepted class D
 
