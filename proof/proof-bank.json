@@ -2098,6 +2098,11 @@
       "statement_heading": "**Theorem C4.** On `x -> x y^(n+4) x`, `c -> c y^n x`,"
     },
     {
+      "source": "docs/issue139-gap5-2026-10-23.md",
+      "line": 47,
+      "statement_heading": "**Theorem C5 (scoped, computer-assisted).** For class C with"
+    },
+    {
       "source": "docs/k2-load-bearing-scc-salvage-2026-10-11.md",
       "line": 57,
       "statement_heading": "## Lemma A: dominant length-two K2 source"
