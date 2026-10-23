@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/e8cdae756949/psc/oracles/python/class_a_carrier_closure.py", line 546, in <module>
+    main(sys.argv)
+  File "/workspace/scratch/e8cdae756949/psc/oracles/python/class_a_carrier_closure.py", line 539, in main
+    descent = verify_descent(rows, pieces(), descents(), n0)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/e8cdae756949/psc/oracles/python/class_a_carrier_closure.py", line 529, in verify_descent
+    raise ValueError("potential does not drop")
+ValueError: potential does not drop
