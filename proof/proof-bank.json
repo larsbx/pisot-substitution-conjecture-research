@@ -2074,27 +2074,27 @@
     },
     {
       "source": "docs/class-a-gap-uniform-certificate-design-2026-10-23.md",
-      "line": 100,
+      "line": 103,
       "statement_heading": "**Lemma 2' (one-sided rounding bounds; the consumer's fallback).** Write the"
     },
     {
       "source": "docs/class-a-gap-uniform-certificate-design-2026-10-23.md",
-      "line": 159,
+      "line": 162,
       "statement_heading": "**Lemma 3 (sign on a box).** For every member `(d, n = d l + r)` of a regime"
     },
     {
       "source": "docs/class-a-gap-uniform-certificate-design-2026-10-23.md",
-      "line": 201,
+      "line": 204,
       "statement_heading": "**Lemma 3' (the member hull).** Let `S(h,u) = E(h,u) - l0 u (1+h)` with"
     },
     {
       "source": "docs/class-a-gap-uniform-certificate-design-2026-10-23.md",
-      "line": 226,
+      "line": 229,
       "statement_heading": "**Lemma 4 (identities, re-proved by the certificate).** Coefficient-wise in"
     },
     {
       "source": "docs/class-a-gap-uniform-certificate-design-2026-10-23.md",
-      "line": 244,
+      "line": 247,
       "statement_heading": "**Theorem shape.** For each sign, the fitted regimes cover every residue of"
     },
     {

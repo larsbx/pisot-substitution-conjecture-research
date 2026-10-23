@@ -207,11 +207,11 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/class-a-gap-theorem-2026-10-23.md:57](../docs/class-a-gap-theorem-2026-10-23.md#L57) | **Corollary C (coverage).** psc.class_a_gap_theorem.eventual_cover proves |
 | [docs/class-a-gap-uniform-certificate-design-2026-10-23.md:40](../docs/class-a-gap-uniform-certificate-design-2026-10-23.md#L40) | **Lemma 1 (quadrant positivity).** For g(l,d) = c1 + cl l + cd d + cld l d |
 | [docs/class-a-gap-uniform-certificate-design-2026-10-23.md:61](../docs/class-a-gap-uniform-certificate-design-2026-10-23.md#L61) | **Lemma 2 (uniform division by d).** Let N = c1 + cd d + cld l d + cr r |
-| [docs/class-a-gap-uniform-certificate-design-2026-10-23.md:100](../docs/class-a-gap-uniform-certificate-design-2026-10-23.md#L100) | **Lemma 2' (one-sided rounding bounds; the consumer's fallback).** Write the |
-| [docs/class-a-gap-uniform-certificate-design-2026-10-23.md:159](../docs/class-a-gap-uniform-certificate-design-2026-10-23.md#L159) | **Lemma 3 (sign on a box).** For every member (d, n = d l + r) of a regime |
-| [docs/class-a-gap-uniform-certificate-design-2026-10-23.md:201](../docs/class-a-gap-uniform-certificate-design-2026-10-23.md#L201) | **Lemma 3' (the member hull).** Let S(h,u) = E(h,u) - l0 u (1+h) with |
-| [docs/class-a-gap-uniform-certificate-design-2026-10-23.md:226](../docs/class-a-gap-uniform-certificate-design-2026-10-23.md#L226) | **Lemma 4 (identities, re-proved by the certificate).** Coefficient-wise in |
-| [docs/class-a-gap-uniform-certificate-design-2026-10-23.md:244](../docs/class-a-gap-uniform-certificate-design-2026-10-23.md#L244) | **Theorem shape.** For each sign, the fitted regimes cover every residue of |
+| [docs/class-a-gap-uniform-certificate-design-2026-10-23.md:103](../docs/class-a-gap-uniform-certificate-design-2026-10-23.md#L103) | **Lemma 2' (one-sided rounding bounds; the consumer's fallback).** Write the |
+| [docs/class-a-gap-uniform-certificate-design-2026-10-23.md:162](../docs/class-a-gap-uniform-certificate-design-2026-10-23.md#L162) | **Lemma 3 (sign on a box).** For every member (d, n = d l + r) of a regime |
+| [docs/class-a-gap-uniform-certificate-design-2026-10-23.md:204](../docs/class-a-gap-uniform-certificate-design-2026-10-23.md#L204) | **Lemma 3' (the member hull).** Let S(h,u) = E(h,u) - l0 u (1+h) with |
+| [docs/class-a-gap-uniform-certificate-design-2026-10-23.md:229](../docs/class-a-gap-uniform-certificate-design-2026-10-23.md#L229) | **Lemma 4 (identities, re-proved by the certificate).** Coefficient-wise in |
+| [docs/class-a-gap-uniform-certificate-design-2026-10-23.md:247](../docs/class-a-gap-uniform-certificate-design-2026-10-23.md#L247) | **Theorem shape.** For each sign, the fitted regimes cover every residue of |
 | [docs/class-a-minus-line-2026-10-22.md:113](../docs/class-a-minus-line-2026-10-22.md#L113) | ## Theorem A' (uniform forward closure) |
 | [docs/class-a-minus-line-2026-10-22.md:115](../docs/class-a-minus-line-2026-10-22.md#L115) | **Theorem A'.** For every integer n>=8: (i) every carrier label is a strict |
 | [docs/class-a-minus-line-2026-10-22.md:139](../docs/class-a-minus-line-2026-10-22.md#L139) | ## Theorem B' (uniform descent) and Corollary C' |
