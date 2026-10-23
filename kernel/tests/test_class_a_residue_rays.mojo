@@ -7,8 +7,6 @@ from psc.class_a_ray_tables import tabulated_rays, ray_tables, certify_ray
 from psc.class_a_typed_carrier import certify_finite_line
 from psc.class_a_carrier_closure import certify_closure_line, check_line_identity, a_div_ceil, a_div_floor
 from psc.class_a_carrier_descent import certify_descent_line, replay_descent_finite_line
-from a1_normal_form_census import CLASS_A, class_member
-from symbolic_line_certificate import exact_hits
 
 
 def refuses_closure(line: ALine, n0: Int, rows: List[List[Int]]) -> Bool:
@@ -59,9 +57,10 @@ def main() raises:
         var t = ray_tables(line)
         # The uniform certificate on the whole ray n >= n0.
         _ = certify_ray(line, n0)
-        # Every n of the line below the floor is an exact complete graph that hits.
-        for n in range(1, n0):
-            if n % line.d == line.r and line.d <= 2 * n + 6 * line.eps + 5:
+        # Every n of the line's domain below the floor, from q = 0, is an exact
+        # complete graph that hits.
+        for n in range(0, n0):
+            if n % line.d == line.r and n + line.eps >= 0 and line.d <= 2 * n + 6 * line.eps + 5:
                 _ = survey(line, n)
         # Carrier = graph label set, with the independent cardinality, and
         # differential replay of every chosen occurrence, at the first two members.
@@ -88,15 +87,4 @@ def main() raises:
         for i in range(1, len(t[2])):
             fewer.append(t[2][i].copy())
         assert_true(refuses_descent(line, n0, t[0], t[1], fewer))
-        if line.d == 4:
-            var illegal = t[2].copy()
-            illegal[0][5] = 3  # only first/run/last parts 0,1,2 exist
-            assert_true(refuses_descent(line, n0, t[0], t[1], illegal))
-            assert_true(refuses_closure(line, n0 - 4, t[0]) or
-                        refuses_descent(line, n0 - 4, t[0], t[1], t[2]))
-    # ALine's coordinates require n>=1; the admissible d=4 plus n=0
-    # member is handled directly by the complete screened graph kernel.
-    var zero = exact_hits(class_member(CLASS_A, 4, 0, 1))
-    assert_true(zero > 0)
-    print("CLASS_A_GAP_FOUR_ZERO_MEMBER vertices=", zero, "all_hit=true")
-    require_contract("class-A residue rays n = d l + r of (n+d,n,n+eps): uniform forward closure of l-affine typed carriers and strict descent of l-affine potentials by exact Sturm signs on (0,1/n0], per tabulated ray from its floor; complete graphs below every floor and d=4 plus n=0; carrier = graph label set with independent cardinality and differential replay at two members; removed row, other residue's carrier, raised potential, mislabelled and missing descents refuse; untabulated rays, other A/C regions and universal #139 open")
+    require_contract("class-A residue rays n = d l + r of (n+d,n,n+eps): uniform forward closure of l-affine typed carriers and strict descent of l-affine potentials by exact Sturm signs on (0,1/n0], per tabulated ray from its floor; complete graphs below every floor; carrier = graph label set with independent cardinality and differential replay at two members; removed row, other residue's carrier, raised potential, mislabelled and missing descents refuse; untabulated rays, other A/C regions and universal #139 open")

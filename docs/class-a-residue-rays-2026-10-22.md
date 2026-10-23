@@ -171,3 +171,9 @@ same registry (rays `n=2l` floor 14 and `n=2l+1` floor 13); see
 [class-a-d2-plus-rays-2026-10-22.md](class-a-d2-plus-rays-2026-10-22.md). The
 non-claim above is superseded for that line only; the eight rays and their
 receipts in this note are unchanged.
+
+**Addendum (2026-10-23).** Gap four is now tabulated in the same registry,
+both signs, four rays each; see [class-a-d4-rays-2026-10-23.md](class-a-d4-rays-2026-10-23.md).
+`ALine.check_domain` now states the run-index note's full domain
+(`q>=0`, `q+eps>=0`, `d<=2q+6eps+5`). The shared test surveys each line from
+`q=0`. The eight rays above and their receipts are unchanged.

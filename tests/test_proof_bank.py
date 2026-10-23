@@ -38,6 +38,30 @@ def test_spectral_claims_do_not_misrepresent_their_lean_coverage():
     assert claims["PSC"]["status"] == "open"
 
 
+def test_statement_locations_survive_fenced_code_masking(tmp_path):
+    shutil.copyfile(ROOT / "claim_governance.toml", tmp_path / "claim_governance.toml")
+    (tmp_path / "docs").mkdir()
+    text = ("# Example\n\n```text\n**Theorem Hidden.** Not a statement.\n"
+            + "x" * 300 + "\n```\n\n**Theorem C4.** Visible.\n\n"
+            + "~~~text\n**Lemma Hidden.** Also excluded.\n~~~\n\n"
+            + "**Lemma Tail.** Visible too.\n")
+    (tmp_path / "docs/example.md").write_text(text)
+    statements = pb.statement_inventory(tmp_path)
+    expected = [(i, line) for i, line in enumerate(text.splitlines(), 1)
+                if line.startswith(("**Theorem C4.", "**Lemma Tail."))]
+    assert [(s["line"], s["statement_heading"]) for s in statements] == expected
+
+
+def test_gap_four_c4_locator_names_the_actual_statement():
+    source = "docs/issue139-ac-gap4-2026-10-22.md"
+    lines = (ROOT / source).read_text().splitlines()
+    expected = next(i for i, line in enumerate(lines, 1) if line.startswith("**Theorem C4."))
+    records = [s for s in pb.statement_inventory(ROOT) if s["source"] == source
+               and s["statement_heading"].startswith("**Theorem C4.")]
+    assert len(records) == 1
+    assert records[0]["line"] == expected
+
+
 def test_all_local_modules_must_be_imported(tmp_path):
     project = tmp_path / pb.PROJECT
     shutil.copytree(ROOT / pb.PROJECT, project, ignore=shutil.ignore_patterns(".lake"))

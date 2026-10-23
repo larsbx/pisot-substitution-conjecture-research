@@ -6,6 +6,10 @@ on:
       - 'kernel/psc/class_a_line.mojo'
       - 'kernel/psc/class_a_line_graph.mojo'
       - 'kernel/psc/class_a_ray_tables.mojo'
+      - 'kernel/psc/class_a_gap_four_rank_tables.mojo'
+      - 'kernel/tests/test_class_a_gap_four_rank.mojo'
+      - 'docs/issue139-ac-integration-2026-10-23.md'
+      - 'evidence/issue139-ac-integration-2026-10-23/**'
       - 'kernel/psc/class_a_ray_d*.mojo'
       - 'kernel/psc/class_a_typed_carrier.mojo'
       - 'kernel/psc/class_a_carrier_closure.mojo'
@@ -66,6 +70,7 @@ jobs:
         run: |
           set -euo pipefail
           pixi run --locked mojo run -I . tests/test_class_a_residue_rays.mojo 2>&1 | tee build/class-a-residue-rays/native-tests.log
+          pixi run --locked mojo run -I . tests/test_class_a_gap_four_rank.mojo 2>&1 | tee build/class-a-residue-rays/alternative-rank-tests.log
           pixi run --locked mojo run -I . tests/test_class_a_carrier_closure.mojo 2>&1 | tee build/class-a-residue-rays/gap-one-plus-tests.log
           pixi run --locked mojo run -I . tests/test_class_a_minus_line.mojo 2>&1 | tee build/class-a-residue-rays/gap-one-minus-tests.log
           pixi run --locked mojo run -I . tests/test_class_a_d2_plus_line.mojo 2>&1 | tee build/class-a-residue-rays/d2-plus-line-tests.log

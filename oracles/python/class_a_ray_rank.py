@@ -1,6 +1,6 @@
 """Propose integer affine ranks for fixed class-A residue-ray occurrences.
 
-Usage: python oracles/python/class_a_ray_rank.py D,EPS,R N0
+Usage: python oracles/python/class_a_ray_rank.py D,EPS,R N0 [--rank-tables]
 Requires NumPy and SciPy only for synthesis. Linear programming uses floating
 arithmetic to propose coefficients; rational reconstruction and integer
 scaling produce a candidate. Both exact closure and descent are checked by
@@ -19,10 +19,17 @@ from pathlib import Path
 import numpy as np
 from scipy.optimize import linprog
 root=Path(__file__).resolve().parents[2]
+rank_tables = "--rank-tables" in sys.argv
+if rank_tables:
+    sys.argv.remove("--rank-tables")
 if len(sys.argv) != 3:
-    raise SystemExit('usage: class_a_ray_rank.py D,EPS,R N0')
+    raise SystemExit('usage: class_a_ray_rank.py D,EPS,R N0 [--rank-tables]')
 ray=sys.argv[1];n0=int(sys.argv[2]);gap,eps,res=map(int,ray.split(','));sys.argv=['oracle','--ray',ray]
 spec=importlib.util.spec_from_file_location('oracle',root/'oracles/python/class_a_carrier_closure.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+if rank_tables:
+    if gap != 4:
+        raise SystemExit('--rank-tables requires gap 4')
+    m.ROWS_SRC = m.DATA_SRC = root/f'kernel/psc/class_a_ray_d4{"p" if eps==1 else "m"}_rank.mojo'
 R=m.carrier_rows();P=m.pieces();D=m.descents();l0=(n0-res+gap-1)//gap
 N=3*len(P);A=[];B=[];cost=np.zeros(N)
 def expr(i,u):
@@ -53,7 +60,7 @@ f=[Fraction(float(x)).limit_denominator(10000) for x in out.x];den=math.lcm(*(x.
 Pnew=[tuple(p[:5])+tuple(ints[3*i:3*i+3]) for i,p in enumerate(P)]
 m.verify_closure(R,n0)
 print(m.verify_descent(R,Pnew,D,n0),flush=True)
-file=root/f'kernel/psc/class_a_ray_d{gap}{"p" if eps==1 else "m"}.mojo';txt=file.read_text();start=txt.index(f'def pieces_r{res}(');end=txt.find('\ndef ',start+1);end=len(txt) if end<0 else end
+file=m.DATA_SRC;txt=file.read_text();start=txt.index(f'def pieces_r{res}(');end=txt.find('\ndef ',start+1);end=len(txt) if end<0 else end
 part=txt[start:end];it=iter(Pnew)
 part=re.sub(r'List\[Int\]\(\[(-?\d+(?:,-?\d+){7})\]\)',lambda _: 'List[Int](['+','.join(map(str,next(it)))+'])',part)
 part=re.sub(r'    """.*?"""','    """Affine tail rank synthesized from fixed occurrences; exact verifier is the certificate. [carrier row, j_lo l-slope, j_lo constant, j_hi l-slope, j_hi constant, X_l, X_j, X_c]."""',part,count=1)
