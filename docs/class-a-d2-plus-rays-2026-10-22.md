@@ -17,7 +17,7 @@ is that of the executable certificate.
 This closes the objective left open by the d=2 parity-carrier program
 ([parity carrier](class-a-d2-parity-carrier-2026-10-22.md),
 [uniform child closure](class-a-d2-uniform-child-closure-2026-10-22.md),
-[descent obligations](class-a-d2-descent-obligations-2026-10-22.md), and the
+the descent obligations of #315 (on the #318 branch, not yet on main), and the
 open PRs #318/#319 with their 80- and 598-state productive subsets): a
 parameter-dependent nonnegative potential strictly decreasing along an actual
 ordered child from every nonzero-offset carrier state, on both parity rays.

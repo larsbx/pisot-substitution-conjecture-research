@@ -40,6 +40,30 @@ ASSEMBLY = 'CLASS_D_ASSEMBLY_CANDIDATE plus_positive_b=complete minus_residual=c
 
 
 
+def added_concurrency_block_only(accepted: bytes, current: bytes) -> bool:
+    """Preserve an accepted workflow byte for byte, except for one added
+    top-level `concurrency:` block.
+
+    A concurrency group decides only whether a superseded run is cancelled;
+    a cancelled run produces no receipt, so no acceptance can be gained this
+    way. Deleting the block (its key line and every following indented or
+    blank line) must give back the historical bytes exactly. The accepted
+    workflow itself must not already carry a concurrency block.
+    """
+    def top_level(lines):
+        return [i for i, line in enumerate(lines) if line.startswith(b'concurrency:')]
+    if top_level(accepted.splitlines(keepends=True)):
+        return False
+    lines = current.splitlines(keepends=True)
+    keys = top_level(lines)
+    if len(keys) != 1:
+        return False
+    end = keys[0] + 1
+    while end < len(lines) and (lines[end].strip() == b'' or lines[end][:1] in (b' ', b'\t')):
+        end += 1
+    return b''.join(lines[:keys[0]] + lines[end:]) == accepted
+
+
 def additive_pixi_tasks_only(accepted: bytes, current: bytes) -> bool:
     """Preserve the accepted environment and task definitions; allow new names.
 
@@ -129,6 +153,8 @@ def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
         current = (ROOT/path).read_bytes()
         if hashlib.sha256(current).hexdigest() != digest:
             if path == 'kernel/pixi.toml' and additive_pixi_tasks_only(historical, current):
+                continue
+            if path.startswith('.github/workflows/') and added_concurrency_block_only(historical, current):
                 continue
             raise ValueError('accepted mathematical source, lock or workflow changed: '+path)
     if set(manifest['log_sha256']) != {str(i)+'.log' for i in JOBS}:
