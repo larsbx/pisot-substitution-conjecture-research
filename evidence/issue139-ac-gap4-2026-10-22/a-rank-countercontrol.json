@@ -1,0 +1,14 @@
+{
+  "graph_sha256": "bed0c7d3f28e6e7efc72314c12c0a7e137d90b4b816d9e493f5c466a4554a43c",
+  "graph_summary": "SUMMARY 36 448 9 444",
+  "source": "V 36 447 2 1 8 -9 0 6",
+  "edge": "E 36 447 361 32 37",
+  "child": "V 36 361 2 0 6 -8 1 5",
+  "candidate_parent_X": 17,
+  "candidate_child_X": 17,
+  "drop_minus_one_affine_in_l": [
+    -1,
+    8
+  ],
+  "meaning": "selected occurrence is real; sampled rank fails strict descent at n=36, not boundary hitting"
+}

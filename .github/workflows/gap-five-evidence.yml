@@ -1,0 +1,54 @@
+name: Gap-five A/C evidence
+on:
+  pull_request:
+    paths:
+      # Exact graph and arithmetic inputs include transitive and vendored modules.
+      - 'kernel/**'
+      - 'docs/issue139-gap5-2026-10-23.md'
+      - 'evidence/issue139-gap5-2026-10-23/**'
+      - 'tests/test_gap_five_evidence.py'
+      - '.github/workflows/gap-five-evidence.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  exact-gap-five:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - side: plus
+            eps: 1
+          - side: minus
+            eps: -1
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Locked native domains, complete C certificate and finite A pilot
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          mkdir -p build/gap-five
+          pixi run --locked mojo build -I . class_c_gap_five.mojo -o build/gap-five/c
+          pixi run --locked mojo build -I . class_a_gap_five_probe.mojo -o build/gap-five/a
+          pixi run --locked mojo build -I . tests/test_gap_five_domains.mojo -o build/gap-five/domains
+          build/gap-five/domains | tee build/gap-five/domains.log
+          diff ../evidence/issue139-gap5-2026-10-23/domains.log build/gap-five/domains.log
+          timeout 300 build/gap-five/a ${{ matrix.eps }} | tee build/gap-five/a.log
+          diff ../evidence/issue139-gap5-2026-10-23/a-${{ matrix.side }}.log build/gap-five/a.log
+          timeout 1200 build/gap-five/c ${{ matrix.eps }} | tee build/gap-five/c.log
+          diff ../evidence/issue139-gap5-2026-10-23/c-${{ matrix.side }}.log build/gap-five/c.log
+      - name: Preserve fresh receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gap-five-${{ matrix.side }}
+          path: kernel/build/gap-five/*.log
+          if-no-files-found: warn

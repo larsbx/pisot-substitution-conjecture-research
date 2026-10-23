@@ -137,8 +137,8 @@ def certify_finite_rows(n: Int, rows: List[List[Int]]) raises -> List[Int]:
 def certify_finite_line(line: ALine, n: Int, rows: List[List[Int]], slope: Int, constant: Int) raises -> List[Int]:
     """EXACT finite replay only; n is explicitly bounded. No universal promotion.
     `slope n + constant` is the carrier cardinality from its affine row identity."""
-    if n < 4 or n > 24:
-        raise Error("finite typed-carrier replay permits 4<=n<=24")
+    if n < 4 or n > 48:
+        raise Error("finite typed-carrier replay permits 4<=n<=48")
     var tables=build_seed_overlap_tables_screened(line.member(n))
     var ln=line.l_of(n)   # rows are affine in l = (n - r)/d
     var g=build_seed_overlap_graph_from_tables(tables,20000)

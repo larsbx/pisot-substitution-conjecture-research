@@ -57,9 +57,10 @@ def main() raises:
         var t = ray_tables(line)
         # The uniform certificate on the whole ray n >= n0.
         _ = certify_ray(line, n0)
-        # Every n of the line below the floor is an exact complete graph that hits.
-        for n in range(1, n0):
-            if n % line.d == line.r and line.d <= 2 * n + 6 * line.eps + 5:
+        # Every n of the line's domain below the floor, from q = 0, is an exact
+        # complete graph that hits.
+        for n in range(0, n0):
+            if n % line.d == line.r and n + line.eps >= 0 and line.d <= 2 * n + 6 * line.eps + 5:
                 _ = survey(line, n)
         # Carrier = graph label set, with the independent cardinality, and
         # differential replay of every chosen occurrence, at the first two members.

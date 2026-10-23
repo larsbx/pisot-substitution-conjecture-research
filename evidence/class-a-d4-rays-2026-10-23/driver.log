@@ -1,0 +1,24 @@
+CLASS_A_CARRIER_CLOSURE n>=24 line=(n+4,n,n+1) n=4l+0 rows 86 segments 774 y_cases 8514 covered 3351 gap_geometry 2797 window_checks 1548 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=24 line=(n+4,n,n+1) n=4l+0 pieces 130 targets 8 descent_rows 178 hit_depth_bound 2l+9
+CLASS_A_RAY_BOUNDARY_HITTING n>=24 line=(n+4,n,n+1) n=4l+0 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=21 line=(n+4,n,n+1) n=4l+1 rows 88 segments 792 y_cases 8712 covered 3383 gap_geometry 2835 window_checks 1584 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=21 line=(n+4,n,n+1) n=4l+1 pieces 126 targets 8 descent_rows 159 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=21 line=(n+4,n,n+1) n=4l+1 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=22 line=(n+4,n,n+1) n=4l+2 rows 78 segments 702 y_cases 7722 covered 3029 gap_geometry 2537 window_checks 1404 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=22 line=(n+4,n,n+1) n=4l+2 pieces 114 targets 8 descent_rows 151 hit_depth_bound 2l+11
+CLASS_A_RAY_BOUNDARY_HITTING n>=22 line=(n+4,n,n+1) n=4l+2 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=15 line=(n+4,n,n+1) n=4l+3 rows 76 segments 684 y_cases 7524 covered 2931 gap_geometry 2453 window_checks 1368 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=15 line=(n+4,n,n+1) n=4l+3 pieces 112 targets 8 descent_rows 144 hit_depth_bound 2l+11
+CLASS_A_RAY_BOUNDARY_HITTING n>=15 line=(n+4,n,n+1) n=4l+3 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=24 line=(n+4,n,n-1) n=4l+0 rows 93 segments 837 y_cases 9207 covered 3621 gap_geometry 3039 window_checks 1674 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=24 line=(n+4,n,n-1) n=4l+0 pieces 129 targets 8 descent_rows 188 hit_depth_bound 2l+9
+CLASS_A_RAY_BOUNDARY_HITTING n>=24 line=(n+4,n,n-1) n=4l+0 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=25 line=(n+4,n,n-1) n=4l+1 rows 117 segments 1053 y_cases 11583 covered 4539 gap_geometry 3817 window_checks 2106 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=25 line=(n+4,n,n-1) n=4l+1 pieces 157 targets 8 descent_rows 212 hit_depth_bound 2l+7
+CLASS_A_RAY_BOUNDARY_HITTING n>=25 line=(n+4,n,n-1) n=4l+1 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=22 line=(n+4,n,n-1) n=4l+2 rows 109 segments 981 y_cases 10791 covered 4187 gap_geometry 3529 window_checks 1962 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=22 line=(n+4,n,n-1) n=4l+2 pieces 149 targets 8 descent_rows 202 hit_depth_bound 2l+7
+CLASS_A_RAY_BOUNDARY_HITTING n>=22 line=(n+4,n,n-1) n=4l+2 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=23 line=(n+4,n,n-1) n=4l+3 rows 105 segments 945 y_cases 10395 covered 4001 gap_geometry 3377 window_checks 1890 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=23 line=(n+4,n,n-1) n=4l+3 pieces 139 targets 8 descent_rows 190 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=23 line=(n+4,n,n-1) n=4l+3 closure=true descent=true universal_139=false
