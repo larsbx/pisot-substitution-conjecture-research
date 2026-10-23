@@ -26,6 +26,7 @@ The tables live in `psc.class_a_descent_data`; they were synthesized from
 exact finite graphs and are evidence only through this verifier. The sign
 machinery is shared with the closure module and fails closed.
 """
+from std.collections import Dict
 from psc.class_a_carrier_closure import (
     AffH, Segment, a_add, a_le, a_sub, aff, displacement, strict_inside, ray_floor,
 )
@@ -34,7 +35,8 @@ from psc.class_a_typed_carrier import template_rows
 from psc.class_a_descent_data import piece_rows, descent_rows
 from psc.class_a_run_index import labelled
 from psc.overlap_seed_patch import build_seed_overlap_tables_screened, interior_overlap
-from psc.overlap_zipper import ordered_child_occurrences
+from psc.overlap_zipper import ordered_child_occurrences_cached
+from psc.perron_field3 import CubicElt
 from psc.vertex_coincidence import length_matrix, offset_vector
 
 
@@ -204,9 +206,10 @@ def descent_witnesses_line(line: ALine, n: Int, rows: List[List[Int]], pieces: L
     non-target, exactly one descent row covers it, and the record carries the
     first exact ordered child occurrence matching that row's prefix segments
     and child label; every matching occurrence must drop the potential."""
-    if n < 4 or n > 48:
-        raise Error("finite descent replay permits 4<=n<=48")
+    if n < 4 or n > 160:
+        raise Error("finite descent replay permits 4<=n<=160")
     var tables = build_seed_overlap_tables_screened(line.member(n))
+    var sign_cache = Dict[CubicElt, Int]()   # one exact sign cache for every edge enumeration
     var lm = length_matrix(tables)
     var ln = line.l_of(n)   # every table entry is affine in l = (n - r)/d
     var out = List[List[Int]]()
@@ -236,7 +239,7 @@ def descent_witnesses_line(line: ALine, n: Int, rows: List[List[Int]], pieces: L
                 found += 1
                 var child = pieces[d[8]].copy()
                 var crow = rows[child[0]].copy()
-                for occurrence in ordered_child_occurrences(tables, parent):
+                for occurrence in ordered_child_occurrences_cached(tables, sign_cache, parent):
                     var ti = occurrence.top_index
                     var bi = occurrence.bottom_index
                     var run_t = len(tables.sigma[row[0]]) - 2

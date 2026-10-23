@@ -1,8 +1,12 @@
 # Class A, gaps d>=5: design of the d-uniform residue-regime certificate (2026-10-23)
 
 **Status:** design and lemma record for steps (b) and (c) of
-[class-a-gap-uniformity-stopgo-2026-10-23.md](class-a-gap-uniformity-stopgo-2026-10-23.md);
-no theorem. Everything below is stated for the lines `(n+d, n, n+eps)`,
+[class-a-gap-uniformity-stopgo-2026-10-23.md](class-a-gap-uniformity-stopgo-2026-10-23.md).
+The certificate it specifies is implemented and accepted on every fitted
+regime; the theorem it yields (every gap `d >= 5`, both signs, every member
+`n >= 5d`) and its scope are in
+[class-a-gap-theorem-2026-10-23.md](class-a-gap-theorem-2026-10-23.md).
+Everything below is stated for the lines `(n+d, n, n+eps)`,
 `sigma(x) = x y^(n+d) x`, `sigma(c) = c y^n x`, `sigma(y) = x y^(n+eps) c`,
 with `n = d l + r`, `0 <= r < d`, and the conventions of the residue-ray
 certificate ([class-a-residue-rays-2026-10-22.md](class-a-residue-rays-2026-10-22.md)):
@@ -89,7 +93,9 @@ every row with `s != 0`, so the consumer needs Lemma 2' below.)
 The middle regime requires `d0 >= j0 + j1`, so that it is non-empty at `d0`.
 Regime hypotheses in general (enforced by `Regime.check`): `l0 >= 1`;
 low `0 <= j < d0`; high `1 <= j <= d0`; middle `j0 >= 0`, `j1 >= 1`,
-`d0 >= j0 + j1`; so every named member has a residue `0 <= r < d`.
+`d0 >= j0 + j1`; so every named member has a residue `0 <= r < d`, and
+`l0 >= 1` puts every member in the determinant-two PIP domain
+(`n >= d` gives `d <= 2n + 6 eps + 5` for both signs, and `n + eps >= 0`).
 
 **Lemma 2' (one-sided rounding bounds; the consumer's fallback).** Write the
 range of `v(r)` over the regime as `[a_min d + b_min, a_max d + b_max]`
@@ -106,8 +112,11 @@ with `lb(b) = ceil(b/d0)` for `b < 0`, `0` for `b = 0`, `1` for `b > 0`, and
 `b < 0` the quotient `b/d` increases with `d`, so `ceil(b/d) >= ceil(b/d0)`
 for `d >= d0`; for `b > 0`, `ceil(b/d) >= 1`. Symmetrically for the floor.
 When Lemma 2 refuses, the closure uses these bounds: the realizable index
-range becomes a superset of the true one, counted in `clip_fallbacks`,
-exactly as the ray certificate treats an undecided clip (`a_le == -1`).
+range becomes a superset of the true one, counted in `clip_fallbacks`
+together with the undecided clips (`a_le == -1`) the ray certificate counts
+there; the regime field therefore mixes the two events and is not comparable
+to the ray's number at a single gap (the ray closure on the same rows at the
+sample gap reports `0`).
 Soundness is unchanged, since every realizable child is still examined;
 the price is that an unrealizable index in a gap must also be shown
 unreal geometrically, or the closure reports an escape it cannot
@@ -131,7 +140,10 @@ row coordinate `k = a l + b`:
 
 A displacement or length is therefore `A + n B + (r h) C` with
 `A, B, C` in `Z[h,u]`; the coefficient of `r` is `h C`, divisible by `h`,
-while `C` itself need not be (for the displacement above `C = -a(1+h)`). The sign
+while `C` itself need not be (for the displacement above `C = -a(1+h)`). The
+ray certificate multiplies every length and displacement by `d` to keep its
+coefficients integral; the regime certificate compares `T` with `L` unscaled,
+since `d` alone is not in `Z[h,u]` (it is `u/h`). The sign
 of `A + nB + (rh)C` is the sign of `A h(1+h) + E B + (rh) C h(1+h)` with
 `E = n h(1+h)` as above (multiplying by `h(1+h) > 0`), and `r h` is `j h`
 (low), `u - j h` (high), or ranges over `[j0 h, u - j1 h]` (middle; the
@@ -174,7 +186,10 @@ of `Q` inside `B` has a positive governing coefficient. (Symmetrically for
 `G < 0` with every `c_{ij} <= 0`.) A cell meeting neither criterion is
 bisected, to a depth limit; a cell still mixed at the limit, or two cells of
 opposite certified sign, is **UNDECIDED** and refuses. If every cell certifies
-positive, `G > 0` on `B`.
+positive, `G > 0` on `B`. The criterion is sufficient, not necessary: a
+polynomial positive on `B` that vanishes on an excluded face (for instance
+`(1 - l0 u)^2 + (2 d0 t - 1)^2`) refuses at the depth limit; UNDECIDED is a
+refusal, never a disproof.
 *Proof.* Bernstein basis polynomials are `>= 0` on the closed square, so
 `c_{ij} >= 0` gives `G >= 0` on `Q`; at a point of a sub-face exactly the
 governing basis polynomials are nonzero (all of them inside, one row or
@@ -183,10 +198,36 @@ governing coefficient is positive. The sub-faces inside `B` of all cells
 cover `B ∩ Q` for every `Q`, hence `B`, which contains the image `(u,t)` of
 every member; positivity of `G` at a member is positivity of `F` there.
 
+**Lemma 3' (the member hull).** Let `S(h,u) = E(h,u) - l0 u (1+h)` with
+`E = 1 - eps h - (1-eps) h^2 - u h - u h^2` (so `E = n h(1+h)` at a member).
+At every member `n >= d l0`, hence `S = (n - d l0) h(1+h) >= 0`. If every
+Bernstein coefficient of `S` on a closed cell `Q` is negative, `S < 0` on `Q`,
+so no member maps into `Q`; such a cell may be skipped. `sign_within_hull`
+runs Lemma 3 with this rule (`sign_on_box` is the case without a side
+condition): the certified sign holds at every member, and cells of the box
+outside the hull, where a margin positive at every member may vanish or
+change sign, no longer force a refusal. The regime certificate uses it for
+every Perron sign. It removes box artefacts only; a sign change inside the
+hull still refuses.
+
+Cell skipping alone cannot separate a margin from the hull where both vanish
+together: at `l0 = 5`, `r = 1` the descent margin `1 - 5u(1+h)` (times
+`h(1+h)`) is positive at every member but its margin at `l = 5` is about
+`1/(5d)`, so the member images accumulate at the box corner `(u, t) -> (1/5, 0)`
+where the margin and `S` vanish together and every cell containing the corner
+stays mixed. The second step of Lemma 3' is algebraic: when
+`f(0, u) = q S(0, u)` for one rational `q = num/den`, `den > 0`, put
+`g = den f - num S`; its `h`-free part vanishes, so `g = h g'`, and `S >= 0` at
+members gives `f > 0` wherever `g > 0` (if `q >= 0`) and `f < 0` wherever
+`g < 0` (if `q <= 0`). Here `(1 - 5u(1+h)) - S = h(1 + u + u h) > 0`, decided
+by Bernstein at depth 0. The two plus regimes refused on the box (low `r = 1`
+and `r = 2`) are accepted this way; every other sign is decided directly.
+
 **Lemma 4 (identities, re-proved by the certificate).** Coefficient-wise in
 `(h, u, n)`: `h (M^T L)_j - (1+h) L_j = -P` for each letter, with
 `M^T L = (2L_x + n L_y + d L_y, L_x + L_c + n L_y, L_x + L_c + (n+eps) L_y)`
-and `d L_y h = u (1+h)`; and `n^3 P(n, 1/n) = -(1+eps) n^2 - n d - (1-eps) n - d`
+and `d L_y h = u (1+h)`; `E(eps) = P.a` and `P.b = -h(1+h)` for the Perron
+polynomial `P = E - n h(1+h)` written as `A + n B`; and `n^3 P(n, 1/n) = -(1+eps) n^2 - n d - (1-eps) n - d`
 has every coefficient `<= 0` as a polynomial in `(n, d)` and is not zero, so
 it is negative at every member, where `n >= 1` and `d >= 1` make each
 monomial positive.
@@ -241,6 +282,7 @@ certify-all 5` accepts.
   `zero()`, `const(Int)`, `h()`, `u()`, `add`, `sub`, `scale(Int)`, `mul`, `is_zero()`, `deg_h()`, `deg_u()`.
 - `struct AffHU(Copyable, Movable)`: `a, b, c: PolyHU` meaning `a + n b + (r h) c`;
   `add`, `sub`; `numerator(rh: PolyHU, eps: Int) -> PolyHU` = `a h(1+h) + E(eps) b + rh * c * h(1+h)`... (with `c` already the coefficient of `r h`, i.e. `c` need not be divisible by `h`; the caller passes `rh` as the polynomial `j h` or `u - j h`).
+- `def sign_within_hull(f: PolyHU, side: PolyHU, l0: Int, d0: Int, max_depth: Int = 12) raises -> Int`: Lemma 3 with Lemma 3' (cells on which every Bernstein coefficient of `side` is negative are skipped; the zero `side` is no restriction); `regime_sign` calls it with `side = E - l0 u(1+h)`.
 - `def sign_on_box(f: PolyHU, l0: Int, d0: Int, max_depth: Int = 12) raises -> Int`: Lemma 3 (substitute `h = u t`, map `(0,1/l0) x (0,1/d0]` to the unit square, Bernstein over `finite_exact.rat_q.Q`, subdivision); returns `0` for the zero polynomial, `+-1` when certified, raises `UNDECIDED sign ...` otherwise. Strip common monomial factors `u^a t^b` first (positive on the box).
 - Tests `kernel/tests/test_poly_hu.mojo`: known-sign polynomials (e.g. `1 + u + h` positive; `u - 1` negative on the box for `l0 >= 1`; `u t - 1/2 ...`), a polynomial that changes sign on the box must raise, a polynomial vanishing exactly on the face `t = 1/d0` must raise, agreement of `sign_on_box` with evaluation at a grid of rational points inside the box for a few dozen random-free polynomials, and `require_contract(...)`.
 

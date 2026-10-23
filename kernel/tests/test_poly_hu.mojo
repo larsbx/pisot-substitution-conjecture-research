@@ -3,7 +3,7 @@ from std.testing import assert_equal, assert_true
 from finite_exact.rat_q import Q
 from mojo_smoke.claims import require_contract
 from psc.exact import q_sign
-from psc.poly_hu import PolyHU, AffHU, elimination_hu, h_one_h, sign_on_box
+from psc.poly_hu import PolyHU, AffHU, elimination_hu, h_one_h, sign_on_box, sign_within_hull
 
 
 def p(coeffs: List[List[Int]]) -> PolyHU:
@@ -94,9 +94,48 @@ def main() raises:
                 except:
                     pass
     assert_true(agreed > 20)
+    # A side condition restricts the box to where it is non-negative: 1 - 3u changes sign
+    # on (0, 1/2) and refuses, but within the hull u <= 1/4 (side 1 - 4u) it is positive;
+    # the complementary hull u >= 1/4 (side 4u - 1) keeps the sign change and refuses; the
+    # zero side is no restriction; a hull that excludes the whole box refuses.
+    assert_true(refuses(p([[1, -3]]), 2, 5))
+    assert_equal(sign_within_hull(p([[1, -3]]), p([[1, -4]]), 2, 5), 1)
+    var still = False
+    try:
+        _ = sign_within_hull(p([[1, -3]]), p([[-1, 4]]), 2, 5)
+    except:
+        still = True
+    assert_true(still)
+    assert_equal(sign_within_hull(p([[1, 1], [1, 0]]), PolyHU.zero(), 5, 5), 1)
+    var empty = False
+    try:
+        _ = sign_within_hull(p([[1, 1]]), p([[-1]]), 5, 5)
+    except:
+        empty = True
+    assert_true(empty)
+    # The member hull E - l0 u (1+h) >= 0 is itself undecided on the box (its zero set
+    # crosses the box). The margin 1 - 5u(1+h), positive at every member of l0 = 5 but
+    # vanishing with the hull at the corner (u, t) -> (1/5, 0), is undecided on the box
+    # and by cell skipping alone, and is certified by the hull multiple: it exceeds the
+    # hull condition by h(1 + u + u h) > 0. Its negation certifies negative.
+    var hull = elimination_hu(1).sub(PolyHU.monomial(0, 1, 5)).sub(PolyHU.monomial(1, 1, 5))
+    assert_true(refuses(hull, 5, 5))
+    var margin = p([[1, -5], [0, -5]])
+    assert_true(refuses(margin, 5, 7))
+    assert_equal(sign_within_hull(margin, hull, 5, 7), 1)
+    assert_equal(sign_within_hull(margin.scale(-1), hull, 5, 7), -1)
+    # A sign change inside the hull (1 - 6u vanishes at u = 1/6, reached by members with
+    # l = 5) stays undecided: its h-free part is no multiple of the hull's.
+    var oblique = p([[1, -6], [0, -5]])
+    var undecided = False
+    try:
+        _ = sign_within_hull(oblique, hull, 5, 7)
+    except:
+        undecided = True
+    assert_true(undecided)
     # AffHU numerators: a + n b at r h = 0 has numerator a h(1+h) + E b.
     var m = AffHU(PolyHU.const(1), PolyHU.zero(), PolyHU.zero())
     assert_equal(m.numerator(PolyHU.zero(), 1), h_one_h())
     var mn = AffHU(PolyHU.zero(), PolyHU.const(1), PolyHU.zero())
     assert_equal(mn.numerator(PolyHU.zero(), -1), elimination_hu(-1))
-    require_contract("integer polynomials in (h, u): ring laws; sign_on_box certifies exact signs on (0,1/l0) x (0,1/d0] via Bernstein subdivision on closed cells, agrees with rational grid samples, strips monomial factors, and refuses a sign change inside the box and a zero on the face t = 1/d0; AffHU numerators realize a h(1+h) + E b + (r h) c h(1+h)")
+    require_contract("integer polynomials in (h, u): ring laws; sign_on_box certifies exact signs on (0,1/l0) x (0,1/d0] via Bernstein subdivision on closed cells, agrees with rational grid samples, strips monomial factors, and refuses a sign change inside the box and a zero on the face t = 1/d0; sign_within_hull skips cells where a side condition is negative throughout and certifies within the hull what the box alone refuses, refuses when the sign change lies inside the hull or the hull is empty, and certifies through a non-negative hull multiple a margin that vanishes with the hull at the box corner; AffHU numerators realize a h(1+h) + E b + (r h) c h(1+h)")

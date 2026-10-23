@@ -68,14 +68,26 @@ def main() raises:
             var n = line.n_of(line.l_of(n0 + (line.d - (n0 - line.r) % line.d) % line.d) + m)
             _ = certify_finite_line(line, n, t[0], spec[4], spec[5])
             _ = replay_descent_finite_line(line, n, t[0], t[1], t[2], spec[4], spec[5])
-        # Negative controls: a removed row escapes; the other residue's carrier
+        # Negative controls: a removed row escapes; another tabulated ray's carrier
         # and the gap-one carrier do not fit; damaged descents refuse.
         var damaged = List[List[Int]]()
         for i in range(1, len(t[0])):
             damaged.append(t[0][i].copy())
         assert_true(refuses_closure(line, n0, damaged))
         if line.d > 1:
-            var other = ALine(line.d, line.eps, (line.r + 1) % line.d)
+            # Another tabulated ray of the same sign: the same gap when one exists
+            # (gaps 2..4 tabulate every residue), else the nearest smaller gap.
+            var other = ALine(1, line.eps, 0)
+            var found = False
+            for o in rays:
+                if o[1] == line.eps and o[0] == line.d and o[2] != line.r:
+                    other = ALine(o[0], o[1], o[2])
+                    found = True
+                    break
+            if not found:
+                for o in rays:
+                    if o[1] == line.eps and o[0] < line.d and o[0] >= other.d:
+                        other = ALine(o[0], o[1], o[2])
             assert_true(refuses_closure(line, n0, ray_tables(other)[0]))
         var raised = t[1].copy()
         raised[t[2][0][8]][7] += 50
@@ -87,4 +99,4 @@ def main() raises:
         for i in range(1, len(t[2])):
             fewer.append(t[2][i].copy())
         assert_true(refuses_descent(line, n0, t[0], t[1], fewer))
-    require_contract("class-A residue rays n = d l + r of (n+d,n,n+eps): uniform forward closure of l-affine typed carriers and strict descent of l-affine potentials by exact Sturm signs on (0,1/n0], per tabulated ray from its floor; complete graphs below every floor; carrier = graph label set with independent cardinality and differential replay at two members; removed row, other residue's carrier, raised potential, mislabelled and missing descents refuse; untabulated rays, other A/C regions and universal #139 open")
+    require_contract("class-A residue rays n = d l + r of (n+d,n,n+eps): uniform forward closure of l-affine typed carriers and strict descent of l-affine potentials by exact Sturm signs on (0,1/n0], per tabulated ray from its floor; complete graphs below every floor; carrier = graph label set with independent cardinality and differential replay at two members; removed row, another tabulated ray's carrier, raised potential, mislabelled and missing descents refuse; untabulated rays, other A/C regions and universal #139 open")

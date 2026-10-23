@@ -23,7 +23,7 @@ regime proves nothing about `(d, r)` outside it.
 """
 from std.collections import Dict
 from psc.gap_form import GapForm, Regime, gap_const, gap_lin, KIND_LOW, KIND_HIGH, KIND_MIDDLE
-from psc.poly_hu import PolyHU, AffHU, sign_on_box
+from psc.poly_hu import PolyHU, AffHU, elimination_hu, sign_within_hull
 from psc.class_a_carrier_closure import (
     ClosureStats, aff, a_add, a_sub, a_le, a_max, a_min, slice_key, slices,
 )
@@ -96,6 +96,8 @@ def check_regime_identity(eps: Int) raises:
             raise Error("scaled lengths are not the left Perron eigenvector of the gap family")
     if not p.b.add(_p([[0], [1], [1]])).is_zero():
         raise Error("elimination identity disagrees with the Perron polynomial")
+    if p.a != elimination_hu(eps):
+        raise Error("elimination identity disagrees with the n-free part of the Perron polynomial")
 
 
 def check_perron_bound(eps: Int) raises:
@@ -140,16 +142,30 @@ def rh_endpoints(reg: Regime) -> List[PolyHU]:
     return out^
 
 
+def hull_side(reg: Regime) -> PolyHU:
+    """`E - l0 u (1+h)` with `E = n h(1+h)`: non-negative at every member, since
+    `n >= d l0` gives `E >= d l0 h(1+h) = l0 u (1+h)`. Cells of the box where it
+    is negative hold no member and are skipped by `sign_within_hull`."""
+    return elimination_hu(reg.eps).sub(PolyHU.monomial(0, 1, reg.l0)).sub(PolyHU.monomial(1, 1, reg.l0))
+
+
 def regime_sign(reg: Regime, m: AffHU, max_depth: Int = 12) raises -> Int:
     """Sign of `m` at every member of the regime: Lemma 3 at each `r h`
-    endpoint; the endpoint signs must agree (the margin is affine in `r h`)."""
+    endpoint, within the member hull; the endpoint signs must agree (the
+    margin is affine in `r h`)."""
     var sign = 2
+    var side = hull_side(reg)
     for rh in rh_endpoints(reg):
-        var s = sign_on_box(m.numerator(rh, reg.eps), reg.l0, reg.d0, max_depth)
+        var num = m.numerator(rh, reg.eps)
+        var s = 0
+        try:
+            s = sign_within_hull(num, side, reg.l0, reg.d0, max_depth)
+        except e:
+            raise Error(String(e) + " [margin numerator " + String(num) + " at r h = " + String(rh) + "]")
         if sign == 2:
             sign = s
         elif s != sign:
-            raise Error("UNDECIDED sign: margin changes sign across the regime's residues")
+            raise Error("UNDECIDED sign: margin changes sign across the regime's residues [" + String(m.numerator(rh, reg.eps)) + "]")
     return sign
 
 
@@ -477,6 +493,8 @@ def certify_regime_descent(reg: Regime, rows: List[List[Int]], pieces: List[List
     every carrier label reaches offset zero within `bound slope * l + bound
     constant` inflations at every member of the regime."""
     reg.check()
+    check_regime_identity(reg.eps)
+    check_perron_bound(reg.eps)
     var l0 = reg.l0
     var by_row = List[List[List[Int]]]()
     for _ in range(len(rows)):
@@ -516,54 +534,65 @@ def certify_regime_descent(reg: Regime, rows: List[List[Int]], pieces: List[List
                 raise Error("target piece carries descent rows")
             continue
         _partition(by_piece[pi], aff(p[1], p[2]), aff(p[3], p[4]), l0, "descents of piece " + String(pi))
-    for d in descents:
-        var parent = pieces[d[0]].copy()
-        var child = pieces[d[8]].copy()
-        var row = rows[parent[0]].copy()
-        var crow = rows[child[0]].copy()
-        var s_lo = aff(d[1], d[2])
-        var s_hi = aff(d[3], d[4])
-        var seg_top = GapSegment(reg, row[0], d[5])
-        var seg_bottom = GapSegment(reg, row[1], d[6])
-        var yp = d[7]
-        var dx = seg_bottom.px - seg_top.px
-        var dc = seg_bottom.pc - seg_top.pc
-        var s2 = 2 * row[2] + dx + dc + yp
-        if seg_top.child != crow[0] or seg_bottom.child != crow[1] or s2 != crow[2] or yp != crow[3]:
-            raise Error("descent child type disagrees with the named child piece")
-        var k_lo = aff(row[4], row[5])
-        var k0 = a_add(k_lo, aff(0, row[2] + dx))
-        var shift = a_sub(k0, aff(crow[4], crow[5]))
-        if not _nonneg_l(a_sub(a_add(s_lo, shift), aff(child[1], child[2])), l0):
-            raise Error("descent child leaves its piece below")
-        if not _nonneg_l(a_sub(aff(child[3], child[4]), a_add(s_hi, shift)), l0):
-            raise Error("descent child leaves its piece above")
-        # Realizable at every member: y' - base - d j in [d_lo, d_hi] for j in [s_lo, s_hi]
-        # (Lemma 1 after the regime's r substitution).
-        var base = child_base(reg, row)
-        var d_lo = seg_bottom.m_lo.sub(seg_top.m_hi)
-        var d_hi = seg_bottom.m_hi.sub(seg_top.m_lo)
-        var d_s_hi = GapForm(0, 0, s_hi[1], s_hi[0], 0)
-        var d_s_lo = GapForm(0, 0, s_lo[1], s_lo[0], 0)
-        if not reg.nonneg(gap_const(yp).sub(base).sub(d_s_hi).sub(d_lo)):
-            raise Error("descent occurrence is not realizable (lower run bound)")
-        if not reg.nonneg(d_hi.sub(gap_const(yp).sub(base).sub(d_s_lo))):
-            raise Error("descent occurrence is not realizable (upper run bound)")
-        for j in [s_lo.copy(), s_hi.copy()]:
-            var t_parent = displacement_hu(reg.eps, row[2], a_add(k_lo, j), row[3])
-            if not strict_inside(reg, row[0], row[1], t_parent):
-                raise Error("descent source is not a strict overlap")
-            var t_child = displacement_hu(reg.eps, s2, a_add(k0, j), yp)
-            if not strict_inside(reg, crow[0], crow[1], t_child):
-                raise Error("descent child is not a strict overlap")
-            var drop = a_sub(a_sub(_potential(parent, j), _potential(child, a_add(j, shift))), aff(0, 1))
-            if not _nonneg_l(drop, l0):
-                raise Error("descent does not lower the potential")
+    for di in range(len(descents)):
+        var d = descents[di].copy()
+        try:
+            _check_descent_row(reg, rows, pieces, d, l0)
+        except e:
+            raise Error(String(e) + " [descent row " + String(di) + ": piece " + String(d[0]) + " -> piece " + String(d[8]) + "]")
     var bound_const = bound_at_l0 - bound_slope * l0
     print("CLASS_A_REGIME_DESCENT eps=" + String(reg.eps), "regime=" + reg.name(), "l>=" + String(l0), "d>=" + String(reg.d0),
           "pieces", len(pieces), "targets", targets, "descent_rows", len(descents),
           "hit_depth_bound", String(bound_slope) + "l" + ("+" if bound_const >= 0 else "") + String(bound_const))
     return [len(pieces), targets, len(descents), bound_slope, bound_const]
+
+
+def _check_descent_row(reg: Regime, rows: List[List[Int]], pieces: List[List[Int]], d: List[Int], l0: Int) raises:
+    """Every obligation of one descent row: child type, piece containment,
+    realizability at every member (Lemma 1), strict overlaps at both ends of
+    the sub-interval, and the strict drop of the potential."""
+    var parent = pieces[d[0]].copy()
+    var child = pieces[d[8]].copy()
+    var row = rows[parent[0]].copy()
+    var crow = rows[child[0]].copy()
+    var s_lo = aff(d[1], d[2])
+    var s_hi = aff(d[3], d[4])
+    var seg_top = GapSegment(reg, row[0], d[5])
+    var seg_bottom = GapSegment(reg, row[1], d[6])
+    var yp = d[7]
+    var dx = seg_bottom.px - seg_top.px
+    var dc = seg_bottom.pc - seg_top.pc
+    var s2 = 2 * row[2] + dx + dc + yp
+    if seg_top.child != crow[0] or seg_bottom.child != crow[1] or s2 != crow[2] or yp != crow[3]:
+        raise Error("descent child type disagrees with the named child piece")
+    var k_lo = aff(row[4], row[5])
+    var k0 = a_add(k_lo, aff(0, row[2] + dx))
+    var shift = a_sub(k0, aff(crow[4], crow[5]))
+    if not _nonneg_l(a_sub(a_add(s_lo, shift), aff(child[1], child[2])), l0):
+        raise Error("descent child leaves its piece below")
+    if not _nonneg_l(a_sub(aff(child[3], child[4]), a_add(s_hi, shift)), l0):
+        raise Error("descent child leaves its piece above")
+    # Realizable at every member: y' - base - d j in [d_lo, d_hi] for j in [s_lo, s_hi]
+    # (Lemma 1 after the regime's r substitution).
+    var base = child_base(reg, row)
+    var d_lo = seg_bottom.m_lo.sub(seg_top.m_hi)
+    var d_hi = seg_bottom.m_hi.sub(seg_top.m_lo)
+    var d_s_hi = GapForm(0, 0, s_hi[1], s_hi[0], 0)
+    var d_s_lo = GapForm(0, 0, s_lo[1], s_lo[0], 0)
+    if not reg.nonneg(gap_const(yp).sub(base).sub(d_s_hi).sub(d_lo)):
+        raise Error("descent occurrence is not realizable (lower run bound)")
+    if not reg.nonneg(d_hi.sub(gap_const(yp).sub(base).sub(d_s_lo))):
+        raise Error("descent occurrence is not realizable (upper run bound)")
+    for j in [s_lo.copy(), s_hi.copy()]:
+        var t_parent = displacement_hu(reg.eps, row[2], a_add(k_lo, j), row[3])
+        if not strict_inside(reg, row[0], row[1], t_parent):
+            raise Error("descent source is not a strict overlap")
+        var t_child = displacement_hu(reg.eps, s2, a_add(k0, j), yp)
+        if not strict_inside(reg, crow[0], crow[1], t_child):
+            raise Error("descent child is not a strict overlap")
+        var drop = a_sub(a_sub(_potential(parent, j), _potential(child, a_add(j, shift))), aff(0, 1))
+        if not _nonneg_l(drop, l0):
+            raise Error("descent does not lower the potential")
 
 
 def certify_regime(reg: Regime, rows: List[List[Int]], pieces: List[List[Int]],

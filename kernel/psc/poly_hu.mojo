@@ -203,13 +203,17 @@ struct _Cell(Copyable, Movable):
     on the rectangle `[x0, x1] x [y0, y1]` of the unit square, with its position
     recorded by whether it meets the open faces `x = 0`, `x = 1`, `y = 0`."""
     var b: List[List[Q]]
+    var s: List[List[Q]]
     var on_x0: Bool
     var on_x1: Bool
     var on_y0: Bool
     var depth: Int
 
-    def __init__(out self, var b: List[List[Q]], on_x0: Bool, on_x1: Bool, on_y0: Bool, depth: Int):
+    def __init__(out self, var b: List[List[Q]], var s: List[List[Q]], on_x0: Bool, on_x1: Bool, on_y0: Bool, depth: Int):
+        """`b`: Bernstein coefficients of the polynomial; `s`: those of the side
+        condition on the same cell (empty when there is none)."""
         self.b = b^
+        self.s = s^
         self.on_x0 = on_x0
         self.on_x1 = on_x1
         self.on_y0 = on_y0
@@ -236,10 +240,11 @@ def _to_bernstein(a: List[List[Q]]) -> List[List[Q]]:
     return b^
 
 
-def _split(cell: _Cell, along_x: Bool) -> List[_Cell]:
-    """de Casteljau bisection at the midpoint, in `x` (columns) or `y` (rows)."""
-    var P = len(cell.b) - 1
-    var Qd = len(cell.b[0]) - 1
+def _bisect(b: List[List[Q]], along_x: Bool) -> List[List[List[Q]]]:
+    """de Casteljau bisection of one Bernstein table at the midpoint, in `x`
+    (columns) or `y` (rows): `[left, right]`."""
+    var P = len(b) - 1
+    var Qd = len(b[0]) - 1
     var half = Q(1, 2)
     var left = List[List[Q]]()
     var right = List[List[Q]]()
@@ -250,7 +255,7 @@ def _split(cell: _Cell, along_x: Bool) -> List[_Cell]:
         for j in range(Qd + 1):
             var cur = List[Q]()
             for i in range(P + 1):
-                cur.append(cell.b[i][j].copy())
+                cur.append(b[i][j].copy())
             var lo = List[Q]()
             var hi = List[Q]()
             lo.append(cur[0].copy())
@@ -265,10 +270,9 @@ def _split(cell: _Cell, along_x: Bool) -> List[_Cell]:
             for i in range(P + 1):
                 left[i].append(lo[i].copy())
                 right[i].append(hi[P - i].copy())
-        return [_Cell(left^, cell.on_x0, False, cell.on_y0, cell.depth + 1),
-                _Cell(right^, False, cell.on_x1, cell.on_y0, cell.depth + 1)]
+        return [left^, right^]
     for i in range(P + 1):
-        var cur = cell.b[i].copy()
+        var cur = b[i].copy()
         var lo = List[Q]()
         var hi = List[Q]()
         lo.append(cur[0].copy())
@@ -285,8 +289,35 @@ def _split(cell: _Cell, along_x: Bool) -> List[_Cell]:
             hi_row.append(hi[Qd - j].copy())
         left.append(lo^)
         right.append(hi_row^)
-    return [_Cell(left^, cell.on_x0, cell.on_x1, cell.on_y0, cell.depth + 1),
-            _Cell(right^, cell.on_x0, cell.on_x1, False, cell.depth + 1)]
+    return [left^, right^]
+
+
+def _split(cell: _Cell, along_x: Bool) -> List[_Cell]:
+    """Bisect the cell, carrying the side table along."""
+    var halves = _bisect(cell.b, along_x)
+    var sides = List[List[List[Q]]]()
+    if len(cell.s) > 0:
+        sides = _bisect(cell.s, along_x)
+    else:
+        sides = [List[List[Q]](), List[List[Q]]()]
+    if along_x:
+        return [_Cell(halves[0].copy(), sides[0].copy(), cell.on_x0, False, cell.on_y0, cell.depth + 1),
+                _Cell(halves[1].copy(), sides[1].copy(), False, cell.on_x1, cell.on_y0, cell.depth + 1)]
+    return [_Cell(halves[0].copy(), sides[0].copy(), cell.on_x0, cell.on_x1, cell.on_y0, cell.depth + 1),
+            _Cell(halves[1].copy(), sides[1].copy(), cell.on_x0, cell.on_x1, False, cell.depth + 1)]
+
+
+def _outside_hull(cell: _Cell) -> Bool:
+    """Every Bernstein coefficient of the side condition is negative on the cell,
+    so the side condition is `< 0` on the whole closed cell and no member maps
+    into it."""
+    if len(cell.s) == 0:
+        return False
+    for i in range(len(cell.s)):
+        for j in range(len(cell.s[i])):
+            if q_sign(cell.s[i][j]) >= 0:
+                return False
+    return True
 
 
 def _column_positive(cell: _Cell, i: Int, want: Int) -> Bool:
@@ -340,9 +371,9 @@ def _certify(cell: _Cell, want: Int) -> Bool:
     return True
 
 
-def box_polynomial(f: PolyHU, l0: Int, d0: Int) -> List[List[Q]]:
-    """`G(u,t) = f(u t, u)` with common monomial factors `u^a t^b` removed, as
-    power coefficients in `x = l0 u`, `y = d0 t` on the unit square."""
+def box_polynomial(f: PolyHU, l0: Int, d0: Int, strip: Bool = True) -> List[List[Q]]:
+    """`G(u,t) = f(u t, u)` with common monomial factors `u^a t^b` removed (unless
+    `strip` is false), as power coefficients in `x = l0 u`, `y = d0 t` on the unit square."""
     # g[p][q] is the coefficient of u^p t^q: h^i u^j -> u^(i+j) t^i.
     var P = f.deg_h() + f.deg_u()
     var Qd = f.deg_h()
@@ -359,6 +390,9 @@ def box_polynomial(f: PolyHU, l0: Int, d0: Int) -> List[List[Q]]:
             if g[p][q] != 0:
                 p_min = min(p_min, p)
                 q_min = min(q_min, q)
+    if not strip:
+        p_min = 0
+        q_min = 0
     var p_max = 0
     var q_max = 0
     for p in range(P + 1):
@@ -384,19 +418,71 @@ def sign_on_box(f: PolyHU, l0: Int, d0: Int, max_depth: Int = 12) raises -> Int:
     """Lemma 3: the sign of `f(h, u)` at every `(h, u) = (u t, u)` with `(u, t)` in
     `(0, 1/l0) x (0, 1/d0]`: `0` for the zero polynomial, `+-1` when every
     cell of the bisection certifies that sign, else raises `UNDECIDED sign`."""
-    if l0 < 1 or d0 < 1:
-        raise Error("box floors must be positive")
+    return sign_within_hull(f, PolyHU.zero(), l0, d0, max_depth)
+
+
+def strip_hu(f: PolyHU) -> PolyHU:
+    """`f` divided by the largest monomial `h^a u^b` dividing it (positive on the box)."""
     if f.is_zero():
-        return 0
+        return f.copy()
+    var a_min = 1000000
+    var b_min = 1000000
+    for i in range(len(f.c)):
+        for j in range(len(f.c[i])):
+            if f.c[i][j] != 0:
+                a_min = min(a_min, i)
+                b_min = min(b_min, j)
+    var out = PolyHU.zero()
+    for i in range(len(f.c)):
+        for j in range(len(f.c[i])):
+            if f.c[i][j] != 0:
+                out = out.add(PolyHU.monomial(i - a_min, j - b_min, f.c[i][j]))
+    return out^
+
+
+def _h_free(f: PolyHU) -> List[Int]:
+    """The coefficients of `f(0, u)` in `u`."""
+    var out = List[Int]()
+    if len(f.c) > 0:
+        for j in range(len(f.c[0])):
+            out.append(f.c[0][j])
+    while len(out) > 0 and out[len(out) - 1] == 0:
+        _ = out.pop()
+    return out^
+
+
+def _constant_ratio(pf: List[Int], ps: List[Int]) -> List[Int]:
+    """`[num, den]` with `den > 0` when `pf = (num/den) ps` as polynomials and
+    `ps != 0`; `[0, 0]` otherwise (including `pf = 0`, which needs no multiple)."""
+    if len(ps) == 0 or len(pf) == 0 or len(pf) != len(ps):
+        return [0, 0]
+    var num = pf[len(pf) - 1]
+    var den = ps[len(ps) - 1]
+    for j in range(len(pf)):
+        if pf[j] * den != ps[j] * num:
+            return [0, 0]
+    if den < 0:
+        num = -num
+        den = -den
+    return [num, den]
+
+
+def _bernstein_sign(f: PolyHU, side: PolyHU, l0: Int, d0: Int, max_depth: Int) raises -> Int:
+    """Lemma 3 with Lemma 3' cell skipping, on `f` alone."""
     var a = box_polynomial(f, l0, d0)
-    var root = _Cell(_to_bernstein(a), True, True, True, 0)
+    var sb = List[List[Q]]()
+    if not side.is_zero():
+        sb = _to_bernstein(box_polynomial(side, l0, d0, False))
+    var root = _Cell(_to_bernstein(a), sb^, True, True, True, 0)
     var stack = List[_Cell]()
     stack.append(root^)
     var sign = 0
-    var cells = 0
+    var skipped = 0
     while len(stack) > 0:
         var cell = stack.pop()
-        cells += 1
+        if _outside_hull(cell):
+            skipped += 1
+            continue
         var s = 0
         if _certify(cell, 1):
             s = 1
@@ -419,5 +505,44 @@ def sign_on_box(f: PolyHU, l0: Int, d0: Int, max_depth: Int = 12) raises -> Int:
         for k in range(len(kids)):
             stack.append(kids[k].copy())
     if sign == 0:
-        raise Error("UNDECIDED sign: no cell certified")
+        raise Error("UNDECIDED sign: no cell certified" + (" (every cell lies outside the hull)" if skipped > 0 else ""))
     return sign
+
+
+def sign_within_hull(f: PolyHU, side: PolyHU, l0: Int, d0: Int, max_depth: Int = 12) raises -> Int:
+    """`sign_on_box` restricted to the part of the box where `side(h, u) >= 0`
+    (Lemma 3'), in two steps. First, cells on which every Bernstein coefficient
+    of `side` is negative contain no point with `side >= 0` and are skipped.
+    Second, when that is still undecided and `f(0, u) = q side(0, u)` for one
+    rational `q`, the sign of `g = den f - num side` (whose `h`-free part
+    vanishes, so a factor `h` strips) is certified instead: `side >= 0` and
+    `den > 0` give `f > 0` wherever `g > 0` and `q >= 0`, and `f < 0` wherever
+    `g < 0` and `q <= 0`. With `side = E - l0 u(1+h)` (`E = n h(1+h)`), which
+    is `>= 0` at every member `n >= d l0`, the certified sign holds at every
+    member. The zero polynomial as `side` means no restriction."""
+    if l0 < 1 or d0 < 1:
+        raise Error("box floors must be positive")
+    if f.is_zero():
+        return 0
+    var direct = 0
+    var first = String("")
+    try:
+        direct = _bernstein_sign(f, side, l0, d0, max_depth)
+        return direct
+    except e:
+        first = String(e)
+    if side.is_zero():
+        raise Error(first)
+    var f1 = strip_hu(f)
+    var ratio = _constant_ratio(_h_free(f1), _h_free(side))
+    if ratio[1] == 0:
+        raise Error(first + "; no hull multiple cancels the h-free part")
+    var g = strip_hu(f1.scale(ratio[1]).sub(side.scale(ratio[0])))
+    if g.is_zero():
+        raise Error(first + "; f is a multiple of the hull condition")
+    var sg = _bernstein_sign(g, side, l0, d0, max_depth)
+    if ratio[0] >= 0 and sg > 0:
+        return 1
+    if ratio[0] <= 0 and sg < 0:
+        return -1
+    raise Error(first + "; the hull multiple (" + String(ratio[0]) + "/" + String(ratio[1]) + ") leaves the sign undecided")
