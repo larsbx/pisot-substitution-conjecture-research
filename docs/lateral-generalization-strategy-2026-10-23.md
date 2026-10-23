@@ -214,7 +214,9 @@ any `τ_k`.
 
 ## 3. Next
 
-Move 2's class-A part (gaps `d ≥ 5`) is in open PRs #334 and #335. Its
+Move 2's class-A part is done for `n ≥ 5d` by merged #335
+([class-A gap theorem](class-a-gap-theorem-2026-10-23.md)); the strip `n < 5d`
+and #334's sign certificates remain open. Its
 class-B part has a go decision: the
 [top-layer stop/go](class-b-top-layer-stopgo-2026-10-23.md) finds every probed
 top-layer line periodic-affine in `q`, with period equal to the boundary gap

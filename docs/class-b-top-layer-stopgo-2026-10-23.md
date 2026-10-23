@@ -4,7 +4,9 @@
 theorem, ledger node or claim status changes. This is lateral move 2 of the
 [lateral-generalization strategy](lateral-generalization-strategy-2026-10-23.md),
 restricted to the part of move 2 that no open PR covers. The class-A gaps
-`d ≥ 5` are in open PRs #334 and #335; class C gaps `d ≥ 6` remain.
+`d ≥ 5` are proved for `n ≥ 5d` by merged #335
+([class-A gap theorem](class-a-gap-theorem-2026-10-23.md)); #334's sign
+certificates are still open, and class C gaps `d ≥ 6` remain.
 
 ## Proposed target
 
@@ -105,7 +107,7 @@ below its floors.
    with `q = g l + r`, the Perron signs in `A + qB` form, the child-index
    rounding `[⌈·/g⌉, ⌊·/g⌋]`, and an integer rank descent. Prove every finite
    prefix as an exact graph.
-2. **A g-uniform regime certificate** that reuses the engine of #334/#335
+2. **A g-uniform regime certificate** that reuses the engine of merged #335 (with #334's sign certificates if they land)
    (`poly_hu` and Lemmas 1–4) once that lands. The stable increment of 112 per
    period across `g` is the signal that one regime table may serve every gap.
 

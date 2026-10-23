@@ -13,7 +13,8 @@ from psc.overlap_seed_patch import (
     build_seed_overlap_graph_from_tables, first_left_aligned_depths,
     interior_overlap, seed_overlap_states,
 )
-from psc.overlap_zipper import ordered_child_occurrences
+from psc.overlap_zipper import ordered_child_occurrences_cached
+from psc.perron_field3 import CubicElt
 
 
 def template_rows() -> List[List[Int]]:
@@ -137,9 +138,10 @@ def certify_finite_rows(n: Int, rows: List[List[Int]]) raises -> List[Int]:
 def certify_finite_line(line: ALine, n: Int, rows: List[List[Int]], slope: Int, constant: Int) raises -> List[Int]:
     """EXACT finite replay only; n is explicitly bounded. No universal promotion.
     `slope n + constant` is the carrier cardinality from its affine row identity."""
-    if n < 4 or n > 48:
-        raise Error("finite typed-carrier replay permits 4<=n<=48")
+    if n < 4 or n > 160:
+        raise Error("finite typed-carrier replay permits 4<=n<=160")
     var tables=build_seed_overlap_tables_screened(line.member(n))
+    var sign_cache = Dict[CubicElt, Int]()   # one exact sign cache for every edge enumeration
     var ln=line.l_of(n)   # rows are affine in l = (n - r)/d
     var g=build_seed_overlap_graph_from_tables(tables,20000)
     if g.capped:
@@ -171,7 +173,7 @@ def certify_finite_line(line: ALine, n: Int, rows: List[List[Int]], slope: Int, 
             raise Error("seed graph escapes typed carrier")
         if st.is_coincidence():
             continue
-        for occurrence in ordered_child_occurrences(tables,st):
+        for occurrence in ordered_child_occurrences_cached(tables, sign_cache, st):
             if occurrence.state not in candidate:
                 raise Error("finite ordered occurrence escapes typed candidate")
     for seed in seed_overlap_states(tables):

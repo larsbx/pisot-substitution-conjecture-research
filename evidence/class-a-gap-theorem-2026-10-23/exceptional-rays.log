@@ -1,0 +1,21 @@
+CLASS_A_CARRIER_CLOSURE n>=26 line=(n+5,n,n+1) n=5l+1 rows 90 segments 810 y_cases 8910 covered 3518 gap_geometry 2934 window_checks 1620 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=26 line=(n+5,n,n+1) n=5l+1 pieces 132 targets 8 descent_rows 165 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=26 line=(n+5,n,n+1) n=5l+1 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=22 line=(n+5,n,n+1) n=5l+2 rows 90 segments 810 y_cases 8910 covered 3438 gap_geometry 2886 window_checks 1620 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=22 line=(n+5,n,n+1) n=5l+2 pieces 124 targets 8 descent_rows 157 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=22 line=(n+5,n,n+1) n=5l+2 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=31 line=(n+6,n,n+1) n=6l+1 rows 94 segments 846 y_cases 9306 covered 3693 gap_geometry 3077 window_checks 1692 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=31 line=(n+6,n,n+1) n=6l+1 pieces 136 targets 8 descent_rows 170 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=31 line=(n+6,n,n+1) n=6l+1 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=32 line=(n+6,n,n+1) n=6l+2 rows 94 segments 846 y_cases 9306 covered 3695 gap_geometry 3095 window_checks 1692 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=32 line=(n+6,n,n+1) n=6l+2 pieces 134 targets 8 descent_rows 168 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=32 line=(n+6,n,n+1) n=6l+2 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=44 line=(n+7,n,n+1) n=7l+2 rows 98 segments 882 y_cases 9702 covered 3885 gap_geometry 3249 window_checks 1764 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=44 line=(n+7,n,n+1) n=7l+2 pieces 138 targets 8 descent_rows 173 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=44 line=(n+7,n,n+1) n=7l+2 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=31 line=(n+7,n,n+1) n=7l+3 rows 94 segments 846 y_cases 9306 covered 3673 gap_geometry 3083 window_checks 1692 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=31 line=(n+7,n,n+1) n=7l+3 pieces 134 targets 8 descent_rows 164 hit_depth_bound 2l+7
+CLASS_A_RAY_BOUNDARY_HITTING n>=31 line=(n+7,n,n+1) n=7l+3 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=43 line=(n+8,n,n+1) n=8l+3 rows 98 segments 882 y_cases 9702 covered 3839 gap_geometry 3209 window_checks 1764 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=43 line=(n+8,n,n+1) n=8l+3 pieces 138 targets 8 descent_rows 169 hit_depth_bound 2l+6
+CLASS_A_RAY_BOUNDARY_HITTING n>=43 line=(n+8,n,n+1) n=8l+3 closure=true descent=true universal_139=false

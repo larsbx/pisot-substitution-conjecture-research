@@ -2048,6 +2048,56 @@
       "statement_heading": "**Theorem (gap four).** For every `n>=0` on `(n+4,n,n+1)`, and every `n>=3`"
     },
     {
+      "source": "docs/class-a-gap-theorem-2026-10-23.md",
+      "line": 41,
+      "statement_heading": "**Theorem G (regimes).** For each fitted regime and every `l >= 5`, `d >= d0`"
+    },
+    {
+      "source": "docs/class-a-gap-theorem-2026-10-23.md",
+      "line": 48,
+      "statement_heading": "**Theorem R' (finite gaps and exceptional rays).** Where a regime's registered"
+    },
+    {
+      "source": "docs/class-a-gap-theorem-2026-10-23.md",
+      "line": 57,
+      "statement_heading": "**Corollary C (coverage).** `psc.class_a_gap_theorem.eventual_cover` proves"
+    },
+    {
+      "source": "docs/class-a-gap-uniform-certificate-design-2026-10-23.md",
+      "line": 40,
+      "statement_heading": "**Lemma 1 (quadrant positivity).** For `g(l,d) = c1 + cl l + cd d + cld l d`"
+    },
+    {
+      "source": "docs/class-a-gap-uniform-certificate-design-2026-10-23.md",
+      "line": 61,
+      "statement_heading": "**Lemma 2 (uniform division by `d`).** Let `N = c1 + cd d + cld l d + cr r`"
+    },
+    {
+      "source": "docs/class-a-gap-uniform-certificate-design-2026-10-23.md",
+      "line": 107,
+      "statement_heading": "**Lemma 2' (one-sided rounding bounds; the consumer's fallback).** Write the"
+    },
+    {
+      "source": "docs/class-a-gap-uniform-certificate-design-2026-10-23.md",
+      "line": 166,
+      "statement_heading": "**Lemma 3 (sign on a box).** For every member `(d, n = d l + r)` of a regime"
+    },
+    {
+      "source": "docs/class-a-gap-uniform-certificate-design-2026-10-23.md",
+      "line": 208,
+      "statement_heading": "**Lemma 3' (the member hull).** Let `S(h,u) = E(h,u) - l0 u (1+h)` with"
+    },
+    {
+      "source": "docs/class-a-gap-uniform-certificate-design-2026-10-23.md",
+      "line": 233,
+      "statement_heading": "**Lemma 4 (identities, re-proved by the certificate).** Coefficient-wise in"
+    },
+    {
+      "source": "docs/class-a-gap-uniform-certificate-design-2026-10-23.md",
+      "line": 251,
+      "statement_heading": "**Theorem shape.** For each sign, the fitted regimes cover every residue of"
+    },
+    {
       "source": "docs/class-a-minus-line-2026-10-22.md",
       "line": 113,
       "statement_heading": "## Theorem A' (uniform forward closure)"
