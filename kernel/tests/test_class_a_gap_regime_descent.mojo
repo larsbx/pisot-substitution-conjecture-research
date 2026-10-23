@@ -57,6 +57,15 @@ def main() raises:
             onto_target[0][0] = pi
             break
     assert_true(refuses(low0, rows, pieces, onto_target))
+    # Occurrence parts must be proper segments, and a plausible but wrong
+    # y-count must not pass solely because a child label exists.
+    for part in [-1, 3]:
+        var invalid = descents.copy()
+        invalid[0][5] = part
+        assert_true(refuses(low0, rows, pieces, invalid))
+    var wrong_index = descents.copy()
+    wrong_index[0][7] += 1
+    assert_true(refuses(low0, rows, pieces, wrong_index))
     # Every fitted regime of both signs has generated tables; an unfitted one refuses.
     for spec in fitted_regimes():
         var reg = regime_of(spec, 5)

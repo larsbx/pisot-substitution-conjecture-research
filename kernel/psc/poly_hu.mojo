@@ -401,16 +401,17 @@ def box_polynomial(f: PolyHU, l0: Int, d0: Int, strip: Bool = True) -> List[List
                 p_max = max(p_max, p)
                 q_max = max(q_max, q)
     var a = List[List[Q]]()
-    var lp = Int64(1)
+    var lp = Q.one()
     for p in range(p_min, p_max + 1):
         var row = List[Q]()
-        var dq = Int64(1)
+        var dq = Q.one()
         for q in range(q_min, q_max + 1):
-            # u^p t^q = x^p y^q / (l0^p d0^q)
-            row.append(Q(Int64(g[p][q]), lp * dq))
-            dq *= Int64(d0)
+            # Exact reciprocal powers: never form l0^p d0^q in Int64.
+            # The floor cap alone does not bound an arbitrary polynomial degree.
+            row.append(Q.from_int(Int64(g[p][q])).mul(lp).mul(dq))
+            dq = dq.div(Q.from_int(Int64(d0)))
         a.append(row^)
-        lp *= Int64(l0)
+        lp = lp.div(Q.from_int(Int64(l0)))
     return a^
 
 
