@@ -268,6 +268,13 @@
         "window_lines": 0
       }
     ],
+    "ClassDFiniteBPA": [
+      {
+        "path": "docs/class-d-g1-corollary-2026-10-22.md",
+        "anchor": "| Scoped finite BPA |",
+        "window_lines": 0
+      }
+    ],
     "MinusClassDBoundaryLine": [
       {
         "path": "docs/p1b-minus-boundary-strips-2026-10-20.md",
@@ -2494,6 +2501,47 @@
         [
           "source",
           "docs/class-d-assembly-audit-2026-10-21.md; canonical kernel/class_d_assembly.mojo consumes provenance-checked exact component receipts and replays plus b=0; no class-A/C or universal hitting premise is supplied; human review pending"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "ClassDFiniteBPA": {
+      "id": "sha256:bca0e1fbad3f98487ef3d1160c4da100c53c3afe950c436cb57b0588260ded4f",
+      "kind": "repository_theorem",
+      "statement": "for every PIP substitution in the determinant-two class-D normal form with p-q in {-1,+1}, the balanced-pair automaton from all three swap seeds is finite; every side length is at most 2 L^(K_sigma+2), with b=0 bounds 2(3a+8)^6 on minus and 2(3a+5)^8 on plus; no universal G1 or coincidence assertion",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:5af9608d641391684d67e8457a567432a6868a9b22a64d0bcfc5479d81ee49f3",
+          "boundary hitting holds for every PIP determinant-two normal-form member of class D with p-q in {-1,+1}, after required combined integration acceptance; targets are offset-zero descendants, not necessarily equal-letter coincidences",
+          "ClassDFiniteBPA/ClassDBoundaryHitting",
+          "same",
+          "accepted"
+        ],
+        [
+          "sha256:58cf2389acfc61befe8aad13ecde2bb68ae246c243249c1bf340702b096ba9e0",
+          "every swap seed has a finite exact overlap graph",
+          "ClassDFiniteBPA/SwapOverlapFiniteness",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/class-d-g1-corollary-2026-10-22.md, scoped G1 corollary; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 4 and sections 7-8; accepted ClassDBoundaryHitting supplies the scoped premise; human review pending"
         ],
         [
           "human_review_pending",

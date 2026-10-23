@@ -13,6 +13,7 @@ Reachable == {
     "C3Locality",
     "C4",
     "ClassDBoundaryHitting",
+    "ClassDFiniteBPA",
     "ClassDIntegrationAcceptance",
     "ClassDWedgeBoundaryHitting",
     "DefectIntertwiner",

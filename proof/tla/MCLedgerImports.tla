@@ -15,6 +15,7 @@ Reachable == {
     "BrunCompositeSymbolicPDS",
     "C3Locality",
     "ClassDBoundaryHitting",
+    "ClassDFiniteBPA",
     "ClassDIntegrationAcceptance",
     "ClassDWedgeBoundaryHitting",
     "CoincidenceRankFibreTheorems",

@@ -83,6 +83,20 @@ campaign and its integration gates. Universal #139/#84 and PSC remain open.
 Derivation, evidence and current ledger:
 `p1b-minus-boundary-strips-2026-10-20.md`.
 
+## October 22 continuation: the original b=0 obligation is discharged
+
+The complete boundary certificates were integrated by PR #277; PR #298
+records accepted class-D integration, including positive `b`. The
+[scoped G1 corollary](class-d-g1-corollary-2026-10-22.md) reconciles this
+with §§4e–4m: no uniform spectral contraction margin exists, but exact
+occurrence-compatible graph structure proves uniform all-seed hitting
+depths four and six on the full minus and plus `b=0` branches respectively.
+It gives explicit parameter-dependent balanced-pair length bounds and
+finite BPA throughout the accepted determinant-two class-D normal form.
+Earlier candidate/local-execution labels below and in immutable packets
+record earlier states; they are not reasons to reopen this accepted scope.
+No universal hitting, G1, coincidence or PSC claim is promoted.
+
 ## 0. The obligation, stated once
 
 For PIP `sigma` on three letters, let `Reach(s)` be the overlaps reachable from

@@ -10,6 +10,7 @@ Reachable == {
     "BoxCycleContainment",
     "C3Locality",
     "ClassDBoundaryHitting",
+    "ClassDFiniteBPA",
     "ClassDIntegrationAcceptance",
     "ClassDWedgeBoundaryHitting",
     "DefectIntertwiner",

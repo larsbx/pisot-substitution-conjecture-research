@@ -170,6 +170,13 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
     "ClassDBoundaryHitting": (T, "boundary hitting holds for every PIP determinant-two normal-form member of class D with p-q in {-1,+1}, after required combined integration acceptance; targets are offset-zero descendants, not necessarily equal-letter coincidences",
                             "docs/class-d-assembly-audit-2026-10-21.md; canonical kernel/class_d_assembly.mojo consumes provenance-checked exact component receipts and replays plus b=0; no class-A/C or universal hitting premise is supplied; human review pending",
                             ("PlusClassDBoundaryHitting", "MinusClassDBoundaryHitting"), ()),
+    # Instantiate Proposition 4 on its discharged class-D premise. The universal
+    # G1HalfCoincidenceRoute bundles the still-open all-PIP premise, so it is not
+    # a dependency here (same distinction as PDSImpliesRepoG1 below). No reverse
+    # edge from this scoped result to G1 or to universal hitting is justified.
+    "ClassDFiniteBPA": (T, "for every PIP substitution in the determinant-two class-D normal form with p-q in {-1,+1}, the balanced-pair automaton from all three swap seeds is finite; every side length is at most 2 L^(K_sigma+2), with b=0 bounds 2(3a+8)^6 on minus and 2(3a+5)^8 on plus; no universal G1 or coincidence assertion",
+                       "docs/class-d-g1-corollary-2026-10-22.md, scoped G1 corollary; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 4 and sections 7-8; accepted ClassDBoundaryHitting supplies the scoped premise; human review pending",
+                       ("ClassDBoundaryHitting", "SwapOverlapFiniteness"), ()),
     "MinusClassDBoundaryLine": (T, "boundary hitting holds for every minus class-D residual member a>=0,b=0",
                                "merged PR #277; kernel/psc/class_d_boundary_template.mojo; docs/p1b-minus-boundary-strips-2026-10-20.md; complete symbolic tail, finite prefix and support replay with the lock-matched compiler; human review pending", (), ()),
     "MinusClassDBoundaryStrips": (T, "boundary hitting holds for both entire minus class-D residual strips a=0 or a=1, b>=1",
@@ -359,6 +366,7 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "PlusClassDPositiveBBoundaryHitting": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Plus positive-b residual |")],
     "PlusClassDBoundaryHitting": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Entire plus class D |")],
     "ClassDBoundaryHitting": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Combined determinant-two class D |")],
+    "ClassDFiniteBPA": [surface("docs/class-d-g1-corollary-2026-10-22.md", "| Scoped finite BPA |")],
     "MinusClassDBoundaryLine": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Minus b=0 boundary |")],
     "MinusClassDBoundaryStrips": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Minus a=0,1 strips |")],
     "MinusClassDResidualBoundaryHitting": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Entire minus residual |")],
@@ -453,7 +461,7 @@ def records() -> dict[str, Record]:
                          ("reconciled_source_revision", BOX_LC_RECONCILED_BASELINE),
                          ("reconciliation_source", RECONCILIATION),
                          ("human_review_pending", "true"))
-        if name in {"ClassDBoundaryHitting", "PlusClassDBoundaryHitting", "PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting", "MinusClassDPositiveBBoundaryHitting", "MinusClassDSeedCarrierClosure", "MinusClassDPositiveBCycleSum", "MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDResidualBoundaryHitting", "MinusClassDBoundaryHitting"}:
+        if name in {"ClassDFiniteBPA", "ClassDBoundaryHitting", "PlusClassDBoundaryHitting", "PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting", "MinusClassDPositiveBBoundaryHitting", "MinusClassDSeedCarrierClosure", "MinusClassDPositiveBCycleSum", "MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDResidualBoundaryHitting", "MinusClassDBoundaryHitting"}:
             evidence += (("human_review_pending", "true"),
                          ("computer_assisted", "true"))
         if name == "G1":
