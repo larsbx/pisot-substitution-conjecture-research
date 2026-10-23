@@ -72,6 +72,8 @@ and the division **refuses** in every other case.
 - middle, `|cr| >= 2`: refuse (`v` spans more than one multiple of `d` once
   `d > 2(j0 + j1)`).
 
+The middle regime requires `d0 >= j0 + j1`, so that it is non-empty at `d0`.
+
 *Proof.* `N/d = cld l + cd + v(r)/d` exactly. Each listed case pins `v/d` to
 one unit interval for every `d >= d0` and every `r` of the regime, so the
 rounding is the stated constant; the remaining cases are refused, not decided.
@@ -98,18 +100,31 @@ with `l >= l0`, `d >= d0`: `h_n < 1/n` (since `n^3 P(n,1/n) = -(1+eps)n^2 -
 (d+1-eps)n - d < 0` and `P(n,.)` decreases on `h > 0` from `P(n,0) = 1`),
 hence `u = d h_n < d/n <= 1/l <= 1/l0`, and `t := 1/d` lies in `(0, 1/d0]`.
 So `(u, t)` lies in the box `B = (0, 1/l0) x (0, 1/d0]`, where `h = u t`.
-Let `G(u,t) = F(u t, u)` for `F` in `Z[h,u]`, and let `c_{ij}` be the
-Bernstein coefficients of `G` on `B` (bidegree `(deg_u G, deg_t G)`, after the
-affine map of `B` onto the unit square). If every `c_{ij} >= 0` and the row
-`j = deg_t` is not identically zero, then `G > 0` on `B`; symmetrically for
-`<= 0` and `< 0`. Otherwise `B` is bisected (alternately in `u` and `t`) and
-the criterion applied per cell, the top-row condition only on cells meeting
-`t = 1/d0`; a cell still mixed at the depth limit, or two cells of opposite
-certified sign, is **UNDECIDED** and refuses.
-*Proof.* Bernstein basis polynomials are positive on the open square and, on
-the face `y = 1`, only the top row survives (`B_{j,m}(1) = delta_{jm}`), so the
-two conditions give `G > 0` on `(0,1) x (0,1]`, which contains the image of
-every member. Positivity of `G` at a member is positivity of `F` there.
+Let `G(u,t) = F(u t, u)` for `F` in `Z[h,u]`, with common monomial factors
+`u^a t^b` stripped (positive on `B`). `B` is covered by closed cells
+`Q = [u0,u1] x [t0,t1]` obtained by bisecting the box alternately in `u` and
+`t`. On a cell, let `c_{ij}` be the Bernstein coefficients of `G` (bidegree
+`(deg_u G, deg_t G)`, after the affine map of `Q` onto the unit square). The
+*sub-faces* of `Q` are its open interior, its four open edges and its four
+corners; a sub-face is *inside `B`* unless it lies on `u = 0`, `t = 0` or
+`u = 1/l0` (the edge `t = 1/d0` and its corners with `0 < u < 1/l0` are
+inside `B`). The coefficients *governing* a sub-face are: all of them for the
+interior; the boundary row or column `i = 0`, `i = deg_u`, `j = 0` or
+`j = deg_t` for an edge; the single corner coefficient for a corner.
+
+Cell criterion: `G > 0` on `Q ∩ B` if every `c_{ij} >= 0` and every sub-face
+of `Q` inside `B` has a positive governing coefficient. (Symmetrically for
+`G < 0` with every `c_{ij} <= 0`.) A cell meeting neither criterion is
+bisected, to a depth limit; a cell still mixed at the limit, or two cells of
+opposite certified sign, is **UNDECIDED** and refuses. If every cell certifies
+positive, `G > 0` on `B`.
+*Proof.* Bernstein basis polynomials are `>= 0` on the closed square, so
+`c_{ij} >= 0` gives `G >= 0` on `Q`; at a point of a sub-face exactly the
+governing basis polynomials are nonzero (all of them inside, one row or
+column on an open edge, one at a corner), so `G > 0` there iff some
+governing coefficient is positive. The sub-faces inside `B` of all cells
+cover `B ∩ Q` for every `Q`, hence `B`, which contains the image `(u,t)` of
+every member; positivity of `G` at a member is positivity of `F` there.
 
 **Lemma 4 (identities, re-proved by the certificate).** Coefficient-wise in
 `(h, u, n)`: `h (M^T L)_j - (1+h) L_j = -P` for each letter, with
