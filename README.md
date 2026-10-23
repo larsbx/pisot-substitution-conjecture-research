@@ -2,6 +2,8 @@
 
 Automated research workspace for the Pisot Substitution Conjecture (PSC), with emphasis on reproducible experiments, conjecture tracking, manuscript hygiene, theorem-audit automation, and exact finite certificates.
 
+For a status-safe collaborator briefing, start with [`docs/project-onboarding-2026-10-23.md`](docs/project-onboarding-2026-10-23.md). It separates live theorem status from historical v6/v9 proof material, finite/family evidence, Tier-2 Plastic-A work, and the Penrose interface programme.
+
 Repository structure and authority planes are declared in `ESTATE.toml`
 (estate template `estate-repository-v2`, as in `larsbx/langlands-lab`); see
 `ARCHITECTURE.md`.
