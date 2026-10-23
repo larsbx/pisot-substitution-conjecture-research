@@ -2,14 +2,8 @@ name: Gap-five A/C evidence
 on:
   pull_request:
     paths:
-      - 'kernel/class_c_gap_five.mojo'
-      - 'kernel/class_a_gap_five_probe.mojo'
-      - 'kernel/tests/test_gap_five_domains.mojo'
-      - 'kernel/symbolic_line_certificate.mojo'
-      - 'kernel/psc/symbolic_line.mojo'
-      - 'kernel/psc/param_poly.mojo'
-      - 'kernel/psc/class_a_line.mojo'
-      - 'kernel/psc/class_a_line_graph.mojo'
+      # Exact graph and arithmetic inputs include transitive and vendored modules.
+      - 'kernel/**'
       - 'docs/issue139-gap5-2026-10-23.md'
       - 'evidence/issue139-gap5-2026-10-23/**'
       - 'tests/test_gap_five_evidence.py'
