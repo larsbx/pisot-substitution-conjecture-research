@@ -47,6 +47,29 @@ For ternary PIP substitutions, the repository has reduced the universal completi
 
 The manuscript's two-obstruction completion theorem says that universal A1′ plus universal BH imply seed-overlap productivity and therefore PDS in the standing regime.
 
+**Issue-status repair (2026-10-23):** GitHub issue #139 was erroneously closed
+as completed despite the still-open universal BH quantifier; it is now **open**.
+Closing an implementation PR or certifying a parameter family does not close the
+universal theorem. The [reconciliation note](issue-139-tracker-mathematics-reconciliation-2026-10-23.md)
+records the closure/reopening provenance, exact acceptance criterion and
+remaining scope. This is a tracker correction only, not an accepted PSC step.
+
+**Historical #138 status (verified 2026-10-23):** #138 was closed
+2026-09-26 and already reopened 2026-10-01. It is **open now**; no duplicate
+reopening action was necessary. The live two-obstruction theorem needs only
+the **one-sided A1′ residual hub-edge statement**, not the issue's older
+stronger two-sided goal. See [the #138 historical tracker audit](issue-138-tracker-history-2026-10-23.md).
+Neither historical issue closure nor the narrower reduction constitutes proof.
+
+**G1 proof-record clarification:** `PDSImpliesRepoG1` and
+`PDSImpliesSeedwiseTermination` were closed as *implication theorems* by the
+October 4–5 Theorem S/ledger audit. They are complete dependency nodes,
+not open conjectures. Universal `G1` remains a distinct open node until a
+nonconditional route (or general PDS) is proved. See
+[the G1/PDS status reconciliation](g1-pds-necessity-status-2026-10-23.md).
+The stronger unconditional #44 renewal route stays open; #139's universal BH
+would be an independent sufficient route to G1 if proved.
+
 These are universal obligations. Family certificates, bounded-domain censuses, residue-ray certificates, and line/wedge theorems do not silently promote them.
 
 ### 2.3 Stronger structural routes
