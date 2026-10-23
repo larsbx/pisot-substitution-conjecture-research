@@ -1,0 +1,57 @@
+name: Class-A d2 uniform fixed absorbing corridor
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_d2_fixed_corridor_data.mojo'
+      - 'kernel/psc/class_a_d2_fixed_corridor.mojo'
+      - 'kernel/tests/test_class_a_d2_fixed_corridor.mojo'
+      - 'kernel/class_a_d2_fixed_corridor.mojo'
+      - 'oracles/python/class_a_d2_fixed_corridor.py'
+      - 'tests/test_class_a_d2_fixed_corridor.py'
+      - 'docs/class-a-d2-fixed-corridor-2026-10-22.md'
+      - 'kernel/psc/class_a_d2_parity_carrier.mojo'
+      - 'kernel/psc/class_a_d2_uniform_geometry.mojo'
+      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'kernel/psc/vertex_coincidence.mojo'
+      - 'oracles/python/class_a_d2_parity_carrier.py'
+      - 'oracles/python/class_a_d2_uniform_geometry.py'
+      - '.github/workflows/class-a-d2-fixed-corridor.yml'
+  workflow_dispatch:
+
+jobs:
+  fixed-corridor-exact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install independent exact tests
+        run: python -m pip install 'pytest>=7'
+      - name: Python independent all-n polynomial and differential Q(beta) replay
+        run: |
+          set -euo pipefail
+          mkdir -p kernel/build/class-a-d2-fixed-corridor
+          python oracles/python/class_a_d2_fixed_corridor.py 2>&1 | tee kernel/build/class-a-d2-fixed-corridor/python-oracle.log
+          python -m pytest -q tests/test_class_a_d2_fixed_corridor.py 2>&1 | tee kernel/build/class-a-d2-fixed-corridor/python-tests.log
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Locked canonical coefficient, index and descending-edge tests
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_class_a_d2_fixed_corridor.mojo 2>&1 | tee build/class-a-d2-fixed-corridor/mojo-tests.log
+          pixi run --locked mojo run -I . class_a_d2_fixed_corridor.mojo 2>&1 | tee build/class-a-d2-fixed-corridor/mojo-driver.log
+      - name: Preserve signed-source-independent exact receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-d2-fixed-corridor-receipts
+          path: kernel/build/class-a-d2-fixed-corridor/
+          if-no-files-found: warn
