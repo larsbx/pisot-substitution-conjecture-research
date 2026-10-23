@@ -53,3 +53,39 @@ def survey(line: ALine, n: Int, export: Bool = False) raises -> List[Int]:
                 print("E", n, i, index[e.state], e.top_index, e.bottom_index)
     print("SUMMARY", n, g.size(), maximum, recurrent)
     return [g.size(), maximum, recurrent]
+
+
+def residue_profile(d: Int, eps: Int, last: Int, l_min: Int = 2) raises -> List[List[Int]]:
+    """Vertex counts of the exact complete graphs of `(n+d, n, n+eps)`, `n <= last`,
+    fitted on each residue ray `n = d l + r` as `slope l + constant`.
+
+    The fit takes the two largest members with `l >= l_min`; a residue with fewer
+    than two such members is omitted. Returns `[r, slope, constant, members, affine]`
+    per residue, with `affine = 1` iff every member with `l >= l_min` lies on the
+    fitted line. Each line prints as `PROFILE`. A finite observation: nothing
+    here is uniform in `l` or `d`.
+    """
+    var size = Dict[Int, Int]()
+    for n in range(0, last + 1):
+        if n + eps >= 0 and d <= 2 * n + 6 * eps + 5:
+            size[n] = survey(ALine(d, eps, n % d), n)[0]
+    var out = List[List[Int]]()
+    for r in range(d):
+        var members = List[Int]()
+        for n in range(r + l_min * d, last + 1, d):
+            if n in size:
+                members.append(n)
+        if len(members) < 2:
+            continue
+        var n1 = members[len(members) - 2]
+        var n2 = members[len(members) - 1]
+        var slope = (size[n2] - size[n1]) // ((n2 - n1) // d)
+        var constant = size[n2] - slope * (n2 // d)
+        var affine = 1
+        for n in members:
+            if size[n] != slope * (n // d) + constant:
+                affine = 0
+        print("PROFILE d=" + String(d), "eps=" + String(eps), "r=" + String(r), "slope", slope,
+              "constant", constant, "members", len(members), "affine", affine)
+        out.append([r, slope, constant, len(members), affine])
+    return out^
