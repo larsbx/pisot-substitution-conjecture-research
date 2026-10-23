@@ -152,7 +152,11 @@ yet, and no theorem about any gap `d >= 5` is claimed.
 
 ## Non-claims
 
-- No theorem about any gap `d >= 5`.
+- No theorem about any gap `d >= 5` (at the time of this note; the
+  d-uniform certificate built from it proves boundary hitting for every gap
+  `d >= 5` and every member `n >= 5d`, see
+  [class-a-gap-theorem-2026-10-23.md](class-a-gap-theorem-2026-10-23.md);
+  the strip `n < 5d` remains open).
 - The regime table is a finite observation, for `d <= 16` and `n <= 64`.
 - The prior-art table summarizes abstracts and the repository's earlier
   stop/go; it is not a full literature review of the class-C residual or of

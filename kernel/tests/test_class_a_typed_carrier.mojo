@@ -26,7 +26,7 @@ def main() raises:
     except:
         refused=True
     assert_true(refused)
-    for invalid in [3,49]:
+    for invalid in [3,161]:   # the finite replay permits 4 <= n <= 160
         refused=False
         try:
             _=certify_finite(invalid)

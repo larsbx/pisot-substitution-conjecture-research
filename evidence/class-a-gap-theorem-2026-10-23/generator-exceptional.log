@@ -1,0 +1,97 @@
+Traceback (most recent call last):
+  File "/home/user/pisot-substitution-conjecture-research/oracles/python/class_a_descent_table.py", line 181, in <module>
+    inferred = infer_rows()
+  File "/home/user/pisot-substitution-conjecture-research/oracles/python/class_a_descent_table.py", line 167, in infer_rows
+    raise RuntimeError("run count of slice %s varies with n" % (key,))
+RuntimeError: run count of slice (1, 2, 1, 0) varies with n
+rows: 90 slices: 89
++ rows d=5 r=1 NLO=16 (l0=3)
+row 53 fitted with slack 1
+pieces: 131
+NLO 16 pieces 131 failures: 2  descent rows: 162
+incomplete descent table
+  tables d=5 r=1 NLO=16 failed: CLIP INCOMPARABLE piece 24 child 116 (-1, 2) (-1, 5) (0, 0) (0, 0)
+pieces: 132
+NLO 21 pieces 132 failures: 0  descent rows: 165
++ tables d=5 r=1 NLO=21 (l0=4): NLO 21 pieces 132 failures: 0  descent rows: 165
+rows: 90 slices: 90
++ rows d=5 r=2 NLO=12 (l0=2)
+pieces: 124
+NLO 17 pieces 124 failures: 0  descent rows: 157
++ tables d=5 r=2 NLO=17 (l0=3): NLO 17 pieces 124 failures: 0  descent rows: 157
+Traceback (most recent call last):
+  File "/home/user/pisot-substitution-conjecture-research/oracles/python/class_a_descent_table.py", line 181, in <module>
+    inferred = infer_rows()
+  File "/home/user/pisot-substitution-conjecture-research/oracles/python/class_a_descent_table.py", line 167, in infer_rows
+    raise RuntimeError("run count of slice %s varies with n" % (key,))
+RuntimeError: run count of slice (1, 2, -1, -3) varies with n
+rows: 94 slices: 93
++ rows d=6 r=1 NLO=19 (l0=3)
+row 53 fitted with slack 1
+pieces: 135
+NLO 19 pieces 135 failures: 4  descent rows: 164
+incomplete descent table
+  tables d=6 r=1 NLO=19 failed: CLIP INCOMPARABLE piece 22 child 118 (-1, 2) (-1, 5) (0, 0) (0, 0)
+pieces: 136
+NLO 25 pieces 136 failures: 1  descent rows: 168
+incomplete descent table
+  tables d=6 r=1 NLO=25 failed: CLIP INCOMPARABLE piece 121 child 119 (-1, 3) (-1, 6) (0, 0) (0, 0)
+pieces: 136
+NLO 31 pieces 136 failures: 0  descent rows: 170
++ tables d=6 r=1 NLO=31 (l0=5): NLO 31 pieces 136 failures: 0  descent rows: 170
+rows: 94 slices: 93
++ rows d=6 r=2 NLO=14 (l0=2)
+pieces: 134
+NLO 20 pieces 134 failures: 1  descent rows: 166
+incomplete descent table
+  tables d=6 r=2 NLO=20 failed: CLIP INCOMPARABLE piece 25 child 121 (-1, 2) (-1, 5) (0, 0) (0, 1)
+pieces: 134
+NLO 26 pieces 134 failures: 0  descent rows: 168
++ tables d=6 r=2 NLO=26 (l0=4): NLO 26 pieces 134 failures: 0  descent rows: 168
+Traceback (most recent call last):
+  File "/home/user/pisot-substitution-conjecture-research/oracles/python/class_a_descent_table.py", line 181, in <module>
+    inferred = infer_rows()
+  File "/home/user/pisot-substitution-conjecture-research/oracles/python/class_a_descent_table.py", line 167, in infer_rows
+    raise RuntimeError("run count of slice %s varies with n" % (key,))
+RuntimeError: run count of slice (1, 2, -1, -3) varies with n
+rows: 98 slices: 97
++ rows d=7 r=2 NLO=23 (l0=3)
+pieces: 138
+NLO 23 pieces 138 failures: 3  descent rows: 168
+incomplete descent table
+  tables d=7 r=2 NLO=23 failed: CLIP INCOMPARABLE piece 22 child 123 (-1, 2) (-1, 5) (0, 0) (0, 1)
+pieces: 138
+NLO 30 pieces 138 failures: 1  descent rows: 171
+incomplete descent table
+  tables d=7 r=2 NLO=30 failed: CLIP INCOMPARABLE piece 125 child 123 (-1, 3) (-1, 6) (0, 0) (0, 1)
+pieces: 138
+NLO 37 pieces 138 failures: 0  descent rows: 173
++ tables d=7 r=2 NLO=37 (l0=5): NLO 37 pieces 138 failures: 0  descent rows: 173
+rows: 94 slices: 94
++ rows d=7 r=3 NLO=17 (l0=2)
+pieces: 134
+NLO 24 pieces 134 failures: 1  descent rows: 162
+incomplete descent table
+  tables d=7 r=3 NLO=24 failed: CLIP INCOMPARABLE piece 23 child 120 (-1, 2) (-1, 5) (0, 0) (0, 1)
+pieces: 134
+NLO 31 pieces 134 failures: 0  descent rows: 164
++ tables d=7 r=3 NLO=31 (l0=4): NLO 31 pieces 134 failures: 0  descent rows: 164
+Traceback (most recent call last):
+  File "/home/user/pisot-substitution-conjecture-research/oracles/python/class_a_descent_table.py", line 181, in <module>
+    inferred = infer_rows()
+  File "/home/user/pisot-substitution-conjecture-research/oracles/python/class_a_descent_table.py", line 167, in infer_rows
+    raise RuntimeError("run count of slice %s varies with n" % (key,))
+RuntimeError: run count of slice (1, 2, -1, -3) varies with n
+rows: 98 slices: 98
++ rows d=8 r=3 NLO=27 (l0=3)
+pieces: 138
+NLO 27 pieces 138 failures: 4  descent rows: 163
+incomplete descent table
+  tables d=8 r=3 NLO=27 failed: CLIP INCOMPARABLE piece 20 child 122 (-1, 2) (-1, 5) (0, 0) (0, 1)
+pieces: 138
+NLO 35 pieces 138 failures: 2  descent rows: 166
+incomplete descent table
+  tables d=8 r=3 NLO=35 failed: CLIP INCOMPARABLE piece 64 child 73 (-1, 5) (0, 1) (0, 0) (0, 1)
+pieces: 138
+NLO 43 pieces 138 failures: 0  descent rows: 169
++ tables d=8 r=3 NLO=43 (l0=5): NLO 43 pieces 138 failures: 0  descent rows: 169

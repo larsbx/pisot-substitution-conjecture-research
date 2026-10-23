@@ -1,0 +1,139 @@
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_theorem.mojo:4:
+./psc/class_a_gap_theorem.mojo:155:9: warning: ref 'i' was never used, remove it?
+    for i in range(len(specs)):
+        ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_theorem.mojo:4:
+Included from ./psc/class_a_gap_theorem.mojo:27:
+./psc/class_a_gap_uniform.mojo:160:17: warning: assignment to 's' was never used; assign to '_' instead?
+        var s = 0
+                ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_theorem.mojo:4:
+Included from ./psc/class_a_gap_theorem.mojo:27:
+./psc/class_a_gap_uniform.mojo:350:31: warning: assignment to 'r_hi' was never used; assign to '_' instead?
+                var r_hi = aff(0, 0)
+                              ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_theorem.mojo:4:
+Included from ./psc/class_a_gap_theorem.mojo:27:
+./psc/class_a_gap_uniform.mojo:349:31: warning: assignment to 'r_lo' was never used; assign to '_' instead?
+                var r_lo = aff(0, 0)
+                              ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_theorem.mojo:4:
+Included from ./psc/class_a_gap_theorem.mojo:31:
+./psc/gap_form.mojo:194:21: warning: assignment to 'kappa' was never used; assign to '_' instead?
+        var kappa = 0
+                    ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_theorem.mojo:4:
+Included from ./psc/class_a_gap_theorem.mojo:27:
+Included from ./psc/class_a_gap_uniform.mojo:26:
+./psc/poly_hu.mojo:43:13: warning: ref 'a' was never used, remove it?
+        for a in range(i + 1):
+            ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_theorem.mojo:4:
+Included from ./psc/class_a_gap_theorem.mojo:27:
+Included from ./psc/class_a_gap_uniform.mojo:26:
+./psc/poly_hu.mojo:298:36: warning: assignment to 'sides' was never used; assign to '_' instead?
+    var sides = List[List[List[Q]]]()
+                                   ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_theorem.mojo:4:
+Included from ./psc/class_a_gap_theorem.mojo:27:
+Included from ./psc/class_a_gap_uniform.mojo:26:
+./psc/poly_hu.mojo:527:18: warning: assignment to 'direct' was never used; assign to '_' instead?
+    var direct = 0
+                 ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_theorem.mojo:4:
+Included from ./psc/class_a_gap_theorem.mojo:27:
+Included from ./psc/class_a_gap_uniform.mojo:26:
+./psc/poly_hu.mojo:528:23: warning: assignment to 'first' was never used; assign to '_' instead?
+    var first = String("")
+                      ^
+CLASS_A_REGIME_CLOSURE eps=-1 regime=low:r=0 l>=5 d>=5 rows 93 segments 837 y_cases 9207 covered 3652 gap_geometry 3068 window_checks 1674 seeds_real 9 seeds_unreal 3 clip_fallbacks 3000 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=-1 regime=low:r=0 l>=5 d>=5 pieces 127 targets 8 descent_rows 172 hit_depth_bound 2l+9
+CLASS_A_REGIME_BOUNDARY_HITTING eps=-1 regime=low:r=0 l>=5 d>=5 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=-1 regime=low:r=1 l>=5 d>=8 rows 119 segments 1071 y_cases 11781 covered 4535 gap_geometry 3789 window_checks 2142 seeds_real 9 seeds_unreal 3 clip_fallbacks 356 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=-1 regime=low:r=1 l>=5 d>=8 pieces 157 targets 8 descent_rows 200 hit_depth_bound 2l+7
+CLASS_A_REGIME_BOUNDARY_HITTING eps=-1 regime=low:r=1 l>=5 d>=8 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=-1 regime=low:r=2 l>=5 d>=6 rows 115 segments 1035 y_cases 11385 covered 4431 gap_geometry 3715 window_checks 2070 seeds_real 9 seeds_unreal 3 clip_fallbacks 3137 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=-1 regime=low:r=2 l>=5 d>=6 pieces 153 targets 8 descent_rows 193 hit_depth_bound 2l+6
+CLASS_A_REGIME_BOUNDARY_HITTING eps=-1 regime=low:r=2 l>=5 d>=6 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=-1 regime=high:r=d-1 l>=5 d>=6 rows 105 segments 945 y_cases 10395 covered 3935 gap_geometry 3307 window_checks 1890 seeds_real 9 seeds_unreal 3 clip_fallbacks 2864 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=-1 regime=high:r=d-1 l>=5 d>=6 pieces 137 targets 8 descent_rows 176 hit_depth_bound 2l+8
+CLASS_A_REGIME_BOUNDARY_HITTING eps=-1 regime=high:r=d-1 l>=5 d>=6 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=-1 regime=high:r=d-2 l>=5 d>=5 rows 109 segments 981 y_cases 10791 covered 4300 gap_geometry 3640 window_checks 1962 seeds_real 9 seeds_unreal 3 clip_fallbacks 6576 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=-1 regime=high:r=d-2 l>=5 d>=5 pieces 147 targets 8 descent_rows 185 hit_depth_bound 2l+7
+CLASS_A_REGIME_BOUNDARY_HITTING eps=-1 regime=high:r=d-2 l>=5 d>=5 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=-1 regime=high:r=d-3 l>=5 d>=5 rows 113 segments 1017 y_cases 11187 covered 4542 gap_geometry 3846 window_checks 2034 seeds_real 9 seeds_unreal 3 clip_fallbacks 8516 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=-1 regime=high:r=d-3 l>=5 d>=5 pieces 151 targets 8 descent_rows 191 hit_depth_bound 2l+6
+CLASS_A_REGIME_BOUNDARY_HITTING eps=-1 regime=high:r=d-3 l>=5 d>=5 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=-1 regime=middle:3<=r<=d-4 l>=5 d>=7 rows 115 segments 1035 y_cases 11385 covered 4459 gap_geometry 3743 window_checks 2070 seeds_real 9 seeds_unreal 3 clip_fallbacks 9165 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=-1 regime=middle:3<=r<=d-4 l>=5 d>=7 pieces 153 targets 8 descent_rows 191 hit_depth_bound 2l+6
+CLASS_A_REGIME_BOUNDARY_HITTING eps=-1 regime=middle:3<=r<=d-4 l>=5 d>=7 closure=true descent=true universal_139=false
+RAY_FLOOR_PROBE line=(n+5,n,n-1) n=5l+1 l0=5 refused: UNDECIDED sign: root inside (0, q]
+CLASS_A_CARRIER_CLOSURE n>=31 line=(n+5,n,n-1) n=5l+1 rows 119 segments 1071 y_cases 11781 covered 4608 gap_geometry 3864 window_checks 2142 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=31 line=(n+5,n,n-1) n=5l+1 pieces 157 targets 8 descent_rows 200 hit_depth_bound 2l+7
+SUMMARY 26 347 5 344
+CLASS_A_CARRIER_CLOSURE n>=29 line=(n+5,n,n-1) n=5l+4 rows 105 segments 945 y_cases 10395 covered 3972 gap_geometry 3346 window_checks 1890 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=29 line=(n+5,n,n-1) n=5l+4 pieces 137 targets 8 descent_rows 176 hit_depth_bound 2l+8
+RAY_FLOOR_PROBE line=(n+6,n,n-1) n=6l+1 l0=5 refused: UNDECIDED sign: root inside (0, q]
+CLASS_A_CARRIER_CLOSURE n>=37 line=(n+6,n,n-1) n=6l+1 rows 119 segments 1071 y_cases 11781 covered 4573 gap_geometry 3827 window_checks 2142 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=37 line=(n+6,n,n-1) n=6l+1 pieces 157 targets 8 descent_rows 200 hit_depth_bound 2l+7
+SUMMARY 31 347 5 344
+CLASS_A_CARRIER_CLOSURE n>=36 line=(n+7,n,n-1) n=7l+1 rows 119 segments 1071 y_cases 11781 covered 4549 gap_geometry 3803 window_checks 2142 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=36 line=(n+7,n,n-1) n=7l+1 pieces 157 targets 8 descent_rows 200 hit_depth_bound 2l+7
+CLASS_A_GAP_THEOREM eps=-1 l>=5 d>=5 regimes 7 regimes_cover_from_d 7 finite_rays 4 exceptional_rays 0 exact_graphs 2 universal_139=false
+CLASS_A_REGIME_CLOSURE eps=1 regime=low:r=0 l>=5 d>=5 rows 84 segments 756 y_cases 8316 covered 3676 gap_geometry 3112 window_checks 1512 seeds_real 9 seeds_unreal 3 clip_fallbacks 2434 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=1 regime=low:r=0 l>=5 d>=5 pieces 128 targets 8 descent_rows 176 hit_depth_bound 2l+9
+CLASS_A_REGIME_BOUNDARY_HITTING eps=1 regime=low:r=0 l>=5 d>=5 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=1 regime=low:r=1 l>=5 d>=7 rows 96 segments 864 y_cases 9504 covered 3827 gap_geometry 3197 window_checks 1728 seeds_real 9 seeds_unreal 3 clip_fallbacks 1163 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=1 regime=low:r=1 l>=5 d>=7 pieces 138 targets 8 descent_rows 171 hit_depth_bound 2l+8
+CLASS_A_REGIME_BOUNDARY_HITTING eps=1 regime=low:r=1 l>=5 d>=7 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=1 regime=low:r=2 l>=5 d>=8 rows 100 segments 900 y_cases 9900 covered 3995 gap_geometry 3341 window_checks 1800 seeds_real 9 seeds_unreal 3 clip_fallbacks 1483 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=1 regime=low:r=2 l>=5 d>=8 pieces 140 targets 8 descent_rows 174 hit_depth_bound 2l+8
+CLASS_A_REGIME_BOUNDARY_HITTING eps=1 regime=low:r=2 l>=5 d>=8 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=1 regime=low:r=3 l>=5 d>=9 rows 100 segments 900 y_cases 9900 covered 3957 gap_geometry 3307 window_checks 1800 seeds_real 9 seeds_unreal 3 clip_fallbacks 1893 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=1 regime=low:r=3 l>=5 d>=9 pieces 140 targets 8 descent_rows 170 hit_depth_bound 2l+6
+CLASS_A_REGIME_BOUNDARY_HITTING eps=1 regime=low:r=3 l>=5 d>=9 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=1 regime=low:r=4 l>=5 d>=10 rows 98 segments 882 y_cases 9702 covered 3861 gap_geometry 3225 window_checks 1764 seeds_real 9 seeds_unreal 3 clip_fallbacks 2111 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=1 regime=low:r=4 l>=5 d>=10 pieces 138 targets 8 descent_rows 168 hit_depth_bound 2l+6
+CLASS_A_REGIME_BOUNDARY_HITTING eps=1 regime=low:r=4 l>=5 d>=10 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=1 regime=high:r=d-1 l>=5 d>=5 rows 74 segments 666 y_cases 7326 covered 3262 gap_geometry 2774 window_checks 1332 seeds_real 9 seeds_unreal 3 clip_fallbacks 2227 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=1 regime=high:r=d-1 l>=5 d>=5 pieces 110 targets 8 descent_rows 143 hit_depth_bound 2l+11
+CLASS_A_REGIME_BOUNDARY_HITTING eps=1 regime=high:r=d-1 l>=5 d>=5 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=1 regime=high:r=d-2 l>=5 d>=5 rows 76 segments 684 y_cases 7524 covered 3424 gap_geometry 2920 window_checks 1368 seeds_real 9 seeds_unreal 3 clip_fallbacks 3085 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=1 regime=high:r=d-2 l>=5 d>=5 pieces 112 targets 8 descent_rows 146 hit_depth_bound 2l+11
+CLASS_A_REGIME_BOUNDARY_HITTING eps=1 regime=high:r=d-2 l>=5 d>=5 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=1 regime=high:r=d-3 l>=5 d>=6 rows 88 segments 792 y_cases 8712 covered 3687 gap_geometry 3139 window_checks 1584 seeds_real 9 seeds_unreal 3 clip_fallbacks 3555 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=1 regime=high:r=d-3 l>=5 d>=6 pieces 122 targets 8 descent_rows 153 hit_depth_bound 2l+8
+CLASS_A_REGIME_BOUNDARY_HITTING eps=1 regime=high:r=d-3 l>=5 d>=6 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=1 regime=high:r=d-4 l>=5 d>=8 rows 92 segments 828 y_cases 9108 covered 3673 gap_geometry 3091 window_checks 1656 seeds_real 9 seeds_unreal 3 clip_fallbacks 2791 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=1 regime=high:r=d-4 l>=5 d>=8 pieces 132 targets 8 descent_rows 162 hit_depth_bound 2l+7
+CLASS_A_REGIME_BOUNDARY_HITTING eps=1 regime=high:r=d-4 l>=5 d>=8 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=1 regime=high:r=d-5 l>=5 d>=9 rows 96 segments 864 y_cases 9504 covered 3831 gap_geometry 3213 window_checks 1728 seeds_real 9 seeds_unreal 3 clip_fallbacks 3333 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=1 regime=high:r=d-5 l>=5 d>=9 pieces 136 targets 8 descent_rows 166 hit_depth_bound 2l+6
+CLASS_A_REGIME_BOUNDARY_HITTING eps=1 regime=high:r=d-5 l>=5 d>=9 closure=true descent=true universal_139=false
+CLASS_A_REGIME_CLOSURE eps=1 regime=middle:5<=r<=d-6 l>=5 d>=11 rows 98 segments 882 y_cases 9702 covered 3855 gap_geometry 3219 window_checks 1764 seeds_real 9 seeds_unreal 3 clip_fallbacks 4992 terminal_splits 65
+CLASS_A_REGIME_DESCENT eps=1 regime=middle:5<=r<=d-6 l>=5 d>=11 pieces 138 targets 8 descent_rows 168 hit_depth_bound 2l+6
+CLASS_A_REGIME_BOUNDARY_HITTING eps=1 regime=middle:5<=r<=d-6 l>=5 d>=11 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=26 line=(n+5,n,n+1) n=5l+1 rows 90 segments 810 y_cases 8910 covered 3518 gap_geometry 2934 window_checks 1620 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=26 line=(n+5,n,n+1) n=5l+1 pieces 132 targets 8 descent_rows 165 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=26 line=(n+5,n,n+1) n=5l+1 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=22 line=(n+5,n,n+1) n=5l+2 rows 90 segments 810 y_cases 8910 covered 3438 gap_geometry 2886 window_checks 1620 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=22 line=(n+5,n,n+1) n=5l+2 pieces 124 targets 8 descent_rows 157 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=22 line=(n+5,n,n+1) n=5l+2 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=31 line=(n+6,n,n+1) n=6l+1 rows 94 segments 846 y_cases 9306 covered 3693 gap_geometry 3077 window_checks 1692 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=31 line=(n+6,n,n+1) n=6l+1 pieces 136 targets 8 descent_rows 170 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=31 line=(n+6,n,n+1) n=6l+1 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=32 line=(n+6,n,n+1) n=6l+2 rows 94 segments 846 y_cases 9306 covered 3695 gap_geometry 3095 window_checks 1692 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=32 line=(n+6,n,n+1) n=6l+2 pieces 134 targets 8 descent_rows 168 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=32 line=(n+6,n,n+1) n=6l+2 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=44 line=(n+7,n,n+1) n=7l+2 rows 98 segments 882 y_cases 9702 covered 3885 gap_geometry 3249 window_checks 1764 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=44 line=(n+7,n,n+1) n=7l+2 pieces 138 targets 8 descent_rows 173 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=44 line=(n+7,n,n+1) n=7l+2 closure=true descent=true universal_139=false
+SUMMARY 37 314 6 310
+CLASS_A_CARRIER_CLOSURE n>=31 line=(n+7,n,n+1) n=7l+3 rows 94 segments 846 y_cases 9306 covered 3673 gap_geometry 3083 window_checks 1692 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=31 line=(n+7,n,n+1) n=7l+3 pieces 134 targets 8 descent_rows 164 hit_depth_bound 2l+7
+CLASS_A_RAY_BOUNDARY_HITTING n>=31 line=(n+7,n,n+1) n=7l+3 closure=true descent=true universal_139=false
+CLASS_A_CARRIER_CLOSURE n>=43 line=(n+8,n,n+1) n=8l+3 rows 98 segments 882 y_cases 9702 covered 3839 gap_geometry 3209 window_checks 1764 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=43 line=(n+8,n,n+1) n=8l+3 pieces 138 targets 8 descent_rows 169 hit_depth_bound 2l+6
+CLASS_A_RAY_BOUNDARY_HITTING n>=43 line=(n+8,n,n+1) n=8l+3 closure=true descent=true universal_139=false
+CLASS_A_GAP_THEOREM eps=1 l>=5 d>=5 regimes 11 regimes_cover_from_d 11 finite_rays 0 exceptional_rays 7 exact_graphs 1 universal_139=false
+contract-receipt: class-A gaps d>=5, both signs, every n = d l + r with l>=5: the fitted residue regimes tile every residue from d=7 (minus) and d=11 (plus) on, each regime certifies closure and descent uniformly from its registered gap floor, the finite gaps below it are ray certificates on the same tables with exact complete graphs below the ray floor, the seven plus residues no regime reaches are ray certificates on their own tables, and the assembly refuses a third sign, a non-positive floor and an uncovered residue

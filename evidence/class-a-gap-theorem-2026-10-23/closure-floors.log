@@ -1,0 +1,48 @@
+CLASS_A_REGIME_CLOSURE eps=-1 regime=low:r=0 l>=5 d>=5 rows 93 segments 837 y_cases 9207 covered 3652 gap_geometry 3068 window_checks 1674 seeds_real 9 seeds_unreal 3 clip_fallbacks 3000 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=-1 regime=low:r=0 fitted_d>=5 uniform_d>=5 finite_rays 0 exact_graphs 0 l>=5
+REGIME_FLOOR_PROBE eps=-1 regime=low:r=1 d0=5 refused: UNDECIDED sign: a box cell is still mixed at depth 12; no hull multiple cancels the h-free part [margin numerator -1*h^1*u^0 + 4*h^1*u^1 + 5*h^2*u^0 + 9*h^2*u^1 + 9*h^3*u^0 + 6*h^3*u^1 + 3*h^4*u^0 + 1*h^4*u^1 at r h = 1*h^1*u^0]
+REGIME_FLOOR_PROBE eps=-1 regime=low:r=1 d0=6 refused: UNDECIDED sign: a box cell is still mixed at depth 12; no hull multiple cancels the h-free part [margin numerator -1*h^1*u^0 + 4*h^1*u^1 + 5*h^2*u^0 + 9*h^2*u^1 + 9*h^3*u^0 + 6*h^3*u^1 + 3*h^4*u^0 + 1*h^4*u^1 at r h = 1*h^1*u^0]
+REGIME_FLOOR_PROBE eps=-1 regime=low:r=1 d0=7 refused: UNDECIDED sign: a box cell is still mixed at depth 12; no hull multiple cancels the h-free part [margin numerator -1*h^1*u^0 + 4*h^1*u^1 + 5*h^2*u^0 + 9*h^2*u^1 + 9*h^3*u^0 + 6*h^3*u^1 + 3*h^4*u^0 + 1*h^4*u^1 at r h = 1*h^1*u^0]
+CLASS_A_REGIME_CLOSURE eps=-1 regime=low:r=1 l>=5 d>=8 rows 119 segments 1071 y_cases 11781 covered 4535 gap_geometry 3789 window_checks 2142 seeds_real 9 seeds_unreal 3 clip_fallbacks 356 terminal_splits 65
+RAY_FLOOR_PROBE line=(n+5,n,n-1) n=5l+1 l0=5 refused: UNDECIDED sign: root inside (0, q]
+CLASS_A_CARRIER_CLOSURE n>=31 line=(n+5,n,n-1) n=5l+1 rows 119 segments 1071 y_cases 11781 covered 4608 gap_geometry 3864 window_checks 2142 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+SUMMARY 26 347 5 344
+RAY_FLOOR_PROBE line=(n+6,n,n-1) n=6l+1 l0=5 refused: UNDECIDED sign: root inside (0, q]
+CLASS_A_CARRIER_CLOSURE n>=37 line=(n+6,n,n-1) n=6l+1 rows 119 segments 1071 y_cases 11781 covered 4573 gap_geometry 3827 window_checks 2142 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+SUMMARY 31 347 5 344
+CLASS_A_CARRIER_CLOSURE n>=36 line=(n+7,n,n-1) n=7l+1 rows 119 segments 1071 y_cases 11781 covered 4549 gap_geometry 3803 window_checks 2142 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=-1 regime=low:r=1 fitted_d>=5 uniform_d>=8 finite_rays 3 exact_graphs 2 l>=5
+CLASS_A_REGIME_CLOSURE eps=-1 regime=low:r=2 l>=5 d>=6 rows 115 segments 1035 y_cases 11385 covered 4431 gap_geometry 3715 window_checks 2070 seeds_real 9 seeds_unreal 3 clip_fallbacks 3137 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=-1 regime=low:r=2 fitted_d>=6 uniform_d>=6 finite_rays 0 exact_graphs 0 l>=5
+REGIME_FLOOR_PROBE eps=-1 regime=high:r=d-1 d0=5 refused: UNDECIDED sign: a box cell is still mixed at depth 12; no hull multiple cancels the h-free part [margin numerator -1*h^1*u^0 + 4*h^1*u^1 + 3*h^2*u^0 + 9*h^2*u^1 + 5*h^3*u^0 + 6*h^3*u^1 + 1*h^4*u^0 + 1*h^4*u^1 at r h = 1*h^0*u^1 + -1*h^1*u^0]
+CLASS_A_REGIME_CLOSURE eps=-1 regime=high:r=d-1 l>=5 d>=6 rows 105 segments 945 y_cases 10395 covered 3935 gap_geometry 3307 window_checks 1890 seeds_real 9 seeds_unreal 3 clip_fallbacks 2864 terminal_splits 65
+CLASS_A_CARRIER_CLOSURE n>=29 line=(n+5,n,n-1) n=5l+4 rows 105 segments 945 y_cases 10395 covered 3972 gap_geometry 3346 window_checks 1890 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=-1 regime=high:r=d-1 fitted_d>=5 uniform_d>=6 finite_rays 1 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=-1 regime=high:r=d-2 l>=5 d>=5 rows 109 segments 981 y_cases 10791 covered 4300 gap_geometry 3640 window_checks 1962 seeds_real 9 seeds_unreal 3 clip_fallbacks 6576 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=-1 regime=high:r=d-2 fitted_d>=5 uniform_d>=5 finite_rays 0 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=-1 regime=high:r=d-3 l>=5 d>=5 rows 113 segments 1017 y_cases 11187 covered 4542 gap_geometry 3846 window_checks 2034 seeds_real 9 seeds_unreal 3 clip_fallbacks 8516 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=-1 regime=high:r=d-3 fitted_d>=5 uniform_d>=5 finite_rays 0 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=-1 regime=middle:3<=r<=d-4 l>=5 d>=7 rows 115 segments 1035 y_cases 11385 covered 4459 gap_geometry 3743 window_checks 2070 seeds_real 9 seeds_unreal 3 clip_fallbacks 9165 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=-1 regime=middle:3<=r<=d-4 fitted_d>=7 uniform_d>=7 finite_rays 0 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=1 regime=low:r=0 l>=5 d>=5 rows 84 segments 756 y_cases 8316 covered 3676 gap_geometry 3112 window_checks 1512 seeds_real 9 seeds_unreal 3 clip_fallbacks 2434 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=1 regime=low:r=0 fitted_d>=5 uniform_d>=5 finite_rays 0 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=1 regime=low:r=1 l>=5 d>=7 rows 96 segments 864 y_cases 9504 covered 3827 gap_geometry 3197 window_checks 1728 seeds_real 9 seeds_unreal 3 clip_fallbacks 1163 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=1 regime=low:r=1 fitted_d>=7 uniform_d>=7 finite_rays 0 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=1 regime=low:r=2 l>=5 d>=8 rows 100 segments 900 y_cases 9900 covered 3995 gap_geometry 3341 window_checks 1800 seeds_real 9 seeds_unreal 3 clip_fallbacks 1483 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=1 regime=low:r=2 fitted_d>=8 uniform_d>=8 finite_rays 0 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=1 regime=low:r=3 l>=5 d>=9 rows 100 segments 900 y_cases 9900 covered 3957 gap_geometry 3307 window_checks 1800 seeds_real 9 seeds_unreal 3 clip_fallbacks 1893 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=1 regime=low:r=3 fitted_d>=9 uniform_d>=9 finite_rays 0 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=1 regime=low:r=4 l>=5 d>=10 rows 98 segments 882 y_cases 9702 covered 3861 gap_geometry 3225 window_checks 1764 seeds_real 9 seeds_unreal 3 clip_fallbacks 2111 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=1 regime=low:r=4 fitted_d>=10 uniform_d>=10 finite_rays 0 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=1 regime=high:r=d-1 l>=5 d>=5 rows 74 segments 666 y_cases 7326 covered 3262 gap_geometry 2774 window_checks 1332 seeds_real 9 seeds_unreal 3 clip_fallbacks 2227 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=1 regime=high:r=d-1 fitted_d>=5 uniform_d>=5 finite_rays 0 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=1 regime=high:r=d-2 l>=5 d>=5 rows 76 segments 684 y_cases 7524 covered 3424 gap_geometry 2920 window_checks 1368 seeds_real 9 seeds_unreal 3 clip_fallbacks 3085 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=1 regime=high:r=d-2 fitted_d>=5 uniform_d>=5 finite_rays 0 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=1 regime=high:r=d-3 l>=5 d>=6 rows 88 segments 792 y_cases 8712 covered 3687 gap_geometry 3139 window_checks 1584 seeds_real 9 seeds_unreal 3 clip_fallbacks 3555 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=1 regime=high:r=d-3 fitted_d>=6 uniform_d>=6 finite_rays 0 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=1 regime=high:r=d-4 l>=5 d>=8 rows 92 segments 828 y_cases 9108 covered 3673 gap_geometry 3091 window_checks 1656 seeds_real 9 seeds_unreal 3 clip_fallbacks 2791 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=1 regime=high:r=d-4 fitted_d>=8 uniform_d>=8 finite_rays 0 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=1 regime=high:r=d-5 l>=5 d>=9 rows 96 segments 864 y_cases 9504 covered 3831 gap_geometry 3213 window_checks 1728 seeds_real 9 seeds_unreal 3 clip_fallbacks 3333 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=1 regime=high:r=d-5 fitted_d>=9 uniform_d>=9 finite_rays 0 exact_graphs 0 l>=5
+CLASS_A_REGIME_CLOSURE eps=1 regime=middle:5<=r<=d-6 l>=5 d>=11 rows 98 segments 882 y_cases 9702 covered 3855 gap_geometry 3219 window_checks 1764 seeds_real 9 seeds_unreal 3 clip_fallbacks 4992 terminal_splits 65
+CLASS_A_REGIME_CLOSURE_FLOOR eps=1 regime=middle:5<=r<=d-6 fitted_d>=11 uniform_d>=11 finite_rays 0 exact_graphs 0 l>=5

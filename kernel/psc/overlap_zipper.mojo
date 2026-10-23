@@ -12,13 +12,12 @@ alignment-free obstruction has only top/bottom steps: a strict prefix-grid
 zipper.
 """
 
-from psc.overlap_seed_patch import OverlapState, SeedOverlapTables
+from psc.overlap_seed_patch import OverlapState, SeedOverlapTables, cached_sign
 from psc.perron_field3 import (
     CubicElt,
     cubic_add_checked,
     cubic_mul_beta,
     cubic_sub_checked,
-    sign_at_perron,
 )
 
 
@@ -44,31 +43,48 @@ struct ChildOccurrence(ImplicitlyCopyable, Copyable, Movable):
         self.right = right
 
 
-def _cmp(tables: SeedOverlapTables, a: CubicElt, b: CubicElt) raises -> Int:
-    return sign_at_perron(tables.field, cubic_sub_checked(a, b))
+def _cmp(
+    tables: SeedOverlapTables,
+    mut cache: Dict[CubicElt, Int],
+    a: CubicElt,
+    b: CubicElt,
+) raises -> Int:
+    """Exact sign of `a - b` at the Perron root through the shared sign cache.
+
+    The difference is formed with checked arithmetic as before; only the sign
+    of that exact field element is memoised, keyed by the element itself, so
+    a cache shared across one set of `tables` returns what `sign_at_perron`
+    returns and raises where it raises."""
+    return cached_sign(tables, cache, cubic_sub_checked(a, b))
 
 
 def _max_exact(
-    tables: SeedOverlapTables, a: CubicElt, b: CubicElt
+    tables: SeedOverlapTables,
+    mut cache: Dict[CubicElt, Int],
+    a: CubicElt,
+    b: CubicElt,
 ) raises -> CubicElt:
-    return a if _cmp(tables, a, b) >= 0 else b
+    return a if _cmp(tables, cache, a, b) >= 0 else b
 
 
 def _min_exact(
-    tables: SeedOverlapTables, a: CubicElt, b: CubicElt
+    tables: SeedOverlapTables,
+    mut cache: Dict[CubicElt, Int],
+    a: CubicElt,
+    b: CubicElt,
 ) raises -> CubicElt:
-    return a if _cmp(tables, a, b) <= 0 else b
+    return a if _cmp(tables, cache, a, b) <= 0 else b
 
 
-def ordered_child_occurrences(
-    tables: SeedOverlapTables, parent: OverlapState
+def ordered_child_occurrences_cached(
+    tables: SeedOverlapTables,
+    mut cache: Dict[CubicElt, Int],
+    parent: OverlapState,
 ) raises -> List[ChildOccurrence]:
-    """Return geometric child overlaps in left-to-right occurrence order.
-
-    The scan is a merge of the two exact child partitions. Boundary-only
-    contacts are skipped.  Every returned cell has positive intersection
-    length.  Repeated overlap states remain repeated when they occur at
-    different child-index pairs.
+    """`ordered_child_occurrences` with every exact comparison routed through
+    `cache`, the `Dict[CubicElt, Int]` sign cache the graph builders of
+    `psc.overlap_seed_patch` share. The scan, its raises and the returned
+    list are the same; the cache must belong to these `tables`.
     """
     if parent.top < 0 or parent.top >= 3 or parent.bottom < 0 or parent.bottom >= 3:
         raise Error("overlap state tile type lies outside 0..2")
@@ -94,10 +110,10 @@ def ordered_child_occurrences(
 
         # Boundary-only contact has zero intersection length and is not an
         # overlap occurrence.
-        if _cmp(tables, top_end, bottom_start) <= 0:
+        if _cmp(tables, cache, top_end, bottom_start) <= 0:
             i += 1
             continue
-        if _cmp(tables, bottom_end, top_start) <= 0:
+        if _cmp(tables, cache, bottom_end, top_start) <= 0:
             j += 1
             continue
 
@@ -106,13 +122,13 @@ def ordered_child_occurrences(
             bottom_letter,
             cubic_sub_checked(bottom_start, top_start),
         )
-        var left = _max_exact(tables, top_start, bottom_start)
-        var right = _min_exact(tables, top_end, bottom_end)
-        if _cmp(tables, right, left) <= 0:
+        var left = _max_exact(tables, cache, top_start, bottom_start)
+        var right = _min_exact(tables, cache, top_end, bottom_end)
+        if _cmp(tables, cache, right, left) <= 0:
             raise Error("ordered overlap scan produced a non-positive cell")
         out.append(ChildOccurrence(i, j, child, left, right))
 
-        var end_cmp = _cmp(tables, top_end, bottom_end)
+        var end_cmp = _cmp(tables, cache, top_end, bottom_end)
         if end_cmp < 0:
             i += 1
         elif end_cmp > 0:
@@ -124,6 +140,24 @@ def ordered_child_occurrences(
     if len(out) == 0:
         raise Error("genuine overlap produced no child occurrence")
     return out^
+
+
+def ordered_child_occurrences(
+    tables: SeedOverlapTables, parent: OverlapState
+) raises -> List[ChildOccurrence]:
+    """Return geometric child overlaps in left-to-right occurrence order.
+
+    The scan is a merge of the two exact child partitions. Boundary-only
+    contacts are skipped.  Every returned cell has positive intersection
+    length.  Repeated overlap states remain repeated when they occur at
+    different child-index pairs.
+
+    A fresh sign cache serves this one call; a caller enumerating many
+    parents of one `tables` shares a cache through
+    `ordered_child_occurrences_cached`.
+    """
+    var cache = Dict[CubicElt, Int]()
+    return ordered_child_occurrences_cached(tables, cache, parent)
 
 
 def zipper_steps(occurrences: List[ChildOccurrence]) raises -> List[Int]:
