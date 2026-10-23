@@ -1,0 +1,42 @@
+name: Class-C gap-four complete certificates
+on:
+  pull_request:
+    paths:
+      - 'kernel/class_c_gap_four.mojo'
+      - 'kernel/tests/test_class_c_gap_four.mojo'
+      - 'kernel/symbolic_line_certificate.mojo'
+      - 'kernel/psc/symbolic_line.mojo'
+      - 'kernel/psc/param_poly.mojo'
+      - 'docs/issue139-ac-gap4-2026-10-22.md'
+      - 'evidence/issue139-ac-gap4-2026-10-22/**'
+      - '.github/workflows/class-c-gap-four.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.ref }}
+  cancel-in-progress: true
+jobs:
+  complete-certificates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Locked native certificates and negative controls
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          mkdir -p build/class-c-gap-four
+          pixi run --locked mojo build -I . tests/test_class_c_gap_four.mojo -o build/class-c-gap-four/check
+          build/class-c-gap-four/check | tee build/class-c-gap-four/native-c-tests.log
+          diff ../evidence/issue139-ac-gap4-2026-10-22/native-c-tests.log build/class-c-gap-four/native-c-tests.log
+      - name: Preserve fresh receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-c-gap-four-receipts
+          path: kernel/build/class-c-gap-four/
+          if-no-files-found: warn

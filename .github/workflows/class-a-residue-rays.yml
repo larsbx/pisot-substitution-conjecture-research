@@ -18,7 +18,11 @@ on:
       - 'kernel/tests/test_class_a_d2_plus_line.mojo'
       - 'oracles/python/class_a_carrier_closure.py'
       - 'oracles/python/class_a_descent_table.py'
+      - 'oracles/python/class_a_ray_rank.py'
+      - 'docs/issue139-ac-gap4-2026-10-22.md'
+      - 'evidence/issue139-ac-gap4-2026-10-22/**'
       - 'tests/test_class_a_residue_rays.py'
+      - 'tests/test_issue139_gap_four.py'
       - 'tests/test_class_a_d2_plus_ray_carrier.py'
       - 'oracles/python/class_a_d2_parity_carrier.py'
       - 'evidence/class-a-residue-rays-2026-10-22/**'
@@ -50,7 +54,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p kernel/build/class-a-residue-rays
-          python -m pytest -q tests/test_class_a_residue_rays.py tests/test_class_a_d2_plus_ray_carrier.py 2>&1 | tee kernel/build/class-a-residue-rays/python-tests.log
+          python -m pytest -q tests/test_class_a_residue_rays.py tests/test_class_a_d2_plus_ray_carrier.py tests/test_issue139_gap_four.py 2>&1 | tee kernel/build/class-a-residue-rays/python-tests.log
       - name: Install Pixi
         run: |
           set -o pipefail

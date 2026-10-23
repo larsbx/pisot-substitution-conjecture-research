@@ -196,7 +196,7 @@ def replay_descent_finite(n: Int, rows: List[List[Int]], pieces: List[List[Int]]
 
 def descent_witnesses_line(line: ALine, n: Int, rows: List[List[Int]], pieces: List[List[Int]],
                            descents: List[List[Int]]) raises -> List[List[Int]]:
-    """The certificate instantiated at one n in 4..24, checked against the exact
+    """The certificate instantiated at one n in 4..32, checked against the exact
     Perron-field engine. One record per carrier label, in piece order:
     `[top, bottom, k, c, y, piece, X, top_index, bottom_index,
       child top, child bottom, child k, child c, child y, child X]`.
@@ -204,8 +204,8 @@ def descent_witnesses_line(line: ALine, n: Int, rows: List[List[Int]], pieces: L
     non-target, exactly one descent row covers it, and the record carries the
     first exact ordered child occurrence matching that row's prefix segments
     and child label; every matching occurrence must drop the potential."""
-    if n < 4 or n > 24:
-        raise Error("finite descent replay permits 4<=n<=24")
+    if n < 4 or n > 32:
+        raise Error("finite descent replay permits 4<=n<=32")
     var tables = build_seed_overlap_tables_screened(line.member(n))
     var lm = length_matrix(tables)
     var ln = line.l_of(n)   # every table entry is affine in l = (n - r)/d
@@ -267,7 +267,7 @@ def descent_witnesses_line(line: ALine, n: Int, rows: List[List[Int]], pieces: L
 
 def replay_descent_finite_line(line: ALine, n: Int, rows: List[List[Int]], pieces: List[List[Int]],
                                descents: List[List[Int]], slope: Int, constant: Int) raises -> List[Int]:
-    """Differential control at one n in 4..24: every descent member's named
+    """Differential control at one n in 4..32: every descent member's named
     child occurrence is an actual ordered child occurrence of the exact
     Perron-field engine, with the stated prefix segments and child label, and
     the potential drops there (`descent_witnesses_line`); `slope n + constant`
