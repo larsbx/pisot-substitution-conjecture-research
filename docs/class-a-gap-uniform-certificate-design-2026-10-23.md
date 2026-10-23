@@ -92,9 +92,13 @@ every row with `s != 0`, so the consumer needs Lemma 2' below.)
 
 The middle regime requires `d0 >= j0 + j1`, so that it is non-empty at `d0`.
 Regime hypotheses in general (enforced by `Regime.check`): `1 <= l0, d0 <= 64`
-(the exact Bernstein denominators `l0^p d0^q` of Lemma 3 are `Int64`; a
-certificate from a floor covers every larger floor, so the bound costs no
-generality);
+(the supported verifier interface range; the box conversion uses exact
+rational reciprocal powers, since a floor bound alone cannot protect
+arbitrary polynomial degrees from Int64 overflow). A certificate at a
+supported floor entails the same property at every larger mathematical
+floor, without passing that larger floor to the executable. This does not
+promise that a certificate for an arbitrary larger floor will accept at 64;
+the scoped theorem uses only `l0 = 5` and registered `d0 <= 11`;
 low `0 <= j < d0`; high `1 <= j <= d0`; middle `j0 >= 0`, `j1 >= 1`,
 `d0 >= j0 + j1`; so every named member has a residue `0 <= r < d`, and
 `l0 >= 1` puts every member in the determinant-two PIP domain

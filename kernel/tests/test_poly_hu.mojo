@@ -3,7 +3,7 @@ from std.testing import assert_equal, assert_true
 from finite_exact.rat_q import Q
 from mojo_smoke.claims import require_contract
 from psc.exact import q_sign
-from psc.poly_hu import PolyHU, AffHU, elimination_hu, h_one_h, sign_on_box, sign_within_hull
+from psc.poly_hu import PolyHU, AffHU, elimination_hu, h_one_h, sign_on_box, sign_within_hull, box_polynomial
 
 
 def p(coeffs: List[List[Int]]) -> PolyHU:
@@ -85,14 +85,18 @@ def main() raises:
             for c2 in range(-2, 3):
                 var f = p([[c0, c1], [c2, 0], [0, 1]])   # c0 + c1 u + c2 h + h^2 u
                 var g = grid_sign(f, 4, 6)
+                var decided = False
+                var s = 0
                 try:
-                    var s = sign_on_box(f, 4, 6)
-                    if s != 0:
-                        assert_true(g == 0 or g == s)
-                        if g == s:
-                            agreed += 1
+                    s = sign_on_box(f, 4, 6)
+                    decided = True
                 except:
                     pass
+                # Assertion failures must not be caught as undecided signs.
+                if decided and s != 0:
+                    assert_true(g == 0 or g == s)
+                    if g == s:
+                        agreed += 1
     assert_true(agreed > 20)
     # A side condition restricts the box to where it is non-negative: 1 - 3u changes sign
     # on (0, 1/2) and refuses, but within the hull u <= 1/4 (side 1 - 4u) it is positive;
@@ -133,6 +137,15 @@ def main() raises:
     except:
         undecided = True
     assert_true(undecided)
+    # 53^11 overflows signed Int64 despite floors <= 64. The generic
+    # conversion must preserve the positive coefficient using exact powers.
+    var high = PolyHU.const(1).add(PolyHU.monomial(11, 0, 1))
+    var powers = box_polynomial(high, 1, 53)
+    var expected = Q.one()
+    for _ in range(11):
+        expected = expected.div(Q(53, 1))
+    assert_equal(q_sign(powers[11][11]), 1)
+    assert_true(powers[11][11].eq(expected))
     # AffHU numerators: a + n b at r h = 0 has numerator a h(1+h) + E b.
     var m = AffHU(PolyHU.const(1), PolyHU.zero(), PolyHU.zero())
     assert_equal(m.numerator(PolyHU.zero(), 1), h_one_h())

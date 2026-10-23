@@ -147,4 +147,14 @@ def main() raises:
     except:
         bad = True
     assert_true(bad)
+    # The executable floor cap is separate from the unbounded mathematical
+    # l,d quantifiers. Accept the boundary and refuse both out-of-range floors.
+    Regime(1, KIND_LOW, 0, 0, 64, 64).check()
+    for floors in [[65, 5], [5, 65]]:
+        var refused = False
+        try:
+            Regime(1, KIND_LOW, 0, 0, floors[0], floors[1]).check()
+        except:
+            refused = True
+        assert_true(refused)
     require_contract("gap forms c1 + cl l + cd d + cld l d + cr r on class-A residue regimes: Lemma 1 (quadrant positivity) and the regime r-reduction agree with brute force; Lemma 2 (uniform division by d) agrees with brute force on every decided rounding and refuses every rounding that varies with d or r, a pure l term, and |cr| >= 2 on the middle regime; Lemma 2' one-sided bounds bracket every exact rounding at every member; malformed regimes refuse")

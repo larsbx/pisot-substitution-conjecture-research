@@ -123,7 +123,7 @@ struct Regime(ImplicitlyCopyable, Copyable, Movable):
         if self.eps != 1 and self.eps != -1:
             raise Error("class-A line requires eps = +-1")
         if self.l0 < 1 or self.d0 < 1 or self.l0 > 64 or self.d0 > 64:
-            raise Error("regime floors must satisfy 1 <= l0, d0 <= 64 (the exact box denominators l0^p d0^q are Int64)")
+            raise Error("regime floors must satisfy 1 <= l0, d0 <= 64 (supported certificate floor range)")
         if self.kind == KIND_LOW:
             if self.j < 0 or self.j >= self.d0 or self.j1 != 0:
                 raise Error("low regime needs 0 <= j < d0 and j1 = 0")
