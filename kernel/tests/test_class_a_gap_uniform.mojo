@@ -53,10 +53,16 @@ def main() raises:
     var ray = certify_closure_line(ALine(12, -1, 0), 60, rows)
     for i in range(2, len(uniform)):
         assert_equal(uniform[i], ray[i])
-    # Below the uniform floor a rounding varies with d: refused, not decided.
+    # From the fitted floor d0 = 5 some roundings vary with d: Lemma 2' supplies sound
+    # superset ranges, counted as clip fallbacks, and the closure still certifies;
+    # from d0 = 10 every rounding is one constant and no fallback is needed.
     var early = low0
-    early.d0 = 9
-    assert_true(refuses_closure(early, rows))
+    early.d0 = 5
+    var from_five = certify_regime_closure(early, rows)
+    assert_true(from_five[9] > 0)
+    assert_equal(uniform[9], 0)
+    for i in range(2, 9):
+        assert_equal(from_five[i], uniform[i])
     # Negative controls on the table: a removed row, a shifted endpoint, another regime's rows.
     var fewer = List[List[Int]]()
     for i in range(1, len(rows)):
@@ -71,4 +77,4 @@ def main() raises:
     # A middle regime with an empty floor refuses at check().
     var empty = Regime(-1, KIND_MIDDLE, 3, 4, 5, 6)
     assert_true(refuses_closure(empty, rows))
-    require_contract("class-A d-uniform regime closure: on the fitted minus low r=0 rows the regime certificate proves forward closure for every l>=5 and every gap d>=10 with the ray closure's statistics; symbolic Perron identities for both signs; the child-index base is d k_lo + n s + eps y; a floor where a rounding varies, a removed row, a shifted endpoint, another regime's rows and an empty middle regime refuse")
+    require_contract("class-A d-uniform regime closure: on the fitted minus low r=0 rows the regime certificate proves forward closure for every l>=5 and every gap d>=5 (Lemma 2' clip fallbacks below d=10, none from d=10) with the ray closure's statistics; symbolic Perron identities for both signs; the child-index base is d k_lo + n s + eps y; a removed row, a shifted endpoint, another regime's rows and an empty middle regime refuse")

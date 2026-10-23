@@ -3,8 +3,8 @@
 A *gap form* `c1 + cl l + cd d + cld l d + cr r` is the shape of every integer
 quantity of the class-A ray certificate once the gap `d` and the residue `r`
 of `n = d l + r` are kept symbolic: row endpoints (`l`-affine), run lengths
-`d l + r + {d, 0, eps}`, the child-index base `d (k_lo + s) + r s + eps y`
-and prefix-count ranges. A *regime* pins `r`: `r = j` (low), `r = d - j`
+`d l + r + {d, 0, eps}`, the child-index base `d k_lo + n s + eps y`
+(`(a + s) l d + b d + s r + eps y` for `k_lo = a l + b`) and prefix-count ranges. A *regime* pins `r`: `r = j` (low), `r = d - j`
 (high) or `j <= r <= d - j1` (middle), for every integer `l >= l0`, `d >= d0`.
 
 Two lemmas decide forms on a regime exactly (docs/class-a-gap-uniform-certificate-design-2026-10-23.md):
@@ -223,6 +223,48 @@ struct Regime(ImplicitlyCopyable, Copyable, Movable):
             else:
                 raise Error("UNDECIDED division: |r coefficient| >= 2 spans several multiples of d")
         return GapForm(quotient_const + kappa, f.cld, 0, 0, 0)
+
+    def _v_range(self, f: GapForm) -> List[Int]:
+        """`[a_min, b_min, a_max, b_max]`: the range of `v(r) = cr r + c1` over the
+        regime's residues is `[a_min d + b_min, a_max d + b_max]`."""
+        if self.kind == KIND_LOW:
+            var v0 = f.cr * self.j + f.c1
+            return [0, v0, 0, v0]
+        if self.kind == KIND_HIGH:
+            var v0 = f.c1 - f.cr * self.j
+            return [f.cr, v0, f.cr, v0]
+        var at_low = f.cr * self.j + f.c1          # r = j0:      v = 0 d + (cr j0 + c1)
+        var at_high = f.c1 - f.cr * self.j1        # r = d - j1:  v = cr d + (c1 - cr j1)
+        if f.cr >= 0:
+            return [0, at_low, f.cr, at_high]
+        return [f.cr, at_high, 0, at_low]
+
+    def div_ceil_lower(self, f: GapForm) raises -> GapForm:
+        """Lemma 2': an `l`-affine lower bound of `ceil(f / d)` valid on the whole regime."""
+        if f.cl != 0:
+            raise Error("gap form has a pure l term: not divisible by the gap")
+        var v = self._v_range(f)
+        var b = v[1]
+        var lb = 0
+        if b > 0:
+            lb = 1
+        elif b < 0:
+            var q = b // self.d0
+            lb = q + (1 if q * self.d0 < b else 0)
+        return GapForm(f.cd + v[0] + lb, f.cld, 0, 0, 0)
+
+    def div_floor_upper(self, f: GapForm) raises -> GapForm:
+        """Lemma 2': an `l`-affine upper bound of `floor(f / d)` valid on the whole regime."""
+        if f.cl != 0:
+            raise Error("gap form has a pure l term: not divisible by the gap")
+        var v = self._v_range(f)
+        var b = v[3]
+        var ub = 0
+        if b < 0:
+            ub = -1
+        elif b > 0:
+            ub = b // self.d0
+        return GapForm(f.cd + v[2] + ub, f.cld, 0, 0, 0)
 
     def div_ceil(self, f: GapForm) raises -> GapForm:
         """Lemma 2: `ceil(f / d)` as an `l`-affine form, or refuse."""

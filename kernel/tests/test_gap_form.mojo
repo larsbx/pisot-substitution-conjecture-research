@@ -115,6 +115,22 @@ def main() raises:
                         var f = GapForm(c1, 0, cd, cld, cr)
                         check_division(reg, f, True, 9)
                         check_division(reg, f, False, 9)
+    # Lemma 2': the one-sided bounds never refuse and bracket the exact roundings at every member.
+    for reg in regimes:
+        for c1 in range(-12, 13, 2):
+            for cr in range(-2, 3):
+                for cd in range(-1, 2):
+                    var f = GapForm(c1, 0, cd, 1, cr)
+                    var lo = reg.div_ceil_lower(f)
+                    var hi = reg.div_floor_upper(f)
+                    for l in range(reg.l0, reg.l0 + 3):
+                        for d in range(reg.d0, reg.d0 + 9):
+                            for r in range(d):
+                                if not reg.contains(l, d, r):
+                                    continue
+                                var n = f.at(l, d, r)
+                                assert_true(lo.at(l, d, r) <= ceil_div(n, d))
+                                assert_true(hi.at(l, d, r) >= n // d)
     # A pure l term, and an |r coefficient| >= 2 on the middle regime, refuse.
     assert_true(refuses_div(regimes[0], gap_lin(1, 0), True))
     assert_true(refuses_div(regimes[4], GapForm(0, 0, 0, 1, 2), True))
@@ -131,4 +147,4 @@ def main() raises:
     except:
         bad = True
     assert_true(bad)
-    require_contract("gap forms c1 + cl l + cd d + cld l d + cr r on class-A residue regimes: Lemma 1 (quadrant positivity) and the regime r-reduction agree with brute force; Lemma 2 (uniform division by d) agrees with brute force on every decided rounding and refuses every rounding that varies with d or r, a pure l term, and |cr| >= 2 on the middle regime; malformed regimes refuse")
+    require_contract("gap forms c1 + cl l + cd d + cld l d + cr r on class-A residue regimes: Lemma 1 (quadrant positivity) and the regime r-reduction agree with brute force; Lemma 2 (uniform division by d) agrees with brute force on every decided rounding and refuses every rounding that varies with d or r, a pure l term, and |cr| >= 2 on the middle regime; Lemma 2' one-sided bounds bracket every exact rounding at every member; malformed regimes refuse")

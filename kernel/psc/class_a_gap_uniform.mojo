@@ -325,9 +325,23 @@ def check_row_closure(reg: Regime, rows: List[List[Int]], sl: Dict[Int, List[Int
             for y2 in range(-window + 1, window):
                 var s2 = 2 * s + dx + dc + y2
                 stats.y_cases += 1
-                # Realizable j: y2 - base - d j in [d_lo, d_hi]  (Lemma 2 divides by d).
-                var r_lo = _to_aff(reg.div_ceil(gap_const(y2).sub(base).sub(d_hi)))
-                var r_hi = _to_aff(reg.div_floor(gap_const(y2).sub(base).sub(d_lo)))
+                # Realizable j: y2 - base - d j in [d_lo, d_hi]  (Lemma 2 divides by d; when
+                # the rounding is not one constant on the regime, Lemma 2' gives a sound
+                # superset, counted as a clip fallback like the ray certificate's).
+                var n_lo = gap_const(y2).sub(base).sub(d_hi)
+                var n_hi = gap_const(y2).sub(base).sub(d_lo)
+                var r_lo = aff(0, 0)
+                var r_hi = aff(0, 0)
+                try:
+                    r_lo = _to_aff(reg.div_ceil(n_lo))
+                except:
+                    r_lo = _to_aff(reg.div_ceil_lower(n_lo))
+                    stats.clip_fallbacks += 1
+                try:
+                    r_hi = _to_aff(reg.div_floor(n_hi))
+                except:
+                    r_hi = _to_aff(reg.div_floor_upper(n_hi))
+                    stats.clip_fallbacks += 1
                 var lo = zero.copy()
                 var hi = j_max.copy()
                 if a_le(r_lo, zero, l0) == 1:

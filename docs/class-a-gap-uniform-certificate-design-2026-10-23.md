@@ -28,7 +28,7 @@ The certificate below proves closure and descent for the whole regime at once.
 ## Integer side: forms in Z[l, d, r]
 
 Every integer quantity of the ray certificate (row endpoints, `j_max`, run
-lengths `d l + r + {d, 0, eps}`, the child-index base `d(k_lo+s) + r s + eps y`,
+lengths `d l + r + {d, 0, eps}`, the child-index base `d k_lo + n s + eps y = (a+s) l d + b d + s r + eps y` (for `k_lo = a l + b`),
 prefix-count ranges) is a *gap form*
 
     F = c1 + cl*l + cd*d + cld*l*d + cr*r        (bilinear in (l,d), linear in r).
@@ -73,6 +73,31 @@ and the division **refuses** in every other case.
   `d > 2(j0 + j1)`).
 
 The middle regime requires `d0 >= j0 + j1`, so that it is non-empty at `d0`.
+Regime hypotheses in general (enforced by `Regime.check`): `l0 >= 1`;
+low `0 <= j < d0`; high `1 <= j <= d0`; middle `j0 >= 0`, `j1 >= 1`,
+`d0 >= j0 + j1`; so every named member has a residue `0 <= r < d`.
+
+**Lemma 2' (one-sided rounding bounds; the consumer's fallback).** Write the
+range of `v(r)` over the regime as `[a_min d + b_min, a_max d + b_max]`
+(low: both ends `(0, cr j + c1)`; high: both `(cr, c1 - cr j)`; middle: the
+ends `r = j0` giving `(0, cr j0 + c1)` and `r = d - j1` giving
+`(cr, c1 - cr j1)`, ordered by the sign of `cr`). Then for every `d >= d0`
+and `r` of the regime,
+
+    ceil(N/d)  >= cld l + cd + a_min + lb(b_min),   floor(N/d) <= cld l + cd + a_max + ub(b_max),
+
+with `lb(b) = ceil(b/d0)` for `b < 0`, `0` for `b = 0`, `1` for `b > 0`, and
+`ub(b) = floor(b/d0)` for `b > 0`, `0` for `b = 0`, `-1` for `b < 0`.
+*Proof.* `ceil(v/d) >= ceil(v_min/d) = a_min + ceil(b_min/d)`, and for fixed
+`b < 0` the quotient `b/d` increases with `d`, so `ceil(b/d) >= ceil(b/d0)`
+for `d >= d0`; for `b > 0`, `ceil(b/d) >= 1`. Symmetrically for the floor.
+When Lemma 2 refuses, the closure uses these bounds: the realizable index
+range becomes a superset of the true one, counted in `clip_fallbacks`,
+exactly as the ray certificate treats an undecided clip (`a_le == -1`).
+Soundness is unchanged, since every realizable child is still examined;
+the price is that an unrealizable index in a gap must also be shown
+unreal geometrically, or the closure reports an escape it cannot
+distinguish from a real one.
 
 *Proof.* `N/d = cld l + cd + v(r)/d` exactly. Each listed case pins `v/d` to
 one unit interval for every `d >= d0` and every `r` of the regime, so the
