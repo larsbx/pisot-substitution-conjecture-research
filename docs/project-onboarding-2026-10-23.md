@@ -47,6 +47,13 @@ For ternary PIP substitutions, the repository has reduced the universal completi
 
 The manuscript's two-obstruction completion theorem says that universal A1′ plus universal BH imply seed-overlap productivity and therefore PDS in the standing regime.
 
+**Issue-status repair (2026-10-23):** GitHub issue #139 was erroneously closed
+as completed despite the still-open universal BH quantifier; it is now **open**.
+Closing an implementation PR or certifying a parameter family does not close the
+universal theorem. The [reconciliation note](issue-139-tracker-mathematics-reconciliation-2026-10-23.md)
+records the closure/reopening provenance, exact acceptance criterion and
+remaining scope. This is a tracker correction only, not an accepted PSC step.
+
 These are universal obligations. Family certificates, bounded-domain censuses, residue-ray certificates, and line/wedge theorems do not silently promote them.
 
 ### 2.3 Stronger structural routes

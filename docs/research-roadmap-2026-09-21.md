@@ -4,6 +4,17 @@
 
 **Standing target:** pure discrete spectrum for primitive irreducible Pisot substitutions in the repository's standing regime, **without** silently adding seed legality, unique decodability, finite injectivity, rational/integer independence, or unimodularity.
 
+**2026-10-23 #139 tracker repair (latest, supersedes tracker status only):**
+[issue #139](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/139)
+was GitHub-closed as completed at 10:09:55 UTC without satisfying the universal
+BH proof obligation and was **reopened** at 17:45:32 UTC. Universal strict-zipper
+offset-zero hitting for all cyclic seed-reachable overlaps in ternary PIP
+(including non-unit cases) remains **OPEN**. Accepted family-specific hitting
+certificates and finite-domain replays do not change that statement; other
+historical snapshots below remain unchanged. Exact evidence and closure
+criterion: [issue-139 reconciliation](issue-139-tracker-mathematics-reconciliation-2026-10-23.md).
+This update changes no claim-status record or mathematical theorem.
+
 
 ## October 21 continuation beyond accepted class D
 

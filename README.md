@@ -48,6 +48,16 @@ secondary structure, but they are not prerequisites of this direct route.
 This is a strong reduction, not a declaration that the two universal lemmas
 have already been proved. Finite and family certificates remain scoped.
 
+**2026-10-23 tracker reconciliation:** [issue #139](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/139)
+was closed as `completed` on 2026-10-23 at 10:09:55 UTC although its universal
+BH acceptance criterion was not established; it has been **reopened** to match
+the live mathematical status. Scoped class-D and class-A/C certificates are
+valuable partial results but do not discharge BH for every cyclic
+seed-reachable strict-zipper overlap in the ternary PIP regime. #84, #138,
+universal BH, G1, and PSC remain open. See
+[issue-139 reconciliation](docs/issue-139-tracker-mathematics-reconciliation-2026-10-23.md).
+No theorem, governed claim, or evidence status is changed by reopening.
+
 ## Current mathematical state
 
 ### October 22 class-D reconciliation
