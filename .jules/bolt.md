@@ -1,0 +1,3 @@
+## 2023-10-24 - Do not over-optimize readability away
+**Learning:** Replacing idiomatic built-ins (like `any`, `all`, `sum`) with verbose unrolled `for` loops inside a Python reference implementation sacrifices too much readability for micro-performance. The exact Routh logic works fine and is substantially faster simply by hoisting division (using `Fraction(c0.denominator, c0.numerator)`) and unrolling `max()` object creations without blowing up the code structure.
+**Action:** When working in Python reference oracles, maintain readability first. Favor high-level structural optimization (like avoiding object instantiation or removing nested loops) over extreme unrolling of every built-in method.
