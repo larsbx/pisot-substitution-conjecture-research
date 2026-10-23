@@ -1,0 +1,13 @@
+REGIME eps=1 low r=0 fit d>=5 gaps 12 samples 60 rows 84 rank 4 l>=5
+REGIME eps=1 low r=1 fit d>=7 gaps 10 samples 50 rows 96 rank 4 l>=5
+REGIME eps=1 low r=2 fit d>=8 gaps 9 samples 45 rows 100 rank 4 l>=5
+REGIME eps=1 low r=3 fit d>=9 gaps 8 samples 40 rows 100 rank 4 l>=5
+REGIME eps=1 low r=4 fit d>=10 gaps 7 samples 35 rows 98 rank 4 l>=5
+REGIME eps=1 low r=5 fit d>=11 gaps 6 samples 30 rows 98 rank 4 l>=5
+REGIME eps=1 high r=d-1 fit d>=5 gaps 12 samples 60 rows 74 rank 4 l>=5
+REGIME eps=1 high r=d-2 fit d>=5 gaps 12 samples 60 rows 76 rank 4 l>=5
+REGIME eps=1 high r=d-3 fit d>=6 gaps 11 samples 55 rows 88 rank 4 l>=5
+REGIME eps=1 high r=d-4 fit d>=8 gaps 9 samples 45 rows 92 rank 4 l>=5
+REGIME eps=1 high r=d-5 fit d>=9 gaps 8 samples 40 rows 96 rank 4 l>=5
+REGIME eps=1 high r=d-6 fit d>=10 gaps 7 samples 35 rows 98 rank 4 l>=5
+REGIME eps=1 middle 6<=r<=d-7 fit d>=5 gaps 4 samples 50 rows 98 rank 5 l>=5

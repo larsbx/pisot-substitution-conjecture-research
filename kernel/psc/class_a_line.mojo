@@ -44,8 +44,8 @@ struct ALine(ImplicitlyCopyable, Copyable, Movable):
     def check(self) raises:
         if self.eps != 1 and self.eps != -1:
             raise Error("class-A line requires eps = +-1")
-        if self.d < 1 or self.d > 8 or self.r < 0 or self.r >= self.d:
-            raise Error("class-A residue ray requires 1<=d<=8 and 0<=r<d")
+        if self.d < 1 or self.d > 32 or self.r < 0 or self.r >= self.d:
+            raise Error("class-A residue ray requires 1<=d<=32 and 0<=r<d")
 
     def n_of(self, l: Int) -> Int:
         return self.d * l + self.r
