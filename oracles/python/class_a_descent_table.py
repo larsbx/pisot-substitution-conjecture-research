@@ -59,7 +59,10 @@ if RAY:
         # Regime candidate generation: rows from a regime table module, one ray (d, eps, r)
         # of the regime as the finite sample; the uniform verifier is the only evidence.
         SRC = ROOT / _opt("--src")
-        ROWS_FN = _opt("--rows-fn") or ROWS_FN
+        if _opt("--rows-fn"):
+            ROWS_FN = _opt("--rows-fn")
+            PIECES_FN = ROWS_FN.replace("rows_", "pieces_", 1)
+            DESCENTS_FN = ROWS_FN.replace("rows_", "descents_", 1)
 else:
     D, RR = 1, 0
     EPS = {"plus": 1, "minus": -1}[_opt("--line") or "plus"]
