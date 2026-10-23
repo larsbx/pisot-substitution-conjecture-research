@@ -1,0 +1,49 @@
+name: Rauzy-torus diagnostic replay
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/rauzy_torus.mojo'
+      - 'kernel/rauzy_torus_census.mojo'
+      - 'kernel/tests/test_rauzy_torus.mojo'
+      - 'oracles/python/rauzy_torus.py'
+      - '.github/workflows/rauzy-torus-replay.yml'
+  workflow_dispatch:
+
+concurrency:
+  # A newer commit on the same branch or pull request supersedes this run's
+  # queued and in-progress checks. Runs on main get a group of their own, so
+  # every main commit keeps its receipts.
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rauzy-torus-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pinned Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | PIXI_VERSION=v0.81.0 PIXI_NO_PATH_UPDATE=1 bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Test the canonical profile through the full lift window
+        working-directory: kernel
+        run: pixi run mojo run -I . tests/test_rauzy_torus.mojo
+      - name: Recompute diagnostic JSONL with canonical Mojo
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          pixi run mojo run -I . rauzy_torus_census.mojo named > "$RUNNER_TEMP/rauzy-named.jsonl"
+          pixi run mojo run -I . rauzy_torus_census.mojo corpus > "$RUNNER_TEMP/rauzy-corpus.jsonl"
+          test "$(wc -l < "$RUNNER_TEMP/rauzy-named.jsonl")" -eq 4
+          test "$(wc -l < "$RUNNER_TEMP/rauzy-corpus.jsonl")" -eq 4554
+          cmp "$RUNNER_TEMP/rauzy-named.jsonl" ../evidence/rauzy-torus-2026-10-21/named.jsonl
+          cmp "$RUNNER_TEMP/rauzy-corpus.jsonl" ../evidence/rauzy-torus-2026-10-21/corpus.jsonl
+          sha256sum "$RUNNER_TEMP/rauzy-named.jsonl" "$RUNNER_TEMP/rauzy-corpus.jsonl"
+      - name: Independently replay all archived records with Python oracle
+        run: |
+          set -euo pipefail
+          python3 oracles/python/rauzy_torus.py --check evidence/rauzy-torus-2026-10-21/named.jsonl
+          python3 oracles/python/rauzy_torus.py --check evidence/rauzy-torus-2026-10-21/corpus.jsonl

@@ -1,0 +1,56 @@
+name: Class-A typed carrier candidate
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_typed_carrier.mojo'
+      - 'kernel/class_a_typed_carrier.mojo'
+      - 'kernel/tests/test_class_a_typed_carrier.mojo'
+      - 'tests/test_class_a_typed_carrier.py'
+      - 'evidence/class-a-run-index-2026-10-21/**'
+      - 'docs/class-a-typed-carrier-2026-10-21.md'
+      - '.github/workflows/class-a-typed-carrier.yml'
+  workflow_dispatch:
+
+concurrency:
+  # A newer commit on the same branch or pull request supersedes this run's
+  # queued and in-progress checks. Runs on main get a group of their own, so
+  # every main commit keeps its receipts.
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  exact-typed-carrier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare independent structural oracle
+        run: python -m pip install 'pytest>=7'
+      - name: Exact affine identity and archived fixture refusals
+        run: |
+          set -euo pipefail
+          mkdir -p kernel/build/class-a-typed-carrier
+          python -m pytest -q tests/test_class_a_typed_carrier.py 2>&1 | tee kernel/build/class-a-typed-carrier/structural-oracle.log
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Locked native finite candidate and damaged-row controls
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_class_a_typed_carrier.mojo 2>&1 | tee build/class-a-typed-carrier/native-tests.log
+          pixi run --locked mojo run -I . class_a_typed_carrier.mojo 18 2>&1 | tee build/class-a-typed-carrier/driver.log
+      - name: Preserve fresh receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-typed-carrier-receipts
+          path: kernel/build/class-a-typed-carrier/
+          if-no-files-found: warn

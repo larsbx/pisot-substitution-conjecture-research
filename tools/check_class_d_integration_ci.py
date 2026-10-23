@@ -13,6 +13,7 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import tomllib
 
 from check_class_d_assembly_evidence import validate as validate_components
 
@@ -36,6 +37,50 @@ JOBS = {
 PLUS = 'CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED wedges= 6 explicit_lines= 6 boundary_lines= 73 finite_prefix_pip= 952 max_symbolic_vertices= 164'
 MINUS = 'CLASS_D_MINUS_RESIDUAL_BH_CERTIFIED a>=0 b>=0 components=4 universal_139=open'
 ASSEMBLY = 'CLASS_D_ASSEMBLY_CANDIDATE plus_positive_b=complete minus_residual=complete plus_b0=complete inherited_wedges=ClassDWedgeBoundaryHitting target=offset_zero integration=pending universal_139=open'
+
+
+
+def added_concurrency_block_only(accepted: bytes, current: bytes) -> bool:
+    """Preserve an accepted workflow byte for byte, except for one added
+    top-level `concurrency:` block.
+
+    A concurrency group decides only whether a superseded run is cancelled;
+    a cancelled run produces no receipt, so no acceptance can be gained this
+    way. Deleting the block (its key line and every following indented or
+    blank line) must give back the historical bytes exactly. The accepted
+    workflow itself must not already carry a concurrency block.
+    """
+    def top_level(lines):
+        return [i for i, line in enumerate(lines) if line.startswith(b'concurrency:')]
+    if top_level(accepted.splitlines(keepends=True)):
+        return False
+    lines = current.splitlines(keepends=True)
+    keys = top_level(lines)
+    if len(keys) != 1:
+        return False
+    end = keys[0] + 1
+    while end < len(lines) and (lines[end].strip() == b'' or lines[end][:1] in (b' ', b'\t')):
+        end += 1
+    return b''.join(lines[:keys[0]] + lines[end:]) == accepted
+
+
+def additive_pixi_tasks_only(accepted: bytes, current: bytes) -> bool:
+    """Preserve the accepted environment and task definitions; allow new names.
+
+    No lock, dependency, platform, feature, activation or existing task change
+    is accepted. The historical bytes retain their original SHA-256 check.
+    """
+    before = tomllib.loads(accepted.decode())
+    after = tomllib.loads(current.decode())
+    old_tasks = before.pop('tasks', {})
+    new_tasks = after.pop('tasks', {})
+    # Canonical JSON distinguishes TOML booleans, integers and floats as well
+    # as values, so Python's True == 1 cannot relax this provenance boundary.
+    exact = lambda value: json.dumps(value, sort_keys=True, separators=(',', ':'))
+    return (exact(before) == exact(after)
+            and isinstance(new_tasks, dict)
+            and all(name in new_tasks and exact(task) == exact(new_tasks[name])
+                    for name, task in old_tasks.items()))
 
 
 def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
@@ -91,14 +136,26 @@ def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
     old = json.loads((ROOT/'evidence/class-d-assembly-audit-2026-10-21/manifest.json').read_text())
     validate_components(old)
     expected_paths = set(old['plus_source_sha256']) | set(old['replay_source_sha256'])
-    expected_paths.update(str(p.relative_to(ROOT)) for p in (ROOT/'.github/workflows').glob('*.yml'))
+    # The acceptance scope is historical. Later unrelated workflows must not
+    # enlarge it, but every workflow present at acceptance remains hash-checked.
+    accepted_workflows = subprocess.check_output(
+        ['git', 'ls-tree', '-r', '--name-only', HEAD, '--', '.github/workflows'],
+        cwd=ROOT, text=True).splitlines()
+    expected_paths.update(p for p in accepted_workflows if p.endswith('.yml'))
     expected_paths.update(('kernel/pixi.toml', 'pyproject.toml', 'tools/check_class_d_assembly_evidence.py',
                            'oracles/python/class_d_minus_boundary_strips.py', 'oracles/python/class_d_minus_seed_cover.py'))
     if set(manifest['source_sha256']) != expected_paths:
         raise ValueError('incomplete accepted source scope')
     for path, digest in manifest['source_sha256'].items():
         historical = subprocess.check_output(['git','show',HEAD+':'+path],cwd=ROOT)
-        if hashlib.sha256(historical).hexdigest() != digest or hashlib.sha256((ROOT/path).read_bytes()).hexdigest() != digest:
+        if hashlib.sha256(historical).hexdigest() != digest:
+            raise ValueError('accepted mathematical source, lock or workflow changed: '+path)
+        current = (ROOT/path).read_bytes()
+        if hashlib.sha256(current).hexdigest() != digest:
+            if path == 'kernel/pixi.toml' and additive_pixi_tasks_only(historical, current):
+                continue
+            if path.startswith('.github/workflows/') and added_concurrency_block_only(historical, current):
+                continue
             raise ValueError('accepted mathematical source, lock or workflow changed: '+path)
     if set(manifest['log_sha256']) != {str(i)+'.log' for i in JOBS}:
         raise ValueError('incomplete raw job logs')

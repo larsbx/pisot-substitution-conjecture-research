@@ -1,0 +1,125 @@
+CLASS_A_CARRIER_CLOSURE n>=14 line=(n+2,n,n-1) n=2l+0 rows 97 segments 873 y_cases 9603 covered 3869 gap_geometry 3278 window_checks 1746 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=14 line=(n+2,n,n-1) n=2l+0 pieces 145 targets 8 descent_rows 208 hit_depth_bound 2l+9
+CLASS_A_RAY_BOUNDARY_HITTING n>=14 line=(n+2,n,n-1) n=2l+0 closure=true descent=true universal_139=false
+SUMMARY 2 320 4 318
+SUMMARY 4 187 4 184
+SUMMARY 6 213 5 210
+SUMMARY 8 253 5 250
+SUMMARY 10 293 6 290
+SUMMARY 12 333 7 330
+CLASS_A_TYPED_CARRIER_FINITE line=(n+2,n,n-1) n=2l+0 14 candidate 373 graph 373 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+2,n,n-1) n=2l+0 14 labels 373 targets 8 checked_edges 365
+CLASS_A_TYPED_CARRIER_FINITE line=(n+2,n,n-1) n=2l+0 16 candidate 413 graph 413 max_hit 8 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+2,n,n-1) n=2l+0 16 labels 413 targets 8 checked_edges 405
+CLASS_A_CARRIER_CLOSURE n>=15 line=(n+2,n,n-1) n=2l+1 rows 111 segments 999 y_cases 10989 covered 4361 gap_geometry 3710 window_checks 1998 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=15 line=(n+2,n,n-1) n=2l+1 pieces 157 targets 8 descent_rows 221 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=15 line=(n+2,n,n-1) n=2l+1 closure=true descent=true universal_139=false
+SUMMARY 3 212 4 210
+SUMMARY 5 239 4 236
+SUMMARY 7 269 4 266
+SUMMARY 9 309 5 306
+SUMMARY 11 349 6 346
+SUMMARY 13 389 6 386
+CLASS_A_TYPED_CARRIER_FINITE line=(n+2,n,n-1) n=2l+1 15 candidate 429 graph 429 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+2,n,n-1) n=2l+1 15 labels 429 targets 8 checked_edges 421
+CLASS_A_TYPED_CARRIER_FINITE line=(n+2,n,n-1) n=2l+1 17 candidate 469 graph 469 max_hit 8 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+2,n,n-1) n=2l+1 17 labels 469 targets 8 checked_edges 461
+CLASS_A_CARRIER_CLOSURE n>=14 line=(n+2,n,n+1) n=2l+0 rows 93 segments 837 y_cases 9207 covered 3576 gap_geometry 3100 window_checks 1674 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=14 line=(n+2,n,n+1) n=2l+0 pieces 149 targets 8 descent_rows 207 hit_depth_bound 2l+9
+CLASS_A_RAY_BOUNDARY_HITTING n>=14 line=(n+2,n,n+1) n=2l+0 closure=true descent=true universal_139=false
+SUMMARY 2 161 4 158
+SUMMARY 4 183 4 180
+SUMMARY 6 225 5 222
+SUMMARY 8 265 5 262
+SUMMARY 10 305 6 302
+SUMMARY 12 345 7 342
+CLASS_A_TYPED_CARRIER_FINITE line=(n+2,n,n+1) n=2l+0 14 candidate 385 graph 385 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+2,n,n+1) n=2l+0 14 labels 385 targets 8 checked_edges 377
+CLASS_A_TYPED_CARRIER_FINITE line=(n+2,n,n+1) n=2l+0 16 candidate 425 graph 425 max_hit 8 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+2,n,n+1) n=2l+0 16 labels 425 targets 8 checked_edges 417
+CLASS_A_CARRIER_CLOSURE n>=13 line=(n+2,n,n+1) n=2l+1 rows 87 segments 783 y_cases 8613 covered 3378 gap_geometry 2942 window_checks 1566 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=13 line=(n+2,n,n+1) n=2l+1 pieces 141 targets 8 descent_rows 186 hit_depth_bound 2l+11
+CLASS_A_RAY_BOUNDARY_HITTING n>=13 line=(n+2,n,n+1) n=2l+1 closure=true descent=true universal_139=false
+SUMMARY 1 189 4 186
+SUMMARY 3 155 4 152
+SUMMARY 5 193 5 190
+SUMMARY 7 231 5 228
+SUMMARY 9 271 6 268
+SUMMARY 11 311 7 308
+CLASS_A_TYPED_CARRIER_FINITE line=(n+2,n,n+1) n=2l+1 13 candidate 351 graph 351 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+2,n,n+1) n=2l+1 13 labels 351 targets 8 checked_edges 343
+CLASS_A_TYPED_CARRIER_FINITE line=(n+2,n,n+1) n=2l+1 15 candidate 391 graph 391 max_hit 8 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+2,n,n+1) n=2l+1 15 labels 391 targets 8 checked_edges 383
+CLASS_A_CARRIER_CLOSURE n>=15 line=(n+3,n,n-1) n=3l+0 rows 93 segments 837 y_cases 9207 covered 3652 gap_geometry 3061 window_checks 1674 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=15 line=(n+3,n,n-1) n=3l+0 pieces 129 targets 8 descent_rows 182 hit_depth_bound 2l+9
+CLASS_A_RAY_BOUNDARY_HITTING n>=15 line=(n+3,n,n-1) n=3l+0 closure=true descent=true universal_139=false
+SUMMARY 3 298 4 296
+SUMMARY 6 165 4 162
+SUMMARY 9 201 5 198
+SUMMARY 12 241 5 238
+CLASS_A_TYPED_CARRIER_FINITE line=(n+3,n,n-1) n=3l+0 15 candidate 281 graph 281 max_hit 6 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+3,n,n-1) n=3l+0 15 labels 281 targets 8 checked_edges 273
+CLASS_A_TYPED_CARRIER_FINITE line=(n+3,n,n-1) n=3l+0 18 candidate 321 graph 321 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+3,n,n-1) n=3l+0 18 labels 321 targets 8 checked_edges 313
+CLASS_A_CARRIER_CLOSURE n>=19 line=(n+3,n,n-1) n=3l+1 rows 113 segments 1017 y_cases 11187 covered 4404 gap_geometry 3713 window_checks 2034 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=19 line=(n+3,n,n-1) n=3l+1 pieces 153 targets 8 descent_rows 204 hit_depth_bound 2l+7
+CLASS_A_RAY_BOUNDARY_HITTING n>=19 line=(n+3,n,n-1) n=3l+1 closure=true descent=true universal_139=false
+SUMMARY 4 264 4 262
+SUMMARY 7 232 4 230
+SUMMARY 10 263 4 260
+SUMMARY 13 303 5 300
+SUMMARY 16 343 5 340
+CLASS_A_TYPED_CARRIER_FINITE line=(n+3,n,n-1) n=3l+1 19 candidate 383 graph 383 max_hit 6 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+3,n,n-1) n=3l+1 19 labels 383 targets 8 checked_edges 375
+CLASS_A_TYPED_CARRIER_FINITE line=(n+3,n,n-1) n=3l+1 22 candidate 423 graph 423 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+3,n,n-1) n=3l+1 22 labels 423 targets 8 checked_edges 415
+CLASS_A_CARRIER_CLOSURE n>=20 line=(n+3,n,n-1) n=3l+2 rows 105 segments 945 y_cases 10395 covered 4062 gap_geometry 3429 window_checks 1890 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=20 line=(n+3,n,n-1) n=3l+2 pieces 139 targets 8 descent_rows 188 hit_depth_bound 2l+8
+CLASS_A_RAY_BOUNDARY_HITTING n>=20 line=(n+3,n,n-1) n=3l+2 closure=true descent=true universal_139=false
+SUMMARY 2 526 7 524
+SUMMARY 5 189 4 186
+SUMMARY 8 213 4 210
+SUMMARY 11 251 4 248
+SUMMARY 14 291 5 288
+SUMMARY 17 331 6 328
+CLASS_A_TYPED_CARRIER_FINITE line=(n+3,n,n-1) n=3l+2 20 candidate 371 graph 371 max_hit 6 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+3,n,n-1) n=3l+2 20 labels 371 targets 8 checked_edges 363
+CLASS_A_TYPED_CARRIER_FINITE line=(n+3,n,n-1) n=3l+2 23 candidate 411 graph 411 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+3,n,n-1) n=3l+2 23 labels 411 targets 8 checked_edges 403
+CLASS_A_CARRIER_CLOSURE n>=18 line=(n+3,n,n+1) n=3l+0 rows 88 segments 792 y_cases 8712 covered 3392 gap_geometry 2857 window_checks 1584 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=18 line=(n+3,n,n+1) n=3l+0 pieces 134 targets 8 descent_rows 184 hit_depth_bound 2l+9
+CLASS_A_RAY_BOUNDARY_HITTING n>=18 line=(n+3,n,n+1) n=3l+0 closure=true descent=true universal_139=false
+SUMMARY 3 180 4 176
+SUMMARY 6 174 4 170
+SUMMARY 9 214 5 210
+SUMMARY 12 254 5 250
+SUMMARY 15 294 6 290
+CLASS_A_TYPED_CARRIER_FINITE line=(n+3,n,n+1) n=3l+0 18 candidate 334 graph 334 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+3,n,n+1) n=3l+0 18 labels 334 targets 8 checked_edges 326
+CLASS_A_TYPED_CARRIER_FINITE line=(n+3,n,n+1) n=3l+0 21 candidate 374 graph 374 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+3,n,n+1) n=3l+0 21 labels 374 targets 8 checked_edges 366
+CLASS_A_CARRIER_CLOSURE n>=16 line=(n+3,n,n+1) n=3l+1 rows 84 segments 756 y_cases 8316 covered 3238 gap_geometry 2741 window_checks 1512 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=16 line=(n+3,n,n+1) n=3l+1 pieces 124 targets 8 descent_rows 162 hit_depth_bound 2l+11
+CLASS_A_RAY_BOUNDARY_HITTING n>=16 line=(n+3,n,n+1) n=3l+1 closure=true descent=true universal_139=false
+SUMMARY 1 247 4 244
+SUMMARY 4 138 4 134
+SUMMARY 7 174 5 170
+SUMMARY 10 214 5 210
+SUMMARY 13 254 6 250
+CLASS_A_TYPED_CARRIER_FINITE line=(n+3,n,n+1) n=3l+1 16 candidate 294 graph 294 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+3,n,n+1) n=3l+1 16 labels 294 targets 8 checked_edges 286
+CLASS_A_TYPED_CARRIER_FINITE line=(n+3,n,n+1) n=3l+1 19 candidate 334 graph 334 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+3,n,n+1) n=3l+1 19 labels 334 targets 8 checked_edges 326
+CLASS_A_CARRIER_CLOSURE n>=17 line=(n+3,n,n+1) n=3l+2 rows 78 segments 702 y_cases 7722 covered 3026 gap_geometry 2569 window_checks 1404 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=17 line=(n+3,n,n+1) n=3l+2 pieces 116 targets 8 descent_rows 157 hit_depth_bound 2l+11
+CLASS_A_RAY_BOUNDARY_HITTING n>=17 line=(n+3,n,n+1) n=3l+2 closure=true descent=true universal_139=false
+SUMMARY 2 193 5 190
+SUMMARY 5 138 4 134
+SUMMARY 8 178 5 174
+SUMMARY 11 218 5 214
+SUMMARY 14 258 6 254
+CLASS_A_TYPED_CARRIER_FINITE line=(n+3,n,n+1) n=3l+2 17 candidate 298 graph 298 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+3,n,n+1) n=3l+2 17 labels 298 targets 8 checked_edges 290
+CLASS_A_TYPED_CARRIER_FINITE line=(n+3,n,n+1) n=3l+2 20 candidate 338 graph 338 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+3,n,n+1) n=3l+2 20 labels 338 targets 8 checked_edges 330
+contract-receipt: class-A residue rays n = d l + r of (n+d,n,n+eps): uniform forward closure of l-affine typed carriers and strict descent of l-affine potentials by exact Sturm signs on (0,1/n0], per tabulated ray from its floor; complete graphs below every floor; carrier = graph label set with independent cardinality and differential replay at two members; removed row, other residue's carrier, raised potential, mislabelled and missing descents refuse; untabulated rays, other A/C regions and universal #139 open

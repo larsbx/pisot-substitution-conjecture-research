@@ -20,6 +20,13 @@ on:
       - "schemas/tier2-loop-gain-fixture.schema.json"
       - ".github/workflows/tier2-growth-bridge.yml"
 
+concurrency:
+  # A newer commit on the same branch or pull request supersedes this run's
+  # queued and in-progress checks. Runs on main get a group of their own, so
+  # every main commit keeps its receipts.
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   tier2-exact-fixture:
     runs-on: ubuntu-latest

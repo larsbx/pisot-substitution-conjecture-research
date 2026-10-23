@@ -1,0 +1,63 @@
+name: Class-A carrier closure and descent
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_typed_carrier.mojo'
+      - 'kernel/psc/class_a_line.mojo'
+      - 'kernel/psc/class_a_carrier_closure.mojo'
+      - 'kernel/psc/class_a_carrier_descent.mojo'
+      - 'kernel/psc/class_a_descent_data.mojo'
+      - 'kernel/class_a_carrier_closure.mojo'
+      - 'kernel/tests/test_class_a_carrier_closure.mojo'
+      - 'oracles/python/class_a_carrier_closure.py'
+      - 'oracles/python/class_a_descent_table.py'
+      - 'tests/test_class_a_carrier_closure.py'
+      - 'evidence/class-a-carrier-closure-2026-10-22/**'
+      - 'docs/class-a-carrier-closure-2026-10-22.md'
+      - '.github/workflows/class-a-carrier-closure.yml'
+  workflow_dispatch:
+
+concurrency:
+  # A newer commit on the same branch or pull request supersedes this run's
+  # queued and in-progress checks. Runs on main get a group of their own, so
+  # every main commit keeps its receipts.
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  exact-carrier-closure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare independent oracle
+        run: python -m pip install 'pytest>=7'
+      - name: Independent symbolic closure and descent verification
+        run: |
+          set -euo pipefail
+          mkdir -p kernel/build/class-a-carrier-closure
+          python oracles/python/class_a_carrier_closure.py 8 | tee kernel/build/class-a-carrier-closure/oracle.json
+          python -m pytest -q tests/test_class_a_carrier_closure.py 2>&1 | tee kernel/build/class-a-carrier-closure/python-tests.log
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Locked native certificate, refusals, finite members and differential replay
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_class_a_carrier_closure.mojo 2>&1 | tee build/class-a-carrier-closure/native-tests.log
+          pixi run --locked mojo run -I . class_a_carrier_closure.mojo 8 2>&1 | tee build/class-a-carrier-closure/driver.log
+      - name: Preserve fresh receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-carrier-closure-receipts
+          path: kernel/build/class-a-carrier-closure/
+          if-no-files-found: warn

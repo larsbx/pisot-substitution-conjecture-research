@@ -1,0 +1,60 @@
+{
+  "scope": "class-A minus line (p,q,r)=(n+1,n,n-1): every vertex of the complete canonical swap-seed graph has an offset-zero descendant, for every integer n>=1",
+  "base_commit": "43afd9239f826501c55316c8c0286a93e0e094bc",
+  "runtime": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "uniform": {
+    "floor": 8,
+    "closure": {
+      "seeds_real": 9,
+      "seeds_unreal": 3,
+      "member_checks": 208,
+      "segments": 936,
+      "y_cases": 10296,
+      "covered": 4508,
+      "gap_geometry": 3842,
+      "window_checks": 1872,
+      "clip_fallbacks": 56,
+      "terminal_splits": 65
+    },
+    "descent": {
+      "pieces": 176,
+      "targets": 8,
+      "descent_rows": 265,
+      "bound_slope": 2,
+      "bound_const": 11
+    },
+    "hit_depth_bound": "2n+11",
+    "sturm_interval": "(0,1/n0]"
+  },
+  "finite": {
+    "complete_graphs": "n=1..24 (survey.log)",
+    "carrier_equals_graph": "n=5,6,7,8,18 (native-tests.log)",
+    "differential_replay": "n=8,11"
+  },
+  "plus_line_regression": "plus-regression.txt",
+  "sources": {
+    "kernel/psc/class_a_line.mojo": "8baa5c4568b4c3d9edd34db014d1f9d951fdfb5ce59e162b285817246d078621",
+    "kernel/psc/class_a_line_graph.mojo": "10204dc16761dcb8217cb42a3bf0b97337ec6210e689ae1959a7e134d353b8dd",
+    "kernel/psc/class_a_minus_carrier.mojo": "52eb21d888f03fa1ffac484896bc9f03fa8d922f32d2cf182e7c4093b25bf8de",
+    "kernel/psc/class_a_minus_descent_data.mojo": "300413804b5d0bec63a362767422022e1ff1daeb721d1a2a68811a669b6f0ba0",
+    "kernel/psc/class_a_carrier_closure.mojo": "f251024a338837c9ea116a297f1e9c3d647cf16ece8822024223eba94c06f5ce",
+    "kernel/psc/class_a_carrier_descent.mojo": "f4cfbbdb120b65ca89609750e6deb92e70af67c432402abeeb5021886fa352aa",
+    "kernel/psc/class_a_typed_carrier.mojo": "d054fab0f23fb3ae4e572efd3932c0f6a49b6e7a6fa0a3e843f2d81d46622c64",
+    "kernel/class_a_minus_line.mojo": "a89c6e95ba94a51f6a041e359fb9546dc433803aec2ec48c2bd5659cfd097820",
+    "kernel/tests/test_class_a_minus_line.mojo": "7c24025bfdaeeaef7176497eccb5f2130fddaeb801c192eac4aaf6afbbf27ec2",
+    "oracles/python/class_a_carrier_closure.py": "c26e6246fe5293e22786e4ee4da304b4a00dada0473dd5911aaaf20bd5cc2ad9",
+    "oracles/python/class_a_descent_table.py": "3023b0d28273f9dc82abc1dde83b09b925b0faca7c708366d54aa544bdbf38f9",
+    "tests/test_class_a_minus_line.py": "f4106a9aa1e4184800862beca18de3a859f107719be3e0a9a0cf07cc15927113",
+    "docs/class-a-minus-line-2026-10-22.md": "f4fbd44d0eb733412046a7758de6ad9af83f1e10396a8fd3df5ff84e8ff28f7c",
+    ".github/workflows/class-a-minus-line.yml": "1e8aa10120d76c8da1d07560c6e8dee44999219b02d82e3de4db0366c9f48ea8"
+  },
+  "non_claims": [
+    "gap d>=2 and the other class-A regions",
+    "class-C residual d>=4",
+    "aligned #138, universal #139/#84, G1, PSC",
+    "the finite-survey formulas 40n+138 and ceil(2n/3)+3",
+    "Lean formalization",
+    "independent human review (pending)"
+  ],
+  "note": "The generators are not evidence; the Mojo certificate and the independent Python verifier are. Local lock-matched runtime, not a fresh CI receipt; the dedicated workflow class-a-minus-line.yml produces locked receipts."
+}

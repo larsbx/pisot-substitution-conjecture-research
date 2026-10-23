@@ -1,0 +1,18 @@
+CLASS_A_CARRIER_CLOSURE n>=8 line=(n+1,n,n-1) rows 104 segments 936 y_cases 10296 covered 4508 gap_geometry 3842 window_checks 1872 seeds_real 9 seeds_unreal 3 clip_fallbacks 56 terminal_splits 65
+CLASS_A_CARRIER_CLOSURE n>=10 line=(n+1,n,n-1) rows 104 segments 936 y_cases 10296 covered 4446 gap_geometry 3780 window_checks 1872 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_DESCENT n>=8 line=(n+1,n,n-1) pieces 176 targets 8 descent_rows 265 hit_depth_bound 2n+11
+SUMMARY 1 174 5 172
+SUMMARY 2 204 5 202
+SUMMARY 3 274 5 272
+SUMMARY 4 300 6 298
+SUMMARY 5 338 7 336
+SUMMARY 6 378 7 376
+SUMMARY 7 418 8 416
+CLASS_A_TYPED_CARRIER_FINITE line=(n+1,n,n-1) 5 candidate 338 graph 338 max_hit 7 uniform_closure=false
+CLASS_A_TYPED_CARRIER_FINITE line=(n+1,n,n-1) 6 candidate 378 graph 378 max_hit 7 uniform_closure=false
+CLASS_A_TYPED_CARRIER_FINITE line=(n+1,n,n-1) 7 candidate 418 graph 418 max_hit 8 uniform_closure=false
+CLASS_A_TYPED_CARRIER_FINITE line=(n+1,n,n-1) 8 candidate 458 graph 458 max_hit 9 uniform_closure=false
+CLASS_A_TYPED_CARRIER_FINITE line=(n+1,n,n-1) 18 candidate 858 graph 858 max_hit 15 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+1,n,n-1) 8 labels 458 targets 8 checked_edges 450
+CLASS_A_DESCENT_FINITE line=(n+1,n,n-1) 11 labels 578 targets 8 checked_edges 570
+contract-receipt: class-A minus line (n+1,n,n-1) boundary hitting for every n>=1: uniform forward closure of the 104-row typed carrier and a 176-piece affine potential with 265 descent occurrences for n>=8 by exact Sturm signs on (0,1/8], exact complete-graph certificates at n=1..7, differential replay at n=8,11; undecided sign, swapped line, removed row, damaged potential and mislabelled child refuse; other A/C regions and universal #139 open
