@@ -1,0 +1,1 @@
+contract-receipt: class-D minus b=0 complete-line candidate: exhaustive symbolic seed/child closure for a>=4, exact finite prefix a=0..3, 145 vertices and 781 directed edges, all half-depths <=4, full-support checks at a=4,8; mixed signs, range changes, lowered floor, cap and same-vertex edge deletion refuse; no plus-branch or two-parameter closure

@@ -1,0 +1,4 @@
+plus b=0 symbolic a>= 7 vertices 718 directed_edges 4326 max_half_depth 6
+finite prefix a=0..6: uncapped, all hitting
+full labelled directed-support cross-checks: a=7,8
+status=PLUS_BOUNDARY_LINE_CERTIFICATE_COMPLETE; domain=s=+1,b=0,a>=0
