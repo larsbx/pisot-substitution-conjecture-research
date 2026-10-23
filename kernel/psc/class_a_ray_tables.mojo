@@ -16,6 +16,11 @@ from psc.class_a_ray_d2m import (
     pieces_r0 as d2m_pieces_r0, pieces_r1 as d2m_pieces_r1,
     descents_r0 as d2m_descents_r0, descents_r1 as d2m_descents_r1,
 )
+from psc.class_a_ray_d2p import (
+    rows_r0 as d2p_rows_r0, rows_r1 as d2p_rows_r1,
+    pieces_r0 as d2p_pieces_r0, pieces_r1 as d2p_pieces_r1,
+    descents_r0 as d2p_descents_r0, descents_r1 as d2p_descents_r1,
+)
 from psc.class_a_ray_d3m import (
     rows_r0 as d3m_rows_r0, rows_r1 as d3m_rows_r1, rows_r2 as d3m_rows_r2, pieces_r0 as d3m_pieces_r0, pieces_r1 as d3m_pieces_r1, pieces_r2 as d3m_pieces_r2, descents_r0 as d3m_descents_r0, descents_r1 as d3m_descents_r1, descents_r2 as d3m_descents_r2,
 )
@@ -30,6 +35,8 @@ def tabulated_rays() -> List[List[Int]]:
     return List[List[Int]]([
         List[Int]([2, -1, 0, 14, 40, 93]),
         List[Int]([2, -1, 1, 15, 40, 149]),
+        List[Int]([2, 1, 0, 14, 40, 105]),
+        List[Int]([2, 1, 1, 13, 40, 111]),
         List[Int]([3, -1, 0, 15, 40, 81]),
         List[Int]([3, -1, 1, 19, 40, 143]),
         List[Int]([3, -1, 2, 20, 40, 131]),
@@ -46,6 +53,10 @@ def ray_tables(line: ALine) raises -> List[List[List[Int]]]:
         return [d2m_rows_r0(), d2m_pieces_r0(), d2m_descents_r0()]
     if line.d == 2 and line.eps == -1 and line.r == 1:
         return [d2m_rows_r1(), d2m_pieces_r1(), d2m_descents_r1()]
+    if line.d == 2 and line.eps == 1 and line.r == 0:
+        return [d2p_rows_r0(), d2p_pieces_r0(), d2p_descents_r0()]
+    if line.d == 2 and line.eps == 1 and line.r == 1:
+        return [d2p_rows_r1(), d2p_pieces_r1(), d2p_descents_r1()]
     if line.d == 3 and line.eps == -1 and line.r == 0:
         return [d3m_rows_r0(), d3m_pieces_r0(), d3m_descents_r0()]
     if line.d == 3 and line.eps == -1 and line.r == 1:

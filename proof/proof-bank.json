@@ -343,6 +343,21 @@
       }
     },
     {
+      "name": "ClassDFiniteBPA",
+      "status": "proved",
+      "source": "docs/class-d-g1-corollary-2026-10-22.md, scoped G1 corollary; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 4 and sections 7-8; accepted ClassDBoundaryHitting supplies the scoped premise; human review pending",
+      "dependencies": [
+        "ClassDBoundaryHitting",
+        "SwapOverlapFiniteness"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
       "name": "ClassDIntegrationAcceptance",
       "status": "proved",
       "source": "docs/class-d-assembly-audit-2026-10-21.md; evidence/class-d-integration-accepted-2026-10-21/; all 64 checks at a9457d9 pass, identical tested PR merge and main merge trees; project-accepted for progression, independent human review pending",
@@ -2023,6 +2038,11 @@
       "statement_heading": "**Proposition (repository-proved, scoped written argument with coefficient-checked"
     },
     {
+      "source": "docs/class-a-d2-plus-rays-2026-10-22.md",
+      "line": 84,
+      "statement_heading": "`depth <= floor(X/3) <= depth+1`, the dominate-and-drop relaxation recorded for"
+    },
+    {
       "source": "docs/class-a-minus-line-2026-10-22.md",
       "line": 106,
       "statement_heading": "synthesis is not evidence. The result, `kernel/psc/class_a_minus_carrier.mojo`,"
@@ -2064,7 +2084,7 @@
     },
     {
       "source": "docs/class-d-g1-corollary-2026-10-22.md",
-      "line": 96,
+      "line": 101,
       "statement_heading": "**Corollary.** For every PIP member of the determinant-two class-D normal"
     },
     {
@@ -2814,7 +2834,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 242,
+      "line": 248,
       "statement_heading": "The second branch preserves information erased by the child-count matrix: the ordered sequence of top/bottom subdivision boundary events. The next contradiction should use that order together with full rank and exact prefix-Parikh geometry."
     },
     {
@@ -3379,7 +3399,7 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "f8e1abe80c2185fd4d6cda5d9ea77fcf16f95528f5fc6bc2da4321132f1cc081",
+    "claim_governance.toml": "26aa137cd94fbd185701ac8906a44ca338435b042d3b01920d659939e037bf71",
     "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
@@ -3393,7 +3413,7 @@
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
     "tools/check_lean.sh": "04078a19300533b800e2cca6f0a3573fe8b116fec0ae8ace8a2d4ffc1ae9613b",
-    "tools/make_ledger.py": "6f54f92887c9fd69352b3bb8c0e28df22eff374de6355d14bbf71beff940e266",
+    "tools/make_ledger.py": "a37023680fa452240764247b3cc30c6831e23597c871835aad98e634ff7de218",
     "tools/make_proof_bank.py": "d41bd8ecb4d51964b6acfb1783d3c7c6aa1fce67ad502f9b4c1c6fb94dceec13",
     "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
   }

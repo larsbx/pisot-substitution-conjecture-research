@@ -2,8 +2,13 @@
 
 **Status:** derived corollary of the accepted `ClassDBoundaryHitting` scope
 and the existing half-coincidence-to-BPA implication. Independent human
-review remains pending. This note adds no executable mechanism, spectral
-import or universal claim, and does not change the generated claim ledger.
+review remains pending. This note adds no executable mathematical mechanism,
+spectral import or universal claim. The scoped corollary is registered as
+`ClassDFiniteBPA`; no existing claim status is promoted.
+
+| Claim | Governed status |
+| --- | --- |
+| Scoped finite BPA | Repository-proved: `ClassDFiniteBPA`; determinant-two class-D normal form only; derived from accepted all-seed hitting and the existing half-coincidence implication; human review pending |
 
 PR #277 integrated both residual `b=0` certificates. PR #298 subsequently
 recorded complete class-D integration, including the positive-`b` interiors,
@@ -157,6 +162,32 @@ roadmap is a separate coverage problem; this note does not reopen accepted
 class D or extend its certificate to those regions.
 
 ## Evidence and replay
+
+The dependency registration uses exactly `ClassDBoundaryHitting` and
+`SwapOverlapFiniteness`. Proposition 4 is instantiated on the class-D
+premise in the proof above. It is not registered as depending on the
+universal `G1HalfCoincidenceRoute`, which bundles that implication with an
+open all-PIP premise; the existing `PDSImpliesRepoG1` registration uses the
+same distinction. There is no implication back from `ClassDFiniteBPA` to
+`G1`, to universal boundary hitting, or to a spectrum assertion.
+
+The generated Open model establishes `ClassDFiniteBPA` while retaining its
+`G1NotEstablished` and `PDSNotEstablished` invariants. Regression controls
+make either hitting or graph finiteness open and check that the scoped
+conclusion then becomes conditional and unreachable. A TLC mutation adds
+the false invariant `ClassDFiniteBPANotEstablished` and must exhibit its
+violation. These are checks of dependency wiring, not a Lean formalization
+or a new execution of the mathematical certificate.
+
+The [dependency-validation packet](../evidence/class-d-g1-ledger-2026-10-22/)
+records fresh local TLC execution, source pins and replay instructions.
+
+```sh
+python tools/make_ledger.py --check
+python tools/make_proof_bank.py --check
+TLA_TOOLS=/absolute/path/to/tla2tools.jar python -m pytest -q tests/test_ledger_generation.py
+TLA_TOOLS=/absolute/path/to/tla2tools.jar ./proof/tla/check.sh
+```
 
 Canonical authority remains the unchanged Mojo certificate:
 `kernel/psc/class_d_boundary_template.mojo` (`certify_boundary`),

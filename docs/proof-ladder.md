@@ -18,6 +18,12 @@ problem. This is a scoped derived corollary, with independent human review
 pending; universal #138/#139/#84, G1 and PSC remain open. Continue the
 remaining A/C coverage from the live roadmap, without reopening class D.
 
+`ClassDFiniteBPA` now records this specialization in the generated ledger,
+depending on `ClassDBoundaryHitting` and `SwapOverlapFiniteness`. The Open
+model reaches it while retaining `G1NotEstablished` and `PDSNotEstablished`.
+This instantiates Proposition 4 on the discharged scoped premise; it does
+not assume the open universal premise bundled into `G1HalfCoincidenceRoute`.
+
 ## Primary ladder: two universal lemmas
 
 The project now treats seedwise overlap productivity (#84) through the
