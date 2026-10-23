@@ -57,10 +57,14 @@ def main() raises:
             onto_target[0][0] = pi
             break
     assert_true(refuses(low0, rows, pieces, onto_target))
+    # Every fitted regime of both signs has generated tables; an unfitted one refuses.
+    for spec in fitted_regimes():
+        var reg = regime_of(spec, 5)
+        assert_true(len(regime_pieces(reg)) > 100 and len(regime_descents(reg)) > len(regime_pieces(reg)))
     var bad = False
     try:
-        _ = regime_pieces(Regime(1, KIND_MIDDLE, 5, 6, 5, 11))
+        _ = regime_pieces(Regime(1, KIND_LOW, 7, 0, 5, 11))
     except:
         bad = True
     assert_true(bad)
-    require_contract("class-A d-uniform regime descent: on the minus low r=0 regime the pieces and descent occurrences generated from the sample ray d=5 certify a strict affine potential descent for every l>=5 and every gap d>=5 with the ray descent's statistics; a removed descent row, a shifted piece end, a swapped child piece, a descent on the target piece and a regime without generated tables refuse")
+    require_contract("class-A d-uniform regime descent: on the minus low r=0 regime the pieces and descent occurrences generated from the sample ray d=5 certify a strict affine potential descent for every l>=5 and every gap d>=5 with the ray descent's statistics; a removed descent row, a shifted piece end, a swapped child piece, a descent on the target piece and an unfitted regime refuse; every fitted regime of both signs has generated tables")
