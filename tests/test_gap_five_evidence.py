@@ -72,3 +72,46 @@ def test_partial_or_corrupted_c_receipts_cannot_pass(mutation):
         text = re.sub(r'^BEGIN_LINE_CROSS_CHECK .*\n', '', text, count=1, flags=re.M)
     with pytest.raises(AssertionError):
         validate_c_receipt(text, 1, 5)
+
+
+def replay_paths(workflow):
+    """Read the positive path globs in this workflow's pull_request filter."""
+    block = workflow.split('  pull_request:\n    paths:\n', 1)[1].split('  workflow_dispatch:', 1)[0]
+    return re.findall(r"^      - '([^']+)'$", block, re.M)
+
+
+@pytest.mark.parametrize('changed_path', [
+    'kernel/psc/overlap_seed_patch.mojo',
+    'kernel/psc/perron_field3.mojo',
+    'kernel/psc/pisot.mojo',
+    'kernel/finite_exact/q.mojo',
+    'kernel/future_package/new_dependency.mojo',
+    'kernel/pixi.toml',
+    'kernel/pixi.lock',
+])
+def test_kernel_dependency_change_schedules_complete_gap_five_replay(changed_path):
+    from fnmatch import fnmatchcase
+
+    workflow = (ROOT / '.github/workflows/gap-five-evidence.yml').read_text()
+    paths = replay_paths(workflow)
+    assert 'kernel/**' in paths
+    assert any(fnmatchcase(changed_path, pattern) for pattern in paths)
+    # A workflow filter must schedule the entire existing two-sign matrix.
+    assert workflow.count('  exact-gap-five:') == 1
+    assert 'eps: 1' in workflow and 'eps: -1' in workflow
+    assert 'timeout 1200 build/gap-five/c ${{ matrix.eps }}' in workflow
+    assert 'diff ../evidence/issue139-gap5-2026-10-23/c-${{ matrix.side }}.log' in workflow
+
+
+def test_replay_trigger_regression_rejects_the_old_narrow_filter():
+    from fnmatch import fnmatchcase
+
+    old_filter = """  pull_request:
+    paths:
+      - 'kernel/class_c_gap_five.mojo'
+      - 'kernel/psc/symbolic_line.mojo'
+  workflow_dispatch:
+"""
+    for dependency in ('overlap_seed_patch', 'perron_field3', 'pisot'):
+        assert not any(fnmatchcase(f'kernel/psc/{dependency}.mojo', pattern)
+                       for pattern in replay_paths(old_filter))
