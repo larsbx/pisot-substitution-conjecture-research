@@ -4,6 +4,9 @@ Automated research workspace for the Pisot Substitution Conjecture (PSC), with e
 
 For a status-safe collaborator briefing, start with [`docs/project-onboarding-2026-10-23.md`](docs/project-onboarding-2026-10-23.md). It separates live theorem status from historical v6/v9 proof material, finite/family evidence, Tier-2 Plastic-A work, and the Penrose interface programme.
 
+For the **current narrowed targets** of #84, #138 and #139, and the ranked direct lines of attack, read
+[`docs/direct-attack-frontier-2026-10-23.md`](docs/direct-attack-frontier-2026-10-23.md).
+
 Repository structure and authority planes are declared in `ESTATE.toml`
 (estate template `estate-repository-v2`, as in `larsbx/langlands-lab`); see
 `ARCHITECTURE.md`.
