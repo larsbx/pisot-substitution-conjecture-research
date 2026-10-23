@@ -56,9 +56,10 @@ struct ALine(ImplicitlyCopyable, Copyable, Movable):
         return n // self.d
 
     def check_domain(self, n: Int) raises:
-        """Determinant-two PIP domain of the run-index note: `1 <= d <= 2n+6eps+5`."""
+        """Determinant-two PIP domain of the run-index note:
+        `q >= 0`, `q + eps >= 0`, `1 <= d <= 2q+6eps+5` with `q = n`."""
         self.check()
-        if n < 1 or self.d > 2 * n + 6 * self.eps + 5:
+        if n < 0 or n + self.eps < 0 or self.d > 2 * n + 6 * self.eps + 5:
             raise Error("parameter outside the determinant-two class-A PIP domain")
 
     def line_name(self) -> String:
@@ -72,8 +73,9 @@ struct ALine(ImplicitlyCopyable, Copyable, Movable):
 
     def member(self, n: Int) raises -> List[List[Int]]:
         self.check()
-        if n < 1 or n > 256:
-            raise Error("class-A finite replay budget requires 1<=n<=256")
+        if n < 0 or n > 256:
+            raise Error("class-A finite replay budget requires 0<=n<=256")
+        self.check_domain(n)
         return class_member(CLASS_A, n + self.d, n, n + self.eps)
 
     def to_n(self, coefficient: List[Int]) -> List[Int]:
