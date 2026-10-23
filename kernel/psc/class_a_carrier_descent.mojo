@@ -78,8 +78,8 @@ def certify_descent_line(line: ALine, n_floor: Int, rows: List[List[Int]], piece
     """Returns `[pieces, target pieces, descent rows, bound slope, bound constant]`:
     every carrier label reaches offset zero within `bound slope * n + bound constant`
     inflations for every integer `n >= n0`. Raises on any failed obligation."""
-    if n_floor < 4 or n_floor > 64:
-        raise Error("uniform descent floor must satisfy 4<=n0<=64")
+    if n_floor < 4 or n_floor > 160:
+        raise Error("uniform descent floor must satisfy 4<=n0<=160")
     var n_min = line.n_of(ray_floor(line, n_floor))
     line.check_domain(n_min)
     var q = line.bound(n_min)

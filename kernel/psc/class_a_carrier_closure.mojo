@@ -537,8 +537,8 @@ def certify_closure_line(line: ALine, n0: Int, rows: List[List[Int]], window: In
     typed carrier (rows affine in `l`, `n = d l + r`) is a strict forward-closed
     superset of the complete seed graph. Raises on any undecided sign or
     comparison and on any escaping child."""
-    if n0 < 4 or n0 > 64:
-        raise Error("uniform closure floor must satisfy 4<=n0<=64")
+    if n0 < 4 or n0 > 160:
+        raise Error("uniform closure floor must satisfy 4<=n0<=160")
     if window < 3 or window > 12:
         raise Error("child y-window outside the declared range")
     if len(rows) == 0:

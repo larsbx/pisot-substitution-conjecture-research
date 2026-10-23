@@ -46,7 +46,7 @@ def _opt(name):
     return sys.argv[sys.argv.index(name) + 1] if name in sys.argv else None
 
 
-OPTS = {"--line", "--rows-mojo", "--mojo", "--ray", "--nhi", "--tail-floor"}
+OPTS = {"--line", "--rows-mojo", "--mojo", "--ray", "--nhi", "--tail-floor", "--src", "--rows-fn"}
 ARGS = [a for i, a in enumerate(sys.argv[1:], 1) if not a.startswith("--") and sys.argv[i - 1] not in OPTS]
 RAY = _opt("--ray")
 if RAY:
@@ -55,6 +55,11 @@ if RAY:
     SRC = ROOT / ("kernel/psc/class_a_ray_d%d%s.mojo" % (D, "p" if EPS == 1 else "m"))
     ROW_COUNT = None
     ROWS_FN, PIECES_FN, DESCENTS_FN = "rows_r%d" % RR, "pieces_r%d" % RR, "descents_r%d" % RR
+    if _opt("--src"):
+        # Regime candidate generation: rows from a regime table module, one ray (d, eps, r)
+        # of the regime as the finite sample; the uniform verifier is the only evidence.
+        SRC = ROOT / _opt("--src")
+        ROWS_FN = _opt("--rows-fn") or ROWS_FN
 else:
     D, RR = 1, 0
     EPS = {"plus": 1, "minus": -1}[_opt("--line") or "plus"]
