@@ -214,7 +214,12 @@ any `τ_k`.
 
 ## 3. Next
 
-Move 2 (gap-uniform A/C, then the class-B top layer) remains the
-highest-value proof move. Move 6 now has a concrete first target: prove the
-observed conversion of simultaneous births into catch-up hits under one
-right step on class B. Its calibration family is the one recorded here.
+Move 2's class-A part (gaps `d ≥ 5`) is in open PRs #334 and #335. Its
+class-B part has a go decision: the
+[top-layer stop/go](class-b-top-layer-stopgo-2026-10-23.md) finds every probed
+top-layer line periodic-affine in `q`, with period equal to the boundary gap
+`g`. The next step there is per-gap residue-ray certificates for `g = 1, …, 5`.
+
+Move 6 now has a concrete first target: prove the observed conversion of
+simultaneous births into catch-up hits under one right step on class B. Its
+calibration family is the one recorded here.

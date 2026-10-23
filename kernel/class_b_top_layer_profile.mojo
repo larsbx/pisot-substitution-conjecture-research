@@ -20,7 +20,12 @@ A vertex without an offset-zero descendant raises as a candidate counterexample
 to boundary hitting (it would also contradict nothing proved: the top layer is
 open). "no affine fit" is a finite verdict on the probed window only.
 
-Usage: `mojo run -I . class_b_top_layer_profile.mojo plus|minus D QMAX`.
+Mode `barge DMAX QMAX` counts the PIP top-layer members with d <= DMAX, q <= QMAX
+on both branches that have a Barge power/rotation witness up to power 3 (the
+prior-art shortcut of `substitution_dynamics.barge_class`); no witness proves
+nothing about the spectrum.
+
+Usage: `mojo run -I . class_b_top_layer_profile.mojo plus|minus D QMAX | barge DMAX QMAX`.
 """
 
 from std.sys import argv
@@ -30,6 +35,8 @@ from lateral_conjugacy_census import theorem_c_region
 from psc.bpa import substitution_incidence
 from psc.overlap_seed_patch import build_seed_overlap_graph_from_tables, build_seed_overlap_tables_screened, first_left_aligned_depths
 from psc.pisot import CubicScreen
+from substitution_dynamics.barge_class import barge_witness
+from substitution_dynamics.substitution import Substitution
 
 
 comptime GRAPH_CAP = 20000
@@ -109,8 +116,37 @@ def affine_tail(pts: List[Point], k: Int, residue: Int) -> Tuple[Bool, Int, Int,
     return (True, step, qs[a], n)
 
 
+def barge_count(dmax: Int, qmax: Int) raises -> Tuple[Int, Int]:
+    """(PIP top-layer members, members with a Barge witness up to power 3)."""
+    if dmax < 0 or qmax < 1 or qmax > MAX_QMAX:
+        raise Error("need DMAX >= 0 and 1 <= QMAX <= ", MAX_QMAX)
+    var screen = CubicScreen()
+    var members = 0
+    var witnessed = 0
+    for plus in [True, False]:
+        for d in range(dmax + 1):
+            for q in range(1, qmax + 1):
+                var t = top_layer_member(plus, d, q)
+                if t[2] < 0 or not in_open_top_layer(plus, t[0], q):
+                    continue
+                var sigma = class_member(CLASS_B, t[0], t[1], t[2])
+                var m = Mat3(substitution_incidence(sigma))
+                if abs(m.det()) != 2 or not screen.is_pip(m):
+                    continue
+                members += 1
+                if barge_witness(Substitution(sigma^, 3), 3).found():
+                    witnessed += 1
+    return (members, witnessed)
+
+
 def main() raises:
     var args = argv()
+    if len(args) > 1 and String(args[1]) == "barge":
+        var dmax = Int(String(args[2])) if len(args) > 2 else 11
+        var qmax = Int(String(args[3])) if len(args) > 3 else 40
+        var c = barge_count(dmax, qmax)
+        print("class B top layer, d <=", dmax, "q <=", qmax, ": PIP members", c[0], ", with a Barge power/rotation witness (power <= 3)", c[1])
+        return
     if len(args) < 4:
         raise Error("usage: plus|minus D QMAX")
     var plus = String(args[1]) == "plus"
@@ -128,4 +164,4 @@ def main() raises:
             if not f[0]:
                 all_fit = False
             line += String(" r") + String(res) + ("=+" + String(f[1]) + "/step from q" + String(f[2]) if f[0] else "=no(" + String(f[3]) + " pts)")
-        print(line, " ALL AFFINE" if all_fit else "")
+        print(line + (" ALL AFFINE" if all_fit else ""))
