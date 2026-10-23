@@ -9,6 +9,10 @@
   mojo run -I . class_a_gap_uniform.mojo descent EPS KIND J L0 [D0]  # descent of one regime on its generated pieces/descents
   mojo run -I . class_a_gap_uniform.mojo descent-floor EPS KIND J L0 DMAX  # least d0 <= DMAX from which the regime descent certifies
   mojo run -I . class_a_gap_uniform.mojo certify EPS KIND J L0 [D0]  # closure and descent of one regime
+
+Floors satisfy 1 <= L0, D0 <= 64 (`Regime.check`): the exact box denominators
+`l0^p d0^q` of the Perron signs are Int64; a certificate from a floor covers
+every larger one.
 """
 from std.sys import argv
 from psc.class_a_gap_uniform import certify_regime, certify_regime_closure, certify_regime_descent

@@ -135,12 +135,14 @@ def _finite_ray(line: ALine, l0: Int, rows: List[List[Int]], pieces: List[List[I
 
 def certify_gap_theorem(eps: Int, l0: Int) raises -> List[Int]:
     """Boundary hitting on every class-A line of gap `d >= 5` and sign `eps`, for every
-    `n = d l + r` with `l >= l0`. Returns `[regimes, finite rays, exceptional rays,
-    exact graphs, largest finite gap]`."""
+    `n = d l + r` with `l >= l0`, for `1 <= l0 <= 64` (the regime floors are bounded
+    so that the exact Bernstein denominators `l0^p d0^q` stay within Int64; a
+    certificate from `l0` covers every larger floor). Returns `[regimes, finite rays,
+    exceptional rays, exact graphs, largest finite gap]`."""
     if eps != 1 and eps != -1:
         raise Error("class-A line requires eps = +-1")
-    if l0 < 1:
-        raise Error("the theorem floor l0 must be positive")
+    if l0 < 1 or l0 > 64:
+        raise Error("the theorem floor l0 must satisfy 1 <= l0 <= 64 (the regime certificate's exact box denominators l0^p d0^q are Int64)")
     var cover_from = eventual_cover(eps)
     var specs = fitted_regimes()
     var floors = regime_floors()

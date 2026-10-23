@@ -1,8 +1,12 @@
 """Class-A gaps d>=5, both signs: boundary hitting for every n = d l + r with l >= L0.
 
   mojo run -I . class_a_gap_theorem.mojo cover EPS DMAX       # residue coverage of every gap 5<=d<=DMAX and the eventual pattern
-  mojo run -I . class_a_gap_theorem.mojo certify EPS L0       # the assembled theorem for one sign
+  mojo run -I . class_a_gap_theorem.mojo certify EPS L0       # the assembled theorem for one sign, 1 <= L0 <= 64
   mojo run -I . class_a_gap_theorem.mojo certify-all L0       # both signs
+
+Floors are bounded by 64 (`Regime.check`): the exact box denominators `l0^p d0^q`
+of the Perron signs are Int64. A certificate from `L0` covers every larger floor,
+so `certify-all 5` is the theorem for every `n >= 5d`.
 """
 from std.sys import argv
 from psc.class_a_gap_theorem import certify_gap_theorem, eventual_cover, residue_cover, FIRST_GAP
@@ -39,4 +43,4 @@ def main() raises:
         for eps in [-1, 1]:
             _ = certify_gap_theorem(eps, Int(args[2]))
         return
-    raise Error("usage: cover EPS DMAX | certify EPS L0 | certify-all L0")
+    raise Error("usage: cover EPS DMAX | certify EPS L0 | certify-all L0  (1 <= L0 <= 64)")
