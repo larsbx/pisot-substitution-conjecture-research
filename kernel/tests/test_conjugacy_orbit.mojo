@@ -2,7 +2,7 @@
 from std.testing import assert_true, assert_false, assert_equal
 from mojo_smoke.claims import require_contract
 from a1_normal_form_census import CLASS_A, CLASS_B, CLASS_C, CLASS_D, class_member
-from lateral_conjugacy_census import census, check_b_chain, theorem_c_region
+from lateral_conjugacy_census import bh_check, census, check_b_chain, theorem_c_region
 from psc.conjugacy_orbit import conjugacy_class, is_left_conjugate_by, same_incidence, step_left, step_right
 from psc.one_tile import catch_up_free
 
@@ -66,4 +66,18 @@ def main() raises:
     assert_equal(tallies[CLASS_D].nontrivial, 0)
     assert_equal(tallies[CLASS_B].nontrivial, tallies[CLASS_B].members)
     assert_equal(transfer.catch_up_free_conjugates, 0)
-    require_contract("letter-rotation conjugacy classes are closed exactly and refuse past a cap; Theorem E classes A, C, D are conjugacy-isolated and every class-B member has the right-step chain of min(p,q,r)+2 conjugates, same incidence, none but sigma catch-up-free; bounded census p,q,r<=8; spectral transfer is the imported invariance, not tested here")
+    # Graph cross-check of the Corollary at q <= 1: every conjugate's complete
+    # seed graph hits offset zero (bh_check raises otherwise); sigma has no
+    # catch-up hit (Lemma P). The all-catch-up pattern on conjugates is a
+    # pinned finite observation, not a theorem.
+    var bh = bh_check(1)
+    assert_true(bh.graphs > bh.members)
+    assert_equal(bh.catch_up_sigma, 0)
+    assert_equal(bh.catch_up_conj, bh.recurrent_conj)
+    var too_big = False
+    try:
+        _ = bh_check(13)
+    except:
+        too_big = True
+    assert_true(too_big)
+    require_contract("letter-rotation conjugacy classes are closed exactly and refuse past a cap; Theorem E classes A, C, D are conjugacy-isolated and every class-B member has the right-step chain of min(p,q,r)+2 conjugates, same incidence, none but sigma catch-up-free; bounded census p,q,r<=8; complete seed graphs of Theorem C members with q<=1 and all their conjugates hit offset zero from every vertex, sigma has no catch-up hit, and (finite observation) every conjugate recurrent vertex has one; spectral transfer is the imported invariance, not tested here")

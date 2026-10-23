@@ -124,6 +124,7 @@ checks it on a bounded box only.
 ```sh
 cd kernel
 pixi run mojo run -I . lateral_conjugacy_census.mojo 30
+pixi run mojo run -I . lateral_conjugacy_census.mojo bh 8
 pixi run mojo run -I . tests/test_conjugacy_orbit.mojo
 ```
 
@@ -148,6 +149,41 @@ pixi run mojo run -I . tests/test_conjugacy_orbit.mojo
   conjugates. None is catch-up-free, 8,571 lie outside the Ω domain, and no
   member has a Barge power/rotation witness up to power 2. The run takes about
   4 s.
+
+### Graph-level cross-check, and what it shows about catch-up
+
+`lateral_conjugacy_census.mojo bh QMAX` builds, for every Theorem C member with
+`q ≤ QMAX` and each of its conjugates, the complete uncapped seed-overlap graph.
+It raises if any vertex lacks an offset-zero descendant, which would contradict
+the Corollary, and it classifies the recurrent nonzero vertices with
+`psc.hit_witness.analyze_hits`.
+
+| `QMAX` | members | graphs | largest / deepest | σ recurrent (catch-up) | conjugate recurrent (catch-up) |
+| --- | --- | --- | --- | --- | --- |
+| 4 | 77 | 347 | 1,848 / 7 | 24,158 (0) | 78,730 (78,730) |
+| 8 | 203 | 1,385 | 1,848 / 9 | 52,452 (0) | 267,058 (267,058) |
+
+1. **No contradiction.** Every vertex of every graph hits offset zero, as the
+   Corollary predicts.
+2. **σ has no catch-up hit**, as Lemma P requires for a catch-up-free member.
+3. **Every recurrent vertex of every conjugate has a catch-up hit.** This is a
+   *finite observation* and is not proved here.
+
+**Strategic consequence.** One conjugation step changes nothing in the tiling
+space. Yet it turns a family whose hits are all simultaneous births into one
+whose recurrent vertices all have catch-up hits. The catch-up / catch-up-free
+dichotomy is therefore a property of the **presentation**, not of the
+dynamics. Two things follow:
+
+- A universal BH mechanism keyed to catch-up hits (move 6), or one that fails
+  on catch-up-free presentations, has to be conjugacy-aware.
+- The recorded one-tile failures on catch-up-free specimens may be partly
+  presentation artifacts wherever a nontrivial conjugate exists. Among Theorem
+  E's classes that is class B only; A, C and D have no other presentation.
+
+A proof that conjugation converts simultaneous births into catch-up hits on
+class B would be a first uniform catch-up mechanism. It is the next move-6
+target.
 
 ### Negative controls
 
@@ -179,6 +215,6 @@ any `τ_k`.
 ## 3. Next
 
 Move 2 (gap-uniform A/C, then the class-B top layer) remains the
-highest-value proof move. Move 6 can now start by running the existing
-catch-up witness census on a sample of class-B conjugates and measuring how
-their hits divide between catch-up and simultaneous births.
+highest-value proof move. Move 6 now has a concrete first target: prove the
+observed conversion of simultaneous births into catch-up hits under one
+right step on class B. Its calibration family is the one recorded here.

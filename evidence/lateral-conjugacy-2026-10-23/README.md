@@ -12,3 +12,12 @@ check passed on the box `p, q, r <= 30`. These are bounded counts. The propositi
 itself is proved by hand for all parameters, and the spectral transfer rests on
 the imported conjugacy invariance. This is local execution, not hosted CI and not
 independent review.
+
+## Graph cross-check (move 6 calibration)
+
+`bh-qmax4.log` / `bh-qmax8.log` hold the unedited output of
+`cd kernel && pixi run mojo run -I . lateral_conjugacy_census.mojo bh 4` (and
+`bh 8`); the `.exit` files hold their exit codes (0). Each run builds the complete
+uncapped seed-overlap graph of every Theorem C member with `q <= QMAX` and of all
+its conjugates, and raises on a vertex without an offset-zero descendant. The
+catch-up counts are finite observations.

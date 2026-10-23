@@ -19,7 +19,14 @@ total length <= 8) and Barge's power/rotation class. This is a bounded
 count, not a theorem about the full region: the transfer itself is the
 one-line invariance, quantified over the whole of Theorem C.
 
-Usage: `mojo run -I . lateral_conjugacy_census.mojo [BOUND]` (default 30).
+Mode `bh QMAX` cross-checks the Corollary on graphs (move 6 calibration): for
+every Theorem C member with q <= QMAX and each of its conjugates, it builds the
+complete uncapped seed-overlap graph, raises if any vertex lacks an offset-zero
+descendant (that would contradict the Corollary's PDS => BH chain), and tallies
+recurrent nonzero vertices with a catch-up hit against those whose only new
+hits are simultaneous births. A capped graph raises; it gives no verdict.
+
+Usage: `mojo run -I . lateral_conjugacy_census.mojo [BOUND | bh QMAX]` (default 30).
 """
 
 from std.sys import argv
@@ -34,7 +41,9 @@ from psc.conjugacy_orbit import (
     same_substitution,
     step_right,
 )
+from psc.hit_witness import analyze_hits
 from psc.one_tile import catch_up_free
+from psc.overlap_seed_patch import build_seed_overlap_graph_from_tables, build_seed_overlap_tables_screened, first_left_aligned_depths
 from psc.pisot import CubicScreen
 from substitution_dynamics.barge_class import barge_witness
 from substitution_dynamics.substitution import Substitution
@@ -42,6 +51,8 @@ from substitution_dynamics.substitution import Substitution
 
 comptime MAX_BOUND = 60
 comptime CLASS_CAP = 256
+comptime GRAPH_CAP = 20000
+comptime MAX_QMAX = 12
 
 
 def theorem_c_region(p: Int, q: Int, r: Int) -> Bool:
@@ -177,8 +188,88 @@ def census(bound: Int) raises -> Tuple[List[ClassTally], BTransfer]:
     return (tallies^, b^)
 
 
+struct BHCheck(Copyable, Movable, Writable):
+    var members: Int
+    var graphs: Int
+    var largest: Int
+    var deepest: Int
+    var recurrent_sigma: Int
+    var catch_up_sigma: Int
+    var recurrent_conj: Int
+    var catch_up_conj: Int
+    var simultaneous_only_conj: Int
+
+    def __init__(out self):
+        self.members = 0
+        self.graphs = 0
+        self.largest = 0
+        self.deepest = 0
+        self.recurrent_sigma = 0
+        self.catch_up_sigma = 0
+        self.recurrent_conj = 0
+        self.catch_up_conj = 0
+        self.simultaneous_only_conj = 0
+
+    def write_to[W: Writer](self, mut w: W):
+        w.write("Theorem C members ", self.members, ", complete seed graphs ", self.graphs,
+                " (largest ", self.largest, " vertices, deepest offset-zero depth ", self.deepest,
+                "); every vertex hits offset zero. Recurrent nonzero vertices: sigma ",
+                self.recurrent_sigma, " with catch-up ", self.catch_up_sigma,
+                "; conjugates ", self.recurrent_conj, " with catch-up ", self.catch_up_conj,
+                ", simultaneous births only ", self.simultaneous_only_conj)
+
+
+def bh_check(qmax: Int) raises -> BHCheck:
+    """Graph-level cross-check of the Corollary on Theorem C members, q <= qmax."""
+    if qmax < 1 or qmax > MAX_QMAX:
+        raise Error("QMAX must lie in 1..", MAX_QMAX)
+    var screen = CubicScreen()
+    var out = BHCheck()
+    for q in range(1, qmax + 1):
+        for r in [q - 1, q + 1]:
+            for p in range(q + 1, 3 * q + 12):
+                if not theorem_c_region(p, q, r):
+                    continue
+                var sigma = class_member(CLASS_B, p, q, r)
+                var m = Mat3(substitution_incidence(sigma))
+                if abs(m.det()) != 2 or not screen.is_pip(m):
+                    continue
+                out.members += 1
+                var members = conjugacy_class(sigma, CLASS_CAP)
+                for k in range(len(members)):
+                    var tables = build_seed_overlap_tables_screened(members[k])
+                    var a = build_seed_overlap_graph_from_tables(tables, GRAPH_CAP)
+                    if a.capped:
+                        raise Error("seed graph capped at ", p, ",", q, ",", r, " k=", k, "; no verdict")
+                    out.graphs += 1
+                    out.largest = max(out.largest, a.size())
+                    for d in first_left_aligned_depths(a):
+                        if d < 0:
+                            raise Error("COROLLARY CONTRADICTED: a vertex without an offset-zero descendant at ", p, ",", q, ",", r, " k=", k)
+                        out.deepest = max(out.deepest, d)
+                    var h = analyze_hits(tables, a)
+                    for v in h.recurrent:
+                        var catch = h.left[v] >= 0 or h.right[v] >= 0
+                        if k == 0:
+                            out.recurrent_sigma += 1
+                            if catch:
+                                out.catch_up_sigma += 1
+                        else:
+                            out.recurrent_conj += 1
+                            if catch:
+                                out.catch_up_conj += 1
+                            elif h.new_left[v] >= 0 or h.new_right[v] >= 0:
+                                out.simultaneous_only_conj += 1
+    return out^
+
+
 def main() raises:
     var args = argv()
+    if len(args) > 1 and String(args[1]) == "bh":
+        var qmax = Int(String(args[2])) if len(args) > 2 else 4
+        print("lateral conjugacy BH cross-check, Theorem C members with q <=", qmax)
+        print(bh_check(qmax))
+        return
     var bound = Int(String(args[1])) if len(args) > 1 else 30
     var result = census(bound)
     print("lateral conjugacy census, p,q,r <=", bound)
