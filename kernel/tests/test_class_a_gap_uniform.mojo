@@ -61,8 +61,11 @@ def main() raises:
     var from_five = certify_regime_closure(early, rows)
     assert_true(from_five[9] > 0)
     assert_equal(uniform[9], 0)
-    for i in range(2, 9):
+    # Structural statistics agree (rows, segments, y cases, window checks, seeds, terminal
+    # splits); covered cases and gap geometry grow with the superset ranges.
+    for i in [0, 2, 3, 6, 7, 8, 10]:
         assert_equal(from_five[i], uniform[i])
+    assert_true(from_five[4] >= uniform[4])
     # Negative controls on the table: a removed row, a shifted endpoint, another regime's rows.
     var fewer = List[List[Int]]()
     for i in range(1, len(rows)):
