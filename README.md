@@ -58,6 +58,17 @@ universal BH, G1, and PSC remain open. See
 [issue-139 reconciliation](docs/issue-139-tracker-mathematics-reconciliation-2026-10-23.md).
 No theorem, governed claim, or evidence status is changed by reopening.
 
+**G1/PDS closure distinction (2026-10-04, reaffirmed 2026-10-23):**
+the unconditional **implication** `PDS ⇒ G1` (`PDSImpliesRepoG1`,
+Theorem S) is **repository-proved**, as is `PDS ⇒ termination with
+coincidence from every swap seed` (`PDSImpliesSeedwiseTermination`).
+Their proof records are complete and project-accepted for progression,
+with independent human validation outstanding. **Universal G1 itself is
+not yet proved without assuming PDS**, because universal PDS/PSC is also
+open; #44 is an independent G1 route, not a deficiency in the already-proved
+necessity direction. See [G1/PDS status reconciliation](docs/g1-pds-necessity-status-2026-10-23.md). This is a clarification of
+established repository statuses, not a new closure.
+
 **Historical #138 closure:** [issue #138](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/138)
 was closed on **2026-09-26 06:15:09 UTC**, then **reopened on
 2026-10-01 20:50:15 UTC**; it was **already open** at the October 23 audit.

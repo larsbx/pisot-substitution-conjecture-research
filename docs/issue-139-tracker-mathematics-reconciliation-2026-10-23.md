@@ -12,6 +12,12 @@
 
 These are GitHub tracker facts. No retroactive claim is made about the motivation for the earlier closure.
 
+**Preserve the already-proved necessity direction:** `PDS ⇒ G1` is
+repository-proved by Theorem S, even though universal BH and universal
+G1 are open as standalone premises. Reopening #139 neither reopens nor
+downgrades `PDSImpliesRepoG1`. See
+[G1/PDS proof-status note](g1-pds-necessity-status-2026-10-23.md).
+
 **Do not conflate #139 with #138's history.** #138 was closed on 2026-09-26
 and already reopened on 2026-10-01. The present #139 reopening is a separate
 2026-10-23 correction. Both universal obligations remain open, but only #139

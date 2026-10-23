@@ -65,6 +65,14 @@ primitive irreducible Pisot
 
 For **ternary** substitutions the two-obstruction completion theorem reduces the live gap to aligned **A1′ (#138)** and occurrence-compatible strict-zipper boundary hitting **BH (tracker #139)**. At the first inspection, #84 and #138 were open and GitHub issue #139 had been closed as `completed` on 2026-10-23 at 10:09:55Z despite universal BH remaining open on the mathematical status surfaces. **The tracker discrepancy was corrected:** #139 has now been **reopened** on 2026-10-23 at 17:45:32Z, with the remaining universal quantifier and accepted scoped certificates retained. See [the specific reconciliation](issue-139-tracker-mathematics-reconciliation-2026-10-23.md). Reopening does **not** assert a proof or mutate any machine theorem ledger.
 
+**Previously closed G1 implication:** the repository separately proves
+`PDS ⇒ G1` (Theorem S; `PDSImpliesRepoG1`, closed as a proof-dependency
+node on 2026-10-04/05), and also `PDS ⇒ all-seed BPA termination with
+coincidence` (`PDSImpliesSeedwiseTermination`). The statement "universal
+G1 remains open" elsewhere in this review concerns **unconditional G1**,
+not those completed conditional results. See
+[exact status distinction](g1-pds-necessity-status-2026-10-23.md).
+
 **Historical clarification for #138:** GitHub issue #138 was **also previously
 closed** (2026-09-26 06:15:09 UTC) but was **already reopened** on
 2026-10-01 20:50:15 UTC. Thus #138 was correctly recorded as currently open

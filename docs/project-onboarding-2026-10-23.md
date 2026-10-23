@@ -61,6 +61,15 @@ the **one-sided A1′ residual hub-edge statement**, not the issue's older
 stronger two-sided goal. See [the #138 historical tracker audit](issue-138-tracker-history-2026-10-23.md).
 Neither historical issue closure nor the narrower reduction constitutes proof.
 
+**G1 proof-record clarification:** `PDSImpliesRepoG1` and
+`PDSImpliesSeedwiseTermination` were closed as *implication theorems* by the
+October 4–5 Theorem S/ledger audit. They are complete dependency nodes,
+not open conjectures. Universal `G1` remains a distinct open node until a
+nonconditional route (or general PDS) is proved. See
+[the G1/PDS status reconciliation](g1-pds-necessity-status-2026-10-23.md).
+The stronger unconditional #44 renewal route stays open; #139's universal BH
+would be an independent sufficient route to G1 if proved.
+
 These are universal obligations. Family certificates, bounded-domain censuses, residue-ray certificates, and line/wedge theorems do not silently promote them.
 
 ### 2.3 Stronger structural routes

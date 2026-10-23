@@ -23,6 +23,16 @@ for the residual fixed-letter hub pair; the two-sided/suffix statement
 remains optional stronger scope. [Dated evidence](issue-138-tracker-history-2026-10-23.md).
 No mathematical status or proof-ledger output is changed.
 
+**2026-10-23 G1 status clarification:** do not say the proven relation
+`PDS ⇒ G1` remains open. Since 2026-10-04, `PDSImpliesRepoG1` has
+status **repository-proved**; `PDSImpliesSeedwiseTermination` is also
+repository-proved. Universal `G1` is **open** only in the distinct
+unconditional sense because universal PDS/PSC and alternative universal
+sufficient premises remain open. These statements are consistent, not
+conflicting tracker states. See
+[G1/PDS necessity status](g1-pds-necessity-status-2026-10-23.md).
+Neither #138's nor #139's tracker correction may demote those completed nodes.
+
 
 ## October 21 continuation beyond accepted class D
 
