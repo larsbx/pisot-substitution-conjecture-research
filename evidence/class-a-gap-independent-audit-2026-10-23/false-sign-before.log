@@ -1,0 +1,19 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+Included from /tmp/audit335-original/false-sign.mojo:1:
+/tmp/audit335-original/old_poly.mojo:43:13: warning: ref 'a' was never used, remove it?
+        for a in range(i + 1):
+            ^
+Included from /tmp/audit335-original/false-sign.mojo:1:
+/tmp/audit335-original/old_poly.mojo:298:36: warning: assignment to 'sides' was never used; assign to '_' instead?
+    var sides = List[List[List[Q]]]()
+                                   ^
+Included from /tmp/audit335-original/false-sign.mojo:1:
+/tmp/audit335-original/old_poly.mojo:527:18: warning: assignment to 'direct' was never used; assign to '_' instead?
+    var direct = 0
+                 ^
+Included from /tmp/audit335-original/false-sign.mojo:1:
+/tmp/audit335-original/old_poly.mojo:528:23: warning: assignment to 'first' was never used; assign to '_' instead?
+    var first = String("")
+                      ^
+ORIGINAL_CERTIFIED_SIGN 1
+EXACT_POINT_SIGN -1
