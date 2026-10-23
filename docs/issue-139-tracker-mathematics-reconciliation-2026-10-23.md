@@ -10,7 +10,13 @@
 * **2026-10-23 16:58:06 UTC:** inspected `main@c762210e` (merge PR #324) explicitly said `#138/#139/#84`, universal G1 and PSC remain open. This matches the current README, onboarding and roadmap and the latest mathematical scope notes.
 * **2026-10-23 17:45:32 UTC:** issue #139 was **reopened** to match its own unresolved acceptance criterion and the authoritative mathematical status surfaces.
 
-These are GitHub tracker facts. No retroactive claim is made about the motivation for the earlier closure. The status of a workstream, PR, or a specific family certificate is *not* a proof of the universal statement.
+These are GitHub tracker facts. No retroactive claim is made about the motivation for the earlier closure.
+
+**Do not conflate #139 with #138's history.** #138 was closed on 2026-09-26
+and already reopened on 2026-10-01. The present #139 reopening is a separate
+2026-10-23 correction. Both universal obligations remain open, but only #139
+required a state change in the October 23 conversation. See the
+[#138 historical audit](issue-138-tracker-history-2026-10-23.md). The status of a workstream, PR, or a specific family certificate is *not* a proof of the universal statement.
 
 ## Exactly what would close the mathematics
 

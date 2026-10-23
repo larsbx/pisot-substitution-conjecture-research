@@ -54,6 +54,13 @@ universal theorem. The [reconciliation note](issue-139-tracker-mathematics-recon
 records the closure/reopening provenance, exact acceptance criterion and
 remaining scope. This is a tracker correction only, not an accepted PSC step.
 
+**Historical #138 status (verified 2026-10-23):** #138 was closed
+2026-09-26 and already reopened 2026-10-01. It is **open now**; no duplicate
+reopening action was necessary. The live two-obstruction theorem needs only
+the **one-sided A1′ residual hub-edge statement**, not the issue's older
+stronger two-sided goal. See [the #138 historical tracker audit](issue-138-tracker-history-2026-10-23.md).
+Neither historical issue closure nor the narrower reduction constitutes proof.
+
 These are universal obligations. Family certificates, bounded-domain censuses, residue-ray certificates, and line/wedge theorems do not silently promote them.
 
 ### 2.3 Stronger structural routes

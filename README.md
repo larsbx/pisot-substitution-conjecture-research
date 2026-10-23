@@ -58,6 +58,17 @@ universal BH, G1, and PSC remain open. See
 [issue-139 reconciliation](docs/issue-139-tracker-mathematics-reconciliation-2026-10-23.md).
 No theorem, governed claim, or evidence status is changed by reopening.
 
+**Historical #138 closure:** [issue #138](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/138)
+was closed on **2026-09-26 06:15:09 UTC**, then **reopened on
+2026-10-01 20:50:15 UTC**; it was **already open** at the October 23 audit.
+The original two-sided strong-coincidence target is stronger than the current
+completion theorem needs. The remaining load-bearing theorem is **one-sided
+A1′**, eventual coincidence of the residual first-letter-fixed bad hub pair;
+no separate reversed/suffix lemma is a third premise. See
+[issue-138 historical reconciliation](docs/issue-138-tracker-history-2026-10-23.md).
+The historical closure had no accepted theorem-bearing artifact, and no
+claim-status promotion follows from this documentation.
+
 ## Current mathematical state
 
 ### October 22 class-D reconciliation

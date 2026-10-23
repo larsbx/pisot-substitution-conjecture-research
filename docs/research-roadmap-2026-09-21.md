@@ -15,6 +15,14 @@ historical snapshots below remain unchanged. Exact evidence and closure
 criterion: [issue-139 reconciliation](issue-139-tracker-mathematics-reconciliation-2026-10-23.md).
 This update changes no claim-status record or mathematical theorem.
 
+**2026-10-23 #138 historical status clarification:** GitHub #138 was closed on
+2026-09-26 at 06:15:09 UTC and reopened on 2026-10-01 at 20:50:15 UTC; it
+was already **open** at this audit. An earlier closing event is not a
+proved theorem. The current indispensable aligned lemma is *one-sided* A1′
+for the residual fixed-letter hub pair; the two-sided/suffix statement
+remains optional stronger scope. [Dated evidence](issue-138-tracker-history-2026-10-23.md).
+No mathematical status or proof-ledger output is changed.
+
 
 ## October 21 continuation beyond accepted class D
 

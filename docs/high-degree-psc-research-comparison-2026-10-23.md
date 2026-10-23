@@ -65,6 +65,14 @@ primitive irreducible Pisot
 
 For **ternary** substitutions the two-obstruction completion theorem reduces the live gap to aligned **A1′ (#138)** and occurrence-compatible strict-zipper boundary hitting **BH (tracker #139)**. At the first inspection, #84 and #138 were open and GitHub issue #139 had been closed as `completed` on 2026-10-23 at 10:09:55Z despite universal BH remaining open on the mathematical status surfaces. **The tracker discrepancy was corrected:** #139 has now been **reopened** on 2026-10-23 at 17:45:32Z, with the remaining universal quantifier and accepted scoped certificates retained. See [the specific reconciliation](issue-139-tracker-mathematics-reconciliation-2026-10-23.md). Reopening does **not** assert a proof or mutate any machine theorem ledger.
 
+**Historical clarification for #138:** GitHub issue #138 was **also previously
+closed** (2026-09-26 06:15:09 UTC) but was **already reopened** on
+2026-10-01 20:50:15 UTC. Thus #138 was correctly recorded as currently open
+at the first inspection; acknowledging the historical closure does not change
+its live status. Its necessary mathematical target is now the one-sided
+residual A1′ lemma, not a separate two-sided/reversal obligation. See
+[#138's historical reconciliation](issue-138-tracker-history-2026-10-23.md).
+
 Finite results must retain their domains: the repo's 4,554-member canonical short-image PIP corpus differs from the certified **145,806**-member Theorem Omega domain; class-A/C/D rays, lines, wedges and accepted determinant-two `b=0` class-D G1 bounds are still **scoped** results. Keep the actual occurrence-index, all-child, algebraic-sign, provenance, and native-Mojo evidence with each.
 
 **Next proof action:** seek a universal occurrence-compatible productivity/hitting theorem for #84 via A1′/BH. **Next quantitative action:** extract exact complexity/horizon/certificate-size estimates **only** on the already proved finite or family domains, with no hidden promotion. **Stop:** cycle exclusion; `UD => G1`; Euclidean-only non-unit transport; and treating 2024 claimed proofs or finite sample output as accepted universal closure.
