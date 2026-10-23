@@ -1,0 +1,386 @@
+[
+  {
+    "eps": 1,
+    "r": 0,
+    "floor": 24,
+    "rows": 86,
+    "cardinality": [
+      40,
+      88
+    ],
+    "closure": {
+      "seeds_real": 9,
+      "seeds_unreal": 3,
+      "member_checks": 172,
+      "segments": 774,
+      "y_cases": 8514,
+      "covered": 3351,
+      "gap_geometry": 2797,
+      "window_checks": 1548,
+      "clip_fallbacks": 0,
+      "terminal_splits": 65
+    },
+    "descent": {
+      "pieces": 130,
+      "targets": 8,
+      "descent_rows": 179,
+      "bound_slope": 2,
+      "bound_const": 12
+    },
+    "lower_refusals": [
+      [
+        4,
+        "pieces of row 27: negative length"
+      ],
+      [
+        8,
+        "pieces of row 29: negative length"
+      ],
+      [
+        12,
+        "pieces of row 57: negative length"
+      ],
+      [
+        16,
+        "pieces of row 67: negative length"
+      ],
+      [
+        20,
+        "UNDECIDED: polynomial vanishes at the interval bound"
+      ]
+    ]
+  },
+  {
+    "eps": 1,
+    "r": 1,
+    "floor": 21,
+    "rows": 88,
+    "cardinality": [
+      40,
+      90
+    ],
+    "closure": {
+      "seeds_real": 9,
+      "seeds_unreal": 3,
+      "member_checks": 176,
+      "segments": 792,
+      "y_cases": 8712,
+      "covered": 3383,
+      "gap_geometry": 2835,
+      "window_checks": 1584,
+      "clip_fallbacks": 0,
+      "terminal_splits": 65
+    },
+    "descent": {
+      "pieces": 126,
+      "targets": 8,
+      "descent_rows": 160,
+      "bound_slope": 2,
+      "bound_const": 8
+    },
+    "lower_refusals": [
+      [
+        5,
+        "pieces of row 30: negative length"
+      ],
+      [
+        9,
+        "pieces of row 30: negative length"
+      ],
+      [
+        13,
+        "pieces of row 68: negative length"
+      ],
+      [
+        17,
+        "pieces of row 68: negative length"
+      ]
+    ]
+  },
+  {
+    "eps": 1,
+    "r": 2,
+    "floor": 22,
+    "rows": 78,
+    "cardinality": [
+      40,
+      88
+    ],
+    "closure": {
+      "seeds_real": 9,
+      "seeds_unreal": 3,
+      "member_checks": 156,
+      "segments": 702,
+      "y_cases": 7722,
+      "covered": 3029,
+      "gap_geometry": 2537,
+      "window_checks": 1404,
+      "clip_fallbacks": 0,
+      "terminal_splits": 65
+    },
+    "descent": {
+      "pieces": 114,
+      "targets": 8,
+      "descent_rows": 151,
+      "bound_slope": 2,
+      "bound_const": 11
+    },
+    "lower_refusals": [
+      [
+        6,
+        "pieces of row 24: negative length"
+      ],
+      [
+        10,
+        "pieces of row 49: negative length"
+      ],
+      [
+        14,
+        "pieces of row 59: negative length"
+      ],
+      [
+        18,
+        "UNDECIDED: root inside (0, q]"
+      ]
+    ]
+  },
+  {
+    "eps": 1,
+    "r": 3,
+    "floor": 19,
+    "rows": 76,
+    "cardinality": [
+      40,
+      92
+    ],
+    "closure": {
+      "seeds_real": 9,
+      "seeds_unreal": 3,
+      "member_checks": 152,
+      "segments": 684,
+      "y_cases": 7524,
+      "covered": 2931,
+      "gap_geometry": 2453,
+      "window_checks": 1368,
+      "clip_fallbacks": 0,
+      "terminal_splits": 65
+    },
+    "descent": {
+      "pieces": 112,
+      "targets": 8,
+      "descent_rows": 145,
+      "bound_slope": 2,
+      "bound_const": 11
+    },
+    "lower_refusals": [
+      [
+        7,
+        "pieces of row 25: negative length"
+      ],
+      [
+        11,
+        "pieces of row 47: negative length"
+      ],
+      [
+        15,
+        "pieces of row 57: negative length"
+      ]
+    ]
+  },
+  {
+    "eps": -1,
+    "r": 0,
+    "floor": 24,
+    "rows": 93,
+    "cardinality": [
+      40,
+      75
+    ],
+    "closure": {
+      "seeds_real": 9,
+      "seeds_unreal": 3,
+      "member_checks": 186,
+      "segments": 837,
+      "y_cases": 9207,
+      "covered": 3621,
+      "gap_geometry": 3039,
+      "window_checks": 1674,
+      "clip_fallbacks": 0,
+      "terminal_splits": 65
+    },
+    "descent": {
+      "pieces": 129,
+      "targets": 8,
+      "descent_rows": 187,
+      "bound_slope": 1,
+      "bound_const": 4
+    },
+    "lower_refusals": [
+      [
+        4,
+        "pieces of row 23: negative length"
+      ],
+      [
+        8,
+        "pieces of row 53: negative length"
+      ],
+      [
+        12,
+        "pieces of row 62: negative length"
+      ],
+      [
+        16,
+        "pieces of row 63: negative length"
+      ],
+      [
+        20,
+        "descents of piece 23: negative length"
+      ]
+    ]
+  },
+  {
+    "eps": -1,
+    "r": 1,
+    "floor": 25,
+    "rows": 117,
+    "cardinality": [
+      40,
+      145
+    ],
+    "closure": {
+      "seeds_real": 9,
+      "seeds_unreal": 3,
+      "member_checks": 234,
+      "segments": 1053,
+      "y_cases": 11583,
+      "covered": 4539,
+      "gap_geometry": 3817,
+      "window_checks": 2106,
+      "clip_fallbacks": 0,
+      "terminal_splits": 65
+    },
+    "descent": {
+      "pieces": 157,
+      "targets": 8,
+      "descent_rows": 212,
+      "bound_slope": 1,
+      "bound_const": 4
+    },
+    "lower_refusals": [
+      [
+        5,
+        "pieces of row 59: negative length"
+      ],
+      [
+        9,
+        "pieces of row 61: negative length"
+      ],
+      [
+        13,
+        "pieces of row 72: negative length"
+      ],
+      [
+        17,
+        "pieces of row 90: negative length"
+      ],
+      [
+        21,
+        "UNDECIDED: root inside (0, q]"
+      ]
+    ]
+  },
+  {
+    "eps": -1,
+    "r": 2,
+    "floor": 22,
+    "rows": 109,
+    "cardinality": [
+      40,
+      129
+    ],
+    "closure": {
+      "seeds_real": 9,
+      "seeds_unreal": 3,
+      "member_checks": 218,
+      "segments": 981,
+      "y_cases": 10791,
+      "covered": 4187,
+      "gap_geometry": 3529,
+      "window_checks": 1962,
+      "clip_fallbacks": 0,
+      "terminal_splits": 65
+    },
+    "descent": {
+      "pieces": 149,
+      "targets": 8,
+      "descent_rows": 202,
+      "bound_slope": 2,
+      "bound_const": 8
+    },
+    "lower_refusals": [
+      [
+        6,
+        "pieces of row 25: negative length"
+      ],
+      [
+        10,
+        "pieces of row 58: negative length"
+      ],
+      [
+        14,
+        "pieces of row 69: negative length"
+      ],
+      [
+        18,
+        "pieces of row 69: negative length"
+      ]
+    ]
+  },
+  {
+    "eps": -1,
+    "r": 3,
+    "floor": 23,
+    "rows": 105,
+    "cardinality": [
+      40,
+      125
+    ],
+    "closure": {
+      "seeds_real": 9,
+      "seeds_unreal": 3,
+      "member_checks": 210,
+      "segments": 945,
+      "y_cases": 10395,
+      "covered": 4001,
+      "gap_geometry": 3377,
+      "window_checks": 1890,
+      "clip_fallbacks": 0,
+      "terminal_splits": 65
+    },
+    "descent": {
+      "pieces": 139,
+      "targets": 8,
+      "descent_rows": 189,
+      "bound_slope": 2,
+      "bound_const": 8
+    },
+    "lower_refusals": [
+      [
+        7,
+        "pieces of row 26: negative length"
+      ],
+      [
+        11,
+        "pieces of row 69: negative length"
+      ],
+      [
+        15,
+        "pieces of row 70: negative length"
+      ],
+      [
+        19,
+        "descents of piece 26: negative length"
+      ]
+    ]
+  }
+]
