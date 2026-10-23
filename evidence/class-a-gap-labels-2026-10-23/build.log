@@ -31,3 +31,11 @@ D_GAP_DATASET d=15 eps=-1 added 75 file evidence/class-a-gap-labels-2026-10-23/l
 D_GAP_DATASET d=16 eps=1 added 80 file evidence/class-a-gap-labels-2026-10-23/labels-d16-eps1.txt
 D_GAP_DATASET d=16 eps=-1 added 80 file evidence/class-a-gap-labels-2026-10-23/labels-d16-eps-1.txt
 D_GAP_DATASET d=17 eps=1 added 85 file evidence/class-a-gap-labels-2026-10-23/labels-d17-eps1.txt
+D_GAP_DATASET d=17 eps=-1 added 5 file evidence/class-a-gap-labels-2026-10-23/labels-d17-eps-1.txt
+D_GAP_DATASET d=17 eps=1 added 0 file evidence/class-a-gap-labels-2026-10-23/labels-d17-eps1.txt
+D_GAP_DATASET d=18 eps=-1 added 90 file evidence/class-a-gap-labels-2026-10-23/labels-d18-eps-1.txt
+D_GAP_DATASET d=18 eps=1 added 90 file evidence/class-a-gap-labels-2026-10-23/labels-d18-eps1.txt
+D_GAP_DATASET d=19 eps=-1 added 95 file evidence/class-a-gap-labels-2026-10-23/labels-d19-eps-1.txt
+D_GAP_DATASET d=19 eps=1 added 95 file evidence/class-a-gap-labels-2026-10-23/labels-d19-eps1.txt
+D_GAP_DATASET d=20 eps=-1 added 100 file evidence/class-a-gap-labels-2026-10-23/labels-d20-eps-1.txt
+D_GAP_DATASET d=20 eps=1 added 100 file evidence/class-a-gap-labels-2026-10-23/labels-d20-eps1.txt
