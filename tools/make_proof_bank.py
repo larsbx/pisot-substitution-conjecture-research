@@ -297,10 +297,13 @@ def statement_inventory(root: Path) -> list[dict]:
         text, masked = repo.text(rel), repo.masked(rel)
         matches = {m.start(): m for p in (base, extra) for m in p.finditer(masked)}
         lines = text.splitlines()
+        masked_lines = masked.splitlines()
         for start in sorted(matches):
-            number = text.count("\n", 0, start) + 1
+            # Masking preserves newlines, but fenced-code masking removes
+            # characters. Match offsets therefore belong to masked, not text.
+            number = masked.count("\n", 0, start) + 1
             # Patterns may include preceding blank whitespace; select the statement line.
-            while number <= len(lines) and not lines[number-1].strip():
+            while number <= len(masked_lines) and not masked_lines[number-1].strip():
                 number += 1
             found.append({"source": rel, "line": number, "statement_heading": lines[number-1].strip()})
     return found

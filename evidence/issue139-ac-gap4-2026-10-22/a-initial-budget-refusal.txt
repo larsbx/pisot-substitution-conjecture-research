@@ -1,0 +1,5 @@
+SUMMARY 20 288 6 284
+CLASS_A_TYPED_CARRIER_FINITE line=(n+4,n,n+1) n=4l+0 24 candidate 328 graph 328 max_hit 7 uniform_closure=false
+CLASS_A_DESCENT_FINITE line=(n+4,n,n+1) n=4l+0 24 labels 328 targets 8 checked_edges 320
+stack trace was not collected. Enable stack trace collection with environment variable `MODULAR_DEBUG=stack-trace-on-error`
+Unhandled exception caught during execution: finite typed-carrier replay permits 4<=n<=24

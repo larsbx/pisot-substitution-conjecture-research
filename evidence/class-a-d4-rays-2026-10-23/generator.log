@@ -1,0 +1,46 @@
++ oracles/python/class_a_descent_table.py GRAPHS/g4p 12 --ray 4,1,0 --nhi 47 --rows-mojo
+rows: 86 slices: 81
++ oracles/python/class_a_descent_table.py GRAPHS/g4p 12 --ray 4,1,1 --nhi 47 --rows-mojo
+rows: 88 slices: 87
++ oracles/python/class_a_descent_table.py GRAPHS/g4p 8 --ray 4,1,2 --nhi 47 --rows-mojo
+rows: 78 slices: 78
++ oracles/python/class_a_descent_table.py GRAPHS/g4p 8 --ray 4,1,3 --nhi 47 --rows-mojo
+rows: 76 slices: 74
++ oracles/python/class_a_descent_table.py GRAPHS/g4p 16 --ray 4,1,0 --nhi 47 --mojo
+pieces: 130
+NLO 16 pieces 130 failures: 0  descent rows: 178
++ oracles/python/class_a_descent_table.py GRAPHS/g4p 17 --ray 4,1,1 --nhi 47 --mojo
+pieces: 126
+NLO 17 pieces 126 failures: 0  descent rows: 159
++ oracles/python/class_a_descent_table.py GRAPHS/g4p 18 --ray 4,1,2 --nhi 47 --mojo
+row 73 fitted with slack 1
+pieces: 114
+NLO 18 pieces 114 failures: 0  descent rows: 151
++ oracles/python/class_a_descent_table.py GRAPHS/g4p 15 --ray 4,1,3 --nhi 47 --mojo
+row 71 fitted with slack 1
+pieces: 112
+NLO 15 pieces 112 failures: 0  descent rows: 144
+regenerated class_a_ray_d4p.mojo identical
++ oracles/python/class_a_descent_table.py GRAPHS/g4m 12 --ray 4,-1,0 --nhi 47 --rows-mojo
+rows: 93 slices: 91
++ oracles/python/class_a_descent_table.py GRAPHS/g4m 17 --ray 4,-1,1 --nhi 47 --rows-mojo
+rows: 117 slices: 117
++ oracles/python/class_a_descent_table.py GRAPHS/g4m 14 --ray 4,-1,2 --nhi 47 --rows-mojo
+rows: 109 slices: 109
++ oracles/python/class_a_descent_table.py GRAPHS/g4m 11 --ray 4,-1,3 --nhi 47 --rows-mojo
+rows: 105 slices: 105
++ oracles/python/class_a_descent_table.py GRAPHS/g4m 24 --ray 4,-1,0 --nhi 47 --mojo
+row 88 fitted with slack 1
+pieces: 129
+NLO 24 pieces 129 failures: 0  descent rows: 188
++ oracles/python/class_a_descent_table.py GRAPHS/g4m 21 --ray 4,-1,1 --nhi 47 --mojo
+row 110 fitted with slack 1
+pieces: 157
+NLO 21 pieces 157 failures: 0  descent rows: 212
++ oracles/python/class_a_descent_table.py GRAPHS/g4m 22 --ray 4,-1,2 --nhi 47 --mojo
+pieces: 149
+NLO 22 pieces 149 failures: 0  descent rows: 202
++ oracles/python/class_a_descent_table.py GRAPHS/g4m 23 --ray 4,-1,3 --nhi 47 --mojo
+pieces: 139
+NLO 23 pieces 139 failures: 0  descent rows: 190
+regenerated class_a_ray_d4m.mojo identical

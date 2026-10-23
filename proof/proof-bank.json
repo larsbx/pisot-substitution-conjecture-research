@@ -1959,13 +1959,13 @@
     },
     {
       "source": "docs/c4-defect-degree-census.md",
-      "line": 116,
-      "statement_heading": "This does **not** prove that a general PIP BPA has no degree-4 state, that every degree-3 state belongs to the four classes above, or that degree-2 recurrent SCCs must leak. Those remain general proof obligations. It only says the statements above hold exhaustively in the stated 4,554-substitution corpus."
+      "line": 120,
+      "statement_heading": "**Proposition (bounded PIP corpus).** Among the 4,554 primitive ternary"
     },
     {
       "source": "docs/c4-endpoint-core-program.md",
-      "line": 117,
-      "statement_heading": "productive. QED."
+      "line": 124,
+      "statement_heading": "### Proposition 3"
     },
     {
       "source": "docs/c4-parikh-intertwiner.md",
@@ -1984,53 +1984,53 @@
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 77,
-      "statement_heading": "`kernel/psc/class_a_typed_carrier.mojo`: a row `(top,bottom,s,y,a,b,c,d)`"
+      "line": 83,
+      "statement_heading": "**Lemma 1 (elimination of n).** For integer polynomials `A, B` and every `n`,"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 79,
-      "statement_heading": "and `c = s - k - y`. Rows of one typed slice `(top,bottom,s,y)` are disjoint."
+      "line": 87,
+      "statement_heading": "**Lemma 2 (interval sign).** Let `Q` be an integer polynomial, `q = 1/(n0+1)`."
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 88,
-      "statement_heading": "Strip the factors of `h` (positive on the interval). If `Q(q) != 0` and the"
+      "line": 93,
+      "statement_heading": "**Lemma 3 (affine ray).** For affine forms `u = u_1 n + u_0`, `v`: `u <= v`"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 95,
-      "statement_heading": "for every such `n` iff `u_1 >= v_1` and `u(n0) > v(n0)`; otherwise the order"
+      "line": 103,
+      "statement_heading": "**Lemma 4 (children of a carrier label).** Let `(t,b,w)` be a label with"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 127,
-      "statement_heading": "Proof: `w' = M w + pi(prefix_b) - pi(prefix_t)` is the shared affine update"
+      "line": 134,
+      "statement_heading": "## Theorem A: uniform forward closure"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 127,
-      "statement_heading": "Proof: `w' = M w + pi(prefix_b) - pi(prefix_t)` is the shared affine update"
+      "line": 136,
+      "statement_heading": "**Theorem A (uniform carrier closure).** For every integer `n >= 5`: (i) every"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 190,
-      "statement_heading": "| cases with a realizable range / gaps excluded by geometry | 3,802 / 3,334 | 3,947 / 3,479 |"
+      "line": 199,
+      "statement_heading": "## Theorem B: uniform descent to offset zero"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 203,
-      "statement_heading": "pieces of `kernel/psc/class_a_descent_data.mojo` partition every row; eight"
+      "line": 210,
+      "statement_heading": "**Theorem B (uniform descent).** For every integer `n >= 8` and every"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 239,
-      "statement_heading": "affine pieces (it is *not* affine on a row: period-three plateaus), the target"
+      "line": 246,
+      "statement_heading": "## Corollary C: boundary hitting on the whole line"
     },
     {
       "source": "docs/class-a-carrier-closure-2026-10-22.md",
-      "line": 240,
-      "statement_heading": "is split into its own piece, and for each piece one child type was chosen that"
+      "line": 248,
+      "statement_heading": "**Corollary C (class-A line boundary hitting).** For every integer `n >= 4`,"
     },
     {
       "source": "docs/class-a-cover-obstruction-2026-10-21.md",
@@ -2039,43 +2039,48 @@
     },
     {
       "source": "docs/class-a-d2-plus-rays-2026-10-22.md",
-      "line": 84,
-      "statement_heading": "`depth <= floor(X/3) <= depth+1`, the dominate-and-drop relaxation recorded for"
+      "line": 87,
+      "statement_heading": "**Theorem (d=2 plus line).** For every integer `n>=1`, every vertex of the"
+    },
+    {
+      "source": "docs/class-a-d4-rays-2026-10-23.md",
+      "line": 75,
+      "statement_heading": "**Theorem (gap four).** For every `n>=0` on `(n+4,n,n+1)`, and every `n>=3`"
     },
     {
       "source": "docs/class-a-minus-line-2026-10-22.md",
-      "line": 106,
-      "statement_heading": "synthesis is not evidence. The result, `kernel/psc/class_a_minus_carrier.mojo`,"
+      "line": 113,
+      "statement_heading": "## Theorem A' (uniform forward closure)"
     },
     {
       "source": "docs/class-a-minus-line-2026-10-22.md",
-      "line": 106,
-      "statement_heading": "synthesis is not evidence. The result, `kernel/psc/class_a_minus_carrier.mojo`,"
+      "line": 115,
+      "statement_heading": "**Theorem A'.** For every integer `n>=8`: (i) every carrier label is a strict"
     },
     {
       "source": "docs/class-a-minus-line-2026-10-22.md",
-      "line": 131,
-      "statement_heading": "| cases with a realizable range / gaps excluded by geometry | 4,508 / 3,842 | 4,446 / 3,780 |"
+      "line": 139,
+      "statement_heading": "## Theorem B' (uniform descent) and Corollary C'"
     },
     {
       "source": "docs/class-a-minus-line-2026-10-22.md",
-      "line": 131,
-      "statement_heading": "| cases with a realizable range / gaps excluded by geometry | 4,508 / 3,842 | 4,446 / 3,780 |"
+      "line": 141,
+      "statement_heading": "**Theorem B'.** For every integer `n>=8` there is a 176-piece affine potential"
     },
     {
       "source": "docs/class-a-minus-line-2026-10-22.md",
-      "line": 157,
-      "statement_heading": "first-hit plateaus shift with `n mod 3` (right of the target the depths run"
-    },
-    {
-      "source": "docs/class-a-residue-rays-2026-10-22.md",
-      "line": 83,
-      "statement_heading": "| `(n+3,n,n+1)` | `n=3l+2` | 17 | 78 | `40l+98` | 3,026 / 2,569 | 116 / 8 / 157 | `2l+11` |"
+      "line": 163,
+      "statement_heading": "**Corollary C' (boundary hitting on the minus line).** For every integer"
     },
     {
       "source": "docs/class-a-residue-rays-2026-10-22.md",
       "line": 88,
       "statement_heading": "**Theorem R.** For each tabulated ray and every `n >= floor` on it, the"
+    },
+    {
+      "source": "docs/class-a-residue-rays-2026-10-22.md",
+      "line": 92,
+      "statement_heading": "**Corollary L.** On each of the three lines, every vertex of the complete"
     },
     {
       "source": "docs/class-a-typed-carrier-2026-10-21.md",
@@ -2099,18 +2104,33 @@
     },
     {
       "source": "docs/formal-productivity-reduction-2026-10-04.md",
-      "line": 83,
-      "statement_heading": "exactly all-pairs aligned strong coincidence: three letter pairs, each a"
+      "line": 86,
+      "statement_heading": "**Corollary FP″** (2026-10-04; adds the import of"
+    },
+    {
+      "source": "docs/issue139-ac-gap4-2026-10-22.md",
+      "line": 61,
+      "statement_heading": "**Theorem A4.** On `x -> x y^(n+4) x`, `c -> c y^n x`,"
+    },
+    {
+      "source": "docs/issue139-ac-gap4-2026-10-22.md",
+      "line": 118,
+      "statement_heading": "**Theorem C4.** On `x -> x y^(n+4) x`, `c -> c y^n x`,"
+    },
+    {
+      "source": "docs/issue139-gap5-2026-10-23.md",
+      "line": 47,
+      "statement_heading": "**Theorem C5 (scoped, computer-assisted).** For class C with"
     },
     {
       "source": "docs/k2-load-bearing-scc-salvage-2026-10-11.md",
-      "line": 46,
-      "statement_heading": "s_13 = ((1,3),(3,1))"
+      "line": 57,
+      "statement_heading": "## Lemma A: dominant length-two K2 source"
     },
     {
       "source": "docs/k2-load-bearing-scc-salvage-2026-10-11.md",
-      "line": 65,
-      "statement_heading": "subspace, the dominant projection would be the zero map."
+      "line": 70,
+      "statement_heading": "## Lemma B: K2 additivity over balanced decomposition"
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
@@ -2124,83 +2144,83 @@
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
-      "line": 92,
-      "statement_heading": "the manuscript's Lemma 2.3 (`Q`-independence of the `l_a`, which needs"
+      "line": 95,
+      "statement_heading": "**Lemma 3.1 (zero returns are common vertices).** Let `(u, v)` be a balanced"
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
-      "line": 100,
-      "statement_heading": "integer vector, so `pi(u[i]) = pi(v[j])` by `Q`-independence; applying"
+      "line": 103,
+      "statement_heading": "**Lemma 3.2 (common tiles are coincidence blocks).** A tile belongs to both"
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
-      "line": 123,
-      "statement_heading": "`u`); they are vertices of `O_sigma` (Lemma 1.1). An overlap is *productive*"
+      "line": 126,
+      "statement_heading": "**Theorem 4.1.** Let `sigma` be PIP, `s` a swap seed and `T` a state"
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
-      "line": 188,
-      "statement_heading": "beta^K NC_m` as in (3) and `delta(s) = 1`. Termination with coincidence is,"
+      "line": 191,
+      "statement_heading": "**Corollary 4.2 (mass balance on overlaps).** For an overlap `O` of type"
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
-      "line": 201,
-      "statement_heading": "`rho(N_S) = beta`, and `N_S V_S = V_S M^T` for the matrix `V_S` with rows"
+      "line": 204,
+      "statement_heading": "**Corollary 4.2' (full rank on closed overlap sets).** Let `S` be a nonempty"
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
-      "line": 215,
-      "statement_heading": "its depth-`m` descendants, so it is productive whenever `(c, c')` is"
+      "line": 218,
+      "statement_heading": "**Corollary 4.3 (sink reduction on overlaps).** Since `O_sigma` is finite,"
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
-      "line": 370,
-      "statement_heading": "`m` inflates to common tiles at level `m+1` whose interiors cover the"
+      "line": 374,
+      "statement_heading": "**Lemma 8.1 (three forms; manuscript Lemma 5.36).** For PIP `sigma` and a"
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
-      "line": 387,
-      "statement_heading": "`beta^{m'} t` lies in `beta^{m'-N} J°` and the level-`m'` tilings refine the"
+      "line": 391,
+      "statement_heading": "**Imported theorem (Barge–Štimac–Williams, *Pure discrete spectrum in"
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
-      "line": 411,
-      "statement_heading": "`Phi^k` of it is `(sigma^k(ab), sigma^k(ba))` repeated; hence"
+      "line": 415,
+      "statement_heading": "**Theorem 8.2 (manuscript Theorem 5.38, main theorem without finiteness).**"
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
-      "line": 442,
-      "statement_heading": "`n` (the manuscript's Imported Theorem 2.x of Barge–Diamond); the strong"
+      "line": 446,
+      "statement_heading": "**Proposition 9.1 (manuscript Proposition 5.39).** Exchanging the two"
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
-      "line": 453,
-      "statement_heading": "(reflection sends `(a, b, t)` to `(a, b, l_a - l_b - t)` and commutes with"
+      "line": 458,
+      "statement_heading": "**Proposition 9.2 (manuscript Proposition 5.40).** Write the offset as"
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
-      "line": 467,
-      "statement_heading": "holds (the offset-zero descendant is a coincidence or productive by 9.1);"
+      "line": 471,
+      "statement_heading": "**Corollary 9.3 (manuscript Corollary 5.41).** Under strong coincidence:"
     },
     {
       "source": "docs/overlap-finiteness-and-coincidence-density-2026-09-13.md",
-      "line": 500,
-      "statement_heading": "the prescribed expanding offset, the geometric coincidence problem of"
+      "line": 505,
+      "statement_heading": "**Proposition 10.1 (manuscript Proposition 5.42, contracting lower bound).**"
     },
     {
       "source": "docs/p1-overlap-affine-pump-2026-09-15.md",
-      "line": 28,
-      "statement_heading": "It is essential: two occurrences can have the same child overlap type while"
+      "line": 32,
+      "statement_heading": "### Lemma 1 (ordered affine cycle identity)"
     },
     {
       "source": "docs/p1-overlap-collar-2026-09-16.md",
-      "line": 40,
-      "statement_heading": "in `{a,b}` on both sides, starting with the partner letter."
+      "line": 42,
+      "statement_heading": "### Lemma 1 (collar recursion). **Status: repository-proved.**"
     },
     {
       "source": "docs/p1-overlap-collar-2026-09-16.md",
-      "line": 66,
-      "statement_heading": "finitely many words of length `m`; the morphism and truncation statements are"
+      "line": 72,
+      "statement_heading": "### Lemma 2 (collars along a periodic occurrence path). **Status: repository-proved.**"
     },
     {
       "source": "docs/p1-overlap-minimal-obstruction-2026-09-14.md",
@@ -2209,13 +2229,13 @@
     },
     {
       "source": "docs/p1-overlap-minimal-obstruction-2026-09-14.md",
-      "line": 83,
-      "statement_heading": "letter pair, so a bad `S` contains no endpoint-aligned state at all.  More"
+      "line": 87,
+      "statement_heading": "### Proposition 3.1 (boundary obstruction or strict zipper)"
     },
     {
       "source": "docs/p1-overlap-seed-growth-bridge-2026-09-17.md",
-      "line": 29,
-      "statement_heading": "raises and gives no result."
+      "line": 33,
+      "statement_heading": "**Lemma (repository-proved).** For every `n >= 0`, `c_n(v)` is exactly the"
     },
     {
       "source": "docs/p1-seed-strength-2026-10-08.md",
@@ -2554,27 +2574,27 @@
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 184,
+      "line": 204,
       "statement_heading": "## 4. Theorem L″: lines of classes A, C and D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 203,
+      "line": 223,
       "statement_heading": "*Theorem L″.* For each line below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 272,
+      "line": 292,
       "statement_heading": "## 4b. Theorem W: two-parameter wedges of class D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 349,
+      "line": 369,
       "statement_heading": "*Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 366,
+      "line": 386,
       "statement_heading": "*Corollary W1.* **Every PIP member of class D with `r ≥ q − 1` has pure"
     },
     {
@@ -2599,18 +2619,18 @@
     },
     {
       "source": "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md",
-      "line": 384,
-      "statement_heading": "pixi run mojo run -I . tests/test_class_d_minus_recurrent_support.mojo"
+      "line": 424,
+      "statement_heading": "**Lemma (this itinerary only).** No member of this family is an actual"
     },
     {
       "source": "docs/p1b-class-d-positive-b-wedge-2026-10-19.md",
-      "line": 180,
-      "statement_heading": "distance from the run end (b-coefficient 1). First occurrences have coefficient"
+      "line": 225,
+      "statement_heading": "**Proposition (scoped rank descent).** For every integer `a>=2,b>=1`, every"
     },
     {
       "source": "docs/p1b-class-d-positive-b-wedge-2026-10-19.md",
-      "line": 215,
-      "statement_heading": "141, b=1 -> 34: top 0,         bottom 2a+6"
+      "line": 260,
+      "statement_heading": "### Lemma"
     },
     {
       "source": "docs/p1b-leftmost-chain-periodic-pair-2026-10-05.md",
@@ -2654,18 +2674,18 @@
     },
     {
       "source": "docs/p1b-madic-carry-reduction-2026-10-01.md",
-      "line": 44,
-      "statement_heading": "Thus the strict-zipper target is exactly eventual membership of its realized"
+      "line": 49,
+      "statement_heading": "### Lemma 2.1"
     },
     {
       "source": "docs/p1b-madic-carry-reduction-2026-10-01.md",
-      "line": 73,
-      "statement_heading": "d = M^m z for a unique integral z, and the hit occurs only when z = w."
+      "line": 80,
+      "statement_heading": "### Theorem 3.1 — descaled candidates obey the overlap affine update"
     },
     {
       "source": "docs/p1b-overlap-realization-bridge.md",
-      "line": 206,
-      "statement_heading": "- fail closed on a rejected enclosure and on interval division across zero;"
+      "line": 227,
+      "statement_heading": "## 7. Theorem boundary"
     },
     {
       "source": "docs/p1b-periodic-pair-fibre-literature-gate-2026-10-02.md",
@@ -2774,48 +2794,48 @@
     },
     {
       "source": "docs/p1b-vertex-coincidence-box-2026-10-02.md",
-      "line": 409,
-      "statement_heading": "This is a sample, labelled as such, and not a census. It says nothing about"
+      "line": 414,
+      "statement_heading": "*Lemma D (discreteness, proved).* There is `epsilon_0(sigma) > 0` such that"
     },
     {
       "source": "docs/p1b-vertex-coincidence-box-2026-10-02.md",
-      "line": 505,
-      "statement_heading": "If every recurrent vertex had *some* catch-up hit, at any depth and not"
+      "line": 509,
+      "statement_heading": "*Lemma (catch-up locus, proved).* Take an edge `p -> u` into an offset-zero"
     },
     {
       "source": "docs/p1b-vertex-coincidence-box-2026-10-02.md",
-      "line": 570,
-      "statement_heading": "The larger-domain runs there are explicitly 1,000-specimen prefix slices."
+      "line": 574,
+      "statement_heading": "*Lemma P (arithmetic catch-up obstruction, proved).* Write `ab(u)` for the"
     },
     {
       "source": "docs/p1b-vertex-coincidence-box-2026-10-02.md",
-      "line": 591,
-      "statement_heading": "`|det M| = 2` and every proper prefix lies in the nontrivial class of"
+      "line": 595,
+      "statement_heading": "*Proposition P′ (levels are arithmetic, proved).* Call a vertex of"
     },
     {
       "source": "docs/p1b-vertex-coincidence-box-2026-10-02.md",
-      "line": 614,
-      "statement_heading": "the two levels, are equal. The census checks P′ exactly to"
+      "line": 617,
+      "statement_heading": "*Proposition C (the class in words, proved).* Call a nonempty letter set `O`"
     },
     {
       "source": "docs/p1b-vertex-coincidence-box-2026-10-02.md",
-      "line": 662,
-      "statement_heading": "rational fixed point `(I − M^r)^{−1} E` of an inflation. Its denominator"
+      "line": 666,
+      "statement_heading": "*Proposition P″ (M-adic centres, proved).*"
     },
     {
       "source": "docs/p1b-vertex-coincidence-box-2026-10-02.md",
-      "line": 879,
-      "statement_heading": "this places T2 where the rest of this note places PPVC: in exact interleaving"
+      "line": 884,
+      "statement_heading": "*Lemma E (proved).* Let `|det M| = 2`, so `Z^3 / M Z^3 = Z/2`, and call a"
     },
     {
       "source": "docs/p1b-vertex-coincidence-box-2026-10-02.md",
-      "line": 958,
-      "statement_heading": "aligned strong coincidence it is not weaker than tile coincidence of the §1"
+      "line": 963,
+      "statement_heading": "*Lemma VT (proved).* Let `sigma` be PIP with SC_all: each of the six aligned"
     },
     {
       "source": "docs/p1b-vertex-coincidence-box-2026-10-02.md",
-      "line": 1063,
-      "statement_heading": "substitution (no witness) and `0 -> 1, 1 -> 22, 2 -> 012`, the first total Q1"
+      "line": 1067,
+      "statement_heading": "*Lemma B (obstruction, proved).* Let `|det M| = 2` and `sigma` catch-up-free"
     },
     {
       "source": "docs/pds-certificate-from-the-box-automaton-2026-10-07.md",
@@ -2834,8 +2854,8 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 248,
-      "statement_heading": "The second branch preserves information erased by the child-count matrix: the ordered sequence of top/bottom subdivision boundary events. The next contradiction should use that order together with full rank and exact prefix-Parikh geometry."
+      "line": 266,
+      "statement_heading": "**Imported theorem:** Barge–Štimac–Williams supplies the dense-eventual-coincidence-to-PDS implication in the precise one-dimensional Pisot-family setting checked in manuscript Imported Theorem 5.37. Hence Theorem 5.38 has no G1 hypothesis."
     },
     {
       "source": "docs/sink-scc-reduction.md",
@@ -2884,8 +2904,8 @@
     },
     {
       "source": "docs/unimodular-route-gate-2026-09-17.md",
-      "line": 66,
-      "statement_heading": "equivalence in §3.3 is a corpus equivalence at the tested levels, not a"
+      "line": 71,
+      "statement_heading": "### Computational Proposition 2 (determinant split of the corpus). **Status: finite-domain theorem.**"
     },
     {
       "source": "manuscripts/PSC_PROOF_next_source_audit.tex",
@@ -3414,7 +3434,7 @@
     "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
     "tools/check_lean.sh": "04078a19300533b800e2cca6f0a3573fe8b116fec0ae8ace8a2d4ffc1ae9613b",
     "tools/make_ledger.py": "a37023680fa452240764247b3cc30c6831e23597c871835aad98e634ff7de218",
-    "tools/make_proof_bank.py": "d41bd8ecb4d51964b6acfb1783d3c7c6aa1fce67ad502f9b4c1c6fb94dceec13",
+    "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
     "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
   }
 }

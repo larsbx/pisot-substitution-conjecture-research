@@ -24,6 +24,12 @@ and re-proved by `oracles/python/class_a_carrier_closure.py`.
 *infers* those rows and stops: group the labels of every export by (top, bottom, s, y),
 coalesce consecutive k into maximal runs, and fit each run endpoint as an
 affine form a n + b, refusing unless every export NLO..24 agrees exactly.
+
+`--tail-floor N` keeps the fitting samples but asks the synthesis to compare
+piece boundaries on the later infinite ray n>=N and excludes potential fits
+with negative eventual endpoint slope. It is a heuristic filter, not a
+certificate: coverage, occurrence validity and rank descent still need both
+exact verifiers. `class_a_ray_rank.py` can refit ranks on fixed occurrences.
 """
 from pathlib import Path
 from collections import defaultdict
@@ -40,7 +46,7 @@ def _opt(name):
     return sys.argv[sys.argv.index(name) + 1] if name in sys.argv else None
 
 
-OPTS = {"--line", "--rows-mojo", "--mojo", "--ray", "--nhi"}
+OPTS = {"--line", "--rows-mojo", "--mojo", "--ray", "--nhi", "--tail-floor"}
 ARGS = [a for i, a in enumerate(sys.argv[1:], 1) if not a.startswith("--") and sys.argv[i - 1] not in OPTS]
 RAY = _opt("--ray")
 if RAY:
@@ -59,6 +65,7 @@ PREFIX = "" if EPS == 1 else "minus_"
 G = Path(ARGS[0]) if ARGS else ROOT / "evidence/class-a-carrier-closure-2026-10-22/graphs"
 NLO = int(ARGS[1]) if len(ARGS) > 1 else 8
 NHI = int(_opt("--nhi") or 24)
+TAIL_FLOOR = int(_opt("--tail-floor")) if _opt("--tail-floor") else None
 
 
 def n_of(l):
@@ -67,6 +74,11 @@ def n_of(l):
 
 # NS holds the ray parameter l (= n when d = 1) of every export used.
 NS = [l for l in range(0, NHI + 1) if NLO <= n_of(l) <= NHI]
+TAIL_L = (TAIL_FLOOR - RR + D - 1) // D if TAIL_FLOOR is not None else NS[0]
+
+
+def tail_le(u, v):
+    return u[0] <= v[0] and u[0] * TAIL_L + u[1] <= v[0] * TAIL_L + v[1]
 
 
 def _function_lists(text, name, width):
@@ -203,7 +215,7 @@ def row_members(ri, n):
     t,b,s,y,al,bl,au,bu = R[ri]
     return [(t,b,k,s-k-y,y) for k in range(al*n+bl, au*n+bu+1)]
 
-def floor_fit(points, slack=0):
+def floor_fit(points, slack=0, ends=None):
     """points: list of (n, j, depth). return (a,b,c) with
     depth <= floor((a n + b j + c)/3) <= depth + slack, or None. slack=0 is the exact fit;
     a positive slack only over-estimates the depth, which the verifier never relies on."""
@@ -213,7 +225,14 @@ def floor_fit(points, slack=0):
             for n, j, d in points:
                 base = 3*d - a*n - b*j
                 lo = max(lo, base); hi = min(hi, base+2+3*slack)
-            if lo <= hi: return (a, b, lo)
+            if lo <= hi:
+                if TAIL_FLOOR is not None and ends is not None:
+                    # Synthesis filter only: a sampled fit with a negative
+                    # endpoint slope can never be a nonnegative tail rank.
+                    if any(a + b * u[0] < 0 for u in ends):
+                        continue
+                    lo = max(lo, *( -(a + b*u[0])*TAIL_L - b*u[1] for u in ends))
+                if lo <= hi: return (a, b, lo)
     return None
 
 # ---- pieces per row: greedy split with affine-in-n breakpoints ----
@@ -232,7 +251,10 @@ def pieces_of_row(ri, slack=0):
             if not (all(alpha*n+beta >= J(n) for n in NS) or all(alpha*n+beta <= J(n) for n in NS)): continue
             phi = lambda n, alpha=alpha, beta=beta: min(alpha*n+beta, J(n))
             pts = [(n, j, depth[n][j]) for n in NS for j in range(slo(n), phi(n)+1) if phi(n) >= slo(n)]
-            fit = floor_fit(pts, slack)
+            up = END if all(alpha*n+beta >= J(n) for n in NS) else (alpha, beta)
+            if TAIL_FLOOR is not None and (not tail_le(start, (up[0], up[1]+1)) or not tail_le(up, END)):
+                continue
+            fit = floor_fit(pts, slack, (start, up))
             if fit:
                 up = END if all(alpha*n+beta >= J(n) for n in NS) else (alpha, beta)
                 cands.append((sum(max(0, phi(n)-slo(n)+1) for n in NS), up, fit))
@@ -286,7 +308,7 @@ def X(pi, n, j):
     a,b,c = PIECES[pi][3]; return a*n + b*j + c
 
 # ---- Stage B/C: type-uniform affine sub-intervals, then child-piece splits ----
-L0 = NS[0]   # ray floor in l (= NLO when d = 1)
+L0 = TAIL_L   # optional certificate tail can start above the fitting samples
 def le(u,v): return u[0]<=v[0] and u[0]*L0+u[1] <= v[0]*L0+v[1]
 
 def good_types(pi, n, j):

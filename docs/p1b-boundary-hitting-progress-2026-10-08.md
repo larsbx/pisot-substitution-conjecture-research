@@ -46,6 +46,26 @@ for arbitrary n. The next step is a run-indexed carrier with a
 parameter-dependent descending rank, then the remaining A/C regions.
 Class-D acceptance and the open universal #139/#138 premises are unchanged.
 
+## A/C continuation: gap four (2026-10-22)
+
+The [gap-four certificate](issue139-ac-gap4-2026-10-22.md) supplies complete
+boundary hitting on four infinite lines: A `(n+4,n,n+1)` for `n>=0`,
+A `(n+4,n,n-1)` for `n>=3`, C `(n+4,n,n-3)` for `n>=3`, and
+C `(n+4,n,n-5)` for `n>=9`. A uses eight residue-ray carriers and exact
+integer rank descent, plus all finite prefixes. C uses two complete symbolic
+graphs and exact prefixes. These are scoped computer-assisted results;
+independent human review remains pending and current-head CI acceptance is
+recorded separately. No universal ledger node is promoted.
+
+The proof ladder now has A gap 1 through 4 and C gap 1 through 4 covered on
+their admissible domains. The next residual target is `d>=5` for each class.
+The complete C residual has an exact two-wedge parameter cover, but direct
+symbolic certification refuses at a non-affine run-position bound. A short
+finite rank fit also failed the infinite-ray inequalities before exact rank
+refitting. Both failures are preserved in the new packet. Neither is a
+counterexample to hitting. Accepted class D and the realization/coincidence
+firewalls are unchanged; universal #139/#138/#84, G1 and PSC stay open.
+
 ## Current continuation: entire minus class D (2026-10-20 UTC)
 
 The exact minus residual a,b>=0 now has a native all-component certificate:

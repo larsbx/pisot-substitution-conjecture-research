@@ -21,6 +21,18 @@ from psc.class_a_ray_d2p import (
     pieces_r0 as d2p_pieces_r0, pieces_r1 as d2p_pieces_r1,
     descents_r0 as d2p_descents_r0, descents_r1 as d2p_descents_r1,
 )
+from psc.class_a_ray_d4m import (
+    rows_r0 as d4m_rows_r0, rows_r1 as d4m_rows_r1, rows_r2 as d4m_rows_r2, rows_r3 as d4m_rows_r3,
+    pieces_r0 as d4m_pieces_r0, pieces_r1 as d4m_pieces_r1, pieces_r2 as d4m_pieces_r2, pieces_r3 as d4m_pieces_r3,
+    descents_r0 as d4m_descents_r0, descents_r1 as d4m_descents_r1,
+    descents_r2 as d4m_descents_r2, descents_r3 as d4m_descents_r3,
+)
+from psc.class_a_ray_d4p import (
+    rows_r0 as d4p_rows_r0, rows_r1 as d4p_rows_r1, rows_r2 as d4p_rows_r2, rows_r3 as d4p_rows_r3,
+    pieces_r0 as d4p_pieces_r0, pieces_r1 as d4p_pieces_r1, pieces_r2 as d4p_pieces_r2, pieces_r3 as d4p_pieces_r3,
+    descents_r0 as d4p_descents_r0, descents_r1 as d4p_descents_r1,
+    descents_r2 as d4p_descents_r2, descents_r3 as d4p_descents_r3,
+)
 from psc.class_a_ray_d3m import (
     rows_r0 as d3m_rows_r0, rows_r1 as d3m_rows_r1, rows_r2 as d3m_rows_r2, pieces_r0 as d3m_pieces_r0, pieces_r1 as d3m_pieces_r1, pieces_r2 as d3m_pieces_r2, descents_r0 as d3m_descents_r0, descents_r1 as d3m_descents_r1, descents_r2 as d3m_descents_r2,
 )
@@ -43,6 +55,14 @@ def tabulated_rays() -> List[List[Int]]:
         List[Int]([3, 1, 0, 18, 40, 94]),
         List[Int]([3, 1, 1, 16, 40, 94]),
         List[Int]([3, 1, 2, 17, 40, 98]),
+        List[Int]([4, -1, 0, 24, 40, 75]),
+        List[Int]([4, -1, 1, 25, 40, 145]),
+        List[Int]([4, -1, 2, 22, 40, 129]),
+        List[Int]([4, -1, 3, 23, 40, 125]),
+        List[Int]([4, 1, 0, 24, 40, 88]),
+        List[Int]([4, 1, 1, 21, 40, 90]),
+        List[Int]([4, 1, 2, 22, 40, 88]),
+        List[Int]([4, 1, 3, 15, 40, 92]),
     ])
 
 
@@ -69,6 +89,16 @@ def ray_tables(line: ALine) raises -> List[List[List[Int]]]:
         return [d3p_rows_r1(), d3p_pieces_r1(), d3p_descents_r1()]
     if line.d == 3 and line.eps == 1 and line.r == 2:
         return [d3p_rows_r2(), d3p_pieces_r2(), d3p_descents_r2()]
+    if line.d == 4 and line.eps == -1:
+        var rows = [d4m_rows_r0(), d4m_rows_r1(), d4m_rows_r2(), d4m_rows_r3()]
+        var pieces = [d4m_pieces_r0(), d4m_pieces_r1(), d4m_pieces_r2(), d4m_pieces_r3()]
+        var descents = [d4m_descents_r0(), d4m_descents_r1(), d4m_descents_r2(), d4m_descents_r3()]
+        return [rows[line.r].copy(), pieces[line.r].copy(), descents[line.r].copy()]
+    if line.d == 4 and line.eps == 1:
+        var rows = [d4p_rows_r0(), d4p_rows_r1(), d4p_rows_r2(), d4p_rows_r3()]
+        var pieces = [d4p_pieces_r0(), d4p_pieces_r1(), d4p_pieces_r2(), d4p_pieces_r3()]
+        var descents = [d4p_descents_r0(), d4p_descents_r1(), d4p_descents_r2(), d4p_descents_r3()]
+        return [rows[line.r].copy(), pieces[line.r].copy(), descents[line.r].copy()]
     raise Error("no generated tables for line " + line.name())
 
 

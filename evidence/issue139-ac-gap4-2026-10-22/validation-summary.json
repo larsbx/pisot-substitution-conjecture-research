@@ -1,0 +1,17 @@
+{
+  "native_suites": {
+    "class_a_residue_rays": "passed, 18 rays plus controls and d4 plus n=0",
+    "class_c_gap_four": "passed, both complete lines and controls",
+    "class_a_typed_carrier": "passed, finite helper budget control"
+  },
+  "python": {
+    "residue_rays_and_d2_carrier": 42,
+    "gap_four_countercontrols": 2,
+    "recorded_integrity_workflow_class_d_provenance_proof_bank": 121,
+    "all_passed": true
+  },
+  "governance_provenance": "tools/verify_all.sh provenance passed",
+  "full_repository_suite_run": false,
+  "locked_pixi_environment_run_locally": false,
+  "current_head_ci": "required separately; not asserted by this local receipt"
+}

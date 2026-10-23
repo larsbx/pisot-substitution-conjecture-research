@@ -1,0 +1,4 @@
+CLASS_A_TYPED_CARRIER_FINITE 4 candidate 275 graph 275 max_hit 5 uniform_closure=false
+CLASS_A_TYPED_CARRIER_FINITE 8 candidate 435 graph 435 max_hit 8 uniform_closure=false
+CLASS_A_TYPED_CARRIER_FINITE 18 candidate 835 graph 835 max_hit 15 uniform_closure=false
+contract-receipt: class-A typed carrier finite-only: 89 affine interval rows, exact n=4/8/18 candidate-graph label equality, full ordered-child closure and finite offset-zero paths, removed-row/budget refusals; no uniform seed cover or #139 promotion
