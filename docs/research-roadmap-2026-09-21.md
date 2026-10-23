@@ -8,6 +8,12 @@
 ## October 21 continuation beyond accepted class D
 
 PR #298 records completed class-D integration; that gate is not reopened.
+The [October 22 scoped G1 corollary](class-d-g1-corollary-2026-10-22.md)
+applies the existing half-coincidence implication to that accepted scope.
+Both full `b=0` branches have certified uniform hitting depths (minus four,
+plus six), although no uniform spectral contraction margin exists there;
+their all-level BPA word-length bounds still depend on `a`. This supplies
+no universal G1 or spectrum conclusion.
 The [class-A run-index proof and replay](p1b-class-a-run-index-2026-10-21.md)
 now give a genuine seed-reachable recurrent family with n/10 < L_n <= n+2.
 A parameter-independent hitting-depth K is therefore unavailable, even on

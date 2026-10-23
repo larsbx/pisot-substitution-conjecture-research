@@ -214,6 +214,16 @@
       "source": "source: docs/class-d-assembly-audit-2026-10-21.md; canonical kernel/class_d_assembly.mojo consumes provenance-checked exact component receipts and replays plus b=0; no class-A/C or universal hitting premise is supplied; human review pending"
     },
     {
+      "id": "ClassDFiniteBPA",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for every PIP substitution in the determinant-two class-D normal form with p-q in {-1,+1}, the balanced-pair automaton from all three swap seeds is finite; every side length is at most 2 L^(K_sigma+2), with b=0 bounds 2(3a+8)^6 on minus and 2(3a+5)^8 on plus; no universal G1 or coincidence assertion",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/class-d-g1-corollary-2026-10-22.md, scoped G1 corollary; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 4 and sections 7-8; accepted ClassDBoundaryHitting supplies the scoped premise; human review pending"
+    },
+    {
       "id": "ClassDIntegrationAcceptance",
       "kind": "claim",
       "label": "Repository-proved",
@@ -1979,6 +1989,14 @@
     },
     {
       "type": "implicative",
+      "source": "ClassDBoundaryHitting",
+      "target": "ClassDFiniteBPA",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "ClassDFiniteBPA/ClassDBoundaryHitting"
+    },
+    {
+      "type": "implicative",
       "source": "ClassDIntegrationAcceptance",
       "target": "PlusClassDPositiveBBoundaryHitting",
       "provenance": "theorem-backed",
@@ -2634,6 +2652,14 @@
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "AllStatesProductiveViaOverlaps/SwapOverlapFiniteness"
+    },
+    {
+      "type": "implicative",
+      "source": "SwapOverlapFiniteness",
+      "target": "ClassDFiniteBPA",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "ClassDFiniteBPA/SwapOverlapFiniteness"
     },
     {
       "type": "implicative",

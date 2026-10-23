@@ -50,6 +50,17 @@ have already been proved. Finite and family certificates remain scoped.
 
 ## Current mathematical state
 
+### October 22 class-D reconciliation
+
+PR #298 records accepted boundary hitting throughout the determinant-two
+class-D normal form. The [scoped G1 corollary](docs/class-d-g1-corollary-2026-10-22.md)
+derives finite BPA there from the existing half-coincidence implication.
+Both full residual `b=0` branches have uniform hitting depths (minus four,
+plus six), despite the absence of a uniform spectral contraction margin.
+Their explicit balanced-pair length bounds depend on the parameter.
+Older positive-`b` and CI-pending statements below are historical. General
+#138/#139/#84, G1 and PSC remain open; independent human review is pending.
+
 ### Review policy — non-blocking until closure
 
 **Independent human review is a final validation gate, not a research-progress gate.**

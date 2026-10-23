@@ -26,6 +26,7 @@ ResultSet == {
     "C3Locality",
     "C4",
     "ClassDBoundaryHitting",
+    "ClassDFiniteBPA",
     "ClassDIntegrationAcceptance",
     "ClassDWedgeBoundaryHitting",
     "CoincidenceDensityOne",
@@ -135,6 +136,7 @@ RequiresDef == [r \in ResultSet |->
       [] r = "C3Locality" -> {{}}
       [] r = "C4" -> {{}}
       [] r = "ClassDBoundaryHitting" -> {{"PlusClassDBoundaryHitting", "MinusClassDBoundaryHitting"}}
+      [] r = "ClassDFiniteBPA" -> {{"ClassDBoundaryHitting", "SwapOverlapFiniteness"}}
       [] r = "ClassDIntegrationAcceptance" -> {{}}
       [] r = "ClassDWedgeBoundaryHitting" -> {{}}
       [] r = "CoincidenceDensityOne" -> {{"OverlapProductivity", "SwapOverlapFiniteness"}}
@@ -238,6 +240,7 @@ ProvedDef == {
     "C3Local",
     "C3Locality",
     "ClassDBoundaryHitting",
+    "ClassDFiniteBPA",
     "ClassDIntegrationAcceptance",
     "ClassDWedgeBoundaryHitting",
     "CoincidenceDensityOne",
@@ -401,6 +404,7 @@ C3LocalNotEstablished == "C3Local" \notin established
 C3LocalityNotEstablished == "C3Locality" \notin established
 C4NotEstablished == "C4" \notin established
 ClassDBoundaryHittingNotEstablished == "ClassDBoundaryHitting" \notin established
+ClassDFiniteBPANotEstablished == "ClassDFiniteBPA" \notin established
 ClassDIntegrationAcceptanceNotEstablished == "ClassDIntegrationAcceptance" \notin established
 ClassDWedgeBoundaryHittingNotEstablished == "ClassDWedgeBoundaryHitting" \notin established
 CoincidenceDensityOneNotEstablished == "CoincidenceDensityOne" \notin established
