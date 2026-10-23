@@ -108,6 +108,12 @@ Lines 1–3 finish a complete infinite class; lines 4–5 are the universal step
 A proof of 4 together with 5 closes #139, #138, #84 and PSC in the standing
 regime.
 
+**Lateral moves** — extending each scoped closure to neighbouring territory by relaxing one
+load-bearing hypothesis — are ranked in the
+[lateral-generalization strategy](lateral-generalization-strategy-2026-10-23.md). Its first move
+shows classes A, C, D are conjugacy-isolated, while every Theorem C class-B member has
+`min(p,q,r)+1` catch-up-regime conjugates with pure discrete spectrum.
+
 ## 4. Retired routes: do not spend cycles here
 
 - **Cycle algebra and affine pumping:** a zero-shift-free six-edge cycle sits
