@@ -20,53 +20,43 @@ docs/lateral-generalization-strategy-2026-10-23.md, move 1.
 """
 
 from psc.bpa import substitution_incidence
+from substitution_dynamics.barge_class import (
+    common_prefix_length,
+    common_suffix_length,
+    rotate_left,
+    rotate_right,
+)
+from substitution_dynamics.substitution import Substitution
+
+
+def _as_substitution(sigma: List[List[Int]]) -> Substitution:
+    return Substitution(sigma.copy(), len(sigma))
 
 
 def common_first_letter(sigma: List[List[Int]]) -> Int:
     """The letter every image begins with, or -1."""
-    var a = sigma[0][0]
-    for b in range(1, len(sigma)):
-        if sigma[b][0] != a:
-            return -1
-    return a
+    return sigma[0][0] if common_prefix_length(_as_substitution(sigma)) > 0 else -1
 
 
 def common_last_letter(sigma: List[List[Int]]) -> Int:
     """The letter every image ends with, or -1."""
-    var a = sigma[0][len(sigma[0]) - 1]
-    for b in range(1, len(sigma)):
-        if sigma[b][len(sigma[b]) - 1] != a:
-            return -1
-    return a
+    return sigma[0][len(sigma[0]) - 1] if common_suffix_length(_as_substitution(sigma)) > 0 else -1
 
 
 def step_left(sigma: List[List[Int]]) raises -> List[List[Int]]:
-    """`tau(b) = a^{-1} sigma(b) a`; raises unless every image begins with `a`."""
-    var a = common_first_letter(sigma)
-    if a < 0:
+    """`tau(b) = a^{-1} sigma(b) a`, the vendored rotation by one letter;
+    raises unless every image begins with `a`."""
+    if common_first_letter(sigma) < 0:
         raise Error("no common first letter: a left step is not a conjugacy")
-    var out = List[List[Int]]()
-    for b in range(len(sigma)):
-        var w = List[Int]()
-        for i in range(1, len(sigma[b])):
-            w.append(sigma[b][i])
-        w.append(a)
-        out.append(w^)
-    return out^
+    return rotate_left(_as_substitution(sigma), 1).images.copy()
 
 
 def step_right(sigma: List[List[Int]]) raises -> List[List[Int]]:
-    """`tau(b) = z sigma(b) z^{-1}`; raises unless every image ends with `z`."""
-    var z = common_last_letter(sigma)
-    if z < 0:
+    """`tau(b) = z sigma(b) z^{-1}`, the vendored rotation by one letter;
+    raises unless every image ends with `z`."""
+    if common_last_letter(sigma) < 0:
         raise Error("no common last letter: a right step is not a conjugacy")
-    var out = List[List[Int]]()
-    for b in range(len(sigma)):
-        var w = List[Int]([z])
-        for i in range(len(sigma[b]) - 1):
-            w.append(sigma[b][i])
-        out.append(w^)
-    return out^
+    return rotate_right(_as_substitution(sigma), 1).images.copy()
 
 
 def same_substitution(s: List[List[Int]], t: List[List[Int]]) -> Bool:

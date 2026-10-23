@@ -21,3 +21,13 @@ independent review.
 uncapped seed-overlap graph of every Theorem C member with `q <= QMAX` and of all
 its conjugates, and raises on a vertex without an offset-zero descendant. The
 catch-up counts are finite observations.
+
+## Re-verification after review repair
+
+After review on PR #338, `psc/conjugacy_orbit.mojo` delegates its one-letter
+rotations and shared-letter tests to the vendored
+`substitution_dynamics.barge_class` (`rotate_left/right`,
+`common_prefix/suffix_length`) instead of reimplementing them. Re-running both
+commands on the repaired source reproduces the census lines of
+`census-bound30.log` and `bh-qmax8.log` identically (timing lines excluded). The
+logs above are the original runs and are kept unedited.
