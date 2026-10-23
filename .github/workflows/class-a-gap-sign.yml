@@ -1,0 +1,46 @@
+name: Class-A gap sign certificates
+on:
+  pull_request:
+    paths:
+      - 'kernel/**'
+      - 'vendored.toml'
+      - 'oracles/python/class_a_gap_sign.py'
+      - 'tests/test_class_a_gap_sign.py'
+      - 'docs/class-a-gap-sign-2026-10-23.md'
+      - 'evidence/class-a-gap-sign-2026-10-23/**'
+      - '.github/workflows/class-a-gap-sign.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  exact-gap-sign:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Native sign controls and exact independent coefficient/decision audit
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          mkdir -p build/gap-sign
+          pixi run --locked mojo build -I . tests/test_class_a_gap_sign.mojo -o build/gap-sign/test
+          build/gap-sign/test | tee build/gap-sign/native.log
+          diff ../evidence/class-a-gap-sign-2026-10-23/native.log build/gap-sign/native.log
+          python ../oracles/python/class_a_gap_sign.py build/gap-sign/native.log | tee build/gap-sign/oracle.log
+          diff ../evidence/class-a-gap-sign-2026-10-23/oracle.log build/gap-sign/oracle.log
+      - name: Preserve fresh evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-gap-sign
+          path: kernel/build/gap-sign/*.log
+          if-no-files-found: warn
