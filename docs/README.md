@@ -4,6 +4,8 @@ This directory separates live proof status, source provenance, mathematical
 exposition, exact finite certificates, and historical snapshots. Start with
 the section matching the question you are asking.
 
+**New collaborator?** Start with [`project-onboarding-2026-10-23.md`](project-onboarding-2026-10-23.md). It gives the current live theorem lane, the v6/v9 salvage firewall, the Tier-2 Plastic-A/Growth-Bridge lane, and the non-load-bearing Penrose interface map in one status-safe document.
+
 For definitions and implementation authority, use the generated
 [`mathematical-object-catalogue.md`](mathematical-object-catalogue.md). Its
 single structured source is `catalogues/mathematical_objects.toml`; edit the
