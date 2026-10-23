@@ -1,5 +1,29 @@
 # Proof ladder
 
+## October 22 reconciliation: accepted class D and scoped G1
+
+PR #298 discharged class-D integration at accepted tree
+`c325aa5345e1f49b2fb50b37565bd2902104aab7`. The older pending-runtime and
+positive-`b` planning paragraphs below are historical, not live gates.
+The [class-D G1 corollary](class-d-g1-corollary-2026-10-22.md) makes the
+existing assembly explicit: accepted all-seed offset-zero hitting plus
+Proposition 4 gives finite BPA on the determinant-two class-D normal form.
+On the two full `b=0` branches, exact occurrence-compatible certificates
+give `K_minus<=4` and `K_plus<=6`, including their finite prefixes, hence
+all-level word-length bounds `2(3a+8)^6` and `2(3a+5)^8` respectively.
+
+The absence of a uniform spectral contraction margin is compatible with
+these uniform hitting-depth bounds. Neither fact settles the universal
+problem. This is a scoped derived corollary, with independent human review
+pending; universal #138/#139/#84, G1 and PSC remain open. Continue the
+remaining A/C coverage from the live roadmap, without reopening class D.
+
+`ClassDFiniteBPA` now records this specialization in the generated ledger,
+depending on `ClassDBoundaryHitting` and `SwapOverlapFiniteness`. The Open
+model reaches it while retaining `G1NotEstablished` and `PDSNotEstablished`.
+This instantiates Proposition 4 on the discharged scoped premise; it does
+not assume the open universal premise bundled into `G1HalfCoincidenceRoute`.
+
 ## Primary ladder: two universal lemmas
 
 The project now treats seedwise overlap productivity (#84) through the
@@ -37,15 +61,11 @@ controls, not existence or carrier-closure theorems; both universal lines
 above remain open. Local execution provenance and the pinned replay boundary
 are recorded in the linked note.
 
-The separate class-D work has advanced beyond the historical planning section
-below: PR #293 records a completed local native plus-chamber aggregate, and
-PR #290 records a complete local minus-branch certificate. Full Pixi/CI
-integration remains separate; neither contribution supplies a universal
-premise here.
-The original pre-repair plus CI run 39292497570 now fails on the archived
-low-1 reader exception after passing the lattice check; repaired-head run
-39356406683 remains queued. The new evidence packet preserves that exact
-exception match, so this failure is not relabelled a new carrier obstruction.
+The separate class-D work is accepted at the exact scope recorded by PR #298
+and the [assembly audit](class-d-assembly-audit-2026-10-21.md). Historical
+failed and queued runs remain preserved in their evidence packets; the
+later complete acceptance record supersedes their pending integration status.
+No class-D result supplies either universal premise here.
 
 
 The current shortest route to the Pisot Substitution Conjecture in the standing regime has **one open mathematical premise**: seedwise overlap productivity. The finite-BPA/G1 and closed-carrier programmes remain important stronger structural routes, but they are no longer prerequisites of the shortest PDS sufficiency theorem.
@@ -74,7 +94,10 @@ universal rung above.
   overlap productivity, formal productivity, G1 or PDS uniformly for every
   PIP substitution.
 
-## Next scoped rung: the residual positive-b class-D interiors (2026-10-19)
+## Historical scoped rung: residual positive-b class D (2026-10-19)
+
+**Superseded as a task by PR #298.** Retained below as the October 19–20
+development record; use the October 22 reconciliation above for current status.
 
 The exact parameter cover reduces every PIP class-D member below `r=q-1` to
 two affine quadrants `a,b>=0`. Merged PR #277 now certifies both infinite

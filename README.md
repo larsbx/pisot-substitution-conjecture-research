@@ -2,6 +2,8 @@
 
 Automated research workspace for the Pisot Substitution Conjecture (PSC), with emphasis on reproducible experiments, conjecture tracking, manuscript hygiene, theorem-audit automation, and exact finite certificates.
 
+For a status-safe collaborator briefing, start with [`docs/project-onboarding-2026-10-23.md`](docs/project-onboarding-2026-10-23.md). It separates live theorem status from historical v6/v9 proof material, finite/family evidence, Tier-2 Plastic-A work, and the Penrose interface programme.
+
 Repository structure and authority planes are declared in `ESTATE.toml`
 (estate template `estate-repository-v2`, as in `larsbx/langlands-lab`); see
 `ARCHITECTURE.md`.
@@ -47,6 +49,17 @@ This is a strong reduction, not a declaration that the two universal lemmas
 have already been proved. Finite and family certificates remain scoped.
 
 ## Current mathematical state
+
+### October 22 class-D reconciliation
+
+PR #298 records accepted boundary hitting throughout the determinant-two
+class-D normal form. The [scoped G1 corollary](docs/class-d-g1-corollary-2026-10-22.md)
+derives finite BPA there from the existing half-coincidence implication.
+Both full residual `b=0` branches have uniform hitting depths (minus four,
+plus six), despite the absence of a uniform spectral contraction margin.
+Their explicit balanced-pair length bounds depend on the parameter.
+Older positive-`b` and CI-pending statements below are historical. General
+#138/#139/#84, G1 and PSC remain open; independent human review is pending.
 
 ### Review policy — non-blocking until closure
 

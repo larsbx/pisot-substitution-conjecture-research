@@ -343,6 +343,21 @@
       }
     },
     {
+      "name": "ClassDFiniteBPA",
+      "status": "proved",
+      "source": "docs/class-d-g1-corollary-2026-10-22.md, scoped G1 corollary; docs/bpa-termination-by-overlap-depth-2026-10-02.md, Proposition 4 and sections 7-8; accepted ClassDBoundaryHitting supplies the scoped premise; human review pending",
+      "dependencies": [
+        "ClassDBoundaryHitting",
+        "SwapOverlapFiniteness"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
       "name": "ClassDIntegrationAcceptance",
       "status": "proved",
       "source": "docs/class-d-assembly-audit-2026-10-21.md; evidence/class-d-integration-accepted-2026-10-21/; all 64 checks at a9457d9 pass, identical tested PR merge and main merge trees; project-accepted for progression, independent human review pending",
@@ -2073,6 +2088,11 @@
       "statement_heading": "**Proposition.** For every integer `n>=4`, the canonical exact swap-seed overlap graph has at least `6n-2` distinct vertices."
     },
     {
+      "source": "docs/class-d-g1-corollary-2026-10-22.md",
+      "line": 101,
+      "statement_heading": "**Corollary.** For every PIP member of the determinant-two class-D normal"
+    },
+    {
       "source": "docs/formal-productivity-reduction-2026-10-04.md",
       "line": 33,
       "statement_heading": "**Proposition FP.**"
@@ -2096,6 +2116,11 @@
       "source": "docs/issue139-ac-gap4-2026-10-22.md",
       "line": 118,
       "statement_heading": "**Theorem C4.** On `x -> x y^(n+4) x`, `c -> c y^n x`,"
+    },
+    {
+      "source": "docs/issue139-gap5-2026-10-23.md",
+      "line": 47,
+      "statement_heading": "**Theorem C5 (scoped, computer-assisted).** For class C with"
     },
     {
       "source": "docs/k2-load-bearing-scc-salvage-2026-10-11.md",
@@ -2549,27 +2574,27 @@
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 190,
+      "line": 204,
       "statement_heading": "## 4. Theorem L″: lines of classes A, C and D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 209,
+      "line": 223,
       "statement_heading": "*Theorem L″.* For each line below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 278,
+      "line": 292,
       "statement_heading": "## 4b. Theorem W: two-parameter wedges of class D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 355,
+      "line": 369,
       "statement_heading": "*Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 372,
+      "line": 386,
       "statement_heading": "*Corollary W1.* **Every PIP member of class D with `r ≥ q − 1` has pure"
     },
     {
@@ -2829,7 +2854,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 243,
+      "line": 266,
       "statement_heading": "**Imported theorem:** Barge–Štimac–Williams supplies the dense-eventual-coincidence-to-PDS implication in the precise one-dimensional Pisot-family setting checked in manuscript Imported Theorem 5.37. Hence Theorem 5.38 has no G1 hypothesis."
     },
     {
@@ -3394,7 +3419,7 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "f8e1abe80c2185fd4d6cda5d9ea77fcf16f95528f5fc6bc2da4321132f1cc081",
+    "claim_governance.toml": "26aa137cd94fbd185701ac8906a44ca338435b042d3b01920d659939e037bf71",
     "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
@@ -3408,7 +3433,7 @@
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
     "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
     "tools/check_lean.sh": "04078a19300533b800e2cca6f0a3573fe8b116fec0ae8ace8a2d4ffc1ae9613b",
-    "tools/make_ledger.py": "6f54f92887c9fd69352b3bb8c0e28df22eff374de6355d14bbf71beff940e266",
+    "tools/make_ledger.py": "a37023680fa452240764247b3cc30c6831e23597c871835aad98e634ff7de218",
     "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
     "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
   }

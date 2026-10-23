@@ -1,0 +1,1 @@
+contract-receipt: minus class-D b=0 parametric certificate: all a>=2 covered by 145 interior labels; nine seed occurrences; complete segment-pair child closure; exact affine occurrence rank descent to offset zero; rejects false targets, non-strict ranks, wrong indices, eventually negative indices, empty and duplicate covers; whole-line base cases are checked by the driver
