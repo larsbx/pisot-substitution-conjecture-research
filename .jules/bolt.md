@@ -1,0 +1,3 @@
+## 2024-10-24 - Precomputing inverse and unrolling Routh array loop in exact arithmetic
+**Learning:** In exact Python arithmetic using `fractions.Fraction`, constructing new objects for default/zero padding (e.g., `Fraction(0)`) inside mathematical inner loops adds massive overhead, and division is relatively slow.
+**Action:** Precompute and cache the inverse (e.g., `inv_c0 = Fraction(c0.denominator, c0.numerator)`) outside tight loops to replace division with multiplication. Unroll inner loop bounds checking (e.g., `max(len(above), len(current))`) into separate explicit loops over the shared prefix and the sequence remainders to avoid instantiation overhead.
