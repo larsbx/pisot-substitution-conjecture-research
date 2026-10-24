@@ -1,0 +1,50 @@
+name: Class-B finite label rays
+on:
+  pull_request:
+    paths:
+      - 'kernel/class_b_label*.mojo'
+      - 'kernel/psc/class_b_*.mojo'
+      - 'kernel/tests/test_class_b_label_fit.mojo'
+      - 'oracles/python/class_b_*.py'
+      - 'tests/test_class_b_label_rays.py'
+      - 'evidence/class-b-label-rays-2026-10-23/**'
+      - '.github/workflows/class-b-label-rays.yml'
+  workflow_dispatch:
+jobs:
+  finite-label-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'pytest>=7'
+      - name: Install Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Locked native contract and comparison build
+        working-directory: kernel
+        run: |
+          mkdir -p build/class-b-label-audit
+          pixi run --locked mojo run -I . tests/test_class_b_label_fit.mojo > build/class-b-label-audit/native-test.log
+          pixi run --locked mojo build -I . class_b_label_fit.mojo -o build/class-b-label-fit
+          pixi run --locked mojo build -I . class_b_label_rays.mojo -o build/class-b-label-rays
+      - name: Independent comparisons, holdouts, negative controls and graphs
+        run: |
+          python -m pytest -q tests/test_class_b_label_rays.py
+          python oracles/python/class_b_label_rays.py evidence/class-b-label-rays-2026-10-23/labels --require-complete --native "$PWD/kernel/build/class-b-label-fit" --out kernel/build/class-b-label-audit/carriers.json > kernel/build/class-b-label-audit/comparisons.log
+          cmp evidence/class-b-label-rays-2026-10-23/carriers.json kernel/build/class-b-label-audit/carriers.json
+          python oracles/python/class_b_label_graph_oracle.py > kernel/build/class-b-label-audit/independent-graphs.log
+          python oracles/python/class_b_rank_probe.py evidence/class-b-label-rays-2026-10-23/labels kernel/build/class-b-label-audit/rank-probe.json > kernel/build/class-b-label-audit/rank.log
+          cmp evidence/class-b-label-rays-2026-10-23/rank-probe.json kernel/build/class-b-label-audit/rank-probe.json
+          (cd evidence/class-b-label-rays-2026-10-23 && sha256sum -c SHA256SUMS)
+      - name: Regenerate every exact graph export
+        run: |
+          python oracles/python/class_b_label_replay.py kernel/build/class-b-label-rays evidence/class-b-label-rays-2026-10-23 kernel/build/class-b-label-audit
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-b-label-audit
+          path: kernel/build/class-b-label-audit/
