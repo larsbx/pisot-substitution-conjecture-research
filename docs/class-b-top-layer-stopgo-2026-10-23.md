@@ -115,6 +115,51 @@ below its floors.
 on some ray, or the rank fit fails the infinite-ray inequalities. Record the
 failure as a negative control.
 
+## Step 1 result (2026-10-24): label sets are affine, in the right basis
+
+**The class-A encoding fails.** Class A's datasets group labels as k-intervals
+at fixed `(top, bottom, k + c + y, y)`. On plus `g = 1` this finds **no** affine
+floor up to `q = 26`. The cause is that every raw offset coordinate grows with
+`q`: on that line `k`, `c` and `y` span about `±(q + 6)`, `±(3q + 18)` and
+`±(6q + 34)`.
+
+**The class-B basis.** A search over small integer functionals finds a rank-2
+bounded lattice spanned by:
+
+- `u = 3k + c + y`, with values in `[−4, 4]`;
+- `v = 3k − c`, with values in `[−6, 6]`.
+
+Their common kernel is the growth direction `(1, 3, −6)`. The map
+`(k, c, y) → (u, v, k)` is unimodular, so k-intervals at fixed
+`(top, bottom, u, v)` are a lossless encoding. This is class A's carrier shape
+in class B's own coordinates.
+
+**Results.** With that encoding, `labels BRANCH D QMAX` finds the following.
+The fit holds over *all* members of each residue class past the floor.
+
+| Line | Residue floors (`q mod g`) | Typed rows |
+| --- | --- | --- |
+| plus `g = 1` | 9 | 389 |
+| plus `g = 2` | 12, 11 | 303, 297 |
+| plus `g = 3` | 12, 16, 14 | 263, 287, 273 |
+| plus `g = 4` | 16, 17, 18, 15 | 265, 247, 251, 271 |
+| minus `g = 1` | 15 | 417 |
+| minus `g = 2` | 18, 17 | 228, 218 |
+
+Every endpoint slope seen on plus `g = 1` lies in `{−1, 0, 1}`. The windows
+above the floors are short for `g = 3, 4`, as few as three or four members per
+class. The packet is
+[`evidence/class-b-top-layer-labels-2026-10-24/`](../evidence/class-b-top-layer-labels-2026-10-24/),
+and it includes the failed class-A encoding as a negative control.
+
+**Decision.** The step-1 stop condition is not met, so the route continues.
+Step 2 is to port the ray certificate (carrier closure, then rank descent) to
+class B. The new pieces it needs are:
+
+- the `(u, v, k)` coordinates;
+- class B's Perron polynomial and tile lengths;
+- the child-index rounding by `g`.
+
 ## Non-claims
 
 No class-B top-layer member is certified by this note. The profile is not a
