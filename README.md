@@ -2,6 +2,11 @@
 
 Automated research workspace for the Pisot Substitution Conjecture (PSC), with emphasis on reproducible experiments, conjecture tracking, manuscript hygiene, theorem-audit automation, and exact finite certificates.
 
+For a status-safe collaborator briefing, start with [`docs/project-onboarding-2026-10-23.md`](docs/project-onboarding-2026-10-23.md). It separates live theorem status from historical v6/v9 proof material, finite/family evidence, Tier-2 Plastic-A work, and the Penrose interface programme.
+
+For the **current narrowed targets** of #84, #138 and #139, and the ranked direct lines of attack, read
+[`docs/direct-attack-frontier-2026-10-23.md`](docs/direct-attack-frontier-2026-10-23.md).
+
 Repository structure and authority planes are declared in `ESTATE.toml`
 (estate template `estate-repository-v2`, as in `larsbx/langlands-lab`); see
 `ARCHITECTURE.md`.
@@ -46,7 +51,50 @@ secondary structure, but they are not prerequisites of this direct route.
 This is a strong reduction, not a declaration that the two universal lemmas
 have already been proved. Finite and family certificates remain scoped.
 
+**2026-10-23 tracker reconciliation:** [issue #139](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/139)
+was closed as `completed` on 2026-10-23 at 10:09:55 UTC although its universal
+BH acceptance criterion was not established; it has been **reopened** to match
+the live mathematical status. Scoped class-D and class-A/C certificates are
+valuable partial results but do not discharge BH for every cyclic
+seed-reachable strict-zipper overlap in the ternary PIP regime. #84, #138,
+universal BH, G1, and PSC remain open. See
+[issue-139 reconciliation](docs/issue-139-tracker-mathematics-reconciliation-2026-10-23.md).
+No theorem, governed claim, or evidence status is changed by reopening.
+
+**G1/PDS closure distinction (2026-10-04, reaffirmed 2026-10-23):**
+the unconditional **implication** `PDS ⇒ G1` (`PDSImpliesRepoG1`,
+Theorem S) is **repository-proved**, as is `PDS ⇒ termination with
+coincidence from every swap seed` (`PDSImpliesSeedwiseTermination`).
+Their proof records are complete and project-accepted for progression,
+with independent human validation outstanding. **Universal G1 itself is
+not yet proved without assuming PDS**, because universal PDS/PSC is also
+open; #44 is an independent G1 route, not a deficiency in the already-proved
+necessity direction. See [G1/PDS status reconciliation](docs/g1-pds-necessity-status-2026-10-23.md). This is a clarification of
+established repository statuses, not a new closure.
+
+**Historical #138 closure:** [issue #138](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/138)
+was closed on **2026-09-26 06:15:09 UTC**, then **reopened on
+2026-10-01 20:50:15 UTC**; it was **already open** at the October 23 audit.
+The original two-sided strong-coincidence target is stronger than the current
+completion theorem needs. The remaining load-bearing theorem is **one-sided
+A1′**, eventual coincidence of the residual first-letter-fixed bad hub pair;
+no separate reversed/suffix lemma is a third premise. See
+[issue-138 historical reconciliation](docs/issue-138-tracker-history-2026-10-23.md).
+The historical closure had no accepted theorem-bearing artifact, and no
+claim-status promotion follows from this documentation.
+
 ## Current mathematical state
+
+### October 22 class-D reconciliation
+
+PR #298 records accepted boundary hitting throughout the determinant-two
+class-D normal form. The [scoped G1 corollary](docs/class-d-g1-corollary-2026-10-22.md)
+derives finite BPA there from the existing half-coincidence implication.
+Both full residual `b=0` branches have uniform hitting depths (minus four,
+plus six), despite the absence of a uniform spectral contraction margin.
+Their explicit balanced-pair length bounds depend on the parameter.
+Older positive-`b` and CI-pending statements below are historical. General
+#138/#139/#84, G1 and PSC remain open; independent human review is pending.
 
 ### Review policy — non-blocking until closure
 

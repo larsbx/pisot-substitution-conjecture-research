@@ -1,0 +1,6 @@
+lateral conjugacy BH cross-check, Theorem C members with q <= 4
+Theorem C members 77, complete seed graphs 347 (largest 1848 vertices, deepest offset-zero depth 7); every vertex hits offset zero. Recurrent nonzero vertices: sigma 24158 with catch-up 0; conjugates 78730 with catch-up 78730, simultaneous births only 0
+
+real	0m4.968s
+user	0m4.752s
+sys	0m0.184s

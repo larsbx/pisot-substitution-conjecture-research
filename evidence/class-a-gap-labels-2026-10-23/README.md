@@ -9,9 +9,9 @@ a finite observation, not a certificate.
   complete swap-seed graph (20,000-state cap, every vertex hitting, else the
   build aborts). It is stored as `M n vertices max_depth rows` followed by its
   maximal typed k-intervals `R top bottom s y k_lo k_hi`, in increasing `n`.
-  - Complete: `D = 1..16`, both signs; `D = 17` plus.
-  - `D = 17` minus: 80 of 85 members, from a build stopped at its time
-    limit. Rerunning the same command resumes it.
+  - Complete: `D = 1..20`, both signs. (`D = 17` minus was first written
+    with 80 of 85 members by a build stopped at its time limit; rerunning
+    the same command resumed and completed it, as the resume contract says.)
 - `build.log`: the `D_GAP_DATASET` lines of the build.
 - `fits/fit-epsE-JJ.log` / `.exit`, `fits/table-epsE-JJ.txt`:
   `class_a_gap_regimes.mojo fit E <this dir> 5 16 J 5 <table>`. Each regime is

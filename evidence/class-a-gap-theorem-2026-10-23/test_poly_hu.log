@@ -1,0 +1,17 @@
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_poly_hu.mojo:6:
+./psc/poly_hu.mojo:43:13: warning: ref 'a' was never used, remove it?
+        for a in range(i + 1):
+            ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_poly_hu.mojo:6:
+./psc/poly_hu.mojo:298:36: warning: assignment to 'sides' was never used; assign to '_' instead?
+    var sides = List[List[List[Q]]]()
+                                   ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_poly_hu.mojo:6:
+./psc/poly_hu.mojo:527:18: warning: assignment to 'direct' was never used; assign to '_' instead?
+    var direct = 0
+                 ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_poly_hu.mojo:6:
+./psc/poly_hu.mojo:528:23: warning: assignment to 'first' was never used; assign to '_' instead?
+    var first = String("")
+                      ^
+contract-receipt: integer polynomials in (h, u): ring laws; sign_on_box certifies exact signs on (0,1/l0) x (0,1/d0] via Bernstein subdivision on closed cells, agrees with rational grid samples, strips monomial factors, and refuses a sign change inside the box and a zero on the face t = 1/d0; sign_within_hull skips cells where a side condition is negative throughout and certifies within the hull what the box alone refuses, refuses when the sign change lies inside the hull or the hull is empty, and certifies through a non-negative hull multiple a margin that vanishes with the hull at the box corner; AffHU numerators realize a h(1+h) + E b + (r h) c h(1+h)

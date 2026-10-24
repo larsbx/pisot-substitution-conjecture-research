@@ -1,0 +1,41 @@
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_uniform.mojo:7:
+./psc/class_a_gap_uniform.mojo:160:17: warning: assignment to 's' was never used; assign to '_' instead?
+        var s = 0
+                ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_uniform.mojo:7:
+./psc/class_a_gap_uniform.mojo:350:31: warning: assignment to 'r_hi' was never used; assign to '_' instead?
+                var r_hi = aff(0, 0)
+                              ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_uniform.mojo:7:
+./psc/class_a_gap_uniform.mojo:349:31: warning: assignment to 'r_lo' was never used; assign to '_' instead?
+                var r_lo = aff(0, 0)
+                              ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_uniform.mojo:5:
+Included from ./psc/class_a_gap_regime_tables.mojo:14:
+./psc/gap_form.mojo:194:21: warning: assignment to 'kappa' was never used; assign to '_' instead?
+        var kappa = 0
+                    ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_uniform.mojo:7:
+Included from ./psc/class_a_gap_uniform.mojo:26:
+./psc/poly_hu.mojo:43:13: warning: ref 'a' was never used, remove it?
+        for a in range(i + 1):
+            ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_uniform.mojo:7:
+Included from ./psc/class_a_gap_uniform.mojo:26:
+./psc/poly_hu.mojo:298:36: warning: assignment to 'sides' was never used; assign to '_' instead?
+    var sides = List[List[List[Q]]]()
+                                   ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_uniform.mojo:7:
+Included from ./psc/class_a_gap_uniform.mojo:26:
+./psc/poly_hu.mojo:527:18: warning: assignment to 'direct' was never used; assign to '_' instead?
+    var direct = 0
+                 ^
+Included from /home/user/pisot-substitution-conjecture-research/kernel/tests/test_class_a_gap_uniform.mojo:7:
+Included from ./psc/class_a_gap_uniform.mojo:26:
+./psc/poly_hu.mojo:528:23: warning: assignment to 'first' was never used; assign to '_' instead?
+    var first = String("")
+                      ^
+CLASS_A_REGIME_CLOSURE eps=-1 regime=low:r=0 l>=5 d>=10 rows 93 segments 837 y_cases 9207 covered 3477 gap_geometry 2891 window_checks 1674 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_CARRIER_CLOSURE n>=60 line=(n+12,n,n-1) n=12l+0 rows 93 segments 837 y_cases 9207 covered 3477 gap_geometry 2891 window_checks 1674 seeds_real 9 seeds_unreal 3 clip_fallbacks 0 terminal_splits 65
+CLASS_A_REGIME_CLOSURE eps=-1 regime=low:r=0 l>=5 d>=5 rows 93 segments 837 y_cases 9207 covered 3652 gap_geometry 3068 window_checks 1674 seeds_real 9 seeds_unreal 3 clip_fallbacks 3000 terminal_splits 65
+contract-receipt: class-A d-uniform regime closure: on the fitted minus low r=0 rows the regime certificate proves forward closure for every l>=5 and every gap d>=5 (Lemma 2' clip fallbacks below d=10, none from d=10) with the ray closure's statistics; symbolic Perron identities for both signs; the child-index base is d k_lo + n s + eps y; a removed row, a shifted endpoint, another regime's rows and an empty middle regime refuse

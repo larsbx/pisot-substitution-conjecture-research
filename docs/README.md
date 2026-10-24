@@ -4,6 +4,8 @@ This directory separates live proof status, source provenance, mathematical
 exposition, exact finite certificates, and historical snapshots. Start with
 the section matching the question you are asking.
 
+**New collaborator?** Start with [`project-onboarding-2026-10-23.md`](project-onboarding-2026-10-23.md). It gives the current live theorem lane, the v6/v9 salvage firewall, the Tier-2 Plastic-A/Growth-Bridge lane, and the non-load-bearing Penrose interface map in one status-safe document.
+
 For definitions and implementation authority, use the generated
 [`mathematical-object-catalogue.md`](mathematical-object-catalogue.md). Its
 single structured source is `catalogues/mathematical_objects.toml`; edit the
@@ -225,6 +227,11 @@ Change the ledger entry and every surface in the same commit.
   and its [JSON catalogue](post-proof-padovan-plastic-a-conjectures-2026-09-23.json)
   — PR #157's research-only benchmark conjectures. The historical
   "post-proof" filename does not assert a completed PSC proof.
+- [`rauzy-contact-salvage-2026-10-23.md`](rauzy-contact-salvage-2026-10-23.md)
+  — status-safe salvage of the older cohomological/Rauzy-contact thread. It
+  keeps the formal-vs-realized firewall, exact lattice-drift replay target and
+  contact geometry as research controls, while explicitly rejecting the stale
+  obstruction-regime / nonterminating-BPA inferences as current proof status.
 
 These are reference/index additions only. They do not establish #84, #138,
 #139, G1, or general PSC, or change their ledger status or closure priorities.

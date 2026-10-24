@@ -9,6 +9,8 @@ import sys
 import tomllib
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
@@ -190,21 +192,24 @@ def test_review_evidence_remains_bound_to_each_reconciled_record():
             assert (ROOT / record.field(field)).is_file()
 
 
-def test_model_rejects_false_g1_nonestablishment_with_tlc(tmp_path):
+@pytest.mark.parametrize("model,claim", [
+    ("MCLedgerAllSeedOverlapGateAssumed", "G1"),
+    ("MCLedgerOpen", "ClassDFiniteBPA"),
+])
+def test_model_rejects_false_nonestablishment_with_tlc(tmp_path, model, claim):
     import os
     import shutil
     import pytest
     jar = os.environ.get("TLA_TOOLS")
     if not jar or not Path(jar).is_file() or not shutil.which("java"):
         pytest.skip("set TLA_TOOLS to check the alternative dependency model")
-    model = "MCLedgerAllSeedOverlapGateAssumed"
     for name in ("ProofArchitecture.tla", "Ledger.tla", model + ".tla", model + ".cfg"):
         shutil.copyfile(ROOT / "proof" / "tla" / name, tmp_path / name)
     cfg = tmp_path / (model + ".cfg")
-    cfg.write_text(cfg.read_text().replace("    TypeOK\n", "    TypeOK\n    G1NotEstablished\n"))
+    cfg.write_text(cfg.read_text().replace("    TypeOK\n", f"    TypeOK\n    {claim}NotEstablished\n"))
     out = subprocess.run(["java", "-XX:+UseSerialGC", "-cp", jar, "tlc2.TLC", "-workers", "1", model],
                          cwd=tmp_path, capture_output=True, text=True, timeout=60)
-    assert "Invariant G1NotEstablished is violated" in out.stdout, out.stdout + out.stderr
+    assert f"Invariant {claim}NotEstablished is violated" in out.stdout, out.stdout + out.stderr
 
 
 def test_minus_cyclesum_closes_only_the_scoped_conditional_family_result():
@@ -267,3 +272,41 @@ def test_accepted_class_d_assembly_preserves_universal_firewalls():
     assert gl.established(analysis,("ClassDIntegrationAcceptance",)) == assembled == reachable("Open")
     assert {"PlusClassDBoundaryHitting", "MinusClassDBoundaryHitting", "ClassDBoundaryHitting"} <= assembled
     assert not {"UniversalBoundaryHitting", "UniversalAlignedCoincidence", "TwoObstructionCompletion", "G1", "PDS"} & assembled
+
+
+def test_class_d_finite_bpa_is_scoped_and_uses_no_spectral_import():
+    analysis = gl.analyse(gl.load_ledger(ROOT / "proof/tla/ledger.json"))
+    entries = {entry.name: entry for entry in analysis.entries}
+    finite = entries["ClassDFiniteBPA"]
+    assert finite.status == "proved"
+    assert "determinant-two class-D normal form" in finite.record.statement
+    assert finite.record.field("human_review_pending") == "true"
+    assert set(finite.requires) == {"ClassDBoundaryHitting", "SwapOverlapFiniteness"}
+    names = {entry.record.id: entry.name for entry in analysis.entries}
+    closure = {names[r] for r in finite.closure.reached}
+    assert "ClassDIntegrationAcceptance" in closure
+    assert not {"G1HalfCoincidenceRoute", "AllSeedStrictZipperExclusion",
+                "UniversalAlignedCoincidence", "DensityToPDSBridge", "PDS"} & closure
+    assert all(entries[name].record.kind != make_ledger.I for name in closure)
+    for assumptions in ((), ("ClassDFiniteBPA",), ("ClassDFiniteBPA", "DensityToPDSBridge")):
+        done = gl.established(analysis, assumptions)
+        assert "ClassDFiniteBPA" in done
+        assert not {"G1", "PDS", "UniversalBoundaryHitting", "UniversalAlignedCoincidence",
+                    "TwoObstructionCompletion", "OverlapProductivity",
+                    "AllSeedStrictZipperExclusion", "FormalProductivity"} & done
+    assert "ClassDFiniteBPA" in reachable("Open")
+
+
+@pytest.mark.parametrize("missing", ["ClassDBoundaryHitting", "SwapOverlapFiniteness"])
+def test_class_d_finite_bpa_refuses_a_missing_mathematical_premise(monkeypatch, tmp_path, missing):
+    # Rebuild all content IDs and dependencies with one input made genuinely open.
+    kind, statement, source, deps, tags = make_ledger.TABLE[missing]
+    monkeypatch.setitem(make_ledger.TABLE, missing,
+                        (make_ledger.P, statement, "negative control: missing premise", (), ()))
+    path = tmp_path / "ledger.json"
+    path.write_text(json.dumps(make_ledger.ledger()))
+    analysis = gl.analyse(gl.load_ledger(path))
+    entries = {entry.name: entry for entry in analysis.entries}
+    assert entries["ClassDFiniteBPA"].status == "conditional"
+    assert "ClassDFiniteBPA" not in gl.established(analysis, ())
+    assert "G1" not in gl.established(analysis, ())

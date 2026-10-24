@@ -12,18 +12,25 @@ from std.collections import Dict
 from psc.class_a_line import ALine
 from psc.overlap_seed_patch import (
     OverlapState, SeedOverlapAutomaton, build_seed_overlap_tables_screened,
-    build_seed_overlap_graph_from_tables, first_left_aligned_depths,
-    seed_overlap_states,
+    build_overlap_graph_from_seeds, first_left_aligned_depths,
+    seed_overlap_states_cached,
 )
+from psc.perron_field3 import CubicElt
 from psc.vertex_coincidence import length_matrix, offset_vector
-from psc.overlap_zipper import ordered_child_occurrences
+from psc.overlap_zipper import ordered_child_occurrences_cached
 from psc.overlap_obstruction import recurrent_sccs
 
 
 def survey(line: ALine, n: Int, export: Bool = False) raises -> List[Int]:
     """Returns `[vertices, maximum first-hit depth, recurrent vertices]`."""
     var tables = build_seed_overlap_tables_screened(line.member(n))
-    var g = build_seed_overlap_graph_from_tables(tables, 20000)
+    # One exact sign cache serves the seed scan, the graph closure and, under
+    # `export`, every edge enumeration. The sign of a field element at the
+    # Perron root depends on the element alone, so sharing it changes no
+    # record, only the number of Sturm--Tarski evaluations.
+    var sign_cache = Dict[CubicElt, Int]()
+    var seeds = seed_overlap_states_cached(tables, sign_cache)
+    var g = build_overlap_graph_from_seeds(tables, seeds, sign_cache, 20000)
     if g.capped:
         raise Error("STATE_BUDGET_EXHAUSTED: no hitting verdict")
     var ds = first_left_aligned_depths(g)
@@ -44,12 +51,12 @@ def survey(line: ALine, n: Int, export: Bool = False) raises -> List[Int]:
         var index = Dict[OverlapState, Int]()
         for i in range(g.size()):
             index[g.states[i]] = i
-        for seed in seed_overlap_states(tables):
+        for seed in seeds:
             print("SEED", n, index[seed])
         for i in range(g.size()):
             if g.states[i].is_coincidence():
                 continue
-            for e in ordered_child_occurrences(tables, g.states[i]):
+            for e in ordered_child_occurrences_cached(tables, sign_cache, g.states[i]):
                 print("E", n, i, index[e.state], e.top_index, e.bottom_index)
     print("SUMMARY", n, g.size(), maximum, recurrent)
     return [g.size(), maximum, recurrent]

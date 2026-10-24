@@ -630,6 +630,24 @@ anchor = "| Combined determinant-two class D |"
 window_lines = 0
 
 [[claim]]
+name = "ClassDFiniteBPA"
+status = "proved"
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"ClassDFiniteBPA"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| ClassDFiniteBPA |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/class-d-g1-corollary-2026-10-22.md"
+anchor = "| Scoped finite BPA |"
+window_lines = 0
+
+[[claim]]
 name = "ClassDIntegrationAcceptance"
 status = "proved"
 [[claim.surfaces]]
