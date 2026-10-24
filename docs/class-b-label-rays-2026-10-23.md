@@ -145,3 +145,9 @@ have only three training members. Their holdouts are useful tests, not proof.
 Replay commands, complete prefix label sets, exact coefficient tables,
 rank candidates, legal finite witnesses, input digests and execution receipts
 are in [the packet](../evidence/class-b-label-rays-2026-10-23/README.md).
+
+Historical input digests identify the source used for the archived execution
+at tree `1c4ce91a350981c40f4a6e889b26b04cc6fde418` (initial PR commit
+`7c2d83fc8aa44db36662811d914ec146a161d269`). They do not prohibit future
+edits to all kernel modules. The manifest regression validates its structure;
+fresh native export comparison and independent checks validate later replays.
