@@ -25,14 +25,18 @@ on both branches that have a Barge power/rotation witness up to power 3 (the
 prior-art shortcut of `substitution_dynamics.barge_class`); no witness proves
 nothing about the spectrum.
 
-Mode `labels plus|minus D QMAX` is the step-1 stop condition. It encodes each
-member's labels exactly as class A's datasets do: typed k-intervals
-`(top, bottom, s, y, k_lo, k_hi)` of the integral offset `w = (k, c, y)` with
-`s = k + c + y` (`psc.class_a_gap_dataset.typed_intervals`). For every residue
-class of q mod g (g = d + 1), it finds the least floor from which, over *all*
-later members of the class (at least FIT), the interval keys are identical and
-every endpoint is affine in q. A class with no such floor in the window is
-reported as unfitted; that is a finite verdict.
+Mode `labels plus|minus D QMAX` is the step-1 stop condition. A label is the
+integral offset `w = (k, c, y)` of a vertex with its tile pair. Class A's
+datasets group labels as k-intervals at fixed `(top, bottom, k + c + y, y)`.
+On class B's top layer every raw coordinate grows with q, so that grouping
+cannot fit. The bounded functionals are instead `u = 3k + c + y` and
+`v = 3k - c`, with growth along `(1, 3, -6)`. `(k, c, y) -> (u, v, k)` is
+unimodular, so the typed k-intervals `(top, bottom, u, v, k_lo, k_hi)` are
+lossless (`psc.class_a_gap_dataset.typed_intervals` on `[top, bottom, u, v, k]`).
+For every residue class of q mod g (g = d + 1) the mode finds the least floor
+from which, over *all* later members of the class (at least FIT), the interval
+keys are identical and every endpoint is affine in q. A class with no such
+floor in the window is reported as unfitted; that is a finite verdict.
 
 Usage: `mojo run -I . class_b_top_layer_profile.mojo plus|minus D QMAX | labels plus|minus D QMAX | barge DMAX QMAX`.
 """
@@ -140,7 +144,7 @@ def member_rows(sigma: List[List[Int]]) raises -> List[List[Int]]:
     var labels = List[List[Int]]()
     for v in a.states:
         var w = offset_vector(lm, v.shift)
-        labels.append([v.top, v.bottom, w[0] + w[1] + w[2], w[2], w[0]])
+        labels.append([v.top, v.bottom, 3 * w[0] + w[1] + w[2], 3 * w[0] - w[1], w[0]])
     return typed_intervals(labels^)
 
 
