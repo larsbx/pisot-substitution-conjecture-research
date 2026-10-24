@@ -152,30 +152,61 @@ def routh_right_half_plane_count(q: Sequence[Fraction]) -> int | None:
     ]
     while rows[-1] and len(rows) <= n:
         above, current = rows[-2], rows[-1]
-        if all(x == 0 for x in current):
+
+        # Optimization: use explicit loop instead of all(x == 0 for x in current)
+        current_is_zero = True
+        for x in current:
+            if x != 0:
+                current_is_zero = False
+                break
+
+        if current_is_zero:
             # A vanishing row means `q` has roots placed symmetrically about the
             # origin, which in `z` is a reciprocal pair. The classical remedy is
             # to continue from the derivative of the auxiliary polynomial the row
             # above represents. Without it the array stops and every reciprocal
             # Pisot polynomial, `x^2 - 3x + 1` among them, is refused.
             rows[-1] = current = _auxiliary_derivative(above, n - (len(rows) - 2))
-            if not current or all(x == 0 for x in current):
+            if not current:
                 return None
-        if current[0] == 0:
+            current_is_zero2 = True
+            for x in current:
+                if x != 0:
+                    current_is_zero2 = False
+                    break
+            if current_is_zero2:
+                return None
+
+        c0 = current[0]
+        if c0 == 0:
             return None  # first-column zero, not a whole row
+
         nxt = []
-        for i in range(1, max(len(above), len(current))):
-            a = above[i] if i < len(above) else Fraction(0)
-            b = current[i] if i < len(current) else Fraction(0)
-            nxt.append((current[0] * a - above[0] * b) / current[0])
+        # Optimization: avoid Fraction(0) object instantiations inside max bound loop
+        # by precomputing reciprocal scaling factor and explicitly unrolling loops.
+        factor = Fraction(above[0]) / Fraction(c0)
+        len_a, len_c = len(above), len(current)
+        min_len = len_a if len_a < len_c else len_c
+
+        for i in range(1, min_len):
+            nxt.append(above[i] - factor * current[i])
+        for i in range(min_len, len_a):
+            nxt.append(above[i])
+        for i in range(min_len, len_c):
+            nxt.append(-factor * current[i])
+
         while nxt and nxt[-1] == 0:
             nxt.pop()
         if not nxt:
             break
         rows.append(nxt)
+
     column = [row[0] for row in rows if row]
-    if len(column) < n + 1 or any(x == 0 for x in column):
-        return None  # early termination or a zero
+    if len(column) < n + 1:
+        return None  # early termination
+    for x in column:
+        if x == 0:
+            return None  # early termination or a zero
     return sum(1 for i in range(n) if (column[i] > 0) != (column[i + 1] > 0))
 
 
