@@ -51,7 +51,7 @@ def chamber_parameters(eps: Int) raises -> List[QX]:
     var n=qx_add(t,qx_add(qx_mul(qx_const(1 if eps==-1 else 2),k),
                            qx_const(3 if eps==-1 else 4)))
     var d=qx_sub(qx_add(_twice(n),qx_const(6*eps+5)),k)
-    return [n,d,k,t]
+    return [n.copy(),d.copy(),k.copy(),t.copy()]
 
 
 def char_at(eps: Int, n: QX, d: QX, x: QX) raises -> QX:
