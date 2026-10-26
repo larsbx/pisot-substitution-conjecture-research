@@ -52,13 +52,13 @@ def _prefix(parent: Int, kind: Int, index: QX,
         _cone_nonnegative(qx_sub(run,index))
         var y=qx_sub(index,qx_const(1))
         if parent==1:
-            return [qx_const(0),qx_const(1),y]
-        return [qx_const(1),qx_const(0),y]
+            return [qx_const(0),qx_const(1),y.copy()]
+        return [qx_const(1),qx_const(0),y.copy()]
     if kind==LAST:
         _same(index,qx_add(run,qx_const(1)))
         if parent==1:
-            return [qx_const(0),qx_const(1),run]
-        return [qx_const(1),qx_const(0),run]
+            return [qx_const(0),qx_const(1),run.copy()]
+        return [qx_const(1),qx_const(0),run.copy()]
     raise Error("unknown occurrence kind")
 
 
@@ -73,8 +73,8 @@ def symbolic_child(eps: Int, top: Int, bottom: Int, old: List[QX],
     if len(old)!=3:
         raise Error("expected full three-coordinate Parikh offset")
     var params=chamber_parameters(eps)
-    var n=params[0]
-    var d=params[1]
+    var n=params[0].copy()
+    var d=params[1].copy()
     if _child(top,tkind)!=want_top or _child(bottom,bkind)!=want_bottom:
         raise Error("target child types do not match actual word")
     var pt=_prefix(top,tkind,tidx,eps,n,d)
@@ -101,8 +101,8 @@ def certify_typed_occurrences(eps: Int, corrupt: Bool=False) raises:
     # all-parameter Perron bracket and u>1 cone certificate has passed.
     certify_chamber_signs(eps)
     var par=chamber_parameters(eps)
-    var n=par[0]
-    var d=par[1]
+    var n=par[0].copy()
+    var d=par[1].copy()
     var zero=qx_const(0)
     var one=qx_const(1)
     var old=[zero.copy(),zero.copy(),zero.copy()]
