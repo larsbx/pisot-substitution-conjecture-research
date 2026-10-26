@@ -113,8 +113,9 @@ comment states that C4 itself is open.
 - Open: draft #341 (stronger high-degree Bernstein regression, green). #343
   (class-B affine basis) is largely subsumed by #342. #318/#319 (d=2
   corridors) have failed hosted checks and are not mainline evidence.
-- Issue #139's scoped coverage table omits class A `d >= 5, n >= 5d`. Its
-  universal-open conclusion is correct.
+- Issue #139's scoped coverage table omitted class A `d >= 5, n >= 5d`; the
+  issue body was updated on 2026-10-26 (coverage, PR index, open strips).
+  Its universal-open conclusion is unchanged.
 
 ## Next obligations (ranked)
 
