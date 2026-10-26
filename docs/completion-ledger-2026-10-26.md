@@ -59,8 +59,10 @@ not promoted to PDS.
   `class-a-gap-independent-audit-2026-10-23.md`.
 - **#331, SP/UD shortcut retired.** The PIP fixture `0->12, 1->01, 2->120`
   (det −1) has the reachable residual `0` and the equal-length nonidentity
-  edge `0·12 = 01·2`. This refutes the v5-thread SP proof of UD and
-  `UD => finite BPA`. UD stands by the defect theorem. Regression:
+  edge `0·12 = 01·2`. This refutes the lemma behind the v5-thread SP proof
+  of UD, so that proof and its derivation of `UD => finite BPA` are invalid.
+  The implication itself is not refuted: the fixture has finite BPA
+  (11 states). UD stands by the defect theorem. Regression:
   `kernel/tests/test_sp_equal_length_negative.mojo`, with an independent
   oracle in `tests/test_sp_equal_length_negative.py` (added 2026-10-26).
 - **Class-B coarse rank rejected** (#342). 202 selected shortest-child edges

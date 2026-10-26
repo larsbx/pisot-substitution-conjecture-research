@@ -182,7 +182,7 @@ Do not use:
 
 - predecessor contraction as a proof of finite BPA;
 - `UD => bounded total padding`;
-- the v5-thread SP/integral-residual proof of UD, its lemma "equal-length preserved-orientation SP edges are identities", and `UD => finite BPA`: refuted on the PIP fixture `0->12, 1->01, 2->120` (`docs/psc-v5-thread-salvage-audit-2026-10-23.md`, PR #331; regression `kernel/tests/test_sp_equal_length_negative.mojo`). UD itself stays repository-proved by the defect theorem;
+- the v5-thread SP/integral-residual proof of UD and its derivation of `UD => finite BPA`: the lemma "equal-length preserved-orientation SP edges are identities" is refuted on the PIP fixture `0->12, 1->01, 2->120` (`docs/psc-v5-thread-salvage-audit-2026-10-23.md`, PR #331; regression `kernel/tests/test_sp_equal_length_negative.mojo`). The argument is invalid; the implication itself is not refuted (the fixture has finite BPA, 11 states) and stays unavailable. UD itself stays repository-proved by the defect theorem;
 - bounded discrepancy alone as finite-BPA proof;
 - naive zero-sum-hyperplane contraction;
 - unlabelled difference-walk injectivity;

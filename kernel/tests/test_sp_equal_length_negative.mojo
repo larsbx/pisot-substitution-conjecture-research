@@ -8,11 +8,13 @@ substitution `0 -> 12, 1 -> 01, 2 -> 120` (det -1):
   `|u| = |v|`, `u != v` and source letters `0 != 1`, so "equal-length
   preserved-orientation SP edges are identities" is false on PIP;
 - Sardinas–Patterson still certifies the image code uniquely decipherable,
-  so the edge is no route to a non-UD return (UD stands by the defect theorem);
+  so the edge is no route to a non-UD return (UD stands by the defect theorem).
+  The fixture refutes a proof step, not `UD => finite BPA`: its BPA is finite;
 - the residual-length cycle `1 -> 2 -> 1` has no equal-length edge, refuting
   "a minimum-length vertex on a cycle gives an equal-length subcycle";
-- the equal-length code `{01, 12, 20}` (det 2) parses `(012)^infty` at three
-  distinct phases: finite-word UD does not fix bi-infinite cut positions.
+- the equal-length code `{01, 12, 20}` (det 2) parses `(012)^infty` with cuts
+  `2Z` and `1 + 2Z`, two distinct bi-infinite parsings: finite-word UD does
+  not fix bi-infinite cut positions.
 
 The Python oracle `tests/test_sp_equal_length_negative.py` checks the same
 facts independently.
@@ -142,19 +144,21 @@ def test_minimum_does_not_force_equal_length_edge() raises:
         assert_true(lengths[i] != lengths[(i + 1) % len(lengths)])
 
 
-def test_uniform_code_has_three_bi_infinite_phases() raises:
+def test_uniform_code_has_two_bi_infinite_parsings() raises:
+    """Cut sets `c + 2Z`, `c in {0, 1}`; one period `lcm(2, 3) = 6` of
+    `(012)^infty` decides each."""
     var code = sigma_of([0, 1], [1, 2], [2, 0])
     assert_equal(Mat3(substitution_incidence(code)).det(), 2)
     assert_true(sardinas_patterson_ud(code))
-    var parsing_phases = 0
-    for phase in range(3):
+    var parsings = 0
+    for cut in range(2):
         var ok = True
         for block in range(3):
-            var w: List[Int] = [(phase + 2 * block) % 3, (phase + 2 * block + 1) % 3]
+            var w: List[Int] = [(cut + 2 * block) % 3, (cut + 2 * block + 1) % 3]
             ok = ok and contains(code, w)
         if ok:
-            parsing_phases += 1
-    assert_equal(parsing_phases, 3)
+            parsings += 1
+    assert_equal(parsings, 2)
 
 
 def main() raises:
@@ -163,5 +167,5 @@ def main() raises:
     test_equal_length_nonidentity_edge()
     test_fixture_code_is_still_ud()
     test_minimum_does_not_force_equal_length_edge()
-    test_uniform_code_has_three_bi_infinite_phases()
+    test_uniform_code_has_two_bi_infinite_parsings()
     require_contract("PSC v5-thread SP negative controls: equal-length nonidentity PIP edge with UD intact")
