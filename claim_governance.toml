@@ -628,6 +628,10 @@ window_lines = 0
 path = "docs/class-d-assembly-audit-2026-10-21.md"
 anchor = "| Combined determinant-two class D |"
 window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Class-D boundary hitting, every PIP member |"
+window_lines = 0
 
 [[claim]]
 name = "ClassDFiniteBPA"
@@ -645,6 +649,10 @@ window_lines = 0
 [[claim.surfaces]]
 path = "docs/class-d-g1-corollary-2026-10-22.md"
 anchor = "| Scoped finite BPA |"
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Class-D finite BPA (scoped G1) |"
 window_lines = 0
 
 [[claim]]

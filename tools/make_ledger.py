@@ -365,8 +365,14 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "PlusClassDBoundaryLine": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Plus b=0 boundary |")],
     "PlusClassDPositiveBBoundaryHitting": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Plus positive-b residual |")],
     "PlusClassDBoundaryHitting": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Entire plus class D |")],
-    "ClassDBoundaryHitting": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Combined determinant-two class D |")],
-    "ClassDFiniteBPA": [surface("docs/class-d-g1-corollary-2026-10-22.md", "| Scoped finite BPA |")],
+    "ClassDBoundaryHitting": [
+        surface("docs/class-d-assembly-audit-2026-10-21.md", "| Combined determinant-two class D |"),
+        surface(MAP, "| Class-D boundary hitting, every PIP member |"),
+    ],
+    "ClassDFiniteBPA": [
+        surface("docs/class-d-g1-corollary-2026-10-22.md", "| Scoped finite BPA |"),
+        surface(MAP, "| Class-D finite BPA (scoped G1) |"),
+    ],
     "MinusClassDBoundaryLine": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Minus b=0 boundary |")],
     "MinusClassDBoundaryStrips": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Minus a=0,1 strips |")],
     "MinusClassDResidualBoundaryHitting": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Entire minus residual |")],
