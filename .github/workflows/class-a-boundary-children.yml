@@ -1,0 +1,44 @@
+name: PSC class-A complete boundary seed children
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_boundary_children.mojo'
+      - 'kernel/class_a_boundary_children.mojo'
+      - 'kernel/tests/test_class_a_boundary_children.mojo'
+      - 'oracles/python/class_a_boundary_children.py'
+      - 'tests/test_class_a_boundary_children.py'
+      - 'evidence/class-a-boundary-children-2026-10-26/**'
+      - 'proof/PscVerif/**'
+      - '.github/workflows/class-a-boundary-children.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  complete-seed-children:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent exact literal-word and geometry replay
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_boundary_children.py
+          python oracles/python/class_a_boundary_children.py > /tmp/boundary-children.json
+          cmp /tmp/boundary-children.json evidence/class-a-boundary-children-2026-10-26/probe.json
+      - name: Install Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Canonical complete-star and arbitrary-parent target verifier
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_class_a_boundary_children.mojo
+          pixi run --locked mojo run -I . class_a_boundary_children.mojo
+          pixi run --locked mojo run -I . tests/test_class_a_boundary_kernels.mojo
