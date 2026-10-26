@@ -290,6 +290,15 @@ anchor = "| Finite collar death |"
 window_lines = 0
 
 [[claim]]
+name = "ClassBTopLayerLabelRays"
+status = "evidence"
+aliases = ["class-B top-layer label rays"]
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Class-B top-layer label rays |"
+window_lines = 0
+
+[[claim]]
 name = "BPATerminationInterface"
 status = "imported"
 aliases = ["BPA termination"]
@@ -609,6 +618,63 @@ expect = "absent"
 [[claim.surfaces]]
 path = "docs/ledger-index.md"
 anchor = '| C4 |'
+window_lines = 0
+
+[[claim]]
+name = "ClassABoundaryHittingHighGaps"
+status = "proved"
+aliases = ["class-A gaps d >= 5, n >= 5d"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"ClassABoundaryHittingHighGaps"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| ClassABoundaryHittingHighGaps |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Class-A boundary hitting, gaps `d >= 5`, `n >= 5d` |"
+window_lines = 0
+
+[[claim]]
+name = "ClassABoundaryHittingLowGaps"
+status = "proved"
+aliases = ["class-A gaps d <= 4"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"ClassABoundaryHittingLowGaps"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| ClassABoundaryHittingLowGaps |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Class-A boundary hitting, gaps `d <= 4` |"
+window_lines = 0
+
+[[claim]]
+name = "ClassCBoundaryHittingLowGaps"
+status = "proved"
+aliases = ["class-C gaps d <= 5"]
+[[claim.surfaces]]
+path = "proof/tla/Ledger.tla"
+anchor = '"ClassCBoundaryHittingLowGaps"'
+section = "ProvedDef == {"
+section_end = "}"
+expect = "present"
+[[claim.surfaces]]
+path = "docs/ledger-index.md"
+anchor = '| ClassCBoundaryHittingLowGaps |'
+window_lines = 0
+[[claim.surfaces]]
+path = "docs/claim-status-and-source-map-2026-09-13.md"
+anchor = "| Class-C boundary hitting, gaps `d <= 5` |"
 window_lines = 0
 
 [[claim]]

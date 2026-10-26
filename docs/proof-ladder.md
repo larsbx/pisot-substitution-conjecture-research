@@ -24,6 +24,15 @@ model reaches it while retaining `G1NotEstablished` and `PDSNotEstablished`.
 This instantiates Proposition 4 on the discharged scoped premise; it does
 not assume the open universal premise bundled into `G1HalfCoincidenceRoute`.
 
+The scoped class-A/C boundary-hitting certificates are registered alongside it
+(2026-10-26): `ClassABoundaryHittingLowGaps` (gaps `d <= 4`),
+`ClassABoundaryHittingHighGaps` (gaps `d >= 5`, `n >= 5d`) and
+`ClassCBoundaryHittingLowGaps` (gaps `d <= 5`, depending on the Theorem L″ lines
+in `DetTwoBoundaryHittingLines`). None of them is a premise of
+`UniversalBoundaryHitting`, and no G1 corollary is drawn for classes A or C. The
+class-B top-layer label rays are registered as evidence only
+(`ClassBTopLayerLabelRays`).
+
 ## Primary ladder: two universal lemmas
 
 The project now treats seedwise overlap productivity (#84) through the
