@@ -41,3 +41,16 @@ def test_reject_invalid_chamber():
     for args in [(0, 0, 0), (1, -1, 0), (-1, 0, -1)]:
         with pytest.raises(ValueError):
             oracle.Geometry(*args)
+
+
+def test_next_family_first_first_chamber_transitions():
+    # Independent exact geometry, including both sides of t=1/2 and k=6/7.
+    for eps in (-1, 1):
+        for k in range(13):
+            for t in range(8):
+                g = oracle.Geometry(eps, k, t)
+                r = 2 if eps == 1 and k <= 3 else 1
+                for m in (r, r+1):
+                    child = g.child((2, 2, -1, 1, m), 0, 0)
+                    wanted = (m == 1 and t <= 1) if eps == -1 else (m == 2 and k <= 6)
+                    assert g.interior(child) == wanted

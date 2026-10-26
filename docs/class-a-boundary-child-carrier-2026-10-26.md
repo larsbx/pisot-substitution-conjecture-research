@@ -88,7 +88,7 @@ This is a complete outgoing star of one parent, **not** a forward-closed graph.
 Canonical `kernel/psc/class_a_boundary_children.mojo` binds exact symbolic
 prefix endpoints to the table and provides the arbitrary-parent
 `verify_member_edge` guard. `kernel/tests/test_class_a_boundary_children.mojo`
-enumerates every ordered seed child pair in 12 fixed members, and every
+enumerates every ordered seed child pair in 15 fixed members, and every
 child of both `T_m` labels in three chamber representatives. Driver:
 `kernel/class_a_boundary_children.mojo`.
 
@@ -115,7 +115,7 @@ the three integer-rounding equivalences over rational open chambers; it
 assumes the bounds and does not formally prove the Perron root statements.
 Dedicated native/Python CI: `.github/workflows/class-a-boundary-children.yml`;
 the repository Lean gate imports the new module through `PscVerif.lean`.
-Local Python replay: nine tests passed. Native and Lean acceptance require
+Local Python replay: ten tests passed. Native and Lean acceptance require
 fresh hosted receipts and are not inferred from local Python success.
 
 ### Negative controls
@@ -162,7 +162,59 @@ the following strict guards, always intersected with real word bounds:
 The full target is always
 `(child_top,child_bottom,(m-1,m+1,m*(n+eps)-d)+prefix_b-prefix_t)`.
 The generic member verifier handles each of these without assuming packet
-membership or discarding first/last children. The next unfinished symbolic
-case is resolving these floor/ceiling guards for `T_r`, then `T_(r+1)`,
-on all `k,t`, retaining the resulting new labels in a closed carrier. No
-strict uniform spectral margin or accepted well-founded rank is supplied.
+membership or discarding first/last children. First/first is now resolved
+below. The next unfinished symbolic case is first/run for `T_r`, then the
+remaining seven guards, retaining all resulting new labels in a closed
+carrier. No accepted well-founded rank is supplied.
+
+## Next-family first/first: an exact additional chamber lemma
+
+The valid seed-derived `m` values remain `{r,r+1}`. For all `k,t>=0`:
+
+| Sign | Exactly when T_m has an interior first/first child |
+| --- | --- |
+| minus | `m=1` and `t<=1` |
+| plus | `m=2` and `k<=6` |
+
+These are exact finite algebraic identities and ordered-field signs, not
+extrapolations from the additional 208-member Python check. The full target
+packet is `(x,x,m-1,m+1,m*(n+eps)-d)`.
+
+For the lower margin `B+a`, multiply by positive beta:
+`G_m(beta)=m*beta^2+(1-d)*beta-eps`.
+For the upper margin `a-B`, multiply by `beta*(beta-1)>0` and reduce
+modulo f, giving
+
+`J_m(X)=(m+d+1-m*(n+3+eps))*X^2
+ +(d-1-eps+m*(n-d+2+3eps))*X+eps*(1-2m)`.
+
+Minus, m=1: `J_1=(d-n)X^2+(n-1)X+1>0`. For `t=0,1`,
+`B+a=beta-d+b>n+3-d=1-t>=0`. For `t>=2`, let
+`A=(t-1)*(d-1)-t-4`, `C=3-t`. Exact division gives
+
+`f(X)=(X+t-1)*G_1(X)+A*X+C`.
+
+Writing `t=2+z`,
+`A=2z^2+(k+9)z+k+2>0`,
+`A+C=2z^2+(k+8)z+k+3>0`.
+Since beta>1, `A*beta+C>A+C>0`; hence `G_1(beta)<0`.
+Minus, m=2: `J_2=-(X-1)*((k+2)*X+3)<0` at beta.
+
+Plus, m=1: `B+a< n+7-d=-(k+t+8)<0`.
+Plus, m=2: put `Cplus=3k^2+16k+2kt+2>0`; then
+
+`4f(X)=(2X+2-k)*G_2(X)-Cplus*X-(k+6)`.
+
+The quotient is positive at beta because
+`2beta+2-k>2n+10-k=3k+2t+18>0`. Thus `G_2(beta)>0`.
+The upper margin factors as `J_2=(X-1)*((6-k)*X+3)`, positive when
+`k<=6`, negative when `k>=7` since beta>3.
+Plus, m=3: all coefficients of
+`J_3=-(3k+t+1)X^2-(t+13)X-5` are strictly negative.
+
+`kernel/psc/class_a_boundary_next_first.mojo` reconstructs these identities
+coefficientwise using the existing monic polynomial remainder kernel and
+certifies the shifted coefficient cones. A corrupted identity is refused.
+The native suite includes `t=1,2` and `k=6,7`; the independent Python test
+checks 208 members / 416 first/first choices. This resolves one of the nine
+next-family guards, **not** the other eight, forward closure or descent.

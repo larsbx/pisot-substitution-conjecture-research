@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'kernel/psc/class_a_boundary_children.mojo'
+      - 'kernel/psc/class_a_boundary_next_first.mojo'
       - 'kernel/class_a_boundary_children.mojo'
       - 'kernel/tests/test_class_a_boundary_children.mojo'
       - 'oracles/python/class_a_boundary_children.py'

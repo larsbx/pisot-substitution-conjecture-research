@@ -13,6 +13,7 @@ from psc.overlap_seed_patch import (
     selected_overlap_child, interior_overlap_cached,
 )
 from psc.perron_field3 import CubicElt
+from psc.class_a_boundary_next_first import certify_next_first, next_first_allowed
 
 
 def _literal(tables: SeedOverlapTables, n: Int, d: Int, eps: Int,
@@ -64,6 +65,11 @@ def _specimen(eps: Int, k: Int, t: Int, second_step: Bool) raises -> Int:
             labels.append(edge.target)
     var r=boundary_r(eps,k)
     assert_true(len(labels)==2*r+(7 if eps==-1 else 6))
+    for m in range(r,r+2):
+        var parent=BoundaryLabel(2,2,-1,1,m)
+        var packet=member_transport(eps,k,n,d,parent,0,0)
+        assert_true(interior_overlap_cached(tables,cache,geometric_state(tables,packet))
+                    ==next_first_allowed(eps,k,t,m))
     # A valid word pair, valid full transport, but disjoint geometry.
     var failed=False
     try:
@@ -117,11 +123,21 @@ def _specimen(eps: Int, k: Int, t: Int, second_step: Bool) raises -> Int:
 
 def main() raises:
     certify_seed_star()
+    certify_next_first()
     var total=0
     for eps in [-1,1]:
         for k in [0,3,4]:
             for t in [0,2]:
                 total+=_specimen(eps,k,t,t==0 and (k==0 or (eps==1 and k==4)))
+    total+=_specimen(-1,0,1,False)
+    total+=_specimen(1,6,0,False)
+    total+=_specimen(1,7,0,False)
+    var corrupted=False
+    try:
+        certify_next_first(True)
+    except:
+        corrupted=True
+    assert_true(corrupted)
     for i in [-1,10]:
         var failed=False
         try:
@@ -142,6 +158,6 @@ def main() raises:
         geometric_state(tables,BoundaryLabel(0,0,1,0,0))))
     assert_true(not interior_overlap_cached(tables,cache,
         geometric_state(tables,BoundaryLabel(0,0,-1,0,0))))
-    print("CLASS_A_BOUNDARY_STAR_FINITE members=12 pairs",total,
+    print("CLASS_A_BOUNDARY_STAR_FINITE members=15 pairs",total,
           "universal_evidence=false")
-    require_contract("class-A boundary aligned seed complete first/run/last outgoing star; symbolic prefix endpoints; all finite occurrence pairs match exact Perron geometry; typed full-Parikh target packets and invalid geometry refused; T_m successors escape one-step star; no closed carrier or BH")
+    require_contract("class-A boundary aligned seed complete first/run/last outgoing star; symbolic prefix endpoints; all finite occurrence pairs match exact Perron geometry; typed full-Parikh target packets and invalid geometry refused; T_m successors escape one-step star; symbolic next-family first/first chambers, t=1/2 and k=6/7 transitions and polynomial corruption refusal; no closed carrier or BH")
