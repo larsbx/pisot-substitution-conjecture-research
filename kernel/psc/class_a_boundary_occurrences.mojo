@@ -105,7 +105,10 @@ def certify_typed_occurrences(eps: Int, corrupt: Bool=False) raises:
     var d=par[1].copy()
     var zero=qx_const(0)
     var one=qx_const(1)
-    var old=[zero.copy(),zero.copy(),zero.copy()]
+    var old=List[QX]()
+    old.append(zero.copy())
+    old.append(zero.copy())
+    old.append(zero.copy())
 
     # (x,c,0) is the first tile-pair of the real (xc,cx) swap patch.
     # Its selected first children form a genuine noncoincident first-child
@@ -117,7 +120,10 @@ def certify_typed_occurrences(eps: Int, corrupt: Bool=False) raises:
     # L_c-L_x=-d*h*(1+h), whose magnitude exceeds L_y=(1+h) since u>1.
     # This syntactically valid y/y event is NOT an actual overlap edge.
     var run=symbolic_child(eps,0,1,old,RUN,one,RUN,one,2,2)
-    var wanted=[qx_const(-1),one.copy(),zero.copy()]
+    var wanted=List[QX]()
+    wanted.append(qx_const(-1))
+    wanted.append(one.copy())
+    wanted.append(zero.copy())
     if corrupt:
         wanted[2]=one.copy()
     _equal3(run,wanted)
@@ -132,7 +138,11 @@ def certify_typed_occurrences(eps: Int, corrupt: Bool=False) raises:
     var a=qx_add(qx_add(n,qx_const(eps)),one)
     var b=qx_add(n,one)
     var last=symbolic_child(eps,2,1,old,LAST,a,LAST,b,1,0)
-    _equal3(last,[qx_const(-1),one.copy(),qx_const(-eps)])
+    var expected_last=List[QX]()
+    expected_last.append(qx_const(-1))
+    expected_last.append(one.copy())
+    expected_last.append(qx_const(-eps))
+    _equal3(last,expected_last)
 
     # Some important algebraic prefix choices are unrealizable words.
     var failed=False
