@@ -7,7 +7,7 @@ the (x,c,0) seed's first y/y runs at indices (1,1) are disjoint when u>1.
 We certify the exact affine incidence update and cone-legal prefix positions.
 """
 from psc.class_a_boundary_signs import (
-    chamber_parameters, _same, _cone_nonnegative,
+    chamber_parameters, certify_chamber_signs, _same, _cone_nonnegative,
 )
 from psc.param_poly import (
     QX, qx_add, qx_sub, qx_mul, qx_const, qx_is_zero,
@@ -97,6 +97,9 @@ def _equal3(a: List[QX],b:List[QX]) raises:
 
 
 def certify_typed_occurrences(eps: Int, corrupt: Bool=False) raises:
+    # The geometric disjointness conclusion is valid only after the full
+    # all-parameter Perron bracket and u>1 cone certificate has passed.
+    certify_chamber_signs(eps)
     var par=chamber_parameters(eps)
     var n=par[0]
     var d=par[1]
