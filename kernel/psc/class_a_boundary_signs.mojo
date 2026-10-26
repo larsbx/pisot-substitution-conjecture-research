@@ -75,9 +75,9 @@ def certify_chamber_signs(eps: Int, corrupt: Bool=False) raises:
     Integer endpoint signs and the rational root test prove irreducibility.
     """
     var param=chamber_parameters(eps)
-    var n=param[0]
-    var d=param[1]
-    var k=param[2]
+    var n=param[0].copy()
+    var d=param[1].copy()
+    var k=param[2].copy()
     var one=qx_const(1)
     var m=qx_add(k,qx_const(2))
     var nn=qx_mul(n,n)
