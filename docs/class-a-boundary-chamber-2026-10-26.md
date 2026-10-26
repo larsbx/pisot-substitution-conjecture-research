@@ -66,3 +66,72 @@ The verifier refuses determinant sign 0, a mutated coefficient of the rational e
 This is a **structural exclusion** of one syntactically available child, not a guarantee that any other child eventually hits offset zero. No uniform interior target-aware packets, no all-child strict carrier closure/descent, no C4 ordered hub-residual alignment, no universal BH, A1′, G1 or PSC. The existing finite BPA proxy in PR #346 remains a weaker diagonal-reachability calculation. A merge or passing CI is not final human validation.
 
 **Next acceptance target:** derive all geometrically realizable indexed child types for an unbounded `k,t` chamber, then exhibit a symbolic well-founded descent or a uniform obstruction contradiction with strict interior/boundary guards. Reuse `class_a_gap_uniform` / existing perron field and target-packet kernels; do not infer word-level realization from `Q[t,k]` identities.
+
+
+## A complete exact y/y run-pair classification for the aligned (x,c,0) seed
+
+**Scope:** theorem about *all paired run children of this one parent state* for the boundary-ray families; not all children of the seed, not a claim that the recurrent first-child loop is closed, and not an occurrence-indexed hit.
+
+Write \(i\) for a genuine top y-run index of \(\sigma(x)\), \(j\) for a genuine bottom y-run index of \(\sigma(c)\). Thus
+
+\[
+1\le i\le n+d,\qquad 1\le j\le n,\qquad m=j-i\in\mathbb Z.
+\]
+
+At source shift zero, the physical start of the top run child is \(L_x+(i-1)L_y\), while that of the bottom child is \(L_c+(j-1)L_y\). Their shift is
+
+\[
+L_c-L_x+(j-i)L_y=(m-u)L_y,\qquad u=\frac d{\beta-1}.
+\]
+
+Since both children have length \(L_y>0\), their interiors overlap **if and only if** \(\lvert m-u\rvert<1\). This is a literal geometric test after the symbolic occurrence indexes have passed the word-bounds check; quotient letter agreement alone is insufficient.
+
+For \(\varepsilon=-1\), the already proved Perron interval \(\beta\in(n+2,n+3)\) and \(d=k+2t+5\) give
+\[
+1<u<\frac d{n+1}<2,\qquad 2(n+1)-d=k+3>0.
+\]
+Therefore the **only** possible integer index differences of strict y/y run overlaps are \(m\in\{1,2\}\).
+
+For \(\varepsilon=+1\), the interval \(\beta\in(n+4,n+6)\) and \(3(n+3)-d=3k+t+2>0\) establish \(1<u<3\). To decide the exact integer chamber, put \(X=1+d/2>1\). The characteristic polynomial has its two other roots strictly inside \((-1,1)\); therefore
+\[
+\operatorname{sgn} f(X)=\operatorname{sgn}(X-\beta),\qquad
+\operatorname{sgn}(u-2)=\operatorname{sgn}(X-\beta).
+\]
+Clearing the positive denominator,
+\[
+\begin{aligned}
+F(t,k)=8f(1+d/2)
+={}&-9k^3-12k^2t-93k^2-4kt^2\\
+&-44kt-15k+12t^2+256t+1349.
+\end{aligned}
+\]
+For \(k=0,1,2,3\), the four exact polynomials are
+\[
+\begin{array}{c|l}
+k & F(t,k)\\\hline
+0 & 12t^2+256t+1349\\
+1 & 8t^2+200t+1232\\
+2 & 4t^2+120t+875\\
+3 & 16t+224
+\end{array}
+\]
+and are positive for every \(t\ge0\). For \(k=4+q\), \(q\ge0\),
+\[
+-F(t,4+q)=9q^3+12q^2t+201q^2+4qt^2+
+140qt+1191q+4t^2+112t+775>0.
+\]
+Every inequality is established by nonnegative integer coefficients and a positive constant; no floating point, sampled roots, or limiting argument is used. The kernel independently constructs \(F\) from the characteristic polynomial and verifies this finite partition of the infinite \((k,t)\) cone. Thus
+\[
+\boxed{
+\begin{array}{c|c|c}
+\varepsilon & \text{parameter chamber} & \text{exactly the allowed relative run differences }m=j-i\\\hline
+-1 & k\ge0 & \{1,2\}\\
++1 & 0\le k\le3 & \{2,3\}\\
++1 & k\ge4 & \{1,2\}
+\end{array}}
+\]
+The listed differences **pass the strict geometric intersection test when the actual run indices exist**; this does not claim a complete seed child enumeration or any successful continuation path.
+
+Canonical Mojo: \`kernel/psc/class_a_boundary_run_pairs.mojo\`. The expanded \`kernel/tests/test_class_a_boundary_kernels.mojo\` validates actual selected child indices against the exact Perron overlap predicate for \((\varepsilon,n,d,k)=(-1,4,7,0),(+1,4,19,0),(+1,12,31,4)\); it also requires refusal on corrupt \(F\) and negative \(k\). Reproduction uses the same locked native commands above.
+
+**New remaining target:** classify first/run, run/last, and first/last children and the adjacent self-run families before synthesizing a *full* child carrier and a descent. The table is a precise word-and-geometry filter for one source state, not a global nonproductive SCC argument.
