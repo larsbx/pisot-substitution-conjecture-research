@@ -5,6 +5,7 @@ on:
     paths:
       - 'kernel/psc/class_a_boundary_signs.mojo'
       - 'kernel/psc/class_a_boundary_occurrences.mojo'
+      - 'kernel/psc/class_a_boundary_run_pairs.mojo'
       - 'kernel/class_a_boundary_kernels.mojo'
       - 'kernel/tests/test_class_a_boundary_kernels.mojo'
       - 'tests/test_class_a_boundary_chamber.py'
