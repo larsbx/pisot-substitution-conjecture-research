@@ -1,0 +1,36 @@
+name: PSC class-A boundary chamber and occurrence kernels
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_boundary_signs.mojo'
+      - 'kernel/psc/class_a_boundary_occurrences.mojo'
+      - 'kernel/class_a_boundary_kernels.mojo'
+      - 'kernel/tests/test_class_a_boundary_kernels.mojo'
+      - 'tests/test_class_a_boundary_chamber.py'
+      - 'docs/class-a-boundary-chamber-2026-10-26.md'
+      - '.github/workflows/class-a-boundary-kernels.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-typed-boundary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent rational regression
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_boundary_chamber.py
+      - name: Install Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Exact symbolic Mojo cone and typed occurrence witnesses
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_class_a_boundary_kernels.mojo
+          pixi run --locked mojo run -I . class_a_boundary_kernels.mojo
