@@ -122,7 +122,7 @@ def main() raises:
         for k in [0,3,4]:
             for t in [0,2]:
                 total+=_specimen(eps,k,t,t==0 and (k==0 or (eps==1 and k==4)))
-    for i in [-1,9]:
+    for i in [-1,10]:
         var failed=False
         try:
             _=seed_child_allowed(-1,0,3,5,i,0)
