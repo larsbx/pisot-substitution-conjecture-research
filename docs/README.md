@@ -33,7 +33,7 @@ the complete compiled-declaration audit, and the Ω/LC ledger registration.
   occurrence replay and whole child-closed-set reasoning; none closes #84,
   #138, #139, formal productivity, G1, or general PSC.
 
-See [`completion-ledger-2026-10-16.md`](completion-ledger-2026-10-16.md) for
+See [`completion-ledger-2026-10-26.md`](completion-ledger-2026-10-26.md) for
 the exact provenance gaps, open-PR boundary, and next obligations.
 
 ## What the 2026-10-05 and 2026-10-06 results establish
@@ -140,9 +140,9 @@ family-scoped and universal claims retain their existing quantifiers.
 6. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
-7. `completion-ledger-2026-10-16.md` — weekly snapshot at `main@b378392`, with a
-   dated 2026-10-19 reconciliation for the merged class-D boundary work and
-   the project-acceptance convention; current reconciled head is `main@e062e330`.
+7. `completion-ledger-2026-10-26.md` — weekly snapshot at `main@4eb0427d`;
+   the 2026-10-16 snapshot (`main@b378392`, reconciled at `main@e062e330`)
+   is kept as history.
 8. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
 9. `conjecture-ledger.md` — live prose dependency ledger.

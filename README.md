@@ -125,8 +125,8 @@ Start here:
 1. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the #138 aligned branch, #139 strict-zipper branch, Level 2, hypothesis firewall, and prioritized closure criteria.
 2. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
 3. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
-4. `docs/completion-ledger-2026-10-16.md` — weekly snapshot at `main@b378392`, now carrying a dated 2026-10-19 reconciliation for post-snapshot class-D integration and the project-acceptance convention. Current repository head for that reconciliation is `main@e062e330`.
-5. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, updated through the current architecture reconciliation.
+4. `docs/completion-ledger-2026-10-26.md` — weekly snapshot at `main@4eb0427d`: scoped class-D G1, class-A/C gap certificates, the #340/#331 corrections, and the red Theorem E line gate. The previous snapshot `docs/completion-ledger-2026-10-16.md` (`main@b378392`, reconciled at `main@e062e330`) is kept as history.
+5. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, refreshed 2026-10-26 at `main@4eb0427d`.
 6. `docs/tier2-bridge-salvage-2026-09-23.md` — research-taxonomy note separating termination-style Descent Bridges from recurrent arithmetic Growth Bridges; moves no theorem status.
 7. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
 8. `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form state-of-program exposition.
