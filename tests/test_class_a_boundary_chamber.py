@@ -40,3 +40,16 @@ def test_negative_parameter_controls():
         bp.params(2,-1,0)
     with pytest.raises(AssertionError):
         bp.params(3,1,0)
+
+
+def test_exact_relative_run_gap_split():
+    # Independent rational endpoint signs at X=1+d/2.
+    for k in range(0,16):
+        for t in (0,1,2,12,60):
+            n=2*(k+2)+t
+            d=bp.params(n,1,k)
+            sign=bp.characteristic(n,d,1,Fraction(d+2,2))
+            assert (sign>0) == (k<=3)
+            assert (sign<0) == (k>=4)
+            F=-9*k**3-12*k*k*t-93*k*k-4*k*t*t-44*k*t-15*k+12*t*t+256*t+1349
+            assert 8*sign == F
