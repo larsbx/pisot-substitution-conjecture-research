@@ -325,9 +325,9 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/p1a-template-collapse-2026-10-05.md:106](../docs/p1a-template-collapse-2026-10-05.md#L106) | *Corollary C2 (A1′ in classical form).* h(x) = x and h(c) = c mean |
 | [docs/p1b-boundary-hitting-progress-2026-10-08.md:204](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L204) | ## 4. Theorem L″: lines of classes A, C and D |
 | [docs/p1b-boundary-hitting-progress-2026-10-08.md:223](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L223) | *Theorem L″.* For each line below, every PIP member is catch-up-free with |
-| [docs/p1b-boundary-hitting-progress-2026-10-08.md:292](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L292) | ## 4b. Theorem W: two-parameter wedges of class D |
-| [docs/p1b-boundary-hitting-progress-2026-10-08.md:369](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L369) | *Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with |
-| [docs/p1b-boundary-hitting-progress-2026-10-08.md:386](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L386) | *Corollary W1.* **Every PIP member of class D with r ≥ q − 1 has pure |
+| [docs/p1b-boundary-hitting-progress-2026-10-08.md:316](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L316) | ## 4b. Theorem W: two-parameter wedges of class D |
+| [docs/p1b-boundary-hitting-progress-2026-10-08.md:393](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L393) | *Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with |
+| [docs/p1b-boundary-hitting-progress-2026-10-08.md:410](../docs/p1b-boundary-hitting-progress-2026-10-08.md#L410) | *Corollary W1.* **Every PIP member of class D with r ≥ q − 1 has pure |
 | [docs/p1b-catch-up-free-ppvc-2026-10-07.md:37](../docs/p1b-catch-up-free-ppvc-2026-10-07.md#L37) | *Proposition Z (assembled; every input already recorded).* Let sigma be PIP, |
 | [docs/p1b-catch-up-free-ppvc-2026-10-07.md:174](../docs/p1b-catch-up-free-ppvc-2026-10-07.md#L174) | **Theorem L**: pure discrete spectrum and G1 for every member of that line. |
 | [docs/p1b-class-a-run-index-2026-10-21.md:100](../docs/p1b-class-a-run-index-2026-10-21.md#L100) | **Proposition (repository-proved, scoped written proof with coefficient-checked Mojo identities; |

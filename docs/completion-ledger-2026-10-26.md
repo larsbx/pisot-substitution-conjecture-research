@@ -110,6 +110,14 @@ comment states that C4 itself is open.
   the cause has not been identified. This is open work: either root-cause the
   floor change, or re-pin with a recorded reason. Re-pinning without a reason
   is not acceptable.
+  **Resolved later on 2026-10-26 (PR #345):** the drift comes from PR #288,
+  commit `7a74eda`, which changed the closure's sign reads. The first red run
+  is 18, not 31. Sixteen floors moved, 11 up and 5 down, with vertex counts and
+  non-PIP/outside counts unchanged. The pins were regenerated from run
+  40180359004, with dated corrections in both certificate notes, and moved
+  into the data file `kernel/symbolic_line_pins.txt`. The driver edit is
+  rebound for class-D acceptance by a fresh native plus-chamber replay
+  (`evidence/class-d-closure-rebind-2026-10-26/`).
 - #331 merged with a failed `Show your work policy` run and without its
   side-notes entry. The entry was filed on 2026-10-26.
 - Open: draft #341 (stronger high-degree Bernstein regression, green). #343
@@ -128,7 +136,7 @@ comment states that C4 itself is open.
 4. The C4 ordered-word bridge for a supplied finite strict child-closed component.
 5. G1b-2 only through realizable labelled returns. No unimodularity, and no
    predecessor contraction.
-6. Turn the Theorem E line gate green.
+6. Turn the Theorem E line gate green (re-pinned in PR #345; confirm on its line-workflow run).
 
 ## Provenance boundary
 

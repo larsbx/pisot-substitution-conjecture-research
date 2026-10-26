@@ -129,3 +129,17 @@ def test_only_an_added_concurrency_block_preserves_an_accepted_workflow():
     assert not ci.added_concurrency_block_only(accepted, current.replace(b'jobs:', block + b'jobs:'))
     assert not ci.added_concurrency_block_only(current, current)
     assert not ci.added_concurrency_block_only(accepted, current + b'  extra: true\n')
+
+
+def test_only_added_trigger_paths_preserve_an_accepted_workflow():
+    accepted = (b"name: X\non:\n  pull_request:\n    paths:\n      - 'a.mojo'\n\n"
+                b"jobs:\n  a:\n    runs-on: ubuntu-latest\n    steps:\n      - run: certify a\n")
+    current = accepted.replace(b"      - 'a.mojo'\n", b"      - 'a.mojo'\n      - 'pins.txt'\n")
+    assert ci.added_trigger_paths_only(accepted, current)
+    block = b'concurrency:\n  group: x\n  cancel-in-progress: true\n\n'
+    assert ci.added_trigger_paths_only(accepted, current.replace(b'jobs:', block + b'jobs:'))
+    # A removed path, a changed command, an unchanged file or any other insertion refuses.
+    assert not ci.added_trigger_paths_only(accepted, accepted.replace(b"      - 'a.mojo'\n", b''))
+    assert not ci.added_trigger_paths_only(accepted, current.replace(b'certify a', b'true'))
+    assert not ci.added_trigger_paths_only(accepted, accepted)
+    assert not ci.added_trigger_paths_only(accepted, current + b'      - run: extra\n')

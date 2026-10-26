@@ -269,6 +269,30 @@ conjugacy to a β-substitution, which is not checked here.
 | D | `n + 1` | `n` | `2n + 1` | 113 | 14 | 14 / 0 / 0 | 3,416 | 49 s |
 | D | `n + 1` | `n` | `2n + 2` | 193 | 10 | 10 / 0 / 0 | 5,882 | 76 s |
 
+**Correction, 2026-10-26 (re-pinned thresholds).** PR #288 (commit `7a74eda`) changed
+`kernel/psc/symbolic_line.mojo` to clip empty run blocks at their legal endpoints
+before fitting any bound. That changes which sign reads the closure makes, and
+with it the tail floor `q0`; the floor moved in both directions. The lines below
+were re-certified by the scheduled evidence run 40180359004 on `main@4eb0427d`
+and re-pinned. Their symbolic vertex counts and their non-PIP and outside counts
+are unchanged, every cross-check passed, and every member below the new `q0` is
+PIP-screened and decided exactly, so the theorem is unchanged. The table above is
+kept as the historical record. The current pins now live in the data file
+`kernel/symbolic_line_pins.txt`, which `certified_lines()` reads at run time, so
+that a re-pin no longer edits the driver and its import closure.
+
+| class | `p` | `q` | `r` | vertices | `q0` then → now | below `q0` then → now (PIP / not PIP / outside) |
+| --- | --- | --- | --- | --- | --- | --- |
+| A | `2n` | `n` | `n − 1` | 281 | 39 → 58 | 38/0/1 → 57/0/1 |
+| A | `2n` | `n` | `n + 1` | 210 | 20 → 31 | 19/0/1 → 30/0/1 |
+| A | `2n + 1` | `n` | `n + 1` | 194 | 19 → 26 | 19/0/0 → 26/0/0 |
+| A | `2n + 2` | `n` | `n − 1` | 325 | 107 → 130 | 104/2/1 → 127/2/1 |
+| D | `n − 1` | `n` | `n − 1` | 150 | 22 → 24 | 19/2/1 → 21/2/1 |
+| D | `n − 1` | `n` | `n` | 128 | 17 → 19 | 15/1/1 → 17/1/1 |
+| D | `n − 1` | `n` | `n + 2` | 105 | 38 → 48 | 34/3/1 → 44/3/1 |
+| D | `n − 1` | `n` | `2n − 2` | 113 | 12 → 10 | 10/1/1 → 8/1/1 |
+| D | `n + 1` | `n` | `n` | 246 | 19 → 13 | 19/0/0 → 13/0/0 |
+
 **32 new lines**: 8 in class A, 6 in class C, 18 in class D. With the 15 class-B lines of Theorems L and L′, 47 lines are pinned in `certified_lines()`. Each was run once through the committed driver, one core each, and every cross-check passed. Each row is pinned in `certified_lines()` and re-run by the evidence workflow; `tests/test_line_certificate_workflow.py` keeps the workflow matrix equal to the pin list. The regression `test_a_class_d_line_is_certified` re-certifies the class-D line `(n + 1, n, n + 3)` on every test run.
 
 **Refusals, all correct.** The certificate refused five more lines at the PIP step, and each is outside the Pisot class:

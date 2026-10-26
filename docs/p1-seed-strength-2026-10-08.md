@@ -185,6 +185,28 @@ Theorem E (unreviewed) and the imported Barge–Štimac–Williams theorem.
 | new | `2q + 2` | `q − 1` | 255 | 107 | 104 / 2 / 1 | 8,304 | 1221 s |
 | new | `2q + 3` | `q − 1` | 248 | 128 | 124 / 3 / 1 | 8,107 | 1773 s |
 
+**Correction, 2026-10-26 (re-pinned thresholds).** PR #288 (commit `7a74eda`) changed
+`kernel/psc/symbolic_line.mojo` to clip empty run blocks at their legal endpoints
+before fitting any bound. That changes which sign reads the closure makes, and
+with it the tail floor `q0`; the floor moved in both directions. The lines below
+were re-certified by the scheduled evidence run 40180359004 on `main@4eb0427d`
+and re-pinned. Their symbolic vertex counts and their non-PIP and outside counts
+are unchanged, every cross-check passed, and every member below the new `q0` is
+PIP-screened and decided exactly, so the theorem is unchanged. The table above is
+kept as the historical record. The current pins now live in the data file
+`kernel/symbolic_line_pins.txt`, which `certified_lines()` reads at run time, so
+that a re-pin no longer edits the driver and its import closure.
+
+| `p` | `r` | vertices | `q0` then → now | below `q0` then → now (PIP / not PIP / outside) |
+| --- | --- | --- | --- | --- |
+| `q + 1` | `q − 1` | 166 | 20 → 15 | 19/0/1 → 14/0/1 |
+| `q + 2` | `q − 1` | 144 | 16 → 19 | 14/1/1 → 17/1/1 |
+| `q + 2` | `q + 1` | 77 | 11 → 14 | 11/0/0 → 14/0/0 |
+| `2q` | `q + 1` | 76 | 20 → 31 | 19/0/1 → 30/0/1 |
+| `2q + 1` | `q + 1` | 84 | 17 → 16 | 17/0/0 → 16/0/0 |
+| `2q + 3` | `q + 1` | 123 | 14 → 12 | 14/0/0 → 12/0/0 |
+| `2q` | `q − 1` | 124 | 34 → 39 | 33/0/1 → 38/0/1 |
+
 Every line was run through the committed driver
 (`symbolic_line_certificate.mojo SLOPE K BRANCH`, one core each). Every cross-check
 passed. The list is `certified_lines()` in the driver, and each entry pins its
