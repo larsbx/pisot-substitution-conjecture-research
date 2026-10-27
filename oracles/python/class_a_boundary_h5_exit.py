@@ -6,8 +6,11 @@ Only finitely many k,t are replayed, not a universal BH proof.
 from pathlib import Path
 import runpy
 
-Geometry=runpy.run_path(str(Path(__file__).with_name(
-    "class_a_boundary_children.py")))["Geometry"]
+base=runpy.run_path(str(Path(__file__).with_name(
+    "class_a_boundary_children.py")))
+Geometry=base["Geometry"]
+add=base["add"]
+sub=base["sub"]
 
 
 def H5_path(k,t):
@@ -39,6 +42,23 @@ def H5_path(k,t):
         steps.append(dict(parent=source,i=i,j=j,target=target))
         source=target
     assert steps[-1]["target"]==(2,2,0,0,0)
+    # Verify the common y tile lies strictly inside *both inflated
+    # parents*, not merely that both letter types are y.
+    last=steps[-1]
+    parent=last["parent"]
+    i,j=last["i"],last["j"]
+    top_prefix=g.shift((0,0,*g.prefixes[parent[0]][i]))
+    bot_prefix=g.shift((0,0,*g.prefixes[parent[1]][j]))
+    shift=g.times_beta(g.shift(parent))
+    common_start=add(shift,bot_prefix)
+    assert common_start==top_prefix
+    common_end=add(common_start,g.lengths[2])
+    top_right=g.times_beta(g.lengths[parent[0]])
+    bottom_right=add(shift,g.times_beta(g.lengths[parent[1]]))
+    assert g.sign(top_prefix)>0
+    assert g.sign(sub(common_start,shift))>0
+    assert g.sign(sub(top_right,common_end))>0
+    assert g.sign(sub(bottom_right,common_end))>0
     return dict(k=k,t=t,n=n,d=d,steps=steps,depth=len(steps))
 
 
