@@ -1,0 +1,9 @@
+class B top layer labels, plus g = 1 q <= 26
+  q mod 1 = 0 : 24 members, no affine floor in window
+  NOT ALL RESIDUES FIT
+
+real	14m55.086s
+user	14m52.790s
+sys	0m0.739s
+
+[exited with code 0]
