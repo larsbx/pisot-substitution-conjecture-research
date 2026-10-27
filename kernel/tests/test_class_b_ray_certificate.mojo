@@ -47,7 +47,7 @@ def main() raises:
 
     # Every tabulated ray: closure and descent for every q >= q0.
     var specs = ray_specs()
-    assert_equal(len(specs), 21)
+    assert_equal(len(specs), 77)
     for i in range(len(specs)):
         var ray = BRay(specs[i][0], specs[i][1], specs[i][2])
         var stats = certify_ray_rows(ray, specs[i][3], ray_rows(i), ray_potentials(i))
