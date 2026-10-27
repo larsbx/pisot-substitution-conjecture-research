@@ -1,9 +1,12 @@
 """Bounded exact typed coordinates and legal occurrence maps; no tail proof."""
 from class_b_top_layer_profile import top_layer_member, in_open_top_layer
 
+comptime PILOT_MAX_GAP = 16
+comptime PILOT_MAX_Q = 128
+
 
 def prefix(plus: Bool, gap: Int, q: Int, parent: Int, index: Int) raises -> List[Int]:
-    if gap < 1 or gap > 5 or q < 1 or q > 48 or parent < 0 or parent > 2:
+    if gap < 1 or gap > PILOT_MAX_GAP or q < 1 or q > PILOT_MAX_Q or parent < 0 or parent > 2:
         raise Error("outside bounded pilot domain")
     var t = top_layer_member(plus, gap - 1, q)
     if not in_open_top_layer(plus, t[0], q):
