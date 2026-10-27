@@ -1,0 +1,22 @@
+class B top layer, plus d = 1 q <= 18 : 15 PIP members, every vertex hits offset zero
+  q 4 vertices 1115 max first-hit depth 6
+  q 5 vertices 1181 max first-hit depth 5
+  q 6 vertices 1253 max first-hit depth 6
+  q 7 vertices 1325 max first-hit depth 6
+  q 8 vertices 1387 max first-hit depth 7
+  q 9 vertices 1461 max first-hit depth 6
+  q 10 vertices 1515 max first-hit depth 7
+  q 11 vertices 1573 max first-hit depth 7
+  q 12 vertices 1627 max first-hit depth 8
+  q 13 vertices 1685 max first-hit depth 7
+  q 14 vertices 1739 max first-hit depth 8
+  q 15 vertices 1797 max first-hit depth 8
+  q 16 vertices 1851 max first-hit depth 9
+  q 17 vertices 1909 max first-hit depth 8
+  q 18 vertices 1963 max first-hit depth 9
+  mod 1: r0=no(15 pts) 
+  mod 2: r0=+112/step from q14 r1=+112/step from q13  ALL AFFINE
+  mod 3: r0=no(5 pts) r1=no(5 pts) r2=no(5 pts) 
+  mod 4: r0=no(4 pts) r1=+224/step from q9 r2=+224/step from q10 r3=no(3 pts) 
+  mod 5: r0=no(3 pts) r1=no(3 pts) r2=no(3 pts) r3=no(3 pts) r4=no(3 pts) 
+  mod 6: r0=no(3 pts) r1=no(2 pts) r2=no(2 pts) r3=no(2 pts) r4=no(3 pts) r5=no(3 pts) 
