@@ -15,7 +15,9 @@ from psc.class_a_boundary_children import (
 )
 from psc.class_a_boundary_next_run import _parameters
 from psc.class_a_boundary_e2_children import certify_e2_children, in_e2_image
-from psc.class_a_boundary_h3_children import alpha_high
+from psc.class_a_boundary_h3_children import (
+    alpha_high, chain_source, chain_path, chain_rank, verify_chain_path,
+)
 from psc.class_a_boundary_occurrences import (
     symbolic_child, _equal3, FIRST, RUN, LAST,
 )
@@ -204,3 +206,57 @@ def verify_h4_packet(tables:SeedOverlapTables,k:Int,t:Int,
         raise Error("H4 packet escaped the exact 13-label envelope")
     verify_member_edge(tables,-1,k,p[0],p[1],h4_source(),
                        edge.i,edge.j,edge.target)
+
+
+def h4_path(k: Int, t: Int) raises -> List[BoundaryEdge]:
+    """Uniform 5-edge typed-coincidence exit: H4 -> J -> K -> L -> H1 -> C.
+
+    Source H4 is a real Dxx child, but this is NOT a proof of its
+    global seed reachability or of closure of any image envelope.
+    """
+    var p=_source_params(k,t)
+    var n=p[0]
+    var d=p[1]
+    var out=List[BoundaryEdge]()
+    var i=checked_add(checked_mul(2,n),1)
+    if not h4_child_allowed(k,t,i,0):
+        raise Error("H4 universal first child missing")
+    var J=chain_source(2)
+    var got=member_transport(-1,k,n,d,h4_source(),i,0)
+    if not (got==J):
+        raise Error("H4 first occurrence does not reach J")
+    out.append(BoundaryEdge(i,0,J))
+    var suffix=chain_path(2,k,t)
+    for edge in suffix:
+        out.append(edge)
+    if len(out)!=5:
+        raise Error("H4 selected coincidence path does not have five edges")
+    return out^
+
+
+def h4_rank(w: BoundaryLabel) raises -> Int:
+    """Rank on the SIX selected path labels only; NOT all outgoing edges."""
+    if w==h4_source():
+        return 5
+    return chain_rank(w)
+
+
+def verify_h4_path(tables: SeedOverlapTables,k: Int,t: Int,
+                   packet: List[BoundaryEdge]) raises:
+    """Replay every true word/geometry edge, refusing even if terminal is C."""
+    var want=h4_path(k,t)
+    if len(packet)!=len(want):
+        raise Error("incomplete H4 selected path")
+    for i in range(len(packet)):
+        if (packet[i].i!=want[i].i or packet[i].j!=want[i].j
+            or packet[i].target!=want[i].target):
+            raise Error("H4 selected path differs in occurrence or typed target")
+    verify_h4_packet(tables,k,t,packet[0])
+    if h4_rank(packet[0].target)>=h4_rank(h4_source()):
+        raise Error("H4 entry rank did not descend")
+    var suffix=List[BoundaryEdge]()
+    for i in range(1,len(packet)):
+        suffix.append(packet[i])
+    verify_chain_path(tables,2,k,t,suffix)
+    if packet[len(packet)-1].target!=BoundaryLabel(2,2,0,0,0):
+        raise Error("H4 path ends without typed diagonal coincidence")
