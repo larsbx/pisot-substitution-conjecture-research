@@ -1,0 +1,44 @@
+name: PSC class-A minus E2 packet exits
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_boundary_e2_children.mojo'
+      - 'kernel/class_a_boundary_e2_children.mojo'
+      - 'kernel/tests/test_class_a_boundary_e2_children.mojo'
+      - 'oracles/python/class_a_boundary_e2_children.py'
+      - 'tests/test_class_a_boundary_e2_children.py'
+      - 'docs/class-a-boundary-e2-*.md'
+      - 'evidence/class-a-boundary-e2-2026-10-27/**'
+      - '.github/workflows/class-a-boundary-e2.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  four-oriented-stars:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent exact half-chamber, endpoint and occurrence replay
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_boundary_e2_children.py
+          python oracles/python/class_a_boundary_e2_children.py > /tmp/boundary-e2.json
+          cmp /tmp/boundary-e2.json evidence/class-a-boundary-e2-2026-10-27/probe.json
+          python tools/make_proof_bank.py --check
+      - name: Install Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Canonical complete stars and selected typed exits
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_class_a_boundary_e2_children.mojo
+          pixi run --locked mojo run -I . class_a_boundary_e2_children.mojo
