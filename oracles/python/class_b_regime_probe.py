@@ -41,10 +41,20 @@ def fit_ray(files, gap, residue):
     return None
 
 
+def keyed(rows):
+    """Rows keyed by slice and ordinal: a slice (t, b, u, d) may hold several k-intervals."""
+    seen, out = defaultdict(int), {}
+    for x in rows:
+        key = tuple(x[:4])
+        out[(*key, seen[key])] = tuple(x[4:])
+        seen[key] += 1
+    return out
+
+
 def regime_fit(rays):
     """rays: {g: rows}. Return the g-affine table, or the first key/slope/intercept conflict."""
     gs = sorted(rays)
-    tables = {g: {tuple(r[:4]): tuple(r[4:]) for r in rays[g]} for g in gs}
+    tables = {g: keyed(rays[g]) for g in gs}
     keys = set(tables[gs[0]])
     for g in gs[1:]:
         if set(tables[g]) != keys:
@@ -71,6 +81,43 @@ def regime_fit(rays):
     return dict(ok=True, gaps=gs, rows=len(table), table=table)
 
 
+def middle_fit(rays):
+    """rays: {(g, r): rows}. One table with constant slopes, intercepts affine in (g, r)?"""
+    pts = sorted(rays)
+    tables = {pt: keyed(rays[pt]) for pt in pts}
+    keys = set(tables[pts[0]])
+    if any(set(tables[pt]) != keys for pt in pts):
+        return dict(ok=False, reason='keys')
+    # three affinely independent anchor points determine (alpha, beta_g, beta_r)
+    base = next(((a, b, c) for a in pts for b in pts for c in pts
+                 if (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]) != 0), None)
+    if base is None or len(pts) < 4:
+        return dict(ok=False, reason='too few points')
+    a, b, c = base
+    det = (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])
+    table = {}
+    for key in sorted(keys):
+        va, vb, vc = tables[a][key], tables[b][key], tables[c][key]
+        if not (va[0] == vb[0] == vc[0] and va[2] == vb[2] == vc[2]):
+            return dict(ok=False, reason='slope', key=key)
+        coef = []
+        for i in (1, 3):
+            db, dc = vb[i] - va[i], vc[i] - va[i]
+            ng = db * (c[1] - a[1]) - dc * (b[1] - a[1])
+            nr = dc * (b[0] - a[0]) - db * (c[0] - a[0])
+            if ng % det or nr % det:
+                return dict(ok=False, reason='non-integral intercept', key=key)
+            bg, br = ng // det, nr // det
+            coef.append((va[i] - bg * a[0] - br * a[1], bg, br))
+        for pt in pts:
+            v = tables[pt][key]
+            if (v[0], v[2]) != (va[0], va[2]) or any(
+                    v[i] != c0 + cg * pt[0] + cr * pt[1] for i, (c0, cg, cr) in zip((1, 3), coef)):
+                return dict(ok=False, reason='intercept', key=key, at=pt)
+        table[key] = (va[0], *coef[0], va[2], *coef[1])
+    return dict(ok=True, rows=len(table), table=table)
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('directory')
@@ -89,6 +136,18 @@ def main():
     report = []
     for branch in ('plus', 'minus'):
         gaps = sorted(g for b, g in files if b == branch)
+        if not gaps:
+            continue
+        for g_min in gaps:
+            for j0 in range(0, 6):
+                for j1 in range(1, 10):
+                    rays = {(g, r): fits[branch, g, r][2] for g in gaps if g >= g_min
+                            for r in range(j0, g - j1 + 1) if fits.get((branch, g, r)) is not None}
+                    if len({g for g, _ in rays}) < 3:
+                        continue
+                    res = middle_fit(rays)
+                    if res['ok']:
+                        print(dict(branch=branch, kind='middle', j0=j0, j1=j1, g_min=g_min, rays=len(rays), rows=res['rows']))
         for kind in ('low', 'high'):
             for j in range(0, max(gaps)):
                 rays = {}
