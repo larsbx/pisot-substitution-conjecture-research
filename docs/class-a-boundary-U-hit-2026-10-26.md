@@ -6,7 +6,7 @@
 
 ### Assumptions and hypotheses
 
-For **minus** class A only: (k,tge0), (n=k+3+t), (d=2n-1-k), (\varepsilon=-1). The literal substitution is (x\mapsto xy^{n+d}x), (c\mapsto cy^nx), (y\mapsto xy^{n-1}c). Let (etain(n+2,n+3)) be the positive Perron root, (u=d/(eta-1)in(1,2)), (L_y>0), (L_c/L_y=b=1+1/eta), (L_x/L_y=a=b+u). These facts have exact symbolic certificate provenance in PRs #346–#348. They do not assume global unimodularity, independent physical lengths, arbitrary tile realizability, or a finite balanced-pair closure.
+For **minus** class A only: (k,t\ge0), (n=k+3+t), (d=2n-1-k), (\varepsilon=-1). The literal substitution is (x\mapsto xy^{n+d}x), (c\mapsto cy^nx), (y\mapsto xy^{n-1}c). Let (\beta\in(n+2,n+3)) be the positive Perron root, (u=d/(\beta-1)in(1,2)), (L_y>0), (L_c/L_y=b=1+1/\beta), (L_x/L_y=a=b+u). These facts have exact symbolic certificate provenance in PRs #346–#348. They do not assume global unimodularity, independent physical lengths, arbitrary tile realizability, or a finite balanced-pair closure.
 
 ### Derivation / reduction
 
@@ -19,17 +19,17 @@ For **minus** class A only: (k,tge0), (n=k+3+t), (d=2n-1-k), (\varepsilon=-1). T
 | 3 | (U) | ((d+3,0)) | (V=(y,x,0,-1,1)) |
 | 4 | (V) | ((1,2)) | (W=(y,y,0,0,0)) |
 
-The canonical `psc.class_a_boundary_occurrences.symbolic_child` recomputes every proper-prefix Parikh vector and checks (w'=Mw+P_{\rm bottom}-P_{\rm top}) **coefficientwise in (mathbb Q[t,k])**; actual word bounds are (nge3), (1le t+1le n-1), (d+3le n+d), and final run indices (1le 1le n-1), (1le2le n+d). Therefore no formal six-state or quotient edge is substituted for a word occurrence.
+The canonical `psc.class_a_boundary_occurrences.symbolic_child` recomputes every proper-prefix Parikh vector and checks (w'=Mw+P_{\rm bottom}-P_{\rm top}) **coefficientwise in (\mathbb Q[t,k])**; actual word bounds are (n\ge3), (1\le t+1\le n-1), (d+3\le n+d), and final run indices (1\le 1\le n-1), (1\le2\le n+d). Therefore no formal six-state or quotient edge is substituted for a word occurrence.
 
-**Strict real overlap at each step.** Write physical offsets in units of (L_y). S has shift 0; (T_1) has (1-uin(-1,0)), strictly overlapping equal-length y tiles. (U) has shift (u+3/eta), which intersects x/y strictly since (a-(u+3/eta)=1-2/eta>0). (V) has shift (1-b=-1/eta), so its y/x interiors intersect. W is an actual y/y coincidence, not just equal letters or a zero prefix residual in a disjoint pair. These comparisons require only the established Perron root bound and (1<u<2).
+**Strict real overlap at each step.** Write physical offsets in units of (L_y). S has shift 0; (T_1) has (1-u\in(-1,0)), strictly overlapping equal-length y tiles. (U) has shift (u+3/\beta), which intersects x/y strictly since (a-(u+3/\beta)=1-2/\beta>0). (V) has shift (1-b=-1/\beta), so its y/x interiors intersect. W is an actual y/y coincidence, not just equal letters or a zero prefix residual in a disjoint pair. These comparisons require only the established Perron root bound and (1<u<2).
 
-**The final coincidence starts strictly inside the inflated parent overlap.** At the last step, the top y-image is (xy^{n-1}c); its first y starts at (L_x=aL_y>0). The bottom x-image is (xy^{n+d}x), translated by (eta(L_y-L_c)=-L_y); its second y starts at (-L_y+L_x+L_y=L_x). Hence the true child starting displacement is **zero**, and both y tiles share the physical interval ([L_x,L_x+L_y]). The inflated parent's left overlap boundary is 0 and its top right boundary is (eta L_y=L_x+(n-1)L_y+L_c). Therefore
+**The final coincidence starts strictly inside the inflated parent overlap.** At the last step, the top y-image is (xy^{n-1}c); its first y starts at (L_x=aL_y>0). The bottom x-image is (xy^{n+d}x), translated by (\beta(L_y-L_c)=-L_y); its second y starts at (-L_y+L_x+L_y=L_x). Hence the true child starting displacement is **zero**, and both y tiles share the physical interval ([L_x,L_x+L_y]). The inflated parent's left overlap boundary is 0 and its top right boundary is (\beta L_y=L_x+(n-1)L_y+L_c). Therefore
 [
-0<L_x,qquad L_x+L_y<eta L_y
+0<L_x,\qquad L_x+L_y<\beta L_y
 ]
-by (nge3) and (L_c>0); the bottom parent extends beyond this common interval. This is a localized internal coincidence event, not an outer-boundary target.
+by (n\ge3) and (L_c>0); the bottom parent extends beyond this common interval. This is a localized internal coincidence event, not an outer-boundary target.
 
-**Result and quantifier.** The selected seed overlap (S) has a literal, four-step occurrence-indexed *existential* path to an internal zero-offset equal-letter child for every (k,tge0) in the minus class-A boundary-ray chamber. The particular real state U has such a path of length two. This result does **not** say every seed state, cyclic zipper, SCC, or normalized balanced-pair packet hits; it does not yield finite BPA or G1.
+**Result and quantifier.** The selected seed overlap (S) has a literal, four-step occurrence-indexed *existential* path to an internal zero-offset equal-letter child for every (k,t\ge0) in the minus class-A boundary-ray chamber. The particular real state U has such a path of length two. This result does **not** say every seed state, cyclic zipper, SCC, or normalized balanced-pair packet hits; it does not yield finite BPA or G1.
 
 ### Evidence and replay
 
