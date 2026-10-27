@@ -350,6 +350,14 @@ These are reference/index additions only. They do not establish #84, #138,
   families, 77 symbolic regions, 490 exact members). It contains Theorem L
   and every line of Theorem L′; the layer near slope 3 stays open
   (`kernel/psc/symbolic_cone.mojo`, `kernel/class_b_cone_certificate.mojo`).
+- `class-b-ray-certificate-2026-10-27.md` — #139 research note, step 2 of the
+  class-B top-layer stop/go (Status: repository-proved, computer-assisted,
+  human review pending): BH from every swap seed, hence pure discrete spectrum
+  and G1 by Theorem C's chain, on the eight top-layer lines `p = 3q + 12 − g`,
+  `r = q + 1`, `g ≤ 5` and `p = 3q − g`, `r = q − 1`, `g ≤ 3`. It uses 21 residue
+  rays `q = g l + r`, uniform carrier closure, and the q-free potential
+  `|k| + b`. Larger gaps stay open
+  (`kernel/psc/class_b_ray_certificate.mojo`, `kernel/class_b_ray_certificate.mojo`).
 - `p1b-catch-up-free-ppvc-2026-10-07.md` — #139 on the catch-up-free
   `|det M| = 2` class, with its stop/go gate: **Proposition Z** assembles
   recorded results to show that there, outside the open part of Theorem K's
