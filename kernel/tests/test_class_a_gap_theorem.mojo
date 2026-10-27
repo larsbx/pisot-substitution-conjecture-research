@@ -1,6 +1,6 @@
 """Class-A gaps d>=5: residue coverage, the assembled theorem for both signs, and refusals."""
 from std.testing import assert_equal, assert_true
-from mojo_smoke.claims import require_contract
+from mojo_smoke.claims import require_claim, require_contract
 from psc.class_a_gap_theorem import certify_gap_theorem, eventual_cover, residue_cover, FIRST_GAP
 from psc.class_a_gap_regime_tables import fitted_regimes, regime_floors
 
@@ -61,3 +61,4 @@ def main() raises:
     assert_true(raises_theorem(0, 5))
     assert_true(raises_theorem(1, 0))
     require_contract("class-A gaps d>=5, both signs, every n = d l + r with l>=5: the fitted residue regimes tile every residue from d=7 (minus) and d=11 (plus) on, each regime certifies closure and descent uniformly from its registered gap floor, the finite gaps below it are ray certificates on the same tables with exact complete graphs below the ray floor, the seven plus residues no regime reaches are ray certificates on their own tables, and the assembly refuses a third sign, a non-positive floor and an uncovered residue")
+    require_claim("ClassABoundaryHittingHighGaps")

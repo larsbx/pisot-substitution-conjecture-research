@@ -13,6 +13,8 @@ from pathlib import Path
 import re
 import subprocess
 
+from check_class_d_closure_rebind import rebound
+
 ROOT = Path(__file__).resolve().parents[1]
 PACKET = 'evidence/class-d-assembly-audit-2026-10-21'
 PLUS_REV = '53a4021c0e534958c8088ff82f136913d3f08df8'
@@ -51,8 +53,11 @@ def import_closure(entry: str, revision: str) -> dict[str,str]:
 
 
 def check_hashes(pins: dict[str,str], root: Path = ROOT) -> None:
+    # A later edit passes only where the dated rebind packet admits exactly
+    # these bytes (tools/check_class_d_closure_rebind.py).
     for path, expected in pins.items():
-        if digest((root/path).read_bytes()) != expected:
+        current = digest((root/path).read_bytes())
+        if current != expected and not rebound(path, current):
             raise ValueError(f'source/evidence bytes changed: {path}')
 
 

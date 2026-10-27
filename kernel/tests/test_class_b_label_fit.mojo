@@ -1,6 +1,6 @@
 """Finite affine labels, count-only false positives, and export refusals."""
 from std.testing import assert_true, assert_false, assert_equal
-from mojo_smoke.claims import require_contract
+from mojo_smoke.claims import require_claim, require_contract
 from psc.class_b_label_fit import affine_equal, tail_partition_ok
 from class_b_label_rays import label_block
 from psc.class_b_ray_carrier import prefix, child_coordinates
@@ -86,3 +86,4 @@ def main() raises:
             witness_count += 1
     assert_true(witness_count > 500)
     require_contract("class B finite label intervals: direction (1,3,-6), exact endpoint comparisons, equal-count/different-label negative controls, caps refuse; no uniform certificate")
+    require_claim("ClassBTopLayerLabelRays")
