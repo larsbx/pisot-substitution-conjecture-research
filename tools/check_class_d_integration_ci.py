@@ -16,6 +16,7 @@ import subprocess
 import tomllib
 
 from check_class_d_assembly_evidence import validate as validate_components
+from check_class_d_closure_rebind import rebound
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKET = ROOT / 'evidence/class-d-integration-accepted-2026-10-21'
@@ -62,6 +63,33 @@ def added_concurrency_block_only(accepted: bytes, current: bytes) -> bool:
     while end < len(lines) and (lines[end].strip() == b'' or lines[end][:1] in (b' ', b'\t')):
         end += 1
     return b''.join(lines[:keys[0]] + lines[end:]) == accepted
+
+
+def added_trigger_paths_only(accepted: bytes, current: bytes) -> bool:
+    """Preserve an accepted workflow except for added trigger-path entries
+    (`      - '...'` lines), with or without one added concurrency block.
+
+    A trigger path decides only when the workflow runs, never what a run
+    computes, so no receipt can be gained this way. Every accepted line must
+    survive in order; nothing else may be inserted, removed or changed.
+    """
+    import difflib
+    import re
+    entry = re.compile(rb"^\s+- '[^'\n]+'\n?$")
+    lines = current.splitlines(keepends=True)
+    keys = [i for i, line in enumerate(lines) if line.startswith(b'concurrency:')]
+    if keys and not any(line.startswith(b'concurrency:') for line in accepted.splitlines()):
+        if len(keys) != 1:
+            return False
+        end = keys[0] + 1
+        while end < len(lines) and (lines[end].strip() == b'' or lines[end][:1] in (b' ', b'\t')):
+            end += 1
+        lines = lines[:keys[0]] + lines[end:]
+    old = accepted.splitlines(keepends=True)
+    ops = difflib.SequenceMatcher(a=old, b=lines, autojunk=False).get_opcodes()
+    inserted = [line for tag, _, _, j1, j2 in ops if tag == 'insert' for line in lines[j1:j2]]
+    return (bool(inserted) and all(tag in ('equal', 'insert') for tag, *_ in ops)
+            and all(entry.match(line) for line in inserted))
 
 
 def additive_pixi_tasks_only(accepted: bytes, current: bytes) -> bool:
@@ -154,7 +182,10 @@ def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
         if hashlib.sha256(current).hexdigest() != digest:
             if path == 'kernel/pixi.toml' and additive_pixi_tasks_only(historical, current):
                 continue
-            if path.startswith('.github/workflows/') and added_concurrency_block_only(historical, current):
+            if path.startswith('.github/workflows/') and (added_concurrency_block_only(historical, current)
+                                                          or added_trigger_paths_only(historical, current)):
+                continue
+            if rebound(path, hashlib.sha256(current).hexdigest()):
                 continue
             raise ValueError('accepted mathematical source, lock or workflow changed: '+path)
     if set(manifest['log_sha256']) != {str(i)+'.log' for i in JOBS}:

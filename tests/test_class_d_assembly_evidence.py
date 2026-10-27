@@ -3,9 +3,11 @@ import copy
 import importlib.util
 import json
 from pathlib import Path
+import sys
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT/'tools'))  # the checker imports check_class_d_closure_rebind
 spec = importlib.util.spec_from_file_location('class_d_evidence',ROOT/'tools/check_class_d_assembly_evidence.py')
 checker = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(checker)

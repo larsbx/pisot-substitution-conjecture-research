@@ -153,6 +153,13 @@ TABLE: dict[str, tuple[Kind, str, str, tuple[str, ...], tuple[str, ...]]] = {
                                     f"{BOUNDARY_PROGRESS}, Theorems L, L' and L''; computer-assisted, human review pending; merged through PR #246", (), ()),
     "ClassDWedgeBoundaryHitting": (T, "boundary hitting holds on the six declared two-parameter class-D wedges; in particular for every PIP class-D member with r >= q - 1",
                                     f"{BOUNDARY_PROGRESS}, Theorem W and Corollary W1; computer-assisted, human review pending; merged through PR #246", (), ()),
+    "ClassABoundaryHittingLowGaps": (T, "boundary hitting holds for every PIP member of the determinant-two class-A lines (n+d,n,n+eps), eps in {-1,+1}, with gap 1 <= d <= 4, each line on its whole PIP domain",
+                                     "docs/class-a-minus-line-2026-10-22.md and docs/class-a-carrier-closure-2026-10-22.md (d=1); docs/class-a-d2-plus-rays-2026-10-22.md and docs/class-a-residue-rays-2026-10-22.md (d=2,3); docs/class-a-d4-rays-2026-10-23.md (d=4); scope per docs/direct-attack-frontier-2026-10-23.md; computer-assisted, human review pending; merged PRs #310, #317, #323, #326, #327", (), ()),
+    "ClassABoundaryHittingHighGaps": (T, "for every gap d >= 5 and eps in {-1,+1}, boundary hitting holds for every PIP member n = d l + r with l >= 5 (n >= 5d) of the class-A line (n+d,n,n+eps); the strip n < 5d is not asserted",
+                                      "docs/class-a-gap-theorem-2026-10-23.md, d-uniform regime certificates; exact-rational box-power repair and independent audit in docs/class-a-gap-independent-audit-2026-10-23.md; computer-assisted, human review pending; merged PRs #335, #340", (), ()),
+    "ClassCBoundaryHittingLowGaps": (T, "boundary hitting holds for every PIP member of the determinant-two class-C lines (n+d,n,n-d+eps), eps in {-1,+1}, with gap 1 <= d <= 5, each line on its whole PIP domain",
+                                     f"gaps 1-3: the six class-C lines of Theorem L'' ({BOUNDARY_PROGRESS}); gap 4: docs/issue139-ac-gap4-2026-10-22.md; gap 5: docs/issue139-gap5-2026-10-23.md; computer-assisted, human review pending; merged PRs #246, #326, #328",
+                                     ("DetTwoBoundaryHittingLines",), ()),
     "MinusHighSumFormalCycleRay": (T, "for every integer k>=2 the minus class-D member a=2k-1,b=1 has the real-interior formal occurrence two-cycle U_k=(y,c,-2k,4k,-3k) and its mirror, with absolute sum k; seed reachability is not asserted",
                                  "docs/p1b-class-d-minus-recurrent-carrier-2026-10-19.md section 13; kernel/psc/class_d_minus_high_sum_cycles.mojo exact symbolic occurrence and Perron-sign certificate; human review pending", (), ()),
     "MinusSixEdgeFamilyExclusion": (T, "for every integer k>=2 and every a>=2,b>=1 the six-state minus class-D itinerary in section 12 with sums (-k,k-1,-k,k-1,-k,k) cannot be realized with one shared parameter pair; occurrence guard rows 0 and 5 sum identically to -7-u",
@@ -351,6 +358,9 @@ ALIASES = {
     "BrunCompositeSymbolicPDS": ["Corollary B″", "Brun composites have symbolic PDS"],
     "DetTwoBoundaryHittingLines": ["Theorems L/L′/L″", "47 determinant-two lines"],
     "ClassDWedgeBoundaryHitting": ["Theorem W", "class-D wedge boundary hitting"],
+    "ClassABoundaryHittingLowGaps": ["class-A gaps d <= 4"],
+    "ClassABoundaryHittingHighGaps": ["class-A gaps d >= 5, n >= 5d"],
+    "ClassCBoundaryHittingLowGaps": ["class-C gaps d <= 5"],
 }
 
 
@@ -365,8 +375,14 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "PlusClassDBoundaryLine": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Plus b=0 boundary |")],
     "PlusClassDPositiveBBoundaryHitting": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Plus positive-b residual |")],
     "PlusClassDBoundaryHitting": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Entire plus class D |")],
-    "ClassDBoundaryHitting": [surface("docs/class-d-assembly-audit-2026-10-21.md", "| Combined determinant-two class D |")],
-    "ClassDFiniteBPA": [surface("docs/class-d-g1-corollary-2026-10-22.md", "| Scoped finite BPA |")],
+    "ClassDBoundaryHitting": [
+        surface("docs/class-d-assembly-audit-2026-10-21.md", "| Combined determinant-two class D |"),
+        surface(MAP, "| Class-D boundary hitting, every PIP member |"),
+    ],
+    "ClassDFiniteBPA": [
+        surface("docs/class-d-g1-corollary-2026-10-22.md", "| Scoped finite BPA |"),
+        surface(MAP, "| Class-D finite BPA (scoped G1) |"),
+    ],
     "MinusClassDBoundaryLine": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Minus b=0 boundary |")],
     "MinusClassDBoundaryStrips": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Minus a=0,1 strips |")],
     "MinusClassDResidualBoundaryHitting": [surface("docs/p1b-minus-boundary-strips-2026-10-20.md", "| Entire minus residual |")],
@@ -401,6 +417,9 @@ SURFACES = {  # prose surfaces on which each claim's status is spelled out (labe
     "BoundaryCoincidenceCriterion": [surface(MAP, "| Boundary-hitting criterion |")],
     "DetTwoBoundaryHittingLines": [surface(MAP, "| Determinant-two boundary hitting on 47 lines |")],
     "ClassDWedgeBoundaryHitting": [surface(MAP, "| Class-D wedge boundary hitting |")],
+    "ClassABoundaryHittingLowGaps": [surface(MAP, "| Class-A boundary hitting, gaps `d <= 4` |")],
+    "ClassABoundaryHittingHighGaps": [surface(MAP, "| Class-A boundary hitting, gaps `d >= 5`, `n >= 5d` |")],
+    "ClassCBoundaryHittingLowGaps": [surface(MAP, "| Class-C boundary hitting, gaps `d <= 5` |")],
     "OverlapProductivity": [surface(MAP, "| Seedwise overlap productivity / Open Problem 5.35 |"), surface(LEDGER_DOC, "### Overlap productivity / Open Problem 5.35", 2),
                             surface(LADDER, "=> one swap seed has only productive reachable overlaps"), surface("README.md", "=> one swap seed has only productive reachable overlaps"),
                             surface(ROADMAP, "| **P1** | Seedwise overlap productivity (#84) |")],
@@ -461,7 +480,7 @@ def records() -> dict[str, Record]:
                          ("reconciled_source_revision", BOX_LC_RECONCILED_BASELINE),
                          ("reconciliation_source", RECONCILIATION),
                          ("human_review_pending", "true"))
-        if name in {"ClassDFiniteBPA", "ClassDBoundaryHitting", "PlusClassDBoundaryHitting", "PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting", "MinusClassDPositiveBBoundaryHitting", "MinusClassDSeedCarrierClosure", "MinusClassDPositiveBCycleSum", "MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDResidualBoundaryHitting", "MinusClassDBoundaryHitting"}:
+        if name in {"ClassDFiniteBPA", "ClassDBoundaryHitting", "PlusClassDBoundaryHitting", "PlusClassDBoundaryLine", "PlusClassDPositiveBBoundaryHitting", "DetTwoBoundaryHittingLines", "ClassDWedgeBoundaryHitting", "ClassABoundaryHittingLowGaps", "ClassABoundaryHittingHighGaps", "ClassCBoundaryHittingLowGaps", "MinusClassDPositiveBBoundaryHitting", "MinusClassDSeedCarrierClosure", "MinusClassDPositiveBCycleSum", "MinusClassDBoundaryLine", "MinusClassDBoundaryStrips", "MinusClassDResidualBoundaryHitting", "MinusClassDBoundaryHitting"}:
             evidence += (("human_review_pending", "true"),
                          ("computer_assisted", "true"))
         if name == "G1":

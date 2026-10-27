@@ -36,6 +36,7 @@ on:
       - 'kernel/psc/vertex_coincidence.mojo'
       - 'kernel/psc/words.mojo'
       - 'kernel/symbolic_line_certificate.mojo'
+      - 'kernel/symbolic_line_pins.txt'
       - 'kernel/finite_automata/**'
       - 'kernel/finite_exact/**'
       - 'kernel/finite_graph/**'
