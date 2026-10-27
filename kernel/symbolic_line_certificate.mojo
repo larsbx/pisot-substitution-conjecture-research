@@ -335,64 +335,43 @@ def certify_wedge(spec: ClassWedge) raises -> WedgeVerdict:
 # The lines certified so far: class, then a_p, b_p, a_q, b_q, a_r, b_r
 # (p = a_p n + b_p, ...), then the pinned verdict: q0, symbolic vertices, PIP
 # members below q0, non-PIP members below q0, parameters below q0 outside the
-# admissible cone. Class B rows are Theorem L (first) and Theorem L' of
-# docs/p1-seed-strength-2026-10-08.md; rows of classes A, C, D are Theorem L''
-# of docs/p1b-boundary-hitting-progress-2026-10-08.md.
+# admissible cone. The pins are data in PINS_PATH, read at run time and only by
+# `report` and `report_wedge`; `certify` and `certify_wedge` never read them, so
+# a re-pin changes no import closure. Rows and sources: see that file.
 comptime PIN_FIELDS = 12
 
 
-def certified_lines() -> List[List[Int]]:
-    return [
-        [CLASS_B, 2, 2, 1, 0, 1, 1, 52, 119, 52, 0, 0],
-        [CLASS_B, 1, 1, 1, 0, 1, 1, 14, 121, 14, 0, 0],
-        [CLASS_B, 1, 2, 1, 0, 1, 1, 11, 77, 11, 0, 0],
-        [CLASS_B, 1, 3, 1, 0, 1, 1, 22, 79, 22, 0, 0],
-        [CLASS_B, 1, 1, 1, 0, 1, -1, 20, 166, 19, 0, 1],
-        [CLASS_B, 1, 2, 1, 0, 1, -1, 16, 144, 14, 1, 1],
-        [CLASS_B, 1, 3, 1, 0, 1, -1, 32, 131, 30, 1, 1],
-        [CLASS_B, 2, 0, 1, 0, 1, 1, 20, 76, 19, 0, 1],
-        [CLASS_B, 2, 1, 1, 0, 1, 1, 17, 84, 17, 0, 0],
-        [CLASS_B, 2, 3, 1, 0, 1, 1, 14, 123, 14, 0, 0],
-        [CLASS_B, 2, 4, 1, 0, 1, 1, 15, 123, 15, 0, 0],
-        [CLASS_B, 2, 0, 1, 0, 1, -1, 34, 124, 33, 0, 1],
-        [CLASS_B, 2, 1, 1, 0, 1, -1, 87, 274, 85, 1, 1],
-        [CLASS_B, 2, 2, 1, 0, 1, -1, 107, 255, 104, 2, 1],
-        [CLASS_B, 2, 3, 1, 0, 1, -1, 128, 248, 124, 3, 1],
-        [CLASS_A, 2, 0, 1, 0, 1, -1, 39, 281, 38, 0, 1],
-        [CLASS_A, 2, 0, 1, 0, 1, 1, 20, 210, 19, 0, 1],
-        [CLASS_A, 2, 1, 1, 0, 1, -1, 87, 365, 85, 1, 1],
-        [CLASS_A, 2, 1, 1, 0, 1, 1, 19, 194, 19, 0, 0],
-        [CLASS_A, 2, 2, 1, 0, 1, -1, 107, 325, 104, 2, 1],
-        [CLASS_A, 2, 2, 1, 0, 1, 1, 52, 230, 52, 0, 0],
-        [CLASS_A, 2, 3, 1, 0, 1, -1, 128, 303, 124, 3, 1],
-        [CLASS_A, 2, 3, 1, 0, 1, 1, 14, 260, 14, 0, 0],
-        [CLASS_C, 1, 1, 1, 0, 1, -2, 36, 279, 33, 1, 2],
-        [CLASS_C, 1, 1, 1, 0, 1, 0, 17, 169, 17, 0, 0],
-        [CLASS_C, 1, 2, 1, 0, 1, -3, 37, 238, 32, 2, 3],
-        [CLASS_C, 1, 2, 1, 0, 1, -1, 23, 182, 22, 0, 1],
-        [CLASS_C, 1, 3, 1, 0, 1, -4, 39, 229, 32, 3, 4],
-        [CLASS_C, 1, 3, 1, 0, 1, -2, 36, 188, 34, 0, 2],
-        [CLASS_D, 1, -1, 1, 0, 1, -1, 22, 150, 19, 2, 1],
-        [CLASS_D, 1, -1, 1, 0, 1, 0, 17, 128, 15, 1, 1],
-        [CLASS_D, 1, -1, 1, 0, 1, 1, 26, 111, 23, 2, 1],
-        [CLASS_D, 1, -1, 1, 0, 1, 2, 38, 105, 34, 3, 1],
-        [CLASS_D, 1, -1, 1, 0, 1, 3, 43, 105, 38, 4, 1],
-        [CLASS_D, 1, -1, 1, 0, 1, 4, 97, 105, 91, 5, 1],
-        [CLASS_D, 1, -1, 1, 0, 2, -3, 14, 105, 11, 1, 2],
-        [CLASS_D, 1, -1, 1, 0, 2, -2, 12, 113, 10, 1, 1],
-        [CLASS_D, 1, 1, 1, 0, 1, -1, 24, 250, 23, 0, 1],
-        [CLASS_D, 1, 1, 1, 0, 1, 0, 19, 246, 19, 0, 0],
-        [CLASS_D, 1, 1, 1, 0, 1, 1, 21, 181, 21, 0, 0],
-        [CLASS_D, 1, 1, 1, 0, 1, 2, 22, 132, 22, 0, 0],
-        # PR #288 endpoint clipping adds sign reads: q0 18 -> 21; the
-        # extra finite members certify exactly (validation note 2026-10-20).
-        [CLASS_D, 1, 1, 1, 0, 1, 3, 21, 97, 20, 1, 0],
-        [CLASS_D, 1, 1, 1, 0, 1, 4, 49, 93, 47, 2, 0],
-        [CLASS_D, 1, 1, 1, 0, 2, -1, 22, 93, 21, 0, 1],
-        [CLASS_D, 1, 1, 1, 0, 2, 0, 15, 93, 15, 0, 0],
-        [CLASS_D, 1, 1, 1, 0, 2, 1, 14, 113, 14, 0, 0],
-        [CLASS_D, 1, 1, 1, 0, 2, 2, 10, 193, 10, 0, 0],
-    ]
+comptime PINS_PATH = "symbolic_line_pins.txt"  # relative to kernel/, where every caller runs
+
+
+def read_pins(kind: String, width: Int) raises -> List[List[Int]]:
+    """The `kind` rows ("line", "norm" or "wedge") of PINS_PATH: a class letter
+    and `width - 1` integers each. A missing file or malformed row raises."""
+    var text: String
+    with open(String(PINS_PATH), "r") as f:
+        text = f.read()
+    var out = List[List[Int]]()
+    for raw in text.splitlines():
+        var line = String(raw)
+        if line.byte_length() == 0 or line.startswith("#"):
+            continue
+        var p = line.split(" ")
+        if String(p[0]) != kind:
+            if String(p[0]) != "line" and String(p[0]) != "norm" and String(p[0]) != "wedge":
+                raise Error(String("unknown row kind in ") + PINS_PATH + ": " + line)
+            continue
+        if len(p) != width + 1:
+            raise Error(String("malformed pin row in ") + PINS_PATH + ": " + line)
+        var row = List[Int]()
+        row.append(class_of(String(p[1])))
+        for i in range(2, width + 1):
+            row.append(Int(p[i]))
+        out.append(row^)
+    return out^
+
+
+def certified_lines() raises -> List[List[Int]]:
+    return read_pins("line", PIN_FIELDS)
 
 
 def part(xs: List[Int], lo: Int, hi: Int) -> List[Int]:
@@ -404,106 +383,15 @@ def part(xs: List[Int], lo: Int, hi: Int) -> List[Int]:
 
 # Lines certified in norm mode, the boundary lines of the wedges of
 # certified_wedges(); same row layout as certified_lines().
-def certified_norm_lines() -> List[List[Int]]:
-    return [
-        [CLASS_D, 3, 4, 3, 5, 4, 7, 3, 105, 3, 0, 0],
-        [CLASS_D, 3, 5, 3, 6, 4, 8, 3, 105, 3, 0, 0],
-        [CLASS_D, 3, 6, 3, 7, 4, 9, 2, 105, 2, 0, 0],
-        [CLASS_D, 3, 7, 3, 8, 4, 10, 2, 105, 2, 0, 0],
-        [CLASS_D, 3, 8, 3, 9, 4, 11, 3, 105, 3, 0, 0],
-        [CLASS_D, 3, 9, 3, 10, 4, 12, 2, 105, 2, 0, 0],
-        [CLASS_D, 3, 10, 3, 11, 4, 13, 2, 105, 2, 0, 0],
-        [CLASS_D, 3, 11, 3, 12, 4, 14, 2, 105, 2, 0, 0],
-        [CLASS_D, 3, 12, 3, 13, 4, 15, 2, 105, 2, 0, 0],
-        [CLASS_D, 3, 13, 3, 14, 4, 16, 2, 105, 2, 0, 0],
-        # Same clipping-induced threshold reconciliation: 4 -> 6.
-        [CLASS_D, 3, 14, 3, 15, 4, 17, 6, 105, 6, 0, 0],
-        [CLASS_D, 3, 15, 3, 16, 4, 18, 10, 105, 10, 0, 0],
-        [CLASS_D, 3, 16, 3, 17, 4, 19, 12, 105, 12, 0, 0],
-        [CLASS_D, 3, 17, 3, 18, 4, 20, 19, 105, 19, 0, 0],
-        [CLASS_D, 3, 18, 3, 19, 4, 21, 20, 105, 20, 0, 0],
-        [CLASS_D, 1, 4, 1, 5, 1, 7, 17, 105, 17, 0, 0],
-        [CLASS_D, 1, 7, 1, 8, 1, 11, 16, 105, 16, 0, 0],
-        [CLASS_D, 1, 10, 1, 11, 1, 15, 16, 105, 16, 0, 0],
-        [CLASS_D, 1, 13, 1, 14, 1, 19, 16, 105, 16, 0, 0],
-        [CLASS_D, 1, 16, 1, 17, 1, 23, 16, 105, 16, 0, 0],
-        [CLASS_D, 1, 19, 1, 20, 1, 27, 16, 105, 16, 0, 0],
-        [CLASS_D, 1, 22, 1, 23, 1, 31, 15, 105, 15, 0, 0],
-        [CLASS_D, 2, 12, 2, 13, 3, 18, 1, 105, 1, 0, 0],
-        [CLASS_D, 1, 3, 1, 4, 2, 5, 4, 105, 4, 0, 0],
-        [CLASS_D, 1, 5, 1, 6, 2, 8, 4, 105, 4, 0, 0],
-        [CLASS_D, 1, 7, 1, 8, 2, 11, 5, 105, 5, 0, 0],
-        [CLASS_D, 1, 9, 1, 10, 2, 14, 4, 105, 4, 0, 0],
-        [CLASS_D, 1, 11, 1, 12, 2, 17, 4, 105, 4, 0, 0],
-        [CLASS_D, 1, 13, 1, 14, 2, 20, 4, 105, 4, 0, 0],
-        [CLASS_D, 1, 15, 1, 16, 2, 23, 4, 105, 4, 0, 0],
-        [CLASS_D, 2, 3, 2, 4, 3, 5, 6, 105, 6, 0, 0],
-        [CLASS_D, 2, 4, 2, 5, 3, 7, 5, 105, 5, 0, 0],
-        [CLASS_D, 2, 5, 2, 6, 3, 9, 5, 105, 5, 0, 0],
-        [CLASS_D, 2, 6, 2, 7, 3, 11, 5, 105, 5, 0, 0],
-        [CLASS_D, 2, 7, 2, 8, 3, 13, 5, 105, 5, 0, 0],
-        [CLASS_D, 2, 8, 2, 9, 3, 15, 5, 105, 5, 0, 0],
-        [CLASS_D, 2, 9, 2, 10, 3, 17, 5, 105, 5, 0, 0],
-        [CLASS_D, 3, 12, 3, 11, 4, 15, 2, 93, 2, 0, 0],
-        [CLASS_D, 1, 12, 1, 11, 1, 15, 1, 93, 1, 0, 0],
-        [CLASS_D, 1, 15, 1, 14, 1, 19, 1, 93, 1, 0, 0],
-        [CLASS_D, 1, 18, 1, 17, 1, 23, 1, 93, 1, 0, 0],
-        [CLASS_D, 2, 14, 2, 13, 3, 18, 11, 93, 11, 0, 0],
-        [CLASS_D, 2, 17, 2, 16, 3, 22, 11, 93, 11, 0, 0],
-        [CLASS_D, 2, 20, 2, 19, 3, 26, 11, 93, 11, 0, 0],
-        [CLASS_D, 2, 23, 2, 22, 3, 30, 11, 93, 11, 0, 0],
-        [CLASS_D, 2, 26, 2, 25, 3, 34, 11, 93, 11, 0, 0],
-        [CLASS_D, 2, 29, 2, 28, 3, 38, 11, 93, 11, 0, 0],
-        [CLASS_D, 2, 32, 2, 31, 3, 42, 11, 93, 11, 0, 0],
-        [CLASS_D, 2, 35, 2, 34, 3, 46, 11, 93, 11, 0, 0],
-        [CLASS_D, 2, 38, 2, 37, 3, 50, 11, 93, 11, 0, 0],
-        [CLASS_D, 2, 41, 2, 40, 3, 54, 11, 93, 11, 0, 0],
-        [CLASS_D, 2, 44, 2, 43, 3, 58, 11, 93, 11, 0, 0],
-        [CLASS_D, 2, 47, 2, 46, 3, 62, 11, 93, 11, 0, 0],
-        [CLASS_D, 2, 50, 2, 49, 3, 66, 11, 93, 11, 0, 0],
-        [CLASS_D, 2, 53, 2, 52, 3, 70, 12, 93, 12, 0, 0],
-        [CLASS_D, 2, 56, 2, 55, 3, 74, 11, 93, 11, 0, 0],
-        [CLASS_D, 3, 14, 3, 13, 4, 18, 1, 93, 1, 0, 0],
-        [CLASS_D, 3, 16, 3, 15, 4, 21, 1, 93, 1, 0, 0],
-        [CLASS_D, 3, 18, 3, 17, 4, 24, 10, 93, 10, 0, 0],
-        [CLASS_D, 3, 20, 3, 19, 4, 27, 5, 93, 5, 0, 0],
-        [CLASS_D, 3, 22, 3, 21, 4, 30, 4, 93, 4, 0, 0],
-        [CLASS_D, 3, 24, 3, 23, 4, 33, 1, 93, 1, 0, 0],
-        [CLASS_D, 3, 26, 3, 25, 4, 36, 1, 93, 1, 0, 0],
-        [CLASS_D, 3, 28, 3, 27, 4, 39, 1, 93, 1, 0, 0],
-        [CLASS_D, 3, 30, 3, 29, 4, 42, 1, 93, 1, 0, 0],
-        [CLASS_D, 3, 32, 3, 31, 4, 45, 1, 93, 1, 0, 0],
-        [CLASS_D, 3, 34, 3, 33, 4, 48, 1, 93, 1, 0, 0],
-        [CLASS_D, 3, 36, 3, 35, 4, 51, 1, 93, 1, 0, 0],
-        [CLASS_D, 3, 38, 3, 37, 4, 54, 1, 93, 1, 0, 0],
-        [CLASS_D, 3, 40, 3, 39, 4, 57, 1, 93, 1, 0, 0],
-        [CLASS_D, 3, 42, 3, 41, 4, 60, 1, 93, 1, 0, 0],
-        [CLASS_D, 1, -1, 1, -2, 2, -4, 8, 93, 6, 0, 2],
-        [CLASS_D, 1, 1, 1, 0, 2, -1, 10, 93, 9, 0, 1],
-        [CLASS_D, 1, 3, 1, 2, 2, 2, 8, 93, 8, 0, 0],
-        [CLASS_D, 2, -1, 2, -2, 3, -4, 17, 93, 15, 0, 2],
-        [CLASS_D, 2, 0, 2, -1, 3, -2, 15, 93, 14, 0, 1],
-        [CLASS_D, 2, 1, 2, 0, 3, 0, 13, 93, 13, 0, 0],
-        [CLASS_D, 2, 2, 2, 1, 3, 2, 10, 93, 10, 0, 0],
-        [CLASS_D, 2, 3, 2, 2, 3, 4, 8, 93, 8, 0, 0],
-        [CLASS_D, 2, 4, 2, 3, 3, 6, 6, 93, 6, 0, 0],
-        [CLASS_D, 2, 5, 2, 4, 3, 8, 5, 93, 5, 0, 0],
-        [CLASS_D, 2, 6, 2, 5, 3, 10, 4, 93, 4, 0, 0],
-        [CLASS_D, 2, 7, 2, 6, 3, 12, 4, 93, 4, 0, 0],
-        [CLASS_D, 2, 8, 2, 7, 3, 14, 4, 93, 4, 0, 0],
-        [CLASS_D, 2, 9, 2, 8, 3, 16, 4, 93, 4, 0, 0],
-        [CLASS_D, 2, 10, 2, 9, 3, 18, 4, 93, 4, 0, 0],
-        [CLASS_D, 2, 11, 2, 10, 3, 20, 4, 93, 4, 0, 0],
-        [CLASS_D, 2, 12, 2, 11, 3, 22, 3, 93, 3, 0, 0],
-        [CLASS_D, 2, 13, 2, 12, 3, 24, 3, 93, 3, 0, 0],
-    ]
+def certified_norm_lines() raises -> List[List[Int]]:
+    return read_pins("norm", PIN_FIELDS)
 
 
 def spec_of(row: List[Int], by_norm: Bool = False) raises -> ClassLine:
     return ClassLine(row[0], part(row, 1, 7), by_norm)
 
 
-def pinned(spec: ClassLine) -> List[Int]:
+def pinned(spec: ClassLine) raises -> List[Int]:
     """The pinned verdict of a listed line, or an empty list; a norm-mode line
     is looked up in certified_norm_lines()."""
     var lines = certified_norm_lines() if spec.by_norm else certified_lines()
@@ -520,7 +408,7 @@ def pinned(slope: Int, k: Int, branch: Int) raises -> List[Int]:
 def check_pinned(v: LineVerdict, pin: List[Int]) raises:
     """A listed line must reproduce its pinned verdict exactly."""
     if len(pin) != PIN_FIELDS or List[Int]([v.q0, v.symbolic_vertices, v.finite_members, v.finite_non_pip, v.finite_outside]) != part(pin, 7, PIN_FIELDS):
-        raise Error("the line's verdict differs from its pinned verdict in certified_lines()")
+        raise Error("the line's verdict differs from its pinned verdict in symbolic_line_pins.txt")
 
 
 # The wedges certified so far: class, the nine affine coefficients of
@@ -530,18 +418,11 @@ def check_pinned(v: LineVerdict, pin: List[Int]) raises:
 comptime WEDGE_PIN_FIELDS = 13
 
 
-def certified_wedges() -> List[List[Int]]:
-    return [
-        [CLASS_D, 4, 1, 3, 5, 1, 3, 7, 1, 4, 15, 7, 105],
-        [CLASS_D, 12, 3, 2, 13, 3, 2, 18, 4, 3, 1, 0, 105],
-        [CLASS_D, 3, 2, 1, 4, 2, 1, 5, 3, 2, 7, 7, 105],
-        [CLASS_D, 12, 1, 3, 11, 1, 3, 15, 1, 4, 1, 3, 93],
-        [CLASS_D, 14, 3, 2, 13, 3, 2, 18, 4, 3, 15, 15, 93],
-        [CLASS_D, -1, 2, 1, -2, 2, 1, -4, 3, 2, 3, 15, 93],
-    ]
+def certified_wedges() raises -> List[List[Int]]:
+    return read_pins("wedge", WEDGE_PIN_FIELDS)
 
 
-def wedge_pinned(spec: ClassWedge) -> List[Int]:
+def wedge_pinned(spec: ClassWedge) raises -> List[Int]:
     var rows = certified_wedges()
     for i in range(len(rows)):
         if part(rows[i], 0, 10) == spec.key():
@@ -555,7 +436,7 @@ def wedge_of(row: List[Int]) raises -> ClassWedge:
 
 def check_wedge_pinned(v: WedgeVerdict, pin: List[Int]) raises:
     if len(pin) != WEDGE_PIN_FIELDS or List[Int]([v.a0, v.b0, v.symbolic_vertices]) != part(pin, 10, WEDGE_PIN_FIELDS):
-        raise Error("the wedge's verdict differs from its pinned verdict in certified_wedges()")
+        raise Error("the wedge's verdict differs from its pinned verdict in symbolic_line_pins.txt")
 
 
 def report(spec: ClassLine) raises:

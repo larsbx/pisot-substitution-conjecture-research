@@ -1,6 +1,6 @@
 """Boundary hitting on class-A residue rays (n+d, n, n+eps), n = d l + r: certificate and refusals."""
 from std.testing import assert_true, assert_equal
-from mojo_smoke.claims import require_contract
+from mojo_smoke.claims import require_claim, require_contract
 from psc.class_a_line import ALine
 from psc.class_a_line_graph import survey
 from psc.class_a_ray_tables import tabulated_rays, ray_tables, certify_ray
@@ -100,3 +100,4 @@ def main() raises:
             fewer.append(t[2][i].copy())
         assert_true(refuses_descent(line, n0, t[0], t[1], fewer))
     require_contract("class-A residue rays n = d l + r of (n+d,n,n+eps): uniform forward closure of l-affine typed carriers and strict descent of l-affine potentials by exact Sturm signs on (0,1/n0], per tabulated ray from its floor; complete graphs below every floor; carrier = graph label set with independent cardinality and differential replay at two members; removed row, another tabulated ray's carrier, raised potential, mislabelled and missing descents refuse; untabulated rays, other A/C regions and universal #139 open")
+    require_claim("ClassABoundaryHittingLowGaps")
