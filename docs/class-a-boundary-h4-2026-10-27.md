@@ -103,3 +103,60 @@ The high-half rule is **not** simply \(t\ge k\): \((k,t)=(0,0),(1,1)\) are low, 
 ### Non-claims / remaining gaps
 
 This is an exact **one-parent outgoing star** and a 13-label containment fact, not a productive-path theorem for all 13 targets, not a full forward-closed seed-reachable carrier, not a target-aware balanced-pair packet proof, and not a proof that H4 is seed-reachable on every parameter member. The predecessor's one-sided A1′, C4 hub-residual word, global G1, universal BH/#139, plus-sign strips, and general Pisot Substitution Conjecture remain open. The next mathematical obligation is to incorporate this 13-label image into a uniform descendant carrier with *existential* well-founded occurrence-compatible paths, preserving the genuine cycles already found in #352/#355/#359. Independent human review remains pending and is not a development blocker.
+
+
+## Constructive selected coincidence exit from H4 (2026-10-27 continuation)
+
+The original completion ledger above deliberately withheld a productive-path
+statement. A **new, strictly scoped** path is now proved for the source H4
+itself, using the existing canonical H3/J/K/L suffix. It does **not** provide
+paths from every one of H4's thirteen outgoing targets or prove global
+forward closure.
+
+For every admissible \(k,t\ge0\), there is a literal, typed,
+occurrence-indexed five-edge path
+
+| Step | Parent | Actual ordinal pair | Child |
+|---|---|---|---|
+| 1 | \(H_4=(x,y,0,-2,4)\) | \((2n+1,0)\) | \(J=(y,x,1,2,-4)\) |
+| 2 | \(J\) | \((t+2,0)\) | \(K=(y,x,-1,-2,5)\) |
+| 3 | \(K\) | \((k+1,0)\) | \(L=(y,x,0,3,-4)\) |
+| 4 | \(L\) | \((0,n-2)\) | \(H_1=(x,y,0,-1,1)\) |
+| 5 | \(H_1\) | \((1,2)\) | \(C=(y,y,0,0,0)\) |
+
+The first index \(2n+1\) is a genuine top y-run index since
+\(1\le2n+1\le A=2n+t+2\), and passes the exact H4 run/first guard
+on **both** sides of the \(\alpha=1/2\) separator: its lower endpoint
+is precisely \(2n+1\). The complete Parikh update gives
+\(M(0,-2,4)^T+P_{\rm bottom}(0)-P_{\rm top}(2n+1)
+=(1,2,-4)\), with actual child types y/x. Hence the first edge is
+a genuine strict overlap even at the floor \(t=0\).
+
+The remaining four edges are the already certified **J-to-C** path
+from \`psc.class_a_boundary_h3_children.chain_path(2,k,t)\`, not
+newly asserted virtual edges. Its recorded derivation uses the
+root/half-chamber identities and real word bounds from
+\`docs/class-a-boundary-h3-carrier-2026-10-27.md\`.
+The new \`verify_h4_path\` checks the first edge via
+\`verify_h4_packet\` and the entire suffix via the existing
+\`verify_chain_path\`, so every edge passes the literal-image,
+three-coordinate Parikh transport, exact Perron geometry and exact
+typed target checks.
+
+The strictly decreasing stage rank
+\(5\to4\to3\to2\to1\to0\) is defined **only** on
+\(\{H_4,J,K,L,H_1,C\}\), *not* on all outgoing H4 edges or
+its thirteen-target image. Genuine cycles elsewhere make such
+an all-edge claim unsound. An altered middle typed target is
+rejected even when the final supplied child is C.
+
+Independent Python verifies the same five literal edges at each
+of 100 finite control members. The **unbounded** quantifier comes
+from the exact H4 guard and the inherited symbolic J-path proof,
+not from the finite sample.
+
+This is a positive **existential coincidence exit for H4**, not
+proof that H4 is seed-reachable on every chamber member, not a
+target-aware BPA factorization and not uniform BH. The forward
+closure, all relevant cyclic strict-zipper states and internal-space
+realization obligations remain open.
