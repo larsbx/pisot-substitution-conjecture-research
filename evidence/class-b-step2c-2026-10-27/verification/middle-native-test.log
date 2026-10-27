@@ -1,0 +1,49 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+Included from /workspace/scratch/eae96f23385c/psc-class-b/kernel/tests/test_class_b_middle_certificate.mojo:4:
+kernel/psc/class_b_middle_geometry.mojo:26:24: warning: assignment to 'p' was never used; assign to '_' instead?
+    var p = PolyHU.zero()
+                       ^
+Included from /workspace/scratch/eae96f23385c/psc-class-b/kernel/tests/test_class_b_middle_certificate.mojo:4:
+Included from kernel/psc/class_b_middle_geometry.mojo:8:
+kernel/psc/poly_hu.mojo:43:13: warning: ref 'a' was never used, remove it?
+        for a in range(i + 1):
+            ^
+Included from /workspace/scratch/eae96f23385c/psc-class-b/kernel/tests/test_class_b_middle_certificate.mojo:4:
+Included from kernel/psc/class_b_middle_geometry.mojo:8:
+kernel/psc/poly_hu.mojo:298:36: warning: assignment to 'sides' was never used; assign to '_' instead?
+    var sides = List[List[List[Q]]]()
+                                   ^
+Included from /workspace/scratch/eae96f23385c/psc-class-b/kernel/tests/test_class_b_middle_certificate.mojo:4:
+Included from kernel/psc/class_b_middle_geometry.mojo:8:
+kernel/psc/poly_hu.mojo:528:18: warning: assignment to 'direct' was never used; assign to '_' instead?
+    var direct = 0
+                 ^
+Included from /workspace/scratch/eae96f23385c/psc-class-b/kernel/tests/test_class_b_middle_certificate.mojo:4:
+Included from kernel/psc/class_b_middle_geometry.mojo:8:
+kernel/psc/poly_hu.mojo:529:23: warning: assignment to 'first' was never used; assign to '_' instead?
+    var first = String("")
+                      ^
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps -1 row 0
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps -1 row 50
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps -1 row 100
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps -1 row 150
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps -1 row 200
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps -1 row 250
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps -1 row 300
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps -1 row 350
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps -1 row 400
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps -1 row 450
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps -1 row 500
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps 1 row 0
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps 1 row 50
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps 1 row 100
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps 1 row 150
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps 1 row 200
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps 1 row 250
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps 1 row 300
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps 1 row 350
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps 1 row 400
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps 1 row 450
+CLASS_B_MIDDLE_CLOSURE_PROGRESS eps 1 row 500
+CLASS_B_RAY_CERTIFICATE minus g=12 q=12l+6 q>=54 rows 529 seeds_real 9 seeds_unreal 3 u_cases 52371 covered 20041 gap_geometry 15960 window_checks 9522 clip_fallbacks 0 terminal_splits 86 pieces 1153 targets 9 descent_intervals 1456 max_b 3
+contract-receipt: class-B middle regimes uniformly in unbounded g and l>=4: plus g>=16 with 2<=r<=g-14, minus g>=12 with 6<=r<=g-6; exact strict 529-row carriers contain strict core and swap seeds and are forward closed; X=abs(k)+b, 0<=b<=3, has a realizable decreasing child until offset zero; minus g=12 r=6 uses exact ray exception; removed carrier row and zero potential refuse; low/high residues and l<4, universal BH, G1 and PSC remain open

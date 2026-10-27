@@ -1,5 +1,15 @@
 # PSC research roadmap — 2026-09-21
 
+**2026-10-27 class-B continuation:** the
+[class-B middle certificate](class-b-middle-certificate-2026-10-27.md) gives
+exact, independently checked unbounded-gap middle carriers and descent for
+`l>=4`, plus the remaining 103 finite-gap rays (186 total). Next class-B
+obligations are the low/high residue carriers and the unbounded-gap strip
+`l<4`. Do not extend the middle table across the documented actual escapes,
+or treat the generic Lean interfaces as a formalization of its chamber
+certificates. General BH/G1/PSC and class-A boundary work remain separate.
+
+
 **Status:** live completion roadmap for the current research frontier. This file is a planning/status surface, not a proof source. The authoritative claim taxonomy remains `docs/claim-status-and-source-map-2026-09-13.md`; theorem statements remain in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`; machine dependencies remain generated from `tools/make_ledger.py`.
 
 **Standing target:** pure discrete spectrum for primitive irreducible Pisot substitutions in the repository's standing regime, **without** silently adding seed legality, unique decodability, finite injectivity, rational/integer independence, or unimodularity.

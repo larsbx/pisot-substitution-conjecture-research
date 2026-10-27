@@ -1871,6 +1871,46 @@
       "declaration": "theorem no_equal_row_sums (M : Matrix (Fin 3) (Fin 3) ℚ) (hM : NoEigenvalue M)"
     },
     {
+      "name": "PscVerif.ClassBRegime.segment_difference",
+      "module": "PscVerif.ClassBRegime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassBRegime.lean",
+      "line": 10,
+      "declaration": "theorem segment_difference (a b c d z : Int) (hab : a ≤ b) (hcd : c ≤ d) :"
+    },
+    {
+      "name": "PscVerif.ClassBRegime.plus_partition",
+      "module": "PscVerif.ClassBRegime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassBRegime.lean",
+      "line": 21,
+      "declaration": "theorem plus_partition (g r : Int) (_hg : 16 ≤ g) (hr : 0 ≤ r) (hrg : r < g) :"
+    },
+    {
+      "name": "PscVerif.ClassBRegime.minus_partition",
+      "module": "PscVerif.ClassBRegime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassBRegime.lean",
+      "line": 25,
+      "declaration": "theorem minus_partition (g r : Int) (_hg : 12 ≤ g) (hr : 0 ≤ r) (hrg : r < g) :"
+    },
+    {
+      "name": "PscVerif.ClassBRegime.rank_reaches",
+      "module": "PscVerif.ClassBRegime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassBRegime.lean",
+      "line": 33,
+      "declaration": "theorem rank_reaches {α : Type} (carrier target : α → Prop)"
+    },
+    {
+      "name": "PscVerif.ClassBRegime.rank_reaches_with_bound",
+      "module": "PscVerif.ClassBRegime",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/ClassBRegime.lean",
+      "line": 56,
+      "declaration": "theorem rank_reaches_with_bound {α : Type} (carrier target : α → Prop)"
+    },
+    {
       "name": "Psc.seed_K₂_zero",
       "module": "PscVerif.Seeds",
       "private": false,
@@ -3070,7 +3110,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 275,
+      "line": 293,
       "statement_heading": "**Imported theorem:** Barge–Štimac–Williams supplies the dense-eventual-coincidence-to-PDS implication in the precise one-dimensional Pisot-family setting checked in manuscript Imported Theorem 5.37. Hence Theorem 5.38 has no G1 hypothesis."
     },
     {
@@ -3641,11 +3681,12 @@
     "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
+    "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
     "proof/PscVerif/PscVerif/Seeds.lean": "224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747",
     "proof/PscVerif/PscVerif/Shuffle.lean": "fe99c7b71174cd665633b425c0f9d1e6f6893f541387e261fb5d945bba48614c",
     "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
-    "proof/PscVerif/PscVerif.lean": "d411522c81fbf7656036dabd359025ae208288dc64cf8a138b9297e9c7a3f337",
+    "proof/PscVerif/PscVerif.lean": "523339a3634d55684384cdd6c47de2f52e04f3c5f6b65c86d0774ff8eb6aea6a",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",

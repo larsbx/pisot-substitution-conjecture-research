@@ -1,0 +1,6 @@
+{
+  "command": "kernel/build/class-b-labels-fast BRANCH G Q",
+  "native_finite_exports_equal": 546,
+  "elapsed_seconds": 282.9431629239989,
+  "all_byte_equal": true
+}
