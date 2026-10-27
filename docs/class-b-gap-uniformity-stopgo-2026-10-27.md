@@ -62,8 +62,12 @@ through `L_x = 3β² + (3 + 3eps − g)β + 3eps` and the `−gβk` term of `T`.
 | plus `g=10`, `q=40` | 2101 | 608 | 0 | 2101 |
 | minus `g=3`, `q=30` | 2663 | 1276 | 0 | 2663 |
 
-Every one of the 1,188 core closures generated for the regime profile below
-was closed without hitting the cap, and every state reached offset zero (the
+**Sweep.** All 839 native graphs exported for this note satisfy `G_q ⊆ C_q`,
+and every state of each `C_q` reaches offset zero. They cover plus `g = 1..10`
+(`q ≤ 42` for `g ≤ 5`, up to `q = 6g + 30` beyond) and minus `g = 1..8`
+(`q ≤ 42` for `g ≤ 3`, up to `q = 69` for `g = 7`, and only `q ≤ 21` for
+`g = 8`). The 1,818 core closures of the regime profile below were likewise
+all closed without hitting the cap, and every state reached offset zero (the
 generator refuses otherwise).
 
 **The core stabilizes in `g`.** Strictness of a core label compares polynomials
