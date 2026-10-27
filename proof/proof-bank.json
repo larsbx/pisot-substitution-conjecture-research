@@ -2194,6 +2194,11 @@
       "statement_heading": "**Proposition.** For every integer `n>=4`, the canonical exact swap-seed overlap graph has at least `6n-2` distinct vertices."
     },
     {
+      "source": "docs/class-b-gap-rays-2026-10-27.md",
+      "line": 58,
+      "statement_heading": "**Corollary (nine more lines).** On each line above, every vertex reachable"
+    },
+    {
       "source": "docs/class-b-ray-certificate-2026-10-27.md",
       "line": 95,
       "statement_heading": "**Lemma 1 (elimination of `l`).** For integer polynomials `a, b`,"

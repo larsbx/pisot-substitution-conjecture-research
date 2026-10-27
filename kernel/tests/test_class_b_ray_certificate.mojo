@@ -89,4 +89,4 @@ def main() raises:
     assert_true(refuses(ray0, 8, rows, pot))
     assert_true(refuses(BRay(-1, 3, 1), 19, ray_rows(19), ray_potentials(19)))
 
-    require_contract("class-B top-layer residue rays q = g l + r (plus g<=5, minus g<=3): uniform forward closure of l-affine typed carriers in (u,v,k) coordinates and strict descent of X = |k| + b by exact Sturm signs on beta >= q0+3+eps, per tabulated ray from its floor; native graph = carrier and native descent at three floors; removed row, lowered/zero/missing potential, another ray's carrier and sub-floor certificates refuse; other gaps, universal BH, G1 and PSC open")
+    require_contract("class-B top-layer residue rays q = g l + r (plus g<=10, minus g<=7): uniform forward closure of l-affine typed carriers in (u,v,k) coordinates and strict descent of X = |k| + b by exact Sturm signs on beta >= q0+3+eps, per tabulated ray from its floor; native graph = carrier and native descent at three floors; removed row, lowered/zero/missing potential, another ray's carrier and sub-floor certificates refuse; other gaps, universal BH, G1 and PSC open")

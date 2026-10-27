@@ -139,8 +139,10 @@ plus `g = 6..15` and minus `g = 4..11`. They are ray-by-ray work, as in step 2.
 2. **Both stop conditions were checked and not met.** The minus middle table
    still holds at `g = 15, 16` (15 rays), and plus has a middle regime by
    `g = 16` (15 rays through `g = 20`).
-3. Cover the leftover gaps (plus `6..15`, minus `4..11`) ray by ray, with
-   step 2's certificate on core-closure carriers.
+3. Cover the leftover gaps (plus `6..15`, minus `4..11`) ray by ray with
+   step 2's certificate. Done for plus `g = 6..10` and minus `g = 4..7` on
+   reachable-graph carriers ([class-b-gap-rays-2026-10-27.md](class-b-gap-rays-2026-10-27.md));
+   plus `11..15` and minus `8..11` remain.
 4. Port the step-2 certificate engine to regime tables. That needs class
    A's [d-uniform machinery](class-a-gap-uniform-certificate-design-2026-10-23.md)
    with `g` in place of `d`: quadrant positivity in `(l, g)`, uniform division
