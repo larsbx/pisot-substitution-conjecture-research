@@ -51,7 +51,7 @@ jobs:
           pixi run --locked mojo run -I . -I tests tests/test_class_b_ray_certificate.mojo > build/class-b-rays/native-test.log
           pixi run --locked mojo build -I . class_b_ray_certificate.mojo -o build/class-b-ray-certificate
           build/class-b-ray-certificate all > build/class-b-rays/all.log
-          grep -q '^CLASS_B_RAY_CERTIFICATES_COMPLETE rays 77$' build/class-b-rays/all.log
+          grep -q '^CLASS_B_RAY_CERTIFICATES_COMPLETE rays 83$' build/class-b-rays/all.log
       - name: Native and independent counts agree on every ray
         run: |
           set -euo pipefail
