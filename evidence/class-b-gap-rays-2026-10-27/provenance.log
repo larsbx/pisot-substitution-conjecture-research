@@ -1,0 +1,7 @@
+git 40d9c1f2c3f65b827662cdd4e6a6fd0af1562b14 (tables as committed in 40d9c1f; receipt text updated after)
+Mojo 1.1.0.dev2026090805 (34562fa1)
+Python 3.13.17
+certify.log: kernel/build/class-b-ray-certificate certify|replay q0|replay q0+g|below, per ray index 0..82
+oracle.log: python oracles/python/class_b_ray_certificate.py
+diff native.counts oracle.counts: identical (83 rays)
+runtime: the kernel/pixi.lock linux-64 closure of mojo (59 conda packages, each sha256-verified against the lock) unpacked without pixi; same build as CI's locked Pixi environment
