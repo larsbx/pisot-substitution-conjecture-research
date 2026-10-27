@@ -1,0 +1,37 @@
+name: PSC class-A boundary T_m run-first completeness
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_boundary_next_run_first.mojo'
+      - 'kernel/tests/test_class_a_boundary_next_run_first.mojo'
+      - 'kernel/class_a_boundary_next_run_first.mojo'
+      - 'oracles/python/class_a_boundary_next_run_first.py'
+      - 'tests/test_class_a_boundary_next_run_first.py'
+      - 'docs/class-a-boundary-run-first-2026-10-26.md'
+      - '.github/workflows/class-a-boundary-next-run-first.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-next-run-first:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent rational occurrence oracle
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_boundary_next_run_first.py
+      - name: Install Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Run inherited and new canonical Mojo certificates
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_class_a_boundary_next_run.mojo
+          pixi run --locked mojo run -I . tests/test_class_a_boundary_next_run_first.mojo
+          pixi run --locked mojo run -I . class_a_boundary_next_run_first.mojo
