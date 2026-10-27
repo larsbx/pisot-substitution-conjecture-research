@@ -139,8 +139,8 @@ def main():
         if not gaps:
             continue
         for g_min in gaps:
-            for j0 in range(0, 6):
-                for j1 in range(1, 10):
+            for j0 in range(0, 9):
+                for j1 in range(1, 15):
                     rays = {(g, r): fits[branch, g, r][2] for g in gaps if g >= g_min
                             for r in range(j0, g - j1 + 1) if fits.get((branch, g, r)) is not None}
                     if len({g for g, _ in rays}) < 3:
