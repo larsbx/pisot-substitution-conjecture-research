@@ -134,7 +134,7 @@ def rays():
     for entry in (e for path in CARRIERS for e in json.loads(path.read_text())):
         eps = 1 if entry["branch"] == "plus" else -1
         g, r = entry["gap"], entry["residue"]
-        q0 = FLOORS.get((eps, g, r), entry["floor"])
+        q0 = FLOORS.get((eps, g, r), entry.get("certify_floor", entry["floor"]))
         graphs = [Graph(eps, g, q0 + i * g).build() for i in (2, 3)]
         out.append((eps, g, r, q0, entry["slope"], entry["carrier"], potentials(graphs)))
     return out
