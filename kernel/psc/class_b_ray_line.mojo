@@ -41,6 +41,7 @@ from finite_exact.rat_q import Q
 from finite_linear_algebra.qpoly import evaluate
 from psc.exact import q_poly, q_sign
 from psc.class_a_carrier_closure import AffH, pnorm, padd, psub, pscale, pmul, sign_on_interval
+from psc.class_b_ray_carrier import PILOT_MAX_Q
 
 
 struct BRay(ImplicitlyCopyable, Copyable, Movable):
@@ -83,8 +84,8 @@ struct BRay(ImplicitlyCopyable, Copyable, Movable):
             raise Error("parameter outside the open class-B top layer")
 
     def member(self, q: Int) raises -> List[List[Int]]:
-        if q < 1 or q > 48:
-            raise Error("class-B finite replay budget requires 1<=q<=48")
+        if q < 1 or q > PILOT_MAX_Q:
+            raise Error("class-B finite replay budget requires 1<=q<=", PILOT_MAX_Q)
         self.check_domain(q)
         return class_member(CLASS_B, self.p_of(q), q, q + self.eps)
 
