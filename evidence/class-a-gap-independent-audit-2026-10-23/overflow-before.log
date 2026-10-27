@@ -1,0 +1,6 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+Included from /tmp/audit335-overflow.mojo:1:
+./psc/poly_hu.mojo:43:13: warning: ref 'a' was never used, remove it?
+        for a in range(i + 1):
+            ^
+positive h^11 power coefficient sign: -1

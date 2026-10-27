@@ -1,0 +1,68 @@
+Local native replay; hosted acceptance remains pending.
+Mojo 1.1.0.dev2026090805 (34562fa1); locked kernel/pixi.lock.
+Base revision a1eb9692ce825ea7b181f25a42499382af0ae75d.
+All existing base Mojo sources unchanged; added canonical sources are pinned below.
+8d81fb8110131decb215bea05edc607cddb8e2d50badf109a0c9a7ee977bc9d1  kernel/psc/class_a_boundary_u_children.mojo
+ef34cca6b85617ad7486608307bbd120573327fa1e4db24de727f7694598d6b9  kernel/tests/test_class_a_boundary_u_children.mojo
+8d0c212b0c7369d347620c25858051e91cd83b141b3eea3b2deff8d572fb8762  kernel/class_a_boundary_u_children.mojo
+1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8  kernel/pixi.lock
+
+COMMAND (kernel/): pixi run --locked mojo run -I . tests/test_class_a_boundary_u_children.mojo
+Exit status: 0
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_U_CHILDREN all_nine_kinds=true minus_all_k_t=true target_image_labels=12 V_unique_child_W=true strict_all_edge_rank_impossible_when_n_ge_5=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_U_FINITE members=56 pairs 16548 accepted 1008 four_cycle_members 53 V_pairs 16548 image_labels=12 all_labels_attained=true BH=false
+contract-receipt: class-A minus boundary U all nine child kinds; complete linear-time occurrence carrier and exact 12-label image; every finite child checked against full Parikh/Perron geometry, orientation reversal and actual four-cycle, V unique child W with exhaustive pair replay; illegal and disjoint occurrences and changed targets refused; no global closure, all-edge descent or BH
+
+COMMAND (kernel/): pixi run --locked mojo run -I . class_a_boundary_u_children.mojo
+Exit status: 0
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_U_CHILDREN all_nine_kinds=true minus_all_k_t=true target_image_labels=12 V_unique_child_W=true strict_all_edge_rank_impossible_when_n_ge_5=true BH=false
+
+COMMAND (kernel/): pixi run --locked mojo run -I . tests/test_class_a_boundary_tm_children.mojo
+Exit status: 0
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_FIRST minus_T1_iff_t_le_1=true plus_T2_iff_k_le_6=true other_Tm_first_first=false all_k_t=true closed_carrier=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_TM_CHILDREN all_nine_kinds=true all_k_t=true proper_word_clips=true global_forward_closure=false BH=false
+CLASS_A_BOUNDARY_TM_FINITE members 100 pairs 47950 accepted 2850 all_nine_kinds=true universal_image_labels=50 every_envelope_label_attained=true global_closure=false BH=false
+contract-receipt: class-A boundary both T_m sources all nine first/run/last child kinds; exact chamber guards, complete linear-time occurrence carrier, no duplicates, full Parikh and Perron-field differential replay of every finite pair; invalid ordinals and altered packets refused; no global closure or BH
+
+COMMAND (kernel/): pixi run --locked mojo run -I . tests/test_class_a_boundary_next_run.mojo
+Exit status: 0
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN_FINITE members 80 ordinals 3126 accepted 191 first_last_accepted 20 infinite_proof=coefficient_identities_and_written_rounding BH=false
+contract-receipt: class-A boundary T_m complete first/run and first/last indexed children on all chambers; canonical polynomial identities, word clips and exact Parikh/Perron target packets; all finite ordinals, polynomial corruption, unavailable runs, disjoint children and altered targets; no closure or BH
+
+COMMAND (kernel/): pixi run --locked mojo run -I . class_a_boundary_next_run.mojo
+Exit status: 0
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_FIRST minus_T1_iff_t_le_1=true plus_T2_iff_k_le_6=true other_Tm_first_first=false all_k_t=true closed_carrier=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_TM_CHILDREN all_nine_kinds=true all_k_t=true proper_word_clips=true global_forward_closure=false BH=false

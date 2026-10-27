@@ -146,6 +146,11 @@ def main() raises:
         expected = expected.div(Q(53, 1))
     assert_equal(q_sign(powers[11][11]), 1)
     assert_true(powers[11][11].eq(expected))
+    # Wrapped denominator powers made this sign-changing polynomial certify positive.
+    var false_positive = PolyHU.const(1).add(PolyHU.monomial(1, 0, -106)).add(PolyHU.monomial(2, 0, 2809)).add(PolyHU.monomial(11, 0, -1))
+    assert_true(refuses(false_positive, 1, 53))
+    var witness_h = Q(999999999999, 53000000000000)
+    assert_equal(q_sign(evaluate(false_positive, witness_h, Q(999999999999, 1000000000000))), -1)
     # AffHU numerators: a + n b at r h = 0 has numerator a h(1+h) + E b.
     var m = AffHU(PolyHU.const(1), PolyHU.zero(), PolyHU.zero())
     assert_equal(m.numerator(PolyHU.zero(), 1), h_one_h())
