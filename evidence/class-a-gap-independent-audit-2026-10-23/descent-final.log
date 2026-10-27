@@ -1,0 +1,28 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+Included from /workspace/scratch/a6be0afb5894/audit335/kernel/tests/test_class_a_gap_regime_descent.mojo:6:
+./psc/class_a_gap_uniform.mojo:160:17: warning: assignment to 's' was never used; assign to '_' instead?
+        var s = 0
+                ^
+Included from /workspace/scratch/a6be0afb5894/audit335/kernel/tests/test_class_a_gap_regime_descent.mojo:6:
+Included from ./psc/class_a_gap_uniform.mojo:26:
+./psc/poly_hu.mojo:43:13: warning: ref 'a' was never used, remove it?
+        for a in range(i + 1):
+            ^
+Included from /workspace/scratch/a6be0afb5894/audit335/kernel/tests/test_class_a_gap_regime_descent.mojo:6:
+Included from ./psc/class_a_gap_uniform.mojo:26:
+./psc/poly_hu.mojo:298:36: warning: assignment to 'sides' was never used; assign to '_' instead?
+    var sides = List[List[List[Q]]]()
+                                   ^
+Included from /workspace/scratch/a6be0afb5894/audit335/kernel/tests/test_class_a_gap_regime_descent.mojo:6:
+Included from ./psc/class_a_gap_uniform.mojo:26:
+./psc/poly_hu.mojo:528:18: warning: assignment to 'direct' was never used; assign to '_' instead?
+    var direct = 0
+                 ^
+Included from /workspace/scratch/a6be0afb5894/audit335/kernel/tests/test_class_a_gap_regime_descent.mojo:6:
+Included from ./psc/class_a_gap_uniform.mojo:26:
+./psc/poly_hu.mojo:529:23: warning: assignment to 'first' was never used; assign to '_' instead?
+    var first = String("")
+                      ^
+CLASS_A_REGIME_DESCENT eps=-1 regime=low:r=0 l>=5 d>=5 pieces 127 targets 8 descent_rows 172 hit_depth_bound 2l+9
+CLASS_A_CARRIER_DESCENT n>=25 line=(n+5,n,n-1) n=5l+0 pieces 127 targets 8 descent_rows 172 hit_depth_bound 2l+9
+contract-receipt: class-A d-uniform regime descent: on the minus low r=0 regime the pieces and descent occurrences generated from the sample ray d=5 certify a strict affine potential descent for every l>=5 and every gap d>=5 with the ray descent's statistics; a removed descent row, a shifted piece end, a swapped child piece, a descent on the target piece and an unfitted regime refuse; every fitted regime of both signs has generated tables

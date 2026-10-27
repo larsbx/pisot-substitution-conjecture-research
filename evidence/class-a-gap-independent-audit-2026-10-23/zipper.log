@@ -1,0 +1,5 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+[PASS] test_ordered_occurrences_preserve_all_child_occurrences
+[PASS] test_zero_shift_free_recurrence_is_one_sided_and_fail_closed
+2 ordered-overlap-zipper Mojo tests passed.
+claim-receipt: OverlapBoundaryZipperDichotomy
