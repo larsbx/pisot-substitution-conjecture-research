@@ -4,12 +4,19 @@ from mojo_smoke.claims import require_contract
 from a1_normal_form_census import class_member, CLASS_A
 from psc.class_a_boundary_children import (
     BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge,
+    geometric_state,
 )
 from psc.class_a_boundary_h4_children import h4_source, verify_h4_packet
 from psc.class_a_boundary_h5_exit import (
     certify_h5_exits, h5_source, h5_path, verify_h5_path,
 )
-from psc.overlap_seed_patch import build_seed_overlap_tables_screened
+from psc.overlap_seed_patch import (
+    build_seed_overlap_tables_screened, cached_sign,
+)
+from psc.perron_field3 import (
+    CubicElt, cubic_add_checked, cubic_mul_beta, cubic_sub_checked,
+)
+from std.collections import Dict
 
 
 def main() raises:
@@ -31,6 +38,34 @@ def main() raises:
             var steps=h5_path(k,t)
             assert_true(len(steps)==(3 if k==0 else 2))
             verify_h5_path(tables,k,t,steps)
+            # Stronger newborn/interior guard: the terminal shared y tile
+            # starts strictly AFTER both inflated parent left boundaries
+            # and ends strictly BEFORE both inflated parent right boundaries.
+            var last=steps[len(steps)-1]
+            var terminal_parent=steps[len(steps)-2].target
+            var parent_state=geometric_state(tables,terminal_parent)
+            var left_top=tables.prefix(terminal_parent.top,last.i)
+            var Ly=tables.lengths.at(2)
+            var right_y=cubic_add_checked(left_top,Ly)
+            var beta_shift=cubic_mul_beta(tables.field,parent_state.shift)
+            var left_bottom=cubic_add_checked(
+                beta_shift,tables.prefix(terminal_parent.bottom,last.j))
+            assert_true(left_top==left_bottom)
+            var cache=Dict[CubicElt,Int]()
+            var zero=CubicElt()
+            var top_end=cubic_mul_beta(tables.field,
+                          tables.lengths.at(terminal_parent.top))
+            var bottom_end=cubic_add_checked(beta_shift,
+                          cubic_mul_beta(tables.field,
+                          tables.lengths.at(terminal_parent.bottom)))
+            assert_true(cached_sign(tables,cache,
+                        cubic_sub_checked(left_top,zero))>0)
+            assert_true(cached_sign(tables,cache,
+                        cubic_sub_checked(left_bottom,beta_shift))>0)
+            assert_true(cached_sign(tables,cache,
+                        cubic_sub_checked(top_end,right_y))>0)
+            assert_true(cached_sign(tables,cache,
+                        cubic_sub_checked(bottom_end,right_y))>0)
             path_edges+=len(steps)
             var first=steps[0]
             if k==0:
@@ -92,6 +127,6 @@ def main() raises:
         failed=True
     assert_true(failed)
     print("CLASS_A_BOUNDARY_H5_FINITE members",members,
-          "selected_edges",path_edges,"typed_terminal=true",
+          "selected_edges",path_edges,"typed_terminal=true","last_event_strictly_internal=true",
           "k0_depth=3","k_ge_1_depth=2","global_BH=false")
     require_contract("minus boundary H5=(x,y,2,2,-5) actual H4 last/run descendant with k0 length-three and k>=1 length-two genuine typed coincidence exits, symbolic Q[t,k] word/Parikh identities, full strict Perron replay, invalid index and forged packet refusals; not closed BH")
