@@ -5,7 +5,7 @@ Packet for [docs/class-b-gap-rays-2026-10-27.md](../../docs/class-b-gap-rays-202
 
 | file | content |
 | --- | --- |
-| `labels/` | 627 exact native label sets (`kernel/class_b_label_rays.mojo BRANCH G Q`), the fitting input |
+| `labels/` | 544 exact native label sets (`kernel/class_b_label_rays.mojo BRANCH G Q`), the fitting input |
 | `carriers.json` | fitted carriers (`class_b_gap_rays.py`); `certify_floor` where the certificate refused at the fitted floor |
 | `fit.log` | refit from `labels/`; equals `carriers.json` except for `certify_floor` |
 | `certify.log` | per ray index 0..82: native `certify`, `replay` at `q0` and `q0 + g`, `below` |

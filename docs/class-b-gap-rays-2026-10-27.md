@@ -97,7 +97,7 @@ python oracles/python/class_b_gap_rays.py evidence/class-b-gap-rays-2026-10-27/l
 ```
 
 The packet [`evidence/class-b-gap-rays-2026-10-27/`](../evidence/class-b-gap-rays-2026-10-27/)
-holds the 627 native label sets, the fit log, the per-ray native certificate,
+holds the 544 native label sets, the fit log, the per-ray native certificate,
 replay and below-floor log of all 83 rays, the oracle log, and both count
 streams.
 
