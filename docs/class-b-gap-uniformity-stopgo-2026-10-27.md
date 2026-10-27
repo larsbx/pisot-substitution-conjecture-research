@@ -82,40 +82,49 @@ offset zero inside it. The carrier must be a closure, not a strictness window.
 
 ## Regime profile
 
-Core-closure carriers were generated for plus `g = 8..16` and minus
-`g = 6..14`, every residue, `q = 4g .. 10g − 1`, and fitted ray by ray exactly as
-in step 1: the earliest floor whose first two members predict every later
-member. `oracles/python/class_b_regime_probe.py` then asks whether the rays of
-one residue regime share **one** table, with constant `l`-slopes and
-intercepts affine in `g` (low `r = j`, high `r = g − j`), or affine in `(g, r)`
-(middle, `j0 ≤ r ≤ g − j1`). Rows are keyed by slice and ordinal, since a slice
-`(t, b, u, d)` may hold several `k`-intervals. An earlier keying by the slice
-alone silently dropped intervals; every number below is from the corrected
-probe.
+Core-closure carriers were generated for plus `g = 8..20` and minus
+`g = 6..16`, every residue, `q = 4g .. 10g − 1` (1,818 members), and fitted ray
+by ray exactly as in step 1: the earliest floor whose first two members
+predict every later member. `oracles/python/class_b_regime_probe.py` then asks
+whether the rays of one residue regime share **one** table, with constant
+`l`-slopes and intercepts affine in `g` (low `r = j`, high `r = g − j`), or
+affine in `(g, r)` (middle, `j0 ≤ r ≤ g − j1`). Rows are keyed by slice and
+ordinal, since a slice `(t, b, u, d)` may hold several `k`-intervals. An
+earlier keying by the slice alone silently dropped intervals; every number
+below is from the corrected probe.
 
-| branch | regime | one g-affine table from | rows |
+| branch | regime | one table from | rows |
 | --- | --- | --- | ---: |
-| plus | low `j = 0` | `g = 14` | 541 |
-| plus | high `j = 1, …, 12` | `g = 13, 12, 11, 10, 10, 10, 10, 11, 12, 12, 13, 14` | 533–603 |
-| plus | low `j ≥ 1`, middle | none for `g ≤ 16` | — |
-| minus | low `j = 0, …, 6` | `g = 10, 10, 10, 10, 10, 11, 12` | 529–571 |
-| minus | high `j = 1, …, 6` | `g = 10, 10, 10, 10, 11, 12` | 529–551 |
-| minus | middle `6 ≤ r ≤ g − 6` | `g = 12` (6 rays, `g = 12..14`) | 529 |
+| plus | low `j = 0, …, 4` | `g = 14, 15, 16, 17, 18` | 541, 531, 529, 529, 529 |
+| plus | high `j = 1, …, 16` | `g = 13, 12, 11, 10, 10, 10, 10, 11, 12, 12, 13, 14, 15, 16, 17, 18` | 529–603 |
+| plus | **middle `2 ≤ r ≤ g − 14`** | `g = 16` (15 rays, `g = 16..20`) | 529 |
+| minus | low `j = 0, …, 8` | `g = 10, 10, 10, 10, 10, 11, 12, 13, 14` | 529–571 |
+| minus | high `j = 1, …, 8` | `g = 10, 10, 10, 10, 11, 12, 13, 14` | 529–551 |
+| minus | **middle `6 ≤ r ≤ g − 6`** | `g = 12` (15 rays, `g = 12..16`) | 529 |
 
-**Minus is covered.** For every minus gap `g ≥ 12`, every residue lies in one
-of: low `j ≤ 5`, middle `6 ≤ r ≤ g − 6`, high `j ≤ 5`. This is class A's
-low/middle/high shape. The evidence is thin, though. The middle table is fixed
-by three rays and checked on three more, and the windows above each floor hold
-6–7 members per ray.
+**Both branches are covered in the probed windows.**
 
-**Plus has an anchored turbulent band.** The residue dependence concentrates
-around `s = (q + 5) mod g ≡ 0`, where `q + 5 ≈ β` (`β − q ∈ (4.8, 5.1)`). At
+- **Minus, `g ≥ 12`:** every residue lies in low `j ≤ 5`, middle `[6, g − 6]`
+  or high `j ≤ 5`.
+- **Plus, `g ≥ 16`:** every residue lies in low `j ≤ 1`, middle `[2, g − 14]` or
+  high `j ≤ 13`.
+
+This is class A's low/middle/high shape. The two middle tables have the same
+529 slices, and their rows agree on 313 of them; they differ in intercepts.
+Away from the anchor, plus's regimes settle to 529-row tables too (low
+`j = 2..4`, high `j = 14..16`), which is the middle table seen from either
+side.
+
+**The anchored band.** The residue dependence concentrates around
+`s = (q + 5) mod g ≡ 0` on plus, where `q + 5 ≈ β` (`β − q ∈ (4.8, 5.1)`). At
 `g = 16`, consecutive residues differ by 3–9 rows at `r = 1..3` (`s = 6..8`) and
-by 59–132 rows at `r = 5..10`. The regimes nearest the anchor stabilize first:
-high `j = 4..7` from `g = 10`. The required gap grows by about one per step
-away from it. On minus the band is about 9 residues wide and a quiet middle
-already exists at `g = 12`. On plus it is about 11 wide, and no middle regime
-appears for `g ≤ 16`.
+by 59–132 rows at `r = 5..10`. Regimes stabilize from the anchor outward: high
+`j = 4..7` from `g = 10`, and about one more gap per step away from it. The band
+is about 15 residues wide on plus (`r = g − 13 .. g + 1`, wrapping) and about 11
+on minus, so the middle opens at `g = 16` and `g = 12` respectively.
+
+**What is left over.** The gaps below the regime floors are finitely many:
+plus `g = 6..15` and minus `g = 4..11`. They are ray-by-ray work, as in step 2.
 
 ## Decision
 
@@ -123,21 +132,22 @@ appears for `g ≤ 16`.
 
 1. The uniform carrier is the core closure `C_q`, not a fit of the reachable
    graph. Containment `G_q ⊆ C_q` is all that Theorem A_B uses.
-2. Confirm minus first. The cover (low `j ≤ 5`, middle `[6, g − 6]`, high
-   `j ≤ 5`, `g ≥ 12`) is complete in the probed window. Extend to `g = 15, 16`
-   before building on it.
-3. Profile plus up to `g = 20` to see whether a middle regime opens once the
-   band of about 11 residues fits inside `g`.
-4. Then port the step-2 certificate engine to regime tables. That needs class
+2. **Both stop conditions were checked and not met.** The minus middle table
+   still holds at `g = 15, 16` (15 rays), and plus has a middle regime by
+   `g = 16` (15 rays through `g = 20`).
+3. Cover the leftover gaps (plus `6..15`, minus `4..11`) ray by ray, with
+   step 2's certificate on core-closure carriers.
+4. Port the step-2 certificate engine to regime tables. That needs class
    A's [d-uniform machinery](class-a-gap-uniform-certificate-design-2026-10-23.md)
    with `g` in place of `d`: quadrant positivity in `(l, g)`, uniform division
    by `g`, and bivariate Perron signs. The core strictness thresholds above say
    the bivariate signs must be decided for `g ≥ 10` at least, and the gaps
    below the regime floors stay per-ray certificates or exact graphs.
 
-**Stop condition.** Stop the regime route if the minus middle table breaks at
-`g = 15, 16`, or if plus shows no middle regime by `g = 20`. Record the break
-as a negative control and fall back to per-gap rays.
+**Stop condition** (checked 2026-10-27, not met). The regime route stops if the
+minus middle table breaks at `g = 15, 16`, or if plus shows no middle regime by
+`g = 20`. A future break is recorded as a negative control, and the route falls
+back to per-gap rays.
 
 ## Evidence and replay
 
