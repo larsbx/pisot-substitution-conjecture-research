@@ -132,12 +132,13 @@ N with an unconstrained formal index creates nonexistent occurrences.
 ### Non-claims / remaining gaps
 
 This completes **first/run and first/last** for the two T_m sources, after first/first in
-PR #348. The other six kind guards, their descendants, global forward
-closure and composable well-founded descent remain open. In particular it
+PR #348. The [complete T_m carrier note](class-a-boundary-tm-carrier-2026-10-26.md)
+now resolves the other six kind guards for these same sources. Their further
+descendants, global forward closure and composable well-founded descent remain open. In particular it
 does not certify an intended interior boundary-hitting packet merely by
 recognizing an intermediate target label. No universal BH, A1-prime, G1 or
-PSC follows. The next smallest unresolved kind is run/first of these T_m
-sources, retaining actual run ordinals and strict geometric intersection.
+PSC follows. The next source obligation after the complete table is
+U=(x,y,1,2,-3), as recorded in the complete-carrier note.
 
 ## First/last: a second complete guard
 

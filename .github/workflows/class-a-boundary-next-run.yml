@@ -1,14 +1,19 @@
-name: PSC class-A boundary next-family first-run
+name: PSC class-A boundary complete T_m children
 
 on:
   pull_request:
     paths:
       - 'kernel/psc/class_a_boundary_next_run.mojo'
+      - 'kernel/psc/class_a_boundary_tm_children.mojo'
       - 'kernel/class_a_boundary_next_run.mojo'
       - 'kernel/tests/test_class_a_boundary_next_run.mojo'
+      - 'kernel/tests/test_class_a_boundary_tm_children.mojo'
       - 'oracles/python/class_a_boundary_next_run.py'
+      - 'oracles/python/class_a_boundary_tm_children.py'
       - 'tests/test_class_a_boundary_next_run.py'
+      - 'tests/test_class_a_boundary_tm_children.py'
       - 'docs/class-a-boundary-first-run-2026-10-26.md'
+      - 'docs/class-a-boundary-tm-carrier-2026-10-26.md'
       - 'evidence/class-a-boundary-next-run-2026-10-26/**'
       - '.github/workflows/class-a-boundary-next-run.yml'
   workflow_dispatch:
@@ -18,7 +23,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  exact-first-run:
+  complete-tm-carrier:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
@@ -29,9 +34,11 @@ jobs:
       - name: Independent exact oracle and generated-proof-bank guard
         run: |
           python -m pip install 'pytest>=7'
-          python -m pytest -q tests/test_class_a_boundary_next_run.py
+          python -m pytest -q tests/test_class_a_boundary_next_run.py tests/test_class_a_boundary_tm_children.py
           python oracles/python/class_a_boundary_next_run.py > /tmp/boundary-next-run.json
           cmp /tmp/boundary-next-run.json evidence/class-a-boundary-next-run-2026-10-26/probe.json
+          python oracles/python/class_a_boundary_tm_children.py > /tmp/boundary-tm.json
+          cmp /tmp/boundary-tm.json evidence/class-a-boundary-next-run-2026-10-26/tm-probe.json
           python tools/make_proof_bank.py --check
       - name: Install Pixi
         run: |
@@ -41,4 +48,5 @@ jobs:
         working-directory: kernel
         run: |
           pixi run --locked mojo run -I . tests/test_class_a_boundary_next_run.mojo
+          pixi run --locked mojo run -I . tests/test_class_a_boundary_tm_children.mojo
           pixi run --locked mojo run -I . class_a_boundary_next_run.mojo
