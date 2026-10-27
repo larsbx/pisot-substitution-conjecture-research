@@ -1,0 +1,85 @@
+CLASS_B_RAY_CERTIFICATE plus g=1 q=1l+0 q>=9 rows 389 seeds_real 9 seeds_unreal 3 u_cases 38511 covered 14241 gap_geometry 10255 window_checks 7002 clip_fallbacks 96 terminal_splits 86 pieces 637 targets 8 descent_intervals 1021 max_b 6
+CLASS_B_RAY_REPLAY plus g=1 q=1l+0 q=9 vertices 2765 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=1 q=1l+0 q=10 vertices 2877 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=1 q=1l+0 q<9 pip_members 6 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=2 q=2l+0 q>=12 rows 303 seeds_real 9 seeds_unreal 3 u_cases 29997 covered 10527 gap_geometry 7799 window_checks 5454 clip_fallbacks 12 terminal_splits 86 pieces 539 targets 8 descent_intervals 739 max_b 5
+CLASS_B_RAY_REPLAY plus g=2 q=2l+0 q=12 vertices 1627 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=2 q=2l+0 q=14 vertices 1739 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=2 q=2l+0 q<12 pip_members 4 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=2 q=2l+1 q>=11 rows 297 seeds_real 9 seeds_unreal 3 u_cases 29403 covered 10373 gap_geometry 7677 window_checks 5346 clip_fallbacks 24 terminal_splits 86 pieces 533 targets 8 descent_intervals 729 max_b 5
+CLASS_B_RAY_REPLAY plus g=2 q=2l+1 q=11 vertices 1573 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=2 q=2l+1 q=13 vertices 1685 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=2 q=2l+1 q<11 pip_members 3 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=3 q=3l+0 q>=12 rows 263 seeds_real 9 seeds_unreal 3 u_cases 26037 covered 9167 gap_geometry 6879 window_checks 4734 clip_fallbacks 14 terminal_splits 86 pieces 475 targets 8 descent_intervals 589 max_b 4
+CLASS_B_RAY_REPLAY plus g=3 q=3l+0 q=12 vertices 1065 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=3 q=3l+0 q=15 vertices 1177 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=3 q=3l+0 q<12 pip_members 2 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=3 q=3l+1 q>=16 rows 287 seeds_real 9 seeds_unreal 3 u_cases 28413 covered 9769 gap_geometry 7287 window_checks 5166 clip_fallbacks 0 terminal_splits 86 pieces 499 targets 8 descent_intervals 625 max_b 4
+CLASS_B_RAY_REPLAY plus g=3 q=3l+1 q=16 vertices 1251 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=3 q=3l+1 q=19 vertices 1363 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=3 q=3l+1 q<16 pip_members 3 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=3 q=3l+2 q>=14 rows 273 seeds_real 9 seeds_unreal 3 u_cases 27027 covered 9285 gap_geometry 6973 window_checks 4914 clip_fallbacks 6 terminal_splits 86 pieces 485 targets 8 descent_intervals 609 max_b 4
+CLASS_B_RAY_REPLAY plus g=3 q=3l+2 q=14 vertices 1131 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=3 q=3l+2 q=17 vertices 1243 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=3 q=3l+2 q<14 pip_members 3 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=4 q=4l+0 q>=16 rows 265 seeds_real 9 seeds_unreal 3 u_cases 26235 covered 8775 gap_geometry 6635 window_checks 4770 clip_fallbacks 0 terminal_splits 86 pieces 447 targets 8 descent_intervals 541 max_b 4
+CLASS_B_RAY_REPLAY plus g=4 q=4l+0 q=16 vertices 935 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=4 q=4l+0 q=20 vertices 1047 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=4 q=4l+0 q<16 pip_members 2 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=4 q=4l+1 q>=17 rows 247 seeds_real 9 seeds_unreal 3 u_cases 24453 covered 8225 gap_geometry 6227 window_checks 4446 clip_fallbacks 0 terminal_splits 86 pieces 429 targets 8 descent_intervals 513 max_b 4
+CLASS_B_RAY_REPLAY plus g=4 q=4l+1 q=17 vertices 921 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=4 q=4l+1 q=21 vertices 1033 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=4 q=4l+1 q<17 pip_members 2 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=4 q=4l+2 q>=18 rows 251 seeds_real 9 seeds_unreal 3 u_cases 24849 covered 8519 gap_geometry 6467 window_checks 4518 clip_fallbacks 0 terminal_splits 86 pieces 433 targets 8 descent_intervals 523 max_b 4
+CLASS_B_RAY_REPLAY plus g=4 q=4l+2 q=18 vertices 971 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=4 q=4l+2 q=22 vertices 1083 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=4 q=4l+2 q<18 pip_members 3 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=4 q=4l+3 q>=15 rows 271 seeds_real 9 seeds_unreal 3 u_cases 26829 covered 9025 gap_geometry 6829 window_checks 4878 clip_fallbacks 2 terminal_splits 86 pieces 453 targets 8 descent_intervals 543 max_b 4
+CLASS_B_RAY_REPLAY plus g=4 q=4l+3 q=15 vertices 927 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=4 q=4l+3 q=19 vertices 1039 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=4 q=4l+3 q<15 pip_members 2 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=5 q=5l+0 q>=20 rows 261 seeds_real 9 seeds_unreal 3 u_cases 25839 covered 8757 gap_geometry 6562 window_checks 4698 clip_fallbacks 0 terminal_splits 86 pieces 420 targets 8 descent_intervals 502 max_b 4
+CLASS_B_RAY_REPLAY plus g=5 q=5l+0 q=20 vertices 858 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=5 q=5l+0 q=25 vertices 970 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=5 q=5l+0 q<20 pip_members 2 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=5 q=5l+1 q>=16 rows 255 seeds_real 9 seeds_unreal 3 u_cases 25245 covered 8499 gap_geometry 6366 window_checks 4590 clip_fallbacks 0 terminal_splits 86 pieces 414 targets 8 descent_intervals 492 max_b 4
+CLASS_B_RAY_REPLAY plus g=5 q=5l+1 q=16 vertices 740 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=5 q=5l+1 q=21 vertices 852 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=5 q=5l+1 q<16 pip_members 1 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=5 q=5l+2 q>=17 rows 243 seeds_real 9 seeds_unreal 3 u_cases 24057 covered 8215 gap_geometry 6158 window_checks 4374 clip_fallbacks 0 terminal_splits 86 pieces 402 targets 8 descent_intervals 484 max_b 4
+CLASS_B_RAY_REPLAY plus g=5 q=5l+2 q=17 vertices 762 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=5 q=5l+2 q=22 vertices 874 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=5 q=5l+2 q<17 pip_members 2 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=5 q=5l+3 q>=18 rows 239 seeds_real 9 seeds_unreal 3 u_cases 23661 covered 7915 gap_geometry 5956 window_checks 4302 clip_fallbacks 0 terminal_splits 86 pieces 398 targets 8 descent_intervals 478 max_b 4
+CLASS_B_RAY_REPLAY plus g=5 q=5l+3 q=18 vertices 748 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=5 q=5l+3 q=23 vertices 860 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=5 q=5l+3 q<18 pip_members 2 all_hit true
+CLASS_B_RAY_CERTIFICATE plus g=5 q=5l+4 q>=19 rows 235 seeds_real 9 seeds_unreal 3 u_cases 23265 covered 7937 gap_geometry 5970 window_checks 4230 clip_fallbacks 0 terminal_splits 86 pieces 394 targets 8 descent_intervals 470 max_b 4
+CLASS_B_RAY_REPLAY plus g=5 q=5l+4 q=19 vertices 784 carrier_equal true descent true
+CLASS_B_RAY_REPLAY plus g=5 q=5l+4 q=24 vertices 896 carrier_equal true descent true
+CLASS_B_RAY_BELOW plus g=5 q=5l+4 q<19 pip_members 2 all_hit true
+CLASS_B_RAY_CERTIFICATE minus g=1 q=1l+0 q>=15 rows 417 seeds_real 9 seeds_unreal 3 u_cases 41283 covered 14313 gap_geometry 10385 window_checks 7506 clip_fallbacks 130 terminal_splits 89 pieces 576 targets 8 descent_intervals 811 max_b 6
+CLASS_B_RAY_REPLAY minus g=1 q=1l+0 q=15 vertices 2279 carrier_equal true descent true
+CLASS_B_RAY_REPLAY minus g=1 q=1l+0 q=16 vertices 2391 carrier_equal true descent true
+CLASS_B_RAY_BELOW minus g=1 q=1l+0 q<15 pip_members 6 all_hit true
+CLASS_B_RAY_CERTIFICATE minus g=2 q=2l+0 q>=18 rows 228 seeds_real 9 seeds_unreal 3 u_cases 22572 covered 8252 gap_geometry 6201 window_checks 4104 clip_fallbacks 24 terminal_splits 86 pieces 414 targets 8 descent_intervals 546 max_b 4
+CLASS_B_RAY_REPLAY minus g=2 q=2l+0 q=18 vertices 1306 carrier_equal true descent true
+CLASS_B_RAY_REPLAY minus g=2 q=2l+0 q=20 vertices 1418 carrier_equal true descent true
+CLASS_B_RAY_BELOW minus g=2 q=2l+0 q<18 pip_members 4 all_hit true
+CLASS_B_RAY_CERTIFICATE minus g=2 q=2l+1 q>=17 rows 218 seeds_real 9 seeds_unreal 3 u_cases 21582 covered 7996 gap_geometry 6009 window_checks 3924 clip_fallbacks 22 terminal_splits 86 pieces 404 targets 8 descent_intervals 542 max_b 4
+CLASS_B_RAY_REPLAY minus g=2 q=2l+1 q=17 vertices 1300 carrier_equal true descent true
+CLASS_B_RAY_REPLAY minus g=2 q=2l+1 q=19 vertices 1412 carrier_equal true descent true
+CLASS_B_RAY_BELOW minus g=2 q=2l+1 q<17 pip_members 3 all_hit true
+CLASS_B_RAY_CERTIFICATE minus g=3 q=3l+0 q>=21 rows 220 seeds_real 9 seeds_unreal 3 u_cases 21780 covered 7750 gap_geometry 5901 window_checks 3960 clip_fallbacks 0 terminal_splits 86 pieces 406 targets 8 descent_intervals 504 max_b 4
+CLASS_B_RAY_REPLAY minus g=3 q=3l+0 q=21 vertices 940 carrier_equal true descent true
+CLASS_B_RAY_REPLAY minus g=3 q=3l+0 q=24 vertices 1052 carrier_equal true descent true
+CLASS_B_RAY_BELOW minus g=3 q=3l+0 q<21 pip_members 3 all_hit true
+CLASS_B_RAY_CERTIFICATE minus g=3 q=3l+1 q>=22 rows 236 seeds_real 9 seeds_unreal 3 u_cases 23364 covered 8266 gap_geometry 6269 window_checks 4248 clip_fallbacks 0 terminal_splits 86 pieces 422 targets 8 descent_intervals 530 max_b 4
+CLASS_B_RAY_REPLAY minus g=3 q=3l+1 q=22 vertices 1068 carrier_equal true descent true
+CLASS_B_RAY_REPLAY minus g=3 q=3l+1 q=25 vertices 1180 carrier_equal true descent true
+CLASS_B_RAY_BELOW minus g=3 q=3l+1 q<22 pip_members 3 all_hit true
+CLASS_B_RAY_CERTIFICATE minus g=3 q=3l+2 q>=20 rows 222 seeds_real 9 seeds_unreal 3 u_cases 21978 covered 7984 gap_geometry 6061 window_checks 3996 clip_fallbacks 8 terminal_splits 86 pieces 408 targets 8 descent_intervals 516 max_b 4
+CLASS_B_RAY_REPLAY minus g=3 q=3l+2 q=20 vertices 944 carrier_equal true descent true
+CLASS_B_RAY_REPLAY minus g=3 q=3l+2 q=23 vertices 1056 carrier_equal true descent true
+CLASS_B_RAY_BELOW minus g=3 q=3l+2 q<20 pip_members 3 all_hit true
+CLASS_B_RAY_CERTIFICATES_COMPLETE rays 21

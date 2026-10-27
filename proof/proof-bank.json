@@ -2162,6 +2162,51 @@
       "statement_heading": "**Proposition.** For every integer `n>=4`, the canonical exact swap-seed overlap graph has at least `6n-2` distinct vertices."
     },
     {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 95,
+      "statement_heading": "**Lemma 1 (elimination of `l`).** For integer polynomials `a, b`,"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 99,
+      "statement_heading": "**Lemma 2 (interval sign).** Let `N` have degree `D`. If `H(h) = h^D N(1/h)`"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 104,
+      "statement_heading": "**Lemma 3 (affine ray).** This is class A's lemma verbatim: `u ≤ v` for every"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 107,
+      "statement_heading": "**Lemma 4 (children).** The segments of `sigma(t)` are:"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 136,
+      "statement_heading": "## Theorem A_B: uniform carrier closure"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 143,
+      "statement_heading": "**Theorem A_B.** For each tabulated ray and every member `q ≥ q0` on it:"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 175,
+      "statement_heading": "## Theorem B_B: uniform descent"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 181,
+      "statement_heading": "**Theorem B_B.** For each tabulated ray, every `q ≥ q0` and every non-target"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 211,
+      "statement_heading": "**Corollary L_B (eight top-layer lines).** On each of the eight lines above,"
+    },
+    {
       "source": "docs/class-d-g1-corollary-2026-10-22.md",
       "line": 101,
       "statement_heading": "**Corollary.** For every PIP member of the determinant-two class-D normal"
