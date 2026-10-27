@@ -8,6 +8,7 @@ from psc.class_a_boundary_children import (
 )
 from psc.class_a_boundary_next_run import (
     certify_next_run, first_run_allowed, first_run_star, verify_first_run_packet,
+    first_last_allowed, first_last_star, verify_first_last_packet,
 )
 from psc.overlap_seed_patch import (
     build_seed_overlap_tables_screened, selected_overlap_child, interior_overlap_cached,
@@ -19,6 +20,7 @@ def main() raises:
     certify_next_run()
     var total=0
     var accepted=0
+    var last_accepted=0
     var members=0
     for eps in [-1,1]:
         for k in [0,3,4,5,6,7,8,12]:
@@ -54,6 +56,18 @@ def main() raises:
                             assert_true(edge.target==BoundaryLabel(0,2,1,2,q-4))
                         else:
                             assert_true(edge.target==BoundaryLabel(0,2,2,3,k-10+edge.j))
+                    var last_j=n+eps+1
+                    var last_packet=member_transport(eps,k,n,d,parent,0,last_j)
+                    var last_actual=selected_overlap_child(tables,source,0,last_j)
+                    assert_true(last_actual==geometric_state(tables,last_packet))
+                    var last_overlap=interior_overlap_cached(tables,cache,last_actual)
+                    assert_true(last_overlap==first_last_allowed(eps,k,t,m))
+                    var last_edges=first_last_star(eps,k,t,m)
+                    assert_true(len(last_edges)==(1 if last_overlap else 0))
+                    for edge in last_edges:
+                        last_accepted+=1
+                        assert_true(edge.target==BoundaryLabel(0,1,1,2,k-9))
+                        verify_first_last_packet(tables,eps,k,t,m,edge)
     var failed=False
     try:
         certify_next_run(True)
@@ -91,7 +105,18 @@ def main() raises:
     except:
         failed=True
     assert_true(failed)
+    var plus_tables=build_seed_overlap_tables_screened(class_member(CLASS_A,63,20,21))
+    var plus_parent=BoundaryLabel(2,2,-1,1,1)
+    var plus_target=member_transport(1,8,20,43,plus_parent,0,22)
+    failed=False
+    try:
+        verify_first_last_packet(plus_tables,1,8,0,1,BoundaryEdge(0,22,plus_target))
+    except:
+        failed=True
+    assert_true(failed)
+    assert_true(last_accepted==20)
     print("CLASS_A_BOUNDARY_NEXT_RUN_FINITE members",members,"ordinals",total,
-          "accepted",accepted,"infinite_proof=coefficient_identities_and_written_rounding",
+          "accepted",accepted,"first_last_accepted",last_accepted,
+          "infinite_proof=coefficient_identities_and_written_rounding",
           "BH=false")
-    require_contract("class-A boundary T_m complete first/run indexed children on all chambers; canonical polynomial identities, word clips and exact Parikh/Perron target packets; all finite ordinals, polynomial corruption, unavailable runs, disjoint children and altered targets; no closure or BH")
+    require_contract("class-A boundary T_m complete first/run and first/last indexed children on all chambers; canonical polynomial identities, word clips and exact Parikh/Perron target packets; all finite ordinals, polynomial corruption, unavailable runs, disjoint children and altered targets; no closure or BH")

@@ -73,11 +73,20 @@ def certify_next_run(corrupt: Bool=False) raises:
             _cone_nonnegative(k)
             _cone_positive(qx_add(n,qx_const(-1))) # beta>n+4>5
             _cone_positive(qx_add(qx_add(n,k),qx_const(-3))) # N>=4-k
+            # First/last, T1: beta*(B+N)=(k-7)*beta-2.
+            # The lower margin is k-4+alpha-2/beta>0 at k>=4.
+            var N=qx_add(n,one)
+            _same(qx_add(qx_sub(N,d),qx_sub(A,one)),qx_add(k,qx_const(-7)))
+            _same(qx_sub(qx_add(N,N),d),qx_add(k,qx_const(-9)))
+    var minus=chamber_parameters(-1)
+    # Minus T1: beta*(B+N)=(k+1)*beta+2>0, so no first/last.
+    _same(qx_sub(qx_add(minus[0],minus[0]),minus[1]),qx_add(minus[2],one))
     print("CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true",
           "minus_T1_j=t-1..t+1_word_clipped",
           "plus_k_le_3_T2_j=1..4-k",
           "plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped",
-          "other_Tm_first_run=false", "closed_carrier=false", "BH=false")
+          "other_Tm_first_run=false", "first_last=plus_T1_k4_to_7_only",
+          "closed_carrier=false", "BH=false")
 
 
 def _parameters(eps: Int, k: Int, t: Int) raises -> Tuple[Int,Int]:
@@ -140,5 +149,33 @@ def verify_first_run_packet(tables: SeedOverlapTables, eps: Int, k: Int, t: Int,
     var p=_parameters(eps,k,t)
     if edge.i!=0 or not first_run_allowed(eps,k,t,m,edge.j):
         raise Error("not a realizable first/run occurrence")
+    verify_member_edge(tables,eps,k,p[0],p[1],BoundaryLabel(2,2,-1,1,m),
+                       edge.i,edge.j,edge.target)
+
+
+def first_last_allowed(eps: Int, k: Int, t: Int, m: Int) raises -> Bool:
+    _=_parameters(eps,k,t)
+    var r=boundary_r(eps,k)
+    if m!=r and m!=r+1:
+        raise Error("m is not an actual seed run/run target")
+    return eps==1 and m==1 and k>=4 and k<=7
+
+
+def first_last_star(eps: Int, k: Int, t: Int, m: Int) raises -> List[BoundaryEdge]:
+    var p=_parameters(eps,k,t)
+    var out=List[BoundaryEdge]()
+    if first_last_allowed(eps,k,t,m):
+        var j=checked_add(checked_add(p[0],eps),1)
+        out.append(BoundaryEdge(0,j,member_transport(eps,k,p[0],p[1],
+                   BoundaryLabel(2,2,-1,1,m),0,j)))
+    return out^
+
+
+def verify_first_last_packet(tables: SeedOverlapTables, eps: Int, k: Int, t: Int,
+                            m: Int, edge: BoundaryEdge) raises:
+    var p=_parameters(eps,k,t)
+    var last=checked_add(checked_add(p[0],eps),1)
+    if edge.i!=0 or edge.j!=last or not first_last_allowed(eps,k,t,m):
+        raise Error("not a realizable first/last occurrence")
     verify_member_edge(tables,eps,k,p[0],p[1],BoundaryLabel(2,2,-1,1,m),
                        edge.i,edge.j,edge.target)

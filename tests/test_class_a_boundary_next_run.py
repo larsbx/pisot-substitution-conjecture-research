@@ -13,6 +13,7 @@ def test_complete_first_run_ordinals_and_word_clips():
     assert data["members"] == 512
     assert data["source_cells"] == 1024
     assert data["run_ordinals"] > 20_000
+    assert data["first_last_accepted"] == 64
 
 
 def test_geometrically_disjoint_control_and_plus_k4_empty_packet():

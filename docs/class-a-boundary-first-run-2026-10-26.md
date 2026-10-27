@@ -1,4 +1,4 @@
-# Class-A boundary T_m: complete first/run children
+# Class-A boundary T_m: complete first/run and first/last children
 
 Status: exact scoped chamber classification; not a closed carrier, rank or BH.
 Independent human review pending. Continues the same first/run experiment in
@@ -131,10 +131,41 @@ N with an unconstrained formal index creates nonexistent occurrences.
 
 ### Non-claims / remaining gaps
 
-This completes **first/run** for the two T_m sources, after first/first in
-PR #348. The other seven kind guards, their descendants, global forward
+This completes **first/run and first/last** for the two T_m sources, after first/first in
+PR #348. The other six kind guards, their descendants, global forward
 closure and composable well-founded descent remain open. In particular it
 does not certify an intended interior boundary-hitting packet merely by
 recognizing an intermediate target label. No universal BH, A1-prime, G1 or
-PSC follows. The next smallest unresolved kind is first/last of these T_m
-sources, retaining actual last ordinals and strict geometric intersection.
+PSC follows. The next smallest unresolved kind is run/first of these T_m
+sources, retaining actual run ordinals and strict geometric intersection.
+
+## First/last: a second complete guard
+
+The actual bottom last occurrence has ordinal `N+1` and type c, with shift
+`B+a+N`. It intersects the top first x exactly when
+
+`-a-b-N < B < -N`.
+
+All signs except plus T_1 with `4<=k<=7` are excluded. In that sole chamber,
+the exact target is `(x,c,1,2,k-9)` and the occurrence is `(0,N+1)`.
+
+For minus T_1,
+`B+N=k+1+2/beta>0`, contradicting the upper strict guard.
+Minus T_2 and plus T_3 have B>0, and so does plus T_2 at k>=4.
+For plus T_2 at k<=3,
+`B+N=n+k-3+alpha-2/beta>0`, using the positive alpha margin already certified
+above and `n+k-3=3k+t+1>0`.
+
+For plus T_1 at k>=4, exact cancellation gives
+
+`B+N=k-7-2/beta`,
+
+`B+N+a+b=k-4+alpha-2/beta>0`.
+
+The lower strict guard therefore always holds. Since beta>2, the upper
+guard is equivalent to k<=7: at k=7 the value is still strictly negative,
+whereas at k=8 it is strictly positive. Parikh transport gives
+`2N-d=k-9`. The native certificate checks these coefficient identities and
+the generic target guard verifies both actual endpoint types and full geometry.
+The independent finite oracle checks all 1024 actual first/last pairs,
+accepting precisely 64. This is separate from the 22,784 run-ordinal checks.
