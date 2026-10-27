@@ -1,0 +1,22 @@
+{
+  "format": "class-d-closure-rebind-v1",
+  "accepted_head": "a9457d9a08e971d57a635e68086a558fcff88e11",
+  "rebind_head": "7a36f91f1901f9c021a30789e6c33b39227cfffd",
+  "tested_merge": "80794479536b8fa77349e1ddaa6cf22d271e14ed",
+  "paths": {
+    "kernel/symbolic_line_certificate.mojo": {
+      "kind": "native-replay",
+      "sha256": "5e55607442811205a76348c8fbb93212f6168331232353be4f9e1c2194aec2ab",
+      "reason": "pin tables moved to kernel/symbolic_line_pins.txt, read at run time by report/report_wedge only; certify/certify_wedge unchanged"
+    },
+    "tools/check_class_d_assembly_evidence.py": {
+      "kind": "provenance-tool",
+      "sha256": "96096a158820c971198fcd4854b5a816bc0d87e743b3fd21a58e21623a5db178",
+      "reason": "check_hashes consults tools/check_class_d_closure_rebind.py; asserts no mathematics"
+    }
+  },
+  "log_sha256": {
+    "121936856950.log": "e12eb33c01e1f520759b231147c56a5f35d4dcd67674f73beb04d49f8f68c0ba"
+  },
+  "independent_human_review": false
+}

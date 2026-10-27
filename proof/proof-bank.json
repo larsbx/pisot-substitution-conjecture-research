@@ -2694,17 +2694,17 @@
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 316,
+      "line": 338,
       "statement_heading": "## 4b. Theorem W: two-parameter wedges of class D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 393,
+      "line": 415,
       "statement_heading": "*Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 410,
+      "line": 432,
       "statement_heading": "*Corollary W1.* **Every PIP member of class D with `r ≥ q − 1` has pure"
     },
     {

@@ -38,7 +38,6 @@ A repository-proved claim is deliberately not required to name a test. Its warra
 | `test_class_a_gap_theorem.mojo` | `ClassABoundaryHittingHighGaps` | the d-uniform regime assembly tiles every residue and refuses a third sign, a non-positive floor and an uncovered residue |
 | `test_class_a_residue_rays.mojo` | `ClassABoundaryHittingLowGaps` | residue-ray closure and strict descent per tabulated ray; removed rows, foreign carriers and raised potentials refuse |
 | `test_class_b_label_fit.mojo` | `ClassBTopLayerLabelRays` | finite label intervals along `(1,3,-6)` with equal-count/different-label negative controls; no uniform certificate |
-| `test_class_c_gap_four.mojo` | `ClassCBoundaryHittingLowGaps` | both complete gap-four symbolic tails and every admissible finite-prefix member, with corrupted-verdict controls |
 | `test_endpoint_core.mojo` | `EndpointCore`, `SignatureReduction` | — |
 | `test_exact_interval.mojo` | — | the exact rational and closed-interval layer: an unknown containment or sign is never promoted, and a coarse audit withholds a partial minimum |
 | `test_finite_cokernel_address.mojo` | `G1b2RenewalFiniteness` | — |

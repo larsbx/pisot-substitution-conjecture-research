@@ -112,10 +112,15 @@ comment states that C4 itself is open.
   is not acceptable.
   **Resolved later on 2026-10-26 (PR #345):** the drift comes from PR #288,
   commit `7a74eda`, which changed the closure's sign reads. The first red run
-  is 18, not 31. Sixteen floors moved, 11 up and 5 down, with vertex counts and
-  non-PIP/outside counts unchanged. The pins were regenerated from run
-  40180359004, with dated corrections in both certificate notes, and moved
-  into the data file `kernel/symbolic_line_pins.txt`. The driver edit is
+  is 18, not 31. The floors moved in both directions with vertex counts and
+  non-PIP/outside counts unchanged. A first re-pin of 16 lines (from run
+  40180359004) proved incomplete; the full PR run 40427511787 re-pinned 71 more
+  lines and one wedge on 2026-10-27, with dated corrections in both
+  certificate notes. The pins now live in the data file
+  `kernel/symbolic_line_pins.txt`. Two Theorem W wedges had their floor
+  raised and need 28 boundary lines that were never certified; until those
+  are pinned, the current code reproduces Theorem W (and Corollary W1) only
+  outside the strips they cover. The driver edit is
   rebound for class-D acceptance by a fresh native plus-chamber replay
   (`evidence/class-d-closure-rebind-2026-10-26/`).
 - #331 merged with a failed `Show your work policy` run and without its
@@ -136,7 +141,7 @@ comment states that C4 itself is open.
 4. The C4 ordered-word bridge for a supplied finite strict child-closed component.
 5. G1b-2 only through realizable labelled returns. No unimodularity, and no
    predecessor contraction.
-6. Turn the Theorem E line gate green (re-pinned in PR #345; confirm on its line-workflow run).
+6. Turn the Theorem E line gate green: certify and pin the 28 new Theorem W boundary lines (PR #345 probe workflow), then confirm on a full line-workflow run.
 
 ## Provenance boundary
 

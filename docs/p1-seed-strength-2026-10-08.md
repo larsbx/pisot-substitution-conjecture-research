@@ -207,6 +207,22 @@ that a re-pin no longer edits the driver and its import closure.
 | `2q + 3` | `q + 1` | 123 | 14 → 12 | 14/0/0 → 12/0/0 |
 | `2q` | `q − 1` | 124 | 34 → 39 | 33/0/1 → 38/0/1 |
 
+
+**Correction, 2026-10-27 (full re-pin sweep).** The 2026-10-26 list above was
+incomplete: it was read from the first page of a failed-jobs listing of run
+40180359004. The complete PR #345 run 40427511787 (head `7a36f91`, all 142
+jobs) found 74 pin mismatches, all from the same PR #288 change. On every line
+below, the vertex count and the non-PIP and outside counts are unchanged, PIP
+below `q0` moves by exactly the change of `q0`, and every cross-check passed;
+the theorem is unchanged. The lines are written in the pin file's form
+`CLASS AP BP AQ BQ AR BR`. The rows of the 2026-10-26 table reproduced their pins and are not repeated.
+
+| line | vertices | `q0` 2026-10-26 pin → now | PIP below `q0` | not PIP / outside |
+| --- | --- | --- | --- | --- |
+| `B 2 1 1 0 1 -1` | 274 | 87 → 115 | 85 → 113 | 1 / 1 |
+| `B 2 2 1 0 1 -1` | 255 | 107 → 130 | 104 → 127 | 2 / 1 |
+| `B 2 3 1 0 1 -1` | 248 | 128 → 155 | 124 → 151 | 3 / 1 |
+
 Every line was run through the committed driver
 (`symbolic_line_certificate.mojo SLOPE K BRANCH`, one core each). Every cross-check
 passed. The list is `certified_lines()` in the driver, and each entry pins its

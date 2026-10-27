@@ -1,6 +1,6 @@
 """Complete gap-four certificates on both C signs, domain and pin controls."""
 from std.testing import assert_true, assert_equal
-from mojo_smoke.claims import require_claim, require_contract
+from mojo_smoke.claims import require_contract
 from finite_linear_algebra.mat3 import Mat3
 from psc.bpa import substitution_incidence
 from psc.pisot import CubicScreen
@@ -44,4 +44,3 @@ def main() raises:
         refused = True
     assert_true(refused)
     require_contract("class-C gap four: both complete symbolic tails, every admissible PIP finite-prefix member, two exact vertex-set cross-checks per sign; determinant, first/last labels, PIP-domain endpoint, invalid sign, opposite-sign and corrupted-verdict controls; d>=5 and universal #139 remain open")
-    require_claim("ClassCBoundaryHittingLowGaps")
