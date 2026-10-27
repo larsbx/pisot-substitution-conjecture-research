@@ -5,14 +5,14 @@ from class_b_top_layer_profile import top_layer_member, in_open_top_layer
 from psc.overlap_seed_patch import build_seed_overlap_tables_screened, build_seed_overlap_graph_from_tables, first_left_aligned_depths
 from psc.vertex_coincidence import length_matrix, offset_vector
 from psc.class_a_gap_dataset import _less
-from psc.class_b_ray_carrier import prefix
+from psc.class_b_ray_carrier import prefix, PILOT_MAX_GAP, PILOT_MAX_Q
 from psc.bpa import substitution_incidence
 from finite_linear_algebra.mat3 import Mat3
 
 
 def label_block(plus: Bool, gap: Int, q: Int, cap: Int = 20000, witnesses: Bool = False) raises -> String:
-    if gap < 1 or gap > 5 or q < 1 or q > 48 or cap < 1 or cap > 20000:
-        raise Error("bounded pilot domain: 1<=gap<=5, 1<=q<=48, 1<=cap<=20000")
+    if gap < 1 or gap > PILOT_MAX_GAP or q < 1 or q > PILOT_MAX_Q or cap < 1 or cap > 20000:
+        raise Error("bounded pilot domain: 1<=gap<=", PILOT_MAX_GAP, ", 1<=q<=", PILOT_MAX_Q, ", 1<=cap<=20000")
     var t = top_layer_member(plus, gap - 1, q)
     if not in_open_top_layer(plus, t[0], q):
         raise Error("not in open top layer")
