@@ -83,6 +83,7 @@ def test_the_required_classes_are_the_ones_whose_warrant_is_a_computation():
         "BoundedDegree2WedgeProductivity",
         "OneStepContextEquality",
         "FiniteCollarDeath",
+        "ClassBTopLayerLabelRays",
         "CorpusDeterminantSplit",
         "BoundedPureDiscreteSpectrum",
     }

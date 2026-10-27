@@ -328,6 +328,56 @@
       }
     },
     {
+      "name": "ClassABoundaryHittingHighGaps",
+      "status": "proved",
+      "source": "docs/class-a-gap-theorem-2026-10-23.md, d-uniform regime certificates; exact-rational box-power repair and independent audit in docs/class-a-gap-independent-audit-2026-10-23.md; computer-assisted, human review pending; merged PRs #335, #340",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "ClassABoundaryHittingLowGaps",
+      "status": "proved",
+      "source": "docs/class-a-minus-line-2026-10-22.md and docs/class-a-carrier-closure-2026-10-22.md (d=1); docs/class-a-d2-plus-rays-2026-10-22.md and docs/class-a-residue-rays-2026-10-22.md (d=2,3); docs/class-a-d4-rays-2026-10-23.md (d=4); scope per docs/direct-attack-frontier-2026-10-23.md; computer-assisted, human review pending; merged PRs #310, #317, #323, #326, #327",
+      "dependencies": [],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "ClassBTopLayerLabelRays",
+      "status": "evidence",
+      "source": "docs/class-b-label-rays-2026-10-23.md, finite label-ray evidence on 289 complete graphs; no infinite top-layer certificate",
+      "dependencies": [],
+      "ledger_node": false,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
+      "name": "ClassCBoundaryHittingLowGaps",
+      "status": "proved",
+      "source": "gaps 1-3: the six class-C lines of Theorem L'' (docs/p1b-boundary-hitting-progress-2026-10-08.md); gap 4: docs/issue139-ac-gap4-2026-10-22.md; gap 5: docs/issue139-gap5-2026-10-23.md; computer-assisted, human review pending; merged PRs #246, #326, #328",
+      "dependencies": [
+        "DetTwoBoundaryHittingLines"
+      ],
+      "ledger_node": true,
+      "lean_support": {
+        "coverage": "none",
+        "declarations": [],
+        "note": "No complete Lean proof is registered for this claim."
+      }
+    },
+    {
       "name": "ClassDBoundaryHitting",
       "status": "proved",
       "source": "docs/class-d-assembly-audit-2026-10-21.md; canonical kernel/class_d_assembly.mojo consumes provenance-checked exact component receipts and replays plus b=0; no class-A/C or universal hitting premise is supplied; human review pending",
@@ -1717,6 +1767,62 @@
       "declaration": "@[simp] theorem K₁_eq_zero (a : Letter) : s.K₁ a = 0 := by"
     },
     {
+      "name": "PscVerif.BoundaryRounding.first_run",
+      "module": "PscVerif.BoundaryRounding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BoundaryRounding.lean",
+      "line": 10,
+      "declaration": "theorem first_run (j r : ℤ) (u : ℚ)"
+    },
+    {
+      "name": "PscVerif.BoundaryRounding.run_run",
+      "module": "PscVerif.BoundaryRounding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BoundaryRounding.lean",
+      "line": 24,
+      "declaration": "theorem run_run (m r : ℤ) (u : ℚ)"
+    },
+    {
+      "name": "PscVerif.BoundaryRounding.run_last",
+      "module": "PscVerif.BoundaryRounding",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BoundaryRounding.lean",
+      "line": 47,
+      "declaration": "theorem run_last (n i r s : ℤ) (u b : ℚ)"
+    },
+    {
+      "name": "PscVerif.BoundarySeedPath.six_parikh_updates",
+      "module": "PscVerif.BoundarySeedPath",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BoundarySeedPath.lean",
+      "line": 16,
+      "declaration": "theorem six_parikh_updates (k t : ℤ) :"
+    },
+    {
+      "name": "PscVerif.BoundarySeedPath.actual_word_bounds",
+      "module": "PscVerif.BoundarySeedPath",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BoundarySeedPath.lean",
+      "line": 29,
+      "declaration": "theorem actual_word_bounds (k t : ℤ) (hk : 0 ≤ k) (ht : 0 ≤ t) :"
+    },
+    {
+      "name": "PscVerif.BoundarySeedPath.seven_state_guards",
+      "module": "PscVerif.BoundarySeedPath",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BoundarySeedPath.lean",
+      "line": 37,
+      "declaration": "theorem seven_state_guards (a b u h : ℚ)"
+    },
+    {
+      "name": "PscVerif.BoundarySeedPath.selected_stage_rank_decreases",
+      "module": "PscVerif.BoundarySeedPath",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/BoundarySeedPath.lean",
+      "line": 46,
+      "declaration": "theorem selected_stage_rank_decreases (i : ℕ) (hi : i < 6) :"
+    },
+    {
       "name": "Psc.no_commuting_of_no_eigenvalue",
       "module": "PscVerif.Centralizer",
       "private": false,
@@ -2136,6 +2242,56 @@
       "source": "docs/class-a-typed-carrier-2026-10-21.md",
       "line": 14,
       "statement_heading": "**Proposition.** For every integer `n>=4`, the canonical exact swap-seed overlap graph has at least `6n-2` distinct vertices."
+    },
+    {
+      "source": "docs/class-b-gap-rays-2026-10-27.md",
+      "line": 58,
+      "statement_heading": "**Corollary (nine more lines).** On each line above, every vertex reachable"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 95,
+      "statement_heading": "**Lemma 1 (elimination of `l`).** For integer polynomials `a, b`,"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 99,
+      "statement_heading": "**Lemma 2 (interval sign).** Let `N` have degree `D`. If `H(h) = h^D N(1/h)`"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 104,
+      "statement_heading": "**Lemma 3 (affine ray).** This is class A's lemma verbatim: `u ≤ v` for every"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 107,
+      "statement_heading": "**Lemma 4 (children).** The segments of `sigma(t)` are:"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 136,
+      "statement_heading": "## Theorem A_B: uniform carrier closure"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 143,
+      "statement_heading": "**Theorem A_B.** For each tabulated ray and every member `q ≥ q0` on it:"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 175,
+      "statement_heading": "## Theorem B_B: uniform descent"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 181,
+      "statement_heading": "**Theorem B_B.** For each tabulated ray, every `q ≥ q0` and every non-target"
+    },
+    {
+      "source": "docs/class-b-ray-certificate-2026-10-27.md",
+      "line": 211,
+      "statement_heading": "**Corollary L_B (eight top-layer lines).** On each of the eight lines above,"
     },
     {
       "source": "docs/class-d-g1-corollary-2026-10-22.md",
@@ -2644,17 +2800,17 @@
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 292,
+      "line": 338,
       "statement_heading": "## 4b. Theorem W: two-parameter wedges of class D"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 369,
+      "line": 415,
       "statement_heading": "*Theorem W.* For each sub-wedge below, every PIP member is catch-up-free with"
     },
     {
       "source": "docs/p1b-boundary-hitting-progress-2026-10-08.md",
-      "line": 386,
+      "line": 432,
       "statement_heading": "*Corollary W1.* **Every PIP member of class D with `r ≥ q − 1` has pure"
     },
     {
@@ -2914,7 +3070,7 @@
     },
     {
       "source": "docs/proof-ladder.md",
-      "line": 266,
+      "line": 275,
       "statement_heading": "**Imported theorem:** Barge–Štimac–Williams supplies the dense-eventual-coincidence-to-PDS implication in the precise one-dimensional Pisot-family setting checked in manuscript Imported Theorem 5.37. Hence Theorem 5.38 has no G1 hypothesis."
     },
     {
@@ -3479,21 +3635,23 @@
     }
   ],
   "input_digests": {
-    "claim_governance.toml": "26aa137cd94fbd185701ac8906a44ca338435b042d3b01920d659939e037bf71",
+    "claim_governance.toml": "6ce46dc8609f791de057dc086f1fb2da667f7546fddb170f63cb42df06879a18",
     "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
     "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
+    "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
+    "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
     "proof/PscVerif/PscVerif/Seeds.lean": "224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747",
     "proof/PscVerif/PscVerif/Shuffle.lean": "fe99c7b71174cd665633b425c0f9d1e6f6893f541387e261fb5d945bba48614c",
     "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
-    "proof/PscVerif/PscVerif.lean": "4287b05bebcea7f4381939e6438098438d99a38b76f192b81e819c893c8cfe19",
+    "proof/PscVerif/PscVerif.lean": "d411522c81fbf7656036dabd359025ae208288dc64cf8a138b9297e9c7a3f337",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
-    "proof/proof-bank.toml": "9c9c0bfb430288e3ae4fbfb584fd7ee71f515da8b91ca060f5bc54d053e99d32",
+    "proof/proof-bank.toml": "847712aeb80710dbbd96cfac7cd4cfd310516585529412fddf4d9baf21acb42c",
     "tools/check_lean.sh": "04078a19300533b800e2cca6f0a3573fe8b116fec0ae8ace8a2d4ffc1ae9613b",
-    "tools/make_ledger.py": "a37023680fa452240764247b3cc30c6831e23597c871835aad98e634ff7de218",
+    "tools/make_ledger.py": "9798698af29a039e9d2c785b8c231080d347d5deff1a63f97dfae14db4e03bab",
     "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
     "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
   }

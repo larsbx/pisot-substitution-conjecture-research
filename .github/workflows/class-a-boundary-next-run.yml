@@ -1,0 +1,52 @@
+name: PSC class-A boundary complete T_m children
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_boundary_next_run.mojo'
+      - 'kernel/psc/class_a_boundary_tm_children.mojo'
+      - 'kernel/class_a_boundary_next_run.mojo'
+      - 'kernel/tests/test_class_a_boundary_next_run.mojo'
+      - 'kernel/tests/test_class_a_boundary_tm_children.mojo'
+      - 'oracles/python/class_a_boundary_next_run.py'
+      - 'oracles/python/class_a_boundary_tm_children.py'
+      - 'tests/test_class_a_boundary_next_run.py'
+      - 'tests/test_class_a_boundary_tm_children.py'
+      - 'docs/class-a-boundary-first-run-2026-10-26.md'
+      - 'docs/class-a-boundary-tm-carrier-2026-10-26.md'
+      - 'evidence/class-a-boundary-next-run-2026-10-26/**'
+      - '.github/workflows/class-a-boundary-next-run.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  complete-tm-carrier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent exact oracle and generated-proof-bank guard
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_boundary_next_run.py tests/test_class_a_boundary_tm_children.py
+          python oracles/python/class_a_boundary_next_run.py > /tmp/boundary-next-run.json
+          cmp /tmp/boundary-next-run.json evidence/class-a-boundary-next-run-2026-10-26/probe.json
+          python oracles/python/class_a_boundary_tm_children.py > /tmp/boundary-tm.json
+          cmp /tmp/boundary-tm.json evidence/class-a-boundary-next-run-2026-10-26/tm-probe.json
+          python tools/make_proof_bank.py --check
+      - name: Install Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Canonical first-run cone certificate and actual target packets
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_class_a_boundary_next_run.mojo
+          pixi run --locked mojo run -I . tests/test_class_a_boundary_tm_children.mojo
+          pixi run --locked mojo run -I . class_a_boundary_next_run.mojo

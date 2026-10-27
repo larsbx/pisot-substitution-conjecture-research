@@ -1,0 +1,6 @@
+class B top layer labels, plus g = 4 q <= 30
+  q mod 4 = 0 : 6 members, typed rows affine in q from q=16 (265 rows)
+  q mod 4 = 1 : 6 members, typed rows affine in q from q=17 (247 rows)
+  q mod 4 = 2 : 7 members, typed rows affine in q from q=18 (251 rows)
+  q mod 4 = 3 : 6 members, typed rows affine in q from q=15 (271 rows)
+  ALL RESIDUES FIT

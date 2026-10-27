@@ -33,7 +33,7 @@ the complete compiled-declaration audit, and the Ω/LC ledger registration.
   occurrence replay and whole child-closed-set reasoning; none closes #84,
   #138, #139, formal productivity, G1, or general PSC.
 
-See [`completion-ledger-2026-10-16.md`](completion-ledger-2026-10-16.md) for
+See [`completion-ledger-2026-10-26.md`](completion-ledger-2026-10-26.md) for
 the exact provenance gaps, open-PR boundary, and next obligations.
 
 ## What the 2026-10-05 and 2026-10-06 results establish
@@ -140,9 +140,9 @@ family-scoped and universal claims retain their existing quantifiers.
 6. `p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139
    literature transfer audit, non-unit hypothesis firewall, and exact open
    adelic periodic-offset hitting obligation.
-7. `completion-ledger-2026-10-16.md` — weekly snapshot at `main@b378392`, with a
-   dated 2026-10-19 reconciliation for the merged class-D boundary work and
-   the project-acceptance convention; current reconciled head is `main@e062e330`.
+7. `completion-ledger-2026-10-26.md` — weekly snapshot at `main@4eb0427d`;
+   the 2026-10-16 snapshot (`main@b378392`, reconciled at `main@e062e330`)
+   is kept as history.
 8. `claim-status-and-source-map-2026-09-13.md` — concise authoritative
    classification of every load-bearing claim and its exact source.
 9. `conjecture-ledger.md` — live prose dependency ledger.
@@ -350,6 +350,14 @@ These are reference/index additions only. They do not establish #84, #138,
   families, 77 symbolic regions, 490 exact members). It contains Theorem L
   and every line of Theorem L′; the layer near slope 3 stays open
   (`kernel/psc/symbolic_cone.mojo`, `kernel/class_b_cone_certificate.mojo`).
+- `class-b-ray-certificate-2026-10-27.md` — #139 research note, step 2 of the
+  class-B top-layer stop/go (Status: repository-proved, computer-assisted,
+  human review pending): BH from every swap seed, hence pure discrete spectrum
+  and G1 by Theorem C's chain, on the eight top-layer lines `p = 3q + 12 − g`,
+  `r = q + 1`, `g ≤ 5` and `p = 3q − g`, `r = q − 1`, `g ≤ 3`. It uses 21 residue
+  rays `q = g l + r`, uniform carrier closure, and the q-free potential
+  `|k| + b`. Larger gaps stay open
+  (`kernel/psc/class_b_ray_certificate.mojo`, `kernel/class_b_ray_certificate.mojo`).
 - `p1b-catch-up-free-ppvc-2026-10-07.md` — #139 on the catch-up-free
   `|det M| = 2` class, with its stop/go gate: **Proposition Z** assembles
   recorded results to show that there, outside the open part of Theorem K's

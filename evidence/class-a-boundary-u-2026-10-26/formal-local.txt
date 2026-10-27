@@ -1,0 +1,29 @@
+TLA: TLA_TOOLS=/tmp/psc-tla2tools.jar bash proof/tla/check.sh
+Exit status: 0
+[PASS] MCTribonacci  all invariants hold
+[PASS] MCFlippedTribonacci  all invariants hold
+[PASS] MCSmith  all invariants hold
+[PASS] MCNonProductive  Productive violated as expected
+[PASS] MCLedgerClassDIntegrationAssumed  all invariants hold
+[PASS] MCLedgerTwoObstructionsAssumed  all invariants hold
+[PASS] MCLedgerMinusCycleSumAssumed  all invariants hold
+[PASS] MCLedgerOpen  all invariants hold
+[PASS] MCLedgerImports  all invariants hold
+[PASS] MCLedgerG1AndProducer  all invariants hold
+[PASS] MCLedgerG1Only  all invariants hold
+[PASS] MCLedgerG1AndC4  all invariants hold
+[PASS] MCLedgerRenewalGateAssumed  all invariants hold
+[PASS] MCLedgerSpectralGateAssumed  all invariants hold
+[PASS] MCLedgerOverlapGateAssumed  all invariants hold
+[PASS] MCLedgerAllSeedOverlapGateAssumed  all invariants hold
+[PASS] MCLedgerAllSeedStrictZipperGateAssumed  all invariants hold
+[PASS] MCLedgerFormalProductivityGateAssumed  all invariants hold
+
+Lean attempt: PATH=/root/.elan/bin:$PATH bash tools/check_lean.sh
+Exit status: 1; local launcher failed before compilation, not a successful formal replay.
+Prepared isolated Lean workspace from source/configuration only
+Proof bank: 120 claims, 30 named Lean proofs, 315 source openings
+error: failed to locate application
+
+No Lean/TLA source changed from the accepted #348 formal sources.
+A fresh hosted head-specific gate remains pending.
