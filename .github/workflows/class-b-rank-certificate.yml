@@ -34,18 +34,26 @@ jobs:
           pixi run --locked mojo build -I . class_b_label_rays.mojo -o build/class-b-label-rays
           build/rank-cert check ../evidence/class-b-rank-certificate-2026-10-27/plus-g1-r0.cert > build/class-b-rank/check.log
           cmp build/class-b-rank/check.log ../evidence/class-b-rank-certificate-2026-10-27/check.log
+          build/rank-cert check ../evidence/class-b-rank-certificate-2026-10-27/minus-g1-r0.cert > build/class-b-rank/minus-check.log
+          cmp build/class-b-rank/minus-check.log ../evidence/class-b-rank-certificate-2026-10-27/minus-check.log
       - name: Regenerate floor, last training and holdout exports; replay both checkers
         run: |
           P=evidence/class-b-rank-certificate-2026-10-27
-          for q in 10 26 27 42; do
-            kernel/build/class-b-label-rays plus 1 $q edges > kernel/build/edges/plus-g1-q$q.edges
-            (cd kernel/build/edges && grep " plus-g1-q$q.edges\$" "$GITHUB_WORKSPACE/$P/edge-exports.sha256" | sha256sum -c)
-            kernel/build/rank-cert replay $P/plus-g1-r0.cert kernel/build/edges/plus-g1-q$q.edges >> kernel/build/class-b-rank/replay.log
-            grep "^RANK_REPLAY_PASS q $q " $P/replay.log >> kernel/build/class-b-rank/expected.log
-          done
-          cmp kernel/build/class-b-rank/replay.log kernel/build/class-b-rank/expected.log
-          python oracles/python/class_b_rank_certificate_oracle.py $P/plus-g1-r0.cert kernel/build/edges/plus-g1-q{10,26,27,42}.edges > kernel/build/class-b-rank/oracle.log
-          diff <(tail -n +2 kernel/build/class-b-rank/oracle.log | sed 's/^ORACLE_//') kernel/build/class-b-rank/replay.log
+          B=kernel/build/class-b-rank
+          replay_ray() {  # branch, replay-log name, members...
+            local branch=$1 log=$2; shift 2
+            for q in "$@"; do
+              kernel/build/class-b-label-rays $branch 1 $q edges > kernel/build/edges/$branch-g1-q$q.edges
+              (cd kernel/build/edges && grep " $branch-g1-q$q.edges\$" "$GITHUB_WORKSPACE/$P/edge-exports.sha256" | sha256sum -c)
+              kernel/build/rank-cert replay $P/$branch-g1-r0.cert kernel/build/edges/$branch-g1-q$q.edges >> $B/$branch-replay.log
+              grep "^RANK_REPLAY_PASS q $q " $P/$log >> $B/$branch-expected.log
+            done
+            cmp $B/$branch-replay.log $B/$branch-expected.log
+            python oracles/python/class_b_rank_certificate_oracle.py $P/$branch-g1-r0.cert $(for q in "$@"; do echo kernel/build/edges/$branch-g1-q$q.edges; done) > $B/$branch-oracle.log
+            diff <(tail -n +2 $B/$branch-oracle.log | sed 's/^ORACLE_//') $B/$branch-replay.log
+          }
+          replay_ray plus replay.log 10 26 27 42
+          replay_ray minus minus-replay.log 16 30 31 42
           python -m pytest -q tests/test_class_b_rank_certificate.py
           (cd $P && sha256sum -c SHA256SUMS)
       - uses: actions/upload-artifact@v4

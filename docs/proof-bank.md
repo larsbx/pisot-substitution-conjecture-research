@@ -223,7 +223,7 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/class-a-residue-rays-2026-10-22.md:88](../docs/class-a-residue-rays-2026-10-22.md#L88) | **Theorem R.** For each tabulated ray and every n >= floor on it, the |
 | [docs/class-a-residue-rays-2026-10-22.md:92](../docs/class-a-residue-rays-2026-10-22.md#L92) | **Corollary L.** On each of the three lines, every vertex of the complete |
 | [docs/class-a-typed-carrier-2026-10-21.md:14](../docs/class-a-typed-carrier-2026-10-21.md#L14) | **Proposition.** For every integer n>=4, the canonical exact swap-seed overlap graph has at least 6n-2 distinct vertices. |
-| [docs/class-b-rank-certificate-2026-10-27.md:101](../docs/class-b-rank-certificate-2026-10-27.md#L101) | **Proposition (conditional, every q ≥ 10).** Let q ≥ 10 on the plus g=1 ray |
+| [docs/class-b-rank-certificate-2026-10-27.md:102](../docs/class-b-rank-certificate-2026-10-27.md#L102) | **Proposition (conditional, every q ≥ 10).** Let q ≥ 10 on the plus g=1 ray |
 | [docs/class-d-g1-corollary-2026-10-22.md:101](../docs/class-d-g1-corollary-2026-10-22.md#L101) | **Corollary.** For every PIP member of the determinant-two class-D normal |
 | [docs/formal-productivity-reduction-2026-10-04.md:33](../docs/formal-productivity-reduction-2026-10-04.md#L33) | **Proposition FP.** |
 | [docs/formal-productivity-reduction-2026-10-04.md:65](../docs/formal-productivity-reduction-2026-10-04.md#L65) | **Corollary FP′** (dependencies as listed in the status line). For PIP |

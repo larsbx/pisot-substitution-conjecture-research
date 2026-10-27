@@ -12,10 +12,12 @@ floating LP/MILP solutions (scipy/HiGHS) only propose candidates.
 3. Segments: each piece is cut at every edge-domain endpoint (cut order must be
    stable for all q >= floor); one affine potential per segment.
 4. Policy: per segment, an edge whose child has smaller first-hit depth at every
-   training point; others are chosen greedily while the LP stays feasible.
+   training point, fixed first; the rest are then chosen greedily while the LP
+   stays feasible.
    Each chosen edge is split along the child's segments (sub-edges).
 5. Integer potentials for the fixed policy by MILP, coefficients within BOUND.
-Refusals (unstable cut order, no uniform option) are reported, not hidden.
+Refusals (unstable cut order, a segment empty at the floor, no uniform or
+LP-feasible option) are reported, not hidden.
 """
 import collections
 import sys
@@ -134,6 +136,8 @@ class Synthesis:
             self.seg_of[i] = []
             for f, g in zip(cuts, cuts[1:]):
                 if le_always(p['lo'], f) and le_always(g, top):
+                    if f[1] >= g[1]:
+                        raise ValueError('REFUSED: a segment is empty at the floor; raise the floor')
                     self.seg_of[i].append(len(self.segs))
                     self.segs.append(dict(P=i, T=p['T'], lo=f, hi=(g[0], g[1] - 1), target=i in self.target))
 
@@ -167,7 +171,8 @@ class Synthesis:
                    for q in self.qs for k in range(self.at(S['lo'], q), self.at(S['hi'], q) + 1)]
             good = sum(1 for dp, dc in pts if dc < dp)
             out.append((good == len(pts), good, -e, se))
-        return [se for *_, se in sorted(out, key=lambda t: t[:3], reverse=True)]
+        out.sort(key=lambda t: t[:3], reverse=True)
+        return bool(out) and out[0][0], [se for *_, se in out]
 
     def rows(self, sub):
         """Linear constraints (coefficients, rhs), meaning sum >= rhs; variables 3*segment + (a,b,c)."""
@@ -205,14 +210,15 @@ class Synthesis:
         for j, S in enumerate(self.segs):
             if S['target']:
                 continue
-            opts = self.options(j)
+            guided, opts = self.options(j)
             if not opts:
                 refused.append(j)
             else:
-                free.append((j, opts))
+                free.append((not guided, j, opts))
         if refused:
             raise ValueError(f'REFUSED: segments without a uniform option {refused[:5]}')
-        for j, opts in free:  # first option is the depth-guided one when it exists
+        # Depth-guided segments first, so a greedy completion never blocks a guided choice.
+        for _, j, opts in sorted(free, key=lambda t: t[:2]):
             for se in opts:
                 trial = rows + [r for s in se for r in self.rows(s)]
                 if self.feasible(trial):

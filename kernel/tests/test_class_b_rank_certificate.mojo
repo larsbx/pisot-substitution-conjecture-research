@@ -61,4 +61,11 @@ def main() raises:
     except err:
         refused = "not an actual edge" in String(err)
     assert_true(refused)
-    require_contract("class B piecewise rank certificate: vertex/ray descent and nonnegativity, exact coverage sweep past every crossing, negative controls refuse, native q=10 replay; conditional on carrier inclusion and actual symbolic edges")
+    # The transferred minus g=1 certificate (floor q=16) and its native q=16 replay.
+    var minus_text: String
+    with open("../evidence/class-b-rank-certificate-2026-10-27/minus-g1-r0.cert", "r") as f:
+        minus_text = f.read()
+    var minus = RankCertificate(minus_text)
+    _ = check_rank_certificate(minus)
+    assert_true(replay(minus, label_block(False, 1, 16, 20000, False, True)).startswith("RANK_REPLAY_PASS q 16 vertices 2391 edges_checked 2383 "))
+    require_contract("class B piecewise rank certificates (plus g=1, minus g=1): vertex/ray descent and nonnegativity, exact coverage sweep past every crossing, negative controls refuse, native q=10 and q=16 replays; conditional on carrier inclusion and actual symbolic edges")

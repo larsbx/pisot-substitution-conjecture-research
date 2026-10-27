@@ -1,8 +1,9 @@
-# Class B top layer: a piecewise rank with symbolic occurrence edges (plus g=1)
+# Class B top layer: a piecewise rank with symbolic occurrence edges (g=1, both branches)
 
 **Status:** conditional, computer-assisted (exact executable all-parameter
-certificate on the plus g=1 ray); hypotheses (H1) and (H2) are open and only
-finitely replayed (q=10..42); independent human review pending.
+certificates on the plus and minus g=1 rays); hypotheses (H1) and (H2) are open
+and only finitely replayed (plus q=10..42, minus q=16..42); independent human
+review pending.
 
 ## Target and literature stop/go
 
@@ -73,7 +74,7 @@ This is the mechanism behind the 99 envelope refusals of the label-ray note.
 Steps 1–4 are a bounded synthesis prototype
 (`oracles/python/class_b_rank_synthesis.py`, scipy/HiGHS). Floating solutions
 only propose; nothing is accepted without the exact checks below. Two runs
-produced byte-identical certificates.
+produced byte-identical certificates on each ray.
 
 ## What is checked exactly, for every integer t ≥ 0
 
@@ -127,6 +128,34 @@ members X dominates first-hit depth everywhere. It is a loose step bound:
 max X is 2,648 against depth 27 at q=42, because the coefficient budget ±60 is
 saturated and the objective does not seek tightness.
 
+## Transfer to minus g=1
+
+The same generator, changed only by the two fixes below, was run on minus g=1
+(p=3q−1, residue 0): training q=16..30 (the label-ray training bound for this
+line), holdout q=31..42. The vertex sections of all 28 new native `edges`
+exports (q=15..42) equal the committed label-ray exports byte-for-byte.
+
+* **Floor.** At the label-ray floor q=15 two segments, in types (0,2,−1,−6)
+  and (2,0,1,6), are empty: they are `[−q+3, −13]` and `[13, q−3]`, nonempty
+  only from q=16, so their edges are absent at q=15. The prototype now refuses
+  a segment that is empty at the floor; the rank floor is q0=16, one above the
+  label-ray floor, as q0=10 is on plus.
+* **Order.** Interleaving greedy completions with depth-guided choices in
+  index order refused (segment 249 had no LP-feasible option). Fixing every
+  depth-guided choice first, as the plus scratch run did, succeeds. The plus
+  certificate was regenerated with this generator: the same 1,787 segments and
+  2,302 edges with different integer potentials, and identical replay lines.
+
+Result: 431 pieces, 4,484 symbolic edges and 1,301 segments (1,165
+depth-guided, 128 completed), integer potentials with `|a|,|b| ≤ 60` and
+`|c| ≤ 758`, and 1,970 certificate edges. It passes the exact all-parameter
+check (coverage horizon t=1) and the oracle. Replays on q=16..42 pass under
+both checkers, with vertex set = carrier at every member; max X is 2,302
+against depth 27 at q=42. The conditional proposition above holds verbatim on
+the minus g=1 ray for q ≥ 16, with (H1) and (H2) read there. The q=15 member is
+a complete finite graph whose hitting is already recorded in the label-ray
+packet; this certificate does not cover it.
+
 ## Negative controls
 
 Native and oracle tests share a toy certificate: one type, wings
@@ -139,15 +168,16 @@ vertex lies outside every piece.
 
 ## Non-claims
 
-* No boundary-hitting, G1 or PSC claim is promoted. The proposition is
-  conditional on (H1) and (H2) for all q ≥ 10; both are verified only for
-  q=10..42.
-* Only the plus g=1 ray is treated. The other 20 residue rays of the label-ray
-  note are untouched; whether the synthesis transfers is open.
-* The floor q0=10 is where the synthesis window starts, not a proved
-  stabilization threshold; q=9 is excluded.
-* Pieces, symbolic edges and segments were fitted on q=10..26 only. Holdouts
-  test them; they do not prove them.
+* No boundary-hitting, G1 or PSC claim is promoted. The propositions are
+  conditional on (H1) and (H2) for all q ≥ 10 (plus) and q ≥ 16 (minus); both
+  are verified only for q ≤ 42.
+* Only the two g=1 rays are treated. The other 19 residue rays of the
+  label-ray note (g ≥ 2) are untouched; whether the method transfers there is
+  open.
+* The floors q0=10 and q0=16 are where each synthesis window starts, not proved
+  stabilization thresholds; q=9 (plus) and q=15 (minus) are excluded.
+* Pieces, symbolic edges and segments were fitted on q=10..26 (plus) and
+  q=16..30 (minus) only. Holdouts test them; they do not prove them.
 * The synthesis prototype is Python with floating solvers. It is not canonical
   and it decides nothing.
 

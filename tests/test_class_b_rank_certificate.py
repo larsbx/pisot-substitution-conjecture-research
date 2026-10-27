@@ -35,9 +35,10 @@ def test_tampering_refuses(old, new, reason):
         m.check(m.parse(TOY.replace(old, new)))
 
 
-def test_committed_certificate_passes():
-    cert = m.parse((ROOT/'evidence/class-b-rank-certificate-2026-10-27/plus-g1-r0.cert').read_text())
-    assert m.check(cert) == (1787, 2302)
+@pytest.mark.parametrize('name,size', [('plus-g1-r0', (1787, 2302)), ('minus-g1-r0', (1301, 1970))])
+def test_committed_certificates_pass(name, size):
+    cert = m.parse((ROOT/f'evidence/class-b-rank-certificate-2026-10-27/{name}.cert').read_text())
+    assert m.check(cert) == size
 
 
 def test_replay_refuses_missing_edge_and_stray_vertex(tmp_path):
