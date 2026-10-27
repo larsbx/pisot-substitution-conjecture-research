@@ -24,6 +24,15 @@ model reaches it while retaining `G1NotEstablished` and `PDSNotEstablished`.
 This instantiates Proposition 4 on the discharged scoped premise; it does
 not assume the open universal premise bundled into `G1HalfCoincidenceRoute`.
 
+The scoped class-A/C boundary-hitting certificates are registered alongside it
+(2026-10-26): `ClassABoundaryHittingLowGaps` (gaps `d <= 4`),
+`ClassABoundaryHittingHighGaps` (gaps `d >= 5`, `n >= 5d`) and
+`ClassCBoundaryHittingLowGaps` (gaps `d <= 5`, depending on the Theorem L″ lines
+in `DetTwoBoundaryHittingLines`). None of them is a premise of
+`UniversalBoundaryHitting`, and no G1 corollary is drawn for classes A or C. The
+class-B top-layer label rays are registered as evidence only
+(`ClassBTopLayerLabelRays`).
+
 ## Primary ladder: two universal lemmas
 
 The project now treats seedwise overlap productivity (#84) through the
@@ -70,7 +79,7 @@ No class-D result supplies either universal premise here.
 
 The current shortest route to the Pisot Substitution Conjecture in the standing regime has **one open mathematical premise**: seedwise overlap productivity. The finite-BPA/G1 and closed-carrier programmes remain important stronger structural routes, but they are no longer prerequisites of the shortest PDS sufficiency theorem.
 
-For detailed claim status use `docs/claim-status-and-source-map-2026-09-13.md`; for the live completion priorities use `docs/research-roadmap-2026-09-21.md`; for the latest merged weekly snapshot use `docs/completion-ledger-2026-10-16.md`; theorem statements and imported hypotheses are in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
+For detailed claim status use `docs/claim-status-and-source-map-2026-09-13.md`; for the live completion priorities use `docs/research-roadmap-2026-09-21.md`; for the latest merged weekly snapshot use `docs/completion-ledger-2026-10-26.md`; theorem statements and imported hypotheses are in `manuscripts/PSC_balanced_pair_state_2026-09-13.tex`.
 
 ## Scoped closure below the universal rung (through 2026-10-16)
 

@@ -269,6 +269,52 @@ conjugacy to a β-substitution, which is not checked here.
 | D | `n + 1` | `n` | `2n + 1` | 113 | 14 | 14 / 0 / 0 | 3,416 | 49 s |
 | D | `n + 1` | `n` | `2n + 2` | 193 | 10 | 10 / 0 / 0 | 5,882 | 76 s |
 
+**Correction, 2026-10-26 (re-pinned thresholds).** PR #288 (commit `7a74eda`) changed
+`kernel/psc/symbolic_line.mojo` to clip empty run blocks at their legal endpoints
+before fitting any bound. That changes which sign reads the closure makes, and
+with it the tail floor `q0`; the floor moved in both directions. The lines below
+were re-certified by the scheduled evidence run 40180359004 on `main@4eb0427d`
+and re-pinned. Their symbolic vertex counts and their non-PIP and outside counts
+are unchanged, every cross-check passed, and every member below the new `q0` is
+PIP-screened and decided exactly, so the theorem is unchanged. The table above is
+kept as the historical record. The current pins now live in the data file
+`kernel/symbolic_line_pins.txt`, which `certified_lines()` reads at run time, so
+that a re-pin no longer edits the driver and its import closure.
+
+| class | `p` | `q` | `r` | vertices | `q0` then → now | below `q0` then → now (PIP / not PIP / outside) |
+| --- | --- | --- | --- | --- | --- | --- |
+| A | `2n` | `n` | `n − 1` | 281 | 39 → 58 | 38/0/1 → 57/0/1 |
+| A | `2n` | `n` | `n + 1` | 210 | 20 → 31 | 19/0/1 → 30/0/1 |
+| A | `2n + 1` | `n` | `n + 1` | 194 | 19 → 26 | 19/0/0 → 26/0/0 |
+| A | `2n + 2` | `n` | `n − 1` | 325 | 107 → 130 | 104/2/1 → 127/2/1 |
+| D | `n − 1` | `n` | `n − 1` | 150 | 22 → 24 | 19/2/1 → 21/2/1 |
+| D | `n − 1` | `n` | `n` | 128 | 17 → 19 | 15/1/1 → 17/1/1 |
+| D | `n − 1` | `n` | `n + 2` | 105 | 38 → 48 | 34/3/1 → 44/3/1 |
+| D | `n − 1` | `n` | `2n − 2` | 113 | 12 → 10 | 10/1/1 → 8/1/1 |
+| D | `n + 1` | `n` | `n` | 246 | 19 → 13 | 19/0/0 → 13/0/0 |
+
+
+**Correction, 2026-10-27 (full re-pin sweep).** The 2026-10-26 list above was
+incomplete: it was read from the first page of a failed-jobs listing of run
+40180359004. The complete PR #345 run 40427511787 (head `7a36f91`, all 142
+jobs) found 74 pin mismatches, all from the same PR #288 change. On every line
+below, the vertex count and the non-PIP and outside counts are unchanged, PIP
+below `q0` moves by exactly the change of `q0`, and every cross-check passed;
+the theorem is unchanged. The lines are written in the pin file's form
+`CLASS AP BP AQ BQ AR BR`. The rows of the 2026-10-26 table reproduced their pins and are not repeated.
+
+| line | vertices | `q0` 2026-10-26 pin → now | PIP below `q0` | not PIP / outside |
+| --- | --- | --- | --- | --- |
+| `A 2 1 1 0 1 -1` | 365 | 87 → 115 | 85 → 113 | 1 / 1 |
+| `A 2 3 1 0 1 -1` | 303 | 128 → 155 | 124 → 151 | 3 / 1 |
+| `A 2 3 1 0 1 1` | 260 | 14 → 13 | 14 → 13 | 0 / 0 |
+| `D 1 -1 1 0 1 1` | 111 | 26 → 25 | 23 → 22 | 2 / 1 |
+| `D 1 -1 1 0 1 3` | 105 | 43 → 79 | 38 → 74 | 4 / 1 |
+| `D 1 -1 1 0 1 4` | 105 | 97 → 118 | 91 → 112 | 5 / 1 |
+| `D 1 1 1 0 1 -1` | 250 | 24 → 14 | 23 → 13 | 0 / 1 |
+| `D 1 1 1 0 1 1` | 181 | 21 → 28 | 21 → 28 | 0 / 0 |
+| `D 1 1 1 0 2 2` | 193 | 10 → 14 | 10 → 14 | 0 / 0 |
+
 **32 new lines**: 8 in class A, 6 in class C, 18 in class D. With the 15 class-B lines of Theorems L and L′, 47 lines are pinned in `certified_lines()`. Each was run once through the committed driver, one core each, and every cross-check passed. Each row is pinned in `certified_lines()` and re-run by the evidence workflow; `tests/test_line_certificate_workflow.py` keeps the workflow matrix equal to the pin list. The regression `test_a_class_d_line_is_certified` re-certifies the class-D line `(n + 1, n, n + 3)` on every test run.
 
 **Refusals, all correct.** The certificate refused five more lines at the PIP step, and each is outside the Pisot class:
@@ -393,6 +439,92 @@ cover `q − 1 ≤ r ≤ 2q + 2`. Above that, `r ≥ 2p + 1` and Lemma P1
 (`f(1) = −2p + r − 1 < 0`) rules out PIP. With Theorem C of
 `p1b-symbolic-cone-2026-10-08.md` (class B below slope `5/2`), these are the
 two-parameter families on which #139's obligation is proved so far.
+
+
+**Correction, 2026-10-27 (Theorem W after PR #288).** The full run 40427511787
+(head `7a36f91`) re-certified every wedge core and boundary line after PR #288
+(commit `7a74eda`). Every core keeps its vertex count, but three moved their
+quadrant:
+
+| sub-wedge | quadrant `a0, b0` then → now | boundary lines now | status |
+| --- | --- | --- | --- |
+| `p = q − 1`, `(4, 5) + a(2, 3) + b(1, 2)` | `7, 7` → `7, 1` | 8, all pinned | re-pinned |
+| `p = q − 1`, `(5, 7) + a(1, 1) + b(3, 4)` | `15, 7` → `15, 31` | 46, of which 24 new | pending |
+| `p = q + 1`, `(-2, -4) + a(2, 3) + b(1, 2)` | `3, 15` → `7, 15` | 22, of which 4 new | pending |
+
+A lower floor needs fewer boundary lines, and all of them were already
+pinned. A higher floor leaves strips `b = 7, …, 30` and `a = 3, …, 6` that
+the current core no longer covers and that no pinned line certifies. Until
+these 28 lines are certified and pinned, the current code reproduces Theorem
+W, and so Corollary W1, only outside those strips; the pre-#288 certificate
+of the whole sub-wedge is historical evidence and is not a receipt for the
+current code. The 28 lines run once in the temporary probe workflow
+`theorem-w-boundary-probe.yml` of PR #345 and are pinned from its logs.
+
+59 boundary lines moved `q0` with unchanged counts, as for the lines above,
+and were re-pinned (form `norm CLASS AP BP AQ BQ AR BR`):
+
+| line | vertices | `q0` 2026-10-26 pin → now | PIP below `q0` | not PIP / outside |
+| --- | --- | --- | --- | --- |
+| `norm D 1 -1 1 -2 2 -4` | 93 | 8 → 9 | 6 → 7 | 0 / 2 |
+| `norm D 1 1 1 0 2 -1` | 93 | 10 → 13 | 9 → 12 | 0 / 1 |
+| `norm D 1 10 1 11 1 15` | 105 | 16 → 107 | 16 → 107 | 0 / 0 |
+| `norm D 1 11 1 12 2 17` | 105 | 4 → 7 | 4 → 7 | 0 / 0 |
+| `norm D 1 13 1 14 1 19` | 105 | 16 → 151 | 16 → 151 | 0 / 0 |
+| `norm D 1 13 1 14 2 20` | 105 | 4 → 2 | 4 → 2 | 0 / 0 |
+| `norm D 1 15 1 16 2 23` | 105 | 4 → 1 | 4 → 1 | 0 / 0 |
+| `norm D 1 16 1 17 1 23` | 105 | 16 → 203 | 16 → 203 | 0 / 0 |
+| `norm D 1 19 1 20 1 27` | 105 | 16 → 263 | 16 → 263 | 0 / 0 |
+| `norm D 1 22 1 23 1 31` | 105 | 15 → 331 | 15 → 331 | 0 / 0 |
+| `norm D 1 3 1 4 2 5` | 105 | 4 → 5 | 4 → 5 | 0 / 0 |
+| `norm D 1 4 1 5 1 7` | 105 | 17 → 43 | 17 → 43 | 0 / 0 |
+| `norm D 1 5 1 6 2 8` | 105 | 4 → 3 | 4 → 3 | 0 / 0 |
+| `norm D 1 7 1 8 1 11` | 105 | 16 → 71 | 16 → 71 | 0 / 0 |
+| `norm D 1 7 1 8 2 11` | 105 | 5 → 7 | 5 → 7 | 0 / 0 |
+| `norm D 1 9 1 10 2 14` | 105 | 4 → 1 | 4 → 1 | 0 / 0 |
+| `norm D 2 -1 2 -2 3 -4` | 93 | 17 → 18 | 15 → 16 | 0 / 2 |
+| `norm D 2 0 2 -1 3 -2` | 93 | 15 → 16 | 14 → 15 | 0 / 1 |
+| `norm D 2 1 2 0 3 0` | 93 | 13 → 14 | 13 → 14 | 0 / 0 |
+| `norm D 2 10 2 9 3 18` | 93 | 4 → 5 | 4 → 5 | 0 / 0 |
+| `norm D 2 11 2 10 3 20` | 93 | 4 → 6 | 4 → 6 | 0 / 0 |
+| `norm D 2 12 2 11 3 22` | 93 | 3 → 5 | 3 → 5 | 0 / 0 |
+| `norm D 2 13 2 12 3 24` | 93 | 3 → 5 | 3 → 5 | 0 / 0 |
+| `norm D 2 14 2 13 3 18` | 93 | 11 → 12 | 11 → 12 | 0 / 0 |
+| `norm D 2 17 2 16 3 22` | 93 | 11 → 12 | 11 → 12 | 0 / 0 |
+| `norm D 2 2 2 1 3 2` | 93 | 10 → 12 | 10 → 12 | 0 / 0 |
+| `norm D 2 20 2 19 3 26` | 93 | 11 → 12 | 11 → 12 | 0 / 0 |
+| `norm D 2 23 2 22 3 30` | 93 | 11 → 12 | 11 → 12 | 0 / 0 |
+| `norm D 2 26 2 25 3 34` | 93 | 11 → 12 | 11 → 12 | 0 / 0 |
+| `norm D 2 29 2 28 3 38` | 93 | 11 → 12 | 11 → 12 | 0 / 0 |
+| `norm D 2 3 2 2 3 4` | 93 | 8 → 10 | 8 → 10 | 0 / 0 |
+| `norm D 2 32 2 31 3 42` | 93 | 11 → 12 | 11 → 12 | 0 / 0 |
+| `norm D 2 35 2 34 3 46` | 93 | 11 → 12 | 11 → 12 | 0 / 0 |
+| `norm D 2 38 2 37 3 50` | 93 | 11 → 12 | 11 → 12 | 0 / 0 |
+| `norm D 2 4 2 3 3 6` | 93 | 6 → 7 | 6 → 7 | 0 / 0 |
+| `norm D 2 4 2 5 3 7` | 105 | 5 → 6 | 5 → 6 | 0 / 0 |
+| `norm D 2 41 2 40 3 54` | 93 | 11 → 12 | 11 → 12 | 0 / 0 |
+| `norm D 2 44 2 43 3 58` | 93 | 11 → 12 | 11 → 12 | 0 / 0 |
+| `norm D 2 47 2 46 3 62` | 93 | 11 → 12 | 11 → 12 | 0 / 0 |
+| `norm D 2 5 2 4 3 8` | 93 | 5 → 6 | 5 → 6 | 0 / 0 |
+| `norm D 2 5 2 6 3 9` | 105 | 5 → 6 | 5 → 6 | 0 / 0 |
+| `norm D 2 50 2 49 3 66` | 93 | 11 → 12 | 11 → 12 | 0 / 0 |
+| `norm D 2 56 2 55 3 74` | 93 | 11 → 13 | 11 → 13 | 0 / 0 |
+| `norm D 2 6 2 5 3 10` | 93 | 4 → 6 | 4 → 6 | 0 / 0 |
+| `norm D 2 6 2 7 3 11` | 105 | 5 → 6 | 5 → 6 | 0 / 0 |
+| `norm D 2 7 2 6 3 12` | 93 | 4 → 6 | 4 → 6 | 0 / 0 |
+| `norm D 2 7 2 8 3 13` | 105 | 5 → 6 | 5 → 6 | 0 / 0 |
+| `norm D 2 8 2 7 3 14` | 93 | 4 → 5 | 4 → 5 | 0 / 0 |
+| `norm D 2 8 2 9 3 15` | 105 | 5 → 6 | 5 → 6 | 0 / 0 |
+| `norm D 2 9 2 8 3 16` | 93 | 4 → 5 | 4 → 5 | 0 / 0 |
+| `norm D 3 11 3 12 4 14` | 105 | 2 → 3 | 2 → 3 | 0 / 0 |
+| `norm D 3 12 3 11 4 15` | 93 | 2 → 5 | 2 → 5 | 0 / 0 |
+| `norm D 3 12 3 13 4 15` | 105 | 2 → 3 | 2 → 3 | 0 / 0 |
+| `norm D 3 14 3 13 4 18` | 93 | 1 → 4 | 1 → 4 | 0 / 0 |
+| `norm D 3 16 3 15 4 21` | 93 | 1 → 11 | 1 → 11 | 0 / 0 |
+| `norm D 3 16 3 17 4 19` | 105 | 12 → 16 | 12 → 16 | 0 / 0 |
+| `norm D 3 24 3 23 4 33` | 93 | 1 → 5 | 1 → 5 | 0 / 0 |
+| `norm D 3 4 3 5 4 7` | 105 | 3 → 4 | 3 → 4 | 0 / 0 |
+| `norm D 3 7 3 8 4 10` | 105 | 2 → 8 | 2 → 8 | 0 / 0 |
 
 ## 4c. Two two-parameter engines
 

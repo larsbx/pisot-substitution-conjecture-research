@@ -25,6 +25,9 @@ ResultSet == {
     "C3Local",
     "C3Locality",
     "C4",
+    "ClassABoundaryHittingHighGaps",
+    "ClassABoundaryHittingLowGaps",
+    "ClassCBoundaryHittingLowGaps",
     "ClassDBoundaryHitting",
     "ClassDFiniteBPA",
     "ClassDIntegrationAcceptance",
@@ -135,6 +138,9 @@ RequiresDef == [r \in ResultSet |->
       [] r = "C3Local" -> {{"C4", "C3Locality"}}
       [] r = "C3Locality" -> {{}}
       [] r = "C4" -> {{}}
+      [] r = "ClassABoundaryHittingHighGaps" -> {{}}
+      [] r = "ClassABoundaryHittingLowGaps" -> {{}}
+      [] r = "ClassCBoundaryHittingLowGaps" -> {{"DetTwoBoundaryHittingLines"}}
       [] r = "ClassDBoundaryHitting" -> {{"PlusClassDBoundaryHitting", "MinusClassDBoundaryHitting"}}
       [] r = "ClassDFiniteBPA" -> {{"ClassDBoundaryHitting", "SwapOverlapFiniteness"}}
       [] r = "ClassDIntegrationAcceptance" -> {{}}
@@ -239,6 +245,9 @@ ProvedDef == {
     "C2",
     "C3Local",
     "C3Locality",
+    "ClassABoundaryHittingHighGaps",
+    "ClassABoundaryHittingLowGaps",
+    "ClassCBoundaryHittingLowGaps",
     "ClassDBoundaryHitting",
     "ClassDFiniteBPA",
     "ClassDIntegrationAcceptance",
@@ -403,6 +412,9 @@ C2NotEstablished == "C2" \notin established
 C3LocalNotEstablished == "C3Local" \notin established
 C3LocalityNotEstablished == "C3Locality" \notin established
 C4NotEstablished == "C4" \notin established
+ClassABoundaryHittingHighGapsNotEstablished == "ClassABoundaryHittingHighGaps" \notin established
+ClassABoundaryHittingLowGapsNotEstablished == "ClassABoundaryHittingLowGaps" \notin established
+ClassCBoundaryHittingLowGapsNotEstablished == "ClassCBoundaryHittingLowGaps" \notin established
 ClassDBoundaryHittingNotEstablished == "ClassDBoundaryHitting" \notin established
 ClassDFiniteBPANotEstablished == "ClassDFiniteBPA" \notin established
 ClassDIntegrationAcceptanceNotEstablished == "ClassDIntegrationAcceptance" \notin established

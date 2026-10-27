@@ -204,6 +204,36 @@
       "leaks": "open sufficiency premise of the C4 route"
     },
     {
+      "id": "ClassABoundaryHittingHighGaps",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "for every gap d >= 5 and eps in {-1,+1}, boundary hitting holds for every PIP member n = d l + r with l >= 5 (n >= 5d) of the class-A line (n+d,n,n+eps); the strip n < 5d is not asserted",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/class-a-gap-theorem-2026-10-23.md, d-uniform regime certificates; exact-rational box-power repair and independent audit in docs/class-a-gap-independent-audit-2026-10-23.md; computer-assisted, human review pending; merged PRs #335, #340"
+    },
+    {
+      "id": "ClassABoundaryHittingLowGaps",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every PIP member of the determinant-two class-A lines (n+d,n,n+eps), eps in {-1,+1}, with gap 1 <= d <= 4, each line on its whole PIP domain",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: docs/class-a-minus-line-2026-10-22.md and docs/class-a-carrier-closure-2026-10-22.md (d=1); docs/class-a-d2-plus-rays-2026-10-22.md and docs/class-a-residue-rays-2026-10-22.md (d=2,3); docs/class-a-d4-rays-2026-10-23.md (d=4); scope per docs/direct-attack-frontier-2026-10-23.md; computer-assisted, human review pending; merged PRs #310, #317, #323, #326, #327"
+    },
+    {
+      "id": "ClassCBoundaryHittingLowGaps",
+      "kind": "claim",
+      "label": "Repository-proved",
+      "provenance": "theorem-backed",
+      "statement": "boundary hitting holds for every PIP member of the determinant-two class-C lines (n+d,n,n-d+eps), eps in {-1,+1}, with gap 1 <= d <= 5, each line on its whole PIP domain",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "record_kind": "repository_theorem",
+      "source": "source: gaps 1-3: the six class-C lines of Theorem L'' (docs/p1b-boundary-hitting-progress-2026-10-08.md); gap 4: docs/issue139-ac-gap4-2026-10-22.md; gap 5: docs/issue139-gap5-2026-10-23.md; computer-assisted, human review pending; merged PRs #246, #326, #328"
+    },
+    {
       "id": "ClassDBoundaryHitting",
       "kind": "claim",
       "label": "Repository-proved",
@@ -1247,6 +1277,33 @@
       ]
     },
     {
+      "id": "class-A gaps d >= 5, n >= 5d",
+      "kind": "alias",
+      "label": "class-A gaps d >= 5, n >= 5d",
+      "provenance": "declared",
+      "members": [
+        "ClassABoundaryHittingHighGaps"
+      ]
+    },
+    {
+      "id": "class-A gaps d <= 4",
+      "kind": "alias",
+      "label": "class-A gaps d <= 4",
+      "provenance": "declared",
+      "members": [
+        "ClassABoundaryHittingLowGaps"
+      ]
+    },
+    {
+      "id": "class-C gaps d <= 5",
+      "kind": "alias",
+      "label": "class-C gaps d <= 5",
+      "provenance": "declared",
+      "members": [
+        "ClassCBoundaryHittingLowGaps"
+      ]
+    },
+    {
       "id": "Theorem W",
       "kind": "alias",
       "label": "Theorem W",
@@ -2112,6 +2169,14 @@
       "certainty": 1,
       "use_site": "TwoObstructionCompletion/DensityToPDSBridge",
       "leaks": "premise is imported-theorem"
+    },
+    {
+      "type": "implicative",
+      "source": "DetTwoBoundaryHittingLines",
+      "target": "ClassCBoundaryHittingLowGaps",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "ClassCBoundaryHittingLowGaps/DetTwoBoundaryHittingLines"
     },
     {
       "type": "implicative",
@@ -3027,6 +3092,30 @@
       "type": "synonymous",
       "source": "box-automaton certificate",
       "target": "BoxAutomatonCertificate",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "class-A gaps d <= 4",
+      "target": "ClassABoundaryHittingLowGaps",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "class-A gaps d >= 5, n >= 5d",
+      "target": "ClassABoundaryHittingHighGaps",
+      "provenance": "theorem-backed",
+      "certainty": 1,
+      "use_site": "aliases"
+    },
+    {
+      "type": "synonymous",
+      "source": "class-C gaps d <= 5",
+      "target": "ClassCBoundaryHittingLowGaps",
       "provenance": "theorem-backed",
       "certainty": 1,
       "use_site": "aliases"

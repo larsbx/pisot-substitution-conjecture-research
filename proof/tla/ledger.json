@@ -230,6 +230,15 @@
     "ClassDWedgeBoundaryHitting": [
       "Theorem W",
       "class-D wedge boundary hitting"
+    ],
+    "ClassABoundaryHittingLowGaps": [
+      "class-A gaps d <= 4"
+    ],
+    "ClassABoundaryHittingHighGaps": [
+      "class-A gaps d >= 5, n >= 5d"
+    ],
+    "ClassCBoundaryHittingLowGaps": [
+      "class-C gaps d <= 5"
     ]
   },
   "surfaces": {
@@ -266,12 +275,22 @@
         "path": "docs/class-d-assembly-audit-2026-10-21.md",
         "anchor": "| Combined determinant-two class D |",
         "window_lines": 0
+      },
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Class-D boundary hitting, every PIP member |",
+        "window_lines": 0
       }
     ],
     "ClassDFiniteBPA": [
       {
         "path": "docs/class-d-g1-corollary-2026-10-22.md",
         "anchor": "| Scoped finite BPA |",
+        "window_lines": 0
+      },
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Class-D finite BPA (scoped G1) |",
         "window_lines": 0
       }
     ],
@@ -592,6 +611,27 @@
       {
         "path": "docs/claim-status-and-source-map-2026-09-13.md",
         "anchor": "| Class-D wedge boundary hitting |",
+        "window_lines": 0
+      }
+    ],
+    "ClassABoundaryHittingLowGaps": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Class-A boundary hitting, gaps `d <= 4` |",
+        "window_lines": 0
+      }
+    ],
+    "ClassABoundaryHittingHighGaps": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Class-A boundary hitting, gaps `d >= 5`, `n >= 5d` |",
+        "window_lines": 0
+      }
+    ],
+    "ClassCBoundaryHittingLowGaps": [
+      {
+        "path": "docs/claim-status-and-source-map-2026-09-13.md",
+        "anchor": "| Class-C boundary hitting, gaps `d <= 5` |",
         "window_lines": 0
       }
     ],
@@ -2298,6 +2338,92 @@
         [
           "source",
           "docs/p1b-boundary-hitting-progress-2026-10-08.md, Theorem W and Corollary W1; computer-assisted, human review pending; merged through PR #246"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "ClassABoundaryHittingLowGaps": {
+      "id": "sha256:43592f943a04d427ebe94a1c5611139850e90ef936860d4872bc8d1855c4fe6a",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every PIP member of the determinant-two class-A lines (n+d,n,n+eps), eps in {-1,+1}, with gap 1 <= d <= 4, each line on its whole PIP domain",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/class-a-minus-line-2026-10-22.md and docs/class-a-carrier-closure-2026-10-22.md (d=1); docs/class-a-d2-plus-rays-2026-10-22.md and docs/class-a-residue-rays-2026-10-22.md (d=2,3); docs/class-a-d4-rays-2026-10-23.md (d=4); scope per docs/direct-attack-frontier-2026-10-23.md; computer-assisted, human review pending; merged PRs #310, #317, #323, #326, #327"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "ClassABoundaryHittingHighGaps": {
+      "id": "sha256:6f007d172615bd65a24fbd2568248fb160df7f25338b9a78ae36cdd91e1bf0b9",
+      "kind": "repository_theorem",
+      "statement": "for every gap d >= 5 and eps in {-1,+1}, boundary hitting holds for every PIP member n = d l + r with l >= 5 (n >= 5d) of the class-A line (n+d,n,n+eps); the strip n < 5d is not asserted",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "docs/class-a-gap-theorem-2026-10-23.md, d-uniform regime certificates; exact-rational box-power repair and independent audit in docs/class-a-gap-independent-audit-2026-10-23.md; computer-assisted, human review pending; merged PRs #335, #340"
+        ],
+        [
+          "human_review_pending",
+          "true"
+        ],
+        [
+          "computer_assisted",
+          "true"
+        ]
+      ],
+      "tags": []
+    },
+    "ClassCBoundaryHittingLowGaps": {
+      "id": "sha256:122a490165d26b2cf3cbcc7065f00743d76269f482aff86bc51f7cef77d3add7",
+      "kind": "repository_theorem",
+      "statement": "boundary hitting holds for every PIP member of the determinant-two class-C lines (n+d,n,n-d+eps), eps in {-1,+1}, with gap 1 <= d <= 5, each line on its whole PIP domain",
+      "scope": "primitive irreducible Pisot substitutions in the standing regime",
+      "depends_on": [
+        [
+          "sha256:a5ab3f78160bcd982c0c5e6866e19b12e71551f11d17462d1e195606bfc99e53",
+          "boundary hitting holds for every PIP member of the 47 one-parameter catch-up-free determinant-two lines declared by Theorems L, L' and L''",
+          "ClassCBoundaryHittingLowGaps/DetTwoBoundaryHittingLines",
+          "same",
+          "accepted"
+        ]
+      ],
+      "evidence": [
+        [
+          "proof_reviewed",
+          "true"
+        ],
+        [
+          "source",
+          "gaps 1-3: the six class-C lines of Theorem L'' (docs/p1b-boundary-hitting-progress-2026-10-08.md); gap 4: docs/issue139-ac-gap4-2026-10-22.md; gap 5: docs/issue139-gap5-2026-10-23.md; computer-assisted, human review pending; merged PRs #246, #326, #328"
         ],
         [
           "human_review_pending",

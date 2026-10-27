@@ -36,6 +36,9 @@ source = "sources/issue-45/realization-coincidence-rank-audit.md, open obligatio
 claim = "FiniteCollarDeath"
 source = "docs/p1-overlap-collar-2026-09-16.md, finite evidence only; no collar-completeness theorem"
 [[evidence]]
+claim = "ClassBTopLayerLabelRays"
+source = "docs/class-b-label-rays-2026-10-23.md, finite label-ray evidence on 289 complete graphs; no infinite top-layer certificate"
+[[evidence]]
 claim = "BPATerminationInterface"
 source = "docs/bpa-literature-bridge.md"
 [[evidence]]
