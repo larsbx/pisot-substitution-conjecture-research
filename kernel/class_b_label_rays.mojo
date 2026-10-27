@@ -10,7 +10,7 @@ from psc.bpa import substitution_incidence
 from finite_linear_algebra.mat3 import Mat3
 
 
-def label_block(plus: Bool, gap: Int, q: Int, cap: Int = 20000, witnesses: Bool = False) raises -> String:
+def label_block(plus: Bool, gap: Int, q: Int, cap: Int = 20000, witnesses: Bool = False, edges: Bool = False) raises -> String:
     if gap < 1 or gap > 5 or q < 1 or q > 48 or cap < 1 or cap > 20000:
         raise Error("bounded pilot domain: 1<=gap<=5, 1<=q<=48, 1<=cap<=20000")
     var t = top_layer_member(plus, gap - 1, q)
@@ -33,7 +33,7 @@ def label_block(plus: Bool, gap: Int, q: Int, cap: Int = 20000, witnesses: Bool 
         for coordinate in w:
             if coordinate < -20000 or coordinate > 20000:
                 raise Error("offset coordinate budget exhausted")
-        rows.append([v.top, v.bottom, w[0], w[1], w[2], depths[i]])
+        rows.append([v.top, v.bottom, w[0], w[1], w[2], depths[i], i])
     for i in range(1, len(rows)):
         var x = rows[i].copy()
         var j = i
@@ -42,11 +42,33 @@ def label_block(plus: Bool, gap: Int, q: Int, cap: Int = 20000, witnesses: Bool 
             j -= 1
         rows[j] = x^
     var out = "M " + String(q) + " " + String(graph.size()) + " " + String(deepest) + "\n"
+    var rank = List[Int](length=graph.size(), fill=0)
+    for r in range(len(rows)):
+        rank[rows[r][6]] = r
     for row in rows:
         out += "V"
-        for x in row:
-            out += " " + String(x)
+        for h in range(6):
+            out += " " + String(row[h])
         out += "\n"
+    if edges:
+        # Every adjacency edge, parents and children both in sorted label order.
+        for row in rows:
+            var children = List[Int]()
+            for child in graph.adj[row[6]]:
+                var r = rank[child]
+                var h = len(children)
+                children.append(r)
+                while h > 0 and children[h - 1] > r:
+                    children[h] = children[h - 1]
+                    h -= 1
+                children[h] = r
+            for r in children:
+                out += "E"
+                for h in range(5):
+                    out += " " + String(row[h])
+                for h in range(5):
+                    out += " " + String(rows[r][h])
+                out += "\n"
     if witnesses:
         var matrix = Mat3(substitution_incidence(tables.sigma))
         for z in range(graph.size()):
@@ -100,7 +122,8 @@ def label_block(plus: Bool, gap: Int, q: Int, cap: Int = 20000, witnesses: Bool 
 def main() raises:
     var args = argv()
     if (len(args) != 4 and len(args) != 5) or (String(args[1]) != "plus" and String(args[1]) != "minus"):
-        raise Error("usage: plus|minus GAP Q [witnesses]")
-    if len(args) == 5 and String(args[4]) != "witnesses":
+        raise Error("usage: plus|minus GAP Q [witnesses|edges]")
+    var mode = String(args[4]) if len(args) == 5 else String("")
+    if mode != "" and mode != "witnesses" and mode != "edges":
         raise Error("unknown export mode")
-    print(label_block(String(args[1]) == "plus", Int(String(args[2])), Int(String(args[3])), 20000, len(args) == 5 and String(args[4]) == "witnesses"), end="")
+    print(label_block(String(args[1]) == "plus", Int(String(args[2])), Int(String(args[3])), 20000, mode == "witnesses", mode == "edges"), end="")

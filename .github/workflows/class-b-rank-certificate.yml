@@ -1,0 +1,55 @@
+name: Class-B piecewise rank certificate
+on:
+  pull_request:
+    paths:
+      - 'kernel/class_b_rank_certificate.mojo'
+      - 'kernel/class_b_label_rays.mojo'
+      - 'kernel/psc/class_b_rank_certificate.mojo'
+      - 'kernel/tests/test_class_b_rank_certificate.mojo'
+      - 'oracles/python/class_b_rank_*.py'
+      - 'tests/test_class_b_rank_certificate.py'
+      - 'evidence/class-b-rank-certificate-2026-10-27/**'
+      - '.github/workflows/class-b-rank-certificate.yml'
+  workflow_dispatch:
+jobs:
+  rank-certificate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'pytest>=7'
+      - name: Install Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Native contract, exact all-parameter check
+        working-directory: kernel
+        run: |
+          mkdir -p build/class-b-rank build/edges
+          pixi run --locked mojo run -I . tests/test_class_b_rank_certificate.mojo > build/class-b-rank/native-test.log
+          pixi run --locked mojo build -I . class_b_rank_certificate.mojo -o build/rank-cert
+          pixi run --locked mojo build -I . class_b_label_rays.mojo -o build/class-b-label-rays
+          build/rank-cert check ../evidence/class-b-rank-certificate-2026-10-27/plus-g1-r0.cert > build/class-b-rank/check.log
+          cmp build/class-b-rank/check.log ../evidence/class-b-rank-certificate-2026-10-27/check.log
+      - name: Regenerate floor, last training and holdout exports; replay both checkers
+        run: |
+          P=evidence/class-b-rank-certificate-2026-10-27
+          for q in 10 26 27 42; do
+            kernel/build/class-b-label-rays plus 1 $q edges > kernel/build/edges/plus-g1-q$q.edges
+            (cd kernel/build/edges && grep " plus-g1-q$q.edges\$" "$GITHUB_WORKSPACE/$P/edge-exports.sha256" | sha256sum -c)
+            kernel/build/rank-cert replay $P/plus-g1-r0.cert kernel/build/edges/plus-g1-q$q.edges >> kernel/build/class-b-rank/replay.log
+            grep "^RANK_REPLAY_PASS q $q " $P/replay.log >> kernel/build/class-b-rank/expected.log
+          done
+          cmp kernel/build/class-b-rank/replay.log kernel/build/class-b-rank/expected.log
+          python oracles/python/class_b_rank_certificate_oracle.py $P/plus-g1-r0.cert kernel/build/edges/plus-g1-q{10,26,27,42}.edges > kernel/build/class-b-rank/oracle.log
+          diff <(tail -n +2 kernel/build/class-b-rank/oracle.log | sed 's/^ORACLE_//') kernel/build/class-b-rank/replay.log
+          python -m pytest -q tests/test_class_b_rank_certificate.py
+          (cd $P && sha256sum -c SHA256SUMS)
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-b-rank-certificate
+          path: kernel/build/class-b-rank/
