@@ -9,7 +9,7 @@ from psc.class_a_boundary_children import (
 from psc.class_a_boundary_e2_children import verify_e2_packet
 from psc.class_a_boundary_h4_children import (
     certify_h4_children, h4_source, h4_child_allowed, h4_child_star,
-    h4_image, verify_h4_packet,
+    h4_image, verify_h4_packet, h4_path, h4_rank, verify_h4_path,
 )
 from psc.overlap_seed_patch import (
     build_seed_overlap_tables_screened, selected_overlap_child,
@@ -28,6 +28,7 @@ def main() raises:
     var members=0
     var pairs=0
     var accepted=0
+    var selected_edges=0
     for k in range(6):
         for t in range(6):
             members+=1
@@ -45,6 +46,15 @@ def main() raises:
             # real source of H4 throughout the chamber.
             verify_e2_packet(tables,2,k,t,
                 BoundaryEdge(A+1,2*n+1,H))
+            var path=h4_path(k,t)
+            assert_true(len(path)==5)
+            verify_h4_path(tables,k,t,path)
+            assert_true(path[0].i==2*n+1 and path[0].j==0)
+            assert_true(path[0].target==BoundaryLabel(2,0,1,2,-4))
+            assert_true(h4_rank(h4_source())==5)
+            assert_true(h4_rank(path[0].target)==4)
+            assert_true(h4_rank(path[len(path)-1].target)==0)
+            selected_edges+=len(path)
             var star=h4_child_star(k,t)
             assert_true(len(star)==2*t+5)
             var seen=Dict[Int,Bool]()
@@ -73,6 +83,7 @@ def main() raises:
                         hits+=1
                         accepted+=1
             assert_true(hits==len(star))
+    assert_true(selected_edges==5*members)
     for flag in reached:
         assert_true(flag)
     var refused=False
@@ -104,8 +115,30 @@ def main() raises:
     except:
         refused=True
     assert_true(refused)
+    # Refuse a mutated middle target despite the correct final C.
+    var sample=build_seed_overlap_tables_screened(
+        class_member(CLASS_A,8,3,2))
+    var correct=h4_path(0,0)
+    var corrupted=List[BoundaryEdge]()
+    for e in correct:
+        corrupted.append(BoundaryEdge(e.i,e.j,e.target))
+    var old=corrupted[2].target
+    corrupted[2]=BoundaryEdge(corrupted[2].i,corrupted[2].j,
+        BoundaryLabel(old.top,old.bottom,old.x,old.c,old.y+1))
+    refused=False
+    try:
+        verify_h4_path(sample,0,0,corrupted)
+    except:
+        refused=True
+    assert_true(refused)
+    refused=False
+    try:
+        _=h4_rank(BoundaryLabel(0,0,8,8,8))
+    except:
+        refused=True
+    assert_true(refused)
     print("CLASS_A_BOUNDARY_H4_FINITE members",members,
           "pairs",pairs,"accepted",accepted,
-          "labels=13","all_attained=true",
+          "labels=13","all_attained=true","selected_paths=5_per_member",
           "e2_envelope_subset=true","BH=false")
-    require_contract("minus boundary H4=x/y (0,-2,4): exact all k,t nine-kind child star, 2t+5 ordered edges, 13 labels inside E2 image; actual Dxx ancestry, all Cartesian Parikh/Perron comparisons, corrupt/invalid edge refusals; no closure or BH")
+    require_contract("minus boundary H4=x/y (0,-2,4): exact all k,t nine-kind child star, 2t+5 ordered edges, 13 labels inside E2 image; actual Dxx ancestry, all Cartesian Parikh/Perron comparisons, corrupt/invalid edge refusals; uniform five-edge selected typed-coincidence exit and restricted rank; no closure or universal BH")
