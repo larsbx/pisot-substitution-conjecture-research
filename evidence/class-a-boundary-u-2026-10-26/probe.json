@@ -1,4 +1,13 @@
 {
+  "V_accepted": 117,
+  "V_pairs": 61308,
+  "V_unique_child": [
+    1,
+    0,
+    0,
+    1,
+    -1
+  ],
   "accepted": 2925,
   "four_cycle_members": 114,
   "image_labels": 12,

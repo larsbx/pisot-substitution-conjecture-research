@@ -10,6 +10,9 @@ def test_complete_U_carrier_and_actual_four_cycle():
     assert data["members"] == 117
     assert data["image_labels"] == 12
     assert data["four_cycle_members"] == 114
+    assert data["V_pairs"] == data["pairs"]
+    assert data["V_accepted"] == data["members"]
+    assert data["V_unique_child"] == [1,0,0,1,-1]
 
 
 def test_unavailable_U_occurrence_refuses():

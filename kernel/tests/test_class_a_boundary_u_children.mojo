@@ -8,7 +8,7 @@ from psc.class_a_boundary_children import (
 )
 from psc.class_a_boundary_u_children import (
     certify_u_children, u_child_allowed, u_child_star, verify_u_packet,
-    u_target_envelope, reverse_label,
+    u_target_envelope, reverse_label, v_child_allowed, v_unique_child, verify_v_packet,
 )
 from psc.overlap_seed_patch import (
     build_seed_overlap_tables_screened, selected_overlap_child, interior_overlap_cached,
@@ -21,6 +21,7 @@ def main() raises:
     var pairs=0
     var accepted=0
     var cycles=0
+    var v_pairs=0
     var envelope=u_target_envelope()
     var attained=List[Bool]()
     for _ in envelope:
@@ -71,6 +72,22 @@ def main() raises:
                 verify_member_edge(tables,-1,k,n,d,reverse_label(T1),t+1,0,reverse_label(parent))
                 verify_member_edge(tables,-1,k,n,d,reverse_label(parent),1,d+5,T1)
                 cycles+=1
+            var V=BoundaryLabel(2,0,0,-1,2)
+            verify_u_packet(tables,k,t,BoundaryEdge(d+2,0,V))
+            var ve=v_unique_child(k,t)
+            verify_v_packet(tables,k,t,ve)
+            var vs=geometric_state(tables,V)
+            for i in range(n+1):
+                for j in range(A+2):
+                    v_pairs+=1
+                    var vt=member_transport(-1,k,n,d,V,i,j)
+                    var va=selected_overlap_child(tables,vs,i,j)
+                    assert_true(va==geometric_state(tables,vt))
+                    var overlaps=interior_overlap_cached(tables,cache,va)
+                    assert_true(overlaps==v_child_allowed(k,t,i,j))
+                    assert_true(overlaps==(i==ve.i and j==ve.j))
+                    if overlaps:
+                        assert_true(vt==ve.target)
             assert_true(not u_child_allowed(k,t,0,0))
             assert_true(not u_child_allowed(k,t,1,1))
             assert_true(not u_child_allowed(k,t,A+1,n))
@@ -102,7 +119,26 @@ def main() raises:
     except:
         failed=True
     assert_true(failed)
+    failed=False
+    try:
+        _=v_child_allowed(0,0,4,0)
+    except:
+        failed=True
+    assert_true(failed)
+    failed=False
+    try:
+        verify_v_packet(tables,0,0,BoundaryEdge(3,0,BoundaryLabel(1,0,0,0,-1)))
+    except:
+        failed=True
+    assert_true(failed)
+    failed=False
+    try:
+        verify_v_packet(tables,0,0,BoundaryEdge(0,0,
+            member_transport(-1,0,3,5,BoundaryLabel(2,0,0,-1,2),0,0)))
+    except:
+        failed=True
+    assert_true(failed)
     print("CLASS_A_BOUNDARY_U_FINITE members=56", "pairs",pairs,
-          "accepted",accepted,"four_cycle_members",cycles,
+          "accepted",accepted,"four_cycle_members",cycles,"V_pairs",v_pairs,
           "image_labels=12", "all_labels_attained=true", "BH=false")
-    require_contract("class-A minus boundary U all nine child kinds; complete linear-time occurrence carrier and exact 12-label image; every finite child checked against full Parikh/Perron geometry, orientation reversal and actual four-cycle; illegal and disjoint occurrences and changed targets refused; no global closure, all-edge descent or BH")
+    require_contract("class-A minus boundary U all nine child kinds; complete linear-time occurrence carrier and exact 12-label image; every finite child checked against full Parikh/Perron geometry, orientation reversal and actual four-cycle, V unique child W with exhaustive pair replay; illegal and disjoint occurrences and changed targets refused; no global closure, all-edge descent or BH")

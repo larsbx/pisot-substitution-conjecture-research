@@ -34,6 +34,7 @@ def envelope():
 
 def probe():
     rows, witnesses, cycles = [], {}, 0
+    v_pairs = 0
     for k in range(13):
         for t in range(9):
             g = Geometry(-1,k,t)
@@ -60,6 +61,10 @@ def probe():
                     assert g.interior(source) and g.interior(target)
                     assert g.child(source,i,j) == target
                 cycles += 1
+            V, W = (2,0,0,-1,2), (1,0,0,1,-1)
+            assert g.child(U,g.d+2,0) == V and g.interior(V)
+            assert set(g.edges(V)) == {(g.n,0,W)}
+            v_pairs += len(g.words[2])*len(g.words[0])
             # Legal words do not suffice: the first/first pair is disjoint.
             assert not g.interior(g.child(U,0,0))
             assert not g.interior(g.child(U,1,1))
@@ -70,6 +75,7 @@ def probe():
     return dict(scope="finite independent replay; U outgoing image only; no closure or BH",
                 members=len(rows),pairs=sum(r["pairs"] for r in rows),
                 accepted=sum(r["accepted"] for r in rows),four_cycle_members=cycles,
+                V_pairs=v_pairs,V_accepted=len(rows),V_unique_child=[1,0,0,1,-1],
                 image_labels=len(witnesses),
                 witnesses=[dict(target=list(w),**v) for w,v in sorted(witnesses.items())],rows=rows)
 

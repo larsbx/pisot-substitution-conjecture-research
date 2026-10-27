@@ -69,7 +69,9 @@ The rounding proof uses only the stated open bounds:
 The first exclusions use d>=5 and b<2. Last/last is disjoint because
 2>b. These exhaust the nine kinds and prove the full table over all k,t.
 The canonical symbolic kernel independently checks the full indexed transport
-polynomials in Q[t,k] and the parameter cancellations. Its finite member API
+polynomials in Q[t,k] and the parameter cancellations. It checks the legal
+run-index basis 1,2 in each free index; affine dependence then fixes both
+index coefficients while n,d remain symbolic. Its finite member API
 uses checked machine arithmetic and refuses overflow; that API is not itself
 an enumeration of unbounded integers.
 
@@ -118,6 +120,34 @@ The loop is not an independently certified closed obstruction: alternative
 children have not been eliminated, and the union of packets is not proved
 forward closed.
 
+### The alternative V has exactly one child
+
+The distinct V=(y,x,0,-1,2) child has shift 2-b=1-1/beta, hence
+inflated shift beta-1. Exact clearing of the characteristic polynomial gives
+beta-a=n+1/beta: multiplying the difference by beta*(beta-1) and
+subtracting beta-1 leaves exactly the minus characteristic cubic. This
+identity is checked coefficientwise by the canonical polynomial kernel.
+
+For every actual V child the complete nine-kind classification is:
+
+| Top / bottom kind | Exact conclusion |
+| --- | --- |
+| first/first, first/run, first/last | beta-1>a, and a bottom prefix cannot reduce it |
+| run/first | beta-a-i >= 1+1/beta>1 for i<=n-1 |
+| run/run | beta-1+j-i >= beta-n+1>1 |
+| run/last | beta+A-i>1 |
+| last/first | only (n,0), shift 1/beta, target W=(c,x,0,1,-1) |
+| last/run | beta-n+j-1 >= beta-n>2>b |
+| last/last | beta+d>a |
+
+The top word is sigma(y), whose last ordinal is n, and the bottom is
+sigma(x). Its full incidence update is M(0,-1,2)=(1,1,n-2).
+Subtracting the last top prefix (1,0,n-1) gives precisely (0,1,-1).
+Thus V->W is forced throughout the unbounded minus chamber. W has shift
+b-1=1/beta>0, strictly inside both actual intervals. This supplies neither
+a zero-offset hit nor an asserted successful boundary packet. W's alternative
+children are the next remaining symbolic case.
+
 ### Evidence and replay
 
 Canonical: kernel/psc/class_a_boundary_u_children.mojo; driver
@@ -130,14 +160,17 @@ Perron-field interior geometry.
 Native regression kernel/tests/test_class_a_boundary_u_children.mojo checks
 all child pairs of 56 members (k=0..7,t=0..6), no duplicate synthesized
 occurrences, exact 2n-1 cardinality, all 12 attained labels, orientation reversal
-and every edge of the actual four-cycle when n>=5. A hosted receipt is required
+and every edge of the actual four-cycle when n>=5. It also exhausts every V
+child pair and verifies the unique typed target W. A hosted receipt is required
 before acceptance; a written native test is not a native pass.
 
 Independent oracle oracles/python/class_a_boundary_u_children.py constructs
 literal word prefixes and uses the separate integer-polynomial/Fraction
 Perron embedding with its 512-refinement refusal budget. The archived replay
 covers **117 members, 61,308 ordered pairs, 2,925 accepted** and 114 actual
-four-cycle specimens. These are finite evidence, not the universal proof.
+four-cycle specimens. A further 61,308 independent V child pairs have exactly
+117 accepted occurrences, all the single (n,0) target W. These are finite
+evidence, not the universal proof.
 The JSON and SHA256SUMS are in evidence/class-a-boundary-u-2026-10-26/.
 
 From repository root:
@@ -152,6 +185,18 @@ From kernel/:
 pixi run --locked mojo run -I . tests/test_class_a_boundary_u_children.mojo
 pixi run --locked mojo run -I . class_a_boundary_u_children.mojo
 ```
+Local locked native replay passed: 16,548 U pairs / 1,008 accepted and a
+further 16,548 V pairs / 56 unique children; all 12 U labels attained and
+53 actual four-cycle members. Both certificate drivers and the inherited
+T_m regressions also passed (47,950 full-table pairs and 3,126 endpoint
+ordinals). The archived native-local.txt pins the source bytes and preserves
+the command output; it does not assert that hosted CI has run. The local
+TLA gate passed all 18 expected model outcomes. The local Lean launcher
+failed before compilation with "failed to locate application"; no fresh local
+Lean pass is claimed. formal-local.txt preserves both outcomes. The unchanged
+Lean source bank has the earlier accepted #348 hosted proof/audit receipt;
+fresh hosted gates remain pending.
+
 Dedicated workflow: .github/workflows/class-a-boundary-u.yml. No Lean source,
 TLA dependency model or governed theorem status changes. Existing formal gates
 remain applicable; the whole U table has not been formalized in Lean.
@@ -163,6 +208,8 @@ disjoint first/first, same-index runs and last/last pairs, altered typed target
 offsets, duplicate occurrences, a missing envelope witness and a universal
 all-child strict rank are explicit counter-controls. Unresolved exact signs or
 machine overflow refuse instead of silently producing a mathematical verdict.
+V additionally refuses unavailable ordinals, an altered W packet and its
+word-legal but disjoint first/first child.
 
 ### Non-claims / remaining gaps
 
@@ -170,8 +217,9 @@ The 12-label image is not forward closure; neither it nor the earlier 50-label
 image is claimed to be a complete occurrence-compatible descent mechanism.
 The universal four-cycle excludes only a strict rank on all edges, while an
 existential rank may choose another edge or a more structured packet.
-The next concrete unbounded source V=(y,x,0,-1,2) is always reached from U
-at (d+2,0). Its full outgoing table and productive target compatibility remain
-unresolved. Other eleven U targets and the earlier image labels also require
+The uniform alternative U->V at (d+2,0) now has the forced continuation
+V->W at (n,0), with W=(c,x,0,1,-1). W's complete outgoing table and
+productive target compatibility remain unresolved. Other U targets and the
+earlier image labels also require
 closure or descent, with the independent realization/internal-space hypotheses
 still retained. Universal BH/#139, A1-prime, G1 and PSC remain open.
