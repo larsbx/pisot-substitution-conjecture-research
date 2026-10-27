@@ -1,0 +1,6 @@
+Failed to initialize Crashpad.  Crash reporting will not be available.  Cause: while locating crashpad handler: unable to locate crashpad handler executable
+Included from /workspace/scratch/a6be0afb5894/audit335/kernel/tests/test_gap_form.mojo:4:
+./psc/gap_form.mojo:194:21: warning: assignment to 'kappa' was never used; assign to '_' instead?
+        var kappa = 0
+                    ^
+contract-receipt: gap forms c1 + cl l + cd d + cld l d + cr r on class-A residue regimes: Lemma 1 (quadrant positivity) and the regime r-reduction agree with brute force; Lemma 2 (uniform division by d) agrees with brute force on every decided rounding and refuses every rounding that varies with d or r, a pure l term, and |cr| >= 2 on the middle regime; Lemma 2' one-sided bounds bracket every exact rounding at every member; malformed regimes refuse

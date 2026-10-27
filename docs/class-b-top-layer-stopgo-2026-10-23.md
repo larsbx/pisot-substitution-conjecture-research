@@ -160,6 +160,22 @@ class B. The new pieces it needs are:
 - class B's Perron polynomial and tile lengths;
 - the child-index rounding by `g`.
 
+## Step 2 result (2026-10-27): per-gap certificates on all eight pilot lines
+
+All 21 fitted rays certify: plus `g = 1..5` and minus `g = 1..3`, with floors
+`q0 = 9..22`. Each ray gets uniform closure of its carrier (Theorem A_B) and
+strict descent of the q-free potential `X = |k| + b(type, sign k)`, `b ≤ 6`
+(Theorem B_B). Members below the floors are exact complete graphs, so every
+PIP member of the eight lines has BH. The new pieces are the closed-form
+geometry `T = (β+1)(uβ − eps d) − gβk` and a potential that is the least fixed
+point of the descent inequality rather than a depth envelope. The certificate
+and the independent verifier agree on every count. See
+[class-b-ray-certificate-2026-10-27.md](class-b-ray-certificate-2026-10-27.md).
+The stop condition (non-affine labels, or failed rank inequalities) was not
+met on any ray. Step 2b, a g-uniform regime certificate, remains: the
+potentials are not uniform across rays, while the carriers keep +112 labels
+per step.
+
 ## Non-claims
 
 No class-B top-layer member is certified by this note. The profile is not a

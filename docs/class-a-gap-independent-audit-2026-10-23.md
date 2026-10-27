@@ -2,7 +2,10 @@
 
 Audited submission: `f1ce331bf051385acf8589d88088cbc2271d1350`.
 During this audit #335 merged externally at `f5241334a8e5c5fcd91f0033d2592b9e122dee50`;
-this correction is based on that main revision. No human review is asserted.
+this correction was published as #340 and merged externally at
+`4fe69b636d9092b36758b4f2b42e76dc6b7eaa44` before its hosted checks
+completed. This follow-up records the stronger counterexample and fresh
+receipts. No human review is asserted.
 
 ## Mathematical scope and checks
 
@@ -48,7 +51,12 @@ separate and requires the dedicated hosted job below.
 
 1. **Generic box-denominator overflow:** `53^11` overflows signed Int64.
    Before the correction, `box_polynomial(1+h^11,1,53)[11][11]` has sign -1,
-   although its exact value is `1/53^11>0`. This violates the generic sign
+   although its exact value is `1/53^11>0`. Worse, the original verifier
+   certifies `(1-53h)^2-h^11` as positive at `(l0,d0)=(1,53)`, while exact
+   evaluation at `u=999999999999/1000000000000`, `t=1/53` (hence
+   `h=999999999999/53000000000000`) is negative. This interior point obeys
+   every box constraint. The corrected verifier refuses the sign-changing
+   polynomial. This violates the generic sign
    verifier's arithmetic contract even with both floors below 64. Reciprocal
    powers now use the existing unbounded `Q` arithmetic; the regression
    checks equality with the exact rational, not only its sign. The submitted
@@ -77,16 +85,21 @@ its own corrected local `MODULAR_HOME` paths; normal `pixi install --locked`
 was blocked downloading a conda dependency. This is local tooling evidence,
 not a successful locked hosted installation.
 
-- Python ray, parity and integrity suite: 114 collected tests passed.
+- Python ray, parity and integrity suite: 115 collected tests passed.
 - Native polynomial/hull regression, including the new overflow control: passed.
-- Native gap arithmetic: passed; final floor-boundary replay is separately recorded.
+- Native gap arithmetic, including floor 64 acceptance and 65 refusal: passed.
 - Native regime-descent test: passed, including altered tables and occurrences.
+- Native 25-ray suite: passed, including exact prefix graphs, differential
+  occurrence replay at two members and damaged-table controls.
 - Claim-governance audit and archived manifest: passed.
 - Six independent Fraction/Sturm stress rays at `d=1,000,003`, low/high/middle
   of both signs, certify closure and descent for every `l>=64`. These test
   six fixed rays, not uniformity in `d`.
-- Full native assembly and hosted acceptance: pending at initial publication;
-  no integration acceptance is inferred from #335 having merged externally.
+- Full native assembly: passed for both signs, all 18 regimes, four minus
+  finite rays, seven plus exceptional rays and three exact prefix graphs.
+  The counts reproduce the archived theorem receipts. The scope stays n>=5d.
+- Hosted acceptance: still queued at the latest inspection; no completed
+  hosted acceptance is inferred from #335 or #340 having merged externally.
 
 Replay with the normal pinned environment, from `kernel/`:
 
@@ -111,3 +124,5 @@ python oracles/python/class_a_gap_regime_adversarial.py
 The `n<5d` strip remains open. This audit does not close class C, universal
 #139/#84, G1 or PSC. It supplies no independent human-review event. Historical
 receipts are preserved; fresh CI is required on the corrective revision.
+
+Fresh local receipts and source digests: `evidence/class-a-gap-independent-audit-2026-10-23/`.
