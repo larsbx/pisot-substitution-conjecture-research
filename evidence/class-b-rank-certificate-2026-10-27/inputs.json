@@ -2,15 +2,15 @@
   "base_commit": "81c64058972356fd7e6bdc5fbae8bba98a4efa38",
   "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
   "synthesis_solver": "scipy 1.18.1 (HiGHS), proposal only",
-  "scope": "exact all-parameter rank conditions on plus and minus g=1; graph hypotheses replayed on plus q=10..42, minus q=16..42 only",
+  "scope": "exact all-parameter rank conditions on all 21 class-B top-layer residue rays; graph hypotheses replayed on every member from each floor through q=48 only",
   "sha256": {
     "kernel/psc/class_b_rank_certificate.mojo": "1719bef1894c4feb0b05c10c2c4472bfa46dee3410258fce88be60a633022e87",
     "kernel/class_b_rank_certificate.mojo": "b419fcbf236140588081e8c8557c5273c8b3168098c28c66e3bd221b5ec24bf8",
     "kernel/class_b_label_rays.mojo": "da329db2d58cbcca9c70adda184533c067e6cd19eecd432278c561521b36380e",
-    "kernel/tests/test_class_b_rank_certificate.mojo": "0461084c0a3acff6f59a4e75b61f08514ddef837f2d06a26339b31841e44b51b",
+    "kernel/tests/test_class_b_rank_certificate.mojo": "8fe2813955f49721640218890f4181d0419de475994dd7cc5e00771883fdb601",
     "oracles/python/class_b_rank_certificate_oracle.py": "45c73a0af6e5c9b5df10a9e0b5e53cd35428c68f5983b4cc6c3eee9eb9fd64b5",
     "oracles/python/class_b_rank_synthesis.py": "75ba2ed92a2613d76d19b0c42d3c4794665a7fec3b358ef5e13836efcab6ad33",
-    "tests/test_class_b_rank_certificate.py": "d6764caddd952ebaaf638c0941ac5771483a89424fff58eea9b7a01d56351626",
+    "tests/test_class_b_rank_certificate.py": "bc00e1f20a1148785a0c6bb5c12a39fed0d3760a43b70de708f4779a7fee0dfb",
     "kernel/pixi.lock": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8",
     "kernel/psc/overlap_seed_patch.mojo": "03541f062c104a61511a95b89755372d974c6f4a297f72e98bfb6c0d342c789b",
     "kernel/class_b_top_layer_profile.mojo": "228b29a7964391b2b1bfbe78cd6008cf1961df452deb7b75f04f1eb83c1dc1a0"

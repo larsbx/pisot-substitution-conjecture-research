@@ -1,0 +1,9 @@
+RANK_REPLAY_PASS q 16 vertices 935 edges_checked 927 carrier_points_without_vertex 0
+RANK_REPLAY_PASS q 20 vertices 1047 edges_checked 1039 carrier_points_without_vertex 0
+RANK_REPLAY_PASS q 24 vertices 1159 edges_checked 1151 carrier_points_without_vertex 0
+RANK_REPLAY_PASS q 28 vertices 1271 edges_checked 1263 carrier_points_without_vertex 0
+RANK_REPLAY_PASS q 32 vertices 1383 edges_checked 1375 carrier_points_without_vertex 0
+RANK_REPLAY_PASS q 36 vertices 1495 edges_checked 1487 carrier_points_without_vertex 0
+RANK_REPLAY_PASS q 40 vertices 1607 edges_checked 1599 carrier_points_without_vertex 0
+RANK_REPLAY_PASS q 44 vertices 1719 edges_checked 1711 carrier_points_without_vertex 0
+RANK_REPLAY_PASS q 48 vertices 1831 edges_checked 1823 carrier_points_without_vertex 0

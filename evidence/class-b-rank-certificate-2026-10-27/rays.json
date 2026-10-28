@@ -1,0 +1,674 @@
+[
+ {
+  "ray": "plus-g1-r0",
+  "branch": "plus",
+  "gap": 1,
+  "residue": 0,
+  "label_floor": 9,
+  "floor": 9,
+  "refused_floors": [],
+  "training": [
+   9,
+   26
+  ],
+  "replayed": [
+   9,
+   48,
+   40
+  ],
+  "holdout": 22,
+  "pieces": 403,
+  "symbolic_edges": 4951,
+  "segments": 1787,
+  "guided": 1677,
+  "completed": 102,
+  "certificate_edges": 2296,
+  "max_abs_abc": [
+   59,
+   60,
+   587
+  ]
+ },
+ {
+  "ray": "plus-g2-r0",
+  "branch": "plus",
+  "gap": 2,
+  "residue": 0,
+  "label_floor": 12,
+  "floor": 12,
+  "refused_floors": [],
+  "training": [
+   12,
+   30
+  ],
+  "replayed": [
+   12,
+   48,
+   19
+  ],
+  "holdout": 9,
+  "pieces": 315,
+  "symbolic_edges": 3503,
+  "segments": 1025,
+  "guided": 945,
+  "completed": 72,
+  "certificate_edges": 1274,
+  "max_abs_abc": [
+   29,
+   60,
+   293
+  ]
+ },
+ {
+  "ray": "plus-g2-r1",
+  "branch": "plus",
+  "gap": 2,
+  "residue": 1,
+  "label_floor": 11,
+  "floor": 11,
+  "refused_floors": [],
+  "training": [
+   11,
+   29
+  ],
+  "replayed": [
+   11,
+   47,
+   19
+  ],
+  "holdout": 9,
+  "pieces": 309,
+  "symbolic_edges": 3457,
+  "segments": 1035,
+  "guided": 947,
+  "completed": 80,
+  "certificate_edges": 1265,
+  "max_abs_abc": [
+   29,
+   60,
+   293
+  ]
+ },
+ {
+  "ray": "plus-g3-r0",
+  "branch": "plus",
+  "gap": 3,
+  "residue": 0,
+  "label_floor": 12,
+  "floor": 12,
+  "refused_floors": [],
+  "training": [
+   12,
+   30
+  ],
+  "replayed": [
+   12,
+   48,
+   13
+  ],
+  "holdout": 6,
+  "pieces": 277,
+  "symbolic_edges": 2905,
+  "segments": 729,
+  "guided": 651,
+  "completed": 70,
+  "certificate_edges": 877,
+  "max_abs_abc": [
+   19,
+   60,
+   234
+  ]
+ },
+ {
+  "ray": "plus-g3-r1",
+  "branch": "plus",
+  "gap": 3,
+  "residue": 1,
+  "label_floor": 16,
+  "floor": 16,
+  "refused_floors": [],
+  "training": [
+   16,
+   28
+  ],
+  "replayed": [
+   16,
+   46,
+   11
+  ],
+  "holdout": 6,
+  "pieces": 301,
+  "symbolic_edges": 3103,
+  "segments": 773,
+  "guided": 697,
+  "completed": 68,
+  "certificate_edges": 915,
+  "max_abs_abc": [
+   19,
+   60,
+   234
+  ]
+ },
+ {
+  "ray": "plus-g3-r2",
+  "branch": "plus",
+  "gap": 3,
+  "residue": 2,
+  "label_floor": 14,
+  "floor": 14,
+  "refused_floors": [],
+  "training": [
+   14,
+   29
+  ],
+  "replayed": [
+   14,
+   47,
+   12
+  ],
+  "holdout": 6,
+  "pieces": 287,
+  "symbolic_edges": 2935,
+  "segments": 723,
+  "guided": 647,
+  "completed": 68,
+  "certificate_edges": 873,
+  "max_abs_abc": [
+   19,
+   60,
+   234
+  ]
+ },
+ {
+  "ray": "plus-g4-r0",
+  "branch": "plus",
+  "gap": 4,
+  "residue": 0,
+  "label_floor": 16,
+  "floor": 16,
+  "refused_floors": [],
+  "training": [
+   16,
+   28
+  ],
+  "replayed": [
+   16,
+   48,
+   9
+  ],
+  "holdout": 5,
+  "pieces": 277,
+  "symbolic_edges": 2709,
+  "segments": 609,
+  "guided": 527,
+  "completed": 74,
+  "certificate_edges": 766,
+  "max_abs_abc": [
+   14,
+   60,
+   177
+  ]
+ },
+ {
+  "ray": "plus-g4-r1",
+  "branch": "plus",
+  "gap": 4,
+  "residue": 1,
+  "label_floor": 17,
+  "floor": 17,
+  "refused_floors": [],
+  "training": [
+   17,
+   29
+  ],
+  "replayed": [
+   17,
+   45,
+   8
+  ],
+  "holdout": 4,
+  "pieces": 259,
+  "symbolic_edges": 2549,
+  "segments": 581,
+  "guided": 501,
+  "completed": 72,
+  "certificate_edges": 731,
+  "max_abs_abc": [
+   14,
+   60,
+   177
+  ]
+ },
+ {
+  "ray": "plus-g4-r2",
+  "branch": "plus",
+  "gap": 4,
+  "residue": 2,
+  "label_floor": 18,
+  "floor": 18,
+  "refused_floors": [],
+  "training": [
+   18,
+   30
+  ],
+  "replayed": [
+   18,
+   46,
+   8
+  ],
+  "holdout": 4,
+  "pieces": 263,
+  "symbolic_edges": 2603,
+  "segments": 579,
+  "guided": 499,
+  "completed": 72,
+  "certificate_edges": 731,
+  "max_abs_abc": [
+   14,
+   60,
+   177
+  ]
+ },
+ {
+  "ray": "plus-g4-r3",
+  "branch": "plus",
+  "gap": 4,
+  "residue": 3,
+  "label_floor": 15,
+  "floor": 15,
+  "refused_floors": [],
+  "training": [
+   15,
+   27
+  ],
+  "replayed": [
+   15,
+   47,
+   9
+  ],
+  "holdout": 5,
+  "pieces": 283,
+  "symbolic_edges": 2773,
+  "segments": 639,
+  "guided": 553,
+  "completed": 78,
+  "certificate_edges": 782,
+  "max_abs_abc": [
+   14,
+   60,
+   177
+  ]
+ },
+ {
+  "ray": "plus-g5-r0",
+  "branch": "plus",
+  "gap": 5,
+  "residue": 0,
+  "label_floor": 20,
+  "floor": 20,
+  "refused_floors": [],
+  "training": [
+   20,
+   30
+  ],
+  "replayed": [
+   20,
+   45,
+   6
+  ],
+  "holdout": 3,
+  "pieces": 267,
+  "symbolic_edges": 2625,
+  "segments": 556,
+  "guided": 464,
+  "completed": 84,
+  "certificate_edges": 692,
+  "max_abs_abc": [
+   11,
+   60,
+   177
+  ]
+ },
+ {
+  "ray": "plus-g5-r1",
+  "branch": "plus",
+  "gap": 5,
+  "residue": 1,
+  "label_floor": 16,
+  "floor": 16,
+  "refused_floors": [],
+  "training": [
+   16,
+   26
+  ],
+  "replayed": [
+   16,
+   46,
+   7
+  ],
+  "holdout": 4,
+  "pieces": 261,
+  "symbolic_edges": 2553,
+  "segments": 526,
+  "guided": 430,
+  "completed": 88,
+  "certificate_edges": 652,
+  "max_abs_abc": [
+   11,
+   60,
+   177
+  ]
+ },
+ {
+  "ray": "plus-g5-r2",
+  "branch": "plus",
+  "gap": 5,
+  "residue": 2,
+  "label_floor": 17,
+  "floor": 17,
+  "refused_floors": [],
+  "training": [
+   17,
+   27
+  ],
+  "replayed": [
+   17,
+   47,
+   7
+  ],
+  "holdout": 4,
+  "pieces": 249,
+  "symbolic_edges": 2481,
+  "segments": 524,
+  "guided": 428,
+  "completed": 88,
+  "certificate_edges": 654,
+  "max_abs_abc": [
+   11,
+   60,
+   177
+  ]
+ },
+ {
+  "ray": "plus-g5-r3",
+  "branch": "plus",
+  "gap": 5,
+  "residue": 3,
+  "label_floor": 18,
+  "floor": 18,
+  "refused_floors": [],
+  "training": [
+   18,
+   28
+  ],
+  "replayed": [
+   18,
+   48,
+   7
+  ],
+  "holdout": 4,
+  "pieces": 245,
+  "symbolic_edges": 2359,
+  "segments": 500,
+  "guided": 406,
+  "completed": 86,
+  "certificate_edges": 630,
+  "max_abs_abc": [
+   11,
+   60,
+   177
+  ]
+ },
+ {
+  "ray": "plus-g5-r4",
+  "branch": "plus",
+  "gap": 5,
+  "residue": 4,
+  "label_floor": 19,
+  "floor": 19,
+  "refused_floors": [],
+  "training": [
+   19,
+   29
+  ],
+  "replayed": [
+   19,
+   44,
+   6
+  ],
+  "holdout": 3,
+  "pieces": 241,
+  "symbolic_edges": 2369,
+  "segments": 500,
+  "guided": 408,
+  "completed": 84,
+  "certificate_edges": 636,
+  "max_abs_abc": [
+   11,
+   60,
+   177
+  ]
+ },
+ {
+  "ray": "minus-g1-r0",
+  "branch": "minus",
+  "gap": 1,
+  "residue": 0,
+  "label_floor": 15,
+  "floor": 16,
+  "refused_floors": [
+   [
+    15,
+    "REFUSED: a segment is empty at the floor; raise the floor"
+   ]
+  ],
+  "training": [
+   16,
+   30
+  ],
+  "replayed": [
+   16,
+   48,
+   33
+  ],
+  "holdout": 18,
+  "pieces": 431,
+  "symbolic_edges": 4484,
+  "segments": 1301,
+  "guided": 1165,
+  "completed": 128,
+  "certificate_edges": 1970,
+  "max_abs_abc": [
+   59,
+   60,
+   758
+  ]
+ },
+ {
+  "ray": "minus-g2-r0",
+  "branch": "minus",
+  "gap": 2,
+  "residue": 0,
+  "label_floor": 18,
+  "floor": 20,
+  "refused_floors": [
+   [
+    18,
+    "REFUSED: a segment is empty at the floor; raise the floor"
+   ]
+  ],
+  "training": [
+   20,
+   30
+  ],
+  "replayed": [
+   20,
+   48,
+   15
+  ],
+  "holdout": 9,
+  "pieces": 240,
+  "symbolic_edges": 2646,
+  "segments": 748,
+  "guided": 626,
+  "completed": 114,
+  "certificate_edges": 1158,
+  "max_abs_abc": [
+   29,
+   60,
+   414
+  ]
+ },
+ {
+  "ray": "minus-g2-r1",
+  "branch": "minus",
+  "gap": 2,
+  "residue": 1,
+  "label_floor": 17,
+  "floor": 19,
+  "refused_floors": [
+   [
+    17,
+    "REFUSED: a segment is empty at the floor; raise the floor"
+   ]
+  ],
+  "training": [
+   19,
+   29
+  ],
+  "replayed": [
+   19,
+   47,
+   15
+  ],
+  "holdout": 9,
+  "pieces": 230,
+  "symbolic_edges": 2572,
+  "segments": 764,
+  "guided": 640,
+  "completed": 116,
+  "certificate_edges": 1172,
+  "max_abs_abc": [
+   29,
+   60,
+   414
+  ]
+ },
+ {
+  "ray": "minus-g3-r0",
+  "branch": "minus",
+  "gap": 3,
+  "residue": 0,
+  "label_floor": 18,
+  "floor": 24,
+  "refused_floors": [
+   [
+    18,
+    "REFUSED: a segment is empty at the floor; raise the floor"
+   ],
+   [
+    21,
+    "REFUSED: a segment is empty at the floor; raise the floor"
+   ]
+  ],
+  "training": [
+   24,
+   30
+  ],
+  "replayed": [
+   24,
+   48,
+   9
+  ],
+  "holdout": 6,
+  "pieces": 234,
+  "symbolic_edges": 2414,
+  "segments": 590,
+  "guided": 522,
+  "completed": 60,
+  "certificate_edges": 839,
+  "max_abs_abc": [
+   19,
+   60,
+   294
+  ]
+ },
+ {
+  "ray": "minus-g3-r1",
+  "branch": "minus",
+  "gap": 3,
+  "residue": 1,
+  "label_floor": 16,
+  "floor": 22,
+  "refused_floors": [
+   [
+    16,
+    "REFUSED: a segment is empty at the floor; raise the floor"
+   ],
+   [
+    19,
+    "REFUSED: a segment is empty at the floor; raise the floor"
+   ]
+  ],
+  "training": [
+   22,
+   28
+  ],
+  "replayed": [
+   22,
+   46,
+   9
+  ],
+  "holdout": 6,
+  "pieces": 250,
+  "symbolic_edges": 2570,
+  "segments": 630,
+  "guided": 552,
+  "completed": 70,
+  "certificate_edges": 873,
+  "max_abs_abc": [
+   19,
+   60,
+   295
+  ]
+ },
+ {
+  "ray": "minus-g3-r2",
+  "branch": "minus",
+  "gap": 3,
+  "residue": 2,
+  "label_floor": 17,
+  "floor": 23,
+  "refused_floors": [
+   [
+    17,
+    "REFUSED: a segment is empty at the floor; raise the floor"
+   ],
+   [
+    20,
+    "REFUSED: a segment is empty at the floor; raise the floor"
+   ]
+  ],
+  "training": [
+   23,
+   29
+  ],
+  "replayed": [
+   23,
+   47,
+   9
+  ],
+  "holdout": 6,
+  "pieces": 236,
+  "symbolic_edges": 2484,
+  "segments": 606,
+  "guided": 532,
+  "completed": 66,
+  "certificate_edges": 855,
+  "max_abs_abc": [
+   19,
+   60,
+   294
+  ]
+ }
+]

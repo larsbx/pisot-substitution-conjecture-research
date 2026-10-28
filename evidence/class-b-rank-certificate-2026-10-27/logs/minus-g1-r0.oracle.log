@@ -26,3 +26,9 @@ ORACLE_RANK_REPLAY_PASS q 39 vertices 4967 edges_checked 4959 carrier_points_wit
 ORACLE_RANK_REPLAY_PASS q 40 vertices 5079 edges_checked 5071 carrier_points_without_vertex 0
 ORACLE_RANK_REPLAY_PASS q 41 vertices 5191 edges_checked 5183 carrier_points_without_vertex 0
 ORACLE_RANK_REPLAY_PASS q 42 vertices 5303 edges_checked 5295 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 43 vertices 5415 edges_checked 5407 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 44 vertices 5527 edges_checked 5519 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 45 vertices 5639 edges_checked 5631 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 46 vertices 5751 edges_checked 5743 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 47 vertices 5863 edges_checked 5855 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 48 vertices 5975 edges_checked 5967 carrier_points_without_vertex 0

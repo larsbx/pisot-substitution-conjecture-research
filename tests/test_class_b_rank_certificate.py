@@ -1,5 +1,6 @@
 """Independent oracle: the toy rank passes, each tampering refuses, the packet passes."""
 import importlib.util
+import json
 from pathlib import Path
 import pytest
 ROOT = Path(__file__).resolve().parents[1]
@@ -35,10 +36,20 @@ def test_tampering_refuses(old, new, reason):
         m.check(m.parse(TOY.replace(old, new)))
 
 
-@pytest.mark.parametrize('name,size', [('plus-g1-r0', (1787, 2302)), ('minus-g1-r0', (1301, 1970))])
-def test_committed_certificates_pass(name, size):
-    cert = m.parse((ROOT/f'evidence/class-b-rank-certificate-2026-10-27/{name}.cert').read_text())
-    assert m.check(cert) == size
+PACKET = ROOT/'evidence/class-b-rank-certificate-2026-10-27'
+RAYS = json.loads((PACKET/'rays.json').read_text())
+
+
+def test_manifest_covers_every_residue_ray():
+    assert sorted((r['branch'], r['gap'], r['residue']) for r in RAYS) == sorted(
+        [('plus', g, r) for g in range(1, 6) for r in range(g)] + [('minus', g, r) for g in range(1, 4) for r in range(g)])
+
+
+@pytest.mark.parametrize('ray', RAYS, ids=lambda r: r['ray'])
+def test_committed_certificates_pass(ray):
+    cert = m.parse((PACKET/'certificates'/f"{ray['ray']}.cert").read_text())
+    assert (cert['gap'], cert['q0']) == (ray['gap'], ray['floor'])
+    assert m.check(cert) == (ray['segments'], ray['certificate_edges'])
 
 
 def test_replay_refuses_missing_edge_and_stray_vertex(tmp_path):

@@ -1,0 +1,13 @@
+ORACLE_RANK_CERT_PASS pieces 723 edges 873
+ORACLE_RANK_REPLAY_PASS q 14 vertices 1131 edges_checked 1123 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 17 vertices 1243 edges_checked 1235 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 20 vertices 1355 edges_checked 1347 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 23 vertices 1467 edges_checked 1459 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 26 vertices 1579 edges_checked 1571 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 29 vertices 1691 edges_checked 1683 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 32 vertices 1803 edges_checked 1795 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 35 vertices 1915 edges_checked 1907 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 38 vertices 2027 edges_checked 2019 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 41 vertices 2139 edges_checked 2131 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 44 vertices 2251 edges_checked 2243 carrier_points_without_vertex 0
+ORACLE_RANK_REPLAY_PASS q 47 vertices 2363 edges_checked 2355 carrier_points_without_vertex 0

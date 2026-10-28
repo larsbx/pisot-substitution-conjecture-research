@@ -26,6 +26,11 @@ def refuses(text: String, reason: String) -> Bool:
     return False
 
 
+def read_certificate(name: String) raises -> String:
+    with open("../evidence/class-b-rank-certificate-2026-10-27/certificates/" + name + ".cert", "r") as f:
+        return f.read()
+
+
 def main() raises:
     var toy = String(TOY)
     assert_equal(check_rank_certificate(RankCertificate(toy)), 1)
@@ -36,14 +41,21 @@ def main() raises:
     assert_true(refuses(toy.replace("E 2 0 1 0 2 1 2", "E 2 0 -1 0 2 1 2"), "image leaves"))
     assert_true(refuses(toy.replace("P 0 1 0 0 -1 -2 0 -1 0 -1 0 0", "P 0 1 0 0 -1 -2 0 -1 0 -1 -2 0"), "negative potential"))
     assert_true(refuses(toy.replace("P 0 1 0 0 0 0 0 0 0 0 0 1", "P 0 1 0 0 0 0 0 0 0 0 0 0"), "without a descent edge"))
-    # The committed plus g=1 certificate, and its replay on the native q=10 export.
-    var text: String
-    with open("../evidence/class-b-rank-certificate-2026-10-27/plus-g1-r0.cert", "r") as f:
-        text = f.read()
-    var cert = RankCertificate(text)
-    _ = check_rank_certificate(cert)
-    var export = label_block(True, 1, 10, 20000, False, True)
-    assert_true(replay(cert, export).startswith("RANK_REPLAY_PASS q 10 vertices 2877 edges_checked 2869 "))
+    # Every committed residue-ray certificate: plus g=1..5 and minus g=1..3, all residues.
+    var checked = 0
+    for plus in [True, False]:
+        for gap in range(1, 6 if plus else 4):
+            for residue in range(gap):
+                var name = String("plus" if plus else "minus") + "-g" + String(gap) + "-r" + String(residue)
+                var cert = RankCertificate(read_certificate(name))
+                assert_true(cert.plus == plus and cert.gap == gap and cert.residue == residue)
+                _ = check_rank_certificate(cert)
+                checked += 1
+    assert_equal(checked, 21)
+    # Native replays at the plus g=1 (q=9) and minus g=1 (q=16) floors.
+    var cert = RankCertificate(read_certificate("plus-g1-r0"))
+    var export = label_block(True, 1, 9, 20000, False, True)
+    assert_true(replay(cert, export).startswith("RANK_REPLAY_PASS q 9 vertices 2765 edges_checked 2757 "))
     # Deleting the actual graph edge behind one chosen symbolic edge must refuse.
     ref e = cert.edges[0]
     ref p = cert.pieces[e.parent]
@@ -61,11 +73,6 @@ def main() raises:
     except err:
         refused = "not an actual edge" in String(err)
     assert_true(refused)
-    # The transferred minus g=1 certificate (floor q=16) and its native q=16 replay.
-    var minus_text: String
-    with open("../evidence/class-b-rank-certificate-2026-10-27/minus-g1-r0.cert", "r") as f:
-        minus_text = f.read()
-    var minus = RankCertificate(minus_text)
-    _ = check_rank_certificate(minus)
+    var minus = RankCertificate(read_certificate("minus-g1-r0"))
     assert_true(replay(minus, label_block(False, 1, 16, 20000, False, True)).startswith("RANK_REPLAY_PASS q 16 vertices 2391 edges_checked 2383 "))
-    require_contract("class B piecewise rank certificates (plus g=1, minus g=1): vertex/ray descent and nonnegativity, exact coverage sweep past every crossing, negative controls refuse, native q=10 and q=16 replays; conditional on carrier inclusion and actual symbolic edges")
+    require_contract("class B piecewise rank certificates on all 21 top-layer residue rays (plus g=1..5, minus g=1..3): vertex/ray descent and nonnegativity, exact coverage sweep past every crossing, negative controls refuse, native plus q=9 and minus q=16 replays; conditional on carrier inclusion and actual symbolic edges")
