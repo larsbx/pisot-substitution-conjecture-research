@@ -45,8 +45,10 @@ struct Piece(ImplicitlyCopyable, Copyable, Movable):
     def __init__(out self, eps: Int, c: Int, d0: Int, m0: Int, kind: Int) raises:
         if eps != 1 and eps != -1:
             raise Error("class-C piece requires eps = +-1")
-        if c < 0 or m0 < 0 or d0 < 2 or d0 > 64 or kind < CONE or kind > GAP:
-            raise Error("class-C piece requires c >= 0, m0 >= 0, 2 <= d0 <= 64 and a known kind")
+        if m0 < 0 or d0 < 2 or d0 > 64 or kind < CONE or kind > GAP:
+            raise Error("class-C piece requires m0 >= 0, 2 <= d0 <= 64 and a known kind")
+        if 3 * d0 + c + m0 + eps < 1:
+            raise Error("class-C piece leaves the normal form: n - d + eps < 1 at its corner")
         self.eps = eps
         self.c = c
         self.d0 = d0
