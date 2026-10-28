@@ -16,8 +16,10 @@
 # (run 40180359004), then 71 lines and 1 wedge on 2026-10-27 from the full PR
 # #345 run 40427511787. Every re-pinned row keeps its vertex, non-PIP and
 # outside counts; see the dated corrections in both notes. Two wedges whose
-# floor rose need 28 new boundary lines, certified by the temporary
-# theorem-w-boundary-probe.yml before they are pinned here.
+# floor rose needed 28 new boundary lines; 20 are pinned from probe run
+# 40485428677 (2026-10-28) and wedge D -1 2 1 -2 2 1 -4 3 2 is re-pinned.
+# The 8 lines left run in the temporary theorem-w-boundary-probe.yml;
+# wedge D 4 1 3 5 1 3 7 1 4 keeps its old pin until they are pinned.
 # A change to kernel/psc/symbolic_line.mojo must
 # re-run .github/workflows/class-b-lines-evidence.yml and re-pin here.
 
@@ -158,10 +160,30 @@ norm D 2 10 2 9 3 18 5 93 5 0 0
 norm D 2 11 2 10 3 20 6 93 6 0 0
 norm D 2 12 2 11 3 22 5 93 5 0 0
 norm D 2 13 2 12 3 24 5 93 5 0 0
+norm D 1 5 1 4 2 5 10 93 10 0 0
+norm D 1 7 1 6 2 8 7 93 7 0 0
+norm D 1 9 1 8 2 11 8 93 8 0 0
+norm D 1 11 1 10 2 14 6 93 6 0 0
+norm D 1 25 1 26 1 35 407 105 407 0 0
+norm D 1 28 1 29 1 39 491 105 491 0 0
+norm D 1 31 1 32 1 43 583 105 583 0 0
+norm D 1 34 1 35 1 47 683 105 683 0 0
+norm D 1 37 1 38 1 51 791 105 791 0 0
+norm D 1 40 1 41 1 55 907 105 907 0 0
+norm D 1 43 1 44 1 59 1031 105 1031 0 0
+norm D 1 46 1 47 1 63 1163 105 1163 0 0
+norm D 1 49 1 50 1 67 1303 105 1303 0 0
+norm D 1 52 1 53 1 71 1451 105 1451 0 0
+norm D 1 55 1 56 1 75 1607 105 1607 0 0
+norm D 1 58 1 59 1 79 1771 105 1771 0 0
+norm D 1 61 1 62 1 83 1943 105 1943 0 0
+norm D 1 64 1 65 1 87 2123 105 2123 0 0
+norm D 1 67 1 68 1 91 2311 105 2311 0 0
+norm D 1 76 1 77 1 103 2923 105 2923 0 0
 
 wedge D 4 1 3 5 1 3 7 1 4 15 7 105
 wedge D 12 3 2 13 3 2 18 4 3 1 0 105
 wedge D 3 2 1 4 2 1 5 3 2 7 1 105
 wedge D 12 1 3 11 1 3 15 1 4 1 3 93
 wedge D 14 3 2 13 3 2 18 4 3 15 15 93
-wedge D -1 2 1 -2 2 1 -4 3 2 3 15 93
+wedge D -1 2 1 -2 2 1 -4 3 2 7 15 93

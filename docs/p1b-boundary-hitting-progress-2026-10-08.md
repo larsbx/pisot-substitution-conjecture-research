@@ -450,7 +450,7 @@ quadrant:
 | --- | --- | --- | --- |
 | `p = q − 1`, `(4, 5) + a(2, 3) + b(1, 2)` | `7, 7` → `7, 1` | 8, all pinned | re-pinned |
 | `p = q − 1`, `(5, 7) + a(1, 1) + b(3, 4)` | `15, 7` → `15, 31` | 46, of which 24 new | pending |
-| `p = q + 1`, `(-2, -4) + a(2, 3) + b(1, 2)` | `3, 15` → `7, 15` | 22, of which 4 new | pending |
+| `p = q + 1`, `(-2, -4) + a(2, 3) + b(1, 2)` | `3, 15` → `7, 15` | 22, of which 4 new | re-pinned 2026-10-28 |
 
 A lower floor needs fewer boundary lines, and all of them were already
 pinned. A higher floor leaves strips `b = 7, …, 30` and `a = 3, …, 6` that
@@ -460,6 +460,19 @@ W, and so Corollary W1, only outside those strips; the pre-#288 certificate
 of the whole sub-wedge is historical evidence and is not a receipt for the
 current code. The 28 lines run once in the temporary probe workflow
 `theorem-w-boundary-probe.yml` of PR #345 and are pinned from its logs.
+
+**Update, 2026-10-28 (probe run 40485428677).** 20 of the 28 lines certified and
+are pinned: all 4 new lines of the `p = q + 1` sub-wedge, which is re-pinned at
+`7, 15`, and 16 of the 24 of the `p = q − 1` sub-wedge. On the 8 others,
+`norm D 1 a 1 a+1 1 b` for `a = 70, 73, 79, 82, 85, 88, 91, 94`, the symbolic
+part certified, but deciding every member below the floor did not finish within
+the 5-hour job limit. Since PR #288 these norm-mode floors grow roughly like
+`a²` (`q0 = 1943` at `a = 61`, `4363` at `a = 94`); before it the same family
+had `q0 ≈ 16` (for example `norm D 1 10 1 11 1 15`, 16 → 107). The `p = q − 1`
+sub-wedge `(5, 7) + a(1, 1) + b(3, 4)` therefore stays pending: the current code
+reproduces it outside those 8 boundary lines. The probe keeps the 8 lines at the
+6-hour maximum, and why PR #288 made these floors quadratic is under
+investigation.
 
 59 boundary lines moved `q0` with unchanged counts, as for the lines above,
 and were re-pinned (form `norm CLASS AP BP AQ BQ AR BR`):

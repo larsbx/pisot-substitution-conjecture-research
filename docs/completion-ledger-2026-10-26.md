@@ -141,7 +141,7 @@ comment states that C4 itself is open.
 4. The C4 ordered-word bridge for a supplied finite strict child-closed component.
 5. G1b-2 only through realizable labelled returns. No unimodularity, and no
    predecessor contraction.
-6. Turn the Theorem E line gate green: certify and pin the 28 new Theorem W boundary lines (PR #345 probe workflow), then confirm on a full line-workflow run.
+6. Turn the Theorem E line gate green. 20 of the 28 new Theorem W boundary lines are pinned (2026-10-28). The 8 left (`norm D 1 a 1 a+1 1 b`, `a = 70, …, 94`) exceed the CI job limit because PR #288 made their floors grow like `a²`; root-cause that, pin them, then confirm on a full line-workflow run.
 
 ## Provenance boundary
 
