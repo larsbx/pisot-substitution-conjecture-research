@@ -25,6 +25,10 @@ checks those two hypotheses on one finite member only.
 """
 
 comptime COVERAGE_HORIZON = 1000000
+# Every certificate value (header, ends, potentials) and every replayed q lies in
+# [-VALUE_BUDGET, VALUE_BUDGET], so each checked product and sum stays below 2^62
+# in magnitude; a value outside refuses rather than risking Int wrap-around.
+comptime VALUE_BUDGET = 1000000
 
 
 struct Affine(ImplicitlyCopyable, Copyable, Movable):
@@ -111,6 +115,8 @@ struct RankCertificate(Copyable, Movable):
         self.gap = Int(h[2])
         self.residue = Int(h[3])
         self.q0 = Int(h[4])
+        if self.gap > VALUE_BUDGET or self.q0 > VALUE_BUDGET:
+            raise Error("certificate coefficient budget exhausted")
         if self.gap < 1 or self.residue < 0 or self.residue >= self.gap or self.q0 < 1 or self.q0 % self.gap != self.residue:
             raise Error("invalid residue ray")
         self.pieces = List[Piece]()
@@ -120,7 +126,7 @@ struct RankCertificate(Copyable, Movable):
             var row = List[Int]()
             for x in p[1:]:
                 var v = Int(x)
-                if v < -1000000 or v > 1000000:
+                if v < -VALUE_BUDGET or v > VALUE_BUDGET:
                     raise Error("certificate coefficient budget exhausted")
                 row.append(v)
             if String(p[0]) == "P":

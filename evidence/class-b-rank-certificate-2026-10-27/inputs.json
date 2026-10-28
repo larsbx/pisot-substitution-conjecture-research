@@ -4,10 +4,10 @@
   "synthesis_solver": "scipy 1.18.1 (HiGHS), proposal only",
   "scope": "exact all-parameter rank conditions on all 21 class-B top-layer residue rays; graph hypotheses replayed on every member from each floor through q=48 only",
   "sha256": {
-    "kernel/psc/class_b_rank_certificate.mojo": "1719bef1894c4feb0b05c10c2c4472bfa46dee3410258fce88be60a633022e87",
-    "kernel/class_b_rank_certificate.mojo": "b419fcbf236140588081e8c8557c5273c8b3168098c28c66e3bd221b5ec24bf8",
+    "kernel/psc/class_b_rank_certificate.mojo": "22293df2062b794f21bc584c6f67f2d7600cff0ec578198151862b4223a22e48",
+    "kernel/class_b_rank_certificate.mojo": "98913261183b939f01e0ee07c8f5f2bcac94d73c1486a244ec70f84208a33108",
     "kernel/class_b_label_rays.mojo": "da329db2d58cbcca9c70adda184533c067e6cd19eecd432278c561521b36380e",
-    "kernel/tests/test_class_b_rank_certificate.mojo": "8fe2813955f49721640218890f4181d0419de475994dd7cc5e00771883fdb601",
+    "kernel/tests/test_class_b_rank_certificate.mojo": "42ade27454c648f44000828a64509f6465e37d9fb64007839fbb81f78dbcc249",
     "oracles/python/class_b_rank_certificate_oracle.py": "45c73a0af6e5c9b5df10a9e0b5e53cd35428c68f5983b4cc6c3eee9eb9fd64b5",
     "oracles/python/class_b_rank_synthesis.py": "75ba2ed92a2613d76d19b0c42d3c4794665a7fec3b358ef5e13836efcab6ad33",
     "tests/test_class_b_rank_certificate.py": "bc00e1f20a1148785a0c6bb5c12a39fed0d3760a43b70de708f4779a7fee0dfb",

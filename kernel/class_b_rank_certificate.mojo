@@ -7,7 +7,7 @@ Neither mode is a boundary-hitting certificate on its own; see the module docs.
 """
 from std.sys import argv
 from std.collections import Dict, Set
-from psc.class_b_rank_certificate import RankCertificate, check_rank_certificate, piece_of, child_label
+from psc.class_b_rank_certificate import RankCertificate, check_rank_certificate, piece_of, child_label, VALUE_BUDGET
 
 
 def _read(path: String) raises -> String:
@@ -28,6 +28,8 @@ def replay(cert: RankCertificate, export: String) raises -> String:
     if len(h) != 4 or String(h[0]) != "M":
         raise Error("invalid export header")
     var q = Int(h[1])
+    if q > VALUE_BUDGET:
+        raise Error("export member outside the certificate value budget")
     if q < cert.q0 or (q - cert.q0) % cert.gap != 0:
         raise Error("export member is not on the certificate ray")
     var t = (q - cert.q0) // cert.gap

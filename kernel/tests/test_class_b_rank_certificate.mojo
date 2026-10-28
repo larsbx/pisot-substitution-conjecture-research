@@ -41,6 +41,8 @@ def main() raises:
     assert_true(refuses(toy.replace("E 2 0 1 0 2 1 2", "E 2 0 -1 0 2 1 2"), "image leaves"))
     assert_true(refuses(toy.replace("P 0 1 0 0 -1 -2 0 -1 0 -1 0 0", "P 0 1 0 0 -1 -2 0 -1 0 -1 -2 0"), "negative potential"))
     assert_true(refuses(toy.replace("P 0 1 0 0 0 0 0 0 0 0 0 1", "P 0 1 0 0 0 0 0 0 0 0 0 0"), "without a descent edge"))
+    # A header whose products would wrap a negative potential to zero must refuse.
+    assert_true(refuses("C plus 4611686018427387904 0 4611686018427387904\nP 0 1 0 0 0 0 0 0 -4 0 0 1\n", "budget exhausted"))
     # Every committed residue-ray certificate: plus g=1..5 and minus g=1..3, all residues.
     var checked = 0
     for plus in [True, False]:
