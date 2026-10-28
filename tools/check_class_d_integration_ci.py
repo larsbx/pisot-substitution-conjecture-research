@@ -65,17 +65,19 @@ def added_concurrency_block_only(accepted: bytes, current: bytes) -> bool:
     return b''.join(lines[:keys[0]] + lines[end:]) == accepted
 
 
-def added_trigger_paths_only(accepted: bytes, current: bytes) -> bool:
+def added_list_entries_only(accepted: bytes, current: bytes) -> bool:
     """Preserve an accepted workflow except for added trigger-path entries
-    (`      - '...'` lines), with or without one added concurrency block.
+    (`      - '...'`) and added matrix entries (`- { line: '...' }`), with or
+    without one added concurrency block.
 
-    A trigger path decides only when the workflow runs, never what a run
-    computes, so no receipt can be gained this way. Every accepted line must
-    survive in order; nothing else may be inserted, removed or changed.
+    A trigger path decides only when the workflow runs, and a matrix entry adds
+    one more job running the accepted steps; neither changes what an existing
+    job computes, so no receipt can be gained this way. Every accepted line
+    must survive in order; nothing else may be inserted, removed or changed.
     """
     import difflib
     import re
-    entry = re.compile(rb"^\s+- '[^'\n]+'\n?$")
+    entry = re.compile(rb"^\s+- ('[^'\n]+'|\{ line: '[^'\n]+' \})\n?$")
     lines = current.splitlines(keepends=True)
     keys = [i for i, line in enumerate(lines) if line.startswith(b'concurrency:')]
     if keys and not any(line.startswith(b'concurrency:') for line in accepted.splitlines()):
@@ -183,7 +185,7 @@ def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
             if path == 'kernel/pixi.toml' and additive_pixi_tasks_only(historical, current):
                 continue
             if path.startswith('.github/workflows/') and (added_concurrency_block_only(historical, current)
-                                                          or added_trigger_paths_only(historical, current)):
+                                                          or added_list_entries_only(historical, current)):
                 continue
             if rebound(path, hashlib.sha256(current).hexdigest()):
                 continue

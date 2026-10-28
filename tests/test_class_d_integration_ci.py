@@ -131,15 +131,23 @@ def test_only_an_added_concurrency_block_preserves_an_accepted_workflow():
     assert not ci.added_concurrency_block_only(accepted, current + b'  extra: true\n')
 
 
-def test_only_added_trigger_paths_preserve_an_accepted_workflow():
+def test_only_added_list_entries_preserve_an_accepted_workflow():
     accepted = (b"name: X\non:\n  pull_request:\n    paths:\n      - 'a.mojo'\n\n"
                 b"jobs:\n  a:\n    runs-on: ubuntu-latest\n    steps:\n      - run: certify a\n")
     current = accepted.replace(b"      - 'a.mojo'\n", b"      - 'a.mojo'\n      - 'pins.txt'\n")
-    assert ci.added_trigger_paths_only(accepted, current)
+    assert ci.added_list_entries_only(accepted, current)
     block = b'concurrency:\n  group: x\n  cancel-in-progress: true\n\n'
-    assert ci.added_trigger_paths_only(accepted, current.replace(b'jobs:', block + b'jobs:'))
+    assert ci.added_list_entries_only(accepted, current.replace(b'jobs:', block + b'jobs:'))
     # A removed path, a changed command, an unchanged file or any other insertion refuses.
-    assert not ci.added_trigger_paths_only(accepted, accepted.replace(b"      - 'a.mojo'\n", b''))
-    assert not ci.added_trigger_paths_only(accepted, current.replace(b'certify a', b'true'))
-    assert not ci.added_trigger_paths_only(accepted, accepted)
-    assert not ci.added_trigger_paths_only(accepted, current + b'      - run: extra\n')
+    assert not ci.added_list_entries_only(accepted, accepted.replace(b"      - 'a.mojo'\n", b''))
+    assert not ci.added_list_entries_only(accepted, current.replace(b'certify a', b'true'))
+    assert not ci.added_list_entries_only(accepted, accepted)
+    assert not ci.added_list_entries_only(accepted, current + b'      - run: extra\n')
+    # An added matrix entry is one more certification job; existing ones are unchanged.
+    matrix = (b"jobs:\n  line:\n    strategy:\n      matrix:\n        include:\n"
+              b"          - { line: 'B 2 2 1 0 1 1' }\n    steps:\n      - run: certify ${{ matrix.line }}\n")
+    grown = matrix.replace(b"          - { line: 'B 2 2 1 0 1 1' }\n",
+                           b"          - { line: 'B 2 2 1 0 1 1' }\n          - { line: 'norm D 1 5 1 4 2 5' }\n")
+    assert ci.added_list_entries_only(matrix, grown)
+    assert not ci.added_list_entries_only(grown, matrix)
+    assert not ci.added_list_entries_only(matrix, grown.replace(b'certify', b'echo'))
