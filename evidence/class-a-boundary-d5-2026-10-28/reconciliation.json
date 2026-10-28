@@ -1,0 +1,2162 @@
+{
+  "B5_IMAGE": {
+    "after_exits": 22,
+    "after_registered_including_terminals": 20,
+    "before_exits": 22,
+    "before_registered_including_terminals": 20,
+    "labels": 24,
+    "rows": [
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          0,
+          0,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": "E6",
+        "before": null,
+        "before_exit": "E6",
+        "label": [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": "E6",
+        "before": null,
+        "before_exit": "E6",
+        "label": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "V",
+        "after_exit": "V",
+        "before": "V",
+        "before_exit": "V",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T",
+        "after_exit": "T",
+        "before": "T",
+        "before_exit": "T",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B3",
+        "after_exit": "B3",
+        "before": "B3",
+        "before_exit": "B3",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B4",
+        "after_exit": "B4",
+        "before": "B4",
+        "before_exit": "B4",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R4",
+        "after_exit": "R4",
+        "before": "R4",
+        "before_exit": "R4",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R5",
+        "after_exit": "R5",
+        "before": "R5",
+        "before_exit": "R5",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R3",
+        "after_exit": "R3",
+        "before": "R3",
+        "before_exit": "R3",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "Q3",
+        "after_exit": "Q3",
+        "before": "Q3",
+        "before_exit": "Q3",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "Q3",
+        "after_exit": "Q3",
+        "before": "Q3",
+        "before_exit": "Q3",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R3",
+        "after_exit": "R3",
+        "before": "R3",
+        "before_exit": "R3",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R5",
+        "after_exit": "R5",
+        "before": "R5",
+        "before_exit": "R5",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R4",
+        "after_exit": "R4",
+        "before": "R4",
+        "before_exit": "R4",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B4",
+        "after_exit": "B4",
+        "before": "B4",
+        "before_exit": "B4",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B3",
+        "after_exit": "B3",
+        "before": "B3",
+        "before_exit": "B3",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T",
+        "after_exit": "T",
+        "before": "T",
+        "before_exit": "T",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "V",
+        "after_exit": "V",
+        "before": "V",
+        "before_exit": "V",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T1",
+        "after_exit": "T1",
+        "before": "T1",
+        "before_exit": "T1",
+        "label": [
+          2,
+          2,
+          -1,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T2",
+        "after_exit": "T2",
+        "before": "T2",
+        "before_exit": "T2",
+        "label": [
+          2,
+          2,
+          -1,
+          1,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T2",
+        "after_exit": "T2",
+        "before": "T2",
+        "before_exit": "T2",
+        "label": [
+          2,
+          2,
+          1,
+          -1,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T1",
+        "after_exit": "T1",
+        "before": "T1",
+        "before_exit": "T1",
+        "label": [
+          2,
+          2,
+          1,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      }
+    ],
+    "typed_terminals": 0
+  },
+  "IMAGE": {
+    "after_exits": 6,
+    "after_registered_including_terminals": 2,
+    "before_exits": 1,
+    "before_registered_including_terminals": 1,
+    "labels": 6,
+    "rows": [
+      {
+        "after": "X0_terminal",
+        "after_exit": "X0_terminal",
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "typed_terminal": true
+      },
+      {
+        "after": null,
+        "after_exit": "D7",
+        "before": null,
+        "before_exit": null,
+        "label": [
+          1,
+          2,
+          0,
+          1,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": "D6",
+        "before": null,
+        "before_exit": null,
+        "label": [
+          1,
+          2,
+          0,
+          1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": "D6",
+        "before": null,
+        "before_exit": null,
+        "label": [
+          2,
+          1,
+          0,
+          -1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": "D7",
+        "before": null,
+        "before_exit": null,
+        "label": [
+          2,
+          1,
+          0,
+          -1,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "terminal",
+        "after_exit": "terminal",
+        "before": "terminal",
+        "before_exit": "terminal",
+        "label": [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        "typed_terminal": true
+      }
+    ],
+    "typed_terminals": 2
+  },
+  "R5_IMAGE": {
+    "after_exits": 8,
+    "after_registered_including_terminals": 8,
+    "before_exits": 8,
+    "before_registered_including_terminals": 8,
+    "labels": 18,
+    "rows": [
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          0,
+          0,
+          -2,
+          3
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          0,
+          0,
+          -2,
+          4
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          0,
+          0,
+          2,
+          -4
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          0,
+          0,
+          2,
+          -3
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "K",
+        "after_exit": "K",
+        "before": "K",
+        "before_exit": "K",
+        "label": [
+          0,
+          2,
+          1,
+          2,
+          -5
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          2,
+          1,
+          2,
+          -4
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B5",
+        "after_exit": "B5",
+        "before": "B5",
+        "before_exit": "B5",
+        "label": [
+          0,
+          2,
+          1,
+          2,
+          -3
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          1,
+          2,
+          0,
+          2,
+          -3
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          1,
+          2,
+          0,
+          2,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B5",
+        "after_exit": "B5",
+        "before": "B5",
+        "before_exit": "B5",
+        "label": [
+          2,
+          0,
+          -1,
+          -2,
+          3
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          2,
+          0,
+          -1,
+          -2,
+          4
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "K",
+        "after_exit": "K",
+        "before": "K",
+        "before_exit": "K",
+        "label": [
+          2,
+          0,
+          -1,
+          -2,
+          5
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          2,
+          1,
+          0,
+          -2,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          2,
+          1,
+          0,
+          -2,
+          3
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B2",
+        "after_exit": "B2",
+        "before": "B2",
+        "before_exit": "B2",
+        "label": [
+          2,
+          2,
+          0,
+          -2,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B2h",
+        "after_exit": "B2h",
+        "before": "B2h",
+        "before_exit": "B2h",
+        "label": [
+          2,
+          2,
+          0,
+          -2,
+          3
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B2h",
+        "after_exit": "B2h",
+        "before": "B2h",
+        "before_exit": "B2h",
+        "label": [
+          2,
+          2,
+          0,
+          2,
+          -3
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B2",
+        "after_exit": "B2",
+        "before": "B2",
+        "before_exit": "B2",
+        "label": [
+          2,
+          2,
+          0,
+          2,
+          -2
+        ],
+        "typed_terminal": false
+      }
+    ],
+    "typed_terminals": 0
+  },
+  "S41": {
+    "after_exits": 33,
+    "after_registered_including_terminals": 31,
+    "before_exits": 33,
+    "before_registered_including_terminals": 31,
+    "labels": 41,
+    "rows": [
+      {
+        "after": "X",
+        "after_exit": "X",
+        "before": "X",
+        "before_exit": "X",
+        "label": [
+          0,
+          0,
+          -1,
+          0,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          0,
+          0,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": "E6",
+        "before": null,
+        "before_exit": "E6",
+        "label": [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "U",
+        "after_exit": "U",
+        "before": "U",
+        "before_exit": "U",
+        "label": [
+          0,
+          0,
+          0,
+          -1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "E",
+        "after_exit": "E",
+        "before": "E",
+        "before_exit": "E",
+        "label": [
+          0,
+          0,
+          0,
+          0,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "E",
+        "after_exit": "E",
+        "before": "E",
+        "before_exit": "E",
+        "label": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "U",
+        "after_exit": "U",
+        "before": "U",
+        "before_exit": "U",
+        "label": [
+          0,
+          0,
+          0,
+          1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": "E6",
+        "before": null,
+        "before_exit": "E6",
+        "label": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "X",
+        "after_exit": "X",
+        "before": "X",
+        "before_exit": "X",
+        "label": [
+          0,
+          0,
+          1,
+          0,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "D3",
+        "after_exit": "D3",
+        "before": "D3",
+        "before_exit": "D3",
+        "label": [
+          0,
+          1,
+          1,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "V",
+        "after_exit": "V",
+        "before": "V",
+        "before_exit": "V",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T",
+        "after_exit": "T",
+        "before": "T",
+        "before_exit": "T",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B3",
+        "after_exit": "B3",
+        "before": "B3",
+        "before_exit": "B3",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B4",
+        "after_exit": "B4",
+        "before": "B4",
+        "before_exit": "B4",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R4",
+        "after_exit": "R4",
+        "before": "R4",
+        "before_exit": "R4",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R5",
+        "after_exit": "R5",
+        "before": "R5",
+        "before_exit": "R5",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R3",
+        "after_exit": "R3",
+        "before": "R3",
+        "before_exit": "R3",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "Q3",
+        "after_exit": "Q3",
+        "before": "Q3",
+        "before_exit": "Q3",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "Y4",
+        "after_exit": "Y4",
+        "before": "Y4",
+        "before_exit": "Y4",
+        "label": [
+          0,
+          2,
+          1,
+          0,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "D3",
+        "after_exit": "D3",
+        "before": "D3",
+        "before_exit": "D3",
+        "label": [
+          1,
+          0,
+          -1,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          1,
+          2,
+          0,
+          0,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          1,
+          2,
+          0,
+          0,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "Y4",
+        "after_exit": "Y4",
+        "before": "Y4",
+        "before_exit": "Y4",
+        "label": [
+          2,
+          0,
+          -1,
+          0,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "Q3",
+        "after_exit": "Q3",
+        "before": "Q3",
+        "before_exit": "Q3",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R3",
+        "after_exit": "R3",
+        "before": "R3",
+        "before_exit": "R3",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R5",
+        "after_exit": "R5",
+        "before": "R5",
+        "before_exit": "R5",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R4",
+        "after_exit": "R4",
+        "before": "R4",
+        "before_exit": "R4",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B4",
+        "after_exit": "B4",
+        "before": "B4",
+        "before_exit": "B4",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B3",
+        "after_exit": "B3",
+        "before": "B3",
+        "before_exit": "B3",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T",
+        "after_exit": "T",
+        "before": "T",
+        "before_exit": "T",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "V",
+        "after_exit": "V",
+        "before": "V",
+        "before_exit": "V",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          2,
+          1,
+          0,
+          0,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T1",
+        "after_exit": "T1",
+        "before": "T1",
+        "before_exit": "T1",
+        "label": [
+          2,
+          2,
+          -1,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T2",
+        "after_exit": "T2",
+        "before": "T2",
+        "before_exit": "T2",
+        "label": [
+          2,
+          2,
+          -1,
+          1,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "terminal",
+        "after_exit": "terminal",
+        "before": "terminal",
+        "before_exit": "terminal",
+        "label": [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        "typed_terminal": true
+      },
+      {
+        "after": "T2",
+        "after_exit": "T2",
+        "before": "T2",
+        "before_exit": "T2",
+        "label": [
+          2,
+          2,
+          1,
+          -1,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T1",
+        "after_exit": "T1",
+        "before": "T1",
+        "before_exit": "T1",
+        "label": [
+          2,
+          2,
+          1,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      }
+    ],
+    "typed_terminals": 1
+  },
+  "S43": {
+    "after_exits": 35,
+    "after_registered_including_terminals": 33,
+    "before_exits": 35,
+    "before_registered_including_terminals": 31,
+    "labels": 43,
+    "rows": [
+      {
+        "after": "X",
+        "after_exit": "X",
+        "before": "X",
+        "before_exit": "X",
+        "label": [
+          0,
+          0,
+          -1,
+          0,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          0,
+          0,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": "E6",
+        "before": null,
+        "before_exit": "E6",
+        "label": [
+          0,
+          0,
+          0,
+          -1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "U",
+        "after_exit": "U",
+        "before": "U",
+        "before_exit": "U",
+        "label": [
+          0,
+          0,
+          0,
+          -1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "E",
+        "after_exit": "E",
+        "before": "E",
+        "before_exit": "E",
+        "label": [
+          0,
+          0,
+          0,
+          0,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "E",
+        "after_exit": "E",
+        "before": "E",
+        "before_exit": "E",
+        "label": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "U",
+        "after_exit": "U",
+        "before": "U",
+        "before_exit": "U",
+        "label": [
+          0,
+          0,
+          0,
+          1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": "E6",
+        "before": null,
+        "before_exit": "E6",
+        "label": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "X",
+        "after_exit": "X",
+        "before": "X",
+        "before_exit": "X",
+        "label": [
+          0,
+          0,
+          1,
+          0,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "D3",
+        "after_exit": "D3",
+        "before": "D3",
+        "before_exit": "D3",
+        "label": [
+          0,
+          1,
+          1,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "D5",
+        "after_exit": "D5",
+        "before": null,
+        "before_exit": "D5",
+        "label": [
+          0,
+          1,
+          1,
+          -1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          0,
+          2,
+          0,
+          0,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "V",
+        "after_exit": "V",
+        "before": "V",
+        "before_exit": "V",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T",
+        "after_exit": "T",
+        "before": "T",
+        "before_exit": "T",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B3",
+        "after_exit": "B3",
+        "before": "B3",
+        "before_exit": "B3",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B4",
+        "after_exit": "B4",
+        "before": "B4",
+        "before_exit": "B4",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R4",
+        "after_exit": "R4",
+        "before": "R4",
+        "before_exit": "R4",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R5",
+        "after_exit": "R5",
+        "before": "R5",
+        "before_exit": "R5",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R3",
+        "after_exit": "R3",
+        "before": "R3",
+        "before_exit": "R3",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "Q3",
+        "after_exit": "Q3",
+        "before": "Q3",
+        "before_exit": "Q3",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "Y4",
+        "after_exit": "Y4",
+        "before": "Y4",
+        "before_exit": "Y4",
+        "label": [
+          0,
+          2,
+          1,
+          0,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "D5",
+        "after_exit": "D5",
+        "before": null,
+        "before_exit": "D5",
+        "label": [
+          1,
+          0,
+          -1,
+          1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "D3",
+        "after_exit": "D3",
+        "before": "D3",
+        "before_exit": "D3",
+        "label": [
+          1,
+          0,
+          -1,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          1,
+          2,
+          0,
+          0,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          1,
+          2,
+          0,
+          0,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "Y4",
+        "after_exit": "Y4",
+        "before": "Y4",
+        "before_exit": "Y4",
+        "label": [
+          2,
+          0,
+          -1,
+          0,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "Q3",
+        "after_exit": "Q3",
+        "before": "Q3",
+        "before_exit": "Q3",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R3",
+        "after_exit": "R3",
+        "before": "R3",
+        "before_exit": "R3",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R5",
+        "after_exit": "R5",
+        "before": "R5",
+        "before_exit": "R5",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R4",
+        "after_exit": "R4",
+        "before": "R4",
+        "before_exit": "R4",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B4",
+        "after_exit": "B4",
+        "before": "B4",
+        "before_exit": "B4",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B3",
+        "after_exit": "B3",
+        "before": "B3",
+        "before_exit": "B3",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T",
+        "after_exit": "T",
+        "before": "T",
+        "before_exit": "T",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "V",
+        "after_exit": "V",
+        "before": "V",
+        "before_exit": "V",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          2,
+          1,
+          0,
+          0,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": null,
+        "after_exit": null,
+        "before": null,
+        "before_exit": null,
+        "label": [
+          2,
+          1,
+          0,
+          0,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T1",
+        "after_exit": "T1",
+        "before": "T1",
+        "before_exit": "T1",
+        "label": [
+          2,
+          2,
+          -1,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T2",
+        "after_exit": "T2",
+        "before": "T2",
+        "before_exit": "T2",
+        "label": [
+          2,
+          2,
+          -1,
+          1,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "terminal",
+        "after_exit": "terminal",
+        "before": "terminal",
+        "before_exit": "terminal",
+        "label": [
+          2,
+          2,
+          0,
+          0,
+          0
+        ],
+        "typed_terminal": true
+      },
+      {
+        "after": "T2",
+        "after_exit": "T2",
+        "before": "T2",
+        "before_exit": "T2",
+        "label": [
+          2,
+          2,
+          1,
+          -1,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T1",
+        "after_exit": "T1",
+        "before": "T1",
+        "before_exit": "T1",
+        "label": [
+          2,
+          2,
+          1,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      }
+    ],
+    "typed_terminals": 1
+  },
+  "Y4_IMAGE": {
+    "after_exits": 18,
+    "after_registered_including_terminals": 18,
+    "before_exits": 18,
+    "before_registered_including_terminals": 16,
+    "labels": 18,
+    "rows": [
+      {
+        "after": "D5",
+        "after_exit": "D5",
+        "before": null,
+        "before_exit": "D5",
+        "label": [
+          0,
+          1,
+          1,
+          -1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "V",
+        "after_exit": "V",
+        "before": "V",
+        "before_exit": "V",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T",
+        "after_exit": "T",
+        "before": "T",
+        "before_exit": "T",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B3",
+        "after_exit": "B3",
+        "before": "B3",
+        "before_exit": "B3",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B4",
+        "after_exit": "B4",
+        "before": "B4",
+        "before_exit": "B4",
+        "label": [
+          0,
+          2,
+          0,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R4",
+        "after_exit": "R4",
+        "before": "R4",
+        "before_exit": "R4",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R5",
+        "after_exit": "R5",
+        "before": "R5",
+        "before_exit": "R5",
+        "label": [
+          0,
+          2,
+          1,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "D5",
+        "after_exit": "D5",
+        "before": null,
+        "before_exit": "D5",
+        "label": [
+          1,
+          0,
+          -1,
+          1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R5",
+        "after_exit": "R5",
+        "before": "R5",
+        "before_exit": "R5",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "R4",
+        "after_exit": "R4",
+        "before": "R4",
+        "before_exit": "R4",
+        "label": [
+          2,
+          0,
+          -1,
+          1,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B4",
+        "after_exit": "B4",
+        "before": "B4",
+        "before_exit": "B4",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "B3",
+        "after_exit": "B3",
+        "before": "B3",
+        "before_exit": "B3",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          0
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T",
+        "after_exit": "T",
+        "before": "T",
+        "before_exit": "T",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "V",
+        "after_exit": "V",
+        "before": "V",
+        "before_exit": "V",
+        "label": [
+          2,
+          0,
+          0,
+          -1,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T1",
+        "after_exit": "T1",
+        "before": "T1",
+        "before_exit": "T1",
+        "label": [
+          2,
+          2,
+          -1,
+          1,
+          1
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T2",
+        "after_exit": "T2",
+        "before": "T2",
+        "before_exit": "T2",
+        "label": [
+          2,
+          2,
+          -1,
+          1,
+          2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T2",
+        "after_exit": "T2",
+        "before": "T2",
+        "before_exit": "T2",
+        "label": [
+          2,
+          2,
+          1,
+          -1,
+          -2
+        ],
+        "typed_terminal": false
+      },
+      {
+        "after": "T1",
+        "after_exit": "T1",
+        "before": "T1",
+        "before_exit": "T1",
+        "label": [
+          2,
+          2,
+          1,
+          -1,
+          -1
+        ],
+        "typed_terminal": false
+      }
+    ],
+    "typed_terminals": 0
+  }
+}
