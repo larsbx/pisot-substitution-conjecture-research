@@ -1,0 +1,32 @@
+Local locked native replay; hosted head-specific acceptance is pending.
+Mojo 1.1.0.dev2026090805 (34562fa1).
+Base source 316ebdc50556bac922ecbdf0f96ce20fd9fc7cc4.
+44c28e8e3e3549378cbf424cd78fac8f91278f1f168f42229c32bf2c5a8734ce  kernel/psc/class_a_boundary_e_children.mojo
+ff839e30bb6e0d287cdf976d39edd43ff6a056a2370ab99cbf89c62b9263cb21  kernel/tests/test_class_a_boundary_e_children.mojo
+fc9c3be311fe957f0228b27cd82d80b625d63d11b4cf9f2e43b5b751b6829c10  kernel/class_a_boundary_e_children.mojo
+1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8  kernel/pixi.lock
+
+COMMAND (kernel/): pixi run --locked mojo run -I . tests/test_class_a_boundary_e_children.mojo
+Exit status: 0
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_U_CHILDREN all_nine_kinds=true minus_all_k_t=true target_image_labels=12 V_unique_child_W=true strict_all_edge_rank_impossible_when_n_ge_5=true BH=false
+CLASS_A_BOUNDARY_EH six_complete_oriented_sources=true minus_all_k_t=true uniform_image_labels=29 each_source_typed_coincidence_in_at_most_two_steps=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_U_CHILDREN all_nine_kinds=true minus_all_k_t=true target_image_labels=12 V_unique_child_W=true strict_all_edge_rank_impossible_when_n_ge_5=true BH=false
+CLASS_A_BOUNDARY_EH_FINITE members 56 pairs 148288 accepted 7112 selected_path_edges 560 every_member_image_labels=29 all_six_sources_short_coincidence=true BH=false
+contract-receipt: class-A minus E/H1/H2 and all orientation reversals: complete six indexed child stars, every finite pair against exact full Parikh and Perron geometry, 29 typed targets per member, actual orientation reversal, at most two-step typed coincidence from each source; endpoint, illegal ordinals, corrupted path, false typed terminal and out-of-packet rank rejected; no universal BH
+
+COMMAND (kernel/): pixi run --locked mojo run -I . class_a_boundary_e_children.mojo
+Exit status: 0
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_U_CHILDREN all_nine_kinds=true minus_all_k_t=true target_image_labels=12 V_unique_child_W=true strict_all_edge_rank_impossible_when_n_ge_5=true BH=false
+CLASS_A_BOUNDARY_EH six_complete_oriented_sources=true minus_all_k_t=true uniform_image_labels=29 each_source_typed_coincidence_in_at_most_two_steps=true BH=false
