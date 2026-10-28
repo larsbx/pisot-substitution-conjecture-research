@@ -1,0 +1,6 @@
+Initial default Python lacked pytest; used existing /tmp/psc-w-venv.
+Initial broad Python/provenance attempt lacked pypdf, then installed the pinned pypdf==6.19.0.
+The first broad Python run was interrupted after observed environment failures; no complete-suite pass is credited to it.
+Lean attempt: tools/check_lean.sh exit 1 before compilation (failed to locate application).
+Mojo: locked 1.1.0.dev2026090805 (34562fa1).
+Full native repository suite is delegated to hosted CI; local native replay covers the new canonical regression and driver.
