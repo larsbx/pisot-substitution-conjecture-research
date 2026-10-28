@@ -1,0 +1,861 @@
+{
+  "365": {
+    "pr": 365,
+    "head": "e4f7fc767a45c9445c5294c16d7a703f75f43828",
+    "base": "main",
+    "base_sha": "031dff575998325b454a3aaff2ac8f743aba2835",
+    "state": "open",
+    "merged": false,
+    "mergeable_state": "clean",
+    "check_total": 68,
+    "checks": [
+      {
+        "name": "evidence-policy",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40723567854/job/122940699093"
+      },
+      {
+        "name": "exact-support-grid",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053823/job/122375802201"
+      },
+      {
+        "name": "complete-residual (plus)",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053823/job/122375802040"
+      },
+      {
+        "name": "scoped-assembly",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053752/job/122375802009"
+      },
+      {
+        "name": "complete-residual (minus)",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053823/job/122375801914"
+      },
+      {
+        "name": "vertex-coincidence-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375800634"
+      },
+      {
+        "name": "degree3-catalog",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053651/job/122375800619"
+      },
+      {
+        "name": "defect-degree-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053651/job/122375800553"
+      },
+      {
+        "name": "tla-models",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375800475"
+      },
+      {
+        "name": "return-lattice-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375800413"
+      },
+      {
+        "name": "degree2-three-state",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053456/job/122375800351"
+      },
+      {
+        "name": "numeration-addition-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375800346"
+      },
+      {
+        "name": "overlap-type-exploration",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375800318"
+      },
+      {
+        "name": "wedge-productivity-catalog",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053651/job/122375800301"
+      },
+      {
+        "name": "numeration-conversion-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375800276"
+      },
+      {
+        "name": "one-tile-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375800239"
+      },
+      {
+        "name": "source-provenance",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375800234"
+      },
+      {
+        "name": "exact-gap-five (plus, 1)",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053093/job/122375800043"
+      },
+      {
+        "name": "finite-classification",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375800008"
+      },
+      {
+        "name": "swap-overlap-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799985"
+      },
+      {
+        "name": "exact-cover-obstruction",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053550/job/122375799983"
+      },
+      {
+        "name": "automatic-route-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799975"
+      },
+      {
+        "name": "overlap-contracting-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799878"
+      },
+      {
+        "name": "lean-proofs",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799865"
+      },
+      {
+        "name": "policy (estate layout)",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799856"
+      },
+      {
+        "name": "coincidence-formula-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799849"
+      },
+      {
+        "name": "c3-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799835"
+      },
+      {
+        "name": "swap-discrepancy-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799698"
+      },
+      {
+        "name": "diagnostic",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053545/job/122375799692"
+      },
+      {
+        "name": "chambers",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053491/job/122375799676"
+      },
+      {
+        "name": "c4-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799660"
+      },
+      {
+        "name": "mojo-kernel",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799620"
+      },
+      {
+        "name": "exact-gap-five (minus, -1)",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053093/job/122375799579"
+      },
+      {
+        "name": "exact-gap-theorem",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053469/job/122375799486"
+      },
+      {
+        "name": "recurrent-grid",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053188/job/122375799456"
+      },
+      {
+        "name": "python-tests",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799399"
+      },
+      {
+        "name": "conditional-cycle-reduction",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053188/job/122375799125"
+      },
+      {
+        "name": "boundary-sync",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053141/job/122375798688"
+      },
+      {
+        "name": "evidence-policy",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053244/job/122375798457"
+      },
+      {
+        "name": "exact-run-index",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557052960/job/122375798265"
+      },
+      {
+        "name": "eight-oriented-stars",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053038/job/122375798197"
+      },
+      {
+        "name": "exact-kernels",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053026/job/122375797768"
+      },
+      {
+        "name": "c4-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375549450"
+      },
+      {
+        "name": "tla-models",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375549246"
+      },
+      {
+        "name": "mojo-kernel",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375549166"
+      },
+      {
+        "name": "swap-overlap-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375549068"
+      },
+      {
+        "name": "source-provenance",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548941"
+      },
+      {
+        "name": "finite-classification",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548924"
+      },
+      {
+        "name": "automatic-route-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548917"
+      },
+      {
+        "name": "one-tile-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548899"
+      },
+      {
+        "name": "overlap-contracting-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548843"
+      },
+      {
+        "name": "vertex-coincidence-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548836"
+      },
+      {
+        "name": "policy (estate layout)",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548820"
+      },
+      {
+        "name": "coincidence-formula-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548742"
+      },
+      {
+        "name": "python-tests",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548737"
+      },
+      {
+        "name": "return-lattice-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548724"
+      },
+      {
+        "name": "numeration-addition-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548664"
+      },
+      {
+        "name": "numeration-conversion-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548621"
+      },
+      {
+        "name": "c3-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548616"
+      },
+      {
+        "name": "swap-discrepancy-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548605"
+      },
+      {
+        "name": "overlap-type-exploration",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548597"
+      },
+      {
+        "name": "lean-proofs",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975353/job/122375548173"
+      },
+      {
+        "name": "degree2-three-state",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975324/job/122375538606"
+      },
+      {
+        "name": "degree3-catalog",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975290/job/122375537538"
+      },
+      {
+        "name": "wedge-productivity-catalog",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975290/job/122375537238"
+      },
+      {
+        "name": "defect-degree-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975290/job/122375536927"
+      },
+      {
+        "name": "exact-kernels",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975284/job/122375534657"
+      },
+      {
+        "name": "boundary-sync",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40556975219/job/122375534173"
+      }
+    ],
+    "comments": [
+      {
+        "body": "<!-- codex-pull-request-review-summary -->\n<!-- codex-review-state:v1 {\"code_review\":{\"commit_sha\":\"e4f7fc767a45c9445c5294c16d7a703f75f43828\",\"has_any_findings\":null,\"has_unresolved_findings\":null,\"status\":\"running\"},\"security_review\":{\"commit_sha\":null,\"has_any_findings\":null,\"has_unresolved_findings\":null,\"status\":null}} -->\n\n## Codex Review Summary\n\nThis comment shows the latest Codex review activity on this pull request.\n\n| Review | Status | Commit | Review trigger |\n| --- | --- | --- | --- |\n| 📝 **Code Review** | 🔄 **Running** since <relative-time datetime=\"2026-10-27T18:07:54.879208Z\">2026-10-27T18:07:54.879208Z</relative-time> | `e4f7fc7` | PR opened |\n\n\n\n<details> <summary>ℹ️ About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\" or \"@codex security review\".\n\nCodex reacts with 👀 while any review is running, comments if it has suggestions, and reacts with 👍 once all reviews finish with no findings.\n\n</details>",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/365#issuecomment-6449870724"
+      }
+    ]
+  },
+  "372": {
+    "pr": 372,
+    "head": "8e97ad5035072951259b0301e7387f8baf25d148",
+    "base": "research/class-a-boundary-f-2026-10-27",
+    "base_sha": "e4f7fc767a45c9445c5294c16d7a703f75f43828",
+    "state": "open",
+    "merged": false,
+    "mergeable_state": "unstable",
+    "check_total": 67,
+    "checks": [
+      {
+        "name": "degree2-three-state",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644315/job/122955109773"
+      },
+      {
+        "name": "boundary-sync",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644141/job/122955109675"
+      },
+      {
+        "name": "exact-cover-obstruction",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644078/job/122955108884"
+      },
+      {
+        "name": "return-lattice-census",
+        "status": "queued",
+        "conclusion": null,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108851"
+      },
+      {
+        "name": "swap-discrepancy-census",
+        "status": "queued",
+        "conclusion": null,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108799"
+      },
+      {
+        "name": "coincidence-formula-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108758"
+      },
+      {
+        "name": "one-tile-census",
+        "status": "queued",
+        "conclusion": null,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108741"
+      },
+      {
+        "name": "vertex-coincidence-census",
+        "status": "queued",
+        "conclusion": null,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108737"
+      },
+      {
+        "name": "automatic-route-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108714"
+      },
+      {
+        "name": "finite-classification",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108672"
+      },
+      {
+        "name": "wedge-productivity-catalog",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643976/job/122955108612"
+      },
+      {
+        "name": "swap-overlap-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108587"
+      },
+      {
+        "name": "c4-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108489"
+      },
+      {
+        "name": "defect-degree-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643976/job/122955108453"
+      },
+      {
+        "name": "complete-residual (plus)",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644079/job/122955108426"
+      },
+      {
+        "name": "lean-proofs",
+        "status": "in_progress",
+        "conclusion": null,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108337"
+      },
+      {
+        "name": "chambers",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644209/job/122955108310"
+      },
+      {
+        "name": "mojo-kernel",
+        "status": "in_progress",
+        "conclusion": null,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108294"
+      },
+      {
+        "name": "complete-residual (minus)",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644079/job/122955108280"
+      },
+      {
+        "name": "recurrent-grid",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644065/job/122955108269"
+      },
+      {
+        "name": "c3-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108266"
+      },
+      {
+        "name": "diagnostic",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644106/job/122955108194"
+      },
+      {
+        "name": "numeration-addition-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108175"
+      },
+      {
+        "name": "python-tests",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108155"
+      },
+      {
+        "name": "overlap-contracting-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108140"
+      },
+      {
+        "name": "overlap-type-exploration",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108122"
+      },
+      {
+        "name": "numeration-conversion-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108115"
+      },
+      {
+        "name": "tla-models",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108067"
+      },
+      {
+        "name": "source-provenance",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955108019"
+      },
+      {
+        "name": "exact-gap-five (minus, -1)",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644013/job/122955107982"
+      },
+      {
+        "name": "policy (estate layout)",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643991/job/122955107968"
+      },
+      {
+        "name": "exact-support-grid",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644079/job/122955107915"
+      },
+      {
+        "name": "conditional-cycle-reduction",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644065/job/122955107852"
+      },
+      {
+        "name": "six-oriented-stars",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644080/job/122955107723"
+      },
+      {
+        "name": "degree3-catalog",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643976/job/122955107587"
+      },
+      {
+        "name": "exact-gap-five (plus, 1)",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644013/job/122955107378"
+      },
+      {
+        "name": "exact-gap-theorem",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644011/job/122955107365"
+      },
+      {
+        "name": "exact-run-index",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643954/job/122955107105"
+      },
+      {
+        "name": "scoped-assembly",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643957/job/122955107046"
+      },
+      {
+        "name": "evidence-policy",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727643988/job/122955106946"
+      },
+      {
+        "name": "exact-kernels",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727644008/job/122955106661"
+      },
+      {
+        "name": "numeration-addition-census",
+        "status": "queued",
+        "conclusion": null,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955029528"
+      },
+      {
+        "name": "vertex-coincidence-census",
+        "status": "in_progress",
+        "conclusion": null,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955029477"
+      },
+      {
+        "name": "automatic-route-census",
+        "status": "queued",
+        "conclusion": null,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955029463"
+      },
+      {
+        "name": "swap-discrepancy-census",
+        "status": "queued",
+        "conclusion": null,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955029392"
+      },
+      {
+        "name": "one-tile-census",
+        "status": "queued",
+        "conclusion": null,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955029391"
+      },
+      {
+        "name": "finite-classification",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955029387"
+      },
+      {
+        "name": "coincidence-formula-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955029340"
+      },
+      {
+        "name": "tla-models",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955029316"
+      },
+      {
+        "name": "numeration-conversion-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955029274"
+      },
+      {
+        "name": "swap-overlap-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955029200"
+      },
+      {
+        "name": "overlap-contracting-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955029157"
+      },
+      {
+        "name": "overlap-type-exploration",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955029084"
+      },
+      {
+        "name": "source-provenance",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955029020"
+      },
+      {
+        "name": "python-tests",
+        "status": "in_progress",
+        "conclusion": null,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955028989"
+      },
+      {
+        "name": "return-lattice-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955028963"
+      },
+      {
+        "name": "c3-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955028887"
+      },
+      {
+        "name": "mojo-kernel",
+        "status": "in_progress",
+        "conclusion": null,
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955028822"
+      },
+      {
+        "name": "c4-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955028661"
+      },
+      {
+        "name": "lean-proofs",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955028649"
+      },
+      {
+        "name": "policy (estate layout)",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621117/job/122955028308"
+      },
+      {
+        "name": "defect-degree-census",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621120/job/122955027972"
+      },
+      {
+        "name": "degree3-catalog",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621120/job/122955027808"
+      },
+      {
+        "name": "exact-kernels",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621206/job/122955027686"
+      },
+      {
+        "name": "wedge-productivity-catalog",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727621120/job/122955027014"
+      },
+      {
+        "name": "boundary-sync",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727620897/job/122955026819"
+      },
+      {
+        "name": "degree2-three-state",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40727620868/job/122955026608"
+      }
+    ],
+    "comments": [
+      {
+        "body": "<!-- codex-pull-request-review-summary -->\n<!-- codex-review-state:v1 {\"code_review\":{\"commit_sha\":\"8e97ad5035072951259b0301e7387f8baf25d148\",\"has_any_findings\":false,\"has_unresolved_findings\":false,\"status\":\"completed\"},\"security_review\":{\"commit_sha\":null,\"has_any_findings\":null,\"has_unresolved_findings\":null,\"status\":null}} -->\n\n## Codex Review Summary\n\nThis comment shows the latest Codex review activity on this pull request.\n\n| Review | Status | Commit | Review trigger |\n| --- | --- | --- | --- |\n| 📝 **Code Review** | ✅ **Completed** <relative-time datetime=\"2026-10-28T16:37:45.123337Z\">2026-10-28T16:37:45.123337Z</relative-time> | `8e97ad5` | PR opened |\n\n\n\n<details> <summary>ℹ️ About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\" or \"@codex security review\".\n\nCodex reacts with 👀 while any review is running, comments if it has suggestions, and reacts with 👍 once all reviews finish with no findings.\n\n</details>",
+        "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/372#issuecomment-6474807460"
+      }
+    ]
+  },
+  "integration": {
+    "predecessor365_merge": {
+      "sha": "148e5b35730ffa979b7f017bfa09f5882b5b1b5b",
+      "merged": true,
+      "message": "Pull Request successfully merged"
+    },
+    "pr372_retarget": {
+      "base": "main",
+      "base_sha": "148e5b35730ffa979b7f017bfa09f5882b5b1b5b",
+      "head_sha": "8e97ad5035072951259b0301e7387f8baf25d148"
+    },
+    "scope": "Snapshot, not continuing or inferred hosted acceptance. PR 365 integrated after exact-head success; PR 372 remains open with incomplete hosted gates."
+  }
+}
