@@ -72,3 +72,34 @@ def vertices_of(block: String) raises -> Int:
     if len(head) != 5 or String(head[0]) != "M":
         raise Error("not a member block")
     return Int(head[2])
+
+
+def scan_range(lo: Int, hi: Int, what: String) raises:
+    """Refuse an empty scan: it compares nothing and must not read as a result."""
+    if lo > hi:
+        raise Error("SCAN_REFUSED: empty " + what + " range " + String(lo) + ".." + String(hi))
+
+
+def same_label_set(eps: Int, d_min: Int, d_max: Int, d_step: Int, off_lo: Int, off_hi: Int) raises -> List[String]:
+    """`[members, rows]`: the label set shared by every member `n = 4d + off` of
+    the gaps `d_min, d_min + d_step, .. <= d_max` and offsets `off_lo..off_hi`.
+    Raises if a member is screened out, if two members differ, or if the scan is empty."""
+    scan_range(d_min, d_max, "gap")
+    scan_range(off_lo, off_hi, "offset")
+    if d_step < 1:
+        raise Error("SCAN_REFUSED: gap step must be positive")
+    var common = String()
+    var members = 0
+    for d in range(d_min, d_max + 1, d_step):
+        for off in range(off_lo, off_hi + 1):
+            var n = 4 * d + off
+            var block = c_block(d, eps, n)
+            if block.startswith("S "):
+                raise Error("SAME_REFUSED: member is not PIP: d=" + String(d) + " n=" + String(n))
+            var rows = rows_of(block)
+            if members == 0:
+                common = rows
+            elif rows != common:
+                raise Error("SAME_REFUSED: label set differs at d=" + String(d) + " n=" + String(n))
+            members += 1
+    return [String(members), common^]
