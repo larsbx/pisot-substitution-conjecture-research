@@ -122,9 +122,10 @@ mojo run -I . class_c_tail_certificate.mojo theorem -1    # minus, d >= 6, n >= 
 mojo run -I . tests/test_class_c_tail_certificate.mojo
 ```
 
-The theorem logs (one line per piece, refusal or exact member, then the label
-set), their comparison against the profile packet, timings and the test
-receipt are in the packet.
+Each sign runs in about 12.5 minutes locally. The packet holds the theorem
+logs (one line per piece, refusal or exact member, then the label set), the
+timings and the test receipt; its README gives the comparison against the
+profile packet.
 
 ## Negative controls
 
