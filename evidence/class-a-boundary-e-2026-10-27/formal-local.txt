@@ -1,0 +1,27 @@
+TLA command: TLA_TOOLS=/tmp/psc-tla2tools.jar bash proof/tla/check.sh
+[PASS] MCTribonacci  all invariants hold
+[PASS] MCFlippedTribonacci  all invariants hold
+[PASS] MCSmith  all invariants hold
+[PASS] MCNonProductive  Productive violated as expected
+[PASS] MCLedgerClassDIntegrationAssumed  all invariants hold
+[PASS] MCLedgerTwoObstructionsAssumed  all invariants hold
+[PASS] MCLedgerMinusCycleSumAssumed  all invariants hold
+[PASS] MCLedgerOpen  all invariants hold
+[PASS] MCLedgerImports  all invariants hold
+[PASS] MCLedgerG1AndProducer  all invariants hold
+[PASS] MCLedgerG1Only  all invariants hold
+[PASS] MCLedgerG1AndC4  all invariants hold
+[PASS] MCLedgerRenewalGateAssumed  all invariants hold
+[PASS] MCLedgerSpectralGateAssumed  all invariants hold
+[PASS] MCLedgerOverlapGateAssumed  all invariants hold
+[PASS] MCLedgerAllSeedOverlapGateAssumed  all invariants hold
+[PASS] MCLedgerAllSeedStrictZipperGateAssumed  all invariants hold
+[PASS] MCLedgerFormalProductivityGateAssumed  all invariants hold
+
+Lean attempt: PATH=/root/.elan/bin:$PATH bash tools/check_lean.sh
+Launcher failed before compilation; no proof pass credited.
+Prepared isolated Lean workspace from source/configuration only
+Proof bank: 120 claims, 34 named Lean proofs, 315 source openings
+error: failed to locate application
+
+No Lean/TLA source changed in the E/H increment. #355 hosted formal compilation remains a separate pending gate, not inferred from merge status.
