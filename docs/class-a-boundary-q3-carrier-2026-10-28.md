@@ -9,7 +9,9 @@ edge (0,A+1)->R(X). There is no parameter-dependent split or unresolved
 direct Q3 child. X has an established four-edge typed-coincidence exit;
 therefore Q3 has an explicit exit of length five. This is an existence
 bound, not a shortest-path assertion. The genuine cycle Q3->X->Q3 prevents
-any all-edge strict-descent conclusion.
+any all-edge strict-descent conclusion. Moreover, Q3 is in P3's 37-label
+outgoing image but X is outside it, so this actual edge **disproves forward
+closure of that image**, uniformly in the chamber.
 
 This packet extends PR #372 at
 8e97ad5035072951259b0301e7387f8baf25d148, which depends on PR #365 at
@@ -144,8 +146,15 @@ A-(n+1)=d-1>=4. Its prefix correction is (0,0,n-A), so
 and upper margin h prove strictness. Together with the singleton Q3 edge this
 is a two-cycle in every member and in both orientations. A strict rank on every
 edge is impossible. The outgoing two-label image is **not forward closed**:
-X(d,0)->V lies outside {X,R(X)}. This does not settle the different 37-label
-image of PR #372, whose forward closure remains unproved.
+X(d,0)->V lies outside {X,R(X)}. There is a second exact escape: Q3 belongs to the different 37-label image
+of PR #372, but X does not. Membership follows already from the literal
+P3(A+1,n-2)->Q3 ancestry. In the complete P3/T/U target table, the only
+c-coordinate-zero x/x labels have zero x-coordinate and y-coordinate +/-1;
+X has x-coordinate 1 (and R(X) has -1). Thus neither X nor R(X) belongs
+to that image. The actual forced Q3->X edge, and its reversal, are explicit
+counterexamples to forward closure of the 37-label image in every member.
+The kernel checks both the scalar predicate and the entire 37-element list;
+the independent oracle checks the predecessor's separately written envelope.
 
 ## Evidence, controls and deterministic replay
 
@@ -198,9 +207,10 @@ Fresh exact-head hosted gates are required before dependent integration.
 
 ## Remaining scope boundary
 
-The direct Q3-child productivity question is discharged. All remaining P3
-children and the 37-label image retain their previous unresolved obligations;
-this singleton result cannot certify them. All-source cyclic strict-zipper,
+The direct Q3-child productivity question is discharged, and forward closure
+of the 37-label P3 outgoing image is refuted by an actual edge. Productivity
+of all remaining P3 children is still unproved; this singleton result cannot
+certify them. All-source cyclic strict-zipper,
 plus chambers, target-aware BH, non-unit internal-space/return-lattice
 realization, universal BH/#139, A1-prime, G1 and PSC remain open.
 Independent human review pending.

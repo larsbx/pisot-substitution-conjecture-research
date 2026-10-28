@@ -7,6 +7,7 @@ from pathlib import Path
 import runpy
 
 Geometry = runpy.run_path(str(Path(__file__).with_name('class_a_boundary_children.py')))['Geometry']
+p3_envelope = runpy.run_path(str(Path(__file__).with_name('class_a_boundary_p3_children.py')))['envelope']
 Q3 = (0, 2, 1, -1, 1)
 X = (0, 0, 1, 0, -1)
 V = (2, 0, 0, -1, 2)
@@ -70,6 +71,10 @@ def probe():
     rows = []
     witnesses = {}
     pairs = accepted = path_edges = cycle_edges = 0
+    old_image = p3_envelope()
+    assert len(old_image) == 37
+    assert {Q3, reverse(Q3)} <= old_image
+    assert X not in old_image and reverse(X) not in old_image
     for k in range(13):
         for t in range(9):
             g = Geometry(-1, k, t)
@@ -116,6 +121,7 @@ def probe():
                 image_labels=2, path_edges=path_edges, cycle_edges=cycle_edges,
                 Q3_typed_exit_at_most_five=True, every_direct_child_typed_tail_at_most_four=True,
                 unresolved_direct_Q3_children=0, all_edge_descent=False, forward_closure=False,
+                P3_image_not_forward_closed=True,
                 witnesses=[dict(target=list(w), **v) for w, v in sorted(witnesses.items())], rows=rows)
 
 

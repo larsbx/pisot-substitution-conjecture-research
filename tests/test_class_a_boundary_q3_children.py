@@ -14,6 +14,10 @@ def test_complete_two_stars_all_direct_child_tails_and_real_cycles():
     assert p['image_labels'] == 2 and p['unresolved_direct_Q3_children'] == 0
     assert p['Q3_typed_exit_at_most_five'] and p['every_direct_child_typed_tail_at_most_four']
     assert not p['all_edge_descent'] and not p['forward_closure']
+    assert p['P3_image_not_forward_closed']
+    old_image = o['p3_envelope']()
+    assert o['Q3'] in old_image and o['X'] not in old_image
+    assert o['reverse'](o['Q3']) in old_image and o['reverse'](o['X']) not in old_image
 
 
 def test_invalid_orientation_parameters_indices_types_and_duplicate_star():

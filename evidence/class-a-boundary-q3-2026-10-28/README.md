@@ -3,16 +3,18 @@
 Scope: Q3=(x,y,1,-1,1) and actual reversal in the full minus class-A boundary
 chamber k,t>=0. Complete nine-kind proof gives one X child per orientation;
 every direct Q3 child has a selected four-edge typed-coincidence tail. Q3's
-selected exit has five edges. A genuine Q3/X two-cycle remains. Universal
+selected exit has five edges. A genuine Q3/X two-cycle remains. Q3 is in
+P3's 37-label image but its forced X child is not: that image is not forward
+closed, with an actual uniform escape in each orientation. Universal
 inequalities are in docs/class-a-boundary-q3-carrier-2026-10-28.md; finite
 replay numbers validate implementations, not the infinite quantifier alone.
 
 | Receipt | Result and exact scope |
 | --- | --- |
-| native.log | PASS: locked Mojo 1.1.0.dev2026090805; 56 members / 112 oriented sources / 33,096 pairs / 112 accepted; 560 selected path edges / 224 cycle-edge replays; full contract receipt reached |
+| native.log | PASS: locked Mojo 1.1.0.dev2026090805; 56 members / 112 oriented sources / 33,096 pairs / 112 accepted; 560 selected path edges / 224 cycle-edge replays; full contract receipt reached, including escape from the predecessor 37-label image |
 | driver.log | PASS: symbolic Q[t,k] transport, inherited field/length bounds, cone lower-margin checks, actual ancestry, selected exit and real return; no global BH |
 | python-scoped.log | PASS: all three Q3 regression tests, including negative controls |
-| probe.json | Independent literal-word/integer-polynomial/Fraction oracle: 117 members / 234 sources / 122,616 pairs / 234 accepted; 1,170 selected path edges / 468 cycle-edge replays; both target labels attained; every actual direct child tail checked |
+| probe.json | Independent literal-word/integer-polynomial/Fraction oracle: 117 members / 234 sources / 122,616 pairs / 234 accepted; 1,170 selected path edges / 468 cycle-edge replays; both target labels attained; every actual direct child tail checked; independent predecessor-envelope escape verified |
 | tla.log | PASS: all 18 expected outcomes, including the intended nonproductive countermodel; no new Q3 TLA theorem is claimed |
 | lean-attempt.log | FAIL before compilation: local launcher reports `failed to locate application`; exit 1, no Lean proof pass credited |
 | provenance.log | PASS: full `bash tools/verify_all.sh provenance`, including vendoring, generated ledgers/catalogue/proof bank, manuscript and Markdown integrity, hit witnesses and governance |
@@ -27,7 +29,10 @@ while compiling this packet's source. The portable commands are in the derivatio
 The initial Python environment lacked pytest; pytest and the repository-pinned
 pypdf==6.19.0 were installed before the recorded successful runs.
 
-The complete local Python suite was also started; its outcome is recorded
+The initial native/driver/oracle receipts before the explicit P3-image escape
+assertions are preserved as native-initial.log, driver-initial.log and
+probe-initial.json (initial PR head c99e988ee4e26f6c42e00b4071c2d507d6b7c9a6).
+The complete local Python suite was also started before that strengthening; its outcome is recorded
 separately if completed. It earns no pass while in progress. The complete local
 native suite is not claimed. Fresh exact-head hosted native, Python, Lean,
 TLA, provenance and evidence-policy gates remain required before integration.

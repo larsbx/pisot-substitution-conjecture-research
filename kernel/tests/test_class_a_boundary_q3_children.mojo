@@ -5,7 +5,7 @@ from mojo_smoke.claims import require_contract
 from a1_normal_form_census import class_member, CLASS_A
 from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, geometric_state, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
-from psc.class_a_boundary_p3_children import p3_source, verify_p3_packet
+from psc.class_a_boundary_p3_children import verify_p3_packet, in_p3_image, p3_image
 from psc.class_a_boundary_w_children import verify_local_packet, X, typed_coincidence
 from psc.class_a_boundary_q3_children import certify_q3_children, q3_source, q3_target, q3_child_allowed, q3_child_star, verify_q3_packet, q3_path, verify_q3_path
 from psc.class_a_boundary_occurrences import symbolic_child, RUN, FIRST
@@ -17,6 +17,17 @@ from psc.perron_field3 import CubicElt
 
 def main() raises:
     certify_q3_children()
+    var old_image=p3_image()
+    assert_true(len(old_image)==37)
+    for kind in range(2):
+        assert_true(in_p3_image(q3_source(kind)))
+        assert_true(not in_p3_image(q3_target(kind)))
+        var found=False
+        for label in old_image:
+            if label==q3_source(kind):
+                found=True
+            assert_true(label!=q3_target(kind))
+        assert_true(found)
     var pairs=0
     var accepted=0
     var path_edges=0
@@ -121,4 +132,4 @@ def main() raises:
             failed=True
         assert_true(failed)
     print("CLASS_A_BOUNDARY_Q3_FINITE members=56 source_cells=112", "pairs",pairs,"accepted",accepted,"path_edges",path_edges,"cycle_edges",cycle_edges,"union_labels=2", "BH=false")
-    require_contract("class-A minus Q3 and real reversal: complete nine-kind stars with one actual X child per orientation; exact P3 ancestry; five-edge typed exit and four-edge tail for every direct Q3 child; every literal pair checked against full Parikh/Perron geometry; real two-cycle retained; invalid kinds/indices/types, disjoint pairs, endpoint contact and false coincidence refused; no all-edge descent/global closure/BH")
+    require_contract("class-A minus Q3 and real reversal: complete nine-kind stars with one actual X child per orientation; exact P3 ancestry and actual escape from P3's 37-label image; five-edge typed exit and four-edge tail for every direct Q3 child; every literal pair checked against full Parikh/Perron geometry; real two-cycle retained; invalid kinds/indices/types, disjoint pairs, endpoint contact and false coincidence refused; no all-edge descent/global closure/BH")

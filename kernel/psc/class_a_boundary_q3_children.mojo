@@ -6,7 +6,7 @@ Exact nine-kind guard proof: docs/class-a-boundary-q3-carrier-2026-10-28.md.
 from finite_exact.checked_int import checked_add
 from psc.class_a_boundary_children import BoundaryLabel, BoundaryEdge, member_transport, verify_member_edge
 from psc.class_a_boundary_u_children import reverse_label
-from psc.class_a_boundary_p3_children import certify_p3_children, p3_source
+from psc.class_a_boundary_p3_children import certify_p3_children, p3_source, in_p3_image
 from psc.class_a_boundary_w_children import certify_w_children, local_source, X, selected_path_label, typed_coincidence
 from psc.class_a_boundary_e_children import _offset
 from psc.class_a_boundary_next_run import _parameters
@@ -52,6 +52,9 @@ def _stage(stage: Int) raises -> BoundaryLabel:
 def certify_q3_children(corrupt: Bool=False) raises:
     certify_p3_children() # inherited exact h,rho,zeta signs and P3 star
     certify_w_children() # established X star and V/W/Q selected suffix
+    for kind in range(2):
+        if not in_p3_image(q3_source(kind)) or in_p3_image(q3_target(kind)):
+            raise Error("P3 image escape witness membership mismatch")
     var p=chamber_parameters(-1)
     var n=p[0].copy()
     var d=p[1].copy()
@@ -127,7 +130,7 @@ def certify_q3_children(corrupt: Bool=False) raises:
         # X's genuine LAST/RUN return rules out all-edge strict descent.
         var xs=q3_target(kind)
         _equal3(symbolic_child(-1,xs.top,xs.bottom,_offset(xs),LAST if kind==0 else RUN,qx_add(A if kind==0 else n,qx_const(1)),RUN if kind==0 else LAST,qx_add(n if kind==0 else A,qx_const(1)),w.top,w.bottom),_offset(w))
-    print("CLASS_A_BOUNDARY_Q3 two_complete_oriented_stars=true", "children_per_orientation=1", "chamber_union_labels=2", "all_direct_Q3_children_typed_tail_at_most_four=true", "Q3_typed_exit_at_most_five=true", "actual_two_cycle=true", "global_closure=false", "BH=false")
+    print("CLASS_A_BOUNDARY_Q3 two_complete_oriented_stars=true", "children_per_orientation=1", "chamber_union_labels=2", "all_direct_Q3_children_typed_tail_at_most_four=true", "Q3_typed_exit_at_most_five=true", "actual_two_cycle=true", "P3_image_not_forward_closed=true", "global_closure=false", "BH=false")
 
 
 def _dimensions(kind: Int,k: Int,t: Int) raises -> Tuple[Int,Int,Int]:

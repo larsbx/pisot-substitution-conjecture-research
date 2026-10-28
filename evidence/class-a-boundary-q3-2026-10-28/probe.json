@@ -1,4 +1,5 @@
 {
+  "P3_image_not_forward_closed": true,
   "Q3_typed_exit_at_most_five": true,
   "accepted": 234,
   "all_edge_descent": false,
