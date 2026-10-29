@@ -1,0 +1,56 @@
+name: Class-C frozen-tail theorem (T_C)
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_c_tail_certificate.mojo'
+      - 'kernel/class_c_tail_certificate.mojo'
+      - 'kernel/tests/test_class_c_tail_certificate.mojo'
+      - 'kernel/psc/class_c_gap_profile.mojo'
+      - 'kernel/psc/symbolic_cone.mojo'
+      - 'kernel/psc/param_poly.mojo'
+      - 'docs/class-c-tail-theorem-2026-10-28.md'
+      - 'evidence/class-c-tail-theorem-2026-10-28/**'
+      - '.github/workflows/class-c-tail-theorem.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.ref }}
+  cancel-in-progress: true
+jobs:
+  theorem:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        sign: [plus, minus]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Native theorem replay against the packet and the frozen profile
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          eps=$([ "${{ matrix.sign }}" = plus ] && echo 1 || echo -1)
+          mkdir -p build/class-c-tail
+          pixi run --locked mojo build -I . class_c_tail_certificate.mojo -o build/class-c-tail/cct
+          build/class-c-tail/cct theorem "$eps" | tee build/class-c-tail/theorem-${{ matrix.sign }}.log
+          diff ../evidence/class-c-tail-theorem-2026-10-28/theorem-${{ matrix.sign }}.log build/class-c-tail/theorem-${{ matrix.sign }}.log
+          diff <(grep '^R ' ../evidence/class-c-gap-profile-2026-10-28/frozen-tail-${{ matrix.sign }}.txt) <(grep '^R ' build/class-c-tail/theorem-${{ matrix.sign }}.log)
+      - name: Regression test and controls
+        if: matrix.sign == 'plus'
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_class_c_tail_certificate.mojo | tee build/class-c-tail/native-test.log
+          diff ../evidence/class-c-tail-theorem-2026-10-28/native-test.log build/class-c-tail/native-test.log
+      - name: Preserve fresh receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-c-tail-receipts-${{ matrix.sign }}
+          path: kernel/build/class-c-tail/
+          if-no-files-found: warn
