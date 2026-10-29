@@ -1,0 +1,181 @@
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_U_CHILDREN all_nine_kinds=true minus_all_k_t=true target_image_labels=12 V_unique_child_W=true strict_all_edge_rank_impossible_when_n_ge_5=true BH=false
+CLASS_A_BOUNDARY_EH six_complete_oriented_sources=true minus_all_k_t=true uniform_image_labels=29 each_source_typed_coincidence_in_at_most_two_steps=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_FIRST minus_T1_iff_t_le_1=true plus_T2_iff_k_le_6=true other_Tm_first_first=false all_k_t=true closed_carrier=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_TM_CHILDREN all_nine_kinds=true all_k_t=true proper_word_clips=true global_forward_closure=false BH=false
+CLASS_A_BOUNDARY_H3 alpha_gt_half_iff_t_gt_k_or_diag_ge_2=true eight_complete_oriented_sources=true uniform_image_union=76 selected_coincidence_paths_at_most_five=true universal_BH=false
+CLASS_A_BOUNDARY_P ten_complete_oriented_stars=true selected_typed_exits_at_most_five=true small_k_alternative=true n3_half_coincidence_not_typed=true global_BH=false
+CLASS_A_BOUNDARY_E2 four_complete_oriented_stars=true chamber_union_labels=46 E2_t0_unique_last_child=true typed_exits_at_most_five=true global_closure=false BH=false
+CLASS_A_BOUNDARY_H4 all_k_t=true child_cardinality=2*t+5 target_envelope=13 contained_in_E2_image=true alpha_half_separator=inherited_exact global_closed_carrier=false BH=false
+CLASS_A_BOUNDARY_H5_EXIT minus_all_k_t=true H4_to_H5_actual=true k0_depth=3 k1_depth=2 k_ge_2_depth=2 true_typed_C=true global_BH=false
+CLASS_A_BOUNDARY_H5_CHILDREN eta_positive_iff_t_ge_2=true two_complete_orientations=true occurrences_each=2k+1 chamber_union_labels=30 selected_typed_exits_at_most_three=true BH=false
+CLASS_A_BOUNDARY_P3 six_complete_oriented_stars=true chamber_union_labels=37 typed_exits_at_most_two=true global_closure=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_U_CHILDREN all_nine_kinds=true minus_all_k_t=true target_image_labels=12 V_unique_child_W=true strict_all_edge_rank_impossible_when_n_ge_5=true BH=false
+CLASS_A_BOUNDARY_W_CHILDREN four_complete_sources=true minus_all_k_t=true outgoing_union_labels=17 six_step_seed_physical_coincidence=true rank_scope=selected_seven_state_packet universal_BH=false
+CLASS_A_BOUNDARY_Q3 two_complete_oriented_stars=true children_per_orientation=1 chamber_union_labels=2 all_direct_Q3_children_typed_tail_at_most_four=true Q3_typed_exit_at_most_five=true actual_two_cycle=true P3_image_not_forward_closed=true global_closure=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_U_CHILDREN all_nine_kinds=true minus_all_k_t=true target_image_labels=12 V_unique_child_W=true strict_all_edge_rank_impossible_when_n_ge_5=true BH=false
+CLASS_A_BOUNDARY_EH six_complete_oriented_sources=true minus_all_k_t=true uniform_image_labels=29 each_source_typed_coincidence_in_at_most_two_steps=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_FIRST minus_T1_iff_t_le_1=true plus_T2_iff_k_le_6=true other_Tm_first_first=false all_k_t=true closed_carrier=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_TM_CHILDREN all_nine_kinds=true all_k_t=true proper_word_clips=true global_forward_closure=false BH=false
+CLASS_A_BOUNDARY_H3 alpha_gt_half_iff_t_gt_k_or_diag_ge_2=true eight_complete_oriented_sources=true uniform_image_union=76 selected_coincidence_paths_at_most_five=true universal_BH=false
+CLASS_A_BOUNDARY_P ten_complete_oriented_stars=true selected_typed_exits_at_most_five=true small_k_alternative=true n3_half_coincidence_not_typed=true global_BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_FIRST minus_T1_iff_t_le_1=true plus_T2_iff_k_le_6=true other_Tm_first_first=false all_k_t=true closed_carrier=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_TM_CHILDREN all_nine_kinds=true all_k_t=true proper_word_clips=true global_forward_closure=false BH=false
+CLASS_A_BOUNDARY_R3 four_complete_oriented_stars=true R3_count=2n+3 D3_count=2n+4_at_t0_else_2n+5 R3_exit_at_most_two=true D3_exit_at_most_six=true candidate39_not_closed=true candidate41_not_closed=true all_direct_child_productivity_proved=false BH=false
+CLASS_A_BOUNDARY_B3 two_complete_oriented_stars=true count=2n+2_at_t0_else_2n+3 union_labels=20 typed_exit_two_edges=true candidate41_escape_via_H1=true all_direct_child_productivity_proved=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_U_CHILDREN all_nine_kinds=true minus_all_k_t=true target_image_labels=12 V_unique_child_W=true strict_all_edge_rank_impossible_when_n_ge_5=true BH=false
+CLASS_A_BOUNDARY_EH six_complete_oriented_sources=true minus_all_k_t=true uniform_image_labels=29 each_source_typed_coincidence_in_at_most_two_steps=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_FIRST minus_T1_iff_t_le_1=true plus_T2_iff_k_le_6=true other_Tm_first_first=false all_k_t=true closed_carrier=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_TM_CHILDREN all_nine_kinds=true all_k_t=true proper_word_clips=true global_forward_closure=false BH=false
+CLASS_A_BOUNDARY_H3 alpha_gt_half_iff_t_gt_k_or_diag_ge_2=true eight_complete_oriented_sources=true uniform_image_union=76 selected_coincidence_paths_at_most_five=true universal_BH=false
+CLASS_A_BOUNDARY_P ten_complete_oriented_stars=true selected_typed_exits_at_most_five=true small_k_alternative=true n3_half_coincidence_not_typed=true global_BH=false
+CLASS_A_BOUNDARY_E2 four_complete_oriented_stars=true chamber_union_labels=46 E2_t0_unique_last_child=true typed_exits_at_most_five=true global_closure=false BH=false
+CLASS_A_BOUNDARY_B4 two_complete_oriented_stars=true count=max(1,2t-1) union_labels=32 typed_exit_at_most_five=true D0_F4_uniform_exits_only=true all_direct_children_productivity_proved_on_t_le_1=true all_t_all_child_productivity_proved=false global_BH=false
+CLASS_A_BOUNDARY_R4 two_complete_oriented_stars=true count=max(1,2t) union_labels=20 R4_typed_exit_at_most_four=true five_companions_uniform_exits_only=true all_direct_children_productivity_proved_on_t_le_1=true all_t_all_child_productivity_proved=false global_BH=false
+CLASS_A_BOUNDARY_Y4 two_complete_oriented_stars=true count=2n+2 union_labels=18 source_exit_two=true T2_uniform_exit_at_most_seven=true every_direct_child_tail_at_most_seven=true every_first_choice_walk_at_most_eight=true Y4_T_cycle=true S41_escape_via_D5=true closed_carrier=false global_BH=false
+CLASS_A_BOUNDARY_B5 two_complete_oriented_stars=true count=2n-1 union_labels=24 source_exit_two=true every_direct_child_productive=true tail_bound=7 walk_bound=8 E7_tail_n4_only=true closed_carrier=false global_BH=false
+CLASS_A_BOUNDARY_E6 two_complete_oriented_stars=true count=2d-1 union_labels=16 source_exit_two=true every_direct_child_tail_at_most_eight=true walk_bound=9 n3_three_cycle=true image_escape_via_K6=true closed_carrier=false global_BH=false
+CLASS_A_BOUNDARY_E7 two_complete_oriented_stars=true count=max(1,2t-1) chamber_union_labels=32 half_split_inherited=true source_exit_t0_t1=3 source_exit_tge2=5 all_direct_children_productive_tle1=true all_t_all_child_productivity=false closed_carrier=false global_BH=false
+CLASS_A_BOUNDARY_D0 two_complete_oriented_stars=true count=2n-1 chamber_union_labels=24 image_equals_B5=true source_exit_two_reused=true every_direct_child_productive=true tail_bound=7 walk_bound=8 new_companion_stars=false closed_carrier=false global_BH=false
+CLASS_A_D0_SOURCE_REGISTRY 0 0 1 2 -3 0 20 20 20
+CLASS_A_D0_SOURCE_REGISTRY 0 0 -1 -2 3 0 20 20 20
+CLASS_A_D0_CANDIDATE_REGISTRY 2 2 0 0 0 1 1 1 1
+CLASS_A_D0_CANDIDATE_REGISTRY 2 0 0 -1 -1 19 19 19 19
+CLASS_A_D0_CANDIDATE_REGISTRY 0 2 0 1 1 19 19 19 19
+CLASS_A_D0_CANDIDATE_REGISTRY 2 0 0 -1 0 17 17 17 17
+CLASS_A_D0_CANDIDATE_REGISTRY 0 2 0 1 0 17 17 17 17
+CLASS_A_D0_CANDIDATE_REGISTRY 2 0 0 -1 1 2 2 2 2
+CLASS_A_D0_CANDIDATE_REGISTRY 0 2 0 1 -1 2 2 2 2
+CLASS_A_D0_CANDIDATE_REGISTRY 2 0 0 -1 2 4 4 4 4
+CLASS_A_D0_CANDIDATE_REGISTRY 0 2 0 1 -2 4 4 4 4
+CLASS_A_D0_CANDIDATE_REGISTRY 2 2 1 -1 -2 7 7 7 7
+CLASS_A_D0_CANDIDATE_REGISTRY 2 2 -1 1 2 7 7 7 7
+CLASS_A_D0_CANDIDATE_REGISTRY 2 2 1 -1 -1 6 6 6 6
+CLASS_A_D0_CANDIDATE_REGISTRY 2 2 -1 1 1 6 6 6 6
+CLASS_A_D0_CANDIDATE_REGISTRY 0 0 0 -1 -1 43 43 43 43
+CLASS_A_D0_CANDIDATE_REGISTRY 0 0 0 1 1 43 43 43 43
+CLASS_A_D0_CANDIDATE_REGISTRY 0 0 0 -1 0 38 38 38 38
+CLASS_A_D0_CANDIDATE_REGISTRY 0 0 0 1 0 38 38 38 38
+CLASS_A_D0_CANDIDATE_REGISTRY 0 0 0 -1 1 3 3 3 3
+CLASS_A_D0_CANDIDATE_REGISTRY 0 0 0 1 -1 3 3 3 3
+CLASS_A_D0_CANDIDATE_REGISTRY 0 2 1 -1 -2 23 23 23 23
+CLASS_A_D0_CANDIDATE_REGISTRY 2 0 -1 1 2 23 23 23 23
+CLASS_A_D0_CANDIDATE_REGISTRY 0 2 1 -1 -1 0 0 29 29
+CLASS_A_D0_CANDIDATE_REGISTRY 2 0 -1 1 1 0 0 29 29
+CLASS_A_D0_CANDIDATE_REGISTRY 0 2 1 -1 0 10 10 10 10
+CLASS_A_D0_CANDIDATE_REGISTRY 2 0 -1 1 0 10 10 10 10
+CLASS_A_D0_CANDIDATE_REGISTRY 0 2 1 -1 1 8 8 8 8
+CLASS_A_D0_CANDIDATE_REGISTRY 2 0 -1 1 -1 8 8 8 8
+CLASS_A_D0_CANDIDATE_REGISTRY 0 0 0 0 -1 5 5 5 5
+CLASS_A_D0_CANDIDATE_REGISTRY 0 0 0 0 1 5 5 5 5
+CLASS_A_D0_CANDIDATE_REGISTRY 0 2 1 0 -1 26 26 26 26
+CLASS_A_D0_CANDIDATE_REGISTRY 2 0 -1 0 1 26 26 26 26
+CLASS_A_D0_CANDIDATE_REGISTRY 1 2 0 0 0 0 0 0 0
+CLASS_A_D0_CANDIDATE_REGISTRY 2 1 0 0 0 0 0 0 0
+CLASS_A_D0_CANDIDATE_REGISTRY 1 2 0 0 1 0 0 0 0
+CLASS_A_D0_CANDIDATE_REGISTRY 2 1 0 0 -1 0 0 0 0
+CLASS_A_D0_CANDIDATE_REGISTRY 2 0 0 0 0 0 0 0 0
+CLASS_A_D0_CANDIDATE_REGISTRY 0 2 0 0 0 0 0 0 0
+CLASS_A_D0_CANDIDATE_REGISTRY 0 0 1 0 -1 9 9 9 9
+CLASS_A_D0_CANDIDATE_REGISTRY 0 0 -1 0 1 9 9 9 9
+CLASS_A_D0_CANDIDATE_REGISTRY 0 1 1 -1 -1 11 11 11 11
+CLASS_A_D0_CANDIDATE_REGISTRY 1 0 -1 1 1 11 11 11 11
+CLASS_A_D0_IMAGE_REGISTRY 2 0 0 -1 -1 19 19 19 19
+CLASS_A_D0_IMAGE_REGISTRY 0 2 0 1 1 19 19 19 19
+CLASS_A_D0_IMAGE_REGISTRY 2 0 0 -1 0 17 17 17 17
+CLASS_A_D0_IMAGE_REGISTRY 0 2 0 1 0 17 17 17 17
+CLASS_A_D0_IMAGE_REGISTRY 2 0 0 -1 1 2 2 2 2
+CLASS_A_D0_IMAGE_REGISTRY 0 2 0 1 -1 2 2 2 2
+CLASS_A_D0_IMAGE_REGISTRY 2 0 0 -1 2 4 4 4 4
+CLASS_A_D0_IMAGE_REGISTRY 0 2 0 1 -2 4 4 4 4
+CLASS_A_D0_IMAGE_REGISTRY 2 2 1 -1 -2 7 7 7 7
+CLASS_A_D0_IMAGE_REGISTRY 2 2 -1 1 2 7 7 7 7
+CLASS_A_D0_IMAGE_REGISTRY 2 2 1 -1 -1 6 6 6 6
+CLASS_A_D0_IMAGE_REGISTRY 2 2 -1 1 1 6 6 6 6
+CLASS_A_D0_IMAGE_REGISTRY 0 0 0 -1 -1 43 43 43 43
+CLASS_A_D0_IMAGE_REGISTRY 0 0 0 1 1 43 43 43 43
+CLASS_A_D0_IMAGE_REGISTRY 0 0 0 -1 0 38 38 38 38
+CLASS_A_D0_IMAGE_REGISTRY 0 0 0 1 0 38 38 38 38
+CLASS_A_D0_IMAGE_REGISTRY 0 2 1 -1 -2 23 23 23 23
+CLASS_A_D0_IMAGE_REGISTRY 2 0 -1 1 2 23 23 23 23
+CLASS_A_D0_IMAGE_REGISTRY 0 2 1 -1 -1 0 0 29 29
+CLASS_A_D0_IMAGE_REGISTRY 2 0 -1 1 1 0 0 29 29
+CLASS_A_D0_IMAGE_REGISTRY 0 2 1 -1 0 10 10 10 10
+CLASS_A_D0_IMAGE_REGISTRY 2 0 -1 1 0 10 10 10 10
+CLASS_A_D0_IMAGE_REGISTRY 0 2 1 -1 1 8 8 8 8
+CLASS_A_D0_IMAGE_REGISTRY 2 0 -1 1 -1 8 8 8 8
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 0 1 2 -7 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 2 -1 -2 7 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 0 1 2 -6 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 2 -1 -2 6 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 0 1 2 -5 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 2 -1 -2 5 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 0 1 2 -4 42 42 21 21
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 2 -1 -2 4 42 42 21 21
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 2 2 2 -8 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 2 -2 -2 8 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 2 2 2 -7 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 2 -2 -2 7 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 2 2 2 -6 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 2 -2 -2 6 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 0 1 2 -7 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 0 -1 -2 7 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 0 1 2 -6 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 0 -1 -2 6 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 0 1 2 -5 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 0 -1 -2 5 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 0 1 2 -4 18 18 18 18
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 0 -1 -2 4 18 18 18 18
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 0 1 2 -3 0 20 20 20
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 0 -1 -2 3 0 20 20 20
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 2 2 2 -8 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 0 -2 -2 8 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 2 2 2 -7 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 0 -2 -2 7 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 2 2 2 -6 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 0 -2 -2 6 0 0 0 0
+CLASS_A_D0_E7_IMAGE_REGISTRY 0 2 2 2 -5 46 46 46 46
+CLASS_A_D0_E7_IMAGE_REGISTRY 2 0 -2 -2 5 46 46 46 46
