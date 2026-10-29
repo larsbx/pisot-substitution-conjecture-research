@@ -20,6 +20,8 @@ from psc.class_c_gap_profile import frozen_onset
 from psc.class_c_tail_certificate import CONE, DIAGONAL, GAP, STRIP, TAIL, Cover, Piece, certify_piece, cover, rows
 
 comptime GAP_FLOOR = 6
+comptime SECTOR_PLUS = 14  # the middle sector starts at j = 4d - n = 14 (plus), 6 (minus)
+comptime SECTOR_MINUS = 6
 
 
 def kind_of(name: String) raises -> Int:
@@ -46,10 +48,13 @@ def main() raises:
     if len(a) == 3 and a[1] == "strip":
         var eps = Int(a[2])
         var out = Cover(True, False)
-        cover(Piece(eps, 0, 0, 1, CONE, STRIP), out)
-        if eps == -1:
-            for j in range(-3, 1):  # n = 4d - j in 4d..4d+3, k = n - 3d >= 1 - j so that d >= 1
-                cover(Piece(eps, 0, 1 - j, j, DIAGONAL, STRIP), out)
+        # The diagonals j = 4d - n just below the onset (j >= 1 plus, j >= -3 minus)
+        # carry their own label sets, so they are lines; the middle sector starts after them.
+        var first = 1 if eps == 1 else -3
+        var sector = SECTOR_PLUS if eps == 1 else SECTOR_MINUS
+        for j in range(first, sector):
+            cover(Piece(eps, 0, max(0, 1 - j), j, DIAGONAL, STRIP), out)  # k >= 0 and d = k + j >= 1
+        cover(Piece(eps, 0, 0, sector, CONE, STRIP), out)
         print("T_C2 eps=" + String(eps), "3d<=n<" + ("4d" if eps == 1 else "4d+4"),
               "symbolic pieces", len(out.pieces), "exact members", out.members, "distinct label sets", len(out.sets))
         for i in range(len(out.sets)):

@@ -1,15 +1,18 @@
-name: Class-C frozen-tail theorem (T_C)
+name: Class-C frozen-tail and strip theorems (T_C, T_C2)
 on:
   pull_request:
     paths:
       - 'kernel/psc/class_c_tail_certificate.mojo'
       - 'kernel/class_c_tail_certificate.mojo'
       - 'kernel/tests/test_class_c_tail_certificate.mojo'
+      - 'kernel/tests/test_class_c_strip_certificate.mojo'
       - 'kernel/psc/class_c_gap_profile.mojo'
       - 'kernel/psc/symbolic_cone.mojo'
       - 'kernel/psc/param_poly.mojo'
       - 'docs/class-c-tail-theorem-2026-10-28.md'
       - 'evidence/class-c-tail-theorem-2026-10-28/**'
+      - 'docs/class-c-strip-theorem-2026-10-29.md'
+      - 'evidence/class-c-strip-theorem-2026-10-29/**'
       - '.github/workflows/class-c-tail-theorem.yml'
   workflow_dispatch:
 concurrency:
@@ -53,4 +56,41 @@ jobs:
         with:
           name: class-c-tail-receipts-${{ matrix.sign }}
           path: kernel/build/class-c-tail/
+          if-no-files-found: warn
+  strip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        sign: [plus, minus]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Native T_C2 cover replay against the packet
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          eps=$([ "${{ matrix.sign }}" = plus ] && echo 1 || echo -1)
+          mkdir -p build/class-c-strip
+          pixi run --locked mojo build -I . class_c_tail_certificate.mojo -o build/class-c-strip/cct
+          build/class-c-strip/cct strip "$eps" | tee build/class-c-strip/strip-${{ matrix.sign }}.log
+          diff ../evidence/class-c-strip-theorem-2026-10-29/strip-${{ matrix.sign }}.log build/class-c-strip/strip-${{ matrix.sign }}.log
+      - name: Strip regression test and controls
+        if: matrix.sign == 'plus'
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_class_c_strip_certificate.mojo | tee build/class-c-strip/native-test.log
+          diff ../evidence/class-c-strip-theorem-2026-10-29/native-test.log build/class-c-strip/native-test.log
+      - name: Preserve fresh receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-c-strip-receipts-${{ matrix.sign }}
+          path: kernel/build/class-c-strip/
           if-no-files-found: warn
