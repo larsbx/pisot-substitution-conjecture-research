@@ -8,6 +8,7 @@ from fractions import Fraction
 from collections import deque, defaultdict
 from functools import lru_cache
 import argparse, hashlib, json
+from pathlib import Path
 
 ZERO = (0, 0, 0)
 def add(a, b): return tuple(x+y for x,y in zip(a,b))
@@ -204,6 +205,16 @@ def verify():
                 else:assert baseline==g["rows_text"]
                 del g["rows_text"]
                 print(json.dumps(g,sort_keys=True))
+        # Independent finite graph, byte-for-byte against BOTH previously
+        # committed reference packets; this compares all labels, not counts.
+        sign = "plus" if eps == 1 else "minus"
+        evidence = Path(__file__).resolve().parents[1]
+        for packet in (
+            evidence / "class-c-tail-theorem-2026-10-28" / ("theorem-"+sign+".log"),
+            evidence / "class-c-gap-profile-2026-10-28" / ("frozen-tail-"+sign+".txt"),
+        ):
+            actual = "".join(line+"\\n" for line in packet.read_text().splitlines() if line.startswith("R "))
+            assert actual == baseline, "independent full typed rows differ from "+str(packet)
         low=2*6-3*eps-2
         g=ExactClassC(6,eps,low).graph()
         assert g["all_hit"] and g["vertices"]==(2432 if eps==1 else 1283)
