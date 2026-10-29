@@ -1,0 +1,17 @@
+{
+  "formal_sources_changed": false,
+  "image_uniform_tails": "all inherited from #385 B5-image interface",
+  "independent_human_review": "pending validation debt",
+  "independent_sibling_prs": [
+    380,
+    383,
+    384
+  ],
+  "independent_sibling_results_counted": false,
+  "new_complete_family": "existing D0 and actual reversal U7",
+  "new_uniform_source_exits": 0,
+  "parent_branch": "research/class-a-boundary-e7-2026-10-28",
+  "parent_head": "3f9d816ab7835f4be6c159453481d0d1d1eabd4d",
+  "parent_pr": 385,
+  "parent_workflows_at_inspection": "queued; no pass inferred"
+}
