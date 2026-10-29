@@ -8,6 +8,10 @@ on:
       - 'kernel/class_c_residual_probe.mojo'
       - 'evidence/class-c-residual-domain-2026-10-29/**'
       - '.github/workflows/class-c-residual-domain.yml'
+      - 'kernel/class_c_residual_diagonal_cover.mojo'
+      - 'docs/class-c-residual-diagonal-cover-2026-10-29.md'
+      - 'evidence/class-c-residual-diagonal-cover-2026-10-29/**'
+      - '.github/workflows/class-c-residual-diagonal-cover.yml'
   workflow_dispatch:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -58,5 +62,52 @@ jobs:
         if: always()
         with:
           name: class-c-residual-native-${{ matrix.eps }}
+          path: kernel/build/class-c-residual/
+          if-no-files-found: warn
+
+  finite-diagonal-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Independent finite class-C j=2..7 graph controls
+        run: |
+          set -euo pipefail
+          mkdir -p build/class-c-residual
+          python3 evidence/class-c-residual-diagonal-cover-2026-10-29/finite_controls.py | tee build/class-c-residual/finite-diagonals.log
+          grep -q '^PASS: 36 finite BH graphs' build/class-c-residual/finite-diagonals.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-c-residual-finite-diagonals
+          path: build/class-c-residual/finite-diagonals.log
+          if-no-files-found: warn
+  native-j2-j5-cover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        eps: [1, -1]
+        j: [2, 3, 4, 5]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Symbolic parameter tail and finite exceptions (BH only)
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          mkdir -p build/class-c-residual
+          pixi run --locked mojo build -I . class_c_residual_diagonal_cover.mojo -o build/class-c-residual/diagonal-cover
+          build/class-c-residual/diagonal-cover ${{ matrix.eps }} ${{ matrix.j }} | tee build/class-c-residual/diagonal-${{ matrix.eps }}-j${{ matrix.j }}.log
+          grep -q '^BH_CERTIFIED' build/class-c-residual/diagonal-${{ matrix.eps }}-j${{ matrix.j }}.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-c-residual-diagonal-cover-${{ matrix.eps }}-${{ matrix.j }}
           path: kernel/build/class-c-residual/
           if-no-files-found: warn
