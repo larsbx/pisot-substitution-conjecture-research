@@ -213,7 +213,7 @@ def verify():
             evidence / "class-c-tail-theorem-2026-10-28" / ("theorem-"+sign+".log"),
             evidence / "class-c-gap-profile-2026-10-28" / ("frozen-tail-"+sign+".txt"),
         ):
-            actual = "".join(line+"\\n" for line in packet.read_text().splitlines() if line.startswith("R "))
+            actual = "".join(line+"\n" for line in packet.read_text().splitlines() if line.startswith("R "))
             assert actual == baseline, "independent full typed rows differ from "+str(packet)
         low=2*6-3*eps-2
         g=ExactClassC(6,eps,low).graph()
