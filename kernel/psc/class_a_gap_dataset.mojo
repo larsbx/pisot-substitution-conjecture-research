@@ -70,7 +70,13 @@ def typed_intervals(var labels: List[List[Int]]) raises -> List[List[Int]]:
 
 def member_block(d: Int, eps: Int, n: Int) raises -> String:
     """The dataset block of member `n`; raises on a capped or non-hitting graph."""
-    var tables = build_seed_overlap_tables_screened(ALine(d, eps, n % d).member(n))
+    return substitution_block(ALine(d, eps, n % d).member(n), n)
+
+
+def substitution_block(sigma: List[List[Int]], n: Int) raises -> String:
+    """The dataset block of one substitution, recorded under parameter `n`;
+    raises on a non-PIP input, a capped graph or a non-hitting vertex."""
+    var tables = build_seed_overlap_tables_screened(sigma)
     var g = build_seed_overlap_graph_from_tables(tables, STATE_CAP)
     if g.capped:
         raise Error("STATE_BUDGET_EXHAUSTED: no label record")
