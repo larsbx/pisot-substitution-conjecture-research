@@ -129,3 +129,21 @@ def test_registry_parser_refuses_omissions_duplicates_and_corruption():
         parts=line.split();parts[-1]='999'
         for bad in [output.replace(line+'\n','',1),output+line+'\n',output.replace(line,' '.join(parts),1)]:
             with pytest.raises(ValueError):o['verify_native_registry'](bad)
+
+
+
+def test_actual_native_driver_and_contract_receipt_match_independent_registry():
+    packet=ROOT/'evidence/class-a-boundary-p9-2026-10-29'
+    output=(packet/'driver.log').read_text()
+    o['verify_native_registry'](output)
+    rows=[line for line in output.splitlines() if line.startswith('CLASS_A_P9_') and '_REGISTRY ' in line]
+    assert len(rows)==107
+    for name,n in [('SOURCE',8),('CANDIDATE',41),('IMAGE',24),('J9_IMAGE',34)]:
+        selected=[line for line in rows if line.startswith('CLASS_A_P9_'+name+'_REGISTRY ')]
+        assert len(selected)==n
+        first=selected[0];parts=first.split();parts[-1]='999'
+        for bad in [output.replace(first+'\n','',1),output+first+'\n',output.replace(first,' '.join(parts),1)]:
+            with pytest.raises(ValueError):o['verify_native_registry'](bad)
+    native=(packet/'native-tests.log').read_text()
+    assert 'CLASS_A_BOUNDARY_P9_FINITE members=56 pairs 33096 accepted 2436 source_path_edges 686 companion_edges 868 all_child_walk_edges 14322 max_walk 9 union_labels=24 BH=false' in native
+    assert 'contract-receipt: class-A minus P9/reversal complete nine-kind indexed stars' in native

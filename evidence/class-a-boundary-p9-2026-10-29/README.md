@@ -1,7 +1,9 @@
 # P9 exact replay packet
 
 Provisional base: open #391, head92e34bea5bffee8a8523eeda40096b453a435377.
-The archived observed parent workflows are queued; this is not hosted acceptance.
+The original parent-workflows.json records queued runs. The later
+parent-workflows-authorized.json has seven successes including dedicated J9,
+two running and seven queued; it is not complete dependency acceptance.
 Every predecessor packet is unchanged. No independent sibling result is counted.
 
 For P9=(x,y,-1,-4,7) and actual reversal, complete indexed stars have
@@ -19,19 +21,21 @@ reversal/full typed path is checked. Universal guards/counts/path legality
 are separately proved in the companion derivation. Sign refinement has
 inherited budget512 and refuses inconclusively.
 
-**Native validation is blocked, not passed.** Automatic approval review
-rejected the Mojo version invocation despite both telemetry/crash opt-outs,
-for potential export of environment or execution metadata to a telemetry
-endpoint. See native-attempt.log. The canonical module, driver and native
-contract are reviewable but uncompiled/unexecuted. No native-driver registry
-receipt is supplied; Python's 107-row parser controls use synthetic rows.
-The publication commit carries [skip ci] so automatic CI does not indirectly
-execute the blocked native action. This uses the documented
-[GitHub skip instruction](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs).
-No dispatch is requested. The draft stays
-unaccepted until authorized native replay and exact-head/dependency checks.
+**Authorized native validation passes.** Locked Mojo 1.1.0.dev2026090805
+compiles and passes the contract unchanged with telemetry/crash reporting
+disabled. The native finite replay checks 56 members, 33096 literal pairs,
+2436 accepted edges, 686 source-path edges, 868 companion-path edges and
+14322 all-child walk edges; max nine is attained and the contract receipt
+is reached. All 107 actual driver rows match the independent interfaces.
+See native-tests.log, driver.log, native-version.log and native-registry.log.
 
-From repository root, after native execution is authorized:
+Preserve native-attempt.log as the initial automatic-review rejection,
+which was followed by explicit user authorization. The initial publication
+commit b58ff2c8 used [skip ci] and earned no hosted acceptance. The new
+validation commit allows normal hosted checks with both native opt-outs still
+set. Fresh exact-head and predecessor gates remain required; no merge.
+
+From repository root:
 
 ```sh
 export MODULAR_TELEMETRY_ENABLED=false MODULAR_CRASH_REPORTING_ENABLED=false
@@ -40,7 +44,7 @@ pixi run --manifest-path kernel/pixi.toml --locked mojo run -I kernel kernel/cla
 python -c "import runpy,pathlib; o=runpy.run_path('oracles/python/class_a_boundary_p9_children.py'); verify=o['verify_native_registry']; verify(pathlib.Path('/tmp/p9-native-driver.log').read_text())"
 ```
 
-Unaffected independent and governance replay:
+Independent and governance replay:
 
 ```sh
 python oracles/python/class_a_boundary_p9_children.py > /tmp/p9.json
@@ -54,7 +58,10 @@ sha256sum -c evidence/class-a-boundary-p9-2026-10-29/source-sha256.txt
 sha256sum -c evidence/class-a-boundary-p9-2026-10-29/SHA256SUMS
 ```
 
-All 84 scoped Python tests pass. The initial integrity run has 153 passes
+Authorized follow-up: all 85 scoped Python tests and all 155 integrity,
+source, proof-bank and governance tests pass. Provenance passes; the canonical
+Mojo sources and contract were unchanged. Earlier receipts remain intact.
+The initial integrity run has 153 passes
 and one failure because the new packet did not yet have its digest manifest;
 a second run caught the not-yet-staged evidence; the final staged
 recorded-data/link/Markdown-source replay passes all 96 checks. The other integrity,

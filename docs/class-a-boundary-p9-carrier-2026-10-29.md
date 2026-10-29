@@ -3,8 +3,9 @@
 ## Scope and dependency
 
 This packet continues open #391, exact head
-92e34bea5bffee8a8523eeda40096b453a435377. Its observed pull-request workflows
-remain queued. This is provisional dependency use, not accepted integration.
+92e34bea5bffee8a8523eeda40096b453a435377. Its initial observed pull-request workflows
+were queued; a later snapshot has seven successes (including dedicated J9),
+two running and seven queued. This is provisional dependency use, not accepted integration.
 All predecessor files and evidence remain unchanged; concurrent class-C #392
 and independent R5/D5 siblings are not imported. The
 [stop/go decision](class-a-boundary-p9-stopgo-2026-10-29.md) precedes new code.
@@ -17,12 +18,13 @@ This statement concerns a selected continuation after every first choice,
 not termination under every continuation. The existing selected P9 exit
 remains seven edges at k=0 and six at k>=1; do not duplicate its exit claim.
 
-Canonical Mojo code and a native contract are supplied, but **native replay
-is blocked by automatic approval review over telemetry risk even with both
-telemetry and crash reporting disabled**. No native certificate execution,
-compiler acceptance or driver-registry agreement is credited. The independent
-exact replay and the written universal proof below are separate evidence.
-The PR stays draft pending native and required dependency/exact-head gates.
+After explicit execution authorization, locked Mojo 1.1.0.dev2026090805
+compiles and passes the supplied native contract unchanged. All 107 actual
+native driver rows match the independent registry. Telemetry and crash
+reporting remain disabled. Preserve the initial blocked attempt as history;
+it is superseded by successful native receipts, not credited as a pass.
+The native and independent exact replays remain separate from the written
+universal proof. Required dependency/exact-head hosted gates remain open.
 
 ## Standing exact geometry
 
@@ -185,8 +187,14 @@ no companion complete stars are supplied. The old J9 image gains two
 complete stars (P9/reversal), retains only its two registered uniform exits,
 and still has 32 exit gaps. S41 stays 33 stars and 35 exits including C.
 The new registry driver emits 107 rows: eight source/companion, 41 S41,
-24 image and 34 old-J9-image. Parser tests use explicitly synthetic rows;
-there is no native-driver receipt until native replay actually succeeds.
+24 image and 34 old-J9-image. All 107 actual native driver rows match independently. Parser controls retain
+both the original synthetic fixtures and corruption of the actual export.
+
+Native exact replay: 56 members, 112 oriented stars, 33,096 literal pairs,
+2,436 accepted edges, 686 source-path edges, 868 companion-path edges and
+14,322 all-child walk edges. Every chamber label is attained, every actual
+reversal and full typed walk is checked, and maximum nine is attained.
+The final native contract declaration is reached. No Mojo source fix was needed.
 
 Independent exact replay: 117 members, 234 oriented stars, 122,616 literal
 pairs, 6,750 accepted edges, 1,422 source-path edges, 1,746 companion-path
@@ -196,12 +204,15 @@ is inherited with budget 512 and raises on exhaustion. Finite replay checks
 implementation separately from the universal nine-kind/count/path proof.
 See the [replay packet](../evidence/class-a-boundary-p9-2026-10-29/README.md).
 
-All 84 scoped Python tests pass. Provenance and all 18 TLA outcomes pass.
+All 85 scoped Python tests and 155 integrity/source/proof-bank/governance
+tests pass in the authorized follow-up, including actual native exports
+and receipts. Provenance passes. All 18 earlier TLA outcomes remain archived,
+with no model or formal-source change.
 The digest manifest was added after an initial integrity failure; the final
 96 recorded-data/link/Markdown-source checks pass, alongside the other
 integrity/governance checks.
-Native replay, exact-head hosted acceptance and dependency acceptance remain
-outstanding. Lean remains a separate pre-compilation toolchain blocker.
+Native replay now passes; fresh exact-head hosted acceptance and dependency
+acceptance remain outstanding. Lean remains a separate pre-compilation toolchain blocker.
 No full local suite, independent human review, new companion stars, general
 J9/E7 all-child result, forward closure, all-edge rank, all-source strict
 zipper, plus/non-unit realization, target-aware BH, universal BH/#139,
