@@ -107,15 +107,17 @@ offset zero):
 | -1 | (6,28) | 214 | 81 | T_C frozen tail |
 | +1 | (8,31) | 198 | 79 | T_C negative control, `n=4d-1` |
 | -1 | (8,35) | 216 | 83 | opposite-sign negative control |
-| +1 | (6,22), (7,26), (8,30) | 204 each | varies by typed rows | `n=4d-2` |
-| -1 | (6,26), (7,30), (8,34) | 222 each | varies by typed rows | `n=4d+2` |
+| +1 | (6,22), (7,26), (8,30) | 204 each | 85 each | `n=4d-2` |
+| -1 | (6,26), (7,30), (8,34) | 222 each | 89 each | `n=4d+2` |
 | +1 | (6,7) | 2432 | — | exact lower PIP boundary |
 | -1 | (6,13) | 1283 | — | exact lower PIP boundary |
 
 For the three-gap `-2` samples, the **complete normalized label sets**
 (not merely vertex counts) agree within each sign; this is an experiment,
 not a proof for all d. Both the 196/214 and 198/216 counts were reconstructed
-independently, and the first typed rows agree with the T_C logs.
+independently. Full normalized 196/214 tail typed-row SHA256 hashes match
+both the T_C theorem logs and the independent finite profile packet,
+not just their first lines; the Python CI replay now checks every row.
 The exact certificate's quantified symbolic replay was **not** reproduced
 on the local machine: Mojo is absent there. T_C's existing hosted result
 and packet remain distinct evidence.
