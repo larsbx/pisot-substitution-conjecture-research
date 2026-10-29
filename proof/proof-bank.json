@@ -2294,6 +2294,11 @@
       "statement_heading": "**Corollary L_B (eight top-layer lines).** On each of the eight lines above,"
     },
     {
+      "source": "docs/class-c-tail-theorem-2026-10-28.md",
+      "line": 19,
+      "statement_heading": "**Theorem T_C (scoped, computer-assisted).** Let `d >= 6`, and let"
+    },
+    {
       "source": "docs/class-d-g1-corollary-2026-10-22.md",
       "line": 101,
       "statement_heading": "**Corollary.** For every PIP member of the determinant-two class-D normal"
