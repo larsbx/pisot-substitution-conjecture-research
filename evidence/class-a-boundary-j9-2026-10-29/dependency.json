@@ -1,0 +1,22 @@
+{
+  "all_direct_children_productivity_proved": false,
+  "base_branch": "research/class-a-boundary-e6-2026-10-28",
+  "base_head": "d204b822b8912c8d41b7cca22bd7de9770c88e3c",
+  "base_pr": 382,
+  "base_workflows": "first inspection queued; latest mixed queued/in_progress/success, archived separately",
+  "crash_reporting_enabled": false,
+  "independent_human_review": "pending validation debt",
+  "independent_sibling_results_counted": false,
+  "independent_siblings": [
+    380,
+    383,
+    384,
+    388
+  ],
+  "merged_predecessor_head": "ed9da154adcc7f05a2ca5bc496debb5db9a5fa53",
+  "merged_predecessor_pr": 387,
+  "new_companion_complete_stars": false,
+  "registered_image_uniform_exits": 2,
+  "telemetry_enabled": false,
+  "unregistered_image_uniform_exits": 32
+}
