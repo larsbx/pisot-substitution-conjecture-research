@@ -1,0 +1,20 @@
+{
+  "base_pr": 391,
+  "base_head": "92e34bea5bffee8a8523eeda40096b453a435377",
+  "base_branch": "research/class-a-boundary-j9-2026-10-29",
+  "base_observed_state": "open; first-page observed pull-request workflows queued; no acceptance inferred",
+  "new_source": "P9=(x,y,-1,-4,7)",
+  "new_complete_stars": 2,
+  "source_exit": "existing ID62, seven edges at k=0; six at k>=1",
+  "all_actual_first_choice_selected_bound": 9,
+  "new_uniform_exit_interfaces": {
+    "W9": 64,
+    "B9": 65
+  },
+  "image_labels": 24,
+  "image_uniform_exit_labels": 20,
+  "image_guarded_tail_labels": 4,
+  "native_status": "blocked by automatic approval review despite both telemetry/crash opt-outs; no native execution or registry receipt",
+  "publication": "draft with [skip ci]; no CI dispatch or acceptance",
+  "governed_claim_changes": false
+}

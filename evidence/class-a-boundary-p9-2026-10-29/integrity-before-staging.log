@@ -1,0 +1,28 @@
+........................................................................ [ 78%]
+..................F.                                                     [100%]
+=================================== FAILURES ===================================
+______________ test_pinned_records_are_tracked_for_clean_checkout ______________
+
+    def test_pinned_records_are_tracked_for_clean_checkout():
+        tracked = set(subprocess.check_output(
+            ["git", "ls-files", "-z"], cwd=ROOT, text=True
+        ).split("\0"))
+        required = {path.relative_to(ROOT).as_posix() for sums in SUMS
+                    for path in (sums, *entries(sums))}
+>       assert required <= tracked, "pinned evidence omitted from Git: " + repr(sorted(required - tracked))
+E       AssertionError: pinned evidence omitted from Git: ['evidence/class-a-boundary-p9-2026-10-29/README.md', 'evidence/class-a-boundary-p9-2026-10-29/SHA256SUMS', 'evidence/class-a-boundary-p9-2026-10-29/dependency.json', 'evidence/class-a-boundary-p9-2026-10-29/lean-attempt.log', 'evidence/class-a-boundary-p9-2026-10-29/native-attempt.log', 'evidence/class-a-boundary-p9-2026-10-29/parent-workflows.json', 'evidence/class-a-boundary-p9-2026-10-29/probe.json', 'evidence/class-a-boundary-p9-2026-10-29/provenance.log', 'evidence/class-a-boundary-p9-2026-10-29/source-sha256.txt', 'evidence/class-a-boundary-p9-2026-10-29/tla.log']
+E       assert {'archive/202...ADME.md', ...} <= {'', '.claude...LATE.md', ...}
+E
+E         Extra items in the left set:
+E         'evidence/class-a-boundary-p9-2026-10-29/SHA256SUMS'
+E         'evidence/class-a-boundary-p9-2026-10-29/tla.log'
+E         'evidence/class-a-boundary-p9-2026-10-29/parent-workflows.json'
+E         'evidence/class-a-boundary-p9-2026-10-29/dependency.json'
+E         'evidence/class-a-boundary-p9-2026-10-29/lean-attempt.log'...
+E
+E         ...Full output truncated, use '-vv' to show
+
+tests/test_recorded_data_integrity.py:49: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_recorded_data_integrity.py::test_pinned_records_are_tracked_for_clean_checkout
+1 failed, 91 passed in 2.28s

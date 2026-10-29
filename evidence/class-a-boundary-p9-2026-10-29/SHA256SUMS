@@ -1,0 +1,14 @@
+03b0eaefe172633cd08074da652b5493c155085a73ffe3938928032bfa518040  evidence/class-a-boundary-p9-2026-10-29/README.md
+ef2a37329808cf648f82f28477397cd6037337599ce24272b2a77283cc7f9200  evidence/class-a-boundary-p9-2026-10-29/dependency.json
+768c16e82ad6cfa9510e40c9cad0844ecb08a534eb45c7ef4251eb42cb69ee4b  evidence/class-a-boundary-p9-2026-10-29/integrity-before-staging.log
+4c127effc10df3c13b8a714747781d7a6e801ff08fecc2564b8e61cf0e4c7a8b  evidence/class-a-boundary-p9-2026-10-29/integrity-final.log
+0f8bdb25ca0350a9e230687ee53b2a66de6fbe00bcdba0463d3e146e6f7d78e6  evidence/class-a-boundary-p9-2026-10-29/integrity-initial.log
+35eb653253522ea2d4c9f5813c0e81d0b0d1c1261dcc9d0cf9b1d72d0dc827a2  evidence/class-a-boundary-p9-2026-10-29/integrity-link-example-initial.log
+cebe4497abc747094e5fdcf1ac39beed603bb5157eca4f888adf5abb2123c3db  evidence/class-a-boundary-p9-2026-10-29/lean-attempt.log
+ac274a0084b3c7a964a8d7b534b59e34a8e4e982c638c5c8ac4fe4998d04b268  evidence/class-a-boundary-p9-2026-10-29/native-attempt.log
+e2a9f7ae14ebeb26c604b9054ad81194bb105e0fa911b111c256b783f000dae5  evidence/class-a-boundary-p9-2026-10-29/parent-workflows.json
+a9d0cdd461b6f4af00ef0c7a364c96aa760a9c3ad8aa5e1a2454345edbb0105c  evidence/class-a-boundary-p9-2026-10-29/probe.json
+7a184d610bada25ad5347355839d293c1ddc98ca25693cdd5492975ae531f76c  evidence/class-a-boundary-p9-2026-10-29/provenance.log
+3def8d5e67ffebb5eb73a3f927ce91adedbb9595cae95b88713b0e726e4563e1  evidence/class-a-boundary-p9-2026-10-29/python-tests.log
+c55fc62df5e6ee5d7a02dcd059a31597f7738897369eccf0d546f99208b65244  evidence/class-a-boundary-p9-2026-10-29/source-sha256.txt
+bde3a1fcb2c3328149857b4420a5974f8e8dfad3216469618cfb40b4ad519dd5  evidence/class-a-boundary-p9-2026-10-29/tla.log
