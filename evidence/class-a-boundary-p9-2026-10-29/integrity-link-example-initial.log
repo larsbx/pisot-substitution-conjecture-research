@@ -1,0 +1,21 @@
+........................................................................ [ 75%]
+...................F....                                                 [100%]
+=================================== FAILURES ===================================
+_________________________ test_relative_links_resolve __________________________
+
+    def test_relative_links_resolve():
+        broken = [
+            f"{path.relative_to(ROOT)}:{number}: {target}"
+            for path in markdown()
+            for number, line in enumerate(path.read_text(encoding="utf-8", errors="replace").splitlines(), 1)
+            for target in LINK.findall(line)
+            if not EXTERNAL.match(target) and not (path.parent / target).exists()
+        ]
+>       assert not broken, "\n".join(broken)
+E       AssertionError: evidence/class-a-boundary-p9-2026-10-29/README.md:40: pathlib.Path('/tmp/p9-native-driver.log'
+E       assert not ["evidence/class-a-boundary-p9-2026-10-29/README.md:40: pathlib.Path('/tmp/p9-native-driver.log'"]
+
+tests/test_markdown_links.py:30: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_markdown_links.py::test_relative_links_resolve - AssertionE...
+1 failed, 95 passed in 5.52s
