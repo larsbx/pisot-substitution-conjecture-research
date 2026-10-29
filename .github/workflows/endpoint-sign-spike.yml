@@ -5,7 +5,9 @@ on:
     paths:
       - 'kernel/psc/endpoint_sign_spike.mojo'
       - 'kernel/prefix_suffix_sign_spike.mojo'
+      - 'kernel/biinjective_sign_spike.mojo'
       - 'kernel/tests/test_endpoint_sign_spike.mojo'
+      - 'kernel/tests/test_biinjective_sign_spike.mojo'
       - '.github/workflows/endpoint-sign-spike.yml'
       - 'kernel/pixi.toml'
   workflow_dispatch:
@@ -34,6 +36,12 @@ jobs:
         run: |
           set -o pipefail
           pixi run mojo run -I . tests/test_endpoint_sign_spike.mojo 2>&1 | tee endpoint-sign-tests.log
+      - name: Bi-injective driver compilation, graph ownership and cap regression
+        working-directory: kernel
+        shell: bash
+        run: |
+          set -o pipefail
+          pixi run mojo run -I . tests/test_biinjective_sign_spike.mojo 2>&1 | tee biinjective-sign-tests.log
       - name: Exact 4554-member PIP spike (budget refusal is explicit)
         working-directory: kernel
         shell: bash
@@ -55,6 +63,7 @@ jobs:
           name: endpoint-sign-spike-logs
           path: |
             kernel/endpoint-sign-tests.log
+            kernel/biinjective-sign-tests.log
             kernel/endpoint-sign-spike.log
             kernel/biinjective-sign-spike.log
           if-no-files-found: warn
