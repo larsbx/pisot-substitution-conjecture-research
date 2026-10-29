@@ -1,0 +1,19 @@
+{
+  "b": 16,
+  "diagonal_floor": 24,
+  "minus": {
+    "finite_intercept": 6,
+    "intercept": 6,
+    "lower_lines": [
+      6,
+      7
+    ],
+    "middle_intercept": 8
+  },
+  "plus": {
+    "finite_intercept": 4,
+    "intercept": 4,
+    "lower_lines": [],
+    "middle_intercept": 4
+  }
+}
