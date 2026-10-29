@@ -9,6 +9,13 @@ the onset, which T_C's non-claims redirected to a separate stop/go. The
 strip runs down to the observed PIP domain start `n = 2d − 5` (plus) or
 `2d + 1` (minus).
 
+**Concurrent work.** PR #397 ([class-c-lower-strip-2026-10-29.md](class-c-lower-strip-2026-10-29.md)),
+developed in parallel and merged first, proves the exact PIP domain (so the
+domain starts above are proved, not just observed). It also certifies the
+four diagonals nearest the onset, the middle cone at offsets 16, and the
+gap-6 strip. The decision below is unchanged. T_C2 covers the whole band
+`3d ≤ n` below the onset, including what #397 leaves open.
+
 ## Prior art
 
 Same lines and mechanism as T_C, so the literature check of

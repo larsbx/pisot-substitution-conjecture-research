@@ -26,8 +26,23 @@ minus has 49, with 180 to 346 vertices on the symbolic pieces. For large
 `n ≥ 4d` (plus) and `n ≥ 4d + 4` (minus) for every `d ≥ 6`, so for every gap
 `d ≥ 6`, BH now holds on `n ≥ 3d`. Class C's open BH residual for `d ≥ 6`
 narrows to the **lower cone** `2d − 5 ≤ n < 3d` (plus) and `2d + 1 ≤ n < 3d`
-(minus); the lower ends are observed PIP domain starts. For `d ≤ 5`, T_C2
+(minus). Those lower ends are now proved, not observed: they are the exact
+PIP domain of the domain lemma in
+[class-c-lower-strip-2026-10-29.md](class-c-lower-strip-2026-10-29.md) (#397). For `d ≤ 5`, T_C2
 re-proves part of what the gap-4 and gap-5 line certificates already cover.
+
+**Relation to #397.** #397 was developed concurrently and merged first. Its
+certificates are:
+- the four diagonals nearest the onset, for every `d ≥ 6`;
+- the middle cone `3d + 16 ≤ n ≤ 4d − 16` (`d ≥ 32`), with the same 280/250 sets;
+- the gap-6 strip, exactly.
+
+After #397 it records open bands `3d ≤ n ≤ 3d + 15` and `4d − 15 ≤ n ≤ 4d − 5`
+(plus; `4d − 1` minus) for `d ≥ 32`, and the whole upper strip for
+`7 ≤ d ≤ 31` apart from those diagonals. T_C2 covers all of them, and
+overlaps #397's pieces without depending on them. The two results agree
+wherever both apply: the same middle-sector sets, and the same diagonal
+vertex counts (180, 228, 204, 198 plus; 212, 238, 222, 216 minus).
 
 ## Proof
 
@@ -109,9 +124,10 @@ frame's coefficient map `d = k + j`, `n = 4k + 3j` and the several-set cover.
 
 ## Non-claims / remaining gaps
 
-- **The lower cone stays open** for every `d ≥ 6`: `2d − 5 ≤ n < 3d` (plus),
-  `2d + 1 ≤ n < 3d` (minus). There the graphs near the domain edge grow with
-  `d` (stop/go), so it needs a carrier-type argument with its own stop/go.
+- **The lower cone stays open** for every `d ≥ 7`: `2d − 5 ≤ n < 3d` (plus),
+  `2d + 1 ≤ n < 3d` (minus). At `d = 6`, #397 decides it exactly. There the
+  graphs near the domain edge grow with `d` (stop/go), so it needs a
+  carrier-type argument with its own stop/go.
 - **Only BH.** No pure-discrete-spectrum, G1 or PSC claim is made.
 - **No claim status changes.** The completion ledger's obligation 1
   (class-C part) narrows to the lower cone.
