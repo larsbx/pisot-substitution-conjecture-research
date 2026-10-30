@@ -349,4 +349,4 @@ BEGIN_LINE_PREFIX 130 of 132
 BEGIN_LINE_PREFIX 131 of 132
 BEGIN_LINE_CROSS_CHECK 132
 BEGIN_LINE_CROSS_CHECK 137
-CLASS_C_GAP_FIVE eps= -1 q0= 132 vertices= 214 sign_reads= 7658 prefix_pip= 121 prefix_non_pip= 5 prefix_outside= 6 all_admissible_members_hit=true universal_139=false
+CLASS_C_GAP_FIVE eps= -1 q0= 132 vertices= 214 sign_reads= 6276 prefix_pip= 121 prefix_non_pip= 5 prefix_outside= 6 all_admissible_members_hit=true universal_139=false
