@@ -2296,7 +2296,7 @@
     {
       "source": "docs/class-c-lower-cone-tile-ratio-walls-2026-10-30.md",
       "line": 36,
-      "statement_heading": "**Theorem R_C (exact tile-ratio chambers; repository-derived, hand proof below, human review pending).** Every Class-C member in the"
+      "statement_heading": "**Theorem R_C (exact tile-ratio chambers; repository-proved, hand proof below, independent human review pending).** Every Class-C member in the"
     },
     {
       "source": "docs/class-c-residual-domain-2026-10-29.md",
