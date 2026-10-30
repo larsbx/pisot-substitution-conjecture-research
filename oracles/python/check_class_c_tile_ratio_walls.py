@@ -147,6 +147,28 @@ def checked() -> None:
                     got_cy = set(member.children((1, 2, ZERO)))
                     assert got_cy == cy_children, (d, eps, n, got_cy - cy_children, cy_children - got_cy)
                     assert len(cy_children) == (5 if eps == 1 and c == 0 else 4)
+                    # Algebraically exact cross-tile identity, using the
+                    # cubic companion action, independent of sign bracketing:
+                    # beta*(2*Lc-Lx-Ly)+eps*Ly == 0.
+                    q = sub(sub(tuple(2*z for z in lengths[1]), lengths[0]), lengths[2])
+                    assert add(member.beta(q), tuple(eps*z for z in lengths[2])) == ZERO
+                    # Third aligned seed (x,y,0), including every actual
+                    # first/run, run/run, and run/last occurrence pair.
+                    J, K = ((0,1),(1,2)) if eps==1 and c<=1 else ((0,),(0,1))
+                    r = n-d+eps
+                    if eps==1 and c<=1:
+                        I = range(r-2,r+1)
+                    elif eps==1:
+                        I = range(r-1,r+1)
+                    else:
+                        I = range(r-1,r+2)
+                    xy_children = {(0,1,ZERO)}
+                    xy_children.update((0,2,add(lengths[1],mul_y(j))) for j in J)
+                    xy_children.update((2,2,sub(mul_y(k),delta)) for k in K)
+                    xy_children.update((2,1,sub(mul_y(r-i),delta)) for i in I)
+                    got_xy = set(member.children((0,2,ZERO)))
+                    assert got_xy == xy_children, (d,eps,n,got_xy-xy_children,xy_children-got_xy)
+                    assert len(xy_children) == (8 if eps==1 and c<=1 else 6 if eps==1 else 7)
                 finite_seed_members += 1
     print("TILE_RATIO_EXACT_RATIONAL_ORACLE_PASS", cases)
     print("CANONICAL_NINE_SEEDS_FINITE_PASS", finite_seed_members)
