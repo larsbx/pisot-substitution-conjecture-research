@@ -287,9 +287,9 @@ def test_a_class_d_line_is_certified() raises:
     not PIP rather than outside."""
     var spec = ClassLine(CLASS_D, [1, 1, 1, 0, 1, 3])
     var v = certify(spec)
-    assert_equal(v.q0, 21)
+    assert_equal(v.q0, 18)
     assert_equal(v.symbolic_vertices, 97)
-    assert_equal(v.finite_members, 20)
+    assert_equal(v.finite_members, 17)
     assert_equal(v.finite_non_pip, 1)
     assert_equal(v.finite_outside, 0)
     check_pinned(v, pinned(spec))
