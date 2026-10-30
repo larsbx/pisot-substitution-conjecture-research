@@ -201,6 +201,56 @@ This result concerns only first-generation y/y children of
 \((x,c,0)\). It does **not** assert completeness of a nine-state
 automaton, persistence under further inflation, or BH.
 
+**Complete one-step child classification for the aligned x/c seed.**
+The same inequalities, together with \(\ell_c<5/2<d\),
+actually decide **every** distinct child of the seed \((x,c,0)\)
+in the exact word-level overlap graph. Let \(a=\ell_x\), \(b=\ell_c\),
+\(\Delta=a-b\), \(p=n+d\).
+The expanded top word consists of a first \(x\) at 0,
+\(y\)-tiles at \(a+i\) (\(0\le i<p\)),
+and a last \(x\) at \(a+p\). The bottom expanded word consists
+of a first \(c\) at 0, \(y\)-tiles at \(b+j\) (\(0\le j<n\)),
+and a last \(x\) at \(b+n\).
+The exact child states (top type, bottom type, bottom-start minus
+top-start displacement) are
+
+    (x,c,0);
+    (x,y,b+j)          with j in J;
+    (y,y,k-Delta)      with k in K;
+    (y,x,n-Delta-i)    with i in I.
+
+The **integer index sets** and number of distinct child states are
+
+| chamber | J | K | I | total |
+|---|---|---|---|---:|
+| plus \(c=0\) | \(\{0,1\}\) | \(\{1,2\}\) | \(\{n-2,\ldots,n+2\}\) | **10** |
+| plus \(c=1\) | \(\{0,1\}\) | \(\{1,2\}\) | \(\{n-2,\ldots,n+1\}\) | **9** |
+| plus \(2\le c\le d+4\) | \(\{0\}\) | \(\{0,1\}\) | \(\{n-1,n,n+1\}\) | **7** |
+| minus \(0\le c\le d-2\) | \(\{0\}\) | \(\{0,1\}\) | \(\{n-1,n,n+1\}\) | **7** |
+
+**Complete proof by nine segment pairs.** First/first yields \((x,c,0)\).
+First/run gives \(0\le j<\Delta\), exactly \(J\).
+Run/run gives \(-1<j-i-\Delta<1\), exactly \(K\).
+Run/last gives \(-a<n-\Delta-i<1\), equivalently
+\(n-\Delta-1<i<n+b\), exactly the displayed \(I\).
+Every listed index is inside its actual word: \(n\ge9\) and
+\(p=n+d\) with \(d\ge7\). First/last is impossible because
+\(b+n>a\); run/first because \(a+i>b\);
+last/first because \(a+p>b\); last/run because
+\(a+p>b+n\) (\(a+p-(b+n)=d+\Delta>0\));
+and last/last because the bottom last tile ends at
+\(b+n+a\), strictly before the top last tile starts
+at \(a+p\), since \(b<d\).
+These are the **exhaustive** nine first/run/last segment-pair kinds
+and the occurrence choices inside the runs; the strict inequalities
+do not use a truncation, approximate root, or assumed graph size.
+
+This is a uniform, parameter-stratified, *complete one-step* rule
+for a single seed, **not** a closed automaton or a universal BH proof.
+It is a concrete finite input for the intended typed carrier and
+already proves that the three plus chambers cannot all share the
+same first-generation child set.
+
 ### Evidence and replay
 
 The *hand proof* above supplies the quantified result. The independent
