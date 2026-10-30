@@ -1,4 +1,4 @@
-# Class C residual diagonal cover, (j=2,3,4,5) (2026-10-29)
+# Class C residual diagonal cover, \(j=2,3,4,5\) (2026-10-29)
 
 **Research status:** exact finite countercontrols verified independently;
 parameter-uniform boundary-hitting certificates proposed and awaiting native
@@ -8,7 +8,7 @@ No modification of the trusted symbolic cone engine.
 
 ## 1. Parameterization and the exact domain
 
-For (d\ge6), (arepsilon\in\{+1,-1\}), and integer (j\ge1), set
+For \(d\ge 6\), \(\varepsilon\in\{+1,-1\}\), and integer \(j\ge 1\), set
 
     c_eps = 0 (plus), 4 (minus);
     n = 4d + c_eps - j;
@@ -21,7 +21,7 @@ Theorem P_C gives the exact PIP conditions
     plus: 2d >= j - 5;
     minus: 2d >= j - 3.
 
-Thus every (d\ge6) is PIP for both signs and each (j=2,3,4,5).
+Thus every \(d\ge 6\) is PIP for both signs and each \(j=2,3,4,5\).
 This conclusion is **algebraic**, not inferred from the finite graph data.
 The bounded native cover rechecks PIP on each symbolic piece as a
 fail-closed guard, independently of this argument.
@@ -70,7 +70,7 @@ constant labels for unbounded d. The exact source reference is
 **Candidate B_C(2..5).** For each (\varepsilon=\pm1) and
 (j\in\{2,3,4,5\}), the complete canonical swap-seed
 overlap graph of the class-C substitution at (n=4d+c_\varepsilon-j)
-has an offset-zero descendant from every vertex for every integer (d\ge6).
+has an offset-zero descendant from every vertex for every integer \(d\ge 6\).
 
 The code `kernel/class_c_residual_diagonal_cover.mojo` **attempts** to
 certify each of eight candidate statements as follows.
@@ -96,7 +96,7 @@ certify each of eight candidate statements as follows.
    `NO_CERTIFICATE`, not "BH false".
 
 The finite prefix and the symbolic tail are disjoint and cover
-all (d\ge6), so a successful certificate is a uniform BH result.
+all \(d\ge 6\), so a successful certificate is a uniform BH result.
 There is deliberately no `rows(g)` / constant-offset requirement.
 The cover prints `BH_CERTIFIED` only at the end after every guard.
 
@@ -129,3 +129,55 @@ one finite exception or separate cell per sign, while the finite
 profile suggests an eventually stable symbolic tail. Such stability
 is a *candidate to certify* on d>=7 (plus) and d>=8 (minus),
 not an established uniform fact.
+
+## Work shown
+
+### Assumptions and hypotheses
+
+The only unconditional spectral premise is the proved exact class-C PIP
+criterion P_C in #397; its integer threshold is checked independently from
+the overlap graph. A complete finite seed-reachable graph is required for
+the bounded witnesses. No global constant label set or pure-discrete-spectrum
+hypothesis is assumed.
+
+### Derivation / reduction
+
+Parameterize each diagonal by (n = 4d + c_\varepsilon - j).
+For each sign and (j=2,3,4,5), the proposed symbolic tail is an affine
+one-parameter family. A successful symbolic closure, together with
+every-vertex zero reachability, proves BH for all integer gaps in the certified
+tail by Lemma S'. Every omitted gap is checked independently by the capped
+exact graph kernel. Thus a completed run would cover every gap (d\ge6).
+The finite j=6 controls show that the stronger frozen-label claim
+cannot extend to all small gaps.
+
+### Evidence and replay
+
+The earlier hosted Class-C residual workflow run
+`40950276676` completed successfully, including eight
+`native-j2-j5-cover` jobs and the independent finite controls. The
+original PR #398 also had a failed generic PSC research check; that check
+must not be mistaken for a failed mathematical certificate.
+Reproduce with
+`python3 evidence/class-c-residual-diagonal-cover-2026-10-29/finite_controls.py`
+and, from `kernel/`,
+`pixi run --locked mojo run -I . class_c_residual_diagonal_cover.mojo 1 2`
+(and similarly for the other seven cases).
+
+### Negative controls
+
+At j=6 the plus graph has 270 vertices at d=6 and 278 at d=7;
+the minus graph has 260 and 254 respectively. Those exact complete
+graphs are incompatible with a universal frozen-label assertion,
+though each finite graph passes BH. Sign-reader refusals and graph caps
+must never be classified as proof of BH failure.
+
+### Non-claims / remaining gaps
+
+The certificate outputs establish only scoped BH under Lemma S' and
+the existing trusted `psc.symbolic_cone` implementation. They do not
+independently verify the symbolic engine, imply PDS or discharge global
+PSC. Subsequent merged Theorem T_C2 (#399) covers the larger band
+(3d\le n) below the onset, so the remaining class-C BH investigation
+should prioritize the lower cone rather than duplicate its work.
+Independent mathematical review is still pending.
