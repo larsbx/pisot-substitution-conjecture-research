@@ -123,6 +123,14 @@ comment states that C4 itself is open.
   outside the strips they cover. The driver edit is
   rebound for class-D acceptance by a fresh native plus-chamber replay
   (`evidence/class-d-closure-rebind-2026-10-26/`).
+  **Resolved further on 2026-10-30:** the floor inflation is root-caused (#288
+  read run ends at `beta` before fitting, with late sign changes at about
+  `q ~ a²/2`). The fit-first closure restores every pre-#288 pin, so both
+  wedges return to their original floors and their boundary lines are the 89
+  pinned norm rows. Theorem W and W1 are reproduced on the whole sub-wedge,
+  the 28-line probe is retired, and acceptance is rebound by
+  `evidence/class-d-closure-rebind-2026-10-30/` (see §4b of
+  p1b-boundary-hitting-progress-2026-10-08.md).
 - #331 merged with a failed `Show your work policy` run and without its
   side-notes entry. The entry was filed on 2026-10-26.
 - Open: draft #341 (stronger high-degree Bernstein regression, green). #343
@@ -141,7 +149,7 @@ comment states that C4 itself is open.
 4. The C4 ordered-word bridge for a supplied finite strict child-closed component.
 5. G1b-2 only through realizable labelled returns. No unimodularity, and no
    predecessor contraction.
-6. Turn the Theorem E line gate green: certify and pin the 28 new Theorem W boundary lines (PR #345 probe workflow), then confirm on a full line-workflow run.
+6. Confirm the Theorem E line gate on a full line-workflow run of the fit-first pins (the 28-line probe is retired; 2026-10-30).
 
 ## Provenance boundary
 

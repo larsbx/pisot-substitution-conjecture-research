@@ -1,0 +1,90 @@
+name: Class-C lower-strip certificates
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_c_lower_strip.mojo'
+      - 'kernel/class_c_lower_strip.mojo'
+      - 'kernel/tests/test_class_c_lower_strip.mojo'
+      - 'kernel/psc/class_c_tail_certificate.mojo'
+      - 'kernel/psc/class_c_gap_profile.mojo'
+      - 'kernel/psc/symbolic_cone.mojo'
+      - 'kernel/psc/symbolic_line.mojo'
+      - 'kernel/psc/param_poly.mojo'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'oracles/python/*class_c_lower_strip.py'
+      - 'reference/psc_research/overlap_graph.py'
+      - 'reference/psc_research/pisot_screen.py'
+      - 'docs/class-c-lower-strip*'
+      - 'evidence/class-c-lower-strip-2026-10-29/**'
+      - '.github/workflows/class-c-lower-strip.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        sign: [plus, minus]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Exact native partitions against archived receipts
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          name=${{ matrix.sign }}
+          eps=1
+          offsets="-4 -3 -2 -1"
+          if [ "$name" = minus ]; then eps=-1; offsets="0 1 2 3"; fi
+          out=build/class-c-lower
+          packet=../evidence/class-c-lower-strip-2026-10-29
+          mkdir -p "$out"
+          pixi run --locked mojo build -I . class_c_lower_strip.mojo -o "$out/lower"
+          "$out/lower" middle "$eps" 16 16 > "$out/middle-$name.log"
+          diff "$packet/middle-$name.log" "$out/middle-$name.log"
+          for c in $offsets; do
+            "$out/lower" diagonal "$eps" "$c" 12 > "$out/diagonal-$name-$c.log"
+            diff "$packet/diagonal-$name-$c.log" "$out/diagonal-$name-$c.log"
+          done
+          "$out/lower" top-finite "$eps" > "$out/top-finite-$name.log"
+          diff "$packet/top-finite-$name.log" "$out/top-finite-$name.log"
+          "$out/lower" gap "$eps" 6 > "$out/gap-$name-6.log"
+          diff "$packet/gap-$name-6.log" "$out/gap-$name-6.log"
+          if [ "$name" = plus ]; then
+            "$out/lower" domain > "$out/domain.log"
+            diff "$packet/domain.log" "$out/domain.log"
+            pixi run --locked mojo run -I . tests/test_class_c_lower_strip.mojo > "$out/native-test.log"
+            diff "$packet/native-test.log" "$out/native-test.log"
+          fi
+      - name: Independent exact oracle, source provenance and packet checksums
+        if: matrix.sign == 'plus'
+        run: |
+          set -euo pipefail
+          packet=evidence/class-c-lower-strip-2026-10-29
+          python3 oracles/python/check_class_c_lower_strip.py "$packet" > kernel/build/class-c-lower/oracle.json
+          diff "$packet/oracle.json" kernel/build/class-c-lower/oracle.json
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          p=pathlib.Path('evidence/class-c-lower-strip-2026-10-29/provenance.json')
+          for name,digest in json.loads(p.read_text())['sources'].items():
+              assert hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()==digest,name
+          PY
+          diff evidence/class-c-tail-theorem-2026-10-28/theorem-plus.log "$packet/replay-theorem-plus.log"
+          diff evidence/class-c-tail-theorem-2026-10-28/theorem-minus.log "$packet/replay-theorem-minus.log"
+          diff evidence/class-c-tail-theorem-2026-10-28/native-test.log "$packet/replay-native-test.log"
+          (cd "$packet" && sha256sum --check SHA256SUMS)
+      - name: Fresh receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-c-lower-strip-${{ matrix.sign }}
+          path: kernel/build/class-c-lower/*.log

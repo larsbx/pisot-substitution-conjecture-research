@@ -264,13 +264,13 @@ def test_norm_mode_shrinks_a_threshold_near_the_asymptote() raises:
     """The boundary line a = 10 of the first p = q - 1 sub-wedge lies on
     3r - 4q = -9, beside the ray where the Sturm entries change sign. Read by
     Sturm entries its historical threshold is 196 (docs §4b); read by norm
-    with endpoint clipping it is 6 (formerly 4). Both added finite members
-    certify, and the line reproduces its pin in certified_norm_lines()."""
+    it is 4 (6 under #288's clip-first bounds, before fit-first). The line
+    reproduces its pin in symbolic_line_pins.txt."""
     var spec = ClassLine(CLASS_D, [3, 14, 3, 15, 4, 17], True)
     var v = certify(spec)
-    assert_equal(v.q0, 6)
+    assert_equal(v.q0, 4)
     assert_equal(v.symbolic_vertices, 105)
-    assert_equal(v.finite_members, 6)
+    assert_equal(v.finite_members, 4)
     assert_equal(v.finite_non_pip, 0)
     assert_equal(v.finite_outside, 0)
     check_pinned(v, pinned(spec))
@@ -287,9 +287,9 @@ def test_a_class_d_line_is_certified() raises:
     not PIP rather than outside."""
     var spec = ClassLine(CLASS_D, [1, 1, 1, 0, 1, 3])
     var v = certify(spec)
-    assert_equal(v.q0, 21)
+    assert_equal(v.q0, 18)
     assert_equal(v.symbolic_vertices, 97)
-    assert_equal(v.finite_members, 20)
+    assert_equal(v.finite_members, 17)
     assert_equal(v.finite_non_pip, 1)
     assert_equal(v.finite_outside, 0)
     check_pinned(v, pinned(spec))
