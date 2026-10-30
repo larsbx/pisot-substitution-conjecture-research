@@ -99,6 +99,26 @@ integer \(c\), but at the greatest allowed \(c=d-2\) it is
 \(1-4d<0\). Therefore \(F2<0\) throughout the minus lower cone.
 These signs give \(2<L_x<3\), as claimed. QED.
 
+**Exact second-length consequence (no additional assumptions).**
+The same left eigenvector equations give
+
+    ell_c=(beta-r)/2,
+    ell_x-ell_c=d/(beta-1)>0.
+
+Thus the *three* normalized physical tile lengths are strictly ordered
+\(\ell_x>\ell_c>\ell_y=1\) throughout the lower cone. Combining the exact
+root intervals of PR #403 with the current x-ratio chamber theorem yields
+
+| sign | c region | exact c-tile interval |
+|---|---|---|
+| plus | \(c=0\) | \(2<\ell_c<5/2\) |
+| plus | \(1\le c\le d\) | \(3/2<\ell_c<2\) |
+| plus | \(d+1\le c\le d+4\) | \(1<\ell_c<3/2\) |
+| minus | \(0\le c\le d-2\) | \(3/2<\ell_c<2\) |
+
+This exact length ordering supplies additional guards for run-window
+and carrier-type analyses. It is not itself a reachability statement.
+
 ### Evidence and replay
 
 The *hand proof* above supplies the quantified result. The independent
