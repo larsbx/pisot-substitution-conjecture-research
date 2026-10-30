@@ -95,16 +95,29 @@ def frontier_children(m: SeedInterface, index: Int) raises -> List[OverlapState]
     var N = (10-t) if index < 4 else (7-t)
     var U = -4 if index < 4 else -5
     var R = 3 if index < 4 else 1
-    # beta*(N+U*u+R*rho)=(d*N+U)+R*u+(2*N-R)*rho.
-    var S = BoundaryOffset(m.d*N+U,R,2*N-R)
-    var ra = m.p if parent.top == 0 else m.r
-    var rb = m.p if parent.bottom == 0 else m.r
-    var hA = boundary_length(0 if parent.top == 0 else 1)
-    var hB = boundary_length(0 if parent.bottom == 0 else 1)
+    return boundary_offset_children(m,parent.top,parent.bottom,BoundaryOffset(N,U,R))
+
+
+def boundary_offset_children(m: SeedInterface, top: Int, bottom: Int, offset: BoundaryOffset) raises -> List[OverlapState]:
+    """Exact for a strict boundary parent when ALL sign queries fit (5,10).
+
+    The envelope is a precondition checked during enumeration. A refusal
+    supplies no partial child set and says nothing about carrier closure.
+    """
+    if m.eps != 1 or m.c != 0 or top < 0 or top > 2 or bottom < 0 or bottom > 2:
+        raise Error("boundary transfer requires plus c=0 and actual letters")
+    if boundary_sign(m.d,offset.plus(boundary_length(bottom))) <= 0 or boundary_sign(m.d,boundary_length(top).minus(offset)) <= 0:
+        raise Error("boundary transfer requires strict parent overlap")
+    # beta*(I+U*u+R*rho)=(d*I+U)+R*u+(2*I-R)*rho.
+    var S = BoundaryOffset(checked_add(checked_mul(m.d,offset.n),offset.u),offset.r,checked_sub(checked_mul(2,offset.n),offset.r))
+    var ra = m.p if top == 0 else (m.n if top == 1 else m.r)
+    var rb = m.p if bottom == 0 else (m.n if bottom == 1 else m.r)
+    var endsA: List[Int] = [m.tables.sigma[top][0],m.tables.sigma[top][ra+1]]
+    var endsB: List[Int] = [m.tables.sigma[bottom][0],m.tables.sigma[bottom][rb+1]]
+    var hA = boundary_length(endsA[0])
+    var hB = boundary_length(endsB[0])
     var posA: List[BoundaryOffset] = [BoundaryOffset(),hA.shift(ra)]
     var posB: List[BoundaryOffset] = [BoundaryOffset(),hB.shift(rb)]
-    var endsA: List[Int] = [0,0] if parent.top == 0 else [1,1]
-    var endsB: List[Int] = [0,0] if parent.bottom == 0 else [1,1]
     var candidates = List[OverlapState]()
     for a in range(2):
         for b in range(2):
