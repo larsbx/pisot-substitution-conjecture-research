@@ -33,7 +33,7 @@ the eigenvector equation gives
 
 ### Derivation / reduction
 
-**Theorem R_C (exact tile-ratio chambers).** Every Class-C member in the
+**Theorem R_C (exact tile-ratio chambers; repository-derived, hand proof below, human review pending).** Every Class-C member in the
 lower cone above has the following *strict* normalized tile-ratio bound:
 
 | sign | integer parameter chamber | proved ratio interval |
@@ -106,7 +106,7 @@ standard-library Python checker
 \`oracles/python/check_class_c_tile_ratio_walls.py\` directly evaluates
 the original characteristic polynomial on rational arguments using
 \`fractions.Fraction\` and independently compares the resulting numerator
-with all six polynomial forms. It tests integer corners and all
+with all seven polynomial forms. It tests integer corners and all
 \((d,c)\) in its declared finite grid and refuses altered wall signs.
 
 The separate Mojo driver
