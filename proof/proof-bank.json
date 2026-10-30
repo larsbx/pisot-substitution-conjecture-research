@@ -2296,7 +2296,7 @@
     {
       "source": "docs/class-c-residual-domain-2026-10-29.md",
       "line": 23,
-      "statement_heading": "**Theorem P_C (exact PIP domain).** Under these hypotheses, the substitution"
+      "statement_heading": "**Theorem P_C (exact PIP domain; repository-proved, hand proof below, human review pending).** Under these hypotheses, the substitution"
     },
     {
       "source": "docs/class-c-strip-theorem-2026-10-29.md",
