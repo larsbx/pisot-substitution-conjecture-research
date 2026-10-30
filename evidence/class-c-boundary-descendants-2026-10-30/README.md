@@ -22,3 +22,24 @@ Then from repository root:
 The deterministic full export's digest is recorded in receipt.json. CI
 regenerates, checks and uploads it. Local receipt reproduction is not a
 hosted CI result. Independent mathematical review remains pending.
+
+## Complete ten-source continuation
+
+`frontier-receipt.json` pins the complete outgoing stars of all ten Q
+children: 580 interfaces at d=7..64, 4,439 children counted per interface,
+27,666 accepted occurrence pairs and 23,227 duplicates. The fifteen explicit
+run windows and sharp d=7/8/9/>=10 count chambers are proved in
+`docs/class-c-boundary-frontier-2026-10-30.md`. No closure test is run.
+
+From kernel/:
+
+    pixi run --locked mojo run -I . tests/test_class_c_boundary_frontier.mojo
+    pixi run --locked mojo run -I . class_c_boundary_frontier.mojo dump > /tmp/class-c-ten-frontier.txt
+
+From repository root:
+
+    python3 oracles/python/check_class_c_boundary_frontier.py --mojo-dump /tmp/class-c-ten-frontier.txt --check-receipt evidence/class-c-boundary-descendants-2026-10-30/frontier-receipt.json
+
+The oracle compares the written tables, canonical full sets and literal
+occurrences independently. This receipt and its deterministic export digest
+supplement the unchanged P/Q receipt.

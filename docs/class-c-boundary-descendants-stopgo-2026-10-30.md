@@ -35,3 +35,22 @@ numerical fitting. Require literal occurrence enumeration, full-set agreement,
 strict endpoints, actual occurrence witnesses and an omitted-child negative
 control. Any novelty claim is limited to this Class-C specialization and its
 uniform seed-reachable escape. No new general overlap algorithm is claimed.
+
+## Continuation: the ten Q children
+
+Narrowed extension of the same construction: classify the complete successors
+of X_t=(x,y,-4a+11b-t), t=7..10, Y_t=(y,y,-5a+11b-t), t=6,7,
+and Z_t=(y,x,-5a+11b-t), t=6..9, still only plus c=0, d>=7.
+The preceding three primary-source checks apply unchanged: no new spectral,
+realization or finiteness premise is being imported. The side-notes growth and
+uniform escape entries remain the required negative controls.
+
+Decision: **proceed with a complete finite family of local formulas**. Write
+displacements as N+U*u+R*rho, where beta*u=1 and beta*rho=u-rho.
+Inflation sends (N,U,R) to (d*N+U,R,2*N-R). The occurrence endpoints for
+these ten sources have |U|<=5, |R|<=10. Their fractional correction has
+absolute value <1, and its sign follows from the integer U*(d+1)+R, with
+the sign of U breaking equality. Prove that coefficient envelope for all
+nine segment kinds; refuse inputs outside it. Compare complete sets against
+both the existing general exact transfer and independent literal occurrences.
+Do not infer closure from the resulting output union.
