@@ -119,6 +119,54 @@ root intervals of PR #403 with the current x-ratio chamber theorem yields
 This exact length ordering supplies additional guards for run-window
 and carrier-type analyses. It is not itself a reachability statement.
 
+**Exact adjacent-tile gap threshold.** Write
+\(\Delta=\ell_x-\ell_c=d/(\beta-1)>0\). Since
+\(\operatorname{sign}\chi(d+1)=\operatorname{sign}(d+1-\beta)\),
+direct integral substitution gives
+
+    chi(d+1) = -d*((d+1)*c-d-3)            (plus)
+    chi(d+1) = -d*((d+1)*c+3*d+5)          (minus).
+
+On plus, the first expression is positive for \(c=0,1\)
+and negative for every integer \(c\ge2\), \(d\ge7\).
+On minus it is always negative. The previous root walls also give
+\(\beta>d\) on plus \(c=0,1\); hence \(\Delta<2\) there.
+Consequently the exact, sharp integer gap partition is
+
+| region | normalized x/c tile-start gap |
+|---|---|
+| plus \(n=2d-5\) or \(n=2d-4\) | \(1<\Delta<2\) |
+| plus \(2d-3\le n<3d\) | \(0<\Delta<1\) |
+| minus \(2d+1\le n<3d\) | \(0<\Delta<1\) |
+
+This is an additional *algebraic* wall distinct from the \(\ell_x\)
+integer chambers. It changes the exact integer-aligned y-run index
+windows in a prospective overlap carrier and should not be hidden
+inside a uniform approximate tile-length estimate.
+
+**Complete swap-seed geometry, independent of the closure.**
+The proven strict order \(\ell_x>\ell_c>\ell_y=1\) implies that for
+each ordered alphabet pair \(a<b\) in \(x,c,y\), exactly the following
+three *states with interior overlap* arise from the two-letter swap
+superposition \((ab,ba)\):
+
+    (a,b,0),   (a,a,ell_b),   (b,a,ell_b-ell_a).
+
+Indeed, the fourth occurrence pair is \((b,b,-\ell_a)\); it
+cannot overlap because the bottom interval ends strictly before the
+top interval starts (\(-\ell_a+\ell_b<0\)).
+The other three each satisfy the strict interval test using only
+\(\ell_a>\ell_b>0\).
+Thus the complete initial canonical swap-seed *set* has precisely
+**nine** states: three per unordered letter pair. No graph-closure
+algorithm or Pisot sampling is needed for this finite seed classification.
+
+This does *not* imply a nine-state closed graph: inflation produces
+additional overlaps, whose number grows near the PIP boundary. It
+provides a fixed, reproducible starting interface for a future
+variable-index carrier, and forbids an argument that silently omits
+one seed type.
+
 ### Evidence and replay
 
 The *hand proof* above supplies the quantified result. The independent
