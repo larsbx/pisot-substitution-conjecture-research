@@ -241,7 +241,7 @@ These are apparent statement openings, including open targets, imported results 
 | [docs/class-b-ray-certificate-2026-10-27.md:175](../docs/class-b-ray-certificate-2026-10-27.md#L175) | ## Theorem B_B: uniform descent |
 | [docs/class-b-ray-certificate-2026-10-27.md:181](../docs/class-b-ray-certificate-2026-10-27.md#L181) | **Theorem B_B.** For each tabulated ray, every q ≥ q0 and every non-target |
 | [docs/class-b-ray-certificate-2026-10-27.md:211](../docs/class-b-ray-certificate-2026-10-27.md#L211) | **Corollary L_B (eight top-layer lines).** On each of the eight lines above, |
-| [docs/class-c-lower-cone-tile-ratio-walls-2026-10-30.md:36](../docs/class-c-lower-cone-tile-ratio-walls-2026-10-30.md#L36) | **Theorem R_C (exact tile-ratio chambers; repository-derived, hand proof below, human review pending).** Every Class-C member in the |
+| [docs/class-c-lower-cone-tile-ratio-walls-2026-10-30.md:36](../docs/class-c-lower-cone-tile-ratio-walls-2026-10-30.md#L36) | **Theorem R_C (exact tile-ratio chambers; repository-proved, hand proof below, independent human review pending).** Every Class-C member in the |
 | [docs/class-c-residual-domain-2026-10-29.md:23](../docs/class-c-residual-domain-2026-10-29.md#L23) | **Theorem P_C (exact PIP domain; repository-proved, hand proof below, human review pending).** Under these hypotheses, the substitution |
 | [docs/class-c-strip-theorem-2026-10-29.md:16](../docs/class-c-strip-theorem-2026-10-29.md#L16) | **Theorem T_C2 (scoped, computer-assisted).** Let d ≥ 1 and 3d ≤ n, with |
 | [docs/class-c-tail-theorem-2026-10-28.md:19](../docs/class-c-tail-theorem-2026-10-28.md#L19) | **Theorem T_C (scoped, computer-assisted).** Let d >= 6, and let |
