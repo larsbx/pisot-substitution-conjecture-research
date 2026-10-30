@@ -25,7 +25,8 @@ packets of 2026-10-21 remain unchanged.
 Packets are listed explicitly in ``PACKETS``, oldest first, and admit
 disjoint paths. Format v1 tested a merge commit and carries the 2026-10-26
 receipt. Format v2 tested the rebind head itself (a ``workflow_dispatch`` run)
-and pins its own receipt line, because an engine change may move the
+or, with ``tested_merge``, a pull-request merge commit of it, and a plus-chamber
+replay pins its own receipt line, because an engine change may move the
 aggregate's finite-prefix and boundary-line counts. Its wedge and explicit-line
 counts stay fixed.
 """
@@ -95,22 +96,24 @@ def validate(packet: Path = PACKET, root: Path = ROOT) -> dict[str, str]:
         raise ValueError(f'unknown rebind kind: {unknown}' if unknown else 'a rebind packet needs exactly one replay kind')
     kind, = kinds
     replay_spec = REPLAYS[kind]
-    if fmt == FORMAT:
-        merge, marker = manifest['tested_merge'], PLUS_MARKER
+    if fmt == FORMAT or 'tested_merge' in manifest:
+        merge = manifest['tested_merge']
         commit = (packet/'tested-merge.commit').read_bytes()
         if hashlib.sha1(b'commit '+str(len(commit)).encode()+b'\0'+commit).hexdigest() != merge:
             raise ValueError('tested merge commit object does not match its id')
         if b'parent '+head.encode() not in commit.splitlines():
             raise ValueError('the tested merge does not contain the rebind head')
+    if fmt == FORMAT:
+        marker = PLUS_MARKER
     else:
-        merge, marker = head, manifest['plus_receipt']
+        merge, marker = manifest.get('tested_merge', head), manifest.get('plus_receipt')
         if subprocess.run(['git', 'cat-file', '-e', head+'^{commit}'], cwd=ROOT, capture_output=True).returncode:
             raise ValueError('the rebind head is not a commit of this repository')
         if kind == 'assembly-replay':
             if 'plus_receipt' in manifest:
                 raise ValueError('an assembly replay pins no plus-chamber receipt')
             marker = ASSEMBLY_MARKER
-        elif not PLUS_RECEIPT.fullmatch(marker):
+        elif not PLUS_RECEIPT.fullmatch(marker or ''):
             raise ValueError('the pinned plus-chamber receipt has the wrong shape')
     label = replay_spec['label']
     from check_class_d_assembly_evidence import import_closure  # lazy: that module imports this one

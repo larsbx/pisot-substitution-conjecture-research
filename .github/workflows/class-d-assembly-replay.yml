@@ -1,13 +1,22 @@
 name: Class-D assembly replay for a closure rebind
 
-# Dispatch only. The provenance gate of class-d-assembly.yml refuses an edit to
+# Runs when the assembly sources change. The provenance gate of class-d-assembly.yml refuses an edit to
 # an accepted source before it replays anything, so a rebind of the assembly
 # (tools/check_class_d_closure_rebind.py, kind `assembly-replay`) needs a run
 # of the same replay steps on the rebind head without that gate. The step
 # names are the ones the rebind checker requires. This workflow certifies
 # nothing on its own: its archived log is the receipt of a dated rebind packet.
 on:
+  pull_request:
+    paths:
+      - 'kernel/class_d_assembly.mojo'
+      - 'kernel/psc/class_d_assembly.mojo'
+      - 'kernel/tests/test_class_d_assembly.mojo'
+      - '.github/workflows/class-d-assembly-replay.yml'
   workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   assembly-replay:
