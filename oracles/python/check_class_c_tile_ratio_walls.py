@@ -136,6 +136,17 @@ def checked() -> None:
                     all_children = set(member.children((0, 1, ZERO)))
                     assert all_children == complete, (d, eps, n, all_children - complete, complete - all_children)
                     assert len(complete) == (10 if eps==1 and c==0 else 9 if eps==1 and c==1 else 7)
+                    # Second fully classified aligned seed (c,y,0):
+                    # first/first, run/run and every actual run/last match.
+                    if eps == 1 and c == 0:
+                        last_indices = (0, -1, -2)
+                    else:
+                        last_indices = (0, -1)
+                    cy_children = {(1, 1, ZERO), (2, 2, ZERO)}
+                    cy_children.update((2, 1, mul_y(k)) for k in last_indices)
+                    got_cy = set(member.children((1, 2, ZERO)))
+                    assert got_cy == cy_children, (d, eps, n, got_cy - cy_children, cy_children - got_cy)
+                    assert len(cy_children) == (5 if eps == 1 and c == 0 else 4)
                 finite_seed_members += 1
     print("TILE_RATIO_EXACT_RATIONAL_ORACLE_PASS", cases)
     print("CANONICAL_NINE_SEEDS_FINITE_PASS", finite_seed_members)
