@@ -41,6 +41,15 @@ def checked() -> None:
                     actual = (m**3) * chi(n, d, eps, t)
                     claimed = p * expected * (1 if m == 1 else -1)
                     assert actual == claimed, (d, eps, c, m, actual, claimed)
+                # Sharp independent root test at d+1; the sign locates
+                # Delta = ell_x-ell_c = d/(beta-1) against the integer 1.
+                at_d_plus_1 = chi(n, d, eps, Fraction(d+1))
+                if eps == 1:
+                    assert at_d_plus_1 == -d*((d+1)*c-d-3)
+                    assert (at_d_plus_1>0) == (c <= 1)
+                else:
+                    assert at_d_plus_1 == -d*((d+1)*c+3*d+5)
+                    assert at_d_plus_1 < 0
                 g1, f2, f3 = expressions[:3]
                 assert g1 > 0
                 if eps == 1:
