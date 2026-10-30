@@ -6,6 +6,9 @@ on:
       - 'kernel/class_c_lower_cone_root_walls.mojo'
       - 'kernel/class_c_lower_cone_rays.mojo'
       - 'oracles/python/check_class_c_root_walls.py'
+      - 'oracles/python/check_class_c_tile_ratio_walls.py'
+      - 'kernel/class_c_tile_ratio_walls.mojo'
+      - 'docs/class-c-lower-cone-tile-ratio-walls-2026-10-30.md'
       - '.github/workflows/class-c-lower-cone-root-walls.yml'
   workflow_dispatch:
 concurrency:
@@ -22,6 +25,8 @@ jobs:
           set -euo pipefail
           python3 oracles/python/check_class_c_root_walls.py | tee /tmp/root-wall-python.log
           grep -q '^ROOT_WALL_EXACT_ORACLE_PASS' /tmp/root-wall-python.log
+          python3 oracles/python/check_class_c_tile_ratio_walls.py | tee /tmp/tile-ratio-python.log
+          grep -q '^TILE_RATIO_EXACT_RATIONAL_ORACLE_PASS' /tmp/tile-ratio-python.log
   exact-mojo:
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -38,6 +43,8 @@ jobs:
           set -euo pipefail
           pixi run --locked mojo run -I . class_c_lower_cone_root_walls.mojo | tee /tmp/root-wall-mojo.log
           grep -q '^ROOT_WALL_INTEGER_IDENTITIES_PASS' /tmp/root-wall-mojo.log
+          pixi run --locked mojo run -I . class_c_tile_ratio_walls.mojo | tee /tmp/tile-ratio-mojo.log
+          grep -q '^TILE_RATIO_INTEGER_IDENTITIES_PASS' /tmp/tile-ratio-mojo.log
   ray-candidates:
     runs-on: ubuntu-latest
     timeout-minutes: 60
