@@ -55,6 +55,9 @@ class C              main <- slope-three (#392) <- below-three (#394)           
                      main <- descendant-wall (#406) <- r-transfer (#408)                       TIP
 ```
 
+Update after the audit: #406 and #408 merged into `main` as 6763d566, so
+that class-C stack is closed.
+
 * `r3` adds nothing beyond `b4`.
 * `d0` is contained in `e6` through #387; see the #386 closure entry in the
   ledger.

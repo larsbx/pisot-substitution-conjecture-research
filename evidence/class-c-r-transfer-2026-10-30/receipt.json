@@ -1,0 +1,12 @@
+{
+  "accepted_occurrence_pairs": 8468,
+  "actual_U_children": 4,
+  "canonical_dump_sha256": "95237c0215c0ca56cb080e3ba2da5a11c7dc86ee20257c196471e4cf41ad97de",
+  "distinct_children": 870,
+  "duplicate_occurrences": 7598,
+  "interfaces": 174,
+  "members": 58,
+  "scope": "finite replay of three uniform local stars and translation obstruction; no closure or BH verdict",
+  "translated_children": 6,
+  "translation_controls": 58
+}
