@@ -74,6 +74,8 @@ def validate(packet: Path = PACKET, root: Path = ROOT) -> dict[str, str]:
             raise ValueError('the tested merge does not contain the rebind head')
     else:
         merge, marker = head, manifest['plus_receipt']
+        if subprocess.run(['git', 'cat-file', '-e', head+'^{commit}'], cwd=ROOT, capture_output=True).returncode:
+            raise ValueError('the rebind head is not a commit of this repository')
         if not PLUS_RECEIPT.fullmatch(marker):
             raise ValueError('the pinned plus-chamber receipt has the wrong shape')
     paths = manifest['paths']
