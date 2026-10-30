@@ -1,0 +1,49 @@
+name: Class-C nine seed interfaces
+on:
+  pull_request:
+    paths:
+      - 'docs/class-c-nine-seed-*.md'
+      - 'kernel/psc/class_c_seed_interfaces.mojo'
+      - 'kernel/class_c_seed_interfaces.mojo'
+      - 'kernel/tests/test_class_c_seed_interfaces.mojo'
+      - 'oracles/python/check_class_c_seed_interfaces.py'
+      - 'evidence/class-c-seed-interfaces-2026-10-30/**'
+      - '.github/workflows/class-c-seed-interfaces.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  exact-interfaces:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Canonical strict windows and actual occurrence regression
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . tests/test_class_c_seed_interfaces.mojo
+      - name: Canonical nine-seed tables and bounded descendant transfer export
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          mkdir -p build/class-c-seed-interfaces
+          pixi run --locked mojo run -I . class_c_seed_interfaces.mojo dump > build/class-c-seed-interfaces/states.txt
+          grep -q '^NINE_SEED_INTERFACES_PASS 105 945$' build/class-c-seed-interfaces/states.txt
+          grep '^BOUNDED_DESCENDANTS' build/class-c-seed-interfaces/states.txt
+      - name: Independent exact literal-word oracle and committed receipt
+        run: |
+          set -euo pipefail
+          python3 oracles/python/check_class_c_seed_interfaces.py --mojo-dump kernel/build/class-c-seed-interfaces/states.txt | tee kernel/build/class-c-seed-interfaces/oracle.txt
+          grep -q '^NINE_SEED_LITERAL_EXACT_ORACLE_PASS$' kernel/build/class-c-seed-interfaces/oracle.txt
+          python3 oracles/python/check_class_c_seed_interfaces.py --mojo-dump kernel/build/class-c-seed-interfaces/states.txt --check-receipt evidence/class-c-seed-interfaces-2026-10-30/receipt.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-c-nine-seed-interfaces
+          path: kernel/build/class-c-seed-interfaces/
+          if-no-files-found: error
