@@ -81,3 +81,22 @@ the pinned toolchain manifests and repository policy. The compiler/standard
 library and the arithmetic implementation remain trust inputs. This source
 review and separate implementation do not constitute independent human
 review. SHA256SUMS pins every packet file except itself.
+
+**Rebind (2026-10-30, PR #399).** Theorem T_C2 changed three pinned sources:
+`kernel/psc/class_c_tail_certificate.mojo` and `kernel/class_c_tail_certificate.mojo`
+(the `STRIP` frame, a several-set cover and a `strip` driver mode; `TAIL`-frame
+pieces, names and outputs are unchanged) and `kernel/pixi.toml` (two tasks).
+Before the re-pin, every receipt of this packet was replayed on the new
+sources and found byte-identical: the native test, both middle cones, all
+eight diagonals, both top-finite and gap-6 logs, the domain log, and the
+three T_C replays. `provenance.json` now pins the new digests and keeps the
+previous ones under `rebinds`.
+
+**Rebind (2026-10-30, fit-first line engine).** `kernel/psc/symbolic_line.mojo`
+changed only inside the line closure `_Closure`, which this packet's drivers
+never call: `psc.symbolic_cone` has its own closure and imports only
+unchanged helpers from `psc.symbolic_line`. Before the re-pin, all sixteen
+native receipts were replayed on the new source and found byte-identical:
+the native test, both middle cones, all eight diagonals, both top-finite and
+gap-6 logs, and the domain log. `provenance.json` pins the new digest and
+keeps the old one under `rebinds`.

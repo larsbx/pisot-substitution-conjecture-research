@@ -1,0 +1,76 @@
+name: Class-C lower cone root-wall identities and BH ray candidates
+on:
+  pull_request:
+    paths:
+      - 'docs/class-c-lower-cone-root-walls-2026-10-30.md'
+      - 'kernel/class_c_lower_cone_root_walls.mojo'
+      - 'kernel/class_c_lower_cone_rays.mojo'
+      - 'oracles/python/check_class_c_root_walls.py'
+      - 'oracles/python/check_class_c_tile_ratio_walls.py'
+      - 'kernel/class_c_tile_ratio_walls.mojo'
+      - 'docs/class-c-lower-cone-tile-ratio-walls-2026-10-30.md'
+      - '.github/workflows/class-c-lower-cone-root-walls.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  exact-python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Independent exact integer identities and boundary controls"
+        run: |
+          set -euo pipefail
+          python3 oracles/python/check_class_c_root_walls.py | tee /tmp/root-wall-python.log
+          grep -q '^ROOT_WALL_EXACT_ORACLE_PASS' /tmp/root-wall-python.log
+          python3 oracles/python/check_class_c_tile_ratio_walls.py | tee /tmp/tile-ratio-python.log
+          grep -q '^TILE_RATIO_EXACT_RATIONAL_ORACLE_PASS' /tmp/tile-ratio-python.log
+  exact-mojo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: "Independent Mojo polynomial identities"
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . class_c_lower_cone_root_walls.mojo | tee /tmp/root-wall-mojo.log
+          grep -q '^ROOT_WALL_INTEGER_IDENTITIES_PASS' /tmp/root-wall-mojo.log
+          pixi run --locked mojo run -I . class_c_tile_ratio_walls.mojo | tee /tmp/tile-ratio-mojo.log
+          grep -q '^TILE_RATIO_INTEGER_IDENTITIES_PASS' /tmp/tile-ratio-mojo.log
+  ray-candidates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        eps: [1, -1]
+        t: [1, 2]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: "Quantified BH-only fixed-k ray with exact finite exceptions"
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          mkdir -p build/class-c-lower-cone
+          pixi run --locked mojo build -I . class_c_lower_cone_rays.mojo -o build/class-c-lower-cone/rays
+          build/class-c-lower-cone/rays ${{ matrix.eps }} ${{ matrix.t }} | tee build/class-c-lower-cone/eps-${{ matrix.eps }}-t-${{ matrix.t }}.log
+          grep -q '^BH_CERTIFIED' build/class-c-lower-cone/eps-${{ matrix.eps }}-t-${{ matrix.t }}.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-c-lower-cone-ray-${{ matrix.eps }}-${{ matrix.t }}
+          path: kernel/build/class-c-lower-cone/
+          if-no-files-found: warn

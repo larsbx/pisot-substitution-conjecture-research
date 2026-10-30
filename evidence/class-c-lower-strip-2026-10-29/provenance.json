@@ -13,7 +13,7 @@
     "AGENTS.md": "46f8d84936c01ae3fd8f0cb84b5dd77c77998c23b94202655958f9bacd5dc9cd",
     "kernel/a1_normal_form_census.mojo": "baf54332f58a023a376201378d1caad3529ba42d94acb251b3855b331f863b16",
     "kernel/class_c_lower_strip.mojo": "9c5c050d595f6a80aad892eda04cbcd84165f1eb86b692dbb86c0dd7eae47807",
-    "kernel/class_c_tail_certificate.mojo": "3a4db880e86e475d7883f24932f6e2889f412f0f736a898932758d1fc002a98e",
+    "kernel/class_c_tail_certificate.mojo": "2cb73e96bd8d0280da2145e7e1e6e3c9a204a598c50bcd7f932a5d7eb2b08cfa",
     "kernel/finite_automata/dfa.mojo": "b8ba057d7a1071b673ffb2fee87675aa292c56860c0bb74737c9961c7aa75a41",
     "kernel/finite_automata/moore_minimisation.mojo": "2278a9e8f766452e15b620188c6c1c235dbf70d8f0614517972bb1b25f86ee9e",
     "kernel/finite_automata/subset_construction.mojo": "2f298eeb62551faf57d7bbbb6836b6461037cb650413cc76d9be65a12d608190",
@@ -33,13 +33,13 @@
     "kernel/mojo_smoke/claims.mojo": "4fca317fc0ad6c710030c8e2494106d07358adb4673868c3393dcad15dcc32e6",
     "kernel/parallel_fold/map_fold.mojo": "21dd242726563dc4f71f8f68e2540d3b7e690a2f6d09481df4e0879f6df15d5b",
     "kernel/pixi.lock": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8",
-    "kernel/pixi.toml": "57a3d1f1a579ad1b057ad2cd53c2978a69c5940b1ab3e9ae5c740785e76c7d8b",
+    "kernel/pixi.toml": "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee",
     "kernel/psc/bpa.mojo": "ff19ade4486070d7d458c788560533f8ab95b08c6a57a5e3134575cea8b85492",
     "kernel/psc/class_a_gap_dataset.mojo": "72e46077fff48b4be3c70065052430a2f722e6df984fceaa34b2b4722e612489",
     "kernel/psc/class_a_line.mojo": "68ed96027c86338a711fcbd43d6c68c781dce572766a78afd8e1c493f5ef573c",
     "kernel/psc/class_c_gap_profile.mojo": "948da10a09492992fba7eedd25dacbeb29f47c62cf5ea476c124d400eaa292c7",
     "kernel/psc/class_c_lower_strip.mojo": "748937ceae1f261e65907548688704ebcb38ef02538b1b10ac8ccca87433ada4",
-    "kernel/psc/class_c_tail_certificate.mojo": "62ec571bd839fd456db7319b4d2be1650cf8a8c65d06db49f212aeaf8b63cf6c",
+    "kernel/psc/class_c_tail_certificate.mojo": "5b875c19c24a8a7a054e4dbf604609f84a6419264a6b9309a6aa99fe1350f5d8",
     "kernel/psc/coincidence_formula.mojo": "cce0d1ca874f06f2602722c11e1cdb2c65e0811a4ff6a1ef3c34bf310b7d685a",
     "kernel/psc/dumont_thomas.mojo": "a4deb57e586d51ffc6abaa3a921e14c32493419cae63e0f6734696397eac5963",
     "kernel/psc/exact.mojo": "ebe211c9c29d6d943ae58fe8594eacac629af2ccf232197d59b22ad0d7896cc3",
@@ -58,7 +58,7 @@
     "kernel/psc/pisot_state.mojo": "c621c033e84529599d64d477d4c6007e5d31cbda14a81521682ec04f8985bd5f",
     "kernel/psc/real_root_sign.mojo": "0882ff1ab7afd799531c0bf664ab00381ec9c4f5e5dcefc8ae2af2f10e4ae06f",
     "kernel/psc/symbolic_cone.mojo": "c344ff9c00f3a4ffb0860357b0068796aa3128cc2c7c4f2e37f89469f20f7bf0",
-    "kernel/psc/symbolic_line.mojo": "ed7f235ba5d77fad32195acd614cf65c3eddd7a398c8f3277bf7d679386d22e6",
+    "kernel/psc/symbolic_line.mojo": "12bd94c35d4c760ca5a190aad58f7c12b284528efe386cc9ca15de3c4daceeed",
     "kernel/psc/vertex_coincidence.mojo": "7a1535a107a5c0083160319d49cff658a0eccc1f9e0b29c6903e0b89d5237797",
     "kernel/psc/words.mojo": "64563c4a5378ae3ec2f586237868f32f9bf9a88fc20b70881bcc5be251f3aae2",
     "kernel/substitution_dynamics/__init__.mojo": "e53facf94d13e856fc0671329185197585c825908abc6a4fbe59c0efacae8986",
@@ -77,5 +77,64 @@
     "reference/psc_research/pisot_screen.py": "7b8653680013eef36194490f15cb187666bc5770c7aa478ad8fc1d3ce0f15b72",
     "research_evidence_policy.toml": "6512a5f520db6616cdadd85fbe7848dc1db95eb42d873cac34d18d83ca8d2649",
     "vendored.toml": "7c52f1b1755fb33a7a1cf967fc69c0eb4a8877c90f9b5a708b58b4e404472a77"
-  }
+  },
+  "rebinds": [
+    {
+      "date": "2026-10-30",
+      "by": "PR #399 (Theorem T_C2, branch research/class-c-strip-2026-10-29)",
+      "reason": "T_C2 adds the STRIP frame and a several-set cover to psc.class_c_tail_certificate, a strip mode to its driver, and two pixi tasks; TAIL-frame pieces, names and outputs are unchanged",
+      "replayed_byte_identical": [
+        "native-test.log",
+        "middle-plus.log",
+        "middle-minus.log",
+        "diagonal-plus--4.log",
+        "diagonal-plus--3.log",
+        "diagonal-plus--2.log",
+        "diagonal-plus--1.log",
+        "diagonal-minus-0.log",
+        "diagonal-minus-1.log",
+        "diagonal-minus-2.log",
+        "diagonal-minus-3.log",
+        "top-finite-plus.log",
+        "top-finite-minus.log",
+        "gap-plus-6.log",
+        "gap-minus-6.log",
+        "domain.log",
+        "replay-theorem-plus.log",
+        "replay-theorem-minus.log",
+        "replay-native-test.log"
+      ],
+      "previous_digests": {
+        "kernel/class_c_tail_certificate.mojo": "3a4db880e86e475d7883f24932f6e2889f412f0f736a898932758d1fc002a98e",
+        "kernel/pixi.toml": "57a3d1f1a579ad1b057ad2cd53c2978a69c5940b1ab3e9ae5c740785e76c7d8b",
+        "kernel/psc/class_c_tail_certificate.mojo": "62ec571bd839fd456db7319b4d2be1650cf8a8c65d06db49f212aeaf8b63cf6c"
+      }
+    },
+    {
+      "date": "2026-10-30",
+      "by": "fit-first line engine (branch research/symbolic-line-fit-first-2026-10-30)",
+      "reason": "psc.symbolic_line's _Closure now fits run walls before testing run ends at beta; psc.symbolic_cone has its own closure and imports only helpers from psc.symbolic_line, which are unchanged",
+      "replayed_byte_identical": [
+        "native-test.log",
+        "middle-plus.log",
+        "middle-minus.log",
+        "diagonal-plus--4.log",
+        "diagonal-plus--3.log",
+        "diagonal-plus--2.log",
+        "diagonal-plus--1.log",
+        "diagonal-minus-0.log",
+        "diagonal-minus-1.log",
+        "diagonal-minus-2.log",
+        "diagonal-minus-3.log",
+        "top-finite-plus.log",
+        "top-finite-minus.log",
+        "gap-plus-6.log",
+        "gap-minus-6.log",
+        "domain.log"
+      ],
+      "previous_digests": {
+        "kernel/psc/symbolic_line.mojo": "ed7f235ba5d77fad32195acd614cf65c3eddd7a398c8f3277bf7d679386d22e6"
+      }
+    }
+  ]
 }

@@ -1,0 +1,62 @@
+name: Class-C boundary descendant interfaces
+on:
+  pull_request:
+    paths:
+      - 'docs/class-c-boundary-*.md'
+      - 'kernel/psc/class_c_boundary_descendants.mojo'
+      - 'kernel/class_c_boundary_descendants.mojo'
+      - 'kernel/tests/test_class_c_boundary_descendants.mojo'
+      - 'kernel/psc/class_c_boundary_frontier.mojo'
+      - 'kernel/class_c_boundary_frontier.mojo'
+      - 'kernel/tests/test_class_c_boundary_frontier.mojo'
+      - 'kernel/psc/class_c_seed_interfaces.mojo'
+      - 'oracles/python/check_class_c_boundary_descendants.py'
+      - 'tests/test_class_c_boundary_descendants.py'
+      - 'oracles/python/check_class_c_boundary_frontier.py'
+      - 'tests/test_class_c_boundary_frontier.py'
+      - 'evidence/class-c-boundary-descendants-2026-10-30/**'
+      - '.github/workflows/class-c-boundary-descendants.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  exact-descendants:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Actual occurrence and strict-wall regression
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_class_c_boundary_descendants.mojo
+          pixi run --locked mojo run -I . tests/test_class_c_boundary_frontier.mojo
+      - name: Canonical complete child-set export
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          mkdir -p build/class-c-boundary-descendants
+          pixi run --locked mojo run -I . class_c_boundary_descendants.mojo dump > build/class-c-boundary-descendants/states.txt
+          grep -q '^BOUNDARY_DESCENDANT_INTERFACES_PASS 58 116 638$' build/class-c-boundary-descendants/states.txt
+          pixi run --locked mojo run -I . class_c_boundary_frontier.mojo dump > build/class-c-boundary-descendants/frontier.txt
+          grep -q '^BOUNDARY_TEN_FRONTIER_PASS 58 580 4439$' build/class-c-boundary-descendants/frontier.txt
+      - name: Independent full-set oracle and committed receipt
+        run: |
+          set -euo pipefail
+          python3 oracles/python/check_class_c_boundary_descendants.py --mojo-dump kernel/build/class-c-boundary-descendants/states.txt --check-receipt evidence/class-c-boundary-descendants-2026-10-30/receipt.json | tee kernel/build/class-c-boundary-descendants/oracle.txt
+          grep -q '^BOUNDARY_DESCENDANT_LITERAL_EXACT_ORACLE_PASS$' kernel/build/class-c-boundary-descendants/oracle.txt
+          grep -q '^BOUNDARY_DESCENDANT_RECEIPT_PASS$' kernel/build/class-c-boundary-descendants/oracle.txt
+          python3 oracles/python/check_class_c_boundary_frontier.py --mojo-dump kernel/build/class-c-boundary-descendants/frontier.txt --check-receipt evidence/class-c-boundary-descendants-2026-10-30/frontier-receipt.json | tee kernel/build/class-c-boundary-descendants/frontier-oracle.txt
+          grep -q '^BOUNDARY_TEN_LITERAL_EXACT_ORACLE_PASS$' kernel/build/class-c-boundary-descendants/frontier-oracle.txt
+          grep -q '^BOUNDARY_TEN_RECEIPT_PASS$' kernel/build/class-c-boundary-descendants/frontier-oracle.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-c-boundary-descendant-interfaces
+          path: kernel/build/class-c-boundary-descendants/
+          if-no-files-found: error

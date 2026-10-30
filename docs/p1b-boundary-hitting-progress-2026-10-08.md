@@ -526,6 +526,49 @@ and were re-pinned (form `norm CLASS AP BP AQ BQ AR BR`):
 | `norm D 3 4 3 5 4 7` | 105 | 3 → 4 | 3 → 4 | 0 / 0 |
 | `norm D 3 7 3 8 4 10` | 105 | 2 → 8 | 2 → 8 | 0 / 0 |
 
+**Correction, 2026-10-30 (fit-first; every pre-#288 pin restored).** The
+floor inflation above has one root cause. #288 tests each run block's ends at
+`beta` before fitting its walls. On the Theorem W boundary lines
+`norm D 1 a 1 a+1 1 b` those reads have Sturm–Tarski entries whose leading
+coefficients change sign late, at about `q ~ a²/2`, so the eventual-sign
+floor `q0` grew quadratically in `a` (16 → 107 → … → 331 in the table above),
+and the wedge floors rose with it. `kernel/psc/symbolic_line.mojo` now fits
+both walls first and clips them to the run ends by the exact eventual sign of
+integer polynomials in `q`. #288's endpoint tests run only when a wall has no
+certified affine fit, which is the empty-block case #288 repaired. Both paths are
+exact. The closure differs only in which sign reads it makes, and so in its
+floors. The cone engine `psc.symbolic_cone` has its own closure and is
+unchanged.
+
+A native local run of all 142 pinned rows (47 lines, 89 norm lines, 6 wedges)
+on the fit-first engine reproduces **every pre-#288 pin**
+(`kernel/symbolic_line_certificate.mojo` at `7a74eda^`). That includes the
+class-D row `(n+1, n, n+3)` at `q0 = 18` and the norm example below at
+`q0 = 4`. 90 rows of `kernel/symbolic_line_pins.txt` moved back; vertex,
+non-PIP and outside counts are unchanged, and PIP-below moves by exactly
+`Δq0`. The three wedges return to `a0, b0 = 7, 7`, `15, 7` and `3, 15`. Their
+boundary lines are exactly the 89 pinned norm rows, so the strips this
+correction's predecessor left open (`b = 7, …, 30` and `a = 3, …, 6`) are
+covered again, and Theorem W with Corollary W1 is reproduced by the current
+code on the whole sub-wedge. The temporary `theorem-w-boundary-probe.yml` is
+deleted; its 28 lines are not boundary lines any more. Separately, the eight
+lines `norm D 1 a 1 a+1 1 b` for `a = 70, …, 94` and #368's twenty lines
+certify at `q0 ≤ 15` (93 or 105 vertices, every member below PIP and
+hitting); they are recorded, not pinned.
+
+Downstream, in this repository's line consumers:
+- gap four minus: `q0` 85 → 51;
+- gap five: sign reads only;
+- class-D minus strips: thresholds 42/72 → 19/21;
+- class-D plus aggregate: 73 → 51 returned strips, 952 → 287 finite-prefix
+  obligations, the same six cores, six interfaces and 164 maximum vertices.
+
+The accepted class-D receipts are historical. A hosted exact-revision replay
+rebinds the edited engine
+(`evidence/class-d-closure-rebind-2026-10-30/`). Lesson: a closure order that
+reads signs at `beta` before fitting can trade a missing fit for a
+quadratically growing floor, and floors are not monotone in the order of reads.
+
 ## 4c. Two two-parameter engines
 
 Theorem C's engine (`psc/symbolic_cone.mojo`, class B) and Theorem W's
