@@ -251,6 +251,40 @@ It is a concrete finite input for the intended typed carrier and
 already proves that the three plus chambers cannot all share the
 same first-generation child set.
 
+**Second complete aligned-seed child family.**
+For the aligned seed \((c,y,0)\), the two words have equal
+initial \(c\)-tile length \(b=\ell_c\), so first/first yields
+\((c,c,0)\). Their y-runs both start at \(b\), so
+run/run produces only \((y,y,0)\).
+The top word \(\sigma(c)\) has \(n\) y-occurrences
+indexed \(i=0,\ldots,n-1\); the bottom word \(\sigma(y)\)
+ends with a \(c\)-tile at \(b+r\).
+Run/last intersects strictly exactly when
+
+    -b < r-i < 1,
+    i in {r,r+1}                  if 1<b<2,
+    i in {r,r+1,r+2}              if 2<b<5/2.
+
+This index set lies inside the **actual** top run because
+\(n-r=d-\varepsilon\ge6\).
+No other segment pairs can overlap: the remaining prefix
+intervals are ordered without intersections, and even the
+bottom last \(c\)-tile ends before the top last \(x\)-tile starts
+because \(b<d-\varepsilon\).
+
+The exhaustive, **distinct** one-step child sets are therefore
+
+    plus n=2d-5:
+        {(c,c,0),(y,y,0),(y,c,0),(y,c,-1),(y,c,-2)};
+    all other plus and all minus lower-cone members:
+        {(c,c,0),(y,y,0),(y,c,0),(y,c,-1)}.
+
+So the aligned \((c,y,0)\) seed has exactly **five** children on the
+plus PIP boundary and exactly **four** children elsewhere.
+The \(b=2\) equality never occurs: the strict root walls exclude it.
+As with \((x,c,0)\), this is an **all-occurrence, complete one-step**
+theorem, not a closed carrier or a BH theorem.
+
 ### Evidence and replay
 
 The *hand proof* above supplies the quantified result. The independent
