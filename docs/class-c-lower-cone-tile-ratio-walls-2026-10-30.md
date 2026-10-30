@@ -33,7 +33,7 @@ the eigenvector equation gives
 
 ### Derivation / reduction
 
-**Theorem R_C (exact tile-ratio chambers; repository-derived, hand proof below, human review pending).** Every Class-C member in the
+**Theorem R_C (exact tile-ratio chambers; repository-proved, hand proof below, independent human review pending).** Every Class-C member in the
 lower cone above has the following *strict* normalized tile-ratio bound:
 
 | sign | integer parameter chamber | proved ratio interval |
