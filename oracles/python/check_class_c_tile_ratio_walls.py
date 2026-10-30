@@ -74,7 +74,38 @@ def checked() -> None:
                     if c == d-2:
                         assert f2 == 1-4*d
                 cases += 1
+    # Algorithmically separate finite seed-geometry cross-check, using the
+    # existing exhaustive-occurrence rational-interval exact oracle. The
+    # quantified nine-seed statement is proved by interval inequalities in
+    # the note, NOT by these finitely many examples.
+    import sys
+    from pathlib import Path
+    evidence = Path(__file__).resolve().parents[2] / "evidence" / "class-c-residual-domain-2026-10-29"
+    sys.path.insert(0, str(evidence))
+    from exact_oracle import ExactClassC, ZERO, sub
+    finite_seed_members = 0
+    for eps in (1, -1):
+        for d in (7, 9, 16):
+            cs = (0, 1, 2, d-2, d+1, d+4) if eps == 1 else (0, 1, 2, d-2)
+            for c in cs:
+                n = 2*d + (-5 if eps == 1 else 1) + c
+                member = ExactClassC(d, eps, n)
+                lengths = member.lengths
+                assert member.sign(sub(lengths[0], lengths[1])) > 0
+                assert member.sign(sub(lengths[1], lengths[2])) > 0
+                expected = set()
+                for a in range(3):
+                    for b in range(a+1, 3):
+                        expected.add((a, b, ZERO))
+                        expected.add((a, a, lengths[b]))
+                        expected.add((b, a, sub(lengths[b], lengths[a])))
+                        assert not member.overlaps((b, b, tuple(-z for z in lengths[a])))
+                actual = member.seeds()
+                assert len(expected) == len(actual) == 9
+                assert set(actual) == expected, (d, eps, n)
+                finite_seed_members += 1
     print("TILE_RATIO_EXACT_RATIONAL_ORACLE_PASS", cases)
+    print("CANONICAL_NINE_SEEDS_FINITE_PASS", finite_seed_members)
 
 
 if __name__ == "__main__":
