@@ -91,3 +91,12 @@ sources and found byte-identical: the native test, both middle cones, all
 eight diagonals, both top-finite and gap-6 logs, the domain log, and the
 three T_C replays. `provenance.json` now pins the new digests and keeps the
 previous ones under `rebinds`.
+
+**Rebind (2026-10-30, fit-first line engine).** `kernel/psc/symbolic_line.mojo`
+changed only inside the line closure `_Closure`, which this packet's drivers
+never call: `psc.symbolic_cone` has its own closure and imports only
+unchanged helpers from `psc.symbolic_line`. Before the re-pin, all sixteen
+native receipts were replayed on the new source and found byte-identical:
+the native test, both middle cones, all eight diagonals, both top-finite and
+gap-6 logs, and the domain log. `provenance.json` pins the new digest and
+keeps the old one under `rebinds`.
