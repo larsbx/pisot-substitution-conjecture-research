@@ -167,6 +167,40 @@ provides a fixed, reproducible starting interface for a future
 variable-index carrier, and forbids an argument that silently omits
 one seed type.
 
+**Exact first-inflation y/y child switch.**
+Consider the canonical aligned seed state \((x,c,0)\).
+The top \(y\)-run starts at positions \(\ell_x+i\) for
+\(0\le i<p\), and the bottom \(y\)-run starts at
+\(\ell_c+j\) for \(0\le j<n\).
+The resulting physical displacement is exactly
+
+    w(j,i) = ell_c+j-ell_x-i = (j-i)-Delta.
+
+Writing \(k=j-i\), the strict interior-overlap condition between the
+two unit-length \(y\)-tiles is
+
+    -1 < k-Delta < 1.
+
+It follows **without any overlap-graph closure assumption** that the
+distinct y/y child states arising from run/run occurrence pairs of
+\((x,c,0)\) are *exactly*
+
+    plus c=0,1:        (y,y,1-Delta), (y,y,2-Delta);
+    plus c>=2:         (y,y,-Delta),  (y,y,1-Delta);
+    minus all c>=0:    (y,y,-Delta),  (y,y,1-Delta).
+
+Every permitted \(k\) is actually attained by occurrence indices:
+\(i=0,j=k\) for \(k=0,1,2\), with \(n\ge3\)
+throughout the scope; no hypothetical infinite-run position is needed.
+All other integer \(k\) fail the strict overlap inequality.
+This supplies **two explicit, realized child vertices per member**,
+and a sharp arithmetic obstruction to treating the y/y child rule
+of this seed as identical across the plus edge \(c=1\to2\).
+
+This result concerns only first-generation y/y children of
+\((x,c,0)\). It does **not** assert completeness of a nine-state
+automaton, persistence under further inflation, or BH.
+
 ### Evidence and replay
 
 The *hand proof* above supplies the quantified result. The independent
