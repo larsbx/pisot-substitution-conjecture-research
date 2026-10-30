@@ -361,22 +361,22 @@ interface*, not uniform BH.
 
 The *hand proof* above supplies the quantified result. The independent
 standard-library Python checker
-\`oracles/python/check_class_c_tile_ratio_walls.py\` directly evaluates
+`oracles/python/check_class_c_tile_ratio_walls.py` directly evaluates
 the original characteristic polynomial on rational arguments using
-\`fractions.Fraction\` and independently compares the resulting numerator
+`fractions.Fraction` and independently compares the resulting numerator
 with all seven polynomial forms. It tests integer corners and all
 \((d,c)\) in its declared finite grid and refuses altered wall signs.
 
 The separate Mojo driver
-\`kernel/class_c_tile_ratio_walls.mojo\` checks the same identities
+`kernel/class_c_tile_ratio_walls.mojo` checks the same identities
 by cross-multiplying integral polynomials and verifies the strict
-integer regions, without invoking \`psc.symbolic_cone\`.
+integer regions, without invoking `psc.symbolic_cone`.
 
 From repository root:
 
     python3 oracles/python/check_class_c_tile_ratio_walls.py
 
-From \`kernel/\`:
+From `kernel/`:
 
     pixi run --locked mojo run -I . class_c_tile_ratio_walls.mojo
 
