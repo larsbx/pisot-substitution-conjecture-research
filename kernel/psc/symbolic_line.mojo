@@ -836,29 +836,42 @@ struct _Closure:
                         self.adj[i].append(c)
                     continue
                 # offset base + m e_y, with actual run-position interval
-                # m in [rlo,rhi].  Test geometric emptiness at those legal
-                # endpoints BEFORE fitting any unconstrained geometric bound.
-                # This is the same ordering used by symbolic_cone: an empty
-                # occurrence block has no boundary that needs an affine fit.
+                # m in [rlo,rhi]. First fit both geometric walls and clip them to
+                # the run ends by integer signs in q: the cheap reads, with small
+                # thresholds. Only when a wall has no certified affine fit (an
+                # empty occurrence block has no boundary to fit) fall back to
+                # testing the run ends at beta, as symbolic_cone does. The
+                # fallback alone reads signs at beta whose Sturm-Tarski entries
+                # can change sign late (q ~ a^2/2 on the Theorem W boundary lines),
+                # which inflated q0; a failed fit only ever raises the threshold.
                 var t = self.line.t_of(base)
                 var lower = tp_add(ell[b2], t)       # lower(m) = ell_b2+t+m ell_y > 0
                 var upper = tp_sub(t, ell[a2])       # upper(m) = t-ell_a2+m ell_y < 0
                 var rlo = qx_neg(qx_sub(self.line.run[v.top], qx_const(1))) if sa == 1 else QX()
                 var rhi = qx_sub(self.line.run[v.bottom], qx_const(1)) if sb == 1 else QX()
-                if self.positive(tp_add(lower, tp_scale(ell[y], rhi))) <= 0:
-                    continue  # even the last legal run position is not real
-                if self.positive(tp_add(upper, tp_scale(ell[y], rlo))) >= 0:
-                    continue  # even the first legal run position is past the upper wall
-
-                # Clip by a run endpoint whenever that endpoint is already
-                # inside the real interval.  Fit only a surviving geometric
-                # boundary; never fit the boundary of an empty block.
                 var low = rlo.copy()
-                if self.positive(tp_add(lower, tp_scale(ell[y], rlo))) <= 0:
-                    low = self.least_m(lower, ell[y], True)
                 var high = rhi.copy()
-                if self.positive(tp_add(upper, tp_scale(ell[y], rhi))) >= 0:
-                    high = qx_sub(self.least_m(upper, ell[y], False), qx_const(1))
+                var fitted = True
+                try:
+                    var lo = self.least_m(lower, ell[y], True)
+                    var hi = qx_sub(self.least_m(upper, ell[y], False), qx_const(1))
+                    low = lo.copy() if self.ev.sign(qx_sub(lo, rlo)) >= 0 else rlo.copy()
+                    high = hi.copy() if self.ev.sign(qx_sub(rhi, hi)) >= 0 else rhi.copy()
+                except:
+                    fitted = False
+                if not fitted:
+                    if self.positive(tp_add(lower, tp_scale(ell[y], rhi))) <= 0:
+                        continue  # even the last legal run position is not real
+                    if self.positive(tp_add(upper, tp_scale(ell[y], rlo))) >= 0:
+                        continue  # even the first legal run position is past the upper wall
+                    # Clip by a run end whenever it is already inside the real
+                    # interval; fit only a surviving wall.
+                    low = rlo.copy()
+                    if self.positive(tp_add(lower, tp_scale(ell[y], rlo))) <= 0:
+                        low = self.least_m(lower, ell[y], True)
+                    high = rhi.copy()
+                    if self.positive(tp_add(upper, tp_scale(ell[y], rhi))) >= 0:
+                        high = qx_sub(self.least_m(upper, ell[y], False), qx_const(1))
                 var gap = qx_sub(high, low)
                 if not qx_is_const(gap):
                     if self.ev.sign(gap) < 0:

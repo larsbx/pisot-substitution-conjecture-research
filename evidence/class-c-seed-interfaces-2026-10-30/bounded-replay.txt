@@ -1,0 +1,7 @@
+NINE_SEED_INTERFACES_PASS 105 945
+BOUNDED_DESCENDANTS 7 1 0 depth 4 parents 424 states 726 edges 2489 closure_not_tested
+BOUNDED_DESCENDANTS 7 1 1 depth 4 parents 397 states 620 edges 2330 closure_not_tested
+BOUNDED_DESCENDANTS 7 1 2 depth 4 parents 371 states 534 edges 2201 closure_not_tested
+BOUNDED_DESCENDANTS 7 -1 0 depth 4 parents 348 states 549 edges 2139 closure_not_tested
+BOUNDED_DESCENDANTS 7 -1 1 depth 4 parents 312 states 467 edges 1938 closure_not_tested
+BOUNDED_DESCENDANTS 7 -1 2 depth 4 parents 279 states 387 edges 1720 closure_not_tested
