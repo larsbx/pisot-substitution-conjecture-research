@@ -20,7 +20,7 @@ Its characteristic polynomial is exactly
     chi(t) = t^3 - A*t^2 + B*t - 2*eps,
     A = n-d+eps+3,   B = n-3*d+3*eps+2.
 
-**Theorem P_C (exact PIP domain).** Under these hypotheses, the substitution
+**Theorem P_C (exact PIP domain; repository-proved, hand proof below, human review pending).** Under these hypotheses, the substitution
 is primitive, its characteristic polynomial is irreducible over Q and its
 Perron root is Pisot **if and only if**
 
