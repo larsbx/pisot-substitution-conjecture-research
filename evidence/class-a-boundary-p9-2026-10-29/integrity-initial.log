@@ -1,0 +1,16 @@
+F....................................................................... [ 46%]
+........................................................................ [ 93%]
+..........                                                               [100%]
+=================================== FAILURES ===================================
+_____________________ test_every_evidence_packet_is_pinned _____________________
+
+    def test_every_evidence_packet_is_pinned():
+        packets = [p for p in (ROOT / "evidence").iterdir() if p.is_dir()]
+>       assert packets and all((p / "SHA256SUMS").is_file() for p in packets)
+E       AssertionError: assert ([PosixPath('/workspace/scratch/c319bc870de5/psc-next/evidence/omega-box-audit-2026-10-08'), PosixPath('/workspace/scra...m-sparse-2026-10-08'), PosixPath('/workspace/scratch/c319bc870de5/psc-next/evidence/class-d-boundary-2026-10-14'), ...] and False)
+E        +  where False = all(<generator object test_every_evidence_packet_is_pinned.<locals>.<genexpr> at 0x7fa980d6ef60>)
+
+tests/test_recorded_data_integrity.py:28: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_recorded_data_integrity.py::test_every_evidence_packet_is_pinned
+1 failed, 153 passed in 97.40s (0:01:37)
