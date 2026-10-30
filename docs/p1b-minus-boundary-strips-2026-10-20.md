@@ -35,6 +35,14 @@ settle the universal acceptance criterion of Issue #139.
 | 0 | n=b-1 | n>=42, or b>=43 | 140 | every n=0..41 (42 members) | n=42,47 |
 | 1 | n=b-1 | n>=72, or b>=73 | 137 | every n=0..71 (72 members) | n=72,77 |
 
+**Correction, 2026-10-30 (fit-first line engine).** The table records the
+accepted execution. The current engine
+([§4b correction](p1b-boundary-hitting-progress-2026-10-08.md)) certifies the
+same strips with tails `n>=19` (140 vertices, 19 prefix members, cross-checks
+at 19 and 24) and `n>=21` (137 vertices, 21 prefix members, cross-checks at 21
+and 26). The independent `Q(beta)` oracle agrees with the fresh log. The
+result is unchanged.
+
 `certify(ClassLine(...))` constructs the symbolic seed graph, verifies that
 every vertex can reach offset zero, and proves the threshold. It screens and
 checks every finite-prefix member and verifies the symbolic/concrete graph

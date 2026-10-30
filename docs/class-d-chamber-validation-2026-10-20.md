@@ -145,3 +145,16 @@ suite returns exit0 (73 passed, one optional TLC mutation test skipped).
 All 16 TLA+ models return their expected outcomes, including the generated
 two-obstruction scenario. The TLA tool archive hash is recorded; no dependency
 model is credited by inspecting its source alone.
+
+## Correction, 2026-10-30 (fit-first line engine)
+
+The receipt above records the accepted execution and stays the accepted
+receipt. After the fit-first change to `psc/symbolic_line.mojo` (§4b
+correction of 2026-10-30 in
+[p1b-boundary-hitting-progress-2026-10-08.md](p1b-boundary-hitting-progress-2026-10-08.md)),
+the same driver emits `CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED wedges= 6
+explicit_lines= 6 boundary_lines= 51 finite_prefix_pip= 287
+max_symbolic_vertices= 164`. The lower wedge floors return fewer strips and
+fewer prefix obligations; the cover and its six cores are unchanged. A local
+native run took 3981 seconds. The hosted exact-revision receipt is
+`evidence/class-d-closure-rebind-2026-10-30/`.
