@@ -2294,6 +2294,11 @@
       "statement_heading": "**Corollary L_B (eight top-layer lines).** On each of the eight lines above,"
     },
     {
+      "source": "docs/class-c-lower-cone-tile-ratio-walls-2026-10-30.md",
+      "line": 36,
+      "statement_heading": "**Theorem R_C (exact tile-ratio chambers; repository-proved, hand proof below, independent human review pending).** Every Class-C member in the"
+    },
+    {
       "source": "docs/class-c-residual-domain-2026-10-29.md",
       "line": 23,
       "statement_heading": "**Theorem P_C (exact PIP domain; repository-proved, hand proof below, human review pending).** Under these hypotheses, the substitution"
