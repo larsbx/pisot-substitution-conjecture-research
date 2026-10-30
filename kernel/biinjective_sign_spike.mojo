@@ -90,7 +90,7 @@ def main() raises:
                         raise Error("unknown bounded-BPA refusal cause")
                     continue
                 complete += 1
-                var graph = bounded.graph
+                var graph = bounded.graph.copy()
                 var comps = recurrent_noncoincident_sccs(graph)
                 for ci in range(len(comps)):
                     if not profile_component(graph, comps[ci]).is_sink():
