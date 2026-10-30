@@ -103,6 +103,13 @@ def checked() -> None:
                 actual = member.seeds()
                 assert len(expected) == len(actual) == 9
                 assert set(actual) == expected, (d, eps, n)
+                # Bounded, exact, independent observation of the *uniformly
+                # hand-proved* 26-child branching bound. Deliberately test
+                # every one of the nine seed types at the sharp wall corners.
+                if d == 7 and c in (0,1,2):
+                    for seed in actual:
+                        distinct = set(member.children(seed))
+                        assert len(distinct) <= 26, (eps,d,n,seed,len(distinct))
                 # Exhaustive ordered-occurrence run/run child generation is
                 # algorithmically separate from the integer wall proof.
                 # Only assert the two y/y children of the (x,c,0) seed,
