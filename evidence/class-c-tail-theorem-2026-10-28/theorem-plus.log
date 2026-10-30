@@ -1,0 +1,93 @@
+eps=1 d>=6 n-4d>=0: undecided, a sign at beta is not decided on any bracket: [{-8,2,}{8,}][{12,-2,}{-11,}][{-4,}{1,}]
+eps=1 d>=7 n-4d>=1: undecided, a sign at beta is not decided on any bracket: [{2,-2,}{-6,}][{-3,3,}{3,}][{1,-1,}]
+eps=1 d>=8 n-4d>=2: certified, 196 vertices
+eps=1 d=6 n-4d>=0: undecided, a sign at beta is not decided on any bracket: [{-36,-2,}][{18,3,}][{0,-1,}]
+eps=1 d=6 n-4d>=1: undecided, a sign at beta is not decided on any bracket: [{-34,-2,}][{15,3,}][{1,-1,}]
+eps=1 d=6 n-4d>=2: certified, 196 vertices
+eps=1 d=6 n=24: exact, 196 vertices
+eps=1 d=6 n=25: exact, 196 vertices
+eps=1 d>=8 n-4d=0: certified, 196 vertices
+eps=1 d=7 n-4d>=0: undecided, a sign at beta is not decided on any bracket: [{-42,-2,}][{21,3,}][{0,-1,}]
+eps=1 d=7 n-4d>=1: undecided, a sign at beta is not decided on any bracket: [{-40,-2,}][{18,3,}][{1,-1,}]
+eps=1 d=7 n-4d>=2: certified, 196 vertices
+eps=1 d=7 n=28: exact, 196 vertices
+eps=1 d=7 n=29: exact, 196 vertices
+eps=1 d>=8 n-4d=1: certified, 196 vertices
+T_C eps=1 d>=6 n-4d>=0 symbolic pieces 5 exact members 4 typed rows 77
+R 0 0 0 0 0 0
+R 0 0 1 0 0 0
+R 0 0 1 1 0 0
+R 0 1 -1 -1 0 1
+R 0 1 0 -1 1 1
+R 0 1 0 0 0 1
+R 0 1 0 1 0 0
+R 0 1 1 1 0 1
+R 0 2 -1 -3 -1 1
+R 0 2 -1 -2 0 0
+R 0 2 -1 -1 1 3
+R 0 2 -1 0 1 3
+R 0 2 0 -2 -2 1
+R 0 2 0 -1 -1 0
+R 0 2 0 0 0 3
+R 0 2 0 1 0 3
+R 0 2 1 -1 -2 0
+R 0 2 1 0 -1 0
+R 0 2 1 1 1 1
+R 0 2 1 2 0 2
+R 1 0 -1 -1 -1 0
+R 1 0 0 -1 0 0
+R 1 0 0 0 -1 -1
+R 1 0 0 1 -1 -1
+R 1 0 1 1 -1 0
+R 1 1 -1 -2 0 0
+R 1 1 -1 -1 0 0
+R 1 1 0 -1 0 0
+R 1 1 0 0 0 0
+R 1 1 0 1 0 0
+R 1 1 1 1 0 0
+R 1 1 1 2 0 0
+R 1 2 -1 -3 -1 0
+R 1 2 -1 -2 0 0
+R 1 2 -1 -1 1 3
+R 1 2 -1 0 1 3
+R 1 2 0 -2 -3 0
+R 1 2 0 -1 -3 1
+R 1 2 0 0 -1 3
+R 1 2 0 1 0 3
+R 1 2 1 -1 -3 -1
+R 1 2 1 0 -3 -1
+R 1 2 1 1 0 0
+R 1 2 1 2 0 1
+R 2 0 -1 -2 -2 0
+R 2 0 -1 -1 -1 -1
+R 2 0 -1 0 0 1
+R 2 0 -1 1 0 2
+R 2 0 0 -1 -3 0
+R 2 0 0 0 -3 -1
+R 2 0 0 1 -1 1
+R 2 0 0 2 -1 2
+R 2 0 1 0 -3 -1
+R 2 0 1 1 -3 -1
+R 2 0 1 2 0 0
+R 2 0 1 3 -1 1
+R 2 1 -1 -2 -1 0
+R 2 1 -1 -1 0 0
+R 2 1 -1 0 1 3
+R 2 1 -1 1 1 3
+R 2 1 0 -1 -3 0
+R 2 1 0 0 -3 1
+R 2 1 0 1 -1 3
+R 2 1 0 2 0 3
+R 2 1 1 0 -3 -1
+R 2 1 1 1 -3 -1
+R 2 1 1 2 0 0
+R 2 1 1 3 0 1
+R 2 2 -1 -3 -1 1
+R 2 2 -1 -1 1 3
+R 2 2 -1 1 2 3
+R 2 2 0 -2 -3 1
+R 2 2 0 0 -3 3
+R 2 2 0 2 -1 3
+R 2 2 1 -1 -3 -2
+R 2 2 1 1 -3 -1
+R 2 2 1 3 -1 1
