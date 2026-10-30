@@ -103,6 +103,20 @@ def checked() -> None:
                 actual = member.seeds()
                 assert len(expected) == len(actual) == 9
                 assert set(actual) == expected, (d, eps, n)
+                # Exhaustive ordered-occurrence run/run child generation is
+                # algorithmically separate from the integer wall proof.
+                # Only assert the two y/y children of the (x,c,0) seed,
+                # never a complete or globally closed overlap automaton.
+                if d == 7 or (d == 16 and c in (0,1,2)):
+                    delta = sub(lengths[0], lengths[1])
+                    admissible = (1, 2) if eps == 1 and c <= 1 else (0, 1)
+                    expect_yy = {
+                        tuple(k * ly - shift for ly, shift in zip(lengths[2], delta))
+                        for k in admissible
+                    }
+                    got_yy = {child[2] for child in member.children((0, 1, ZERO))
+                              if child[0] == 2 and child[1] == 2}
+                    assert got_yy == expect_yy, (d, eps, n, got_yy, expect_yy)
                 finite_seed_members += 1
     print("TILE_RATIO_EXACT_RATIONAL_ORACLE_PASS", cases)
     print("CANONICAL_NINE_SEEDS_FINITE_PASS", finite_seed_members)
