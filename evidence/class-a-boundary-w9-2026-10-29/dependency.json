@@ -1,0 +1,73 @@
+{
+  "base_pr": 395,
+  "base_head": "324c167a4f19e7e4b1ec174ee4ef27229654a831",
+  "base_observation": "open stacked H9 PR; observed exact-head hosted workflows queued; no acceptance or main integration inferred",
+  "source": "W9=(x,x,1,3,-5)",
+  "count": "4n+1 per orientation",
+  "memberwise_image_labels": 16,
+  "image_is_constant_in_every_member": true,
+  "source_exit": {
+    "existing_id": 64,
+    "steps": 4
+  },
+  "all_actual_first_choice_selected_bound": 6,
+  "companion_exits": {
+    "N9": {
+      "id": 69,
+      "steps": 3
+    },
+    "X2": {
+      "id": 70,
+      "steps": 3
+    },
+    "X3": {
+      "id": 71,
+      "steps": 2
+    },
+    "X4": {
+      "id": 72,
+      "steps": 5
+    },
+    "Y2": {
+      "id": 73,
+      "steps": 3
+    },
+    "Y3": {
+      "id": 74,
+      "steps": 2
+    }
+  },
+  "native": {
+    "members": 56,
+    "pairs": 82096,
+    "accepted": 4368,
+    "source_path_edges": 448,
+    "companion_path_edges": 2016,
+    "all_child_walk_edges": 15568,
+    "all_image_tail_edges": 2576,
+    "max_walk": 6
+  },
+  "independent": {
+    "members": 117,
+    "pairs": 297648,
+    "accepted": 12402,
+    "source_path_edges": 936,
+    "companion_path_edges": 4212,
+    "all_child_walk_edges": 43992,
+    "all_image_tail_edges": 5382,
+    "max_walk": 6
+  },
+  "native_registry_rows": 91,
+  "new_companion_stars": false,
+  "closed_carrier": false,
+  "governed_claim_changes": false,
+  "formal_state": "124 claims/34 named Lean proofs/325 source openings unchanged; prior TLA and Lean pre-compilation receipts retained, no fresh TLA or Lean pass",
+  "validation": {
+    "scoped_python_tests_passed": 103,
+    "integrity_governance_tests_passed": 157,
+    "provenance": "pass",
+    "native_registry_rows": 91,
+    "telemetry_enabled": false,
+    "crash_reporting_enabled": false
+  }
+}
