@@ -83,3 +83,91 @@ def test_a_rebound_file_edited_again_refuses(packet, monkeypatch):
     monkeypatch.setattr(Path, 'read_bytes', edited)
     with pytest.raises(ValueError, match='changed again'):
         rebind.validate(packet)
+
+
+V2 = rebind.PACKETS[1]
+
+
+@pytest.fixture
+def packet_v2(tmp_path):
+    copy = tmp_path/'packet-v2'
+    shutil.copytree(V2, copy)
+    return copy
+
+
+def test_the_fit_first_rebind_admits_the_engine_by_a_head_replay():
+    paths = json.loads((V2/'manifest.json').read_text())['paths']
+    assert set(paths) == {'kernel/psc/symbolic_line.mojo'}
+    assert paths['kernel/psc/symbolic_line.mojo']['kind'] == 'native-replay'
+    assert set(rebind.validate(V2)) == set(paths)
+    admitted = rebind._rebound()
+    assert set(paths) | set(rebind.validate()) <= set(admitted)
+    assert rebind.rebound('kernel/psc/symbolic_line.mojo', paths['kernel/psc/symbolic_line.mojo']['sha256'])
+
+
+@pytest.mark.parametrize('change, message', [
+    (lambda m: m.update(plus_receipt='CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED wedges= 5 explicit_lines= 6 '
+                                     'boundary_lines= 51 finite_prefix_pip= 287 max_symbolic_vertices= 164'), 'wrong shape'),
+    (lambda m: m.update(plus_receipt=m['plus_receipt'].replace('287', '288')), 'native plus-chamber receipt'),
+    (lambda m: m.update(rebind_head='0'*40), 'not a commit'),
+    (lambda m: m.update(format='class-d-closure-rebind-v3'), 'wrong rebind format'),
+])
+def test_a_tampered_v2_manifest_refuses(packet_v2, change, message):
+    edit(packet_v2, change)
+    with pytest.raises(ValueError, match=message):
+        rebind.validate(packet_v2)
+
+
+def test_a_v2_replay_on_another_head_refuses(packet_v2):
+    jobs = json.loads((packet_v2/'jobs.json').read_text())
+    jobs[0]['head_sha'] = rebind.ACCEPTED_HEAD
+    (packet_v2/'jobs.json').write_text(json.dumps(jobs))
+    with pytest.raises(ValueError, match='did not pass at the rebind head'):
+        rebind.validate(packet_v2)
+
+
+def test_a_later_packet_cannot_re_admit_a_rebound_path(monkeypatch):
+    monkeypatch.setattr(rebind, 'PACKETS', (rebind.PACKET, rebind.PACKET))
+    rebind._rebound.cache_clear()
+    try:
+        with pytest.raises(ValueError, match='re-admits'):
+            rebind._rebound()
+    finally:
+        monkeypatch.undo()
+        rebind._rebound.cache_clear()
+
+
+ASSEMBLY = rebind.PACKETS[2]
+
+
+def test_the_assembly_rebind_admits_both_files_by_an_assembly_replay():
+    paths = json.loads((ASSEMBLY/'manifest.json').read_text())['paths']
+    assert set(paths) == {'kernel/psc/class_d_assembly.mojo', 'kernel/tests/test_class_d_assembly.mojo'}
+    assert {e['kind'] for e in paths.values()} == {'assembly-replay'}
+    assert set(rebind.validate(ASSEMBLY)) == set(paths)
+    assert set(paths) <= set(rebind._rebound())
+
+
+@pytest.mark.parametrize('change, message', [
+    (lambda m: m['paths']['kernel/psc/class_d_assembly.mojo'].update(kind='native-replay'), 'exactly one replay kind'),
+    (lambda m: m['paths'].update({'kernel/psc/symbolic_line.mojo': dict(kind='assembly-replay', sha256='0'*64)}), 'not exercised by the assembly replay'),
+    (lambda m: m.update(plus_receipt='x'), 'pins no plus-chamber receipt'),
+    (lambda m: m.update(tested_merge='0'*40), 'commit object does not match'),
+])
+def test_a_tampered_assembly_manifest_refuses(tmp_path, change, message):
+    copy = tmp_path/'assembly'
+    shutil.copytree(ASSEMBLY, copy)
+    edit(copy, change)
+    with pytest.raises(ValueError, match=message):
+        rebind.validate(copy)
+
+
+def test_an_assembly_log_without_the_candidate_refuses(tmp_path):
+    copy = tmp_path/'assembly'
+    shutil.copytree(ASSEMBLY, copy)
+    log = next(copy.glob('*.log.gz'))
+    raw = gzip.decompress(log.read_bytes()).replace(b'CLASS_D_ASSEMBLY_CANDIDATE', b'echo CANDIDATE')
+    log.write_bytes(gzip.compress(raw))
+    edit(copy, lambda m: m['log_sha256'].update({log.name[:-3]: rebind.sha256(raw)}))
+    with pytest.raises(ValueError, match='native assembly receipt'):
+        rebind.validate(copy)
