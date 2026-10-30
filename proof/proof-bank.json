@@ -2334,6 +2334,26 @@
       "statement_heading": "**Corollary L_B (eight top-layer lines).** On each of the eight lines above,"
     },
     {
+      "source": "docs/class-c-lower-cone-tile-ratio-walls-2026-10-30.md",
+      "line": 36,
+      "statement_heading": "**Theorem R_C (exact tile-ratio chambers; repository-proved, hand proof below, independent human review pending).** Every Class-C member in the"
+    },
+    {
+      "source": "docs/class-c-residual-domain-2026-10-29.md",
+      "line": 23,
+      "statement_heading": "**Theorem P_C (exact PIP domain; repository-proved, hand proof below, human review pending).** Under these hypotheses, the substitution"
+    },
+    {
+      "source": "docs/class-c-strip-theorem-2026-10-29.md",
+      "line": 16,
+      "statement_heading": "**Theorem T_C2 (scoped, computer-assisted).** Let `d ≥ 1` and `3d ≤ n`, with"
+    },
+    {
+      "source": "docs/class-c-tail-theorem-2026-10-28.md",
+      "line": 19,
+      "statement_heading": "**Theorem T_C (scoped, computer-assisted).** Let `d >= 6`, and let"
+    },
+    {
       "source": "docs/class-d-g1-corollary-2026-10-22.md",
       "line": 101,
       "statement_heading": "**Corollary.** For every PIP member of the determinant-two class-D normal"

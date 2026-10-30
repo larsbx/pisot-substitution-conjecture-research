@@ -1,0 +1,17 @@
+{
+  "format": "class-d-closure-rebind-v2",
+  "accepted_head": "a9457d9a08e971d57a635e68086a558fcff88e11",
+  "rebind_head": "bb69c6c2962a60d6ae1930fe39a8a438e17a8d73",
+  "plus_receipt": "CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED wedges= 6 explicit_lines= 6 boundary_lines= 51 finite_prefix_pip= 287 max_symbolic_vertices= 164",
+  "paths": {
+    "kernel/psc/symbolic_line.mojo": {
+      "kind": "native-replay",
+      "sha256": "12bd94c35d4c760ca5a190aad58f7c12b284528efe386cc9ca15de3c4daceeed",
+      "reason": "fit-first run-position bounds in the line closure: fit both walls and clip them to the run ends by exact integer signs; #288's endpoint tests only where a fit raises"
+    }
+  },
+  "log_sha256": {
+    "124098895410.log": "bced148b99201d4716bc71adf7784be4705753e5196549de1fad5776e95f106d"
+  },
+  "independent_human_review": false
+}

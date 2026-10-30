@@ -1,0 +1,9 @@
+{
+  "accepted_occurrence_pairs": 4234,
+  "canonical_dump_sha256": "1b2a7a5780f1bd821c8406fb7d6b3d67b1dd9888da66a17d92c59efd338ced91",
+  "distinct_children": 638,
+  "duplicate_occurrences": 3596,
+  "interfaces": 116,
+  "members": 58,
+  "scope": "finite replay of two uniform local stars; no closure or BH verdict"
+}

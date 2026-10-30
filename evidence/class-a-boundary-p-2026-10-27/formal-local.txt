@@ -1,0 +1,31 @@
+TLA: TLA_TOOLS=/tmp/psc-tla2tools.jar bash proof/tla/check.sh
+Exit status: 0; all 18 expected outcomes passed.
+[PASS] MCTribonacci  all invariants hold
+[PASS] MCFlippedTribonacci  all invariants hold
+[PASS] MCSmith  all invariants hold
+[PASS] MCNonProductive  Productive violated as expected
+[PASS] MCLedgerClassDIntegrationAssumed  all invariants hold
+[PASS] MCLedgerTwoObstructionsAssumed  all invariants hold
+[PASS] MCLedgerMinusCycleSumAssumed  all invariants hold
+[PASS] MCLedgerOpen  all invariants hold
+[PASS] MCLedgerImports  all invariants hold
+[PASS] MCLedgerG1AndProducer  all invariants hold
+[PASS] MCLedgerG1Only  all invariants hold
+[PASS] MCLedgerG1AndC4  all invariants hold
+[PASS] MCLedgerRenewalGateAssumed  all invariants hold
+[PASS] MCLedgerSpectralGateAssumed  all invariants hold
+[PASS] MCLedgerOverlapGateAssumed  all invariants hold
+[PASS] MCLedgerAllSeedOverlapGateAssumed  all invariants hold
+[PASS] MCLedgerAllSeedStrictZipperGateAssumed  all invariants hold
+[PASS] MCLedgerFormalProductivityGateAssumed  all invariants hold
+
+Lean: PATH=/root/.elan/bin:$PATH bash tools/check_lean.sh
+Exit status: 1; launcher failure before compilation, NOT a formal proof pass.
+Prepared isolated Lean workspace from source/configuration only
+Proof bank: 120 claims, 34 named Lean proofs, 324 source openings
+error: failed to locate application
+
+No Lean/TLA source, proof-bank inventory or governed status changes.
+Dependency #355 eaff85f1 hosted Lean/TLA/full Python/provenance/native receipts passed.
+Stacked dependency #357 at 053572e8 (including #358) remains hosted queued at inspection.
+Fresh exact-head hosted acceptance is required; merge status supplies no missing receipt.

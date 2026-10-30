@@ -1,0 +1,22 @@
+{
+  "format": "class-d-closure-rebind-v2",
+  "accepted_head": "a9457d9a08e971d57a635e68086a558fcff88e11",
+  "rebind_head": "ded8203c77dc33761220c164150a3e3e64d88043",
+  "tested_merge": "4e97eedb9f63e0faed86829840f58a12ea084683",
+  "paths": {
+    "kernel/psc/class_d_assembly.mojo": {
+      "kind": "assembly-replay",
+      "sha256": "bf1e94b8f045fced0865c971f4d3df39ed9623758210f6e83331932299edd216",
+      "reason": "minus-strip receipts at the fit-first floors 19/21 (were 42/72; vertices 140/137 and prefix checks unchanged); the accepted plus receipt is unchanged"
+    },
+    "kernel/tests/test_class_d_assembly.mojo": {
+      "kind": "assembly-replay",
+      "sha256": "21f3cad50106c398756073f308deeeabe3fc9605257d18dd89af784896cb9658",
+      "reason": "fixture at the fit-first minus-strip receipts, plus a control that the accepted run's 42/72 receipts refuse"
+    }
+  },
+  "log_sha256": {
+    "124273585897.log": "31e5ecc50881da16fd073c4d6df73a73a8609d1981f1f5c081f4ed53066301aa"
+  },
+  "independent_human_review": false
+}
