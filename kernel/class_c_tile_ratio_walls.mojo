@@ -37,6 +37,13 @@ def main() raises:
                     g1 = (2 * d + 1) * c + 6 * d * d + 9 * d + 2
                     f2 = c * c + 2 * c * d + 6 * c - 3 * d * d - 2 * d + 9
                     f3 = 2 * c * c + 6 * c * d + 19 * c + 15 * d + 44
+                var at_d_plus_1 = (d + 1) * (d + 1) * (d + 1) - (n - d + eps + 3) * (d + 1) * (d + 1) + (n - 3 * d + 3 * eps + 2) * (d + 1) - 2 * eps
+                if eps == 1:
+                    assert_equal(at_d_plus_1, -d * ((d + 1) * c - d - 3))
+                    assert_equal(at_d_plus_1 > 0, c <= 1)
+                else:
+                    assert_equal(at_d_plus_1, -d * ((d + 1) * c + 3 * d + 5))
+                    assert_true(at_d_plus_1 < 0)
                 assert_equal(cube_test(n, d, eps, 1), p * g1)
                 assert_equal(cube_test(n, d, eps, 2), -p * f2)
                 assert_equal(cube_test(n, d, eps, 3), -p * f3)
