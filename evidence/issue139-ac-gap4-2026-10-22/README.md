@@ -102,3 +102,12 @@ exhaustion. A/C gaps d>=5, universal #139/#138/#84, G1 and PSC remain open.
 Offset-zero hitting is an existential occurrence-compatible path statement,
 not termination of all walks or equal-letter coincidence. Independent human
 review remains pending.
+
+## Correction, 2026-10-30
+
+`native-c-tests.log` was regenerated after the fit-first change to
+`kernel/psc/symbolic_line.mojo`: minus floor 85 → 51 (PIP prefix 76 → 42),
+sign reads 6278 → 5764 (plus) and 7338 → 6284 (minus); vertex, non-PIP and
+outside counts are unchanged. `class_c_gap_four.mojo`'s pin moved with it.
+`c-*-complete.log`, `source-digests.json` and the other files record the
+original run and are unchanged.

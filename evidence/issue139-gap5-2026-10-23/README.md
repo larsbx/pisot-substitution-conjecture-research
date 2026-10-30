@@ -46,3 +46,10 @@ No full repository Mojo/Lean/TLA+ replay is claimed. Historical gap-four
 packets and accepted class-D results are unchanged. Whole-line class-A gap
 five, all larger gaps, universal boundary hitting, G1 and PSC remain open.
 Independent human mathematical review remains pending.
+
+## Correction, 2026-10-30
+
+`c-plus.log` and `c-minus.log` were regenerated after the fit-first change
+to `kernel/psc/symbolic_line.mojo`. Only the `sign_reads=` field of the final
+line changes (6858 → 5820, 7658 → 6276). `source-digests.json` and the
+`*.exit` files record the original run and are unchanged.
