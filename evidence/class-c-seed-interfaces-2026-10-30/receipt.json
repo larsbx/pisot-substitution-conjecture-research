@@ -1,0 +1,10 @@
+{
+  "canonical_dump_sha256": "de66f8b2b67c56312a3ae1d4f89c2b59495cf10824e89448c3236f0b259698f1",
+  "count_chambers": 7,
+  "descendant_depth": 4,
+  "duplicate_occurrences": 49761,
+  "exported_descendant_parents": 2131,
+  "interfaces": 945,
+  "members": 105,
+  "scope": "finite experiment; no closure or BH verdict"
+}

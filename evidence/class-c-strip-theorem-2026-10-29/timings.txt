@@ -1,0 +1,3 @@
+strip 1 (plus):  real	50m4.975s
+strip -1 (minus): real	50m22.976s
+both signs concurrently on one local 4-core container; exit 0 each
