@@ -1,0 +1,59 @@
+name: Class-C sub-onset BH diagonal cover
+on:
+  pull_request:
+    paths:
+      - 'kernel/class_c_residual_diagonal_cover.mojo'
+      - 'docs/class-c-residual-diagonal-cover-2026-10-29.md'
+      - 'evidence/class-c-residual-diagonal-cover-2026-10-29/**'
+      - '.github/workflows/class-c-residual-diagonal-cover.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  finite-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Independent exact finite controls: 36 graphs, four negative controls
+        run: |
+          set -euo pipefail
+          mkdir -p build/class-c-diagonal
+          python3 evidence/class-c-residual-diagonal-cover-2026-10-29/finite_controls.py | tee build/class-c-diagonal/finite-controls.log
+          grep -q '^PASS: 36 finite BH graphs' build/class-c-diagonal/finite-controls.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-c-residual-finite-controls
+          path: build/class-c-diagonal/
+          if-no-files-found: warn
+  native-cover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        eps: [1, -1]
+        j: [2, 3, 4, 5]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Symbolic cone plus finite-exception certificate (BH only)
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          mkdir -p build/class-c-diagonal
+          pixi run --locked mojo build -I . class_c_residual_diagonal_cover.mojo -o build/class-c-diagonal/cdc
+          build/class-c-diagonal/cdc ${{ matrix.eps }} ${{ matrix.j }} | tee build/class-c-diagonal/eps-${{ matrix.eps }}-j-${{ matrix.j }}.log
+          grep -q '^BH_CERTIFIED' build/class-c-diagonal/eps-${{ matrix.eps }}-j-${{ matrix.j }}.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-c-residual-diagonal-${{ matrix.eps }}-${{ matrix.j }}
+          path: kernel/build/class-c-diagonal/
+          if-no-files-found: warn
