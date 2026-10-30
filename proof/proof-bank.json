@@ -2294,6 +2294,16 @@
       "statement_heading": "**Corollary L_B (eight top-layer lines).** On each of the eight lines above,"
     },
     {
+      "source": "docs/class-c-residual-domain-2026-10-29.md",
+      "line": 23,
+      "statement_heading": "**Theorem P_C (exact PIP domain).** Under these hypotheses, the substitution"
+    },
+    {
+      "source": "docs/class-c-strip-theorem-2026-10-29.md",
+      "line": 16,
+      "statement_heading": "**Theorem T_C2 (scoped, computer-assisted).** Let `d ≥ 1` and `3d ≤ n`, with"
+    },
+    {
       "source": "docs/class-c-tail-theorem-2026-10-28.md",
       "line": 19,
       "statement_heading": "**Theorem T_C (scoped, computer-assisted).** Let `d >= 6`, and let"
