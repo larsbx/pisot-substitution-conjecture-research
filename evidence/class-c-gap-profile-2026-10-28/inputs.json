@@ -1,0 +1,14 @@
+{
+  "base_commit": "031dff575998325b454a3aaff2ac8f743aba2835",
+  "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "scope": "finite exact profile of class-C lines (n+d,n,n-d+eps), gaps 5..30; no uniform claim",
+  "sha256": {
+    "kernel/class_c_gap_profile.mojo": "66adcde6c8627411a11f2301d7ee01538f170e84f496bf38729b4fa0d13e12b5",
+    "kernel/psc/class_c_gap_profile.mojo": "96ddaab2813004006bc2de589460c790616f18617d0c987f07c9a6fe2291e6fe",
+    "kernel/psc/class_a_gap_dataset.mojo": "72e46077fff48b4be3c70065052430a2f722e6df984fceaa34b2b4722e612489",
+    "kernel/tests/test_class_c_gap_profile.mojo": "434ee18ab1c2ea2841f03ee0a5328a41ca8e9f1cad0379e9ebc158be0192ef9b",
+    "kernel/psc/overlap_seed_patch.mojo": "03541f062c104a61511a95b89755372d974c6f4a297f72e98bfb6c0d342c789b",
+    "kernel/psc/perron_field3.mojo": "a3fc64f3ad41e1ea29b9e772264ffb1d962bce1e81226d7e343ea2fe863e8bb9",
+    "kernel/pixi.lock": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8"
+  }
+}

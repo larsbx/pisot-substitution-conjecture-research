@@ -1,0 +1,69 @@
+name: Class-C R transfer and translation guards
+on:
+  pull_request:
+    paths:
+      - 'docs/class-c-r-transfer*.md'
+      - 'docs/class-c-indexed-transfer*.md'
+      - 'kernel/psc/class_c_r_transfer.mojo'
+      - 'kernel/class_c_r_transfer.mojo'
+      - 'kernel/tests/test_class_c_r_transfer.mojo'
+      - 'kernel/psc/class_c_indexed_transfer.mojo'
+      - 'kernel/class_c_indexed_transfer.mojo'
+      - 'kernel/tests/test_class_c_indexed_transfer.mojo'
+      - 'kernel/psc/class_c_boundary_frontier.mojo'
+      - 'oracles/python/check_class_c_r_transfer.py'
+      - 'tests/test_class_c_r_transfer.py'
+      - 'oracles/python/check_class_c_indexed_transfer.py'
+      - 'tests/test_class_c_indexed_transfer.py'
+      - 'evidence/class-c-r-transfer-2026-10-30/**'
+      - '.github/workflows/class-c-r-transfer.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  exact-r-transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Complete R/T/U occurrences and predecessor regression
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_class_c_r_transfer.mojo
+          pixi run --locked mojo run -I . tests/test_class_c_indexed_transfer.mojo
+          pixi run --locked mojo run -I . tests/test_class_c_boundary_frontier.mojo
+      - name: Exact deterministic exports
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          mkdir -p build/class-c-r-transfer
+          pixi run --locked mojo run -I . class_c_r_transfer.mojo dump > build/class-c-r-transfer/states.txt
+          pixi run --locked mojo run -I . class_c_indexed_transfer.mojo dump > build/class-c-r-transfer/indexed.txt
+          pixi run --locked mojo run -I . class_c_boundary_frontier.mojo dump > build/class-c-r-transfer/predecessor-frontier.txt
+          pixi run --locked mojo run -I . class_c_boundary_descendants.mojo dump > build/class-c-r-transfer/predecessor-pq.txt
+          grep -q '^R_TRANSFER_INTERFACES_PASS 58 174 870$' build/class-c-r-transfer/states.txt
+          grep -q '^R_TRANSLATION_NONCOMMUTATION_PASS 6 4$' build/class-c-r-transfer/states.txt
+          grep -q '^INDEXED_TRANSFER_INTERFACES_PASS 58 357 3686$' build/class-c-r-transfer/indexed.txt
+      - name: Independent full-set oracles and all four committed receipts
+        run: |
+          set -euo pipefail
+          python3 oracles/python/check_class_c_r_transfer.py --mojo-dump kernel/build/class-c-r-transfer/states.txt --check-receipt evidence/class-c-r-transfer-2026-10-30/receipt.json | tee kernel/build/class-c-r-transfer/oracle.txt
+          grep -q '^R_TRANSFER_LITERAL_EXACT_ORACLE_PASS$' kernel/build/class-c-r-transfer/oracle.txt
+          grep -q '^R_TRANSFER_RECEIPT_PASS$' kernel/build/class-c-r-transfer/oracle.txt
+          python3 oracles/python/check_class_c_indexed_transfer.py --mojo-dump kernel/build/class-c-r-transfer/indexed.txt --check-receipt evidence/class-c-r-transfer-2026-10-30/indexed-receipt.json | tee kernel/build/class-c-r-transfer/indexed-oracle.txt
+          grep -q '^INDEXED_TRANSFER_LITERAL_EXACT_ORACLE_PASS$' kernel/build/class-c-r-transfer/indexed-oracle.txt
+          grep -q '^INDEXED_TRANSFER_RECEIPT_PASS$' kernel/build/class-c-r-transfer/indexed-oracle.txt
+          python3 oracles/python/check_class_c_boundary_frontier.py --mojo-dump kernel/build/class-c-r-transfer/predecessor-frontier.txt --check-receipt evidence/class-c-boundary-descendants-2026-10-30/frontier-receipt.json
+          python3 oracles/python/check_class_c_boundary_descendants.py --mojo-dump kernel/build/class-c-r-transfer/predecessor-pq.txt --check-receipt evidence/class-c-boundary-descendants-2026-10-30/receipt.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-c-r-transfer
+          path: kernel/build/class-c-r-transfer/
+          if-no-files-found: error
