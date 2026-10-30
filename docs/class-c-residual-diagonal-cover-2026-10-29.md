@@ -1,8 +1,9 @@
 # Class C residual diagonal cover, \(j=2,3,4,5\) (2026-10-29)
 
 **Research status:** exact finite countercontrols verified independently;
-parameter-uniform boundary-hitting certificates proposed and awaiting native
-Mojo CI. No PDS/G1/global PSC conclusion. Builds on Theorem T_C (merged
+all eight scoped parameter-uniform boundary-hitting certificates passed the
+hosted native Mojo CI matrix in run `40950276676` (trusted symbolic engine;
+independent mathematical review still pending). No PDS/G1/global PSC conclusion. Builds on Theorem T_C (merged
 PR #384) and the independently proved PIP criterion P_C (merged PR #397).
 No modification of the trusted symbolic cone engine.
 
@@ -100,12 +101,11 @@ all \(d\ge 6\), so a successful certificate is a uniform BH result.
 There is deliberately no `rows(g)` / constant-offset requirement.
 The cover prints `BH_CERTIFIED` only at the end after every guard.
 
-The current acceptance gate is the eight-element native CI matrix.
-**Do not treat the candidate as proved until each relevant native
-job has completed successfully and the emitted certificate is reviewed.**
-A failing job may indicate syntax, sign incompleteness, exhaustion of
-shift budget, or an actual mathematical obstruction; inspect the
-specific error instead of assuming one.
+The eight native jobs completed successfully in workflow run `40950276676`.
+They constitute repository-level, computer-assisted BH certificates under
+Lemma S' and the trusted symbolic cone implementation, not an independently
+reviewed proof of the symbolic engine itself. Failing a future replay would
+suspend acceptance; never infer a BH counterexample from an inconclusive sign.
 
 ## 4. Replay and next region
 
@@ -115,8 +115,13 @@ specific error instead of assuming one.
     pixi run --locked mojo run -I . class_c_residual_diagonal_cover.mojo -1 2
     # analogously for j=3,4,5
 
-Workflow:
-`.github/workflows/class-c-residual-diagonal-cover.yml`.
+Authoritative workflow:
+`.github/workflows/class-c-residual-domain.yml` (the `native-j2-j5-cover`
+matrix and `finite-diagonal-controls` job). The originally added duplicate
+`.github/workflows/class-c-residual-diagonal-cover.yml` was malformed YAML
+because its unquoted `steps[].name` contained a colon followed by a space;
+GitHub created failed runs with **zero jobs**. It was removed instead of
+maintaining a second, more expensive set of identical proof jobs.
 The Python exact samples were independently reproduced locally;
 new native Mojo executions were **not** performed locally because
 the Mojo toolchain is unavailable in the execution environment.

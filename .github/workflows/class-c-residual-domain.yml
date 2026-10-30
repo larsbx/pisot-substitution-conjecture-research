@@ -11,7 +11,6 @@ on:
       - 'kernel/class_c_residual_diagonal_cover.mojo'
       - 'docs/class-c-residual-diagonal-cover-2026-10-29.md'
       - 'evidence/class-c-residual-diagonal-cover-2026-10-29/**'
-      - '.github/workflows/class-c-residual-diagonal-cover.yml'
   workflow_dispatch:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
