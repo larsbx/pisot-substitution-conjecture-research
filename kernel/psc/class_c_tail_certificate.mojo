@@ -1,12 +1,16 @@
-"""Theorem T_C: the class-C frozen tail, for every gap `d >= d0` at once.
+"""Theorems T_C and T_C2: class-C pieces on the symbolic cone engine.
 
-docs/class-c-tail-theorem-2026-10-28.md. The lines are
+docs/class-c-tail-theorem-2026-10-28.md (T_C, the frozen tail) and
+docs/class-c-strip-stopgo-2026-10-29.md (T_C2, the strip `3d <= n` below the
+onset). The lines are
 
     sigma(x) = x y^(n+d) x,   sigma(c) = c y^n x,   sigma(y) = c y^(n-d+eps) c,   eps = +-1,
 
-and a *piece* is a set of members `(d, n)` with `n = 4d + c + m`, parametrized
-by `s = (s1, s2) = (d, m)`: a cone (`d >= d0`, `m >= m0`), a diagonal line
-(`m = m0`, `d >= d0`; `s2` does not occur) or a gap line (`d = d0`, `m >= m0`;
+and a *piece* is a set of members `(d, n)` parametrized by `s = (s1, s2)` in
+one of two unimodular frames: `TAIL`, `s = (d, m)` with `n = 4d + c + m`, and
+`STRIP`, `s = (k, j) = (n - 3d, 4d - n)`, i.e. `d = k + j`, `n = 4k + 3j`. A
+piece is a cone (`s1 >= a0`, `s2 >= b0`), a diagonal line (`s2 = b0` fixed,
+`s1 >= a0`; `s2` does not occur) or a gap line (`s1 = a0` fixed, `s2 >= b0`;
 `s1` does not occur). Every
 run length is affine in `s`, so `psc.symbolic_cone` decides the whole piece at
 once: it certifies that every member is PIP with `beta` in the supplied
@@ -29,51 +33,80 @@ from symbolic_line_certificate import exact_vertex_keys, same_set
 
 
 comptime CONE = 0
-comptime DIAGONAL = 1  # m = m0 fixed
-comptime GAP = 2  # d = d0 fixed
+comptime DIAGONAL = 1  # s2 = b0 fixed
+comptime GAP = 2  # s1 = a0 fixed
+comptime TAIL = 0  # s = (d, m), n = 4d + c + m
+comptime STRIP = 1  # s = (k, j) = (n - 3d, 4d - n)
 
 
 struct Piece(ImplicitlyCopyable, Copyable, Movable):
-    """Members `n = 4d + c + m` with `d >= d0`, `m >= m0` (`CONE`), `m = m0`
-    (`DIAGONAL`) or `d = d0` (`GAP`)."""
+    """Members with `s1 >= a0`, `s2 >= b0` (`CONE`), `s2 = b0` (`DIAGONAL`) or
+    `s1 = a0` (`GAP`), in the `TAIL` frame (`a0 = d0`, `b0 = m0`, offset `c`)
+    or the `STRIP` frame (`a0 = k0`, `b0 = j0`; `c` must be 0)."""
     var eps: Int
     var c: Int
-    var d0: Int
-    var m0: Int
+    var d0: Int  # a0
+    var m0: Int  # b0
     var kind: Int
+    var frame: Int
 
-    def __init__(out self, eps: Int, c: Int, d0: Int, m0: Int, kind: Int) raises:
+    def __init__(out self, eps: Int, c: Int, d0: Int, m0: Int, kind: Int, frame: Int = TAIL) raises:
         if eps != 1 and eps != -1:
             raise Error("class-C piece requires eps = +-1")
-        if m0 < 0 or d0 < 2 or d0 > 64 or kind < CONE or kind > GAP:
+        if kind < CONE or kind > GAP or frame < TAIL or frame > STRIP:
+            raise Error("class-C piece requires a known kind and frame")
+        if frame == TAIL and (m0 < 0 or d0 < 2 or d0 > 64):
             raise Error("class-C piece requires m0 >= 0, 2 <= d0 <= 64 and a known kind")
-        if 3 * d0 + c + m0 + eps < 1:
-            raise Error("class-C piece leaves the normal form: n - d + eps < 1 at its corner")
+        if frame == STRIP and (c != 0 or d0 < -64 or d0 > 64 or m0 < -64 or m0 > 64 or d0 + m0 < 1):
+            raise Error("class-C strip piece requires c = 0, |k0|, |j0| <= 64 and d = k0 + j0 >= 1")
         self.eps = eps
         self.c = c
         self.d0 = d0
         self.m0 = m0
         self.kind = kind
+        self.frame = frame
+        var y = self.coeffs(2)
+        if y[0] + y[1] * self.d0 + y[2] * self.m0 < 1:
+            raise Error("class-C piece leaves the normal form: n - d + eps < 1 at its corner")
+
+    def coeffs(self, a: Int) -> List[Int]:
+        """Run length of `sigma(a)` (`n + d`, `n`, `n - d + eps`) as `[c0, k1, k2]`,
+        `c0 + k1 s1 + k2 s2`, with a fixed coordinate folded into `c0`."""
+        var sd = 1 if a == 0 else (0 if a == 1 else -1)  # coefficient of d
+        # d = d1 s1 + d2 s2, n = c + n1 s1 + n2 s2
+        var d1 = 1
+        var d2 = 0 if self.frame == TAIL else 1
+        var n1 = 4
+        var n2 = 1 if self.frame == TAIL else 3
+        var out = List[Int]([self.c + (self.eps if a == 2 else 0), n1 + sd * d1, n2 + sd * d2])
+        if self.kind == DIAGONAL:
+            out[0] += out[2] * self.m0
+            out[2] = 0
+        elif self.kind == GAP:
+            out[0] += out[1] * self.d0
+            out[1] = 0
+        return out^
 
     def run(self, a: Int) -> QX:
-        """Run length of `sigma(a)` (`n + d`, `n`, `n - d + eps`) as `c0 + k1 s1 + s2`."""
-        var k1 = 5 - a
-        var c0 = self.c + (self.eps if a == 2 else 0)
-        if self.kind == DIAGONAL:
-            return qx_affine2(c0 + self.m0, 0, k1)
-        if self.kind == GAP:
-            return qx_affine2(c0 + k1 * self.d0, 1, 0)
-        return qx_affine2(c0, 1, k1)
+        var k = self.coeffs(a)
+        return qx_affine2(k[0], k[2], k[1])
 
     def region(self) -> Region:
         return Region(0 if self.kind == GAP else self.d0, 0 if self.kind == DIAGONAL else self.m0)
 
     def member(self, s1: Int, s2: Int) -> List[Int]:
         """`(d, n)` at `s`."""
-        var d = self.d0 if self.kind == GAP else s1
-        return [d, 4 * d + self.c + (self.m0 if self.kind == DIAGONAL else s2)]
+        var a = self.d0 if self.kind == GAP else s1
+        var b = self.m0 if self.kind == DIAGONAL else s2
+        if self.frame == STRIP:
+            return [a + b, 4 * a + 3 * b]
+        return [a, 4 * a + self.c + b]
 
     def name(self) -> String:
+        if self.frame == STRIP:
+            var k = (" n-3d=" if self.kind == GAP else " n-3d>=") + String(self.d0)
+            var j = (" 4d-n=" if self.kind == DIAGONAL else " 4d-n>=") + String(self.m0)
+            return "eps=" + String(self.eps) + k + j
         var d = (" d=" if self.kind == GAP else " d>=") + String(self.d0)
         var m = (" n-4d=" if self.kind == DIAGONAL else " n-4d>=") + String(self.c + self.m0)
         return "eps=" + String(self.eps) + d + m
@@ -166,15 +199,21 @@ def shifts() -> List[Int]:
 
 
 struct Cover(Copyable, Movable):
-    """What `cover` certified: symbolic pieces, exact members, and the one label set."""
-    var rows: String  # the common label set; empty until the first piece or member
+    """What `cover` certified: symbolic pieces, exact members, and their label
+    sets. With `one_set` (T_C) a second label set raises; without it (T_C2)
+    the distinct sets are collected."""
+    var rows: String  # the first label set; empty until the first piece or member
+    var sets: List[String]  # the distinct label sets, in order of appearance
+    var one_set: Bool
     var pieces: List[String]
     var members: Int
     var log: List[String]
     var verbose: Bool
 
-    def __init__(out self, verbose: Bool = False):
+    def __init__(out self, verbose: Bool = False, one_set: Bool = True):
         self.rows = String()
+        self.sets = List[String]()
+        self.one_set = one_set
         self.pieces = List[String]()
         self.members = 0
         self.log = List[String]()
@@ -188,8 +227,12 @@ struct Cover(Copyable, Movable):
     def agree(mut self, rows: String, where: String) raises:
         if self.rows.byte_length() == 0:
             self.rows = rows
-        elif rows != self.rows:
+        elif rows != self.rows and self.one_set:
             raise Error("the label set differs on " + where)
+        for s in self.sets:
+            if s == rows:
+                return
+        self.sets.append(rows)
 
 
 def _try_piece(p: Piece, mut out: Cover) raises -> Bool:
@@ -208,8 +251,7 @@ def _try_piece(p: Piece, mut out: Cover) raises -> Bool:
     return True
 
 
-def _member(eps: Int, c: Int, d: Int, m: Int, mut out: Cover) raises:
-    var n = 4 * d + c + m
+def _member(eps: Int, d: Int, n: Int, mut out: Cover) raises:
     var block = c_block(d, eps, n)
     if block.startswith("S "):
         raise Error("a member of the tail is screened out: d=" + String(d) + " n=" + String(n))
@@ -219,24 +261,24 @@ def _member(eps: Int, c: Int, d: Int, m: Int, mut out: Cover) raises:
 
 
 def cover(p: Piece, mut out: Cover) raises:
-    """Every member of `p` has the label set `out.rows`, and every label hits offset zero.
+    """Every member of `p` is PIP and every label of its graph hits offset zero;
+    the label sets are recorded in `out` (one only, if `out.one_set`).
 
-    A cone is certified at the first shift `k` of `shifts()` on `d >= d0 + k`,
-    `m >= m0 + k`; the strips it leaves (gap lines `d = d0 + j`, `m >= m0`, and
-    diagonals `m = m0 + j`, `d >= d0 + k`, for `j < k`) are covered recursively. A
-    line is certified from its first shift on; the members below are decided
-    exactly. No shift certifying raises."""
+    A cone is certified at the first shift `k` of `shifts()` on `s1 >= a0 + k`,
+    `s2 >= b0 + k`; the strips it leaves (gap lines `s1 = a0 + j`, `s2 >= b0`,
+    and diagonals `s2 = b0 + j`, `s1 >= a0 + k`, for `j < k`) are covered
+    recursively. A line is certified from its first shift on; the members
+    below are decided exactly. No shift certifying raises."""
     for k in shifts():
-        var q = Piece(p.eps, p.c, p.d0 + (0 if p.kind == GAP else k), p.m0 + (0 if p.kind == DIAGONAL else k), p.kind)
+        var q = Piece(p.eps, p.c, p.d0 + (0 if p.kind == GAP else k), p.m0 + (0 if p.kind == DIAGONAL else k), p.kind, p.frame)
         if not _try_piece(q, out):
             continue
         for j in range(k):
             if p.kind == CONE:
-                cover(Piece(p.eps, p.c, p.d0 + j, p.m0, GAP), out)
-                cover(Piece(p.eps, p.c, p.d0 + k, p.m0 + j, DIAGONAL), out)
-            elif p.kind == DIAGONAL:
-                _member(p.eps, p.c, p.d0 + j, p.m0, out)
+                cover(Piece(p.eps, p.c, p.d0 + j, p.m0, GAP, p.frame), out)
+                cover(Piece(p.eps, p.c, p.d0 + k, p.m0 + j, DIAGONAL, p.frame), out)
             else:
-                _member(p.eps, p.c, p.d0, p.m0 + j, out)
+                var dn = p.member(p.d0 + j, p.m0) if p.kind == DIAGONAL else p.member(p.d0, p.m0 + j)
+                _member(p.eps, dn[0], dn[1], out)
         return
     raise Error("no shift certifies " + p.name())

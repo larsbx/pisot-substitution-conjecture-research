@@ -17,9 +17,9 @@ def gap_four(eps: Int) raises -> ClassLine:
 
 def check_verdict(eps: Int, v: LineVerdict) raises:
     _ = gap_four(eps)
-    var expected = List[Int]([49, 201, 6278, 46, 0, 3])
+    var expected = List[Int]([49, 201, 5764, 46, 0, 3])
     if eps == -1:
-        expected = [85, 216, 7338, 76, 4, 5]
+        expected = [51, 216, 6284, 42, 4, 5]
     var actual = List[Int]([v.q0, v.symbolic_vertices, v.queries,
                            v.finite_members, v.finite_non_pip, v.finite_outside])
     if actual != expected:

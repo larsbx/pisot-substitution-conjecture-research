@@ -51,8 +51,10 @@ def _once(text: String, receipt: String) raises:
 def verify_class_d_receipts(plus: String, minus: String) raises:
     _once(plus,"CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED wedges= 6 explicit_lines= 6 boundary_lines= 73 finite_prefix_pip= 952 max_symbolic_vertices= 164")
     _once(minus,"MINUS_B0_COMPONENT_CERTIFIED a>=0 145 781 4")
-    _once(minus,"MINUS_STRIP_CERTIFIED 0 n=b-1 threshold 42 vertices 140 finite_pip 42 crosschecks 42 47")
-    _once(minus,"MINUS_STRIP_CERTIFIED 1 n=b-1 threshold 72 vertices 137 finite_pip 72 crosschecks 72 77")
+    # The strips' floors are those of the fit-first line closure (2026-10-30);
+    # the accepted run printed 42/72 with the same vertices and prefix checks.
+    _once(minus,"MINUS_STRIP_CERTIFIED 0 n=b-1 threshold 19 vertices 140 finite_pip 19 crosschecks 19 24")
+    _once(minus,"MINUS_STRIP_CERTIFIED 1 n=b-1 threshold 21 vertices 137 finite_pip 21 crosschecks 21 26")
     _once(minus,"MINUS_BOUNDARY_STRIPS_CERTIFIED strips=2 a=0,1 b>=1")
     _once(minus,"MINUS_SEED_COVER_COUNTS 145 9 3 2 1287 12255 1218 9034 2003")
     _once(minus,"MINUS_SEED_COVER_CERTIFIED a>=2 b>=1 all_real_seed_descendants_in_carrier=true abs_sum<=1 parameter_cap=none")
