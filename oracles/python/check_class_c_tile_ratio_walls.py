@@ -117,6 +117,25 @@ def checked() -> None:
                     got_yy = {child[2] for child in member.children((0, 1, ZERO))
                               if child[0] == 2 and child[1] == 2}
                     assert got_yy == expect_yy, (d, eps, n, got_yy, expect_yy)
+                    # Exhaustive *all-type* one-step child check of (x,c,0).
+                    # These are literal occurrence pairs, not an assumed
+                    # symbolic closure or a finite label-set extrapolation.
+                    if eps == 1 and c == 0:
+                        js, ks, ii = (0, 1), (1, 2), range(n-2, n+3)
+                    elif eps == 1 and c == 1:
+                        js, ks, ii = (0, 1), (1, 2), range(n-2, n+2)
+                    else:
+                        js, ks, ii = (0,), (0, 1), range(n-1, n+2)
+                    def mul_y(t):
+                        return tuple(t*z for z in lengths[2])
+                    from exact_oracle import add
+                    complete = {(0, 1, ZERO)}
+                    complete.update((0, 2, add(lengths[1], mul_y(j))) for j in js)
+                    complete.update((2, 2, sub(mul_y(k), delta)) for k in ks)
+                    complete.update((2, 0, sub(mul_y(n-i), delta)) for i in ii)
+                    all_children = set(member.children((0, 1, ZERO)))
+                    assert all_children == complete, (d, eps, n, all_children - complete, complete - all_children)
+                    assert len(complete) == (10 if eps==1 and c==0 else 9 if eps==1 and c==1 else 7)
                 finite_seed_members += 1
     print("TILE_RATIO_EXACT_RATIONAL_ORACLE_PASS", cases)
     print("CANONICAL_NINE_SEEDS_FINITE_PASS", finite_seed_members)
