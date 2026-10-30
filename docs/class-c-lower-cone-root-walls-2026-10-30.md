@@ -47,8 +47,7 @@ All expressions are integers, and the identity is valid even outside the PIP con
 
 These open intervals are disjoint spectral regimes on the plus side. In particular, **the rational wall \`beta=r+3\` is crossed between \`n=3d-5\` and \`n=3d-4\` on plus**, whereas minus remains above \`r+3\` throughout its lower cone. At the plus PIP boundary \`beta=r+4\` is crossed between \`n=2d-5\` and \`n=2d-4\`. Neither wall assumes any overlap-label constancy.
 
-For reference, the universal exact inequality \`chi(r+2)<0\` follows directly from the same characteristic form:
-\`chi(r+2)=-2(r+2n+2d)\`, since the first product vanishes and the remaining terms are strictly negative. Thus \`beta>r+2\`; the positive \`chi(r+5)\` gives \`beta<r+5\` uniformly. The walls partition the *entire* previously open cone by explicit integer inequalities.
+For reference, the universal exact inequality \`chi(r+2)<0\` follows by direct substitution: on plus \`chi(r+2)=-2((d-1)c+d²-3d+3)\`; on minus \`chi(r+2)=-2((d+1)c+d²+3d+1)\`. Both parenthesized quantities are positive for \`d>=7,c>=0\`. Thus \`beta>r+2\`; the positive \`chi(r+5)\` gives \`beta<r+5\` uniformly. The walls partition the *entire* previously open cone by explicit integer inequalities.
 
 **Proof use.** The wall at \`r+3\` is precisely an algebraic comparison that can be supplied to parametric overlap run-window sign readers without presuming a frozen graph. A later cone partition should be split along \`n=3d-4\` on plus and at the exact PIP edge \`n=2d-5\`, rather than attempting to certify either sign across these transitions.
 
