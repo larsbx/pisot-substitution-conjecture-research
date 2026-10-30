@@ -357,6 +357,42 @@ the six nonaligned seeds and later descendants still need a
 forward-closed typed carrier. The result is an exact *first-layer
 interface*, not uniform BH.
 
+**Uniform 26-child bound for every overlap state.**
+The exact chamber theorem establishes \(0<\ell_y=1<\ell_c<
+\ell_x<4\) across the **whole** remaining lower cone.
+For *any* realized parent state \((a,b,w)\), not necessarily
+a seed, each expanded image has three ordered segment kinds:
+first singleton, y-run, last singleton.
+
+There are four singleton/singleton segment-kind pairs, each
+contributing at most one distinct child state. There are four
+singleton/run or run/singleton kinds; each condition on its
+single integer occurrence index is an *open interval* of length
+\(1+\ell_{\rm singleton}<5\), and hence contains at most
+**five** integers. Finally the run/run kind has two unit
+y-tiles, with displacement depending only on the integer
+difference of their run indices. The strict overlap interval
+has length **two**, and contains at most **two** integer
+differences. Thus
+
+    number of distinct children of any parent <= 4 + 4*5 + 2 = 26.
+
+This bound is **uniform in \(n,d\), parent offset and graph depth**.
+It applies to the full word-level overlap construction before
+any terminal coincidence convention reduces outgoing edges.
+The proof is elementary integer-interval counting: six distinct
+integers would span at least five units, impossible in an open
+interval shorter than five. Two distinct integer differences
+are the maximum in an open interval of width two.
+
+The 26-bound is not a state-count bound: paths can still
+introduce infinitely many parameter-indexed states as \(d\)
+grows, and local finite branching cannot by itself establish
+BH or a closed finite carrier. Nevertheless it rules out
+an O(n)-branching explosion at a *single* symbolic vertex;
+the next certificate can enumerate short exact integer windows
+without exhaustive quadratic occurrence-pair enumeration.
+
 ### Evidence and replay
 
 The *hand proof* above supplies the quantified result. The independent
