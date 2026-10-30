@@ -285,6 +285,78 @@ The \(b=2\) equality never occurs: the strict root walls exclude it.
 As with \((x,c,0)\), this is an **all-occurrence, complete one-step**
 theorem, not a closed carrier or a BH theorem.
 
+**Exact mixed-tile identity and third complete aligned-seed child family.**
+The defining cubic has the unexpected *polynomial identity*
+
+    chi(t) = t*((t-r-2)*(t-1)-2*d) + 2*eps*(t-1).
+
+This holds for all integer \(n,d,\varepsilon\), not just PIP members.
+At the Perron root, \(\beta>2\) and \(\beta=r+2b\), so
+
+    (beta-1)*2*(b-1-Delta)=-2*eps*(beta-1)/beta
+
+and hence the **exact, rational-in-beta identity**
+
+    2*b-a = b-Delta = 1-eps/beta.
+
+Consequently \(0<b-\Delta<1\) on plus and
+\(1<b-\Delta<2\) on minus, uniformly over the *entire*
+remaining lower cone. This supplies a strict guard previously absent
+from the \(\ell_x,\ell_c\) individual bounds: it is a genuine
+cross-length relation, not an approximation.
+
+It also completes the first-generation classification of the *third*
+aligned swap seed, \((x,y,0)\).
+The two initial tiles begin at 0; top first \(x\) against
+bottom first \(c\) yields \((x,c,0)\).
+For top-first/bottom-run, the allowed bottom y indices \(J\)
+satisfy \(0\le j<\Delta\).
+For run/run, \(K=\{j-i:-1<j-i-\Delta<1\}\).
+For top-run/bottom-last \(c\), with bottom last start \(b+r\),
+the top y occurrence index \(i\) obeys
+
+    r-Delta-1 < i < r-Delta+b
+                    = r+1-eps/beta.
+
+All these integer choices are inside actual runs, since \(d\ge7\)
+and \(r=n-d+\varepsilon\ge3\). The remaining five kinds of
+first/run/last pairs have disjoint physical intervals. Thus the
+*complete distinct* child sets of \((x,y,0)\) are
+
+    {(x,c,0)}
+    union {(x,y,b+j): j in J}
+    union {(y,y,k-Delta): k in K}
+    union {(y,c,r-Delta-i): i in I},
+
+where the index sets are exactly:
+
+| parameter chamber | J | K | I | total children |
+|---|---|---|---|---:|
+| plus \(c=0,1\) | \(\{0,1\}\) | \(\{1,2\}\) | \(\{r-2,r-1,r\}\) | **8** |
+| plus \(2\le c\le d+4\) | \(\{0\}\) | \(\{0,1\}\) | \(\{r-1,r\}\) | **6** |
+| minus \(0\le c\le d-2\) | \(\{0\}\) | \(\{0,1\}\) | \(\{r-1,r,r+1\}\) | **7** |
+
+There are no accidental state identifications between these
+distinct letter-type groups; within each row the displacements
+differ by nonzero integer multiples of \(\ell_y=1\).
+
+**Completed aligned-seed interface.** Taken together, the three
+aligned swap-seed types \((x,c,0),(x,y,0),(c,y,0)\) now have
+parameter-uniform complete one-step rules, with respective child
+counts
+
+| chamber | \((x,c,0)\) | \((x,y,0)\) | \((c,y,0)\) |
+|---|---:|---:|---:|
+| plus \(c=0\) | 10 | 8 | 5 |
+| plus \(c=1\) | 9 | 8 | 4 |
+| plus \(c\ge2\) | 7 | 6 | 4 |
+| minus all \(c\) | 7 | 7 | 4 |
+
+The full seed set has nine states, not only these aligned three;
+the six nonaligned seeds and later descendants still need a
+forward-closed typed carrier. The result is an exact *first-layer
+interface*, not uniform BH.
+
 ### Evidence and replay
 
 The *hand proof* above supplies the quantified result. The independent
