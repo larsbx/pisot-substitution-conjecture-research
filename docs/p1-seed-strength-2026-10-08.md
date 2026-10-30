@@ -249,6 +249,14 @@ On slope 3 with `r = q + 1`, the method fails rather than refuses:
 
 Both are limits of the one-parameter affine method, not counterexamples.
 
+**Correction, 2026-10-30 (fit-first).** The line closure now fits run
+walls before testing run ends at `beta`. #288's tests remain only as the
+fallback where a wall has no certified fit. Every row of both tables above
+returns to its pre-#288 pin: `B 2 1 1 0 1 -1` is back at `q0 = 87`, and
+`B 1 1 1 0 1 -1` at 20. Counts are unchanged. See the 2026-10-30 correction
+in §4b of
+[p1b-boundary-hitting-progress-2026-10-08.md](p1b-boundary-hitting-progress-2026-10-08.md).
+
 ## 6. What this does not establish
 
 - #84 itself. By Theorem SC it is PSC, and the lines above are finitely many

@@ -1,0 +1,11 @@
+{
+  "accepted_occurrence_pairs": 25213,
+  "boundary_stars": 58,
+  "canonical_dump_sha256": "ccdfb15d2c372f4122f3f2b2f63ca1af86cab28090146c4d9fe45ab21c14c627",
+  "distinct_children": 3686,
+  "duplicate_occurrences": 21527,
+  "interfaces": 357,
+  "interior_stars": 299,
+  "members": 58,
+  "scope": "finite replay of formal indexed local family; no closure or BH verdict"
+}
