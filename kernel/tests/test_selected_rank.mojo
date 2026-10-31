@@ -7,6 +7,7 @@ from psc.overlap_seed_patch import (
 )
 from psc.selected_rank import (
     verify_rank_forest, verify_overlap_rank_witness, verify_complete_overlap_rank,
+    verify_exact_closed_carrier, verify_closed_ranked_carrier,
 )
 
 
@@ -143,4 +144,43 @@ def main() raises:
     except:
         refused = True
     assert_true(refused)
+    # A self-contained genuine typed coincidence is a valid, closed,
+    # precisely audited finite carrier of one vertex.
+    var only_terminal = List[OverlapState]()
+    only_terminal.append(OverlapState(0, 0, CubicElt()))
+    var no_edges = List[List[Int]]()
+    var e = List[Int]()
+    no_edges.append(e^)
+    var singleton = SeedOverlapAutomaton(only_terminal, no_edges, False)
+    var seeds = List[OverlapState]()
+    seeds.append(OverlapState(0, 0, CubicElt()))
+    assert_equal(verify_exact_closed_carrier(tables, singleton, seeds), 1)
+    var zeros: List[Int] = [0]
+    var empty_choice: List[Int] = [-1]
+    assert_equal(verify_closed_ranked_carrier(
+        tables, singleton, seeds, zeros, empty_choice,
+        empty_choice, empty_choice), 0)
+
+    # The two-vertex *locally sound* source->coincidence certificate
+    # is not forward complete: the source (1,2,0) has additional
+    # literal strict children. Merely declaring capped=False cannot
+    # convert that incomplete table into a complete global proof.
+    refused = False
+    try:
+        _ = verify_exact_closed_carrier(tables, good, good_states)
+    except:
+        refused = True
+    assert_true(refused)
+
+    # A required source omitted from an otherwise closed singleton
+    # carrier must refuse the claimed all-seed coverage.
+    var missing = List[OverlapState]()
+    missing.append(OverlapState(1, 2, CubicElt()))
+    refused = False
+    try:
+        _ = verify_exact_closed_carrier(tables, singleton, missing)
+    except:
+        refused = True
+    assert_true(refused)
+
     print('SELECTED_RANK_NATIVE_LOCAL_SOUNDNESS_PASS')
