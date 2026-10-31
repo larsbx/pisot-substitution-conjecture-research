@@ -1,0 +1,54 @@
+name: PSC class-A X indexed productivity and ladder
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_x_*.mojo'
+      - 'kernel/tests/test_class_a_x_*.mojo'
+      - 'kernel/psc/class_a_boundary_children.mojo'
+      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'oracles/python/class_a_x_*.py'
+      - 'oracles/python/class_a_boundary_children.py'
+      - 'tests/test_class_a_x_productivity.py'
+      - 'tests/test_class_a_x_transfer_plane.py'
+      - 'docs/class-a-x-productivity*.md'
+      - 'docs/class-a-x-transfer-plane*.md'
+      - 'evidence/class-a-x-productivity-2026-10-31/**'
+      - 'evidence/class-a-x-transfer-plane-2026-10-31/**'
+      - '.github/workflows/class-a-x-productivity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-indexed-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent complete graphs, indexed forests and polynomial identities
+        run: |
+          python -m pip install pytest==8.4.2 sympy==1.14.0
+          python -m pytest -q tests/test_class_a_x_productivity.py tests/test_class_a_x_transfer_plane.py
+          python oracles/python/class_a_x_ladder_symbolic.py > /tmp/x-symbolic.json
+          cmp /tmp/x-symbolic.json evidence/class-a-x-productivity-2026-10-31/symbolic.json
+          python oracles/python/class_a_x_transfer_plane_symbolic.py > /tmp/x-plane-symbolic.json
+          cmp /tmp/x-plane-symbolic.json evidence/class-a-x-transfer-plane-2026-10-31/symbolic.json
+      - name: Install Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Canonical indexed graphs and local ladder, locked native toolchain
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_class_a_x_ladder.mojo
+          pixi run --locked mojo run -I . tests/test_class_a_x_transfer_plane.mojo
+          pixi run --locked mojo run -I . tests/test_class_a_x_productivity.mojo --emit-indexed > /tmp/x-native.log
+      - name: Compare every native typed vertex and indexed edge with the independent oracle
+        run: |
+          python oracles/python/class_a_x_productivity.py --native-log /tmp/x-native.log > /tmp/x-native-comparison.json
+          cat /tmp/x-native-comparison.json

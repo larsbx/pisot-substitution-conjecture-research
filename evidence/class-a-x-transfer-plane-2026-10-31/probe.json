@@ -1,0 +1,2866 @@
+{
+  "finite_profile": {
+    "certificate_sha256": "2e38e2ab2c73306e63d683a19a8970eb354780d2a2462aef4b66c36683fbe01b",
+    "members": [
+      {
+        "candidate_interval_matches": true,
+        "k": 0,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            1,
+            2,
+            -3
+          ],
+          [
+            0,
+            2,
+            1,
+            4,
+            -6
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            0,
+            2,
+            3,
+            8,
+            -15
+          ],
+          [
+            2,
+            0,
+            -3,
+            -8,
+            15
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            -1,
+            -4,
+            6
+          ],
+          [
+            2,
+            0,
+            -1,
+            -2,
+            3
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 6,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 12,
+        "reached_oriented_source_labels": 12,
+        "t": 0
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 0,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            1,
+            2,
+            -3
+          ],
+          [
+            0,
+            2,
+            1,
+            4,
+            -6
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            0,
+            2,
+            3,
+            8,
+            -15
+          ],
+          [
+            0,
+            2,
+            3,
+            10,
+            -18
+          ],
+          [
+            0,
+            2,
+            4,
+            11,
+            -21
+          ],
+          [
+            2,
+            0,
+            -4,
+            -11,
+            21
+          ],
+          [
+            2,
+            0,
+            -3,
+            -10,
+            18
+          ],
+          [
+            2,
+            0,
+            -3,
+            -8,
+            15
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            -1,
+            -4,
+            6
+          ],
+          [
+            2,
+            0,
+            -1,
+            -2,
+            3
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 7,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 16,
+        "reached_oriented_source_labels": 16,
+        "t": 1
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 0,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            0,
+            2,
+            3,
+            8,
+            -15
+          ],
+          [
+            0,
+            2,
+            3,
+            10,
+            -18
+          ],
+          [
+            0,
+            2,
+            4,
+            11,
+            -21
+          ],
+          [
+            0,
+            2,
+            4,
+            13,
+            -24
+          ],
+          [
+            0,
+            2,
+            5,
+            14,
+            -27
+          ],
+          [
+            2,
+            0,
+            -5,
+            -14,
+            27
+          ],
+          [
+            2,
+            0,
+            -4,
+            -13,
+            24
+          ],
+          [
+            2,
+            0,
+            -4,
+            -11,
+            21
+          ],
+          [
+            2,
+            0,
+            -3,
+            -10,
+            18
+          ],
+          [
+            2,
+            0,
+            -3,
+            -8,
+            15
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 8,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 16,
+        "reached_oriented_source_labels": 20,
+        "t": 2
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 0,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            0,
+            2,
+            3,
+            8,
+            -15
+          ],
+          [
+            0,
+            2,
+            3,
+            10,
+            -18
+          ],
+          [
+            0,
+            2,
+            4,
+            11,
+            -21
+          ],
+          [
+            0,
+            2,
+            4,
+            13,
+            -24
+          ],
+          [
+            0,
+            2,
+            5,
+            14,
+            -27
+          ],
+          [
+            0,
+            2,
+            5,
+            16,
+            -30
+          ],
+          [
+            0,
+            2,
+            6,
+            17,
+            -33
+          ],
+          [
+            2,
+            0,
+            -6,
+            -17,
+            33
+          ],
+          [
+            2,
+            0,
+            -5,
+            -16,
+            30
+          ],
+          [
+            2,
+            0,
+            -5,
+            -14,
+            27
+          ],
+          [
+            2,
+            0,
+            -4,
+            -13,
+            24
+          ],
+          [
+            2,
+            0,
+            -4,
+            -11,
+            21
+          ],
+          [
+            2,
+            0,
+            -3,
+            -10,
+            18
+          ],
+          [
+            2,
+            0,
+            -3,
+            -8,
+            15
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 9,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 20,
+        "reached_oriented_source_labels": 24,
+        "t": 3
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 1,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 3,
+        "p_indices_in_x_closure": [
+          0,
+          1
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 4,
+        "reached_oriented_source_labels": 8,
+        "t": 0
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 1,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 4,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 6,
+        "reached_oriented_source_labels": 10,
+        "t": 1
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 1,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            0,
+            2,
+            3,
+            8,
+            -15
+          ],
+          [
+            2,
+            0,
+            -3,
+            -8,
+            15
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 4,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 8,
+        "reached_oriented_source_labels": 12,
+        "t": 2
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 1,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            0,
+            2,
+            3,
+            8,
+            -15
+          ],
+          [
+            0,
+            2,
+            3,
+            10,
+            -18
+          ],
+          [
+            2,
+            0,
+            -3,
+            -10,
+            18
+          ],
+          [
+            2,
+            0,
+            -3,
+            -8,
+            15
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 5,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 10,
+        "reached_oriented_source_labels": 14,
+        "t": 3
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 2,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 2,
+        "p_indices_in_x_closure": [
+          0,
+          1
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 2,
+        "reached_oriented_source_labels": 6,
+        "t": 0
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 2,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 3,
+        "p_indices_in_x_closure": [
+          0,
+          1
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 4,
+        "reached_oriented_source_labels": 8,
+        "t": 1
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 2,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 3,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 6,
+        "reached_oriented_source_labels": 10,
+        "t": 2
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 2,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 3,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 6,
+        "reached_oriented_source_labels": 10,
+        "t": 3
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 3,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 2,
+        "p_indices_in_x_closure": [
+          0,
+          1
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 2,
+        "reached_oriented_source_labels": 6,
+        "t": 0
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 3,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 2,
+        "p_indices_in_x_closure": [
+          0,
+          1
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 2,
+        "reached_oriented_source_labels": 6,
+        "t": 1
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 3,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 2,
+        "p_indices_in_x_closure": [
+          0,
+          1
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 4,
+        "reached_oriented_source_labels": 8,
+        "t": 2
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 3,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 3,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 6,
+        "reached_oriented_source_labels": 10,
+        "t": 3
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 0,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            0,
+            2,
+            3,
+            8,
+            -15
+          ],
+          [
+            0,
+            2,
+            3,
+            10,
+            -18
+          ],
+          [
+            0,
+            2,
+            4,
+            11,
+            -21
+          ],
+          [
+            0,
+            2,
+            4,
+            13,
+            -24
+          ],
+          [
+            0,
+            2,
+            5,
+            14,
+            -27
+          ],
+          [
+            0,
+            2,
+            5,
+            16,
+            -30
+          ],
+          [
+            0,
+            2,
+            6,
+            17,
+            -33
+          ],
+          [
+            0,
+            2,
+            6,
+            19,
+            -36
+          ],
+          [
+            0,
+            2,
+            7,
+            20,
+            -39
+          ],
+          [
+            2,
+            0,
+            -7,
+            -20,
+            39
+          ],
+          [
+            2,
+            0,
+            -6,
+            -19,
+            36
+          ],
+          [
+            2,
+            0,
+            -6,
+            -17,
+            33
+          ],
+          [
+            2,
+            0,
+            -5,
+            -16,
+            30
+          ],
+          [
+            2,
+            0,
+            -5,
+            -14,
+            27
+          ],
+          [
+            2,
+            0,
+            -4,
+            -13,
+            24
+          ],
+          [
+            2,
+            0,
+            -4,
+            -11,
+            21
+          ],
+          [
+            2,
+            0,
+            -3,
+            -10,
+            18
+          ],
+          [
+            2,
+            0,
+            -3,
+            -8,
+            15
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 10,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 24,
+        "reached_oriented_source_labels": 28,
+        "t": 4
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 4,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 2,
+        "p_indices_in_x_closure": [
+          0,
+          1
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 2,
+        "reached_oriented_source_labels": 6,
+        "t": 0
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 4,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 2,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 6,
+        "reached_oriented_source_labels": 10,
+        "t": 4
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 0,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            0,
+            2,
+            3,
+            8,
+            -15
+          ],
+          [
+            0,
+            2,
+            3,
+            10,
+            -18
+          ],
+          [
+            0,
+            2,
+            4,
+            11,
+            -21
+          ],
+          [
+            0,
+            2,
+            4,
+            13,
+            -24
+          ],
+          [
+            0,
+            2,
+            5,
+            14,
+            -27
+          ],
+          [
+            0,
+            2,
+            5,
+            16,
+            -30
+          ],
+          [
+            0,
+            2,
+            6,
+            17,
+            -33
+          ],
+          [
+            0,
+            2,
+            6,
+            19,
+            -36
+          ],
+          [
+            0,
+            2,
+            7,
+            20,
+            -39
+          ],
+          [
+            0,
+            2,
+            7,
+            22,
+            -42
+          ],
+          [
+            0,
+            2,
+            8,
+            23,
+            -45
+          ],
+          [
+            0,
+            2,
+            8,
+            25,
+            -48
+          ],
+          [
+            0,
+            2,
+            9,
+            26,
+            -51
+          ],
+          [
+            0,
+            2,
+            9,
+            28,
+            -54
+          ],
+          [
+            0,
+            2,
+            10,
+            29,
+            -57
+          ],
+          [
+            0,
+            2,
+            10,
+            31,
+            -60
+          ],
+          [
+            0,
+            2,
+            11,
+            32,
+            -63
+          ],
+          [
+            2,
+            0,
+            -11,
+            -32,
+            63
+          ],
+          [
+            2,
+            0,
+            -10,
+            -31,
+            60
+          ],
+          [
+            2,
+            0,
+            -10,
+            -29,
+            57
+          ],
+          [
+            2,
+            0,
+            -9,
+            -28,
+            54
+          ],
+          [
+            2,
+            0,
+            -9,
+            -26,
+            51
+          ],
+          [
+            2,
+            0,
+            -8,
+            -25,
+            48
+          ],
+          [
+            2,
+            0,
+            -8,
+            -23,
+            45
+          ],
+          [
+            2,
+            0,
+            -7,
+            -22,
+            42
+          ],
+          [
+            2,
+            0,
+            -7,
+            -20,
+            39
+          ],
+          [
+            2,
+            0,
+            -6,
+            -19,
+            36
+          ],
+          [
+            2,
+            0,
+            -6,
+            -17,
+            33
+          ],
+          [
+            2,
+            0,
+            -5,
+            -16,
+            30
+          ],
+          [
+            2,
+            0,
+            -5,
+            -14,
+            27
+          ],
+          [
+            2,
+            0,
+            -4,
+            -13,
+            24
+          ],
+          [
+            2,
+            0,
+            -4,
+            -11,
+            21
+          ],
+          [
+            2,
+            0,
+            -3,
+            -10,
+            18
+          ],
+          [
+            2,
+            0,
+            -3,
+            -8,
+            15
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 14,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 40,
+        "reached_oriented_source_labels": 44,
+        "t": 8
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 8,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 1,
+        "p_indices_in_x_closure": [
+          0,
+          1
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 2,
+        "reached_oriented_source_labels": 6,
+        "t": 0
+      },
+      {
+        "candidate_interval_matches": true,
+        "k": 8,
+        "labels_outside_previous_carrier": [
+          [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            5,
+            -9
+          ],
+          [
+            0,
+            2,
+            2,
+            7,
+            -12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -7,
+            12
+          ],
+          [
+            2,
+            0,
+            -2,
+            -5,
+            9
+          ],
+          [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "largest_proved_p": 2,
+        "p_indices_in_x_closure": [
+          0,
+          1,
+          2
+        ],
+        "parameter_uniform_reachable_interval_proved": false,
+        "reached_labels_outside_previous_ladder_carrier": 6,
+        "reached_oriented_source_labels": 10,
+        "t": 8
+      }
+    ],
+    "scope": "finite coverage measurements on the 22 completed #436 graphs",
+    "universal_x_productivity": false
+  },
+  "paths": {
+    "exceptional_base_oriented_paths": 240,
+    "exceptional_base_selected_edges": 480,
+    "members": [
+      {
+        "k": 0,
+        "largest_proved_p": 6,
+        "oriented_paths": 14,
+        "selected_edges": 112,
+        "t": 0
+      },
+      {
+        "k": 0,
+        "largest_proved_p": 7,
+        "oriented_paths": 16,
+        "selected_edges": 144,
+        "t": 1
+      },
+      {
+        "k": 0,
+        "largest_proved_p": 8,
+        "oriented_paths": 18,
+        "selected_edges": 180,
+        "t": 2
+      },
+      {
+        "k": 0,
+        "largest_proved_p": 9,
+        "oriented_paths": 20,
+        "selected_edges": 220,
+        "t": 3
+      },
+      {
+        "k": 0,
+        "largest_proved_p": 10,
+        "oriented_paths": 22,
+        "selected_edges": 264,
+        "t": 4
+      },
+      {
+        "k": 0,
+        "largest_proved_p": 11,
+        "oriented_paths": 24,
+        "selected_edges": 312,
+        "t": 5
+      },
+      {
+        "k": 0,
+        "largest_proved_p": 12,
+        "oriented_paths": 26,
+        "selected_edges": 364,
+        "t": 6
+      },
+      {
+        "k": 0,
+        "largest_proved_p": 13,
+        "oriented_paths": 28,
+        "selected_edges": 420,
+        "t": 7
+      },
+      {
+        "k": 0,
+        "largest_proved_p": 14,
+        "oriented_paths": 30,
+        "selected_edges": 480,
+        "t": 8
+      },
+      {
+        "k": 1,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 0
+      },
+      {
+        "k": 1,
+        "largest_proved_p": 4,
+        "oriented_paths": 10,
+        "selected_edges": 60,
+        "t": 1
+      },
+      {
+        "k": 1,
+        "largest_proved_p": 4,
+        "oriented_paths": 10,
+        "selected_edges": 60,
+        "t": 2
+      },
+      {
+        "k": 1,
+        "largest_proved_p": 5,
+        "oriented_paths": 12,
+        "selected_edges": 84,
+        "t": 3
+      },
+      {
+        "k": 1,
+        "largest_proved_p": 5,
+        "oriented_paths": 12,
+        "selected_edges": 84,
+        "t": 4
+      },
+      {
+        "k": 1,
+        "largest_proved_p": 6,
+        "oriented_paths": 14,
+        "selected_edges": 112,
+        "t": 5
+      },
+      {
+        "k": 1,
+        "largest_proved_p": 6,
+        "oriented_paths": 14,
+        "selected_edges": 112,
+        "t": 6
+      },
+      {
+        "k": 1,
+        "largest_proved_p": 7,
+        "oriented_paths": 16,
+        "selected_edges": 144,
+        "t": 7
+      },
+      {
+        "k": 1,
+        "largest_proved_p": 7,
+        "oriented_paths": 16,
+        "selected_edges": 144,
+        "t": 8
+      },
+      {
+        "k": 2,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 0
+      },
+      {
+        "k": 2,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 1
+      },
+      {
+        "k": 2,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 2
+      },
+      {
+        "k": 2,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 3
+      },
+      {
+        "k": 2,
+        "largest_proved_p": 4,
+        "oriented_paths": 10,
+        "selected_edges": 60,
+        "t": 4
+      },
+      {
+        "k": 2,
+        "largest_proved_p": 4,
+        "oriented_paths": 10,
+        "selected_edges": 60,
+        "t": 5
+      },
+      {
+        "k": 2,
+        "largest_proved_p": 4,
+        "oriented_paths": 10,
+        "selected_edges": 60,
+        "t": 6
+      },
+      {
+        "k": 2,
+        "largest_proved_p": 5,
+        "oriented_paths": 12,
+        "selected_edges": 84,
+        "t": 7
+      },
+      {
+        "k": 2,
+        "largest_proved_p": 5,
+        "oriented_paths": 12,
+        "selected_edges": 84,
+        "t": 8
+      },
+      {
+        "k": 3,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 0
+      },
+      {
+        "k": 3,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 1
+      },
+      {
+        "k": 3,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 2
+      },
+      {
+        "k": 3,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 3
+      },
+      {
+        "k": 3,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 4
+      },
+      {
+        "k": 3,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 5
+      },
+      {
+        "k": 3,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 6
+      },
+      {
+        "k": 3,
+        "largest_proved_p": 4,
+        "oriented_paths": 10,
+        "selected_edges": 60,
+        "t": 7
+      },
+      {
+        "k": 3,
+        "largest_proved_p": 4,
+        "oriented_paths": 10,
+        "selected_edges": 60,
+        "t": 8
+      },
+      {
+        "k": 4,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 0
+      },
+      {
+        "k": 4,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 1
+      },
+      {
+        "k": 4,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 2
+      },
+      {
+        "k": 4,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 3
+      },
+      {
+        "k": 4,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 4
+      },
+      {
+        "k": 4,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 5
+      },
+      {
+        "k": 4,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 6
+      },
+      {
+        "k": 4,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 7
+      },
+      {
+        "k": 4,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 8
+      },
+      {
+        "k": 5,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 0
+      },
+      {
+        "k": 5,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 1
+      },
+      {
+        "k": 5,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 2
+      },
+      {
+        "k": 5,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 3
+      },
+      {
+        "k": 5,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 4
+      },
+      {
+        "k": 5,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 5
+      },
+      {
+        "k": 5,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 6
+      },
+      {
+        "k": 5,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 7
+      },
+      {
+        "k": 5,
+        "largest_proved_p": 3,
+        "oriented_paths": 8,
+        "selected_edges": 40,
+        "t": 8
+      },
+      {
+        "k": 6,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 0
+      },
+      {
+        "k": 6,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 1
+      },
+      {
+        "k": 6,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 2
+      },
+      {
+        "k": 6,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 3
+      },
+      {
+        "k": 6,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 4
+      },
+      {
+        "k": 6,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 5
+      },
+      {
+        "k": 6,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 6
+      },
+      {
+        "k": 6,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 7
+      },
+      {
+        "k": 6,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 8
+      },
+      {
+        "k": 7,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 0
+      },
+      {
+        "k": 7,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 1
+      },
+      {
+        "k": 7,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 2
+      },
+      {
+        "k": 7,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 3
+      },
+      {
+        "k": 7,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 4
+      },
+      {
+        "k": 7,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 5
+      },
+      {
+        "k": 7,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 6
+      },
+      {
+        "k": 7,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 7
+      },
+      {
+        "k": 7,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 8
+      },
+      {
+        "k": 8,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 0
+      },
+      {
+        "k": 8,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 1
+      },
+      {
+        "k": 8,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 2
+      },
+      {
+        "k": 8,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 3
+      },
+      {
+        "k": 8,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 4
+      },
+      {
+        "k": 8,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 5
+      },
+      {
+        "k": 8,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 6
+      },
+      {
+        "k": 8,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 7
+      },
+      {
+        "k": 8,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 8
+      },
+      {
+        "k": 9,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 0
+      },
+      {
+        "k": 9,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 1
+      },
+      {
+        "k": 9,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 2
+      },
+      {
+        "k": 9,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 3
+      },
+      {
+        "k": 9,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 4
+      },
+      {
+        "k": 9,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 5
+      },
+      {
+        "k": 9,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 6
+      },
+      {
+        "k": 9,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 7
+      },
+      {
+        "k": 9,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 8
+      },
+      {
+        "k": 10,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 0
+      },
+      {
+        "k": 10,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 1
+      },
+      {
+        "k": 10,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 2
+      },
+      {
+        "k": 10,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 3
+      },
+      {
+        "k": 10,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 4
+      },
+      {
+        "k": 10,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 5
+      },
+      {
+        "k": 10,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 6
+      },
+      {
+        "k": 10,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 7
+      },
+      {
+        "k": 10,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 8
+      },
+      {
+        "k": 11,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 0
+      },
+      {
+        "k": 11,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 1
+      },
+      {
+        "k": 11,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 2
+      },
+      {
+        "k": 11,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 3
+      },
+      {
+        "k": 11,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 4
+      },
+      {
+        "k": 11,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 5
+      },
+      {
+        "k": 11,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 6
+      },
+      {
+        "k": 11,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 7
+      },
+      {
+        "k": 11,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 8
+      },
+      {
+        "k": 12,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 0
+      },
+      {
+        "k": 12,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 1
+      },
+      {
+        "k": 12,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 2
+      },
+      {
+        "k": 12,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 3
+      },
+      {
+        "k": 12,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 4
+      },
+      {
+        "k": 12,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 5
+      },
+      {
+        "k": 12,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 6
+      },
+      {
+        "k": 12,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 7
+      },
+      {
+        "k": 12,
+        "largest_proved_p": 2,
+        "oriented_paths": 6,
+        "selected_edges": 24,
+        "t": 8
+      },
+      {
+        "k": 0,
+        "largest_proved_p": 26,
+        "oriented_paths": 54,
+        "selected_edges": 1512,
+        "t": 20
+      },
+      {
+        "k": 0,
+        "largest_proved_p": 70,
+        "oriented_paths": 142,
+        "selected_edges": 10224,
+        "t": 64
+      },
+      {
+        "k": 32,
+        "largest_proved_p": 1,
+        "oriented_paths": 4,
+        "selected_edges": 12,
+        "t": 0
+      }
+    ],
+    "oriented_paths": 1090,
+    "scope": "finite exact path replay; uniform local proof separate",
+    "selected_edges": 17536,
+    "specimens": 120,
+    "universal_x_productivity": false
+  },
+  "plane_counterexample": {
+    "all_three_formal_labels_strict": true,
+    "conclusion": "odd-plane algebra does not imply occurrence-valid transfer",
+    "first_edge": [
+      [
+        0,
+        2,
+        1,
+        6,
+        -9
+      ],
+      3,
+      0,
+      [
+        2,
+        0,
+        -2,
+        -3,
+        6
+      ]
+    ],
+    "k": 0,
+    "refused_second_edge": [
+      [
+        2,
+        0,
+        -2,
+        -3,
+        6
+      ],
+      0,
+      11,
+      [
+        0,
+        2,
+        0,
+        3,
+        -3
+      ]
+    ],
+    "second_index": 11,
+    "source": [
+      0,
+      2,
+      1,
+      6,
+      -9
+    ],
+    "t": 0,
+    "top_run": 8,
+    "x_to_source_path": [
+      [
+        [
+          0,
+          0,
+          1,
+          0,
+          -1
+        ],
+        7,
+        0,
+        [
+          2,
+          0,
+          0,
+          -1,
+          0
+        ]
+      ],
+      [
+        [
+          2,
+          0,
+          0,
+          -1,
+          0
+        ],
+        0,
+        6,
+        [
+          0,
+          2,
+          0,
+          -1,
+          2
+        ]
+      ],
+      [
+        [
+          0,
+          2,
+          0,
+          -1,
+          2
+        ],
+        4,
+        0,
+        [
+          2,
+          0,
+          0,
+          1,
+          -2
+        ]
+      ],
+      [
+        [
+          2,
+          0,
+          0,
+          1,
+          -2
+        ],
+        3,
+        8,
+        [
+          1,
+          2,
+          -1,
+          -1,
+          4
+        ]
+      ],
+      [
+        [
+          1,
+          2,
+          -1,
+          -1,
+          4
+        ],
+        4,
+        0,
+        [
+          0,
+          0,
+          1,
+          2,
+          -6
+        ]
+      ],
+      [
+        [
+          0,
+          0,
+          1,
+          2,
+          -6
+        ],
+        0,
+        7,
+        [
+          0,
+          2,
+          -1,
+          -4,
+          8
+        ]
+      ],
+      [
+        [
+          0,
+          2,
+          -1,
+          -4,
+          8
+        ],
+        8,
+        3,
+        [
+          2,
+          1,
+          2,
+          4,
+          -9
+        ]
+      ],
+      [
+        [
+          2,
+          1,
+          2,
+          4,
+          -9
+        ],
+        1,
+        0,
+        [
+          2,
+          1,
+          -2,
+          -5,
+          10
+        ]
+      ],
+      [
+        [
+          2,
+          1,
+          -2,
+          -5,
+          10
+        ],
+        0,
+        3,
+        [
+          0,
+          2,
+          1,
+          6,
+          -9
+        ]
+      ]
+    ]
+  }
+}
