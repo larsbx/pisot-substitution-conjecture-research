@@ -5,7 +5,7 @@ finite replay, stacked on the complete CY star in PR #414. **No general BH,
 all-state coverage, forward-closed carrier, all-later-choice termination,
 Lean/Mojo formal proof credit or independent human review is claimed.**
 
-## Theorem (conditional on the exact preceding CY carrier)
+## Scoped proposition (hand derivation; independent review pending)
 
 Work on the minus class-A boundary normal form with integer `k,t>=0`,
 `n=k+t+3`, `d=2n-1-k`, `A=n+d`, `N=n-1`, actual words
