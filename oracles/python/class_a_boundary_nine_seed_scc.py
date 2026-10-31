@@ -125,7 +125,10 @@ def audit(states,edges,ids,complete=True):
         nonproductive=lambda: sorted(nonproductive)))
     assert {frozenset(v) for v in bad_sinks}=={frozenset(v) for v in canonical_bad}
     hub_rule=hub_extension_criterion(graph,[ids[s] for s in SEEDS],ids[X],ids[S1])
+    s1_children=edges[ids[S1]]
     return dict(states=len(states),indexed_edges=sum(map(len,edges)),
+        s1_indexed_children=len(s1_children),
+        s1_distinct_child_labels=len({v for v,_,_ in s1_children}),
         x_forward=len(x_forward),extra_from_nine=sorted(states[v] for v in other),
         extra_nonterminal=sorted(states[v] for v in other if v not in typed),
         x_recurrent_size=len(x_scc),sccs=len(sccs),recurrent_sccs=len(recurrent),
