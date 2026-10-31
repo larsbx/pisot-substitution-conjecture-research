@@ -181,6 +181,35 @@ and the realized-overlap coverage bridge also
 remain separate open tasks. Fresh hosted CI and
 independent review for #428/#429/#430 are pending.
 
+## Further update: conditional all-parameter one-state closure equality
+
+The new **stacked PR #431** supplies exact
+X-to-every-E6-child selected paths, with a
+two-case t=0/t>=1 universal affine transport
+certificate, real strict geometry and an independent
+complete E6 star replay. It checks **both**
+predecessors' all-parameter symbolic source
+interfaces (#428 and #430) before composing them.
+
+Thus the two one-exception *mathematical premises*
+of the graph lemma above now have explicit candidate
+universal certificates (pending exact-head acceptance
+and independent human review):
+
+    Reach(nine swapped-patch strict seeds)
+      = Reach(X) U {E6},   for all k,t>=0,
+
+where Reach uses actual strict overlap edges and
+typed coincidence terminalization. Because E6
+also reaches X in #428, the nine-seed graph's
+**every-vertex existential productivity predicate**
+is equivalent to the same predicate on the
+complete X-generated closure. This equivalence
+**does not prove** the latter predicate, global
+all-overlap coverage, BH, G1 or PSC. The original
+16-specimen results in this document remain
+finite evidence with their original scope.
+
 ## Reproducibility, review and boundaries
 
 `oracles/python/class_a_boundary_nine_seed_scc.py`
