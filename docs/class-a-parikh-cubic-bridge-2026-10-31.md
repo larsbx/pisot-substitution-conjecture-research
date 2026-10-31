@@ -129,9 +129,10 @@ The checker does not invent a RUN/LAST classification.
   lattice formula and off-lattice refusals.
 
 The arithmetic identities are **universal hand-coefficient proofs**
-with executable finite implementation replays. Native Mojo compilation
-is **not** claimed in this environment; only fresh exact-head hosted
-locked-Mojo CI can supply that receipt. The independent reference is
+with executable finite implementation replays. The original revision had no local native receipt. The acceptance repair
+now records a local locked-Mojo pass (6,125 cases plus the post-assertion
+contract receipt) in `evidence/class-a-parikh-acceptance-2026-10-31/`.
+Fresh exact-head hosted locked-Mojo CI remains required before integration. The independent reference is
 secondary and cannot replace the canonical native kernel.
 
 This bridge removes a representation mismatch in future
