@@ -1,0 +1,724 @@
+{
+  "after_registered_including_terminal": 31,
+  "before_registered_including_terminal": 29,
+  "exits_including_terminal": 31,
+  "image_rows": [
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        0,
+        0,
+        0,
+        -2,
+        3
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        0,
+        0,
+        0,
+        -2,
+        4
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        0,
+        0,
+        0,
+        2,
+        -4
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        0,
+        0,
+        0,
+        2,
+        -3
+      ]
+    },
+    {
+      "after": "K",
+      "before": "K",
+      "exit": "K",
+      "label": [
+        0,
+        2,
+        1,
+        2,
+        -5
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        0,
+        2,
+        1,
+        2,
+        -4
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        0,
+        2,
+        1,
+        2,
+        -3
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        1,
+        2,
+        0,
+        2,
+        -3
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        1,
+        2,
+        0,
+        2,
+        -2
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        2,
+        0,
+        -1,
+        -2,
+        3
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        2,
+        0,
+        -1,
+        -2,
+        4
+      ]
+    },
+    {
+      "after": "K",
+      "before": "K",
+      "exit": "K",
+      "label": [
+        2,
+        0,
+        -1,
+        -2,
+        5
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        2,
+        1,
+        0,
+        -2,
+        2
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        2,
+        1,
+        0,
+        -2,
+        3
+      ]
+    },
+    {
+      "after": "B2",
+      "before": "B2",
+      "exit": "B2",
+      "label": [
+        2,
+        2,
+        0,
+        -2,
+        2
+      ]
+    },
+    {
+      "after": "B2h",
+      "before": "B2h",
+      "exit": "B2h",
+      "label": [
+        2,
+        2,
+        0,
+        -2,
+        3
+      ]
+    },
+    {
+      "after": "B2h",
+      "before": "B2h",
+      "exit": "B2h",
+      "label": [
+        2,
+        2,
+        0,
+        2,
+        -3
+      ]
+    },
+    {
+      "after": "B2",
+      "before": "B2",
+      "exit": "B2",
+      "label": [
+        2,
+        2,
+        0,
+        2,
+        -2
+      ]
+    }
+  ],
+  "labels": 41,
+  "reused_complete_families": [
+    "K",
+    "B2",
+    "B2h"
+  ],
+  "rows": [
+    {
+      "after": "X",
+      "before": "X",
+      "exit": "X",
+      "label": [
+        0,
+        0,
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        0,
+        0,
+        0,
+        -1,
+        -1
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        0,
+        0,
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "after": "U",
+      "before": "U",
+      "exit": "U",
+      "label": [
+        0,
+        0,
+        0,
+        -1,
+        1
+      ]
+    },
+    {
+      "after": "E",
+      "before": "E",
+      "exit": "E",
+      "label": [
+        0,
+        0,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "after": "E",
+      "before": "E",
+      "exit": "E",
+      "label": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "after": "U",
+      "before": "U",
+      "exit": "U",
+      "label": [
+        0,
+        0,
+        0,
+        1,
+        -1
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "after": "X",
+      "before": "X",
+      "exit": "X",
+      "label": [
+        0,
+        0,
+        1,
+        0,
+        -1
+      ]
+    },
+    {
+      "after": "D3",
+      "before": "D3",
+      "exit": "D3",
+      "label": [
+        0,
+        1,
+        1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        0,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "after": "V",
+      "before": "V",
+      "exit": "V",
+      "label": [
+        0,
+        2,
+        0,
+        1,
+        -2
+      ]
+    },
+    {
+      "after": "T",
+      "before": "T",
+      "exit": "T",
+      "label": [
+        0,
+        2,
+        0,
+        1,
+        -1
+      ]
+    },
+    {
+      "after": "B3",
+      "before": "B3",
+      "exit": "B3",
+      "label": [
+        0,
+        2,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "after": "B4",
+      "before": "B4",
+      "exit": "B4",
+      "label": [
+        0,
+        2,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "after": "R4",
+      "before": "R4",
+      "exit": "R4",
+      "label": [
+        0,
+        2,
+        1,
+        -1,
+        -2
+      ]
+    },
+    {
+      "after": "R5",
+      "before": null,
+      "exit": "R5",
+      "label": [
+        0,
+        2,
+        1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "after": "R3",
+      "before": "R3",
+      "exit": "R3",
+      "label": [
+        0,
+        2,
+        1,
+        -1,
+        0
+      ]
+    },
+    {
+      "after": "Q3",
+      "before": "Q3",
+      "exit": "Q3",
+      "label": [
+        0,
+        2,
+        1,
+        -1,
+        1
+      ]
+    },
+    {
+      "after": "Y4",
+      "before": "Y4",
+      "exit": "Y4",
+      "label": [
+        0,
+        2,
+        1,
+        0,
+        -1
+      ]
+    },
+    {
+      "after": "D3",
+      "before": "D3",
+      "exit": "D3",
+      "label": [
+        1,
+        0,
+        -1,
+        1,
+        1
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        1,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        1,
+        2,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "after": "Y4",
+      "before": "Y4",
+      "exit": "Y4",
+      "label": [
+        2,
+        0,
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "after": "Q3",
+      "before": "Q3",
+      "exit": "Q3",
+      "label": [
+        2,
+        0,
+        -1,
+        1,
+        -1
+      ]
+    },
+    {
+      "after": "R3",
+      "before": "R3",
+      "exit": "R3",
+      "label": [
+        2,
+        0,
+        -1,
+        1,
+        0
+      ]
+    },
+    {
+      "after": "R5",
+      "before": null,
+      "exit": "R5",
+      "label": [
+        2,
+        0,
+        -1,
+        1,
+        1
+      ]
+    },
+    {
+      "after": "R4",
+      "before": "R4",
+      "exit": "R4",
+      "label": [
+        2,
+        0,
+        -1,
+        1,
+        2
+      ]
+    },
+    {
+      "after": "B4",
+      "before": "B4",
+      "exit": "B4",
+      "label": [
+        2,
+        0,
+        0,
+        -1,
+        -1
+      ]
+    },
+    {
+      "after": "B3",
+      "before": "B3",
+      "exit": "B3",
+      "label": [
+        2,
+        0,
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "after": "T",
+      "before": "T",
+      "exit": "T",
+      "label": [
+        2,
+        0,
+        0,
+        -1,
+        1
+      ]
+    },
+    {
+      "after": "V",
+      "before": "V",
+      "exit": "V",
+      "label": [
+        2,
+        0,
+        0,
+        -1,
+        2
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        2,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        2,
+        1,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "after": null,
+      "before": null,
+      "exit": null,
+      "label": [
+        2,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "after": "T1",
+      "before": "T1",
+      "exit": "T1",
+      "label": [
+        2,
+        2,
+        -1,
+        1,
+        1
+      ]
+    },
+    {
+      "after": "T2",
+      "before": "T2",
+      "exit": "T2",
+      "label": [
+        2,
+        2,
+        -1,
+        1,
+        2
+      ]
+    },
+    {
+      "after": "terminal",
+      "before": "terminal",
+      "exit": "terminal",
+      "label": [
+        2,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "after": "T2",
+      "before": "T2",
+      "exit": "T2",
+      "label": [
+        2,
+        2,
+        1,
+        -1,
+        -2
+      ]
+    },
+    {
+      "after": "T1",
+      "before": "T1",
+      "exit": "T1",
+      "label": [
+        2,
+        2,
+        1,
+        -1,
+        -1
+      ]
+    }
+  ],
+  "terminal_labels": 1
+}

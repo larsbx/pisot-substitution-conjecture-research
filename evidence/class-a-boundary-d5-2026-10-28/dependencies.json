@@ -1,0 +1,215 @@
+{
+  "parent_pr": {
+    "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/380",
+    "number": 380,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": false,
+    "body": "Classify R5=(x,y,1,-1,-1) and its actual reversal throughout the minus class-A boundary. Each complete star has 2n+2 strict occurrences at t=0, otherwise 2n+3; their chamber-wide image has 18 labels. Preserve the existing three-edge source exits. Reuse the already classified B2/B2h/K families for six outgoing labels; twelve labels still lack registered uniform exits.\n\nOriginally stacked on #379 at 7eb395cce20973c2c36bef09c97b3d6ae8e57067; synchronized with its updated head 8291fc59144c6445013d493de516b8990ffbdeac after #381 added B5. The ledger conflict is resolved by preserving the updated parent as prefix, then both unchanged R5 entries and a dated reconciliation note. All original R5 and B5 kernels, derivations and archived receipts remain byte-identical. Inventory numbers below refer to the R5 registry's explicit original scope, without composing the separate B5 registry. Integrate in dependency order after required exact-head gates; pending independent human review remains validation debt.\n\n## Work shown\n\n### Assumptions and hypotheses\nIntegers k,t>=0, n=k+t+3, d=2n-1-k, A=n+d, N=n-1. Ordered words x->x y^A x, c->c y^n x, y->x y^N c. Full bottom-minus-top Parikh offsets, actual zero-based occurrence indices and strict -L(bottom)<s<L(top) guards, with genuine reversal of types, offsets and indices. Inherited exact h=1/beta, alpha=beta-(n+2), rho=alpha-h, zeta=alpha-2h and z=alpha+h satisfy 0<h<1/5, 0<zeta<rho<1, 0<z<1. The stop/go reuses the same three-primary-source actual/every-overlap and non-unit review; no fresh literature reading, spectral transfer or tile-length independence assumption.\n\n### Derivation / reduction\nR5 has source shift zeta, incidence image (0,-2,t+3) and inflated shift G=t+1-2h. The full nine-kind table and exact integer guard reductions appear in docs/class-a-boundary-r5-carrier-2026-10-28.md. FF occurs only at t<=1; RF has i=max(1,t-1)..t+1; RR has i-j=t,t+1 and all j=1..N; RL has i=n+t,n+t+1 at j=n. Other kinds are disjoint. Counts are 2n+2 at t=0, otherwise 2n+3. Canonical synthesis streams O(n) actual strips/endpoints. Symbolic field/incidence identities, affine prefix updates and target-attainment parameter cones supplement the complete strict-guard proof; finite grids do not supply universal extrapolation.\n\nThe image is xx(0,-2,r), r=3,4; yx(-1,-2,r), r=3,4,5; yy(0,-2,r), r=2,3; yc(0,-2,r), r=2,3, with actual reversals. RR r=3/2 are existing R(B2h)/R(B2); RF r=5 is existing K. Their complete-star certificates are reused, not reclassified, and both orientations of their typed exit paths are replayed. B2 keeps its n=3 four-edge exit instead of an invalid uniform one-edge shortcut. R5's source exit remains RR(t+1,1)->R(B2h), then its old two-edge suffix to typed C. Uniform Y4 LAST/RUN(A+1,N)->R5 is preserved.\n\nIn the R5 registry, S41 has 30 classified nonterminal stars plus C, ten star gaps and ten exit gaps. Y4's image has 16 complete stars and all 18 exits; the last star gaps there are D5 and reversal. The old R3/D3 36-label image remains at 22 stars and 22 exits. R5's image has six stars/exits and twelve exit gaps. R5->R(B2h) escapes S41; K belongs to the chamber image at t>=2, but its uniform RF(k+1,0)->L leaves the image by c-coordinate 3. Neither candidate is closed.\n\n### Evidence and replay\nCanonical kernel kernel/psc/class_a_boundary_r5_children.mojo, native driver/regression, independent literal-word/integer-polynomial/Fraction oracle and dedicated .github/workflows/class-a-boundary-r5.yml. Locked Mojo 1.1.0.dev2026090805: 56 members / 112 oriented cells / 33,096 literal pairs / 2,448 strict children / 336 selected R5 path edges / 678 reused exit edges. Independent k=0..12,t=0..8: 117 members / 234 cells / 122,616 pairs / 6,760 strict children / 702 selected R5 path edges / 1,410 reused exit edges. Both attain all eighteen labels and check every accepted reversed edge. Native grids are k=0..7,t=0..6. The independent 512-refinement exact sign budget refuses on exhaustion; canonical machine arithmetic refuses overflow.\n\nFrom kernel/: pixi run --locked mojo run -I . tests/test_class_a_boundary_r5_children.mojo and matching class_a_boundary_r5_children.mojo driver. From root: python -m pytest -q tests/test_class_a_boundary_r5_children.py tests/test_class_a_boundary_y4_children.py tests/test_class_a_boundary_r4_children.py tests/test_class_a_boundary_b4_children.py tests/test_class_a_boundary_b3_children.py tests/test_class_a_boundary_r3_children.py. Compare python oracles/python/class_a_boundary_r5_children.py with archived probe.json. All 59 candidate/image native registry rows match independent per-label flags. Thirty-four scoped Python tests, all eighteen expected existing TLA outcomes, provenance and source/evidence SHA-256 checks pass locally. Receipts, complete inventory, source digests and parent status snapshot are archived under evidence/class-a-boundary-r5-2026-10-28/. Lean fails before compilation; no Lean pass, full-suite pass or hosted acceptance claimed.\n\nFresh conflict-repair replay: both R5 and B5 native regressions pass, all 41 scoped R5/B5/Y4/R4/B4/B3/R3 Python tests pass, provenance and both packets' original source/evidence checksums pass. New receipts are append-only under evidence/class-a-boundary-r5-reconciliation-2026-10-28/. Formal sources are unchanged; this repair claims no fresh Lean/TLA or hosted acceptance.\n\n### Negative controls\nAt t=1 nominal RF(t-1,0) is actual strict FIRST/FIRST x/x (0,-2,4), not K; at t=0 the negative ordinal is unavailable and zero is a different real FIRST. R5 shares D3's source offset, but their actual bottom y/c prefixes produce R(B2h)/P0 at RR(t+1,1). Preserve the actual edges and refuse copied types/offsets. Reject corrupt field identity, bad chambers/orientations/indices and overflow, disjoint actual pairs, wrong strict in-image targets of the same types, incomplete/duplicate stars, altered/truncated paths, unequal-type zero terminals and omitted/duplicate/corrupt inventory rows.\n\n### Non-claims / remaining gaps\nNo new companion exit, every-direct-child productivity, all-edge decreasing rank, closed carrier, all-source cyclic strict-zipper, plus/non-unit/internal-space transfer, target-aware BH, universal BH/#139, A1-prime/G1 or PSC conclusion. Twelve outgoing labels lack registered exits. Next complete-star gap is D5=(x,c,1,-1,0), Y4's uniform LAST/LAST child with an already certified direct typed C exit. Preserve 124 governed claims, 34 named Lean proofs, 325 source openings and every predecessor receipt. Keep this PR open pending predecessor integration and required exact-head gates.\n",
+    "title": "Class A minus boundary: classify complete R5 stars and reuse typed exits",
+    "base": "research/class-a-boundary-y4-2026-10-28",
+    "base_sha": "8291fc59144c6445013d493de516b8990ffbdeac",
+    "head": "research/class-a-boundary-r5-2026-10-28",
+    "head_sha": "4711576a09da2df29a5fbe26942b891a1db50395",
+    "head_repo_id": 1361945122,
+    "head_repo_full_name": "larsbx/pisot-substitution-conjecture-research",
+    "merge_commit_sha": "1f1cae102ee997733f42724adbaf883ceaae71db",
+    "user": {
+      "login": "larsbx",
+      "name": "larsbx",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/1158952?v=4",
+      "id": 1158952
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-10-28T22:47:53Z",
+    "updated_at": "2026-10-28T23:00:10Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 2,
+    "changed_files": 28,
+    "additions": 5116,
+    "deletions": 0,
+    "display_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/380",
+    "display_title": "Class A minus boundary: classify complete R5 stars and reuse typed exits"
+  },
+  "exact_head_workflows": {
+    "workflow_runs": [
+      {
+        "id": 40784173269,
+        "name": "Show your work policy",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 291,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784173269/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784173269/logs",
+        "workflow_id": 389589665
+      },
+      {
+        "id": 40784171967,
+        "name": "Class-D minus recurrent reduction",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 172,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171967/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171967/logs",
+        "workflow_id": 389742893
+      },
+      {
+        "id": 40784171999,
+        "name": "Scoped class-D assembly",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 163,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171999/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171999/logs",
+        "workflow_id": 391303683
+      },
+      {
+        "id": 40784172098,
+        "name": "Class-D plus positive-b chambers",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 159,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172098/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172098/logs",
+        "workflow_id": 389663784
+      },
+      {
+        "id": 40784172039,
+        "name": "Class-A run-index investigation",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 159,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172039/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172039/logs",
+        "workflow_id": 391441935
+      },
+      {
+        "id": 40784171989,
+        "name": "Gap-five A/C evidence",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 105,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171989/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171989/logs",
+        "workflow_id": 393948330
+      },
+      {
+        "id": 40784172041,
+        "name": "Class-A cover obstruction",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 157,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172041/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172041/logs",
+        "workflow_id": 391878312
+      },
+      {
+        "id": 40784171953,
+        "name": "Canonical Pisot polynomial kernels",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 1635,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171953/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171953/logs",
+        "workflow_id": 372303541
+      },
+      {
+        "id": 40784171891,
+        "name": "Target-aware BPA diagnostic",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 506,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171891/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171891/logs",
+        "workflow_id": 373275169
+      },
+      {
+        "id": 40784171927,
+        "name": "Boundary synchronization layer",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 1799,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171927/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171927/logs",
+        "workflow_id": 365028591
+      },
+      {
+        "id": 40784172076,
+        "name": "PSC class-A minus R5 complete stars",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 2,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172076/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172076/logs",
+        "workflow_id": 399985932
+      },
+      {
+        "id": 40784172052,
+        "name": "Class-D complete residual certificates",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 219,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172052/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172052/logs",
+        "workflow_id": 389504350
+      },
+      {
+        "id": 40784171920,
+        "name": "C4 degree2 three-state census",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 3186,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171920/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171920/logs",
+        "workflow_id": 354598308
+      },
+      {
+        "id": 40784171929,
+        "name": "Show your work policy",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "run_number": 290,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171929/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171929/logs",
+        "workflow_id": 389589665
+      },
+      {
+        "id": 40784171969,
+        "name": "C4 defect-degree census",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 3243,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171969/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784171969/logs",
+        "workflow_id": 354460282
+      },
+      {
+        "id": 40784172069,
+        "name": "Class-A uniform gap theorem",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 92,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172069/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172069/logs",
+        "workflow_id": 394533630
+      },
+      {
+        "id": 40784172057,
+        "name": "PSC research checks",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 3405,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172057/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40784172057/logs",
+        "workflow_id": 353526446
+      }
+    ]
+  },
+  "integration": "Based on reconciled #380 at 4711576a; queued/cancelled workflows are not acceptance. Integrate in dependency order after required exact-head gates."
+}
