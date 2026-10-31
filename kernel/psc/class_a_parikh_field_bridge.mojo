@@ -21,6 +21,12 @@ def class_a_parameters(k: Int, t: Int) raises -> List[Int]:
 def check_minus_class_a_field(field: PerronField3, n: Int, d: Int) raises:
     if n < 3 or d < 5:
         raise Error("invalid minus class-A n/d chamber")
+    # These inequalities are EXACTLY the image of k,t>=0 under
+    # n=k+t+3, d=k+2t+5. Checking only n>=3,d>=5 is insufficient.
+    var t = checked_sub(checked_sub(d,n),2)
+    var k = checked_sub(checked_sub(checked_mul(2,n),d),1)
+    if k < 0 or t < 0:
+        raise Error("n,d do not belong to the minus class-A integer chamber")
     if (field.chi0 != 2 or
         field.chi1 != checked_sub(checked_sub(n,d),1) or
         field.chi2 != checked_neg(checked_add(n,2))):
