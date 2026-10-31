@@ -19,12 +19,12 @@ The main method studies overlaps between substituted tiles. An overlap is called
 Several of the main implications are already available. The unresolved step is to show productivity of the overlaps reachable from a suitable initial swap seed:
 
 ```text
-primitive irreducible Pisot
-=> bounded discrepancy                                  [PROVED]
-=> finite seed-patch overlap graph                      [PROVED]
-=> one swap seed has only productive reachable overlaps [OPEN] issue #84
-=> coincidence density one / dense good set             [PROVED]
-=> pure discrete spectrum                               [IMPORTED theorem]
+Primitive, irreducible Pisot substitution
+    => bounded discrepancy                                     [PROVED]
+    => finite seed-patch overlap graph                         [PROVED]
+    => one swap seed has only productive reachable overlaps    [OPEN: issue #84]
+    => coincidence density one / dense good set                [PROVED]
+    => pure discrete spectrum                                 [IMPORTED theorem]
 ```
 
 The final step uses a published density-to-spectrum theorem whose hypotheses have been checked for this setting. The [proof ladder](docs/proof-ladder.md) and [state-of-program manuscript](manuscripts/PSC_balanced_pair_state_2026-09-13.tex) give the precise statements.
@@ -124,7 +124,7 @@ When both obstructions are eliminated, the completion theorem will connect them 
 
 The scope of each result matters. The standing assumptions are primitivity, nonzero determinant, irreducibility over the rationals, and the Pisot condition. A proof must not quietly assume unimodularity, independent tile lengths, injectivity, a uniform finite collar, or a Euclidean-only realization.
 
-- **Unique decodability:** repository-proved from full incidence rank / the defect theorem. UD is derived, not assumed.
+**Unique decodability:** repository-proved from full incidence rank when needed, rather than imposed separately.
 
 ## Reading the proofs and running the code
 

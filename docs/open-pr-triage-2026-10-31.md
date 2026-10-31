@@ -19,7 +19,7 @@ independent of the PRs.
 | check | cause on `main` | repair here |
 |---|---|---|
 | `complete-residual (plus)` (`class-d-positive-b-evidence.yml`) | Fit-first (#407) moved the replayed plus receipt from `boundary_lines= 73 finite_prefix_pip= 952` to `51 / 287`; the hosted replay 41066419210 and `evidence/class-d-closure-rebind-2026-10-30/` record the new line, but the workflow's `grep -Fx` still pinned the accepted one. Failing log: job 124433209307 at `f785232`, which prints exactly the 51/287 line. | The workflow pins the rebound receipt. |
-| `python-tests`, `exact-kernels` (`tests/test_markdown_links.py`) | The 2026-10-31 ledger line about the link test quotes `o['…'](pathlib.Path(...))` in an *inline* code span; the test skipped fenced blocks only. | The test is taken byte-for-byte from #437 (`e8cfada1`): inline code spans are skipped too, with a delimiter-run regression. |
+| `python-tests`, `exact-kernels` (`tests/test_markdown_links.py`) | The 2026-10-31 ledger line about the link test quotes `o['…'](pathlib.Path(...))` in an *inline* code span; the test skipped fenced blocks only. | Fixed by #437 (merged as `cafaad01`): inline code spans are skipped too; this branch carried the same bytes. |
 
 A third gate was red on `main` locally: the claim-governance `consistency`
 audit (`PYTHONPATH=tools python3 -m claim_governance.cli --root .`) passed at
@@ -27,7 +27,7 @@ audit (`PYTHONPATH=tools python3 -m claim_governance.cli --root .`) passed at
 (`2f841b9`, `d4d97db`) dropped the six `README.md` anchors that
 `claim_governance.toml` binds (the five `=> …` chain lines and
 `**Unique decodability:**`). The chain is restored in anchor form with its status
-labels, unchanged in content; the audit passes again. The same rewrite also dropped the
+labels; #437 (merged as `cafaad01`) made the same repair concurrently and its wording is kept. The audit passes again. The same rewrite also dropped the
 review-policy sentence `tests/test_review_policy.py` requires on every human
 surface (*Independent human review is a final validation gate, not a
 research-progress gate.*); it is restored with a link to the AGENTS.md rule.
