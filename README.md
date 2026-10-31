@@ -85,6 +85,68 @@ claim-status promotion follows from this documentation.
 
 ## Current mathematical state
 
+### October 30–31 class-A recovery and descendant frontier
+
+The [branch/conjugate audit](docs/branch-conjugate-audit-2026-10-30.md)
+(PR [#410](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/410))
+distinguished historical overlap proofs from results actually present on
+`main`. PR #366's older P3 implementation is superseded by merged
+[#372](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/372);
+#371's T/X/Y0 packet and #354's shorter U witness originally landed on
+superseded research branches, not on `main`. Recover only missing material,
+preserve their provenance, and identify states by **oriented five-tuples**
+`(top,bottom,dx,dc,dy)` rather than conflicting historical nicknames.
+
+**Merged into `main` at this snapshot:**
+
+- [#412](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/412)
+  selectively recovered #371's complete T/X/Y0 stars, selected Y0 exit,
+  endpoint guards and checksummed receipts without reviving #366's P3 kernel.
+  The T/X/Y0 chamber-wide outgoing image contains **42** oriented labels.
+- [#413](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/413)
+  added an [inspectable canonical frontier audit](docs/class-a-boundary-consolidated-frontier-2026-10-31.md):
+  the P3-family 37-label and T/X/Y0 42-label outgoing images intersect in
+  20 labels and have a **59-label union**. This is neither a forward-closed
+  carrier nor a census of all seed-reachable states. Its **34-label review
+  queue** is relative to the explicitly curated source registry, not a claim
+  that 34 states are globally unclassified.
+- [#414](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/414)
+  classified the complete six-label outgoing star of
+  `CY=(c,y,0,-2,2)` (with `2n+1` actual indexed children per
+  orientation), established its genuine Y0↔CY two-cycle, and gave a selected
+  **four-edge** typed-coincidence exit. See the
+  [CY carrier](docs/class-a-boundary-cy-carrier-2026-10-31.md).
+
+**Open recovery and descendant proofs — not yet `main` theorems:**
+
+| PR | Scoped proposed result | Integration status |
+| --- | --- | --- |
+| [#411](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/411) | Recover #354's four-edge aligned-seed→internal-coincidence witness, including the two-edge U tail, with actual ordered occurrences | Open; exact-head acceptance pending |
+| [#415](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/415) | For every actual first-choice child of CY, a **selected** typed-coincidence continuation; total depth ≤7 including the first edge, with piecewise symbolic transports and strict-overlap guards | Open; exact-head acceptance pending |
+| [#416](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/416) | The four indexed children of `CC=(c,c,0,-2,3)` and a selected three-edge coincidence exit. The Y0 LAST/LAST edge to this exact CC state is strict only when `t=0` | Open; exact-head acceptance pending |
+| [#417](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/417) | Selected coincidence continuations after **every** CC first choice, total depth ≤5 | Open; stacked on #416; acceptance pending |
+
+All of these family statements are restricted to the **minus class-A**
+normal form `k,t>=0`, `n=k+t+3`, `d=2n-1-k`; their root inequalities,
+word-index guards and orientation matter. Exact symbolic derivations and
+finite independent replays have separate evidentiary roles; specimen
+agreement alone is not a universal proof. A selected exit, or a path
+after every *first* choice, does not establish productivity under every
+later choice, forward closure of an overlap carrier, or coverage of every
+relevant cyclic strict-zipper seed. The recovered cycle with an exit
+also rules out any proposed rank decreasing strictly on **every** actual
+edge of that cycle.
+
+**No change to global status:** #84 seedwise productivity, #138 A1′,
+#139 universal BH, universal G1 and PSC remain open. New local proof
+packets require their own exact-head acceptance and independent-review
+status; README documentation does not promote any governed claim.
+The next proof obligation is to reconcile the remaining oriented
+descendants against the existing complete-star bank, then certify
+productive SCC/closed-carrier coverage rather than accumulating
+duplicate selected exits.
+
+
 ### October 22 class-D reconciliation
 
 PR #298 records accepted boundary hitting throughout the determinant-two
