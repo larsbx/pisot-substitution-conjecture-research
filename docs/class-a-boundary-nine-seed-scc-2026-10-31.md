@@ -79,6 +79,33 @@ none/S1/S1 and all their vertices were productive.
 They are exploratory checks outside the locked
 16-specimen CI matrix, not universal evidence.
 
+## The exceptional seed is already E6 in the research stack
+
+The surviving possible extra seed
+**S1=(x,x,0,1,0) is exactly E6** as classified in
+research **PR #382**, not a newly discovered source.
+That PR contains the full nine-kind source star and selected
+typed-coincidence tails after **every E6 first choice**,
+with bound <=9 from E6. This evidence remains
+**research-only**: #382 is open and stacked on its own
+unaccepted predecessors; the SCC census does not accept
+or transplant its proof files.
+
+The present complete finite graphs independently recover
+E6/S1's **2d-1 indexed outgoing children** at each member,
+with exactly **eight distinct typed targets per orientation**
+and sixteen distinct labels in the union of both real reversals.
+The multiplicity and eight-label cardinality are explicit
+negative controls against confusing indexed edges with the
+chamber-wide oriented union.
+
+This changes the proposed interface strategy: E6 has a
+previously researched **every-first-choice selected productivity**
+certificate. That fact is weaker than **each E6 child belongs
+to Reach(X)**, which is the membership required by the
+one-state *closure* reduction below. Selected productivity
+and forward-X containment must remain separate flags.
+
 ## A precise one-state graph-reduction lemma
 
 For any directed graph, fix a set of seeds S, a hub X
