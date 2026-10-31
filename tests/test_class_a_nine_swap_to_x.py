@@ -1,10 +1,16 @@
 """All nine literal swapped-patch seed exits; no all-descendant promotion."""
 import pytest
 from collections import deque
-from class_a_nine_swap_to_x import (
-    symbolic_certificate,literal_probe,swapped_seed_candidates,
-    certified_transport,strict,nonnegative,Aff,SEEDS,paths,Geometry,
-    X,S1,N,Q,C,reverse)
+from pathlib import Path
+import runpy
+source=runpy.run_path(str(Path(__file__).resolve().parents[1]/
+    'oracles/python/class_a_nine_swap_to_x.py'))
+(symbolic_certificate,literal_probe,swapped_seed_candidates,
+ certified_transport,strict,nonnegative,Aff,SEEDS,paths,Geometry,
+ X,S1,N,Q,C,reverse)=(source[name] for name in (
+    'symbolic_certificate','literal_probe','swapped_seed_candidates',
+    'certified_transport','strict','nonnegative','Aff','SEEDS','paths',
+    'Geometry','X','S1','N','Q','C','reverse'))
 
 def test_nine_seed_uniform_affine_paths_and_strict_margin_certificates():
     r=symbolic_certificate()
