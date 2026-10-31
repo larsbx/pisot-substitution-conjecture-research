@@ -1,555 +1,177 @@
-# Pisot Substitution Conjecture Research Program
+# Pisot Substitution Conjecture: a research and evidence map
 
-Automated research workspace for the Pisot Substitution Conjecture (PSC), with emphasis on reproducible experiments, conjecture tracking, manuscript hygiene, theorem-audit automation, and exact finite certificates.
+> **Status: OPEN.** This repository investigates the Pisot Substitution Conjecture (PSC) for primitive, irreducible Pisot substitutions, including non-unimodular cases. It contains proved reductions, imported theorems, exact finite-domain certificates, results for infinite families, and unfinished universal arguments. **No general proof of PSC is claimed.**
+>
+> **For coding and research agents:** use [README.llm.txt](README.llm.txt), then [AGENTS.md](AGENTS.md). The human and agent guides describe the same mathematical status from different perspectives; neither overrides the governed claim ledger.
 
-For a status-safe collaborator briefing, start with [`docs/project-onboarding-2026-10-23.md`](docs/project-onboarding-2026-10-23.md). It separates live theorem status from historical v6/v9 proof material, finite/family evidence, Tier-2 Plastic-A work, and the Penrose interface programme.
+## 1. The question and why overlaps matter
 
-For the **current narrowed targets** of #84, #138 and #139, and the ranked direct lines of attack, read
-[`docs/direct-attack-frontier-2026-10-23.md`](docs/direct-attack-frontier-2026-10-23.md).
+A substitution replaces each letter of a finite alphabet by a nonempty word. Repeated substitution creates structured symbolic and tiling systems. The Pisot condition constrains the eigenvalues of the substitution's incidence matrix: its Perron eigenvalue is greater than one, while its other algebraic conjugates have modulus less than one. The conjecture asks whether the associated dynamical system has **pure discrete spectrum (PDS)** under the standing primitive, irreducible Pisot hypotheses.
 
-Repository structure and authority planes are declared in `ESTATE.toml`
-(estate template `estate-repository-v2`, as in `larsbx/langlands-lab`); see
-`ARCHITECTURE.md`.
+The project's strategy is to turn that spectral question into a question about **overlaps** of substituted tiles. An overlap is *productive* if some sequence of genuine substitution-child occurrences reaches a coincidence: matching tile types at zero displacement. An overlap path must remember which **actual occurrences** of letters were selected, not merely the resulting coordinate vector.
 
-## Implementation default
+Two ideas organize the project:
 
-**Mojo is the canonical implementation language for executable research code in this repository.** New algorithms, exact finite-state machinery, census code, and performance-sensitive proof instrumentation should land in [`kernel/`](kernel/) first and use Mojo-native data/layout optimizations.
+- **Reachability:** show that all overlaps relevant to a suitable swap seed eventually *can* reach coincidence. This is an existential descendant property, not a requirement that every infinite sequence of choices terminates.
+- **Obstruction:** if productivity fails, a finite child-closed nonproductive configuration must survive. The program reduces that configuration to an aligned branch or a cyclic strict-zipper branch.
 
-Python under [`reference/psc_research/`](reference/psc_research/) is a secondary reference/oracle and prototyping layer. Once a Mojo implementation exists, the Mojo module is the executable source of truth. See `AGENTS.md` for the detailed policy.
+For the intended theorem, "primitive irreducible Pisot" is not shorthand for "unimodular"; the determinant need not be ±1. Precise assumptions and prohibited shortcuts appear under [Generality and proof discipline](#6-generality-and-proof-discipline).
 
-The generated [mathematical-object catalogue](docs/mathematical-object-catalogue.md)
-provides a browsable taxonomy with explicit canonical-Mojo and independent-oracle
-links. Its single machine-readable source is `docs/catalogues/mathematical_objects.toml`.
+## 2. The shortest route to the conjecture
 
-Censuses, catalogues and the taxonomies of the objects they classify are built
-on one shared library (`kernel/psc/corpus.mojo`, `histogram.mojo`, `carrier.mojo`,
-`symmetry.mojo` and the defect kernels), so a driver is a survey over the corpus
-rather than a private copy of it. `kernel/pixi.toml` has one task per driver and
-`pixi run test` loops over every `kernel/tests/test_*.mojo`. See
-`docs/mojo-census-library-2026-09-16.md`, and
-`docs/mojo-lookup-caches-2026-09-17.md` for the exact-arithmetic results the
-drivers now look up instead of recomputing.
+The strongest organizing fact is a proved-and-imported implication chain with **one outstanding productivity premise**:
 
-## Primary theorem target
+```text
+Primitive irreducible Pisot substitution
+    |
+    v
+Bounded discrepancy                               REPOSITORY-PROVED
+    |
+    v
+Finite exact seed-patch overlap graph             REPOSITORY-PROVED
+    |
+    v
+A suitable swap seed has only productive
+reachable overlaps                                OPEN (#84)
+    |
+    v
+Coincidence density one / dense good set          REPOSITORY-PROVED
+    |
+    v
+Pure discrete spectrum                            IMPORTED theorem
+```
 
-The project is now centered on the manuscript's
-**Two-obstruction completion theorem** (`thm:two-obstruction-completion`).
-For ternary PIP substitutions, the direct proof of PSC has only two universal
-mathematical obligations left:
+Here a *swap seed* is one of the finite initial overlap configurations used by the repository's seed theorem. The sufficiency route needs **one suitable seed per substitution**, not a proof for every possible overlap state. The stronger every-state formulation is useful in its own right but should not be quietly substituted for the smaller target.
 
-1. **#138 / A1′:** the residual fixed-letter hub-word pair is eventually
-   coincident. The completion theorem needs this one-sided statement; reversal
-   is not an additional premise;
-2. **#139 / BH:** every cyclic strict-zipper overlap has an
-   occurrence-compatible descendant of offset zero.
+The [two-obstruction completion theorem](docs/direct-attack-frontier-2026-10-23.md) gives a more concrete sufficient way to discharge the open step:
 
-Once those two statements are proved at full non-unit generality, #84 closes
-and the already-established density-to-PDS chain gives the general theorem.
-The older G1b-2, SCC-Producer/K2 and realization programmes remain useful
-secondary structure, but they are not prerequisites of this direct route.
-
-This is a strong reduction, not a declaration that the two universal lemmas
-have already been proved. Finite and family certificates remain scoped.
-
-**2026-10-23 tracker reconciliation:** [issue #139](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/139)
-was closed as `completed` on 2026-10-23 at 10:09:55 UTC although its universal
-BH acceptance criterion was not established; it has been **reopened** to match
-the live mathematical status. Scoped class-D and class-A/C certificates are
-valuable partial results but do not discharge BH for every cyclic
-seed-reachable strict-zipper overlap in the ternary PIP regime. #84, #138,
-universal BH, G1, and PSC remain open. See
-[issue-139 reconciliation](docs/issue-139-tracker-mathematics-reconciliation-2026-10-23.md).
-No theorem, governed claim, or evidence status is changed by reopening.
-
-**G1/PDS closure distinction (2026-10-04, reaffirmed 2026-10-23):**
-the unconditional **implication** `PDS ⇒ G1` (`PDSImpliesRepoG1`,
-Theorem S) is **repository-proved**, as is `PDS ⇒ termination with
-coincidence from every swap seed` (`PDSImpliesSeedwiseTermination`).
-Their proof records are complete and project-accepted for progression,
-with independent human validation outstanding. **Universal G1 itself is
-not yet proved without assuming PDS**, because universal PDS/PSC is also
-open; #44 is an independent G1 route, not a deficiency in the already-proved
-necessity direction. See [G1/PDS status reconciliation](docs/g1-pds-necessity-status-2026-10-23.md). This is a clarification of
-established repository statuses, not a new closure.
-
-**Historical #138 closure:** [issue #138](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/138)
-was closed on **2026-09-26 06:15:09 UTC**, then **reopened on
-2026-10-01 20:50:15 UTC**; it was **already open** at the October 23 audit.
-The original two-sided strong-coincidence target is stronger than the current
-completion theorem needs. The remaining load-bearing theorem is **one-sided
-A1′**, eventual coincidence of the residual first-letter-fixed bad hub pair;
-no separate reversed/suffix lemma is a third premise. See
-[issue-138 historical reconciliation](docs/issue-138-tracker-history-2026-10-23.md).
-The historical closure had no accepted theorem-bearing artifact, and no
-claim-status promotion follows from this documentation.
-
-## Current mathematical state
-
-### October 30–31 class-A recovery and descendant frontier
-
-The [branch/conjugate audit](docs/branch-conjugate-audit-2026-10-30.md)
-(PR [#410](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/410))
-distinguished historical overlap proofs from results actually present on
-`main`. PR #366's older P3 implementation is superseded by merged
-[#372](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/372);
-#371's T/X/Y0 packet and #354's shorter U witness originally landed on
-superseded research branches, not on `main`. Recover only missing material,
-preserve their provenance, and identify states by **oriented five-tuples**
-`(top,bottom,dx,dc,dy)` rather than conflicting historical nicknames.
-
-**Merged into `main` at this snapshot:**
-
-- [#412](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/412)
-  selectively recovered #371's complete T/X/Y0 stars, selected Y0 exit,
-  endpoint guards and checksummed receipts without reviving #366's P3 kernel.
-  The T/X/Y0 chamber-wide outgoing image contains **42** oriented labels.
-- [#413](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/413)
-  added an [inspectable canonical frontier audit](docs/class-a-boundary-consolidated-frontier-2026-10-31.md):
-  the P3-family 37-label and T/X/Y0 42-label outgoing images intersect in
-  20 labels and have a **59-label union**. This is neither a forward-closed
-  carrier nor a census of all seed-reachable states. Its **34-label review
-  queue** is relative to the explicitly curated source registry, not a claim
-  that 34 states are globally unclassified.
-- [#414](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/414)
-  classified the complete six-label outgoing star of
-  `CY=(c,y,0,-2,2)` (with `2n+1` actual indexed children per
-  orientation), established its genuine Y0↔CY two-cycle, and gave a selected
-  **four-edge** typed-coincidence exit. See the
-  [CY carrier](docs/class-a-boundary-cy-carrier-2026-10-31.md).
-
-**Open recovery and descendant proofs — not yet `main` theorems:**
-
-| PR | Scoped proposed result | Integration status |
+| Open obligation | Meaning | Why it matters |
 | --- | --- | --- |
-| [#411](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/411) | Recover #354's four-edge aligned-seed→internal-coincidence witness, including the two-edge U tail, with actual ordered occurrences | Open; exact-head acceptance pending |
-| [#415](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/415) | For every actual first-choice child of CY, a **selected** typed-coincidence continuation; total depth ≤7 including the first edge, with piecewise symbolic transports and strict-overlap guards | Open; exact-head acceptance pending |
-| [#416](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/416) | The four indexed children of `CC=(c,c,0,-2,3)` and a selected three-edge coincidence exit. The Y0 LAST/LAST edge to this exact CC state is strict only when `t=0` | Open; exact-head acceptance pending |
-| [#417](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/417) | Selected coincidence continuations after **every** CC first choice, total depth ≤5 | Open; stacked on #416; acceptance pending |
+| **A1′ — aligned obstruction** ([#138](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/138)) | The residual first-letter-fixed hub pair eventually coincides, in the required **one-sided** formulation. | Removes the aligned obstruction. |
+| **BH — boundary hitting** ([#139](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/139)) | Every relevant cyclic, seed-reachable, strict-zipper overlap has an **actual occurrence-indexed** descendant of offset zero. | Removes the strict-zipper obstruction; a zero-offset hit need not itself have matching letters. |
 
-All of these family statements are restricted to the **minus class-A**
-normal form `k,t>=0`, `n=k+t+3`, `d=2n-1-k`; their root inequalities,
-word-index guards and orientation matter. Exact symbolic derivations and
-finite independent replays have separate evidentiary roles; specimen
-agreement alone is not a universal proof. A selected exit, or a path
-after every *first* choice, does not establish productivity under every
-later choice, forward closure of an overlap carrier, or coverage of every
-relevant cyclic strict-zipper seed. The recovered cycle with an exit
-also rules out any proposed rank decreasing strictly on **every** actual
-edge of that cycle.
+Their universal completion gives the missing productivity step ([#84](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/84)) and hence PDS through the preceding chain. **Neither universal A1′ nor universal BH is established.** A result for a family of substitutions cannot close these quantifiers without a proof that the families exhaust the standing regime.
 
-**No change to global status:** #84 seedwise productivity, #138 A1′,
-#139 universal BH, universal G1 and PSC remain open. New local proof
-packets require their own exact-head acceptance and independent-review
-status; README documentation does not promote any governed claim.
-The next proof obligation is to reconcile the remaining oriented
-descendants against the existing complete-star bank, then certify
-productive SCC/closed-carrier coverage rather than accumulating
-duplicate selected exits.
+The distinction between PDS and finite balanced-pair automata also matters. The repository proves the **implications** PDS ⇒ G1 and PDS ⇒ every-seed termination with coincidence, but universal G1 is not known without its premise. G1 is a stronger structural route, not a prerequisite for the shortest sufficiency chain. See [G1/PDS status](docs/g1-pds-necessity-status-2026-10-23.md) and the [proof ladder](docs/proof-ladder.md).
 
+## 3. Evidence, ranked by its relevance to PSC
 
-### October 22 class-D reconciliation
+Evidence is ranked here by **logical role**, not by when it was produced or by the volume of computation.
 
-PR #298 records accepted boundary hitting throughout the determinant-two
-class-D normal form. The [scoped G1 corollary](docs/class-d-g1-corollary-2026-10-22.md)
-derives finite BPA there from the existing half-coincidence implication.
-Both full residual `b=0` branches have uniform hitting depths (minus four,
-plus six), despite the absence of a uniform spectral contraction margin.
-Their explicit balanced-pair length bounds depend on the parameter.
-Older positive-`b` and CI-pending statements below are historical. General
-#138/#139/#84, G1 and PSC remain open; independent human review is pending.
+### A. The load-bearing general results
 
-### Review policy — non-blocking until closure
+The foundations closest to a general proof are the repository-proved bounded-discrepancy theorem, finite seed-overlap graph, obstruction normal form, and coincidence-density implication, together with the audited imported density-to-PDS theorem. These justify the reduction in `2. The [onboarding/source firewall](docs/project-onboarding-2026-10-23.md), [claim/source map](docs/claim-status-and-source-map-2026-09-13.md), [proof ladder](docs/proof-ladder.md) and [state-of-program manuscript](manuscripts/PSC_balanced_pair_state_2026-09-13.tex) identify their hypotheses and evidence.
 
-**Independent human review is a final validation gate, not a research-progress gate.**
-A result may remain labelled `human review pending` while downstream proof work
-continues from its repository status. Pending independent review does **not**
-block research progress, provisional dependency use, or assembly of a complete
-closure candidate. It is non-blocking validation debt.
-
-As of 2026-10-19, mechanically sufficient results at their exact recorded
-scope are **project-accepted for progression**: they may be load-bearing when
-the proof/certificate is complete, the hypotheses are preserved, and the
-required exact replay/CI receipts are present. This is the repository's
-implicit project-approval convention; it does **not** assert that an
-independent human review occurred and it does not promote finite or scoped
-results beyond their quantified domains.
-
-Once a complete closure candidate is assembled, independent human review is a
-final validation phase for the whole chain. Until that review occurs, status
-surfaces must remain literal: do not call a result independently reviewed when
-it is not, and do not promote an open mathematical premise merely because the
-project is allowed to reason provisionally from an unreviewed repository proof.
-The machine-readable source of this rule is
-`claim_governance.toml [review_policy]`.
-
-Start here:
-
-1. `docs/research-roadmap-2026-09-21.md` — live completion roadmap, including the #138 aligned branch, #139 strict-zipper branch, Level 2, hypothesis firewall, and prioritized closure criteria.
-2. `docs/p1b-strict-zipper-literature-gate-2026-09-21.md` — completed #139 transfer audit and exact open adelic periodic-offset hitting obligation.
-3. `docs/current-proof-architecture-2026-09-14.md` — canonical theorem architecture.
-4. `docs/completion-ledger-2026-10-26.md` — weekly snapshot at `main@4eb0427d`: scoped class-D G1, class-A/C gap certificates, the #340/#331 corrections, and the red Theorem E line gate. The previous snapshot `docs/completion-ledger-2026-10-16.md` (`main@b378392`, reconciled at `main@e062e330`) is kept as history.
-5. `docs/claim-status-and-source-map-2026-09-13.md` — authoritative status/source taxonomy, refreshed 2026-10-26 at `main@4eb0427d`.
-6. `docs/tier2-bridge-salvage-2026-09-23.md` — research-taxonomy note separating termination-style Descent Bridges from recurrent arithmetic Growth Bridges; moves no theorem status.
-7. `docs/conjecture-ledger.md` and `docs/proof-ladder.md` — live prose dependency views.
-8. `manuscripts/PSC_balanced_pair_state_2026-09-13.tex` — publication-form state-of-program exposition.
-
-### Headline: one open premise on the shortest PDS route
-
-The shortest current sufficiency chain is
+The obstruction normal form uses the exact child relation
 
 ```text
-primitive irreducible Pisot
-=> bounded discrepancy                                  [PROVED]
-=> finite seed-patch overlap graph                      [PROVED]
-=> one swap seed has only productive reachable overlaps [OPEN]
-=> coincidence density one / dense good set             [PROVED]
-=> pure discrete spectrum                               [IMPORTED theorem]
+new_offset = incidence_matrix * old_offset
+             + Parikh(bottom proper prefix)
+             - Parikh(top proper prefix)
 ```
 
-The only open premise on this route is **seedwise overlap productivity (Open Problem 5.35, issue #84)**. Manuscript Theorem 5.38 therefore no longer requires finite BPA / G1.
+together with true letter types and strict overlap geometry. A cycle of abstract affine labels alone is **not** a symbolic coincidence certificate.
 
-### October 16 status — imported scope and sharper open obligations
+### B. Universal statements proved only in structured families
 
-- **Imported and scoped:** the Sirvent–Solomyak flow-to-symbolic transfer now
-  makes the completed box certificates symbolic PDS certificates too. The
-  imported Barge class theorem plus the repository detector proves symbolic
-  PDS for its exact class (1,248 of the 4,554 standing-corpus specimens have a
-  witness), and the imported Brun-composite corollary covers its declared
-  family. None extends to arbitrary PIP substitutions.
-- **Conditional/reductive progress:** a complete box common-boundary depth
-  gives all-seed G1 with integer bound `2 L^(K+2)`. For residual class D,
-  merged PR #277 certifies both infinite `b=0` boundary lines; the exact
-  remaining target is the two positive-`b` interiors
-  `s=±1, a>=0, b>=1`. The universal depth premise and those two interiors
-  remain open.
-- **Audited stops:** the radius-8 plateau inference is retired by an exact
-  radius-10 witness; projected vector paths require occurrence replay; and the
-  audited Nakaishi general-proof route has unresolved first-entry, radius, and
-  integer-offset transport defects. A recurrent path is not a child-closed bad
-  SCC.
-- **Provenance limit:** open PRs, issue plans, computations, and unaccepted
-  preprints are not theorem-level closure. No authoritative accepted proof of
-  general PSC is present on `main`; #84, #138, #139, formal productivity and
-  G1 remain open.
+These results settle infinite subclasses and provide candidate mechanisms for the still-open universal A1′/BH steps.
 
-### October 9 scoped advances — no universal closure
+- **Class D:** boundary hitting is recorded for the entire PIP determinant-two class-D normal form, with scoped finite-BPA consequences. See [class-D assembly](docs/class-d-assembly-audit-2026-10-21.md) and [G1 corollary](docs/class-d-g1-corollary-2026-10-22.md).
+- **Aligned A1′ and other determinant-two families:** the catch-up-free classification proves large sectors; a residual non-crossing part of Theorem K's family F remains an explicit open frontier. See the [direct attack map](docs/direct-attack-frontier-2026-10-23.md).
+- **Classes A, B and C:** exact boundary-hitting certificates cover many lines, wedges and parameter regions. Remaining A/C regimes and the class-B top layer cannot be declared closed by accumulating more bounded tables. The program needs a genuinely uniform covering argument. The [run-index analysis](docs/p1b-class-a-run-index-2026-10-21.md) also rules out a parameter-independent class-A hitting-depth bound.
 
-- **Finite-domain theorem:** Theorem Ω's complete box-automaton certificate
-  proves PDS on exactly 145,806 ternary PIP substitutions, the union of the
-  image-length-at-most-4 and total-image-length-at-most-8 domains. Its
-  sufficiency proof uses the explicit overlap-coincidence and Meyer-property
-  imports; it is no longer conditional on Proposition V(2) or Theorem B.
-- **Computer-assisted family theorems, project-accepted for progression; independent human validation outstanding:** Theorems L,
-  L′ and L″ establish boundary hitting on 47 one-parameter lines in the
-  catch-up-free determinant-two classification. Theorem W establishes it on
-  two-parameter class-D wedges, including every PIP class-D member with
-  `r >= q - 1`.
-- **Still open:** these bounded-domain and structured-family results do not
-  close #84, the universal aligned branch #138, the universal strict-zipper
-  branch #139, formal productivity, G1, or general PSC. No accepted general
-  proof with immutable provenance is present on `main`.
+**A particularly useful local frontier:** in the minus class-A normal form (`4), complete stars, real two-cycles, selected coincidence exits and some *every-first-choice* exits can be checked symbolically. They make the obstruction graph more explicit, but still do **not** certify every relevant cyclic strict-zipper state.
 
-### Finiteness is now tied to the conjecture, not to the method
+### C. Exact finite-domain theorems
 
-Three results of 2026-10-02/04 changed the shape of the programme. They add no
-proof of PSC and move no open premise, but they settle how finiteness relates
-to everything else.
+[Theorem Ω's audit](docs/audit-theorem-omega-2026-10-08.md) records a complete box-automaton PDS certificate on **145,806** ternary PIP substitutions in the declared bounded union (images of length at most four, or total image length at most eight). Its conclusion on that **finite domain** uses the exact overlap/Meyer and flow-to-symbolic imports.
 
-1. **G1 is a necessary condition for PDS, not an artefact of the
-   balanced-pair method.** Pure discrete spectrum implies finite `B_sigma`
-   (manuscript Proposition `prop:PDS-implies-G1`, ledger `PDSImpliesRepoG1`,
-   proved by the Theorem S route; *internally/adversarially audited 2026-10-04,
-   project-accepted for progression; independent human validation outstanding*). So the conditional main theorem (`thm:main-conditional`,
-   G1 plus SCC Producer gives PDS) is not merely one sufficient route among
-   possible others: any proof of PSC makes G1 true as well, and a substitution
-   with an infinite `B_sigma` would be a counterexample to PSC.
-2. **Former Open Problem 4.24 is answered in full.** PDS implies termination
-   with coincidence from **every** seed `(ab,ba)`, legal factor or not
-   (manuscript Theorem `thm:seedwise`, ledger `PDSImpliesSeedwiseTermination`,
-   using the imported `StrongCoincidenceFromPDS`). The repository's all-seed
-   graph is therefore covered, not just one convenient seed.
-3. **Finiteness needs only half of the obstruction problem.** G1 now has three
-   alternative conditional routes — G1b-2 renewal finiteness, all-seed overlap
-   productivity (Proposition 5.46), or all-seed strict-zipper exclusion alone
-   (Proposition 5.47) — each still carrying one open premise. Because the
-   half-coincidence route needs only a common vertex rather than a
-   coincidence, **G1 requires only the strict-zipper branch (#139); the
-   strong-coincidence branch (#138) is needed for productivity and PDS, not
-   for finiteness.**
+Finite-domain theorems settle every specimen in their *specified* finite sets. They cannot be extrapolated to arbitrary substitution lengths without an additional completeness theorem.
 
-Both new routes are the mechanism of Sirvent–Solomyak (2002) Theorem 5.6,
-transferred to the repository's possibly illegal swap seeds with an explicit
-bound; the imports behind Theorem S assume neither unimodularity nor
-irreducibility. See `docs/bpa-termination-by-overlap-depth-2026-10-02.md`,
-`docs/coincidence-rank-imports-literature-gate-2026-10-04.md`,
-`docs/side-notes-ledger.md` §7 for the review record, and
-`docs/audit-2026-10-04.md` §B for an independent re-derivation.
+### D. Independent experimental checks and negative controls
 
-Keep the two productivity hypotheses separate. Theorem 5.38 needs only `OP_seed`: every overlap reachable from one selected swap seed is productive. Manuscript Open Problem 5.35 states the stronger `OP_all`: every vertex of the union overlap graph is productive. Proposition 5.39(iii), the all-pairs strong-coincidence consequence, the every-vertex hitting formulation, and the unimodular equivalence with PDS apply to `OP_all`, not to `OP_seed`. No one-seed-to-all-vertices implication is claimed. See `docs/audit-2026-09-20.md` §C. *Correction 2026-10-08:* one does hold through pure discrete spectrum, at the review status of the October 4 chain: `OP_seed` for one seed gives PDS (Theorem 5.38), and PDS gives productivity of every potential overlap (Corollary FP″). Theorem SC of `docs/p1-seed-strength-2026-10-08.md` records the equivalence. The two hypotheses still differ as proof targets, but not in truth.
+The standing **4,554-member** short-image corpus has exact seed-patch overlap graphs for all specimens; the recorded census reports **no nonproductive overlap** in that corpus, with largest graph 2,640 vertices and maximum first-coincidence depth 18. A broader total-length-≤10 census records the two-sided strong-coincidence test on **408,798** specimens. These observations support conjecture formation and regression, **not** universal assertions.
 
-The current strict-zipper attack retains actual ordered child occurrences and
-certifies their exact affine recurrence `w'=Mw+q-p`. A productive
-determinant-two regression has a six-edge zero-shift-free affine cycle, so the
-next universal step is explicitly a child-closure plus
-recognizability/full-internal-space theorem, not a bare cycle exclusion.
+Negative results constrain proof design. Exact productive cycles rule out arguments requiring a rank that decreases on every edge. Affine-state equality does not guarantee occurrence-compatible symbolic pumping. Finite-radius separation, rank deficiency, and magnitude-only contraction arguments have documented counterexamples or insufficiencies. Consult the [retired-route audit](docs/direct-attack-frontier-2026-10-23.md) and [side-notes ledger](docs/side-notes-ledger.md) before reopening such approaches.
 
-This does **not** mean the stronger structural problems are solved:
+## 4. A worked example: what the class-A progress actually proves
 
-- **G1b-2 renewal finiteness / finite BPA (G1)** remains open (issue #44), but is now a parallel stronger theorem rather than a prerequisite of Theorem 5.38. G1 also follows from all-seed overlap productivity by the overlap-depth route, and from all-seed strict-zipper exclusion alone by the half-coincidence route (`docs/bpa-termination-by-overlap-depth-2026-10-02.md`).
-- **Concentration (`K2=0`)** and **general wedge productivity (`K2!=0`)** remain open on the finite-BPA/SCC route (issue #43 covers the concentration branch).
-- **SCC Producer** remains open generally.
-- **Realization / coincidence-rank** remains an audited open bridge with G0–G6 obligations.
-- **PSC remains open.**
+In one **minus class-A** family, with integers `k,t ≥ 0`,
 
-### Established primary-route inputs
+```text
+n = k + t + 3
+d = 2n - 1 - k
+A = n + d
+x -> x y^A x
+c -> c y^n x
+y -> x y^(n-1) c
+```
 
-- **Unique decodability:** repository-proved from full incidence rank / the defect theorem. UD is derived, not assumed.
-- **G1b-1 bounded discrepancy:** independently reconstructed and proved in PR #69; uses primitivity + Pisot spectrum, not unimodularity or UD.
-- **Finite seed-patch overlap graph:** repository-proved in PR #72 from bounded discrepancy, with an explicit finite coordinate bound and no G1 assumption.
-- **Full-rank bad-set constraint:** PR #76 proves that a nonempty child-closed noncoincidence overlap set has full rational intersection-vector rank and that its child-count matrix inherits the Galois spectrum of `M`. A bad set is algebraically rich, not rank-deficient.
-- **Coincidence density:** repository Lemma 5.36 identifies overlap productivity with coincidence density one / density of the eventual-coincidence good set.
-- **Density to PDS:** Barge–Štimac–Williams is imported with exact hypotheses audited in PR #77 / manuscript Imported Theorem 5.37.
-- **Endpoint-aligned structure:** PR #82 identifies offset-zero/right-aligned overlaps with prefix/suffix strong coincidence and proves the exact prefix-Parikh boundary-hitting criterion.
-- **Obstruction normal form in the manuscript:** Propositions 5.43–5.44 and Lemma 5.45 state and prove the closed irreducible obstruction, the aligned-versus-strict-zipper dichotomy (with first-/last-letter closure of the aligned pairs), and the ordered cycle equation with its purely periodic offset expansion.
-- **Contracting lower bound:** PR #87 proves that a boundary hit at level `m` forces `|ς(t)| ≤ C_ς Σ_{s≤m} |ς(β)|^{-s}` for every contracting embedding (Proposition 5.42, decided exactly in `Q(β)`); on the corpus this lower bound is at most 8 while the hitting depth reaches 17, a gap of up to 14 inflations that this magnitude bound does not explain (the gap includes the slack of the bound; no further attribution is drawn).
-- **Ordered affine/context boundary:** ordered occurrences satisfy the exact affine recurrence, but the determinant-two calibration reaches one affine child state through unequal one-step paired prefix-suffix addresses. Affine equality is therefore not a symbolic pump-deletion criterion. The radius-`m` collar (`docs/p1-overlap-collar-2026-09-16.md`) is exact: on the determinant-two graph one letter of context on each side resolves one-step ancestry, while 120 corpus specimens exhibit the precisely classified proper-power collapse. The seed-relative multiple-edge accounting is now proved (`docs/p1-overlap-seed-growth-bridge-2026-09-17.md`): occurrence-labelled paths count realized residual overlaps per inherited seed period, including repeated child types, and periodic collapse does not invalidate the forward update. The remaining bridge is the rigidity step excluding full-growth, child-closed, nonproductive realized occurrences; generic Perron growth and bounded-context equality do not do this.
+An oriented overlap is written `(top_letter, bottom_letter, Δx, Δc, Δy)`. The last three entries are **bottom-minus-top Parikh offsets**. Reversal swaps the two letters and negates all three offsets. Old nicknames such as T, Q or V are never a safe substitute for the complete five-tuple.
 
-### Current theorem target
+The following snapshots illustrate increasing proof strength:
 
-Issue #84 is the primary completion issue. The preferred attack is to assume a **minimal finite reachable child-closed nonproductive overlap set** and combine:
-
-- full rational rank;
-- inherited child-count spectrum;
-- ordered exact descendant offsets;
-- prefix-Parikh boundary avoidance;
-- Pisot contraction;
-
-until a boundary hit / coincidence or an impossible finite configuration is forced.
-
-Proving all seeds or every overlap vertex is stronger than necessary; one periodic swap seed built from distinct tile types per substitution suffices for Theorem 5.38. No substitution-language legality assumption is used.
-
-### Exact finite evidence
-
-On the exact 4,554-member ternary PIP short-image corpus:
-
-- maximum reachable discrepancy: `14`;
-- a reachable balanced-pair state has length `48,020`;
-- seed-patch overlap graphs built / capped / failed: `4,554 / 0 / 0`;
-- total overlap vertices: `1,118,850`;
-- largest overlap graph: `2,640` vertices;
-- specimens with a nonproductive overlap: `0`;
-- maximum first-coincidence depth: `18`;
-- maximum first left-aligned depth: `17`;
-- maximum prefix/suffix strong-coincidence depth: `15`;
-- contracting lower bound on the hitting level (Proposition 5.42): at most `8`, excess of the hitting depth over it at most `14`;
-- every specimen satisfies the tested two-sided strong-coincidence condition.
-
-The degree-two and degree-three fail-closed carrier certificates also have zero survivors in their exact stated domains. These are finite-domain theorems/evidence according to their individual completeness contracts; none proves the general PSC.
-
-On the broader class of all 24,486 ternary primitive irreducible Pisot
-substitutions with total image length at most 8, the deterministic separation
-sweep is also complete at its declared caps:
-
-- 23,634 specimens have a decided finite separation radius: `2,264` at radius
-  `1`, `13,688` at `2`, `6,092` at `3`, `1,230` at `4`, `288` at `5`, `60`
-  at `6`, and `12` at `9`;
-- 852 have an exact proper-power seed-patch witness by level `6` and are
-  structurally nonseparating under the existing occurrence contract;
-- 0 specimens are inconclusive at the sweep's 2,000,000-state and radius-12
-  budgets; and
-- an independent driver reproduced the distribution, the 12-member radius-9
-  orbit, and the 852 collapsing survivors.
-
-This is exact finite-domain evidence, not a completeness theorem for arbitrary
-substitutions. It does not close issues #84, #138, #139, G1, or PSC. See
-`docs/lost-depth-indexed-formulation-2026-10-01.md` §9 and the archived
-receipts under [`archive/2026-10-02/separation-radius-total-length/`](archive/2026-10-02/separation-radius-total-length/).
-
-## The programme in context
-
-Outside this repository, PSC is **proved for two letters** (Barge–Diamond
-2002, Hollander–Solomyak 2003) and **open for three**, the unimodular case
-included. For `d >= 3` the literature has two kinds of result. It proves
-structured families: β-substitutions (Barge 2018), substitutive Arnoux–Rauzy
-(Berthé–Jolivet–Siegel 2012), and a.e. S-adic Arnoux–Rauzy (Berthé–Steiner–
-Thuswaldner 2019). It also verifies single specimens: Tribonacci (Rauzy
-1982), Kol(3,1) (Baake–Sing 2004), and the Sirvent–Solomyak balanced-pair
-examples.
-
-This programme sits between those two kinds of result:
-
-| | Literature | This repository |
+| Source and result | What is established at its exact scope | Mainline status at this documentation revision |
 | --- | --- | --- |
-| general ternary PSC | open | open; one premise left on the shortest route (#84) |
-| ternary size classes | specimen by specimen | exact finite-domain PDS theorem on 145,806 PIP specimens (images ≤ 4 or total ≤ 8), via Theorem Ω with overlap/Meyer and flow-to-symbolic imports; [October 8–11 audit](docs/audit-theorem-omega-2026-10-08.md), human review pending |
-| ternary strong coincidence | open | 0 failures on 408,798 specimens (total ≤ 10) |
-| PDS vs. BPA finiteness | ABBLS Thm 5.3, "one seed suffices" | PDS ⇒ G1 and every-seed termination (audited, human review pending) |
-| regime | geometric tools mostly unimodular | all PIP; unimodularity never assumed |
+| Canonical P3 family, T/X/Y0 | Exact complete-star packets and typed exits; the P3 and T/X/Y0 **outgoing images** have 37 and 42 oriented labels, with a 59-label union | [#372](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/372), [#412](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/412), [#413](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/413): merged |
+| `Y0=(y,y,1,-1,-1)` | A selected coincidence exit, plus a scoped result giving a selected completion after **every actual first choice** (≤6 total edges) | [#412](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/412), [#419](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/419): merged |
+| `CY=(c,y,0,-2,2)` | Exactly `2n+1` indexed children per orientation, six typed child labels, a productive Y0↔CY cycle and one selected coincidence exit | [#414](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/414): merged |
+| CY, stronger result | A selected completion after **every actual first choice** (≤7 total edges), with symbolic transport and rational-overlap guards | [#415](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/415): **open**, not on `main` |
+| `CC=(c,c,0,-2,3)` | Proposed four-index complete star and selected three-edge exit; the Y0 LAST/LAST edge to this **specific** CC state is strict only for `t=0` | [#416](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/416): **open** |
+| CC, stronger result | Proposed selected completion after every first choice (≤5 total edges) | [#417](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/417): **open**, stacked on #416 |
+| U short tail | Recovered four-edge seed-to-internal-coincidence witness, including two edges from U | [#411](https://github.com/larsbx/pisot-substitution-conjecture-research/pull/411): **open** |
 
-Every PIP example in the circulated ternary list is already settled. Each one replays on
-`B_sigma` with termination and coincidence (pinned by
-`kernel/tests/test_ternary_literature_specimens.mojo`). One example from the
-circulated list, `123, 1, 1132`, has `det M = 0` and is not a PSC instance.
-See [`docs/motivations/`](docs/motivations/README.md), in particular
-[`ternary-literature-context-2026-10-07.md`](docs/motivations/ternary-literature-context-2026-10-07.md).
+The [recovered-branch provenance audit](docs/branch-conjugate-audit-2026-10-30.md), [canonical frontier report](docs/class-a-boundary-consolidated-frontier-2026-10-31.md) and [Y0 first-choice derivation](docs/class-a-boundary-y0-every-child-2026-10-31.md) provide details. The 59-label union is **not** a forward-closed carrier; its review queue is not a global count of unresolved overlaps.
 
-## Generality firewall
+A *selected exit* proves there exists a path. *Every-first-choice productivity* allows any genuine first edge, then selects a path. Neither asserts termination under every subsequent arbitrary choice, and neither by itself discharges universal BH. Finite replay checks implementations; it does not replace the algebraic derivation for unbounded `k,t`.
 
-The project deliberately targets the non-unimodular primitive irreducible Pisot setting. A general theorem must not silently add:
+## 5. What remains to finish
 
-1. tile-length `Q`/`Z` independence as an independent hypothesis — derive it from irreducibility where used;
-2. unique decodability as an independent hypothesis;
-3. finite injectivity, prefix/suffix permutation, or boundary-injectivity assumptions;
-4. unimodularity `|det M|=1`;
-5. a purely Euclidean internal-space model where a non-unimodular argument requires more structure;
-6. discreteness of `pi_s(Z^A)`;
-7. global realization of a merely formal recurrent object;
-8. completeness of a finite corpus/collar bound without an independent theorem.
+In order of proximity to the missing sufficiency step:
 
-## Stronger parallel programmes
+1. **Universal BH:** classify or otherwise control the relevant **seed-reachable cyclic strict-zipper** obstruction in the full standing regime. In class-A/C use genuinely parameter-uniform certificates; finish the class-B top layer. Move beyond determinant two without dropping necessary finite-place (M-adic) coordinates.
+2. **Universal one-sided A1′:** settle the remaining fixed-hub aligned cases, including the non-crossing family-F residue, then eliminate additional assumptions when passing to the full PIP regime.
+3. **Assemble the two-obstruction completion at full scope:** validate actual occurrence transports, strict overlap, seed reachability, child closure and any representation-space dependencies. Only then can #84 be closed and the imported final spectral step applied.
 
-### G1 / renewal finiteness
+Parallel, stronger investigations include renewal finiteness/G1b-2, finite-BPA SCC productivity, realization/coincidence-rank bridges, and exact finite-interface analogies. They remain useful, but **are not extra premises** of the shortest route. See the [ranked direct research directions](docs/direct-attack-frontier-2026-10-23.md).
 
-G1b-1 is proved; G1b-2 remains the exact missing theorem for finite BPA:
+## 6. Generality and proof discipline
 
-```text
-realizable labelled first-return words
-=> level-scaled contracting/Rauzy address
-=> finite local return types / uniform discreteness
-=> G1b-2
-=> G1.
-```
+The standing substitution is primitive, has nonzero determinant and irreducible rational characteristic polynomial, and has a Pisot Perron eigenvalue. **Do not insert** unimodularity, independent tile lengths, unique decodability, one-step injectivity, legal-swap-seed assumptions, a Euclidean-only internal space, or a finite collar bound as independent unproved hypotheses. Unique decodability follows from full incidence rank/defect-theorem reasoning at its proper scope.
 
-This route must preserve non-unimodular geometry and label/order data.
+Three kinds of claim must remain distinct:
 
-### Finite-BPA SCC route
+| Label | Appropriate evidence | What it does **not** establish |
+| --- | --- | --- |
+| **Repository-proved or precisely imported** | Checkable proof with complete hypotheses; imported theorem with verified applicability | Stronger quantifier or unproved premise |
+| **Exact family / finite-domain certificate** | Symbolic universal parameter proof, or exhaustive verified finite domain | Coverage outside that family or domain |
+| **Finite replay / experimental evidence** | Deterministic oracle, corpus, hashes, CI receipts and negative controls | A universally quantified mathematical statement |
 
-Under G1, nonproductivity reduces to a finite closed/sink carrier and splits by first defect:
+**Project-accepted for progression** may precede independent human review; this is not a claim that the review took place. Read [claim_governance.toml](claim_governance.toml) and [review/source notes](docs/project-onboarding-2026-10-23.md). Open PRs, queued CI, and proposals are not accepted theorem-bearing changes to `main`.
 
-```text
-K2 == 0  => concentration problem [OPEN]
-K2 != 0  => wedge productivity    [OPEN].
-```
+## 7. Reproduce results and navigate the repository
 
-The carrier-span theorem is proved; full span alone does not imply productivity. The exact 4,554-corpus degree-two and degree-three exclusions remain finite-domain theorems only.
-
-### Realization / MEF route
-
-The realization/coincidence-rank chain is an open bridge / certificate programme. Formal recurrence, global realization, and finite collar survival must remain distinct.
-
-Research references: the [Penrose 2D interface bridge](docs/bridges/penrose-2d-to-psc-interface-program.md)
-(PR #154) supplies analogies for renewal finiteness and realization, with a
-narrower comparison to strict-zipper hitting. The [Padovan / Plastic-A conjecture
-program](docs/post-proof-padovan-plastic-a-conjectures-2026-09-23.md) (PR #157)
-records benchmark research targets. Both are non-load-bearing; #84, #138,
-#139, G1, and general PSC remain open.
-
-## Source/provenance status
-
-The live project no longer depends on recovery of a historical `PSC_PROOF_v16` file:
-
-- G1b-1 is independently repository-proved;
-- degree-two carrier propagation is independently repository-proved;
-- concentration is an open mathematical gate, not source-pending;
-- the realization chain is an open bridge, not source-pending;
-- the P0 manuscript hypothesis/attribution corrections are implemented.
-
-Issue #45 is therefore closed as a completed status/source reconciliation task. The missing v16 artifact remains useful archival metadata only.
-
-## Verification layers
-
-| Priority | Layer | Tool | Scope |
-|---|---|---|---|
-| **Canonical executable** | [`kernel/`](kernel/) | Mojo | Source-of-truth exact implementation: PIP decision, BPA construction, structural C4 machinery, endpoint/C3/C4/defect finite censuses, and optimized corpus instrumentation. The reusable kernels under [`kernel/finite_exact/`](kernel/finite_exact/), [`kernel/substitution_dynamics/`](kernel/substitution_dynamics/), [`kernel/finite_linear_algebra/`](kernel/finite_linear_algebra/), [`kernel/parallel_fold/`](kernel/parallel_fold/), [`kernel/finite_graph/`](kernel/finite_graph/), [`kernel/finite_automata/`](kernel/finite_automata/), and [`kernel/mojo_smoke/`](kernel/mojo_smoke/) are vendored from one pinned `larsbx/finite-math-kernels` commit. |
-| Formal state/dependency | [`proof/tla/`](proof/tla/) | TLA+ / TLC | BPA state-machine models and the machine-checked proof-dependency ledger, generated from the proof-record table in `tools/make_ledger.py` (`proof/tla/ledger.json` is its serialized output). |
-| Deductive finite algebra | [`proof/PscVerif/`](proof/PscVerif/) | Lean 4 + Mathlib | Machine-checked finite algebra from the spectral module, with an axiom audit. |
-| Secondary oracle | [`reference/psc_research/`](reference/psc_research/) + [`tests/`](tests/) | Python | Independent reference implementations, counterexample generation, and regression/oracle comparisons during migration to canonical Mojo modules. |
-
-The thirteen logical packages vendored from `larsbx/finite-math-kernels` are checked against one commit and per-file digests in `vendored.toml` by `tools/vendoring/check_vendored_sync.py` (itself vendored) in CI. Status surfaces are checked against the claim ledger in `claim_governance.toml` by the vendored audit package under [`tools/claim_governance`](tools/claim_governance). The TLA+ ledger, its TLC models, `proof/tla/ledger.json`, the claim entries of every ledger node, `docs/ledger-index.md`, and the typed relationship graph `docs/claim-relationship-graph.json` are generated from the one table of proof records in `tools/make_ledger.py` through the vendored [`tools/proof_records`](tools/proof_records) package; edit that table and regenerate, since CI fails if any output is stale or hand-edited. Every Mojo test names the ledger claim or the contract it guards (the vendored `kernel/mojo_smoke/claims.mojo`), and the `coverage` check reads the receipts of the run, so a claim whose warrant is a finite computation cannot lose its regression unnoticed.
-
-Run everything:
+**Implementation policy:** [Mojo](kernel/) is the canonical executable research language; [Python oracles](oracles/) are independent differential checks and prototypes, not replacements for a missing canonical kernel. [Lean](proof/PscVerif/) and [TLA+](proof/tla/) record explicitly scoped formal obligations. Exact integers/rationals are preferred to floating-point acceptance arguments. See [AGENTS.md](AGENTS.md) for requirements, vendors, evidence receipts and review policy.
 
 ```bash
+# Root: run the orchestrated verification, reporting absent tools as skipped.
 ./tools/verify_all.sh
-```
 
-Unavailable toolchains are reported as skipped; a skip is not a passing proof.
-
-The generated [proof bank](docs/proof-bank.md) inventories every governed
-claim, named Lean proof and apparent source statement in the claim-policy
-scope, with explicit evidence and partial-formalization boundaries. Provision
-the pinned Lean/Lake project with `./tools/setup_lean.sh`, add
-`${ELAN_HOME:-$HOME/.elan}/bin` to `PATH`, then run `./tools/check_lean.sh`.
-The remote session hook provisions it automatically. CI and local verification
-replay the same complete axiom audit even when the library build is cached.
-
-## Repository layout
-
-- `.` — planes and authority: ESTATE.toml, ARCHITECTURE.md
-- [`kernel/`](kernel/) — canonical Mojo kernel + finite censuses (pixi workspace)
-  - [`finite_exact/`](kernel/finite_exact/) — BigZ, Q, closed intervals (vendored, finite-math-kernels)
-  - [`substitution_dynamics/`](kernel/substitution_dynamics/) — words, balanced pairs, automaton (vendored)
-  - [`finite_linear_algebra/`](kernel/finite_linear_algebra/) — Mat3, RREF, rank-three tensors, W_3, integer vectors (vendored)
-  - [`parallel_fold/`](kernel/parallel_fold/) — deterministic MAX-backed ordered map/fold (vendored)
-  - [`finite_graph/`](kernel/finite_graph/) — SCCs, union-find, F2 signing (vendored)
-  - [`finite_automata/`](kernel/finite_automata/) — deterministic finite automata (vendored)
-  - [`mojo_smoke/`](kernel/mojo_smoke/) — claim and contract receipts of a test (vendored)
-  - [`psc/`](kernel/psc/) — reusable Mojo research kernel
-  - [`tests/`](kernel/tests/) — canonical executable regressions
-- [`proof/`](proof/)
-  - [`PscVerif/`](proof/PscVerif/) — Lean 4 + Mathlib finite-algebra proofs
-  - [`tla/`](proof/tla/) — TLA+ BPA models; Ledger.tla, MCLedger*, ledger.json generated by tools/make_ledger.py
-- [`reference/psc_research/`](reference/psc_research/) — non-authoritative Python reference layer
-- [`oracles/`](oracles/) — independent Python census oracles; never acceptance
-- [`experiments/`](experiments/) — growing PIP research corpus
-- [`schemas/`](schemas/) — contracts: fixture schemas, p1b JSON contracts
-- [`tests/`](tests/) — Python oracle/regression tests
-- [`evidence/`](evidence/) — recorded run outputs, pinned by SHA256SUMS
-- [`sources/`](sources/) — imported external sources, pinned by SHA256SUMS
-- [`tools/`](tools/) — repository tooling (verify_all.sh, generators, checks) + vendored audit, ledger and vendoring packages
-- [`docs/`](docs/) — live proof architecture, audits, ledgers; catalogues/ source
-- [`manuscripts/`](manuscripts/) — publication drafts and referee records
-- [`archive/`](archive/) — superseded records, verbatim
-- [`ESTATE.toml`](ESTATE.toml) — estate manifest (estate-repository-v2, pinned audit)
-- [`claim_governance.toml`](claim_governance.toml) — claim ledger policy
-- [`vendored.toml`](vendored.toml) — commit and digest pins of the vendored packages
-- [`AGENTS.md`](AGENTS.md) — Mojo-first implementation and optimization policy
-
-## Quick start — Mojo
-
-```bash
+# Canonical Mojo workspace.
 cd kernel
 pixi run test
 pixi run verify
 ```
 
-Python remains available as an independent oracle:
+A skipped toolchain is **not** a passed proof. The generated [proof bank](docs/proof-bank.md), [claim map](docs/claim-status-and-source-map-2026-09-13.md) and [proof ladder](docs/proof-ladder.md) are the most useful starting points for evaluating a particular theorem.
 
-```bash
-python -m venv .venv
-. .venv/bin/activate
-pip install -e .[dev]
-pytest
-```
+| If you want to… | Start here |
+| --- | --- |
+| Understand the main theorem and live gaps | [Proof ladder](docs/proof-ladder.md), [direct attack map](docs/direct-attack-frontier-2026-10-23.md) |
+| Audit a specific theorem's status | [Claim governance](claim_governance.toml), [proof bank](docs/proof-bank.md), [source map](docs/claim-status-and-source-map-2026-09-13.md) |
+| Implement or review exact code | [Agent implementation policy](AGENTS.md), [Mojo kernel](kernel/), [independent oracles](oracles/) |
+| Inspect the class-A graph frontier | [Canonical frontier](docs/class-a-boundary-consolidated-frontier-2026-10-31.md), [Y0 packet](docs/class-a-boundary-y0-every-child-2026-10-31.md) |
+| Follow the **history** of the research | [Completion ledger](docs/completion-ledger-2026-10-26.md), [side-notes journal](docs/side-notes-ledger.md), [branch recovery audit](docs/branch-conjugate-audit-2026-10-30.md), PR history and [archive](archive/) |
+| Explore non-load-bearing benchmarks | [Plastic-A/Padovan](docs/post-proof-padovan-plastic-a-conjectures-2026-09-23.md), [Penrose interface](docs/bridges/penrose-2d-to-psc-interface-program.md) |
 
-but new executable research logic should not default to Python.
-
-## Standing regime
-
-Unless a note says otherwise:
-
-- `sigma: A -> A+` is primitive;
-- `det M_sigma != 0`; **unimodularity is not assumed**;
-- `char(M_sigma)` is irreducible over `Q`;
-- `beta` is the Perron eigenvalue and Pisot.
-
-## Research discipline
-
-1. Do not promote empirical patterns to theorems.
-2. Every load-bearing theorem must be proved in-repo or cited precisely with hypotheses checked.
-3. Record failed routes so agents do not repeat them.
-4. Keep G1 separate from statements conditional only on a given finite closed carrier.
-5. Keep the one-seed overlap theorem distinct from stronger all-seed/all-vertex claims.
-6. Do not stack fixed-size sieves without a credible uniform completeness theorem.
-7. Default executable work to Mojo; Python is an oracle/prototype.
-8. Fail closed on caps/incomplete exact computations and retain replayable countermodels.
+**This README is a conceptual map, not the governed source of mathematical status.** It is intentionally organized by proof dependency and evidentiary force. Dated changes, superseded attempts and experimental chronology belong in the journals and archives linked above.
