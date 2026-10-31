@@ -3,8 +3,8 @@
 **Status:** scoped all-parameter coefficient identities plus a fail-closed,
 Mojo-first **actual native table** contract, stacked on the original
 research-normalized Parikh/cubic map in PR #438. The independent Python
-reference and its four tests have passed locally; **native Mojo and hosted
-exact-head acceptance remain pending**. No global integer-independence
+reference and its four tests have passed locally; **the repaired native Mojo
+tests also pass locally; hosted exact-head acceptance remains pending**. No global integer-independence
 assumption, all-X-descendant productivity, BH/#139, G1 or PSC is claimed.
 
 ## Targeted prior-work boundary
@@ -162,9 +162,14 @@ cross-product normalization, test signed Parikh vectors
 and actual indexed X->Q->C, Y0->CY, and E6 children.
 They explicitly reject a research-scale table
 masquerading as the native scale and a changed
-literal substitution order. **The native compiler was
-not available locally; there is no claimed native
-compile/run acceptance at this revision.**
+literal substitution order. The original submission had no local native
+compiler receipt. The acceptance repair now records a locked-Mojo
+1.1.0.dev2026090805 compile/run pass: 2,500 signed native-lattice cases,
+selected strict children, both congruence refusals, wrong scale/order
+refusals, nonexistent/negative occurrence indices and a nonstrict selected
+child. Both the parent test and native test reach their post-assertion
+contract receipts. Evidence: `evidence/class-a-native-acceptance-2026-10-31/`.
+Fresh hosted exact-head acceptance remains required before integration.
 
 The original #438 `S_d` map remains correct for its
 specified normalization. This PR makes the change of

@@ -1,0 +1,13 @@
+{
+  "original_head": "4356500637a2f171ef802bd35ee3f88ade6c64a0",
+  "scope": "local repaired-source replay; hosted exact-head acceptance pending",
+  "sha256": {
+    "kernel/pixi.lock": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8",
+    "kernel/psc/class_a_parikh_field_bridge.mojo": "468fbbe2ebdbff5ba9da7f77e714d1e7ecee4b639b5d288345e8b8fbae0a462e",
+    "kernel/tests/test_class_a_parikh_field_bridge.mojo": "252e4426d3a9a92bd15e115291fb2a115e75822c0422712be6af3a313bd5af15",
+    "kernel/psc/perron_field3.mojo": "a3fc64f3ad41e1ea29b9e772264ffb1d962bce1e81226d7e343ea2fe863e8bb9",
+    "kernel/psc/overlap_seed_patch.mojo": "03541f062c104a61511a95b89755372d974c6f4a297f72e98bfb6c0d342c789b",
+    "reference/psc_research/class_a_parikh_field_bridge.py": "071f96485f4f698b6e9376748f78afbd0b492adc161c111a06188997a97f0413",
+    "tests/test_class_a_parikh_field_bridge.py": "f7576ba791f4bd642cad5ea34aca4dce6bd2eee46b335544569f11a4bfad8aec"
+  }
+}

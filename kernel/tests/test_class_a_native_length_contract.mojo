@@ -1,5 +1,6 @@
 """Exact native class-A normalization, sublattice and literal-child checks."""
 from std.testing import assert_equal, assert_true
+from mojo_smoke.claims import require_contract
 from psc.overlap_seed_patch import (
     build_seed_overlap_tables_screened, SeedOverlapTables,
 )
@@ -34,13 +35,19 @@ def refuses_bad_native_scale(tables: SeedOverlapTables,n: Int,d: Int) -> Bool:
     except:
         return True
 
+def refuses_bad_index(tables: SeedOverlapTables,n: Int,d: Int,i: Int,j: Int) -> Bool:
+    try:
+        _=verify_native_indexed_child(tables,n,d,0,0,1,0,-1,i,j)
+        return False
+    except:
+        return True
+
 def main() raises:
     var checked=0
     for k in range(5):
         for t in range(4):
             var n=k+t+3
             var d=k+2*t+5
-            var A=n+d
             var tables=build_seed_overlap_tables_screened(sigma_minus(n,d))
             var factor=verify_native_length_normalization(tables,n,d)
             var expected=expected_native_lengths(n,d)
@@ -66,6 +73,12 @@ def main() raises:
             var last=verify_native_indexed_child(
                 tables,n,d,2,0,0,-1,1,1,2)
             assert_equal(last,List[Int]([2,2,0,0,0]))
+            # Missing literal occurrences and a geometrically nonstrict
+            # selected child must be refused by the real native adapter.
+            assert_true(refuses_bad_index(tables,n,d,-1,0))
+            assert_true(refuses_bad_index(tables,n,d,len(tables.sigma[0]),0))
+            assert_true(refuses_bad_index(tables,n,d,0,len(tables.sigma[0])))
+            assert_true(refuses_bad_index(tables,n,d,0,0))
             # Y0(n,k+2) reaches CY; the index is a real c-image RUN.
             var child=verify_native_indexed_child(
                 tables,n,d,2,2,1,-1,-1,n,k+2)
@@ -103,3 +116,4 @@ def main() raises:
             assert_true(refuses_bad_native_scale(corrupted,n,d))
     assert_equal(checked,5*4*5*5*5)
     print('CLASS_A_NATIVE_LENGTH_CONTRACT_PASS',checked)
+    require_contract("minus class-A regression specimens: actual native cofactor scale, Parikh lattice inverse with both divisibility guards, selected literal strict-overlap children and wrong-scale/order refusal")

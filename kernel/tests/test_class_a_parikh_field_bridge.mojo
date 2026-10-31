@@ -1,5 +1,6 @@
 """Exact native full-Parikh injectivity and cubic beta-intertwining."""
 from std.testing import assert_equal, assert_true
+from mojo_smoke.claims import require_contract
 from psc.perron_field3 import CubicElt, PerronField3
 from psc.class_a_parikh_field_bridge import (
     class_a_parameters, check_minus_class_a_field, class_a_lengths,
@@ -63,3 +64,4 @@ def main() raises:
     assert_true(rejects_wrong_field(PerronField3(2,-2,-6),4,5))
     assert_equal(count,7*5*7*5*5)
     print('CLASS_A_PARIKH_FIELD_BRIDGE_EXACT_PASS',count)
+    require_contract("minus class-A regression specimens: research-normalized Parikh lattice inverse, beta intertwining, supplied-prefix transport and invalid-input refusal")

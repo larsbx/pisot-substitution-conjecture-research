@@ -17,13 +17,21 @@ jobs:
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Record exact tested revision and source hashes
+        run: |
+          mkdir -p acceptance
+          git rev-parse HEAD > acceptance/tested-head.txt
+          sha256sum kernel/pixi.lock kernel/psc/class_a_parikh_field_bridge.mojo kernel/psc/class_a_native_length_contract.mojo kernel/tests/test_class_a_parikh_field_bridge.mojo kernel/tests/test_class_a_native_length_contract.mojo kernel/psc/perron_field3.mojo kernel/psc/overlap_seed_patch.mojo > acceptance/source-sha256.txt
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Independently check actual cofactor and full indexed word transport
         run: |
           python -m pip install 'pytest>=7'
-          python -m pytest -q tests/test_class_a_parikh_field_bridge.py tests/test_class_a_native_normalization.py
+          set -o pipefail
+          python -m pytest -q tests/test_class_a_parikh_field_bridge.py tests/test_class_a_native_normalization.py | tee acceptance/python.log
       - name: Install Pixi for pinned canonical Mojo
         run: |
           curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
@@ -31,5 +39,21 @@ jobs:
       - name: Exact native field/normalization and genuine child word tests
         working-directory: kernel
         run: |
-          pixi run --locked mojo run -I . tests/test_class_a_parikh_field_bridge.mojo
-          pixi run --locked mojo run -I . tests/test_class_a_native_length_contract.mojo
+          set -o pipefail
+          pixi run --locked mojo --version | tee ../acceptance/mojo-version.txt
+          pixi run --locked mojo run -I . tests/test_class_a_parikh_field_bridge.mojo | tee ../acceptance/parikh-mojo.log
+          grep -Fqx 'contract-receipt: minus class-A regression specimens: research-normalized Parikh lattice inverse, beta intertwining, supplied-prefix transport and invalid-input refusal' ../acceptance/parikh-mojo.log
+          pixi run --locked mojo run -I . tests/test_class_a_native_length_contract.mojo | tee ../acceptance/native-mojo.log
+          grep -Fqx 'CLASS_A_NATIVE_LENGTH_CONTRACT_PASS 2500' ../acceptance/native-mojo.log
+          grep -Fqx 'contract-receipt: minus class-A regression specimens: actual native cofactor scale, Parikh lattice inverse with both divisibility guards, selected literal strict-overlap children and wrong-scale/order refusal' ../acceptance/native-mojo.log
+      - name: Claim governance coverage declarations
+        run: |
+          set -o pipefail
+          PYTHONPATH=tools python -m claim_governance.cli --root . --check coverage | tee acceptance/coverage.log
+      - name: Preserve exact-head acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-native-acceptance-${{ github.event.pull_request.head.sha || github.sha }}
+          path: acceptance/
+          if-no-files-found: error
