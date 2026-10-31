@@ -1,0 +1,11 @@
+{
+  "coefficient_ring": "Z[k,t,x,c,y,m,i,j,p,s]",
+  "formalized_full_geometry": false,
+  "generic_oriented_shear_cases": 54,
+  "generic_parent_and_bottom_occurrence_cases": 27,
+  "generic_run_guard_required": true,
+  "nonnegative_linear_guard_certificates": 7,
+  "root_shift_identities": 1,
+  "sector_entrance_schemas": 2,
+  "universal_x_productivity": false
+}
