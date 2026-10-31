@@ -1,0 +1,25 @@
+name: PSC class-A T2 selected typed coincidence exit
+
+on:
+  pull_request:
+    paths:
+      - 'oracles/python/class_a_boundary_t2_exit.py'
+      - 'tests/test_class_a_boundary_t2_exit.py'
+      - 'docs/class-a-boundary-t2-exit-2026-10-31.md'
+      - '.github/workflows/class-a-boundary-t2-exit.yml'
+  workflow_dispatch:
+
+jobs:
+  t2-exact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact affine all-chamber and independent Fraction replay
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_boundary_t2_exit.py
+          python oracles/python/class_a_boundary_t2_exit.py > /tmp/class-a-t2.json
