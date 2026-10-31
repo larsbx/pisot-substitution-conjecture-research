@@ -152,6 +152,35 @@ nine-seed closure is also unsound because adding
 CC as a source can include states that the nine
 swaps do not reach at t>0.
 
+## Update: first one-exception premise now has a universal path certificate
+
+New **stacked PR #430**, using predecessor **PR #428**,
+constructs exact occurrence-indexed, full-Parikh, strict
+uniform paths **from X to each of the eight literal
+swapped-patch seeds other than S1/E6** over all k,t>=0.
+The reverse seed-to-X paths already exist in #428.
+
+This supplies the **first** hypothesis of the graph
+reduction above by all-parameter arithmetic construction,
+not by extrapolation from the 16 finite graph specimens.
+The eight selected forward paths share 18 affine edges
+and have length at most six; all selected types,
+actual word bounds and strict Perron margins are
+checked in the new focused PR. Thus the eight
+initial seed vertices are provably in X's SCC,
+conditionally on acceptance of the stacked source
+certificates. S1/E6 itself may remain outside it.
+
+The **second** one-exception hypothesis remains
+genuinely open: every strict child of S1/E6 must
+lie in Reach(X) ∪ {S1}. The E6 every-first-choice
+productive-tail research in #382 is a different
+statement and does not establish that membership.
+The universal productivity of all of Reach(X)
+and the realized-overlap coverage bridge also
+remain separate open tasks. Fresh hosted CI and
+independent review for #428/#429/#430 are pending.
+
 ## Reproducibility, review and boundaries
 
 `oracles/python/class_a_boundary_nine_seed_scc.py`
