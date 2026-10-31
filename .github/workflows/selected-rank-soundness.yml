@@ -1,0 +1,33 @@
+name: PSC native selected-rank exact soundness gate
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/selected_rank.mojo'
+      - 'kernel/tests/test_selected_rank.mojo'
+      - 'reference/psc_research/selected_rank.py'
+      - 'tests/test_selected_rank_reference.py'
+      - 'docs/selected-rank-soundness-2026-10-31.md'
+      - '.github/workflows/selected-rank-soundness.yml'
+  workflow_dispatch:
+
+jobs:
+  selected-rank:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run independent fail-closed finite-rank reference
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_selected_rank_reference.py
+      - name: Install Pixi for pinned Mojo compiler
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Native exact cubic-field typed-index rank soundness
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . tests/test_selected_rank.mojo

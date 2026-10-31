@@ -20,11 +20,11 @@ Several of the main implications are already available. The unresolved step is t
 
 ```text
 Primitive, irreducible Pisot substitution
-    → bounded discrepancy                       proved in the repository
-    → finite seed-patch overlap graph           proved in the repository
-    → productive overlaps from one swap seed    OPEN: issue #84
-    → coincidence density one                   proved in the repository
-    → pure discrete spectrum                    imported theorem
+    => bounded discrepancy                                     [PROVED]
+    => finite seed-patch overlap graph                         [PROVED]
+    => one swap seed has only productive reachable overlaps    [OPEN: issue #84]
+    => coincidence density one / dense good set                [PROVED]
+    => pure discrete spectrum                                 [IMPORTED theorem]
 ```
 
 The final step uses a published density-to-spectrum theorem whose hypotheses have been checked for this setting. The [proof ladder](docs/proof-ladder.md) and [state-of-program manuscript](manuscripts/PSC_balanced_pair_state_2026-09-13.tex) give the precise statements.
@@ -122,7 +122,9 @@ The aligned A1′ problem is separate. Its remaining fixed-hub cases, including 
 
 When both obstructions are eliminated, the completion theorem will connect them to seed productivity and the density-to-spectrum implication. Other investigations—renewal finiteness, finite balanced-pair automata, component productivity and realization—may supply useful tools, but need not all be solved first.
 
-The scope of each result matters. The standing assumptions are primitivity, nonzero determinant, irreducibility over the rationals, and the Pisot condition. A proof must not quietly assume unimodularity, independent tile lengths, injectivity, a uniform finite collar, or a Euclidean-only realization. Unique decodability, when needed, is derived from full incidence rank rather than imposed separately.
+The scope of each result matters. The standing assumptions are primitivity, nonzero determinant, irreducibility over the rationals, and the Pisot condition. A proof must not quietly assume unimodularity, independent tile lengths, injectivity, a uniform finite collar, or a Euclidean-only realization.
+
+**Unique decodability:** repository-proved from full incidence rank when needed, rather than imposed separately.
 
 ## Reading the proofs and running the code
 
