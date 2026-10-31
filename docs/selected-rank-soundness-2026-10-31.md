@@ -157,9 +157,27 @@ provides **no assertion about an unlisted third vertex**.
 
 The dedicated workflow uses the repository's lockfile-matched
 Mojo runtime and separately executes the Python reference.
-The native compiler is not available in the present local
-environment; do not claim a Mojo compile pass or proof-bank
-acceptance until exact-head hosted execution and review succeed.
+The original implementation environment lacked the native compiler.
+During the PR #437 acceptance repair, a local replay with the locked
+Mojo 1.1.0.dev2026090805 compiler exposed the missing `OverlapState`
+import in `psc/selected_rank.mojo`. Adding that import allowed
+`pixi run --locked mojo run -I . tests/test_selected_rank.mojo`
+(from `kernel/`) to compile and pass, printing
+`SELECTED_RANK_NATIVE_LOCAL_SOUNDNESS_PASS` and its `contract-receipt:`.
+The declaration imports `require_contract` from the vendored
+`mojo_smoke.claims` and runs last, after all assertions. It names
+finite listed-state selected-path soundness and the finite carrier
+refusal controls, explicitly excluding universal forward closure,
+X-descendant productivity and a PSC proof. It names no ledger claim.
+The four independent Python reference tests also pass locally.
+
+Replay static coverage with
+`PYTHONPATH=tools python3 -m claim_governance.cli --root . --check coverage`.
+For complete suite receipts, run `cd kernel && pixi run --locked test`,
+then repeat the coverage audit from the repository root. A partial
+suite receipt file cannot establish complete suite coverage. Local
+execution does not establish exact-head hosted acceptance or new
+Lean proof credit.
 
 ## Next true mathematical obligation
 

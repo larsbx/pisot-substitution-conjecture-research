@@ -1,6 +1,7 @@
 """Native exact selected-rank verifier: finite soundness, not closure coverage."""
 
 from std.testing import assert_equal, assert_true
+from mojo_smoke.claims import require_contract
 from psc.perron_field3 import CubicElt
 from psc.overlap_seed_patch import (
     OverlapState, SeedOverlapAutomaton, build_seed_overlap_tables,
@@ -184,3 +185,4 @@ def main() raises:
     assert_true(refused)
 
     print('SELECTED_RANK_NATIVE_LOCAL_SOUNDNESS_PASS')
+    require_contract("finite listed-state selected-path rank soundness with genuine indexed overlap children and typed coincidence terminals; finite carrier controls reject missing seeds and escaping children; no universal forward closure, X-descendant productivity or PSC proof")

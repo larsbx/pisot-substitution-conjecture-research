@@ -11,6 +11,7 @@ Python reversal quotient is a research oracle, not the source of truth.
 """
 
 from psc.overlap_seed_patch import (
+    OverlapState,
     SeedOverlapAutomaton,
     SeedOverlapTables,
     selected_overlap_child,
