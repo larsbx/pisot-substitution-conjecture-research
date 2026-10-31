@@ -1,0 +1,118 @@
+{
+  "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "parent_head": "372567d53e6222f6fbcab6c2c3fefb5c18a3809b",
+  "sources": {
+    ".github/workflows/class-a-x-productivity.yml": {
+      "git_blob": "fadf12df608c69591d7a81004978522e95b6681e",
+      "sha256": "3d09b01ab12fc7a2b6a158429a9413eba2e60d3546cece0b767c60805d202616"
+    },
+    "AGENTS.md": {
+      "git_blob": "3f9cc4fb1fe604d7d9fb9060337be6315333f537",
+      "sha256": "46f8d84936c01ae3fd8f0cb84b5dd77c77998c23b94202655958f9bacd5dc9cd"
+    },
+    "docs/class-a-x-transfer-plane-2026-10-31.md": {
+      "git_blob": "a224f94ec468a4371c75aed0e3711528f33d7fb0",
+      "sha256": "bd2af9150a2bdc3ccca9cf57d9dd28253d878de118d81b625b792f9dec4f558b"
+    },
+    "docs/class-a-x-transfer-plane-stopgo-2026-10-31.md": {
+      "git_blob": "517771114b543e9b1b388934a1772eb2d771484b",
+      "sha256": "dd7d256cc330bcd10dcb3da1b53535ff2df4a402a33112e63ae62a80e6ff34a6"
+    },
+    "docs/side-notes-ledger.md": {
+      "git_blob": "ff07a5d4b75e6f5eaec21bca44219f205f6d4ac3",
+      "sha256": "3fae52f976ff74509950eb0f134e4eb274591da487e3c6eb90d475813a595a70"
+    },
+    "evidence/class-a-x-productivity-2026-10-31/finite-certificates.json": {
+      "git_blob": "5dad1f5b7523724a471cab62d17ed6a0c0008bf2",
+      "sha256": "2e38e2ab2c73306e63d683a19a8970eb354780d2a2462aef4b66c36683fbe01b"
+    },
+    "evidence/class-a-x-productivity-2026-10-31/source-provenance.json": {
+      "git_blob": "26b24932653adda92d085b78ce8a1b01e990afef",
+      "sha256": "673d211999a11e9f5e4ada4bdfa10e521412dded68a1b15a07ebcff777734ea1"
+    },
+    "kernel/finite_graph/scc.mojo": {
+      "git_blob": "c382c1fb73fac75edbe47d4644e8956709752da1",
+      "sha256": "23b53776636a84bf8f1617348f2c9bf8fc110c359277cf69b0f8d2b05a88ad45"
+    },
+    "kernel/pixi.lock": {
+      "git_blob": "f3536071aeba8e165a847bb894ce28ea5b8fcdc1",
+      "sha256": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8"
+    },
+    "kernel/psc/class_a_boundary_children.mojo": {
+      "git_blob": "a93085638d3df6e9cf4e7581df29df788011dda5",
+      "sha256": "8f146eccd6f5db8ce510a6bb117825429a443c7deb9f9ce2b9c010651921f79f"
+    },
+    "kernel/psc/class_a_x_ladder.mojo": {
+      "git_blob": "0fe623d8d2746dbc6c88b5aa6bf8593e8f9185b3",
+      "sha256": "5d7e275ddb00374b4bcdad84728c08e227923b24e4c3ae76d79e949ce359cce8"
+    },
+    "kernel/psc/class_a_x_productivity.mojo": {
+      "git_blob": "fb761b6669369cec044b3c730c7e58422c8765b2",
+      "sha256": "da966e1e2398db44443d24deb4e6ee70bab91254cebdbe235628cd32626f843e"
+    },
+    "kernel/psc/class_a_x_transfer_plane.mojo": {
+      "git_blob": "c56c8ea2049f0109d2f8b71fc032929693700cb9",
+      "sha256": "16091d07e09a5787516f07f55b59c9ccaa77e47a509ebce32b71085e8a7f40a8"
+    },
+    "kernel/psc/overlap_seed_patch.mojo": {
+      "git_blob": "358bb89248f4f1221ab7f3fd583a47b0cfd62b67",
+      "sha256": "03541f062c104a61511a95b89755372d974c6f4a297f72e98bfb6c0d342c789b"
+    },
+    "kernel/tests/test_class_a_x_ladder.mojo": {
+      "git_blob": "23db50c228141a7bb9a789ae9d4cc69833fb861d",
+      "sha256": "5dc454d4947cf81f29ca1882bf16a98b88ac1d77c69c184d0083764b744db899"
+    },
+    "kernel/tests/test_class_a_x_productivity.mojo": {
+      "git_blob": "7e2ae2de4292f3181b94e033656c71b2feb9f7d6",
+      "sha256": "f4af20fe5eb947e9bcd9756d65f0cf7c7ffa869aad3862c4e9faddc98d1551d1"
+    },
+    "kernel/tests/test_class_a_x_transfer_plane.mojo": {
+      "git_blob": "8cad411287f27bb8db07f4d68560c7444612cba5",
+      "sha256": "32ea0a1a46ec31587c80de3e3018aaed6dd4d8e0221c1650d4b6b5dfafe1d058"
+    },
+    "oracles/python/class_a_boundary_children.py": {
+      "git_blob": "ed0e73128fe0df8a77c3a340d54671f5188048c7",
+      "sha256": "31ecaf4087aec22e8e433eeecaa70c17db53fa8a5a701c63c4b0231d3c03429a"
+    },
+    "oracles/python/class_a_x_ladder_symbolic.py": {
+      "git_blob": "d4ea295e66bfa0160233b27e808705a64638802e",
+      "sha256": "9a72b3ec1830a74a75e7427da7fd9a46823df4d4f151aaf5f8d2d000e5fdb6b8"
+    },
+    "oracles/python/class_a_x_productivity.py": {
+      "git_blob": "b56c3d8f74c944b97a50e5ef4e8a9dd1e3f1bbbb",
+      "sha256": "6fe0e748299fa569f6b248979add7724da9a23423748d0d10aa6e9e304bbafde"
+    },
+    "oracles/python/class_a_x_transfer_plane.py": {
+      "git_blob": "bc5ad2317835ba73f5a77fb4599ba292c0eff85c",
+      "sha256": "780e6da7e20834870fd74ebd33fcae76e456540e8291ef59188c8482f7786af8"
+    },
+    "oracles/python/class_a_x_transfer_plane_symbolic.py": {
+      "git_blob": "868c30cf3b11a49f859189f33ae93f441d8528fd",
+      "sha256": "e13c8f4025091e75ed47ecccc133aa6c43643184b5d663a8931cef9d0eb4d0bc"
+    },
+    "tests/test_class_a_x_productivity.py": {
+      "git_blob": "50c286afddb61824f4fd27fda1eeb468880bbbf9",
+      "sha256": "8648cdc732a20e26adca3641d12ad4d963c73bebdd18b8850511014f8355cf08"
+    },
+    "tests/test_class_a_x_transfer_plane.py": {
+      "git_blob": "6970466bfec07d042bf065a80c92eaeff85830a1",
+      "sha256": "4e360c3cc0d2997abda23c7e857792dc7742395afab34553abcccc3c0c599bb0"
+    },
+    "vendored.toml": {
+      "git_blob": "6359b837c8d6f03d4875f129d449707b27e9acbc",
+      "sha256": "7c52f1b1755fb33a7a1cf967fc69c0eb4a8877c90f9b5a708b58b4e404472a77"
+    }
+  },
+  "unchanged_parent_kernel_oracle_sources": [
+    "kernel/psc/class_a_boundary_children.mojo",
+    "kernel/psc/class_a_x_ladder.mojo",
+    "kernel/psc/class_a_x_productivity.mojo",
+    "kernel/psc/overlap_seed_patch.mojo",
+    "kernel/tests/test_class_a_x_ladder.mojo",
+    "kernel/tests/test_class_a_x_productivity.mojo",
+    "oracles/python/class_a_boundary_children.py",
+    "oracles/python/class_a_x_ladder_symbolic.py",
+    "oracles/python/class_a_x_productivity.py",
+    "tests/test_class_a_x_productivity.py"
+  ]
+}
