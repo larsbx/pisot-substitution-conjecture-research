@@ -142,6 +142,8 @@ pixi run verify
 
 The verification script reports missing toolchains as skipped, not passed. Finite tests, symbolic proofs, hosted CI and independent review should be reported separately.
 
+**Independent human review is a final validation gate, not a research-progress gate.** A result labelled `human review pending` may still be used at its exact recorded scope; the label stays until that review actually happens ([AGENTS.md](AGENTS.md#review-gate)).
+
 For the history of the research, including superseded arguments, see the [completion ledger](docs/completion-ledger-2026-10-26.md), [side-notes journal](docs/side-notes-ledger.md), [branch recovery audit](docs/branch-conjugate-audit-2026-10-30.md) and [archive](archive/). The [Plastic-A/Padovan](docs/post-proof-padovan-plastic-a-conjectures-2026-09-23.md) and [Penrose](docs/bridges/penrose-2d-to-psc-interface-program.md) programmes provide related benchmarks and geometric comparisons, not missing premises of the direct PSC argument.
 
 This README is an introduction. The governed claim records and the proofs themselves determine what has been established.

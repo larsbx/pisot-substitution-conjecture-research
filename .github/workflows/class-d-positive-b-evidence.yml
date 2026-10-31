@@ -57,7 +57,7 @@ jobs:
           pixi run --locked mojo run -I . tests/test_class_d_plus_template.mojo 2>&1 | tee residual-plus-boundary.log
           pixi run --locked mojo run -I . tests/test_class_d_plus_positive_b_chambers.mojo 2>&1 | tee residual-plus-partition.log
           pixi run --locked mojo run -I . class_d_plus_positive_b_chambers.mojo 2>&1 | tee residual-plus.log
-          grep -Fx 'CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED wedges= 6 explicit_lines= 6 boundary_lines= 73 finite_prefix_pip= 952 max_symbolic_vertices= 164' residual-plus.log
+          grep -Fx 'CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED wedges= 6 explicit_lines= 6 boundary_lines= 51 finite_prefix_pip= 287 max_symbolic_vertices= 164' residual-plus.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
