@@ -1,0 +1,35 @@
+name: PSC exact native minus-class-A Perron normalization
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_native_length_contract.mojo'
+      - 'kernel/tests/test_class_a_native_length_contract.mojo'
+      - 'reference/psc_research/class_a_native_normalization.py'
+      - 'tests/test_class_a_native_normalization.py'
+      - 'docs/class-a-native-normalization-2026-10-31.md'
+      - '.github/workflows/class-a-native-normalization.yml'
+  workflow_dispatch:
+
+jobs:
+  native-parikh-normalization:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independently check actual cofactor and full indexed word transport
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_parikh_field_bridge.py tests/test_class_a_native_normalization.py
+      - name: Install Pixi for pinned canonical Mojo
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Exact native field/normalization and genuine child word tests
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_class_a_parikh_field_bridge.mojo
+          pixi run --locked mojo run -I . tests/test_class_a_native_length_contract.mojo
