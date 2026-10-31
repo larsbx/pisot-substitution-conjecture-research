@@ -122,3 +122,83 @@ def verify_complete_overlap_rank(
         tables, a, rank, chosen_edge_position,
         chosen_top_occurrence, chosen_bottom_occurrence
     )
+
+
+def verify_exact_closed_carrier(
+    tables: SeedOverlapTables,
+    a: SeedOverlapAutomaton,
+    required_seeds: List[OverlapState],
+) raises -> Int:
+    """Independently re-enumerate ALL actual strict children and prove closure.
+
+    This verifier deliberately uses the exhaustive ordered top/bottom loop
+    rather than trusting a.capped=False or an optimized child sweep.
+    Typed coincidence states may be terminalized only at full shift zero.
+
+    If each required seed occurs, every overlap reachable from those seeds
+    lies in the finite state table by induction over path length.
+    This is a finite exact closure certificate, not a uniform parameter
+    theorem or a realized-overlap coverage certificate.
+    """
+    if a.capped:
+        raise Error("cannot prove closure from a capped automaton")
+    var n = a.size()
+    if n == 0 or len(a.adj) != n:
+        raise Error("missing states or adjacency arrays")
+    var index = Dict[OverlapState, Int](capacity=n)
+    for v in range(n):
+        var state = a.states[v]
+        if state in index:
+            raise Error("duplicate exact overlap state")
+        if not interior_overlap(tables, state):
+            raise Error("non-strict state in proposed complete carrier")
+        index[state] = v
+    for j in range(len(required_seeds)):
+        if required_seeds[j] not in index:
+            raise Error("required actual seed is outside the proposed carrier")
+    for v in range(n):
+        var state = a.states[v]
+        if state.is_coincidence():
+            if len(a.adj[v]) != 0:
+                raise Error("typed terminal was not terminalized")
+            continue
+        var position = 0
+        # Exhaustive literal occurrence loops: this duplicates neither
+        # the optimized overlap_children sweep nor its skip heuristics.
+        for i in range(len(tables.sigma[state.top])):
+            for j in range(len(tables.sigma[state.bottom])):
+                var child = selected_overlap_child(tables, state, i, j)
+                if not interior_overlap(tables, child):
+                    continue
+                if child not in index:
+                    raise Error("strict child escapes the proposed closed carrier")
+                if position >= len(a.adj[v]):
+                    raise Error("indexed adjacency omitted a strict child")
+                if a.adj[v][position] != index[child]:
+                    raise Error("actual strict occurrence ordering or child ID differs")
+                position += 1
+        if position != len(a.adj[v]):
+            raise Error("adjacency has extra or duplicate indexed child entries")
+    return n
+
+
+def verify_closed_ranked_carrier(
+    tables: SeedOverlapTables,
+    a: SeedOverlapAutomaton,
+    required_seeds: List[OverlapState],
+    rank: List[Int],
+    chosen_edge_position: List[Int],
+    chosen_top_occurrence: List[Int],
+    chosen_bottom_occurrence: List[Int],
+) raises -> Int:
+    """Coverage plus selected rank: every listed seed descendant is productive.
+
+    Independent ALL-child closure is checked before selected path soundness.
+    This proves the scoped finite carrier claim only: complete literature
+    realized-overlap coverage and a uniform k,t symbolic carrier remain open.
+    """
+    _ = verify_exact_closed_carrier(tables, a, required_seeds)
+    return verify_overlap_rank_witness(
+        tables, a, rank, chosen_edge_position,
+        chosen_top_occurrence, chosen_bottom_occurrence
+    )
