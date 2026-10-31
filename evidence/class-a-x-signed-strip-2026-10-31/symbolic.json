@@ -1,0 +1,12 @@
+{
+  "coefficient_ring": "Z[k,t,r]",
+  "directed_edge_schema_checks": 28,
+  "exhaustive_integer_wall_regimes": 5,
+  "formalized_full_geometry": false,
+  "nonnegative_guard_certificates": 31,
+  "parameter_uniform_x_coverage_proved": false,
+  "radius_budget": "D-r decreases by one per pump",
+  "root_and_shift_identities": 5,
+  "selected_path_bound": "4D+6",
+  "universal_x_productivity": false
+}

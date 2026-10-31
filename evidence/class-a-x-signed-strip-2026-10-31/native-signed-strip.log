@@ -1,0 +1,5 @@
+Command: /tmp/psc-pixi/bin/pixi run --manifest-path kernel/pixi.toml --locked mojo run -I kernel kernel/tests/test_class_a_x_signed_strip.mojo
+Compiler: Mojo 1.1.0.dev2026090805 (34562fa1)
+Exit code: 0
+CLASS_A_SIGNED_STRIP oriented_paths= 1464 indexed_edges= 46462
+contract-receipt: ClassASignedUnitStripBoundedNegativePumpAndFourTypedExits

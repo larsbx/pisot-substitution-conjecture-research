@@ -1,0 +1,240 @@
+{
+  "inspected_utc": "2026-10-31",
+  "parent_head": "d8f2a8d4eb3693f1663764f176713725e3536d4b",
+  "pull_requests": [
+    {
+      "number": 428,
+      "state": "open",
+      "merged": false,
+      "head": "df233242c919a9cd9ab031e39026f48e906c9840",
+      "base": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+      "title": "Class A: all nine literal swapped-patch overlap seeds reach X within five edges"
+    },
+    {
+      "number": 430,
+      "state": "open",
+      "merged": false,
+      "head": "c36713575759f7a5afbc324e5db3dc9d7e3f4fee",
+      "base": "df233242c919a9cd9ab031e39026f48e906c9840",
+      "title": "Class A: eight swapped-patch seeds lie in X's SCC uniformly"
+    },
+    {
+      "number": 431,
+      "state": "open",
+      "merged": false,
+      "head": "c6a27494124db6f955be2a33c36de494164de4d8",
+      "base": "c36713575759f7a5afbc324e5db3dc9d7e3f4fee",
+      "title": "Class A: all eight E6 children lie in Reach(X); exact nine-seed closure reduction"
+    },
+    {
+      "number": 432,
+      "state": "open",
+      "merged": false,
+      "head": "d2b94fe5d6827d20d9488866ab8465ecbb4b8d61",
+      "base": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+      "title": "Class A: exact four-edge X↔R(X) bridge and reversal-invariant X closure"
+    },
+    {
+      "number": 433,
+      "state": "open",
+      "merged": false,
+      "head": "2e9ecf67fe1d6270afec3b83b377fb4cb5960d04",
+      "base": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+      "title": "Class A: orientation-complete 18-swap closure reduces to X plus E6 and R(E6)"
+    },
+    {
+      "number": 436,
+      "state": "open",
+      "merged": false,
+      "head": "d8f2a8d4eb3693f1663764f176713725e3536d4b",
+      "base": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+      "title": "Class A: X productivity audit and guarded odd-plane descent"
+    },
+    {
+      "number": 437,
+      "state": "open",
+      "merged": false,
+      "head": "2bc209e05fd6fc83f5b02ec151971c09cb7431f6",
+      "base": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+      "title": "PSC: Mojo selected-rank verifier with Lean finite-path soundness"
+    }
+  ],
+  "parent_workflows": {
+    "workflow_runs": [
+      {
+        "id": 41200970051,
+        "name": "PSC class-A X indexed productivity and ladder",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 2,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970051/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970051/logs",
+        "workflow_id": 402654132
+      },
+      {
+        "id": 41200970103,
+        "name": "Class-D complete residual certificates",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 342,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970103/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970103/logs",
+        "workflow_id": 389504350
+      },
+      {
+        "id": 41200970077,
+        "name": "PSC research checks",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 3775,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970077/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970077/logs",
+        "workflow_id": 353526446
+      },
+      {
+        "id": 41200970074,
+        "name": "Boundary synchronization layer",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 2168,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970074/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970074/logs",
+        "workflow_id": 365028591
+      },
+      {
+        "id": 41200970053,
+        "name": "Scoped class-D assembly",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 245,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970053/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970053/logs",
+        "workflow_id": 391303683
+      },
+      {
+        "id": 41200970065,
+        "name": "Class-A run-index investigation",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 241,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970065/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970065/logs",
+        "workflow_id": 391441935
+      },
+      {
+        "id": 41200970139,
+        "name": "Gap-five A/C evidence",
+        "status": "pending",
+        "conclusion": null,
+        "run_number": 187,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970139/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970139/logs",
+        "workflow_id": 393948330
+      },
+      {
+        "id": 41200970048,
+        "name": "Class-D plus positive-b chambers",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 213,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970048/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970048/logs",
+        "workflow_id": 389663784
+      },
+      {
+        "id": 41200970054,
+        "name": "Class-A uniform gap theorem",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 215,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970054/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970054/logs",
+        "workflow_id": 394533630
+      },
+      {
+        "id": 41200970148,
+        "name": "C4 degree2 three-state census",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 3555,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970148/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970148/logs",
+        "workflow_id": 354598308
+      },
+      {
+        "id": 41200970047,
+        "name": "Target-aware BPA diagnostic",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 660,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970047/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970047/logs",
+        "workflow_id": 373275169
+      },
+      {
+        "id": 41200970042,
+        "name": "Class-A cover obstruction",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 239,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970042/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970042/logs",
+        "workflow_id": 391878312
+      },
+      {
+        "id": 41200970056,
+        "name": "Class-D minus recurrent reduction",
+        "status": "pending",
+        "conclusion": null,
+        "run_number": 254,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970056/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970056/logs",
+        "workflow_id": 389742893
+      },
+      {
+        "id": 41200970176,
+        "name": "Show your work policy",
+        "status": "completed",
+        "conclusion": "cancelled",
+        "run_number": 453,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970176/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970176/logs",
+        "workflow_id": 389589665
+      },
+      {
+        "id": 41200970050,
+        "name": "Canonical Pisot polynomial kernels",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 2004,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970050/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970050/logs",
+        "workflow_id": 372303541
+      },
+      {
+        "id": 41200970130,
+        "name": "Show your work policy",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 452,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970130/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970130/logs",
+        "workflow_id": 389589665
+      },
+      {
+        "id": 41200970055,
+        "name": "C4 defect-degree census",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 3612,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970055/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/41200970055/logs",
+        "workflow_id": 354460282
+      }
+    ]
+  },
+  "parent_review_threads": {
+    "review_threads": []
+  },
+  "universal_predecessor_identity_promoted": false
+}

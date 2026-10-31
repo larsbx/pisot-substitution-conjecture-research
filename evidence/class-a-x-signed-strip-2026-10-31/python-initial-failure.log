@@ -1,0 +1,19 @@
+..F.                                                                     [100%]
+=================================== FAILURES ===================================
+_____________ test_all_walls_lowest_faces_and_reversed_occurrences _____________
+
+    def test_all_walls_lowest_faces_and_reversed_occurrences():
+     for k,t,p,kind in [(0,0,-1,'high'),(0,0,-2,'high'),(0,1,-1,'cap0'),
+                        (0,2,-1,'cap1'),(0,0,0,'positive'),(1,1,-1,'near'),
+                        (0,8,-1,'cap1')]:
+      g=M['G'](-1,k,t)
+      packet,pumps,actual=M['path'](k,t,p)
+>     assert actual==kind
+E     AssertionError: assert 'near' == 'high'
+E
+E       - high
+E       + near
+
+tests/test_class_a_x_signed_strip.py:37: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_class_a_x_signed_strip.py::test_all_walls_lowest_faces_and_reversed_occurrences
