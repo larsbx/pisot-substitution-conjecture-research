@@ -108,7 +108,7 @@ def probe():
     case_counts={}
     for k in range(13):
         for t in range(9):
-            g=Geometry(k,t)
+            g=Geometry(-1,k,t)
             members+=1
             # A finite reverse-word check is independent of symbolic
             # reversal; each original CY occurrence is replayed below.
