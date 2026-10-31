@@ -125,3 +125,28 @@ plus/non-unit realization or PSC is inferred.
 The Y0->CC parent edge remains strict only
 at `t=0`; uniform CC productivity does not
 supply Y0 reachability via that edge for t>0.
+
+
+## Executable coefficientwise universal occurrence checker
+
+`oracles/python/class_a_boundary_cc_symbolic_transport.py`
+independently encodes all **eight disjoint integer parameter
+chambers** (k=0,1,2,>=3, each with t=0 or t>=1) and all
+**four CC first-choice targets**. It checks each of the
+**32 full selected paths starting at CC**, not just the
+continuation after the first choice.
+
+For each edge it verifies the genuine FIRST/RUN/LAST type
+and word index, including nonnegative affine guard coefficients
+at infinite chamber recession directions, recomputes the
+actual proper prefix Parikh vector and proves the complete
+five-coordinate target identity coefficientwise in
+`Z[k,t]`. The maximal certified full path is five edges.
+
+The separate exact rational-polytope checker above proves
+strict physical intersection under the inherited root
+inequalities; the 117-member literal-word/Fraction oracle
+is an additional differential regression. These checks
+are inspectable arithmetic certificates, **not** a Lean
+kernel theorem, a BH argument or a substitute for
+independent review.
