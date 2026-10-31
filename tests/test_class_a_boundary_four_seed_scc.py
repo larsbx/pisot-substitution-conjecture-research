@@ -1,6 +1,11 @@
 """Source-specific finite SCC auditing: complete graphs only, no universal BH."""
-from class_a_boundary_four_seed_scc import (
-    X,Y0,CY,CC,C,build,probe,census,audit_graph,IncompleteGraph)
+from pathlib import Path
+import runpy
+source=runpy.run_path(str(Path(__file__).resolve().parents[1]/
+    'oracles/python/class_a_boundary_four_seed_scc.py'))
+(X,Y0,CY,CC,C,build,probe,census,audit_graph,IncompleteGraph)=(source[name]
+    for name in ('X','Y0','CY','CC','C','build','probe','census',
+                 'audit_graph','IncompleteGraph'))
 import pytest
 
 # Deterministic exact original-Fraction oracle regression, finite grid only.
