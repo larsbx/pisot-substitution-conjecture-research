@@ -61,3 +61,14 @@ def test_productive_cycle_does_not_prove_every_edge_terminates():
     assert r['all_states_productive']
     # X<->Y0 is still a perpetual noncoincident path under arbitrary choices.
     assert r['nonterminal_x_scc']==2
+
+def test_four_seed_closure_does_not_contain_all_nine_swap_seeds():
+    states,adj,ids,g=build(3,0)
+    omitted=(0,0,0,1,0)  # literal x/x overlap in xc/cx swap patches
+    assert len(states)==350 and omitted not in ids
+    z=(2,0,0,1,-1)
+    d=(1,2,0,0,1)
+    assert g.child(omitted,g.n+2,0)==z and g.interior(z)
+    assert g.child(z,g.n,g.n)==d and g.interior(d)
+    assert g.child(d,g.n+1,0)==X and g.interior(X)
+    # These are one-way paths TO X, not missing reverse graph edges.
