@@ -27,7 +27,10 @@ audit (`PYTHONPATH=tools python3 -m claim_governance.cli --root .`) passed at
 (`2f841b9`, `d4d97db`) dropped the six `README.md` anchors that
 `claim_governance.toml` binds (the five `=> …` chain lines and
 `**Unique decodability:**`). The chain is restored in anchor form with its status
-labels, unchanged in content; the audit passes again.
+labels, unchanged in content; the audit passes again. The same rewrite also dropped the
+review-policy sentence `tests/test_review_policy.py` requires on every human
+surface (*Independent human review is a final validation gate, not a
+research-progress gate.*); it is restored with a link to the AGENTS.md rule.
 
 The workflow is hash-frozen by `tools/check_class_d_integration_ci.py`, which
 admits only an added concurrency block or added trigger paths, and a rebind
