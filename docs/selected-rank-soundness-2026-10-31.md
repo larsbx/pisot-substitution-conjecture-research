@@ -89,6 +89,60 @@ and native cubic-field `OverlapState(top,bottom,shift)` use
 different representations. Their geometric equivalence is
 not silently assumed by this generic verifier.
 
+## Independent exhaustive closure checker: the missing global gate
+
+The strengthened canonical Mojo module now also provides
+`verify_exact_closed_carrier(tables, automaton, seeds)` and
+`verify_closed_ranked_carrier(...)`.
+
+For a **proposed finite** carrier with a declared list of actual
+strict source states, this verifier refuses caps, missing
+or duplicate state IDs, non-strict states, missing requested
+seeds, unterminated typed coincidences and any adjacency
+that does not exactly reproduce **every** genuine strict
+top/bottom child occurrence, in its true indexed order.
+
+Its completeness check is deliberately **independent
+of the optimized `overlap_children` sweep**: for every
+listed nonterminal state it enumerates the full Cartesian
+product of actual substitution-word positions and
+recomputes each child using `selected_overlap_child`
+and the exact Perron strict guard. A missing child,
+duplicated occurrence, fake target, false edge order,
+or a newly generated child absent from the carrier
+all cause a failure. The verifier checks the actual
+state names, not only graph adjacency integers.
+
+Consequently, if the declared seed set is included
+and the independent exhaustive closure checker accepts,
+**every actual overlap reachable from those seeds belongs
+to the proposed finite carrier**, by ordinary induction on
+path length. If the independently checked rank forest
+also accepts, *every descendant of those particular
+declared seeds is productive*. This gives an exact
+finite-carrier proof contract and does not rely merely
+on a fabricated `capped=False` flag.
+
+The new native negative regression deliberately uses a
+**locally sound two-state selected coincidence path**
+whose parent has additional actual strict children:
+the selected rank verifier accepts the local path,
+while the independent all-child closure checker
+correctly refuses the false global completion claim.
+A true singleton typed coincidence carrier passes
+the complete rank check; an omitted requested seed
+is refused.
+
+This is the exact distinction needed to turn the
+rank forests of #435 into a future **universally
+parameterized carrier proof**. The current verifier
+still checks only concrete finite substitutions;
+an all-`k,t` claim would require an exact symbolic
+description of its carrier and an all-parameter
+instance of the same child-closure and rank contracts.
+No complete literature realized-overlap coverage
+is inferred from selected swapped-patch seeds.
+
 ## Regression plan and trust boundaries
 
 The native test `kernel/tests/test_selected_rank.mojo` checks
