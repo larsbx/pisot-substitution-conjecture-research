@@ -137,6 +137,25 @@ in Reach(X) there and is the sole extra vertex.
 At other finite parameters E can already belong
 to Reach(X), giving equality without an extra vertex.
 
+An immediate **conditional equivalence** now follows for this
+exact nine-source graph, using E6->X from #428:
+
+    every vertex of Reach(nine swaps) can reach typed coincidence
+      if and only if
+    every vertex of Reach(X) can reach typed coincidence.
+
+The forward direction is containment. Conversely the full
+set equality above leaves only E6 outside Reach(X), and
+E6 itself has an occurrence-indexed path to X.
+This is a reduction of the *nine-swap-seed productivity
+predicate for this minus class-A overlap construction*
+to a *single source's entire descendant closure*,
+not a proof of that remaining predicate. The executable
+`symbolic_certificate()` calls both #428's and #430's
+all-parameter arithmetic checkers before verifying the
+eight E6-child paths, so the conditional interfaces
+are checked together rather than inferred from names.
+
 **The remaining central obligation is NOT removed:**
 prove that every nonterminal vertex in Reach(X)
 can reach a typed coincidence (or equivalently,
