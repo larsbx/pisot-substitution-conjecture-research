@@ -1,0 +1,89 @@
+Locked Mojo 1.1.0.dev2026090805 (34562fa1); kernel/pixi.toml and pixi.lock.
+Commands from root: pixi run --manifest-path kernel/pixi.toml --locked mojo run -I kernel <test-or-driver>.
+
+Canonical native regression, exit 0:
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_U_CHILDREN all_nine_kinds=true minus_all_k_t=true target_image_labels=12 V_unique_child_W=true strict_all_edge_rank_impossible_when_n_ge_5=true BH=false
+CLASS_A_BOUNDARY_EH six_complete_oriented_sources=true minus_all_k_t=true uniform_image_labels=29 each_source_typed_coincidence_in_at_most_two_steps=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_FIRST minus_T1_iff_t_le_1=true plus_T2_iff_k_le_6=true other_Tm_first_first=false all_k_t=true closed_carrier=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_TM_CHILDREN all_nine_kinds=true all_k_t=true proper_word_clips=true global_forward_closure=false BH=false
+CLASS_A_BOUNDARY_H3 alpha_gt_half_iff_t_gt_k_or_diag_ge_2=true eight_complete_oriented_sources=true uniform_image_union=76 selected_coincidence_paths_at_most_five=true universal_BH=false
+CLASS_A_BOUNDARY_P ten_complete_oriented_stars=true selected_typed_exits_at_most_five=true small_k_alternative=true n3_half_coincidence_not_typed=true global_BH=false
+CLASS_A_BOUNDARY_E2 four_complete_oriented_stars=true chamber_union_labels=46 E2_t0_unique_last_child=true typed_exits_at_most_five=true global_closure=false BH=false
+CLASS_A_BOUNDARY_H4 all_k_t=true child_cardinality=2*t+5 target_envelope=13 contained_in_E2_image=true alpha_half_separator=inherited_exact global_closed_carrier=false BH=false
+CLASS_A_BOUNDARY_H5_EXIT minus_all_k_t=true H4_to_H5_actual=true k0_depth=3 k1_depth=2 k_ge_2_depth=2 true_typed_C=true global_BH=false
+CLASS_A_BOUNDARY_H5_CHILDREN eta_positive_iff_t_ge_2=true two_complete_orientations=true occurrences_each=2k+1 chamber_union_labels=30 selected_typed_exits_at_most_three=true BH=false
+CLASS_A_BOUNDARY_F eight_complete_oriented_stars=true chamber_union_labels=64 F_has_exactly_three_children=true each_direct_F_child_has_typed_tail_at_most_three=true global_closure=false BH=false
+CLASS_A_BOUNDARY_P3 two_complete_oriented_stars=true count_each=2n-3 chamber_union_labels=26 typed_exit_at_most_four=true global_closure=false BH=false
+CLASS_A_BOUNDARY_TX six_complete_oriented_stars=true T_has_exactly_one_child=true X_count=2n+3 Y0_count=2k+8-minus-one-if-t0 union_labels=42 typed_exits_at_most_three=true real_T_X_cycle_with_exit=true closed_carrier=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_U_CHILDREN all_nine_kinds=true minus_all_k_t=true target_image_labels=12 V_unique_child_W=true strict_all_edge_rank_impossible_when_n_ge_5=true BH=false
+CLASS_A_BOUNDARY_EH six_complete_oriented_sources=true minus_all_k_t=true uniform_image_labels=29 each_source_typed_coincidence_in_at_most_two_steps=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_FIRST minus_T1_iff_t_le_1=true plus_T2_iff_k_le_6=true other_Tm_first_first=false all_k_t=true closed_carrier=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_TM_CHILDREN all_nine_kinds=true all_k_t=true proper_word_clips=true global_forward_closure=false BH=false
+CLASS_A_BOUNDARY_H3 alpha_gt_half_iff_t_gt_k_or_diag_ge_2=true eight_complete_oriented_sources=true uniform_image_union=76 selected_coincidence_paths_at_most_five=true universal_BH=false
+CLASS_A_BOUNDARY_P ten_complete_oriented_stars=true selected_typed_exits_at_most_five=true small_k_alternative=true n3_half_coincidence_not_typed=true global_BH=false
+CLASS_A_BOUNDARY_E2 four_complete_oriented_stars=true chamber_union_labels=46 E2_t0_unique_last_child=true typed_exits_at_most_five=true global_closure=false BH=false
+CLASS_A_BOUNDARY_H4 all_k_t=true child_cardinality=2*t+5 target_envelope=13 contained_in_E2_image=true alpha_half_separator=inherited_exact global_closed_carrier=false BH=false
+CLASS_A_BOUNDARY_H5_EXIT minus_all_k_t=true H4_to_H5_actual=true k0_depth=3 k1_depth=2 k_ge_2_depth=2 true_typed_C=true global_BH=false
+CLASS_A_BOUNDARY_H5_CHILDREN eta_positive_iff_t_ge_2=true two_complete_orientations=true occurrences_each=2k+1 chamber_union_labels=30 selected_typed_exits_at_most_three=true BH=false
+CLASS_A_BOUNDARY_F eight_complete_oriented_stars=true chamber_union_labels=64 F_has_exactly_three_children=true each_direct_F_child_has_typed_tail_at_most_three=true global_closure=false BH=false
+CLASS_A_BOUNDARY_P3 two_complete_oriented_stars=true count_each=2n-3 chamber_union_labels=26 typed_exit_at_most_four=true global_closure=false BH=false
+CLASS_A_BOUNDARY_TX_FINITE members=56 pairs 128576 accepted 4240 path_edges 896 union_labels=42 BH=false
+contract-receipt: class-A minus T/X/Y0 and real reversals: six complete nine-kind stars, exact counts 1/2n+3/2k+8-[t=0], 42-label chamber union, every literal word pair checked by full Parikh/Perron geometry, uniform P3 ancestry and X-to-Y0 child, true T/X cycle with an exit, typed paths <=3; t=0 c/c endpoint, legal disjoint children, wrong interior targets, invalid inputs, symbolic corruption, rank escape and malformed paths refused; no all-edge descent, forward closure or global BH
+
+Canonical driver, exit 0:
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_U_CHILDREN all_nine_kinds=true minus_all_k_t=true target_image_labels=12 V_unique_child_W=true strict_all_edge_rank_impossible_when_n_ge_5=true BH=false
+CLASS_A_BOUNDARY_EH six_complete_oriented_sources=true minus_all_k_t=true uniform_image_labels=29 each_source_typed_coincidence_in_at_most_two_steps=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_FIRST minus_T1_iff_t_le_1=true plus_T2_iff_k_le_6=true other_Tm_first_first=false all_k_t=true closed_carrier=false BH=false
+CLASS_A_BOUNDARY_CHAMBER eps -1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_CHAMBER eps 1 all_t_k_nonnegative=true three_real_Pisot_roots=bracketed u_gt_one=true same_letter_run_disjoint=true BH=false
+CLASS_A_BOUNDARY_RUN_PAIRS eps=-1 delta={1,2} eps=+1 k<=3 delta={2,3} eps=+1 k>=4 delta={1,2} strict_u_not_integer=true BH=false
+CLASS_A_BOUNDARY_NEXT_RUN all_k_t=true minus_T1_j=t-1..t+1_word_clipped plus_k_le_3_T2_j=1..4-k plus_k_ge_4_T1_j=k+t+10..k+t+13_word_clipped other_Tm_first_run=false first_last=plus_T1_k4_to_7_only closed_carrier=false BH=false
+CLASS_A_BOUNDARY_TM_CHILDREN all_nine_kinds=true all_k_t=true proper_word_clips=true global_forward_closure=false BH=false
+CLASS_A_BOUNDARY_H3 alpha_gt_half_iff_t_gt_k_or_diag_ge_2=true eight_complete_oriented_sources=true uniform_image_union=76 selected_coincidence_paths_at_most_five=true universal_BH=false
+CLASS_A_BOUNDARY_P ten_complete_oriented_stars=true selected_typed_exits_at_most_five=true small_k_alternative=true n3_half_coincidence_not_typed=true global_BH=false
+CLASS_A_BOUNDARY_E2 four_complete_oriented_stars=true chamber_union_labels=46 E2_t0_unique_last_child=true typed_exits_at_most_five=true global_closure=false BH=false
+CLASS_A_BOUNDARY_H4 all_k_t=true child_cardinality=2*t+5 target_envelope=13 contained_in_E2_image=true alpha_half_separator=inherited_exact global_closed_carrier=false BH=false
+CLASS_A_BOUNDARY_H5_EXIT minus_all_k_t=true H4_to_H5_actual=true k0_depth=3 k1_depth=2 k_ge_2_depth=2 true_typed_C=true global_BH=false
+CLASS_A_BOUNDARY_H5_CHILDREN eta_positive_iff_t_ge_2=true two_complete_orientations=true occurrences_each=2k+1 chamber_union_labels=30 selected_typed_exits_at_most_three=true BH=false
+CLASS_A_BOUNDARY_F eight_complete_oriented_stars=true chamber_union_labels=64 F_has_exactly_three_children=true each_direct_F_child_has_typed_tail_at_most_three=true global_closure=false BH=false
+CLASS_A_BOUNDARY_P3 two_complete_oriented_stars=true count_each=2n-3 chamber_union_labels=26 typed_exit_at_most_four=true global_closure=false BH=false
+CLASS_A_BOUNDARY_TX six_complete_oriented_stars=true T_has_exactly_one_child=true X_count=2n+3 Y0_count=2k+8-minus-one-if-t0 union_labels=42 typed_exits_at_most_three=true real_T_X_cycle_with_exit=true closed_carrier=false BH=false
+
+Independent pytest, exit 0:
+..                                                                       [100%]
+
+Source SHA-256:
+c8235523b5f3db29eb199a8081db9d3d9d1c3d53b773730b224ba65030ee7c9f  kernel/psc/class_a_boundary_tx_children.mojo
+f845fac06b276b90ae2532468e696b6907ffd14609b745056380bb9e33863633  kernel/class_a_boundary_tx_children.mojo
+fbeac82a05ed15e5b66eab8e7c684680b9d5e80078e056be94a474d805bcea7b  kernel/tests/test_class_a_boundary_tx_children.mojo
+904fc03a712b510158a7aac3ad191dfbc478fabb01796391bd6105d2febfeffd  oracles/python/class_a_boundary_tx_children.py
+4e35e8c02197d5d49dcbe5461c8f3d617e73e8eb16830edfa45beaa0ee968af2  tests/test_class_a_boundary_tx_children.py
