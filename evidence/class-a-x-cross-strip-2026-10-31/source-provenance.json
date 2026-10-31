@@ -1,0 +1,86 @@
+{
+  "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "parent_head": "3ee6f9bcbc075822cc1800b4f2ab979dbe2cf2f5",
+  "sources": {
+    ".github/workflows/class-a-x-cross-strip.yml": {
+      "git_blob": "ed1ce7a8190e91a4d2b2fa980b212d1691f6ec8d",
+      "sha256": "9cc11406c569777e921cd73c1c5b41b1e74dcec8e6c6286045e40fa411d360cf"
+    },
+    "AGENTS.md": {
+      "git_blob": "3f9cc4fb1fe604d7d9fb9060337be6315333f537",
+      "sha256": "46f8d84936c01ae3fd8f0cb84b5dd77c77998c23b94202655958f9bacd5dc9cd"
+    },
+    "docs/class-a-cross-strip-stopgo-2026-10-31.md": {
+      "git_blob": "67e41ca9e44fda298896e79fb9267777745bc602",
+      "sha256": "791281c832681510ef83574f15890401d92e3e28758e6f1d311d661930e0abcb"
+    },
+    "docs/class-a-x-cross-strip-2026-10-31.md": {
+      "git_blob": "d6e1325bac8731cde22f51649606385a79d5f8c4",
+      "sha256": "571ac143cb6bde3ac3aa4dce32e7ea577805910b4d04e08dc70755f4e806d011"
+    },
+    "docs/side-notes-ledger.md": {
+      "git_blob": "e8afb2edc8020740ecc0205856431076dba4ea31",
+      "sha256": "cbbc72c9eb2bc4d72829c471f597d826027e904ff190506003a4ba6c2464074c"
+    },
+    "evidence/class-a-x-productivity-2026-10-31/finite-certificates.json": {
+      "git_blob": "5dad1f5b7523724a471cab62d17ed6a0c0008bf2",
+      "sha256": "2e38e2ab2c73306e63d683a19a8970eb354780d2a2462aef4b66c36683fbe01b"
+    },
+    "kernel/pixi.lock": {
+      "git_blob": "f3536071aeba8e165a847bb894ce28ea5b8fcdc1",
+      "sha256": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8"
+    },
+    "kernel/psc/class_a_boundary_children.mojo": {
+      "git_blob": "a93085638d3df6e9cf4e7581df29df788011dda5",
+      "sha256": "8f146eccd6f5db8ce510a6bb117825429a443c7deb9f9ce2b9c010651921f79f"
+    },
+    "kernel/psc/class_a_x_cross_strip.mojo": {
+      "git_blob": "eb5141e5cefb74066f2cf274e495ffa3e78f223a",
+      "sha256": "738aad426e094bbfa8132deb62cea1f4b31103f07defb9f8c36e23026bc37573"
+    },
+    "kernel/psc/class_a_x_signed_strip.mojo": {
+      "git_blob": "8bf78485388ebdbeed0594000a115404afef3760",
+      "sha256": "364d92fa75d24d2aa83dc41b818342d589aac3dce8262c1ff261c3d5e66dfd77"
+    },
+    "kernel/psc/class_a_x_transfer_plane.mojo": {
+      "git_blob": "c56c8ea2049f0109d2f8b71fc032929693700cb9",
+      "sha256": "16091d07e09a5787516f07f55b59c9ccaa77e47a509ebce32b71085e8a7f40a8"
+    },
+    "kernel/psc/overlap_seed_patch.mojo": {
+      "git_blob": "358bb89248f4f1221ab7f3fd583a47b0cfd62b67",
+      "sha256": "03541f062c104a61511a95b89755372d974c6f4a297f72e98bfb6c0d342c789b"
+    },
+    "kernel/tests/test_class_a_x_cross_strip.mojo": {
+      "git_blob": "cb8431b4c913ccf8e0d810a01a71ebee828fc353",
+      "sha256": "1e5cf9bef44c4f8d4d70e76533845523b7f5648ffa40277dcd6317377821a414"
+    },
+    "oracles/python/class_a_boundary_children.py": {
+      "git_blob": "ed0e73128fe0df8a77c3a340d54671f5188048c7",
+      "sha256": "31ecaf4087aec22e8e433eeecaa70c17db53fa8a5a701c63c4b0231d3c03429a"
+    },
+    "oracles/python/class_a_x_cross_strip.py": {
+      "git_blob": "d2b89a0096716cb06342def2af2368184b13b01f",
+      "sha256": "092b5d51244349734cdece340da395c1a3da2ee6804d212c49335cb428f6b212"
+    },
+    "oracles/python/class_a_x_cross_strip_symbolic.py": {
+      "git_blob": "bb99a07df7aba5579fb58c1e3c4dca1418a12070",
+      "sha256": "7eb9bb8f10b86b5b1e535798fa2dcd642715f260f6e06b4a7472280b44ff92ca"
+    },
+    "oracles/python/class_a_x_productivity.py": {
+      "git_blob": "b56c3d8f74c944b97a50e5ef4e8a9dd1e3f1bbbb",
+      "sha256": "6fe0e748299fa569f6b248979add7724da9a23423748d0d10aa6e9e304bbafde"
+    },
+    "oracles/python/class_a_x_signed_strip.py": {
+      "git_blob": "90bdd7769d4fc2440f973154be46ae7b2425f9b0",
+      "sha256": "419bf984026c68757731a3c22a53133a16bc767189123a7bdef9e825393d748c"
+    },
+    "oracles/python/class_a_x_transfer_plane.py": {
+      "git_blob": "bc5ad2317835ba73f5a77fb4599ba292c0eff85c",
+      "sha256": "780e6da7e20834870fd74ebd33fcae76e456540e8291ef59188c8482f7786af8"
+    },
+    "tests/test_class_a_x_cross_strip.py": {
+      "git_blob": "505615c6c620dc06698ffae314feaa988069b99b",
+      "sha256": "fa02ebed7a98877d0457835ed2880663f36e121b327968342af949db3b4c1b03"
+    }
+  }
+}

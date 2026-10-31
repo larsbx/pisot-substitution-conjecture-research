@@ -1,0 +1,44 @@
+name: PSC class-A typed cross-strip entrances
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_x_*.mojo'
+      - 'kernel/tests/test_class_a_x_cross_strip.mojo'
+      - 'kernel/psc/class_a_boundary_children.mojo'
+      - 'kernel/psc/overlap_seed_patch.mojo'
+      - 'oracles/python/class_a_x_*.py'
+      - 'oracles/python/class_a_boundary_children.py'
+      - 'tests/test_class_a_x_cross_strip.py'
+      - 'docs/class-a-x-cross-strip*.md'
+      - 'docs/class-a-cross-strip-stopgo*.md'
+      - 'evidence/class-a-x-cross-strip-2026-10-31/**'
+      - 'evidence/class-a-x-productivity-2026-10-31/finite-certificates.json'
+      - '.github/workflows/class-a-x-cross-strip.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-typed-entrances:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent full paths and coefficient certificates
+        run: |
+          python -m pip install pytest==8.4.2 sympy==1.14.0
+          python -m pytest -q tests/test_class_a_x_cross_strip.py
+          python oracles/python/class_a_x_cross_strip_symbolic.py > /tmp/cross-strip-symbolic.json
+          cmp /tmp/cross-strip-symbolic.json evidence/class-a-x-cross-strip-2026-10-31/symbolic.json
+      - name: Install Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Canonical indexed entrances and exact shared-suffix composition
+        working-directory: kernel
+        run: pixi run --locked mojo run -I . tests/test_class_a_x_cross_strip.mojo
