@@ -57,5 +57,9 @@ def main() raises:
             except:
                 bad=True
             assert_true(bad)
+    # An exact matching polynomial at (n,d) need not define an actual
+    # member of the k,t>=0 minus chamber. Refuse those false inputs.
+    assert_true(rejects_wrong_field(PerronField3(2,-4,-5),3,6))
+    assert_true(rejects_wrong_field(PerronField3(2,-2,-6),4,5))
     assert_equal(count,7*5*7*5*5)
     print('CLASS_A_PARIKH_FIELD_BRIDGE_EXACT_PASS',count)
