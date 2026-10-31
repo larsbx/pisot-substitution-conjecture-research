@@ -5,8 +5,10 @@ on:
     paths:
       - 'oracles/python/class_a_boundary_cy_every_child.py'
       - 'tests/test_class_a_boundary_cy_every_child.py'
-      - 'tests/test_class_a_boundary_cy_symbolic_transport.py'
+      - 'tests/test_class_a_boundary_cy_symbolic_transport.py tests/test_class_a_boundary_cy_symbolic_geometry.py'
       - 'oracles/python/class_a_boundary_cy_symbolic_transport.py'
+      - 'oracles/python/class_a_boundary_cy_symbolic_geometry.py'
+      - 'tests/test_class_a_boundary_cy_symbolic_geometry.py'
       - 'docs/class-a-boundary-cy-every-child-2026-10-31.md'
       - '.github/workflows/class-a-boundary-cy-every-child.yml'
   workflow_dispatch:

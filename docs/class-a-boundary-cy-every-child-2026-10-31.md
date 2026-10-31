@@ -177,3 +177,32 @@ Lean/native Mojo proof credit. The ten cases are a disjoint cover:
 `(0,0)`, `(k>=1,t=0)`, `(k=0,1,2,t=1)`,
 `(k>=3,t=1)`, `(k=0,1,2,t>=2)`,
 `(k>=3,t>=2)`.
+
+
+## Executable universal strict-overlap certificate (added)
+
+The exact-affine transport checker is complemented by
+`oracles/python/class_a_boundary_cy_symbolic_geometry.py`.
+All physical shifts and tile lengths are integer-affine in
+`h=1/beta` and `rho=alpha-h`:
+`Lx=2+rho`, `Lc=1+h`, `Ly=1`.
+The inherited root inequalities imply the *open* rational polygon
+`0<h<1/5`, `h<rho`, `rho+2h<1`.
+Its closure has the four rational vertices
+`(h,rho)=(0,0),(0,1),(1/5,1/5),(1/5,3/5)`.
+For every constant typed label on every selected chamber path, both
+strict margins `s+Lbottom` and `Ltop-s` are affine.
+Checking they are nonnegative on **all four vertices** and
+not identically zero proves strict positivity throughout the open
+polygon; the checks use exact rational arithmetic.
+
+The path registry has **35** distinct base oriented labels and
+**61** after their true reversals. All **122** strict physical
+margins pass the universal rational-polytope certificate.
+The output is conditional on the established root inequalities;
+it does not independently prove that the Perron root lies in the
+polygon. The combined two independent algebraic verifiers now
+cover actual types/index bounds/full Parikh transports and strict
+physical overlap for every chosen universal path. The 117-member
+literal-word Fraction replay remains an independent implementation
+cross-check, not the source of the quantified proof.
