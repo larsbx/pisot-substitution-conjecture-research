@@ -1,0 +1,3 @@
+{"branch": "plus", "descent_candidates": 4544, "descent_intervals": 1468, "g0": 16, "l0": 4, "max_b": 3, "pieces": 1141, "targets": 9}
+{"branch": "minus", "g0": 12, "refusal": "MIDDLE_NO_DESCENT row=0 sign=-1 cursor=[0, 0] end=[0, 1]"}
+{"branch": "minus", "descent_candidates": 4464, "descent_intervals": 1456, "g0": 13, "l0": 4, "max_b": 3, "pieces": 1153, "targets": 9}
