@@ -24,6 +24,12 @@ def test_sixteen_complete_nine_seed_graphs_and_exact_X_extension():
                             'max_depth_to_coincidence'))
         assert actual==BASE[row['k'],row['t']]
         assert row['extra_from_nine'] in ([],[src['S1']])
+        # S1 is exactly E6=(x,x,0,1,0) from research PR #382.
+        # 2d-1 indexed children and eight distinct base labels per
+        # orientation, sixteen with true reversal; no status promotion.
+        d=row['k']+2*row['t']+5
+        assert row['s1_indexed_children']==2*d-1
+        assert row['s1_distinct_child_labels']==8
         assert row['typed_terminals']==2
         assert row['nonproductive_sink_sccs']==0
         assert row['nonproductive_states']==0
