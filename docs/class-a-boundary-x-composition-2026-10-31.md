@@ -19,7 +19,7 @@ bottom-minus-top Parikh vector and strict physical intersection.
 Actual reversal swaps types and ordered occurrence indices and
 negates the three coordinates.
 
-The **already accepted mainline** X=(x,x,1,0,-1) nine-kind
+The **already merged mainline** X=(x,x,1,0,-1) nine-kind
 classification is authoritative. Its complete strict outgoing
 children, including multiplicity, are:
 
@@ -86,9 +86,12 @@ The new checker invokes each proposed source's
 collectively cover 10 T2 symbolic edges, 14 R3/B3/R5
 oriented symbolic edges and 46 B4/R4 symbolic edges,
 with their own certified Perron strict margins and
-parameter-dependent RUN/LAST guards. The four main
-selected tails are inherited from the accepted carrier
-derivations.
+parameter-dependent RUN/LAST guards. The four mainline
+selected tails are inherited from existing carrier derivations.
+Presence in main is not, by itself, proof of exact-head CI acceptance
+or independent review; keep those receipts and governed theorem statuses
+separate from both repository integration and the six research-only
+source dependencies.
 
 The directed composition is simple: for any genuine
 X child, the complete table selects exactly one of
@@ -108,7 +111,7 @@ all-edge strict decreasing rank.
 
 A separate literal-prefix/Fraction oracle performs
 an **exhaustive finite differential replay** for
-k=0..12,t=0..8. It compares the accepted full X
+k=0..12,t=0..8. It compares the mainline full X
 nine-kind guard against every literal candidate
 occurrence, composes all ten candidate suffixes
 under their actual parameter conditions and checks
