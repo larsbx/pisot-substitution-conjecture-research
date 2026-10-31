@@ -1,8 +1,9 @@
 # Exact selected-rank soundness, separate from graph completeness
 
 **Status:** native Mojo checker plus independently written Python reference;
-a mathematically elementary well-founded descent lemma is given here.
-No new Lean kernel theorem, actual hosted Mojo pass, all-parameter
+the finite selected-path and conditional carrier-transfer lemmas are formalized
+in `proof/PscVerif/PscVerif/SelectedRank.lean`.
+No actual hosted Mojo/Lean pass, all-parameter
 class-A descendant productivity, global strict-zipper boundary hitting,
 G1 or Pisot Substitution Conjecture is claimed.
 
@@ -176,8 +177,60 @@ Replay static coverage with
 For complete suite receipts, run `cd kernel && pixi run --locked test`,
 then repeat the coverage audit from the repository root. A partial
 suite receipt file cannot establish complete suite coverage. Local
-execution does not establish exact-head hosted acceptance or new
-Lean proof credit.
+Mojo execution does not establish hosted acceptance or Lean proof credit;
+the Lean module has its own compiled audit.
+
+## Lean interface and remaining refinement boundary
+
+`PscVerif.SelectedRank` uses finite vertex types `Fin n`, natural-number
+ranks and explicitly length-indexed paths. Its `Witness` requires rank zero
+exactly at a terminal and one genuine edge of unit rank descent for every
+nonterminal. `selected_path_of_rank` proves an exact-length terminal path by
+ordinary induction. `selected_path_sound` transfers this path to a finite
+semantic graph under explicit edge-soundness and typed-terminal hypotheses.
+
+`covered_descendants_productive` adds seed inclusion and all-edge carrier
+closure as separate hypotheses. It then proves productivity of descendants
+of those seeds in that particular finite semantic graph. A three-vertex
+calibration has a valid two-vertex selected path, an unlisted reachable
+self-looping vertex, a failed closure condition and no terminal path from
+the unlisted vertex. Each assertion has an explicit Lean proof. The calibration
+is an abstract finite graph.
+
+The root module imports this file, so the existing standard CI Lean job and
+`tools/check_lean.sh` include every new declaration in the compiled axiom
+audit. The proof-bank inventory is regenerated; no governed claim changes
+status and no universal X/BH/G1/PDS/PSC declaration is added.
+
+The semantic premises are still inputs to Lean. The next implementation
+obligation is to prove that an accepted Mojo witness, including its ordered
+occurrence checks and exact arithmetic, supplies these premises. Matching
+interfaces and passing regression tests do not prove that refinement.
+The native complete-carrier checker terminalizes typed coincidences; its Lean
+binding must use the same terminalized transition convention.
+See the [scoped source check](selected-rank-lean-stopgo-2026-10-31.md).
+
+Local development used pinned Lean 4.34.0-rc2, compiler commit
+`6a10ac8c22beadecabdbb0919c2b50214762f91d`. The unadapted compiler exited
+before elaboration with `failed to locate application`: its Linux runtime
+uses `/proc/<getpid()>/exe`, while this workspace exposes a procfs view from
+a different process namespace. A development-only `readlink` adapter changed
+only that process's numeric executable lookup to `/proc/self/exe`. Neither
+the compiler nor its libraries, pins, theorem statements or audit rules were
+changed. This environment qualification must accompany local proof-checking
+results; ordinary hosted verification is still required.
+
+The upstream implementation of that lookup is
+[Lean's pinned runtime](https://github.com/leanprover/lean4/blob/v4.34.0-rc2/src/runtime/io.cpp).
+
+With that environment adapter, the isolated `tools/check_lean.sh` replay
+completed: 215 compiled declarations and 136 compiled theorems were audited,
+including all 47 named proofs in the regenerated inventory. No local or
+nonstandard axiom was accepted. The selected-rank module accounts for 13
+named proofs and 42 compiled declarations (19 compiled theorems including
+generated helpers); its dependencies are contained in `propext` and
+`Quot.sound`. The entire bank retains its existing standard-axiom policy.
+The focused proof-bank/governance/link/reference Python replay passed 66 tests.
 
 ## Next true mathematical obligation
 
