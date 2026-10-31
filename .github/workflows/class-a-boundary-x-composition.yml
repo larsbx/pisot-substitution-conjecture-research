@@ -1,0 +1,28 @@
+name: PSC class-A X all-first-choice conditional composition
+
+on:
+  pull_request:
+    paths:
+      - 'oracles/python/class_a_boundary_x_first_choice_composition.py'
+      - 'oracles/python/class_a_boundary_t2_exit.py'
+      - 'oracles/python/class_a_boundary_three_exit_recovery.py'
+      - 'oracles/python/class_a_boundary_b4_r4_exit_recovery.py'
+      - 'tests/test_class_a_boundary_x_first_choice_composition.py'
+      - 'docs/class-a-boundary-x-composition-2026-10-31.md'
+      - '.github/workflows/class-a-boundary-x-composition.yml'
+  workflow_dispatch:
+
+jobs:
+  all-first-choices:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact historical-source pins, symbolic gates, and independent Fraction replay
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_boundary_x_first_choice_composition.py
+          python oracles/python/class_a_boundary_x_first_choice_composition.py > /tmp/class-a-x-conditional.json
