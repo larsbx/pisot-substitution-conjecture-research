@@ -27,19 +27,19 @@ def test_every_indexed_first_choice_on_117_members_and_reversals():
 def test_all_parameter_chamber_boundaries_and_real_reversals():
     specimens=((0,0),(1,0),(0,1),(1,1),(2,1),(3,1),(0,2),(2,3))
     for k,t in specimens:
-        g=o.Geometry(k,t)
+        g=o.Geometry(-1,k,t)
         for label in o.CHILD_LABELS:
             route=o.tail(label,g)
             o.verify_path(g,label,route)
             reversed_route=[(j,i,o.reverse(w)) for i,j,w in route]
             o.verify_path(g,o.reverse(label),reversed_route)
-    assert len(o.tail(o.B5,o.Geometry(2,1)))==6
-    assert len(o.tail(o.B4,o.Geometry(0,0)))==4
-    assert len(o.tail(o.B5,o.Geometry(0,0)))==5
+    assert len(o.tail(o.B5,o.Geometry(-1,2,1)))==6
+    assert len(o.tail(o.B4,o.Geometry(-1,0,0)))==4
+    assert len(o.tail(o.B5,o.Geometry(-1,0,0)))==5
 
 
 def test_no_wrong_terminal_or_invented_occurrence():
-    g=o.Geometry(0,0)
+    g=o.Geometry(-1,0,0)
     with pytest.raises(ValueError):
         o.tail((1,2,0,0,0),g)
     bad=list(o.tail(o.B1,g))
