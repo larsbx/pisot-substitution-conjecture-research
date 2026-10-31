@@ -87,6 +87,25 @@ files byte-for-byte; fresh hosted exact-head runs must still
 execute against the repository's original Geometry and
 normal integrity/provenance gates.
 
+## Exact one-way seed-coverage counterexample (linked #428)
+
+This audit's **four** initiating states do not necessarily generate all
+**nine** literal swapped-patch seed overlaps. At k=3,t=0 the complete
+four-seed terminalized graph has **350** vertices but omits the valid
+swap source S1=(x,x,0,1,0), while the nine-swap-seed closure has
+**351** vertices. Nevertheless there is a genuine uniform path
+S1 --(n+2,0)--> (y,x,0,1,-1) --(n,n)--> (c,y,0,0,1)
+--(n+1,0)--> X. PR #428 independently proves actual selected
+paths **from all nine swapped-patch seeds to X** over the full
+k,t>=0 chamber, with literal types and exact integer transport.
+
+**Orientation of graph reachability matters:** S1→X does *not*
+imply X→S1, and the four-seed closure does not contain every
+swapped-patch seed. The X-hub hypothesis below is therefore
+explicitly about the four-seed closure alone. Promoting it to
+all-nine-seed *descendant* productivity needs a separate
+coverage argument. This negative control is now executable.
+
 ## A more focused universal proof target
 
 For this **particular four-seed** overlap-closure construction,
