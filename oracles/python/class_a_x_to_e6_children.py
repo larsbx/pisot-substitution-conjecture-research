@@ -157,8 +157,15 @@ def symbolic_star():
                 inherited_Perron_inequalities_required=True)
 
 def symbolic_certificate():
+    # Compose actual predecessor symbolic interfaces rather than trusting
+    # PR titles or a finite-only closure analogy.
+    predecessor=base['symbolic_certificate']()
+    eight=forward['symbolic_certificate']()
+    assert predecessor['strict_swap_seeds']==9
+    assert eight['eight_swap_seeds']==8
+    assert set(forward['EIGHT'])|{E6}==set(base['SEEDS'])
     assert symbolic_star()['simultaneous_base_labels']==8
-    assert len(PATH_T0)==len(PATH_T1PLUS)==8
+    assert set(PATH_T0)==set(PATH_T1PLUS)==E6_IMAGE
     states={X,E6};directed=0;depths={}
     for key,ch in CHAMBERS.items():
         for label in sorted(E6_IMAGE):
