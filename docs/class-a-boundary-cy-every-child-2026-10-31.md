@@ -154,3 +154,26 @@ independent review/formalization.
 of any descendant are productive, that the 12-label CY image is
 closed, that every cyclic strict-zipper state is covered, or that
 BH/#139, A1-prime, G1, plus/non-unit realization or PSC holds.
+
+
+## Executable universal affine-transport certificate (added in consolidation)
+
+`oracles/python/class_a_boundary_cy_symbolic_transport.py` now
+checks all 60 (six target states × ten disjoint rectangular parameter
+chambers) selected paths coefficientwise as **affine integer identities
+in k,t**. Unlike the independent 117-member geometry replay, this
+certificate evaluates no finite interpolation to infer an all-parameter
+identity. For every symbolic edge it classifies the *actual* FIRST/RUN/LAST
+letter, verifies the index lies in the correct word for every parameter
+in that chamber (including recession-slope guards), recomputes the
+proper prefix Parikh vectors, and verifies all three target coordinates
+exactly. Negative tests reject a negative unbounded index slope and a
+forged typed target.
+
+Strict Perron geometry is still justified by the explicit inequalities
+above, with independent exact-Fraction numerical-instance replay; this
+affine certificate alone does not prove every inequality and earns no
+Lean/native Mojo proof credit. The ten cases are a disjoint cover:
+`(0,0)`, `(k>=1,t=0)`, `(k=0,1,2,t=1)`,
+`(k>=3,t=1)`, `(k=0,1,2,t>=2)`,
+`(k>=3,t>=2)`.
