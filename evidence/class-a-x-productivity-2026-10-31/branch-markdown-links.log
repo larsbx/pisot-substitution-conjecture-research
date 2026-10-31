@@ -1,0 +1,18 @@
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+_________________________ test_relative_links_resolve __________________________
+
+    def test_relative_links_resolve():
+        broken = [
+            f"{path.relative_to(ROOT)}:{number}: {target}"
+            for path in markdown()
+            for number, target in links(path.read_text(encoding="utf-8", errors="replace"))
+            if not EXTERNAL.match(target) and not (path.parent / target).exists()
+        ]
+>       assert not broken, "\n".join(broken)
+E       AssertionError: docs/side-notes-ledger.md:2075: pathlib.Path(...
+E       assert not ['docs/side-notes-ledger.md:2075: pathlib.Path(...']
+
+tests/test_markdown_links.py:66: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_markdown_links.py::test_relative_links_resolve - AssertionE...
