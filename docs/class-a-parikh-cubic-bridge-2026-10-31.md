@@ -25,6 +25,16 @@ with characteristic polynomial exactly
 
     χ(B)=B^3-(n+2)B^2+(n-d-1)B+2.
 
+The native verifier also checks that a proposed pair (n,d)
+actually belongs to this two-parameter integer chamber, not merely
+that n>=3 and d>=5. The inverse parameter formulas are
+
+    t=d-n-2,     k=2n-d-1.
+
+Both must be nonnegative integers. A matching formal cubic at an
+off-chamber (n,d) is explicitly **refused**, rather than credited
+with an unproved admissibility hypothesis.
+
 **No floating root or analysis is used.** The existing exact irreducible
 Pisot cubic certificate supplies the distinguished real embedding.
 
