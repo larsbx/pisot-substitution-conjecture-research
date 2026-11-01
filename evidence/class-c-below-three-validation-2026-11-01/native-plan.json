@@ -1,0 +1,325 @@
+{
+  "count": 53,
+  "elapsed_seconds": 1104.0196394759987,
+  "native_receipts": [
+    {
+      "byte_identical": true,
+      "file": "sector-plus-8-16.log",
+      "origin": "earlier same-session replay",
+      "sha256_decompressed": "38123a3bfd8981bfc637121d4323c10ab2491f8d6845303eb1f7cb1f6a9dc92d"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--15.log",
+      "origin": "earlier same-session replay",
+      "sha256_decompressed": "806757a61810e5ca451a441c921330b01bea8718e460a5bf1c9695b9fc0623b0"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--14.log",
+      "origin": "earlier same-session replay",
+      "sha256_decompressed": "71ee47cc3eeb2b418a404e08be97d37ec30067519d53d4d0731bcdaf6c7495b0"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--13.log",
+      "origin": "earlier same-session replay",
+      "sha256_decompressed": "7cdb565c15dab6ac71e7f8db78946a0961f68f773d13cb6bc4d3ff5449fea458"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--12.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "8535c5dee00fc0d944835141e1950de5ddc337aaeb7db2effa5e193beab09a1b"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--11.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "ab9d3002a16a888b06fd40022b4545edaa18bba7afbe46a4e24d3a6184030fe6"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--10.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "0c58ed08f4f79b8bd5a3c211b5c3bcd60dbff5b37698559e1c716da754d5698a"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--9.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "ad73993c8862e86e4db51e7aba36dae417db50ff1ca5320062f48280c809d1fe"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--8.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "b7a71ef1ecc1962c26f0e9b5567fb4d22ffa16fe7bd70cecfc3f88384cbbe04e"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--7.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "d7953662c7ecd5a8dcb87c931f4a38c45abd554f6d2072cccaef316b157536f6"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--6.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "aab2beb65626e10f9af42b489bcd467013beb92769fb282bbf395f2d2da67253"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--5.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "21b96fcc205973157a3ce1fee6533dc6293775717312aa7e6de16e5b4e2e7e22"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--4.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "6529b58d64d01579d6c0604d88480bd7032f2506644744cb8d84e068161a5f7d"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--3.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "445019942289fe92076ffcc14f0ea0518625d657e4f4ad213d4d930fe2117e13"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--2.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "5a08a329126e68ba0739daa2ea5b00b1d9ebb1faa56c8fb1f9ad950496c1788f"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus--1.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "28791533f8029a65aae17e5809e490eb56914587b204a09f92e8f539512073e6"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus-0.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "d23a9817fcc4d624c21278eea4c92acf5c1703a803f20780339c146e4c23e225"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus-1.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "2ac2865796ce408de521bbf41fa7499736373d3d3ff0a730e6c672cbd1974179"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus-2.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "fd2b451a902734dd792e415cf3956abf350f5c7c9b1d7c62ba095ff64a630208"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-plus-3.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "2ef7f9ca629a111ec5cbc8e6e5733e14fccefbceddcb8578e8e6cfc2d7c13464"
+    },
+    {
+      "byte_identical": true,
+      "file": "finite-plus.log.gz",
+      "origin": "parallel replay",
+      "sha256_decompressed": "c223bb547c69e217ba1a6a2b15b4691a67229f9957d2d44b8811a2e1d14f1e63"
+    },
+    {
+      "byte_identical": true,
+      "file": "coverage-plus.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "805986dcedade478b2a43e7438519906b98150959978451285269fb73454836c"
+    },
+    {
+      "byte_identical": true,
+      "file": "control-plus-8.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "483b5507d29130c905f0d514d7cb3bab0f6d50304554968ef89f53d9d5a74b60"
+    },
+    {
+      "byte_identical": true,
+      "file": "control-plus-16.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "5041c91d3ae1e0568f9cfa69b0e296e421455367151d5fb1936aefce9f00ee1e"
+    },
+    {
+      "byte_identical": true,
+      "file": "sector-minus-16-8.log",
+      "origin": "earlier same-session replay",
+      "sha256_decompressed": "5b194dfdb0aa8e5c0f04d6446f049b3f4f8d38d94382e5f17896c541bcdb84fc"
+    },
+    {
+      "byte_identical": true,
+      "file": "shifted-line-minus--15-48.log",
+      "origin": "earlier same-session replay",
+      "sha256_decompressed": "55f96b9277b795be25fdc2bdb095f6da51dd1c0c9151e982f5dcac1421879bd3"
+    },
+    {
+      "byte_identical": true,
+      "file": "exceptions-minus--15.log",
+      "origin": "earlier same-session replay",
+      "sha256_decompressed": "dd108989ad9c0416d6d3c187ce17eb50ff9b8db02adaa9a27c00d23598e08046"
+    },
+    {
+      "byte_identical": true,
+      "file": "shifted-line-minus--14-48.log",
+      "origin": "earlier same-session replay",
+      "sha256_decompressed": "34ab244eadfd787b71d6928692ab1154e89159fc0454ba0f11d06065fba4a3bf"
+    },
+    {
+      "byte_identical": true,
+      "file": "exceptions-minus--14.log",
+      "origin": "earlier same-session replay",
+      "sha256_decompressed": "c71a35f52da7bd030916231068e969ac1229f6e086254bb93d771b50e82f4577"
+    },
+    {
+      "byte_identical": true,
+      "file": "shifted-line-minus--13-48.log",
+      "origin": "earlier same-session replay",
+      "sha256_decompressed": "55a8e17af5abb433557a008f4266b10ed4902c7eda1322eea44583e0b2a6f28b"
+    },
+    {
+      "byte_identical": true,
+      "file": "exceptions-minus--13.log",
+      "origin": "earlier same-session replay",
+      "sha256_decompressed": "463107f0794b4cb6bb0fa7391d0db1d91132c8165c167bb8558f0697a3ddcda0"
+    },
+    {
+      "byte_identical": true,
+      "file": "shifted-line-minus--12-48.log",
+      "origin": "earlier same-session replay",
+      "sha256_decompressed": "cab1b0e641a02253062f8b47f1487e8cf2aee62e134e826a6fc6715fd7dd4931"
+    },
+    {
+      "byte_identical": true,
+      "file": "exceptions-minus--12.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "4f46ccd966762cbc500339219c914bf6f9ab240e89f751237accb5dd96b61c0d"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus--11.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "3800a832810ad4a650e7e913dbe11847d9414183ae5977af5bc8857aa6db1c76"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus--10.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "68fb3825c12488af37f16a4f43a7032e6df16ff9a78960759bf4e90d079c937a"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus--9.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "dde6f4f159a8eb93d8efe5c37da41fe6f06354e9eb130d8b90e9b0c0813a0c99"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus--8.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "c5e775226be236f67ef3c4738be69b27700930bcffc5c69881a8034ad6eb9400"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus--7.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "29e94d066f3cdef0bf6b00a2aab6b411a2ff00d5a019baa26ceb99109e454936"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus--6.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "dda81199fb88a375a426e3a75c8588ff07990eb83d3737f984c8aaa9ad282943"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus--5.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "f67a30e15c1ab791ac7e9e8491c5b3a1703259b2974be6219eb994d219bcfaf9"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus--4.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "b5bf8a63ba3a9f66d5548b1218446ba7a247a3725a3b8cad553d553fdc468aeb"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus--3.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "a1a0dc23de4afff87006bbd3da603520225ceddd766e4bb89efeaa2be3fb8963"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus--2.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "3c9a6cdec2108042affe435180098d8e0b12241d4f59c048b66deacf43119789"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus--1.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "eef57b1e606949085eac1118f889d00cfc1a2969167f698b4d05b616189c215f"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus-0.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "535de1b5dca459b255926c5fcb3a4fefbe8c04e118087695ce65039ea0092478"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus-1.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "112f114e9542961070b2d61b19fe710fda94afdcbb7e967fbe5c8b56086def15"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus-2.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "c97541d12e16560913def2a924a96f8b1f8897cf3abefad8c190d560d7889d09"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus-3.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "1bda6438dfc76358aeb4e0725591ab1e5ec3ff069b45e360975984ba86f0fc2d"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus-4.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "e89a95cae674096199aa69c4c06ef5d54201d4e6caa62791456062b07258962c"
+    },
+    {
+      "byte_identical": true,
+      "file": "line-minus-5.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "1b70b74b4a0b720e646f166f86d55ade21e9bd73a3a30678fc2af5d780f5ec41"
+    },
+    {
+      "byte_identical": true,
+      "file": "finite-minus.log.gz",
+      "origin": "parallel replay",
+      "sha256_decompressed": "4439eedea5a92637fc4f9722fa832ba98015b629c2117e50f01de6e4f33a1234"
+    },
+    {
+      "byte_identical": true,
+      "file": "coverage-minus.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "e67d617e912cad384cba91d36f785b321f119af3c32ad39bdc8f1c379c45c64d"
+    },
+    {
+      "byte_identical": true,
+      "file": "control-minus-8.log",
+      "origin": "parallel replay",
+      "sha256_decompressed": "7cf6858f8c92178c5e34787076696b56ee3de1a8bcca23fa0469a946bd46c8a5"
+    }
+  ],
+  "scope": "complete selected plan; neither all proposed refusals nor a universal PSC theorem"
+}

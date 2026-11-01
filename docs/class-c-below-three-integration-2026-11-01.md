@@ -117,3 +117,46 @@ plans and compares the new assembly receipts. Final exact-head hosted
 acceptance must pass before merge. Queued jobs are not successful receipts.
 Independent human review stays pending separately; governed claim status,
 PSC, legal-overlap realization, G1 and non-unit transfer are unchanged.
+
+
+## Follow-up source audit and clean test environment
+
+The separate [validation supplement](../evidence/class-c-below-three-validation-2026-11-01/README.md)
+adds a tokenizer-based import audit. All 57 local Mojo imports are present in
+the original source pins. The actual external roots are `std` and `max`;
+`a`, `it`, and `the` in historical metadata are comment/docstring artifacts.
+The Python entry point also executes package initialization from
+`reference/psc_research/__init__.py` and `reference/psc_research/bpa.py`.
+Those two implicit sources were omitted by the original manifest; their
+hashes are recorded in the new supplement and checked without changing the
+old provenance. Original graph comparisons were run with those same bytes.
+
+A full Python-suite collection attempt exposed an existing undeclared SymPy
+dependency in three Class-A symbolic tests. Development dependencies now
+include the tested `sympy==1.14.0`. The repaired environment collects those
+tests successfully. This changes no certificate or mathematical hypothesis.
+
+The dependency edit initially failed the separate Class-D provenance guard,
+which intentionally pins historical `pyproject.toml` bytes. That refusal is
+preserved in the validation supplement. The guard still verifies those old
+bytes against the accepted Git object. A named, regression-tested exception
+now admits only appending exactly `sympy==1.14.0` to the existing development
+requirements, with every existing dependency, production requirement,
+Python/build setting and other TOML value unchanged. The three pinned
+historical Class-D Python sources do not import SymPy. Any changed existing
+requirement, alternate SymPy version/range, production dependency, Python
+version constraint or build setting still refuses. This is an explicit
+integration-policy change, not a re-pinning of accepted evidence or a fresh
+CI attestation. All 43 Class-D integration/rebind regressions pass; the final
+branch still requires its own complete hosted acceptance before merge.
+
+Fresh local replay is complete: all 53 declared native receipts, including
+both selected sectors, 40 line families, 52 prefixes, 520 finite end members,
+coverage outputs and controls, are byte-identical. All four original native
+regressions (below-three, historical slope-three, T_C, T_C2) reproduce their
+receipts. The supplement records 746+547 complete independent graph comparisons
+and 152 passing focused Python tests. A broader suite run was interrupted
+and is not recorded as a pass; its three observed provenance failures were
+reproduced and repaired by the narrow dependency guard above. Final-head
+hosted full-suite acceptance remains required. No general PSC or independent
+proof-certification claim follows from these local results.
