@@ -1,0 +1,3 @@
+Command: /root/.elan/toolchains/leanprover--lean4---v4.34.0-rc2/bin/lean --version
+error: failed to locate application
+No Lean compilation or full formalized geometry receipt is claimed.

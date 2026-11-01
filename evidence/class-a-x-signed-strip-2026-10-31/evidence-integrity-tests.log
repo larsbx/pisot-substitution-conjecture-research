@@ -1,0 +1,20 @@
+.F...................................................................... [ 82%]
+....ss.........                                                          [100%]
+=================================== FAILURES ===================================
+__________________ test_status_surfaces_agree_with_the_ledger __________________
+
+    def test_status_surfaces_agree_with_the_ledger():
+        findings = run(load_policy(POLICY), ROOT)
+>       assert not findings, "\n" + "\n".join(f.render() for f in findings)
+E       AssertionError:
+E         README.md: [consistency/CoincidenceDensityOne] surface does not mention 'CoincidenceDensityOne' (anchors ['=> coincidence density one / dense good set'])
+E         README.md: [consistency/DensityToPDSBridge] surface does not mention 'DensityToPDSBridge' (anchors ['=> pure discrete spectrum'])
+E         README.md: [consistency/G1b1BoundedDiscrepancy] surface does not mention 'G1b1BoundedDiscrepancy' (anchors ['=> bounded discrepancy'])
+E         README.md: [consistency/OverlapProductivity] surface does not mention 'OverlapProductivity' (anchors ['=> one swap seed has only productive reachable overlaps'])
+E         README.md: [consistency/SwapOverlapFiniteness] surface does not mention 'SwapOverlapFiniteness' (anchors ['=> finite seed-patch overlap graph'])
+E         README.md: [consistency/UniqueDecodability] surface does not mention 'UniqueDecodability' (anchors ['**Unique decodability:**'])
+E       assert not (Finding(path='README.md', line=0, check='consistency', rule='CoincidenceDensityOne', message="surface does not mentio...='UniqueDecodability', message="surface does not mention 'UniqueDecodability' (anchors ['**Unique decodability:**'])"))
+
+tests/test_claim_governance.py:37: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_claim_governance.py::test_status_surfaces_agree_with_the_ledger

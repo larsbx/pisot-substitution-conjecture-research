@@ -1,0 +1,25 @@
+name: PSC class-A uniform X reversal bridge and SCC orientation
+
+on:
+  pull_request:
+    paths:
+      - 'oracles/python/class_a_x_reversal_hub.py'
+      - 'tests/test_class_a_x_reversal_hub.py'
+      - 'docs/class-a-x-reversal-hub-2026-10-31.md'
+      - '.github/workflows/class-a-x-reversal-hub.yml'
+  workflow_dispatch:
+
+jobs:
+  x-reversal-exact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact affine transport, strict geometry and complete finite closure regression
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_x_reversal_hub.py
+          python oracles/python/class_a_x_reversal_hub.py > /tmp/psc-x-reversal-hub.json
