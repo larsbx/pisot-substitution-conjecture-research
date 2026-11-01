@@ -1,5 +1,12 @@
 # Class C: joining the middle cone to the tail (2026-10-29)
 
+**Historical experiment, superseded 2026-11-01.** PR #392 is closed; this
+record is retained for provenance and replay. The accepted mainline T_C and
+T_C2 union covers d>=6, n>=3d and replaces every use of this weaker upper
+bound in #394. The original derivation and budgets below describe that
+historical experiment. Its workflow is archived, not an active acceptance
+gate. See [the reconciliation](class-c-below-three-integration-2026-11-01.md).
+
 Continuation of merged #390; mathematical scope is canonical swap-seed
 boundary hitting (BH), with integral offsets bottom minus top. Source audit,
 exact PIP-domain lemma, target convention and implementation trust are inherited

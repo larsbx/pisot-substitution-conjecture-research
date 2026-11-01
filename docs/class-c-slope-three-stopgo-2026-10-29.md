@@ -1,5 +1,12 @@
 # Class C slope-three continuation: stop/go (2026-10-29)
 
+**Historical experiment, superseded 2026-11-01.** PR #392 is closed; this
+record is retained for provenance and replay. The accepted mainline T_C and
+T_C2 union covers d>=6, n>=3d and replaces every use of this weaker upper
+bound in #394. The original derivation and budgets below describe that
+historical experiment. Its workflow is archived, not an active acceptance
+gate. See [the reconciliation](class-c-below-three-integration-2026-11-01.md).
+
 Dependency: merged #390, main 625154ed470df4eef89577e421026f0c808287fd at session start (full SHA is in
 the provenance packet). Its hosted certificate jobs remain queued; merge
 status is not a successful replay receipt. Reuse its local certificates at

@@ -1,6 +1,12 @@
 # Class C below slope three (2026-10-29)
 
-Dependency: PR #392 at 82dc6955faf68df5ee31292b9c2dd503b325a123.
+Current mathematical dependencies: [T_C](class-c-tail-theorem-2026-10-28.md)
+and [T_C2](class-c-strip-theorem-2026-10-29.md), accepted on main through
+PR #384 (`40823631`) and PR #399 (`242c831a`), respectively. Their union gives
+BH for every d>=6, n>=3d, on both signs. PR #392 is superseded and is not a
+premise. Its original revision `82dc6955faf68df5ee31292b9c2dd503b325a123`
+remains a historical source locator in the immutable packet.
+See the [integration audit](class-c-below-three-integration-2026-11-01.md).
 The [stop/go](class-c-below-three-stopgo-2026-10-29.md) records the reviewed
 primary-source hypotheses, exact experiment budgets and subsequent finite
 partition refinements. No existing engine, vendored package, old packet or
@@ -20,7 +26,7 @@ The successful cone runs use only direct shifted coefficient signs (Pólya
 exponent zero). The eight planned sector proposals produced four successes
 and four undecided-sign refusals. These are sufficient bounds, not claimed
 optimal. The uniform conclusion combines the new sectors and line pieces
-with #392; no single label set is assumed for that union.
+with T_C and T_C2; no single label set is assumed for that union.
 
 ## Object and assumptions
 
@@ -89,20 +95,35 @@ integer is a failed coverage check, not a weakened theorem statement.
 
 ## Universal coverage argument
 
-Given a selected sector at (A,B), and an integer d>=32,2n>=5d+A:
+Use (A,B)=(8,16) on plus and (16,8) on minus. Given an integer
+d>=6 and 2n>=5d+A:
 
-1. If n<=3d-B, the inverse u,v above puts the member in that sector.
-2. Otherwise, if n<3d+4 plus or n<3d+6 minus, its integer c=n-3d
-   lies in -15..3 plus or -15..5 minus (B<=16). The relevant line
-   certificate, including all its finite exceptions, applies because
-   d>=A-2c follows from the frontier inequality.
-3. Larger n are in #392's slope-three result.
+1. If n>=3d, T_C2 applies below 4d (plus) or 4d+4 (minus), and T_C
+   applies at and above that onset. Their domains meet without a missing
+   integer, and their graph, sign and target conventions agree with this note.
+2. Otherwise n<3d. If d>=32 and n<=3d-B, the exact inverse u,v above
+   puts the member in the selected sector.
+3. If d>=32 and 3d-B<n<3d, the integer c=n-3d is in -15..-1
+   (plus) or -7..-1 (minus). Each required line certifies from d=32.
+   For any required line with d<A-2c, the frontier inequality is false,
+   so that line contributes no target member there. The three plus
+   target-line replays also certify, but are not needed beyond the
+   already certified floor-32 lines. No required minus line is among
+   the four floor-48 tails.
+4. If 6<=d<=31 and n<3d, the exact finite-end records contain every
+   member from ceil((5d+A)/2) through 3d-1. They were recorded through
+   3d+3 (plus) or 3d+5 (minus), so their extra upper records can be
+   retained without reliance on the superseded theorem. Minus uses
+   finite A=8, a superset of its selected A=16 region. The domain
+   clipping does not remove any required member: for d>=6,
+   (5d+A)/2 exceeds the plus 2d-5 and minus 2d+1 PIP starts.
 
-For 6<=d<=31 the exact finite-end driver enumerates n from
-ceil((5d+A)/2) through the integer immediately below #392. Every graph
-must be complete and every vertex must hit offset zero. The finite-end
-packet may use A=8 even if A=16 is selected: it then proves a larger finite
-set, which safely contains the required one.
+Thus every use of the former upper-region result is replaced by the
+strictly larger upper region n>=3d. The old bridge lines at c>=0,
+minus c=-15..-8, the four minus tails and their 52 prefixes, and the
+finite records with n>=3d remain useful historical or additional
+certificates but are unnecessary for this selected half-plane cover.
+Nothing requires the label sets on separate pieces to agree.
 
 This is the universal coverage argument. The bounded grid audit is a
 separate arithmetic error detector over d=6..64,n=0..400. It checks the
@@ -152,9 +173,10 @@ remain explicit trust inputs; this session does not constitute independent
 human review or a full Lean formalization.
 
 No result is inferred from sample agreement, an exhausted budget or a merged
-PR. In particular #392's hosted jobs were queued at initial inspection, and
-its local certificates are used at their precisely recorded scope with that
-acceptance debt visible. No entire lower Pisot-edge strip or PSC conclusion
+PR. The historical #392 receipts remain archived evidence, not a live
+mathematical or CI dependency. Mainline acceptance does not imply a fresh
+hosted replay of this PR. Exact-head hosted acceptance remains required;
+independent human review remains separately pending. No entire lower Pisot-edge strip or PSC conclusion
 is claimed. The final accepted parameter pieces and remaining region are
 listed with the completed receipts.
 

@@ -1,9 +1,11 @@
 # Class C below slope three: stop/go (2026-10-29)
 
-Dependency: #392 at 82dc6955faf68df5ee31292b9c2dd503b325a123, still open
-and with queued hosted jobs at initial inspection. Use its exactly scoped
-local certificates provisionally; do not infer hosted acceptance from them.
-All earlier packets and implementations remain unchanged.
+Current dependency (reconciled 2026-11-01): the accepted mainline T_C and
+T_C2 results give d>=6, n>=3d on both signs. #392 is closed as superseded;
+its initial revision `82dc6955faf68df5ee31292b9c2dd503b325a123` is historical
+provenance only. The recorded budgets and failed proposals below are retained.
+All earlier packets and implementations remain unchanged. See the
+[integration audit](class-c-below-three-integration-2026-11-01.md).
 
 Target: lower the current slope-three frontier by exact lines n=3d+c,
 and explore a sector between slopes 5/2 and 3 without assuming PIP, a common
@@ -35,7 +37,7 @@ successful line floor can be decided exactly within the stated finite budget
 6<=d<=31. Do not infer a conclusion from a cap or undecided sign.
 
 Known controls: the minus 250-label table already fails at n=3d+5, and
-#392 proves that intermediate clipping signs can vary even when label sets
+the retained #392 sign controls show that intermediate clipping signs can vary even when label sets
 agree. Also preserve the 282-count/different-label control. The lower edge
 near n=2d may grow and remains distinct from these fixed-slope targets.
 
@@ -48,7 +50,9 @@ near n=3d-8 and n=3d-4 differ from the interior 400/384 tables. A sector
 with B=8 therefore cannot be certified by extrapolating one label set.
 Retain all eight planned sector attempts, but expand the bridging line budget
 to c=-15..3 plus and c=-15..5 minus (40 lines, d>=32). If a B=16 sector
-certifies, these lines join it to #392's upper bound. The finite-end budget
+certifies, these lines join it to the upper region. The original experiment
+used #392's bounds; T_C and T_C2 now cover the larger n>=3d region.
+The finite-end budget
 is d=6..31 with n from ceil((5d+A)/2) through 3d+3/5, clipped to the proved
 PIP domain. This is a finite, explicit enumeration, not a growing-state
 uniform claim at the lower Pisot edge. If the sectors refuse, the line-only
@@ -71,3 +75,15 @@ construction used by T_C, without requiring one label set across the pieces.
 No uncovered member is discarded. If later direct line attempts refuse,
 apply this finite split within the same maximum floor 48 and preserve the
 original error; the audit/oracle must check every exceptional integer.
+
+
+Integration decision (2026-11-01): proceed with the original certified pieces
+and immutable receipts, using T_C / T_C2 at n>=3d. Only c=-15..-1 plus and
+c=-7..-1 minus are load-bearing bridges below that boundary. All are certified
+from d=32. No new mathematical machinery, invariant, criterion or claim
+promotion is introduced by this regression/integration repair. The primary-source
+hypotheses and non-claims above are unchanged. Retire the redundant active #392
+workflow, preserve its exact bytes in archive, and verify historical source
+pins against their original revision rather than pretending they describe
+current source. Fresh native replay, independent finite oracle comparisons,
+provenance/governance checks and exact-head hosted acceptance remain distinct.

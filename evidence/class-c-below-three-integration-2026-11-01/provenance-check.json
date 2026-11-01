@@ -1,0 +1,22 @@
+{
+  "archived_workflow_identical": true,
+  "categories": {
+    "append-only-ledger": 1,
+    "historical-392-derivation": 2,
+    "historical-392-evidence": 48,
+    "historical-392-replay-source": 4,
+    "new-394": 7,
+    "new-394-evidence": 79,
+    "redundant-392-workflow": 1
+  },
+  "current_source_pins": 66,
+  "historical_source_drifts": [
+    "kernel/pixi.toml",
+    "kernel/psc/class_c_tail_certificate.mojo",
+    "kernel/psc/symbolic_line.mojo"
+  ],
+  "historical_source_pins": 67,
+  "immutable_packet_files": 127,
+  "inspected_diff_files": 142,
+  "scope": "source provenance only; no hosted or independent proof certification"
+}
