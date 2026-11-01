@@ -1,0 +1,25 @@
+name: PSC class-A all-nine swapped-patch seeds reach X
+
+on:
+  pull_request:
+    paths:
+      - 'oracles/python/class_a_nine_swap_to_x.py'
+      - 'tests/test_class_a_nine_swap_to_x.py'
+      - 'docs/class-a-nine-swap-to-x-2026-10-31.md'
+      - '.github/workflows/class-a-nine-swap-to-x.yml'
+  workflow_dispatch:
+
+jobs:
+  nine-seed-uniform:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact affine path certificate and independent literal/Fraction regression
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_nine_swap_to_x.py
+          python oracles/python/class_a_nine_swap_to_x.py > /tmp/class-a-nine-swap-to-x.json
