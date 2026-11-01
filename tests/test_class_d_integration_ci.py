@@ -143,3 +143,32 @@ def test_only_added_trigger_paths_preserve_an_accepted_workflow():
     assert not ci.added_trigger_paths_only(accepted, current.replace(b'certify a', b'true'))
     assert not ci.added_trigger_paths_only(accepted, accepted)
     assert not ci.added_trigger_paths_only(accepted, current + b'      - run: extra\n')
+
+
+def test_a_plus_receipt_pin_moves_only_to_a_rebound_receipt():
+    new = ('CLASS_D_PLUS_POSITIVE_B_CHAMBERS_CERTIFIED wedges= 6 explicit_lines= 6 '
+           'boundary_lines= 51 finite_prefix_pip= 287 max_symbolic_vertices= 164')
+    accepted = (b"name: X\non:\n  pull_request:\n    paths:\n      - 'a.mojo'\n\njobs:\n  a:\n    steps:\n"
+                b"      - run: grep -Fx '" + ci.PLUS.encode() + b"' residual-plus.log\n")
+    current = accepted.replace(ci.PLUS.encode(), new.encode())
+    assert ci.rebound_receipt_pin_only(accepted, current, {new})
+    # Composes with the other admitted additions.
+    block = b'concurrency:\n  group: x\n  cancel-in-progress: true\n\n'
+    widened = current.replace(b"      - 'a.mojo'\n", b"      - 'a.mojo'\n      - 'b.mojo'\n")
+    assert ci.rebound_receipt_pin_only(accepted, widened.replace(b'jobs:', block + b'jobs:'), {new})
+    # A receipt no rebind packet pins, an unchanged pin, a dropped pin or any other edit refuses.
+    forged = new.replace('51', '50')
+    assert not ci.rebound_receipt_pin_only(accepted, accepted.replace(ci.PLUS.encode(), forged.encode()), {new})
+    assert not ci.rebound_receipt_pin_only(accepted, current, set())
+    assert not ci.rebound_receipt_pin_only(accepted, accepted, {new})
+    assert not ci.rebound_receipt_pin_only(accepted, current.replace(b'grep -Fx', b'true ||'), {new})
+    assert not ci.rebound_receipt_pin_only(accepted, current + b'      - run: extra\n', {new})
+
+
+def test_the_live_plus_workflow_pins_the_rebound_receipt_not_the_accepted_one():
+    """The fit-first rebind (2026-10-30) moved the replayed plus receipt; a
+    workflow still grepping the accepted 73/952 line fails on every replay."""
+    from check_class_d_closure_rebind import rebound_plus_receipts
+    workflow = (ROOT/'.github/workflows/class-d-positive-b-evidence.yml').read_text()
+    assert ci.PLUS not in workflow
+    assert sum(receipt in workflow for receipt in rebound_plus_receipts()) == 1
