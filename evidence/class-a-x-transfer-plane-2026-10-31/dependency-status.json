@@ -1,0 +1,152 @@
+{
+  "prs": [
+    {
+      "number": 428,
+      "state": "open",
+      "merged": false,
+      "head_sha": "df233242c919a9cd9ab031e39026f48e906c9840",
+      "base": "main",
+      "base_sha": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af"
+    },
+    {
+      "number": 430,
+      "state": "open",
+      "merged": false,
+      "head_sha": "c36713575759f7a5afbc324e5db3dc9d7e3f4fee",
+      "base": "research/class-a-nine-swap-seeds-to-x-2026-10-31",
+      "base_sha": "df233242c919a9cd9ab031e39026f48e906c9840"
+    },
+    {
+      "number": 431,
+      "state": "open",
+      "merged": false,
+      "head_sha": "c6a27494124db6f955be2a33c36de494164de4d8",
+      "base": "research/class-a-x-to-eight-swap-seeds-2026-10-31",
+      "base_sha": "c36713575759f7a5afbc324e5db3dc9d7e3f4fee"
+    },
+    {
+      "number": 432,
+      "state": "open",
+      "merged": false,
+      "head_sha": "d2b94fe5d6827d20d9488866ab8465ecbb4b8d61",
+      "base": "main",
+      "base_sha": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af"
+    },
+    {
+      "number": 433,
+      "state": "open",
+      "merged": false,
+      "head_sha": "2e9ecf67fe1d6270afec3b83b377fb4cb5960d04",
+      "base": "main",
+      "base_sha": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af"
+    },
+    {
+      "number": 436,
+      "state": "open",
+      "merged": false,
+      "head_sha": "372567d53e6222f6fbcab6c2c3fefb5c18a3809b",
+      "base": "main",
+      "base_sha": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af"
+    }
+  ],
+  "pr436_workflows": [
+    {
+      "id": 41193034121,
+      "name": "Class-D plus positive-b chambers",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034142,
+      "name": "Class-A cover obstruction",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034090,
+      "name": "Class-A run-index investigation",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034029,
+      "name": "PSC research checks",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034062,
+      "name": "C4 degree2 three-state census",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034262,
+      "name": "Scoped class-D assembly",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034237,
+      "name": "Class-D minus recurrent reduction",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034070,
+      "name": "Class-D complete residual certificates",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034087,
+      "name": "Gap-five A/C evidence",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034178,
+      "name": "Show your work policy",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034189,
+      "name": "PSC class-A X indexed productivity and ladder",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034094,
+      "name": "C4 defect-degree census",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034035,
+      "name": "Boundary synchronization layer",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034113,
+      "name": "Target-aware BPA diagnostic",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034109,
+      "name": "Class-A uniform gap theorem",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "id": 41193034025,
+      "name": "Canonical Pisot polynomial kernels",
+      "status": "queued",
+      "conclusion": null
+    }
+  ],
+  "pr436_review_threads": [],
+  "interpretation": "No predecessor promoted; #436 local results used only at their recorded mechanically checked scope."
+}

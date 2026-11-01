@@ -1,0 +1,162 @@
+{
+  "all_full_labels_and_indexed_edges_equal": true,
+  "members": [
+    {
+      "canonical_indexed_sha256": "9448c64f88ea30d4b18bbb944cef2b9fc5de324c68c26b37a94860265a4c0e10",
+      "indexed_edges": 4788,
+      "k": 0,
+      "t": 0,
+      "vertices": 784
+    },
+    {
+      "canonical_indexed_sha256": "c401e894ecae0c2fa07ff3bae734924d6a26a90c94265bf8a9d118e509cb9e19",
+      "indexed_edges": 7752,
+      "k": 0,
+      "t": 1,
+      "vertices": 1010
+    },
+    {
+      "canonical_indexed_sha256": "dc3846d56a93ebf7e468d65461d1a2a6d506e9108f7b4c7d02f02245e4ea0500",
+      "indexed_edges": 11226,
+      "k": 0,
+      "t": 2,
+      "vertices": 1220
+    },
+    {
+      "canonical_indexed_sha256": "92c65e82288c534bd614d34b70c8810e0f3637c8ea6a36ef68775bf7925865ed",
+      "indexed_edges": 15098,
+      "k": 0,
+      "t": 3,
+      "vertices": 1440
+    },
+    {
+      "canonical_indexed_sha256": "43942722db3d82430364ebb64bb5adfe420f85d2716682a5db2346ab4b89b54e",
+      "indexed_edges": 3142,
+      "k": 1,
+      "t": 0,
+      "vertices": 436
+    },
+    {
+      "canonical_indexed_sha256": "2fa10ed7e70855a8c3c82d39b9d7377582f34fce4785eae84865bf1f14d80440",
+      "indexed_edges": 5636,
+      "k": 1,
+      "t": 1,
+      "vertices": 642
+    },
+    {
+      "canonical_indexed_sha256": "f8fdb29ca4011bfed5f22927469d7a3552fbcf213a3c1c401dd1f3492e4843fa",
+      "indexed_edges": 6678,
+      "k": 1,
+      "t": 2,
+      "vertices": 646
+    },
+    {
+      "canonical_indexed_sha256": "aae1e52047e0ee5210193ade3475f093728c94ff5cd6208139dccebed5c2e6e9",
+      "indexed_edges": 9574,
+      "k": 1,
+      "t": 3,
+      "vertices": 836
+    },
+    {
+      "canonical_indexed_sha256": "52859a2e144f9ca01371f776985b8be251f10877a371b7fa07fe59ee7eda2f98",
+      "indexed_edges": 3144,
+      "k": 2,
+      "t": 0,
+      "vertices": 378
+    },
+    {
+      "canonical_indexed_sha256": "fbe9956ecdae7aacbab063accd3a2f5d3b8f36496b8e64e3fc4bef5301c3043c",
+      "indexed_edges": 3794,
+      "k": 2,
+      "t": 1,
+      "vertices": 390
+    },
+    {
+      "canonical_indexed_sha256": "0220fc9adf27312028b9eaea7c7e97c9bf27565232679403c344107a6209955c",
+      "indexed_edges": 6656,
+      "k": 2,
+      "t": 2,
+      "vertices": 594
+    },
+    {
+      "canonical_indexed_sha256": "d645ecbb451058b1672774c1774be1fa1b26bfdd5c7513dfa8cb8b18c479b2cb",
+      "indexed_edges": 7092,
+      "k": 2,
+      "t": 3,
+      "vertices": 568
+    },
+    {
+      "canonical_indexed_sha256": "e4ce937b3cad4ad2bf5f22627d711a4a9060b084fb02c98fa84ea513bb5e5b7b",
+      "indexed_edges": 3252,
+      "k": 3,
+      "t": 0,
+      "vertices": 352
+    },
+    {
+      "canonical_indexed_sha256": "f17034d50a96240630b0c6fcf5f04456f21aa73f81d1a85e26a5b9b8d77fc720",
+      "indexed_edges": 3670,
+      "k": 3,
+      "t": 1,
+      "vertices": 342
+    },
+    {
+      "canonical_indexed_sha256": "27fc27133b7f5f719a770d83a26be1bc3b4bd6c41d97bbd003efb59f0b5a6f93",
+      "indexed_edges": 4432,
+      "k": 3,
+      "t": 2,
+      "vertices": 362
+    },
+    {
+      "canonical_indexed_sha256": "6b647b6914e5061979783eeb9cdaf97466b639ac67ff668a01ad145996a5526b",
+      "indexed_edges": 7464,
+      "k": 3,
+      "t": 3,
+      "vertices": 548
+    },
+    {
+      "canonical_indexed_sha256": "423dc031f71a0f2614e4bf80aa1c0ca2349f7d2e37197101bd3adc72127adc48",
+      "indexed_edges": 19350,
+      "k": 0,
+      "t": 4,
+      "vertices": 1632
+    },
+    {
+      "canonical_indexed_sha256": "6e849c0d8b443078fdcb55f3377355cb52b5da9cff8fff897cdee92ff94219ba",
+      "indexed_edges": 3526,
+      "k": 4,
+      "t": 0,
+      "vertices": 340
+    },
+    {
+      "canonical_indexed_sha256": "a04ab930b38e7507bddb8ff51b577433907d41cff3000dbe34ec8d8e56878b34",
+      "indexed_edges": 8252,
+      "k": 4,
+      "t": 4,
+      "vertices": 518
+    },
+    {
+      "canonical_indexed_sha256": "b7e17333963bb033d71909b8d864162af7c56d0ec10be127143409ccd3e88568",
+      "indexed_edges": 40118,
+      "k": 0,
+      "t": 8,
+      "vertices": 2312
+    },
+    {
+      "canonical_indexed_sha256": "cea4e0061eda3baee3cb01aa0a76c1c6f1535bd7bb3f35d856f9bb0ca25a4b6f",
+      "indexed_edges": 4816,
+      "k": 8,
+      "t": 0,
+      "vertices": 326
+    },
+    {
+      "canonical_indexed_sha256": "4e25c9ff230f86f1bfe6e29652dea7484240e7d532fa3af9b1b23b3c06d70299",
+      "indexed_edges": 11506,
+      "k": 8,
+      "t": 8,
+      "vertices": 456
+    }
+  ],
+  "native_log_sha256": "361ea730432314f95aa9d5dab931b8e6cd8a7d54646aae10d5f9b18200ef9de1",
+  "native_scc_and_reachability_equal": true,
+  "universal_x_productivity": false
+}

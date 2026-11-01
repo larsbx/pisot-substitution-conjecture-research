@@ -1,0 +1,7 @@
+{
+  "coefficient_ring": "Z[k,t,m]",
+  "root_identities": 3,
+  "strict_geometry": "written exact inequalities; inherited root bounds",
+  "symbolic_directed_edges": 16,
+  "universal_x_productivity": false
+}
