@@ -161,3 +161,7 @@ Still open:
 * #394's docs still cite #392 at `82dc6955` as the upper-bound dependency. Re-citing
   T_C2 is a change to the mathematical text, so it is left to the author.
 * The Python-only PRs still need a Mojo port or a recorded Mojo blocker.
+* #436 `python-tests` / `exact-kernels`: its tests import `sympy`, which the shared
+  jobs never install, and `pyproject.toml` is hash-frozen by the class-D gate. This
+  branch adds the narrow `appended_dev_extras_only` rule; after it merges, #436 can
+  append `sympy==1.14.0` to the `dev` extra.

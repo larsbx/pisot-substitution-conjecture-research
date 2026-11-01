@@ -129,6 +129,24 @@ def additive_pixi_tasks_only(accepted: bytes, current: bytes) -> bool:
                     for name, task in old_tasks.items()))
 
 
+def appended_dev_extras_only(accepted: bytes, current: bytes) -> bool:
+    """Preserve the accepted project metadata; allow new pins appended to the
+    `dev` extra only.
+
+    The `dev` extra installs test tooling for oracles and is never imported by
+    the accepted Mojo computation, so no receipt can change this way. Runtime
+    dependencies, every other table and extra, and the accepted pins and their
+    order are preserved exactly. The historical bytes retain their SHA-256 check.
+    """
+    before, after = tomllib.loads(accepted.decode()), tomllib.loads(current.decode())
+    old = before.get('project', {}).get('optional-dependencies', {}).pop('dev', None)
+    new = after.get('project', {}).get('optional-dependencies', {}).pop('dev', None)
+    exact = lambda value: json.dumps(value, sort_keys=True, separators=(',', ':'))
+    return (isinstance(old, list) and isinstance(new, list) and len(new) > len(old)
+            and new[:len(old)] == old and all(isinstance(pin, str) for pin in new)
+            and exact(before) == exact(after))
+
+
 def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
     expected = dict(format='class-d-integration-ci-v1', accepted_head=HEAD,
                     tested_merge=TESTED, main_merge=MERGED, accepted_tree=TREE,
@@ -199,6 +217,8 @@ def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
         current = (ROOT/path).read_bytes()
         if hashlib.sha256(current).hexdigest() != digest:
             if path == 'kernel/pixi.toml' and additive_pixi_tasks_only(historical, current):
+                continue
+            if path == 'pyproject.toml' and appended_dev_extras_only(historical, current):
                 continue
             if path.startswith('.github/workflows/') and (added_concurrency_block_only(historical, current)
                                                           or added_trigger_paths_only(historical, current)

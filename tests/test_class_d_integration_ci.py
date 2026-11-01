@@ -172,3 +172,19 @@ def test_the_live_plus_workflow_pins_the_rebound_receipt_not_the_accepted_one():
     workflow = (ROOT/'.github/workflows/class-d-positive-b-evidence.yml').read_text()
     assert ci.PLUS not in workflow
     assert sum(receipt in workflow for receipt in rebound_plus_receipts()) == 1
+
+
+def test_only_appended_dev_extras_preserve_the_accepted_pyproject():
+    accepted = (b'[project]\nname = "p"\ndependencies = []\n\n[project.optional-dependencies]\n'
+                b'dev = ["pytest>=7.0", "pypdf==6.19.0"]\n\n[tool.pytest.ini_options]\npythonpath = ["."]\n')
+    current = accepted.replace(b'"pypdf==6.19.0"]', b'"pypdf==6.19.0", "sympy==1.14.0"]')
+    assert ci.appended_dev_extras_only(accepted, current)
+    # A runtime dependency, a changed or reordered or dropped dev pin, a new extra,
+    # a pytest-option change, or an unchanged file each refuse.
+    assert not ci.appended_dev_extras_only(accepted, current.replace(b'dependencies = []', b'dependencies = ["sympy"]'))
+    assert not ci.appended_dev_extras_only(accepted, current.replace(b'pypdf==6.19.0', b'pypdf==6.20.0'))
+    assert not ci.appended_dev_extras_only(accepted, current.replace(b'"pytest>=7.0", "pypdf==6.19.0"', b'"pypdf==6.19.0", "pytest>=7.0"'))
+    assert not ci.appended_dev_extras_only(accepted, current.replace(b'"pytest>=7.0", ', b''))
+    assert not ci.appended_dev_extras_only(accepted, current.replace(b'dev = [', b'lab = ["x"]\ndev = ['))
+    assert not ci.appended_dev_extras_only(accepted, current.replace(b'pythonpath = ["."]', b'pythonpath = [".", "x"]'))
+    assert not ci.appended_dev_extras_only(accepted, accepted)
