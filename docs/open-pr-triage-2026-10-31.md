@@ -115,3 +115,49 @@ line. #411 and #436–#439 carry Mojo.
 No PR is judged mathematically correct or incorrect here; supersession is by
 stated scope only. No CI result is inferred for a queued run. The new checker
 rule admits no receipt that a validated hosted replay did not print.
+
+## Follow-up, 2026-11-01
+
+Actions taken (authorized by the repository owner, one step at a time):
+
+| step | done |
+|---|---|
+| 1 | #441 merged (`288732c4`); its `complete-residual (plus)` job passed on the PR head (51/287 receipt). |
+| 2 | `main` merged into #411, #415, #416, #420, #421, #424–#429, #432, #433 (update-branch) and into the stacked #417, #430, #431, #434, #435, #439 (their bases). Conflicts in #436, #438 and #394 were resolved by hand, with `main`'s side-notes entries first; #438 keeps `main`'s link test plus its own extra regression. |
+| 2 | `## Work shown` added to the descriptions of #411, #415–#417, #420, #421, #424–#435. The sections are drafted only from each PR's own files, with every multi-digit figure checked against them and the original description kept verbatim on top. |
+| 2 | Missing `SHA256SUMS` added to #436 (`class-a-x-signed-strip`, `class-a-x-cross-strip`) and #438 (`class-a-parikh-acceptance`); pins are the bytes as committed. |
+| 4 | #392 closed as superseded by T_C ∪ T_C2 (same normal form; `n ≥ 3d+4` / `3d+6`, `d ≥ 6` ⊂ `n ≥ 3d`, `d ≥ 6`), branch kept; #394 retargeted to `main`. |
+
+PR-own failures fixed:
+
+* **#415** (`442d170d`): the reversal pass compared base-normalized labels with
+  the reversed label set, so the assertion could never hold. With the comparison
+  corrected, every pinned count reproduces. The workflow's malformed trigger entry
+  is split, and it now runs the symbolic-geometry test it listed but never ran.
+* **#394** (`8450a9dc`): only the source-hash step of `cover (plus)` failed. A full
+  local replay on the merged head reproduced every plus and minus receipt, the
+  native test log and the oracle byte-for-byte; only then were three source
+  digests re-recorded (`evidence/class-c-below-three-2026-10-29/rebind-2026-11-01.md`).
+
+Inconsistencies found while drafting, recorded in each PR's own description and
+left for its author:
+
+* Stale local-run pins: #427's test blob, #429's oracle and test blobs, and #431's
+  source blob name earlier commits, not the head bytes.
+* Figures quoted but not asserted by any test: #428's 351-vertex nine-seed closure
+  (#429 does test it), #429's "sixteen labels", #433's Reach(S9)=351, and #434's
+  (3,0) edge counts and depth bound.
+* #431's `symbolic_star()` checks only a count identity; the universal E6 star rests
+  on the written derivation plus finite specimens.
+* #425 claims a "corrupted target" control that no test exercises. #435's
+  symmetric-cycle control is run against the BFS producer only, not against
+  `verify_rank`.
+* #433 targets `main`, but its identity depends on the open #428, #430, #431 and #432.
+
+Still open:
+
+* #378 and #380 `two-oriented-stars`: their packets pin `kernel/pixi.toml`. Not
+  fixed, since the 10-28 stack is proposed for retirement.
+* #394's docs still cite #392 at `82dc6955` as the upper-bound dependency. Re-citing
+  T_C2 is a change to the mathematical text, so it is left to the author.
+* The Python-only PRs still need a Mojo port or a recorded Mojo blocker.
