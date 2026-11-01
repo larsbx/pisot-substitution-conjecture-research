@@ -1,0 +1,14 @@
+[
+  {
+    "file": "plus-g1-q10.labels",
+    "witnesses": 2869,
+    "historical_sha256": "9d7eefee16ec237c43b622b2758eba7254d257d2d37c2b98e33b2b36b9217ee0",
+    "current_sha256": "d7e9d3c2982edfbfa495745871b695f324fd68ee22f1b33d0c2dbf9ae6f49073"
+  },
+  {
+    "file": "plus-g1-q9.labels",
+    "witnesses": 2757,
+    "historical_sha256": "13ac5f89d13682438b2266db584af280acce1c5dc002ffdb363c841aef19437b",
+    "current_sha256": "010d130623ce98f6a36a6cf2eb42b94f2485c01b763d996ff9dc7f67a6e33af8"
+  }
+]

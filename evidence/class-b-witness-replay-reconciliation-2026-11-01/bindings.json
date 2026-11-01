@@ -1,0 +1,23 @@
+{
+  "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "current_label_byte_comparisons": 289,
+  "current_witnesses_independently_checked": 5626,
+  "failed_hosted_job": 124870689049,
+  "failed_hosted_run": 41314198978,
+  "historical_witness_byte_comparisons": 2,
+  "historical_witnesses_independently_checked": 5626,
+  "local_full_replay_exit": 0,
+  "sha256": {
+    ".github/workflows/class-b-label-rays.yml": "bb5d4bd0e9e7d7710b4f701e32c20072e135217bb5ca19cd086646384b19e5fe",
+    "archive/class-b-label-witness-export-2026-11-01/class_b_label_rays.mojo": "7b42520141e1c68de19f86880ebef1b2b61b3d521f5878798ba2207b2de33747",
+    "evidence/class-b-label-rays-2026-10-23/SHA256SUMS": "40f0e1c70d8333b498619807abe53d1db773b8aa875bb7733b7d8bcec33dbf04",
+    "kernel/class_b_label_rays.mojo": "9c5ef044ed4050e7a4f9eddbd8830aa8514543efe7f6573ca8ca7594246d2e6d",
+    "kernel/pixi.lock": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8",
+    "kernel/psc/class_b_segment_graph.mojo": "1a4cde19cd10fbea106f9e6b3f0dfea02bff92c84e3c90c932706e09327f611c",
+    "oracles/python/class_b_label_replay.py": "b48eead197545c01bc24320361bbce582e4499b969824403e1772cd1763191fb",
+    "oracles/python/class_b_label_replay_compat.py": "01e181acbc7f13cca20bce245067b6c508d3af116d7e0ad0ffd3e04514b32bdc",
+    "tests/test_class_b_label_replay_compat.py": "dd0985ea41fe05fc9a62d72cd4ed6ae40d34897f2f46bbb356673c0bd0200365"
+  },
+  "source_base": "7193536a829d2d5da70f7a6f6154127eb6c779ed",
+  "unchanged_current_kernel_tree": "da4044ba82cc61825a4aa8b54659094176f4f698"
+}
