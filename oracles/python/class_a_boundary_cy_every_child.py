@@ -147,7 +147,9 @@ def probe():
                         max_attainers=[(k,t,flip,i,j,list(w))]
                     elif length==max_depth and len(max_attainers)<12:
                         max_attainers.append((k,t,flip,i,j,list(w)))
-                assert seen=={reverse(z) for z in CHILD_LABELS} if flip else seen==CHILD_LABELS
+                # `seen` holds base-normalized labels (reverse(w) when flipped), so both
+                # orientations must cover exactly CHILD_LABELS.
+                assert seen==CHILD_LABELS
     return dict(scope="finite exact all-first-choice replay of CY / reversal; symbolic proof separate; not global BH",
                 members=members,source_cells=source_cells,pairs=pairs,
                 indexed_first_children=children,composed_path_edges=composed_edges,

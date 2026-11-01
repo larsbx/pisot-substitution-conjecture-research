@@ -5,7 +5,7 @@ on:
     paths:
       - 'oracles/python/class_a_boundary_cy_every_child.py'
       - 'tests/test_class_a_boundary_cy_every_child.py'
-      - 'tests/test_class_a_boundary_cy_symbolic_transport.py tests/test_class_a_boundary_cy_symbolic_geometry.py'
+      - 'tests/test_class_a_boundary_cy_symbolic_transport.py'
       - 'oracles/python/class_a_boundary_cy_symbolic_transport.py'
       - 'oracles/python/class_a_boundary_cy_symbolic_geometry.py'
       - 'tests/test_class_a_boundary_cy_symbolic_geometry.py'
@@ -25,5 +25,5 @@ jobs:
       - name: Independently replay every actual CY first choice and both reversals
         run: |
           python -m pip install 'pytest>=7'
-          python -m pytest -q tests/test_class_a_boundary_cy_children.py tests/test_class_a_boundary_cy_every_child.py tests/test_class_a_boundary_cy_symbolic_transport.py
+          python -m pytest -q tests/test_class_a_boundary_cy_children.py tests/test_class_a_boundary_cy_every_child.py tests/test_class_a_boundary_cy_symbolic_transport.py tests/test_class_a_boundary_cy_symbolic_geometry.py
           python oracles/python/class_a_boundary_cy_every_child.py > /tmp/cy-all-child.json
