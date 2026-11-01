@@ -1,0 +1,90 @@
+name: Research branch integration conformance
+on:
+  pull_request:
+    paths:
+      - 'kernel/**'
+      - 'oracles/python/**'
+      - 'tools/check_research_source_manifest.py'
+      - 'tests/**'
+      - 'evidence/research-integration-2026-11-01/**'
+      - 'archive/research-integration-sources-2026-11-01/**'
+      - 'docs/research-branch-integration-2026-11-01.md'
+      - '.github/workflows/research-integration.yml'
+  workflow_dispatch:
+concurrency:
+  group: research-integration-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-selected-paths:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install declared test dependencies and locked compiler
+        run: |
+          python -m pip install -e .[dev]
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Record exact head and run canonical contracts
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          pixi run --locked mojo run -I . tests/test_class_a_selected_exit_integration.mojo
+          pixi run --locked mojo run -I . tests/test_class_d_plus_row12_chamber.mojo
+          python3 -m pytest -q ../tests/test_class_a_boundary_b4_r4_exit_recovery.py
+  finite-hub-conformance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install locked compiler
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Complete native graph and refusal contracts
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          pixi run --locked mojo run -I . tests/test_class_a_finite_hub_integration.mojo
+          pixi run --locked mojo build -I . class_a_finite_hub_integration.mojo -o /tmp/finite-hub
+      - name: Independently compare all 32 complete state sets and adjacencies
+        run: |
+          python3 oracles/python/check_class_a_finite_hub_integration.py /tmp/finite-hub > /tmp/finite-hub-comparison.json
+          diff evidence/research-integration-2026-11-01/hub-comparison.json /tmp/finite-hub-comparison.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: full-finite-hub-comparison
+          path: /tmp/finite-hub-comparison.json
+  historical-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e .[dev]
+      - name: Immutable sources, explicit metadata exceptions and negative controls
+        run: |
+          git rev-parse HEAD
+          python -m pytest -q tests/test_research_source_manifest.py tests/test_recorded_data_integrity.py
+          python tools/check_class_c_below_three_integration.py
+          python tools/make_proof_bank.py --check
+          PYTHONPATH=tools python -m claim_governance.cli --root .

@@ -1,0 +1,16 @@
+{
+  "base_commit": "e2dc81f59bf122721e9e556d4a6db1ae51fb13cf",
+  "mojo_version": "1.1.0.dev2026090805 (34562fa1)",
+  "lean_version": "4.34.0-rc2",
+  "ray_count": 186,
+  "ray_payload_sha256": "7d933162208fc4eb7f7a953fbd8ac89cf132f903d55fd2e525fb3689af4c420f",
+  "finite_seed_exports": 546,
+  "core_exports": 150,
+  "core_rays": 30,
+  "source_language": "Mojo",
+  "independent_oracle": "Python stdlib Fraction exact arithmetic",
+  "uniform_scope": "plus g>=16, 2<=r<=g-14; minus g>=12, 6<=r<=g-6; l>=4",
+  "universal_BH": false,
+  "PSC": false,
+  "independent_human_review": "pending"
+}

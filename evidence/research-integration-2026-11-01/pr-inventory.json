@@ -1,0 +1,257 @@
+{
+  "main": "3967ab32384e4add7c6d42a7519f42932c8625cb",
+  "prs": [
+    {
+      "number": 444,
+      "title": "Admit appended dev-extra pins in the class-D gate; record the 2026-11-01 open-PR follow-up",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/444",
+      "head": "ccr-dc37b2ac-m8a2p4",
+      "head_sha": "b80aca223f437bdbce6fa0d7ba75610d8b9cc3ff",
+      "base_sha": "288732c4a3f037b5a86765b8c57d11f12fa0a31f",
+      "disposition": "superseded by exact SymPy pin and strict gate in #394; retain original branch"
+    },
+    {
+      "number": 443,
+      "title": "fix(ci): declare SymPy for exact class-A symbolic oracle tests",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/443",
+      "head": "fix/psc-ci-symbolic-dev-dependency-2026-11-01",
+      "head_sha": "348746f3afb99dfa0afb0008bfaab66c47c48f98",
+      "base_sha": "288732c4a3f037b5a86765b8c57d11f12fa0a31f",
+      "disposition": "superseded by exact SymPy pin and strict gate in #394; retain original branch"
+    },
+    {
+      "number": 439,
+      "title": "Class A: verify actual native Perron length scale and exact index-d(n+d) Parikh lattice",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/439",
+      "head": "research/class-a-native-length-normalization-2026-10-31",
+      "head_sha": "c85c513715404806e573e3ab4b2f67876a2c9030",
+      "base_sha": "5ef80b67021851560d8bf725a83e5a6a03beb2a6",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 438,
+      "title": "Class A: exact injective Parikh-to-cubic Perron field bridge and child transport",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/438",
+      "head": "research/class-a-parikh-cubic-field-bridge-2026-10-31",
+      "head_sha": "5ef80b67021851560d8bf725a83e5a6a03beb2a6",
+      "base_sha": "288732c4a3f037b5a86765b8c57d11f12fa0a31f",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 429,
+      "title": "Class A: nine-swap SCC closure differs from X closure by at most S1 in exact specimens",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/429",
+      "head": "research/class-a-nine-seed-x-extension-scc-2026-10-31",
+      "head_sha": "fa3e82c24a79517f2a0019908d239c773bf21707",
+      "base_sha": "288732c4a3f037b5a86765b8c57d11f12fa0a31f",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 427,
+      "title": "Class A: exact finite four-seed SCC audit identifies X as a productive hub",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/427",
+      "head": "research/class-a-four-seed-exact-scc-hub-2026-10-31",
+      "head_sha": "79e10eea98de52f5e17a5ecb7be0c5a4e4b3264d",
+      "base_sha": "288732c4a3f037b5a86765b8c57d11f12fa0a31f",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 426,
+      "title": "Class A X: exact ten-target conditional every-first-choice coincidence composition",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/426",
+      "head": "research/class-a-x-first-choice-compose-2026-10-31",
+      "head_sha": "24503085a7894b5375960cf0a80ede40a66c5cd8",
+      "base_sha": "288732c4a3f037b5a86765b8c57d11f12fa0a31f",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 425,
+      "title": "Class A: recover B4/R4 selected exits with exact endpoint and parameter checks",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/425",
+      "head": "research/class-a-recover-b4-r4-exits-2026-10-31",
+      "head_sha": "55bd3bb6e1db685870c1871f1e2194a466a44e5f",
+      "base_sha": "288732c4a3f037b5a86765b8c57d11f12fa0a31f",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 424,
+      "title": "Class A: selectively recover R3, B3 and R5 uniform exits without old stacks",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/424",
+      "head": "research/class-a-recover-r3-b3-r5-exits-2026-10-31",
+      "head_sha": "3da96283a8c29bacba718a50d12ad7cb9b3a50cc",
+      "base_sha": "288732c4a3f037b5a86765b8c57d11f12fa0a31f",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 421,
+      "title": "Class A X: canonical ten-target proof coverage and conditional six-edge first-choice bound",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/421",
+      "head": "research/class-a-x-first-choice-dependency-audit-2026-10-31",
+      "head_sha": "c7bc24a5986f41f893b93f3b3b198f10d9f2d09b",
+      "base_sha": "288732c4a3f037b5a86765b8c57d11f12fa0a31f",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 420,
+      "title": "Class A T2: fill missing uniform selected coincidence exit with exact symbolic certificate",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/420",
+      "head": "research/class-a-t2-uniform-exit-2026-10-31",
+      "head_sha": "4e8f055578986cd3b9ec2d2c0d86f383e0fe485a",
+      "base_sha": "288732c4a3f037b5a86765b8c57d11f12fa0a31f",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 417,
+      "title": "Class A CC: every first-choice child has a selected coincidence path within five edges",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/417",
+      "head": "research/class-a-cc-every-first-choice-2026-10-31",
+      "head_sha": "e6993bf83233ab087df457a2f8564110c7a5f909",
+      "base_sha": "8c1bf11c712eedbd648159d2bbd54c3ab8ec5ee9",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 416,
+      "title": "Class A CC endpoint: four indexed children and a uniform three-edge typed exit",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/416",
+      "head": "research/class-a-cc-complete-star-2026-10-31",
+      "head_sha": "8c1bf11c712eedbd648159d2bbd54c3ab8ec5ee9",
+      "base_sha": "288732c4a3f037b5a86765b8c57d11f12fa0a31f",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 415,
+      "title": "Class A CY: every indexed first-choice child reaches typed coincidence within seven edges",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/415",
+      "head": "research/class-a-cy-every-first-choice-2026-10-31",
+      "head_sha": "442d170de37f89d9bfc4198f750559f080416b86",
+      "base_sha": "288732c4a3f037b5a86765b8c57d11f12fa0a31f",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 411,
+      "title": "Recover orphaned four-edge class-A U internal-coincidence proof from #354",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/411",
+      "head": "research/recover-class-a-u-internal-hit-2026-10-31",
+      "head_sha": "1ba58264da613f7aa3ad3bceb17c27a2a7390e5c",
+      "base_sha": "288732c4a3f037b5a86765b8c57d11f12fa0a31f",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 395,
+      "title": "Class A minus boundary: H9 complete stars and every-first-choice typed exits",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/395",
+      "head": "research/class-a-boundary-h9-2026-10-29",
+      "head_sha": "5490e2b85afa3cb75603fbc367ba0c371b35751b",
+      "base_sha": "1d0bd9f0761271ba70954c33c0d0c0dd6dd81e91",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 394,
+      "title": "Class C: boundary hitting for 2n\u22655d+8 plus / +16 minus",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/394",
+      "head": "research/class-c-below-three-2026-10-29",
+      "head_sha": "3632f28242aa484485ecee752c5e28f9b713cf81",
+      "base_sha": "3967ab32384e4add7c6d42a7519f42932c8625cb",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 391,
+      "title": "Class A minus boundary: J9 complete stars and uniform selected typed exits",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/391",
+      "head": "research/class-a-boundary-j9-2026-10-29",
+      "head_sha": "1d0bd9f0761271ba70954c33c0d0c0dd6dd81e91",
+      "base_sha": "74aed04167323bc9c68cf8236538436a80cfa113",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 382,
+      "title": "Class A minus boundary: E6 complete stars and uniform tails for every direct child",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/382",
+      "head": "research/class-a-boundary-e6-2026-10-28",
+      "head_sha": "74aed04167323bc9c68cf8236538436a80cfa113",
+      "base_sha": "a094b36c73852be6bc99e6f3374407e1f73e540f",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 380,
+      "title": "Class A minus boundary: classify complete R5 stars and reuse typed exits",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/380",
+      "head": "research/class-a-boundary-r5-2026-10-28",
+      "head_sha": "c771fe95d6ac7c8144df18329da726f02c6abb69",
+      "base_sha": "a094b36c73852be6bc99e6f3374407e1f73e540f",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 379,
+      "title": "Class A minus boundary: classify Y4 stars and certify tails for every child",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/379",
+      "head": "research/class-a-boundary-y4-2026-10-28",
+      "head_sha": "a094b36c73852be6bc99e6f3374407e1f73e540f",
+      "base_sha": "6906f9836aee0b336fa962d16c28209d403952b9",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 378,
+      "title": "Class A minus boundary: classify R4 stars and certify short typed exits",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/378",
+      "head": "research/class-a-boundary-r4-2026-10-28",
+      "head_sha": "6906f9836aee0b336fa962d16c28209d403952b9",
+      "base_sha": "b040833317a9e875bc124532c50a3378d1c400bf",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 377,
+      "title": "Class A minus boundary: classify B4 stars and certify three-case typed exits",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/377",
+      "head": "research/class-a-boundary-b4-2026-10-28",
+      "head_sha": "b040833317a9e875bc124532c50a3378d1c400bf",
+      "base_sha": "7ef8141a7ce7d50ff9ef27c97f7d0624b8803bec",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 375,
+      "title": "Class A minus boundary: reconcile the carrier and classify R3/D3 stars with typed exits",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/375",
+      "head": "research/class-a-boundary-r3-2026-10-28",
+      "head_sha": "dac171d78436ca39bd2adb657ac9e185353b5b15",
+      "base_sha": "cdd06669e429722cc703f7b2d5756ec3e15ed741",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 373,
+      "title": "Class A minus boundary: Q3 singleton star, typed exit and P3 image nonclosure",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/373",
+      "head": "research/class-a-boundary-q3-2026-10-28",
+      "head_sha": "cdd06669e429722cc703f7b2d5756ec3e15ed741",
+      "base_sha": "75fc905513e18d3b38233dfeb205e1dfc6de7bc7",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 367,
+      "title": "Class B: exact gap-uniform middle certificates and remaining finite rays",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/367",
+      "head": "research/class-b-step2c",
+      "head_sha": "c2291a356660d47a352cde7e18996eb33420ffab",
+      "base_sha": "cac1b5e5b7095d358da30872ddad29c9f05699f6",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 291,
+      "title": "Certify the plus row-12 integer chamber squeeze in Mojo",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/291",
+      "head": "proof/class-d-plus-row12-chamber-lattice-2026-10-19",
+      "head_sha": "e779ff704978b523e8d3565c56ae1e5f51328dac",
+      "base_sha": "85fafd3383a2837785199ad7f66e913c0e86c2a7",
+      "disposition": "retain contribution; reconciled in candidate"
+    },
+    {
+      "number": 273,
+      "title": "Add exact occurrence path replay and matched-target certificates",
+      "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/273",
+      "head": "feat/occurrence-path-replay",
+      "head_sha": "f172874730a1532ac88ce26d4003d33d841d8545",
+      "base_sha": "b378392f64f6d5d64c53a17c6d134315bb079416",
+      "disposition": "retain contribution; reconciled in candidate"
+    }
+  ]
+}

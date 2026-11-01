@@ -1,0 +1,152 @@
+{
+  "inspected_date": "2026-10-31",
+  "parent_pr": 436,
+  "parent_head": "3ee6f9bcbc075822cc1800b4f2ab979dbe2cf2f5",
+  "pull_requests": [
+    {
+      "number": 428,
+      "state": "open",
+      "merged": false,
+      "head": "df233242c919a9cd9ab031e39026f48e906c9840",
+      "base": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+      "title": "Class A: all nine literal swapped-patch overlap seeds reach X within five edges"
+    },
+    {
+      "number": 430,
+      "state": "open",
+      "merged": false,
+      "head": "c36713575759f7a5afbc324e5db3dc9d7e3f4fee",
+      "base": "df233242c919a9cd9ab031e39026f48e906c9840",
+      "title": "Class A: eight swapped-patch seeds lie in X's SCC uniformly"
+    },
+    {
+      "number": 431,
+      "state": "open",
+      "merged": false,
+      "head": "c6a27494124db6f955be2a33c36de494164de4d8",
+      "base": "c36713575759f7a5afbc324e5db3dc9d7e3f4fee",
+      "title": "Class A: all eight E6 children lie in Reach(X); exact nine-seed closure reduction"
+    },
+    {
+      "number": 432,
+      "state": "open",
+      "merged": false,
+      "head": "d2b94fe5d6827d20d9488866ab8465ecbb4b8d61",
+      "base": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+      "title": "Class A: exact four-edge X↔R(X) bridge and reversal-invariant X closure"
+    },
+    {
+      "number": 433,
+      "state": "open",
+      "merged": false,
+      "head": "2e9ecf67fe1d6270afec3b83b377fb4cb5960d04",
+      "base": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+      "title": "Class A: orientation-complete 18-swap closure reduces to X plus E6 and R(E6)"
+    },
+    {
+      "number": 436,
+      "state": "open",
+      "merged": false,
+      "head": "3ee6f9bcbc075822cc1800b4f2ab979dbe2cf2f5",
+      "base": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+      "title": "Class A: X productivity audit and signed-strip escape"
+    },
+    {
+      "number": 437,
+      "state": "open",
+      "merged": false,
+      "head": "2bc209e05fd6fc83f5b02ec151971c09cb7431f6",
+      "base": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+      "title": "PSC: Mojo selected-rank verifier with Lean finite-path soundness"
+    }
+  ],
+  "parent_workflows": [
+    {
+      "name": "Show your work policy",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "name": "Show your work policy",
+      "status": "completed",
+      "conclusion": "cancelled"
+    },
+    {
+      "name": "Class-A uniform gap theorem",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "name": "C4 defect-degree census",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "name": "Canonical Pisot polynomial kernels",
+      "status": "pending",
+      "conclusion": null
+    },
+    {
+      "name": "Scoped class-D assembly",
+      "status": "pending",
+      "conclusion": null
+    },
+    {
+      "name": "Class-D plus positive-b chambers",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "name": "Class-A cover obstruction",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "name": "Boundary synchronization layer",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "name": "C4 degree2 three-state census",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "name": "Class-A run-index investigation",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "name": "PSC research checks",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "name": "Target-aware BPA diagnostic",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "name": "Gap-five A/C evidence",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "name": "PSC class-A X indexed productivity and ladder",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "name": "Class-D minus recurrent reduction",
+      "status": "queued",
+      "conclusion": null
+    },
+    {
+      "name": "Class-D complete residual certificates",
+      "status": "queued",
+      "conclusion": null
+    }
+  ],
+  "parent_review_threads": [],
+  "universal_predecessor_identity_promoted": false
+}

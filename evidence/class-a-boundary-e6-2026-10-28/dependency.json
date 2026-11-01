@@ -1,0 +1,12 @@
+{
+  "B5_head": "0dde1a00e182023891bab697e5e8156e6f3577e3",
+  "B5_merged_into_main": false,
+  "B5_observed_merged_into_parent": true,
+  "B5_pr": 381,
+  "fresh_parent_workflows_at_inspection": "queued/pending; no pass inferred",
+  "independent_R5_sibling_result_counted": false,
+  "independent_human_review": "pending validation debt",
+  "parent_branch": "research/class-a-boundary-y4-2026-10-28",
+  "parent_head": "8291fc59144c6445013d493de516b8990ffbdeac",
+  "parent_pr": 379
+}

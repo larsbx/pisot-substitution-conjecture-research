@@ -1,0 +1,10 @@
+{
+  "base_directed_edges": 6,
+  "coefficient_ring": "Z[k,t,z,s,p]",
+  "exceptional_directed_edges": 2,
+  "generic_directed_edges": 4,
+  "generic_guard_free_productivity": false,
+  "inherited_root_and_shift_identities": 3,
+  "unbounded_integer_guard_chambers": 4,
+  "universal_x_productivity": false
+}

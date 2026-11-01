@@ -1,0 +1,32 @@
+name: PSC class-A proof-carrying finite reversal quotient ranks
+
+on:
+  pull_request:
+    paths:
+      - 'oracles/python/class_a_reversal_rank_certificate.py'
+      - 'tests/test_class_a_reversal_rank_certificate.py'
+      - 'docs/class-a-reversal-rank-2026-10-31.md'
+      - '.github/workflows/class-a-reversal-rank.yml'
+  workflow_dispatch:
+
+jobs:
+  proof-carrying-quotient-ranks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install independent rank test runner
+        run: python -m pip install 'pytest>=7'
+      - name: Complete finite X-quotient rank forests and original word lifts
+        run: python -m pytest -q tests/test_class_a_reversal_rank_certificate.py -k complete_x_quotient
+      - name: Complete 18-orientation quotient rank forests
+        run: python -m pytest -q tests/test_class_a_reversal_rank_certificate.py -k complete_18_source_quotient
+      - name: Immutable manifest and negative controls
+        run: python -m pytest -q tests/test_class_a_reversal_rank_certificate.py -k 'original_all_state or missing_state or capped_graph'
+      - name: Verify an inspectable 177-orbit full witness manifest
+        run: |
+          python oracles/python/class_a_reversal_rank_certificate.py --k 3 --t 0 --scope S18 --full > /tmp/psc-ranked-quotient-3-0.json
+          python oracles/python/class_a_reversal_rank_certificate.py --k 3 --t 0 --scope X > /tmp/psc-ranked-X-3-0.json

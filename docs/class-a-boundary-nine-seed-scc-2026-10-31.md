@@ -1,0 +1,241 @@
+# Exact nine-swap-seed SCC census: one possible extra state beyond the X closure
+
+**Integration candidate (2026-11-01):** canonical native counterparts and
+fresh cross-checks are recorded in
+[the research integration audit](research-branch-integration-2026-11-01.md).
+The original 2026-10-31 scopes and main/research distinctions below are
+historical; they do not imply acceptance of this candidate. Exact-head
+hosted acceptance remains required. Independent human review is pending.
+Pending human review is validation debt, not an additional premise for
+project acceptance once mathematical, replay, CI and governance checks pass.
+
+**Status:** complete **finite-specimen** overlap-graph computation plus an
+elementary, parameter-independent **conditional graph reduction**. There is
+**no** universal k,t SCC theorem or all-seed BH/PDS/PSC claim here.
+
+## Object and finite reachability predicate
+
+Work with the minus class-A family
+k,t>=0; n=k+t+3; d=k+2t+5; A=n+d; and
+x->x y^A x, c->c y^n x, y->x y^(n-1) c.
+Each overlap is an oriented full five-tuple
+(top,bottom,dx,dc,dy), and every real child retains
+its **actual top/bottom word occurrence indices**.
+The strict intersection guard uses the repository's
+unchanged literal-word/Fraction Perron `Geometry`.
+No float threshold or quotient-state substitution is used.
+
+Take the **nine** strict swapped-patch tile overlaps from PR #428,
+not just the four convenient X/Y0/CY/CC sources in PR #427.
+The nine original seed tuples are explicitly listed in the code,
+and no unproven equivalence to all realized literature-overlap
+classes is assumed. Coincidence is exactly equal tile types
+with **all three** Parikh offsets zero, made terminal *only
+for existential coincidence reachability and SCC extraction*.
+
+This packet enumerates the **complete strict directed graph**
+at each tested k,t, retaining distinct indexed edges, and
+**raises inconclusive** if a 6,000-state cap is reached.
+The graph is never declared productive when truncated.
+It computes the SCCs using main's already existing independent
+`reference/psc_research/overlap_obstruction.py`, and
+cross-checks nonproductive sink SCCs through that library.
+`Reach(X)` is computed **inside the same complete nine-seed graph**,
+which is valid because PR #428 proves every seed has a path to X.
+This eliminates the need to build two possibly differently
+capped graphs and accidentally compare incomplete closures.
+
+## Finite results: 16 fully completed graphs
+
+For exactly 0<=k<=3, 0<=t<=3:
+
+| k,t | Nine-seed graph | Reach(X) | Extra outside Reach(X) | SCC count | X SCC | max reverse-X depth | max coincidence depth |
+| --- | ---: | ---: | --- | ---: | ---: | ---: | ---: |
+| 0,0 | 784 | 784 | none | 3 | 782 | 9 | 7 |
+| 0,1 | 1010 | 1010 | none | 3 | 1008 | 9 | 8 |
+| 0,2 | 1220 | 1220 | none | 3 | 1218 | 9 | 8 |
+| 0,3 | 1439 | 1438 | S1 | 4 | 1436 | 10 | 8 |
+| 1,0 | 436 | 436 | none | 3 | 434 | 6 | 4 |
+| 1,1 | 642 | 642 | none | 3 | 640 | 7 | 6 |
+| 1,2 | 645 | 644 | S1 | 4 | 642 | 7 | 5 |
+| 1,3 | 836 | 836 | none | 3 | 834 | 7 | 5 |
+| 2,0 | 378 | 378 | none | 3 | 376 | 6 | 5 |
+| 2,1 | 389 | 388 | S1 | 4 | 386 | 6 | 4 |
+| 2,2 | 594 | 594 | none | 3 | 592 | 6 | 5 |
+| 2,3 | 567 | 566 | S1 | 4 | 564 | 6 | 4 |
+| 3,0 | 351 | 350 | S1 | 4 | 348 | 5 | 4 |
+| 3,1 | 341 | 340 | S1 | 4 | 338 | 6 | 4 |
+| 3,2 | 361 | 360 | S1 | 4 | 358 | 5 | 4 |
+| 3,3 | 547 | 546 | S1 | 4 | 544 | 6 | 4 |
+
+Here **S1=(x,x,0,1,0)** is the valid second
+literal swapped-patch seed in #428, **not** a nickname
+for a different X-family state.
+
+Exactly **one recurrent noncoincident SCC** occurs in each
+of these 16 graphs, and it contains X. Every other nonterminal
+vertex, including S1 when outside Reach(X), has an actual path
+to X. Two typed coincidence terminals are closed.
+There are **zero nonproductive sink SCCs** and every tested vertex
+is productive. These are finite graph facts only: no claim is
+made for any unsampled parameter or non-swap seed.
+
+Three additional separately inspected complete specimens,
+(k,t)=(0,4),(0,5),(0,6), had respective
+nine-seed counts 1,632/1,807/1,987 and Reach(X)
+counts 1,632/1,806/1,986. Their differences were
+none/S1/S1 and all their vertices were productive.
+They are exploratory checks outside the locked
+16-specimen CI matrix, not universal evidence.
+
+## The exceptional seed is already E6 in the research stack
+
+The surviving possible extra seed
+**S1=(x,x,0,1,0) is exactly E6** as classified in
+research **PR #382**, not a newly discovered source.
+That PR contains the full nine-kind source star and selected
+typed-coincidence tails after **every E6 first choice**,
+with bound <=9 from E6. This evidence remains
+**research-only**: #382 is open and stacked on its own
+unaccepted predecessors; the SCC census does not accept
+or transplant its proof files.
+
+The present complete finite graphs independently recover
+E6/S1's **2d-1 indexed outgoing children** at each member,
+with exactly **eight distinct typed targets per orientation**
+and sixteen distinct labels in the union of both real reversals.
+The multiplicity and eight-label cardinality are explicit
+negative controls against confusing indexed edges with the
+chamber-wide oriented union.
+
+This changes the proposed interface strategy: E6 has a
+previously researched **every-first-choice selected productivity**
+certificate. That fact is weaker than **each E6 child belongs
+to Reach(X)**, which is the membership required by the
+one-state *closure* reduction below. Selected productivity
+and forward-X containment must remain separate flags.
+
+## A precise one-state graph-reduction lemma
+
+For any directed graph, fix a set of seeds S, a hub X
+and a distinguished possible exception s. Let
+R=Reach(X), using **forward** reachability. If
+
+1. Every seed in S belongs to R ∪ {s}; and
+2. Every actual child of s belongs to R ∪ {s},
+
+then the entire forward closure of S belongs to
+R ∪ {s}, because that union is forward-closed:
+R is forward-closed by its definition, and condition
+(2) handles the one extra source. This is a graph
+fact independent of Perron arithmetic, SCC sizes,
+and finiteness. The source file implements the
+criterion with negative tests that reject a missing
+seed or a single escaping child.
+
+Thus the **specific open universal class-A goal**
+suggested by the finite census is:
+
+> For all k,t>=0, all nine swapped-patch overlap
+> seeds other than S1 occur in Reach(X), and
+> every actual S1 child belongs to Reach(X) ∪ {S1}.
+
+Establishing those two claims by uniform symbolic
+occurrence paths (or another valid carrier argument)
+would prove that the complete nine-seed closure has
+**at most one extra source state** outside Reach(X).
+The existing #428 seed->X path ensures S1 itself is
+productive regardless of whether X reaches S1.
+A separate universal statement that **every member
+of Reach(X) has a path back to X** (or at least to
+some typed coincidence) is still needed to turn
+this closure reduction into global productivity
+*for this nine-swap graph*.
+
+Crucially, **seed -> X does not imply X -> seed**.
+The finite (k,t)=(3,0) graph exhibits exactly that
+directional asymmetry: nine-seed graph 351,
+Reach(X) 350, extra S1. A naive attempt to
+identify PR #427's four-seed closure with the
+nine-seed closure is also unsound because adding
+CC as a source can include states that the nine
+swaps do not reach at t>0.
+
+## Update: first one-exception premise now has a universal path certificate
+
+New **stacked PR #430**, using predecessor **PR #428**,
+constructs exact occurrence-indexed, full-Parikh, strict
+uniform paths **from X to each of the eight literal
+swapped-patch seeds other than S1/E6** over all k,t>=0.
+The reverse seed-to-X paths already exist in #428.
+
+This supplies the **first** hypothesis of the graph
+reduction above by all-parameter arithmetic construction,
+not by extrapolation from the 16 finite graph specimens.
+The eight selected forward paths share 18 affine edges
+and have length at most six; all selected types,
+actual word bounds and strict Perron margins are
+checked in the new focused PR. Thus the eight
+initial seed vertices are provably in X's SCC,
+conditionally on acceptance of the stacked source
+certificates. S1/E6 itself may remain outside it.
+
+The **second** one-exception hypothesis remains
+genuinely open: every strict child of S1/E6 must
+lie in Reach(X) ∪ {S1}. The E6 every-first-choice
+productive-tail research in #382 is a different
+statement and does not establish that membership.
+The universal productivity of all of Reach(X)
+and the realized-overlap coverage bridge also
+remain separate open tasks. Fresh hosted CI and
+independent review for #428/#429/#430 are pending.
+
+## Further update: conditional all-parameter one-state closure equality
+
+The new **stacked PR #431** supplies exact
+X-to-every-E6-child selected paths, with a
+two-case t=0/t>=1 universal affine transport
+certificate, real strict geometry and an independent
+complete E6 star replay. It checks **both**
+predecessors' all-parameter symbolic source
+interfaces (#428 and #430) before composing them.
+
+Thus the two one-exception *mathematical premises*
+of the graph lemma above now have explicit candidate
+universal certificates (pending exact-head acceptance
+and independent human review):
+
+    Reach(nine swapped-patch strict seeds)
+      = Reach(X) U {E6},   for all k,t>=0,
+
+where Reach uses actual strict overlap edges and
+typed coincidence terminalization. Because E6
+also reaches X in #428, the nine-seed graph's
+**every-vertex existential productivity predicate**
+is equivalent to the same predicate on the
+complete X-generated closure. This equivalence
+**does not prove** the latter predicate, global
+all-overlap coverage, BH, G1 or PSC. The original
+16-specimen results in this document remain
+finite evidence with their original scope.
+
+## Reproducibility, review and boundaries
+
+`oracles/python/class_a_boundary_nine_seed_scc.py`
+and `tests/test_class_a_boundary_nine_seed_scc.py`
+completed all five local tests with a faithful
+mirror of the repository's exact Fraction Geometry
+and SCC implementation. Those earlier local-run blob locators are historical. The integration
+supplement binds the actual current source bytes and complete native/Python
+state-set and adjacency comparisons; its S1 checks explicitly verify the
+eight-target / sixteen-reversal-union figure on all 16 bounded specimens. The GitHub workflow must repeat those tests
+against **the original repository files** before
+fresh exact-head acceptance. No stored evidence
+receipts, canonical Mojo kernels or governed
+theorem statuses are changed.
+
+The following remain unproved: universal X-SCC
+accessibility, universal one-state extension,
+all-seed strict-zipper/realized-overlap coverage,
+the non-unit representation-space interface,
+BH/#139, G1, A1-prime, PDS and PSC.

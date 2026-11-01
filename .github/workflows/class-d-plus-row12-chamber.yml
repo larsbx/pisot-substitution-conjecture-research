@@ -1,0 +1,30 @@
+name: Class-D plus row12 chamber theorem
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/pixi.toml'
+      - 'kernel/pixi.lock'
+      - 'kernel/psc/class_d_plus_row12_chamber.mojo'
+      - 'kernel/class_d_plus_row12_chamber.mojo'
+      - 'kernel/tests/test_class_d_plus_row12_chamber.mojo'
+      - '.github/workflows/class-d-plus-row12-chamber.yml'
+  workflow_dispatch:
+
+jobs:
+  chamber:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors --retry-delay 3 -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Verify exact row-12 chamber squeeze
+        working-directory: kernel
+        run: |
+          set -o pipefail
+          pixi run mojo run -I . tests/test_class_d_plus_row12_chamber.mojo
+          pixi run mojo run -I . class_d_plus_row12_chamber.mojo 2>&1 | tee row12-chamber.log
+          grep -F 'CLASS_D_PLUS_ROW12_INTEGER_CHAMBER_CERTIFIED' row12-chamber.log

@@ -1,0 +1,8 @@
+README.md: [consistency/CoincidenceDensityOne] surface does not mention 'CoincidenceDensityOne' (anchors ['=> coincidence density one / dense good set'])
+README.md: [consistency/DensityToPDSBridge] surface does not mention 'DensityToPDSBridge' (anchors ['=> pure discrete spectrum'])
+README.md: [consistency/G1b1BoundedDiscrepancy] surface does not mention 'G1b1BoundedDiscrepancy' (anchors ['=> bounded discrepancy'])
+README.md: [consistency/OverlapProductivity] surface does not mention 'OverlapProductivity' (anchors ['=> one swap seed has only productive reachable overlaps'])
+README.md: [consistency/SwapOverlapFiniteness] surface does not mention 'SwapOverlapFiniteness' (anchors ['=> finite seed-patch overlap graph'])
+README.md: [consistency/UniqueDecodability] surface does not mention 'UniqueDecodability' (anchors ['**Unique decodability:**'])
+
+claim governance audit of larsbx/pisot-substitution-conjecture-research failed: 6 finding(s) [terminology, claims, coverage, promotion, numerics, consistency]

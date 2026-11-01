@@ -45,6 +45,7 @@ from std.collections import Dict
 from psc.class_a_carrier_closure import AffH, pmul, psub, aff, a_add, a_sub, a_le, a_div_ceil, a_div_floor, a_max, a_min
 from psc.class_b_ray_line import BRay, check_line_identity, check_bound
 from psc.overlap_seed_patch import build_seed_overlap_graph_from_tables, build_seed_overlap_tables_screened
+from psc.class_b_segment_graph import class_b_seed_graph
 from psc.vertex_coincidence import length_matrix, offset_vector
 
 
@@ -496,7 +497,7 @@ def replay_finite(ray: BRay, q: Int, rows: List[List[Int]], potentials: List[Lis
     of strictly smaller potential. Returns the vertex count."""
     var l = ray.l_of(q)
     var tables = build_seed_overlap_tables_screened(ray.member(q))
-    var graph = build_seed_overlap_graph_from_tables(tables, 20000)
+    var graph = class_b_seed_graph(tables, 20000)
     if graph.capped:
         raise Error("STATE_BUDGET_EXHAUSTED: no finite replay verdict")
     var carrier = expand(rows, l)

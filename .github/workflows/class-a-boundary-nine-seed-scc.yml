@@ -1,0 +1,25 @@
+name: PSC class-A exact nine-swap SCC vs X closure
+
+on:
+  pull_request:
+    paths:
+      - 'oracles/python/class_a_boundary_nine_seed_scc.py'
+      - 'tests/test_class_a_boundary_nine_seed_scc.py'
+      - 'docs/class-a-boundary-nine-seed-scc-2026-10-31.md'
+      - '.github/workflows/class-a-boundary-nine-seed-scc.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-nine-seed-scc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Complete nine-seed exact graph census and obstruction controls
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_boundary_nine_seed_scc.py
+          python oracles/python/class_a_boundary_nine_seed_scc.py > /tmp/nine-seed-scc.json

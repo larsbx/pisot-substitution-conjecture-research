@@ -1,0 +1,29 @@
+{
+  "base_branch": "research/class-a-boundary-e6-2026-10-28",
+  "base_head": "526b3dc1ef8dcb914802992a6fee7b3148236c6a",
+  "base_observed_workflows": "17 completed/success",
+  "base_pr": 382,
+  "closed_unmerged_d0_pr": 386,
+  "crash_reporting_enabled": false,
+  "independent_human_review": "pending validation debt",
+  "independent_siblings": [
+    380,
+    383,
+    384
+  ],
+  "merged_e7_pr": 385,
+  "new_companion_complete_stars": false,
+  "restored_d0_exact_tree": "799fcce9ad47ad7906905619c8cf88616342df84",
+  "restored_d0_head": "a31c4634af997fdabe83d05fa5883a0e6199b150",
+  "reused_aliases": {
+    "P8": "reversed L, complete star and two-edge exit",
+    "Y8": "reversed G5, five-edge exit"
+  },
+  "sibling_results_counted": false,
+  "telemetry_enabled": false,
+  "uniform_exit_guard_exclusions": {
+    "D8": "k=1-only path",
+    "L8": "k=0-only physical overlap and path",
+    "Z8": "k=0-only path"
+  }
+}

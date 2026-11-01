@@ -1,0 +1,11 @@
+4a078858644e05b9c4e582273d44b98996e706e5397fa8309de8da982cf6d36b  evidence/class-a-boundary-b5-2026-10-28/README.md
+c39518874b4606f0d72469bf03482c70ce9703fcb9b2def14459bf6aa8c641c3  evidence/class-a-boundary-b5-2026-10-28/dependency.json
+bf83b89204a731f087513816f3dea9fd4539d5ee0fe0190982ec205a45932703  evidence/class-a-boundary-b5-2026-10-28/driver.log
+7a4b57fdfb05e39881b7102344713d18e4fa068876753a5a9b5022a7d3b6fdd2  evidence/class-a-boundary-b5-2026-10-28/integrity-tests.log
+cebe4497abc747094e5fdcf1ac39beed603bb5157eca4f888adf5abb2123c3db  evidence/class-a-boundary-b5-2026-10-28/lean-attempt.log
+50f7b100068ab629283923ca1ac1b063d11bce79bcb5d4619d650f2149200ca5  evidence/class-a-boundary-b5-2026-10-28/native-tests.log
+77cca49e8c846457f8e1b92100bb8bf8578d725dea177ac428acb887cb1ade64  evidence/class-a-boundary-b5-2026-10-28/probe.json
+65625d05d2ed48a7143cff93e595988c1ff1a6dd0d3e65fd66f7b23002345e1c  evidence/class-a-boundary-b5-2026-10-28/provenance.log
+d5fc1fb31af48ac2094d794e81284f680f0204e076713f8b9dc55991896ec58b  evidence/class-a-boundary-b5-2026-10-28/python-tests.log
+9171bb00ff76066a2f8a227de3cc9afe23158268fdea933428bf4bb88c294713  evidence/class-a-boundary-b5-2026-10-28/source-sha256.txt
+bde3a1fcb2c3328149857b4420a5974f8e8dfad3216469618cfb40b4ad519dd5  evidence/class-a-boundary-b5-2026-10-28/tla.log

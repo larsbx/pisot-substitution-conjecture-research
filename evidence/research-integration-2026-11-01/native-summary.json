@@ -1,0 +1,192 @@
+{
+  "original_batch": [
+    {
+      "path": "kernel/tests/test_class_a_boundary_U_hit.mojo",
+      "exit_code": 0,
+      "seconds": 11.960879333000776,
+      "log": "test_class_a_boundary_U_hit.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_b3_children.mojo",
+      "exit_code": 0,
+      "seconds": 27.143633251998835,
+      "log": "test_class_a_boundary_b3_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_b4_children.mojo",
+      "exit_code": 0,
+      "seconds": 28.726914678001776,
+      "log": "test_class_a_boundary_b4_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_b5_children.mojo",
+      "exit_code": 0,
+      "seconds": 34.801512614001695,
+      "log": "test_class_a_boundary_b5_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_d0_children.mojo",
+      "exit_code": 0,
+      "seconds": 40.60953437900025,
+      "log": "test_class_a_boundary_d0_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_d5_children.mojo",
+      "exit_code": 0,
+      "seconds": 39.989693931001966,
+      "log": "test_class_a_boundary_d5_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_e6_children.mojo",
+      "exit_code": 0,
+      "seconds": 34.85749687199859,
+      "log": "test_class_a_boundary_e6_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_e7_children.mojo",
+      "exit_code": 0,
+      "seconds": 39.43884949799758,
+      "log": "test_class_a_boundary_e7_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_h9_children.mojo",
+      "exit_code": 0,
+      "seconds": 45.59267730499778,
+      "log": "test_class_a_boundary_h9_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_j8_children.mojo",
+      "exit_code": 0,
+      "seconds": 40.25346641699798,
+      "log": "test_class_a_boundary_j8_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_j9_children.mojo",
+      "exit_code": 0,
+      "seconds": 39.19984973800092,
+      "log": "test_class_a_boundary_j9_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_p9_children.mojo",
+      "exit_code": 0,
+      "seconds": 44.45862553400002,
+      "log": "test_class_a_boundary_p9_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_q3_children.mojo",
+      "exit_code": 0,
+      "seconds": 20.380590041000687,
+      "log": "test_class_a_boundary_q3_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_r3_children.mojo",
+      "exit_code": 0,
+      "seconds": 24.57029367799987,
+      "log": "test_class_a_boundary_r3_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_r4_children.mojo",
+      "exit_code": 0,
+      "seconds": 29.621442717001628,
+      "log": "test_class_a_boundary_r4_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_r5_children.mojo",
+      "exit_code": 0,
+      "seconds": 33.26407851100157,
+      "log": "test_class_a_boundary_r5_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_w9_children.mojo",
+      "exit_code": 0,
+      "seconds": 43.87091819700072,
+      "log": "test_class_a_boundary_w9_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_boundary_y4_children.mojo",
+      "exit_code": 0,
+      "seconds": 31.988073393000377,
+      "log": "test_class_a_boundary_y4_children.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_native_length_contract.mojo",
+      "exit_code": 0,
+      "seconds": 2.488856616000703,
+      "log": "test_class_a_native_length_contract.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_parikh_field_bridge.mojo",
+      "exit_code": 0,
+      "seconds": 2.4376824440005294,
+      "log": "test_class_a_parikh_field_bridge.log"
+    },
+    {
+      "path": "kernel/tests/test_class_b_core_exact.mojo",
+      "exit_code": 0,
+      "seconds": 25.539072008999938,
+      "log": "test_class_b_core_exact.log"
+    },
+    {
+      "path": "kernel/tests/test_class_b_middle_certificate.mojo",
+      "exit_code": 0,
+      "seconds": 42.702595449998626,
+      "log": "test_class_b_middle_certificate.log"
+    },
+    {
+      "path": "kernel/tests/test_class_b_ray_certificate.mojo",
+      "exit_code": 0,
+      "seconds": 395.7845098329999,
+      "log": "test_class_b_ray_certificate.log"
+    },
+    {
+      "path": "kernel/tests/test_class_c_below_three.mojo",
+      "exit_code": 0,
+      "seconds": 10.261550316998182,
+      "log": "test_class_c_below_three.log"
+    },
+    {
+      "path": "kernel/tests/test_class_c_below_three_integration.mojo",
+      "exit_code": 0,
+      "seconds": 3.9853721049985324,
+      "log": "test_class_c_below_three_integration.log"
+    },
+    {
+      "path": "kernel/tests/test_class_c_slope_three.mojo",
+      "exit_code": 0,
+      "seconds": 4.785045201002504,
+      "log": "test_class_c_slope_three.log"
+    },
+    {
+      "path": "kernel/tests/test_class_d_plus_row12_chamber.mojo",
+      "exit_code": 1,
+      "seconds": 2.5797533570002997,
+      "log": "test_class_d_plus_row12_chamber.log",
+      "superseded_by": "new-native.log; corrected Q method API and rerun passed"
+    },
+    {
+      "path": "kernel/tests/test_occurrence_path.mojo",
+      "exit_code": 0,
+      "seconds": 7.7726057690015296,
+      "log": "test_occurrence_path.log"
+    },
+    {
+      "path": "kernel/tests/test_target_packets.mojo",
+      "exit_code": 0,
+      "seconds": 10.00188058600179,
+      "log": "test_target_packets.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_selected_exit_integration.mojo",
+      "exit_code": 0,
+      "log": "new-native.log"
+    },
+    {
+      "path": "kernel/tests/test_class_a_finite_hub_integration.mojo",
+      "exit_code": 0,
+      "log": "new-native.log"
+    }
+  ],
+  "final_distinct_passing_tests": 31,
+  "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "initial_failure_preserved": true
+}

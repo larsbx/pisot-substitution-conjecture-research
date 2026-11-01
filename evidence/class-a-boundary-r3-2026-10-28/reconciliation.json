@@ -1,0 +1,523 @@
+{
+  "after41_registered_including_terminal": 21,
+  "after41_unregistered": 20,
+  "after_registered_exits_including_terminal": 17,
+  "after_registered_including_terminal": 19,
+  "after_unregistered": 20,
+  "before_registered_exits_including_terminal": 15,
+  "before_registered_including_terminal": 17,
+  "before_unregistered": 22,
+  "labels": 39,
+  "labels_after_D3": 41,
+  "rows": [
+    {
+      "after": "X",
+      "after_exit": true,
+      "before": "X",
+      "before_exit": true,
+      "label": [
+        0,
+        0,
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        0,
+        0,
+        0,
+        -1,
+        -1
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        0,
+        0,
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "after": "U",
+      "after_exit": true,
+      "before": "U",
+      "before_exit": true,
+      "label": [
+        0,
+        0,
+        0,
+        -1,
+        1
+      ]
+    },
+    {
+      "after": "E",
+      "after_exit": true,
+      "before": "E",
+      "before_exit": true,
+      "label": [
+        0,
+        0,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "after": "E",
+      "after_exit": true,
+      "before": "E",
+      "before_exit": true,
+      "label": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "after": "U",
+      "after_exit": true,
+      "before": "U",
+      "before_exit": true,
+      "label": [
+        0,
+        0,
+        0,
+        1,
+        -1
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "after": "X",
+      "after_exit": true,
+      "before": "X",
+      "before_exit": true,
+      "label": [
+        0,
+        0,
+        1,
+        0,
+        -1
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        0,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "after": "V",
+      "after_exit": true,
+      "before": "V",
+      "before_exit": true,
+      "label": [
+        0,
+        2,
+        0,
+        1,
+        -2
+      ]
+    },
+    {
+      "after": "T",
+      "after_exit": true,
+      "before": "T",
+      "before_exit": true,
+      "label": [
+        0,
+        2,
+        0,
+        1,
+        -1
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        0,
+        2,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        0,
+        2,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        0,
+        2,
+        1,
+        -1,
+        -2
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        0,
+        2,
+        1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "after": "R3",
+      "after_exit": true,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        0,
+        2,
+        1,
+        -1,
+        0
+      ]
+    },
+    {
+      "after": "Q3",
+      "after_exit": true,
+      "before": "Q3",
+      "before_exit": true,
+      "label": [
+        0,
+        2,
+        1,
+        -1,
+        1
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        0,
+        2,
+        1,
+        0,
+        -1
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        1,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        1,
+        2,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        2,
+        0,
+        -1,
+        0,
+        1
+      ]
+    },
+    {
+      "after": "Q3",
+      "after_exit": true,
+      "before": "Q3",
+      "before_exit": true,
+      "label": [
+        2,
+        0,
+        -1,
+        1,
+        -1
+      ]
+    },
+    {
+      "after": "R3",
+      "after_exit": true,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        2,
+        0,
+        -1,
+        1,
+        0
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        2,
+        0,
+        -1,
+        1,
+        1
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        2,
+        0,
+        -1,
+        1,
+        2
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        2,
+        0,
+        0,
+        -1,
+        -1
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        2,
+        0,
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "after": "T",
+      "after_exit": true,
+      "before": "T",
+      "before_exit": true,
+      "label": [
+        2,
+        0,
+        0,
+        -1,
+        1
+      ]
+    },
+    {
+      "after": "V",
+      "after_exit": true,
+      "before": "V",
+      "before_exit": true,
+      "label": [
+        2,
+        0,
+        0,
+        -1,
+        2
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        2,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        2,
+        1,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "after": null,
+      "after_exit": false,
+      "before": null,
+      "before_exit": false,
+      "label": [
+        2,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "after": "T1",
+      "after_exit": true,
+      "before": "T1",
+      "before_exit": true,
+      "label": [
+        2,
+        2,
+        -1,
+        1,
+        1
+      ]
+    },
+    {
+      "after": "T2",
+      "after_exit": false,
+      "before": "T2",
+      "before_exit": false,
+      "label": [
+        2,
+        2,
+        -1,
+        1,
+        2
+      ]
+    },
+    {
+      "after": "terminal",
+      "after_exit": true,
+      "before": "terminal",
+      "before_exit": true,
+      "label": [
+        2,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "after": "T2",
+      "after_exit": false,
+      "before": "T2",
+      "before_exit": false,
+      "label": [
+        2,
+        2,
+        1,
+        -1,
+        -2
+      ]
+    },
+    {
+      "after": "T1",
+      "after_exit": true,
+      "before": "T1",
+      "before_exit": true,
+      "label": [
+        2,
+        2,
+        1,
+        -1,
+        -1
+      ]
+    }
+  ],
+  "scope": "explicit named complete-star and exit interfaces; not an impossibility claim for unregistered labels",
+  "terminal_labels": 1
+}

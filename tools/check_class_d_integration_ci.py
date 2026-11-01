@@ -16,7 +16,7 @@ import subprocess
 import tomllib
 
 from check_class_d_assembly_evidence import validate as validate_components
-from check_class_d_closure_rebind import rebound
+from check_class_d_closure_rebind import rebound, rebound_plus_receipts
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKET = ROOT / 'evidence/class-d-integration-accepted-2026-10-21'
@@ -92,6 +92,24 @@ def added_trigger_paths_only(accepted: bytes, current: bytes) -> bool:
             and all(entry.match(line) for line in inserted))
 
 
+def rebound_receipt_pin_only(accepted: bytes, current: bytes, receipts) -> bool:
+    """Preserve an accepted workflow except that the accepted plus-chamber
+    receipt pin is replaced by a receipt a valid rebind packet pins, with or
+    without the additions the two functions above admit.
+
+    A rebind admits new engine bytes only with a hosted replay of them; a pin
+    that kept the accepted receipt would refuse every such replay. Restoring
+    the accepted receipt must give back bytes the other rules accept, so no
+    command, step or other pin can change this way.
+    """
+    restored = current
+    for receipt in receipts:
+        restored = restored.replace(receipt.encode(), PLUS.encode())
+    return restored != current and (restored == accepted
+                                     or added_concurrency_block_only(accepted, restored)
+                                     or added_trigger_paths_only(accepted, restored))
+
+
 def additive_pixi_tasks_only(accepted: bytes, current: bytes) -> bool:
     """Preserve the accepted environment and task definitions; allow new names.
 
@@ -109,6 +127,27 @@ def additive_pixi_tasks_only(accepted: bytes, current: bytes) -> bool:
             and isinstance(new_tasks, dict)
             and all(name in new_tasks and exact(task) == exact(new_tasks[name])
                     for name, task in old_tasks.items()))
+
+
+def added_sympy_test_dependency_only(accepted: bytes, current: bytes) -> bool:
+    """Admit only the missing SymPy test dependency, preserving execution.
+
+    Accepted Class-D kernels/oracles do not import SymPy. Three later
+    Class-A test modules do. Historical source hashes remain checked against
+    their original Git bytes; this does not attest fresh CI for current code.
+    Every existing dependency, Python/build setting and other table must
+    remain exactly equal. No arbitrary new requirement is admitted.
+    """
+    before = tomllib.loads(accepted.decode())
+    after = tomllib.loads(current.decode())
+    try:
+        old_dev = before['project']['optional-dependencies'].pop('dev')
+        new_dev = after['project']['optional-dependencies'].pop('dev')
+    except (KeyError, TypeError):
+        return False
+    exact = lambda value: json.dumps(value, sort_keys=True, separators=(',', ':'))
+    return (isinstance(old_dev, list) and new_dev == old_dev + ['sympy==1.14.0']
+            and 'sympy==1.14.0' not in old_dev and exact(before) == exact(after))
 
 
 def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
@@ -180,10 +219,14 @@ def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
             raise ValueError('accepted mathematical source, lock or workflow changed: '+path)
         current = (ROOT/path).read_bytes()
         if hashlib.sha256(current).hexdigest() != digest:
+            if path == 'pyproject.toml' and added_sympy_test_dependency_only(historical, current):
+                continue
             if path == 'kernel/pixi.toml' and additive_pixi_tasks_only(historical, current):
                 continue
             if path.startswith('.github/workflows/') and (added_concurrency_block_only(historical, current)
-                                                          or added_trigger_paths_only(historical, current)):
+                                                          or added_trigger_paths_only(historical, current)
+                                                          or rebound_receipt_pin_only(historical, current,
+                                                                                      rebound_plus_receipts())):
                 continue
             if rebound(path, hashlib.sha256(current).hexdigest()):
                 continue

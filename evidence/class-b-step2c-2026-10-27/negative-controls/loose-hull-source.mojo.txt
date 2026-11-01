@@ -1,0 +1,233 @@
+"""Gap-uniform Perron margins for the proposed class-B middle carrier.
+
+h=1/beta, v=g*h, q=g*l+r. Uses the existing rational Bernstein checker
+on h=v*t, 0<v<1/l0, 0<t<=1/g0, restricted to the necessary member hull.
+No finite fit, containment or descent is inferred from strict row membership.
+"""
+from psc.poly_hu import PolyHU, AffHU, sign_within_hull
+from psc.gap_form import Regime, KIND_MIDDLE, GapForm, gap_const
+from psc.class_a_carrier_closure import aff, a_le, a_max, a_min
+from psc.class_b_ray_certificate import slices, slice_key
+from psc.class_b_middle_tables import middle_rows
+
+
+def bh(i: Int, j: Int, c: Int) -> PolyHU:
+    return PolyHU.monomial(i, j, c)
+
+
+def elimination(eps: Int) -> PolyHU:
+    # q*h*(1+h) = (1-2h)(1-h)(1-eps*h) -(6+6eps)h^2 + v*h.
+    return PolyHU.const(1).add(bh(1, 0, -3 - eps)).add(bh(2, 0, -4 - 3 * eps)).add(bh(3, 0, -2 * eps)).add(bh(1, 1, 1))
+
+
+def b_length(eps: Int, letter: Int) raises -> AffHU:
+    var p = PolyHU.zero()
+    if letter == 0:
+        p = PolyHU.const(3).add(bh(1, 0, 3 + 3 * eps)).add(bh(0, 1, -1)).add(bh(2, 0, 3 * eps))
+    elif letter == 1:
+        p = PolyHU.const(1).add(bh(1, 0, 1 - eps)).add(bh(2, 0, -eps))
+    elif letter == 2:
+        p = PolyHU.const(1).add(bh(1, 0, 1))
+    else:
+        raise Error("letter outside 0..2")
+    return AffHU(p^, PolyHU.zero(), PolyHU.zero())
+
+
+def b_displacement(eps: Int, u: Int, d: Int, a: Int, b: Int) -> AffHU:
+    # h^2 T = (u-eps*d*h)(1+h) - b*v - a*q*h + a*r*h.
+    var p = PolyHU.const(u).add(bh(1, 0, u - eps * d)).add(bh(2, 0, -eps * d)).add(bh(0, 1, -b))
+    return AffHU(p^, bh(1, 0, -a), PolyHU.const(a))
+
+
+def b_sign(reg: Regime, expr: AffHU, depth: Int = 12) raises -> Int:
+    var e = elimination(reg.eps)
+    var denom = bh(1, 0, 1).add(bh(2, 0, 1))
+    var side = e.sub(bh(0, 1, reg.l0)).sub(bh(1, 1, reg.l0))
+    var endpoints = List[PolyHU]([bh(1, 0, reg.j), bh(0, 1, 1).sub(bh(1, 0, reg.j1))])
+    var result = 2
+    for rh in endpoints:
+        var numerator = expr.a.add(expr.c.mul(rh)).mul(denom).add(expr.b.mul(e))
+        var s = sign_within_hull(numerator, side, reg.l0, reg.d0, depth)
+        if result == 2:
+            result = s
+        elif result != s:
+            raise Error("middle residue endpoints have different certified signs")
+    return result
+
+
+def certify_middle_members(eps: Int, l0: Int = 4, depth: Int = 12) raises -> Int:
+    var reg = Regime(eps, KIND_MIDDLE, 2 if eps == 1 else 6, 14 if eps == 1 else 6, l0, 16 if eps == 1 else 12)
+    reg.check()
+    var rows = middle_rows(eps)
+    for i in range(len(rows)):
+        var row = rows[i].copy()
+        if a_le(aff(row[4], row[5]), aff(row[6], row[7]), l0) != 1:
+            raise Error("empty middle carrier row ", i)
+        for end in range(2):
+            var t = b_displacement(eps, row[2], row[3], row[4 + 2 * end], row[5 + 2 * end])
+            try:
+                if b_sign(reg, b_length(eps, row[0]).sub(t), depth) <= 0 or b_sign(reg, t.add(b_length(eps, row[1])), depth) <= 0:
+                    raise Error("not strict")
+            except err:
+                raise Error("MIDDLE_ROW_REFUSAL eps=" + String(eps) + " row=" + String(i) + " end=" + String(end) + " " + String(err))
+    return len(rows)
+
+
+def certify_middle_core(eps: Int, l0: Int = 4) raises -> Int:
+    """Every strict core label and every strict swap seed belongs to the
+    proposed table, for all parameters of the middle regime. Not closure."""
+    var reg = Regime(eps, KIND_MIDDLE, 2 if eps == 1 else 6, 14 if eps == 1 else 6, l0, 16 if eps == 1 else 12)
+    reg.check()
+    var rows = middle_rows(eps)
+    var count = 0
+    for top in range(3):
+        for bottom in range(3):
+            for u in range(-3, 4):
+                for d in range(-6, 7):
+                    for k in range(-2, 3):
+                        var t = b_displacement(eps, u, d, 0, k)
+                        var right = b_sign(reg, b_length(eps, top).sub(t))
+                        var left = b_sign(reg, t.add(b_length(eps, bottom)))
+                        if right <= 0 or left <= 0:
+                            continue
+                        var found = False
+                        for row in rows:
+                            if row[0] == top and row[1] == bottom and row[2] == u and row[3] == d and a_le(aff(row[4], row[5]), aff(0, k), l0) == 1 and a_le(aff(0, k), aff(row[6], row[7]), l0) == 1:
+                                found = True
+                        if not found:
+                            raise Error("strict core omitted: ", top, bottom, u, d, k)
+                        count += 1
+    # All canonical swap candidates have |u|<=3, |d|<=3 and |k|<=1:
+    # this direct coordinate check ties seed containment to the core check.
+    for a in range(3):
+        for b in range(a + 1, 3):
+            for which in range(4):
+                var w = List[Int]([0, 0, 0])
+                if which == 1 or which == 3:
+                    w[b] += 1
+                if which == 2 or which == 3:
+                    w[a] -= 1
+                if abs(3 * w[0] + w[1] + w[2]) > 3 or abs(w[1] - 3 * w[0]) > 6 or abs(w[0]) > 2:
+                    raise Error("swap candidate outside the core")
+    return count
+
+
+def quotient_bounds(reg: Regime, f: GapForm, ceil: Bool) raises -> List[Int]:
+    """Certified outer integer bounds for f/g. No single rounding value is
+    assumed across the residue regime. Result [slope, lower, slope, upper]."""
+    if f.cl != 0:
+        raise Error("quotient has a pure l term")
+    var v = GapForm(f.c1, 0, 0, 0, f.cr)
+    var lower = -1000
+    var upper = 1000
+    for m in range(-32, 33):
+        # ceil(v/g)>=m iff v>(m-1)g; floor(v/g)>=m iff v>=mg.
+        var below = v.sub(GapForm(0, 0, m - 1 if ceil else m, 0, 0)).sub(gap_const(1 if ceil else 0))
+        if reg.nonneg(below):
+            lower = max(lower, m)
+        # ceil(v/g)<=m iff v<=mg; floor(v/g)<=m iff v<(m+1)g.
+        var above = GapForm(0, 0, m if ceil else m + 1, 0, 0).sub(v).sub(gap_const(0 if ceil else 1))
+        if reg.nonneg(above):
+            upper = min(upper, m)
+    if lower == -1000 or upper == 1000:
+        raise Error("quotient bound search exhausted: no verdict")
+    return [f.cld, f.cd + lower, f.cld, f.cd + upper]
+
+
+def b_run(eps: Int, t: Int) -> GapForm:
+    if t == 0:
+        return GapForm(6 + 6 * eps, 0, -1, 3, 3)
+    return GapForm(eps if t == 2 else 0, 0, 0, 1, 1)
+
+
+def b_segment(eps: Int, t: Int, part: Int) -> List[GapForm]:
+    if part == 0:
+        return [gap_const(0), gap_const(0)]
+    var run = b_run(eps, t)
+    if part == 1:
+        return [gap_const(0), run.sub(gap_const(1))]
+    return [run, run]
+
+
+def middle_gap_outside(reg: Regime, ct: Int, cb: Int, u2: Int, d2: Int,
+                       kc: List[Int], lo: List[Int], hi: List[Int]) raises -> Bool:
+    var tlo = b_displacement(reg.eps, u2, d2, kc[0] - hi[0], kc[1] - hi[1])
+    var thi = b_displacement(reg.eps, u2, d2, kc[0] - lo[0], kc[1] - lo[1])
+    return b_sign(reg, tlo.add(b_length(reg.eps, cb))) <= 0 or b_sign(reg, b_length(reg.eps, ct).sub(thi)) <= 0
+
+
+def certify_middle_closure(eps: Int, l0: Int = 4) raises -> Int:
+    """Attempt full closure with outer quotient bounds; a refusal is an exact
+    remaining inequality for this checker, not an escaping actual child."""
+    var reg = Regime(eps, KIND_MIDDLE, 2 if eps == 1 else 6, 14 if eps == 1 else 6, l0, 16 if eps == 1 else 12)
+    reg.check()
+    var rows = middle_rows(eps)
+    var sl = slices(rows)
+    var checks = 0
+    for ri in range(len(rows)):
+        var row = rows[ri].copy()
+        var J = aff(row[6] - row[4], row[7] - row[5])
+        var terminal = row[0] == row[1] and row[2] == 0 and row[3] == 0 and a_le(aff(row[4], row[5]), aff(0, 0), l0) == 1 and a_le(aff(0, 0), aff(row[6], row[7]), l0) == 1
+        var term = aff(-row[4], -row[5])
+        for pt in range(3):
+            var ct = (0 if row[0] == 0 else 1) if pt == 0 else (2 if pt == 1 else 0)
+            var apx = (1 if row[0] == 0 else 0) if pt > 0 else 0
+            var apc = (0 if row[0] == 0 else 1) if pt > 0 else 0
+            var a = b_segment(eps, row[0], pt)
+            for pb in range(3):
+                var cb = (0 if row[1] == 0 else 1) if pb == 0 else (2 if pb == 1 else 0)
+                var dx = ((1 if row[1] == 0 else 0) if pb > 0 else 0) - apx
+                var dc = ((0 if row[1] == 0 else 1) if pb > 0 else 0) - apc
+                var b = b_segment(eps, row[1], pb)
+                var d2 = -2 * row[2] + dc - 3 * dx
+                var kc = aff(-row[4], row[2] - row[5] + dx)
+                for uw in [-6, 6]:
+                    for end in [aff(0, 0), J.copy()]:
+                        var t = b_displacement(eps, uw, d2, kc[0] - end[0], kc[1] - end[1])
+                        var sign = b_sign(reg, t.add(b_length(eps, cb))) if uw < 0 else b_sign(reg, b_length(eps, ct).sub(t))
+                        if sign > 0:
+                            raise Error("middle closure window is insufficient")
+                for u2 in range(-5, 6):
+                    var base = GapForm((4 + eps) * row[2] - eps * row[3] + 3 * dx + dc - u2, 0, -row[5], row[2] - row[4], row[2])
+                    var low = quotient_bounds(reg, base.add(b[0]).sub(a[1]), True)
+                    var high = quotient_bounds(reg, base.add(b[1]).sub(a[0]), False)
+                    var lo = a_max(aff(0, 0), aff(low[0], low[1]), l0)
+                    var hi = a_min(J, aff(high[2], high[3]), l0)
+                    if a_le(lo, hi, l0) == 0:
+                        continue
+                    var ivs = List[List[Int]]()
+                    var key = slice_key(ct, cb, u2, d2)
+                    if key in sl:
+                        for ci in sl[key]:
+                            ivs.append([kc[0] - rows[ci][6], kc[1] - rows[ci][7], kc[0] - rows[ci][4], kc[1] - rows[ci][5]])
+                    for i in range(1, len(ivs)):
+                        var iv = ivs[i].copy()
+                        var j = i
+                        while j > 0 and iv[0] * l0 + iv[1] < ivs[j - 1][0] * l0 + ivs[j - 1][1]:
+                            ivs[j] = ivs[j - 1].copy()
+                            j -= 1
+                        ivs[j] = iv^
+                    var gaps = List[List[Int]]()
+                    var cur = lo.copy()
+                    for iv in ivs:
+                        gaps.append([cur[0], cur[1], iv[0], iv[1] - 1])
+                        cur = aff(iv[2], iv[3] + 1)
+                    gaps.append([cur[0], cur[1], hi[0], hi[1]])
+                    for gap in gaps:
+                        var pieces = List[List[Int]]([gap.copy()])
+                        if terminal and a_le(aff(gap[0], gap[1]), term, l0) == 1 and a_le(term, aff(gap[2], gap[3]), l0) == 1:
+                            pieces = [List[Int]([gap[0], gap[1], term[0], term[1] - 1]), List[Int]([term[0], term[1] + 1, gap[2], gap[3]])]
+                        elif terminal and a_le(term, aff(gap[0], gap[1] - 1), l0) != 1 and a_le(aff(gap[2], gap[3] + 1), term, l0) != 1:
+                            raise Error("undecided terminal position")
+                        for piece in pieces:
+                            var glo = a_max(lo, aff(piece[0], piece[1]), l0)
+                            var ghi = a_min(hi, aff(piece[2], piece[3]), l0)
+                            if a_le(glo, ghi, l0) == 0:
+                                continue
+                            try:
+                                if not middle_gap_outside(reg, ct, cb, u2, d2, kc, glo, ghi):
+                                    raise Error("strictness not excluded")
+                            except err:
+                                raise Error("MIDDLE_CLOSURE_REFUSAL eps=" + String(eps) + " row=" + String(ri) + " pt=" + String(pt) + " pb=" + String(pb) + " u2=" + String(u2) + " child_d=" + String(d2) + " jlo=" + String(glo) + " jhi=" + String(ghi) + " " + String(err))
+                            checks += 1
+    return checks

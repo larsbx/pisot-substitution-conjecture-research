@@ -1,0 +1,38 @@
+{
+  "base_pr": 391,
+  "base_head": "92e34bea5bffee8a8523eeda40096b453a435377",
+  "base_branch": "research/class-a-boundary-j9-2026-10-29",
+  "base_observed_state": "open; later first-page snapshot has seven successful workflows including dedicated J9, two running and seven queued; full acceptance not inferred",
+  "new_source": "P9=(x,y,-1,-4,7)",
+  "new_complete_stars": 2,
+  "source_exit": "existing ID62, seven edges at k=0; six at k>=1",
+  "all_actual_first_choice_selected_bound": 9,
+  "new_uniform_exit_interfaces": {
+    "W9": 64,
+    "B9": 65
+  },
+  "image_labels": 24,
+  "image_uniform_exit_labels": 20,
+  "image_guarded_tail_labels": 4,
+  "native_status": "explicitly authorized; locked native contract passes unchanged, 56 members/33096 pairs/2436 accepted/14322 all-child walk edges; all 107 actual registry rows match",
+  "publication": "normal CI enabled by follow-up commit; fresh exact-head/dependency acceptance required",
+  "governed_claim_changes": false,
+  "native_history": "blocked by automatic approval review despite both telemetry/crash opt-outs; no native execution or registry receipt",
+  "publication_history": "draft with [skip ci]; no CI dispatch or acceptance",
+  "authorized_validation": {
+    "locked_mojo": "1.1.0.dev2026090805 (34562fa1)",
+    "native_source_revision": "b58ff2c8d4d14652fe742b163e0b8afa86929b64",
+    "native_mojo_changes": false,
+    "native_members": 56,
+    "native_pairs": 33096,
+    "native_accepted": 2436,
+    "native_all_child_walk_edges": 14322,
+    "native_max_walk": 9,
+    "native_registry_rows": 107,
+    "scoped_python_tests_passed": 85,
+    "integrity_governance_tests_passed": 155,
+    "provenance": "pass",
+    "TLA": "18 prior outcomes retained; no model/formal-source changes",
+    "Lean": "prior pre-compilation failure retained; no pass"
+  }
+}

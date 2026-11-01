@@ -1,0 +1,78 @@
+{
+  "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "parent_head": "d8f2a8d4eb3693f1663764f176713725e3536d4b",
+  "sources": {
+    ".github/workflows/class-a-x-productivity.yml": {
+      "git_blob": "d0c0619cf0478949a8e0882f2b9a9c05b47e3c1b",
+      "sha256": "1b6b801911b8cb6b00f00c252018190e9fea09aef9bda24405477ebdc9eef90e"
+    },
+    "AGENTS.md": {
+      "git_blob": "3f9cc4fb1fe604d7d9fb9060337be6315333f537",
+      "sha256": "46f8d84936c01ae3fd8f0cb84b5dd77c77998c23b94202655958f9bacd5dc9cd"
+    },
+    "docs/class-a-signed-strip-stopgo-2026-10-31.md": {
+      "git_blob": "5ab8dac33d053b2b087c7411662b15b85335555a",
+      "sha256": "8aebe04576e24156cf4df930f2b8cb324869004f87788be5e00003b700c43433"
+    },
+    "docs/class-a-x-signed-strip-2026-10-31.md": {
+      "git_blob": "ff4f188c27e3be99f89059c43a1e45ea6504428e",
+      "sha256": "07e3a5225330a406a5f20a83d83a70da9af00ade5d74df72cda6b9b20c77b373"
+    },
+    "docs/side-notes-ledger.md": {
+      "git_blob": "f431ac60ef3253338c649e5e4440fb3975a077e6",
+      "sha256": "4d09e534839466d8c7bd225c5cd1d3ac45b43a2e4d1ed8f58d93a3121d2fe224"
+    },
+    "evidence/class-a-x-productivity-2026-10-31/finite-certificates.json": {
+      "git_blob": "5dad1f5b7523724a471cab62d17ed6a0c0008bf2",
+      "sha256": "2e38e2ab2c73306e63d683a19a8970eb354780d2a2462aef4b66c36683fbe01b"
+    },
+    "kernel/pixi.lock": {
+      "git_blob": "f3536071aeba8e165a847bb894ce28ea5b8fcdc1",
+      "sha256": "1515f7300f49ad6b5e263a9bc02a8ec041123ce455b28fd24c440022824b2ff8"
+    },
+    "kernel/psc/class_a_boundary_children.mojo": {
+      "git_blob": "a93085638d3df6e9cf4e7581df29df788011dda5",
+      "sha256": "8f146eccd6f5db8ce510a6bb117825429a443c7deb9f9ce2b9c010651921f79f"
+    },
+    "kernel/psc/class_a_x_signed_strip.mojo": {
+      "git_blob": "8bf78485388ebdbeed0594000a115404afef3760",
+      "sha256": "364d92fa75d24d2aa83dc41b818342d589aac3dce8262c1ff261c3d5e66dfd77"
+    },
+    "kernel/psc/class_a_x_transfer_plane.mojo": {
+      "git_blob": "c56c8ea2049f0109d2f8b71fc032929693700cb9",
+      "sha256": "16091d07e09a5787516f07f55b59c9ccaa77e47a509ebce32b71085e8a7f40a8"
+    },
+    "kernel/psc/overlap_seed_patch.mojo": {
+      "git_blob": "358bb89248f4f1221ab7f3fd583a47b0cfd62b67",
+      "sha256": "03541f062c104a61511a95b89755372d974c6f4a297f72e98bfb6c0d342c789b"
+    },
+    "kernel/tests/test_class_a_x_signed_strip.mojo": {
+      "git_blob": "3cd39e94f4909dd71239dc50c60ec35b39bfe27a",
+      "sha256": "5535d82b7c7bf0a34aee79d3297b57cec7eda4593951f24542516f261fbb1bbd"
+    },
+    "oracles/python/class_a_boundary_children.py": {
+      "git_blob": "ed0e73128fe0df8a77c3a340d54671f5188048c7",
+      "sha256": "31ecaf4087aec22e8e433eeecaa70c17db53fa8a5a701c63c4b0231d3c03429a"
+    },
+    "oracles/python/class_a_x_productivity.py": {
+      "git_blob": "b56c3d8f74c944b97a50e5ef4e8a9dd1e3f1bbbb",
+      "sha256": "6fe0e748299fa569f6b248979add7724da9a23423748d0d10aa6e9e304bbafde"
+    },
+    "oracles/python/class_a_x_signed_strip.py": {
+      "git_blob": "90bdd7769d4fc2440f973154be46ae7b2425f9b0",
+      "sha256": "419bf984026c68757731a3c22a53133a16bc767189123a7bdef9e825393d748c"
+    },
+    "oracles/python/class_a_x_signed_strip_symbolic.py": {
+      "git_blob": "bf4b190449a4f51bb28a76591db09a060377b3f2",
+      "sha256": "d9ea9e6c88c19a60d87fdec4f268f49b2b2fb70ad7ed59e778722dcd69630598"
+    },
+    "oracles/python/class_a_x_transfer_plane.py": {
+      "git_blob": "bc5ad2317835ba73f5a77fb4599ba292c0eff85c",
+      "sha256": "780e6da7e20834870fd74ebd33fcae76e456540e8291ef59188c8482f7786af8"
+    },
+    "tests/test_class_a_x_signed_strip.py": {
+      "git_blob": "09b61a2812834bd0acf85fcf042a9dc42568e8d3",
+      "sha256": "63fa0732891303f1fb5c71814665b9be9a0cf289ba539cf964a69a312eefb305"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+........................................................................ [ 20%]
+........................................................................ [ 40%]
+........................................................................ [ 60%]
+........................................................................ [ 80%]
+......................................................s................. [100%]
+=============================== warnings summary ===============================
+tests/test_audit_manuscript.py:25
+  /workspace/scratch/496b8ae0ebe1/psc-integration/tests/test_audit_manuscript.py:25: SyntaxWarning: invalid escape sequence '\s'
+    The matrix acts on an invariant subspace as a similar copy of $M_\sigma$.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+359 passed, 1 skipped, 1 warning in 380.35s (0:06:20)

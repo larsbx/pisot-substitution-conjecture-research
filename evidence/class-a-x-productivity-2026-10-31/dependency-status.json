@@ -1,0 +1,356 @@
+{
+  "main_sha": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+  "scope": "acceptance snapshot; no predecessor promoted or integrated",
+  "prs": [
+    {
+      "number": 428,
+      "state": "open",
+      "merged": false,
+      "head": "df233242c919a9cd9ab031e39026f48e906c9840",
+      "base": "main",
+      "base_sha": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+      "ci_inspected": [
+        {
+          "id": 41172970489,
+          "name": "PSC research checks",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41172970494,
+          "name": "Class-A uniform gap theorem",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41172970543,
+          "name": "Class-D complete residual certificates",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41172970549,
+          "name": "Show your work policy",
+          "status": "pending",
+          "conclusion": null
+        },
+        {
+          "id": 41172970490,
+          "name": "C4 defect-degree census",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41172970517,
+          "name": "Boundary synchronization layer",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41172970439,
+          "name": "Canonical Pisot polynomial kernels",
+          "status": "pending",
+          "conclusion": null
+        },
+        {
+          "id": 41172970492,
+          "name": "PSC class-A all-nine swapped-patch seeds reach X",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41172970461,
+          "name": "Target-aware BPA diagnostic",
+          "status": "pending",
+          "conclusion": null
+        },
+        {
+          "id": 41172970462,
+          "name": "C4 degree2 three-state census",
+          "status": "queued",
+          "conclusion": null
+        }
+      ]
+    },
+    {
+      "number": 430,
+      "state": "open",
+      "merged": false,
+      "head": "c36713575759f7a5afbc324e5db3dc9d7e3f4fee",
+      "base": "research/class-a-nine-swap-seeds-to-x-2026-10-31",
+      "base_sha": "df233242c919a9cd9ab031e39026f48e906c9840",
+      "ci_inspected": [
+        {
+          "id": 41174936534,
+          "name": "PSC class-A X to eight swapped-patch seeds",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41174936301,
+          "name": "Canonical Pisot polynomial kernels",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41174936262,
+          "name": "PSC research checks",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41174936280,
+          "name": "Class-D complete residual certificates",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41174936396,
+          "name": "Boundary synchronization layer",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41174936274,
+          "name": "C4 defect-degree census",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41174936351,
+          "name": "Show your work policy",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41174936336,
+          "name": "Target-aware BPA diagnostic",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41174936348,
+          "name": "C4 degree2 three-state census",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41174936374,
+          "name": "Class-A uniform gap theorem",
+          "status": "queued",
+          "conclusion": null
+        }
+      ]
+    },
+    {
+      "number": 431,
+      "state": "open",
+      "merged": false,
+      "head": "c6a27494124db6f955be2a33c36de494164de4d8",
+      "base": "research/class-a-x-to-eight-swap-seeds-2026-10-31",
+      "base_sha": "c36713575759f7a5afbc324e5db3dc9d7e3f4fee",
+      "ci_inspected": [
+        {
+          "id": 41175302382,
+          "name": "Canonical Pisot polynomial kernels",
+          "status": "pending",
+          "conclusion": null
+        },
+        {
+          "id": 41175302387,
+          "name": "Class-D complete residual certificates",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41175302358,
+          "name": "Target-aware BPA diagnostic",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41175302393,
+          "name": "C4 degree2 three-state census",
+          "status": "pending",
+          "conclusion": null
+        },
+        {
+          "id": 41175302395,
+          "name": "C4 defect-degree census",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41175302446,
+          "name": "PSC research checks",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41175302386,
+          "name": "PSC class-A E6 eight children forward accessible from X",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41175302370,
+          "name": "Boundary synchronization layer",
+          "status": "pending",
+          "conclusion": null
+        },
+        {
+          "id": 41175302376,
+          "name": "Class-A uniform gap theorem",
+          "status": "pending",
+          "conclusion": null
+        },
+        {
+          "id": 41175302714,
+          "name": "Show your work policy",
+          "status": "queued",
+          "conclusion": null
+        }
+      ]
+    },
+    {
+      "number": 432,
+      "state": "open",
+      "merged": false,
+      "head": "d2b94fe5d6827d20d9488866ab8465ecbb4b8d61",
+      "base": "main",
+      "base_sha": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+      "ci_inspected": [
+        {
+          "id": 41182538581,
+          "name": "Canonical Pisot polynomial kernels",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182538541,
+          "name": "C4 defect-degree census",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182538425,
+          "name": "Show your work policy",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182538520,
+          "name": "Class-A uniform gap theorem",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182538421,
+          "name": "C4 degree2 three-state census",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182538434,
+          "name": "PSC class-A uniform X reversal bridge and SCC orientation",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182538406,
+          "name": "Class-D complete residual certificates",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182538400,
+          "name": "Boundary synchronization layer",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182538534,
+          "name": "PSC research checks",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182538432,
+          "name": "Target-aware BPA diagnostic",
+          "status": "queued",
+          "conclusion": null
+        }
+      ]
+    },
+    {
+      "number": 433,
+      "state": "open",
+      "merged": false,
+      "head": "2e9ecf67fe1d6270afec3b83b377fb4cb5960d04",
+      "base": "main",
+      "base_sha": "d4d97dbe63b7b1bd83e0747fb2d236824cf980af",
+      "ci_inspected": [
+        {
+          "id": 41182682864,
+          "name": "C4 degree2 three-state census",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182682732,
+          "name": "Target-aware BPA diagnostic",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182682739,
+          "name": "Canonical Pisot polynomial kernels",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182682690,
+          "name": "C4 defect-degree census",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182682764,
+          "name": "Class-D complete residual certificates",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182682840,
+          "name": "PSC research checks",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182682904,
+          "name": "Class-A uniform gap theorem",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182682726,
+          "name": "Boundary synchronization layer",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182682701,
+          "name": "PSC class-A orientation-complete swapped-patch closure",
+          "status": "queued",
+          "conclusion": null
+        },
+        {
+          "id": 41182682702,
+          "name": "Show your work policy",
+          "status": "queued",
+          "conclusion": null
+        }
+      ]
+    }
+  ]
+}
