@@ -120,7 +120,14 @@ The literature relation between PDS and standard BPA termination is tracked sepa
 
 ## 5. Lean layer
 
-The Lean development proves the formalized finite spectral algebra and audits axioms. It does **not** currently formalize:
+The Lean development proves the formalized finite spectral algebra and audits
+axioms. `PscVerif.SelectedRank` also formalizes exact-length selected rank
+descent and finite seed-descendant productivity under separately supplied
+semantic edge/terminal soundness and all-edge closure hypotheses. It includes
+a finite escaped-descendant counterexample. The Mojo checker still needs an
+implementation-refinement bridge to those hypotheses.
+
+It does **not** currently formalize:
 
 - G1 or SCC Producer;
 - sink-SCC extraction;
