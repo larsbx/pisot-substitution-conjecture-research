@@ -166,6 +166,18 @@ def rebound(path: str, digest: str) -> bool:
     return _rebound().get(path) == digest
 
 
+def rebound_plus_receipts() -> frozenset[str]:
+    """The plus-chamber receipts pinned by valid rebind packets.
+
+    Every packet validates first, so each receipt is one a hosted replay of
+    the rebound bytes printed; the v1 format and assembly replays pin none.
+    """
+    _rebound()
+    manifests = (json.loads((packet/'manifest.json').read_text())
+                 for packet in PACKETS if (packet/'manifest.json').is_file())
+    return frozenset(m['plus_receipt'] for m in manifests if 'plus_receipt' in m)
+
+
 def main():
     print(json.dumps(dict(rebound=_rebound(), authority='provenance only; independent human review pending'), indent=2))
 

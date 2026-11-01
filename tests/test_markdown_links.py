@@ -1,7 +1,7 @@
 """Every relative link in a tracked Markdown file resolves, so a directory move cannot strand a reference.
 
 archive/ is excluded: its records are verbatim and may name paths of the layout they were written in.
-Fenced code blocks and inline code spans are excluded: they are not rendered as links, and replay commands such as
+Fenced blocks and inline code spans are excluded: they are not rendered as links, and commands such as
 ``o['f'](pathlib.Path('x'))`` would otherwise read as one.
 """
 
@@ -24,7 +24,7 @@ def markdown() -> list[Path]:
 
 
 def links(text: str) -> list[tuple[int, str]]:
-    """(line number, target) of every link outside fenced blocks and same-line code spans."""
+    """(line number, target) of links outside fences and same-line code spans."""
     found, fence = [], None
     for number, line in enumerate(text.splitlines(), 1):
         opener = FENCE.match(line)
@@ -57,12 +57,17 @@ def test_links_skip_fenced_and_inline_code():
     assert links(text) == [(1, "a.md"), (7, "c.md"), (12, "e.md"), (12, "f.md")]
 
 
+def test_inline_code_delimiters_preserve_real_links():
+    assert links("``a ` ](fake.md)`` [`real`](real.md) ` unmatched [b](b.md)") == [
+        (1, "real.md"), (1, "b.md"),
+    ]
+
+
 def test_inline_code_delimiters_and_real_neighbor_links():
     assert links("``o['f'](pathlib.Path('x')) `tick` `` [a](a.md)") == [(1, "a.md")]
     assert links("`unclosed [a](a.md)") == [(1, "a.md")]
     assert links("`one`` [a](a.md)") == [(1, "a.md")]
     assert links("[a](a.md) `](fake)` [b](b.md)") == [(1, "a.md"), (1, "b.md")]
-
 
 def test_relative_links_resolve():
     broken = [
