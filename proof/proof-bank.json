@@ -1935,6 +1935,110 @@
       "declaration": "theorem seed_K₃_mem_W₃ (k : Fin 6) (a b c : Letter) :"
     },
     {
+      "name": "PscVerif.SelectedRank.selected_path_of_rank",
+      "module": "PscVerif.SelectedRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SelectedRank.lean",
+      "line": 21,
+      "declaration": "theorem selected_path_of_rank {n : Nat} {edge : Fin n → Fin n → Prop}"
+    },
+    {
+      "name": "PscVerif.SelectedRank.path_map",
+      "module": "PscVerif.SelectedRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SelectedRank.lean",
+      "line": 42,
+      "declaration": "theorem path_map {n m : Nat} {edge : Fin n → Fin n → Prop}"
+    },
+    {
+      "name": "PscVerif.SelectedRank.selected_path_sound",
+      "module": "PscVerif.SelectedRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SelectedRank.lean",
+      "line": 51,
+      "declaration": "theorem selected_path_sound {n m : Nat} {edge : Fin n → Fin n → Prop}"
+    },
+    {
+      "name": "PscVerif.SelectedRank.path_stays_in",
+      "module": "PscVerif.SelectedRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SelectedRank.lean",
+      "line": 61,
+      "declaration": "theorem path_stays_in {m : Nat} {actual : Fin m → Fin m → Prop}"
+    },
+    {
+      "name": "PscVerif.SelectedRank.covered_descendants_productive",
+      "module": "PscVerif.SelectedRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SelectedRank.lean",
+      "line": 70,
+      "declaration": "theorem covered_descendants_productive {n m : Nat}"
+    },
+    {
+      "name": "PscVerif.SelectedRank.control_local_witness",
+      "module": "PscVerif.SelectedRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SelectedRank.lean",
+      "line": 97,
+      "declaration": "theorem control_local_witness :"
+    },
+    {
+      "name": "PscVerif.SelectedRank.control_edges_sound",
+      "module": "PscVerif.SelectedRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SelectedRank.lean",
+      "line": 105,
+      "declaration": "theorem control_edges_sound : ∀ u v, controlLocalEdge u v →"
+    },
+    {
+      "name": "PscVerif.SelectedRank.control_terminal_sound",
+      "module": "PscVerif.SelectedRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SelectedRank.lean",
+      "line": 110,
+      "declaration": "theorem control_terminal_sound : ∀ v, controlTerminal v → controlEmbed v = 1 := by"
+    },
+    {
+      "name": "PscVerif.SelectedRank.control_local_selected_path",
+      "module": "PscVerif.SelectedRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SelectedRank.lean",
+      "line": 114,
+      "declaration": "theorem control_local_selected_path :"
+    },
+    {
+      "name": "PscVerif.SelectedRank.control_unlisted_descendant",
+      "module": "PscVerif.SelectedRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SelectedRank.lean",
+      "line": 120,
+      "declaration": "theorem control_unlisted_descendant : Path controlEdge 0 2 1 := by"
+    },
+    {
+      "name": "PscVerif.SelectedRank.control_carrier_not_closed",
+      "module": "PscVerif.SelectedRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SelectedRank.lean",
+      "line": 123,
+      "declaration": "theorem control_carrier_not_closed :"
+    },
+    {
+      "name": "PscVerif.SelectedRank.control_trap_stays",
+      "module": "PscVerif.SelectedRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SelectedRank.lean",
+      "line": 129,
+      "declaration": "theorem control_trap_stays (v : Fin 3) (k : Nat)"
+    },
+    {
+      "name": "PscVerif.SelectedRank.control_trap_has_no_terminal_path",
+      "module": "PscVerif.SelectedRank",
+      "private": false,
+      "source": "proof/PscVerif/PscVerif/SelectedRank.lean",
+      "line": 136,
+      "declaration": "theorem control_trap_has_no_terminal_path :"
+    },
+    {
       "name": "Psc.N_mul_N",
       "module": "PscVerif.Shuffle",
       "private": false,
@@ -3662,10 +3766,11 @@
     "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
     "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
     "proof/PscVerif/PscVerif/Seeds.lean": "224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747",
+    "proof/PscVerif/PscVerif/SelectedRank.lean": "0ab6fc76698ebcfd14ce1b319b121f0eaee9d2d64fceb26d3cf9e6a59b26c396",
     "proof/PscVerif/PscVerif/Shuffle.lean": "fe99c7b71174cd665633b425c0f9d1e6f6893f541387e261fb5d945bba48614c",
     "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
     "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
-    "proof/PscVerif/PscVerif.lean": "d411522c81fbf7656036dabd359025ae208288dc64cf8a138b9297e9c7a3f337",
+    "proof/PscVerif/PscVerif.lean": "eb1905230bc37caa5e909043c89486aac54d2c3b4726373a9e9cfd14512e7fdb",
     "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
     "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
     "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
