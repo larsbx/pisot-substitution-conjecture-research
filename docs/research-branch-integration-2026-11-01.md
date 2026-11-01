@@ -144,3 +144,12 @@ main and any substantive findings are addressed. Independent human review is
 pending validation debt under AGENTS.md, not a claim that such review occurred.
 No general PSC theorem, universal finite-graph extrapolation, independent proof
 certification, or new governed claim promotion is asserted.
+
+### Completed local replay supplement
+
+The [broad acceptance supplement](../evidence/research-integration-acceptance-2026-11-01/README.md)
+records all 174 Python test files: 1,293 pass, 3 skip, across four disjoint
+shards. All 18 original TLA+ models have their expected outcome. The
+source/integrity/link checks pass again after the documentation correction.
+These local results do not complete the pending exact-head hosted acceptance
+or the incomplete fresh Lean audit. The earlier packet remains immutable.
