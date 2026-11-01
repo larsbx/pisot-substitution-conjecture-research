@@ -7,3 +7,5 @@ import PscVerif.Spectral
 import PscVerif.BoundaryRounding
 import PscVerif.BoundarySeedPath
 import PscVerif.SelectedRank
+
+import PscVerif.ClassBRegime

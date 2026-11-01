@@ -1,0 +1,37 @@
+name: PSC class-A boundary U four-step interior hit
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_boundary_U_hit.mojo'
+      - 'kernel/tests/test_class_a_boundary_U_hit.mojo'
+      - 'kernel/class_a_boundary_U_hit.mojo'
+      - 'oracles/python/class_a_boundary_U_hit.py'
+      - 'tests/test_class_a_boundary_U_hit.py'
+      - 'docs/class-a-boundary-U-hit-2026-10-26.md'
+      - '.github/workflows/class-a-boundary-U-hit.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-U-hit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent exact rational literal witness oracle
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_boundary_U_hit.py
+      - name: Install Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Replay inherited 352 U carrier and new four-edge witness in native Mojo
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_class_a_boundary_u_children.mojo
+          pixi run --locked mojo run -I . tests/test_class_a_boundary_U_hit.mojo
+          pixi run --locked mojo run -I . class_a_boundary_U_hit.mojo

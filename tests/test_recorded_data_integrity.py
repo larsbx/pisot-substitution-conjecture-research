@@ -18,9 +18,12 @@ SUMS = sorted(p for plane in ("evidence", "sources", "archive") for p in (ROOT /
 
 def entries(sums: Path) -> dict[Path, str]:
     """``./x`` and a bare name are packet-relative; any other path is repository-relative (``sha256sum -c`` from the root)."""
+    # This imported packet uses GNU checksum paths relative to its own
+    # directory even for nested records. Preserve its original manifest.
+    packet_relative = sums == ROOT / 'evidence/class-b-step2c-2026-10-27/SHA256SUMS'
     rows = (line.split(maxsplit=1) for line in sums.read_text(encoding="utf-8").splitlines() if line.strip())
     rels = ((digest, rel.strip()) for digest, rel in rows)
-    return {(ROOT if "/" in rel and not rel.startswith("./") else sums.parent) / rel: digest for digest, rel in rels}
+    return {(ROOT if "/" in rel and not rel.startswith("./") and not packet_relative else sums.parent) / rel: digest for digest, rel in rels}
 
 
 def test_every_evidence_packet_is_pinned():

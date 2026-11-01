@@ -1,0 +1,25 @@
+name: PSC class-A exact four-seed SCC hub diagnostic
+
+on:
+  pull_request:
+    paths:
+      - 'oracles/python/class_a_boundary_four_seed_scc.py'
+      - 'tests/test_class_a_boundary_four_seed_scc.py'
+      - 'docs/class-a-boundary-four-seed-scc-2026-10-31.md'
+      - '.github/workflows/class-a-boundary-four-seed-scc.yml'
+  workflow_dispatch:
+
+jobs:
+  exact-four-seed-scc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Complete exact literal-graph SCC and negative controls
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_boundary_four_seed_scc.py
+          python oracles/python/class_a_boundary_four_seed_scc.py > /tmp/psc-class-a-four-seed-scc.json

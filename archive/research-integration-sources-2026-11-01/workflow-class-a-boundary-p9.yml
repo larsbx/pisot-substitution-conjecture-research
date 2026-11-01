@@ -1,0 +1,52 @@
+name: PSC class-A minus P9 complete stars
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_boundary_p9_children.mojo'
+      - 'kernel/class_a_boundary_p9_children.mojo'
+      - 'kernel/tests/test_class_a_boundary_p9_children.mojo'
+      - 'oracles/python/class_a_boundary_p9_children.py'
+      - 'tests/test_class_a_boundary_p9_children.py'
+      - 'docs/class-a-boundary-p9-*.md'
+      - 'evidence/class-a-boundary-p9-2026-10-29/**'
+      - '.github/workflows/class-a-boundary-p9.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  two-oriented-stars-and-every-first-choice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      MODULAR_TELEMETRY_ENABLED: "false"
+      MODULAR_CRASH_REPORTING_ENABLED: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent exact complete-star, endpoint and occurrence replay
+        run: |
+          python -m pip install 'pytest>=7'
+          sha256sum -c evidence/class-a-boundary-p9-2026-10-29/SHA256SUMS
+          sha256sum -c evidence/class-a-boundary-p9-2026-10-29/source-sha256.txt
+          python -m pytest -q tests/test_class_a_boundary_p9_children.py
+          python oracles/python/class_a_boundary_p9_children.py > /tmp/boundary-p9.json
+          cmp /tmp/boundary-p9.json evidence/class-a-boundary-p9-2026-10-29/probe.json
+          python tools/make_proof_bank.py --check
+      - name: Install Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Canonical complete stars, guarded every-first-choice exits and registry reconciliation
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_class_a_boundary_p9_children.mojo
+          pixi run --locked mojo run -I . class_a_boundary_p9_children.mojo > /tmp/p9-native-driver.log
+          cat /tmp/p9-native-driver.log
+          cd ..
+          python -c "import runpy,pathlib; o=runpy.run_path('oracles/python/class_a_boundary_p9_children.py'); o['verify_native_registry'](pathlib.Path('/tmp/p9-native-driver.log').read_text())"

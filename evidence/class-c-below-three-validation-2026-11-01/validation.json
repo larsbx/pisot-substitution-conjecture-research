@@ -1,0 +1,71 @@
+{
+  "all_original_native_plan_receipts_identical": true,
+  "broader_python_suite": {
+    "complete": false,
+    "full_final_head_suite_required_in_hosted_CI": true,
+    "initial_collection_missing_sympy": "fixed by declared test-only dependency",
+    "interrupted_run_not_a_pass": true,
+    "observed_failures": "three Class-D provenance failures caused by the development-dependency edit; reproduced, preserved, and repaired with exact-addition guard and 43 passing regressions"
+  },
+  "class_d_integration_and_rebind_regressions": {
+    "passed": 43
+  },
+  "compiler": "Mojo 1.1.0.dev2026090805 (34562fa1)",
+  "explicit_followup_source_sha256": {
+    "pyproject.toml": "a2aba10d2275e8b14446192191d9e632ee6a038253b4d15ef8a9aaa53f68b52d",
+    "tests/test_class_c_below_three_imports.py": "b04d5676c05466053da84f8ec3a07af3743181d1f3fa3db385c2b4f49ec7a715",
+    "tests/test_class_d_integration_ci.py": "c0963602691ec2abafb41340745e91ee0693a9159f3520e959039bf2ed585206",
+    "tools/check_class_c_below_three_imports.py": "f112b97b587db37f837beb0b4ff8dcf3d89579b38e31b2675a146de87be10e3d",
+    "tools/check_class_d_integration_ci.py": "6ce7ee305414397acbedcb4b2411e910a66f703ce084deed95de54c350b0bea2"
+  },
+  "focused_python_tests": {
+    "commands": [
+      "python3 -m pytest -q tests/test_class_c_below_three_imports.py tests/test_class_c_below_three_integration.py tests/test_class_d_integration_ci.py tests/test_class_d_closure_rebind.py tests/test_recorded_data_integrity.py tests/test_markdown_links.py"
+    ],
+    "passed": 152,
+    "raw_output_sha256": "5f41a2838d8c309a0999f54b64d3ea457f301ddabe852679e888803c91719c5d"
+  },
+  "general_PSC_proved": false,
+  "governed_claim_status_changed": false,
+  "hosted_acceptance": {
+    "passed": false,
+    "status": "pending; require final exact-head applicable checks before merge"
+  },
+  "independent_graph_comparisons": {
+    "below": {
+      "byte_identical_recorded_json": true,
+      "complete_graph_comparisons": 746,
+      "json_sha256": "8eb9c828ca4e7941925ec0132fa3e1f575dafa40e33a4be23bcc96e75590fbc9"
+    },
+    "slope": {
+      "byte_identical_recorded_json": true,
+      "complete_graph_comparisons": 547,
+      "json_sha256": "2c614646160e38eec50b9a4f061f17f3380d69887fcaf35584c347993f2fb9b2"
+    }
+  },
+  "independent_human_review": false,
+  "initial_development_dependency_refusal_raw_log_sha256": "153ec5f06d6695b39b8330fd8e8c42db3e286c2c2c802db6e94e91ac7c85ae7e",
+  "input_base_revision": "ca0d36286bd136d3f0b2e7d8441ae5bffe800774",
+  "native_binary_sha256": "4d4216b64498d0b461ad8a084559f7c5c89878f544ca03b739cde2316db1f554",
+  "native_regressions": {
+    "below": {
+      "byte_identical_recorded_receipt": true,
+      "sha256": "a5817bd663359314458d877f9b308835d7b3ffc913da24f8ea87ceb4632cc8c9"
+    },
+    "slope": {
+      "byte_identical_recorded_receipt": true,
+      "sha256": "c8ad1393a93bd1a6f0db60e7f4221a0b60133c179fe30eeef2dc6c633e0bbf79"
+    },
+    "strip": {
+      "byte_identical_recorded_receipt": true,
+      "sha256": "1470308d89eb31e27871e2d8e6f68ae15c49080aa25950c4083863cfbb439250"
+    },
+    "tail": {
+      "byte_identical_recorded_receipt": true,
+      "sha256": "cb65b81bf98d6d04b579a85b3a07f647af82be599097bbd766b28fd645693634"
+    }
+  },
+  "original_native_plan_receipts": 53,
+  "provenance_and_generators": "current and historical source guards, immutable packet checks, vendoring, proof bank, catalogue, ledger, Markdown and all six governance checks passed",
+  "python": "3.12.14"
+}

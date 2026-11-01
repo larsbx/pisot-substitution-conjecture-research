@@ -1,0 +1,15 @@
+b2f8695fd0dfbfdb40fbf6c8c9695b4138899d51a3ee54e8410eed3151c21000  evidence/class-a-boundary-j8-2026-10-29/README.md
+e0f021338228bb3c4e23b5d47af399caf2336d61f7763aad8ba639c726e8a901  evidence/class-a-boundary-j8-2026-10-29/dependency.json
+312d88a31f8bf9622d74349565db87ee66f6caa150bf8b781a000f9f227a5615  evidence/class-a-boundary-j8-2026-10-29/driver.log
+c5d1d07b473857d4d17a8f223976a1696a250884d51e49366d96de9e79ac3452  evidence/class-a-boundary-j8-2026-10-29/integrity-tests.log
+cebe4497abc747094e5fdcf1ac39beed603bb5157eca4f888adf5abb2123c3db  evidence/class-a-boundary-j8-2026-10-29/lean-attempt.log
+0514b974b92d65f7e303a99bf865f8a02223015981d908168eb72ba3ef0c6b9f  evidence/class-a-boundary-j8-2026-10-29/lean-setup.log
+578d793a6377ec7a0beba27bfa60d82b17204658f668304ab896f541c679241f  evidence/class-a-boundary-j8-2026-10-29/native-tests.log
+48ef0d67ae89b3d5f4c16794581f408b4ebcdb7c39a0e2ead9a49e66eb62c3e7  evidence/class-a-boundary-j8-2026-10-29/parent-workflows.json
+56e9ddac243dbda9aa9a94340f46eb40ff3285b792a50194e54ece85125b3f8b  evidence/class-a-boundary-j8-2026-10-29/probe.json
+11ebec90d7d502ce3399419e3f406fd053cfcb00e376c8e182688bdf2dc1c1b9  evidence/class-a-boundary-j8-2026-10-29/provenance.log
+8465f3d0e0ed097f9036a0ba73676b4e143165b41ea035c07d82ed2f1d598b11  evidence/class-a-boundary-j8-2026-10-29/python-tests.log
+bc1e77c4943e7a3bc0a5e38a3335705e1ce8c5988234d2faa6d439e2ee3dde22  evidence/class-a-boundary-j8-2026-10-29/restored-d0-native-tests.log
+7268d18637936f01bd7e8285b1018ab7f8464cc0599031b72e5c0dc476b997ed  evidence/class-a-boundary-j8-2026-10-29/source-sha256.txt
+bde3a1fcb2c3328149857b4420a5974f8e8dfad3216469618cfb40b4ad519dd5  evidence/class-a-boundary-j8-2026-10-29/tla.log
+ac5aa63e9dfe8a304334afcf9633405b949e1e05d4c9c6da6817731a4beaebb8  evidence/class-a-boundary-j8-2026-10-29/toolchain.log

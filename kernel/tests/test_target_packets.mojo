@@ -10,6 +10,7 @@ from psc.target_packets import (
     potential_values, monovariant_counterexample,
 )
 from psc.words import Pair
+from psc.occurrence_path import ImageHead, WordEdge, matched_target, certify_word_path
 
 
 def test_real_addresses_and_zero_are_not_enough() raises:
@@ -30,6 +31,24 @@ def test_real_addresses_and_zero_are_not_enough() raises:
             assert_equal(p.key.top, 0)
             assert_equal(p.key.bottom, 0)
             assert_true(p.top_address.global_position > 0)
+            # Export a successful packet's actual local factor as a graph-free
+            # occurrence certificate. Packet success is stricter (interior
+            # only); every immediate, unsynchronized success must satisfy the
+            # new exact matched-target contract in its ordered parent image.
+            ref factor = g.factors[p.key.factor_edge]
+            var parent = g.bpa.states[factor.parent].copy()
+            if p.key.sign * factor.sign == -1:
+                parent = Pair(g.bpa.states[factor.parent].v, g.bpa.states[factor.parent].u)
+            var inflated = Pair(apply_substitution(sigma, parent.u), apply_substitution(sigma, parent.v))
+            assert_true(matched_target(inflated, p.top_address.global_position))
+            var exported = WordEdge(
+                parent,
+                ImageHead(p.top_address.source_occurrence, p.top_address.within_image),
+                ImageHead(p.bottom_address.source_occurrence, p.bottom_address.within_image),
+                factor.end, Pair([p.top_letter], [p.bottom_letter]),
+            )
+            var witness: List[WordEdge] = [exported^]
+            certify_word_path(sigma, parent, witness)
     assert_true(zeros > successes)
     assert_true(successes > 0)
     assert_true(g.split_count > 0)
@@ -254,4 +273,5 @@ def main() raises:
     test_documented_seed_and_naive_pair_negatives()
     test_synchronizing_targets_are_actual_interior_boundaries()
     print("[PASS] target packets: addresses, orientation, cycles, depths, replay, caps")
+    require_contract("unsynchronized successful target packets export actual ordered balanced factors that pass the graph-free occurrence certificate and exact matched-target check")
     require_contract("target-aware BPA diagnostics use actual ordered factorization and occurrence addresses; zero residual alone is insufficient; SCCs, shortest existential paths and monovariant counterexamples remain finite diagnostics")

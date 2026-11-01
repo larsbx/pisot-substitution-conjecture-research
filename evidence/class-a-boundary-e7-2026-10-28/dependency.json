@@ -1,0 +1,17 @@
+{
+  "independent_R5_sibling_result_counted": false,
+  "independent_human_review": "pending validation debt",
+  "parent_branch": "research/class-a-boundary-e6-2026-10-28",
+  "parent_head": "6bef25b0a24820996989f652d53f1ae5d24039c2",
+  "parent_pr": 382,
+  "parent_workflows_at_inspection": "queued; no pass inferred",
+  "reused_companion_aliases": {
+    "U7": "reversed D0, existing uniform two-edge exit",
+    "V7": "Dxx, existing complete star and four-edge exit; new n>=4 two-edge shortcut"
+  },
+  "reused_complete_families": [
+    "Dxx",
+    "J",
+    "H5"
+  ]
+}

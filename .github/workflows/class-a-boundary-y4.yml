@@ -1,0 +1,51 @@
+name: PSC class-A minus Y4 complete stars
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_a_boundary_y4_children.mojo'
+      - 'kernel/class_a_boundary_y4_children.mojo'
+      - 'kernel/tests/test_class_a_boundary_y4_children.mojo'
+      - 'oracles/python/class_a_boundary_y4_children.py'
+      - 'tests/test_class_a_boundary_y4_children.py'
+      - 'docs/class-a-boundary-y4-*.md'
+      - 'evidence/class-a-boundary-y4-2026-10-28/**'
+      - '.github/workflows/class-a-boundary-y4.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  two-oriented-stars:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent exact complete-star, endpoint and occurrence replay
+        run: |
+          python -m pip install 'pytest>=7'
+          sha256sum -c evidence/class-a-boundary-y4-2026-10-28/SHA256SUMS
+          python3 tools/check_research_source_manifest.py evidence/class-a-boundary-y4-2026-10-28/source-sha256.txt
+          python -m pytest -q tests/test_class_a_boundary_y4_children.py
+          python oracles/python/class_a_boundary_y4_children.py > /tmp/boundary-y4.json
+          cmp /tmp/boundary-y4.json evidence/class-a-boundary-y4-2026-10-28/probe.json
+          python tools/make_proof_bank.py --check
+      - name: Install Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Canonical complete stars, source reconciliation and selected typed exits
+        working-directory: kernel
+        run: |
+          pixi run --locked mojo run -I . tests/test_class_a_boundary_y4_children.mojo
+          pixi run --locked mojo run -I . class_a_boundary_y4_children.mojo > /tmp/y4-native-driver.log
+          cat /tmp/y4-native-driver.log
+          cd ..
+          python -c "import runpy,pathlib; o=runpy.run_path('oracles/python/class_a_boundary_y4_children.py'); o['verify_native_registry'](pathlib.Path('/tmp/y4-native-driver.log').read_text())"

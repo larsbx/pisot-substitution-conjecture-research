@@ -1,0 +1,27 @@
+name: PSC class-A CC every-first-choice typed exits
+
+on:
+  pull_request:
+    paths:
+      - 'oracles/python/class_a_boundary_cc_every_child.py'
+      - 'oracles/python/class_a_boundary_cc_symbolic_transport.py'
+      - 'tests/test_class_a_boundary_cc_symbolic_transport.py'
+      - 'tests/test_class_a_boundary_cc_every_child.py'
+      - 'docs/class-a-boundary-cc-every-child-2026-10-31.md'
+      - '.github/workflows/class-a-boundary-cc-every-child.yml'
+  workflow_dispatch:
+
+jobs:
+  cc-every-choice:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Independent literal-first-choice and exact-rational margin replay
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_boundary_cc_children.py tests/test_class_a_boundary_cc_every_child.py tests/test_class_a_boundary_cc_symbolic_transport.py
+          python oracles/python/class_a_boundary_cc_every_child.py > /tmp/cc-every.json

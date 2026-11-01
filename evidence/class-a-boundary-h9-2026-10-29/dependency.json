@@ -1,0 +1,67 @@
+{
+  "base_pr": 391,
+  "base_head": "65e7b8a8724b9e3f4f6f0ec2f230b3dada4993ca",
+  "base_incorporates": {
+    "pr": 393,
+    "head": "be3d1988443f312e62e3d89225b9e920e9fd34c6"
+  },
+  "base_observation": "merged P9 into stacked J9 branch; initial merge-head observed pull-request workflows queued; no fresh acceptance or main integration inferred",
+  "new_source": "H9=(x,x,1,3,-6)",
+  "new_complete_stars": 2,
+  "existing_uniform_source_exit": {
+    "id": 63,
+    "steps": 6
+  },
+  "new_uniform_companion_exits": {
+    "K9": {
+      "id": 66,
+      "steps": 4
+    },
+    "L9": {
+      "id": 67,
+      "steps": 3
+    },
+    "M9": {
+      "id": 68,
+      "steps": 6
+    }
+  },
+  "image_labels": 20,
+  "image_uniform_exit_labels": 20,
+  "image_registered_star_labels": 2,
+  "all_actual_first_choice_selected_bound": 7,
+  "arbitrary_image_source_tail_bound": 7,
+  "actual_first_edge_tail_bound": 6,
+  "scope_exception": "D4's inherited seven-edge n=3 tail is preserved; actual H9 ancestry requires k>=2 and n>=5, so three-edge D4 suffix applies",
+  "native": {
+    "members": 56,
+    "pairs": 82096,
+    "accepted": 5124,
+    "source_path_edges": 672,
+    "companion_path_edges": 1456,
+    "all_child_walk_edges": 30366,
+    "all_image_tail_edges": 4404,
+    "max_walk": 7
+  },
+  "independent": {
+    "members": 117,
+    "pairs": 297648,
+    "accepted": 13302,
+    "source_path_edges": 1404,
+    "companion_path_edges": 3042,
+    "all_child_walk_edges": 78714,
+    "all_image_tail_edges": 9170,
+    "max_walk": 7
+  },
+  "formal": "124 claims,34 named Lean proofs,325 source openings unchanged; prior18 TLA outcomes and pre-compilation Lean failure retained as dependency receipts",
+  "governed_claim_changes": false,
+  "global_BH_or_PSC": false,
+  "validation": {
+    "scoped_python_tests_passed": 94,
+    "integrity_governance_tests_passed": 156,
+    "provenance": "pass",
+    "native_registry_rows": 93,
+    "native_telemetry_enabled": false,
+    "native_crash_reporting_enabled": false
+  }
+}

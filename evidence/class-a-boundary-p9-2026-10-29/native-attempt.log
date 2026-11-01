@@ -1,0 +1,7 @@
+STATUS: BLOCKED; no native replay, version receipt, or registry receipt earned.
+Attempted with MODULAR_TELEMETRY_ENABLED=false and MODULAR_CRASH_REPORTING_ENABLED=false:
+pixi run --manifest-path kernel/pixi.toml --locked mojo --version
+Automatic approval review rejected the action:
+"This request targets a telemetry endpoint and may disclose environment or execution metadata; the user authorized Mojo validation, not telemetry export, and the command explicitly attempted to disable telemetry."
+No alternate native execution or telemetry workaround was attempted.
+The supplied Mojo contract/driver must still run successfully before acceptance.

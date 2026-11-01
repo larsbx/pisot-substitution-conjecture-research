@@ -1,0 +1,42 @@
+[
+  {
+    "exe": "class-b-labels",
+    "args": [
+      "plus",
+      "15",
+      "60"
+    ],
+    "seconds": 39.778455464002036,
+    "header": "M 60 592 4"
+  },
+  {
+    "exe": "class-b-labels-fast",
+    "args": [
+      "plus",
+      "15",
+      "60"
+    ],
+    "seconds": 4.129760426993016,
+    "header": "M 60 592 4"
+  },
+  {
+    "exe": "class-b-core",
+    "args": [
+      "plus",
+      "16",
+      "98"
+    ],
+    "seconds": 87.85837983999954,
+    "header": "M 98 2299 5"
+  },
+  {
+    "exe": "class-b-core-fast",
+    "args": [
+      "plus",
+      "16",
+      "98"
+    ],
+    "seconds": 9.755227271998592,
+    "header": "M 98 2299 5"
+  }
+]

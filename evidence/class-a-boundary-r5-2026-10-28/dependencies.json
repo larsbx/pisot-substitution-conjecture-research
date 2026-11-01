@@ -1,0 +1,205 @@
+{
+  "parent_pr": {
+    "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/379",
+    "number": 379,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": false,
+    "body": "Classify Y4=(x,y,1,0,-1) and its real reversal. Each complete star has 2n+2 strict occurrences and their chamber-wide image has 18 labels. Every indexed direct child now has a uniform typed tail <=7 edges; every actual first choice has a selected completion from Y4 within eight edges. The existing two-edge source exit is preserved.\n\nStacked on #378 at 4bdacc0dd5618e895351dcf372b071c9560cc582, preserving every predecessor source and receipt. Its recorded exact-head hosted workflows remain queued; integrate only in dependency order after required gates. Independent human review remains pending validation debt.\n\n## Work shown\n\n### Assumptions and hypotheses\nIntegers k,t>=0, n=k+t+3, d=2n-1-k, A=n+d=2n+t+2, N=n-1; ordered words x->x y^A x, c->c y^n x, y->x y^N c. Preserve full bottom-minus-top integer Parikh offsets, actual zero-based indices, strict physical intersection and actual reversal. Use inherited h=1/beta, alpha=beta-(n+2), 0<h<1/5, 0<zeta=alpha-2h<rho=alpha-h<1, and 0<alpha+2h<1. The stop/go reuses the three-primary-source actual/every-overlap and non-unit review; no fresh reading, spectral transfer or tile-length independence premise.\n\n### Derivation / reduction\nM(Y4)=(1,-1,d+1), G=d+2+zeta. The complete nine-kind table and exact integer guard reductions are in docs/class-a-boundary-y4-carrier-2026-10-28.md. RF has i=d..d+3; RR has i-j=d+2,d+3, with n-2 and n-3 actual occurrences; LR has j=n-2,n-1; LL gives D5. Every other kind is disjoint. The total is 2n+2 per orientation. Canonical synthesis streams O(n) true indices. At n=3 the second RR strip is empty; its nominal first pair is a real LR R4 edge with another top type.\n\nThe image is V/T/B3/B4, R(T1)/R(T2), R4/R5 and D5, with reversals. Existing tails cover V/T/B3/B4/T1/R4. New R5=(x,y,1,-1,-1) has RR(t+1,1)->R(B2h), giving a three-edge exit; new D5=(x,c,1,-1,0) has RR(d+1,1)->typed C directly. T2's existing complete star now receives a uniform selected exit: at t=0 its LAST/FIRST (n,0) child is CM=(c,x,0,3,-3), then CM(2,0)->V and the W suffix, five edges total. At t>=1 its RUN/FIRST (k+3,0) child is M5=(y,x,0,3,-3), then M5(2,0)->F0=(y,x,-1,0,2), F0(0,t+1)->D and the existing D suffix, seven total. No new companion complete stars are claimed.\n\nEvery image label and reversal therefore has a genuine uniform tail <=7; full indexed-star coverage yields the all-direct-child quantifier for Y4. Every accepted indexed child has its entire produced walk replayed, and the chosen eight-edge bound is attained. This is not a shortest-path assertion or a statement that every continuation terminates. A genuine uniform T(0,1)->Y4(d+1,0)->T two-cycle survives, with C exits. Y4's LL child D5 lies outside S41. The 18-label image also escapes via T->Y4 or R5->R(B2h), so neither candidate becomes closed.\n\nS41 now has 28 registered nonterminal complete stars plus C, 12 star gaps, and 31 registered exits including C (10 exit gaps). Y4 gains stars; T2 gains exits; R5 gains exits without stars. The 18-label Y4 image has 14 registered stars and all 18 registered exits. The older R3/D3 36-label image now has 22 registered stars and 22 registered exits. Every source/image row retains separate flags.\n\n### Evidence and replay\nCanonical kernel kernel/psc/class_a_boundary_y4_children.mojo, matching native regression/driver and dedicated .github/workflows/class-a-boundary-y4.yml. Locked Mojo 1.1.0.dev2026090805: 56 members / 112 complete-star cells / 784 selected-path source cells / 33,096 literal pairs / 2,352 accepted / 3,104 selected source-path edges / 13,536 all-child walk edges. Independent literal-word/integer-polynomial/Fraction oracle: 117 members / 234 complete-star cells / 1,638 selected-path source cells / 122,616 pairs / 6,552 accepted / 6,500 selected source-path edges / 39,676 all-child walk edges. Both attain all 18 labels, verify every actual reversed accepted edge and attain maximum produced walk length eight. The independent 512-refinement sign budget refuses on exhaustion; the exact guards, parameter-cone certificates and complete uniform tail table supply the quantified proof.\n\nFrom kernel/: pixi run --locked mojo run -I . tests/test_class_a_boundary_y4_children.mojo; pixi run --locked mojo run -I . class_a_boundary_y4_children.mojo. From root: python -m pytest -q tests/test_class_a_boundary_y4_children.py tests/test_class_a_boundary_r4_children.py tests/test_class_a_boundary_b4_children.py tests/test_class_a_boundary_b3_children.py tests/test_class_a_boundary_r3_children.py; compare python oracles/python/class_a_boundary_y4_children.py with evidence/class-a-boundary-y4-2026-10-28/probe.json. Twenty-eight scoped Python tests, all 18 existing TLA expected outcomes, full provenance and checksums pass locally. All 41 candidate and 18 image registry rows match the independent inventory; hosted replay also checks the fresh native driver. Sources, receipts, dependency snapshot and exact invocation details are archived there. Lean fails before compilation and earns no pass. No full-suite or fresh hosted acceptance is claimed.\n\n### Negative controls\nAt n=3 the nominal second-RR first pair is actual LAST/RUN x/y R4, not y/y R(T2), despite identical offsets. T2 RF(k+3,0) is actual LAST c at t=0, producing CM rather than M5. Their different literal prefixes produce V and F0, respectively; R5's bottom y prefix produces R(B2h), not D3's P0. Preserve these real strict edges and reject their false types. Refuse corrupt field identities, bad parameters/orientations/indices, disjoint legal pairs, wrong interior targets, truncated/altered all-child walks, unequal-type zero terminals, incomplete/duplicate stars, omitted/duplicate/corrupt registry rows, unknown tail-dispatch labels and unsupported new companion complete-star requests.\n\n### Non-claims / remaining gaps\nThe all-child result applies only to Y4 and its real reversal. It proves neither every T2 child productive nor new companion complete stars, forward closure, all-edge descent, all-source coverage or global BH. Fourteen of the older R3/D3 36 labels still lack registered exits. Preserve all predecessor cycles and escapes. Next full-star gap is R5=(x,y,1,-1,-1), Y4's uniform LAST/RUN (A+1,N) child, now with a three-edge exit. All-source cyclic strict-zipper, plus chambers, target-aware BH, non-unit internal-space/return-lattice realization, universal BH/#139, A1-prime, G1 and PSC remain open. Preserve 124 governed claims, 34 named Lean proofs and 325 source openings. Keep this PR open pending predecessor and exact-head acceptance.\n",
+    "title": "Class A minus boundary: classify Y4 stars and certify tails for every child",
+    "base": "research/class-a-boundary-r4-2026-10-28",
+    "base_sha": "4bdacc0dd5618e895351dcf372b071c9560cc582",
+    "head": "research/class-a-boundary-y4-2026-10-28",
+    "head_sha": "7eb395cce20973c2c36bef09c97b3d6ae8e57067",
+    "head_repo_id": 1361945122,
+    "head_repo_full_name": "larsbx/pisot-substitution-conjecture-research",
+    "merge_commit_sha": "313c2b212d0344851f7d0a67b51265eb64d9f861",
+    "user": {
+      "login": "larsbx",
+      "name": "larsbx",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/1158952?v=4",
+      "id": 1158952
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-10-28T21:47:04Z",
+    "updated_at": "2026-10-28T21:48:56Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 1,
+    "changed_files": 21,
+    "additions": 5155,
+    "deletions": 0,
+    "display_url": "https://github.com/larsbx/pisot-substitution-conjecture-research/pull/379",
+    "display_title": "Class A minus boundary: classify Y4 stars and certify tails for every child"
+  },
+  "exact_head_workflows": {
+    "workflow_runs": [
+      {
+        "id": 40774789260,
+        "name": "Class-D plus positive-b chambers",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 155,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789260/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789260/logs",
+        "workflow_id": 389663784
+      },
+      {
+        "id": 40774789256,
+        "name": "Show your work policy",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 286,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789256/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789256/logs",
+        "workflow_id": 389589665
+      },
+      {
+        "id": 40774789214,
+        "name": "Class-A uniform gap theorem",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 88,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789214/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789214/logs",
+        "workflow_id": 394533630
+      },
+      {
+        "id": 40774789569,
+        "name": "C4 defect-degree census",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 3235,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789569/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789569/logs",
+        "workflow_id": 354460282
+      },
+      {
+        "id": 40774789169,
+        "name": "Boundary synchronization layer",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 1791,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789169/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789169/logs",
+        "workflow_id": 365028591
+      },
+      {
+        "id": 40774789200,
+        "name": "Gap-five A/C evidence",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 101,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789200/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789200/logs",
+        "workflow_id": 393948330
+      },
+      {
+        "id": 40774789325,
+        "name": "Class-D complete residual certificates",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 215,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789325/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789325/logs",
+        "workflow_id": 389504350
+      },
+      {
+        "id": 40774789285,
+        "name": "PSC class-A minus Y4 complete stars",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 1,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789285/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789285/logs",
+        "workflow_id": 399941536
+      },
+      {
+        "id": 40774789184,
+        "name": "Class-D minus recurrent reduction",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 168,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789184/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789184/logs",
+        "workflow_id": 389742893
+      },
+      {
+        "id": 40774789173,
+        "name": "PSC research checks",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 3397,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789173/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789173/logs",
+        "workflow_id": 353526446
+      },
+      {
+        "id": 40774789147,
+        "name": "Target-aware BPA diagnostic",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 502,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789147/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789147/logs",
+        "workflow_id": 373275169
+      },
+      {
+        "id": 40774789153,
+        "name": "C4 degree2 three-state census",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 3178,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789153/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789153/logs",
+        "workflow_id": 354598308
+      },
+      {
+        "id": 40774789078,
+        "name": "Canonical Pisot polynomial kernels",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 1627,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789078/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789078/logs",
+        "workflow_id": 372303541
+      },
+      {
+        "id": 40774789316,
+        "name": "Class-A cover obstruction",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 153,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789316/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789316/logs",
+        "workflow_id": 391878312
+      },
+      {
+        "id": 40774789187,
+        "name": "Class-A run-index investigation",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 155,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789187/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789187/logs",
+        "workflow_id": 391441935
+      },
+      {
+        "id": 40774789335,
+        "name": "Scoped class-D assembly",
+        "status": "queued",
+        "conclusion": null,
+        "run_number": 159,
+        "jobs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789335/jobs",
+        "logs_url": "https://api.github.com/repos/larsbx/pisot-substitution-conjecture-research/actions/runs/40774789335/logs",
+        "workflow_id": 391303683
+      }
+    ]
+  },
+  "integration": "Stacked on #379; queued is not acceptance; required exact-head gates and dependency order remain."
+}

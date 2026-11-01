@@ -1,0 +1,101 @@
+name: Class-C slope-three cover
+on:
+  pull_request:
+    paths:
+      - 'kernel/class_c_slope_three.mojo'
+      - 'kernel/psc/class_c_slope_three.mojo'
+      - 'kernel/tests/test_class_c_slope_three.mojo'
+      - 'kernel/class_c_lower_strip.mojo'
+      - 'kernel/psc/class_c_lower_strip.mojo'
+      - 'kernel/psc/class_c_tail_certificate.mojo'
+      - 'kernel/psc/class_c_gap_profile.mojo'
+      - 'kernel/psc/symbolic_cone.mojo'
+      - 'kernel/psc/symbolic_line.mojo'
+      - 'kernel/psc/param_poly.mojo'
+      - 'kernel/psc/real_root_sign.mojo'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'oracles/python/*class_c_slope_three.py'
+      - 'oracles/python/class_c_lower_strip.py'
+      - 'reference/psc_research/overlap_graph.py'
+      - 'docs/class-c-slope-three*'
+      - 'evidence/class-c-slope-three-2026-10-29/**'
+      - '.github/workflows/class-c-slope-three.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  cover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        sign: [plus, minus]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Replay exact partition pieces
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          name=${{ matrix.sign }}
+          eps=1
+          last=-5
+          if [ "$name" = minus ]; then eps=-1; last=-1; fi
+          out=build/class-c-slope-three
+          packet=../evidence/class-c-slope-three-2026-10-29
+          mkdir -p "$out"
+          a=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))[sys.argv[2]]["middle_intercept"])' "$packet/plan.json" "$name")
+          target_a=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))[sys.argv[2]]["intercept"])' "$packet/plan.json" "$name")
+          finite_a=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))[sys.argv[2]]["finite_intercept"])' "$packet/plan.json" "$name")
+          pixi run --locked mojo build -I . class_c_lower_strip.mojo -o "$out/lower"
+          pixi run --locked mojo build -I . class_c_slope_three.mojo -o "$out/cst"
+          "$out/lower" middle "$eps" "$a" 16 > "$out/middle-$name-$a-16.log"
+          diff "$packet/middle-$name-$a-16.log" "$out/middle-$name-$a-16.log"
+          for c in $(seq -15 "$last"); do
+            "$out/lower" diagonal "$eps" "$c" 24 > "$out/diagonal-$name-$c.log"
+            diff "$packet/diagonal-$name-$c.log" "$out/diagonal-$name-$c.log"
+          done
+          if [ "$name" = minus ]; then
+            for c in 6 7; do
+              "$out/cst" lower-line -1 "$c" > "$out/lower-line-minus-$c.log"
+              diff "$packet/lower-line-minus-$c.log" "$out/lower-line-minus-$c.log"
+            done
+          fi
+          "$out/cst" finite "$eps" "$finite_a" > "$out/finite-$name.log"
+          gzip -dc "$packet/finite-$name.log.gz" > "$out/expected-finite-$name.log"
+          diff "$out/expected-finite-$name.log" "$out/finite-$name.log"
+          "$out/cst" coverage "$eps" "$target_a" > "$out/coverage-$name.log"
+          diff "$packet/coverage-$name.log" "$out/coverage-$name.log"
+          if [ "$name" = plus ]; then
+            "$out/cst" controls > "$out/sign-controls.log"
+            diff "$packet/sign-controls.log" "$out/sign-controls.log"
+            pixi run --locked mojo run -I . tests/test_class_c_slope_three.mojo > "$out/native-test.log"
+            diff "$packet/native-test.log" "$out/native-test.log"
+          fi
+      - name: Independent exact oracle and provenance
+        if: matrix.sign == 'plus'
+        run: |
+          set -euo pipefail
+          packet=evidence/class-c-slope-three-2026-10-29
+          python3 oracles/python/check_class_c_slope_three.py "$packet" > kernel/build/class-c-slope-three/oracle.json
+          diff "$packet/oracle.json" kernel/build/class-c-slope-three/oracle.json
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('evidence/class-c-slope-three-2026-10-29')
+          for p,digest in json.loads((root/'provenance.json').read_text())['sources'].items():
+              assert hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()==digest,p
+          PY
+          (cd "$packet" && sha256sum --check SHA256SUMS)
+      - name: Preserve fresh receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-c-slope-three-${{ matrix.sign }}
+          path: kernel/build/class-c-slope-three/*.log

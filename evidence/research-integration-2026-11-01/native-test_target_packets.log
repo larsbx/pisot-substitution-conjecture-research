@@ -1,0 +1,3 @@
+[PASS] target packets: addresses, orientation, cycles, depths, replay, caps
+contract-receipt: unsynchronized successful target packets export actual ordered balanced factors that pass the graph-free occurrence certificate and exact matched-target check
+contract-receipt: target-aware BPA diagnostics use actual ordered factorization and occurrence addresses; zero residual alone is insufficient; SCCs, shortest existential paths and monovariant counterexamples remain finite diagnostics
