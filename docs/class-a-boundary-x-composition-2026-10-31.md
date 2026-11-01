@@ -6,13 +6,16 @@ fresh cross-checks are recorded in
 The original 2026-10-31 scopes and main/research distinctions below are
 historical; they do not imply acceptance of this candidate. Exact-head
 hosted acceptance remains required. Independent human review is pending.
+Pending human review is validation debt, not an additional premise for
+project acceptance once mathematical, replay, CI and governance checks pass.
 
 **Status:** conditional all-first-choice coincidence composition over the
 entire minus class-A boundary chamber. All ten actual child labels have
 an explicit selected typed coincidence suffix; six depend on exact
 source revisions in open PRs #420, #424 and #425. This proposal is
 **not a mainline-accepted unconditional theorem** until those source
-certificates pass their required acceptance and independent review.
+certificates pass their mathematical, exact-replay, CI and governance
+acceptance. Independent human review remains pending validation debt.
 No forward-closed carrier, arbitrary-later-choice termination or
 universal BH/PSC claim follows.
 
@@ -147,8 +150,8 @@ The full complete-star source X is on main, but
 the six selected-exit dependencies are **not**.
 Therefore this PR cannot be marked as an accepted
 unconditional all-X-first-choice theorem until
-#420/#424/#425 pass fresh exact-head CI and
-independent review, and the all-ten-path composition
+#420/#424/#425 pass their mathematical, exact-replay, fresh exact-head CI
+and governance checks, and the all-ten-path composition
 passes its own exact-head acceptance. Do not
 rewrite historic receipts or close source PRs
 until provenance and tests have been reconciled.

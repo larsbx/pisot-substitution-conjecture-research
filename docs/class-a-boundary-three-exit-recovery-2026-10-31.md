@@ -6,6 +6,8 @@ fresh cross-checks are recorded in
 The original 2026-10-31 scopes and main/research distinctions below are
 historical; they do not imply acceptance of this candidate. Exact-head
 hosted acceptance remains required. Independent human review is pending.
+Pending human review is validation debt, not an additional premise for
+project acceptance once mathematical, replay, CI and governance checks pass.
 
 **Status:** focused mathematical recovery into the current minus class-A
 research line. Symbolic occurrence identities and strict physical guards
@@ -105,8 +107,9 @@ This PR adds **three selected-exit interfaces**, not the three
 complete outgoing child stars. Those remain in their original research
 packets, which are not silently accepted by this extraction. It can
 eventually reduce X's six research-only selected-exit dependencies
-(as counted by #421) by three, **once exact-head CI and human
-review accept this new packet**. Do not count the same states twice.
+(as counted by #421) by three, **once the mathematical, exact-replay, CI
+and governance requirements accept this packet**. Independent human
+review remains separate validation debt. Do not count the same states twice.
 
 No every-R3/B3/R5-first-choice productivity, X all-first-choice
 theorem, closed SCC/carrier, all-source cyclic strict-zipper BH,

@@ -6,6 +6,8 @@ fresh cross-checks are recorded in
 The original 2026-10-31 scopes and main/research distinctions below are
 historical; they do not imply acceptance of this candidate. Exact-head
 hosted acceptance remains required. Independent human review is pending.
+Pending human review is validation debt, not an additional premise for
+project acceptance once mathematical, replay, CI and governance checks pass.
 
 **Status:** mathematically scoped exact selected-exit certificates, recovered
 from research PRs #377 (B4 and companions) and #378 (R4 and companions).

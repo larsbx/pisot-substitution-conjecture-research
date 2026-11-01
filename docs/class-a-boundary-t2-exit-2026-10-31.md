@@ -6,11 +6,13 @@ fresh cross-checks are recorded in
 The original 2026-10-31 scopes and main/research distinctions below are
 historical; they do not imply acceptance of this candidate. Exact-head
 hosted acceptance remains required. Independent human review is pending.
+Pending human review is validation debt, not an additional premise for
+project acceptance once mathematical, replay, CI and governance checks pass.
 
 **Status:** scoped constructive hand proposition, independently checked using
 exact affine integer transport, rational-polytope strictness, and literal-word/
-Fraction specimens. Independent human review and exact-head hosted acceptance
-are still required. No global boundary-hitting or Pisot claim is promoted.
+Fraction specimens. Exact-head hosted acceptance is required; independent
+human review remains pending validation debt. No global boundary-hitting or Pisot claim is promoted.
 
 ## Context
 
@@ -52,7 +54,7 @@ All other selected indices are legitimate throughout their chamber.
 
 ## Algebraic, physical and empirical evidence kept distinct
 
-The canonical proof checker oracles/python/class_a_boundary_t2_exit.py
+The independent oracle oracles/python/class_a_boundary_t2_exit.py
 symbolically computes all ten selected edges over the four unbounded
 integer chambers, using M(x,c,y)=(2x+c+y,c+y,A*x+n*c+N*y)
 and actual FIRST/RUN/LAST proper-prefix Parikh vectors.
@@ -81,7 +83,8 @@ reversal each have **some selected typed coincidence exit of
 length at most three**. This is not all-first-choice productivity
 for T2, not a forward-closed overlap carrier, not all-source
 strict-zipper BH, and not the general PSC. Source/star proof
-provenance remains with prior work; acceptance requires fresh CI
-and independent review. Upon acceptance, the historical #375
+provenance remains with prior work; acceptance requires the mathematical,
+exact-replay, fresh CI and governance checks. Independent human review is
+separate pending validation debt. Upon acceptance, the historical #375
 missing-exit flag should be superseded in a new registry entry,
 not silently overwritten.
