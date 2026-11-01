@@ -1,0 +1,2 @@
+5 occurrence-path test groups passed
+contract-receipt: occurrence paths replay ordered seed and child addresses, reject context splices and false matched targets, and refuse incomplete budgets without universal closure claims

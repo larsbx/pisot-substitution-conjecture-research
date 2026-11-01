@@ -1,0 +1,127 @@
+name: Class-C below-three cover
+on:
+  pull_request:
+    paths:
+      - 'kernel/class_c_below_three.mojo'
+      - 'kernel/psc/class_c_below_three.mojo'
+      - 'kernel/tests/test_class_c_below_three.mojo'
+      - 'kernel/psc/class_c_below_three_integration.mojo'
+      - 'kernel/tests/test_class_c_below_three_integration.mojo'
+      - 'tools/check_class_c_below_three_integration.py'
+      - 'oracles/python/check_class_c_below_three_integration.py'
+      - 'tests/test_class_c_below_three_integration.py'
+      - 'evidence/class-c-below-three-integration-2026-11-01/**'
+      - 'archive/class-c-slope-three-2026-11-01/**'
+      - 'docs/class-c-tail-theorem-2026-10-28.md'
+      - 'docs/class-c-strip-theorem-2026-10-29.md'
+      - 'kernel/psc/class_c_lower_strip.mojo'
+      - 'kernel/psc/class_c_tail_certificate.mojo'
+      - 'kernel/psc/class_c_gap_profile.mojo'
+      - 'kernel/psc/symbolic_cone.mojo'
+      - 'kernel/psc/symbolic_line.mojo'
+      - 'kernel/psc/param_poly.mojo'
+      - 'kernel/finite_exact/**'
+      - 'kernel/finite_linear_algebra/**'
+      - 'oracles/python/*class_c_below_three.py'
+      - 'oracles/python/class_c_lower_strip.py'
+      - 'reference/psc_research/overlap_graph.py'
+      - 'docs/class-c-below-three*'
+      - 'evidence/class-c-below-three-2026-10-29/**'
+      - '.github/workflows/class-c-below-three.yml'
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  cover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        sign: [plus, minus]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Immutable packet and historical-source integration audit
+        run: |
+          set -euo pipefail
+          python3 tools/check_class_c_below_three_integration.py > /tmp/class-c-integration-provenance.json
+          diff evidence/class-c-below-three-integration-2026-11-01/provenance-check.json /tmp/class-c-integration-provenance.json
+          (cd evidence/class-c-below-three-integration-2026-11-01 && sha256sum --check SHA256SUMS)
+      - name: Install Pixi
+        run: |
+          set -o pipefail
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Build native certifier and replay the declared plan
+        working-directory: kernel
+        env:
+          SIGN: ${{ matrix.sign }}
+        run: |
+          set -euo pipefail
+          mkdir -p build/class-c-below-three
+          pixi run --locked mojo build -I . class_c_below_three.mojo -o build/class-c-below-three/cbt
+          python3 - <<'PY'
+          import gzip,json,os,pathlib,subprocess
+          packet=pathlib.Path('../evidence/class-c-below-three-2026-10-29')
+          out=pathlib.Path('build/class-c-below-three')
+          name=os.environ['SIGN'];eps='1' if name=='plus' else '-1'
+          plan=json.loads((packet/'plan.json').read_text())[name]
+          binary=str(out/'cbt')
+          def replay(args,filename,compressed=False):
+              dest=out/(filename[:-3] if compressed else filename)
+              with dest.open('wb') as f:
+                  subprocess.run([binary,*map(str,args)],stdout=f,check=True)
+              expected=(packet/filename).read_bytes()
+              if compressed:expected=gzip.decompress(expected)
+              assert dest.read_bytes()==expected,filename
+          replay(['sector',eps,plan['a'],plan['b']],plan['sector_file'])
+          for piece in plan['lines']:
+              replay(piece['args'],piece['file'])
+              if 'exceptions_file' in piece:
+                  replay(['exceptions',eps,piece['c'],piece['exception_start'],piece['floor']-1],piece['exceptions_file'])
+          replay(['finite',eps,plan['finite_a']],f'finite-{name}.log.gz',True)
+          replay(['coverage',eps,plan['a'],plan['b']],f'coverage-{name}.log')
+          for filename in plan['control_files']:
+              a=int(pathlib.Path(filename).stem.split('-')[-1])
+              replay(['control',eps,a],filename)
+          PY
+          if [ "$SIGN" = plus ]; then
+            pixi run --locked mojo run -I . tests/test_class_c_below_three.mojo > build/class-c-below-three/native-test.log
+            diff ../evidence/class-c-below-three-2026-10-29/native-test.log build/class-c-below-three/native-test.log
+          fi
+      - name: Reconciled native assembly and independent inventory audit
+        if: matrix.sign == 'plus'
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          pixi run --locked mojo run -I . tests/test_class_c_below_three_integration.mojo > build/class-c-below-three/integration-native.log
+          diff ../evidence/class-c-below-three-integration-2026-11-01/integration-native.log build/class-c-below-three/integration-native.log
+          python3 ../oracles/python/check_class_c_below_three_integration.py build/class-c-below-three/integration-native.log > build/class-c-below-three/integration-oracle.json
+          diff ../evidence/class-c-below-three-integration-2026-11-01/integration-oracle.json build/class-c-below-three/integration-oracle.json
+      - name: Independent exact oracle and source hashes
+        if: matrix.sign == 'plus'
+        run: |
+          set -euo pipefail
+          packet=evidence/class-c-below-three-2026-10-29
+          python3 oracles/python/check_class_c_below_three.py "$packet" > kernel/build/class-c-below-three/oracle.json
+          diff "$packet/oracle.json" kernel/build/class-c-below-three/oracle.json
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('evidence/class-c-below-three-2026-10-29')
+          for p,digest in json.loads((root/'provenance.json').read_text())['sources'].items():
+              assert hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()==digest,p
+          PY
+          (cd "$packet" && sha256sum --check SHA256SUMS)
+      - name: Preserve fresh receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-c-below-three-${{ matrix.sign }}
+          path: |
+            kernel/build/class-c-below-three/*.log
+            kernel/build/class-c-below-three/*.json
+            /tmp/class-c-integration-provenance.json

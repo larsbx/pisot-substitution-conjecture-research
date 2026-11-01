@@ -1,0 +1,452 @@
+[
+  {
+    "number": 444,
+    "sha": "b80aca223f437bdbce6fa0d7ba75610d8b9cc3ff",
+    "check_counts": {
+      "queued": 58
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 443,
+    "sha": "348746f3afb99dfa0afb0008bfaab66c47c48f98",
+    "check_counts": {
+      "queued": 58
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 439,
+    "sha": "c85c513715404806e573e3ab4b2f67876a2c9030",
+    "check_counts": {
+      "failure": 5,
+      "success": 60,
+      "queued": 2
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 438,
+    "sha": "5ef80b67021851560d8bf725a83e5a6a03beb2a6",
+    "check_counts": {
+      "success": 67
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 429,
+    "sha": "fa3e82c24a79517f2a0019908d239c773bf21707",
+    "check_counts": {
+      "queued": 1,
+      "success": 58,
+      "failure": 1
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 427,
+    "sha": "79e10eea98de52f5e17a5ecb7be0c5a4e4b3264d",
+    "check_counts": {
+      "queued": 1,
+      "success": 58,
+      "failure": 1
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 426,
+    "sha": "24503085a7894b5375960cf0a80ede40a66c5cd8",
+    "check_counts": {
+      "queued": 1,
+      "success": 58,
+      "failure": 1
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 424,
+    "sha": "3da96283a8c29bacba718a50d12ad7cb9b3a50cc",
+    "check_counts": {
+      "queued": 1,
+      "success": 58,
+      "failure": 1
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 425,
+    "sha": "55bd3bb6e1db685870c1871f1e2194a466a44e5f",
+    "check_counts": {
+      "queued": 1,
+      "success": 58,
+      "failure": 1
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 421,
+    "sha": "c7bc24a5986f41f893b93f3b3b198f10d9f2d09b",
+    "check_counts": {
+      "queued": 1,
+      "success": 58,
+      "failure": 1
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 420,
+    "sha": "4e8f055578986cd3b9ec2d2c0d86f383e0fe485a",
+    "check_counts": {
+      "success": 59,
+      "cancelled": 1
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 417,
+    "sha": "e6993bf83233ab087df457a2f8564110c7a5f909",
+    "check_counts": {
+      "success": 59
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 415,
+    "sha": "442d170de37f89d9bfc4198f750559f080416b86",
+    "check_counts": {
+      "success": 59
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 416,
+    "sha": "8c1bf11c712eedbd648159d2bbd54c3ab8ec5ee9",
+    "check_counts": {
+      "success": 59,
+      "cancelled": 1
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 411,
+    "sha": "1ba58264da613f7aa3ad3bceb17c27a2a7390e5c",
+    "check_counts": {
+      "queued": 1,
+      "success": 68,
+      "failure": 1
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 395,
+    "sha": "5490e2b85afa3cb75603fbc367ba0c371b35751b",
+    "check_counts": {
+      "success": 68,
+      "failure": 1
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 391,
+    "sha": "1d0bd9f0761271ba70954c33c0d0c0dd6dd81e91",
+    "check_counts": {
+      "success": 68,
+      "failure": 1
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 394,
+    "sha": "3632f28242aa484485ecee752c5e28f9b713cf81",
+    "check_counts": {
+      "queued": 68,
+      "cancelled": 1
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 380,
+    "sha": "c771fe95d6ac7c8144df18329da726f02c6abb69",
+    "check_counts": {
+      "success": 61,
+      "failure": 7
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 382,
+    "sha": "74aed04167323bc9c68cf8236538436a80cfa113",
+    "check_counts": {
+      "success": 70,
+      "failure": 1
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 379,
+    "sha": "a094b36c73852be6bc99e6f3374407e1f73e540f",
+    "check_counts": {
+      "success": 67,
+      "failure": 2
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 378,
+    "sha": "6906f9836aee0b336fa962d16c28209d403952b9",
+    "check_counts": {
+      "success": 66,
+      "failure": 2
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 377,
+    "sha": "b040833317a9e875bc124532c50a3378d1c400bf",
+    "check_counts": {
+      "failure": 2,
+      "success": 66
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 373,
+    "sha": "cdd06669e429722cc703f7b2d5756ec3e15ed741",
+    "check_counts": {
+      "success": 66,
+      "failure": 2
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 367,
+    "sha": "c2291a356660d47a352cde7e18996eb33420ffab",
+    "check_counts": {
+      "success": 61,
+      "failure": 8
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 375,
+    "sha": "dac171d78436ca39bd2adb657ac9e185353b5b15",
+    "check_counts": {
+      "success": 66,
+      "failure": 3
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 291,
+    "sha": "e779ff704978b523e8d3565c56ae1e5f51328dac",
+    "check_counts": {
+      "success": 44,
+      "failure": 18
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  },
+  {
+    "number": 273,
+    "sha": "f172874730a1532ac88ce26d4003d33d841d8545",
+    "check_counts": {
+      "success": 100
+    },
+    "snapshot_keys": [
+      "number",
+      "sha",
+      "checks",
+      "total",
+      "threads"
+    ],
+    "note": "historical snapshot only, not exact integrated-head acceptance"
+  }
+]

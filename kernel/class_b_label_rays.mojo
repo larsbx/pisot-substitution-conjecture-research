@@ -1,5 +1,6 @@
 """Exact bounded class-B top-layer canonical label export; no uniform certificate."""
 from std.sys import argv
+from psc.class_b_segment_graph import class_b_seed_graph
 from a1_normal_form_census import CLASS_B, class_member
 from class_b_top_layer_profile import top_layer_member, in_open_top_layer
 from psc.overlap_seed_patch import build_seed_overlap_tables_screened, build_seed_overlap_graph_from_tables, first_left_aligned_depths
@@ -17,7 +18,7 @@ def label_block(plus: Bool, gap: Int, q: Int, cap: Int = 20000, witnesses: Bool 
     if not in_open_top_layer(plus, t[0], q):
         raise Error("not in open top layer")
     var tables = build_seed_overlap_tables_screened(class_member(CLASS_B, t[0], q, t[2]))
-    var graph = build_seed_overlap_graph_from_tables(tables, cap)
+    var graph = class_b_seed_graph(tables, cap)
     if graph.capped:
         raise Error("STATE_BUDGET_EXHAUSTED: no label verdict")
     var depths = first_left_aligned_depths(graph)

@@ -1,0 +1,83 @@
+name: Class-B top-layer ray certificate
+
+on:
+  pull_request:
+    paths:
+      - 'kernel/psc/class_b_*.mojo'
+      - 'kernel/class_b_*.mojo'
+      - 'kernel/tests/test_class_b_*.mojo'
+      - 'oracles/python/class_b_*.py'
+      - 'tests/test_class_b_step2c.py'
+      - 'tests/test_offline_runner.py'
+      - 'tools/run_without_network.py'
+      - 'evidence/class-b-step2c-2026-10-27/**'
+      - 'kernel/psc/class_b_ray_line.mojo'
+      - 'kernel/psc/class_b_ray_certificate.mojo'
+      - 'kernel/psc/class_b_ray_tables.mojo'
+      - 'kernel/psc/class_a_carrier_closure.mojo'
+      - 'kernel/class_b_ray_certificate.mojo'
+      - 'kernel/class_b_top_layer_profile.mojo'
+      - 'kernel/tests/test_class_b_ray_certificate.mojo'
+      - 'oracles/python/class_b_ray_certificate.py'
+      - 'oracles/python/class_b_ray_tables.py'
+      - 'tests/test_class_b_ray_certificate.py'
+      - 'evidence/class-b-label-rays-2026-10-23/carriers.json'
+      - 'evidence/class-b-ray-certificate-2026-10-27/**'
+      - 'docs/class-b-ray-certificate-2026-10-27.md'
+      - '.github/workflows/class-b-ray-certificate.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref == 'refs/heads/main' && github.run_id || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  exact-class-b-rays:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'pytest>=7'
+      - name: Independent verifier, generated tables and refusals
+        run: |
+          set -euo pipefail
+          mkdir -p kernel/build/class-b-rays
+          python -m pytest -q tests/test_class_b_ray_certificate.py tests/test_class_b_step2c.py tests/test_offline_runner.py
+          python oracles/python/class_b_middle_tables.py --check
+          python oracles/python/class_b_middle_potentials.py --check
+          python oracles/python/class_b_middle_geometry.py > kernel/build/class-b-rays/middle-geometry-oracle.log
+          python oracles/python/class_b_middle_closure.py > kernel/build/class-b-rays/middle-closure-oracle.log
+          python oracles/python/class_b_middle_descent.py > kernel/build/class-b-rays/middle-descent-oracle.log
+          python oracles/python/class_b_core_exact.py --packet evidence/class-b-step2c-2026-10-27/core-labels > kernel/build/class-b-rays/core-oracle.log
+          (cd evidence/class-b-step2c-2026-10-27 && sha256sum -c SHA256SUMS)
+          sha256sum -c evidence/class-b-step2c-2026-10-27/SOURCE_SHA256SUMS
+          (cd evidence/class-b-ray-certificate-2026-10-27 && sha256sum -c SHA256SUMS)
+      - name: Install Pixi
+        run: |
+          curl --retry 5 --retry-all-errors -fsSL https://pixi.sh/install.sh | bash
+          echo "$HOME/.pixi/bin" >> "$GITHUB_PATH"
+      - name: Canonical certificate, finite replays and graphs below every floor
+        working-directory: kernel
+        run: |
+          set -euo pipefail
+          pixi run --locked python ../tools/run_without_network.py mojo run -I . -I tests tests/test_class_b_ray_certificate.mojo > build/class-b-rays/native-test.log
+          pixi run --locked python ../tools/run_without_network.py mojo run -I . tests/test_class_b_core_exact.mojo > build/class-b-rays/core-native-test.log
+          pixi run --locked python ../tools/run_without_network.py mojo run -I . tests/test_class_b_middle_certificate.mojo > build/class-b-rays/middle-native-test.log
+          pixi run --locked python ../tools/run_without_network.py mojo build -I . class_b_ray_certificate.mojo -o build/class-b-ray-certificate
+          cd ..
+          python oracles/python/class_b_ray_replay.py --native kernel/build/class-b-ray-certificate --out kernel/build/class-b-rays/replay --offline-wrapper tools/run_without_network.py --workers 2
+          grep -q '^CLASS_B_RAY_CERTIFICATES_COMPLETE rays 186$' kernel/build/class-b-rays/replay/native.log
+      - name: Native and independent counts agree on every ray
+        run: |
+          set -euo pipefail
+          cd kernel/build/class-b-rays/replay
+          test "$(wc -l < native.counts)" -eq 186
+          diff native.counts oracle.counts
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: class-b-rays
+          path: kernel/build/class-b-rays/

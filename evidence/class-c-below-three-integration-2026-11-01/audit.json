@@ -1,0 +1,1025 @@
+{
+  "archived_workflow": "archive/class-c-slope-three-2026-11-01/workflow.yml",
+  "files": [
+    {
+      "blob_sha": "85b3760c8f4e808df73715aff8ed3fa716bdd42f",
+      "category": "new-394",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": ".github/workflows/class-c-below-three.yml"
+    },
+    {
+      "blob_sha": "fbdbc9bb85b0b05a01d9ae2dd1d3480e971d0103",
+      "category": "redundant-392-workflow",
+      "decision": "archive exact workflow bytes; retire redundant active gate",
+      "path": ".github/workflows/class-c-slope-three.yml"
+    },
+    {
+      "blob_sha": "cfabd8248e0bc4e94b03ac016d5b88c3a21a2e8c",
+      "category": "new-394",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "docs/class-c-below-three-2026-10-29.md"
+    },
+    {
+      "blob_sha": "e5afa52c36145c7eb131169837fda0a8c6849da0",
+      "category": "new-394",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "docs/class-c-below-three-stopgo-2026-10-29.md"
+    },
+    {
+      "blob_sha": "2f57ee34b8225ff0da08bfe72f8dc36129cd2efb",
+      "category": "historical-392-derivation",
+      "decision": "retain derivation with explicit supersession notice",
+      "path": "docs/class-c-slope-three-2026-10-29.md"
+    },
+    {
+      "blob_sha": "58818fe5f8f324a0ade47b3271f021743c331c9f",
+      "category": "historical-392-derivation",
+      "decision": "retain derivation with explicit supersession notice",
+      "path": "docs/class-c-slope-three-stopgo-2026-10-29.md"
+    },
+    {
+      "blob_sha": "093f90dd30c9dbeb30ccd1410414640d826b87f2",
+      "category": "append-only-ledger",
+      "decision": "retain append-only histories; append dated correction",
+      "path": "docs/side-notes-ledger.md"
+    },
+    {
+      "blob_sha": "09a67f420590a21acdcc7fd105556912425ed18b",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/README.md"
+    },
+    {
+      "blob_sha": "638caee9b1c9628230fb8f033764e800758b6e66",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/SHA256SUMS"
+    },
+    {
+      "blob_sha": "72e3bc1d08136bdd896ef30c04c4d6efc7edaaa5",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/control-minus-8.log"
+    },
+    {
+      "blob_sha": "20637a266e44e89a41d0437d74883ec85aaeaf3e",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/control-plus-16.log"
+    },
+    {
+      "blob_sha": "1ae0166914b791e924824270727273b851855fc7",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/control-plus-8.log"
+    },
+    {
+      "blob_sha": "ef45d299731dce1aa186f1afab97ba6d5e0d737a",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/coverage-minus.log"
+    },
+    {
+      "blob_sha": "ecf6157569cbc033024f6239a850bf3f99176418",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/coverage-plus.log"
+    },
+    {
+      "blob_sha": "fddabde951c9c1e46529d81d6e60553e0957baa8",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/exceptions-minus--12.log"
+    },
+    {
+      "blob_sha": "5981e172b5316317be4aa9835c67231a94c1170d",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/exceptions-minus--13.log"
+    },
+    {
+      "blob_sha": "1f6c6e501aeb35e92b176b09001a01ecdf2962ea",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/exceptions-minus--14.log"
+    },
+    {
+      "blob_sha": "2d9718cdab87acd9562b4bc2abe58221f7998cf6",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/exceptions-minus--15.log"
+    },
+    {
+      "blob_sha": "982d6b80cca720c34b8e82d09a336fe0b9b57715",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/experimental-profile.json"
+    },
+    {
+      "blob_sha": "a2c704489eb883d871be6c2c588c72f3f9d75128",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/finite-members.csv"
+    },
+    {
+      "blob_sha": "afa9f5e7caeb91dc1d9439bbee0d98142e044b58",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/finite-minus.log.gz"
+    },
+    {
+      "blob_sha": "d8fe45a1c48697be1b83b194da36d8c525c97b4c",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/finite-plus.log.gz"
+    },
+    {
+      "blob_sha": "b0dff57e5ebabaad0f84abc3b0d9fbd0d4d2b22e",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-inventory.csv"
+    },
+    {
+      "blob_sha": "6ed0a7bffdeed12c2e56fc57285b0096be16dc9a",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--1.log"
+    },
+    {
+      "blob_sha": "06e86d3bd4c6e55b07c99eda2d3b68ed2d87e296",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--10.log"
+    },
+    {
+      "blob_sha": "fd97597f561e6fdc5ec87f4a2da4cd896fdb868c",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--11.log"
+    },
+    {
+      "blob_sha": "6342fad0ce8ab8f081e0ce88c36c4c44b23103f2",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--12.log"
+    },
+    {
+      "blob_sha": "dbe706de057bc447960d66c52c72de06b4b5729a",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--13.log"
+    },
+    {
+      "blob_sha": "73e3bc9453d9bcad7f3025d5c4b77885c55beb23",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--14.log"
+    },
+    {
+      "blob_sha": "7e92091da0ad929362397cc0139f5ad602120436",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--15.log"
+    },
+    {
+      "blob_sha": "07049cabb01635b60a073522cebc447379b3e3e0",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--2.log"
+    },
+    {
+      "blob_sha": "bba3240c207a483fb01124459fcd42ee7cce45aa",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--3.log"
+    },
+    {
+      "blob_sha": "e31886a17e0ba492b214e203de6476ab2df57f69",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--4.log"
+    },
+    {
+      "blob_sha": "f78d5ad224e8c128ff788cbd87c286678a7d23e9",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--5.log"
+    },
+    {
+      "blob_sha": "5919ea396f91551b83bf6031f9ff4899e3688527",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--6.log"
+    },
+    {
+      "blob_sha": "7d860ad158e82b8625ab89574b244435ac2c3156",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--7.log"
+    },
+    {
+      "blob_sha": "c7178b21935568e3545a449b52469334f144739a",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--8.log"
+    },
+    {
+      "blob_sha": "9334b190477baa842ff4d2e4ceb6d10154e5f814",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus--9.log"
+    },
+    {
+      "blob_sha": "10e9a185b34d726ebf397f5368e3dd7e561ae812",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus-0.log"
+    },
+    {
+      "blob_sha": "96f9d39fbc7e308b65ebbc8fe34159e2c9a4f79e",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus-1.log"
+    },
+    {
+      "blob_sha": "7a73474f94f7f4d83102f9cd9e3d2f8e3cd8e0f4",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus-2.log"
+    },
+    {
+      "blob_sha": "82b2dc08aa7c2f610e61fae6e61c2e78946c8d8b",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus-3.log"
+    },
+    {
+      "blob_sha": "2c01e320c316507788a07c621d01ab72d38d6652",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus-4.log"
+    },
+    {
+      "blob_sha": "2263e4e2704eea65731e85dd575c641b1c2ab49d",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-minus-5.log"
+    },
+    {
+      "blob_sha": "3b2719560802166aab1c719789fc30044d819491",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--1.log"
+    },
+    {
+      "blob_sha": "8e161f70d827821b8c0eae6e8ddd9d5c64658c4c",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--10.log"
+    },
+    {
+      "blob_sha": "7bb547d0c591561409bb43f29df13c7b8902e071",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--11.log"
+    },
+    {
+      "blob_sha": "43bd304425f6507c2ae8eda4da5fd8165c7e09b1",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--12.log"
+    },
+    {
+      "blob_sha": "960af3c3ce1ea64f224f3c300d8faa13d990c66d",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--13.log"
+    },
+    {
+      "blob_sha": "11a6d50f39bcd8738e63c8b7dfe39b5114f7baad",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--14.log"
+    },
+    {
+      "blob_sha": "d683b8dc8436eb310d3df5e9a8ee9e83dc828325",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--15.log"
+    },
+    {
+      "blob_sha": "9bc01339f6ce10ee7440f06e18250dc6009fddbd",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--2.log"
+    },
+    {
+      "blob_sha": "ccf977b36811c74b5b0cdfc77a61ad0bbb1ef107",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--3.log"
+    },
+    {
+      "blob_sha": "f5dc5b2d6bd206e77d3dc94c92fb546a103294d3",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--4.log"
+    },
+    {
+      "blob_sha": "36051d730459d503a64d20457a1e6b60e1b2c301",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--5.log"
+    },
+    {
+      "blob_sha": "4a76a9305da595690635517314c8c68ca71449a6",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--6.log"
+    },
+    {
+      "blob_sha": "91ac6e797ec97133cecf950065ee0bf5067063b0",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--7.log"
+    },
+    {
+      "blob_sha": "e5dac21549656d8bf70425f15891cdfd3bdf26ca",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--8.log"
+    },
+    {
+      "blob_sha": "8742e06a4c8ab86d68ac34452c990c33b80d42a6",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus--9.log"
+    },
+    {
+      "blob_sha": "dac565ee76d1d3cbfdd727c957785c59bc265705",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus-0.log"
+    },
+    {
+      "blob_sha": "3bde8592ff13eceab07d26a5281f533c660c1432",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus-1.log"
+    },
+    {
+      "blob_sha": "c5e8ca5d56448b48c34cbf18b3f8675786472428",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus-2.log"
+    },
+    {
+      "blob_sha": "e8bfc7694f10e4b31bba9e6c86940a4c9488b66b",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/line-plus-3.log"
+    },
+    {
+      "blob_sha": "e8308cafce4f6ad4c82b68f3ad9b20533f853a39",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/native-test.log"
+    },
+    {
+      "blob_sha": "fcba2f480ab0e700e86985f7c1e5e25655233c9e",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/oracle.json"
+    },
+    {
+      "blob_sha": "a037f91ddd538a6682622c46588fddce3b63e32e",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/plan.json"
+    },
+    {
+      "blob_sha": "6639365307c489836509ae341c6169f8dd4bfb00",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/provenance.json"
+    },
+    {
+      "blob_sha": "a5ef59244143d224ea0afb7a75580f177da32d8e",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/rebind-2026-11-01.md"
+    },
+    {
+      "blob_sha": "7c38a3ee58cab844df7efc6b05be7c336ea4c7cd",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/sector-minus-16-16.log"
+    },
+    {
+      "blob_sha": "f15554febf4dee31c38e8797da8e90942696d2ba",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/sector-minus-16-8.log"
+    },
+    {
+      "blob_sha": "5b189d3de57a8c3ccd7a3cb2fa58c99b3a940cc1",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/sector-minus-8-16.log"
+    },
+    {
+      "blob_sha": "dfa2b6ea1c9c3f6baacbea7e68758bed6aa96f2d",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/sector-minus-8-8.log"
+    },
+    {
+      "blob_sha": "211d609c1e96e6a03bfbbeba7a0deee391ce4951",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/sector-plus-16-16.log"
+    },
+    {
+      "blob_sha": "36a23121208d0eb905da039831b94f6fd2f28e16",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/sector-plus-16-8.log"
+    },
+    {
+      "blob_sha": "f548e5fda5c4b504cfa3015452f9b89ed73ea6a3",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/sector-plus-8-16.log"
+    },
+    {
+      "blob_sha": "bc08e95e3dab354f8540268491507deb9848af0d",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/sector-plus-8-8.log"
+    },
+    {
+      "blob_sha": "cda4e4fe7b302dab4f50da43f8a94228d55ec5ef",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/shifted-line-minus--12-48.log"
+    },
+    {
+      "blob_sha": "1ce0aebd7a9a26b987ba5d1c3acd6bde02368a98",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/shifted-line-minus--13-48.log"
+    },
+    {
+      "blob_sha": "5d6b61296dce73083c3a68b41b4c98cd7e633e95",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/shifted-line-minus--14-48.log"
+    },
+    {
+      "blob_sha": "958f4eeba3f5b646bf4550038a5a6e4ebf6d2a08",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/shifted-line-minus--15-48.log"
+    },
+    {
+      "blob_sha": "9aea4ecb804c3e5506d2536874fb9fbee4e71b94",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/target-line-minus--13-8.log"
+    },
+    {
+      "blob_sha": "062217bb9d2181665fdd1afcd3c3b2238f2d73c0",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/target-line-minus--14-8.log"
+    },
+    {
+      "blob_sha": "b4b30ba5a4d8ac82f04f779e3f8b36b57e19a001",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/target-line-minus--15-8.log"
+    },
+    {
+      "blob_sha": "43bd4ea682ca91a0da9e29a6fcc36b5f081b8b04",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/target-line-plus--13-8.log"
+    },
+    {
+      "blob_sha": "224e2928442e9666cc3fd178681a59f644374e4f",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/target-line-plus--14-8.log"
+    },
+    {
+      "blob_sha": "0eee57ff3d4a077024f9cc84484d210663fdcebf",
+      "category": "new-394-evidence",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "evidence/class-c-below-three-2026-10-29/target-line-plus--15-8.log"
+    },
+    {
+      "blob_sha": "10751d91038a69435e2a47acc6a2f7ff49474163",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/README.md"
+    },
+    {
+      "blob_sha": "6da326789bda48512742d0247d6f283278de3a33",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/SHA256SUMS"
+    },
+    {
+      "blob_sha": "3d909b480271862608a20ecfa3a857898bbf81f5",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/coverage-minus.log"
+    },
+    {
+      "blob_sha": "24a506e7e680533e0ab3a3280a14b09d5ad24ea6",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/coverage-plus.log"
+    },
+    {
+      "blob_sha": "6fb2132f2ef3dda74be51fdf58e32f63f254c9ab",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--1.log"
+    },
+    {
+      "blob_sha": "ef54122e41e7227af0cd791d5ecff15e793ef181",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--10.log"
+    },
+    {
+      "blob_sha": "d20c146a2761300151894a715de161b36ead9502",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--11.log"
+    },
+    {
+      "blob_sha": "82d150c1b59eeb51698b52f9568f2766695a663e",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--12.log"
+    },
+    {
+      "blob_sha": "a007f44c2208a9ed076b5127159ac734f01038e8",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--13.log"
+    },
+    {
+      "blob_sha": "c0b6140b67559ad0f70edfd964fadc61f3e18f6f",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--14.log"
+    },
+    {
+      "blob_sha": "e07b54632d9581bc37c03e48eb4b02d841d42a5a",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--15.log"
+    },
+    {
+      "blob_sha": "273b37f9d5390f1ebacfa0350dec2bfff185aa1b",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--2.log"
+    },
+    {
+      "blob_sha": "3a1f333af16a209d26ab9355a8cdbd0d3d0ac63b",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--3.log"
+    },
+    {
+      "blob_sha": "3877208fe00424d4fbe5a57b70afccd965fc3ffe",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--4.log"
+    },
+    {
+      "blob_sha": "7934e171752123693a626e5883dd6b4be63dc168",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--5.log"
+    },
+    {
+      "blob_sha": "63b182a60b3f3c69a4eba2bf65fff12c4b1fc201",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--6.log"
+    },
+    {
+      "blob_sha": "af5d550c2ee9b03a6556fbba26a091a30f1b15f5",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--7.log"
+    },
+    {
+      "blob_sha": "67b5018eb1d29e0d3a5d37537d57058d8d27c7fe",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--8.log"
+    },
+    {
+      "blob_sha": "7824f199b8be1f2fe019926a4e062c5927aea074",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-minus--9.log"
+    },
+    {
+      "blob_sha": "e8383be57914a6bbe6532ba0d85867aa51615e59",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-plus--10.log"
+    },
+    {
+      "blob_sha": "28b86e50740e7dec087739956a47e902b00ba3c7",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-plus--11.log"
+    },
+    {
+      "blob_sha": "45c795323df8c775c07521577e59a4ab7ba46bce",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-plus--12.log"
+    },
+    {
+      "blob_sha": "ebcf540d3095b41d354e8610976c1d697770cb4c",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-plus--13.log"
+    },
+    {
+      "blob_sha": "8577d9f491fd3de479ec49bd4cf3e197ebd26912",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-plus--14.log"
+    },
+    {
+      "blob_sha": "389e2c34f427840365bb4d27b3d1835f0f514bbb",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-plus--15.log"
+    },
+    {
+      "blob_sha": "89099306a650607202d731aa733eaa4227c7ecb4",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-plus--5.log"
+    },
+    {
+      "blob_sha": "74f0266ae75306bbd6c14c5258e56a2a51598142",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-plus--6.log"
+    },
+    {
+      "blob_sha": "694062fefaba21d5ea41aa68facd5dc1ae89e9d6",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-plus--7.log"
+    },
+    {
+      "blob_sha": "66e8c865d0f93c3fdf52f5a50ebaff9f782690a9",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-plus--8.log"
+    },
+    {
+      "blob_sha": "f11cc437cccbd0539d50f2c8a4e7506b0883d81b",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/diagonal-plus--9.log"
+    },
+    {
+      "blob_sha": "fbdcd072e2cfa6753ab54d85db0c5f2a19b2758d",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/finite-members.csv"
+    },
+    {
+      "blob_sha": "823998dbbdf95d4050944712e4597a82c902db2d",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/finite-minus.log.gz"
+    },
+    {
+      "blob_sha": "693ce11debb21250dccfbc517ec41157e171fcfa",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/finite-plus.log.gz"
+    },
+    {
+      "blob_sha": "89553585d1a03f6a9eaff447b850af147cb286b0",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/lower-line-minus-6.log"
+    },
+    {
+      "blob_sha": "f4bd2de0592fd0ec7b6ddef691046d4b7de48c26",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/lower-line-minus-7.log"
+    },
+    {
+      "blob_sha": "1f90d39cb1334d5b3ee62b55f2aa0de759aad843",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/middle-minus-8-16.log"
+    },
+    {
+      "blob_sha": "5f671283bf97dd698486ddc635207007ffeb8e1a",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/middle-plus-4-16.log"
+    },
+    {
+      "blob_sha": "beec21e9b1124dd5e8436d787b49414d9947dd59",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/middle-plus-8-16.log"
+    },
+    {
+      "blob_sha": "ad904592c163cbf77560204c707e33b488e79474",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/native-test.log"
+    },
+    {
+      "blob_sha": "eb622a3dd48256765255e3c85325c42f35cc8fbc",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/oracle.json"
+    },
+    {
+      "blob_sha": "db5b65b546a789c51b81a167fc9a36c0727f8d88",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/plan.json"
+    },
+    {
+      "blob_sha": "0fc531273404f4ced4ce13d18d83267c0a6b07d4",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/provenance.json"
+    },
+    {
+      "blob_sha": "8900e20118a8627d5f83bc2c6ba63c1d3e0259fa",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/refused-middle-minus-6-16.log"
+    },
+    {
+      "blob_sha": "2a198fd9c29336a979c72f805d8e49537eaf6bb2",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/refused-middle-minus-6-4.log"
+    },
+    {
+      "blob_sha": "452f97dc09f3443db605d1d586179922793909da",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/refused-middle-minus-8-4.log"
+    },
+    {
+      "blob_sha": "a101cab331cce30232db219cc0b244bf612fbb28",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/refused-middle-plus-4-10.log"
+    },
+    {
+      "blob_sha": "c3f6a9484174c21bdb9a565475126b6d6565478a",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/refused-middle-plus-8-10.log"
+    },
+    {
+      "blob_sha": "6a1714c516e6a8df59f62704670abc793338643b",
+      "category": "historical-392-evidence",
+      "decision": "retain immutable historical evidence; not a live theorem premise",
+      "path": "evidence/class-c-slope-three-2026-10-29/sign-controls.log"
+    },
+    {
+      "blob_sha": "bf5d3accbab0ba40ae4a9e54e35d40b3a2f472d6",
+      "category": "new-394",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "kernel/class_c_below_three.mojo"
+    },
+    {
+      "blob_sha": "4d733989e19e3c1d11280bd6fe90dc7492771ad3",
+      "category": "historical-392-replay-source",
+      "decision": "retain replay source at pinned path; not imported by below-three implementation",
+      "path": "kernel/class_c_slope_three.mojo"
+    },
+    {
+      "blob_sha": "d8a4d06798db23bdc0978868ffeaed28bb009853",
+      "category": "new-394",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "kernel/psc/class_c_below_three.mojo"
+    },
+    {
+      "blob_sha": "75c2a92c1d1df1a4d93b48bedda7204efa02498f",
+      "category": "historical-392-replay-source",
+      "decision": "retain replay source at pinned path; not imported by below-three implementation",
+      "path": "kernel/psc/class_c_slope_three.mojo"
+    },
+    {
+      "blob_sha": "c81d716837558b27889062fdc2d3eaf660d6d0c0",
+      "category": "new-394",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "kernel/tests/test_class_c_below_three.mojo"
+    },
+    {
+      "blob_sha": "971ed6594103f92d6668b598ac18d4b71dc0ee2a",
+      "category": "historical-392-replay-source",
+      "decision": "retain replay source at pinned path; not imported by below-three implementation",
+      "path": "kernel/tests/test_class_c_slope_three.mojo"
+    },
+    {
+      "blob_sha": "618abb3df16ac249f4bcc768bedf03915b15f243",
+      "category": "new-394",
+      "decision": "retain new certificate/evidence or required replay surface",
+      "path": "oracles/python/check_class_c_below_three.py"
+    },
+    {
+      "blob_sha": "574790b51c17810d26529a7e9257d858a600598a",
+      "category": "historical-392-replay-source",
+      "decision": "retain replay source at pinned path; not imported by below-three implementation",
+      "path": "oracles/python/check_class_c_slope_three.py"
+    }
+  ],
+  "historical_392_head": "82dc6955faf68df5ee31292b9c2dd503b325a123",
+  "historical_source_drift": {
+    "kernel/pixi.toml": {
+      "current_sha256": "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee",
+      "historical_sha256": "57a3d1f1a579ad1b057ad2cd53c2978a69c5940b1ab3e9ae5c740785e76c7d8b"
+    },
+    "kernel/psc/class_c_tail_certificate.mojo": {
+      "current_sha256": "5b875c19c24a8a7a054e4dbf604609f84a6419264a6b9309a6aa99fe1350f5d8",
+      "historical_sha256": "62ec571bd839fd456db7319b4d2be1650cf8a8c65d06db49f212aeaf8b63cf6c"
+    },
+    "kernel/psc/symbolic_line.mojo": {
+      "current_sha256": "12bd94c35d4c760ca5a190aad58f7c12b284528efe386cc9ca15de3c4daceeed",
+      "historical_sha256": "ed7f235ba5d77fad32195acd614cf65c3eddd7a398c8f3277bf7d679386d22e6"
+    }
+  },
+  "immutable_packet_sha256": {
+    "evidence/class-c-below-three-2026-10-29/README.md": "8467a35eec13260fde4fc061f123ffa3e927763f60be90b5c102a03ec2463023",
+    "evidence/class-c-below-three-2026-10-29/SHA256SUMS": "23c44c37446eb8489cd954e4df873df551dea5ed23738fa0cf7745af8a4d66aa",
+    "evidence/class-c-below-three-2026-10-29/control-minus-8.log": "7cf6858f8c92178c5e34787076696b56ee3de1a8bcca23fa0469a946bd46c8a5",
+    "evidence/class-c-below-three-2026-10-29/control-plus-16.log": "5041c91d3ae1e0568f9cfa69b0e296e421455367151d5fb1936aefce9f00ee1e",
+    "evidence/class-c-below-three-2026-10-29/control-plus-8.log": "483b5507d29130c905f0d514d7cb3bab0f6d50304554968ef89f53d9d5a74b60",
+    "evidence/class-c-below-three-2026-10-29/coverage-minus.log": "e67d617e912cad384cba91d36f785b321f119af3c32ad39bdc8f1c379c45c64d",
+    "evidence/class-c-below-three-2026-10-29/coverage-plus.log": "805986dcedade478b2a43e7438519906b98150959978451285269fb73454836c",
+    "evidence/class-c-below-three-2026-10-29/exceptions-minus--12.log": "4f46ccd966762cbc500339219c914bf6f9ab240e89f751237accb5dd96b61c0d",
+    "evidence/class-c-below-three-2026-10-29/exceptions-minus--13.log": "463107f0794b4cb6bb0fa7391d0db1d91132c8165c167bb8558f0697a3ddcda0",
+    "evidence/class-c-below-three-2026-10-29/exceptions-minus--14.log": "c71a35f52da7bd030916231068e969ac1229f6e086254bb93d771b50e82f4577",
+    "evidence/class-c-below-three-2026-10-29/exceptions-minus--15.log": "dd108989ad9c0416d6d3c187ce17eb50ff9b8db02adaa9a27c00d23598e08046",
+    "evidence/class-c-below-three-2026-10-29/experimental-profile.json": "aff88a5b9b3e7c807d1a9c141787ef0639b84d92e6f441bd8338ac192dc0ce31",
+    "evidence/class-c-below-three-2026-10-29/finite-members.csv": "a76516983355999e9aef3cc1c88384d0ecf0d3b7511e93110c5cd30d91584c7c",
+    "evidence/class-c-below-three-2026-10-29/finite-minus.log.gz": "eb4346967e3ffedc2e7a0ab1503e18e4b712414999698a42aae997661db9c4be",
+    "evidence/class-c-below-three-2026-10-29/finite-plus.log.gz": "f2ff4763cbaae25c5c4a56e8325bbfcab61d46d5840ff3b0dcd9dcd272bb29a3",
+    "evidence/class-c-below-three-2026-10-29/line-inventory.csv": "a6efb8f81c4d105d295ae1fee2241a2465f7c3e46642e67a87ed7b679f1059f9",
+    "evidence/class-c-below-three-2026-10-29/line-minus--1.log": "eef57b1e606949085eac1118f889d00cfc1a2969167f698b4d05b616189c215f",
+    "evidence/class-c-below-three-2026-10-29/line-minus--10.log": "68fb3825c12488af37f16a4f43a7032e6df16ff9a78960759bf4e90d079c937a",
+    "evidence/class-c-below-three-2026-10-29/line-minus--11.log": "3800a832810ad4a650e7e913dbe11847d9414183ae5977af5bc8857aa6db1c76",
+    "evidence/class-c-below-three-2026-10-29/line-minus--12.log": "d346af39417e5d171224f72437da79b24d7d782416c92eb63c678df88aae26d1",
+    "evidence/class-c-below-three-2026-10-29/line-minus--13.log": "e4d41c3ed964f71df083a40980e0cd7096253f4fc10156ef0b31ee9a6d6c6d53",
+    "evidence/class-c-below-three-2026-10-29/line-minus--14.log": "b63dcaebe7665a81cfc5981523fc19d31c485b25dbe0e039a187f27e71c565d1",
+    "evidence/class-c-below-three-2026-10-29/line-minus--15.log": "7c847fa1379ff24356d5c288aec630eed1851838aa661105974c8731f8d3ec0f",
+    "evidence/class-c-below-three-2026-10-29/line-minus--2.log": "3c9a6cdec2108042affe435180098d8e0b12241d4f59c048b66deacf43119789",
+    "evidence/class-c-below-three-2026-10-29/line-minus--3.log": "a1a0dc23de4afff87006bbd3da603520225ceddd766e4bb89efeaa2be3fb8963",
+    "evidence/class-c-below-three-2026-10-29/line-minus--4.log": "b5bf8a63ba3a9f66d5548b1218446ba7a247a3725a3b8cad553d553fdc468aeb",
+    "evidence/class-c-below-three-2026-10-29/line-minus--5.log": "f67a30e15c1ab791ac7e9e8491c5b3a1703259b2974be6219eb994d219bcfaf9",
+    "evidence/class-c-below-three-2026-10-29/line-minus--6.log": "dda81199fb88a375a426e3a75c8588ff07990eb83d3737f984c8aaa9ad282943",
+    "evidence/class-c-below-three-2026-10-29/line-minus--7.log": "29e94d066f3cdef0bf6b00a2aab6b411a2ff00d5a019baa26ceb99109e454936",
+    "evidence/class-c-below-three-2026-10-29/line-minus--8.log": "c5e775226be236f67ef3c4738be69b27700930bcffc5c69881a8034ad6eb9400",
+    "evidence/class-c-below-three-2026-10-29/line-minus--9.log": "dde6f4f159a8eb93d8efe5c37da41fe6f06354e9eb130d8b90e9b0c0813a0c99",
+    "evidence/class-c-below-three-2026-10-29/line-minus-0.log": "535de1b5dca459b255926c5fcb3a4fefbe8c04e118087695ce65039ea0092478",
+    "evidence/class-c-below-three-2026-10-29/line-minus-1.log": "112f114e9542961070b2d61b19fe710fda94afdcbb7e967fbe5c8b56086def15",
+    "evidence/class-c-below-three-2026-10-29/line-minus-2.log": "c97541d12e16560913def2a924a96f8b1f8897cf3abefad8c190d560d7889d09",
+    "evidence/class-c-below-three-2026-10-29/line-minus-3.log": "1bda6438dfc76358aeb4e0725591ab1e5ec3ff069b45e360975984ba86f0fc2d",
+    "evidence/class-c-below-three-2026-10-29/line-minus-4.log": "e89a95cae674096199aa69c4c06ef5d54201d4e6caa62791456062b07258962c",
+    "evidence/class-c-below-three-2026-10-29/line-minus-5.log": "1b70b74b4a0b720e646f166f86d55ade21e9bd73a3a30678fc2af5d780f5ec41",
+    "evidence/class-c-below-three-2026-10-29/line-plus--1.log": "28791533f8029a65aae17e5809e490eb56914587b204a09f92e8f539512073e6",
+    "evidence/class-c-below-three-2026-10-29/line-plus--10.log": "0c58ed08f4f79b8bd5a3c211b5c3bcd60dbff5b37698559e1c716da754d5698a",
+    "evidence/class-c-below-three-2026-10-29/line-plus--11.log": "ab9d3002a16a888b06fd40022b4545edaa18bba7afbe46a4e24d3a6184030fe6",
+    "evidence/class-c-below-three-2026-10-29/line-plus--12.log": "8535c5dee00fc0d944835141e1950de5ddc337aaeb7db2effa5e193beab09a1b",
+    "evidence/class-c-below-three-2026-10-29/line-plus--13.log": "7cdb565c15dab6ac71e7f8db78946a0961f68f773d13cb6bc4d3ff5449fea458",
+    "evidence/class-c-below-three-2026-10-29/line-plus--14.log": "71ee47cc3eeb2b418a404e08be97d37ec30067519d53d4d0731bcdaf6c7495b0",
+    "evidence/class-c-below-three-2026-10-29/line-plus--15.log": "806757a61810e5ca451a441c921330b01bea8718e460a5bf1c9695b9fc0623b0",
+    "evidence/class-c-below-three-2026-10-29/line-plus--2.log": "5a08a329126e68ba0739daa2ea5b00b1d9ebb1faa56c8fb1f9ad950496c1788f",
+    "evidence/class-c-below-three-2026-10-29/line-plus--3.log": "445019942289fe92076ffcc14f0ea0518625d657e4f4ad213d4d930fe2117e13",
+    "evidence/class-c-below-three-2026-10-29/line-plus--4.log": "6529b58d64d01579d6c0604d88480bd7032f2506644744cb8d84e068161a5f7d",
+    "evidence/class-c-below-three-2026-10-29/line-plus--5.log": "21b96fcc205973157a3ce1fee6533dc6293775717312aa7e6de16e5b4e2e7e22",
+    "evidence/class-c-below-three-2026-10-29/line-plus--6.log": "aab2beb65626e10f9af42b489bcd467013beb92769fb282bbf395f2d2da67253",
+    "evidence/class-c-below-three-2026-10-29/line-plus--7.log": "d7953662c7ecd5a8dcb87c931f4a38c45abd554f6d2072cccaef316b157536f6",
+    "evidence/class-c-below-three-2026-10-29/line-plus--8.log": "b7a71ef1ecc1962c26f0e9b5567fb4d22ffa16fe7bd70cecfc3f88384cbbe04e",
+    "evidence/class-c-below-three-2026-10-29/line-plus--9.log": "ad73993c8862e86e4db51e7aba36dae417db50ff1ca5320062f48280c809d1fe",
+    "evidence/class-c-below-three-2026-10-29/line-plus-0.log": "d23a9817fcc4d624c21278eea4c92acf5c1703a803f20780339c146e4c23e225",
+    "evidence/class-c-below-three-2026-10-29/line-plus-1.log": "2ac2865796ce408de521bbf41fa7499736373d3d3ff0a730e6c672cbd1974179",
+    "evidence/class-c-below-three-2026-10-29/line-plus-2.log": "fd2b451a902734dd792e415cf3956abf350f5c7c9b1d7c62ba095ff64a630208",
+    "evidence/class-c-below-three-2026-10-29/line-plus-3.log": "2ef7f9ca629a111ec5cbc8e6e5733e14fccefbceddcb8578e8e6cfc2d7c13464",
+    "evidence/class-c-below-three-2026-10-29/native-test.log": "a5817bd663359314458d877f9b308835d7b3ffc913da24f8ea87ceb4632cc8c9",
+    "evidence/class-c-below-three-2026-10-29/oracle.json": "8eb9c828ca4e7941925ec0132fa3e1f575dafa40e33a4be23bcc96e75590fbc9",
+    "evidence/class-c-below-three-2026-10-29/plan.json": "1fecbb6e072af5f91d8b2e9844b2e6c20ce728f7f947eb11b24ce2595a0e0164",
+    "evidence/class-c-below-three-2026-10-29/provenance.json": "f53e0cd6a026b87b8f9c1f0f5bc9c769684b9c84346829e1dc1ffc73c6ab4698",
+    "evidence/class-c-below-three-2026-10-29/rebind-2026-11-01.md": "587d1621f2b5ceaefe482dec850c7003fd6b35578d89420bb0c2663b0c7ca06a",
+    "evidence/class-c-below-three-2026-10-29/sector-minus-16-16.log": "dac4fd7ceef84ec82ae2f99b2a171e6ba3f4444ef465da031054f455ba97b276",
+    "evidence/class-c-below-three-2026-10-29/sector-minus-16-8.log": "5b194dfdb0aa8e5c0f04d6446f049b3f4f8d38d94382e5f17896c541bcdb84fc",
+    "evidence/class-c-below-three-2026-10-29/sector-minus-8-16.log": "3adfddaf168725a94e64894ef7edad1f5567f8ffd962c0d8235e1640838dc8e1",
+    "evidence/class-c-below-three-2026-10-29/sector-minus-8-8.log": "057f2185a5697eeb472a708d3b2f8da4d1238aab26649191460ada28079daaee",
+    "evidence/class-c-below-three-2026-10-29/sector-plus-16-16.log": "3a06a148e3b5b2862e76a9b9e52fae102bcdc86805fa85db860a96aca034eb5f",
+    "evidence/class-c-below-three-2026-10-29/sector-plus-16-8.log": "9b48a2bdbbdc412de4cf37b6813249c32bb9fb6d5b57fb92ba077598c8d4d5f7",
+    "evidence/class-c-below-three-2026-10-29/sector-plus-8-16.log": "38123a3bfd8981bfc637121d4323c10ab2491f8d6845303eb1f7cb1f6a9dc92d",
+    "evidence/class-c-below-three-2026-10-29/sector-plus-8-8.log": "a8ba9afb4bcf36f835cb3704f5a07d28ac8b91786b13dd1033736dda23506d38",
+    "evidence/class-c-below-three-2026-10-29/shifted-line-minus--12-48.log": "cab1b0e641a02253062f8b47f1487e8cf2aee62e134e826a6fc6715fd7dd4931",
+    "evidence/class-c-below-three-2026-10-29/shifted-line-minus--13-48.log": "55a8e17af5abb433557a008f4266b10ed4902c7eda1322eea44583e0b2a6f28b",
+    "evidence/class-c-below-three-2026-10-29/shifted-line-minus--14-48.log": "34ab244eadfd787b71d6928692ab1154e89159fc0454ba0f11d06065fba4a3bf",
+    "evidence/class-c-below-three-2026-10-29/shifted-line-minus--15-48.log": "55f96b9277b795be25fdc2bdb095f6da51dd1c0c9151e982f5dcac1421879bd3",
+    "evidence/class-c-below-three-2026-10-29/target-line-minus--13-8.log": "6d5d3ca7e70a9edfaed143723db90e871bd290840fa78d38ec4d3593a9d8cef0",
+    "evidence/class-c-below-three-2026-10-29/target-line-minus--14-8.log": "f39bb78d74a0f1bce43db2efa199926aa145f88ce339df88ccf6f7dc33debd28",
+    "evidence/class-c-below-three-2026-10-29/target-line-minus--15-8.log": "a06d5e0911a35a8d40ee657982defbb449c8fd30ac8eaf0aa59fd1478139dae1",
+    "evidence/class-c-below-three-2026-10-29/target-line-plus--13-8.log": "6862c6e68739048ab18a8fb8251fca7585faa4795ab98aeceb7948aa09896d93",
+    "evidence/class-c-below-three-2026-10-29/target-line-plus--14-8.log": "c8e524ec13f2abce39190c42de031fee9ab61908c2c903633bbbe54f045723a1",
+    "evidence/class-c-below-three-2026-10-29/target-line-plus--15-8.log": "76fa46838bc7eacb8955d59ce60933a026e85b5e7edddd2ecddfb6b66211b496",
+    "evidence/class-c-slope-three-2026-10-29/README.md": "d6047f66b33f7c99de716324655e4aee8350c61facdf866622569a50115a8c10",
+    "evidence/class-c-slope-three-2026-10-29/SHA256SUMS": "9b532add62f268195284646737dd823a00eaa4deba40c179dcbba7033b694a8e",
+    "evidence/class-c-slope-three-2026-10-29/coverage-minus.log": "f31f03f2466f3517d2d854879a6c9569bfddf60599fef18f8eef09786ac42429",
+    "evidence/class-c-slope-three-2026-10-29/coverage-plus.log": "c84bb093b1cbac08473114121cde59ebdb6c213763191b596f1869522c95b0c6",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--1.log": "af1177404bcae6ef4d2006eead33a75a62c316a09924465d3c4b6c8a3cc820f1",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--10.log": "9f1c1abe70af094f5ff664fe24057d53bb2f08b08518d3304f23cde4895cf4fb",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--11.log": "5fecd8d64995f2523e9c035cdf534b48e93eaa3ad1de4db528c58a4d69535932",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--12.log": "58d8d6233526d520c6f3492d5c3194a49ee0776f0a5c9a94d826fd5ea1fff4b1",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--13.log": "42e11c34c62762eced7a467575a13f3c5632d6eede31fe50b3474638b6184c95",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--14.log": "4844142faa69782b77712f3562ca842072a086dd3faab8d7fd9366787be06d30",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--15.log": "85dd9e45b40f6541260dd13446a12083a834a6e0140dd20e6f771696b54e288a",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--2.log": "9d2f0c154f82338ced08090d747c6dd2083d38f685fe332d1e60abb20cedce7d",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--3.log": "2e331bf6f05eeb338c0e612449c8fcb717151504d2fd0f0c3b57ecde07e33b92",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--4.log": "c06badc1fe52f9a1cd09535c42193dc0bde6366efd82bb2fc8c64bc140a03066",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--5.log": "cd9fec15bb2f337fd8b82b8ad2655ff7d403a2c9220a2a33075bed8b5582ed0a",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--6.log": "7763b32e091eb30c5bb7087ec325a26c83f66703335e9fc9a395d828bdf4bc04",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--7.log": "9427841c57d6c3676bc98fb19f21dbe7e9a224280452b3a7b45e82e88d73af22",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--8.log": "fabb9fcac4c74c30b7ad689feeb6b55cf923542e226597e99109b4332a9128df",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-minus--9.log": "789f6ccbd482f6b2f50bfd2a30399255cc98497bc0f2fc17ea4662cd67c263e9",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-plus--10.log": "22eb5d431ce89598d78476e6952ad2e3165d93a9c9688e02f4d5f7f3a09fa220",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-plus--11.log": "8fcea9dbc0e3a28f177a84661ee62677805ab61e6cc56e385c9918a60a496c47",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-plus--12.log": "1e3555febc1f94fb0bf4de25503e235e38e7ea4ca7083c6fe9d749bba8307ca1",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-plus--13.log": "0975eb896d8aa9b6622ebc14419558cbebacadf22b49f0a2e022d8fb7cefb91f",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-plus--14.log": "1e786b0db58bcf51d4e16aa77df929eb2aa4245733742be97c5f3c76505be0cf",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-plus--15.log": "5acb9442aa7705485d833d84019b6d08419a779cbe09d9ea96d1b007be361209",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-plus--5.log": "9fd4ea51306d53a6edfd0daad80072d86bf94eb732881c40297809e2666a429f",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-plus--6.log": "e6bd87907da8a7e797479f4d8c31cbfa6014781a01abfea09c0a4cdb2e8786de",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-plus--7.log": "8e068a53d501b400db131e0e17582d716ca426773d12b38ca2a67d93b8c26715",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-plus--8.log": "9a8fd896ba38c8ecc8cf9745286b3804a4b25bc36a27aa3178ee041d03de58b7",
+    "evidence/class-c-slope-three-2026-10-29/diagonal-plus--9.log": "7a24382e2bdd868430a4363f242ef6c2cf58621d632b7d148409ed1a46a1a010",
+    "evidence/class-c-slope-three-2026-10-29/finite-members.csv": "cbdcc8cec97982ccec4779bb7129f9ac0fc80c1329a7563ecc7cc22d1ed4a190",
+    "evidence/class-c-slope-three-2026-10-29/finite-minus.log.gz": "5812a5fb6f475308f979b601915f9b2b17abd30eecf68bf8081f2fe97d9f1b49",
+    "evidence/class-c-slope-three-2026-10-29/finite-plus.log.gz": "fb43c281f60796f5c78c6e1611d27c279ec682f9541fefc8c56cc5b10ab1a6b6",
+    "evidence/class-c-slope-three-2026-10-29/lower-line-minus-6.log": "a0ae4949544c8a02ff84c6681da740f4004225de7ecf50fb7753964424f7b44c",
+    "evidence/class-c-slope-three-2026-10-29/lower-line-minus-7.log": "879a544e113526d096fd110ebfdd48574912b8f71d52f9118054a2c5b731d51a",
+    "evidence/class-c-slope-three-2026-10-29/middle-minus-8-16.log": "4d07578c7f5aad2b8be1bf872a03a10006a71c2e3bcfe25b654971ac5f84685b",
+    "evidence/class-c-slope-three-2026-10-29/middle-plus-4-16.log": "1665fd412b293959a3a039069059380835dbb7f1f3c30f7cc2b1d15896e32806",
+    "evidence/class-c-slope-three-2026-10-29/middle-plus-8-16.log": "95053c7dbc1f54addad55bfee64e9174cfdd1825601627c3445f6689c15b571c",
+    "evidence/class-c-slope-three-2026-10-29/native-test.log": "c8ad1393a93bd1a6f0db60e7f4221a0b60133c179fe30eeef2dc6c633e0bbf79",
+    "evidence/class-c-slope-three-2026-10-29/oracle.json": "2c614646160e38eec50b9a4f061f17f3380d69887fcaf35584c347993f2fb9b2",
+    "evidence/class-c-slope-three-2026-10-29/plan.json": "b3c726f9aaa457441a5d407a44e5cdbe9bad938dc7f649b68789079c8c8398f1",
+    "evidence/class-c-slope-three-2026-10-29/provenance.json": "1eccf63d2b4145a3b6ce1e816bdc358b3f54644ad36e8369334c9cfde042b613",
+    "evidence/class-c-slope-three-2026-10-29/refused-middle-minus-6-16.log": "fd12eca8e54e8bfb16500bb879eac8414435055e4b6a1f7dbb86228b72f444e9",
+    "evidence/class-c-slope-three-2026-10-29/refused-middle-minus-6-4.log": "28391a79a8f60bfd5719d563c4131c62c183e994549b95a391026ade1f6666c7",
+    "evidence/class-c-slope-three-2026-10-29/refused-middle-minus-8-4.log": "23a999447831c4ec7a45365b433f3997c853b61b5cd75db0418c394b4d7d0974",
+    "evidence/class-c-slope-three-2026-10-29/refused-middle-plus-4-10.log": "3419899df556cd62a45a2850c16b2b1ce9e496d2f3b48545fd2b93ec2fbc04ac",
+    "evidence/class-c-slope-three-2026-10-29/refused-middle-plus-8-10.log": "accec7c3dafaef7773d5088b458f874f81c72df076da00ba3118f76b7316f097",
+    "evidence/class-c-slope-three-2026-10-29/sign-controls.log": "0cf2eaca7bca6c55d48fd18fa02d73e72cb261e61d7dfeaccfcadc0c6cd7a6ef"
+  },
+  "inspected_head": "b3f22ecad5ccd53510f6291a4e6d83fbfbca867c",
+  "inspected_main": "3967ab32384e4add7c6d42a7519f42932c8625cb",
+  "integration_source_sha256": {
+    ".github/workflows/class-c-below-three.yml": "894b00ef47dc21b6a31aebf697d5c03a489389bedec47f0ad4eb0b2f98f613e1",
+    "kernel/psc/class_c_below_three_integration.mojo": "5d93564aede274d3bca1598183049631414adde53d70e1efe2fd0c70b58601b3",
+    "kernel/tests/test_class_c_below_three_integration.mojo": "540c0e321b79f4392a06d4f3a693c4477237db818d2c434845b6eeb72e63d2e5",
+    "oracles/python/check_class_c_below_three_integration.py": "54c8ba5809c389c82bd6efddf27c8793383c2556151524c659fcc90bf2872d7a",
+    "tests/test_class_c_below_three_integration.py": "ef61c137eaba6ddd8ef65f303095b864b1d0a4d8ea4f045de4ee4505a6b958d0",
+    "tools/check_class_c_below_three_integration.py": "ea83885e973f96d29feaeb2118666f2e47f0f5318e166c7aed6660e24d3fbde2"
+  },
+  "upper_region_dependencies": [
+    {
+      "main_merge": "40823631b1ed456509440263de9b100e596b314e",
+      "path": "docs/class-c-tail-theorem-2026-10-28.md",
+      "sha256": "1eb49f1a28357887a8cdd24ee26762c774aceda27c2a98b15b1586582f038ddd",
+      "theorem": "T_C"
+    },
+    {
+      "main_merge": "242c831a8eeae49ffe0dd25ecfe43a0de86c2228",
+      "path": "docs/class-c-strip-theorem-2026-10-29.md",
+      "sha256": "87952c16d788025211e9f93137f9df11b639422d5bdb8945b5738ad3870cfbb8",
+      "theorem": "T_C2"
+    }
+  ]
+}

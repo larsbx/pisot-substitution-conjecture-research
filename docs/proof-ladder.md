@@ -33,6 +33,24 @@ in `DetTwoBoundaryHittingLines`). None of them is a premise of
 class-B top-layer label rays are registered as evidence only
 (`ClassBTopLayerLabelRays`).
 
+## October 27 class-B executable increment
+
+The [class-B middle certificate](class-b-middle-certificate-2026-10-27.md)
+adds unbounded-gap middle coverage at `l>=4`: plus `g>=16, 2<=r<=g-14`,
+minus `g>=12, 6<=r<=g-6`. Strict core containment, complete forward closure
+and selected-child descent of `abs(k)+b` (`b<=3`) are exact Mojo certificates
+with independent rational Python verification. The sole minus `g=12` middle
+residue uses an exact ray exception. The remaining finite gaps of #363 add
+103 rays, giving 186 in total (plus gaps through 15, minus through 11),
+with exact checks below their certified floors.
+
+The old `ClassBTopLayerLabelRays` entry retains its historical evidence status;
+no governed claim or universal premise is promoted here. Lean formalizes
+integer segment realization, residue partitions and the generic rank
+implication, not the table certificates. Low/high residue bands and `l<4`
+for unbounded gaps remain open. Actual escaping children disprove reuse of
+the middle table on the boundary bands. This is separate from class A.
+
 ## Primary ladder: two universal lemmas
 
 The project now treats seedwise overlap productivity (#84) through the

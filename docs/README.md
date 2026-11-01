@@ -610,3 +610,8 @@ When a theorem status changes:
 5. update citations and distinguish mathematical sources from Git provenance;
 6. retain finite-domain parameters and countermodel behavior;
 7. run verification and obtain review before merge.
+
+## Occurrence certificate semantics
+
+- [Exact occurrence path certificates (2026-10-16)](occurrence-path-replay-2026-10-16.md): canonical Mojo path replay, paired read heads, exact matched targets, and fail-closed bounded search.
+- [Pre-implementation stop/go gate](occurrence-path-replay-gate-2026-10-16.md): prior art and the boundary between a finite witness and universal overlap productivity.

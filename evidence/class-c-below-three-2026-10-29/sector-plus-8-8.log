@@ -1,0 +1,2 @@
+stack trace was not collected. Enable stack trace collection with environment variable `MODULAR_DEBUG=stack-trace-on-error`
+Unhandled exception caught during execution: a sign at beta is not decided on any bracket: [{120,10,}{6,}][{-244,-21,}{-11,}][{4,1,}]

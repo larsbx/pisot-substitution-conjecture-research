@@ -1,0 +1,3442 @@
+{
+  "S43_escape": true,
+  "accepted": 3744,
+  "all_child_walk_edges": 5850,
+  "all_direct_children_productive": true,
+  "child_tail_bound": 6,
+  "closed_carrier_proved": false,
+  "first_choice_walk_bound": 7,
+  "image_classified_nonterminal_stars": 0,
+  "image_escape": true,
+  "image_labels": 6,
+  "image_registered_exits": 6,
+  "image_typed_terminals": 2,
+  "max_walk": 7,
+  "members": 117,
+  "pairs": 130572,
+  "path_source_cells": 1053,
+  "reconciliation": {
+    "B5_IMAGE": {
+      "after_exits": 22,
+      "after_registered_including_terminals": 20,
+      "before_exits": 22,
+      "before_registered_including_terminals": 20,
+      "labels": 24,
+      "rows": [
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            0,
+            0,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": "E6",
+          "before": null,
+          "before_exit": "E6",
+          "label": [
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": "E6",
+          "before": null,
+          "before_exit": "E6",
+          "label": [
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "V",
+          "after_exit": "V",
+          "before": "V",
+          "before_exit": "V",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T",
+          "after_exit": "T",
+          "before": "T",
+          "before_exit": "T",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B3",
+          "after_exit": "B3",
+          "before": "B3",
+          "before_exit": "B3",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B4",
+          "after_exit": "B4",
+          "before": "B4",
+          "before_exit": "B4",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R4",
+          "after_exit": "R4",
+          "before": "R4",
+          "before_exit": "R4",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R5",
+          "after_exit": "R5",
+          "before": "R5",
+          "before_exit": "R5",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R3",
+          "after_exit": "R3",
+          "before": "R3",
+          "before_exit": "R3",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "Q3",
+          "after_exit": "Q3",
+          "before": "Q3",
+          "before_exit": "Q3",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "Q3",
+          "after_exit": "Q3",
+          "before": "Q3",
+          "before_exit": "Q3",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R3",
+          "after_exit": "R3",
+          "before": "R3",
+          "before_exit": "R3",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R5",
+          "after_exit": "R5",
+          "before": "R5",
+          "before_exit": "R5",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R4",
+          "after_exit": "R4",
+          "before": "R4",
+          "before_exit": "R4",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B4",
+          "after_exit": "B4",
+          "before": "B4",
+          "before_exit": "B4",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B3",
+          "after_exit": "B3",
+          "before": "B3",
+          "before_exit": "B3",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T",
+          "after_exit": "T",
+          "before": "T",
+          "before_exit": "T",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "V",
+          "after_exit": "V",
+          "before": "V",
+          "before_exit": "V",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T1",
+          "after_exit": "T1",
+          "before": "T1",
+          "before_exit": "T1",
+          "label": [
+            2,
+            2,
+            -1,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T2",
+          "after_exit": "T2",
+          "before": "T2",
+          "before_exit": "T2",
+          "label": [
+            2,
+            2,
+            -1,
+            1,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T2",
+          "after_exit": "T2",
+          "before": "T2",
+          "before_exit": "T2",
+          "label": [
+            2,
+            2,
+            1,
+            -1,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T1",
+          "after_exit": "T1",
+          "before": "T1",
+          "before_exit": "T1",
+          "label": [
+            2,
+            2,
+            1,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        }
+      ],
+      "typed_terminals": 0
+    },
+    "IMAGE": {
+      "after_exits": 6,
+      "after_registered_including_terminals": 2,
+      "before_exits": 1,
+      "before_registered_including_terminals": 1,
+      "labels": 6,
+      "rows": [
+        {
+          "after": "X0_terminal",
+          "after_exit": "X0_terminal",
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "typed_terminal": true
+        },
+        {
+          "after": null,
+          "after_exit": "D7",
+          "before": null,
+          "before_exit": null,
+          "label": [
+            1,
+            2,
+            0,
+            1,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": "D6",
+          "before": null,
+          "before_exit": null,
+          "label": [
+            1,
+            2,
+            0,
+            1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": "D6",
+          "before": null,
+          "before_exit": null,
+          "label": [
+            2,
+            1,
+            0,
+            -1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": "D7",
+          "before": null,
+          "before_exit": null,
+          "label": [
+            2,
+            1,
+            0,
+            -1,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "terminal",
+          "after_exit": "terminal",
+          "before": "terminal",
+          "before_exit": "terminal",
+          "label": [
+            2,
+            2,
+            0,
+            0,
+            0
+          ],
+          "typed_terminal": true
+        }
+      ],
+      "typed_terminals": 2
+    },
+    "R5_IMAGE": {
+      "after_exits": 8,
+      "after_registered_including_terminals": 8,
+      "before_exits": 8,
+      "before_registered_including_terminals": 8,
+      "labels": 18,
+      "rows": [
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            0,
+            0,
+            -2,
+            3
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            0,
+            0,
+            -2,
+            4
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            0,
+            0,
+            2,
+            -4
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            0,
+            0,
+            2,
+            -3
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "K",
+          "after_exit": "K",
+          "before": "K",
+          "before_exit": "K",
+          "label": [
+            0,
+            2,
+            1,
+            2,
+            -5
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            2,
+            1,
+            2,
+            -4
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B5",
+          "after_exit": "B5",
+          "before": "B5",
+          "before_exit": "B5",
+          "label": [
+            0,
+            2,
+            1,
+            2,
+            -3
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            1,
+            2,
+            0,
+            2,
+            -3
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            1,
+            2,
+            0,
+            2,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B5",
+          "after_exit": "B5",
+          "before": "B5",
+          "before_exit": "B5",
+          "label": [
+            2,
+            0,
+            -1,
+            -2,
+            3
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            2,
+            0,
+            -1,
+            -2,
+            4
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "K",
+          "after_exit": "K",
+          "before": "K",
+          "before_exit": "K",
+          "label": [
+            2,
+            0,
+            -1,
+            -2,
+            5
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            2,
+            1,
+            0,
+            -2,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            2,
+            1,
+            0,
+            -2,
+            3
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B2",
+          "after_exit": "B2",
+          "before": "B2",
+          "before_exit": "B2",
+          "label": [
+            2,
+            2,
+            0,
+            -2,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B2h",
+          "after_exit": "B2h",
+          "before": "B2h",
+          "before_exit": "B2h",
+          "label": [
+            2,
+            2,
+            0,
+            -2,
+            3
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B2h",
+          "after_exit": "B2h",
+          "before": "B2h",
+          "before_exit": "B2h",
+          "label": [
+            2,
+            2,
+            0,
+            2,
+            -3
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B2",
+          "after_exit": "B2",
+          "before": "B2",
+          "before_exit": "B2",
+          "label": [
+            2,
+            2,
+            0,
+            2,
+            -2
+          ],
+          "typed_terminal": false
+        }
+      ],
+      "typed_terminals": 0
+    },
+    "S41": {
+      "after_exits": 33,
+      "after_registered_including_terminals": 31,
+      "before_exits": 33,
+      "before_registered_including_terminals": 31,
+      "labels": 41,
+      "rows": [
+        {
+          "after": "X",
+          "after_exit": "X",
+          "before": "X",
+          "before_exit": "X",
+          "label": [
+            0,
+            0,
+            -1,
+            0,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            0,
+            0,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": "E6",
+          "before": null,
+          "before_exit": "E6",
+          "label": [
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "U",
+          "after_exit": "U",
+          "before": "U",
+          "before_exit": "U",
+          "label": [
+            0,
+            0,
+            0,
+            -1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "E",
+          "after_exit": "E",
+          "before": "E",
+          "before_exit": "E",
+          "label": [
+            0,
+            0,
+            0,
+            0,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "E",
+          "after_exit": "E",
+          "before": "E",
+          "before_exit": "E",
+          "label": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "U",
+          "after_exit": "U",
+          "before": "U",
+          "before_exit": "U",
+          "label": [
+            0,
+            0,
+            0,
+            1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": "E6",
+          "before": null,
+          "before_exit": "E6",
+          "label": [
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "X",
+          "after_exit": "X",
+          "before": "X",
+          "before_exit": "X",
+          "label": [
+            0,
+            0,
+            1,
+            0,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "D3",
+          "after_exit": "D3",
+          "before": "D3",
+          "before_exit": "D3",
+          "label": [
+            0,
+            1,
+            1,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "V",
+          "after_exit": "V",
+          "before": "V",
+          "before_exit": "V",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T",
+          "after_exit": "T",
+          "before": "T",
+          "before_exit": "T",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B3",
+          "after_exit": "B3",
+          "before": "B3",
+          "before_exit": "B3",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B4",
+          "after_exit": "B4",
+          "before": "B4",
+          "before_exit": "B4",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R4",
+          "after_exit": "R4",
+          "before": "R4",
+          "before_exit": "R4",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R5",
+          "after_exit": "R5",
+          "before": "R5",
+          "before_exit": "R5",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R3",
+          "after_exit": "R3",
+          "before": "R3",
+          "before_exit": "R3",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "Q3",
+          "after_exit": "Q3",
+          "before": "Q3",
+          "before_exit": "Q3",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "Y4",
+          "after_exit": "Y4",
+          "before": "Y4",
+          "before_exit": "Y4",
+          "label": [
+            0,
+            2,
+            1,
+            0,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "D3",
+          "after_exit": "D3",
+          "before": "D3",
+          "before_exit": "D3",
+          "label": [
+            1,
+            0,
+            -1,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            1,
+            2,
+            0,
+            0,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            1,
+            2,
+            0,
+            0,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "Y4",
+          "after_exit": "Y4",
+          "before": "Y4",
+          "before_exit": "Y4",
+          "label": [
+            2,
+            0,
+            -1,
+            0,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "Q3",
+          "after_exit": "Q3",
+          "before": "Q3",
+          "before_exit": "Q3",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R3",
+          "after_exit": "R3",
+          "before": "R3",
+          "before_exit": "R3",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R5",
+          "after_exit": "R5",
+          "before": "R5",
+          "before_exit": "R5",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R4",
+          "after_exit": "R4",
+          "before": "R4",
+          "before_exit": "R4",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B4",
+          "after_exit": "B4",
+          "before": "B4",
+          "before_exit": "B4",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B3",
+          "after_exit": "B3",
+          "before": "B3",
+          "before_exit": "B3",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T",
+          "after_exit": "T",
+          "before": "T",
+          "before_exit": "T",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "V",
+          "after_exit": "V",
+          "before": "V",
+          "before_exit": "V",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            2,
+            0,
+            0,
+            0,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            2,
+            1,
+            0,
+            0,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T1",
+          "after_exit": "T1",
+          "before": "T1",
+          "before_exit": "T1",
+          "label": [
+            2,
+            2,
+            -1,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T2",
+          "after_exit": "T2",
+          "before": "T2",
+          "before_exit": "T2",
+          "label": [
+            2,
+            2,
+            -1,
+            1,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "terminal",
+          "after_exit": "terminal",
+          "before": "terminal",
+          "before_exit": "terminal",
+          "label": [
+            2,
+            2,
+            0,
+            0,
+            0
+          ],
+          "typed_terminal": true
+        },
+        {
+          "after": "T2",
+          "after_exit": "T2",
+          "before": "T2",
+          "before_exit": "T2",
+          "label": [
+            2,
+            2,
+            1,
+            -1,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T1",
+          "after_exit": "T1",
+          "before": "T1",
+          "before_exit": "T1",
+          "label": [
+            2,
+            2,
+            1,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        }
+      ],
+      "typed_terminals": 1
+    },
+    "S43": {
+      "after_exits": 35,
+      "after_registered_including_terminals": 33,
+      "before_exits": 35,
+      "before_registered_including_terminals": 31,
+      "labels": 43,
+      "rows": [
+        {
+          "after": "X",
+          "after_exit": "X",
+          "before": "X",
+          "before_exit": "X",
+          "label": [
+            0,
+            0,
+            -1,
+            0,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            0,
+            0,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": "E6",
+          "before": null,
+          "before_exit": "E6",
+          "label": [
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "U",
+          "after_exit": "U",
+          "before": "U",
+          "before_exit": "U",
+          "label": [
+            0,
+            0,
+            0,
+            -1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "E",
+          "after_exit": "E",
+          "before": "E",
+          "before_exit": "E",
+          "label": [
+            0,
+            0,
+            0,
+            0,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "E",
+          "after_exit": "E",
+          "before": "E",
+          "before_exit": "E",
+          "label": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "U",
+          "after_exit": "U",
+          "before": "U",
+          "before_exit": "U",
+          "label": [
+            0,
+            0,
+            0,
+            1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": "E6",
+          "before": null,
+          "before_exit": "E6",
+          "label": [
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "X",
+          "after_exit": "X",
+          "before": "X",
+          "before_exit": "X",
+          "label": [
+            0,
+            0,
+            1,
+            0,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "D3",
+          "after_exit": "D3",
+          "before": "D3",
+          "before_exit": "D3",
+          "label": [
+            0,
+            1,
+            1,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "D5",
+          "after_exit": "D5",
+          "before": null,
+          "before_exit": "D5",
+          "label": [
+            0,
+            1,
+            1,
+            -1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "V",
+          "after_exit": "V",
+          "before": "V",
+          "before_exit": "V",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T",
+          "after_exit": "T",
+          "before": "T",
+          "before_exit": "T",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B3",
+          "after_exit": "B3",
+          "before": "B3",
+          "before_exit": "B3",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B4",
+          "after_exit": "B4",
+          "before": "B4",
+          "before_exit": "B4",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R4",
+          "after_exit": "R4",
+          "before": "R4",
+          "before_exit": "R4",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R5",
+          "after_exit": "R5",
+          "before": "R5",
+          "before_exit": "R5",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R3",
+          "after_exit": "R3",
+          "before": "R3",
+          "before_exit": "R3",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "Q3",
+          "after_exit": "Q3",
+          "before": "Q3",
+          "before_exit": "Q3",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "Y4",
+          "after_exit": "Y4",
+          "before": "Y4",
+          "before_exit": "Y4",
+          "label": [
+            0,
+            2,
+            1,
+            0,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "D5",
+          "after_exit": "D5",
+          "before": null,
+          "before_exit": "D5",
+          "label": [
+            1,
+            0,
+            -1,
+            1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "D3",
+          "after_exit": "D3",
+          "before": "D3",
+          "before_exit": "D3",
+          "label": [
+            1,
+            0,
+            -1,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            1,
+            2,
+            0,
+            0,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            1,
+            2,
+            0,
+            0,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "Y4",
+          "after_exit": "Y4",
+          "before": "Y4",
+          "before_exit": "Y4",
+          "label": [
+            2,
+            0,
+            -1,
+            0,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "Q3",
+          "after_exit": "Q3",
+          "before": "Q3",
+          "before_exit": "Q3",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R3",
+          "after_exit": "R3",
+          "before": "R3",
+          "before_exit": "R3",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R5",
+          "after_exit": "R5",
+          "before": "R5",
+          "before_exit": "R5",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R4",
+          "after_exit": "R4",
+          "before": "R4",
+          "before_exit": "R4",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B4",
+          "after_exit": "B4",
+          "before": "B4",
+          "before_exit": "B4",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B3",
+          "after_exit": "B3",
+          "before": "B3",
+          "before_exit": "B3",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T",
+          "after_exit": "T",
+          "before": "T",
+          "before_exit": "T",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "V",
+          "after_exit": "V",
+          "before": "V",
+          "before_exit": "V",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            2,
+            0,
+            0,
+            0,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            2,
+            1,
+            0,
+            0,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": null,
+          "after_exit": null,
+          "before": null,
+          "before_exit": null,
+          "label": [
+            2,
+            1,
+            0,
+            0,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T1",
+          "after_exit": "T1",
+          "before": "T1",
+          "before_exit": "T1",
+          "label": [
+            2,
+            2,
+            -1,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T2",
+          "after_exit": "T2",
+          "before": "T2",
+          "before_exit": "T2",
+          "label": [
+            2,
+            2,
+            -1,
+            1,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "terminal",
+          "after_exit": "terminal",
+          "before": "terminal",
+          "before_exit": "terminal",
+          "label": [
+            2,
+            2,
+            0,
+            0,
+            0
+          ],
+          "typed_terminal": true
+        },
+        {
+          "after": "T2",
+          "after_exit": "T2",
+          "before": "T2",
+          "before_exit": "T2",
+          "label": [
+            2,
+            2,
+            1,
+            -1,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T1",
+          "after_exit": "T1",
+          "before": "T1",
+          "before_exit": "T1",
+          "label": [
+            2,
+            2,
+            1,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        }
+      ],
+      "typed_terminals": 1
+    },
+    "Y4_IMAGE": {
+      "after_exits": 18,
+      "after_registered_including_terminals": 18,
+      "before_exits": 18,
+      "before_registered_including_terminals": 16,
+      "labels": 18,
+      "rows": [
+        {
+          "after": "D5",
+          "after_exit": "D5",
+          "before": null,
+          "before_exit": "D5",
+          "label": [
+            0,
+            1,
+            1,
+            -1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "V",
+          "after_exit": "V",
+          "before": "V",
+          "before_exit": "V",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T",
+          "after_exit": "T",
+          "before": "T",
+          "before_exit": "T",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B3",
+          "after_exit": "B3",
+          "before": "B3",
+          "before_exit": "B3",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B4",
+          "after_exit": "B4",
+          "before": "B4",
+          "before_exit": "B4",
+          "label": [
+            0,
+            2,
+            0,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R4",
+          "after_exit": "R4",
+          "before": "R4",
+          "before_exit": "R4",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R5",
+          "after_exit": "R5",
+          "before": "R5",
+          "before_exit": "R5",
+          "label": [
+            0,
+            2,
+            1,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "D5",
+          "after_exit": "D5",
+          "before": null,
+          "before_exit": "D5",
+          "label": [
+            1,
+            0,
+            -1,
+            1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R5",
+          "after_exit": "R5",
+          "before": "R5",
+          "before_exit": "R5",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "R4",
+          "after_exit": "R4",
+          "before": "R4",
+          "before_exit": "R4",
+          "label": [
+            2,
+            0,
+            -1,
+            1,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B4",
+          "after_exit": "B4",
+          "before": "B4",
+          "before_exit": "B4",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "B3",
+          "after_exit": "B3",
+          "before": "B3",
+          "before_exit": "B3",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T",
+          "after_exit": "T",
+          "before": "T",
+          "before_exit": "T",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "V",
+          "after_exit": "V",
+          "before": "V",
+          "before_exit": "V",
+          "label": [
+            2,
+            0,
+            0,
+            -1,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T1",
+          "after_exit": "T1",
+          "before": "T1",
+          "before_exit": "T1",
+          "label": [
+            2,
+            2,
+            -1,
+            1,
+            1
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T2",
+          "after_exit": "T2",
+          "before": "T2",
+          "before_exit": "T2",
+          "label": [
+            2,
+            2,
+            -1,
+            1,
+            2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T2",
+          "after_exit": "T2",
+          "before": "T2",
+          "before_exit": "T2",
+          "label": [
+            2,
+            2,
+            1,
+            -1,
+            -2
+          ],
+          "typed_terminal": false
+        },
+        {
+          "after": "T1",
+          "after_exit": "T1",
+          "before": "T1",
+          "before_exit": "T1",
+          "label": [
+            2,
+            2,
+            1,
+            -1,
+            -1
+          ],
+          "typed_terminal": false
+        }
+      ],
+      "typed_terminals": 0
+    }
+  },
+  "rows": [
+    {
+      "counts": [
+        6,
+        6
+      ],
+      "d": 5,
+      "k": 0,
+      "n": 3,
+      "t": 0
+    },
+    {
+      "counts": [
+        7,
+        7
+      ],
+      "d": 7,
+      "k": 0,
+      "n": 4,
+      "t": 1
+    },
+    {
+      "counts": [
+        8,
+        8
+      ],
+      "d": 9,
+      "k": 0,
+      "n": 5,
+      "t": 2
+    },
+    {
+      "counts": [
+        9,
+        9
+      ],
+      "d": 11,
+      "k": 0,
+      "n": 6,
+      "t": 3
+    },
+    {
+      "counts": [
+        10,
+        10
+      ],
+      "d": 13,
+      "k": 0,
+      "n": 7,
+      "t": 4
+    },
+    {
+      "counts": [
+        11,
+        11
+      ],
+      "d": 15,
+      "k": 0,
+      "n": 8,
+      "t": 5
+    },
+    {
+      "counts": [
+        12,
+        12
+      ],
+      "d": 17,
+      "k": 0,
+      "n": 9,
+      "t": 6
+    },
+    {
+      "counts": [
+        13,
+        13
+      ],
+      "d": 19,
+      "k": 0,
+      "n": 10,
+      "t": 7
+    },
+    {
+      "counts": [
+        14,
+        14
+      ],
+      "d": 21,
+      "k": 0,
+      "n": 11,
+      "t": 8
+    },
+    {
+      "counts": [
+        7,
+        7
+      ],
+      "d": 6,
+      "k": 1,
+      "n": 4,
+      "t": 0
+    },
+    {
+      "counts": [
+        8,
+        8
+      ],
+      "d": 8,
+      "k": 1,
+      "n": 5,
+      "t": 1
+    },
+    {
+      "counts": [
+        9,
+        9
+      ],
+      "d": 10,
+      "k": 1,
+      "n": 6,
+      "t": 2
+    },
+    {
+      "counts": [
+        10,
+        10
+      ],
+      "d": 12,
+      "k": 1,
+      "n": 7,
+      "t": 3
+    },
+    {
+      "counts": [
+        11,
+        11
+      ],
+      "d": 14,
+      "k": 1,
+      "n": 8,
+      "t": 4
+    },
+    {
+      "counts": [
+        12,
+        12
+      ],
+      "d": 16,
+      "k": 1,
+      "n": 9,
+      "t": 5
+    },
+    {
+      "counts": [
+        13,
+        13
+      ],
+      "d": 18,
+      "k": 1,
+      "n": 10,
+      "t": 6
+    },
+    {
+      "counts": [
+        14,
+        14
+      ],
+      "d": 20,
+      "k": 1,
+      "n": 11,
+      "t": 7
+    },
+    {
+      "counts": [
+        15,
+        15
+      ],
+      "d": 22,
+      "k": 1,
+      "n": 12,
+      "t": 8
+    },
+    {
+      "counts": [
+        8,
+        8
+      ],
+      "d": 7,
+      "k": 2,
+      "n": 5,
+      "t": 0
+    },
+    {
+      "counts": [
+        9,
+        9
+      ],
+      "d": 9,
+      "k": 2,
+      "n": 6,
+      "t": 1
+    },
+    {
+      "counts": [
+        10,
+        10
+      ],
+      "d": 11,
+      "k": 2,
+      "n": 7,
+      "t": 2
+    },
+    {
+      "counts": [
+        11,
+        11
+      ],
+      "d": 13,
+      "k": 2,
+      "n": 8,
+      "t": 3
+    },
+    {
+      "counts": [
+        12,
+        12
+      ],
+      "d": 15,
+      "k": 2,
+      "n": 9,
+      "t": 4
+    },
+    {
+      "counts": [
+        13,
+        13
+      ],
+      "d": 17,
+      "k": 2,
+      "n": 10,
+      "t": 5
+    },
+    {
+      "counts": [
+        14,
+        14
+      ],
+      "d": 19,
+      "k": 2,
+      "n": 11,
+      "t": 6
+    },
+    {
+      "counts": [
+        15,
+        15
+      ],
+      "d": 21,
+      "k": 2,
+      "n": 12,
+      "t": 7
+    },
+    {
+      "counts": [
+        16,
+        16
+      ],
+      "d": 23,
+      "k": 2,
+      "n": 13,
+      "t": 8
+    },
+    {
+      "counts": [
+        9,
+        9
+      ],
+      "d": 8,
+      "k": 3,
+      "n": 6,
+      "t": 0
+    },
+    {
+      "counts": [
+        10,
+        10
+      ],
+      "d": 10,
+      "k": 3,
+      "n": 7,
+      "t": 1
+    },
+    {
+      "counts": [
+        11,
+        11
+      ],
+      "d": 12,
+      "k": 3,
+      "n": 8,
+      "t": 2
+    },
+    {
+      "counts": [
+        12,
+        12
+      ],
+      "d": 14,
+      "k": 3,
+      "n": 9,
+      "t": 3
+    },
+    {
+      "counts": [
+        13,
+        13
+      ],
+      "d": 16,
+      "k": 3,
+      "n": 10,
+      "t": 4
+    },
+    {
+      "counts": [
+        14,
+        14
+      ],
+      "d": 18,
+      "k": 3,
+      "n": 11,
+      "t": 5
+    },
+    {
+      "counts": [
+        15,
+        15
+      ],
+      "d": 20,
+      "k": 3,
+      "n": 12,
+      "t": 6
+    },
+    {
+      "counts": [
+        16,
+        16
+      ],
+      "d": 22,
+      "k": 3,
+      "n": 13,
+      "t": 7
+    },
+    {
+      "counts": [
+        17,
+        17
+      ],
+      "d": 24,
+      "k": 3,
+      "n": 14,
+      "t": 8
+    },
+    {
+      "counts": [
+        10,
+        10
+      ],
+      "d": 9,
+      "k": 4,
+      "n": 7,
+      "t": 0
+    },
+    {
+      "counts": [
+        11,
+        11
+      ],
+      "d": 11,
+      "k": 4,
+      "n": 8,
+      "t": 1
+    },
+    {
+      "counts": [
+        12,
+        12
+      ],
+      "d": 13,
+      "k": 4,
+      "n": 9,
+      "t": 2
+    },
+    {
+      "counts": [
+        13,
+        13
+      ],
+      "d": 15,
+      "k": 4,
+      "n": 10,
+      "t": 3
+    },
+    {
+      "counts": [
+        14,
+        14
+      ],
+      "d": 17,
+      "k": 4,
+      "n": 11,
+      "t": 4
+    },
+    {
+      "counts": [
+        15,
+        15
+      ],
+      "d": 19,
+      "k": 4,
+      "n": 12,
+      "t": 5
+    },
+    {
+      "counts": [
+        16,
+        16
+      ],
+      "d": 21,
+      "k": 4,
+      "n": 13,
+      "t": 6
+    },
+    {
+      "counts": [
+        17,
+        17
+      ],
+      "d": 23,
+      "k": 4,
+      "n": 14,
+      "t": 7
+    },
+    {
+      "counts": [
+        18,
+        18
+      ],
+      "d": 25,
+      "k": 4,
+      "n": 15,
+      "t": 8
+    },
+    {
+      "counts": [
+        11,
+        11
+      ],
+      "d": 10,
+      "k": 5,
+      "n": 8,
+      "t": 0
+    },
+    {
+      "counts": [
+        12,
+        12
+      ],
+      "d": 12,
+      "k": 5,
+      "n": 9,
+      "t": 1
+    },
+    {
+      "counts": [
+        13,
+        13
+      ],
+      "d": 14,
+      "k": 5,
+      "n": 10,
+      "t": 2
+    },
+    {
+      "counts": [
+        14,
+        14
+      ],
+      "d": 16,
+      "k": 5,
+      "n": 11,
+      "t": 3
+    },
+    {
+      "counts": [
+        15,
+        15
+      ],
+      "d": 18,
+      "k": 5,
+      "n": 12,
+      "t": 4
+    },
+    {
+      "counts": [
+        16,
+        16
+      ],
+      "d": 20,
+      "k": 5,
+      "n": 13,
+      "t": 5
+    },
+    {
+      "counts": [
+        17,
+        17
+      ],
+      "d": 22,
+      "k": 5,
+      "n": 14,
+      "t": 6
+    },
+    {
+      "counts": [
+        18,
+        18
+      ],
+      "d": 24,
+      "k": 5,
+      "n": 15,
+      "t": 7
+    },
+    {
+      "counts": [
+        19,
+        19
+      ],
+      "d": 26,
+      "k": 5,
+      "n": 16,
+      "t": 8
+    },
+    {
+      "counts": [
+        12,
+        12
+      ],
+      "d": 11,
+      "k": 6,
+      "n": 9,
+      "t": 0
+    },
+    {
+      "counts": [
+        13,
+        13
+      ],
+      "d": 13,
+      "k": 6,
+      "n": 10,
+      "t": 1
+    },
+    {
+      "counts": [
+        14,
+        14
+      ],
+      "d": 15,
+      "k": 6,
+      "n": 11,
+      "t": 2
+    },
+    {
+      "counts": [
+        15,
+        15
+      ],
+      "d": 17,
+      "k": 6,
+      "n": 12,
+      "t": 3
+    },
+    {
+      "counts": [
+        16,
+        16
+      ],
+      "d": 19,
+      "k": 6,
+      "n": 13,
+      "t": 4
+    },
+    {
+      "counts": [
+        17,
+        17
+      ],
+      "d": 21,
+      "k": 6,
+      "n": 14,
+      "t": 5
+    },
+    {
+      "counts": [
+        18,
+        18
+      ],
+      "d": 23,
+      "k": 6,
+      "n": 15,
+      "t": 6
+    },
+    {
+      "counts": [
+        19,
+        19
+      ],
+      "d": 25,
+      "k": 6,
+      "n": 16,
+      "t": 7
+    },
+    {
+      "counts": [
+        20,
+        20
+      ],
+      "d": 27,
+      "k": 6,
+      "n": 17,
+      "t": 8
+    },
+    {
+      "counts": [
+        13,
+        13
+      ],
+      "d": 12,
+      "k": 7,
+      "n": 10,
+      "t": 0
+    },
+    {
+      "counts": [
+        14,
+        14
+      ],
+      "d": 14,
+      "k": 7,
+      "n": 11,
+      "t": 1
+    },
+    {
+      "counts": [
+        15,
+        15
+      ],
+      "d": 16,
+      "k": 7,
+      "n": 12,
+      "t": 2
+    },
+    {
+      "counts": [
+        16,
+        16
+      ],
+      "d": 18,
+      "k": 7,
+      "n": 13,
+      "t": 3
+    },
+    {
+      "counts": [
+        17,
+        17
+      ],
+      "d": 20,
+      "k": 7,
+      "n": 14,
+      "t": 4
+    },
+    {
+      "counts": [
+        18,
+        18
+      ],
+      "d": 22,
+      "k": 7,
+      "n": 15,
+      "t": 5
+    },
+    {
+      "counts": [
+        19,
+        19
+      ],
+      "d": 24,
+      "k": 7,
+      "n": 16,
+      "t": 6
+    },
+    {
+      "counts": [
+        20,
+        20
+      ],
+      "d": 26,
+      "k": 7,
+      "n": 17,
+      "t": 7
+    },
+    {
+      "counts": [
+        21,
+        21
+      ],
+      "d": 28,
+      "k": 7,
+      "n": 18,
+      "t": 8
+    },
+    {
+      "counts": [
+        14,
+        14
+      ],
+      "d": 13,
+      "k": 8,
+      "n": 11,
+      "t": 0
+    },
+    {
+      "counts": [
+        15,
+        15
+      ],
+      "d": 15,
+      "k": 8,
+      "n": 12,
+      "t": 1
+    },
+    {
+      "counts": [
+        16,
+        16
+      ],
+      "d": 17,
+      "k": 8,
+      "n": 13,
+      "t": 2
+    },
+    {
+      "counts": [
+        17,
+        17
+      ],
+      "d": 19,
+      "k": 8,
+      "n": 14,
+      "t": 3
+    },
+    {
+      "counts": [
+        18,
+        18
+      ],
+      "d": 21,
+      "k": 8,
+      "n": 15,
+      "t": 4
+    },
+    {
+      "counts": [
+        19,
+        19
+      ],
+      "d": 23,
+      "k": 8,
+      "n": 16,
+      "t": 5
+    },
+    {
+      "counts": [
+        20,
+        20
+      ],
+      "d": 25,
+      "k": 8,
+      "n": 17,
+      "t": 6
+    },
+    {
+      "counts": [
+        21,
+        21
+      ],
+      "d": 27,
+      "k": 8,
+      "n": 18,
+      "t": 7
+    },
+    {
+      "counts": [
+        22,
+        22
+      ],
+      "d": 29,
+      "k": 8,
+      "n": 19,
+      "t": 8
+    },
+    {
+      "counts": [
+        15,
+        15
+      ],
+      "d": 14,
+      "k": 9,
+      "n": 12,
+      "t": 0
+    },
+    {
+      "counts": [
+        16,
+        16
+      ],
+      "d": 16,
+      "k": 9,
+      "n": 13,
+      "t": 1
+    },
+    {
+      "counts": [
+        17,
+        17
+      ],
+      "d": 18,
+      "k": 9,
+      "n": 14,
+      "t": 2
+    },
+    {
+      "counts": [
+        18,
+        18
+      ],
+      "d": 20,
+      "k": 9,
+      "n": 15,
+      "t": 3
+    },
+    {
+      "counts": [
+        19,
+        19
+      ],
+      "d": 22,
+      "k": 9,
+      "n": 16,
+      "t": 4
+    },
+    {
+      "counts": [
+        20,
+        20
+      ],
+      "d": 24,
+      "k": 9,
+      "n": 17,
+      "t": 5
+    },
+    {
+      "counts": [
+        21,
+        21
+      ],
+      "d": 26,
+      "k": 9,
+      "n": 18,
+      "t": 6
+    },
+    {
+      "counts": [
+        22,
+        22
+      ],
+      "d": 28,
+      "k": 9,
+      "n": 19,
+      "t": 7
+    },
+    {
+      "counts": [
+        23,
+        23
+      ],
+      "d": 30,
+      "k": 9,
+      "n": 20,
+      "t": 8
+    },
+    {
+      "counts": [
+        16,
+        16
+      ],
+      "d": 15,
+      "k": 10,
+      "n": 13,
+      "t": 0
+    },
+    {
+      "counts": [
+        17,
+        17
+      ],
+      "d": 17,
+      "k": 10,
+      "n": 14,
+      "t": 1
+    },
+    {
+      "counts": [
+        18,
+        18
+      ],
+      "d": 19,
+      "k": 10,
+      "n": 15,
+      "t": 2
+    },
+    {
+      "counts": [
+        19,
+        19
+      ],
+      "d": 21,
+      "k": 10,
+      "n": 16,
+      "t": 3
+    },
+    {
+      "counts": [
+        20,
+        20
+      ],
+      "d": 23,
+      "k": 10,
+      "n": 17,
+      "t": 4
+    },
+    {
+      "counts": [
+        21,
+        21
+      ],
+      "d": 25,
+      "k": 10,
+      "n": 18,
+      "t": 5
+    },
+    {
+      "counts": [
+        22,
+        22
+      ],
+      "d": 27,
+      "k": 10,
+      "n": 19,
+      "t": 6
+    },
+    {
+      "counts": [
+        23,
+        23
+      ],
+      "d": 29,
+      "k": 10,
+      "n": 20,
+      "t": 7
+    },
+    {
+      "counts": [
+        24,
+        24
+      ],
+      "d": 31,
+      "k": 10,
+      "n": 21,
+      "t": 8
+    },
+    {
+      "counts": [
+        17,
+        17
+      ],
+      "d": 16,
+      "k": 11,
+      "n": 14,
+      "t": 0
+    },
+    {
+      "counts": [
+        18,
+        18
+      ],
+      "d": 18,
+      "k": 11,
+      "n": 15,
+      "t": 1
+    },
+    {
+      "counts": [
+        19,
+        19
+      ],
+      "d": 20,
+      "k": 11,
+      "n": 16,
+      "t": 2
+    },
+    {
+      "counts": [
+        20,
+        20
+      ],
+      "d": 22,
+      "k": 11,
+      "n": 17,
+      "t": 3
+    },
+    {
+      "counts": [
+        21,
+        21
+      ],
+      "d": 24,
+      "k": 11,
+      "n": 18,
+      "t": 4
+    },
+    {
+      "counts": [
+        22,
+        22
+      ],
+      "d": 26,
+      "k": 11,
+      "n": 19,
+      "t": 5
+    },
+    {
+      "counts": [
+        23,
+        23
+      ],
+      "d": 28,
+      "k": 11,
+      "n": 20,
+      "t": 6
+    },
+    {
+      "counts": [
+        24,
+        24
+      ],
+      "d": 30,
+      "k": 11,
+      "n": 21,
+      "t": 7
+    },
+    {
+      "counts": [
+        25,
+        25
+      ],
+      "d": 32,
+      "k": 11,
+      "n": 22,
+      "t": 8
+    },
+    {
+      "counts": [
+        18,
+        18
+      ],
+      "d": 17,
+      "k": 12,
+      "n": 15,
+      "t": 0
+    },
+    {
+      "counts": [
+        19,
+        19
+      ],
+      "d": 19,
+      "k": 12,
+      "n": 16,
+      "t": 1
+    },
+    {
+      "counts": [
+        20,
+        20
+      ],
+      "d": 21,
+      "k": 12,
+      "n": 17,
+      "t": 2
+    },
+    {
+      "counts": [
+        21,
+        21
+      ],
+      "d": 23,
+      "k": 12,
+      "n": 18,
+      "t": 3
+    },
+    {
+      "counts": [
+        22,
+        22
+      ],
+      "d": 25,
+      "k": 12,
+      "n": 19,
+      "t": 4
+    },
+    {
+      "counts": [
+        23,
+        23
+      ],
+      "d": 27,
+      "k": 12,
+      "n": 20,
+      "t": 5
+    },
+    {
+      "counts": [
+        24,
+        24
+      ],
+      "d": 29,
+      "k": 12,
+      "n": 21,
+      "t": 6
+    },
+    {
+      "counts": [
+        25,
+        25
+      ],
+      "d": 31,
+      "k": 12,
+      "n": 22,
+      "t": 7
+    },
+    {
+      "counts": [
+        26,
+        26
+      ],
+      "d": 33,
+      "k": 12,
+      "n": 23,
+      "t": 8
+    }
+  ],
+  "scope": "finite exact implementation replay; universal guard and uniform-tail proof separate; no global BH",
+  "source_cells": 234,
+  "source_exit_bound": 1,
+  "source_path_edges": 2457,
+  "witnesses": [
+    {
+      "i": 9,
+      "j": 4,
+      "k": 0,
+      "kind": 0,
+      "t": 0,
+      "target": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "i": 0,
+      "j": 4,
+      "k": 0,
+      "kind": 1,
+      "t": 0,
+      "target": [
+        1,
+        2,
+        0,
+        1,
+        -2
+      ]
+    },
+    {
+      "i": 0,
+      "j": 5,
+      "k": 0,
+      "kind": 1,
+      "t": 0,
+      "target": [
+        1,
+        2,
+        0,
+        1,
+        -1
+      ]
+    },
+    {
+      "i": 5,
+      "j": 0,
+      "k": 0,
+      "kind": 0,
+      "t": 0,
+      "target": [
+        2,
+        1,
+        0,
+        -1,
+        1
+      ]
+    },
+    {
+      "i": 4,
+      "j": 0,
+      "k": 0,
+      "kind": 0,
+      "t": 0,
+      "target": [
+        2,
+        1,
+        0,
+        -1,
+        2
+      ]
+    },
+    {
+      "i": 6,
+      "j": 1,
+      "k": 0,
+      "kind": 0,
+      "t": 0,
+      "target": [
+        2,
+        2,
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

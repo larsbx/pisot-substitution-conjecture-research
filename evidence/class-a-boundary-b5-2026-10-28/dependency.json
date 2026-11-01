@@ -1,0 +1,8 @@
+{
+  "concurrent_unfinished_R5": "preserved in another checkout; not assumed or counted",
+  "hosted_gates_at_inspection": "queued",
+  "independent_human_review": "pending; validation debt, not a research gate",
+  "parent_branch": "research/class-a-boundary-y4-2026-10-28",
+  "parent_head": "7eb395cce20973c2c36bef09c97b3d6ae8e57067",
+  "parent_pr": 379
+}

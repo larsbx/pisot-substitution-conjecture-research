@@ -8,7 +8,12 @@
 Source note: docs/class-b-ray-certificate-2026-10-27.md.
 """
 from std.sys import argv
-from class_b_top_layer_profile import profile
+from class_b_top_layer_profile import in_open_top_layer
+from psc.class_b_segment_graph import class_b_seed_graph
+from psc.overlap_seed_patch import build_seed_overlap_tables_screened, first_left_aligned_depths
+from psc.pisot import CubicScreen
+from psc.bpa import substitution_incidence
+from finite_linear_algebra.mat3 import Mat3
 from psc.class_b_ray_line import BRay
 from psc.class_b_ray_certificate import certify_ray_rows, replay_finite
 from psc.class_b_ray_tables import ray_specs, ray_rows, ray_potentials
@@ -40,14 +45,33 @@ def below(i: Int) raises:
     var ray = ray_of(i)
     var q0 = ray_specs()[i][3]
     var members = 0
-    for pt in profile(ray.eps == 1, ray.g - 1, q0 - 1):
-        if pt.q % ray.g == ray.r:
-            members += 1
+    var screen = CubicScreen()
+    for q in range(1, q0):
+        if q % ray.g != ray.r or not in_open_top_layer(ray.eps == 1, ray.p_of(q), q):
+            continue
+        var sigma = ray.member(q)
+        var matrix = Mat3(substitution_incidence(sigma))
+        if abs(matrix.det()) != 2 or not screen.is_pip(matrix):
+            continue
+        var tables = build_seed_overlap_tables_screened(sigma)
+        var graph = class_b_seed_graph(tables, 20000)
+        for d in first_left_aligned_depths(graph):
+            if d < 0:
+                raise Error("below-floor state without an offset-zero descendant")
+        members += 1
     print("CLASS_B_RAY_BELOW " + ray.name() + " q<" + String(q0), "pip_members", members, "all_hit true")
 
 
 def main() raises:
     var args = argv()
+    if len(args) == 3 and args[1] == "one":
+        var i = Int(args[2])
+        certify(i)
+        var spec = ray_specs()[i].copy()
+        replay(i, spec[3])
+        replay(i, spec[3] + spec[1])
+        below(i)
+        return
     if len(args) == 3 and args[1] == "certify":
         certify(Int(args[2]))
         return
@@ -66,4 +90,4 @@ def main() raises:
             below(i)
         print("CLASS_B_RAY_CERTIFICATES_COMPLETE rays", len(ray_specs()))
         return
-    raise Error("usage: certify I | replay I Q | below I | all")
+    raise Error("usage: one I | certify I | replay I Q | below I | all")

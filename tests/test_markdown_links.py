@@ -63,6 +63,12 @@ def test_inline_code_delimiters_preserve_real_links():
     ]
 
 
+def test_inline_code_delimiters_and_real_neighbor_links():
+    assert links("``o['f'](pathlib.Path('x')) `tick` `` [a](a.md)") == [(1, "a.md")]
+    assert links("`unclosed [a](a.md)") == [(1, "a.md")]
+    assert links("`one`` [a](a.md)") == [(1, "a.md")]
+    assert links("[a](a.md) `](fake)` [b](b.md)") == [(1, "a.md"), (1, "b.md")]
+
 def test_relative_links_resolve():
     broken = [
         f"{path.relative_to(ROOT)}:{number}: {target}"

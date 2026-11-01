@@ -1,0 +1,180 @@
+# Four-seed class-A SCC diagnostic: a recurrent hub, not a universal carrier
+
+**Integration candidate (2026-11-01):** canonical native counterparts and
+fresh cross-checks are recorded in
+[the research integration audit](research-branch-integration-2026-11-01.md).
+The original 2026-10-31 scopes and main/research distinctions below are
+historical; they do not imply acceptance of this candidate. Exact-head
+hosted acceptance remains required. Independent human review is pending.
+Pending human review is validation debt, not an additional premise for
+project acceptance once mathematical, replay, CI and governance checks pass.
+
+**Status:** new exact **finite-specimen** completion audit for the
+minus class-A boundary. It is not a universal SCC-connectivity proof,
+not a complete set of strict-zipper seeds, not an all-overlap or
+literature-realization theorem, and not BH/#139, G1, A1-prime or PSC.
+
+## Precise audited graph
+
+For each fixed k,t>=0, set n=k+t+3, d=k+2t+5, A=n+d and
+take exactly x->x y^A x, c->c y^n x, y->x y^(n-1) c.
+An overlap vertex is the oriented full five-tuple
+(top,bottom,dx,dc,dy); the three integer coordinates give
+the exact bottom-minus-top Parikh displacement.
+The strict child relation keeps **every actual indexed
+top/bottom occurrence** passing the exact Fraction/Perron
+interior test. Duplicate edges with different ordered
+occurrence addresses are retained.
+
+Initialize the finite closure from **four named strict sources only**:
+
+- X=(x,x,1,0,-1), the established W/X source;
+- Y0=(y,y,1,-1,-1), recovered in merged #412;
+- CY=(c,y,0,-2,2), whose complete star is merged via #414;
+- CC=(c,c,0,-2,3), whose proposed complete star remains in #416.
+
+The four seeds are **not claimed** to contain or represent every
+swap seed, every occurring overlap, or every strict-zipper state.
+Although all four source states are strict for every k,t>=0,
+the **Y0->CC LAST/LAST ancestry exists strictly only at t=0**.
+
+Every equal-letter, *zero full Parikh offset* vertex is made terminal
+before SCC analysis. This is appropriate for the existential
+reachability question "can this overlap reach a coincidence?".
+It is **not** a claim about the full directed graph after
+continuing to inflate coincidence states. Both x/x and y/y
+zero-offset terminals occur in the finite results; no c/c
+zero-offset terminal occurs in this four-seed closure.
+
+The executable oracle
+`oracles/python/class_a_boundary_four_seed_scc.py`
+imports main's **unchanged** literal-word/Fraction `Geometry`,
+performs an untruncated strict closure and fails closed on
+a state cap or sign-refinement exception. Only after the
+complete graph has been built does it compute SCCs, reverse
+coincidence reachability and reverse reachability to X.
+
+## Exact, independently reproducible finite result
+
+All **16** specimens 0<=k<=3, 0<=t<=3 finish below the
+6,000-state cap. The following values are actual complete
+finite-graph counts, **not all-parameter identities**:
+
+| k,t | vertices | SCCs | X-containing SCC | Other nonterminal | max depth to X | max depth to coincidence |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0,0 | 784 | 3 | 782 | 0 | 9 | 7 |
+| 0,1 | 1012 | 5 | 1008 | 2 | 9 | 8 |
+| 0,2 | 1223 | 6 | 1218 | 3 | 9 | 8 |
+| 0,3 | 1441 | 6 | 1436 | 3 | 10 | 8 |
+| 1,0 | 436 | 3 | 434 | 0 | 6 | 4 |
+| 1,1 | 645 | 6 | 640 | 3 | 7 | 6 |
+| 1,2 | 644 | 3 | 642 | 0 | 7 | 5 |
+| 1,3 | 839 | 6 | 834 | 3 | 7 | 5 |
+| 2,0 | 378 | 3 | 376 | 0 | 6 | 5 |
+| 2,1 | 391 | 6 | 386 | 3 | 6 | 4 |
+| 2,2 | 594 | 3 | 592 | 0 | 6 | 5 |
+| 2,3 | 569 | 6 | 564 | 3 | 6 | 4 |
+| 3,0 | 350 | 3 | 348 | 0 | 5 | 4 |
+| 3,1 | 343 | 6 | 338 | 3 | 6 | 4 |
+| 3,2 | 360 | 3 | 358 | 0 | 5 | 4 |
+| 3,3 | 549 | 6 | 544 | 3 | 6 | 4 |
+
+**Every nonterminal vertex of each of the 16 complete finite
+closures has an occurrence-indexed path back to X**.
+A large nonterminal recurrent SCC contains X. The remaining
+nonterminal vertices, when present, are transient and also
+reach X. Exactly two coincidence terminal SCCs are closed.
+There is **one recurrent noncoincident SCC**, no nonproductive
+sink SCC, and every examined vertex reaches typed coincidence.
+
+The engine independently cross-checks the X SCC obtained by
+iterative Kosaraju against intersection of forward X reachability
+and reverse X reachability. The local mirrored-oracle run
+completed these 16 finite closures and all four regression tests.
+That mirrored-run report is historical. The integration now compares the
+complete original checked-in Python graphs with the independently built
+native graphs, including exact labels and indexed edge multiplicities.
+The new source hashes and results supersede stale local-run blob locators;
+hosted exact-head integrity/provenance gates remain required.
+
+## Exact one-way seed-coverage counterexample (linked #428)
+
+This audit's **four** initiating states do not necessarily generate all
+**nine** literal swapped-patch seed overlaps. At k=3,t=0 the complete
+four-seed terminalized graph has **350** vertices but omits the valid
+swap source S1=(x,x,0,1,0), while the nine-swap-seed closure has
+**351** vertices. Nevertheless there is a genuine uniform path
+S1 --(n+2,0)--> (y,x,0,1,-1) --(n,n)--> (c,y,0,0,1)
+--(n+1,0)--> X. PR #428 independently proves actual selected
+paths **from all nine swapped-patch seeds to X** over the full
+k,t>=0 chamber, with literal types and exact integer transport.
+
+**Orientation of graph reachability matters:** S1→X does *not*
+imply X→S1, and the four-seed closure does not contain every
+swapped-patch seed. The X-hub hypothesis below is therefore
+explicitly about the four-seed closure alone. Promoting it to
+all-nine-seed *descendant* productivity needs a separate
+coverage argument. This negative control is now executable.
+
+## A more focused universal proof target
+
+For this **particular four-seed** overlap-closure construction,
+the finite evidence suggests a stronger statement than
+constructing more individual selected exits:
+
+> **X-hub hypothesis (OPEN):** For all integers k,t>=0,
+> every nonterminal vertex in the complete strict
+> coincidence-terminalized graph generated by X,Y0,CY,CC
+> has an actual directed path to X.
+
+The main W/X kernel already supplies a uniformly valid
+two-edge selected exit X(d+1,0)->Q(1,2)->C.
+Hence **if** a uniform X-hub hypothesis is established
+for the exact complete four-seed closure, every nonterminal
+state in *that closure* will be productive, even though
+some edges lie on real cycles. The finite graph theorem
+"every vertex reaches a productive SCC, hence is productive"
+is standard and already exists elsewhere in this repository;
+there is **no claim of a new abstract graph lemma here**.
+
+The natural next mathematical object is a
+**parameterized reverse-X accessibility certificate**:
+prove that each nonterminal state is connected to X by a
+finite word of actual occurrence-indexed edges, with a
+parameter-dependent ranking, peeling, or transfer argument.
+The observed X SCC sizes 338..1436 (in this finite grid)
+show why merely enumerating a constant-size 10/42/59-label
+outgoing image is not an adequate closure proof.
+One possible strategy is to classify the *transient*
+parameter faces separately, then construct paired
+forward/reverse paths for the recurrent core.
+
+The crucial remaining **external coverage obligation**
+is to connect this specially seeded overlap closure
+to all relevant strict-zipper/realized overlap classes.
+Even a proven X-hub theorem on this four-seed graph
+would not establish all-seed BH or PDS without that bridge.
+
+## Fail-closed and counter-calibration
+
+The script refuses a capped partial graph before it
+assigns an SCC/productivity verdict. It rejects malformed
+edges and graphs with unterminated typed coincidences.
+Regression controls include:
+
+- a finite closed **nonproductive** cyclic sink SCC, which
+  must be detected rather than called productive;
+- a productive X<->Y0 cycle, showing that existential
+  coincidence reachability does not imply termination
+  for every arbitrary infinite edge-choice sequence;
+- missing or invalid actual occurrence vertices and
+  incomplete graph closures.
+
+Reproduction from repository root:
+
+    python -m pytest -q tests/test_class_a_boundary_four_seed_scc.py
+    python oracles/python/class_a_boundary_four_seed_scc.py
+
+**No promotion:** independent human review and hosted exact-head CI
+remain pending. Do not update universal claim nodes or interpret
+the current finite evidence as a uniform k,t proof.

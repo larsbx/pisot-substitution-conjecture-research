@@ -1,0 +1,2 @@
+PASS: all 107 actual native registry rows match the independent interfaces.
+PASS: fresh independent probe is byte-identical to committed probe.json.

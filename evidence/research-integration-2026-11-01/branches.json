@@ -1,0 +1,1707 @@
+[
+  {
+    "branch": "origin",
+    "sha": "3967ab32384e4add7c6d42a7519f42932c8625cb",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/archive/pr261-before-main-reconciliation-2026-10-14",
+    "sha": "6d1886a93bc6a7d712ab39c92402892ca9af8a26",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/audit/2026-09-11-two-gate-ledger",
+    "sha": "ea8dfa4978049df0be7a95f2ed236fc405a0cd57",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/audit/2026-09-11-two-gate-ledger-v2",
+    "sha": "3b96773240b98328e87665d3e59a493c45142c2d",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/audit/amend-2026-09-10",
+    "sha": "feee00a97f8fa8d4f7a983aa93e6b3c5b7b111f1",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/audit/boxwalk-extremal-2026-10-11",
+    "sha": "c39c5ee6ba8ea34bce55fdfda3138ec85dcd8f19",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/audit/boxwalk-reachability-semantics-2026-10-15",
+    "sha": "21eafaa4bed4fa22d3a06e3bc48564279e2d3a9c",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/audit/class-a-gap-acceptance-receipts",
+    "sha": "ba3ce1e31efdc29a52cfabb7ce7f5440240b250e",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/audit/nakaishi-joint-entry-accounting-2026-10-14",
+    "sha": "ab569e2d479c30c2c2dbe220e3b7c2a83af8151d",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/audit/psc-thread-salvage-2026-10-23",
+    "sha": "839597b6fe5e1eeb1edb9f2539bc425926f56bbf",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/bolt-optimize-apply-substitution-15443844877474330349",
+    "sha": "630bfc9598b9e171f29f838526623c2ddd9eb6eb",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/bolt-optimize-bpa-4756037042725811008",
+    "sha": "faf7e1f6515ee8c557d1debc838854af69903184",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/bolt-optimize-fraction-horner-9428150084346799872",
+    "sha": "4ab35841afd67050bf250134f4a1a7fad9af5f7d",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/bolt-optimize-has-rational-root-7336767899822230012",
+    "sha": "f8706120fbfcd9b4736a6bd880eacbfdee70f29a",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/bolt-optimize-math-vectors-2897939576812045973",
+    "sha": "83eef72bb1a5736ce68d7c23a37db9780e2ca291",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/bolt-optimize-pisot-screen-5343178856980629471",
+    "sha": "607254160a8dc5246f385acf39a566b4b92fd30b",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/bolt-optimize-poly-rem-15002501581826378046",
+    "sha": "ef092fee77227f5e2d000d8280ba975575a58b26",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/bolt-optimize-poly-rem-4432642997541219911",
+    "sha": "5aaeb4315570a1f8837e1bb2cdd684915a90437b",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/bolt-optimize-swap-discrepancy-2165291029676466049",
+    "sha": "36e75cb907098e38baef5b743cedb9e2d506b905",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/bolt-perf-poly-gcd-fraction-init-4521180737483610693",
+    "sha": "dd18f4eed02d8cd5a560334bcbc94097decb954b",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/bolt-pisot-screen-fraction-opt-1702388902447990673",
+    "sha": "9bb725328b66802418ba754354fcb840cff404d0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/bolt-poly-rem-opt-3810929869388194556",
+    "sha": "00c2b37a8c5032a683a3a08524bb55efbbceac3a",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/bolt-routh-fraction-opt-8849439861254306018",
+    "sha": "182a0875b9ea5c238345eb5416347f1519707e9b",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/bolt-routh-optimization-1378437962869929806",
+    "sha": "1c0404413e6902474039280b2936ff01198611a5",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/bolt-unroll-pip-mul-5804691955588991312",
+    "sha": "42b12afe3a81516039fc80b4be678c65e9e989d0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/bolt/optimize-pisot-screen-generators-1594131766415310731",
+    "sha": "004e266e1816ec26f4b3ca5b26a4cbcd2e036b4d",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/bolt/optimize-polynomial-calc-15329607840590263642",
+    "sha": "2c2068f3d1e134e1a85c50f2f74e3f7785392c82",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/bolt/optimize-remainder-1585823136319947045",
+    "sha": "0e5661667d613178a91328a1ce4141fd71336f5b",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/bolt/optimize-routh-array-17995347526867981301",
+    "sha": "92267659fcbd7af314e13b26c0b1a6896335b40e",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/bolt/optimize-swap-discrepancy-13556442188838183691",
+    "sha": "5c05c2dd05786598800e94663c5edc6df643d5b8",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/bolt/pisot-screen-rational-root-opt-13123365890262622810",
+    "sha": "cc6149ee0e9d92911745935047a5f003122cffe6",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/ccr-077d368d-on5byp",
+    "sha": "96c9e5089484c6b1cf4da76f08e1ee61b33566e7",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/ccr-104453ad-t9g03q",
+    "sha": "9e7f13db9ff99587a3403569a22ffbffc867d19d",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/ccr-22030460-261nzt",
+    "sha": "3cbd8a40ccaac9e81fb9ba1e53fe38fd59ce6d3b",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/ccr-24cd4559-db50jy",
+    "sha": "77d86e4de2e4b19e6be38e3f27fe1dc5712b49e3",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/ccr-473531a1-7isww7",
+    "sha": "c4cc2c5da51f3dfa460965b92caf571eaa62d913",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/ccr-52f2646e-awfjlp",
+    "sha": "13c2a2a98ca8fe1963674a878b1baec6ffdfc81f",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/ccr-5e65c2a8-09oihx",
+    "sha": "ab7acbcf4bba3a67447a031c71f9a5061fafc619",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/ccr-7cebb86e-uc1nol",
+    "sha": "e2dc81f59bf122721e9e556d4a6db1ae51fb13cf",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/ccr-dc37b2ac-m8a2p4",
+    "sha": "b80aca223f437bdbce6fa0d7ba75610d8b9cc3ff",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/claude/3-letter-pisot-verification-kykx1r",
+    "sha": "14daf57cf3ff2ae4df3cbf160f61e34b1125e279",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/boundary-hitting-strict-zipper-pnegpu",
+    "sha": "e8ce35a0511fee17d5454769741497c2c96cdcd8",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/claude/box-automaton-leftmost-chain-ledger-vbaif7",
+    "sha": "ebc815f1b1bf2ba32b11a94462f9b575762954d7",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/consolidation-e6ohqi",
+    "sha": "5343bc5f4d2a5c24e0d6d0f453bb5b0952be3b05",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/depth-support-saturation-pzqx3m",
+    "sha": "89f0f7977e1149c717f8a2cb2d6c3a8d1cb135e0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/estate-templates-documents-nmcjdp",
+    "sha": "f52d088f5e7ffa9a95eda2ad7af8388a6f23cb29",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/claude/extract-psc-nlap-packages-v5l1zl",
+    "sha": "643399a4654957801a58184ae2a76c8ca4c7d08f",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/claude/fibre-relation-return-vectors-w25u51",
+    "sha": "9a3fc8137cefcd4e9378aab84ed4d21308a345b0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/finite-regime-audit-fix",
+    "sha": "1aa56513747b4d5a83e7b4886c398353c413a095",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/isomorphisms-gaps-analysis-jkvo3f",
+    "sha": "ac6ccccbb11f8ef3b80b421cb2c50d167f2ed279",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/langlands-lab-structure-r8inbv",
+    "sha": "85e405dd627eaae859abec562f9e5fbcf7e4505a",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/library-extraction-candidates-d9lp6i",
+    "sha": "6d8e6a07b45b8b920718295c936074343dc45c1f",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/literature-gate-diagnostic-acw8d5",
+    "sha": "1a938a0d7a182f00a10310cdca8bd71198d21797",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/manuscript-recent-changes-14dycf",
+    "sha": "e3a199024ce1d4fc4e0bf25e248d4f7cd918d89a",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/meta-text-exemptions-context-s852x7",
+    "sha": "2d90b2b6233310e651a219bcaeb6c94e9e6fe1a1",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/claude/mojo-census-catalogue-optimization-x5sfc1",
+    "sha": "3e29df0d227fdad3b11db64d33457e5670a59514",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/claude/mojo-finite-proof-records-zrimg2",
+    "sha": "fd918f71d26b8012a5c163e807b0042655533a48",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/mojo-max-audit-oelod9",
+    "sha": "4ecb5fd2c318879fb715e4977a33b006d144e8ef",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/claude/mojo-tla-lean4-verification-7fqagk",
+    "sha": "fc7f7cbcd4802efda55ccbde1d3ba6b0e9cc568b",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/claude/nlapjt-remaining-tasks-g6p7w7",
+    "sha": "c8b959c44fee1ba63d009bb47211a4a525684b76",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/parikh-exemption-matching-alofab",
+    "sha": "ae3a61a663012b4d75dc219c05fa61794bcb3a9e",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/claude/pisot-bpa-component-proof-mgj7w6",
+    "sha": "f8afbfac8b8c2e2c914d891ae4e67bb089595984",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/pisot-conjecture-manuscript-ax4m51",
+    "sha": "6e53a4c75e624b62527e76d0d433ae129a352607",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/ppvc-proof-derivation-review-h7aqzu",
+    "sha": "7d24981546a2e04c904d6137af6b1bacb02a1825",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/prop-v-theorem-e-disproof-xt9u3p",
+    "sha": "7ae1519c0992de7d8a1f2bf7eb9602d65028329d",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/psc-598-state-hitting-12j9n0",
+    "sha": "907ac36d66e341273b49fa6c2ad456d3fbe2a295",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/psc-rauzy-fractals-5r5dd7",
+    "sha": "b7094c004177378143d854e124240971c6a5ed6d",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/psc-research-manuscript-r64m0c",
+    "sha": "82712c2a2c2118b4f64aaa0b466fb16791125581",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/claude/rational-interval-arithmetic-nekgk6",
+    "sha": "381c09faabc465d1f39f1aefc702475a09d37ed3",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/claude/repo-audit-8ehalr",
+    "sha": "3cb9c08edec80f8cec15974573f4931d455eb5fb",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/claude/repo-governance-standardization-hqwe83",
+    "sha": "7013239f8248af290f1dece293bb907b489ee667",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/s-adic-psc-research-rpe30o",
+    "sha": "1d1406fed2f1af57340ef75bd6e807ea03f505d5",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/shortest-path-goal-1m9gwl",
+    "sha": "ae3266904e528b3d88028231685e0059de30d4cd",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/claude/unimodular-route-exploration-c8ml1g",
+    "sha": "3d78f3776aca18588a164d14a4d8000bdd261b87",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/claude/vendor-finite-math-kernels-umyo7r",
+    "sha": "175e08695881e51f149bebafdf668ff71579dca7",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/catch-up-witness-evidence",
+    "sha": "79568d7d48c586f3ec63e571636a3a22fc12f692",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/close-overlap-bridge-audit",
+    "sha": "e4970aef7c74c62d44cd4479721db3ea946eb864",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/coaccessible-coincidence-bound",
+    "sha": "a955f96095a6445babb9eb3c20931be3f2eabf10",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/codex/daily-growing-pip-corpus",
+    "sha": "2a1daa8f99742b78beabb15fc2f0f3d5cd24c1b7",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/docs-status-2026-10-09",
+    "sha": "07eec640de7b421d5b258d5474838fe6058c1a2c",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/fix-prefix-normal-form-gate",
+    "sha": "78133a0c37f9d8d924c86f18cc8400264c3593ed",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/issue-84-seed-growth-bridge",
+    "sha": "56cb6f6876815eb9b4f8e542b5d3deddf311f037",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/lean-hook-proof-bank",
+    "sha": "ebdde8892535f57c483e413fe9183c0c4c5950de",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/max-parallel-bpa-census",
+    "sha": "2c8571ec383e5408bd350298fc251bf77943b463",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/mojo-authority-object-catalogue",
+    "sha": "1501d61ea49bc657c2c0beb0035bb351c38c245b",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/pr197-audit-2026-10-04",
+    "sha": "52fddafbdb4237ae9e5b3fc9e3e06836afc3229a",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/prefix-translation-normal-form",
+    "sha": "3c2368616a997314bb1377dc6fa3787327f446e9",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/progression-handoff-review-20261009",
+    "sha": "a59c04c84a33f10d7a895fd99325178469749606",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/codex/psc-audit-2026-10-06",
+    "sha": "bd55f0b045edfd3b7754f1e95b46db345c23abdc",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/codex/psc-cleanup-2026-10-06",
+    "sha": "f618ea9104520697ed12dbf750fffeaef43a4343",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/regenerate-estate-vendoring-command",
+    "sha": "42c090be63c96d574b961e4ee0ef2e3a2fb59e57",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/codex/uniform-coincidence-bound",
+    "sha": "19b3689baa93830b611569bf134a840c9b84f9cc",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/corpus/daily-growth",
+    "sha": "769209b3f54ef2be56fba8890f5cfd74207a78aa",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/dependabot/pip/pip-b18624d9a1",
+    "sha": "2e77320387c0a9eef6fe26776dd70054c917a368",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/docs/ck-v3-side-route-status-2026-10-12",
+    "sha": "0e621ce3700b65de8a83d476f7e0bc72d815bed7",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/docs/completion-ledger-2026-09-28",
+    "sha": "cfa4513768ca2318d848ed459faeba4a1766c71e",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/docs/current-project-onboarding-2026-10-23",
+    "sha": "713798766eb83a377bfba7bed1441300fc1e1072",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/docs/high-degree-psc-literature-audit-2026-10-23",
+    "sha": "5e2776fc656371dd7926d13277f99c273539ba7c",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/docs/human-review-progression-policy-2026-10-21",
+    "sha": "28ee0e7eae21a0d0c676a669ae9d85b11ab23397",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/docs/minimal-bad-scc-parallel-track",
+    "sha": "2db7b1708f525969152884f8dccb74b7e6b90332",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/docs/pr73-review-followup",
+    "sha": "3e6ff7ea3b2f0d7d24e4e5f3a91ec60263e82b46",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/docs/project-acceptance-and-status-reconciliation-2026-10-19",
+    "sha": "d03dcb79039e741154006bea714bd365da625532",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/docs/psc-completion-ledger-2026-09-14",
+    "sha": "002c265e9e41a22a248b1e76dd4be0c16371ae46",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/docs/psc-motivation-2026-10-02",
+    "sha": "03a9e57dcf34846dfbc293f123c34a948ff2d8d1",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/docs/rauzy-contact-salvage-2026-10-23",
+    "sha": "b0b1f2933d4195700b4e7defa0d0290b4e573c0b",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/docs/readme-class-a-recovery-frontier-2026-10-31",
+    "sha": "c8751d86ef16b06d2578d436f22a1d75783e4735",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/docs/readme-human-prose-refinement-2026-10-31",
+    "sha": "fa5ec68b06698e7dea31a5fb7a392a4823ea0fe3",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/docs/representation-control-bpa-overlap-2026-10-02",
+    "sha": "e0d80505d4abd84dadaa2a26d87acde37b4166bb",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/docs/research-roadmap-2026-09-21",
+    "sha": "4fa85b57f560dba657cf48e0d6435316e1bef520",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/docs/roadmap-weekly-audit-2026-10-05",
+    "sha": "bf798c4ef651e905fbc90e55b34e81ab9968f1d7",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/docs/subtractive-stewardship-skill",
+    "sha": "67ec9fd03e8b926dd89f38ea9d49e268d7728666",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/docs/sync-c4-record",
+    "sha": "a30344db09cb4e36e5873b39b9fdc14240257222",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/docs/sync-issue-139-baseline",
+    "sha": "6a029b43b5c35f884cac13c1be694b1c908371b8",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/docs/two-audience-proof-first-readmes-2026-10-31",
+    "sha": "0c67b4d3dd71e925a797408cdb61c2b86f2a5b7f",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/docs/v9-extraction-audit-2026-09-23",
+    "sha": "07474edf9e0eabbd557c6e47d73aa92eb627e5aa",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/docs/weekly-status-2026-10-16",
+    "sha": "ad99c4e5077e51eb32f00f4be1598e245c983295",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/evidence/separation-radius-results",
+    "sha": "ff96136ae3338af9e679b328900171c051688482",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/feat/occurrence-path-replay",
+    "sha": "f172874730a1532ac88ce26d4003d33d841d8545",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/feat/occurrence-path-replay-main-2026-10-19",
+    "sha": "2095f3f313fb4fe74f432ffaae768a1845c4f9a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/finite-signing-parity-mojo",
+    "sha": "792b7b9b50e4d9b64fa7ef65a6e5e81e88a1a9ff",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/fix/biinjective-spike-explicit-copy",
+    "sha": "8441d8173f10b20c93da052562fc55cac6c0e213",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/fix/biinjective-spike-explicit-copy-2026-10-29",
+    "sha": "d7e2096cd20d665eb03517651c046b0abc0890c5",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/fix/c3-lineage-invariant-abort",
+    "sha": "acbf30af4c3f4a13a3a1b8ff6e23ccd2bd21c9e4",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/fix/class-a-gap-independent-audit",
+    "sha": "456275dc420d91d85c24b4579bda92bf0d5b050c",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/fix/class-c-diagonal-acceptance-2026-10-30",
+    "sha": "2367491e8ad4ffb4e9f11aa069f08cb6b046ecea",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/fix/class-c-duplicate-invalid-workflow-2026-10-30",
+    "sha": "dc6c817a32d91f238f11d0bb6b4d01aa72c07281",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/fix/class-c-residual-domain-pin-2026-10-30",
+    "sha": "9c446c70670eed3f3fd50b95cda0cc31e5d61e39",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/fix/class-d-positive-b-empty-blocks-2026-10-19",
+    "sha": "e28854ccaff863a5716eed15715df6e1e3414a7a",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/fix/issue-168-markdown-controls",
+    "sha": "ab6005552ab66f712e3b852bc26233800a8a50cc",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/fix/issue-45-provenance-followup",
+    "sha": "e444cf752833d01afb44bd5da1d0d0ec0cec96b6",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/fix/manuscript-audit-stale-targets",
+    "sha": "f6cca6bb93cc9e9095e0e7eb38c490e56b13fa3a",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/fix/p1b-empty-residue-validation",
+    "sha": "8a9f0ec58a0f0388236953e45b7f01dd3ceb930f",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/fix/pr177-canonical-polynomials",
+    "sha": "8ffa62c3985e9da1623d46a1f3d2fbc0cc1b3f43",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/fix/psc-ci-symbolic-dev-dependency-2026-11-01",
+    "sha": "348746f3afb99dfa0afb0008bfaab66c47c48f98",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/governance/nonblocking-human-review-policy",
+    "sha": "c955dc62b2399a10893a93bcff2e5c134491831b",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/infra/mojo-first-default",
+    "sha": "fb0f5dda8482c17b512bbf774c1a005024054efe",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/main",
+    "sha": "3967ab32384e4add7c6d42a7519f42932c8625cb",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/maintenance/oct1-status-integrity",
+    "sha": "ac94a5a13b26d19fae9038d724bb8880af399451",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/optimize-poly-rem-15760588044278384049",
+    "sha": "be758795a1561c194bbf18f12bc1212f0cb579f8",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/perf/consolidate-rational-root",
+    "sha": "9748a9bdac444591cbe0587324d77a59af3f29fc",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/perf/optimize-has-rational-root-8494415122934972513",
+    "sha": "d3194c13a79d31794cfbef12c120eab1ee74827f",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/perf/pisot-screen-routh-17572273272453002735",
+    "sha": "e319f361f8052f76b457c756c2ac238941cfb86d",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/performance/derived-dynamics-itertools-12229008152404617021",
+    "sha": "9d6cdbc07e01fb2e86f546b995d9909da61f5834",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/policy/show-your-work-2026-10-19",
+    "sha": "4a92d479f920a94fe56e0aae34d47b1fde2803d1",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/proof/class-d-plus-row12-chamber-lattice-2026-10-19",
+    "sha": "e779ff704978b523e8d3565c56ae1e5f51328dac",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/a1-proximality-2026-10-19",
+    "sha": "52ffe61f65e5839715b63a3e01376dde1e627231",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/audit-priority-attainment-2026-10-16",
+    "sha": "7bddfea8f3e2c4694762ee102a3d079debb74cff",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/audit-priority-attainment-2026-10-16-main",
+    "sha": "86c9e3aa4d81e6b2642b25de04f24abc84ba2fcc",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c3-exception-audit",
+    "sha": "f75ae7f535da23e78bf7f0646d6c786d527aea01",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c3-mojo-census",
+    "sha": "9d94ef43203a9d00c3f1e62fec2bee2c7f10ba24",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c3-newborn-boundaries",
+    "sha": "0afcda2679d6b8f973e5e36d832ec6aeb3d310fc",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-bd-endpoint-eliminator",
+    "sha": "8b2c998c2351e0ceec151b14139f4e0f90f132a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-bd-endpoint-eliminator-actual",
+    "sha": "8b2c998c2351e0ceec151b14139f4e0f90f132a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-bd-endpoint-eliminator-clean",
+    "sha": "8b2c998c2351e0ceec151b14139f4e0f90f132a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-bd-endpoint-eliminator-clean2",
+    "sha": "bb0ef27e0222e0ac317d1f8939389c817c4020dc",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-bd-endpoint-eliminator-final",
+    "sha": "8b2c998c2351e0ceec151b14139f4e0f90f132a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-bd-endpoint-eliminator-final2",
+    "sha": "8b2c998c2351e0ceec151b14139f4e0f90f132a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-bd-endpoint-eliminator-final3",
+    "sha": "8b2c998c2351e0ceec151b14139f4e0f90f132a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-bd-endpoint-eliminator-final4",
+    "sha": "8b2c998c2351e0ceec151b14139f4e0f90f132a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-bd-endpoint-eliminator-pr",
+    "sha": "8b2c998c2351e0ceec151b14139f4e0f90f132a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-bd-endpoint-eliminator-real",
+    "sha": "8b2c998c2351e0ceec151b14139f4e0f90f132a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-bd-endpoint-eliminator-v2",
+    "sha": "8b2c998c2351e0ceec151b14139f4e0f90f132a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-bd-endpoint-eliminator-v3",
+    "sha": "8b2c998c2351e0ceec151b14139f4e0f90f132a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-bd-endpoint-eliminator-work",
+    "sha": "8b2c998c2351e0ceec151b14139f4e0f90f132a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-birth-event-transducer",
+    "sha": "09f0729c1f692cdee4d910eaf7c5db28ebf6e6d5",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-closed-scc-types",
+    "sha": "1ae2b679648655f6572271318e006cc91a5cc0a5",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-defect-degree-census",
+    "sha": "c57964c9cb96434719bb8b389e73685ddce93543",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-defect-intertwiner",
+    "sha": "7530d4d2eaa7fe690413f0aba6f9ba586fae6e4e",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-defect-intertwiner-clean",
+    "sha": "5dafa9f7c5a91e9ba5a176b56dd95f8542eaf9ea",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-degree2-lattice-cramer",
+    "sha": "fca695c6d59926af3a74b7825fb52e3c6ae13541",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-degree2-meanarea-integrality",
+    "sha": "e58817c2329bed2caedc95a79d8e5d699e38b39c",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-degree2-meanarea-lift",
+    "sha": "ab732a32ed05258ec9450d6323329504432a9a66",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-degree2-midarea",
+    "sha": "0eee98d9a213f6628131b8d9109a3aab3632f1de",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-degree2-midarea-clean",
+    "sha": "61543007a326246d0179c8a8f7aa5e074c4d95fc",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-degree2-parity",
+    "sha": "7eb3677d07510257465adfa33eceda04f3465817",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-degree2-synthetic-realizability",
+    "sha": "87367a2daefe91b98226412ea9027033fa0550dd",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-degree2-three-state-traces",
+    "sha": "ba01dd2cd246f7d87029328d392e70e3224194db",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-degree4",
+    "sha": "d00bd559f9f128e7109670c018619c27983bef3a",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-derived-cut-address",
+    "sha": "37c02c8347e86bdfa6bf102530a0e1ec7368e361",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-derived-recognizability",
+    "sha": "6eee0e5b058efb68f758430f2dd84af76e9bf6a7",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-endpoint-cores",
+    "sha": "3b0f43bed113a343e35087ab9b0ed93c5f573539",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-first-child-hub-phase",
+    "sha": "0f14285e86a123458243332290cb9bdf5a87f19b",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-good-edge-system-bridge",
+    "sha": "bef00ba7b0383c2a7ac3898e7fab2d3e18b176bf",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-good-edge-system-bridge-clean",
+    "sha": "6221917a8a022788597c2b918a278e65678c79be",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-hub-side-cocycle",
+    "sha": "d754dd88c957f965d1c542eb278038acb1b1492e",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-hub-side-cocycle-clean",
+    "sha": "cf8b7aa97d14f30aad786fd9543469fd322f186d",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-hub-word-dynamics",
+    "sha": "a41274045560a7ad9d20da82a8000d1206691255",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-legal-ancestry-towers",
+    "sha": "4b01c1e866d498d1042d8cd84c8819fc86476152",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-multidegree-sieve",
+    "sha": "8c2b39548a8ad6522600055b8ffbdf9af5336d94",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-ordered-hub-offset-negative",
+    "sha": "6a084d78b38694577a9cd1c075c0fc5277eb79dd",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-orientation-clean",
+    "sha": "1df80282ad0e6a4ff5734381eafa6a2aa7d1b437",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-orientation-monodromy",
+    "sha": "1df80282ad0e6a4ff5734381eafa6a2aa7d1b437",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-orientation-spectrum",
+    "sha": "f60e3a66a893112a001c372d1fd6ba79a16cba69",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-orientation-spectrum-clean",
+    "sha": "f60e3a66a893112a001c372d1fd6ba79a16cba69",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-parikh-intertwiner",
+    "sha": "44f10548f4d3fc63488d0b2bd0878543f93ed5cc",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-pisot-ancestry-finiteness",
+    "sha": "96d872817cbac6f156decbbf8891d39b08d59d28",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-prefix-difference-inflation",
+    "sha": "a88669a11594dde947c824f1cad019f1f851bf78",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-recognizable-cut-germs",
+    "sha": "9d8926e93b5fe08ff075099ec8d1923d72af5b89",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-recognizable-offset-cycle",
+    "sha": "8b2c998c2351e0ceec151b14139f4e0f90f132a0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/c4-relative-hierarchy-offset",
+    "sha": "671ae1270bb0feb3165146012baa410fd3c16f3c",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/c4-relative-hierarchy-offset-mojo",
+    "sha": "0e6078d03d40b9f44fc2d673eb0057c472b8f04c",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-U-internal-hit-after-352",
+    "sha": "89675acc6a6c89e88f695f1e20072528b9e52a85",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-U-star-2026-10-26",
+    "sha": "c1bac20011fb3a0f0e90499b5659422a63e175ba",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-U-uniform-hit-2026-10-26",
+    "sha": "496a224240ef6a27e5275b85d0999da67e296a3c",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-b3-2026-10-28",
+    "sha": "7ef8141a7ce7d50ff9ef27c97f7d0624b8803bec",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-b4-2026-10-28",
+    "sha": "b040833317a9e875bc124532c50a3378d1c400bf",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-b5-2026-10-28",
+    "sha": "0dde1a00e182023891bab697e5e8156e6f3577e3",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-complete-children-2026-10-26",
+    "sha": "1056b6580d2b59baf51827705e63f5fb29ecad83",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-d0-2026-10-28",
+    "sha": "a31c4634af997fdabe83d05fa5883a0e6199b150",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-d5-2026-10-28",
+    "sha": "d08738a3cb269b0b41d42ee2d6fbce7cb6995ff4",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-e-2026-10-27",
+    "sha": "f969772d56fec57c0e19ea719a17016e2a4c6899",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-e2-2026-10-27",
+    "sha": "e779f0a72c0cd9bbc6f81680e5450022b900ac2e",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-e6-2026-10-28",
+    "sha": "74aed04167323bc9c68cf8236538436a80cfa113",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-f-2026-10-27",
+    "sha": "e4f7fc767a45c9445c5294c16d7a703f75f43828",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-h3-2026-10-27",
+    "sha": "1d321403c56742ad8f357e1428f9f924d759c1d6",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-h4-2026-10-27",
+    "sha": "15b99b457cceee6816a9419da3b3f0bf437a6a22",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-h5-children-2026-10-27",
+    "sha": "5bb53aa43c9f0297894671c783771609f3fcef45",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-h5-exit-2026-10-27",
+    "sha": "db40f96fce9f91b0f0aac0aca3b0bb65038769cd",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-h9-2026-10-29",
+    "sha": "5490e2b85afa3cb75603fbc367ba0c371b35751b",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-j8-2026-10-29",
+    "sha": "ed9da154adcc7f05a2ca5bc496debb5db9a5fa53",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-j9-2026-10-29",
+    "sha": "1d0bd9f0761271ba70954c33c0d0c0dd6dd81e91",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-layer-2026-10-26",
+    "sha": "2f9fb1d6e163447345568002a9c87a8d77beaca9",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-next-run-2026-10-26",
+    "sha": "a1eb9692ce825ea7b181f25a42499382af0ae75d",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-p-2026-10-27",
+    "sha": "ac4b586cc6bfe92d11f62f73f0a380b90eb3ea67",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-p3-2026-10-27",
+    "sha": "cd7ac3069c7f8cc0f23cf8414b541a104214885f",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-p3-2026-10-28",
+    "sha": "75fc905513e18d3b38233dfeb205e1dfc6de7bc7",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-p9-2026-10-29",
+    "sha": "be3d1988443f312e62e3d89225b9e920e9fd34c6",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-q3-2026-10-28",
+    "sha": "cdd06669e429722cc703f7b2d5756ec3e15ed741",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-r3-2026-10-28",
+    "sha": "dac171d78436ca39bd2adb657ac9e185353b5b15",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-r4-2026-10-28",
+    "sha": "6906f9836aee0b336fa962d16c28209d403952b9",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-r5-2026-10-28",
+    "sha": "c771fe95d6ac7c8144df18329da726f02c6abb69",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-run-first-2026-10-26",
+    "sha": "0703f8d0b8138a81e55657c8df3f1dd42a0a6fef",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-tx-2026-10-28",
+    "sha": "d6266a0c1065020e3196a36a21557b8e207d9ef4",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-typed-kernels-2026-10-26",
+    "sha": "349fa286428b66d6cd0ce130255390f8b69580cb",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-u-2026-10-26",
+    "sha": "c372699b5c368bb922a8da0d3945076019585fb6",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-w-2026-10-27",
+    "sha": "eaff85f1fcc407345dfd847c4a3bbaa54f7f2442",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-boundary-w9-2026-10-29",
+    "sha": "05011ab3fbf430e3a7ade96558b56fb1ca211892",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-boundary-y4-2026-10-28",
+    "sha": "a094b36c73852be6bc99e6f3374407e1f73e540f",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-cc-complete-star-2026-10-31",
+    "sha": "8c1bf11c712eedbd648159d2bbd54c3ab8ec5ee9",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-cc-every-first-choice-2026-10-31",
+    "sha": "e6993bf83233ab087df457a2f8564110c7a5f909",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-consolidated-frontier-audit-2026-10-31",
+    "sha": "1e9a0b78f3e3c4bd74afd69540dfd8824cf3c837",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-cross-strip-fanin-2026-10-31",
+    "sha": "137240855be216706d976e80a9db6c1c681882c8",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-cy-complete-star-2026-10-31",
+    "sha": "f785232aa6a06452f262ba9f604f80ce050146a5",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-cy-every-first-choice-2026-10-31",
+    "sha": "442d170de37f89d9bfc4198f750559f080416b86",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-d2-constant-shell-2026-10-22",
+    "sha": "a6fa5e360a94f576a918e2d803ce6976530f1588",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-d2-parity-descent-obligations-2026-10-22",
+    "sha": "33006479dfdf111154f7bc830373d41f905cf3cb",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-d2-uniform-80-state-absorbing-corridor-2026-10-22",
+    "sha": "46ddf69e0ade3756ab4143f6c945643f7630c3cb",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-d2-uniform-child-closure-2026-10-22",
+    "sha": "3888e9c6865852790bca27ab45092c7815cdde3d",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-e6-eight-children-in-x-closure-2026-10-31",
+    "sha": "3363c53c557e9db893ced4ce2064ed21a6ff4e53",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-four-seed-exact-scc-hub-2026-10-31",
+    "sha": "79e10eea98de52f5e17a5ecb7be0c5a4e4b3264d",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-gap-sign-2026-10-23",
+    "sha": "fe0929d7f1671b1676a0ba8c32f09681afd78f59",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-native-length-normalization-2026-10-31",
+    "sha": "c85c513715404806e573e3ab4b2f67876a2c9030",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-nine-seed-x-extension-scc-2026-10-31",
+    "sha": "fa3e82c24a79517f2a0019908d239c773bf21707",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-nine-swap-seeds-to-x-2026-10-31",
+    "sha": "3ef4d5a207a8fca1a93211cdfed427668e9b63f9",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-oriented-swap-closure-2026-10-31",
+    "sha": "3f27e14eabd62133332c9bde74f56333140d1584",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-parikh-cubic-field-bridge-2026-10-31",
+    "sha": "5ef80b67021851560d8bf725a83e5a6a03beb2a6",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-recover-b4-r4-exits-2026-10-31",
+    "sha": "55bd3bb6e1db685870c1871f1e2194a466a44e5f",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-recover-r3-b3-r5-exits-2026-10-31",
+    "sha": "3da96283a8c29bacba718a50d12ad7cb9b3a50cc",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-reversal-orbit-quotient-2026-10-31",
+    "sha": "6b6c9c64e4fb700e85fdf3c81e3f9fbeb525781f",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-reversal-ranked-witnesses-2026-10-31",
+    "sha": "c297a1e468f70a98da05bb14fc35c52aa4042022",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-run-index-2026-10-21",
+    "sha": "b299cedcd648242cdddef0fcc5be5ef4b09fb146",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-t2-uniform-exit-2026-10-31",
+    "sha": "4e8f055578986cd3b9ec2d2c0d86f383e0fe485a",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-typed-carrier-2026-10-21",
+    "sha": "81736f40c1b6410090e13c61f12f4251bec17109",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-uniform-geometry-2026-10-22",
+    "sha": "e562bac8a4bcf2394e740cf9d048b7356fcba9c9",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-x-descendant-ladder-2026-10-31",
+    "sha": "7aaf6af8b1868a89ec969d27a92d6b459f301bc5",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-x-first-choice-compose-2026-10-31",
+    "sha": "24503085a7894b5375960cf0a80ede40a66c5cd8",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-x-first-choice-dependency-audit-2026-10-31",
+    "sha": "c7bc24a5986f41f893b93f3b3b198f10d9f2d09b",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-a-x-reversal-hub-2026-10-31",
+    "sha": "e694da19fab456eac96da1fe3dfb1a390ef9a249",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-x-to-eight-swap-seeds-2026-10-31",
+    "sha": "89c4207092bbbd166f6d42596286ec25cfc206ac",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-a-y0-every-first-choice-2026-10-31",
+    "sha": "ff6794c489f9977c0237609e9b8871be780aadd3",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-b-step2c",
+    "sha": "c2291a356660d47a352cde7e18996eb33420ffab",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-c-below-three-2026-10-29",
+    "sha": "3632f28242aa484485ecee752c5e28f9b713cf81",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-c-descendant-wall-2026-10-30",
+    "sha": "fda01f95f60776b11434f193f8a406db15bc1ea1",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-c-frozen-tail-2026-10-28",
+    "sha": "75f14753868c4e3c0df7c8eb651698fb0fc69da2",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-c-lower-cone-root-walls-2026-10-30",
+    "sha": "ea0d83e332ff5731799ef60c0cb05dd32e4c28ab",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-c-lower-strip-2026-10-29",
+    "sha": "8a25fe39ff78dab2d148fee23d894a988e5cea1d",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-c-nine-seed-interfaces",
+    "sha": "6b36fa7314230ac93d03d74141db33d70dc5f1c2",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-c-r-transfer-2026-10-30",
+    "sha": "3430081711960445dca872d81d15decea215799b",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-c-residual-diagonal-cover-2026-10-29",
+    "sha": "a92482f48ef2234380430836f325cb5974520b76",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-c-residual-pip-2026-10-29",
+    "sha": "33b5a670072a4b389ba56853527b9f259a191a5e",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-c-slope-three-2026-10-29",
+    "sha": "9d3be8998d852776307730c59887490f84b330fa",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-c-strip-2026-10-29",
+    "sha": "a2d99977d94fc24d7283bae497188a91b3f91c94",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-c-tail-theorem-2026-10-28",
+    "sha": "53dd9547cea65d3cdb1fa80c4e16f97b712aabd4",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-c-tile-ratio-walls-2026-10-30",
+    "sha": "72af98871be3e8680f1900182762e2f58bc650b2",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-d-assembly-rebind-2026-10-30",
+    "sha": "2be7c7658554142b0316ca170780b184e83cdbf2",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-d-barge-endpoint-no-go-2026-10-16",
+    "sha": "9d00953fed464720d431b93882c09eef21646cc0",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-d-boundary-certificate-reconciliation-2026-10-16",
+    "sha": "3ad94768aba2bc858567cbadafdfa290beaef518",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-d-boundary-contraction-2026-10-14",
+    "sha": "c8e99d29c5e457f1c3f83a92ea468f79bba30e0a",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/class-d-g1-corollary-2026-10-22",
+    "sha": "f4e2af6711060fd14d2cd484f3e167fb0e354ab7",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-d-integration-receipts-2026-10-21",
+    "sha": "e73ac606028f520def38065791c470630545492c",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-d-minus-recurrent-carrier-2026-10-19",
+    "sha": "a9457d9a08e971d57a635e68086a558fcff88e11",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-d-plus-chambers-2026-10-19",
+    "sha": "30dc38d1e79c5a94fd7e7f5337ba39cabd571e34",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-d-positive-b-spine-mojo-2026-10-19",
+    "sha": "03ec4724c34d6a3193ea0d868f3cd530141181e5",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-d-positive-b-wedge-2026-10-19",
+    "sha": "2d1d891457ef7377f658b50157149c3f4e0f4b83",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/class-d-target-certificate-2026-10-14",
+    "sha": "d1b92c6a7cd70418e7c1206e7de47710dfe77300",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/issue-139-adelic-cylinder",
+    "sha": "e8275571b344e8e615e21f3e603deae05865b736",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/issue-139-literature-baseline",
+    "sha": "c1ad42838134709558df0d747e63093759fc4140",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/issue139-ac-gap4-2026-10-22",
+    "sha": "bee581c4e0b8486dc084d53436bd45ed87122401",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/issue139-gap5-2026-10-23",
+    "sha": "9f2118027a3ab58e7f2703d4e3c67b711e379b42",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/level3-recurrent-trim",
+    "sha": "6f48eb020becf11c14980adc886b3b7a82904069",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/mercat-akiyama-interior-gate-2026-10-12",
+    "sha": "bbd633b4b1461a2e895b6f421055a87df9cc209e",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/mojo-endpoint-sign-factor-spike-2026-10-19",
+    "sha": "6ea07e984c69e05146fe3f9090ad83d159bf5fb0",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/nakaishi-2024-first-entry-audit-2026-10-13",
+    "sha": "d1d3e36a3306d8d54d81bfa42335e8ef94c54f15",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/nakaishi-affine-transport-nonunit-obstruction-2026-10-14",
+    "sha": "ee8718faea96ce2747e97cb722dbeb4836bfe177",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/nakaishi-first-entry-partition-2026-10-14",
+    "sha": "f8f34ef8f3bf40f8acdec12faa61b71383708a3c",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/nakaishi-realized-overlap-cycle-2026-10-15",
+    "sha": "e48333042376251681e8320282288490b0d82ee8",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/nakaishi-theorem3-address-bridge-2026-10-14",
+    "sha": "bcea03b51ea143e4b208fc7a912a886b3ad6b10e",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/omega-g1-continuation-2026-10-14",
+    "sha": "b416e5f4fec7580a904a55f191ce611e571783a7",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/overlap-trim-bridge",
+    "sha": "26fe93cb264c04718a656def8fb9c3287063bc57",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/p1-overlap-affine-pump",
+    "sha": "43718cee8749d658544a21c9c6ab0c33435e7d8c",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/p1-overlap-context-equality",
+    "sha": "48a64918490992375668b8f12fa637ac8a15743c",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/p1-overlap-minimal-obstruction",
+    "sha": "c9266e8db8d0044683116be5ea7073f253b85133",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/p1-overlap-ordered-zipper",
+    "sha": "3922d87125da7e30df5165116d377bf9ea8e1ad4",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/p1-two-route-milestone",
+    "sha": "39b5ae8e019430dad4a8cb2270d691d89e1c40ec",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/p1a-concentration-aux-b",
+    "sha": "1297174db56e9d3aa5d0334e25783c58323b5794",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/p1a-degree2-wedge-productivity",
+    "sha": "e846ece7292076d4832e26d6dab544b31ecddc9d",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/p1a-degree3-partial-main",
+    "sha": "3d9e19736a6b4f1fc6975bb12f11260c2d2e0cc5",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/p1b-affine-renewal-trace",
+    "sha": "a9198f107ac364313b29bec56a5955aabbd8b70d",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/p1b-affine-trace",
+    "sha": "436a6b40bd0df4e9c52c71d3da1449510bd2fa42",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/p1b-finite-cokernel-address",
+    "sha": "cb8f8c20741f831cf22ea17495ba9b40183a9561",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/p1b-joint-local-census",
+    "sha": "5cf14d54791fcfc8008c3e976904166f61b3ca7c",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/p1b-joint-local-types",
+    "sha": "6eea323f9035b82da83c4ea3a015f35c78942975",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/p1b-labelled-renewal",
+    "sha": "de0693bd3da159660b4b66a6d985da554ffff587",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/p1b-overlap-realization-bridge",
+    "sha": "4185ceb0251aa315a6e3814b816f88df01d4ad7c",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/p1b-proper-affine-splice",
+    "sha": "b6b6d3fcbabb2847afbb806754be49353471739d",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/p1b-rational-interval-margin-audit",
+    "sha": "175406cfcbee82aee269a29e5f594d6f6f6722aa",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/p1b-renewal-address",
+    "sha": "f715b2ae4b60dc39737bab4a66e4191d9b725c77",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/penrose-2d-bridge",
+    "sha": "b9e6c6c2f4b1a3fdff44ba7bfaf92282177f40ae",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/post-proof-padovan-plastic-a",
+    "sha": "a0b2523913b7e3bf302974d88c9bb51ddc7bf1bc",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/prefix-suffix-literature-gate-2026-10-19",
+    "sha": "111948855c417ab98003da8e0e9e83be6234a037",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/recover-class-a-q3-y0-conjugate-stars-2026-10-31",
+    "sha": "542555c46fb7b895ab4e08e96ed19d4ad0234a30",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/recover-class-a-u-internal-hit-2026-10-31",
+    "sha": "1ba58264da613f7aa3ad3bceb17c27a2a7390e5c",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/remediate-ci-boundary-sync-2026-10-02",
+    "sha": "0fcac4e1cc788d3c69a5ab12edfef904e5ac661d",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/selected-rank-soundness-mojo-2026-10-31",
+    "sha": "2bc209e05fd6fc83f5b02ec151971c09cb7431f6",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/symbolic-line-fit-first-2026-10-30",
+    "sha": "ded8203c77dc33761220c164150a3e3e64d88043",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/target-aware-bpa",
+    "sha": "7553017b969cce431007d40d5f4a9581bbe7a796",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/research/ternary-good-exit-barge-prior-art-2026-10-16",
+    "sha": "5e726b93b2831d9ca147b9769760f83468ade9dd",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/ternary-nonunit-good-exit-family-2026-10-15",
+    "sha": "249f88bd59cd8ed5fa849c81ff3e5bc1cc489efb",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/tier2-bridge-salvage",
+    "sha": "8a4c57bdc3e16c33a4ed190c9380d215411f89e4",
+    "ancestor_of_main": false
+  },
+  {
+    "branch": "origin/research/tier2-bridge-salvage-ci-fix",
+    "sha": "d4d49b88800c7f82b9db10ac390dca98dcdd781b",
+    "ancestor_of_main": true
+  },
+  {
+    "branch": "origin/salvage-k2-load-bearing-2026-10-11",
+    "sha": "ac4dd18e6edd9cb79b08b228e7f9a021d74a9633",
+    "ancestor_of_main": true
+  }
+]

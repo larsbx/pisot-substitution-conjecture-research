@@ -129,6 +129,27 @@ def additive_pixi_tasks_only(accepted: bytes, current: bytes) -> bool:
                     for name, task in old_tasks.items()))
 
 
+def added_sympy_test_dependency_only(accepted: bytes, current: bytes) -> bool:
+    """Admit only the missing SymPy test dependency, preserving execution.
+
+    Accepted Class-D kernels/oracles do not import SymPy. Three later
+    Class-A test modules do. Historical source hashes remain checked against
+    their original Git bytes; this does not attest fresh CI for current code.
+    Every existing dependency, Python/build setting and other table must
+    remain exactly equal. No arbitrary new requirement is admitted.
+    """
+    before = tomllib.loads(accepted.decode())
+    after = tomllib.loads(current.decode())
+    try:
+        old_dev = before['project']['optional-dependencies'].pop('dev')
+        new_dev = after['project']['optional-dependencies'].pop('dev')
+    except (KeyError, TypeError):
+        return False
+    exact = lambda value: json.dumps(value, sort_keys=True, separators=(',', ':'))
+    return (isinstance(old_dev, list) and new_dev == old_dev + ['sympy==1.14.0']
+            and 'sympy==1.14.0' not in old_dev and exact(before) == exact(after))
+
+
 def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
     expected = dict(format='class-d-integration-ci-v1', accepted_head=HEAD,
                     tested_merge=TESTED, main_merge=MERGED, accepted_tree=TREE,
@@ -198,6 +219,8 @@ def validate(manifest: dict, checks: dict, jobs: list[dict]) -> dict:
             raise ValueError('accepted mathematical source, lock or workflow changed: '+path)
         current = (ROOT/path).read_bytes()
         if hashlib.sha256(current).hexdigest() != digest:
+            if path == 'pyproject.toml' and added_sympy_test_dependency_only(historical, current):
+                continue
             if path == 'kernel/pixi.toml' and additive_pixi_tasks_only(historical, current):
                 continue
             if path.startswith('.github/workflows/') and (added_concurrency_block_only(historical, current)

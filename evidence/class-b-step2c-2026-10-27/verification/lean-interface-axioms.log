@@ -1,0 +1,5 @@
+'PscVerif.ClassBRegime.segment_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PscVerif.ClassBRegime.plus_partition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PscVerif.ClassBRegime.minus_partition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PscVerif.ClassBRegime.rank_reaches' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PscVerif.ClassBRegime.rank_reaches_with_bound' depends on axioms: [propext, Classical.choice, Quot.sound]

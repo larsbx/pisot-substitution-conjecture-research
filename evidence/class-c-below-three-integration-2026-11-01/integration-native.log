@@ -1,0 +1,3 @@
+MAINLINE_COVER eps=1 d=6..64 n=0..400 kind0=5413 kind1=132 kind2=169 kind3=483 kind4=2063 kind5=15399
+MAINLINE_COVER eps=-1 d=6..64 n=0..400 kind0=5649 kind1=56 kind2=289 kind3=231 kind4=2271 kind5=15163
+contract-receipt: class C below-three mainline integration: bounded arithmetic cover uses T_C2 at n=3d and T_C at onset; original finite ends contain required subset; selected sector inverse and negative-c bridge endpoints; invalid sign and oversized audit inputs refuse; no new graph or PSC verdict

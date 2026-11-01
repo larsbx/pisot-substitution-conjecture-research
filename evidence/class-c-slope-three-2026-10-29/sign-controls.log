@@ -1,0 +1,10 @@
+SIGN_CONTROL eps=1 a=4 b=10 u=0 v=0 d=14 n=46 g=-110,185,-5 sign=1
+SIGN_CONTROL eps=1 a=4 b=10 u=0 v=20 d=34 n=106 g=-270,465,-25 sign=-1
+SIGN_CONTROL eps=1 a=8 b=10 u=0 v=0 d=18 n=62 g=-150,245,-5 sign=1
+SIGN_CONTROL eps=1 a=8 b=10 u=0 v=20 d=38 n=122 g=-310,525,-25 sign=-1
+SIGN_CONTROL eps=-1 a=6 b=4 u=0 v=0 d=10 n=36 g=40,-20,0 sign=-1
+SIGN_CONTROL eps=-1 a=6 b=4 u=20 v=0 d=30 n=116 g=160,-120,20 sign=1
+SIGN_CONTROL eps=-1 a=8 b=4 u=0 v=0 d=12 n=44 g=114,-179,5 sign=-1
+SIGN_CONTROL eps=-1 a=8 b=4 u=0 v=20 d=32 n=104 g=274,-459,25 sign=1
+SIGN_CONTROL eps=-1 a=6 b=16 u=0 v=0 d=22 n=72 g=88,-44,0 sign=-1
+SIGN_CONTROL eps=-1 a=6 b=16 u=20 v=0 d=42 n=152 g=208,-144,20 sign=1
