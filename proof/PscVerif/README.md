@@ -24,3 +24,10 @@ Every inventoried proof must be reached. Only `propext`, `Classical.choice` and
 `Quot.sound` are accepted; `sorryAx`, local axioms, missing proofs or a missing
 completion receipt refuse verification. Inventory and individual `#print axioms`
 lines alone do not satisfy this gate.
+
+`PscVerif.SelectedRank` additionally proves finite selected-path rank descent,
+semantic path transfer, and descendant productivity under explicit seed-cover
+and all-edge closure hypotheses. Its finite counterexample proves why local
+selected ranks alone do not supply closure. Mojo-to-Lean implementation
+refinement and uniform X-descendant productivity remain separate obligations;
+see the [selected-rank interface](../../docs/selected-rank-soundness-2026-10-31.md).
