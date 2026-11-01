@@ -1,0 +1,503 @@
+{
+  "scope": "Prior accepted source revisions only; these are not hosted receipts for the new T/X/Y0 source.",
+  "rows": [
+    {
+      "pr": 357,
+      "head": "f969772d56fec57c0e19ea719a17016e2a4c6899",
+      "observed": "2026-10-28 before retargeting to main",
+      "check_conclusions": {
+        "success": 68
+      },
+      "selected_receipts": [
+        {
+          "name": "mojo-kernel",
+          "id": 122317476422,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540502974/job/122317476422"
+        },
+        {
+          "name": "python-tests",
+          "id": 122317475594,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540502974/job/122317475594"
+        },
+        {
+          "name": "lean-proofs",
+          "id": 122317476592,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540502974/job/122317476592"
+        },
+        {
+          "name": "tla-models",
+          "id": 122317476095,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540502974/job/122317476095"
+        },
+        {
+          "name": "source-provenance",
+          "id": 122317476519,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540502974/job/122317476519"
+        },
+        {
+          "name": "exact-kernels",
+          "id": 122318098529,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540502941/job/122318098529"
+        },
+        {
+          "name": "scoped-assembly",
+          "id": 122317278133,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540503011/job/122317278133"
+        },
+        {
+          "name": "evidence-policy",
+          "id": 122317279108,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540503145/job/122317279108"
+        }
+      ],
+      "integration": {
+        "merged": true,
+        "merge_sha": "031dff575998325b454a3aaff2ac8f743aba2835"
+      }
+    },
+    {
+      "pr": 359,
+      "head": "ac4b586cc6bfe92d11f62f73f0a380b90eb3ea67",
+      "observed": "2026-10-28 before retargeting to main",
+      "check_conclusions": {
+        "success": 67
+      },
+      "selected_receipts": [
+        {
+          "name": "mojo-kernel",
+          "id": 122317459988,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540549443/job/122317459988"
+        },
+        {
+          "name": "python-tests",
+          "id": 122317460139,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540549443/job/122317460139"
+        },
+        {
+          "name": "lean-proofs",
+          "id": 122317460167,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540549443/job/122317460167"
+        },
+        {
+          "name": "tla-models",
+          "id": 122317460214,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540549443/job/122317460214"
+        },
+        {
+          "name": "source-provenance",
+          "id": 122317460333,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540549443/job/122317460333"
+        },
+        {
+          "name": "exact-kernels",
+          "id": 122318232846,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540540729/job/122318232846"
+        },
+        {
+          "name": "scoped-assembly",
+          "id": 122317449170,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540549312/job/122317449170"
+        },
+        {
+          "name": "evidence-policy",
+          "id": 122317449711,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540549132/job/122317449711"
+        }
+      ],
+      "integration": {
+        "merged": false,
+        "reason": "Retargeting to main queued a fresh evidence-policy check; integration remains pending."
+      }
+    },
+    {
+      "pr": 360,
+      "head": "e779f0a72c0cd9bbc6f81680e5450022b900ac2e",
+      "observed": "2026-10-28 before retargeting to main",
+      "check_conclusions": {
+        "success": 67
+      },
+      "selected_receipts": [
+        {
+          "name": "mojo-kernel",
+          "id": 122317626479,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540596779/job/122317626479"
+        },
+        {
+          "name": "python-tests",
+          "id": 122317626578,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540596779/job/122317626578"
+        },
+        {
+          "name": "lean-proofs",
+          "id": 122317626685,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540596779/job/122317626685"
+        },
+        {
+          "name": "tla-models",
+          "id": 122317626772,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540596779/job/122317626772"
+        },
+        {
+          "name": "source-provenance",
+          "id": 122317626750,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540596779/job/122317626750"
+        },
+        {
+          "name": "exact-kernels",
+          "id": 122317628944,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540597131/job/122317628944"
+        },
+        {
+          "name": "scoped-assembly",
+          "id": 122317622733,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540596954/job/122317622733"
+        },
+        {
+          "name": "evidence-policy",
+          "id": 122317616284,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540596840/job/122317616284"
+        }
+      ],
+      "integration": {
+        "merged": false,
+        "reason": "Retargeting to main queued a fresh evidence-policy check; integration remains pending."
+      }
+    },
+    {
+      "pr": 361,
+      "head": "15b99b457cceee6816a9419da3b3f0bf437a6a22",
+      "observed": "2026-10-28 before retargeting to main",
+      "check_conclusions": {
+        "success": 67
+      },
+      "selected_receipts": [
+        {
+          "name": "mojo-kernel",
+          "id": 122317943859,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540686581/job/122317943859"
+        },
+        {
+          "name": "python-tests",
+          "id": 122317943571,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540686581/job/122317943571"
+        },
+        {
+          "name": "lean-proofs",
+          "id": 122317944152,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540686581/job/122317944152"
+        },
+        {
+          "name": "tla-models",
+          "id": 122317943688,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540686581/job/122317943688"
+        },
+        {
+          "name": "source-provenance",
+          "id": 122317943820,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540686581/job/122317943820"
+        },
+        {
+          "name": "exact-kernels",
+          "id": 122317933987,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540686587/job/122317933987"
+        },
+        {
+          "name": "scoped-assembly",
+          "id": 122317934451,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540687095/job/122317934451"
+        },
+        {
+          "name": "evidence-policy",
+          "id": 122317933224,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540686837/job/122317933224"
+        }
+      ],
+      "integration": {
+        "merged": false,
+        "reason": "Retargeting to main queued a fresh evidence-policy check; integration remains pending."
+      }
+    },
+    {
+      "pr": 362,
+      "head": "db40f96fce9f91b0f0aac0aca3b0bb65038769cd",
+      "observed": "2026-10-28 before retargeting to main",
+      "check_conclusions": {
+        "cancelled": 26,
+        "success": 67
+      },
+      "selected_receipts": [
+        {
+          "name": "mojo-kernel",
+          "id": 122318210094,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540763411/job/122318210094"
+        },
+        {
+          "name": "python-tests",
+          "id": 122318209914,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540763411/job/122318209914"
+        },
+        {
+          "name": "lean-proofs",
+          "id": 122318210183,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540763411/job/122318210183"
+        },
+        {
+          "name": "tla-models",
+          "id": 122318210795,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540763411/job/122318210795"
+        },
+        {
+          "name": "source-provenance",
+          "id": 122318209685,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540763411/job/122318209685"
+        },
+        {
+          "name": "exact-kernels",
+          "id": 122318197468,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540763286/job/122318197468"
+        },
+        {
+          "name": "scoped-assembly",
+          "id": 122318201534,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540763410/job/122318201534"
+        },
+        {
+          "name": "evidence-policy",
+          "id": 122318196835,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40540763189/job/122318196835"
+        }
+      ],
+      "integration": {
+        "merged": false,
+        "reason": "Retargeting to main queued a fresh evidence-policy check; integration remains pending."
+      }
+    },
+    {
+      "pr": 364,
+      "head": "5bb53aa43c9f0297894671c783771609f3fcef45",
+      "observed": "2026-10-28 before retargeting to main",
+      "check_conclusions": {
+        "cancelled": 26,
+        "success": 67
+      },
+      "selected_receipts": [
+        {
+          "name": "mojo-kernel",
+          "id": 122324211943,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40542471374/job/122324211943"
+        },
+        {
+          "name": "python-tests",
+          "id": 122324212610,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40542471374/job/122324212610"
+        },
+        {
+          "name": "lean-proofs",
+          "id": 122324212854,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40542471374/job/122324212854"
+        },
+        {
+          "name": "tla-models",
+          "id": 122324212744,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40542471374/job/122324212744"
+        },
+        {
+          "name": "source-provenance",
+          "id": 122324212237,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40542471374/job/122324212237"
+        },
+        {
+          "name": "exact-kernels",
+          "id": 122324217671,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40542472687/job/122324217671"
+        },
+        {
+          "name": "scoped-assembly",
+          "id": 122324211066,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40542471562/job/122324211066"
+        },
+        {
+          "name": "evidence-policy",
+          "id": 122324209497,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40542471182/job/122324209497"
+        }
+      ],
+      "integration": {
+        "merged": false,
+        "reason": "Retargeting to main queued a fresh evidence-policy check; integration remains pending."
+      }
+    },
+    {
+      "pr": 365,
+      "head": "e4f7fc767a45c9445c5294c16d7a703f75f43828",
+      "observed": "2026-10-28 before retargeting to main",
+      "check_conclusions": {
+        "success": 67
+      },
+      "selected_receipts": [
+        {
+          "name": "mojo-kernel",
+          "id": 122375799620,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799620"
+        },
+        {
+          "name": "python-tests",
+          "id": 122375799399,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799399"
+        },
+        {
+          "name": "lean-proofs",
+          "id": 122375799865,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375799865"
+        },
+        {
+          "name": "tla-models",
+          "id": 122375800475,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375800475"
+        },
+        {
+          "name": "source-provenance",
+          "id": 122375800234,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053084/job/122375800234"
+        },
+        {
+          "name": "exact-kernels",
+          "id": 122375797768,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053026/job/122375797768"
+        },
+        {
+          "name": "scoped-assembly",
+          "id": 122375802009,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053752/job/122375802009"
+        },
+        {
+          "name": "evidence-policy",
+          "id": 122375798457,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40557053244/job/122375798457"
+        }
+      ],
+      "integration": {
+        "merged": false,
+        "reason": "Retargeting to main queued a fresh evidence-policy check; integration remains pending."
+      }
+    },
+    {
+      "pr": 366,
+      "head": "9f01ab72beee5fd7d46717aab68ac0f5c4768042",
+      "observed": "2026-10-28 before retargeting to main",
+      "check_conclusions": {
+        "success": 67
+      },
+      "selected_receipts": [
+        {
+          "name": "mojo-kernel",
+          "id": 122395612824,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40562675758/job/122395612824"
+        },
+        {
+          "name": "python-tests",
+          "id": 122395613590,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40562675758/job/122395613590"
+        },
+        {
+          "name": "lean-proofs",
+          "id": 122395613614,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40562675758/job/122395613614"
+        },
+        {
+          "name": "tla-models",
+          "id": 122395614317,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40562675758/job/122395614317"
+        },
+        {
+          "name": "source-provenance",
+          "id": 122395613351,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40562675758/job/122395613351"
+        },
+        {
+          "name": "exact-kernels",
+          "id": 122395620753,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40562676153/job/122395620753"
+        },
+        {
+          "name": "scoped-assembly",
+          "id": 122395611704,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40562675954/job/122395611704"
+        },
+        {
+          "name": "evidence-policy",
+          "id": 122395612450,
+          "conclusion": "success",
+          "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/40562675893/job/122395612450"
+        }
+      ],
+      "integration": {
+        "merged": false,
+        "reason": "Retargeting to main queued a fresh evidence-policy check; integration remains pending."
+      }
+    }
+  ]
+}

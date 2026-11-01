@@ -1,0 +1,25 @@
+name: PSC class-A CY complete star and four-step typed exit
+
+on:
+  pull_request:
+    paths:
+      - 'oracles/python/class_a_boundary_cy_children.py'
+      - 'tests/test_class_a_boundary_cy_children.py'
+      - 'docs/class-a-boundary-cy-carrier-2026-10-31.md'
+      - '.github/workflows/class-a-boundary-cy.yml'
+  workflow_dispatch:
+
+jobs:
+  cy-exact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exact literal child and typed path differential replay
+        run: |
+          python -m pip install 'pytest>=7'
+          python -m pytest -q tests/test_class_a_boundary_cy_children.py
+          python oracles/python/class_a_boundary_cy_children.py > /tmp/class-a-cy.json
