@@ -1,0 +1,30 @@
+name: PSC class-A exact reversal orbit quotient
+
+on:
+  pull_request:
+    paths:
+      - 'oracles/python/class_a_reversal_quotient.py'
+      - 'tests/test_class_a_reversal_quotient.py'
+      - 'docs/class-a-reversal-quotient-2026-10-31.md'
+      - '.github/workflows/class-a-reversal-quotient.yml'
+  workflow_dispatch:
+
+jobs:
+  quotient-lift:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install independent test runner
+        run: python -m pip install 'pytest>=7'
+      - name: Complete exact X graphs, quotient SCCs and per-state shortest-path lifts
+        run: python -m pytest -q tests/test_class_a_reversal_quotient.py -k every_complete_finite_x_graph
+      - name: Complete 18-orientation strict graphs and exception-orbit census
+        run: python -m pytest -q tests/test_class_a_reversal_quotient.py -k eighteen_seed_orientation
+      - name: Arbitrary path lifting and negative graph/provenance controls
+        run: python -m pytest -q tests/test_class_a_reversal_quotient.py -k 'actual_lift or nonproductive_cycle or reversal_edge'
+      - name: Save exact quotient JSON summary
+        run: python oracles/python/class_a_reversal_quotient.py > /tmp/class-a-reversal-quotient.json
