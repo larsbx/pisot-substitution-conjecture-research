@@ -20,11 +20,11 @@ Several of the main implications are already available. The unresolved step is t
 
 ```text
 Primitive, irreducible Pisot substitution
-    => bounded discrepancy                       [PROVED]
-    => finite seed-patch overlap graph           [PROVED]
-    => one swap seed has only productive reachable overlaps    OPEN: issue #84
-    => coincidence density one / dense good set  [PROVED]
-    => pure discrete spectrum                    imported theorem
+    => bounded discrepancy                                     [PROVED]
+    => finite seed-patch overlap graph                         [PROVED]
+    => one swap seed has only productive reachable overlaps    [OPEN: issue #84]
+    => coincidence density one / dense good set                [PROVED]
+    => pure discrete spectrum                                 [IMPORTED theorem]
 ```
 
 The final step uses a published density-to-spectrum theorem whose hypotheses have been checked for this setting. The [proof ladder](docs/proof-ladder.md) and [state-of-program manuscript](manuscripts/PSC_balanced_pair_state_2026-09-13.tex) give the precise statements.
@@ -124,7 +124,7 @@ When both obstructions are eliminated, the completion theorem will connect them 
 
 The scope of each result matters. The standing assumptions are primitivity, nonzero determinant, irreducibility over the rationals, and the Pisot condition. A proof must not quietly assume unimodularity, independent tile lengths, injectivity, a uniform finite collar, or a Euclidean-only realization.
 
-**Unique decodability:** [PROVED] When needed, it is derived from full incidence rank rather than imposed separately.
+**Unique decodability:** repository-proved from full incidence rank when needed, rather than imposed separately.
 
 ## Reading the proofs and running the code
 
@@ -141,6 +141,8 @@ pixi run verify
 ```
 
 The verification script reports missing toolchains as skipped, not passed. Finite tests, symbolic proofs, hosted CI and independent review should be reported separately.
+
+**Independent human review is a final validation gate, not a research-progress gate.** A result labelled `human review pending` may still be used at its exact recorded scope; the label stays until that review actually happens ([AGENTS.md](AGENTS.md#review-gate)).
 
 For the history of the research, including superseded arguments, see the [completion ledger](docs/completion-ledger-2026-10-26.md), [side-notes journal](docs/side-notes-ledger.md), [branch recovery audit](docs/branch-conjugate-audit-2026-10-30.md) and [archive](archive/). The [Plastic-A/Padovan](docs/post-proof-padovan-plastic-a-conjectures-2026-09-23.md) and [Penrose](docs/bridges/penrose-2d-to-psc-interface-program.md) programmes provide related benchmarks and geometric comparisons, not missing premises of the direct PSC argument.
 
