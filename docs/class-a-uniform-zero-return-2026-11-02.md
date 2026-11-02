@@ -91,6 +91,16 @@ Exactly nine of those states have parent offset zero; hence the nonzero-offset p
 
 This is a **uniform linear-size, explicitly enumerable reverse-target set**, even though enumerating every individual indexed child address would yield quadratically many repetitions. The finite predecessor set does not imply finite reachability from the swap seed or any bound on the depth of entry. The normal terminalized overlap graph omits outgoing edges from already typed full-zero coincidences; they are offset-zero targets in their own right, not missing nonterminal transitions.
 
+### Conditional hitting equivalence (no new productivity premise)
+
+Let Gamma be **any actual occurrence-indexed, strict, child-closed** directed overlap graph for a fixed minus-Class-A substitution. Let Z be its full offset-zero vertex set, not merely its typed equal-letter coincidence terminals. Let H be Gamma's **nonzero-offset** vertices belonging to the explicit nine-segment inverse-target set. For any v in Gamma with nonzero offset,
+
+    v reaches Z  <=>  v reaches H.
+
+For the forward implication take the vertex just before the *first* offset-zero state on any composable occurrence path. Its index pair is necessarily a legal (F)/(P) address, hence that nonzero predecessor belongs to H. For the reverse implication, a vertex in H has a genuine legal zero-offset child by the inverse theorem and strict-geometry lemma, and child-closure keeps this child in Gamma. Concatenating that one edge reaches Z. The argument explicitly needs child closure; it does not claim it for an arbitrary curated label set.
+
+Thus the remaining Class-A specialization of BH can be expressed as a **uniform entry-to-H problem** for every relevant cyclic seed descendant, using an O(n+d)-size exact reverse target. This is a *reduction*, not a proof that entry occurs. It does not extend automatically to all substitutions or the adelic realized-overlap system.
+
 ### Strict-overlap admissibility of every nonempty inverse address
 
 This is stronger than a mere algebraic precursor: a legal address in the theorem actually yields a strict physical overlap. Let L_a>0 be the normalized tile length, so the incidence eigenvector equation gives L M = beta L. The top parent inflation interval is [0,beta L_a], and the bottom is [beta s,beta(s+L_b)], where s=L(p,q,r). Actual child i begins at its top proper-prefix length P_a(i), while bottom child j begins at beta s+P_b(j). Since the *full* Parikh zero-child equation is M w=prefix_a(i)-prefix_b(j), their beginnings are identical: P_a(i)=beta s+P_b(j). Both children have strictly positive lengths and lie inside their respective inflated parent intervals, hence share a positive open interval. Therefore their inflated parents overlap strictly; dividing by beta shows that the original parent overlap is also strict. The child at common beginning is strict too. No approximation of beta, endpoint-equality guess, or extra tiling legality hypothesis is used.
