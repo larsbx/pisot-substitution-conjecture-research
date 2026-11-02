@@ -1,0 +1,71 @@
+{
+  "archived_certificate_replay_exit_code": 0,
+  "caps_per_specimen": {
+    "nonterminal_literal_pairs": 20000000,
+    "states": 6000
+  },
+  "commands": [
+    {
+      "command": "pixi run --locked mojo run -I . tests/test_class_a_reversal_certificate.mojo --emit-certificates",
+      "cwd": "kernel",
+      "receipt": "native-certificates.log.gz"
+    },
+    {
+      "command": "python -m pytest -q tests/test_class_a_x_productivity.py tests/test_class_a_x_transfer_plane.py tests/test_class_a_x_signed_strip.py tests/test_class_a_reversal_quotient.py tests/test_class_a_finite_certificates.py",
+      "cwd": ".",
+      "receipt": "oracle-tests.log"
+    },
+    {
+      "command": "python oracles/python/class_a_finite_certificates.py --native-log /tmp/native-certificates.log --certificates /tmp/certificates.json.gz",
+      "cwd": ".",
+      "receipt": "verification.json"
+    },
+    {
+      "command": "python oracles/python/class_a_finite_certificates.py --certificate /tmp/certificates.json.gz",
+      "cwd": ".",
+      "receipt": "certificate-replay.json"
+    },
+    {
+      "command": "bash tools/verify_all.sh provenance",
+      "cwd": ".",
+      "receipt": "provenance.log"
+    },
+    {
+      "command": "sha256sum -c evidence/class-a-finite-certificates-2026-11-02/source-inputs.sha256",
+      "cwd": ".",
+      "receipt": "source-input-check.log"
+    }
+  ],
+  "exact_source_hosted_run": {
+    "accepted": false,
+    "status_at_recording": "queued",
+    "url": "https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/41447675233"
+  },
+  "general_psc_proved": false,
+  "governed_claim_status_changed": false,
+  "independent_full_literal_replay_exit_code": 0,
+  "independent_human_review": "pending",
+  "native_exit_code": 0,
+  "native_negative_controls": 16,
+  "native_stderr_empty": true,
+  "nonunit_realization_bridge_proved": false,
+  "original_pr_revision": "4496dec08c8c1b064fd7c5894db9d67ffbdf373b",
+  "provenance_exit_code": 0,
+  "python_exit_code": 0,
+  "python_tests": 41,
+  "repeated_certificate_bytes_identical": true,
+  "repeated_native_output_identical": true,
+  "scope": "22 explicitly named completed bounded S18 specimens; local exact-source acceptance",
+  "source_manifest_check_exit_code": 0,
+  "source_revision": "f7d4731e3be97e592b921af9681bf5f137f16475",
+  "source_tree": "9212dd1be4a5e8970c7ebbc7d3e3488bda31e361",
+  "totals": {
+    "all_edge_orientation_lifts": 190966,
+    "indexed_edges": 190966,
+    "literal_pairs": 3224980,
+    "quotient_orbits": 8088,
+    "selected_path_steps": 60330,
+    "vertices": 16132
+  },
+  "uniform_x_carrier_proved": false
+}
