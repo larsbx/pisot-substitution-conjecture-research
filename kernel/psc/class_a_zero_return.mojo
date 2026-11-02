@@ -4,9 +4,11 @@ Exact integer arithmetic only. Unlike finite graph searches, this works for
 all k,t >= 0 and returns the entire literal-address interval of one-step
 offset-zero CHILDREN for an oriented full-Parikh parent.
 
-A zero-offset child need not have equal tile letters. The result only
-characterizes one inflation level: it does NOT show any state ever reaches
-this one-step predecessor set, and does not assert all-parent geometry or BH.
+A zero-offset child need not have equal tile letters. A nonempty legal
+predecessor address has strict parent and child geometry by containment of
+positive-length common child intervals in both inflated parent tiles; this
+is separately checked in native tests. The result only characterizes one
+inflation level: it does NOT show seed-reachable entry or universal BH.
 """
 
 from finite_exact.checked_int import checked_add, checked_sub, checked_mul, checked_neg
@@ -48,10 +50,10 @@ def _delta(top: Int, bottom: Int) raises -> Int:
 def zero_return_addresses(k: Int, t: Int, w: BoundaryLabel) raises -> ZeroReturnAddresses:
     """All exact integer (i,j) with child Parikh offset 0.
 
-    The formula makes NO geometric parent-acceptance or reachability claim.
-    A genuine full-zero child at a legal address automatically has positive
-    physical intersection because both resulting tile lengths are positive.
-    For typed coincidence also require child letter equality, separately.
+    A nonempty inverse interval has strict parent and child overlaps, by the
+    common positive-length inflated child argument; this routine is the
+    arithmetic filter, and does not certify positivity for unvalidated words.
+    No assertion of seed-reachability or typed coincidence is made.
     """
     var par = _parameters(k, t)
     var n = par[0]
