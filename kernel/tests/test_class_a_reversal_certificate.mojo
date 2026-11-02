@@ -11,7 +11,10 @@ from psc.class_a_reversal_certificate import (
 
 
 def main() raises:
-    var members: List[List[Int]] = [[0, 0], [3, 0], [0, 3]]
+    var members = List[List[Int]]()
+    members.append([0, 0])
+    members.append([3, 0])
+    members.append([0, 3])
     var expected_vertices: List[Int] = [784, 352, 1440]
     var expected_quotients: List[Int] = [393, 177, 721]
     var checked_lifts = 0
