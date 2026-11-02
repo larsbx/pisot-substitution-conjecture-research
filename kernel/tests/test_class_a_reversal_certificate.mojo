@@ -66,7 +66,7 @@ def main() raises:
     bad = build_indexed(tables, 0, 0)
     # Corrupt a recorded ordered occurrence target, without changing
     # either occurrence index. Full typed child transport must reject.
-    bad.adj[0][0] = 0
+    bad.adj[0][0] = (bad.adj[0][0] + 1) % len(bad.states)
     refused = False
     try:
         _ = verify_indexed_reversal_quotient(tables, bad, 0, 0)
