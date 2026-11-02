@@ -120,3 +120,36 @@ def independently_check_zero_return(k: Int, t: Int, w: BoundaryLabel,
     if actual != one_step_zero_at(k, t, w, i, j):
         raise Error("one-step interval disagrees with actual full-Parikh transport")
     return actual
+
+
+def enumerate_zero_predecessor_states(k: Int, t: Int) raises -> List[BoundaryLabel]:
+    """All DISTINCT oriented strict overlap states with a literal zero child.
+
+    This is a parameter-uniform description, not a forward reachable graph.
+    There are exactly 18*n+6*d+7 states, including the nine zero-offset
+    oriented parent pairs. A typed full-zero source is terminalized in
+    the normal graph, even though its literal unterminalized children exist.
+    """
+    var par = _parameters(k, t)
+    var n = par[0]
+    var d = par[1]
+    var result = List[BoundaryLabel]()
+    for a in range(3):
+        for b in range(3):
+            var delta = _delta(a, b)
+            # The FIRST/FIRST source is always zero, and is also the
+            # positive-strip m=0 state precisely when delta=0.
+            result.append(BoundaryLabel(a, b, 0, 0, 0))
+            var rb = _run(-1, n, d, b)
+            var ra = _run(-1, n, d, a)
+            for m in range(checked_neg(rb), checked_add(ra, 1)):
+                if delta == 0 and m == 0:
+                    continue
+                var q = checked_sub(m, checked_mul(checked_add(d, 1), delta))
+                var r = checked_add(checked_neg(m), checked_mul(d, delta))
+                result.append(BoundaryLabel(a, b, delta, q, r))
+    var expected = checked_add(checked_add(checked_mul(18, n),
+                                           checked_mul(6, d)), 7)
+    if len(result) != expected:
+        raise Error("one-step predecessor linear-strip cardinality mismatch")
+    return result^
