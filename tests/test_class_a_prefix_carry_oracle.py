@@ -96,3 +96,87 @@ def test_local_digit_kind_agreement_does_not_force_global_hit():
     positions={p:vec for p,vec,_ in full}
     D=tuple(x-y for x,y in zip(positions[(0,0)],positions[(1,0)]))
     assert cramers(power(matrix(0,0),2),D) is None
+
+
+def actual_level_word(sigma,root,depth):
+    out=(root,)
+    for _ in range(depth):
+        out=expand_once(out,sigma)
+    return out
+
+
+def root_to_leaf_prefix_position(sigma,root,path):
+    """Address in sigma^depth(root), using exact smaller-block lengths."""
+    depth=len(path)
+    lengths=[(1,1,1)]
+    for _ in range(depth):
+        prior=lengths[-1]
+        lengths.append(tuple(sum(prior[b] for b in sigma[a])
+                             for a in range(3)))
+    letter=root
+    pos=0
+    for r,ordinal in enumerate(path):
+        assert 0<=ordinal<len(sigma[letter])
+        remaining=depth-r-1
+        pos+=sum(lengths[remaining][b] for b in sigma[letter][:ordinal])
+        letter=sigma[letter][ordinal]
+    return pos
+
+
+def genuine_paths(sigma,root,depth):
+    paths=[(root,())]
+    for _ in range(depth):
+        next_paths=[]
+        for parent,path in paths:
+            choices={0,1,len(sigma[parent])-1}
+            for index in sorted(choices):
+                if index<len(sigma[parent]):
+                    next_paths.append((sigma[parent][index],path+(index,)))
+        paths=next_paths
+    return [path for _,path in paths]
+
+
+def path_carry(sigma,k,t,a,b,apath,bpath):
+    assert len(apath)==len(bpath)
+    corrections=[]
+    top=a
+    bottom=b
+    for i,j in zip(apath,bpath):
+        assert i<len(sigma[top]) and j<len(sigma[bottom])
+        corrections.append(tuple(x-y for x,y in zip(
+            prefix(sigma[top],i),prefix(sigma[bottom],j))))
+        top=sigma[top][i]
+        bottom=sigma[bottom][j]
+    carry=(0,0,0)
+    for j,correction in enumerate(reversed(corrections)):
+        val=tuple(x+y for x,y in zip(carry,correction))
+        carry=cramers(matrix(k,t),val)
+        if carry is None:
+            return False,j,None
+    return True,-1,carry
+
+
+@pytest.mark.parametrize("k,t",[(0,0),(1,0),(0,1)])
+def test_three_level_actual_paths_match_full_expansion_and_cramer(k,t):
+    sigma=words(k,t)
+    full=[actual_level_word(sigma,a,3) for a in range(3)]
+    paths=[genuine_paths(sigma,a,3) for a in range(3)]
+    mp=power(matrix(k,t),3)
+    passes=refusals=0
+    for a,b in product(range(3),repeat=2):
+        for pa in paths[a]:
+            pi=root_to_leaf_prefix_position(sigma,a,pa)
+            for pb in paths[b]:
+                pj=root_to_leaf_prefix_position(sigma,b,pb)
+                diff=tuple(x-y for x,y in zip(
+                    prefix(full[a],pi),prefix(full[b],pj)))
+                expected=cramers(mp,diff)
+                good,fail,got=path_carry(sigma,k,t,a,b,pa,pb)
+                assert good==(expected is not None)
+                if good:
+                    assert got==expected
+                    passes+=1
+                else:
+                    assert 0<=fail<3
+                    refusals+=1
+    assert passes>0 and refusals>0
