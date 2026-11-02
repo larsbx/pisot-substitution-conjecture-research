@@ -73,6 +73,40 @@ def _det3(m: List[Int]) raises -> Int:
     )
 
 
+
+def proper_prefix_residue_admissible(
+    sigma: List[List[Int]], letter: Int, digit: Int,
+) raises -> Bool:
+    """Exact image-lattice filter for a *one-sided* newborn cut.
+
+    A one-sided source boundary forces M*E = +/- Parikh(sigma(a)[:digit]).
+    This is possible only when the proper-prefix Parikh column belongs
+    to M Z^3. Cramer's rule tests membership by exact integer minors.
+    This necessary condition never certifies existence of a cut.
+    """
+    if len(sigma) != 3 or letter < 0 or letter >= 3:
+        raise Error("invalid three-letter residue domain")
+    for a in range(3):
+        if len(sigma[a]) == 0 or len(sigma[a]) > 64:
+            raise Error("image outside safe residue arithmetic budget")
+        for j in range(len(sigma[a])):
+            if sigma[a][j] < 0 or sigma[a][j] >= 3:
+                raise Error("invalid three-letter image digit")
+    if digit <= 0 or digit >= len(sigma[letter]):
+        raise Error("residue filter requires an internal image digit")
+    var m = substitution_incidence(sigma)
+    var det = _det3(m)
+    if det == 0:
+        raise Error("singular incidence has no unique integral lift")
+    var q = _prefix_counts(sigma[letter], digit)
+    for column in range(3):
+        var replaced = m.copy()
+        for row in range(3):
+            replaced[3 * row + column] = q[row]
+        if _det3(replaced) % det != 0:
+            return False
+    return True
+
 def classify_irreducible_birth(
     sigma: List[List[Int]], parent: Pair, cut: Int,
 ) raises -> CutBirth:
@@ -134,6 +168,12 @@ def classify_irreducible_birth(
             total += m[3 * x + y] * defect[y]
         if total != 0:
             raise Error("literal cut fails the exact asynchronous inflation law")
+    if a[1] > 0 and b[1] == 0:
+        if not proper_prefix_residue_admissible(sigma, parent.u[a[0]], a[1]):
+            raise Error("actual one-sided return violates the image-lattice residue")
+    if b[1] > 0 and a[1] == 0:
+        if not proper_prefix_residue_admissible(sigma, parent.v[b[0]], b[1]):
+            raise Error("actual one-sided return violates the image-lattice residue")
     if a[1] == 0 and b[1] == 0:
         # Invertibility forces equal source prefix Parikh vectors; equal
         # counts force equal indices; irreducibility forbids this interior.
