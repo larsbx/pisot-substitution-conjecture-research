@@ -123,7 +123,9 @@ actual level-two paths over all three root letters at (k,t)=(0,0),(1,0)
 and compares to the independent direct full prefix and power membership.
 `tests/test_class_a_prefix_carry_oracle.py` builds the entire actual
 sigma-squared words and checks the result against independent matrix-power
-Cramer divisibility. The all-level mathematical statement does not borrow
+Cramer divisibility. It also tests selected genuine FIRST/RUN/LAST paths at
+level three, using fully expanded sigma-cubes and independently decoded
+root-to-leaf positions before comparing with Cramer's exact M³ test. The all-level mathematical statement does not borrow
 universality from these finite experiments.
 
 Commands (repository root and kernel, respectively):
