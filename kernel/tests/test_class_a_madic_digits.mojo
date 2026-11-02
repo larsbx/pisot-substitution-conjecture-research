@@ -54,12 +54,12 @@ def main() raises:
                 assert_equal(decoded[0],original[0])
                 assert_equal(decoded[1],original[1])
                 assert_equal(decoded[2],original[2])
-            refused=False
+            var decoded_refused=False
             try:
                 _=recover_zero_parent(k,t,[1,0,0],1)
             except:
-                refused=True
-            assert_true(refused)
+                decoded_refused=True
+            assert_true(decoded_refused)
 
             # Exhaustively enumerate the full index-2^level quotient without
             # asserting any cyclic group structure for this finite cokernel.
