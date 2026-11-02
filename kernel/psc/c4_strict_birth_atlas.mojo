@@ -117,7 +117,7 @@ def strict_birth_atlas(
                 parent_id, k, cut,
                 ds.images[parent_id][k - 1], ds.images[parent_id][k],
                 ds.child_signs[parent_id][k - 1], ds.child_signs[parent_id][k],
-                birth,
+                birth.copy(),
                 left_top, left_bottom, right_top, right_bottom,
             ))
     return result^
