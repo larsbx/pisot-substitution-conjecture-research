@@ -185,3 +185,71 @@ def test_fullrank_primitive_nonpip_strict_four_state_realization():
         assert (i, r, j, s) == expected_address
         assert defect(parent[0][:i], parent[1][:j]) == E
         assert defect(sigma[parent[0][i]][:r], sigma[parent[1][j]][:s]) == correction
+
+
+def test_two_sided_local_residue_and_endpoint_sieve_with_real_escape():
+    # This necessary finite calculation is independent of the Mojo driver.
+    # Its nonzero result is *not* a strict SCC certificate.
+    from itertools import product
+
+    def det(A):
+        (a, b, c), (d, e, f), (g, h, i) = A
+        return a*(e*i-f*h)-b*(d*i-f*g)+c*(d*h-e*g)
+
+    def sync(f, a, b):
+        for _ in range(4):
+            if a == b:
+                return True
+            a, b = f[a], f[b]
+        return a == b
+
+    def count(s):
+        M = [[word.count(str(i)) for word in s] for i in range(3)]
+        determinant = det(M)
+        assert determinant != 0
+
+        def integral_lift(q):
+            return all(
+                det([[q[row] if col == i else M[row][col]
+                      for col in range(3)] for row in range(3)]) % determinant == 0
+                for i in range(3)
+            )
+
+        first = [int(w[0]) for w in s]
+        last = [int(w[-1]) for w in s]
+        found = []
+        for a, b in product(range(3), repeat=2):
+            for r, t in product(range(len(s[a])), range(len(s[b]))):
+                if r == t == 0:
+                    continue
+                q = tuple(s[a][:r].count(str(k)) - s[b][:t].count(str(k))
+                          for k in range(3))
+                if not integral_lift(q) or sync(first, int(s[a][r]), int(s[b][t])):
+                    continue
+                lefta = [int(s[a][r-1])] if r else last
+                leftb = [int(s[b][t-1])] if t else last
+                if any(not sync(last, x, y) for x, y in product(lefta, leftb)):
+                    found.append((a, r, b, t))
+        return found
+
+    assert count(["01", "02", "0"]) == []
+    assert count(["1", "02", "202"]) == []
+    assert count(["1", "021", "001"]) == []
+    assert count(["11", "210", "10"]) == [(1,0,1,1),(1,1,1,0)]
+    assert len(count(["10", "102", "211"])) == 8
+
+    # A literal occurrence of the first PIP candidate is reachable directly
+    # from swap (01,10), but its child SCC is productive.
+    sigma={"0":"11","1":"210","2":"10"}
+    parent=("11210","21011")
+    assert children(infl(sigma,"01"),infl(sigma,"10")) == [parent]
+    top,bottom=infl(sigma,parent[0]),infl(sigma,parent[1])
+    assert (top,bottom)==("2102101021011","1021011210210")
+    assert cuts(top,bottom)==[0,3,13]
+    assert (addr(sigma,parent[0],3),addr(sigma,parent[1],3)) == ((1,0),(1,1))
+    assert defect(parent[0][:1],parent[1][:1]) == (0,1,-1)
+    assert defect(sigma["1"][:0],sigma["1"][:1]) == (0,0,-1)
+    h={a:sigma[a][0] for a in sigma}
+    g={a:sigma[a][-1] for a in sigma}
+    assert not sync([int(h[str(i)]) for i in range(3)],int(top[3]),int(bottom[3]))
+    assert not sync([int(g[str(i)]) for i in range(3)],int(top[2]),int(bottom[2]))
