@@ -8,7 +8,7 @@ from psc.class_a_boundary_children import BoundaryLabel, geometric_state, member
 from psc.class_a_x_productivity import build_indexed, terminal
 from psc.class_a_zero_return import (
     zero_return_addresses, one_step_zero_at, zero_return_predecessor,
-    independently_check_zero_return,
+    independently_check_zero_return, enumerate_zero_predecessor_states,
 )
 
 
@@ -27,6 +27,19 @@ def main() raises:
         var n = k + t + 3
         var d = k + 2 * t + 5
         var tables = build_seed_overlap_tables_screened(class_member(CLASS_A, n+d, n, n-1))
+        var all_parents = enumerate_zero_predecessor_states(k, t)
+        assert_equal(len(all_parents), 18*n+6*d+7)
+        var nonzero_parents = 0
+        for w in all_parents:
+            var possible = zero_return_addresses(k, t, w)
+            assert_true(possible.first_first or possible.positive_count() > 0)
+            assert_true(interior_overlap(tables, geometric_state(tables, w)))
+            if w.x != 0 or w.c != 0 or w.y != 0:
+                nonzero_parents += 1
+            var i = possible.lo if possible.positive_count() > 0 else 0
+            var j = i-possible.gap if i > 0 else 0
+            assert_true(independently_check_zero_return(k, t, w, i, j))
+        assert_equal(nonzero_parents, 18*n+6*d-2)
         # Every legal zero-return predecessor must give the zero vector,
         # without assuming that its parent overlap is strict.
         for top in range(3):
