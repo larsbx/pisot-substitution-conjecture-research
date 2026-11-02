@@ -1,0 +1,205 @@
+# C4 two-generation Parikh spanning — 2026-11-02
+
+**Status:** uniform, elementary, *conditional-on-irreducible-incidence*
+structural proof with an exact literal-word bounded checker and negative
+controls. The implication is mathematical, not inferred from finite tests.
+**Does not prove C4, G1, BH, A1′, PDS or PSC.**
+
+**Source baseline:** `main@8047acec73cb449763e9643deda9e72bb62053f6`
+(merged #457 strict-birth atlas, subsequent #458 documentation audit).
+[Issue #9](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/9)
+is administratively closed, not a mathematical C4 certificate.
+
+## 1. Stop/go against prior work and literature
+
+The [existing C4 Parikh intertwiner](c4-parikh-intertwiner.md)
+proves `P_C N_C=M P_C` for a *given* finite closed strict SCC.
+If the incidence characteristic polynomial is irreducible over
+`Q`, the **global** Parikh matrix `P_C` has rational rank three.
+The existing [C4 word-level return calculus](c4-prefix-difference-return-calculus.md)
+also requires actual zero-return factorization, not algebraic replacement
+arrows. These are retained as prior work.
+
+The linear-algebra input used here is the classical *cyclic vector
+property* of a linear operator with irreducible characteristic
+polynomial, a standard consequence of the minimal polynomial and
+Cayley–Hamilton theorem; no novelty is claimed for that fact.
+The scoped new C4 observation is **local and constructive**: the
+Parikh columns from *one chosen root's actual complete descendants*
+already span dimension three within only two substitutions. No finite
+SCC, legal seed, recognizability, Perron approximation, unit
+determinant or global G1 is needed.
+
+**Decision: proceed** with a short literal-word witness extractor and a
+genuine full-rank reducible strict negative. Do *not* repeat a bounded
+SCC-size algebra sieve or silently use the local result as
+the missing synchronization conclusion.
+
+## 2. Uniform local two-generation spanning statement
+
+Let `sigma` be a nonerasing substitution on the three-letter alphabet
+with integer incidence `M` whose characteristic polynomial
+`chi_M` is **irreducible over Q**. Let `T=(u,v)` be any nonempty
+Parikh-balanced finite word pair, not necessarily irreducible or legal.
+For `j=0,1,2`, define `D_j(T)` to be the actual **multiset of
+ordered irreducible balanced blocks at depth j**:
+
+- `D_0(T)` is the one unreduced whole balanced pair `T`;
+- `D_1(T)` consists of the genuine ordered zero-return factors of
+  `sigma(T)`;
+- `D_2(T)` consists of the ordered zero-return factors of the
+  inflation of **every occurrence** in `D_1(T)`, preserving all
+  parent ordinals, child ordinals, diagonal children and repeated
+  occurrences.
+
+Write `p(S)=Parikh(top(S))=Parikh(bottom(S))` and `p=p(T)`.
+
+> **Two-generation spanning:** The union
+> `D_0(T) ⊔ D_1(T) ⊔ D_2(T)` contains three *actual*
+> occurrence-labelled blocks whose Parikh columns have
+> a nonzero rational (indeed integer) `3×3` determinant.
+
+### Proof
+
+Actual ordered balanced-factor decomposition partitions the whole
+inflated top word. Therefore, counting with occurrence multiplicity,
+
+```text
+sum_{S in D_j(T)} p(S) = M^j p,     for j=0,1,2.
+```
+
+This is an equality of integer vectors, not a statement about
+abstract normalized BPA adjacency. The `j=2` identity follows by
+applying the same equality to *each occurrence* of a first-generation
+child and concatenating the resulting actual blocks.
+
+Now `p` is a nonzero rational vector because `u` is nonempty.
+If `p,Mp,M²p` were linearly dependent, a nonzero polynomial
+`f` of degree at most two would satisfy `f(M)p=0`.
+The monic polynomial of least degree annihilating `p` divides
+`chi_M`. Since `chi_M` is irreducible of degree three and
+`p != 0`, that least polynomial is `chi_M`, contradiction.
+
+Consequently `p,Mp,M²p` form a rational basis of `Q³`.
+Each of these vectors is an integer sum of the actual descendant
+columns in the corresponding level, so their combined column span
+must also equal `Q³`. Selecting three independent members of this
+finite multiset gives a nonzero integer minor. QED.
+
+**General dimension:** for an alphabet of size `d` with irreducible
+degree-`d` incidence characteristic polynomial, the same argument
+gives `d` independent actual descendant Parikh vectors within
+levels `0,...,d-1`. The current executable is specialized
+to three letters and does not establish a finite-state theorem
+for other alphabets.
+
+## 3. Consequence specifically for a hypothetical strict C4 SCC
+
+If a finite strict child-closed ternary PIP component `C` is
+**supplied**, then the three independent actual descendant
+occurrences from **every** `T in C` must lie entirely in `C`
+(after raw-orientation normalization). Thus:
+
+> **Two-step rank necessity:** From every strict source state,
+> its full depth-at-most-two actual child-occurrence cone
+> contains three rationally independent Parikh types.
+
+This strictly strengthens the previously established *global*
+`rank(P_C)=3` bookkeeping: it bounds **where** the independent
+columns must occur in the actual child graph, rather than just
+saying that three states somewhere in the SCC span.
+
+**Still missing:** A rank-three local cone does not force any
+child boundary into `Sync_+` or `Sync_-`, prove that a
+nonproductive failure yields a finite strict component (G1), or
+supply any hub-residual word/recognizability alignment.
+There is no claim that all descendant lineages converge or that
+finite local ranks prove C4.
+
+## 4. Exact positive controls and sharpness of two levels
+
+**Real-secondary PIP:** `sigma=1/02/202`, root `(01,10)`.
+
+```text
+depth 0: (01,10)                                     p=(1,1,0)
+depth 1: (102,021)                                   p=(1,1,1)
+depth 2: (021,120), (2,2), (0,0), (2,2)              p=(1,1,1),
+                                                       (0,0,1),
+                                                       (1,0,0),
+                                                       (0,0,1)
+```
+
+The complete literal descendant multiset contains six records.
+Depths 0–1 alone have rank **two**. The first deterministic
+independent triple is records `0,1,4`, with ordered address
+`root; (0); (0,2)` and columns
+
+```text
+[1,1,0], [1,1,1], [1,0,0]
+```
+
+whose determinant is **+1**. Thus the general two-generation bound
+cannot be shortened to one generation even for a genuine PIP swap
+seed. The first generation has no interior balanced zero return:
+this is the existing target-aware depth-one negative, not a new
+PSC obstruction.
+
+**Tribonacci:** `sigma=01/02/0`, root `(01,10)`.
+The first level is `(0,0),(102,201)`, so the first independent
+triple already occurs among depths 0–1:
+`(1,1,0),(1,0,0),(1,1,1)`.
+
+**Reducible strict negative:** `sigma=10/102/211`,
+root `(102,210)`, has primitive and full-rank incidence,
+but `chi_M=(x-1)(x²-2x-2)`. The actual complete
+two-generation forest has seven records whose Parikh columns
+all satisfy `p_0=p_2`; their rank is exactly **two**.
+This is the actual strict non-PIP control already analyzed in
+the [strict-birth atlas](c4-strict-birth-atlas-2026-11-02.md).
+It proves the irreducibility hypothesis cannot simply be
+replaced by primitivity + nonsingular incidence.
+
+## 5. Canonical implementation, provenance and acceptance
+
+- `kernel/psc/c4_two_generation_rank.mojo`: canonical
+  deterministic, literal word-level, greedy exact integer-minor
+  witness extractor. Retains every occurrence's depth, first
+  and second actual child ordinals, and full Parikh column.
+  It never substitutes a normalized quotient edge for a word
+  factor. Its reported rank is **bounded-data scope**.
+- `kernel/tests/test_c4_two_generation_rank.mojo`:
+  precise control triples and refusal on caps, malformed/unbalanced
+  sources, and the reducible full-rank strict fixture.
+- `tests/test_c4_two_generation_rank_oracle.py`: independent
+  standard-library literal full-word/zero-return/Parikh reconstruction.
+  It also checks all length-2 and length-3 anagram seed pairs in
+  the two named PIP substitutions, finite regression only.
+
+**Independent local Python evidence:** Four targeted oracle tests
+passed in the preparation environment on the same finite
+mathematical fixture logic. This is a local bounded replay,
+not a hosted Mojo acceptance or a machine-check of the universal
+cyclic-vector proof. The exact committed oracle source must be
+replayed in hosted CI before recording an exact-head test receipt.
+
+Reproduce from repository root:
+
+```sh
+cd kernel && mojo run -I . tests/test_c4_two_generation_rank.mojo
+cd .. && python -m pytest -q tests/test_c4_two_generation_rank_oracle.py
+bash tools/verify_all.sh provenance
+```
+
+Machine-word bounds are conservative: the checker limits original
+source word length to 256, individual image length to 16,
+and enumerated blocks to 10,000 by default. The theorem
+itself is unrestricted. Cap exhaustion **raises**, never
+returns an inconclusive result disguised as a mathematical
+rank counterexample. No floating-point PIP screen or
+unimodular/independence assumption is introduced.
+
+The prior C4 non-PIP strict, real-secondary PIP packet-cycle,
+second-letter/depth-one, and synthetic strong G/F controls
+are unchanged. All new mathematical claims are explicitly
+hypothesis-scoped. Independent human review remains final
+validation debt, not a prerequisite for continued proof development.
