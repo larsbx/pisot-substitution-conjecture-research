@@ -1,0 +1,14 @@
+{
+  "all_artifact_checksums_verified": true,
+  "artifact_zip_sha256": "3cc970eb64991c6bec93b4a885d48b0122e44218edd32ec38b5f98e27815d9bc",
+  "decompressed_certificate_identical": true,
+  "decompressed_certificate_sha256": "ff3558d6c0e58ae8ccd931199efc8848e7b84c1ac533df375c23d5c92c7e4ae1",
+  "general_psc": false,
+  "local_packet": "evidence/class-a-finite-certificates-2026-11-02",
+  "native_stdout_identical": true,
+  "native_stdout_sha256": "79c5c0a719af673fe41d4ac85700efcc2695c41d631628f0c6d8ce37db2ce637",
+  "nonunit_realization_bridge": false,
+  "scope": "22 completed bounded S18 specimens only",
+  "source_revision": "4ec572a60993a0e0d1d9f97ab64257fa61ee209f",
+  "uniform_x_carrier": false
+}
