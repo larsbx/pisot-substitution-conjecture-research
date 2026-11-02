@@ -64,6 +64,81 @@ The full-level child offset is M^m w-D, since bottom minus top prefixes are used
 
 This is a precise *decision test for a supplied pair of level-m prefix occurrences*, not an assertion that any admissible-looking digit or specific source eventually has such a pair. In particular, the global Class-A problem is still to prove entry from **every relevant cyclic seed descendant** into some actual zero-return predecessor; the existence of 2^m arithmetic cosets supplies no recurrence or escape mechanism by itself.
 
+
+## Theorem 3: actual ordered-prefix carry criterion, without expanding sigma^m
+
+Theorem 2 admits a second, *occurrence-level* certificate valid for every
+finite m and every pair of genuine equal-depth Dumont–Thomas paths. Let the
+two paths start at oriented root letters a,b, with zero-based child choices
+(i_0,...,i_(m-1)) and (j_0,...,j_(m-1)) written **root-to-leaf**.
+After each choice, the next parent letter is exactly the letter occurring at
+that chosen index in the current parent substitution word. Every index must
+exist at its level, including FIRST/RUN/LAST endpoints. Define the literal
+proper-prefix differences at those parent letters as
+
+    q_r = ab(prefix(top_parent_r,i_r))
+          - ab(prefix(bottom_parent_r,j_r)).
+
+The complete level-m proper-prefix difference is the **exact** identity
+
+    D = M^(m-1) q_0 + M^(m-2) q_1 + ... + q_(m-1).
+
+The quickest nonunit image-membership criterion now uses a carry recurrence
+in reverse path order. Set c_0=0 and for j=0,...,m-1 require the *integral*
+inversion
+
+    c_(j+1) = M^(-1) (c_j + q_(m-1-j)).
+
+The invertibility is tested by the parity of X-C at every stage. All stages
+succeed **if and only if D belongs to M^m Z^3**, and in that case c_m
+is the unique integer parent offset w with M^m w=D.
+
+**Proof.** If q_(m-1) lies in M Z^3 then c_1=M^(-1)q_(m-1)
+is integral, and D=M[D_1+c_1], where D_1 is the remaining weighted sum
+q_(m-2)+M q_(m-3)+... . Repeating this factorization shows divisibility
+by M^m exactly when each intermediate carry is integral; the final quotient
+is c_m. Conversely any failed intermediate inversion means the corresponding
+remaining term cannot lie in M Z^3, so neither can D lie in M^m Z^3.
+This is repeated exact matrix inversion, not an argument from finite samples.
+Actual ordered paths make the prefix factorization an identity rather than
+a hypothesis about abstract residue words. QED.
+
+**Important negative calibration:** At k=t=0 the root letters x/x and
+paths top (0,0), bottom (1,0) choose FIRST on both sides at their *deepest*
+level. Yet the upper-level prefix difference is (-1,0,0), whose X-C parity is
+odd. The first carry succeeds, the second fails, and the full level-two
+zero-return parent does not exist for this chosen pair. Thus equality of the
+lowest FIRST/non-FIRST flags is necessary at that level but is **not**
+sufficient for level-two hitting. Requiring raw flags to match at *every*
+level is also not established as a criterion: the higher carry is affected by
+lower-level image-lattice corrections. This failure is not a nonproductive
+SCC or a disproof of BH.
+
+The new canonical `kernel/psc/class_a_prefix_carry.mojo` reuses the existing
+actual Class-A word/index prefix transport and the index-two inverse.
+It validates the *entire* pair of paths before any membership verdict,
+returns the first failed carry stage, and uniquely reconstructs the parent
+when all stages pass. The accompanying native test exhausts every pair of
+actual level-two paths over all three root letters at (k,t)=(0,0),(1,0)
+and compares to the independent direct full prefix and power membership.
+`tests/test_class_a_prefix_carry_oracle.py` builds the entire actual
+sigma-squared words and checks the result against independent matrix-power
+Cramer divisibility. The all-level mathematical statement does not borrow
+universality from these finite experiments.
+
+Commands (repository root and kernel, respectively):
+
+```sh
+python -m pytest -q tests/test_class_a_madic_digits_oracle.py tests/test_class_a_prefix_carry_oracle.py
+cd kernel && pixi run --locked mojo run -I . tests/test_class_a_prefix_carry.mojo
+```
+
+This **does not** prove that some path pair with all successful carries
+occurs among seed-reachable strict-zipper descendants, or that a selected
+path can be made compatible with geometric overlaps at every intervening
+level. The remaining task in #452 must impose those occurrence, geometry,
+and all-descendant coverage conditions explicitly.
+
 ## Canonical implementation and independent acceptance
 
 - `kernel/psc/class_a_madic_digits.mojo` supplies exact checked incidence multiplication, index-two inverse, per-stage parity extraction, reconstruction, congruence, and unique integral zero-parent recovery. Its finite budget is m<=64. Overflow, malformed vectors, missing levels and nonbinary reconstruction digits refuse rather than become false proof receipts.
@@ -86,6 +161,6 @@ pixi run --locked mojo run -I . tests/test_class_a_madic_digits.mojo
 
 ## Negative controls, nonclaims and next obligation
 
-A one-bit nonzero residue refuses integer zero-parent recovery; two different digit words are never identified modulo M^m; the arithmetic residue alone is not a literal substitution occurrence; a word beginning in a correct residue need not arise along a seed-reachable strict graph path. No assumption of unimodularity, Euclidean-only representation, all-edge decreasing ranks, or group cyclicity is introduced.
+A locally matching deepest pair of FIRST flags can still fail a later exact carry; a one-bit nonzero residue refuses integer zero-parent recovery; two different digit words are never identified modulo M^m; the arithmetic residue alone is not a literal substitution occurrence; a word beginning in a correct residue need not arise along a seed-reachable strict graph path. No assumption of unimodularity, Euclidean-only representation, all-edge decreasing ranks, or group cyclicity is introduced.
 
 Next: combine the nine one-step predecessor segments of draft #451 with these exact level-m residue tests to seek a **parameter-uniform, actual-occurrence entry/escape theorem**. Any proposed induction must establish coverage for *all* relevant cyclic strict-zipper descendants, not merely that a sampled residue class has representatives. Remain scoped to minus Class A until a separate complete classification/transfer and nonunit realized-overlap dictionary are proved.
