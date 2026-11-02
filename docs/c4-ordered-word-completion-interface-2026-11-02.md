@@ -60,10 +60,10 @@ conditions, not proof of eventual coincidence of an arbitrary surviving edge.
 
 The missing **word-level** implication needs a quantified statement such as:
 
-> For every actual strict child-closed `C` as above, find a literal interior
-> zero-return/newborn child boundary in some finite inflation, with recorded
-> ordered factorization and legal occurrence ancestry, whose right-adjacent
-> pair is in `Sync_+` or whose left-adjacent pair is in `Sync_-`.
+> For every actual strict child-closed `C` as above, find a literal **one-step interior** zero-return/newborn child boundary
+> in `sigma(T)` for some `T in C`, with recorded ordered factorization and
+> legal occurrence ancestry, whose right-adjacent pair is in `Sync_+`
+> or whose left-adjacent pair is in `Sync_-`.
 
 That is the [issue #9 C4 target](https://github.com/larsbx/pisot-substitution-conjecture-research/issues/9).
 To derive it from the endpoint candidate mask, a *new* lemma must
@@ -88,13 +88,14 @@ packets `F`, consider only the actual transitions in `E`.
 1. Every root has **some** path to `H` iff every root is in the reverse
    reachability set of `H`.
 2. Every maximal root-started trajectory in the *retained graph* hits
-   `H` iff no root-reachable subgraph of `V\H` contains either
-   a directed cycle or a dead-end nonsuccess terminal.
+   `H` iff no **target-avoiding** root-reachable part of `V\H` contains
+   a directed cycle or a nonsuccess packet with no outgoing edge in the
+   *full* graph (not merely a sink in the induced target-free graph).
 
 The second equivalence includes both finite maximal paths and infinite
 ones. Proof: a reachable non-target cycle yields an infinite avoiding
-walk, and a reachable nonsuccess dead end yields a finite avoiding maximal
-walk. Conversely, any infinite avoiding walk in a finite graph repeats a
+walk, and a reachable full-graph nonsuccess dead end yields a finite
+avoiding maximal walk. Conversely, any infinite avoiding walk in a finite graph repeats a
 vertex, and any finite maximal avoiding walk ends at a dead end. QED.
 
 **Scope firewall:** this is elementary finite graph theory, not a
