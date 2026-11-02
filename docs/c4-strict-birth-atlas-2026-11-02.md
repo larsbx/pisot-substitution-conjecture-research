@@ -167,6 +167,49 @@ all 12 actual interior newborn cuts remain right/left endpoint
 nonsynchronizing. All literal Parikh/residue checks and actual strict
 child closure continue to hold.
 
+There is an **exact algebraic explanation** why this concrete
+full-rank primitive example does not meet the irreducible-PIP
+Parikh-intertwiner constraint. Write `P_C` for the three-by-four
+matrix of the balanced state Parikh columns and `N_C` for the
+four-by-four actual derived child-incidence matrix:
+
+```text
+       [1 1 2 4]               [0 0 3 5]
+P_C =  [1 3 4 6]       N_C =   [0 0 1 3]
+       [1 1 2 4]               [1 0 1 1]
+                               [0 1 0 0]
+
+M = [1 1 0; 1 1 2; 0 1 1],
+P_C N_C = M P_C = [2 4 6 10; 4 6 10 18; 2 4 6 10].
+```
+
+The first and third Parikh rows agree; a top-left two-by-two
+minor is `2`. Thus **rank_Q(P_C)=2**, exactly (not a
+numerical approximation). In particular the invariant rational
+subspace `{v: v_0=v_2}` is proper. The incidence characteristic
+polynomials obey
+
+```text
+chi_M(t)   = (t-1)(t^2-2t-2)
+chi_N_C(t) = (t-1)(t+2)(t^2-2t-2).
+```
+
+The identity is the already proved
+[Parikh intertwiner](c4-parikh-intertwiner.md), not a new
+original theorem. That result forces **rank_Q(P_C)=3**
+whenever the ternary `chi_M` is irreducible. Consequently this
+particular flat-word strict countermodel fails *two exact necessary
+tests* for a genuine PIP strict SCC: irreducibility of `chi_M`
+and the resulting Parikh-rank-three condition. This identifies
+a mathematical obstruction—not merely the label `non-PIP`.
+It does **not** establish that rank three together with flat
+hub words would force synchronization in every possible
+irreducible PIP system; that implication remains unproved.
+
+The canonical test and independent word oracle now recompute the
+three-by-four Parikh columns, complete occurrence-incidence
+matrix, exact intertwining and the nonzero rank-two minor.
+
 This observation strengthens the earlier singular non-Pisot control:
 the complete **ordered** hub bit word may be perfectly phase-flat
 even in a primitive nonsingular strictly nonproductive component.
