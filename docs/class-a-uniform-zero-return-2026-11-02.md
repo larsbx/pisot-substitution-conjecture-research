@@ -33,7 +33,7 @@ The legal positive addresses therefore form one contiguous integer interval:
     max(1,1+m) <= i <= min(R_a+1,R_b+1+m),
     j = i-m,
 
-where R_x=A, R_c=n, R_y=n-1 are the literal y-run lengths; an inverted interval means there are no positive hits. There are **no** mixed FIRST/non-FIRST zero-offset children. This characterizes zero **offset** only: an unequal-letter zero child is not a typed coincidence. Nor does a formal parent satisfying (F)/(P) automatically belong to the strict overlap graph.
+where R_x=A, R_c=n, R_y=n-1 are the literal y-run lengths; an inverted interval means there are no positive hits. There are **no** mixed FIRST/non-FIRST zero-offset children. This characterizes zero **offset** only: an unequal-letter zero child is not a typed coincidence. Every legal nonempty (F)/(P) address additionally gives an actual **strict physical parent-child overlap**, as shown below; a source satisfying only the algebraic equations with an *empty* legal index interval has no such conclusion. Seed reachability is still separate.
 
 Equivalently, for any fixed actual addresses i,j>=1, the **unique integral parent offset** capable of mapping to zero is
 
@@ -69,13 +69,19 @@ Substitute in the displayed integer inverse to obtain exactly
 
 The three coordinate equations are equivalent to the two source conditions and the value of m in (P). Actual word ordinals enforce 1<=i<=R_a+1 and 1<=i-m<=R_b+1, giving the interval. Conversely each address in that interval has the required full Parikh update to zero. This proves necessity and sufficiency for literal indexed child offsets **for all k,t>=0**, with no claim about how the parent itself was reached. QED.
 
+### Strict-overlap admissibility of every nonempty inverse address
+
+This is stronger than a mere algebraic precursor: a legal address in the theorem actually yields a strict physical overlap. Let L_a>0 be the normalized tile length, so the incidence eigenvector equation gives L M = beta L. The top parent inflation interval is [0,beta L_a], and the bottom is [beta s,beta(s+L_b)], where s=L(p,q,r). Actual child i begins at its top proper-prefix length P_a(i), while bottom child j begins at beta s+P_b(j). Since the *full* Parikh zero-child equation is M w=prefix_a(i)-prefix_b(j), their beginnings are identical: P_a(i)=beta s+P_b(j). Both children have strictly positive lengths and lie inside their respective inflated parent intervals, hence share a positive open interval. Therefore their inflated parents overlap strictly; dividing by beta shows that the original parent overlap is also strict. The child at common beginning is strict too. No approximation of beta, endpoint-equality guess, or extra tiling legality hypothesis is used.
+
+Thus the formula describes genuine literal one-step **strict overlap edges** between the computed parent and offset-zero child whenever the index interval is nonempty. It does not prove that those parent states occur in the swap-seed forward closure or arise in the full realized tiling-dynamical system. Native regression checks strict Perron geometry independently for every unique inverse predecessor at the declared parameter specimens.
+
 ### Immediate uniform consequence for the X hub
 
 The canonical X state is `(x,x,1,0,-1)`. Both initial letters are x, so delta(x,x)=0. Case (P) would require p=0, contradicting p=1. Case (F) would require the entire parent offset to vanish. Thus **X has no direct one-step offset-zero child at any minus-Class-A parameters**, even though known selected paths can reach coincidence after further steps. This is a lower bound of two steps, not a failure of BH and not a statement about all descendants.
 
 ## Executable contract and controls
 
-New canonical `kernel/psc/class_a_zero_return.mojo` implements the integer interval and the inverse predecessor directly with checked arithmetic. The native test replays every literal address at (k,t)=(0,0),(1,2),(3,0),(0,3), checks the unique parent against independent actual member transport, perturbs all three-offset conditions, exhaustively cross-checks bounded parent triples, and compares predicted zero-index pairs with all outgoing occurrence rows of the complete (0,0) S18 graph. All typed coincidences remain terminalized in that graph, so those sources are deliberately skipped. Nonexistent addresses, negative parameters and mixed first/non-first inverse requests refuse. The separate Python test implements independent proper-prefix counting and integer matrix multiplication; its positive/negative checks are not substitutes for native CI.
+New canonical `kernel/psc/class_a_zero_return.mojo` implements the integer interval and the inverse predecessor directly with checked arithmetic. The native test replays every literal address at (k,t)=(0,0),(1,2),(3,0),(0,3), checks each unique parent and child against the independent strict Perron geometry guard and actual member transport, perturbs all three-offset conditions, exhaustively cross-checks bounded parent triples, and compares predicted zero-index pairs with all outgoing occurrence rows of the complete (0,0) S18 graph. All typed coincidences remain terminalized in that graph, so those sources are deliberately skipped. Nonexistent addresses, negative parameters and mixed first/non-first inverse requests refuse. The separate Python test implements independent proper-prefix counting and integer matrix multiplication; its positive/negative checks are not substitutes for native CI.
 
 Run at repository root:
 
