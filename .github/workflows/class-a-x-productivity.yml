@@ -7,6 +7,10 @@ on:
       - 'kernel/psc/class_a_reversal_certificate.mojo'
       - 'kernel/tests/test_class_a_reversal_certificate.mojo'
       - 'tests/test_class_a_reversal_quotient.py'
+      - 'tests/test_class_a_finite_certificates.py'
+      - 'oracles/python/class_a_finite_certificates.py'
+      - 'docs/class-a-completeness-distance-*.md'
+      - 'evidence/class-a-finite-certificates-2026-11-02/**'
       - 'docs/class-a-reversal-native-*.md'
       - 'kernel/tests/test_class_a_x_*.mojo'
       - 'kernel/psc/class_a_boundary_children.mojo'
@@ -32,9 +36,16 @@ permissions:
 jobs:
   exact-indexed-replay:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Record exact source revision and checker inputs
+        run: |
+          mkdir -p /tmp/class-a-finite-acceptance
+          git rev-parse HEAD > /tmp/class-a-finite-acceptance/source-revision.txt
+          git ls-files -z kernel oracles/python/class_a*.py tests/test_class_a_finite_certificates.py .github/workflows/class-a-x-productivity.yml | xargs -0 sha256sum > /tmp/class-a-finite-acceptance/source-sha256.txt
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -42,7 +53,7 @@ jobs:
         run: |
           python -m pip install pytest==8.4.2 sympy==1.14.0
           python -m pytest -q tests/test_class_a_x_productivity.py tests/test_class_a_x_transfer_plane.py tests/test_class_a_x_signed_strip.py
-          python -m pytest -q tests/test_class_a_reversal_quotient.py -k 'actual_lift or reversal_edge'
+          python -m pytest -q tests/test_class_a_reversal_quotient.py tests/test_class_a_finite_certificates.py
           python oracles/python/class_a_x_ladder_symbolic.py > /tmp/x-symbolic.json
           cmp /tmp/x-symbolic.json evidence/class-a-x-productivity-2026-10-31/symbolic.json
           python oracles/python/class_a_x_transfer_plane_symbolic.py > /tmp/x-plane-symbolic.json
@@ -60,8 +71,23 @@ jobs:
           pixi run --locked mojo run -I . tests/test_class_a_x_transfer_plane.mojo
           pixi run --locked mojo run -I . tests/test_class_a_x_signed_strip.mojo
           pixi run --locked mojo run -I . tests/test_class_a_x_productivity.mojo --emit-indexed > /tmp/x-native.log
-          pixi run --locked mojo run -I . tests/test_class_a_reversal_certificate.mojo
+          pixi run --locked mojo --version > /tmp/class-a-finite-acceptance/mojo-version.txt
+          pixi run --locked mojo run -I . tests/test_class_a_reversal_certificate.mojo --emit-certificates > /tmp/class-a-finite-acceptance/native-certificates.log
       - name: Compare every native typed vertex and indexed edge with the independent oracle
         run: |
           python oracles/python/class_a_x_productivity.py --native-log /tmp/x-native.log > /tmp/x-native-comparison.json
           cat /tmp/x-native-comparison.json
+      - name: Independently replay outgoing completeness, shortest distances and all lifts
+        run: |
+          python oracles/python/class_a_finite_certificates.py --native-log /tmp/class-a-finite-acceptance/native-certificates.log --certificates /tmp/class-a-finite-acceptance/certificates.json.gz > /tmp/class-a-finite-acceptance/verification.json
+          python oracles/python/class_a_finite_certificates.py --certificate /tmp/class-a-finite-acceptance/certificates.json.gz > /tmp/class-a-finite-acceptance/certificate-replay.json
+          cat /tmp/class-a-finite-acceptance/verification.json
+          cd /tmp/class-a-finite-acceptance
+          sha256sum source-revision.txt source-sha256.txt mojo-version.txt native-certificates.log certificates.json.gz verification.json certificate-replay.json > SHA256SUMS
+      - name: Preserve exact-head finite acceptance evidence (including failures)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: class-a-finite-${{ github.event.pull_request.head.sha || github.sha }}
+          path: /tmp/class-a-finite-acceptance/
+          if-no-files-found: error
