@@ -6,8 +6,8 @@ from psc.c4_strict_birth_atlas import strict_birth_atlas
 from psc.derived_system import build_derived_system
 from psc.hub_cocycle import build_hub_cocycle, hub_gauge_preserves_perron_phase
 from psc.good_edge_system import candidate_good_edge_mask
-from psc.bpa import prefix_endpoint_map
-from psc.words import Pair
+from psc.bpa import prefix_endpoint_map, substitution_incidence
+from psc.words import Pair, parikh
 
 
 def test_fullrank_primitive_nonpip_strict_twelve_actual_births() raises:
@@ -35,6 +35,29 @@ def test_fullrank_primitive_nonpip_strict_twelve_actual_births() raises:
                 assert_equal(ds.child_signs[src][j], 1)
                 assert_equal(gauge.residual_bits[src][j], 0)
         assert_true(hub_gauge_preserves_perron_phase(ds, hub))
+    # Existing Parikh-intertwiner theorem explains the spectral boundary
+    # precisely: this reducible non-PIP control has rank(P_C)=2, whereas
+    # irreducible ternary PIP requires rank(P_C)=3 for a strict SCC.
+    var columns = List[List[Int]]()
+    for src in range(ds.size()):
+        columns.append(parikh(ds.states[src].u))
+    assert_equal(columns[0], [1, 1, 1])
+    assert_equal(columns[1], [1, 3, 1])
+    assert_equal(columns[2], [2, 4, 2])
+    assert_equal(columns[3], [4, 6, 4])
+    for src in range(ds.size()):
+        assert_equal(columns[src][0], columns[src][2])
+    assert_equal(columns[0][0] * columns[1][1] - columns[1][0] * columns[0][1], 2)
+    var m = substitution_incidence(sigma)
+    for src in range(ds.size()):
+        for row in range(3):
+            var child_total = 0
+            for j in range(len(ds.images[src])):
+                child_total += columns[ds.images[src][j]][row]
+            var inflated = 0
+            for a in range(3):
+                inflated += m[3 * row + a] * columns[src][a]
+            assert_equal(child_total, inflated)
     var atlas = strict_birth_atlas(sigma, states)
     assert_equal(len(atlas), 12)
     var counts: List[Int] = [0, 0, 0, 0]
@@ -144,4 +167,4 @@ def main() raises:
     test_productive_pip_and_singular_strict_are_refused()
     test_resource_budget_and_partial_component_refusal()
     print("C4 strict literal birth atlas: 12 complete births and refusal controls.")
-    require_contract("literal strict C4 atlas validates all ordered child boundaries and source addresses; primitive fullrank non-PIP four-state strict component has two compatible hubs with ALL ordered hub residual bits zero yet no endpoint synchronization; malformed/capped inputs refused")
+    require_contract("literal strict C4 atlas validates all ordered child boundaries and source addresses; primitive fullrank non-PIP strict component has rank-two Parikh carrier and all ordered hub residuals zero despite no endpoint synchronization; all-child Parikh intertwiner and refusal controls checked")
