@@ -1,0 +1,7 @@
+Lean release and Lake dependency pins agree
+info: downloading https://releases.lean-lang.org/lean4/v4.34.0-rc2/lean-4.34.0-rc2-linux.tar.zst
+info: installing /root/.elan/toolchains/leanprover--lean4---v4.34.0-rc2
+
+leanprover/lean4:v4.34.0-rc2 installed - (error reading lean version)
+
+error: failed to locate application

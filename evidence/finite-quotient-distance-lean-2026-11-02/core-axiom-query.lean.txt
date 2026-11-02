@@ -1,0 +1,17 @@
+import PscVerif.QuotientDistance
+#print axioms PscVerif.QuotientDistance.path_lift
+#print axioms PscVerif.QuotientDistance.terminal_path_iff
+#print axioms PscVerif.QuotientDistance.no_terminal_path_iff
+#print axioms PscVerif.QuotientDistance.shortest_iff
+#print axioms PscVerif.QuotientDistance.shortest_unique
+#print axioms PscVerif.QuotientDistance.path_bound
+#print axioms PscVerif.QuotientDistance.certified_shortest
+#print axioms PscVerif.QuotientDistance.certified_quotient_distance
+#print axioms PscVerif.QuotientDistance.longer_selected_witness
+#print axioms PscVerif.QuotientDistance.longer_is_not_exact
+#print axioms PscVerif.QuotientDistance.one_sided_projects
+#print axioms PscVerif.QuotientDistance.one_sided_terminal_iff
+#print axioms PscVerif.QuotientDistance.one_sided_cannot_lift
+#print axioms PscVerif.QuotientDistance.one_sided_quotient_terminal_path
+#print axioms PscVerif.QuotientDistance.one_sided_original_trapped
+#print axioms PscVerif.QuotientDistance.terminal_mismatch_refused
