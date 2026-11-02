@@ -76,6 +76,13 @@ def test_all_literal_sigma_two_path_pairs_against_cramer(k,t):
                     assert fail==1
                     second_fail+=1
     assert min(positives,first_fail,second_fail)>0
+    # Independent full-word/Cramer scratch replay at 2026-11-02; exact
+    # small-member counts, not bounds for any general parameter.
+    assert (positives,first_fail,second_fail)=={
+        (0,0):(3794,3154,3456),
+        (1,0):(7851,5612,7562),
+        (0,1):(8900,6240,8576),
+    }[(k,t)]
 
 
 def test_local_digit_kind_agreement_does_not_force_global_hit():
