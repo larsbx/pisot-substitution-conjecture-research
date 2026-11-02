@@ -36,8 +36,11 @@ is administratively closed; its final status note explains that closure
 concluded the research-routing track, **not C4**. The one-way
 [candidate good-edge test](c4-good-edge-system-bridge.md) proves that a
 genuine Barge–Diamond good pair survives the endpoint+first-child mask
-for any **supplied** finite strict child-closed PIP derived system. One
-surviving bit can force a candidate *identity*, not eventual coincidence.
+for any **supplied** finite strict child-closed PIP derived system. If exactly one bit survives **under the supplied strict PIP hypotheses**,
+then the Barge–Diamond existence theorem identifies that bit with an
+actually eventually-coincident edge. A bit surviving in isolation, or in
+a non-Pisot calibration, is not a certificate of eventual coincidence,
+and no such mask supplies C4's interior synchronization step.
 
 The target-aware [packet diagnostic](target-aware-bpa-diagnostic-2026-10-02.md)
 records literal occurrence/address, residual Parikh, orientation,
