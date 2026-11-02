@@ -86,7 +86,7 @@ def test_recurrent_pip_has_genuine_asynchronous_nonsync_cut() raises:
     assert_true(_contains(supertile, parent.v))
     # This support is NOT strict; it has actual diagonal children.
     var rejected = False
-    var only: List[Pair] = [seed, b, parent]
+    var only: List[Pair] = [seed.copy(), b.copy(), parent.copy()]
     try:
         _ = build_derived_system(sigma, only)
     except:
@@ -99,7 +99,7 @@ def test_strict_nonpisot_born_cut_and_bad_inputs() raises:
     var sigma: List[List[Int]] = [[1], [0, 1, 2], [1]]
     var a = Pair([0, 1], [1, 0])
     var b = Pair([1, 2], [2, 1])
-    var states: List[Pair] = [a, b]
+    var states: List[Pair] = [a.copy(), b.copy()]
     var system = build_derived_system(sigma, states)
     assert_equal(system.size(), 2)
     assert_equal(len(system.images[0]), 2)
