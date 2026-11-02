@@ -5,6 +5,7 @@ from mojo_smoke.claims import require_contract
 from psc.class_a_madic_digits import (
     MAdicDigits, parameters, apply_incidence, invert_image,
     extract_digits, reconstruct_digits, in_image_power, same_power_coset,
+    recover_zero_parent,
 )
 
 
@@ -43,6 +44,23 @@ def main() raises:
                                     allzero=False
                             assert_true(in_image_power(k,t,v,level)==allzero)
                             specimens+=1
+            # Every declared M^level parent offset is uniquely decoded from
+            # the exact proper-prefix-difference lattice coordinate.
+            var original: List[Int] = [1,-2,3]
+            var forward = original.copy()
+            for level in range(1,5):
+                forward=apply_incidence(k,t,forward)
+                var decoded=recover_zero_parent(k,t,forward,level)
+                assert_equal(decoded[0],original[0])
+                assert_equal(decoded[1],original[1])
+                assert_equal(decoded[2],original[2])
+            refused=False
+            try:
+                _=recover_zero_parent(k,t,[1,0,0],1)
+            except:
+                refused=True
+            assert_true(refused)
+
             # Exhaustively enumerate the full index-2^level quotient without
             # asserting any cyclic group structure for this finite cokernel.
             for level in range(1,5):
