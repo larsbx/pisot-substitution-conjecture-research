@@ -455,8 +455,7 @@ left adjacent letters = 0/2, nonsync under sigma_-;
 right adjacent letters = 2/1, nonsync under sigma_+.
 ```
 
-The source state has a **productive descendant**, so it is not a
-strict counterexample to C4. This golden witness rejects the
+The source state has a **literal productive descendant**:\n\n```text\n(11210,21011) -> (210,102) -> (1,1)\n```\n\nThus it is not a strict counterexample to C4. This golden witness rejects the
 overstrong claim `PIP + locally admissible proper-prefix digits =>
 every actual born cut synchronizes`. The next C4 step must use
 **strict all-child closure, ordered hub words, legal ancestry and the
