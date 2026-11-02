@@ -105,7 +105,71 @@ asynchronous interior newborn word events are forced. It **does not**
 show that any such event is in `Sync_+` or `Sync_-`. That
 synchronization implication is still missing.
 
-## 4. Exact recurrent PIP counterexample to the stronger local lemma
+## 4. Theorem C: non-unit one-sided image-lattice obstruction
+
+There is a second, **uniform word-digit necessary condition**, especially
+useful when `|det M|>1`. Under the hypotheses of Theorem A, suppose
+an actual newborn cut has exactly one within-image digit nonzero:
+`(r,s)=(r,0)`, `r>0`, or `(0,s)`, `s>0`.
+Then the inflation law becomes
+
+```text
+ M E = - Parikh(sigma(a)[:r])          (top-internal)
+ M E = + Parikh(sigma(b)[:s])          (bottom-internal).
+```
+
+Since `E in Z^3`, the indicated **proper-prefix Parikh vector must lie
+in the integral image lattice `M Z^3`**. The sign is irrelevant to
+membership. Thus for an arbitrary substitution with nonsingular integer
+incidence, a one-sided source-image cut after a prefix not in `M Z^3`
+is *impossible at every parent, every depth and every strict SCC size*.
+No converse (existence or synchronization) is claimed.
+
+**Proof:** direct substitution into the exact prefix-difference
+identity and integral source Parikh difference. QED. Cramer's rule
+tests membership by checking that all three determinant-replacement
+numerators are divisible by `det M`; this is valid without a
+unimodularity assumption.
+
+**Explicit non-unit PIP filter.** Take
+
+```text
+sigma(0)=1, sigma(1)=021, sigma(2)=001
+M = [[0,1,2],[1,1,1],[0,1,0]], det M=2
+char_M(x)=x^3 - x^2 - 2x - 2.
+```
+
+The characteristic polynomial has one Perron root greater than one
+and two conjugates of modulus below one (this substitution is the
+known non-unit PIP affine-pump fixture; the positive PIP classification
+is not derived from a floating-point numerical estimate here).
+For an integer column `q=(q0,q1,q2)`, direct solution gives
+
+```text
+M z = q <=> z1=q2, z2=(q0-q2)/2,
+              z0=q1-q2-(q0-q2)/2.
+q in M Z^3 <=> q0 = q2 (mod 2).
+```
+
+Hence the **first internal cut** of image `sigma(1)=021`
+or `sigma(2)=001` has prefix column `(1,0,0)`, fails the
+parity test and **cannot** be a one-sided balanced newborn cut.
+Their **second internal cuts** have columns `(1,0,1)` and
+`(2,0,0)`, respectively, and *pass the necessary test*.
+Passing does not construct a cut. At a cut internal on **both**
+sides the relevant correction is the *difference* of two
+proper prefixes, so one-sided exclusions must not be
+misapplied separately to each digit.
+
+The new `proper_prefix_residue_admissible` in the canonical
+Mojo module uses exact integer Cramer determinants and fails
+closed on singular inputs or illegal digits. It checks only
+the precise one-sided condition; a unit Pisot control passes
+all its proper-prefix residue checks. This is a new exact
+non-unit **necessary filter**, not BH, a good-edge word
+constraint, or a guarantee of C4 synchronization.
+
+## 5. Exact recurrent PIP counterexample to the stronger local lemma
 
 Retire the following overstrong proposal:
 
@@ -175,7 +239,7 @@ offset `209 <-> 429` control in *one* respect: it witnesses a full
 positions inside a child. It is weaker in that it does not provide a
 target-avoiding strict component. Both controls must be kept.
 
-## 5. Singular incidence counterexample (essential hypothesis)
+## 6. Singular incidence counterexample (essential hypothesis)
 
 For the existing primitive non-Pisot strict-component calibration
 
@@ -192,13 +256,13 @@ known two-state strict component is supplied separately. That
 non-Pisot strict component is retained as a factorization control,
 not as a positive instance of a PIP/full-rank claim.
 
-## 6. Executable scope and replay
+## 7. Executable scope and replay
 
 Canonical module:
 `kernel/psc/c4_cut_alignment.mojo`.
 It rebuilds literal inflated words, actual zero returns, canonical
 source indices and within-image digits, source prefix Parikh defects
-and the proper-prefix forcing vector. It rejects non-irreducible parents,
+and the proper-prefix forcing vector. A second function rejects impossible\none-sided proper-prefix digits using exact integral-image lattice tests. It\nrejects non-irreducible parents,
 a nonexistent/noninterior return, singular `M`, and inputs beyond
 a documented safe machine-integer budget (image length <=64;
 parent length <=4096). The mathematical theorem does **not**
@@ -217,7 +281,7 @@ tests passed**. The Mojo compiler was unavailable locally;
 **canonical Mojo checks are not reported as locally passed** and
 hosted exact-head CI must be inspected before acceptance.
 
-## 7. Completion boundary and next falsifiable C4 lemma
+## 8. Completion boundary and next falsifiable C4 lemma
 
 Theorem B supplies a **genuinely asynchronous** interior newborn
 cut in every hypothetical strict PIP component. To prove C4, one
