@@ -104,32 +104,45 @@ def test_strict_nonpisot_born_cut_and_bad_inputs() raises:
     assert_equal(system.size(), 2)
     assert_equal(len(system.images[0]), 2)
     assert_equal(len(system.images[1]), 2)
-    var witness = classify_irreducible_birth(sigma, a, 2)
-    assert_equal(witness.top_source, 1)
-    assert_equal(witness.bottom_source, 0)
-    assert_equal(witness.top_digit, 1)
-    assert_equal(witness.bottom_digit, 2)
-    assert_false(witness.top_boundary)
-    assert_false(witness.bottom_boundary)
-    assert_equal(witness.source_defect, [1, 0, 0])
-    assert_equal(witness.local_correction, [0, -1, 0])
-
+    # This strict control is singular (sigma(0) == sigma(2)).
+    # It is NOT an admissible positive test of the full-rank theorem.
+    var top = apply_substitution(sigma, a.u)
+    var bottom = apply_substitution(sigma, a.v)
+    assert_equal(coincidence_boundaries(top, bottom), [0, 2, 4])
     var caught = False
     try:
-        _ = classify_irreducible_birth(sigma, a, 1)
+        _ = classify_irreducible_birth(sigma, a, 2)
+    except:
+        caught = True
+    assert_true(caught)
+
+    # Essential hypothesis negative: the singular substitution can map an
+    # irreducible balanced parent to a bilaterally aligned interior return.
+    var singular_parent = Pair([0, 2], [2, 0])
+    top = apply_substitution(sigma, singular_parent.u)
+    bottom = apply_substitution(sigma, singular_parent.v)
+    assert_equal(top, [1, 1])
+    assert_equal(bottom, [1, 1])
+    assert_equal(coincidence_boundaries(top, bottom), [0, 1, 2])
+    caught = False
+    try:
+        _ = classify_irreducible_birth(sigma, singular_parent, 1)
+    except:
+        caught = True
+    assert_true(caught)
+
+    # Other fail-closed clauses on the nonsingular PIP fixture.
+    var pip: List[List[Int]] = [[0, 1], [0, 2], [0]]
+    var parent = Pair([0, 1, 0, 2], [2, 0, 1, 0])
+    caught = False
+    try:
+        _ = classify_irreducible_birth(pip, parent, 2)
     except:
         caught = True
     assert_true(caught)
     caught = False
     try:
-        _ = classify_irreducible_birth(sigma, Pair([0, 0], [0, 0]), 1)
-    except:
-        caught = True
-    assert_true(caught)
-    caught = False
-    var singular: List[List[Int]] = [[0], [0], [0]]
-    try:
-        _ = classify_irreducible_birth(singular, a, 1)
+        _ = classify_irreducible_birth(pip, Pair([0, 0], [0, 0]), 1)
     except:
         caught = True
     assert_true(caught)
@@ -138,5 +151,5 @@ def test_strict_nonpisot_born_cut_and_bad_inputs() raises:
 def main() raises:
     test_recurrent_pip_has_genuine_asynchronous_nonsync_cut()
     test_strict_nonpisot_born_cut_and_bad_inputs()
-    print("C4 bilateral birth: literal PIP and strict non-Pisot regressions passed.")
-    require_contract("irreducible nonsingular parents cannot have bilaterally aligned interior born zero returns; a recurrent legal PIP source still exhibits one-sided and locally nonsynchronizing births, while strict PIP C4 remains open")
+    print("C4 bilateral birth: literal PIP and singular strict-control regressions passed.")
+    require_contract("irreducible nonsingular parents cannot have bilaterally aligned interior born zero returns; a recurrent legal PIP source still exhibits a one-sided locally nonsynchronizing birth; singular full-rank negative is rejected; strict PIP C4 remains open")
