@@ -105,3 +105,38 @@ def test_hub_and_nonclaims():
         assert literal_child(k,t,1,0,(0,0,0),0,0)==(1,0,(0,0,0))
         # Algebraic zero descendants do not themselves prove that the
         # formal parent is a strict geometrical overlap.
+
+
+@pytest.mark.parametrize("k,t",[(0,0),(1,2),(3,0),(0,3),(5,7)])
+def test_nine_affine_predecessor_strips_exact_set_and_cardinality(k,t):
+    n=k+t+3
+    d=k+2*t+5
+    sigma=words(k,t)
+    R=[len(w)-2 for w in sigma]
+    predicted=set()
+    for top,bottom in itertools.product(range(3),repeat=2):
+        delta=int(top!=1)-int(bottom!=1)
+        predicted.add((top,bottom,0,0,0))
+        for gap in range(-R[bottom],R[top]+1):
+            predicted.add((top,bottom,delta,
+                           gap-(d+1)*delta,-gap+d*delta))
+    assert len(predicted)==18*n+6*d+7
+    assert len([v for v in predicted if any(v[2:])])==18*n+6*d-2
+    # Rebuild the entire inverse-target set from independent real prefix
+    # pairs, rather than the strip endpoints or a copied closed formula.
+    actual=set()
+    for top,bottom in itertools.product(range(3),repeat=2):
+        for i,j in itertools.product(range(len(sigma[top])),
+                                     range(len(sigma[bottom]))):
+            pt=prefix(sigma[top],i)
+            pb=prefix(sigma[bottom],j)
+            diff=[x-y for x,y in zip(pt,pb)]
+            if (diff[0]-diff[1])%2:
+                continue
+            p=(diff[0]-diff[1])//2
+            r=(n+d)*p+n*diff[1]-diff[2]
+            q=diff[1]-r
+            candidate=(top,bottom,p,q,r)
+            assert literal_child(k,t,top,bottom,(p,q,r),i,j)[2]==(0,0,0)
+            actual.add(candidate)
+    assert actual==predicted
