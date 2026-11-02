@@ -361,7 +361,110 @@ the theorem's proof. **Preparation-time Python local replay: five\ntests passed*
 **canonical Mojo checks are not reported as locally passed** and
 hosted exact-head CI must be inspected before acceptance.
 
-## 9. Completion boundary and next falsifiable C4 lemma
+## 9. Complete finite local cut-candidate sieve and its limitation
+
+The one-sided parity filter extends to **both** within-image digits:
+for arbitrary actual source letters `a,b` and proper image offsets
+`0<=r<|sigma(a)|, 0<=s<|sigma(b)|`, the zero-return inflation law
+requires the signed proper-prefix difference
+
+```text
+c = Parikh(sigma(a)[:r]) - Parikh(sigma(b)[:s])
+```
+
+to lie in the **integer image lattice `M Z³`**. Define the finite
+overapproximation `L_sigma` of *locally nonsynchronizing digit types*
+as all ordered `(a,r,b,s)` satisfying
+
+1. `(r,s)!=(0,0)` (proved bilateral exclusion);
+2. `c in M Z³` (exact Cramer divisibility, both sides);
+3. the right adjacent image letters `(sigma(a)[r],sigma(b)[s])`
+   are **not** eventually equal under the first-letter map; and
+4. some possible left adjacent letters are **not** eventually
+   equal under the last-letter map. At a within-image offset `r>0`,
+   the actual left letter is `sigma(a)[r-1]`. When `r=0`,
+   enumerate the last letters of *all three possible preceding source
+   letters* (and likewise for the bottom side).
+
+Condition 4 intentionally **overapproximates** legal/source-letter
+contexts. It does not claim the presence of a parent, a legal
+two-sided past, or a complete word-factorization edge. The canonical
+function `unresolved_local_birth_types` returns the **number of ordered
+offset types** in this overapproximation. It rejects singular
+incidence and malformed images, uses only exact arithmetic, and
+classifies endpoints with a finite three-letter map.
+
+> **Uniform zero-candidate eliminator (conditional).** For a fixed
+> primitive expanding ternary substitution with `det M != 0`, if
+> `L_sigma` is empty, no nonempty finite strict child-closed BPA
+> component can exist.
+
+**Proof.** Suppose such a component exists. By the strict expanding
+branching lemma above, an actual interior born cut exists.
+Its literal source addresses satisfy (1) by bilateral exclusion and
+(2) by `M E+c=0`. If either actual adjacent pair eventually
+synchronized, its inherited boundary would eventually produce a
+coincidence child, contradicting strict nonproductivity.
+Thus (3) and (4) hold, giving a member of `L_sigma`;
+contradiction. This proof uses **all actual children** and the exact
+endpoint definition; it does not require bounded SCC size or
+unimodularity. It is a *sufficient conditional per-substitution*
+strict-component eliminator, not a universal PSC theorem.
+
+### Exact named calibration
+
+The independent Python oracle and canonical Mojo regression record
+these **bounded-input exact sieve counts**:
+
+| sigma images (zero-based) | det M | `|L_sigma|` | interpretation |
+| --- | ---: | ---: | --- |
+| `01/02/0` (Tribonacci) | 1 | 0 | condition certifies no strict finite component |
+| `1/02/202` (real-secondary PIP) | -1 | 0 | same scoped certificate |
+| `1/021/001` (non-unit PIP) | 2 | 0 | same, including integral-lattice restriction |
+| `11/210/10` (non-unit PIP) | 2 | 2 | **nonzero**: zero-candidate criterion is unavailable |
+| `10/102/211` (primitive full-rank non-PIP strict control) | -2 | 8 | retains true strictly nonproductive witness |
+
+Do **not** extrapolate the three zero counts to all ternary PIP.
+Even with primitive irreducible Pisot incidence and full-rank
+non-unit arithmetic, local nonsynchronizing digit types may survive.
+In fact the non-unit PIP `sigma=11/210/10` has only the two
+lattice/endpoint-admissible ordered types
+
+```text
+(a,r,b,s) = (1,0,1,1)  and  (1,1,1,0).
+```
+
+Its incidence polynomial is `x³-x²-3x-2`, with discriminant
+`-107`; no integer root divides the constant term `2`,
+the Perron root lies in `(2,3)`, and its other two conjugates
+have squared modulus `2/beta<1`. `M²>0` entrywise.
+Thus it is an **exact primitive irreducible non-unit Pisot** fixture,
+not a synthetic exception.
+
+More strongly, the *first candidate is realized by an actual
+seed-reachable balanced newborn cut*:
+
+```text
+seed (01,10) --one complete literal inflation child--> (11210,21011)
+sigma(11210) = 2102101021011
+sigma(21011) = 1021011210210
+complete zero-return boundaries = [0,3,13]
+t=3: top address (source 1, digit 0); bottom (source 1, digit 1)
+E=(0,1,-1), c=(0,0,-1), so M E + c=0.
+left adjacent letters = 0/2, nonsync under sigma_-;
+right adjacent letters = 2/1, nonsync under sigma_+.
+```
+
+The source state has a **productive descendant**, so it is not a
+strict counterexample to C4. This golden witness rejects the
+overstrong claim `PIP + locally admissible proper-prefix digits =>
+every actual born cut synchronizes`. The next C4 step must use
+**strict all-child closure, ordered hub words, legal ancestry and the
+irreducible Pisot spectrum**, not just the local lattice
+or first-child endpoint phase. In particular no finite positive
+sieve count can be reinterpreted as evidence of a strict PIP SCC.
+
+## 10. Completion boundary and next falsifiable C4 lemma
 
 Theorem B supplies a **genuinely asynchronous** interior newborn
 cut in every hypothetical strict PIP component. To prove C4, one
