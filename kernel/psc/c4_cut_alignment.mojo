@@ -10,7 +10,7 @@ checks these hypotheses and returns the asynchronous source addresses and
 exact prefix-defect/correction relation. No global C4, BH, G1 or PSC inference.
 """
 
-from psc.bpa import apply_substitution, coincidence_boundaries, image_prefix_lengths, substitution_incidence
+from psc.bpa import apply_substitution, coincidence_boundaries, image_prefix_lengths, substitution_incidence, prefix_endpoint_map, suffix_endpoint_map
 from psc.words import Pair, is_balanced
 
 
@@ -106,6 +106,86 @@ def proper_prefix_residue_admissible(
         if _det3(replaced) % det != 0:
             return False
     return True
+
+
+def _eventually_equal(f: List[Int], a: Int, b: Int) -> Bool:
+    # An unordered off-diagonal pair has only three possibilities;
+    # if equality is not reached in four steps, an off-diagonal pair repeats.
+    for _ in range(4):
+        if a == b:
+            return True
+        a = f[a]
+        b = f[b]
+    return a == b
+
+
+def _integral_column_lift(m: List[Int], det: Int, q: List[Int]) raises -> Bool:
+    if det == 0 or len(q) != 3:
+        raise Error("integral image test requires nonsingular ternary matrix")
+    for column in range(3):
+        var replaced = m.copy()
+        for row in range(3):
+            replaced[3 * row + column] = q[row]
+        if _det3(replaced) % det != 0:
+            return False
+    return True
+
+
+def unresolved_local_birth_types(sigma: List[List[Int]]) raises -> Int:
+    """Necessary local residue/endpoint C4 filter, with *all* side contexts.
+
+    Returns the number of ordered (a,r,b,s) image-digit pairs that could
+    be a nonsynchronizing interior zero return. The candidate count is an
+    OVERAPPROXIMATION: source occurrence existence/Parikh words, strict
+    child closure and whole-word realization are not asserted.
+    Count zero + an independently proved strict-component branching lemma
+    eliminates every finite strict component for this individual sigma.
+    """
+    if len(sigma) != 3:
+        raise Error("local C4 filter requires exactly three images")
+    for a in range(3):
+        if len(sigma[a]) == 0 or len(sigma[a]) > 64:
+            raise Error("image outside checked local-filter arithmetic budget")
+        for j in range(len(sigma[a])):
+            if sigma[a][j] < 0 or sigma[a][j] >= 3:
+                raise Error("invalid image letter")
+    var m = substitution_incidence(sigma)
+    var det = _det3(m)
+    if det == 0:
+        raise Error("local C4 filter refuses singular incidence")
+    var first = prefix_endpoint_map(sigma)
+    var last = suffix_endpoint_map(sigma)
+    var count = 0
+    for a in range(3):
+        for r in range(len(sigma[a])):
+            for b in range(3):
+                for s in range(len(sigma[b])):
+                    if r == 0 and s == 0:
+                        continue
+                    # Immediately or eventually synced right endpoints
+                    # cannot occur as first letters of a strict child.
+                    if _eventually_equal(first, sigma[a][r], sigma[b][s]):
+                        continue
+                    var qa = _prefix_counts(sigma[a], r)
+                    var qb = _prefix_counts(sigma[b], s)
+                    var correction: List[Int] = [0, 0, 0]
+                    for k in range(3):
+                        correction[k] = qa[k] - qb[k]
+                    if not _integral_column_lift(m, det, correction):
+                        continue
+                    # On an image boundary, the left letter comes from an
+                    # arbitrary preceding source image. Enumerate all such
+                    # contexts: this is deliberately an over-approximation.
+                    var possible_left = False
+                    for prev_a in range(3):
+                        for prev_b in range(3):
+                            var left_a = sigma[a][r - 1] if r > 0 else last[prev_a]
+                            var left_b = sigma[b][s - 1] if s > 0 else last[prev_b]
+                            if not _eventually_equal(last, left_a, left_b):
+                                possible_left = True
+                    if possible_left:
+                        count += 1
+    return count
 
 def classify_irreducible_birth(
     sigma: List[List[Int]], parent: Pair, cut: Int,
