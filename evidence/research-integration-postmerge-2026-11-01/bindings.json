@@ -1,0 +1,46 @@
+{
+  "main": "c27cb59693f17648d6291e6f6b306ece73ffd6a2",
+  "candidate_head": "82e84827b83e72865e0e8bd7c271d18101e9baa9",
+  "tree": "1fbcb57e8f10bb8f6d7f970c1ccec0897502aaf9",
+  "source_sha256": {
+    "proof/PscVerif/.gitignore": "b3ad09fc93f83fdbd0bee771258dd4a58d3798fd7e6048611dde5a804bb43f1e",
+    "proof/PscVerif/ProofBankAudit.lean": "df46d0e65bf4aa0b6c2ca184a784974970c58f8c2c3de38eb4ed713efacce904",
+    "proof/PscVerif/PscVerif.lean": "4973683eabba4754605f8f84231c33321939e474155ff2bf08de958ef02aa29e",
+    "proof/PscVerif/PscVerif/Basic.lean": "0bc7a2dfef40ef6ab7524a1655099645abf0d0637af03ae70c8111d7df0a1d64",
+    "proof/PscVerif/PscVerif/BoundaryRounding.lean": "bbdcd56f2803ebdc4a84a2befb0e0c5299a4c072b0e9044f5a6e0857174308ff",
+    "proof/PscVerif/PscVerif/BoundarySeedPath.lean": "bea69cb93d5bcd15b1b88c48062b4404a721908092af1b5f5b42e6184f7abae3",
+    "proof/PscVerif/PscVerif/Centralizer.lean": "a8098bb7a13d292c7480ec73a0b48a0867604a40106a2c211744e3ced52b0b3f",
+    "proof/PscVerif/PscVerif/ClassBRegime.lean": "1c873d0aea0201c3a60486dc90bce00e9f9612019ad72c5344cfa927d93a23e6",
+    "proof/PscVerif/PscVerif/Seeds.lean": "224a67ea3d89c8cd54747164d4e1fbbc9b733aa5eb404465119999b738dce747",
+    "proof/PscVerif/PscVerif/SelectedRank.lean": "0ab6fc76698ebcfd14ce1b319b121f0eaee9d2d64fceb26d3cf9e6a59b26c396",
+    "proof/PscVerif/PscVerif/Shuffle.lean": "fe99c7b71174cd665633b425c0f9d1e6f6893f541387e261fb5d945bba48614c",
+    "proof/PscVerif/PscVerif/Spectral.lean": "f7a43295221c293c670593d4be8e916d87ce51f3241ec911456ef4a4ce0b39d3",
+    "proof/PscVerif/PscVerif/TraceLemma.lean": "e547fcff9131bdaaacdfa6de29445af23e14f9b8bf6132cdeb9932e4191c4e6a",
+    "proof/PscVerif/README.md": "e8f36da50998672d5a4eba52f65de56508f21f4e43fdc09999302e8d6b48fa40",
+    "proof/PscVerif/lake-manifest.json": "7089f781dcbac1c268efbdb6af6822c1c46bf6a03230dd47168bcdbb75718fc2",
+    "proof/PscVerif/lakefile.toml": "6e29b8d31552dad97a477c6ce60b016c3370d856886a4498a85e78a712e3489a",
+    "proof/PscVerif/lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
+    "tools/check_lean.sh": "04078a19300533b800e2cca6f0a3573fe8b116fec0ae8ace8a2d4ffc1ae9613b",
+    "tools/make_proof_bank.py": "1ca41cead1764d2e5657f21c44bd41d69279b960dbe08c5a024cf125d5f2cdb8",
+    "tools/setup_lean.sh": "b2c35ccc8d0b180a75275f8234f519a00d32efcbc8a9517f8b3d74a96b3ef8da"
+  },
+  "compiler_files_sha256": {
+    "bin/lean": "e8baaa71855a616dc351028f3ad2200051b0671f423a1696a100e809302d5550",
+    "bin/lake": "6f53827dab18010d6c690d14c8401cacabc1db958edb3552a877ed4cf1dd995d",
+    "lib/lean/libleanshared.so": "cddf08bd2b9239f8ce2e2aba8630c47e37b6b341b47705d9d0ba910ad6db13b5"
+  },
+  "shim_binary_sha256": "560e8854dbaf223c9b8956ed40041c2b400b8b94fa0af686e217d883a3d7f577",
+  "audit_declarations": 252,
+  "audit_theorems": 151,
+  "named_proofs_reached": 52,
+  "standard_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "hosted_acceptance": "not established; queued/pending at inspection",
+  "independent_mathematical_review": "not asserted",
+  "audit_exit_code": 0,
+  "c_compiler": "cc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "uncompressed_audit_log_sha256": "3d53b1eeda0ee449ed7638847e6b273ffc5dbfcc6ded7a04756f1d717d63d2a5"
+}

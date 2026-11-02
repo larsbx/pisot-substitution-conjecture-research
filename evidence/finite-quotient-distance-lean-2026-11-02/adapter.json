@@ -1,0 +1,7 @@
+{
+  "binary_sha256": "560e8854dbaf223c9b8956ed40041c2b400b8b94fa0af686e217d883a3d7f577",
+  "negative_controls": "evidence/research-integration-postmerge-2026-11-01/test_proc_self_compat.c",
+  "purpose": "existing current-process procfs executable-alias compatibility only; local run qualification, not hosted acceptance",
+  "source": "evidence/research-integration-postmerge-2026-11-01/proc_self_compat.c",
+  "source_altered": false
+}

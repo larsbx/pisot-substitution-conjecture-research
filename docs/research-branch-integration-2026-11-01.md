@@ -1,4 +1,15 @@
-# Research branch integration candidate, 2026-11-01
+# Research branch integration record, 2026-11-01
+
+**Post-integration reconciliation:** #445 is on main at `c27cb596` from
+`82e84827`; their trees are identical and all 26 selected source heads are
+ancestors. Remaining stacked source PRs were closed as already incorporated,
+and #443/#444 as superseded. The candidate-specific preparation statements
+below are historical. Hosted checks remain pending, so this merge is not an
+acceptance receipt. A [new post-merge supplement](../evidence/research-integration-postmerge-2026-11-01/README.md)
+records fresh local source-integrity checks and a completed Lean proof-bank
+audit using an explicitly recorded sandbox path wrapper. The pinned compiler,
+proof sources and earlier failure receipts are unchanged; no independent
+human review or general PSC conclusion is asserted.
 
 This reconciles all 28 open research pull requests inspected against main
 `3967ab32384e4add7c6d42a7519f42932c8625cb`. It is an integration candidate,

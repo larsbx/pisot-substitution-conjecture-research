@@ -151,3 +151,31 @@ at tree `1c4ce91a350981c40f4a6e889b26b04cc6fde418` (initial PR commit
 `7c2d83fc8aa44db36662811d914ec146a161d269`). They do not prohibit future
 edits to all kernel modules. The manifest regression validates its structure;
 fresh native export comparison and independent checks validate later replays.
+
+## Witness serialization reconciliation (2026-11-01)
+
+Hosted run [41314198978](https://github.com/larsbx/pisot-substitution-conjecture-research/actions/runs/41314198978)
+passed native interval and independent graph checks, then failed byte replay
+of `witnesses/plus-g1-q10.labels`. Commit `669e4630` changed the exporter's
+graph builder from occurrence order to segment order. Both the order of W
+rows and the first selected shortest child can change, even when every
+sorted V row and first-hit depth is identical. An arbitrary shortest-child
+choice is not a canonical serialization invariant.
+
+The repair preserves the original exporter at its existing packet source
+pin in `archive/class-b-label-witness-export-2026-11-01/`. The original strict
+byte comparator replays all current label exports using the current binary
+and the historical witness exports using the archived binary. An independent
+integer verifier additionally checks every historical and fresh current W
+row: identical complete vertices/depths, exactly one witness per non-target,
+actual occurrence ordinals/letters, the direct incidence and prefix shift,
+and depth decreasing by one. New mutation controls refuse changed labels,
+illegal ordinals/letters/shifts, missing/duplicate witnesses and unknown rows.
+
+This preserves all prior packets and source guards, without changing either
+live graph implementation or any governed claim status. The new local replay
+does not clear the failed hosted attempt; a successful run of the repaired
+workflow on the published revision is required. The bounded rank-search
+counterexample remains tied to the original archived witnesses.
+
+Replay and receipts: [reconciliation supplement](../evidence/class-b-witness-replay-reconciliation-2026-11-01/README.md).
