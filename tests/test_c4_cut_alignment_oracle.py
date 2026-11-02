@@ -326,6 +326,23 @@ def test_fullrank_nonpip_strict_has_constant_whole_hub_words():
         signs.append([1 if z in idx else -1 for z in raw])
     assert images == [[2], [3], [2, 0, 0, 1, 0], [2, 0, 0, 1, 0, 1, 0, 1, 0]]
     assert all(all(sign == 1 for sign in row) for row in signs)
+    # Complete Parikh intertwining is exact despite the rank-two
+    # obstruction: row_0(P)=row_2(P). PIP irreducibility would force
+    # rank three, so this is a precise excluded-template mechanism.
+    P = [[u.count(str(a)) for u, _ in states] for a in range(3)]
+    M = [[sig.count(str(a)) for sig in sigma.values()] for a in range(3)]
+    N = [[sum(dst == row for dst in images[col]) for col in range(4)]
+         for row in range(4)]
+    assert P == [[1, 1, 2, 4], [1, 3, 4, 6], [1, 1, 2, 4]]
+    assert N == [[0, 0, 3, 5], [0, 0, 1, 3],
+                 [1, 0, 1, 1], [0, 1, 0, 0]]
+    assert P[0] == P[2]
+    assert P[0][0] * P[1][1] - P[0][1] * P[1][0] == 2
+    for a in range(3):
+        for col in range(4):
+            assert sum(P[a][j] * N[j][col] for j in range(4)) == (
+                sum(M[a][j] * P[j][col] for j in range(3))
+            )
     masks = []
     for pair in ((0, 1), (0, 2), (1, 2)):
         # A compatible good pair must not be the first pair of any
