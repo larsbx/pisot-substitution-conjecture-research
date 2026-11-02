@@ -264,6 +264,15 @@ def test_local_endpoint_and_lattice_filter_has_real_positive_control() raises:
     assert_equal(coincidence_boundaries(top, bottom), [0, 3, 13])
     assert_true(top[2] != bottom[2])
     assert_true(top[3] != bottom[3])
+    # An actual two-step path reaches a coincidence, keeping this
+    # PIP control distinct from any strict closed nonproductive SCC.
+    var next = decompose(
+        apply_substitution(sigma, [2, 1, 0]),
+        apply_substitution(sigma, [1, 0, 2]),
+    )
+    assert_equal(len(next), 3)
+    assert_equal(next[1].u, [1])
+    assert_equal(next[1].v, [1])
 
     # Primitive full-rank, but non-PIP strict SCC control also survives.
     var nonpip: List[List[Int]] = [[1, 0], [1, 0, 2], [2, 1, 1]]
