@@ -33,7 +33,7 @@ stronger local alignment assertion before adding another finite offset
 state. The canonical implementation is Mojo-first; Python is only an
 independent bounded oracle. No fixed-size SCC sieve is added.
 
-## 2. Theorem A: bilateral newborn exclusion (uniform and proved)
+## 2. Bilateral newborn exclusion — a uniform structural lemma
 
 Let `sigma:A* -> A*` be a nonerasing substitution with an **injective**
 incidence matrix `M` over `Q` (in the ternary setting,
@@ -75,7 +75,7 @@ It cannot be confused with the converse to the existing inherited-cut
 lemma. It applies separately to each irreducible *actual* child block
 in a complete derived factorization.
 
-## 3. Theorem B: a strict expanding component must have such a birth
+## 3. Strict expanding components necessarily branch
 
 Suppose further that `sigma` is primitive with Perron root `beta>1`,
 and that `C` is a nonempty finite collection of normalized
@@ -105,7 +105,7 @@ asynchronous interior newborn word events are forced. It **does not**
 show that any such event is in `Sync_+` or `Sync_-`. That
 synchronization implication is still missing.
 
-## 4. Theorem C: non-unit one-sided image-lattice obstruction
+## 4. Non-unit one-sided image-lattice obstruction
 
 There is a second, **uniform word-digit necessary condition**, especially
 useful when `|det M|>1`. Under the hypotheses of Theorem A, suppose
