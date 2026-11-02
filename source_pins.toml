@@ -21,6 +21,34 @@ path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_b3_children.mojo"
+current = "c7231fbf54f8fb1dc1ed999a8b3c9e5cbe9ec6eee2135be9fb7c831fbadaad40"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e_children.mojo"
+current = "a0b9d15aa117247176dba4286627bfe8b6e75074cfba400d2a69818ecf8bc0bd"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_h3_children.mojo"
+current = "f7815b66adc7b54765d39e1aeff6eb904a176dfdc49ee92dae4df23147eea6d5"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p3_children.mojo"
+current = "e286d655654e9042747cdf524269663076342e26e1ab77b54517e095eac94ded"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p_children.mojo"
+current = "a59084bcb4b03e9885ea55680146c9af4ceaa56b68e64af474557f9dfa99c75a"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_q3_children.mojo"
+current = "9347d436c9555579384599fba6defa91aeee25a5a32259697246c75df8ccf7a3"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_r3_children.mojo"
+current = "470900feca1b82bcaa239d1e8f73fce6fa580b3b7701100c382bc5b327ae81ad"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-b4-2026-10-28/source-sha256.txt"
@@ -45,6 +73,42 @@ path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_b3_children.mojo"
+current = "c7231fbf54f8fb1dc1ed999a8b3c9e5cbe9ec6eee2135be9fb7c831fbadaad40"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_b4_children.mojo"
+current = "a79321f642c0d51de711c063af60a2f8ff29875471a5ee61396f830dee0fd23b"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e2_children.mojo"
+current = "f5892129e0d3e4df97359bc56d1a48b5603e1a1191c84a81418f81be4bcca7b4"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e_children.mojo"
+current = "a0b9d15aa117247176dba4286627bfe8b6e75074cfba400d2a69818ecf8bc0bd"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_h3_children.mojo"
+current = "f7815b66adc7b54765d39e1aeff6eb904a176dfdc49ee92dae4df23147eea6d5"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p3_children.mojo"
+current = "e286d655654e9042747cdf524269663076342e26e1ab77b54517e095eac94ded"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p_children.mojo"
+current = "a59084bcb4b03e9885ea55680146c9af4ceaa56b68e64af474557f9dfa99c75a"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_q3_children.mojo"
+current = "9347d436c9555579384599fba6defa91aeee25a5a32259697246c75df8ccf7a3"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_r3_children.mojo"
+current = "470900feca1b82bcaa239d1e8f73fce6fa580b3b7701100c382bc5b327ae81ad"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-b5-2026-10-28/source-sha256.txt"
@@ -54,6 +118,10 @@ path = ".github/workflows/class-a-boundary-b5.yml"
 current = "1bf7f52e3faa35da129d122d68e74819c5eddf8869ed6090b11c495ff54cdff9"
 kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_b5_children.mojo"
+current = "70f4a6421909cc34e74a8faa852a868b6ce3fd72fa46eb94cbd0b1e647961623"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-d0-2026-10-28/source-sha256.txt"
@@ -63,6 +131,10 @@ path = ".github/workflows/class-a-boundary-d0.yml"
 current = "f7319895747698792d5cd9ad8c7a3887f9353e31a09d30e4fc618f92ae9904db"
 kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_d0_children.mojo"
+current = "e01121b11aab0c299beefddb988f00b1561eda9ef8c4c6267e53fd2ea47b735f"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-d5-2026-10-28/source-sha256.txt"
@@ -112,6 +184,62 @@ path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_b3_children.mojo"
+current = "c7231fbf54f8fb1dc1ed999a8b3c9e5cbe9ec6eee2135be9fb7c831fbadaad40"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_b4_children.mojo"
+current = "a79321f642c0d51de711c063af60a2f8ff29875471a5ee61396f830dee0fd23b"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_b5_children.mojo"
+current = "70f4a6421909cc34e74a8faa852a868b6ce3fd72fa46eb94cbd0b1e647961623"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_d5_children.mojo"
+current = "5a731608bd2936c76ee672c6e8871e38cd785200eb8fb9e5364e11589448bfd1"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e2_children.mojo"
+current = "f5892129e0d3e4df97359bc56d1a48b5603e1a1191c84a81418f81be4bcca7b4"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e_children.mojo"
+current = "a0b9d15aa117247176dba4286627bfe8b6e75074cfba400d2a69818ecf8bc0bd"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_h3_children.mojo"
+current = "f7815b66adc7b54765d39e1aeff6eb904a176dfdc49ee92dae4df23147eea6d5"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p3_children.mojo"
+current = "e286d655654e9042747cdf524269663076342e26e1ab77b54517e095eac94ded"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p_children.mojo"
+current = "a59084bcb4b03e9885ea55680146c9af4ceaa56b68e64af474557f9dfa99c75a"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_q3_children.mojo"
+current = "9347d436c9555579384599fba6defa91aeee25a5a32259697246c75df8ccf7a3"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_r3_children.mojo"
+current = "470900feca1b82bcaa239d1e8f73fce6fa580b3b7701100c382bc5b327ae81ad"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_r4_children.mojo"
+current = "57963460e4c15c891e6c5f3ea4a8b20dc7d2a89497fecc2d3e2f3939443b027d"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_r5_children.mojo"
+current = "34b0642842734b866166d8a2168547d79650167f6b93d81d8e9f9d4b77fda695"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_y4_children.mojo"
+current = "4cfb3d1962edcdd9f86086013c1fb5cb4504223368ab66504ef84bdefbae19d4"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-e6-2026-10-28/source-sha256.txt"
@@ -121,6 +249,10 @@ path = ".github/workflows/class-a-boundary-e6.yml"
 current = "4567d5c0c1a55c817a1135f46b3580589f0fddbef5d0058c0e2c05c0c2e0c276"
 kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e6_children.mojo"
+current = "4bcef9ad3da9b342e81324bf6c76027de3b3a3fc7142286e1c1ff778d41f51a1"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-e7-2026-10-28/source-sha256.txt"
@@ -130,6 +262,10 @@ path = ".github/workflows/class-a-boundary-e7.yml"
 current = "d8d4844b04b42a5eb7a3de638eca72394ab09035dc4c64a4f794c002b203ae18"
 kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e7_children.mojo"
+current = "1ffb293f0635dcdc625e8187687ee2cd028a16300b9108b3abeb0c031dd1b82f"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-h9-2026-10-29/source-sha256.txt"
@@ -139,6 +275,10 @@ path = ".github/workflows/class-a-boundary-h9.yml"
 current = "7ae6b804478ac6c6b2d3d177407a18e7404aa20ee066897bde694f6535f79659"
 kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_h9_children.mojo"
+current = "9d421531792c8c29542def4a43093fe976c955b6f8808399beac778d98548ba1"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-j8-2026-10-29/source-sha256.txt"
@@ -148,6 +288,10 @@ path = ".github/workflows/class-a-boundary-j8.yml"
 current = "b30b3fded17e5543e02da3095cad9c97ee8bbea7085335eaa0c5d93bd26a238e"
 kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_j8_children.mojo"
+current = "0846b1391c470dc1b1bac4c6891292960238a2910dc0d810ac04a309e4e3ae45"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-j9-2026-10-29/source-sha256.txt"
@@ -157,6 +301,10 @@ path = ".github/workflows/class-a-boundary-j9.yml"
 current = "3bca544ff74d78f3c22a0126871601ff3d35a3f60a5d66603a070f942ef823f1"
 kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_j9_children.mojo"
+current = "1dba7c30477513bdd5fc7b27f25b1451350431b0de53077bc0f233c4c56add21"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-p3-2026-10-28/source-sha256.txt"
@@ -166,6 +314,10 @@ path = ".github/workflows/class-a-boundary-p3.yml"
 current = "6f43a3812e6c3bc148099558f31ad200c4e2e893d55fa625ac661b097e912ec3"
 kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p3_children.mojo"
+current = "e286d655654e9042747cdf524269663076342e26e1ab77b54517e095eac94ded"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-p9-2026-10-29/source-sha256.txt"
@@ -175,6 +327,10 @@ path = ".github/workflows/class-a-boundary-p9.yml"
 current = "e20a60807915260536c0af6fd015a4bd7adcc3c7b6cb6136e71993234b3f538a"
 kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p9_children.mojo"
+current = "0c6536b0212287a08b02c3207c21e56fa9d94f5c8bbb55d2aa41159d3334e960"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-q3-2026-10-28/source-sha256.txt"
@@ -189,6 +345,14 @@ path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_q3_children.mojo"
+current = "9347d436c9555579384599fba6defa91aeee25a5a32259697246c75df8ccf7a3"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p3_children.mojo"
+current = "e286d655654e9042747cdf524269663076342e26e1ab77b54517e095eac94ded"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-r3-2026-10-28/source-sha256.txt"
@@ -203,6 +367,30 @@ path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_r3_children.mojo"
+current = "470900feca1b82bcaa239d1e8f73fce6fa580b3b7701100c382bc5b327ae81ad"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_q3_children.mojo"
+current = "9347d436c9555579384599fba6defa91aeee25a5a32259697246c75df8ccf7a3"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p3_children.mojo"
+current = "e286d655654e9042747cdf524269663076342e26e1ab77b54517e095eac94ded"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p_children.mojo"
+current = "a59084bcb4b03e9885ea55680146c9af4ceaa56b68e64af474557f9dfa99c75a"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_h3_children.mojo"
+current = "f7815b66adc7b54765d39e1aeff6eb904a176dfdc49ee92dae4df23147eea6d5"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e_children.mojo"
+current = "a0b9d15aa117247176dba4286627bfe8b6e75074cfba400d2a69818ecf8bc0bd"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-r4-2026-10-28/source-sha256.txt"
@@ -232,6 +420,46 @@ path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_b3_children.mojo"
+current = "c7231fbf54f8fb1dc1ed999a8b3c9e5cbe9ec6eee2135be9fb7c831fbadaad40"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_b4_children.mojo"
+current = "a79321f642c0d51de711c063af60a2f8ff29875471a5ee61396f830dee0fd23b"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e2_children.mojo"
+current = "f5892129e0d3e4df97359bc56d1a48b5603e1a1191c84a81418f81be4bcca7b4"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e_children.mojo"
+current = "a0b9d15aa117247176dba4286627bfe8b6e75074cfba400d2a69818ecf8bc0bd"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_h3_children.mojo"
+current = "f7815b66adc7b54765d39e1aeff6eb904a176dfdc49ee92dae4df23147eea6d5"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p3_children.mojo"
+current = "e286d655654e9042747cdf524269663076342e26e1ab77b54517e095eac94ded"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p_children.mojo"
+current = "a59084bcb4b03e9885ea55680146c9af4ceaa56b68e64af474557f9dfa99c75a"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_q3_children.mojo"
+current = "9347d436c9555579384599fba6defa91aeee25a5a32259697246c75df8ccf7a3"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_r3_children.mojo"
+current = "470900feca1b82bcaa239d1e8f73fce6fa580b3b7701100c382bc5b327ae81ad"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_r4_children.mojo"
+current = "57963460e4c15c891e6c5f3ea4a8b20dc7d2a89497fecc2d3e2f3939443b027d"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-r5-2026-10-28/source-sha256.txt"
@@ -271,6 +499,54 @@ path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_b3_children.mojo"
+current = "c7231fbf54f8fb1dc1ed999a8b3c9e5cbe9ec6eee2135be9fb7c831fbadaad40"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_b4_children.mojo"
+current = "a79321f642c0d51de711c063af60a2f8ff29875471a5ee61396f830dee0fd23b"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e2_children.mojo"
+current = "f5892129e0d3e4df97359bc56d1a48b5603e1a1191c84a81418f81be4bcca7b4"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e_children.mojo"
+current = "a0b9d15aa117247176dba4286627bfe8b6e75074cfba400d2a69818ecf8bc0bd"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_h3_children.mojo"
+current = "f7815b66adc7b54765d39e1aeff6eb904a176dfdc49ee92dae4df23147eea6d5"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p3_children.mojo"
+current = "e286d655654e9042747cdf524269663076342e26e1ab77b54517e095eac94ded"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p_children.mojo"
+current = "a59084bcb4b03e9885ea55680146c9af4ceaa56b68e64af474557f9dfa99c75a"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_q3_children.mojo"
+current = "9347d436c9555579384599fba6defa91aeee25a5a32259697246c75df8ccf7a3"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_r3_children.mojo"
+current = "470900feca1b82bcaa239d1e8f73fce6fa580b3b7701100c382bc5b327ae81ad"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_r4_children.mojo"
+current = "57963460e4c15c891e6c5f3ea4a8b20dc7d2a89497fecc2d3e2f3939443b027d"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_r5_children.mojo"
+current = "34b0642842734b866166d8a2168547d79650167f6b93d81d8e9f9d4b77fda695"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_y4_children.mojo"
+current = "4cfb3d1962edcdd9f86086013c1fb5cb4504223368ab66504ef84bdefbae19d4"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-w9-2026-10-29/source-sha256.txt"
@@ -280,6 +556,10 @@ path = ".github/workflows/class-a-boundary-w9.yml"
 current = "11daa140d8db9bcaefdb2f013b614aa71a738e47822227ce3fa7f08764afee7c"
 kind = "workflow-metadata"
 reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_w9_children.mojo"
+current = "8a0834665851948bb8ef8a76656c35b32afbf5b851fe39abb7dca589a48c5cf7"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-boundary-y4-2026-10-28/source-sha256.txt"
@@ -314,6 +594,50 @@ path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
 kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_b3_children.mojo"
+current = "c7231fbf54f8fb1dc1ed999a8b3c9e5cbe9ec6eee2135be9fb7c831fbadaad40"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_b4_children.mojo"
+current = "a79321f642c0d51de711c063af60a2f8ff29875471a5ee61396f830dee0fd23b"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e2_children.mojo"
+current = "f5892129e0d3e4df97359bc56d1a48b5603e1a1191c84a81418f81be4bcca7b4"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_e_children.mojo"
+current = "a0b9d15aa117247176dba4286627bfe8b6e75074cfba400d2a69818ecf8bc0bd"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_h3_children.mojo"
+current = "f7815b66adc7b54765d39e1aeff6eb904a176dfdc49ee92dae4df23147eea6d5"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p3_children.mojo"
+current = "e286d655654e9042747cdf524269663076342e26e1ab77b54517e095eac94ded"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_p_children.mojo"
+current = "a59084bcb4b03e9885ea55680146c9af4ceaa56b68e64af474557f9dfa99c75a"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_q3_children.mojo"
+current = "9347d436c9555579384599fba6defa91aeee25a5a32259697246c75df8ccf7a3"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_r3_children.mojo"
+current = "470900feca1b82bcaa239d1e8f73fce6fa580b3b7701100c382bc5b327ae81ad"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_r4_children.mojo"
+current = "57963460e4c15c891e6c5f3ea4a8b20dc7d2a89497fecc2d3e2f3939443b027d"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
+[[manifest.drift]]
+path = "kernel/psc/class_a_boundary_y4_children.mojo"
+current = "4cfb3d1962edcdd9f86086013c1fb5cb4504223368ab66504ef84bdefbae19d4"
+reason = 'refactored onto psc/class_a_boundary_family.mojo (shared synthesis/packet/star verifiers); output of all 74 consumers identical, docs/class-a-boundary-family-2026-11-02.md'
 
 [[manifest]]
 path = "evidence/class-a-gap-independent-audit-2026-10-23/source-sha256.txt"
