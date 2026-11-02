@@ -129,6 +129,64 @@ to show that primitive expansion, incidence full rank, and exact
 ordered-word geometry are *insufficient* without the irreducible
 Pisot hypothesis.
 
+## All-child hub-bit flatness: a stronger failed shortcut
+
+The same primitive, full-rank, **non-PIP** four-state strict fixture
+`sigma=10/102/211` rules out another tempting simplification:
+
+> **Retired candidate (false without irreducible Pisot):**
+> strict all-child closure, integral newborn-source ancestry and a
+> *constant ordered hub-residual phase on every actual occurrence*
+> force an interior synchronizing cut.
+
+This fixture's prefix endpoint map is `h=(1,1,2)`. For its actual
+complete ordered derived words, every raw child has orientation sign
+`+1`. Every canonical first pair is `(1,2)`. The two candidate
+good-edge placements `{0,1}` (hub 2) and `{0,2}` (hub 1)
+both survive the finite first-child compatibility mask, which is
+`0b011`. This mask is a **necessary compatibility mask**, not a
+certificate that either edge is eventually coincident (the fixture
+does not meet Barge–Diamond's Pisot hypothesis).
+
+For **each** hub choice, the normalized-state hub side is constant
+across the entire component (top for hub 1, bottom for hub 2). Hence
+the existing gauge identity
+`r_h(parent->child)=b+x_h(parent)+x_h(child) (mod 2)`
+gives the *full ordered* child-residual words
+
+```text
+S0: [0]
+S1: [0]
+S2: [0,0,0,0,0]
+S3: [0,0,0,0,0,0,0,0,0].
+```
+
+These are all **actual** child occurrences, not the selected first
+child or a six-state abstract letter-pair inflation. Nevertheless,
+all 12 actual interior newborn cuts remain right/left endpoint
+nonsynchronizing. All literal Parikh/residue checks and actual strict
+child closure continue to hold.
+
+This observation strengthens the earlier singular non-Pisot control:
+the complete **ordered** hub bit word may be perfectly phase-flat
+even in a primitive nonsingular strictly nonproductive component.
+Any proof claiming that phase-flatness plus word-realizable
+newborn cuts suffices must use a genuinely stronger **irreducible
+Pisot/spectral or recognizability** hypothesis and show its
+transmission to the actual ordered words. Simply upgrading the
+first-child phase to all child occurrences, *even when verified
+true in a given component*, does not supply C4.
+
+Canonical regression:
+`kernel/tests/test_c4_strict_birth_atlas.mojo` now checks the two
+hub choices against `candidate_good_edge_mask`,
+`build_hub_cocycle`, the actual full child words and exact Perron
+phase gauge invariance. Independent
+`tests/test_c4_cut_alignment_oracle.py` reconstructs every
+raw child word, orientation and hub bit without using the canonical
+gauge module. This is a **negative-control finding**, not a new
+PIP counterexample or an independently reviewed proof of C4.
+
 ## Verification / scope
 
 - Canonical Mojo: `kernel/psc/c4_strict_birth_atlas.mojo`.
