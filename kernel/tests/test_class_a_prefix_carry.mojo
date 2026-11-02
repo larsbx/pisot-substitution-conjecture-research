@@ -4,9 +4,11 @@ from std.testing import assert_equal, assert_true
 from mojo_smoke.claims import require_contract
 from a1_normal_form_census import class_member, CLASS_A
 from psc.class_a_madic_digits import apply_incidence, in_image_power
+from psc.overlap_seed_patch import build_seed_overlap_tables_screened
+from a1_normal_form_census import class_member, CLASS_A
 from psc.class_a_prefix_carry import (
     actual_prefix_corrections, exact_prefix_pair_carry,
-    unique_actual_zero_parent,
+    unique_actual_zero_parent, replay_actual_zero_overlap_path,
 )
 from psc.class_a_boundary_children import _prefix
 
@@ -103,6 +105,48 @@ def main() raises:
     except:
         refused=True
     assert_true(refused)
+    # A uniform 2-level REAL typed coincidence path exists for this
+    # specific oriented x/c occurrence pair exactly at even k.
+    # This is a constructed formal source, NOT X/seed reachability.
+    var outer_top: List[Int] = [0,1]
+    var outer_bottom: List[Int] = [0,2]
+    for k in range(5):
+        for t in range(3):
+            var n=k+t+3
+            var d=k+2*t+5
+            var result=exact_prefix_pair_carry(
+                k,t,0,1,outer_top,outer_bottom
+            )
+            assert_true(result.valid==(k%2==0))
+            if k%2!=0:
+                assert_equal(result.first_failure,1)
+                continue
+            var pp=(d+3)//2
+            var qq=n*d+2*n-1-(n+d)*pp
+            var rr=(n+d)*pp-n*d-2*n-d-1
+            assert_equal(result.parent[0],pp)
+            assert_equal(result.parent[1],qq)
+            assert_equal(result.parent[2],rr)
+            var tables=build_seed_overlap_tables_screened(
+                class_member(CLASS_A,n+d,n,n-1)
+            )
+            var path=replay_actual_zero_overlap_path(
+                tables,k,t,0,1,outer_top,outer_bottom
+            )
+            assert_equal(len(path),3)
+            assert_equal(path[0].top,0)
+            assert_equal(path[0].bottom,1)
+            assert_equal(path[1].top,0)
+            assert_equal(path[1].bottom,1)
+            assert_equal(path[1].x,1)
+            assert_equal(path[1].c,-d-2)
+            assert_equal(path[1].y,d+1)
+            assert_equal(path[2].top,2)
+            assert_equal(path[2].bottom,2)
+            assert_equal(path[2].x,0)
+            assert_equal(path[2].c,0)
+            assert_equal(path[2].y,0)
+
     print("CLASS_A_ACTUAL_PREFIX_CARRY_PASS",examined,accepted,
           failed_low,failed_high)
     require_contract("Actual ordered level-two prefix-pair parity-carry soundness on complete finite member oracles; full index and depth checks; no param-uniform seed entry/BH")
