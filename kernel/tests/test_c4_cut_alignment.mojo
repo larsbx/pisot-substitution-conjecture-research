@@ -4,7 +4,7 @@ from std.testing import assert_equal, assert_true, assert_false
 from mojo_smoke.claims import require_contract
 from psc.bpa import apply_substitution, coincidence_boundaries, decompose, normalise, prefix_endpoint_map, suffix_endpoint_map
 from psc.derived_system import build_derived_system
-from psc.c4_cut_alignment import classify_irreducible_birth, proper_prefix_residue_admissible
+from psc.c4_cut_alignment import classify_irreducible_birth, proper_prefix_residue_admissible, unresolved_local_birth_types
 from psc.words import Pair
 
 
@@ -229,10 +229,59 @@ def test_nonunit_proper_prefix_image_lattice_gate() raises:
         caught = True
     assert_true(caught)
 
+
+def test_local_endpoint_and_lattice_filter_has_real_positive_control() raises:
+    # In these named productive PIP fixtures the local necessary test
+    # leaves no nonsynchronizing digit type; this does not prove general C4.
+    var tribonacci: List[List[Int]] = [[0, 1], [0, 2], [0]]
+    var real_secondary: List[List[Int]] = [[1], [0, 2], [2, 0, 2]]
+    var nonunit: List[List[Int]] = [[1], [0, 2, 1], [0, 0, 1]]
+    assert_equal(unresolved_local_birth_types(tribonacci), 0)
+    assert_equal(unresolved_local_birth_types(real_secondary), 0)
+    assert_equal(unresolved_local_birth_types(nonunit), 0)
+
+    # This *irreducible Pisot* example has two feasible abstract digit
+    # types and a literal, seed-reachable occurrence of one: no general
+    # C4 proof can be obtained by asserting the local count is zero.
+    var sigma: List[List[Int]] = [[1, 1], [2, 1, 0], [1, 0]]
+    assert_equal(unresolved_local_birth_types(sigma), 2)
+    var seed = Pair([0, 1], [1, 0])
+    var born = decompose(
+        apply_substitution(sigma, seed.u), apply_substitution(sigma, seed.v)
+    )
+    assert_equal(len(born), 1)
+    var parent = Pair([1, 1, 2, 1, 0], [2, 1, 0, 1, 1])
+    assert_equal(born[0], parent)
+    var witness = classify_irreducible_birth(sigma, parent, 3)
+    assert_equal(witness.top_source, 1)
+    assert_equal(witness.bottom_source, 1)
+    assert_equal(witness.top_digit, 0)
+    assert_equal(witness.bottom_digit, 1)
+    assert_equal(witness.source_defect, [0, 1, -1])
+    assert_equal(witness.local_correction, [0, 0, -1])
+    var top = apply_substitution(sigma, parent.u)
+    var bottom = apply_substitution(sigma, parent.v)
+    assert_equal(coincidence_boundaries(top, bottom), [0, 3, 13])
+    assert_true(top[2] != bottom[2])
+    assert_true(top[3] != bottom[3])
+
+    # Primitive full-rank, but non-PIP strict SCC control also survives.
+    var nonpip: List[List[Int]] = [[1, 0], [1, 0, 2], [2, 1, 1]]
+    assert_equal(unresolved_local_birth_types(nonpip), 8)
+    # Exact singular/malformed inputs refuse rather than returning zero.
+    var bad: List[List[Int]] = [[1], [0, 1, 2], [1]]
+    var refused = False
+    try:
+        _ = unresolved_local_birth_types(bad)
+    except:
+        refused = True
+    assert_true(refused)
+
 def main() raises:
     test_recurrent_pip_has_genuine_asynchronous_nonsync_cut()
     test_strict_nonpisot_born_cut_and_bad_inputs()
     test_primitive_fullrank_strict_nonpip_countermodel()
     test_nonunit_proper_prefix_image_lattice_gate()
+    test_local_endpoint_and_lattice_filter_has_real_positive_control()
     print("C4 bilateral birth: PIP control, fullrank strict non-PIP countermodel and modular gate passed.")
     require_contract("irreducible nonsingular parents cannot have bilaterally aligned interior born zero returns; a recurrent legal PIP source still exhibits a one-sided locally nonsynchronizing birth; singular full-rank negative is rejected; strict PIP C4 remains open; fullrank primitive non-PIP four-state strict SCC can avoid both Sync maps")
