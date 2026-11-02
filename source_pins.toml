@@ -1,21 +1,25 @@
 # Source manifests, checked at the revision that recorded them (tools/source_pins.py).
 # `revision` is the commit the manifest was last written at; never change it to make a pin hold.
-# A `drift` entry declares that a pinned file changed after `revision`; `current` binds the edit.
+# A `drift` entry declares that a pinned file changed after `revision`; `current` binds the edit,
+# and `kind`, when present, machine-checks that the edit is exactly that (tools/source_pins.py KINDS).
 
 [[manifest]]
 path = "evidence/class-a-boundary-b3-2026-10-28/source-sha256.txt"
 revision = "995331ff2ac8803480923003a8f8ce108434bc87"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-b3.yml"
-current = "6d9fb7b9f7c1e3a31b44aa6a7a8643bfd209b2eafae6919d50cd234dc79d96c2"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "bc4ec3940082582babef2c57e70e8bcdf44b911d723f7d0f6ee5664eda4e1b3c"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-r3.yml"
-current = "cb6a3898005e337d64633c80315ccccc83fb4abae50be85e3e1ae5c95beedb66"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "24890b1b8150149b0f3bf4c7d5348aba4156da87b2263cdda87a509d2159bd82"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 
 [[manifest]]
@@ -23,19 +27,23 @@ path = "evidence/class-a-boundary-b4-2026-10-28/source-sha256.txt"
 revision = "318a866ad5e40dfe1ac841ad060f68438bc40c8a"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-b3.yml"
-current = "6d9fb7b9f7c1e3a31b44aa6a7a8643bfd209b2eafae6919d50cd234dc79d96c2"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "bc4ec3940082582babef2c57e70e8bcdf44b911d723f7d0f6ee5664eda4e1b3c"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-b4.yml"
-current = "8a2e8798f42745e14d714898121da63b0658e915ce859bcd5d28f929db31608a"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "f4347f55e5ef1cd256c7fbed2349b43e8a1ee6e68fcc3bf823c849910f498411"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-r3.yml"
-current = "cb6a3898005e337d64633c80315ccccc83fb4abae50be85e3e1ae5c95beedb66"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "24890b1b8150149b0f3bf4c7d5348aba4156da87b2263cdda87a509d2159bd82"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 
 [[manifest]]
@@ -43,55 +51,66 @@ path = "evidence/class-a-boundary-b5-2026-10-28/source-sha256.txt"
 revision = "0dde1a00e182023891bab697e5e8156e6f3577e3"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-b5.yml"
-current = "1bf7135d211f060f9871cf2f36f3e2cf7a0574823d64bd49215c64b3cda0c0b7"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "1bf7f52e3faa35da129d122d68e74819c5eddf8869ed6090b11c495ff54cdff9"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 
 [[manifest]]
 path = "evidence/class-a-boundary-d0-2026-10-28/source-sha256.txt"
 revision = "ed9da154adcc7f05a2ca5bc496debb5db9a5fa53"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-d0.yml"
-current = "5b551604ede884b3011a80ab5274683f6c5f4de443c1aa471d14d5cc6354ef4a"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "f7319895747698792d5cd9ad8c7a3887f9353e31a09d30e4fc618f92ae9904db"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 
 [[manifest]]
 path = "evidence/class-a-boundary-d5-2026-10-28/source-sha256.txt"
 revision = "d08738a3cb269b0b41d42ee2d6fbce7cb6995ff4"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-b3.yml"
-current = "6d9fb7b9f7c1e3a31b44aa6a7a8643bfd209b2eafae6919d50cd234dc79d96c2"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "bc4ec3940082582babef2c57e70e8bcdf44b911d723f7d0f6ee5664eda4e1b3c"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-b4.yml"
-current = "8a2e8798f42745e14d714898121da63b0658e915ce859bcd5d28f929db31608a"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "f4347f55e5ef1cd256c7fbed2349b43e8a1ee6e68fcc3bf823c849910f498411"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-b5.yml"
-current = "1bf7135d211f060f9871cf2f36f3e2cf7a0574823d64bd49215c64b3cda0c0b7"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "1bf7f52e3faa35da129d122d68e74819c5eddf8869ed6090b11c495ff54cdff9"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-d5.yml"
-current = "4ffc9c80a80bdb790794cd3ac3b628c6ee464f30cde211b747bf33ebac217c7b"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "edb1d33a1901a70cbb25e147e2c89507ffcde1759d2984d08710281e2a316886"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-r3.yml"
-current = "cb6a3898005e337d64633c80315ccccc83fb4abae50be85e3e1ae5c95beedb66"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "24890b1b8150149b0f3bf4c7d5348aba4156da87b2263cdda87a509d2159bd82"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-r4.yml"
-current = "7608cc114d06ff0e8bbec7417e5eedfb6a77d6581eda573803c1bf2f2f53bb00"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "966a176391bb2fb1c56da75e59c53468b9749dc4bc3e530b04da4b41bfe44380"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-r5.yml"
-current = "c9e6195bdc91d53a9839e0b4a3f44610f6acf36dcba3bd0e9c7e21c94b360b15"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "aa80fd34705fa48bb30ebeff939557bdf9a77a36e637225467e6a847a4a730dc"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-y4.yml"
-current = "f884019fffc87e7f00c80519c9e5c877166394326cba93bf557725ffe48d9a93"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "d4476466d40e14bb43ee77deb39ac5a5331957750ef762aa7c1e7af84d111966"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 
 [[manifest]]
@@ -99,67 +118,76 @@ path = "evidence/class-a-boundary-e6-2026-10-28/source-sha256.txt"
 revision = "6bef25b0a24820996989f652d53f1ae5d24039c2"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-e6.yml"
-current = "521992f6acfa4115ca348de85148298446f82ec5fad75f7e86550ae54061f3f5"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "4567d5c0c1a55c817a1135f46b3580589f0fddbef5d0058c0e2c05c0c2e0c276"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 
 [[manifest]]
 path = "evidence/class-a-boundary-e7-2026-10-28/source-sha256.txt"
 revision = "3f9d816ab7835f4be6c159453481d0d1d1eabd4d"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-e7.yml"
-current = "975e6c47ade38579a0611603216c5d3cd877ccf6c9b18de3a5466eb55289cc8a"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "d8d4844b04b42a5eb7a3de638eca72394ab09035dc4c64a4f794c002b203ae18"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 
 [[manifest]]
 path = "evidence/class-a-boundary-h9-2026-10-29/source-sha256.txt"
 revision = "324c167a4f19e7e4b1ec174ee4ef27229654a831"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-h9.yml"
-current = "7e721107edf15b1e025cd507067e50e292c11324e84dd5de02fb7486cb504658"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "7ae6b804478ac6c6b2d3d177407a18e7404aa20ee066897bde694f6535f79659"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 
 [[manifest]]
 path = "evidence/class-a-boundary-j8-2026-10-29/source-sha256.txt"
 revision = "ed9da154adcc7f05a2ca5bc496debb5db9a5fa53"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-j8.yml"
-current = "921487cc5a7fd011982f010718d7f076135d83a70af4d6225ae7a662d8e21314"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "b30b3fded17e5543e02da3095cad9c97ee8bbea7085335eaa0c5d93bd26a238e"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 
 [[manifest]]
 path = "evidence/class-a-boundary-j9-2026-10-29/source-sha256.txt"
 revision = "92e34bea5bffee8a8523eeda40096b453a435377"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-j9.yml"
-current = "8c88bc38ffd73f5919db1616f6e8e8018d12935e2c671c0dccaabab7ec64022c"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "3bca544ff74d78f3c22a0126871601ff3d35a3f60a5d66603a070f942ef823f1"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 
 [[manifest]]
 path = "evidence/class-a-boundary-p3-2026-10-28/source-sha256.txt"
 revision = "8e97ad5035072951259b0301e7387f8baf25d148"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-p3.yml"
-current = "26676793bfc6cff38883fb9a11481f39aebfeec21c6c1822ec311deda27a7968"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "6f43a3812e6c3bc148099558f31ad200c4e2e893d55fa625ac661b097e912ec3"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 
 [[manifest]]
 path = "evidence/class-a-boundary-p9-2026-10-29/source-sha256.txt"
 revision = "be3d1988443f312e62e3d89225b9e920e9fd34c6"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-p9.yml"
-current = "5275e93c3276c70e5f59643bc0287049323a468dd1f23cb385ad1c491b2f94f6"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "e20a60807915260536c0af6fd015a4bd7adcc3c7b6cb6136e71993234b3f538a"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 
 [[manifest]]
 path = "evidence/class-a-boundary-q3-2026-10-28/source-sha256.txt"
 revision = "2fc615cb923a6152cf390ef92ef9788a346af544"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-q3.yml"
-current = "09a5ba4bf23cedda61720ca22199ff8dd0e049a134872e3e30e2897009eef830"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "fc6f55592cb884bc97291f328efb3485504414441d0fb10e2c08e998d1fb5825"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 
 [[manifest]]
@@ -167,11 +195,13 @@ path = "evidence/class-a-boundary-r3-2026-10-28/source-sha256.txt"
 revision = "5143d72eaaf0b79e58b978dcd34e5a2080984c3c"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-r3.yml"
-current = "cb6a3898005e337d64633c80315ccccc83fb4abae50be85e3e1ae5c95beedb66"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "24890b1b8150149b0f3bf4c7d5348aba4156da87b2263cdda87a509d2159bd82"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 
 [[manifest]]
@@ -179,23 +209,28 @@ path = "evidence/class-a-boundary-r4-2026-10-28/source-sha256.txt"
 revision = "4bdacc0dd5618e895351dcf372b071c9560cc582"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-b3.yml"
-current = "6d9fb7b9f7c1e3a31b44aa6a7a8643bfd209b2eafae6919d50cd234dc79d96c2"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "bc4ec3940082582babef2c57e70e8bcdf44b911d723f7d0f6ee5664eda4e1b3c"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-b4.yml"
-current = "8a2e8798f42745e14d714898121da63b0658e915ce859bcd5d28f929db31608a"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "f4347f55e5ef1cd256c7fbed2349b43e8a1ee6e68fcc3bf823c849910f498411"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-r3.yml"
-current = "cb6a3898005e337d64633c80315ccccc83fb4abae50be85e3e1ae5c95beedb66"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "24890b1b8150149b0f3bf4c7d5348aba4156da87b2263cdda87a509d2159bd82"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-r4.yml"
-current = "7608cc114d06ff0e8bbec7417e5eedfb6a77d6581eda573803c1bf2f2f53bb00"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "966a176391bb2fb1c56da75e59c53468b9749dc4bc3e530b04da4b41bfe44380"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 
 [[manifest]]
@@ -203,31 +238,38 @@ path = "evidence/class-a-boundary-r5-2026-10-28/source-sha256.txt"
 revision = "fbf2fcdad44a3315ce7d16cfe28198ae34582948"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-b3.yml"
-current = "6d9fb7b9f7c1e3a31b44aa6a7a8643bfd209b2eafae6919d50cd234dc79d96c2"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "bc4ec3940082582babef2c57e70e8bcdf44b911d723f7d0f6ee5664eda4e1b3c"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-b4.yml"
-current = "8a2e8798f42745e14d714898121da63b0658e915ce859bcd5d28f929db31608a"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "f4347f55e5ef1cd256c7fbed2349b43e8a1ee6e68fcc3bf823c849910f498411"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-r3.yml"
-current = "cb6a3898005e337d64633c80315ccccc83fb4abae50be85e3e1ae5c95beedb66"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "24890b1b8150149b0f3bf4c7d5348aba4156da87b2263cdda87a509d2159bd82"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-r4.yml"
-current = "7608cc114d06ff0e8bbec7417e5eedfb6a77d6581eda573803c1bf2f2f53bb00"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "966a176391bb2fb1c56da75e59c53468b9749dc4bc3e530b04da4b41bfe44380"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-r5.yml"
-current = "c9e6195bdc91d53a9839e0b4a3f44610f6acf36dcba3bd0e9c7e21c94b360b15"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "aa80fd34705fa48bb30ebeff939557bdf9a77a36e637225467e6a847a4a730dc"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-y4.yml"
-current = "f884019fffc87e7f00c80519c9e5c877166394326cba93bf557725ffe48d9a93"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "d4476466d40e14bb43ee77deb39ac5a5331957750ef762aa7c1e7af84d111966"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 
 [[manifest]]
@@ -235,35 +277,42 @@ path = "evidence/class-a-boundary-w9-2026-10-29/source-sha256.txt"
 revision = "05011ab3fbf430e3a7ade96558b56fb1ca211892"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-w9.yml"
-current = "8855e073ae2ae7d9b6d5ef71ca84a9ed306b99f953b82ad5e00c1dfa8882de9b"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "11daa140d8db9bcaefdb2f013b614aa71a738e47822227ce3fa7f08764afee7c"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 
 [[manifest]]
 path = "evidence/class-a-boundary-y4-2026-10-28/source-sha256.txt"
 revision = "7eb395cce20973c2c36bef09c97b3d6ae8e57067"
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-b3.yml"
-current = "6d9fb7b9f7c1e3a31b44aa6a7a8643bfd209b2eafae6919d50cd234dc79d96c2"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "bc4ec3940082582babef2c57e70e8bcdf44b911d723f7d0f6ee5664eda4e1b3c"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-b4.yml"
-current = "8a2e8798f42745e14d714898121da63b0658e915ce859bcd5d28f929db31608a"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "f4347f55e5ef1cd256c7fbed2349b43e8a1ee6e68fcc3bf823c849910f498411"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-r3.yml"
-current = "cb6a3898005e337d64633c80315ccccc83fb4abae50be85e3e1ae5c95beedb66"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "24890b1b8150149b0f3bf4c7d5348aba4156da87b2263cdda87a509d2159bd82"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-r4.yml"
-current = "7608cc114d06ff0e8bbec7417e5eedfb6a77d6581eda573803c1bf2f2f53bb00"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "966a176391bb2fb1c56da75e59c53468b9749dc4bc3e530b04da4b41bfe44380"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = ".github/workflows/class-a-boundary-y4.yml"
-current = "f884019fffc87e7f00c80519c9e5c877166394326cba93bf557725ffe48d9a93"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "d4476466d40e14bb43ee77deb39ac5a5331957750ef762aa7c1e7af84d111966"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
 
 [[manifest]]
@@ -272,16 +321,19 @@ revision = "0acfa0e6f371ad7752c06d2db1e4399b46eb25e6"
 [[manifest.drift]]
 path = "kernel/tests/test_class_a_gap_theorem.mojo"
 current = "d7411c1a0f80efd464afcd85d6994e70035e51438984dfabb4843ecfb73c239c"
-reason = 'receipt declaration only: require_claim("ClassABoundaryHittingHighGaps") appended after the assertions'
+kind = "receipt-declaration"
+reason = 'receipt declaration only: require_claim appended after the assertions'
 
 [[manifest]]
 path = "evidence/class-b-step2c-2026-10-27/SOURCE_SHA256SUMS"
 revision = "669e4630805f43c24b1506f1755dcf8f59baa64d"
 [[manifest.drift]]
 path = ".github/workflows/class-b-ray-certificate.yml"
-current = "3b31aebf6905542c2c248d62eebf954115df2e48d939f708fc54086ef5dc7498"
-reason = 'workflow metadata only: checkout pinned to the PR head and this manifest checked by check_research_source_manifest.py instead of sha256sum -c'
+current = "9cdda2130d564b40a4832158a808d7bf1af9bd46bf3ab30a3b58582a06be09ce"
+kind = "workflow-metadata"
+reason = 'checkout pinned to the PR head with full history; this manifest checked at its recorded revision by tools/source_pins.py instead of sha256sum -c'
 [[manifest.drift]]
 path = "kernel/pixi.toml"
 current = "5876123df31899229ef957ece136c2ca8dbd566d64117361f4567e1e4710e8ee"
+kind = "additive-pixi-tasks"
 reason = 'additive pixi tasks only; existing tasks and dependencies unchanged'
