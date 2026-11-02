@@ -69,6 +69,28 @@ Substitute in the displayed integer inverse to obtain exactly
 
 The three coordinate equations are equivalent to the two source conditions and the value of m in (P). Actual word ordinals enforce 1<=i<=R_a+1 and 1<=i-m<=R_b+1, giving the interval. Conversely each address in that interval has the required full Parikh update to zero. This proves necessity and sufficiency for literal indexed child offsets **for all k,t>=0**, with no claim about how the parent itself was reached. QED.
 
+### Corollary: exactly nine affine predecessor segments
+
+For a fixed oriented parent letter pair (a,b), the positive-index difference m=i-j ranges over **every** integer in the interval
+
+    -R_b <= m <= R_a.
+
+Indeed the extreme differences come from (1,R_b+1) and (R_a+1,1), and each intermediate m is achieved by i=max(1,1+m), j=i-m. Consequently, the entire positive-address one-step zero-return **parent state** set for that oriented pair is the single affine integer segment
+
+    W_(a,b)(m) = (a,b,delta,m-(d+1)delta,-m+d delta),
+    -R_b <= m <= R_a.
+
+Add the FIRST/FIRST zero-offset parent (a,b,0,0,0). This additional point is already on the segment iff delta=0 (at m=0). Because every state includes its two *oriented tile letters*, different (a,b) never collide; within one segment m uniquely determines q. There are five oriented pairs with delta=0 (four within {x,y}, one (c,c)) and four pairs with delta nonzero. The number of **distinct** oriented full-five-tuple literal strict predecessors is therefore
+
+    sum_(a,b) (R_a+R_b+1) + 4
+      = 6(R_x+R_c+R_y)+13
+      = 18n+6d+7
+      = 24k+30t+91.
+
+Exactly nine of those states have parent offset zero; hence the nonzero-offset predecessor set has **18n+6d-2** distinct states. For k=t=0, this is 91 total (82 nonzero) versus 784 vertices in the accepted *seed-reachable finite S18 graph*. The sets are not asserted equal or directly comparable without taking their intersection: the inverse set is constructed from all formal oriented letter types, while the S18 graph uses only its seed descendants.
+
+This is a **uniform linear-size, explicitly enumerable reverse-target set**, even though enumerating every individual indexed child address would yield quadratically many repetitions. The finite predecessor set does not imply finite reachability from the swap seed or any bound on the depth of entry. The normal terminalized overlap graph omits outgoing edges from already typed full-zero coincidences; they are offset-zero targets in their own right, not missing nonterminal transitions.
+
 ### Strict-overlap admissibility of every nonempty inverse address
 
 This is stronger than a mere algebraic precursor: a legal address in the theorem actually yields a strict physical overlap. Let L_a>0 be the normalized tile length, so the incidence eigenvector equation gives L M = beta L. The top parent inflation interval is [0,beta L_a], and the bottom is [beta s,beta(s+L_b)], where s=L(p,q,r). Actual child i begins at its top proper-prefix length P_a(i), while bottom child j begins at beta s+P_b(j). Since the *full* Parikh zero-child equation is M w=prefix_a(i)-prefix_b(j), their beginnings are identical: P_a(i)=beta s+P_b(j). Both children have strictly positive lengths and lie inside their respective inflated parent intervals, hence share a positive open interval. Therefore their inflated parents overlap strictly; dividing by beta shows that the original parent overlap is also strict. The child at common beginning is strict too. No approximation of beta, endpoint-equality guess, or extra tiling legality hypothesis is used.
@@ -81,7 +103,7 @@ The canonical X state is `(x,x,1,0,-1)`. Both initial letters are x, so delta(x,
 
 ## Executable contract and controls
 
-New canonical `kernel/psc/class_a_zero_return.mojo` implements the integer interval and the inverse predecessor directly with checked arithmetic. The native test replays every literal address at (k,t)=(0,0),(1,2),(3,0),(0,3), checks each unique parent and child against the independent strict Perron geometry guard and actual member transport, perturbs all three-offset conditions, exhaustively cross-checks bounded parent triples, and compares predicted zero-index pairs with all outgoing occurrence rows of the complete (0,0) S18 graph. All typed coincidences remain terminalized in that graph, so those sources are deliberately skipped. Nonexistent addresses, negative parameters and mixed first/non-first inverse requests refuse. The separate Python test implements independent proper-prefix counting and integer matrix multiplication; its positive/negative checks are not substitutes for native CI.
+New canonical `kernel/psc/class_a_zero_return.mojo` implements the integer interval, unique inverse predecessor, and complete nine-segment enumeration with checked arithmetic. The native test replays every literal address at (k,t)=(0,0),(1,2),(3,0),(0,3), checks each unique parent and child against the independent strict Perron geometry guard and actual member transport, perturbs all three-offset conditions, exhaustively cross-checks bounded parent triples, and compares predicted zero-index pairs with all outgoing occurrence rows of the complete (0,0) S18 graph. All typed coincidences remain terminalized in that graph, so those sources are deliberately skipped. Nonexistent addresses, negative parameters and mixed first/non-first inverse requests refuse. The separate Python test implements independent proper-prefix counting and integer matrix multiplication; its positive/negative checks are not substitutes for native CI.
 
 Run at repository root:
 
