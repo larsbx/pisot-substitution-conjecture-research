@@ -180,3 +180,8 @@ def test_three_level_actual_paths_match_full_expansion_and_cramer(k,t):
                     assert 0<=fail<3
                     refusals+=1
     assert passes>0 and refusals>0
+    assert (passes,refusals)=={
+        (0,0):(1063,5498),
+        (1,0):(981,5580),
+        (0,1):(1027,5534),
+    }[(k,t)]
