@@ -11,9 +11,9 @@ No float/eigenvalue/synthetic quotient and no promoted C4/PSC claim.
 
 from psc.bpa import (
     apply_substitution, coincidence_boundaries, prefix_endpoint_map,
-    suffix_endpoint_map,
+    suffix_endpoint_map, substitution_incidence,
 )
-from psc.c4_cut_alignment import CutBirth, classify_irreducible_birth, _eventually_equal
+from psc.c4_cut_alignment import CutBirth, classify_irreducible_birth, _eventually_equal, _det3
 from psc.derived_system import build_derived_system
 from psc.words import Pair
 
@@ -84,6 +84,18 @@ def strict_birth_atlas(
     """
     if birth_cap <= 0 or len(states) == 0 or len(states) > 2000:
         raise Error("strict atlas input or resource cap invalid")
+    # Enforce the full-rank and machine-word budget even if all derived
+    # parents have only one child, so a zero-event atlas is not vacuous.
+    if len(sigma) != 3:
+        raise Error("strict birth atlas requires ternary substitution")
+    for a in range(3):
+        if len(sigma[a]) == 0 or len(sigma[a]) > 64:
+            raise Error("strict birth atlas image-length budget exceeded")
+    if _det3(substitution_incidence(sigma)) == 0:
+        raise Error("strict birth atlas requires nonsingular incidence")
+    for i in range(len(states)):
+        if states[i].length() == 0 or states[i].length() > 4096:
+            raise Error("strict birth atlas state length budget exceeded")
     var ds = build_derived_system(sigma, states)
     var right_map = prefix_endpoint_map(sigma)
     var left_map = suffix_endpoint_map(sigma)
