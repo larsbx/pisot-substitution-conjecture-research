@@ -15,7 +15,11 @@ nonmembership result for the GIVEN actual pair, not a nonproductivity proof.
 This supplies no graph reachability, no uniform entry from X, and no BH.
 """
 from finite_exact.checked_int import checked_add, checked_sub
-from psc.class_a_boundary_children import _prefix, _letter
+from psc.class_a_boundary_children import (
+    _prefix, _letter, BoundaryLabel, member_transport, geometric_state,
+)
+from psc.class_a_native_length_contract import check_literal_minus_class_a_words
+from psc.overlap_seed_patch import SeedOverlapTables, interior_overlap
 from psc.class_a_madic_digits import parameters, invert_image
 
 
@@ -100,3 +104,47 @@ def unique_actual_zero_parent(
     if not cert.valid:
         raise Error("actual prefix pair fails finite-place zero-parent carry")
     return cert.parent.copy()
+
+
+def replay_actual_zero_overlap_path(
+    tables: SeedOverlapTables, k: Int, t: Int,
+    top: Int, bottom: Int, top_path: List[Int], bottom_path: List[Int],
+) raises -> List[BoundaryLabel]:
+    """Turn a successful integral carry into an ACTUAL strict occurrence path.
+
+    The shared final positive-length tile proves strict overlap of each
+    inflated ancestor; the exact Perron guard is checked at every state.
+    A typed coincidence is absorbing and therefore terminates early.
+    The initial state is not asserted to belong to any selected swap-seed
+    forward closure; this is an occurrence- and geometry-valid *formal*
+    witness, not a BH result.
+    """
+    var par=parameters(k,t)
+    var n=par[0]
+    var d=par[1]
+    check_literal_minus_class_a_words(tables,n,d)
+    var w=unique_actual_zero_parent(k,t,top,bottom,top_path,bottom_path)
+    var current=BoundaryLabel(top,bottom,w[0],w[1],w[2])
+    var path=List[BoundaryLabel]()
+    if not interior_overlap(tables,geometric_state(tables,current)):
+        raise Error("integral source is not a strict Perron overlap")
+    path.append(current)
+    if current.top==current.bottom and current.x==0 and (
+        current.c==0 and current.y==0
+    ):
+        return path^
+    for h in range(len(top_path)):
+        var child=member_transport(
+            -1,k,n,d,current,top_path[h],bottom_path[h]
+        )
+        if not interior_overlap(tables,geometric_state(tables,child)):
+            raise Error("actual ordered child fails strict Perron geometry")
+        path.append(child)
+        current=child
+        if current.top==current.bottom and current.x==0 and (
+            current.c==0 and current.y==0
+        ):
+            return path^
+    if current.x!=0 or current.c!=0 or current.y!=0:
+        raise Error("complete actual prefix carry did not end at offset zero")
+    return path^
