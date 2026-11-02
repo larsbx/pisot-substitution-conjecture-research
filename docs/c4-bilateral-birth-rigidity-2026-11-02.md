@@ -171,7 +171,86 @@ all its proper-prefix residue checks. This is a new exact
 non-unit **necessary filter**, not BH, a good-edge word
 constraint, or a guarantee of C4 synchronization.
 
-## 5. Exact recurrent PIP counterexample to the stronger local lemma
+## 5. Stronger negative: a primitive, full-rank, non-PIP **strict SCC**
+
+The original singular non-Pisot strict fixture is **not** the strongest
+available negative. There is a literal **four-state, closed, strongly
+connected, nonproductive** derived system with `det M=-2`,
+primitive expanding incidence and genuine one-step asynchronous
+children, which defeats C4 **when irreducible Pisot is omitted**:
+
+```text
+sigma(0)=10, sigma(1)=102, sigma(2)=211
+
+M = [[1,1,0],
+     [1,1,2],
+     [0,1,1]]
+chi_M(x)=(x-1)(x^2-2x-2), det M=-2.
+M^4 = [[10,16,18],[16,28,32],[9,16,19]] > 0 entrywise.
+
+S0=(102,210)
+S1=(11102,21110)
+S2=(10210211,21110210)
+S3=(10210210210211,21110210210210)
+
+complete *ordered* derived child words:
+S0 -> [S2]
+S1 -> [S3]
+S2 -> [S2,S0,S0,S1,S0]
+S3 -> [S2,S0,S0,S1,S0,S1,S0,S1,S0].
+```
+
+Every listed word pair is balanced, irreducible and noncoincident.
+Inflating each pair and decomposing into all actual zero-return
+blocks gives **exactly** the stated ordered words, with physical
+orientation positive; no quotient-only or synthetic child edge is
+inserted. The four-state support is forward closed and strongly
+connected: `S0->S2->S1->S3->S2`, and `S2`
+returns to `S0`. It is reachable from the genuine all-seed
+swap `(02,20)`, whose first child is not yet in this closed SCC.
+
+All rows are **strict**, i.e. no diagonal child or productive exit.
+For every state the first letter pair is `(1,2)`; its last
+letter pair is either `(2,0)` or `(1,0)`. The actual
+prefix and suffix endpoint maps are
+
+```text
+h=(1,1,2): (1,2) -> (1,2) forever;
+g=(0,2,1): 0 -> 0,   1 <-> 2.
+```
+
+Consequently **no one-step interior newborn boundary** in this
+real strict SCC has right-adjacent pair in `Sync_+` or
+left-adjacent pair in `Sync_-`. This is a genuine
+countermodel to the *weaker-premise* assertion
+`primitive + expanding + full incidence rank + strict finite SCC => C4`.
+It is **NOT** a countermodel to Issue #9: the incidence cubic is
+**reducible** and retains an eigenvalue 1, so it does **not** satisfy
+the project's primitive **irreducible Pisot** hypothesis.
+Full rank, primitivity and the new integral-lattice filter alone
+cannot replace that spectral/irreducibility hypothesis.
+
+For an actual one-step word-level witness choose parent `S2`:
+its inflated word length is 22 and full zero-return positions are
+`[0,8,11,14,19,22]`. At cuts `t=8` and `t=14`:
+
+| cut | top source/digit | bottom source/digit | source defect `E` | proper-prefix correction `c` |
+| ---: | --- | --- | --- | --- |
+| 8 | (3,0) | (2,2) | (1,0,0) | (-1,-1,0) |
+| 14 | (5,1) | (5,0) | (1,-1,0) | (0,0,1) |
+
+Both satisfy `M E+c=0`, use **real ordered** child-boundary
+positions, have one-sided image misalignment and pass Cramer's
+integral-image necessity. Nevertheless neither can synchronize via
+the displayed endpoint maps. The new canonical Mojo regression
+builds this actual strict system, verifies all four complete child
+words, the seed reachability/endpoint patterns and the two
+source-address witnesses; the independent Python oracle
+reconstructs the same four-state SCC and checks primitivity
+via `M^4>0`. The *exact algebraic* countermodel is a
+hypothesis-boundary finding, **not** a claim about general PSC.
+
+## 6. Exact recurrent PIP counterexample to the stronger local lemma
 
 Retire the following overstrong proposal:
 
@@ -241,7 +320,7 @@ offset `209 <-> 429` control in *one* respect: it witnesses a full
 positions inside a child. It is weaker in that it does not provide a
 target-avoiding strict component. Both controls must be kept.
 
-## 6. Singular incidence counterexample (essential hypothesis)
+## 7. Singular incidence counterexample (essential hypothesis)
 
 For the existing primitive non-Pisot strict-component calibration
 
@@ -258,7 +337,7 @@ known two-state strict component is supplied separately. That
 non-Pisot strict component is retained as a factorization control,
 not as a positive instance of a PIP/full-rank claim.
 
-## 7. Executable scope and replay
+## 8. Executable scope and replay
 
 Canonical module:
 `kernel/psc/c4_cut_alignment.mojo`.
@@ -282,7 +361,7 @@ the theorem's proof. **Preparation-time Python local replay: five\ntests passed*
 **canonical Mojo checks are not reported as locally passed** and
 hosted exact-head CI must be inspected before acceptance.
 
-## 8. Completion boundary and next falsifiable C4 lemma
+## 9. Completion boundary and next falsifiable C4 lemma
 
 Theorem B supplies a **genuinely asynchronous** interior newborn
 cut in every hypothetical strict PIP component. To prove C4, one
