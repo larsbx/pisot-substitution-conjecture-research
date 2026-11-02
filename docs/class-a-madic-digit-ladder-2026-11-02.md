@@ -139,11 +139,47 @@ path can be made compatible with geometric overlaps at every intervening
 level. The remaining task in #452 must impose those occurrence, geometry,
 and all-descendant coverage conditions explicitly.
 
+
+### The exact bridge to the nine affine one-step reverse-target segments
+
+Let `a'`, `b'` be the **deepest parent letters** on a pair of actual
+paths, and let `i,j` be their last child occurrence indices.
+Write `R_x=n+d`, `R_c=n`, `R_y=n-1`. The last-level prefix
+correction `q_(m-1)` is either zero (both indices FIRST), a mixed
+FIRST/non-FIRST column, or a difference of two positive-index columns.
+Every non-FIRST proper prefix has exactly one x or c and some y letters,
+so its `X-C` parity is odd, whereas FIRST has parity zero.
+Thus the first carry can exist **only** when both deepest indices are FIRST
+or both are positive. These conditions are also sufficient for the
+*first carry*, but emphatically **not** for the full m-step carry.
+
+For both positive, put `delta=1_{a'!=c}-1_{b'!=c}` and `h=i-j`.
+A direct substitution into the exact integral inverse yields
+
+    c_1 = (delta, h-(d+1)delta, -h+d delta),
+    -R_(b') <= h <= R_(a').
+
+For both FIRST, `c_1=0`. These are **precisely** the nine oriented
+affine one-step zero-predecessor segments identified in draft #451,
+now recovered as the *lowest carries of a genuine multilevel occurrence
+pair*. This is an algebraic interface between the two pending PRs:
+the first-stage carry lies in an explicitly linear-size state set,
+while all higher carries are produced by the nonunit recurrence
+`c_(j+1)=M^-1(c_j+q_(m-1-j))`. The deeper state set need not remain
+inside those nine segments; no carrier-invariance assertion follows.
+
+The minimal next proof obligation therefore becomes an occurrence-sensitive
+**carry-control/escape** statement: find a uniform policy that forces valid
+higher carries and eventually zero return from all relevant cyclic
+strict-zipper descendants, with the exact full-graph closure and geometrical
+requirements of #452. It is not enough to prove the local lowest digit can
+match, nor to abstract the prefix digits away from actual word indices.
+
 ## Canonical implementation and independent acceptance
 
 - `kernel/psc/class_a_madic_digits.mojo` supplies exact checked incidence multiplication, index-two inverse, per-stage parity extraction, reconstruction, congruence, and unique integral zero-parent recovery. Its finite budget is m<=64. Overflow, malformed vectors, missing levels and nonbinary reconstruction digits refuse rather than become false proof receipts.
 - `kernel/tests/test_class_a_madic_digits.mojo` checks integer round trips for 16 parameter specimens, five finite levels and every triple in [-2,2]^3; enumerates all 2^m cosets at levels 1..4, rejects distinct-word collisions, checks multi-step parents and malformed inputs.
-- `tests/test_class_a_madic_digits_oracle.py` uses an **independent** 3x3 matrix-power algorithm and exact Cramer-divisibility test (not the digit recurrence as its definition of the target). It checks image-power membership and integral inverse, all canonical representatives in sample chambers, and determinant index. It also independently expands actual substitution words through levels one and two for two parameter specimens, exhaustively reconstructs real proper-prefix differences at every ordered index pair, and compares the Cramer integer-parent criterion to the binary-zero test. It does not use floating point or a reduction modulo 2^m integer as a substitute for the actual quotient.
+- `tests/test_class_a_madic_digits_oracle.py` uses an **independent** 3x3 matrix-power algorithm and exact Cramer-divisibility test (not the digit recurrence as its definition of the target). It checks image-power membership and integral inverse, all canonical representatives in sample chambers, and determinant index. It also independently expands actual substitution words through levels one and two for two parameter specimens, exhaustively reconstructs real proper-prefix differences at every ordered index pair, and compares the Cramer integer-parent criterion to the binary-zero test. The separate literal two-level oracle now pins 3,794 successes / 3,154 lowest-digit failures / 3,456 higher-carry failures at (0,0), 7,851 / 5,612 / 7,562 at (1,0), and 8,900 / 6,240 / 8,576 at (0,1); these are bounded regression counts from an independently executed exact integer scratch check, **not** a hosted or canonical Mojo pass. It does not use floating point or a reduction modulo 2^m integer as a substitute for the actual quotient.
 
 Replay from repository root:
 
